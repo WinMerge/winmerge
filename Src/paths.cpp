@@ -60,7 +60,7 @@ bool paths_EndsWithSlash(const String& s)
  * - IS_EXISTING_DIR : path points to existing folder
  * - IS_EXISTING_FILE : path points to existing file
  */
-PATH_EXISTENCE paths_DoesPathExist(const String& szPath)
+PATH_EXISTENCE paths_DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&))
 {
 	if (szPath.empty())
 		return DOES_NOT_EXIST;
@@ -81,11 +81,19 @@ PATH_EXISTENCE paths_DoesPathExist(const String& szPath)
 	DWORD attr = GetFileAttributes(lpcszPath);
 
 	if (attr == ((DWORD) -1))
+	{
+		if (IsArchiveFile && IsArchiveFile(szPath))
+			return IS_EXISTING_DIR;
 		return DOES_NOT_EXIST;
+	}
 	else if (attr & FILE_ATTRIBUTE_DIRECTORY)
 		return IS_EXISTING_DIR;
 	else
+	{
+		if (IsArchiveFile && IsArchiveFile(szPath))
+			return IS_EXISTING_DIR;
 		return IS_EXISTING_FILE;
+	}
 }
 
 /**
@@ -380,21 +388,15 @@ PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveF
 	// fail if not both specified
 	if (paths.GetSize() < 2 || paths[0].empty() || paths[1].empty())
 		return DOES_NOT_EXIST;
-	PATH_EXISTENCE p1 = paths_DoesPathExist(paths[0]);
+	PATH_EXISTENCE p1 = paths_DoesPathExist(paths[0], IsArchiveFile);
 	// short circuit testing right if left doesn't exist
 	if (p1 == DOES_NOT_EXIST)
 		return DOES_NOT_EXIST;
-	if (IsArchiveFile && IsArchiveFile(paths[0]))
-		p1 = IS_EXISTING_DIR;
-	PATH_EXISTENCE p2 = paths_DoesPathExist(paths[1]);
-	if (IsArchiveFile && IsArchiveFile(paths[1]))
-		p2 = IS_EXISTING_DIR;
+	PATH_EXISTENCE p2 = paths_DoesPathExist(paths[1], IsArchiveFile);
 	if (p1 != p2)
 		return DOES_NOT_EXIST;
 	if (paths.GetSize() < 3) return p1; 
-	PATH_EXISTENCE p3 = paths_DoesPathExist(paths[2]);
-	if (IsArchiveFile && IsArchiveFile(paths[2]))
-		p3 = IS_EXISTING_DIR;
+	PATH_EXISTENCE p3 = paths_DoesPathExist(paths[2], IsArchiveFile);
 	if (p2 != p3) return DOES_NOT_EXIST;
 	return p1;
 }
@@ -739,4 +741,9 @@ String paths_GetPathOnly(const String& fullpath)
 	String spath;
 	paths_SplitFilename(fullpath, &spath, 0, 0);
 	return spath;
+}
+
+bool paths_IsURLorCLSID(const String& path)
+{
+	return (path.find(_T("://")) != String::npos || path.find(_T("::{")) != String::npos);
 }

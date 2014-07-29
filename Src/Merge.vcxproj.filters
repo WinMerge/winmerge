@@ -742,6 +742,9 @@
     <ClCompile Include="OptionsCustomColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Merge7zFormatShellImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">

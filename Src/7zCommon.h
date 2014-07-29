@@ -7,6 +7,7 @@
 #include <PropIdl.h>
 #include "dllpstub.h"
 #include "../ArchiveSupport/Merge7z/Merge7z.h"
+#include "paths.h"
 
 class CDirView;
 class CListCtrl;
@@ -91,3 +92,14 @@ void NTAPI Recall7ZipMismatchError();
 BOOL NTAPI IsMerge7zEnabled();
 DWORD NTAPI VersionOf7z(BOOL bLocal = FALSE);
 
+struct DecompressResult
+{
+	DecompressResult(const PathContext& files, CTempPathContext *pTempPathContext, PATH_EXISTENCE pathsType) :
+		files(files), pTempPathContext(pTempPathContext), pathsType(pathsType)
+	{
+	}
+	PathContext files;
+	CTempPathContext *pTempPathContext;
+	PATH_EXISTENCE pathsType;
+};
+DecompressResult DecompressArchive(HWND hWnd, const PathContext& infiles);

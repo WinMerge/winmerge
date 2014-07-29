@@ -25,7 +25,7 @@ typedef enum
 
 bool paths_EndsWithSlash(const String& s);
 
-PATH_EXISTENCE paths_DoesPathExist(const String& szPath);
+PATH_EXISTENCE paths_DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&) = NULL);
 String paths_FindFileName(const String& path);
 String paths_FindExtension(const String& path);
 void paths_normalize(String & sPath);
@@ -43,6 +43,7 @@ String paths_EnsurePathExist(const String & sPath);
 void paths_SplitFilename(const String& s, String * path, String * name, String * ext);
 void paths_SplitViewName(const TCHAR *s, String * path, String * name, String * ext);
 String paths_GetPathOnly(const String& fullpath);
+bool paths_IsURLorCLSID(const String& path);
 
 inline String paths_AddTrailingSlash(const String& path) { return !paths_EndsWithSlash(path) ? path + _T("\\") : path; }
 

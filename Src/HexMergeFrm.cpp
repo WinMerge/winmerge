@@ -176,6 +176,9 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		TRACE0("Failed to create dialog bar\n");
 		return FALSE;      // fail to create
 	}
+
+	m_wndFilePathBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
+
 	// Set filename bars inactive so colors get initialized
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
 		m_wndFilePathBar.SetActive(nPane, false);
@@ -205,11 +208,20 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 			::GetWindowLongPtr(pView[nPane]->m_hWnd, GWLP_USERDATA));
 	}
 
+	// tell the heksedit controls about each other
+	if (m_pMergeDoc->m_nBuffers == 2)
+	{
+		pif[0]->set_sibling(pif[1]);
+		pif[1]->set_sibling(pif[0]);
+	}
+	else
+	{
+		pif[0]->set_sibling(pif[1]);
+		pif[1]->set_sibling2(pif[0], pif[2]);
+		pif[2]->set_sibling(pif[1]);
+	}
 	for (int nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
 	{
-		// tell the heksedit controls about each other
-		pif[nPane]->set_sibling(pif[(nPane + 1) % m_pMergeDoc->m_nBuffers]);
-
 		// adjust a few settings and colors
 		Customize(pif[nPane]);
 	}
@@ -317,11 +329,13 @@ void CHexMergeFrame::UpdateHeaderSizes()
 		RECT rc;
 		GetClientRect(&rc);
 		rc.top = rc.bottom - m_rectBorder.bottom;
-		rc.left = w[0] + 8;
-		m_wndStatusBar[1].MoveWindow(&rc);
-		rc.right = rc.left;
-		rc.left = 0;
-		m_wndStatusBar[0].MoveWindow(&rc);
+		rc.right = 0;
+		for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+		{
+			rc.right += w[pane] + 10;
+			m_wndStatusBar[pane].MoveWindow(&rc);
+			rc.left = rc.right;
+		}
 	}
 }
 
@@ -383,75 +397,80 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 			UpdateHeaderSizes();
 			m_nLastSplitPos = w;
 		}
-		CHexMergeView *pLeft = (CHexMergeView *)m_wndSplitter.GetPane(0, 0);
-		CHexMergeView *pRight = (CHexMergeView *)m_wndSplitter.GetPane(0, 1);
+		int pane;
+		int nColumns = m_wndSplitter.GetColumnCount();
+		CHexMergeView *pView[3] = {0};
+		for (pane = 0; pane < nColumns; ++pane)
+			pView[pane] = (CHexMergeView *)m_wndSplitter.GetPane(0, pane);
 
 		// Update mod indicators
 		TCHAR ind[2];
 
-		if (m_wndFilePathBar.GetDlgItemText(IDC_STATIC_TITLE_PANE0, ind, 2))
-			if (pLeft->GetModified() ? ind[0] != _T('*') : ind[0] == _T('*'))
-				m_pMergeDoc->UpdateHeaderPath(0);
-
-		if (m_wndFilePathBar.GetDlgItemText(IDC_STATIC_TITLE_PANE1, ind, 2))
-			if (pRight->GetModified() ? ind[0] != _T('*') : ind[0] == _T('*'))
-				m_pMergeDoc->UpdateHeaderPath(1);
+		for (pane = 0; pane < nColumns; ++pane)
+		{
+			if (m_wndFilePathBar.GetDlgItemText(IDC_STATIC_TITLE_PANE0 + pane, ind, 2))
+				if (pView[pane]->GetModified() ? ind[0] != _T('*') : ind[0] == _T('*'))
+					m_pMergeDoc->UpdateHeaderPath(pane);
+		}
 
 		// Synchronize scrollbars
-		SCROLLINFO si, siLeft, siRight;
+		SCROLLINFO si, siView[3];
 		// Synchronize horizontal scrollbars
-		pLeft->GetScrollInfo(SB_HORZ, &si, SIF_ALL | SIF_DISABLENOSCROLL);
-		siLeft = si;
-		pRight->GetScrollInfo(SB_HORZ, &si, SIF_ALL | SIF_DISABLENOSCROLL);
-		siRight = si;
-		if (si.nMin > siLeft.nMin)
-			si.nMin = siLeft.nMin;
-		if (si.nPage < siLeft.nPage)
-			si.nPage = siLeft.nPage;
-		if (si.nMax < siLeft.nMax)
-			si.nMax = siLeft.nMax;
-		if (GetFocus() != pRight)
+		pView[0]->GetScrollInfo(SB_HORZ, &si, SIF_ALL | SIF_DISABLENOSCROLL);
+		for (pane = 1; pane < nColumns; ++pane)
 		{
-			si.nPos = siLeft.nPos;
-			si.nTrackPos = siLeft.nTrackPos;
+			SCROLLINFO siCur;
+			pView[pane]->GetScrollInfo(SB_HORZ, &siCur, SIF_ALL | SIF_DISABLENOSCROLL);
+			siView[pane] = siCur;
+			if (si.nMin > siCur.nMin)
+				si.nMin = siCur.nMin;
+			if (si.nPage < siCur.nPage)
+				si.nPage = siCur.nPage;
+			if (si.nMax < siCur.nMax)
+				si.nMax = siCur.nMax;
+			if (GetFocus() == pView[pane])
+			{
+				si.nPos = siCur.nPos;
+				si.nTrackPos = siCur.nTrackPos;
+			}
 		}
-		if (memcmp(&si, &siLeft, sizeof si))
+		for (pane = 0; pane < nColumns; ++pane)
 		{
-			pLeft->SetScrollInfo(SB_HORZ, &si);
-			pLeft->SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBTRACK, si.nTrackPos));
+			if (memcmp(&si, &siView[pane], sizeof si))
+			{
+				pView[pane]->SetScrollInfo(SB_HORZ, &si);
+				pView[pane]->SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBTRACK, si.nTrackPos));
+			}
 		}
-		if (memcmp(&si, &siRight, sizeof si))
-		{
-			pRight->SetScrollInfo(SB_HORZ, &si);
-			pRight->SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBTRACK, si.nTrackPos));
-		}
-		m_wndSplitter.GetScrollBarCtrl(pLeft, SB_HORZ)->SetScrollInfo(&si);
-		m_wndSplitter.GetScrollBarCtrl(pRight, SB_HORZ)->SetScrollInfo(&si);
+		for (pane = 0; pane < nColumns; ++pane)
+			m_wndSplitter.GetScrollBarCtrl(pView[pane], SB_HORZ)->SetScrollInfo(&si);
+
 		// Synchronize vertical scrollbars
-		pLeft->GetScrollInfo(SB_VERT, &si, SIF_ALL | SIF_DISABLENOSCROLL);
-		siLeft = si;
-		pRight->GetScrollInfo(SB_VERT, &si, SIF_ALL | SIF_DISABLENOSCROLL);
-		siRight = si;
-		if (si.nMin > siLeft.nMin)
-			si.nMin = siLeft.nMin;
-		if (si.nMax < siLeft.nMax)
-			si.nMax = siLeft.nMax;
-		if (GetFocus() != pRight)
+		pView[0]->GetScrollInfo(SB_VERT, &si, SIF_ALL | SIF_DISABLENOSCROLL);
+		for (pane = 1; pane < nColumns; ++pane)
 		{
-			si.nPos = siLeft.nPos;
-			si.nTrackPos = siLeft.nTrackPos;
+			SCROLLINFO siCur;
+			pView[pane]->GetScrollInfo(SB_VERT, &siCur, SIF_ALL | SIF_DISABLENOSCROLL);
+			siView[pane] = siCur;
+			if (si.nMin > siCur.nMin)
+				si.nMin = siCur.nMin;
+			if (si.nMax < siCur.nMax)
+				si.nMax = siCur.nMax;
+			if (GetFocus() == pView[pane])
+			{
+				si.nPos = siCur.nPos;
+				si.nTrackPos = siCur.nTrackPos;
+			}
 		}
-		if (memcmp(&si, &siLeft, sizeof si))
+		for (pane = 0; pane < nColumns; ++pane)
 		{
-			pLeft->SetScrollInfo(SB_VERT, &si);
-			pLeft->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_THUMBTRACK, si.nTrackPos));
+			if (memcmp(&si, &siView[pane], sizeof si))
+			{
+				pView[pane]->SetScrollInfo(SB_VERT, &si);
+				pView[pane]->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_THUMBTRACK, si.nTrackPos));
+			}
 		}
-		if (memcmp(&si, &siRight, sizeof si))
-		{
-			pRight->SetScrollInfo(SB_VERT, &si);
-			pRight->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_THUMBTRACK, si.nTrackPos));
-		}
-		m_wndSplitter.GetScrollBarCtrl(pRight, SB_VERT)->SetScrollInfo(&si);
+		m_wndSplitter.GetScrollBarCtrl(pView[nColumns - 1], SB_VERT)->SetScrollInfo(&si);
 	}
 	CMDIChildWnd::OnIdleUpdateCmdUI();
 }

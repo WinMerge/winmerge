@@ -134,6 +134,8 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	ON_COMMAND(ID_L2R, OnL2r)
 	ON_COMMAND(ID_R2L, OnR2l)
+	ON_COMMAND(ID_COPY_FROM_LEFT, OnCopyFromLeft)
+	ON_COMMAND(ID_COPY_FROM_RIGHT, OnCopyFromRight)
 	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
 	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
@@ -168,6 +170,18 @@ CHexMergeDoc::~CHexMergeDoc()
 {	
 	if (m_pDirDoc)
 		m_pDirDoc->MergeDocClosing(this);
+}
+
+/**
+ * @brief Return active merge edit view (or left one if neither active)
+ */
+CHexMergeView * CHexMergeDoc::GetActiveMergeView() const
+{
+	CView * pActiveView = GetParentFrame()->GetActiveView();
+	CHexMergeView * pHexMergeView = dynamic_cast<CHexMergeView *>(pActiveView);
+	if (!pHexMergeView)
+		pHexMergeView = m_pView[0]; // default to left view (in case some location or detail view active)
+	return pHexMergeView;
 }
 
 /**
@@ -459,7 +473,7 @@ void CHexMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 /**
  * @brief Return pointer to parent frame
  */
-CHexMergeFrame * CHexMergeDoc::GetParentFrame() 
+CHexMergeFrame * CHexMergeDoc::GetParentFrame() const
 {
 	return static_cast<CHexMergeFrame *>(m_pView[0]->GetParentFrame()); 
 }
@@ -607,6 +621,7 @@ void CHexMergeDoc::SetMergeViews(CHexMergeView *pView[])
 	{
 		ASSERT(pView[nBuffer] && !m_pView[nBuffer]);
 		m_pView[nBuffer] = pView[nBuffer];
+		m_pView[nBuffer]->m_nThisPane = nBuffer;
 	}
 }
 
@@ -700,7 +715,9 @@ void CHexMergeDoc::CopyAll(CHexMergeView *pViewSrc, CHexMergeView *pViewDst)
  */
 void CHexMergeDoc::OnL2r()
 {
-	CopySel(m_pView[0], m_pView[1]);
+	int dstPane = (GetActiveMergeView()->m_nThisPane < m_nBuffers - 1) ? GetActiveMergeView()->m_nThisPane + 1 : m_nBuffers - 1;
+	int srcPane = dstPane - 1;
+	CopySel(m_pView[srcPane], m_pView[dstPane]);
 }
 
 /**
@@ -708,7 +725,29 @@ void CHexMergeDoc::OnL2r()
  */
 void CHexMergeDoc::OnR2l()
 {
-	CopySel(m_pView[1], m_pView[0]);
+	int dstPane = (GetActiveMergeView()->m_nThisPane > 0) ? GetActiveMergeView()->m_nThisPane - 1 : 0;
+	int srcPane = dstPane + 1;
+	CopySel(m_pView[srcPane], m_pView[dstPane]);
+}
+
+/**
+ * @brief Copy selected bytes from left to active pane
+ */
+void CHexMergeDoc::OnCopyFromLeft()
+{
+	int dstPane = GetActiveMergeView()->m_nThisPane;
+	int srcPane = (dstPane - 1 < 0) ? 0 : dstPane - 1;
+	CopySel(m_pView[srcPane], m_pView[dstPane]);
+}
+
+/**
+ * @brief Copy selected bytes from right to active pane
+ */
+void CHexMergeDoc::OnCopyFromRight()
+{
+	int dstPane = GetActiveMergeView()->m_nThisPane;
+	int srcPane = (dstPane + 1 > m_nBuffers - 1) ? m_nBuffers - 1 : dstPane + 1;
+	CopySel(m_pView[srcPane], m_pView[dstPane]);
 }
 
 /**
@@ -716,7 +755,9 @@ void CHexMergeDoc::OnR2l()
  */
 void CHexMergeDoc::OnAllRight()
 {
-	CopyAll(m_pView[0], m_pView[1]);
+	int dstPane = (GetActiveMergeView()->m_nThisPane < m_nBuffers - 1) ? GetActiveMergeView()->m_nThisPane + 1 : m_nBuffers - 1;
+	int srcPane = dstPane - 1;
+	CopyAll(m_pView[srcPane], m_pView[dstPane]);
 }
 
 /**
@@ -724,7 +765,9 @@ void CHexMergeDoc::OnAllRight()
  */
 void CHexMergeDoc::OnAllLeft()
 {
-	CopyAll(m_pView[1], m_pView[0]);
+	int dstPane = (GetActiveMergeView()->m_nThisPane > 0) ? GetActiveMergeView()->m_nThisPane - 1 : 0;
+	int srcPane = dstPane + 1;
+	CopyAll(m_pView[srcPane], m_pView[dstPane]);
 }
 
 /**

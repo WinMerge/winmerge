@@ -148,7 +148,7 @@ HexEditorWindow::HexEditorWindow()
 	iDiffTextColorValue = RGB(0,0,0);
 	iSelDiffBkColorValue = RGB(239,119,116);
 	iSelDiffTextColorValue = RGB(0,0,0);
-	sibling = this;
+	ary_sibling[0] = ary_sibling[1] = this;
 	iAutomaticBPL = 1;
 	bSelected = false;
 	bSelecting = false;
@@ -222,7 +222,14 @@ int HexEditorWindow::get_length()
 
 void HexEditorWindow::set_sibling(IHexEditorWindow *p)
 {
-	sibling = p;
+	ary_sibling[0] = p;
+	ary_sibling[1] = this;
+}
+
+void HexEditorWindow::set_sibling2(IHexEditorWindow *p1, IHexEditorWindow *p2)
+{
+	ary_sibling[0] = p1;
+	ary_sibling[1] = p2;
 }
 
 HexEditorWindow::Colors *HexEditorWindow::get_colors()
@@ -593,10 +600,11 @@ void HexEditorWindow::resize_window()
 	// Get number of lines to display.
 	iNumlines = (length + iBytesPerLine) / iBytesPerLine;
 
-	int sibling_length = sibling->get_length();
-	if (length < sibling_length)
-		length = sibling_length;
-
+	for (int i = 0; i < 2; ++i)
+	{
+		if (length < ary_sibling[i]->get_length())
+			length = ary_sibling[i]->get_length();
+	}
 	iVscrollMax = (length + iBytesPerLine) / iBytesPerLine;
 
 //Pabs inserted "ffff" after each 0xffff - 32bit scrolling
@@ -632,9 +640,13 @@ void HexEditorWindow::resize_window()
 	set_wnd_title();
 	repaint();
 
-	if (pwnd == HWindow::GetFocus() && sibling != this)
+	if (pwnd == HWindow::GetFocus())
 	{
-		sibling->resize_window();
+		for (int i = 0; i < 2; ++i)
+		{
+			if (ary_sibling[i] != this)
+				ary_sibling[i]->resize_window();
+		}
 	}
 }
 
@@ -657,13 +669,16 @@ void HexEditorWindow::kill_focus()
 	pwnd->HideCaret();
 	DestroyCaret();
 	mark_char(0);
-	if (sibling != this)
+	for (int i = 0; i < 2; ++i)
 	{
-		Status *sibling_status = sibling->get_status();
-		int sibling_length = sibling->get_length();
-		sibling_status->iEnteringMode = iEnteringMode;
-		sibling_status->iCurByte = iCurByte < sibling_length ? iCurByte : sibling_length;
-		sibling_status->iCurNibble = iCurNibble;
+		if (ary_sibling[i] != this)
+		{
+			Status *sibling_status = ary_sibling[i]->get_status();
+			int sibling_length = ary_sibling[i]->get_length();
+			sibling_status->iEnteringMode = iEnteringMode;
+			sibling_status->iCurByte = iCurByte < sibling_length ? iCurByte : sibling_length;
+			sibling_status->iCurNibble = iCurNibble;
+		}
 	}
 }
 
@@ -1948,8 +1963,11 @@ void HexEditorWindow::repaint(int from, int to)
 	if (pwnd == HWindow::GetFocus())
 	{
 		set_caret_pos();
-		if (sibling != this)
-			sibling->repaint(from, to);
+		for (int i = 0; i < 2; ++i)
+		{
+			if (ary_sibling[i] != this)
+				ary_sibling[i]->repaint(from, to);
+		}
 	}
 
 	RECT rc;
@@ -2107,8 +2125,10 @@ void HexEditorWindow::print_line(HSurface *pdc, int line, HBrush *pbr)
 
 	int length = get_length();
 	BYTE *buffer = get_buffer(length);
-	int sibling_length = sibling->get_length();
-	BYTE *sibling_buffer = sibling->get_buffer(sibling_length);
+	int sibling1_length = ary_sibling[0]->get_length();
+	BYTE *sibling1_buffer = ary_sibling[0]->get_buffer(sibling1_length);
+	int sibling2_length = ary_sibling[1]->get_length();
+	BYTE *sibling2_buffer = ary_sibling[1]->get_buffer(sibling2_length);
 
 	int iBkColor = PALETTERGB (GetRValue(iBkColorValue),GetGValue(iBkColorValue),GetBValue(iBkColorValue));
 	int iTextColor = PALETTERGB (GetRValue(iTextColorValue),GetGValue(iTextColorValue),GetBValue(iTextColorValue));
@@ -2187,7 +2207,7 @@ void HexEditorWindow::print_line(HSurface *pdc, int line, HBrush *pbr)
 		{
 			linbuf[0] = linbuf[1] = i == length ? '_' : ' ';
 		}
-		bool bDiff = i < length && i < sibling_length && buffer[i] != sibling_buffer[i];
+		bool bDiff = i < length && (i >= sibling1_length || i >= sibling2_length || (buffer[i] != sibling1_buffer[i] || buffer[i] != sibling2_buffer[i]));
 		if (bSelected && i >= iSelLower && i <= iSelUpper)
 		{
 			pdc->SetTextColor(bDiff ? iSelDiffTextColor : iSelTextColor);
@@ -4938,13 +4958,19 @@ BOOL HexEditorWindow::select_next_diff(BOOL bFromStart)
 	BOOL bDone = FALSE;
 	int length = get_length();
 	BYTE *buffer = get_buffer(length);
-	int sibling_length = sibling->get_length();
-	BYTE *sibling_buffer = sibling->get_buffer(sibling_length);
+	int sibling1_length = ary_sibling[0]->get_length();
+	BYTE *sibling1_buffer = ary_sibling[0]->get_buffer(sibling1_length);
+	int sibling2_length = ary_sibling[1]->get_length();
+	BYTE *sibling2_buffer = ary_sibling[1]->get_buffer(sibling2_length);
 	int i = bFromStart ? 0 : bSelected ? iGetEndOfSelection() + 1 : iCurByte;
-	while (i < length && i < sibling_length && buffer[i] == sibling_buffer[i])
+	if (length > sibling1_length)
+		length = sibling1_length;
+	if (length > sibling2_length)
+		length = sibling2_length;
+	while (i < length && buffer[i] == sibling1_buffer[i] && buffer[i] == sibling2_buffer[i])
 		++i;
 	int j = i;
-	while (j < length && j < sibling_length && buffer[j] != sibling_buffer[j])
+	while (j < length && (buffer[j] != sibling1_buffer[j] || buffer[j] != sibling2_buffer[j]))
 		++j;
 	if (i != j)
 	{
@@ -4965,17 +4991,21 @@ BOOL HexEditorWindow::select_prev_diff(BOOL bFromEnd)
 	BOOL bDone = FALSE;
 	int length = get_length();
 	BYTE *buffer = get_buffer(length);
-	int sibling_length = sibling->get_length();
-	BYTE *sibling_buffer = sibling->get_buffer(sibling_length);
+	int sibling1_length = ary_sibling[0]->get_length();
+	BYTE *sibling1_buffer = ary_sibling[0]->get_buffer(sibling1_length);
+	int sibling2_length = ary_sibling[1]->get_length();
+	BYTE *sibling2_buffer = ary_sibling[1]->get_buffer(sibling2_length);
 	int i = bFromEnd ? length : iGetStartOfSelection();
-	if (i > sibling_length)
-		i = sibling_length;
+	if (i > sibling1_length)
+		i = sibling1_length;
+	if (i > sibling2_length)
+		i = sibling2_length;
 	do
 	{
 		--i;
-	} while (i >= 0 && buffer[i] == sibling_buffer[i]);
+	} while (i >= 0 && buffer[i] == sibling1_buffer[i] && buffer[i] == sibling2_buffer[i]);
 	int j = i;
-	while (j >= 0 && buffer[j] != sibling_buffer[j])
+	while (j >= 0 && (buffer[j] != sibling1_buffer[j] || buffer[j] != sibling2_buffer[j]))
 		--j;
 	if (i != j)
 	{
@@ -4992,50 +5022,53 @@ BOOL HexEditorWindow::select_prev_diff(BOOL bFromEnd)
 
 void HexEditorWindow::synch_sibling(BOOL bSynchSelection)
 {
-	if (sibling != this)
+	for (int i = 0; i < 2; ++i)
 	{
-		Status *sibling_status = sibling->get_status();
-		Settings *sibling_settings = sibling->get_settings();
-
-		int sibling_length = sibling->get_length();
-
-		int iMin = sibling_status->bSelected ?
-			min(sibling_status->iStartOfSelection, sibling_status->iEndOfSelection) :
-			sibling_status->iCurByte;
-		int iMax = sibling_status->bSelected ?
-			max(sibling_status->iStartOfSelection, sibling_status->iEndOfSelection) :
-			sibling_status->iCurByte;
-
-		sibling_status->iEnteringMode = iEnteringMode;
-		sibling_status->iCurByte = iCurByte < sibling_length ? iCurByte : sibling_length;
-		sibling_status->iCurNibble = iCurNibble;
-
-		sibling_status->iVscrollMax = iVscrollMax;
-		sibling_status->iVscrollPos = iVscrollPos;
-		sibling->adjust_vscrollbar();
-
-		if (bSynchSelection)
+		if (ary_sibling[i] != this)
 		{
-			sibling_status->iStartOfSelection = iStartOfSelection;
-			sibling_status->iEndOfSelection = iEndOfSelection;
-			sibling_status->bSelected = bSelected &&
-				(iStartOfSelection < sibling_length || iEndOfSelection < sibling_length);
-			if (sibling_status->iStartOfSelection >= sibling_length)
-				sibling_status->iStartOfSelection = sibling_length - 1;
-			if (sibling_status->iEndOfSelection >= sibling_length)
-				sibling_status->iEndOfSelection = sibling_length - 1;
-			int iMinNew = sibling_status->bSelected ?
+			Status *sibling_status = ary_sibling[i]->get_status();
+			Settings *sibling_settings = ary_sibling[i]->get_settings();
+
+			int sibling_length = ary_sibling[i]->get_length();
+
+			int iMin = sibling_status->bSelected ?
 				min(sibling_status->iStartOfSelection, sibling_status->iEndOfSelection) :
 				sibling_status->iCurByte;
-			int iMaxNew = sibling_status->bSelected ?
+			int iMax = sibling_status->bSelected ?
 				max(sibling_status->iStartOfSelection, sibling_status->iEndOfSelection) :
 				sibling_status->iCurByte;
-			if (iMin > iMinNew)
-				iMin = iMinNew;
-			if (iMax < iMaxNew)
-				iMax = iMaxNew;
+
+			sibling_status->iEnteringMode = iEnteringMode;
+			sibling_status->iCurByte = iCurByte < sibling_length ? iCurByte : sibling_length;
+			sibling_status->iCurNibble = iCurNibble;
+
+			sibling_status->iVscrollMax = iVscrollMax;
+			sibling_status->iVscrollPos = iVscrollPos;
+			ary_sibling[i]->adjust_vscrollbar();
+
+			if (bSynchSelection)
+			{
+				sibling_status->iStartOfSelection = iStartOfSelection;
+				sibling_status->iEndOfSelection = iEndOfSelection;
+				sibling_status->bSelected = bSelected &&
+					(iStartOfSelection < sibling_length || iEndOfSelection < sibling_length);
+				if (sibling_status->iStartOfSelection >= sibling_length)
+					sibling_status->iStartOfSelection = sibling_length - 1;
+				if (sibling_status->iEndOfSelection >= sibling_length)
+					sibling_status->iEndOfSelection = sibling_length - 1;
+				int iMinNew = sibling_status->bSelected ?
+					min(sibling_status->iStartOfSelection, sibling_status->iEndOfSelection) :
+					sibling_status->iCurByte;
+				int iMaxNew = sibling_status->bSelected ?
+					max(sibling_status->iStartOfSelection, sibling_status->iEndOfSelection) :
+					sibling_status->iCurByte;
+				if (iMin > iMinNew)
+					iMin = iMinNew;
+				if (iMax < iMaxNew)
+					iMax = iMaxNew;
+			}
+			ary_sibling[i]->repaint(iMin / sibling_settings->iBytesPerLine, iMax / sibling_settings->iBytesPerLine);
 		}
-		sibling->repaint(iMin / sibling_settings->iBytesPerLine, iMax / sibling_settings->iBytesPerLine);
 	}
 }
 

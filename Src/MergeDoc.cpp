@@ -121,6 +121,8 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
 	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
 	ON_COMMAND(IDOK, OnOK)
+	ON_COMMAND(ID_MERGE_COMPARE_XML, OnFileRecompareAsXML)
+	ON_COMMAND(ID_MERGE_COMPARE_HEX, OnFileRecompareAsBinary)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3125,7 +3127,8 @@ void CMergeDoc::OnBnClickedHexView()
 	bool bRO[3];
 	for (int pane = 0; pane < m_nBuffers; pane++)
 		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
-	m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar, FALSE, FALSE);
+	if (m_pEncodingErrorBar && m_pEncodingErrorBar->IsWindowVisible())
+		m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar, FALSE, FALSE);
 	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_filePaths, bRO);
 	GetParentFrame()->ShowWindow(SW_RESTORE);
 	GetParentFrame()->DestroyWindow();
@@ -3134,6 +3137,18 @@ void CMergeDoc::OnBnClickedHexView()
 void CMergeDoc::OnOK()
 {
 	m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar, FALSE, FALSE);
+}
+
+void CMergeDoc::OnFileRecompareAsXML()
+{
+	PackingInfo infoUnpacker = PLUGIN_BUILTIN_XML;
+	SetUnpacker(&infoUnpacker);
+	OnFileReload();
+}
+
+void CMergeDoc::OnFileRecompareAsBinary()
+{
+	OnBnClickedHexView();
 }
 
 // Return file extension either from file name or file description (if WinMerge is used as an

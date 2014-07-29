@@ -354,6 +354,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
+	POPUP "Recompare As"
+	BEGIN
+            MENUITEM "&XML",                    ID_MERGE_COMPARE_XML
+            MENUITEM "&Binary",                 ID_MERGE_COMPARE_HEX
+	END
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
         BEGIN
@@ -3058,6 +3063,7 @@ BEGIN
     IDS_CLOSE_LEFT_TABS    "Close &Left Tabs"
     IDS_CLOSE_RIGHT_TABS   "Close R&ight Tabs"
     IDS_CLOSE_OTHER_TABS   "Close &Other Tabs"
+    IDS_TABBAR_AUTO_MAXWIDTH "Enable &Auto Max Width"
 END
 
 STRINGTABLE 

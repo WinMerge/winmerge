@@ -62,6 +62,7 @@ protected: // create from serialization only
 	// Operations
 public:	
 	void SetMergeViews(CHexMergeView * pView[]);
+	CHexMergeView *GetActiveMergeView() const;
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
@@ -79,7 +80,7 @@ public:
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void DirDocClosing(CDirDoc * pDirDoc);
 	BOOL CloseNow();
-	CHexMergeFrame * GetParentFrame();
+	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	HRESULT OpenDocs(const PathContext &paths, const bool bRO[]);
 private:
@@ -112,6 +113,8 @@ protected:
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
 	afx_msg void OnL2r();
 	afx_msg void OnR2l();
+	afx_msg void OnCopyFromLeft();
+	afx_msg void OnCopyFromRight();
 	afx_msg void OnAllRight();
 	afx_msg void OnAllLeft();
 	afx_msg void OnViewZoomIn();
