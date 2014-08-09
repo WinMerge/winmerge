@@ -131,16 +131,10 @@ void CEditorFilePathBar::Resize()
 	WINDOWPLACEMENT infoBar;
 	GetWindowPlacement(&infoBar);
 
-	CRect rc;
-	GetClientRect(&rc);
+	int widths[3];
 	for (int pane = 0; pane < m_nPanes; pane++)
-	{
-		int width = infoBar.rcNormalPosition.right / m_nPanes;
-		rc.left = pane * width;
-		rc.right = rc.left + width;
-		m_Edit[pane].MoveWindow(&rc);
-		m_Edit[pane].RefreshDisplayText();
-	}
+		widths[pane] = (infoBar.rcNormalPosition.right / m_nPanes) - 6;
+	Resize(widths);
 }
 /** 
  * @brief Set widths.

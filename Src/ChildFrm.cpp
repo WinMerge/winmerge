@@ -183,7 +183,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	}
 
 	CWnd* pWnd = new CLocationView;
-	DWORD dwStyle = AFX_WS_DEFAULT_VIEW ;// & ~WS_BORDER;
+	DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
 	pWnd->Create(NULL, NULL, dwStyle, CRect(0,0,40,100), &m_wndLocationBar, 152, pContext);
 
 	// Merge frame has also a dockable bar at the very bottom
