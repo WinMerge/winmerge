@@ -353,3 +353,30 @@ void CSplitterWndEx::FlipSplit()
 	EqualizeRows();
 
 }
+
+static COLORREF GetIntermediateColor(COLORREF a, COLORREF b)
+{
+	const int R = (GetRValue(a) - GetRValue(b)) / 2 + GetRValue(b);
+	const int G = (GetGValue(a) - GetGValue(b)) / 2 + GetGValue(b);
+	const int B = (GetBValue(a) - GetBValue(b)) / 2 + GetBValue(b);
+	return RGB(R, G, B);
+}
+
+void CSplitterWndEx::OnDrawSplitter(CDC* pDC, ESplitType nType, const CRect& rectArg)
+{
+	CRect rect = rectArg;
+	if (nType == splitBorder && pDC)
+	{
+		COLORREF clrShadow  = GetSysColor(COLOR_BTNSHADOW);
+		COLORREF clrFace    = GetSysColor(COLOR_BTNFACE);
+		COLORREF clrShadow2 = GetIntermediateColor(clrFace, clrShadow);
+		COLORREF clrShadow3 = GetIntermediateColor(clrFace, clrShadow2);
+		COLORREF clrShadow4 = GetIntermediateColor(clrFace, clrShadow3);
+		COLORREF clrShadow5 = GetIntermediateColor(clrFace, clrShadow4);
+		pDC->Draw3dRect(rect, clrShadow5, clrShadow4);
+		rect.InflateRect(-1, -1);
+		pDC->Draw3dRect(rect, clrShadow3, clrShadow2);
+		return;
+	}
+	return CSplitterWnd::OnDrawSplitter(pDC, nType, rectArg);
+}
