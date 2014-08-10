@@ -252,6 +252,9 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(0));
 		ASSERT(pPopup != NULL);
 
+		DWORD sel = GetSel();
+		if (HIWORD(sel) == LOWORD(sel))
+			pPopup->EnableMenuItem(ID_EDITOR_COPY, MF_GRAYED);
 		if (m_sOriginalText.Right(1) == '\\')
 			// no filename, we have to disable the unwanted menu entry
 			pPopup->EnableMenuItem(ID_EDITOR_COPY_FILENAME, MF_GRAYED);
@@ -262,13 +265,14 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		// and handle the command after TrackPopupMenu
 		int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON |
 			TPM_NONOTIFY  | TPM_RETURNCMD, point.x, point.y, AfxGetMainWnd());
-		if (command != ID_EDITOR_COPY_FILENAME && command != ID_EDITOR_COPY_PATH)
-			return;
 
 		// compute the beginning of the text to copy (in OriginalText)
 		int iBegin = 0;
 		switch (command)
 		{
+		case ID_EDITOR_COPY:
+			Copy();
+			return;
 		case ID_EDITOR_COPY_FILENAME:
 			{
 			int lastSlash = m_sOriginalText.ReverseFind('\\');
@@ -287,6 +291,8 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			else
 				iBegin = 0;
 			break;
+		default:
+			return;
 		}
 		
 		CustomCopy(iBegin);

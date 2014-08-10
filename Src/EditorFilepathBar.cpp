@@ -101,7 +101,10 @@ BOOL CEditorFilePathBar::LookLikeThisWnd(const CWnd * pWnd)
 			{
 				m_pFont->CreateFontIndirect(&lfFont);
 				for (int pane = 0; pane < m_nPanes; pane++)
+				{
 					m_Edit[pane].SetFont(m_pFont.get());
+					m_Edit[pane].SetMargins(4, 4);
+				}
 			}
 		}
 	}

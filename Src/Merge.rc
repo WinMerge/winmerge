@@ -640,6 +640,7 @@ IDR_POPUP_EDITOR_HEADERBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "Copy",                        ID_EDITOR_COPY
         MENUITEM "&Copy Full Path",             ID_EDITOR_COPY_PATH
         MENUITEM "Copy &Filename",              ID_EDITOR_COPY_FILENAME
     END
