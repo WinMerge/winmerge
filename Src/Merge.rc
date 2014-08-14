@@ -908,7 +908,7 @@ BEGIN
     GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,130,
                     221,37
     CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,142,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,141,206,10
     CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,151,206,10
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
@@ -1589,7 +1589,7 @@ BEGIN
                     WS_EX_CLIENTEDGE
     CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,180,55,10
-    PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,162,179,70,14
+    PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,162,199,70,14
 END
 
 IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 97
