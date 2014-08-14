@@ -73,7 +73,7 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	pdc->GetTextMetrics(&tm);
 	ReleaseDC(pdc);
 
-	return CSize(SHRT_MAX, tm.tmHeight + 8);
+	return CSize(SHRT_MAX, tm.tmHeight + 6);
 }
 
 void CMDITabBar::OnPaint() 

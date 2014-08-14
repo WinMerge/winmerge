@@ -77,6 +77,8 @@ enum LOCBAR_TYPE
 	BAR_YAREA,		/**< Y-Coord in bar area */
 };
 
+const COLORREF clrBackground = RGB(0xe4, 0xe4, 0xf4);
+
 /////////////////////////////////////////////////////////////////////////////
 // CLocationView
 
@@ -208,7 +210,7 @@ void CLocationView::OnSetFocus(CWnd* pOldWnd)
 void CLocationView::DrawBackground(CDC* pDC)
 {
 	// Set brush to desired background color
-	CBrush backBrush(RGB(0xe8, 0xe8, 0xf4));
+	CBrush backBrush(clrBackground);
 	
 	// Save old brush
 	CBrush* pOldBrush = pDC->SelectObject(&backBrush);
@@ -354,6 +356,23 @@ void CLocationView::CalculateBlocksPixel(int nBlockStart, int nBlockEnd,
 	nBeginY = (int)(nBlockStart * m_lineInPix + Y_OFFSET);
 	nEndY = (int)((nBlockStart + nBlockHeight) * m_lineInPix + Y_OFFSET);
 }
+
+static COLORREF GetIntermediateColor(COLORREF a, COLORREF b)
+{
+	const int R = (GetRValue(a) - GetRValue(b)) / 2 + GetRValue(b);
+	const int G = (GetGValue(a) - GetGValue(b)) / 2 + GetGValue(b);
+	const int B = (GetBValue(a) - GetBValue(b)) / 2 + GetBValue(b);
+	return RGB(R, G, B);
+}
+
+static COLORREF GetDarkenColor(COLORREF a, double l)
+{
+	const int R = static_cast<int>(GetRValue(a) * l);
+	const int G = static_cast<int>(GetGValue(a) * l);
+	const int B = static_cast<int>(GetBValue(a) * l);
+	return RGB(R, G, B);
+}
+
 /** 
  * @brief Draw maps of files.
  *
@@ -399,8 +418,14 @@ void CLocationView::OnDraw(CDC* pDC)
 	CalculateBars();
 	DrawBackground(&dc);
 
+	COLORREF clrFace    = clrBackground;
+	COLORREF clrShadow  = GetSysColor(COLOR_BTNSHADOW);
+	COLORREF clrShadow2 = GetIntermediateColor(clrFace, clrShadow);
+	COLORREF clrShadow3 = GetIntermediateColor(clrFace, clrShadow2);
+	COLORREF clrShadow4 = GetIntermediateColor(clrFace, clrShadow3);
+
 	// Draw bar outlines
-	CPen* oldObj = (CPen*)dc.SelectStockObject(BLACK_PEN);
+	CPen* oldObj = (CPen*)dc.SelectStockObject(NULL_PEN);
 	CBrush brush(m_view[0]->GetColor(COLORINDEX_WHITESPACE));
 	CBrush* oldBrush = (CBrush*)dc.SelectObject(&brush);
 	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
@@ -412,6 +437,12 @@ void CLocationView::OnDraw(CDC* pDC)
 		dc.Rectangle(m_bar[pane]);
 		if (pOldBrush)
 			dc.SelectObject(pOldBrush);
+
+		CRect rect = m_bar[pane];
+		rect.InflateRect(1, 1);
+		dc.Draw3dRect(rect, clrShadow4, clrShadow3);
+		rect.InflateRect(-1, -1);
+		dc.Draw3dRect(rect, clrShadow2, clrShadow);
 	}
 	dc.SelectObject(oldBrush);
 	dc.SelectObject(oldBrush);
@@ -580,6 +611,10 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL bSelect
 		if (drawRect.Height() < 1)
 			++drawRect.bottom;
 		pDC->FillSolidRect(drawRect, cr);
+		CRect drawRect2(drawRect.left, drawRect.top, drawRect.right, drawRect.top + 1);
+		pDC->FillSolidRect(drawRect2, GetDarkenColor(cr, 0.96));
+		CRect drawRect3(drawRect.left, drawRect.bottom - 1, drawRect.right, drawRect.bottom);
+		pDC->FillSolidRect(drawRect3, GetDarkenColor(cr, 0.91));
 
 		if (bSelected)
 		{
@@ -1083,8 +1118,10 @@ void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 	points[2].x = m_bar[0].left - DIFFMARKER_WIDTH - 1;
 	points[2].y = yCoord + DIFFMARKER_BOTTOM;
 
-	CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
-	CBrush brushBlue(RGB(0x80, 0x80, 0xff));
+	COLORREF clrBlue = GetSysColor(COLOR_ACTIVECAPTION);
+	CPen penDarkBlue(PS_SOLID, 0, GetDarkenColor(clrBlue, 0.9));
+	CPen* oldObj = (CPen*)pDC->SelectObject(&penDarkBlue);
+	CBrush brushBlue(clrBlue);
 	CBrush* pOldBrush = pDC->SelectObject(&brushBlue);
 
 	pDC->SetPolyFillMode(WINDING);
