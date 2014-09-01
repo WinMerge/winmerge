@@ -582,9 +582,6 @@ void CChildFrame::UpdateHeaderSizes()
 	
 	if(IsWindowVisible())
 	{
-		m_wndFilePathBar.ShowWindow(m_wndSplitter.GetPane(0, 0)->IsWindowVisible());
-		m_wndStatusBar.ShowWindow(m_wndSplitter.GetPane(0, 0)->IsWindowVisible());
-
 		int w[3],wmin;
 		int pane;
 		if (m_wndSplitter.GetColumnCount() > 1)
