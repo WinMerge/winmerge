@@ -152,7 +152,6 @@ protected:
 	CStatusBar  m_wndStatusBar;
 	CReBar m_wndReBar;
 	ToolBarXPThemes m_wndToolBar;
-	CComboBox m_ctlCompareMethod;
 	CMDITabBar m_wndTabBar;
 
 	/** @brief Toolbar image table indexes. */

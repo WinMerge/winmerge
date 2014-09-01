@@ -2548,14 +2548,6 @@ void CMainFrame::OnToolbarSmall()
 
 	LoadToolbarImages();
 
-	CRect rcComboBox;
-	int index = m_wndToolBar.CommandToIndex(IDC_COMPAREMETHODCOMBO);
-	m_wndToolBar.GetItemRect(index, &rcComboBox);
-	rcComboBox.left += 6;
-	if (rcComboBox.Height() > 24)
-		rcComboBox.top += rcComboBox.Height() / 4;
-	m_ctlCompareMethod.MoveWindow(&rcComboBox);
-
 	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, TRUE, 0);
 }
 
@@ -2574,14 +2566,6 @@ void CMainFrame::OnToolbarBig()
 	GetOptionsMgr()->SaveOption(OPT_TOOLBAR_SIZE, 1);
 
 	LoadToolbarImages();
-
-	CRect rcComboBox;
-	int index = m_wndToolBar.CommandToIndex(IDC_COMPAREMETHODCOMBO);
-	m_wndToolBar.GetItemRect(index, &rcComboBox);
-	rcComboBox.left += 6;
-	if (rcComboBox.Height() > 24)
-		rcComboBox.top += rcComboBox.Height() / 4;
-	m_ctlCompareMethod.MoveWindow(&rcComboBox);
 
 	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, TRUE, 0);
 }
