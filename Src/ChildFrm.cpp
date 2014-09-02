@@ -183,7 +183,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	}
 
 	CWnd* pWnd = new CLocationView;
-	DWORD dwStyle = AFX_WS_DEFAULT_VIEW ;// & ~WS_BORDER;
+	DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
 	pWnd->Create(NULL, NULL, dwStyle, CRect(0,0,40,100), &m_wndLocationBar, 152, pContext);
 
 	// Merge frame has also a dockable bar at the very bottom
@@ -582,9 +582,6 @@ void CChildFrame::UpdateHeaderSizes()
 	
 	if(IsWindowVisible())
 	{
-		m_wndFilePathBar.ShowWindow(m_wndSplitter.GetPane(0, 0)->IsWindowVisible());
-		m_wndStatusBar.ShowWindow(m_wndSplitter.GetPane(0, 0)->IsWindowVisible());
-
 		int w[3],wmin;
 		int pane;
 		if (m_wndSplitter.GetColumnCount() > 1)

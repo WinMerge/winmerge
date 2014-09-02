@@ -73,7 +73,7 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	pdc->GetTextMetrics(&tm);
 	ReleaseDC(pdc);
 
-	return CSize(SHRT_MAX, tm.tmHeight + 8);
+	return CSize(SHRT_MAX, tm.tmHeight + 6);
 }
 
 void CMDITabBar::OnPaint() 
@@ -320,10 +320,13 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 
 void CMDITabBar::OnMouseMove(UINT nFlags, CPoint point)
 {
-	CRect rc = GetCloseButtonRect(GetItemIndexFromPoint(point));
-	InvalidateRect(&rc);
+	int nTabItemIndex = GetItemIndexFromPoint(point);
+	CRect rc = GetCloseButtonRect(nTabItemIndex);
 	if (rc != m_rcCurrentCloseButtom)
+	{
+		InvalidateRect(&rc);
 		InvalidateRect(&m_rcCurrentCloseButtom);
+	}
 	m_rcCurrentCloseButtom = rc;
 	if (!m_bMouseTracking)
 	{
@@ -333,6 +336,20 @@ void CMDITabBar::OnMouseMove(UINT nFlags, CPoint point)
 		tme.hwndTrack = m_hWnd;
 		TrackMouseEvent(&tme);
 		m_bMouseTracking = true;
+	}
+	if (m_nDraggingTabItemIndex >= 0 && nTabItemIndex >= 0 && m_nDraggingTabItemIndex != nTabItemIndex)
+	{
+		CRect rectDraggingTab, rectDest;
+		GetItemRect(m_nDraggingTabItemIndex, &rectDraggingTab);
+		GetItemRect(nTabItemIndex, &rectDest);
+		rectDest.right = rectDest.left + rectDraggingTab.Width();
+		if (rectDest.PtInRect(point))
+		{
+			SwapTabs(m_nDraggingTabItemIndex, nTabItemIndex);
+			m_nDraggingTabItemIndex = nTabItemIndex;
+			m_rcCurrentCloseButtom = GetCloseButtonRect(nTabItemIndex);
+			Invalidate();
+		}
 	}
 }
 
@@ -354,15 +371,30 @@ void CMDITabBar::OnLButtonDown(UINT nFlags, CPoint point)
 	m_bCloseButtonDown = !!m_rcCurrentCloseButtom.PtInRect(point);
 	InvalidateRect(m_rcCurrentCloseButtom);
 	if (!m_bCloseButtonDown)
+	{
+        if (DragDetect(point))
+		{
+			m_nDraggingTabItemIndex = GetItemIndexFromPoint(point);
+			SetCapture();
+		}
 		CWnd::OnLButtonDown(nFlags, point);
+	}
 }
 
 void CMDITabBar::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	if (m_bCloseButtonDown && m_rcCurrentCloseButtom.PtInRect(point))
-		OnMButtonDown(nFlags, point);
-	InvalidateRect(m_rcCurrentCloseButtom);
-	m_bCloseButtonDown = false;
+	if (m_nDraggingTabItemIndex >= 0)
+	{
+		m_nDraggingTabItemIndex = -1;
+		ReleaseCapture();
+	}
+	else
+	{
+		if (m_bCloseButtonDown && m_rcCurrentCloseButtom.PtInRect(point))
+			OnMButtonDown(nFlags, point);
+		InvalidateRect(m_rcCurrentCloseButtom);
+		m_bCloseButtonDown = false;
+	}
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
@@ -383,4 +415,30 @@ int CMDITabBar::GetItemIndexFromPoint(CPoint point)
 	TCHITTESTINFO hit;
 	hit.pt = point;
 	return HitTest(&hit);
+}
+
+void CMDITabBar::SwapTabs(int nIndexA, int nIndexB)
+{
+	TC_ITEM tciA = {0}, tciB = {0};
+	TCHAR szTextA[256], szTextB[256];
+	int nCurSel = GetCurSel();
+
+	tciA.cchTextMax = sizeof(szTextA)/sizeof(szTextA[0]);
+	tciB.cchTextMax = sizeof(szTextB)/sizeof(szTextB[0]);
+	tciA.pszText = szTextA;
+	tciB.pszText = szTextB;
+	tciA.mask = tciB.mask = TCIF_PARAM | TCIF_TEXT;
+
+	GetItem(nIndexA, &tciA);
+	GetItem(nIndexB, &tciB);
+
+	std::swap(tciA, tciB);
+
+	SetItem(nIndexB, &tciB);
+	SetItem(nIndexA, &tciA);
+
+	if (nCurSel == nIndexA)
+		SetCurSel(nIndexB);
+	if (nCurSel == nIndexB)
+		SetCurSel(nIndexA);
 }
