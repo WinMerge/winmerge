@@ -26,9 +26,10 @@ private:
 	bool m_bCloseButtonDown;
 	CRect m_rcCurrentCloseButtom;
 	bool  m_bAutoMaxWidth;
+	int   m_nDraggingTabItemIndex;
 
 public:
-	CMDITabBar() : m_bInSelchange(FALSE), m_pMainFrame(NULL), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true) {}
+	CMDITabBar() : m_bInSelchange(FALSE), m_pMainFrame(NULL), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true), m_nDraggingTabItemIndex(-1) {}
 	virtual ~CMDITabBar() {}
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();
@@ -74,6 +75,7 @@ protected:
 private:
 	CRect GetCloseButtonRect(int nItem);
 	int GetItemIndexFromPoint(CPoint pt);
+	void SwapTabs(int nIndexA, int nIndexB);
 };
 
 #endif // MDITABBAR_H

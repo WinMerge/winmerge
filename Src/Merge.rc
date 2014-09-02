@@ -640,6 +640,7 @@ IDR_POPUP_EDITOR_HEADERBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "Copy",                        ID_EDITOR_COPY
         MENUITEM "&Copy Full Path",             ID_EDITOR_COPY_PATH
         MENUITEM "Copy &Filename",              ID_EDITOR_COPY_FILENAME
     END
@@ -907,7 +908,7 @@ BEGIN
     GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,130,
                     221,37
     CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,142,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,141,206,10
     CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,151,206,10
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
@@ -1241,13 +1242,13 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     EDITTEXT        IDC_STATIC_TITLE_PANE0,0,2,160,12,ES_AUTOHSCROLL |
                     ES_READONLY | NOT WS_BORDER | NOT
-                    WS_TABSTOP,WS_EX_STATICEDGE
+                    WS_TABSTOP
     EDITTEXT        IDC_STATIC_TITLE_PANE1,163,2,160,12,ES_AUTOHSCROLL |
                     ES_READONLY | NOT WS_BORDER | NOT
-                    WS_TABSTOP,WS_EX_STATICEDGE
+                    WS_TABSTOP
     EDITTEXT        IDC_STATIC_TITLE_PANE2,326,2,0,12,ES_AUTOHSCROLL |
                     ES_READONLY | NOT WS_BORDER | NOT
-                    WS_TABSTOP,WS_EX_STATICEDGE
+                    WS_TABSTOP
 END
 
 IDD_DIRCOLS DIALOGEX 0, 0, 307, 163
@@ -1588,7 +1589,7 @@ BEGIN
                     WS_EX_CLIENTEDGE
     CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,180,55,10
-    PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,162,179,70,14
+    PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,162,199,70,14
 END
 
 IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 97
