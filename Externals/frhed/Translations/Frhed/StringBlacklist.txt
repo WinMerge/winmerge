@@ -1,9 +1,0 @@
-0
-1
-bmk
-IDM_MRU
-List1
-MS Shell Dlg
-Spin1
-Static
-statictext
