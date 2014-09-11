@@ -1,0 +1,166 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// ì˙ñ{åÍ (ì˙ñ{) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // ì˙ñ{åÍ (ì˙ñ{) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// âpåÍ (ïƒçë) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_WINIMERGE           ICON                    "WinIMerge.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_WINIMERGE MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open Images",                ID_FILE_OPEN
+        MENUITEM "Open &3 Images",              ID_FILE_OPEN3
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Cu&t",                        ID_EDIT_CUT
+        MENUITEM "&Copy",                       ID_EDIT_COPY
+        MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM "Select &All",                 ID_EDIT_SELECTALL
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "View &Differences",           ID_VIEW_VIEWDIFFERENCES
+        POPUP "&Zoom"
+        BEGIN
+            MENUITEM "&400%",                       ID_VIEW_ZOOM_400
+            MENUITEM "&200%",                       ID_VIEW_ZOOM_200
+            MENUITEM "&100%",                       ID_VIEW_ZOOM_100
+            MENUITEM "&50%",                        ID_VIEW_ZOOM_50
+            MENUITEM "&25%",                        ID_VIEW_ZOOM_25
+        END
+        POPUP "&Overlay Mode"
+        BEGIN
+            MENUITEM "&None",                       ID_VIEW_OVERLAY_NONE
+            MENUITEM "&XOR",                        ID_VIEW_OVERLAY_XOR
+            MENUITEM "&Alpha Blend",                ID_VIEW_OVERLAY_ALPHABLEND
+        END
+        POPUP "Diff &Block Size"
+        BEGIN
+            MENUITEM "&1",                          ID_VIEW_DIFFBLOCKSIZE_1
+            MENUITEM "&2",                          ID_VIEW_DIFFBLOCKSIZE_2
+            MENUITEM "&4",                          ID_VIEW_DIFFBLOCKSIZE_4
+            MENUITEM "&8",                          ID_VIEW_DIFFBLOCKSIZE_8
+            MENUITEM "1&6",                         ID_VIEW_DIFFBLOCKSIZE_16
+            MENUITEM "&32",                         ID_VIEW_DIFFBLOCKSIZE_32
+        END
+        MENUITEM "Split &Horizontally",         ID_VIEW_SPLITHORIZONTALLY
+        POPUP "&Page"
+        BEGIN
+            MENUITEM "&Next Page",                  ID_VIEW_PAGE_NEXTPAGE
+            MENUITEM "&Prev Page",                  ID_VIEW_PAGE_PREVPAGE
+        END
+        MENUITEM "&Set Background Color",       ID_VIEW_USEBACKCOLOR
+    END
+    POPUP "&Merge"
+    BEGIN
+        MENUITEM "&Next Difference\tAlt+Down",  ID_MERGE_NEXTDIFFERENCE
+        MENUITEM "&Previous Difference\tAlt+Up", ID_MERGE_PREVIOUSDIFFERENCE
+        MENUITEM "&First Difference\tAlt+Home", ID_MERGE_FIRSTDIFFERENCE
+        MENUITEM "&Last Difference\tAlt+End",   ID_MERGE_LASTDIFFERENCE
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About",                      ID_HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_WINIMERGE ACCELERATORS
+BEGIN
+    VK_DOWN,        ID_MERGE_NEXTDIFFERENCE, VIRTKEY, ALT, NOINVERT
+    VK_UP,          ID_MERGE_PREVIOUSDIFFERENCE, VIRTKEY, ALT, NOINVERT
+    VK_HOME,        ID_MERGE_FIRSTDIFFERENCE, VIRTKEY, ALT, NOINVERT
+    VK_END,         ID_MERGE_LASTDIFFERENCE, VIRTKEY, ALT, NOINVERT
+END
+
+#endif    // âpåÍ (ïƒçë) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
