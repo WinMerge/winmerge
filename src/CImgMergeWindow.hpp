@@ -21,6 +21,7 @@
 #include <string>
 #include <algorithm>
 #include <cstdio>
+#include <array>
 #include "FreeImagePlus.h"
 #include "CImgWindow.hpp"
 #include "WinIMergeLib.h"
@@ -109,8 +110,26 @@ template <class T> struct Array2D
 	T* m_data;
 };
 
+struct DiffInfo
+{
+	enum OP_TYPE
+	{
+		OP_NONE = 0, OP_1STONLY, OP_2NDONLY, OP_3RDONLY, OP_DIFF, OP_TRIVIAL
+	};
+	DiffInfo(int op, int x, int y) : op(op), pt(x, y) {}
+	int op;
+	Point<int> pt;
+};
+
 class CImgMergeWindow : public IImgMergeWindow
 {
+	struct EventListenerInfo 
+	{
+		EventListenerInfo(EventListenerFunc func, void *userdata) : func(func), userdata(userdata) {}
+		EventListenerFunc func;
+		void *userdata;
+	};
+
 public:
 	CImgMergeWindow() : 
 		  m_nImages(0)
@@ -125,7 +144,9 @@ public:
 		, m_selDiffColor(RGB(0xff, 0x40, 0x40))
 		, m_diffColor(RGB(0xff, 0xff, 0x40))
 		, m_currentDiffIndex(-1)
-	{}
+	{
+		memset(m_ChildWndProc, 0, sizeof(m_ChildWndProc));
+	}
 
 	~CImgMergeWindow()
 	{
@@ -147,10 +168,28 @@ public:
 		return !!bSucceeded;
 	}
 
+	void AddEventListener(EventListenerFunc func, void *userdata)
+	{
+		m_listener.push_back(EventListenerInfo(func, userdata));
+	}
+
 	bool SetWindowRect(const RECT& rc)
 	{
 		MoveWindow(m_hWnd, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, TRUE);
 		return true;
+	}
+
+	int GetActivePane() const
+	{
+		for (int i = 0; i < m_nImages; ++i)
+			if (m_imgWindow[i].IsFocused())
+				return i;
+		return -1;
+	}
+
+	void SetActivePane(int pane)
+	{
+		m_imgWindow[pane].SetFocus();
 	}
 
 	bool GetHorizontalSplit() const
@@ -354,6 +393,46 @@ public:
 		return true;
 	}
 
+	bool FirstConflict()
+	{
+		for (int i = 0; m_diffInfos.size(); ++i)
+			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
+				m_currentDiffIndex = i;
+		RefreshImages();
+		ScrollToDiff(m_currentDiffIndex);
+		return true;
+	}
+
+	bool LastConflict()
+	{
+		for (int i = m_diffInfos.size() - 1; i >= 0; --i)
+			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
+				m_currentDiffIndex = i;
+		RefreshImages();
+		ScrollToDiff(m_currentDiffIndex);
+		return true;
+	}
+
+	bool NextConflict()
+	{
+		for (int i = m_currentDiffIndex + 1; i < m_diffInfos.size(); ++i)
+			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
+				m_currentDiffIndex = i;
+		RefreshImages();
+		ScrollToDiff(m_currentDiffIndex);
+		return true;
+	}
+
+	bool PrevConflict()
+	{
+		for (int i = m_currentDiffIndex - 1; i >= 0; --i)
+			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
+				m_currentDiffIndex = i;
+		RefreshImages();
+		ScrollToDiff(m_currentDiffIndex);
+		return true;
+	}
+
 	void CompareImages()
 	{
 		if (m_nImages <= 1)
@@ -370,8 +449,9 @@ public:
 			{
 				CompareImages2(0, 1, m_diff01);
 				CompareImages2(2, 1, m_diff21);
+				CompareImages2(0, 2, m_diff02);
 				Make3WayDiff(m_diff01, m_diff21, m_diff);
-				m_diffCount = MarkDiffIndex(m_diff);
+				m_diffCount = MarkDiffIndex3way(m_diff01, m_diff21, m_diff02, m_diff);
 			}
 		}
 		RefreshImages();
@@ -379,10 +459,10 @@ public:
 
 	void ScrollToDiff(int diffIndex)
 	{
-		if (diffIndex >= 0 && diffIndex < m_diffPositions.size())
+		if (diffIndex >= 0 && diffIndex < m_diffInfos.size())
 		{
 			for (int i = 0; i < m_nImages; ++i)
-				m_imgWindow[i].ScrollTo(m_diffPositions[diffIndex].x * m_diffBlockSize, m_diffPositions[diffIndex].y * m_diffBlockSize);
+				m_imgWindow[i].ScrollTo(m_diffInfos[diffIndex].pt.x * m_diffBlockSize, m_diffInfos[diffIndex].pt.y * m_diffBlockSize);
 		}
 	}
 
@@ -415,18 +495,8 @@ public:
 		}
 		if (m_showDifferences)
 		{
-			if (m_nImages == 2)
-			{
-				MarkDiff(0, m_diff);
-				MarkDiff(1, m_diff);
-			}
-			else if (m_nImages == 3)
-			{
-				MarkDiff(0, m_diff);
-				MarkDiff(1, m_diff);
-				MarkDiff(1, m_diff);
-				MarkDiff(2, m_diff);
-			}
+			for (int i = 0; i < m_nImages; ++i)
+				MarkDiff(i, m_diff);
 		}
 		for (int i = 0; i < m_nImages; ++i)
 			m_imgWindow[i].Invalidate();
@@ -447,11 +517,7 @@ public:
 		for (int i = 0; i < nImages; ++i)
 		{
 			m_imgWindow[i].Create(m_hInstance, m_hWnd);
-			for (int j = 0; j < nImages; ++j)
-			{
-				if (i != j)
-					m_imgWindow[i].AddSibling(&m_imgWindow[j]);
-			}
+			m_ChildWndProc[i] = (WNDPROC)SetWindowLongPtr(m_imgWindow[i].GetHWND(), GWLP_WNDPROC, (LONG_PTR)&ChildWndProc);
 		}
 		CompareImages();
 		std::vector<RECT> rects = CalcChildImgWindowRect(m_hWnd, nImages, m_bHorizontalSplit);
@@ -655,8 +721,10 @@ private:
 			m_diff01.resize(nBlocksX, nBlocksY);
 			m_diff21.clear();
 			m_diff21.resize(nBlocksX, nBlocksY);
+			m_diff02.clear();
+			m_diff02.resize(nBlocksX, nBlocksY);
 		}
-		m_diffPositions.clear();
+		m_diffInfos.clear();
 	}
 
 	void InitializeDiffImages()
@@ -755,17 +823,56 @@ private:
 	int MarkDiffIndex(Array2D<unsigned>& diff)
 	{
 		int diffCount = 0;
-		for (unsigned bx = 0; bx < diff.width(); ++bx)
+		for (unsigned by = 0; by < diff.height(); ++by)
 		{
-			for (unsigned by = 0; by < diff.height(); ++by)
+			for (unsigned bx = 0; bx < diff.width(); ++bx)
 			{
 				if (diff(bx, by) == -1)
 				{
-					m_diffPositions.push_back(Point<int>(bx, by));
+					m_diffInfos.push_back(DiffInfo(DiffInfo::OP_DIFF, bx, by));
 					++diffCount;
 					FloodFill8Directions(diff, bx, by, diffCount);
 				}
 			}
+		}
+		return diffCount;
+	}
+
+	int MarkDiffIndex3way(Array2D<unsigned>& diff01, Array2D<unsigned>& diff21, Array2D<unsigned>& diff02, Array2D<unsigned>& diff3)
+	{
+		int diffCount = MarkDiffIndex(diff3);
+		std::vector<std::array<int, 4>> counter(m_diffInfos.size());
+		for (unsigned by = 0; by < diff3.height(); ++by)
+		{
+			for (unsigned bx = 0; bx < diff3.width(); ++bx)
+			{
+				int diffIndex = diff3(bx, by);
+				if (diffIndex == 0)
+					continue;
+				--diffIndex;
+				if (diff21(bx, by) == 0)
+					++counter[diffIndex][0];
+				else if (diff02(bx, by) == 0)
+					++counter[diffIndex][1];
+				else if (diff01(bx, by) == 0)
+					++counter[diffIndex][2];
+				else
+					++counter[diffIndex][3];
+			}
+		}
+		
+		for (int i = 0; i < m_diffInfos.size(); ++i)
+		{
+			int op;
+			if (counter[i][0] != 0 && counter[i][1] == 0 && counter[i][2] == 0 && counter[i][3] == 0)
+				op = DiffInfo::OP_1STONLY;
+			else if (counter[i][0] == 0 && counter[i][1] != 0 && counter[i][2] == 0 && counter[i][3] == 0)
+				op = DiffInfo::OP_2NDONLY;
+			else if (counter[i][0] == 0 && counter[i][1] == 0 && counter[i][2] != 0 && counter[i][3] == 0)
+				op = DiffInfo::OP_3RDONLY;
+			else
+				op = DiffInfo::OP_DIFF;
+			m_diffInfos[i].op = op;
 		}
 		return diffCount;
 	}
@@ -794,7 +901,11 @@ private:
 			for (unsigned bx = 0; bx < diff.width(); ++bx)
 			{
 				unsigned diffIndex = diff(bx, by);
-				if (diffIndex != 0)
+				if (diffIndex != 0 && (
+					(pane == 0 && m_diffInfos[diffIndex - 1].op != DiffInfo::OP_3RDONLY) ||
+					(pane == 1) ||
+					(pane == 2 && m_diffInfos[diffIndex - 1].op != DiffInfo::OP_1STONLY)
+					))
 				{
 					COLORREF color = (diffIndex - 1 == m_currentDiffIndex) ? m_selDiffColor : m_diffColor;
 					unsigned bsy = (h - by * m_diffBlockSize < m_diffBlockSize) ? (h - by * m_diffBlockSize) : m_diffBlockSize;
@@ -847,7 +958,6 @@ private:
 				scanline_dst[x * 4 + 0] ^= scanline_src[x * 4 + 0];
 				scanline_dst[x * 4 + 1] ^= scanline_src[x * 4 + 1];
 				scanline_dst[x * 4 + 2] ^= scanline_src[x * 4 + 2];
-				//scanline_dst[x * 4 + 3] ^= scanline_src[x * 4 + 3];
 			}
 		}	
 	}
@@ -968,6 +1078,14 @@ private:
 
 	void OnDestroy()
 	{
+		for (int i = 0; i < m_nImages; ++i)
+		{
+			if (m_ChildWndProc[i])
+			{
+				SetWindowLongPtr(m_imgWindow[i].GetHWND(), GWLP_WNDPROC, (LONG_PTR)m_ChildWndProc[i]);
+				m_ChildWndProc[i] = NULL;
+			}
+		}
 	}
 
 	LRESULT OnWndMsg(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
@@ -976,6 +1094,9 @@ private:
 		{
 		case WM_CREATE:
 			OnCreate(hwnd, (LPCREATESTRUCT)lParam);
+			break;
+		case WM_COMMAND:
+			PostMessage(GetParent(m_hWnd), iMsg, wParam, lParam);
 			break;
 		case WM_SIZE:
 			OnSize((UINT)wParam, LOWORD(lParam), HIWORD(lParam));
@@ -1010,6 +1131,77 @@ private:
 		return lResult;
 	}
 
+	static LRESULT CALLBACK ChildWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
+	{
+		Event evt;
+		int i;
+		CImgMergeWindow *pImgWnd = (CImgMergeWindow *)GetWindowLongPtr(GetParent(hwnd), GWLP_USERDATA);
+		for (i = 0; i < pImgWnd->m_nImages; ++i)
+			if (pImgWnd->m_imgWindow[i].GetHWND() == hwnd)
+				break;
+		evt.pane = i;
+		evt.flags = (unsigned)wParam; 
+		evt.x = (int)(short)LOWORD(lParam);
+		evt.y = (int)(short)HIWORD(lParam);
+		switch(iMsg)
+		{
+		case WM_LBUTTONDOWN:
+			evt.eventType = LBUTTONDOWN; goto NEXT;
+		case WM_LBUTTONUP:
+			evt.eventType = LBUTTONUP; goto NEXT;
+		case WM_LBUTTONDBLCLK:
+			evt.eventType = LBUTTONDBLCLK; goto NEXT;
+		case WM_RBUTTONDOWN:
+			evt.eventType = RBUTTONDOWN; goto NEXT;
+		case WM_RBUTTONUP:
+			evt.eventType = RBUTTONUP; goto NEXT;
+		case WM_RBUTTONDBLCLK:
+			evt.eventType = RBUTTONDBLCLK; goto NEXT;
+		case WM_MOUSEMOVE:
+			evt.eventType = MOUSEMOVE; goto NEXT;
+		case WM_MOUSEWHEEL:
+			evt.flags = GET_KEYSTATE_WPARAM(wParam);
+			evt.eventType = MOUSEWHEEL;
+			evt.delta = GET_WHEEL_DELTA_WPARAM(wParam);
+			goto NEXT;
+		case WM_CONTEXTMENU:
+			evt.eventType = CONTEXTMENU; goto NEXT;
+		case WM_SIZE:
+			evt.eventType = SIZE; evt.width = LOWORD(lParam); evt.height = HIWORD(wParam); goto NEXT;
+		case WM_HSCROLL:
+			evt.eventType = HSCROLL;goto NEXT;
+		case WM_VSCROLL:
+			evt.eventType = VSCROLL; goto NEXT;
+		case WM_SETFOCUS:
+			evt.eventType = SETFOCUS; goto NEXT;
+		case WM_KILLFOCUS:
+			evt.eventType = KILLFOCUS; goto NEXT;
+		NEXT:
+		{
+			std::vector<EventListenerInfo>::iterator it;
+			for (it = pImgWnd->m_listener.begin(); it != pImgWnd->m_listener.end(); ++it)
+			{
+				evt.userdata = (*it).userdata;
+				(*it).func(evt);
+			}
+			break;
+		}
+		}
+		switch (iMsg)
+		{
+		case WM_HSCROLL:
+		case WM_VSCROLL:
+		case WM_MOUSEWHEEL:
+			for (int j = 0; j < pImgWnd->m_nImages; ++j)
+			{
+				if (j != i)
+					(pImgWnd->m_ChildWndProc[j])(pImgWnd->m_imgWindow[j].GetHWND(), iMsg, wParam, lParam);
+			}
+			break;
+		}
+		return (pImgWnd->m_ChildWndProc[i])(hwnd, iMsg, wParam, lParam);
+	}
+
 	int m_nImages;
 	HWND m_hWnd;
 	HINSTANCE m_hInstance;
@@ -1018,6 +1210,8 @@ private:
 	fipImage m_imgOrig32[3];
 	fipWinImage m_imgDiff[3];
 	CImgWindow m_imgWindow[3];
+	WNDPROC m_ChildWndProc[3];
+	std::vector<EventListenerInfo> m_listener;
 	std::wstring m_filename[3];
 	int m_nDraggingSplitter;
 	bool m_bHorizontalSplit;
@@ -1032,6 +1226,6 @@ private:
 	int m_currentPage[3];
 	int m_currentDiffIndex;
 	int m_diffCount;
-	Array2D<unsigned> m_diff, m_diff01, m_diff21;
-	std::vector<Point<int> > m_diffPositions;
+	Array2D<unsigned> m_diff, m_diff01, m_diff21, m_diff02;
+	std::vector<DiffInfo> m_diffInfos;
 };

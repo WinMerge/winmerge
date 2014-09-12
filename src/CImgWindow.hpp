@@ -29,7 +29,6 @@ public:
 		, m_nVScrollPos(0)
 		, m_nHScrollPos(0)
 		, m_zoom(1.0)
-		, m_inEvent(false)
 		, m_useBackColor(true)
 	{
 		memset(&m_backColor, 0xff, sizeof(m_backColor));
@@ -58,7 +57,6 @@ public:
 			DestroyWindow(m_hWnd);
 		m_fip = NULL;
 		m_hWnd = NULL;
-		m_siblings.clear();
 		return true;
 	}
 
@@ -78,6 +76,16 @@ public:
 	void SetWindowRect(const RECT& rc)
 	{
 		MoveWindow(m_hWnd, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, TRUE);
+	}
+
+	void SetFocus()
+	{
+		::SetFocus(m_hWnd);
+	}
+
+	bool IsFocused() const
+	{
+		return m_hWnd == GetFocus();
 	}
 
 	void ScrollTo(int x, int y)
@@ -116,7 +124,8 @@ public:
 				m_nVScrollPos = siv.nMax - siv.nPage;
 		}
 
-		ScrollWindow(m_hWnd, sih.nPos - m_nHScrollPos, siv.nPos - m_nVScrollPos, NULL, NULL);
+		RECT rcClip = {rc.left + 1, rc.top + 1, rc.right - 1, rc.bottom - 1};
+		ScrollWindow(m_hWnd, sih.nPos - m_nHScrollPos, siv.nPos - m_nVScrollPos, NULL, &rcClip);
 		CalcScrollBarRange();
 		InvalidateRect(m_hWnd, NULL, TRUE);
 	}
@@ -172,11 +181,6 @@ public:
 		CalcScrollBarRange();
 	}
 
-	void AddSibling(CImgWindow *pImgWindow)
-	{
-		m_siblings.push_back(pImgWindow);
-	}
-
 private:
 
 	ATOM MyRegisterClass(HINSTANCE hInstance)
@@ -223,6 +227,20 @@ private:
 				rcImg.bottom = static_cast<int>(m_fip->getHeight() * m_zoom - m_nVScrollPos);
 			}
 			m_fip->drawEx(hdc, rcImg, false, m_useBackColor ? &m_backColor : NULL);
+			if (GetFocus() == m_hWnd)
+			{
+				DrawFocusRect(hdc, &rc);
+			}
+			else
+			{
+				HPEN hPen = (HPEN)GetStockObject(WHITE_PEN);
+				HBRUSH hBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+				HPEN hOldPen = (HPEN)SelectObject(hdc, hPen);
+				HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBrush);
+				Rectangle(hdc, rc.left, rc.top, rc.right, rc.bottom);
+				SelectObject(hdc, hOldPen);
+				SelectObject(hdc, hOldBrush);
+			}
 		}
 		EndPaint(m_hWnd, &ps);
 	}
@@ -234,9 +252,6 @@ private:
 
 	void OnHScroll(UINT nSBCode, UINT nPos)
 	{
-		if (m_inEvent)
-			return;
-
 		SCROLLINFO si = {0};
 		si.cbSize = sizeof SCROLLINFO;
 		si.fMask = SIF_POS | SIF_RANGE | SIF_PAGE | SIF_TRACKPOS;
@@ -263,21 +278,15 @@ private:
 			m_nHScrollPos = 0;
 		if (m_nHScrollPos > si.nMax - static_cast<int>(si.nPage))
 			m_nHScrollPos = si.nMax - si.nPage;
-		ScrollWindow(m_hWnd, si.nPos - m_nHScrollPos, 0, NULL, NULL);
+		RECT rc;
+		GetClientRect(m_hWnd, &rc);
+		RECT rcClip = {rc.left + 1, rc.top + 1, rc.right - 1, rc.bottom - 1};
+		ScrollWindow(m_hWnd, si.nPos - m_nHScrollPos, 0, NULL, &rcClip);
 		CalcScrollBarRange();
-
-		m_inEvent = true;
-		std::vector<CImgWindow *>::iterator it;
-		for (it = m_siblings.begin(); it != m_siblings.end(); ++it)
-			(*it)->OnHScroll(nSBCode, nPos);
-		m_inEvent = false;
 	}
 
 	void OnVScroll(UINT nSBCode, UINT nPos)
 	{
-		if (m_inEvent)
-			return;
-
 		SCROLLINFO si = {0};
 		si.cbSize = sizeof SCROLLINFO;
 		si.fMask = SIF_POS | SIF_RANGE | SIF_PAGE | SIF_TRACKPOS;
@@ -304,43 +313,64 @@ private:
 			m_nVScrollPos = 0;
 		if (m_nVScrollPos > si.nMax - static_cast<int>(si.nPage))
 			m_nVScrollPos = si.nMax - si.nPage;
-		ScrollWindow(m_hWnd, 0, si.nPos - m_nVScrollPos, NULL, NULL);
+		RECT rc;
+		GetClientRect(m_hWnd, &rc);
+		RECT rcClip = {rc.left + 1, rc.top + 1, rc.right - 1, rc.bottom - 1};
+		ScrollWindow(m_hWnd, 0, si.nPos - m_nVScrollPos, NULL, &rcClip);
 		CalcScrollBarRange();
-
-		m_inEvent = true;
-		std::vector<CImgWindow *>::iterator it;
-		for (it = m_siblings.begin(); it != m_siblings.end(); ++it)
-			(*it)->OnVScroll(nSBCode, nPos);
-		m_inEvent = false;
 	}
 
 	void OnLButtonDown(UINT nFlags, int x, int y)
 	{
+		SetFocus();
+	}
+
+	void OnRButtonDown(UINT nFlags, int x, int y)
+	{
+		SetFocus();
 	}
 
 	void OnMouseWheel(UINT nFlags, short zDelta)
 	{
-		if (m_inEvent)
-			return;
-
-		const bool ctrlDown = (GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0;
-		if (!ctrlDown)
+		if (!(nFlags & MK_CONTROL))
 		{ 
 			RECT rc;
 			GetClientRect(m_hWnd, &rc);
-			if (rc.bottom - rc.top < m_fip->getHeight() * m_zoom)
+			if (!(nFlags & MK_SHIFT))
 			{
-				SCROLLINFO si = {0};
-				si.cbSize = sizeof SCROLLINFO;
-				si.fMask = SIF_POS | SIF_RANGE | SIF_PAGE | SIF_TRACKPOS;
-				GetScrollInfo(m_hWnd, SB_VERT, &si);
-				m_nVScrollPos += - zDelta / (WHEEL_DELTA / 16);
-				if (m_nVScrollPos < 0)
-					m_nVScrollPos = 0;
-				if (m_nVScrollPos > si.nMax - static_cast<int>(si.nPage))
-					m_nVScrollPos = si.nMax - si.nPage;
-				ScrollWindow(m_hWnd, 0, si.nPos - m_nVScrollPos, NULL, NULL);
-				CalcScrollBarRange();
+				if (rc.bottom - rc.top < m_fip->getHeight() * m_zoom)
+				{
+					SCROLLINFO si = {0};
+					si.cbSize = sizeof SCROLLINFO;
+					si.fMask = SIF_POS | SIF_RANGE | SIF_PAGE | SIF_TRACKPOS;
+					GetScrollInfo(m_hWnd, SB_VERT, &si);
+					m_nVScrollPos += - zDelta / (WHEEL_DELTA / 16);
+					if (m_nVScrollPos < 0)
+						m_nVScrollPos = 0;
+					if (m_nVScrollPos > si.nMax - static_cast<int>(si.nPage))
+						m_nVScrollPos = si.nMax - si.nPage;
+					RECT rcClip = {rc.left + 1, rc.top + 1, rc.right - 1, rc.bottom - 1};
+					ScrollWindow(m_hWnd, 0, si.nPos - m_nVScrollPos, NULL, &rcClip);
+					CalcScrollBarRange();
+				}
+			}
+			else
+			{
+				if (rc.right - rc.left < m_fip->getWidth() * m_zoom)
+				{
+					SCROLLINFO si = {0};
+					si.cbSize = sizeof SCROLLINFO;
+					si.fMask = SIF_POS | SIF_RANGE | SIF_PAGE | SIF_TRACKPOS;
+					GetScrollInfo(m_hWnd, SB_HORZ, &si);
+					m_nHScrollPos += - zDelta / (WHEEL_DELTA / 16);
+					if (m_nHScrollPos < 0)
+						m_nHScrollPos = 0;
+					if (m_nHScrollPos > si.nMax - static_cast<int>(si.nPage))
+						m_nHScrollPos = si.nMax - si.nPage;
+					RECT rcClip = {rc.left + 1, rc.top + 1, rc.right - 1, rc.bottom - 1};
+					ScrollWindow(m_hWnd, si.nPos - m_nHScrollPos, 0, NULL, &rcClip);
+					CalcScrollBarRange();
+				}
 			}
 		}
 		else
@@ -350,12 +380,16 @@ private:
 			else
 				SetZoom(m_zoom * 0.8);
 		}
+	}
 
-		m_inEvent = true;
-		std::vector<CImgWindow *>::iterator it;
-		for (it = m_siblings.begin(); it != m_siblings.end(); ++it)
-			(*it)->OnMouseWheel(nFlags, zDelta);
-		m_inEvent = false;
+	void OnSetFocus(HWND hwndOld)
+	{
+		InvalidateRect(m_hWnd, NULL, TRUE);
+	}
+
+	void OnKillFocus(HWND hwndNew)
+	{
+		InvalidateRect(m_hWnd, NULL, TRUE);
 	}
 
 	LRESULT OnWndMsg(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
@@ -374,8 +408,20 @@ private:
 		case WM_LBUTTONDOWN:
 			OnLButtonDown((UINT)(wParam), (int)(short)LOWORD(lParam), (int)(short)HIWORD(lParam));
 			break;
+		case WM_RBUTTONDOWN:
+			OnRButtonDown((UINT)(wParam), (int)(short)LOWORD(lParam), (int)(short)HIWORD(lParam));
+			break;
 		case WM_MOUSEWHEEL:
 			OnMouseWheel(GET_KEYSTATE_WPARAM(wParam), GET_WHEEL_DELTA_WPARAM(wParam));
+			break;
+		case WM_SETFOCUS:
+			OnSetFocus((HWND)wParam);
+			break;
+		case WM_KILLFOCUS:
+			OnKillFocus((HWND)wParam);
+			break;
+		case WM_COMMAND:
+			PostMessage(GetParent(m_hWnd), iMsg, wParam, lParam);
 			break;
 		case WM_SIZE:
 			OnSize((UINT)wParam, LOWORD(lParam), HIWORD(lParam));
@@ -426,8 +472,6 @@ private:
 	int m_nVScrollPos;
 	int m_nHScrollPos;
 	double m_zoom;
-	std::vector<CImgWindow *> m_siblings;
-	bool m_inEvent;
 	bool m_useBackColor;
 	RGBQUAD m_backColor;
 };

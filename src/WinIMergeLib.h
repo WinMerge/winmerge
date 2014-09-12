@@ -22,9 +22,30 @@ struct IImgMergeWindow
 	enum OVERLAY_MODE {
 		OVERLAY_NONE = 0, OVERLAY_XOR, OVERLAY_ALPHABLEND
 	};
+	enum EVENT_TYPE {
+		LBUTTONDOWN = 0, LBUTTONUP, LBUTTONDBLCLK, 
+		RBUTTONDOWN,     RBUTTONUP, RBUTTONDBLCLK,
+		MOUSEMOVE, MOUSEWHEEL, CONTEXTMENU,
+		SIZE, HSCROLL, VSCROLL, SETFOCUS, KILLFOCUS
+	};
+	struct Event
+	{
+		void *userdata;
+		int pane;
+		EVENT_TYPE eventType;
+		int x;
+		int y;
+		unsigned flags;
+		int delta;
+		int width;
+		int height;
+	};
+	typedef void (*EventListenerFunc)(const Event& evt);
 	virtual bool OpenImages(const wchar_t *filename1, const wchar_t *filename2) = 0;
 	virtual bool OpenImages(const wchar_t *filename1, const wchar_t *filename2, const wchar_t *filename3) = 0;
 	virtual bool SetWindowRect(const RECT& rc) = 0;
+	virtual int  GetActivePane() const = 0;
+	virtual void SetActivePane(int pane) = 0;
 	virtual bool GetHorizontalSplit() const = 0;
 	virtual void SetHorizontalSplit(bool horizontalSplit) = 0;
 	virtual int  GetCurrentPage(int pane) const = 0;
@@ -53,7 +74,12 @@ struct IImgMergeWindow
 	virtual bool LastDiff() = 0;
 	virtual bool NextDiff() = 0;
 	virtual bool PrevDiff() = 0;
+	virtual bool FirstConflict() = 0;
+	virtual bool LastConflict() = 0;
+	virtual bool NextConflict() = 0;
+	virtual bool PrevConflict() = 0;
 	virtual HWND GetHWND() const = 0;
+	virtual void AddEventListener(EventListenerFunc func, void *userdata) = 0;
 };
 
 extern "C"

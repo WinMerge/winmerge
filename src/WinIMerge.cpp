@@ -157,12 +157,23 @@ void UpdateMenuState(HWND hWnd)
 	CheckMenuItem(hMenu, ID_VIEW_USEBACKCOLOR, m_pImgMergeWindow->GetUseBackColor() ? MF_CHECKED : MF_UNCHECKED);
 }
 
+void OnChildPaneEvent(const IImgMergeWindow::Event& evt)
+{
+	if (evt.eventType == IImgMergeWindow::CONTEXTMENU)
+	{
+		HMENU hPopup = LoadMenu(m_hInstance, MAKEINTRESOURCE(IDR_POPUPMENU));
+		HMENU hSubMenu = GetSubMenu(hPopup, 0);
+		TrackPopupMenu(hSubMenu, TPM_LEFTALIGN, evt.x, evt.y, 0, m_hWnd, NULL); 
+	}
+}
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message) 
 	{
 	case WM_CREATE:
 		m_pImgMergeWindow = WinIMerge_CreateWindow(hInstDLL, hWnd);
+		m_pImgMergeWindow->AddEventListener(OnChildPaneEvent, NULL);
 		UpdateMenuState(hWnd);
 		break;
 	case WM_SIZE:
@@ -299,6 +310,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case ID_MERGE_LASTDIFFERENCE:
 			m_pImgMergeWindow->LastDiff();
 			break;
+		case ID_MERGE_NEXTCONFLICT:
+			m_pImgMergeWindow->NextConflict();
+			break;
+		case ID_MERGE_PREVIOUSCONFLICT:
+			m_pImgMergeWindow->PrevConflict();
+			break;
 		case ID_HELP_ABOUT:
 			MessageBoxW(hWnd, 
 				L"WinIMerge\n\n"
@@ -307,6 +324,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				L"See http://freeimage.sourceforge.net for details.\n"
 				L"FreeImage is used under the GNU GPL version.\n", L"WinIMerge", MB_OK | MB_ICONINFORMATION);
 			break;
+		case ID_POPUP_CURPANE_PREVIOUSPAGE:
+		{
+			int nActivePane = m_pImgMergeWindow->GetActivePane();
+			m_pImgMergeWindow->SetCurrentPage(nActivePane, m_pImgMergeWindow->GetCurrentPage(nActivePane) - 1);
+			break;
+		}
+		case ID_POPUP_CURPANE_NEXTPAGE:
+		{
+			int nActivePane = m_pImgMergeWindow->GetActivePane();
+			m_pImgMergeWindow->SetCurrentPage(nActivePane, m_pImgMergeWindow->GetCurrentPage(nActivePane) + 1);
+			break;
+		}
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
 		}

@@ -9,6 +9,7 @@
 #define IDI_WINIMERGE                   108
 #define IDC_WINIMERGE                   110
 #define IDR_MAINFRAME                   128
+#define IDR_POPUPMENU                   130
 #define ID_VIEW_ZOOM_25                 32780
 #define ID_VIEW_ZOOM_50                 32781
 #define ID_VIEW_ZOOM_100                32782
@@ -22,10 +23,12 @@
 #define ID_MERGE_PREVIOUSDIFFERENCE     32797
 #define ID_MERGE_FIRSTDIFFERENCE        32798
 #define ID_MERGE_LASTDIFFERENCE         32799
-#define ID_EDIT_COPY                    32800
-#define ID_EDIT_CUT                     32801
-#define ID_EDIT_PASTE                   32802
-#define ID_EDIT_SELECTALL               32803
+#define ID_MERGE_NEXTCONFLICT           32800
+#define ID_MERGE_PREVIOUSCONFLICT       32801
+#define ID_EDIT_COPY                    32802
+#define ID_EDIT_CUT                     32803
+#define ID_EDIT_PASTE                   32804
+#define ID_EDIT_SELECTALL               32805
 #define ID_HELP_ABOUT                   32809
 #define ID_VIEW_DIFFBLOCKSIZE_1         32811
 #define ID_VIEW_DIFFBLOCKSIZE_2         32812
@@ -40,6 +43,8 @@
 #define ID_VIEW_PAGE_NEXTPAGE           32821
 #define ID_VIEW_PAGE_PREVPAGE           32822
 #define ID_VIEW_USEBACKCOLOR            32823
+#define ID_POPUP_CURPANE_NEXTPAGE       32824
+#define ID_POPUP_CURPANE_PREVIOUSPAGE   32825
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -47,8 +52,8 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        130
-#define _APS_NEXT_COMMAND_VALUE         32824
+#define _APS_NEXT_RESOURCE_VALUE        131
+#define _APS_NEXT_COMMAND_VALUE         32828
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           111
 #endif
