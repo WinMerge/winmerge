@@ -15,6 +15,8 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 
+#pragma once
+
 #include <Windows.h>
 
 struct IImgMergeWindow
@@ -43,6 +45,9 @@ struct IImgMergeWindow
 	typedef void (*EventListenerFunc)(const Event& evt);
 	virtual bool OpenImages(const wchar_t *filename1, const wchar_t *filename2) = 0;
 	virtual bool OpenImages(const wchar_t *filename1, const wchar_t *filename2, const wchar_t *filename3) = 0;
+	virtual int  GetPaneCount() const = 0;
+	virtual RECT GetPaneWindowRect(int pane) const = 0;
+	virtual RECT GetWindowRect() const = 0;
 	virtual bool SetWindowRect(const RECT& rc) = 0;
 	virtual int  GetActivePane() const = 0;
 	virtual void SetActivePane(int pane) = 0;
@@ -54,6 +59,12 @@ struct IImgMergeWindow
 	virtual void SetCurrentPageAll(int page) = 0;
 	virtual int  GetPageCount(int pane) const = 0;
 	virtual int  GetMaxPageCount() const = 0;
+	virtual COLORREF GetDiffColor() const = 0;
+	virtual void SetDiffColor(COLORREF clrDiffColor) = 0;
+	virtual COLORREF GetSelDiffColor() const = 0;
+	virtual void SetSelDiffColor(COLORREF clrSelDiffColor) = 0;
+	virtual double GetDiffColorAlpha() const = 0;
+	virtual void SetDiffColorAlpha(double diffColorAlpha) = 0;
 	virtual RGBQUAD GetBackColor() const = 0;
 	virtual void SetBackColor(RGBQUAD backColor) = 0;
 	virtual bool GetUseBackColor() const = 0;
@@ -69,6 +80,7 @@ struct IImgMergeWindow
 	virtual bool GetShowDifferences() const = 0;
 	virtual void SetShowDifferences(bool visible) = 0;
 	virtual int  GetDiffCount() const = 0;
+	virtual int  GetConflictCount() const = 0;
 	virtual int  GetCurrentDiffIndex() const = 0;
 	virtual bool FirstDiff() = 0;
 	virtual bool LastDiff() = 0;
@@ -77,8 +89,17 @@ struct IImgMergeWindow
 	virtual bool FirstConflict() = 0;
 	virtual bool LastConflict() = 0;
 	virtual bool NextConflict() = 0;
-	virtual bool PrevConflict() = 0;
+	virtual bool PrevConflict() = 0; 
+	virtual bool SelectDiff(int diffIndex) = 0;
+	virtual int  GetNextDiffIndex() const = 0;
+	virtual int  GetPrevDiffIndex() const = 0;
+	virtual int  GetNextConflictIndex() const = 0;
+	virtual int  GetPrevConflictIndex() const = 0;
 	virtual HWND GetHWND() const = 0;
+	virtual HWND GetPaneHWND(int pane) const = 0;
+	virtual int  GetImageWidth(int pane) const = 0;
+	virtual int  GetImageHeight(int pane) const = 0;
+	virtual int  GetImageBitsPerPixel(int pane) const = 0;
 	virtual void AddEventListener(EventListenerFunc func, void *userdata) = 0;
 };
 

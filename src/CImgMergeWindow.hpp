@@ -137,12 +137,14 @@ public:
 		, m_hInstance(NULL)
 		, m_nDraggingSplitter(-1)
 		, m_bHorizontalSplit(false)
-		, m_diffBlockSize(16)
+		, m_diffBlockSize(8)
 		, m_overlayMode(OVERLAY_NONE)
 		, m_overlayAlpha(0.3)
 		, m_showDifferences(true)
 		, m_selDiffColor(RGB(0xff, 0x40, 0x40))
 		, m_diffColor(RGB(0xff, 0xff, 0x40))
+		, m_diffColorAlpha(0.7)
+		, m_diffCount(0)
 		, m_currentDiffIndex(-1)
 	{
 		memset(m_ChildWndProc, 0, sizeof(m_ChildWndProc));
@@ -173,6 +175,34 @@ public:
 		m_listener.push_back(EventListenerInfo(func, userdata));
 	}
 
+	int GetPaneCount() const
+	{
+		return m_nImages;
+	}
+
+	RECT GetPaneWindowRect(int pane) const
+	{
+		if (pane < 0 || pane >= m_nImages)
+		{
+			RECT rc = {-1, -1, -1, -1};
+			return rc;
+		}
+		return m_imgWindow[pane].GetWindowRect();
+	}
+
+	RECT GetWindowRect() const
+	{
+		RECT rc, rcParent;
+		HWND hwndParent = GetParent(m_hWnd);
+		::GetWindowRect(hwndParent, &rcParent);
+		::GetWindowRect(m_hWnd, &rc);
+		rc.left   -= rcParent.left;
+		rc.top    -= rcParent.top;
+		rc.right  -= rcParent.left;
+		rc.bottom -= rcParent.top;
+		return rc;
+	}
+
 	bool SetWindowRect(const RECT& rc)
 	{
 		MoveWindow(m_hWnd, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, TRUE);
@@ -189,6 +219,8 @@ public:
 
 	void SetActivePane(int pane)
 	{
+		if (pane < 0 || pane >= m_nImages)
+			return;
 		m_imgWindow[pane].SetFocus();
 	}
 
@@ -203,6 +235,39 @@ public:
 		std::vector<RECT> rects = CalcChildImgWindowRect(m_hWnd, m_nImages, m_bHorizontalSplit);
 		for (int i = 0; i < m_nImages; ++i)
 			m_imgWindow[i].SetWindowRect(rects[i]);
+	}
+
+	COLORREF GetDiffColor() const
+	{
+		return m_diffColor;
+	}
+
+	void SetDiffColor(COLORREF clrDiffColor)
+	{
+		m_diffColor = clrDiffColor;
+		RefreshImages();
+	}
+
+	COLORREF GetSelDiffColor() const
+	{
+		return m_selDiffColor;
+	}
+
+	void SetSelDiffColor(COLORREF clrSelDiffColor)
+	{
+		m_selDiffColor = clrSelDiffColor;
+		RefreshImages();
+	}
+
+	double GetDiffColorAlpha() const
+	{
+		return m_diffColorAlpha;
+	}
+
+	void SetDiffColorAlpha(double diffColorAlpha)
+	{
+		m_diffColorAlpha = diffColorAlpha;
+		RefreshImages();
 	}
 
 	RGBQUAD GetBackColor() const
@@ -240,6 +305,8 @@ public:
 
 	int  GetCurrentPage(int pane) const
 	{
+		if (pane < 0 || pane >= m_nImages)
+			return -1;
 		return m_currentPage[pane];
 	}
 
@@ -251,7 +318,8 @@ public:
 			{
 				m_currentPage[pane] = page;
 				FIBITMAP *bitmap = m_imgOrigMultiPage[pane].lockPage(page);
-				m_imgOrig32[pane] = FreeImage_Clone(bitmap);
+				m_imgOrig[pane] = FreeImage_Clone(bitmap);
+				m_imgOrig32[pane] = m_imgOrig[pane];
 				FreeImage_UnlockPage(m_imgOrigMultiPage[pane], bitmap, false);
 				m_imgOrig32[pane].convertTo32Bits();
 				CompareImages();
@@ -278,6 +346,8 @@ public:
 
 	int  GetPageCount(int pane) const
 	{
+		if (pane < 0 || pane >= m_nImages)
+			return -1;
 		if (m_imgOrigMultiPage[pane].isValid())
 			return m_imgOrigMultiPage[pane].getPageCount();
 		else
@@ -344,6 +414,15 @@ public:
 		return m_diffCount;
 	}
 
+	int  GetConflictCount() const
+	{
+		int conflictCount = 0;
+		for (int i = 0; i < m_diffCount; ++i)
+			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
+				++conflictCount;
+		return conflictCount;
+	}
+
 	int  GetCurrentDiffIndex() const
 	{
 		return m_currentDiffIndex;
@@ -406,8 +485,13 @@ public:
 	bool LastConflict()
 	{
 		for (int i = m_diffInfos.size() - 1; i >= 0; --i)
+		{
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
+			{
 				m_currentDiffIndex = i;
+				break;
+			}
+		}
 		RefreshImages();
 		ScrollToDiff(m_currentDiffIndex);
 		return true;
@@ -416,8 +500,13 @@ public:
 	bool NextConflict()
 	{
 		for (int i = m_currentDiffIndex + 1; i < m_diffInfos.size(); ++i)
+		{
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
+			{
 				m_currentDiffIndex = i;
+				break;
+			}
+		}
 		RefreshImages();
 		ScrollToDiff(m_currentDiffIndex);
 		return true;
@@ -426,11 +515,54 @@ public:
 	bool PrevConflict()
 	{
 		for (int i = m_currentDiffIndex - 1; i >= 0; --i)
+		{
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
+			{
 				m_currentDiffIndex = i;
+				break;
+			}
+		}
 		RefreshImages();
 		ScrollToDiff(m_currentDiffIndex);
 		return true;
+	}
+
+	bool SelectDiff(int diffIndex)
+	{
+		m_currentDiffIndex = diffIndex;
+		RefreshImages();
+		ScrollToDiff(m_currentDiffIndex);
+		return true;
+	}
+	
+	int  GetNextDiffIndex() const
+	{
+		if (m_diffCount == 0 || m_currentDiffIndex >= m_diffCount - 1)
+			return -1;
+		return m_currentDiffIndex + 1;
+	}
+
+	int  GetPrevDiffIndex() const
+	{
+		if (m_diffCount == 0 || m_currentDiffIndex <= 0)
+			return -1;
+		return m_currentDiffIndex - 1;
+	}
+
+	int  GetNextConflictIndex() const
+	{
+		for (int i = m_currentDiffIndex + 1; i < m_diffInfos.size(); ++i)
+			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
+				return i;
+		return -1;
+	}
+
+	int  GetPrevConflictIndex() const
+	{
+		for (int i = m_currentDiffIndex - 1; i >= 0; --i)
+			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
+				return i;
+		return -1;
 	}
 
 	void CompareImages()
@@ -453,6 +585,8 @@ public:
 				Make3WayDiff(m_diff01, m_diff21, m_diff);
 				m_diffCount = MarkDiffIndex3way(m_diff01, m_diff21, m_diff02, m_diff);
 			}
+			if (m_currentDiffIndex >= m_diffCount)
+				m_currentDiffIndex = m_diffCount - 1;
 		}
 		RefreshImages();
 	}
@@ -509,11 +643,6 @@ public:
 		for (int i = 0; i < nImages; ++i)
 			m_filename[i] = filename[i];
 		bool bSucceeded = LoadImages();
-		if (!bSucceeded)
-		{
-			m_nImages = 0;
-			return false;
-		}
 		for (int i = 0; i < nImages; ++i)
 		{
 			m_imgWindow[i].Create(m_hInstance, m_hWnd);
@@ -552,9 +681,37 @@ public:
 		return true;
 	}
 
+	HWND GetPaneHWND(int pane) const
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return NULL;
+		return m_imgWindow[pane].GetHWND();
+	}
+
 	HWND GetHWND() const
 	{
 		return m_hWnd;
+	}
+
+	int  GetImageWidth(int pane) const
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return -1;
+		return m_imgOrig[pane].getWidth();
+	}
+
+	int  GetImageHeight(int pane) const
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return -1;
+		return m_imgOrig[pane].getHeight();
+	}
+
+	int  GetImageBitsPerPixel(int pane) const
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return -1;
+		return m_imgOrig[pane].getBitsPerPixel();
 	}
 
 private:
@@ -666,6 +823,7 @@ private:
 
 	bool LoadImages()
 	{
+		bool bSucceeded = true;
 		for (int i = 0; i < m_nImages; ++i)
 		{
 			m_currentPage[i] = 0;
@@ -677,7 +835,8 @@ private:
 				FIBITMAP *bitmap = m_imgOrigMultiPage[i].lockPage(m_currentPage[i]);
 				if (bitmap)
 				{
-					m_imgOrig32[i] = FreeImage_Clone(bitmap);
+					m_imgOrig[i] = FreeImage_Clone(bitmap);
+					m_imgOrig32[i] = m_imgOrig[i];
 					FreeImage_UnlockPage(m_imgOrigMultiPage[i], bitmap, false);
 				}
 				else
@@ -686,13 +845,13 @@ private:
 			if (!m_imgOrigMultiPage[i].isValid())
 			{
 				if (!m_imgOrig[i].loadU(m_filename[i].c_str()))
-					return false;
+					bSucceeded = false;
 				m_imgOrig32[i] = m_imgOrig[i];
 			}
 
 			m_imgOrig32[i].convertTo32Bits();
 		}
-		return true;
+		return bSucceeded;
 	}
 
 	Size<unsigned> GetMaxWidthHeight()
@@ -894,7 +1053,6 @@ private:
 	{
 		const unsigned w = m_imgDiff[pane].getWidth();
 		const unsigned h = m_imgDiff[pane].getHeight();
-		const double alpha = 0.5;
 
 		for (unsigned by = 0; by < diff.height(); ++by)
 		{
@@ -917,9 +1075,9 @@ private:
 						for (unsigned j = 0; j < bsx; ++j)
 						{
 							unsigned x = bx * m_diffBlockSize + j;
-							scanline[x * 4 + 0] = static_cast<BYTE>(scanline[x * 4 + 0] * (1 - alpha) + GetBValue(color) * alpha);
-							scanline[x * 4 + 1] = static_cast<BYTE>(scanline[x * 4 + 1] * (1 - alpha) + GetGValue(color) * alpha);
-							scanline[x * 4 + 2] = static_cast<BYTE>(scanline[x * 4 + 2] * (1 - alpha) + GetRValue(color) * alpha);
+							scanline[x * 4 + 0] = static_cast<BYTE>(scanline[x * 4 + 0] * (1 - m_diffColorAlpha) + GetBValue(color) * m_diffColorAlpha);
+							scanline[x * 4 + 1] = static_cast<BYTE>(scanline[x * 4 + 1] * (1 - m_diffColorAlpha) + GetGValue(color) * m_diffColorAlpha);
+							scanline[x * 4 + 2] = static_cast<BYTE>(scanline[x * 4 + 2] * (1 - m_diffColorAlpha) + GetRValue(color) * m_diffColorAlpha);
 						}
 					}
 				}
@@ -1223,6 +1381,7 @@ private:
 	unsigned m_diffBlockSize;
 	COLORREF m_selDiffColor;
 	COLORREF m_diffColor;
+	double   m_diffColorAlpha;
 	int m_currentPage[3];
 	int m_currentDiffIndex;
 	int m_diffCount;
