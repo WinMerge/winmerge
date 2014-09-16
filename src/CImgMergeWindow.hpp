@@ -49,29 +49,32 @@ template <class T> struct Array2D
 		memset(m_data, 0, m_width * m_height * sizeof(T));
 	}
 
-	Array2D(const Array2D<T>& other) : m_width(other.m_width), m_height(other.m_height), m_data(new T[other.m_width * other.m_height])
+	Array2D(const Array2D& other) : m_width(other.m_width), m_height(other.m_height), m_data(new T[other.m_width * other.m_height])
 	{
 		memcpy(m_data, other.m_data, m_width * m_height * sizeof(T));
 	}
 
 	Array2D& operator=(const Array2D& other)
 	{
-		delete m_data;
-		m_width  = other.m_width;
-		m_height = other.m_height;
-		m_data = new T[other.m_width * other.m_height];
-		memcpy(m_data, other.m_data, m_width * m_height * sizeof(T));
+		if (this != &other)
+		{
+			delete[] m_data;
+			m_width  = other.m_width;
+			m_height = other.m_height;
+			m_data = new T[other.m_width * other.m_height];
+			memcpy(m_data, other.m_data, m_width * m_height * sizeof(T));
+		}
 		return *this;
 	}
 
 	~Array2D()
 	{
-		delete m_data;
+		delete[] m_data;
 	}
 
 	void resize(size_t width, size_t height)
 	{
-		delete m_data;
+		delete[] m_data;
 		m_data = new T[width * height];
 		m_width  = width;
 		m_height = height;
@@ -90,7 +93,7 @@ template <class T> struct Array2D
 
 	void clear()
 	{
-		delete m_data;
+		delete[] m_data;
 		m_data = NULL;
 		m_width = 0;
 		m_height = 0;
@@ -146,8 +149,11 @@ public:
 		, m_diffColorAlpha(0.7)
 		, m_diffCount(0)
 		, m_currentDiffIndex(-1)
+		, m_oldSplitPosX(-4)
+		, m_oldSplitPosY(-4)
 	{
 		memset(m_ChildWndProc, 0, sizeof(m_ChildWndProc));
+		memset(m_currentPage, 0, sizeof(m_currentPage));
 	}
 
 	~CImgMergeWindow()
@@ -277,7 +283,7 @@ public:
 
 	void SetBackColor(RGBQUAD backColor)
 	{
-		for (int i = 0; i < m_nImages; ++i)
+		for (int i = 0; i < 3; ++i)
 			m_imgWindow[i].SetBackColor(backColor);
 	}
 
@@ -288,7 +294,7 @@ public:
 
 	void SetUseBackColor(bool useBackColor)
 	{
-		for (int i = 0; i < m_nImages; ++i)
+		for (int i = 0; i < 3; ++i)
 			m_imgWindow[i].SetUseBackColor(useBackColor);
 	}
 
@@ -299,7 +305,7 @@ public:
 
 	void SetZoom(double zoom)
 	{
-		for (int i = 0; i < m_nImages; ++i)
+		for (int i = 0; i < 3; ++i)
 			m_imgWindow[i].SetZoom(zoom);
 	}
 
@@ -484,7 +490,7 @@ public:
 
 	bool LastConflict()
 	{
-		for (int i = m_diffInfos.size() - 1; i >= 0; --i)
+		for (int i = static_cast<int>(m_diffInfos.size() - 1); i >= 0; --i)
 		{
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
 			{
@@ -499,11 +505,11 @@ public:
 
 	bool NextConflict()
 	{
-		for (int i = m_currentDiffIndex + 1; i < m_diffInfos.size(); ++i)
+		for (size_t i = m_currentDiffIndex + 1; i < m_diffInfos.size(); ++i)
 		{
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
 			{
-				m_currentDiffIndex = i;
+				m_currentDiffIndex = static_cast<int>(i);
 				break;
 			}
 		}
@@ -551,15 +557,15 @@ public:
 
 	int  GetNextConflictIndex() const
 	{
-		for (int i = m_currentDiffIndex + 1; i < m_diffInfos.size(); ++i)
+		for (size_t i = m_currentDiffIndex + 1; i < m_diffInfos.size(); ++i)
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
-				return i;
+				return static_cast<int>(i);
 		return -1;
 	}
 
 	int  GetPrevConflictIndex() const
 	{
-		for (int i = m_currentDiffIndex - 1; i >= 0; --i)
+		for (int i = static_cast<int>(m_currentDiffIndex - 1); i >= 0; --i)
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
 				return i;
 		return -1;
@@ -570,30 +576,27 @@ public:
 		if (m_nImages <= 1)
 			return;
 		InitializeDiff();
-		if (m_showDifferences)
+		if (m_nImages == 2)
 		{
-			if (m_nImages == 2)
-			{
-				CompareImages2(0, 1, m_diff);
-				m_diffCount = MarkDiffIndex(m_diff);
-			}
-			else if (m_nImages == 3)
-			{
-				CompareImages2(0, 1, m_diff01);
-				CompareImages2(2, 1, m_diff21);
-				CompareImages2(0, 2, m_diff02);
-				Make3WayDiff(m_diff01, m_diff21, m_diff);
-				m_diffCount = MarkDiffIndex3way(m_diff01, m_diff21, m_diff02, m_diff);
-			}
-			if (m_currentDiffIndex >= m_diffCount)
-				m_currentDiffIndex = m_diffCount - 1;
+			CompareImages2(0, 1, m_diff);
+			m_diffCount = MarkDiffIndex(m_diff);
 		}
+		else if (m_nImages == 3)
+		{
+			CompareImages2(0, 1, m_diff01);
+			CompareImages2(2, 1, m_diff21);
+			CompareImages2(0, 2, m_diff02);
+			Make3WayDiff(m_diff01, m_diff21, m_diff);
+			m_diffCount = MarkDiffIndex3way(m_diff01, m_diff21, m_diff02, m_diff);
+		}
+		if (m_currentDiffIndex >= m_diffCount)
+			m_currentDiffIndex = m_diffCount - 1;
 		RefreshImages();
 	}
 
 	void ScrollToDiff(int diffIndex)
 	{
-		if (diffIndex >= 0 && diffIndex < m_diffInfos.size())
+		if (diffIndex >= 0 && diffIndex < static_cast<int>(m_diffInfos.size()))
 		{
 			for (int i = 0; i < m_nImages; ++i)
 				m_imgWindow[i].ScrollTo(m_diffInfos[diffIndex].pt.x * m_diffBlockSize, m_diffInfos[diffIndex].pt.y * m_diffBlockSize);
@@ -956,10 +959,10 @@ private:
 			if (data(x, y) != -1)
 				continue;
 			data(x, y) = val;
-			if (x + 1 < data.width())
+			if (x + 1 < static_cast<int>(data.width()))
 			{
 				stack.push_back(Point<int>(x + 1, y));
-				if (y + 1 < data.height())
+				if (y + 1 < static_cast<int>(data.height()))
 					stack.push_back(Point<int>(x + 1, y + 1));
 				if (y - 1 >= 0)
 					stack.push_back(Point<int>(x + 1, y - 1));
@@ -967,12 +970,12 @@ private:
 			if (x - 1 >= 0)
 			{
 				stack.push_back(Point<int>(x - 1, y));
-				if (y + 1 < data.height())
+				if (y + 1 < static_cast<int>(data.height()))
 					stack.push_back(Point<int>(x - 1, y + 1));
 				if (y - 1 >= 0)
 					stack.push_back(Point<int>(x - 1, y - 1));
 			}
-			if (y + 1 < data.height())
+			if (y + 1 < static_cast<int>(data.height()))
 				stack.push_back(Point<int>(x, y + 1));
 			if (y - 1 >= 0)
 				stack.push_back(Point<int>(x, y - 1));
@@ -1020,7 +1023,7 @@ private:
 			}
 		}
 		
-		for (int i = 0; i < m_diffInfos.size(); ++i)
+		for (size_t i = 0; i < m_diffInfos.size(); ++i)
 		{
 			int op;
 			if (counter[i][0] != 0 && counter[i][1] == 0 && counter[i][2] == 0 && counter[i][3] == 0)
@@ -1284,7 +1287,7 @@ private:
 	{
 		if (iMsg == WM_NCCREATE)
 			SetWindowLongPtr(hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(reinterpret_cast<LPCREATESTRUCT>(lParam)->lpCreateParams));
-		CImgMergeWindow *pImgWnd = (CImgMergeWindow *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+		CImgMergeWindow *pImgWnd = reinterpret_cast<CImgMergeWindow *>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
 		LRESULT lResult = pImgWnd->OnWndMsg(hwnd, iMsg, wParam, lParam);
 		return lResult;
 	}
@@ -1293,7 +1296,7 @@ private:
 	{
 		Event evt;
 		int i;
-		CImgMergeWindow *pImgWnd = (CImgMergeWindow *)GetWindowLongPtr(GetParent(hwnd), GWLP_USERDATA);
+		CImgMergeWindow *pImgWnd = reinterpret_cast<CImgMergeWindow *>(GetWindowLongPtr(GetParent(hwnd), GWLP_USERDATA));
 		for (i = 0; i < pImgWnd->m_nImages; ++i)
 			if (pImgWnd->m_imgWindow[i].GetHWND() == hwnd)
 				break;

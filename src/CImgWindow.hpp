@@ -139,8 +139,10 @@ public:
 	{
 		m_backColor = backColor;
 		if (m_fip)
+		{
 			m_fip->setModified(true);
-		InvalidateRect(m_hWnd, NULL, TRUE);
+			InvalidateRect(m_hWnd, NULL, TRUE);
+		}
 	}
 
 	bool GetUseBackColor() const
@@ -152,8 +154,10 @@ public:
 	{
 		m_useBackColor = useBackColor;
 		if (m_fip)
+		{
 			m_fip->setModified(true);
-		InvalidateRect(m_hWnd, NULL, TRUE);
+			InvalidateRect(m_hWnd, NULL, TRUE);
+		}
 	}
 
 	double GetZoom() const
@@ -163,11 +167,17 @@ public:
 
 	void SetZoom(double zoom)
 	{
+		double oldZoom = m_zoom;
 		m_zoom = zoom;
-		m_nVScrollPos = 0;
-		m_nHScrollPos = 0;
-		CalcScrollBarRange();
-		InvalidateRect(m_hWnd, NULL, TRUE);
+		if (m_zoom < 0.1)
+			m_zoom = 0.1;
+		m_nVScrollPos = static_cast<int>(m_nVScrollPos / oldZoom * m_zoom);
+		m_nHScrollPos = static_cast<int>(m_nHScrollPos / oldZoom * m_zoom);
+		if (m_fip)
+		{
+			CalcScrollBarRange();
+			InvalidateRect(m_hWnd, NULL, TRUE);
+		}
 	}
 
 	void Invalidate()
@@ -376,9 +386,9 @@ private:
 		else
 		{
 			if (zDelta > 0)
-				SetZoom(m_zoom * 1.2);
+				SetZoom(m_zoom + 0.1);
 			else
-				SetZoom(m_zoom * 0.8);
+				SetZoom(m_zoom - 0.1);
 		}
 	}
 
@@ -462,7 +472,7 @@ private:
 	{
 		if (iMsg == WM_NCCREATE)
 			SetWindowLongPtr(hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(reinterpret_cast<LPCREATESTRUCT>(lParam)->lpCreateParams));
-		CImgWindow *pImgWnd = (CImgWindow *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+		CImgWindow *pImgWnd = reinterpret_cast<CImgWindow *>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
 		LRESULT lResult = pImgWnd->OnWndMsg(hwnd, iMsg, wParam, lParam);
 		return lResult;
 	}

@@ -186,7 +186,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_COMMAND:
 	{
 		int wmId    = LOWORD(wParam); 
-		int wmEvent = HIWORD(wParam); 
 		switch (wmId)
 		{
 		case ID_FILE_OPEN:
