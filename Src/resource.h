@@ -18,6 +18,7 @@
 #define IDR_DIRVIEWMENU                 110 // = IDR_DIRDOCTYPE
 #define IDR_MERGEHAND                   112
 #define IDR_POPUP_DIFF_OPTIONS          113
+#define IDR_POPUP_IMGMERGEVIEW          114
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
@@ -58,6 +59,7 @@
 #define IDD_PROPPAGE_COMPARE_FOLDER     238
 #define IDD_DIR_FILTER                  239
 #define IDD_ENCODINGERROR               240
+#define IDD_PROPPAGE_COMPARE_IMAGE      241
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
@@ -144,6 +146,8 @@
 #define IDI_NOTEQUALFOLDER              526
 #define IDI_EQUALTEXTFILE               527
 #define IDI_NOTEQUALTEXTFILE            528
+#define IDI_EQUALIMAGE                  529
+#define IDI_NOTEQUALIMAGE               530
 #define IDC_PATH0_BUTTON                1001
 #define IDC_PATH1_BUTTON                1002
 #define IDC_PATH2_BUTTON                1003
@@ -555,6 +559,7 @@
 #define IDS_OPTIONSPG_MERGECOLORS       9053
 #define IDS_OPTIONSPG_GENCOMPARE        9054
 #define IDS_OPTIONSPG_FOLDERCOMPARE     9055
+#define IDS_OPTIONSPG_IMAGECOMPARE      9056
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002
@@ -1172,15 +1177,39 @@
 #define ID_MRU_LAST                     33217
 #define ID_TABBAR_AUTO_MAXWIDTH         33218
 #define IDS_TABBAR_AUTO_MAXWIDTH        33219
+#define IDS_IMAGE_MENU                  33220
+#define ID_IMG_VIEWDIFFERENCES          33221
+#define ID_IMG_ZOOM_25                  33222
+#define ID_IMG_ZOOM_50                  33223
+#define ID_IMG_ZOOM_100                 33224
+#define ID_IMG_ZOOM_200                 33225
+#define ID_IMG_ZOOM_400                 33226
+#define ID_IMG_ZOOM_800                 33227
+#define ID_IMG_OVERLAY_NONE             33228
+#define ID_IMG_OVERLAY_XOR              33229
+#define ID_IMG_OVERLAY_ALPHABLEND       33230
+#define ID_IMG_DIFFBLOCKSIZE_1          33231
+#define ID_IMG_DIFFBLOCKSIZE_2          33232
+#define ID_IMG_DIFFBLOCKSIZE_4          33233
+#define ID_IMG_DIFFBLOCKSIZE_8          33234
+#define ID_IMG_DIFFBLOCKSIZE_16         33235
+#define ID_IMG_DIFFBLOCKSIZE_32         33236
+#define ID_IMG_PREVPAGE                 33237
+#define ID_IMG_NEXTPAGE                 33238
+#define ID_IMG_CURPANE_PREVPAGE         33239
+#define ID_IMG_CURPANE_NEXTPAGE         33240
+#define ID_IMG_USEBACKCOLOR             33241
+#define IDC_COMPAREIMAGE_PATTERNS       33242
+#define IDC_COMPAREIMAGE_DEFAULTS       33243
 
 // Next default values for new objects
 //
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        239
-#define _APS_NEXT_COMMAND_VALUE         33220
-#define _APS_NEXT_CONTROL_VALUE         1357
-#define _APS_NEXT_SYMED_VALUE           114
+#define _APS_NEXT_RESOURCE_VALUE        242
+#define _APS_NEXT_COMMAND_VALUE         33244
+#define _APS_NEXT_CONTROL_VALUE         1358
+#define _APS_NEXT_SYMED_VALUE           115
 #endif
 #endif

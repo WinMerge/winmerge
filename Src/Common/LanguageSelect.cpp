@@ -20,6 +20,8 @@
 #include "OpenFrm.h"
 #include "ChildFrm.h"
 #include "DirFrame.h"
+#include "HexMergeFrm.h"
+#include "ImgMergeFrm.h"
 #include "paths.h"
 #include "Environment.h"
 
@@ -1091,12 +1093,14 @@ void CLanguageSelect::ReloadMenu()
 		CMainFrame * pMainFrame = dynamic_cast<CMainFrame *> ((CFrameWnd*)pApp->m_pMainWnd);
 		HMENU hNewDefaultMenu = pMainFrame->NewDefaultMenu(idMenu);
 		HMENU hNewMergeMenu = pMainFrame->NewMergeViewMenu();
+		HMENU hNewImgMergeMenu = pMainFrame->NewImgMergeViewMenu();
 		HMENU hNewDirMenu = pMainFrame->NewDirViewMenu();
 		if (hNewDefaultMenu && hNewMergeMenu && hNewDirMenu)
 		{
 			// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach
 			CMenu * pNewDefaultMenu = CMenu::FromHandle(hNewDefaultMenu);
 			CMenu * pNewMergeMenu = CMenu::FromHandle(hNewMergeMenu);
+			CMenu * pNewImgMergeMenu = CMenu::FromHandle(hNewImgMergeMenu);
 			CMenu * pNewDirMenu = CMenu::FromHandle(hNewDirMenu);
 			
 			CWnd *pFrame = CWnd::FromHandle(::GetWindow(pMainFrame->m_hWndMDIClient, GW_CHILD));
@@ -1104,6 +1108,10 @@ void CLanguageSelect::ReloadMenu()
 			{
 				if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
 					static_cast<CChildFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
+				if (pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
+					static_cast<CHexMergeFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
+				if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
+					static_cast<CImgMergeFrame *>(pFrame)->SetSharedMenu(hNewImgMergeMenu);
 				else if (pFrame->IsKindOf(RUNTIME_CLASS(COpenFrame)))
 					static_cast<COpenFrame *>(pFrame)->SetSharedMenu(hNewDefaultMenu);
 				else if (pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
@@ -1116,6 +1124,10 @@ void CLanguageSelect::ReloadMenu()
 			{
 				if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
 					pMainFrame->MDISetMenu(pNewMergeMenu, NULL);
+				else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
+					pMainFrame->MDISetMenu(pNewMergeMenu, NULL);
+				else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
+					pMainFrame->MDISetMenu(pNewImgMergeMenu, NULL);
 				else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
 					pMainFrame->MDISetMenu(pNewDirMenu, NULL);
 				else

@@ -1850,7 +1850,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 			fileloc[nIndex].encoding = di1->diffFileInfo[nIndex].encoding;
 			dwFlags[nIndex] = pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0;
 		}
-		GetMainFrame()->ShowMergeDoc(pDoc, pDoc->m_nDirs, fileloc,
+		GetMainFrame()->ShowAutoMergeDoc(pDoc, pDoc->m_nDirs, fileloc,
 			dwFlags, infoUnpacker);
 	}
 }
