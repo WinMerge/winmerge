@@ -31,6 +31,7 @@
 #include "PropBackups.h"
 #include "PropShell.h"
 #include "PropCompareFolder.h"
+#include "PropCompareImage.h"
 
 #include "PropertyPageHost.h"
 
@@ -72,6 +73,7 @@ protected:
 	PropBackups m_pageBackups;
 	PropShell m_pageShell;
 	PropCompareFolder m_pageCompareFolder;
+	PropCompareImage m_pageCompareImage;
 
 	SyntaxColors *m_pSyntaxColors;
 

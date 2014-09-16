@@ -160,6 +160,15 @@ const TCHAR OPT_CMP_QUICK_LIMIT[] = _T("Settings/QuickMethodLimit");
 const TCHAR OPT_CMP_WALK_UNIQUE_DIRS[] = _T("Settings/ScanUnpairedDir");
 const TCHAR OPT_CMP_IGNORE_REPARSE_POINTS[] = _T("Settings/IgnoreReparsePoints");
 
+// Image Compare options
+const TCHAR OPT_CMP_IMG_FILEPATTERNS[] = _T("Settings/ImageFilePatterns");
+const TCHAR OPT_CMP_IMG_SHOWDIFFERENCES[] = _T("Settings/ImageShowDifferences");
+const TCHAR OPT_CMP_IMG_OVERLAYMOVE[] = _T("Settings/ImageOverlayMode");
+const TCHAR OPT_CMP_IMG_ZOOM[] = _T("Settings/ImageZoom");
+const TCHAR OPT_CMP_IMG_USEBACKCOLOR[] = _T("Settings/ImageUseBackColor");
+const TCHAR OPT_CMP_IMG_BACKCOLOR[] = _T("Settings/ImageBackColor");
+const TCHAR OPT_CMP_IMG_DIFFBLOCKSIZE[] = _T("Settings/ImageDiffBlockSize");
+
 // Multidoc enable/disable per document type
 const TCHAR OPT_MULTIDOC_DIRDOCS[] = _T("Settings/MultiDirDocs");
 const TCHAR OPT_MULTIDOC_MERGEDOCS[] = _T("Settings/MultiMergeDocs");
