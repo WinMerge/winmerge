@@ -180,6 +180,9 @@
   <ItemGroup>
     <None Include="WinIMergeLib.def" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinIMergeLib.rc" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

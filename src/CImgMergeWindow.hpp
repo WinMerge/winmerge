@@ -38,6 +38,12 @@ template<class T> struct Size
 	T cx, cy;
 };
 
+template<class T> struct Rect
+{
+	Rect(T left, T top, T right, T bottom): left(left), top(top), right(right), bottom(bottom) {}
+	T left, top, right, bottom;
+};
+
 template <class T> struct Array2D
 {
 	Array2D() : m_width(0), m_height(0), m_data(NULL)
@@ -119,9 +125,256 @@ struct DiffInfo
 	{
 		OP_NONE = 0, OP_1STONLY, OP_2NDONLY, OP_3RDONLY, OP_DIFF, OP_TRIVIAL
 	};
-	DiffInfo(int op, int x, int y) : op(op), pt(x, y) {}
+	DiffInfo(int op, int x, int y) : op(op), rc(x, y, x + 1, y + 1) {}
 	int op;
-	Point<int> pt;
+	Rect<int> rc;
+};
+
+struct UndoRecord
+{
+	UndoRecord(int pane, FIBITMAP *oldbitmap, FIBITMAP *newbitmap, const int modcountnew[3]) : 
+		pane(pane), oldbitmap(oldbitmap), newbitmap(newbitmap)
+	{
+		for (int i = 0; i < 3; ++i)
+			modcount[i] = modcountnew[i];
+	}
+	int pane;
+	int modcount[3];
+	FIBITMAP *oldbitmap, *newbitmap;
+};
+
+struct UndoRecords
+{
+	UndoRecords() : m_currentUndoBufIndex(-1)
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			m_modcount[i] = 0;
+			m_modcountonsave[i] = 0;
+		}
+	}
+
+	~UndoRecords()
+	{
+		while (!m_undoBuf.empty())
+		{
+			FreeImage_Unload(m_undoBuf.back().newbitmap);
+			FreeImage_Unload(m_undoBuf.back().oldbitmap);
+			m_undoBuf.pop_back();
+		}
+	}
+
+	void push_back(int pane, FIBITMAP *oldbitmap, FIBITMAP *newbitmap)
+	{
+		++m_currentUndoBufIndex;
+		while (m_currentUndoBufIndex < static_cast<int>(m_undoBuf.size()))
+		{
+			--m_modcount[m_undoBuf.back().pane];
+			FreeImage_Unload(m_undoBuf.back().newbitmap);
+			FreeImage_Unload(m_undoBuf.back().oldbitmap);
+			m_undoBuf.pop_back();
+		}
+		++m_modcount[pane];
+		m_undoBuf.push_back(UndoRecord(pane, oldbitmap, newbitmap, m_modcount));
+	}
+
+	const UndoRecord& undo()
+	{
+		if (m_currentUndoBufIndex < 0)
+			throw "no undoable";
+		const UndoRecord& rec = m_undoBuf[m_currentUndoBufIndex];
+		--m_currentUndoBufIndex;
+		return rec;
+	}
+
+	const UndoRecord& redo()
+	{
+		if (m_currentUndoBufIndex >= static_cast<int>(m_undoBuf.size()) - 1)
+			throw "no redoable";
+		const UndoRecord& rec = m_undoBuf[m_currentUndoBufIndex];
+		++m_currentUndoBufIndex;
+		return rec;
+	}
+
+	bool is_modified(int pane) const
+	{
+		if (m_currentUndoBufIndex < 0)
+			return (m_modcountonsave[pane] != 0);
+		else
+			return (m_modcountonsave[pane] != m_undoBuf[m_currentUndoBufIndex].modcount[pane]);
+	}
+
+	void save(int pane)
+	{
+		if (m_currentUndoBufIndex < 0)
+			m_modcountonsave[pane] = 0;
+		else
+			m_modcountonsave[pane] = m_undoBuf[m_currentUndoBufIndex].modcount[pane];
+	}
+
+	bool undoable() const
+	{
+		return (m_currentUndoBufIndex >= 0);
+	}
+
+	bool redoable() const
+	{
+		return (m_currentUndoBufIndex < static_cast<int>(m_undoBuf.size()) - 1);
+	}
+
+	std::vector<UndoRecord> m_undoBuf;
+	int m_currentUndoBufIndex;
+	int m_modcount[3];
+	int m_modcountonsave[3];
+};
+
+class fipImageEx : public fipImage
+{
+public:
+	fipImageEx(FREE_IMAGE_TYPE image_type = FIT_BITMAP, unsigned width = 0, unsigned height = 0, unsigned bpp = 0) :
+	  fipImage(image_type, width, height, bpp) {}
+	fipImageEx(const fipImageEx& Image) : fipImage(Image) {}
+	virtual ~fipImageEx() {}
+
+	fipImageEx& operator=(const fipImageEx& Image)
+	{
+		if (this != &Image)
+		{
+			FIBITMAP *clone = FreeImage_Clone((FIBITMAP*)Image._dib);
+			replace(clone);
+		}
+		return *this;
+	}
+
+	fipImageEx& operator=(FIBITMAP *dib)
+	{
+		if (_dib != dib)
+			replace(dib);
+		return *this;
+	}
+
+	void swap(fipImageEx& other)
+	{
+		std::swap(_dib, other._dib);
+		std::swap(this->_fif, other._fif);
+		std::swap(this->_bHasChanged, other._bHasChanged);
+	}
+
+	FIBITMAP *detach()
+	{
+		FIBITMAP *dib = _dib;
+		_dib = NULL;
+		clear();
+		return dib;
+	}
+
+	BOOL colorQuantizeEx(FREE_IMAGE_QUANTIZE quantize = FIQ_WUQUANT, int PaletteSize = 256, int ReserveSize = 0, RGBQUAD *ReservePalette = NULL)
+	{
+		if(_dib) {
+			FIBITMAP *dib8 = FreeImage_ColorQuantizeEx(_dib, quantize, PaletteSize, ReserveSize, ReservePalette);
+			return !!replace(dib8);
+		}
+		return false;
+	}
+
+	bool convertColorDepth(unsigned bpp, RGBQUAD *pPalette = NULL)
+	{
+		switch (bpp)
+		{
+		case 1:
+			return !!threshold(128);
+		case 4:
+		{
+			fipImageEx tmp = *this;
+			tmp.convertTo24Bits();
+			if (pPalette)
+				tmp.colorQuantizeEx(FIQ_NNQUANT, 16, 16, pPalette);
+			else
+				tmp.colorQuantizeEx(FIQ_WUQUANT, 16);
+			setSize(tmp.getImageType(), tmp.getWidth(), tmp.getHeight(), 4);
+			for (unsigned y = 0; y < tmp.getHeight(); ++y)
+			{
+				const BYTE *line_src = tmp.getScanLine(y);
+				BYTE *line_dst = getScanLine(y);
+				for (unsigned x = 0; x < tmp.getWidth(); ++x)
+					line_dst[x / 2] |= ((x % 2) == 0) ? (line_src[x] << 4) : line_src[x];
+			}
+
+			RGBQUAD *rgbq_dst = getPalette();
+			RGBQUAD *rgbq_src = pPalette ? pPalette : tmp.getPalette();
+			memcpy(rgbq_dst, rgbq_src, sizeof(RGBQUAD) * 16);
+			return true;
+		}
+		case 8:
+			convertTo24Bits();
+			if (pPalette)
+				return !!colorQuantizeEx(FIQ_NNQUANT, 256, 256, pPalette);
+			else
+				return !!colorQuantizeEx(FIQ_WUQUANT, 256);
+		case 15:
+			return !!convertTo16Bits555();
+		case 16:
+			return !!convertTo16Bits565();
+		case 24:
+			return !!convertTo24Bits();
+		default:
+		case 32:
+			return !!convertTo32Bits();
+		}
+	}
+
+	void copyAnimationMetadata(fipImage& src)
+	{
+		fipTag tag;
+		fipMetadataFind finder;
+		if (finder.findFirstMetadata(FIMD_ANIMATION, src, tag))
+		{
+			do
+			{
+				setMetadata(FIMD_ANIMATION, tag.getKey(), tag);
+			} while (finder.findNextMetadata(tag));
+		}
+	}
+};
+
+class fipMultiPageEx : public fipMultiPage
+{
+public:
+	fipMultiPageEx(BOOL keep_cache_in_memory = FALSE) : fipMultiPage(keep_cache_in_memory) {}
+
+	bool saveU(const wchar_t* lpszPathName, int flag = 0) const
+	{
+		FILE *fp = NULL;
+		_wfopen_s(&fp, lpszPathName, L"r+b");
+		if (!fp)
+			return false;
+		FreeImageIO io;
+		io.read_proc  = myReadProc;
+		io.write_proc = myWriteProc;
+		io.seek_proc  = mySeekProc;
+		io.tell_proc  = myTellProc;
+		FREE_IMAGE_FORMAT fif = fipImage::identifyFIFU(lpszPathName);
+		bool result = !!saveToHandle(fif, &io, (fi_handle)fp, flag);
+		fclose(fp);
+		return result;
+	}
+
+private:
+	static unsigned DLL_CALLCONV myReadProc(void *buffer, unsigned size, unsigned count, fi_handle handle) {
+		return (unsigned)fread(buffer, size, count, (FILE *)handle);
+	}
+
+	static unsigned DLL_CALLCONV myWriteProc(void *buffer, unsigned size, unsigned count, fi_handle handle) {
+		return (unsigned)fwrite(buffer, size, count, (FILE *)handle);
+	}
+
+	static int DLL_CALLCONV mySeekProc(fi_handle handle, long offset, int origin) {
+		return fseek((FILE *)handle, offset, origin);
+	}
+
+	static long DLL_CALLCONV myTellProc(fi_handle handle) {
+		return ftell((FILE *)handle);
+	}
 };
 
 class CImgMergeWindow : public IImgMergeWindow
@@ -179,6 +432,13 @@ public:
 	void AddEventListener(EventListenerFunc func, void *userdata)
 	{
 		m_listener.push_back(EventListenerInfo(func, userdata));
+	}
+
+	const wchar_t *GetFileName(int pane)
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return NULL;
+		return m_filename[pane].c_str();
 	}
 
 	int GetPaneCount() const
@@ -571,6 +831,98 @@ public:
 		return -1;
 	}
 
+	void CopyDiff(int diffIndex, int srcPane, int dstPane)
+	{
+		if (srcPane < 0 || srcPane >= m_nImages)
+			return;
+		if (dstPane < 0 || dstPane >= m_nImages)
+			return;
+		if (diffIndex < 0 || diffIndex >= m_diffCount)
+			return;
+
+		FIBITMAP *oldbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+
+		const Rect<int>& rc = m_diffInfos[diffIndex].rc;
+		unsigned wsrc = m_imgOrig32[srcPane].getWidth();
+		unsigned hsrc = m_imgOrig32[srcPane].getHeight();
+		unsigned wdst = m_imgOrig32[dstPane].getWidth();
+		unsigned hdst = m_imgOrig32[dstPane].getHeight();
+		if (rc.right * m_diffBlockSize > wdst)
+		{
+			if ((std::max)(wsrc, wdst) < rc.right * m_diffBlockSize)
+				wdst = (std::max)(wsrc, wdst);
+			else
+				wdst = rc.right * m_diffBlockSize;
+		}
+		if (rc.bottom * m_diffBlockSize > hdst)
+		{
+			if ((std::max)(hsrc, hdst) < rc.bottom * m_diffBlockSize)
+				hdst = (std::max)(hsrc, hdst);
+			else
+				hdst = rc.bottom * m_diffBlockSize;
+		}
+		if (rc.right * m_diffBlockSize > wsrc)
+			wdst = wsrc;
+		if (rc.bottom * m_diffBlockSize > hsrc)
+			hdst = hsrc;
+		if (wdst != m_imgOrig32[dstPane].getWidth() || hdst != m_imgOrig32[dstPane].getHeight())
+		{
+			fipImage imgTemp = m_imgOrig32[dstPane];
+			m_imgOrig32[dstPane].setSize(imgTemp.getImageType(), wdst, hdst, imgTemp.getBitsPerPixel());
+			m_imgOrig32[dstPane].pasteSubImage(imgTemp, 0, 0);
+		}
+		
+		for (unsigned y = rc.top * m_diffBlockSize; y < rc.bottom * m_diffBlockSize; y += m_diffBlockSize)
+		{
+			for (unsigned x = rc.left * m_diffBlockSize; x < rc.right * m_diffBlockSize; x += m_diffBlockSize)
+			{
+				if (m_diff(x / m_diffBlockSize, y / m_diffBlockSize) == diffIndex + 1)
+				{
+					int sizex = ((x + m_diffBlockSize) < wsrc) ? m_diffBlockSize : (wsrc - x);
+					int sizey = ((y + m_diffBlockSize) < hsrc) ? m_diffBlockSize : (hsrc - y);
+					if (sizex > 0 && sizey > 0)
+					{
+						for (int i = 0; i < sizey; ++i)
+						{
+							const BYTE *scanline_src = m_imgOrig32[srcPane].getScanLine(hsrc - (y + i) - 1);
+							BYTE *scanline_dst = m_imgOrig32[dstPane].getScanLine(hdst - (y + i) - 1);
+							memcpy(&scanline_dst[x * 4], &scanline_src[x * 4], sizex * 4);
+						}
+					}
+				}
+			}
+		}
+
+		FIBITMAP *newbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+		m_undoRecords.push_back(dstPane, oldbitmap, newbitmap);
+		CompareImages();
+	}
+
+	bool IsModified(int pane) const
+	{
+		return m_undoRecords.is_modified(pane);
+	}
+
+	bool Undo()
+	{
+		if (!m_undoRecords.undoable())
+			return false;
+		const UndoRecord& rec = m_undoRecords.undo();
+		m_imgOrig32[rec.pane] = FreeImage_Clone(rec.oldbitmap);
+		CompareImages();
+		return true;
+	}
+
+	bool Redo()
+	{
+		if (!m_undoRecords.redoable())
+			return false;
+		const UndoRecord& rec = m_undoRecords.redo();
+		m_imgOrig32[rec.pane] = FreeImage_Clone(rec.newbitmap);
+		CompareImages();
+		return true;
+	}
+
 	void CompareImages()
 	{
 		if (m_nImages <= 1)
@@ -599,7 +951,7 @@ public:
 		if (diffIndex >= 0 && diffIndex < static_cast<int>(m_diffInfos.size()))
 		{
 			for (int i = 0; i < m_nImages; ++i)
-				m_imgWindow[i].ScrollTo(m_diffInfos[diffIndex].pt.x * m_diffBlockSize, m_diffInfos[diffIndex].pt.y * m_diffBlockSize);
+				m_imgWindow[i].ScrollTo(m_diffInfos[diffIndex].rc.left * m_diffBlockSize, m_diffInfos[diffIndex].rc.top * m_diffBlockSize);
 		}
 	}
 
@@ -673,6 +1025,50 @@ public:
 		return OpenImages(3, filenames);
 	}
 
+	bool SaveImage(int pane)
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return false;
+		if (!m_undoRecords.is_modified(pane))
+			return true;
+		m_undoRecords.save(pane);
+		unsigned bpp =  m_imgOrig[pane].getBitsPerPixel();
+		RGBQUAD palette[256];
+		if (m_imgOrig[pane].getPaletteSize() > 0)
+			memcpy(palette, m_imgOrig[pane].getPalette(), m_imgOrig[pane].getPaletteSize());
+		m_imgOrig[pane] = m_imgOrig32[pane];
+		m_imgOrig[pane].convertColorDepth(bpp, palette);
+		if (m_imgOrigMultiPage[pane].isValid())
+		{
+			fipImageEx imgOrg, imgAdd;
+			imgAdd = m_imgOrig[pane];
+			imgOrg = m_imgOrigMultiPage[pane].lockPage(m_currentPage[pane]);
+			imgAdd.copyAnimationMetadata(imgOrg);
+			m_imgOrigMultiPage[pane].unlockPage(imgOrg, false);
+			m_imgOrigMultiPage[pane].insertPage(m_currentPage[pane], imgAdd);
+			imgAdd.detach();
+			m_imgOrigMultiPage[pane].deletePage(m_currentPage[pane] + 1);
+			return !!m_imgOrigMultiPage[pane].saveU(m_filename[pane].c_str());
+		}
+		else
+		{
+			return !!m_imgOrig[pane].saveU(m_filename[pane].c_str());
+		}
+	}
+
+	bool SaveImages()
+	{
+		for (int i = 0; i < m_nImages; ++i)
+			if (!SaveImage(i))
+				return false;
+		return true;
+	}
+
+	bool SaveImageAs(int pane, const wchar_t *filename)
+	{
+		return true;
+	}
+
 	bool CloseImages()
 	{
 		for (int i = 0; i < m_nImages; ++i)
@@ -700,14 +1096,14 @@ public:
 	{
 		if (pane < 0 || pane >= m_nImages)
 			return -1;
-		return m_imgOrig[pane].getWidth();
+		return m_imgOrig32[pane].getWidth();
 	}
 
 	int  GetImageHeight(int pane) const
 	{
 		if (pane < 0 || pane >= m_nImages)
 			return -1;
-		return m_imgOrig[pane].getHeight();
+		return m_imgOrig32[pane].getHeight();
 	}
 
 	int  GetImageBitsPerPixel(int pane) const
@@ -989,11 +1385,24 @@ private:
 		{
 			for (unsigned bx = 0; bx < diff.width(); ++bx)
 			{
-				if (diff(bx, by) == -1)
+				int idx = diff(bx, by);
+				if (idx == -1)
 				{
 					m_diffInfos.push_back(DiffInfo(DiffInfo::OP_DIFF, bx, by));
 					++diffCount;
 					FloodFill8Directions(diff, bx, by, diffCount);
+				}
+				else if (idx != 0)
+				{
+					Rect<int>& rc = m_diffInfos[idx - 1].rc;
+					if (static_cast<int>(bx) < rc.left)
+						rc.left = bx;
+					else if (static_cast<int>(bx + 1) > rc.right)
+						rc.right = bx + 1;
+					if (static_cast<int>(by) < rc.top)
+						rc.top = by;
+					else if (static_cast<int>(by + 1) > rc.bottom)
+						rc.bottom = by + 1;
 				}
 			}
 		}
@@ -1366,9 +1775,9 @@ private:
 	int m_nImages;
 	HWND m_hWnd;
 	HINSTANCE m_hInstance;
-	fipMultiPage m_imgOrigMultiPage[3];
-	fipImage m_imgOrig[3];
-	fipImage m_imgOrig32[3];
+	fipMultiPageEx m_imgOrigMultiPage[3];
+	fipImageEx m_imgOrig[3];
+	fipImageEx m_imgOrig32[3];
 	fipWinImage m_imgDiff[3];
 	CImgWindow m_imgWindow[3];
 	WNDPROC m_ChildWndProc[3];
@@ -1390,4 +1799,5 @@ private:
 	int m_diffCount;
 	Array2D<unsigned> m_diff, m_diff01, m_diff21, m_diff02;
 	std::vector<DiffInfo> m_diffInfos;
+	UndoRecords m_undoRecords;
 };

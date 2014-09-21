@@ -45,6 +45,14 @@
 #define ID_VIEW_USEBACKCOLOR            32823
 #define ID_POPUP_CURPANE_NEXTPAGE       32824
 #define ID_POPUP_CURPANE_PREVIOUSPAGE   32825
+#define ID_MERGE_COPYTORIGHT            32828
+#define ID_MERGE_COPYTOLEFT             32829
+#define ID_EDIT_UNDO                    32832
+#define ID_EDIT_REDO                    32833
+#define ID_FILE_SAVE                    32835
+#define ID_FILE_SAVE32837               32837
+#define ID_MERGE_COPYFROMLEFT           32840
+#define ID_MERGE_COPYFROMRIGHT          32841
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -53,7 +61,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        131
-#define _APS_NEXT_COMMAND_VALUE         32828
+#define _APS_NEXT_COMMAND_VALUE         32844
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           111
 #endif

@@ -77,20 +77,28 @@ IDC_WINIMERGE MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&Open Images",                ID_FILE_OPEN
-        MENUITEM "Open &3 Images",              ID_FILE_OPEN3
+        MENUITEM "&Open Images\tCtrl+O",        ID_FILE_OPEN
+        MENUITEM "Open &3 Images\tCtrl+3",      ID_FILE_OPEN3
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
         MENUITEM "E&xit",                       ID_FILE_EXIT
     END
     POPUP "&Edit"
     BEGIN
-        MENUITEM "Cu&t",                        ID_EDIT_CUT
-        MENUITEM "&Copy",                       ID_EDIT_COPY
-        MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM "Select &All",                 ID_EDIT_SELECTALL
     END
     POPUP "&View"
     BEGIN
         MENUITEM "View &Differences",           ID_VIEW_VIEWDIFFERENCES
+        MENUITEM SEPARATOR
+        MENUITEM "&Prev Page",                  ID_VIEW_PAGE_PREVPAGE
+        MENUITEM "&Next Page",                  ID_VIEW_PAGE_NEXTPAGE
+        MENUITEM SEPARATOR
         POPUP "&Zoom"
         BEGIN
             MENUITEM "&400%",                       ID_VIEW_ZOOM_400
@@ -115,11 +123,7 @@ BEGIN
             MENUITEM "&32",                         ID_VIEW_DIFFBLOCKSIZE_32
         END
         MENUITEM "Split &Horizontally",         ID_VIEW_SPLITHORIZONTALLY
-        POPUP "&Page"
-        BEGIN
-            MENUITEM "&Next Page",                  ID_VIEW_PAGE_NEXTPAGE
-            MENUITEM "&Prev Page",                  ID_VIEW_PAGE_PREVPAGE
-        END
+        MENUITEM SEPARATOR
         MENUITEM "&Set Background Color",       ID_VIEW_USEBACKCOLOR
     END
     POPUP "&Merge"
@@ -130,6 +134,11 @@ BEGIN
         MENUITEM "&Last Difference\tAlt+End",   ID_MERGE_LASTDIFFERENCE
         MENUITEM "Next Conflict\tAlt+Shift+Down", ID_MERGE_NEXTCONFLICT
         MENUITEM "Previous Conflict\tAlt+Shift+Up", ID_MERGE_PREVIOUSCONFLICT
+        MENUITEM SEPARATOR
+        MENUITEM "Copy to &Right\tAlt+Right",   ID_MERGE_COPYTORIGHT
+        MENUITEM "Copy to L&eft\tAlt+Left",     ID_MERGE_COPYTOLEFT
+        MENUITEM "Copy from Left\tAlt+Shift+Right", ID_MERGE_COPYFROMLEFT
+        MENUITEM "Copy from Right\tAlt+Shift+Left", ID_MERGE_COPYFROMRIGHT
     END
     POPUP "&Help"
     BEGIN
@@ -154,12 +163,60 @@ END
 
 IDC_WINIMERGE ACCELERATORS
 BEGIN
+    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    VK_LEFT,        ID_MERGE_COPYTOLEFT,    VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_MERGE_COPYTORIGHT,   VIRTKEY, ALT, NOINVERT
     VK_HOME,        ID_MERGE_FIRSTDIFFERENCE, VIRTKEY, ALT, NOINVERT
     VK_END,         ID_MERGE_LASTDIFFERENCE, VIRTKEY, ALT, NOINVERT
-    VK_DOWN,        ID_MERGE_NEXTDIFFERENCE, VIRTKEY, ALT, NOINVERT
-    VK_UP,          ID_MERGE_PREVIOUSDIFFERENCE, VIRTKEY, ALT, NOINVERT
     VK_DOWN,        ID_MERGE_NEXTCONFLICT,  VIRTKEY, SHIFT, ALT, NOINVERT
+    VK_DOWN,        ID_MERGE_NEXTDIFFERENCE, VIRTKEY, ALT, NOINVERT
     VK_UP,          ID_MERGE_PREVIOUSCONFLICT, VIRTKEY, SHIFT, ALT, NOINVERT
+    VK_UP,          ID_MERGE_PREVIOUSDIFFERENCE, VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_MERGE_COPYFROMLEFT,  VIRTKEY, SHIFT, ALT, NOINVERT
+    VK_LEFT,        ID_MERGE_COPYFROMRIGHT, VIRTKEY, SHIFT, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+#include "../Version.h"
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION FILEVER
+ PRODUCTVERSION PRODUCTVER
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "https://bitbucket.org/sdottaka/winimerge"
+            VALUE "FileDescription", "WInIMerge"
+            VALUE "FileVersion", STRFILEVER
+            VALUE "InternalName", "WinIMerge.exe"
+            VALUE "LegalCopyright", "Copyright (C) 2014 sdottaka@sourceforge.net"
+            VALUE "OriginalFilename", "WinIMerge.exe"
+            VALUE "ProductName", "WinIMerge"
+            VALUE "ProductVersion", STRPRODUCTVER
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
 END
 
 #endif    // âpåÍ (ïƒçë) resources

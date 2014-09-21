@@ -45,6 +45,10 @@ struct IImgMergeWindow
 	typedef void (*EventListenerFunc)(const Event& evt);
 	virtual bool OpenImages(const wchar_t *filename1, const wchar_t *filename2) = 0;
 	virtual bool OpenImages(const wchar_t *filename1, const wchar_t *filename2, const wchar_t *filename3) = 0;
+	virtual bool SaveImages() = 0;
+	virtual bool SaveImage(int pane) = 0;
+	virtual bool SaveImageAs(int pane, const wchar_t *filename) = 0;
+	virtual const wchar_t *GetFileName(int pane) = 0;
 	virtual int  GetPaneCount() const = 0;
 	virtual RECT GetPaneWindowRect(int pane) const = 0;
 	virtual RECT GetWindowRect() const = 0;
@@ -95,6 +99,10 @@ struct IImgMergeWindow
 	virtual int  GetPrevDiffIndex() const = 0;
 	virtual int  GetNextConflictIndex() const = 0;
 	virtual int  GetPrevConflictIndex() const = 0;
+	virtual void CopyDiff(int diffIndex, int srcPane, int dstPane) = 0;
+	virtual bool Undo() = 0;
+	virtual bool Redo() = 0;
+	virtual bool IsModified(int pane) const = 0;
 	virtual HWND GetHWND() const = 0;
 	virtual HWND GetPaneHWND(int pane) const = 0;
 	virtual int  GetImageWidth(int pane) const = 0;

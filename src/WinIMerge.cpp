@@ -16,14 +16,18 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include <Windows.h>
+#include <CommCtrl.h>
 #include <string>
 #include <algorithm>
 #include "resource.h"
 #include "WinIMergeLib.h"
 
+#pragma comment(lib, "comctl32.lib")
+
 HINSTANCE m_hInstance;
 HINSTANCE hInstDLL;
 HWND m_hWnd;
+HWND m_hwndStatusBar;
 wchar_t m_szTitle[256] = L"WinIMerge";
 wchar_t m_szWindowClass[256] = L"WinIMergeClass";
 IImgMergeWindow *m_pImgMergeWindow = NULL;
@@ -63,6 +67,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 	MSG msg;
 	HACCEL hAccelTable;
 
+	InitCommonControls();
 	MyRegisterClass(hInstance);
 	hInstDLL = GetModuleHandleW(L"WinIMergeLib.dll");
 
@@ -117,24 +122,30 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
+void UpdateWindowTitle(HWND hWnd)
+{
+	wchar_t title[1024];
+	wchar_t fnames[3][260];
+	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
+		wsprintfW(fnames[i], L"%s%s", m_pImgMergeWindow->GetFileName(i), m_pImgMergeWindow->IsModified(i) ? "*" : "");
+	int npanes = m_pImgMergeWindow->GetPaneCount();
+	if (npanes == 2)
+		wsprintfW(title, L"WinIMerge(%s - %s)", fnames[0], fnames[1]);
+	else if (npanes == 3)
+		wsprintfW(title, L"WinIMerge(%s - %s - %s)", fnames[0], fnames[1], fnames[2]);
+	if (npanes > 0)
+		SetWindowTextW(hWnd, title);
+}
+
 bool OpenImages(HWND hWnd, int nImages, const std::wstring filename[3])
 {
 	bool bSucceeded;
-	wchar_t title[256];
 	if (nImages <= 2)
-	{
 		bSucceeded = m_pImgMergeWindow->OpenImages(filename[0].c_str(), filename[1].c_str());
-		if (bSucceeded)
-			wsprintfW(title, L"WinIMerge(%s - %s)", filename[0].c_str(), filename[1].c_str());
-	}
 	else
-	{
 		bSucceeded = m_pImgMergeWindow->OpenImages(filename[0].c_str(), filename[1].c_str(), filename[2].c_str());
-		if (bSucceeded)
-			wsprintfW(title, L"WinIMerge(%s - %s - %s)", filename[0].c_str(), filename[1].c_str(), filename[2].c_str());
-	}
 	if (bSucceeded)
-		SetWindowTextW(hWnd, title);
+		UpdateWindowTitle(hWnd);
 	InvalidateRect(hWnd, NULL, TRUE);
 	return bSucceeded;
 }
@@ -157,6 +168,25 @@ void UpdateMenuState(HWND hWnd)
 	CheckMenuItem(hMenu, ID_VIEW_USEBACKCOLOR, m_pImgMergeWindow->GetUseBackColor() ? MF_CHECKED : MF_UNCHECKED);
 }
 
+void UpdateStatusBar()
+{
+	wchar_t buf[256];
+	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+	{
+		wsprintfW(buf, L"Size:%d x %dpx %dbpp Page:%d/%d Zoom:%d%% Differences:%d/%d", 
+			m_pImgMergeWindow->GetImageWidth(pane),
+			m_pImgMergeWindow->GetImageHeight(pane),
+			m_pImgMergeWindow->GetImageBitsPerPixel(pane),
+			m_pImgMergeWindow->GetCurrentPage(pane) + 1,
+			m_pImgMergeWindow->GetPageCount(pane),
+			static_cast<int>(m_pImgMergeWindow->GetZoom() * 100),
+			m_pImgMergeWindow->GetCurrentDiffIndex() + 1,
+			m_pImgMergeWindow->GetDiffCount()
+			);
+		SendMessage(m_hwndStatusBar, SB_SETTEXT, (WPARAM)pane | 0, (LPARAM)buf);
+	}
+}
+
 void OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 {
 	if (evt.eventType == IImgMergeWindow::CONTEXTMENU)
@@ -172,15 +202,36 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message) 
 	{
 	case WM_CREATE:
+		m_hwndStatusBar = CreateWindowEx(0, 
+			STATUSCLASSNAME, NULL, 
+			WS_CHILD | SBARS_SIZEGRIP | CCS_BOTTOM | WS_VISIBLE, 
+			0, 0, 0, 0, hWnd, (HMENU)1000, m_hInstance, NULL);
 		m_pImgMergeWindow = WinIMerge_CreateWindow(hInstDLL, hWnd);
 		m_pImgMergeWindow->AddEventListener(OnChildPaneEvent, NULL);
+		SetTimer(hWnd, 1, 250, NULL);
 		UpdateMenuState(hWnd);
 		break;
+	case WM_TIMER:
+	{
+		int widths[3] = {0};
+		for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
+		{
+			RECT rc = m_pImgMergeWindow->GetPaneWindowRect(i);
+			widths[i] = rc.right - rc.left + ((i > 0) ? widths[i - 1] : 0);
+		}
+		SendMessage(m_hwndStatusBar, SB_SETPARTS, (WPARAM)m_pImgMergeWindow->GetPaneCount(), (LPARAM)widths);
+		UpdateWindowTitle(hWnd);
+		UpdateStatusBar();
+		break;
+	}
 	case WM_SIZE:
 	{
-		RECT rc;
+		RECT rc, rcStatusBar;
 		GetClientRect(hWnd, &rc);
+		GetClientRect(m_hwndStatusBar, &rcStatusBar);
+		rc.bottom -= rcStatusBar.bottom;
 		m_pImgMergeWindow->SetWindowRect(rc);
+		MoveWindow(m_hwndStatusBar, 0, rc.bottom, rc.right, rc.bottom + rcStatusBar.bottom, TRUE);
 		break;
 	}
 	case WM_COMMAND:
@@ -219,8 +270,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				OpenImages(hWnd, nImages, filename);
 			break;
 		}
+		case ID_FILE_SAVE:
+			m_pImgMergeWindow->SaveImages();
+			break;
 		case ID_FILE_EXIT:
 			DestroyWindow(hWnd);
+			break;
+		case ID_EDIT_UNDO:
+			m_pImgMergeWindow->Undo();
+			break;
+		case ID_EDIT_REDO:
+			m_pImgMergeWindow->Redo();
 			break;
 		case ID_VIEW_ZOOM_400:
 		case ID_VIEW_ZOOM_200:
@@ -315,6 +375,44 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case ID_MERGE_PREVIOUSCONFLICT:
 			m_pImgMergeWindow->PrevConflict();
 			break;
+		case ID_MERGE_COPYTORIGHT:
+		{
+			int srcPane = m_pImgMergeWindow->GetActivePane();
+			if (srcPane < 0)
+				srcPane = 0;
+			if (srcPane >= m_pImgMergeWindow->GetPaneCount() - 1)
+				srcPane = m_pImgMergeWindow->GetPaneCount() - 2;
+			int dstPane = srcPane + 1;
+			m_pImgMergeWindow->CopyDiff(m_pImgMergeWindow->GetCurrentDiffIndex(), srcPane, dstPane);
+			break;
+		}
+		case ID_MERGE_COPYTOLEFT:
+		{
+			int srcPane = m_pImgMergeWindow->GetActivePane();
+			if (srcPane < 1)
+				srcPane = 1;
+			int dstPane = srcPane - 1;
+			m_pImgMergeWindow->CopyDiff(m_pImgMergeWindow->GetCurrentDiffIndex(), srcPane, dstPane);
+			break;
+		}
+		case ID_MERGE_COPYFROMLEFT:
+		{
+			int srcPane = m_pImgMergeWindow->GetActivePane() - 1;
+			if (srcPane < 0)
+				srcPane = 0;
+			int dstPane = srcPane + 1;
+			m_pImgMergeWindow->CopyDiff(m_pImgMergeWindow->GetCurrentDiffIndex(), srcPane, dstPane);
+			break;
+		}
+		case ID_MERGE_COPYFROMRIGHT:
+		{
+			int srcPane = m_pImgMergeWindow->GetActivePane() + 1;
+			if (srcPane > m_pImgMergeWindow->GetPaneCount() - 1)
+				srcPane = m_pImgMergeWindow->GetPaneCount() - 1;
+			int dstPane = srcPane - 1;
+			m_pImgMergeWindow->CopyDiff(m_pImgMergeWindow->GetCurrentDiffIndex(), srcPane, dstPane);
+			break;
+		}
 		case ID_HELP_ABOUT:
 			MessageBoxW(hWnd, 
 				L"WinIMerge\n\n"
