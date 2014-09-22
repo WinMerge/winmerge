@@ -163,7 +163,6 @@ CMergeDoc::CMergeDoc()
 	m_bEnableRescan = true;
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
-	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
 	m_nDiffContext = GetOptionsMgr()->GetInt(OPT_DIFF_CONTEXT);
 
 	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
@@ -2872,23 +2871,6 @@ void CMergeDoc::UpdateHeaderActivity(int pane, bool bActivate)
 	CChildFrame *pf = GetParentFrame();
 	ASSERT(pf);
 	pf->GetHeaderInterface()->SetActive(pane, bActivate);
-}
-
-/**
- * @brief Return if doc is in Merging/Editing mode
- */
-bool CMergeDoc::GetMergingMode() const
-{
-	return m_bMergingMode;
-}
-
-/**
- * @brief Set doc to Merging/Editing mode
- */
-void CMergeDoc::SetMergingMode(bool bMergingMode)
-{
-	m_bMergingMode = bMergingMode;
-	GetOptionsMgr()->SaveOption(OPT_MERGE_MODE, m_bMergingMode);
 }
 
 /**

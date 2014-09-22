@@ -160,6 +160,9 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LANGUAGE, OnUpdateViewLanguage)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, OnOpenRecentFile)
+	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
+	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
 	//}}AFX_MSG_MAP
 	// Standard file based document commands
 	//ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
@@ -212,6 +215,7 @@ CMergeApp::CMergeApp() :
 , m_CheckOutMulti(FALSE)
 , m_bVCProjSync(FALSE)
 , m_bVssSuppressPathCheck(FALSE)
+, m_bMergingMode(FALSE)
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
@@ -403,6 +407,8 @@ BOOL CMergeApp::InitInstance()
 
 	sd_Init(); // String diff init
 	sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
+
+	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
 
 	CSplashWnd::EnableSplashScreen(!bDisableSplash && !bCommandLineInvoke);
 
@@ -1416,3 +1422,53 @@ BOOL CMergeApp::OnOpenRecentFile(UINT nID)
 {
 	return LoadAndOpenProjectFile((const TCHAR *)m_pRecentFileList->m_arrNames[nID-ID_FILE_MRU_FILE1]);
 }
+
+/**
+ * @brief Return if doc is in Merging/Editing mode
+ */
+bool CMergeApp::GetMergingMode() const
+{
+	return m_bMergingMode;
+}
+
+/**
+ * @brief Set doc to Merging/Editing mode
+ */
+void CMergeApp::SetMergingMode(bool bMergingMode)
+{
+	m_bMergingMode = bMergingMode;
+	GetOptionsMgr()->SaveOption(OPT_MERGE_MODE, m_bMergingMode);
+}
+
+/**
+ * @brief Switch Merging/Editing mode and update
+ * buffer read-only states accordingly
+ */
+void CMergeApp::OnMergingMode()
+{
+	bool bMergingMode = GetMergingMode();
+
+	if (!bMergingMode)
+		LangMessageBox(IDS_MERGE_MODE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN);
+	SetMergingMode(!bMergingMode);
+}
+
+/**
+ * @brief Update Menuitem for Merging Mode
+ */
+void CMergeApp::OnUpdateMergingMode(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(GetMergingMode());
+}
+
+/**
+ * @brief Update MergingMode UI in statusbar
+ */
+void CMergeApp::OnUpdateMergingStatus(CCmdUI *pCmdUI)
+{
+	String text = theApp.LoadString(IDS_MERGEMODE_MERGING);
+	pCmdUI->SetText(text.c_str());
+	pCmdUI->Enable(GetMergingMode());
+}
+
