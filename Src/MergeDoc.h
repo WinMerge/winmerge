@@ -279,8 +279,6 @@ public:
 	int GetCurrentDiff() { return m_nCurDiff; }
 	virtual ~CMergeDoc();
 	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
-	bool GetMergingMode() const;
-	void SetMergingMode(bool bMergingMode);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
 	bool OpenWithUnpackerDialog();
@@ -323,7 +321,6 @@ protected:
 	boost::scoped_ptr<PackingInfo> m_pInfoUnpacker;
 	String m_strDesc[3]; /**< Left/Middle/Right side description text */
 	BUFFERTYPE m_nBufferType[3];
-	bool m_bMergingMode; /**< Merging or Edit mode */
 	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */
 	TempFile m_tempFiles[3]; /**< Temp files for compared files */
 	int m_nDiffContext;

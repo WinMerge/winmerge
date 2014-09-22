@@ -150,6 +150,8 @@ public:
 	BOOL CreateBackup(BOOL bFolder, const String& pszPath);
 	int HandleReadonlySave(String& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
 	BOOL SyncFileToVCS(const String& pszDest,	BOOL &bApplyToAll, String& psError);
+	bool GetMergingMode() const;
+	void SetMergingMode(bool bMergingMode);
 
 // Implementation
 protected:
@@ -210,6 +212,9 @@ protected:
 	afx_msg void OnViewLanguage();
 	afx_msg void OnUpdateViewLanguage(CCmdUI* pCmdUI);
 	afx_msg void OnHelp();
+	afx_msg void OnMergingMode();
+	afx_msg void OnUpdateMergingMode(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateMergingStatus(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
@@ -218,6 +223,7 @@ private:
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;
 	LONG m_nActiveOperations; /**< Active operations count. */
+	bool m_bMergingMode; /**< Merging or Edit mode */
 };
 
 extern CMergeApp theApp;
