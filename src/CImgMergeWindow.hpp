@@ -1063,7 +1063,21 @@ public:
 			return false;
 		if (!m_undoRecords.is_modified(pane))
 			return true;
-		m_undoRecords.save(pane);
+		return SaveImageAs(pane, m_filename[pane].c_str());
+	}
+
+	bool SaveImages()
+	{
+		for (int i = 0; i < m_nImages; ++i)
+			if (!SaveImage(i))
+				return false;
+		return true;
+	}
+
+	bool SaveImageAs(int pane, const wchar_t *filename)
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return false;
 		unsigned bpp =  m_imgOrig[pane].getBitsPerPixel();
 		RGBQUAD palette[256];
 		if (m_imgOrig[pane].getPaletteSize() > 0)
@@ -1080,25 +1094,12 @@ public:
 			m_imgOrigMultiPage[pane].insertPage(m_currentPage[pane], imgAdd);
 			imgAdd.detach();
 			m_imgOrigMultiPage[pane].deletePage(m_currentPage[pane] + 1);
-			return !!m_imgOrigMultiPage[pane].saveU(m_filename[pane].c_str());
+			return !!m_imgOrigMultiPage[pane].saveU(filename);
 		}
 		else
 		{
-			return !!m_imgOrig[pane].saveU(m_filename[pane].c_str());
+			return !!m_imgOrig[pane].saveU(filename);
 		}
-	}
-
-	bool SaveImages()
-	{
-		for (int i = 0; i < m_nImages; ++i)
-			if (!SaveImage(i))
-				return false;
-		return true;
-	}
-
-	bool SaveImageAs(int pane, const wchar_t *filename)
-	{
-		return true;
 	}
 
 	bool CloseImages()
