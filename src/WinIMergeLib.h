@@ -55,6 +55,8 @@ struct IImgMergeWindow
 	virtual bool SetWindowRect(const RECT& rc) = 0;
 	virtual int  GetActivePane() const = 0;
 	virtual void SetActivePane(int pane) = 0;
+	virtual bool GetReadOnly(int pane) const = 0;
+	virtual void SetReadOnly(int pane, bool readOnly) = 0;
 	virtual bool GetHorizontalSplit() const = 0;
 	virtual void SetHorizontalSplit(bool horizontalSplit) = 0;
 	virtual int  GetCurrentPage(int pane) const = 0;
@@ -100,6 +102,8 @@ struct IImgMergeWindow
 	virtual int  GetNextConflictIndex() const = 0;
 	virtual int  GetPrevConflictIndex() const = 0;
 	virtual void CopyDiff(int diffIndex, int srcPane, int dstPane) = 0;
+	virtual bool IsUndoable() const = 0;
+	virtual bool IsRedoable() const = 0;
 	virtual bool Undo() = 0;
 	virtual bool Redo() = 0;
 	virtual bool IsModified(int pane) const = 0;

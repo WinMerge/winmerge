@@ -191,8 +191,8 @@ struct UndoRecords
 	{
 		if (m_currentUndoBufIndex >= static_cast<int>(m_undoBuf.size()) - 1)
 			throw "no redoable";
-		const UndoRecord& rec = m_undoBuf[m_currentUndoBufIndex];
 		++m_currentUndoBufIndex;
+		const UndoRecord& rec = m_undoBuf[m_currentUndoBufIndex];
 		return rec;
 	}
 
@@ -405,8 +405,12 @@ public:
 		, m_oldSplitPosX(-4)
 		, m_oldSplitPosY(-4)
 	{
-		memset(m_ChildWndProc, 0, sizeof(m_ChildWndProc));
-		memset(m_currentPage, 0, sizeof(m_currentPage));
+		for (int i = 0; i < 3; ++i)
+		{
+			m_ChildWndProc[i] = NULL;
+			m_currentPage[i] = 0;
+			m_bRO[i] = false;
+		}
 	}
 
 	~CImgMergeWindow()
@@ -488,6 +492,20 @@ public:
 		if (pane < 0 || pane >= m_nImages)
 			return;
 		m_imgWindow[pane].SetFocus();
+	}
+
+	bool GetReadOnly(int pane) const
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return true;
+		return m_bRO[pane];
+	}
+
+	void SetReadOnly(int pane, bool readOnly)
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return;
+		m_bRO[pane] = readOnly;
 	}
 
 	bool GetHorizontalSplit() const
@@ -839,6 +857,8 @@ public:
 			return;
 		if (diffIndex < 0 || diffIndex >= m_diffCount)
 			return;
+		if (m_bRO[dstPane])
+			return;
 
 		FIBITMAP *oldbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
 
@@ -901,6 +921,16 @@ public:
 	bool IsModified(int pane) const
 	{
 		return m_undoRecords.is_modified(pane);
+	}
+
+	bool IsUndoable() const
+	{
+		return m_undoRecords.undoable();
+	}
+
+	bool IsRedoable() const
+	{
+		return m_undoRecords.redoable();
 	}
 
 	bool Undo()
@@ -1028,6 +1058,8 @@ public:
 	bool SaveImage(int pane)
 	{
 		if (pane < 0 || pane >= m_nImages)
+			return false;
+		if (m_bRO[pane])
 			return false;
 		if (!m_undoRecords.is_modified(pane))
 			return true;
@@ -1783,6 +1815,7 @@ private:
 	WNDPROC m_ChildWndProc[3];
 	std::vector<EventListenerInfo> m_listener;
 	std::wstring m_filename[3];
+	bool m_bRO[3];
 	int m_nDraggingSplitter;
 	bool m_bHorizontalSplit;
 	int m_oldSplitPosX;
