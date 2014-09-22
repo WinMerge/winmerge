@@ -1431,6 +1431,19 @@ void CMainFrame::OnClose()
 	CustomStatusCursor::SetStatusDisplay(0);
 	myStatusDisplay.SetFrame(0);
 	
+	// Close Non-Document/View frame with confirmation
+	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
+	while (pChild)
+	{
+		CMDIChildWnd *pNextChild = static_cast<CMDIChildWnd *>(pChild->GetWindow(GW_HWNDNEXT));
+		if (GetFrameType(pChild) == FRAME_IMGFILE)
+		{
+			if (!static_cast<CImgMergeFrame *>(pChild)->CloseNow())
+				return;
+		}
+		pChild = pNextChild;
+	}
+
 	CMDIFrameWnd::OnClose();
 }
 
@@ -2308,6 +2321,11 @@ void CMainFrame::OnWindowCloseAll()
 				return;
 			pDoc->OnCloseDocument();
 		}
+		else if (GetFrameType(pChild) == FRAME_IMGFILE)
+		{
+			if (!static_cast<CImgMergeFrame *>(pChild)->CloseNow())
+				return;
+		}
 		else
 		{
 			pChild->DestroyWindow();
@@ -2818,10 +2836,13 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
 {
 	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	BOOL bImgMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame));
 	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
 	if (bMergeFrame)
 		return FRAME_FILE;
+	else if (bImgMergeFrame)
+		return FRAME_IMGFILE;
 	else if (bDirFrame)
 		return FRAME_FOLDER;
 	else

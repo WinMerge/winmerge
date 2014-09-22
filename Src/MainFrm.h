@@ -75,6 +75,7 @@ public:
 	{
 		FRAME_FOLDER, /**< Folder compare frame. */
 		FRAME_FILE, /**< File compare frame. */
+		FRAME_IMGFILE, /**< Image file compare frame. */
 		FRAME_OTHER, /**< No frame? */
 	};
 
