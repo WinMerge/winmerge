@@ -40,6 +40,8 @@
 #include "paths.h"
 #include "PathContext.h"
 #include "unicoder.h"
+#include "FileOrFolderSelect.h"
+#include "SaveClosingDlg.h"
 #include "../Externals/winimerge/src/WinIMergeLib.h"
 #include <cmath>
 
@@ -60,12 +62,32 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_WM_CLOSE()
 	ON_WM_MDIACTIVATE()
 	ON_WM_SIZE()
+	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
+	ON_COMMAND(ID_FILE_SAVE_LEFT, OnFileSaveLeft)
+	ON_COMMAND(ID_FILE_SAVE_MIDDLE, OnFileSaveMiddle)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_MIDDLE, OnUpdateFileSaveMiddle)
+	ON_COMMAND(ID_FILE_SAVE_RIGHT, OnFileSaveRight)
+	ON_COMMAND(ID_FILE_SAVEAS_LEFT, OnFileSaveAsLeft)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVEAS_MIDDLE, OnUpdateFileSaveAsMiddle)
+	ON_COMMAND(ID_FILE_SAVEAS_MIDDLE, OnFileSaveAsMiddle)
+	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
 	ON_COMMAND(ID_FILE_CLOSE, OnFileClose)
+	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
+	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateLeftReadOnly)
+	ON_COMMAND(ID_FILE_MIDDLE_READONLY, OnMiddleReadOnly)
+	ON_UPDATE_COMMAND_UI(ID_FILE_MIDDLE_READONLY, OnUpdateMiddleReadOnly)
+	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
+	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
 	ON_COMMAND(ID_MERGE_COMPARE_HEX, OnFileRecompareAsBinary)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
+	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
+	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
@@ -83,6 +105,14 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_UPDATE_COMMAND_UI(ID_NEXTCONFLICT, OnUpdateNextConflict)
 	ON_COMMAND(ID_PREVCONFLICT, OnPrevConflict)
 	ON_UPDATE_COMMAND_UI(ID_PREVCONFLICT, OnUpdatePrevConflict)
+	ON_COMMAND(ID_L2R, OnL2r)
+	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
+	ON_COMMAND(ID_R2L, OnR2l)
+	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
+	ON_COMMAND(ID_COPY_FROM_LEFT, OnCopyFromLeft)
+	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_LEFT, OnUpdateCopyFromLeft)
+	ON_COMMAND(ID_COPY_FROM_RIGHT, OnCopyFromRight)
+	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_RIGHT, OnUpdateCopyFromRight)
 	ON_COMMAND(ID_IMG_VIEWDIFFERENCES, OnImgViewDifferences)
 	ON_UPDATE_COMMAND_UI(ID_IMG_VIEWDIFFERENCES, OnUpdateImgViewDifferences)
 	ON_COMMAND_RANGE(ID_IMG_ZOOM_25, ID_IMG_ZOOM_800, OnImgZoom)
@@ -257,6 +287,8 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	for (int nPane = 0; nPane < m_pImgMergeWindow->GetPaneCount(); nPane++)
 	{
+		m_pImgMergeWindow->SetReadOnly(nPane, m_bRO[nPane]);
+
 		m_wndFilePathBar.SetActive(nPane, FALSE);
 		CreateImgWndStatusBar(m_wndStatusBar[nPane], CWnd::FromHandle(m_pImgMergeWindow->GetPaneHWND(nPane)));
 		UpdateHeaderPath(nPane);
@@ -371,15 +403,227 @@ void CImgMergeFrame::SavePosition()
 
 void CImgMergeFrame::OnClose() 
 {
+	// Allow user to cancel closing
+	if (!PromptAndSaveIfNeeded(true))
+		return;
+
 	// clean up pointers.
 	CMDIChildWnd::OnClose();
 
 	GetMainFrame()->ClearStatusbarItemCount();
 }
 
+bool CImgMergeFrame::DoFileSave(int pane)
+{
+	if (m_pImgMergeWindow->IsModified(pane))
+	{
+		if (m_nBufferType[pane] == BUFFER_UNNAMED)
+			DoFileSaveAs(pane);
+		else
+		{
+			String filename = ucr::toTString(m_pImgMergeWindow->GetFileName(pane));
+			BOOL bApplyToAll = FALSE;
+			if (theApp.HandleReadonlySave(filename, FALSE, bApplyToAll) == IDCANCEL)
+				return false;
+			theApp.CreateBackup(false, filename);
+			if (!m_pImgMergeWindow->SaveImage(pane))
+			{
+				return false;
+			}
+		}
+		UpdateDiffItem(m_pDirDoc);
+	}
+	return true;
+}
+
+bool CImgMergeFrame::DoFileSaveAs(int pane)
+{
+	const String &path = m_filePaths.GetPath(pane);
+	String strPath;
+	int id;
+	if (pane == 0)
+		id = IDS_SAVE_LEFT_AS;
+	else if (pane == m_pImgMergeWindow->GetPaneCount() - 1)
+		id = IDS_SAVE_RIGHT_AS;
+	else
+		id = IDS_SAVE_MIDDLE_AS;
+	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, path.c_str(), id, NULL, FALSE))
+	{
+		String filename = ucr::toUTF16(strPath).c_str();
+		BOOL bApplyToAll = FALSE;
+		if (m_pImgMergeWindow->SaveImageAs(pane, filename.c_str()))
+			return false;
+		if (path.empty())
+		{
+			// We are saving scratchpad (unnamed file)
+			m_nBufferType[pane] = BUFFER_UNNAMED_SAVED;
+			m_strDesc[pane].erase();
+		}
+
+		m_filePaths.SetPath(pane, strPath);
+		UpdateDiffItem(m_pDirDoc);
+		UpdateHeaderPath(pane);
+	}
+	return true;
+}
+
+/**
+ * @brief Saves both files
+ */
+void CImgMergeFrame::OnFileSave() 
+{
+	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+		DoFileSave(pane);
+}
+
+/**
+ * @brief Called when "Save" item is updated
+ */
+void CImgMergeFrame::OnUpdateFileSave(CCmdUI *pCmdUI)
+{
+	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+	{
+		if (m_pImgMergeWindow->IsModified(pane))
+		{
+			pCmdUI->Enable(true);
+			return;
+		}
+	}
+	pCmdUI->Enable(false);
+}
+
+/**
+ * @brief Saves left-side file
+ */
+void CImgMergeFrame::OnFileSaveLeft() 
+{
+	DoFileSave(0);
+}
+
+/**
+ * @brief Called when "Save middle (...)" item is updated
+ */
+void CImgMergeFrame::OnUpdateFileSaveMiddle(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_pImgMergeWindow->GetPaneCount() == 3 ? true : false);
+}
+
+/**
+ * @brief Saves middle-side file
+ */
+void CImgMergeFrame::OnFileSaveMiddle()
+{
+	DoFileSave(1);
+}
+
+/**
+ * @brief Saves right-side file
+ */
+void CImgMergeFrame::OnFileSaveRight()
+{
+	DoFileSave(m_pImgMergeWindow->GetPaneCount() - 1);
+}
+
+/**
+ * @brief Called when "Save middle (as...)" item is updated
+ */
+void CImgMergeFrame::OnUpdateFileSaveAsMiddle(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_pImgMergeWindow->GetPaneCount() == 3 ? true : false);
+}
+
+/**
+ * @brief Saves left-side file with name asked
+ */
+void CImgMergeFrame::OnFileSaveAsLeft()
+{
+	DoFileSaveAs(0);
+}
+
+/**
+ * @brief Saves middle-side file with name asked
+ */
+void CImgMergeFrame::OnFileSaveAsMiddle()
+{
+	DoFileSaveAs(1);
+}
+
+/**
+ * @brief Saves right-side file with name asked
+ */
+void CImgMergeFrame::OnFileSaveAsRight()
+{
+	DoFileSaveAs(m_pImgMergeWindow->GetPaneCount() - 1);
+}
+
 void CImgMergeFrame::OnFileClose() 
 {
 	OnClose();
+}
+
+/**
+ * @brief Enable/disable left buffer read-only
+ */
+void CImgMergeFrame::OnLeftReadOnly()
+{
+	m_bRO[0] = !m_bRO[0];
+	m_pImgMergeWindow->SetReadOnly(0, m_bRO[0]);
+}
+
+/**
+ * @brief Called when "Left read-only" item is updated
+ */
+void CImgMergeFrame::OnUpdateLeftReadOnly(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(m_bRO[0]);
+}
+
+/**
+ * @brief Enable/disable middle buffer read-only
+ */
+void CImgMergeFrame::OnMiddleReadOnly()
+{
+	if (m_pImgMergeWindow->GetPaneCount() == 3)
+	{
+		m_bRO[1] = !m_bRO[1];
+		m_pImgMergeWindow->SetReadOnly(1, m_bRO[1]);
+	}
+}
+
+/**
+ * @brief Called when "Middle read-only" item is updated
+ */
+void CImgMergeFrame::OnUpdateMiddleReadOnly(CCmdUI* pCmdUI)
+{
+	if (m_pImgMergeWindow->GetPaneCount() < 3)
+	{
+		pCmdUI->Enable(false);
+	}
+	else
+	{
+		pCmdUI->Enable(true);
+		pCmdUI->SetCheck(m_bRO[1]);
+	}
+}
+
+/**
+ * @brief Enable/disable right buffer read-only
+ */
+void CImgMergeFrame::OnRightReadOnly()
+{
+	int pane = m_pImgMergeWindow->GetPaneCount() - 1;
+	m_bRO[pane] = !m_bRO[pane];
+	m_pImgMergeWindow->SetReadOnly(pane, m_bRO[pane]);
+}
+
+/**
+ * @brief Called when "Right read-only" item is updated
+ */
+void CImgMergeFrame::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(m_pImgMergeWindow->GetReadOnly(m_pImgMergeWindow->GetPaneCount() - 1));
 }
 
 void CImgMergeFrame::OnFileRecompareAsBinary()
@@ -413,8 +657,8 @@ void CImgMergeFrame::UpdateHeaderPath(int pane)
 		if (m_pDirDoc)
 			m_pDirDoc->ApplyDisplayRoot(pane, sText);
 	}
-/*	if (m_pView[pane]->GetModified())
-		sText.insert(0, _T("* "));*/
+	if (m_pImgMergeWindow->IsModified(pane))
+		sText.insert(0, _T("* "));
 
 	m_wndFilePathBar.SetText(pane, sText.c_str());
 
@@ -557,12 +801,149 @@ void CImgMergeFrame::UpdateSplitter()
 {
 }
 
-/// Document commanding us to close
-void CImgMergeFrame::CloseNow()
+/**
+ * @brief Update associated diff item
+ */
+void CImgMergeFrame::UpdateDiffItem(CDirDoc *pDirDoc)
 {
+	// If directory compare has results
+	if (pDirDoc && pDirDoc->HasDiffs())
+	{
+		const String &pathLeft = m_filePaths.GetLeft();
+		const String &pathRight = m_filePaths.GetRight();
+		CDiffContext &ctxt = const_cast<CDiffContext &>(pDirDoc->GetDiffContext());
+		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft, pathRight))
+		{
+			DIFFITEM &di = pDirDoc->GetDiffRefByKey(pos);
+			//::UpdateDiffItem(m_nBuffers, di, &ctxt);
+		}
+	}
+	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount());
+}
+
+/**
+ * @brief Asks and then saves modified files.
+ *
+ * This function saves modified files. Dialog is shown for user to select
+ * modified file(s) one wants to save or discard changed. Cancelling of
+ * save operation is allowed unless denied by parameter. After successfully
+ * save operation file statuses are updated to directory compare.
+ * @param [in] bAllowCancel If false "Cancel" button is disabled.
+ * @return true if user selected "OK" so next operation can be
+ * executed. If false user choosed "Cancel".
+ * @note If filename is empty, we assume scratchpads are saved,
+ * so instead of filename, description is shown.
+ * @todo If we have filename and description for file, what should
+ * we do after saving to different filename? Empty description?
+ * @todo Parameter @p bAllowCancel is always true in callers - can be removed.
+ */
+bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
+{
+	bool bLModified = false, bMModified = false, bRModified = false;
+	bool result = true;
+	bool bLSaveSuccess = false, bMSaveSuccess = false, bRSaveSuccess = false;
+
+	if (m_pImgMergeWindow->GetPaneCount() == 3)
+	{
+		bLModified = m_pImgMergeWindow->IsModified(0);
+		bMModified = m_pImgMergeWindow->IsModified(1);
+		bRModified = m_pImgMergeWindow->IsModified(2);
+	}
+	else
+	{
+		bLModified = m_pImgMergeWindow->IsModified(0);
+		bRModified = m_pImgMergeWindow->IsModified(1);
+	}
+	if (!bLModified && !bMModified && !bRModified)
+		 return true;
+
+	SaveClosingDlg dlg;
+	dlg.DoAskFor(bLModified, bMModified, bRModified);
+	if (!bAllowCancel)
+		dlg.m_bDisableCancel = true;
+	if (!m_filePaths.GetLeft().empty())
+	{
+		if (theApp.m_strSaveAsPath.IsEmpty())
+			dlg.m_sLeftFile = m_filePaths.GetLeft().c_str();
+		else
+			dlg.m_sLeftFile = theApp.m_strSaveAsPath;
+	}
+	else
+		dlg.m_sLeftFile = m_strDesc[0].c_str();
+	if (m_pImgMergeWindow->GetPaneCount() == 3)
+	{
+		if (!m_filePaths.GetMiddle().empty())
+		{
+			if (theApp.m_strSaveAsPath.IsEmpty())
+				dlg.m_sMiddleFile = m_filePaths.GetMiddle().c_str();
+			else
+				dlg.m_sMiddleFile = theApp.m_strSaveAsPath;
+		}
+		else
+			dlg.m_sMiddleFile = m_strDesc[1].c_str();
+	}
+	if (!m_filePaths.GetRight().empty())
+	{
+		if (theApp.m_strSaveAsPath.IsEmpty())
+			dlg.m_sRightFile = m_filePaths.GetRight().c_str();
+		else
+			dlg.m_sRightFile = theApp.m_strSaveAsPath;
+	}
+	else
+		dlg.m_sRightFile = m_strDesc[m_pImgMergeWindow->GetPaneCount() - 1].c_str();
+
+	if (dlg.DoModal() == IDOK)
+	{
+		if (bLModified && dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
+		{
+			if (!(bLSaveSuccess = DoFileSave(0)))
+				result = false;
+		}
+
+		if (bMModified && dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
+		{
+			if (!(bMSaveSuccess = DoFileSave(1)))
+				result = false;
+		}
+
+		if (bRModified && dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
+		{
+			if (!(bRSaveSuccess = DoFileSave(m_pImgMergeWindow->GetPaneCount() - 1)))
+				result = false;
+		}
+	}
+	else
+	{	
+		result = false;
+	}
+
+	// If file were modified and saving was successfull,
+	// update status on dir view
+	if ((bLModified && bLSaveSuccess) || 
+	     (bMModified && bMSaveSuccess) ||
+		 (bRModified && bRSaveSuccess))
+	{
+		// If directory compare has results
+		if (m_pDirDoc && m_pDirDoc->HasDiffs())
+		{
+			// FIXME:
+		}
+	}
+
+	return result;
+}
+
+/// Document commanding us to close
+bool CImgMergeFrame::CloseNow()
+{
+	// Allow user to cancel closing
+	if (!PromptAndSaveIfNeeded(true))
+		return false;
+
 	SavePosition(); // Save settings before closing!
 	MDIActivate();
 	MDIDestroy();
+	return true;
 }
 
 /**
@@ -573,17 +954,69 @@ void CImgMergeFrame::UpdateResources()
 }
 
 /**
+ * @brief Handle some keys when in merging mode
+ */
+bool CImgMergeFrame::MergeModeKeyDown(MSG* pMsg)
+{
+	bool bHandled = false;
+
+	// Allow default text selection when SHIFT pressed
+	if (::GetAsyncKeyState(VK_SHIFT))
+		return false;
+
+	// Allow default editor functions when CTRL pressed
+	if (::GetAsyncKeyState(VK_CONTROL))
+		return false;
+
+	// If we are in merging mode (merge with cursor keys)
+	// handle some keys here
+	switch (pMsg->wParam)
+	{
+	case VK_LEFT:
+		OnR2l();
+		bHandled = true;
+		break;
+
+	case VK_RIGHT:
+		OnL2r();
+		bHandled = true;
+		break;
+
+	case VK_UP:
+		OnPrevdiff();
+		bHandled = true;
+		break;
+	case VK_DOWN:
+		OnNextdiff();
+		bHandled = true;
+		break;
+	}
+
+	return bHandled;
+}
+/**
  * @brief Check for keyboard commands
  */
 BOOL CImgMergeFrame::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->message == WM_KEYDOWN)
 	{
+		bool bHandled = false;
+		
+		// If we are in merging mode (merge with cursor keys)
+		// handle some keys here
+		if (theApp.GetMergingMode())
+		{
+			bHandled = MergeModeKeyDown(pMsg);
+			if (bHandled)
+				return true;
+		}
+
 		// Close window in response to VK_ESCAPE if user has allowed it from options
 		if (pMsg->wParam == VK_ESCAPE && GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC))
 		{
 			PostMessage(WM_CLOSE, 0, 0);
-			return false;
+			return true;
 		}
 	}
 	return CMDIChildWnd::PreTranslateMessage(pMsg);
@@ -613,6 +1046,7 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 		UpdateHeaderSizes();
 		for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		{
+			UpdateHeaderPath(pane);
 			m_wndFilePathBar.SetActive(pane, pane == m_pImgMergeWindow->GetActivePane());
 			m_wndStatusBar[pane].SetPaneText(0, 
 				string_format(_T("Size:%d x %dpx %dbpp Page:%d/%d Zoom:%d%%"), 
@@ -667,6 +1101,38 @@ void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 		string_replace(s, _T("%2"), _itot(nDiffs, sCnt, 10));
 	}
 	pCmdUI->SetText(s.c_str());
+}
+	
+/**
+ * @brief Undo last action
+ */
+void CImgMergeFrame::OnEditUndo()
+{
+	m_pImgMergeWindow->Undo();
+}
+
+/**
+ * @brief Called when "Undo" item is updated
+ */
+void CImgMergeFrame::OnUpdateEditUndo(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_pImgMergeWindow->IsUndoable());
+}
+
+/**
+ * @brief Redo last action
+ */
+void CImgMergeFrame::OnEditRedo()
+{
+	m_pImgMergeWindow->Redo();
+}
+
+/**
+ * @brief Called when "Redo" item is updated
+ */
+void CImgMergeFrame::OnUpdateEditRedo(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_pImgMergeWindow->IsRedoable());
 }
 
 /**
@@ -826,6 +1292,113 @@ void CImgMergeFrame::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 			(m_pImgMergeWindow->GetConflictCount() > 0 && m_pImgMergeWindow->GetCurrentDiffIndex() == -1)
 		)
 	);
+}
+
+void CImgMergeFrame::OnUpdateX2Y(CCmdUI* pCmdUI, int srcPane, int dstPane)
+{
+	pCmdUI->Enable(m_pImgMergeWindow->GetCurrentDiffIndex() >= 0 && 
+		srcPane >= 0 && srcPane <= m_pImgMergeWindow->GetPaneCount() &&
+		dstPane >= 0 && dstPane <= m_pImgMergeWindow->GetPaneCount()
+		);
+}
+
+void CImgMergeFrame::OnX2Y(int srcPane, int dstPane)
+{
+	m_pImgMergeWindow->CopyDiff(m_pImgMergeWindow->GetCurrentDiffIndex(), srcPane, dstPane);
+}
+
+/**
+ * @brief Copy diff from left pane to right pane
+ */
+void CImgMergeFrame::OnL2r()
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane();
+	if (srcPane >= m_pImgMergeWindow->GetPaneCount() - 1)
+		srcPane = m_pImgMergeWindow->GetPaneCount() - 2;
+	if (srcPane < 0)
+		srcPane = 0;
+	int dstPane = srcPane + 1;
+	OnX2Y(srcPane, dstPane);
+}
+
+/**
+ * @brief Called when "Copy to left" item is updated
+ */
+void CImgMergeFrame::OnUpdateL2r(CCmdUI* pCmdUI)
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane();
+	if (srcPane >= m_pImgMergeWindow->GetPaneCount() - 1)
+		srcPane = m_pImgMergeWindow->GetPaneCount() - 2;
+	if (srcPane < 0)
+		srcPane = 0;
+	int dstPane = srcPane + 1;
+	OnUpdateX2Y(pCmdUI, srcPane, dstPane);
+}
+
+/**
+ * @brief Copy diff from right pane to left pane
+ */
+void CImgMergeFrame::OnR2l()
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane();
+	if (srcPane < 1)
+		srcPane = 1;
+	int dstPane = srcPane - 1;
+	OnX2Y(srcPane, dstPane);
+}
+
+/**
+ * @brief Called when "Copy to right" item is updated
+ */
+void CImgMergeFrame::OnUpdateR2l(CCmdUI* pCmdUI)
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane();
+	if (srcPane < 1)
+		srcPane = 1;
+	int dstPane = srcPane - 1;
+	OnUpdateX2Y(pCmdUI, srcPane, dstPane);
+}
+
+void CImgMergeFrame::OnCopyFromLeft()
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane() - 1;
+	if (srcPane < 0)
+		srcPane = 0;
+	int dstPane = srcPane + 1;
+	OnX2Y(srcPane, dstPane);
+}
+
+/**
+ * @brief Called when "Copy from left" item is updated
+ */
+void CImgMergeFrame::OnUpdateCopyFromLeft(CCmdUI* pCmdUI)
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane() - 1;
+	if (srcPane < 0)
+		srcPane = 0;
+	int dstPane = srcPane + 1;
+	OnUpdateX2Y(pCmdUI, srcPane, dstPane);
+}
+
+void CImgMergeFrame::OnCopyFromRight()
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane() + 1;
+	if (srcPane > m_pImgMergeWindow->GetPaneCount() - 1)
+		srcPane = m_pImgMergeWindow->GetPaneCount() - 1;
+	int dstPane = srcPane - 1;
+	OnX2Y(srcPane, dstPane);
+}
+
+/**
+ * @brief Called when "Copy from right" item is updated
+ */
+void CImgMergeFrame::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane() + 1;
+	if (srcPane > m_pImgMergeWindow->GetPaneCount() - 1)
+		srcPane = m_pImgMergeWindow->GetPaneCount() - 1;
+	int dstPane = srcPane - 1;
+	OnUpdateX2Y(pCmdUI, srcPane, dstPane);
 }
 
 void CImgMergeFrame::OnImgViewDifferences()
