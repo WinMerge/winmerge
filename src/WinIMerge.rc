@@ -204,7 +204,7 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "CompanyName", "https://bitbucket.org/sdottaka/winimerge"
-            VALUE "FileDescription", "WInIMerge"
+            VALUE "FileDescription", "WinIMerge"
             VALUE "FileVersion", STRFILEVER
             VALUE "InternalName", "WinIMerge.exe"
             VALUE "LegalCopyright", "Copyright (C) 2014 sdottaka@sourceforge.net"
