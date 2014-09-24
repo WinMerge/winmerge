@@ -298,11 +298,15 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	rc.left += 16;
 	SetTextColor(lpDraw->hDC, RGB(0, 0, 0));
 	SetBkMode(lpDraw->hDC, TRANSPARENT);
-	HICON hIcon = CWnd::FromHandle((HWND)item.lParam)->GetIcon(TRUE);
-	if (!hIcon)
-		hIcon = (HICON)GetClassLongPtr((HWND)item.lParam, GCLP_HICONSM);
-	if (hIcon)
-		DrawIconEx(lpDraw->hDC, rc.left - 16 - 2, 5, hIcon, 16, 16, 0, NULL, DI_NORMAL);
+	HWND hwndFrame = reinterpret_cast<HWND>(item.lParam);
+	if (::IsWindow(hwndFrame))
+	{
+		HICON hIcon = CWnd::FromHandle(hwndFrame)->GetIcon(TRUE);
+		if (!hIcon)
+			hIcon = (HICON)GetClassLongPtr(hwndFrame, GCLP_HICONSM);
+		if (hIcon)
+			DrawIconEx(lpDraw->hDC, rc.left - 16 - 2, 5, hIcon, 16, 16, 0, NULL, DI_NORMAL);
+	}
 	DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 
 	int nItem = GetItemIndexFromPoint(m_rcCurrentCloseButtom.CenterPoint());
