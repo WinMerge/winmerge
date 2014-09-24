@@ -1113,6 +1113,13 @@ public:
 		return true;
 	}
 
+	bool SaveDiffImageAs(int pane, const wchar_t *filename)
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return false;
+		return !!m_imgDiff[pane].saveU(filename);
+	}
+
 	HWND GetPaneHWND(int pane) const
 	{
 		if (pane < 0 || pane >= m_nImages)

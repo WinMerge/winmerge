@@ -17,12 +17,16 @@
 
 #include <Windows.h>
 #include <CommCtrl.h>
+#include <Shlwapi.h>
 #include <string>
 #include <algorithm>
+#include <iostream>
+#include <fstream>
 #include "resource.h"
 #include "WinIMergeLib.h"
 
 #pragma comment(lib, "comctl32.lib")
+#pragma comment(lib, "shlwapi.lib")
 
 HINSTANCE m_hInstance;
 HINSTANCE hInstDLL;
@@ -197,6 +201,66 @@ void OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 	}
 }
 
+bool GenerateHTMLReport(const wchar_t *filename)
+{
+	wchar_t imgdir[MAX_PATH], imgdir_full[MAX_PATH], imgfilepath[3][MAX_PATH], difffilename[3][MAX_PATH];
+	char imgfilepath_utf8[3][MAX_PATH], difffilename_utf8[3][MAX_PATH];
+	wcscpy_s(imgdir_full, filename);
+	PathRemoveExtensionW(imgdir_full);
+	PathAddExtensionW(imgdir_full, L".files");
+	wcscpy_s(imgdir, PathFindFileName(imgdir_full));
+	CreateDirectoryW(imgdir_full, NULL);
+	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
+	{
+		wcscpy_s(imgfilepath[i], m_pImgMergeWindow->GetFileName(i));
+		WideCharToMultiByte(CP_UTF8, 0, imgfilepath[i], -1, imgfilepath_utf8[i], sizeof(imgfilepath_utf8[i]), NULL, NULL);
+		wsprintfW(difffilename[i], L"%s/%d.png", imgdir, i + 1);
+		WideCharToMultiByte(CP_UTF8, 0, difffilename[i], -1, difffilename_utf8[i], sizeof(difffilename_utf8[i]), NULL, NULL);
+		wchar_t tmp[MAX_PATH];
+		wsprintfW(tmp, L"%s\\%d.png", imgdir_full, i + 1);
+		m_pImgMergeWindow->SaveDiffImageAs(i, tmp);
+	}
+	std::ofstream fout;
+	try
+	{
+		fout.open(filename, std::ios::out | std::ios::trunc);
+		fout << 
+			"<!DOCTYPE html>" << std::endl <<
+			"<html>" << std::endl <<
+			"<head>" << std::endl <<
+			"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">" << std::endl <<
+			"<title>WinMerge Image Compare Report</title>" << std::endl <<
+			"<style type=\"text/css\">" << std::endl <<
+			"table { table-layout: fixed; width: 100%; height: 100%; border-collapse: collapse; }" << std::endl <<
+			"th,td { border: solid 1px black; }" << std::endl <<
+			".title { color: white; background-color: blue; vertical-align: top; }" << std::endl <<
+			".img   { height: 100%; overflow: scroll; text-align: center; }" << std::endl <<
+			"</style>" << std::endl <<
+			"</head>" << std::endl <<
+			"<body>" << std::endl <<
+			"<table>" << std::endl <<
+			"<tr>" << std::endl;
+		for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
+			fout << "<th class=\"title\">" << imgfilepath_utf8[i] << "</th>" << std::endl;
+		fout << 
+			"</tr>" << std::endl <<
+			"<tr>" << std::endl;
+		for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
+			fout << "<td><div class=\"img\"><img src=\"" << difffilename_utf8[i] << 
+			"\" alt=\"" << difffilename_utf8[i] << "\"></div></td>" << std::endl;
+		fout <<
+			"</tr>" << std::endl <<
+			"</table>" << std::endl <<
+			"</body>" << std::endl <<
+			"</html>" << std::endl;
+		return true;
+	}
+	catch (...)
+	{
+		return false;
+	}
+}
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message) 
@@ -273,6 +337,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case ID_FILE_SAVE:
 			m_pImgMergeWindow->SaveImages();
 			break;
+		case ID_FILE_GENERATE_REPORT:
+		{
+			wchar_t szFileName[MAX_PATH] = {0}, szFile[MAX_PATH] = {0};
+			OPENFILENAMEW ofn = {0};
+			ofn.lStructSize = sizeof(OPENFILENAME);
+			ofn.hwndOwner = hWnd;
+			ofn.lpstrFilter = L"HTML file(*.html)\0*.html\0\0";
+			ofn.lpstrFile = szFileName;
+			ofn.lpstrFileTitle = szFile;
+			ofn.nMaxFile = MAX_PATH;
+			ofn.nMaxFileTitle = sizeof(szFile);
+			ofn.Flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY;
+			ofn.lpstrTitle = L"Generate HTML Report File";
+			ofn.lpstrDefExt = L"html";
+			if (GetSaveFileNameW(&ofn) != 0)
+			{
+				GenerateHTMLReport(ofn.lpstrFile);
+			}
+			break;
+		}
 		case ID_FILE_EXIT:
 			DestroyWindow(hWnd);
 			break;

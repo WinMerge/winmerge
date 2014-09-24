@@ -48,6 +48,7 @@ struct IImgMergeWindow
 	virtual bool SaveImages() = 0;
 	virtual bool SaveImage(int pane) = 0;
 	virtual bool SaveImageAs(int pane, const wchar_t *filename) = 0;
+	virtual bool SaveDiffImageAs(int pane, const wchar_t *filename) = 0;
 	virtual const wchar_t *GetFileName(int pane) = 0;
 	virtual int  GetPaneCount() const = 0;
 	virtual RECT GetPaneWindowRect(int pane) const = 0;

@@ -5,8 +5,9 @@
 #define IDD_WINIMERGE_DIALOG            102
 #define ID_FILE_OPEN                    105
 #define ID_FILE_OPEN3                   106
-#define ID_FILE_EXIT                    107
-#define IDI_WINIMERGE                   108
+#define ID_FILE_GENERATE_REPORT         107
+#define ID_FILE_EXIT                    108
+#define IDI_WINIMERGE                   109
 #define IDC_WINIMERGE                   110
 #define IDR_MAINFRAME                   128
 #define IDR_POPUPMENU                   130
