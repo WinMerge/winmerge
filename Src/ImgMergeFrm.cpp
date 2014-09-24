@@ -449,7 +449,7 @@ bool CImgMergeFrame::DoFileSaveAs(int pane)
 		id = IDS_SAVE_MIDDLE_AS;
 	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, path.c_str(), id, NULL, FALSE))
 	{
-		String filename = ucr::toUTF16(strPath).c_str();
+		std::wstring filename = ucr::toUTF16(strPath).c_str();
 		BOOL bApplyToAll = FALSE;
 		if (m_pImgMergeWindow->SaveImageAs(pane, filename.c_str()))
 			return false;
