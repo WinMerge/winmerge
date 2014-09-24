@@ -41,6 +41,7 @@
 #include "PathContext.h"
 #include "unicoder.h"
 #include "FileOrFolderSelect.h"
+#include "UniFile.h"
 #include "SaveClosingDlg.h"
 #include "../Externals/winimerge/src/WinIMergeLib.h"
 #include <cmath>
@@ -131,6 +132,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_UPDATE_COMMAND_UI(ID_IMG_CURPANE_NEXTPAGE, OnUpdateImgCurPaneNextPage)
 	ON_COMMAND(ID_IMG_USEBACKCOLOR, OnImgUseBackColor)
 	ON_UPDATE_COMMAND_UI(ID_IMG_USEBACKCOLOR, OnUpdateImgUseBackColor)
+	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1525,5 +1527,83 @@ void CImgMergeFrame::OnImgUseBackColor()
 void CImgMergeFrame::OnUpdateImgUseBackColor(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_pImgMergeWindow->GetUseBackColor() ? 1 : 0);
+}
+
+/**
+ * @brief Generate report from file compare results.
+ */
+bool CImgMergeFrame::GenerateReport(LPCTSTR szFileName)
+{
+	TCHAR imgdir_full[MAX_PATH];
+	String imgdir, imgfilepath[3], diffimg_filename[3];
+	lstrcpy(imgdir_full, ucr::toTString(szFileName).c_str());
+	PathRemoveExtension(imgdir_full);
+	PathAddExtension(imgdir_full, _T(".files"));
+	imgdir = PathFindFileName(imgdir_full);
+	paths_CreateIfNeeded(imgdir_full);
+	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
+	{
+		imgfilepath[i] = ucr::toTString(m_pImgMergeWindow->GetFileName(i));
+		diffimg_filename[i] = string_format(_T("%s/%d.png"), imgdir.c_str(), i + 1);
+		m_pImgMergeWindow->SaveDiffImageAs(i, ucr::toUTF16(string_format(_T("%s\\%d.png"), imgdir_full, i + 1)).c_str());
+	}
+
+	UniStdioFile file;
+	if (!file.Open(szFileName, _T("wt")))
+	{
+		String errMsg = GetSysError(GetLastError());
+		ResMsgBox1(IDS_REPORT_ERROR, errMsg.c_str(), MB_OK | MB_ICONSTOP);
+		return false;
+	}
+
+	file.SetCodepage(CP_UTF8);
+
+	file.WriteString(
+		_T("<!DOCTYPE html>\n")
+		_T("<html>\n")
+		_T("<head>\n")
+		_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
+		_T("<title>WinMerge Image Compare Report</title>\n")
+		_T("<style type=\"text/css\">\n")
+		_T("table { table-layout: fixed; width: 100%; height: 100%; border-collapse: collapse; }\n")
+		_T("td,th { border: solid 1px black; }\n")
+		_T(".title { color: white; background-color: blue; vertical-align: top; }\n")
+		_T(".img   { height: 100%; overflow: scroll; text-align: center; }\n")
+		_T("</style>\n")
+		_T("</head>\n")
+		_T("<body>\n")
+		_T("<table>\n")
+		_T("<tr>\n"));
+	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
+		file.WriteString(string_format(_T("<th class=\"title\">%s</th>\n"), imgfilepath[i].c_str()));
+	file.WriteString(
+		_T("</tr>\n")
+		_T("<tr>\n"));
+	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
+		file.WriteString(
+			string_format(_T("<td><div class=\"img\"><img src=\"%s\" alt=\"%s\"></div></td>\n"),
+			diffimg_filename[i].c_str(), diffimg_filename[i].c_str()));
+	file.WriteString(
+		_T("</tr>\n")
+		_T("</table>\n")
+		_T("</body>\n")
+		_T("</html>\n"));
+	return true;
+}
+
+/**
+ * @brief Generate report from file compare results.
+ */
+void CImgMergeFrame::OnToolsGenerateReport()
+{
+	String s;
+	CString folder;
+
+	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, folder, IDS_SAVE_AS_TITLE, IDS_HTML_REPORT_FILES, false, _T("htm")))
+		return;
+
+	GenerateReport(s.c_str());
+
+	LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }
 
