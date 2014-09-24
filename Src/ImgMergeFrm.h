@@ -63,6 +63,7 @@ public:
 	void SetLastCompareResult(int nResult);
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
+	bool GenerateReport(LPCTSTR szFileName);
 
 // Attributes
 protected:
@@ -184,6 +185,7 @@ private:
 	afx_msg void OnUpdateImgCurPaneNextPage(CCmdUI* pCmdUI);
 	afx_msg void OnImgUseBackColor();
 	afx_msg void OnUpdateImgUseBackColor(CCmdUI* pCmdUI);
+	afx_msg void OnToolsGenerateReport();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
