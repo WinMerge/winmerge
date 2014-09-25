@@ -237,6 +237,10 @@ private:
 				rcImg.bottom = static_cast<int>(m_fip->getHeight() * m_zoom - m_nVScrollPos);
 			}
 			m_fip->drawEx(hdc, rcImg, false, m_useBackColor ? &m_backColor : NULL);
+			
+			RECT rcBorder = {rcImg.left - 2, rcImg.top - 2, rcImg.right + 2, rcImg.bottom + 2};
+			::DrawEdge(hdc, &rcBorder, BDR_RAISEDOUTER | BDR_SUNKENINNER, BF_RECT);
+			
 			if (GetFocus() == m_hWnd)
 			{
 				DrawFocusRect(hdc, &rc);
