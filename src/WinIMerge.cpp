@@ -177,7 +177,10 @@ void UpdateStatusBar()
 	wchar_t buf[256];
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 	{
-		wsprintfW(buf, L"Size:%d x %dpx %dbpp Page:%d/%d Zoom:%d%% Differences:%d/%d", 
+		POINT pt[3];
+		pt[pane] = m_pImgMergeWindow->GetCursorPos(pane);
+		wsprintfW(buf, L"Point:(%d, %d) Size:%d x %dpx %dbpp Page:%d/%d Zoom:%d%% Differences:%d/%d", 
+			pt[pane].x, pt[pane].y,
 			m_pImgMergeWindow->GetImageWidth(pane),
 			m_pImgMergeWindow->GetImageHeight(pane),
 			m_pImgMergeWindow->GetImageBitsPerPixel(pane),

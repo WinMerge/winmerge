@@ -479,6 +479,21 @@ public:
 		return true;
 	}
 
+	POINT GetCursorPos(int pane) const
+	{
+		POINT pt = {-1, -1};
+		if (pane < 0 || pane > m_nImages)
+			return pt;
+		POINT dpt;
+		::GetCursorPos(&dpt);
+		RECT rc;
+		::GetWindowRect(m_hWnd, &rc);
+		RECT rcPane = GetPaneWindowRect(pane);
+		dpt.x -= rc.left + rcPane.left;
+		dpt.y -= rc.top + rcPane.top;
+		return m_imgWindow[pane].ConvertDPtoLP(dpt.x, dpt.y);
+	}
+
 	int GetActivePane() const
 	{
 		for (int i = 0; i < m_nImages; ++i)

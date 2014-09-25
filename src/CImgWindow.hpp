@@ -83,6 +83,23 @@ public:
 		::SetFocus(m_hWnd);
 	}
 
+	POINT ConvertDPtoLP(int dx, int dy) const
+	{
+		POINT lp;
+		RECT rc;
+		GetClientRect(m_hWnd, &rc);
+
+		if (rc.right - rc.left < m_fip->getWidth() * m_zoom)
+			lp.x = static_cast<int>((dx + m_nHScrollPos) / m_zoom);
+		else
+			lp.x = static_cast<int>((dx - (rc.right / 2 - m_fip->getWidth() / 2 * m_zoom)) / m_zoom);
+		if (rc.bottom - rc.top < m_fip->getHeight() * m_zoom)
+			lp.y = static_cast<int>((dy + m_nVScrollPos) / m_zoom);
+		else
+			lp.y = static_cast<int>((dy - (rc.bottom / 2 - m_fip->getHeight() / 2 * m_zoom)) / m_zoom);
+		return lp;
+	}
+
 	bool IsFocused() const
 	{
 		return m_hWnd == GetFocus();
