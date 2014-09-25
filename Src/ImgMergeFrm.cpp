@@ -43,6 +43,7 @@
 #include "FileOrFolderSelect.h"
 #include "UniFile.h"
 #include "SaveClosingDlg.h"
+#include "WaitStatusCursor.h"
 #include "../Externals/winimerge/src/WinIMergeLib.h"
 #include <cmath>
 
@@ -114,6 +115,12 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_LEFT, OnUpdateCopyFromLeft)
 	ON_COMMAND(ID_COPY_FROM_RIGHT, OnCopyFromRight)
 	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_RIGHT, OnUpdateCopyFromRight)
+	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
+	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
+	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
+	ON_UPDATE_COMMAND_UI(ID_ALL_RIGHT, OnUpdateAllRight)
+	ON_COMMAND(ID_AUTO_MERGE, OnAutoMerge)
+	ON_UPDATE_COMMAND_UI(ID_AUTO_MERGE, OnUpdateAutoMerge)
 	ON_COMMAND(ID_IMG_VIEWDIFFERENCES, OnImgViewDifferences)
 	ON_UPDATE_COMMAND_UI(ID_IMG_VIEWDIFFERENCES, OnUpdateImgViewDifferences)
 	ON_COMMAND_RANGE(ID_IMG_ZOOM_25, ID_IMG_ZOOM_800, OnImgZoom)
@@ -145,6 +152,7 @@ CImgMergeFrame::CImgMergeFrame()
 : m_hIdentical(NULL)
 , m_hDifferent(NULL)
 , m_pDirDoc(NULL)
+, m_bAutoMerged(false)
 {
 	for (int pane = 0; pane < 3; ++pane)
 	{
@@ -200,6 +208,31 @@ bool CImgMergeFrame::OpenImages(const PathContext& paths, const bool bRO[], int 
 	m_pImgMergeWindow->SetActivePane(nPane);
 
 	return true;
+}
+
+
+bool CImgMergeFrame::IsModified() const
+{
+	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+		if (m_pImgMergeWindow->IsModified(pane))
+			return true;
+	return false;
+}
+
+void CImgMergeFrame::DoAutoMerge(int dstPane)
+{
+	int autoMergedCount = m_pImgMergeWindow->CopyDiff3Way(dstPane);
+	if (autoMergedCount > 0)
+		m_bAutoMerged = true;
+
+	// move to first conflict 
+	m_pImgMergeWindow->FirstConflict();
+
+	AfxMessageBox(
+		LangFormatString2(IDS_AUTO_MERGE, 
+			string_format(_T("%d"), autoMergedCount).c_str(),
+			string_format(_T("%d"), m_pImgMergeWindow->GetConflictCount()).c_str()).c_str(),
+		MB_ICONINFORMATION);
 }
 
 /**
@@ -483,15 +516,7 @@ void CImgMergeFrame::OnFileSave()
  */
 void CImgMergeFrame::OnUpdateFileSave(CCmdUI *pCmdUI)
 {
-	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
-	{
-		if (m_pImgMergeWindow->IsModified(pane))
-		{
-			pCmdUI->Enable(true);
-			return;
-		}
-	}
-	pCmdUI->Enable(false);
+	pCmdUI->Enable(IsModified());
 }
 
 /**
@@ -1111,6 +1136,8 @@ void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnEditUndo()
 {
 	m_pImgMergeWindow->Undo();
+	if (!m_pImgMergeWindow->IsUndoable())
+		m_bAutoMerged = false;
 }
 
 /**
@@ -1300,7 +1327,8 @@ void CImgMergeFrame::OnUpdateX2Y(CCmdUI* pCmdUI, int srcPane, int dstPane)
 {
 	pCmdUI->Enable(m_pImgMergeWindow->GetCurrentDiffIndex() >= 0 && 
 		srcPane >= 0 && srcPane <= m_pImgMergeWindow->GetPaneCount() &&
-		dstPane >= 0 && dstPane <= m_pImgMergeWindow->GetPaneCount()
+		dstPane >= 0 && dstPane <= m_pImgMergeWindow->GetPaneCount() &&
+		!m_bRO[dstPane]
 		);
 }
 
@@ -1401,6 +1429,93 @@ void CImgMergeFrame::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
 		srcPane = m_pImgMergeWindow->GetPaneCount() - 1;
 	int dstPane = srcPane - 1;
 	OnUpdateX2Y(pCmdUI, srcPane, dstPane);
+}
+
+/**
+ * @brief Copy all diffs from right pane to left pane
+ */
+void CImgMergeFrame::OnAllLeft()
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane();
+	if (srcPane < 1)
+		srcPane = 1;
+	int dstPane = srcPane - 1;
+
+	WaitStatusCursor waitstatus(IDS_STATUS_COPYALL2R);
+
+	m_pImgMergeWindow->CopyDiffAll(srcPane, dstPane);
+}
+
+/**
+ * @brief Called when "Copy all to left" item is updated
+ */
+void CImgMergeFrame::OnUpdateAllLeft(CCmdUI* pCmdUI)
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane();
+	if (srcPane < 1)
+		srcPane = 1;
+	int dstPane = srcPane - 1;
+
+	pCmdUI->Enable(m_pImgMergeWindow->GetDiffCount() > 0 && !m_bRO[dstPane]);
+}
+
+/**
+ * @brief Copy all diffs from left pane to right pane
+ */
+void CImgMergeFrame::OnAllRight()
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane();
+	if (srcPane >= m_pImgMergeWindow->GetPaneCount() - 1)
+		srcPane = m_pImgMergeWindow->GetPaneCount() - 2;
+	if (srcPane < 0)
+		srcPane = 0;
+	int dstPane = srcPane + 1;
+
+	WaitStatusCursor waitstatus(IDS_STATUS_COPYALL2L);
+
+	m_pImgMergeWindow->CopyDiffAll(srcPane, dstPane);
+}
+
+/**
+ * @brief Called when "Copy all to right" item is updated
+ */
+void CImgMergeFrame::OnUpdateAllRight(CCmdUI* pCmdUI)
+{
+	int srcPane = m_pImgMergeWindow->GetActivePane();
+	if (srcPane >= m_pImgMergeWindow->GetPaneCount() - 1)
+		srcPane = m_pImgMergeWindow->GetPaneCount() - 2;
+	if (srcPane < 0)
+		srcPane = 0;
+	int dstPane = srcPane + 1;
+
+	pCmdUI->Enable(m_pImgMergeWindow->GetDiffCount() > 0 && !m_bRO[dstPane]);
+}
+
+/**
+ * @brief Do Auto merge
+ */
+void CImgMergeFrame::OnAutoMerge()
+{
+	int dstPane = m_pImgMergeWindow->GetActivePane();
+	
+	// Check current pane is not readonly
+	if (dstPane < 0 || IsModified() || m_bAutoMerged || m_bRO[dstPane])
+		return;
+
+	WaitStatusCursor waitstatus(IDS_STATUS_AUTOMERGE);
+
+	DoAutoMerge(dstPane);
+}
+
+/**
+ * @brief Called when "Auto Merge" item is updated
+ */
+void CImgMergeFrame::OnUpdateAutoMerge(CCmdUI* pCmdUI)
+{
+	int dstPane = m_pImgMergeWindow->GetActivePane();
+	
+	pCmdUI->Enable(m_pImgMergeWindow->GetPaneCount() == 3 && 
+		dstPane >= 0 && !IsModified() && !m_bAutoMerged && !m_bRO[dstPane]);
 }
 
 void CImgMergeFrame::OnImgViewDifferences()

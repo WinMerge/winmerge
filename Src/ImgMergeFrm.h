@@ -64,6 +64,8 @@ public:
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(LPCTSTR szFileName);
+	void DoAutoMerge(int dstPane);
+	bool IsModified() const;
 
 // Attributes
 protected:
@@ -109,6 +111,7 @@ private:
 	String m_strDesc[3];
 	BUFFERTYPE m_nBufferType[3];
 	bool m_bRO[3];
+	bool m_bAutoMerged;
 	CDirDoc *m_pDirDoc;
 
 	//{{AFX_MSG(CImgMergeFrame)
@@ -167,6 +170,12 @@ private:
 	afx_msg void OnUpdateCopyFromLeft(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromRight();
 	afx_msg void OnUpdateCopyFromRight(CCmdUI* pCmdUI);
+	afx_msg void OnAllLeft();
+	afx_msg void OnUpdateAllLeft(CCmdUI* pCmdUI);
+	afx_msg void OnAllRight();
+	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
+	afx_msg void OnAutoMerge();
+	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
 	afx_msg void OnImgViewDifferences();
 	afx_msg void OnUpdateImgViewDifferences(CCmdUI* pCmdUI);
 	afx_msg void OnImgZoom(UINT nId);

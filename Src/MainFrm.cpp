@@ -812,7 +812,17 @@ int CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocatio
 	pImgMergeFrame->SetDirDoc(pDirDoc);
 
 	if (!pImgMergeFrame->OpenImages(files, bRO, nActivePane, this))
+	{
 		ShowMergeDoc(pDirDoc, nFiles, fileloc, dwFlags, infoUnpacker);
+	}
+	else
+	{
+		for (pane = 0; pane < nFiles; pane++)
+		{
+			if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
+				pImgMergeFrame->DoAutoMerge(pane);
+		}
+	}
 
 	return 0;
 }
