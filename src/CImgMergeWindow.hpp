@@ -1814,6 +1814,21 @@ private:
 		}
 		switch (iMsg)
 		{
+		case WM_LBUTTONDBLCLK:
+		{
+			POINT pt = pImgWnd->GetCursorPos(i);
+			if (pt.x > 0 && pt.y > 0 && 
+				pt.x < static_cast<int>(pImgWnd->m_imgDiff[i].getWidth()) && 
+				pt.y < static_cast<int>(pImgWnd->m_imgDiff[i].getHeight()))
+			{
+				int diffIndex = pImgWnd->m_diff(pt.x / pImgWnd->m_diffBlockSize, pt.y / pImgWnd->m_diffBlockSize);
+				if (diffIndex != 0)
+					pImgWnd->SelectDiff(diffIndex - 1);
+				else
+					pImgWnd->SelectDiff(-1);
+			}
+			break;
+		}
 		case WM_HSCROLL:
 		case WM_VSCROLL:
 		case WM_MOUSEWHEEL:

@@ -214,7 +214,7 @@ private:
 	{
 		WNDCLASSEXW wcex = {0};
 		wcex.cbSize         = sizeof(WNDCLASSEX); 
-		wcex.style			= CS_HREDRAW | CS_VREDRAW;
+		wcex.style			= CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
 		wcex.lpfnWndProc	= (WNDPROC)WndProc;
 		wcex.cbClsExtra		= 0;
 		wcex.cbWndExtra		= 0;
