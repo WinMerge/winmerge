@@ -500,6 +500,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			m_pImgMergeWindow->CopyDiff(m_pImgMergeWindow->GetCurrentDiffIndex(), srcPane, dstPane);
 			break;
 		}
+		case ID_MERGE_COPYALLTORIGHT:
+		{
+			int srcPane = m_pImgMergeWindow->GetActivePane();
+			if (srcPane < 0)
+				srcPane = 0;
+			if (srcPane >= m_pImgMergeWindow->GetPaneCount() - 1)
+				srcPane = m_pImgMergeWindow->GetPaneCount() - 2;
+			int dstPane = srcPane + 1;
+			m_pImgMergeWindow->CopyDiffAll(srcPane, dstPane);
+			break;
+		}
+		case ID_MERGE_COPYALLTOLEFT:
+		{
+			int srcPane = m_pImgMergeWindow->GetActivePane();
+			if (srcPane < 1)
+				srcPane = 1;
+			int dstPane = srcPane - 1;
+			m_pImgMergeWindow->CopyDiffAll(srcPane, dstPane);
+			break;
+		}
+		case ID_MERGE_AUTOMERGE:
+		{
+			int dstPane = m_pImgMergeWindow->GetActivePane();
+			if (dstPane < 0)
+				break;
+			int nMerged = m_pImgMergeWindow->CopyDiff3Way(dstPane);
+			wchar_t msg[256];
+			wsprintfW(msg, L"The number of automatically merged changes: %d\n"
+			               L"The number of unresolved conflicts: %d\n"
+						   , nMerged, m_pImgMergeWindow->GetConflictCount());
+			MessageBoxW(hWnd, msg, L"WinIMerge", MB_OK | MB_ICONINFORMATION);
+
+			break;
+		}
 		case ID_HELP_ABOUT:
 			MessageBoxW(hWnd, 
 				L"WinIMerge\n\n"

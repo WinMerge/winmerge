@@ -864,7 +864,7 @@ public:
 		return -1;
 	}
 
-	void CopyDiff(int diffIndex, int srcPane, int dstPane)
+	void CopyDiffInternal(int diffIndex, int srcPane, int dstPane)
 	{
 		if (srcPane < 0 || srcPane >= m_nImages)
 			return;
@@ -874,8 +874,6 @@ public:
 			return;
 		if (m_bRO[dstPane])
 			return;
-
-		FIBITMAP *oldbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
 
 		const Rect<int>& rc = m_diffInfos[diffIndex].rc;
 		unsigned wsrc = m_imgOrig32[srcPane].getWidth();
@@ -902,7 +900,7 @@ public:
 			hdst = hsrc;
 		if (wdst != m_imgOrig32[dstPane].getWidth() || hdst != m_imgOrig32[dstPane].getHeight())
 		{
-			fipImage imgTemp = m_imgOrig32[dstPane];
+			fipImage imgTemp = m_imgOrig32[srcPane];
 			m_imgOrig32[dstPane].setSize(imgTemp.getImageType(), wdst, hdst, imgTemp.getBitsPerPixel());
 			m_imgOrig32[dstPane].pasteSubImage(imgTemp, 0, 0);
 		}
@@ -927,10 +925,101 @@ public:
 				}
 			}
 		}
+	}
+
+	void CopyDiff(int diffIndex, int srcPane, int dstPane)
+	{
+		if (srcPane < 0 || srcPane >= m_nImages)
+			return;
+		if (dstPane < 0 || dstPane >= m_nImages)
+			return;
+		if (diffIndex < 0 || diffIndex >= m_diffCount)
+			return;
+		if (m_bRO[dstPane])
+			return;
+		if (srcPane == dstPane)
+			return;
+
+		FIBITMAP *oldbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+
+		CopyDiffInternal(diffIndex, srcPane, dstPane);
 
 		FIBITMAP *newbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
 		m_undoRecords.push_back(dstPane, oldbitmap, newbitmap);
 		CompareImages();
+	}
+
+	void CopyDiffAll(int srcPane, int dstPane)
+	{
+		if (srcPane < 0 || srcPane >= m_nImages)
+			return;
+		if (dstPane < 0 || dstPane >= m_nImages)
+			return;
+		if (m_bRO[dstPane])
+			return;
+		if (srcPane == dstPane)
+			return;
+
+		FIBITMAP *oldbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+
+		for (int diffIndex = 0; diffIndex < m_diffCount; ++diffIndex)
+			CopyDiffInternal(diffIndex, srcPane, dstPane);
+
+		FIBITMAP *newbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+		m_undoRecords.push_back(dstPane, oldbitmap, newbitmap);
+		CompareImages();
+	}
+
+	int CopyDiff3Way(int dstPane)
+	{
+		if (dstPane < 0 || dstPane >= m_nImages)
+			return 0;
+		if (m_bRO[dstPane])
+			return 0;
+
+		FIBITMAP *oldbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+
+		int nMerged = 0;
+		for (int diffIndex = 0; diffIndex < m_diffCount; ++diffIndex)
+		{
+			int srcPane;
+			switch (m_diffInfos[diffIndex].op)
+			{
+			case DiffInfo::OP_1STONLY:
+				if (dstPane == 1)
+					srcPane = 0;
+				else
+					srcPane = -1;
+				break;
+			case DiffInfo::OP_2NDONLY:
+				if (dstPane != 1)
+					srcPane = 1;
+				else
+					srcPane = -1;
+				break;
+			case DiffInfo::OP_3RDONLY:
+				if (dstPane == 1)
+					srcPane = 2;
+				else
+					srcPane = -1;
+				break;
+			case DiffInfo::OP_DIFF:
+				srcPane = -1;
+				break;
+			}
+
+			if (srcPane >= 0)
+			{
+				CopyDiffInternal(diffIndex, srcPane, dstPane);
+				++nMerged;
+			}
+		}
+
+		FIBITMAP *newbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+		m_undoRecords.push_back(dstPane, oldbitmap, newbitmap);
+		CompareImages();
+
+		return nMerged;
 	}
 
 	bool IsModified(int pane) const

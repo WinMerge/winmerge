@@ -138,8 +138,14 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copy to &Right\tAlt+Right",   ID_MERGE_COPYTORIGHT
         MENUITEM "Copy to L&eft\tAlt+Left",     ID_MERGE_COPYTOLEFT
+        MENUITEM SEPARATOR
         MENUITEM "Copy from Left\tAlt+Shift+Right", ID_MERGE_COPYFROMLEFT
         MENUITEM "Copy from Right\tAlt+Shift+Left", ID_MERGE_COPYFROMRIGHT
+        MENUITEM SEPARATOR
+        MENUITEM "Copy &All to Right",          ID_MERGE_COPYALLTORIGHT
+        MENUITEM "Cop&y All to Left",           ID_MERGE_COPYALLTOLEFT
+        MENUITEM SEPARATOR
+        MENUITEM "Auto Merge\tAlt+Ctrl+M",      ID_MERGE_AUTOMERGE
     END
     POPUP "&Help"
     BEGIN
@@ -168,6 +174,7 @@ BEGIN
     "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_MERGE_AUTOMERGE, VIRTKEY, CONTROL, ALT, NOINVERT
     VK_LEFT,        ID_MERGE_COPYTOLEFT,    VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_MERGE_COPYTORIGHT,   VIRTKEY, ALT, NOINVERT
     VK_HOME,        ID_MERGE_FIRSTDIFFERENCE, VIRTKEY, ALT, NOINVERT

@@ -104,6 +104,8 @@ struct IImgMergeWindow
 	virtual int  GetNextConflictIndex() const = 0;
 	virtual int  GetPrevConflictIndex() const = 0;
 	virtual void CopyDiff(int diffIndex, int srcPane, int dstPane) = 0;
+	virtual void CopyDiffAll(int srcPane, int dstPane) = 0;
+	virtual int  CopyDiff3Way(int dstPane) = 0;
 	virtual bool IsUndoable() const = 0;
 	virtual bool IsRedoable() const = 0;
 	virtual bool Undo() = 0;
