@@ -773,7 +773,7 @@ public:
 
 	bool FirstConflict()
 	{
-		for (int i = 0; m_diffInfos.size(); ++i)
+		for (int i = 0; i < m_diffInfos.size(); ++i)
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
 				m_currentDiffIndex = i;
 		RefreshImages();
