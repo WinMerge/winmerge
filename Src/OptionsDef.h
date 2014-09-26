@@ -168,6 +168,7 @@ const TCHAR OPT_CMP_IMG_ZOOM[] = _T("Settings/ImageZoom");
 const TCHAR OPT_CMP_IMG_USEBACKCOLOR[] = _T("Settings/ImageUseBackColor");
 const TCHAR OPT_CMP_IMG_BACKCOLOR[] = _T("Settings/ImageBackColor");
 const TCHAR OPT_CMP_IMG_DIFFBLOCKSIZE[] = _T("Settings/ImageDiffBlockSize");
+const TCHAR OPT_CMP_IMG_THRESHOLD[] = _T("Settings/ImageColorDistanceThreshold");
 
 // Multidoc enable/disable per document type
 const TCHAR OPT_MULTIDOC_DIRDOCS[] = _T("Settings/MultiDirDocs");

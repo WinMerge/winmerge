@@ -131,6 +131,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_OVERLAY_NONE, ID_IMG_OVERLAY_ALPHABLEND, OnUpdateImgOverlayMode)
 	ON_COMMAND_RANGE(ID_IMG_DIFFBLOCKSIZE_1, ID_IMG_DIFFBLOCKSIZE_32, OnImgDiffBlockSize)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_DIFFBLOCKSIZE_1, ID_IMG_DIFFBLOCKSIZE_32, OnUpdateImgDiffBlockSize)
+	ON_COMMAND_RANGE(ID_IMG_THRESHOLD_0, ID_IMG_THRESHOLD_64, OnImgThreshold)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_THRESHOLD_0, ID_IMG_THRESHOLD_64, OnUpdateImgThreshold)
 	ON_COMMAND(ID_IMG_PREVPAGE, OnImgPrevPage)
 	ON_UPDATE_COMMAND_UI(ID_IMG_PREVPAGE, OnUpdateImgPrevPage)
 	ON_COMMAND(ID_IMG_NEXTPAGE, OnImgNextPage)
@@ -444,6 +446,7 @@ void CImgMergeFrame::LoadOptions()
 	RGBQUAD backColor = {GetRValue(clrBackColor), GetGValue(clrBackColor), GetBValue(clrBackColor)};
 	m_pImgMergeWindow->SetBackColor(backColor);
 	m_pImgMergeWindow->SetDiffBlockSize(GetOptionsMgr()->GetInt(OPT_CMP_IMG_DIFFBLOCKSIZE));
+	m_pImgMergeWindow->SetColorDistanceThreshold(GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0);
 }
 
 void CImgMergeFrame::SaveOptions()
@@ -455,6 +458,7 @@ void CImgMergeFrame::SaveOptions()
 	RGBQUAD backColor = m_pImgMergeWindow->GetBackColor();
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_BACKCOLOR, static_cast<int>(RGB(backColor.rgbRed, backColor.rgbGreen, backColor.rgbBlue)));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_DIFFBLOCKSIZE, m_pImgMergeWindow->GetDiffBlockSize());
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_THRESHOLD, static_cast<int>(m_pImgMergeWindow->GetColorDistanceThreshold() * 1000));
 }
 /**
  * @brief Save coordinates of the frame, splitters, and bars
@@ -1618,6 +1622,23 @@ void CImgMergeFrame::OnImgDiffBlockSize(UINT nId)
 void CImgMergeFrame::OnUpdateImgDiffBlockSize(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetRadio(1 << (pCmdUI->m_nID - ID_IMG_DIFFBLOCKSIZE_1) == m_pImgMergeWindow->GetDiffBlockSize() );
+}
+
+void CImgMergeFrame::OnImgThreshold(UINT nId)
+{
+	if (nId == ID_IMG_THRESHOLD_0)
+		m_pImgMergeWindow->SetColorDistanceThreshold(0.0);
+	else
+		m_pImgMergeWindow->SetColorDistanceThreshold((1 << (nId - ID_IMG_THRESHOLD_2)) * 2);
+	SaveOptions();
+}
+
+void CImgMergeFrame::OnUpdateImgThreshold(CCmdUI* pCmdUI)
+{
+	if (pCmdUI->m_nID == ID_IMG_THRESHOLD_0)
+		pCmdUI->SetRadio(m_pImgMergeWindow->GetColorDistanceThreshold() == 0.0);
+	else
+		pCmdUI->SetRadio((1 << (pCmdUI->m_nID - ID_IMG_THRESHOLD_2)) * 2 == m_pImgMergeWindow->GetColorDistanceThreshold() );
 }
 
 void CImgMergeFrame::OnImgPrevPage()

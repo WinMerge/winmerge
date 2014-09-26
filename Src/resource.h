@@ -1199,8 +1199,15 @@
 #define ID_IMG_CURPANE_PREVPAGE         33239
 #define ID_IMG_CURPANE_NEXTPAGE         33240
 #define ID_IMG_USEBACKCOLOR             33241
-#define IDC_COMPAREIMAGE_PATTERNS       33242
-#define IDC_COMPAREIMAGE_DEFAULTS       33243
+#define ID_IMG_THRESHOLD_0              33242
+#define ID_IMG_THRESHOLD_2              33243
+#define ID_IMG_THRESHOLD_4              33244
+#define ID_IMG_THRESHOLD_8              33245
+#define ID_IMG_THRESHOLD_16             33246
+#define ID_IMG_THRESHOLD_32             33247
+#define ID_IMG_THRESHOLD_64             33248
+#define IDC_COMPAREIMAGE_PATTERNS       33249
+#define IDC_COMPAREIMAGE_DEFAULTS       33250
 
 // Next default values for new objects
 //
@@ -1208,7 +1215,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        242
-#define _APS_NEXT_COMMAND_VALUE         33244
+#define _APS_NEXT_COMMAND_VALUE         33251
 #define _APS_NEXT_CONTROL_VALUE         1358
 #define _APS_NEXT_SYMED_VALUE           115
 #endif
