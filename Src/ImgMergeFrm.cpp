@@ -81,6 +81,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_UPDATE_COMMAND_UI(ID_FILE_MIDDLE_READONLY, OnUpdateMiddleReadOnly)
 	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
+	ON_COMMAND(ID_RESCAN, OnFileReload)
 	ON_COMMAND(ID_MERGE_COMPARE_HEX, OnFileRecompareAsBinary)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
@@ -210,7 +211,6 @@ bool CImgMergeFrame::OpenImages(const PathContext& paths, const bool bRO[], int 
 	return true;
 }
 
-
 bool CImgMergeFrame::IsModified() const
 {
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
@@ -242,6 +242,36 @@ void CImgMergeFrame::SetDirDoc(CDirDoc * pDirDoc)
 {
 	ASSERT(pDirDoc && !m_pDirDoc);
 	m_pDirDoc = pDirDoc;
+}
+
+bool CImgMergeFrame::IsFileChangedOnDisk(int pane) const
+{
+	DiffFileInfo dfi;
+	dfi.Update(m_filePaths[pane]);
+	int tolerance = 0;
+	if (GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME))
+		tolerance = SmallTimeDiff; // From MainFrm.h
+	Poco::Int64 timeDiff = dfi.mtime - m_fileInfo[pane].mtime;
+	if (timeDiff < 0) timeDiff = -timeDiff;
+	if ((timeDiff > tolerance * Poco::Timestamp::resolution()) || (dfi.size != m_fileInfo[pane].size))
+		return true;
+	return false;
+}
+
+void CImgMergeFrame::CheckFileChanged(void)
+{
+	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+	{
+		if (IsFileChangedOnDisk(pane))
+		{
+			String msg = LangFormatString1(IDS_FILECHANGED_RESCAN, m_filePaths[pane].c_str());
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
+			{
+				OnFileReload();
+			}
+			break;
+		}
+	}
 }
 
 BOOL CImgMergeFrame::PreCreateWindow(CREATESTRUCT& cs)
@@ -310,6 +340,9 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(m_filePaths[0]).c_str(), ucr::toUTF16(m_filePaths[1]).c_str());
 	else
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(m_filePaths[0]).c_str(), ucr::toUTF16(m_filePaths[1]).c_str(), ucr::toUTF16(m_filePaths[2]).c_str());
+
+	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
+		m_fileInfo[pane].Update(m_filePaths[pane]);
 
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))
@@ -434,6 +467,13 @@ void CImgMergeFrame::SavePosition()
 	GetWindowRect(&rc);
 	theApp.WriteProfileInt(_T("Settings"), _T("WLeft"), rc.Width());
 	theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), m_pImgMergeWindow->GetActivePane());
+}
+
+void CImgMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
+{
+	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
+	if (bActivate)
+		GetMainFrame()->PostMessage(WM_USER + 1);
 }
 
 void CImgMergeFrame::OnClose() 
@@ -581,6 +621,18 @@ void CImgMergeFrame::OnFileSaveAsMiddle()
 void CImgMergeFrame::OnFileSaveAsRight()
 {
 	DoFileSaveAs(m_pImgMergeWindow->GetPaneCount() - 1);
+}
+
+/**
+ * @brief Reloads the opened files
+ */
+void CImgMergeFrame::OnFileReload()
+{
+	if (!PromptAndSaveIfNeeded(true))
+		return;
+	m_pImgMergeWindow->ReloadImages();
+	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
+		m_fileInfo[pane].Update(m_filePaths[pane]);
 }
 
 void CImgMergeFrame::OnFileClose() 
