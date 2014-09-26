@@ -83,6 +83,7 @@ public:
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	HRESULT OpenDocs(const PathContext &paths, bool bRO[]);
+	void CheckFileChanged(void);
 private:
 	static void CopySel(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
 	static void CopyAll(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
@@ -106,6 +107,7 @@ protected:
 	afx_msg void OnFileSaveAsLeft();
 	afx_msg void OnFileSaveAsMiddle();
 	afx_msg void OnFileSaveAsRight();
+	afx_msg void OnFileReload();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileSaveLeft(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileSaveMiddle(CCmdUI* pCmdUI);

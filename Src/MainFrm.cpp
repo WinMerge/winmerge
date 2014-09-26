@@ -2291,6 +2291,12 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 			if (pMergeDoc)
 				pMergeDoc->CheckFileChanged();
 		}
+		else if (pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
+		{
+			CHexMergeDoc * pMergeDoc = (CHexMergeDoc *) pFrame->GetActiveDocument();
+			if (pMergeDoc)
+				pMergeDoc->CheckFileChanged();
+		}
 		else if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
 		{
 			CImgMergeFrame *pImgMergeFrame = static_cast<CImgMergeFrame *>(pFrame);
@@ -2492,6 +2498,13 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 		case FRAME_FILE:
 		{
 			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+			if (pMergeDoc)
+				PostMessage(WM_USER+1);
+			break;
+		}
+		case FRAME_HEXFILE:
+		{
+			CHexMergeDoc * pMergeDoc = (CHexMergeDoc *) pFrame->GetActiveDocument();
 			if (pMergeDoc)
 				PostMessage(WM_USER+1);
 			break;
@@ -2864,11 +2877,14 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
 {
 	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	BOOL bHexMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame));
 	BOOL bImgMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame));
 	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
 	if (bMergeFrame)
 		return FRAME_FILE;
+	else if (bHexMergeFrame)
+		return FRAME_HEXFILE;
 	else if (bImgMergeFrame)
 		return FRAME_IMGFILE;
 	else if (bDirFrame)
