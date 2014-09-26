@@ -2283,11 +2283,19 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 {
 	CFrameWnd * pFrame = GetActiveFrame();
-	if (pFrame && pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+	if (pFrame)
 	{
-		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
-		if (pMergeDoc)
-			pMergeDoc->CheckFileChanged();
+		if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+		{
+			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+			if (pMergeDoc)
+				pMergeDoc->CheckFileChanged();
+		}
+		else if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
+		{
+			CImgMergeFrame *pImgMergeFrame = static_cast<CImgMergeFrame *>(pFrame);
+			pImgMergeFrame->CheckFileChanged();
+		}
 	}
 	return 0;
 }
@@ -2477,11 +2485,21 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 #endif
 
 	CFrameWnd * pFrame = GetActiveFrame();
-	if (pFrame && pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+	if (pFrame)
 	{
-		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
-		if (pMergeDoc)
+		switch (GetFrameType(pFrame))
+		{
+		case FRAME_FILE:
+		{
+			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+			if (pMergeDoc)
+				PostMessage(WM_USER+1);
+			break;
+		}
+		case FRAME_IMGFILE:
 			PostMessage(WM_USER+1);
+			break;
+		}
 	}
 }
 

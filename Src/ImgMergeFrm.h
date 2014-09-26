@@ -28,6 +28,7 @@
 
 #include "EditorFilepathBar.h"
 #include "PathContext.h"
+#include "DiffFileInfo.h"
 #include "../Externals/winimerge/src/WinIMergeLib.h"
 
 class CDirDoc;
@@ -66,6 +67,8 @@ public:
 	bool GenerateReport(LPCTSTR szFileName);
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
+	bool IsFileChangedOnDisk(int pane) const;
+	void CheckFileChanged(void);
 
 // Attributes
 protected:
@@ -110,11 +113,13 @@ private:
 	PathContext m_filePaths;
 	String m_strDesc[3];
 	BUFFERTYPE m_nBufferType[3];
+	DiffFileInfo m_fileInfo[3];
 	bool m_bRO[3];
 	bool m_bAutoMerged;
 	CDirDoc *m_pDirDoc;
 
 	//{{AFX_MSG(CImgMergeFrame)
+	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	afx_msg void OnClose();
 	afx_msg void OnFileSave();
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
@@ -132,6 +137,7 @@ private:
 	afx_msg void OnUpdateMiddleReadOnly(CCmdUI* pCmdUI);
 	afx_msg void OnRightReadOnly();
 	afx_msg void OnUpdateRightReadOnly(CCmdUI* pCmdUI);
+	afx_msg void OnFileReload();
 	afx_msg void OnFileClose();
 	afx_msg void OnFileRecompareAsBinary();
 	afx_msg void OnWindowChangePane();
