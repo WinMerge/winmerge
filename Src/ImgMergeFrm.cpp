@@ -46,6 +46,7 @@
 #include "WaitStatusCursor.h"
 #include "../Externals/winimerge/src/WinIMergeLib.h"
 #include <cmath>
+#include <Shlwapi.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
