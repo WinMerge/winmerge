@@ -81,6 +81,7 @@ BEGIN
         MENUITEM "Open &3 Images\tCtrl+3",      ID_FILE_OPEN3
         MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
         MENUITEM "&Generate Report",            ID_FILE_GENERATE_REPORT
+        MENUITEM "Re&load\tCtrl+F5",            ID_FILE_RELOAD
         MENUITEM "E&xit",                       ID_FILE_EXIT
     END
     POPUP "&Edit"
@@ -174,6 +175,7 @@ BEGIN
     "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    VK_F5,          ID_FILE_RELOAD,         VIRTKEY, CONTROL, NOINVERT
     "M",            ID_MERGE_AUTOMERGE, VIRTKEY, CONTROL, ALT, NOINVERT
     VK_LEFT,        ID_MERGE_COPYTOLEFT,    VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_MERGE_COPYTORIGHT,   VIRTKEY, ALT, NOINVERT

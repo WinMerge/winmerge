@@ -51,7 +51,7 @@
 #define ID_EDIT_UNDO                    32832
 #define ID_EDIT_REDO                    32833
 #define ID_FILE_SAVE                    32835
-#define ID_FILE_SAVE32837               32837
+#define ID_FILE_RELOAD                  32837
 #define ID_MERGE_COPYFROMLEFT           32840
 #define ID_MERGE_COPYFROMRIGHT          32841
 #define ID_MERGE_COPYALLTORIGHT         32842

@@ -45,6 +45,7 @@ struct IImgMergeWindow
 	typedef void (*EventListenerFunc)(const Event& evt);
 	virtual bool OpenImages(const wchar_t *filename1, const wchar_t *filename2) = 0;
 	virtual bool OpenImages(const wchar_t *filename1, const wchar_t *filename2, const wchar_t *filename3) = 0;
+	virtual bool ReloadImages() = 0;
 	virtual bool SaveImages() = 0;
 	virtual bool SaveImage(int pane) = 0;
 	virtual bool SaveImageAs(int pane, const wchar_t *filename) = 0;

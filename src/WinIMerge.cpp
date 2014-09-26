@@ -340,6 +340,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case ID_FILE_SAVE:
 			m_pImgMergeWindow->SaveImages();
 			break;
+		case ID_FILE_RELOAD:
+			m_pImgMergeWindow->ReloadImages();
+			break;
 		case ID_FILE_GENERATE_REPORT:
 		{
 			wchar_t szFileName[MAX_PATH] = {0}, szFile[MAX_PATH] = {0};

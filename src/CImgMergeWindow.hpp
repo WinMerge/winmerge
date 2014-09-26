@@ -147,21 +147,12 @@ struct UndoRecords
 {
 	UndoRecords() : m_currentUndoBufIndex(-1)
 	{
-		for (int i = 0; i < 3; ++i)
-		{
-			m_modcount[i] = 0;
-			m_modcountonsave[i] = 0;
-		}
+		clear();
 	}
 
 	~UndoRecords()
 	{
-		while (!m_undoBuf.empty())
-		{
-			FreeImage_Unload(m_undoBuf.back().newbitmap);
-			FreeImage_Unload(m_undoBuf.back().oldbitmap);
-			m_undoBuf.pop_back();
-		}
+		clear();
 	}
 
 	void push_back(int pane, FIBITMAP *oldbitmap, FIBITMAP *newbitmap)
@@ -220,6 +211,22 @@ struct UndoRecords
 	bool redoable() const
 	{
 		return (m_currentUndoBufIndex < static_cast<int>(m_undoBuf.size()) - 1);
+	}
+
+	void clear()
+	{
+		m_currentUndoBufIndex = -1;
+		for (int i = 0; i < 3; ++i)
+		{
+			m_modcount[i] = 0;
+			m_modcountonsave[i] = 0;
+		}
+		while (!m_undoBuf.empty())
+		{
+			FreeImage_Unload(m_undoBuf.back().newbitmap);
+			FreeImage_Unload(m_undoBuf.back().oldbitmap);
+			m_undoBuf.pop_back();
+		}
 	}
 
 	std::vector<UndoRecord> m_undoBuf;
@@ -1159,6 +1166,15 @@ public:
 		return OpenImages(3, filenames);
 	}
 
+	bool ReloadImages()
+	{
+		if (m_nImages == 2)
+			return OpenImages(m_filename[0].c_str(), m_filename[1].c_str());
+		else if (m_nImages == 3)
+			return OpenImages(m_filename[0].c_str(), m_filename[1].c_str(), m_filename[2].c_str());
+		return false;
+	}
+
 	bool SaveImage(int pane)
 	{
 		if (pane < 0 || pane >= m_nImages)
@@ -1213,6 +1229,7 @@ public:
 			m_imgWindow[i].Destroy();
 			m_imgOrig[i].clear();
 			m_imgOrig32[i].clear();
+			m_undoRecords.clear();
 		}
 		return true;
 	}
