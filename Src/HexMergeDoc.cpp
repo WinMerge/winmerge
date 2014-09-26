@@ -131,6 +131,7 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_LEFT, OnUpdateFileSaveLeft)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
+	ON_COMMAND(ID_RESCAN, OnFileReload)
 	ON_COMMAND(ID_L2R, OnL2r)
 	ON_COMMAND(ID_R2L, OnR2l)
 	ON_COMMAND(ID_COPY_FROM_LEFT, OnCopyFromLeft)
@@ -560,6 +561,22 @@ HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, bool bRO[])
 	return hr;
 }
 
+void CHexMergeDoc::CheckFileChanged(void)
+{
+	for (int pane = 0; pane < m_nBuffers; ++pane)
+	{
+		if (m_pView[pane]->IsFileChangedOnDisk(m_filePaths[pane].c_str()))
+		{
+			String msg = LangFormatString1(IDS_FILECHANGED_RESCAN, m_filePaths[pane].c_str());
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
+			{
+				OnFileReload();
+			}
+			break;
+		}
+	}
+}
+
 /**
  * @brief Write path and filename to headerbar
  * @note SetText() does not repaint unchanged text
@@ -700,6 +717,24 @@ void CHexMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		bModified |= m_pView[nBuffer]->GetModified();
 	pCmdUI->Enable(bModified);
+}
+
+/**
+ * @brief Reloads the opened files
+ */
+void CHexMergeDoc::OnFileReload()
+{
+	if (!PromptAndSaveIfNeeded(true))
+		return;
+	
+	bool bRO[3];
+	for (int pane = 0; pane < m_nBuffers; pane++)
+	{
+		bRO[pane] = !!m_pView[pane]->GetReadOnly();
+		theApp.m_strDescriptions[pane] = m_strDesc[pane];
+	}
+	int nActivePane = GetActiveMergeView()->m_nThisPane;
+	OpenDocs(m_filePaths, bRO);
 }
 
 /**
