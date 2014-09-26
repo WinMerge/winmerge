@@ -131,6 +131,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CMP_IMG_USEBACKCOLOR, true);
 	m_pOptions->InitOption(OPT_CMP_IMG_BACKCOLOR, 0xFFFFFF);
 	m_pOptions->InitOption(OPT_CMP_IMG_DIFFBLOCKSIZE, 8);
+	m_pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0);
 
 	m_pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
 	m_pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);
