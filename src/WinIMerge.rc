@@ -124,6 +124,16 @@ BEGIN
             MENUITEM "1&6",                         ID_VIEW_DIFFBLOCKSIZE_16
             MENUITEM "&32",                         ID_VIEW_DIFFBLOCKSIZE_32
         END
+        POPUP "&Ignore Color Difference (Color Distance Threshold)"
+        BEGIN
+            MENUITEM "&0",                          ID_VIEW_THRESHOLD_0
+            MENUITEM "&2",                          ID_VIEW_THRESHOLD_2
+            MENUITEM "&4",                          ID_VIEW_THRESHOLD_4
+            MENUITEM "&8",                          ID_VIEW_THRESHOLD_8
+            MENUITEM "1&6",                         ID_VIEW_THRESHOLD_16
+            MENUITEM "&32",                         ID_VIEW_THRESHOLD_32
+            MENUITEM "64",                          ID_VIEW_THRESHOLD_64
+        END
         MENUITEM "Split &Horizontally",         ID_VIEW_SPLITHORIZONTALLY
         MENUITEM SEPARATOR
         MENUITEM "&Set Background Color",       ID_VIEW_USEBACKCOLOR

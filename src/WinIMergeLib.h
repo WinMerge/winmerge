@@ -80,6 +80,8 @@ struct IImgMergeWindow
 	virtual void SetUseBackColor(bool useBackColor) = 0;
 	virtual double GetZoom() const = 0;
 	virtual void SetZoom(double zoom) = 0;
+	virtual double GetColorDistanceThreshold() const = 0;
+	virtual void SetColorDistanceThreshold(double threshold) = 0;
 	virtual int  GetDiffBlockSize() const = 0;
 	virtual void SetDiffBlockSize(int blockSize) = 0;
 	virtual OVERLAY_MODE GetOverlayMode() const = 0;

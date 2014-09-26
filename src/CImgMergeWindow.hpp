@@ -411,6 +411,7 @@ public:
 		, m_currentDiffIndex(-1)
 		, m_oldSplitPosX(-4)
 		, m_oldSplitPosY(-4)
+		, m_colorDistanceThreshold(0.0)
 	{
 		for (int i = 0; i < 3; ++i)
 		{
@@ -669,6 +670,17 @@ public:
 			maxpage = page > maxpage ? page : maxpage;
 		}
 		return maxpage;
+	}
+
+	double GetColorDistanceThreshold() const
+	{
+		return m_colorDistanceThreshold;
+	}
+
+	void SetColorDistanceThreshold(double threshold)
+	{
+		m_colorDistanceThreshold = threshold;
+		CompareImages();
 	}
 
 	int  GetDiffBlockSize() const
@@ -1478,7 +1490,7 @@ private:
 				{
 					const BYTE *scanline1 = m_imgOrig32[pane1].getScanLine(h1 - y - 1);
 					const BYTE *scanline2 = m_imgOrig32[pane2].getScanLine(h2 - y - 1);
-					if (w1 == w2)
+					if (w1 == w2 && m_colorDistanceThreshold == 0.0)
 					{
 						if (memcmp(scanline1, scanline2, w1 * 4) == 0)
 							continue;
@@ -1489,12 +1501,25 @@ private:
 							diff(x / m_diffBlockSize, by) = -1;
 						else
 						{
-							if (scanline1[x * 4 + 0] != scanline2[x * 4 + 0] ||
-							    scanline1[x * 4 + 1] != scanline2[x * 4 + 1] ||
-							    scanline1[x * 4 + 2] != scanline2[x * 4 + 2] ||
-							    scanline1[x * 4 + 3] != scanline2[x * 4 + 3])
+							if (m_colorDistanceThreshold > 0.0)
 							{
-								diff(x / m_diffBlockSize, by) = -1;
+								int bdist = scanline1[x * 4 + 0] - scanline2[x * 4 + 0];
+								int gdist = scanline1[x * 4 + 1] - scanline2[x * 4 + 1];
+								int rdist = scanline1[x * 4 + 2] - scanline2[x * 4 + 2];
+								int adist = scanline1[x * 4 + 3] - scanline2[x * 4 + 3];
+								int colorDistance2 = rdist * rdist + gdist * gdist + bdist * bdist + adist * adist;
+								if (colorDistance2 > m_colorDistanceThreshold * m_colorDistanceThreshold)
+									diff(x / m_diffBlockSize, by) = -1;
+							}
+							else
+							{
+								if (scanline1[x * 4 + 0] != scanline2[x * 4 + 0] ||
+									scanline1[x * 4 + 1] != scanline2[x * 4 + 1] ||
+									scanline1[x * 4 + 2] != scanline2[x * 4 + 2] ||
+									scanline1[x * 4 + 3] != scanline2[x * 4 + 3])
+								{
+									diff(x / m_diffBlockSize, by) = -1;
+								}
 							}
 						}
 					}
@@ -1971,6 +1996,7 @@ private:
 	COLORREF m_selDiffColor;
 	COLORREF m_diffColor;
 	double   m_diffColorAlpha;
+	double   m_colorDistanceThreshold;
 	int m_currentPage[3];
 	int m_currentDiffIndex;
 	int m_diffCount;

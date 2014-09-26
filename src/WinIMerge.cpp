@@ -170,6 +170,19 @@ void UpdateMenuState(HWND hWnd)
 	}
 	CheckMenuRadioItem(hMenu, ID_VIEW_DIFFBLOCKSIZE_1, ID_VIEW_DIFFBLOCKSIZE_32, id, MF_BYCOMMAND);
 	CheckMenuItem(hMenu, ID_VIEW_USEBACKCOLOR, m_pImgMergeWindow->GetUseBackColor() ? MF_CHECKED : MF_UNCHECKED);
+	int threshold = static_cast<int>(m_pImgMergeWindow->GetColorDistanceThreshold());
+	if (threshold == 0)
+		id = ID_VIEW_THRESHOLD_0;
+	else
+	{
+		id = ID_VIEW_THRESHOLD_2;
+		while (threshold > 2)
+		{
+			++id;
+			threshold >>= 1;
+		}
+	}
+	CheckMenuRadioItem(hMenu, ID_VIEW_THRESHOLD_0, ID_VIEW_THRESHOLD_64, id, MF_BYCOMMAND);
 }
 
 void UpdateStatusBar()
@@ -402,6 +415,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case ID_VIEW_DIFFBLOCKSIZE_16:
 		case ID_VIEW_DIFFBLOCKSIZE_32:
 			m_pImgMergeWindow->SetDiffBlockSize(1 << (wmId - ID_VIEW_DIFFBLOCKSIZE_1));
+			UpdateMenuState(hWnd);
+			break;
+		case ID_VIEW_THRESHOLD_0:
+			m_pImgMergeWindow->SetColorDistanceThreshold(0);
+			UpdateMenuState(hWnd);
+			break;
+		case ID_VIEW_THRESHOLD_2:
+		case ID_VIEW_THRESHOLD_4:
+		case ID_VIEW_THRESHOLD_8:
+		case ID_VIEW_THRESHOLD_16:
+		case ID_VIEW_THRESHOLD_32:
+		case ID_VIEW_THRESHOLD_64:
+			m_pImgMergeWindow->SetColorDistanceThreshold((1 << (wmId - ID_VIEW_THRESHOLD_2)) * 2.0);
 			UpdateMenuState(hWnd);
 			break;
 		case ID_VIEW_SPLITHORIZONTALLY:
