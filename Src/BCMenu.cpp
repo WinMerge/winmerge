@@ -1607,6 +1607,12 @@ BOOL BCMenu::LoadToolbar(UINT nToolBar)
 
 BOOL BCMenu::LoadFromToolBar(UINT nID,UINT nToolBar,int& xoffset)
 {
+	// Optimization: avoid creating toolbar window if not needed
+	HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(nID), RT_TOOLBAR);
+	HRSRC hRsrc = ::FindResource(hInst, MAKEINTRESOURCE(nID), RT_TOOLBAR);
+	if (hRsrc == NULL)
+		return FALSE;
+
 	int xset,offset;
 	UINT nStyle;
 	BOOL returnflag=FALSE;
