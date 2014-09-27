@@ -15,11 +15,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ì˙ñ{åÍ (ì˙ñ{) resources
+// âpåÍ (ïƒçë) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
-#pragma code_page(932)
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -48,16 +48,6 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
-#endif    // ì˙ñ{åÍ (ì˙ñ{) resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////////////
-// âpåÍ (ïƒçë) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
-#pragma code_page(1252)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -79,42 +69,22 @@ BEGIN
     BEGIN
         MENUITEM "&Open Images\tCtrl+O",        ID_FILE_OPEN
         MENUITEM "Open &3 Images\tCtrl+3",      ID_FILE_OPEN3
+        MENUITEM SEPARATOR
         MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
         MENUITEM "&Generate Report",            ID_FILE_GENERATE_REPORT
+        MENUITEM SEPARATOR
         MENUITEM "Re&load\tCtrl+F5",            ID_FILE_RELOAD
-        MENUITEM "E&xit",                       ID_FILE_EXIT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+F4",               ID_FILE_EXIT
     END
     POPUP "&Edit"
     BEGIN
         MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
         MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
-        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
-        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
-        MENUITEM "Select &All",                 ID_EDIT_SELECTALL
     END
     POPUP "&View"
     BEGIN
         MENUITEM "View &Differences",           ID_VIEW_VIEWDIFFERENCES
-        MENUITEM SEPARATOR
-        MENUITEM "&Prev Page",                  ID_VIEW_PAGE_PREVPAGE
-        MENUITEM "&Next Page",                  ID_VIEW_PAGE_NEXTPAGE
-        MENUITEM SEPARATOR
-        POPUP "&Zoom"
-        BEGIN
-            MENUITEM "&400%",                       ID_VIEW_ZOOM_400
-            MENUITEM "&200%",                       ID_VIEW_ZOOM_200
-            MENUITEM "&100%",                       ID_VIEW_ZOOM_100
-            MENUITEM "&50%",                        ID_VIEW_ZOOM_50
-            MENUITEM "&25%",                        ID_VIEW_ZOOM_25
-        END
-        POPUP "&Overlay Mode"
-        BEGIN
-            MENUITEM "&None",                       ID_VIEW_OVERLAY_NONE
-            MENUITEM "&XOR",                        ID_VIEW_OVERLAY_XOR
-            MENUITEM "&Alpha Blend",                ID_VIEW_OVERLAY_ALPHABLEND
-        END
         POPUP "Diff &Block Size"
         BEGIN
             MENUITEM "&1",                          ID_VIEW_DIFFBLOCKSIZE_1
@@ -134,16 +104,40 @@ BEGIN
             MENUITEM "&32",                         ID_VIEW_THRESHOLD_32
             MENUITEM "64",                          ID_VIEW_THRESHOLD_64
         END
-        MENUITEM "Split &Horizontally",         ID_VIEW_SPLITHORIZONTALLY
         MENUITEM SEPARATOR
+        MENUITEM "&Prev Page",                  ID_VIEW_PAGE_PREVPAGE
+        MENUITEM "&Next Page",                  ID_VIEW_PAGE_NEXTPAGE
+        POPUP "&Active Pane"
+        BEGIN
+            MENUITEM "&Previous Page",              ID_POPUP_CURPANE_PREVIOUSPAGE
+            MENUITEM "&Next Page",                  ID_POPUP_CURPANE_NEXTPAGE
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Zoom"
+        BEGIN
+            MENUITEM "&400%",                       ID_VIEW_ZOOM_400
+            MENUITEM "&200%",                       ID_VIEW_ZOOM_200
+            MENUITEM "&100%",                       ID_VIEW_ZOOM_100
+            MENUITEM "&50%",                        ID_VIEW_ZOOM_50
+            MENUITEM "&25%",                        ID_VIEW_ZOOM_25
+        END
+        POPUP "&Overlay Mode"
+        BEGIN
+            MENUITEM "&None",                       ID_VIEW_OVERLAY_NONE
+            MENUITEM "&XOR",                        ID_VIEW_OVERLAY_XOR
+            MENUITEM "&Alpha Blend",                ID_VIEW_OVERLAY_ALPHABLEND
+        END
+        MENUITEM "Split &Horizontally",         ID_VIEW_SPLITHORIZONTALLY
         MENUITEM "&Set Background Color",       ID_VIEW_USEBACKCOLOR
     END
     POPUP "&Merge"
     BEGIN
         MENUITEM "&Next Difference\tAlt+Down",  ID_MERGE_NEXTDIFFERENCE
         MENUITEM "&Previous Difference\tAlt+Up", ID_MERGE_PREVIOUSDIFFERENCE
+        MENUITEM SEPARATOR
         MENUITEM "&First Difference\tAlt+Home", ID_MERGE_FIRSTDIFFERENCE
         MENUITEM "&Last Difference\tAlt+End",   ID_MERGE_LASTDIFFERENCE
+        MENUITEM SEPARATOR
         MENUITEM "Next Conflict\tAlt+Shift+Down", ID_MERGE_NEXTCONFLICT
         MENUITEM "Previous Conflict\tAlt+Shift+Up", ID_MERGE_PREVIOUSCONFLICT
         MENUITEM SEPARATOR
@@ -184,9 +178,11 @@ BEGIN
     "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
     "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
-    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
     VK_F5,          ID_FILE_RELOAD,         VIRTKEY, CONTROL, NOINVERT
-    "M",            ID_MERGE_AUTOMERGE, VIRTKEY, CONTROL, ALT, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_MERGE_AUTOMERGE,     VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_RIGHT,       ID_MERGE_COPYFROMLEFT,  VIRTKEY, SHIFT, ALT, NOINVERT
+    VK_LEFT,        ID_MERGE_COPYFROMRIGHT, VIRTKEY, SHIFT, ALT, NOINVERT
     VK_LEFT,        ID_MERGE_COPYTOLEFT,    VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_MERGE_COPYTORIGHT,   VIRTKEY, ALT, NOINVERT
     VK_HOME,        ID_MERGE_FIRSTDIFFERENCE, VIRTKEY, ALT, NOINVERT
@@ -195,8 +191,6 @@ BEGIN
     VK_DOWN,        ID_MERGE_NEXTDIFFERENCE, VIRTKEY, ALT, NOINVERT
     VK_UP,          ID_MERGE_PREVIOUSCONFLICT, VIRTKEY, SHIFT, ALT, NOINVERT
     VK_UP,          ID_MERGE_PREVIOUSDIFFERENCE, VIRTKEY, ALT, NOINVERT
-    VK_RIGHT,       ID_MERGE_COPYFROMLEFT,  VIRTKEY, SHIFT, ALT, NOINVERT
-    VK_LEFT,        ID_MERGE_COPYFROMRIGHT, VIRTKEY, SHIFT, ALT, NOINVERT
 END
 
 
