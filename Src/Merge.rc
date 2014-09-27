@@ -101,10 +101,28 @@ BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "View &Differences",           ID_IMG_VIEWDIFFERENCES
+        POPUP "Diff &Block Size"
+        BEGIN
+            MENUITEM "&1",                      ID_IMG_DIFFBLOCKSIZE_1
+            MENUITEM "&2",                      ID_IMG_DIFFBLOCKSIZE_2
+            MENUITEM "&4",                      ID_IMG_DIFFBLOCKSIZE_4
+            MENUITEM "&8",                      ID_IMG_DIFFBLOCKSIZE_8
+            MENUITEM "1&6",                     ID_IMG_DIFFBLOCKSIZE_16
+            MENUITEM "&32",                     ID_IMG_DIFFBLOCKSIZE_32
+        END
+        POPUP "&Ignore Color Difference (Color Distance Threshold)"
+        BEGIN
+            MENUITEM "&0",                      ID_IMG_THRESHOLD_0
+            MENUITEM "&2",                      ID_IMG_THRESHOLD_2
+            MENUITEM "&4",                      ID_IMG_THRESHOLD_4
+            MENUITEM "&8",                      ID_IMG_THRESHOLD_8
+            MENUITEM "1&6",                     ID_IMG_THRESHOLD_16
+            MENUITEM "&32",                     ID_IMG_THRESHOLD_32
+            MENUITEM "64",                      ID_IMG_THRESHOLD_64
+        END
         MENUITEM SEPARATOR
         MENUITEM "&Previous Page",              ID_IMG_PREVPAGE
         MENUITEM "&Next Page",                  ID_IMG_NEXTPAGE
-        MENUITEM SEPARATOR
         POPUP "&Active Pane"
         BEGIN
             MENUITEM "&Previous Page",          ID_IMG_CURPANE_PREVPAGE
@@ -126,26 +144,6 @@ BEGIN
             MENUITEM "&XOR",                    ID_IMG_OVERLAY_XOR
             MENUITEM "&Alpha Blend",            ID_IMG_OVERLAY_ALPHABLEND
         END
-        POPUP "Diff &Block Size"
-        BEGIN
-            MENUITEM "&1",                      ID_IMG_DIFFBLOCKSIZE_1
-            MENUITEM "&2",                      ID_IMG_DIFFBLOCKSIZE_2
-            MENUITEM "&4",                      ID_IMG_DIFFBLOCKSIZE_4
-            MENUITEM "&8",                      ID_IMG_DIFFBLOCKSIZE_8
-            MENUITEM "1&6",                     ID_IMG_DIFFBLOCKSIZE_16
-            MENUITEM "&32",                     ID_IMG_DIFFBLOCKSIZE_32
-        END
-        POPUP "&Ignore Color Difference (Color Distance Threshold)"
-        BEGIN
-            MENUITEM "&0",                      ID_IMG_THRESHOLD_0
-            MENUITEM "&2",                      ID_IMG_THRESHOLD_2
-            MENUITEM "&4",                      ID_IMG_THRESHOLD_4
-            MENUITEM "&8",                      ID_IMG_THRESHOLD_8
-            MENUITEM "1&6",                     ID_IMG_THRESHOLD_16
-            MENUITEM "&32",                     ID_IMG_THRESHOLD_32
-            MENUITEM "64",                      ID_IMG_THRESHOLD_64
-        END
-        MENUITEM SEPARATOR
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
     END
 END
