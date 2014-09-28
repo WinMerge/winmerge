@@ -290,10 +290,8 @@ BOOL CImgMergeFrame::PreCreateWindow(CREATESTRUCT& cs)
 void CImgMergeFrame::CreateImgWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndPane)
 {
 	wndStatusBar.Create(pwndPane, WS_CHILD|WS_VISIBLE);
-	wndStatusBar.SetIndicators(0, 3);
+	wndStatusBar.SetIndicators(0, 1);
 	wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH, 0);
-	wndStatusBar.SetPaneInfo(1, 0, 0, 80);
-	wndStatusBar.SetPaneInfo(2, 0, 0, 80);
 	wndStatusBar.SetParent(this);
 	wndStatusBar.SetWindowPos(&wndBottom, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 }
@@ -1127,21 +1125,51 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 {
 	if (IsWindowVisible())
 	{
+		POINT pt = {-1, -1}, ptCursor;
+		GetCursorPos(&ptCursor);
+		for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+		{
+			RECT rc;
+			::GetWindowRect(m_pImgMergeWindow->GetPaneHWND(pane), &rc);
+			if (PtInRect(&rc, ptCursor))
+				pt = m_pImgMergeWindow->GetCursorPos(pane);
+		}
+		
+		RGBQUAD color[3];
+		for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+			color[pane] = m_pImgMergeWindow->GetPixelColor(pane, pt.x, pt.y);
+		double colorDistance01, colorDistance12;
+		colorDistance01 = m_pImgMergeWindow->GetColorDistance(0, 1, pt.x, pt.y);
+		if (m_pImgMergeWindow->GetPaneCount() == 3)
+			colorDistance12 = m_pImgMergeWindow->GetColorDistance(1, 2, pt.x, pt.y);
+
 		UpdateHeaderSizes();
 		for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		{
 			UpdateHeaderPath(pane);
 			m_wndFilePathBar.SetActive(pane, pane == m_pImgMergeWindow->GetActivePane());
-			m_wndStatusBar[pane].SetPaneText(0, 
-				string_format(_T("Size:%d x %dpx %dbpp Page:%d/%d Zoom:%d%%"), 
-					m_pImgMergeWindow->GetImageWidth(pane),
-					m_pImgMergeWindow->GetImageHeight(pane),
-					m_pImgMergeWindow->GetImageBitsPerPixel(pane),
+			String text;
+			if (pt.x >= 0 && pt.y >= 0 &&
+				pt.x < m_pImgMergeWindow->GetImageWidth(pane) &&
+				pt.y < m_pImgMergeWindow->GetImageHeight(pane))
+			{
+				text += string_format(_T("Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "), pt.x, pt.y,
+					color[pane].rgbRed, color[pane].rgbGreen, color[pane].rgbBlue, color[pane].rgbReserved);
+				if (pane == 1 && m_pImgMergeWindow->GetPaneCount() == 3)
+					text += string_format(_T("Dist:%g,%g "), colorDistance01, colorDistance12);
+				else
+					text += string_format(_T("Dist:%g "), colorDistance01);
+			}
+
+			text += string_format(_T("Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"), 
 					m_pImgMergeWindow->GetCurrentPage(pane) + 1,
 					m_pImgMergeWindow->GetPageCount(pane),
-					static_cast<int>(m_pImgMergeWindow->GetZoom() * 100)
-					).c_str()
+					static_cast<int>(m_pImgMergeWindow->GetZoom() * 100),
+					m_pImgMergeWindow->GetImageWidth(pane),
+					m_pImgMergeWindow->GetImageHeight(pane),
+					m_pImgMergeWindow->GetImageBitsPerPixel(pane)
 					);
+			m_wndStatusBar[pane].SetPaneText(0, text.c_str());
 		}
 	}
 	CMDIChildWnd::OnIdleUpdateCmdUI();
