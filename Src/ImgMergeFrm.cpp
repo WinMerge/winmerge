@@ -157,6 +157,7 @@ CImgMergeFrame::CImgMergeFrame()
 , m_hDifferent(NULL)
 , m_pDirDoc(NULL)
 , m_bAutoMerged(false)
+, m_pImgMergeWindow(NULL)
 {
 	for (int pane = 0; pane < 3; ++pane)
 	{
@@ -167,6 +168,29 @@ CImgMergeFrame::CImgMergeFrame()
 
 CImgMergeFrame::~CImgMergeFrame()
 {
+	if (m_hIdentical != NULL)
+	{
+		DestroyIcon(m_hIdentical);
+		m_hIdentical = NULL;
+	}
+
+	if (m_hDifferent != NULL)
+	{
+		DestroyIcon(m_hDifferent);
+		m_hDifferent = NULL;
+	}
+
+	HMODULE hModule = GetModuleHandle(_T("WinIMergeLib.dll"));
+	if (hModule)
+	{
+		bool (*WinIMerge_DestroyWindow)(IImgMergeWindow *) = 
+			(bool (*)(IImgMergeWindow *))GetProcAddress(hModule, "WinIMerge_DestroyWindow");
+		if (WinIMerge_DestroyWindow)
+		{
+			WinIMerge_DestroyWindow(m_pImgMergeWindow);
+			m_pImgMergeWindow = NULL;
+		}
+	}
 }
 
 bool CImgMergeFrame::OpenImages(const PathContext& paths, const bool bRO[], int nPane, CMDIFrameWnd *pParent)
@@ -405,30 +429,6 @@ BOOL CImgMergeFrame::DestroyWindow()
 		wp.length = sizeof(WINDOWPLACEMENT);
 		GetWindowPlacement(&wp);
 		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
-	}
-
-	if (m_hIdentical != NULL)
-	{
-		DestroyIcon(m_hIdentical);
-		m_hIdentical = NULL;
-	}
-
-	if (m_hDifferent != NULL)
-	{
-		DestroyIcon(m_hDifferent);
-		m_hDifferent = NULL;
-	}
-
-	HMODULE hModule = GetModuleHandle(_T("WinIMergeLib.dll"));
-	if (hModule)
-	{
-		bool (*WinIMerge_DestroyWindow)(IImgMergeWindow *) = 
-			(bool (*)(IImgMergeWindow *))GetProcAddress(hModule, "WinIMerge_DestroyWindow");
-		if (WinIMerge_DestroyWindow)
-		{
-			WinIMerge_DestroyWindow(m_pImgMergeWindow);
-			m_pImgMergeWindow = NULL;
-		}
 	}
 
 	return CMDIChildWnd::DestroyWindow();
