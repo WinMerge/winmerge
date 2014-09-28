@@ -187,21 +187,47 @@ void UpdateMenuState(HWND hWnd)
 
 void UpdateStatusBar()
 {
-	wchar_t buf[256];
+	POINT pt = {-1, -1}, ptCursor;
+	GetCursorPos(&ptCursor);
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 	{
-		POINT pt[3];
-		pt[pane] = m_pImgMergeWindow->GetCursorPos(pane);
-		wsprintfW(buf, L"Point:(%d, %d) Size:%d x %dpx %dbpp Page:%d/%d Zoom:%d%% Differences:%d/%d", 
-			pt[pane].x, pt[pane].y,
-			m_pImgMergeWindow->GetImageWidth(pane),
-			m_pImgMergeWindow->GetImageHeight(pane),
-			m_pImgMergeWindow->GetImageBitsPerPixel(pane),
+		RECT rc;
+		GetWindowRect(m_pImgMergeWindow->GetPaneHWND(pane), &rc);
+		if (PtInRect(&rc, ptCursor))
+			pt = m_pImgMergeWindow->GetCursorPos(pane);
+	}
+	
+	RGBQUAD color[3];
+	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+		color[pane] = m_pImgMergeWindow->GetPixelColor(pane, pt.x, pt.y);
+	double colorDistance01, colorDistance12;
+	colorDistance01 = m_pImgMergeWindow->GetColorDistance(0, 1, pt.x, pt.y);
+	if (m_pImgMergeWindow->GetPaneCount() == 3)
+		colorDistance12 = m_pImgMergeWindow->GetColorDistance(1, 2, pt.x, pt.y);
+	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+	{
+		wchar_t buf[256], *p = buf;
+		if (pt.x >= 0 && pt.y >= 0 &&
+		    pt.x < m_pImgMergeWindow->GetImageWidth(pane) &&
+		    pt.y < m_pImgMergeWindow->GetImageHeight(pane))
+		{
+			p += wsprintfW(p, L"Pt:(%d,%d) ", pt.x, pt.y);
+			p += wsprintfW(p, L"RGBA:(%d,%d,%d,%d) ",
+				color[pane].rgbRed, color[pane].rgbGreen, color[pane].rgbBlue, color[pane].rgbReserved);
+			if (pane == 1 && m_pImgMergeWindow->GetPaneCount() == 3)
+				p += swprintf_s(p, buf + sizeof(buf)/sizeof(wchar_t) - p, L"Dist:%g,%g ", colorDistance01, colorDistance12);
+			else
+				p += swprintf_s(p, buf + sizeof(buf)/sizeof(wchar_t) - p, L"Dist:%g ", colorDistance01);
+		}
+		p += wsprintfW(p, L"Page:%d/%d Zoom:%d%% Diff:%d/%d %dx%dpx %dbpp", 
 			m_pImgMergeWindow->GetCurrentPage(pane) + 1,
 			m_pImgMergeWindow->GetPageCount(pane),
 			static_cast<int>(m_pImgMergeWindow->GetZoom() * 100),
 			m_pImgMergeWindow->GetCurrentDiffIndex() + 1,
-			m_pImgMergeWindow->GetDiffCount()
+			m_pImgMergeWindow->GetDiffCount(),
+			m_pImgMergeWindow->GetImageWidth(pane),
+			m_pImgMergeWindow->GetImageHeight(pane),
+			m_pImgMergeWindow->GetImageBitsPerPixel(pane)
 			);
 		SendMessage(m_hwndStatusBar, SB_SETTEXT, (WPARAM)pane | 0, (LPARAM)buf);
 	}

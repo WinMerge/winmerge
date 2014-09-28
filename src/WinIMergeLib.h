@@ -56,6 +56,8 @@ struct IImgMergeWindow
 	virtual RECT GetWindowRect() const = 0;
 	virtual bool SetWindowRect(const RECT& rc) = 0;
 	virtual POINT GetCursorPos(int pane) const = 0;
+	virtual RGBQUAD GetPixelColor(int pane, int x, int y) const = 0;
+	virtual double GetColorDistance(int pane1, int pane2, int x, int y) const = 0;
 	virtual int  GetActivePane() const = 0;
 	virtual void SetActivePane(int pane) = 0;
 	virtual bool GetReadOnly(int pane) const = 0;

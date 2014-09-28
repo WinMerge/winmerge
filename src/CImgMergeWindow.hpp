@@ -21,6 +21,7 @@
 #include <string>
 #include <algorithm>
 #include <cstdio>
+#include <cmath>
 #include <array>
 #include "FreeImagePlus.h"
 #include "CImgWindow.hpp"
@@ -384,6 +385,18 @@ private:
 	}
 };
 
+namespace
+{
+	int GetColorDistance2(RGBQUAD c1, RGBQUAD c2)
+	{
+		int rdist = c1.rgbRed - c2.rgbRed;
+		int gdist = c1.rgbGreen - c2.rgbGreen;
+		int bdist = c1.rgbBlue - c2.rgbBlue;
+		int adist = c1.rgbReserved - c2.rgbReserved;
+		return rdist * rdist + gdist * gdist + bdist * bdist + adist * adist;
+	}
+}
+
 class CImgMergeWindow : public IImgMergeWindow
 {
 	struct EventListenerInfo 
@@ -500,6 +513,19 @@ public:
 		dpt.x -= rc.left + rcPane.left;
 		dpt.y -= rc.top + rcPane.top;
 		return m_imgWindow[pane].ConvertDPtoLP(dpt.x, dpt.y);
+	}
+
+	RGBQUAD GetPixelColor(int pane, int x, int y) const
+	{
+		RGBQUAD value = {0xFF, 0xFF, 0xFF, 0x00};
+		m_imgOrig32[pane].getPixelColor(x, m_imgOrig32[pane].getHeight() - y - 1, &value);
+		return value;
+	}
+
+	double GetColorDistance(int pane1, int pane2, int x, int y) const
+	{
+		return std::sqrt(static_cast<double>(
+			::GetColorDistance2(GetPixelColor(pane1, x, y), GetPixelColor(pane2, x, y)) ));
 	}
 
 	int GetActivePane() const
