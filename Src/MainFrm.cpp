@@ -48,6 +48,7 @@
 #include "MergeDoc.h"
 #include "MergeEditView.h"
 #include "HexMergeDoc.h"
+#include "ImgMergeFrm.h"
 #include "LineFiltersList.h"
 #include "ConflictFileParser.h"
 #include "Splash.h"
@@ -488,6 +489,13 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 		return NULL;
 	}
 
+	if (view == MENU_IMGMERGEVIEW)
+	{
+		BCMenu *pMenu = new BCMenu;
+		pMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
+		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)pMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_IMAGE_MENU).c_str())); 
+	}
+
 	// Load bitmaps to menuitems
 	for (index = 0; index < countof(m_MenuIcons); index ++)
 	{
@@ -536,6 +544,14 @@ HMENU CMainFrame::NewDirViewMenu()
 HMENU CMainFrame::NewHexMergeViewMenu()
 {
 	return NewMenu( MENU_HEXMERGEVIEW, IDR_MERGEDOCTYPE);
+}
+
+/**
+ * @brief Create new Image compare (CImgMergeView) menu.
+ */
+HMENU CMainFrame::NewImgMergeViewMenu()
+{
+	return NewMenu( MENU_IMGMERGEVIEW, IDR_MERGEDOCTYPE);
 }
 
 /**
@@ -619,6 +635,23 @@ static void
 FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 {
 	fileloc.encoding = GuessCodepageEncoding(fileloc.filepath, iGuessEncoding);
+}
+
+int CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
+	int nFiles, const FileLocation ifileloc[],
+	DWORD dwFlags[] /*=0*/, PackingInfo * infoUnpacker /*= NULL*/)
+{
+	int pane;
+	FileFilterHelper filter;
+	filter.UseMask(true);
+	filter.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
+	for (pane = 0; pane < nFiles; ++pane)
+		if (filter.includeFile(ifileloc[pane].filepath))
+			break;
+	if (pane != nFiles)
+		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, infoUnpacker);
+	else
+		return ShowMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, infoUnpacker);
 }
 
 /**
@@ -747,6 +780,52 @@ void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc,
 		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
 	if (CHexMergeDoc *pHexMergeDoc = GetHexMergeDocToShow(paths.GetSize(), pDirDoc, &docNull))
 		pHexMergeDoc->OpenDocs(paths, bRO);
+}
+
+int CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		DWORD dwFlags[], PackingInfo * infoUnpacker/* = NULL*/)
+{
+	CImgMergeFrame *pImgMergeFrame = new CImgMergeFrame();
+	if (!CImgMergeFrame::menu.m_hMenu)
+		CImgMergeFrame::menu.m_hMenu = NewImgMergeViewMenu();
+	pImgMergeFrame->SetSharedMenu(CImgMergeFrame::menu.m_hMenu);
+	PathContext files;
+	int pane;
+	for (pane = 0; pane < nFiles; ++pane)
+		files.SetPath(pane, fileloc[pane].filepath, false);
+
+	bool bRO[3];
+	for (pane = 0; pane < nFiles; pane++)
+	{
+		if (dwFlags)
+			bRO[pane] = (dwFlags[pane] & FFILEOPEN_READONLY) > 0;
+		else
+			bRO[pane] = FALSE;
+	}
+
+	int nActivePane = -1;
+	for (pane = 0; pane < nFiles; pane++)
+	{
+		if (dwFlags && (dwFlags[pane] & FFILEOPEN_SETFOCUS))
+			nActivePane = pane;
+	}
+
+	pImgMergeFrame->SetDirDoc(pDirDoc);
+
+	if (!pImgMergeFrame->OpenImages(files, bRO, nActivePane, this))
+	{
+		ShowMergeDoc(pDirDoc, nFiles, fileloc, dwFlags, infoUnpacker);
+	}
+	else
+	{
+		for (pane = 0; pane < nFiles; pane++)
+		{
+			if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
+				pImgMergeFrame->DoAutoMerge(pane);
+		}
+	}
+
+	return 0;
 }
 
 void CMainFrame::RedisplayAllDirDocs()
@@ -1083,8 +1162,8 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, prediffer);
 		}
 
-		ShowMergeDoc(pDirDoc, files.GetSize(), fileloc, dwFlags,
-			infoUnpacker);
+		ShowAutoMergeDoc(pDirDoc, files.GetSize(), fileloc, dwFlags,
+				infoUnpacker);
 	}
 
 	if (pFiles && !(dwFlags[0] & FFILEOPEN_NOMRU))
@@ -1358,6 +1437,19 @@ void CMainFrame::OnClose()
 	CustomStatusCursor::SetStatusDisplay(0);
 	myStatusDisplay.SetFrame(0);
 	
+	// Close Non-Document/View frame with confirmation
+	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
+	while (pChild)
+	{
+		CMDIChildWnd *pNextChild = static_cast<CMDIChildWnd *>(pChild->GetWindow(GW_HWNDNEXT));
+		if (GetFrameType(pChild) == FRAME_IMGFILE)
+		{
+			if (!static_cast<CImgMergeFrame *>(pChild)->CloseNow())
+				return;
+		}
+		pChild = pNextChild;
+	}
+
 	CMDIFrameWnd::OnClose();
 }
 
@@ -2043,29 +2135,15 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
-		const OpenDocList &openDocs = GetAllOpenDocs();
-		const MergeDocList &docs = GetAllMergeDocs();
-		const HexMergeDocList &hexDocs = GetAllHexMergeDocs();
-		const DirDocList &dirDocs = GetAllDirDocs();
-
-		if (theApp.m_bEscShutdown)
+		if (theApp.m_bEscShutdown && m_wndTabBar.GetItemCount() <= 1)
 		{
-			if (openDocs.GetCount() + hexDocs.GetCount() + dirDocs.GetCount() <= 1)
-			{
-				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
-				return TRUE;
-			}
+			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
+			return TRUE;
 		}
-		else
+		else if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC) && m_wndTabBar.GetItemCount() == 0)
 		{
-			if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC))
-			{
-				if (openDocs.IsEmpty() && docs.IsEmpty() && hexDocs.IsEmpty() && dirDocs.IsEmpty())
-				{
-					AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
-					return FALSE;
-				}
-			}
+			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
+			return FALSE;
 		}
 	}
 	return CMDIFrameWnd::PreTranslateMessage(pMsg);
@@ -2196,11 +2274,25 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 {
 	CFrameWnd * pFrame = GetActiveFrame();
-	if (pFrame && pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+	if (pFrame)
 	{
-		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
-		if (pMergeDoc)
-			pMergeDoc->CheckFileChanged();
+		if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+		{
+			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+			if (pMergeDoc)
+				pMergeDoc->CheckFileChanged();
+		}
+		else if (pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
+		{
+			CHexMergeDoc * pMergeDoc = (CHexMergeDoc *) pFrame->GetActiveDocument();
+			if (pMergeDoc)
+				pMergeDoc->CheckFileChanged();
+		}
+		else if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
+		{
+			CImgMergeFrame *pImgMergeFrame = static_cast<CImgMergeFrame *>(pFrame);
+			pImgMergeFrame->CheckFileChanged();
+		}
 	}
 	return 0;
 }
@@ -2243,6 +2335,15 @@ void CMainFrame::OnWindowCloseAll()
 			if (!pDoc->SaveModified())
 				return;
 			pDoc->OnCloseDocument();
+		}
+		else if (GetFrameType(pChild) == FRAME_IMGFILE)
+		{
+			if (!static_cast<CImgMergeFrame *>(pChild)->CloseNow())
+				return;
+		}
+		else
+		{
+			pChild->DestroyWindow();
 		}
 		pChild = MDIGetActive();
 	}
@@ -2377,11 +2478,28 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 #endif
 
 	CFrameWnd * pFrame = GetActiveFrame();
-	if (pFrame && pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+	if (pFrame)
 	{
-		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
-		if (pMergeDoc)
+		switch (GetFrameType(pFrame))
+		{
+		case FRAME_FILE:
+		{
+			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+			if (pMergeDoc)
+				PostMessage(WM_USER+1);
+			break;
+		}
+		case FRAME_HEXFILE:
+		{
+			CHexMergeDoc * pMergeDoc = (CHexMergeDoc *) pFrame->GetActiveDocument();
+			if (pMergeDoc)
+				PostMessage(WM_USER+1);
+			break;
+		}
+		case FRAME_IMGFILE:
 			PostMessage(WM_USER+1);
+			break;
+		}
 	}
 }
 
@@ -2510,7 +2628,8 @@ void CMainFrame::OnUpdateFrameTitle(BOOL bAddToTitle)
 {
 	CFrameWnd::OnUpdateFrameTitle(bAddToTitle);
 	
-	m_wndTabBar.UpdateTabs();
+	if (m_wndTabBar.m_hWnd)
+		m_wndTabBar.UpdateTabs();
 }
 
 /** @brief Hide the toolbar. */
@@ -2745,10 +2864,16 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
 {
 	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	BOOL bHexMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame));
+	BOOL bImgMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame));
 	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
 	if (bMergeFrame)
 		return FRAME_FILE;
+	else if (bHexMergeFrame)
+		return FRAME_HEXFILE;
+	else if (bImgMergeFrame)
+		return FRAME_IMGFILE;
 	else if (bDirFrame)
 		return FRAME_FOLDER;
 	else

@@ -33,6 +33,9 @@ mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Docs" 2> NUL
 mkdir "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Languages" 2> NUL
 mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Languages" 2> NUL
 
+mkdir "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge" 2> NUL
+mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge" 2> NUL
+
 rem Readme
 for %%i in (Build\Docs\*.*) do (
   copy "%%i" "%DISTDIR%\2.14-zip-version\WinMerge\%%~nxi"
@@ -98,13 +101,23 @@ copy Externals\Frhed\Build\FRHED\x64\UnicodeRelease\Docs\Sample.tpl "%DISTDIR%\2
 copy Externals\Frhed\Build\FRHED\x64\UnicodeRelease\Languages\*.po "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Languages"
 copy Externals\Frhed\Build\FRHED\x64\UnicodeRelease\Languages\heksedit.lng "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Languages"
 
+rem WinIMerge
+copy Externals\WinIMerge\GPL.txt "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
+copy Externals\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
+copy Externals\WinIMerge\Build\Release\WinIMerge.exe "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
+copy Externals\WinIMerge\Build\Release\WinIMergeLib.dll "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
+copy Externals\WinIMerge\GPL.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
+copy Externals\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
+copy Externals\WinIMerge\Build\x64\Release\WinIMerge.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
+copy Externals\WinIMerge\Build\x64\Release\WinIMergeLib.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
+
 
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip" "%DISTDIR%\2.14-zip-version\WinMerge\"
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip" "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
 
 del "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 
-7z.exe a -t7z -xr!*.gcno -xr!*.gcda -xr!*.gcov -xr!*.orig -xr!*.o -xr!*.a -xr!.dep -xr!*.out -xr!debug_static* -xr!debug_shared* -xr!release_static* -xr!release_shared* -xr!*.bak -xr!*.lang -xr!*.ncb  -xr!*.sdf -xr!*.bsc -xr!*.opt -xr!*.plg -xr!*.suo -xr!*.obj -xr!*.ilk -xr!*.pdb -xr!*.pch -xr!*.res -xr!*.exe -xr!*.sbr -xr!*.zip -xr!WinMergeSplash.psd -xr!*.lib -xr!*.idb -xr!*.%COMPUTERNAME%.%USERNAME%.user -xr!BuildLog.htm -xr!CVS -xr!.svn -xr!ipch -xr!*.tlb -xr!*.tlog -xr!CVS "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" ArchiveSupport Docs Externals Filters Installer Plugins ShellExtension Src Testing Tools Translations Web readme.txt Version.h *.cmd *.bat *.inf *.sln *.vbs
+7z.exe a -t7z -xr!*.gcno -xr!*.gcda -xr!*.gcov -xr!*.orig -xr!*.o -xr!*.a -xr!.dep -xr!*.out -xr!debug_static* -xr!debug_shared* -xr!release_static* -xr!release_shared* -xr!*.bak -xr!*.lang -xr!*.ncb  -xr!*.sdf -xr!*.bsc -xr!*.opt -xr!*.plg -xr!*.suo -xr!*.obj -xr!*.ilk -xr!*.pdb -xr!*.pch -xr!*.res -xr!*.exe -xr!*.sbr -xr!*.zip -xr!WinMergeSplash.psd -xr!*.lib -xr!*.exp -xr!*.idb -xr!*.%COMPUTERNAME%.%USERNAME%.user -xr!BuildLog.htm -xr!CVS -xr!.svn -xr!ipch -xr!*.tlb -xr!*.tlog -xr!*.un~ -xr!CVS -xr!.hg -xr!*.log -xr!*.lastbuildstate -xr!FreeImage*.dll -xr!WinIMergeLib.dll -xr!WinIMerge.exe -xr!BuildTmp "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" ArchiveSupport Docs Externals Filters Installer Plugins ShellExtension Src Testing Tools Translations Web readme.txt Version.h *.cmd *.bat *.inf *.sln *.vbs
 
 (
 echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-Setup.exe.zip"

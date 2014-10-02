@@ -76,6 +76,8 @@ public:
 	{
 		FRAME_FOLDER, /**< Folder compare frame. */
 		FRAME_FILE, /**< File compare frame. */
+		FRAME_HEXFILE, /**< Hex file compare frame. */
+		FRAME_IMGFILE, /**< Image file compare frame. */
 		FRAME_OTHER, /**< No frame? */
 	};
 
@@ -94,6 +96,7 @@ public:
 	HMENU NewDirViewMenu();
 	HMENU NewMergeViewMenu();
 	HMENU NewHexMergeViewMenu();
+	HMENU NewImgMergeViewMenu();
 	HMENU NewOpenViewMenu();
 	HMENU NewDefaultMenu(int ID = 0);
 	HMENU GetScriptsSubmenu(HMENU mainMenu);
@@ -102,10 +105,15 @@ public:
 
 	BOOL DoFileOpen(PathContext *pFiles = NULL,
 		DWORD dwFlags[] = NULL, bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), PackingInfo * infoUnpacker = NULL);
+	int ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		DWORD dwFlags[], PackingInfo * infoUnpacker = NULL);
 	int ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		DWORD dwFlags[], PackingInfo * infoUnpacker = NULL);
 	void ShowHexMergeDoc(CDirDoc * pDirDoc,
 		const PathContext &paths, const bool bRO[]);
+	int ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		DWORD dwFlags[], PackingInfo * infoUnpacker = NULL);
+
 	void UpdateResources();
 	CString SetStatus(LPCTSTR status);
 	void ClearStatusbarItemCount();
@@ -172,6 +180,7 @@ protected:
 		MENU_MERGEVIEW,
 		MENU_DIRVIEW,
 		MENU_HEXMERGEVIEW,
+		MENU_IMGMERGEVIEW,
 		MENU_OPENVIEW,
 		MENU_COUNT, // Add new items before this item
 	};

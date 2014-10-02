@@ -196,9 +196,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdateNoPrediffer)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
-	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
-	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
 	ON_WM_VSCROLL ()
 	ON_WM_HSCROLL ()
 	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
@@ -2278,7 +2275,7 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 		
 		// If we are in merging mode (merge with cursor keys)
 		// handle some keys here
-		if (GetDocument()->GetMergingMode())
+		if (theApp.GetMergingMode())
 		{
 			bHandled = MergeModeKeyDown(pMsg);
 			if (bHandled)
@@ -3120,39 +3117,6 @@ bool CMergeEditView::SetPredifferByName(const CString & prediffer)
 	if (id<0) return false;
 	SetPredifferByMenu(id);
 	return true;
-}
-
-/**
- * @brief Switch Merging/Editing mode and update
- * buffer read-only states accordingly
- */
-void CMergeEditView::OnMergingMode()
-{
-	CMergeDoc *pDoc = GetDocument();
-	bool bMergingMode = pDoc->GetMergingMode();
-
-	if (!bMergingMode)
-		LangMessageBox(IDS_MERGE_MODE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN);
-	pDoc->SetMergingMode(!bMergingMode);
-}
-
-/**
- * @brief Update Menuitem for Merging Mode
- */
-void CMergeEditView::OnUpdateMergingMode(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
-	pCmdUI->SetCheck(GetDocument()->GetMergingMode());
-}
-
-/**
- * @brief Update MergingMode UI in statusbar
- */
-void CMergeEditView::OnUpdateMergingStatus(CCmdUI *pCmdUI)
-{
-	String text = _("Merge");
-	pCmdUI->SetText(text.c_str());
-	pCmdUI->Enable(GetDocument()->GetMergingMode());
 }
 
 /** 

@@ -5312,6 +5312,9 @@
 					RelativePath=".\HexMergeView.cpp">
 				</File>
 				<File
+					RelativePath=".\ImgMergeFrm.cpp">
+				</File>
+				<File
 					RelativePath=".\JumpList.cpp">
 					<FileConfiguration
 						Name="UnicodeRelease|Win32">
@@ -6500,6 +6503,9 @@
 					RelativePath=".\IListCtrlImpl.h">
 				</File>
 				<File
+					RelativePath=".\ImgMergeFrm.h">
+				</File>
+				<File
 					RelativePath="IOptionsPanel.h">
 				</File>
 				<File
@@ -7582,6 +7588,12 @@
 					</File>
 					<File
 						RelativePath="PropCompareFolder.h">
+					</File>
+					<File
+						RelativePath=".\PropCompareImage.cpp">
+					</File>
+					<File
+						RelativePath=".\PropCompareImage.h">
 					</File>
 					<File
 						RelativePath="PropEditor.cpp">

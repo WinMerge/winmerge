@@ -39,6 +39,7 @@
 #include "MergeDoc.h"
 #include "HexMergeFrm.h"
 #include "HexMergeDoc.h"
+#include "ImgMergeFrm.h"
 #include "MainFrm.h"
 #include "resource.h"
 #include "coretools.h"
@@ -1374,7 +1375,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 			fileloc[nIndex].encoding = di1->diffFileInfo[nIndex].encoding;
 			dwFlags[nIndex] = pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0;
 		}
-		GetMainFrame()->ShowMergeDoc(pDoc, pDoc->m_nDirs, fileloc,
+		GetMainFrame()->ShowAutoMergeDoc(pDoc, pDoc->m_nDirs, fileloc,
 			dwFlags, infoUnpacker);
 	}
 }
@@ -2406,11 +2407,18 @@ struct FileCmpReport: public IFileCmpReport
 		
 		m_pDirView->OpenSelection();
 		CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
-		if (GetMainFrame()->GetFrameType(pFrame) == CMainFrame::FRAME_FILE)
+		CMainFrame::FRAMETYPE frametype = GetMainFrame()->GetFrameType(pFrame);
+		if (frametype == CMainFrame::FRAME_FILE)
 		{
 			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
 			pMergeDoc->CloseNow();
+		}
+		else if (frametype = CMainFrame::FRAME_IMGFILE)
+		{
+			CImgMergeFrame *pImgMergeFrame = static_cast<CImgMergeFrame *>(pFrame);
+			pImgMergeFrame->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
+			pImgMergeFrame->CloseNow();
 		}
 
 		MSG msg;

@@ -1505,6 +1505,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="ImgMergeFrm.cpp" />
     <ClCompile Include="Merge7zFormatShellImpl.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -5681,6 +5682,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="PropCompareFolder.cpp" />
+    <ClCompile Include="PropCompareImage.cpp" />
     <ClCompile Include="PropEditor.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -8540,6 +8542,7 @@
     <ClInclude Include="Common\coretools.h" />
     <ClInclude Include="Common\coretypes.h" />
     <ClInclude Include="Common\CSubclass.h" />
+    <ClInclude Include="ImgMergeFrm.h" />
     <ClInclude Include="Merge7zFormatShellImpl.h" />
     <ClInclude Include="OptionsCustomColors.h" />
     <ClInclude Include="CustomStatusCursor.h" />
@@ -8651,6 +8654,7 @@
     <ClInclude Include="PropColors.h" />
     <ClInclude Include="PropCompare.h" />
     <ClInclude Include="PropCompareFolder.h" />
+    <ClInclude Include="PropCompareImage.h" />
     <ClInclude Include="PropEditor.h" />
     <ClInclude Include="Common\PropertyPageHost.h" />
     <ClInclude Include="PropGeneral.h" />
