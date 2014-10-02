@@ -323,7 +323,7 @@ void CDirDoc::Redisplay()
 	m_pDirView->Redisplay();
 }
 
-CDirView * CDirDoc::GetMainView()
+CDirView * CDirDoc::GetMainView() const
 {
 	CDirView *pView = NULL;
 	if (POSITION pos = GetFirstViewPosition())

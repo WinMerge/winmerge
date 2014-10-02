@@ -116,14 +116,15 @@ private:
 public:
 	void RefreshOptions();
 	bool EnableRescan(bool bEnable);
-	bool IsReadOnly(int pane);
+	bool IsReadOnly(int pane) const;
 	void ShowDiff(bool bScroll, bool bSelectText);
 	virtual void OnEditOperation(int nAction, LPCTSTR pszText, int cchText);
 	void UpdateLineLengths();
-	bool IsLineInCurrentDiff(int nLine);
+	bool IsLineInCurrentDiff(int nLine) const;
 	void SelectNone();
 	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);
 	virtual CCrystalTextBuffer *LocateTextBuffer ();
+	const CCrystalTextBuffer *LocateTextBuffer () const { return const_cast<CMergeEditView *>(this)->LocateTextBuffer(); };
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
 	CString GetSelectedText();
 	CString GetLineText(int idx);
@@ -144,9 +145,9 @@ public:
 		, COLORREF & crBkgnd, COLORREF & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
 	void GotoLine(UINT nLine, bool bRealLine, int pane);
-	int GetTopLine() { return m_nTopLine; }
+	int GetTopLine() const { return m_nTopLine; }
 	int GetScreenLines() { return CCrystalTextView::GetScreenLines(); }
-	int GetTopSubLine() { return m_nTopSubLine; }
+	int GetTopSubLine() const { return m_nTopSubLine; }
 	int GetSubLines(int nLineIndex) { return CCrystalTextView::GetSubLines(nLineIndex); }
 	virtual int GetSubLineCount() { return CCrystalTextView::GetSubLineCount(); }
 	virtual int GetSubLineIndex(int nLineIndex) { return CCrystalTextView::GetSubLineIndex(nLineIndex); }

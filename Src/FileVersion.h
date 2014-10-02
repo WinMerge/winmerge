@@ -28,7 +28,7 @@ public:
 	bool IsCleared() const { return m_fileVersionMS == 0xffffffff && m_fileVersionLS == 0xffffffff; };
 	void SetFileVersion(unsigned versionMS, unsigned versionLS);
 	void SetFileVersionNone() { m_fileVersionMS = 0xffffffff; m_fileVersionLS = 0xfffffffe; };
-	String GetFileVersionString();
+	String GetFileVersionString() const;
 };
 
 #endif // _FILE_VERSION_H_

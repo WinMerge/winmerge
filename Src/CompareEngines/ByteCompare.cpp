@@ -302,7 +302,7 @@ static void CopyTextStats(const FileTextStats * stats, FileTextStats * myTextSta
  * @param [in] side For which file to return statistics.
  * @param [out] stats Stats as asked.
  */
-void ByteCompare::GetTextStats(int side, FileTextStats *stats)
+void ByteCompare::GetTextStats(int side, FileTextStats *stats) const
 {
 	CopyTextStats(&m_textStats[side], stats);
 }

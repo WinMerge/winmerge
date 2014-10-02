@@ -1579,7 +1579,7 @@ void CMergeEditView::SelectNone()
  * @sa CMergeDoc::GetCurrentDiff()
  * @sa CMergeDoc::LineInDiff()
  */
-bool CMergeEditView::IsLineInCurrentDiff(int nLine)
+bool CMergeEditView::IsLineInCurrentDiff(int nLine) const
 {
 	// Check validity of nLine
 #ifdef _DEBUG
@@ -1590,7 +1590,7 @@ bool CMergeEditView::IsLineInCurrentDiff(int nLine)
 		_RPTF2(_CRT_ERROR, "Linenumber > linecount (%d>%d)!", nLine, nLineCount);
 #endif
 
-	CMergeDoc *pd = GetDocument();
+	const CMergeDoc *pd = GetDocument();
 	int curDiff = pd->GetCurrentDiff();
 	if (curDiff == -1)
 		return false;
@@ -2153,7 +2153,7 @@ void CMergeEditView::OnTimer(UINT_PTR nIDEvent)
  * @brief Returns if buffer is read-only
  * @note This has no any relation to file being read-only!
  */
-bool CMergeEditView::IsReadOnly(int pane)
+bool CMergeEditView::IsReadOnly(int pane) const
 {
 	return GetDocument()->m_ptBuf[pane]->GetReadOnly() != false;
 }
@@ -3647,7 +3647,7 @@ bool CMergeEditView::IsCursorInDiff() const
 */
 bool CMergeEditView::IsDiffVisible(int nDiff)
 {
-	CMergeDoc *pd = GetDocument();
+	const CMergeDoc *pd = GetDocument();
 
 	DIFFRANGE diff;
 	pd->m_diffList.GetDiff(nDiff, diff);

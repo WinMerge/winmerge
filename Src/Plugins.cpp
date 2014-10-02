@@ -287,7 +287,7 @@ void PluginInfo::LoadFilterString()
 }
 
 
-bool PluginInfo::TestAgainstRegList(const String& szTest)
+bool PluginInfo::TestAgainstRegList(const String& szTest) const
 {
 	if (m_filters.empty() || szTest.empty())
 		return false;

@@ -45,9 +45,9 @@ public:
 	
 	void AddRegExp(const std::string& regularExpression);
 	void RemoveAllFilters();
-	bool HasRegExps();
+	bool HasRegExps() const;
 	bool Match(const std::string& string, int codepage = CP_UTF8);
-	const char * GetLastMatchExpression();
+	const char * GetLastMatchExpression() const;
 
 private:
 	std::vector <filter_item_ptr> m_list;

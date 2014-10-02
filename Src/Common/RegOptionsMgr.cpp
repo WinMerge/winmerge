@@ -26,7 +26,7 @@
  * @param [out] strValue Value in registry
  */
 void CRegOptionsMgr::SplitName(const String &strName, String &strPath,
-	String &strValue)
+	String &strValue) const
 {
 	size_t pos = strName.rfind('/');
 	if (pos != String::npos)

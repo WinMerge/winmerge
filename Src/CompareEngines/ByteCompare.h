@@ -37,7 +37,7 @@ public:
 	void SetAbortable(const IAbortable * piAbortable);
 	void SetFileData(int items, file_data *data);
 	int CompareFiles(FileLocation *location);
-	void GetTextStats(int side, FileTextStats *stats);
+	void GetTextStats(int side, FileTextStats *stats) const;
 
 private:
 	boost::scoped_ptr<QuickCompareOptions> m_pOptions; /**< Compare options for diffutils. */

@@ -48,7 +48,7 @@ public:
 	virtual int ImportOptions(const String& filename);
 
 protected:
-	void SplitName(const String &strName, String &strPath, String &strValue);
+	void SplitName(const String &strName, String &strPath, String &strValue) const;
 	int LoadValueFromReg(HKEY hKey, const String& strName,
 		varprop::VariantValue &value);
 	int SaveValueToReg(HKEY hKey, const String& strValueName,

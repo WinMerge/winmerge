@@ -514,7 +514,7 @@ static String GetNtProductFromRegistry(const OSVERSIONINFOEX & osvi)
  * http://msdn.microsoft.com/en-us/library/ms724833(VS.85).aspx
  * @return String describing Windows version.
  */
-String CConfigLog::GetWindowsVer()
+String CConfigLog::GetWindowsVer() const
 {
 	OSVERSIONINFOEX osvi;
 	String sVersion;
