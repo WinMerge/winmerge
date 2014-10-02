@@ -70,7 +70,7 @@ public:
 // Operations
 public:
 	BOOL CloseMergeDocs();
-	CDirView * GetMainView();
+	CDirView * GetMainView() const;
 	CMergeDoc * GetMergeDocForDiff(int nFiles, BOOL * pNew);
 	CHexMergeDoc * GetHexMergeDocForDiff(int nFiles, BOOL * pNew);
 	BOOL ReusingDirDoc();

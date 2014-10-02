@@ -402,7 +402,7 @@ void CMDITabBar::OnLButtonUp(UINT nFlags, CPoint point)
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
-CRect CMDITabBar::GetCloseButtonRect(int nItem)
+CRect CMDITabBar::GetCloseButtonRect(int nItem) const
 {
 	CRect rc;
 	GetItemRect(nItem, &rc);
@@ -414,7 +414,7 @@ CRect CMDITabBar::GetCloseButtonRect(int nItem)
 	return rc;
 }
 
-int CMDITabBar::GetItemIndexFromPoint(CPoint point)
+int CMDITabBar::GetItemIndexFromPoint(CPoint point) const
 {
 	TCHITTESTINFO hit;
 	hit.pt = point;

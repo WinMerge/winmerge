@@ -33,15 +33,15 @@ public:
 	bool Pull();					// pull child nodes into view
 	CMarkdown &Pop();				// irreversible pull for chained calls
 	bool Push();					// reverse pull
-	std::string GetTagName();		// tag name
-	std::string GetTagText();		// tag name plus attributes
+	std::string GetTagName() const;	// tag name
+	std::string GetTagText() const;	// tag name plus attributes
 	std::string GetInnerText();		// text between enclosing tags
 	std::string GetOuterText();		// text including enclosing tags
 	std::string GetAttribute(const char *, std::string * = 0); // random or enumerate
 private:
 	int (*const memcmp)(const void *, const void *, size_t);
 	const char *const utags;
-	int FindTag(const char *, const char *);
+	int FindTag(const char *, const char *) const;
 	class Token;
 };
 

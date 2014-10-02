@@ -26,11 +26,11 @@ public:
 
 	void Clear();
 	void Add(ML_SIDE side1, unsigned line1, unsigned line2);
-	int LineInBlock(unsigned line, ML_SIDE side);
+	int LineInBlock(unsigned line, ML_SIDE side) const;
 
 protected:
-	int FirstSideInMovedBlock(unsigned secondSideLine);
-	int SecondSideInMovedBlock(unsigned firstSideLine);
+	int FirstSideInMovedBlock(unsigned secondSideLine) const;
+	int SecondSideInMovedBlock(unsigned firstSideLine) const;
 
 private:
 	typedef std::map<int, int> MovedLinesMap;

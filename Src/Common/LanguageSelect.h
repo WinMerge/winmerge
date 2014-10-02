@@ -30,7 +30,7 @@ public:
 	void SetModuleHandle(HMODULE hModule) { m_hModule = hModule; }
 	CLanguageSelect(UINT idMainMenu, UINT idDocMenu, BOOL bReloadMenu =TRUE, BOOL bUpdateTitle =TRUE, CWnd* pParent = NULL);   // standard constructor
 	BOOL AreLangsInstalled() const;
-	WORD GetLangId() { return m_wCurLanguage; };
+	WORD GetLangId() const { return m_wCurLanguage; }
 	void InitializeLanguage();
 	void UpdateDocTitle();
 	void ReloadMenu();
@@ -60,10 +60,10 @@ private:
 	unsigned m_codepage;
 // Implementation methods
 private:
-	String GetFileName(LANGID);
+	String GetFileName(LANGID) const;
 	BOOL LoadLanguageFile(LANGID);
 	BOOL SetLanguage(LANGID);
-	UINT GetDocResId();
+	UINT GetDocResId() const;
 	void LoadAndDisplayLanguages();
 
 // Dialog Data

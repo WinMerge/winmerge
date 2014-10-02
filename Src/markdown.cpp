@@ -294,7 +294,7 @@ CMarkdown::operator bool()
 	);
 }
 
-int CMarkdown::FindTag(const char *tags, const char *markup)
+int CMarkdown::FindTag(const char *tags, const char *markup) const
 {
 	while (int len = strlen(tags))
 	{
@@ -507,7 +507,7 @@ bool CMarkdown::Push()
 	return false;
 }
 
-std::string CMarkdown::GetTagName()
+std::string CMarkdown::GetTagName() const
 {
 	const char *p = first;
 	const char *q = first;
@@ -529,7 +529,7 @@ std::string CMarkdown::GetTagName()
 	return std::string(p, q - p);
 }
 
-std::string CMarkdown::GetTagText()
+std::string CMarkdown::GetTagText() const
 {
 	const char *p = first, *q = first;
 	if (q < ahead && (p = ++q) < ahead && (*q != '!' || ++q < ahead))

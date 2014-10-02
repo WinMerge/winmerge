@@ -3165,7 +3165,7 @@ void CDirView::OnHelp()
 /**
  * @brief true while user is editing a file name.
  */
-bool CDirView::IsLabelEdit()
+bool CDirView::IsLabelEdit() const
 {
 	return (NULL != m_pList->GetEditControl());
 }

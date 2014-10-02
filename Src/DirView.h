@@ -380,7 +380,7 @@ private:
 	bool ListShellContextMenu(SIDE_TYPE side);
 	CShellContextMenu* GetCorrespondingShellContextMenu(HMENU hMenu) const;
 	void ReloadColumns();
-	bool IsLabelEdit();
+	bool IsLabelEdit() const;
 	void CollapseSubdir(int sel);
 	void ExpandSubdir(int sel, bool bRecursive = false);
 	void GetColors(int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText) const;

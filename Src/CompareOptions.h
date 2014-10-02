@@ -107,7 +107,7 @@ public:
 	DiffutilsOptions(const CompareOptions& options);
 	DiffutilsOptions(const DiffutilsOptions& options);
 	void SetToDiffUtils();
-	void GetAsDiffOptions(DIFFOPTIONS &options);
+	void GetAsDiffOptions(DIFFOPTIONS &options) const;
 	virtual void SetFromDiffOptions(const DIFFOPTIONS & options);
 
 	enum DiffOutputType m_outputStyle; /**< Output style (for patch files) */

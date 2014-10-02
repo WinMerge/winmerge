@@ -195,7 +195,7 @@ void DiffutilsOptions::SetToDiffUtils()
  * @brief Gets options to DIFFOPTIONS structure.
  * @param [out] options Diffutils options.
  */
-void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options)
+void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options) const
 {
 	options.bFilterCommentsLines = m_filterCommentsLines;
 	options.bIgnoreBlankLines = m_bIgnoreBlankLines;

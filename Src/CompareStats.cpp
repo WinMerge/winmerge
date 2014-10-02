@@ -118,7 +118,7 @@ CompareStats::CMP_STATE CompareStats::GetCompareState() const
  * @param [in] diffcode DIFFITEM.diffcode to convert.
  * @return Compare result.
  */
-CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode)
+CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode) const
 {
 	DIFFCODE di = diffcode;
 	

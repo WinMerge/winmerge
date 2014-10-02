@@ -47,7 +47,7 @@ void FileVersion::SetFileVersion(unsigned versionMS, unsigned versionLS)
  * @return File version number as a string. Returns empty string if there is
  * no version number for the file.
  */
-String FileVersion::GetFileVersionString()
+String FileVersion::GetFileVersionString() const
 {
 	if (m_fileVersionMS == 0xffffffff && m_fileVersionLS >= 0xfffffffe)
 		return _T("");

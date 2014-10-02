@@ -44,7 +44,7 @@ void TimeSizeCompare::SetAdditionalOptions(bool ignoreSmallDiff)
  * @param [in] di Diffitem info.
  * @return DIFFCODE
  */
-int TimeSizeCompare::CompareFiles(int compMethod, const DIFFITEM &di)
+int TimeSizeCompare::CompareFiles(int compMethod, const DIFFITEM &di) const
 {
 	unsigned code = DIFFCODE::SAME;
 	if ((compMethod == CMP_DATE) || (compMethod == CMP_DATE_SIZE))

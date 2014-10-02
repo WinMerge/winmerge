@@ -66,7 +66,7 @@ public:
 	 *
 	 * @param szTest String of filenames, delimited with '|'
 	 */
-	bool TestAgainstRegList(const String& szTest);
+	bool TestAgainstRegList(const String& szTest) const;
 
 public:
 	String      m_filepath;
