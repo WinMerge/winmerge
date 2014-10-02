@@ -52,7 +52,6 @@
 #include "DirCmpReport.h"
 #include "DirCompProgressBar.h"
 #include "CompareStatisticsDlg.h"
-#include "PluginsListDlg.h"
 #include "UniFile.h"
 #include "ShellContextMenu.h"
 #include "DiffItem.h"
@@ -292,7 +291,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
-	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	ON_COMMAND(ID_VIEW_EXPAND, OnExpandFolder)
 	ON_COMMAND(ID_VIEW_COLLAPSE, OnCollapseFolder)
 	//}}AFX_MSG_MAP
@@ -4290,15 +4288,6 @@ void CDirView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 	{
 		pCmdUI->Enable(FALSE);
 	}
-}
-
-/**
- * @brief Show the plugins list dialog.
- */
-void CDirView::OnPluginsList()
-{
-	PluginsListDlg dlg;
-	dlg.DoModal();
 }
 
 /**
