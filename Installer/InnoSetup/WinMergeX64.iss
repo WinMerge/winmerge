@@ -178,6 +178,7 @@ Name: ShellExtension32bit; Description: {cm:ShellExtension32bit}; Types: full ty
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
 Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full
 Name: Frhed; Description: {cm:Frhed}; Flags: disablenouninstallwarning; Types: full typical
+Name: WinIMerge; Description: {cm:WinIMerge}; Flags: disablenouninstallwarning; Types: full typical
 
 ;Language components
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
@@ -481,16 +482,22 @@ Source: ..\..\Plugins\dlls\X64\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins;
 
 ;Frhed
 Source: ..\..\Externals\frhed\GPL.txt; DestDir: {app}\Frhed; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\hekseditU.dll; DestDir: {app}\Frhed; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\hekseditU.dll; DestDir: {app}\Frhed; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+
+;WinIMerge
+Source: ..\..\Externals\winimerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
+Source: ..\..\Externals\winimerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
+Source: ..\..\Externals\winimerge\Build\x64\Release\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
+Source: ..\..\Externals\winimerge\Build\x64\Release\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Components: WinIMerge
 
 [Icons]
 ;Start Menu Icons

@@ -306,6 +306,16 @@ void CHexMergeFrame::SavePosition()
 	}
 }
 
+void CHexMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
+{
+	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
+
+	CHexMergeDoc *pDoc = GetMergeDoc();
+	if (bActivate && pDoc)
+		this->GetParentFrame()->PostMessage(WM_USER+1);
+	return;
+}
+
 void CHexMergeFrame::OnSize(UINT nType, int cx, int cy) 
 {
 	CMDIChildWnd::OnSize(nType, cx, cy);

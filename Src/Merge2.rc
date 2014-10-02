@@ -55,6 +55,8 @@ IDI_FILEFILTER          ICON                    "res\\FileFilter.ico"
 IDI_LINEFILTER          ICON                    "res\\LineFilter.ico"
 IDI_EQUALTEXTFILE       ICON                    "res\\equaltextfile.ico"
 IDI_NOTEQUALTEXTFILE    ICON                    "res\\notequaltextfile.ico"
+IDI_EQUALIMAGE          ICON                    "res\\equalimage.ico"
+IDI_NOTEQUALIMAGE       ICON                    "res\\notequalimage.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////

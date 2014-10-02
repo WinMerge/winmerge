@@ -745,6 +745,12 @@
     <ClCompile Include="Merge7zFormatShellImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ImgMergeFrm.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropCompareImage.cpp">
+      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1379,6 +1385,12 @@
     </ClInclude>
     <ClInclude Include="OptionsCustomColors.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImgMergeFrm.h">
+      <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareImage.h">
+      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

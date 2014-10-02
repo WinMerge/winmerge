@@ -96,6 +96,58 @@ BEGIN
     END
 END
 
+IDR_POPUP_IMGMERGEVIEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "View &Differences",           ID_IMG_VIEWDIFFERENCES
+        POPUP "Diff &Block Size"
+        BEGIN
+            MENUITEM "&1",                      ID_IMG_DIFFBLOCKSIZE_1
+            MENUITEM "&2",                      ID_IMG_DIFFBLOCKSIZE_2
+            MENUITEM "&4",                      ID_IMG_DIFFBLOCKSIZE_4
+            MENUITEM "&8",                      ID_IMG_DIFFBLOCKSIZE_8
+            MENUITEM "1&6",                     ID_IMG_DIFFBLOCKSIZE_16
+            MENUITEM "&32",                     ID_IMG_DIFFBLOCKSIZE_32
+        END
+        POPUP "&Ignore Color Difference (Color Distance Threshold)"
+        BEGIN
+            MENUITEM "&0",                      ID_IMG_THRESHOLD_0
+            MENUITEM "&2",                      ID_IMG_THRESHOLD_2
+            MENUITEM "&4",                      ID_IMG_THRESHOLD_4
+            MENUITEM "&8",                      ID_IMG_THRESHOLD_8
+            MENUITEM "1&6",                     ID_IMG_THRESHOLD_16
+            MENUITEM "&32",                     ID_IMG_THRESHOLD_32
+            MENUITEM "64",                      ID_IMG_THRESHOLD_64
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Previous Page",              ID_IMG_PREVPAGE
+        MENUITEM "&Next Page",                  ID_IMG_NEXTPAGE
+        POPUP "&Active Pane"
+        BEGIN
+            MENUITEM "&Previous Page",          ID_IMG_CURPANE_PREVPAGE
+            MENUITEM "&Next Page",              ID_IMG_CURPANE_NEXTPAGE
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Zoom"
+        BEGIN
+            MENUITEM "&800%",                   ID_IMG_ZOOM_800
+            MENUITEM "&400%",                   ID_IMG_ZOOM_400
+            MENUITEM "&200%",                   ID_IMG_ZOOM_200
+            MENUITEM "&100%",                   ID_IMG_ZOOM_100
+            MENUITEM "&50%",                    ID_IMG_ZOOM_50
+            MENUITEM "&25%",                    ID_IMG_ZOOM_25
+        END
+        POPUP "&Overlay"
+        BEGIN
+            MENUITEM "&None",                   ID_IMG_OVERLAY_NONE
+            MENUITEM "&XOR",                    ID_IMG_OVERLAY_XOR
+            MENUITEM "&Alpha Blend",            ID_IMG_OVERLAY_ALPHABLEND
+        END
+        MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
+    END
+END
+
 IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
@@ -768,6 +820,7 @@ BEGIN
     VK_ADD,         ID_VIEW_ZOOMIN,         VIRTKEY, CONTROL, NOINVERT
     VK_SUBTRACT,    ID_VIEW_ZOOMOUT,        VIRTKEY, CONTROL, NOINVERT
     VK_MULTIPLY,    ID_VIEW_ZOOMNORMAL,     VIRTKEY, CONTROL, NOINVERT
+    "0",            ID_VIEW_ZOOMNORMAL,     VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -1898,6 +1951,16 @@ BEGIN
     PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,184,70,14
 END
 
+IDD_PROPPAGE_COMPARE_IMAGE DIALOGEX 0, 0, 235, 205
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Image"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Image File &Patterns:",IDC_STATIC,7,80,200,8
+    EDITTEXT        IDC_COMPAREIMAGE_PATTERNS,7,90,200,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Defaults",IDC_COMPAREIMAGE_DEFAULTS,7,200,70,14
+END
+
 IDD_ENCODINGERROR DIALOGEX 0, 0, 450, 55
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -2180,6 +2243,7 @@ BEGIN
     IDS_OPTIONSPG_MERGECOLORS "Differences"
     IDS_OPTIONSPG_GENCOMPARE "General"
     IDS_OPTIONSPG_FOLDERCOMPARE "Folder"
+    IDS_OPTIONSPG_IMAGECOMPARE "Image"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -3065,6 +3129,11 @@ BEGIN
     IDS_CLOSE_RIGHT_TABS   "Close R&ight Tabs"
     IDS_CLOSE_OTHER_TABS   "Close &Other Tabs"
     IDS_TABBAR_AUTO_MAXWIDTH "Enable &Auto Max Width"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_IMAGE_MENU         "&Image"
 END
 
 STRINGTABLE 
