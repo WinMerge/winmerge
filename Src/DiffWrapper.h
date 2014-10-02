@@ -159,20 +159,20 @@ public:
 	void SetCreatePatchFile(const String &filename);
 	void SetCreateDiffList(DiffList *diffList);
 	void SetDiffList(DiffList *diffList);
-	void GetOptions(DIFFOPTIONS *options);
+	void GetOptions(DIFFOPTIONS *options) const;
 	void SetOptions(const DIFFOPTIONS *options);
 	void SetTextForAutomaticPrediff(const String &text);
-	void SetPrediffer(PrediffingInfo * prediffer =NULL);
-	void GetPrediffer(PrediffingInfo * prediffer);
+	void SetPrediffer(const PrediffingInfo * prediffer =NULL);
+	void GetPrediffer(PrediffingInfo * prediffer) const;
 	void SetPatchOptions(const PATCHOPTIONS *options);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
-	bool GetDetectMovedBlocks() { return (m_pMovedLines[0] != NULL); }
+	bool GetDetectMovedBlocks() const { return (m_pMovedLines[0] != NULL); }
 	void SetAppendFiles(bool bAppendFiles);
 	void SetPaths(const PathContext &files, bool tempPaths);
 	void SetAlternativePaths(const PathContext &altPaths);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	bool RunFileDiff();
-	void GetDiffStatus(DIFFSTATUS *status);
+	void GetDiffStatus(DIFFSTATUS *status) const;
 	void AddDiffRange(DiffList *pDiffList, unsigned begin0, unsigned end0, unsigned begin1, unsigned end1, OP_TYPE op);
 	void AddDiffRange(DiffList *pDiffList, DIFFRANGE &dr);
 	void FixLastDiffRange(int nFiles, int bufferLines[], bool bMissingNL[], bool bIgnoreBlankLines);
@@ -183,21 +183,21 @@ public:
 	void SetFilterList(const String& filterStr);
 	void EnablePlugins(bool enable);
 	bool IsTrivialBytes(const char* Start, const char* End,
-		const FilterCommentsSet& filtercommentsset);
+		const FilterCommentsSet& filtercommentsset) const;
 	bool IsTrivialLine(const std::string &Line, const char * StartOfComment,
 	   const char * EndOfComment, const char * InLineComment,
-	   const FilterCommentsSet& filtercommentsset);
+	   const FilterCommentsSet& filtercommentsset) const;
 	bool PostFilter(int StartPos, int EndPos, int Direction,
 		int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
-		FilterCommentsSet& filtercommentsset);
+		FilterCommentsSet& filtercommentsset) const;
 	void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
 		int QtyLinesRight, OP_TYPE &Op, FilterCommentsManager &filtercommentsmanager,
-		const String& FileNameExt);
+		const String& FileNameExt) const;
 
 protected:
-	String FormatSwitchString();
+	String FormatSwitchString() const;
 	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
-		int * bin_status, int * bin_file);
+		int * bin_status, int * bin_file) const;
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
 	void WritePatchFile(struct change * script, file_data * inf);
 public:
@@ -205,7 +205,7 @@ public:
 		struct change * script10, struct change * script12,
 		const file_data * inf10, const file_data * inf12);
 	void FreeDiffUtilsScript3(struct change * & script10, struct change * & script12);
-	bool RegExpFilter(int StartPos, int EndPos, int FileNo);
+	bool RegExpFilter(int StartPos, int EndPos, int FileNo) const;
 
 private:
 	DiffutilsOptions m_options;

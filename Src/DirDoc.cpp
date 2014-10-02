@@ -395,7 +395,7 @@ void CDirDoc::Rescan()
  * @return TRUE if item should be shown, FALSE if not.
  * @sa CDirDoc::Redisplay()
  */
-bool CDirDoc::IsShowable(const DIFFITEM & di)
+bool CDirDoc::IsShowable(const DIFFITEM & di) const
 {
 	if (di.customFlags1 & ViewCustomFlags::HIDDEN)
 		return FALSE;
@@ -490,7 +490,7 @@ void CDirDoc::Redisplay()
 	m_pDirView->Redisplay();
 }
 
-CDirView * CDirDoc::GetMainView()
+CDirView * CDirDoc::GetMainView() const
 {
 	CDirView *pView = NULL;
 	if (POSITION pos = GetFirstViewPosition())
@@ -1174,7 +1174,7 @@ void CDirDoc::SetItemViewFlag(UINT flag, UINT mask)
  * @brief Checks if current folders are opened from archive file.
  * @return true if we are inside archive, false otherwise.
  */
-bool CDirDoc::IsArchiveFolders()
+bool CDirDoc::IsArchiveFolders() const
 {
 	if (m_pTempPathContext)
 		return true;

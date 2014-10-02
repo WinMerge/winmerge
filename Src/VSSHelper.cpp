@@ -33,7 +33,7 @@
 #include "MergeApp.h"
 #include "resource.h"
 
-String VSSHelper::GetProjectBase()
+String VSSHelper::GetProjectBase() const
 {
 	return m_strVssProjectBase;
 }
@@ -229,7 +229,7 @@ void VSSHelper::GetFullVSSPath(const String& strSavePath, bool & bVCProj)
  * @param [in] charset pointer to string containing delimiter chars
  */
 bool VSSHelper::GetWordFromFile(HANDLE pfile, TCHAR * buffer,
-		DWORD dwBufferSize, TCHAR * charset)
+		DWORD dwBufferSize, TCHAR * charset) const
 {
 	TCHAR buf[1024] = {0};
 	const DWORD bytesToRead = sizeof(buf);
@@ -249,7 +249,7 @@ bool VSSHelper::GetWordFromFile(HANDLE pfile, TCHAR * buffer,
 }
 
 int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
-		TCHAR * outBuffer, DWORD dwOutBufferSize, TCHAR * charset)
+		TCHAR * outBuffer, DWORD dwOutBufferSize, TCHAR * charset) const
 {
 	TCHAR ctemp = '\0';
 	TCHAR * pcharset = NULL;
@@ -330,7 +330,7 @@ int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
 	return buffercount;
 }
 
-bool VSSHelper::GetVCProjName(HANDLE hFile, HANDLE tFile)
+bool VSSHelper::GetVCProjName(HANDLE hFile, HANDLE tFile) const
 {
 	TCHAR buffer[1024] = {0};
 	DWORD dwNumWritten = 0;
@@ -367,7 +367,7 @@ bool VSSHelper::GetVCProjName(HANDLE hFile, HANDLE tFile)
 	return true;
 }
 
-bool VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf)
+bool VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf) const
 {
 	TCHAR buffer[1024] = {0};
 	DWORD dwNumWritten = 0;
@@ -400,7 +400,7 @@ bool VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf)
 	return true;
 }
 
-bool VSSHelper::GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf)
+bool VSSHelper::GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf) const
 {
 	TCHAR buffer[1024] = {0};
 	DWORD dwNumWritten = 0;

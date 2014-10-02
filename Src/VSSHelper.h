@@ -34,19 +34,19 @@
 class VSSHelper
 {
 public:
-	String GetProjectBase();
+	String GetProjectBase() const;
 	bool SetProjectBase(const String& strPath);
 
 	bool ReLinkVCProj(const String& strSavePath, String& sError);
 	void GetFullVSSPath(const String& strSavePath, bool & bVCProj);
 
 protected:
-	bool GetWordFromFile(HANDLE pfile, TCHAR * buffer, DWORD dwBufferSize, TCHAR * charset = NULL);
+	bool GetWordFromFile(HANDLE pfile, TCHAR * buffer, DWORD dwBufferSize, TCHAR * charset = NULL) const;
 	int GetWordFromBuffer(TCHAR * inBuffer, DWORD dwInBufferSize,
-		TCHAR * outBuffer, DWORD dwOutBufferSize, TCHAR * charset = NULL);
-	bool GetVCProjName(HANDLE hFile, HANDLE tFile);
-	bool GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf);
-	bool GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf);
+		TCHAR * outBuffer, DWORD dwOutBufferSize, TCHAR * charset = NULL) const;
+	bool GetVCProjName(HANDLE hFile, HANDLE tFile) const;
+	bool GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf) const;
+	bool GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf) const;
 
 private:
 	String m_strVssProjectBase;

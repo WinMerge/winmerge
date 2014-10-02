@@ -638,7 +638,7 @@ FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 
 int CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
-	DWORD dwFlags[] /*=0*/, PackingInfo * infoUnpacker /*= NULL*/)
+	const DWORD dwFlags[] /*=0*/, const PackingInfo * infoUnpacker /*= NULL*/)
 {
 	int pane;
 	FileFilterHelper filter;
@@ -665,7 +665,7 @@ int CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
  */
 int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
-	DWORD dwFlags[] /*=0*/, PackingInfo * infoUnpacker /*= NULL*/)
+	const DWORD dwFlags[] /*=0*/, const PackingInfo * infoUnpacker /*= NULL*/)
 {
 	BOOL docNull;
 	if (!m_pMenus[MENU_MERGEVIEW])
@@ -772,7 +772,7 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 }
 
 void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, 
-	const PathContext &paths, bool bRO[])
+	const PathContext &paths, const bool bRO[])
 {
 	BOOL docNull;
 	if (!m_pMenus[MENU_HEXMERGEVIEW])
@@ -782,7 +782,7 @@ void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc,
 }
 
 int CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		DWORD dwFlags[], PackingInfo * infoUnpacker/* = NULL*/)
+		const DWORD dwFlags[], const PackingInfo * infoUnpacker/* = NULL*/)
 {
 	CImgMergeFrame *pImgMergeFrame = new CImgMergeFrame();
 	if (!CImgMergeFrame::menu.m_hMenu)
@@ -1019,9 +1019,9 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
  * @param [in] prediffer Prediffer plugin name.
  * @return TRUE if opening files and compare succeeded, FALSE otherwise.
  */
-BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
-	DWORD dwFlags[] /*=0*/, bool bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
-	String prediffer /*=_T("")*/, PackingInfo *infoUnpacker/*=NULL*/)
+BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
+	const DWORD dwFlags[] /*=0*/, bool bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
+	String prediffer /*=_T("")*/, const PackingInfo *infoUnpacker/*=NULL*/)
 {
 	if (pDirDoc && !pDirDoc->CloseMergeDocs())
 		return FALSE;

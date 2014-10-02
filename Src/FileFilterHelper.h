@@ -59,9 +59,9 @@ struct FileFilterInfo
 class IDiffFilter
 {
 public:
-	virtual bool includeFile(const String& szFileName) = 0;
-	virtual bool includeDir(const String& szDirName) = 0;
-	bool includeFile(const String& szFileName1, const String& szFileName2)
+	virtual bool includeFile(const String& szFileName) const = 0;
+	virtual bool includeDir(const String& szDirName) const = 0;
+	bool includeFile(const String& szFileName1, const String& szFileName2) const
 	{
 		if (!szFileName1.empty())
 			return includeFile(szFileName1);
@@ -70,7 +70,7 @@ public:
 		else
 			return false;
 	}
-	bool includeFile(const String& szFileName1, const String& szFileName2, const String& szFileName3)
+	bool includeFile(const String& szFileName1, const String& szFileName2, const String& szFileName3) const
 	{
 		if (!szFileName1.empty())
 			return includeFile(szFileName1);
@@ -81,7 +81,7 @@ public:
 		else
 			return false;
 	}
-	bool includeDir(const String& szDirName1, const String& szDirName2)
+	bool includeDir(const String& szDirName1, const String& szDirName2) const
 	{
 		if (!szDirName1.empty())
 			return includeDir(szDirName1);
@@ -90,7 +90,7 @@ public:
 		else
 			return false;
 	}
-	bool includeDir(const String& szDirName1, const String& szDirName2, const String& szDirName3)
+	bool includeDir(const String& szDirName1, const String& szDirName2, const String& szDirName3) const
 	{
 		if (!szDirName1.empty())
 			return includeDir(szDirName1);
@@ -147,8 +147,8 @@ public:
 	String GetFilterNameOrMask() const;
 	bool SetFilter(const String &filter);
 
-	bool includeFile(const String& szFileName);
-	bool includeDir(const String& szDirName);
+	bool includeFile(const String& szFileName) const;
+	bool includeDir(const String& szDirName) const;
 
 protected:
 	String ParseExtensions(const String &extensions) const;

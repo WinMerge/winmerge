@@ -70,7 +70,7 @@ public:
 // Operations
 public:
 	BOOL CloseMergeDocs();
-	CDirView * GetMainView();
+	CDirView * GetMainView() const;
 	CMergeDoc * GetMergeDocForDiff(int nFiles, BOOL * pNew);
 	CHexMergeDoc * GetHexMergeDocForDiff(int nFiles, BOOL * pNew);
 	BOOL ReusingDirDoc();
@@ -127,7 +127,7 @@ public:
 	void SetPluginPrediffer(const String& filteredFilenames, const String & prediffer);
 	void FetchPluginInfos(const String& filteredFilenames, 
 	                      PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
-	bool IsShowable(const DIFFITEM & di);
+	bool IsShowable(const DIFFITEM & di) const;
 
 	bool HasDiffs() const { return m_pCtxt != NULL; }
 	const CDiffContext & GetDiffContext() const { return *m_pCtxt; }
@@ -152,7 +152,7 @@ public:
 	void SetItemViewFlag(Poco::UIntPtr key, UINT flag, UINT mask);
 	void SetItemViewFlag(UINT flag, UINT mask);
 	const CompareStats * GetCompareStats() const { return m_pCompareStats.get(); };
-	bool IsArchiveFolders();
+	bool IsArchiveFolders() const;
 
 protected:
 	void LoadLineFilterList();

@@ -269,7 +269,7 @@ int DiffUtils::diffutils_compare_files()
  * @param [in] FileNo File to match.
  * return true if any of the expressions matches.
  */
-bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo)
+bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 {
 	if (m_pFilterList == NULL)
 	{
@@ -312,7 +312,7 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo)
  * @return TRUE when compare succeeds, FALSE if error happened during compare.
  */
 bool DiffUtils::Diff2Files(struct change ** diffs, int depth,
-		int * bin_status, bool bMovedBlocks, int * bin_file)
+		int * bin_status, bool bMovedBlocks, int * bin_file) const
 {
 	bool bRet = true;
 	SE_Handler seh;
@@ -343,7 +343,7 @@ static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats)
  * @param [out] diffs Count of real differences.
  * @param [out] trivialDiffs Count of ignored differences.
  */
-void DiffUtils::GetDiffCounts(int & diffs, int & trivialDiffs)
+void DiffUtils::GetDiffCounts(int & diffs, int & trivialDiffs) const
 {
 	diffs = m_ndiffs;
 	trivialDiffs = m_ntrivialdiffs;
@@ -354,7 +354,7 @@ void DiffUtils::GetDiffCounts(int & diffs, int & trivialDiffs)
  * @param [in] side For which file to return statistics.
  * @param [out] stats Stats as asked.
  */
-void DiffUtils::GetTextStats(int side, FileTextStats *stats)
+void DiffUtils::GetTextStats(int side, FileTextStats *stats) const
 {
 	CopyTextStats(&m_inf[side], stats);
 }

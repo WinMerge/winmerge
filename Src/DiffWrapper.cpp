@@ -159,7 +159,7 @@ void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
  * format used outside CDiffWrapper and returns them.
  * @param [in,out] options Pointer to structure getting used options.
  */
-void CDiffWrapper::GetOptions(DIFFOPTIONS *options)
+void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
 {
 	assert(options);
 	DIFFOPTIONS tmpOptions = {0};
@@ -187,7 +187,7 @@ void CDiffWrapper::SetTextForAutomaticPrediff(const String &text)
 {
 	m_sToFindPrediffer = text;
 }
-void CDiffWrapper::SetPrediffer(PrediffingInfo * prediffer /*=NULL*/)
+void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*=NULL*/)
 {
 	// all flags are set correctly during the construction
 	m_infoPrediffer.reset(new PrediffingInfo);
@@ -195,7 +195,7 @@ void CDiffWrapper::SetPrediffer(PrediffingInfo * prediffer /*=NULL*/)
 	if (prediffer)
 		*m_infoPrediffer = *prediffer;
 }
-void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer)
+void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer) const
 {
 	*prediffer = *m_infoPrediffer;
 }
@@ -262,7 +262,7 @@ void CDiffWrapper::SetDetectMovedBlocks(bool bDetectMovedBlocks)
  * @return Returns true if all characters are trivial
  */
 bool CDiffWrapper::IsTrivialBytes(const char* Start, const char* End,
-	const FilterCommentsSet& filtercommentsset)
+	const FilterCommentsSet& filtercommentsset) const
 {
 	std::string testdata(Start, End);
 	//@TODO: Need to replace the following trivial string with a user specified string
@@ -283,7 +283,7 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
 				   const char * StartOfComment,	
 				   const char * EndOfComment,	
 				   const char * InLineComment,	
-				   const FilterCommentsSet& filtercommentsset)
+				   const FilterCommentsSet& filtercommentsset) const
 {
 	//Do easy test first
 	if ((!StartOfComment || !EndOfComment) && !InLineComment)
@@ -379,7 +379,7 @@ static void ReplaceSpaces(std::string & str, const char *rep)
 */
 bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 	int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
-	FilterCommentsSet& filtercommentsset)
+	FilterCommentsSet& filtercommentsset) const
 {
 	if (Op == OP_TRIVIAL) //If already set to trivial, then exit.
 		return true;
@@ -501,7 +501,7 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 */
 void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
 	int QtyLinesRight, OP_TYPE &Op, FilterCommentsManager &filtercommentsmanager,
-	const String& FileNameExt)
+	const String& FileNameExt) const
 {
 	if (Op == OP_TRIVIAL)
 		return;
@@ -999,7 +999,7 @@ void CDiffWrapper::FixLastDiffRange(int nFiles, int bufferLines[], bool bMissing
 /**
  * @brief Returns status-data from diff-engine last run
  */
-void CDiffWrapper::GetDiffStatus(DIFFSTATUS *status)
+void CDiffWrapper::GetDiffStatus(DIFFSTATUS *status) const
 {
 	std::memcpy(status, &m_status, sizeof(DIFFSTATUS));
 }
@@ -1007,7 +1007,7 @@ void CDiffWrapper::GetDiffStatus(DIFFSTATUS *status)
 /**
  * @brief Formats command-line for diff-engine last run (like it was called from command-line)
  */
-String CDiffWrapper::FormatSwitchString()
+String CDiffWrapper::FormatSwitchString() const
 {
 	String switches;
 	TCHAR tmpNum[5] = {0};
@@ -1090,7 +1090,7 @@ void CDiffWrapper::SetAppendFiles(bool bAppendFiles)
  * folder compare function is in DiffFileData.cpp.
  */
 bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
-	int * bin_status, int * bin_file)
+	int * bin_status, int * bin_file) const
 {
 	bool bRet = true;
 	SE_Handler seh;
@@ -1161,7 +1161,7 @@ CDiffWrapper::FreeDiffUtilsScript3(struct change * & script10, struct change * &
  * @param [in] FileNo File to match.
  * return true if any of the expressions matches.
  */
-bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo)
+bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 {
 	if (m_pFilterList == NULL)
 	{	

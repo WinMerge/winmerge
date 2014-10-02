@@ -533,7 +533,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
 /**
  * @brief Load files and initialize frame's compare result icon
  */
-HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, bool bRO[])
+HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, const bool bRO[])
 {
 	CHexMergeFrame *pf = GetParentFrame();
 	ASSERT(pf);

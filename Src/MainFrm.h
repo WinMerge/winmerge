@@ -102,16 +102,16 @@ public:
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
-	BOOL DoFileOpen(PathContext *pFiles = NULL,
-		DWORD dwFlags[] = NULL, bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), PackingInfo * infoUnpacker = NULL);
+	BOOL DoFileOpen(const PathContext *pFiles = NULL,
+		const DWORD dwFlags[] = NULL, bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), const PackingInfo * infoUnpacker = NULL);
 	int ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		DWORD dwFlags[], PackingInfo * infoUnpacker = NULL);
+		const DWORD dwFlags[], const PackingInfo * infoUnpacker = NULL);
 	int ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		DWORD dwFlags[], PackingInfo * infoUnpacker = NULL);
+		const DWORD dwFlags[], const PackingInfo * infoUnpacker = NULL);
 	void ShowHexMergeDoc(CDirDoc * pDirDoc,
-		const PathContext &paths, bool bRO[]);
+		const PathContext &paths, const bool bRO[]);
 	int ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		DWORD dwFlags[], PackingInfo * infoUnpacker = NULL);
+		const DWORD dwFlags[], const PackingInfo * infoUnpacker = NULL);
 
 	void UpdateResources();
 	CString SetStatus(LPCTSTR status);
