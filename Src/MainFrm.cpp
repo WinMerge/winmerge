@@ -1095,8 +1095,6 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 
 	DecompressResult res = DecompressArchive(m_hWnd, files);
 	if (res.pTempPathContext)
-	DecompressResult res = DecompressArchive(m_hWnd, files);
-	if (res.pTempPathContext)
 	{
 		pathsType = res.pathsType;
 		files = res.files;
