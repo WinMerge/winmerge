@@ -124,6 +124,7 @@ public:
 	void SelectNone();
 	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);
 	virtual CCrystalTextBuffer *LocateTextBuffer ();
+	const CCrystalTextBuffer *LocateTextBuffer () const { return const_cast<CMergeEditView *>(this)->LocateTextBuffer(); };
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
 	CString GetSelectedText();
 	CString GetLineText(int idx);
