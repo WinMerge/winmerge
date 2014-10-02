@@ -846,7 +846,7 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId)
  * @param [in] wLangId Language ID.
  * @return Language filename, or empty string if no file for language found.
  */
-String CLanguageSelect::GetFileName(LANGID wLangId)
+String CLanguageSelect::GetFileName(LANGID wLangId) const
 {
 	String filename;
 	String path = env_GetProgPath().append(szRelativePath);
@@ -1161,7 +1161,7 @@ void CLanguageSelect::ReloadMenu()
 }
 
 
-UINT CLanguageSelect::GetDocResId()
+UINT CLanguageSelect::GetDocResId() const
 {
 	if (((CMDIFrameWnd*)AfxGetApp()->m_pMainWnd)->MDIGetActive())
 		return m_idDocMenu;

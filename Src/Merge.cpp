@@ -1360,7 +1360,7 @@ void CMergeApp::ReloadMenu()
  * @brief Get default editor path.
  * @return full path to the editor program executable.
  */
-String CMergeApp::GetDefaultEditor()
+String CMergeApp::GetDefaultEditor() const
 {
 	String path = env_GetWindowsDirectory();
 	path += _T("\\NOTEPAD.EXE");
@@ -1377,7 +1377,7 @@ String CMergeApp::GetDefaultEditor()
  *  not exist.
  * @return Default folder for user filters.
  */
-String CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
+String CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/) const
 {
 	String pathMyFolders = env_GetMyDocuments();
 	String pathFilters(pathMyFolders);

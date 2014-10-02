@@ -37,7 +37,7 @@ void MovedLines::Add(ML_SIDE side1, unsigned line1,	unsigned line2)
  * @param [in] line Linenumber to check.
  * @param [in] side Side of the linenumber.
  */
-int MovedLines::LineInBlock(unsigned line, ML_SIDE side)
+int MovedLines::LineInBlock(unsigned line, ML_SIDE side) const
 {
 	if (side == SIDE_LEFT)
 		return SecondSideInMovedBlock(line);
@@ -48,7 +48,7 @@ int MovedLines::LineInBlock(unsigned line, ML_SIDE side)
 /**
  * @brief Get right->left info for a moved line (real line number)
  */
-int MovedLines::FirstSideInMovedBlock(unsigned secondSideLine)
+int MovedLines::FirstSideInMovedBlock(unsigned secondSideLine) const
 {
 	MovedLinesMap::const_iterator iter;
 	iter = m_moved1.find(secondSideLine);
@@ -61,7 +61,7 @@ int MovedLines::FirstSideInMovedBlock(unsigned secondSideLine)
 /**
  * @brief Get left->right info for a moved line (real line number)
  */
-int MovedLines::SecondSideInMovedBlock(unsigned firstSideLine)
+int MovedLines::SecondSideInMovedBlock(unsigned firstSideLine) const
 {
 	MovedLinesMap::const_iterator iter;
 	iter = m_moved0.find(firstSideLine);

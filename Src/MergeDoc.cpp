@@ -315,7 +315,7 @@ CMergeEditView * CMergeDoc::GetActiveMergeView()
 	return pMergeEditView;
 }
 
-void CMergeDoc::SetUnpacker(PackingInfo * infoNewHandler)
+void CMergeDoc::SetUnpacker(const PackingInfo * infoNewHandler)
 {
 	if (infoNewHandler)
 	{
@@ -323,7 +323,7 @@ void CMergeDoc::SetUnpacker(PackingInfo * infoNewHandler)
 	}
 }
 
-void CMergeDoc::SetPrediffer(PrediffingInfo * infoPrediffer)
+void CMergeDoc::SetPrediffer(const PrediffingInfo * infoPrediffer)
 {
 	m_diffWrapper.SetPrediffer(infoPrediffer);
 }
@@ -3171,7 +3171,7 @@ void CMergeDoc::OnFileRecompareAsBinary()
 
 // Return file extension either from file name or file description (if WinMerge is used as an
 // external Rational ClearCase tool.
-String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription)
+String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const
 {
 	String sExt;
 	paths_SplitFilename(sFileName, NULL, NULL, &sExt);

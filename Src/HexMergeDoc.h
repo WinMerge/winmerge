@@ -82,7 +82,7 @@ public:
 	BOOL CloseNow();
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
-	HRESULT OpenDocs(const PathContext &paths, bool bRO[]);
+	HRESULT OpenDocs(const PathContext &paths, const bool bRO[]);
 	void CheckFileChanged(void);
 private:
 	static void CopySel(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);

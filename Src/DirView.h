@@ -482,11 +482,11 @@ private:
 	CShellContextMenu* GetCorrespondingShellContextMenu(HMENU hMenu) const;
 	void ReloadColumns();
 	void ResetColumnWidths();
-	bool IsLabelEdit();
-	bool IsItemSelectedSpecial();
+	bool IsLabelEdit() const;
+	bool IsItemSelectedSpecial() const;
 	void CollapseSubdir(int sel);
 	void ExpandSubdir(int sel, bool bRecursive = false);
-	void GetColors(int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText);
+	void GetColors(int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText) const;
 	DirViewTreeState *SaveTreeState();
 	void RestoreTreeState(DirViewTreeState *pTreeState);
 	void PrepareDragData(String& filesForDroping);

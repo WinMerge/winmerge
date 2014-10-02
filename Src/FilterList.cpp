@@ -60,7 +60,7 @@ void FilterList::RemoveAllFilters()
  * @brief Returns if list has any expressions.
  * @return true if list contains one or more expressions.
  */
-bool FilterList::HasRegExps()
+bool FilterList::HasRegExps() const
 {
 	return !m_list.empty();
 }
@@ -120,7 +120,7 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
  * This function returns the regular expression string that matched last.
  * @return Last matched expression, or NULL in case no matches yet.
  */
-const char * FilterList::GetLastMatchExpression()
+const char * FilterList::GetLastMatchExpression() const
 {
 	return m_lastMatchExpression->c_str();
 }

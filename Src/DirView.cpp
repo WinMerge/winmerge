@@ -4210,7 +4210,7 @@ void CDirView::OnHelp()
 /**
  * @brief true while user is editing a file name.
  */
-bool CDirView::IsLabelEdit()
+bool CDirView::IsLabelEdit() const
 {
 	return (NULL != m_pList->GetEditControl());
 }
@@ -4218,7 +4218,7 @@ bool CDirView::IsLabelEdit()
 /**
  * @brief true if selected item is a "special item".
  */
-bool CDirView::IsItemSelectedSpecial()
+bool CDirView::IsItemSelectedSpecial() const
 {
 	int nSelItem = m_pList->GetNextItem(-1, LVNI_SELECTED);
 	ASSERT(-1 != nSelItem);
@@ -4394,7 +4394,7 @@ void CDirView::OnBnClickedComparisonStop()
 /**
  * @brief Populate colors for items in view, depending on difference status
  */
-void CDirView::GetColors (int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText)
+void CDirView::GetColors (int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText) const
 {
 	const DIFFITEM& di = GetDiffItem (nRow);
 

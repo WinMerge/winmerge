@@ -57,7 +57,7 @@ protected:
 private:
 	bool DoFile(String &sError);
 	void WritePluginsInLogFile(const wchar_t *transformationEvent);
-	String GetWindowsVer();
+	String GetWindowsVer() const;
 	String GetBuildFlags() const;
 	void FileWriteString(const String& lpsz);
 	void CloseFile();

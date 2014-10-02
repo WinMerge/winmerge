@@ -221,8 +221,8 @@ public:
 	void SetEditedAfterRescan(int nBuffer);
 	bool IsEditedAfterRescan(int nBuffer) { return m_bEditAfterRescan[nBuffer]; }
 
-	void SetUnpacker(PackingInfo * infoUnpacker);
-	void SetPrediffer(PrediffingInfo * infoPrediffer);
+	void SetUnpacker(const PackingInfo * infoUnpacker);
+	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
 	void SetMergeViews(CMergeEditView * pView[]);
 	void SetMergeDetailViews(CMergeEditView * pView[]);
@@ -276,7 +276,7 @@ public:
 	std::vector<CMergeEditView*>::iterator curUndo;
 	void FlushAndRescan(bool bForced = false);
 	void SetCurrentDiff(int nDiff);
-	int GetCurrentDiff() { return m_nCurDiff; }
+	int GetCurrentDiff() const { return m_nCurDiff; }
 	virtual ~CMergeDoc();
 	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
@@ -369,7 +369,7 @@ private:
 	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange, int lo0, int hi0, int lo1, int hi1);
 	int GetMatchCost(const String &Line0, const String &Line1);
 	void FlagMovedLines();
-	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription);
+	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;
 	void DoFileSave(int pane);
 };
 
