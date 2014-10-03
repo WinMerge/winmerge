@@ -169,6 +169,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CImgMergeBuffer.hpp" />
     <ClInclude Include="CImgMergeWindow.hpp" />
     <ClInclude Include="CImgWindow.hpp" />
     <ClInclude Include="Resource.h" />

@@ -21,10 +21,13 @@
     <ClInclude Include="WinIMergeLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CImgMergeWindow.hpp">
+    <ClInclude Include="CImgWindow.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CImgWindow.hpp">
+    <ClInclude Include="CImgMergeBuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CImgMergeWindow.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
