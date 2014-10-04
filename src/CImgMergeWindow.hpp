@@ -23,6 +23,25 @@
 #include "CImgMergeBuffer.hpp"
 #include "WinIMergeLib.h"
 
+
+namespace
+{
+	RGBQUAD COLORREFtoRGBQUAD(COLORREF c)
+	{
+		RGBQUAD rgb;
+		rgb.rgbRed   = GetRValue(c);
+		rgb.rgbGreen = GetGValue(c);
+		rgb.rgbBlue  = GetBValue(c);
+		rgb.rgbReserved = (c >> 24);
+		return rgb;
+	}
+
+	COLORREF RGBQUADtoCOLORREF(RGBQUAD c)
+	{
+		return RGB(c.rgbRed, c.rgbGreen, c.rgbBlue) | (c.rgbReserved << 24);
+	}
+}
+
 class CImgMergeWindow : public IImgMergeWindow
 {
 	struct EventListenerInfo 
@@ -175,23 +194,23 @@ public:
 
 	COLORREF GetDiffColor() const
 	{
-		return m_buffer.GetDiffColor();
+		return RGBQUADtoCOLORREF(m_buffer.GetDiffColor());
 	}
 
 	void SetDiffColor(COLORREF clrDiffColor)
 	{
-		m_buffer.SetDiffColor(clrDiffColor);
+		m_buffer.SetDiffColor(COLORREFtoRGBQUAD(clrDiffColor));
 		Invalidate();
 	}
 
 	COLORREF GetSelDiffColor() const
 	{
-		return m_buffer.GetSelDiffColor();
+		return RGBQUADtoCOLORREF(m_buffer.GetSelDiffColor());
 	}
 
 	void SetSelDiffColor(COLORREF clrSelDiffColor)
 	{
-		m_buffer.SetSelDiffColor(clrSelDiffColor);
+		m_buffer.SetSelDiffColor(COLORREFtoRGBQUAD(clrSelDiffColor));
 		Invalidate();
 	}
 
@@ -295,12 +314,12 @@ public:
 
 	OVERLAY_MODE GetOverlayMode() const
 	{
-		return m_buffer.GetOverlayMode();
+		return static_cast<OVERLAY_MODE>(m_buffer.GetOverlayMode());
 	}
 
 	void SetOverlayMode(OVERLAY_MODE overlayMode)
 	{
-		m_buffer.SetOverlayMode(overlayMode);
+		m_buffer.SetOverlayMode(static_cast<CImgMergeBuffer::OVERLAY_MODE>(overlayMode));
 		Invalidate();
 	}
 

@@ -18,12 +18,11 @@
 #pragma once
 
 #include "FreeImagePlus.h"
-#include "WinIMergeLib.h"
 #include <string>
 #include <algorithm>
 #include <cstdio>
+#include <cstring>
 #include <cmath>
-#include <array>
 #include <vector>
 
 template<class T> struct Point
@@ -130,6 +129,8 @@ struct DiffInfo
 	Rect<int> rc;
 };
 
+struct DiffStat { int d1, d2, d3, detc; };
+
 struct UndoRecord
 {
 	UndoRecord(int pane, FIBITMAP *oldbitmap, FIBITMAP *newbitmap, const int modcountnew[3]) : 
@@ -234,6 +235,17 @@ struct UndoRecords
 	int m_modcount[3];
 	int m_modcountonsave[3];
 };
+
+#ifndef _WIN32
+class fipWinImage : public fipImage
+{
+public:
+	fipWinImage(FREE_IMAGE_TYPE image_type = FIT_BITMAP, unsigned width = 0, unsigned height = 0, unsigned bpp = 0) :
+	  fipImage(image_type, width, height, bpp) {}
+	fipWinImage(const fipWinImage& Image) : fipImage(Image) {}
+	virtual ~fipWinImage() {}
+};
+#endif
 
 class fipImageEx : public fipImage
 {
@@ -351,10 +363,15 @@ public:
    
 	BOOL openU(const wchar_t* lpszPathName, BOOL create_new, BOOL read_only, int flags = 0)
 	{
-		wchar_t shortname[260];
 		char filename[260];
-		GetShortPathName(lpszPathName, shortname, sizeof(shortname));
+#ifdef _WIN32
+		wchar_t shortname[260] = {0};
+		GetShortPathNameW(lpszPathName, shortname, sizeof(shortname)/sizeof(shortname[0]));
 		wsprintfA(filename, "%S", shortname);
+#else
+		snprintf(filename, sizeof(filename), "%ls", lpszPathName);
+		
+#endif
 		BOOL result = open(filename, create_new, read_only, flags);
 		return result;
 	}
@@ -362,7 +379,13 @@ public:
 	bool saveU(const wchar_t* lpszPathName, int flag = 0) const
 	{
 		FILE *fp = NULL;
+#ifdef _WIN32
 		_wfopen_s(&fp, lpszPathName, L"r+b");
+#else
+		char filename[260];
+		snprintf(filename, sizeof(filename), "%ls", lpszPathName);
+		fp = fopen(filename, "r+b");
+#endif
 		if (!fp)
 			return false;
 		FreeImageIO io;
@@ -408,20 +431,32 @@ namespace
 
 class CImgMergeBuffer
 {
+	typedef Array2D<int> DiffBlocks;
+
 public:
+	enum OVERLAY_MODE {
+		OVERLAY_NONE = 0, OVERLAY_XOR, OVERLAY_ALPHABLEND
+	};
+
 	CImgMergeBuffer() : 
 		  m_nImages(0)
-		, m_diffBlockSize(8)
-		, m_overlayMode(IImgMergeWindow::OVERLAY_NONE)
-		, m_overlayAlpha(0.3)
 		, m_showDifferences(true)
-		, m_selDiffColor(RGB(0xff, 0x40, 0x40))
-		, m_diffColor(RGB(0xff, 0xff, 0x40))
+		, m_overlayMode(OVERLAY_NONE)
+		, m_overlayAlpha(0.3)
+		, m_diffBlockSize(8)
+		, m_selDiffColor()
+		, m_diffColor()
 		, m_diffColorAlpha(0.7)
-		, m_diffCount(0)
-		, m_currentDiffIndex(-1)
 		, m_colorDistanceThreshold(0.0)
+		, m_currentDiffIndex(-1)
+		, m_diffCount(0)
 	{
+		m_selDiffColor.rgbRed = 0xff;
+		m_selDiffColor.rgbGreen = 0x40;
+		m_selDiffColor.rgbBlue = 0x40;
+		m_diffColor.rgbRed   = 0xff;
+		m_diffColor.rgbGreen = 0xff;
+		m_diffColor.rgbBlue  = 0x40;
 		for (int i = 0; i < 3; ++i)
 		{
 			m_currentPage[i] = 0;
@@ -431,6 +466,7 @@ public:
 
 	~CImgMergeBuffer()
 	{
+		CloseImages();
 	}
 
 	const wchar_t *GetFileName(int pane)
@@ -472,23 +508,23 @@ public:
 		m_bRO[pane] = readOnly;
 	}
 
-	COLORREF GetDiffColor() const
+	RGBQUAD GetDiffColor() const
 	{
 		return m_diffColor;
 	}
 
-	void SetDiffColor(COLORREF clrDiffColor)
+	void SetDiffColor(RGBQUAD clrDiffColor)
 	{
 		m_diffColor = clrDiffColor;
 		RefreshImages();
 	}
 
-	COLORREF GetSelDiffColor() const
+	RGBQUAD GetSelDiffColor() const
 	{
 		return m_selDiffColor;
 	}
 
-	void SetSelDiffColor(COLORREF clrSelDiffColor)
+	void SetSelDiffColor(RGBQUAD clrSelDiffColor)
 	{
 		m_selDiffColor = clrSelDiffColor;
 		RefreshImages();
@@ -589,12 +625,12 @@ public:
 		CompareImages();
 	}
 
-	IImgMergeWindow::OVERLAY_MODE GetOverlayMode() const
+	OVERLAY_MODE GetOverlayMode() const
 	{
 		return m_overlayMode;
 	}
 
-	void SetOverlayMode(IImgMergeWindow::OVERLAY_MODE overlayMode)
+	void SetOverlayMode(OVERLAY_MODE overlayMode)
 	{
 		m_overlayMode = overlayMode;
 		RefreshImages();
@@ -690,9 +726,9 @@ public:
 
 	bool FirstConflict()
 	{
-		for (int i = 0; i < m_diffInfos.size(); ++i)
+		for (size_t i = 0; i < m_diffInfos.size(); ++i)
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
-				m_currentDiffIndex = i;
+				m_currentDiffIndex = static_cast<int>(i);
 		RefreshImages();
 		return true;
 	}
@@ -1000,9 +1036,9 @@ public:
 		for (int i = 0; i < m_nImages; ++i)
 			CopyOriginalImageToDiffImage(i);
 		void (CImgMergeBuffer::*func)(int src, int dst) = NULL;
-		if (m_overlayMode == IImgMergeWindow::OVERLAY_ALPHABLEND)
+		if (m_overlayMode == OVERLAY_ALPHABLEND)
 			func = &CImgMergeBuffer::AlphaBlendImages2;
-		else if (m_overlayMode == IImgMergeWindow::OVERLAY_XOR)
+		else if (m_overlayMode == OVERLAY_XOR)
 			func = &CImgMergeBuffer::XorImages2;
 		if (func)
 		{
@@ -1081,7 +1117,13 @@ public:
 		}
 		else
 		{
+#ifdef _WIN32
 			return !!m_imgOrig[pane].saveU(filename);
+#else
+			char filenameA[260];
+			snprintf(filenameA, sizeof(filenameA), "%ls", filename);
+			return !!m_imgOrig[pane].save(filenameA);
+#endif
 		}
 	}
 
@@ -1093,6 +1135,7 @@ public:
 			m_imgOrig32[i].clear();
 			m_undoRecords.clear();
 		}
+		m_nImages = 0;
 		return true;
 	}
 
@@ -1100,7 +1143,13 @@ public:
 	{
 		if (pane < 0 || pane >= m_nImages)
 			return false;
+#ifdef _WIN32
 		return !!m_imgDiff[pane].saveU(filename);
+#else
+		char filenameA[260];
+		snprintf(filenameA, sizeof(filenameA), "%ls", filename);
+		return !!m_imgDiff[pane].save(filenameA);
+#endif
 	}
 
 	int  GetImageWidth(int pane) const
@@ -1164,8 +1213,15 @@ private:
 			}
 			if (!m_imgOrigMultiPage[i].isValid())
 			{
+#ifdef _WIN32
 				if (!m_imgOrig[i].loadU(m_filename[i].c_str()))
 					bSucceeded = false;
+#else
+				char filename[260];
+				snprintf(filename, sizeof(filename), "%ls", m_filename[i].c_str());
+				if (!m_imgOrig[i].load(filename))
+					bSucceeded = false;
+#endif
 				m_imgOrig32[i] = m_imgOrig[i];
 			}
 
@@ -1213,7 +1269,7 @@ private:
 			m_imgDiff[i].setSize(FIT_BITMAP, size.cx, size.cy, 32);
 	}
 
-	void CompareImages2(int pane1, int pane2, Array2D<unsigned>& diff)
+	void CompareImages2(int pane1, int pane2, DiffBlocks& diff)
 	{
 		unsigned w1 = m_imgOrig32[pane1].getWidth();
 		unsigned h1 = m_imgOrig32[pane1].getHeight();
@@ -1276,7 +1332,7 @@ private:
 		}
 	}
 		
-	void FloodFill8Directions(Array2D<unsigned>& data, int x, int y, unsigned val)
+	void FloodFill8Directions(DiffBlocks& data, int x, int y, unsigned val)
 	{
 		std::vector<Point<int> > stack;
 		stack.push_back(Point<int>(x, y));
@@ -1312,7 +1368,7 @@ private:
 		}
 	}
 
-	int MarkDiffIndex(Array2D<unsigned>& diff)
+	int MarkDiffIndex(DiffBlocks& diff)
 	{
 		int diffCount = 0;
 		for (unsigned by = 0; by < diff.height(); ++by)
@@ -1343,10 +1399,10 @@ private:
 		return diffCount;
 	}
 
-	int MarkDiffIndex3way(Array2D<unsigned>& diff01, Array2D<unsigned>& diff21, Array2D<unsigned>& diff02, Array2D<unsigned>& diff3)
+	int MarkDiffIndex3way(DiffBlocks& diff01, DiffBlocks& diff21, DiffBlocks& diff02, DiffBlocks& diff3)
 	{
 		int diffCount = MarkDiffIndex(diff3);
-		std::vector<std::array<int, 4>> counter(m_diffInfos.size());
+		std::vector<DiffStat> counter(m_diffInfos.size());
 		for (unsigned by = 0; by < diff3.height(); ++by)
 		{
 			for (unsigned bx = 0; bx < diff3.width(); ++bx)
@@ -1356,24 +1412,24 @@ private:
 					continue;
 				--diffIndex;
 				if (diff21(bx, by) == 0)
-					++counter[diffIndex][0];
+					++counter[diffIndex].d1;
 				else if (diff02(bx, by) == 0)
-					++counter[diffIndex][1];
+					++counter[diffIndex].d2;
 				else if (diff01(bx, by) == 0)
-					++counter[diffIndex][2];
+					++counter[diffIndex].d3;
 				else
-					++counter[diffIndex][3];
+					++counter[diffIndex].detc;
 			}
 		}
 		
 		for (size_t i = 0; i < m_diffInfos.size(); ++i)
 		{
 			int op;
-			if (counter[i][0] != 0 && counter[i][1] == 0 && counter[i][2] == 0 && counter[i][3] == 0)
+			if (counter[i].d1 != 0 && counter[i].d2 == 0 && counter[i].d3 == 0 && counter[i].detc == 0)
 				op = DiffInfo::OP_1STONLY;
-			else if (counter[i][0] == 0 && counter[i][1] != 0 && counter[i][2] == 0 && counter[i][3] == 0)
+			else if (counter[i].d1 == 0 && counter[i].d2 != 0 && counter[i].d3 == 0 && counter[i].detc == 0)
 				op = DiffInfo::OP_2NDONLY;
-			else if (counter[i][0] == 0 && counter[i][1] == 0 && counter[i][2] != 0 && counter[i][3] == 0)
+			else if (counter[i].d1 == 0 && counter[i].d2 == 0 && counter[i].d3 != 0 && counter[i].detc == 0)
 				op = DiffInfo::OP_3RDONLY;
 			else
 				op = DiffInfo::OP_DIFF;
@@ -1382,7 +1438,7 @@ private:
 		return diffCount;
 	}
 
-	void Make3WayDiff(const Array2D<unsigned>& diff01, const Array2D<unsigned>& diff21, Array2D<unsigned>& diff3)
+	void Make3WayDiff(const DiffBlocks& diff01, const DiffBlocks& diff21, DiffBlocks& diff3)
 	{
 		diff3 = diff01;
 		for (unsigned bx = 0; bx < diff3.width(); ++bx)
@@ -1395,7 +1451,7 @@ private:
 		}
 	}
 
-	void MarkDiff(int pane, const Array2D<unsigned>& diff)
+	void MarkDiff(int pane, const DiffBlocks& diff)
 	{
 		const unsigned w = m_imgDiff[pane].getWidth();
 		const unsigned h = m_imgDiff[pane].getHeight();
@@ -1404,14 +1460,14 @@ private:
 		{
 			for (unsigned bx = 0; bx < diff.width(); ++bx)
 			{
-				unsigned diffIndex = diff(bx, by);
+				int diffIndex = diff(bx, by);
 				if (diffIndex != 0 && (
 					(pane == 0 && m_diffInfos[diffIndex - 1].op != DiffInfo::OP_3RDONLY) ||
 					(pane == 1) ||
 					(pane == 2 && m_diffInfos[diffIndex - 1].op != DiffInfo::OP_1STONLY)
 					))
 				{
-					COLORREF color = (diffIndex - 1 == m_currentDiffIndex) ? m_selDiffColor : m_diffColor;
+					RGBQUAD color = (diffIndex - 1 == m_currentDiffIndex) ? m_selDiffColor : m_diffColor;
 					unsigned bsy = (h - by * m_diffBlockSize < m_diffBlockSize) ? (h - by * m_diffBlockSize) : m_diffBlockSize;
 					for (unsigned i = 0; i < bsy; ++i)
 					{
@@ -1421,9 +1477,9 @@ private:
 						for (unsigned j = 0; j < bsx; ++j)
 						{
 							unsigned x = bx * m_diffBlockSize + j;
-							scanline[x * 4 + 0] = static_cast<BYTE>(scanline[x * 4 + 0] * (1 - m_diffColorAlpha) + GetBValue(color) * m_diffColorAlpha);
-							scanline[x * 4 + 1] = static_cast<BYTE>(scanline[x * 4 + 1] * (1 - m_diffColorAlpha) + GetGValue(color) * m_diffColorAlpha);
-							scanline[x * 4 + 2] = static_cast<BYTE>(scanline[x * 4 + 2] * (1 - m_diffColorAlpha) + GetRValue(color) * m_diffColorAlpha);
+							scanline[x * 4 + 0] = static_cast<BYTE>(scanline[x * 4 + 0] * (1 - m_diffColorAlpha) + color.rgbBlue * m_diffColorAlpha);
+							scanline[x * 4 + 1] = static_cast<BYTE>(scanline[x * 4 + 1] * (1 - m_diffColorAlpha) + color.rgbGreen * m_diffColorAlpha);
+							scanline[x * 4 + 2] = static_cast<BYTE>(scanline[x * 4 + 2] * (1 - m_diffColorAlpha) + color.rgbRed * m_diffColorAlpha);
 						}
 					}
 				}
@@ -1491,18 +1547,18 @@ private:
 	fipWinImage m_imgDiff[3];
 	std::wstring m_filename[3];
 	bool m_bRO[3];
-	IImgMergeWindow::OVERLAY_MODE m_overlayMode;
 	bool m_showDifferences;
+	OVERLAY_MODE m_overlayMode;
 	double m_overlayAlpha;
 	unsigned m_diffBlockSize;
-	COLORREF m_selDiffColor;
-	COLORREF m_diffColor;
+	RGBQUAD m_selDiffColor;
+	RGBQUAD m_diffColor;
 	double   m_diffColorAlpha;
 	double   m_colorDistanceThreshold;
 	int m_currentPage[3];
 	int m_currentDiffIndex;
 	int m_diffCount;
-	Array2D<unsigned> m_diff, m_diff01, m_diff21, m_diff02;
+	DiffBlocks m_diff, m_diff01, m_diff21, m_diff02;
 	std::vector<DiffInfo> m_diffInfos;
 	UndoRecords m_undoRecords;
 };
