@@ -51,6 +51,7 @@ BEGIN_MESSAGE_MAP(CHexMergeFrame, CMDIChildWnd)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
+	ON_WM_GETMINMAXINFO()
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
@@ -320,6 +321,17 @@ void CHexMergeFrame::OnSize(UINT nType, int cx, int cy)
 {
 	CMDIChildWnd::OnSize(nType, cx, cy);
 	UpdateHeaderSizes();
+}
+
+void CHexMergeFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
+{
+	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
+	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
+	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
+#if _MFC_VER >= 0x0800
+	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
+	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
+#endif
 }
 
 /// update splitting position for panels 1/2 and headerbar and statusbar 

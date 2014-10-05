@@ -46,6 +46,7 @@ public:
 protected:
 	//{{AFX_MSG(COpenFrame)
 	afx_msg void OnPaint(); // override required to paint rectangles.
+	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
