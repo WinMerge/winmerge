@@ -13,6 +13,7 @@ for %%i in ( ^
   ..\freeimage\Wrapper\FreeImagePlus\FreeImagePlus.vcxproj ^
   src\WinIMergeLib.vcxproj ^
   src\WinIMerge.vcxproj ^
+  src\cidiff.vcxproj ^
   ) do (
   MSBuild %%i /t:build /p:Configuration=Release /p:Platform="Win32" || pause
   MSBuild %%i /t:build /p:Configuration=Release /p:Platform="x64" || pause
