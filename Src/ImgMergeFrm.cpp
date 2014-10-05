@@ -65,6 +65,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_WM_CLOSE()
 	ON_WM_MDIACTIVATE()
 	ON_WM_SIZE()
+	ON_WM_GETMINMAXINFO()
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	ON_COMMAND(ID_FILE_SAVE_LEFT, OnFileSaveLeft)
@@ -1117,6 +1118,17 @@ void CImgMergeFrame::OnSize(UINT nType, int cx, int cy)
 		m_wndStatusBar[0].GetClientRect(&rcStatusBar);
 		m_pImgMergeWindow->SetWindowRect(CRect(0, rcPathBar.Height(), cx, cy - rcStatusBar.Height()));
 	}
+}
+
+void CImgMergeFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
+{
+	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
+	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
+	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
+#if _MFC_VER >= 0x0800
+	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
+	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
+#endif
 }
 
 /**
