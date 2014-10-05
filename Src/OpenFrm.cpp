@@ -16,6 +16,7 @@ IMPLEMENT_DYNCREATE(COpenFrame, CMDIChildWnd)
 BEGIN_MESSAGE_MAP(COpenFrame, CMDIChildWnd)
 	//{{AFX_MSG_MAP(CMainFrame)
 	ON_WM_PAINT()
+	ON_WM_GETMINMAXINFO()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -130,6 +131,17 @@ void COpenFrame::OnPaint()
       ::SelectObject(dc.m_hDC, hOldBrush);
    }
    CMDIChildWnd::OnPaint();
+}
+
+void COpenFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
+{
+	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
+	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
+	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
+#if _MFC_VER >= 0x0800
+	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
+	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
+#endif
 }
 
 /**
