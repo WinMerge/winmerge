@@ -1287,7 +1287,7 @@ private:
 				unsigned y = by * m_diffBlockSize + i;
 				if (y >= h1 || y >= h2)
 				{
-					for (unsigned bx = 0; bx < wmax / m_diffBlockSize; ++bx)
+					for (unsigned bx = 0; bx < diff.width(); ++bx)
 						diff(bx, by) = -1;
 				}
 				else
