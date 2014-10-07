@@ -842,13 +842,9 @@ public:
 			else
 				hdst = rc.bottom * m_diffBlockSize;
 		}
-		if (rc.right * m_diffBlockSize > wsrc)
-			wdst = wsrc;
-		if (rc.bottom * m_diffBlockSize > hsrc)
-			hdst = hsrc;
 		if (wdst != m_imgOrig32[dstPane].getWidth() || hdst != m_imgOrig32[dstPane].getHeight())
 		{
-			fipImage imgTemp = m_imgOrig32[srcPane];
+			fipImage imgTemp = m_imgOrig32[dstPane];
 			m_imgOrig32[dstPane].setSize(imgTemp.getImageType(), wdst, hdst, imgTemp.getBitsPerPixel());
 			m_imgOrig32[dstPane].pasteSubImage(imgTemp, 0, 0);
 		}
