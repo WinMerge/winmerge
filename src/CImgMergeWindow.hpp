@@ -510,6 +510,11 @@ public:
 			for (int i = 0; i < m_nImages; ++i)
 				m_imgWindow[i].ScrollTo(rc.left * m_buffer.GetDiffBlockSize(), rc.top * m_buffer.GetDiffBlockSize());
 		}
+		else
+		{
+			for (int i = 0; i < m_nImages; ++i)
+				m_imgWindow[i].Invalidate();
+		}
 	}
 
 	void Invalidate()
