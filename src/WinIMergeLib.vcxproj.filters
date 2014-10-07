@@ -30,6 +30,9 @@
     <ClInclude Include="CImgMergeWindow.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CImgDiffBuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinIMergeLib.cpp">

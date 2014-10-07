@@ -2,7 +2,7 @@ TARGETS=cidiff
 CXXFLAGS+=-Wall -Wextra -I../../freeimage/Source -I../../freeimage/Wrapper/FreeImagePlus
 SRCS=cidiff.cpp
 OBJS=$(SRCS:.cpp=*.o)
-HEADERS=CImgMergeBuffer.hpp
+HEADERS=CImgDiffBuffer.hpp CImgMergeBuffer.hpp
 LIBS=-L../../freeimage/ -lfreeimage -L../../freeimage/ -lfreeimageplus
 
 all: $(TARGETS)

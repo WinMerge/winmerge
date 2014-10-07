@@ -1,10 +1,10 @@
-#include "CImgMergeBuffer.hpp"
+#include "CImgDiffBuffer.hpp"
 #include <iostream>
 #include <clocale>
 
 int main(int argc, char* argv[])
 {
-	CImgMergeBuffer buffer;
+	CImgDiffBuffer buffer;
 	wchar_t filenameW[2][260];
 	const wchar_t *filenames[2] = { filenameW[0], filenameW[1] };
 
