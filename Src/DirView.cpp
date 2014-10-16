@@ -1289,7 +1289,7 @@ void CDirView::OpenParentDirectory()
 	case CDirDoc::AllowUpwardDirectory::ParentIsRegularPath: 
 	{
 		DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
-		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, pDoc->GetRecursive(), pDoc);
+		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, pDoc->GetRecursive(), (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
 		// fall through (no break!)
 	case CDirDoc::AllowUpwardDirectory::No:
@@ -1781,12 +1781,12 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	{
 		// Open subfolders
 		// Don't add folders to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, pDoc->GetRecursive(), pDoc);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, pDoc->GetRecursive(), (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
 	else if (HasZipSupport() && ArchiveGuessFormat(paths.GetLeft().c_str()) && ArchiveGuessFormat(paths.GetRight().c_str()))
 	{
 		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, pDoc->GetRecursive(), pDoc);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, pDoc->GetRecursive(), (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
 	else
 	{
