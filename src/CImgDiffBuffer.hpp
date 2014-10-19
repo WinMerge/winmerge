@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "FreeImagePlus.h"
+#include "image.hpp"
 #include <string>
 #include <algorithm>
 #include <cstdio>
@@ -131,195 +131,14 @@ struct DiffInfo
 
 struct DiffStat { int d1, d2, d3, detc; };
 
-#ifndef _WIN32
-class fipWinImage : public fipImage
-{
-public:
-	fipWinImage(FREE_IMAGE_TYPE image_type = FIT_BITMAP, unsigned width = 0, unsigned height = 0, unsigned bpp = 0) :
-	  fipImage(image_type, width, height, bpp) {}
-	fipWinImage(const fipWinImage& Image) : fipImage(Image) {}
-	virtual ~fipWinImage() {}
-};
-#endif
-
-class fipImageEx : public fipImage
-{
-public:
-	fipImageEx(FREE_IMAGE_TYPE image_type = FIT_BITMAP, unsigned width = 0, unsigned height = 0, unsigned bpp = 0) :
-	  fipImage(image_type, width, height, bpp) {}
-	fipImageEx(const fipImageEx& Image) : fipImage(Image) {}
-	virtual ~fipImageEx() {}
-
-	fipImageEx& operator=(const fipImageEx& Image)
-	{
-		if (this != &Image)
-		{
-			FIBITMAP *clone = FreeImage_Clone((FIBITMAP*)Image._dib);
-			replace(clone);
-		}
-		return *this;
-	}
-
-	fipImageEx& operator=(FIBITMAP *dib)
-	{
-		if (_dib != dib)
-			replace(dib);
-		return *this;
-	}
-
-	void swap(fipImageEx& other)
-	{
-		std::swap(_dib, other._dib);
-		std::swap(this->_fif, other._fif);
-		std::swap(this->_bHasChanged, other._bHasChanged);
-	}
-
-	FIBITMAP *detach()
-	{
-		FIBITMAP *dib = _dib;
-		_dib = NULL;
-		clear();
-		return dib;
-	}
-
-	BOOL colorQuantizeEx(FREE_IMAGE_QUANTIZE quantize = FIQ_WUQUANT, int PaletteSize = 256, int ReserveSize = 0, RGBQUAD *ReservePalette = NULL)
-	{
-		if(_dib) {
-			FIBITMAP *dib8 = FreeImage_ColorQuantizeEx(_dib, quantize, PaletteSize, ReserveSize, ReservePalette);
-			return !!replace(dib8);
-		}
-		return false;
-	}
-
-	bool convertColorDepth(unsigned bpp, RGBQUAD *pPalette = NULL)
-	{
-		switch (bpp)
-		{
-		case 1:
-			return !!threshold(128);
-		case 4:
-		{
-			fipImageEx tmp = *this;
-			tmp.convertTo24Bits();
-			if (pPalette)
-				tmp.colorQuantizeEx(FIQ_NNQUANT, 16, 16, pPalette);
-			else
-				tmp.colorQuantizeEx(FIQ_WUQUANT, 16);
-			setSize(tmp.getImageType(), tmp.getWidth(), tmp.getHeight(), 4);
-			for (unsigned y = 0; y < tmp.getHeight(); ++y)
-			{
-				const BYTE *line_src = tmp.getScanLine(y);
-				BYTE *line_dst = getScanLine(y);
-				for (unsigned x = 0; x < tmp.getWidth(); ++x)
-					line_dst[x / 2] |= ((x % 2) == 0) ? (line_src[x] << 4) : line_src[x];
-			}
-
-			RGBQUAD *rgbq_dst = getPalette();
-			RGBQUAD *rgbq_src = pPalette ? pPalette : tmp.getPalette();
-			memcpy(rgbq_dst, rgbq_src, sizeof(RGBQUAD) * 16);
-			return true;
-		}
-		case 8:
-			convertTo24Bits();
-			if (pPalette)
-				return !!colorQuantizeEx(FIQ_NNQUANT, 256, 256, pPalette);
-			else
-				return !!colorQuantizeEx(FIQ_WUQUANT, 256);
-		case 15:
-			return !!convertTo16Bits555();
-		case 16:
-			return !!convertTo16Bits565();
-		case 24:
-			return !!convertTo24Bits();
-		default:
-		case 32:
-			return !!convertTo32Bits();
-		}
-	}
-
-	void copyAnimationMetadata(fipImage& src)
-	{
-		fipTag tag;
-		fipMetadataFind finder;
-		if (finder.findFirstMetadata(FIMD_ANIMATION, src, tag))
-		{
-			do
-			{
-				setMetadata(FIMD_ANIMATION, tag.getKey(), tag);
-			} while (finder.findNextMetadata(tag));
-		}
-	}
-};
-
-class fipMultiPageEx : public fipMultiPage
-{
-public:
-	fipMultiPageEx(BOOL keep_cache_in_memory = FALSE) : fipMultiPage(keep_cache_in_memory) {}
-   
-	BOOL openU(const wchar_t* lpszPathName, BOOL create_new, BOOL read_only, int flags = 0)
-	{
-		char filename[260];
-#ifdef _WIN32
-		wchar_t shortname[260] = {0};
-		GetShortPathNameW(lpszPathName, shortname, sizeof(shortname)/sizeof(shortname[0]));
-		wsprintfA(filename, "%S", shortname);
-#else
-		snprintf(filename, sizeof(filename), "%ls", lpszPathName);
-		
-#endif
-		BOOL result = open(filename, create_new, read_only, flags);
-		return result;
-	}
-
-	bool saveU(const wchar_t* lpszPathName, int flag = 0) const
-	{
-		FILE *fp = NULL;
-#ifdef _WIN32
-		_wfopen_s(&fp, lpszPathName, L"r+b");
-#else
-		char filename[260];
-		snprintf(filename, sizeof(filename), "%ls", lpszPathName);
-		fp = fopen(filename, "r+b");
-#endif
-		if (!fp)
-			return false;
-		FreeImageIO io;
-		io.read_proc  = myReadProc;
-		io.write_proc = myWriteProc;
-		io.seek_proc  = mySeekProc;
-		io.tell_proc  = myTellProc;
-		FREE_IMAGE_FORMAT fif = fipImage::identifyFIFU(lpszPathName);
-		bool result = !!saveToHandle(fif, &io, (fi_handle)fp, flag);
-		fclose(fp);
-		return result;
-	}
-
-private:
-	static unsigned DLL_CALLCONV myReadProc(void *buffer, unsigned size, unsigned count, fi_handle handle) {
-		return (unsigned)fread(buffer, size, count, (FILE *)handle);
-	}
-
-	static unsigned DLL_CALLCONV myWriteProc(void *buffer, unsigned size, unsigned count, fi_handle handle) {
-		return (unsigned)fwrite(buffer, size, count, (FILE *)handle);
-	}
-
-	static int DLL_CALLCONV mySeekProc(fi_handle handle, long offset, int origin) {
-		return fseek((FILE *)handle, offset, origin);
-	}
-
-	static long DLL_CALLCONV myTellProc(fi_handle handle) {
-		return ftell((FILE *)handle);
-	}
-};
-
 namespace
 {
-	int GetColorDistance2(RGBQUAD c1, RGBQUAD c2)
+	int GetColorDistance2(Image::Color c1, Image::Color c2)
 	{
-		int rdist = c1.rgbRed - c2.rgbRed;
-		int gdist = c1.rgbGreen - c2.rgbGreen;
-		int bdist = c1.rgbBlue - c2.rgbBlue;
-		int adist = c1.rgbReserved - c2.rgbReserved;
+		int rdist = Image::valueR(c1) - Image::valueR(c2);
+		int gdist = Image::valueG(c1) - Image::valueG(c2);
+		int bdist = Image::valueB(c1) - Image::valueB(c2);
+		int adist = Image::valueA(c1) - Image::valueA(c2);
 		return rdist * rdist + gdist * gdist + bdist * bdist + adist * adist;
 	}
 }
@@ -339,19 +158,13 @@ public:
 		, m_overlayMode(OVERLAY_NONE)
 		, m_overlayAlpha(0.3)
 		, m_diffBlockSize(8)
-		, m_selDiffColor()
-		, m_diffColor()
+		, m_selDiffColor(Image::Rgb(0xff, 0x40, 0x40))
+		, m_diffColor(Image::Rgb(0xff, 0xff, 0x40))
 		, m_diffColorAlpha(0.7)
 		, m_colorDistanceThreshold(0.0)
 		, m_currentDiffIndex(-1)
 		, m_diffCount(0)
 	{
-		m_selDiffColor.rgbRed = 0xff;
-		m_selDiffColor.rgbGreen = 0x40;
-		m_selDiffColor.rgbBlue = 0x40;
-		m_diffColor.rgbRed   = 0xff;
-		m_diffColor.rgbGreen = 0xff;
-		m_diffColor.rgbBlue  = 0x40;
 		for (int i = 0; i < 3; ++i)
 			m_currentPage[i] = 0;
 	}
@@ -373,11 +186,9 @@ public:
 		return m_nImages;
 	}
 
-	RGBQUAD GetPixelColor(int pane, int x, int y) const
+	Image::Color GetPixelColor(int pane, int x, int y) const
 	{
-		RGBQUAD value = {0xFF, 0xFF, 0xFF, 0x00};
-		m_imgOrig32[pane].getPixelColor(x, m_imgOrig32[pane].getHeight() - y - 1, &value);
-		return value;
+		return m_imgOrig32[pane].pixel(x, y);
 	}
 
 	double GetColorDistance(int pane1, int pane2, int x, int y) const
@@ -386,23 +197,23 @@ public:
 			::GetColorDistance2(GetPixelColor(pane1, x, y), GetPixelColor(pane2, x, y)) ));
 	}
 
-	RGBQUAD GetDiffColor() const
+	Image::Color GetDiffColor() const
 	{
 		return m_diffColor;
 	}
 
-	void SetDiffColor(RGBQUAD clrDiffColor)
+	void SetDiffColor(Image::Color clrDiffColor)
 	{
 		m_diffColor = clrDiffColor;
 		RefreshImages();
 	}
 
-	RGBQUAD GetSelDiffColor() const
+	Image::Color GetSelDiffColor() const
 	{
 		return m_selDiffColor;
 	}
 
-	void SetSelDiffColor(RGBQUAD clrSelDiffColor)
+	void SetSelDiffColor(Image::Color clrSelDiffColor)
 	{
 		m_selDiffColor = clrSelDiffColor;
 		RefreshImages();
@@ -433,10 +244,8 @@ public:
 			if (m_imgOrigMultiPage[pane].isValid())
 			{
 				m_currentPage[pane] = page;
-				FIBITMAP *bitmap = m_imgOrigMultiPage[pane].lockPage(page);
-				m_imgOrig[pane] = FreeImage_Clone(bitmap);
+				m_imgOrig[pane] = m_imgOrigMultiPage[pane].getImage(page);
 				m_imgOrig32[pane] = m_imgOrig[pane];
-				FreeImage_UnlockPage(m_imgOrigMultiPage[pane], bitmap, false);
 				m_imgOrig32[pane].convertTo32Bits();
 				CompareImages();
 			}
@@ -564,32 +373,42 @@ public:
 
 	bool FirstDiff()
 	{
+		int oldDiffIndex = m_currentDiffIndex;
 		if (m_diffCount == 0)
 			m_currentDiffIndex = -1;
 		else
 			m_currentDiffIndex = 0;
+		if (oldDiffIndex == m_currentDiffIndex)
+			return false;
 		RefreshImages();
 		return true;
 	}
 
 	bool LastDiff()
 	{
+		int oldDiffIndex = m_currentDiffIndex;
 		m_currentDiffIndex = m_diffCount - 1;
+		if (oldDiffIndex == m_currentDiffIndex)
+			return false;
 		RefreshImages();
 		return true;
 	}
 
 	bool NextDiff()
 	{
+		int oldDiffIndex = m_currentDiffIndex;
 		++m_currentDiffIndex;
 		if (m_currentDiffIndex >= m_diffCount)
 			m_currentDiffIndex = m_diffCount - 1;
+		if (oldDiffIndex == m_currentDiffIndex)
+			return false;
 		RefreshImages();
 		return true;
 	}
 
 	bool PrevDiff()
 	{
+		int oldDiffIndex = m_currentDiffIndex;
 		if (m_diffCount == 0)
 			m_currentDiffIndex = -1;
 		else
@@ -598,21 +417,27 @@ public:
 			if (m_currentDiffIndex < 0)
 				m_currentDiffIndex = 0;
 		}
+		if (oldDiffIndex == m_currentDiffIndex)
+			return false;
 		RefreshImages();
 		return true;
 	}
 
 	bool FirstConflict()
 	{
+		int oldDiffIndex = m_currentDiffIndex;
 		for (size_t i = 0; i < m_diffInfos.size(); ++i)
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
 				m_currentDiffIndex = static_cast<int>(i);
+		if (oldDiffIndex == m_currentDiffIndex)
+			return false;
 		RefreshImages();
 		return true;
 	}
 
 	bool LastConflict()
 	{
+		int oldDiffIndex = m_currentDiffIndex;
 		for (int i = static_cast<int>(m_diffInfos.size() - 1); i >= 0; --i)
 		{
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
@@ -621,12 +446,15 @@ public:
 				break;
 			}
 		}
+		if (oldDiffIndex == m_currentDiffIndex)
+			return false;
 		RefreshImages();
 		return true;
 	}
 
 	bool NextConflict()
 	{
+		int oldDiffIndex = m_currentDiffIndex;
 		for (size_t i = m_currentDiffIndex + 1; i < m_diffInfos.size(); ++i)
 		{
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
@@ -635,12 +463,15 @@ public:
 				break;
 			}
 		}
+		if (oldDiffIndex == m_currentDiffIndex)
+			return false;
 		RefreshImages();
 		return true;
 	}
 
 	bool PrevConflict()
 	{
+		int oldDiffIndex = m_currentDiffIndex;
 		for (int i = m_currentDiffIndex - 1; i >= 0; --i)
 		{
 			if (m_diffInfos[i].op == DiffInfo::OP_DIFF)
@@ -649,12 +480,16 @@ public:
 				break;
 			}
 		}
+		if (oldDiffIndex == m_currentDiffIndex)
+			return false;
 		RefreshImages();
 		return true;
 	}
 
 	bool SelectDiff(int diffIndex)
 	{
+		if (diffIndex == m_currentDiffIndex || diffIndex < -1 || diffIndex >= m_diffCount)
+			return false;
 		m_currentDiffIndex = diffIndex;
 		RefreshImages();
 		return true;
@@ -771,48 +606,42 @@ public:
 	{
 		if (pane < 0 || pane >= m_nImages)
 			return false;
-#ifdef _WIN32
-		return !!m_imgDiff[pane].saveU(filename);
-#else
-		char filenameA[260];
-		snprintf(filenameA, sizeof(filenameA), "%ls", filename);
-		return !!m_imgDiff[pane].save(filenameA);
-#endif
+		return !!m_imgDiff[pane].save(filename);
 	}
 
 	int  GetImageWidth(int pane) const
 	{
 		if (pane < 0 || pane >= m_nImages)
 			return -1;
-		return m_imgOrig32[pane].getWidth();
+		return m_imgOrig32[pane].width();
 	}
 
 	int  GetImageHeight(int pane) const
 	{
 		if (pane < 0 || pane >= m_nImages)
 			return -1;
-		return m_imgOrig32[pane].getHeight();
+		return m_imgOrig32[pane].height();
 	}
 
 	int  GetImageBitsPerPixel(int pane) const
 	{
 		if (pane < 0 || pane >= m_nImages)
 			return -1;
-		return m_imgOrig[pane].getBitsPerPixel();
+		return m_imgOrig[pane].depth();
 	}
 
 	int GetDiffIndexFromPoint(int x, int y) const
 	{
 		if (x > 0 && y > 0 && 
-			x < static_cast<int>(m_imgDiff[0].getWidth()) && 
-			y < static_cast<int>(m_imgDiff[0].getHeight()))
+			x < static_cast<int>(m_imgDiff[0].width()) &&
+			y < static_cast<int>(m_imgDiff[0].height()))
 		{
-			return m_diff(x / m_diffBlockSize, y / m_diffBlockSize);
+			return m_diff(x / m_diffBlockSize, y / m_diffBlockSize) - 1;
 		}
 		return -1;
 	}
 
-	fipWinImage *GetImage(int pane)
+	Image *GetImage(int pane)
 	{
 		if (pane < 0 || pane >= m_nImages)
 			return NULL;
@@ -826,33 +655,19 @@ protected:
 		for (int i = 0; i < m_nImages; ++i)
 		{
 			m_currentPage[i] = 0;
-			m_imgOrigMultiPage[i].openU(m_filename[i].c_str(), FALSE, FALSE, 0);
-			if (m_imgOrigMultiPage[i].isValid())
+			m_imgOrigMultiPage[i].load(m_filename[i]);
+			if (m_imgOrigMultiPage[i].isValid() && m_imgOrigMultiPage[i].getPageCount() > 1)
 			{
-				FIBITMAP *bitmap = m_imgOrigMultiPage[i].lockPage(m_currentPage[i]);
-				if (bitmap)
-				{
-					m_imgOrig[i] = FreeImage_Clone(bitmap);
-					m_imgOrig32[i] = m_imgOrig[i];
-					FreeImage_UnlockPage(m_imgOrigMultiPage[i], bitmap, false);
-				}
-				else
-					m_imgOrigMultiPage[i].close();
-			}
-			if (!m_imgOrigMultiPage[i].isValid())
-			{
-#ifdef _WIN32
-				if (!m_imgOrig[i].loadU(m_filename[i].c_str()))
-					bSucceeded = false;
-#else
-				char filename[260];
-				snprintf(filename, sizeof(filename), "%ls", m_filename[i].c_str());
-				if (!m_imgOrig[i].load(filename))
-					bSucceeded = false;
-#endif
+				m_imgOrig[i] = m_imgOrigMultiPage[i].getImage(0);
 				m_imgOrig32[i] = m_imgOrig[i];
 			}
-
+			else
+			{
+				m_imgOrigMultiPage[i] = MultiPageImages();
+				if (!m_imgOrig[i].load(m_filename[i]))
+					bSucceeded = false;
+				m_imgOrig32[i] = m_imgOrig[i];
+			}
 			m_imgOrig32[i].convertTo32Bits();
 		}
 		return bSucceeded;
@@ -864,8 +679,8 @@ protected:
 		unsigned hmax = 0;
 		for (int i = 0; i < m_nImages; ++i)
 		{
-			wmax  = (std::max)(wmax,  m_imgOrig32[i].getWidth());
-			hmax = (std::max)(hmax, m_imgOrig32[i].getHeight());
+			wmax  = (std::max)(wmax, static_cast<unsigned>(m_imgOrig32[i].width()));
+			hmax = (std::max)(hmax, static_cast<unsigned>(m_imgOrig32[i].height()));
 		}
 		return Size<unsigned>(wmax, hmax);
 	}
@@ -894,15 +709,15 @@ protected:
 	{
 		Size<unsigned> size = GetMaxWidthHeight();
 		for (int i = 0; i < m_nImages; ++i)
-			m_imgDiff[i].setSize(FIT_BITMAP, size.cx, size.cy, 32);
+			m_imgDiff[i].setSize(size.cx, size.cy);
 	}
 
 	void CompareImages2(int pane1, int pane2, DiffBlocks& diff)
 	{
-		unsigned w1 = m_imgOrig32[pane1].getWidth();
-		unsigned h1 = m_imgOrig32[pane1].getHeight();
-		unsigned w2 = m_imgOrig32[pane2].getWidth();
-		unsigned h2 = m_imgOrig32[pane2].getHeight();
+		unsigned w1 = m_imgOrig32[pane1].width();
+		unsigned h1 = m_imgOrig32[pane1].height();
+		unsigned w2 = m_imgOrig32[pane2].width();
+		unsigned h2 = m_imgOrig32[pane2].height();
 
 		const unsigned wmax = (std::max)(w1, w2);
 		const unsigned hmax = (std::max)(h1, h2);
@@ -920,8 +735,8 @@ protected:
 				}
 				else
 				{
-					const BYTE *scanline1 = m_imgOrig32[pane1].getScanLine(h1 - y - 1);
-					const BYTE *scanline2 = m_imgOrig32[pane2].getScanLine(h2 - y - 1);
+					const unsigned char *scanline1 = m_imgOrig32[pane1].scanLine(y);
+					const unsigned char *scanline2 = m_imgOrig32[pane2].scanLine(y);
 					if (w1 == w2 && m_colorDistanceThreshold == 0.0)
 					{
 						if (memcmp(scanline1, scanline2, w1 * 4) == 0)
@@ -1081,8 +896,8 @@ protected:
 
 	void MarkDiff(int pane, const DiffBlocks& diff)
 	{
-		const unsigned w = m_imgDiff[pane].getWidth();
-		const unsigned h = m_imgDiff[pane].getHeight();
+		const unsigned w = m_imgDiff[pane].width();
+		const unsigned h = m_imgDiff[pane].height();
 
 		for (unsigned by = 0; by < diff.height(); ++by)
 		{
@@ -1095,19 +910,19 @@ protected:
 					(pane == 2 && m_diffInfos[diffIndex - 1].op != DiffInfo::OP_1STONLY)
 					))
 				{
-					RGBQUAD color = (diffIndex - 1 == m_currentDiffIndex) ? m_selDiffColor : m_diffColor;
+					Image::Color color = (diffIndex - 1 == m_currentDiffIndex) ? m_selDiffColor : m_diffColor;
 					unsigned bsy = (h - by * m_diffBlockSize < m_diffBlockSize) ? (h - by * m_diffBlockSize) : m_diffBlockSize;
 					for (unsigned i = 0; i < bsy; ++i)
 					{
 						unsigned y = by * m_diffBlockSize + i;
-						BYTE *scanline = m_imgDiff[pane].getScanLine(h - y - 1);
+						unsigned char *scanline = m_imgDiff[pane].scanLine(y);
 						unsigned bsx = (w - bx * m_diffBlockSize < m_diffBlockSize) ? (w - bx * m_diffBlockSize) : m_diffBlockSize;
 						for (unsigned j = 0; j < bsx; ++j)
 						{
 							unsigned x = bx * m_diffBlockSize + j;
-							scanline[x * 4 + 0] = static_cast<BYTE>(scanline[x * 4 + 0] * (1 - m_diffColorAlpha) + color.rgbBlue * m_diffColorAlpha);
-							scanline[x * 4 + 1] = static_cast<BYTE>(scanline[x * 4 + 1] * (1 - m_diffColorAlpha) + color.rgbGreen * m_diffColorAlpha);
-							scanline[x * 4 + 2] = static_cast<BYTE>(scanline[x * 4 + 2] * (1 - m_diffColorAlpha) + color.rgbRed * m_diffColorAlpha);
+							scanline[x * 4 + 0] = static_cast<unsigned char>(scanline[x * 4 + 0] * (1 - m_diffColorAlpha) + Image::valueB(color) * m_diffColorAlpha);
+							scanline[x * 4 + 1] = static_cast<unsigned char>(scanline[x * 4 + 1] * (1 - m_diffColorAlpha) + Image::valueG(color) * m_diffColorAlpha);
+							scanline[x * 4 + 2] = static_cast<unsigned char>(scanline[x * 4 + 2] * (1 - m_diffColorAlpha) + Image::valueR(color) * m_diffColorAlpha);
 						}
 					}
 				}
@@ -1117,12 +932,12 @@ protected:
 
 	void CopyOriginalImageToDiffImage(int dst)
 	{
-		unsigned w = m_imgOrig32[dst].getWidth();
-		unsigned h = m_imgOrig32[dst].getHeight();
+		unsigned w = m_imgOrig32[dst].width();
+		unsigned h = m_imgOrig32[dst].height();
 		for (unsigned y = 0; y < h; ++y)
 		{
-			const BYTE *scanline_src = m_imgOrig32[dst].getScanLine(h - y - 1);
-			BYTE *scanline_dst = m_imgDiff[dst].getScanLine(m_imgDiff[dst].getHeight() - y - 1);
+			const unsigned char *scanline_src = m_imgOrig32[dst].scanLine(y);
+			unsigned char *scanline_dst = m_imgDiff[dst].scanLine(y);
 			for (unsigned x = 0; x < w; ++x)
 			{
 				scanline_dst[x * 4 + 0] = scanline_src[x * 4 + 0];
@@ -1135,12 +950,12 @@ protected:
 
 	void XorImages2(int src, int dst)
 	{
-		unsigned w = m_imgOrig32[src].getWidth();
-		unsigned h = m_imgOrig32[src].getHeight();
+		unsigned w = m_imgOrig32[src].width();
+		unsigned h = m_imgOrig32[src].height();
 		for (unsigned y = 0; y < h; ++y)
 		{
-			const BYTE *scanline_src = m_imgOrig32[src].getScanLine(h - y - 1);
-			BYTE *scanline_dst = m_imgDiff[dst].getScanLine(m_imgDiff[dst].getHeight() - y - 1);
+			const unsigned char *scanline_src = m_imgOrig32[src].scanLine(y);
+			unsigned char *scanline_dst = m_imgDiff[dst].scanLine(y);
 			for (unsigned x = 0; x < w; ++x)
 			{
 				scanline_dst[x * 4 + 0] ^= scanline_src[x * 4 + 0];
@@ -1152,36 +967,36 @@ protected:
 
 	void AlphaBlendImages2(int src, int dst)
 	{
-		unsigned w = m_imgOrig32[src].getWidth();
-		unsigned h = m_imgOrig32[src].getHeight();
+		unsigned w = m_imgOrig32[src].width();
+		unsigned h = m_imgOrig32[src].height();
 		for (unsigned y = 0; y < h; ++y)
 		{
-			const BYTE *scanline_src = m_imgOrig32[src].getScanLine(h - y - 1);
-			BYTE *scanline_dst = m_imgDiff[dst].getScanLine(m_imgDiff[dst].getHeight() - y - 1);
+			const unsigned char *scanline_src = m_imgOrig32[src].scanLine(y);
+			unsigned char *scanline_dst = m_imgDiff[dst].scanLine(y);
 			for (unsigned x = 0; x < w; ++x)
 			{
-				scanline_dst[x * 4 + 0] = static_cast<BYTE>(scanline_dst[x * 4 + 0] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 0] * m_overlayAlpha);
-				scanline_dst[x * 4 + 1] = static_cast<BYTE>(scanline_dst[x * 4 + 1] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 1] * m_overlayAlpha);
-				scanline_dst[x * 4 + 2] = static_cast<BYTE>(scanline_dst[x * 4 + 2] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 2] * m_overlayAlpha);
-				scanline_dst[x * 4 + 3] = static_cast<BYTE>(scanline_dst[x * 4 + 3] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 3] * m_overlayAlpha);
+				scanline_dst[x * 4 + 0] = static_cast<unsigned char>(scanline_dst[x * 4 + 0] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 0] * m_overlayAlpha);
+				scanline_dst[x * 4 + 1] = static_cast<unsigned char>(scanline_dst[x * 4 + 1] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 1] * m_overlayAlpha);
+				scanline_dst[x * 4 + 2] = static_cast<unsigned char>(scanline_dst[x * 4 + 2] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 2] * m_overlayAlpha);
+				scanline_dst[x * 4 + 3] = static_cast<unsigned char>(scanline_dst[x * 4 + 3] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 3] * m_overlayAlpha);
 			}
 		}	
 	}
 
 	int m_nImages;
-	fipMultiPageEx m_imgOrigMultiPage[3];
-	fipImageEx m_imgOrig[3];
-	fipImageEx m_imgOrig32[3];
-	fipWinImage m_imgDiff[3];
+	MultiPageImages m_imgOrigMultiPage[3];
+	Image m_imgOrig[3];
+	Image m_imgOrig32[3];
+	Image m_imgDiff[3];
 	std::wstring m_filename[3];
 	bool m_showDifferences;
 	OVERLAY_MODE m_overlayMode;
 	double m_overlayAlpha;
 	unsigned m_diffBlockSize;
-	RGBQUAD m_selDiffColor;
-	RGBQUAD m_diffColor;
-	double   m_diffColorAlpha;
-	double   m_colorDistanceThreshold;
+	Image::Color m_selDiffColor;
+	Image::Color m_diffColor;
+	double m_diffColorAlpha;
+	double m_colorDistanceThreshold;
 	int m_currentPage[3];
 	int m_currentDiffIndex;
 	int m_diffCount;

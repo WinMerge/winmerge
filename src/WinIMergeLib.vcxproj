@@ -173,6 +173,7 @@
     <ClInclude Include="CImgMergeBuffer.hpp" />
     <ClInclude Include="CImgMergeWindow.hpp" />
     <ClInclude Include="CImgWindow.hpp" />
+    <ClInclude Include="image.hpp" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="WinIMergeLib.h" />
   </ItemGroup>

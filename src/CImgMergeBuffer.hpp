@@ -21,7 +21,7 @@
 
 struct UndoRecord
 {
-	UndoRecord(int pane, FIBITMAP *oldbitmap, FIBITMAP *newbitmap, const int modcountnew[3]) : 
+	UndoRecord(int pane, Image *oldbitmap, Image *newbitmap, const int modcountnew[3]) : 
 		pane(pane), oldbitmap(oldbitmap), newbitmap(newbitmap)
 	{
 		for (int i = 0; i < 3; ++i)
@@ -29,7 +29,7 @@ struct UndoRecord
 	}
 	int pane;
 	int modcount[3];
-	FIBITMAP *oldbitmap, *newbitmap;
+	Image *oldbitmap, *newbitmap;
 };
 
 struct UndoRecords
@@ -44,14 +44,14 @@ struct UndoRecords
 		clear();
 	}
 
-	void push_back(int pane, FIBITMAP *oldbitmap, FIBITMAP *newbitmap)
+	void push_back(int pane, Image *oldbitmap, Image *newbitmap)
 	{
 		++m_currentUndoBufIndex;
 		while (m_currentUndoBufIndex < static_cast<int>(m_undoBuf.size()))
 		{
 			--m_modcount[m_undoBuf.back().pane];
-			FreeImage_Unload(m_undoBuf.back().newbitmap);
-			FreeImage_Unload(m_undoBuf.back().oldbitmap);
+			delete m_undoBuf.back().newbitmap;
+			delete m_undoBuf.back().oldbitmap;
 			m_undoBuf.pop_back();
 		}
 		++m_modcount[pane];
@@ -112,8 +112,8 @@ struct UndoRecords
 		}
 		while (!m_undoBuf.empty())
 		{
-			FreeImage_Unload(m_undoBuf.back().newbitmap);
-			FreeImage_Unload(m_undoBuf.back().oldbitmap);
+			delete m_undoBuf.back().newbitmap;
+			delete m_undoBuf.back().oldbitmap;
 			m_undoBuf.pop_back();
 		}
 	}
@@ -163,10 +163,10 @@ public:
 			return;
 
 		const Rect<int>& rc = m_diffInfos[diffIndex].rc;
-		unsigned wsrc = m_imgOrig32[srcPane].getWidth();
-		unsigned hsrc = m_imgOrig32[srcPane].getHeight();
-		unsigned wdst = m_imgOrig32[dstPane].getWidth();
-		unsigned hdst = m_imgOrig32[dstPane].getHeight();
+		unsigned wsrc = m_imgOrig32[srcPane].width();
+		unsigned hsrc = m_imgOrig32[srcPane].height();
+		unsigned wdst = m_imgOrig32[dstPane].width();
+		unsigned hdst = m_imgOrig32[dstPane].height();
 		if (rc.right * m_diffBlockSize > wdst)
 		{
 			if ((std::max)(wsrc, wdst) < rc.right * m_diffBlockSize)
@@ -181,10 +181,10 @@ public:
 			else
 				hdst = rc.bottom * m_diffBlockSize;
 		}
-		if (wdst != m_imgOrig32[dstPane].getWidth() || hdst != m_imgOrig32[dstPane].getHeight())
+		if (wdst != m_imgOrig32[dstPane].width() || hdst != m_imgOrig32[dstPane].height())
 		{
-			fipImage imgTemp = m_imgOrig32[dstPane];
-			m_imgOrig32[dstPane].setSize(imgTemp.getImageType(), wdst, hdst, imgTemp.getBitsPerPixel());
+			Image imgTemp = m_imgOrig32[dstPane];
+			m_imgOrig32[dstPane].setSize(wdst, hdst);
 			m_imgOrig32[dstPane].pasteSubImage(imgTemp, 0, 0);
 		}
 		
@@ -200,8 +200,8 @@ public:
 					{
 						for (int i = 0; i < sizey; ++i)
 						{
-							const BYTE *scanline_src = m_imgOrig32[srcPane].getScanLine(hsrc - (y + i) - 1);
-							BYTE *scanline_dst = m_imgOrig32[dstPane].getScanLine(hdst - (y + i) - 1);
+							const unsigned char *scanline_src = m_imgOrig32[srcPane].scanLine(y + i);
+							unsigned char *scanline_dst = m_imgOrig32[dstPane].scanLine(y + i);
 							memcpy(&scanline_dst[x * 4], &scanline_src[x * 4], sizex * 4);
 						}
 					}
@@ -223,11 +223,11 @@ public:
 		if (srcPane == dstPane)
 			return;
 
-		FIBITMAP *oldbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+		Image *oldbitmap = new Image(m_imgOrig32[dstPane]);
 
 		CopyDiffInternal(diffIndex, srcPane, dstPane);
 
-		FIBITMAP *newbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+		Image *newbitmap = new Image(m_imgOrig32[dstPane]);
 		m_undoRecords.push_back(dstPane, oldbitmap, newbitmap);
 		CompareImages();
 	}
@@ -243,12 +243,12 @@ public:
 		if (srcPane == dstPane)
 			return;
 
-		FIBITMAP *oldbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+		Image *oldbitmap = new Image(m_imgOrig32[dstPane]);
 
 		for (int diffIndex = 0; diffIndex < m_diffCount; ++diffIndex)
 			CopyDiffInternal(diffIndex, srcPane, dstPane);
 
-		FIBITMAP *newbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+		Image *newbitmap = new Image(m_imgOrig32[dstPane]);
 		m_undoRecords.push_back(dstPane, oldbitmap, newbitmap);
 		CompareImages();
 	}
@@ -260,7 +260,7 @@ public:
 		if (m_bRO[dstPane])
 			return 0;
 
-		FIBITMAP *oldbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+		Image *oldbitmap = new Image(m_imgOrig32[dstPane]);
 
 		int nMerged = 0;
 		for (int diffIndex = 0; diffIndex < m_diffCount; ++diffIndex)
@@ -298,7 +298,7 @@ public:
 			}
 		}
 
-		FIBITMAP *newbitmap = FreeImage_Clone(m_imgOrig32[dstPane]);
+		Image *newbitmap = new Image(m_imgOrig32[dstPane]);
 		m_undoRecords.push_back(dstPane, oldbitmap, newbitmap);
 		CompareImages();
 
@@ -325,7 +325,7 @@ public:
 		if (!m_undoRecords.undoable())
 			return false;
 		const UndoRecord& rec = m_undoRecords.undo();
-		m_imgOrig32[rec.pane] = FreeImage_Clone(rec.oldbitmap);
+		m_imgOrig32[rec.pane] = *rec.oldbitmap;
 		CompareImages();
 		return true;
 	}
@@ -335,7 +335,7 @@ public:
 		if (!m_undoRecords.redoable())
 			return false;
 		const UndoRecord& rec = m_undoRecords.redo();
-		m_imgOrig32[rec.pane] = FreeImage_Clone(rec.newbitmap);
+		m_imgOrig32[rec.pane] = *rec.newbitmap;
 		CompareImages();
 		return true;
 	}
@@ -366,33 +366,15 @@ public:
 	{
 		if (pane < 0 || pane >= m_nImages)
 			return false;
-		unsigned bpp =  m_imgOrig[pane].getBitsPerPixel();
-		RGBQUAD palette[256];
-		if (m_imgOrig[pane].getPaletteSize() > 0)
-			memcpy(palette, m_imgOrig[pane].getPalette(), m_imgOrig[pane].getPaletteSize());
-		m_imgOrig[pane] = m_imgOrig32[pane];
-		m_imgOrig[pane].convertColorDepth(bpp, palette);
+		m_imgOrig[pane].pullImageKeepingBPP(m_imgOrig32[pane]);
 		if (m_imgOrigMultiPage[pane].isValid())
 		{
-			fipImageEx imgOrg, imgAdd;
-			imgAdd = m_imgOrig[pane];
-			imgOrg = m_imgOrigMultiPage[pane].lockPage(m_currentPage[pane]);
-			imgAdd.copyAnimationMetadata(imgOrg);
-			m_imgOrigMultiPage[pane].unlockPage(imgOrg, false);
-			m_imgOrigMultiPage[pane].insertPage(m_currentPage[pane], imgAdd);
-			imgAdd.detach();
-			m_imgOrigMultiPage[pane].deletePage(m_currentPage[pane] + 1);
-			return !!m_imgOrigMultiPage[pane].saveU(filename);
+			m_imgOrigMultiPage[pane].replacePage(m_currentPage[pane], m_imgOrig[pane]);
+			return m_imgOrigMultiPage[pane].save(filename);
 		}
 		else
 		{
-#ifdef _WIN32
-			return !!m_imgOrig[pane].saveU(filename);
-#else
-			char filenameA[260];
-			snprintf(filenameA, sizeof(filenameA), "%ls", filename);
-			return !!m_imgOrig[pane].save(filenameA);
-#endif
+			return m_imgOrig[pane].save(filename);
 		}
 	}
 

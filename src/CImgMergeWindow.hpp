@@ -540,7 +540,7 @@ public:
 		for (int i = 0; i < nImages; ++i)
 		{
 			m_imgWindow[i].SetWindowRect(rects[i]);
-			m_imgWindow[i].SetImage(m_buffer.GetImage(i));
+			m_imgWindow[i].SetImage(m_buffer.GetImage(i)->getFipImage());
 		}
 		return bSucceeded;
 	}
@@ -946,8 +946,8 @@ private:
 		{
 			POINT pt = pImgWnd->GetCursorPos(i);
 			int diffIndex = pImgWnd->GetDiffIndexFromPoint(pt.x, pt.y);
-			if (diffIndex != 0)
-				pImgWnd->SelectDiff(diffIndex - 1);
+			if (diffIndex >= 0)
+				pImgWnd->SelectDiff(diffIndex);
 			else
 				pImgWnd->SelectDiff(-1);
 			break;
