@@ -1,4 +1,4 @@
-#include "CImgDiffBuffer.hpp"
+#include "ImgDiffBuffer.hpp"
 #include <iostream>
 #include <clocale>
 

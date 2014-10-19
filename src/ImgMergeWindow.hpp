@@ -19,8 +19,8 @@
 
 #include <Windows.h>
 #include "FreeImagePlus.h"
-#include "CImgWindow.hpp"
-#include "CImgMergeBuffer.hpp"
+#include "ImgWindow.hpp"
+#include "ImgMergeBuffer.hpp"
 #include "WinIMergeLib.h"
 
 

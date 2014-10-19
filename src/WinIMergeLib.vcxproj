@@ -169,10 +169,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CImgDiffBuffer.hpp" />
-    <ClInclude Include="CImgMergeBuffer.hpp" />
-    <ClInclude Include="CImgMergeWindow.hpp" />
-    <ClInclude Include="CImgWindow.hpp" />
+    <ClInclude Include="ImgDiffBuffer.hpp" />
+    <ClInclude Include="ImgMergeBuffer.hpp" />
+    <ClInclude Include="ImgMergeWindow.hpp" />
+    <ClInclude Include="ImgWindow.hpp" />
     <ClInclude Include="image.hpp" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="WinIMergeLib.h" />

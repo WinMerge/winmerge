@@ -17,7 +17,7 @@
 
 #pragma once
 
-#include "CImgDiffBuffer.hpp"
+#include "ImgDiffBuffer.hpp"
 
 struct UndoRecord
 {

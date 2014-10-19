@@ -16,8 +16,8 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include <Windows.h>
-#include "CImgWindow.hpp"
-#include "CImgMergeWindow.hpp"
+#include "ImgWindow.hpp"
+#include "ImgMergeWindow.hpp"
 
 extern "C" IImgMergeWindow *
 WinIMerge_CreateWindow(HINSTANCE hInstance, HWND hWndParent)
