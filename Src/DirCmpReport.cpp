@@ -325,8 +325,17 @@ void DirCmpReport::GenerateHTMLHeader()
 	WriteString(_T("\t\t\tborder: 1px solid gray;\n"));
 	WriteString(_T("\t\t}\n"));
 	WriteString(_T("\t\tth {\n"));
-	WriteString(_T("\t\t\tcolor: black;\n"));
-	WriteString(_T("\t\t\tbackground: silver;\n"));
+	WriteString(_T("\t\t\tcolor: white;\n"));
+	WriteString(_T("\t\t\tbackground: blue;\n"));
+	WriteString(_T("\t\t\tpadding: 4px 4px;\n"));
+	WriteString(_T("\t\t\tbackground: linear-gradient(mediumblue, darkblue);\n"));
+	WriteString(_T("\t\t}\n"));
+	WriteString(_T("\t\t.border {\n"));
+	WriteString(_T("\t\t\tdisplay: table;\n"));
+	WriteString(_T("\t\t\tborder-radius: 3px;\n"));
+	WriteString(_T("\t\t\tborder: 1px #a0a0a0 solid;\n"));
+	WriteString(_T("\t\t\tbox-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15)\n"));
+	WriteString(_T("\t\t\toverflow: hidden;\n"));
 	WriteString(_T("\t\t}\n"));
 	WriteString(_T("\t-->\n\t</style>\n"));
 	WriteString(_T("</head>\n<body>\n"));
@@ -343,7 +352,7 @@ void DirCmpReport::GenerateHTMLHeaderBodyPortion()
 	WriteString(_T("</h2>\n<p>"));
 	WriteString(GetCurrentTimeString());
 	WriteString(_T("</p>\n"));
-	WriteString(_T("<table border=\"1\">\n<tr>\n"));
+	WriteString(_T("<div class=\"border\">\n<table border=\"1\">\n<tr>\n"));
 
 	for (int currCol = 0; currCol < m_nColumns; currCol++)
 	{
@@ -437,7 +446,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 		WriteString(EndEl(rowEl) + _T("\n"));
 	}
 	if (!xml)
-		WriteString(_T("</table>\n"));
+		WriteString(_T("</table>\n</div>\n"));
 }
 
 /**
