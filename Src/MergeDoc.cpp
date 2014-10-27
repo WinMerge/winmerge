@@ -3226,13 +3226,15 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 		_T("<style type=\"text/css\">\n")
 		_T("<!--\n")
 		_T("td,th {word-break: break-all; font-size: %dpt;}\n")
-		_T(".ln {text-align: right; word-break: keep-all; background-color: lightgrey;}\n")
-		_T(".title {color: white; background-color: blue; vertical-align: top;}\n")
+		_T(".border { border-radius: 6px; border: 1px #a0a0a0 solid; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); overflow: hidden; }\n")
+		_T(".ln {text-align: right; word-break: normal; background-color: lightgrey; box-shadow: inset 1px 0px 0px rgba(0, 0, 0, 0.10);}\n")
+		_T(".title {color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
 		_T("%s")
 		_T("-->\n")
 		_T("</style>\n")
 		_T("</head>\n")
 		_T("<body>\n")
+		_T("<div class=\"border\">")
 		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width: 100%%; margin: 0; border: none;\">\n")
 		_T("<thead>\n")
 		_T("<tr>\n"),
@@ -3261,7 +3263,7 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		int nLineNumberColumnWidth = m_pView[nBuffer]->GetViewLineNumbers() ? 1 : 0;
+		int nLineNumberColumnWidth = 1;
 		String data = string_format(_T("<th class=\"title\" style=\"width:%d%%\"></th>"), 
 			nLineNumberColumnWidth);
 		file.WriteString(data);
@@ -3279,6 +3281,7 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 	// write the body of the report
 	int idx[3] = {0};
 	int nLineCount[3] = {0};
+	int nDiff = 0;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		nLineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
 
@@ -3296,15 +3299,20 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 			if (idx[nBuffer] < nLineCount[nBuffer])
 			{
 				// line number
+				String tdtag = _T("<td class=\"ln\">");
 				DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
-				if (!(dwFlags & LF_GHOST) && m_pView[nBuffer]->GetViewLineNumbers())
+				if (nBuffer == 0 && 
+				     (dwFlags & (LF_DIFF | LF_GHOST)) && (idx[nBuffer] == 0 || 
+				    !(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST))))
 				{
-					String data = string_format(_T("<td class=\"ln\">%d</td>"),
-							m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1);
-					file.WriteString(data);
+					++nDiff;
+					tdtag += string_format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
 				}
+				if (!(dwFlags & LF_GHOST) && m_pView[nBuffer]->GetViewLineNumbers())
+					tdtag += string_format(_T("%d</td>"), m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1);
 				else
-					file.WriteString(_T("<td class=\"ln\"></td>"));
+					tdtag += _T("</td>");
+				file.WriteString(tdtag);
 				// write a line on left/right side
 				file.WriteString((LPCTSTR)m_pView[nBuffer]->GetHTMLLine(idx[nBuffer], _T("td")));
 				idx[nBuffer]++;
@@ -3341,6 +3349,7 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 	file.WriteString(
 		_T("</tbody>\n")
 		_T("</table>\n")
+		_T("</div>")
 		_T("</body>\n")
 		_T("</html>\n"));
 
