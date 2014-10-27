@@ -3310,7 +3310,7 @@ struct FileCmpReport: public IFileCmpReport
 			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
 			pMergeDoc->CloseNow();
 		}
-		else if (frametype = CMainFrame::FRAME_IMGFILE)
+		else if (frametype == CMainFrame::FRAME_IMGFILE)
 		{
 			CImgMergeFrame *pImgMergeFrame = static_cast<CImgMergeFrame *>(pFrame);
 			pImgMergeFrame->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
