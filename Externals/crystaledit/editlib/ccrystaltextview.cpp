@@ -1646,7 +1646,20 @@ MergeTextBlocks (TEXTBLOCK *pBuf1, int nBlocks1, TEXTBLOCK *pBuf2,
           j++;
         }
     }
-  return k;
+
+  j = 0;
+  for (i = 0; i < k; ++i)
+    {
+      if (i == 0 ||
+          (pMergedBuf[i - 1].m_nColorIndex   != pMergedBuf[i].m_nColorIndex ||
+           pMergedBuf[i - 1].m_nBgColorIndex != pMergedBuf[i].m_nBgColorIndex))
+        {
+          pMergedBuf[j] = pMergedBuf[i];
+          ++j;
+        }
+    }
+
+  return j;
 }
 
 void CCrystalTextView::
