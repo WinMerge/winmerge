@@ -10,6 +10,10 @@ struct IListCtrl
 	virtual String GetColumnName(int col) const = 0;
 	virtual String GetItemText(int row, int col) const = 0;
 	virtual int GetBackColor(int row) const = 0;
+	virtual int GetIndent(int row) const = 0;
+	virtual int GetIconIndex(int row) const = 0;
+	virtual int GetIconCount() const = 0;
+	virtual std::string GetIconPNGData(int iconIndex) const = 0;
 };
 
 #endif
