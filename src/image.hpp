@@ -268,6 +268,9 @@ private:
 class MultiPageImages
 {
 public:
+	MultiPageImages() {}
+	~MultiPageImages() { multi_.close(); }
+	bool close() { return !!multi_.close(); }
 	bool isValid() const { return !!multi_.isValid(); }
 	int getPageCount() const { return multi_.getPageCount(); }
 	bool load(const std::wstring& filename) { return !!multi_.openU(filename.c_str(), FALSE, FALSE); }

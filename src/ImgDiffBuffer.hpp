@@ -663,7 +663,7 @@ protected:
 			}
 			else
 			{
-				m_imgOrigMultiPage[i] = MultiPageImages();
+				m_imgOrigMultiPage[i].close();
 				if (!m_imgOrig[i].load(m_filename[i]))
 					bSucceeded = false;
 				m_imgOrig32[i] = m_imgOrig[i];
