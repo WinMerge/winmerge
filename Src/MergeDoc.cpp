@@ -3192,6 +3192,7 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 		_T("<style type=\"text/css\">\n")
 		_T("<!--\n")
 		_T("td,th {word-break: break-all; font-size: %dpt;}\n")
+		_T("tr { vertical-align: top; }\n")
 		_T(".border { border-radius: 6px; border: 1px #a0a0a0 solid; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); overflow: hidden; }\n")
 		_T(".ln {text-align: right; word-break: normal; background-color: lightgrey; box-shadow: inset 1px 0px 0px rgba(0, 0, 0, 0.10);}\n")
 		_T(".title {color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
@@ -3253,7 +3254,7 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 
 	for (;;)
 	{
-		file.WriteString(_T("<tr valign=\"top\">\n"));
+		file.WriteString(_T("<tr>\n"));
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			for (; idx[nBuffer] < nLineCount[nBuffer]; idx[nBuffer]++)

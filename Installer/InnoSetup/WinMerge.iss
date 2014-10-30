@@ -520,6 +520,9 @@ Source: ..\..\Externals\winimerge\freeimage-license-gplv2.txt; DestDir: {app}\Wi
 Source: ..\..\Externals\winimerge\Build\Release\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
 Source: ..\..\Externals\winimerge\Build\Release\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Components: WinIMerge
 
+[Dirs]
+Name: "{app}\MergePlugins"
+
 [Icons]
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; AppUserModelID: "Thingamahoochie.WinMerge"
