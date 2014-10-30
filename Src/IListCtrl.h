@@ -15,6 +15,10 @@ struct IListCtrl
 	virtual int GetNextItem(int sel, bool selected = false, bool reverse = false) const = 0;
 	virtual int GetNextSelectedItem(int sel, bool reverse = false) const = 0;
 	virtual unsigned GetSelectedCount() const = 0;
+	virtual int GetIndent(int row) const = 0;
+	virtual int GetIconIndex(int row) const = 0;
+	virtual int GetIconCount() const = 0;
+	virtual std::string GetIconPNGData(int iconIndex) const = 0;
 };
 
 #endif

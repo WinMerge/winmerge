@@ -11,6 +11,8 @@
 #include "stdafx.h"
 #include <ctime>
 #include <cassert>
+#include <sstream>
+#include <Poco/Base64Encoder.h>
 #include "locality.h"
 #include "DirCmpReport.h"
 #include "DirCmpReportDlg.h"
@@ -321,7 +323,7 @@ void DirCmpReport::GenerateHTMLHeader()
 	WriteString(_T("\t\tth,td {\n"));
 	WriteString(_T("\t\t\tpadding: 3px;\n"));
 	WriteString(_T("\t\t\ttext-align: left;\n"));
-	WriteString(_T("\t\t\tvertical-align: top;\n"));
+	WriteString(_T("\t\t\tvertical-align: middle;\n"));
 	WriteString(_T("\t\t\tborder: 1px solid gray;\n"));
 	WriteString(_T("\t\t}\n"));
 	WriteString(_T("\t\tth {\n"));
@@ -337,6 +339,28 @@ void DirCmpReport::GenerateHTMLHeader()
 	WriteString(_T("\t\t\tbox-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15)\n"));
 	WriteString(_T("\t\t\toverflow: hidden;\n"));
 	WriteString(_T("\t\t}\n"));
+
+	std::vector<bool> usedIcon(m_pList->GetIconCount());
+	int maxIndent = 0;
+	for (int i = 0; i < m_pList->GetRowCount(); ++i)
+	{
+		usedIcon[m_pList->GetIconIndex(i)] = true;
+		maxIndent = (std::max)(m_pList->GetIndent(i), maxIndent);
+	}
+	for (int i = 0; i < m_pList->GetIconCount(); ++i)
+	{
+		if (usedIcon[i])
+		{
+			std::ostringstream stream;
+			Poco::Base64Encoder enc(stream);
+			enc.rdbuf()->setLineLength(0);
+			enc << m_pList->GetIconPNGData(i);
+			enc.close();
+			WriteString(string_format(_T("\t\t.icon%d { background-image: url('data:image/png;base64,%s'); background-repeat: no-repeat; }\n"), i, ucr::toTString(stream.str()).c_str()));
+		}
+	}
+	for (int i = 0; i < maxIndent + 1; ++i)
+		WriteString(string_format(_T("\t\t.indent%d { padding-left: %dpx; background-position: %dpx center; }\n"), i, 2 * 2 + 16 + 8 * i, 2 + 8 * i));
 	WriteString(_T("\t-->\n\t</style>\n"));
 	WriteString(_T("</head>\n<body>\n"));
 	GenerateHTMLHeaderBodyPortion();
@@ -425,8 +449,17 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 		{
 			String colEl = _T("td");
 			if (xml)
+			{
 				colEl = m_colRegKeys[currCol];
-			WriteString(BeginEl(colEl));
+				WriteString(BeginEl(colEl));
+			}
+			else
+			{
+				if (currCol == 0)
+					WriteString(BeginEl(colEl, string_format(_T("class=\"icon%d indent%d\""), m_pList->GetIconIndex(currRow), m_pList->GetIndent(currRow))));
+				else
+					WriteString(BeginEl(colEl));
+			}
 			if (currCol == 0 && !sLinkPath.empty())
 			{
 				WriteString(_T("<a href=\""));
