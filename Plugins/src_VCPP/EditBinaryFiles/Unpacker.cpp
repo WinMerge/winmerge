@@ -18,7 +18,7 @@ public:
 	bool Open(LPCTSTR filepath, LPCTSTR mode) 
 		{
 			Close();
-			m_fp = fopen(filepath, mode);
+			m_fp = _tfopen(filepath, mode);
 			return (m_fp != 0);
 		}
 	void Close()
@@ -104,14 +104,14 @@ bool Packer::Unpack()
 {
 	USES_CONVERSION;
 
-	LPCTSTR szSrcFile = W2T(m_srcFilepath);
+	LPCTSTR szSrcFile = CW2T(m_srcFilepath);
 	if (!m_in.Open(szSrcFile, _T("rb")))
 	{
 		LogError(_T("Error opening Unpack src file [%s]"), szSrcFile);
 		return false;
 	}
 
-	LPCTSTR szDestFile = W2T(m_destFilepath);
+	LPCTSTR szDestFile = CW2T(m_destFilepath);
 	if (!m_out.Open(szDestFile, _T("wb")))
 	{
 		LogError(_T("Error opening Unpack dest file [%s]"), szDestFile);
@@ -182,14 +182,14 @@ bool Packer::Pack()
 {
 	USES_CONVERSION;
 
-	LPCTSTR szSrcFile = W2T(m_srcFilepath);
+	LPCTSTR szSrcFile = CW2T(m_srcFilepath);
 	if (!m_in.Open(szSrcFile, _T("rb")))
 	{
 		LogError(_T("Error opening Pack src file [%s]"), szSrcFile);
 		return false;
 	}
 
-	LPCTSTR szDestFile = W2T(m_destFilepath);
+	LPCTSTR szDestFile = CW2T(m_destFilepath);
 	if (!m_out.Open(szDestFile, _T("wb")))
 	{
 		LogError(_T("Error opening Pack dest file [%s]"), szDestFile);
@@ -312,7 +312,7 @@ Packer::UnpackChar(unsigned int ch)
 		{
 			WriteChar(m_escape);
 			TCHAR code[5];
-			sprintf(code, "%02x", ch);
+			_stprintf(code, _T("%02x"), ch);
 			for (int j=0; code[j] != 0; ++j)
 			{
 				WriteChar(code[j]);
@@ -341,10 +341,10 @@ Packer::LogError(LPCTSTR fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
-	char buffer[4096];
+	TCHAR buffer[4096];
 	// _vsnprintf into local buffer
 	// so we can see error even tho logging not yet implemented
-	_vsnprintf(buffer, sizeof(buffer)/sizeof(buffer[0]), fmt, args);
+	_vsntprintf(buffer, sizeof(buffer)/sizeof(buffer[0]), fmt, args);
 	va_end(args);
 
 	if (0)
@@ -353,7 +353,7 @@ Packer::LogError(LPCTSTR fmt, ...)
 		StdFile logfile;
 		if (logfile.Open(_T("EditBinaryFiles.log"), _T("a")))
 		{
-			fprintf(logfile, buffer);
+			_ftprintf(logfile, buffer);
 		}
 	}
 }

@@ -16,18 +16,18 @@ LPTSTR GetDllFilename(LPTSTR name, int len)
 	name[len] = 0;
 	GetModuleFileName(_Module.GetModuleInstance(), name, len-1);
 	// find last backslash
-	TCHAR * lastslash = _tcsrchr(name, _T('//'));
+	TCHAR * lastslash = _tcsrchr(name, '/');
 	if (lastslash == 0)		
 		lastslash = name;
 	else
 		lastslash ++;
-	TCHAR * lastslash2 = _tcsrchr(lastslash, _T('\\'));
+	TCHAR * lastslash2 = _tcsrchr(lastslash, '\\');
 	if (lastslash2 == 0)		
 		lastslash2 = name;
 	else
 		lastslash2 ++;
 	if (lastslash2 != name)
-		strcpy(name, lastslash2);
+		lstrcpy(name, lastslash2);
 	return name;
 }
 
