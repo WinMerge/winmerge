@@ -236,6 +236,10 @@ bool InvokePackFile(const String& fileSource, const String& fileDest, int & nCha
  * @brief Call the plugin "PrediffFile" method, event FILE_PREDIFF
  */
 bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & nChanged, LPDISPATCH piScript);
+/**
+ * @brief Call the plugin "ShowSettingsDialog" method
+ */
+bool InvokeShowSettingsDialog(LPDISPATCH piScript);
 
 
 #endif //__PLUGINS_H__

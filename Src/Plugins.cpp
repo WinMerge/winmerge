@@ -1338,3 +1338,20 @@ bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int 
 
 	return (! FAILED(h));
 }
+
+bool InvokeShowSettingsDialog(IDispatch *piScript)
+{
+	VARIANT vboolHandled;
+	vboolHandled.vt = VT_BOOL;
+	vboolHandled.boolVal = false;
+
+	// invoke method by name, reverse order for arguments
+	// VARIANT_BOOL ShowSettingsDialog()
+	HRESULT h = ::safeInvokeW(piScript, &vboolHandled, L"ShowSettingsDialog", opFxn[0]);
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+
+	// clear the returned variant
+	VariantClear(&vboolHandled);
+
+	return (bSuccess);
+}
