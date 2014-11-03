@@ -165,3 +165,8 @@ CloseClipboard();
   return S_OK;
 }
 
+STDMETHODIMP CWinMergeScript::ShowSettingsDialog(VARIANT_BOOL *pbHandled)
+{
+	*pbHandled = VARIANT_FALSE;
+	return E_NOTIMPL;
+}
