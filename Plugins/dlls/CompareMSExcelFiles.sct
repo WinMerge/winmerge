@@ -15,6 +15,7 @@
         </property>
       	<method name="UnpackFile"/>
       	<method name="PackFile"/>
+      	<method name="ShowSettingsDialog"/>
 </implements>
 
 <script language="VBS">
@@ -123,6 +124,11 @@ End Function
 
 Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	PackFile = False
+End Function
+
+Function ShowSettingsDialog()
+	ShowSettingsDialog = False
+	Err.Raise 30001,, "Not Implemented"
 End Function
 
 </script>

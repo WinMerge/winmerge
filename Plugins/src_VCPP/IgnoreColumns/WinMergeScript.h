@@ -38,6 +38,7 @@ END_COM_MAP()
 // IWinMergeScript
 public:
 	STDMETHOD(PrediffBufferW)(/*[in]*/ BSTR * pText, /*[in]*/ INT * pSize, /*[in]*/ VARIANT_BOOL * pbChanged, /*[out, retval]*/ VARIANT_BOOL * pbHandled);
+	STDMETHOD(ShowSettingsDialog)(/*[out, retval]*/ VARIANT_BOOL * pbHandled);
 	STDMETHOD(get_PluginIsAutomatic)(/*[out, retval]*/ VARIANT_BOOL *pVal);
 	STDMETHOD(get_PluginFileFilters)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(get_PluginDescription)(/*[out, retval]*/ BSTR *pVal);

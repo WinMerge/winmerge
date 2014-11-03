@@ -43,4 +43,8 @@ Public Function PrediffBufferW(ByRef text As String, ByRef size As Long, ByRef b
     PrediffBufferW = True
 End Function
 
+Public Function ShowSettingsDialog() As Boolean
+    ShowSettingsDialog = False
+    Err.Raise 30001, , "Not Implemented"
+End Function
 

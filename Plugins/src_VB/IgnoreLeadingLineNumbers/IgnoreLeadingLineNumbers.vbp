@@ -1,10 +1,11 @@
 Type=OleDll
-Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\WINNT\system32\stdole2.tlb#OLE Automation
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\..\..\Windows\SysWOW64\stdole2.tlb#OLE Automation
 Class=WinMergeScript; WinMergeScript.cls
 Startup="(None)"
 HelpFile=""
 Title="IgnoreLeadingLineNumbers"
 ExeName32="IgnoreLeadingLineNumbers.dll"
+Path32="..\..\dlls"
 Command32=""
 Name="IgnoreLeadingLineNumbers"
 HelpContextID="0"

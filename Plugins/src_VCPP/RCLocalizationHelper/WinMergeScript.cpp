@@ -141,3 +141,9 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	*pbHandled = VARIANT_TRUE;
 	return S_OK;
 }
+
+STDMETHODIMP CWinMergeScript::ShowSettingsDialog(VARIANT_BOOL *pbHandled)
+{
+	*pbHandled = VARIANT_FALSE;
+	return E_NOTIMPL;
+}

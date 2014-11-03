@@ -27,5 +27,8 @@ Public Function MakeUpperVB(text As String)
     MakeUpperVB = StrConv(text, vbUpperCase)
 End Function
 
-
+Public Function ShowSettingsDialog() As Boolean
+    ShowSettingsDialog = False
+    Err.Raise 30001, , "Not Implemented"
+End Function
 

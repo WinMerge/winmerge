@@ -119,12 +119,16 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 	return S_OK;
 }
 
-
-
 STDMETHODIMP CWinMergeScript::PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL *pbChanged, INT pSubcode, VARIANT_BOOL *pbSuccess)
 {
 	// always return error so the users knows we can not repack
 	*pbChanged = VARIANT_FALSE;
 	*pbSuccess = VARIANT_FALSE;
 	return S_OK;
+}
+
+STDMETHODIMP CWinMergeScript::ShowSettingsDialog(VARIANT_BOOL *pbHandled)
+{
+	*pbHandled = VARIANT_FALSE;
+	return E_NOTIMPL;
 }
