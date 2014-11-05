@@ -109,6 +109,7 @@ friend class CAssureScriptsForThread;
 friend class CAllThreadsScripts;
 public:
 	PluginArray * GetAvailableScripts(const wchar_t *transformationEvent);
+	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText);
 	PluginInfo * GetPluginByName(const wchar_t *transformationEvent, const String& name);
 	PluginInfo * GetPluginInfo(LPDISPATCH piScript);
 
