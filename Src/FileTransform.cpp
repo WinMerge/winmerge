@@ -183,21 +183,9 @@ bool FileTransform_Unpacking(String & filepath, const String& filteredText, Pack
 	// control value
 	bool bHandled = false;
 
-	// get the scriptlet files
-	PluginArray * piFileScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PACK_UNPACK");
-
-	// MAIN LOOP : call each handler, 
-	// stop as soon as we have a success
-	int step;
-	for (step = 0 ; bHandled == false && step < piFileScriptArray->size() ; step ++)
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredText);
+	if (plugin)
 	{
-		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
-		if (plugin->m_bAutomatic == false)
-			continue;
-		if (plugin->TestAgainstRegList(filteredText) == false)
-			continue;
-
 		handler->pluginName = plugin->m_name;
 		handler->bWithFile = true;
 		// use a temporary dest name
@@ -214,27 +202,19 @@ bool FileTransform_Unpacking(String & filepath, const String& filteredText, Pack
 	// We can not assume that the file is text, so use a safearray and not a BSTR
 	// TODO : delete this event ? 	Is anyone going to use this ?
 
-	// get the scriptlet files
-	PluginArray * piBufferScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PACK_UNPACK");
-
-	// MAIN LOOP : call each handler, 
-	// stop as soon as we have a success
-	for (step = 0 ; bHandled == false && step < piBufferScriptArray->size() ; step ++)
+	if (!bHandled)
 	{
-		const PluginInfoPtr & plugin = piBufferScriptArray->at(step);
-		if (plugin->m_bAutomatic == false)
-			continue;
-		if (plugin->TestAgainstRegList(filteredText) == false)
-			continue;
-
-		handler->pluginName = plugin->m_name;
-		handler->bWithFile = false;
-		bHandled = InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
-			bufferData.GetNChanged(),
-			plugin->m_lpDispatch, handler->subcode);
-		if (bHandled)
-			bufferData.ValidateNewBuffer();
+		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredText);
+		if (plugin)
+		{
+			handler->pluginName = plugin->m_name;
+			handler->bWithFile = false;
+			bHandled = InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
+				bufferData.GetNChanged(),
+				plugin->m_lpDispatch, handler->subcode);
+			if (bHandled)
+				bufferData.ValidateNewBuffer();
+		}
 	}
 
 	if (bHandled == false)
@@ -338,21 +318,9 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
 	// control value
 	bool bHandled = false;
 
-	// get the scriptlet files
-	PluginArray * piFileScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
-
-	// MAIN LOOP : call each handler, 
-	// stop as soon as we have a success
-	int step;
-	for (step = 0 ; bHandled == false && step < piFileScriptArray->size() ; step ++)
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filteredText);
+	if (plugin)
 	{
-		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
-		if (plugin->m_bAutomatic == false)
-			continue;
-		if (plugin->TestAgainstRegList(filteredText) == false)
-			continue;
-
 		handler->pluginName = plugin->m_name;
 		handler->bWithFile = true;
 		// use a temporary dest name
@@ -366,28 +334,20 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
 			bufferData.ValidateNewFile();
 	}
 
-	// get the scriptlet files
-	PluginArray * piBufferScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
-
-	// MAIN LOOP : call each handler, 
-	// stop as soon as we have a success
-	for (step = 0 ; bHandled == false && step < piBufferScriptArray->size() ; step ++)
+	if (!bHandled)
 	{
-		const PluginInfoPtr & plugin = piBufferScriptArray->at(step);
-		if (plugin->m_bAutomatic == false)
-			continue;
-		if (plugin->TestAgainstRegList(filteredText) == false)
-			continue;
-
-		handler->pluginName = plugin->m_name;
-		handler->bWithFile = false;
-		// probably it is for VB/VBscript so use a BSTR as argument
-		bHandled = InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
-			bufferData.GetNChanged(),
-			plugin->m_lpDispatch);
-		if (bHandled)
-			bufferData.ValidateNewBuffer();
+		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filteredText);
+		if (plugin)
+		{
+			handler->pluginName = plugin->m_name;
+			handler->bWithFile = false;
+			// probably it is for VB/VBscript so use a BSTR as argument
+			bHandled = InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
+				bufferData.GetNChanged(),
+				plugin->m_lpDispatch);
+			if (bHandled)
+				bufferData.ValidateNewBuffer();
+		}
 	}
 
 	if (bHandled == false)

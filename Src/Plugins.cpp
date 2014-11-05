@@ -766,6 +766,20 @@ void CScriptsOfThread::FreeScriptsForEvent(const wchar_t *transformationEvent)
 		}
 }
 
+PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText)
+{
+	PluginArray * piFileScriptArray = GetAvailableScripts(transformationEvent);
+	for (int step = 0 ; step < piFileScriptArray->size() ; step ++)
+	{
+		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
+		if (plugin->m_bAutomatic == false)
+			continue;
+		if (plugin->TestAgainstRegList(filteredText) == false)
+			continue;
+		return plugin.get();
+	}
+	return NULL;
+}
 
 PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEvent, const String& name)
 {
