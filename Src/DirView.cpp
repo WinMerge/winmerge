@@ -33,10 +33,8 @@
 #include "ClipBoard.h"
 #include "DirFrame.h"  // StatePane
 #include "DirDoc.h"
-#include "MergeDoc.h"
-#include "HexMergeFrm.h"
-#include "HexMergeDoc.h"
-#include "ImgMergeFrm.h"
+#include "IMergeDoc.h"
+#include "FileLocation.h"
 #include "MainFrm.h"
 #include "resource.h"
 #include "coretools.h"
@@ -3303,18 +3301,14 @@ struct FileCmpReport: public IFileCmpReport
 		
 		m_pDirView->OpenSelection();
 		CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
-		CMainFrame::FRAMETYPE frametype = GetMainFrame()->GetFrameType(pFrame);
-		if (frametype == CMainFrame::FRAME_FILE)
+		IMergeDoc * pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
+		if (!pMergeDoc)
+			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
+
+		if (pMergeDoc)
 		{
-			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
 			pMergeDoc->CloseNow();
-		}
-		else if (frametype == CMainFrame::FRAME_IMGFILE)
-		{
-			CImgMergeFrame *pImgMergeFrame = static_cast<CImgMergeFrame *>(pFrame);
-			pImgMergeFrame->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
-			pImgMergeFrame->CloseNow();
 		}
 
 		MSG msg;
