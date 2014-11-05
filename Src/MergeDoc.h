@@ -37,6 +37,7 @@
 #include "TempFile.h"
 #include "PathContext.h"
 #include "DiffFileInfo.h"
+#include "IMergeDoc.h"
 
 /**
  * @brief Additional action codes for WinMerge.
@@ -159,7 +160,7 @@ class CEncodingErrorBar;
 /**
  * @brief Document class for merging two files
  */
-class CMergeDoc : public CDocument
+class CMergeDoc : public CDocument, public IMergeDoc
 {
 public:
 	enum FileChange

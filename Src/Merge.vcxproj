@@ -8604,6 +8604,7 @@
     <ClInclude Include="Common\coretools.h" />
     <ClInclude Include="Common\coretypes.h" />
     <ClInclude Include="Common\CSubclass.h" />
+    <ClInclude Include="IMergeDoc.h" />
     <ClInclude Include="ImgMergeFrm.h" />
     <ClInclude Include="Merge7zFormatShellImpl.h" />
     <ClInclude Include="OptionsCustomColors.h" />

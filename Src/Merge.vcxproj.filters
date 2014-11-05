@@ -1380,6 +1380,9 @@
     <ClInclude Include="PropCompareImage.h">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClInclude>
+    <ClInclude Include="IMergeDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

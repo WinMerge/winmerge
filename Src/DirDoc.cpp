@@ -33,8 +33,8 @@
 #include <shlwapi.h>		// PathFindFileName()
 #include <Poco/StringTokenizer.h>
 #include "Merge.h"
-#include "MergeDoc.h"
-#include "HexMergeDoc.h"
+#include "IMergeDoc.h"
+#include "CompareOptions.h"
 #include "UnicodeString.h"
 #include "CompareStats.h"
 #include "FilterList.h"
@@ -99,14 +99,8 @@ CDirDoc::~CDirDoc()
 	POSITION pos = m_MergeDocs.GetHeadPosition();
 	while (pos)
 	{
-		CMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
+		IMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
 		pMergeDoc->DirDocClosing(this);
-	}
-	pos = m_HexMergeDocs.GetHeadPosition();
-	while (pos)
-	{
-		CHexMergeDoc * pHexMergeDoc = m_HexMergeDocs.GetNext(pos);
-		pHexMergeDoc->DirDocClosing(this);
 	}
 	// Delete all temporary folders belonging to this document
 	while (m_pTempPathContext)
@@ -618,31 +612,20 @@ void CDirDoc::SetDirView(CDirView * newView)
 /**
  * @brief A new MergeDoc has been opened.
  */
-void CDirDoc::AddMergeDoc(CMergeDoc * pMergeDoc)
+void CDirDoc::AddMergeDoc(IMergeDoc * pMergeDoc)
 {
 	ASSERT(pMergeDoc);
 	m_MergeDocs.AddTail(pMergeDoc);
 }
 
 /**
- * @brief A new HexMergeDoc has been opened.
- */
-void CDirDoc::AddHexMergeDoc(CHexMergeDoc * pHexMergeDoc)
-{
-	ASSERT(pHexMergeDoc);
-	m_HexMergeDocs.AddTail(pHexMergeDoc);
-}
-
-/**
  * @brief MergeDoc informs us it is closing.
  */
-void CDirDoc::MergeDocClosing(CDocument * pMergeDoc)
+void CDirDoc::MergeDocClosing(IMergeDoc * pMergeDoc)
 {
 	ASSERT(pMergeDoc);
 	if (POSITION pos = m_MergeDocs.CPtrList::Find(pMergeDoc))
 		m_MergeDocs.RemoveAt(pos);
-	else if (POSITION pos = m_HexMergeDocs.CPtrList::Find(pMergeDoc))
-		m_HexMergeDocs.RemoveAt(pos);
 	else
 		ASSERT(FALSE);
 
@@ -653,7 +636,7 @@ void CDirDoc::MergeDocClosing(CDocument * pMergeDoc)
 		if (m_pCtxt == NULL && !m_bReuseCloses)
 			m_pDirView->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 	}
-	else if (m_MergeDocs.GetCount() == 0 && m_HexMergeDocs.GetCount() == 0)
+	else if (m_MergeDocs.GetCount() == 0)
 	{
 		delete this;
 	}
@@ -671,15 +654,8 @@ BOOL CDirDoc::CloseMergeDocs()
 	POSITION pos = m_MergeDocs.GetHeadPosition();
 	while (pos)
 	{
-		CMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
+		IMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
 		if (!pMergeDoc->CloseNow())
-			return FALSE;
-	}
-	pos = m_HexMergeDocs.GetHeadPosition();
-	while (pos)
-	{
-		CHexMergeDoc * pHexMergeDoc = m_HexMergeDocs.GetNext(pos);
-		if (!pHexMergeDoc->CloseNow())
 			return FALSE;
 	}
 	return TRUE;
@@ -715,65 +691,6 @@ BOOL CDirDoc::ReusingDirDoc()
 	}
 
 	return TRUE;
-}
-
-/**
- * @brief Obtain a merge doc to display a difference in files.
- * @param [out] pNew Set to TRUE if a new doc is created,
- * and FALSE if an existing one reused.
- * @return Pointer to CMergeDoc to use (new or existing). 
- */
-CMergeDoc * CDirDoc::GetMergeDocForDiff(int nFiles, BOOL * pNew)
-{
-	CMergeDoc * pMergeDoc = 0;
-	// policy -- use an existing merge doc if available
-	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
-	if (!bMultiDocs && !m_MergeDocs.IsEmpty())
-	{
-		*pNew = FALSE;
-		pMergeDoc = m_MergeDocs.GetHead();
-	}
-	else
-	{
-		// Create a new merge doc
-		CMergeDoc::m_nBuffersTemp = nFiles;
-		pMergeDoc = (CMergeDoc*)theApp.m_pDiffTemplate->OpenDocumentFile(NULL);
-		AddMergeDoc(pMergeDoc);
-		pMergeDoc->SetDirDoc(this);
-		*pNew = TRUE;
-	}
-	return pMergeDoc;
-}
-
-/**
- * @brief Obtain a hex merge doc to display a difference in files.
- * @param [out] pNew Set to TRUE if a new doc is created,
- * and FALSE if an existing one reused.
- * @return Pointer to CHexMergeDoc to use (new or existing). 
- */
-CHexMergeDoc * CDirDoc::GetHexMergeDocForDiff(int nFiles, BOOL * pNew)
-{
-	CHexMergeDoc * pHexMergeDoc = 0;
-	// policy -- use an existing merge doc if available
-	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
-	if (!bMultiDocs && !m_HexMergeDocs.IsEmpty())
-	{
-		*pNew = FALSE;
-		pHexMergeDoc = m_HexMergeDocs.GetHead();
-	}
-	else
-	{
-		// Create a new merge doc
-		CHexMergeDoc::m_nBuffersTemp = nFiles;
-		pHexMergeDoc = (CHexMergeDoc*)theApp.m_pHexMergeTemplate->OpenDocumentFile(NULL);
-		if (pHexMergeDoc)
-		{
-			AddHexMergeDoc(pHexMergeDoc);
-			pHexMergeDoc->SetDirDoc(this);
-		}
-		*pNew = TRUE;
-	}
-	return pHexMergeDoc;
 }
 
 /**

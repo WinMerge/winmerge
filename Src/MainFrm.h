@@ -309,8 +309,8 @@ private:
 	const DirDocList &GetAllDirDocs();
 	const HexMergeDocList &GetAllHexMergeDocs();
 	void RedisplayAllDirDocs();
-	CMergeDoc * GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc, BOOL * pNew);
-	CHexMergeDoc * GetHexMergeDocToShow(int nDirs, CDirDoc * pDirDoc, BOOL * pNew);
+	CMergeDoc * GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc);
+	CHexMergeDoc * GetHexMergeDocToShow(int nDirs, CDirDoc * pDirDoc);
 	CDirDoc * GetDirDocToShow(int nDirs, BOOL * pNew);
 	void UpdateFont(FRAMETYPE frame);
 	BOOL CreateToolbar();

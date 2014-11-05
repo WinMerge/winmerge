@@ -3355,6 +3355,9 @@
 				RelativePath=".\IListCtrl.h">
 			</File>
 			<File
+				RelativePath=".\IMergeDoc.h">
+			</File>
+			<File
 				RelativePath="IntToIntMap.h">
 			</File>
 			<File

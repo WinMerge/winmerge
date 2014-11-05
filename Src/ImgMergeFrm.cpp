@@ -169,6 +169,12 @@ CImgMergeFrame::CImgMergeFrame()
 
 CImgMergeFrame::~CImgMergeFrame()
 {
+	if (m_pDirDoc)
+	{
+		m_pDirDoc->MergeDocClosing(this);
+		m_pDirDoc = NULL;
+	}
+
 	if (m_hIdentical != NULL)
 	{
 		DestroyIcon(m_hIdentical);

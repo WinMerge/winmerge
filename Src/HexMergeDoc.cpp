@@ -490,14 +490,14 @@ void CHexMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
 /**
  * @brief DirDoc commanding us to close
  */
-BOOL CHexMergeDoc::CloseNow()
+bool CHexMergeDoc::CloseNow()
 {
 	// Allow user to cancel closing
 	if (!PromptAndSaveIfNeeded(TRUE))
-		return FALSE;
+		return false;
 
 	GetParentFrame()->CloseNow();
-	return TRUE;
+	return true;
 }
 
 /**
