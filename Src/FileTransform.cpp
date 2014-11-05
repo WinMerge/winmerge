@@ -41,22 +41,6 @@ using Poco::Exception;
 int g_bUnpackerMode = PLUGIN_MANUAL;
 int g_bPredifferMode = PLUGIN_MANUAL;
 
-/**
- * @brief Category of transformation : define the transformation events
- *
- * @note USER categories are calls to scriptlets, or VB ActiveX DLL, or VC COM DLL
- * Use text definition : if you add one, nothing to do ; 
- * if you change one, you just have change the dll/scripts for that event
- */
-const wchar_t *TransformationCategories[] = 
-{
-	L"BUFFER_PREDIFF",
-	L"FILE_PREDIFF",
-	L"EDITOR_SCRIPT",
-	L"BUFFER_PACK_UNPACK",
-	L"FILE_PACK_UNPACK",
-	NULL,		// last empty : necessary
-};
 
 
 

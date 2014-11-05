@@ -31,7 +31,6 @@
 
 #include <vector>
 #include "UnicodeString.h"
-#include "unicoder.h"
 #include "resource.h"
 #include "MergeApp.h"
 
@@ -53,15 +52,6 @@ enum PLUGIN_MODE
 
 extern int g_bUnpackerMode;
 extern int g_bPredifferMode;
-
-
-/**
- * @brief List of transformation categories (events)
- *
- * @note If you add some event, you have to complete this array in FileTransform.cpp
- */
-extern const wchar_t *TransformationCategories[];
-
 
 
 /**

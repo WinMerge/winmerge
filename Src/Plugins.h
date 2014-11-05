@@ -40,6 +40,13 @@
 struct FileFilterElement;
 typedef boost::shared_ptr<FileFilterElement> FileFilterElementPtr;
 
+/**
+ * @brief List of transformation categories (events)
+ *
+ * @note If you add some event, you have to complete this array in FileTransform.cpp
+ */
+extern const wchar_t *TransformationCategories[];
+
 /** 
  * @brief Information structure for a plugin
  */
