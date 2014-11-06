@@ -157,23 +157,13 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 
 	// third step : prediff (plugins)
 	bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
-	if (infoPrediffer->bToBeScanned)
-	{
-		// FileTransform_Prediffing tries each prediffer for the pointed out filteredFilenames
-		// if a prediffer fails, we consider it is not the good one, that's all
-		// FileTransform_Prediffing returns FALSE only if the prediffer works, 
-		// but the data can not be saved to disk (no more place ??)
-		if (FileTransform_Prediffing(filepathTransformed, filteredFilenames, infoPrediffer, bMayOverwrite) 
-				== false)
-			return false;
-	}
-	else
-	{
-		// this can failed if the pointed out prediffer has a problem
-		if (FileTransform_Prediffing(filepathTransformed, *infoPrediffer, bMayOverwrite) 
-				== false)
-			return false;
-	}
+
+	// FileTransform_Prediffing tries each prediffer for the pointed out filteredFilenames
+	// if a prediffer fails, we consider it is not the good one, that's all
+	// FileTransform_Prediffing returns FALSE only if the prediffer works, 
+	// but the data can not be saved to disk (no more place ??)
+	if (!FileTransform_Prediffing(infoPrediffer, filepathTransformed, filteredFilenames, bMayOverwrite))
+		return false;
 
 	if ((encoding.m_unicoding && encoding.m_unicoding != ucr::UTF8) || bForceUTF8)
 	{

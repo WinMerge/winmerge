@@ -28,8 +28,6 @@ using CompareEngines::ByteCompare;
 using CompareEngines::TimeSizeCompare;
 
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & files);
-static bool Unpack(String & filepathTransformed,
-	const String& filteredFilenames, PackingInfo * infoUnpacker);
 
 FolderCmp::FolderCmp()
 : m_pDiffUtilsEngine(NULL)
@@ -115,7 +113,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			// Invoke unpacking plugins
 			if (infoUnpacker && string_compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
 			{
-				if (!Unpack(filepathUnpacked[nIndex], filteredFilenames, infoUnpacker))
+				if (!FileTransform_Unpacking(infoUnpacker, filepathUnpacked[nIndex], filteredFilenames))
 					goto exitPrepAndCompare;
 
 				// we use the same plugins for both files, so they must be defined before second file
@@ -422,26 +420,4 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & fil
 			files.SetPath(nIndex, _T("NUL"), false);
 		}
 	}
-}
-
-/**
- * @brief Invoke appropriate plugins for unpacking
- * return false if anything fails
- * caller has to DeleteFile filepathTransformed, if it differs from filepath
- */
-static bool Unpack(String & filepathTransformed,
-	const String& filteredFilenames, PackingInfo * infoUnpacker)
-{
-	// first step : unpack (plugins)
-	if (infoUnpacker->bToBeScanned)
-	{
-		if (!FileTransform_Unpacking(filepathTransformed, filteredFilenames, infoUnpacker, &infoUnpacker->subcode))
-			return false;
-	}
-	else
-	{
-		if (!FileTransform_Unpacking(filepathTransformed, infoUnpacker, &infoUnpacker->subcode))
-			return false;
-	}
-	return true;
 }

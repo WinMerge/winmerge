@@ -157,6 +157,9 @@ bool FileTransform_Unpacking(String & filepath, const String& filteredText, Pack
  * @param filepath : [in, out] Most plugins change this filename
  */
 bool FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode);
+
+bool FileTransform_Unpacking(PackingInfo * handler, String & filepath, const String& filteredText);
+
 /**
  * @brief Prepare one file for saving, known handler
  *
@@ -188,6 +191,7 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
  */
 bool FileTransform_Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite);
 
+bool FileTransform_Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite);
 
 /**
  * @brief Transform all files to UTF8 aslong possible
