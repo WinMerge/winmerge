@@ -795,7 +795,6 @@ void CImgMergeFrame::UpdateHeaderSizes()
  */
 void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 {
-	const TCHAR pszSeparator[] = _T(" - ");
 	String sTitle;
 	String sFileName[3];
 
@@ -820,36 +819,11 @@ void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 				}
 			}
 		}
-		if (m_filePaths.GetSize() < 3)
-		{
-			if (sFileName[0] == sFileName[1])
-			{
-				sTitle = sFileName[0];
-				sTitle += _T(" x 2");
-			}
-			else
-			{
-				sTitle = sFileName[0];
-				sTitle += pszSeparator;
-				sTitle += sFileName[1];
-			}
-		}
+		const int nBuffers = m_filePaths.GetSize();
+		if (std::count(&sFileName[0], &sFileName[0] + nBuffers, sFileName[0]) == nBuffers)
+			sTitle = sFileName[0] + string_format(_T(" x %d"), nBuffers);
 		else
-		{
-			if (sFileName[0] == sFileName[1] && sFileName[0] == sFileName[2])
-			{
-				sTitle = sFileName[0];
-				sTitle += _T(" x 3");
-			}
-			else
-			{
-				sTitle = sFileName[0];
-				sTitle += pszSeparator;
-				sTitle += sFileName[1];
-				sTitle += pszSeparator;
-				sTitle += sFileName[2];
-			}
-		}
+			sTitle = string_join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
 	}
 	CMDIChildWnd::SetTitle(sTitle.c_str());
 }
