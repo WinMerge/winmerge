@@ -241,6 +241,14 @@ bool FileTransform_Unpacking(String & filepath, const String& filteredText, Pack
 	return bSuccess;
 }
 
+bool FileTransform_Unpacking(PackingInfo *handler, String& filepath, const String& filteredText)
+{
+	if (handler->bToBeScanned)
+		return FileTransform_Unpacking(filepath, filteredText, handler, &handler->subcode);
+	else
+		return FileTransform_Unpacking(filepath, handler, &handler->subcode);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // transformation prediffing
     
@@ -368,6 +376,14 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
 	}
 
 	return bSuccess;
+}
+
+bool FileTransform_Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite)
+{
+	if (handler->bToBeScanned)
+		return FileTransform_Prediffing(filepath, filteredText, handler, bMayOverwrite);
+	else
+		return FileTransform_Prediffing(filepath, *handler, bMayOverwrite);
 }
 
 
