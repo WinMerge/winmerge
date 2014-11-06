@@ -1321,19 +1321,6 @@ bool CDirView::GetSelectedItems(int * sel1, int * sel2, int * sel3)
 }
 
 /**
- * @brief Return true if this unpacker handles binary files
- */
-static bool
-IsBinaryUnpacker(PackingInfo * infoUnpacker)
-{
-	if (!infoUnpacker)
-		return false;
-	if (!_tcsstr(infoUnpacker->pluginName.c_str(), _T("BinaryFile")))
-		return false;
-	return true;
-}
-
-/**
  * @brief Open special items (parent folders etc).
  * @param [in] pos1 First item position.
  * @param [in] pos2 Second item position.
