@@ -549,8 +549,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	// other file has EOL before EOF and other not...
 	if (!diffOptions.nIgnoreWhitespace && !diffOptions.bIgnoreBlankLines)
 	{
-		IF_IS_TRUE_ALL ((status.bMissingNL[0] == status.bMissingNL[nBuffer]), nBuffer, m_nBuffers) {}
-		else
+		if (std::count(status.bMissingNL, status.bMissingNL + m_nBuffers, status.bMissingNL[0]) < m_nBuffers)
 		{
 			// ..lasf DIFFRANGE of file which has EOL must be
 			// fixed to contain last line too
@@ -2574,19 +2573,14 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	// we need to initialize the unpacker as a "do nothing" one
 	if (bFiltersEnabled)
 	{ 
-		IF_IS_TRUE_ALL ((m_nBufferType[nBuffer] == BUFFER_UNNAMED), nBuffer, m_nBuffers)
+		if (std::count(m_nBufferType, m_nBufferType + m_nBuffers, BUFFER_UNNAMED) == m_nBuffers)
 		{
 			m_pInfoUnpacker->Initialize(PLUGIN_MANUAL);
 		}
 	}
 
 	// Bail out if either side failed
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		if (!FileLoadResult::IsOk(nSuccess[nBuffer]))
-			break;
-	}
-	if (nBuffer < m_nBuffers)
+	if (std::find_if(nSuccess, nSuccess + m_nBuffers, std::not1(std::ptr_fun(FileLoadResult::IsOk))) != nSuccess + m_nBuffers)
 	{
 		OPENRESULTS_TYPE retVal = OPENRESULTS_FAILED_MISC;
 		CChildFrame *pFrame = GetParentFrame();
@@ -2710,7 +2704,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 		bool syntaxHLEnabled = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
 		if (syntaxHLEnabled && nBuffer < m_nBuffers)
 		{
-			IF_IS_TRUE_ALL (!bTyped[nBuffer], nBuffer, m_nBuffers)
+			if (std::count(bTyped, bTyped + m_nBuffers, false) == m_nBuffers)
 			{
 				CString sFirstLine;
 				m_ptBuf[0]->GetLine(0, sFirstLine);
