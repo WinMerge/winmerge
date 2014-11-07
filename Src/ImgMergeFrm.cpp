@@ -160,11 +160,8 @@ CImgMergeFrame::CImgMergeFrame()
 , m_bAutoMerged(false)
 , m_pImgMergeWindow(NULL)
 {
-	for (int pane = 0; pane < 3; ++pane)
-	{
-		m_nBufferType[pane] = BUFFER_NORMAL;
-		m_bRO[pane] = false;
-	}
+	std::fill_n(m_nBufferType, 3, BUFFER_NORMAL);
+	std::fill_n(m_bRO, 3, false);
 }
 
 CImgMergeFrame::~CImgMergeFrame()

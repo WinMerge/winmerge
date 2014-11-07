@@ -99,11 +99,8 @@ CLocationView::CLocationView()
 
 	SetConnectMovedBlocks(GetOptionsMgr()->GetInt(OPT_CONNECT_MOVED_BLOCKS));
 
-	for (int pane = 0; pane < countof(m_view); pane++)
-	{
-		m_view[pane] = NULL;
-		m_nSubLineCount[pane] = 0;
-	}
+	std::fill_n(m_view, countof(m_view), static_cast<CMergeEditView *>(NULL));
+	std::fill_n(m_nSubLineCount, countof(m_view), 0);
 }
 
 CLocationView::~CLocationView()
@@ -389,7 +386,7 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	CMergeDoc *pDoc = GetDocument();
 	int pane;
-	IF_IS_TRUE_ALL (m_view[pane] == NULL, pane, pDoc->m_nBuffers)
+	if (std::count(m_view, m_view + pDoc->m_nBuffers, static_cast<CMergeEditView *>(NULL)) > 0)
 		return;
 
 	if (!m_view[0]->IsInitialized()) return;
@@ -715,9 +712,8 @@ bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine)
 	GetClientRect(rc);
 	CMergeDoc* pDoc = GetDocument();
 
-	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
-		if (m_view[pane] == NULL)
-			return FALSE;
+	if (std::count(m_view, m_view + pDoc->m_nBuffers, static_cast<CMergeEditView *>(NULL)) > 0)
+		return false;
 
 	int line = -1;
 	int bar = IsInsideBar(rc, point);

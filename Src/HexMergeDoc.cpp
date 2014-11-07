@@ -154,11 +154,8 @@ CHexMergeDoc::CHexMergeDoc()
 : m_pDirDoc(NULL)
 {
 	m_nBuffers = m_nBuffersTemp;
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		m_pView[nBuffer] = NULL;
-		m_nBufferType[nBuffer] = BUFFER_NORMAL;
-	}
+	std::fill_n(m_pView, m_nBuffers, static_cast<CHexMergeView *>(NULL));
+	std::fill_n(m_nBufferType, m_nBuffers, BUFFER_NORMAL);
 }
 
 /**

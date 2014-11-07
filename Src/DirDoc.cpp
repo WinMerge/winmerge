@@ -870,8 +870,7 @@ bool CDirDoc::IsCurrentScanAbortable() const
  */
 void CDirDoc::SetDescriptions(const String strDesc[])
 {
-	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
-		m_strDesc[nIndex] = strDesc[nIndex];
+	std::copy(strDesc, strDesc + m_nDirs, m_strDesc);
 }
 
 /**
