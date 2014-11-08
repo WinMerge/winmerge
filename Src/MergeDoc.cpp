@@ -65,6 +65,9 @@
 #include "EncodingErrorBar.h"
 #include "MergeCmdLineInfo.h"
 #include "TFile.h"
+#include "Constants.h"
+#include "Merge7zFormatMergePluginImpl.h"
+#include "7zCommon.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -3027,8 +3030,19 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 	if (dlg.DoModal() == IDOK)
 	{
 		infoUnpacker = dlg.GetInfoHandler();
-		SetUnpacker(&infoUnpacker);
-		OnFileReload();
+		Merge7zFormatMergePluginScope scope(&infoUnpacker);
+		if (std::count_if(m_filePaths.begin(), m_filePaths.end(), ArchiveGuessFormat) == m_nBuffers)
+		{
+			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
+			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, 
+				(theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1), NULL, _T(""), &infoUnpacker);
+			CloseNow();
+		}
+		else
+		{
+			SetUnpacker(&infoUnpacker);
+			OnFileReload();
+		}
 		return true;
 	}
 	else

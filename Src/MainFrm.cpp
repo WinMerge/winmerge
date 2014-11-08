@@ -60,6 +60,7 @@
 #include "SelectUnpackerDlg.h"
 #include "ConfigLog.h"
 #include "7zCommon.h"
+#include "Merge7zFormatMergePluginImpl.h"
 #include "FileFiltersDlg.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
@@ -1020,6 +1021,8 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
+
+	Merge7zFormatMergePluginScope scope(infoUnpacker);
 
 	PathContext files;
 	if (pFiles)

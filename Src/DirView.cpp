@@ -54,6 +54,7 @@
 #include "ShellContextMenu.h"
 #include "DiffItem.h"
 #include "IListCtrlImpl.h"
+#include "Merge7zFormatMergePluginImpl.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1700,6 +1701,7 @@ bool CDirView::OpenThreeItems(UIntPtr pos1, UIntPtr pos2, UIntPtr pos3, DIFFITEM
  */
 void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= NULL*/)
 {
+	Merge7zFormatMergePluginScope scope(infoUnpacker);
 	CDirDoc * pDoc = GetDocument();
 
 	// First, figure out what was selected (store into pos1 & pos2)
@@ -1768,10 +1770,10 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		// Don't add folders to MRU
 		GetMainFrame()->DoFileOpen(&paths, dwFlags, pDoc->GetRecursive(), (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
-	else if (HasZipSupport() && ArchiveGuessFormat(paths.GetLeft().c_str()) && ArchiveGuessFormat(paths.GetRight().c_str()))
+	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == pDoc->m_nDirs)
 	{
 		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, pDoc->GetRecursive(), (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, pDoc->GetRecursive(), NULL, _T(""), infoUnpacker);
 	}
 	else
 	{
