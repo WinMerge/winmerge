@@ -63,6 +63,8 @@ bool FileTransform_Packing(String & filepath, PackingInfo handler)
 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName);
 	if (plugin == NULL)
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler.pluginName);
+	if (plugin == NULL)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName);
 	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (handler.bWithFile)
@@ -117,6 +119,8 @@ bool FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
 	bool bHandled = false;
 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->pluginName);
+	if (plugin == NULL)
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler->pluginName);
 	if (plugin == NULL)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->pluginName);
 	if (plugin == NULL)
@@ -184,6 +188,8 @@ bool FileTransform_Unpacking(String & filepath, const String& filteredText, Pack
 	bool bHandled = false;
 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredText);
+	if (!plugin)
+		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredText);
 	if (plugin)
 	{
 		handler->pluginName = plugin->m_name;

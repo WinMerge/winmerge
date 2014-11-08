@@ -110,7 +110,7 @@ DATE:		BY:					DESCRIPTION:
 //#include "ExternalArchiveFormat.h"
 #include "version.h"
 #include "Environment.h"
-#include "Merge7zFormatShellImpl.h"
+#include "Merge7zFormatRegister.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -128,6 +128,8 @@ static __declspec(thread) Merge7z::Proxy m_Merge7z =
 	"Merge7z",
 	NULL
 };
+
+std::vector<Merge7z::Format *(*)(const String& path)> Merge7zFormatRegister::optionalFormats;
 
 bool IsArchiveFile(const String& pszFile)
 {
@@ -200,16 +202,14 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 	{
 		Merge7z::Format *pFormat = m_Merge7z->GuessFormat(path2.c_str());
 		if (!pFormat)
-		{
-			if (Merge7zFormatShellImpl::IsShellFolder(path2))
-				return Merge7zFormatShellImpl::GetInstance();
-		}
+			pFormat = Merge7zFormatRegister::GuessFormat(path2);
 		return pFormat;
 	}
 	catch (...)
 	{
-		if (Merge7zFormatShellImpl::IsShellFolder(path2))
-			return Merge7zFormatShellImpl::GetInstance();
+		Merge7z::Format *pFormat = Merge7zFormatRegister::GuessFormat(path2);
+		if (pFormat)
+			return pFormat;
 		throw;
 	}
 }

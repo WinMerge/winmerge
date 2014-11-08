@@ -91,6 +91,7 @@ void PluginsListDlg::AddPlugins()
 	String type = LoadResString(IDS_PLUGINS_TYPE_UNPACKER);
 	AddPluginsToList(L"FILE_PACK_UNPACK", type.c_str());
 	AddPluginsToList(L"BUFFER_PACK_UNPACK", type.c_str());
+	AddPluginsToList(L"FILE_FOLDER_PACK_UNPACK", type.c_str());
 	type = LoadResString(IDS_PLUGINS_TYPE_PREDIFFER);
 	AddPluginsToList(L"FILE_PREDIFF", type.c_str());
 	AddPluginsToList(L"BUFFER_PREDIFF", type.c_str());
@@ -141,10 +142,9 @@ void PluginsListDlg::OnBnClickedPluginSettings()
 	if (pos)
 	{
 		String pluginName = static_cast<const TCHAR *>(m_list.GetItemText(m_list.GetNextSelectedItem(pos), 0));
-		wchar_t *types[] = {L"FILE_PACK_UNPACK", L"BUFFER_PACK_UNPACK", L"FILE_PREDIFF", L"BUFFER_PREDIFF", L"EDITOR_SCRIPT"};
-		for (int i = 0; i < sizeof(types)/sizeof(types[0]); ++i)
+		for (int i = 0; TransformationCategories[i]; ++i)
 		{
-			PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(types[i], pluginName);
+			PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(TransformationCategories[i], pluginName);
 			if (plugin)
 			{
 				EnableWindow(false);

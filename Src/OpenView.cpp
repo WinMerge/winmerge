@@ -46,6 +46,7 @@
 #include "Picture.h"
 #include "DragDrop.h"
 #include "FileFilterHelper.h"
+#include "Plugins.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -604,6 +605,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 	BOOL bRet;
 
 	CoInitialize(NULL);
+	CAssureScriptsForThread scriptsForRescan;
 
 	while( (bRet = GetMessage( &msg, NULL, 0, 0 )) != 0)
 	{ 

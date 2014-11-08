@@ -67,6 +67,7 @@ const wchar_t *TransformationCategories[] =
 	L"EDITOR_SCRIPT",
 	L"BUFFER_PACK_UNPACK",
 	L"FILE_PACK_UNPACK",
+	L"FILE_FOLDER_PACK_UNPACK",
 	NULL,		// last empty : necessary
 };
 
@@ -426,6 +427,14 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 	{
 		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFile");
 		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFile");
+	}
+	else if (wcscmp(transformationEvent, L"FILE_FOLDER_PACK_UNPACK") == 0)
+	{
+		bFound &= SearchScriptForMethodName(lpDispatch, L"IsFolder");
+		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFile");
+		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFile");
+		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFolder");
+		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFolder");
 	}
 	if (!bFound)
 	{
@@ -1230,12 +1239,12 @@ bool InvokePackBuffer(VARIANT & array, int & nChanged, IDispatch *piScript, int 
 }
 
 
-bool InvokeUnpackFile(const String& fileSource, const String& fileDest, int & nChanged, IDispatch *piScript, int & subCode)
+static bool unpack(const wchar_t *method, const String& source, const String& dest, int & nChanged, IDispatch *piScript, int & subCode)
 {
 	// argument text  
 	VARIANT vbstrSrc;
 	vbstrSrc.vt = VT_BSTR;
-	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(fileSource).c_str());
+	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(source).c_str());
 	// argument transformed text 
 	VARIANT vbstrDst;
 	vbstrDst.vt = VT_BSTR;
@@ -1388,6 +1397,29 @@ bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int 
 	VariantClear(&vTransformed);
 
 	return (! FAILED(h));
+}
+
+bool InvokeIsFolder(const String& path, IDispatch *piScript)
+{
+	// argument text  
+	VARIANT vbstrPath;
+	vbstrPath.vt = VT_BSTR;
+	vbstrPath.bstrVal = SysAllocString(ucr::toUTF16(path).c_str());
+
+	VARIANT vboolHandled;
+	vboolHandled.vt = VT_BOOL;
+	vboolHandled.boolVal = false;
+
+	// invoke method by name, reverse order for arguments
+	// VARIANT_BOOL ShowSettingsDialog()
+	HRESULT h = ::safeInvokeW(piScript, &vboolHandled, L"IsFolder", opFxn[1], vbstrPath);
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+
+	// clear the returned variant
+	VariantClear(&vboolHandled);
+	VariantClear(&vbstrPath);
+
+	return (bSuccess);
 }
 
 bool InvokeShowSettingsDialog(IDispatch *piScript)
