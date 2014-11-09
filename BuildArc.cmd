@@ -77,7 +77,7 @@ copy Plugins\dlls\*.dll "%DISTDIR%\2.14-zip-version\WinMerge\MergePlugins\"
 copy Plugins\dlls\X64\*.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\MergePlugins\"
 copy Plugins\dlls\*.sct "%DISTDIR%\2.14-zip-version\WinMerge\MergePlugins\"
 copy Plugins\dlls\*.sct "%DISTDIR%\2.14-x64-zip-version\WinMerge\MergePlugins\"
-del "%DISTDIR%\2.14-zip-version\WinMerge\MergePlugins\CompareMS*.sct"
+del "%DISTDIR%\2.14-zip-version\WinMerge\MergePlugins\CompareMS*.dll"
 del "%DISTDIR%\2.14-zip-version\WinMerge\MergePlugins\Watch*OfLog.dll"
 del "%DISTDIR%\2.14-x64-zip-version\WinMerge\MergePlugins\Watch*OfLog.dll"
 
