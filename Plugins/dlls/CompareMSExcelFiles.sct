@@ -129,24 +129,47 @@ Function getModuleExtension(cmp)
 	End Select
 End Function
 
-Function saveSheetAsImage(sht, filename)
+Function saveRangeAsImage(sht, rng, filename)
 	Dim obj
 	Dim shtNew
+
+	saveRangeAsImage = True
+
+	On Error Resume Next
+	Err.Clear
+
 	Set shtNew = sht.Parent.Sheets.Add
 	Set obj = sht.Parent.Charts.Add
-	sht.UsedRange.CopyPicture 1, 2 ' xlScreen=1, xlBitmap=2
+	rng.CopyPicture 1, 2 ' xlScreen=1, xlBitmap=2
 	Set obj = obj.Location(2, shtNew.Name) ' xlLocationAsObject=2
+
 	If sht.Application.Version <= 11 Then
-		obj.Parent.Width = sht.UsedRange.Width + 8
-		obj.Parent.Height = sht.UsedRange.Height + 8
+		obj.Parent.Width = rng.Width + 8
+		obj.Parent.Height = rng.Height + 8
 	Else
-		obj.Parent.Width = sht.UsedRange.Width
-		obj.Parent.Height = sht.UsedRange.Height
+		obj.Parent.Width = rng.Width
+		obj.Parent.Height = rng.Height
 	End If
-	obj.Paste
-	obj.Export filename, "PNG"
+	If Err.Number = 0 Then
+		obj.Paste
+		obj.Export filename, "PNG"
+	End If
+	If Err.Number <> 0 Then
+		saveRangeAsImage = False
+	End If
 	obj.Parent.Delete
 	shtNew.Delete
+
+End Function
+
+Function saveSheetAsImage(sht, filename)
+	If Not saveRangeAsImage(sht, sht.UsedRange, filename) Then
+		Dim shtNew
+		Set shtNew = sht.Parent.Sheets.Add
+		shtNew.Range("A1") = "Error!"
+		saveRangeAsImage shtNew, shtNew.Range("A1"), filename
+		shtNew.Delete
+	End If
 End Function
 
 Function get_PluginEvent()
@@ -461,13 +484,13 @@ End Function
         </li>
         <li>
           <input id="chkCompareWorksheetsAsImage" type="checkbox" />
-          <label class="en">Compare worksheets as image </label>
-          <label class="ja">ワークシートを画像化して比較する </label>
+          <label class="en">Compare worksheets as image (very slow)</label>
+          <label class="ja">ワークシートを画像化して比較する (処理時間増大)</label>
         </li>
         <li>
           <input id="chkCompareFormulas" type="checkbox" />
-          <label class="en">Compare formulas </label>
-          <label class="ja">数式を比較する </label>
+          <label class="en">Compare formulas (very slow)</label>
+          <label class="ja">数式を比較する (処理時間増大)</label>
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
