@@ -304,6 +304,7 @@ End Function
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
+        cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
         setLanguage(navigator.browserLanguage);
         chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
         chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
