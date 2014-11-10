@@ -611,7 +611,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 	{ 
 		if (bRet == -1)
 			break;
-		if (msg.message != WM_USER)
+		if (msg.message != WM_USER + 2)
 			continue;
 
 		BOOL bButtonEnabled = TRUE;
@@ -734,7 +734,7 @@ void COpenView::UpdateButtonStates()
 	else
 		pParams->m_paths = PathContext((const TCHAR *)m_strPath[0], (const TCHAR *)m_strPath[1], (const TCHAR *)m_strPath[2]);
 
-	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_USER, (WPARAM)pParams, 0);
+	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_USER + 2, (WPARAM)pParams, 0);
 }
 
 void COpenView::TerminateThreadIfRunning()
