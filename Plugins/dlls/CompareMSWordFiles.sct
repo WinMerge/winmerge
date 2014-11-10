@@ -391,8 +391,8 @@ End Function
         </li>
         <li>
           <input id="chkCompareDocumentsAsHTML" type="checkbox" />
-          <label class="en">Compare documents as HTML file </label>
-          <label class="ja">ドキュメントをHTMLファイル化して比較する </label>
+          <label class="en">Compare documents as HTML file (very slow)</label>
+          <label class="ja">ドキュメントをHTMLファイル化して比較する (処理時間増大)</label>
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
