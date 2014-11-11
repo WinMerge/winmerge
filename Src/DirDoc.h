@@ -35,10 +35,8 @@
 #include "PluginManager.h"
 
 class CDirView;
-class CMergeDoc;
-class CHexMergeDoc;
-typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
-typedef CTypedPtrList<CPtrList, CHexMergeDoc *> HexMergeDocPtrList;
+struct IMergeDoc;
+typedef CTypedPtrList<CPtrList, IMergeDoc *> MergeDocPtrList;
 class DirDocFilterGlobal;
 class DirDocFilterByExtension;
 class CustomStatusCursor;
@@ -71,8 +69,7 @@ public:
 public:
 	BOOL CloseMergeDocs();
 	CDirView * GetMainView() const;
-	CMergeDoc * GetMergeDocForDiff(int nFiles, BOOL * pNew);
-	CHexMergeDoc * GetHexMergeDocForDiff(int nFiles, BOOL * pNew);
+
 	BOOL ReusingDirDoc();
 
 // Overrides
@@ -105,9 +102,8 @@ public:
 	void Redisplay();
 	virtual ~CDirDoc();
 	void SetDirView( CDirView *newView ); // TODO Perry
-	void AddMergeDoc(CMergeDoc * pMergeDoc);
-	void AddHexMergeDoc(CHexMergeDoc * pHexMergeDoc);
-	void MergeDocClosing(CDocument * pMergeDoc);
+	void AddMergeDoc(IMergeDoc * pMergeDoc);
+	void MergeDocClosing(IMergeDoc * pMergeDoc);
 	CDiffThread m_diffThread;
 	void UpdateHeaderPath(BOOL bLeft);
 	void AbortCurrentScan();
@@ -138,7 +134,6 @@ private:
 	CDirView *m_pDirView; /**< Pointer to GUI */
 	boost::scoped_ptr<CompareStats> m_pCompareStats; /**< Compare statistics */
 	MergeDocPtrList m_MergeDocs; /**< List of file compares opened from this compare */
-	HexMergeDocPtrList m_HexMergeDocs; /**< List of hex file compares opened from this compare */
 	bool m_bRO[3]; /**< Is left/middle/right side read-only */
 	boost::scoped_ptr<CustomStatusCursor> m_statusCursor;
 	String m_strDesc[3]; /**< Left/middle/right side desription text */

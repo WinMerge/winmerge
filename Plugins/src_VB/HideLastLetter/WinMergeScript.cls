@@ -81,3 +81,8 @@ Public Function PackBufferA(ByRef buffer() As Byte, ByRef size As Long, ByRef bC
     PackBufferA = True
 End Function
 
+Public Function ShowSettingsDialog() As Boolean
+    ShowSettingsDialog = False
+    Err.Raise 30001, , "Not Implemented"
+End Function
+

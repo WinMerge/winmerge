@@ -38,7 +38,7 @@
 #include <Poco/RegularExpression.h>
 #include <windows.h>
 #include "MergeApp.h"
-#include "FileTransform.h"
+#include "unicoder.h"
 #include "FileFilterMgr.h"
 #include "lwdisp.h"
 #include "resource.h"
@@ -52,6 +52,24 @@ using std::vector;
 using Poco::RegularExpression;
 using Poco::FastMutex;
 using Poco::ScopedLock;
+
+/**
+ * @brief Category of transformation : define the transformation events
+ *
+ * @note USER categories are calls to scriptlets, or VB ActiveX DLL, or VC COM DLL
+ * Use text definition : if you add one, nothing to do ; 
+ * if you change one, you just have change the dll/scripts for that event
+ */
+const wchar_t *TransformationCategories[] = 
+{
+	L"BUFFER_PREDIFF",
+	L"FILE_PREDIFF",
+	L"EDITOR_SCRIPT",
+	L"BUFFER_PACK_UNPACK",
+	L"FILE_PACK_UNPACK",
+	L"FILE_FOLDER_PACK_UNPACK",
+	NULL,		// last empty : necessary
+};
 
 static vector<String> theScriptletList;
 /// Need to lock the *.sct so the user can't delete them
@@ -410,6 +428,14 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFile");
 		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFile");
 	}
+	else if (wcscmp(transformationEvent, L"FILE_FOLDER_PACK_UNPACK") == 0)
+	{
+		bFound &= SearchScriptForMethodName(lpDispatch, L"IsFolder");
+		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFile");
+		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFile");
+		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFolder");
+		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFolder");
+	}
 	if (!bFound)
 	{
 		// error (Plugin doesn't support the method as it claimed)
@@ -749,6 +775,20 @@ void CScriptsOfThread::FreeScriptsForEvent(const wchar_t *transformationEvent)
 		}
 }
 
+PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText)
+{
+	PluginArray * piFileScriptArray = GetAvailableScripts(transformationEvent);
+	for (int step = 0 ; step < piFileScriptArray->size() ; step ++)
+	{
+		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
+		if (plugin->m_bAutomatic == false)
+			continue;
+		if (plugin->TestAgainstRegList(filteredText) == false)
+			continue;
+		return plugin.get();
+	}
+	return NULL;
+}
 
 PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEvent, const String& name)
 {
@@ -1199,16 +1239,16 @@ bool InvokePackBuffer(VARIANT & array, int & nChanged, IDispatch *piScript, int 
 }
 
 
-bool InvokeUnpackFile(const String& fileSource, const String& fileDest, int & nChanged, IDispatch *piScript, int & subCode)
+static bool unpack(const wchar_t *method, const String& source, const String& dest, int & nChanged, IDispatch *piScript, int & subCode)
 {
 	// argument text  
 	VARIANT vbstrSrc;
 	vbstrSrc.vt = VT_BSTR;
-	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(fileSource).c_str());
+	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(source).c_str());
 	// argument transformed text 
 	VARIANT vbstrDst;
 	vbstrDst.vt = VT_BSTR;
-	vbstrDst.bstrVal = SysAllocString(ucr::toUTF16(fileDest).c_str());
+	vbstrDst.bstrVal = SysAllocString(ucr::toUTF16(dest).c_str());
 	// argument subcode by reference
 	VARIANT vpiSubcode;
 	vpiSubcode.vt = VT_BYREF | VT_I4;
@@ -1225,8 +1265,8 @@ bool InvokeUnpackFile(const String& fileSource, const String& fileDest, int & nC
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL * bChanged, INT * bSubcode)
-	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"UnpackFile", opFxn[4], 
-                            vpiSubcode, vpboolChanged, vbstrDst, vbstrSrc);
+	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, method, opFxn[4], 
+	                          vpiSubcode, vpboolChanged, vbstrDst, vbstrSrc);
 	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
 	if (bSuccess && changed)
 		nChanged ++;
@@ -1237,16 +1277,16 @@ bool InvokeUnpackFile(const String& fileSource, const String& fileDest, int & nC
 	return 	(bSuccess);
 }
 
-bool InvokePackFile(const String& fileSource, const String& fileDest, int & nChanged, IDispatch *piScript, int subCode)
+static bool pack(const wchar_t *method, const String& source, const String& dest, int & nChanged, IDispatch *piScript, int & subCode)
 {
 	// argument text  
 	VARIANT vbstrSrc;
 	vbstrSrc.vt = VT_BSTR;
-	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(fileSource).c_str());
+	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(source).c_str());
 	// argument transformed text 
 	VARIANT vbstrDst;
 	vbstrDst.vt = VT_BSTR;
-	vbstrDst.bstrVal = SysAllocString(ucr::toUTF16(fileDest).c_str());
+	vbstrDst.bstrVal = SysAllocString(ucr::toUTF16(dest).c_str());
 	// argument subcode
 	VARIANT viSubcode;
 	viSubcode.vt = VT_I4;
@@ -1263,8 +1303,8 @@ bool InvokePackFile(const String& fileSource, const String& fileDest, int & nCha
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL * bChanged, INT bSubcode)
-	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PackFile", opFxn[4], 
-                            viSubcode, vpboolChanged, vbstrDst, vbstrSrc);
+	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, method, opFxn[4], 
+	                          viSubcode, vpboolChanged, vbstrDst, vbstrSrc);
 	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
 	if (bSuccess && changed)
 		nChanged ++;
@@ -1273,6 +1313,26 @@ bool InvokePackFile(const String& fileSource, const String& fileDest, int & nCha
 	VariantClear(&vboolHandled);
 
 	return 	(bSuccess);
+}
+
+bool InvokeUnpackFile(const String& fileSource, const String& fileDest, int & nChanged, IDispatch *piScript, int & subCode)
+{
+	return unpack(L"UnpackFile", fileSource, fileDest, nChanged, piScript, subCode);
+}
+
+bool InvokePackFile(const String& fileSource, const String& fileDest, int & nChanged, IDispatch *piScript, int subCode)
+{
+	return pack(L"PackFile", fileSource, fileDest, nChanged, piScript, subCode);
+}
+
+bool InvokeUnpackFolder(const String& fileSource, const String& folderDest, int & nChanged, IDispatch *piScript, int & subCode)
+{
+	return unpack(L"UnpackFolder", fileSource, folderDest, nChanged, piScript, subCode);
+}
+
+bool InvokePackFolder(const String& folderSource, const String& fileDest, int & nChanged, IDispatch *piScript, int subCode)
+{
+	return pack(L"PackFolder", folderSource, fileDest, nChanged, piScript, subCode);
 }
 
 bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & nChanged, IDispatch *piScript)
@@ -1337,4 +1397,44 @@ bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int 
 	VariantClear(&vTransformed);
 
 	return (! FAILED(h));
+}
+
+bool InvokeIsFolder(const String& path, IDispatch *piScript)
+{
+	// argument text  
+	VARIANT vbstrPath;
+	vbstrPath.vt = VT_BSTR;
+	vbstrPath.bstrVal = SysAllocString(ucr::toUTF16(path).c_str());
+
+	VARIANT vboolHandled;
+	vboolHandled.vt = VT_BOOL;
+	vboolHandled.boolVal = false;
+
+	// invoke method by name, reverse order for arguments
+	// VARIANT_BOOL ShowSettingsDialog()
+	HRESULT h = ::safeInvokeW(piScript, &vboolHandled, L"IsFolder", opFxn[1], vbstrPath);
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+
+	// clear the returned variant
+	VariantClear(&vboolHandled);
+	VariantClear(&vbstrPath);
+
+	return (bSuccess);
+}
+
+bool InvokeShowSettingsDialog(IDispatch *piScript)
+{
+	VARIANT vboolHandled;
+	vboolHandled.vt = VT_BOOL;
+	vboolHandled.boolVal = false;
+
+	// invoke method by name, reverse order for arguments
+	// VARIANT_BOOL ShowSettingsDialog()
+	HRESULT h = ::safeInvokeW(piScript, &vboolHandled, L"ShowSettingsDialog", opFxn[0]);
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+
+	// clear the returned variant
+	VariantClear(&vboolHandled);
+
+	return (bSuccess);
 }

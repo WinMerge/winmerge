@@ -61,6 +61,7 @@
 #include "SelectUnpackerDlg.h"
 #include "ConfigLog.h"
 #include "7zCommon.h"
+#include "Merge7zFormatMergePluginImpl.h"
 #include "FileFiltersDlg.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
@@ -668,10 +669,9 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const DWORD dwFlags[] /*=0*/, const PackingInfo * infoUnpacker /*= NULL*/)
 {
-	BOOL docNull;
 	if (!m_pMenus[MENU_MERGEVIEW])
 		theApp.m_pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
-	CMergeDoc * pMergeDoc = GetMergeDocToShow(nFiles, pDirDoc, &docNull);
+	CMergeDoc * pMergeDoc = GetMergeDocToShow(nFiles, pDirDoc);
 
 	// Make local copies, so we can change encoding if we guess it below
 	FileLocation fileloc[3];
@@ -761,13 +761,6 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 				}
 			}
 		}
-		if (docNull)
-		{
-			CWnd* pWnd = pMergeDoc->GetParentFrame();
-			MDIActivate(pWnd);
-		}
-		else
-			MDINext();
 	}
 	return openResults;
 }
@@ -775,10 +768,9 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, 
 	const PathContext &paths, const bool bRO[])
 {
-	BOOL docNull;
 	if (!m_pMenus[MENU_HEXMERGEVIEW])
 		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
-	if (CHexMergeDoc *pHexMergeDoc = GetHexMergeDocToShow(paths.GetSize(), pDirDoc, &docNull))
+	if (CHexMergeDoc *pHexMergeDoc = GetHexMergeDocToShow(paths.GetSize(), pDirDoc))
 		pHexMergeDoc->OpenDocs(paths, bRO);
 }
 
@@ -811,6 +803,7 @@ int CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocatio
 	}
 
 	pImgMergeFrame->SetDirDoc(pDirDoc);
+	pDirDoc->AddMergeDoc(pImgMergeFrame);
 
 	if (!pImgMergeFrame->OpenImages(files, bRO, nActivePane, this))
 	{
@@ -1029,6 +1022,8 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
+
+	Merge7zFormatMergePluginScope scope(infoUnpacker);
 
 	PathContext files;
 	if (pFiles)
@@ -1558,6 +1553,21 @@ const HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
 
 /**
  * @brief Obtain a merge doc to display a difference in files.
+ * @return Pointer to CMergeDoc to use. 
+ */
+template<class DocClass>
+DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles)
+{
+	// Create a new merge doc
+	DocClass::m_nBuffersTemp = nFiles;
+	DocClass *pMergeDoc = (DocClass*)pTemplate->OpenDocumentFile(NULL);
+	pDirDoc->AddMergeDoc(pMergeDoc);
+	pMergeDoc->SetDirDoc(pDirDoc);
+	return pMergeDoc;
+}
+
+/**
+ * @brief Obtain a merge doc to display a difference in files.
  * This function (usually) uses DirDoc to determine if new or existing
  * MergeDoc is used. However there is exceptional case when DirDoc does
  * not contain diffs. Then we have only file compare, and if we also have
@@ -1566,7 +1576,7 @@ const HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
  * @param [out] pNew Did we create a new document?
  * @return Pointer to merge doucument.
  */
-CMergeDoc * CMainFrame::GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc, BOOL * pNew)
+CMergeDoc * CMainFrame::GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc)
 {
 	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
 	const MergeDocList &docs = GetAllMergeDocs();
@@ -1577,7 +1587,7 @@ CMergeDoc * CMainFrame::GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc, BOOL * 
 		CMergeDoc * pMergeDoc = docs.GetAt(pos);
 		pMergeDoc->CloseNow();
 	}
-	CMergeDoc * pMergeDoc = pDirDoc->GetMergeDocForDiff(nFiles, pNew);
+	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(theApp.m_pDiffTemplate, pDirDoc, nFiles);
 	return pMergeDoc;
 }
 
@@ -1591,7 +1601,7 @@ CMergeDoc * CMainFrame::GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc, BOOL * 
  * @param [out] pNew Did we create a new document?
  * @return Pointer to merge doucument.
  */
-CHexMergeDoc * CMainFrame::GetHexMergeDocToShow(int nFiles, CDirDoc * pDirDoc, BOOL * pNew)
+CHexMergeDoc * CMainFrame::GetHexMergeDocToShow(int nFiles, CDirDoc * pDirDoc)
 {
 	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
 	const HexMergeDocList &docs = GetAllHexMergeDocs();
@@ -1602,7 +1612,7 @@ CHexMergeDoc * CMainFrame::GetHexMergeDocToShow(int nFiles, CDirDoc * pDirDoc, B
 		CHexMergeDoc * pHexMergeDoc = docs.GetAt(pos);
 		pHexMergeDoc->CloseNow();
 	}
-	CHexMergeDoc * pHexMergeDoc = pDirDoc->GetHexMergeDocForDiff(nFiles, pNew);
+	CHexMergeDoc * pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(theApp.m_pHexMergeTemplate, pDirDoc, nFiles);
 	return pHexMergeDoc;
 }
 
@@ -2274,23 +2284,11 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 	CFrameWnd * pFrame = GetActiveFrame();
 	if (pFrame)
 	{
-		if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
-		{
-			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
-			if (pMergeDoc)
-				pMergeDoc->CheckFileChanged();
-		}
-		else if (pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
-		{
-			CHexMergeDoc * pMergeDoc = (CHexMergeDoc *) pFrame->GetActiveDocument();
-			if (pMergeDoc)
-				pMergeDoc->CheckFileChanged();
-		}
-		else if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
-		{
-			CImgMergeFrame *pImgMergeFrame = static_cast<CImgMergeFrame *>(pFrame);
-			pImgMergeFrame->CheckFileChanged();
-		}
+		IMergeDoc *pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
+		if (!pMergeDoc)
+			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
+		if (pMergeDoc)
+			pMergeDoc->CheckFileChanged();
 	}
 	return 0;
 }
@@ -2478,26 +2476,11 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 	CFrameWnd * pFrame = GetActiveFrame();
 	if (pFrame)
 	{
-		switch (GetFrameType(pFrame))
-		{
-		case FRAME_FILE:
-		{
-			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
-			if (pMergeDoc)
-				PostMessage(WM_USER+1);
-			break;
-		}
-		case FRAME_HEXFILE:
-		{
-			CHexMergeDoc * pMergeDoc = (CHexMergeDoc *) pFrame->GetActiveDocument();
-			if (pMergeDoc)
-				PostMessage(WM_USER+1);
-			break;
-		}
-		case FRAME_IMGFILE:
+		IMergeDoc *pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
+		if (!pMergeDoc)
+			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
+		if (pMergeDoc)
 			PostMessage(WM_USER+1);
-			break;
-		}
 	}
 }
 

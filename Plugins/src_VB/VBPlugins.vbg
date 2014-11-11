@@ -1,0 +1,7 @@
+VBGROUP 5.0
+Project=CompareMSExcelFiles\CompareMSExcelFiles.vbp
+Project=CompareMSWordFiles\CompareMSWordFiles.vbp
+Project=HideLastLetter\HideLastLetter.vbp
+Project=IgnoreLeadingLineNumbers\IgnoreLeadingLineNumbers.vbp
+StartupProject=IgnoreTwoFirstCharsOrder\IgnoreTwoFirstCharsOrder.vbp
+Project=ToUpper\ToUpper.vbp

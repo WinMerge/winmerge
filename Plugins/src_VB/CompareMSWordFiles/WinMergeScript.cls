@@ -281,3 +281,8 @@ Private Function CreateTempFile(sPrefix As String) As String
     End If
 End Function
 
+Public Function ShowSettingsDialog() As Boolean
+    ShowSettingsDialog = False
+    Err.Raise 30001, , "Not Implemented"
+End Function
+

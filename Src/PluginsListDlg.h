@@ -37,6 +37,8 @@ protected:
 
 	afx_msg BOOL OnInitDialog();
 	afx_msg void OnBnClickedOk();
+	afx_msg void OnBnClickedPluginSettings();
+	afx_msg void OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
 	DECLARE_MESSAGE_MAP()
 
 public:

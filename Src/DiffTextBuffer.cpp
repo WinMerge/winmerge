@@ -323,23 +323,13 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	String sFileName(pszFileNameInit);
-	if (infoUnpacker->bToBeScanned)
+	if (!FileTransform_Unpacking(infoUnpacker, sFileName, sToFindUnpacker))
 	{
-		if (!FileTransform_Unpacking(sFileName, sToFindUnpacker, infoUnpacker,
-			&m_unpackerSubcode))
-		{
-			InitNew(); // leave crystal editor in valid, empty state
-			return FileLoadResult::FRESULT_ERROR_UNPACK;
-		}
+		InitNew(); // leave crystal editor in valid, empty state
+		return FileLoadResult::FRESULT_ERROR_UNPACK;
 	}
-	else
-	{
-		if (!FileTransform_Unpacking(sFileName, infoUnpacker, &m_unpackerSubcode))
-		{
-			InitNew(); // leave crystal editor in valid, empty state
-			return FileLoadResult::FRESULT_ERROR_UNPACK;
-		}
-	}
+	m_unpackerSubcode = infoUnpacker->subcode;
+
 	// we use the same unpacker for both files, so it must be defined after first file
 	ASSERT(infoUnpacker->bToBeScanned != PLUGIN_AUTO);
 	// we will load the transformed file

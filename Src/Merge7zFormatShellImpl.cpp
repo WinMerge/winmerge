@@ -10,6 +10,7 @@
 #include <vector>
 #include "unicoder.h"
 #include "paths.h"
+#include "Merge7zFormatRegister.h"
 
 #if _MSC_VER >= 1600
 typedef _com_ptr_t<_com_IIID<IFileOperation, &__uuidof(IFileOperation)>> IFileOperationPtr;
@@ -17,6 +18,7 @@ typedef _com_ptr_t<_com_IIID<IShellItem, &__uuidof(IShellItem)>> IShellItemPtr;
 typedef _com_ptr_t<_com_IIID<IEnumShellItems, &__uuidof(IEnumShellItems)>> IEnumShellItemsPtr;
 #endif
 
+static Merge7zFormatRegister g_autoregister(&Merge7zFormatShellImpl::GuessFormat);
 static Merge7zFormatShellImpl g_shellformat;
 
 static HRESULT MySHCreateShellItemFromPath(PCWSTR pszPath, IShellItem **ppShellItem)
@@ -49,7 +51,7 @@ static HRESULT MySHCreateEnumShellItemsFromPath(PCWSTR pszPath, IEnumShellItems 
 #endif
 }
 
-bool Merge7zFormatShellImpl::IsShellFolder(const String& path)
+Merge7z::Format *Merge7zFormatShellImpl::GuessFormat(const String& path)
 {
 #if _MSC_VER >= 1600
 	int i;
@@ -60,19 +62,14 @@ bool Merge7zFormatShellImpl::IsShellFolder(const String& path)
 			break;
 	}
 	if (i == sizeof(exts)/sizeof(exts[0]))
-		return false;
+		return NULL;
 	IEnumShellItemsPtr pEnumShellItems;
 	if (FAILED(MySHCreateEnumShellItemsFromPath(ucr::toUTF16(path).c_str(), &pEnumShellItems)))
-		return false;
-	return true;
-#else
-	return false;
-#endif
-}
-
-Merge7zFormatShellImpl *Merge7zFormatShellImpl::GetInstance()
-{
+		return NULL;
 	return &g_shellformat;
+#else
+	return NULL;
+#endif
 }
 
 HRESULT Merge7zFormatShellImpl::DeCompressArchive(HWND, LPCTSTR path, LPCTSTR folder)

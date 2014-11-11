@@ -36,10 +36,8 @@
 #include "DirViewColItems.h"
 #include "DirFrame.h"  // StatePane
 #include "DirDoc.h"
-#include "MergeDoc.h"
-#include "HexMergeFrm.h"
-#include "HexMergeDoc.h"
-#include "ImgMergeFrm.h"
+#include "IMergeDoc.h"
+#include "FileLocation.h"
 #include "MainFrm.h"
 #include "resource.h"
 #include "coretools.h"
@@ -61,6 +59,7 @@
 #include "ShellContextMenu.h"
 #include "DiffItem.h"
 #include "IListCtrlImpl.h"
+#include "Merge7zFormatMergePluginImpl.h"
 #include "FileOrFolderSelect.h"
 #include "IntToIntMap.h"
 #include <numeric>
@@ -1244,6 +1243,7 @@ void CDirView::OpenSpecialItems(UIntPtr pos1, UIntPtr pos2, UIntPtr pos3)
  */
 void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= NULL*/)
 {
+	Merge7zFormatMergePluginScope scope(infoUnpacker);
 	CDirDoc * pDoc = GetDocument();
 	const CDiffContext& ctxt = GetDiffContext();
 
@@ -1309,10 +1309,10 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		// Don't add folders to MRU
 		GetMainFrame()->DoFileOpen(&paths, dwFlags, GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
-	else if (HasZipSupport() && ArchiveGuessFormat(paths.GetLeft()) && ArchiveGuessFormat(paths.GetRight()))
+	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == pDoc->m_nDirs)
 	{
 		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, GetDiffContext().m_bRecursive, NULL, _T(""), infoUnpacker);
 	}
 	else
 	{
@@ -2407,18 +2407,14 @@ struct FileCmpReport: public IFileCmpReport
 		
 		m_pDirView->OpenSelection();
 		CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
-		CMainFrame::FRAMETYPE frametype = GetMainFrame()->GetFrameType(pFrame);
-		if (frametype == CMainFrame::FRAME_FILE)
+		IMergeDoc * pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
+		if (!pMergeDoc)
+			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
+
+		if (pMergeDoc)
 		{
-			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
 			pMergeDoc->CloseNow();
-		}
-		else if (frametype == CMainFrame::FRAME_IMGFILE)
-		{
-			CImgMergeFrame *pImgMergeFrame = static_cast<CImgMergeFrame *>(pFrame);
-			pImgMergeFrame->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
-			pImgMergeFrame->CloseNow();
 		}
 
 		MSG msg;

@@ -1,7 +1,7 @@
 /** 
- * @file  Merge7zFormatShellImpl.h
+ * @file  Merge7zFormatMergePluginImpl.h
  *
- * @brief Declaration file for Merge7zFormatShellImpl class
+ * @brief Declaration file for Merge7zFormatMergePluginImpl class
  *
  */
 #include <Windows.h>
@@ -13,9 +13,13 @@
 #include "dllpstub.h"
 #include "../ArchiveSupport/Merge7z/Merge7z.h"
 #include "UnicodeString.h"
+#include "FileTransform.h"
 
-struct Merge7zFormatShellImpl : public Merge7z::Format
+class PluginInfo;
+
+struct Merge7zFormatMergePluginImpl : public Merge7z::Format
 {
+	Merge7zFormatMergePluginImpl() : m_plugin(NULL) {}
 	virtual HRESULT DeCompressArchive(HWND, LPCTSTR path, LPCTSTR folder);
 	virtual HRESULT CompressArchive(HWND, LPCTSTR path, Merge7z::DirItemEnumerator *);
 	virtual Inspector *Open(HWND, LPCTSTR);
@@ -29,5 +33,22 @@ struct Merge7zFormatShellImpl : public Merge7z::Format
 	virtual VARIANT_BOOL GetHandlerKeepName(HWND);
 	virtual BSTR GetDefaultName(HWND, LPCTSTR);
 	static Merge7z::Format *GuessFormat(const String& path);
+	static void SetPackingInfo(const PackingInfo *infoUnpacker);
+	static PackingInfo *GetPackingInfo();
+	PluginInfo *m_plugin;
+	PackingInfo m_infoUnpacker;
 };
 
+struct Merge7zFormatMergePluginScope
+{
+	Merge7zFormatMergePluginScope(const PackingInfo *infoUnpacker)
+	{
+		m_oldPackingInfo = *Merge7zFormatMergePluginImpl::GetPackingInfo();
+		Merge7zFormatMergePluginImpl::SetPackingInfo(infoUnpacker);
+	}
+	~Merge7zFormatMergePluginScope()
+	{
+		Merge7zFormatMergePluginImpl::SetPackingInfo(&m_oldPackingInfo);
+	}
+	PackingInfo m_oldPackingInfo;
+};
