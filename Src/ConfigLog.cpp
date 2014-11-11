@@ -375,6 +375,7 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T(" Unpackers: "));
 	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
 	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
+	WritePluginsInLogFile(L"FILE_FOLDER_PACK_UNPACK");
 	FileWriteString(_T("\r\n Prediffers: "));
 	WritePluginsInLogFile(L"FILE_PREDIFF");
 	WritePluginsInLogFile(L"BUFFER_PREDIFF");

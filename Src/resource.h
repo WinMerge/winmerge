@@ -1208,6 +1208,7 @@
 #define ID_IMG_THRESHOLD_64             33248
 #define IDC_COMPAREIMAGE_PATTERNS       33249
 #define IDC_COMPAREIMAGE_DEFAULTS       33250
+#define IDC_PLUGIN_SETTINGS             33251
 
 // Next default values for new objects
 //
@@ -1215,7 +1216,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        242
-#define _APS_NEXT_COMMAND_VALUE         33251
+#define _APS_NEXT_COMMAND_VALUE         33252
 #define _APS_NEXT_CONTROL_VALUE         1358
 #define _APS_NEXT_SYMED_VALUE           115
 #endif

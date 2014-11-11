@@ -40,6 +40,13 @@
 struct FileFilterElement;
 typedef boost::shared_ptr<FileFilterElement> FileFilterElementPtr;
 
+/**
+ * @brief List of transformation categories (events)
+ *
+ * @note If you add some event, you have to complete this array in FileTransform.cpp
+ */
+extern const wchar_t *TransformationCategories[];
+
 /** 
  * @brief Information structure for a plugin
  */
@@ -102,6 +109,7 @@ friend class CAssureScriptsForThread;
 friend class CAllThreadsScripts;
 public:
 	PluginArray * GetAvailableScripts(const wchar_t *transformationEvent);
+	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText);
 	PluginInfo * GetPluginByName(const wchar_t *transformationEvent, const String& name);
 	PluginInfo * GetPluginInfo(LPDISPATCH piScript);
 
@@ -233,9 +241,25 @@ bool InvokeUnpackFile(const String& fileSource, const String& fileDest, int & nC
  */
 bool InvokePackFile(const String& fileSource, const String& fileDest, int & nChanged, LPDISPATCH piScript, int subCode);
 /**
+ * @brief Call the plugin "IsFolder" method, event FILE_FOLDER_PACK_UNPACK
+ */
+bool InvokeIsFolder(const String& file, IDispatch *piScript);
+/**
+ * @brief Call the plugin "UnpackFolder" method, event FILE_FOLDER_PACK_UNPACK
+ */
+bool InvokeUnpackFolder(const String& fileSource, const String& folderDest, int & nChanged, IDispatch *piScript, int & subCode);
+/**
+ * @brief Call the plugin "PackFolder" method, event FILE_FOLDER_PACK_UNPACK
+ */
+bool InvokePackFolder(const String& folderSource, const String& fileDest, int & nChanged, IDispatch *piScript, int subCode);
+/**
  * @brief Call the plugin "PrediffFile" method, event FILE_PREDIFF
  */
 bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & nChanged, LPDISPATCH piScript);
+/**
+ * @brief Call the plugin "ShowSettingsDialog" method
+ */
+bool InvokeShowSettingsDialog(LPDISPATCH piScript);
 
 
 #endif //__PLUGINS_H__

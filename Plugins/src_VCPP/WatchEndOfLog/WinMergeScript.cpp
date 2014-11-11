@@ -89,3 +89,9 @@ STDMETHODIMP CWinMergeScript::PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL 
 	*pbSuccess = VARIANT_FALSE;
 	return S_OK;
 }
+
+STDMETHODIMP CWinMergeScript::ShowSettingsDialog(VARIANT_BOOL *pbHandled)
+{
+	*pbHandled = VARIANT_FALSE;
+	return E_NOTIMPL;
+}

@@ -706,29 +706,20 @@ bool CDiffWrapper::RunFileDiff()
 			// NOTE: FileTransform_UCS2ToUTF8() may create new temp
 			// files and return new names, those created temp files
 			// are deleted in end of function.
-			if (m_infoPrediffer->bToBeScanned)
+
+			// this can only fail if the data can not be saved back (no more
+			// place on disk ???) What to do then ??
+			if (!FileTransform_Prediffing(m_infoPrediffer.get(), strFileTemp[file], m_sToFindPrediffer, m_bPathsAreTemp))
 			{
-				// this can only fail if the data can not be saved back (no more
-				// place on disk ???) What to do then ??
-				FileTransform_Prediffing(strFileTemp[file], m_sToFindPrediffer, m_infoPrediffer.get(),
-					m_bPathsAreTemp);
-			}
-			else
-			{
-				// This can fail if the prediffer has a problem
-				if (FileTransform_Prediffing(strFileTemp[file], *m_infoPrediffer,
-					m_bPathsAreTemp) == false)
-				{
-					// display a message box
-					String sError = string_format(
-						_T("An error occurred while prediffing the file '%s' with the plugin '%s'. The prediffing is not applied any more."),
-						strFileTemp[file].c_str(),
-						m_infoPrediffer->pluginName.c_str());
-					AppErrorMessageBox(sError);
-					// don't use any more this prediffer
-					m_infoPrediffer->bToBeScanned = false;
-					m_infoPrediffer->pluginName.erase();
-				}
+				// display a message box
+				String sError = string_format(
+					_T("An error occurred while prediffing the file '%s' with the plugin '%s'. The prediffing is not applied any more."),
+					strFileTemp[file].c_str(),
+					m_infoPrediffer->pluginName.c_str());
+				AppErrorMessageBox(sError);
+				// don't use any more this prediffer
+				m_infoPrediffer->bToBeScanned = false;
+				m_infoPrediffer->pluginName.erase();
 			}
 
 			// We use the same plugin for both files, so it must be defined before

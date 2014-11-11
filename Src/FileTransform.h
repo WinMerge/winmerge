@@ -31,7 +31,6 @@
 
 #include <vector>
 #include "UnicodeString.h"
-#include "unicoder.h"
 #include "resource.h"
 #include "MergeApp.h"
 
@@ -53,15 +52,6 @@ enum PLUGIN_MODE
 
 extern int g_bUnpackerMode;
 extern int g_bPredifferMode;
-
-
-/**
- * @brief List of transformation categories (events)
- *
- * @note If you add some event, you have to complete this array in FileTransform.cpp
- */
-extern const wchar_t *TransformationCategories[];
-
 
 
 /**
@@ -167,6 +157,9 @@ bool FileTransform_Unpacking(String & filepath, const String& filteredText, Pack
  * @param filepath : [in, out] Most plugins change this filename
  */
 bool FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode);
+
+bool FileTransform_Unpacking(PackingInfo * handler, String & filepath, const String& filteredText);
+
 /**
  * @brief Prepare one file for saving, known handler
  *
@@ -198,6 +191,7 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
  */
 bool FileTransform_Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite);
 
+bool FileTransform_Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite);
 
 /**
  * @brief Transform all files to UTF8 aslong possible

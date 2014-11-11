@@ -68,6 +68,8 @@ void CSelectUnpackerDlg::Initialize()
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PACK_UNPACK");
 	PluginArray * piBufferScriptArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PACK_UNPACK");
+	PluginArray * piFileFolderScriptArray = 
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_FOLDER_PACK_UNPACK");
 
 	// add the default unpackers to the unpackers list
 	m_UnpackerPlugins.Add(noPlugin.get());
@@ -89,6 +91,13 @@ void CSelectUnpackerDlg::Initialize()
 		const PluginInfoPtr& plugin = piBufferScriptArray->at(i);
 		m_UnpackerPlugins.Add(plugin.get());
 		m_bWithFileFlags.push_back(false);
+	}
+	for (i = 0 ; i < piFileFolderScriptArray->size() ; i++)
+	{
+		// during the dialog, we use a pointer to the scriptsOfThreads array
+		const PluginInfoPtr& plugin = piFileFolderScriptArray->at(i);
+		m_UnpackerPlugins.Add(plugin.get());
+		m_bWithFileFlags.push_back(true);
 	}
 }
 

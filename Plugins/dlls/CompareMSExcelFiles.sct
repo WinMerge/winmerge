@@ -1,20 +1,23 @@
 <scriptlet>
-
 <implements type="Automation" id="dispatcher">
 	<property name="PluginEvent">
-	          <get/>
-        </property>
+		<get/>
+	</property>
 	<property name="PluginDescription">
-	          <get/>
-        </property>
+		<get/>
+	</property>
 	<property name="PluginFileFilters">
-	          <get/>
-        </property>
+		<get/>
+	</property>
 	<property name="PluginIsAutomatic">
-	          <get/>
-        </property>
-      	<method name="UnpackFile"/>
-      	<method name="PackFile"/>
+		<get/>
+	</property>
+	<method name="UnpackFile"/>
+	<method name="PackFile"/>
+	<method name="IsFolder"/>
+	<method name="UnpackFolder"/>
+	<method name="PackFolder"/>
+	<method name="ShowSettingsDialog"/>
 </implements>
 
 <script language="VBS">
@@ -22,7 +25,7 @@
 '/////////////////////////////////////////////////////////////////////////////
 '    This is a plugin for WinMerge.
 '    It will display the text content of MS Excel files.
-'    Copyright (C) 2005 Takashi Sawanaka
+'    Copyright (C) 2005-2014 Takashi Sawanaka
 '
 '    This program is free software; you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -41,37 +44,158 @@
 
 Option Explicit
 
+Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\CompareMSExcelFiles.sct\"
+Dim MsgCannotGetMacros
+MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
+	"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
+	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf
+
+Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
+Dim wsh: Set wsh = CreateObject("WScript.Shell")
+
+Function isAccessibleVBAProject(wbk)
+	Dim count
+	count = -1
+	On Error Resume Next
+	count = wbk.VBProject.VBComponents.Count
+	isAccessibleVBAProject = (count > 0)
+End Function
+
+Function regRead(Key, DefaultValue)
+	regRead = DefaultValue
+	On Error Resume Next
+	regRead = wsh.RegRead(Key)
+End Function
+
+Function writeObjectProperties(fo, items)
+	On Error Resume Next
+	Dim o
+	For Each o In items
+		fo.WriteLine o.Name & ": " & o.Value
+	Next
+End Function
+
+Function writeCellValues(fo, sht)
+	Dim varCells, row, col, line
+
+	varCells = sht.UsedRange.Value
+	If TypeName(varCells) = "String" Then
+		fo.WriteLine varCells
+	ElseIf Not IsEmpty(varCells) Then
+		For row = 1 To UBound(varCells, 1)
+			line = ""
+			For col = 1 To UBound(varCells, 2)
+				line = line & varCells(Row, Col) & vbTab
+			Next
+			fo.WriteLine line
+		Next
+	End If
+End Function
+
+Function writeFormulas(fo, sht)
+	Dim rng, row, col, rows, cols, formula
+
+	rows = sht.UsedRange.Rows.Count
+	cols = sht.UsedRange.Columns.Count
+
+	For row = 1 To rows
+		For col = 1 To cols
+			Set rng = sht.Cells(Row, Col)
+			formula = rng.Formula
+			If Left(formula, 1) = "=" Then 
+				fo.WriteLine rng.Address(False, False) & ": " & formula
+			End If
+		Next
+	Next
+End Function
+
+Function writeTextsInShapes(fo, sht)
+	Dim shp
+	On Error Resume Next
+	For Each shp In sht.Shapes
+		fo.WriteLine shp.Name & ": " & shp.TextFrame.Characters.Text
+	Next
+	On Error GoTo 0
+End Function
+
+Function getModuleExtension(cmp)
+	Select Case cmp.Type
+	Case 2
+		getModuleExtension = ".cls"
+	Case 3
+		getModuleExtension = ".frm"
+	Case Else
+		getModuleExtension = ".bas"
+	End Select
+End Function
+
+Function saveRangeAsImage(sht, rng, filename)
+	Dim obj
+	Dim shtNew
+
+	saveRangeAsImage = True
+
+	On Error Resume Next
+	Err.Clear
+
+	Set shtNew = sht.Parent.Sheets.Add
+	Set obj = sht.Parent.Charts.Add
+	rng.CopyPicture 1, 2 ' xlScreen=1, xlBitmap=2
+	Set obj = obj.Location(2, shtNew.Name) ' xlLocationAsObject=2
+
+	If sht.Application.Version <= 11 Then
+		obj.Parent.Width = rng.Width + 8
+		obj.Parent.Height = rng.Height + 8
+	Else
+		obj.Parent.Width = rng.Width
+		obj.Parent.Height = rng.Height
+	End If
+	If Err.Number = 0 Then
+		obj.Paste
+		obj.Export filename, "PNG"
+	End If
+	If Err.Number <> 0 Then
+		saveRangeAsImage = False
+	End If
+	obj.Parent.Delete
+	shtNew.Delete
+
+End Function
+
+Function saveSheetAsImage(sht, filename)
+	If Not saveRangeAsImage(sht, sht.UsedRange, filename) Then
+		Dim shtNew
+		Set shtNew = sht.Parent.Sheets.Add
+		shtNew.Range("A1") = "Error!"
+		saveRangeAsImage shtNew, shtNew.Range("A1"), filename
+		shtNew.Delete
+	End If
+End Function
+
 Function get_PluginEvent()
-         get_PluginEvent = "FILE_PACK_UNPACK"
+	get_PluginEvent = "FILE_FOLDER_PACK_UNPACK"
 End Function
 
 Function get_PluginDescription()
-         get_PluginDescription = "ExcelToText"
+	get_PluginDescription = "Display the text content of MS Excel files"
 End Function
 
 Function get_PluginFileFilters()
-         get_PluginFileFilters = "\.xls(\..*)?$;\.xlsx(\..*)?$;\.xlsm(\..*)?$;\.xlsb(\..*)?;\.xla(\..*)?$;\.xlax(\..*)?$"
+	get_PluginFileFilters = "\.xls(\..*)?$;\.xlsx(\..*)?$;\.xlsm(\..*)?$;\.xlsb(\..*)?;\.xla(\..*)?$;\.xlax(\..*)?$"
 End Function
 
 Function get_PluginIsAutomatic()
-         get_PluginIsAutomatic = True
+	get_PluginIsAutomatic = True
 End Function
 
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
-	Dim fso
 	Dim fo
 	Dim xl
 	Dim wbk
 	Dim sht
 	Dim cmp
-	Dim row
-	Dim col
-	Dim line
-	Dim varCells
 
-
-	Set fso = CreateObject("Scripting.FileSystemObject")
-	Set fo = fso.CreateTextFile(fileDst, True)
+	Set fo = fso.CreateTextFile(fileDst, True, True)
 
 	Set xl = CreateObject("Excel.Application")
 	xl.EnableEvents = False
@@ -81,30 +205,48 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 
 	On Error Resume Next
 
-	For Each sht In wbk.Worksheets
-		fo.WriteLine "[" & sht.Name & "]"
-		varCells = sht.UsedRange.Value
-		If TypeName(varCells) = "String" Then
-			fo.WriteLine varCells
-		ElseIf Not IsEmpty(varCells) Then
-			For row = 1 To UBound(varCells, 1)
-				line = ""
-				For col = 1 To UBound(varCells, 2)
-					line = line & varCells(Row, Col) & vbTab
-				Next
-				fo.WriteLine line
-			Next
-		End If
+	If regRead(RegKeyPath & "CompareDocumentProperties", False) Then
+		fo.WriteLine "[Document Properties]"
+		writeObjectProperties fo, wbk.BuiltinDocumentProperties
 		fo.WriteLine ""
+	End If
+
+	If regRead(RegKeyPath & "CompareNames", True) Then
+		fo.WriteLine "[Names]"
+		writeObjectProperties fo, wbk.Names
+		fo.WriteLine ""
+	End If
+
+	For Each sht In wbk.Worksheets
+		If regRead(RegKeyPath & "CompareCellValues", True) Then
+			fo.WriteLine "[" & sht.Name & "]"
+			writeCellValues fo, sht
+			fo.WriteLine ""
+		End If
+		If regRead(RegKeyPath & "CompareFormulas", False) Then
+			fo.WriteLine "[" & sht.Name & ".Formulas]"
+			writeFormulas fo, sht
+			fo.WriteLine ""
+		End If
+		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
+			fo.WriteLine "[" & sht.Name & ".Shapes]"
+			writeTextsInShapes fo, sht
+			fo.WriteLine ""
+		End If
 	Next
 
-	For Each cmp In wbk.VBProject.VBComponents
-		fo.WriteLine "[CodeModule." & cmp.Name & "]"
-		If cmp.CodeModule.CountOfLines > 0 Then
-			fo.WriteLine cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines)
+	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
+		If Not isAccessibleVBAProject(wbk) Then
+			fo.WriteLine MsgCannotGetMacros
 		End If
-		fo.WriteLine ""
-	Next
+		For Each cmp In wbk.VBProject.VBComponents
+			fo.WriteLine "[CodeModule." & cmp.Name & "]"
+			If cmp.CodeModule.CountOfLines > 0 Then
+				fo.WriteLine cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines)
+			End If
+			fo.WriteLine ""
+		Next
+	End If
 
 	Set sht = Nothing
 	wbk.Close
@@ -113,7 +255,6 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Set xl = Nothing
 	fo.Close
 	Set fo = Nothing
-	Set fso = Nothing
 
 	pbChanged = True
 	pSubcode = 0
@@ -125,5 +266,255 @@ Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	PackFile = False
 End Function
 
+Function IsFolder(file)
+	IsFolder = regRead(RegKeyPath & "UnpackToFolder", False)
+End Function
+
+Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
+	Dim fo
+	Dim xl
+	Dim wbk
+	Dim sht
+	Dim cmp
+	Dim No
+
+	If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
+
+	Set xl = CreateObject("Excel.Application")
+	xl.EnableEvents = False
+	xl.DisplayAlerts = False
+
+	Set wbk = xl.Workbooks.Open(fileSrc)
+
+	On Error Resume Next
+
+	If regRead(RegKeyPath & "CompareDocumentProperties", False) Then
+		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), True, True)
+		writeObjectProperties fo, wbk.BuiltinDocumentProperties
+		fo.Close
+	End If
+
+	If regRead(RegKeyPath & "CompareNames", True) Then
+		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)Names.txt"), True, True)
+		writeObjectProperties fo, wbk.Names
+		fo.Close
+	End If
+
+	No = 1
+	For Each sht In wbk.Worksheets
+		If regRead(RegKeyPath & "CompareCellValues", True) Then
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & ".txt"), True, True)
+			writeCellValues fo, sht
+			fo.Close
+		End If
+
+		If regRead(RegKeyPath & "CompareFormulas", False) Then
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & "_Formulas.txt"), True, True)
+			writeFormulas fo, sht
+			fo.Close
+		End If
+
+		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & "_Shapes.txt"), True, True)
+			writeTextsInShapes fo, sht
+			fo.Close
+		End If
+
+		If regRead(RegKeyPath & "CompareWorksheetsAsImage", True) Then
+			saveSheetAsImage sht, fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & ".png")
+		End If
+		No = No + 1
+	Next
+	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
+		If Not isAccessibleVBAProject(wbk) Then
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), True, True)
+			fo.WriteLine MsgCannotGetMacros
+			fo.Close
+		End If
+		
+		For Each cmp In wbk.VBProject.VBComponents
+			cmp.Export fso.BuildPath(folderDst, cmp.Name & getModuleExtension(cmp))
+		Next
+	End If
+
+	Set sht = Nothing
+	wbk.Close
+	Set wbk = Nothing
+	xl.Quit
+	Set xl = Nothing
+	Set fo = Nothing
+
+	pbChanged = True
+	pSubcode = 0
+	UnpackFolder = True
+End Function
+
+Function PackFolder(fileSrc, folderDst, pbChanged, pSubcode)
+	PackFolder = False
+End Function
+
+Function ShowSettingsDialog()
+	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
+	Dim tfile: Set tfile = fso.CreateTextFile(tname)
+	tfile.Write getResource("dialog1")
+	tfile.Close
+	wsh.Run "mshta.exe """ & tname & """", 1, True
+	fso.DeleteFile tname 
+End Function
+
 </script>
+
+<resource id="dialog1">
+<![CDATA[
+<html>
+  <head>
+    <title>CompareMSExcelFiles.sct WinMerge Plugin Options</title>
+    <meta content="text/html" charset="Shift_JIS">
+    <style>
+      body { background-color: lightgray; }
+      ul { list-style:none; }
+    </style>
+    <script type="text/javascript">
+      var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\CompareMSExcelFiles.sct\\";
+
+      function regRead(key, defaultValue) {
+        try {
+          return (new ActiveXObject("WScript.Shell")).RegRead(key);
+        } catch (e) {
+          return defaultValue;
+        }
+      }
+
+      function regWrite(key, value, type) {
+        (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
+      }
+
+      function onload() {
+
+        var w = 600, h = 400;
+        window.resizeTo(w, h);
+        window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
+
+        cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
+        setLanguage(navigator.browserLanguage);
+        chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
+        chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
+        chkCompareNames.checked = regRead(REGKEY_PATH + "CompareNames", true);
+        chkCompareCellValues.checked = regRead(REGKEY_PATH + "CompareCellValues", true);
+        chkCompareWorksheetsAsImage.checked = regRead(REGKEY_PATH + "CompareWorksheetsAsImage", true);
+        chkCompareFormulas.checked = regRead(REGKEY_PATH + "CompareFormulas", false);
+        chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
+        chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
+        chkUnpackToFolder_onclick();
+      }
+
+      function setLanguage(lang) {
+        var div = document.getElementById("language") || document.createElement('div')
+        div.id = "language";
+        var html = '&shy;<style>';
+        if (lang.substr(0, 2).toLowerCase() === 'ja') {
+          html += '.en { display: none } .ja { display: inline }';
+        } else {
+          html += '.ja { display: none } .en { display: inline }';
+        }
+        div.innerHTML = html;
+        if (!document.getElementById("language"))
+          document.body.appendChild(div);
+      }
+
+      function cboLanguage_onclick() {
+        setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
+      }
+
+      function chkUnpackToFolder_onclick() {
+        if (!chkUnpackToFolder.checked)
+          chkCompareWorksheetsAsImage.checked = false;
+        chkCompareWorksheetsAsImage.disabled = !chkUnpackToFolder.checked;
+      }
+
+      function btnOk_onclick() {
+        regWrite(REGKEY_PATH + "UnpackToFolder", chkUnpackToFolder.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareDocumentProperties", chkCompareDocumentProperties.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareNames", chkCompareNames.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareCellValues", chkCompareCellValues.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareWorksheetsAsImage", chkCompareWorksheetsAsImage.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
+      }
+
+      function btnCancel_onclick() {
+        window.close();
+      }
+
+    </script>
+  </head>
+  <body onload="onload();">
+    <div>
+      <ul>
+        <li>
+          <label class="en">Language: </label>
+          <label class="ja">言語: </label>
+          <select id="cboLanguage" onclick="cboLanguage_onclick();" >
+            <option value="English">English</option>
+            <option value="Japanese">Japanese</option>
+          </select>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
+          <label class="en">Extract workbook data to multiple files </label>
+          <label class="ja">ワークブックの情報を複数ファイルに展開する </label>
+        </li>
+        <li>
+          <input id="chkCompareDocumentProperties" type="checkbox" />
+          <label class="en">Compare document properties </label>
+          <label class="ja">ドキュメントプロパティを比較する </label>
+        </li>
+        <li>
+          <input id="chkCompareNames" type="checkbox" />
+          <label class="en">Compare names </label>
+          <label class="ja">名前の定義を比較する </label>
+        </li>
+        <li>
+          <input id="chkCompareCellValues" type="checkbox" />
+          <label class="en">Compare cell values </label>
+          <label class="ja">各セルの値を比較する </label>
+        </li>
+        <li>
+          <input id="chkCompareWorksheetsAsImage" type="checkbox" />
+          <label class="en">Compare worksheets as image (very slow)</label>
+          <label class="ja">ワークシートを画像化して比較する (処理時間増大)</label>
+        </li>
+        <li>
+          <input id="chkCompareFormulas" type="checkbox" />
+          <label class="en">Compare formulas (very slow)</label>
+          <label class="ja">数式を比較する (処理時間増大)</label>
+        </li>
+        <li>
+          <input id="chkCompareTextsInShapes" type="checkbox" />
+          <label class="en">Compare texts in shapes </label>
+          <label class="ja">図形内のテキストを比較する </label>
+        </li>
+        <li>
+          <input id="chkCompareVBAMacros" type="checkbox" />
+          <label class="en">Compare VBA macros </label>
+          <label class="ja">VBA マクロを比較する </label>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
+          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
+          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
+          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
+]]>
+</resource>
+
 </scriptlet>

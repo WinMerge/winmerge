@@ -70,9 +70,6 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
  // find // in lines
  //   compact // ..EOL  to //EOL
  //   compact /*.. */ to /**/   (keep line ends)
-#ifdef _DEBUG
-  __asm  { int 3 };
-#endif
   
   LPWSTR p;
   p=*pText;
@@ -168,3 +165,8 @@ CloseClipboard();
   return S_OK;
 }
 
+STDMETHODIMP CWinMergeScript::ShowSettingsDialog(VARIANT_BOOL *pbHandled)
+{
+	*pbHandled = VARIANT_FALSE;
+	return E_NOTIMPL;
+}

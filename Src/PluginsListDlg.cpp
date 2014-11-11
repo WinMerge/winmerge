@@ -18,6 +18,8 @@ IMPLEMENT_DYNAMIC(PluginsListDlg, CDialog)
 
 BEGIN_MESSAGE_MAP(PluginsListDlg, CDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
+	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
+	ON_NOTIFY(NM_DBLCLK, IDC_PLUGINSLIST_LIST, OnNMDblclkList)
 END_MESSAGE_MAP()
 
 /**
@@ -51,6 +53,7 @@ BOOL PluginsListDlg::OnInitDialog()
 	
 	InitList();
 	AddPlugins();
+	m_list.SetItemState(0, LVIS_SELECTED, LVIS_SELECTED);
 
 	bool pluginsEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
 	if (pluginsEnabled)
@@ -88,6 +91,7 @@ void PluginsListDlg::AddPlugins()
 	String type = _("Unpacker");
 	AddPluginsToList(L"FILE_PACK_UNPACK", type);
 	AddPluginsToList(L"BUFFER_PACK_UNPACK", type);
+	AddPluginsToList(L"FILE_FOLDER_PACK_UNPACK", type);
 	type = _("Prediffer");
 	AddPluginsToList(L"FILE_PREDIFF", type);
 	AddPluginsToList(L"BUFFER_PREDIFF", type);
@@ -130,4 +134,30 @@ void PluginsListDlg::OnBnClickedOk()
 		GetOptionsMgr()->SaveOption(OPT_PLUGINS_ENABLED, false);
 	}
 	OnOK();
+}
+
+void PluginsListDlg::OnBnClickedPluginSettings()
+{
+	POSITION pos = m_list.GetFirstSelectedItemPosition();
+	if (pos)
+	{
+		String pluginName = static_cast<const TCHAR *>(m_list.GetItemText(m_list.GetNextSelectedItem(pos), 0));
+		for (int i = 0; TransformationCategories[i]; ++i)
+		{
+			PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(TransformationCategories[i], pluginName);
+			if (plugin)
+			{
+				EnableWindow(false);
+				InvokeShowSettingsDialog(plugin->m_lpDispatch);
+				EnableWindow(true);
+				SetForegroundWindow();
+				break;
+			}
+		}
+	}
+}
+
+void PluginsListDlg::OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	OnBnClickedPluginSettings();
 }

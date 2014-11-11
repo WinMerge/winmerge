@@ -29,6 +29,7 @@
 #include "EditorFilepathBar.h"
 #include "PathContext.h"
 #include "DiffFileInfo.h"
+#include "IMergeDoc.h"
 #include "../Externals/winimerge/src/WinIMergeLib.h"
 
 class CDirDoc;
@@ -36,7 +37,7 @@ class CDirDoc;
 /** 
  * @brief Frame class for file compare, handles panes, statusbar etc.
  */
-class CImgMergeFrame : public CMDIChildWnd
+class CImgMergeFrame : public CMDIChildWnd, public IMergeDoc
 {
 	private:
 	enum BUFFERTYPE
@@ -60,6 +61,7 @@ public:
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void UpdateResources();
 	bool CloseNow();
+	void DirDocClosing(CDirDoc * pDirDoc) { m_pDirDoc = NULL; }
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 	void SetLastCompareResult(int nResult);
 	void UpdateAutoPaneResize();

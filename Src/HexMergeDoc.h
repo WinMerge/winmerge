@@ -27,6 +27,7 @@
 
 #include "PathContext.h"
 #include "DiffFileInfo.h"
+#include "IMergeDoc.h"
 
 class CDirDoc;
 class CHexMergeFrame;
@@ -35,7 +36,7 @@ class CHexMergeView;
 /**
  * @brief Document class for bytewise merging two files presented as hexdumps
  */
-class CHexMergeDoc : public CDocument
+class CHexMergeDoc : public CDocument, public IMergeDoc
 {
 public:
 	enum BUFFERTYPE
@@ -79,7 +80,8 @@ public:
 	BOOL PromptAndSaveIfNeeded(BOOL bAllowCancel);
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void DirDocClosing(CDirDoc * pDirDoc);
-	BOOL CloseNow();
+	bool CloseNow();
+	bool GenerateReport(LPCTSTR szFileName) { return true; }
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	HRESULT OpenDocs(const PathContext &paths, const bool bRO[]);
