@@ -1,9 +1,0 @@
-[submodule "Externals/winimerge"]
-	path = Externals/winimerge
-	url = https://github.com/sdottaka/winimerge.git
-[submodule "Externals/freeimage"]
-	path = Externals/freeimage
-	url = https://github.com/sdottaka/freeimage.git
-[submodule "Externals/frhed"]
-	path = Externals/frhed
-	url = https://github.com/sdottaka/frhed.git
