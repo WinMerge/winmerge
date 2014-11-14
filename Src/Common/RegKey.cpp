@@ -10,6 +10,7 @@
 #include "RegKey.h"
 #include <windows.h>
 #include <cassert>
+#include <algorithm>
 #include "UnicodeString.h"
 #include "coretypes.h"
 
