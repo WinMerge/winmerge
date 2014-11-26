@@ -16,6 +16,9 @@
     <Filter Include="Tests">
       <UniqueIdentifier>{4b87ff85-2ba4-475b-823e-af42e45a3098}</UniqueIdentifier>
     </Filter>
+    <Filter Include="gtest">
+      <UniqueIdentifier>{20eb57d2-cf08-44a2-b9e0-c7f267013211}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Src\CompareEngines\ByteComparator.cpp">
@@ -221,6 +224,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\gtest-1.7.0\src\gtest-all.cc">
+      <Filter>gtest</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

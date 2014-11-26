@@ -736,9 +736,6 @@
     <ClCompile Include="Splash.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LineFiltersList.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\ClipBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -755,6 +752,9 @@
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClCompile>
     <ClCompile Include="Merge7zFormatMergePluginImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineFiltersList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

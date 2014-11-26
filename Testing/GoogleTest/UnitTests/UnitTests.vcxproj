@@ -69,19 +69,19 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">c:\dev\gtest-1.6.0\include;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">c:\dev\gtest-1.6.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">c:\dev\gtest-1.6.0\msvc\gtest\Debug;c:\dev\gtest-1.6.0\msvc\gtest\Release;$(LibraryPath)</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">c:\dev\gtest-1.6.0\msvc\gtest\x64\Debug;c:\dev\gtest-1.6.0\msvc\gtest\x64\Release;$(LibraryPath)</LibraryPath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\dev\gtest-1.6.0\include;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">c:\dev\gtest-1.6.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\dev\gtest-1.6.0\msvc\gtest\Debug;c:\dev\gtest-1.6.0\msvc\gtest\Release;$(LibraryPath)</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">c:\dev\gtest-1.6.0\msvc\gtest\x64\Debug;c:\dev\gtest-1.6.0\msvc\gtest\x64\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;c:\dev\gtest-1.6.0\include;c:\dev\gtest-1.6.0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -93,7 +93,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>gtestd.lib;shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -105,7 +105,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;c:\dev\gtest-1.6.0\include;c:\dev\gtest-1.6.0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -116,9 +116,9 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>gtestd.lib;shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
-      <AdditionalLibraryDirectories>C:\dev\WinMerge\winmerge-3pane\winmerge-v2\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)UnitTests.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
@@ -126,7 +126,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;c:\dev\gtest-1.6.0\include;c:\dev\gtest-1.6.0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -136,7 +136,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>gtest.lib;shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -148,7 +148,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;c:\dev\gtest-1.6.0\include;c:\dev\gtest-1.6.0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -158,9 +158,9 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>gtest.lib;shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
-      <AdditionalLibraryDirectories>C:\dev\WinMerge\winmerge-3pane\winmerge-v2\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -168,6 +168,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\gtest-1.6.0\src\gtest-all.cc" />
     <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp" />
     <ClCompile Include="..\..\..\Src\CompareEngines\ByteComparator.cpp" />
     <ClCompile Include="..\..\..\Src\CompareEngines\ByteCompare.cpp" />
