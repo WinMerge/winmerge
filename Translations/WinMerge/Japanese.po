@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-11-02 21:01+0900\n"
+"PO-Revision-Date: 2014-11-25 13:57+0900\n"
 "Last-Tranuslator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -437,8 +437,8 @@ msgstr "プラグイン(&P)"
 #: Merge.rc:562
 #: Merge.rc:1910
 #, c-format
-msgid "&Plugin Settings..."
-msgstr "プラグイン設定(&P)..."
+msgid "P&lugin Settings..."
+msgstr "プラグインの設定(&L)..."
 
 #: Merge.rc:197
 #: Merge.rc:326

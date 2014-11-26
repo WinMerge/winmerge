@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2014-11-14 19:50+0000\n"
+"POT-Creation-Date: 2014-11-25 23:08+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -432,7 +432,7 @@ msgstr ""
 #: Merge.rc:562
 #: Merge.rc:1910
 #, c-format
-msgid "&Plugin Settings..."
+msgid "P&lugin Settings..."
 msgstr ""
 
 #: Merge.rc:197

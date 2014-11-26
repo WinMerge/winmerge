@@ -440,7 +440,7 @@ msgstr "&Plugiciels"
 #: Merge.rc:562
 #: Merge.rc:1910
 #, c-format
-msgid "&Plugin Settings..."
+msgid "P&lugin Settings..."
 msgstr ""
 
 #: Merge.rc:197
