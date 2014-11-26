@@ -1,4 +1,4 @@
-/* Copyright 2003-2009 Joaquin M Lopez Munoz.
+/* Copyright 2003-2013 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -9,7 +9,7 @@
 #ifndef BOOST_MULTI_INDEX_DETAIL_SAFE_MODE_HPP
 #define BOOST_MULTI_INDEX_DETAIL_SAFE_MODE_HPP
 
-#if defined(_MSC_VER)&&(_MSC_VER>=1200)
+#if defined(_MSC_VER)
 #pragma once
 #endif
 
@@ -116,6 +116,7 @@
 
 #if !defined(BOOST_MULTI_INDEX_DISABLE_SERIALIZATION)
 #include <boost/serialization/split_member.hpp>
+#include <boost/serialization/version.hpp>
 #endif
 
 #if defined(BOOST_HAS_THREADS)
@@ -142,32 +143,32 @@ inline bool check_valid_iterator(const Iterator& it)
 template<typename Iterator>
 inline bool check_dereferenceable_iterator(const Iterator& it)
 {
-  return it.valid()&&it!=it.owner()->end()||it.unchecked();
+  return (it.valid()&&it!=it.owner()->end())||it.unchecked();
 }
 
 template<typename Iterator>
 inline bool check_incrementable_iterator(const Iterator& it)
 {
-  return it.valid()&&it!=it.owner()->end()||it.unchecked();
+  return (it.valid()&&it!=it.owner()->end())||it.unchecked();
 }
 
 template<typename Iterator>
 inline bool check_decrementable_iterator(const Iterator& it)
 {
-  return it.valid()&&it!=it.owner()->begin()||it.unchecked();
+  return (it.valid()&&it!=it.owner()->begin())||it.unchecked();
 }
 
 template<typename Iterator>
 inline bool check_is_owner(
   const Iterator& it,const typename Iterator::container_type& cont)
 {
-  return it.valid()&&it.owner()==&cont||it.unchecked();
+  return (it.valid()&&it.owner()==&cont)||it.unchecked();
 }
 
 template<typename Iterator>
 inline bool check_same_owner(const Iterator& it0,const Iterator& it1)
 {
-  return it0.valid()&&it1.valid()&&it0.owner()==it1.owner()||
+  return (it0.valid()&&it1.valid()&&it0.owner()==it1.owner())||
          it0.unchecked()||it1.unchecked();
 }
 
@@ -566,6 +567,19 @@ public:
 } /* namespace multi_index::safe_mode */
 
 } /* namespace multi_index */
+
+#if !defined(BOOST_MULTI_INDEX_DISABLE_SERIALIZATION)
+namespace serialization{
+template<typename Iterator,typename Container>
+struct version<
+  boost::multi_index::safe_mode::safe_iterator<Iterator,Container>
+>
+{
+  BOOST_STATIC_CONSTANT(
+    int,value=boost::serialization::version<Iterator>::value);
+};
+} /* namespace serialization */
+#endif
 
 } /* namespace boost */
 

@@ -24,7 +24,9 @@
 // BOOST_IS_EMPTY(T) should evaluate to true if T is an empty class type (and not a union)
 // BOOST_HAS_TRIVIAL_CONSTRUCTOR(T) should evaluate to true if "T x;" has no effect
 // BOOST_HAS_TRIVIAL_COPY(T) should evaluate to true if T(t) <==> memcpy
+// BOOST_HAS_TRIVIAL_MOVE_CONSTRUCTOR(T) should evaluate to true if T(boost::move(t)) <==> memcpy
 // BOOST_HAS_TRIVIAL_ASSIGN(T) should evaluate to true if t = u <==> memcpy
+// BOOST_HAS_TRIVIAL_MOVE_ASSIGN(T) should evaluate to true if t = boost::move(u) <==> memcpy
 // BOOST_HAS_TRIVIAL_DESTRUCTOR(T) should evaluate to true if ~T() has no effect
 // BOOST_HAS_NOTHROW_CONSTRUCTOR(T) should evaluate to true if "T x;" can not throw
 // BOOST_HAS_NOTHROW_COPY(T) should evaluate to true if T(t) can not throw
@@ -106,6 +108,11 @@
 //  This one fails if the default alignment has been changed with /Zp:
 //  #   define BOOST_ALIGNMENT_OF(T) __alignof(T)
 
+#   if defined(_MSC_VER) && (_MSC_VER >= 1700)
+#       define BOOST_HAS_TRIVIAL_MOVE_CONSTRUCTOR(T) ((__has_trivial_move_constructor(T) || __is_pod(T)) && !::boost::is_volatile<T>::value && !::boost::is_reference<T>::value)
+#       define BOOST_HAS_TRIVIAL_MOVE_ASSIGN(T) ((__has_trivial_move_assign(T) || __is_pod(T)) && ! ::boost::is_const<T>::value && !::boost::is_volatile<T>::value && !::boost::is_reference<T>::value)
+#   endif
+
 #   define BOOST_HAS_TYPE_TRAITS_INTRINSICS
 #endif
 
@@ -174,8 +181,7 @@
 #     define BOOST_IS_CLASS(T) __is_class(T)
 #   endif
 #   if __has_feature(is_convertible_to)
-#     include <boost/type_traits/is_abstract.hpp>
-#     define BOOST_IS_CONVERTIBLE(T,U) (__is_convertible_to(T,U) && !::boost::is_abstract<U>::value)
+#     define BOOST_IS_CONVERTIBLE(T,U) __is_convertible_to(T,U)
 #   endif
 #   if __has_feature(is_enum)
 #     define BOOST_IS_ENUM(T) __is_enum(T)
@@ -183,7 +189,16 @@
 #   if __has_feature(is_polymorphic)
 #     define BOOST_IS_POLYMORPHIC(T) __is_polymorphic(T)
 #   endif
+#   if __has_feature(has_trivial_move_constructor)
+#     define BOOST_HAS_TRIVIAL_MOVE_CONSTRUCTOR(T) __has_trivial_move_constructor(T)
+#   endif
+#   if __has_feature(has_trivial_move_assign)
+#     define BOOST_HAS_TRIVIAL_MOVE_ASSIGN(T) __has_trivial_move_assign(T)
+#   endif
 #   define BOOST_ALIGNMENT_OF(T) __alignof(T)
+#   if __has_feature(is_final)
+#     define BOOST_IS_FINAL(T) __is_final(T)
+#   endif
 
 #   define BOOST_HAS_TYPE_TRAITS_INTRINSICS
 #endif
@@ -222,6 +237,9 @@
       // old implementation instead in that case:
 #     define BOOST_ALIGNMENT_OF(T) __alignof__(T)
 #   endif
+#   if (__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 7))
+#     define BOOST_IS_FINAL(T) __is_final(T)
+#   endif
 
 #   define BOOST_HAS_TYPE_TRAITS_INTRINSICS
 #endif
@@ -249,7 +267,6 @@
 #   define BOOST_IS_ENUM(T) __is_enum(T)
 #   define BOOST_IS_POLYMORPHIC(T) __is_polymorphic(T)
 #   define BOOST_ALIGNMENT_OF(T) __alignof__(T)
-
 #   define BOOST_HAS_TYPE_TRAITS_INTRINSICS
 #endif
 
