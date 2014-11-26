@@ -13,7 +13,7 @@ for %%i in (Filters\*.flt Filters\*.tmpl Filters\*.txt) do (
 )
 
 setlocal
-call "%VS100COMNTOOLS%vsvars32.bat"
+call "%VS120COMNTOOLS%vsvars32.bat"
 MSBuild WinMerge_vc10.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="Win32" || pause
 MSBuild WinMerge_vc10.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="x64" || pause
 endlocal
