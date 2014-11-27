@@ -142,9 +142,6 @@
     <ClCompile Include="FolderCmp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LineFiltersList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="locality.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -709,9 +706,6 @@
     <ClCompile Include="Common\SortHeaderCtrl.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceControl.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\PreferencesDlg.cpp">
       <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
@@ -727,16 +721,7 @@
     <ClCompile Include="Splash.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CustomStatusCursor.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\ClipBoard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DirActions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DirViewColItems.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OptionsCustomColors.cpp">
@@ -753,6 +738,21 @@
     </ClCompile>
     <ClCompile Include="Merge7zFormatMergePluginImpl.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineFiltersList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirViewColItems.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirActions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomStatusCursor.cpp">
+      <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -933,6 +933,9 @@
     <ClInclude Include="Common\ShellFileOperations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ssapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="stringdiffs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1065,6 +1068,9 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h">
       <Filter>EditLib</Filter>
     </ClInclude>
+    <ClInclude Include="WaitStatusCursor.h">
+      <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Common\ToolbarXPThemes.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
@@ -1162,9 +1168,6 @@
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileOrFolderSelect.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="7zCommon.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BCMenu.h">
@@ -1356,37 +1359,16 @@
     <ClInclude Include="Common\DragDrop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ssauto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\MyCom.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SourceControl.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DDXHelper.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="CustomStatusCursor.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirActions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirItemIterator.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirViewColItems.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WaitStatusCursor.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common\ClipBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsCustomColors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="7zCommon.h">
+      <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Merge7zFormatShellImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImgMergeFrm.h">
@@ -1402,6 +1384,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Merge7zFormatRegister.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirViewColItems.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

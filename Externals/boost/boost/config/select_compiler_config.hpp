@@ -13,6 +13,12 @@
 // locate which compiler we are using and define
 // BOOST_COMPILER_CONFIG as needed: 
 
+#if defined __CUDACC__
+//  NVIDIA CUDA C++ compiler for GPU
+#   include "boost/config/compiler/nvcc.hpp"
+
+#endif
+
 #if defined(__GCCXML__)
 // GCC-XML emulates other compilers, it has to appear first here!
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/gcc_xml.hpp"
@@ -20,10 +26,6 @@
 #elif defined(_CRAYC)
 // EDG based Cray compiler:
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/cray.hpp"
-
-#elif defined __CUDACC__
-//  NVIDIA CUDA C++ compiler for GPU
-#   define BOOST_COMPILER_CONFIG "boost/config/compiler/nvcc.hpp"
 
 #elif defined __COMO__
 //  Comeau C++
@@ -33,17 +35,18 @@
 // PathScale EKOPath compiler (has to come before clang and gcc)
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/pathscale.hpp"
 
-#elif defined __clang__
+#elif defined(__INTEL_COMPILER) || defined(__ICL) || defined(__ICC) || defined(__ECC)
+//  Intel
+#   define BOOST_COMPILER_CONFIG "boost/config/compiler/intel.hpp"
+
+#elif defined __clang__ && !defined(__CUDACC__)
+// when using clang and cuda at same time, you want to appear as gcc
 //  Clang C++ emulates GCC, so it has to appear early.
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/clang.hpp"
 
 #elif defined __DMC__
 //  Digital Mars C++
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/digitalmars.hpp"
-
-#elif defined(__INTEL_COMPILER) || defined(__ICL) || defined(__ICC) || defined(__ECC)
-//  Intel
-#   define BOOST_COMPILER_CONFIG "boost/config/compiler/intel.hpp"
 
 # elif defined __GNUC__
 //  GNU C++:
@@ -110,3 +113,32 @@
 #  error "Unknown compiler - please configure (http://www.boost.org/libs/config/config.htm#configuring) and report the results to the main boost mailing list (http://www.boost.org/more/mailing_lists.htm#main)"
 
 #endif
+
+#if 0
+//
+// This section allows dependency scanners to find all the headers we *might* include:
+//
+#include "boost/config/compiler/gcc_xml.hpp"
+#include "boost/config/compiler/cray.hpp"
+#include "boost/config/compiler/comeau.hpp"
+#include "boost/config/compiler/pathscale.hpp"
+#include "boost/config/compiler/intel.hpp"
+#include "boost/config/compiler/clang.hpp"
+#include "boost/config/compiler/digitalmars.hpp"
+#include "boost/config/compiler/gcc.hpp"
+#include "boost/config/compiler/kai.hpp"
+#include "boost/config/compiler/sgi_mipspro.hpp"
+#include "boost/config/compiler/compaq_cxx.hpp"
+#include "boost/config/compiler/greenhills.hpp"
+#include "boost/config/compiler/codegear.hpp"
+#include "boost/config/compiler/borland.hpp"
+#include "boost/config/compiler/metrowerks.hpp"
+#include "boost/config/compiler/sunpro_cc.hpp"
+#include "boost/config/compiler/hp_acc.hpp"
+#include "boost/config/compiler/mpw.hpp"
+#include "boost/config/compiler/vacpp.hpp"
+#include "boost/config/compiler/pgi.hpp"
+#include "boost/config/compiler/visualc.hpp"
+
+#endif
+

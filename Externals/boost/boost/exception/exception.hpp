@@ -5,7 +5,7 @@
 
 #ifndef UUID_274DA366004E11DCB1DDFE2E56D89593
 #define UUID_274DA366004E11DCB1DDFE2E56D89593
-#if defined(__GNUC__) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
+#if (__GNUC__*100+__GNUC_MINOR__>301) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
 #pragma GCC system_header
 #endif
 #if defined(_MSC_VER) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
@@ -207,6 +207,12 @@ boost
     class
     exception
         {
+        //<N3757>
+        public:
+        template <class Tag> void set( typename Tag::type const & );
+        template <class Tag> typename Tag::type const * get() const;
+        //</N3757>
+
         protected:
 
         exception():

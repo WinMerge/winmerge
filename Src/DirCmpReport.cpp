@@ -12,6 +12,7 @@
 #include <ctime>
 #include <cassert>
 #include <sstream>
+#include <algorithm>
 #include <Poco/Base64Encoder.h>
 #include "locality.h"
 #include "DirCmpReport.h"

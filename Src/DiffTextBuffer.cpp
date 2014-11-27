@@ -542,7 +542,6 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= NULL*/,
 		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
 		bool bClearModifiedFlag /*= true*/,
-		bool bForceUTF8 /*= false*/,
 		int nStartLine /*= 0*/, int nLines /*= -1*/)
 {
 	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
@@ -568,9 +567,9 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	bool bSaveSuccess = false;
 
 	UniStdioFile file;
-	file.SetUnicoding(bForceUTF8 ? ucr::UTF8 : m_encoding.m_unicoding);
-	file.SetBom(bForceUTF8 ? true : m_encoding.m_bom);
-	file.SetCodepage(bForceUTF8 ? CP_UTF8 : m_encoding.m_codepage);
+	file.SetUnicoding(m_encoding.m_unicoding);
+	file.SetBom(m_encoding.m_bom);
+	file.SetCodepage(m_encoding.m_codepage);
 
 	String sIntermediateFilename; // used when !bTempFile
 
