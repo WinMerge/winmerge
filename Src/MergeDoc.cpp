@@ -355,7 +355,7 @@ void CMergeDoc::Serialize(CArchive& ar)
  * original file is Ansi : 
  *   buffer  -> save as Ansi -> Ansi plugins -> diffutils
  * original file is Unicode (UCS2-LE, UCS2-BE, UTF-8) :
- *   buffer  -> save as UCS2-LE -> Unicode plugins -> convert to UTF-8 -> diffutils
+ *   buffer  -> save as UTF-8 -> Unicode plugins -> convert to UTF-8 -> diffutils
  * (the plugins are optional, not the conversion)
  * @todo Show SaveToFile() errors?
  */
@@ -367,12 +367,12 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, bool 
 	bool orig_bHasBOM = buf.getHasBom();
 
 	// If file was in Unicode
-	if (orig_unicoding != ucr::NONE)
+	if (orig_unicoding != ucr::NONE || bForceUTF8)
 	{
 	// we subvert the buffer's memory of the original file encoding
-		buf.setUnicoding(ucr::UCS2LE);  // write as UCS-2LE (for preprocessing)
-		buf.setCodepage(CP_UCS2LE); // should not matter
-		buf.setHasBom(true);
+		buf.setUnicoding(ucr::UTF8);  // write as UTF-8 (for preprocessing)
+		buf.setCodepage(CP_UTF8); // should not matter
+		buf.setHasBom(false);
 	}
 
 	// and we don't repack the file
@@ -381,7 +381,7 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, bool 
 	// write buffer out to temporary file
 	String sError;
 	int retVal = buf.SaveToFile(filepath, true, sError, tempPacker,
-		CRLF_STYLE_AUTOMATIC, false, bForceUTF8, nStartLine, nLines);
+		CRLF_STYLE_AUTOMATIC, false, nStartLine, nLines);
 
 	// restore memory of encoding of original file
 	buf.setUnicoding(orig_unicoding);
@@ -473,15 +473,15 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	String tempPath = env_GetTempPath();
 
+	// Set up DiffWrapper
+	m_diffWrapper.GetOptions(&diffOptions);
+
 	bool bForceUTF8 = diffOptions.bIgnoreCase;
 	IF_IS_TRUE_ALL (
 		m_ptBuf[0]->getCodepage() == m_ptBuf[nBuffer]->getCodepage() && m_ptBuf[nBuffer]->getUnicoding() == ucr::NONE,
 		nBuffer, m_nBuffers) {}
 	else
 		bForceUTF8 = true;
-
-	// Set up DiffWrapper
-	m_diffWrapper.GetOptions(&diffOptions);
 
 	// Clear diff list
 	m_diffList.Clear();

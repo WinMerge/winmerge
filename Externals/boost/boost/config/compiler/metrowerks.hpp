@@ -1,11 +1,11 @@
-//  (C) Copyright John Maddock 2001. 
-//  (C) Copyright Darin Adler 2001. 
-//  (C) Copyright Peter Dimov 2001. 
-//  (C) Copyright David Abrahams 2001 - 2002. 
-//  (C) Copyright Beman Dawes 2001 - 2003. 
-//  (C) Copyright Stefan Slapeta 2004. 
-//  Use, modification and distribution are subject to the 
-//  Boost Software License, Version 1.0. (See accompanying file 
+//  (C) Copyright John Maddock 2001.
+//  (C) Copyright Darin Adler 2001.
+//  (C) Copyright Peter Dimov 2001.
+//  (C) Copyright David Abrahams 2001 - 2002.
+//  (C) Copyright Beman Dawes 2001 - 2003.
+//  (C) Copyright Stefan Slapeta 2004.
+//  Use, modification and distribution are subject to the
+//  Boost Software License, Version 1.0. (See accompanying file
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 //  See http://www.boost.org for most recent version.
@@ -15,7 +15,7 @@
 // locale support is disabled when linking with the dynamic runtime
 #   ifdef _MSL_NO_LOCALE
 #     define BOOST_NO_STD_LOCALE
-#   endif 
+#   endif
 
 #   if __MWERKS__ <= 0x2301  // 5.3
 #     define BOOST_NO_FUNCTION_TEMPLATE_ORDERING
@@ -90,7 +90,7 @@
 #if __MWERKS__ > 0x3206 && __option(rvalue_refs)
 #  define BOOST_HAS_RVALUE_REFS
 #else
-#  define BOOST_NO_CXX11_RVALUE_REFERENCES              
+#  define BOOST_NO_CXX11_RVALUE_REFERENCES
 #endif
 #define BOOST_NO_CXX11_AUTO_DECLARATIONS
 #define BOOST_NO_CXX11_AUTO_MULTIDECLARATIONS
@@ -119,6 +119,41 @@
 #define BOOST_NO_CXX11_VARIADIC_TEMPLATES
 #define BOOST_NO_CXX11_VARIADIC_MACROS
 #define BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX
+#define BOOST_NO_CXX11_USER_DEFINED_LITERALS
+#define BOOST_NO_CXX11_ALIGNAS
+#define BOOST_NO_CXX11_TRAILING_RESULT_TYPES
+#define BOOST_NO_CXX11_INLINE_NAMESPACES
+#define BOOST_NO_CXX11_REF_QUALIFIERS
+#define BOOST_NO_CXX11_FINAL
+
+// C++ 14:
+#if !defined(__cpp_aggregate_nsdmi) || (__cpp_aggregate_nsdmi < 201304)
+#  define BOOST_NO_CXX14_AGGREGATE_NSDMI
+#endif
+#if !defined(__cpp_binary_literals) || (__cpp_binary_literals < 201304)
+#  define BOOST_NO_CXX14_BINARY_LITERALS
+#endif
+#if !defined(__cpp_constexpr) || (__cpp_constexpr < 201304)
+#  define BOOST_NO_CXX14_CONSTEXPR
+#endif
+#if !defined(__cpp_decltype_auto) || (__cpp_decltype_auto < 201304)
+#  define BOOST_NO_CXX14_DECLTYPE_AUTO
+#endif
+#if (__cplusplus < 201304) // There's no SD6 check for this....
+#  define BOOST_NO_CXX14_DIGIT_SEPARATORS
+#endif
+#if !defined(__cpp_generic_lambdas) || (__cpp_generic_lambdas < 201304)
+#  define BOOST_NO_CXX14_GENERIC_LAMBDAS
+#endif
+#if !defined(__cpp_init_captures) || (__cpp_init_captures < 201304)
+#  define BOOST_NO_CXX14_INITIALIZED_LAMBDA_CAPTURES
+#endif
+#if !defined(__cpp_return_type_deduction) || (__cpp_return_type_deduction < 201304)
+#  define BOOST_NO_CXX14_RETURN_TYPE_DEDUCTION
+#endif
+#if !defined(__cpp_variable_templates) || (__cpp_variable_templates < 201304)
+#  define BOOST_NO_CXX14_VARIABLE_TEMPLATES
+#endif
 
 #define BOOST_COMPILER "Metrowerks CodeWarrior C++ version " BOOST_STRINGIZE(BOOST_COMPILER_VERSION)
 

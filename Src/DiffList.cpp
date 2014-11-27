@@ -26,6 +26,7 @@
 #include <cassert>
 #include <string>
 #include <sstream>
+#include <algorithm>
 
 using std::swap;
 using std::vector;

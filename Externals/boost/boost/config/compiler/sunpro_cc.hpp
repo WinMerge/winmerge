@@ -1,10 +1,10 @@
-//  (C) Copyright John Maddock 2001. 
-//  (C) Copyright Jens Maurer 2001 - 2003. 
-//  (C) Copyright Peter Dimov 2002. 
-//  (C) Copyright Aleksey Gurtovoy 2002 - 2003. 
-//  (C) Copyright David Abrahams 2002. 
-//  Use, modification and distribution are subject to the 
-//  Boost Software License, Version 1.0. (See accompanying file 
+//  (C) Copyright John Maddock 2001.
+//  (C) Copyright Jens Maurer 2001 - 2003.
+//  (C) Copyright Peter Dimov 2002.
+//  (C) Copyright Aleksey Gurtovoy 2002 - 2003.
+//  (C) Copyright David Abrahams 2002.
+//  Use, modification and distribution are subject to the
+//  Boost Software License, Version 1.0. (See accompanying file
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 //  See http://www.boost.org for most recent version.
@@ -34,7 +34,7 @@
 #      define BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 #    endif
 
-#    if (__SUNPRO_CC <= 0x530) 
+#    if (__SUNPRO_CC <= 0x530)
        // Requesting debug info (-g) with Boost.Python results
        // in an internal compiler error for "static const"
        // initialized in-class.
@@ -57,7 +57,7 @@
 #      define BOOST_NO_INTEGRAL_INT64_T
 #    endif
 
-#    if (__SUNPRO_CC < 0x570) 
+#    if (__SUNPRO_CC < 0x570)
 #      define BOOST_NO_TEMPLATE_TEMPLATES
        // see http://lists.boost.org/MailArchives/boost/msg47184.php
        // and http://lists.boost.org/MailArchives/boost/msg47220.php
@@ -65,7 +65,7 @@
 #      define BOOST_NO_SFINAE
 #      define BOOST_NO_ARRAY_TYPE_SPECIALIZATIONS
 #    endif
-#    if (__SUNPRO_CC <= 0x580) 
+#    if (__SUNPRO_CC <= 0x580)
 #      define BOOST_NO_IS_ABSTRACT
 #    endif
 
@@ -127,7 +127,41 @@
 #define BOOST_NO_CXX11_VARIADIC_TEMPLATES
 #define BOOST_NO_CXX11_VARIADIC_MACROS
 #define BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX
+#define BOOST_NO_CXX11_USER_DEFINED_LITERALS
+#define BOOST_NO_CXX11_ALIGNAS
+#define BOOST_NO_CXX11_TRAILING_RESULT_TYPES
+#define BOOST_NO_CXX11_INLINE_NAMESPACES
+#define BOOST_NO_CXX11_REF_QUALIFIERS
+#define BOOST_NO_CXX11_FINAL
 
+// C++ 14:
+#if !defined(__cpp_aggregate_nsdmi) || (__cpp_aggregate_nsdmi < 201304)
+#  define BOOST_NO_CXX14_AGGREGATE_NSDMI
+#endif
+#if !defined(__cpp_binary_literals) || (__cpp_binary_literals < 201304)
+#  define BOOST_NO_CXX14_BINARY_LITERALS
+#endif
+#if !defined(__cpp_constexpr) || (__cpp_constexpr < 201304)
+#  define BOOST_NO_CXX14_CONSTEXPR
+#endif
+#if !defined(__cpp_decltype_auto) || (__cpp_decltype_auto < 201304)
+#  define BOOST_NO_CXX14_DECLTYPE_AUTO
+#endif
+#if (__cplusplus < 201304) // There's no SD6 check for this....
+#  define BOOST_NO_CXX14_DIGIT_SEPARATORS
+#endif
+#if !defined(__cpp_generic_lambdas) || (__cpp_generic_lambdas < 201304)
+#  define BOOST_NO_CXX14_GENERIC_LAMBDAS
+#endif
+#if !defined(__cpp_init_captures) || (__cpp_init_captures < 201304)
+#  define BOOST_NO_CXX14_INITIALIZED_LAMBDA_CAPTURES
+#endif
+#if !defined(__cpp_return_type_deduction) || (__cpp_return_type_deduction < 201304)
+#  define BOOST_NO_CXX14_RETURN_TYPE_DEDUCTION
+#endif
+#if !defined(__cpp_variable_templates) || (__cpp_variable_templates < 201304)
+#  define BOOST_NO_CXX14_VARIABLE_TEMPLATES
+#endif
 //
 // Version
 //

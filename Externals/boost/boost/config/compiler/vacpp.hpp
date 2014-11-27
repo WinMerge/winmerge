@@ -1,10 +1,10 @@
-//  (C) Copyright John Maddock 2001 - 2003. 
-//  (C) Copyright Toon Knapen 2001 - 2003. 
-//  (C) Copyright Lie-Quan Lee 2001. 
-//  (C) Copyright Markus Schoepflin 2002 - 2003. 
-//  (C) Copyright Beman Dawes 2002 - 2003. 
-//  Use, modification and distribution are subject to the 
-//  Boost Software License, Version 1.0. (See accompanying file 
+//  (C) Copyright John Maddock 2001 - 2003.
+//  (C) Copyright Toon Knapen 2001 - 2003.
+//  (C) Copyright Lie-Quan Lee 2001.
+//  (C) Copyright Markus Schoepflin 2002 - 2003.
+//  (C) Copyright Beman Dawes 2002 - 2003.
+//  Use, modification and distribution are subject to the
+//  Boost Software License, Version 1.0. (See accompanying file
 //  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 //  See http://www.boost.org for most recent version.
@@ -16,7 +16,7 @@
 #  define BOOST_NO_MEMBER_FUNCTION_SPECIALIZATIONS
 #endif
 
-#if (__IBMCPP__ <= 502) 
+#if (__IBMCPP__ <= 502)
 // Actually the compiler supports inclass member initialization but it
 // requires a definition for the class member and it doesn't recognize
 // it as an integral constant expression when used as a template argument.
@@ -30,9 +30,9 @@
 #endif
 
 #if (__IBMCPP__ <= 1110)
-// XL C++ V11.1 and earlier versions may not always value-initialize  
-// a temporary object T(), when T is a non-POD aggregate class type. 
-// Michael Wong (IBM Canada Ltd) has confirmed this issue and gave it 
+// XL C++ V11.1 and earlier versions may not always value-initialize
+// a temporary object T(), when T is a non-POD aggregate class type.
+// Michael Wong (IBM Canada Ltd) has confirmed this issue and gave it
 // high priority. -- Niels Dekker (LKEB), May 2010.
 #  define BOOST_NO_COMPLETE_VALUE_INITIALIZATION
 #endif
@@ -53,8 +53,8 @@
 #error "Compiler not supported or configured - please reconfigure"
 #endif
 //
-// last known and checked version is 1110:
-#if (__IBMCPP__ > 1110)
+// last known and checked version is 1210:
+#if (__IBMCPP__ > 1210)
 #  if defined(BOOST_ASSERT_CONFIG)
 #     error "Unknown compiler version - please run the configure tests and report the results"
 #  endif
@@ -106,6 +106,7 @@
 #define BOOST_NO_CXX11_NULLPTR
 #define BOOST_NO_CXX11_RANGE_BASED_FOR
 #define BOOST_NO_CXX11_RAW_LITERALS
+#define BOOST_NO_CXX11_USER_DEFINED_LITERALS
 #if ! __IBMCPP_RVALUE_REFERENCES
 #  define BOOST_NO_CXX11_RVALUE_REFERENCES
 #endif
@@ -125,6 +126,37 @@
 #if ! __C99_MACRO_WITH_VA_ARGS
 #  define BOOST_NO_CXX11_VARIADIC_MACROS
 #endif
+#define BOOST_NO_CXX11_ALIGNAS
+#define BOOST_NO_CXX11_TRAILING_RESULT_TYPES
+#define BOOST_NO_CXX11_INLINE_NAMESPACES
+#define BOOST_NO_CXX11_REF_QUALIFIERS
+#define BOOST_NO_CXX11_FINAL
 
-
-
+// C++ 14:
+#if !defined(__cpp_aggregate_nsdmi) || (__cpp_aggregate_nsdmi < 201304)
+#  define BOOST_NO_CXX14_AGGREGATE_NSDMI
+#endif
+#if !defined(__cpp_binary_literals) || (__cpp_binary_literals < 201304)
+#  define BOOST_NO_CXX14_BINARY_LITERALS
+#endif
+#if !defined(__cpp_constexpr) || (__cpp_constexpr < 201304)
+#  define BOOST_NO_CXX14_CONSTEXPR
+#endif
+#if !defined(__cpp_decltype_auto) || (__cpp_decltype_auto < 201304)
+#  define BOOST_NO_CXX14_DECLTYPE_AUTO
+#endif
+#if (__cplusplus < 201304) // There's no SD6 check for this....
+#  define BOOST_NO_CXX14_DIGIT_SEPARATORS
+#endif
+#if !defined(__cpp_generic_lambdas) || (__cpp_generic_lambdas < 201304)
+#  define BOOST_NO_CXX14_GENERIC_LAMBDAS
+#endif
+#if !defined(__cpp_init_captures) || (__cpp_init_captures < 201304)
+#  define BOOST_NO_CXX14_INITIALIZED_LAMBDA_CAPTURES
+#endif
+#if !defined(__cpp_return_type_deduction) || (__cpp_return_type_deduction < 201304)
+#  define BOOST_NO_CXX14_RETURN_TYPE_DEDUCTION
+#endif
+#if !defined(__cpp_variable_templates) || (__cpp_variable_templates < 201304)
+#  define BOOST_NO_CXX14_VARIABLE_TEMPLATES
+#endif

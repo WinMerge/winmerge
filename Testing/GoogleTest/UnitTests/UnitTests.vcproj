@@ -12,14 +12,13 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=""
 			IntermediateDirectory="vc71Debug"
 			ConfigurationType="1"
 			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\"
+				AdditionalIncludeDirectories="..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;c:\dev\gtest-1.4.0\include;c:\dev\gtest-1.4.0\"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_STATIC_CPPLIB"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -64,13 +63,12 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=""
 			IntermediateDirectory="vc71Release"
 			ConfigurationType="1"
 			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\"
+				AdditionalIncludeDirectories="..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;c:\dev\gtest-1.4.0\include;c:\dev\gtest-1.4.0\"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;_STATIC_CPPLIB"
 				RuntimeLibrary="2"
 				TreatWChar_tAsBuiltInType="TRUE"
@@ -454,6 +452,13 @@
 			</File>
 			<File
 				RelativePath=".\..\OptionsMgr\VariantValue_test.cpp">
+			</File>
+		</Filter>
+		<Filter
+			Name="gtest"
+			Filter="">
+			<File
+				RelativePath="..\..\..\..\..\..\gtest-1.4.0\src\gtest-all.cc">
 			</File>
 		</Filter>
 	</Files>
