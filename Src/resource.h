@@ -3,7 +3,7 @@
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
-#define IDB_TOOLBAR_ENABLED             100  // = IDR_MAINFRAME
+#define IDB_TOOLBAR_DUMMY               100  // = IDR_MAINFRAME
 #define IDR_MERGEPROJECT                101
 #define IDR_POPUP_EDITOR_HEADERBAR      102
 #define IDR_POPUP_PLUGINS_SETTINGS      103
@@ -116,6 +116,7 @@
 #define IDB_MERGE_COMPARE_LEFT2_RIGHT1  367
 #define IDB_COPY_FROM_LEFT              368
 #define IDB_COPY_FROM_RIGHT             369
+#define IDB_TOOLBAR_ENABLED             370
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_MFOLDER                     601
