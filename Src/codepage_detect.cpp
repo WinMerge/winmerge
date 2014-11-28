@@ -12,7 +12,7 @@
 #include <cstring>
 #include <algorithm>
 #include <windows.h>
-#include <boost/scoped_array.hpp>
+#include <memory>
 #include "unicoder.h"
 #include "ExConverter.h"
 #include "codepage.h"
@@ -130,7 +130,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 static unsigned demoGuessEncoding_xml(const char *src, size_t len, int defcodepage)
 {
 	const char *psrc = src;
-	boost::scoped_array<char> buf;
+	std::unique_ptr<char[]> buf;
 	if (len >= 2 && (src[0] == 0 || src[1] == 0))
 	{
 		buf.reset(new char[len]);

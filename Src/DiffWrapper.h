@@ -27,7 +27,7 @@
 #ifndef _DIFFWRAPPER_H
 #define _DIFFWRAPPER_H
 
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 #include "diff.h"
 #include "FileLocation.h"
 #include "PathContext.h"
@@ -210,7 +210,7 @@ public:
 private:
 	DiffutilsOptions m_options;
 	DIFFSTATUS m_status; /**< Status of last compare */
-	boost::scoped_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
+	std::unique_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
 	PathContext m_files; /**< Full path to diff'ed file. */
 	PathContext m_alternativePaths; /**< file's alternative path (may be relative). */
 	PathContext m_originalFile; /**< file's original (NON-TEMP) path. */
@@ -218,7 +218,7 @@ private:
 	String m_sPatchFile; /**< Full path to created patch file. */
 	bool m_bPathsAreTemp; /**< Are compared paths temporary? */
 	/// prediffer info are stored only for MergeDoc
-	boost::scoped_ptr<PrediffingInfo> m_infoPrediffer;
+	std::unique_ptr<PrediffingInfo> m_infoPrediffer;
 	/// prediffer info are stored only for MergeDoc
 	String m_sToFindPrediffer;
 	bool m_bUseDiffList; /**< Are results returned in difflist? */
@@ -228,8 +228,8 @@ private:
 	int m_nDiffs; /**< Difference count */
 	int m_codepage; /**< Codepage used in line filter */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
-	boost::scoped_ptr<MovedLines> m_pMovedLines[3];
-	boost::scoped_ptr<FilterCommentsManager> m_FilterCommentsManager; /**< Comments filtering manager */
+	std::unique_ptr<MovedLines> m_pMovedLines[3];
+	std::unique_ptr<FilterCommentsManager> m_FilterCommentsManager; /**< Comments filtering manager */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 };
 

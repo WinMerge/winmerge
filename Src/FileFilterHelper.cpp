@@ -37,7 +37,7 @@ using std::vector;
  * @brief Constructor, creates new filtermanager.
  */
 FileFilterHelper::FileFilterHelper()
-: m_pMaskFilter(NULL)
+: m_pMaskFilter(nullptr)
 , m_bUseMask(true)
 , m_fileFilterMgr(new FileFilterMgr)
 {

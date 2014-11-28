@@ -10,7 +10,7 @@
 #define _LINEFILTERS_LIST_H_
 
 #include <vector>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include "UnicodeString.h"
 
 class COptionsMgr;
@@ -25,7 +25,7 @@ struct LineFilterItem
 	LineFilterItem() : enabled(false) { }
 };
 
-typedef boost::shared_ptr<LineFilterItem> LineFilterItemPtr;
+typedef std::shared_ptr<LineFilterItem> LineFilterItemPtr;
 
 /**
  @brief List of line filters.

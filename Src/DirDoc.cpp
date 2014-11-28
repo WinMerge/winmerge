@@ -72,14 +72,14 @@ IMPLEMENT_DYNCREATE(CDirDoc, CDocument)
  * @brief Constructor.
  */
 CDirDoc::CDirDoc()
-: m_pCtxt(NULL)
-, m_pDirView(NULL)
-, m_pCompareStats(NULL)
+: m_pCtxt(nullptr)
+, m_pDirView(nullptr)
+, m_pCompareStats(nullptr)
 , m_bRecursive(FALSE)
-, m_statusCursor(NULL)
+, m_statusCursor(nullptr)
 , m_bReuseCloses(FALSE)
 , m_bMarkedRescan(FALSE)
-, m_pTempPathContext(NULL)
+, m_pTempPathContext(nullptr)
 {
 	m_nDirs = m_nDirsTemp;
 

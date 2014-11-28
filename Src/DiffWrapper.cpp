@@ -83,10 +83,10 @@ CDiffWrapper::CDiffWrapper()
 , m_bAppendFiles(false)
 , m_nDiffs(0)
 , m_codepage(GetACP())
-, m_infoPrediffer(NULL)
-, m_pDiffList(NULL)
+, m_infoPrediffer(nullptr)
+, m_pDiffList(nullptr)
 , m_bPathsAreTemp(false)
-, m_pFilterList(NULL)
+, m_pFilterList(nullptr)
 , m_bPluginsEnabled(false)
 {
 	memset(&m_status, 0, sizeof(DIFFSTATUS));

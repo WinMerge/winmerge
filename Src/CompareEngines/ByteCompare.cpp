@@ -39,9 +39,9 @@ static void CopyTextStats(const FileTextStats * stats, FileTextStats * myTextSta
  * @brief Default constructor.
  */
 ByteCompare::ByteCompare()
-		: m_pOptions(NULL)
-		, m_piAbortable(NULL)
-		, m_inf(NULL)
+		: m_pOptions(nullptr)
+		, m_piAbortable(nullptr)
+		, m_inf(nullptr)
 {
 }
 

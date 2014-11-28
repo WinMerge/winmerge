@@ -33,7 +33,7 @@
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 #include "MergeCmdLineInfo.h"
 #include "resource.h"       // main symbols
 
@@ -78,16 +78,16 @@ public:
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pHexMergeTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
-	boost::scoped_ptr<CLanguageSelect> m_pLangDlg;
-	boost::scoped_ptr<FileFilterHelper> m_pGlobalFileFilter;
-	boost::scoped_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
-	boost::scoped_ptr<VSSHelper> m_pVssHelper; /**< Helper class for VSS integration */
+	std::unique_ptr<CLanguageSelect> m_pLangDlg;
+	std::unique_ptr<FileFilterHelper> m_pGlobalFileFilter;
+	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
+	std::unique_ptr<VSSHelper> m_pVssHelper; /**< Helper class for VSS integration */
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
-	boost::scoped_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
+	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
 
 	/**
 	 * @name Version Control System (VCS) integration.
@@ -218,7 +218,7 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
-	boost::scoped_ptr<COptionsMgr> m_pOptions;
+	std::unique_ptr<COptionsMgr> m_pOptions;
 	CAssureScriptsForThread * m_mainThreadScripts;
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;

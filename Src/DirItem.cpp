@@ -30,7 +30,7 @@
 #include "paths.h"
 #include "TFile.h"
 
-using boost::shared_ptr;
+using std::shared_ptr;
 
 /**
 	* @brief Convert file flags to string presentation.
