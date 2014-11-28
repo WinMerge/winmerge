@@ -2031,7 +2031,7 @@ void CMainFrame::OnToolsFilters()
 	LineFiltersDlg lineFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
 	vector<FileFilterInfo> fileFilters;
-	boost::scoped_ptr<LineFiltersList> lineFilters(new LineFiltersList());
+	std::unique_ptr<LineFiltersList> lineFilters(new LineFiltersList());
 	String selectedFilter;
 	const String origFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);

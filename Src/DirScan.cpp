@@ -8,6 +8,7 @@
 
 #include "DirScan.h"
 #include <cassert>
+#include <memory>
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Semaphore.h>
 #include <Poco/Notification.h>
@@ -20,7 +21,6 @@
 #include <Poco/AutoPtr.h>
 #include <Poco/Stopwatch.h>
 #include <Poco/Format.h>
-#include <boost/shared_ptr.hpp>
 #include "DiffThread.h"
 #include "UnicodeString.h"
 #include "DiffWrapper.h"
@@ -107,7 +107,7 @@ private:
 	CDiffContext *m_pCtxt;
 };
 
-typedef boost::shared_ptr<DiffWorker> DiffWorkerPtr;
+typedef std::shared_ptr<DiffWorker> DiffWorkerPtr;
 
 /**
  * @brief Collect file- and folder-names to list.

@@ -30,7 +30,7 @@
 #define AFX_SELECTUNPACKERDLG_H__C8FD4C3A_5ED5_43D3_ADAE_A2378369705C__INCLUDED_
 
 #include <vector>
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 
 /////////////////////////////////////////////////////////////////////////////
 // CSelectUnpackerDlgDlg dialog
@@ -78,9 +78,9 @@ protected:
 	std::vector<bool> m_bWithFileFlags;
 
 	// const data "no plugin"
-	boost::scoped_ptr<PluginInfo> noPlugin;
+	std::unique_ptr<PluginInfo> noPlugin;
 	// const data "automatic plugin"
-	boost::scoped_ptr<PluginInfo> automaticPlugin;
+	std::unique_ptr<PluginInfo> automaticPlugin;
 
 	// input value
 	CString m_filteredFilenames;

@@ -11,9 +11,9 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/RegularExpression.h>
-#include <boost/shared_ptr.hpp>
 #include "codepage.h"
 
 /**
@@ -29,7 +29,7 @@ struct filter_item
 	filter_item(const std::string &filter, int reOpts) : filterAsString(filter), regexp(filter, reOpts) {}
 };
 
-typedef boost::shared_ptr<filter_item> filter_item_ptr;
+typedef std::shared_ptr<filter_item> filter_item_ptr;
 
 /**
  * @brief Regular expression list.

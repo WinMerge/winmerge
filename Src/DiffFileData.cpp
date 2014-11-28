@@ -16,7 +16,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
-#include <boost/scoped_array.hpp>
+#include <memory>
 #include "DiffItem.h"
 #include "FileLocation.h"
 #include "diff.h"

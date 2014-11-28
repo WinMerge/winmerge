@@ -26,7 +26,7 @@
 #include <cassert>
 #include <windows.h>
 #include <mbctype.h>
-#include <boost/scoped_array.hpp>
+#include <memory>
 #include "Constants.h"
 #include "version.h"
 #include "UniFile.h"
@@ -230,7 +230,7 @@ void CConfigLog::WriteArchiveSupport()
 	if (DWORD cchPath = GetEnvironmentVariable(_T("path"), 0, 0))
 	{
 		static const TCHAR cSep[] = _T(";");
-		boost::scoped_array<TCHAR> pchPath(new TCHAR[cchPath]);
+		std::unique_ptr<TCHAR[]> pchPath(new TCHAR[cchPath]);
 		GetEnvironmentVariable(_T("PATH"), pchPath.get(), cchPath);
 		LPTSTR pchItem = &pchPath[0];
 		while (int cchItem = StrCSpn(pchItem += StrSpn(pchItem, cSep), cSep))

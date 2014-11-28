@@ -35,7 +35,7 @@ THE SOFTWARE.
 #include <cassert>
 #include <Poco/SharedMemory.h>
 #include <Poco/Exception.h>
-#include <boost/scoped_array.hpp>
+#include <memory>
 #include "UnicodeString.h"
 #include "unicoder.h"
 #include "paths.h" // paths_GetLongbPath()
@@ -827,7 +827,7 @@ bool UniStdioFile::ReadBom()
 
 	// Read 8 KB at max for get enough data determining UTF-8 without BOM.
 	const int max_size = 8 * 1024;
-	boost::scoped_array<unsigned char> buff(new unsigned char[max_size]);
+	std::unique_ptr<unsigned char[]> buff(new unsigned char[max_size]);
 
 	size_t bytes = fread(&buff[0], 1, max_size, m_fp);
 	m_data = 0;

@@ -33,7 +33,7 @@
 // CDirView view
 #include <afxcview.h>
 #include <map>
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Types.h>
 #include "OptionsDiffColors.h"
@@ -289,7 +289,7 @@ protected:
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
 	bool m_bTreeMode; /**< TRUE if tree mode is on*/
-	boost::scoped_ptr<DirCompProgressBar> m_pCmpProgressBar;
+	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
 	clock_t m_compareStart; /**< Starting process time of the compare */
 	bool m_bUserCancelEdit; /**< TRUE if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
@@ -300,11 +300,11 @@ protected:
 	bool m_bNeedSearchLastDiffItem;
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 
-	boost::scoped_ptr<CShellContextMenu> m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
-	boost::scoped_ptr<CShellContextMenu> m_pShellContextMenuMiddle; /**< Shell context menu for group of middle files */
-	boost::scoped_ptr<CShellContextMenu> m_pShellContextMenuRight; /**< Shell context menu for group of right files */
+	std::unique_ptr<CShellContextMenu> m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
+	std::unique_ptr<CShellContextMenu> m_pShellContextMenuMiddle; /**< Shell context menu for group of middle files */
+	std::unique_ptr<CShellContextMenu> m_pShellContextMenuRight; /**< Shell context menu for group of right files */
 	HMENU m_hCurrentMenu; /**< Current shell context menu (either left or right) */
-	boost::scoped_ptr<DirViewTreeState> m_pSavedTreeState;
+	std::unique_ptr<DirViewTreeState> m_pSavedTreeState;
 
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);

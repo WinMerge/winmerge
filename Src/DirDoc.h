@@ -30,7 +30,7 @@
 #define AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_
 #pragma once
 
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 #include "DiffThread.h"
 #include "PluginManager.h"
 
@@ -161,13 +161,13 @@ protected:
 
 	// Implementation data
 private:
-	boost::scoped_ptr<CDiffContext> m_pCtxt; /**< Pointer to diff-data */
+	std::unique_ptr<CDiffContext> m_pCtxt; /**< Pointer to diff-data */
 	CDirView *m_pDirView; /**< Pointer to GUI */
-	boost::scoped_ptr<CompareStats> m_pCompareStats; /**< Compare statistics */
+	std::unique_ptr<CompareStats> m_pCompareStats; /**< Compare statistics */
 	MergeDocPtrList m_MergeDocs; /**< List of file compares opened from this compare */
 	bool m_bRO[3]; /**< Is left/middle/right side read-only */
 	bool m_bRecursive; /**< Is current compare recursive? */
-	boost::scoped_ptr<CustomStatusCursor> m_statusCursor;
+	std::unique_ptr<CustomStatusCursor> m_statusCursor;
 	String m_strDesc[3]; /**< Left/middle/right side desription text */
 	PluginManager m_pluginman;
 	bool m_bReuseCloses; /**< Are we closing because of reuse? */

@@ -31,7 +31,7 @@
 #include "DiffTextBuffer.h"
 #include <vector>
 #include <map>
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 #include "DiffWrapper.h"
 #include "DiffList.h"
 #include "TempFile.h"
@@ -176,7 +176,7 @@ public:
 
 // Begin declaration of CMergeDoc
 
-	boost::scoped_ptr<CDiffTextBuffer> m_ptBuf[3]; /**< Left/Middle/Right side text buffer */
+	std::unique_ptr<CDiffTextBuffer> m_ptBuf[3]; /**< Left/Middle/Right side text buffer */
 	int m_nBuffers;
 
 protected: // create from serialization only
@@ -185,8 +185,8 @@ protected: // create from serialization only
 
 	// Operations
 public:	
-	boost::scoped_ptr<DiffFileInfo> m_pSaveFileInfo[3];
-	boost::scoped_ptr<DiffFileInfo> m_pRescanFileInfo[3];
+	std::unique_ptr<DiffFileInfo> m_pSaveFileInfo[3];
+	std::unique_ptr<DiffFileInfo> m_pRescanFileInfo[3];
 	DiffList m_diffList;
 	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */
 	PathContext m_filePaths; /**< Filepaths for this document */
@@ -319,7 +319,7 @@ protected:
 	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 
 	CDiffWrapper m_diffWrapper;
 	/// information about the file packer/unpacker
-	boost::scoped_ptr<PackingInfo> m_pInfoUnpacker;
+	std::unique_ptr<PackingInfo> m_pInfoUnpacker;
 	String m_strDesc[3]; /**< Left/Middle/Right side description text */
 	BUFFERTYPE m_nBufferType[3];
 	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */
