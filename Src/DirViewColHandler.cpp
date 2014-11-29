@@ -26,8 +26,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-using Poco::UIntPtr;
-
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -192,8 +190,8 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 	if (lParam2 == -1)
 		return 1;
 
-	UIntPtr diffposl = (UIntPtr)lParam1;
-	UIntPtr diffposr = (UIntPtr)lParam2;
+	uintptr_t diffposl = (uintptr_t)lParam1;
+	uintptr_t diffposr = (uintptr_t)lParam2;
 	const DIFFITEM &ldi = pThis->pCtxt->GetDiffAt(diffposl);
 	const DIFFITEM &rdi = pThis->pCtxt->GetDiffAt(diffposr);
 	// compare 'left' and 'right' parameters as appropriate
@@ -203,7 +201,7 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 }
 
 /// Add new item to list view
-int CDirView::AddNewItem(int i, UIntPtr diffpos, int iImage, int iIndent)
+int CDirView::AddNewItem(int i, uintptr_t diffpos, int iImage, int iIndent)
 {
 	LV_ITEM lvItem;
 	lvItem.mask = LVIF_TEXT | LVIF_PARAM | LVIF_IMAGE | LVIF_INDENT;
@@ -251,7 +249,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 {
 	int nIdx = pParam->item.iItem;
 	int i = ColPhysToLog(pParam->item.iSubItem);
-	UIntPtr key = GetItemKey(nIdx);
+	uintptr_t key = GetItemKey(nIdx);
 	if (key == SPECIAL_ITEM_POS)
 	{
 		if (IsColName(i))

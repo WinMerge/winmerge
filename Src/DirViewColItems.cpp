@@ -12,6 +12,7 @@
 #include "stdafx.h"
 #include "DirViewColItems.h"
 #include <shlwapi.h>
+#include <cstdint>
 #include <Poco/Timestamp.h>
 #include "UnicodeString.h"
 #include "Merge.h"
@@ -47,23 +48,23 @@ using std::swap;
 static const UINT KILO = 1024;
 static const UINT MEGA = 1024 * KILO;
 static const UINT GIGA = 1024 * MEGA;
-static const __int64 TERA = 1024 * (__int64) GIGA;
+static const int64_t TERA = 1024 * (int64_t) GIGA;
 /**
  * @}
  */
 
 /**
- * @brief Function to compare two __int64s for a sort
+ * @brief Function to compare two int64_ts for a sort
  */
-static int cmp64(__int64 i1, __int64 i2)
+static int cmp64(int64_t i1, int64_t i2)
 {
 	if (i1==i2) return 0;
 	return i1>i2 ? 1 : -1;
 }
 /**
- * @brief Convert __int64 to int sign
+ * @brief Convert int64_t to int sign
  */
-static int sign64(__int64 val)
+static int sign64(int64_t val)
 {
   if (val>0) return 1;
   if (val<0) return -1;
@@ -109,11 +110,11 @@ static int cmpfloat(double v1, double v2)
  * @note Localized suffix strings are read from resource.
  * @todo Can't handle > terabyte filesizes.
  */
-static String MakeShortSize(__int64 size)
+static String MakeShortSize(int64_t size)
 {
-#pragma warning(disable:4244) // warning C4244: '=' : conversion from '__int64' to 'double', possible loss of data
+#pragma warning(disable:4244) // warning C4244: '=' : conversion from 'int64_t' to 'double', possible loss of data
 	double fsize = size;
-#pragma warning(default:4244) // warning C4244: '=' : conversion from '__int64' to 'double', possible loss of data
+#pragma warning(default:4244) // warning C4244: '=' : conversion from 'int64_t' to 'double', possible loss of data
 	double number = 0;
 	int ndigits = 0;
 	String suffix;
@@ -149,15 +150,15 @@ static String MakeShortSize(__int64 size)
 			ndigits = 1;
 		}
 	}
-	else if (size < (__int64)TERA)
+	else if (size < (int64_t)TERA)
 	{
-		number = fsize / ((__int64)GIGA);
+		number = fsize / ((int64_t)GIGA);
 		suffix = theApp.LoadString(IDS_SUFFIX_GIGA);
-		if (size < (__int64)GIGA * 10)
+		if (size < (int64_t)GIGA * 10)
 		{
 			ndigits = 2;
 		}
-		else if (size < (__int64)GIGA * 100)
+		else if (size < (int64_t)GIGA * 100)
 		{
 			ndigits = 1;
 		}
@@ -360,7 +361,7 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
  */
 static String ColTimeGet(const CDiffContext *, const void *p)
 {
-	const __int64 r = *static_cast<const __int64*>(p) / Timestamp::resolution();
+	const int64_t r = *static_cast<const int64_t*>(p) / Timestamp::resolution();
 	if (r)
 		return locality::TimeString(&r);
 	else
@@ -374,7 +375,7 @@ static String ColTimeGet(const CDiffContext *, const void *p)
  */
 static String ColSizeGet(const CDiffContext *, const void *p)
 {
-	const __int64 &r = *static_cast<const __int64*>(p);
+	const int64_t &r = *static_cast<const int64_t*>(p);
 	String s;
 	if (r != -1)
 	{
@@ -390,7 +391,7 @@ static String ColSizeGet(const CDiffContext *, const void *p)
  */
 static String ColSizeShortGet(const CDiffContext *, const void *p)
 {
-	const __int64 &r = *static_cast<const __int64*>(p);
+	const int64_t &r = *static_cast<const int64_t*>(p);
 	String s;
 	if (r != -1)
 	{
@@ -785,8 +786,8 @@ static int ColStatusSort(const CDiffContext *, const void *p, const void *q)
  */
 static int ColTimeSort(const CDiffContext *, const void *p, const void *q)
 {
-	const __int64 &r = *static_cast<const __int64*>(p);
-	const __int64 &s = *static_cast<const __int64*>(q);
+	const int64_t &r = *static_cast<const int64_t*>(p);
+	const int64_t &s = *static_cast<const int64_t*>(q);
 	return cmp64(r, s);
 }
 
@@ -798,8 +799,8 @@ static int ColTimeSort(const CDiffContext *, const void *p, const void *q)
  */
 static int ColSizeSort(const CDiffContext *, const void *p, const void *q)
 {
-	const __int64 &r = *static_cast<const __int64*>(p);
-	const __int64 &s = *static_cast<const __int64*>(q);
+	const int64_t &r = *static_cast<const int64_t*>(p);
+	const int64_t &s = *static_cast<const int64_t*>(q);
 	return cmp64(r, s);
 }
 

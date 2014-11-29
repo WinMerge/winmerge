@@ -9,6 +9,7 @@
 
 #include "DirTravel.h"
 #include <algorithm>
+#include <cstdint>
 #include <Poco/DirectoryIterator.h>
 #include <Poco/Timestamp.h>
 #include <windows.h>
@@ -20,7 +21,6 @@
 
 using Poco::DirectoryIterator;
 using Poco::Timestamp;
-using Poco::Int64;
 
 static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files);
 static void Sort(DirItemArray * dirs, bool casesensitive);
@@ -122,7 +122,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 				ent.size = -1;  // No size for directories
 			else
 			{
-				ent.size = ((Int64)ff.nFileSizeHigh << 32) + ff.nFileSizeLow;
+				ent.size = ((int64_t)ff.nFileSizeHigh << 32) + ff.nFileSizeLow;
 			}
 
 			ent.path = dir;

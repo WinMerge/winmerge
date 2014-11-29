@@ -34,8 +34,6 @@
 #include <afxcview.h>
 #include <map>
 #include <memory>
-#define POCO_NO_UNWINDOWS 1
-#include <Poco/Types.h>
 #include "OptionsDiffColors.h"
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"
@@ -77,7 +75,7 @@ typedef std::map<String, bool> DirViewTreeState;
 /**
  * @brief Position value for special items (..) in directory compare view.
  */
-const Poco::UIntPtr SPECIAL_ITEM_POS = (Poco::UIntPtr) - 1L;
+const uintptr_t SPECIAL_ITEM_POS = (uintptr_t) - 1L;
 
 /** Default column width in directory compare */
 const UINT DefColumnWidth = 150;
@@ -115,11 +113,11 @@ public:
 
 	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
-	void RedisplayChildren(Poco::UIntPtr diffpos, int level, UINT &index, int &alldiffs);
+	void RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int &alldiffs);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
-	Poco::UIntPtr GetItemKey(int idx) const;
-	int GetItemIndex(Poco::UIntPtr key);
+	uintptr_t GetItemKey(int idx) const;
+	int GetItemIndex(uintptr_t key);
 	// for populating list
 	void DeleteAllDisplayItems();
 	void SetColumnWidths();
@@ -211,7 +209,7 @@ public:
 private:
 	void InitiateSort();
 	void NameColumn(int id, int subitem);
-	int AddNewItem(int i, Poco::UIntPtr diffpos, int iImage, int iIndent);
+	int AddNewItem(int i, uintptr_t diffpos, int iImage, int iIndent);
 	bool IsDefaultSortAscending(int col) const;
 	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
 	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
@@ -264,12 +262,12 @@ protected:
 	int AddSpecialItems();
 	void GetCurrentColRegKeys(std::vector<String>& colKeys);
 	void WarnContentsChanged(const String & failedPath);
-	void OpenSpecialItems(Poco::UIntPtr pos1, Poco::UIntPtr pos2, Poco::UIntPtr pos3);
-	bool OpenOneItem(Poco::UIntPtr pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
+	void OpenSpecialItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3);
+	bool OpenOneItem(uintptr_t pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
 			PathContext &paths, int & sel1, bool & isDir);
-	bool OpenTwoItems(SELECTIONTYPE selectionType, Poco::UIntPtr pos1, Poco::UIntPtr pos2, DIFFITEM **di1, DIFFITEM **di2,
+	bool OpenTwoItems(SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, DIFFITEM **di1, DIFFITEM **di2,
 			PathContext &paths, int & sel1, int & sel2, bool & isDir);
-	bool OpenThreeItems(Poco::UIntPtr pos1, Poco::UIntPtr pos2, Poco::UIntPtr pos3, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
+	bool OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
 			PathContext &paths, int & sel1, int & sel2, int & sel3, bool & isDir);
 	bool CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder);
 

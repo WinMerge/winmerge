@@ -13,6 +13,7 @@
 #include <Poco/Mutex.h>
 #include <Poco/ThreadLocal.h>
 #include <memory>
+#include <cstdint>
 #include "PathContext.h"
 #include "DiffFileInfo.h"
 #include "DiffItemList.h"
@@ -112,8 +113,8 @@ public:
 
 	// change an existing difference
 	bool UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex);
-	void UpdateStatusFromDisk(Poco::UIntPtr diffpos, bool bLeft, bool bRight);
-	void UpdateStatusFromDisk(Poco::UIntPtr diffpos, bool bLeft, bool bMiddle, bool bRight);
+	void UpdateStatusFromDisk(uintptr_t diffpos, bool bLeft, bool bRight);
+	void UpdateStatusFromDisk(uintptr_t diffpos, bool bLeft, bool bMiddle, bool bRight);
 
 	bool CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
 	CompareOptions * GetCompareOptions(int compareMethod);

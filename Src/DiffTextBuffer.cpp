@@ -9,6 +9,7 @@
 
 #include "StdAfx.h"
 #include "DiffTextBuffer.h"
+#include <cstdint>
 #include <Poco/Exception.h>
 #include "UniFile.h"
 #include "files.h"
@@ -35,7 +36,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 static bool IsTextFileStylePure(const UniMemFile::txtstats & stats);
-static CString GetLineByteTimeReport(UINT lines, __int64 bytes,
+static CString GetLineByteTimeReport(UINT lines, int64_t bytes,
 	const COleDateTime & start);
 static void EscapeControlChars(String &s);
 static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats);
@@ -64,7 +65,7 @@ static bool IsTextFileStylePure(const UniMemFile::txtstats & stats)
  * @param [in] start Time used.
  * @return Formatted string.
  */
-static CString GetLineByteTimeReport(UINT lines, __int64 bytes,
+static CString GetLineByteTimeReport(UINT lines, int64_t bytes,
 	const COleDateTime & start)
 {
 	String sLines = locality::NumToLocaleStr((int)lines);
@@ -437,7 +438,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			// (at 100, 500, 1000, 5000, etc)
 			if (lineno == next_line_report)
 			{
-				__int64 dwBytesRead = pufile->GetPosition();
+				int64_t dwBytesRead = pufile->GetPosition();
 				COleDateTimeSpan duration = COleDateTime::GetCurrentTime() - start;
 				if (duration.GetTotalMinutes() > 0)
 				{
@@ -456,7 +457,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		COleDateTimeSpan duration = end - start;
 		if (duration.GetTotalMinutes() > 0)
 		{
-			__int64 dwBytesRead = pufile->GetPosition();
+			int64_t dwBytesRead = pufile->GetPosition();
 			CString strace = GetLineByteTimeReport(lineno, dwBytesRead, start);
 			TRACE(_T("%s\n"), (LPCTSTR)strace);
 		}

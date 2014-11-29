@@ -26,6 +26,7 @@
 #define _DIFFTHREAD_H
 
 #include <memory>
+#define POCO_NO_UNWINDOWS 1
 #include <Poco/Thread.h>
 #include <Poco/BasicEvent.h>
 #include <Poco/Delegate.h>
