@@ -723,10 +723,10 @@ CScriptsOfThread::CScriptsOfThread()
 
 CScriptsOfThread::~CScriptsOfThread()
 {
+	FreeAllScripts();
+
 	if (hrInitialize == S_OK || hrInitialize == S_FALSE)
 		CoUninitialize();
-
-	FreeAllScripts();
 }
 
 bool CScriptsOfThread::bInMainThread()
