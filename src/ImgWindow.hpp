@@ -91,11 +91,11 @@ public:
 		GetClientRect(m_hWnd, &rc);
 
 		if (rc.right - rc.left < m_fip->getWidth() * m_zoom + MARGIN * 2)
-			lp.x = static_cast<int>((dx + m_nHScrollPos) / m_zoom) - MARGIN;
+			lp.x = static_cast<int>((dx - MARGIN + m_nHScrollPos) / m_zoom);
 		else
 			lp.x = static_cast<int>((dx - (rc.right / 2 - m_fip->getWidth() / 2 * m_zoom)) / m_zoom);
 		if (rc.bottom - rc.top < m_fip->getHeight() * m_zoom + MARGIN * 2)
-			lp.y = static_cast<int>((dy + m_nVScrollPos) / m_zoom) - MARGIN;
+			lp.y = static_cast<int>((dy - MARGIN + m_nVScrollPos) / m_zoom);
 		else
 			lp.y = static_cast<int>((dy - (rc.bottom / 2 - m_fip->getHeight() / 2 * m_zoom)) / m_zoom);
 		return lp;
