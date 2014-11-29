@@ -232,7 +232,7 @@ public:
 	{
 		RGBQUAD color = {0};
 		color.rgbReserved = 0xFF;
-		image_.getPixelColor(x, y, &color);
+		image_.getPixelColor(x, image_.getHeight() - y - 1, &color);
 		return color;
 	}
 	bool pasteSubImage(Image& image, int x, int y)
