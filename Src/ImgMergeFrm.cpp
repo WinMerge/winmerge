@@ -46,6 +46,7 @@
 #include "WaitStatusCursor.h"
 #include "../Externals/winimerge/src/WinIMergeLib.h"
 #include <cmath>
+#include <cstdint>
 #include <Shlwapi.h>
 
 #ifdef _DEBUG
@@ -282,7 +283,7 @@ bool CImgMergeFrame::IsFileChangedOnDisk(int pane) const
 	int tolerance = 0;
 	if (GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME))
 		tolerance = SmallTimeDiff; // From MainFrm.h
-	Poco::Int64 timeDiff = dfi.mtime - m_fileInfo[pane].mtime;
+	int64_t timeDiff = dfi.mtime - m_fileInfo[pane].mtime;
 	if (timeDiff < 0) timeDiff = -timeDiff;
 	if ((timeDiff > tolerance * Poco::Timestamp::resolution()) || (dfi.size != m_fileInfo[pane].size))
 		return true;

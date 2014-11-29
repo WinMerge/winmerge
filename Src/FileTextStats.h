@@ -9,9 +9,6 @@
 #ifndef FileTextStats_h_included
 #define FileTextStats_h_included
 
-#define POCO_NO_UNWINDOWS 1
-#include <Poco/Types.h>
-
 /**
  * @brief Structure containing statistics about compared file.
  * This structure contains EOL-byte and zero-byte statistics from compared

@@ -40,7 +40,6 @@
 #include "IAbortable.h"
 #include "DiffWrapper.h"
 
-using Poco::UIntPtr;
 using Poco::FastMutex;
 
 //////////////////////////////////////////////////////////////////////
@@ -92,7 +91,7 @@ CDiffContext::~CDiffContext()
  * @param [in] bLeft Update left-side info.
  * @param [in] bRight Update right-side info.
  */
-void CDiffContext::UpdateStatusFromDisk(UIntPtr diffpos, bool bLeft, bool bRight)
+void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, bool bLeft, bool bRight)
 {
 	DIFFITEM &di = GetDiffRefAt(diffpos);
 	if (bLeft)

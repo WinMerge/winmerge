@@ -8,7 +8,7 @@
 
 #include "ByteCompare.h"
 #include <cassert>
-#include <Poco/Types.h>
+#include <cstdint>
 #ifdef _WIN32
 #include <io.h>
 #else
@@ -22,8 +22,6 @@
 #include "DiffContext.h"
 #include "diff.h"
 #include "ByteComparator.h"
-
-using Poco::Int64;
 
 namespace CompareEngines
 {
@@ -115,8 +113,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 	unsigned diffcode = 0;
 
 	// area of buffer currently holding data
-	Int64 bfstart[2]; // offset into buff[i] where current data resides
-	Int64 bfend[2]; // past-the-end pointer into buff[i], giving end of current data
+	int64_t bfstart[2]; // offset into buff[i] where current data resides
+	int64_t bfend[2]; // past-the-end pointer into buff[i], giving end of current data
 	// buff[0] has bytes to process from buff[0][bfstart[0]] to buff[0][bfend[0]-1]
 
 	bool eof[2]; // if we've finished file
@@ -180,8 +178,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 		const char* end0 = &buff[0][bfend[0]];
 		const char* end1 = &buff[1][bfend[1]];
 
-		Int64 offset0 = (ptr0 - &buff[0][0]);
-		Int64 offset1 = (ptr1 - &buff[1][0]);
+		int64_t offset0 = (ptr0 - &buff[0][0]);
+		int64_t offset1 = (ptr1 - &buff[1][0]);
 
 		// are these two buffers the same?
 		result = comparator.CompareBuffers(m_textStats[0], m_textStats[1],

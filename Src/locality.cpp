@@ -7,6 +7,7 @@
 // $Id: locality.cpp 5918 2008-09-07 16:05:46Z sdottaka $
 
 #include "locality.h"
+#include <cstdint>
 #include <windows.h>
 #include <Poco/Format.h>
 #include <Poco/Debugger.h>
@@ -15,7 +16,6 @@
 using Poco::format;
 using Poco::Debugger;
 using Poco::Timestamp;
-using Poco::Int64;
 
 namespace locality {
 
@@ -70,7 +70,7 @@ String NumToLocaleStr(int n)
  * @param [in] n Number to convert.
  * @return Converted string.
  */
-String NumToLocaleStr(Int64 n)
+String NumToLocaleStr(int64_t n)
 {
 	TCHAR numbuff[34];
 	_i64tot(n, numbuff, 10);
@@ -126,7 +126,7 @@ String GetLocaleStr(const TCHAR *str, int decimalDigits)
  * @param [in] tim Time in seconds since 1.1.1970.
  * @return Time as a string, proper to show in the GUI.
  */
-String TimeString(const Int64 * tim)
+String TimeString(const int64_t * tim)
 {
 	if (!tim) return _T("---");
 	

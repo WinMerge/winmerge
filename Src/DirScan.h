@@ -10,8 +10,7 @@
 #define DirScan_h_included
 
 #include "UnicodeString.h"
-#define POCO_NO_UNWINDOWS 1
-#include <Poco/Types.h>
+#include <cstdint>
 
 class CDiffContext;
 class DiffItemList;
@@ -23,7 +22,7 @@ struct DiffFuncStruct;
 int DirScan_GetItems(const PathContext &paths, const String subdir[], DiffFuncStruct *myStruct,
 		bool casesensitive, int depth, DIFFITEM *parent, bool bUniques);
 
-int DirScan_CompareItems(DiffFuncStruct *, Poco::UIntPtr parentdiffpos);
-int DirScan_CompareRequestedItems(DiffFuncStruct *, Poco::UIntPtr parentdiffpos);
+int DirScan_CompareItems(DiffFuncStruct *, uintptr_t parentdiffpos);
+int DirScan_CompareRequestedItems(DiffFuncStruct *, uintptr_t parentdiffpos);
 
 #endif // DirScan_h_included

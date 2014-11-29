@@ -35,6 +35,7 @@
 #include <cstring>
 #include <cassert>
 #include <memory>
+#include <cstdint>
 #include <Poco/SharedMemory.h>
 #include <Poco/FileStream.h>
 #include <Poco/ByteOrder.h>
@@ -55,7 +56,6 @@ using Poco::FileOutputStream;
 using Poco::ByteOrder;
 using Poco::Exception;
 using Poco::Buffer;
-using Poco::Int64;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -611,7 +611,7 @@ bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filep
 		// create the destination file
 		FileOutputStream fout(ucr::toUTF8(filepathDst), std::ios::out|std::ios::binary|std::ios::trunc);
 		Buffer<char> obuf(minbufsize);
-		Int64 pos = nSizeOldBOM;
+		int64_t pos = nSizeOldBOM;
 
 		// write BOM
 		if (bWriteBOM)

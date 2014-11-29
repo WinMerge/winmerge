@@ -63,7 +63,6 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 using std::swap;
-using Poco::UIntPtr;
 
 /**
  * @brief Location for folder compare specific help to open.
@@ -530,13 +529,13 @@ void CDirView::ReloadColumns()
  * @param [in,out] index Index of the item to be inserted.
  * @param [in,out] alldiffs Number of different items
  */
-void CDirView::RedisplayChildren(UIntPtr diffpos, int level, UINT &index, int &alldiffs)
+void CDirView::RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int &alldiffs)
 {
 	CDirDoc *pDoc = GetDocument();
 	const CDiffContext &ctxt = pDoc->GetDiffContext();
 	while (diffpos)
 	{
-		UIntPtr curdiffpos = diffpos;
+		uintptr_t curdiffpos = diffpos;
 		const DIFFITEM &di = ctxt.GetNextSiblingDiffPosition(diffpos);
 
 		if (di.diffcode.isResultDiff() || (!di.diffcode.existAll(pDoc->m_nDirs) && !di.diffcode.isResultFiltered()))
@@ -599,7 +598,7 @@ void CDirView::Redisplay()
 	}
 
 	int alldiffs = 0;
-	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
+	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
 	RedisplayChildren(diffpos, 0, cnt, alldiffs);
 	if (pDoc->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPLETED)
 		GetParentFrame()->SetLastCompareResult(alldiffs);
@@ -1252,7 +1251,7 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 	CDiffContext &ctxt = const_cast<CDiffContext &>(pDoc->GetDiffContext());
 	if (bRecursive)
 	{
-		UIntPtr diffpos = ctxt.GetFirstChildDiffPosition(GetItemKey(sel));
+		uintptr_t diffpos = ctxt.GetFirstChildDiffPosition(GetItemKey(sel));
 		while (diffpos)
 		{
 			DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
@@ -1263,7 +1262,7 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 		}
 	}
 
-	UIntPtr diffpos = ctxt.GetFirstChildDiffPosition(GetItemKey(sel));
+	uintptr_t diffpos = ctxt.GetFirstChildDiffPosition(GetItemKey(sel));
 	UINT indext = sel + 1;
 	int alldiffs;
 	RedisplayChildren(diffpos, dip.GetDepth() + 1, indext, alldiffs);
@@ -1326,7 +1325,7 @@ bool CDirView::GetSelectedItems(int * sel1, int * sel2, int * sel3)
  * @param [in] pos1 First item position.
  * @param [in] pos2 Second item position.
  */
-void CDirView::OpenSpecialItems(UIntPtr pos1, UIntPtr pos2, UIntPtr pos3)
+void CDirView::OpenSpecialItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3)
 {
 	if (!pos2 && !pos3)
 	{
@@ -1397,7 +1396,7 @@ bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder)
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool CDirView::OpenOneItem(UIntPtr pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
+bool CDirView::OpenOneItem(uintptr_t pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
 		PathContext & paths, int & sel1, bool & isdir)
 {
 	CDirDoc * pDoc = GetDocument();
@@ -1474,7 +1473,7 @@ bool CDirView::OpenOneItem(UIntPtr pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITE
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool CDirView::OpenTwoItems(SELECTIONTYPE selectionType, UIntPtr pos1, UIntPtr pos2, DIFFITEM **di1, DIFFITEM **di2,
+bool CDirView::OpenTwoItems(SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, DIFFITEM **di1, DIFFITEM **di2,
 		PathContext & paths, int & sel1, int & sel2, bool & isDir)
 {
 	String pathLeft, pathRight;
@@ -1558,7 +1557,7 @@ bool CDirView::OpenTwoItems(SELECTIONTYPE selectionType, UIntPtr pos1, UIntPtr p
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool CDirView::OpenThreeItems(UIntPtr pos1, UIntPtr pos2, UIntPtr pos3, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
+bool CDirView::OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
 		PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir)
 {
 	String pathLeft, pathMiddle, pathRight;
@@ -1705,7 +1704,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	CDirDoc * pDoc = GetDocument();
 
 	// First, figure out what was selected (store into pos1 & pos2)
-	UIntPtr pos1 = NULL, pos2 = NULL, pos3 = NULL;
+	uintptr_t pos1 = NULL, pos2 = NULL, pos3 = NULL;
 	int sel1 = -1, sel2 = -1, sel3 = -1;
 	if (!GetSelectedItems(&sel1, &sel2, &sel3))
 	{
@@ -1846,7 +1845,7 @@ void CDirView::OpenSelectionHex()
 	CDirDoc * pDoc = GetDocument();
 
 	// First, figure out what was selected (store into pos1 & pos2)
-	UIntPtr pos1 = NULL, pos2 = NULL;
+	uintptr_t pos1 = NULL, pos2 = NULL;
 	int sel1 = -1, sel2 = -1, sel3 = -1;
 	if (!GetSelectedItems(&sel1, &sel2, &sel3))
 	{
@@ -2140,9 +2139,9 @@ void CDirView::OnUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI)
  * @param [in] idx Item's index to list in UI.
  * @return Key for item in given index.
  */
-UIntPtr CDirView::GetItemKey(int idx) const
+uintptr_t CDirView::GetItemKey(int idx) const
 {
-	return (UIntPtr) m_pList->GetItemData(idx);
+	return (uintptr_t) m_pList->GetItemData(idx);
 }
 
 // SetItemKey & GetItemKey encapsulate how the display list items
@@ -2165,7 +2164,7 @@ const DIFFITEM &CDirView::GetDiffItem(int sel) const
  */
 DIFFITEM & CDirView::GetDiffItemRef(int sel)
 {
-	UIntPtr diffpos = GetItemKey(sel);
+	uintptr_t diffpos = GetItemKey(sel);
 
 	// If it is special item, return empty DIFFITEM
 	if (diffpos == SPECIAL_ITEM_POS)
@@ -2190,7 +2189,7 @@ void CDirView::DeleteAllDisplayItems()
  * @brief Given key, get index of item which has it stored.
  * This function searches from list in UI.
  */
-int CDirView::GetItemIndex(UIntPtr key)
+int CDirView::GetItemIndex(uintptr_t key)
 {
 	LVFINDINFO findInfo;
 
@@ -2807,7 +2806,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 					const DIFFITEM& di = GetDiffItem(sel);
 					if (di.parent != NULL)
 					{
-						int i = GetItemIndex((UIntPtr)di.parent);
+						int i = GetItemIndex((uintptr_t)di.parent);
 						if (i >= 0)
 							MoveFocus(sel, i, GetSelectedCount());
 					}
@@ -3491,7 +3490,7 @@ void CDirView::OnSelectAll()
 		for (int i = 0; i < selCount; i++)
 		{
 			// Don't select special items (SPECIAL_ITEM_POS)
-			UIntPtr diffpos = GetItemKey(i);
+			uintptr_t diffpos = GetItemKey(i);
 			if (diffpos != SPECIAL_ITEM_POS)
 				m_pList->SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
 		}
@@ -3771,8 +3770,8 @@ void CDirView::OnHideFilenames()
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
-		UIntPtr pos = GetItemKey(sel);
-		if (pos == (UIntPtr) SPECIAL_ITEM_POS)
+		uintptr_t pos = GetItemKey(sel);
+		if (pos == (uintptr_t) SPECIAL_ITEM_POS)
 			continue;
 		pDoc->SetItemViewFlag(pos, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
 		const DIFFITEM &di = GetDiffItem(sel);
@@ -3989,7 +3988,7 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	else
 	{
 		// Don't show number to special items
-		UIntPtr pos = GetItemKey(focusItem);
+		uintptr_t pos = GetItemKey(focusItem);
 		if (pos != SPECIAL_ITEM_POS)
 		{
 			// If compare is non-recursive reduce special items count
@@ -4052,7 +4051,7 @@ void CDirView::OnViewExpandAllSubdirs()
 {
 	CDirDoc *pDoc = GetDocument();
 	CDiffContext &ctxt = (CDiffContext &)pDoc->GetDiffContext();
-	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
+	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
 	while (diffpos)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
@@ -4076,7 +4075,7 @@ void CDirView::OnViewCollapseAllSubdirs()
 {
 	CDirDoc *pDoc = GetDocument();
 	CDiffContext &ctxt = (CDiffContext &)pDoc->GetDiffContext();
-	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
+	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
 	while (diffpos)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
@@ -4412,7 +4411,7 @@ DirViewTreeState *CDirView::SaveTreeState()
 {
 	DirViewTreeState *pTreeState = new DirViewTreeState();
 	CDiffContext &ctxt = const_cast<CDiffContext &>(GetDocument()->GetDiffContext());
-	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
+	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
 	while (diffpos)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
@@ -4428,7 +4427,7 @@ DirViewTreeState *CDirView::SaveTreeState()
 void CDirView::RestoreTreeState(DirViewTreeState *pTreeState)
 {
 	CDiffContext &ctxt = const_cast<CDiffContext &>(GetDocument()->GetDiffContext());
-	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
+	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
 	while (diffpos)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
@@ -4452,7 +4451,7 @@ void CDirView::OnSearch()
 	int nRows = m_pList->GetItemCount();
 	for (int currRow = nRows - 1; currRow >= 0; currRow--)
 	{
-		UIntPtr pos = GetItemKey(currRow);
+		uintptr_t pos = GetItemKey(currRow);
 		if (pos == SPECIAL_ITEM_POS)
 			continue;
 

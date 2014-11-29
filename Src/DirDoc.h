@@ -31,6 +31,7 @@
 #pragma once
 
 #include <memory>
+#include <cstdint>
 #include "DiffThread.h"
 #include "PluginManager.h"
 
@@ -96,13 +97,13 @@ public:
 	void CompareReady();
 	void UpdateChangedItem(PathContext & paths,
 		UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical);
-	Poco::UIntPtr FindItemFromPaths(const String& pathLeft, const String& pathRight);
+	uintptr_t FindItemFromPaths(const String& pathLeft, const String& pathRight);
 	void SetDiffSide(UINT diffcode, int idx);
 	void SetDiffCompare(UINT diffcode, int idx);
 	void UpdateResources();
 	void InitStatusStrings();
-	void UpdateStatusFromDisk(Poco::UIntPtr diffPos, bool bLeft, bool bRight);
-	void ReloadItemStatus(Poco::UIntPtr diffPos, bool bLeft, bool bRight);
+	void UpdateStatusFromDisk(uintptr_t diffPos, bool bLeft, bool bRight);
+	void ReloadItemStatus(uintptr_t diffPos, bool bLeft, bool bRight);
 	void Redisplay();
 	virtual ~CDirDoc();
 	void SetDirView( CDirView *newView ); // TODO Perry
@@ -111,7 +112,7 @@ public:
 	CDiffThread m_diffThread;
 	void SetDiffStatus(UINT diffcode, UINT mask, int idx);
 	void SetDiffCounts(UINT diffs, UINT ignored, int idx);
-	void UpdateDiffAfterOperation(const FileActionItem & act, Poco::UIntPtr pos);
+	void UpdateDiffAfterOperation(const FileActionItem & act, uintptr_t pos);
 	void UpdateHeaderPath(BOOL bLeft);
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;
@@ -127,12 +128,12 @@ public:
 
 	bool HasDiffs() const { return m_pCtxt != NULL; }
 	const CDiffContext & GetDiffContext() const { return *m_pCtxt; }
-	const DIFFITEM & GetDiffByKey(Poco::UIntPtr key) const { return m_pCtxt->GetDiffAt(key); }
-	DIFFITEM & GetDiffRefByKey(Poco::UIntPtr key) { return m_pCtxt->GetDiffRefAt(key); }
+	const DIFFITEM & GetDiffByKey(uintptr_t key) const { return m_pCtxt->GetDiffAt(key); }
+	DIFFITEM & GetDiffRefByKey(uintptr_t key) { return m_pCtxt->GetDiffRefAt(key); }
 	String GetLeftBasePath() const { return m_pCtxt->GetNormalizedLeft(); }
 	String GetRightBasePath() const { return m_pCtxt->GetNormalizedRight(); }
 	String GetBasePath(int nIndex) const { return m_pCtxt->GetNormalizedPath(nIndex); }
-	void RemoveDiffByKey(Poco::UIntPtr key) { m_pCtxt->RemoveDiff(key); }
+	void RemoveDiffByKey(uintptr_t key) { m_pCtxt->RemoveDiff(key); }
 	void SetMarkedRescan() {m_bMarkedRescan = TRUE; }
 	struct AllowUpwardDirectory
 	{
@@ -145,7 +146,7 @@ public:
 		};
 	};
 	AllowUpwardDirectory::ReturnCode AllowUpwardDirectory(PathContext &paths);
-	void SetItemViewFlag(Poco::UIntPtr key, UINT flag, UINT mask);
+	void SetItemViewFlag(uintptr_t key, UINT flag, UINT mask);
 	void SetItemViewFlag(UINT flag, UINT mask);
 	const CompareStats * GetCompareStats() const { return m_pCompareStats.get(); };
 	bool IsArchiveFolders() const;

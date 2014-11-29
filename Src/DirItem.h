@@ -26,7 +26,6 @@
 #define _DIR_ITEM_H_INCLUDED
 
 #define POCO_NO_UNWINDOWS 1
-#include <Poco/Types.h>
 #include <Poco/File.h>
 #include <Poco/Timestamp.h>
 #include <boost/flyweight.hpp>
