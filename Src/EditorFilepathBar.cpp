@@ -45,7 +45,7 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CEditorFilePathBar::CEditorFilePathBar()
-: m_pFont(NULL), m_nPanes(2)
+: m_pFont(nullptr), m_nPanes(2)
 {
 }
 

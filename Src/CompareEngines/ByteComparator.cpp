@@ -8,12 +8,10 @@
 
 #include "ByteComparator.h"
 #include <cassert>
-#include <boost/cstdint.hpp>
+#include <cstdint>
 #include "UnicodeString.h"
 #include "FileTextStats.h"
 #include "CompareOptions.h"
-
-using boost::int64_t;
 
 /**
  * @brief Returns if given char is EOL byte.

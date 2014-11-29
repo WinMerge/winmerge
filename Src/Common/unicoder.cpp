@@ -20,7 +20,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include <windows.h>
 #include <tchar.h>
 #include <cassert>
-#include <boost/scoped_array.hpp>
+#include <memory>
+#include <cstdint>
 #include <Poco/UnicodeConverter.h>
 #include "UnicodeString.h"
 #include "ExConverter.h"
@@ -31,7 +32,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #endif
 
 using Poco::UnicodeConverter;
-using boost::uint64_t;
 
 namespace ucr
 {
@@ -717,7 +717,7 @@ int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize
 	// Convert input to Unicode, using specified codepage
 	DWORD flags = 0;
 	int wlen = srclen * 2 + 6;
-	boost::scoped_array<wchar_t> wbuff(new wchar_t[wlen]);
+	std::unique_ptr<wchar_t[]> wbuff(new wchar_t[wlen]);
 	int n;
 	if (cpin == CP_UCS2LE)
 	{

@@ -30,8 +30,7 @@
 #define AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
 #include <vector>
-#include <boost/scoped_ptr.hpp>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include "ToolBarXPThemes.h"
 #include "MDITabBar.h"
 #include "PathContext.h"
@@ -50,7 +49,7 @@ class TempFile;
 struct FileLocation;
 class SourceControl;
 
-typedef boost::shared_ptr<TempFile> TempFilePtr;
+typedef std::shared_ptr<TempFile> TempFilePtr;
 
 // typed lists (homogenous pointer lists)
 typedef CTypedPtrList<CPtrList, COpenDoc *> OpenDocList;
@@ -207,7 +206,7 @@ protected:
 
 	static const MENUITEM_ICON m_MenuIcons[];
 
-	boost::scoped_ptr<BCMenu> m_pMenus[MENU_COUNT]; /**< Menus for different views */
+	std::unique_ptr<BCMenu> m_pMenus[MENU_COUNT]; /**< Menus for different views */
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 
 // Generated message map functions

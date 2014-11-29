@@ -9,7 +9,7 @@
 #ifndef ByteComparator_h_included
 #define ByteComparator_h_included
 
-#include <boost/cstdint.hpp>
+#include <cstdint>
 
 class QuickCompareOptions;
 struct FileTextStats;
@@ -44,7 +44,7 @@ public:
 
 	COMP_RESULT CompareBuffers(FileTextStats & stats0, FileTextStats & stats1,
 			const char* &ptr0, const char* &ptr1, const char* end0, const char* end1,
-			bool eof0, bool eof1, boost::int64_t offset0, boost::int64_t offset1);
+			bool eof0, bool eof1, int64_t offset0, int64_t offset1);
 
 protected:
 	void HandleSide0Eol(char **ptr, const char *end, bool eof);

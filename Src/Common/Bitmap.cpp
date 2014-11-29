@@ -10,7 +10,7 @@
 #include "StdAfx.h"
 #include "Bitmap.h"
 #include <cmath>
-#include <boost/scoped_array.hpp>
+#include <memory>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -88,7 +88,7 @@ CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap)
 	bi.bmiHeader.biClrUsed = 0;
 	bi.bmiHeader.biClrImportant = 0;
 
-	boost::scoped_array<BYTE> pbuf(new BYTE[bi.bmiHeader.biSizeImage]);
+	std::unique_ptr<BYTE[]> pbuf(new BYTE[bi.bmiHeader.biSizeImage]);
 	GetDIBits(dcMem.m_hDC, (HBITMAP)*pBitmapDarkened, 0, bm.bmHeight, pbuf.get(), &bi, DIB_RGB_COLORS);
 
 	int x;

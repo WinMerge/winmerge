@@ -10,7 +10,7 @@
 #include "StdAfx.h"
 #include "MergeDoc.h"
 #include <vector>
-#include <boost/scoped_array.hpp>
+#include <memory>
 #include "Merge.h"
 #include "MergeEditView.h"
 #include "DiffTextBuffer.h"
@@ -168,7 +168,7 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 	String str[3];
-	boost::scoped_array<int> nOffsets[3];
+	std::unique_ptr<int[]> nOffsets[3];
 	const int LineLimit = 20;
 	bool diffPerLine = false;
 	

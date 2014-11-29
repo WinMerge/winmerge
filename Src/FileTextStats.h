@@ -9,8 +9,6 @@
 #ifndef FileTextStats_h_included
 #define FileTextStats_h_included
 
-#include <boost/cstdint.hpp>
-
 /**
  * @brief Structure containing statistics about compared file.
  * This structure contains EOL-byte and zero-byte statistics from compared

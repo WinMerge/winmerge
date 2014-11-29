@@ -9,12 +9,11 @@
 #include "TimeSizeCompare.h"
 #include <cstdlib>
 #include <vector>
-#include <boost/cstdint.hpp>
+#include <cstdint>
 #include <Poco/Timestamp.h>
 #include "DiffItem.h"
 #include "DiffWrapper.h"
 
-using boost::int64_t;
 using Poco::Timestamp;
 
 namespace CompareEngines

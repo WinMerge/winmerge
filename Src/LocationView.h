@@ -14,7 +14,7 @@
 #define __LOCATIONVIEW_H__
 
 #include <vector>
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 
 class CMergeDoc;
 class CMergeEditView;
@@ -113,7 +113,7 @@ private:
 	int m_nSubLineCount[3]; //*< Cached subline count */
 	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
 	HWND m_hwndFrame; //*< Frame window handle */
-	boost::scoped_ptr<CBitmap> m_pSavedBackgroundBitmap; //*< Saved background */
+	std::unique_ptr<CBitmap> m_pSavedBackgroundBitmap; //*< Saved background */
 	bool m_bDrawn; //*< Is already drawn in location pane? */
 	std::vector<DiffBlock> m_diffBlocks; //*< List of pre-calculated diff blocks.
 	BOOL m_bRecalculateBlocks; //*< Recalculate diff blocks in next repaint.

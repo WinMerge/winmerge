@@ -34,8 +34,8 @@
 #include <algorithm>
 #include <cstring>
 #include <cassert>
-#include <boost/scoped_array.hpp>
-#include <boost/scoped_ptr.hpp>
+#include <memory>
+#include <cstdint>
 #include <Poco/SharedMemory.h>
 #include <Poco/FileStream.h>
 #include <Poco/ByteOrder.h>
@@ -56,7 +56,6 @@ using Poco::FileOutputStream;
 using Poco::ByteOrder;
 using Poco::Exception;
 using Poco::Buffer;
-using boost::int64_t;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -235,7 +234,7 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 	try
 	{
 		{
-			boost::scoped_ptr<SharedMemory> pshmIn;
+			std::unique_ptr<SharedMemory> pshmIn;
 			// Get source data
 			if (m_bCurrentIsFile)
 			{
@@ -320,7 +319,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	try
 	{
 		{
-			boost::scoped_ptr<SharedMemory> pshmIn;
+			std::unique_ptr<SharedMemory> pshmIn;
 			// Get source data
 			if (m_bCurrentIsFile) 
 			{
@@ -351,7 +350,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 			int textRealSize = textForeseenSize;
 
 			// allocate the memory
-			boost::scoped_array<wchar_t> tempBSTR(new wchar_t[textForeseenSize]);
+			std::unique_ptr<wchar_t[]> tempBSTR(new wchar_t[textForeseenSize]);
 
 			// fill in the data
 			wchar_t * pbstrBuffer = tempBSTR.get();
@@ -394,7 +393,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 	try
 	{
 		{
-			boost::scoped_ptr<SharedMemory> pshmIn;
+			std::unique_ptr<SharedMemory> pshmIn;
 			// Get source data
 			if (m_bCurrentIsFile)
 			{
@@ -487,7 +486,7 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 	try
 	{
 		{
-			boost::scoped_ptr<SharedMemory> pshmIn;
+			std::unique_ptr<SharedMemory> pshmIn;
 			// Get source data
 			if (m_bCurrentIsFile) 
 			{

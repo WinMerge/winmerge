@@ -9,7 +9,7 @@
 #ifndef _BYTE_COMPARE_H_
 #define _BYTE_COMPARE_H_
 
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 #include "FileTextStats.h"
 
 class CompareOptions;
@@ -40,7 +40,7 @@ public:
 	void GetTextStats(int side, FileTextStats *stats) const;
 
 private:
-	boost::scoped_ptr<QuickCompareOptions> m_pOptions; /**< Compare options for diffutils. */
+	std::unique_ptr<QuickCompareOptions> m_pOptions; /**< Compare options for diffutils. */
 	IAbortable * m_piAbortable;
 	file_data * m_inf; /**< Compared files data (for diffutils). */
 	FileTextStats m_textStats[2];

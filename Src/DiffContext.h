@@ -12,7 +12,8 @@
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Mutex.h>
 #include <Poco/ThreadLocal.h>
-#include <boost/scoped_ptr.hpp>
+#include <memory>
+#include <cstdint>
 #include "PathContext.h"
 #include "DiffFileInfo.h"
 #include "DiffItemList.h"
@@ -112,7 +113,7 @@ public:
 
 	// change an existing difference
 	bool UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex);
-	void UpdateStatusFromDisk(Poco::UIntPtr diffpos, int index);
+	void UpdateStatusFromDisk(uintptr_t diffpos, int index);
 
 	bool CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
 	CompareOptions * GetCompareOptions(int compareMethod);
@@ -183,7 +184,7 @@ public:
 
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
-	boost::scoped_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
+	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
 	CDiffWrapper *m_pDiffWrapper;
 
 private:
@@ -195,9 +196,9 @@ private:
 	 */
 	int m_nCompMethod;
 
-	boost::scoped_ptr<DIFFOPTIONS> m_pOptions; /**< Generalized compare options. */
-	boost::scoped_ptr<CompareOptions> m_pContentCompareOptions; /**< Per compare method compare options. */
-	boost::scoped_ptr<CompareOptions> m_pQuickCompareOptions;   /**< Per compare method compare options. */
+	std::unique_ptr<DIFFOPTIONS> m_pOptions; /**< Generalized compare options. */
+	std::unique_ptr<CompareOptions> m_pContentCompareOptions; /**< Per compare method compare options. */
+	std::unique_ptr<CompareOptions> m_pQuickCompareOptions;   /**< Per compare method compare options. */
 	PathContext m_paths; /**< (root) paths for this context */
 	IAbortable *m_piAbortable; /**< Interface for aborting the compare. */
 	Poco::FastMutex m_mutex;

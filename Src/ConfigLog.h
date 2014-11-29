@@ -26,7 +26,7 @@
 #define _CONFIGLOG_H_
 
 #include "UnicodeString.h"
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 
 class UniStdioFile;
 
@@ -65,7 +65,7 @@ private:
 	// Implementation data
 private:
 	String m_sFileName;
-	boost::scoped_ptr<UniStdioFile> m_pfile;
+	std::unique_ptr<UniStdioFile> m_pfile;
 };
 
 #endif /* _CONFIGLOG_H_ */

@@ -29,9 +29,9 @@
 
 #include "StdAfx.h"
 #include "MergeDoc.h"
+#include <cstdint>
 #include <shlwapi.h>		// PathCompactPathEx()
 #include <io.h>
-#include <boost/cstdint.hpp>
 #include <Poco/Timestamp.h>
 #include <Poco/Exception.h>
 #include "UnicodeString.h"
@@ -2978,14 +2978,14 @@ void CMergeDoc::SwapFiles()
 	m_pDetailView[m_nBuffers - 1]->SetDlgCtrlID(nLeftDetailViewId);
 
 	// Swap buffers and so on
-	boost::swap(m_ptBuf[0], m_ptBuf[m_nBuffers - 1]);
-	swap(m_pView[0], m_pView[m_nBuffers - 1]);
-	swap(m_pDetailView[0], m_pDetailView[m_nBuffers - 1]);
-	boost::swap(m_pSaveFileInfo[0], m_pSaveFileInfo[m_nBuffers - 1]);
-	boost::swap(m_pRescanFileInfo[0], m_pRescanFileInfo[m_nBuffers - 1]);
-	swap(m_nBufferType[0], m_nBufferType[m_nBuffers - 1]);
-	swap(m_bEditAfterRescan[0], m_bEditAfterRescan[m_nBuffers - 1]);
-	swap(m_strDesc[0], m_strDesc[m_nBuffers - 1]);
+	std::swap(m_ptBuf[0], m_ptBuf[m_nBuffers - 1]);
+	std::swap(m_pView[0], m_pView[m_nBuffers - 1]);
+	std::swap(m_pDetailView[0], m_pDetailView[m_nBuffers - 1]);
+	std::swap(m_pSaveFileInfo[0], m_pSaveFileInfo[m_nBuffers - 1]);
+	std::swap(m_pRescanFileInfo[0], m_pRescanFileInfo[m_nBuffers - 1]);
+	std::swap(m_nBufferType[0], m_nBufferType[m_nBuffers - 1]);
+	std::swap(m_bEditAfterRescan[0], m_bEditAfterRescan[m_nBuffers - 1]);
+	std::swap(m_strDesc[0], m_strDesc[m_nBuffers - 1]);
 	m_strDesc[0].swap(m_strDesc[1]);
 
 	m_filePaths.Swap();

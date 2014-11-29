@@ -60,7 +60,6 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 using Poco::StringTokenizer;
-using Poco::UIntPtr;
 
 int CDirDoc::m_nDirsTemp = 2;
 
@@ -73,13 +72,13 @@ IMPLEMENT_DYNCREATE(CDirDoc, CDocument)
  * @brief Constructor.
  */
 CDirDoc::CDirDoc()
-: m_pCtxt(NULL)
-, m_pDirView(NULL)
-, m_pCompareStats(NULL)
-, m_statusCursor(NULL)
+: m_pCtxt(nullptr)
+, m_pDirView(nullptr)
+, m_pCompareStats(nullptr)
+, m_statusCursor(nullptr)
 , m_bReuseCloses(FALSE)
 , m_bMarkedRescan(FALSE)
-, m_pTempPathContext(NULL)
+, m_pTempPathContext(nullptr)
 {
 	m_nDirs = m_nDirsTemp;
 
@@ -337,7 +336,7 @@ CDirView * CDirDoc::GetMainView() const
  * calls slow DirView functions to get item position and to update GUI.
  * Use UpdateStatusFromDisk() function instead.
  */
-void CDirDoc::ReloadItemStatus(UIntPtr diffPos, int index)
+void CDirDoc::ReloadItemStatus(uintptr_t_t_t_t diffPos, int index)
 {
 	// in case just copied (into existence) or modified
 	m_pCtxt->UpdateStatusFromDisk(diffPos, index);
@@ -474,7 +473,7 @@ BOOL CDirDoc::ReusingDirDoc()
 void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical)
 {
-	UIntPtr pos = FindItemFromPaths(*m_pCtxt, paths.GetLeft(), paths.GetRight());
+	uintptr_t_t_t pos = FindItemFromPaths(*m_pCtxt, paths.GetLeft(), paths.GetRight());
 	// If we failed files could have been swapped so lets try again
 	if (!pos)
 		pos = FindItemFromPaths(*m_pCtxt, paths.GetRight(), paths.GetLeft());

@@ -16,10 +16,10 @@ static void CollapseWhitespace(String &line);
  * @brief Constructor.
  */
 UniMarkdownFile::UniMarkdownFile()
-: m_pMarkdown(NULL)
+: m_pMarkdown(nullptr)
 , m_depth(0)
 , m_bMove(false)
-, m_transparent(NULL)
+, m_transparent(nullptr)
 {
 }
 

@@ -40,7 +40,6 @@
 #include "IAbortable.h"
 #include "DiffWrapper.h"
 
-using Poco::UIntPtr;
 using Poco::FastMutex;
 
 //////////////////////////////////////////////////////////////////////
@@ -55,18 +54,18 @@ using Poco::FastMutex;
  * @param [in] compareMethod Main compare method for this compare.
  */
 CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
-: m_piFilterGlobal(NULL)
-, m_piPluginInfos(NULL)
+: m_piFilterGlobal(nullptr)
+, m_piPluginInfos(nullptr)
 , m_nCompMethod(compareMethod)
 , m_bIgnoreSmallTimeDiff(false)
-, m_pCompareStats(NULL)
-, m_piAbortable(NULL)
+, m_pCompareStats(nullptr)
+, m_piAbortable(nullptr)
 , m_bStopAfterFirstDiff(false)
-, m_pFilterList(NULL)
-, m_pDiffWrapper(NULL)
-, m_pContentCompareOptions(NULL)
-, m_pQuickCompareOptions(NULL)
-, m_pOptions(NULL)
+, m_pFilterList(nullptr)
+, m_pDiffWrapper(nullptr)
+, m_pContentCompareOptions(nullptr)
+, m_pQuickCompareOptions(nullptr)
+, m_pOptions(nullptr)
 , m_bPluginsEnabled(false)
 , m_bRecursive(false)
 , m_bWalkUniques(true)
@@ -92,7 +91,7 @@ CDiffContext::~CDiffContext()
  * @param [in] bLeft Update left-side info.
  * @param [in] bRight Update right-side info.
  */
-void CDiffContext::UpdateStatusFromDisk(UIntPtr diffpos, int index)
+void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, bool bLeft, bool bRight)
 {
 	DIFFITEM &di = GetDiffRefAt(diffpos);
 	di.diffFileInfo[index].ClearPartial();

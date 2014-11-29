@@ -31,9 +31,9 @@ static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
  * @brief Default constructor.
  */
 DiffUtils::DiffUtils()
-		: m_pOptions(NULL)
-		, m_pFilterList(NULL)
-		, m_inf(NULL)
+		: m_pOptions(nullptr)
+		, m_pFilterList(nullptr)
+		, m_inf(nullptr)
 		, m_FilterCommentsManager(new ::FilterCommentsManager)
 		, m_pDiffWrapper(new ::CDiffWrapper)
 		, m_ndiffs(0)

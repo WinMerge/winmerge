@@ -8,6 +8,7 @@
 // ID line follows -- this is updated by SVN
 // $Id: DirViewColItems.cpp 7063 2009-12-27 15:28:16Z kimmov $
 #include "DirViewColItems.h"
+#include <cstdint>
 #include <Poco/Timestamp.h>
 #include "UnicodeString.h"
 #include "DiffItem.h"
