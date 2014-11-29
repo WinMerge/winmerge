@@ -10,7 +10,6 @@
 #include <cstdlib>
 #include <vector>
 #include <cstdint>
-#
 #include <Poco/Timestamp.h>
 #include "DiffItem.h"
 #include "DiffWrapper.h"
