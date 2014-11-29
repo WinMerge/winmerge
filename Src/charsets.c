@@ -23,7 +23,7 @@
 #include "charsets.h"
 
 #ifdef _WIN32
-#define strcasecmp(a, b) stricmp((a), (b))
+#define strcasecmp(a, b) _stricmp((a), (b))
 #endif
 
 enum { no, yes };
