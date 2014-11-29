@@ -63,7 +63,7 @@ CMergeApp::InitializeSourceControlMembers()
 BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 {
 	CFileStatus status;
-	UINT userChoice = 0;
+	INT_PTR userChoice = 0;
 	int nVerSys = 0;
 
 	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
