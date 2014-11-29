@@ -3,7 +3,7 @@
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
-#define IDB_TOOLBAR_DUMMY               100  // = IDR_MAINFRAME
+#define IDB_TOOLBAR_ENABLED8BIT         100  // = IDR_MAINFRAME
 #define IDR_MERGEPROJECT                101
 #define IDR_POPUP_EDITOR_HEADERBAR      102
 #define IDR_POPUP_PLUGINS_SETTINGS      103

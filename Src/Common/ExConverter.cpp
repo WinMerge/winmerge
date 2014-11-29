@@ -9,7 +9,7 @@
 #include "ExConverter.h"
 #include <windows.h>
 #include <mlang.h>
-#include <boost/scoped_array.hpp>
+#include <memory>
 #include "unicoder.h"
 #include "codepage.h"
 
@@ -100,7 +100,7 @@ public:
 		else
 		{
 			size_t wsize = *srcbytes * 2 + 6;
-			boost::scoped_array<wchar_t> pbuf(new wchar_t[wsize]);
+			std::unique_ptr<wchar_t[]> pbuf(new wchar_t[wsize]);
 			bsucceeded = convertToUnicode(srcCodepage, (const char *)src, srcbytes, pbuf.get(), &wsize);
 			if (!bsucceeded)
 			{
@@ -148,7 +148,7 @@ public:
 			return defcodepage;
 		srcsize = static_cast<UINT>(size);
 		dstsize = static_cast<UINT>(size * sizeof(wchar_t));
-		boost::scoped_array<unsigned char> pdst(new unsigned char[size * sizeof(wchar_t)]);
+		std::unique_ptr<unsigned char[]> pdst(new unsigned char[size * sizeof(wchar_t)]);
 		SetLastError(0);
 		hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst.get(), &dstsize);
 		pcc->GetSourceCodePage((unsigned *)&codepage);

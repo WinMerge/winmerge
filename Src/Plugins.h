@@ -34,11 +34,11 @@
 #include <vector>
 #include <windows.h>
 #include <oleauto.h>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include "UnicodeString.h"
 
 struct FileFilterElement;
-typedef boost::shared_ptr<FileFilterElement> FileFilterElementPtr;
+typedef std::shared_ptr<FileFilterElement> FileFilterElementPtr;
 
 /**
  * @brief List of transformation categories (events)
@@ -91,10 +91,10 @@ private:
 	PluginInfo& operator=( const PluginInfo& ); // non copyable
 };
 
-typedef boost::shared_ptr<PluginInfo> PluginInfoPtr;
+typedef std::shared_ptr<PluginInfo> PluginInfoPtr;
 
 typedef std::vector<PluginInfoPtr> PluginArray;
-typedef boost::shared_ptr<PluginArray> PluginArrayPtr;
+typedef std::shared_ptr<PluginArray> PluginArrayPtr;
 
 /**
  * @brief Cache for the scriptlets' interfaces during the life of a thread. 

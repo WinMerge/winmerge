@@ -89,8 +89,8 @@ CLocationView::CLocationView()
 	: m_visibleTop(-1)
 	, m_visibleBottom(-1)
 //	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
-	, m_hwndFrame(NULL)
-	, m_pSavedBackgroundBitmap(NULL)
+	, m_hwndFrame(nullptr)
+	, m_pSavedBackgroundBitmap(nullptr)
 	, m_bDrawn(false)
 	, m_bRecalculateBlocks(TRUE) // calculate for the first time
 {
@@ -979,8 +979,8 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 	m_visibleBottom = nBottomCoord;
 
 	CRect rcVisibleArea(2, m_visibleTop, rc.right - 2, m_visibleBottom);
-	boost::scoped_ptr<CBitmap> pBitmap(CopyRectToBitmap(pClientDC, rcVisibleArea));
-	boost::scoped_ptr<CBitmap> pDarkenedBitmap(GetDarkenedBitmap(pClientDC, pBitmap.get()));
+	std::unique_ptr<CBitmap> pBitmap(CopyRectToBitmap(pClientDC, rcVisibleArea));
+	std::unique_ptr<CBitmap> pDarkenedBitmap(GetDarkenedBitmap(pClientDC, pBitmap.get()));
 	DrawBitmap(pClientDC, rcVisibleArea.left, rcVisibleArea.top, pDarkenedBitmap.get());
 }
 

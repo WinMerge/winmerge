@@ -25,7 +25,8 @@
 #ifndef _DIFFTHREAD_H
 #define _DIFFTHREAD_H
 
-#include <boost/scoped_ptr.hpp>
+#include <memory>
+#define POCO_NO_UNWINDOWS 1
 #include <Poco/Thread.h>
 #include <Poco/BasicEvent.h>
 #include <Poco/Delegate.h>
@@ -111,8 +112,8 @@ public:
 private:
 	CDiffContext * m_pDiffContext; /**< Compare context storing results. */
 	Poco::Thread m_threads[2]; /**< Compare threads. */
-	boost::scoped_ptr<DiffFuncStruct> m_pDiffParm; /**< Structure for sending data to threads. */
-	boost::scoped_ptr<DiffThreadAbortable> m_pAbortgate;
+	std::unique_ptr<DiffFuncStruct> m_pDiffParm; /**< Structure for sending data to threads. */
+	std::unique_ptr<DiffThreadAbortable> m_pAbortgate;
 	bool m_bAborting; /**< Is compare aborting? */
 	bool m_bOnlyRequested; /**< Are we comparing only requested items (Update?) */
 };

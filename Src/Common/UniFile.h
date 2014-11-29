@@ -13,7 +13,7 @@
 #define UniFile_h_included
 
 #include "unicoder.h"
-#include <boost/cstdint.hpp>
+#include <cstdint>
 
 namespace Poco { class SharedMemory; }
 
@@ -59,7 +59,7 @@ public:
 	virtual bool ReadString(String & line, bool * lossy) = 0;
 	virtual bool ReadString(String & line, String & eol, bool * lossy) = 0;
 	virtual int GetLineNumber() const = 0;
-	virtual boost::int64_t GetPosition() const = 0;
+	virtual int64_t GetPosition() const = 0;
 	virtual bool WriteString(const String & line) = 0;
 
 	struct txtstats
@@ -126,7 +126,7 @@ protected:
 
 protected:
 	int m_statusFetched; // 0 not fetched, -1 error, +1 success
-	boost::int64_t m_filesize;
+	int64_t m_filesize;
 	String m_filepath;
 	String m_filename;
 	int m_lineno; // current 0-based line of m_current
@@ -171,7 +171,7 @@ public:
 public:
 	virtual bool ReadString(String & line, bool * lossy);
 	virtual bool ReadString(String & line, String & eol, bool * lossy);
-	virtual boost::int64_t GetPosition() const { return m_current - m_base; }
+	virtual int64_t GetPosition() const { return m_current - m_base; }
 	virtual bool WriteString(const String & line);
 
 // Implementation methods
@@ -216,7 +216,7 @@ protected:
 	virtual bool ReadString(String & line, String & eol, bool * lossy);
 
 public:
-	virtual boost::int64_t GetPosition() const;
+	virtual int64_t GetPosition() const;
 
 	virtual int WriteBom();
 	virtual bool WriteString(const String & line);
@@ -229,7 +229,7 @@ protected:
 // Implementation data
 private:
 	FILE * m_fp;
-	boost::int64_t m_data; // offset after any initial BOM
+	int64_t m_data; // offset after any initial BOM
 	ucr::buffer m_ucrbuff;
 };
 

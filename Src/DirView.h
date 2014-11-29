@@ -33,9 +33,7 @@
 // CDirView view
 #include <afxcview.h>
 #include <map>
-#include <boost/scoped_ptr.hpp>
-#define POCO_NO_UNWINDOWS 1
-#include <Poco/Types.h>
+#include <memory>
 #include "OptionsDiffColors.h"
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"
@@ -66,7 +64,7 @@ struct IListCtrl;
 /**
  * @brief Position value for special items (..) in directory compare view.
  */
-const Poco::UIntPtr SPECIAL_ITEM_POS = (Poco::UIntPtr) - 1L;
+const uintptr_t SPECIAL_ITEM_POS = (uintptr_t) - 1L;
 
 /** Default column width in directory compare */
 const UINT DefColumnWidth = 150;
@@ -104,11 +102,11 @@ public:
 
 	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
-	void RedisplayChildren(Poco::UIntPtr diffpos, int level, UINT &index, int &alldiffs, const DirViewFilterSettings& dirfilter);
+	void RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int &alldiffs, const DirViewFilterSettings& dirfilter);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
-	Poco::UIntPtr GetItemKey(int idx) const;
-	int GetItemIndex(Poco::UIntPtr key);
+	uintptr_t GetItemKey(int idx) const;
+	int GetItemIndex(uintptr_t key);
 	// for populating list
 	void DeleteItem(int sel);
 	void DeleteAllDisplayItems();
@@ -171,7 +169,7 @@ public:
 private:
 	void InitiateSort();
 	void NameColumn(const char* idname, int subitem);
-	int AddNewItem(int i, Poco::UIntPtr diffpos, int iImage, int iIndent);
+	int AddNewItem(int i, uintptr_t diffpos, int iImage, int iIndent);
 // End DirViewCols.cpp
 
 private:
@@ -195,7 +193,7 @@ protected:
 	int GetLastDifferentItem();
 	int AddSpecialItems();
 	void GetCurrentColRegKeys(std::vector<String>& colKeys);
-	void OpenSpecialItems(Poco::UIntPtr pos1, Poco::UIntPtr pos2, Poco::UIntPtr pos3);
+	void OpenSpecialItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3);
 
 // Implementation data
 protected:
@@ -204,13 +202,13 @@ protected:
 	CImageList m_imageList;
 	CImageList m_imageState;
 	CListCtrl *m_pList;
-	boost::scoped_ptr<IListCtrl> m_pIList;
+	std::unique_ptr<IListCtrl> m_pIList;
 	bool m_bEscCloses; /**< Cached value for option for ESC closing window */
 	bool m_bExpandSubdirs;
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
 	bool m_bTreeMode; /**< TRUE if tree mode is on*/
-	boost::scoped_ptr<DirCompProgressBar> m_pCmpProgressBar;
+	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
 	clock_t m_compareStart; /**< Starting process time of the compare */
 	bool m_bUserCancelEdit; /**< TRUE if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
@@ -221,12 +219,12 @@ protected:
 	bool m_bNeedSearchLastDiffItem;
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 
-	boost::scoped_ptr<CShellContextMenu> m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
-	boost::scoped_ptr<CShellContextMenu> m_pShellContextMenuMiddle; /**< Shell context menu for group of middle files */
-	boost::scoped_ptr<CShellContextMenu> m_pShellContextMenuRight; /**< Shell context menu for group of right files */
+	std::unique_ptr<CShellContextMenu> m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
+	std::unique_ptr<CShellContextMenu> m_pShellContextMenuMiddle; /**< Shell context menu for group of middle files */
+	std::unique_ptr<CShellContextMenu> m_pShellContextMenuRight; /**< Shell context menu for group of right files */
 	HMENU m_hCurrentMenu; /**< Current shell context menu (either left or right) */
-	boost::scoped_ptr<DirViewTreeState> m_pSavedTreeState;
-	boost::scoped_ptr<DirViewColItems> m_pColItems;
+	std::unique_ptr<DirViewTreeState> m_pSavedTreeState;
+	std::unique_ptr<DirViewColItems> m_pColItems;
 
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);

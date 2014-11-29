@@ -25,7 +25,7 @@
 
 #pragma once
 
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 #include "UnicodeString.h"
 
 class WMGotoDlg
@@ -44,5 +44,5 @@ private:
 	WMGotoDlg & operator=(const WMGotoDlg &);
 
 	class Impl;
-	boost::scoped_ptr<Impl> m_pimpl;
+	std::unique_ptr<Impl> m_pimpl;
 };

@@ -8,6 +8,8 @@
 
 #include "DirScan.h"
 #include <cassert>
+#include <memory>
+#include <cstdint>
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Semaphore.h>
 #include <Poco/Notification.h>
@@ -20,7 +22,6 @@
 #include <Poco/AutoPtr.h>
 #include <Poco/Stopwatch.h>
 #include <Poco/Format.h>
-#include <boost/shared_ptr.hpp>
 #include "DiffThread.h"
 #include "UnicodeString.h"
 #include "DiffWrapper.h"
@@ -36,7 +37,6 @@
 #include "Plugins.h"
 #include "MergeApp.h"
 
-using Poco::UIntPtr;
 using Poco::NotificationQueue;
 using Poco::Notification;
 using Poco::AutoPtr;
@@ -55,7 +55,7 @@ static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir, cons
 static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, const String& sRightDir, const DirItem * lent, const DirItem * ment, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
 static void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt);
-static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UIntPtr parentdiffpos);
+static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uintptr_t parentdiffpos);
 
 class WorkNotification: public Poco::Notification
 {
@@ -107,7 +107,7 @@ private:
 	CDiffContext *m_pCtxt;
 };
 
-typedef boost::shared_ptr<DiffWorker> DiffWorkerPtr;
+typedef std::shared_ptr<DiffWorker> DiffWorkerPtr;
 
 /**
  * @brief Collect file- and folder-names to list.
@@ -552,7 +552,7 @@ OutputDebugString(buf);
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */
-int DirScan_CompareItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
+int DirScan_CompareItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 {
 	ThreadPool threadPool;
 	std::vector<DiffWorkerPtr> workers;
@@ -575,7 +575,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
 	return res;
 }
 
-static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
+static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 {
 	NotificationQueue queueResult;
 	Stopwatch stopwatch;
@@ -585,7 +585,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UInt
 	if (!parentdiffpos)
 		myStruct->pSemaphore->wait();
 	stopwatch.start();
-	UIntPtr pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	uintptr_t pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	while (pos)
 	{
 		if (pCtxt->ShouldAbort())
@@ -598,7 +598,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UInt
 			stopwatch.restart();
 		}
 		myStruct->pSemaphore->wait();
-		UIntPtr curpos = pos;
+		uintptr_t curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		bool existsalldirs = ((pCtxt->GetCompareDirs() == 2 && di.diffcode.isSideBoth()) || (pCtxt->GetCompareDirs() == 3 && di.diffcode.isSideAll()));
 		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
@@ -652,11 +652,11 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UInt
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */
-int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
+int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 {
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
-	UIntPtr pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	uintptr_t pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	
 	while (pos != NULL)
 	{
@@ -666,7 +666,7 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpo
 			break;
 		}
 
-		UIntPtr curpos = pos;
+		uintptr_t curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		bool existsalldirs = ((pCtxt->GetCompareDirs() == 2 && di.diffcode.isSideBoth()) || (pCtxt->GetCompareDirs() == 3 && di.diffcode.isSideAll()));
 		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)

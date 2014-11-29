@@ -30,9 +30,9 @@ using CompareEngines::TimeSizeCompare;
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & files);
 
 FolderCmp::FolderCmp()
-: m_pDiffUtilsEngine(NULL)
-, m_pByteCompare(NULL)
-, m_pTimeSizeCompare(NULL)
+: m_pDiffUtilsEngine(nullptr)
+, m_pByteCompare(nullptr)
+, m_pTimeSizeCompare(nullptr)
 , m_ndiffs(CDiffContext::DIFFS_UNKNOWN)
 , m_ntrivialdiffs(CDiffContext::DIFFS_UNKNOWN)
 {

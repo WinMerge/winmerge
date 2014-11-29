@@ -116,7 +116,7 @@ IDR_LOGO                IMAGE                   "res\\logo.jpg"
 // Bitmap
 //
 
-IDB_TOOLBAR_DUMMY       BITMAP                  "res\\ToolbarDummy.bmp"
+IDB_TOOLBAR_ENABLED8BIT BITMAP                  "res\\ToolbarEnabled8bit.bmp"
 IDB_TOOLBAR_ENABLED     BITMAP                  "res\\ToolbarEnabled.bmp"
 IDB_TOOLBAR_DISABLED    BITMAP                  "res\\ToolbarDisabled.bmp"
 IDB_EDIT_COPY           BITMAP                  "res\\copy.bmp"

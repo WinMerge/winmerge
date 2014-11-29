@@ -130,7 +130,7 @@ public:
 	~CWinMergeProfile() {
 		QueryPerformanceCounter(&li[1]);
 		TCHAR buf[256];
-		_stprintf(buf, _T("funcname=%s t=%g\n"), funcname, (double)(li[1].QuadPart-li[0].QuadPart)/freq.QuadPart);
+		wsprintf(buf, _T("funcname=%s t=%d[us]\n"), funcname, (int)((double)(li[1].QuadPart-li[0].QuadPart)/freq.QuadPart*1000.0*1000.0));
 		OutputDebugString(buf);
 	}
 };

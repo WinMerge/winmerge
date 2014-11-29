@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #ifdef _DEBUG
+#  define POCO_NO_UNWINDOWS 1
 #  include <Poco/Debugger.h>
 #  include <Poco/Format.h>
 #endif

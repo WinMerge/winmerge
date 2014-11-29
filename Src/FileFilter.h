@@ -25,9 +25,9 @@
 #define __FILEFILTER_H__
 
 #include <vector>
+#include <memory>
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/RegularExpression.h>
-#include <boost/shared_ptr.hpp>
 #include "UnicodeString.h"
 
 /**
@@ -50,7 +50,7 @@ struct FileFilterElement
 	}
 };
 
-typedef boost::shared_ptr<FileFilterElement> FileFilterElementPtr;
+typedef std::shared_ptr<FileFilterElement> FileFilterElementPtr;
 
 /**
  * @brief One actual filter.
@@ -75,6 +75,6 @@ struct FileFilter
 	static void EmptyFilterList(std::vector<FileFilterElementPtr> *filterList);
 };
 
-typedef boost::shared_ptr<FileFilter> FileFilterPtr;
+typedef std::shared_ptr<FileFilter> FileFilterPtr;
 
 #endif

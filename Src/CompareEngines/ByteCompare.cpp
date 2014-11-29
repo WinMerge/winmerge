@@ -8,7 +8,7 @@
 
 #include "ByteCompare.h"
 #include <cassert>
-#include <boost/cstdint.hpp>
+#include <cstdint>
 #ifdef _WIN32
 #include <io.h>
 #else
@@ -22,8 +22,6 @@
 #include "DiffContext.h"
 #include "diff.h"
 #include "ByteComparator.h"
-
-using boost::int64_t;
 
 namespace CompareEngines
 {
@@ -39,9 +37,9 @@ static void CopyTextStats(const FileTextStats * stats, FileTextStats * myTextSta
  * @brief Default constructor.
  */
 ByteCompare::ByteCompare()
-		: m_pOptions(NULL)
-		, m_piAbortable(NULL)
-		, m_inf(NULL)
+		: m_pOptions(nullptr)
+		, m_piAbortable(nullptr)
+		, m_inf(nullptr)
 {
 }
 

@@ -84,6 +84,7 @@ DATE:		BY:					DESCRIPTION:
 
 #include "markdown.h"
 #include <cstring>
+#include <cstdint>
 #include <Poco/ByteOrder.h>
 #include <Poco/NumberParser.h>
 #include <Poco/SharedMemory.h>
@@ -101,7 +102,6 @@ using Poco::ByteOrder;
 using Poco::NumberParser;
 using Poco::SharedMemory;
 using Poco::File;
-using Poco::UInt16;
 
 #ifndef _WIN32
 #  include <strings.h>
@@ -800,7 +800,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			if (pCopy)
 			{
 				for (int i = 0; i < cbImage / 2; ++i)
-					*((UInt16 *)pCopy + i) = Poco::ByteOrder::flipBytes(*((UInt16 *)pImage + i));
+					*((uint16_t *)pCopy + i) = Poco::ByteOrder::flipBytes(*((uint16_t *)pImage + i));
 			}
 
 			delete m_pSharedMemory;
@@ -811,7 +811,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			case 2 + 0 + 8:
 				// little endian
 				int cchImage = cbImage / 2;
-				UInt16 *pchImage = (UInt16 *)pImage;
+				uint16_t *pchImage = (uint16_t *)pImage;
 				if (nByteOrder & 8)
 				{
 					++pchImage;
@@ -821,9 +821,9 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 				pCopy = new unsigned char[cbImage];
 				if (pCopy)
 				{
-					UInt16 *pu16;
+					uint16_t *pu16;
 					unsigned char *pu8;
-					for (pu16 = (UInt16 *)pchImage, pu8 = (unsigned char *)pCopy; pu16 < pchImage + cchImage; ++pu16)
+					for (pu16 = (uint16_t *)pchImage, pu8 = (unsigned char *)pCopy; pu16 < pchImage + cchImage; ++pu16)
 						pu8 += ucr::Ucs4_to_Utf8(*pu16, pu8);
 				}
 				delete m_pSharedMemory;
@@ -841,7 +841,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			if (pCopy)
 			{
 				for (int i = 0; i < cbImage / 2; ++i)
-					*((UInt16 *)pCopy + i) = Poco::ByteOrder::flipBytes(*((UInt16 *)pImage + i));
+					*((uint16_t *)pCopy + i) = Poco::ByteOrder::flipBytes(*((uint16_t *)pImage + i));
 			}
 			delete m_pSharedMemory;
 			m_pSharedMemory = NULL;

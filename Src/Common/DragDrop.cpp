@@ -1,5 +1,5 @@
 #include "DragDrop.h"
-#include <boost/scoped_array.hpp>
+#include <memory>
 #include "paths.h"
 
 //
@@ -24,7 +24,7 @@ bool GetDroppedFiles(HDROP dropInfo, std::vector<String>& files)
 
 		// Allocate memory to contain full pathname & zero byte
 		wPathnameSize += 1;
-		boost::scoped_array<TCHAR> npszFile(new TCHAR[wPathnameSize]);
+		std::unique_ptr<TCHAR[]> npszFile(new TCHAR[wPathnameSize]);
 
 		// Copy the pathname into the buffer
 		DragQueryFile(dropInfo, x, npszFile.get(), wPathnameSize);

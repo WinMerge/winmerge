@@ -225,7 +225,7 @@
     <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\gtest-1.7.0\src\gtest-all.cc">
+    <ClCompile Include="..\..\..\Externals\gtest\src\gtest-all.cc">
       <Filter>gtest</Filter>
     </ClCompile>
   </ItemGroup>

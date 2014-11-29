@@ -96,7 +96,7 @@ static LPVOID NTAPI ComplainUnresolved()
 	return TlsGetValue(ThreadTopOfStack);
 }
 
-static INT NTAPI Unresolved()
+static INT_PTR NTAPI Unresolved()
 {
 	// declare a variable to produce a stack frame
 	int Unresolved = 0;
@@ -138,7 +138,7 @@ static INT NTAPI Unresolved()
 #pragma message("ALLOCA_RECOVERY(FALSE)")
 #endif
 
-static INT NTAPI Unresolved()
+static INT_PTR NTAPI Unresolved()
 {
 	Complain(DllProxy_ModuleState.Complain.Invoke, "DLLPROXY");
 	return 0;
@@ -170,7 +170,7 @@ static VOID NTAPI Load(HMODULE *phModule)
 		{
 			CHAR cExport[260];
 			LPCSTR q = StrChrA(p,')');
-			FARPROC pfn = GetProcAddress(hModule, lstrcpynA(cExport, p + 1, q - p));
+			FARPROC pfn = GetProcAddress(hModule, lstrcpynA(cExport, p + 1, (int)(q - p)));
 			p = StrChrA(q,';') + 1;
 			if (pfn == 0)
 			{

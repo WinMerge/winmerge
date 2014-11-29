@@ -7,6 +7,7 @@
 // $Id: locality.cpp 5918 2008-09-07 16:05:46Z sdottaka $
 
 #include "locality.h"
+#include <cstdint>
 #include <windows.h>
 #include <Poco/Format.h>
 #include <Poco/Debugger.h>
@@ -15,7 +16,6 @@
 using Poco::format;
 using Poco::Debugger;
 using Poco::Timestamp;
-using boost::int64_t;
 
 namespace locality {
 
