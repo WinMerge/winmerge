@@ -21,7 +21,7 @@
 /** 
  * @file  HexMergeView.cpp
  *
- * @brief Implementation file for CHexMergeDoc
+ * @brief Implementation file for CHexMergeView
  *
  */
 // ID line follows -- this is updated by SVN
@@ -180,12 +180,17 @@ void CHexMergeView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 		{
 			pScrollBar->SetScrollInfo(&si);
 		}
+		
 		CSplitterWndEx *pSplitter = static_cast<CSplitterWndEx *>(GetParentSplitter(this, TRUE));
-		int nID = GetDlgCtrlID();
-		nID ^= pSplitter->IdFromRowCol(0, 0) ^ pSplitter->IdFromRowCol(0, 1);
-		CWnd *pWnd = pSplitter->GetDlgItem(nID);
-		pWnd->SetScrollInfo(SB_HORZ, &si);
-		pWnd->SendMessage(WM_HSCROLL, MAKEWPARAM(nSBCode, nPos));
+		for (int pane = 0; pane < pSplitter->GetColumnCount(); ++pane)
+		{
+			if (pane != m_nThisPane)
+			{
+				CWnd *pWnd = pSplitter->GetDlgItem(pSplitter->IdFromRowCol(0, pane));
+				pWnd->SetScrollInfo(SB_HORZ, &si);
+				pWnd->SendMessage(WM_HSCROLL, MAKEWPARAM(nSBCode, nPos));
+			}
+		}
 	}
 }
 
