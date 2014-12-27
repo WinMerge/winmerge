@@ -245,7 +245,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					m_ndiffs = diffList.GetSignificantDiffs(); 
 					m_ntrivialdiffs = diffList.GetSize() - m_ndiffs;
 				
-					if (m_ndiffs > 0)
+					if (m_ndiffs > 0 || bin_flag10 < 0 || bin_flag12 < 0)
 						code |= DIFFCODE::DIFF;
 					else
 						code |= DIFFCODE::SAME;
