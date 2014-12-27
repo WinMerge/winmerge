@@ -36,6 +36,8 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	//{{AFX_MSG_MAP(CAboutDlg)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
+	ON_WM_DRAWITEM()
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
@@ -56,24 +58,40 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 /** 
  * @brief Read version info from resource to dialog.
  */
-BOOL CAboutDlg::OnInitDialog() 
+BOOL CAboutDlg::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
-	// Load application icon
-	HICON icon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
-	if (icon != NULL) {
-		CStatic * pIcon = (CStatic *) GetDlgItem(IDC_ABOUTBOX_ICON);
-		pIcon->SetIcon(icon);
-	}
+	m_image.Load(IDR_SPLASH);
+
+	CDC *pDC = GetDC();
+	int fontHeight = -MulDiv(10, pDC->GetDeviceCaps(LOGPIXELSY), 72);
+	m_font.CreateFont(fontHeight, 0, 0, 0, FW_MEDIUM, FALSE, FALSE,
+		0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Tahoma"));
+	ReleaseDC(pDC);
+
+	String text = LoadResString(IDS_SPLASH_DEVELOPERS);
+	string_replace(text, _T(", "), _T("\n"));
+	CWnd *sta = GetDlgItem(IDC_STATIC);
+	sta->SetWindowTextW(text.c_str());
+	sta->SetFont(&m_font);
 
 	CVersionInfo version(AfxGetResourceHandle());
 	String sVersion = version.GetProductVersion();
 	m_strVersion = LangFormatString1(IDS_VERSION_FMT, sVersion.c_str()).c_str();
+	if (m_strVersion.Find(_T(" - ")) != -1)
+	{
+		m_strVersion.Replace(_T(" - "), _T("\n"));
+		m_strVersion += _T(" ");
+	}
+	else
+	{
+		m_strVersion += _T("\n");
+	}
 
 #ifdef _UNICODE
-	m_strVersion += _T(" ");
 	m_strVersion += theApp.LoadString(IDS_UNICODE).c_str();
 #endif
 
@@ -85,6 +103,7 @@ BOOL CAboutDlg::OnInitDialog()
 	m_strVersion += _T(" ");
 	m_strVersion += theApp.LoadString(IDS_WINX64).c_str();
 #endif
+	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
 
 	String sPrivateBuild = version.GetPrivateBuild();
 	if (!sPrivateBuild.empty())
@@ -93,7 +112,10 @@ BOOL CAboutDlg::OnInitDialog()
 			sPrivateBuild.c_str()).c_str();
 	}
 
-	String copyright = version.GetLegalCopyright();
+	String copyright = LoadResString(IDS_SPLASH_GPLTEXT);
+	copyright += _T("\n");
+	copyright += version.GetLegalCopyright();
+	copyright += _T(" All rights reserved.");
 	m_ctlCompany.SetWindowText(copyright.c_str());
 	m_ctlWWW.m_link = WinMergeURL;
 
@@ -103,6 +125,22 @@ BOOL CAboutDlg::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
+HBRUSH CAboutDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	if (nCtlColor == CTLCOLOR_STATIC && pWnd != GetDlgItem(IDC_WWW))
+	{
+		pDC->SetBkMode(TRANSPARENT);
+		return (HBRUSH)GetStockObject(NULL_BRUSH);
+	}
+	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+}
+
+void CAboutDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
+{
+	CRect rc;
+	GetDlgItem(nIDCtl)->GetClientRect(&rc);
+	m_image.Render(CDC::FromHandle(lpDrawItemStruct->hDC), rc);
+}
 /**
  * @brief Show contributors list.
  * Opens Contributors.txt into notepad.

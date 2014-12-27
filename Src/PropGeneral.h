@@ -31,7 +31,6 @@ public:
 	//{{AFX_DATA(PropGeneral)
 	enum { IDD = IDD_PROPPAGE_GENERAL };
 	BOOL  m_bScroll;
-	BOOL  m_bDisableSplash;
 	BOOL  m_bSingleInstance;
 	BOOL  m_bVerifyPaths;
 	BOOL  m_bCloseWindowWithEsc;

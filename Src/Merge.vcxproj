@@ -1451,8 +1451,6 @@
     </ClCompile>
     <ClCompile Include="SourceControl.cpp">
     </ClCompile>
-    <ClCompile Include="Splash.cpp">
-    </ClCompile>
     <ClCompile Include="Common\SplitterWndEx.cpp">
     </ClCompile>
     <ClCompile Include="ssapi.cpp">
@@ -1926,7 +1924,6 @@
     <ClInclude Include="Common\ShellFileOperations.h" />
     <ClInclude Include="Common\sizecbar.h" />
     <ClInclude Include="Common\SortHeaderCtrl.h" />
-    <ClInclude Include="Splash.h" />
     <ClInclude Include="Common\SplitterWndEx.h" />
     <ClInclude Include="ssapi.h" />
     <ClInclude Include="Common\StatLink.h" />

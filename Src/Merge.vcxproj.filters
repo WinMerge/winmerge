@@ -733,9 +733,6 @@
     <ClCompile Include="Common\DragDrop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Splash.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\ClipBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1087,9 +1084,6 @@
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\SplitterWndEx.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Splash.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\SortHeaderCtrl.h">

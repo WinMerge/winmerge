@@ -31,7 +31,6 @@ const TCHAR OPT_TOOLBAR_SIZE[] = _T("Settings/ToolbarSize");
 const TCHAR OPT_RESIZE_PANES[] = _T("Settings/AutoResizePanes");
 
 const TCHAR OPT_SYNTAX_HIGHLIGHT[] = _T("Settings/HiliteSyntax");
-const TCHAR OPT_DISABLE_SPLASH[] = _T("Settings/DisableSplash");
 const TCHAR OPT_VIEW_WHITESPACE[] =  _T("Settings/ViewWhitespace");
 const TCHAR OPT_CONNECT_MOVED_BLOCKS[] = _T("Settings/ConnectMovedBlocks");
 const TCHAR OPT_SCROLL_TO_FIRST[] =  _T("Settings/ScrollToFirst");
