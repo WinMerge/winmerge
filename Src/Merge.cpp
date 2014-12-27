@@ -48,7 +48,6 @@
 #include "MergeDoc.h"
 #include "DirDoc.h"
 #include "DirView.h"
-#include "Splash.h"
 #include "PropBackups.h"
 #include "FileOrFolderSelect.h"
 #include "paths.h"
@@ -360,7 +359,6 @@ BOOL CMergeApp::InitInstance()
 	}
 
 	LoadStdProfileSettings(8);  // Load standard INI file options (including MRU)
-	BOOL bDisableSplash	= GetOptionsMgr()->GetBool(OPT_DISABLE_SPLASH);
 
 	InitializeFileFilters();
 
@@ -409,8 +407,6 @@ BOOL CMergeApp::InitInstance()
 	sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
 	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
-
-	CSplashWnd::EnableSplashScreen(!bDisableSplash && !bCommandLineInvoke);
 
 	// Initialize i18n (multiple language) support
 
@@ -515,15 +511,6 @@ void CMergeApp::OnAppAbout()
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp commands
 
-
-BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)
-{
-	// CG: The following lines were added by the Splash Screen component.
-	if (CSplashWnd::PreTranslateAppMessage(pMsg))
-		return TRUE;
-
-	return CWinApp::PreTranslateMessage(pMsg);
-}
 
 void CMergeApp::OnViewLanguage() 
 {

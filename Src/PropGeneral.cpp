@@ -46,7 +46,6 @@ static char THIS_FILE[] = __FILE__;
 PropGeneral::PropGeneral(COptionsMgr *optionsMgr) 
 : OptionsPanel(optionsMgr, PropGeneral::IDD)
 , m_bScroll(FALSE)
-, m_bDisableSplash(FALSE)
 , m_bSingleInstance(FALSE)
 , m_bVerifyPaths(FALSE)
 , m_bCloseWindowWithEsc(TRUE)
@@ -86,7 +85,6 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropGeneral)
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
-	DDX_Check(pDX, IDC_DISABLE_SPLASH, m_bDisableSplash);
 	DDX_Check(pDX, IDC_SINGLE_INSTANCE, m_bSingleInstance);
 	DDX_Check(pDX, IDC_VERIFY_OPEN_PATHS, m_bVerifyPaths);
 	DDX_Check(pDX, IDC_ESC_CLOSES_WINDOW, m_bCloseWindowWithEsc);
@@ -113,7 +111,6 @@ END_MESSAGE_MAP()
 void PropGeneral::ReadOptions()
 {
 	m_bScroll = GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST);
-	m_bDisableSplash = GetOptionsMgr()->GetBool(OPT_DISABLE_SPLASH);
 	m_bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE);
 	m_bVerifyPaths = GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS);
 	m_bCloseWindowWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
@@ -132,7 +129,6 @@ void PropGeneral::ReadOptions()
 void PropGeneral::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_DISABLE_SPLASH, m_bDisableSplash == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc == TRUE);

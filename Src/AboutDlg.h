@@ -27,6 +27,7 @@
 #define _ABOUTDLG_H_
 
 #include "statlink.h"
+#include "Picture.h"
 #include "resource.h" // IDD_ABOUTBOX
 
 /** 
@@ -47,6 +48,8 @@ public:
 	CStaticLink	m_ctlWWW;
 	CString	m_strVersion;
 	CString m_strPrivateBuild;
+	CPicture m_image;
+	CFont m_font;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
@@ -63,6 +66,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOpenContributors();
+	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 };
 
 #endif // _ABOUTDLG_H_
