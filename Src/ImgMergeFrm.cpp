@@ -327,6 +327,16 @@ void CImgMergeFrame::CreateImgWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndP
 
 void CImgMergeFrame::OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 {
+	if (evt.eventType == IImgMergeWindow::KEYDOWN && GetAsyncKeyState(VK_SHIFT))
+	{
+		CImgMergeFrame *pFrame = reinterpret_cast<CImgMergeFrame *>(evt.userdata);
+		int nActivePane = pFrame->m_pImgMergeWindow->GetActivePane();
+		int m = GetAsyncKeyState(VK_CONTROL) ? 8 : 1;
+		int dx = (-(evt.keycode == VK_LEFT) + (evt.keycode == VK_RIGHT)) * m;
+		int dy = (-(evt.keycode == VK_UP  ) + (evt.keycode == VK_DOWN )) * m;
+		pFrame->m_pImgMergeWindow->AddImageOffset(nActivePane, dx, dy);
+	}
+
 /*	if (evt.eventType == IImgMergeWindow::CONTEXTMENU)
 	{
 		CImgMergeFrame *pFrame = reinterpret_cast<CImgMergeFrame *>(evt.userdata);
@@ -1143,7 +1153,8 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 				pt.x < m_pImgMergeWindow->GetImageWidth(pane) &&
 				pt.y < m_pImgMergeWindow->GetImageHeight(pane))
 			{
-				text += string_format(_T("Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "), pt.x, pt.y,
+				POINT ptOffset = m_pImgMergeWindow->GetImageOffset(pane);
+				text += string_format(_T("Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "), pt.x - ptOffset.x, pt.y - ptOffset.y,
 					color[pane].rgbRed, color[pane].rgbGreen, color[pane].rgbBlue, color[pane].rgbReserved);
 				if (pane == 1 && m_pImgMergeWindow->GetPaneCount() == 3)
 					text += string_format(_T("Dist:%g,%g "), colorDistance01, colorDistance12);
