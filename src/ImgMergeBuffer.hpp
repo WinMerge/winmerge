@@ -163,29 +163,34 @@ public:
 			return;
 
 		const Rect<int>& rc = m_diffInfos[diffIndex].rc;
-		unsigned wsrc = m_imgOrig32[srcPane].width();
-		unsigned hsrc = m_imgOrig32[srcPane].height();
-		unsigned wdst = m_imgOrig32[dstPane].width();
-		unsigned hdst = m_imgOrig32[dstPane].height();
-		if (rc.right * m_diffBlockSize > wdst)
-		{
-			if ((std::max)(wsrc, wdst) < rc.right * m_diffBlockSize)
-				wdst = (std::max)(wsrc, wdst);
-			else
-				wdst = rc.right * m_diffBlockSize;
-		}
-		if (rc.bottom * m_diffBlockSize > hdst)
-		{
-			if ((std::max)(hsrc, hdst) < rc.bottom * m_diffBlockSize)
-				hdst = (std::max)(hsrc, hdst);
-			else
-				hdst = rc.bottom * m_diffBlockSize;
-		}
-		if (wdst != m_imgOrig32[dstPane].width() || hdst != m_imgOrig32[dstPane].height())
+		unsigned xmin = rc.left   * m_diffBlockSize;
+		if (xmin < m_offset[srcPane].x)
+			xmin = m_offset[srcPane].x;
+		unsigned ymin = rc.top    * m_diffBlockSize;
+		if (ymin < m_offset[srcPane].y)
+			ymin = m_offset[srcPane].y;
+		unsigned xmax = rc.right  * m_diffBlockSize - 1;
+		if (xmax > m_imgOrig32[srcPane].width()  + m_offset[srcPane].x - 1)
+			xmax = m_imgOrig32[srcPane].width()  + m_offset[srcPane].x - 1;
+		unsigned ymax = rc.bottom * m_diffBlockSize - 1;
+		if (ymax > m_imgOrig32[srcPane].height() + m_offset[srcPane].y - 1)
+			ymax = m_imgOrig32[srcPane].height() + m_offset[srcPane].y - 1;
+		unsigned dsx = 0, dsy = 0, ox = 0, oy = 0;
+		if (xmin < m_offset[dstPane].x)
+			ox = m_offset[dstPane].x - xmin, dsx += ox;
+		if (ymin < m_offset[dstPane].y)
+			oy = m_offset[dstPane].y - ymin, dsy += oy;
+		if (xmax > m_imgOrig32[dstPane].width()  + m_offset[dstPane].x - 1)
+			dsx += xmax - (m_imgOrig32[dstPane].width()  + m_offset[dstPane].x - 1);
+		if (ymax > m_imgOrig32[dstPane].height() + m_offset[dstPane].y - 1)
+			dsy += ymax - (m_imgOrig32[dstPane].height() + m_offset[dstPane].y - 1);
+		if (dsx > 0 || dsy > 0)
 		{
 			Image imgTemp = m_imgOrig32[dstPane];
-			m_imgOrig32[dstPane].setSize(wdst, hdst);
-			m_imgOrig32[dstPane].pasteSubImage(imgTemp, 0, 0);
+			m_imgOrig32[dstPane].setSize(m_imgOrig32[dstPane].width() + dsx, m_imgOrig32[dstPane].height() + dsy);
+			m_imgOrig32[dstPane].pasteSubImage(imgTemp, ox, oy);
+			m_offset[dstPane].x -= ox;
+			m_offset[dstPane].y -= oy;
 		}
 		
 		for (unsigned y = rc.top * m_diffBlockSize; y < rc.bottom * m_diffBlockSize; y += m_diffBlockSize)
@@ -194,15 +199,19 @@ public:
 			{
 				if (m_diff(x / m_diffBlockSize, y / m_diffBlockSize) == diffIndex + 1)
 				{
-					int sizex = ((x + m_diffBlockSize) < wsrc) ? m_diffBlockSize : (wsrc - x);
-					int sizey = ((y + m_diffBlockSize) < hsrc) ? m_diffBlockSize : (hsrc - y);
-					if (sizex > 0 && sizey > 0)
+					for (int i = 0; i < m_diffBlockSize; ++i)
 					{
-						for (int i = 0; i < sizey; ++i)
+						int sy = y + i - m_offset[srcPane].y; 
+						if (sy >= 0 && sy < m_imgOrig32[srcPane].height())
 						{
-							const unsigned char *scanline_src = m_imgOrig32[srcPane].scanLine(y + i);
-							unsigned char *scanline_dst = m_imgOrig32[dstPane].scanLine(y + i);
-							memcpy(&scanline_dst[x * 4], &scanline_src[x * 4], sizex * 4);
+							const unsigned char *scanline_src = m_imgOrig32[srcPane].scanLine(sy);
+							unsigned char *scanline_dst = m_imgOrig32[dstPane].scanLine(y + i - m_offset[dstPane].y);
+							for (int j = 0; j < m_diffBlockSize; ++j)
+							{
+								int sx = x + j - m_offset[srcPane].x; 
+								if (sx >= 0 && sx < m_imgOrig32[srcPane].width())
+									memcpy(&scanline_dst[(x + j - m_offset[dstPane].x) * 4], &scanline_src[sx * 4], 4);
+							}
 						}
 					}
 				}

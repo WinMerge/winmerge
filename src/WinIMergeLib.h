@@ -121,6 +121,8 @@ struct IImgMergeWindow
 	virtual int  GetImageWidth(int pane) const = 0;
 	virtual int  GetImageHeight(int pane) const = 0;
 	virtual int  GetImageBitsPerPixel(int pane) const = 0;
+	virtual void AddImageOffset(int pane, int dx, int dy) = 0;
+	virtual POINT GetImageOffset(int pane) const = 0;
 	virtual void AddEventListener(EventListenerFunc func, void *userdata) = 0;
 };
 

@@ -626,6 +626,19 @@ public:
 		return m_buffer.GetDiffIndexFromPoint(x, y);
 	}
 
+	POINT GetImageOffset(int pane) const
+	{
+		Point<unsigned> pt = m_buffer.GetImageOffset(pane);
+		POINT pt2 = {pt.x, pt.y};
+		return pt2;
+	}
+
+	void AddImageOffset(int pane, int dx, int dy)
+	{
+		m_buffer.AddImageOffset(pane, dx, dy);
+		Invalidate();
+	}
+
 private:
 
 	ATOM MyRegisterClass(HINSTANCE hInstance)

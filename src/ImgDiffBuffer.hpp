@@ -27,6 +27,7 @@
 
 template<class T> struct Point
 {
+	Point(): x(0), y(0) {}
 	Point(T x, T y): x(x), y(y) {}
 	T x, y;
 };
@@ -188,7 +189,7 @@ public:
 
 	Image::Color GetPixelColor(int pane, int x, int y) const
 	{
-		return m_imgOrig32[pane].pixel(x, y);
+		return m_imgOrig32[pane].pixel(x - m_offset[pane].x, y - m_offset[pane].y);
 	}
 
 	double GetColorDistance(int pane1, int pane2, int x, int y) const
@@ -597,6 +598,8 @@ public:
 		{
 			m_imgOrig[i].clear();
 			m_imgOrig32[i].clear();
+			m_offset[i].x = 0;
+			m_offset[i].y = 0;
 		}
 		m_nImages = 0;
 		return true;
@@ -648,6 +651,42 @@ public:
 		return &m_imgDiff[pane];
 	}
 
+	Point<unsigned> GetImageOffset(int pane) const
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return Point<unsigned>();
+		return m_offset[pane];
+	}
+
+	void AddImageOffset(int pane, int dx, int dy)
+	{
+		if (pane < 0 || pane >= m_nImages)
+			return;
+		int minx = INT_MAX, miny = INT_MAX;
+		Point<int> offset[3];
+		for (int i = 0; i < m_nImages; ++i)
+		{
+			offset[i].x = m_offset[i].x;
+			offset[i].y = m_offset[i].y;
+			if (i == pane)
+			{
+				offset[i].x += dx;
+				offset[i].y += dy;
+			}
+			if (offset[i].x < minx)
+				minx = offset[i].x;
+			if (offset[i].y < miny)
+				miny = offset[i].y;
+		}
+		for (int i = 0; i < m_nImages; ++i)
+		{
+			m_offset[i].x = offset[i].x - minx;
+			m_offset[i].y = offset[i].y - miny;
+		}
+		CompareImages();
+		RefreshImages();
+	}
+
 protected:
 	bool LoadImages()
 	{
@@ -679,8 +718,8 @@ protected:
 		unsigned hmax = 0;
 		for (int i = 0; i < m_nImages; ++i)
 		{
-			wmax  = (std::max)(wmax, static_cast<unsigned>(m_imgOrig32[i].width()));
-			hmax = (std::max)(hmax, static_cast<unsigned>(m_imgOrig32[i].height()));
+			wmax = (std::max)(wmax, static_cast<unsigned>(m_imgOrig32[i].width())  + m_offset[i].x);
+			hmax = (std::max)(hmax, static_cast<unsigned>(m_imgOrig32[i].height()) + m_offset[i].y);
 		}
 		return Size<unsigned>(wmax, hmax);
 	}
@@ -714,13 +753,17 @@ protected:
 
 	void CompareImages2(int pane1, int pane2, DiffBlocks& diff)
 	{
-		unsigned w1 = m_imgOrig32[pane1].width();
-		unsigned h1 = m_imgOrig32[pane1].height();
-		unsigned w2 = m_imgOrig32[pane2].width();
-		unsigned h2 = m_imgOrig32[pane2].height();
+		unsigned x1min = m_offset[pane1].x;
+		unsigned y1min = m_offset[pane1].y;
+		unsigned x2min = m_offset[pane2].x;
+		unsigned y2min = m_offset[pane2].y;
+		unsigned x1max = x1min + m_imgOrig32[pane1].width() - 1;
+		unsigned y1max = y1min + m_imgOrig32[pane1].height() - 1;
+		unsigned x2max = x2min + m_imgOrig32[pane2].width() - 1;
+		unsigned y2max = y2min + m_imgOrig32[pane2].height() - 1;
 
-		const unsigned wmax = (std::max)(w1, w2);
-		const unsigned hmax = (std::max)(h1, h2);
+		const unsigned wmax = (std::max)(x1max + 1, x2max + 1);
+		const unsigned hmax = (std::max)(y1max + 1, y2max + 1);
 
 		for (unsigned by = 0; by < diff.height(); ++by)
 		{
@@ -728,42 +771,42 @@ protected:
 			for (unsigned i = 0; i < bsy; ++i)
 			{
 				unsigned y = by * m_diffBlockSize + i;
-				if (y >= h1 || y >= h2)
+				if (y < y1min || y > y1max || y < y2min || y > y2max)
 				{
 					for (unsigned bx = 0; bx < diff.width(); ++bx)
 						diff(bx, by) = -1;
 				}
 				else
 				{
-					const unsigned char *scanline1 = m_imgOrig32[pane1].scanLine(y);
-					const unsigned char *scanline2 = m_imgOrig32[pane2].scanLine(y);
-					if (w1 == w2 && m_colorDistanceThreshold == 0.0)
+					const unsigned char *scanline1 = m_imgOrig32[pane1].scanLine(y - y1min);
+					const unsigned char *scanline2 = m_imgOrig32[pane2].scanLine(y - y2min);
+					if (x1min == x2min && x1max == x2max && m_colorDistanceThreshold == 0.0)
 					{
-						if (memcmp(scanline1, scanline2, w1 * 4) == 0)
+						if (memcmp(scanline1, scanline2, (x2max + 1 - x1min) * 4) == 0)
 							continue;
 					}
 					for (unsigned x = 0; x < wmax; ++x)
 					{
-						if (x >= w1 || x >= w2)
+						if (x < x1min || x > x1max || x < x2min || x > x2max)
 							diff(x / m_diffBlockSize, by) = -1;
 						else
 						{
 							if (m_colorDistanceThreshold > 0.0)
 							{
-								int bdist = scanline1[x * 4 + 0] - scanline2[x * 4 + 0];
-								int gdist = scanline1[x * 4 + 1] - scanline2[x * 4 + 1];
-								int rdist = scanline1[x * 4 + 2] - scanline2[x * 4 + 2];
-								int adist = scanline1[x * 4 + 3] - scanline2[x * 4 + 3];
+								int bdist = scanline1[(x - x1min) * 4 + 0] - scanline2[(x - x2min) * 4 + 0];
+								int gdist = scanline1[(x - x1min) * 4 + 1] - scanline2[(x - x2min) * 4 + 1];
+								int rdist = scanline1[(x - x1min) * 4 + 2] - scanline2[(x - x2min) * 4 + 2];
+								int adist = scanline1[(x - x1min) * 4 + 3] - scanline2[(x - x2min) * 4 + 3];
 								int colorDistance2 = rdist * rdist + gdist * gdist + bdist * bdist + adist * adist;
 								if (colorDistance2 > m_colorDistanceThreshold * m_colorDistanceThreshold)
 									diff(x / m_diffBlockSize, by) = -1;
 							}
 							else
 							{
-								if (scanline1[x * 4 + 0] != scanline2[x * 4 + 0] ||
-									scanline1[x * 4 + 1] != scanline2[x * 4 + 1] ||
-									scanline1[x * 4 + 2] != scanline2[x * 4 + 2] ||
-									scanline1[x * 4 + 3] != scanline2[x * 4 + 3])
+								if (scanline1[(x - x1min) * 4 + 0] != scanline2[(x - x2min) * 4 + 0] ||
+									scanline1[(x - x1min) * 4 + 1] != scanline2[(x - x2min) * 4 + 1] ||
+									scanline1[(x - x1min) * 4 + 2] != scanline2[(x - x2min) * 4 + 2] ||
+									scanline1[(x - x1min) * 4 + 3] != scanline2[(x - x2min) * 4 + 3])
 								{
 									diff(x / m_diffBlockSize, by) = -1;
 								}
@@ -920,9 +963,19 @@ protected:
 						for (unsigned j = 0; j < bsx; ++j)
 						{
 							unsigned x = bx * m_diffBlockSize + j;
-							scanline[x * 4 + 0] = static_cast<unsigned char>(scanline[x * 4 + 0] * (1 - m_diffColorAlpha) + Image::valueB(color) * m_diffColorAlpha);
-							scanline[x * 4 + 1] = static_cast<unsigned char>(scanline[x * 4 + 1] * (1 - m_diffColorAlpha) + Image::valueG(color) * m_diffColorAlpha);
-							scanline[x * 4 + 2] = static_cast<unsigned char>(scanline[x * 4 + 2] * (1 - m_diffColorAlpha) + Image::valueR(color) * m_diffColorAlpha);
+							if (scanline[x * 4 + 3] != 0)
+							{
+								scanline[x * 4 + 0] = static_cast<unsigned char>(scanline[x * 4 + 0] * (1 - m_diffColorAlpha) + Image::valueB(color) * m_diffColorAlpha);
+								scanline[x * 4 + 1] = static_cast<unsigned char>(scanline[x * 4 + 1] * (1 - m_diffColorAlpha) + Image::valueG(color) * m_diffColorAlpha);
+								scanline[x * 4 + 2] = static_cast<unsigned char>(scanline[x * 4 + 2] * (1 - m_diffColorAlpha) + Image::valueR(color) * m_diffColorAlpha);
+							}
+							else
+							{
+								scanline[x * 4 + 0] = Image::valueB(color);
+								scanline[x * 4 + 1] = Image::valueG(color);
+								scanline[x * 4 + 2] = Image::valueR(color);
+								scanline[x * 4 + 3] = 0xff * m_diffColorAlpha;
+							}
 						}
 					}
 				}
@@ -934,16 +987,17 @@ protected:
 	{
 		unsigned w = m_imgOrig32[dst].width();
 		unsigned h = m_imgOrig32[dst].height();
+		unsigned offset_x = m_offset[dst].x;
 		for (unsigned y = 0; y < h; ++y)
 		{
 			const unsigned char *scanline_src = m_imgOrig32[dst].scanLine(y);
-			unsigned char *scanline_dst = m_imgDiff[dst].scanLine(y);
+			unsigned char *scanline_dst = m_imgDiff[dst].scanLine(y + m_offset[dst].y);
 			for (unsigned x = 0; x < w; ++x)
 			{
-				scanline_dst[x * 4 + 0] = scanline_src[x * 4 + 0];
-				scanline_dst[x * 4 + 1] = scanline_src[x * 4 + 1];
-				scanline_dst[x * 4 + 2] = scanline_src[x * 4 + 2];
-				scanline_dst[x * 4 + 3] = scanline_src[x * 4 + 3];
+				scanline_dst[(x + offset_x) * 4 + 0] = scanline_src[x * 4 + 0];
+				scanline_dst[(x + offset_x) * 4 + 1] = scanline_src[x * 4 + 1];
+				scanline_dst[(x + offset_x) * 4 + 2] = scanline_src[x * 4 + 2];
+				scanline_dst[(x + offset_x) * 4 + 3] = scanline_src[x * 4 + 3];
 			}
 		}	
 	}
@@ -952,15 +1006,16 @@ protected:
 	{
 		unsigned w = m_imgOrig32[src].width();
 		unsigned h = m_imgOrig32[src].height();
+		unsigned offset_x = m_offset[src].x;
 		for (unsigned y = 0; y < h; ++y)
 		{
 			const unsigned char *scanline_src = m_imgOrig32[src].scanLine(y);
-			unsigned char *scanline_dst = m_imgDiff[dst].scanLine(y);
+			unsigned char *scanline_dst = m_imgDiff[dst].scanLine(y + m_offset[src].y);
 			for (unsigned x = 0; x < w; ++x)
 			{
-				scanline_dst[x * 4 + 0] ^= scanline_src[x * 4 + 0];
-				scanline_dst[x * 4 + 1] ^= scanline_src[x * 4 + 1];
-				scanline_dst[x * 4 + 2] ^= scanline_src[x * 4 + 2];
+				scanline_dst[(x + offset_x) * 4 + 0] ^= scanline_src[x * 4 + 0];
+				scanline_dst[(x + offset_x) * 4 + 1] ^= scanline_src[x * 4 + 1];
+				scanline_dst[(x + offset_x) * 4 + 2] ^= scanline_src[x * 4 + 2];
 			}
 		}	
 	}
@@ -969,22 +1024,24 @@ protected:
 	{
 		unsigned w = m_imgOrig32[src].width();
 		unsigned h = m_imgOrig32[src].height();
+		unsigned offset_x = m_offset[src].x;
 		for (unsigned y = 0; y < h; ++y)
 		{
 			const unsigned char *scanline_src = m_imgOrig32[src].scanLine(y);
-			unsigned char *scanline_dst = m_imgDiff[dst].scanLine(y);
+			unsigned char *scanline_dst = m_imgDiff[dst].scanLine(y + m_offset[src].y);
 			for (unsigned x = 0; x < w; ++x)
 			{
-				scanline_dst[x * 4 + 0] = static_cast<unsigned char>(scanline_dst[x * 4 + 0] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 0] * m_overlayAlpha);
-				scanline_dst[x * 4 + 1] = static_cast<unsigned char>(scanline_dst[x * 4 + 1] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 1] * m_overlayAlpha);
-				scanline_dst[x * 4 + 2] = static_cast<unsigned char>(scanline_dst[x * 4 + 2] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 2] * m_overlayAlpha);
-				scanline_dst[x * 4 + 3] = static_cast<unsigned char>(scanline_dst[x * 4 + 3] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 3] * m_overlayAlpha);
+				scanline_dst[(x + offset_x) * 4 + 0] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 0] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 0] * m_overlayAlpha);
+				scanline_dst[(x + offset_x) * 4 + 1] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 1] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 1] * m_overlayAlpha);
+				scanline_dst[(x + offset_x) * 4 + 2] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 2] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 2] * m_overlayAlpha);
+				scanline_dst[(x + offset_x) * 4 + 3] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 3] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 3] * m_overlayAlpha);
 			}
 		}	
 	}
 
 	int m_nImages;
 	MultiPageImages m_imgOrigMultiPage[3];
+	Point<unsigned> m_offset[3];
 	Image m_imgOrig[3];
 	Image m_imgOrig32[3];
 	Image m_imgDiff[3];
