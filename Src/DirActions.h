@@ -131,7 +131,7 @@ String FormatMenuItemStringTo(SIDE_TYPE src, int count, int total);
 void ConfirmActionList(const CDiffContext& ctxt, const FileActionScript & actionList);
 UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContext& ctxt, DIFFITEM &di);
 
-Poco::UIntPtr FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, const String& pathRight);
+uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, const String& pathRight);
 
 bool IsItemCopyable(const DIFFITEM & di, int index);
 bool IsItemDeletable(const DIFFITEM & di, int index);
@@ -146,11 +146,11 @@ bool IsItemNavigableDiff(const CDiffContext& ctxt, const DIFFITEM & di);
 bool IsItemExistAll(const CDiffContext& ctxt, const DIFFITEM & di);
 bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilterSettings& filter);
 
-bool GetOpenOneItem(const CDiffContext& ctxt, Poco::UIntPtr pos1, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
+bool GetOpenOneItem(const CDiffContext& ctxt, uintptr_t pos1, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
 		PathContext &paths, int & sel1, bool & isDir, String& errmsg);
-bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, Poco::UIntPtr pos1, Poco::UIntPtr pos2, const DIFFITEM **di1, const DIFFITEM **di2,
+bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, const DIFFITEM **di1, const DIFFITEM **di2,
 		PathContext &paths, int & sel1, int & sel2, bool & isDir, String& errmsg);
-bool GetOpenThreeItems(const CDiffContext& ctxt, Poco::UIntPtr pos1, Poco::UIntPtr pos2, Poco::UIntPtr pos3, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
+bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
 		PathContext &paths, int & sel1, int & sel2, int & sel3, bool & isDir, String& errmsg);
 
 void GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM& di, String& strLeft, String& strRight);

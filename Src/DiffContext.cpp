@@ -91,7 +91,7 @@ CDiffContext::~CDiffContext()
  * @param [in] bLeft Update left-side info.
  * @param [in] bRight Update right-side info.
  */
-void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, bool bLeft, bool bRight)
+void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, int index)
 {
 	DIFFITEM &di = GetDiffRefAt(diffpos);
 	di.diffFileInfo[index].ClearPartial();

@@ -136,7 +136,6 @@ protected:
 	virtual BOOL OnIdle(LONG lCount);
 	//}}AFX_VIRTUAL
 
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
 	BOOL ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
 	void UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage);

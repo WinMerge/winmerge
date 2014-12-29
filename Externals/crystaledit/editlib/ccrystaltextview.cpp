@@ -4805,6 +4805,7 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int 
       ASSERT (pszFindWhat != NULL);
       int nCur = 0;
       int nLength = (int) _tcslen (pszFindWhat);
+      LPCTSTR pszFindWhereOrig = pszFindWhere;
       nLen = nLength;
       for (;;)
         {
@@ -4813,7 +4814,7 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int 
             return -1;
           if ((dwFlags & FIND_WHOLE_WORD) == 0)
             return nCur + (int) (pszPos - pszFindWhere);
-          if (pszPos > pszFindWhere && xisalnum (pszPos[-1]))
+          if (pszPos > pszFindWhereOrig && xisalnum (pszPos[-1]))
             {
               nCur += (int) (pszPos - pszFindWhere + 1);
               pszFindWhere = pszPos + 1;

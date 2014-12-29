@@ -336,7 +336,7 @@ CDirView * CDirDoc::GetMainView() const
  * calls slow DirView functions to get item position and to update GUI.
  * Use UpdateStatusFromDisk() function instead.
  */
-void CDirDoc::ReloadItemStatus(uintptr_t_t_t_t diffPos, int index)
+void CDirDoc::ReloadItemStatus(uintptr_t diffPos, int index)
 {
 	// in case just copied (into existence) or modified
 	m_pCtxt->UpdateStatusFromDisk(diffPos, index);
@@ -473,7 +473,7 @@ BOOL CDirDoc::ReusingDirDoc()
 void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical)
 {
-	uintptr_t_t_t pos = FindItemFromPaths(*m_pCtxt, paths.GetLeft(), paths.GetRight());
+	uintptr_t pos = FindItemFromPaths(*m_pCtxt, paths.GetLeft(), paths.GetRight());
 	// If we failed files could have been swapped so lets try again
 	if (!pos)
 		pos = FindItemFromPaths(*m_pCtxt, paths.GetRight(), paths.GetLeft());

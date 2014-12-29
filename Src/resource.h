@@ -178,7 +178,6 @@
 #define IDC_HILITE_CHECK                1019
 #define IDC_IGNOREREGEXP                1020
 #define IDC_EDITPATTERN                 1021
-#define IDC_DISABLE_SPLASH              1023
 #define IDC_ALL_WHITE                   1024
 #define IDC_WHITE_CHANGE                1025
 #define IDC_WHITESPACE                  1026

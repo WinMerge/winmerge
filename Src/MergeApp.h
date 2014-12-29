@@ -14,6 +14,7 @@ struct AboutInfo
 	AboutInfo();
 	String copyright;
 	String version;
+	String developers;
 	String private_build;
 	String website;
 };
