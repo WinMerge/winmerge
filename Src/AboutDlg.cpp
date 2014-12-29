@@ -28,6 +28,7 @@
 #include "statlink.h"
 #include "Merge.h"
 #include "DDXHelper.h"
+#include "Picture.h"
 #include "resource.h" // IDD_ABOUTBOX
 
 /** 
@@ -61,15 +62,21 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOpenContributors();
+	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 
 private:
 	CAboutDlg *m_p;
+	CPicture m_image;
+	CFont m_font;
 };
 
 BEGIN_MESSAGE_MAP(CAboutDlg::Impl, CDialog)
 	//{{AFX_MSG_MAP(CAboutDlg::Impl)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
+	ON_WM_DRAWITEM()
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 CAboutDlg::Impl::Impl(CAboutDlg *p, CWnd* pParent /*=NULL*/)
@@ -97,12 +104,18 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
-	// Load application icon
-	HICON icon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
-	if (icon != NULL) {
-		CStatic * pIcon = (CStatic *) GetDlgItem(IDC_ABOUTBOX_ICON);
-		pIcon->SetIcon(icon);
-	}
+	m_image.Load(IDR_SPLASH);
+
+	CDC *pDC = GetDC();
+	int fontHeight = -MulDiv(10, pDC->GetDeviceCaps(LOGPIXELSY), 72);
+	m_font.CreateFont(fontHeight, 0, 0, 0, FW_MEDIUM, FALSE, FALSE,
+		0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Tahoma"));
+	ReleaseDC(pDC);
+
+	GetDlgItem(IDC_STATIC)->SetWindowText(m_p->m_info.developers.c_str());
+	GetDlgItem(IDC_STATIC)->SetFont(&m_font);
+	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
 
 	m_ctlWWW.m_link = m_p->m_info.website.c_str();
 
@@ -112,6 +125,22 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
+HBRUSH CAboutDlg::Impl::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	if (nCtlColor == CTLCOLOR_STATIC && pWnd != GetDlgItem(IDC_WWW))
+	{
+		pDC->SetBkMode(TRANSPARENT);
+		return (HBRUSH)GetStockObject(NULL_BRUSH);
+	}
+	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+}
+
+void CAboutDlg::Impl::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
+{
+	CRect rc;
+	GetDlgItem(nIDCtl)->GetClientRect(&rc);
+	m_image.Render(CDC::FromHandle(lpDrawItemStruct->hDC), rc);
+}
 /**
  * @brief Show contributors list.
  * Opens Contributors.txt into notepad.

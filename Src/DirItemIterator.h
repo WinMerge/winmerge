@@ -35,7 +35,7 @@ public:
 		}
 		if (m_sel != -1)
 		{
-			if (m_pList->GetItemData(m_sel) == reinterpret_cast<void *>((Poco::UIntPtr)-1L))
+			if (m_pList->GetItemData(m_sel) == reinterpret_cast<void *>((uintptr_t)-1L))
 				m_sel = m_pList->GetNextItem(m_sel, m_selected, m_reverse);
 		}
 	}

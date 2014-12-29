@@ -1474,8 +1474,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Splash.cpp">
-    </ClCompile>
     <ClCompile Include="Common\SplitterWndEx.cpp">
     </ClCompile>
     <ClCompile Include="Common\StatLink.cpp">
@@ -1807,6 +1805,7 @@
     <ClInclude Include="Common\coretools.h" />
     <ClInclude Include="Common\coretypes.h" />
     <ClInclude Include="Common\CSubclass.h" />
+    <ClInclude Include="DirActions.h" />
     <ClInclude Include="IMergeDoc.h" />
     <ClInclude Include="ImgMergeFrm.h" />
     <ClInclude Include="Merge7zFormatMergePluginImpl.h" />
@@ -1939,7 +1938,6 @@
     <ClInclude Include="Common\ShellFileOperations.h" />
     <ClInclude Include="Common\sizecbar.h" />
     <ClInclude Include="Common\SortHeaderCtrl.h" />
-    <ClInclude Include="Splash.h" />
     <ClInclude Include="Common\SplitterWndEx.h" />
     <ClInclude Include="ssapi.h" />
     <ClInclude Include="Common\StatLink.h" />

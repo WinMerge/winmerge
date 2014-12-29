@@ -51,7 +51,6 @@
 #include "ImgMergeFrm.h"
 #include "LineFiltersList.h"
 #include "ConflictFileParser.h"
-#include "Splash.h"
 #include "LineFiltersDlg.h"
 #include "paths.h"
 #include "Environment.h"
@@ -394,9 +393,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR) == false)
 		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
-
-	// CG: The following line was added by the Splash Screen component.
-	CSplashWnd::ShowSplashScreen(this);
 
 	// Start handling status messages from CustomStatusCursors
 	myStatusDisplay.SetFrame(this);

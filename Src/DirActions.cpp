@@ -27,8 +27,6 @@
 #include "coretools.h"
 #include "OptionsMgr.h"
 
-using Poco::UIntPtr;
-
 static void ThrowConfirmCopy(const CDiffContext& ctxt, int origin, int destination, int count,
 		const String& src, const String& dest, bool destIsSide);
 static void ThrowConfirmMove(const CDiffContext& ctxt, int origin, int destination, int count,
@@ -266,7 +264,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 	case FileActionItem::UI_DEL:
 		if (di.diffcode.isSideOnly(act.UIOrigin))
 		{
-			ctxt.RemoveDiff(reinterpret_cast<UIntPtr>(&di));
+			ctxt.RemoveDiff(reinterpret_cast<uintptr_t>(&di));
 			bRemoveItem = true;
 		}
 		else
@@ -279,9 +277,9 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 	}
 
 	if (bUpdateSrc)
-		ctxt.UpdateStatusFromDisk(reinterpret_cast<UIntPtr>(&di), act.UIOrigin);
+		ctxt.UpdateStatusFromDisk(reinterpret_cast<uintptr_t>(&di), act.UIOrigin);
 	if (bUpdateDest)
-		ctxt.UpdateStatusFromDisk(reinterpret_cast<UIntPtr>(&di), act.UIDestination);
+		ctxt.UpdateStatusFromDisk(reinterpret_cast<uintptr_t>(&di), act.UIDestination);
 
 	if (bRemoveItem)
 		return UPDATEITEM_REMOVE;
@@ -295,7 +293,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
  * @return POSITION to item, NULL if not found.
  * @note Filenames must be same, if they differ NULL is returned.
  */
-UIntPtr FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, const String& pathRight)
+uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, const String& pathRight)
 {
 	String file1 = paths_FindFileName(pathLeft);
 	String file2 = paths_FindFileName(pathRight);
@@ -326,8 +324,8 @@ UIntPtr FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, cons
 	if (String::size_type length = path2.length())
 		path2.resize(length - 1); // remove trailing backslash
 
-	UIntPtr pos = ctxt.GetFirstDiffPosition();
-	while (UIntPtr currentPos = pos) // Save our current pos before getting next
+	uintptr_t pos = ctxt.GetFirstDiffPosition();
+	while (uintptr_t currentPos = pos) // Save our current pos before getting next
 	{
 		const DIFFITEM &di = ctxt.GetNextDiffPosition(pos);
 		if (di.diffFileInfo[0].path == path1 &&
@@ -657,7 +655,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool GetOpenOneItem(const CDiffContext& ctxt, UIntPtr pos1, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
+bool GetOpenOneItem(const CDiffContext& ctxt, uintptr_t pos1, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
 		PathContext & paths, int & sel1, bool & isdir, String& errmsg)
 {
 	*di1 = &ctxt.GetDiffAt(pos1);
@@ -701,7 +699,7 @@ bool GetOpenOneItem(const CDiffContext& ctxt, UIntPtr pos1, const DIFFITEM **di1
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, UIntPtr pos1, UIntPtr pos2, const DIFFITEM **di1, const DIFFITEM **di2,
+bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, const DIFFITEM **di1, const DIFFITEM **di2,
 		PathContext & paths, int & sel1, int & sel2, bool & isDir, String& errmsg)
 {
 	String pathLeft, pathRight;
@@ -784,7 +782,7 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, UInt
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool GetOpenThreeItems(const CDiffContext& ctxt, UIntPtr pos1, UIntPtr pos2, UIntPtr pos3, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
+bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
 		PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir, String& errmsg)
 {
 	String pathLeft, pathMiddle, pathRight;
@@ -1072,7 +1070,7 @@ void SetItemViewFlag(DIFFITEM& di, unsigned flag, unsigned mask)
  */
 void SetItemViewFlag(CDiffContext& ctxt, unsigned flag, unsigned mask)
 {
-	UIntPtr pos = ctxt.GetFirstDiffPosition();
+	uintptr_t pos = ctxt.GetFirstDiffPosition();
 
 	while (pos != NULL)
 	{
@@ -1243,7 +1241,7 @@ String NumToStr(int n)
 void ExpandSubdirs(CDiffContext& ctxt, DIFFITEM& dip)
 {
 	dip.customFlags1 |= ViewCustomFlags::EXPANDED;
-	UIntPtr diffpos = ctxt.GetFirstChildDiffPosition(reinterpret_cast<UIntPtr>(&dip));
+	uintptr_t diffpos = ctxt.GetFirstChildDiffPosition(reinterpret_cast<uintptr_t>(&dip));
 	while (diffpos)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
@@ -1256,7 +1254,7 @@ void ExpandSubdirs(CDiffContext& ctxt, DIFFITEM& dip)
 
 void ExpandAllSubdirs(CDiffContext& ctxt)
 {
-	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
+	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
 	while (diffpos)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
@@ -1266,7 +1264,7 @@ void ExpandAllSubdirs(CDiffContext& ctxt)
 
 void CollapseAllSubdirs(CDiffContext& ctxt)
 {
-	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
+	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
 	while (diffpos)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
@@ -1277,7 +1275,7 @@ void CollapseAllSubdirs(CDiffContext& ctxt)
 DirViewTreeState *SaveTreeState(const CDiffContext& ctxt)
 {
 	DirViewTreeState *pTreeState = new DirViewTreeState();
-	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
+	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
 	while (diffpos)
 	{
 		const DIFFITEM &di = ctxt.GetNextDiffPosition(diffpos);
@@ -1292,7 +1290,7 @@ DirViewTreeState *SaveTreeState(const CDiffContext& ctxt)
 
 void RestoreTreeState(CDiffContext& ctxt, DirViewTreeState *pTreeState)
 {
-	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
+	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
 	while (diffpos)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);

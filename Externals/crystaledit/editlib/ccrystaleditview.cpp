@@ -1648,9 +1648,11 @@ ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
   CPoint ptEndOfBlock = CPoint (x, y);
   if (ptEndOfBlock.x == m_pTextBuffer->GetLineLength (ptEndOfBlock.y))
     {
-      ptEndOfBlock.x = 0;
-      if (ptEndOfBlock.y < m_pTextBuffer->GetLineCount())
-        ptEndOfBlock.y++;
+      if (ptEndOfBlock.y < m_pTextBuffer->GetLineCount() - 1)
+        {
+          ptEndOfBlock.x = 0;
+          ptEndOfBlock.y++;
+        }
     }
   ASSERT_VALIDTEXTPOS (ptCursorPos);
   ASSERT_VALIDTEXTPOS (ptEndOfBlock);
