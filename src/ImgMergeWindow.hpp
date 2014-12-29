@@ -930,6 +930,10 @@ private:
 			evt.eventType = MOUSEWHEEL;
 			evt.delta = GET_WHEEL_DELTA_WPARAM(wParam);
 			goto NEXT;
+		case WM_KEYDOWN:
+			evt.eventType = KEYDOWN; evt.keycode = wParam; goto NEXT;
+		case WM_KEYUP:
+			evt.eventType = KEYUP; evt.keycode = wParam; goto NEXT;
 		case WM_CONTEXTMENU:
 			evt.eventType = CONTEXTMENU; goto NEXT;
 		case WM_SIZE:

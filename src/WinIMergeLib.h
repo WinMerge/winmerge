@@ -28,6 +28,7 @@ struct IImgMergeWindow
 		LBUTTONDOWN = 0, LBUTTONUP, LBUTTONDBLCLK, 
 		RBUTTONDOWN,     RBUTTONUP, RBUTTONDBLCLK,
 		MOUSEMOVE, MOUSEWHEEL, CONTEXTMENU,
+		KEYDOWN, KEYUP,
 		SIZE, HSCROLL, VSCROLL, SETFOCUS, KILLFOCUS
 	};
 	struct Event
@@ -41,6 +42,7 @@ struct IImgMergeWindow
 		int delta;
 		int width;
 		int height;
+		int keycode;
 	};
 	typedef void (*EventListenerFunc)(const Event& evt);
 	virtual bool OpenImages(const wchar_t *filename1, const wchar_t *filename2) = 0;
