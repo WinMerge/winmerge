@@ -1,4 +1,4 @@
 set MAJOR=0
 set MINOR=9
-set REVISION=7
+set REVISION=8
 set PATCHLEVEL=0
