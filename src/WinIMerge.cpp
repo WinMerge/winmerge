@@ -211,7 +211,8 @@ void UpdateStatusBar()
 		    pt.x < m_pImgMergeWindow->GetImageWidth(pane) &&
 		    pt.y < m_pImgMergeWindow->GetImageHeight(pane))
 		{
-			p += wsprintfW(p, L"Pt:(%d,%d) ", pt.x, pt.y);
+			POINT ptOffset = m_pImgMergeWindow->GetImageOffset(pane);
+			p += wsprintfW(p, L"Pt:(%d,%d) ", pt.x - ptOffset.x, pt.y - ptOffset.y);
 			p += wsprintfW(p, L"RGBA:(%d,%d,%d,%d) ",
 				color[pane].rgbRed, color[pane].rgbGreen, color[pane].rgbBlue, color[pane].rgbReserved);
 			if (pane == 1 && m_pImgMergeWindow->GetPaneCount() == 3)
@@ -240,6 +241,14 @@ void OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 		HMENU hPopup = LoadMenu(m_hInstance, MAKEINTRESOURCE(IDR_POPUPMENU));
 		HMENU hSubMenu = GetSubMenu(hPopup, 0);
 		TrackPopupMenu(hSubMenu, TPM_LEFTALIGN, evt.x, evt.y, 0, m_hWnd, NULL); 
+	}
+	else if (evt.eventType == IImgMergeWindow::KEYDOWN && GetAsyncKeyState(VK_SHIFT))
+	{
+		int nActivePane = m_pImgMergeWindow->GetActivePane();
+		int m = GetAsyncKeyState(VK_CONTROL) ? 8 : 1;
+		int dx = (-(evt.keycode == VK_LEFT) + (evt.keycode == VK_RIGHT)) * m;
+		int dy = (-(evt.keycode == VK_UP  ) + (evt.keycode == VK_DOWN )) * m;
+		m_pImgMergeWindow->AddImageOffset(nActivePane, dx, dy);
 	}
 }
 
