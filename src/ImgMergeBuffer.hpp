@@ -170,19 +170,19 @@ public:
 		if (ymin < m_offset[srcPane].y)
 			ymin = m_offset[srcPane].y;
 		unsigned xmax = rc.right  * m_diffBlockSize - 1;
-		if (xmax > m_imgOrig32[srcPane].width()  + m_offset[srcPane].x - 1)
+		if (xmax >= m_imgOrig32[srcPane].width()  + m_offset[srcPane].x)
 			xmax = m_imgOrig32[srcPane].width()  + m_offset[srcPane].x - 1;
 		unsigned ymax = rc.bottom * m_diffBlockSize - 1;
-		if (ymax > m_imgOrig32[srcPane].height() + m_offset[srcPane].y - 1)
+		if (ymax >= m_imgOrig32[srcPane].height() + m_offset[srcPane].y)
 			ymax = m_imgOrig32[srcPane].height() + m_offset[srcPane].y - 1;
 		unsigned dsx = 0, dsy = 0, ox = 0, oy = 0;
 		if (xmin < m_offset[dstPane].x)
 			ox = m_offset[dstPane].x - xmin, dsx += ox;
 		if (ymin < m_offset[dstPane].y)
 			oy = m_offset[dstPane].y - ymin, dsy += oy;
-		if (xmax > m_imgOrig32[dstPane].width()  + m_offset[dstPane].x - 1)
+		if (xmax >= m_imgOrig32[dstPane].width() + m_offset[dstPane].x)
 			dsx += xmax - (m_imgOrig32[dstPane].width()  + m_offset[dstPane].x - 1);
-		if (ymax > m_imgOrig32[dstPane].height() + m_offset[dstPane].y - 1)
+		if (ymax >= m_imgOrig32[dstPane].height() + m_offset[dstPane].y)
 			dsy += ymax - (m_imgOrig32[dstPane].height() + m_offset[dstPane].y - 1);
 		if (dsx > 0 || dsy > 0)
 		{

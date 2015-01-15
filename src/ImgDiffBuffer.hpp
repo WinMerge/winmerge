@@ -753,10 +753,10 @@ protected:
 
 	void CompareImages2(int pane1, int pane2, DiffBlocks& diff)
 	{
-		unsigned x1min = m_offset[pane1].x;
-		unsigned y1min = m_offset[pane1].y;
-		unsigned x2min = m_offset[pane2].x;
-		unsigned y2min = m_offset[pane2].y;
+		unsigned x1min = m_imgOrig32[pane1].width()  > 0 ? m_offset[pane1].x : -1;
+		unsigned y1min = m_imgOrig32[pane1].height() > 0 ? m_offset[pane1].y : -1;
+		unsigned x2min = m_imgOrig32[pane2].width()  > 0 ? m_offset[pane2].x : -1;
+		unsigned y2min = m_imgOrig32[pane2].height() > 0 ? m_offset[pane2].y : -1;
 		unsigned x1max = x1min + m_imgOrig32[pane1].width() - 1;
 		unsigned y1max = y1min + m_imgOrig32[pane1].height() - 1;
 		unsigned x2max = x2min + m_imgOrig32[pane2].width() - 1;

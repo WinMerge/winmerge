@@ -39,7 +39,16 @@ public:
 		if (this != &Image)
 		{
 			FIBITMAP *clone = FreeImage_Clone((FIBITMAP*)Image._dib);
-			replace(clone);
+			if (clone)
+			{
+				replace(clone);
+			}
+			else
+			{
+				FreeImage_Unload(_dib);
+				_dib = NULL;
+				_bHasChanged = TRUE;
+			}
 		}
 		return *this;
 	}
