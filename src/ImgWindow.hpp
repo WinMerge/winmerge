@@ -193,9 +193,9 @@ public:
 			GetClientRect(m_hWnd, &rc);
 			unsigned width  = static_cast<unsigned>(m_fip->getWidth()  * m_zoom) + MARGIN * 2; 
 			unsigned height = static_cast<unsigned>(m_fip->getHeight() * m_zoom) + MARGIN * 2; 
-			if (m_nHScrollPos > width  - rc.right)
+			if (m_nHScrollPos > static_cast<int>(width  - rc.right))
 				m_nHScrollPos = width  - rc.right;
-			if (m_nVScrollPos > height - rc.bottom)
+			if (m_nVScrollPos > static_cast<int>(height - rc.bottom))
 				m_nVScrollPos = height - rc.bottom;
 			CalcScrollBarRange();
 			InvalidateRect(m_hWnd, NULL, TRUE);

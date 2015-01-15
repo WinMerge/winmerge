@@ -974,7 +974,7 @@ protected:
 								scanline[x * 4 + 0] = Image::valueB(color);
 								scanline[x * 4 + 1] = Image::valueG(color);
 								scanline[x * 4 + 2] = Image::valueR(color);
-								scanline[x * 4 + 3] = 0xff * m_diffColorAlpha;
+								scanline[x * 4 + 3] = static_cast<unsigned char>(0xff * m_diffColorAlpha);
 							}
 						}
 					}

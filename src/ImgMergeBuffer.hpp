@@ -199,14 +199,14 @@ public:
 			{
 				if (m_diff(x / m_diffBlockSize, y / m_diffBlockSize) == diffIndex + 1)
 				{
-					for (int i = 0; i < m_diffBlockSize; ++i)
+					for (unsigned i = 0; i < m_diffBlockSize; ++i)
 					{
 						int sy = y + i - m_offset[srcPane].y; 
 						if (sy >= 0 && sy < m_imgOrig32[srcPane].height())
 						{
 							const unsigned char *scanline_src = m_imgOrig32[srcPane].scanLine(sy);
 							unsigned char *scanline_dst = m_imgOrig32[dstPane].scanLine(y + i - m_offset[dstPane].y);
-							for (int j = 0; j < m_diffBlockSize; ++j)
+							for (unsigned j = 0; j < m_diffBlockSize; ++j)
 							{
 								int sx = x + j - m_offset[srcPane].x; 
 								if (sx >= 0 && sx < m_imgOrig32[srcPane].width())
