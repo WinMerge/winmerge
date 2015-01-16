@@ -736,6 +736,7 @@ BEGIN
         BEGIN
             MENUITEM "Full Contents",          ID_COMPMETHOD_FULL_CONTENTS
             MENUITEM "Quick Contents",         ID_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Binary Contents",        ID_COMPMETHOD_BINARY_CONTENTS
             MENUITEM "Modified Date",          ID_COMPMETHOD_MODDATE
 			MENUITEM "Modified Date and Size", ID_COMPMETHOD_DATESIZE
 			MENUITEM "Size",                   ID_COMPMETHOD_SIZE
@@ -2296,6 +2297,7 @@ STRINGTABLE
 BEGIN
     ID_COMPMETHOD_FULL_CONTENTS "Full Contents"
     ID_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    ID_COMPMETHOD_BINARY_CONTENTS "Binary Contents"
     ID_COMPMETHOD_MODDATE  "Modified Date"
     ID_COMPMETHOD_DATESIZE "Modified Date and Size"
     ID_COMPMETHOD_SIZE     "Size"

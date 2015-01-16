@@ -107,6 +107,8 @@ BOOL PropCompareFolder::OnInitDialog()
 	combo->AddString(item.c_str());
 	item = theApp.LoadString(ID_COMPMETHOD_QUICK_CONTENTS);
 	combo->AddString(item.c_str());
+	item = theApp.LoadString(ID_COMPMETHOD_BINARY_CONTENTS);
+	combo->AddString(item.c_str());
 	item = theApp.LoadString(ID_COMPMETHOD_MODDATE);
 	combo->AddString(item.c_str());
 	item = theApp.LoadString(ID_COMPMETHOD_DATESIZE);
