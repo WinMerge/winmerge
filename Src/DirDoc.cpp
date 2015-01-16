@@ -431,7 +431,7 @@ bool CDirDoc::IsShowable(const DIFFITEM & di) const
 			if (GetOptionsMgr()->GetBool(OPT_TREE_MODE))
 			{
 				// result filters
-				if (di.diffcode.isResultError())
+				if (di.diffcode.isResultError() && FALSE)
 					return FALSE;
 
 				// result filters
@@ -457,7 +457,7 @@ bool CDirDoc::IsShowable(const DIFFITEM & di) const
 		// result filters
 		if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
 			return FALSE;
-		if (di.diffcode.isResultError())
+		if (di.diffcode.isResultError() && FALSE)
 			return FALSE;
 		if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
 			return FALSE;
