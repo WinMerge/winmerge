@@ -174,13 +174,16 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Externals\gtest\src\gtest-all.cc" />
     <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp" />
+    <ClCompile Include="..\..\..\Src\CompareEngines\BinaryCompare.cpp" />
     <ClCompile Include="..\..\..\Src\CompareEngines\ByteComparator.cpp" />
     <ClCompile Include="..\..\..\Src\CompareEngines\ByteCompare.cpp" />
     <ClCompile Include="..\..\..\Src\charsets.c" />
     <ClCompile Include="..\..\..\Src\codepage.cpp" />
     <ClCompile Include="..\..\..\Src\codepage_detect.cpp" />
+    <ClCompile Include="..\..\..\Src\CompareEngines\TimeSizeCompare.cpp" />
     <ClCompile Include="..\..\..\Src\CompareOptions.cpp" />
     <ClCompile Include="..\..\..\Src\Common\coretools.cpp" />
+    <ClCompile Include="..\..\..\Src\DiffItem.cpp" />
     <ClCompile Include="..\..\..\Src\diffutils\src\Diff.cpp" />
     <ClCompile Include="..\..\..\Src\DirItem.cpp" />
     <ClCompile Include="..\..\..\Src\Common\dllproxy.c" />
@@ -196,7 +199,9 @@
     <ClCompile Include="..\..\..\Src\Common\lwdisp.c" />
     <ClCompile Include="..\..\..\Src\markdown.cpp" />
     <ClCompile Include="..\..\..\Src\MergeCmdLineInfo.cpp" />
+    <ClCompile Include="..\BinaryCompare\BinaryCompare_test.cpp" />
     <ClCompile Include="..\ShellFileOperations\ShellFileOperations_test.cpp" />
+    <ClCompile Include="..\TimeSizeCompare\TimeSizeCompare_test.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="..\..\..\Src\Common\multiformatText.cpp" />
     <ClCompile Include="..\..\..\Src\Common\OptionsMgr.cpp" />
@@ -244,14 +249,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Src\Common\ShellFileOperations.h" />
+    <ClInclude Include="..\..\..\Src\CompareEngines\BinaryCompare.h" />
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h" />
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteCompare.h" />
     <ClInclude Include="..\..\..\Src\charsets.h" />
     <ClInclude Include="..\..\..\Src\codepage.h" />
     <ClInclude Include="..\..\..\Src\codepage_detect.h" />
+    <ClInclude Include="..\..\..\Src\CompareEngines\TimeSizeCompare.h" />
     <ClInclude Include="..\..\..\Src\CompareOptions.h" />
     <ClInclude Include="..\..\..\Src\Common\coretools.h" />
     <ClInclude Include="..\..\..\Src\CompareEngines\DiffUtils.h" />
+    <ClInclude Include="..\..\..\Src\DiffItem.h" />
     <ClInclude Include="..\..\..\Src\DirItem.h" />
     <ClInclude Include="..\..\..\Src\Common\dllproxy.h" />
     <ClInclude Include="..\..\..\Src\Environment.h" />

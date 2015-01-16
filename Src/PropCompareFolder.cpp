@@ -108,6 +108,8 @@ BOOL PropCompareFolder::OnInitDialog()
 	combo->AddString(item.c_str());
 	item = _("Quick Contents");
 	combo->AddString(item.c_str());
+	item = _("Binary Contents");
+	combo->AddString(item.c_str());
 	item = _("Modified Date");
 	combo->AddString(item.c_str());
 	item = _("Modified Date and Size");
