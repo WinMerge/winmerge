@@ -13,6 +13,7 @@
 #include "DiffFileData.h"
 #include "DiffUtils.h"
 #include "ByteCompare.h"
+#include "BinaryCompare.h"
 #include "TimeSizeCompare.h"
 #include "PathContext.h"
 
@@ -55,6 +56,7 @@ public:
 private:
 	std::unique_ptr<CompareEngines::DiffUtils> m_pDiffUtilsEngine;
 	std::unique_ptr<CompareEngines::ByteCompare> m_pByteCompare;
+	std::unique_ptr<CompareEngines::BinaryCompare> m_pBinaryCompare;
 	std::unique_ptr<CompareEngines::TimeSizeCompare> m_pTimeSizeCompare;
 };
 

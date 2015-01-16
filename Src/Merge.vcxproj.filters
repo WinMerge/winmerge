@@ -739,6 +739,9 @@
     <ClCompile Include="LineFiltersList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CompareEngines\BinaryCompare.cpp">
+      <Filter>Compare Engines</Filter>
+    </ClCompile>
     <ClCompile Include="SourceControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1379,6 +1382,9 @@
     </ClInclude>
     <ClInclude Include="Merge7zFormatRegister.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareEngines\BinaryCompare.h">
+      <Filter>Compare Engines</Filter>
     </ClInclude>
     <ClInclude Include="DirViewColItems.h">
       <Filter>Header Files</Filter>
