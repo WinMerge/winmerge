@@ -237,6 +237,12 @@
     <ClCompile Include="..\..\..\Src\DiffItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\TimeSizeCompare\TimeSizeCompare_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\CompareEngines\TimeSizeCompare.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h">
@@ -360,6 +366,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\DiffItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\CompareEngines\TimeSizeCompare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

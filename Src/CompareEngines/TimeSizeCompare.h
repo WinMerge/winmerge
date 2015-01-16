@@ -29,7 +29,7 @@ public:
 	TimeSizeCompare();
 	~TimeSizeCompare();
 	void SetAdditionalOptions(bool ignoreSmallDiff);
-	int CompareFiles(int compMethod, const DIFFITEM &di) const;
+	int CompareFiles(int compMethod, int nfiles, const DIFFITEM &di) const;
 
 private:
 	bool m_ignoreSmallDiff;
