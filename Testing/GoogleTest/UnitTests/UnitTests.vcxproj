@@ -180,6 +180,7 @@
     <ClCompile Include="..\..\..\Src\charsets.c" />
     <ClCompile Include="..\..\..\Src\codepage.cpp" />
     <ClCompile Include="..\..\..\Src\codepage_detect.cpp" />
+    <ClCompile Include="..\..\..\Src\CompareEngines\TimeSizeCompare.cpp" />
     <ClCompile Include="..\..\..\Src\CompareOptions.cpp" />
     <ClCompile Include="..\..\..\Src\Common\coretools.cpp" />
     <ClCompile Include="..\..\..\Src\DiffItem.cpp" />
@@ -200,6 +201,7 @@
     <ClCompile Include="..\..\..\Src\MergeCmdLineInfo.cpp" />
     <ClCompile Include="..\BinaryCompare\BinaryCompare_test.cpp" />
     <ClCompile Include="..\ShellFileOperations\ShellFileOperations_test.cpp" />
+    <ClCompile Include="..\TimeSizeCompare\TimeSizeCompare_test.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="..\..\..\Src\Common\multiformatText.cpp" />
     <ClCompile Include="..\..\..\Src\Common\OptionsMgr.cpp" />
@@ -253,6 +255,7 @@
     <ClInclude Include="..\..\..\Src\charsets.h" />
     <ClInclude Include="..\..\..\Src\codepage.h" />
     <ClInclude Include="..\..\..\Src\codepage_detect.h" />
+    <ClInclude Include="..\..\..\Src\CompareEngines\TimeSizeCompare.h" />
     <ClInclude Include="..\..\..\Src\CompareOptions.h" />
     <ClInclude Include="..\..\..\Src\Common\coretools.h" />
     <ClInclude Include="..\..\..\Src\CompareEngines\DiffUtils.h" />
