@@ -21,10 +21,12 @@
 #include "ByteComparator.h"
 #include "codepage_detect.h"
 #include "unicoder.h"
+#include "BinaryCompare.h"
 #include "TimeSizeCompare.h"
 #include "TFile.h"
 
 using CompareEngines::ByteCompare;
+using CompareEngines::BinaryCompare;
 using CompareEngines::TimeSizeCompare;
 
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & files);
@@ -32,6 +34,7 @@ static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContex
 FolderCmp::FolderCmp()
 : m_pDiffUtilsEngine(nullptr)
 , m_pByteCompare(nullptr)
+, m_pBinaryCompare(nullptr)
 , m_pTimeSizeCompare(nullptr)
 , m_ndiffs(CDiffContext::DIFFS_UNKNOWN)
 , m_ntrivialdiffs(CDiffContext::DIFFS_UNKNOWN)
@@ -376,6 +379,15 @@ exitPrepAndCompare:
 			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathUnpacked[1].c_str())); }
 		if (nDirs > 2 && filepathUnpacked[2] != files[2])
 			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathUnpacked[2].c_str())); }
+	}
+	else if (nCompMethod == CMP_BINARY_CONTENT)
+	{
+		if (m_pBinaryCompare == NULL)
+			m_pBinaryCompare.reset(new BinaryCompare());
+
+		PathContext files;
+		GetComparePaths(pCtxt, di, files);
+		code = m_pBinaryCompare->CompareFiles(files, di);
 	}
 	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
 	{
