@@ -655,19 +655,22 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool GetOpenOneItem(const CDiffContext& ctxt, uintptr_t pos1, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
-		PathContext & paths, int & sel1, bool & isdir, String& errmsg)
+bool GetOpenOneItem(const CDiffContext& ctxt, uintptr_t pos1, const DIFFITEM *pdi[3],
+		PathContext & paths, int & sel1, bool & isdir, int nPane[3], String& errmsg)
 {
-	*di1 = &ctxt.GetDiffAt(pos1);
-	*di2 = *di1;
-	*di3 = *di1;
+	pdi[0] = &ctxt.GetDiffAt(pos1);
+	pdi[1] = pdi[0];
+	pdi[2] = pdi[0];
 
-	paths = GetItemFileNames(ctxt, **di1);
+	paths = GetItemFileNames(ctxt, *pdi[0]);
 
-	if ((*di1)->diffcode.isDirectory())
+	for (int nIndex = 0; nIndex < paths.GetSize(); ++nIndex)
+		nPane[nIndex] = nIndex;
+
+	if (pdi[0]->diffcode.isDirectory())
 		isdir = true;
 
-	if (isdir && ((*di1)->diffcode.isExistsFirst() && (*di1)->diffcode.isExistsSecond() && (*di1)->diffcode.isExistsThird()))
+	if (isdir && (pdi[0]->diffcode.isExistsFirst() && pdi[1]->diffcode.isExistsSecond() && pdi[2]->diffcode.isExistsThird()))
 	{
 		// Check both folders exist. If either folder is missing that means
 		// folder has been changed behind our back, so we just tell user to
@@ -699,17 +702,19 @@ bool GetOpenOneItem(const CDiffContext& ctxt, uintptr_t pos1, const DIFFITEM **d
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, const DIFFITEM **di1, const DIFFITEM **di2,
-		PathContext & paths, int & sel1, int & sel2, bool & isDir, String& errmsg)
+bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, const DIFFITEM *pdi[3],
+		PathContext & paths, int & sel1, int & sel2, bool & isDir, int nPane[3], String& errmsg)
 {
 	String pathLeft, pathRight;
 
 	// Two items selected, get their info
-	*di1 = &ctxt.GetDiffAt(pos1);
-	*di2 = &ctxt.GetDiffAt(pos2);
+	pdi[0] = &ctxt.GetDiffAt(pos1);
+	pdi[1] = &ctxt.GetDiffAt(pos2);
+	nPane[0] = 0;
+	nPane[1] = 1;
 
 	// Check for binary & side compatibility & file/dir compatibility
-	if (!AreItemsOpenable(ctxt, selectionType, **di1, **di2))
+	if (!AreItemsOpenable(ctxt, selectionType, *pdi[0], *pdi[1]))
 	{
 		return false;
 	}
@@ -719,39 +724,28 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uint
 	{
 	case SELECTIONTYPE_NORMAL:
 		// Ensure that di1 is on left (swap if needed)
-		if ((*di1)->diffcode.isSideSecondOnly() || ((*di1)->diffcode.isSideBoth() &&
-				(*di2)->diffcode.isSideFirstOnly()))
+		if (pdi[0]->diffcode.isSideSecondOnly() || (pdi[0]->diffcode.isSideBoth() &&
+				pdi[1]->diffcode.isSideFirstOnly()))
 		{
-			const DIFFITEM * temp = *di1;
-			*di1 = *di2;
-			*di2 = temp;
-			int num = sel1;
-			sel1 = sel2;
-			sel2 = num;
+			std::swap(pdi[0], pdi[1]);
+			std::swap(sel1, sel2);
 		}
-		// Fill in pathLeft & pathRight
-		GetItemFileNames(ctxt, **di1, pathLeft, temp);
-		GetItemFileNames(ctxt, **di2, temp, pathRight);
 		break;
 	case SELECTIONTYPE_LEFT1LEFT2:
-		GetItemFileNames(ctxt, **di1, pathLeft, temp);
-		GetItemFileNames(ctxt, **di2, pathRight, temp);
+		nPane[0] = nPane[1] = 0;
 		break;
 	case SELECTIONTYPE_RIGHT1RIGHT2:
-		GetItemFileNames(ctxt, **di1, temp, pathLeft);
-		GetItemFileNames(ctxt, **di2, temp, pathRight);
+		nPane[0] = nPane[1] = 1;
 		break;
 	case SELECTIONTYPE_LEFT1RIGHT2:
-		GetItemFileNames(ctxt, **di1, pathLeft, temp);
-		GetItemFileNames(ctxt, **di2, temp, pathRight);
 		break;
 	case SELECTIONTYPE_LEFT2RIGHT1:
-		GetItemFileNames(ctxt, **di1, temp, pathRight);
-		GetItemFileNames(ctxt, **di2, pathLeft, temp);
+		std::swap(pdi[0], pdi[1]);
+		std::swap(sel1, sel2);
 		break;
 	}
 
-	if ((*di1)->diffcode.isDirectory())
+	if (pdi[0]->diffcode.isDirectory())
 	{
 		isDir = true;
 		if (GetPairComparability(PathContext(pathLeft, pathRight)) != IS_EXISTING_DIR)
@@ -761,8 +755,11 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uint
 		}
 	}
 
-	paths.SetLeft(pathLeft);
-	paths.SetRight(pathRight);
+	PathContext files1, files2;
+	files1 = GetItemFileNames(ctxt, *pdi[0]);
+	files2 = GetItemFileNames(ctxt, *pdi[1]);
+	paths.SetLeft(files1[nPane[0]]);
+	paths.SetRight(files2[nPane[1]]);
 
 	return true;
 }
@@ -782,121 +779,124 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uint
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
-		PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir, String& errmsg)
+bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, const DIFFITEM *pdi[3],
+	PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3], String& errmsg)
 {
 	String pathLeft, pathMiddle, pathRight;
 
+	// FIXME:
+	for (int nIndex = 0; nIndex < 3; ++nIndex)
+		nPane[nIndex] = nIndex;
 	if (!pos3)
 	{
 		// Two items selected, get their info
-		*di1 = &ctxt.GetDiffAt(pos1);
-		*di2 = &ctxt.GetDiffAt(pos2);
+		pdi[0] = &ctxt.GetDiffAt(pos1);
+		pdi[1] = &ctxt.GetDiffAt(pos2);
 
 		// Check for binary & side compatibility & file/dir compatibility
-		if (!::AreItemsOpenable(ctxt, **di1, **di2, **di2) && 
-			!::AreItemsOpenable(ctxt, **di1, **di1, **di2))
+		if (!::AreItemsOpenable(ctxt, *pdi[0], *pdi[1], *pdi[1]) && 
+			!::AreItemsOpenable(ctxt, *pdi[0], *pdi[0], *pdi[1]))
 		{
 			return false;
 		}
-		// Ensure that di1 is on left (swap if needed)
-		if ((*di1)->diffcode.isExists(0) && (*di1)->diffcode.isExists(1) && (*di2)->diffcode.isExists(2))
+		// Ensure that pdi[0] is on left (swap if needed)
+		if (pdi[0]->diffcode.isExists(0) && pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2))
 		{
-			*di3 = *di2;
-			*di2 = *di1;
+			pdi[2] = pdi[1];
+			pdi[1] = pdi[0];
 			sel3 = sel2;
 			sel2 = sel1;
 		}
-		else if ((*di1)->diffcode.isExists(0) && (*di1)->diffcode.isExists(2) && (*di2)->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.isExists(0) && pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(1))
 		{
-			*di3 = *di1;
+			pdi[2] = pdi[0];
 			sel3 = sel1;
 		}
-		else if ((*di1)->diffcode.isExists(1) && (*di1)->diffcode.isExists(2) && (*di2)->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.isExists(1) && pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(0))
 		{
-			std::swap(*di1, *di2);
+			std::swap(pdi[0], pdi[1]);
 			std::swap(sel1, sel2);
-			*di3 = *di2;
+			pdi[2] = pdi[1];
 			sel3 = sel2;
 		}
-		else if ((*di2)->diffcode.isExists(0) && (*di2)->diffcode.isExists(1) && (*di1)->diffcode.isExists(2))
+		else if (pdi[1]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(1) && pdi[0]->diffcode.isExists(2))
 		{
-			std::swap(*di1, *di2);
+			std::swap(pdi[0], pdi[1]);
 			std::swap(sel1, sel2);
-			*di3 = *di2;
-			*di2 = *di1;
+			pdi[2] = pdi[1];
+			pdi[1] = pdi[0];
 			sel3 = sel2;
 			sel2 = sel1;
 		}
-		else if ((*di2)->diffcode.isExists(0) && (*di2)->diffcode.isExists(2) && (*di1)->diffcode.isExists(1))
+		else if (pdi[1]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(2) && pdi[0]->diffcode.isExists(1))
 		{
-			std::swap(*di1, *di2);
+			std::swap(pdi[0], pdi[1]);
 			std::swap(sel1, sel2);
-			*di3 = *di1;
+			pdi[2] = pdi[0];
 			sel3 = sel1;
 		}
-		else if ((*di2)->diffcode.isExists(1) && (*di2)->diffcode.isExists(2) && (*di1)->diffcode.isExists(0))
+		else if (pdi[1]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2) && pdi[0]->diffcode.isExists(0))
 		{
-			*di3 = *di2;
+			pdi[2] = pdi[1];
 			sel3 = sel2;
 		}
 	}
 	else
 	{
 		// Three items selected, get their info
-		*di1 = &ctxt.GetDiffAt(pos1);
-		*di2 = &ctxt.GetDiffAt(pos2);
-		*di3 = &ctxt.GetDiffAt(pos3);
+		pdi[0] = &ctxt.GetDiffAt(pos1);
+		pdi[1] = &ctxt.GetDiffAt(pos2);
+		pdi[2] = &ctxt.GetDiffAt(pos3);
 
 		// Check for binary & side compatibility & file/dir compatibility
-		if (!::AreItemsOpenable(ctxt, **di1, **di2, **di3))
+		if (!::AreItemsOpenable(ctxt, *pdi[0], *pdi[1], *pdi[2]))
 		{
 			return false;
 		}
-		// Ensure that di1 is on left (swap if needed)
-		if ((*di1)->diffcode.isExists(0) && (*di2)->diffcode.isExists(1) && (*di3)->diffcode.isExists(2))
+		// Ensure that pdi[0] is on left (swap if needed)
+		if (pdi[0]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(1) && pdi[2]->diffcode.isExists(2))
 		{
 		}
-		else if ((*di1)->diffcode.isExists(0) && (*di2)->diffcode.isExists(2) && (*di3)->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(2) && pdi[2]->diffcode.isExists(1))
 		{
-			std::swap(*di2, *di3);
+			std::swap(pdi[1], pdi[2]);
 			std::swap(sel2, sel3);
 		}
-		else if ((*di1)->diffcode.isExists(1) && (*di2)->diffcode.isExists(0) && (*di3)->diffcode.isExists(2))
+		else if (pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(0) && pdi[2]->diffcode.isExists(2))
 		{
-			std::swap(*di1, *di2);
+			std::swap(pdi[0], pdi[1]);
 			std::swap(sel1, sel2);
 		}
-		else if ((*di1)->diffcode.isExists(1) && (*di2)->diffcode.isExists(2) && (*di3)->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2) && pdi[2]->diffcode.isExists(0))
 		{
-			std::swap(*di1, *di3);
+			std::swap(pdi[0], pdi[2]);
 			std::swap(sel1, sel3);
-			std::swap(*di2, *di3);
+			std::swap(pdi[1], pdi[2]);
 			std::swap(sel2, sel3);
 		}
-		else if ((*di1)->diffcode.isExists(2) && (*di2)->diffcode.isExists(0) && (*di3)->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(0) && pdi[2]->diffcode.isExists(1))
 		{
-			std::swap(*di1, *di2);
+			std::swap(pdi[0], pdi[1]);
 			std::swap(sel1, sel2);
-			std::swap(*di2, *di3);
+			std::swap(pdi[1], pdi[2]);
 			std::swap(sel2, sel3);
 		}
-		else if ((*di1)->diffcode.isExists(2) && (*di2)->diffcode.isExists(1) && (*di3)->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(1) && pdi[2]->diffcode.isExists(0))
 		{
-			std::swap(*di1, *di3);
+			std::swap(pdi[0], pdi[2]);
 			std::swap(sel1, sel3);
 		}
 	}
 
 	// Fill in pathLeft & & pathMiddle & pathRight
-	PathContext pathsTemp = GetItemFileNames(ctxt, **di1);
+	PathContext pathsTemp = GetItemFileNames(ctxt, *pdi[0]);
 	pathLeft = pathsTemp[0];
-	pathsTemp = GetItemFileNames(ctxt, **di2);
+	pathsTemp = GetItemFileNames(ctxt, *pdi[1]);
 	pathMiddle = pathsTemp[1];
-	pathsTemp = GetItemFileNames(ctxt, **di3);
+	pathsTemp = GetItemFileNames(ctxt, *pdi[2]);
 	pathRight = pathsTemp[2];
 
-	if ((*di1)->diffcode.isDirectory())
+	if (pdi[0]->diffcode.isDirectory())
 	{
 		isDir = true;
 		if (GetPairComparability(PathContext(pathLeft, pathMiddle, pathRight)) != IS_EXISTING_DIR)

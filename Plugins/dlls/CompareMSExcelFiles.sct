@@ -358,9 +358,13 @@ Function ShowSettingsDialog()
 	Dim tfile: Set tfile = fso.CreateTextFile(tname)
 	tfile.Write getResource("dialog1")
 	tfile.Close
-	wsh.Run "mshta.exe """ & tname & """", 1, True
+	Run wsh, "mshta.exe """ & tname & """"
 	fso.DeleteFile tname 
 End Function
+
+Sub Run(sh, cmd)
+	sh.Run cmd, 1, True
+End Sub
 
 </script>
 
@@ -406,6 +410,7 @@ End Function
         chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
         chkUnpackToFolder_onclick();
+        chkCompareWorksheetsAsImage_onclick();
       }
 
       function setLanguage(lang) {
@@ -429,7 +434,11 @@ End Function
       function chkUnpackToFolder_onclick() {
         if (!chkUnpackToFolder.checked)
           chkCompareWorksheetsAsImage.checked = false;
-        chkCompareWorksheetsAsImage.disabled = !chkUnpackToFolder.checked;
+      }
+
+      function chkCompareWorksheetsAsImage_onclick() {
+        if (chkCompareWorksheetsAsImage.checked)
+          chkUnpackToFolder.checked = true;
       }
 
       function btnOk_onclick() {
@@ -483,7 +492,7 @@ End Function
           <label class="ja">各セルの値を比較する </label>
         </li>
         <li>
-          <input id="chkCompareWorksheetsAsImage" type="checkbox" />
+          <input id="chkCompareWorksheetsAsImage" type="checkbox" onclick="chkCompareWorksheetsAsImage_onclick();"/>
           <label class="en">Compare worksheets as image (very slow)</label>
           <label class="ja">ワークシートを画像化して比較する (処理時間増大)</label>
         </li>
