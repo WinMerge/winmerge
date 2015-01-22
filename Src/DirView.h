@@ -263,12 +263,12 @@ protected:
 	void GetCurrentColRegKeys(std::vector<String>& colKeys);
 	void WarnContentsChanged(const String & failedPath);
 	void OpenSpecialItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3);
-	bool OpenOneItem(uintptr_t pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
-			PathContext &paths, int & sel1, bool & isDir);
-	bool OpenTwoItems(SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, DIFFITEM **di1, DIFFITEM **di2,
-			PathContext &paths, int & sel1, int & sel2, bool & isDir);
-	bool OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
-			PathContext &paths, int & sel1, int & sel2, int & sel3, bool & isDir);
+	bool OpenOneItem(uintptr_t pos1, DIFFITEM *pdi[3],
+			PathContext &paths, int & sel1, bool & isDir, int nPane[3]);
+	bool OpenTwoItems(SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, DIFFITEM *pdi[3],
+			PathContext &paths, int & sel1, int & sel2, bool & isDir, int nPane[3]);
+	bool OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DIFFITEM *pdi[3],
+			PathContext &paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3]);
 	bool CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder);
 
 // Implementation data

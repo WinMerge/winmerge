@@ -1286,7 +1286,9 @@ void CDirView::OpenParentDirectory()
 		// fall through (no break!)
 	case CDirDoc::AllowUpwardDirectory::ParentIsRegularPath: 
 	{
-		DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
+		DWORD dwFlags[3];
+		for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
+			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
 		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, pDoc->GetRecursive(), (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
 		// fall through (no break!)
@@ -1396,21 +1398,24 @@ bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder)
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool CDirView::OpenOneItem(uintptr_t pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
-		PathContext & paths, int & sel1, bool & isdir)
+bool CDirView::OpenOneItem(uintptr_t pos1, DIFFITEM *pdi[3],
+		PathContext & paths, int & sel1, bool & isdir, int nPane[3])
 {
 	CDirDoc * pDoc = GetDocument();
 
-	*di1 = &pDoc->GetDiffRefByKey(pos1);
-	*di2 = *di1;
-	*di3 = *di1;
+	pdi[0] = &pDoc->GetDiffRefByKey(pos1);
+	pdi[1] = pdi[0];
+	pdi[2] = pdi[0];
 
 	GetItemFileNames(sel1, &paths);
 
-	if ((*di1)->diffcode.isDirectory())
+	for (int nIndex = 0; nIndex < paths.GetSize(); ++nIndex)
+		nPane[nIndex] = nIndex;
+
+	if (pdi[0]->diffcode.isDirectory())
 		isdir = true;
 
-	if (isdir && ((*di1)->diffcode.isExistsFirst() && (*di1)->diffcode.isExistsSecond() && (*di1)->diffcode.isExistsThird()))
+	if (isdir && (pdi[0]->diffcode.isExistsFirst() && pdi[1]->diffcode.isExistsSecond() && pdi[2]->diffcode.isExistsThird()))
 	{
 		// Check both folders exist. If either folder is missing that means
 		// folder has been changed behind our back, so we just tell user to
@@ -1473,18 +1478,20 @@ bool CDirView::OpenOneItem(uintptr_t pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFI
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool CDirView::OpenTwoItems(SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, DIFFITEM **di1, DIFFITEM **di2,
-		PathContext & paths, int & sel1, int & sel2, bool & isDir)
+bool CDirView::OpenTwoItems(SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, DIFFITEM *pdi[3],
+		PathContext & paths, int & sel1, int & sel2, bool & isDir, int nPane[3])
 {
 	String pathLeft, pathRight;
 	CDirDoc * pDoc = GetDocument();
 
 	// Two items selected, get their info
-	*di1 = &pDoc->GetDiffRefByKey(pos1);
-	*di2 = &pDoc->GetDiffRefByKey(pos2);
+	pdi[0] = &pDoc->GetDiffRefByKey(pos1);
+	pdi[1] = &pDoc->GetDiffRefByKey(pos2);
+	nPane[0] = 0;
+	nPane[1] = 1;
 
 	// Check for binary & side compatibility & file/dir compatibility
-	if (!AreItemsOpenable(selectionType, **di1, **di2))
+	if (!AreItemsOpenable(selectionType, *pdi[0], *pdi[1]))
 	{
 		return false;
 	}
@@ -1494,39 +1501,28 @@ bool CDirView::OpenTwoItems(SELECTIONTYPE selectionType, uintptr_t pos1, uintptr
 	{
 	case SELECTIONTYPE_NORMAL:
 		// Ensure that di1 is on left (swap if needed)
-		if ((*di1)->diffcode.isSideSecondOnly() || ((*di1)->diffcode.isSideBoth() &&
-				(*di2)->diffcode.isSideFirstOnly()))
+		if (pdi[0]->diffcode.isSideSecondOnly() || (pdi[0]->diffcode.isSideBoth() &&
+				pdi[1]->diffcode.isSideFirstOnly()))
 		{
-			DIFFITEM * temp = *di1;
-			*di1 = *di2;
-			*di2 = temp;
-			int num = sel1;
-			sel1 = sel2;
-			sel2 = num;
+			swap(pdi[0], pdi[1]);
+			swap(sel1, sel2);
 		}
-		// Fill in pathLeft & pathRight
-		GetItemFileNames(sel1, pathLeft, temp);
-		GetItemFileNames(sel2, temp, pathRight);
 		break;
 	case SELECTIONTYPE_LEFT1LEFT2:
-		GetItemFileNames(sel1, pathLeft, temp);
-		GetItemFileNames(sel2, pathRight, temp);
+		nPane[0] = nPane[1] = 0;
 		break;
 	case SELECTIONTYPE_RIGHT1RIGHT2:
-		GetItemFileNames(sel1, temp, pathLeft);
-		GetItemFileNames(sel2, temp, pathRight);
+		nPane[0] = nPane[1] = 1;
 		break;
 	case SELECTIONTYPE_LEFT1RIGHT2:
-		GetItemFileNames(sel1, pathLeft, temp);
-		GetItemFileNames(sel2, temp, pathRight);
 		break;
 	case SELECTIONTYPE_LEFT2RIGHT1:
-		GetItemFileNames(sel1, temp, pathRight);
-		GetItemFileNames(sel2, pathLeft, temp);
+		swap(pdi[0], pdi[1]);
+		swap(sel1, sel2);
 		break;
 	}
 
-	if ((*di1)->diffcode.isDirectory())
+	if (pdi[0]->diffcode.isDirectory())
 	{
 		isDir = true;
 		if (GetPairComparability(PathContext(pathLeft, pathRight)) != IS_EXISTING_DIR)
@@ -1536,8 +1532,11 @@ bool CDirView::OpenTwoItems(SELECTIONTYPE selectionType, uintptr_t pos1, uintptr
 		}
 	}
 
-	paths.SetLeft(pathLeft.c_str());
-	paths.SetRight(pathRight.c_str());
+	PathContext files1, files2;
+	GetItemFileNames(sel1, &files1);
+	GetItemFileNames(sel2, &files2);
+	paths.SetLeft(files1[nPane[0]]);
+	paths.SetRight(files2[nPane[1]]);
 
 	return true;
 }
@@ -1557,108 +1556,111 @@ bool CDirView::OpenTwoItems(SELECTIONTYPE selectionType, uintptr_t pos1, uintptr
  * @param [in,out] isDir Is item folder?
  * return false if there was error or item was completely processed.
  */
-bool CDirView::OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
-		PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir)
+bool CDirView::OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DIFFITEM *pdi[3],
+		PathContext & paths, int & sel1, int & sel2, int & sel3, bool & isDir, int nPane[3])
 {
 	String pathLeft, pathMiddle, pathRight;
 	CDirDoc * pDoc = GetDocument();
 
+	// FIXME:
+	for (int nIndex = 0; nIndex < 3; ++nIndex)
+		nPane[nIndex] = nIndex;
 	if (!pos3)
 	{
 		// Two items selected, get their info
-		*di1 = &pDoc->GetDiffRefByKey(pos1);
-		*di2 = &pDoc->GetDiffRefByKey(pos2);
+		pdi[0] = &pDoc->GetDiffRefByKey(pos1);
+		pdi[1] = &pDoc->GetDiffRefByKey(pos2);
 
 		// Check for binary & side compatibility & file/dir compatibility
-		if (!AreItemsOpenable(**di1, **di2, **di2) && !AreItemsOpenable(**di1, **di1, **di2))
+		if (!AreItemsOpenable(*pdi[0], *pdi[1], *pdi[1]) && !AreItemsOpenable(*pdi[0], *pdi[0], *pdi[1]))
 		{
 			return false;
 		}
-		// Ensure that di1 is on left (swap if needed)
-		if ((*di1)->diffcode.isExists(0) && (*di1)->diffcode.isExists(1) && (*di2)->diffcode.isExists(2))
+		// Ensure that pdi[0] is on left (swap if needed)
+		if (pdi[0]->diffcode.isExists(0) && pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2))
 		{
-			*di3 = *di2;
-			*di2 = *di1;
+			pdi[2] = pdi[1];
+			pdi[1] = pdi[0];
 			sel3 = sel2;
 			sel2 = sel1;
 		}
-		else if ((*di1)->diffcode.isExists(0) && (*di1)->diffcode.isExists(2) && (*di2)->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.isExists(0) && pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(1))
 		{
-			*di3 = *di1;
+			pdi[2] = pdi[0];
 			sel3 = sel1;
 		}
-		else if ((*di1)->diffcode.isExists(1) && (*di1)->diffcode.isExists(2) && (*di2)->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.isExists(1) && pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(0))
 		{
-			swap(*di1, *di2);
+			swap(pdi[0], pdi[1]);
 			swap(sel1, sel2);
-			*di3 = *di2;
+			pdi[2] = pdi[1];
 			sel3 = sel2;
 		}
-		else if ((*di2)->diffcode.isExists(0) && (*di2)->diffcode.isExists(1) && (*di1)->diffcode.isExists(2))
+		else if (pdi[1]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(1) && pdi[0]->diffcode.isExists(2))
 		{
-			swap(*di1, *di2);
+			swap(pdi[0], pdi[1]);
 			swap(sel1, sel2);
-			*di3 = *di2;
-			*di2 = *di1;
+			pdi[2] = pdi[1];
+			pdi[1] = pdi[0];
 			sel3 = sel2;
 			sel2 = sel1;
 		}
-		else if ((*di2)->diffcode.isExists(0) && (*di2)->diffcode.isExists(2) && (*di1)->diffcode.isExists(1))
+		else if (pdi[1]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(2) && pdi[0]->diffcode.isExists(1))
 		{
-			swap(*di1, *di2);
+			swap(pdi[0], pdi[1]);
 			swap(sel1, sel2);
-			*di3 = *di1;
+			pdi[2] = pdi[0];
 			sel3 = sel1;
 		}
-		else if ((*di2)->diffcode.isExists(1) && (*di2)->diffcode.isExists(2) && (*di1)->diffcode.isExists(0))
+		else if (pdi[1]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2) && pdi[0]->diffcode.isExists(0))
 		{
-			*di3 = *di2;
+			pdi[2] = pdi[1];
 			sel3 = sel2;
 		}
 	}
 	else
 	{
 		// Three items selected, get their info
-		*di1 = &pDoc->GetDiffRefByKey(pos1);
-		*di2 = &pDoc->GetDiffRefByKey(pos2);
-		*di3 = &pDoc->GetDiffRefByKey(pos3);
+		pdi[0] = &pDoc->GetDiffRefByKey(pos1);
+		pdi[1] = &pDoc->GetDiffRefByKey(pos2);
+		pdi[2] = &pDoc->GetDiffRefByKey(pos3);
 
 		// Check for binary & side compatibility & file/dir compatibility
-		if (!AreItemsOpenable(**di1, **di2, **di3))
+		if (!AreItemsOpenable(*pdi[0], *pdi[1], *pdi[2]))
 		{
 			return false;
 		}
-		// Ensure that di1 is on left (swap if needed)
-		if ((*di1)->diffcode.isExists(0) && (*di2)->diffcode.isExists(1) && (*di3)->diffcode.isExists(2))
+		// Ensure that pdi[0] is on left (swap if needed)
+		if (pdi[0]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(1) && pdi[2]->diffcode.isExists(2))
 		{
 		}
-		else if ((*di1)->diffcode.isExists(0) && (*di2)->diffcode.isExists(2) && (*di3)->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(2) && pdi[2]->diffcode.isExists(1))
 		{
-			swap(*di2, *di3);
+			swap(pdi[1], pdi[2]);
 			swap(sel2, sel3);
 		}
-		else if ((*di1)->diffcode.isExists(1) && (*di2)->diffcode.isExists(0) && (*di3)->diffcode.isExists(2))
+		else if (pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(0) && pdi[2]->diffcode.isExists(2))
 		{
-			swap(*di1, *di2);
+			swap(pdi[0], pdi[1]);
 			swap(sel1, sel2);
 		}
-		else if ((*di1)->diffcode.isExists(1) && (*di2)->diffcode.isExists(2) && (*di3)->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2) && pdi[2]->diffcode.isExists(0))
 		{
-			swap(*di1, *di3);
+			swap(pdi[0], pdi[2]);
 			swap(sel1, sel3);
-			swap(*di2, *di3);
+			swap(pdi[1], pdi[2]);
 			swap(sel2, sel3);
 		}
-		else if ((*di1)->diffcode.isExists(2) && (*di2)->diffcode.isExists(0) && (*di3)->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(0) && pdi[2]->diffcode.isExists(1))
 		{
-			swap(*di1, *di2);
+			swap(pdi[0], pdi[1]);
 			swap(sel1, sel2);
-			swap(*di2, *di3);
+			swap(pdi[1], pdi[2]);
 			swap(sel2, sel3);
 		}
-		else if ((*di1)->diffcode.isExists(2) && (*di2)->diffcode.isExists(1) && (*di3)->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(1) && pdi[2]->diffcode.isExists(0))
 		{
-			swap(*di1, *di3);
+			swap(pdi[0], pdi[2]);
 			swap(sel1, sel3);
 		}
 	}
@@ -1672,7 +1674,7 @@ bool CDirView::OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DI
 	GetItemFileNames(sel3, &pathsTemp);
 	pathRight = pathsTemp[2];
 
-	if ((*di1)->diffcode.isDirectory())
+	if (pdi[0]->diffcode.isDirectory())
 	{
 		isDir = true;
 		if (GetPairComparability(PathContext(pathLeft, pathMiddle, pathRight)) != IS_EXISTING_DIR)
@@ -1733,28 +1735,29 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 
 	// Common variables which both code paths below are responsible for setting
 	PathContext paths;
-	DIFFITEM *di1 = NULL, *di2 = NULL, *di3 = NULL; // left & right items (di1==di2 if single selection)
+	DIFFITEM *pdi[3] = {0}; // left & right items (di1==di2 if single selection)
 	bool isdir = false; // set if we're comparing directories
+	bool bRO[3] = { false, false, false };
+	int nPane[3];
 
 	if (pDoc->m_nDirs < 3 && pos2)
 	{
-		bool success = OpenTwoItems(selectionType, pos1, pos2, &di1, &di2,
-				paths, sel1, sel2, isdir);
+		bool success = OpenTwoItems(selectionType, pos1, pos2, pdi,
+				paths, sel1, sel2, isdir, nPane);
 		if (!success)
 			return;
 	}
 	else if (pDoc->m_nDirs == 3 && pos2)
 	{
-		bool success = OpenThreeItems(pos1, pos2, pos3, &di1, &di2, &di3,
-				paths, sel1, sel2, sel3, isdir);
+		bool success = OpenThreeItems(pos1, pos2, pos3, pdi,
+				paths, sel1, sel2, sel3, isdir, nPane);
 		if (!success)
 			return;
 	}
 	else
 	{
 		// Only one item selected, so perform diff on its sides
-		bool success = OpenOneItem(pos1, &di1, &di2, &di3, 
-				paths, sel1, isdir);
+		bool success = OpenOneItem(pos1, pdi, paths, sel1, isdir, nPane);
 		if (!success)
 			return;
 	}
@@ -1762,7 +1765,9 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	// Now pathLeft, pathRight, di1, di2, and isdir are all set
 	// We have two items to compare, no matter whether same or different underlying DirView item
 
-	DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
+	DWORD dwFlags[3];
+	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
+		dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[nIndex]) ? FFILEOPEN_READONLY : 0);
 	if (isdir)
 	{
 		// Open subfolders
@@ -1796,12 +1801,12 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		{
 			theApp.m_strDescriptions[0].erase();
 			theApp.m_strDescriptions[1].erase();
-			if (di1 == di2 && !di1->diffcode.isExists(0))
+			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.isExists(0))
 			{
 				paths[0] = _T("");
 				theApp.m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
 			}
-			if (di1 == di2 && !di1->diffcode.isExists(1))
+			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.isExists(1))
 			{
 				paths[1] = _T("");
 				theApp.m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
@@ -1812,17 +1817,17 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 			theApp.m_strDescriptions[0].erase();
 			theApp.m_strDescriptions[1].erase();
 			theApp.m_strDescriptions[2].erase();
-			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(0))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(0))
 			{
 				paths[0] = _T("");
 				theApp.m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
 			}
-			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(1))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(1))
 			{
 				paths[1] = _T("");
 				theApp.m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_MIDDLE_FILE);
 			}
-			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(2))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(2))
 			{
 				paths[2] = _T("");
 				theApp.m_strDescriptions[2] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
@@ -1832,8 +1837,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
 		{
 			fileloc[nIndex].setPath(paths[nIndex]);
-			fileloc[nIndex].encoding = di1->diffFileInfo[nIndex].encoding;
-			dwFlags[nIndex] = pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0;
+			fileloc[nIndex].encoding = pdi[nIndex]->diffFileInfo[nPane[nIndex]].encoding;
 		}
 		GetMainFrame()->ShowAutoMergeDoc(pDoc, pDoc->m_nDirs, fileloc,
 			dwFlags, infoUnpacker);
@@ -1869,20 +1873,20 @@ void CDirView::OpenSelectionHex()
 
 	// Common variables which both code paths below are responsible for setting
 	PathContext paths;
-	DIFFITEM *di1 = NULL, *di2 = NULL, *di3 = NULL; // left & right items (di1==di2 if single selection)
+	DIFFITEM *pdi[3] = { 0 }; // left & right items (di1==di2 if single selection)
 	bool isdir = false; // set if we're comparing directories
+	int nPane[3];
 	if (pos2)
 	{
-		bool success = OpenTwoItems(SELECTIONTYPE_NORMAL, pos1, pos2, &di1, &di2,
-				paths, sel1, sel2, isdir);
+		bool success = OpenTwoItems(SELECTIONTYPE_NORMAL, pos1, pos2, pdi,
+				paths, sel1, sel2, isdir, nPane);
 		if (!success)
 			return;
 	}
 	else
 	{
 		// Only one item selected, so perform diff on its sides
-		bool success = OpenOneItem(pos1, &di1, &di2, &di3,
-				paths, sel1, isdir);
+		bool success = OpenOneItem(pos1, pdi, paths, sel1, isdir, nPane);
 		if (!success)
 			return;
 	}
@@ -1899,7 +1903,7 @@ void CDirView::OpenSelectionHex()
 	// Open identical and different files
 	bool bRO[3];
 	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
-		bRO[nIndex] = !!pDoc->GetReadOnly(true);
+		bRO[nIndex] = !!pDoc->GetReadOnly(nPane[nIndex]);
 
 	GetMainFrame()->ShowHexMergeDoc(pDoc, paths, bRO);
 }
