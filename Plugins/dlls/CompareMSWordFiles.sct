@@ -267,9 +267,13 @@ Function ShowSettingsDialog()
 	Dim tfile: Set tfile = fso.CreateTextFile(tname)
 	tfile.Write getResource("dialog1")
 	tfile.Close
-	wsh.Run "mshta.exe """ & tname & """", 1, True
+	Run wsh, "mshta.exe """ & tname & """"
 	fso.DeleteFile tname 
 End Function
+
+Sub Run(sh, cmd)
+	sh.Run cmd, 1, True
+End Sub
 
 </script>
 
