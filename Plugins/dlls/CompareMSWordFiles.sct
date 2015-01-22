@@ -267,9 +267,13 @@ Function ShowSettingsDialog()
 	Dim tfile: Set tfile = fso.CreateTextFile(tname)
 	tfile.Write getResource("dialog1")
 	tfile.Close
-	wsh.Run "mshta.exe """ & tname & """", 1, True
+	Run wsh, "mshta.exe """ & tname & """"
 	fso.DeleteFile tname 
 End Function
+
+Sub Run(sh, cmd)
+	sh.Run cmd, 1, True
+End Sub
 
 </script>
 
@@ -314,6 +318,7 @@ End Function
         chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
         chkUnpackToFolder_onclick();
+        chkCompareDocumentsAsHTML_onclick();
       }
 
       function setLanguage(lang) {
@@ -337,7 +342,11 @@ End Function
       function chkUnpackToFolder_onclick() {
         if (!chkUnpackToFolder.checked)
           chkCompareDocumentsAsHTML.checked = false;
-        chkCompareDocumentsAsHTML.disabled = !chkUnpackToFolder.checked;
+      }
+
+      function chkCompareDocumentsAsHTML_onclick() {
+        if (chkCompareDocumentsAsHTML.checked)
+          chkUnpackToFolder.checked = true;
       }
 
       function btnOk_onclick() {
@@ -390,7 +399,7 @@ End Function
           <label class="ja">ドキュメント内のテキスト部を比較する </label>
         </li>
         <li>
-          <input id="chkCompareDocumentsAsHTML" type="checkbox" />
+          <input id="chkCompareDocumentsAsHTML" type="checkbox" onclick="chkCompareDocumentsAsHTML_onclick();"/>
           <label class="en">Compare documents as HTML file (very slow)</label>
           <label class="ja">ドキュメントをHTMLファイル化して比較する (処理時間増大)</label>
         </li>

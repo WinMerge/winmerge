@@ -1174,7 +1174,9 @@ void CDirView::OpenParentDirectory()
 		// fall through (no break!)
 	case AllowUpwardDirectory::ParentIsRegularPath: 
 	{
-		DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
+		DWORD dwFlags[3];
+		for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
+			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
 		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
 		// fall through (no break!)
@@ -1276,20 +1278,21 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 
 	// Common variables which both code paths below are responsible for setting
 	PathContext paths;
-	const DIFFITEM *di1 = NULL, *di2 = NULL, *di3 = NULL; // left & right items (di1==di2 if single selection)
+	const DIFFITEM *pdi[3] = {0}; // left & right items (di1==di2 if single selection)
 	bool isdir = false; // set if we're comparing directories
+	int nPane[3];
 	String errmsg;
 	bool success;
 	if (pDoc->m_nDirs < 3 && pos2)
-		success = GetOpenTwoItems(ctxt, selectionType, pos1, pos2, &di1, &di2,
-				paths, sel1, sel2, isdir, errmsg);
+		success = GetOpenTwoItems(ctxt, selectionType, pos1, pos2, pdi,
+				paths, sel1, sel2, isdir, nPane, errmsg);
 	else if (pDoc->m_nDirs == 3 && pos2)
-		success = GetOpenThreeItems(ctxt, pos1, pos2, pos3, &di1, &di2, &di3,
-				paths, sel1, sel2, sel3, isdir, errmsg);
+		success = GetOpenThreeItems(ctxt, pos1, pos2, pos3, pdi,
+				paths, sel1, sel2, sel3, isdir, nPane, errmsg);
 	else
 		// Only one item selected, so perform diff on its sides
-		success = GetOpenOneItem(ctxt, pos1, &di1, &di2, &di3, 
-				paths, sel1, isdir, errmsg);
+		success = GetOpenOneItem(ctxt, pos1, pdi, 
+				paths, sel1, isdir, nPane, errmsg);
 		if (!success)
 	if (!success)
 	{
@@ -1301,7 +1304,9 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	// Now pathLeft, pathRight, di1, di2, and isdir are all set
 	// We have two items to compare, no matter whether same or different underlying DirView item
 
-	DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
+	DWORD dwFlags[3];
+	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
+		dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[nIndex]) ? FFILEOPEN_READONLY : 0);
 	if (isdir)
 	{
 		// Open subfolders
@@ -1335,12 +1340,12 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		{
 			theApp.m_strDescriptions[0].erase();
 			theApp.m_strDescriptions[1].erase();
-			if (di1 == di2 && !di1->diffcode.isExists(0))
+			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.isExists(0))
 			{
 				paths[0] = _T("");
 				theApp.m_strDescriptions[0] = _("Untitled left");
 			}
-			if (di1 == di2 && !di1->diffcode.isExists(1))
+			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.isExists(1))
 			{
 				paths[1] = _T("");
 				theApp.m_strDescriptions[1] = _("Untitled right");
@@ -1351,17 +1356,17 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 			theApp.m_strDescriptions[0].erase();
 			theApp.m_strDescriptions[1].erase();
 			theApp.m_strDescriptions[2].erase();
-			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(0))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(0))
 			{
 				paths[0] = _T("");
 				theApp.m_strDescriptions[0] = _("Untitled left");
 			}
-			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(1))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(1))
 			{
 				paths[1] = _T("");
 				theApp.m_strDescriptions[1] = _("Untitled middle");
 			}
-			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(2))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(2))
 			{
 				paths[2] = _T("");
 				theApp.m_strDescriptions[2] = _("Untitled right");
@@ -1371,8 +1376,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
 		{
 			fileloc[nIndex].setPath(paths[nIndex]);
-			fileloc[nIndex].encoding = di1->diffFileInfo[nIndex].encoding;
-			dwFlags[nIndex] = pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0;
+			fileloc[nIndex].encoding = pdi[nIndex]->diffFileInfo[nPane[nIndex]].encoding;
 		}
 		GetMainFrame()->ShowAutoMergeDoc(pDoc, pDoc->m_nDirs, fileloc,
 			dwFlags, infoUnpacker);
@@ -1409,17 +1413,18 @@ void CDirView::OpenSelectionHex()
 
 	// Common variables which both code paths below are responsible for setting
 	PathContext paths;
-	const DIFFITEM *di1 = NULL, *di2 = NULL, *di3 = NULL; // left & right items (di1==di2 if single selection)
+	const DIFFITEM *pdi[3]; // left & right items (di1==di2 if single selection)
 	bool isdir = false; // set if we're comparing directories
+	int nPane[3];
 	String errmsg;
 	bool success;
 	if (pos2)
-		success = GetOpenTwoItems(ctxt, SELECTIONTYPE_NORMAL, pos1, pos2, &di1, &di2,
-				paths, sel1, sel2, isdir, errmsg);
+		success = GetOpenTwoItems(ctxt, SELECTIONTYPE_NORMAL, pos1, pos2, pdi,
+				paths, sel1, sel2, isdir, nPane, errmsg);
 	else
 		// Only one item selected, so perform diff on its sides
-		success = GetOpenOneItem(ctxt, pos1, &di1, &di2, &di3,
-				paths, sel1, isdir, errmsg);
+		success = GetOpenOneItem(ctxt, pos1, pdi,
+				paths, sel1, isdir, nPane, errmsg);
 	if (!success)
 	{
 		if (!errmsg.empty())
@@ -1437,7 +1442,11 @@ void CDirView::OpenSelectionHex()
 	}
 
 	// Open identical and different files
-	GetMainFrame()->ShowHexMergeDoc(pDoc, paths, pDoc->GetReadOnly());
+	bool bRO[3];
+	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
+		bRO[nIndex] = !!pDoc->GetReadOnly(nPane[nIndex]);
+
+	GetMainFrame()->ShowHexMergeDoc(pDoc, paths, bRO);
 }
 
 /// User chose (context menu) delete left
