@@ -1522,21 +1522,21 @@ bool CDirView::OpenTwoItems(SELECTIONTYPE selectionType, uintptr_t pos1, uintptr
 		break;
 	}
 
-	if (pdi[0]->diffcode.isDirectory())
-	{
-		isDir = true;
-		if (GetPairComparability(PathContext(pathLeft, pathRight)) != IS_EXISTING_DIR)
-		{
-			LangMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
-			return false;
-		}
-	}
-
 	PathContext files1, files2;
 	GetItemFileNames(sel1, &files1);
 	GetItemFileNames(sel2, &files2);
 	paths.SetLeft(files1[nPane[0]]);
 	paths.SetRight(files2[nPane[1]]);
+
+	if (pdi[0]->diffcode.isDirectory())
+	{
+		isDir = true;
+		if (GetPairComparability(paths) != IS_EXISTING_DIR)
+		{
+			LangMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+			return false;
+		}
+	}
 
 	return true;
 }
@@ -1674,18 +1674,19 @@ bool CDirView::OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DI
 	GetItemFileNames(sel3, &pathsTemp);
 	pathRight = pathsTemp[2];
 
+	paths.SetLeft(pathLeft.c_str());
+	paths.SetMiddle(pathMiddle.c_str());
+	paths.SetRight(pathRight.c_str());
+
 	if (pdi[0]->diffcode.isDirectory())
 	{
 		isDir = true;
-		if (GetPairComparability(PathContext(pathLeft, pathMiddle, pathRight)) != IS_EXISTING_DIR)
+		if (GetPairComparability(paths) != IS_EXISTING_DIR)
 		{
 			AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 			return false;
 		} 
 	}
-
-	paths.SetLeft(pathLeft.c_str());
-	paths.SetRight(pathRight.c_str());
 
 	return true;
 }
@@ -1740,14 +1741,14 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	bool bRO[3] = { false, false, false };
 	int nPane[3];
 
-	if (pDoc->m_nDirs < 3 && pos2)
+	if (pos2 && !pos3)
 	{
 		bool success = OpenTwoItems(selectionType, pos1, pos2, pdi,
 				paths, sel1, sel2, isdir, nPane);
 		if (!success)
 			return;
 	}
-	else if (pDoc->m_nDirs == 3 && pos2)
+	else if (pos2 && pos3)
 	{
 		bool success = OpenThreeItems(pos1, pos2, pos3, pdi,
 				paths, sel1, sel2, sel3, isdir, nPane);
@@ -1774,7 +1775,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		// Don't add folders to MRU
 		GetMainFrame()->DoFileOpen(&paths, dwFlags, pDoc->GetRecursive(), (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
-	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == pDoc->m_nDirs)
+	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
 	{
 		// Open archives, not adding paths to MRU
 		GetMainFrame()->DoFileOpen(&paths, dwFlags, pDoc->GetRecursive(), NULL, _T(""), infoUnpacker);
@@ -1797,7 +1798,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 
 		// Open identical and different files
 		FileLocation fileloc[3];
-		if (pDoc->m_nDirs < 3)
+		if (paths.GetSize() < 3)
 		{
 			theApp.m_strDescriptions[0].erase();
 			theApp.m_strDescriptions[1].erase();
@@ -1839,7 +1840,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 			fileloc[nIndex].setPath(paths[nIndex]);
 			fileloc[nIndex].encoding = pdi[nIndex]->diffFileInfo[nPane[nIndex]].encoding;
 		}
-		GetMainFrame()->ShowAutoMergeDoc(pDoc, pDoc->m_nDirs, fileloc,
+		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc,
 			dwFlags, infoUnpacker);
 	}
 }
@@ -2317,7 +2318,7 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI)
 		const DIFFITEM& di1 = GetDiffItem(sel1);
 		const DIFFITEM& di2 = GetDiffItem(sel2);
 		const DIFFITEM& di3 = GetDiffItem(sel3);
-		if (!AreItemsOpenable(di1, di2, di3))
+		if (selectionType != SELECTIONTYPE_NORMAL || !AreItemsOpenable(di1, di2, di3))
 		{
 			pCmdUI->Enable(FALSE);
 			return;

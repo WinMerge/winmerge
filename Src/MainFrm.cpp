@@ -1120,7 +1120,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 		{
 			if (files.GetSize() == 3)
 			{
-				AfxMessageBox(_T("3フォルダ比較機能は実装中です"), MB_ICONWARNING | MB_DONT_ASK_AGAIN);
+				AfxMessageBox(_T("3-way folder compare feature is in progress"), MB_ICONWARNING | MB_DONT_ASK_AGAIN);
 			}
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
@@ -1618,6 +1618,7 @@ CHexMergeDoc * CMainFrame::GetHexMergeDocToShow(int nFiles, CDirDoc * pDirDoc)
 /// Get pointer to a dir doc for displaying a scan
 CDirDoc * CMainFrame::GetDirDocToShow(int nDirs, BOOL * pNew)
 {
+	CDirDoc::m_nDirsTemp = nDirs;
 	if (!m_pMenus[MENU_DIRVIEW])
 		theApp.m_pDirTemplate->m_hMenuShared = NewDirViewMenu();
 	CDirDoc * pDirDoc = 0;
@@ -1637,7 +1638,6 @@ CDirDoc * CMainFrame::GetDirDocToShow(int nDirs, BOOL * pNew)
 	}
 	if (!pDirDoc)
 	{
-		CDirDoc::m_nDirsTemp = nDirs;
 		pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->OpenDocumentFile(NULL);
 		*pNew = TRUE;
 	}
