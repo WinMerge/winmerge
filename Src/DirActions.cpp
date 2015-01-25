@@ -745,21 +745,21 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uint
 		break;
 	}
 
-	if (pdi[0]->diffcode.isDirectory())
-	{
-		isDir = true;
-		if (GetPairComparability(PathContext(pathLeft, pathRight)) != IS_EXISTING_DIR)
-		{
-			errmsg = _("The selected folder is invalid.");
-			return false;
-		}
-	}
-
 	PathContext files1, files2;
 	files1 = GetItemFileNames(ctxt, *pdi[0]);
 	files2 = GetItemFileNames(ctxt, *pdi[1]);
 	paths.SetLeft(files1[nPane[0]]);
 	paths.SetRight(files2[nPane[1]]);
+
+	if (pdi[0]->diffcode.isDirectory())
+	{
+		isDir = true;
+		if (GetPairComparability(paths) != IS_EXISTING_DIR)
+		{
+			errmsg = _("The selected folder is invalid.");
+			return false;
+		}
+	}
 
 	return true;
 }
@@ -896,18 +896,19 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2,
 	pathsTemp = GetItemFileNames(ctxt, *pdi[2]);
 	pathRight = pathsTemp[2];
 
+	paths.SetLeft(pathLeft.c_str());
+	paths.SetMiddle(pathMiddle.c_str());
+	paths.SetRight(pathRight.c_str());
+
 	if (pdi[0]->diffcode.isDirectory())
 	{
 		isDir = true;
-		if (GetPairComparability(PathContext(pathLeft, pathMiddle, pathRight)) != IS_EXISTING_DIR)
+		if (GetPairComparability(paths) != IS_EXISTING_DIR)
 		{
 			errmsg = _("The selected folder is invalid.");
 			return false;
 		} 
 	}
-
-	paths.SetLeft(pathLeft.c_str());
-	paths.SetRight(pathRight.c_str());
 
 	return true;
 }

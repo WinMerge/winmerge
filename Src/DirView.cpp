@@ -1283,10 +1283,10 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	int nPane[3];
 	String errmsg;
 	bool success;
-	if (pDoc->m_nDirs < 3 && pos2)
+	if (pos2 && !pos3)
 		success = GetOpenTwoItems(ctxt, selectionType, pos1, pos2, pdi,
 				paths, sel1, sel2, isdir, nPane, errmsg);
-	else if (pDoc->m_nDirs == 3 && pos2)
+	else if (pos2 && pos3)
 		success = GetOpenThreeItems(ctxt, pos1, pos2, pos3, pdi,
 				paths, sel1, sel2, sel3, isdir, nPane, errmsg);
 	else
@@ -1313,7 +1313,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		// Don't add folders to MRU
 		GetMainFrame()->DoFileOpen(&paths, dwFlags, GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
-	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == pDoc->m_nDirs)
+	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
 	{
 		// Open archives, not adding paths to MRU
 		GetMainFrame()->DoFileOpen(&paths, dwFlags, GetDiffContext().m_bRecursive, NULL, _T(""), infoUnpacker);
@@ -1336,7 +1336,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 
 		// Open identical and different files
 		FileLocation fileloc[3];
-		if (pDoc->m_nDirs < 3)
+		if (paths.GetSize() < 3)
 		{
 			theApp.m_strDescriptions[0].erase();
 			theApp.m_strDescriptions[1].erase();
@@ -1378,7 +1378,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 			fileloc[nIndex].setPath(paths[nIndex]);
 			fileloc[nIndex].encoding = pdi[nIndex]->diffFileInfo[nPane[nIndex]].encoding;
 		}
-		GetMainFrame()->ShowAutoMergeDoc(pDoc, pDoc->m_nDirs, fileloc,
+		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc,
 			dwFlags, infoUnpacker);
 	}
 }
@@ -1738,7 +1738,7 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI)
 		const DIFFITEM& di1 = GetDiffItem(sel1);
 		const DIFFITEM& di2 = GetDiffItem(sel2);
 		const DIFFITEM& di3 = GetDiffItem(sel3);
-		if (!::AreItemsOpenable(GetDiffContext(), di1, di2, di3))
+		if (selectionType != SELECTIONTYPE_NORMAL || !::AreItemsOpenable(GetDiffContext(), di1, di2, di3))
 		{
 			pCmdUI->Enable(FALSE);
 			return;
