@@ -283,7 +283,7 @@ BOOL CHexMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 			}
 			else
 			{
-				m_pView[0]->SetModified(FALSE);
+				m_pView[0]->SetSavePoint();
 			}
 		}
 		if (bMModified)
@@ -302,7 +302,7 @@ BOOL CHexMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 			}
 			else
 			{
-				m_pView[1]->SetModified(FALSE);
+				m_pView[1]->SetSavePoint();
 			}
 		}
 		if (bRModified)
@@ -321,7 +321,7 @@ BOOL CHexMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 			}
 			else
 			{
-				m_pView[m_nBuffers - 1]->SetModified(FALSE);
+				m_pView[m_nBuffers - 1]->SetSavePoint();
 			}
 		}
 	}
@@ -707,63 +707,13 @@ void CHexMergeDoc::OnFileReload()
 }
 
 /**
- * @brief Copy selected bytes from source view to destination view
- * @note Grows destination buffer as appropriate
- */
-void CHexMergeDoc::CopySel(CHexMergeView *pViewSrc, CHexMergeView *pViewDst)
-{
-	const IHexEditorWindow::Status *pStatSrc = pViewSrc->GetStatus();
-	int i = min(pStatSrc->iStartOfSelection, pStatSrc->iEndOfSelection);
-	int j = max(pStatSrc->iStartOfSelection, pStatSrc->iEndOfSelection);
-	int u = pViewSrc->GetLength();
-	int v = pViewDst->GetLength();
-	if (pStatSrc->bSelected && i <= v)
-	{
-		if (v <= j)
-			v = j + 1;
-		BYTE *p = pViewSrc->GetBuffer(u);
-		BYTE *q = pViewDst->GetBuffer(v);
-		memcpy(q + i, p + i, j - i + 1);
-		CWnd *pwndFocus = CWnd::GetFocus();
-		if (pwndFocus != pViewSrc)
-			pViewDst->RepaintRange(i, j);
-		if (pwndFocus != pViewDst)
-			pViewSrc->RepaintRange(i, j);
-		pViewDst->SetModified(TRUE);
-	}
-}
-
-/**
- * @brief Copy all bytes from source view to destination view
- * @note Grows destination buffer as appropriate
- */
-void CHexMergeDoc::CopyAll(CHexMergeView *pViewSrc, CHexMergeView *pViewDst)
-{
-	if (int i = pViewSrc->GetLength())
-	{
-		int j = pViewDst->GetLength();
-		BYTE *p = pViewSrc->GetBuffer(i);
-		BYTE *q = pViewDst->GetBuffer(max(i, j));
-		if (q == 0)
-			AfxThrowMemoryException();
-		memcpy(q, p, i);
-		CWnd *pwndFocus = CWnd::GetFocus();
-		if (pwndFocus != pViewSrc)
-			pViewDst->RepaintRange(0, i);
-		if (pwndFocus != pViewDst)
-			pViewSrc->RepaintRange(0, i);
-		pViewDst->SetModified(TRUE);
-	}
-}
-
-/**
  * @brief Copy selected bytes from left to right
  */
 void CHexMergeDoc::OnL2r()
 {
 	int dstPane = (GetActiveMergeView()->m_nThisPane < m_nBuffers - 1) ? GetActiveMergeView()->m_nThisPane + 1 : m_nBuffers - 1;
 	int srcPane = dstPane - 1;
-	CopySel(m_pView[srcPane], m_pView[dstPane]);
+	CHexMergeView::CopySel(m_pView[srcPane], m_pView[dstPane]);
 }
 
 /**
@@ -773,7 +723,7 @@ void CHexMergeDoc::OnR2l()
 {
 	int dstPane = (GetActiveMergeView()->m_nThisPane > 0) ? GetActiveMergeView()->m_nThisPane - 1 : 0;
 	int srcPane = dstPane + 1;
-	CopySel(m_pView[srcPane], m_pView[dstPane]);
+	CHexMergeView::CopySel(m_pView[srcPane], m_pView[dstPane]);
 }
 
 /**
@@ -783,7 +733,7 @@ void CHexMergeDoc::OnCopyFromLeft()
 {
 	int dstPane = GetActiveMergeView()->m_nThisPane;
 	int srcPane = (dstPane - 1 < 0) ? 0 : dstPane - 1;
-	CopySel(m_pView[srcPane], m_pView[dstPane]);
+	CHexMergeView::CopySel(m_pView[srcPane], m_pView[dstPane]);
 }
 
 /**
@@ -793,7 +743,7 @@ void CHexMergeDoc::OnCopyFromRight()
 {
 	int dstPane = GetActiveMergeView()->m_nThisPane;
 	int srcPane = (dstPane + 1 > m_nBuffers - 1) ? m_nBuffers - 1 : dstPane + 1;
-	CopySel(m_pView[srcPane], m_pView[dstPane]);
+	CHexMergeView::CopySel(m_pView[srcPane], m_pView[dstPane]);
 }
 
 /**
@@ -803,7 +753,7 @@ void CHexMergeDoc::OnAllRight()
 {
 	int dstPane = (GetActiveMergeView()->m_nThisPane < m_nBuffers - 1) ? GetActiveMergeView()->m_nThisPane + 1 : m_nBuffers - 1;
 	int srcPane = dstPane - 1;
-	CopyAll(m_pView[srcPane], m_pView[dstPane]);
+	CHexMergeView::CopyAll(m_pView[srcPane], m_pView[dstPane]);
 }
 
 /**
@@ -813,7 +763,7 @@ void CHexMergeDoc::OnAllLeft()
 {
 	int dstPane = (GetActiveMergeView()->m_nThisPane > 0) ? GetActiveMergeView()->m_nThisPane - 1 : 0;
 	int srcPane = dstPane + 1;
-	CopyAll(m_pView[srcPane], m_pView[dstPane]);
+	CHexMergeView::CopyAll(m_pView[srcPane], m_pView[dstPane]);
 }
 
 /**

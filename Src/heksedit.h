@@ -27,7 +27,7 @@
 #define _HEKSEDIT_H_
 
 #ifndef HEKSEDIT_INTERFACE_VERSION
-#define HEKSEDIT_INTERFACE_VERSION 1
+#define HEKSEDIT_INTERFACE_VERSION 2
 #endif
 
 /**
@@ -54,25 +54,25 @@ public:
 		COLORREF iDiffBkColorValue, iDiffTextColorValue, iSelDiffBkColorValue, iSelDiffTextColorValue;
 	};
 
+	/** @brief Frhed settings. */
 	struct Settings
 	{
-		int iBytesPerLine;
-		int iAutomaticBPL;
-		BYTE_ENDIAN iBinaryMode;
-		int bReadOnly;
-		int bSaveIni;
+		int iBytesPerLine; /**< How many bytes in one line in hex view. */
+		int iAutomaticBPL; /**< Add max amount of bytes that fit to view. */
+		BYTE_ENDIAN iBinaryMode; /**< Binary mode, little/big endian. */
+		int bReadOnly; /**< Is editor in read-only mode? */
+		int bSaveIni; /**< Save INI file when required. */
 		int iFontSize;
-		int iCharacterSet;
-		int iMinOffsetLen;
-		int iMaxOffsetLen;
-		int bAutoOffsetLen;
+		int iCharacterSet; /**< Use OEM or ANSI character set? */
+		int iMinOffsetLen; /**< Minimum numbers used in offset. */
+		int iMaxOffsetLen; /**< Maximum numbers used in offset. */
+		int bAutoOffsetLen; /**< Determine offset length automatically. */
 		int bCenterCaret;
 		int iFontZoom;
 	};
 
 	struct Status
 	{
-		int iFileChanged;
 		int iEnteringMode;
 		int iCurByte;
 		int iCurNibble;
@@ -80,7 +80,7 @@ public:
 		int iVscrollPos;
 		int iHscrollMax;
 		int iHscrollPos;
-		int bSelected;
+		bool bSelected;
 		int iStartOfSelection;
 		int iEndOfSelection;
 	};
@@ -111,6 +111,16 @@ public:
 	virtual void STDMETHODCALLTYPE CMD_zoom(int) = 0;
 	virtual void STDMETHODCALLTYPE CMD_select_all() = 0;
 	virtual void STDMETHODCALLTYPE set_sibling2(IHexEditorWindow *, IHexEditorWindow *) = 0;
+	virtual void STDMETHODCALLTYPE copy_sel_from(IHexEditorWindow *) = 0;
+	virtual void STDMETHODCALLTYPE copy_all_from(IHexEditorWindow *) = 0;
+	virtual void STDMETHODCALLTYPE CMD_edit_undo() = 0;
+	virtual void STDMETHODCALLTYPE CMD_edit_redo() = 0;
+	virtual bool STDMETHODCALLTYPE can_undo() const = 0;
+	virtual bool STDMETHODCALLTYPE can_redo() const = 0;
+	virtual void STDMETHODCALLTYPE set_savepoint() = 0;
+	virtual bool STDMETHODCALLTYPE get_modified() const = 0;
+	virtual void STDMETHODCALLTYPE clear_undorecords() = 0;
+	virtual void STDMETHODCALLTYPE share_undorecords(IHexEditorWindow *) = 0;
 };
 
 #endif // _HEKSEDIT_H_
