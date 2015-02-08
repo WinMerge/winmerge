@@ -82,6 +82,10 @@ BEGIN_MESSAGE_MAP(CHexMergeView, CView)
 	ON_COMMAND(ID_EDIT_FIND, OnEditFind)
 	ON_COMMAND(ID_EDIT_REPLACE, OnEditReplace)
 	ON_COMMAND(ID_EDIT_REPEAT, OnEditRepeat)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
+	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
+	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
@@ -341,7 +345,7 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	if (hr != S_OK)
 		return hr;
 	m_mtime = mtime;
-	SetModified(FALSE);
+	SetSavePoint();
 	hr = SE(DeleteFile(sIntermediateFilename.c_str()));
 	if (hr != S_OK)
 	{
@@ -352,27 +356,27 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 }
 
 /**
- * @brief Get status
- */
-IHexEditorWindow::Status *CHexMergeView::GetStatus()
-{
-	return m_pif->get_status();
-}
-
-/**
  * @brief Get modified flag
  */
 BOOL CHexMergeView::GetModified()
 {
-	return m_pif->get_status()->iFileChanged;
+	return m_pif->get_modified();
 }
 
 /**
  * @brief Set modified flag
  */
-void CHexMergeView::SetModified(BOOL bModified)
+void CHexMergeView::SetSavePoint()
 {
-	m_pif->get_status()->iFileChanged = bModified;
+	m_pif->set_savepoint();
+}
+
+/**
+ * @brief Clear undo records
+ */
+void CHexMergeView::ClearUndoRecords()
+{
+	m_pif->clear_undorecords();
 }
 
 /**
@@ -401,15 +405,6 @@ void CHexMergeView::ResizeWindow()
 }
 
 /**
- * @brief Repaint a range of bytes
- */
-void CHexMergeView::RepaintRange(int i, int j)
-{
-	int iBytesPerLine = m_pif->get_settings()->iBytesPerLine;
-	m_pif->repaint(i / iBytesPerLine, j / iBytesPerLine);
-}
-
-/**
  * @brief Find a sequence of bytes
  */
 void CHexMergeView::OnEditFind()
@@ -434,6 +429,38 @@ void CHexMergeView::OnEditRepeat()
 		m_pif->CMD_findprev();
 	else
 		m_pif->CMD_findnext();
+}
+
+/**
+* @brief Called when "Undo" item is updated
+*/
+void CHexMergeView::OnUpdateEditUndo(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_pif->can_undo());
+}
+
+/**
+ * @brief Undo last action
+ */
+void CHexMergeView::OnEditUndo()
+{
+	m_pif->CMD_edit_undo();
+}
+
+/**
+* @brief Called when "Redo" item is updated
+*/
+void CHexMergeView::OnUpdateEditRedo(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_pif->can_redo());
+}
+
+/**
+ * @brief Redo last action
+ */
+void CHexMergeView::OnEditRedo()
+{
+	m_pif->CMD_edit_redo();
 }
 
 /**
@@ -531,3 +558,22 @@ void CHexMergeView::ZoomText(int amount)
 {
 	m_pif->CMD_zoom(amount);
 }
+
+/**
+ * @brief Copy selected bytes from source view to destination view
+ * @note Grows destination buffer as appropriate
+ */
+void CHexMergeView::CopySel(const CHexMergeView *src, CHexMergeView *dst)
+{
+	dst->m_pif->copy_sel_from(src->m_pif);
+}
+
+/**
+ * @brief Copy all bytes from source view to destination view
+ * @note Grows destination buffer as appropriate
+ */
+void CHexMergeView::CopyAll(const CHexMergeView *src, CHexMergeView *dst)
+{
+	dst->m_pif->copy_all_from(src->m_pif);
+}
+

@@ -47,18 +47,18 @@ protected: // create from serialization only
 public:
 	HRESULT LoadFile(LPCTSTR);
 	HRESULT SaveFile(LPCTSTR);
-	IHexEditorWindow *GetInterface() const { return m_pif; }
-	IHexEditorWindow::Status *GetStatus();
 	BYTE *GetBuffer(int);
 	int GetLength();
 	BOOL GetModified();
-	void SetModified(BOOL);
+	void SetSavePoint();
+	void ClearUndoRecords();
 	BOOL GetReadOnly();
 	void SetReadOnly(BOOL);
 	void ResizeWindow();
-	void RepaintRange(int, int);
 	BOOL IsFileChangedOnDisk(LPCTSTR);
 	void ZoomText(int amount);
+	static void CopySel(const CHexMergeView *src, CHexMergeView *dst);
+	static void CopyAll(const CHexMergeView *src, CHexMergeView *dst);
 	// Overrides
 protected:
 	virtual void OnDraw(CDC*);
@@ -84,6 +84,10 @@ protected:
 	afx_msg void OnEditFind();
 	afx_msg void OnEditReplace();
 	afx_msg void OnEditRepeat();
+	afx_msg void OnEditUndo();
+	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
+	afx_msg void OnEditRedo();
+	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnEditCut();
 	afx_msg void OnEditCopy();
 	afx_msg void OnEditPaste();
