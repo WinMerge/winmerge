@@ -206,7 +206,6 @@ public:
 	int Rescan(bool &bBinary, IDENTLEVEL &identical, bool bForced = false);
 	void CheckFileChanged(void);
 	void ShowRescanError(int nRescanResult, IDENTLEVEL identical);
-	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, bool bInsert, CMergeEditView *pList);
 	bool Undo();
 	void CopyAllList(int srcPane, int dstPane);
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff);
