@@ -1392,6 +1392,9 @@
     <ClInclude Include="DirActions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HexMergeView.h">
+      <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">
