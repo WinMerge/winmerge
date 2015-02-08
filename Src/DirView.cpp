@@ -861,7 +861,8 @@ void CDirView::ConfirmAndPerformActions(FileActionScript & actionList)
 		dlg.m_toText = e.m_toText;
 		dlg.m_fromPath = e.m_fromPath;
 		dlg.m_toPath = e.m_toPath;
-		if (dlg.DoModal() != IDOK)
+		INT_PTR ans = dlg.DoModal();
+		if (ans != IDOK && ans != IDYES)
 			return;
 	}
 	PerformActionList(actionList);
