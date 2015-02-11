@@ -1560,8 +1560,11 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
 	// Create a new merge doc
 	DocClass::m_nBuffersTemp = nFiles;
 	DocClass *pMergeDoc = (DocClass*)pTemplate->OpenDocumentFile(NULL);
-	pDirDoc->AddMergeDoc(pMergeDoc);
-	pMergeDoc->SetDirDoc(pDirDoc);
+	if (pMergeDoc)
+	{
+		pDirDoc->AddMergeDoc(pMergeDoc);
+		pMergeDoc->SetDirDoc(pDirDoc);
+	}
 	return pMergeDoc;
 }
 
