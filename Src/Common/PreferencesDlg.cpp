@@ -55,6 +55,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pageVss(regOptions)
 , m_pageShell(regOptions)
 , m_pageCompareFolder(regOptions)
+, m_pageCompareBinary(regOptions)
 , m_pageCompareImage(regOptions)
 {
 	UNREFERENCED_PARAMETER(nMenuID);
@@ -100,6 +101,7 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageGeneral, IDS_OPTIONSPG_GENERAL);
 	AddPage(&m_pageCompare, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_GENCOMPARE);
 	AddPage(&m_pageCompareFolder, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_FOLDERCOMPARE);
+	AddPage(&m_pageCompareBinary, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_BINARYCOMPARE);
 	AddPage(&m_pageCompareImage, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_IMAGECOMPARE);
 	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR);
 	AddPage(&m_pageMergeColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_MERGECOLORS);
@@ -260,6 +262,7 @@ void CPreferencesDlg::ReadOptions(BOOL bUpdate)
 	m_pageSystem.ReadOptions();
 	m_pageCompare.ReadOptions();
 	m_pageCompareFolder.ReadOptions();
+	m_pageCompareBinary.ReadOptions();
 	m_pageCompareImage.ReadOptions();
 	m_pageEditor.ReadOptions();
 	m_pageCodepage.ReadOptions();
@@ -277,6 +280,7 @@ void CPreferencesDlg::ReadOptions(BOOL bUpdate)
 		SafeUpdatePage(&m_pageSystem, FALSE);
 		SafeUpdatePage(&m_pageCompare, FALSE);
 		SafeUpdatePage(&m_pageCompareFolder, FALSE);
+		SafeUpdatePage(&m_pageCompareBinary, FALSE);
 		SafeUpdatePage(&m_pageCompareImage, FALSE);
 		SafeUpdatePage(&m_pageEditor, FALSE);
 		SafeUpdatePage(&m_pageCodepage, FALSE);
@@ -296,6 +300,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pageSystem.WriteOptions();
 	m_pageCompare.WriteOptions();
 	m_pageCompareFolder.WriteOptions();
+	m_pageCompareBinary.WriteOptions();
 	m_pageCompareImage.WriteOptions();
 	m_pageEditor.WriteOptions();
 	m_pageMergeColors.WriteOptions();

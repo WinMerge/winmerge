@@ -1397,6 +1397,7 @@
     </ClCompile>
     <ClCompile Include="PropCompare.cpp">
     </ClCompile>
+    <ClCompile Include="PropCompareBinary.cpp" />
     <ClCompile Include="PropCompareFolder.cpp" />
     <ClCompile Include="PropCompareImage.cpp" />
     <ClCompile Include="PropEditor.cpp">
@@ -1914,6 +1915,7 @@
     <ClInclude Include="PropCodepage.h" />
     <ClInclude Include="PropColors.h" />
     <ClInclude Include="PropCompare.h" />
+    <ClInclude Include="PropCompareBinary.h" />
     <ClInclude Include="PropCompareFolder.h" />
     <ClInclude Include="PropCompareImage.h" />
     <ClInclude Include="PropEditor.h" />

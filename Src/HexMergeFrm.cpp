@@ -90,45 +90,6 @@ CHexMergeFrame::~CHexMergeFrame()
 }
 
 /**
- * @brief Customize a heksedit control's settings
- */
-static void Customize(IHexEditorWindow::Settings *settings)
-{
-	settings->bSaveIni = FALSE;
-	settings->iAutomaticBPL = FALSE;
-	settings->iBytesPerLine = 16;
-	settings->iFontSize = 8;
-}
-
-/**
- * @brief Customize a heksedit control's colors
- */
-static void Customize(IHexEditorWindow::Colors *colors)
-{
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
-	colors->iSelBkColorValue = RGB(224, 224, 224);
-	colors->iDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF);
-	colors->iSelDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
-	colors->iDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
-	if (colors->iDiffTextColorValue == 0xFFFFFFFF)
-		colors->iDiffTextColorValue = 0;
-	colors->iSelDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
-	if (colors->iSelDiffTextColorValue == 0xFFFFFFFF)
-		colors->iSelDiffTextColorValue = 0;
-}
-
-/**
- * @brief Customize a heksedit control's settings and colors
- */
-static void Customize(IHexEditorWindow *pif)
-{
-	Customize(pif->get_settings());
-	Customize(pif->get_colors());
-	LANGID wLangID = (LANGID)GetThreadLocale();
-	pif->load_lang(wLangID);
-}
-
-/**
  * @brief Create a status bar to be associated with a heksedit control
  */
 void CHexMergeFrame::CreateHexWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndPane)
@@ -219,15 +180,11 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		pif[1]->share_undorecords(pif[0]);
 		pif[2]->share_undorecords(pif[0]);
 	}
-	for (int nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
-	{
-		// adjust a few settings and colors
-		Customize(pif[nPane]);
-	}
 
 	// tell merge doc about these views
 	m_pMergeDoc = dynamic_cast<CHexMergeDoc *>(pContext->m_pCurrentDoc);
 	m_pMergeDoc->SetMergeViews(pView);
+	m_pMergeDoc->RefreshOptions();
 
 	return TRUE;
 }

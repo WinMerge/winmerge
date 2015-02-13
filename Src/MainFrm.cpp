@@ -638,16 +638,29 @@ int CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	const DWORD dwFlags[] /*=0*/, const PackingInfo * infoUnpacker /*= NULL*/)
 {
 	int pane;
-	FileFilterHelper filter;
-	filter.UseMask(true);
-	filter.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
+	FileFilterHelper filterImg, filterBin;
+	filterImg.UseMask(true);
+	filterImg.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
+	filterBin.UseMask(true);
+	filterBin.SetMask(GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS));
 	for (pane = 0; pane < nFiles; ++pane)
-		if (filter.includeFile(ifileloc[pane].filepath))
-			break;
-	if (pane != nFiles)
-		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, infoUnpacker);
-	else
-		return ShowMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, infoUnpacker);
+	{
+		if (filterImg.includeFile(ifileloc[pane].filepath))
+			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, infoUnpacker);
+		else if (filterBin.includeFile(ifileloc[pane].filepath))
+		{
+			bool bRO[3];
+			for (int pane = 0; pane < nFiles; pane++)
+				bRO[pane] = (dwFlags) ? ((dwFlags[pane] & FFILEOPEN_READONLY) > 0) : FALSE;
+			ShowHexMergeDoc(pDirDoc, 
+				(nFiles == 2) ? 
+					PathContext(ifileloc[0].filepath, ifileloc[1].filepath) :
+					PathContext(ifileloc[0].filepath, ifileloc[1].filepath, ifileloc[2].filepath)
+				, bRO);
+			return 0;
+		}
+	}
+	return ShowMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, infoUnpacker);
 }
 
 /**
@@ -964,6 +977,14 @@ void CMainFrame::OnOptions()
 		{
 			CDirDoc * pDirDoc = dirDocs.GetNext(pos);
 			pDirDoc->RefreshOptions();
+		}
+
+		const HexMergeDocList &hexdocs = GetAllHexMergeDocs();
+		pos = hexdocs.GetHeadPosition();
+		while (pos)
+		{
+			CHexMergeDoc * pMergeDoc = hexdocs.GetNext(pos);
+			pMergeDoc->RefreshOptions();
 		}
 	}
 }

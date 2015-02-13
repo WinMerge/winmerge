@@ -123,6 +123,8 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, false);
 	m_pOptions->InitOption(OPT_CMP_IGNORE_REPARSE_POINTS, false);
 
+	m_pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
+
 	m_pOptions->InitOption(OPT_CMP_IMG_FILEPATTERNS, _T("*.bmp;*.cut;*.dds;*.exr;*.g3;*.gif;*.hdr;*.ico;*.iff;*.lbm;*.j2k;*.j2c;*.jng;*.jp2;*.jpg;*.jif;*.jpeg;*.jpe;*.jxr;*.wdp;*.hdp;*.koa;*.mng;*.pcd;*.pcx;*.pfm;*.pct;*.pict;*.pic;*.png;*.pbm;*.pgm;*.ppm;*.psd;*.ras;*.sgi;*.rgb;*.rgba;*.bw;*.tga;*.targa;*.tif;*.tiff;*.wap;*.wbmp;*.wbm;*.webp;*.xbm;*.xpm"));
 	m_pOptions->InitOption(OPT_CMP_IMG_SHOWDIFFERENCES, true);
 	m_pOptions->InitOption(OPT_CMP_IMG_OVERLAYMOVE, 0);

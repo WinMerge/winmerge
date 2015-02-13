@@ -121,6 +121,10 @@ public:
 	virtual bool STDMETHODCALLTYPE get_modified() const = 0;
 	virtual void STDMETHODCALLTYPE clear_undorecords() = 0;
 	virtual void STDMETHODCALLTYPE share_undorecords(IHexEditorWindow *) = 0;
+	virtual void STDMETHODCALLTYPE CMD_view_settings() = 0;
+	virtual void STDMETHODCALLTYPE CMD_binarymode() = 0;
+	virtual void STDMETHODCALLTYPE CMD_character_set() = 0;
+	virtual void STDMETHODCALLTYPE read_ini_data(TCHAR *key = 0) = 0;
 };
 
 #endif // _HEKSEDIT_H_
