@@ -90,45 +90,6 @@ CHexMergeFrame::~CHexMergeFrame()
 }
 
 /**
- * @brief Customize a heksedit control's settings
- */
-static void Customize(IHexEditorWindow::Settings *settings)
-{
-	settings->bSaveIni = FALSE;
-	settings->iAutomaticBPL = FALSE;
-	settings->iBytesPerLine = 16;
-	settings->iFontSize = 8;
-}
-
-/**
- * @brief Customize a heksedit control's colors
- */
-static void Customize(IHexEditorWindow::Colors *colors)
-{
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
-	colors->iSelBkColorValue = RGB(224, 224, 224);
-	colors->iDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF);
-	colors->iSelDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
-	colors->iDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
-	if (colors->iDiffTextColorValue == 0xFFFFFFFF)
-		colors->iDiffTextColorValue = 0;
-	colors->iSelDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
-	if (colors->iSelDiffTextColorValue == 0xFFFFFFFF)
-		colors->iSelDiffTextColorValue = 0;
-}
-
-/**
- * @brief Customize a heksedit control's settings and colors
- */
-static void Customize(IHexEditorWindow *pif)
-{
-	Customize(pif->get_settings());
-	Customize(pif->get_colors());
-	LANGID wLangID = (LANGID)GetThreadLocale();
-	pif->load_lang(wLangID);
-}
-
-/**
  * @brief Create a status bar to be associated with a heksedit control
  */
 void CHexMergeFrame::CreateHexWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndPane)
@@ -188,13 +149,8 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
 		pView[nPane] = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0, nPane));
 
-	m_wndStatusBar[0].m_cxRightBorder = 4;
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
-	{
-		pView[nPane]->ModifyStyle(0, WS_THICKFRAME); // Create an SBARS_SIZEGRIP
 		CreateHexWndStatusBar(m_wndStatusBar[nPane], pView[nPane]);
-		pView[nPane]->ModifyStyle(WS_THICKFRAME, 0);
-	}
 	CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
 	m_rectBorder.bottom = size.cy;
 
@@ -224,15 +180,11 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		pif[1]->share_undorecords(pif[0]);
 		pif[2]->share_undorecords(pif[0]);
 	}
-	for (int nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
-	{
-		// adjust a few settings and colors
-		Customize(pif[nPane]);
-	}
 
 	// tell merge doc about these views
 	m_pMergeDoc = dynamic_cast<CHexMergeDoc *>(pContext->m_pCurrentDoc);
 	m_pMergeDoc->SetMergeViews(pView);
+	m_pMergeDoc->RefreshOptions();
 
 	return TRUE;
 }
@@ -351,13 +303,17 @@ void CHexMergeFrame::UpdateHeaderSizes()
 		}
 		// resize controls in header dialog bar
 		m_wndFilePathBar.Resize(w);
-		RECT rc;
-		GetClientRect(&rc);
+		RECT rcFrame, rc;
+		GetClientRect(&rcFrame);
+		rc = rcFrame;
 		rc.top = rc.bottom - m_rectBorder.bottom;
 		rc.right = 0;
 		for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
 		{
-			rc.right += w[pane] + 10;
+			if (pane < m_wndSplitter.GetColumnCount() - 1)
+				rc.right += w[pane] + 6;
+			else
+				rc.right = rcFrame.right;
 			m_wndStatusBar[pane].MoveWindow(&rc);
 			rc.left = rc.right;
 		}

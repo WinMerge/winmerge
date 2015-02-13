@@ -60,10 +60,10 @@
 #define IDD_DIR_FILTER                  239
 #define IDD_ENCODINGERROR               240
 #define IDD_PROPPAGE_COMPARE_IMAGE      241
+#define IDD_PROPPAGE_COMPARE_BINARY     242
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
-#define IDB_OLDSPLASH                   310
 #define IDB_EDIT_COPY                   316
 #define IDB_EDIT_CUT                    317
 #define IDB_EDIT_PASTE                  318
@@ -158,10 +158,8 @@
 #define IDC_PROJECT_COMBO               1004
 #define IDC_MESSAGE                     1005
 #define IDC_EXT_COMBO                   1005
-#define IDC_DOVSS_CHECK                 1006
 #define IDC_PATH_EDIT                   1007
 #define IDC_BROWSE_BUTTON               1008
-#define IDC_BACKUP_CHECK                1009
 #define IDC_SCROLL_CHECK                1010
 #define IDC_VSS_L1                      1010
 #define IDC_WHITESPACE_CHECK            1011
@@ -171,13 +169,11 @@
 #define IDC_TAB_EDIT                    1013
 #define IDC_WWW                         1014
 #define IDC_IGNCASE_CHECK               1014
-#define IDC_EMAIL                       1015
 #define IDC_COMPANY                     1016
 #define IDC_COMMENTS                    1017
 #define IDC_VER_SYS                     1018
 #define IDC_HILITE_CHECK                1019
 #define IDC_IGNOREREGEXP                1020
-#define IDC_EDITPATTERN                 1021
 #define IDC_ALL_WHITE                   1024
 #define IDC_WHITE_CHANGE                1025
 #define IDC_WHITESPACE                  1026
@@ -186,12 +182,10 @@
 #define IDC_PASSWORD                    1029
 #define IDC_DIFFERENCE_COLOR            1031
 #define IDC_SEL_DIFFERENCE_COLOR        1032
-#define IDC_EDIT1                       1033
 #define IDC_PROP_INSERT_TABS            1034
 #define IDC_PROP_INSERT_SPACES          1035
 #define IDC_LANGUAGE_LIST               1037
 #define IDC_AUTOMRESCAN_CHECK           1038
-#define IDC_FILE_FILTER                 1039
 #define IDC_DIFFERENCE_USE_TEXT_COLOR   2040
 #define IDC_DIFFERENCE_TEXT_COLOR       1040
 #define IDC_DIFFERENCE_DELETED_COLOR    1041
@@ -210,15 +204,8 @@
 #define IDC_SEL_MOVEDBLOCK_USE_TEXT_COLOR 2051
 #define IDC_SEL_MOVEDBLOCK_TEXT_COLOR   1051
 #define IDC_SEL_MOVEDBLOCK_DELETED_COLOR 1052
-#define IDC_GROUP_SHOW                  1053
-#define IDC_LIST_SHOW                   1054
 #define IDC_UP                          1055
 #define IDC_DOWN                        1056
-#define IDC_GROUP_HIDE                  1057
-#define IDC_LIST_HIDE                   1058
-#define IDC_ADD                         1059
-#define IDC_REMOVE                      1060
-#define IDC_EDIT_FILE_FILTER            1061
 #define IDC_PRIVATEBUILD                1062
 #define IDC_MIXED_EOL                   1063
 #define IDC_DIFF_FILE1                  1064
@@ -255,17 +242,6 @@
 #define IDC_EXT_EDITOR_PATH             1092
 #define IDC_DIFF_SWAPFILES              1093
 #define IDC_DIFF_OPENTOEDITOR           1094
-#define IDC_COUNT_LFOLDER               1095
-#define IDC_COUNT_RFOLDER               1096
-#define IDC_COUNT_FILESKIP              1097
-#define IDC_COUNT_FOLDERSKIP            1098
-#define IDC_COUNT_ERROR                 1099
-#define IDC_COUNT_EQUAL                 1100
-#define IDC_COUNT_NOTEQUAL              1101
-#define IDC_COUNT_BINARYSAME            1102
-#define IDC_COUNT_BINARYDIFF            1103
-#define IDC_COUNT_LFILE                 1104
-#define IDC_COUNT_RFILE                 1105
 #define IDC_COMPARISON_STOP             1106
 #define IDC_DIFF_INCLCMDLINE            1108
 #define IDC_WMGOTO_FILELEFT             1109
@@ -407,16 +383,12 @@
 #define IDC_AFFECTS_GROUP               1241
 #define IDC_AFFECTS_LEFT_BTN            1242
 #define IDC_AFFECTS_MIDDLE_BTN          2242
-#define IDC_AFFECTS_BOTH_BTN            1243
 #define IDC_AFFECTS_RIGHT_BTN           1244
-#define IDC_AFFECTS_SUMMARY             1245
 #define IDC_LOAD_FILES_LABEL            1246
 #define IDC_LOAD_CODEPAGE_TEXTBOX       1247
-#define IDC_LOAD_CODEPAGE_BROWSE        1248
 #define IDC_LOAD_SAVE_SAME_CODEPAGE     1249
 #define IDC_SAVE_FILES_LABEL            1250
 #define IDC_SAVE_CODEPAGE_TEXTBOX       1251
-#define IDC_SAVE_CODEPAGE_BROWSE        1252
 #define IDC_LOADING_GROUP               1253
 #define IDC_SAVING_GROUP                1254
 #define IDC_LEFT_FILES_LABEL            1260
@@ -560,6 +532,7 @@
 #define IDS_OPTIONSPG_GENCOMPARE        9054
 #define IDS_OPTIONSPG_FOLDERCOMPARE     9055
 #define IDS_OPTIONSPG_IMAGECOMPARE      9056
+#define IDS_OPTIONSPG_BINARYCOMPARE     9057
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002
@@ -570,7 +543,6 @@
 #define IDS_WINX64                      16388
 #define IDS_OPTIONS_TITLE               16400
 #define IDS_MESSAGE_BOX_ARE_RESET       16401
-#define IDS_DIFF_OPEN_NO_SET_PROPS      16402
 #define IDS_OPTIONS_INVALID_TABSIZE     16404
 #define IDS_OPEN_TITLE                  16416
 #define IDS_PROGRAMFILES                16417
@@ -657,7 +629,6 @@
 #define IDS_SAVE_AS_TITLE               17232
 #define IDS_SAVE_FMT                    17233
 #define IDS_SAVEREADONLY_FMT            17234
-#define IDS_ERROR_FILE_WRITEABLE        17235
 #define IDS_ERROR_BACKUP                17236
 #define IDS_BACKUP_FAILED_PROMPT        17237
 #define IDS_FILESAVE_FAILED             17238
@@ -705,7 +676,6 @@
 #define IDS_DEL_LEFT_FMT2               17618
 #define IDS_DEL_RIGHT_FMT2              17619
 #define IDS_DEL_BOTH_FMT2               17620
-#define IDS_SELECT_DESTFOLDER           17621
 #define IDS_MOVE_LEFT_TO                17622
 #define IDS_MOVE_RIGHT_TO               17623
 #define IDS_MOVE_LEFT_TO2               17624
@@ -731,7 +701,6 @@
 #define ID_DIR_COPY_PATHNAMES_RIGHT     17657
 #define ID_DIR_COPY_PATHNAMES_BOTH      17658
 #define IDS_ERROR_EXECUTE_FILE          17659
-#define IDS_UNKNOWN_EXECUTE_FILE        17660
 #define IDS_UNKNOWN_ARCHIVE_FORMAT      17664
 #define IDS_COLHDR_FILENAME             17696
 #define IDS_COLHDR_DIR                  17697
@@ -838,9 +807,7 @@
 #define IDS_FILEERROR                   18003
 #define IDS_TEMP_FILEERROR              18005
 #define IDS_SUGGEST_IGNOREEOL           18007
-#define IDS_SUGGEST_PRESERVEEOL         18008
 #define IDS_SUGGEST_IGNORECODEPAGE      18010
-#define IDS_DIFFERENT_UNICODINGS        18011
 #define IDS_INVALID_DIRECTORY           18012
 #define IDS_CANNOT_OPEN_BINARYFILE      18013
 #define IDS_LOSSY_TRANSCODING_FIRST     18014
@@ -873,7 +840,6 @@
 #define IDS_SAVEFILES_FORPATCH          18412
 #define IDS_MUST_SPECIFY_OUTPUT         18413
 #define IDS_FOLDER_NOTEXIST             18414
-#define IDS_DIR_RESULTS_EMPTIED         18448
 #define IDS_NO_ZIP_SUPPORT              18449
 #define IDS_MERGE7Z_ENABLE_0            18450
 #define IDS_MERGE7Z_ENABLE_2            18451
@@ -884,23 +850,6 @@
 #define IDS_OPT_IMPORT_ERR              18456
 #define IDS_OPT_EXPORT_ERR              18457
 #define IDS_CLOSEALL_WINDOWS            18458
-#define IDS_REGEXP_ERROR                18480
-#define IDS_REGEXP_NOMATCH              18481
-#define IDS_REGEXP_INVALID              18482
-#define IDS_REGEXP_COLL_CHAR            18483
-#define IDS_REGEXP_CHAR_CLASS           18484
-#define IDS_REGEXP_TRAILING_BS          18485
-#define IDS_REGEXP_INVALID_BACKREF      18486
-#define IDS_REGEXP_UNMATCHED_BRACK      18487
-#define IDS_REGEXP_UNMATCHED_PAREN      18488
-#define IDS_REGEXP_UNMATCHED_BRACE      18489
-#define IDS_REGEXP_INVALID_BRACE        18490
-#define IDS_REGEXP_RANGE_END            18491
-#define IDS_REGEXP_OUTOFMEM             18492
-#define IDS_REGEXP_INVALID_PREV_EXP     18493
-#define IDS_REGEXP_PREMATURE_END        18494
-#define IDS_REGEXP_TOO_BIG              18495
-#define IDS_REGEXP_UNMATCHED_RPAREN     18496
 #define IDS_VCS_NONE                    18497
 #define IDS_VCS_VSS4                    18498
 #define IDS_VCS_VSS5                    18499
@@ -1071,7 +1020,6 @@
 #define ID_DISPLAY_MOVED_ALL            33089
 #define ID_DISPLAY_MOVED_FOLLOW_DIFF    33090
 #define ID_LOCBAR_GOTODIFF              33091
-#define ID_LOCBAR_GOTODIFF_FMT          33092
 #define ID_LOCBAR_GOTOLINE_FMT          33093
 #define ID_HELP_MERGE7ZMISMATCH         33094
 #define ID_FILE_OPENPROJECT             33095
@@ -1210,6 +1158,11 @@
 #define IDC_COMPAREIMAGE_PATTERNS       33249
 #define IDC_COMPAREIMAGE_DEFAULTS       33250
 #define IDC_PLUGIN_SETTINGS             33251
+#define IDC_COMPAREBINARY_PATTERNS      33252
+#define IDC_COMPAREBINARY_VIEWSETTINGS  33253
+#define IDC_COMPAREBINARY_BINARYMODE    33254
+#define IDC_COMPAREBINARY_CHARACTERSET  33255
+#define IDC_COMPAREBINARY_DEFAULTS      33256
 
 // Next default values for new objects
 //
@@ -1217,7 +1170,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        242
-#define _APS_NEXT_COMMAND_VALUE         33252
+#define _APS_NEXT_COMMAND_VALUE         33255
 #define _APS_NEXT_CONTROL_VALUE         1358
 #define _APS_NEXT_SYMED_VALUE           115
 #endif

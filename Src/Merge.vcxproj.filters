@@ -742,6 +742,9 @@
     <ClCompile Include="CompareEngines\BinaryCompare.cpp">
       <Filter>Compare Engines</Filter>
     </ClCompile>
+    <ClCompile Include="PropCompareBinary.cpp">
+      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
+    </ClCompile>
     <ClCompile Include="SourceControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1394,6 +1397,9 @@
     </ClInclude>
     <ClInclude Include="HexMergeView.h">
       <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareBinary.h">
+      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

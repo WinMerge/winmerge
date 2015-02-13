@@ -513,7 +513,9 @@ Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Docs\Links.t
 Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Frhed
 Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
 
 ;WinIMerge
 Source: ..\..\Externals\winimerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
