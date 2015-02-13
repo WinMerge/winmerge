@@ -126,6 +126,24 @@ SharedMemoryImpl::~SharedMemoryImpl()
 	close();
 }
 
+static bool isbadreadptr(const void *src, size_t len)
+{
+#ifdef _WIN32
+	__try
+	{
+		int dmy = 0;
+		for (size_t i = 0; i < len; i += 4096)
+			dmy += (static_cast<const char *>(src))[i];
+		return false;
+	}
+	__except (true)
+	{
+	}
+	return true;
+#else
+	return false;
+#endif
+}
 
 void SharedMemoryImpl::map()
 {
@@ -133,7 +151,7 @@ void SharedMemoryImpl::map()
 	if (_mode == PAGE_READWRITE)
 		access = FILE_MAP_WRITE;
 	LPVOID addr = MapViewOfFile(_memHandle, access, 0, 0, _size);
-	if (!addr)
+	if (!addr || isbadreadptr(addr, _size))
 		throw SystemException("Cannot map shared memory object", _name);
 
 	_address = static_cast<char*>(addr);

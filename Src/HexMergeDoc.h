@@ -84,6 +84,7 @@ public:
 	bool GenerateReport(LPCTSTR szFileName) { return true; }
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
+	void RefreshOptions();
 	HRESULT OpenDocs(const PathContext &paths, const bool bRO[]);
 	void CheckFileChanged(void);
 private:
