@@ -188,13 +188,8 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
 		pView[nPane] = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0, nPane));
 
-	m_wndStatusBar[0].m_cxRightBorder = 4;
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
-	{
-		pView[nPane]->ModifyStyle(0, WS_THICKFRAME); // Create an SBARS_SIZEGRIP
 		CreateHexWndStatusBar(m_wndStatusBar[nPane], pView[nPane]);
-		pView[nPane]->ModifyStyle(WS_THICKFRAME, 0);
-	}
 	CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
 	m_rectBorder.bottom = size.cy;
 
@@ -351,13 +346,17 @@ void CHexMergeFrame::UpdateHeaderSizes()
 		}
 		// resize controls in header dialog bar
 		m_wndFilePathBar.Resize(w);
-		RECT rc;
-		GetClientRect(&rc);
+		RECT rcFrame, rc;
+		GetClientRect(&rcFrame);
+		rc = rcFrame;
 		rc.top = rc.bottom - m_rectBorder.bottom;
 		rc.right = 0;
 		for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
 		{
-			rc.right += w[pane] + 10;
+			if (pane < m_wndSplitter.GetColumnCount() - 1)
+				rc.right += w[pane] + 6;
+			else
+				rc.right = rcFrame.right;
 			m_wndStatusBar[pane].MoveWindow(&rc);
 			rc.left = rc.right;
 		}
