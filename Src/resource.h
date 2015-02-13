@@ -60,6 +60,7 @@
 #define IDD_DIR_FILTER                  239
 #define IDD_ENCODINGERROR               240
 #define IDD_PROPPAGE_COMPARE_IMAGE      241
+#define IDD_PROPPAGE_COMPARE_BINARY     242
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
@@ -531,6 +532,7 @@
 #define IDS_OPTIONSPG_GENCOMPARE        9054
 #define IDS_OPTIONSPG_FOLDERCOMPARE     9055
 #define IDS_OPTIONSPG_IMAGECOMPARE      9056
+#define IDS_OPTIONSPG_BINARYCOMPARE     9057
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002
@@ -1156,6 +1158,11 @@
 #define IDC_COMPAREIMAGE_PATTERNS       33249
 #define IDC_COMPAREIMAGE_DEFAULTS       33250
 #define IDC_PLUGIN_SETTINGS             33251
+#define IDC_COMPAREBINARY_PATTERNS      33252
+#define IDC_COMPAREBINARY_VIEWSETTINGS  33253
+#define IDC_COMPAREBINARY_BINARYMODE    33254
+#define IDC_COMPAREBINARY_CHARACTERSET  33255
+#define IDC_COMPAREBINARY_DEFAULTS      33256
 
 // Next default values for new objects
 //
@@ -1163,7 +1170,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        242
-#define _APS_NEXT_COMMAND_VALUE         33252
+#define _APS_NEXT_COMMAND_VALUE         33255
 #define _APS_NEXT_CONTROL_VALUE         1358
 #define _APS_NEXT_SYMED_VALUE           115
 #endif

@@ -602,6 +602,57 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 	SetTitle(NULL);
 }
 
+
+/**
+ * @brief Customize a heksedit control's settings
+ */
+static void Customize(IHexEditorWindow::Settings *settings)
+{
+	settings->bSaveIni = FALSE;
+	//settings->iAutomaticBPL = FALSE;
+	//settings->iBytesPerLine = 16;
+	//settings->iFontSize = 8;
+}
+
+/**
+ * @brief Customize a heksedit control's colors
+ */
+static void Customize(IHexEditorWindow::Colors *colors)
+{
+	COptionsMgr *pOptionsMgr = GetOptionsMgr();
+	colors->iSelBkColorValue = RGB(224, 224, 224);
+	colors->iDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF);
+	colors->iSelDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
+	colors->iDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
+	if (colors->iDiffTextColorValue == 0xFFFFFFFF)
+		colors->iDiffTextColorValue = 0;
+	colors->iSelDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+	if (colors->iSelDiffTextColorValue == 0xFFFFFFFF)
+		colors->iSelDiffTextColorValue = 0;
+}
+
+/**
+ * @brief Customize a heksedit control's settings and colors
+ */
+static void Customize(IHexEditorWindow *pif)
+{
+	Customize(pif->get_settings());
+	Customize(pif->get_colors());
+	//LANGID wLangID = (LANGID)GetThreadLocale();
+	//pif->load_lang(wLangID);
+}
+
+void CHexMergeDoc::RefreshOptions()
+{
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		IHexEditorWindow *pif = m_pView[nBuffer]->GetInterface();
+		pif->read_ini_data();
+		Customize(pif);
+		pif->resize_window();
+	}
+}
+
 /**
  * @brief Update document filenames to title
  */

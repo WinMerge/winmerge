@@ -169,6 +169,9 @@ const TCHAR OPT_CMP_IMG_BACKCOLOR[] = _T("Settings/ImageBackColor");
 const TCHAR OPT_CMP_IMG_DIFFBLOCKSIZE[] = _T("Settings/ImageDiffBlockSize");
 const TCHAR OPT_CMP_IMG_THRESHOLD[] = _T("Settings/ImageColorDistanceThreshold");
 
+// Image Binary options
+const TCHAR OPT_CMP_BIN_FILEPATTERNS[] = _T("Settings/BinaryFilePatterns");
+
 // Multidoc enable/disable per document type
 const TCHAR OPT_MULTIDOC_DIRDOCS[] = _T("Settings/MultiDirDocs");
 const TCHAR OPT_MULTIDOC_MERGEDOCS[] = _T("Settings/MultiMergeDocs");
