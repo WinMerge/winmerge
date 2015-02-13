@@ -493,6 +493,7 @@ Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Languages\de.p
 Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED_vc10\x64\UnicodeRelease\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
 
 ;WinIMerge
 Source: ..\..\Externals\winimerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
