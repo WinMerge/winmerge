@@ -109,8 +109,6 @@ END_MESSAGE_MAP()
 CHexMergeView::CHexMergeView()
 : m_pif(0)
 , m_nThisPane(0)
-, m_mtime(0)
-, m_size(0)
 {
 }
 
@@ -251,21 +249,16 @@ int CHexMergeView::GetLength()
  */
 BOOL CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
 {
-	// NB: FileTimes are measured in 100 nanosecond intervals since 1601-01-01.
-	BOOL bChanged = FALSE;
-	HANDLE h = CreateFile(path, FILE_READ_ATTRIBUTES, FILE_SHARE_READ|FILE_SHARE_WRITE,
-		0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
-	if (h != INVALID_HANDLE_VALUE)
-	{
-		UINT64 mtime = GetLastWriteTime(h);
-		UINT64 lower = min(mtime, m_mtime);
-		UINT64 upper = max(mtime, m_mtime);
-		BOOL bIgnoreSmallDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
-		UINT64 tolerance = bIgnoreSmallDiff ? SmallTimeDiff * 10000000 : 0;
-		bChanged = upper - lower > tolerance || m_size != GetFileSize(h, 0);
-		CloseHandle(h);
-	}
-	return bChanged;
+	DiffFileInfo dfi;
+	dfi.Update(path);
+	int tolerance = 0;
+	if (GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME))
+		tolerance = SmallTimeDiff; // From MainFrm.h
+	int64_t timeDiff = dfi.mtime - m_fileInfo.mtime;
+	if (timeDiff < 0) timeDiff = -timeDiff;
+	if ((timeDiff > tolerance * Poco::Timestamp::resolution()) || (dfi.size != m_fileInfo.size))
+		return true;
+	return false;
 }
 
 /**
@@ -279,8 +272,7 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 	HRESULT hr = SE(h != INVALID_HANDLE_VALUE);
 	if (hr != S_OK)
 		return hr;
-	m_mtime = GetLastWriteTime(h);
-	DWORD length = m_size = GetFileSize(h, 0);
+	DWORD length = GetFileSize(h, 0);
 	hr = SE(length != INVALID_FILE_SIZE);
 	if (hr == S_OK)
 	{
@@ -297,6 +289,7 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 		}
 	}
 	CloseHandle(h);
+	m_fileInfo.Update(path);
 	return hr;
 }
 
@@ -337,14 +330,13 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 		return E_POINTER;
 	DWORD cb = 0;
 	hr = SE(WriteFile(h, buffer, length, &cb, 0) && cb == length);
-	UINT64 mtime = GetLastWriteTime(h);
 	CloseHandle(h);
 	if (hr != S_OK)
 		return hr;
 	hr = SE(CopyFile(sIntermediateFilename.c_str(), path, FALSE));
 	if (hr != S_OK)
 		return hr;
-	m_mtime = mtime;
+	m_fileInfo.Update(path);
 	SetSavePoint();
 	hr = SE(DeleteFile(sIntermediateFilename.c_str()));
 	if (hr != S_OK)

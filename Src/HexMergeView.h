@@ -25,6 +25,8 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
+#include "DiffFileInfo.h"
+
 class IMergeEditStatus;
 class CHexMergeDoc;
 class IHexEditorWindow;
@@ -39,8 +41,7 @@ protected:
 	IHexEditorWindow *m_pif;
 public:
 	int m_nThisPane;
-	UINT64 m_mtime;
-	DWORD m_size;
+	DiffFileInfo m_fileInfo;
 protected: // create from serialization only
 	CHexMergeView();
 	DECLARE_DYNCREATE(CHexMergeView)
