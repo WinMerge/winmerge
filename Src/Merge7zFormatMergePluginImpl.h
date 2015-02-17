@@ -41,9 +41,8 @@ struct Merge7zFormatMergePluginImpl : public Merge7z::Format
 
 struct Merge7zFormatMergePluginScope
 {
-	Merge7zFormatMergePluginScope(const PackingInfo *infoUnpacker)
+	Merge7zFormatMergePluginScope(const PackingInfo *infoUnpacker) : m_oldPackingInfo(*Merge7zFormatMergePluginImpl::GetPackingInfo())
 	{
-		m_oldPackingInfo = *Merge7zFormatMergePluginImpl::GetPackingInfo();
 		Merge7zFormatMergePluginImpl::SetPackingInfo(infoUnpacker);
 	}
 	~Merge7zFormatMergePluginScope()
