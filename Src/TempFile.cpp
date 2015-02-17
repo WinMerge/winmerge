@@ -181,11 +181,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 			{
 				tempfolderPID = paths_ConcatPath(paths_GetParentPath(pattern), ff.cFileName); 
 				if (res = ClearTempfolder(tempfolderPID))
-				{
-					if (!res)
-						break;
 					bok = !!FindNextFile(h, &ff) ;
-				}
 				continue;
 			}
 		}
