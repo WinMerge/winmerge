@@ -413,11 +413,11 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 		return (di.diffcode.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE);
 	if (GetDocument()->m_nDirs == 3)
 	{
-		if (!di.diffcode.isExists(0))
+		if (!di.diffcode.exists(0))
 			return (di.diffcode.isDirectory() ? DIFFIMG_LDIRMISSING : DIFFIMG_LMISSING);
-		if (!di.diffcode.isExists(1))
+		if (!di.diffcode.exists(1))
 			return (di.diffcode.isDirectory() ? DIFFIMG_MDIRMISSING : DIFFIMG_MMISSING);
-		if (!di.diffcode.isExists(2))
+		if (!di.diffcode.exists(2))
 			return (di.diffcode.isDirectory() ? DIFFIMG_RDIRMISSING : DIFFIMG_RMISSING);
 	}
 	if (di.diffcode.isResultSame())
@@ -1415,7 +1415,7 @@ bool CDirView::OpenOneItem(uintptr_t pos1, DIFFITEM *pdi[3],
 	if (pdi[0]->diffcode.isDirectory())
 		isdir = true;
 
-	if (isdir && (pdi[0]->diffcode.isExistsFirst() && pdi[1]->diffcode.isExistsSecond() && pdi[2]->diffcode.isExistsThird()))
+	if (isdir && (pdi[0]->diffcode.existsFirst() && pdi[1]->diffcode.existsSecond() && pdi[2]->diffcode.existsThird()))
 	{
 		// Check both folders exist. If either folder is missing that means
 		// folder has been changed behind our back, so we just tell user to
@@ -1577,26 +1577,26 @@ bool CDirView::OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DI
 			return false;
 		}
 		// Ensure that pdi[0] is on left (swap if needed)
-		if (pdi[0]->diffcode.isExists(0) && pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2))
+		if (pdi[0]->diffcode.exists(0) && pdi[0]->diffcode.exists(1) && pdi[1]->diffcode.exists(2))
 		{
 			pdi[2] = pdi[1];
 			pdi[1] = pdi[0];
 			sel3 = sel2;
 			sel2 = sel1;
 		}
-		else if (pdi[0]->diffcode.isExists(0) && pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.exists(0) && pdi[0]->diffcode.exists(2) && pdi[1]->diffcode.exists(1))
 		{
 			pdi[2] = pdi[0];
 			sel3 = sel1;
 		}
-		else if (pdi[0]->diffcode.isExists(1) && pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.exists(1) && pdi[0]->diffcode.exists(2) && pdi[1]->diffcode.exists(0))
 		{
 			swap(pdi[0], pdi[1]);
 			swap(sel1, sel2);
 			pdi[2] = pdi[1];
 			sel3 = sel2;
 		}
-		else if (pdi[1]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(1) && pdi[0]->diffcode.isExists(2))
+		else if (pdi[1]->diffcode.exists(0) && pdi[1]->diffcode.exists(1) && pdi[0]->diffcode.exists(2))
 		{
 			swap(pdi[0], pdi[1]);
 			swap(sel1, sel2);
@@ -1605,14 +1605,14 @@ bool CDirView::OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DI
 			sel3 = sel2;
 			sel2 = sel1;
 		}
-		else if (pdi[1]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(2) && pdi[0]->diffcode.isExists(1))
+		else if (pdi[1]->diffcode.exists(0) && pdi[1]->diffcode.exists(2) && pdi[0]->diffcode.exists(1))
 		{
 			swap(pdi[0], pdi[1]);
 			swap(sel1, sel2);
 			pdi[2] = pdi[0];
 			sel3 = sel1;
 		}
-		else if (pdi[1]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2) && pdi[0]->diffcode.isExists(0))
+		else if (pdi[1]->diffcode.exists(1) && pdi[1]->diffcode.exists(2) && pdi[0]->diffcode.exists(0))
 		{
 			pdi[2] = pdi[1];
 			sel3 = sel2;
@@ -1631,34 +1631,34 @@ bool CDirView::OpenThreeItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3, DI
 			return false;
 		}
 		// Ensure that pdi[0] is on left (swap if needed)
-		if (pdi[0]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(1) && pdi[2]->diffcode.isExists(2))
+		if (pdi[0]->diffcode.exists(0) && pdi[1]->diffcode.exists(1) && pdi[2]->diffcode.exists(2))
 		{
 		}
-		else if (pdi[0]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(2) && pdi[2]->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.exists(0) && pdi[1]->diffcode.exists(2) && pdi[2]->diffcode.exists(1))
 		{
 			swap(pdi[1], pdi[2]);
 			swap(sel2, sel3);
 		}
-		else if (pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(0) && pdi[2]->diffcode.isExists(2))
+		else if (pdi[0]->diffcode.exists(1) && pdi[1]->diffcode.exists(0) && pdi[2]->diffcode.exists(2))
 		{
 			swap(pdi[0], pdi[1]);
 			swap(sel1, sel2);
 		}
-		else if (pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2) && pdi[2]->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.exists(1) && pdi[1]->diffcode.exists(2) && pdi[2]->diffcode.exists(0))
 		{
 			swap(pdi[0], pdi[2]);
 			swap(sel1, sel3);
 			swap(pdi[1], pdi[2]);
 			swap(sel2, sel3);
 		}
-		else if (pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(0) && pdi[2]->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.exists(2) && pdi[1]->diffcode.exists(0) && pdi[2]->diffcode.exists(1))
 		{
 			swap(pdi[0], pdi[1]);
 			swap(sel1, sel2);
 			swap(pdi[1], pdi[2]);
 			swap(sel2, sel3);
 		}
-		else if (pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(1) && pdi[2]->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.exists(2) && pdi[1]->diffcode.exists(1) && pdi[2]->diffcode.exists(0))
 		{
 			swap(pdi[0], pdi[2]);
 			swap(sel1, sel3);
@@ -1802,12 +1802,12 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		{
 			theApp.m_strDescriptions[0].erase();
 			theApp.m_strDescriptions[1].erase();
-			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.isExists(0))
+			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.exists(0))
 			{
 				paths[0] = _T("");
 				theApp.m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
 			}
-			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.isExists(1))
+			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.exists(1))
 			{
 				paths[1] = _T("");
 				theApp.m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
@@ -1818,17 +1818,17 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 			theApp.m_strDescriptions[0].erase();
 			theApp.m_strDescriptions[1].erase();
 			theApp.m_strDescriptions[2].erase();
-			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(0))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(0))
 			{
 				paths[0] = _T("");
 				theApp.m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
 			}
-			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(1))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(1))
 			{
 				paths[1] = _T("");
 				theApp.m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_MIDDLE_FILE);
 			}
-			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(2))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(2))
 			{
 				paths[2] = _T("");
 				theApp.m_strDescriptions[2] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
@@ -4395,7 +4395,7 @@ void CDirView::GetColors (int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText
 		clrText = m_cachedColors.clrTrivialText;
 		clrBk = m_cachedColors.clrTrivial;
 	}
-	else if (!di.diffcode.isExists(0) || !di.diffcode.existAll(GetDocument()->m_nDirs))
+	else if (!di.diffcode.exists(0) || !di.diffcode.existAll(GetDocument()->m_nDirs))
 	{
 		clrText = m_cachedColors.clrDiffText;
 		clrBk = m_cachedColors.clrDiffDeleted;
@@ -4465,7 +4465,7 @@ void CDirView::OnSearch()
 		PathContext paths;
 		for (int i = 0; i < pDoc->m_nDirs; i++)
 		{
-			if (di.diffcode.isExists(i) && !di.diffcode.isDirectory())
+			if (di.diffcode.exists(i) && !di.diffcode.isDirectory())
 			{
 				GetItemFileNames(currRow, &paths);
 				UniMemFile ufile;

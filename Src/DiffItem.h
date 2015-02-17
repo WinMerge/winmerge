@@ -107,10 +107,10 @@ public:
 		default: return 0;
 		}
 	}
-	bool isExistsFirst() const { return !!(diffcode & DIFFCODE::FIRST); }
-	bool isExistsSecond() const { return !!(diffcode & DIFFCODE::SECOND); }
-	bool isExistsThird() const { return !!(diffcode & DIFFCODE::THIRD); }
-	bool isExists(int nIndex) const
+	bool existsFirst() const { return !!(diffcode & DIFFCODE::FIRST); }
+	bool existsSecond() const { return !!(diffcode & DIFFCODE::SECOND); }
+	bool existsThird() const { return !!(diffcode & DIFFCODE::THIRD); }
+	bool exists(int nIndex) const
 	{
 		switch (nIndex)
 		{
@@ -123,15 +123,15 @@ public:
 	bool existAll(int nDirs) const
 	{
 		if (nDirs == 2)
-			return (isExistsFirst() && isExistsSecond());
+			return (existsFirst() && existsSecond());
 		else
-			return (isExistsFirst() && isExistsSecond() && isExistsThird());
+			return (existsFirst() && existsSecond() && existsThird());
 	}
 
 	// compare result
 	bool isResultSame() const { return CheckCompare(diffcode, DIFFCODE::SAME); }
 	bool isResultDiff() const { return (CheckCompare(diffcode, DIFFCODE::DIFF) && !isResultFiltered() &&
-			isExistsFirst() && isExistsSecond()); } /* FIXME: 3-pane */
+			existsFirst() && existsSecond()); } /* FIXME: 3-pane */
 	static bool isResultError(unsigned code) { return CheckCompare(code, DIFFCODE::CMPERR); }
 	bool isResultError() const { return isResultError(diffcode); }
 	static bool isResultAbort(unsigned code) { return CheckCompare(code, DIFFCODE::CMPABORT); }

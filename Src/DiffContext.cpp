@@ -94,7 +94,7 @@ void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, int nIndex)
 {
 	DIFFITEM &di = GetDiffRefAt(diffpos);
 	di.diffFileInfo[nIndex].ClearPartial();
-	if (di.diffcode.isExists(nIndex))
+	if (di.diffcode.exists(nIndex))
 		UpdateInfoFromDiskHalf(di, nIndex);
 }
 
@@ -156,7 +156,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
 		return;
 	
 	String spath;
-	if (!di.diffcode.isExists(nIndex))
+	if (!di.diffcode.exists(nIndex))
 		return;
 	String ext = paths_FindExtension(di.diffFileInfo[nIndex].filename);
 	if (!CheckFileForVersion(ext))
