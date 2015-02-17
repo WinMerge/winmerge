@@ -113,6 +113,14 @@ unsigned CDiffThread::CompareDirectories()
 
 	if (m_bOnlyRequested == false)
 		m_threads[0].start(DiffThreadCollect, m_pDiffParm.get());
+	else
+	{
+		int nItems = DirScan_UpdateMarkedItems(m_pDiffParm.get(), 0);
+		// Send message to UI to update
+		int event = CDiffThread::EVENT_COLLECT_COMPLETED;
+		m_pDiffParm->m_listeners.notify(m_pDiffParm.get(), event);
+		m_pDiffParm->context->m_pCompareStats->IncreaseTotalItems(nItems - m_pDiffParm->context->m_pCompareStats->GetTotalItems());
+	}
 	m_threads[1].start(DiffThreadCompare, m_pDiffParm.get());
 
 	return 1;

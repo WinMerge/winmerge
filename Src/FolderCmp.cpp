@@ -422,7 +422,7 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & fil
 
 	for (int nIndex = 0; nIndex < nDirs; nIndex++)
 	{
-		if (di.diffcode.isExists(nIndex))
+		if (di.diffcode.exists(nIndex))
 		{
 			files.SetPath(nIndex,
 				paths_ConcatPath(pCtxt->GetPath(nIndex), di.diffFileInfo[nIndex].GetFile()), false);

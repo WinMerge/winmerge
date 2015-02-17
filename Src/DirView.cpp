@@ -1341,12 +1341,12 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		{
 			theApp.m_strDescriptions[0].erase();
 			theApp.m_strDescriptions[1].erase();
-			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.isExists(0))
+			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.exists(0))
 			{
 				paths[0] = _T("");
 				theApp.m_strDescriptions[0] = _("Untitled left");
 			}
-			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.isExists(1))
+			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.exists(1))
 			{
 				paths[1] = _T("");
 				theApp.m_strDescriptions[1] = _("Untitled right");
@@ -1357,17 +1357,17 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 			theApp.m_strDescriptions[0].erase();
 			theApp.m_strDescriptions[1].erase();
 			theApp.m_strDescriptions[2].erase();
-			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(0))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(0))
 			{
 				paths[0] = _T("");
 				theApp.m_strDescriptions[0] = _("Untitled left");
 			}
-			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(1))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(1))
 			{
 				paths[1] = _T("");
 				theApp.m_strDescriptions[1] = _("Untitled middle");
 			}
-			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.isExists(2))
+			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(2))
 			{
 				paths[2] = _T("");
 				theApp.m_strDescriptions[2] = _("Untitled right");
@@ -2067,7 +2067,6 @@ void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
  */
 LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 {
-	UNREFERENCED_PARAMETER(wParam);
 	UNREFERENCED_PARAMETER(lParam);
 
 	CDirDoc * pDoc = GetDocument();
@@ -2081,16 +2080,14 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		m_pCmpProgressBar.reset();
 
 		pDoc->CompareReady();
-		// Don't Redisplay() if triggered by OnMarkedRescan()
-		if (lParam == 0)
-		{
-			Redisplay();
 
-			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
-				OnFirstdiff();
-			else
-				MoveFocus(0, 0, 0);
-		}
+		Redisplay();
+
+		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
+			OnFirstdiff();
+		else
+			MoveFocus(0, 0, 0);
+
 		// If compare took more than TimeToSignalCompare seconds, notify user
 		clock_t elapsed = clock() - m_compareStart;
 		GetParentFrame()->SetMessageText(
@@ -2929,6 +2926,7 @@ void CDirView::OnMarkedRescan()
 	std::for_each(SelBegin(), SelEnd(), MarkForRescan);
 	if (std::distance(SelBegin(), SelEnd()) > 0)
 	{
+		m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
 		GetDocument()->SetMarkedRescan();
 		GetDocument()->Rescan();
 	}
@@ -3386,7 +3384,7 @@ void CDirView::OnSearch()
 		PathContext paths;
 		for (int i = 0; i < pDoc->m_nDirs; i++)
 		{
-			if (di.diffcode.isExists(i) && !di.diffcode.isDirectory())
+			if (di.diffcode.exists(i) && !di.diffcode.isDirectory())
 			{
 				GetItemFileNames(currRow, &paths);
 				UniMemFile ufile;
