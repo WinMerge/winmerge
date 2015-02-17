@@ -297,7 +297,7 @@ void CDirDoc::LoadLineFilterList()
 
 void CDirDoc::DiffThreadCallback(int& state)
 {
-	PostMessage(m_pDirView->GetSafeHwnd(), MSG_UI_UPDATE, state, m_bMarkedRescan);
+	PostMessage(m_pDirView->GetSafeHwnd(), MSG_UI_UPDATE, state, false);
 }
 
 /**
@@ -320,12 +320,10 @@ void CDirDoc::Rescan()
 	m_pCompareStats->Reset();
 	m_pDirView->StartCompare(m_pCompareStats.get());
 
+	m_pDirView->DeleteAllDisplayItems();
 	// Don't clear if only scanning selected items
 	if (!m_bMarkedRescan)
-	{
-		m_pDirView->DeleteAllDisplayItems();
 		m_pCtxt->RemoveAll();
-	}
 
 	LoadLineFilterList();
 
@@ -345,10 +343,6 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_pCtxt->m_pCompareStats = m_pCompareStats.get();
 	m_pCtxt->m_bRecursive = !!m_bRecursive;
-
-	// Set total items count since we don't collect items
-	if (m_bMarkedRescan)
-		m_pCompareStats->IncreaseTotalItems(m_pDirView->GetSelectedCount());
 
 	pf->GetHeaderInterface()->SetPaneCount(m_nDirs);
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
