@@ -1085,7 +1085,10 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 
 		if (bUpdateLeft || bUpdateRight)
 		{
-			pDoc->UpdateStatusFromDisk(diffpos, bUpdateLeft, bUpdateRight);
+			if (bUpdateLeft)
+				pDoc->UpdateStatusFromDisk(diffpos, 0);
+			if (bUpdateRight)
+				pDoc->UpdateStatusFromDisk(diffpos, 1);
 			UpdateDiffItemStatus(act.context);
 		}
 	}

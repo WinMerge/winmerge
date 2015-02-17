@@ -491,30 +491,25 @@ CDirView * CDirDoc::GetMainView() const
 /**
  * @brief Update in-memory diffitem status from disk.
  * @param [in] diffPos POSITION of item in UI list.
- * @param [in] bLeft If TRUE left-side item is updated.
- * @param [in] bRight If TRUE right-side item is updated.
+ * @param [in] idx index to update.
  */
-void CDirDoc::UpdateStatusFromDisk(uintptr_t diffPos, bool bLeft, bool bRight)
+void CDirDoc::UpdateStatusFromDisk(uintptr_t diffPos, int idx)
 {
-	if (bLeft)
-		m_pCtxt->UpdateStatusFromDisk(diffPos, 0);
-	if (bRight)
-		m_pCtxt->UpdateStatusFromDisk(diffPos, 1);
+	m_pCtxt->UpdateStatusFromDisk(diffPos, idx);
 }
 
 /**
  * @brief Update in-memory diffitem status from disk and update view.
  * @param [in] diffPos POSITION of item in UI list.
- * @param [in] bLeft If TRUE left-side item is updated.
- * @param [in] bRight If TRUE right-side item is updated.
+ * @param [in] idx index to reload.
  * @note Do not call this function from DirView code! This function
  * calls slow DirView functions to get item position and to update GUI.
  * Use UpdateStatusFromDisk() function instead.
  */
-void CDirDoc::ReloadItemStatus(uintptr_t diffPos, bool bLeft, bool bRight)
+void CDirDoc::ReloadItemStatus(uintptr_t diffPos, int idx)
 {
 	// in case just copied (into existence) or modified
-	UpdateStatusFromDisk(diffPos, bLeft, bRight);
+	UpdateStatusFromDisk(diffPos, idx);
 
 	int nIdx = m_pDirView->GetItemIndex(diffPos);
 	if (nIdx != -1)
@@ -717,7 +712,8 @@ void CDirDoc::UpdateChangedItem(PathContext &paths,
 
 		if (nDiffs != -1 && nTrivialDiffs != -1)
 			m_pCtxt->SetDiffCounts(pos, nDiffs, nTrivialDiffs);
-		ReloadItemStatus(pos, TRUE, TRUE);
+		for (int i = 0; i < m_nDirs; ++i)
+			ReloadItemStatus(pos, i);
 	}
 }
 

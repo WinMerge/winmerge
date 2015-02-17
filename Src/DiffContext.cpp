@@ -102,9 +102,8 @@ void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, int nIndex)
  * @brief Update file information from disk for DIFFITEM.
  * This function updates DIFFITEM's file information from actual file in
  * the disk. This updates info like date, size and attributes.
- * @param [in, out] di DIFFITEM to update (selected side, see bLeft param).
- * @param [in] bLeft If true left side information is updated,
- *  right side otherwise.
+ * @param [in, out] di DIFFITEM to update.
+ * @param [in] nIndex index to update
  * @return true if file exists
  */
 bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex)

@@ -102,8 +102,8 @@ public:
 	void SetDiffCompare(UINT diffcode, int idx);
 	void UpdateResources();
 	void InitStatusStrings();
-	void UpdateStatusFromDisk(uintptr_t diffPos, bool bLeft, bool bRight);
-	void ReloadItemStatus(uintptr_t diffPos, bool bLeft, bool bRight);
+	void UpdateStatusFromDisk(uintptr_t diffPos, int idx);
+	void ReloadItemStatus(uintptr_t diffPos, int idx);
 	void Redisplay();
 	virtual ~CDirDoc();
 	void SetDirView( CDirView *newView ); // TODO Perry
