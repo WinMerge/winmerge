@@ -170,7 +170,7 @@ public:
 			}
 			codepage = defcodepage;
 			int i;
-			for (i = 0; i < sizeof(codepagestotry)/sizeof(codepagestotry[0]); i++)
+			for (i = 0; i < sizeof(codepagestotry)/sizeof(codepagestotry[0]) - 1; i++)
 			{
 				if (codepagestotry[i] == 0) break;
 				pcc->Initialize(codepagestotry[i], CP_UCS2LE, 0);
