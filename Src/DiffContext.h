@@ -113,8 +113,7 @@ public:
 
 	// change an existing difference
 	bool UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex);
-	void UpdateStatusFromDisk(uintptr_t diffpos, bool bLeft, bool bRight);
-	void UpdateStatusFromDisk(uintptr_t diffpos, bool bLeft, bool bMiddle, bool bRight);
+	void UpdateStatusFromDisk(uintptr_t diffpos, int nIndex);
 
 	bool CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
 	CompareOptions * GetCompareOptions(int compareMethod);

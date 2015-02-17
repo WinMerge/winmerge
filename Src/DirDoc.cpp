@@ -496,7 +496,10 @@ CDirView * CDirDoc::GetMainView() const
  */
 void CDirDoc::UpdateStatusFromDisk(uintptr_t diffPos, bool bLeft, bool bRight)
 {
-	m_pCtxt->UpdateStatusFromDisk(diffPos, bLeft, bRight);
+	if (bLeft)
+		m_pCtxt->UpdateStatusFromDisk(diffPos, 0);
+	if (bRight)
+		m_pCtxt->UpdateStatusFromDisk(diffPos, 1);
 }
 
 /**
