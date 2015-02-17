@@ -119,7 +119,7 @@ void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, bool bLeft, bool bRig
  */
 bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex)
 {
-	String filepath = paths_ConcatPath(di.getFilepath(nIndex, GetNormalizedPath(nIndex)), di.diffFileInfo[nIndex].filename);
+	String filepath = paths_ConcatPath(paths_ConcatPath(m_paths[nIndex], di.diffFileInfo[nIndex].path), di.diffFileInfo[nIndex].filename);
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
 	if (!dfi.Update(filepath))
 		return false;

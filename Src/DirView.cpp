@@ -2886,7 +2886,6 @@ void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
  */
 LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 {
-	UNREFERENCED_PARAMETER(wParam);
 	UNREFERENCED_PARAMETER(lParam);
 
 	CDirDoc * pDoc = GetDocument();
@@ -2900,16 +2899,14 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		m_pCmpProgressBar.reset();
 
 		pDoc->CompareReady();
-		// Don't Redisplay() if triggered by OnMarkedRescan()
-		if (lParam == 0)
-		{
-			Redisplay();
 
-			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
-				OnFirstdiff();
-			else
-				MoveFocus(0, 0, 0);
-		}
+		Redisplay();
+
+		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
+			OnFirstdiff();
+		else
+			MoveFocus(0, 0, 0);
+
 		// If compare took more than TimeToSignalCompare seconds, notify user
 		clock_t elapsed = clock() - m_compareStart;
 		GetParentFrame()->SetMessageText(
@@ -3970,7 +3967,10 @@ void CDirView::OnMarkedRescan()
 {
 	UINT items = MarkSelectedForRescan();
 	if (items > 0)
+	{
+		m_pSavedTreeState.reset(SaveTreeState());
 		GetDocument()->Rescan();
+	}
 }
 
 /**

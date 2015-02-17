@@ -184,6 +184,7 @@ struct DIFFITEM : ListEntry
 	int GetDepth() const;
 	bool IsAncestor(const DIFFITEM *pdi) const;
 	bool HasChildren() const;
+	void RemoveChildren();
 };
 
 #endif // _DIFF_ITEM_H_
