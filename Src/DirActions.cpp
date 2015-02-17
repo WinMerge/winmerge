@@ -1226,19 +1226,19 @@ bool CDirView::AreItemsOpenable(SELECTIONTYPE selectionType, const DIFFITEM & di
 			return true;
 		break;
 	case SELECTIONTYPE_LEFT1LEFT2:
-		if (di1.diffcode.isExists(0) && di2.diffcode.isExists(0))
+		if (di1.diffcode.exists(0) && di2.diffcode.exists(0))
 			return true;
 		break;
 	case SELECTIONTYPE_RIGHT1RIGHT2:
-		if (di1.diffcode.isExists(1) && di2.diffcode.isExists(1))
+		if (di1.diffcode.exists(1) && di2.diffcode.exists(1))
 			return true;
 		break;
 	case SELECTIONTYPE_LEFT1RIGHT2:
-		if (di1.diffcode.isExists(0) && di2.diffcode.isExists(1))
+		if (di1.diffcode.exists(0) && di2.diffcode.exists(1))
 			return true;
 		break;
 	case SELECTIONTYPE_LEFT2RIGHT1:
-		if (di1.diffcode.isExists(1) && di2.diffcode.isExists(0))
+		if (di1.diffcode.exists(1) && di2.diffcode.exists(0))
 			return true;
 		break;
 	}
@@ -1288,17 +1288,17 @@ bool CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2, cons
 	if (di1.diffcode.isDirectory() != di2.diffcode.isDirectory() && di1.diffcode.isDirectory() != di3.diffcode.isDirectory()) return false;
 
 	// Must be on different sides, or one on one side & one on both
-	if (di1.diffcode.isExists(0) && di2.diffcode.isExists(1) && di3.diffcode.isExists(2))
+	if (di1.diffcode.exists(0) && di2.diffcode.exists(1) && di3.diffcode.exists(2))
 		return true;
-	if (di1.diffcode.isExists(0) && di2.diffcode.isExists(2) && di3.diffcode.isExists(1))
+	if (di1.diffcode.exists(0) && di2.diffcode.exists(2) && di3.diffcode.exists(1))
 		return true;
-	if (di1.diffcode.isExists(1) && di2.diffcode.isExists(0) && di3.diffcode.isExists(2))
+	if (di1.diffcode.exists(1) && di2.diffcode.exists(0) && di3.diffcode.exists(2))
 		return true;
-	if (di1.diffcode.isExists(1) && di2.diffcode.isExists(2) && di3.diffcode.isExists(0))
+	if (di1.diffcode.exists(1) && di2.diffcode.exists(2) && di3.diffcode.exists(0))
 		return true;
-	if (di1.diffcode.isExists(2) && di2.diffcode.isExists(0) && di3.diffcode.isExists(1))
+	if (di1.diffcode.exists(2) && di2.diffcode.exists(0) && di3.diffcode.exists(1))
 		return true;
-	if (di1.diffcode.isExists(2) && di2.diffcode.isExists(1) && di3.diffcode.isExists(0))
+	if (di1.diffcode.exists(2) && di2.diffcode.exists(1) && di3.diffcode.exists(0))
 		return true;
 
 	// Allow to compare items if left & right path refer to same directory
@@ -1547,7 +1547,7 @@ void CDirView::FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg)
 		if (di.diffcode.isDirectory())
 			continue;
 
-		if (di.diffcode.isExistsFirst())
+		if (di.diffcode.existsFirst())
 		{
 			// exists on First
 			++nFirst;
@@ -1556,7 +1556,7 @@ void CDirView::FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg)
 			int codepage = di.diffFileInfo[0].encoding.m_codepage;
 			currentCodepages.Increment(codepage);
 		}
-		if (di.diffcode.isExistsSecond())
+		if (di.diffcode.existsSecond())
 		{
 			++nSecond;
 			if (di.diffFileInfo[1].IsEditableEncoding())
@@ -1564,7 +1564,7 @@ void CDirView::FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg)
 			int codepage = di.diffFileInfo[1].encoding.m_codepage;
 			currentCodepages.Increment(codepage);
 		}
-		if (GetDocument()->m_nDirs > 2 && di.diffcode.isExistsThird())
+		if (GetDocument()->m_nDirs > 2 && di.diffcode.existsThird())
 		{
 			++nThird;
 			if (di.diffFileInfo[1].IsEditableEncoding())
@@ -1617,12 +1617,12 @@ void CDirView::DoFileEncodingDialog()
 			continue;
 
 		// Does it exist on left? (ie, right or both)
-		if (doLeft && di.diffcode.isExistsFirst() && di.diffFileInfo[0].IsEditableEncoding())
+		if (doLeft && di.diffcode.existsFirst() && di.diffFileInfo[0].IsEditableEncoding())
 		{
 			di.diffFileInfo[0].encoding.SetCodepage(nCodepage);
 		}
 		// Does it exist on right (ie, left or both)
-		if (doRight && di.diffcode.isExistsSecond() && di.diffFileInfo[1].IsEditableEncoding())
+		if (doRight && di.diffcode.existsSecond() && di.diffFileInfo[1].IsEditableEncoding())
 		{
 			di.diffFileInfo[1].encoding.SetCodepage(nCodepage);
 		}
@@ -1698,8 +1698,8 @@ bool CDirView::DoItemRename(const String& szNewItemName)
 	String failpath;
 	DIFFITEM &di = GetDiffItemRef(nSelItem);
 	bool succeed = CheckPathsExist(paths.GetLeft(), paths.GetRight(), 
-		di.diffcode.isExistsFirst() ? ALLOW_FILE | ALLOW_FOLDER : ALLOW_DONT_CARE,
-		di.diffcode.isExistsSecond() ? ALLOW_FILE | ALLOW_FOLDER : ALLOW_DONT_CARE,
+		di.diffcode.existsFirst() ? ALLOW_FILE | ALLOW_FOLDER : ALLOW_DONT_CARE,
+		di.diffcode.existsSecond() ? ALLOW_FILE | ALLOW_FOLDER : ALLOW_DONT_CARE,
 		failpath);
 	if (succeed == false)
 	{
@@ -1715,7 +1715,7 @@ bool CDirView::DoItemRename(const String& szNewItemName)
 	int index;
 	for (index = 0; index < nDirs; index++)
 	{
-		if (di.diffcode.isExists(index))
+		if (di.diffcode.exists(index))
 			bRename[index] = RenameOnSameDir(paths[index], szNewItemName);
 	}
 
@@ -1757,7 +1757,7 @@ void CDirView::DoCopyItemsToClipboard(int flags)
 		String path;
 		for (int nIndex = 0; nIndex < 3; nIndex++)
 		{
-			if (di.diffcode.isExists(nIndex) && ((flags >> nIndex) & 0x1))
+			if (di.diffcode.exists(nIndex) && ((flags >> nIndex) & 0x1))
 			{
 				path = di.getFilepath(nIndex, GetDocument()->GetBasePath(nIndex));
 				path += '\\';

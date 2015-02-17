@@ -20,7 +20,7 @@ DIFFITEM::~DIFFITEM()
 /** @brief Return path to left/right file, including all but file name */
 String DIFFITEM::getFilepath(int nIndex, const String &sRoot) const
 {
-	if (diffcode.isExists(nIndex))
+	if (diffcode.exists(nIndex))
 	{
 		return paths_ConcatPath(sRoot, diffFileInfo[nIndex].path);
 	}

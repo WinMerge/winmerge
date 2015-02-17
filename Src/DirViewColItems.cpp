@@ -316,17 +316,17 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 		s = theApp.LoadString(IDS_RIGHT_ONLY_IN_FMT);
 		string_replace(s, _T("%1"), di.getFilepath(2, pCtxt->GetNormalizedRight()));
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsFirst())
+	else if (nDirs > 2 && !di.diffcode.existsFirst())
 	{
 		s = theApp.LoadString(IDS_DOES_NOT_EXIST_IN_FMT);
 		string_replace(s, _T("%1"), pCtxt->GetNormalizedLeft());
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsSecond())
+	else if (nDirs > 2 && !di.diffcode.existsSecond())
 	{
 		s = theApp.LoadString(IDS_DOES_NOT_EXIST_IN_FMT);
 		string_replace(s, _T("%1"), pCtxt->GetNormalizedMiddle());
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsThird())
+	else if (nDirs > 2 && !di.diffcode.existsThird())
 	{
 		s = theApp.LoadString(IDS_DOES_NOT_EXIST_IN_FMT);
 		string_replace(s, _T("%1"), pCtxt->GetNormalizedRight());
@@ -567,15 +567,15 @@ static String ColStatusAbbrGet(const CDiffContext *pCtxt, const void *p)
 	{
 		id = IDS_RIGHTONLY;
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsFirst())
+	else if (nDirs > 2 && !di.diffcode.existsFirst())
 	{
 		id = IDS_NOITEMLEFT;
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsSecond())
+	else if (nDirs > 2 && !di.diffcode.existsSecond())
 	{
 		id = IDS_NOITEMMIDDLE;
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsThird())
+	else if (nDirs > 2 && !di.diffcode.existsThird())
 	{
 		id = IDS_NOITEMRIGHT;
 	}
