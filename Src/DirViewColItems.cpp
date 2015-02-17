@@ -370,17 +370,17 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 		s = string_format_string1(_("Right only: %1"),
 				di.getFilepath(2, pCtxt->GetNormalizedRight()));
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsFirst())
+	else if (nDirs > 2 && !di.diffcode.existsFirst())
 	{
 		s = string_format_string1(_("Does not exist in %1"),
 				pCtxt->GetNormalizedLeft());
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsSecond())
+	else if (nDirs > 2 && !di.diffcode.existsSecond())
 	{
 		s = string_format_string1(_("Does not exist in %1"),
 				pCtxt->GetNormalizedMiddle());
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsThird())
+	else if (nDirs > 2 && !di.diffcode.existsThird())
 	{
 		s = string_format_string1(_("Does not exist in %1"),
 				pCtxt->GetNormalizedRight());
@@ -621,15 +621,15 @@ static String ColStatusAbbrGet(const CDiffContext *pCtxt, const void *p)
 	{
 		id = N_("Right Only");
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsFirst())
+	else if (nDirs > 2 && !di.diffcode.existsFirst())
 	{
 		id = N_("No item in left");
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsSecond())
+	else if (nDirs > 2 && !di.diffcode.existsSecond())
 	{
 		id = N_("No item in middle");
 	}
-	else if (nDirs > 2 && !di.diffcode.isExistsThird())
+	else if (nDirs > 2 && !di.diffcode.existsThird())
 	{
 		id = N_("No item in right");
 	}

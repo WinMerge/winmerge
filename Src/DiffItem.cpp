@@ -14,18 +14,13 @@ DIFFITEM DIFFITEM::emptyitem;
 /** @brief DIFFITEM's destructor */
 DIFFITEM::~DIFFITEM()
 {
-	while (HasChildren())
-	{
-		DIFFITEM *p = (DIFFITEM *)children.Flink;
-		p->RemoveSelf();
-		delete p;
-	}
+	RemoveChildren();
 }
 
 /** @brief Return path to left/right file, including all but file name */
 String DIFFITEM::getFilepath(int nIndex, const String &sRoot) const
 {
-	if (diffcode.isExists(nIndex))
+	if (diffcode.exists(nIndex))
 	{
 		return paths_ConcatPath(sRoot, diffFileInfo[nIndex].path);
 	}
@@ -63,3 +58,12 @@ bool DIFFITEM::HasChildren() const
 	return p ? true : false;
 }
 
+void DIFFITEM::RemoveChildren()
+{
+	while (HasChildren())
+	{
+		DIFFITEM *p = (DIFFITEM *)children.Flink;
+		p->RemoveSelf();
+		delete p;
+	}
+}

@@ -1371,7 +1371,7 @@ msgstr "差異(&D)... (%1 / %2)"
 #: Merge.rc:683
 #, c-format
 msgid "&Refresh"
-msgstr "選択項目を最新更新(&R)"
+msgstr "選択項目を再比較(&R)"
 
 #: Merge.rc:695
 #, c-format

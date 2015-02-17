@@ -837,7 +837,7 @@ DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				continue;
 			}
 			// Enumerating items
-			if (di.diffcode.isExists(m_index))
+			if (di.diffcode.exists(m_index))
 			{
 				// Item is present on right side, i.e. folder is implied
 				m_rgImpliedFolders[m_index][di.diffFileInfo[m_index].path.get()] = PVOID(1);
@@ -909,7 +909,7 @@ Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
 		return 0;
 	}
 
-	bool isSideOnly = !di.diffcode.isExists(m_index);
+	bool isSideOnly = !di.diffcode.exists(m_index);
 
 	Envelope *envelope = new Envelope;
 

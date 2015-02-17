@@ -285,14 +285,14 @@ struct DirActions
 	template <SIDE_TYPE src>
 	bool IsItemExist(const DIFFITEM& di) const
 	{
-		return (di.diffcode.diffcode != 0 && di.diffcode.isExists(SideToIndex(m_ctxt, src)));
+		return (di.diffcode.diffcode != 0 && di.diffcode.exists(SideToIndex(m_ctxt, src)));
 	}
 
 	template <SIDE_TYPE src>
 	bool IsItemEditableEncoding(const DIFFITEM& di) const
 	{
 		const int index = SideToIndex(m_ctxt, src);
-		return (di.diffcode.diffcode != 0 && di.diffcode.isExists(index) && di.diffFileInfo[index].IsEditableEncoding());
+		return (di.diffcode.diffcode != 0 && di.diffcode.exists(index) && di.diffFileInfo[index].IsEditableEncoding());
 	}
 
 	bool IsItemNavigableDiff(const DIFFITEM& di) const
@@ -563,7 +563,7 @@ bool DoItemRename(InputIterator& it, const CDiffContext& ctxt, const String& szN
 	int index;
 	for (index = 0; index < nDirs; index++)
 	{
-		if (di.diffcode.isExists(index))
+		if (di.diffcode.exists(index))
 			bRename[index] = RenameOnSameDir(paths[index], szNewItemName);
 	}
 
@@ -592,7 +592,7 @@ OutputIterator CopyPathnames(const InputIterator& begin, const InputIterator& en
 	for (InputIterator it = begin; it != end; ++it)
 	{
 		const DIFFITEM& di = *it;
-		if (di.diffcode.isExists(index))
+		if (di.diffcode.exists(index))
 		{
 			*result = GetItemFileName(ctxt, di, index);
 			++result;
@@ -609,7 +609,7 @@ OutputIterator CopyBothPathnames(const InputIterator& begin, const InputIterator
 		const DIFFITEM& di = *it;
 		for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
 		{
-			if (di.diffcode.isExists(i))
+			if (di.diffcode.exists(i))
 			{
 				*result = GetItemFileName(ctxt, di, i);
 				++result;
@@ -649,7 +649,7 @@ OutputIterator CopyPathnamesForDragAndDrop(const InputIterator& begin, const Inp
 		{
 			for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
 			{
-				if (di.diffcode.isExists(i))
+				if (di.diffcode.exists(i))
 				{
 					*result = GetItemFileName(ctxt, di, i);
 					++result;
@@ -697,7 +697,7 @@ void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& 
 			String filteredFilenames;
 			for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
 			{
-				if (di.diffcode.isExists(i))
+				if (di.diffcode.exists(i))
 				{
 					if (!filteredFilenames.empty()) filteredFilenames += _T("|");
 					filteredFilenames += ::GetItemFileName(ctxt, di, i);
@@ -753,7 +753,7 @@ IntToIntMap CountCodepages(const InputIterator& begin, const InputIterator& end,
 		const DIFFITEM& di = *it;
 		for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
 		{
-			if (di.diffcode.diffcode != 0 && di.diffcode.isExists(i))
+			if (di.diffcode.diffcode != 0 && di.diffcode.exists(i))
 				map.Increment(di.diffFileInfo[i].encoding.m_codepage);
 		}
 	}
@@ -774,7 +774,7 @@ void ApplyCodepage(const InputIterator& begin, const InputIterator& end, CDiffCo
 		for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
 		{
 			// Does it exist on left? (ie, right or both)
-			if (affect[i] && di.diffcode.isExists(i) && di.diffFileInfo[i].IsEditableEncoding())
+			if (affect[i] && di.diffcode.exists(i) && di.diffFileInfo[i].IsEditableEncoding())
 			{
 				di.diffFileInfo[i].encoding.SetCodepage(nCodepage);
 			}

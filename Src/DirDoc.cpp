@@ -220,7 +220,7 @@ void CDirDoc::LoadLineFilterList()
 
 void CDirDoc::DiffThreadCallback(int& state)
 {
-	PostMessage(m_pDirView->GetSafeHwnd(), MSG_UI_UPDATE, state, m_bMarkedRescan);
+	PostMessage(m_pDirView->GetSafeHwnd(), MSG_UI_UPDATE, state, false);
 }
 
 /**
@@ -243,12 +243,10 @@ void CDirDoc::Rescan()
 	m_pCompareStats->Reset();
 	m_pDirView->StartCompare(m_pCompareStats.get());
 
+	m_pDirView->DeleteAllDisplayItems();
 	// Don't clear if only scanning selected items
 	if (!m_bMarkedRescan)
-	{
-		m_pDirView->DeleteAllDisplayItems();
 		m_pCtxt->RemoveAll();
-	}
 
 	LoadLineFilterList();
 
@@ -330,16 +328,15 @@ CDirView * CDirDoc::GetMainView() const
 /**
  * @brief Update in-memory diffitem status from disk and update view.
  * @param [in] diffPos POSITION of item in UI list.
- * @param [in] bLeft If TRUE left-side item is updated.
- * @param [in] bRight If TRUE right-side item is updated.
+ * @param [in] idx index to reload.
  * @note Do not call this function from DirView code! This function
  * calls slow DirView functions to get item position and to update GUI.
  * Use UpdateStatusFromDisk() function instead.
  */
-void CDirDoc::ReloadItemStatus(uintptr_t diffPos, int index)
+void CDirDoc::ReloadItemStatus(uintptr_t diffPos, int idx)
 {
 	// in case just copied (into existence) or modified
-	m_pCtxt->UpdateStatusFromDisk(diffPos, index);
+	m_pCtxt->UpdateStatusFromDisk(diffPos, idx);
 
 	int nIdx = m_pDirView->GetItemIndex(diffPos);
 	if (nIdx != -1)

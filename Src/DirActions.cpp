@@ -347,7 +347,7 @@ bool IsItemCopyable(const DIFFITEM & di, int index)
 	// can't copy same items
 	if (di.diffcode.isResultSame()) return false;
 	// impossible if not existing
-	if (!di.diffcode.isExists(index)) return false;
+	if (!di.diffcode.exists(index)) return false;
 	// everything else can be copied to other side
 	return true;
 }
@@ -358,7 +358,7 @@ bool IsItemDeletable(const DIFFITEM & di, int index)
 	// don't let them mess with error items
 	if (di.diffcode.isResultError()) return false;
 	// impossible if not existing
-	if (!di.diffcode.isExists(index)) return false;
+	if (!di.diffcode.exists(index)) return false;
 	// everything else can be deleted
 	return true;
 }
@@ -370,7 +370,7 @@ bool IsItemDeletableOnBoth(const CDiffContext& ctxt, const DIFFITEM & di)
 	if (di.diffcode.isResultError()) return false;
 	// impossible if only on right or left
 	for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
-		if (!di.diffcode.isExists(i)) return false;
+		if (!di.diffcode.exists(i)) return false;
 
 	// everything else can be deleted on both
 	return true;
@@ -422,19 +422,19 @@ bool AreItemsOpenable(const CDiffContext& ctxt, SELECTIONTYPE selectionType, con
 			return true;
 		break;
 	case SELECTIONTYPE_LEFT1LEFT2:
-		if (di1.diffcode.isExists(0) && di2.diffcode.isExists(0))
+		if (di1.diffcode.exists(0) && di2.diffcode.exists(0))
 			return true;
 		break;
 	case SELECTIONTYPE_RIGHT1RIGHT2:
-		if (di1.diffcode.isExists(1) && di2.diffcode.isExists(1))
+		if (di1.diffcode.exists(1) && di2.diffcode.exists(1))
 			return true;
 		break;
 	case SELECTIONTYPE_LEFT1RIGHT2:
-		if (di1.diffcode.isExists(0) && di2.diffcode.isExists(1))
+		if (di1.diffcode.exists(0) && di2.diffcode.exists(1))
 			return true;
 		break;
 	case SELECTIONTYPE_LEFT2RIGHT1:
-		if (di1.diffcode.isExists(1) && di2.diffcode.isExists(0))
+		if (di1.diffcode.exists(1) && di2.diffcode.exists(0))
 			return true;
 		break;
 	}
@@ -484,17 +484,17 @@ bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM & di1, const DIFF
 	if (di1.diffcode.isDirectory() != di2.diffcode.isDirectory() && di1.diffcode.isDirectory() != di3.diffcode.isDirectory()) return false;
 
 	// Must be on different sides, or one on one side & one on both
-	if (di1.diffcode.isExists(0) && di2.diffcode.isExists(1) && di3.diffcode.isExists(2))
+	if (di1.diffcode.exists(0) && di2.diffcode.exists(1) && di3.diffcode.exists(2))
 		return true;
-	if (di1.diffcode.isExists(0) && di2.diffcode.isExists(2) && di3.diffcode.isExists(1))
+	if (di1.diffcode.exists(0) && di2.diffcode.exists(2) && di3.diffcode.exists(1))
 		return true;
-	if (di1.diffcode.isExists(1) && di2.diffcode.isExists(0) && di3.diffcode.isExists(2))
+	if (di1.diffcode.exists(1) && di2.diffcode.exists(0) && di3.diffcode.exists(2))
 		return true;
-	if (di1.diffcode.isExists(1) && di2.diffcode.isExists(2) && di3.diffcode.isExists(0))
+	if (di1.diffcode.exists(1) && di2.diffcode.exists(2) && di3.diffcode.exists(0))
 		return true;
-	if (di1.diffcode.isExists(2) && di2.diffcode.isExists(0) && di3.diffcode.isExists(1))
+	if (di1.diffcode.exists(2) && di2.diffcode.exists(0) && di3.diffcode.exists(1))
 		return true;
-	if (di1.diffcode.isExists(2) && di2.diffcode.isExists(1) && di3.diffcode.isExists(0))
+	if (di1.diffcode.exists(2) && di2.diffcode.exists(1) && di3.diffcode.exists(0))
 		return true;
 
 	// Allow to compare items if left & right path refer to same directory
@@ -509,7 +509,7 @@ bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM & di1, const DIFF
 bool IsItemOpenableOn(const DIFFITEM & di, int index)
 {
 	// impossible if not existing
-	if (!di.diffcode.isExists(index)) return false;
+	if (!di.diffcode.exists(index)) return false;
 
 	// everything else can be opened on right
 	return true;
@@ -524,7 +524,7 @@ bool IsItemOpenableOnWith(const DIFFITEM & di, int index)
 bool IsItemCopyableToOn(const DIFFITEM & di, int index)
 {
 	// impossible if only on right
-	if (!di.diffcode.isExists(index)) return false;
+	if (!di.diffcode.exists(index)) return false;
 
 	// everything else can be copied to from left
 	return true;
@@ -670,7 +670,7 @@ bool GetOpenOneItem(const CDiffContext& ctxt, uintptr_t pos1, const DIFFITEM *pd
 	if (pdi[0]->diffcode.isDirectory())
 		isdir = true;
 
-	if (isdir && (pdi[0]->diffcode.isExistsFirst() && pdi[1]->diffcode.isExistsSecond() && pdi[2]->diffcode.isExistsThird()))
+	if (isdir && (pdi[0]->diffcode.existsFirst() && pdi[1]->diffcode.existsSecond() && pdi[2]->diffcode.existsThird()))
 	{
 		// Check both folders exist. If either folder is missing that means
 		// folder has been changed behind our back, so we just tell user to
@@ -800,26 +800,26 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2,
 			return false;
 		}
 		// Ensure that pdi[0] is on left (swap if needed)
-		if (pdi[0]->diffcode.isExists(0) && pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2))
+		if (pdi[0]->diffcode.exists(0) && pdi[0]->diffcode.exists(1) && pdi[1]->diffcode.exists(2))
 		{
 			pdi[2] = pdi[1];
 			pdi[1] = pdi[0];
 			sel3 = sel2;
 			sel2 = sel1;
 		}
-		else if (pdi[0]->diffcode.isExists(0) && pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.exists(0) && pdi[0]->diffcode.exists(2) && pdi[1]->diffcode.exists(1))
 		{
 			pdi[2] = pdi[0];
 			sel3 = sel1;
 		}
-		else if (pdi[0]->diffcode.isExists(1) && pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.exists(1) && pdi[0]->diffcode.exists(2) && pdi[1]->diffcode.exists(0))
 		{
 			std::swap(pdi[0], pdi[1]);
 			std::swap(sel1, sel2);
 			pdi[2] = pdi[1];
 			sel3 = sel2;
 		}
-		else if (pdi[1]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(1) && pdi[0]->diffcode.isExists(2))
+		else if (pdi[1]->diffcode.exists(0) && pdi[1]->diffcode.exists(1) && pdi[0]->diffcode.exists(2))
 		{
 			std::swap(pdi[0], pdi[1]);
 			std::swap(sel1, sel2);
@@ -828,14 +828,14 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2,
 			sel3 = sel2;
 			sel2 = sel1;
 		}
-		else if (pdi[1]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(2) && pdi[0]->diffcode.isExists(1))
+		else if (pdi[1]->diffcode.exists(0) && pdi[1]->diffcode.exists(2) && pdi[0]->diffcode.exists(1))
 		{
 			std::swap(pdi[0], pdi[1]);
 			std::swap(sel1, sel2);
 			pdi[2] = pdi[0];
 			sel3 = sel1;
 		}
-		else if (pdi[1]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2) && pdi[0]->diffcode.isExists(0))
+		else if (pdi[1]->diffcode.exists(1) && pdi[1]->diffcode.exists(2) && pdi[0]->diffcode.exists(0))
 		{
 			pdi[2] = pdi[1];
 			sel3 = sel2;
@@ -854,34 +854,34 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2,
 			return false;
 		}
 		// Ensure that pdi[0] is on left (swap if needed)
-		if (pdi[0]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(1) && pdi[2]->diffcode.isExists(2))
+		if (pdi[0]->diffcode.exists(0) && pdi[1]->diffcode.exists(1) && pdi[2]->diffcode.exists(2))
 		{
 		}
-		else if (pdi[0]->diffcode.isExists(0) && pdi[1]->diffcode.isExists(2) && pdi[2]->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.exists(0) && pdi[1]->diffcode.exists(2) && pdi[2]->diffcode.exists(1))
 		{
 			std::swap(pdi[1], pdi[2]);
 			std::swap(sel2, sel3);
 		}
-		else if (pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(0) && pdi[2]->diffcode.isExists(2))
+		else if (pdi[0]->diffcode.exists(1) && pdi[1]->diffcode.exists(0) && pdi[2]->diffcode.exists(2))
 		{
 			std::swap(pdi[0], pdi[1]);
 			std::swap(sel1, sel2);
 		}
-		else if (pdi[0]->diffcode.isExists(1) && pdi[1]->diffcode.isExists(2) && pdi[2]->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.exists(1) && pdi[1]->diffcode.exists(2) && pdi[2]->diffcode.exists(0))
 		{
 			std::swap(pdi[0], pdi[2]);
 			std::swap(sel1, sel3);
 			std::swap(pdi[1], pdi[2]);
 			std::swap(sel2, sel3);
 		}
-		else if (pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(0) && pdi[2]->diffcode.isExists(1))
+		else if (pdi[0]->diffcode.exists(2) && pdi[1]->diffcode.exists(0) && pdi[2]->diffcode.exists(1))
 		{
 			std::swap(pdi[0], pdi[1]);
 			std::swap(sel1, sel2);
 			std::swap(pdi[1], pdi[2]);
 			std::swap(sel2, sel3);
 		}
-		else if (pdi[0]->diffcode.isExists(2) && pdi[1]->diffcode.isExists(1) && pdi[2]->diffcode.isExists(0))
+		else if (pdi[0]->diffcode.exists(2) && pdi[1]->diffcode.exists(1) && pdi[2]->diffcode.exists(0))
 		{
 			std::swap(pdi[0], pdi[2]);
 			std::swap(sel1, sel3);
@@ -966,11 +966,11 @@ int GetColImage(const CDiffContext&ctxt, const DIFFITEM & di)
 		return (di.diffcode.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE);
 	if (ctxt.GetCompareDirs() == 3)
 	{
-		if (!di.diffcode.isExists(0))
+		if (!di.diffcode.exists(0))
 			return (di.diffcode.isDirectory() ? DIFFIMG_LDIRMISSING : DIFFIMG_LMISSING);
-		if (!di.diffcode.isExists(1))
+		if (!di.diffcode.exists(1))
 			return (di.diffcode.isDirectory() ? DIFFIMG_MDIRMISSING : DIFFIMG_MMISSING);
-		if (!di.diffcode.isExists(2))
+		if (!di.diffcode.exists(2))
 			return (di.diffcode.isDirectory() ? DIFFIMG_RDIRMISSING : DIFFIMG_RMISSING);
 	}
 	if (di.diffcode.isResultSame())

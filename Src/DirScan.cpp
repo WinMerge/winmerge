@@ -688,14 +688,7 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiff
 		else
 		{
 			if (di.diffcode.isScanNeeded())
-			{
-				bool bItemsExist = true;
-				UpdateDiffItem(di, bItemsExist, pCtxt);
-				if (bItemsExist)
-				{
-					CompareDiffItem(di, pCtxt);
-				}
-			}
+				CompareDiffItem(di, pCtxt);
 		}
 		if (di.diffcode.isResultDiff() ||
 			(!existsalldirs && !di.diffcode.isResultFiltered()))
@@ -704,6 +697,71 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiff
 	return res;
 }
 
+static int markChildrenForRescan(CDiffContext *pCtxt, uintptr_t parentdiffpos)
+{
+	int ncount = 0;
+	uintptr_t pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	while (pos != NULL)
+	{
+		uintptr_t curpos = pos;
+		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
+		if (di.diffcode.isDirectory())
+			ncount += markChildrenForRescan(pCtxt, curpos);
+		else
+		{
+			di.diffcode.diffcode |= DIFFCODE::NEEDSCAN;
+			++ncount;
+		}
+	}
+	return ncount;
+}
+
+int DirScan_UpdateMarkedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
+{
+	CDiffContext *pCtxt = myStruct->context;
+	uintptr_t pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	int ncount = 0;
+	
+	while (pos != NULL)
+	{
+		if (pCtxt->ShouldAbort())
+			break;
+		uintptr_t curpos = pos;
+		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
+		bool bItemsExist = true;
+		if (di.diffcode.isScanNeeded())
+		{
+			UpdateDiffItem(di, bItemsExist, pCtxt);
+			if (!bItemsExist)
+				di.RemoveSelf();
+			else if (!di.diffcode.isDirectory())
+				++ncount;
+		}
+		if (bItemsExist && di.diffcode.isDirectory() && pCtxt->m_bRecursive)
+		{
+			if (di.diffcode.isScanNeeded() && !di.diffcode.isResultFiltered())
+			{
+				di.RemoveChildren();
+				di.diffcode.diffcode &= ~DIFFCODE::NEEDSCAN;
+
+				bool casesensitive = false;
+				int depth = myStruct->context->m_bRecursive ? -1 : 0;
+				String subdir[3];
+				PathContext paths = myStruct->context->GetNormalizedPaths();
+				for (int i = 0; i < pCtxt->GetCompareDirs(); ++i)
+					subdir[i] = di.diffFileInfo[i].GetFile();
+				DirScan_GetItems(paths, subdir, myStruct,
+					casesensitive, depth, &di, myStruct->context->m_bWalkUniques);
+				ncount += markChildrenForRescan(myStruct->context, curpos);
+			}
+			else
+			{
+				ncount += DirScan_UpdateMarkedItems(myStruct, curpos);
+			}
+		}
+	}
+	return ncount;
+}
 /**
  * @brief Update diffitem file/dir infos.
  *
@@ -718,28 +776,18 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiff
  *  - false if items were deleted, so diffitem is not valid
  * @param [in] pCtxt Compare context
  */
-void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt)
+static void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt)
 {
-	// Clear side-info and file-infos
-	di.diffFileInfo[0].ClearPartial();
-	di.diffFileInfo[1].ClearPartial();
-	di.diffcode.setSideBoth(); // FIXME: DIRTY HACK for UpdateInfoFromDiskHalf
-	bool bLeftExists = pCtxt->UpdateInfoFromDiskHalf(di, 0);
-	bool bRightExists = pCtxt->UpdateInfoFromDiskHalf(di, 1);
-	bExists = bLeftExists || bRightExists;
-	if (bLeftExists)
+	bExists = false;
+	di.diffcode.setSideNone();
+	for (int i = 0; i < pCtxt->GetCompareDirs(); ++i)
 	{
-		if (bRightExists)
-			di.diffcode.setSideBoth();
-		else
-			di.diffcode.setSideFirstOnly();
-	}
-	else
-	{
-		if (bRightExists)
-			di.diffcode.setSideSecondOnly();
-		else
-			di.diffcode.setSideNone();
+		di.diffFileInfo[i].ClearPartial();
+		if (pCtxt->UpdateInfoFromDiskHalf(di, i))
+		{
+			di.diffcode.diffcode |= DIFFCODE::FIRST << i;
+			bExists = true;
+		}
 	}
 }
 

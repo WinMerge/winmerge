@@ -88,29 +88,27 @@ CDiffContext::~CDiffContext()
  * This function updates result list item's file information from actual
  * file in the disk. This updates info like date, size and attributes.
  * @param [in] diffpos DIFFITEM to update.
- * @param [in] bLeft Update left-side info.
- * @param [in] bRight Update right-side info.
+ * @param [in] nIndex index to update 
  */
-void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, int index)
+void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, int nIndex)
 {
 	DIFFITEM &di = GetDiffRefAt(diffpos);
-	di.diffFileInfo[index].ClearPartial();
-	if (di.diffcode.isExists(index))
-		UpdateInfoFromDiskHalf(di, index);
+	di.diffFileInfo[nIndex].ClearPartial();
+	if (di.diffcode.exists(nIndex))
+		UpdateInfoFromDiskHalf(di, nIndex);
 }
 
 /**
  * @brief Update file information from disk for DIFFITEM.
  * This function updates DIFFITEM's file information from actual file in
  * the disk. This updates info like date, size and attributes.
- * @param [in, out] di DIFFITEM to update (selected side, see bLeft param).
- * @param [in] bLeft If true left side information is updated,
- *  right side otherwise.
+ * @param [in, out] di DIFFITEM to update.
+ * @param [in] nIndex index to update
  * @return true if file exists
  */
 bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex)
 {
-	String filepath = paths_ConcatPath(di.getFilepath(nIndex, GetNormalizedPath(nIndex)), di.diffFileInfo[nIndex].filename);
+	String filepath = paths_ConcatPath(paths_ConcatPath(m_paths[nIndex], di.diffFileInfo[nIndex].path), di.diffFileInfo[nIndex].filename);
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
 	if (!dfi.Update(filepath))
 		return false;
@@ -157,7 +155,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
 		return;
 	
 	String spath;
-	if (!di.diffcode.isExists(nIndex))
+	if (!di.diffcode.exists(nIndex))
 		return;
 	String ext = paths_FindExtension(di.diffFileInfo[nIndex].filename);
 	if (!CheckFileForVersion(ext))
