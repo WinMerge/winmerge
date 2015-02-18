@@ -15,56 +15,65 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  CCPrompt.h
+ * @file  VssPromptDlg.h
  *
- * @brief Declaration file for ClearCase dialog.
- *
+ * @brief Declaration file for CVssPromptDlg
  */
-// ID line follows -- this is updated by SVN
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
-#if !defined(AFX_CCPROMPT_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_)
-#define AFX_CCPROMPT_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_
+#if !defined(AFX_VSSPROMPTDLG_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_)
+#define AFX_VSSPROMPTDLG_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_
+
+#include "SuperComboBox.h"
+#include "afxwin.h"
 
 /**
- * @brief A dialog for ClearCase checkout/checkin.
+ * @brief Class for VSS dialog
  */
-class CCCPrompt : public CDialog
+class CVssPromptDlg : public CDialog
 {
 // Construction
 public:
-	CCCPrompt(CWnd* pParent = NULL);   // standard constructor
+	CVssPromptDlg(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CCCPrompt)
-	enum { IDD = IDD_CLEARCASE };
-	CString	m_comments;
+	//{{AFX_DATA(CVssPromptDlg)
+	enum { IDD = IDD_VSS };
+	CSuperComboBox	m_ctlProject;
+	CString	m_strProject;
+	CString	m_strUser;
+	CString	m_strPassword;
+	CString	m_strMessage;
 	//}}AFX_DATA
 
 
 // Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CCCPrompt)
+	//{{AFX_VIRTUAL(CVssPromptDlg)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual BOOL OnInitDialog();
 
 	// Generated message map functions
-	//{{AFX_MSG(CCCPrompt)
+	//{{AFX_MSG(CVssPromptDlg)
+	virtual BOOL OnInitDialog();
+	virtual void OnOK();
 	afx_msg void OnSaveas();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
 public:
+	CString m_strSelectedDatabase;
+	CComboBox m_ctlDBCombo;
 	BOOL m_bMultiCheckouts;
-	BOOL m_bCheckin;
+	CButton m_ctlMultiCheckouts;
+	BOOL m_bVCProjSync;
 };
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
+// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_CCPROMPT_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_)
+#endif // !defined(AFX_VSSPROMPTDLG_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_)

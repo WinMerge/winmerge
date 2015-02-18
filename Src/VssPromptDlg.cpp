@@ -19,15 +19,15 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  VssPrompt.cpp
+ * @file  VssPromptDlg.cpp
  *
- * @brief Code for CVssPrompt class
+ * @brief Code for CVssPromptDlg class
  */
 // ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
-#include "VssPrompt.h"
+#include "VssPromptDlg.h"
 #include "Merge.h"
 #include "RegKey.h"
 
@@ -38,15 +38,15 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-// CVssPrompt dialog
+// CVssPromptDlg dialog
 
 
 /**
  * @brief Default constructor.
  * @param [in] pParent Pointer to parent component.
  */
-CVssPrompt::CVssPrompt(CWnd* pParent /*=NULL*/)
-	: CDialog(CVssPrompt::IDD, pParent)
+CVssPromptDlg::CVssPromptDlg(CWnd* pParent /*=NULL*/)
+	: CDialog(CVssPromptDlg::IDD, pParent)
 	, m_strSelectedDatabase(_T(""))
 	, m_bMultiCheckouts(FALSE)
 	, m_bVCProjSync(FALSE)
@@ -54,10 +54,10 @@ CVssPrompt::CVssPrompt(CWnd* pParent /*=NULL*/)
 }
 
 
-void CVssPrompt::DoDataExchange(CDataExchange* pDX)
+void CVssPromptDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CVssPrompt)
+	//{{AFX_DATA_MAP(CVssPromptDlg)
 	DDX_Control(pDX, IDC_PROJECT_COMBO, m_ctlProject);
 	DDX_CBString(pDX, IDC_PROJECT_COMBO, m_strProject);
 	DDX_Text(pDX, IDC_USER, m_strUser);
@@ -72,20 +72,20 @@ void CVssPrompt::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CVssPrompt, CDialog)
-	//{{AFX_MSG_MAP(CVssPrompt)
+BEGIN_MESSAGE_MAP(CVssPromptDlg, CDialog)
+	//{{AFX_MSG_MAP(CVssPromptDlg)
 	ON_BN_CLICKED(IDC_SAVE_AS, OnSaveas)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// CVssPrompt message handlers
+// CVssPromptDlg message handlers
 
 /**
  * @brief Initialize the dialog.
  * @return TRUE, unless focus is modified.
  */
-BOOL CVssPrompt::OnInitDialog()
+BOOL CVssPromptDlg::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
@@ -132,7 +132,7 @@ BOOL CVssPrompt::OnInitDialog()
 /**
  * @brief Close dialog with OK-button.
  */
-void CVssPrompt::OnOK()
+void CVssPromptDlg::OnOK()
 {
 	UpdateData(TRUE);
 	if (m_strProject.IsEmpty())
@@ -149,7 +149,7 @@ void CVssPrompt::OnOK()
 /**
  * @brief Close dialog with Save As -button.
  */
-void CVssPrompt::OnSaveas()
+void CVssPromptDlg::OnSaveas()
 {
 	EndDialog(IDC_SAVE_AS);
 }

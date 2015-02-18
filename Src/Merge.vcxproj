@@ -782,7 +782,7 @@
     <ClCompile Include="BCMenu.cpp">
     </ClCompile>
     <ClCompile Include="Common\Bitmap.cpp" />
-    <ClCompile Include="CCPrompt.cpp">
+    <ClCompile Include="CCPromptDlg.cpp">
     </ClCompile>
     <ClCompile Include="charsets.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -1895,7 +1895,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Unicode + Code Analysis|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="VssPrompt.cpp">
+    <ClCompile Include="VssPromptDlg.cpp">
     </ClCompile>
     <ClCompile Include="WaitStatusCursor.cpp">
     </ClCompile>
@@ -2125,7 +2125,7 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
-    <ClInclude Include="CCPrompt.h" />
+    <ClInclude Include="CCPromptDlg.h" />
     <ClInclude Include="charsets.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="Common\ClipBoard.h" />
@@ -2296,7 +2296,7 @@
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\version.h" />
     <ClInclude Include="VSSHelper.h" />
-    <ClInclude Include="VssPrompt.h" />
+    <ClInclude Include="VssPromptDlg.h" />
     <ClInclude Include="WaitStatusCursor.h" />
     <ClInclude Include="WMGotoDlg.h" />
     <ClInclude Include="diffutils\lib\cmpbuf.h" />

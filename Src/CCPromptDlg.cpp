@@ -15,7 +15,7 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /**
- * @file  CCPrompt.cpp
+ * @file  CCPromptDlg.cpp
  *
  * @brief Implementation file for ClearCase dialog
  */
@@ -23,7 +23,7 @@
 // $Id$
 
 #include "stdafx.h"
-#include "CCPrompt.h"
+#include "CCPromptDlg.h"
 #include "Merge.h"
 
 #ifdef _DEBUG
@@ -32,25 +32,25 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-CCCPrompt::CCCPrompt(CWnd* pParent /*=NULL*/)
-	: CDialog(CCCPrompt::IDD, pParent)
+CCCPromptDlg::CCCPromptDlg(CWnd* pParent /*=NULL*/)
+	: CDialog(CCCPromptDlg::IDD, pParent)
 	, m_bMultiCheckouts(FALSE)
 	, m_bCheckin(FALSE)
 {
 }
 
-void CCCPrompt::DoDataExchange(CDataExchange* pDX)
+void CCCPromptDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CCCPrompt)
+	//{{AFX_DATA_MAP(CCCPromptDlg)
 	DDX_Text(pDX, IDC_COMMENTS, m_comments);
 	DDX_Check(pDX, IDC_MULTI_CHECKOUT, m_bMultiCheckouts);
 	DDX_Check(pDX, IDC_CHECKIN, m_bCheckin);
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(CCCPrompt, CDialog)
-	//{{AFX_MSG_MAP(CCCPrompt)
+BEGIN_MESSAGE_MAP(CCCPromptDlg, CDialog)
+	//{{AFX_MSG_MAP(CCCPromptDlg)
 	ON_BN_CLICKED(IDC_SAVE_AS, OnSaveas)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -59,7 +59,7 @@ END_MESSAGE_MAP()
  * @brief Handler for WM_INITDIALOG; conventional location to initialize
  * controls. At this point dialog and control windows exist.
  */
-BOOL CCCPrompt::OnInitDialog() 
+BOOL CCCPromptDlg::OnInitDialog() 
 {
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
@@ -68,7 +68,7 @@ BOOL CCCPrompt::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CCCPrompt::OnSaveas() 
+void CCCPromptDlg::OnSaveas() 
 {
 	EndDialog(IDC_SAVE_AS);
 }

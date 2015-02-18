@@ -18,10 +18,10 @@
 #include "OptionsMgr.h"
 #include "RegKey.h"
 #include "paths.h"
-#include "VssPrompt.h"
+#include "VssPromptDlg.h"
 #include "WaitStatusCursor.h"
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
-#include "CCPrompt.h"
+#include "CCPromptDlg.h"
 #include "VSSHelper.h"
 
 using Poco::format;
@@ -76,7 +76,7 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 	case VCS_VSS4:	// Visual Source Safe
 	{
 		// Prompt for user choice
-		CVssPrompt dlg;
+		CVssPromptDlg dlg;
 		dlg.m_strMessage = LangFormatString1(IDS_SAVE_FMT, strSavePath.c_str()).c_str();
 		dlg.m_strProject = m_pVssHelper->GetProjectBase().c_str();
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
@@ -136,7 +136,7 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 	case VCS_VSS5: // CVisual SourceSafe 5.0+ (COM)
 	{
 		// prompt for user choice
-		CVssPrompt dlg;
+		CVssPromptDlg dlg;
 		CRegKeyEx reg;
 		CString spath, sname;
 
@@ -321,7 +321,7 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 	case VCS_CLEARCASE:
 	{
 		// prompt for user choice
-		CCCPrompt dlg;
+		CCCPromptDlg dlg;
 		if (!m_CheckOutMulti)
 		{
 			dlg.m_bMultiCheckouts = FALSE;
