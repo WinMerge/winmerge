@@ -44,6 +44,9 @@
     <Filter Include="MFCGui\Dialogs\PropertyPages">
       <UniqueIdentifier>{c6b39fdf-7c68-42c3-895b-da25bb6e51b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MFCGui\Common">
+      <UniqueIdentifier>{297182f0-e39d-4ac4-9df3-315882ce9e07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charsets.c">
@@ -448,22 +451,7 @@
     <ClCompile Include="7zCommon.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BCMenu.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\Bitmap.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ChildFrm.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\CMoveConstraint.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorButton.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\CSubclass.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DiffTextBuffer.cpp">
@@ -529,9 +517,6 @@
     <ClCompile Include="MainFrm.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\MDITabBar.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Merge.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -550,9 +535,6 @@
     <ClCompile Include="MergeEditView.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\MessageBoxDialog.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="OpenDoc.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -562,37 +544,7 @@
     <ClCompile Include="OpenView.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsPanel.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\Picture.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\scbarcf.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\scbarg.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\ShellContextMenu.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\sizecbar.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\SplitterWndEx.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\StatLink.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StdAfx.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\SuperComboBox.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\ToolBarXPThemes.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WaitStatusCursor.cpp">
@@ -709,17 +661,11 @@
     <ClCompile Include="PatchTool.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\SortHeaderCtrl.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SourceControl.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common\PreferencesDlg.cpp">
       <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\PropertyPageHost.cpp">
-      <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="JumpList.cpp">
       <Filter>Source Files</Filter>
@@ -759,6 +705,63 @@
     </ClCompile>
     <ClCompile Include="VssPromptDlg.cpp">
       <Filter>MFCGui\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\StatLink.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SuperComboBox.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SortHeaderCtrl.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\sizecbar.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\scbarg.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\scbarcf.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SplitterWndEx.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\MessageBoxDialog.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\CMoveConstraint.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ToolBarXPThemes.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\MDITabBar.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\PropertyPageHost.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsPanel.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Picture.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Bitmap.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\CSubclass.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ShellContextMenu.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\BCMenu.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ColorButton.cpp">
+      <Filter>MFCGui\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -913,9 +916,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="paths.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Picture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\PidlContainer.h">
@@ -1077,43 +1077,13 @@
     <ClInclude Include="WaitStatusCursor.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\ToolbarXPThemes.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\SuperComboBox.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StdAfx.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\StatLink.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\SplitterWndEx.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\SortHeaderCtrl.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\sizecbar.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\scbarg.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\scbarcf.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="diffutils\lib\regex.h">
       <Filter>DiffEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Common\ShellContextMenu.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OptionsPanel.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OpenFrm.h">
@@ -1123,9 +1093,6 @@
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OpenDoc.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\MessageBoxDialog.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeEditView.h">
@@ -1138,12 +1105,6 @@
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Merge.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\MDITabBar.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\memdc.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MainFrm.h">
@@ -1173,16 +1134,7 @@
     <ClInclude Include="FileOrFolderSelect.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BCMenu.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Bitmap.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ChildFrm.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ColorButton.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DiffViewBar.h">
@@ -1216,9 +1168,6 @@
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\LanguageSelect.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\CMoveConstraint.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\coretypes.h">
@@ -1344,14 +1293,8 @@
     <ClInclude Include="PatchTool.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\CSubclass.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common\PreferencesDlg.h">
       <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\PropertyPageHost.h">
-      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="JumpList.h">
       <Filter>Header Files</Filter>
@@ -1400,6 +1343,66 @@
     </ClInclude>
     <ClInclude Include="VssPromptDlg.h">
       <Filter>MFCGui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SuperComboBox.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\StatLink.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SortHeaderCtrl.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\CMoveConstraint.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\MDITabBar.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\PropertyPageHost.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SplitterWndEx.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\sizecbar.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\scbarg.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\scbarcf.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ToolbarXPThemes.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\MessageBoxDialog.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsPanel.h">
+      <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\CSubclass.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Bitmap.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\memdc.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ShellContextMenu.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\BCMenu.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ColorButton.h">
+      <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Picture.h">
+      <Filter>MFCGui\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
