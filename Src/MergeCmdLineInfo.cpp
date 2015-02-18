@@ -105,7 +105,7 @@ const TCHAR *MergeCmdLineInfo::SetOption(const TCHAR *q, const TCHAR *key, const
 	if (*q == _T(':'))
 	{
 		q = EatParam(q, s);
-		value = s.c_str() + 1;
+//		value = s.c_str() + 1;
 	}
 //	GetOptionsMgr()->SaveOption(key, value);
 	return q;

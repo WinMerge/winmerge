@@ -1007,7 +1007,7 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
 	{
 		ShowPluginErrorMessage(pi, errorText);
 		// set h to FAILED
-		h = -1;
+		h = E_FAIL;
 	}
 
 	return h;
@@ -1060,7 +1060,7 @@ static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH 
 	{
 		ShowPluginErrorMessage(pi, errorText);
 		// set h to FAILED
-		h = -1;
+		h = E_FAIL;
 	}
 
 	return h;

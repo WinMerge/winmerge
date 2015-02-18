@@ -1801,7 +1801,7 @@ isopenbrace (TCHAR c)
 bool
 isclosebrace (TCHAR c)
 {
-  return c == _T ('}') || c == _T ('}') || c == _T (']') || c == _T ('>');
+  return c == _T ('}') || c == _T (')') || c == _T (']') || c == _T ('>');
 }
 
 bool
