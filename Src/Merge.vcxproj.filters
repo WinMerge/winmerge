@@ -694,16 +694,10 @@
     <ClCompile Include="TestFilterDlg.cpp">
       <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="VssPrompt.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="WMGotoDlg.cpp">
       <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="FileFiltersDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="CCPrompt.cpp">
       <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="CompareStatisticsDlg.cpp">
@@ -759,6 +753,12 @@
     </ClCompile>
     <ClCompile Include="PropCompareBinary.cpp">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
+    </ClCompile>
+    <ClCompile Include="CCPromptDlg.cpp">
+      <Filter>MFCGui\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="VssPromptDlg.cpp">
+      <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1296,9 +1296,6 @@
     <ClInclude Include="AboutDlg.h">
       <Filter>MFCGui\Dialogs</Filter>
     </ClInclude>
-    <ClInclude Include="CCPrompt.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
     <ClInclude Include="CompareStatisticsDlg.h">
       <Filter>MFCGui\Dialogs</Filter>
     </ClInclude>
@@ -1336,9 +1333,6 @@
       <Filter>MFCGui\Dialogs</Filter>
     </ClInclude>
     <ClInclude Include="WMGotoDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="VssPrompt.h">
       <Filter>MFCGui\Dialogs</Filter>
     </ClInclude>
     <ClInclude Include="ProjectFilePathsDlg.h">
@@ -1400,6 +1394,12 @@
     </ClInclude>
     <ClInclude Include="PropCompareBinary.h">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
+    </ClInclude>
+    <ClInclude Include="CCPromptDlg.h">
+      <Filter>MFCGui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="VssPromptDlg.h">
+      <Filter>MFCGui\Dialogs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,65 +15,56 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  VssPrompt.h
+ * @file  CCPromptDlg.h
  *
- * @brief Declaration file for CVssPrompt
+ * @brief Declaration file for ClearCase dialog.
+ *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
-#if !defined(AFX_VSSPROMPT_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_)
-#define AFX_VSSPROMPT_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_
-
-#include "SuperComboBox.h"
-#include "afxwin.h"
+#if !defined(AFX_CCPROMPTDLG_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_)
+#define AFX_CCPROMPTDLG_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_
 
 /**
- * @brief Class for VSS dialog
+ * @brief A dialog for ClearCase checkout/checkin.
  */
-class CVssPrompt : public CDialog
+class CCCPromptDlg : public CDialog
 {
 // Construction
 public:
-	CVssPrompt(CWnd* pParent = NULL);   // standard constructor
+	CCCPromptDlg(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CVssPrompt)
-	enum { IDD = IDD_VSS };
-	CSuperComboBox	m_ctlProject;
-	CString	m_strProject;
-	CString	m_strUser;
-	CString	m_strPassword;
-	CString	m_strMessage;
+	//{{AFX_DATA(CCCPromptDlg)
+	enum { IDD = IDD_CLEARCASE };
+	CString	m_comments;
 	//}}AFX_DATA
 
 
 // Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CVssPrompt)
+	//{{AFX_VIRTUAL(CCCPromptDlg)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
 // Implementation
 protected:
+	virtual BOOL OnInitDialog();
 
 	// Generated message map functions
-	//{{AFX_MSG(CVssPrompt)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
+	//{{AFX_MSG(CCCPromptDlg)
 	afx_msg void OnSaveas();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
 public:
-	CString m_strSelectedDatabase;
-	CComboBox m_ctlDBCombo;
 	BOOL m_bMultiCheckouts;
-	CButton m_ctlMultiCheckouts;
-	BOOL m_bVCProjSync;
+	BOOL m_bCheckin;
 };
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
+// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_VSSPROMPT_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_)
+#endif // !defined(AFX_CCPROMPTDLG_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_)
