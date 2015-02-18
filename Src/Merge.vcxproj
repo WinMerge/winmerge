@@ -779,8 +779,7 @@
     </ClCompile>
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
-    <ClCompile Include="BCMenu.cpp">
-    </ClCompile>
+    <ClCompile Include="Common\BCMenu.cpp" />
     <ClCompile Include="Common\Bitmap.cpp" />
     <ClCompile Include="CCPromptDlg.cpp">
     </ClCompile>
@@ -872,8 +871,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Unicode + Code Analysis|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ColorButton.cpp">
-    </ClCompile>
+    <ClCompile Include="Common\ColorButton.cpp" />
     <ClCompile Include="Common\DragDrop.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -2123,7 +2121,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
-    <ClInclude Include="BCMenu.h" />
+    <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="CCPromptDlg.h" />
     <ClInclude Include="charsets.h" />
@@ -2132,7 +2130,7 @@
     <ClInclude Include="Common\CMoveConstraint.h" />
     <ClInclude Include="codepage.h" />
     <ClInclude Include="codepage_detect.h" />
-    <ClInclude Include="ColorButton.h" />
+    <ClInclude Include="Common\ColorButton.h" />
     <ClInclude Include="Common\DragDrop.h" />
     <ClInclude Include="Common\ExConverter.h" />
     <ClInclude Include="CompareEngines\BinaryCompare.h" />
