@@ -1,3 +1,5 @@
+#pragma once
+
 #include "IListCtrl.h"
 #include <commctrl.h>
 #include <atlimage.h>

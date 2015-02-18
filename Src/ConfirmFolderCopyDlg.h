@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for ConfirmFolderCopyDlg dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _CONFIRM_FOLDER_COPY_DLG_H_
-#define _CONFIRM_FOLDER_COPY_DLG_H_
+#pragma once
 
 #include "CMoveConstraint.h"
 
@@ -60,5 +56,3 @@ public:
 private:
 	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
 };
-
-#endif // _CONFIRM_FOLDER_COPY_DLG_H_

@@ -4,6 +4,8 @@
  * @brief Declaration file for Merge7zFormatMergePluginImpl class
  *
  */
+#pragma once
+
 #include <Windows.h>
 
 #define DllBuild_Merge7z 10 // Minimum DllBuild of Merge7z plugin required

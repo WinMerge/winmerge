@@ -3,8 +3,6 @@
  *
  *  @brief Implementation of DIFFITEM
  */ 
-// ID line follows -- this is updated by SVN
-// $Id: DiffItem.cpp 7063 2009-12-27 15:28:16Z kimmov $
 
 #include "DiffItem.h"
 #include "paths.h"

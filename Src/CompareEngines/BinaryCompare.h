@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for BinaryCompare compare engine.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _BINARY_COMPARE_H_
-#define _BINARY_COMPARE_H_
+#pragma once
 
 struct DIFFITEM;
 class PathContext;
@@ -28,5 +24,3 @@ public:
 };
 
 } // namespace CompareEngines
-
-#endif // _BINARY_COMPARE_H_

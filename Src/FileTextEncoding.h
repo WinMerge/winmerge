@@ -3,11 +3,7 @@
  *
  * @brief Declaration of FileTextEncoding structure
  */
-// ID line follows -- this is updated by SVN
-// $Id: FileTextEncoding.h 7172 2010-05-19 12:57:18Z jtuc $
-
-#ifndef FileTextEncoding_h_included
-#define FileTextEncoding_h_included
+#pragma once
 
 #include "unicoder.h"
 
@@ -30,6 +26,3 @@ struct FileTextEncoding
 	bool operator==(const FileTextEncoding & fte2) const { return Collate(*this, fte2) == 0; }
 	bool operator!=(const FileTextEncoding & fte2) const { return Collate(*this, fte2) != 0; }
 };
-
-
-#endif // FileTextEncoding_h_included

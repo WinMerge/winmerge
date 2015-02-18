@@ -23,11 +23,6 @@
  * @brief Declaration file for CDirDoc
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: DirDoc.h 6136 2008-12-01 17:04:25Z kimmov $
-
-#if !defined(AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_)
-#define AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_
 #pragma once
 
 #include <memory>
@@ -177,5 +172,3 @@ private:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_)

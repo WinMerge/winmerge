@@ -41,8 +41,6 @@ DATE:		BY:					DESCRIPTION:
 								important to be able to build 64-bit now.
 
 */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #if defined(_MSC_VER)&&!defined(NO_ALLOCA_RECOVERY)||defined(ALLOCA_RECOVERY)
 #undef ALLOCA_RECOVERY

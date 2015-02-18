@@ -23,8 +23,6 @@
  *
  * @brief Implementation of the COpenView class
  */
-// ID line follows -- this is updated by SVN
-// $Id: OpenDlg.cpp 6861 2009-06-25 12:11:07Z kimmov $
 
 #include "stdafx.h"
 #include "OpenView.h"

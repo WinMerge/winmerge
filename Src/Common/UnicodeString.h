@@ -21,11 +21,7 @@
  * @brief Unicode string based on std::wstring.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _UNICODE_STRING_
-#define _UNICODE_STRING_
+#pragma once
 
 #include <string>
 #include <cstdarg>
@@ -93,5 +89,3 @@ String string_join(const InputIterator& begin, const InputIterator& end, const S
 	}
 	return result;
 }
-
-#endif // _UNICODE_STRING_

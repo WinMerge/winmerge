@@ -23,11 +23,7 @@
  * @brief Interface of the CEditorFilePathBar class.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: EditorFilepathBar.h 5401 2008-05-30 12:09:27Z kimmov $
-
-#ifndef __EDITORFILEPATHBAR_H__
-#define __EDITORFILEPATHBAR_H__
+#pragma once
 
 #include <memory>
 #include "FilepathEdit.h"
@@ -81,6 +77,3 @@ private:
 	std::unique_ptr<CFont> m_pFont; /**< Font for editcontrols */
 	int m_nPanes;
 };
-
-
-#endif //__EDITORFILEPATHBAR_H__

@@ -1,17 +1,9 @@
-//////////////////////////////////////////////////////////////////////
 /** 
  * @file  LocationView.h
  *
  * @brief Declaration of CLocationView class
  */
-//
-//////////////////////////////////////////////////////////////////////
-
-// ID line follows -- this is updated by SVN
-// $Id: LocationView.h 6085 2008-11-12 17:31:24Z kimmov $
-
-#ifndef __LOCATIONVIEW_H__
-#define __LOCATIONVIEW_H__
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -150,6 +142,3 @@ inline CMergeDoc* CLocationView::GetDocument()
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-
-#endif //__LOCATIONVIEW_H__

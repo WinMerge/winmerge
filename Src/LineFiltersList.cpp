@@ -3,8 +3,6 @@
  *
  * @brief Implementation for LineFiltersList class.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "LineFiltersList.h"
 #include <vector>

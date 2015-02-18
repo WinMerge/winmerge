@@ -1,3 +1,4 @@
+#pragma once
 
 struct file_data;
 struct change;

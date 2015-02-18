@@ -21,8 +21,6 @@
  *
  * @date  Created: 2003-08-22
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffWrapper.cpp 7091 2010-01-11 20:27:43Z kimmov $
 
 #define NOMINMAX
 #include "DiffWrapper.h"

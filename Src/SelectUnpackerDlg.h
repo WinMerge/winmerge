@@ -23,11 +23,7 @@
  *
  *  @brief Declaration file for the dialog SelectUnpacker
  */ 
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
-#if !defined(AFX_SELECTUNPACKERDLG_H__C8FD4C3A_5ED5_43D3_ADAE_A2378369705C__INCLUDED_)
-#define AFX_SELECTUNPACKERDLG_H__C8FD4C3A_5ED5_43D3_ADAE_A2378369705C__INCLUDED_
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -104,5 +100,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_SELECTUNPACKERDLG_H__C8FD4C3A_5ED5_43D3_ADAE_A2378369705C__INCLUDED_)

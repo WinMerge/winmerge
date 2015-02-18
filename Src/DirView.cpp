@@ -23,8 +23,6 @@
  *
  * @brief Main implementation file for CDirView
  */
-// ID line follows -- this is updated by SVN
-// $Id: DirView.cpp 7063 2009-12-27 15:28:16Z kimmov $
 
 #include "StdAfx.h"
 #include "DirView.h"

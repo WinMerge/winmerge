@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for CVssPromptDlg
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
-#if !defined(AFX_VSSPROMPTDLG_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_)
-#define AFX_VSSPROMPTDLG_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_
+#pragma once
 
 #include "SuperComboBox.h"
 #include "afxwin.h"
@@ -75,5 +71,3 @@ public:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_VSSPROMPTDLG_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_)

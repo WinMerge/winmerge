@@ -23,11 +23,7 @@
  * @brief Declaration file for CMergeEditView
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: MergeEditView.h 6655 2009-04-14 19:18:31Z kimmov $
-
-#if !defined(AFX_MERGEEDITVIEW_H__0CE31CFD_4BEE_4378_ADB4_B7C9F50A9F53__INCLUDED_)
-#define AFX_MERGEEDITVIEW_H__0CE31CFD_4BEE_4378_ADB4_B7C9F50A9F53__INCLUDED_
+#pragma once
 
 /** 
  * @brief Non-diff lines shown above diff when scrolling to it
@@ -357,5 +353,3 @@ inline CMergeDoc* CMergeEditView::GetDocument()
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_MERGEEDITVIEW_H__0CE31CFD_4BEE_4378_ADB4_B7C9F50A9F53__INCLUDED_)

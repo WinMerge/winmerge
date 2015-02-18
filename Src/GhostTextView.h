@@ -3,10 +3,7 @@
  *
  * @brief Declaration of CGhostTextView (subclasses CCrystalEditViewEx to handle ghost lines)
  */
-
-
-#ifndef __GHOSTTEXTVIEW_H__
-#define __GHOSTTEXTVIEW_H__
+#pragma once
 
 #include "crystalEditViewex.h"
 
@@ -124,6 +121,3 @@ public:
 
 
 /////////////////////////////////////////////////////////////////////////////
-
-
-#endif //__GHOSTTEXTVIEW_H__

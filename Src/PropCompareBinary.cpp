@@ -3,8 +3,6 @@
  *
  * @brief Implementation of PropCompareBinary propertysheet
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "PropCompareBinary.h"

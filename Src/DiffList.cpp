@@ -19,8 +19,6 @@
  *
  * @brief Implementation file for DiffList class
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffList.cpp 7105 2010-01-14 21:14:22Z kimmov $
 
 #include "DiffList.h"
 #include <cassert>

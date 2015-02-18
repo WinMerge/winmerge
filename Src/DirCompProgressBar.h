@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for Directory compare statusdialog class
  */
-// ID line follows -- this is updated by SVN
-// $Id: DirCompProgressBar.h 5444 2008-06-07 06:48:49Z kimmov $
-
-#if !defined(AFX_DIRCOMPPROGRESSBAR_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
-#define AFX_DIRCOMPPROGRESSBAR_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_
+#pragma once
 
 #include "CompareStats.h"
 
@@ -73,6 +69,3 @@ private:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_DIRCOMPPROGRESSBAR_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
-

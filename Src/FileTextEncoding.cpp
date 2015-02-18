@@ -3,8 +3,6 @@
  *
  * @brief Implementation of FileTextEncoding structure
  */
-// ID line follows -- this is updated by SVN
-// $Id: FileTextEncoding.cpp 7172 2010-05-19 12:57:18Z jtuc $
 
 #include "FileTextEncoding.h"
 #include "unicoder.h"

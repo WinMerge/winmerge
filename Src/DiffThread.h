@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for CDiffThread
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _DIFFTHREAD_H
-#define _DIFFTHREAD_H
+#pragma once
 
 #include <memory>
 #define POCO_NO_UNWINDOWS 1
@@ -117,5 +113,3 @@ private:
 	bool m_bAborting; /**< Is compare aborting? */
 	bool m_bOnlyRequested; /**< Are we comparing only requested items (Update?) */
 };
-
-#endif /* _DIFFTHREAD_H */

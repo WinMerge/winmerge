@@ -4,11 +4,7 @@
  * @brief Declaration file for PropSyntaxColors propertyheet
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _PROP_SYNTAX_COLORS_H_
-#define _PROP_SYNTAX_COLORS_H_
+#pragma once
 
 #include "ColorButton.h"
 #include "OptionsPanel.h"
@@ -96,4 +92,3 @@ private:
 	SyntaxColors *m_pTempColors;
 	COLORREF m_cCustColors[16];
 };
-#endif // _PROP_SYNTAX_COLORS_H_

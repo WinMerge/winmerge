@@ -3,11 +3,7 @@
  *
  * @brief Compare options classes and types.
  */
-// ID line follows -- this is updated by SVN
-// $Id: CompareOptions.h 5920 2008-09-07 16:15:10Z marcelgosselin $
-
-#ifndef CompareOptions_h_included
-#define CompareOptions_h_included
+#pragma once
 
 /**
  * @brief Whether to ignore whitespace (or to ignore changes in whitespace)
@@ -128,5 +124,3 @@ public:
 
 	bool m_bStopAfterFirstDiff; /**< Optimize compare by stopping after first difference? */
 };
-
-#endif // CompareOptions_h_included

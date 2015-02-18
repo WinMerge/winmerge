@@ -3,8 +3,6 @@
  *
  *  @brief Implementation of Line Filter dialog
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "LineFiltersList.h"

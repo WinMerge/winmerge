@@ -17,8 +17,6 @@
  *
  *  @brief Implementation of FileFilterMgr and supporting routines
  */ 
-// ID line follows -- this is updated by SVN
-// $Id: FileFilterMgr.cpp 7024 2009-10-22 18:26:45Z kimmov $
 
 #include "FileFilterMgr.h"
 #include <vector>

@@ -19,8 +19,6 @@
  *
  * @brief Code for DiffThread class
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffThread.cpp 6910 2009-07-12 09:06:54Z kimmov $
 
 #include "DiffThread.h"
 #include <cassert>

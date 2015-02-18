@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for path routines
  */
-// ID line follows -- this is updated by SVN
-// $Id: paths.h 5301 2008-04-16 12:51:56Z kimmov $
-
-#ifndef paths_h_included
-#define paths_h_included
+#pragma once
 
 #include "PathContext.h"
 #include "UnicodeString.h"
@@ -44,5 +40,3 @@ void paths_SplitFilename(const String& s, String * path, String * name, String *
 void paths_SplitViewName(const TCHAR *s, String * path, String * name, String * ext);
 String paths_GetPathOnly(const String& fullpath);
 bool paths_IsURLorCLSID(const String& path);
-
-#endif // paths_h_included

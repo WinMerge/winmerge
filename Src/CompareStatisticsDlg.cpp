@@ -19,8 +19,6 @@
  *
  * @brief Implementation file for CompareStatisticsDlg dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id: CompareStatisticsDlg.cpp 5293 2008-04-14 05:58:23Z kimmov $
 
 #include "stdafx.h"
 #include "CompareStatisticsDlg.h"

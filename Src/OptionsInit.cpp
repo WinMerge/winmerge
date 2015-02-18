@@ -3,8 +3,6 @@
  *
  * @brief Options initialisation.
  */
-// ID line follows -- this is updated by SVN
-// $Id: OptionsInit.cpp 6910 2009-07-12 09:06:54Z kimmov $
 
 #include "stdafx.h"
 #include <vector>

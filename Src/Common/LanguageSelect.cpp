@@ -3,8 +3,6 @@
  *
  * @brief Implements the Language Selection dialog class (which contains the language data)
  */
-// ID line follows -- this is updated by SVN
-// $Id: LanguageSelect.cpp 6499 2009-02-25 13:31:52Z kimmov $
 
 #include "StdAfx.h"
 #include "LanguageSelect.h"

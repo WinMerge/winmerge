@@ -22,12 +22,7 @@
  *
  *	@brief Declaration of class CShellContextMenu
  */ 
-//
-// ID line follows -- this is updated by SVN
-// $Id: ShellContextMenu.h 6106 2008-11-20 14:25:18Z kimmov $
-
-#ifndef _SHELLCONTEXTMENU_H_
-#define _SHELLCONTEXTMENU_H_
+#pragma once
 
 #include <comdef.h>
 #include <ShlObj.h>
@@ -198,5 +193,3 @@ private:
 	const UINT m_cmdFirst; /**< minimum value for a menu item identifier */
 	const UINT m_cmdLast; /**< maximum value for a menu item identifier */
 };
-
-#endif // _SHELLCONTEXTMENU_H_

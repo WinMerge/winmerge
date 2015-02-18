@@ -4,11 +4,7 @@
  * @brief Declaration file for class stringdiffs
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: stringdiffsi.h 7047 2009-12-21 19:08:49Z kimmov $
-
-#ifndef stringdiffsi_h_included
-#define stringdiffsi_h_included
+#pragma once
 
 #include <vector>
 
@@ -116,6 +112,3 @@ private:
 	std::vector<word> m_words2;
 	std::vector<wdiff> m_wdiffs;
 };
-
-
-#endif // stringdiffsi_h_included

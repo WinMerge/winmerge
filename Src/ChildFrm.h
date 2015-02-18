@@ -23,11 +23,7 @@
  * @brief interface of the CChildFrame class
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: ChildFrm.h 5446 2008-06-07 12:14:19Z jtuc $
-
-#if !defined(AFX_CHILDFRM_H__BBCD4F8E_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
-#define AFX_CHILDFRM_H__BBCD4F8E_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
+#pragma once
 
 #include "SplitterWndEx.h"
 #include "MergeEditStatus.h"
@@ -145,5 +141,3 @@ private:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_CHILDFRM_H__BBCD4F8E_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)

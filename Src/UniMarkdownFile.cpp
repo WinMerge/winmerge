@@ -3,8 +3,6 @@
  *
  *  @brief Implementation of UniMarkdownFile class.
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "UniMarkdownFile.h"
 #include <cassert>

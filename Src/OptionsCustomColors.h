@@ -1,5 +1,4 @@
-#ifndef _OPTIONS_CUSTOMCOLORS_H_
-#define _OPTIONS_CUSTOMCOLORS_H_
+#pragma once
 
 #include <windows.h>
 
@@ -9,5 +8,3 @@ void Load(COLORREF * colors);
 void Save(const COLORREF * colors);
 
 }}
-
-#endif

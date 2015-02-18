@@ -20,12 +20,7 @@
  * @brief Declaration file for WMGotoDlg dialog.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#if !defined(AFX_WMGOTODLG_H__A9D2366D_6358_4A74_9A45_6681D22EC786__INCLUDED_)
-#define AFX_WMGOTODLG_H__A9D2366D_6358_4A74_9A45_6681D22EC786__INCLUDED_
-
+#pragma once
 
 /**
  * @brief Class for Goto-dialog.
@@ -69,5 +64,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_WMGOTODLG_H__A9D2366D_6358_4A74_9A45_6681D22EC786__INCLUDED_)

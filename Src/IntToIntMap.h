@@ -3,11 +3,7 @@
  *
  * @brief Declaration of Map from int to int, with a couple new methods
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
-#ifndef IntToIntMap_h_included
-#define IntToIntMap_h_included
+#pragma once
 
 /**
  * @brief An int->int map with helper methods for finding largest bin
@@ -38,6 +34,3 @@ public:
 		return maxKey;
 	}
 };
-
-
-#endif // IntToIntMap_h_included

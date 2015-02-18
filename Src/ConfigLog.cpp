@@ -19,8 +19,6 @@
  *
  * @brief CConfigLog implementation
  */
-// ID line follows -- this is updated by SVN
-// $Id: ConfigLog.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "ConfigLog.h"
 #include <cassert>

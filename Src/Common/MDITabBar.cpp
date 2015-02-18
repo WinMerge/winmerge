@@ -3,8 +3,6 @@
  *
  * @brief Implementation of the MDITabBar class
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "StdAfx.h"
 #include "MDITabBar.h"

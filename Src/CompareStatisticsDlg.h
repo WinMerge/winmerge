@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for CompareStatisticsDlg dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _COMPARESTATISTICSDLG_H_
-#define _COMPARESTATISTICSDLG_H_
+#pragma once
 
 class CompareStats;
 
@@ -56,5 +52,3 @@ protected:
 private:
 	const CompareStats * m_pCompareStats; /**< Compare statistics structure. */
 };
-
-#endif // _COMPARESTATISTICSDLG_H_

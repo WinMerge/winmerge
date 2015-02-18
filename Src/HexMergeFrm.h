@@ -23,8 +23,7 @@
  * @brief interface of the CHexMergeFrame class
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: HexMergeFrm.h 7166 2010-05-16 12:05:13Z jtuc $
+#pragma once
 
 #include "SplitterWndEx.h"
 #include "EditorFilepathBar.h"

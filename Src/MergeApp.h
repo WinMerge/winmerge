@@ -1,5 +1,4 @@
-#ifndef __MERGEAPP_H__
-#define __MERGEAPP_H__
+#pragma once
 
 #include "UnicodeString.h"
 
@@ -25,6 +24,3 @@ String LangFormatString1(unsigned, const TCHAR *);
 
 	/** @brief Lang aware version of AfxFormatString2() */
 String LangFormatString2(unsigned, const TCHAR *, const TCHAR *);
-
-
-#endif /* __MERGEAPP_H__ */

@@ -3,8 +3,6 @@
   (c) 1998-2003 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
-  $Id$
-
 * Changes 2005-01-09 Jochen Tucht
   This file originates from the Tidy library (tidy.sourceforge.net).
   Dependencies on other parts of the library have been removed to make it
@@ -12,8 +10,7 @@
   Runtime-allocated index arrays have been added to improve lookup speed.
 */
 
-#ifndef _CHARSETS_H_
-#define _CHARSETS_H_
+#pragma once
 
 #ifdef __cplusplus
 #define extern extern "C"
@@ -29,5 +26,3 @@ extern const char *GetEncodingNameFromCodePage(unsigned cp);
 extern void charsets_cleanup(void);
 
 #undef extern
-
-#endif // _CHARSETS_H_

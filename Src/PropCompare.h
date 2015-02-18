@@ -3,11 +3,7 @@
  *
  * @brief Declaration of PropCompare propertysheet
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _PROPPAGE_COMPARE_H_
-#define _PROPPAGE_COMPARE_H_
+#pragma once
 
 #include "OptionsPanel.h"
 
@@ -63,5 +59,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // _PROPPAGE_COMPARE_H_

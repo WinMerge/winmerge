@@ -5,8 +5,6 @@
  *
  * @date  Created: 2003-08-19
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 
 #include "stdafx.h"

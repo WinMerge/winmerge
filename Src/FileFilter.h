@@ -19,10 +19,7 @@
  *
  * @brief Declaration file for FileFilter
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-#ifndef __FILEFILTER_H__
-#define __FILEFILTER_H__
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -76,5 +73,3 @@ struct FileFilter
 };
 
 typedef std::shared_ptr<FileFilter> FileFilterPtr;
-
-#endif

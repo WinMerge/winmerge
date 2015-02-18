@@ -25,8 +25,6 @@
  *
  * @date  Created: 2003-11-24
  */ 
-// ID line follows -- this is updated by SVN
-// $Id: multiformatText.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #define NOMINMAX
 #include "multiformatText.h"

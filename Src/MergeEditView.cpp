@@ -23,8 +23,6 @@
  *
  * @brief Implementation of the CMergeEditView class
  */
-// ID line follows -- this is updated by SVN
-// $Id: MergeEditView.cpp 7142 2010-04-28 17:05:50Z kimmov $
 
 #include "StdAfx.h"
 #include "MergeEditView.h"

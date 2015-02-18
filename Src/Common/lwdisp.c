@@ -38,8 +38,6 @@ DATE:		BY:					DESCRIPTION:
 2004/01/08  Perry               Updated function comment preceding ReportError
 2008/01/22  Kimmo               Changed map argument name to disp_map to not confuse VC6
 */
-// ID line follows -- this is updated by SVN
-// $Id: lwdisp.c 4938 2008-01-22 13:54:38Z kimmov $
 
 //#define _WIN32_IE		0x0300
 //#define _WIN32_WINNT	0x0400	

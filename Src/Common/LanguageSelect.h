@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for CLanguageSelect dialog.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#if !defined(AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_)
-#define AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_
+#pragma once
 
 #include "CMoveConstraint.h"
 
@@ -92,5 +88,3 @@ private:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_)

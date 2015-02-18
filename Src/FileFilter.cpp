@@ -17,8 +17,6 @@
  *
  *  @brief Implementation of FileFilter.
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "FileFilter.h"
 #include <vector>

@@ -3,11 +3,7 @@
  *
  * @brief Constants for option-names
  */
-// ID line follows -- this is updated by SVN
-// $Id: OptionsDef.h 6910 2009-07-12 09:06:54Z kimmov $
-
-#ifndef _OPTIONS_DEF_H_
-#define _OPTIONS_DEF_H_
+#pragma once
 
 #include "UnicodeString.h"
 
@@ -219,5 +215,3 @@ const TCHAR OPT_FONT_CLIPPRECISION[] = _T("ClipPrecision");
 const TCHAR OPT_FONT_QUALITY[] = _T("Quality");
 const TCHAR OPT_FONT_PITCHANDFAMILY[] = _T("PitchAndFamily");
 const TCHAR OPT_FONT_FACENAME[] = _T("FaceName");
-
-#endif // _OPTIONS_DEF_H_

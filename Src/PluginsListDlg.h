@@ -3,12 +3,7 @@
  *
  * @brief Declaration file for PluginsList dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _PLUGINS_LIST_DIALOG_H_
-#define _PLUGINS_LIST_DIALOG_H_
-
+#pragma once
 
 /**
  * @brief A dialog listing plugins.
@@ -43,5 +38,3 @@ protected:
 public:
 	CListCtrl m_list; /**< A list control for plugins. */	
 };
-
-#endif // _PLUGINS_LIST_DIALOG_H_

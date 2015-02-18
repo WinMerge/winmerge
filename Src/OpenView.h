@@ -23,8 +23,6 @@
  * @brief Declaration file for COpenView window
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: OpenView.h 5444 2008-06-07 06:48:49Z kimmov $
 
 #pragma once
 

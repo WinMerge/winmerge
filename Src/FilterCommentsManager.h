@@ -19,9 +19,7 @@
  *
  * @brief FilterCommentsManager class declaration.
  */
-
-#ifndef _FILTERCOMMENTSMANAGER_H_
-#define _FILTERCOMMENTSMANAGER_H_
+#pragma once
 
 #include <string>
 #include <map>
@@ -77,5 +75,3 @@ private:
 	String m_IniFileName;
 	bool m_loaded;
 };
-
-#endif // _FILTERCOMMENTSMANAGER_H_

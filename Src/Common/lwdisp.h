@@ -22,11 +22,7 @@ DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2003/11/28	Laoran 				      header and RCS ID
 */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef __LWDISP_H__
-#define __LWDISP_H__
+#pragma once
 
 #ifdef __cplusplus
 extern "C"{
@@ -272,5 +268,3 @@ struct LWRet: public VARIANT
 // Sorry, no extra support for plain old C...
 
 #endif
-
-#endif //__LWDISP_H__

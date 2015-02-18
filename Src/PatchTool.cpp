@@ -19,8 +19,6 @@
  *
  * @brief Code file routines
  */
-// ID line follows -- this is updated by SVN
-// $Id: PatchTool.cpp 6858 2009-06-25 07:48:26Z kimmov $
 
 #include "StdAfx.h"
 #include "PatchTool.h"

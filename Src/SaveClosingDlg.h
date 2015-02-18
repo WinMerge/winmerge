@@ -19,12 +19,7 @@
  *
  * @brief Declaration file for SaveClosingDlg dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id: SaveClosingDlg.h 5444 2008-06-07 06:48:49Z kimmov $
-
-
-#ifndef _SAVECLOSINGDLG_H_
-#define _SAVECLOSINGDLG_H_
+#pragma once
 
 #include "CMoveConstraint.h"
 
@@ -84,5 +79,3 @@ private:
 	BOOL m_bAskForMiddle; /**< Is middle file modified? */
 	BOOL m_bAskForRight; /**< Is right file modified? */
 };
-
-#endif // _SAVECLOSINGDLG_H_

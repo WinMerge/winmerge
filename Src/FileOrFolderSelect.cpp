@@ -23,8 +23,6 @@
  *
  * @brief Implementation of the file and folder selection routines.
  */
-// ID line follows -- this is updated by SVN
-// $Id: FileOrFolderSelect.cpp 6569 2009-03-15 14:33:03Z kimmov $
 
 #include <windows.h>
 #include "FileOrFolderSelect.h"

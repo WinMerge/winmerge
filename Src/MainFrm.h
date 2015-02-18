@@ -23,11 +23,7 @@
  * @brief Declaration file for CMainFrame
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: MainFrm.h 6940 2009-08-01 17:29:01Z kimmov $
-
-#if !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
-#define AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -325,5 +321,3 @@ CMainFrame * GetMainFrame(); // access to the singleton main frame object
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
