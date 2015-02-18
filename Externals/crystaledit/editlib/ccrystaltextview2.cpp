@@ -1157,7 +1157,7 @@ PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
           memcpy (pszData, pszText, cbData);
 		  if (dwSize > cbData)
-			  memset(pszData + cbData, 0, dwSize - cbData);
+			  memset(reinterpret_cast<char *>(pszData) + cbData, 0, dwSize - cbData);
           GlobalUnlock (hData);
           UINT fmt = GetClipTcharTextFormat();
           bOK = SetClipboardData (fmt, hData) != NULL;

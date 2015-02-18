@@ -115,7 +115,7 @@ BOOL CSuperComboBox::IsComboBoxEx()
 		return m_bComboBoxEx;
 
 	TCHAR szClassName[256];
-	GetClassName(m_hWnd, szClassName, sizeof(szClassName));
+	GetClassName(m_hWnd, szClassName, sizeof(szClassName)/sizeof(szClassName[0]));
 	if (lstrcmpi(_T("ComboBoxEx32"), szClassName) == 0)
 		m_bComboBoxEx = TRUE;
 

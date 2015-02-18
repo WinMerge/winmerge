@@ -3023,7 +3023,7 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 	{
 		infoUnpacker = dlg.GetInfoHandler();
 		Merge7zFormatMergePluginScope scope(&infoUnpacker);
-		if (std::count_if(m_filePaths.begin(), m_filePaths.end(), ArchiveGuessFormat) == m_nBuffers)
+		if (HasZipSupport() && std::count_if(m_filePaths.begin(), m_filePaths.end(), ArchiveGuessFormat) == m_nBuffers)
 		{
 			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, 

@@ -247,11 +247,11 @@ bool VSSHelper::GetWordFromFile(HANDLE pfile, TCHAR * buffer,
 	return true;
 }
 
-int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
-		TCHAR * outBuffer, DWORD dwOutBufferSize, TCHAR * charset) const
+int VSSHelper::GetWordFromBuffer(const TCHAR *inBuffer, DWORD dwInBufferSize,
+		TCHAR * outBuffer, DWORD dwOutBufferSize, const TCHAR * charset) const
 {
 	TCHAR ctemp = '\0';
-	TCHAR * pcharset = NULL;
+	const TCHAR * pcharset = NULL;
 	UINT buffercount = 0;
 	DWORD numread = sizeof(ctemp);
 	bool delimword = false;
@@ -322,7 +322,7 @@ int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
 				break;
 		}
 	
-		inBuffer += sizeof(TCHAR);
+		++inBuffer;
 	}
 	if (buffercount >= dwOutBufferSize || numread == 0)
 		return 0;
