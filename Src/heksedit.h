@@ -20,11 +20,7 @@
  * @brief Interface definition for the hekseditor window.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: heksedit.h 492 2009-04-11 15:17:02Z jtuc $
-
-#ifndef _HEKSEDIT_H_
-#define _HEKSEDIT_H_
+#pragma once
 
 #ifndef HEKSEDIT_INTERFACE_VERSION
 #define HEKSEDIT_INTERFACE_VERSION 2
@@ -126,5 +122,3 @@ public:
 	virtual void STDMETHODCALLTYPE CMD_character_set() = 0;
 	virtual void STDMETHODCALLTYPE read_ini_data(TCHAR *key = 0) = 0;
 };
-
-#endif // _HEKSEDIT_H_

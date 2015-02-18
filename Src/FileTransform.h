@@ -23,11 +23,7 @@
  *
  *  @brief Declaration of file transformations
  */ 
-// RCS ID line follows -- this is updated by CVS
-// $Id: FileTransform.h 6857 2009-06-25 07:46:29Z kimmov $
-
-#ifndef FileTransform_h
-#define FileTransform_h
+#pragma once
 
 #include <vector>
 #include "UnicodeString.h"
@@ -237,5 +233,3 @@ void GetFreeFunctionsInScripts(std::vector<String> & sNamesArray, const wchar_t 
  * @note Event EDITOR_SCRIPT, ?
  */
 bool TextTransform_Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen);
-
-#endif // FileTransform_h

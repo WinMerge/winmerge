@@ -5,11 +5,7 @@
  *
  * @date  Created: 2003-08-22
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffFileData.h 5055 2008-02-19 18:35:40Z kimmov $
-
-#ifndef _DIFFFILEDATA_H_
-#define _DIFFFILEDATA_H_
+#pragma once
 
 #include "FileLocation.h"
 #include "FileTextStats.h"
@@ -50,5 +46,3 @@ struct DiffFileData
 private:
 	bool DoOpenFiles();
 };
-
-#endif // _DIFFFILEDATA_H_

@@ -3,11 +3,7 @@
  *
  * @brief Declaration of PropCompareFolder propertysheet
  */
-// ID line follows -- this is updated by SVN
-// $Id: PropCompareFolder.h 6921 2009-07-23 15:20:41Z kimmov $
-
-#ifndef _PROPCOMPARE_FOLDER_H_
-#define _PROPCOMPARE_FOLDER_H_
+#pragma once
 
 #include "OptionsPanel.h"
 
@@ -69,5 +65,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // _PROPCOMPARE_FOLDER_H_

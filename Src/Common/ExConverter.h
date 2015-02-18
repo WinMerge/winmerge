@@ -1,9 +1,6 @@
-#ifndef _EXCONVERTER_H_
-#define _EXCONVERTER_H_
+#pragma once
 
 #include "UnicodeString.h"
-
-
 
 struct CodePageInfo
 {
@@ -32,5 +29,3 @@ struct Exconverter
 {
 	static IExconverter *getInstance();
 };
-
-#endif

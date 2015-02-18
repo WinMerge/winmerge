@@ -19,8 +19,6 @@
  *
  * @brief Implementation file for ConfirmFolderCopyDlg dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "ConfirmFolderCopyDlg.h"

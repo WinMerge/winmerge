@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for PluginsList dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "PluginsListDlg.h"

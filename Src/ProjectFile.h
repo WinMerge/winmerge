@@ -19,11 +19,7 @@
  *
  * @brief Declaration file ProjectFile class
  */
-// ID line follows -- this is updated by CVS
-// $Id: ProjectFile.h 6392 2009-01-27 21:50:22Z kimmov $
-
-#ifndef _PROJECT_FILE_H_
-#define _PROJECT_FILE_H_
+#pragma once
 
 #include "UnicodeString.h"
 #include "PathContext.h"
@@ -83,5 +79,3 @@ private:
 	bool m_bMiddleReadOnly; /**< Is middle path opened as read-only */
 	bool m_bRightReadOnly; /**< Is right path opened as read-only */
 };
-
-#endif // #ifdef _PROJECT_FILE_H_

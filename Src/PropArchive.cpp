@@ -3,8 +3,6 @@
  *
  * @brief Implementation of PropArchive propertysheet
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "PropArchive.h"

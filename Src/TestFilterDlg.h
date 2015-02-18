@@ -4,11 +4,6 @@
  * @brief Declaration file for CTestFilterDlg class
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#if !defined(AFX_TESTFILTERDLG_H__1261AD7A_512F_47BC_882F_2E2D41C5072F__INCLUDED_)
-#define AFX_TESTFILTERDLG_H__1261AD7A_512F_47BC_882F_2E2D41C5072F__INCLUDED_
 #pragma once
 
 struct FileFilter;
@@ -60,5 +55,3 @@ private:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_TESTFILTERDLG_H__1261AD7A_512F_47BC_882F_2E2D41C5072F__INCLUDED_)

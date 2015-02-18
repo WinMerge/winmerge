@@ -24,8 +24,6 @@
  * @brief Implementation file for PropGeneral propertyheet
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "PropGeneral.h"

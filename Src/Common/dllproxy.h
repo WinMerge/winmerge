@@ -1,5 +1,4 @@
-#ifndef __DLLPROXY_H__
-#define __DLLPROXY_H__
+#pragma once
 
 struct DllProxy_ModuleState
 {
@@ -39,5 +38,3 @@ EXTERN_C struct DllProxy_ModuleState POLARITY DllProxy_ModuleState;
 	extern struct {HMODULE DLL;CHAR SIG[sizeof#P MODULE + (sizeof MODULE == 1 ? MAX_PATH : 0)];} __declspec(dllimport) NAME;
 
 #undef POLARITY
-
-#endif //__DLLPROXY_H__

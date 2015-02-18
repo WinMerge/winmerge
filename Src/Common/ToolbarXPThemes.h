@@ -4,11 +4,7 @@
  * @brief Declaration file for ToolBarXPThemes
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
-#ifndef _TOOLBAR_XPTHEMES_H_
-#define _TOOLBAR_XPTHEMES_H_
+#pragma once
 
 /**
  * @brief Toolbar class supporting XP themes.
@@ -41,5 +37,3 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 };
-
-#endif // _TOOLBAR_XPTHEMES_H_

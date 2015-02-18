@@ -3,9 +3,7 @@
  *
  * @brief Declaration of MovedLines class
  */
-
-#ifndef _MOVEDLINES_H_
-#define _MOVEDLINES_H_
+#pragma once
 
 #include <map>
 
@@ -37,5 +35,3 @@ private:
 	MovedLinesMap m_moved0; /**< Moved lines map for first side */
 	MovedLinesMap m_moved1; /**< Moved lines map for second side */
 };
-
-#endif // _MOVEDLINES_H_

@@ -22,12 +22,7 @@
  *
  *  @brief Declaration of class CDirView
  */
-//
-// ID line follows -- this is updated by SVN
-// $Id: DirView.h 7062 2009-12-27 14:43:51Z kimmov $
-
-#if !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
-#define AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView view
@@ -504,6 +499,3 @@ String NumToStr(int n);
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
-

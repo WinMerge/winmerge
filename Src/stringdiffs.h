@@ -4,11 +4,7 @@
  * @brief Interface file declaring sd_ComputeWordDiffs (q.v.)
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: stringdiffs.h 6712 2009-05-03 09:37:54Z kimmov $
-
-#ifndef stringdiffs_h_included
-#define stringdiffs_h_included
+#pragma once
 
 #include "UnicodeString.h"
 #include <vector>
@@ -57,6 +53,3 @@ void sd_ComputeWordDiffs(int nStrings, const String str[3],
 void sd_ComputeByteDiff(const String& str1, const String& str2,
 			bool casitive, int xwhite, 
 			int begin[2], int end[2], bool equal);
-
-
-#endif // stringdiffs_h_included

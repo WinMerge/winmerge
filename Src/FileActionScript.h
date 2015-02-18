@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for FileActionScript and related classes
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _FILEACTIONSCRIPT_H_
-#define _FILEACTIONSCRIPT_H_
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -162,5 +158,3 @@ private:
 	BOOL m_bUseRecycleBin; /**< Use recycle bin for script actions? */
 	HWND m_hParentWindow; /**< Parent window for showing messages */
 };
-
-#endif // _FILEACTIONSCRIPT_H_

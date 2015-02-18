@@ -20,11 +20,7 @@
  * @brief Declaration file for ClearCase dialog.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#if !defined(AFX_CCPROMPTDLG_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_)
-#define AFX_CCPROMPTDLG_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_
+#pragma once
 
 /**
  * @brief A dialog for ClearCase checkout/checkin.
@@ -66,5 +62,3 @@ public:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_CCPROMPTDLG_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_)

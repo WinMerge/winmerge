@@ -19,8 +19,6 @@
  *
  * @brief Moved block detection code.
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
 
 #include <map>
 #include <cassert>

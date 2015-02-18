@@ -21,8 +21,6 @@
 /** 
  * @file  codepage.cpp
  */
-// RCS ID line follows -- this is updated by SVN
-// $Id$
 
 #include "codepage.h"
 #include <windows.h>

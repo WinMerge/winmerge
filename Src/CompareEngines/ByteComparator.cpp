@@ -3,8 +3,6 @@
  *
  * @brief Implements ByteComparator class.
  */
-// ID line follows -- this is updated by SVN
-// $Id: ByteComparator.cpp 7090 2010-01-11 19:48:26Z kimmov $
 
 #include "ByteComparator.h"
 #include <cassert>

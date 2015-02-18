@@ -4,8 +4,6 @@
  * @brief Interface for Options management classes
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 /* The MIT License
 Copyright (c) 2004-2009 Kimmo Varis
@@ -27,9 +25,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-
-#ifndef _OPTIONS_MGR_
-#define _OPTIONS_MGR_
+#pragma once
 
 #include <map>
 #include "UnicodeString.h"
@@ -131,5 +127,3 @@ protected:
 private:
 	static varprop::VariantValue m_emptyValue;
 };
-
-#endif // _OPTIONS_MGR_

@@ -3,8 +3,6 @@
  *
  * @brief ClipBoard helper functions implementations.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "ClipBoard.h"
 

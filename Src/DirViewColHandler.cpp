@@ -5,8 +5,6 @@
  *
  * @date  Created: 2003-08-19
  */
-// ID line follows -- this is updated by SVN
-// $Id: DirViewColHandler.cpp 6138 2008-12-01 17:24:02Z kimmov $
 
 
 #include "StdAfx.h"

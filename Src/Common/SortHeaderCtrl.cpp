@@ -3,9 +3,6 @@
  *
  *  @brief Implementation of CSortHeaderCtrl
  */ 
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-//////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
 #include "SortHeaderCtrl.h"

@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for CColorButton class
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#if !defined(AFX_COLORBUTTON_H__75623C05_2D2D_4FBE_B819_661F49DEAE94__INCLUDED_)
-#define AFX_COLORBUTTON_H__75623C05_2D2D_4FBE_B819_661F49DEAE94__INCLUDED_
+#pragma once
 
 /** 
  * @brief Button showing currently selected color.
@@ -28,5 +24,3 @@ public:
 	COLORREF GetColor() const { return m_clrFill; };
 	virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 };
-
-#endif // !defined(AFX_COLORBUTTON_H__75623C05_2D2D_4FBE_B819_661F49DEAE94__INCLUDED_)

@@ -19,8 +19,6 @@
  *
  * @brief Implementation file for FileFilterHelper class
  */
-// ID line follows -- this is updated by SVN
-// $Id: FileFilterHelper.cpp 7024 2009-10-22 18:26:45Z kimmov $
 
 #include "FileFilterHelper.h"
 #include "UnicodeString.h"

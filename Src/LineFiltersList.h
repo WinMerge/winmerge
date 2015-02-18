@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for LineFiltersList class
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _LINEFILTERS_LIST_H_
-#define _LINEFILTERS_LIST_H_
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -53,5 +49,3 @@ private:
 	std::vector<LineFilterItemPtr> m_items; /**< List for linefilter items */
 	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
-
-#endif // _LINEFILTERS_LIST_H_

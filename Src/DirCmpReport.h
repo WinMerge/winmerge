@@ -4,11 +4,7 @@
  * @brief Declaration file for DirCmpReport.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _DIRCMPREPORT_H_
-#define _DIRCMPREPORT_H_
+#pragma once
 
 #include <vector>
 #include "UnicodeString.h"
@@ -69,5 +65,3 @@ private:
 	IFileCmpReport *m_pFileCmpReport;
 	bool m_bIncludeFileCmpReport;
 };
-
-#endif // _DIRCMPREPORT_H_

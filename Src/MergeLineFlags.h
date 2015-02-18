@@ -3,11 +3,7 @@
  *
  *  @brief Additional lineflags for editor.
  */ 
-// ID line follows -- this is updated by SVN
-// $Id: MergeLineFlags.h 4762 2007-11-18 09:52:04Z kimmov $
-
-#ifndef MergeLineFlags_h_included
-#define MergeLineFlags_h_included
+#pragma once
 
 /** 
  The Crystal Editor keeps a DWORD of flags for each line.
@@ -31,5 +27,3 @@ enum MERGE_LINEFLAGS
 // Flags for non-ignored difference
 // Note that we must include ghost flag to include ghost lines
 #define LF_NONTRIVIAL_DIFF ((LF_DIFF | LF_GHOST) & (~LF_TRIVIAL))
-
-#endif // MergeLineFlags_h_included

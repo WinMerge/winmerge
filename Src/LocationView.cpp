@@ -26,8 +26,6 @@
  *
  */
 
-// ID line follows -- this is updated by SVN
-// $Id: LocationView.cpp 7127 2010-03-10 21:03:58Z kimmov $
 
 #include "StdAfx.h"
 #include "LocationView.h"

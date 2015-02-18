@@ -1,5 +1,4 @@
-#ifndef __DIFF3_H__
-#define __DIFF3_H__
+#pragma once
 
 #include <vector>
 #include <algorithm>
@@ -245,5 +244,3 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 	
 	return diff3i;
 }
-
-#endif

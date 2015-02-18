@@ -3,12 +3,7 @@
  *
  *  @brief Declaration of class CompareStats
  */ 
-//
-// ID line follows -- this is updated by SVN
-// $Id: CompareStats.h 6914 2009-07-12 22:31:23Z kimmov $
-
-#ifndef _COMPARESTATS_H_
-#define _COMPARESTATS_H_
+#pragma once
 
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Mutex.h>
@@ -91,5 +86,3 @@ private:
 	bool m_bCompareDone; /**< Have we finished last compare? */
 	int m_nDirs; /**< number of directories to compare */
 };
-
-#endif // _COMPARESTATS_H_

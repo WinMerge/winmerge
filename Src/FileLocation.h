@@ -4,11 +4,7 @@
  * @brief Declaration for FileLocation class.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef FileLocation_included
-#define FileLocation_included
+#pragma once
 
 #include "FileTextEncoding.h"
 
@@ -45,5 +41,3 @@ struct FileLocation
 
 // Copy constructor & copy operator should do the obvious correct things
 };
-
-#endif // FileLocation_included

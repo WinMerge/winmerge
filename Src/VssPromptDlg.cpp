@@ -23,8 +23,6 @@
  *
  * @brief Code for CVssPromptDlg class
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "VssPromptDlg.h"

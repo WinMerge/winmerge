@@ -3,11 +3,7 @@
  *
  * @brief Declaration of Shell options dialog class
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _PROP_SHELL_H_
-#define _PROP_SHELL_H_
+#pragma once
 
 #include "OptionsPanel.h"
 
@@ -48,5 +44,3 @@ protected:
 
 	void SaveMergePath();
 };
-
-#endif // _PROP_SHELL_H_

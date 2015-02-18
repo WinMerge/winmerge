@@ -4,11 +4,7 @@
  * @brief WinMerge constants, URLs, paths etc.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: Constants.h 6729 2009-05-11 07:14:59Z kimmov $
-
-#ifndef _CONSTANTS_H_
-#define _CONSTANTS_H_
+#pragma once
 
 /** @brief URL for hyperlink in About-dialog. */
 const TCHAR WinMergeURL[] = _T("http://winmerge.org/");
@@ -73,5 +69,3 @@ enum
 	FFILEOPEN_SETFOCUS  = 0x0040, /**< Set focus to this pane */
 	FFILEOPEN_AUTOMERGE = 0x0080, /**< auto-merge at this pane */
 };
-
-#endif // _CONSTANTS_H_

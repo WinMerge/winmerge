@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for file routines
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _FILES_H_INCLUDED
-#define _FILES_H_INCLUDED
+#pragma once
 
 /**
  * @brief File-operation return-statuses
@@ -128,5 +124,3 @@ public:
 		FRESULT_LOSSY = 0x10000,
 	};
 };
-
-#endif // _FILES_H

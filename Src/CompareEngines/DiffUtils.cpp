@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for DiffUtils class.
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffUtils.cpp 6932 2009-07-26 14:04:31Z kimmov $
 
 #include "diff.h"
 #include "DiffUtils.h"

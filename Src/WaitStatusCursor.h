@@ -3,11 +3,7 @@
  *
  *  @brief Declaration WaitStatusCursor classes.
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef WaitStatusCursor_included_h
-#define WaitStatusCursor_included_h
+#pragma once
 
 class IStatusDisplay;
 
@@ -114,5 +110,3 @@ public:
 	virtual void ChangeStatus(LPCTSTR str) = 0;
 	virtual void EndStatus(LPCTSTR str, LPCTSTR oldstr) = 0;
 };
-
-#endif // WaitStatusCursor_included_h

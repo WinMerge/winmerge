@@ -3,8 +3,6 @@
  *
  * @brief Environment related routines.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #define POCO_NO_UNWINDOWS 1
 #include "Environment.h"

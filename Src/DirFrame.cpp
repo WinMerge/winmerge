@@ -24,8 +24,6 @@
  * @brief Implementation file for CDirFrame
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: DirFrame.cpp 4739 2007-11-12 20:41:16Z jtuc $
 
 #include "stdafx.h"
 #include "DirFrame.h"

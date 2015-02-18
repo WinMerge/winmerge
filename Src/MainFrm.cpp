@@ -23,8 +23,6 @@
  *
  * @brief Implementation of the CMainFrame class
  */
-// ID line follows -- this is updated by SVN
-// $Id: MainFrm.cpp 7063 2009-12-27 15:28:16Z kimmov $
 
 #include "StdAfx.h"
 #include "MainFrm.h"

@@ -19,8 +19,6 @@
  *
  * @brief Implementation for DirItem routines
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "DirItem.h"
 #ifdef _WIN32

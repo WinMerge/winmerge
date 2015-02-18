@@ -23,8 +23,6 @@
  *
  *  @brief Implementation of file transformations
  */ 
-// ID line follows -- this is updated by SVN
-// $Id: FileTransform.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "FileTransform.h"
 #include <vector>

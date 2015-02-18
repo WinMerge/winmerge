@@ -20,11 +20,7 @@
  * @brief Declaration file for CAboutDlg.
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
-#ifndef _ABOUTDLG_H_
-#define _ABOUTDLG_H_
+#pragma once
 
 #include "statlink.h"
 #include "Picture.h"
@@ -69,5 +65,3 @@ public:
 	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 };
-
-#endif // _ABOUTDLG_H_

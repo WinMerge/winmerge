@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for FileFilterHelper
  */
-// ID line follows -- this is updated by SVN
-// $Id: FileFilterHelper.h 7024 2009-10-22 18:26:45Z kimmov $
-
-#ifndef _FILEFILTERHELPER_H_
-#define _FILEFILTERHELPER_H_
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -163,5 +159,3 @@ private:
 	String m_sGlobalFilterPath;    /*< Path for shared filters */
 	String m_sUserSelFilterPath;     /*< Path for user's private filters */
 };
-
-#endif // _FILEFILTERHELPER_H_

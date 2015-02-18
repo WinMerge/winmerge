@@ -3,11 +3,7 @@
  *
  *  @brief Declaration of TempFile
  */
-// ID line follows -- this is updated by SVN
-// $Id: TempFile.h 6566 2009-03-12 18:16:39Z kimmov $
-
-#ifndef _TEMP_FILE_
-#define _TEMP_FILE_
+#pragma once
 
 #include <vector>
 #include "UnicodeString.h"
@@ -37,5 +33,3 @@ private:
 
 void CleanupWMtemp();
 bool ClearTempfolder(const String &pathName);
-
-#endif // _TEMP_FILE_

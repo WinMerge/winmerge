@@ -1,11 +1,7 @@
 /**
  * @file  codepage.h
  */
-// RCS ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef __CODEPAGE_H__
-#define __CODEPAGE_H__
+#pragma once
 
 #ifndef CP_UTF8
 #define CP_UTF8 65001
@@ -19,5 +15,3 @@
 #endif
 
 bool isCodepageInstalled(int codepage);
-
-#endif //__CODEPAGE_H__

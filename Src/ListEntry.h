@@ -3,10 +3,7 @@
  *
  *  @brief Declaration of ListEntry
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-#ifndef _LIST_ENTRY_H_INCLUDED
-#define _LIST_ENTRY_H_INCLUDED
+#pragma once
 
 /**
  * @brief Simple LIST_ENTRY wrapper
@@ -41,5 +38,3 @@ private:
 	ListEntry(const ListEntry &); // disallow copy construction
 	void operator=(const ListEntry &); // disallow assignment
 };
-
-#endif // _LIST_ENTRY_H_INCLUDED

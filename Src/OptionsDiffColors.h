@@ -1,5 +1,4 @@
-#ifndef _OPTIONS_EDITOR_COLOR_SETTING_H_
-#define _OPTIONS_EDITOR_COLOR_SETTING_H_
+#pragma once
 
 #include <windows.h>
 
@@ -44,5 +43,3 @@ void Load(COLORSETTINGS& colors);
 void Save(const COLORSETTINGS& colors);
 
 }}
-
-#endif

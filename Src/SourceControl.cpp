@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for some source control-related functions.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "StdAfx.h"
 #define POCO_NO_UNWINDOWS 1

@@ -1,17 +1,9 @@
-//////////////////////////////////////////////////////////////////////
 /** 
  * @file  DiffViewBar.h
  *
  * @brief Declaration of CDiffViewBar class
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-//
-//////////////////////////////////////////////////////////////////////
-
-#ifndef DIFFVIEWBAR_H
-#define DIFFVIEWBAR_H
-
+#pragma once
 
 #include "sizecbar.h"
 #include "scbarcf.h"
@@ -63,6 +55,3 @@ private:
 	HWND m_hwndFrame; //*< Frame window handle */
 
 };
-
-
-#endif // DIFFVIEWBAR_H

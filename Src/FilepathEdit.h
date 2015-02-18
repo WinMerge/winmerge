@@ -23,11 +23,7 @@
  *
  * @brief Declaration file for CFilepathEdit class.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef __FILEPATHEDIT_H__
-#define __FILEPATHEDIT_H__
+#pragma once
 
 /** 
  * @brief Read-only control to display a filepath. 
@@ -69,5 +65,3 @@ private:
 
 
 /////////////////////////////////////////////////////////////////////////////
-
-#endif //__FILEPATHEDIT_H__

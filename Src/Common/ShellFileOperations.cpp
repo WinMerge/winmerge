@@ -19,8 +19,6 @@
  *
  * @brief Implementation of ShellFileOperations class.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "ShellFileOperations.h"
 #include <windows.h>

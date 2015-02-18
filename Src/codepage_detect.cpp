@@ -4,8 +4,6 @@
  * @brief Deducing codepage from file contents, when we can
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: codepage_detect.cpp 7172 2010-05-19 12:57:18Z jtuc $
 
 #include "codepage_detect.h"
 #include <cstdio>

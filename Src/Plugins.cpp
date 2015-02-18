@@ -23,8 +23,6 @@
  *
  *  @brief Support for VBS Scriptlets, VB ActiveX DLL, VC++ COM DLL
  */ 
-// ID line follows -- this is updated by SVN
-// $Id: Plugins.cpp 7052 2009-12-22 17:45:22Z kimmov $
 
 #include "Plugins.h"
 #define POCO_NO_UNWINDOWS 1

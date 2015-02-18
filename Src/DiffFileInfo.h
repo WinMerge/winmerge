@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for DiffFileInfo
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _DIFF_FILE_INFO_H_INCLUDED
-#define _DIFF_FILE_INFO_H_INCLUDED
+#pragma once
 
 #include "DirItem.h"
 #include "FileTextEncoding.h"
@@ -51,5 +47,3 @@ struct DiffFileInfo : public DirItem
 	void ClearPartial();
 	bool IsEditableEncoding() const;
 };
-
-#endif // _DIFF_FILE_INFO_H_INCLUDED

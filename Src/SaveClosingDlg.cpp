@@ -19,8 +19,6 @@
  *
  * @brief Implementation file for SaveClosingDlg dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id: SaveClosingDlg.cpp 4704 2007-11-03 12:10:48Z jtuc $
 
 #include "stdafx.h"
 #include "SaveClosingDlg.h"

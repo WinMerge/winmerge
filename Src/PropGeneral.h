@@ -3,11 +3,7 @@
  *
  * @brief Declaration of PropGeneral class
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#if !defined(AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
-#define AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_
+#pragma once
 
 #include "OptionsPanel.h"
 
@@ -64,5 +60,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_)

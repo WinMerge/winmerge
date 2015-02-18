@@ -1,14 +1,9 @@
-//////////////////////////////////////////////////////////////////////
 /** 
  * @file  LocationBar.cpp
  *
  * @brief Implementation file for CLocationBar
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-//
-//////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
 #include "LocationBar.h"

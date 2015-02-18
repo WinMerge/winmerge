@@ -24,9 +24,6 @@
  * @brief Implementation file for CDirDoc
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: DirDoc.cpp 6910 2009-07-12 09:06:54Z kimmov $
-//
 
 #include "StdAfx.h"
 #include "DirDoc.h"

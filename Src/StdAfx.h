@@ -7,11 +7,7 @@
  *
  * @brief Project-wide includes and declarations
  */
-// ID line follows -- this is updated by SVN
-// $Id: StdAfx.h 6457 2009-02-15 14:08:50Z kimmov $
-
-#if !defined(AFX_STDAFX_H__BBCD4F8A_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
-#define AFX_STDAFX_H__BBCD4F8A_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
+#pragma once
 
 #if _MSC_VER >= 1500
 #if defined _M_IX86
@@ -140,5 +136,3 @@ public:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_STDAFX_H__BBCD4F8A_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)

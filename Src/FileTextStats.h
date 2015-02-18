@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for FileTextStats structure.
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
-#ifndef FileTextStats_h_included
-#define FileTextStats_h_included
+#pragma once
 
 /**
  * @brief Structure containing statistics about compared file.
@@ -24,6 +20,3 @@ struct FileTextStats
 	FileTextStats() { clear(); }
 	void clear() { ncrs = nlfs = ncrlfs = nzeros = 0; }
 };
-
-
-#endif // FileTextStats_h_included

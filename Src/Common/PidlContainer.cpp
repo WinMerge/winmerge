@@ -23,8 +23,6 @@
  *
  * @brief Main implementation file for CPidlContainer
  */
-// Revision ID line follows -- this is updated by SVN
-// $Id$
 
 #include "PidlContainer.h"
 #include <ShlObj.h>

@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for PatchTool class
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _PATCHTOOL_H_
-#define _PATCHTOOL_H_
+#pragma once
 
 #include "DiffWrapper.h"
 
@@ -83,5 +79,3 @@ private:
 	String m_sPatchFile; /**< Patch file path and filename. */
 	BOOL m_bOpenToEditor; /**< Is patch file opened to external editor? */
 };
-
-#endif	// _PATCHTOOL_H_

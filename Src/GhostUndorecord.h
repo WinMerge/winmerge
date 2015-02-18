@@ -4,11 +4,7 @@
  * @brief Declaration for GhostUndoRecord structure.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _GHOST_UNDO_RECORD_H_
-#define _GHOST_UNDO_RECORD_H_
+#pragma once
 
 /** 
  * @brief Support For Descriptions On Undo/Redo Actions.
@@ -94,5 +90,3 @@ public :
 	{
 	}
 };
-
-#endif // _GHOST_UNDO_RECORD_H_

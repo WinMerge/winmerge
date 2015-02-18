@@ -1,5 +1,4 @@
-#ifndef PluginManager_h_included
-#define PluginManager_h_included
+#pragma once
 
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Mutex.h>
@@ -44,5 +43,3 @@ private:
 	PluginFileInfoMap m_pluginSettings;
 	Poco::FastMutex m_mutex;
 };
-
-#endif // PluginManager_h_included

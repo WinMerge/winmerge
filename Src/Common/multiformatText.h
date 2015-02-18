@@ -5,11 +5,7 @@
  *
  * @date  Created: 2003-11-24
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: multiformatText.h 6433 2009-02-10 19:00:27Z kimmov $
-
-#ifndef __MULTIFORMATTEXT_H__
-#define __MULTIFORMATTEXT_H__
+#pragma once
 
 #include "UnicodeString.h"
 #include "unicoder.h"
@@ -149,5 +145,3 @@ private:
 
 /// Convert file to UTF-8 (for diffutils)
 bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM);
-
-#endif //__MULTIFORMATTEXT_H__
