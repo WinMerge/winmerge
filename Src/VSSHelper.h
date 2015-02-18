@@ -42,8 +42,8 @@ public:
 
 protected:
 	bool GetWordFromFile(HANDLE pfile, TCHAR * buffer, DWORD dwBufferSize, TCHAR * charset = NULL) const;
-	int GetWordFromBuffer(TCHAR * inBuffer, DWORD dwInBufferSize,
-		TCHAR * outBuffer, DWORD dwOutBufferSize, TCHAR * charset = NULL) const;
+	int GetWordFromBuffer(const TCHAR * inBuffer, DWORD dwInBufferSize,
+		TCHAR * outBuffer, DWORD dwOutBufferSize, const TCHAR * charset = NULL) const;
 	bool GetVCProjName(HANDLE hFile, HANDLE tFile) const;
 	bool GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf) const;
 	bool GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf) const;
