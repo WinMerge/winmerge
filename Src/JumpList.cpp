@@ -32,7 +32,7 @@ IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& p
 	if (app_path.empty())
 	{
 		if (g_exe_path[0] == '\0')
-			GetModuleFileNameW(NULL, g_exe_path, sizeof(g_exe_path));
+			GetModuleFileNameW(NULL, g_exe_path, sizeof(g_exe_path)/sizeof(g_exe_path[0]));
 		app_path2 = g_exe_path;
 	}
 	pShellLink->SetPath(app_path2.c_str());
@@ -118,9 +118,9 @@ std::vector<Item> GetRecentDocs(size_t nMaxItems)
 				wchar_t szPath[MAX_PATH];
 				wchar_t szDescription[MAX_PATH];
 				wchar_t szArguments[MAX_PATH * 6];
-				pShellLink->GetPath(szPath, sizeof(szPath), NULL, SLGP_RAWPATH);
-				pShellLink->GetDescription(szDescription, sizeof(szDescription));
-				pShellLink->GetArguments(szArguments, sizeof(szArguments));
+				pShellLink->GetPath(szPath, sizeof(szPath)/sizeof(szPath[0]), NULL, SLGP_RAWPATH);
+				pShellLink->GetDescription(szDescription, sizeof(szDescription)/sizeof(szDescription[0]));
+				pShellLink->GetArguments(szArguments, sizeof(szArguments)/sizeof(szArguments[0]));
 				IPropertyStore *pPS = NULL;
 				PROPVARIANT pv;
 				InitPropVariantFromString(L"", &pv);
