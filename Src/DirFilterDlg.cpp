@@ -4,9 +4,6 @@
  * @brief Implementation file for DirCmpReport dialog
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: DirFilterDlg.cpp 4636 2007-10-16 16:56:52Z jtuc $
-//
 
 #include "stdafx.h"
 #include "Coretools.h"

@@ -4,8 +4,6 @@
  * @brief Implementation file for PathInfo and PathContext
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: PathContext.cpp 4929 2008-01-18 20:03:57Z kimmov $
 
 #include "PathContext.h"
 #include <cassert>

@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for VSSHelper
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _VSSHELPER_H_
-#define _VSSHELPER_H_
+#pragma once
 
 #include <Windows.h>
 #include "UnicodeString.h"
@@ -53,5 +49,3 @@ private:
 	String m_strVssProjectFull;
 
 };
-
-#endif // _VSSHELPER_H_

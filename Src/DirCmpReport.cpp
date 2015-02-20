@@ -4,9 +4,6 @@
  * @brief Implementation file for DirCmpReport
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: DirCmpReport.cpp 7082 2010-01-03 22:15:50Z sdottaka $
-//
 
 #include "stdafx.h"
 #include <ctime>

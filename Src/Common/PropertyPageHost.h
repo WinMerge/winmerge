@@ -7,11 +7,7 @@
  * (http://www.abstractspoon.com/) but is modified to use in
  * WinMerge.
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
-#if !defined(AFX_PROPERTYPAGEHOST_H__43CF5AE7_C70B_443D_BC8B_7DA1D0E082DD__INCLUDED_)
-#define AFX_PROPERTYPAGEHOST_H__43CF5AE7_C70B_443D_BC8B_7DA1D0E082DD__INCLUDED_
+#pragma once
 
 #if _MSC_VER > 1000
 #pragma once
@@ -88,5 +84,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_PROPERTYPAGEHOST_H__43CF5AE7_C70B_443D_BC8B_7DA1D0E082DD__INCLUDED_)

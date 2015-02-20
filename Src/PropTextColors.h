@@ -4,11 +4,7 @@
  * @brief Declaration file for PropTextColors propertyheet
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#if !defined(PropTextColors_h_included)
-#define PropTextColors_h_included
+#pragma once
 
 #include "ColorButton.h"
 #include "OptionsPanel.h"
@@ -78,5 +74,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // PropTextColors_h_included

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "UnicodeString.h"
 #include <windows.h>
 #include <vector>

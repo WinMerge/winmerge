@@ -21,11 +21,7 @@
  * @brief Unicode string based on std::wstring.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _UNICODE_STRING_
-#define _UNICODE_STRING_
+#pragma once
 
 #include <string>
 #include <cstdarg>
@@ -120,5 +116,3 @@ inline String string_to_str(int64_t val) { return string_format(_T("%I64d"), val
 inline String string_to_str(uint64_t val) { return string_format(_T("%I64u"), val); }
 inline String string_to_str(float val) { return string_format(_T("%f"), val); }
 inline String string_to_str(double val) { return string_format(_T("%f"), val); }
-
-#endif // _UNICODE_STRING_

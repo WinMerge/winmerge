@@ -4,8 +4,6 @@
  * @brief Implementation file for Shell Options dialog.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: PropShell.cpp 6725 2009-05-09 14:31:24Z kimmov $
 
 #include "stdafx.h"
 #include "PropShell.h"

@@ -19,8 +19,6 @@
  *
  * @brief Implementation for conflict file parser.
  */
-// ID line follows -- this is updated by SVN
-// $Id: ConflictFileParser.cpp 6638 2009-04-03 23:17:42Z sdottaka $
 
 // Conflict file parsing method modified from original code got from:
 // TortoiseCVS - a Windows shell extension for easy version control

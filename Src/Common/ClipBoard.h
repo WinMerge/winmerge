@@ -3,11 +3,7 @@
  *
  * @brief ClipBoard helper functions definitions.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _CLIPBOARD_H_
-#define _CLIPBOARD_H_
+#pragma once
 
 #include <windows.h>
 #include "UnicodeString.h"
@@ -82,5 +78,3 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 		CloseClipboard();
 	}
 }
-
-#endif // _CLIPBOARD_H_

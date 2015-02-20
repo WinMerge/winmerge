@@ -3,11 +3,7 @@
  *
  *  @brief Declaration of DirScan module (see DirScan function)
  */ 
-// ID line follows -- this is updated by SVN
-// $Id: DirScan.h 6136 2008-12-01 17:04:25Z kimmov $
-
-#ifndef DirScan_h_included
-#define DirScan_h_included
+#pragma once
 
 #include "UnicodeString.h"
 #include <cstdint>
@@ -25,5 +21,3 @@ int DirScan_UpdateMarkedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 
 int DirScan_CompareItems(DiffFuncStruct *, uintptr_t parentdiffpos);
 int DirScan_CompareRequestedItems(DiffFuncStruct *, uintptr_t parentdiffpos);
-
-#endif // DirScan_h_included

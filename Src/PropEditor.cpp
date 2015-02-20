@@ -3,8 +3,6 @@
  *
  * @brief Implementation of PropEditor propertysheet
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "PropEditor.h"

@@ -4,11 +4,7 @@
  * @brief Declaration file for PropBackups propertyheet
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _PROPBACKUPS_H_
-#define _PROPBACKUPS_H_
+#pragma once
 
 #include "OptionsPanel.h"
 #include "UnicodeString.h"
@@ -51,5 +47,3 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 };
-
-#endif // _PROPBACKUPS_H_

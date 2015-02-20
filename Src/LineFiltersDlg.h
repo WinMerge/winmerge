@@ -4,11 +4,7 @@
  * @brief Declaration file for Line Filter dialog
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#if !defined(AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_)
-#define AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_
+#pragma once
 
 class LineFiltersList;
 
@@ -69,5 +65,3 @@ private:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_)

@@ -3,11 +3,7 @@
  *
  * @brief Declaration of CGhostTextBuffer (subclasses CCrystalTextBuffer to handle ghost lines)
  */
-// ID line follows -- this is updated by SVN
-// $Id: GhostTextBuffer.h 5762 2008-08-08 05:32:15Z kimmov $
-
-#ifndef __GHOSTTEXTBUFFER_H__
-#define __GHOSTTEXTBUFFER_H__
+#pragma once
 
 #include <vector>
 #include "ccrystaltextbuffer.h"
@@ -192,6 +188,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-
-#endif //__GHOSTTEXTBUFFER_H__

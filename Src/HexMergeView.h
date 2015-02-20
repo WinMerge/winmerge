@@ -22,8 +22,7 @@
  *
  * @brief Declaration of CHexMergeDoc class
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
+#pragma once
 
 #include "DiffFileInfo.h"
 

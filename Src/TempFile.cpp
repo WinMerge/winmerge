@@ -4,8 +4,6 @@
  * @brief Implementation file for TempFile
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: TempFile.cpp 6723 2009-05-09 09:13:26Z sdottaka $
 
 #include "TempFile.h"
 #include <windows.h>

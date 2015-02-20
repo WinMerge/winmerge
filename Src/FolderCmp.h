@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for FolderCmp
  */
-// ID line follows -- this is updated by SVN
-// $Id: FolderCmp.h 6856 2009-06-25 06:34:42Z kimmov $
-
-#ifndef _FOLDERCMP_H_
-#define _FOLDERCMP_H_
+#pragma once
 
 #include <memory>
 #include "DiffFileData.h"
@@ -59,6 +55,3 @@ private:
 	std::unique_ptr<CompareEngines::BinaryCompare> m_pBinaryCompare;
 	std::unique_ptr<CompareEngines::TimeSizeCompare> m_pTimeSizeCompare;
 };
-
-
-#endif // _FOLDERCMP_H_

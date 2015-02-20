@@ -17,11 +17,7 @@
  *
  *  @brief Declaration file for FileFilterMgr
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef FileFilterMgr_h_included
-#define FileFilterMgr_h_included
+#pragma once
 
 #include <vector>
 #include "UnicodeString.h"
@@ -95,6 +91,3 @@ private:
 
 bool TestAgainstRegList(const std::vector<FileFilterElementPtr> *filterList, const String& szTest);
 void EmptyFilterList(std::vector<FileFilterElementPtr> *filterList);
-
-
-#endif // FileFilterMgr_h_included

@@ -4,11 +4,7 @@
  * @brief Declaration file for OptionsPanel class.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _OPTIONS_PANEL_H_
-#define _OPTIONS_PANEL_H_
+#pragma once
 
 #include "IOptionsPanel.h"
 
@@ -28,5 +24,3 @@ protected:
 private:
 	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
-
-#endif // _OPTIONS_PANEL_H_

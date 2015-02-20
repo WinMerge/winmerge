@@ -3,8 +3,6 @@
  *
  *  @brief Implementation of DiffItemList
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "DiffItemList.h"
 #include <cassert>

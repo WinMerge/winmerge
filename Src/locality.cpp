@@ -3,8 +3,6 @@
  *
  * @brief Implementation of helper functions involving locale
  */
-// ID line follows -- this is updated by SVN
-// $Id: locality.cpp 5918 2008-09-07 16:05:46Z sdottaka $
 
 #include "locality.h"
 #include <cstdint>

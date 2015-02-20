@@ -1,5 +1,4 @@
-#ifndef _ILISTCTRL_H_
-#define _ILISTCTRL_H_
+#pragma once
 
 #include "UnicodeString.h"
 
@@ -20,5 +19,3 @@ struct IListCtrl
 	virtual int GetIconCount() const = 0;
 	virtual std::string GetIconPNGData(int iconIndex) const = 0;
 };
-
-#endif

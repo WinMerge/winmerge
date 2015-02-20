@@ -23,11 +23,7 @@
  *
  *  @brief Declaration file for VBS Scriptlets, VB ActiveX DLL, VC++ COM DLL
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef __PLUGINS_H__
-#define __PLUGINS_H__
+#pragma once
 
 #include <Poco/Foundation.h>
 #include <string>
@@ -260,6 +256,3 @@ bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & n
  * @brief Call the plugin "ShowSettingsDialog" method
  */
 bool InvokeShowSettingsDialog(LPDISPATCH piScript);
-
-
-#endif //__PLUGINS_H__

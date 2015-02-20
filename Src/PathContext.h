@@ -3,12 +3,7 @@
  *
  *  @brief Declarations of PathInfo and PathContext
  */
-// ID line follows -- this is updated by SVN
-// $Id: PathContext.h 4929 2008-01-18 20:03:57Z kimmov $
-
-
-#ifndef _PATH_CONTEXT_H_
-#define _PATH_CONTEXT_H_
+#pragma once
 
 #include "UnicodeString.h"
 #include <vector>
@@ -128,5 +123,3 @@ public:
 	const PathContext *m_pPathContext;
 	int m_sel;
 };
-
-#endif  // _PATH_CONTEXT_H_

@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for FilterList.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _FILTERLIST_H_
-#define _FILTERLIST_H_
+#pragma once
 
 #include <vector>
 #include <string>
@@ -54,6 +50,3 @@ private:
 	const std::string *m_lastMatchExpression;
 
 };
-
-
-#endif // _FILTERLIST_H_

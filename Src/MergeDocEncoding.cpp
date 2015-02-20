@@ -25,8 +25,6 @@
  * @brief Implementation file for CMergeDoc
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: MergeDocEncoding.cpp 4921 2008-01-16 20:20:54Z kimmov $
 
 #include "stdafx.h"
 #include "MergeDoc.h"

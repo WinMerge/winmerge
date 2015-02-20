@@ -3,8 +3,6 @@
  *
  * @brief Dialog for testing file filters
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "TestFilterDlg.h"

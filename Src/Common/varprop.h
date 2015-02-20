@@ -3,12 +3,7 @@
  *
  *  @brief Declaration of generic named property classes
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
-//////////////////////////////////////////////////////////////////////
-
-#ifndef varprop_h_included
-#define varprop_h_included
+#pragma once
 
 #include <ctime>
 #include "UnicodeString.h"
@@ -74,5 +69,3 @@ private:
 };
 
 } // namespace
-
-#endif // varprop_h_included

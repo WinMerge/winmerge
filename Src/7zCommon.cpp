@@ -94,8 +94,6 @@ DATE:		BY:					DESCRIPTION:
 								Change recommended version of 7-Zip to 4.65
 */
 
-// ID line follows -- this is updated by SVN
-// $Id: 7zCommon.cpp 7169 2010-05-16 14:44:19Z jtuc $
 
 #include "stdafx.h"
 #include "7zCommon.h"

@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for some source control-related functions.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include <Windows.h>
 #include "SourceControl.h"
@@ -23,8 +21,8 @@
 #include "OptionsDef.h"
 #include "RegKey.h"
 #include "paths.h"
-#include "VssPrompt.h"
-#include "CCPrompt.h"
+#include "VssPromptDlg.h"
+#include "CCPromptDlg.h"
 #include "WaitStatusCursor.h"
 #include "coretools.h"
 
@@ -128,7 +126,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 	case VCS_VSS4:	// Visual Source Safe
 	{
 		// Prompt for user choice
-		CVssPrompt dlg;
+		CVssPromptDlg dlg;
 		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath);
 		dlg.m_strProject = m_vssHelper.GetProjectBase();
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
@@ -184,7 +182,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 	case VCS_VSS5: // CVisual SourceSafe 5.0+ (COM)
 	{
 		// prompt for user choice
-		CVssPrompt dlg;
+		CVssPromptDlg dlg;
 		CRegKeyEx reg;
 
 		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath);
@@ -312,7 +310,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 	case VCS_CLEARCASE:
 	{
 		// prompt for user choice
-		CCCPrompt dlg;
+		CCCPromptDlg dlg;
 		if (!m_CheckOutMulti)
 		{
 			dlg.m_bMultiCheckouts = false;

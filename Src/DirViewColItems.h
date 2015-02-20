@@ -5,11 +5,7 @@
  *
  * @date  Created: 2003-08-19
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: DirViewColItems.h 4619 2007-10-14 08:50:20Z jtuc $
-
-#ifndef DirViewColItems_h
-#define DirViewColItems_h
+#pragma once
 
 #include "UnicodeString.h"
 #include <vector>
@@ -127,5 +123,3 @@ private:
 	std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
 	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
 };
-
-#endif // DirViewColItems_h

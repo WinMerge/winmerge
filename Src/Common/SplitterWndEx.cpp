@@ -5,8 +5,6 @@
  * @brief Implementation file for CSplitterWndEx
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: SplitterWndEx.cpp 6500 2009-02-25 13:36:26Z kimmov $
 //
 //////////////////////////////////////////////////////////////////////
 

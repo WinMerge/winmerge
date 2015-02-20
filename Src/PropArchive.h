@@ -4,11 +4,7 @@
  * @brief Declaration file for PropArchive propertyheet
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _PROP_ARCHIVE_H_
-#define _PROP_ARCHIVE_H_
+#pragma once
 
 #include "StatLink.h"
 #include "OptionsPanel.h"
@@ -44,4 +40,3 @@ public:
 	int m_nInstallType;
 	bool m_bProbeType;
 };
-#endif // _PROP_ARCHIVE_H_

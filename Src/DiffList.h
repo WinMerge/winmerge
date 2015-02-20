@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for DiffList class
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffList.h 6705 2009-04-23 20:18:39Z kimmov $
-
-#ifndef _DIFFLIST_H_
-#define _DIFFLIST_H_
+#pragma once
 
 #include <map>
 #include <vector>
@@ -196,5 +192,3 @@ private:
 	int m_lastSignificantRightOnly;
 	int m_lastSignificantConflict;
 };
-
-#endif // _DIFFLIST_H_

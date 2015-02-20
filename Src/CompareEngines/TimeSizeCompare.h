@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for TimeSizeCompare compare engine.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _TIMESIZE_COMPARE_H_
-#define _TIMESIZE_COMPARE_H_
+#pragma once
 
 struct DIFFITEM;
 
@@ -36,5 +32,3 @@ private:
 };
 
 } // namespace CompareEngines
-
-#endif // _TIMESIZE_COMPARE_H_

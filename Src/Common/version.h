@@ -3,11 +3,7 @@
  *
  *  @brief Declaration of CVersionInfo class
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef VERSIONTOOLS_H
-#define VERSIONTOOLS_H
+#pragma once
 
 #include <shlwapi.h>
 #include <memory>
@@ -77,11 +73,3 @@ protected:
 	void QueryValue(LPCTSTR szId, String& s);
 	BOOL GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage);
 };
-
-
-#endif
-
-/*******************************************************************************
-       END OF FILE
-*******************************************************************************/
-

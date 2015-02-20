@@ -4,8 +4,6 @@
  * @brief Implementation of Options management classes
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: OptionsMgr.cpp 6728 2009-05-10 21:13:36Z kimmov $
 
 
 /* The MIT License

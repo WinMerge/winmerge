@@ -3,8 +3,6 @@
  *
  * @brief Implementation for OptionsSyntaxColors class.
  */
-// ID line follows -- this is updated by SVN
-// $Id: OptionsSyntaxColors.cpp 6727 2009-05-10 08:25:18Z kimmov $
 
 #include "OptionsSyntaxColors.h"
 #include <vector>

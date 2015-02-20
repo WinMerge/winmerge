@@ -23,8 +23,7 @@
  *
  *  @brief Exceptions handlers (currently, only SE handler for try/catch)
  */ 
-// RCS ID line follows -- this is updated by CVS
-// $Id$
+#pragma once
 
 #ifdef _MSC_VER
 
@@ -132,7 +131,3 @@ public:
 	SE_Handler() {}
 #endif
 };
-
-
-
-

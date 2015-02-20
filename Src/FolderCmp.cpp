@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for FolderCmp
  */
-// ID line follows -- this is updated by SVN
-// $Id: FolderCmp.cpp 7024 2009-10-22 18:26:45Z kimmov $
 
 #include "diff.h"
 #include "FolderCmp.h"

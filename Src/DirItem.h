@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for DirItem
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _DIR_ITEM_H_INCLUDED
-#define _DIR_ITEM_H_INCLUDED
+#pragma once
 
 #ifdef _MSC_VER
 #pragma warning(disable: 4520)
@@ -72,5 +68,3 @@ struct DirItem
 	bool Update(const String &sFilePath);
 	void ClearPartial();
 };
-
-#endif // _DIR_ITEM_H_INCLUDED

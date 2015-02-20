@@ -4,8 +4,7 @@
  * @brief Declaration file for JumpList helper functions.
  *
  */
-#ifndef _JUMPLIST_H_
-#define _JUMPLIST_H_
+#pragma once
 
 #include "UnicodeString.h"
 #include <vector>
@@ -24,5 +23,3 @@ namespace JumpList
 	bool AddToRecentDocs(const String& app_path = _T(""), const String& params = _T(""), const String& title = _T(""), const String& desc = _T(""), int icon_index = 0);
 	std::vector<Item> GetRecentDocs(size_t nMaxItems);
 }
-
-#endif

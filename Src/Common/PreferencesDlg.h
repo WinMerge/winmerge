@@ -7,12 +7,7 @@
  * (http://www.abstractspoon.com/) but is modified to use in
  * WinMerge.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-
-#if !defined(AFX_PREFERENCESDLG_H__C3FCC72A_6C69_49A6_930D_D5C94EC31298__INCLUDED_)
-#define AFX_PREFERENCESDLG_H__C3FCC72A_6C69_49A6_930D_D5C94EC31298__INCLUDED_
+#pragma once
 
 #if _MSC_VER > 1000
 #pragma once
@@ -119,5 +114,3 @@ private:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_PREFERENCESDLG_H__C3FCC72A_6C69_49A6_930D_D5C94EC31298__INCLUDED_)

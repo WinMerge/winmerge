@@ -4,8 +4,6 @@
  * @brief Implementation file for word diff highlighting (F4) for merge edit & detail views
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: MergeDocLineDiffs.cpp 7067 2009-12-29 14:22:46Z kimmov $
 
 #include "StdAfx.h"
 #include "MergeDoc.h"

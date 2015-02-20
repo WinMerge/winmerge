@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for TimeSizeCompare
  */
-// ID line follows -- this is updated by SVN
-// $Id: TimeSizeCompare.cpp 7153 2010-05-04 18:11:48Z kimmov $
 
 #include "TimeSizeCompare.h"
 #include <cstdlib>

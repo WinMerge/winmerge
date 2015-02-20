@@ -4,12 +4,7 @@
  * @brief Declaration for Registry options class.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-
-#ifndef _REG_OPTIONSMGR_H_
-#define _REG_OPTIONSMGR_H_
+#pragma once
 
 #include <Windows.h>
 #include "OptionsMgr.h"
@@ -58,5 +53,3 @@ private:
 	String m_registryRoot; /**< Registry path where to store options. */
 	bool m_serializing;
 };
-
-#endif // _REG_OPTIONSMGR_H_

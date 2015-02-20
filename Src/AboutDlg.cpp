@@ -20,8 +20,6 @@
  * @brief Implementation of the About-dialog.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: AboutDlg.cpp 6380 2009-01-25 22:13:36Z kimmov $
 
 #include "stdafx.h"
 #include "AboutDlg.h"

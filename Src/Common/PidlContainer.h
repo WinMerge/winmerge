@@ -22,12 +22,7 @@
  *
  *	@brief Declaration of class CPidlContainer
  */ 
-//
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _PIDLCONTAINER_H_
-#define _PIDLCONTAINER_H_
+#pragma once
 
 #include <ShTypes.h>
 #include <vector>
@@ -77,5 +72,3 @@ private:
 	typedef std::vector<LPITEMIDLIST> PidlContainer;
 	PidlContainer m_container; /**< stores items */
 };
-
-#endif // _PIDLCONTAINER_H_

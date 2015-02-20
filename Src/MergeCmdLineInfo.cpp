@@ -26,8 +26,6 @@
  *
  */
 
-// ID line follows -- this is updated by SVN
-// $Id: MergeCmdLineInfo.cpp 6940 2009-08-01 17:29:01Z kimmov $
 
 #include "MergeCmdLineInfo.h"
 #include <cstring>

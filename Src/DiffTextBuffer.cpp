@@ -4,8 +4,6 @@
  * @brief Implementation file for CDiffTextBuffer
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffTextBuffer.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "StdAfx.h"
 #include "DiffTextBuffer.h"

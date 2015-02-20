@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for BinaryCompare
  */
-// ID line follows -- this is updated by SVN
-// $Id: BinaryCompare.cpp 7153 2010-05-04 18:11:48Z kimmov $
 
 #include "BinaryCompare.h"
 #include "DiffItem.h"

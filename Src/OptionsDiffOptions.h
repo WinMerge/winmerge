@@ -1,5 +1,4 @@
-#include <windows.h>
-#include "UnicodeString.h"
+#pragma once
 
 struct DIFFOPTIONS;
 
@@ -10,4 +9,3 @@ void Load(DIFFOPTIONS& options);
 void Save(const DIFFOPTIONS& options);
 
 }}
-

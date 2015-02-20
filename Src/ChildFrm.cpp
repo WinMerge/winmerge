@@ -24,8 +24,6 @@
  * @brief Implementation file for CChildFrame
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: ChildFrm.cpp 7075 2009-12-30 22:57:20Z kimmov $
 
 #include "stdafx.h"
 #include "ChildFrm.h"

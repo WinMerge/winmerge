@@ -3,8 +3,6 @@
  *
  * @brief Implementation of the dialog used to select codepages
  */
-// ID line follows -- this is updated by SVN
-// $Id: LoadSaveCodepageDlg.cpp 5394 2008-05-29 09:47:36Z kimmov $
 
 #include "stdafx.h"
 #include "LoadSaveCodepageDlg.h"

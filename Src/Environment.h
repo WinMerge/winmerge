@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for Environment-related routines.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _ENVIRONMENT_H_
-#define _ENVIRONMENT_H_
+#pragma once
 
 #include "UnicodeString.h"
 
@@ -27,5 +23,3 @@ String env_GetPerInstanceString(const String& name);
 
 bool env_LoadRegistryFromFile(const String& sRegFilePath);
 bool env_SaveRegistryToFile(const String& sRegFilePath, const String& sRegDir);
-
-#endif // _ENVIRONMENT_H_

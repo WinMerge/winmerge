@@ -4,11 +4,7 @@
  * @brief Declaration file for PropEditor propertyheet
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#if !defined(AFX_PROPEDITOR_H__1F2D57BB_6C09_488B_834D_575A94B2BDB8__INCLUDED_)
-#define AFX_PROPEDITOR_H__1F2D57BB_6C09_488B_834D_575A94B2BDB8__INCLUDED_
+#pragma once
 
 #include "OptionsPanel.h"
 #include "UnicodeString.h"
@@ -74,5 +70,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_PROPEDITOR_H__1F2D57BB_6C09_488B_834D_575A94B2BDB8__INCLUDED_)

@@ -3,8 +3,6 @@
  *
  * @brief Codepage converter using external libraries.
  */
-// ID line follows -- this is updated by SVN
-// $Id: $
 
 #include "ExConverter.h"
 #include <windows.h>

@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for ByteCompare
  */
-// ID line follows -- this is updated by SVN
-// $Id: ByteCompare.cpp 6932 2009-07-26 14:04:31Z kimmov $
 
 #include "ByteCompare.h"
 #include <cassert>

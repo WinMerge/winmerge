@@ -3,8 +3,6 @@
  *
  *  @brief Implementation of DirScan (q.v.) and helper functions
  */ 
-// ID line follows -- this is updated by SVN
-// $Id: DirScan.cpp 6909 2009-07-11 13:03:42Z kimmov $
 
 #include "DirScan.h"
 #include <cassert>

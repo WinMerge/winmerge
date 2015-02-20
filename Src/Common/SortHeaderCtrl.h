@@ -3,14 +3,7 @@
  *
  *  @brief Declaration of CSortHeaderCtrl
  */ 
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-//////////////////////////////////////////////////////////////////////
-
-
-#ifndef __SORTHEADERCTRL_H__
-#define __SORTHEADERCTRL_H__
-
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 // CSortHeaderCtrl
@@ -50,6 +43,3 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 };
-
-#endif
-// __SORTHEADERCTRL_H__

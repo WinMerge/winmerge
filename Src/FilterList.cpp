@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for FilterList.
  */
-// ID line follows -- this is updated by SVN
-// $Id: FilterList.cpp 7164 2010-05-15 13:57:32Z jtuc $
 
 #include "FilterList.h"
 #include <vector>

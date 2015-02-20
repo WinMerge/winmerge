@@ -23,8 +23,6 @@
  *
  * @brief Implementation file for CEditorFilepathBar class
  */
-// ID line follows -- this is updated by SVN
-// $Id: EditorFilepathBar.cpp 5401 2008-05-30 12:09:27Z kimmov $
 
 #include "stdafx.h"
 #include "EditorFilepathBar.h"
