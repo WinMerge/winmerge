@@ -20,8 +20,6 @@
  *
  * @brief String utilities.
  */
-// ID line follows -- this is updated by SVN
-// $Id: UnicodeString.cpp 7170 2010-05-16 15:19:15Z jtuc $
 
 // String formatting code originally from Paul Senzee:
 // http://www.senzee5.com/2006/05/c-formatting-stdstring.html

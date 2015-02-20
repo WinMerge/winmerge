@@ -4,8 +4,6 @@
  * @brief Common routines
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: coretools.cpp 7168 2010-05-16 13:45:23Z jtuc $
 
 #include "coretools.h"
 #ifdef _WIN32

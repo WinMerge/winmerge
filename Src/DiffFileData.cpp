@@ -5,8 +5,6 @@
  *
  * @date  Created: 2003-08-22
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffFileData.cpp 7162 2010-05-15 13:14:27Z jtuc $
 
 #include "DiffFileData.h"
 #include <vector>

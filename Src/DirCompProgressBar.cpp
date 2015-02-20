@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for Directory compare state dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id: DirCompProgressBar.cpp 4596 2007-10-07 09:44:06Z jtuc $
 
 #include "stdafx.h"
 #include "DirCompProgressBar.h"

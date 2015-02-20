@@ -21,11 +21,7 @@
  *
  * @date  Created: 2003-08-22
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffWrapper.h 7091 2010-01-11 20:27:43Z kimmov $
-
-#ifndef _DIFFWRAPPER_H
-#define _DIFFWRAPPER_H
+#pragma once
 
 #include <memory>
 #include "diff.h"
@@ -233,6 +229,3 @@ private:
 	std::unique_ptr<FilterCommentsManager> m_FilterCommentsManager; /**< Comments filtering manager */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 };
-
-
-#endif // _DIFFWRAPPER_H

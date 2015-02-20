@@ -19,11 +19,7 @@
  *
  * @brief Declaration file PropRegistry
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef PropRegistry_h_included
-#define PropRegistry_h_included
+#pragma once
 
 #include "OptionsPanel.h"
 #include "UnicodeString.h"
@@ -78,5 +74,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // PropRegistry_h_included

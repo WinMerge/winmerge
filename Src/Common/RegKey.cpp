@@ -3,8 +3,6 @@
  *
  * @brief Implementation of CRegKeyEx C++ wrapper class for reading Windows registry
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #define NOMINMAX
 #include "RegKey.h"

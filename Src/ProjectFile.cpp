@@ -19,8 +19,6 @@
  *
  * @brief Implementation file for ProjectFile class.
  */
-// ID line follows -- this is updated by CVS
-// $Id: ProjectFile.cpp 7081 2010-01-01 20:33:30Z kimmov $
 
 #include "ProjectFile.h"
 

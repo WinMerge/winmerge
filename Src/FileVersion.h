@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for FileVersion
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _FILE_VERSION_H_
-#define _FILE_VERSION_H_
+#pragma once
 
 #include "UnicodeString.h"
 
@@ -30,5 +26,3 @@ public:
 	void SetFileVersionNone() { m_fileVersionMS = 0xffffffff; m_fileVersionLS = 0xfffffffe; };
 	String GetFileVersionString() const;
 };
-
-#endif // _FILE_VERSION_H_

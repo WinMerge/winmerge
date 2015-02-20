@@ -20,9 +20,6 @@
  * @brief Declaration file for CAboutDlg.
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
 #pragma once
 
 #include <memory>

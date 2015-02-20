@@ -3,11 +3,7 @@
  *
  *  @brief Declaration of DIFFITEM
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffItem.h 7063 2009-12-27 15:28:16Z kimmov $
-
-#ifndef _DIFF_ITEM_H_
-#define _DIFF_ITEM_H_
+#pragma once
 
 #include "ListEntry.h"
 #include "DiffFileInfo.h"
@@ -204,5 +200,3 @@ struct DIFFITEM : ListEntry
 	bool HasChildren() const;
 	void RemoveChildren();
 };
-
-#endif // _DIFF_ITEM_H_

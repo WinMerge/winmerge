@@ -19,8 +19,6 @@
  *
  * @brief Implementation of Patch creation dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id: PatchDlg.cpp 6783 2009-05-25 06:47:22Z kimmov $
 
 #include "StdAfx.h"
 #include "PatchDlg.h"

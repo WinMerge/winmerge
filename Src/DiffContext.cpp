@@ -23,9 +23,6 @@
  *
  *  @brief Implementation of CDiffContext
  */ 
-// ID line follows -- this is updated by SVN
-// $Id: DiffContext.cpp 7063 2009-12-27 15:28:16Z kimmov $
-//////////////////////////////////////////////////////////////////////
 
 #include "DiffContext.h"
 #include <Poco/ScopedLock.h>

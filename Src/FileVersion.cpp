@@ -3,8 +3,6 @@
  *
  * @brief Implementation for FileVersion
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "FileVersion.h"
 #include "UnicodeString.h"

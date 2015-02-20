@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for ByteComparator class.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef ByteComparator_h_included
-#define ByteComparator_h_included
+#pragma once
 
 #include <cstdint>
 
@@ -68,5 +64,3 @@ private:
 };
 
 } // namespace CompareEngines
-
-#endif // ByteComparator_h_included

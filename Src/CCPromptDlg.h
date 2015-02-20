@@ -15,37 +15,31 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  VssPrompt.h
+ * @file  CCPromptDlg.h
  *
- * @brief Declaration file for CVssPrompt
+ * @brief Declaration file for ClearCase dialog.
+ *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
 #pragma once
 
 #include <memory>
 #include "UnicodeString.h"
 
-class CVssPrompt
+class CCCPromptDlg
 {
 // Construction
 public:
-	CVssPrompt();
-	~CVssPrompt();
+	CCCPromptDlg();
+	~CCCPromptDlg();
 	int DoModal();
 
-	String	m_strProject;
-	String	m_strUser;
-	String	m_strPassword;
-	String	m_strMessage;
-	String m_strSelectedDatabase;
+	String	m_comments;
 	bool m_bMultiCheckouts;
-	bool m_bVCProjSync;
+	bool m_bCheckin;
 
 private:
-	CVssPrompt(const CVssPrompt &);
-	CVssPrompt & operator=(const CVssPrompt &);
+	CCCPromptDlg(const CCCPromptDlg &);
+	CCCPromptDlg & operator=(const CCCPromptDlg &);
 
 	class Impl;
 	std::unique_ptr<Impl> m_pimpl;

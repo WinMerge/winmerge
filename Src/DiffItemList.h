@@ -3,11 +3,7 @@
  *
  *  @brief Declaration of DiffItemList
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _DIFF_ITEM_LIST_H_
-#define _DIFF_ITEM_LIST_H_
+#pragma once
 
 #include "DiffItem.h"
 #include <cstdint>
@@ -65,5 +61,3 @@ inline DIFFITEM & DiffItemList::GetDiffRefAt(uintptr_t diffpos)
 {
 	return *reinterpret_cast<DIFFITEM *>(diffpos);
 }
-
-#endif // _DIFF_ITEM_LIST_H_

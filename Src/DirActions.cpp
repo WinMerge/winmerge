@@ -7,8 +7,6 @@
  *
  *  @brief Implementation of methods of CDirView that copy/move/delete files
  */
-// ID line follows -- this is updated by SVN
-// $Id: DirActions.cpp 6572 2009-03-18 18:51:20Z kimmov $
 
 // It would be nice to make this independent of the UI (CDirView)
 // but it needs access to the list of selected items.

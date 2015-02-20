@@ -4,6 +4,8 @@
  * @brief Declaration file for Merge7zFormatShellImpl class
  *
  */
+#pragma once
+
 #include <Windows.h>
 
 #define DllBuild_Merge7z 10 // Minimum DllBuild of Merge7z plugin required
@@ -30,4 +32,3 @@ struct Merge7zFormatShellImpl : public Merge7z::Format
 	virtual BSTR GetDefaultName(HWND, LPCTSTR);
 	static Merge7z::Format *GuessFormat(const String& path);
 };
-

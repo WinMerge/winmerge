@@ -4,9 +4,6 @@
  * @brief Implementation file for DirCmpReport dialog
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-//
 
 #include "stdafx.h"
 #include "DirCmpReportDlg.h"

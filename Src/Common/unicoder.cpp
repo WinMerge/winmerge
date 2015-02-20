@@ -6,8 +6,6 @@
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
-// ID line follows -- this is updated by SVN
-// $Id: unicoder.cpp 7024 2009-10-22 18:26:45Z kimmov $
 
 /* The MIT License
 Copyright (c) 2003 Perry Rapp

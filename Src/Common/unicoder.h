@@ -6,11 +6,7 @@
  *
  *  @brief  Declaration of utility unicode conversion routines
  */
-// ID line follows -- this is updated by SVN
-// $Id: unicoder.h 6936 2009-07-26 17:17:18Z kimmov $
-
-#ifndef unicoder_h_included
-#define unicoder_h_included
+#pragma once
 
 #include "UnicodeString.h"
 #include "codepage.h"
@@ -119,6 +115,3 @@ void setDefaultCodepage(int cp);
 bool EqualCodepages(int cp1, int cp2);
 
 } // namespace ucr
-
-#endif // unicoder_h_included
-

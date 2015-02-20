@@ -20,9 +20,6 @@
  * @brief Declaration file for WMGotoDlg dialog.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
 #pragma once
 
 #include <memory>

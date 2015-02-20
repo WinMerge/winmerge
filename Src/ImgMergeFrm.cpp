@@ -24,8 +24,6 @@
  * @brief Implementation file for CImgMergeFrame
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: ImgMergeFrm.cpp 7166 2010-05-16 12:05:13Z jtuc $
 
 #include "stdafx.h"
 #include "ImgMergeFrm.h"

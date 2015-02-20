@@ -4,11 +4,7 @@
  * @brief Declaration file for MDITabBar
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef MDITABBAR_H
-#define MDITABBAR_H
+#pragma once
 
 /**
  * @brief Class for Tab bar.
@@ -77,5 +73,3 @@ private:
 	int GetItemIndexFromPoint(CPoint pt) const;
 	void SwapTabs(int nIndexA, int nIndexB);
 };
-
-#endif // MDITABBAR_H

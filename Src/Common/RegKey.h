@@ -1,10 +1,9 @@
 /** 
- * @file  RegKey.cpp
+ * @file  RegKey.h
  *
  * @brief Declaration of CRegKeyEx C++ wrapper class for reading Windows registry
  */
-// ID line follows -- this is updated by SVN
-// $Id$
+#pragma once
 
 #include <Windows.h>
 #include "UnicodeString.h"

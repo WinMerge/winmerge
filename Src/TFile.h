@@ -1,5 +1,4 @@
-#ifndef _TFILE_H_
-#define _TFILE_H_
+#pragma once
 
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/File.h>
@@ -14,5 +13,3 @@ public:
 	void moveTo(const String& path) { File::moveTo(ucr::toUTF8(path)); }
 	void renameTo(const String& path) { File::renameTo(ucr::toUTF8(path)); }
 };
-
-#endif

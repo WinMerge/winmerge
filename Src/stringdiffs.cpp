@@ -4,8 +4,6 @@
  * @brief Implementation file for sd_ComputeWordDiffs (q.v.)
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: stringdiffs.cpp 7149 2010-05-03 17:08:20Z kimmov $
 
 #include "stringdiffs.h"
 #define NOMINMAX

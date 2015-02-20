@@ -4,12 +4,7 @@
  * @brief Declaration file for PropMergeColors propertyheet
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: PropColors.h 6908 2009-07-11 08:29:49Z kimmov $
-
-#if !defined(AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_)
-#define AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_
-
+#pragma once
 
 #include "ColorButton.h"
 #include "OptionsPanel.h"
@@ -126,5 +121,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_)

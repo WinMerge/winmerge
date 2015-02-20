@@ -1,5 +1,4 @@
-#if !defined(AFX_SuperComboBox_H__8027D162_6B2C_11D1_BAEE_00A024706EDC__INCLUDED_)
-#define AFX_SuperComboBox_H__8027D162_6B2C_11D1_BAEE_00A024706EDC__INCLUDED_
+#pragma once
 
 #if _MSC_VER >= 1000
 #pragma once
@@ -82,5 +81,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_SuperComboBox_H__8027D162_6B2C_11D1_BAEE_00A024706EDC__INCLUDED_)

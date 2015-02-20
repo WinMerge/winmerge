@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for patch creation dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id: PatchDlg.h 6783 2009-05-25 06:47:22Z kimmov $
-
-#if !defined(AFX_PATCHDLG_H__AB3CE671_1328_11D7_B088_005004D9D386__INCLUDED_)
-#define AFX_PATCHDLG_H__AB3CE671_1328_11D7_B088_005004D9D386__INCLUDED_
+#pragma once
 
 #include "resource.h"
 #include "SuperComboBox.h"
@@ -111,5 +107,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_PATCHDLG_H__AB3CE671_1328_11D7_B088_005004D9D386__INCLUDED_)

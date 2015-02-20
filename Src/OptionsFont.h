@@ -1,3 +1,5 @@
+#pragma once
+
 #include <windows.h>
 #include "UnicodeString.h"
 
@@ -9,6 +11,3 @@ void Save(const String& name, const LOGFONT* lf, bool bUseCustom);
 void Reset(const String& name);
 
 }}
-
-
-

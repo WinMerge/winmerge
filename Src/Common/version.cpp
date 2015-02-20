@@ -3,8 +3,6 @@
  *
  *  @brief Implementation of CVersionInfo class
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "version.h"
 #include <windows.h>

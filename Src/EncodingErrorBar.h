@@ -1,9 +1,7 @@
 // EncodingErrorBar.h : header file
 //
 
-#if !defined(AFX_ENCODINGERRORBAR_H__7F99AF10_24E5_49AF_8D97_9A86A80BAD48__INCLUDED_)
-#define AFX_ENCODINGERRORBAR_H__7F99AF10_24E5_49AF_8D97_9A86A80BAD48__INCLUDED_
-
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 // CEncodingErrorBar dialog
@@ -46,5 +44,3 @@ public:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_ENCODINGERRORBAR_H__7F99AF10_24E5_49AF_8D97_9A86A80BAD48__INCLUDED_)

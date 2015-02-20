@@ -4,11 +4,7 @@
  * @brief Declaration file for DirCmpReport Dialog.
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: DirFilterDlg.h 3456 2006-08-09 06:38:07Z jtuc $
-
-#ifndef _DIRCMPREPORTDLG_H_
-#define _DIRCMPREPORTDLG_H_
+#pragma once
 
 #ifndef DirReportTypes_h_included
 #include "DirReportTypes.h"
@@ -48,5 +44,3 @@ public:
 	REPORT_TYPE m_nReportType; /**< Report type integer */
 	BOOL m_bCopyToClipboard; /**< Do we copy report to clipboard? */
 };
-
-#endif // _DIRCMPREPORTDLG_H_

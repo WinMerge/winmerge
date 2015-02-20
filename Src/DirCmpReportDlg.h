@@ -4,11 +4,7 @@
  * @brief Declaration file for DirCmpReport Dialog.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _DIRCMPREPORTDLG_H_
-#define _DIRCMPREPORTDLG_H_
+#pragma once
 
 #include "DirReportTypes.h"
 #include "SuperComboBox.h"
@@ -52,5 +48,3 @@ public:
 	bool m_bIncludeFileCmpReport; /**< Do we include file compare report in folder compare report? */
 	//}}AFX_DATA
 };
-
-#endif // _DIRCMPREPORTDLG_H_

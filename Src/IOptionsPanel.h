@@ -4,11 +4,7 @@
  * @brief Declaration file for IOptionsPanel Interface
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
-#ifndef _IOPTIONSPANEL_H_
-#define _IOPTIONSPANEL_H_
+#pragma once
 
 /**
  * @brief Interface for Options Panels.
@@ -23,5 +19,3 @@ public:
 	virtual void ReadOptions() = 0;
 	virtual void WriteOptions() = 0;
 };
-
-#endif // IOPTIONSPANEL_H_

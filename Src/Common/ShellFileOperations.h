@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for ShellFileOperations class.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _SHELL_FILE_OPERATIONS_H_
-#define _SHELL_FILE_OPERATIONS_H_
+#pragma once
 
 #include <vector>
 #include <Windows.h>
@@ -61,5 +57,3 @@ private:
 	bool m_bOneToOneMapping; /**< Same amount of sources and destinations? */
 	bool m_isCanceled; /**< Did user cancel the operation? */
 };
-
-#endif // _SHELL_FILE_OPERATIONS_H_

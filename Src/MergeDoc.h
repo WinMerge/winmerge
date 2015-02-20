@@ -22,11 +22,7 @@
  *
  * @brief Declaration of CMergeDoc class
  */
-// ID line follows -- this is updated by SVN
-// $Id: MergeDoc.h 7086 2010-01-09 13:38:25Z kimmov $
-
-#if !defined(AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
-#define AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
+#pragma once
 
 #include "DiffTextBuffer.h"
 #include <vector>
@@ -377,5 +373,3 @@ private:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)

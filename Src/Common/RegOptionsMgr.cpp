@@ -4,8 +4,6 @@
  * @brief Implementation of Registry Options management class.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "RegOptionsMgr.h"
 #include <windows.h>

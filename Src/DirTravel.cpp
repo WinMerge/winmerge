@@ -4,8 +4,6 @@
  * @brief Implementation file for Directory traversal functions.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: DirTravel.cpp 5761 2008-08-08 04:54:52Z marcelgosselin $
 
 #include "DirTravel.h"
 #include <algorithm>

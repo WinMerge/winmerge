@@ -3,8 +3,6 @@
  *
  * @brief Implementation of CompareStats class.
  */
-// ID line follows -- this is updated by SVN
-// $Id: CompareStats.cpp 6945 2009-08-05 03:34:52Z marcelgosselin $
 
 #include "CompareStats.h"
 #include <cassert>

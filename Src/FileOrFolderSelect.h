@@ -23,11 +23,7 @@
  *
  * @brief Declaration of the file and folder selection routines.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _FILE_OR_FOLDER_SELECTION_H_
-#define _FILE_OR_FOLDER_SELECTION_H_
+#pragma once
 
 #include "UnicodeString.h"
 
@@ -40,5 +36,3 @@ BOOL SelectFolder(String& path, LPCTSTR root_path = NULL,
 			 HWND hwndOwner = NULL);
 
 BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR root_path = NULL);
-
-#endif

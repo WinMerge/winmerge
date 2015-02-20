@@ -3,11 +3,7 @@
  *
  * @brief Declaration of PropCodepage class
  */
-// ID line follows -- this is updated by SVN
-// $Id: PropCodepage.h 6908 2009-07-11 08:29:49Z kimmov $
-
-#if !defined(AFX_PROPCODEPAGE_H__0DF931F8_E845_48B7_A658_3BEE6D3EAF85__INCLUDED_)
-#define AFX_PROPCODEPAGE_H__0DF931F8_E845_48B7_A658_3BEE6D3EAF85__INCLUDED_
+#pragma once
 
 #include "OptionsPanel.h"
 
@@ -61,5 +57,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_PROPCODEPAGE_H__0DF931F8_E845_48B7_A658_3BEE6D3EAF85__INCLUDED_)

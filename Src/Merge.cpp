@@ -24,8 +24,6 @@
  * @brief Defines the class behaviors for the application.
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: Merge.cpp 6861 2009-06-25 12:11:07Z kimmov $
 
 #include "stdafx.h"
 #include "Merge.h"

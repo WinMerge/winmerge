@@ -3,12 +3,8 @@
  *
  *  @brief Declarations of CDiffContext and diff structures
  */
-// ID line follows -- this is updated by SVN
-// $Id: DiffContext.h 6910 2009-07-12 09:06:54Z kimmov $
-
-#if !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)
-#define AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_
 #pragma once
+
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Mutex.h>
 #include <Poco/ThreadLocal.h>
@@ -203,5 +199,3 @@ private:
 	IAbortable *m_piAbortable; /**< Interface for aborting the compare. */
 	Poco::FastMutex m_mutex;
 };
-
-#endif // !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)

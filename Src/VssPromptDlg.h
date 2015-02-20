@@ -15,34 +15,34 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  CCPrompt.h
+ * @file  VssPromptDlg.h
  *
- * @brief Declaration file for ClearCase dialog.
- *
+ * @brief Declaration file for CVssPromptDlg
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
 #pragma once
 
 #include <memory>
 #include "UnicodeString.h"
 
-class CCCPrompt
+class CVssPromptDlg
 {
 // Construction
 public:
-	CCCPrompt();
-	~CCCPrompt();
+	CVssPromptDlg();
+	~CVssPromptDlg();
 	int DoModal();
 
-	String	m_comments;
+	String	m_strProject;
+	String	m_strUser;
+	String	m_strPassword;
+	String	m_strMessage;
+	String m_strSelectedDatabase;
 	bool m_bMultiCheckouts;
-	bool m_bCheckin;
+	bool m_bVCProjSync;
 
 private:
-	CCCPrompt(const CCCPrompt &);
-	CCCPrompt & operator=(const CCCPrompt &);
+	CVssPromptDlg(const CVssPromptDlg &);
+	CVssPromptDlg & operator=(const CVssPromptDlg &);
 
 	class Impl;
 	std::unique_ptr<Impl> m_pimpl;

@@ -6,11 +6,7 @@
  *
  *  @brief  Declaration of Unicode file classes.
  */
-// ID line follows -- this is updated by SVN
-// $Id: UniFile.h 7056 2009-12-26 19:49:14Z kimmov $
-
-#ifndef UniFile_h_included
-#define UniFile_h_included
+#pragma once
 
 #include "unicoder.h"
 #include <cstdint>
@@ -232,7 +228,3 @@ private:
 	int64_t m_data; // offset after any initial BOM
 	ucr::buffer m_ucrbuff;
 };
-
-
-
-#endif // UniFile_h_included

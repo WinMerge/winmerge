@@ -3,9 +3,6 @@
  *
  *  @brief Declaration WaitStatusCursor classes.
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
-
 #pragma once
 
 #include <memory>

@@ -3,9 +3,6 @@
  *
  *  @brief Implementation of generic named property classes
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
-//////////////////////////////////////////////////////////////////////
 
 #include "varprop.h"
 #include <cassert>

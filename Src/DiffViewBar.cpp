@@ -1,14 +1,9 @@
-//////////////////////////////////////////////////////////////////////
 /** 
  * @file  DiffViewBar.cpp
  *
  * @brief Implementation file for CDiffViewBar
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-//
-//////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
 #include "DiffViewBar.h"

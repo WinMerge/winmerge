@@ -3,11 +3,7 @@
  *
  * @brief Declaration of PropCompareImage propertysheet
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _PROPPAGE_COMPAREIMAGE_H_
-#define _PROPPAGE_COMPAREIMAGE_H_
+#pragma once
 
 #include "OptionsPanel.h"
 #include "UnicodeString.h"
@@ -53,5 +49,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // _PROPPAGE_COMPAREIMAGE_H_

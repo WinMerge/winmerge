@@ -4,8 +4,6 @@
  * @brief Implementation file for CColorButton
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "ColorButton.h"

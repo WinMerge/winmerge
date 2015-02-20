@@ -19,11 +19,8 @@
  *
  * @brief Declaration file ConfigLog class
  */
-// ID line follows -- this is updated by SVN
-// $Id: ConfigLog.h 7059 2009-12-27 00:06:59Z kimmov $
+#pragma once
 
-#ifndef _CONFIGLOG_H_
-#define _CONFIGLOG_H_
 
 #include "UnicodeString.h"
 #include <memory>
@@ -67,5 +64,3 @@ private:
 	String m_sFileName;
 	std::unique_ptr<UniStdioFile> m_pfile;
 };
-
-#endif /* _CONFIGLOG_H_ */

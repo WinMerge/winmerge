@@ -19,11 +19,7 @@
  *
  * @brief Declaration file for File Filters dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#if !defined(AFX_FILTERSDLG_H__6180CBC3_99BB_4C85_B0EA_BA85D219285E__INCLUDED_)
-#define AFX_FILTERSDLG_H__6180CBC3_99BB_4C85_B0EA_BA85D219285E__INCLUDED_
+#pragma once
 
 #if _MSC_VER > 1000
 #pragma once
@@ -96,5 +92,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_FILTERSDLG_H__6180CBC3_99BB_4C85_B0EA_BA85D219285E__INCLUDED_)

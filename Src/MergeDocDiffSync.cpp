@@ -4,8 +4,6 @@
  * @brief Code to layout diff blocks, to find matching lines, and insert ghost lines
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: MergeDocDiffSync.cpp 7054 2009-12-22 17:59:08Z kimmov $
 
 #include "StdAfx.h"
 #include <vector>

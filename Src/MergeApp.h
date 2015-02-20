@@ -1,5 +1,4 @@
-#ifndef __MERGEAPP_H__
-#define __MERGEAPP_H__
+#pragma once
 
 #include "UnicodeString.h"
 
@@ -47,5 +46,3 @@ namespace AppMsgBox
 String LoadResString(unsigned id);
 
 String tr(const std::string &str);
-
-#endif /* __MERGEAPP_H__ */

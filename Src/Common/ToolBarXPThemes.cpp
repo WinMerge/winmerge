@@ -3,8 +3,6 @@
  *
  * @brief Implementation of the ToolBarXPThemes class
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
 
 #include "StdAfx.h"
 #include "ToolbarXPThemes.h"

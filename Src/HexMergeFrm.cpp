@@ -24,8 +24,6 @@
  * @brief Implementation file for CHexMergeFrame
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id: HexMergeFrm.cpp 7166 2010-05-16 12:05:13Z jtuc $
 
 #include "stdafx.h"
 #include "HexMergeFrm.h"

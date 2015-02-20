@@ -3,8 +3,6 @@
  *
  * @brief Implementation file for ProjectFilePaths dialog
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include "stdafx.h"
 #include "ProjectFilePathsDlg.h"

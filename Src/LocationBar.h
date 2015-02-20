@@ -7,9 +7,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef LOCATIONBAR_H
-#define LOCATIONBAR_H
-
+#pragma once
 
 #include "sizecbar.h"
 #include "scbarcf.h"
@@ -55,5 +53,3 @@ private:
 	HWND m_hwndFrame; //*< Frame window handle */
 
 };
-
-#endif // LOCATIONBAR_H
