@@ -144,8 +144,6 @@ protected:
 	bool LoadAndOpenProjectFile(const String& sFilepath);
 	bool IsProjectFile(const String& filepath) const;
 
-	void ReloadMenu();
-
 	//@{
 	/**
 	 * @name Active operations counter.
@@ -174,8 +172,6 @@ protected:
 	//{{AFX_MSG(CMergeApp)
 	afx_msg BOOL OnOpenRecentFile(UINT nID);
 	afx_msg void OnAppAbout();
-	afx_msg void OnViewLanguage();
-	afx_msg void OnUpdateViewLanguage(CCmdUI* pCmdUI);
 	afx_msg void OnHelp();
 	afx_msg void OnMergingMode();
 	afx_msg void OnUpdateMergingMode(CCmdUI* pCmdUI);

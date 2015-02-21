@@ -1323,9 +1323,6 @@
     <ClInclude Include="Common\scbarcf.h">
       <Filter>MFCGui\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Common\ToolbarXPThemes.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Common\MessageBoxDialog.h">
       <Filter>MFCGui\Common</Filter>
     </ClInclude>
