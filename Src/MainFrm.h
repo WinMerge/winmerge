@@ -118,6 +118,8 @@ public:
 	bool AskCloseConfirmation();
 	BOOL DoOpenConflict(const String& conflictFile, bool checked = false);
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
+	void UpdateDocTitle();
+	void ReloadMenu();
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
