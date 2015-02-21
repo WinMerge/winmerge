@@ -31,6 +31,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "LanguageSelect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -75,6 +76,16 @@ BOOL PropGeneral::OnInitDialog()
 
 	pWnd->SetCurSel(m_nAutoCompleteSource);
 
+	m_ctlLangList.SetDroppedWidth(600);
+
+	for (auto&& i : theApp.m_pLangDlg->GetAvailableLanguages())
+	{
+		m_ctlLangList.AddString(i.second.c_str());
+		m_ctlLangList.SetItemData(m_ctlLangList.GetCount() - 1, i.first);
+		if (i.first == theApp.m_pLangDlg->GetLangId())
+			m_ctlLangList.SetCurSel(m_ctlLangList.GetCount() - 1);
+	}
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -93,6 +104,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_PRESERVE_FILETIME, m_bPreserveFiletime);
 	DDX_Check(pDX, IDC_STARTUP_FOLDER_SELECT, m_bShowSelectFolderOnStartup);
 	DDX_Check(pDX, IDC_CLOSE_WITH_OK, m_bCloseWithOK);
+	DDX_Control(pDX, IDC_LANGUAGE_LIST, m_ctlLangList);
 	//}}AFX_DATA_MAP
 }
 
@@ -137,6 +149,12 @@ void PropGeneral::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_PRESERVE_FILETIMES, m_bPreserveFiletime);
 	GetOptionsMgr()->SaveOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, m_bShowSelectFolderOnStartup);
 	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_OK, m_bCloseWithOK);
+	int index = m_ctlLangList.GetCurSel();
+	if (index >= 0)
+	{
+		WORD lang = (WORD)m_ctlLangList.GetItemData(index);
+		GetOptionsMgr()->SaveOption(OPT_SELECTED_LANGUAGE, (int)lang);
+	}
 }
 
 /** 

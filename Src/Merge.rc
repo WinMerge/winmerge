@@ -182,8 +182,6 @@ BEGIN
         END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
-        MENUITEM SEPARATOR
-        MENUITEM "&Language...",                ID_VIEW_LANGUAGE
     END
     POPUP "&Tools"
     BEGIN
@@ -289,9 +287,8 @@ BEGIN
         END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
-        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
-        MENUITEM "&Language...",                ID_VIEW_LANGUAGE
+        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Refre&sh\tF5",                ID_REFRESH
         MENUITEM "&Refresh Selected\tCtrl+F5",  ID_RESCAN
@@ -496,8 +493,6 @@ BEGIN
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
-        MENUITEM SEPARATOR
-        MENUITEM "&Language...",                ID_VIEW_LANGUAGE
         MENUITEM SEPARATOR
         MENUITEM "Refre&sh\tF5",                ID_REFRESH
     END
@@ -961,23 +956,13 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,141,206,10
     CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,151,206,10
+    LTEXT           "Language:",IDC_STATIC,7,171,80,8
+    COMBOBOX        IDC_LANGUAGE_LIST,7,181,221,41,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
-                    IDC_STATIC,7,173,168,31
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,180,50,14,NOT
+                    IDC_STATIC,7,198,168,31
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,205,50,14,NOT
                     WS_TABSTOP
-END
-
-IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 214, 142
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU | WS_THICKFRAME
-CAPTION "Language"
-FONT 8, "MS Shell Dlg", 0, 0, 0x1
-BEGIN
-    PUSHBUTTON      "OK",IDOK,47,123,52,14
-    PUSHBUTTON      "Cancel",IDCANCEL,115,123,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,7,16,200,99,LBS_NOINTEGRALHEIGHT |
-                    WS_VSCROLL | WS_TABSTOP | LBS_SORT
-    LTEXT           "Available languages:",IDC_STATIC,7,7,140,8
 END
 
 IDD_EDIT_FIND DIALOGEX 30, 73, 293, 84
@@ -2934,7 +2919,6 @@ BEGIN
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
-    ID_VIEW_LANGUAGE        "Select the current user interface language\nLanguage"
     ID_VIEW_LINEDIFFS       "Shows differences inside lines with different colors\nShow Line Difference"
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
     ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"

@@ -7,20 +7,8 @@
 #include "StdAfx.h"
 #include "LanguageSelect.h"
 #include <locale.h>
-#include <sstream>
-#include "OptionsDef.h"
-#include "OptionsMgr.h"
-#include "Merge.h"
 #include "version.h"
-#include "resource.h"
 #include "BCMenu.h"
-#include "MainFrm.h"
-#include "OpenFrm.h"
-#include "ChildFrm.h"
-#include "DirFrame.h"
-#include "HexMergeFrm.h"
-#include "ImgMergeFrm.h"
-#include "paths.h"
 #include "Environment.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
@@ -490,32 +478,12 @@ static HANDLE NTAPI FindFile(HANDLE h, LPCTSTR path, WIN32_FIND_DATA *fd)
 /** @brief Default English language. */
 const WORD wSourceLangId = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
 
-CLanguageSelect::CLanguageSelect(UINT idMainMenu, UINT idDocMenu, BOOL bReloadMenu /*=TRUE*/, BOOL bUpdateTitle /*=TRUE*/, CWnd* pParent /*=NULL*/)
-: CDialog(CLanguageSelect::IDD, pParent)
-, m_hCurrentDll(0)
+CLanguageSelect::CLanguageSelect()
+: m_hCurrentDll(0)
 , m_wCurLanguage(wSourceLangId)
-, m_idMainMenu(idMainMenu)
-, m_idDocMenu(idDocMenu)
-, m_hModule(NULL)
-, m_bReloadMenu(bReloadMenu)
-, m_bUpdateTitle(bUpdateTitle)
 {
 	SetThreadLocale(MAKELCID(m_wCurLanguage, SORT_DEFAULT));
 }
-
-void CLanguageSelect::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CLanguageSelect)
-	DDX_Control(pDX, IDC_LANGUAGE_LIST, m_ctlLangList);
-	//}}AFX_DATA_MAP
-}
-
-BEGIN_MESSAGE_MAP(CLanguageSelect, CDialog)
-//{{AFX_MSG_MAP(CLanguageSelect)
-	ON_LBN_DBLCLK(IDC_LANGUAGE_LIST, OnOK)
-//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
 
 /**
  * @brief Remove prefix from the string.
@@ -598,7 +566,7 @@ static void unslash(unsigned codepage, std::string &s)
  * @param [in] wLangId 
  * @return TRUE on success, FALSE otherwise.
  */
-BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
+BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 {
 	String strPath = GetFileName(wLangId);
 	if (strPath.empty())
@@ -609,7 +577,7 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 	// translation system, so go without string resources here.
 	if (m_hCurrentDll == 0)
 	{
-		if (m_hWnd)
+		if (bShowError)
 			AfxMessageBox(_T("Failed to load MergeLang.dll"), MB_ICONSTOP);
 		return FALSE;
 	}
@@ -625,14 +593,14 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 	{
 		FreeLibrary(m_hCurrentDll);
 		m_hCurrentDll = 0;
-		if (m_hWnd)
+		if (bShowError)
 			AfxMessageBox(_T("MergeLang.dll version mismatch"), MB_ICONSTOP);
 		return FALSE;
 	}
 	HRSRC mergepot = FindResource(m_hCurrentDll, _T("MERGEPOT"), RT_RCDATA);
 	if (mergepot == 0)
 	{
-		if (m_hWnd)
+		if (bShowError)
 			AfxMessageBox(_T("MergeLang.dll is invalid"), MB_ICONSTOP);
 		return FALSE;
 	}
@@ -701,11 +669,10 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 	{
 		FreeLibrary(m_hCurrentDll);
 		m_hCurrentDll = 0;
-		if (m_hWnd)
+		if (bShowError)
 		{
-			std_tchar(ostringstream) stm;
-			stm << _T("Failed to load ") << strPath.c_str();
-			AfxMessageBox(stm.str().c_str(), MB_ICONSTOP);
+			String str = _T("Failed to load ") + strPath;
+			AfxMessageBox(str.c_str(), MB_ICONSTOP);
 		}
 		return FALSE;
 	}
@@ -792,12 +759,11 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 		m_hCurrentDll = 0;
 		m_strarray.clear();
 		m_codepage = 0;
-		if (m_hWnd)
+		if (bShowError)
 		{
-			std_tchar(ostringstream) stm;
-			stm << _T("Unresolved or mismatched references detected when ")
-				_T("attempting to read translations from\n") << strPath.c_str();
-			AfxMessageBox(stm.str().c_str(), MB_ICONSTOP);
+			String str = _T("Unresolved or mismatched references detected when ")
+				_T("attempting to read translations from\n") + strPath;
+			AfxMessageBox(str.c_str(), MB_ICONSTOP);
 		}
 		return FALSE;
 	}
@@ -809,7 +775,7 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
  * @param [in] wLangId 
  * @return TRUE on success, FALSE otherwise.
  */
-BOOL CLanguageSelect::SetLanguage(LANGID wLangId)
+BOOL CLanguageSelect::SetLanguage(LANGID wLangId, BOOL bShowError)
 {
 	if (wLangId == 0)
 		return FALSE;
@@ -827,7 +793,7 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId)
 	m_codepage = 0;
 	if (wLangId != wSourceLangId)
 	{
-		if (LoadLanguageFile(wLangId))
+		if (LoadLanguageFile(wLangId, bShowError))
 			AfxSetResourceHandle(m_hCurrentDll);
 		else
 			wLangId = wSourceLangId;
@@ -861,32 +827,6 @@ String CLanguageSelect::GetFileName(LANGID wLangId) const
 			filename.erase();
 	}
 	return filename;
-}
-
-/**
- * @brief Check if there are language files installed.
- *
- * This function does as fast as possible check for installed language
- * files. It needs to be fast since it is used in enabling/disabling
- * GUI item(s). So the simple check we do is just find one .po file.
- * If there is a .po file we assume we have at least one language
- * installed.
- * @return TRUE if at least one lang file is found. FALSE if no lang
- * files are found.
- */
-BOOL CLanguageSelect::AreLangsInstalled() const
-{
-	BOOL bFound = FALSE;
-	String path = env_GetProgPath().append(szRelativePath);
-	String pattern = path + _T("*.po");
-	WIN32_FIND_DATA ff;
-	HANDLE h = INVALID_HANDLE_VALUE;
-	while ((h = FindFile(h, pattern.c_str(), &ff)) != INVALID_HANDLE_VALUE)
-	{
-		ff.dwFileAttributes = INVALID_FILE_ATTRIBUTES;
-		bFound = TRUE;
-	}
-	return bFound;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1081,174 +1021,12 @@ std::wstring CLanguageSelect::LoadDialogCaption(LPCTSTR lpDialogTemplateID) cons
 	return s;
 }
 
-void CLanguageSelect::ReloadMenu() 
-{
-	if (m_idDocMenu)
-	{
-		// set the menu of the main frame window
-		UINT idMenu = GetDocResId();
-		CMergeApp *pApp = dynamic_cast<CMergeApp *> (AfxGetApp());
-		CMainFrame * pMainFrame = dynamic_cast<CMainFrame *> ((CFrameWnd*)pApp->m_pMainWnd);
-		HMENU hNewDefaultMenu = pMainFrame->NewDefaultMenu(idMenu);
-		HMENU hNewMergeMenu = pMainFrame->NewMergeViewMenu();
-		HMENU hNewImgMergeMenu = pMainFrame->NewImgMergeViewMenu();
-		HMENU hNewDirMenu = pMainFrame->NewDirViewMenu();
-		if (hNewDefaultMenu && hNewMergeMenu && hNewDirMenu)
-		{
-			// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach
-			CMenu * pNewDefaultMenu = CMenu::FromHandle(hNewDefaultMenu);
-			CMenu * pNewMergeMenu = CMenu::FromHandle(hNewMergeMenu);
-			CMenu * pNewImgMergeMenu = CMenu::FromHandle(hNewImgMergeMenu);
-			CMenu * pNewDirMenu = CMenu::FromHandle(hNewDirMenu);
-			
-			CWnd *pFrame = CWnd::FromHandle(::GetWindow(pMainFrame->m_hWndMDIClient, GW_CHILD));
-			while (pFrame)
-			{
-				if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
-					static_cast<CChildFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
-				if (pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
-					static_cast<CHexMergeFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
-				if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
-					static_cast<CImgMergeFrame *>(pFrame)->SetSharedMenu(hNewImgMergeMenu);
-				else if (pFrame->IsKindOf(RUNTIME_CLASS(COpenFrame)))
-					static_cast<COpenFrame *>(pFrame)->SetSharedMenu(hNewDefaultMenu);
-				else if (pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
-					static_cast<CDirFrame *>(pFrame)->SetSharedMenu(hNewDirMenu);
-				pFrame = pFrame->GetNextWindow();
-			}
-
-			CFrameWnd *pActiveFrame = pMainFrame->GetActiveFrame();
-			if (pActiveFrame)
-			{
-				if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
-					pMainFrame->MDISetMenu(pNewMergeMenu, NULL);
-				else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
-					pMainFrame->MDISetMenu(pNewMergeMenu, NULL);
-				else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
-					pMainFrame->MDISetMenu(pNewImgMergeMenu, NULL);
-				else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
-					pMainFrame->MDISetMenu(pNewDirMenu, NULL);
-				else
-					pMainFrame->MDISetMenu(pNewDefaultMenu, NULL);
-			}
-			else
-				pMainFrame->MDISetMenu(pNewDefaultMenu, NULL);
-
-			// Don't delete the old menu
-			// There is a bug in BCMenu or in Windows98 : the new menu does not
-			// appear correctly if we destroy the old one
-//			if (pOldDefaultMenu)
-//				pOldDefaultMenu->DestroyMenu();
-//			if (pOldMergeMenu)
-//				pOldMergeMenu->DestroyMenu();
-//			if (pOldDirMenu)
-//				pOldDirMenu->DestroyMenu();
-
-			// m_hMenuDefault is used to redraw the main menu when we close a child frame
-			// if this child frame had a different menu
-			pMainFrame->m_hMenuDefault = hNewDefaultMenu;
-			pApp->m_pOpenTemplate->m_hMenuShared = hNewDefaultMenu;
-			pApp->m_pDiffTemplate->m_hMenuShared = hNewMergeMenu;
-			pApp->m_pDirTemplate->m_hMenuShared = hNewDirMenu;
-
-			// force redrawing the menu bar
-			pMainFrame->DrawMenuBar();  
-
-		}
-	}
-}
-
-
-UINT CLanguageSelect::GetDocResId() const
-{
-	if (((CMDIFrameWnd*)AfxGetApp()->m_pMainWnd)->MDIGetActive())
-		return m_idDocMenu;
-	
-	return m_idMainMenu;
-}
-
-
-void CLanguageSelect::UpdateDocTitle()
-{
-	CDocManager* pDocManager = AfxGetApp()->m_pDocManager;
-	POSITION posTemplate = pDocManager->GetFirstDocTemplatePosition();
-	ASSERT(posTemplate != NULL);
-
-	while (posTemplate != NULL)
-	{
-		CDocTemplate* pTemplate = pDocManager->GetNextDocTemplate(posTemplate);
-		
-		ASSERT(pTemplate != NULL);
-		
-		POSITION pos = pTemplate->GetFirstDocPosition();
-		CDocument* pDoc;
-		
-		while ( pos != NULL  )
-		{
-			pDoc = pTemplate->GetNextDoc(pos);
-			pDoc->SetTitle(NULL);
-			((CFrameWnd*)AfxGetApp()->m_pMainWnd)->OnUpdateFrameTitle(TRUE);
-		}
-	}
-} 
-
-
-
-void CLanguageSelect::OnOK() 
-{
-	UpdateData();
-	int index = m_ctlLangList.GetCurSel();
-	if (index<0) return;
-	//int i = m_ctlLangList.GetItemData(index);
-	WORD lang = (WORD)m_ctlLangList.GetItemData(index); //m_wLangIds[i];
-	if (lang != m_wCurLanguage)
-	{
-		if (SetLanguage(lang))
-			GetOptionsMgr()->SaveOption(OPT_SELECTED_LANGUAGE, (int)lang);
-
-		theApp.UpdateCodepageModule();
-
-		// Update status bar inicator texts
-		SetIndicators(GetMainFrame()->m_wndStatusBar, 0, 0);
-
-		// Update the current menu
-		if (m_bReloadMenu)
-			ReloadMenu();
-		
-		// update the title text of the document
-		if (m_bUpdateTitle)
-			UpdateDocTitle();
-	}
-	
-	EndDialog(IDOK);
-}
-
-BOOL CLanguageSelect::OnInitDialog()
-{
-	TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
-
-	// setup handler for resizing this dialog	
-	m_constraint.InitializeCurrentSize(this);
-	// configure how individual controls adjust when dialog resizes
-	m_constraint.ConstrainItem(IDC_LANGUAGE_LIST, 0, 1, 0, 1); // grows right & down
-	m_constraint.ConstrainItem(IDCANCEL, .6, 0, 1, 0); // slides down, floats right
-	m_constraint.ConstrainItem(IDOK, .3, 0, 1, 0); // slides down, floats right
-	m_constraint.SubclassWnd(); // install subclassing
-	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("LanguageSelectDlg"), false); // persist size via registry
-
-	AfxGetMainWnd()->CenterWindow(this);
-
-	LoadAndDisplayLanguages();
-
-	return TRUE;
-}
-
 /**
  * @brief Load languages available on disk, and display in list, and select current
  */
-void CLanguageSelect::LoadAndDisplayLanguages()
+std::vector<std::pair<LANGID, String> > CLanguageSelect::GetAvailableLanguages() const
 {
+	std::vector<std::pair<LANGID, String> > list;
 	String path = env_GetProgPath().append(szRelativePath);
 	String pattern = path + _T("*.po");
 	WIN32_FIND_DATA ff;
@@ -1259,28 +1037,21 @@ void CLanguageSelect::LoadAndDisplayLanguages()
 			h == INVALID_HANDLE_VALUE
 		?	LangFileInfo(wSourceLangId)
 		:	LangFileInfo((path + ff.cFileName).c_str());
-		std_tchar(ostringstream) stm;
-		stm << lfi.GetString(LOCALE_SLANGUAGE).c_str();
-		stm << _T(" - ");
-		stm << lfi.GetString(LOCALE_SNATIVELANGNAME|LOCALE_USE_CP_ACP).c_str();
-		stm << _T(" (");
-		stm << lfi.GetString(LOCALE_SNATIVECTRYNAME|LOCALE_USE_CP_ACP).c_str();
-		stm << _T(")");
-		/*stm << _T(" - ");
-		stm << lfi.GetString(LOCALE_SABBREVLANGNAME|LOCALE_USE_CP_ACP).c_str();
-		stm << _T(" (");
-		stm << lfi.GetString(LOCALE_SABBREVCTRYNAME|LOCALE_USE_CP_ACP).c_str();
-		stm << _T(") ");*/
-		stm << _T(" - ");
-		stm << lfi.GetString(LOCALE_SENGLANGUAGE).c_str();
-		stm << _T(" (");
-		stm << lfi.GetString(LOCALE_SENGCOUNTRY).c_str();
-		stm << _T(")");
-		int i = m_ctlLangList.AddString(stm.str().c_str());
-		m_ctlLangList.SetItemData(i, lfi.id);
-		if (lfi.id == m_wCurLanguage)
-			m_ctlLangList.SetCurSel(i);
+		String str;
+		str += lfi.GetString(LOCALE_SLANGUAGE);
+		str += _T(" - ");
+		str += lfi.GetString(LOCALE_SNATIVELANGNAME | LOCALE_USE_CP_ACP);
+		str += _T(" (");
+		str += lfi.GetString(LOCALE_SNATIVECTRYNAME | LOCALE_USE_CP_ACP);
+		str += _T(")");
+		str += _T(" - ");
+		str += lfi.GetString(LOCALE_SENGLANGUAGE);
+		str += _T(" (");
+		str += lfi.GetString(LOCALE_SENGCOUNTRY);
+		str += _T(")");
+		list.emplace_back(lfi.id, str);
 	} while ((h = FindFile(h, pattern.c_str(), &ff)) != INVALID_HANDLE_VALUE);
+	return list;
 }
 
 /**
@@ -1295,7 +1066,7 @@ static WORD GetLangFromLocale(LCID lcid)
 	return langID;
 }
 
-void CLanguageSelect::InitializeLanguage()
+void CLanguageSelect::InitializeLanguage(WORD langID)
 {
 	ASSERT(LangFileInfo::LangId("GERMAN", "") == MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN));
 	ASSERT(LangFileInfo::LangId("GERMAN", "DEFAULT") == MAKELANGID(LANG_GERMAN, SUBLANG_DEFAULT));
@@ -1308,7 +1079,6 @@ void CLanguageSelect::InitializeLanguage()
 	//TRACE(_T("%hs\n"), LangFileInfo::FileName(MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE)).c_str());
 	//TRACE(_T("%hs\n"), LangFileInfo::FileName(MAKELANGID(LANG_GERMAN, SUBLANG_DEFAULT)).c_str());
 
-	WORD langID = (WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE);
 	if (langID)
 	{
 		// User has set a language override
