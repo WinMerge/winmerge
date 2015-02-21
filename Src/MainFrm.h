@@ -27,7 +27,6 @@
 
 #include <vector>
 #include <memory>
-#include "ToolBarXPThemes.h"
 #include "MDITabBar.h"
 #include "PathContext.h"
 
@@ -154,7 +153,7 @@ protected:
 	// control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	CReBar m_wndReBar;
-	ToolBarXPThemes m_wndToolBar;
+	CToolBar m_wndToolBar;
 	CMDITabBar m_wndTabBar;
 
 	/** @brief Toolbar image table indexes. */

@@ -733,9 +733,6 @@
     <ClCompile Include="Common\CMoveConstraint.cpp">
       <Filter>MFCGui\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Common\ToolBarXPThemes.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Common\MDITabBar.cpp">
       <Filter>MFCGui\Common</Filter>
     </ClCompile>
@@ -1372,9 +1369,6 @@
       <Filter>MFCGui\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common\scbarcf.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\ToolbarXPThemes.h">
       <Filter>MFCGui\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common\MessageBoxDialog.h">
