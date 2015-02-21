@@ -76,6 +76,7 @@
 #include "TFile.h"
 #include "JumpList.h"
 #include "DragDrop.h"
+#include "LanguageSelect.h"
 
 using std::vector;
 
@@ -114,7 +115,6 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_WINDOW_CHANGE_PANE,		IDB_WINDOW_CHANGEPANE,			CMainFrame::MENU_ALL },
 	{ ID_EDIT_WMGOTO,				IDB_EDIT_GOTO,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_REPLACE,				IDB_EDIT_REPLACE,				CMainFrame::MENU_ALL },
-	{ ID_VIEW_LANGUAGE,				IDB_VIEW_LANGUAGE,				CMainFrame::MENU_ALL },
 	{ ID_VIEW_SELECTFONT,			IDB_VIEW_SELECTFONT,			CMainFrame::MENU_ALL },
 	{ ID_APP_EXIT,					IDB_FILE_EXIT,					CMainFrame::MENU_ALL },
 	{ ID_HELP_CONTENTS,				IDB_HELP_CONTENTS,				CMainFrame::MENU_ALL },
@@ -952,10 +952,27 @@ void CMainFrame::OnOptions()
 {
 	// Using singleton shared syntax colors
 	CPreferencesDlg dlg(GetOptionsMgr(), theApp.GetMainSyntaxColors());
-	int rv = dlg.DoModal();
+	INT_PTR rv = dlg.DoModal();
 
 	if (rv == IDOK)
 	{
+		LANGID lang = GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE);
+		if (lang != theApp.m_pLangDlg->GetLangId())
+		{
+			theApp.m_pLangDlg->SetLanguage(lang, TRUE);
+	
+			// Update status bar inicator texts
+			theApp.SetIndicators(m_wndStatusBar, 0, 0);
+	
+			// Update the current menu
+			ReloadMenu();
+	
+			// update the title text of the document
+			UpdateDocTitle();
+
+			UpdateResources();
+		}
+
 		// Set new filterpath
 		String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 		theApp.m_pGlobalFileFilter->SetUserFilterPath(filterPath);
@@ -3025,4 +3042,101 @@ LRESULT CMainFrame::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 	}
 
 	return CMDIFrameWnd::WindowProc(message, wParam, lParam);
+}
+
+void CMainFrame::ReloadMenu()
+{
+	// set the menu of the main frame window
+	UINT idMenu = IDR_MAINFRAME;
+	CMergeApp *pApp = dynamic_cast<CMergeApp *> (AfxGetApp());
+	CMainFrame * pMainFrame = dynamic_cast<CMainFrame *> ((CFrameWnd*)pApp->m_pMainWnd);
+	HMENU hNewDefaultMenu = pMainFrame->NewDefaultMenu(idMenu);
+	HMENU hNewMergeMenu = pMainFrame->NewMergeViewMenu();
+	HMENU hNewImgMergeMenu = pMainFrame->NewImgMergeViewMenu();
+	HMENU hNewDirMenu = pMainFrame->NewDirViewMenu();
+	if (hNewDefaultMenu && hNewMergeMenu && hNewDirMenu)
+	{
+		// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach
+		CMenu * pNewDefaultMenu = CMenu::FromHandle(hNewDefaultMenu);
+		CMenu * pNewMergeMenu = CMenu::FromHandle(hNewMergeMenu);
+		CMenu * pNewImgMergeMenu = CMenu::FromHandle(hNewImgMergeMenu);
+		CMenu * pNewDirMenu = CMenu::FromHandle(hNewDirMenu);
+
+		CWnd *pFrame = CWnd::FromHandle(::GetWindow(pMainFrame->m_hWndMDIClient, GW_CHILD));
+		while (pFrame)
+		{
+			if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+				static_cast<CChildFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
+			if (pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
+				static_cast<CHexMergeFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
+			if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
+				static_cast<CImgMergeFrame *>(pFrame)->SetSharedMenu(hNewImgMergeMenu);
+			else if (pFrame->IsKindOf(RUNTIME_CLASS(COpenFrame)))
+				static_cast<COpenFrame *>(pFrame)->SetSharedMenu(hNewDefaultMenu);
+			else if (pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
+				static_cast<CDirFrame *>(pFrame)->SetSharedMenu(hNewDirMenu);
+			pFrame = pFrame->GetNextWindow();
+		}
+
+		CFrameWnd *pActiveFrame = pMainFrame->GetActiveFrame();
+		if (pActiveFrame)
+		{
+			if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+				pMainFrame->MDISetMenu(pNewMergeMenu, NULL);
+			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
+				pMainFrame->MDISetMenu(pNewMergeMenu, NULL);
+			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
+				pMainFrame->MDISetMenu(pNewImgMergeMenu, NULL);
+			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
+				pMainFrame->MDISetMenu(pNewDirMenu, NULL);
+			else
+				pMainFrame->MDISetMenu(pNewDefaultMenu, NULL);
+		}
+		else
+			pMainFrame->MDISetMenu(pNewDefaultMenu, NULL);
+
+		// Don't delete the old menu
+		// There is a bug in BCMenu or in Windows98 : the new menu does not
+		// appear correctly if we destroy the old one
+		//			if (pOldDefaultMenu)
+		//				pOldDefaultMenu->DestroyMenu();
+		//			if (pOldMergeMenu)
+		//				pOldMergeMenu->DestroyMenu();
+		//			if (pOldDirMenu)
+		//				pOldDirMenu->DestroyMenu();
+
+		// m_hMenuDefault is used to redraw the main menu when we close a child frame
+		// if this child frame had a different menu
+		pMainFrame->m_hMenuDefault = hNewDefaultMenu;
+		pApp->m_pOpenTemplate->m_hMenuShared = hNewDefaultMenu;
+		pApp->m_pDiffTemplate->m_hMenuShared = hNewMergeMenu;
+		pApp->m_pDirTemplate->m_hMenuShared = hNewDirMenu;
+
+		// force redrawing the menu bar
+		pMainFrame->DrawMenuBar();
+	}
+}
+
+void CMainFrame::UpdateDocTitle()
+{
+	CDocManager* pDocManager = AfxGetApp()->m_pDocManager;
+	POSITION posTemplate = pDocManager->GetFirstDocTemplatePosition();
+	ASSERT(posTemplate != NULL);
+
+	while (posTemplate != NULL)
+	{
+		CDocTemplate* pTemplate = pDocManager->GetNextDocTemplate(posTemplate);
+
+		ASSERT(pTemplate != NULL);
+
+		POSITION pos = pTemplate->GetFirstDocPosition();
+		CDocument* pDoc;
+
+		while (pos != NULL)
+		{
+			pDoc = pTemplate->GetNextDoc(pos);
+			pDoc->SetTitle(NULL);
+			((CFrameWnd*)AfxGetApp()->m_pMainWnd)->OnUpdateFrameTitle(TRUE);
+		}
+	}
 }

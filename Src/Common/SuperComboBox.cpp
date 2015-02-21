@@ -15,11 +15,6 @@ static char THIS_FILE[] = __FILE__;
 
 #define DEF_AUTOADD_STRING   _T(" <<new template>>")
 
-#ifndef SHACF_FILESYSTEM
-#define SHACF_FILESYSTEM 0x00000001
-#endif
-typedef HRESULT (WINAPI *SHAUTOCOMPLETE)(HWND hwndEdit, DWORD dwFlags);
-
 //	To use this in an app, you'll need to :
 //
 //	1) Place a normal edit control on your dialog. 
@@ -400,18 +395,7 @@ void CSuperComboBox::SetAutoComplete(INT nSource)
 			// ComboBox's edit control is alway 1001.
 			CWnd *pWnd = IsComboBoxEx() ? this->GetEditCtrl() : GetDlgItem(1001);
 			ASSERT(NULL != pWnd);
-			SHAUTOCOMPLETE pfnSHAutoComplete;
-
-			HANDLE hSHlwapi = GetModuleHandle(_T("SHLWAPI.DLL"));
-			if (!hSHlwapi)
-				hSHlwapi = LoadLibrary(_T("SHLWAPI.DLL"));
-			if (hSHlwapi)
-			{
-				pfnSHAutoComplete = (SHAUTOCOMPLETE)GetProcAddress((HINSTANCE)hSHlwapi, "SHAutoComplete");
-				if (pfnSHAutoComplete)
-					pfnSHAutoComplete(pWnd->m_hWnd, SHACF_FILESYSTEM);
-			}
-
+			SHAutoComplete(pWnd->m_hWnd, SHACF_FILESYSTEM);
 			break;
 		}
 

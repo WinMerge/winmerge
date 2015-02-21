@@ -1820,8 +1820,6 @@
     </ClCompile>
     <ClCompile Include="TestFilterDlg.cpp">
     </ClCompile>
-    <ClCompile Include="Common\ToolBarXPThemes.cpp">
-    </ClCompile>
     <ClCompile Include="Common\unicoder.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">NotUsing</PrecompiledHeader>
@@ -2300,7 +2298,6 @@
     <ClInclude Include="Common\SuperComboBox.h" />
     <ClInclude Include="TempFile.h" />
     <ClInclude Include="TestFilterDlg.h" />
-    <ClInclude Include="Common\ToolbarXPThemes.h" />
     <ClInclude Include="Common\unicoder.h" />
     <ClInclude Include="Common\UnicodeString.h" />
     <ClInclude Include="Common\UniFile.h" />

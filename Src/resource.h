@@ -75,7 +75,6 @@
 #define IDB_WINDOW_CHANGEPANE           324
 #define IDB_EDIT_GOTO                   325
 #define IDB_EDIT_REPLACE                326
-#define IDB_VIEW_LANGUAGE               327
 #define IDB_VIEW_SELECTFONT             328
 #define IDB_FILE_EXIT                   329
 #define IDB_HELP_CONTENTS               330
@@ -864,7 +863,6 @@
 #define IDS_TEXT_REPORT_FILES           18540
 #define IDS_HTML_REPORT_FILES           18541
 #define IDS_XML_REPORT_FILES            18542
-#define IDD_LANGUAGE_SELECT             30000
 #define ID_FILE_NEW3                    32767
 #define IDS_EOL_DOS                     30400
 #define IDS_EOL_MAC                     30401
@@ -921,7 +919,6 @@
 #define ID_VIEW_DETAIL_BAR              32819
 #define ID_VIEW_LOCATION_BAR            32820
 #define ID_VIEW_DIR_STATISTICS          32821
-#define ID_VIEW_LANGUAGE                32822
 #define ID_VIEW_LINEDIFFS               32823
 #define ID_VIEW_WORDWRAP                32824
 #define ID_VIEW_LINENUMBERS             32825

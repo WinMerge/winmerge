@@ -155,8 +155,6 @@ namespace Turn_STL_exceptions_into_MFC_exceptions
 BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	//{{AFX_MSG_MAP(CMergeApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
-	ON_COMMAND(ID_VIEW_LANGUAGE, OnViewLanguage)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_LANGUAGE, OnUpdateViewLanguage)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, OnOpenRecentFile)
 	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
@@ -204,7 +202,7 @@ CMergeApp::CMergeApp() :
 , m_pOptions(new CRegOptionsMgr())
 , m_pGlobalFileFilter(new FileFilterHelper())
 , m_nActiveOperations(0)
-, m_pLangDlg(new CLanguageSelect(IDR_MAINFRAME, IDR_MAINFRAME))
+, m_pLangDlg(new CLanguageSelect())
 , m_bEscShutdown(FALSE)
 , m_bClearCaseTool(FALSE)
 , m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
@@ -409,7 +407,7 @@ BOOL CMergeApp::InitInstance()
 
 	// Initialize i18n (multiple language) support
 
-	m_pLangDlg->InitializeLanguage();
+	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 
 	AddEnglishResourceHook(); // Use English string when l10n (foreign) string missing
 
@@ -516,28 +514,6 @@ void CMergeApp::OnAppAbout()
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp commands
-
-
-void CMergeApp::OnViewLanguage() 
-{
-	if (m_pLangDlg->DoModal()==IDOK)
-	{
-		//m_lang.ReloadMenu();
-		//m_LangDlg.UpdateDocTitle();
-		GetMainFrame()->UpdateResources();
-	}
-}
-
-/**
- * @brief Updates Language select menu item.
- * If there are no languages installed we disable menuitem to
- * open language selection dialog.
- */
-void CMergeApp::OnUpdateViewLanguage(CCmdUI* pCmdUI)
-{
-	BOOL bLangsInstalled = m_pLangDlg->AreLangsInstalled();
-	pCmdUI->Enable(bLangsInstalled);
-}
 
 /**
  * @brief Called when application is about to exit.
@@ -1347,14 +1323,6 @@ bool CMergeApp::TranslateString(const std::string& str, String& translated_str) 
 std::wstring CMergeApp::LoadDialogCaption(LPCTSTR lpDialogTemplateID) const
 {
 	return m_pLangDlg->LoadDialogCaption(lpDialogTemplateID);
-}
-
-/**
- * @brief Reload main menu(s) (for language change)
- */
-void CMergeApp::ReloadMenu()
-{
-	m_pLangDlg->ReloadMenu();
 }
 
 /**

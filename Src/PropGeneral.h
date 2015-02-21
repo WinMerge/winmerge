@@ -37,6 +37,7 @@ public:
 	bool  m_bPreserveFiletime;
 	bool  m_bShowSelectFolderOnStartup;
 	bool  m_bCloseWithOK;
+	CComboBox	m_ctlLangList;
 	//}}AFX_DATA
 
 
