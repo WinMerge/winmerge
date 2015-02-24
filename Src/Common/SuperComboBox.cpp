@@ -5,7 +5,7 @@
 #include "SuperComboBox.h"
 #include <shlwapi.h>
 #include <vector>
-#include "DragDrop.h"
+#include "DropHandler.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -49,6 +49,7 @@ static char THIS_FILE[] = __FILE__;
 HIMAGELIST CSuperComboBox::m_himlSystem = NULL;
 
 CSuperComboBox::CSuperComboBox(BOOL bAdd /*= TRUE*/, UINT idstrAddText /*= 0*/)
+	: m_pDropHandler(NULL)
 {
 	m_bEditChanged=FALSE;
 	m_bDoComplete = FALSE;
@@ -93,13 +94,20 @@ BEGIN_MESSAGE_MAP(CSuperComboBox, CComboBoxEx)
 	ON_CONTROL_REFLECT_EX(CBN_EDITCHANGE, OnEditchange)
 	ON_CONTROL_REFLECT_EX(CBN_SELCHANGE, OnSelchange)
 	ON_WM_CREATE()
-	ON_WM_DROPFILES()
+	ON_WM_DESTROY()
 	ON_NOTIFY_REFLECT(CBEN_GETDISPINFO, OnGetDispInfo)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox message handlers
+
+void CSuperComboBox::PreSubclassWindow()
+{
+	CComboBoxEx::PreSubclassWindow();
+	m_pDropHandler = new DropHandler(std::bind(&CSuperComboBox::OnDropFiles, this, std::placeholders::_1));
+	RegisterDragDrop(m_hWnd, m_pDropHandler);
+}
 
 /**
  * @brief Returns whether the window associated with this object is ComboBoxEx.
@@ -420,14 +428,20 @@ void CSuperComboBox::ResetContent()
 
 int CSuperComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
-	if (CComboBox::OnCreate(lpCreateStruct) == -1)
+	if (CComboBoxEx::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	
 	SetAutoAdd(!m_strAutoAdd.IsEmpty());
-	DragAcceptFiles(TRUE);
+	m_pDropHandler = new DropHandler(std::bind(&CSuperComboBox::OnDropFiles, this, std::placeholders::_1));
+	RegisterDragDrop(m_hWnd, m_pDropHandler);
 	return 0;
 }
 
+void CSuperComboBox::OnDestroy(void)
+{
+	if (m_pDropHandler)
+		RevokeDragDrop(m_hWnd);
+}
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -437,13 +451,8 @@ int CSuperComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 //	shortcut expansion code modified from :
 //	CShortcut, 1996 Rob Warner
 //
-void CSuperComboBox::OnDropFiles(HDROP dropInfo)
+void CSuperComboBox::OnDropFiles(const std::vector<String>& files)
 {
-	std::vector<String> files;
-	GetDroppedFiles(dropInfo, files);
-	if (files.size() == 0)
-		return;
-
 	GetParent()->SendMessage(WM_COMMAND, GetDlgCtrlID() +
 		(CBN_EDITUPDATE << 16), (LPARAM)m_hWnd);
 	SetWindowText(files[0].c_str());

@@ -741,3 +741,9 @@ bool paths_IsURLorCLSID(const String& path)
 {
 	return (path.find(_T("://")) != String::npos || path.find(_T("::{")) != String::npos);
 }
+
+bool paths_IsDecendant(const String& path, const String& ancestor)
+{
+	return path.length() > ancestor.length() && 
+		   string_compare_nocase(String(path.c_str(), path.c_str() + ancestor.length()), ancestor) == 0;
+}
