@@ -872,18 +872,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Common\ColorButton.cpp" />
-    <ClCompile Include="Common\DragDrop.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Unicode + Code Analysis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Unicode + Code Analysis|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="Common\ExConverter.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -975,6 +963,8 @@
     <ClCompile Include="Common\CSubclass.cpp">
     </ClCompile>
     <ClCompile Include="CustomStatusCursor.cpp" />
+    <ClCompile Include="DropHandler.cpp">
+    </ClCompile>
     <ClCompile Include="ImgMergeFrm.cpp" />
     <ClCompile Include="Merge7zFormatMergePluginImpl.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -2142,7 +2132,6 @@
     <ClInclude Include="codepage.h" />
     <ClInclude Include="codepage_detect.h" />
     <ClInclude Include="Common\ColorButton.h" />
-    <ClInclude Include="Common\DragDrop.h" />
     <ClInclude Include="Common\ExConverter.h" />
     <ClInclude Include="CompareEngines\BinaryCompare.h" />
     <ClInclude Include="CompareOptions.h" />
@@ -2156,6 +2145,7 @@
     <ClInclude Include="Common\CSubclass.h" />
     <ClInclude Include="DirActions.h" />
     <ClInclude Include="HexMergeView.h" />
+    <ClInclude Include="DropHandler.h" />
     <ClInclude Include="IMergeDoc.h" />
     <ClInclude Include="ImgMergeFrm.h" />
     <ClInclude Include="Merge7zFormatMergePluginImpl.h" />

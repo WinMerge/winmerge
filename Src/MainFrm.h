@@ -43,6 +43,7 @@ class LineFiltersList;
 class TempFile;
 struct FileLocation;
 class SourceControl;
+class DropHandler;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
 
@@ -205,6 +206,7 @@ protected:
 
 	std::unique_ptr<BCMenu> m_pMenus[MENU_COUNT]; /**< Menus for different views */
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
+	DropHandler *m_pDropHandler;
 
 // Generated message map functions
 protected:
@@ -239,7 +241,7 @@ protected:
 	afx_msg void OnViewWhitespace();
 	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGeneratePatch();
-	afx_msg void OnDropFiles(HDROP dropInfo);
+	afx_msg void OnDropFiles(const std::vector<String>& files);
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg void OnUpdatePluginUnpackMode(CCmdUI* pCmdUI);
 	afx_msg void OnPluginUnpackMode(UINT nID);
@@ -296,6 +298,7 @@ protected:
 	afx_msg void OnUpdateCompareMethod(CCmdUI* pCmdUI);
 	afx_msg void OnMRUs(UINT nID);
 	afx_msg void OnUpdateNoMRUs(CCmdUI* pCmdUI);
+	afx_msg void OnDestroy();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

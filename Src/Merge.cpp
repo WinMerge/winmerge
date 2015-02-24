@@ -280,15 +280,6 @@ BOOL CMergeApp::InitInstance()
 	COleMessageFilter* pOldFilter = AfxOleGetMessageFilter();
 	pOldFilter->Revoke();
 
-	// Only needed by VC6
-#if _MSC_VER < 1300
-#ifdef _AFXDLL
-	Enable3dControls();			// Call this when using MFC in a shared DLL
-#else
-	Enable3dControlsStatic();	// Call this when linking to MFC statically
-#endif
-#endif
-
 	// Load registry keys from WinMerge.reg if existing WinMerge.reg
 	env_LoadRegistryFromFile(paths_ConcatPath(env_GetProgPath(), _T("WinMerge.reg")));
 
@@ -460,8 +451,6 @@ BOOL CMergeApp::InitInstance()
 		return FALSE;
 	}
 	m_pMainWnd = pMainFrame;
-	// Enable drag&drop files
-	pMainFrame->ModifyStyleEx(NULL, WS_EX_ACCEPTFILES);
 
 	// Init menus -- hMenuDefault is for MainFrame
 	pMainFrame->m_hMenuDefault = pMainFrame->NewDefaultMenu();

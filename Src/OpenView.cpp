@@ -42,7 +42,7 @@
 #include "7zCommon.h"
 #include "Constants.h"
 #include "Picture.h"
-#include "DragDrop.h"
+#include "DropHandler.h"
 #include "FileFilterHelper.h"
 #include "Plugins.h"
 
@@ -93,7 +93,6 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
-	ON_WM_DROPFILES()
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
 	ON_WM_LBUTTONDOWN()
@@ -109,6 +108,7 @@ COpenView::COpenView()
 	: CFormView(COpenView::IDD)
 	, m_pUpdateButtonStatusThread(NULL)
 	, m_bRecurse(FALSE)
+	, m_pDropHandler(NULL)
 {
 	m_bAutoCompleteReady[0] = false;
 	m_bAutoCompleteReady[1] = false;
@@ -282,6 +282,9 @@ void COpenView::OnInitialUpdate()
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
 	SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
+
+	m_pDropHandler = new DropHandler(std::bind(&COpenView::OnDropFiles, this, std::placeholders::_1));
+	RegisterDragDrop(m_hWnd, m_pDropHandler);
 }
 
 // COpenView diagnostics
@@ -355,6 +358,9 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 
 void COpenView::OnDestroy()
 {
+	if (m_pDropHandler)
+		RevokeDragDrop(m_hWnd);
+
 	m_constraint.Persist(true, false);
 
 	CFormView::OnDestroy();
@@ -1063,10 +1069,8 @@ void COpenView::OnHelp()
  *    - overwrite both paths, empty or not
  * @param [in] dropInfo Dropped data, including paths.
  */
-void COpenView::OnDropFiles(HDROP dropInfo)
+void COpenView::OnDropFiles(const std::vector<String>& files)
 {
-	std::vector<String> files;
-	GetDroppedFiles(dropInfo, files);
 	const size_t fileCount = files.size();
 
 	// Add dropped paths to the dialog
