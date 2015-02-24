@@ -670,9 +670,6 @@
     <ClCompile Include="JumpList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\DragDrop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\ClipBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -759,6 +756,9 @@
     </ClCompile>
     <ClCompile Include="Common\ColorButton.cpp">
       <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="DropHandler.cpp">
+      <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1296,9 +1296,6 @@
     <ClInclude Include="JumpList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\DragDrop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common\ClipBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1397,6 +1394,9 @@
     </ClInclude>
     <ClInclude Include="Common\Picture.h">
       <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DropHandler.h">
+      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

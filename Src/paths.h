@@ -40,3 +40,4 @@ void paths_SplitFilename(const String& s, String * path, String * name, String *
 void paths_SplitViewName(const TCHAR *s, String * path, String * name, String * ext);
 String paths_GetPathOnly(const String& fullpath);
 bool paths_IsURLorCLSID(const String& path);
+bool paths_IsDecendant(const String& path, const String& ancestor);

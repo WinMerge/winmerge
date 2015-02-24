@@ -3,6 +3,11 @@
 // ComboBoxEx.h : header file
 //
 
+#include <vector>
+#include "UnicodeString.h"
+
+class DropHandler;
+
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox window
 
@@ -61,14 +66,17 @@ public:
 protected:
 	CString m_strCurSel;
 	virtual BOOL OnAddTemplate();
+	virtual void PreSubclassWindow();
 	CString m_strAutoAdd;
 	BOOL m_bMustUninitOLE;
+	DropHandler *m_pDropHandler;
 	//{{AFX_MSG(CSuperComboBox)
 	afx_msg BOOL OnEditchange();
 	afx_msg BOOL OnSelchange();
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnDropFiles(HDROP dropInfo);
+	afx_msg void OnDropFiles(const std::vector<String>& files);
 	afx_msg void OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult);
+	afx_msg void OnDestroy();
 	//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()
