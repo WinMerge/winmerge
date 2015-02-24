@@ -45,11 +45,6 @@
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 
-// Disable VC6's "identifier was truncated..." warning. It is meaningless.
-#if _MSC_VER == 1200
-	#pragma warning(disable: 4786)
-#endif
- 
 // Common MFC headers
 
 #include <afxwin.h>         // MFC core and standard components

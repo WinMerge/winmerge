@@ -36,6 +36,7 @@
 
 class ProjectFile;
 class COpenDoc;
+class DropHandler;
 
 /**
  * @brief The Open-View class.
@@ -92,6 +93,7 @@ private:
 	prdlg::CMoveConstraint m_constraint;
 	CFont m_fontSwapButton;
 	bool m_bAutoCompleteReady[3];
+	DropHandler *m_pDropHandler;
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -143,7 +145,7 @@ protected:
 	afx_msg void OnEditPaste();
 	afx_msg void OnEditUndo();
 	afx_msg void OnHelp();
-	afx_msg void OnDropFiles(HDROP dropInfo);
+	afx_msg void OnDropFiles(const std::vector<String>& files);
 	afx_msg LRESULT OnUpdateStatus(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);

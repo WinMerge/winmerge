@@ -75,7 +75,7 @@
 #include "OptionsFont.h"
 #include "TFile.h"
 #include "JumpList.h"
-#include "DragDrop.h"
+#include "DropHandler.h"
 #include "LanguageSelect.h"
 
 using std::vector;
@@ -198,7 +198,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
-	ON_WM_DROPFILES()
+	ON_WM_DESTROY()
 	ON_WM_SETCURSOR()
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
@@ -297,6 +297,7 @@ static const CPtrList &GetDocList(const CMultiDocTemplate *pTemplate)
 CMainFrame::CMainFrame()
 : m_bFlashing(FALSE)
 , m_bFirstTime(TRUE)
+, m_pDropHandler(NULL)
 {
 	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
 }
@@ -396,7 +397,16 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	myStatusDisplay.SetFrame(this);
 	CustomStatusCursor::SetStatusDisplay(&myStatusDisplay);
 
+	m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
+	RegisterDragDrop(m_hWnd, m_pDropHandler);
+
 	return 0;
+}
+
+void CMainFrame::OnDestroy(void)
+{
+	if (m_pDropHandler)
+		RevokeDragDrop(m_hWnd);
 }
 
 static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmenu)
@@ -1791,10 +1801,8 @@ void CMainFrame::OnToolsGeneratePatch()
 	}
 }
 
-void CMainFrame::OnDropFiles(HDROP dropInfo)
+void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 {
-	std::vector<String> dropped_files;
-	GetDroppedFiles(dropInfo, dropped_files);
 	PathContext files(dropped_files);
 	const size_t fileCount = files.GetSize();
 
