@@ -25,7 +25,6 @@ public:
 	BOOL m_bContextAdded;
 	BOOL m_bContextAdvanced;
 	BOOL m_bContextSubfolders;
-	BOOL m_bEnableShellContextMenu;
 
 // Overrides
 	protected:

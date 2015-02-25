@@ -48,7 +48,6 @@ const TCHAR OPT_BACKUP_ADD_TIME[] = _T("Backup/NameAddTime");
 const TCHAR OPT_DIRVIEW_SORT_COLUMN[] =  _T("Settings/DirViewSortCol");
 const TCHAR OPT_DIRVIEW_SORT_COLUMN3[] =  _T("Settings/DirViewSortCol3");
 const TCHAR OPT_DIRVIEW_SORT_ASCENDING[] =  _T("Settings/DirViewSortAscending");
-const TCHAR OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU[] = _T("Settings/DirViewEnableShellContextMenu");
 const TCHAR OPT_DIRVIEW_EXPAND_SUBDIRS[] = _T("Settings/DirViewExpandSubdirs");
 
 // File compare
