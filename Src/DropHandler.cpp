@@ -186,7 +186,7 @@ namespace
 						{
 							// Folder item
 							wchar_t *pPath = NULL;
-							if (SUCCEEDED(hr = pShellItem->GetDisplayName(SIGDN_DESKTOPABSOLUTEEDITING, &pPath)))
+							if (SUCCEEDED(hr = pShellItem->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING, &pPath)))
 							{
 								root_files.push_back(ucr::toTString(pPath));
 								CoTaskMemFree(pPath);
@@ -210,7 +210,7 @@ namespace
 									if (SUCCEEDED(hr = pFileOperation->PerformOperations()))
 									{
 										wchar_t *pName;
-										if (SUCCEEDED(hr = pShellItem->GetDisplayName(SIGDN_PARENTRELATIVE, &pName)))
+										if (SUCCEEDED(hr = pShellItem->GetDisplayName(SIGDN_PARENTRELATIVEPARSING, &pName)))
 										{
 											root_files.push_back(paths_ConcatPath(tmpdir, ucr::toTString(pName)));
 											CoTaskMemFree(pName);
