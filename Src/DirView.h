@@ -244,6 +244,7 @@ protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 	virtual BOOL OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
+	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -370,6 +371,8 @@ protected:
 	afx_msg void OnCtxtDirZipRight();
 	afx_msg void OnCtxtDirZipBoth();
 	afx_msg void OnCtxtDirZipBothDiffsOnly();
+	template<SIDE_TYPE stype>
+	afx_msg void OnCtxtDirShellContextMenu();
 	afx_msg void OnUpdateCtxtDir(CCmdUI* pCmdUI);
 	afx_msg void OnSelectAll();
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
@@ -472,6 +475,7 @@ private:
 	void HeaderContextMenu(CPoint point, int i);
 	void ListContextMenu(CPoint point, int i);
 	bool ListShellContextMenu(SIDE_TYPE side);
+	void ShowShellContextMenu(SIDE_TYPE side);
 	CShellContextMenu* GetCorrespondingShellContextMenu(HMENU hMenu) const;
 	void ReloadColumns();
 	void ResetColumnWidths();
