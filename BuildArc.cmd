@@ -127,5 +127,4 @@ echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 ) > "%DISTDIR%\jp_files.txt"
 
-explorer "%DISTDIR%"
 pause
