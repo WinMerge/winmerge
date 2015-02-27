@@ -8,6 +8,8 @@
 #include <windows.h>
 #include <mlang.h>
 #include <memory>
+#include <list>
+#include <mutex>
 #include "unicoder.h"
 #include "codepage.h"
 
@@ -285,6 +287,8 @@ __declspec(thread) static IExconverter *m_pexconv = NULL;
 #else
 static __thread IExconverter *m_pexconv = NULL;
 #endif
+static std::list<std::unique_ptr<IExconverter> > m_exconv_list;
+static std::mutex m_mutex;
 
 IExconverter *Exconverter::getInstance()
 {
@@ -300,6 +304,8 @@ IExconverter *Exconverter::getInstance()
 		return NULL;
 	}
 	m_pexconv = pexconv;
+	std::lock_guard<std::mutex> lock(m_mutex);
+	m_exconv_list.emplace_back(m_pexconv);
 	return m_pexconv;
 }
 
