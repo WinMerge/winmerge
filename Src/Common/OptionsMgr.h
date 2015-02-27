@@ -85,6 +85,7 @@ typedef std::map<String, COption> OptionsMap;
 class COptionsMgr
 {
 public:
+	virtual ~COptionsMgr() {}
 	int AddOption(const String& name, const varprop::VariantValue& defaultValue);
 	const varprop::VariantValue& Get(const String& name) const;
 	const String& GetString(const String& name) const;
