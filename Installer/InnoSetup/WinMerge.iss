@@ -504,7 +504,7 @@ Source: ..\..\Plugins\dlls\IgnoreLeadingLineNumbers.dll; DestDir: {app}\MergePlu
 
 ;Frhed
 Source: ..\..\Externals\frhed\GPL.txt; DestDir: {app}\Frhed; Components: Frhed
-Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
+;Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
 Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\hekseditU.dll; DestDir: {app}\Frhed; Components: Frhed
 Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
 Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
@@ -520,7 +520,7 @@ Source: ..\..\Externals\frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Languages\he
 ;WinIMerge
 Source: ..\..\Externals\winimerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
 Source: ..\..\Externals\winimerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: ..\..\Externals\winimerge\Build\Release\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
+;Source: ..\..\Externals\winimerge\Build\Release\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
 Source: ..\..\Externals\winimerge\Build\Release\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Components: WinIMerge
 
 [Dirs]

@@ -87,14 +87,14 @@ copy Build\X64\MergeUnicodeRelease\Merge7z*.dll "%DISTDIR%\2.14-x64-zip-version\
 
 rem Frhed
 copy Externals\Frhed\GPL.txt "%DISTDIR%\2.14-zip-version\WinMerge\frhed\"
-copy Externals\Frhed\Build\FRHED_vc10\Win32\UnicodeRelease\frhed.exe "%DISTDIR%\2.14-zip-version\WinMerge\frhed\"
+rem copy Externals\Frhed\Build\FRHED_vc10\Win32\UnicodeRelease\frhed.exe "%DISTDIR%\2.14-zip-version\WinMerge\frhed\"
 copy Externals\Frhed\Build\FRHED_vc10\Win32\UnicodeRelease\hekseditU.dll "%DISTDIR%\2.14-zip-version\WinMerge\frhed\"
 copy Externals\Frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Docs\*.txt "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Docs"
 copy Externals\Frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Docs\Sample.tpl "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Docs"
 copy Externals\Frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Languages\*.po "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Languages"
 copy Externals\Frhed\Build\FRHED_vc10\Win32\UnicodeRelease\Languages\heksedit.lng "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Languages"
 copy Externals\Frhed\GPL.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\"
-copy Externals\Frhed\Build\FRHED_vc10\x64\UnicodeRelease\frhed.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\"
+rem copy Externals\Frhed\Build\FRHED_vc10\x64\UnicodeRelease\frhed.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\"
 copy Externals\Frhed\Build\FRHED_vc10\x64\UnicodeRelease\hekseditU.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\"
 copy Externals\Frhed\Build\FRHED_vc10\x64\UnicodeRelease\Docs\*.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Docs"
 copy Externals\Frhed\Build\FRHED_vc10\x64\UnicodeRelease\Docs\Sample.tpl "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Docs"
@@ -104,11 +104,11 @@ copy Externals\Frhed\Build\FRHED_vc10\x64\UnicodeRelease\Languages\heksedit.lng 
 rem WinIMerge
 copy Externals\WinIMerge\GPL.txt "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
-copy Externals\WinIMerge\Build\Release\WinIMerge.exe "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
+rem copy Externals\WinIMerge\Build\Release\WinIMerge.exe "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\Build\Release\WinIMergeLib.dll "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\GPL.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
-copy Externals\WinIMerge\Build\x64\Release\WinIMerge.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
+rem copy Externals\WinIMerge\Build\x64\Release\WinIMerge.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\Build\x64\Release\WinIMergeLib.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 
 

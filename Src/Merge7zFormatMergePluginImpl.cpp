@@ -7,14 +7,22 @@
 #include "paths.h"
 #include "Plugins.h"
 #include "Merge7zFormatRegister.h"
+#include <list>
+#include <Poco/Mutex.h>
 
 static Merge7zFormatRegister g_autoregister(&Merge7zFormatMergePluginImpl::GuessFormat);
 static __declspec(thread) Merge7zFormatMergePluginImpl *g_pluginformat;
+static std::list<std::unique_ptr<Merge7zFormatMergePluginImpl> > g_pluginformat_list;
+static Poco::FastMutex g_mutex;
 
 static Merge7zFormatMergePluginImpl *GetInstance()
 {
 	if (!g_pluginformat)
-		g_pluginformat =  new Merge7zFormatMergePluginImpl();
+	{
+		g_pluginformat = new Merge7zFormatMergePluginImpl();
+		Poco::FastMutex::ScopedLock lock(g_mutex);
+		g_pluginformat_list.emplace_back(g_pluginformat);
+	}
 	return g_pluginformat;
 }
 
