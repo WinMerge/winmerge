@@ -26,7 +26,6 @@ public:
 	bool m_bContextAdded;
 	bool m_bContextAdvanced;
 	bool m_bContextSubfolders;
-	bool m_bEnableShellContextMenu;
 
 // Overrides
 	protected:
