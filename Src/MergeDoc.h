@@ -321,7 +321,7 @@ protected:
 	TempFile m_tempFiles[3]; /**< Temp files for compared files */
 	int m_nDiffContext;
 	bool m_bMixedEol; /**< Does this document have mixed EOL style? */
-	CEncodingErrorBar *m_pEncodingErrorBar;
+	std::unique_ptr<CEncodingErrorBar> m_pEncodingErrorBar;
 	bool m_bHasSyncPoints;
 	bool m_bAutoMerged;
 // friend access

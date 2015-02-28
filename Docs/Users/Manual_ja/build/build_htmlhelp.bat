@@ -73,4 +73,3 @@ goto end
 
 :end
 @echo on
-start ..\..\..\..\Build\Manual

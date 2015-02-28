@@ -8,6 +8,9 @@
 #include <windows.h>
 #include <mlang.h>
 #include <memory>
+#include <list>
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/Mutex.h>
 #include "unicoder.h"
 #include "codepage.h"
 
@@ -285,6 +288,8 @@ __declspec(thread) static IExconverter *m_pexconv = NULL;
 #else
 static __thread IExconverter *m_pexconv = NULL;
 #endif
+static std::list<std::unique_ptr<IExconverter> > m_exconv_list;
+static Poco::FastMutex m_mutex;
 
 IExconverter *Exconverter::getInstance()
 {
@@ -300,6 +305,8 @@ IExconverter *Exconverter::getInstance()
 		return NULL;
 	}
 	m_pexconv = pexconv;
+	Poco::FastMutex::ScopedLock lock(m_mutex);
+	m_exconv_list.emplace_back(m_pexconv);
 	return m_pexconv;
 }
 
