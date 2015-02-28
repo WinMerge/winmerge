@@ -676,6 +676,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Refresh",                        ID_RESCAN
+        MENUITEM SEPARATOR
+        MENUITEM "Left Shell menu"                  ID_DIR_SHELL_CONTEXT_MENU_LEFT
+        MENUITEM "Middle Shell menu"                ID_DIR_SHELL_CONTEXT_MENU_MIDDLE
+        MENUITEM "Right Shell menu"                 ID_DIR_SHELL_CONTEXT_MENU_RIGHT
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1905,10 +1909,6 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,38,190,10
     CONTROL         "&Add to context menu",IDC_EXPLORER_CONTEXT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,18,200,10
-    GROUPBOX        "Folder compare",IDC_STATIC,7,58,218,26
-    CONTROL         "Add &Shell menu to context menu",
-                    IDC_ENABLE_SHELL_CONTEXT_MENU,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,19,69,200,10
 END
 
 IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 235, 205
@@ -2550,14 +2550,6 @@ BEGIN
     ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
     ID_DIR_COPY_LEFT_TO_CLIPBOARD "Copy selected left item to clipboard"
     ID_DIR_COPY_RIGHT_TO_CLIPBOARD "Copy selected right item to clipboard"
-END
-
-// DIRECTORY DIFFING : SHELL CONTEXT MENU
-STRINGTABLE
-BEGIN
-    IDS_SHELL_CONTEXT_MENU_LEFT "Left Shell menu"
-    IDS_SHELL_CONTEXT_MENU_MIDDLE "Middle Shell menu"
-    IDS_SHELL_CONTEXT_MENU_RIGHT "Right Shell menu"
 END
 
 // DIRECTORY DIFFING : 7ZIP

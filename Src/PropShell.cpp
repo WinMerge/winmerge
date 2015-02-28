@@ -33,7 +33,6 @@ static LPCTSTR f_RegValuePath = _T("Executable");
 
 PropShell::PropShell(COptionsMgr *optionsMgr) 
 : OptionsPanel(optionsMgr, PropShell::IDD)
-, m_bEnableShellContextMenu(false)
 , m_bContextAdded(false)
 , m_bContextAdvanced(false)
 , m_bContextSubfolders(false)
@@ -58,7 +57,6 @@ void PropShell::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropShell)
-	DDX_Check(pDX, IDC_ENABLE_SHELL_CONTEXT_MENU, m_bEnableShellContextMenu);
 	DDX_Check(pDX, IDC_EXPLORER_CONTEXT, m_bContextAdded);
 	DDX_Check(pDX, IDC_EXPLORER_ADVANCED, m_bContextAdvanced);
 	DDX_Check(pDX, IDC_EXPLORER_SUBFOLDERS, m_bContextSubfolders);
@@ -77,7 +75,6 @@ END_MESSAGE_MAP()
 void PropShell::ReadOptions()
 {
 	GetContextRegValues();
-	m_bEnableShellContextMenu = GetOptionsMgr()->GetBool(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU);
 }
 
 /** 
@@ -85,7 +82,6 @@ void PropShell::ReadOptions()
  */
 void PropShell::WriteOptions()
 {
-	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU, m_bEnableShellContextMenu);
 	SaveMergePath(); // saves context menu settings as well
 }
 

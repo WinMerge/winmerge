@@ -202,6 +202,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZipRight)
 	ON_COMMAND(ID_DIR_ZIP_BOTH, OnCtxtDirZipBoth)
 	ON_COMMAND(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnCtxtDirZipBothDiffsOnly)
+	ON_COMMAND(ID_DIR_SHELL_CONTEXT_MENU_LEFT, OnCtxtDirShellContextMenu<SIDE_LEFT>)
+	ON_COMMAND(ID_DIR_SHELL_CONTEXT_MENU_MIDDLE, OnCtxtDirShellContextMenu<SIDE_MIDDLE>)
+	ON_COMMAND(ID_DIR_SHELL_CONTEXT_MENU_RIGHT, OnCtxtDirShellContextMenu<SIDE_RIGHT>)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnSelectAll)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_SELECT_ALL, OnUpdateSelectAll)
 	ON_COMMAND_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnPluginPredifferMode)
@@ -607,54 +610,16 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	BCMenu *pPopup = (BCMenu*) menu.GetSubMenu(0);
 	ASSERT(pPopup != NULL);
 
+	if (pDoc->m_nDirs < 3)
+		pPopup->RemoveMenu(ID_DIR_SHELL_CONTEXT_MENU_MIDDLE, MF_BYCOMMAND);
+
 	CMenu menuPluginsHolder;
 	menuPluginsHolder.LoadMenu(IDR_POPUP_PLUGINS_SETTINGS);
 	theApp.TranslateMenu(menuPluginsHolder.m_hMenu);
 	String s = _("Plugin Settings");
+	pPopup->AppendMenu(MF_SEPARATOR);
 	pPopup->AppendMenu(MF_POPUP, (int)menuPluginsHolder.m_hMenu, s.c_str());
 
-	bool bEnableShellContextMenu = GetOptionsMgr()->GetBool(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU);
-	if (bEnableShellContextMenu)
-	{
-		if (!m_pShellContextMenuLeft)
-			m_pShellContextMenuLeft.reset(new CShellContextMenu(LeftCmdFirst, LeftCmdLast));
-		if (!m_pShellContextMenuMiddle)
-			m_pShellContextMenuMiddle.reset(new CShellContextMenu(MiddleCmdFirst, MiddleCmdLast));
-		if (!m_pShellContextMenuRight)
-			m_pShellContextMenuRight.reset(new CShellContextMenu(RightCmdFirst, RightCmdLast));
-
-		bool leftContextMenuOk = ListShellContextMenu(SIDE_LEFT);
-		bool middleContextMenuOk = false;
-		bool rightContextMenuOk;
-		if (pDoc->m_nDirs > 2)
-		{
-			middleContextMenuOk = ListShellContextMenu(SIDE_MIDDLE);
-			rightContextMenuOk = ListShellContextMenu(SIDE_RIGHT);
-		}
-		else
-		{
-			rightContextMenuOk = ListShellContextMenu(SIDE_RIGHT);
-		}
-
-		if (leftContextMenuOk || middleContextMenuOk || rightContextMenuOk)
-			pPopup->AppendMenu(MF_SEPARATOR);
-
-		if (leftContextMenuOk)
-		{
-			s = _("Left Shell menu");
-			pPopup->AppendMenu(MF_POPUP, (UINT_PTR)m_pShellContextMenuLeft->GetHMENU(), s.c_str());
-		}
-		if (middleContextMenuOk)
-		{
-			s = _("Middle Shell menu");
-			pPopup->AppendMenu(MF_POPUP, (UINT_PTR)m_pShellContextMenuMiddle->GetHMENU(), s.c_str());
-		}
-		if (rightContextMenuOk)
-		{
-			s = _("Right Shell menu");
-			pPopup->AppendMenu(MF_POPUP, (UINT_PTR)m_pShellContextMenuRight->GetHMENU(), s.c_str());
-		}
-	}
 
 	// TODO: It would be more efficient to set
 	// all the popup items now with one traverse over selected items
@@ -685,25 +650,10 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	pFrame->m_bAutoMenuEnable = FALSE;
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
-	BOOL nCmd = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y,
+	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
 			AfxGetMainWnd());
-	if (nCmd)
-	{
-		HWND hWnd = AfxGetMainWnd()->GetSafeHwnd();
-		( m_pShellContextMenuLeft && m_pShellContextMenuLeft->InvokeCommand(nCmd, hWnd) )
-		|| ( m_pShellContextMenuRight && m_pShellContextMenuRight->InvokeCommand(nCmd, hWnd) )
-		|| ( m_pShellContextMenuMiddle && m_pShellContextMenuMiddle->InvokeCommand(nCmd, hWnd) )
-		// we have called TrackPopupMenu with TPM_RETURNCMD flag so we have to post message ourselves
-		|| PostMessage(WM_COMMAND, MAKEWPARAM(nCmd, 0), 0);
-	}
-	pFrame->m_bAutoMenuEnable = TRUE;
 
-	if (m_pShellContextMenuLeft)
-		m_pShellContextMenuLeft->ReleaseShellContextMenu();
-	if (m_pShellContextMenuMiddle)
-		m_pShellContextMenuMiddle->ReleaseShellContextMenu();
-	if (m_pShellContextMenuRight)
-		m_pShellContextMenuRight->ReleaseShellContextMenu();
+	pFrame->m_bAutoMenuEnable = TRUE;
 }
 
 /**
@@ -2598,6 +2548,49 @@ void CDirView::OnCtxtDirZipBothDiffsOnly()
 	).CompressArchive();
 }
 
+void CDirView::ShowShellContextMenu(SIDE_TYPE stype)
+{
+	CShellContextMenu *pContextMenu = NULL;
+	switch (stype)
+	{
+	case SIDE_LEFT:
+		if (!m_pShellContextMenuLeft)
+			m_pShellContextMenuLeft.reset(new CShellContextMenu(LeftCmdFirst, LeftCmdLast));
+		pContextMenu = m_pShellContextMenuLeft.get();
+		break;
+	case SIDE_MIDDLE:
+		if (!m_pShellContextMenuMiddle)
+			m_pShellContextMenuMiddle.reset(new CShellContextMenu(MiddleCmdFirst, MiddleCmdLast));
+		pContextMenu = m_pShellContextMenuMiddle.get();
+		break;
+	case SIDE_RIGHT:
+		if (!m_pShellContextMenuRight)
+			m_pShellContextMenuRight.reset(new CShellContextMenu(RightCmdFirst, RightCmdLast));
+		pContextMenu = m_pShellContextMenuRight.get();
+		break;
+	}
+	if (pContextMenu && ListShellContextMenu(stype))
+	{
+		CPoint point;
+		GetCursorPos(&point);
+		HWND hWnd = GetSafeHwnd();
+		CFrameWnd *pFrame = GetTopLevelFrame();
+		ASSERT(pFrame != NULL);
+		BOOL bAutoMenuEnableOld = pFrame->m_bAutoMenuEnable;
+		pFrame->m_bAutoMenuEnable = FALSE;
+		BOOL nCmd = TrackPopupMenu(pContextMenu->GetHMENU(), TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, 0, hWnd, NULL);
+		if (nCmd)
+			pContextMenu->InvokeCommand(nCmd, hWnd);
+		pContextMenu->ReleaseShellContextMenu();
+		pFrame->m_bAutoMenuEnable = bAutoMenuEnableOld;
+	}
+}
+
+template <SIDE_TYPE stype>
+void CDirView::OnCtxtDirShellContextMenu()
+{
+	ShowShellContextMenu(stype);
+}
 
 /**
  * @brief Select all visible items in dir compare
@@ -3239,9 +3232,11 @@ void CDirView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 CShellContextMenu* CDirView::GetCorrespondingShellContextMenu(HMENU hMenu) const
 {
 	CShellContextMenu* pMenu = NULL;
-	if (hMenu == m_pShellContextMenuLeft->GetHMENU())
+	if (m_pShellContextMenuLeft && hMenu == m_pShellContextMenuLeft->GetHMENU())
 		pMenu = m_pShellContextMenuLeft.get();
-	else if (hMenu == m_pShellContextMenuRight->GetHMENU())
+	else if (m_pShellContextMenuMiddle && hMenu == m_pShellContextMenuMiddle->GetHMENU())
+		pMenu = m_pShellContextMenuMiddle.get();
+	else if (m_pShellContextMenuRight && hMenu == m_pShellContextMenuRight->GetHMENU())
 		pMenu = m_pShellContextMenuRight.get();
 	else if (hMenu == m_pShellContextMenuMiddle->GetHMENU())
 		pMenu = m_pShellContextMenuMiddle.get();
@@ -3256,7 +3251,7 @@ CShellContextMenu* CDirView::GetCorrespondingShellContextMenu(HMENU hMenu) const
  * for one side to context menu for other side. Here we check whether we need to
  * requery and call ShellContextMenuHandleMenuMessage.
  */
-LRESULT CDirView::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CDirView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
 	if (!m_pShellContextMenuLeft || !m_pShellContextMenuRight || (GetDocument()->m_nDirs < 2 || !m_pShellContextMenuMiddle))
 		return false;
@@ -3285,13 +3280,13 @@ LRESULT CDirView::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lParam)
 
 	CShellContextMenu* pMenu = GetCorrespondingShellContextMenu(m_hCurrentMenu);
 
-	LRESULT res = 0;
 	if (pMenu)
 	{
+		LRESULT res = 0;
 		pMenu->HandleMenuMessage(message, wParam, lParam, res);
 	}
 
-	return res;
+	return CListView::WindowProc(message, wParam, lParam);
 }
 
 /**

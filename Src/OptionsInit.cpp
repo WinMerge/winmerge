@@ -91,7 +91,6 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN, (int)-1);
 	m_pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN3, (int)-1);
 	m_pOptions->InitOption(OPT_DIRVIEW_SORT_ASCENDING, true);
-	m_pOptions->InitOption(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU, false);
 	m_pOptions->InitOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, false);
 	m_pOptions->InitOption(OPT_DIRVIEW_EXPAND_SUBDIRS, false);
 
