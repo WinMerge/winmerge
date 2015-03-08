@@ -87,10 +87,6 @@ public:
 };
 
 int NTAPI HasZipSupport();
-void NTAPI Recall7ZipMismatchError();
-
-BOOL NTAPI IsMerge7zEnabled();
-DWORD NTAPI VersionOf7z(BOOL bLocal = FALSE);
 
 struct DecompressResult
 {

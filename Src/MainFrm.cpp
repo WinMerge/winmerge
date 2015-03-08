@@ -210,8 +210,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	ON_COMMAND(ID_FILE_NEW3, OnFileNew3)
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
-	ON_COMMAND(ID_HELP_MERGE7ZMISMATCH, OnHelpMerge7zmismatch)
-	ON_UPDATE_COMMAND_UI(ID_HELP_MERGE7ZMISMATCH, OnUpdateHelpMerge7zmismatch)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR, OnUpdateViewTabBar)
 	ON_COMMAND(ID_VIEW_TAB_BAR, OnViewTabBar)
@@ -2198,25 +2196,6 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		}
 	}
 	return CMDIFrameWnd::PreTranslateMessage(pMsg);
-}
-
-/**
- * @brief Tell user why archive support is not available.
- */
-void CMainFrame::OnHelpMerge7zmismatch() 
-{
-	Recall7ZipMismatchError();
-}
-
-/**
- * @brief Remove ID_HELP_MERGE7ZMISMATCH if archive support is available.
- */
-void CMainFrame::OnUpdateHelpMerge7zmismatch(CCmdUI* pCmdUI) 
-{
-	if (HasZipSupport())
-	{
-		pCmdUI->m_pMenu->RemoveMenu(ID_HELP_MERGE7ZMISMATCH, MF_BYCOMMAND);
-	}
 }
 
 /**
