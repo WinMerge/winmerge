@@ -39,9 +39,6 @@
 #include "UniFile.h"
 #include "RegKey.h"
 
-BOOL NTAPI IsMerge7zEnabled();
-DWORD NTAPI VersionOf7z(BOOL bLocal = FALSE);
-
 CConfigLog::CConfigLog()
 : m_pfile(new UniStdioFile())
 {
@@ -164,86 +161,6 @@ void CConfigLog::WriteVersionOf1(int indent, const String& path)
 		path.c_str()
 	);
 	m_pfile->WriteString(text);
-}
-
-/**
- * @brief Write version of a set of executable files
- */
-void CConfigLog::WriteVersionOf(int indent, const String& path)
-{
-	WIN32_FIND_DATA ff;
-	HANDLE h = FindFirstFile(path.c_str(), &ff);
-	if (h != INVALID_HANDLE_VALUE)
-	{
-		String dir = paths_GetPathOnly(path);
-		do
-		{
-			WriteVersionOf1(indent, paths_ConcatPath(dir, ff.cFileName));
-		} while (FindNextFile(h, &ff));
-		FindClose(h);
-	}
-}
-
-/**
- * @brief Write version of 7-Zip plugins and shell context menu handler
- */
-void CConfigLog::WriteVersionOf7z(const String& dir)
-{
-	WriteVersionOf(2, paths_ConcatPath(dir, _T("7-zip*.dll")));
-	WriteItem(2, _T("Codecs"));
-	WriteVersionOf(3, paths_ConcatPath(dir, _T("codecs\\*.dll")));
-	WriteItem(2, _T("Formats"));
-	WriteVersionOf(3, paths_ConcatPath(dir, _T("formats\\*.dll")));
-}
-
-/**
- * @brief Write archive support stuff
- */
-void CConfigLog::WriteArchiveSupport()
-{
-	DWORD registered = VersionOf7z(FALSE);
-	DWORD standalone = VersionOf7z(TRUE);
-	TCHAR path[MAX_PATH];
-	DWORD type = 0;
-	DWORD size = sizeof path;
-
-	WriteItem(0, _T("Archive support"));
-	WriteItem(1, _T("Enable"), IsMerge7zEnabled());
-
-	wsprintf(path, _T("%u.%02u"), UINT HIWORD(registered), UINT LOWORD(registered));
-	WriteItem(1, _T("7-Zip software installed on your computer"), path);
-	static const TCHAR szSubKey[] = _T("Software\\7-Zip");
-	static const TCHAR szValue[] = _T("Path");
-	SHGetValue(HKEY_LOCAL_MACHINE, szSubKey, szValue, &type, path, &size);
-	WriteVersionOf7z(path);
-
-	wsprintf(path, _T("%u.%02u"), UINT HIWORD(standalone), UINT LOWORD(standalone));
-	WriteItem(1, _T("7-Zip components for standalone operation"), path);
-	GetModuleFileName(0, path, sizeof(path)/sizeof(path[0]));
-	WriteVersionOf7z(paths_GetPathOnly(path));
-
-	WriteItem(1, _T("Merge7z plugins on path"));
-
-	WriteVersionOf(2, paths_ConcatPath(paths_GetPathOnly(path), _T("Merge7z*.dll")));
-	// now see what's on the path:
-	if (DWORD cchPath = GetEnvironmentVariable(_T("path"), 0, 0))
-	{
-		static const TCHAR cSep[] = _T(";");
-		std::unique_ptr<TCHAR[]> pchPath(new TCHAR[cchPath]);
-		GetEnvironmentVariable(_T("PATH"), pchPath.get(), cchPath);
-		LPTSTR pchItem = &pchPath[0];
-		while (int cchItem = StrCSpn(pchItem += StrSpn(pchItem, cSep), cSep))
-		{
-			if (cchItem < MAX_PATH)
-			{
-				CopyMemory(path, pchItem, cchItem*sizeof*pchItem);
-				path[cchItem] = 0;
-				PathAppend(path, _T("Merge7z*.dll"));
-				WriteVersionOf(2, path);
-			}
-			pchItem += cchItem;
-		}
-	}
 }
 
 /**
@@ -378,7 +295,6 @@ bool CConfigLog::DoFile(String &sError)
 		FileWriteString(_T("\r\n .sct scripts disabled (Windows Script Host not found)\r\n"));
 
 	FileWriteString(_T("\r\n\r\n"));
-	WriteArchiveSupport();
 
 // WinMerge settings
 	FileWriteString(_T("\r\nWinMerge configuration:\r\n"));

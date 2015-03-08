@@ -335,6 +335,7 @@ Filters=Filters
 Plugins=Plugins
 Frhed=Frhed(Free hex editor)
 WinIMerge=WinIMerge(Image Diff/Merge)
+ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
 
 ;Localization Components
