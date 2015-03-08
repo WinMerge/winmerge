@@ -3238,8 +3238,6 @@ CShellContextMenu* CDirView::GetCorrespondingShellContextMenu(HMENU hMenu) const
 		pMenu = m_pShellContextMenuMiddle.get();
 	else if (m_pShellContextMenuRight && hMenu == m_pShellContextMenuRight->GetHMENU())
 		pMenu = m_pShellContextMenuRight.get();
-	else if (hMenu == m_pShellContextMenuMiddle->GetHMENU())
-		pMenu = m_pShellContextMenuMiddle.get();
 
 	return pMenu;
 }
@@ -3253,9 +3251,6 @@ CShellContextMenu* CDirView::GetCorrespondingShellContextMenu(HMENU hMenu) const
  */
 LRESULT CDirView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-	if (!m_pShellContextMenuLeft || !m_pShellContextMenuRight || (GetDocument()->m_nDirs < 2 || !m_pShellContextMenuMiddle))
-		return false;
-
 	while (message == WM_INITMENUPOPUP)
 	{
 		HMENU hMenu = (HMENU)wParam;
