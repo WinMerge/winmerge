@@ -45,10 +45,7 @@ protected:
 	void WriteItem(int indent, const String& key, const String &str);
 	void WriteItem(int indent, const String& key, long value);
 	void WriteVersionOf1(int indent, const String& path);
-	void WriteVersionOf(int indent, const String& path);
 	void WriteLocaleSettings(unsigned locid, const String& title);
-	void WriteArchiveSupport();
-	void WriteVersionOf7z(const String& path);
 	void WriteWinMergeConfig(void);
 
 private:

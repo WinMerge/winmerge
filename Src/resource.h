@@ -11,7 +11,6 @@
 #define IDR_POPUP_DIRVIEW               105
 #define IDR_POPUP_LOCATIONBAR           106
 #define IDD_SAVECLOSING                 107
-#define IDD_MERGE7ZMISMATCH             108
 #define IDR_MERGEDOCTYPE                109
 #define IDR_MERGEVIEWMENU               109 // = IDR_MERGEDOCTYPE
 #define IDR_DIRDOCTYPE                  110
@@ -343,10 +342,7 @@
 #define IDC_PRIVATE                     1198
 #define IDC_COMPARE_STOPFIRST           1199
 #define IDC_ARCHIVE_DETECTTYPE          1200
-#define IDC_ARCHIVE_WWW                 1201
 #define IDC_ARCHIVE_ENABLE              1202
-#define IDC_ARCHIVE_INSTALSTANDALONE    1203
-#define IDC_ARCHIVE_INSTALLOCAL         1204
 #define IDC_DETECT_CODEPAGE2            2204
 #define IDC_DETECT_AUTODETECTTYPE       3204
 #define IDC_STAT_IDENTICFOLDER          1205
@@ -1020,7 +1016,6 @@
 #define ID_DISPLAY_MOVED_FOLLOW_DIFF    33090
 #define ID_LOCBAR_GOTODIFF              33091
 #define ID_LOCBAR_GOTOLINE_FMT          33093
-#define ID_HELP_MERGE7ZMISMATCH         33094
 #define ID_FILE_OPENPROJECT             33095
 #define ID_VIEW_SHOWHIDDENITEMS         33096
 #define ID_VIEW_SWAPPANES               33097

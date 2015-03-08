@@ -250,8 +250,6 @@ protected:
 	afx_msg void OnFileNew();
 	afx_msg void OnFileNew3();
 	afx_msg void OnToolsFilters();
-	afx_msg void OnHelpMerge7zmismatch();
-	afx_msg void OnUpdateHelpMerge7zmismatch(CCmdUI* pCmdUI);
 	afx_msg void OnViewStatusBar();
 	afx_msg void OnViewToolbar();
 	afx_msg void OnUpdateViewTabBar(CCmdUI* pCmdUI);

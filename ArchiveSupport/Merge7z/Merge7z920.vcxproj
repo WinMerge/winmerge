@@ -110,26 +110,26 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">..\..\Build\Merge$(Configuration)\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">..\..\Build\$(Platform)\Merge$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">..\..\Build\Merge$(Configuration)\Merge7z\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">..\..\Build\$(Platform)\Merge$(Configuration)\Merge7z\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">..\..\BuildTmp\$(ProjectName)__$(Platform)_$(Configuration)/</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">..\..\BuildTmp\$(ProjectName)__$(Platform)_$(Configuration)/</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">..\..\Build\Merge$(Configuration)\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">..\..\Build\$(Platform)\Merge$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">..\..\Build\Merge$(Configuration)\Merge7z\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">..\..\Build\$(Platform)\Merge$(Configuration)\Merge7z\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">..\..\BuildTmp\$(ProjectName)__$(Platform)_$(Configuration)/</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">..\..\BuildTmp\$(ProjectName)__$(Platform)_$(Configuration)/</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Build\Merge$(Configuration)\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Build\$(Platform)\Merge$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Build\Merge$(Configuration)\Merge7z\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Build\$(Platform)\Merge$(Configuration)\Merge7z\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\BuildTmp\$(ProjectName)__$(Platform)_$(Configuration)/</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\BuildTmp\$(ProjectName)__$(Platform)_$(Configuration)/</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\Build\Merge$(Configuration)\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\Build\$(Platform)\Merge$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\Build\Merge$(Configuration)\Merge7z\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\Build\$(Platform)\Merge$(Configuration)\Merge7z\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\BuildTmp\$(ProjectName)__$(Platform)_$(Configuration)/</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\BuildTmp\$(ProjectName)__$(Platform)_$(Configuration)/</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
@@ -142,7 +142,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SRC7Z)\7z920;$(SRC7Z)\7z920\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>Merge7z920_EXPORTS;WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -161,11 +161,11 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../Build/Merge$(Configuration)/$(TargetName).dll</OutputFile>
+      <OutputFile>../../Build/Merge$(Configuration)/Merge7z/$(TargetName).dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>../../Build/MergeUnicodeDebug/Merge7z920U.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(IntDir)/Merge7z920U.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
@@ -186,7 +186,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SRC7Z)\7z920;$(SRC7Z)\7z920\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>Merge7z920_EXPORTS;WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -205,11 +205,11 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../Build/$(Platform)/Merge$(Configuration)/$(TargetName).dll</OutputFile>
+      <OutputFile>../../Build/$(Platform)/Merge$(Configuration)/Merge7z/$(TargetName).dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>../../Build/MergeUnicodeDebug/Merge7z920U.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(IntDir)/Merge7z920U.lib</ImportLibrary>
     </Link>
     <Midl>
@@ -229,7 +229,7 @@
     <ClCompile>
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(SRC7Z)\7z920\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -247,11 +247,12 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../Build/Merge$(Configuration)/$(TargetName).dll</OutputFile>
+      <OutputFile>../../Build/Merge$(Configuration)/Merge7z/$(TargetName).dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
       <ImportLibrary>$(IntDir)/Merge7z920U.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -271,7 +272,7 @@
     <ClCompile>
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(SRC7Z)\7z920\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -289,10 +290,11 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../Build/$(Platform)/Merge$(Configuration)/$(TargetName).dll</OutputFile>
+      <OutputFile>../../Build/$(Platform)/Merge$(Configuration)/Merge7z/$(TargetName).dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
       <ImportLibrary>$(IntDir)/Merge7z920U.lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -311,7 +313,7 @@
     <ClCompile>
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(SRC7Z)\7z920;$(SRC7Z)\7z920\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;Merge7z920_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -330,11 +332,12 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../Build/Merge$(Configuration)/$(TargetName).dll</OutputFile>
+      <OutputFile>../../Build/Merge$(Configuration)/Merge7z/$(TargetName).dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
       <ImportLibrary>$(IntDir)/Merge7z920.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -354,7 +357,7 @@
     <ClCompile>
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(SRC7Z)\7z920;$(SRC7Z)\7z920\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;Merge7z920_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -373,10 +376,11 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../Build/$(Platform)/Merge$(Configuration)/$(TargetName).dll</OutputFile>
+      <OutputFile>../../Build/$(Platform)/Merge$(Configuration)/Merge7z/$(TargetName).dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
       <ImportLibrary>$(IntDir)/Merge7z920.lib</ImportLibrary>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -394,7 +398,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SRC7Z)\7z920;$(SRC7Z)\7z920\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;Merge7z920_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -413,11 +417,11 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../Build/Merge$(Configuration)/$(TargetName).dll</OutputFile>
+      <OutputFile>../../Build/Merge$(Configuration)/Merge7z/$(TargetName).dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>../../Build/MergeDebug/Merge7z920.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(IntDir)/Merge7z920.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
@@ -438,7 +442,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SRC7Z)\7z920;$(SRC7Z)\7z920\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Externals\sevenzip;..\..\Externals\sevenzip\CPP;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;Merge7z920_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -457,11 +461,11 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../Build/$(Platform)/Merge$(Configuration)/$(TargetName).dll</OutputFile>
+      <OutputFile>../../Build/$(Platform)/Merge$(Configuration)/Merge7z/$(TargetName).dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\Merge7z.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>../../Build/MergeDebug/Merge7z920.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(IntDir)/Merge7z920.lib</ImportLibrary>
     </Link>
     <Midl>
@@ -479,65 +483,65 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Merge7z.def" />
-    <None Include="$(SRC7Z)\7z920\CPP\7zip\Ui\Gui\FM.ico" />
+    <None Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Gui\FM.ico" />
     <None Include="revision.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(SRC7Z)\7z920\C\CpuArch.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\C\CpuArch.h" />
     <ClInclude Include="Merge7z.h" />
     <ClInclude Include="Merge7zCommon.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="tools.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\GUI\resource.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\DLL.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\Error.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\FileIO.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\Cpp\Windows\Control\ListView.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\PropVariant.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\PropVariantConversions.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\ResourceString.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\Synchronization.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Common\IntToString.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Common\Lang.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Common\MyString.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\Cpp\7zip\Archive\Common\OutStreamWithCRC.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Common\StringConvert.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Common\StringToInt.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Common\TextConfig.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Common\UTFConvert.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\Common\ArchiveExtractCallback.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\Common\ArchiveOpenCallback.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\Common\DefaultName.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\Control\Dialog.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\Cpp\7zip\Ui\Common\EnumDirItems.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\ExtractCallback.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\Common\FileStreams.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\FormatUtils.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\LangUtils.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\Cpp\7zip\Ui\Common\LoadCodecs.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\MessagesDialog.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\Common\OpenArchive.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\OpenCallback.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\OverwriteDialog.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\PasswordDialog.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\ProgramLocation.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\Common\ProgressUtils.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\Common\StreamUtils.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\Common\UpdateCallback.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\GUI\UpdateCallbackGUI.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\Window.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\UI\Common\ExtractingFilePath.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\FileDir.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\FileFind.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Windows\FileName.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\7zip\Common\FilePathAutoRename.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Common\MyVector.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\CPP\Common\Wildcard.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\C\7zCrc.h" />
-    <ClInclude Include="$(SRC7Z)\7z920\C\Threads.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\resource.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\DLL.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\Error.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\FileIO.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\Cpp\Windows\Control\ListView.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\PropVariant.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\PropVariantConversions.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\ResourceString.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\Synchronization.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\IntToString.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\Lang.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\MyString.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\Cpp\7zip\Archive\Common\OutStreamWithCRC.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\StringConvert.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\StringToInt.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\TextConfig.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\UTFConvert.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\ArchiveExtractCallback.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\ArchiveOpenCallback.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\DefaultName.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\Control\Dialog.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\Cpp\7zip\Ui\Common\EnumDirItems.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\ExtractCallback.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\FileStreams.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\FormatUtils.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\LangUtils.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\Cpp\7zip\Ui\Common\LoadCodecs.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\MessagesDialog.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\OpenArchive.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\OpenCallback.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\OverwriteDialog.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\PasswordDialog.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\ProgramLocation.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\ProgressUtils.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\StreamUtils.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\UpdateCallback.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\UpdateCallbackGUI.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\Window.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\ExtractingFilePath.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\FileDir.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\FileFind.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\FileName.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilePathAutoRename.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\MyVector.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Common\Wildcard.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\C\7zCrc.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\C\Threads.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(SRC7Z)\7z920\C\7zCrcOpt.c">
+    <ClCompile Include="..\..\Externals\sevenzip\C\7zCrcOpt.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -547,7 +551,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\C\CpuArch.c">
+    <ClCompile Include="..\..\Externals\sevenzip\C\CpuArch.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -674,7 +678,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\DLL.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\DLL.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -710,7 +714,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\Error.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\Error.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -746,7 +750,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\FileIO.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\FileIO.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -782,8 +786,8 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\Cpp\Windows\Control\ListView.cpp" />
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\PropVariant.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\Cpp\Windows\Control\ListView.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\PropVariant.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -819,7 +823,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\PropVariantConversions.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\PropVariantConversions.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -855,7 +859,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\ResourceString.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\ResourceString.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -891,7 +895,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\Synchronization.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\Synchronization.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -927,7 +931,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Common\IntToString.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\IntToString.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -963,7 +967,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Common\Lang.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\Lang.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -999,7 +1003,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Common\MyString.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\MyString.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1035,8 +1039,8 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\Cpp\7zip\Archive\Common\OutStreamWithCRC.cpp" />
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Common\StringConvert.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\Cpp\7zip\Archive\Common\OutStreamWithCRC.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\StringConvert.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1072,7 +1076,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Common\StringToInt.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\StringToInt.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1108,7 +1112,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Common\TextConfig.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\TextConfig.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1144,7 +1148,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Common\UTFConvert.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\UTFConvert.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1180,7 +1184,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\Ui\Common\ArchiveExtractCallback.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Common\ArchiveExtractCallback.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1216,7 +1220,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\Common\ArchiveOpenCallback.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\ArchiveOpenCallback.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1252,7 +1256,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\Common\DefaultName.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\DefaultName.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1288,7 +1292,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\Control\Dialog.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\Control\Dialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1324,8 +1328,8 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\Cpp\7zip\Ui\Common\EnumDirItems.cpp" />
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\ExtractCallback.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\Cpp\7zip\Ui\Common\EnumDirItems.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\ExtractCallback.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1361,7 +1365,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\Common\FileStreams.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\FileStreams.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1397,7 +1401,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\FormatUtils.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\FormatUtils.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1433,7 +1437,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\LangUtils.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\LangUtils.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1469,8 +1473,8 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\Cpp\7zip\Ui\Common\LoadCodecs.cpp" />
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\MessagesDialog.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\Cpp\7zip\Ui\Common\LoadCodecs.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\MessagesDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1506,7 +1510,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\Common\OpenArchive.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\OpenArchive.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1542,7 +1546,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\OpenCallback.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\OpenCallback.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1578,7 +1582,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\OverwriteDialog.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\OverwriteDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1614,7 +1618,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\PasswordDialog.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\PasswordDialog.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1650,7 +1654,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\ProgramLocation.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\ProgramLocation.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1686,7 +1690,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\FileManager\ProgressDialog2.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\ProgressDialog2.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1722,7 +1726,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\Common\ProgressUtils.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\ProgressUtils.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1758,7 +1762,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\Common\StreamUtils.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\StreamUtils.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1794,7 +1798,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\Common\UpdateCallback.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\UpdateCallback.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1830,7 +1834,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\UI\GUI\UpdateCallbackGUI.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\UpdateCallbackGUI.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1866,7 +1870,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\Window.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\Window.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1902,7 +1906,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\Ui\Common\ExtractingFilePath.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Common\ExtractingFilePath.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1938,7 +1942,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\FileDir.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\FileDir.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -1974,7 +1978,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\FileFind.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\FileFind.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -2010,7 +2014,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Windows\FileName.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\FileName.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -2046,7 +2050,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\7zip\Common\FilePathAutoRename.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilePathAutoRename.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -2082,7 +2086,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Common\MyVector.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\MyVector.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -2118,7 +2122,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\CPP\Common\Wildcard.cpp">
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Common\Wildcard.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -2154,7 +2158,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Merge7z920_EXPORTS;WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\C\7zCrc.c">
+    <ClCompile Include="..\..\Externals\sevenzip\C\7zCrc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -2164,7 +2168,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="$(SRC7Z)\7z920\C\Threads.c">
+    <ClCompile Include="..\..\Externals\sevenzip\C\Threads.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -2210,27 +2214,27 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="$(SRC7Z)\7z920\CPP\7zip\Ui\Gui\resource.rc">
+    <ResourceCompile Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Gui\resource.rc">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SRC7Z)\7z920\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SRC7Z)\7z920\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\Externals\sevenzip\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\Externals\sevenzip\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SRC7Z)\7z920\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SRC7Z)\7z920\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Externals\sevenzip\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Externals\sevenzip\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">_DEBUG</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">_DEBUG</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">$(SRC7Z)\7z920\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">$(SRC7Z)\7z920\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">..\..\Externals\sevenzip\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">..\..\Externals\sevenzip\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">NDEBUG</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NDEBUG</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">$(SRC7Z)\7z920\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">$(SRC7Z)\7z920\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">..\..\Externals\sevenzip\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">..\..\Externals\sevenzip\CPP\7zip\Ui\Gui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Manifest Include="$(SRC7Z)\7z920\CPP\7zip\Ui\Gui\7zG.exe.manifest" />
+    <Manifest Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Gui\7zG.exe.manifest" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

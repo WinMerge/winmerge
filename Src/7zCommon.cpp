@@ -122,7 +122,7 @@ static char THIS_FILE[] = __FILE__;
 static __declspec(thread) Merge7z::Proxy m_Merge7z =
 {
 	{ 0, 0, DllBuild_Merge7z, },
-	"Merge7z%u%02u"DECORATE_U".dll",
+	"Merge7z\\Merge7z%u%02u"DECORATE_U".dll",
 	"Merge7z",
 	NULL
 };
@@ -213,398 +213,6 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 }
 
 /**
- * @brief Self-initializing raw C character buffer class.
- */
-template<class TYPE, size_t SIZE> struct CRawString
-{
-	enum { Size = SIZE };
-	TYPE Data[SIZE];
-	CRawString()
-	{
-		Data[0] = 0;
-	}
-};
-
-/**
- * @brief Exception class for more explicit error message.
- */
-class C7ZipMismatchException : public CException
-{
-public:
-	C7ZipMismatchException(DWORD dwVer7zInstalled, DWORD dwVer7zLocal, CException *pCause)
-	{
-		m_dwVer7zInstalled = dwVer7zInstalled;
-		m_dwVer7zLocal = dwVer7zLocal;
-		m_pCause = pCause;
-	}
-	~C7ZipMismatchException()
-	{
-		if (m_pCause)
-			m_pCause->Delete();
-	}
-	virtual int ReportError(UINT nType = MB_OK, UINT nMessageID = 0);
-protected:
-	DWORD m_dwVer7zInstalled;
-	DWORD m_dwVer7zLocal;
-	CException *m_pCause;
-	BOOL m_bShowAllways;
-	static const DWORD m_dwVer7zRecommended;
-	static const TCHAR m_strRegistryKey[];
-	static const TCHAR m_strDownloadURL[];
-	static INT_PTR CALLBACK DlgProc(HWND, UINT, WPARAM, LPARAM);
-	static DWORD FormatVersion(LPTSTR, LPTSTR, DWORD);
-};
-
-/**
- * @brief Recommended version of 7-Zip.
- */
-const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(65,4);
-
-/**
- * @brief Registry key for C7ZipMismatchException's ReportError() popup.
- */
-const TCHAR C7ZipMismatchException::m_strRegistryKey[] = _T("7ZipMismatch");
-
-/**
- * @brief Download URL for C7ZipMismatchException's ReportError() popup.
- */
-const TCHAR C7ZipMismatchException::m_strDownloadURL[] = _T("https://sourceforge.net/project/showfiles.php?group_id=13216&package_id=143957");
-
-/**
- * @brief Retrieve build number of given DLL.
- */
-static DWORD NTAPI GetDllBuild(LPCTSTR cPath)
-{
-	HMODULE hModule = LoadLibrary(cPath);
-	DLLVERSIONINFO dvi;
-	dvi.cbSize = sizeof dvi;
-	dvi.dwBuildNumber = ~0UL;
-	if (hModule)
-	{
-		dvi.dwBuildNumber = 0UL;
-		DLLGETVERSIONPROC DllGetVersion = (DLLGETVERSIONPROC)GetProcAddress(hModule, "DllGetVersion");
-		if (DllGetVersion)
-		{
-			DllGetVersion(&dvi);
-		}
-		FreeLibrary(hModule);
-	}
-	return dvi.dwBuildNumber;
-}
-
-/**
- * @brief Format Merge7z version number and plugin name, and retrieve DllBuild.
- */
-DWORD C7ZipMismatchException::FormatVersion(LPTSTR pcVersion, LPTSTR pcPluginName, DWORD dwVersion)
-{
-	*pcVersion = '\0';
-	*pcPluginName = '\0';
-	if (dwVersion)
-	{
-		wsprintf
-		(
-			pcVersion, _T("%u.%02u"),
-			UINT HIWORD(dwVersion),
-			UINT LOWORD(dwVersion)
-		);
-		wsprintf
-		(
-			pcPluginName,
-			sizeof(TCHAR) == 1 ? _T("Merge7z%u%02u.dll") : _T("Merge7z%u%02uU.dll"),
-			UINT HIWORD(dwVersion),
-			UINT LOWORD(dwVersion)
-		);
-	}
-	return GetDllBuild(pcPluginName);
-}
-
-/**
- * @brief Populate ListBox with names/revisions of DLLs matching given pattern.
- */
-static void NTAPI DlgDirListDLLs(HWND hWnd, LPTSTR cPattern, int nIDListBox)
-{
-	HDC hDC = GetDC(hWnd);
-	HFONT hFont = (HFONT)SendDlgItemMessage(hWnd, nIDListBox, WM_GETFONT, 0, 0);
-	int cxView = (int)SendDlgItemMessage(hWnd, nIDListBox, LB_GETHORIZONTALEXTENT, 0, 0) - 8;
-	HGDIOBJ hObject = SelectObject(hDC, hFont);
-	WIN32_FIND_DATA ff;
-	HANDLE h = FindFirstFile(cPattern, &ff);
-	if (h != INVALID_HANDLE_VALUE)
-	{
-		do
-		{
-			PathRemoveFileSpec(cPattern);
-			PathAppend(cPattern, ff.cFileName);
-			wsprintf(ff.cFileName, _T(" (dllbuild %04u)"), GetDllBuild(cPattern));
-			lstrcat(cPattern, ff.cFileName);
-			int cxText = (int)(WORD)GetTabbedTextExtent(hDC, cPattern, lstrlen(cPattern), 0, 0);
-			if (cxView < cxText)
-				cxView = cxText;
-			SendDlgItemMessage(hWnd, nIDListBox, LB_ADDSTRING, 0, (LPARAM)cPattern);
-		} while (FindNextFile(h, &ff));
-		FindClose(h);
-	}
-	SelectObject(hDC, hObject);
-	ReleaseDC(hWnd, hDC);
-	SendDlgItemMessage(hWnd, nIDListBox, LB_SETHORIZONTALEXTENT, cxView + 8, 0);
-}
-
-/**
- * @brief OwnerDraw states from recent SDK.
- */
-#define ODS_NOACCEL         0x0100
-#define ODS_NOFOCUSRECT     0x0200
-
-/**
- * @brief WM_DRAWITEM notification handlers.
- */
-struct CDrawItemStruct : DRAWITEMSTRUCT
-{
-	typedef CDrawItemStruct *From;
-	void DrawWebLinkButton();
-};
-
-void CDrawItemStruct::DrawWebLinkButton()
-{
-	CRawString<TCHAR,INTERNET_MAX_PATH_LENGTH> cText;
-	int cchText = ::GetWindowText(hwndItem, cText.Data, cText.Size);
-	COLORREF clrText = RGB(0,0,255);
-	if (::GetWindowLong(hwndItem, GWL_STYLE) & BS_LEFTTEXT)
-	{
-		clrText = RGB(128,0,128);
-	}
-	RECT rcText = rcItem;
-	::DrawText(hDC, cText.Data, cchText, &rcText, DT_LEFT|DT_CALCRECT);
-	::OffsetRect(&rcText, 1, 0);
-	rcItem.right = rcText.right + 1;
-	rcItem.bottom = rcText.bottom + 1;
-	switch (itemAction)
-	{
-	case ODA_DRAWENTIRE:
-		::ExtTextOut(hDC, 0, 0, ETO_OPAQUE, &rcItem, 0, 0, 0);
-		::SetBkMode(hDC, TRANSPARENT);
-		::SetTextColor(hDC, clrText);
-		::DrawText(hDC, cText.Data, cchText, &rcText, DT_LEFT);
-		rcText.top = rcText.bottom - 1;
-		::SetBkColor(hDC, clrText);
-		::ExtTextOut(hDC, 0, 0, ETO_OPAQUE, &rcText, 0, 0, 0);
-		if (itemState & ODS_FOCUS)
-		{
-		case ODA_FOCUS:
-			if (!(itemState & ODS_NOFOCUSRECT))
-			{
-				::SetTextColor(hDC, 0);
-				::SetBkColor(hDC, RGB(255,255,255));
-				::SetBkMode(hDC, OPAQUE);
-				DrawFocusRect(hDC, &rcItem);
-			}
-		}
-		break;
-	}
-}
-
-/**
- * @brief Load a cursor from COMCTL32.DLL.
- */
-HCURSOR NTAPI CommCtrl_LoadCursor(LPCTSTR lpCursorName)
-{
-	HMODULE hModule = GetModuleHandle(_T("COMCTL32.DLL"));
-	return hModule ? LoadCursor(hModule, lpCursorName) : NULL;
-}
-
-/**
- * @brief DLGPROC for C7ZipMismatchException's ReportError() popup.
- */
-INT_PTR CALLBACK C7ZipMismatchException::DlgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	switch (uMsg)
-	{
-		case WM_INITDIALOG:
-		{
-			theApp.TranslateDialog(hWnd);
-			if (GetDlgItem(hWnd, 9001) == NULL)
-			{
-				// Dialog template isn't up to date. Give it a second chance.
-				EndDialog(hWnd, -1);
-				return FALSE;
-			}
-			C7ZipMismatchException *pThis = (C7ZipMismatchException *)lParam;
-			CRawString<TCHAR,2600> cText;
-			CRawString<TCHAR,80> cPresent, cMissing, cOutdated, cNone, cPlugin;
-			if (pThis->m_pCause)
-			{
-				pThis->m_pCause->GetErrorMessage(cText.Data, cText.Size);
-				SetDlgItemText(hWnd, 107, cText.Data);
-			}
-			else
-			{
-				GetDlgItemText(hWnd, 107, cText.Data, cText.Size);
-				switch (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE))
-				{
-				case 0:
-					lstrcat(cText.Data, theApp.LoadString(IDS_MERGE7Z_ENABLE_0).c_str());
-					break;
-				case 2:
-					lstrcat(cText.Data, theApp.LoadString(IDS_MERGE7Z_ENABLE_2).c_str());
-					break;
-				}
-				SetDlgItemText(hWnd, 107, cText.Data);
-			}
-			GetDlgItemText(hWnd, 112, cPresent.Data, cPresent.Size);
-			GetDlgItemText(hWnd, 122, cMissing.Data, cMissing.Size);
-			GetDlgItemText(hWnd, 132, cOutdated.Data, cOutdated.Size);
-			GetDlgItemText(hWnd, 120, cNone.Data, cNone.Size);
-			GetDlgItemText(hWnd, 102, cPlugin.Data, cPlugin.Size);
-			wsprintf(cText.Data, cPlugin.Data, DllBuild_Merge7z);
-			SetDlgItemText(hWnd, 102, cText.Data);
-			SetDlgItemText
-			(
-				hWnd, 109,
-				(
-					pThis->m_dwVer7zRecommended == pThis->m_dwVer7zInstalled
-				||	pThis->m_dwVer7zRecommended == pThis->m_dwVer7zLocal
-				) ? cPresent.Data : cMissing.Data
-			);
-			DWORD dwDllBuild = FormatVersion(cText.Data, cPlugin.Data, pThis->m_dwVer7zRecommended);
-			SetDlgItemText(hWnd, 110, *cText.Data ? cText.Data : cNone.Data);
-			SetDlgItemText(hWnd, 111, cPlugin.Data);
-			SetDlgItemText(hWnd, 112, *cPlugin.Data == '\0' ? cPlugin.Data :
-				dwDllBuild == ~0 ? cMissing.Data : dwDllBuild < DllBuild_Merge7z ? cOutdated.Data : cPresent.Data);
-			dwDllBuild = FormatVersion(cText.Data, cPlugin.Data, pThis->m_dwVer7zInstalled);
-			SetDlgItemText(hWnd, 120, *cText.Data ? cText.Data : cNone.Data);
-			SetDlgItemText(hWnd, 121, cPlugin.Data);
-			SetDlgItemText(hWnd, 122, *cPlugin.Data == '\0' ? cPlugin.Data :
-				dwDllBuild == ~0 ? cMissing.Data : dwDllBuild < DllBuild_Merge7z ? cOutdated.Data : cPresent.Data);
-			dwDllBuild = FormatVersion(cText.Data, cPlugin.Data, pThis->m_dwVer7zLocal);
-			SetDlgItemText(hWnd, 130, *cText.Data ? cText.Data : cNone.Data);
-			SetDlgItemText(hWnd, 131, cPlugin.Data);
-			SetDlgItemText(hWnd, 132, *cPlugin.Data == '\0' ? cPlugin.Data :
-				dwDllBuild == ~0 ? cMissing.Data : dwDllBuild < DllBuild_Merge7z ? cOutdated.Data : cPresent.Data);
-			GetModuleFileName(0, cText.Data, MAX_PATH);
-			PathRemoveFileSpec(cText.Data);
-			PathAppend(cText.Data, _T("Merge7z*.dll"));
-			DlgDirListDLLs(hWnd, cText.Data, 105);
-			if (DWORD cchPath = GetEnvironmentVariable(_T("path"), 0, 0))
-			{
-				static const TCHAR cSep[] = _T(";");
-				LPTSTR pchPath = new TCHAR[cchPath];
-				GetEnvironmentVariable(_T("PATH"), pchPath, cchPath);
-				LPTSTR pchItem = pchPath;
-				while (int cchItem = StrCSpn(pchItem += StrSpn(pchItem, cSep), cSep))
-				{
-					if (cchItem < MAX_PATH)
-					{
-						CopyMemory(cText.Data, pchItem, cchItem*sizeof*pchItem);
-						cText.Data[cchItem] = 0;
-						PathAppend(cText.Data, _T("Merge7z*.dll"));
-						DlgDirListDLLs(hWnd, cText.Data, 105);
-					}
-					pchItem += cchItem;
-				}
-				delete[] pchPath;
-			}
-			if (SendDlgItemMessage(hWnd, 105, LB_GETCOUNT, 0, 0) == 0)
-			{
-				SendDlgItemMessage(hWnd, 105, LB_ADDSTRING, 0, (LPARAM) cNone.Data);
-			}
-			HICON hIcon = LoadIcon(0, IDI_EXCLAMATION);
-			SendMessage(hWnd, WM_SETICON, ICON_BIG, (LPARAM) hIcon);
-			SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM) hIcon);
-			if (pThis->m_bShowAllways)
-			{
-				ShowWindow(GetDlgItem(hWnd, 106), SW_HIDE);
-			}
-		} return TRUE;
-		case WM_DRAWITEM:
-		{
-			switch (wParam)
-			{
-			case 108:
-				CDrawItemStruct::From(lParam)->DrawWebLinkButton();
-				break;
-			}
-		} return TRUE;
-		case WM_SETCURSOR:
-		{
-			HCURSOR hCursor = 0;
-			switch (GetDlgCtrlID((HWND)wParam))
-			{
-			case 108:
-				hCursor = CommCtrl_LoadCursor(MAKEINTRESOURCE(108));
-				break;
-			}
-			if (hCursor)
-			{
-				SetCursor(hCursor);
-				SetWindowLongPtr(hWnd, DWLP_MSGRESULT, 1);
-				return TRUE;
-			}
-		} return FALSE;
-		case WM_COMMAND:
-		{
-			switch (wParam)
-			{
-				case IDOK:
-				case IDCANCEL:
-				{
-					LRESULT nDontShowAgain = SendDlgItemMessage(hWnd, 106, BM_GETCHECK, 0, 0);
-					EndDialog(hWnd, MAKEWORD(IDOK, nDontShowAgain));
-				} break;
-				case 108:
-				{
-					HINSTANCE h = ShellExecute(hWnd, _T("open"), m_strDownloadURL, 0, 0, SW_SHOWNORMAL);
-					if ((UINT)h > 32)
-					{
-						LONG lStyle = ::GetWindowLong((HWND)lParam, GWL_STYLE);
-						::SetWindowLong((HWND)lParam, GWL_STYLE, lStyle|BS_LEFTTEXT);
-						::InvalidateRect((HWND)lParam, 0, TRUE);
-					}
-					else
-					{
-						MessageBeep(0);
-					}
-				} break;
-			}
-		} return TRUE;
-	}
-	return FALSE;
-}
-
-/**
- * @brief Tell user what went wrong and how she can help.
- */
-int C7ZipMismatchException::ReportError(UINT nType, UINT nMessageID)
-{
-	UINT_PTR response = -1;
-	m_bShowAllways = nMessageID;
-	if (!m_bShowAllways)
-	{
-		// Suppress error message in case 7-Zip is not installed.
-		response =
-		(
-			m_dwVer7zInstalled || m_dwVer7zLocal
-		?	(INT_PTR)(int)theApp.GetProfileInt(REGISTRY_SECTION_MESSAGEBOX, m_strRegistryKey, -1)
-		:	IDOK
-		);
-	}
-	if (response == -1)
-	{
-		HWND hwndOwner = CWnd::GetSafeOwner()->GetSafeHwnd();
-		response = DialogBoxParam(AfxGetResourceHandle(), MAKEINTRESOURCE(IDD_MERGE7ZMISMATCH), hwndOwner, DlgProc, (LPARAM)this);
-		if (response == -1)
-		{
-			response = DialogBoxParam(GetModuleHandle(0), MAKEINTRESOURCE(IDD_MERGE7ZMISMATCH), hwndOwner, DlgProc, (LPARAM)this);
-			ASSERT(response != -1);
-		}
-		if (HIBYTE(response) == 1)
-		{
-			theApp.WriteProfileInt(REGISTRY_SECTION_MESSAGEBOX, m_strRegistryKey, response = int LOBYTE(response));
-		}
-	}
-	return response;
-}
-
-/**
  * @brief Check whether archive support is available.
  */
 int NTAPI HasZipSupport()
@@ -627,22 +235,6 @@ int NTAPI HasZipSupport()
 }
 
 /**
- * @brief Tell user why archive support is not available.
- */
-void NTAPI Recall7ZipMismatchError()
-{
-	try
-	{
-		m_Merge7z.operator->();
-	}
-	catch (CException *e)
-	{
-		e->ReportError(MB_ICONEXCLAMATION, TRUE);
-		e->Delete();
-	}
-}
-
-/**
  * @brief Delete head of temp path context list, and return its parent context.
  */
 CTempPathContext *CTempPathContext::DeleteHead()
@@ -652,31 +244,15 @@ CTempPathContext *CTempPathContext::DeleteHead()
 	return pParent;
 }
 
-BOOL NTAPI IsMerge7zEnabled()
-{
-	return AfxGetApp()->GetProfileInt(_T("Merge7z"), _T("Enable"), 0);
-}
-
 /**
  * @brief Return installed or local version of 7-Zip.
  */
-DWORD NTAPI VersionOf7z(BOOL bLocal)
+DWORD NTAPI VersionOf7z()
 {
 	TCHAR path[MAX_PATH];
-	if (bLocal)
-	{
-		GetModuleFileName(0, path, sizeof path/sizeof*path);
-		PathRemoveFileSpec(path);
-	}
-	else
-	{
-		static const TCHAR szSubKey[] = _T("Software\\7-Zip");
-		static const TCHAR szValue[] = _T("Path");
-		DWORD type = 0;
-		DWORD size = sizeof path;
-		SHGetValue(HKEY_LOCAL_MACHINE, szSubKey, szValue, &type, path, &size);
-	}
-	PathAppend(path, _T("7z.dll"));
+	GetModuleFileName(0, path, sizeof path/sizeof*path);
+	PathRemoveFileSpec(path);
+	PathAppend(path, _T("Merge7z\\7z.dll"));
 	unsigned versionMS = 0;
 	unsigned versionLS = 0;
 	CVersionInfo(path).GetFixedFileVersion(versionMS, versionLS);
@@ -698,56 +274,21 @@ interface Merge7z *Merge7z::Proxy::operator->()
 	{
 		// Merge7z has not yet been loaded
 
-		char name[MAX_PATH];
-		DWORD flags = ~0;
-		CException *pCause = NULL;
-		switch (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE))
+		if (!GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE))
+			throw new CResourceException();
+		if (DWORD ver = VersionOf7z())
 		{
-		case 1: //Use installed 7-Zip if present. Otherwise, use local 7-Zip.
-			if (DWORD ver = VersionOf7z(FALSE))
-			{
-				flags = Initialize::Default;
-				try
-				{
-					wsprintfA(name, format, UINT HIWORD(ver), UINT LOWORD(ver));
-					Merge7z[0] = name;
-					stub.Load();
-					break;
-				}
-				catch (CException *e)
-				{
-					Merge7z[0] = format;
-					pCause = e;
-				}
-			}
-		case 2: //Always use local 7-Zip.
-			if (DWORD ver = VersionOf7z(TRUE))
-			{
-				flags = Initialize::Default | Initialize::Local7z;
-				try
-				{
-					wsprintfA(name, format, UINT HIWORD(ver), UINT LOWORD(ver));
-					Merge7z[0] = name;
-					stub.Load();
-					break;
-				}
-				catch (CException *e)
-				{
-					Merge7z[0] = format;
-					if (pCause) pCause->Delete();
-					pCause = e;
-				}
-			}
-		default:
-			throw new C7ZipMismatchException
-			(
-				VersionOf7z(FALSE),
-				VersionOf7z(TRUE),
-				pCause
-			);
+			char name[MAX_PATH];
+			wsprintfA(name, format, UINT HIWORD(ver), UINT LOWORD(ver));
+			Merge7z[0] = name;
+			stub.Load();
+		}
+		else
+		{
+			throw new CResourceException();
 		}
 		LANGID wLangID = (LANGID)GetThreadLocale();
-		flags |= wLangID << 16;
+		DWORD flags = Initialize::Default | Initialize::Local7z | (wLangID << 16);
 		if (GetOptionsMgr()->GetBool(OPT_ARCHIVE_PROBETYPE))
 		{
 			flags |= Initialize::GuessFormatBySignature | Initialize::GuessFormatByExtension;
@@ -862,11 +403,11 @@ UINT CDirView::DirItemEnumerator::Open()
 		nrgFolderPrefix = 1;
 	}
 	return
-	(
+	static_cast<UINT>((
 		m_nFlags & LVNI_SELECTED
 	?	pView(m_pView)->GetSelectedCount()
 	:	pView(m_pView)->GetItemCount()
-	) * nrgFolderPrefix;
+	) * nrgFolderPrefix);
 }
 
 /**
@@ -1105,7 +646,7 @@ void CDirView::DirItemEnumerator::CollectFiles(String &strBuffer)
 	const String sLeftRootPath = pDoc->GetBasePath(0);
 	const String sRightRootPath = pDoc->GetBasePath(1);
 	UINT i;
-	int cchBuffer = 0;
+	size_t cchBuffer = 0;
 	for (i = Open() ; i-- ; )
 	{
 		const DIFFITEM &di = Next();
@@ -1239,7 +780,6 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 	}
 	catch (CException *e)
 	{
-		e->ReportError(MB_ICONSTOP);
 		e->Delete();
 	}
 	return res;

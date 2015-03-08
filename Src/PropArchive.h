@@ -37,6 +37,5 @@ protected:
 public:
 	CStaticLink m_wwwLink;
 	BOOL m_bEnableSupport;
-	int m_nInstallType;
 	BOOL m_bProbeType;
 };
