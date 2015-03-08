@@ -1,6 +1,3 @@
-; ID line follows -- this is updated by SVN
-; $Id: WinMerge.iss 5430 2008-06-05 16:21:35Z kimmov $
-;
 ;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis,
 ;                 Purpose:  The is the Inno Setup installation script for distributing our WinMerge application.
 ; Tools Needed To Compile:  Inno Setup 5.1.7+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 5.1.7+(http://www.jrsoftware.org/isdl.php)
@@ -179,6 +176,7 @@ Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Type
 Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full
 Name: Frhed; Description: {cm:Frhed}; Flags: disablenouninstallwarning; Types: full typical
 Name: WinIMerge; Description: {cm:WinIMerge}; Flags: disablenouninstallwarning; Types: full typical
+Name: ArchiveSupport; Description: {cm:ArchiveSupport}; Flags: disablenouninstallwarning; Types: full typical
 
 ;Language components
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
@@ -400,9 +398,10 @@ Source: ..\..\Build\ShellExtensionUnicode Release MinDependency\ShellExtensionU.
 Source: ..\..\Build\X64\ShellExtensionUnicode Release MinDependency\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z920U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
-Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z465U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
-Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z457U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
+Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z\Merge7z920U.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 
 ; MergeLang.dll - translation helper dll
 Source: ..\..\Build\X64\MergeUnicodeRelease\MergeLang.dll; DestDir: {app}; Flags: promptifolder ignoreversion; Components: Core

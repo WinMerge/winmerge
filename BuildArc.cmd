@@ -36,6 +36,12 @@ mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Languages" 2> NUL
 mkdir "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge" 2> NUL
 mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge" 2> NUL
 
+mkdir "%DISTDIR%\2.14-zip-version\WinMerge\Merge7z" 2> NUL
+mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\Merge7z" 2> NUL
+
+mkdir "%DISTDIR%\2.14-zip-version\WinMerge\Merge7z\Lang" 2> NUL
+mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\Merge7z\Lang" 2> NUL
+
 rem Readme
 for %%i in (Build\Docs\*.*) do (
   copy "%%i" "%DISTDIR%\2.14-zip-version\WinMerge\%%~nxi"
@@ -82,8 +88,14 @@ del "%DISTDIR%\2.14-zip-version\WinMerge\MergePlugins\Watch*OfLog.dll"
 del "%DISTDIR%\2.14-x64-zip-version\WinMerge\MergePlugins\Watch*OfLog.dll"
 
 rem 7zPlugins
-copy Build\MergeUnicodeRelease\Merge7z*.dll "%DISTDIR%\2.14-zip-version\WinMerge\"
-copy Build\X64\MergeUnicodeRelease\Merge7z*.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
+copy Build\MergeUnicodeRelease\Merge7z\Merge7z*.dll "%DISTDIR%\2.14-zip-version\WinMerge\Merge7z\"
+copy Build\MergeUnicodeRelease\Merge7z\7z.dll "%DISTDIR%\2.14-zip-version\WinMerge\Merge7z\"
+copy Build\MergeUnicodeRelease\Merge7z\*.txt "%DISTDIR%\2.14-zip-version\WinMerge\Merge7z\"
+copy Build\MergeUnicodeRelease\Merge7z\Lang\*.txt "%DISTDIR%\2.14-zip-version\WinMerge\Merge7z\Lang\"
+copy Build\X64\MergeUnicodeRelease\Merge7z\Merge7z*.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\Merge7z\"
+copy Build\X64\MergeUnicodeRelease\Merge7z\7z.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\Merge7z\"
+copy Build\X64\MergeUnicodeRelease\Merge7z\*.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\Merge7z\"
+copy Build\X64\MergeUnicodeRelease\Merge7z\Lang\*.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\Merge7z\Lang\"
 
 rem Frhed
 copy Externals\Frhed\GPL.txt "%DISTDIR%\2.14-zip-version\WinMerge\frhed\"

@@ -23,7 +23,6 @@ static char THIS_FILE[] = __FILE__;
 PropArchive::PropArchive(COptionsMgr *optionsMgr)
 : OptionsPanel(optionsMgr, PropArchive::IDD)
 , m_bEnableSupport(false)
-, m_nInstallType(0)
 , m_bProbeType(false)
 {
 }
@@ -34,9 +33,7 @@ PropArchive::PropArchive(COptionsMgr *optionsMgr)
 void PropArchive::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_ARCHIVE_WWW, m_wwwLink);
 	DDX_Check(pDX, IDC_ARCHIVE_ENABLE, m_bEnableSupport);
-	DDX_Radio(pDX, IDC_ARCHIVE_INSTALSTANDALONE, m_nInstallType);
 	DDX_Check(pDX, IDC_ARCHIVE_DETECTTYPE, m_bProbeType);
 }
 
@@ -52,7 +49,6 @@ void PropArchive::ReadOptions()
 {
 	int enable = GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE);
 	m_bEnableSupport = enable > 0;
-	m_nInstallType = enable > 1 ? enable - 1 : 0;
 	m_bProbeType = GetOptionsMgr()->GetBool(OPT_ARCHIVE_PROBETYPE);
 }
 
@@ -61,10 +57,7 @@ void PropArchive::ReadOptions()
  */
 void PropArchive::WriteOptions()
 {
-	if (m_bEnableSupport)
-		GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, m_nInstallType + 1);
-	else
-		GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, (int)0);
+	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, (int)(m_bEnableSupport ? 1 : 0));
 	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_PROBETYPE, m_bProbeType == TRUE);
 }
 
@@ -97,14 +90,10 @@ void PropArchive::OnEnableClicked()
 void PropArchive::UpdateControls()
 {
 	CButton *chkEnabled = (CButton *) GetDlgItem(IDC_ARCHIVE_ENABLE);
-	CButton *btnLocal = (CButton *) GetDlgItem(IDC_ARCHIVE_INSTALLOCAL);
-	CButton *btnStandAlone = (CButton *) GetDlgItem(IDC_ARCHIVE_INSTALSTANDALONE);
 	CButton *chkProbe = (CButton *) GetDlgItem(IDC_ARCHIVE_DETECTTYPE);
 
 	BOOL enableItems = FALSE;
 	if (chkEnabled->GetCheck() == 1)
 		enableItems = TRUE;
-	btnLocal->EnableWindow(enableItems);
-	btnStandAlone->EnableWindow(enableItems);
 	chkProbe->EnableWindow(enableItems);
 }
