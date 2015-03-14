@@ -1480,6 +1480,7 @@
     <ClInclude Include="Common\coretools.h" />
     <ClInclude Include="Common\coretypes.h" />
     <ClInclude Include="Common\CSubclass.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="HexMergeView.h" />
     <ClInclude Include="DropHandler.h" />
     <ClInclude Include="IMergeDoc.h" />
