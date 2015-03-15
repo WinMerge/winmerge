@@ -404,9 +404,7 @@ void PropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR o
 	switch (op)
 	{
 	case SET_DEFAULTS:
-		unsigned uicolor;
-		GetOptionsMgr()->GetDefault(optionName, uicolor);
-		btn.SetColor(uicolor);
+		btn.SetColor(GetOptionsMgr()->GetDefault<unsigned>(optionName));
 		return;
 
 	case WRITE_OPTIONS:

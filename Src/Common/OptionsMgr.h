@@ -100,6 +100,7 @@ public:
 	int GetDefault(const String& name, String & value) const;
 	int GetDefault(const String& name, unsigned & value) const;
 	int GetDefault(const String& name, bool & value) const;
+	template <typename T> T GetDefault(const String& name) const { T v; GetDefault(name, v); return v; }
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) = 0;
 	virtual int InitOption(const String& name, const String& defaultValue) = 0;

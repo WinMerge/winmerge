@@ -78,8 +78,6 @@ BOOL PropCompareImage::OnInitDialog()
  */
 void PropCompareImage::OnDefaults()
 {
-	String tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_IMG_FILEPATTERNS, tmp);
-	m_sFilePatterns = tmp.c_str();
+	m_sFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_IMG_FILEPATTERNS).c_str();
 	UpdateData(FALSE);
 }

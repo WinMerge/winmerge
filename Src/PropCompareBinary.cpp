@@ -132,8 +132,6 @@ void PropCompareBinary::OnCharacterSet()
  */
 void PropCompareBinary::OnDefaults()
 {
-	String tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_BIN_FILEPATTERNS, tmp);
-	m_sFilePatterns = tmp.c_str();
+	m_sFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_BIN_FILEPATTERNS).c_str();
 	UpdateData(FALSE);
 }
