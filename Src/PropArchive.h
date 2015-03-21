@@ -35,7 +35,6 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-	CStaticLink m_wwwLink;
 	bool m_bEnableSupport;
 	bool m_bProbeType;
 };

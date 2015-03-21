@@ -30,6 +30,7 @@
 #include <Poco/Exception.h>
 #include <shlwapi.h>
 #include <Poco/Exception.h>
+#include <afxinet.h>
 #include "Constants.h"
 #include "Merge.h"
 #include "FileFilterHelper.h"
@@ -77,6 +78,7 @@
 #include "JumpList.h"
 #include "DropHandler.h"
 #include "LanguageSelect.h"
+#include "version.h"
 
 using std::vector;
 
@@ -232,6 +234,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_BIG, OnUpdateToolbarBig)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
+	ON_COMMAND(ID_HELP_CHECKFORUPDATES, OnHelpCheckForUpdates)
 	ON_COMMAND(ID_HELP_RELEASENOTES, OnHelpReleasenotes)
 	ON_COMMAND(ID_HELP_TRANSLATIONS, OnHelpTranslations)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
@@ -2761,6 +2764,61 @@ bool CMainFrame::AskCloseConfirmation()
 		ret = LangMessageBox(IDS_CLOSEALL_WINDOWS, MB_YESNO | MB_ICONWARNING);
 	}
 	return (ret == IDYES);
+}
+
+void CMainFrame::OnHelpCheckForUpdates()
+{
+	CVersionInfo version(AfxGetResourceHandle());
+	CInternetSession session;
+	try
+	{
+		CHttpFile *file = (CHttpFile *)session.OpenURL(CurrentVersionURL);
+		if (!file)
+			return;
+		char buf[256] = { 0 };
+		file->Read(buf, sizeof(buf));
+		file->Close();
+		String current_version = ucr::toTString(buf);
+		string_replace(current_version, _T("\r\n"), _T(""));
+		delete file;
+
+		int exe_vers[4] = { 0 }, cur_vers[4] = { 0 };
+		_stscanf(version.GetProductVersion().c_str(), _T("%d.%d.%d.%d"), &exe_vers[0], &exe_vers[1], &exe_vers[2], &exe_vers[3]);
+		_stscanf(current_version.c_str(),             _T("%d.%d.%d.%d"), &cur_vers[0], &cur_vers[1], &cur_vers[2], &cur_vers[3]);
+		String exe_version_hex = string_format(_T("%08x%08x%08x%08x"), exe_vers[0], exe_vers[1], exe_vers[2], exe_vers[3]);
+		String cur_version_hex = string_format(_T("%08x%08x%08x%08x"), cur_vers[0], cur_vers[1], cur_vers[2], cur_vers[3]);
+
+		switch (exe_version_hex.compare(cur_version_hex))
+		{
+		case 1:
+			if (cur_version_hex == _T("00000000000000000000000000000000"))
+			{
+				String msg = _("Failed to download latest version information");
+				AfxMessageBox(msg.c_str(), MB_ICONERROR);
+				break;
+			}
+			// pass through
+		case 0:
+		{
+			String msg = _("Your software is up to date");
+			AfxMessageBox(msg.c_str(), MB_ICONINFORMATION);
+			break;
+		}
+		case -1:
+		{
+			String msg = string_format_string2(_("A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"), current_version, version.GetProductVersion());
+			if (AfxMessageBox(msg.c_str(), MB_ICONINFORMATION | MB_YESNO) == IDYES)
+				ShellExecute(NULL, _T("open"), DownloadUrl, NULL, NULL, SW_SHOWNORMAL);
+			break;
+		}
+		}
+	}
+	catch (CException& e)
+	{
+		TCHAR msg[512];
+		e.GetErrorMessage(msg, sizeof(msg)/sizeof(msg[0]));
+		AfxMessageBox(msg, MB_ICONERROR);
+	}
 }
 
 /**

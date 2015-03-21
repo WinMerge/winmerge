@@ -68,7 +68,6 @@ void PropArchive::WriteOptions()
 BOOL PropArchive::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
-	m_wwwLink.m_link = DownloadUrl;
 	UpdateData(FALSE);
 
 	UpdateControls();

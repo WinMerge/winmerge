@@ -131,15 +131,12 @@ BOOL PropCompareFolder::OnInitDialog()
  */
 void PropCompareFolder::OnDefaults()
 {
-	unsigned tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_METHOD, tmp);
-	m_compareMethod = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst);
-	GetOptionsMgr()->GetDefault(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders);
-	GetOptionsMgr()->GetDefault(OPT_DIRVIEW_EXPAND_SUBDIRS, m_bExpandSubdirs);
-	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints);
-	GetOptionsMgr()->GetDefault(OPT_CMP_QUICK_LIMIT, tmp);
-	m_nQuickCompareLimit = tmp / Mega;
+	m_compareMethod = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_METHOD);
+	m_bStopAfterFirst = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_STOP_AFTER_FIRST);
+	m_bIncludeUniqFolders = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_WALK_UNIQUE_DIRS);
+	m_bExpandSubdirs = GetOptionsMgr()->GetDefault<bool>(OPT_DIRVIEW_EXPAND_SUBDIRS);
+	m_bIgnoreReparsePoints = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_REPARSE_POINTS);
+	m_nQuickCompareLimit = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_QUICK_LIMIT) / Mega;
 	UpdateData(FALSE);
 }
 
