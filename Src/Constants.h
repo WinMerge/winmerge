@@ -7,7 +7,7 @@
 #pragma once
 
 /** @brief URL for hyperlink in About-dialog. */
-const TCHAR WinMergeURL[] = _T("http://winmerge.org/");
+const TCHAR WinMergeURL[] = _T("http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html");
 
 /**
  * @brief URL to help index in internet.
@@ -22,7 +22,9 @@ const TCHAR TranslationsUrl[] = _T("http://winmerge.org/translations/");
 const TCHAR LicenceUrl[] = _T("http://www.gnu.org/licenses/gpl-2.0.html");
 
 /** @brief WinMerge download page URL. */
-const TCHAR DownloadUrl[] = _T("http://winmerge.org/downloads/");
+const TCHAR DownloadUrl[] = _T("http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html#downloads");
+
+const TCHAR CurrentVersionURL[] = _T("http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge-jp_current_version.txt");
 
 /** @brief Relative (to WinMerge executable ) path to local help file. */
 const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");

@@ -276,6 +276,7 @@ protected:
 	afx_msg void OnToolbarBig();
 	afx_msg void OnUpdateToolbarBig(CCmdUI* pCmdUI);
 	afx_msg BOOL OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnHelpCheckForUpdates();
 	afx_msg void OnHelpReleasenotes();
 	afx_msg void OnHelpTranslations();
 	afx_msg void OnFileOpenConflict();
