@@ -59,8 +59,8 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 
 #define CX_CHECKBOX_ADDON			14		// Additional width of the checkbox.
 
-#define CX_BUTTON					40		// Standard width of a button.
-#define CY_BUTTON					14		// Standard height of a button.
+#define CX_BUTTON					51		// Standard width of a button.
+#define CY_BUTTON					15		// Standard height of a button.
 #define CX_BUTTON_BORDER			4		// Standard border for a button.
 #define CY_BUTTON_BORDER			1		// Standard border for a button.
 #define CX_BUTTON_SPACE				4		// Standard space for a button.
@@ -111,6 +111,10 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 	m_sButton			= CSize(0, 0);
 
     m_aButtons.clear();
+
+	LOGFONT logfont;
+	SystemParametersInfo(SPI_GETICONTITLELOGFONT, sizeof(LOGFONT), &logfont, 0);
+	m_font.CreateFontIndirect(&logfont);
 }
 
 /*
@@ -807,6 +811,26 @@ void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 	CDialog::OnTimer(nIDEvent);
 }
 
+BOOL CMessageBoxDialog::OnEraseBkgnd(CDC* pDC)
+{
+	CRect rect;
+	GetClientRect(&rect);
+	pDC->FillSolidRect(&rect, ::GetSysColor(COLOR_BTNFACE));
+	rect.bottom = rect.bottom - YDialogUnitToPixel(CY_BUTTON + CY_BORDER * 2);
+	pDC->FillSolidRect(&rect, ::GetSysColor(COLOR_WINDOW));
+	return TRUE;
+}
+
+HBRUSH CMessageBoxDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	if (nCtlColor == CTLCOLOR_STATIC)
+	{
+		pDC->SetBkMode(OPAQUE);
+		pDC->SetBkColor(::GetSysColor(COLOR_WINDOW));
+		return static_cast<HBRUSH>(GetSysColorBrush(COLOR_WINDOW));
+	}
+	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+}
 
 //////////////////////////////////////////////////////////////////////////////
 // Other dialog handling methods.
@@ -844,6 +868,8 @@ BOOL CMessageBoxDialog::OnWndMsg ( UINT message, WPARAM wParam, LPARAM lParam,
 
 BEGIN_MESSAGE_MAP(CMessageBoxDialog, CDialog)
 	ON_WM_TIMER()
+	ON_WM_ERASEBKGND()
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1265,7 +1291,7 @@ void CMessageBoxDialog::CreateMessageControl ( )
 	dcDisplay.CreateDC(_T("DISPLAY"), NULL, NULL, NULL);
 
 	// Select the new font and store the old one.
-	CFont* pOldFont = dcDisplay.SelectObject(GetFont());
+	CFont* pOldFont = dcDisplay.SelectObject(&m_font);
 
 	// Define the maximum width of the message.
 	int nMaxWidth = ( GetSystemMetrics(SM_CXSCREEN) / 2 ) + 100;
@@ -1320,7 +1346,7 @@ void CMessageBoxDialog::CreateMessageControl ( )
 	}
 
 	// Set the font of the dialog.
-	m_stcMessage.SetFont(GetFont());
+	m_stcMessage.SetFont(&m_font);
 }
 
 /*
@@ -1361,7 +1387,7 @@ void CMessageBoxDialog::CreateCheckboxControl ( )
 		CClientDC dc(this);
 
 		// Retrieve the font for this dialog and select it.
-		CFont* pWndFont = GetFont();
+		CFont* pWndFont = &m_font;
 		CFont* pOldFont = dc.SelectObject(pWndFont);
 
 		// Retrieve the size of the text.
@@ -1414,7 +1440,7 @@ void CMessageBoxDialog::CreateButtonControls ( )
 	CClientDC dc(this);
 
 	// Retrieve the font for this dialog and select it.
-	CFont* pWndFont = GetFont();
+	CFont* pWndFont = &m_font;
 	CFont* pOldFont = dc.SelectObject(pWndFont);
 
 	// Create a dummy rect.
@@ -1472,19 +1498,19 @@ void CMessageBoxDialog::CreateButtonControls ( )
 void CMessageBoxDialog::DefineLayout ( )
 {
 	// Create a variable for storing the size of the dialog.
-	CSize sClient = CSize(2 * XDialogUnitToPixel(CX_BORDER),
-		2 * YDialogUnitToPixel(CY_BORDER));
+	CSize sClient = CSize(4 * XDialogUnitToPixel(CX_BORDER),
+		3 * YDialogUnitToPixel(CY_BORDER));
 
 	// Create a variable to store the left position for a control element.
-	int nXPosition = XDialogUnitToPixel(CX_BORDER);
-	int nYPosition = YDialogUnitToPixel(CY_BORDER);
+	int nXPosition = XDialogUnitToPixel(CX_BORDER) * 2;
+	int nYPosition = YDialogUnitToPixel(CY_BORDER) * 2;
 
 	// Check whether an icon is defined.
 	if ( m_hIcon != NULL )
 	{
 		// Move the icon control.
-		m_stcIcon.MoveWindow(XDialogUnitToPixel(CX_BORDER), 
-			YDialogUnitToPixel(CY_BORDER), m_sIcon.cx, m_sIcon.cy);
+		m_stcIcon.MoveWindow(XDialogUnitToPixel(CX_BORDER) * 2, 
+			YDialogUnitToPixel(CY_BORDER) * 2, m_sIcon.cx, m_sIcon.cy);
 
 		// Add the size of the icon to the size of the dialog.
 		sClient.cx += m_sIcon.cx + XDialogUnitToPixel(CX_BORDER);
@@ -1500,6 +1526,8 @@ void CMessageBoxDialog::DefineLayout ( )
 		YDialogUnitToPixel(CY_BORDER) + YDialogUnitToPixel(CY_BORDER / 2));
 
 	// Set the position of the message text.
+	if (m_sMessage.cy < m_sIcon.cy)
+		nYPosition += (m_sIcon.cy - m_sMessage.cy) / 2;
 	m_stcMessage.MoveWindow(nXPosition, nYPosition, m_sMessage.cx,
 		m_sMessage.cy);
 
@@ -1542,7 +1570,7 @@ void CMessageBoxDialog::DefineLayout ( )
 
 	// Add the size of the buttons to the dialog.
 	sClient.cx = max(sClient.cx, 2 * XDialogUnitToPixel(CX_BORDER) + cxButtons);
-	sClient.cy += cyButtons + YDialogUnitToPixel(CY_BORDER);
+	sClient.cy += cyButtons + YDialogUnitToPixel(CY_BORDER) * 2;
 
 	// Calculate the start y position for the buttons.
 	int nXButtonPosition = ( sClient.cx - cxButtons ) / 2;

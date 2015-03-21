@@ -572,7 +572,7 @@ int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 		return IDCANCEL;
 
 	// Create the message box dialog.
-	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType,
+	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType | MB_RIGHT_ALIGN,
 		nIDPrompt);
 	
 	if (m_pMainWnd->IsIconic())
