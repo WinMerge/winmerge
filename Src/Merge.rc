@@ -217,6 +217,7 @@ BEGIN
     BEGIN
         MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
+        MENUITEM "&Check For Updates",          ID_HELP_CHECKFORUPDATES
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
@@ -344,6 +345,7 @@ BEGIN
     BEGIN
         MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
+        MENUITEM "&Check For Updates",          ID_HELP_CHECKFORUPDATES
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
@@ -589,6 +591,7 @@ BEGIN
     BEGIN
         MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
+        MENUITEM "&Check For Updates",          ID_HELP_CHECKFORUPDATES
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
@@ -2935,6 +2938,9 @@ BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
     ID_HELP_RELEASENOTES    "Opens the release notes document\nRelease Notes"
     ID_HELP_TRANSLATIONS    "Opens the translations website\nTranslations"
+	IDS_CHECKFORUPDATES_UPTODATE "Your software is up to date"
+	IDS_CHECKFORUPDATES_NEWVERSION "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
+	IDS_CHECKFORUPDATES_FAILED "Failed to download latest version information"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS
