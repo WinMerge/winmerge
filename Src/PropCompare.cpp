@@ -104,14 +104,12 @@ BOOL PropCompare::OnInitDialog()
  */
 void PropCompare::OnDefaults()
 {
-	unsigned tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_WHITESPACE, tmp);
-	m_nIgnoreWhite = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_EOL, m_bIgnoreEol);
-	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines);
-	GetOptionsMgr()->GetDefault(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines);
-	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_CASE, m_bIgnoreCase);
-	GetOptionsMgr()->GetDefault(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks);
-	GetOptionsMgr()->GetDefault(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
+	m_nIgnoreWhite = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_IGNORE_WHITESPACE);
+	m_bIgnoreEol = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_EOL);
+	m_bIgnoreBlankLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_BLANKLINES);
+	m_bFilterCommentsLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_FILTER_COMMENTLINES);
+	m_bIgnoreCase = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_CASE);
+	m_bMovedBlocks = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MOVED_BLOCKS);
+	m_bMatchSimilarLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MATCH_SIMILAR_LINES);
 	UpdateData(FALSE);
 }
