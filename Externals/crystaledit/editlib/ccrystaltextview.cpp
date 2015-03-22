@@ -548,6 +548,8 @@ CCrystalTextView::~CCrystalTextView ()
   ASSERT (m_pCacheBitmap == NULL);
   ASSERT (m_pTextBuffer == NULL);   //  Must be correctly detached
 
+  delete m_pFindTextDlg;
+
   if (m_pszLastFindWhat != NULL)
     {
       free (m_pszLastFindWhat);
