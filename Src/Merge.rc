@@ -933,24 +933,24 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Automatically &scroll to first difference",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    17,220,10
+                    7,220,10
     CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,220,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,17,220,10
     CONTROL         "&Automatically verify paths in Open-dialog",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,37,220,10
+                    WS_TABSTOP,7,27,220,10
     CONTROL         "All&ow only one instance to run",IDC_SINGLE_INSTANCE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,220,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,220,10
     CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,220,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,220,10
     CONTROL         "&Preserve file time in file compare",
                     IDC_PRESERVE_FILETIME,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,7,67,220,10
+                    WS_TABSTOP,7,57,220,10
     CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,77,220,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,220,10
     CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,87,220,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,101,208,8
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP | BS_MULTILINE,7,77,220,20
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,99,208,10
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,111,147,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,130,
@@ -959,12 +959,12 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,141,206,10
     CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,151,206,10
-    LTEXT           "Language:",IDC_STATIC,7,171,80,8
-    COMBOBOX        IDC_LANGUAGE_LIST,7,181,221,41,CBS_DROPDOWNLIST | 
+    LTEXT           "Language:",IDC_STATIC,7,168,80,8
+    COMBOBOX        IDC_LANGUAGE_LIST,7,178,221,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
-                    IDC_STATIC,7,198,168,31
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,205,50,14,NOT
+                    IDC_STATIC,7,195,173,38
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,183,205,45,14,NOT
                     WS_TABSTOP
 END
 
@@ -1149,7 +1149,7 @@ BEGIN
     CONTROL         "",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Same As The Next(3 panes):",IDC_STATIC,7,129,90,16
+    RTEXT           "Same As The Next(3 panes):",IDC_STATIC,7,129,90,18
     CONTROL         "",IDC_SNP_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -1161,7 +1161,7 @@ BEGIN
     CONTROL         "",IDC_SNP_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Same As The Next(Selected):",IDC_STATIC,7,149,90,16
+    RTEXT           "Same As The Next(Selected):",IDC_STATIC,7,149,90,18
     CONTROL         "",IDC_SEL_SNP_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -1495,8 +1495,8 @@ BEGIN
     CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,55,210,10
     CONTROL         "Custom codepage:",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,68,77,10
-    COMBOBOX        IDC_CUSTOM_CP_NUMBER,93,67,125,130,CBS_DROPDOWN | WS_GROUP |
+                    BS_AUTORADIOBUTTON,13,68,80,10
+    COMBOBOX        IDC_CUSTOM_CP_NUMBER,96,67,122,130,CBS_DROPDOWN | WS_GROUP |
                     WS_VSCROLL | WS_TABSTOP
 END
 
