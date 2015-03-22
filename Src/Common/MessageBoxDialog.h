@@ -180,6 +180,8 @@ public:
 
 	// Method for handling a timer event.
 	afx_msg void OnTimer ( UINT_PTR nIDEvent );
+	afx_msg BOOL OnEraseBkgnd( CDC* pDC );
+	afx_msg HBRUSH OnCtlColor( CDC* pDC, CWnd* pWnd, UINT nCtlColor );
 
 protected:
 
@@ -211,6 +213,7 @@ private:
 	CString		m_strRegistryKey;	// Entry for storing the result in the
 									// registry, if the MB_DONT_DISPLAY_AGAIN
 									// or MB_DONT_ASK_AGAIN flag is given.
+	CFont       m_font;
 
 private:
 

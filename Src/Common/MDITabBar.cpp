@@ -52,7 +52,11 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 		return FALSE;
 
 	TabCtrl_SetPadding(m_hWnd, 16, 4);
-	SetFont(CFont::FromHandle((HFONT)GetStockObject(DEFAULT_GUI_FONT)));
+
+	LOGFONT logfont;
+	SystemParametersInfo(SPI_GETICONTITLELOGFONT, sizeof(LOGFONT), &logfont, 0);
+	m_font.CreateFontIndirect(&logfont);
+	SetFont(&m_font);
 
 	return TRUE;
 }
@@ -71,7 +75,7 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	pdc->GetTextMetrics(&tm);
 	ReleaseDC(pdc);
 
-	return CSize(SHRT_MAX, tm.tmHeight + 6);
+	return CSize(SHRT_MAX, tm.tmHeight + 7);
 }
 
 void CMDITabBar::OnPaint() 
