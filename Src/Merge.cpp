@@ -366,6 +366,10 @@ BOOL CMergeApp::InitInstance()
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
+	LOGFONT logfont;
+	SystemParametersInfo(SPI_GETICONTITLELOGFONT, sizeof(LOGFONT), &logfont, 0);
+	m_fontGUI.CreateFontIndirect(&logfont);
+
 	if (m_pSyntaxColors)
 		Options::SyntaxColors::Load(m_pSyntaxColors.get());
 
@@ -580,7 +584,7 @@ int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 		return IDCANCEL;
 
 	// Create the message box dialog.
-	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType,
+	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType | MB_RIGHT_ALIGN,
 		nIDPrompt);
 	
 	if (m_pMainWnd->IsIconic())
@@ -1290,6 +1294,10 @@ void CMergeApp::TranslateMenu(HMENU h) const
  */
 void CMergeApp::TranslateDialog(HWND h) const
 {
+	CWnd *pWnd = CWnd::FromHandle(h);
+	pWnd->SetFont(const_cast<CFont *>(&m_fontGUI));
+	pWnd->SendMessageToDescendants(WM_SETFONT, (WPARAM)m_fontGUI.m_hObject, MAKELPARAM(FALSE, 0), TRUE);
+
 	m_pLangDlg->TranslateDialog(h);
 }
 
