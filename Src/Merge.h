@@ -215,6 +215,7 @@ private:
 	bool m_bNonInteractive;
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
+	CFont m_fontGUI;
 };
 
 extern CMergeApp theApp;
