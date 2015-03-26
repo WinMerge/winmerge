@@ -50,9 +50,6 @@ BOOL BCMenu::original_select_disabled=TRUE;
 UINT BCMenu::xp_drawmode=BCMENU_DRAWMODE_XP;
 BOOL BCMenu::xp_select_disabled=FALSE;
 
-// Set to FALSE since TRUE value causes WinMerge to start slowly in WinXP
-// Ref: BUG item #1052762 WinMerge VERY slow to startup
-// https://sourceforge.net/tracker/index.php?func=detail&aid=1052762&group_id=13216&atid=113216
 BOOL BCMenu::xp_draw_3D_bitmaps=TRUE;
 BOOL BCMenu::hicolor_bitmaps=FALSE;
 // Variable to set how accelerators are justified. The default mode (TRUE) right
@@ -65,18 +62,6 @@ CImageList BCMenu::m_AllImages;
 CArray<int,int&> BCMenu::m_AllImagesID;
 int BCMenu::m_iconX = 16;
 int BCMenu::m_iconY = 15;
-
-enum Win32Type{
-	Win32s,
-	WinNT3,
-	Win95,
-	Win98,
-	WinME,
-	WinNT4,
-	Win2000,
-	WinXP
-};
-
 
 // The Representation of a 32 bit color table entry
 #pragma pack(push)
@@ -137,45 +122,6 @@ static void MySetDibBits(HDC hdcDst, HBITMAP hBmpDst, pBGR pdstBGR, int nx, int 
 	SetDIBits(hdcDst, hBmpDst, 0, ny, pdstBGR, &bi, DIB_RGB_COLORS);
 }
 
-Win32Type IsShellType()
-{
-	Win32Type  ShellType;
-	DWORD winVer;
-	OSVERSIONINFO *osvi;
-	
-	winVer=GetVersion();
-	if(winVer<0x80000000){/*NT */
-		ShellType=WinNT3;
-		osvi= (OSVERSIONINFO *)malloc(sizeof(OSVERSIONINFO));
-		if (osvi!=NULL){
-			memset(osvi,0,sizeof(OSVERSIONINFO));
-			osvi->dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
-			GetVersionEx(osvi);
-			if(osvi->dwMajorVersion==4L)ShellType=WinNT4;
-			else if(osvi->dwMajorVersion==5L&&osvi->dwMinorVersion==0L)ShellType=Win2000;
-			else if(osvi->dwMajorVersion==5L&&osvi->dwMinorVersion==1L)ShellType=WinXP;
-			free(osvi);
-		}
-	}
-	else if  (LOBYTE(LOWORD(winVer))<4)
-		ShellType=Win32s;
-	else{
-		ShellType=Win95;
-		osvi= (OSVERSIONINFO *)malloc(sizeof(OSVERSIONINFO));
-		if (osvi!=NULL){
-			memset(osvi,0,sizeof(OSVERSIONINFO));
-			osvi->dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
-			GetVersionEx(osvi);
-			if(osvi->dwMajorVersion==4L&&osvi->dwMinorVersion==10L)ShellType=Win98;
-			else if(osvi->dwMajorVersion==4L&&osvi->dwMinorVersion==90L)ShellType=WinME;
-			free(osvi);
-		}
-	}
-	return ShellType;
-}
-
-static Win32Type g_Shell=IsShellType();
-
 void BCMenuData::SetAnsiString(LPCSTR szAnsiString)
 {
 	USES_CONVERSION;
@@ -234,18 +180,10 @@ BCMenu::~BCMenu()
 	DestroyMenu();
 }
 
-BOOL BCMenu::IsNewShell ()
-{
-	return (g_Shell>=Win95);
-}
-
 BOOL BCMenu::IsWinXPLuna()
 {
-	if(g_Shell==WinXP){
-		if(IsWindowsClassicTheme())return(FALSE);
-		else return(TRUE);
-	}
-	return(FALSE);
+	if(IsWindowsClassicTheme())return(FALSE);
+	else return(TRUE);
 }
 
 BOOL BCMenu::IsLunaMenuStyle()
@@ -522,14 +460,12 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 				pDC->FillRect (rect2,&m_brBackground);
 				rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
 					rect.top+m_iconY+4+dy);
-				if (IsNewShell()){
-					if(state&ODS_CHECKED)
-						pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
-						GetSysColor(COLOR_3DHILIGHT));
-					else
-						pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DHILIGHT),
-						GetSysColor(COLOR_3DSHADOW));
-				}
+				if(state&ODS_CHECKED)
+					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
+					GetSysColor(COLOR_3DHILIGHT));
+				else
+					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DHILIGHT),
+					GetSysColor(COLOR_3DSHADOW));
 				CPoint ptImage(rect.left+2,rect.top+2+dy);
 				if(bitmap)bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 			}
@@ -543,9 +479,8 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 					brush.DeleteObject();
 					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
                         rect.top+m_iconY+4+dy);
-					if (IsNewShell())
-						pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
-						GetSysColor(COLOR_3DHILIGHT));
+					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
+					GetSysColor(COLOR_3DHILIGHT));
 				}
 				else{
 					pDC->FillRect (rect2,&m_brBackground);
@@ -1040,8 +975,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		CDC *pDC = pWnd->GetDC();              // Get device context
 		CFont* pFont=NULL;    // Select menu font in...
 		
-		if (IsNewShell())
-			pFont = pDC->SelectObject (&m_fontMenu);// Select menu font in...
+		pFont = pDC->SelectObject (&m_fontMenu);// Select menu font in...
         
 		//Get pointer to text SK
 		const wchar_t *lpstrText = ((BCMenuData*)(lpMIS->itemData))->GetWideString();//SK: we use const to prevent misuse
@@ -1049,8 +983,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		SIZE size;
 		size.cx=size.cy=0;
 		
-		if (Win32s!=g_Shell)
-			VERIFY(::GetTextExtentPoint32W(pDC->m_hDC,lpstrText,
+		VERIFY(::GetTextExtentPoint32W(pDC->m_hDC,lpstrText,
 			wcslen(lpstrText),&size)); //SK should also work on 95
 #ifndef UNICODE //can't be UNICODE for Win32s
 		else{//it's Win32suckx
@@ -1066,8 +999,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 #endif    
 		
 		CSize t = CSize(size);
-		if(IsNewShell())
-			pDC->SelectObject (pFont);  // Select old font in
+		pDC->SelectObject (pFont);  // Select old font in
 		pWnd->ReleaseDC(pDC);  // Release the DC
 		
 		// Set width and height:
@@ -2595,8 +2527,7 @@ BOOL BCMenu::Draw3DCheckmark(CDC *dc, const CRect& rc,
 	brush.CreateSolidBrush(col);
 	dc->FillRect(rcDest,&brush);
 	brush.DeleteObject();
-	if (IsNewShell()) //SK: looks better on the old shell
-		dc->DrawEdge(&rcDest, BDR_SUNKENOUTER, BF_RECT);
+	dc->DrawEdge(&rcDest, BDR_SUNKENOUTER, BF_RECT);
 	if (!hbmCheck)DrawCheckMark(dc,rc.left+4,rc.top+4,GetSysColor(COLOR_MENUTEXT));
 	else DrawRadioDot(dc,rc.left+5,rc.top+4,GetSysColor(COLOR_MENUTEXT));
 	return TRUE;
