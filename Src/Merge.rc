@@ -1966,7 +1966,6 @@ END
 STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
-    AFX_IDS_IDLEMESSAGE     "Ready"
 END
 
 // Generic status bar strings
@@ -1980,128 +1979,14 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-// Generic File menu commands
-STRINGTABLE
-BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
-    ID_FILE_NEW3            "Create empty documents (3 panes)\nNew Documents"
-    ID_FILE_OPEN            "Open an existing document\nOpen (Ctrl+O)"
-    ID_FILE_CLOSE           "Close the active document\nClose"
-    ID_FILE_SAVE            "Save the active document\nSave (Ctrl+S)"
-    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
-    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
-    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
-    ID_FILE_PRINT           "Print the active document\nPrint"
-    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
-END
-
-STRINGTABLE
-BEGIN
-    ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
-    ID_VIEW_TREEMODE        "Toggle tree mode"
-    ID_VIEW_EXPAND_ALLSUBDIRS   "Expand all subfolders"
-    ID_VIEW_COLLAPSE_ALLSUBDIRS "Collapse all subfolders"
-END
-
 // WinMerge Project Files
 STRINGTABLE
 BEGIN
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
     IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
     IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
     IDS_PROJFILEDLG_CAPTION "Project File"
     IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
     IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
-    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
-END
-
-STRINGTABLE
-BEGIN
-    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
-    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
-END
-
-// MRU list
-STRINGTABLE
-BEGIN
-    ID_FILE_MRU_FILE1       "Open this document"
-    ID_FILE_MRU_FILE2       "Open this document"
-    ID_FILE_MRU_FILE3       "Open this document"
-    ID_FILE_MRU_FILE4       "Open this document"
-    ID_FILE_MRU_FILE5       "Open this document"
-    ID_FILE_MRU_FILE6       "Open this document"
-    ID_FILE_MRU_FILE7       "Open this document"
-    ID_FILE_MRU_FILE8       "Open this document"
-    ID_FILE_MRU_FILE9       "Open this document"
-    ID_FILE_MRU_FILE10      "Open this document"
-    ID_FILE_MRU_FILE11      "Open this document"
-    ID_FILE_MRU_FILE12      "Open this document"
-    ID_FILE_MRU_FILE13      "Open this document"
-    ID_FILE_MRU_FILE14      "Open this document"
-    ID_FILE_MRU_FILE15      "Open this document"
-    ID_FILE_MRU_FILE16      "Open this document"
-END
-
-STRINGTABLE
-BEGIN
-    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
-    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
-END
-
-// Generic window menu commands
-STRINGTABLE
-BEGIN
-    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
-    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles horizontally\nTile Windows Horizontally"
-    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles vertically\nTile Windows Vertically"
-END
-
-// Generic Edit commands
-STRINGTABLE
-BEGIN
-    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
-    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
-    ID_EDIT_FIND            "Find the specified text\nFind"
-    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
-    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
-    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
-    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
-    ID_EDIT_UNDO            "Undo the last action\nUndo (Ctrl+Z)"
-    ID_EDIT_REDO            "Redo the previously undone action\nRedo (Ctrl+Y)"
-END
-
-// View bar commands
-STRINGTABLE
-BEGIN
-    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
-    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
-    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
-    ID_VIEW_RESIZE_PANES    "Automatically resize panes\nLock Panes"
-END
-
-// Windows System menu
-STRINGTABLE
-BEGIN
-    AFX_IDS_SCSIZE          "Change the window size"
-    AFX_IDS_SCMOVE          "Change the window position"
-    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
-    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
-    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
-    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
-    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
-END
-
-STRINGTABLE
-BEGIN
-    AFX_IDS_SCRESTORE       "Restore the window to normal size"
-    AFX_IDS_SCTASKLIST      "Activate Task List"
-    AFX_IDS_MDICHILD        "Activate this window"
-END
-
-// Print Preview
-STRINGTABLE
-BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
 END
 
 // WINMERGE INFORMATION
@@ -2110,27 +1995,6 @@ BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGEDOCTYPE        "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
     IDR_DIRDOCTYPE          "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
-END
-
-// CUSTOM CONTROLS
-// OPTIONS NAME TO PRESERVE/UNIFY EOL
-STRINGTABLE
-BEGIN
-    IDC_MIXED_EOL           "Preserve original EOL chars"
-END
-
-// DIRECTORY DIFFING : SUMMARY BAR
-STRINGTABLE
-BEGIN
-    IDC_COMPARISON_STOP     "Stop"
-END
-
-// EDITOR : FILENAME BAR
-STRINGTABLE
-BEGIN
-    IDC_STATIC_TITLE_PANE0  "Right click on the path to copy"
-    IDC_STATIC_TITLE_PANE1  "Right click on the path to copy"
-    IDC_STATIC_TITLE_PANE2  "Right click on the path to copy"
 END
 
 // SPLASH SCREEN TEXTS
@@ -2427,15 +2291,6 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
-    ID_DIR_DEL_LEFT         "Delete selected item on left"
-    ID_DIR_DEL_RIGHT        "Delete selected item on right"
-    ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
-    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
-    ID_DIR_ITEM_RENAME      "Rename selected item on both sides"
     IDS_COPY_TO_LEFT        "Right to Left (%1)"
     IDS_COPY_TO_RIGHT       "Left to Right (%1)"
     IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
@@ -2482,33 +2337,13 @@ END
 // DIRECTORY DIFFING : OPEN FILE
 STRINGTABLE
 BEGIN
-    ID_DIR_OPEN_LEFT        "Open left file"
-    ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
-    ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
-    ID_DIR_OPEN_RIGHT       "Open right file"
-    ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
-    ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
     IDS_ERROR_EXECUTE_FILE   "Failed to execute external editor: %1"
-    ID_DIR_COPY_FILENAMES   "Copy filenames to clipboard"
-    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
-    ID_DIR_COPY_LEFT_TO_CLIPBOARD "Copy selected left item to clipboard"
-    ID_DIR_COPY_RIGHT_TO_CLIPBOARD "Copy selected right item to clipboard"
 END
 
 // DIRECTORY DIFFING : 7ZIP
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
-    ID_DIR_ZIP_LEFT         "Add items from left side to archive"
-    ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
-    ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
-    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
-    ID_DIR_MOVE_LEFT_TO_BROWSE
-                            "Move selected file on left to custom directory"
-    ID_DIR_MOVE_RIGHT_TO_BROWSE
-                            "Move selected file on right to custom directory"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #1
@@ -2698,13 +2533,6 @@ BEGIN
     IDS_EDIT_TEXT_NOT_FOUND "Cannot find string ""%s"""
 END
 
-// EDITOR : FILENAME BAR POPUP
-STRINGTABLE
-BEGIN
-    ID_EDITOR_COPY_PATH     "Copy Full Path"
-    ID_EDITOR_COPY_FILENAME "Copy Filename"
-END
-
 // EDITOR : MERGE MODE
 STRINGTABLE
 BEGIN
@@ -2799,177 +2627,38 @@ BEGIN
     IDS_PLUGINS_TYPE_EDITSCRIPT "Editor script"
 END
 
-// MENU STRINGS
-// FILE MENU
-STRINGTABLE
-BEGIN
-    ID_FILE_SAVE_LEFT       "Save the left file"
-    ID_FILE_SAVE_MIDDLE     "Save the middle file"
-    ID_FILE_SAVE_RIGHT      "Save the right file"
-    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
-    ID_FILE_SAVEAS_MIDDLE   "Save the middle file with name..."
-    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
-    ID_FILE_LEFT_READONLY   "Change left file/folder read-only status"
-    ID_FILE_MIDDLE_READONLY "Change middle file/folder read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/folder read-only status"
-    ID_EOL_TO_DOS           "Convert EOL to Windows mode"
-    ID_EOL_TO_UNIX          "Convert EOL to Unix mode"
-    ID_EOL_TO_MAC           "Convert EOL to Mac mode"
-    ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
-    ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
-    ID_FILE_OPENCONFLICT    "Open and resolve conflict file"
-END
-
-// EDIT MENU
-STRINGTABLE
-BEGIN
-    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
-    ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
-    ID_OPTIONS              "Set program options\nOptions"
-    ID_REFRESH              "Refresh display\nRefresh (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
-    ID_RESCAN                   "Refresh/Reload selected items"
-    ID_EDIT_TOGGLE_BOOKMARK     "Toggle bookmark"
-    ID_EDIT_GOTO_NEXT_BOOKMARK  "Go to next bookmark"
-    ID_EDIT_GOTO_PREV_BOOKMARK  "Go to previous bookmark"
-    ID_EDIT_CLEAR_ALL_BOOKMARKS "Clear all bookmarks"
-END
-
-// VIEW MENU (ITEM TYPE)
-STRINGTABLE
-BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
-    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
-    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
-    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
-END
-
-// VIEW MENU
-STRINGTABLE
-BEGIN
-    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
-    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
-    ID_VIEW_WHITESPACE      "Shows whitespace characters"
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
-    ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
-    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different colors\nShow Line Difference"
-    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
-    ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
-    ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
-    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
-    ID_VIEW_ZOOMIN          "Increase text size"
-    ID_VIEW_ZOOMOUT         "Decrease text size"
-    ID_VIEW_ZOOMNORMAL      "Reset text zoom to default size"
-END
-
-// MERGE MENU
-STRINGTABLE
-BEGIN
-    ID_PREVDIFF             "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
-    ID_NEXTDIFF             "Scroll to the next difference\nNext Difference (Alt+Down)"
-    ID_PREVCONFLICT         "Scroll to the previous conflict\nPrevious Conflict (Alt+Shift+Up)"
-    ID_NEXTCONFLICT         "Scroll to the next conflict\nNext Conflict (Alt+Shift+Down)"
-    ID_PREVDIFFLM           "Scroll to the previous difference between left and middle\nPrevious Difference Between Left And Middle(Alt+Shift+1)"
-    ID_NEXTDIFFLM           "Scroll to the next difference between left and middle\nNext Difference Between Left And Middle(Alt+1)"
-    ID_PREVDIFFLR           "Scroll to the previous difference between left and right\nPrevious Difference Between Left And Middle(Alt+Shift+2)"
-    ID_NEXTDIFFLR           "Scroll to the next difference between left and right\nNext Difference Between Left And Middle (Alt+2)"
-    ID_PREVDIFFMR           "Scroll to the previous difference between middle and right\nPrevious Difference Between Middle And Right (Alt+Shift+3)"
-    ID_NEXTDIFFMR           "Scroll to the next difference between middle and Difference\nNext Difference Between Middle And Right (Alt+3)"
-    ID_PREVDIFFLO           "Scroll to the previous left only difference\nPrevious Left Only Difference (Alt+Shift+7)"
-    ID_NEXTDIFFLO           "Scroll to the next left only difference\nNext Left Only Difference (Alt+7)"
-    ID_PREVDIFFMO           "Scroll to the previous middle only difference\nPrevious Middle Only Difference (Alt+Shift+8)"
-    ID_NEXTDIFFMO           "Scroll to the next middle only difference\nNext Middle Only Difference (Alt+8)"
-    ID_PREVDIFFRO           "Scroll to the previous right only difference\nPrevious  Right Difference (Alt+Shift+9)"
-    ID_NEXTDIFFRO           "Scroll to the next right only difference\nNext Right Only Difference (Alt+9)"
-    ID_FIRSTDIFF            "Scroll to the first difference\nFirst Difference (Alt+Home)"
-    ID_CURDIFF              "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
-    ID_LASTDIFF             "Scroll to the last difference\nLast Difference (Alt+End)"
-    ID_L2R                  "Copy the selected text to the right file\nCopy Right (Alt+Right)"
-    ID_R2L                  "Copy the selected text to the left file\nCopy Left (Alt+Left)"
-    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
-    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
-    ID_ALL_RIGHT            "Copy all differences to the right file\nAll Right"
-    ID_ALL_LEFT             "Copy all differences to the left file\nAll Left"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
-    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
-    ID_ADD_SYNCPOINT        "Add a manual point for synchronization of changes between files"
-    ID_CLEAR_SYNCPOINTS     "Clear manual change synchronization points "
-    ID_AUTO_MERGE           "Automatically merge changes\nAuto Merge (Ctrl+Alt+M)"
-END
-
-// TOOLS MENU
-STRINGTABLE
-BEGIN
-    ID_TOOLS_CUSTOMIZECOLUMNS "Select and reorder directory compare columns"
-    ID_TOOLS_GENERATEPATCH  "Generate a patch-file"
-    ID_TOOLS_FILTERS        "Select and modify filters"
-    ID_TOOLS_GENERATEREPORT "Generates a report from compare results"
-END
-
 // PLUGINS MENU
 STRINGTABLE
 BEGIN
-    ID_PLUGINS_LIST         "Shows a list of available plugins"
     ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
     ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
     ID_NO_PREDIFFER         "No prediffer (normal)"
     ID_SUGGESTED_PLUGINS    "Suggested plugins"
     ID_NOT_SUGGESTED_PLUGINS "Other plugins"
-    ID_RELOAD_PLUGINS       "Unload all plugins and reload them (for developers)"
-END
-
-// WINDOW MENU
-STRINGTABLE
-BEGIN
-    ID_WINDOW_CHANGE_PANE   "Activates next visible file\nActivate next File"
-    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU
 STRINGTABLE
 BEGIN
-    ID_HELP_CONTENTS        "Opens the WinMerge Help\nWinMerge Help"
-    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
-    ID_HELP_GNULICENSE      "Display the GNU General Public License"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
-    ID_HELP_RELEASENOTES    "Opens the release notes document\nRelease Notes"
-    ID_HELP_TRANSLATIONS    "Opens the translations website\nTranslations"
-	IDS_CHECKFORUPDATES_UPTODATE "Your software is up to date"
-	IDS_CHECKFORUPDATES_NEWVERSION "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
-	IDS_CHECKFORUPDATES_FAILED "Failed to download latest version information"
+    IDS_CHECKFORUPDATES_UPTODATE "Your software is up to date"
+    IDS_CHECKFORUPDATES_NEWVERSION "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
+    IDS_CHECKFORUPDATES_FAILED "Failed to download latest version information"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS
 STRINGTABLE
 BEGIN
     ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
-    ID_PREDIFF_MANUAL       "No prediffer"
-    ID_PREDIFF_AUTO         "Prediff if possible"
     ID_NO_EDIT_SCRIPTS      "< Empty >"
     ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
     IDS_USERCHOICE_NONE     "<None>"
     IDS_USERCHOICE_AUTOMATIC "<Automatic>"
 END
 
-// FILE COMPARE CONTEXT MENU
-STRINGTABLE
-BEGIN
-    ID_FILE_OPEN_REGISTERED  "Open the file with registered application"
-    ID_FILE_OPEN_WITHEDITOR  "Open the file with external editor"
-    ID_FILE_OPEN_WITH        "Open the file with a particular program"
-END
-
 // LOCATIONBAR CONTEXT MENU
 STRINGTABLE
 BEGIN
-    ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
-    ID_DISPLAY_MOVED_ALL    "Display all moved blocks"
-    ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
-    ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
     ID_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
 END
 
@@ -3017,13 +2706,6 @@ BEGIN
     IDS_COLORSCHEME_TEX             "TEX"
     IDS_COLORSCHEME_VERILOG         "Verilog"
     IDS_COLORSCHEME_XML             "XML"
-END
-
-STRINGTABLE 
-BEGIN
-    ID_TOOLBAR_NONE         "Hide the toolbar"
-    ID_TOOLBAR_SMALL        "Show small toolbar"
-    ID_TOOLBAR_BIG          "Show big toolbar"
 END
 
 STRINGTABLE 

@@ -1363,22 +1363,6 @@ void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI)
 	pCmdUI->Enable(TRUE);
 }
 
-/**
- * @brief Handle translation of default messages on the status bar
- */
-void CMainFrame::GetMessageString(UINT nID, CString& rMessage) const
-{
-	// load appropriate string
-	const String s = theApp.LoadString(nID);
-
-	// avoid dereference of empty strings
-	if (s.length() <= 0 || !AfxExtractSubString(rMessage, s.c_str(), 0))
-	{
-		// not found
-		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);
-	}
-}
-
 void CMainFrame::ActivateFrame(int nCmdShow) 
 {
 	if (!m_bFirstTime)
