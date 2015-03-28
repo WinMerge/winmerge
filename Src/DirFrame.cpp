@@ -172,20 +172,6 @@ void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
 }
 
 /**
- * @brief Handle translation of default messages on the status bar
- */
-void CDirFrame::GetMessageString(UINT nID, CString& rMessage) const
-{
-	// load appropriate string
-	const String s = theApp.LoadString(nID);
-	if (!AfxExtractSubString(rMessage, s.c_str(), 0))
-	{
-		// not found
-		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);
-	}
-}
-
-/**
  * @brief Get the interface to the header (path) bar
  */
 IHeaderBar * CDirFrame::GetHeaderInterface() {
