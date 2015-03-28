@@ -403,11 +403,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
-	POPUP "Recompare As"
-	BEGIN
+        POPUP "Recompare As"
+        BEGIN
             MENUITEM "&XML",                    ID_MERGE_COMPARE_XML
             MENUITEM "&Binary",                 ID_MERGE_COMPARE_HEX
-	END
+        END
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
         BEGIN
@@ -504,26 +504,26 @@ BEGIN
         MENUITEM "Ne&xt Conflict\tAlt+Shift+Down",   ID_NEXTCONFLICT
         MENUITEM "Pre&vious Conflict\tAlt+Shift+Up", ID_PREVCONFLICT
         MENUITEM SEPARATOR
-	POPUP "A&dvanced"
-	BEGIN
-        MENUITEM "Next Difference Between Left and Middle\tAlt+1",  ID_NEXTDIFFLM
-        MENUITEM "Previous Difference Between Left And Middle\tAlt+Shift+1", ID_PREVDIFFLM
-        MENUITEM SEPARATOR
-        MENUITEM "Next Difference Between Left and Right\tAlt+2",  ID_NEXTDIFFLR
-        MENUITEM "Previous Difference Between Left And Right\tAlt+Shift+2", ID_PREVDIFFLR
-        MENUITEM SEPARATOR
-        MENUITEM "Next Difference Between Middle and Right\tAlt+3",  ID_NEXTDIFFMR
-        MENUITEM "Previous Difference Between Middle And Right\tAlt+Shift+3", ID_PREVDIFFMR
-        MENUITEM SEPARATOR
-        MENUITEM "Next Left Only Difference\tAlt+7",  ID_NEXTDIFFLO
-        MENUITEM "Previous Left Only Difference\tAlt+Shift+7", ID_PREVDIFFLO
-        MENUITEM SEPARATOR
-        MENUITEM "Next Middle Only Difference\tAlt+8",  ID_NEXTDIFFMO
-        MENUITEM "Previous Middle Only Difference\tAlt+Shift+8", ID_PREVDIFFMO
-        MENUITEM SEPARATOR
-        MENUITEM "Next Right Only Difference\tAlt+9",  ID_NEXTDIFFRO
-        MENUITEM "Previous Right Only Difference\tAlt+Shift+9", ID_PREVDIFFRO
-	END
+        POPUP "A&dvanced"
+        BEGIN
+            MENUITEM "Next Difference Between Left and Middle\tAlt+1",  ID_NEXTDIFFLM
+            MENUITEM "Previous Difference Between Left And Middle\tAlt+Shift+1", ID_PREVDIFFLM
+            MENUITEM SEPARATOR
+            MENUITEM "Next Difference Between Left and Right\tAlt+2",  ID_NEXTDIFFLR
+            MENUITEM "Previous Difference Between Left And Right\tAlt+Shift+2", ID_PREVDIFFLR
+            MENUITEM SEPARATOR
+            MENUITEM "Next Difference Between Middle and Right\tAlt+3",  ID_NEXTDIFFMR
+            MENUITEM "Previous Difference Between Middle And Right\tAlt+Shift+3", ID_PREVDIFFMR
+            MENUITEM SEPARATOR
+            MENUITEM "Next Left Only Difference\tAlt+7",  ID_NEXTDIFFLO
+            MENUITEM "Previous Left Only Difference\tAlt+Shift+7", ID_PREVDIFFLO
+            MENUITEM SEPARATOR
+            MENUITEM "Next Middle Only Difference\tAlt+8",  ID_NEXTDIFFMO
+            MENUITEM "Previous Middle Only Difference\tAlt+Shift+8", ID_PREVDIFFMO
+            MENUITEM SEPARATOR
+            MENUITEM "Next Right Only Difference\tAlt+9",  ID_NEXTDIFFRO
+            MENUITEM "Previous Right Only Difference\tAlt+Shift+9", ID_PREVDIFFRO
+        END
         MENUITEM SEPARATOR
         MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
         MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
@@ -737,8 +737,8 @@ BEGIN
             MENUITEM "Quick Contents",         ID_COMPMETHOD_QUICK_CONTENTS
             MENUITEM "Binary Contents",        ID_COMPMETHOD_BINARY_CONTENTS
             MENUITEM "Modified Date",          ID_COMPMETHOD_MODDATE
-			MENUITEM "Modified Date and Size", ID_COMPMETHOD_DATESIZE
-			MENUITEM "Size",                   ID_COMPMETHOD_SIZE
+            MENUITEM "Modified Date and Size", ID_COMPMETHOD_DATESIZE
+            MENUITEM "Size",                   ID_COMPMETHOD_SIZE
         END
     END
 END
