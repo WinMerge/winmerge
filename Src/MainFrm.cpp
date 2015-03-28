@@ -234,8 +234,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
 	ON_COMMAND(ID_HELP_CHECKFORUPDATES, OnHelpCheckForUpdates)
-	ON_COMMAND(ID_HELP_RELEASENOTES, OnHelpReleasenotes)
-	ON_COMMAND(ID_HELP_TRANSLATIONS, OnHelpTranslations)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
@@ -2811,25 +2809,6 @@ void CMainFrame::OnHelpCheckForUpdates()
 		e.GetErrorMessage(msg, sizeof(msg)/sizeof(msg[0]));
 		AfxMessageBox(msg, MB_ICONERROR);
 	}
-}
-
-/**
- * @brief Shows the release notes for user.
- * This function opens release notes HTML document into browser.
- */
-void CMainFrame::OnHelpReleasenotes()
-{
-	String sPath = env_GetProgPath() + RelNotes;
-	ShellExecute(NULL, _T("open"), sPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
-}
-
-/**
- * @brief Shows the translations page.
- * This function opens translations page URL into browser.
- */
-void CMainFrame::OnHelpTranslations()
-{
-	ShellExecute(NULL, _T("open"), TranslationsUrl, NULL, NULL, SW_SHOWNORMAL);
 }
 
 /**
