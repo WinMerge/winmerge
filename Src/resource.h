@@ -579,8 +579,6 @@
 #define IDS_STATUS_OPENING_SELECTION    16817
 #define IDS_STATUS_COPYL2R              16818
 #define IDS_STATUS_COPYR2L              16819
-#define IDS_STATUS_COPYL2M              26818
-#define IDS_STATUS_COPYR2M              26819
 #define IDS_STATUS_COPY_FROM_LEFT       26820
 #define IDS_STATUS_COPY_FROM_RIGHT      26821
 #define IDS_STATUS_COPYALL2L            16820
@@ -835,8 +833,6 @@
 #define IDS_MUST_SPECIFY_OUTPUT         18413
 #define IDS_FOLDER_NOTEXIST             18414
 #define IDS_NO_ZIP_SUPPORT              18449
-#define IDS_MERGE7Z_ENABLE_0            18450
-#define IDS_MERGE7Z_ENABLE_2            18451
 #define IDS_OPT_EXPORT_CAPTION          18452
 #define IDS_OPT_IMPORT_CAPTION          18453
 #define IDS_OPT_IMPORT_DONE             18454

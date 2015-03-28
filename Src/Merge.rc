@@ -2173,8 +2173,6 @@ BEGIN
     IDS_STATUS_OPENING_SELECTION "Opening selection"
     IDS_STATUS_COPYL2R      "Copying Left to Right"
     IDS_STATUS_COPYR2L      "Copying Right to Left"
-    IDS_STATUS_COPYL2M      "Copying Left to Middle"
-    IDS_STATUS_COPYR2M      "Copying Right to Middle"
     IDS_STATUS_COPY_FROM_LEFT "Copying From Left"
     IDS_STATUS_COPY_FROM_RIGHT "Copying From Right"
     IDS_STATUS_COPYALL2L    "Copying All to Left"
@@ -2581,8 +2579,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\nAll needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
-    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
-    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
     IDS_OPT_EXPORT_CAPTION  "Select file for export"
     IDS_OPT_IMPORT_CAPTION  "Select file for import"
     IDS_OPT_IMPORT_DONE     "Options imported from the file."
