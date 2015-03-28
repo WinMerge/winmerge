@@ -40,18 +40,6 @@ static char THIS_FILE[] = __FILE__;
 using std::swap;
 
 /**
- * @name Constants for short sizes.
- */
-/* @{ */
-static const UINT KILO = 1024;
-static const UINT MEGA = 1024 * KILO;
-static const UINT GIGA = 1024 * MEGA;
-static const int64_t TERA = 1024 * (int64_t) GIGA;
-/**
- * @}
- */
-
-/**
  * @brief Function to compare two int64_ts for a sort
  */
 static int cmp64(int64_t i1, int64_t i2)
@@ -110,69 +98,12 @@ static int cmpfloat(double v1, double v2)
  */
 static String MakeShortSize(int64_t size)
 {
-#pragma warning(disable:4244) // warning C4244: '=' : conversion from 'int64_t' to 'double', possible loss of data
-	double fsize = size;
-#pragma warning(default:4244) // warning C4244: '=' : conversion from 'int64_t' to 'double', possible loss of data
-	double number = 0;
-	int ndigits = 0;
-	String suffix;
-
-	if (size < KILO)
-	{
-		number = fsize;
-		suffix = theApp.LoadString(IDS_SUFFIX_BYTE);
-	}
-	else if (size < MEGA)
-	{
-		number = fsize / KILO;
-		suffix = theApp.LoadString(IDS_SUFFIX_KILO);
-		if (size < KILO * 10)
-		{
-			ndigits = 2;
-		}
-		else if (size < KILO * 100)
-		{
-			ndigits = 1;
-		}
-	}
-	else if (size < GIGA)
-	{
-		number = fsize / (MEGA);
-		suffix = theApp.LoadString(IDS_SUFFIX_MEGA);
-		if (size < MEGA * 10)
-		{
-			ndigits = 2;
-		}
-		else if (size < MEGA * 100)
-		{
-			ndigits = 1;
-		}
-	}
-	else if (size < (int64_t)TERA)
-	{
-		number = fsize / ((int64_t)GIGA);
-		suffix = theApp.LoadString(IDS_SUFFIX_GIGA);
-		if (size < (int64_t)GIGA * 10)
-		{
-			ndigits = 2;
-		}
-		else if (size < (int64_t)GIGA * 100)
-		{
-			ndigits = 1;
-		}
-	}
-	else
-	{
-		// overflow (?) -- show ">TB"
-		String s(_T(">"));
-		suffix = theApp.LoadString(IDS_SUFFIX_TERA);
-		s += suffix;
-		return s;
-	}
-
 	TCHAR buffer[48];
-	_sntprintf(buffer, countof(buffer), _T("%lf"), number);
-	return locality::GetLocaleStr(buffer, ndigits) + suffix;
+	if (size < 1024)
+		_sntprintf(buffer, _countof(buffer), _T("%d B"), static_cast<int>(size));
+	else
+		StrFormatByteSize64(size, buffer, _countof(buffer));
+	return buffer;
 }
 
 /**
