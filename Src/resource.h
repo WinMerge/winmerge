@@ -1068,10 +1068,8 @@
 #define ID_TOOLBAR_SMALL                33165
 #define ID_TOOLBAR_BIG                  33166
 #define ID_VIEW_RESIZE_PANES            33167
-#define ID_HELP_RELEASENOTES            33168
 #define ID_VIEW_ZOOMIN                  33169
 #define ID_VIEW_ZOOMOUT                 33170
-#define ID_HELP_TRANSLATIONS            33171
 #define ID_VIEW_ZOOMNORMAL              33172
 #define ID_PLUGINS_LIST                 33173
 #define ID_PREDIFFER_MANUAL             33174
