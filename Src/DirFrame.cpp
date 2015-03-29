@@ -159,7 +159,7 @@ void CDirFrame::SetStatus(LPCTSTR szStatus)
  */
 void CDirFrame::SetCompareMethodStatusDisplay(int nCompMethod)
 {
-	m_wndStatusBar.SetPaneText(PANE_COMPMETHOD, LoadResString(ID_COMPMETHOD_FULL_CONTENTS + nCompMethod).c_str());
+	m_wndStatusBar.SetPaneText(PANE_COMPMETHOD, LoadResString(IDS_COMPMETHOD_FULL_CONTENTS + nCompMethod).c_str());
 }
 
 /**

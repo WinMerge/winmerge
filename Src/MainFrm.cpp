@@ -3011,7 +3011,7 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 	if (mrus.size() == 0)
 	{
 		// no script : create a <empty> entry
-		::AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, theApp.LoadString(ID_NO_EDIT_SCRIPTS).c_str());
+		::AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, theApp.LoadString(IDS_NO_EDIT_SCRIPTS).c_str());
 	}
 	else
 	{

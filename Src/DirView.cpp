@@ -708,7 +708,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	CMenu menuPluginsHolder;
 	menuPluginsHolder.LoadMenu(IDR_POPUP_PLUGINS_SETTINGS);
 	theApp.TranslateMenu(menuPluginsHolder.m_hMenu);
-	String s = theApp.LoadString(ID_TITLE_PLUGINS_SETTINGS);
+	String s = theApp.LoadString(IDS_TITLE_PLUGINS_SETTINGS);
 	pPopup->AppendMenu(MF_SEPARATOR);
 	pPopup->AppendMenu(MF_POPUP, (int)menuPluginsHolder.m_hMenu, s.c_str());
 

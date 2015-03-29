@@ -966,7 +966,7 @@
 #define ID_HELP_GNULICENSE              32914
 #define IDS_PRIVATEBUILD_FMT            32915
 #define ID_HELP_SEARCH                  32916
-#define ID_TITLE_PLUGINS_SETTINGS       32928
+#define IDS_TITLE_PLUGINS_SETTINGS      32928
 #define ID_PREDIFF_MANUAL               32929
 #define ID_PREDIFF_AUTO                 32930
 #define ID_NO_EDIT_SCRIPTS              32931
@@ -1011,7 +1011,7 @@
 #define ID_DISPLAY_MOVED_ALL            33089
 #define ID_DISPLAY_MOVED_FOLLOW_DIFF    33090
 #define ID_LOCBAR_GOTODIFF              33091
-#define ID_LOCBAR_GOTOLINE_FMT          33093
+#define IDS_LOCBAR_GOTOLINE_FMT         33093
 #define ID_FILE_OPENPROJECT             33095
 #define ID_VIEW_SHOWHIDDENITEMS         33096
 #define ID_VIEW_SWAPPANES               33097
@@ -1152,6 +1152,18 @@
 #define IDS_CHECKFORUPDATES_UPTODATE    33258
 #define IDS_CHECKFORUPDATES_NEWVERSION  33259
 #define IDS_CHECKFORUPDATES_FAILED      33260
+#define IDS_UNPACK_AUTO                 33261
+#define IDS_NO_PREDIFFER                33262
+#define IDS_SUGGESTED_PLUGINS           33263
+#define IDS_NOT_SUGGESTED_PLUGINS       33264 
+#define IDS_NO_EDIT_SCRIPTS             33265
+#define IDS_NO_SCT_SCRIPTS              33266
+#define IDS_COMPMETHOD_FULL_CONTENTS    33267
+#define IDS_COMPMETHOD_QUICK_CONTENTS   33268
+#define IDS_COMPMETHOD_BINARY_CONTENTS  33269
+#define IDS_COMPMETHOD_MODDATE          33270
+#define IDS_COMPMETHOD_DATESIZE         33271
+#define IDS_COMPMETHOD_SIZE             33272
 
 // Next default values for new objects
 //
@@ -1159,7 +1171,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        242
-#define _APS_NEXT_COMMAND_VALUE         33261
+#define _APS_NEXT_COMMAND_VALUE         33273
 #define _APS_NEXT_CONTROL_VALUE         1358
 #define _APS_NEXT_SYMED_VALUE           115
 #endif
