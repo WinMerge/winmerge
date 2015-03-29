@@ -1973,6 +1973,14 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// Generic File menu commands
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "\nNew Documents (Ctrl+N)"
+    ID_FILE_OPEN            "\nOpen (Ctrl+O)"
+    ID_FILE_SAVE            "\nSave (Ctrl+S)"
+END
+
 // WinMerge Project Files
 STRINGTABLE
 BEGIN
@@ -1981,6 +1989,13 @@ BEGIN
     IDS_PROJFILEDLG_CAPTION "Project File"
     IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
     IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
+END
+
+// Generic Edit commands
+STRINGTABLE
+BEGIN
+    ID_EDIT_UNDO            "\nUndo (Ctrl+Z)"
+    ID_EDIT_REDO            "\nRedo (Ctrl+Y)"
 END
 
 // WINMERGE INFORMATION
@@ -2604,6 +2619,33 @@ BEGIN
     IDS_PLUGINS_TYPE_UNPACKER "Unpacker"
     IDS_PLUGINS_TYPE_PREDIFFER "Prediffer"
     IDS_PLUGINS_TYPE_EDITSCRIPT "Editor script"
+END
+
+// EDIT MENU
+STRINGTABLE
+BEGIN
+    ID_SELECTLINEDIFF       "\nDifference in the Current Line"
+    ID_OPTIONS              "\nOptions"
+    ID_REFRESH              "\nRefresh (F5)"
+END
+
+// MERGE MENU
+STRINGTABLE
+BEGIN
+    ID_PREVDIFF             "\nPrevious Difference (Alt+Up)"
+    ID_NEXTDIFF             "\nNext Difference (Alt+Down)"
+    ID_PREVCONFLICT         "\nPrevious Conflict (Alt+Shift+Up)"
+    ID_NEXTCONFLICT         "\nNext Conflict (Alt+Shift+Down)"
+    ID_FIRSTDIFF            "\nFirst Difference (Alt+Home)"
+    ID_CURDIFF              "\nCurrent Difference (Alt+Enter)"
+    ID_LASTDIFF             "\nLast Difference (Alt+End)"
+    ID_L2R                  "\nCopy Right (Alt+Right)"
+    ID_R2L                  "\nCopy Left (Alt+Left)"
+    ID_L2RNEXT              "\nCopy Right and Advance (Ctrl+Alt+Right)"
+    ID_R2LNEXT              "\nCopy Left and Advance (Ctrl+Alt+Left)"
+    ID_ALL_RIGHT            "\nAll Right"
+    ID_ALL_LEFT             "\nAll Left"
+    ID_AUTO_MERGE           "\nAuto Merge (Ctrl+Alt+M)"
 END
 
 // PLUGINS MENU
