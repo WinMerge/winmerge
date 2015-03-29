@@ -1361,6 +1361,17 @@ void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI)
 	pCmdUI->Enable(TRUE);
 }
 
+/**
+ * @brief Handle translation of default messages on the status bar
+ */
+void CMainFrame::GetMessageString(UINT nID, CString& rMessage) const
+{
+	// load appropriate string
+	const String s = theApp.LoadString(nID);
+	if (s.length() > 0)
+		AfxExtractSubString(rMessage, s.c_str(), 0);
+}
+
 void CMainFrame::ActivateFrame(int nCmdShow) 
 {
 	if (!m_bFirstTime)
