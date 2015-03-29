@@ -8,6 +8,7 @@
 #include "DirViewColItems.h"
 #include <cstdint>
 #include <Poco/Timestamp.h>
+#include <Shlwapi.h>
 #include "UnicodeString.h"
 #include "DiffItem.h"
 #include "DiffContext.h"
@@ -23,18 +24,6 @@ using Poco::Timestamp;
 
 using std::swap;
 using boost::int64_t;
-
-/**
- * @name Constants for short sizes.
- */
-/* @{ */
-static const unsigned KILO = 1024;
-static const unsigned MEGA = 1024 * KILO;
-static const unsigned GIGA = 1024 * MEGA;
-static const int64_t TERA = 1024 * (int64_t) GIGA;
-/**
- * @}
- */
 
 namespace
 {
@@ -166,67 +155,12 @@ static int cmpfloat(double v1, double v2)
  */
 static String MakeShortSize(int64_t size)
 {
-#pragma warning(disable:4244) // warning C4244: '=' : conversion from 'int64_t' to 'double', possible loss of data
-	double fsize = size;
-#pragma warning(default:4244) // warning C4244: '=' : conversion from 'int64_t' to 'double', possible loss of data
-	double number = 0;
-	int ndigits = 0;
-	String suffix;
-
-	if (size < KILO)
-	{
-		number = fsize;
-		suffix = _(" B");
-	}
-	else if (size < MEGA)
-	{
-		number = fsize / KILO;
-		suffix = _(" KB");
-		if (size < KILO * 10)
-		{
-			ndigits = 2;
-		}
-		else if (size < KILO * 100)
-		{
-			ndigits = 1;
-		}
-	}
-	else if (size < GIGA)
-	{
-		number = fsize / (MEGA);
-		suffix = _(" MB");
-		if (size < MEGA * 10)
-		{
-			ndigits = 2;
-		}
-		else if (size < MEGA * 100)
-		{
-			ndigits = 1;
-		}
-	}
-	else if (size < (int64_t)TERA)
-	{
-		number = fsize / ((int64_t)GIGA);
-		suffix = _(" GB");
-		if (size < (int64_t)GIGA * 10)
-		{
-			ndigits = 2;
-		}
-		else if (size < (int64_t)GIGA * 100)
-		{
-			ndigits = 1;
-		}
-	}
+	TCHAR buffer[48];
+	if (size < 1024)
+		_sntprintf(buffer, _countof(buffer), _T("%d B"), static_cast<int>(size));
 	else
-	{
-		// overflow (?) -- show ">TB"
-		String s(_T(">"));
-		suffix = _(" TB");
-		s += suffix;
-		return s;
-	}
-
-	return locality::GetLocaleStr(string_to_str(number).c_str(), ndigits) + suffix;
+		StrFormatByteSize64(size, buffer, _countof(buffer));
+	return buffer;
 }
 
 /**

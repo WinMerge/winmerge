@@ -159,7 +159,7 @@ void CDirFrame::SetStatus(LPCTSTR szStatus)
  */
 void CDirFrame::SetCompareMethodStatusDisplay(int nCompMethod)
 {
-	m_wndStatusBar.SetPaneText(PANE_COMPMETHOD, LoadResString(ID_COMPMETHOD_FULL_CONTENTS + nCompMethod).c_str());
+	m_wndStatusBar.SetPaneText(PANE_COMPMETHOD, LoadResString(IDS_COMPMETHOD_FULL_CONTENTS + nCompMethod).c_str());
 }
 
 /**
@@ -169,20 +169,6 @@ void CDirFrame::SetCompareMethodStatusDisplay(int nCompMethod)
 void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
 {
 	m_wndStatusBar.SetPaneText(PANE_FILTER, szFilter);
-}
-
-/**
- * @brief Handle translation of default messages on the status bar
- */
-void CDirFrame::GetMessageString(UINT nID, CString& rMessage) const
-{
-	// load appropriate string
-	const String s = theApp.LoadString(nID);
-	if (!AfxExtractSubString(rMessage, s.c_str(), 0))
-	{
-		// not found
-		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);
-	}
 }
 
 /**
