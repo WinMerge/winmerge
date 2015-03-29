@@ -222,12 +222,7 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
 
 BOOL BCMenu::IsMenu(CMenu *submenu)
 {
-	INT_PTR m;
-	INT_PTR numSubMenus = m_AllSubMenus.GetUpperBound();
-	for(m=0;m<=numSubMenus;++m){
-		if(submenu->m_hMenu==m_AllSubMenus[m])return(TRUE);
-	}
-	return(FALSE);
+	return IsMenu(submenu->m_hMenu);
 }
 
 BOOL BCMenu::IsMenu(HMENU submenu)
@@ -235,7 +230,9 @@ BOOL BCMenu::IsMenu(HMENU submenu)
 	INT_PTR m;
 	INT_PTR numSubMenus = m_AllSubMenus.GetUpperBound();
 	for(m=0;m<=numSubMenus;++m){
-		if(submenu==m_AllSubMenus[m])return(TRUE);
+		if(submenu==m_AllSubMenus[m] || 
+		  reinterpret_cast<UINT>(submenu) == reinterpret_cast<UINT>(m_AllSubMenus[m]))
+			return(TRUE);
 	}
 	return(FALSE);
 }
