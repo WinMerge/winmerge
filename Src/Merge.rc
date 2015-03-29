@@ -2096,12 +2096,12 @@ END
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    ID_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    ID_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
-    ID_COMPMETHOD_BINARY_CONTENTS "Binary Contents"
-    ID_COMPMETHOD_MODDATE  "Modified Date"
-    ID_COMPMETHOD_DATESIZE "Modified Date and Size"
-    ID_COMPMETHOD_SIZE     "Size"
+    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
+    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    IDS_COMPMETHOD_BINARY_CONTENTS "Binary Contents"
+    IDS_COMPMETHOD_MODDATE  "Modified Date"
+    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
+    IDS_COMPMETHOD_SIZE     "Size"
 END
 
 // FILTER OPTIONS
@@ -2609,11 +2609,10 @@ END
 // PLUGINS MENU
 STRINGTABLE
 BEGIN
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
-    ID_NO_PREDIFFER         "No prediffer (normal)"
-    ID_SUGGESTED_PLUGINS    "Suggested plugins"
-    ID_NOT_SUGGESTED_PLUGINS "Other plugins"
+    IDS_UNPACK_AUTO         "The adapted unpacker is applied to both files (one file only needs the extension)"
+    IDS_NO_PREDIFFER        "No prediffer (normal)"
+    IDS_SUGGESTED_PLUGINS   "Suggested plugins"
+    IDS_NOT_SUGGESTED_PLUGINS "Other plugins"
 END
 
 // HELP MENU
@@ -2628,9 +2627,9 @@ END
 // PLUGINS DIALOGS AND DYNAMIC MENUS
 STRINGTABLE
 BEGIN
-    ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
-    ID_NO_EDIT_SCRIPTS      "< Empty >"
-    ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
+    IDS_TITLE_PLUGINS_SETTINGS "Plugin Settings"
+    IDS_NO_EDIT_SCRIPTS     "< Empty >"
+    IDS_NO_SCT_SCRIPTS      "WSH not found - .sct scripts disabled"
     IDS_USERCHOICE_NONE     "<None>"
     IDS_USERCHOICE_AUTOMATIC "<Automatic>"
 END
@@ -2638,7 +2637,7 @@ END
 // LOCATIONBAR CONTEXT MENU
 STRINGTABLE
 BEGIN
-    ID_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
+    IDS_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
 END
 
 // AUTOCOMPLETE COMBOBOX OPTIONS

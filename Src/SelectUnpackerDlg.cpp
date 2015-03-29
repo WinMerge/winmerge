@@ -56,7 +56,7 @@ void CSelectUnpackerDlg::Initialize()
 	automaticPlugin.reset(new PluginInfo);
 	automaticPlugin->m_lpDispatch = NULL;
 	automaticPlugin->m_name = LoadResString(IDS_USERCHOICE_AUTOMATIC);
-	automaticPlugin->m_description = LoadResString(ID_UNPACK_AUTO);
+	automaticPlugin->m_description = LoadResString(IDS_UNPACK_AUTO);
 
 	m_pPlugin = noPlugin.get();
 
