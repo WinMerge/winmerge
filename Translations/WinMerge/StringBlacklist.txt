@@ -13,3 +13,64 @@ ComboEx32
 Version 1.0
 WinMerge
 ../Version.h
+ASP
+Basic
+C/C++
+C#
+CSS
+DCL
+Fortran
+HTML
+INI
+InnoSetup
+InstallShield
+Java
+AutoLISP
+NSIS
+Pascal
+Perl
+PHP
+PowerShell
+Python
+REXX
+Ruby
+SGML
+SIOD
+SQL
+TCL
+TEX
+Verilog
+XML
+Visual SourceSafe
+Rational ClearCase
+GitHub/Bitbucket
+Unix
+Win
+Mac
+LF
+CR
+CRLF
+&Windows (CRLF)
+&Unix (LF)
+&Mac (CR)
+&1
+&2
+&3
+&4
+&5
+&7
+&8
+&9
+1&6
+&32
+&0
+64
+&800%
+&400%
+&200%
+&100%
+&50%
+&25%
+&XOR
+&1:
+&2:

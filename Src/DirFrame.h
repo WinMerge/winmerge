@@ -58,7 +58,6 @@ public:
 	void SetLastCompareResult(int nResult);
 
 // Overrides
-	virtual void GetMessageString(UINT nID, CString& rMessage) const;
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDirFrame)
 	public:

@@ -579,8 +579,6 @@
 #define IDS_STATUS_OPENING_SELECTION    16817
 #define IDS_STATUS_COPYL2R              16818
 #define IDS_STATUS_COPYR2L              16819
-#define IDS_STATUS_COPYL2M              26818
-#define IDS_STATUS_COPYR2M              26819
 #define IDS_STATUS_COPY_FROM_LEFT       26820
 #define IDS_STATUS_COPY_FROM_RIGHT      26821
 #define IDS_STATUS_COPYALL2L            16820
@@ -835,8 +833,6 @@
 #define IDS_MUST_SPECIFY_OUTPUT         18413
 #define IDS_FOLDER_NOTEXIST             18414
 #define IDS_NO_ZIP_SUPPORT              18449
-#define IDS_MERGE7Z_ENABLE_0            18450
-#define IDS_MERGE7Z_ENABLE_2            18451
 #define IDS_OPT_EXPORT_CAPTION          18452
 #define IDS_OPT_IMPORT_CAPTION          18453
 #define IDS_OPT_IMPORT_DONE             18454
@@ -970,7 +966,7 @@
 #define ID_HELP_GNULICENSE              32914
 #define IDS_PRIVATEBUILD_FMT            32915
 #define ID_HELP_SEARCH                  32916
-#define ID_TITLE_PLUGINS_SETTINGS       32928
+#define IDS_TITLE_PLUGINS_SETTINGS      32928
 #define ID_PREDIFF_MANUAL               32929
 #define ID_PREDIFF_AUTO                 32930
 #define ID_NO_EDIT_SCRIPTS              32931
@@ -1015,7 +1011,7 @@
 #define ID_DISPLAY_MOVED_ALL            33089
 #define ID_DISPLAY_MOVED_FOLLOW_DIFF    33090
 #define ID_LOCBAR_GOTODIFF              33091
-#define ID_LOCBAR_GOTOLINE_FMT          33093
+#define IDS_LOCBAR_GOTOLINE_FMT         33093
 #define ID_FILE_OPENPROJECT             33095
 #define ID_VIEW_SHOWHIDDENITEMS         33096
 #define ID_VIEW_SWAPPANES               33097
@@ -1072,10 +1068,8 @@
 #define ID_TOOLBAR_SMALL                33165
 #define ID_TOOLBAR_BIG                  33166
 #define ID_VIEW_RESIZE_PANES            33167
-#define ID_HELP_RELEASENOTES            33168
 #define ID_VIEW_ZOOMIN                  33169
 #define ID_VIEW_ZOOMOUT                 33170
-#define ID_HELP_TRANSLATIONS            33171
 #define ID_VIEW_ZOOMNORMAL              33172
 #define ID_PLUGINS_LIST                 33173
 #define ID_PREDIFFER_MANUAL             33174
@@ -1158,6 +1152,18 @@
 #define IDS_CHECKFORUPDATES_UPTODATE    33258
 #define IDS_CHECKFORUPDATES_NEWVERSION  33259
 #define IDS_CHECKFORUPDATES_FAILED      33260
+#define IDS_UNPACK_AUTO                 33261
+#define IDS_NO_PREDIFFER                33262
+#define IDS_SUGGESTED_PLUGINS           33263
+#define IDS_NOT_SUGGESTED_PLUGINS       33264 
+#define IDS_NO_EDIT_SCRIPTS             33265
+#define IDS_NO_SCT_SCRIPTS              33266
+#define IDS_COMPMETHOD_FULL_CONTENTS    33267
+#define IDS_COMPMETHOD_QUICK_CONTENTS   33268
+#define IDS_COMPMETHOD_BINARY_CONTENTS  33269
+#define IDS_COMPMETHOD_MODDATE          33270
+#define IDS_COMPMETHOD_DATESIZE         33271
+#define IDS_COMPMETHOD_SIZE             33272
 
 // Next default values for new objects
 //
@@ -1165,7 +1171,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        242
-#define _APS_NEXT_COMMAND_VALUE         33261
+#define _APS_NEXT_COMMAND_VALUE         33273
 #define _APS_NEXT_CONTROL_VALUE         1358
 #define _APS_NEXT_SYMED_VALUE           115
 #endif

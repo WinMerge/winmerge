@@ -235,8 +235,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
 	ON_COMMAND(ID_HELP_CHECKFORUPDATES, OnHelpCheckForUpdates)
-	ON_COMMAND(ID_HELP_RELEASENOTES, OnHelpReleasenotes)
-	ON_COMMAND(ID_HELP_TRANSLATIONS, OnHelpTranslations)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
@@ -1371,13 +1369,8 @@ void CMainFrame::GetMessageString(UINT nID, CString& rMessage) const
 {
 	// load appropriate string
 	const String s = theApp.LoadString(nID);
-
-	// avoid dereference of empty strings
-	if (s.length() <= 0 || !AfxExtractSubString(rMessage, s.c_str(), 0))
-	{
-		// not found
-		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);
-	}
+	if (s.length() > 0)
+		AfxExtractSubString(rMessage, s.c_str(), 0);
 }
 
 void CMainFrame::ActivateFrame(int nCmdShow) 
@@ -2822,25 +2815,6 @@ void CMainFrame::OnHelpCheckForUpdates()
 }
 
 /**
- * @brief Shows the release notes for user.
- * This function opens release notes HTML document into browser.
- */
-void CMainFrame::OnHelpReleasenotes()
-{
-	String sPath = paths_ConcatPath(env_GetProgPath(), RelNotes);
-	ShellExecute(NULL, _T("open"), sPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
-}
-
-/**
- * @brief Shows the translations page.
- * This function opens translations page URL into browser.
- */
-void CMainFrame::OnHelpTranslations()
-{
-	ShellExecute(NULL, _T("open"), TranslationsUrl, NULL, NULL, SW_SHOWNORMAL);
-}
-
-/**
  * @brief Called when user selects File/Open Conflict...
  */
 void CMainFrame::OnFileOpenConflict()
@@ -3040,7 +3014,7 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 	if (mrus.size() == 0)
 	{
 		// no script : create a <empty> entry
-		::AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, theApp.LoadString(ID_NO_EDIT_SCRIPTS).c_str());
+		::AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, theApp.LoadString(IDS_NO_EDIT_SCRIPTS).c_str());
 	}
 	else
 	{
