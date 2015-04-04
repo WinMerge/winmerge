@@ -53,9 +53,9 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 
 	TabCtrl_SetPadding(m_hWnd, 16, 4);
 
-	LOGFONT logfont;
-	SystemParametersInfo(SPI_GETICONTITLELOGFONT, sizeof(LOGFONT), &logfont, 0);
-	m_font.CreateFontIndirect(&logfont);
+	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
+	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
+	m_font.CreateFontIndirect(&ncm.lfMenuFont);
 	SetFont(&m_font);
 
 	return TRUE;
@@ -72,10 +72,12 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	
 	TEXTMETRIC tm;
 	CDC *pdc = GetDC();
+	CFont *pOldFont = pdc->SelectObject(&m_font);
 	pdc->GetTextMetrics(&tm);
+	pdc->SelectObject(pOldFont);
 	ReleaseDC(pdc);
 
-	return CSize(SHRT_MAX, tm.tmHeight + 7);
+	return CSize(SHRT_MAX, tm.tmHeight + 10);
 }
 
 void CMDITabBar::OnPaint() 
@@ -307,7 +309,7 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		if (!hIcon)
 			hIcon = (HICON)GetClassLongPtr(hwndFrame, GCLP_HICONSM);
 		if (hIcon)
-			DrawIconEx(lpDraw->hDC, rc.left - 16 - 2, 5, hIcon, 16, 16, 0, NULL, DI_NORMAL);
+			DrawIconEx(lpDraw->hDC, rc.left - 16 - 2, rc.top + (rc.bottom - rc.top - 16) / 2, hIcon, 16, 16, 0, NULL, DI_NORMAL);
 	}
 	DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 
