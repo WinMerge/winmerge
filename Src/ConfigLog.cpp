@@ -264,9 +264,11 @@ bool CConfigLog::DoFile(String &sError)
 	WriteVersionOf1(1, _T("COMCTL32.dll"));
 	WriteVersionOf1(1, _T("shlwapi.dll"));
 	WriteVersionOf1(1, _T("MergeLang.dll"));
-	WriteVersionOf1(1, _T("ShellExtension.dll"));
 	WriteVersionOf1(1, _T("ShellExtensionU.dll"));
 	WriteVersionOf1(1, _T("ShellExtensionX64.dll"));
+	WriteVersionOf1(1, _T("Frhed\\hekseditU.dll"));
+	WriteVersionOf1(1, _T("WinIMerge\\WinIMergeLib.dll"));
+	WriteVersionOf1(1, _T("Merge7z\\7z.dll"));
 
 // System settings
 	FileWriteString(_T("\r\nSystem settings:\r\n"));
