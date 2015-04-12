@@ -39,7 +39,6 @@ static char THIS_FILE[] = __FILE__;
 #error This code does not work on Versions of MFC prior to 4.0
 #endif
 
-static CPINFO CPInfo;
 // how the menu's are drawn in win9x/NT/2000
 UINT BCMenu::original_drawmode=BCMENU_DRAWMODE_ORIGINAL;
 BOOL BCMenu::original_select_disabled=TRUE;
@@ -47,7 +46,6 @@ BOOL BCMenu::original_select_disabled=TRUE;
 UINT BCMenu::xp_drawmode=BCMENU_DRAWMODE_XP;
 BOOL BCMenu::xp_select_disabled=FALSE;
 
-BOOL BCMenu::xp_draw_3D_bitmaps=TRUE;
 BOOL BCMenu::hicolor_bitmaps=FALSE;
 // Variable to set how accelerators are justified. The default mode (TRUE) right
 // justifies them to the right of the longes string in the menu. FALSE
@@ -167,7 +165,6 @@ BCMenu::BCMenu()
 	// set the color used for the transparent background in all bitmaps
 	m_bitmapBackground=RGB(192,192,192); //gray
 	m_bitmapBackgroundFlag=FALSE;
-	GetCPInfo(CP_ACP,&CPInfo);
 	m_loadmenu=FALSE;
 }
 
@@ -615,7 +612,6 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 	m_brBackground.CreateSolidBrush(m_clrBack);
 	m_newbrBackground.CreateSolidBrush(m_newclrBack);
 	int BCMENU_PAD=4;
-	if(xp_draw_3D_bitmaps)BCMENU_PAD=7;
 	int barwidth=m_iconX+BCMENU_PAD;
 	
 	// remove the selected bit if it's grayed out
@@ -658,9 +654,7 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 		int x0,y0,dx,dy;
 		int nIconNormal=-1;
 		INT_PTR xoffset=-1,global_offset=-1;
-		INT_PTR faded_offset=1,shadow_offset=2,disabled_offset=3;
 		CImageList *bitmap=NULL;
-		BOOL CanDraw3D=FALSE;
 		
 		// set some colors
 		m_penBack.CreatePen (PS_SOLID,0,m_clrBack);
@@ -683,18 +677,10 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 			strText = ((BCMenuData*) (lpDIS->itemData))->GetString();
 			global_offset = (((BCMenuData*)(lpDIS->itemData))->global_offset);
 
-			if(xoffset==0&&xp_draw_3D_bitmaps&&bitmap&&bitmap->GetImageCount()>2)CanDraw3D=TRUE;
-
 			if(nIconNormal<0&&xoffset<0&&global_offset>=0){
 				xoffset=global_offset;
 				nIconNormal=0;
 				bitmap = &m_AllImages;
-				if(xp_draw_3D_bitmaps&&CanDraw3DImageList((int)global_offset)){
-					CanDraw3D=TRUE;
-					faded_offset=global_offset+1;
-					shadow_offset=global_offset+2;
-					disabled_offset=global_offset+3;
-				}
 			}
 
 			
@@ -752,28 +738,22 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 			}
 			else if(disableflag){
 				if(!selectedflag){
-					if(CanDraw3D){
-						CPoint ptImage(rect.left+dx,rect.top+dy);
-						bitmap->Draw(pDC,(int)disabled_offset,ptImage,ILD_TRANSPARENT);
-					}
-					else{
-						CBitmap bitmapstandard;
-						GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
-						COLORREF transparentcol=m_newclrBack;
-						if(state&ODS_SELECTED)transparentcol=crSelectFill;
-						if(disable_old_style)
-							DitherBlt(lpDIS->hDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-							(HBITMAP)(bitmapstandard),0,0,transparentcol);
+					CBitmap bitmapstandard;
+					GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
+					COLORREF transparentcol=m_newclrBack;
+					if(state&ODS_SELECTED)transparentcol=crSelectFill;
+					if(disable_old_style)
+						DitherBlt(lpDIS->hDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
+						(HBITMAP)(bitmapstandard),0,0,transparentcol);
+					else
+						if(hicolor_bitmaps)
+							DitherBlt3(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
+							bitmapstandard,transparentcol);
 						else
-							if(hicolor_bitmaps)
-								DitherBlt3(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-								bitmapstandard,transparentcol);
-							else
-								DitherBlt2(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-								bitmapstandard,0,0,transparentcol);
-						if(state&ODS_SELECTED)pDC->Draw3dRect (rect,crSelect,crSelect);
-						bitmapstandard.DeleteObject();
-					}
+							DitherBlt2(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
+							bitmapstandard,0,0,transparentcol);
+					if(state&ODS_SELECTED)pDC->Draw3dRect (rect,crSelect,crSelect);
+					bitmapstandard.DeleteObject();
 				}
 			}
 			else if(selectedflag){
@@ -788,13 +768,7 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 				}
 				else pDC->FillRect (rect2,&m_brSelect);
 				if(bitmap){
-					if(CanDraw3D&&!(state&ODS_CHECKED)){
-						CPoint ptImage1(ptImage.x+1,ptImage.y+1);
-						CPoint ptImage2(ptImage.x-1,ptImage.y-1);
-						bitmap->Draw(pDC,(int)shadow_offset,ptImage1,ILD_TRANSPARENT);
-						bitmap->Draw(pDC,(int)xoffset,ptImage2,ILD_TRANSPARENT);
-					}
-					else bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
+					bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 				}
 			}
 			else{
@@ -812,10 +786,7 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 					pDC->Draw3dRect (rect2,m_newclrBack,m_newclrBack);
 					CPoint ptImage(rect.left+dx,rect.top+dy);
 					if(bitmap){
-						if(CanDraw3D)
-							bitmap->Draw(pDC,(int)faded_offset,ptImage,ILD_TRANSPARENT);
-						else
-							bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
+						bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 					}
 				}
 			}
@@ -943,7 +914,6 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 {
 	UINT state = (((BCMenuData*)(lpMIS->itemData))->nFlags);
 	int BCMENU_PAD=4;
-	if(IsLunaMenuStyle()&&xp_draw_3D_bitmaps)BCMENU_PAD=7;
 	if(state & MF_SEPARATOR){
 		lpMIS->itemWidth = 0;
 		int temp = GetSystemMetrics(SM_CYMENU)>>1;
@@ -2202,51 +2172,6 @@ void BCMenu::DitherBlt (HDC hdcDest, int nXDest, int nYDest, int nWidth,
 	}
 }
 
-void BCMenu::GetFadedBitmap(CBitmap &bmp)
-{
-	CDC ddc;
-	COLORREF col;
-	BITMAP BitMap;
-
-	bmp.GetBitmap(&BitMap);
-	ddc.CreateCompatibleDC(NULL);
-	CBitmap * pddcOldBmp = ddc.SelectObject(&bmp);
-
-	// use this to get the background color, takes into account color shifting
-	CDC ddc2;
-	CBrush brush;
-	CBitmap bmp2;
-	ddc2.CreateCompatibleDC(NULL);
-	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
-	col=GetSysColor(COLOR_3DFACE);
-	brush.CreateSolidBrush(col);
-	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
-	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
-	ddc2.FillRect(rect,&brush);
-	brush.DeleteObject();
-	ddc2.SelectObject(pddcOldBmp2);
-
-	pBGR pdstBGR = MyGetDibBits(ddc2.m_hDC,(HBITMAP)bmp.m_hObject,BitMap.bmWidth,BitMap.bmHeight);
-	sBGR bgcolBGR = *pdstBGR;
-	pBGR pcurBGR = pdstBGR;
-
-	for(int i=0;i<BitMap.bmWidth;++i){
-		for(int j=0;j<BitMap.bmHeight;++j){
-			if(*(DWORD *)pcurBGR != *(DWORD *)&bgcolBGR){
-				COLORREF newcol = LightenColor(RGB(pcurBGR->r,pcurBGR->g,pcurBGR->b),0.3);
-				sBGR newcolBGR = {GetBValue(newcol),GetGValue(newcol),GetRValue(newcol),0};
-				*pcurBGR = newcolBGR;
-			}
-			pcurBGR++;
-		}
-	}
-
-	MySetDibBits(ddc2.m_hDC,(HBITMAP)bmp.m_hObject,pdstBGR,BitMap.bmWidth,BitMap.bmHeight);
-	free(pdstBGR);
-
-	ddc.SelectObject(pddcOldBmp);
-}
-
 void BCMenu::GetTransparentBitmap(CBitmap &bmp)
 {
 	CDC ddc;
@@ -2344,50 +2269,6 @@ void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 	ddc.SelectObject(pddcOldBmp);
 }
 
-void BCMenu::GetShadowBitmap(CBitmap &bmp)
-{
-	CDC ddc;
-	COLORREF col,shadowcol=GetSysColor(COLOR_BTNSHADOW);
-	BITMAP BitMap;
-
-	if(!IsWinXPLuna())shadowcol=LightenColor(shadowcol,0.49);
-	bmp.GetBitmap(&BitMap);
-	ddc.CreateCompatibleDC(NULL);
-	CBitmap * pddcOldBmp = ddc.SelectObject(&bmp);
-
-	// use this to get the background color, takes into account color shifting
-	CDC ddc2;
-	CBrush brush;
-	CBitmap bmp2;
-	ddc2.CreateCompatibleDC(NULL);
-	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
-	col=GetSysColor(COLOR_3DFACE);
-	brush.CreateSolidBrush(col);
-	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
-	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
-	ddc2.FillRect(rect,&brush);
-	brush.DeleteObject();
-	ddc2.SelectObject(pddcOldBmp2);
-
-	pBGR pdstBGR = MyGetDibBits(ddc2.m_hDC,(HBITMAP)bmp.m_hObject,BitMap.bmWidth,BitMap.bmHeight);
-	sBGR bgcolBGR = *pdstBGR;
-	sBGR shadowcolBGR = {GetBValue(shadowcol),GetGValue(shadowcol), GetRValue(shadowcol),0};
-	pBGR pcurBGR = pdstBGR;
-
-	for(int i=0;i<BitMap.bmWidth;++i){
-		for(int j=0;j<BitMap.bmHeight;++j){
-			if(*(DWORD *)pcurBGR != *(DWORD *)&bgcolBGR)
-				*pcurBGR = shadowcolBGR;
-			pcurBGR++;
-		}
-	}
-
-	MySetDibBits(ddc2.m_hDC, (HBITMAP)bmp.m_hObject,pdstBGR,BitMap.bmWidth,BitMap.bmHeight);
-	free(pdstBGR);
-
-	ddc.SelectObject(pddcOldBmp);
-}
-
 BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, BOOL bDisabled/*=FALSE*/)
 {
 	BOOL bReturn=FALSE;
@@ -2429,22 +2310,6 @@ BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, BOOL bDi
 				}
 			}
 		}
-	}
-	if(bReturn&&IsLunaMenuStyle()&&xp_draw_3D_bitmaps){
-		CWnd *pWnd = AfxGetMainWnd();            // Get main window
-		if (pWnd == NULL) pWnd = CWnd::GetDesktopWindow();
-		CDC *pDC = pWnd->GetDC();              // Get device context
-		CBitmap bmp,bmp2,bmp3;
-		GetBitmapFromImageList(pDC,bmplist,0,bmp);
-		GetFadedBitmap(bmp);
-		bmplist->Add(&bmp,GetSysColor(COLOR_3DFACE));
-		GetBitmapFromImageList(pDC,bmplist,0,bmp2);
-		GetShadowBitmap(bmp2);
-		bmplist->Add(&bmp2,GetSysColor(COLOR_3DFACE));
-		GetBitmapFromImageList(pDC,bmplist,0,bmp3);
-		GetDisabledBitmap(bmp3);
-		bmplist->Add(&bmp3,GetSysColor(COLOR_3DFACE));
-		pWnd->ReleaseDC(pDC);  // Release the DC
 	}
 	return(bReturn);
 }
@@ -2910,22 +2775,6 @@ BOOL BCMenu::ImageListDuplicate(CImageList *il,int xoffset,CImageList *newlist)
 	newlist->Create(cx,cy,ILC_COLORDDB|ILC_MASK,1,1);
 	newlist->Add(hIcon);
 	::DestroyIcon(hIcon);
-	if(IsLunaMenuStyle()&&xp_draw_3D_bitmaps){
-		CWnd *pWnd = AfxGetMainWnd();            // Get main window
-		if (pWnd == NULL) pWnd = CWnd::GetDesktopWindow();
-		CDC *pDC = pWnd->GetDC();              // Get device context
-		CBitmap bmp,bmp2,bmp3;
-		GetBitmapFromImageList(pDC,newlist,0,bmp);
-		GetFadedBitmap(bmp);
-		newlist->Add(&bmp,GetSysColor(COLOR_3DFACE));
-		GetBitmapFromImageList(pDC,newlist,0,bmp2);
-		GetShadowBitmap(bmp2);
-		newlist->Add(&bmp2,GetSysColor(COLOR_3DFACE));
-		GetBitmapFromImageList(pDC,newlist,0,bmp3);
-		GetDisabledBitmap(bmp3);
-		newlist->Add(&bmp3,GetSysColor(COLOR_3DFACE));
-		pWnd->ReleaseDC(pDC);  // Release the DC
-	}
 	return TRUE;
 }
 
@@ -3186,17 +3035,6 @@ int BCMenu::GlobalImageListOffset(int nID)
 	return existsloc;
 }
 
-BOOL BCMenu::CanDraw3DImageList(int offset)
-{
-	BOOL retflag=FALSE;
-	INT_PTR numcurrent=m_AllImagesID.GetSize();
-	if(offset+1<numcurrent&&offset+2<numcurrent){
-		int nID=m_AllImagesID[offset];
-		if(m_AllImagesID[offset+1]==nID&&m_AllImagesID[offset+2]==nID)retflag=TRUE;
-	}
-	return(retflag);
-}
-
 INT_PTR BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
 {
 	INT_PTR loc = -1;
@@ -3207,18 +3045,6 @@ INT_PTR BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
 	HICON hIcon = il->ExtractIcon(xoffset);
 	if(hIcon){
 		CBitmap bmp,bmp2,bmp3;
-		if(IsLunaMenuStyle()&&xp_draw_3D_bitmaps){
-			CWnd *pWnd = AfxGetMainWnd();            // Get main window
-			if (pWnd == NULL) pWnd = CWnd::GetDesktopWindow();
-			CDC *pDC = pWnd->GetDC();              // Get device context
-			GetBitmapFromImageList(pDC,il,xoffset,bmp);
-			GetFadedBitmap(bmp);
-			GetBitmapFromImageList(pDC,il,xoffset,bmp2);
-			GetShadowBitmap(bmp2);
-			GetBitmapFromImageList(pDC,il,xoffset,bmp3);
-			GetDisabledBitmap(bmp3);
-			pWnd->ReleaseDC(pDC);  // Release the DC
-		}
 		INT_PTR numcurrent=(UINT)m_AllImagesID.GetSize();
 		int existsloc = -1;
 		for(INT_PTR i=0;i<numcurrent;++i){
@@ -3230,39 +3056,11 @@ INT_PTR BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
 		if(existsloc>=0){
 			m_AllImages.Replace(existsloc,hIcon);
 			loc = existsloc;
-			if(IsLunaMenuStyle()&&xp_draw_3D_bitmaps){
-				if(existsloc+1<numcurrent&&m_AllImagesID[existsloc+1]==nID){
-					if(existsloc+2<numcurrent&&m_AllImagesID[existsloc+2]==nID){
-						CImageList il2;
-						il2.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
-						il2.Add(&bmp,GetSysColor(COLOR_3DFACE));
-						HICON hIcon2 = il2.ExtractIcon(0);
-						m_AllImages.Replace(existsloc+1,hIcon2);
-						il2.Add(&bmp2,GetSysColor(COLOR_3DFACE));
-						HICON hIcon3 = il2.ExtractIcon(1);
-						m_AllImages.Replace(existsloc+2,hIcon3);
-						il2.Add(&bmp3,GetSysColor(COLOR_3DFACE));
-						HICON hIcon4 = il2.ExtractIcon(2);
-						m_AllImages.Replace(existsloc+3,hIcon4);
-						::DestroyIcon(hIcon2);
-						::DestroyIcon(hIcon3);
-						::DestroyIcon(hIcon4);
-					}
-				}
-			}
 		}
 		else{
 			m_AllImages.Add(hIcon);
 			m_AllImagesID.Add(nID);
 			loc=numcurrent;
-			if(IsLunaMenuStyle()&&xp_draw_3D_bitmaps){
-				m_AllImages.Add(&bmp,GetSysColor(COLOR_3DFACE));
-				m_AllImages.Add(&bmp2,GetSysColor(COLOR_3DFACE));
-				m_AllImages.Add(&bmp3,GetSysColor(COLOR_3DFACE));
-				m_AllImagesID.Add(nID);
-				m_AllImagesID.Add(nID);
-				m_AllImagesID.Add(nID);
-			}
 		}
 		::DestroyIcon(hIcon);
 	}
