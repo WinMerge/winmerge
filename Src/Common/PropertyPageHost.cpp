@@ -11,15 +11,11 @@
 #include "StdAfx.h"
 #include "PropertyPageHost.h"
 
-#if _MSC_VER > 1200
 #ifdef _WIN64
 #	include <../src/mfc/occimpl.h>
 #else // _WIN64
 #	include <afxocc.h>
 #endif // _WIN64
-#else
-#	include <..\src\occimpl.h>
-#endif
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -8,10 +8,8 @@
 #include <vector>
 #include <ObjBase.h>
 #include <ShlObj.h>
-#if _MSC_VER >= 1600
 #include <propvarutil.h>
 #include <propkey.h>
-#endif
 #include "unicoder.h"
 
 namespace
@@ -22,7 +20,6 @@ wchar_t g_exe_path[260];
 
 IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& params, const std::wstring& title, const std::wstring& desc, int icon_index)
 {
-#if _MSC_VER >= 1600
 	IShellLinkW *pShellLink = NULL;
 	if (FAILED(CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER,
 	                            IID_IShellLinkW, (void **)&pShellLink)))
@@ -52,9 +49,6 @@ IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& p
 	}
 
 	return pShellLink;
-#else
-	return NULL;
-#endif
 }
 
 }
@@ -77,7 +71,6 @@ bool SetCurrentProcessExplicitAppUserModelID(const std::wstring& appid)
 
 bool AddToRecentDocs(const String& app_path, const String& params, const String& title, const String& desc, int icon_index)
 {
-#if _MSC_VER >= 1600
 	SHARDAPPIDINFOLINK saiil;
 	saiil.pszAppID = g_appid.c_str();
 #ifdef _UNICODE
@@ -90,15 +83,11 @@ bool AddToRecentDocs(const String& app_path, const String& params, const String&
 	SHAddToRecentDocs(SHARD_APPIDINFOLINK, &saiil);
 	saiil.psl->Release();
 	return true;
-#else
-	return false;
-#endif
 }
 
 std::vector<Item> GetRecentDocs(size_t nMaxItems)
 {
 	std::vector<Item> list;
-#if _MSC_VER >= 1600
 	IApplicationDocumentLists *pDocumentLists = NULL;
 	if (FAILED(CoCreateInstance(CLSID_ApplicationDocumentLists, NULL, CLSCTX_INPROC_SERVER,
 	                            IID_IApplicationDocumentLists, (void **)&pDocumentLists)))
@@ -137,7 +126,6 @@ std::vector<Item> GetRecentDocs(size_t nMaxItems)
 		pObjectArray->Release();
 	}
 	pDocumentLists->Release();
-#endif
 	return list;
 }
 

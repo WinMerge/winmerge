@@ -12,18 +12,15 @@
 #include "paths.h"
 #include "Merge7zFormatRegister.h"
 
-#if _MSC_VER >= 1600
 typedef _com_ptr_t<_com_IIID<IFileOperation, &__uuidof(IFileOperation)>> IFileOperationPtr;
 typedef _com_ptr_t<_com_IIID<IShellItem, &__uuidof(IShellItem)>> IShellItemPtr;
 typedef _com_ptr_t<_com_IIID<IEnumShellItems, &__uuidof(IEnumShellItems)>> IEnumShellItemsPtr;
-#endif
 
 static Merge7zFormatRegister g_autoregister(&Merge7zFormatShellImpl::GuessFormat);
 static Merge7zFormatShellImpl g_shellformat;
 
 static HRESULT MySHCreateShellItemFromPath(PCWSTR pszPath, IShellItem **ppShellItem)
 {
-#if _MSC_VER >= 1600
 	PIDLIST_ABSOLUTE pidl;
 	HRESULT hr = SHParseDisplayName(pszPath, NULL, &pidl, 0, NULL);
 	if (FAILED(hr))
@@ -31,29 +28,21 @@ static HRESULT MySHCreateShellItemFromPath(PCWSTR pszPath, IShellItem **ppShellI
 	hr = SHCreateShellItem(NULL, NULL, pidl, ppShellItem);
 	ILFree(pidl);
 	return hr;
-#else
-	return E_FAIL;
-#endif
 }
 
 struct IEnumShellItems;
 
 static HRESULT MySHCreateEnumShellItemsFromPath(PCWSTR pszPath, IEnumShellItems **ppEnumShellItems)
 {
-#if _MSC_VER >= 1600
 	IShellItemPtr pShellItem;
 	HRESULT hr = MySHCreateShellItemFromPath(pszPath, &pShellItem);
 	if (FAILED(hr))
 		return hr;
 	return pShellItem->BindToHandler(NULL, BHID_EnumItems, IID_PPV_ARGS(ppEnumShellItems));
-#else
-	return E_FAIL;
-#endif
 }
 
 Merge7z::Format *Merge7zFormatShellImpl::GuessFormat(const String& path)
 {
-#if _MSC_VER >= 1600
 	int i;
 	static const TCHAR *exts[] = {_T(".zip"), _T(".lzh"), _T("://"), _T("::{")};
 	for (i = 0; i < sizeof(exts)/sizeof(exts[0]); ++i)
@@ -67,14 +56,10 @@ Merge7z::Format *Merge7zFormatShellImpl::GuessFormat(const String& path)
 	if (FAILED(MySHCreateEnumShellItemsFromPath(ucr::toUTF16(path).c_str(), &pEnumShellItems)))
 		return NULL;
 	return &g_shellformat;
-#else
-	return NULL;
-#endif
 }
 
 HRESULT Merge7zFormatShellImpl::DeCompressArchive(HWND, LPCTSTR path, LPCTSTR folder)
 {
-#if _MSC_VER >= 1600
 	IFileOperationPtr pFileOperation;
 	HRESULT hr = pFileOperation.CreateInstance(CLSID_FileOperation, NULL, CLSCTX_ALL);
 	if (FAILED(hr))
@@ -102,9 +87,6 @@ HRESULT Merge7zFormatShellImpl::DeCompressArchive(HWND, LPCTSTR path, LPCTSTR fo
 		return hr;
 
 	return pFileOperation->PerformOperations();
-#else
-	return E_FAIL;
-#endif
 }
 
 HRESULT Merge7zFormatShellImpl::CompressArchive(HWND, LPCTSTR path, Merge7z::DirItemEnumerator *)

@@ -89,13 +89,6 @@ void CSizingControlBarCF::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHnd
         SendMessage(WM_NCPAINT);
 }
 
-// gradient defines (if not already defined)
-#ifndef COLOR_GRADIENTACTIVECAPTION
-#define COLOR_GRADIENTACTIVECAPTION     27
-#define COLOR_GRADIENTINACTIVECAPTION   28
-#define SPI_GETGRADIENTCAPTIONS         0x1008
-#endif
-
 void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
 {
     if (!HasGripper())

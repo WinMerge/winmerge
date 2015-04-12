@@ -25,13 +25,7 @@
 // Send bug reports, bug fixes, enhancements, requests, flames, etc. to
 // cristi@datamekanix.com or post them at the message board at the site.
 /////////////////////////////////////////////////////////////////////////
-
-#if !defined(__SCBARG_H__)
-#define __SCBARG_H__
-
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
 
 // MFC 8/VS.NET 2005 has breaking change in OnNcHitTest return value
 #ifndef NCHITTEST_RESULT
@@ -115,6 +109,3 @@ protected:
 
     DECLARE_MESSAGE_MAP()
 };
-
-#endif // !defined(__SCBARG_H__)
-
