@@ -29,7 +29,6 @@ public:
 	//{{AFX_VIRTUAL(CSortHeaderCtrl)
 	//}}AFX_VIRTUAL
 
-	virtual void	DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 	virtual int 	SetSortImage(int nCol, BOOL bAsc);
 
 // Implementation

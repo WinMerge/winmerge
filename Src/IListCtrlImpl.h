@@ -99,9 +99,7 @@ public:
 		HBITMAP hbmpOld = (HBITMAP)SelectObject(hdcMem, hbmpImage);
 		ImageList_Draw(hImageList, iconIndex, hdcMem, 0, 0, ILD_TRANSPARENT);
 		image.Attach(hbmpImage);
-#if _MSC_VER >= 1400
 		image.SetHasAlphaChannel(true);
-#endif
 		image.Save(pStream, Gdiplus::ImageFormatPNG);
 		STATSTG stat;
 		pStream->Stat(&stat, STATFLAG_NONAME);

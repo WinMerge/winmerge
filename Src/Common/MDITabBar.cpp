@@ -13,13 +13,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-#ifndef ON_WM_MOUSELEAVE
-#define ON_WM_MOUSELEAVE() \
-	{ WM_MOUSELEAVE, 0, 0, 0, AfxSig_vv, \
-		(AFX_PMSG)(AFX_PMSGW) \
-		(static_cast< void (AFX_MSG_CALL CWnd::*)(void) > (OnMouseLeave)) },
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // CMDITabBar
 

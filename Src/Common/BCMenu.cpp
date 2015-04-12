@@ -34,9 +34,6 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 #define BCMENU_GAP 1
-#ifndef OBM_CHECK
-#define OBM_CHECK 32760 // from winuser.h
-#endif
 
 #if _MFC_VER <0x400
 #error This code does not work on Versions of MFC prior to 4.0

@@ -24,11 +24,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "UnicodeString.h"
 #include "ExConverter.h"
 
-// This is not in older platform sdk versions
-#ifndef WC_NO_BEST_FIT_CHARS
-#define WC_NO_BEST_FIT_CHARS        0x00000400
-#endif
-
 using Poco::UnicodeConverter;
 
 namespace ucr
@@ -36,21 +31,6 @@ namespace ucr
 
 // store the default codepage as specified by user in options
 static int f_nDefaultCodepage = GetACP();
-
-// current OS version
-static bool f_osvi_fetched = false;
-static OSVERSIONINFO f_osvi;
-
-/**
- * @brief fetch current OS version into file level variable & set flag
- */
-static void fetch_verinfo()
-{
-	memset(&f_osvi, 0, sizeof(f_osvi));
-	f_osvi.dwOSVersionInfoSize = sizeof(f_osvi);
-	GetVersionEx(&f_osvi);
-	f_osvi_fetched = true;
-}
 
 /**
  * @brief Convert unicode codepoint to UTF-8 byte string
@@ -321,19 +301,10 @@ void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
 	wchar_t wch = (wchar_t)unich;
 	if (!lossy)
 	{
-		static bool vercheck = false;
-		static bool has_no_best_fit = false;
-		if (!vercheck)
-		{
-			if (!f_osvi_fetched) fetch_verinfo();
-			// Need 2000 (5.x) or 98 (4.10)
-			has_no_best_fit = f_osvi.dwMajorVersion >= 5 || (f_osvi.dwMajorVersion == 4 && f_osvi.dwMinorVersion >= 10);
-			vercheck = true;
-		}
 		// So far it isn't lossy, so try for lossless conversion
 		char outch[3] = {0};
 		BOOL defaulted = FALSE;
-		DWORD flags = has_no_best_fit ? WC_NO_BEST_FIT_CHARS : 0;
+		DWORD flags = WC_NO_BEST_FIT_CHARS;
 		if (WideCharToMultiByte(codepage, flags, &wch, 1, outch, sizeof(outch), NULL, &defaulted)
 				&& !defaulted)
 		{
