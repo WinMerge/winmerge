@@ -445,9 +445,6 @@
     <ClCompile Include="MergeApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\lib\regex.c">
-      <Filter>DiffEngine</Filter>
-    </ClCompile>
     <ClCompile Include="7zCommon.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -1076,9 +1073,6 @@
     </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="diffutils\lib\regex.h">
-      <Filter>DiffEngine</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>MFCGui\Header Files</Filter>

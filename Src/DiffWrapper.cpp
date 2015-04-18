@@ -1447,7 +1447,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	}
 
 	Make3wayDiff(m_pDiffList->GetDiffRangeInfoVector(), diff10.GetDiffRangeInfoVector(), diff12.GetDiffRangeInfoVector(), 
-		Comp02Functor(inf10, inf12), ignore_regexp_list ? true : false);
+		Comp02Functor(inf10, inf12), (m_pFilterList && m_pFilterList->HasRegExps()));
 }
 
 void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAppendFiles)

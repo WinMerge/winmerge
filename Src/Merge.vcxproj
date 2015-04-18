@@ -1373,14 +1373,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Unicode + Code Analysis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="diffutils\lib\regex.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Unicode + Code Analysis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Unicode + Code Analysis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="diffutils\src\side.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">NotUsing</PrecompiledHeader>
@@ -1638,7 +1630,6 @@
     <ClInclude Include="diffutils\lib\cmpbuf.h" />
     <ClInclude Include="diffutils\config.h" />
     <ClInclude Include="diffutils\src\diff.h" />
-    <ClInclude Include="diffutils\lib\regex.h" />
     <ClInclude Include="diffutils\src\system.h" />
     <ClInclude Include="CompareEngines\ByteComparator.h" />
     <ClInclude Include="CompareEngines\ByteCompare.h" />

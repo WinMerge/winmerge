@@ -82,7 +82,7 @@ print_context_script (script, unidiff_flag)
      struct change *script;
      int unidiff_flag;
 {
-  if (ignore_blank_lines_flag || ignore_regexp_list)
+  if (ignore_blank_lines_flag)
     mark_ignorable (script);
   else
     {
@@ -158,8 +158,6 @@ pr_context_hunk (hunk)
 
   /* If desired, find the preceding function definition line in file 0.  */
   function = 0;
-  if (function_regexp_list)
-    find_function (&files[0], first0, &function, &function_length);
 
   begin_output ();
   out = outfile;
@@ -291,8 +289,6 @@ pr_unidiff_hunk (hunk)
 
   /* If desired, find the preceding function definition line in file 0.  */
   function = 0;
-  if (function_regexp_list)
-    find_function (&files[0], first0, &function, &function_length);
 
   begin_output ();
   out = outfile;
@@ -424,47 +420,3 @@ mark_ignorable (script)
     }
 }
 
-/* Find the last function-header line in FILE prior to line number LINENUM.
-   This is a line containing a match for the regexp in `function_regexp'.
-   Store the address of the line text into LINEP and the length of the
-   line into LENP.
-   Do not store anything if no function-header is found.  */
-
-static void
-find_function (file, linenum, linep, lenp)
-     struct file_data const *file;
-     int linenum;
-     char const HUGE **linep;
-     size_t *lenp;
-{
-  int i = linenum;
-  int last = find_function_last_search;
-  find_function_last_search = i;
-
-  while (--i >= last)
-    {
-      /* See if this line is what we want.  */
-      struct regexp_list *r;
-      char const HUGE *line = file->linbuf[i];
-      size_t len = file->linbuf[i + 1] - line;
-
-      for (r = function_regexp_list; r; r = r->next)
-	if (0 <= re_search (&r->buf, line, len, 0, len, 0))
-	  {
-	    *linep = line;
-	    *lenp = len;
-	    find_function_last_match = i;
-	    return;
-	  }
-    }
-  /* If we search back to where we started searching the previous time,
-     find the line we found last time.  */
-  if (find_function_last_match >= - file->prefix_lines)
-    {
-      i = find_function_last_match;
-      *linep = file->linbuf[i];
-      *lenp = file->linbuf[i + 1] - *linep;
-      return;
-    }
-  return;
-}
