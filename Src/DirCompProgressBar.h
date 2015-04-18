@@ -8,6 +8,7 @@
 #include "CompareStats.h"
 
 class ITaskBarList3;
+class CDiffContext;
 
 /////////////////////////////////////////////////////////////////////////////
 // DirCompProgressBar dialog
@@ -34,7 +35,7 @@ class DirCompProgressBar : public CDialogBar
 {
 // Construction
 public:
-	DirCompProgressBar();   // standard constructor
+	DirCompProgressBar(const CDiffContext& ctxt);   // standard constructor
 	~DirCompProgressBar();
 	BOOL Create(CWnd* pParentWnd);
 	void SetCompareStat(CompareStats * pCompareStats);
@@ -65,6 +66,7 @@ private:
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	ITaskbarList3 *m_pTaskbarList;
 #endif
+	const CDiffContext& m_ctxt;
 };
 
 //{{AFX_INSERT_LOCATION}}
