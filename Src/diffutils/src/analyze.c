@@ -979,7 +979,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 		
 		//  Set CHANGES if we had any diffs.
 		// If some changes are ignored, we must scan the script to decide.  
-		if (ignore_blank_lines_flag || ignore_regexp_list)
+		if (ignore_blank_lines_flag)
 		{
 			struct change *next = script;
 			changes = 0;
@@ -1029,7 +1029,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 			{
 				// determined that there were no nontrivial changes after considering flags
 			}
-			else if (changes == 0 && ignore_regexp_list )
+			else if (changes == 0)
 			{
 				// determined that there were no nontrivial changes after considering flags
 			}
