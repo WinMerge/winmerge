@@ -41,11 +41,10 @@ void DirCompProgressBar::ClearStat()
  * @brief Constructor.
  * @param [in] pParent Parent window for progress dialog.
  */
-DirCompProgressBar::DirCompProgressBar(const CDiffContext& ctxt)
+DirCompProgressBar::DirCompProgressBar()
 : m_bCompareReady(FALSE)
 , m_prevState(CompareStats::STATE_IDLE)
 , m_pCompareStats(NULL)
-, m_ctxt(ctxt)
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
 , m_pTaskbarList(NULL)
 #endif
@@ -163,11 +162,7 @@ void DirCompProgressBar::OnTimer(UINT_PTR nIDEvent)
 		{
 			SetProgressState(m_pCompareStats->GetComparedItems(), m_pCompareStats->GetTotalItems());
 			if (const DIFFITEM *pdi = m_pCompareStats->GetCurDiffItem())
-			{
-				for (int i = 0; i < m_ctxt.GetCompareDirs(); ++i)
-					GetDlgItem(IDC_PATH0_STATIC + i)->SetWindowTextW(
-						paths_ConcatPath(m_ctxt.GetPath(i), pdi->diffFileInfo[i].GetFile()).c_str());
-			}
+				GetDlgItem(IDC_PATH_COMPARING)->SetWindowTextW(pdi->diffFileInfo[0].GetFile().c_str());
 		}
 		// Compare is ready
 		// Update total items too since we might get only this one state
@@ -191,27 +186,23 @@ void DirCompProgressBar::OnSize(UINT nType, int cx, int cy)
 
 	CWnd *pwndButton = GetDlgItem(IDC_COMPARISON_STOP);
 	CWnd *pwndProgress = GetDlgItem(IDC_PROGRESSCOMPARE);
+	CWnd *pwndStatic = GetDlgItem(IDC_PATH_COMPARING);
 
-	if (pwndButton && pwndProgress)
+	if (pwndButton && pwndProgress && pwndStatic)
 	{
-		CRect rectButton, rectProgress;
+		CRect rectButton, rectProgress, rectStatic;
 		pwndButton->GetWindowRect(&rectButton);
 		pwndProgress->GetWindowRect(&rectProgress);
+		pwndStatic->GetWindowRect(&rectStatic);
 		ScreenToClient(&rectButton);
 		ScreenToClient(&rectProgress);
+		ScreenToClient(&rectStatic);
 		rectButton.left = cx - rectButton.Width() - rectProgress.left;
 		rectProgress.right = cx - rectProgress.left;
+		rectStatic.right = rectProgress.right;
 		pwndButton->SetWindowPos(NULL, rectButton.left, rectButton.top, 0, 0, SWP_NOZORDER|SWP_NOSIZE);
 		pwndProgress->SetWindowPos(NULL, 0, 0, rectProgress.Width(), rectProgress.Height(), SWP_NOZORDER|SWP_NOMOVE);
-		for (int i = 0; i < 3; ++i)
-		{
-			CWnd *pwndStatic = GetDlgItem(IDC_PATH0_STATIC + i);
-			CRect rectStatic;
-			pwndStatic->GetWindowRect(&rectStatic);
-			ScreenToClient(&rectStatic);
-			rectStatic.right = rectButton.left - 4;
-			pwndStatic->SetWindowPos(NULL, 0, 0, rectStatic.Width(), rectStatic.Height(), SWP_NOZORDER|SWP_NOMOVE);
-		}
+		pwndStatic->SetWindowPos(NULL, 0, 0, rectStatic.Width(), rectStatic.Height(), SWP_NOZORDER|SWP_NOMOVE);
 	}
 }
 
