@@ -49,8 +49,6 @@ PropGeneral::PropGeneral(COptionsMgr *optionsMgr)
 , m_bVerifyPaths(FALSE)
 , m_bCloseWindowWithEsc(TRUE)
 , m_bAskMultiWindowClose(FALSE)
-, m_bMultipleFileCmp(FALSE)
-, m_bMultipleDirCmp(FALSE)
 , m_nAutoCompleteSource(0)
 , m_bPreserveFiletime(FALSE)
 , m_bShowSelectFolderOnStartup(FALSE)
@@ -98,8 +96,6 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_VERIFY_OPEN_PATHS, m_bVerifyPaths);
 	DDX_Check(pDX, IDC_ESC_CLOSES_WINDOW, m_bCloseWindowWithEsc);
 	DDX_Check(pDX, IDC_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose);
-	DDX_Check(pDX, IDC_MULTIDOC_FILECMP, m_bMultipleFileCmp);
-	DDX_Check(pDX, IDC_MULTIDOC_DIRCMP, m_bMultipleDirCmp);
 	DDX_CBIndex(pDX, IDC_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	DDX_Check(pDX, IDC_PRESERVE_FILETIME, m_bPreserveFiletime);
 	DDX_Check(pDX, IDC_STARTUP_FOLDER_SELECT, m_bShowSelectFolderOnStartup);
@@ -125,8 +121,6 @@ void PropGeneral::ReadOptions()
 	m_bVerifyPaths = GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS);
 	m_bCloseWindowWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 	m_bAskMultiWindowClose = GetOptionsMgr()->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
-	m_bMultipleFileCmp = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
-	m_bMultipleDirCmp = GetOptionsMgr()->GetBool(OPT_MULTIDOC_DIRDOCS);
 	m_nAutoCompleteSource = GetOptionsMgr()->GetInt(OPT_AUTO_COMPLETE_SOURCE);
 	m_bPreserveFiletime = GetOptionsMgr()->GetBool(OPT_PRESERVE_FILETIMES);
 	m_bShowSelectFolderOnStartup = GetOptionsMgr()->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
@@ -143,8 +137,6 @@ void PropGeneral::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_MULTIDOC_MERGEDOCS, m_bMultipleFileCmp == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_MULTIDOC_DIRDOCS, m_bMultipleDirCmp == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	GetOptionsMgr()->SaveOption(OPT_PRESERVE_FILETIMES, m_bPreserveFiletime);
 	GetOptionsMgr()->SaveOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, m_bShowSelectFolderOnStartup);

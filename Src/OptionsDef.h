@@ -167,10 +167,6 @@ const TCHAR OPT_CMP_IMG_THRESHOLD[] = _T("Settings/ImageColorDistanceThreshold")
 // Image Binary options
 const TCHAR OPT_CMP_BIN_FILEPATTERNS[] = _T("Settings/BinaryFilePatterns");
 
-// Multidoc enable/disable per document type
-const TCHAR OPT_MULTIDOC_DIRDOCS[] = _T("Settings/MultiDirDocs");
-const TCHAR OPT_MULTIDOC_MERGEDOCS[] = _T("Settings/MultiMergeDocs");
-
 /// Are regular expression linefilters enabled?
 const TCHAR OPT_LINEFILTER_ENABLED[] = _T("Settings/IgnoreRegExp");
 /// Currently selected filefilter

@@ -135,9 +135,6 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);
 	m_pOptions->InitOption(OPT_CUSTOM_TEMP_PATH, _T(""));
 
-	m_pOptions->InitOption(OPT_MULTIDOC_DIRDOCS, true);
-	m_pOptions->InitOption(OPT_MULTIDOC_MERGEDOCS, true);
-
 	m_pOptions->InitOption(OPT_LINEFILTER_ENABLED, false);
 	m_pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 	// CMainFrame initializes this when it is empty.
