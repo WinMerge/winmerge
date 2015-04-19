@@ -881,7 +881,7 @@ find_identical_ends (filevec)
      Handle 1 more line than the context says (because we count 1 too many),
      rounded up to the next power of 2 to speed index computation.  */
 
-  if (no_diff_means_no_output && ! function_regexp_list)
+  if (no_diff_means_no_output)
     {
       for (prefix_count = 1;  prefix_count < context + 1;  prefix_count *= 2)
         ;

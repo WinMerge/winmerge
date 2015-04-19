@@ -180,7 +180,7 @@ print_html_diff_terminator (void)
 void
 print_html_script (struct change *script/*, int src_codepage*/)
 {
-  if (ignore_blank_lines_flag || ignore_regexp_list)
+  if (ignore_blank_lines_flag)
     mark_ignorable (script);
   else
     {

@@ -265,13 +265,10 @@ protected:
 	void ColorBitmap(CDC* pDC, CBitmap& bmp,CSize bitmap_size,CSize icon_size,COLORREF fill,COLORREF border,int hatchstyle=-1);
 	void RemoveTopLevelOwnerDraw(void);
 	int GetMenuStart(void);
-	void GetFadedBitmap(CBitmap &bmp);
 	void GetTransparentBitmap(CBitmap &bmp);
 	void GetDisabledBitmap(CBitmap &bmp,COLORREF background=0);
-	void GetShadowBitmap(CBitmap &bmp);
 	INT_PTR AddToGlobalImageList(CImageList *il,int xoffset,int nID);
 	int GlobalImageListOffset(int nID);
-	BOOL CanDraw3DImageList(int offset);
 	
 // Member Variables
 protected:

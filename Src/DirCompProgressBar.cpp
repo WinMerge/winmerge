@@ -8,6 +8,8 @@
 #include "DirCompProgressBar.h"
 #include "Merge.h"
 #include "CompareStats.h"
+#include "DiffContext.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -19,7 +21,7 @@ static char THIS_FILE[] = __FILE__;
 static const UINT IDT_UPDATE = 1;
 
 /** @brief Interval (in milliseconds) for UI updates. */
-static const UINT UPDATE_INTERVAL = 400;
+static const UINT UPDATE_INTERVAL = 600;
 
 /** @brief Reset all UI fields to zero. */
 void DirCompProgressBar::ClearStat()
@@ -159,6 +161,8 @@ void DirCompProgressBar::OnTimer(UINT_PTR nIDEvent)
 				state == CompareStats::STATE_COMPARE)
 		{
 			SetProgressState(m_pCompareStats->GetComparedItems(), m_pCompareStats->GetTotalItems());
+			if (const DIFFITEM *pdi = m_pCompareStats->GetCurDiffItem())
+				GetDlgItem(IDC_PATH_COMPARING)->SetWindowTextW(pdi->diffFileInfo[0].GetFile().c_str());
 		}
 		// Compare is ready
 		// Update total items too since we might get only this one state
@@ -182,18 +186,23 @@ void DirCompProgressBar::OnSize(UINT nType, int cx, int cy)
 
 	CWnd *pwndButton = GetDlgItem(IDC_COMPARISON_STOP);
 	CWnd *pwndProgress = GetDlgItem(IDC_PROGRESSCOMPARE);
+	CWnd *pwndStatic = GetDlgItem(IDC_PATH_COMPARING);
 
-	if (pwndButton && pwndProgress)
+	if (pwndButton && pwndProgress && pwndStatic)
 	{
-		CRect rectButton, rectProgress;
+		CRect rectButton, rectProgress, rectStatic;
 		pwndButton->GetWindowRect(&rectButton);
 		pwndProgress->GetWindowRect(&rectProgress);
+		pwndStatic->GetWindowRect(&rectStatic);
 		ScreenToClient(&rectButton);
 		ScreenToClient(&rectProgress);
+		ScreenToClient(&rectStatic);
 		rectButton.left = cx - rectButton.Width() - rectProgress.left;
 		rectProgress.right = cx - rectProgress.left;
+		rectStatic.right = rectProgress.right;
 		pwndButton->SetWindowPos(NULL, rectButton.left, rectButton.top, 0, 0, SWP_NOZORDER|SWP_NOSIZE);
 		pwndProgress->SetWindowPos(NULL, 0, 0, rectProgress.Width(), rectProgress.Height(), SWP_NOZORDER|SWP_NOMOVE);
+		pwndStatic->SetWindowPos(NULL, 0, 0, rectStatic.Width(), rectStatic.Height(), SWP_NOZORDER|SWP_NOMOVE);
 	}
 }
 

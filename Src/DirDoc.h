@@ -66,8 +66,6 @@ public:
 	BOOL CloseMergeDocs();
 	CDirView * GetMainView() const;
 
-	BOOL ReusingDirDoc();
-
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDirDoc)
@@ -134,7 +132,6 @@ private:
 	std::unique_ptr<CustomStatusCursor> m_statusCursor;
 	String m_strDesc[3]; /**< Left/middle/right side desription text */
 	PluginManager m_pluginman;
-	bool m_bReuseCloses; /**< Are we closing because of reuse? */
 	bool m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
 };
 

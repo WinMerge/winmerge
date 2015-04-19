@@ -7,6 +7,10 @@
 
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Mutex.h>
+#include <Poco/AtomicCounter.h>
+#include <vector>
+
+struct DIFFITEM;
 
 /**
  * @brief Class holding directory compare stats.
@@ -65,14 +69,26 @@ public:
 
 	CompareStats(int nDirs);
 	~CompareStats();
+	void SetCompareThreadCount(int nCompareThreads)
+	{
+		m_rgThreadState.resize(nCompareThreads);
+	}
+	void BeginCompare(const DIFFITEM *di, int iCompareThread)
+	{
+		ThreadState &rThreadState = m_rgThreadState[iCompareThread];
+		rThreadState.m_nHitCount = 0;
+		rThreadState.m_pDiffItem = di;
+	}
 	void AddItem(int code);
 	void IncreaseTotalItems(int count = 1);
 	int GetCount(CompareStats::RESULT result) const;
 	int GetTotalItems() const;
 	int GetComparedItems() const { return m_nComparedItems; }
+	const DIFFITEM *GetCurDiffItem();
 	void Reset();
 	void SetCompareState(CompareStats::CMP_STATE state);
 	CompareStats::CMP_STATE GetCompareState() const;
+	void SetCurrentDiffItem(const DIFFITEM *di);
 	bool IsCompareDone() const { return m_bCompareDone; }
 
 	CompareStats::RESULT GetResultFromCode(unsigned diffcode) const;
@@ -85,4 +101,12 @@ private:
 	CMP_STATE m_state; /**< State for compare (idle, collect, compare,..) */
 	bool m_bCompareDone; /**< Have we finished last compare? */
 	int m_nDirs; /**< number of directories to compare */
+	struct ThreadState
+	{
+		ThreadState() : m_nHitCount(0), m_pDiffItem(NULL) {}
+		Poco::AtomicCounter m_nHitCount;
+		const DIFFITEM *m_pDiffItem;
+	};
+	std::vector<ThreadState> m_rgThreadState;
+
 };

@@ -74,6 +74,31 @@ int CompareStats::GetTotalItems() const
 	return m_nTotalItems;
 }
 
+/**
+* @brief Return item taking most time among current items.
+*/
+const DIFFITEM *CompareStats::GetCurDiffItem()
+{
+	int nHitCountMax = 0;
+	const DIFFITEM *cdi = m_rgThreadState.front().m_pDiffItem;
+	std::vector<ThreadState>::iterator it = m_rgThreadState.begin();
+	while (it != m_rgThreadState.end())
+	{
+		const DIFFITEM *di = it->m_pDiffItem;
+		if (di != NULL && (di->diffcode.diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::NOCMP)
+		{
+			int nHitCount = it->m_nHitCount++;
+			if (nHitCountMax < nHitCount)
+			{
+				nHitCountMax = nHitCount;
+				cdi = di;
+			}
+		}
+		++it;
+	}
+	return cdi;
+}
+
 /** 
  * @brief Reset comparestats.
  * Use this function to reset stats before new compare.

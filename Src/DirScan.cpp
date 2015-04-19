@@ -78,8 +78,8 @@ private:
 class DiffWorker: public Runnable
 {
 public:
-	DiffWorker(NotificationQueue& queue, CDiffContext *pCtxt):
-	  m_queue(queue), m_pCtxt(pCtxt) {}
+	DiffWorker(NotificationQueue& queue, CDiffContext *pCtxt, int id):
+	  m_queue(queue), m_pCtxt(pCtxt), m_id(id) {}
 
 	void run()
 	{
@@ -92,6 +92,7 @@ public:
 		{
 			WorkNotification* pWorkNf = dynamic_cast<WorkNotification*>(pNf.get());
 			if (pWorkNf) {
+				m_pCtxt->m_pCompareStats->BeginCompare(&pWorkNf->data(), m_id);
 				if (!m_pCtxt->ShouldAbort())
 					CompareDiffItem(pWorkNf->data(), m_pCtxt);
 				pWorkNf->queueResult().enqueueNotification(new WorkCompletedNotification(pWorkNf->data()));
@@ -103,6 +104,7 @@ public:
 private:
 	NotificationQueue& m_queue;
 	CDiffContext *m_pCtxt;
+	int m_id;
 };
 
 typedef std::shared_ptr<DiffWorker> DiffWorkerPtr;
@@ -558,9 +560,10 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 	size_t nworkers = (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT) ? Environment::processorCount() : 1;
 	NotificationQueue queue;
 
+	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
 	for (size_t i = 0; i < nworkers; ++i)
 	{
-		workers.push_back(DiffWorkerPtr(new DiffWorker(queue, myStruct->context)));
+		workers.push_back(DiffWorkerPtr(new DiffWorker(queue, myStruct->context, i)));
 		threadPool.start(*workers[i]);
 	}
 
@@ -667,21 +670,24 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiff
 		uintptr_t curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		bool existsalldirs = ((pCtxt->GetCompareDirs() == 2 && di.diffcode.isSideBoth()) || (pCtxt->GetCompareDirs() == 3 && di.diffcode.isSideAll()));
-		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
+		if (di.diffcode.isDirectory())
 		{
-			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
-			int ndiff = DirScan_CompareRequestedItems(myStruct, curpos);
-			if (ndiff > 0)
+			if (pCtxt->m_bRecursive)
 			{
-				if (existsalldirs)
-					di.diffcode.diffcode |= DIFFCODE::DIFF;
-				res += ndiff;
+				di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
+				int ndiff = DirScan_CompareRequestedItems(myStruct, curpos);
+				if (ndiff > 0)
+				{
+					if (existsalldirs)
+						di.diffcode.diffcode |= DIFFCODE::DIFF;
+					res += ndiff;
+				}
+				else if (ndiff == 0)
+				{
+					if (existsalldirs)
+						di.diffcode.diffcode |= DIFFCODE::SAME;
+				}
 			}
-			else if (ndiff == 0)
-			{
-				if (existsalldirs)
-					di.diffcode.diffcode |= DIFFCODE::SAME;
-			}		
 		}
 		else
 		{
