@@ -944,17 +944,11 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,220,10
     CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP | BS_MULTILINE,7,77,220,20
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,99,208,10
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,111,147,41,CBS_DROPDOWNLIST | 
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,99,220,10
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,111,220,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,130,
-                    221,37
-    CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,141,206,10
-    CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,151,206,10
-    LTEXT           "Language:",IDC_STATIC,7,168,80,9
-    COMBOBOX        IDC_LANGUAGE_LIST,7,178,221,41,CBS_DROPDOWNLIST | 
+    LTEXT           "Language:",IDC_STATIC,7,130,80,9
+    COMBOBOX        IDC_LANGUAGE_LIST,7,140,221,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
                     IDC_STATIC,7,193,173,40

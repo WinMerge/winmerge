@@ -73,7 +73,6 @@ CDirDoc::CDirDoc()
 , m_pCompareStats(nullptr)
 , m_bRecursive(FALSE)
 , m_statusCursor(nullptr)
-, m_bReuseCloses(FALSE)
 , m_bMarkedRescan(FALSE)
 , m_pTempPathContext(nullptr)
 {
@@ -621,7 +620,7 @@ void CDirDoc::MergeDocClosing(IMergeDoc * pMergeDoc)
 	// because of reuse close also dir compare
 	if (m_pDirView)
 	{
-		if (m_pCtxt == NULL && !m_bReuseCloses)
+		if (m_pCtxt == NULL)
 			m_pDirView->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 	}
 	else if (m_MergeDocs.GetCount() == 0)
@@ -646,38 +645,6 @@ BOOL CDirDoc::CloseMergeDocs()
 		if (!pMergeDoc->CloseNow())
 			return FALSE;
 	}
-	return TRUE;
-}
-
-/**
- * @brief Prepare for reuse.
- *
- * Close all our merge docs (which gives them chance to save)
- * This may fail if user cancels a Save dialog
- * in which case this aborts and returns FALSE
- */
-BOOL CDirDoc::ReusingDirDoc()
-{
-	m_bReuseCloses = TRUE;
-
-	// Inform all of our merge docs that we're closing
-	if (!CloseMergeDocs())
-		return FALSE;
-
-	m_bReuseCloses = FALSE;
-
-	// clear diff display
-	ASSERT(m_pDirView);
-	m_pDirView->DeleteAllDisplayItems();
-
-	// delete comparison parameters and results
-	m_pCtxt.reset();
-
-	while (m_pTempPathContext)
-	{
-		m_pTempPathContext = m_pTempPathContext->DeleteHead();
-	}
-
 	return TRUE;
 }
 

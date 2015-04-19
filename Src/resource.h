@@ -330,8 +330,6 @@
 #define IDC_SCOLOR_USER1_BOLD           1186
 #define IDC_SCOLOR_USER2_BOLD           1187
 #define IDC_SAVECLOSING_DISCARDALL      1188
-#define IDC_MULTIDOC_FILECMP            1189
-#define IDC_MULTIDOC_DIRCMP             1190
 #define IDC_PROGRESSCOMPARE             1191
 #define IDC_ITEMSCOMPARED               1192
 #define IDC_ITEMSTOTAL                  1193
