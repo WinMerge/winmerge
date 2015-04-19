@@ -470,7 +470,7 @@ int CDirView::GetDefaultColImage() const
 void CDirView::StartCompare(CompareStats *pCompareStats)
 {
 	if (m_pCmpProgressBar == NULL)
-		m_pCmpProgressBar.reset(new DirCompProgressBar(GetDocument()->GetDiffContext()));
+		m_pCmpProgressBar.reset(new DirCompProgressBar());
 
 	if (!::IsWindow(m_pCmpProgressBar->GetSafeHwnd()))
 		m_pCmpProgressBar->Create(GetParentFrame());
