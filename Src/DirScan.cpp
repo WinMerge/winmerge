@@ -670,21 +670,24 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiff
 		uintptr_t curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		bool existsalldirs = ((pCtxt->GetCompareDirs() == 2 && di.diffcode.isSideBoth()) || (pCtxt->GetCompareDirs() == 3 && di.diffcode.isSideAll()));
-		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
+		if (di.diffcode.isDirectory())
 		{
-			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
-			int ndiff = DirScan_CompareRequestedItems(myStruct, curpos);
-			if (ndiff > 0)
+			if (pCtxt->m_bRecursive)
 			{
-				if (existsalldirs)
-					di.diffcode.diffcode |= DIFFCODE::DIFF;
-				res += ndiff;
+				di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
+				int ndiff = DirScan_CompareRequestedItems(myStruct, curpos);
+				if (ndiff > 0)
+				{
+					if (existsalldirs)
+						di.diffcode.diffcode |= DIFFCODE::DIFF;
+					res += ndiff;
+				}
+				else if (ndiff == 0)
+				{
+					if (existsalldirs)
+						di.diffcode.diffcode |= DIFFCODE::SAME;
+				}
 			}
-			else if (ndiff == 0)
-			{
-				if (existsalldirs)
-					di.diffcode.diffcode |= DIFFCODE::SAME;
-			}		
 		}
 		else
 		{
