@@ -100,6 +100,8 @@ static char THIS_FILE[] = __FILE__;
 
 static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource, CImageList& ImgList);
 static const CPtrList &GetDocList(const CMultiDocTemplate *pTemplate);
+template<class DocClass>
+DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles);
 
 /**
  * @brief A table associating menuitem id, icon and menus to apply.
@@ -687,7 +689,7 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 {
 	if (!m_pMenus[MENU_MERGEVIEW])
 		theApp.m_pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
-	CMergeDoc * pMergeDoc = GetMergeDocToShow(nFiles, pDirDoc);
+	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(theApp.m_pDiffTemplate, pDirDoc, nFiles);
 
 	// Make local copies, so we can change encoding if we guess it below
 	FileLocation fileloc[3];
@@ -786,7 +788,7 @@ void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc,
 {
 	if (!m_pMenus[MENU_HEXMERGEVIEW])
 		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
-	if (CHexMergeDoc *pHexMergeDoc = GetHexMergeDocToShow(paths.GetSize(), pDirDoc))
+	if (CHexMergeDoc *pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(theApp.m_pHexMergeTemplate, pDirDoc, paths.GetSize()))
 		pHexMergeDoc->OpenDocs(paths, bRO);
 }
 
@@ -1076,13 +1078,6 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 		bRO[1] = (dwFlags[1] & FFILEOPEN_READONLY) != 0;
 		bRO[2] = (dwFlags[2] & FFILEOPEN_READONLY) != 0;
 	};
-	// jtuc: docNull used to be uninitialized so you couldn't tell whether
-	// pDirDoc->ReusingDirDoc() would be called for passed-in pDirDoc.
-	// However, pDirDoc->ReusingDirDoc() kills temp path contexts, and I
-	// need to avoid that. This is why I'm initializing docNull to TRUE here.
-	// Note that call to pDirDoc->CloseMergeDocs() above preserves me from
-	// keeping orphaned MergeDocs in that case.
-	BOOL docNull = TRUE;
 
 	// pop up dialog unless arguments exist (and are compatible)
 	PATH_EXISTENCE pathsType = GetPairComparability(files, IsArchiveFile);
@@ -1142,23 +1137,17 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	{
 		if (pathsType == IS_EXISTING_DIR)
 		{
-			pDirDoc = GetDirDocToShow(files.GetSize(), &docNull);
+			CDirDoc::m_nDirsTemp = files.GetSize();
+			if (!m_pMenus[MENU_DIRVIEW])
+				theApp.m_pDirTemplate->m_hMenuShared = NewDirViewMenu();
+			pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->OpenDocumentFile(NULL);
 		}
 		else
 		{
 			pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->CreateNewDocument();
-			docNull = TRUE;
 		}
 	}
 
-	if (!docNull)
-	{
-		// If reusing an existing doc, give it a chance to save its data
-		// and close any merge views, and clear its window
-		if (!pDirDoc->ReusingDirDoc())
-			return FALSE;
-	}
-	
 	// open the diff
 	if (pathsType == IS_EXISTING_DIR)
 	{
@@ -1603,85 +1592,6 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
 		pMergeDoc->SetDirDoc(pDirDoc);
 	}
 	return pMergeDoc;
-}
-
-/**
- * @brief Obtain a merge doc to display a difference in files.
- * This function (usually) uses DirDoc to determine if new or existing
- * MergeDoc is used. However there is exceptional case when DirDoc does
- * not contain diffs. Then we have only file compare, and if we also have
- * limited file compare windows, we always reuse existing MergeDoc.
- * @param [in] pDirDoc Dir compare document.
- * @param [out] pNew Did we create a new document?
- * @return Pointer to merge doucument.
- */
-CMergeDoc * CMainFrame::GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc)
-{
-	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
-	const MergeDocList &docs = GetAllMergeDocs();
-
-	if (!pDirDoc->HasDiffs() && !bMultiDocs && !docs.IsEmpty())
-	{
-		POSITION pos = docs.GetHeadPosition();
-		CMergeDoc * pMergeDoc = docs.GetAt(pos);
-		pMergeDoc->CloseNow();
-	}
-	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(theApp.m_pDiffTemplate, pDirDoc, nFiles);
-	return pMergeDoc;
-}
-
-/**
- * @brief Obtain a hex merge doc to display a difference in files.
- * This function (usually) uses DirDoc to determine if new or existing
- * MergeDoc is used. However there is exceptional case when DirDoc does
- * not contain diffs. Then we have only file compare, and if we also have
- * limited file compare windows, we always reuse existing MergeDoc.
- * @param [in] pDirDoc Dir compare document.
- * @param [out] pNew Did we create a new document?
- * @return Pointer to merge doucument.
- */
-CHexMergeDoc * CMainFrame::GetHexMergeDocToShow(int nFiles, CDirDoc * pDirDoc)
-{
-	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
-	const HexMergeDocList &docs = GetAllHexMergeDocs();
-
-	if (!pDirDoc->HasDiffs() && !bMultiDocs && !docs.IsEmpty())
-	{
-		POSITION pos = docs.GetHeadPosition();
-		CHexMergeDoc * pHexMergeDoc = docs.GetAt(pos);
-		pHexMergeDoc->CloseNow();
-	}
-	CHexMergeDoc * pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(theApp.m_pHexMergeTemplate, pDirDoc, nFiles);
-	return pHexMergeDoc;
-}
-
-/// Get pointer to a dir doc for displaying a scan
-CDirDoc * CMainFrame::GetDirDocToShow(int nDirs, BOOL * pNew)
-{
-	CDirDoc::m_nDirsTemp = nDirs;
-	if (!m_pMenus[MENU_DIRVIEW])
-		theApp.m_pDirTemplate->m_hMenuShared = NewDirViewMenu();
-	CDirDoc * pDirDoc = 0;
-	if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_DIRDOCS))
-	{
-		POSITION pos = theApp.m_pDirTemplate->GetFirstDocPosition();
-		while (pos)
-		{			
-			CDirDoc *pDirDocTemp = static_cast<CDirDoc *>(theApp.m_pDirTemplate->GetNextDoc(pos));
-			if (pDirDocTemp->HasDirView())
-			{
-				*pNew = FALSE;
-				pDirDoc = pDirDocTemp;
-				break;
-			}
-		}
-	}
-	if (!pDirDoc)
-	{
-		pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->OpenDocumentFile(NULL);
-		*pNew = TRUE;
-	}
-	return pDirDoc;
 }
 
 // Set status in the main status pane

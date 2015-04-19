@@ -790,7 +790,7 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts, fd)
 {
   int l0, l1, show_from, show_to;
   int i;
-  int trivial = ignore_blank_lines_flag || ignore_regexp_list;
+  int trivial = ignore_blank_lines_flag;
   struct change *next;
 
   show_from = show_to = 0;
@@ -810,34 +810,14 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts, fd)
         if (!ignore_blank_lines_flag || (!iseolch(fd[0].linbuf[i][0]) &&
             fd[0].linbuf[i][0] != 0))
           {
-            struct regexp_list *r;
-            char const HUGE *line = fd[0].linbuf[i];
-            int len = fd[0].linbuf[i + 1] - line;
-
-            for (r = ignore_regexp_list; r; r = r->next)
-              if (0 <= re_search (&r->buf, line, len, 0, len, 0))
-                break;  /* Found a match.  Ignore this line.  */
-            /* If we got all the way through the regexp list without
-               finding a match, then it's nontrivial.  */
-            if (!r)
-              trivial = 0;
+            trivial = 0;
           }
 
       for (i = next->line1; i <= l1 && trivial; i++)
         if (!ignore_blank_lines_flag || (!iseolch(fd[1].linbuf[i][0]) &&
             fd[1].linbuf[i][0] != 0))
           {
-            struct regexp_list *r;
-            char const HUGE *line = fd[1].linbuf[i];
-            int len = fd[1].linbuf[i + 1] - line;
-
-            for (r = ignore_regexp_list; r; r = r->next)
-              if (0 <= re_search (&r->buf, line, len, 0, len, 0))
-                break;  /* Found a match.  Ignore this line.  */
-            /* If we got all the way through the regexp list without
-               finding a match, then it's nontrivial.  */
-            if (!r)
-              trivial = 0;
+            trivial = 0;
           }
     }
   while ((next = next->link) != 0);

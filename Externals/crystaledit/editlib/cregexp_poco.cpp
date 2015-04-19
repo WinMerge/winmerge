@@ -54,7 +54,14 @@ RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
     if ((RxOpt & RX_CASE) == 0)
 		pcre_opts |= RegularExpression::RE_CASELESS;
 
-	n->regexp.reset(new RegularExpression(regexString, pcre_opts));
+	try
+	{
+		n->regexp.reset(new RegularExpression(regexString, pcre_opts));
+	}
+	catch (...)
+	{
+		return 0;
+	}
 
     return n;
 }

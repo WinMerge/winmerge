@@ -31,8 +31,6 @@ public:
 	bool  m_bVerifyPaths;
 	bool  m_bCloseWindowWithEsc;
 	bool  m_bAskMultiWindowClose;
-	bool  m_bMultipleFileCmp;
-	bool  m_bMultipleDirCmp;
 	int   m_nAutoCompleteSource;
 	bool  m_bPreserveFiletime;
 	bool  m_bShowSelectFolderOnStartup;

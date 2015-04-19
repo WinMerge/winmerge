@@ -112,9 +112,9 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 
     m_aButtons.clear();
 
-	LOGFONT logfont;
-	SystemParametersInfo(SPI_GETICONTITLELOGFONT, sizeof(LOGFONT), &logfont, 0);
-	m_font.CreateFontIndirect(&logfont);
+	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
+	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
+	m_font.CreateFontIndirect(&ncm.lfMessageFont);
 }
 
 /*

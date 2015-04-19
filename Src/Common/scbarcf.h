@@ -25,13 +25,7 @@
 // Send bug reports, bug fixes, enhancements, requests, flames, etc. to
 // cristi@datamekanix.com or post them at the message board at the site.
 /////////////////////////////////////////////////////////////////////////
-
-#if !defined(__SCBARCF_H__)
-#define __SCBARCF_H__
-
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
 // scbarcf.h : header file
 //
 
@@ -72,5 +66,3 @@ protected:
 };
 
 /////////////////////////////////////////////////////////////////////////
-
-#endif // !defined(__SCBARCF_H__)

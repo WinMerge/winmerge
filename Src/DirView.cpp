@@ -1276,13 +1276,6 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		// We haven't done unpacking yet in this diff, but if a binary flag is already set,
 		// then it was set in a previous diff after unpacking, so we trust it
 
-		// Close open documents first (ask to save unsaved data)
-		if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS))
-		{
-			if (!pDoc->CloseMergeDocs())
-				return;
-		}
-
 		// Open identical and different files
 		FileLocation fileloc[3];
 		if (paths.GetSize() < 3)
@@ -1379,15 +1372,6 @@ void CDirView::OpenSelectionHex()
 		if (!errmsg.empty())
 			AfxMessageBox(errmsg.c_str(), MB_ICONSTOP);
 		return;
-	}
-
-	// Need to consider only regular file case here
-
-	// Close open documents first (ask to save unsaved data)
-	if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS))
-	{
-		if (!pDoc->CloseMergeDocs())
-			return;
 	}
 
 	// Open identical and different files

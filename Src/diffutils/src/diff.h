@@ -23,7 +23,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include "system.h"
 #include <ctype.h>
 #include <stdio.h>
-#include "regex.h"
 
 #ifdef NOMINMAX
 #undef min
@@ -123,18 +122,6 @@ EXTERN int      ignore_case_flag;
 
 /* File labels for `-c' output headers (-L).  */
 EXTERN char *file_label[2];
-
-struct regexp_list
-{
-  struct re_pattern_buffer buf;
-  struct regexp_list *next;
-};
-
-/* Regexp to identify function-header lines (-F).  */
-EXTERN struct regexp_list *function_regexp_list;
-
-/* Ignore changes that affect only lines matching this regexp (-I).  */
-EXTERN struct regexp_list *ignore_regexp_list;
 
 /* Say only whether files differ, not how (-q).  */
 EXTERN int 	no_details_flag;

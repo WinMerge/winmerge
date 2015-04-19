@@ -25,16 +25,10 @@
 // Send bug reports, bug fixes, enhancements, requests, flames, etc. to
 // cristi@datamekanix.com or post them at the message board at the site.
 /////////////////////////////////////////////////////////////////////////
-
-#if !defined(__SIZECBAR_H__)
-#define __SIZECBAR_H__
+#pragma once
 
 #include <afxpriv.h>    // for CDockContext
 #include <afxtempl.h>   // for CTypedPtrArray
-
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
 
 // MFC 8/VS.NET 2005 has breaking change in OnNcHitTest return value
 #ifndef NCHITTEST_RESULT
@@ -242,6 +236,3 @@ public:
     DECLARE_MESSAGE_MAP()
 };
 #endif //_SCB_REPLACE_MINIFRAME
-
-#endif // !defined(__SIZECBAR_H__)
-
