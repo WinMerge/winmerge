@@ -124,14 +124,12 @@ protected:
 // Generated message map functions
 protected:
 	//{{AFX_MSG(COpenView)
-	afx_msg void OnPath0Button();
-	afx_msg void OnPath1Button();
-	afx_msg void OnPath2Button();
+	template <int N>
+	afx_msg void OnPathButton();
 	afx_msg void OnOK();
 	afx_msg void OnCancel();
-	afx_msg void OnSelchangePath0Combo();
-	afx_msg void OnSelchangePath1Combo();
-	afx_msg void OnSelchangePath2Combo();
+	template <int N>
+	afx_msg void OnSelchangePathCombo();
 	afx_msg void OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
 	template<int id1, int id2>
 	afx_msg void OnSwapButton();
@@ -140,10 +138,8 @@ protected:
 	afx_msg void OnSelectUnpacker();
 	afx_msg void OnSelectFilter();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
-	afx_msg void OnEditCopy();
-	afx_msg void OnEditCut();
-	afx_msg void OnEditPaste();
-	afx_msg void OnEditUndo();
+	template <int MSG, int WPARAM = 0, int LPARAM = 0>
+	afx_msg void OnEditAction();
 	afx_msg void OnHelp();
 	afx_msg void OnDropFiles(const std::vector<String>& files);
 	afx_msg LRESULT OnUpdateStatus(WPARAM wParam, LPARAM lParam);

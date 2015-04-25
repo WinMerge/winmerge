@@ -66,15 +66,15 @@ IMPLEMENT_DYNCREATE(COpenView, CFormView)
 
 BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	//{{AFX_MSG_MAP(COpenView)
-	ON_BN_CLICKED(IDC_PATH0_BUTTON, OnPath0Button)
-	ON_BN_CLICKED(IDC_PATH1_BUTTON, OnPath1Button)
-	ON_BN_CLICKED(IDC_PATH2_BUTTON, OnPath2Button)
+	ON_BN_CLICKED(IDC_PATH0_BUTTON, OnPathButton<0>)
+	ON_BN_CLICKED(IDC_PATH1_BUTTON, OnPathButton<1>)
+	ON_BN_CLICKED(IDC_PATH2_BUTTON, OnPathButton<2>)
 	ON_BN_CLICKED(IDC_SWAP01_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH1_COMBO>))
 	ON_BN_CLICKED(IDC_SWAP12_BUTTON, (OnSwapButton<IDC_PATH1_COMBO, IDC_PATH2_COMBO>))
 	ON_BN_CLICKED(IDC_SWAP02_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH2_COMBO>))
-	ON_CBN_SELCHANGE(IDC_PATH0_COMBO, OnSelchangePath0Combo)
-	ON_CBN_SELCHANGE(IDC_PATH1_COMBO, OnSelchangePath1Combo)
-	ON_CBN_SELCHANGE(IDC_PATH2_COMBO, OnSelchangePath2Combo)
+	ON_CBN_SELCHANGE(IDC_PATH0_COMBO, OnSelchangePathCombo<0>)
+	ON_CBN_SELCHANGE(IDC_PATH1_COMBO, OnSelchangePathCombo<1>)
+	ON_CBN_SELCHANGE(IDC_PATH2_COMBO, OnSelchangePathCombo<2>)
 	ON_CBN_EDITCHANGE(IDC_PATH0_COMBO, OnEditEvent)
 	ON_CBN_EDITCHANGE(IDC_PATH1_COMBO, OnEditEvent)
 	ON_CBN_EDITCHANGE(IDC_PATH2_COMBO, OnEditEvent)
@@ -89,10 +89,11 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND(IDOK, OnOK)
 	ON_COMMAND(IDCANCEL, OnCancel)
 	ON_COMMAND(ID_HELP, OnHelp)
-	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
-	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
-	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
-	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	ON_COMMAND(ID_EDIT_COPY, OnEditAction<WM_COPY>)
+	ON_COMMAND(ID_EDIT_PASTE, OnEditAction<WM_PASTE>)
+	ON_COMMAND(ID_EDIT_CUT, OnEditAction<WM_CUT>)
+	ON_COMMAND(ID_EDIT_UNDO, OnEditAction<WM_UNDO>)
+	ON_COMMAND(ID_EDIT_SELECT_ALL, (OnEditAction<EM_SETSEL, 0, -1>))
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
 	ON_WM_LBUTTONDOWN()
@@ -407,27 +408,12 @@ void COpenView::OnButton(int index)
 }
 
 /** 
- * @brief Called when "Browse..." button is selected for first path.
+ * @brief Called when "Browse..." button is selected for N path.
  */
-void COpenView::OnPath0Button()
+template <int N>
+void COpenView::OnPathButton()
 {
-	OnButton(0);
-}
-
-/** 
- * @brief Called when "Browse..." button is selected for second path.
- */
-void COpenView::OnPath1Button() 
-{
-	OnButton(1);
-}
-
-/** 
- * @brief Called when "Browse..." button is selected for third path.
- */
-void COpenView::OnPath2Button() 
-{
-	OnButton(2);
+	OnButton(N);
 }
 
 template<int id1, int id2>
@@ -772,19 +758,10 @@ void COpenView::OnSelchangeCombo(int index)
 	UpdateButtonStates();
 }
 
-void COpenView::OnSelchangePath0Combo() 
+template <int N>
+void COpenView::OnSelchangePathCombo() 
 {
-	OnSelchangeCombo(0);
-}
-
-void COpenView::OnSelchangePath1Combo() 
-{
-	OnSelchangeCombo(1);
-}
-
-void COpenView::OnSelchangePath2Combo() 
-{
-	OnSelchangeCombo(2);
+	OnSelchangeCombo(N);
 }
 
 void COpenView::OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult) 
@@ -1005,44 +982,12 @@ void COpenView::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 		UpdateButtonStates();
 }
 
-/**
- * @brief Copy selected text to clipboard
- */
-void COpenView::OnEditCopy()
+template <int MSG, int WPARAM, int LPARAM>
+void COpenView::OnEditAction()
 {
 	CWnd *pCtl = GetFocus();
 	if (pCtl)
-		pCtl->PostMessage(WM_COPY);
-}
-
-/**
- * @brief Cut current selection to clipboard
- */
-void COpenView::OnEditCut()
-{
-	CWnd *pCtl = GetFocus();
-	if (pCtl)
-		pCtl->PostMessage(WM_CUT);
-}
-
-/**
- * @brief Paste text from clipboard
- */
-void COpenView::OnEditPaste()
-{
-	CWnd *pCtl = GetFocus();
-	if (pCtl)
-		pCtl->PostMessage(WM_PASTE);
-}
-
-/**
- * @brief Undo last action
- */
-void COpenView::OnEditUndo()
-{
-	CWnd *pCtl = GetFocus();
-	if (pCtl)
-		pCtl->PostMessage(WM_UNDO);
+		pCtl->PostMessage(MSG, WPARAM, LPARAM);
 }
 
 /**
