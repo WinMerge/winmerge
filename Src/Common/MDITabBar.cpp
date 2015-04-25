@@ -23,6 +23,7 @@ BEGIN_MESSAGE_MAP(CMDITabBar, CControlBar)
 	ON_WM_MBUTTONDOWN()
 	ON_WM_CONTEXTMENU()
 	ON_WM_PAINT()
+	ON_WM_ERASEBKGND()
 	ON_NOTIFY_REFLECT_EX(TCN_SELCHANGE, OnSelchange)
 	ON_WM_DRAWITEM_REFLECT()
 	ON_WM_MOUSEMOVE()
@@ -75,7 +76,40 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 
 void CMDITabBar::OnPaint() 
 {
-	Default();
+	CPaintDC dc(this);
+	dc.SelectObject(GetFont());
+
+	DRAWITEMSTRUCT dis;
+	dis.hDC = dc.GetSafeHdc();
+
+	int nCurSel = GetCurSel();
+	for (int i = GetItemCount() - 1; i >= 0; --i)
+	{
+		GetItemRect(i, &dis.rcItem);
+		dis.itemID = i;
+		if (i != nCurSel)
+		{
+			dis.itemState = 0;
+			dis.rcItem.bottom -= 2;
+		}
+		else
+		{
+			dis.itemState = ODS_SELECTED;
+			dis.rcItem.bottom += 2;
+			dis.rcItem.top -= 2;
+		}
+		DrawItem(&dis);
+		dc.FillSolidRect(CRect(dis.rcItem.right - 1, dis.rcItem.top, dis.rcItem.right, dis.rcItem.bottom + 2),
+			GetSysColor(COLOR_3DLIGHT));
+	}
+}
+
+BOOL CMDITabBar::OnEraseBkgnd(CDC* pDC)
+{
+	CRect rClient;
+	GetClientRect(rClient);
+	pDC->FillSolidRect(rClient, GetSysColor(COLOR_3DFACE));
+	return TRUE;
 }
 
 /** 
