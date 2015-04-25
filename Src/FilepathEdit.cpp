@@ -42,6 +42,7 @@ static int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFil
 BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
 	ON_WM_CONTEXTMENU()
 	ON_WM_CTLCOLOR_REFLECT()
+	ON_WM_NCPAINT()
 END_MESSAGE_MAP()
 
 
@@ -297,6 +298,15 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 	}
 }
 
+void CFilepathEdit::OnNcPaint()
+{
+	CWindowDC dc(this);
+	CRect rect;
+	GetWindowRect(rect);
+	rect.OffsetRect(-rect.TopLeft());
+	dc.FillSolidRect(rect, m_crBackGnd);
+}
+
 /**
  * @brief Set the control to look active/inactive.
  * This function sets control to look like an active control. We don't
@@ -324,6 +334,7 @@ void CFilepathEdit::SetActive(BOOL bActive)
 		SetTextColor(::GetSysColor(COLOR_INACTIVECAPTIONTEXT));
 		SetBackColor(::GetSysColor(COLOR_INACTIVECAPTION));
 	}
+	RedrawWindow(NULL, NULL, RDW_FRAME | RDW_INVALIDATE);
 }
 
 /**
