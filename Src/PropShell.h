@@ -34,10 +34,14 @@ public:
 protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnAddToExplorer();
+	afx_msg void OnRegisterShellExtension();
+	afx_msg void OnUnregisterShellExtension();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
 	void GetContextRegValues();
 	void AdvancedContextMenuCheck();
 	void SubfolderOptionCheck();
+	void UpdateButtons();
 
 	DECLARE_MESSAGE_MAP()
 

@@ -12,6 +12,8 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "Environment.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,6 +33,49 @@ static LPCTSTR f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
 static LPCTSTR f_RegValuePath = _T("Executable");
 
+static bool IsShellExtensionRegistered()
+{
+	HKEY hKey;
+	if (ERROR_SUCCESS == RegOpenKeyEx(HKEY_CLASSES_ROOT, _T("CLSID\\{4E716236-AA30-4C65-B225-D68BBA81E9C2}"), 0, KEY_QUERY_VALUE, &hKey)) {
+		RegCloseKey(hKey);
+		return true;
+	}
+	return false;
+}
+
+static bool RegisterShellExtension(bool unregister)
+{
+	TCHAR szSystem32[260] = { 0 };
+	TCHAR szSysWow64[260] = { 0 };
+	GetSystemDirectory(szSystem32, sizeof(szSystem32) / sizeof(szSystem32[0]));
+	GetSystemWow64Directory(szSysWow64, sizeof(szSysWow64) / sizeof(szSysWow64[0]));
+
+	String progpath = env_GetProgPath();
+	String regsvr32 = paths_ConcatPath(szSystem32, _T("regsvr32.exe"));
+	String args;
+	SHELLEXECUTEINFO sei = { sizeof(sei) };
+	sei.lpVerb = _T("runas");
+	if (szSysWow64[0])
+	{
+		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths_ConcatPath(progpath, _T("ShellExtensionX64.dll")) + _T("\"");
+		sei.lpFile = regsvr32.c_str();
+		sei.lpParameters = args.c_str();
+		ShellExecuteEx(&sei);
+
+		regsvr32 = paths_ConcatPath(szSysWow64, _T("regsvr32.exe"));
+		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths_ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
+		sei.lpFile = regsvr32.c_str();
+		sei.lpParameters = args.c_str();
+		return !!ShellExecuteEx(&sei);
+	}
+	else
+	{
+		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths_ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
+		sei.lpFile = regsvr32.c_str();
+		sei.lpParameters = args.c_str();
+		return !!ShellExecuteEx(&sei);
+	}
+}
 
 PropShell::PropShell(COptionsMgr *optionsMgr) 
 : OptionsPanel(optionsMgr, PropShell::IDD)
@@ -45,11 +90,21 @@ BOOL PropShell::OnInitDialog()
 	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
 
+#ifndef BCM_SETSHIELD
+#define BCM_SETSHIELD            (0x1600/*BCM_FIRST*/ + 0x000C)
+#endif
+
+	::SendMessage(GetDlgItem(IDC_REGISTER_SHELLEXTENSION)->m_hWnd, BCM_SETSHIELD, 0, TRUE);
+	::SendMessage(GetDlgItem(IDC_UNREGISTER_SHELLEXTENSION)->m_hWnd, BCM_SETSHIELD, 0, TRUE);
+
 	// Update shell extension checkboxes
+	UpdateButtons();
 	GetContextRegValues();
 	AdvancedContextMenuCheck();
 	SubfolderOptionCheck();
 	UpdateData(FALSE);
+
+	SetTimer(0, 1000, NULL);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -67,6 +122,9 @@ void PropShell::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(PropShell, CPropertyPage)
 	//{{AFX_MSG_MAP(PropShell)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
+	ON_BN_CLICKED(IDC_REGISTER_SHELLEXTENSION, OnRegisterShellExtension)
+	ON_BN_CLICKED(IDC_UNREGISTER_SHELLEXTENSION, OnUnregisterShellExtension)
+	ON_WM_TIMER()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -118,6 +176,7 @@ void PropShell::OnAddToExplorer()
 {
 	AdvancedContextMenuCheck();
 	SubfolderOptionCheck();
+	UpdateButtons();
 }
 
 /// Saves given path to registry for ShellExtension, and Context Menu settings
@@ -175,11 +234,8 @@ void PropShell::SaveMergePath()
 /// Enable/Disable "Advanced menu" checkbox.
 void PropShell::AdvancedContextMenuCheck()
 {
-	if (IsDlgButtonChecked(IDC_EXPLORER_CONTEXT))
-		GetDlgItem(IDC_EXPLORER_ADVANCED)->EnableWindow(TRUE);
-	else
+	if (!IsDlgButtonChecked(IDC_EXPLORER_CONTEXT))
 	{
-		GetDlgItem(IDC_EXPLORER_ADVANCED)->EnableWindow(FALSE);
 		CheckDlgButton(IDC_EXPLORER_ADVANCED, FALSE);
 		m_bContextAdvanced = FALSE;
 	}
@@ -188,12 +244,36 @@ void PropShell::AdvancedContextMenuCheck()
 /// Enable/Disable "Include subfolders by default" checkbox.
 void PropShell::SubfolderOptionCheck()
 {
-	if (IsDlgButtonChecked(IDC_EXPLORER_CONTEXT))
-		GetDlgItem(IDC_EXPLORER_SUBFOLDERS)->EnableWindow(TRUE);
-	else
+	if (!IsDlgButtonChecked(IDC_EXPLORER_CONTEXT))
 	{
-		GetDlgItem(IDC_EXPLORER_SUBFOLDERS)->EnableWindow(FALSE);
 		CheckDlgButton(IDC_EXPLORER_SUBFOLDERS, FALSE);
 		m_bContextSubfolders = FALSE;
 	}
+}
+
+void PropShell::UpdateButtons()
+{
+	bool registered = IsShellExtensionRegistered();
+	GetDlgItem(IDC_EXPLORER_CONTEXT)->EnableWindow(registered);
+	GetDlgItem(IDC_REGISTER_SHELLEXTENSION)->EnableWindow(!registered);
+	GetDlgItem(IDC_UNREGISTER_SHELLEXTENSION)->EnableWindow(registered);
+	GetDlgItem(IDC_EXPLORER_ADVANCED)->EnableWindow(
+		GetDlgItem(IDC_EXPLORER_CONTEXT)->IsWindowEnabled() && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
+	GetDlgItem(IDC_EXPLORER_SUBFOLDERS)->EnableWindow(
+		GetDlgItem(IDC_EXPLORER_CONTEXT)->IsWindowEnabled() && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
+}
+
+void PropShell::OnRegisterShellExtension()
+{
+	RegisterShellExtension(false);
+}
+
+void PropShell::OnUnregisterShellExtension()
+{
+	RegisterShellExtension(true);
+}
+
+void PropShell::OnTimer(UINT_PTR nIDEvent)
+{
+	UpdateButtons();
 }
