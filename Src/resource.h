@@ -469,6 +469,8 @@
 #define IDC_COLORSCHEME_GITHUBBITBUCKET 1355
 #define IDC_FINDDLG_DONTCLOSE           1356
 #define IDC_PATH_COMPARING              1357
+#define IDC_REGISTER_SHELLEXTENSION     1358
+#define IDC_UNREGISTER_SHELLEXTENSION   1359
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1171,7 +1173,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        242
 #define _APS_NEXT_COMMAND_VALUE         33273
-#define _APS_NEXT_CONTROL_VALUE         1359
+#define _APS_NEXT_CONTROL_VALUE         1361
 #define _APS_NEXT_SYMED_VALUE           115
 #endif
 #endif

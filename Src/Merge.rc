@@ -1836,13 +1836,15 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Shell Integration"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Explorer",IDC_STATIC,7,7,218,46
+    GROUPBOX        "Explorer",IDC_STATIC,7,7,218,80
     CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,27,28,190,10
     CONTROL         "In&clude subfolders by default",IDC_EXPLORER_SUBFOLDERS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,38,190,10
     CONTROL         "&Add to context menu",IDC_EXPLORER_CONTEXT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,18,200,10
+    PUSHBUTTON      "&Register shell extension",IDC_REGISTER_SHELLEXTENSION,17,48,200,14
+    PUSHBUTTON      "&Unregister shell extension",IDC_UNREGISTER_SHELLEXTENSION,17,64,200,14
 END
 
 IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 235, 205
