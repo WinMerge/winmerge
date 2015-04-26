@@ -58,6 +58,7 @@ public:
 protected:
 	//{{AFX_MSG(CMDITabBar)
 	afx_msg void OnPaint();
+	afx_msg BOOL OnEraseBkgnd(CDC *pDC);
 	afx_msg BOOL OnSelchange(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
