@@ -90,11 +90,15 @@ void CMDITabBar::OnPaint()
 		if (i != nCurSel)
 		{
 			dis.itemState = 0;
+			dis.rcItem.left += 2;
+			dis.rcItem.right -= 2;
 			dis.rcItem.bottom -= 2;
 		}
 		else
 		{
 			dis.itemState = ODS_SELECTED;
+			dis.rcItem.left -= 2;
+			dis.rcItem.right += 2;
 			dis.rcItem.bottom += 2;
 			dis.rcItem.top -= 2;
 		}
@@ -319,15 +323,24 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	{
 		rc.left += 9;
 		rc.top += 2;
-		FillRect(lpDraw->hDC, &lpDraw->rcItem, (HBRUSH)GetStockObject(WHITE_BRUSH));
+		if (GetSysColor(COLOR_3DFACE) == GetSysColor(COLOR_WINDOW))
+		{
+			FillRect(lpDraw->hDC, &lpDraw->rcItem, (HBRUSH)GetSysColorBrush(COLOR_WINDOWTEXT));
+			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_WINDOW));
+		}
+		else
+		{
+			FillRect(lpDraw->hDC, &lpDraw->rcItem, (HBRUSH)GetSysColorBrush(COLOR_WINDOW));
+			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_WINDOWTEXT));
+		}
 	}
 	else
 	{
 		rc.left += 5;
 		rc.top += 3;
+		SetTextColor(lpDraw->hDC, GetSysColor(COLOR_BTNTEXT));
 	}
 	rc.left += 16;
-	SetTextColor(lpDraw->hDC, RGB(0, 0, 0));
 	SetBkMode(lpDraw->hDC, TRANSPARENT);
 	HWND hwndFrame = reinterpret_cast<HWND>(item.lParam);
 	if (::IsWindow(hwndFrame))
