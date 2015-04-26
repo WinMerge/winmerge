@@ -76,7 +76,7 @@ String LineFiltersList::GetAsString() const
 
 	while (iter != m_items.end())
 	{
-		if ((*iter)->enabled)
+		if ((*iter)->enabled && !(*iter)->filterStr.empty())
 		{
 			if (!filter.empty())
 				filter += _T("|");

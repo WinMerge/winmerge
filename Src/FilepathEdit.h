@@ -47,6 +47,7 @@ public :
 
 protected:
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
+	afx_msg void OnNcPaint();
 	HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	DECLARE_MESSAGE_MAP();
 
