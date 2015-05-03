@@ -18,15 +18,14 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  HexMergeDoc.h
+ * @file  HexMergeView.h
  *
- * @brief Declaration of CHexMergeDoc class
+ * @brief Declaration of CHexMergeView class
  */
 #pragma once
 
 #include "DiffFileInfo.h"
 
-class IMergeEditStatus;
 class CHexMergeDoc;
 class IHexEditorWindow;
 
