@@ -1061,7 +1061,6 @@ void CDirView::OnDestroy()
 {
 	DeleteAllDisplayItems();
 
-	ValidateColumnOrdering();
 	SaveColumnOrders();
 	SaveColumnWidths();
 

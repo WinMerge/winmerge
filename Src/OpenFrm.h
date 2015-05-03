@@ -36,10 +36,6 @@ public:
 // Implementation
 public:
 	virtual ~COpenFrame();
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 
 // Generated message map functions
 protected:
