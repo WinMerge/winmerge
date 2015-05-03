@@ -18,7 +18,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  ChildFrm.h
+ * @file  HexMergeFrm.h
  *
  * @brief interface of the CHexMergeFrame class
  *

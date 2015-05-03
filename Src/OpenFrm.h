@@ -1,4 +1,4 @@
-// ChildFrm.h : interface of the COpenFrame class
+// OpenFrm.h : interface of the COpenFrame class
 //
 
 
