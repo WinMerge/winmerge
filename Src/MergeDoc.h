@@ -274,7 +274,6 @@ public:
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() const { return m_nCurDiff; }
 	virtual ~CMergeDoc();
-	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
 	bool OpenWithUnpackerDialog();
