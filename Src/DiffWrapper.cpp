@@ -1285,10 +1285,6 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				}
 
 				AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
-#ifdef _DEBUG
-				Debugger::message(format("left=%d,%d   right=%d,%d   op=%d\n",
-					trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (int)op));
-#endif
 			}
 		}
 		
@@ -1434,10 +1430,6 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					}
 
 					AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
-#ifdef _DEBUG
-					Debugger::message(format("left=%d,%d   right=%d,%d   op=%d\n",
-						trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op));
-#endif
 				}
 			}
 			

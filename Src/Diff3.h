@@ -217,12 +217,6 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 
 		diff3.push_back(dr3);
 
-#ifdef _DEBUG
-		Poco::Debugger::message(Poco::format("left=%d,%d middle=%d,%d right=%d,%d",
-			dr3.begin[0], dr3.end[0], dr3.begin[1], dr3.end[1], dr3.begin[2], dr3.end[2]));
-		Poco::Debugger::message(Poco::format("op=%d\n", (int)dr3.op));
-#endif
-
 		diff3i++;
 		diff10i = diff10itmp;
 		diff12i = diff12itmp;

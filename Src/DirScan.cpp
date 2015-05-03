@@ -183,15 +183,6 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			break;
 
 		// Comparing directories leftDirs[i].name to rightDirs[j].name
-#ifdef _DEBUG
-TCHAR buf[1024];
-if (nDirs == 2)
-	wsprintf(buf, _T("%s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.get().c_str() : _T(""), (j < dirs[1].size()) ? dirs[1][j].filename.get().c_str() : _T(""));
-else
-	wsprintf(buf, _T("%s %s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.get().c_str() : _T(""), (j < dirs[1].size()) ?  dirs[1][j].filename.get().c_str() : _T(""), (k < dirs[2].size()) ? dirs[2][k].filename.get().c_str() : _T(""));
-OutputDebugString(buf);
-#endif
-
 		if (i<dirs[0].size() && (j==dirs[1].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive)<0)
 			&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[0][i].filename, dirs[2][k].filename, casesensitive)<0) ))
 		{
@@ -354,18 +345,6 @@ OutputDebugString(buf);
 							depth - 1, me, bUniques);
 					if (result == -1)
 						return -1;
-/*
-					if (result == 0)
-					{
-						if (!(nDiffCode & DIFFCODE::FIRST) || !(nDiffCode & DIFFCODE::SECOND))
-						{
-							AddToList(subdir[0], subdir[1], 
-								nDiffCode & DIFFCODE::FIRST  ? &dirs[0][i] : NULL, 
-								nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
-								nDiffCode, myStruct, parent);
-						}
-					}
-*/
 				}
 			}
 			else
@@ -400,19 +379,6 @@ OutputDebugString(buf);
 							depth - 1, me, bUniques);
 					if (result == -1)
 						return -1;
-/*
-					if (result == 0)
-					{
-						if (!(nDiffCode & DIFFCODE::FIRST) || !(nDiffCode & DIFFCODE::SECOND) || !(nDiffCode & DIFFCODE::THIRD))
-						{
-							AddToList(subdir[0], subdir[1], subdir[2], 
-								nDiffCode & DIFFCODE::FIRST  ? &dirs[0][i] : NULL,
-								nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
-								nDiffCode & DIFFCODE::THIRD  ? &dirs[2][k] : NULL,
-								nDiffCode, myStruct, parent);
-						}
-					}
-*/
 				}
 			}
 		}
@@ -434,15 +400,6 @@ OutputDebugString(buf);
 
 
 		// Comparing file files[0][i].name to files[1][j].name
-#ifdef _DEBUG
-TCHAR buf[1024];
-if (nDirs == 2)
-	wsprintf(buf, _T("%s %s\n"), (i < files[0].size()) ? files[0][i].filename.get().c_str() : _T(""), (j < files[1].size()) ? files[1][j].filename.get().c_str() : _T(""));
-else
-	wsprintf(buf, _T("%s %s %s\n"), (i < files[0].size()) ? files[0][i].filename.get().c_str() : _T(""), (j < files[1].size()) ?  files[1][j].filename.get().c_str() : _T(""), 
-(k < files[2].size()) ? files[2][k].filename.get().c_str() : _T(""));
-OutputDebugString(buf);
-#endif
 		if (i<files[0].size() && (j==files[1].size() ||
 				collstr(files[0][i].filename, files[1][j].filename, casesensitive) < 0)
 			&& (nDirs < 3 || 

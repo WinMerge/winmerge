@@ -34,8 +34,6 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 static bool IsTextFileStylePure(const UniMemFile::txtstats & stats);
-static CString GetLineByteTimeReport(UINT lines, int64_t bytes,
-	const COleDateTime & start);
 static void EscapeControlChars(String &s);
 static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats);
 
@@ -54,28 +52,6 @@ static bool IsTextFileStylePure(const UniMemFile::txtstats & stats)
 	if (stats.nlfs > 0)
 		nType++;
 	return (nType <= 1);
-}
-
-/**
- * @brief Return a string giving #lines and #bytes and how much time elapsed.
- * @param [in] lines Count of lines.
- * @param [in] bytes Count of bytes.
- * @param [in] start Time used.
- * @return Formatted string.
- */
-static CString GetLineByteTimeReport(UINT lines, int64_t bytes,
-	const COleDateTime & start)
-{
-	String sLines = locality::NumToLocaleStr((int)lines);
-	String sBytes = locality::NumToLocaleStr(bytes);
-	COleDateTimeSpan duration = COleDateTime::GetCurrentTime() - start;
-	String sMinutes = locality::NumToLocaleStr((int)duration.GetTotalMinutes());
-	CString str;
-	str.Format(_T("%s lines (%s byte) saved in %sm%02ds")
-		, sLines.c_str(), sBytes.c_str(), sMinutes.c_str()
-		, duration.GetSeconds()
-		);
-	return str;
 }
 
 /**
@@ -387,10 +363,6 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		String eol, preveol;
 		String sline;
 		bool done = false;
-#ifdef _DEBUG
-		UINT next_line_report = 100; // for trace messages
-		UINT next_line_multiple = 5; // for trace messages
-#endif
 		COleDateTime start = COleDateTime::GetCurrentTime(); // for trace messages
 
 		// Manually grow line array exponentially
@@ -430,36 +402,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			AppendLine(lineno, sline.c_str(), sline.length());
 			++lineno;
 			preveol = eol;
-
-#ifdef _DEBUG
-			// send occasional line counts to trace
-			// (at 100, 500, 1000, 5000, etc)
-			if (lineno == next_line_report)
-			{
-				int64_t dwBytesRead = pufile->GetPosition();
-				COleDateTimeSpan duration = COleDateTime::GetCurrentTime() - start;
-				if (duration.GetTotalMinutes() > 0)
-				{
-					CString strace = GetLineByteTimeReport(lineno, dwBytesRead, start);
-					TRACE(_T("%s\n"), (LPCTSTR)strace);
-				}
-				next_line_report = next_line_multiple * next_line_report;
-				next_line_multiple = (next_line_multiple == 5) ? 2 : 5;
-			}
-#endif // _DEBUG
 		} while (!done);
-
-#ifdef _DEBUG
-		// Send report of duration to trace (if it took a while)
-		COleDateTime end = COleDateTime::GetCurrentTime();
-		COleDateTimeSpan duration = end - start;
-		if (duration.GetTotalMinutes() > 0)
-		{
-			int64_t dwBytesRead = pufile->GetPosition();
-			CString strace = GetLineByteTimeReport(lineno, dwBytesRead, start);
-			TRACE(_T("%s\n"), (LPCTSTR)strace);
-		}
-#endif // _DEBUG
 
 		// fix array size (due to our manual exponential growth
 		m_aLines.resize(lineno);

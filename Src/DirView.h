@@ -212,7 +212,6 @@ private:
 	String GetColDescription(int col) const;
 	int GetColLogCount() const;
 	void LoadColumnOrders();
-	void ValidateColumnOrdering();
 	void ClearColumnOrders();
 	void ResetColumnOrdering();
 	void MoveColumn(int psrc, int pdest);

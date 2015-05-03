@@ -363,37 +363,6 @@ void CDirView::LoadColumnOrders()
 	{
 		ResetColumnOrdering();
 	}
-
-	ValidateColumnOrdering();
-}
-
-/**
- * @brief Sanity check column ordering
- */
-void CDirView::ValidateColumnOrdering()
-{
-
-#if _DEBUG
-	ASSERT(m_invcolorder[0]>=0);
-	ASSERT(m_numcols == GetColLogCount());
-	// Check that any logical->physical mapping is reversible
-	for (int i=0; i<m_numcols; ++i)
-	{
-		int phy = m_colorder[i];
-		if (phy >= 0)
-		{
-			int log = m_invcolorder[phy];
-			ASSERT(i == log);
-		}
-	}
-	// Bail out if header doesn't exist yet
-	int hdrcnt = GetListCtrl().GetHeaderCtrl()->GetItemCount();
-	if (hdrcnt)
-	{
-		ASSERT(hdrcnt == m_dispcols);
-	}
-	return;
-#endif
 }
 
 /**
@@ -413,7 +382,6 @@ void CDirView::ResetColumnOrdering()
 			++m_dispcols;
 		}
 	}
-	ValidateColumnOrdering();
 }
 
 /**
@@ -479,9 +447,7 @@ void CDirView::MoveColumn(int psrc, int pdest)
 		if (m_colorder[i] >= 0)
 			m_invcolorder[m_colorder[i]] = i;
 	}
-	ValidateColumnOrdering();
 	InitiateSort();
-	ValidateColumnOrdering();
 }
 
 /**
@@ -555,5 +521,4 @@ void CDirView::OnEditColumns()
 		ReloadColumns();
 		Redisplay();
 	}
-	ValidateColumnOrdering();
 }
