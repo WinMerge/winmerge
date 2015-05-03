@@ -53,7 +53,6 @@
 #include "LineFiltersDlg.h"
 #include "paths.h"
 #include "Environment.h"
-#include "CustomStatusCursor.h"
 #include "PatchTool.h"
 #include "Plugins.h"
 #include "SelectUnpackerDlg.h"
@@ -203,7 +202,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_WM_DESTROY()
-	ON_WM_SETCURSOR()
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
 	ON_COMMAND_RANGE(ID_PREDIFFER_MANUAL, ID_PREDIFFER_AUTO, OnPluginPrediffMode)
@@ -309,24 +307,6 @@ CMainFrame::~CMainFrame()
 	sd_Close();
 }
 
-// This is a bridge to implement IStatusDisplay for WaitStatusCursor
-// by forwarding all calls to the main frame
-class StatusDisplay : public IStatusDisplay
-{
-public:
-	StatusDisplay() : m_pfrm(0) { }
-	void SetFrame(CMainFrame * frm) { m_pfrm = frm; }
-// Implement IStatusDisplay
-	virtual CString BeginStatus(LPCTSTR str) { return m_pfrm->SetStatus(str); }
-	virtual void ChangeStatus(LPCTSTR str) { m_pfrm->SetStatus(str); }
-	virtual void EndStatus(LPCTSTR str, LPCTSTR oldstr) { m_pfrm->SetStatus(oldstr); }
-
-protected:
-	CMainFrame * m_pfrm;
-};
-
-static StatusDisplay myStatusDisplay;
-
 #ifdef _UNICODE
 const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
 #else
@@ -393,10 +373,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR) == false)
 		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
-
-	// Start handling status messages from CustomStatusCursors
-	myStatusDisplay.SetFrame(this);
-	CustomStatusCursor::SetStatusDisplay(&myStatusDisplay);
 
 	m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
@@ -1439,22 +1415,6 @@ void CMainFrame::OnClose()
 	theApp.WriteProfileInt(_T("Settings"), _T("MainBottom"),wp.rcNormalPosition.bottom);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainMax"), (wp.showCmd == SW_MAXIMIZE));
 
-	// tell all merge docs to save position
-	// don't call SavePosition, it is called when the child frame is destroyed
-	/*
-	while (!mergedocs.IsEmpty())
-	{
-		CMergeDoc * pMergeDoc = mergedocs.RemoveHead();
-		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
-		if (pLeft)
-			pMergeDoc->GetParentFrame()->SavePosition();
-	}
-	*/
-	
-	// Stop handling status messages from CustomStatusCursors
-	CustomStatusCursor::SetStatusDisplay(0);
-	myStatusDisplay.SetFrame(0);
-	
 	// Close Non-Document/View frame with confirmation
 	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
 	while (pChild)
@@ -1737,16 +1697,6 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 	}
 
 	DoFileOpen(&files, dwFlags, recurse);
-}
-
-BOOL CMainFrame::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
-{
-	if (CustomStatusCursor::HasWaitCursor())
-	{
-		CustomStatusCursor::RestoreWaitCursor();
-		return TRUE;
-	}
-	return CMDIFrameWnd::OnSetCursor(pWnd, nHitTest, message);
 }
 
 void CMainFrame::OnPluginUnpackMode(UINT nID )

@@ -14,10 +14,6 @@ class COpenDoc : public CDocument
 public:
 	COpenDoc();
 	virtual ~COpenDoc();
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 
 	DWORD   m_dwFlags[3];
 	PathContext m_files;

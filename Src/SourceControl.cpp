@@ -4,7 +4,7 @@
  * @brief Implementation file for some source control-related functions.
  */
 
-#include <Windows.h>
+#include "StdAfx.h"
 #include "SourceControl.h"
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Process.h>
@@ -23,7 +23,6 @@
 #include "paths.h"
 #include "VssPromptDlg.h"
 #include "CCPromptDlg.h"
-#include "WaitStatusCursor.h"
 #include "coretools.h"
 
 using Poco::format;
@@ -145,7 +144,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
+			CWaitCursor waitstatus;
 			m_vssHelper.SetProjectBase(dlg.m_strProject);
 			GetOptionsMgr()->SaveOption(OPT_VSS_PROJECT, m_vssHelper.GetProjectBase());
 			if (!spath.empty())
@@ -202,7 +201,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 				return false; // User selected cancel
 		}
 		// process versioning system specific action
-		WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
+		CWaitCursor waitstatus;
 		m_vssHelper.SetProjectBase(dlg.m_strProject);
 		m_strVssUser = dlg.m_strUser;
 		m_strVssPassword = dlg.m_strPassword;
@@ -327,7 +326,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			WaitStatusCursor waitstatus(_T(""));
+			CWaitCursor waitstatus;
 			if (!spath.empty())
 			{
 				_chdrive(_totupper(spath[0])-'A'+1);

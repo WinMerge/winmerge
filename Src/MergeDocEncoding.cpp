@@ -20,7 +20,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  MergeDoc.cpp
+ * @file  MergeDocEncoding.cpp
  *
  * @brief Implementation file for CMergeDoc
  *

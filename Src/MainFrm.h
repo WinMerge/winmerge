@@ -241,7 +241,6 @@ protected:
 	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGeneratePatch();
 	afx_msg void OnDropFiles(const std::vector<String>& files);
-	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg void OnUpdatePluginUnpackMode(CCmdUI* pCmdUI);
 	afx_msg void OnPluginUnpackMode(UINT nID);
 	afx_msg void OnUpdatePluginPrediffMode(CCmdUI* pCmdUI);

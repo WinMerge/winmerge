@@ -48,20 +48,6 @@ void CMergeDoc::AdjustDiffBlocks()
 			diffmap.InitDiffMap(nlines0);
 			AdjustDiffBlock(diffmap, diffrange, lo0, hi0, lo1, hi1);
 
-#ifdef _DEBUG
-			std::vector<int>::const_iterator iter = diffmap.m_map.begin();
-			int i = 0;
-			while (iter != diffmap.m_map.end())
-			{
-				TCHAR buf[256];
-				wsprintf(buf, _T("begin[0]=%d begin[1]=%d diffmap[%d]=%d\n"), 
-						diffrange.begin[0], diffrange.begin[1], i, diffmap.m_map[i]);
-				OutputDebugString(buf);
-				iter++;
-				i++;
-			}
-#endif
-
 			// divide diff blocks
 			DIFFRANGE dr;
 			int line0, line1, lineend0;
@@ -137,16 +123,7 @@ void CMergeDoc::AdjustDiffBlocks()
 	m_diffList.Clear();
 	nDiffCount = newDiffList.GetSize();
 	for (nDiff = 0; nDiff < nDiffCount; nDiff++)
-	{
-#ifdef _DEBUG
-		TCHAR buf[256];
-		DIFFRANGE di = *newDiffList.DiffRangeAt(nDiff);
-		wsprintf(buf, _T("%d: begin[0]=%d end[0]=%d begin[1]=%d end[1]=%d\n"), nDiff,
-				di.begin[0], di.end[0], di.begin[1], di.end[1]);
-		OutputDebugString(buf);
-#endif
 		m_diffList.AddDiff(*newDiffList.DiffRangeAt(nDiff));
-	}
 }
 
 /**

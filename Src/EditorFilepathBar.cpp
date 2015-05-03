@@ -19,7 +19,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  DiffList.cpp
+ * @file  EditorFilepathBar.cpp
  *
  * @brief Implementation file for CEditorFilepathBar class
  */

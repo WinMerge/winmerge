@@ -291,16 +291,6 @@ void COpenView::OnInitialUpdate()
 // COpenView diagnostics
 
 #ifdef _DEBUG
-void COpenView::AssertValid() const
-{
-	CFormView::AssertValid();
-}
-
-void COpenView::Dump(CDumpContext& dc) const
-{
-	CFormView::Dump(dc);
-}
-
 COpenDoc* COpenView::GetDocument() const // non-debug version is inline
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(COpenDoc)));

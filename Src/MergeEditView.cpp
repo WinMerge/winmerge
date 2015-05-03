@@ -34,7 +34,6 @@
 #include "MainFrm.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffColors.h"
-#include "WaitStatusCursor.h"
 #include "FileTransform.h"
 #include "Plugins.h"
 #include "WMGotoDlg.h"
@@ -995,7 +994,7 @@ void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditUndo()
 {
-	WaitStatusCursor waitstatus(_("Undoing the last operation..."));
+	CWaitCursor waitstatus;
 	CMergeDoc* pDoc = GetDocument();
 	CMergeEditView *tgt = *(pDoc->curUndo-1);
 	if(tgt==this)
@@ -1646,7 +1645,7 @@ void CMergeEditView::UpdateLineLengths()
 	GetMaxLineLength();
 }
 
-void CMergeEditView::OnX2Y(int srcPane, int dstPane, const String& message)
+void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 {
 	// Check that right side is not readonly
 	if (IsReadOnly(dstPane))
@@ -1671,7 +1670,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, const String& message)
 
 	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 	{
-		WaitStatusCursor waitstatus(message);
+		CWaitCursor waitstatus;
 		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff) && !IsSelection())
 			pDoc->ListCopy(srcPane, dstPane, currentDiff);
 		else
@@ -1679,7 +1678,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, const String& message)
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		WaitStatusCursor waitstatus(message);
+		CWaitCursor waitstatus;
 		pDoc->ListCopy(srcPane, dstPane, currentDiff);
 	}
 }
@@ -1725,7 +1724,7 @@ void CMergeEditView::OnL2r()
 {
 	int dstPane = (m_nThisPane < GetDocument()->m_nBuffers - 1) ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1;
 	int srcPane = dstPane - 1;
-	OnX2Y(srcPane, dstPane, _("Copying Left to Right"));
+	OnX2Y(srcPane, dstPane);
 }
 
 /**
@@ -1751,7 +1750,7 @@ void CMergeEditView::OnR2l()
 {
 	int dstPane = (m_nThisPane > 0) ? m_nThisPane - 1 : 0;
 	int srcPane = dstPane + 1;
-	OnX2Y(srcPane, dstPane, _("Copying Right to Left"));
+	OnX2Y(srcPane, dstPane);
 }
 
 /**
@@ -1768,7 +1767,7 @@ void CMergeEditView::OnCopyFromLeft()
 	int srcPane = dstPane - 1;
 	if (srcPane < 0)
 		return;
-	OnX2Y(srcPane, dstPane, _("Copying From Left"));
+	OnX2Y(srcPane, dstPane);
 }
 
 void CMergeEditView::OnUpdateCopyFromLeft(CCmdUI* pCmdUI)
@@ -1787,7 +1786,7 @@ void CMergeEditView::OnCopyFromRight()
 	int srcPane = dstPane + 1;
 	if (srcPane >= GetDocument()->m_nBuffers)
 		return;
-	OnX2Y(srcPane, dstPane, _("Copying From Right"));
+	OnX2Y(srcPane, dstPane);
 }
 
 void CMergeEditView::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
@@ -1810,7 +1809,7 @@ void CMergeEditView::OnAllLeft()
 	int dstPane = m_nThisPane > 0 ? m_nThisPane - 1 : 0;
 	if (IsReadOnly(dstPane))
 		return;
-	WaitStatusCursor waitstatus(_("Copying All to Left"));
+	CWaitCursor waitstatus;
 
 	GetDocument()->CopyAllList(srcPane, dstPane);
 }
@@ -1839,7 +1838,7 @@ void CMergeEditView::OnAllRight()
 	if (IsReadOnly(dstPane))
 		return;
 
-	WaitStatusCursor waitstatus(_("Copying All to Right"));
+	CWaitCursor waitstatus;
 
 	GetDocument()->CopyAllList(srcPane, dstPane);
 }
@@ -1866,7 +1865,7 @@ void CMergeEditView::OnAutoMerge()
 	if (GetDocument()->IsModified() || GetDocument()->GetAutoMerged() || IsReadOnly(m_nThisPane))
 		return;
 
-	WaitStatusCursor waitstatus(_("Doing Auto Merge..."));
+	CWaitCursor waitstatus;
 
 	GetDocument()->DoAutoMerge(m_nThisPane);
 }
@@ -1994,7 +1993,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, int cchText)
  */
 void CMergeEditView::OnEditRedo()
 {
-	WaitStatusCursor waitstatus(_("Redoing the previous operation..."));
+	CWaitCursor waitstatus;
 	CMergeDoc* pDoc = GetDocument();
 	CMergeEditView *tgt = *(pDoc->curUndo);
 	if(tgt==this)

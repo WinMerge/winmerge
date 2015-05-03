@@ -541,9 +541,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WaitStatusCursor.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\LanguageSelect.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -1016,9 +1013,6 @@
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h">
       <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="WaitStatusCursor.h">
-      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>MFCGui\Header Files</Filter>

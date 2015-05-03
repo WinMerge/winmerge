@@ -1,5 +1,5 @@
 /** 
- * @file  FileTransform.h
+ * @file  multiformatText.h
  *
  * @brief Declaration file for class storageForPlugins
  *
