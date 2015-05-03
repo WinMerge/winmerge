@@ -1438,18 +1438,6 @@ void CMainFrame::OnClose()
 	theApp.WriteProfileInt(_T("Settings"), _T("MainBottom"),wp.rcNormalPosition.bottom);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainMax"), (wp.showCmd == SW_MAXIMIZE));
 
-	// tell all merge docs to save position
-	// don't call SavePosition, it is called when the child frame is destroyed
-	/*
-	while (!mergedocs.IsEmpty())
-	{
-		CMergeDoc * pMergeDoc = mergedocs.RemoveHead();
-		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
-		if (pLeft)
-			pMergeDoc->GetParentFrame()->SavePosition();
-	}
-	*/
-	
 	// Stop handling status messages from CustomStatusCursors
 	CustomStatusCursor::SetStatusDisplay(0);
 	myStatusDisplay.SetFrame(0);
