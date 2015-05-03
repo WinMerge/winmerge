@@ -75,7 +75,6 @@ public:
 	void MoveColumn(int psrc, int pdest);
 	void ResetColumnOrdering();
 	void SetColumnOrdering(const int colorder[]);
-	void ValidateColumnOrdering();
 	String ResetColumnWidths(int defcolwidth);
 	void LoadColumnOrders(String colorders);
 	String SaveColumnOrders();

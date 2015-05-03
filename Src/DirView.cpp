@@ -39,7 +39,6 @@
 #include "MainFrm.h"
 #include "resource.h"
 #include "coretools.h"
-#include "WaitStatusCursor.h"
 #include "FileTransform.h"
 #include "SelectUnpackerDlg.h"
 #include "paths.h"
@@ -409,7 +408,7 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		}
 		else
 		{
-			WaitStatusCursor waitstatus(_("Opening selection"));
+			CWaitCursor waitstatus;
 			OpenSelection();
 		}
 	}
@@ -739,7 +738,7 @@ void CDirView::OnUpdateDirCopy(CCmdUI* pCmdUI)
 
 void CDirView::DoDirAction(DirActions::method_type func, const String& status_message)
 {
-	WaitStatusCursor waitstatus(status_message);
+	CWaitCursor waitstatus;
 
 	try {
 		// First we build a list of desired actions
@@ -771,7 +770,7 @@ void CDirView::DoDirActionTo(SIDE_TYPE stype, DirActions::method_type func, cons
 		return;
 
 	m_lastCopyFolder = destPath;
-	WaitStatusCursor waitstatus(status_message);
+	CWaitCursor waitstatus;
 
 	try {
 		// First we build a list of desired actions
@@ -964,7 +963,6 @@ void CDirView::OnDestroy()
 {
 	DeleteAllDisplayItems();
 
-	m_pColItems->ValidateColumnOrdering();
 	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
 	theApp.WriteProfileString(secname.c_str(), _T("ColumnOrders"), m_pColItems->SaveColumnOrders().c_str());
 	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
@@ -995,7 +993,7 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 			else
 			{
-				WaitStatusCursor waitstatus(_("Opening selection"));
+				CWaitCursor waitstatus;
 				OpenSelection();
 			}
 		}
@@ -3017,27 +3015,27 @@ void CDirView::OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI)
 
 void CDirView::OnMergeCompare()
 {
-	WaitStatusCursor waitstatus(_("Opening selection"));
+	CWaitCursor waitstatus;
 	OpenSelection();
 }
 
 template<SELECTIONTYPE seltype>
 void CDirView::OnMergeCompare2()
 {
-	WaitStatusCursor waitstatus(_("Opening selection"));
+	CWaitCursor waitstatus;
 	OpenSelection(seltype);
 }
 
 void CDirView::OnMergeCompareXML()
 {
-	WaitStatusCursor waitstatus(_("Opening selection"));
+	CWaitCursor waitstatus;
 	PackingInfo packingInfo = PLUGIN_BUILTIN_XML;
 	OpenSelection(SELECTIONTYPE_NORMAL, &packingInfo);
 }
 
 void CDirView::OnMergeCompareHex()
 {
-	WaitStatusCursor waitstatus(_("Opening selection"));
+	CWaitCursor waitstatus;
 	OpenSelectionHex();
 }
 
@@ -3642,7 +3640,6 @@ void CDirView::OnEditColumns()
 		ReloadColumns();
 		Redisplay();
 	}
-	m_pColItems->ValidateColumnOrdering();
 }
 
 DirActions CDirView::MakeDirActions(DirActions::method_type func) const

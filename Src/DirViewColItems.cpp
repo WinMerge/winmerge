@@ -1301,34 +1301,6 @@ void DirViewColItems::SetColumnOrdering(const int colorder[])
 		}
 	}
 }
-/**
- * @brief Sanity check column ordering
- */
-void DirViewColItems::ValidateColumnOrdering()
-{
-
-#ifdef _DEBUG
-	assert(m_invcolorder[0]>=0);
-	assert(m_numcols == GetColCount());
-	// Check that any logical->physical mapping is reversible
-	for (int i=0; i<m_numcols; ++i)
-	{
-		int phy = m_colorder[i];
-		if (phy >= 0)
-		{
-			int log = m_invcolorder[phy];
-			assert(i == log);
-		}
-	}
-	// Bail out if header doesn't exist yet
-//	int hdrcnt = GetListCtrl().GetHeaderCtrl()->GetItemCount();
-//	if (hdrcnt)
-//	{
-//		ASSERT(hdrcnt == m_dispcols);
-//	}
-	return;
-#endif
-}
 
 /**
  * @brief Set column ordering to default initial order
@@ -1347,7 +1319,6 @@ void DirViewColItems::ResetColumnOrdering()
 			++m_dispcols;
 		}
 	}
-	ValidateColumnOrdering();
 }
 
 /**
@@ -1384,7 +1355,6 @@ void DirViewColItems::MoveColumn(int psrc, int pdest)
 		if (m_colorder[i] >= 0)
 			m_invcolorder[m_colorder[i]] = i;
 	}
-	ValidateColumnOrdering();
 }
 
 /**
@@ -1448,8 +1418,6 @@ void DirViewColItems::LoadColumnOrders(String colorders)
 	{
 		ResetColumnOrdering();
 	}
-
-	ValidateColumnOrdering();
 }
 
 /// store current column orders into registry

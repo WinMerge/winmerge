@@ -178,20 +178,4 @@ BOOL COpenFrame::DestroyWindow()
 	return CMDIChildWnd::DestroyWindow();
 }
 
-// COpenFrame diagnostics
-
-#ifdef _DEBUG
-void COpenFrame::AssertValid() const
-{
-	CMDIChildWnd::AssertValid();
-}
-
-void COpenFrame::Dump(CDumpContext& dc) const
-{
-	CMDIChildWnd::Dump(dc);
-}
-
-#endif //_DEBUG
-
-
 // COpenFrame message handlers

@@ -43,7 +43,6 @@
 #include "ChildFrm.h"
 #include "DirDoc.h"
 #include "files.h"
-#include "WaitStatusCursor.h"
 #include "FileTransform.h"
 #include "unicoder.h"
 #include "UniFile.h"
@@ -201,60 +200,6 @@ void CMergeDoc::DeleteContents ()
 		m_ptBuf[nBuffer]->FreeAll ();
 	m_tempFiles[0].Delete();
 	m_tempFiles[1].Delete();
-}
-
-void CMergeDoc::OnFileEvent (WPARAM /*wEvent*/, LPCTSTR /*pszPathName*/)
-{
-	/*if (!(theApp.m_dwFlags & EP_NOTIFY_CHANGES))
-    return;
-	MessageBeep (MB_ICONEXCLAMATION);
-	CFrameWnd *pwndMain= (CFrameWnd*) theApp.GetMainWnd ();
-	ASSERT (pwndMain);
-	if (!pwndMain->IsWindowVisible ())
-          ((CMainFrame*) pwndMain)->FlashUntilFocus ();
-	if (wEvent & FE_MODIFIED)
-  	{
-  	  bool bReload = (theApp.m_dwFlags & EP_AUTO_RELOAD) != 0;
-  	  if (!bReload)
-  	    {
-          CString sMsg;
-          sMsg.Format (IDS_FILE_CHANGED, pszPathName);
-  	      bReload = AfxMessageBox (sMsg, MB_YESNO|MB_ICONQUESTION) == IDYES;
-  	    }
-  	  if (bReload)
-        {
-	        POSITION pos = GetFirstViewPosition ();
-          ASSERT (pos);
-	        CEditPadView *pView;
-          do
-            {
-	            pView = (CEditPadView*) GetNextView (pos);
-              pView->PushCursor ();
-            }
-          while (pos);
-          m_xTextBuffer.FreeAll ();
-          m_xTextBuffer.LoadFromFile (pszPathName);
-	        pos = GetFirstViewPosition ();
-          ASSERT (pos);
-          do
-            {
-	            pView = (CEditPadView*) GetNextView (pos);
-              pView->PopCursor ();
-              HWND hWnd = pView->GetSafeHwnd ();
-              ::RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE|RDW_INTERNALPAINT|RDW_ERASE|RDW_ERASENOW|RDW_UPDATENOW|RDW_NOFRAME);
-            }
-          while (pos);
-        }
-    }
-  else if (wEvent & FE_DELETED)
-    {
-      if (!(theApp.m_dwFlags & EP_AUTO_RELOAD))
-        {
-          CString sMsg;
-          sMsg.Format (IDS_FILE_DELETED, pszPathName);
-        	AfxMessageBox (sMsg, MB_OK|MB_ICONINFORMATION);
-        }
-    }*/
 }
 
 /**
@@ -1643,7 +1588,7 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
 	if (!bForced)
 		if (!m_bEnableRescan) return;
 
-	WaitStatusCursor waitstatus(_("Scanning files..."));
+	CWaitCursor waitstatus;
 
 	int nActiveViewIndexType = GetActiveMergeViewIndexType();
 

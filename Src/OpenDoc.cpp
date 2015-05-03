@@ -28,19 +28,3 @@ COpenDoc::~COpenDoc()
 
 BEGIN_MESSAGE_MAP(COpenDoc, CDocument)
 END_MESSAGE_MAP()
-
-
-// COpenDoc diagnostics
-
-#ifdef _DEBUG
-void COpenDoc::AssertValid() const
-{
-	CDocument::AssertValid();
-}
-
-void COpenDoc::Dump(CDumpContext& dc) const
-{
-	CDocument::Dump(dc);
-}
-#endif //_DEBUG
-

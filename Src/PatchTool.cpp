@@ -15,7 +15,7 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  files.cpp
+ * @file  PatchTool.cpp
  *
  * @brief Code file routines
  */
