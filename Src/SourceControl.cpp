@@ -17,7 +17,6 @@
 #include "RegKey.h"
 #include "paths.h"
 #include "VssPromptDlg.h"
-#include "WaitStatusCursor.h"
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
 #include "CCPromptDlg.h"
 #include "VSSHelper.h"
@@ -93,7 +92,7 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			WaitStatusCursor waitstatus(IDS_VSS_CHECKOUT_STATUS);
+			CWaitCursor waitstatus;
 			m_pVssHelper->SetProjectBase((const TCHAR *)dlg.m_strProject);
 			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_pVssHelper->GetProjectBase().c_str());
 			String path, name;
@@ -158,7 +157,7 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			WaitStatusCursor waitstatus(IDS_VSS_CHECKOUT_STATUS);
+			CWaitCursor waitstatus;
 			BOOL bOpened = FALSE;
 			m_pVssHelper->SetProjectBase((const TCHAR *)dlg.m_strProject);
 			m_strVssUser = dlg.m_strUser;
@@ -336,7 +335,7 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			WaitStatusCursor waitstatus(_T(""));
+			CWaitCursor waitstatus;
 			String path, name;
 			paths_SplitFilename(strSavePath, &path, &name, 0);
 			String spath(path);

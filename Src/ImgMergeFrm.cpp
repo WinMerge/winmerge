@@ -41,7 +41,6 @@
 #include "FileOrFolderSelect.h"
 #include "UniFile.h"
 #include "SaveClosingDlg.h"
-#include "WaitStatusCursor.h"
 #include "../Externals/winimerge/src/WinIMergeLib.h"
 #include <cmath>
 #include <cstdint>
@@ -1511,7 +1510,7 @@ void CImgMergeFrame::OnAllLeft()
 		srcPane = 1;
 	int dstPane = srcPane - 1;
 
-	WaitStatusCursor waitstatus(IDS_STATUS_COPYALL2R);
+	CWaitCursor waitstatus;
 
 	m_pImgMergeWindow->CopyDiffAll(srcPane, dstPane);
 }
@@ -1541,7 +1540,7 @@ void CImgMergeFrame::OnAllRight()
 		srcPane = 0;
 	int dstPane = srcPane + 1;
 
-	WaitStatusCursor waitstatus(IDS_STATUS_COPYALL2L);
+	CWaitCursor waitstatus;
 
 	m_pImgMergeWindow->CopyDiffAll(srcPane, dstPane);
 }
@@ -1572,7 +1571,7 @@ void CImgMergeFrame::OnAutoMerge()
 	if (dstPane < 0 || IsModified() || m_bAutoMerged || m_bRO[dstPane])
 		return;
 
-	WaitStatusCursor waitstatus(IDS_STATUS_AUTOMERGE);
+	CWaitCursor waitstatus;
 
 	DoAutoMerge(dstPane);
 }

@@ -1297,8 +1297,6 @@
     </ClCompile>
     <ClCompile Include="VssPromptDlg.cpp">
     </ClCompile>
-    <ClCompile Include="WaitStatusCursor.cpp">
-    </ClCompile>
     <ClCompile Include="WMGotoDlg.cpp">
     </ClCompile>
     <ClCompile Include="diffutils\src\analyze.c">
@@ -1625,7 +1623,6 @@
     <ClInclude Include="Common\version.h" />
     <ClInclude Include="VSSHelper.h" />
     <ClInclude Include="VssPromptDlg.h" />
-    <ClInclude Include="WaitStatusCursor.h" />
     <ClInclude Include="WMGotoDlg.h" />
     <ClInclude Include="diffutils\lib\cmpbuf.h" />
     <ClInclude Include="diffutils\config.h" />

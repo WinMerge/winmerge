@@ -39,7 +39,6 @@
 #include "DirFrame.h"
 #include "coretools.h"
 #include "paths.h"
-#include "WaitStatusCursor.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -72,7 +71,6 @@ CDirDoc::CDirDoc()
 , m_pDirView(nullptr)
 , m_pCompareStats(nullptr)
 , m_bRecursive(FALSE)
-, m_statusCursor(nullptr)
 , m_bMarkedRescan(FALSE)
 , m_pTempPathContext(nullptr)
 {
@@ -310,8 +308,6 @@ void CDirDoc::Rescan()
 	UINT threadState = m_diffThread.GetThreadState();
 	if (threadState == CDiffThread::THREAD_COMPARING)
 		return;
-
-	m_statusCursor.reset(new CustomStatusCursor(0, IDC_APPSTARTING, IDS_STATUS_RESCANNING));
 
 	m_pCompareStats->Reset();
 	m_pDirView->StartCompare(m_pCompareStats.get());
@@ -686,8 +682,6 @@ void CDirDoc::UpdateChangedItem(PathContext &paths,
  */
 void CDirDoc::CompareReady()
 {
-	// finish the cursor (the hourglass/pointer combo) we had open during display
-	m_statusCursor.reset();
 }
 
 /**

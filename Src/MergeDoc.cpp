@@ -43,7 +43,6 @@
 #include "ChildFrm.h"
 #include "DirDoc.h"
 #include "files.h"
-#include "WaitStatusCursor.h"
 #include "FileTransform.h"
 #include "unicoder.h"
 #include "UniFile.h"
@@ -1583,7 +1582,7 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
 	if (!bForced)
 		if (!m_bEnableRescan) return;
 
-	WaitStatusCursor waitstatus(IDS_STATUS_RESCANNING);
+	CWaitCursor waitstatus;
 
 	int nActiveViewIndexType = GetActiveMergeViewIndexType();
 
