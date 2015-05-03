@@ -14,7 +14,6 @@
 #include "locality.h"
 #include "DirCmpReport.h"
 #include "DirCmpReportDlg.h"
-#include "WaitStatusCursor.h"
 #include "paths.h"
 #include "unicoder.h"
 #include "IListCtrl.h"
@@ -127,7 +126,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 	DirCmpReportDlg dlg;
 	if (dlg.DoModal() == IDOK) try
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_CREATEREPORT);
+		CWaitCursor waitstatus;
 		if (dlg.m_bCopyToClipboard)
 		{
 			if (!CWnd::GetSafeOwner()->OpenClipboard())

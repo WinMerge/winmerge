@@ -36,7 +36,6 @@
 #include "MainFrm.h"
 #include "resource.h"
 #include "coretools.h"
-#include "WaitStatusCursor.h"
 #include "locality.h"
 #include "FileTransform.h"
 #include "SelectUnpackerDlg.h"
@@ -504,7 +503,7 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		}
 		else
 		{
-			WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+			CWaitCursor waitstatus;
 			OpenSelection();
 		}
 	}
@@ -1089,7 +1088,7 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 			else
 			{
-				WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+				CWaitCursor waitstatus;
 				OpenSelection();
 			}
 		}
@@ -4072,44 +4071,44 @@ void CDirView::OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI)
 
 void CDirView::OnMergeCompare()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+	CWaitCursor waitstatus;
 	OpenSelection();
 }
 
 void CDirView::OnMergeCompareLeft1Left2()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+	CWaitCursor waitstatus;
 	OpenSelection(SELECTIONTYPE_LEFT1LEFT2);
 }
 
 void CDirView::OnMergeCompareRight1Right2()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+	CWaitCursor waitstatus;
 	OpenSelection(SELECTIONTYPE_RIGHT1RIGHT2);
 }
 
 void CDirView::OnMergeCompareLeft1Right2()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+	CWaitCursor waitstatus;
 	OpenSelection(SELECTIONTYPE_LEFT1RIGHT2);
 }
 
 void CDirView::OnMergeCompareLeft2Right1()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+	CWaitCursor waitstatus;
 	OpenSelection(SELECTIONTYPE_LEFT2RIGHT1);
 }
 
 void CDirView::OnMergeCompareXML()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+	CWaitCursor waitstatus;
 	PackingInfo packingInfo = PLUGIN_BUILTIN_XML;
 	OpenSelection(SELECTIONTYPE_NORMAL, &packingInfo);
 }
 
 void CDirView::OnMergeCompareHex()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+	CWaitCursor waitstatus;
 	OpenSelectionHex();
 }
 

@@ -161,7 +161,6 @@ private:
 	MergeDocPtrList m_MergeDocs; /**< List of file compares opened from this compare */
 	bool m_bRO[3]; /**< Is left/middle/right side read-only */
 	bool m_bRecursive; /**< Is current compare recursive? */
-	std::unique_ptr<CustomStatusCursor> m_statusCursor;
 	String m_strDesc[3]; /**< Left/middle/right side desription text */
 	PluginManager m_pluginman;
 	bool m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */

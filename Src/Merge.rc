@@ -2172,26 +2172,6 @@ BEGIN
     IDS_CONFLICT_MINE_FILE   "Mine File"
 END
 
-// STATUS BAR : CURRENT OPERATION STATUS
-STRINGTABLE
-BEGIN
-    IDS_STATUS_RESCANNING   "Scanning files..."
-    IDS_STATUS_OPENING_SELECTION "Opening selection"
-    IDS_STATUS_COPYL2R      "Copying Left to Right"
-    IDS_STATUS_COPYR2L      "Copying Right to Left"
-    IDS_STATUS_COPY_FROM_LEFT "Copying From Left"
-    IDS_STATUS_COPY_FROM_RIGHT "Copying From Right"
-    IDS_STATUS_COPYALL2L    "Copying All to Left"
-    IDS_STATUS_COPYALL2R    "Copying All to Right"
-    IDS_STATUS_COPYFILES    "Copying files..."
-    IDS_STATUS_DELETEFILES  "Deleting files..."
-    IDS_STATUS_MOVEFILES    "Moving files..."
-    IDS_STATUS_CREATEREPORT "Creating the report..."
-    IDS_STATUS_UNDO         "Undoing the last operation..."
-    IDS_STATUS_REDO         "Redoing the previous operation..."
-    IDS_STATUS_AUTOMERGE    "Doing Auto Merge..."
-END
-
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN

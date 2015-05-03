@@ -23,7 +23,6 @@
 #include "7zCommon.h"
 #include "ShellFileOperations.h"
 #include "OptionsDef.h"
-#include "WaitStatusCursor.h"
 #include "DiffItem.h"
 #include "FileActionScript.h"
 #include "LoadSaveCodepageDlg.h"
@@ -239,7 +238,7 @@ void CDirView::WarnContentsChanged(const String & failedPath)
 /// Prompt & copy item from right to left, if legal
 void CDirView::DoCopyRightToLeft()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_COPYFILES);
+	CWaitCursor waitstatus;
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -299,7 +298,7 @@ void CDirView::DoCopyRightToLeft()
 /// Prompt & copy item from left to right, if legal
 void CDirView::DoCopyLeftToRight()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_COPYFILES);
+	CWaitCursor waitstatus;
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -359,7 +358,7 @@ void CDirView::DoCopyLeftToRight()
 /// Prompt & delete left, if legal
 void CDirView::DoDelLeft()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_DELETEFILES);
+	CWaitCursor waitstatus;
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -401,7 +400,7 @@ void CDirView::DoDelLeft()
 /// Prompt & delete right, if legal
 void CDirView::DoDelRight()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_DELETEFILES);
+	CWaitCursor waitstatus;
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -447,7 +446,7 @@ void CDirView::DoDelRight()
  */
 void CDirView::DoDelBoth()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_DELETEFILES);
+	CWaitCursor waitstatus;
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -498,7 +497,7 @@ void CDirView::DoDelBoth()
  */
 void CDirView::DoDelAll()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_DELETEFILES);
+	CWaitCursor waitstatus;
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -584,7 +583,7 @@ void CDirView::DoCopyLeftTo()
 		return;
 
 	m_lastCopyFolder = destPath;
-	WaitStatusCursor waitstatus(IDS_STATUS_COPYFILES);
+	CWaitCursor waitstatus;
 
 	FileActionScript actionScript;
 	const FileAction::ACT_TYPE actType = FileAction::ACT_COPY;
@@ -655,7 +654,7 @@ void CDirView::DoCopyRightTo()
 		return;
 
 	m_lastCopyFolder = destPath;
-	WaitStatusCursor waitstatus(IDS_STATUS_COPYFILES);
+	CWaitCursor waitstatus;
 
 	FileActionScript actionScript;
 	const FileAction::ACT_TYPE actType = FileAction::ACT_COPY;
@@ -726,7 +725,7 @@ void CDirView::DoMoveLeftTo()
 		return;
 
 	m_lastCopyFolder = destPath;
-	WaitStatusCursor waitstatus(IDS_STATUS_MOVEFILES);
+	CWaitCursor waitstatus;
 
 	FileActionScript actionScript;
 	const FileAction::ACT_TYPE actType = FileAction::ACT_MOVE;
@@ -795,7 +794,7 @@ void CDirView::DoMoveRightTo()
 		return;
 
 	m_lastCopyFolder = destPath;
-	WaitStatusCursor waitstatus(IDS_STATUS_MOVEFILES);
+	CWaitCursor waitstatus;
 
 	FileActionScript actionScript;
 	const FileAction::ACT_TYPE actType = FileAction::ACT_MOVE;
