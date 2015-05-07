@@ -22,7 +22,6 @@
  */
 #pragma once
 
-#include "statlink.h"
 #include "Picture.h"
 #include "resource.h" // IDD_ABOUTBOX
 
@@ -41,7 +40,6 @@ public:
 	//{{AFX_DATA(CAboutDlg)
 	enum { IDD = IDD_ABOUTBOX };
 	CStatic	m_ctlCompany;
-	CStaticLink	m_ctlWWW;
 	CString	m_strVersion;
 	CString m_strPrivateBuild;
 	CPicture m_image;
@@ -64,4 +62,5 @@ public:
 	afx_msg void OnBnClickedOpenContributors();
 	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult);
 };

@@ -697,9 +697,6 @@
     <ClCompile Include="VssPromptDlg.cpp">
       <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="Common\StatLink.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Common\SuperComboBox.cpp">
       <Filter>MFCGui\Common</Filter>
     </ClCompile>
@@ -1324,9 +1321,6 @@
       <Filter>MFCGui\Dialogs</Filter>
     </ClInclude>
     <ClInclude Include="Common\SuperComboBox.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\StatLink.h">
       <Filter>MFCGui\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common\SortHeaderCtrl.h">
