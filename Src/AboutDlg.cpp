@@ -36,6 +36,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
 	ON_WM_DRAWITEM()
 	ON_WM_CTLCOLOR()
+	ON_NOTIFY(NM_CLICK, IDC_WWW, OnBnClickedWWW)
 END_MESSAGE_MAP()
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
@@ -47,7 +48,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CAboutDlg)
 	DDX_Control(pDX, IDC_COMPANY, m_ctlCompany);
-	DDX_Control(pDX, IDC_WWW, m_ctlWWW);
 	DDX_Text(pDX, IDC_VERSION, m_strVersion);
 	DDX_Text(pDX, IDC_PRIVATEBUILD, m_strPrivateBuild);
 	//}}AFX_DATA_MAP
@@ -115,7 +115,10 @@ BOOL CAboutDlg::OnInitDialog()
 	copyright += version.GetLegalCopyright();
 	copyright += _T(" All rights reserved.");
 	m_ctlCompany.SetWindowText(copyright.c_str());
-	m_ctlWWW.m_link = WinMergeURL;
+	CString link;
+	GetDlgItem(IDC_WWW)->GetWindowText(link);
+	link = CString(_T("<a href=\"")) + WinMergeURL + CString(_T("\">")) + link + _T("</a>");
+	GetDlgItem(IDC_WWW)->SetWindowText(link);
 
 	UpdateData(FALSE);
 	
@@ -171,4 +174,8 @@ void CAboutDlg::OnBnClickedOpenContributors()
 		ResMsgBox1(IDS_ERROR_FILE_NOT_FOUND, docPath.c_str(), MB_ICONSTOP);
 }
 
-
+void CAboutDlg::OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	PNMLINK pNMLink = (PNMLINK)pNMHDR;
+	ShellExecute(NULL, _T("open"), pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
+}
