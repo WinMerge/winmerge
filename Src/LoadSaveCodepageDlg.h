@@ -5,8 +5,6 @@
  */
 #pragma once
 
-#include "CMoveConstraint.h"
-
 /////////////////////////////////////////////////////////////////////////////
 // CLoadSaveCodepageDlg dialog
 
@@ -35,8 +33,6 @@ private:
 
 // Implementation data
 private:
-	prdlg::CMoveConstraint m_constraint; 
-
 // Dialog Data
 	//{{AFX_DATA(CLoadSaveCodepageDlg)
 	enum { IDD = IDD_LOAD_SAVE_CODEPAGE };
