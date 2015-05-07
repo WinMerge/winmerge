@@ -634,8 +634,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Unicode + Code Analysis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Common\CSubclass.cpp">
-    </ClCompile>
     <ClCompile Include="DropHandler.cpp">
     </ClCompile>
     <ClCompile Include="ImgMergeFrm.cpp" />
@@ -1469,7 +1467,6 @@
     <ClInclude Include="ConflictFileParser.h" />
     <ClInclude Include="Common\coretools.h" />
     <ClInclude Include="Common\coretypes.h" />
-    <ClInclude Include="Common\CSubclass.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="HexMergeView.h" />
     <ClInclude Include="DropHandler.h" />
