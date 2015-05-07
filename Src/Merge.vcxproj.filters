@@ -739,9 +739,6 @@
     <ClCompile Include="Common\Bitmap.cpp">
       <Filter>MFCGui\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Common\CSubclass.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Common\ShellContextMenu.cpp">
       <Filter>MFCGui\Common</Filter>
     </ClCompile>
@@ -1361,9 +1358,6 @@
     </ClInclude>
     <ClInclude Include="OptionsPanel.h">
       <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\CSubclass.h">
-      <Filter>MFCGui\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common\Bitmap.h">
       <Filter>MFCGui\Common</Filter>

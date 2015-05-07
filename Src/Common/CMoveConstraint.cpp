@@ -20,11 +20,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include <afxtempl.h>       // MFC template collection classes
 #include <afxext.h> // needed for CFormView
 
-#ifndef NOSUBCLASS
-#include "CSubclass.h"
-#endif // NOSUBCLASS
-
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -83,6 +78,7 @@ CMoveConstraint::Constraint::Init()
 CMoveConstraint::CMoveConstraint()
 {
 	m_bSubclassed = false;
+	m_oldWndProc = NULL;
 	m_sRegistryValueName = _T("UnnamedWindow");
 	m_sRegistrySubkey = _T("LastWindowPos");
 	ClearMostData();
@@ -92,7 +88,7 @@ CMoveConstraint::CMoveConstraint()
 bool
 CMoveConstraint::InitializeCurrentSize(HWND hwndDlg)
 {
-ASSERT(!m_hwndDlg);
+	ASSERT(!m_hwndDlg);
 	if (!IsWindow(hwndDlg))
 		return false;
 	m_hwndDlg = hwndDlg;
@@ -337,37 +333,19 @@ ConstrainItem(int nId, double fLeftX, double fExpandX, double fAboveY, double fE
 }
 
 /**
- * Chain to further CSubclass processing if appropriate
- */
-LRESULT
-CMoveConstraint::CallOriginalProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
-#ifndef NOSUBCLASS
-	if (m_bSubclassed)
-		return CallOldProc(ConstraintWndProc, hwnd, msg, wParam, lParam);
-#else
-	if (0)
-		;
-#endif // NOSUBCLASS
-	else
-		return (LRESULT)0;
-}
-
-#ifndef NOSUBCLASS
-/**
  * This is the window proc callback that works with the CSubclass module.
  */
 LRESULT CALLBACK
 CMoveConstraint::ConstraintWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	void * data = GetData(ConstraintWndProc, hwnd);
+	void * data = GetProp(hwnd, _T("CMoveConstraintData"));
 	CMoveConstraint * constraint = reinterpret_cast<CMoveConstraint *>(data);
 
 	LRESULT lresult;
 	if (constraint->WindowProc(hwnd, msg, wParam, lParam, &lresult))
 		return lresult;
 
-	return constraint->CallOriginalProc(hwnd, msg, wParam, lParam);
+	return CallWindowProc(constraint->m_oldWndProc, hwnd, msg, wParam, lParam);
 }
 bool
 CMoveConstraint::SubclassWnd()
@@ -375,15 +353,23 @@ CMoveConstraint::SubclassWnd()
 	void * data = reinterpret_cast<void *>(this);
 	// this will return false if this window/wndproc combination has already
 	// been established (subclassed)
-	m_bSubclassed = Subclass(ConstraintWndProc, m_hwndDlg, data);
+	m_bSubclassed = true;
+	m_oldWndProc = reinterpret_cast<WNDPROC>(GetWindowLongPtr(m_hwndDlg, GWLP_WNDPROC));
+	SetWindowLongPtr(m_hwndDlg, GWLP_WNDPROC, (__int3264)(LONG_PTR)(CMoveConstraint::ConstraintWndProc));
+	SetProp(m_hwndDlg, _T("CMoveConstraintData"), data);
 	return m_bSubclassed;
 }
 bool
 CMoveConstraint::UnSubclassWnd()
 {
-	return UnSubclass(ConstraintWndProc, m_hwndDlg);
+	if (!m_bSubclassed)
+		return false;
+	SetWindowLongPtr(m_hwndDlg, GWLP_WNDPROC, (__int3264)(LONG_PTR)(m_oldWndProc));
+	RemoveProp(m_hwndDlg, _T("CMoveConstraintData"));
+	m_oldWndProc = NULL;
+	m_bSubclassed = false;
+	return true;
 }
-#endif
 
 /**
  * Check if we have any pending constraints not yet added to constraint list
@@ -506,26 +492,6 @@ CMoveConstraint::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
 		lpMMI->ptMaxTrackSize.y = m_nMaxY;
 }
 
-/**
- * Client is asking for window proc handling for a property page.
- */
-bool
-CMoveConstraint::WindowProcPropertyPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, LRESULT * plresult)
-{
-	m_bPropertyPage = true;
-	return WindowProc(hWnd, message, wParam, lParam, plresult);
-}
-
-/**
- * Client is asking for window proc handling for a property sheet.
- */
-bool
-CMoveConstraint::WindowProcPropertySheet(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, LRESULT * plresult)
-{
-	m_bPropertySheet = true;
-	return WindowProc(hWnd, message, wParam, lParam, plresult);
-}
-
 bool
 CMoveConstraint::PaintGrip()
 {
@@ -547,7 +513,7 @@ CMoveConstraint::OnNcHitTest(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT * p
 		return false;
 	if (m_nMinY == m_nMaxY)
 	{
-		LRESULT nRet = CallOriginalProc(m_hwndDlg, msg, wParam, lParam);
+		LRESULT nRet = CallWindowProc(m_oldWndProc, m_hwndDlg, msg, wParam, lParam);
 		switch(nRet)
 		{
 		case HTBOTTOMLEFT:
@@ -567,7 +533,7 @@ CMoveConstraint::OnNcHitTest(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT * p
 	}
 	if (m_nMinX == m_nMaxX)
 	{
-		LRESULT nRet = CallOriginalProc(m_hwndDlg, msg, wParam, lParam);
+		LRESULT nRet = CallWindowProc(m_oldWndProc, m_hwndDlg, msg, wParam, lParam);
 		switch(nRet)
 		{
 		case HTBOTTOMLEFT:
@@ -611,6 +577,7 @@ CMoveConstraint::OnDestroy()
 {
 	if (m_bPersistent)
 		Persist(true, true);
+	UnSubclassWnd();
 	// the one variable that CANNOT safely be cleared now is m_bSubclassed
 	// because the subclass is almost certainly not yet removed
 	// (the subclass calls us to let us do destroy processing, before 
