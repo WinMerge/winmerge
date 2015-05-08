@@ -85,24 +85,6 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
-	// setup handler for resizing this dialog	
-	m_constraint.InitializeCurrentSize(this);
-	// configure how individual controls adjust when dialog resizes
-	m_constraint.ConstrainItem(IDC_AFFECTS_GROUP, 0, 1, 0, 0); // grows right
-	// IDC_AFFECTS_LEFT_BTN doesn't move or grow
-	m_constraint.ConstrainItem(IDC_LEFT_FILES_LABEL, 0, 1, 0, 0); // grows right
-	// IDC_AFFECTS_RIGHT_BTN doesn't move or grow
-	m_constraint.ConstrainItem(IDC_RIGHT_FILES_LABEL, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_LOADING_GROUP, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_LOAD_CODEPAGE_TEXTBOX, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVING_GROUP, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVE_CODEPAGE_TEXTBOX, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDOK, 0.33, 0, 0, 0); // floats right
-	m_constraint.ConstrainItem(IDCANCEL, 0.67, 0, 0, 0); // floats right
-	m_constraint.DisallowHeightGrowth();
-	m_constraint.SubclassWnd(); // install subclassing
-	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("LoadSaveCodepageDlg"), false); // persist size via registry
-
 	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv != NULL)
 	{

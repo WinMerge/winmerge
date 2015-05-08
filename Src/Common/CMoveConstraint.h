@@ -159,10 +159,6 @@ public:
 
 	// see usage section above
 	bool WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, LRESULT * plresult);
-	// obsolete now 2000/10/06
-	// (use SetIsPropertyPage etc, and WindowProc above, or just Subclass)
-	bool WindowProcPropertyPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, LRESULT * plresult);
-	bool WindowProcPropertySheet(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, LRESULT * plresult);
 
 // ToolTips
 	void SetTip(int id, LPCTSTR szTip);
@@ -183,8 +179,6 @@ protected:
 	bool OnNcHitTest(UINT message, WPARAM wParam, LPARAM lParam, LRESULT * plresult);
 	// handle WM_NOTIFY/TTN_NEEDTEXT combination
 	bool OnTtnNeedText(TOOLTIPTEXT * pTTT, LRESULT * plresult);
-	// forwarder
-	LRESULT CallOriginalProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	bool PaintGrip();
 	void ClearMostData();
 	void DeleteAllConstraints();
@@ -231,6 +225,7 @@ private:
 	int m_nMaxY;
 	int m_nDelayed; // CWnds without HWND
 	bool m_bSubclassed;
+	WNDPROC m_oldWndProc;
 // formview stuff
 	CFormView * m_pFormView;
 	// formview original scrollbars

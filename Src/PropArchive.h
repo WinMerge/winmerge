@@ -6,7 +6,6 @@
  */
 #pragma once
 
-#include "StatLink.h"
 #include "OptionsPanel.h"
 
 class COptionsMgr;

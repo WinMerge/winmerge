@@ -634,9 +634,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Unicode + Code Analysis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Common\CSubclass.cpp">
-    </ClCompile>
-    <ClCompile Include="CustomStatusCursor.cpp" />
     <ClCompile Include="DropHandler.cpp">
     </ClCompile>
     <ClCompile Include="ImgMergeFrm.cpp" />
@@ -1218,8 +1215,6 @@
     </ClCompile>
     <ClCompile Include="Common\SplitterWndEx.cpp">
     </ClCompile>
-    <ClCompile Include="Common\StatLink.cpp">
-    </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Unicode + Code Analysis|Win32'">Create</PrecompiledHeader>
@@ -1482,7 +1477,6 @@
     <ClInclude Include="ConflictFileParser.h" />
     <ClInclude Include="Common\coretools.h" />
     <ClInclude Include="Common\coretypes.h" />
-    <ClInclude Include="Common\CSubclass.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DirActions.h" />
     <ClInclude Include="HexMergeView.h" />
@@ -1622,7 +1616,6 @@
     <ClInclude Include="Common\SortHeaderCtrl.h" />
     <ClInclude Include="Common\SplitterWndEx.h" />
     <ClInclude Include="ssapi.h" />
-    <ClInclude Include="Common\StatLink.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="stringdiffs.h" />
     <ClInclude Include="stringdiffsi.h" />

@@ -23,7 +23,6 @@
 
 #include "stdafx.h"
 #include "AboutDlg.h"
-#include "statlink.h"
 #include "Merge.h"
 #include "DDXHelper.h"
 #include "Picture.h"
@@ -43,7 +42,6 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CAboutDlg::Impl)
 	enum { IDD = IDD_ABOUTBOX };
-	CStaticLink	m_ctlWWW;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
@@ -62,6 +60,7 @@ public:
 	afx_msg void OnBnClickedOpenContributors();
 	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult);
 
 private:
 	CAboutDlg *m_p;
@@ -75,6 +74,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg::Impl, CDialog)
 	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
 	ON_WM_DRAWITEM()
 	ON_WM_CTLCOLOR()
+	ON_NOTIFY(NM_CLICK, IDC_WWW, OnBnClickedWWW)
 END_MESSAGE_MAP()
 
 CAboutDlg::Impl::Impl(CAboutDlg *p, CWnd* pParent /*=NULL*/)
@@ -88,7 +88,6 @@ void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CAboutDlg::Impl)
 	DDX_Text(pDX, IDC_COMPANY, m_p->m_info.copyright);
-	DDX_Control(pDX, IDC_WWW, m_ctlWWW);
 	DDX_Text(pDX, IDC_VERSION, m_p->m_info.version);
 	DDX_Text(pDX, IDC_PRIVATEBUILD, m_p->m_info.private_build);
 	//}}AFX_DATA_MAP
@@ -115,7 +114,10 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 	GetDlgItem(IDC_STATIC)->SetFont(&m_font);
 	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
 
-	m_ctlWWW.m_link = m_p->m_info.website.c_str();
+	CString link;
+	GetDlgItem(IDC_WWW)->GetWindowText(link);
+	link = CString(_T("<a href=\"")) + m_p->m_info.website.c_str() + CString(_T("\">")) + link + _T("</a>");
+	GetDlgItem(IDC_WWW)->SetWindowText(link);	
 
 	UpdateData(FALSE);
 	
@@ -147,6 +149,12 @@ void CAboutDlg::Impl::OnBnClickedOpenContributors()
 {
 	int tmp = 0;
 	m_p->m_onclick_contributers.notify(m_p, tmp);
+}
+
+void CAboutDlg::Impl::OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	PNMLINK pNMLink = (PNMLINK)pNMHDR;
+	ShellExecute(NULL, _T("open"), pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
 }
 
 CAboutDlg::CAboutDlg() : m_pimpl(new CAboutDlg::Impl(this)) {}

@@ -697,9 +697,6 @@
     <ClCompile Include="DirActions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CustomStatusCursor.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DropHandler.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -1281,9 +1278,6 @@
     <ClInclude Include="Common\SuperComboBox.h">
       <Filter>MFCGui\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Common\StatLink.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Common\SortHeaderCtrl.h">
       <Filter>MFCGui\Common</Filter>
     </ClInclude>
@@ -1313,9 +1307,6 @@
     </ClInclude>
     <ClInclude Include="OptionsPanel.h">
       <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\CSubclass.h">
-      <Filter>MFCGui\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common\Bitmap.h">
       <Filter>MFCGui\Common</Filter>
