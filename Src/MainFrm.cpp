@@ -1446,7 +1446,7 @@ void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 		if (s != szItem)
 			list.push_back(s);
 	}
-	cnt = list.size() > nMaxItems ? nMaxItems : list.size();
+	cnt = list.size() > nMaxItems ? nMaxItems : static_cast<UINT>(list.size());
 	for (UINT i=0 ; i<cnt; ++i)
 	{
 		s2.Format(_T("Item_%d"), i);
@@ -2571,7 +2571,7 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 
 	if (nID != 0) // will be zero on a separator
 	{
-		strFullText = theApp.LoadString(nID);
+		strFullText = theApp.LoadString(static_cast<UINT>(nID));
 		// don't handle the message if no string resource found
 		if (strFullText.empty())
 			return FALSE;
@@ -2611,7 +2611,7 @@ bool CMainFrame::AskCloseConfirmation()
 	const MergeDocList &mergedocs = GetAllMergeDocs();
 
 	int ret = IDYES;
-	const int count = dirdocs.GetCount() + mergedocs.GetCount();
+	const size_t count = dirdocs.GetCount() + mergedocs.GetCount();
 	if (count > 1)
 	{
 		// Check that we don't have one empty dirdoc + mergedoc situation.
