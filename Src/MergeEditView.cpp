@@ -203,6 +203,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WORDWRAP, OnUpdateViewWordWrap)
 	ON_COMMAND(ID_VIEW_LINENUMBERS, OnViewLineNumbers)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINENUMBERS, OnUpdateViewLineNumbers)
+	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
@@ -2928,6 +2930,11 @@ void CMergeEditView::RefreshOptions()
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 
+	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+		GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+		GetDocument()->IsMixedEOL(m_nThisPane));
+
 	Options::DiffColors::Load(m_cachedColors);
 }
 
@@ -3414,6 +3421,20 @@ void CMergeEditView::OnUpdateViewWordWrap(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(true);
 	pCmdUI->SetCheck(m_bWordWrap);
+}
+
+void CMergeEditView::OnViewWhitespace() 
+{
+	GetOptionsMgr()->SaveOption(OPT_VIEW_WHITESPACE, !GetViewTabs());
+
+	// Call CMergeDoc RefreshOptions() to refresh *both* views
+	CMergeDoc *pDoc = GetDocument();
+	pDoc->RefreshOptions();
+}
+
+void CMergeEditView::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(GetViewTabs());
 }
 
 void CMergeEditView::OnSize(UINT nType, int cx, int cy) 

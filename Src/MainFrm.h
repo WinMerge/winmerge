@@ -112,8 +112,6 @@ public:
 	CString SetStatus(LPCTSTR status);
 	void ClearStatusbarItemCount();
 	void ApplyDiffOptions();
-	void ApplyViewWhitespace();
-	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
 	void StartFlashing();
 	bool AskCloseConfirmation();
@@ -235,8 +233,6 @@ protected:
 	afx_msg void OnHelpContents();
 	afx_msg void OnUpdateHelpContents(CCmdUI* pCmdUI);
 	afx_msg void OnClose();
-	afx_msg void OnViewWhitespace();
-	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGeneratePatch();
 	afx_msg void OnDropFiles(const std::vector<String>& files);
 	afx_msg void OnUpdatePluginUnpackMode(CCmdUI* pCmdUI);
