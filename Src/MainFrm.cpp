@@ -197,8 +197,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
 	ON_UPDATE_COMMAND_UI(ID_HELP_CONTENTS, OnUpdateHelpContents)
 	ON_WM_CLOSE()
-	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_WM_DESTROY()
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
@@ -924,13 +922,6 @@ void CMainFrame::OnHelpGnulicense()
 	theApp.OpenFileOrUrl(spath.c_str(), LicenceUrl);
 }
 
-/// Wrapper to set the global option 'm_bAllowMixedEol'
-void CMainFrame::SetEOLMixed(BOOL bAllow)
-{
-	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, bAllow == TRUE);
-	ApplyViewWhitespace();
-}
-
 /**
  * @brief Opens Options-dialog and saves changed options
  */
@@ -964,8 +955,6 @@ void CMainFrame::OnOptions()
 		theApp.m_pGlobalFileFilter->SetUserFilterPath(filterPath);
 
 		theApp.UpdateCodepageModule();
-		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
-		SetEOLMixed(GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 
 		sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
@@ -1468,51 +1457,6 @@ void CMainFrame::ApplyDiffOptions()
 		pMergeDoc->RefreshOptions();
 		pMergeDoc->FlushAndRescan(TRUE);
 	}
-}
-
-/**
- * @brief Apply tabs and eols settings to all merge documents
- */
-void CMainFrame::ApplyViewWhitespace() 
-{
-	const MergeDocList &mergedocs = GetAllMergeDocs();
-	POSITION pos = mergedocs.GetHeadPosition();
-	while (pos)
-	{
-		CMergeDoc *pMergeDoc = mergedocs.GetNext(pos);
-		for (int pane = 0; pane < pMergeDoc->m_nBuffers; pane++)
-		{
-			CMergeEditView * pView = pMergeDoc->GetView(pane);
-			CMergeEditView * pDetailView = pMergeDoc->GetDetailView(pane);
-			if (pView)
-			{
-				pView->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-				pView->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-					GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-					pView->GetDocument()->IsMixedEOL(pView->m_nThisPane));
-			}
-			if (pDetailView)
-			{
-				pDetailView->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-				pDetailView->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-					GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-					pDetailView->GetDocument()->IsMixedEOL(pDetailView->m_nThisPane));
-			}
-		}
-	}
-}
-
-void CMainFrame::OnViewWhitespace() 
-{
-	bool bViewWhitespace = GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE);
-	GetOptionsMgr()->SaveOption(OPT_VIEW_WHITESPACE, !bViewWhitespace);
-	ApplyViewWhitespace();
-}
-
-/// Enables View/View Whitespace menuitem when merge view is active
-void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 }
 
 /// Get list of OpenDocs (documents underlying edit sessions)
