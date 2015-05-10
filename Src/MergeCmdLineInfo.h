@@ -88,7 +88,7 @@ public:
 private:
 
 	static const TCHAR *EatParam(const TCHAR *, String &, bool *flag = 0);
-	static const TCHAR *SetOption(const TCHAR *, const TCHAR *key, const TCHAR *value = _T("1"));
+	static const TCHAR *SetOption(const TCHAR *, const String& key, const TCHAR *value = _T("1"));
 	void ParseClearCaseCmdLine(const TCHAR *, const TCHAR *basedesc);
 	void ParseWinMergeCmdLine(const TCHAR *);
 	void AddPath(const String &path);

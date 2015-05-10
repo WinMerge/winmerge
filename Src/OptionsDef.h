@@ -8,205 +8,205 @@
 #include "UnicodeString.h"
 
 // User's language
-const TCHAR OPT_SELECTED_LANGUAGE[] = _T("Locale/LanguageId");
+extern const String OPT_SELECTED_LANGUAGE;
 
 // View-menu
-const TCHAR OPT_SHOW_UNIQUE_LEFT[] = _T("Settings/ShowUniqueLeft");
-const TCHAR OPT_SHOW_UNIQUE_RIGHT[] = _T("Settings/ShowUniqueRight");
-const TCHAR OPT_SHOW_DIFFERENT[] = _T("Settings/ShowDifferent");
-const TCHAR OPT_SHOW_IDENTICAL[] = _T("Settings/ShowIdentical");
-const TCHAR OPT_SHOW_BINARIES[] = _T("Settings/ShowBinaries");
-const TCHAR OPT_SHOW_SKIPPED[] = _T("Settings/ShowSkipped");
-const TCHAR OPT_TREE_MODE[] = _T("Settings/TreeMode");
+extern const String OPT_SHOW_UNIQUE_LEFT;
+extern const String OPT_SHOW_UNIQUE_RIGHT;
+extern const String OPT_SHOW_DIFFERENT;
+extern const String OPT_SHOW_IDENTICAL;
+extern const String OPT_SHOW_BINARIES;
+extern const String OPT_SHOW_SKIPPED;
+extern const String OPT_TREE_MODE;
 
 // Show/hide toolbar/statusbar/tabbar
-const TCHAR OPT_SHOW_TOOLBAR[] = _T("Settings/ShowToolbar");
-const TCHAR OPT_SHOW_STATUSBAR[] = _T("Settings/ShowStatusbar");
-const TCHAR OPT_SHOW_TABBAR[] = _T("Settings/ShowTabbar");
-const TCHAR OPT_TOOLBAR_SIZE[] = _T("Settings/ToolbarSize");
-const TCHAR OPT_RESIZE_PANES[] = _T("Settings/AutoResizePanes");
+extern const String OPT_SHOW_TOOLBAR;
+extern const String OPT_SHOW_STATUSBAR;
+extern const String OPT_SHOW_TABBAR;
+extern const String OPT_TOOLBAR_SIZE;
+extern const String OPT_RESIZE_PANES;
 
-const TCHAR OPT_SYNTAX_HIGHLIGHT[] = _T("Settings/HiliteSyntax");
-const TCHAR OPT_VIEW_WHITESPACE[] =  _T("Settings/ViewWhitespace");
-const TCHAR OPT_CONNECT_MOVED_BLOCKS[] = _T("Settings/ConnectMovedBlocks");
-const TCHAR OPT_SCROLL_TO_FIRST[] =  _T("Settings/ScrollToFirst");
+extern const String OPT_SYNTAX_HIGHLIGHT;
+extern const String OPT_VIEW_WHITESPACE;
+extern const String OPT_CONNECT_MOVED_BLOCKS;
+extern const String OPT_SCROLL_TO_FIRST;
 
 // Difference (in-line) highlight
-const TCHAR OPT_WORDDIFF_HIGHLIGHT[] = _T("Settings/HiliteWordDiff");
-const TCHAR OPT_BREAK_ON_WORDS[] = _T("Settings/BreakOnWords");
-const TCHAR OPT_BREAK_TYPE[] = _T("Settings/BreakType");
-const TCHAR OPT_BREAK_SEPARATORS[] = _T("Settings/HiliteBreakSeparators");
+extern const String OPT_WORDDIFF_HIGHLIGHT;
+extern const String OPT_BREAK_ON_WORDS;
+extern const String OPT_BREAK_TYPE;
+extern const String OPT_BREAK_SEPARATORS;
 
 // Backup options
-const TCHAR OPT_BACKUP_FOLDERCMP[] = _T("Backup/EnableFolder");
-const TCHAR OPT_BACKUP_FILECMP[] = _T("Backup/EnableFile");
-const TCHAR OPT_BACKUP_LOCATION[] = _T("Backup/Location");
-const TCHAR OPT_BACKUP_GLOBALFOLDER[] = _T("Backup/GlobalFolder");
-const TCHAR OPT_BACKUP_ADD_BAK[] = _T("Backup/NameAddBak");
-const TCHAR OPT_BACKUP_ADD_TIME[] = _T("Backup/NameAddTime");
+extern const String OPT_BACKUP_FOLDERCMP;
+extern const String OPT_BACKUP_FILECMP;
+extern const String OPT_BACKUP_LOCATION;
+extern const String OPT_BACKUP_GLOBALFOLDER;
+extern const String OPT_BACKUP_ADD_BAK;
+extern const String OPT_BACKUP_ADD_TIME;
 
-const TCHAR OPT_DIRVIEW_SORT_COLUMN[] =  _T("Settings/DirViewSortCol");
-const TCHAR OPT_DIRVIEW_SORT_COLUMN3[] =  _T("Settings/DirViewSortCol3");
-const TCHAR OPT_DIRVIEW_SORT_ASCENDING[] =  _T("Settings/DirViewSortAscending");
-const TCHAR OPT_DIRVIEW_EXPAND_SUBDIRS[] = _T("Settings/DirViewExpandSubdirs");
+extern const String OPT_DIRVIEW_SORT_COLUMN;
+extern const String OPT_DIRVIEW_SORT_COLUMN3;
+extern const String OPT_DIRVIEW_SORT_ASCENDING;
+extern const String OPT_DIRVIEW_EXPAND_SUBDIRS;
 
 // File compare
-const TCHAR OPT_AUTOMATIC_RESCAN[] = _T("Settings/AutomaticRescan");
-const TCHAR OPT_ALLOW_MIXED_EOL[] = _T("Settings/AllowMixedEOL");
-const TCHAR OPT_TAB_SIZE[] = _T("Settings/TabSize");
-const TCHAR OPT_TAB_TYPE[] = _T("Settings/TabType");
-const TCHAR OPT_WORDWRAP[] = _T("Settings/WordWrap");
-const TCHAR OPT_VIEW_LINENUMBERS[] = _T("Settings/ViewLineNumbers");
-const TCHAR OPT_VIEW_FILEMARGIN[] = _T("Settings/ViewFileMargin");
-const TCHAR OPT_DIFF_CONTEXT[] = _T("Settings/DiffContext");
+extern const String OPT_AUTOMATIC_RESCAN;
+extern const String OPT_ALLOW_MIXED_EOL;
+extern const String OPT_TAB_SIZE;
+extern const String OPT_TAB_TYPE;
+extern const String OPT_WORDWRAP;
+extern const String OPT_VIEW_LINENUMBERS;
+extern const String OPT_VIEW_FILEMARGIN;
+extern const String OPT_DIFF_CONTEXT;
 
-const TCHAR OPT_EXT_EDITOR_CMD[] = _T("Settings/ExternalEditor");
-const TCHAR OPT_USE_RECYCLE_BIN[] = _T("Settings/UseRecycleBin");
-const TCHAR OPT_SINGLE_INSTANCE[] = _T("Settings/SingleInstance");
-const TCHAR OPT_MERGE_MODE[] = _T("Settings/MergingMode");
-const TCHAR OPT_CLOSE_WITH_ESC[] = _T("Settings/CloseWithEsc");
-const TCHAR OPT_CLOSE_WITH_OK[] = _T("Settings/CloseWithOK");
-const TCHAR OPT_VERIFY_OPEN_PATHS[] = _T("Settings/VerifyOpenPaths");
-const TCHAR OPT_AUTO_COMPLETE_SOURCE[] = _T("Settings/AutoCompleteSource");
-const TCHAR OPT_IGNORE_SMALL_FILETIME[] = _T("Settings/IgnoreSmallFileTime");
-const TCHAR OPT_ASK_MULTIWINDOW_CLOSE[] = _T("Settings/AskClosingMultipleWindows");
-const TCHAR OPT_PRESERVE_FILETIMES[] = _T("Settings/PreserveFiletimes");
+extern const String OPT_EXT_EDITOR_CMD;
+extern const String OPT_USE_RECYCLE_BIN;
+extern const String OPT_SINGLE_INSTANCE;
+extern const String OPT_MERGE_MODE;
+extern const String OPT_CLOSE_WITH_ESC;
+extern const String OPT_CLOSE_WITH_OK;
+extern const String OPT_VERIFY_OPEN_PATHS;
+extern const String OPT_AUTO_COMPLETE_SOURCE;
+extern const String OPT_IGNORE_SMALL_FILETIME;
+extern const String OPT_ASK_MULTIWINDOW_CLOSE;
+extern const String OPT_PRESERVE_FILETIMES;
 
-const TCHAR OPT_CP_DEFAULT_MODE[] = _T("Settings/CodepageDefaultMode");
-const TCHAR OPT_CP_DEFAULT_CUSTOM[] = _T("Settings/CodepageDefaultCustomValue");
-const TCHAR OPT_CP_DETECT[] = _T("Settings/CodepageDetection");
+extern const String OPT_CP_DEFAULT_MODE;
+extern const String OPT_CP_DEFAULT_CUSTOM;
+extern const String OPT_CP_DETECT;
 
-const TCHAR OPT_PROJECTS_PATH[] = _T("Settings/ProjectsPath");
-const TCHAR OPT_USE_SYSTEM_TEMP_PATH[] = _T("Settings/UseSystemTempPath");
-const TCHAR OPT_CUSTOM_TEMP_PATH[] = _T("Settings/CustomTempPath");
+extern const String OPT_PROJECTS_PATH;
+extern const String OPT_USE_SYSTEM_TEMP_PATH;
+extern const String OPT_CUSTOM_TEMP_PATH;
 
-const TCHAR OPT_SPLIT_HORIZONTALLY[] = _T("Settings/SplitHorizontally");
+extern const String OPT_SPLIT_HORIZONTALLY;
 
 // Color options
 // The difference color
-const TCHAR OPT_CLR_DIFF[] = _T("Settings/DifferenceColor");
+extern const String OPT_CLR_DIFF;
 // The selected difference color
-const TCHAR OPT_CLR_SELECTED_DIFF[] = _T("Settings/SelectedDifferenceColor");
+extern const String OPT_CLR_SELECTED_DIFF;
 // The difference deleted color
-const TCHAR OPT_CLR_DIFF_DELETED[] = _T("Settings/DifferenceDeletedColor");
+extern const String OPT_CLR_DIFF_DELETED;
 // The selected difference deleted color
-const TCHAR OPT_CLR_SELECTED_DIFF_DELETED[] = _T("Settings/SelectedDifferenceDeletedColor");
+extern const String OPT_CLR_SELECTED_DIFF_DELETED;
 // The difference text color
-const TCHAR OPT_CLR_DIFF_TEXT[] = _T("Settings/DifferenceTextColor");
+extern const String OPT_CLR_DIFF_TEXT;
 // The selected difference text color
-const TCHAR OPT_CLR_SELECTED_DIFF_TEXT[] = _T("Settings/SelectedDifferenceTextColor");
+extern const String OPT_CLR_SELECTED_DIFF_TEXT;
 // The ignored lines color
-const TCHAR OPT_CLR_TRIVIAL_DIFF[] = _T("Settings/TrivialDifferenceColor");
+extern const String OPT_CLR_TRIVIAL_DIFF;
 // The ignored and deleted lines color
-const TCHAR OPT_CLR_TRIVIAL_DIFF_DELETED[] = _T("Settings/TrivialDifferenceDeletedColor");
+extern const String OPT_CLR_TRIVIAL_DIFF_DELETED;
 // The ignored text color
-const TCHAR OPT_CLR_TRIVIAL_DIFF_TEXT[] = _T("Settings/TrivialDifferenceTextColor");
+extern const String OPT_CLR_TRIVIAL_DIFF_TEXT;
 // The moved block color
-const TCHAR OPT_CLR_MOVEDBLOCK[] = _T("Settings/MovedBlockColor");
+extern const String OPT_CLR_MOVEDBLOCK;
 // The moved block deleted lines color
-const TCHAR OPT_CLR_MOVEDBLOCK_DELETED[] = _T("Settings/MovedBlockDeletedColor");
+extern const String OPT_CLR_MOVEDBLOCK_DELETED;
 // The moved block text color
-const TCHAR OPT_CLR_MOVEDBLOCK_TEXT[] = _T("Settings/MovedBlockTextColor");
+extern const String OPT_CLR_MOVEDBLOCK_TEXT;
 // The selected moved block color
-const TCHAR OPT_CLR_SELECTED_MOVEDBLOCK[] = _T("Settings/SelectedMovedBlockColor");
+extern const String OPT_CLR_SELECTED_MOVEDBLOCK;
 // The selected moved block deleted lines
-const TCHAR OPT_CLR_SELECTED_MOVEDBLOCK_DELETED[] = _T("Settings/SelectedMovedBlockDeletedColor");
+extern const String OPT_CLR_SELECTED_MOVEDBLOCK_DELETED;
 // The selected moved block text color
-const TCHAR OPT_CLR_SELECTED_MOVEDBLOCK_TEXT[] = _T("Settings/SelectedMovedBlockTextColor");
+extern const String OPT_CLR_SELECTED_MOVEDBLOCK_TEXT;
 // The SNP block color
-const TCHAR OPT_CLR_SNP[] = _T("Settings/SNPColor");
+extern const String OPT_CLR_SNP;
 // The SNP block deleted lines color
-const TCHAR OPT_CLR_SNP_DELETED[] = _T("Settings/SNPDeletedColor");
+extern const String OPT_CLR_SNP_DELETED;
 // The SNP block text color
-const TCHAR OPT_CLR_SNP_TEXT[] = _T("Settings/SNPTextColor");
+extern const String OPT_CLR_SNP_TEXT;
 // The selected SNP block color
-const TCHAR OPT_CLR_SELECTED_SNP[] = _T("Settings/SelectedSNPColor");
+extern const String OPT_CLR_SELECTED_SNP;
 // The selected SNP block deleted lines
-const TCHAR OPT_CLR_SELECTED_SNP_DELETED[] = _T("Settings/SelectedSNPDeletedColor");
+extern const String OPT_CLR_SELECTED_SNP_DELETED;
 // The selected SNP block text color
-const TCHAR OPT_CLR_SELECTED_SNP_TEXT[] = _T("Settings/SelectedSNPTextColor");
+extern const String OPT_CLR_SELECTED_SNP_TEXT;
 // The word difference color
-const TCHAR OPT_CLR_WORDDIFF[] = _T("Settings/WordDifferenceColor");
+extern const String OPT_CLR_WORDDIFF;
 // The word difference deleted color
-const TCHAR OPT_CLR_WORDDIFF_DELETED[] = _T("Settings/WordDifferenceDeletedColor");
+extern const String OPT_CLR_WORDDIFF_DELETED;
 // The word difference text color
-const TCHAR OPT_CLR_WORDDIFF_TEXT[] = _T("Settings/WordDifferenceTextColor");
+extern const String OPT_CLR_WORDDIFF_TEXT;
 // The selected word difference color
-const TCHAR OPT_CLR_SELECTED_WORDDIFF[] = _T("Settings/SelectedWordDifferenceColor");
+extern const String OPT_CLR_SELECTED_WORDDIFF;
 // The word difference deleted color
-const TCHAR OPT_CLR_SELECTED_WORDDIFF_DELETED[] = _T("Settings/SelectedWordDifferenceDeletedColor");
+extern const String OPT_CLR_SELECTED_WORDDIFF_DELETED;
 // The selected word difference text color
-const TCHAR OPT_CLR_SELECTED_WORDDIFF_TEXT[] = _T("Settings/SelectedWordDifferenceTextColor");
+extern const String OPT_CLR_SELECTED_WORDDIFF_TEXT;
 // Whether to use default (theme) text colors
-const TCHAR OPT_CLR_DEFAULT_TEXT_COLORING[] = _T("Settings/DefaultTextColoring");
+extern const String OPT_CLR_DEFAULT_TEXT_COLORING;
 
 // Compare options
-const TCHAR OPT_CMP_IGNORE_WHITESPACE[] = _T("Settings/IgnoreSpace");
-const TCHAR OPT_CMP_IGNORE_BLANKLINES[] = _T("Settings/IgnoreBlankLines");
-const TCHAR OPT_CMP_FILTER_COMMENTLINES[] = _T("Settings/FilterCommentsLines");
-const TCHAR OPT_CMP_IGNORE_CASE[] = _T("Settings/IgnoreCase");
-const TCHAR OPT_CMP_IGNORE_EOL[] = _T("Settings/IgnoreEol");
-const TCHAR OPT_CMP_METHOD[] = _T("Settings/CompMethod2");
-const TCHAR OPT_CMP_MOVED_BLOCKS[] = _T("Settings/MovedBlocks");
-const TCHAR OPT_CMP_MATCH_SIMILAR_LINES[] = _T("Settings/MatchSimilarLines");
-const TCHAR OPT_CMP_STOP_AFTER_FIRST[] = _T("Settings/StopAfterFirst");
-const TCHAR OPT_CMP_QUICK_LIMIT[] = _T("Settings/QuickMethodLimit");
-const TCHAR OPT_CMP_WALK_UNIQUE_DIRS[] = _T("Settings/ScanUnpairedDir");
-const TCHAR OPT_CMP_IGNORE_REPARSE_POINTS[] = _T("Settings/IgnoreReparsePoints");
+extern const String OPT_CMP_IGNORE_WHITESPACE;
+extern const String OPT_CMP_IGNORE_BLANKLINES;
+extern const String OPT_CMP_FILTER_COMMENTLINES;
+extern const String OPT_CMP_IGNORE_CASE;
+extern const String OPT_CMP_IGNORE_EOL;
+extern const String OPT_CMP_METHOD;
+extern const String OPT_CMP_MOVED_BLOCKS;
+extern const String OPT_CMP_MATCH_SIMILAR_LINES;
+extern const String OPT_CMP_STOP_AFTER_FIRST;
+extern const String OPT_CMP_QUICK_LIMIT;
+extern const String OPT_CMP_WALK_UNIQUE_DIRS;
+extern const String OPT_CMP_IGNORE_REPARSE_POINTS;
 
 // Image Compare options
-const TCHAR OPT_CMP_IMG_FILEPATTERNS[] = _T("Settings/ImageFilePatterns");
-const TCHAR OPT_CMP_IMG_SHOWDIFFERENCES[] = _T("Settings/ImageShowDifferences");
-const TCHAR OPT_CMP_IMG_OVERLAYMOVE[] = _T("Settings/ImageOverlayMode");
-const TCHAR OPT_CMP_IMG_ZOOM[] = _T("Settings/ImageZoom");
-const TCHAR OPT_CMP_IMG_USEBACKCOLOR[] = _T("Settings/ImageUseBackColor");
-const TCHAR OPT_CMP_IMG_BACKCOLOR[] = _T("Settings/ImageBackColor");
-const TCHAR OPT_CMP_IMG_DIFFBLOCKSIZE[] = _T("Settings/ImageDiffBlockSize");
-const TCHAR OPT_CMP_IMG_THRESHOLD[] = _T("Settings/ImageColorDistanceThreshold");
+extern const String OPT_CMP_IMG_FILEPATTERNS;
+extern const String OPT_CMP_IMG_SHOWDIFFERENCES;
+extern const String OPT_CMP_IMG_OVERLAYMOVE;
+extern const String OPT_CMP_IMG_ZOOM;
+extern const String OPT_CMP_IMG_USEBACKCOLOR;
+extern const String OPT_CMP_IMG_BACKCOLOR;
+extern const String OPT_CMP_IMG_DIFFBLOCKSIZE;
+extern const String OPT_CMP_IMG_THRESHOLD;
 
 // Image Binary options
-const TCHAR OPT_CMP_BIN_FILEPATTERNS[] = _T("Settings/BinaryFilePatterns");
+extern const String OPT_CMP_BIN_FILEPATTERNS;
 
 /// Are regular expression linefilters enabled?
-const TCHAR OPT_LINEFILTER_ENABLED[] = _T("Settings/IgnoreRegExp");
+extern const String OPT_LINEFILTER_ENABLED;
 /// Currently selected filefilter
-const TCHAR OPT_FILEFILTER_CURRENT[] = _T("Settings/FileFilterCurrent");
-const TCHAR OPT_FILTER_USERPATH[] = _T("Settings/UserFilterPath");
-const TCHAR OPT_FILEFILTER_SHARED[] = _T("Settings/Filters/Shared");
+extern const String OPT_FILEFILTER_CURRENT;
+extern const String OPT_FILTER_USERPATH;
+extern const String OPT_FILEFILTER_SHARED;
 
 // Version control
-const TCHAR OPT_VCS_SYSTEM[] = _T("Settings/VersionSystem");
-const TCHAR OPT_VSS_PATH[] = _T("Settings/VssPath");
+extern const String OPT_VCS_SYSTEM;
+extern const String OPT_VSS_PATH;
 
 // Archive support
-const TCHAR OPT_ARCHIVE_ENABLE[] = _T("Merge7z/Enable");
-const TCHAR OPT_ARCHIVE_PROBETYPE[] = _T("Merge7z/ProbeSignature");
+extern const String OPT_ARCHIVE_ENABLE;
+extern const String OPT_ARCHIVE_PROBETYPE;
 
 // Plugins
-const TCHAR OPT_PLUGINS_ENABLED[] = _T("Settings/PluginsEnabled");
+extern const String OPT_PLUGINS_ENABLED;
 
 // Startup options
-const TCHAR OPT_SHOW_SELECT_FILES_AT_STARTUP[] = _T("Settings/ShowFileDialog");
+extern const String OPT_SHOW_SELECT_FILES_AT_STARTUP;
 
 // MDI Tab Bar
-const TCHAR OPT_TABBAR_AUTO_MAXWIDTH[] = _T("Settings/TabBarAutoMaxWidth");
+extern const String OPT_TABBAR_AUTO_MAXWIDTH;
 
 // Font options
-const TCHAR OPT_FONT_FILECMP[] = _T("Font/");
-const TCHAR OPT_FONT_DIRCMP[] = _T("FontDirCompare/");
+extern const String OPT_FONT_FILECMP;
+extern const String OPT_FONT_DIRCMP;
 
-const TCHAR OPT_FONT_USECUSTOM[] = _T("Specified");
-const TCHAR OPT_FONT_HEIGHT[] = _T("Height");
-const TCHAR OPT_FONT_WIDTH[] = _T("Width");
-const TCHAR OPT_FONT_ESCAPEMENT[] = _T("Escapement");
-const TCHAR OPT_FONT_ORIENTATION[] = _T("Orientation");
-const TCHAR OPT_FONT_WEIGHT[] = _T("Weight");
-const TCHAR OPT_FONT_ITALIC[] = _T("Italic");
-const TCHAR OPT_FONT_UNDERLINE[] = _T("Underline");
-const TCHAR OPT_FONT_STRIKEOUT[] = _T("StrikeOut");
-const TCHAR OPT_FONT_CHARSET[] = _T("CharSet");
-const TCHAR OPT_FONT_OUTPRECISION[] = _T("OutPrecision");
-const TCHAR OPT_FONT_CLIPPRECISION[] = _T("ClipPrecision");
-const TCHAR OPT_FONT_QUALITY[] = _T("Quality");
-const TCHAR OPT_FONT_PITCHANDFAMILY[] = _T("PitchAndFamily");
-const TCHAR OPT_FONT_FACENAME[] = _T("FaceName");
+extern const String OPT_FONT_USECUSTOM;
+extern const String OPT_FONT_HEIGHT;
+extern const String OPT_FONT_WIDTH;
+extern const String OPT_FONT_ESCAPEMENT;
+extern const String OPT_FONT_ORIENTATION;
+extern const String OPT_FONT_WEIGHT;
+extern const String OPT_FONT_ITALIC;
+extern const String OPT_FONT_UNDERLINE;
+extern const String OPT_FONT_STRIKEOUT;
+extern const String OPT_FONT_CHARSET;
+extern const String OPT_FONT_OUTPRECISION;
+extern const String OPT_FONT_CLIPPRECISION;
+extern const String OPT_FONT_QUALITY;
+extern const String OPT_FONT_PITCHANDFAMILY;
+extern const String OPT_FONT_FACENAME;

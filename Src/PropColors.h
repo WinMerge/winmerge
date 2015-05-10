@@ -74,7 +74,7 @@ protected:
 
 	void BrowseColor(CColorButton & colorButton);
 	void SerializeColors(OPERATION op);
-	void SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR optionName);
+	void SerializeColor(OPERATION op, CColorButton & btn, const String& optionName);
 	void UpdateTextColorButtonState(int checkboxId, CColorButton &btn);
 	void UpdateTextColorButtonsState();
 	void SetColorScheme(int scheme);
