@@ -399,7 +399,7 @@ void PropMergeColors::SerializeColors(OPERATION op)
 	SerializeColor(op, m_cSelWordDiffText, OPT_CLR_SELECTED_WORDDIFF_TEXT);
 }
 
-void PropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR optionName)
+void PropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, const String& optionName)
 {
 	switch (op)
 	{

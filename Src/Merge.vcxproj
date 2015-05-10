@@ -578,6 +578,9 @@
     <ClCompile Include="Merge7zFormatShellImpl.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="OptionsDef.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="OptionsCustomColors.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>

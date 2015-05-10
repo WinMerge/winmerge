@@ -97,7 +97,7 @@ const TCHAR *MergeCmdLineInfo::EatParam(const TCHAR *p, String &param, bool *fla
  * @param [in] value Default value in case none is specified.
  * @return Points to the remaining portion of the command line.
  */
-const TCHAR *MergeCmdLineInfo::SetOption(const TCHAR *q, const TCHAR *key, const TCHAR *value)
+const TCHAR *MergeCmdLineInfo::SetOption(const TCHAR *q, const String& key, const TCHAR *value)
 {
 	String s;
 	if (*q == _T(':'))
