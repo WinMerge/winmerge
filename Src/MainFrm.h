@@ -210,18 +210,6 @@ protected:
 	afx_msg void OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 	afx_msg LRESULT OnMenuChar(UINT nChar, UINT nFlags, CMenu* pMenu) ;
 	afx_msg void OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu);
-	afx_msg void OnOptionsShowDifferent();
-	afx_msg void OnOptionsShowIdentical();
-	afx_msg void OnOptionsShowUniqueLeft();
-	afx_msg void OnOptionsShowUniqueRight();
-	afx_msg void OnOptionsShowBinaries();
-	afx_msg void OnOptionsShowSkipped();
-	afx_msg void OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateOptionsShowidentical(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnFileOpen();
 	afx_msg void OnHelpGnulicense();
@@ -298,7 +286,6 @@ private:
 	const MergeDocList &GetAllMergeDocs();
 	const DirDocList &GetAllDirDocs();
 	const HexMergeDocList &GetAllHexMergeDocs();
-	void RedisplayAllDirDocs();
 	void UpdateFont(FRAMETYPE frame);
 	BOOL CreateToolbar();
 	BOOL CreateComboBoxOnToolbar();

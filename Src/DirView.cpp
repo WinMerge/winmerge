@@ -140,6 +140,12 @@ CDirView::CDirView()
 		, m_pCmpProgressBar(nullptr)
 		, m_compareStart(0)
 		, m_bTreeMode(false)
+		, m_bShowDifferent(true)
+		, m_bShowIdentical(true)
+		, m_bShowUniqueLeft(true)
+		, m_bShowUniqueRight(true)
+		, m_bShowBinaries(true)
+		, m_bShowSkipped(true)
 		, m_pShellContextMenuLeft(nullptr)
 		, m_pShellContextMenuMiddle(nullptr)
 		, m_pShellContextMenuRight(nullptr)
@@ -152,6 +158,12 @@ CDirView::CDirView()
 	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS | LVS_EDITLABELS;
 
 	m_bTreeMode =  GetOptionsMgr()->GetBool(OPT_TREE_MODE);
+	m_bShowDifferent =  GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL);
+	m_bShowIdentical =  GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT);
+	m_bShowUniqueLeft =  GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT);
+	m_bShowUniqueRight =  GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT);
+	m_bShowBinaries =  GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES);
+	m_bShowSkipped =  GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 	Options::DiffColors::Load(m_cachedColors);
@@ -281,6 +293,18 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnViewCollapseAllSubdirs)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnUpdateViewCollapseAllSubdirs)
 	ON_COMMAND(ID_VIEW_DIR_STATISTICS, OnViewCompareStatistics)
+	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENT, OnOptionsShowDifferent)
+	ON_COMMAND(ID_OPTIONS_SHOWIDENTICAL, OnOptionsShowIdentical)
+	ON_COMMAND(ID_OPTIONS_SHOWUNIQUELEFT, OnOptionsShowUniqueLeft)
+	ON_COMMAND(ID_OPTIONS_SHOWUNIQUERIGHT, OnOptionsShowUniqueRight)
+	ON_COMMAND(ID_OPTIONS_SHOWBINARIES, OnOptionsShowBinaries)
+	ON_COMMAND(ID_OPTIONS_SHOWSKIPPED, OnOptionsShowSkipped)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUERIGHT, OnUpdateOptionsShowuniqueright)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWBINARIES, OnUpdateOptionsShowBinaries)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWSKIPPED, OnUpdateOptionsShowSkipped)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
 	ON_COMMAND(ID_HELP, OnHelp)
@@ -523,6 +547,95 @@ void CDirView::ReloadColumns()
 }
 
 /**
+ * @brief Determines if the user wants to see given item.
+ * This function determines what items to show and what items to hide. There
+ * are lots of combinations, but basically we check if menuitem is enabled or
+ * disabled and show/hide matching items. For non-recursive compare we never
+ * hide folders as that would disable user browsing into them. And we even
+ * don't really know if folders are identical or different as we haven't
+ * compared them.
+ * @param [in] di Item to check.
+ * @return TRUE if item should be shown, FALSE if not.
+ * @sa CDirDoc::Redisplay()
+ */
+bool CDirView::IsShowable(const DIFFITEM & di) const
+{
+	if (di.customFlags1 & ViewCustomFlags::HIDDEN)
+		return FALSE;
+
+	if (di.diffcode.isResultFiltered())
+	{
+		// Treat SKIPPED as a 'super'-flag. If item is skipped and user
+		// wants to see skipped items show item regardless of other flags
+		return m_bShowSkipped;
+	}
+
+	if (di.diffcode.isDirectory())
+	{
+		// Subfolders in non-recursive compare can only be skipped or unique
+		if (!GetDocument()->GetRecursive())
+		{
+			// left/right filters
+			if (di.diffcode.isSideFirstOnly() && !m_bShowUniqueLeft)
+				return FALSE;
+			if (di.diffcode.isSideSecondOnly() && !m_bShowUniqueRight)
+				return FALSE;
+
+			// result filters
+			if (di.diffcode.isResultError())
+				return FALSE;
+		}
+		else // recursive mode (including tree-mode)
+		{
+			// left/right filters
+			if (di.diffcode.isSideFirstOnly() &&  !m_bShowUniqueLeft)
+				return FALSE;
+			if (di.diffcode.isSideSecondOnly() && !m_bShowUniqueRight)
+				return FALSE;
+
+			// ONLY filter folders by result (identical/different) for tree-view.
+			// In the tree-view we show subfolders with identical/different
+			// status. The flat view only shows files inside folders. So if we
+			// filter by status the files inside folder are filtered too and
+			// users see files appearing/disappearing without clear logic.		
+			if (m_bTreeMode)
+			{
+				// result filters
+				if (di.diffcode.isResultError() && FALSE)
+					return FALSE;
+
+				// result filters
+				if (di.diffcode.isResultSame() && !m_bShowIdentical)
+					return FALSE;
+				if (di.diffcode.isResultDiff() && !m_bShowDifferent)
+					return FALSE;
+			}
+		}
+	}
+	else
+	{
+		// left/right filters
+		if (di.diffcode.isSideFirstOnly() && !m_bShowUniqueLeft)
+			return FALSE;
+		if (di.diffcode.isSideSecondOnly() && !m_bShowUniqueRight)
+			return FALSE;
+
+		// file type filters
+		if (di.diffcode.isBin() && !m_bShowBinaries)
+			return FALSE;
+
+		// result filters
+		if (di.diffcode.isResultSame() && !m_bShowIdentical)
+			return FALSE;
+		if (di.diffcode.isResultError() && FALSE)
+			return FALSE;
+		if (di.diffcode.isResultDiff() && !m_bShowDifferent)
+			return FALSE;
+	}
+	return TRUE;
+}
+
+/**
  * @brief Redisplay items in subfolder
  * @param [in] diffpos First item position in subfolder.
  * @param [in] level Indent level
@@ -541,7 +654,7 @@ void CDirView::RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int 
 		if (di.diffcode.isResultDiff() || (!di.diffcode.existAll(pDoc->m_nDirs) && !di.diffcode.isResultFiltered()))
 			++alldiffs;
 
-		bool bShowable = pDoc->IsShowable(di);
+		bool bShowable = IsShowable(di);
 		if (bShowable)
 		{
 			if (m_bTreeMode)
@@ -4067,6 +4180,96 @@ void CDirView::OnViewCollapseAllSubdirs()
 void CDirView::OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(m_bTreeMode && GetDocument()->GetRecursive());
+}
+
+/**
+ * @brief Show/Hide different files/directories
+ */
+void CDirView::OnOptionsShowDifferent() 
+{
+	m_bShowDifferent = !m_bShowDifferent;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT, m_bShowDifferent);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide identical files/directories
+ */
+void CDirView::OnOptionsShowIdentical() 
+{
+	m_bShowIdentical = !m_bShowIdentical;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_IDENTICAL, m_bShowIdentical);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide left-only files/directories
+ */
+void CDirView::OnOptionsShowUniqueLeft() 
+{
+	m_bShowUniqueLeft = !m_bShowUniqueLeft;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_LEFT, m_bShowUniqueLeft);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide right-only files/directories
+ */
+void CDirView::OnOptionsShowUniqueRight() 
+{
+	m_bShowUniqueRight = !m_bShowUniqueRight;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_RIGHT, m_bShowUniqueRight);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide binary files
+ */
+void CDirView::OnOptionsShowBinaries()
+{
+	m_bShowBinaries = !m_bShowBinaries;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_BINARIES, m_bShowBinaries);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide skipped files/directories
+ */
+void CDirView::OnOptionsShowSkipped()
+{
+	m_bShowSkipped = !m_bShowSkipped;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_SKIPPED, m_bShowSkipped);
+	Redisplay();
+}
+
+void CDirView::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_bShowDifferent);
+}
+
+void CDirView::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_bShowIdentical);
+}
+
+void CDirView::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_bShowUniqueLeft);
+}
+
+void CDirView::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_bShowUniqueRight);
+}
+
+void CDirView::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_bShowBinaries);
+}
+
+void CDirView::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bShowSkipped);
 }
 
 void CDirView::OnMergeCompare()
