@@ -1136,11 +1136,7 @@ void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 void CLocationView::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-
-	if (pd->m_ptBuf[0]->IsModified() || pd->m_ptBuf[1]->IsModified())
-		pCmdUI->Enable(true);
-	else
-		pCmdUI->Enable(false);
+	pCmdUI->Enable(pd->m_ptBuf[0]->IsModified() || pd->m_ptBuf[1]->IsModified());
 }
 
 /**
@@ -1149,11 +1145,7 @@ void CLocationView::OnUpdateFileSave(CCmdUI* pCmdUI)
 void CLocationView::OnUpdateFileSaveLeft(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-
-	if (!pd->m_ptBuf[0]->GetReadOnly() && pd->m_ptBuf[0]->IsModified())
-		pCmdUI->Enable(true);
-	else
-		pCmdUI->Enable(false);
+	pCmdUI->Enable(!pd->m_ptBuf[0]->GetReadOnly() && pd->m_ptBuf[0]->IsModified());
 }
 
 /**
@@ -1162,11 +1154,7 @@ void CLocationView::OnUpdateFileSaveLeft(CCmdUI* pCmdUI)
 void CLocationView::OnUpdateFileSaveMiddle(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-
-	if (pd->m_nBuffers > 2 && !pd->m_ptBuf[1]->GetReadOnly() && pd->m_ptBuf[1]->IsModified())
-		pCmdUI->Enable(true);
-	else
-		pCmdUI->Enable(false);
+	pCmdUI->Enable(pd->m_nBuffers > 2 && !pd->m_ptBuf[1]->GetReadOnly() && pd->m_ptBuf[1]->IsModified());
 }
 
 /**
@@ -1175,9 +1163,5 @@ void CLocationView::OnUpdateFileSaveMiddle(CCmdUI* pCmdUI)
 void CLocationView::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-
-	if (!pd->m_ptBuf[pd->m_nBuffers - 1]->GetReadOnly() && pd->m_ptBuf[pd->m_nBuffers - 1]->IsModified())
-		pCmdUI->Enable(true);
-	else
-		pCmdUI->Enable(false);
+	pCmdUI->Enable(!pd->m_ptBuf[pd->m_nBuffers - 1]->GetReadOnly() && pd->m_ptBuf[pd->m_nBuffers - 1]->IsModified());
 }

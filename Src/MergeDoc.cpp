@@ -1761,14 +1761,7 @@ void CMergeDoc::OnFileSaveAsLeft()
  */
 void CMergeDoc::OnUpdateFileSaveAsMiddle(CCmdUI* pCmdUI)
 {
-	if (m_nBuffers == 3)
-	{
-		pCmdUI->Enable(true);
-	}
-	else
-	{
-		pCmdUI->Enable(false);
-	}
+	pCmdUI->Enable(m_nBuffers == 3);
 }
 
 /**

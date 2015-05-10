@@ -700,6 +700,9 @@
     <ClCompile Include="DropHandler.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OptionsDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">

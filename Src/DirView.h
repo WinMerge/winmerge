@@ -97,7 +97,7 @@ public:
 
 	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
-	void RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int &alldiffs, const DirViewFilterSettings& dirfilter);
+	void RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int &alldiffs);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
 	uintptr_t GetItemKey(int idx) const;
@@ -204,6 +204,7 @@ protected:
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
 	bool m_bTreeMode; /**< TRUE if tree mode is on*/
+	DirViewFilterSettings m_dirfilter;
 	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
 	clock_t m_compareStart; /**< Starting process time of the compare */
 	bool m_bUserCancelEdit; /**< TRUE if the user cancels rename */
@@ -327,6 +328,18 @@ protected:
 	afx_msg void OnUpdateViewExpandAllSubdirs(CCmdUI* pCmdUI);
 	afx_msg void OnViewCollapseAllSubdirs();
 	afx_msg void OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI);
+	afx_msg void OnOptionsShowDifferent();
+	afx_msg void OnOptionsShowIdentical();
+	afx_msg void OnOptionsShowUniqueLeft();
+	afx_msg void OnOptionsShowUniqueRight();
+	afx_msg void OnOptionsShowBinaries();
+	afx_msg void OnOptionsShowSkipped();
+	afx_msg void OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowidentical(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI);
 	afx_msg void OnMergeCompare();
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnMergeCompare2();

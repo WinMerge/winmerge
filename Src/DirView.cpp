@@ -110,6 +110,7 @@ CDirView::CDirView()
 		, m_pCmpProgressBar(nullptr)
 		, m_compareStart(0)
 		, m_bTreeMode(false)
+		, m_dirfilter(boost::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1))
 		, m_pShellContextMenuLeft(nullptr)
 		, m_pShellContextMenuMiddle(nullptr)
 		, m_pShellContextMenuRight(nullptr)
@@ -252,6 +253,18 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnViewCollapseAllSubdirs)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnUpdateViewCollapseAllSubdirs)
 	ON_COMMAND(ID_VIEW_DIR_STATISTICS, OnViewCompareStatistics)
+	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENT, OnOptionsShowDifferent)
+	ON_COMMAND(ID_OPTIONS_SHOWIDENTICAL, OnOptionsShowIdentical)
+	ON_COMMAND(ID_OPTIONS_SHOWUNIQUELEFT, OnOptionsShowUniqueLeft)
+	ON_COMMAND(ID_OPTIONS_SHOWUNIQUERIGHT, OnOptionsShowUniqueRight)
+	ON_COMMAND(ID_OPTIONS_SHOWBINARIES, OnOptionsShowBinaries)
+	ON_COMMAND(ID_OPTIONS_SHOWSKIPPED, OnOptionsShowSkipped)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUERIGHT, OnUpdateOptionsShowuniqueright)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWBINARIES, OnUpdateOptionsShowBinaries)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWSKIPPED, OnUpdateOptionsShowSkipped)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
 	ON_COMMAND(ID_HELP, OnHelp)
@@ -436,7 +449,7 @@ void CDirView::ReloadColumns()
  * @param [in,out] index Index of the item to be inserted.
  * @param [in,out] alldiffs Number of different items
  */
-void CDirView::RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int &alldiffs, const DirViewFilterSettings& dirfilter)
+void CDirView::RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int &alldiffs)
 {
 	CDirDoc *pDoc = GetDocument();
 	const CDiffContext &ctxt = GetDiffContext();
@@ -448,7 +461,7 @@ void CDirView::RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int 
 		if (di.diffcode.isResultDiff() || (!di.diffcode.existAll(pDoc->m_nDirs) && !di.diffcode.isResultFiltered()))
 			++alldiffs;
 
-		bool bShowable = IsShowable(ctxt, di, dirfilter);
+		bool bShowable = IsShowable(ctxt, di, m_dirfilter);
 		if (bShowable)
 		{
 			if (m_bTreeMode)
@@ -459,7 +472,7 @@ void CDirView::RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int 
 				{
 					m_pList->SetItemState(index - 1, INDEXTOSTATEIMAGEMASK((di.customFlags1 & ViewCustomFlags::EXPANDED) ? 2 : 1), LVIS_STATEIMAGEMASK);
 					if (di.customFlags1 & ViewCustomFlags::EXPANDED)
-						RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs, dirfilter);
+						RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
 				}
 			}
 			else
@@ -471,7 +484,7 @@ void CDirView::RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int 
 				}
 				if (di.HasChildren())
 				{
-					RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs, dirfilter);
+					RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
 				}
 			}
 		}
@@ -506,8 +519,7 @@ void CDirView::Redisplay()
 
 	int alldiffs = 0;
 	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
-	DirViewFilterSettings dirfilter(boost::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1));
-	RedisplayChildren(diffpos, 0, cnt, alldiffs, dirfilter);
+	RedisplayChildren(diffpos, 0, cnt, alldiffs);
 	if (pDoc->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPLETED)
 		theApp.SetLastCompareResult(alldiffs);
 	SortColumnsAppropriately();
@@ -1099,8 +1111,7 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 	uintptr_t diffpos = ctxt.GetFirstChildDiffPosition(GetItemKey(sel));
 	UINT indext = sel + 1;
 	int alldiffs;
-	DirViewFilterSettings dirfilter(boost::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1));
-	RedisplayChildren(diffpos, dip.GetDepth() + 1, indext, alldiffs, dirfilter);
+	RedisplayChildren(diffpos, dip.GetDepth() + 1, indext, alldiffs);
 
 	SortColumnsAppropriately();
 
@@ -1745,10 +1756,7 @@ void CDirView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 
 	// Check if different files were found and
 	// there is different item after focused item
-	if ((lastDiff > -1) && (focused < lastDiff))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable((lastDiff > -1) && (focused < lastDiff));
 }
 
 // Go to prev diff
@@ -1771,10 +1779,7 @@ void CDirView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 
 	// Check if different files were found and
 	// there is different item before focused item
-	if ((firstDiff > -1) && (firstDiff < focused))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable((firstDiff > -1) && (firstDiff < focused));
 }
 
 void CDirView::OnCurdiff()
@@ -2299,10 +2304,7 @@ void CDirView::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI)
 		int sel = -1;
 		sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemDeletableOnBoth(GetDiffContext(), di))
-			pCmdUI->Enable(TRUE);
-		else
-			pCmdUI->Enable(FALSE);
+		pCmdUI->Enable(IsItemDeletableOnBoth(GetDiffContext(), di));
 	}
 }
 
@@ -3011,6 +3013,96 @@ void CDirView::OnViewCollapseAllSubdirs()
 void CDirView::OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(m_bTreeMode && GetDiffContext().m_bRecursive);
+}
+
+/**
+ * @brief Show/Hide different files/directories
+ */
+void CDirView::OnOptionsShowDifferent() 
+{
+	m_dirfilter.show_different = !m_dirfilter.show_different;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT, m_dirfilter.show_different);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide identical files/directories
+ */
+void CDirView::OnOptionsShowIdentical() 
+{
+	m_dirfilter.show_identical = !m_dirfilter.show_identical;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_IDENTICAL, m_dirfilter.show_identical);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide left-only files/directories
+ */
+void CDirView::OnOptionsShowUniqueLeft() 
+{
+	m_dirfilter.show_unique_left = !m_dirfilter.show_unique_left;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_LEFT, m_dirfilter.show_unique_left);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide right-only files/directories
+ */
+void CDirView::OnOptionsShowUniqueRight() 
+{
+	m_dirfilter.show_unique_right = !m_dirfilter.show_unique_right;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_RIGHT, m_dirfilter.show_unique_right);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide binary files
+ */
+void CDirView::OnOptionsShowBinaries()
+{
+	m_dirfilter.show_binaries = !m_dirfilter.show_binaries;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_BINARIES, m_dirfilter.show_binaries);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide skipped files/directories
+ */
+void CDirView::OnOptionsShowSkipped()
+{
+	m_dirfilter.show_skipped = !m_dirfilter.show_skipped;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_SKIPPED, m_dirfilter.show_skipped);
+	Redisplay();
+}
+
+void CDirView::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_dirfilter.show_different);
+}
+
+void CDirView::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_dirfilter.show_identical);
+}
+
+void CDirView::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_dirfilter.show_unique_left);
+}
+
+void CDirView::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_dirfilter.show_unique_right);
+}
+
+void CDirView::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_dirfilter.show_binaries);
+}
+
+void CDirView::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_dirfilter.show_skipped);
 }
 
 void CDirView::OnMergeCompare()
