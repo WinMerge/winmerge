@@ -117,7 +117,6 @@ public:
 	void SetPluginPrediffer(const String& filteredFilenames, const String & prediffer);
 	void FetchPluginInfos(const String& filteredFilenames, 
 	                      PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
-	bool IsShowable(const DIFFITEM & di) const;
 
 	bool HasDiffs() const { return m_pCtxt != NULL; }
 	const CDiffContext & GetDiffContext() const { return *m_pCtxt; }

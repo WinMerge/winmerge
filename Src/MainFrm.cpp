@@ -174,18 +174,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_MEASUREITEM()
 	ON_WM_INITMENUPOPUP()
 	ON_WM_INITMENU()
-	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENT, OnOptionsShowDifferent)
-	ON_COMMAND(ID_OPTIONS_SHOWIDENTICAL, OnOptionsShowIdentical)
-	ON_COMMAND(ID_OPTIONS_SHOWUNIQUELEFT, OnOptionsShowUniqueLeft)
-	ON_COMMAND(ID_OPTIONS_SHOWUNIQUERIGHT, OnOptionsShowUniqueRight)
-	ON_COMMAND(ID_OPTIONS_SHOWBINARIES, OnOptionsShowBinaries)
-	ON_COMMAND(ID_OPTIONS_SHOWSKIPPED, OnOptionsShowSkipped)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUERIGHT, OnUpdateOptionsShowuniqueright)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWBINARIES, OnUpdateOptionsShowBinaries)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWSKIPPED, OnUpdateOptionsShowSkipped)
 	ON_WM_CREATE()
 	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
 	ON_COMMAND(ID_HELP_GNULICENSE, OnHelpGnulicense)
@@ -810,107 +798,6 @@ int CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocatio
 	}
 
 	return 0;
-}
-
-void CMainFrame::RedisplayAllDirDocs()
-{
-	const DirDocList &dirdocs = GetAllDirDocs();
-	POSITION pos = dirdocs.GetHeadPosition();
-	while (pos)
-	{
-		CDirDoc * pDirDoc = dirdocs.GetNext(pos);
-		pDirDoc->Redisplay();
-	}
-}
-
-/**
- * @brief Show/Hide different files/directories
- */
-void CMainFrame::OnOptionsShowDifferent() 
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-/**
- * @brief Show/Hide identical files/directories
- */
-void CMainFrame::OnOptionsShowIdentical() 
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_IDENTICAL, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-/**
- * @brief Show/Hide left-only files/directories
- */
-void CMainFrame::OnOptionsShowUniqueLeft() 
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_LEFT, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-/**
- * @brief Show/Hide right-only files/directories
- */
-void CMainFrame::OnOptionsShowUniqueRight() 
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_RIGHT, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-/**
- * @brief Show/Hide binary files
- */
-void CMainFrame::OnOptionsShowBinaries()
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_BINARIES, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-/**
- * @brief Show/Hide skipped files/directories
- */
-void CMainFrame::OnOptionsShowSkipped()
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_SKIPPED, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-void CMainFrame::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT));
-}
-
-void CMainFrame::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL));
-}
-
-void CMainFrame::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT));
-}
-
-void CMainFrame::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT));
-}
-
-void CMainFrame::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES));
-}
-
-void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED));
 }
 
 /**
