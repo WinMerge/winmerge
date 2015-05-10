@@ -203,6 +203,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WORDWRAP, OnUpdateViewWordWrap)
 	ON_COMMAND(ID_VIEW_LINENUMBERS, OnViewLineNumbers)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINENUMBERS, OnUpdateViewLineNumbers)
+	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
@@ -867,10 +869,7 @@ void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 	if (nCurrentDiff == -1)
 	{
 		int nNewDiff = pd->m_diffList.LineToDiff(pos.y);
-		if (nNewDiff != -1 && pd->m_diffList.IsDiffSignificant(nNewDiff))
-			pCmdUI->Enable(true);
-		else
-			pCmdUI->Enable(false);
+		pCmdUI->Enable(nNewDiff != -1 && pd->m_diffList.IsDiffSignificant(nNewDiff));
 	}
 	else
 		pCmdUI->Enable(true);
@@ -2161,11 +2160,7 @@ bool CMergeEditView::IsReadOnly(int pane) const
 void CMergeEditView::OnUpdateFileSaveLeft(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-
-	if (!IsReadOnly(0) && pd->m_ptBuf[0]->IsModified())
-		pCmdUI->Enable(true);
-	else
-		pCmdUI->Enable(false);
+	pCmdUI->Enable(!IsReadOnly(0) && pd->m_ptBuf[0]->IsModified());
 }
 
 /**
@@ -2174,11 +2169,7 @@ void CMergeEditView::OnUpdateFileSaveLeft(CCmdUI* pCmdUI)
 void CMergeEditView::OnUpdateFileSaveMiddle(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-
-	if (pd->m_nBuffers == 3 && !IsReadOnly(1) && pd->m_ptBuf[1]->IsModified())
-		pCmdUI->Enable(true);
-	else
-		pCmdUI->Enable(false);
+	pCmdUI->Enable(pd->m_nBuffers == 3 && !IsReadOnly(1) && pd->m_ptBuf[1]->IsModified());
 }
 
 /**
@@ -2187,11 +2178,7 @@ void CMergeEditView::OnUpdateFileSaveMiddle(CCmdUI* pCmdUI)
 void CMergeEditView::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-
-	if (!IsReadOnly(pd->m_nBuffers - 1) && pd->m_ptBuf[pd->m_nBuffers - 1]->IsModified())
-		pCmdUI->Enable(true);
-	else
-		pCmdUI->Enable(false);
+	pCmdUI->Enable(!IsReadOnly(pd->m_nBuffers - 1) && pd->m_ptBuf[pd->m_nBuffers - 1]->IsModified());
 }
 
 /**
@@ -2305,10 +2292,7 @@ void CMergeEditView::OnUpdateFileSave(CCmdUI* pCmdUI)
 		if (pd->m_ptBuf[nPane]->IsModified())
 			bModified = true;
 	}
-	if (bModified)
-		pCmdUI->Enable(true);
-	else
-		pCmdUI->Enable(false);
+	pCmdUI->Enable(bModified);
 }
 
 /**
@@ -2931,6 +2915,11 @@ void CMergeEditView::RefreshOptions()
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 
+	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+		GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+		GetDocument()->IsMixedEOL(m_nThisPane));
+
 	Options::DiffColors::Load(m_cachedColors);
 }
 
@@ -3416,6 +3405,20 @@ void CMergeEditView::OnUpdateViewWordWrap(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_bWordWrap);
 }
 
+void CMergeEditView::OnViewWhitespace() 
+{
+	GetOptionsMgr()->SaveOption(OPT_VIEW_WHITESPACE, !GetViewTabs());
+
+	// Call CMergeDoc RefreshOptions() to refresh *both* views
+	CMergeDoc *pDoc = GetDocument();
+	pDoc->RefreshOptions();
+}
+
+void CMergeEditView::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(GetViewTabs());
+}
+
 void CMergeEditView::OnSize(UINT nType, int cx, int cy) 
 {
 	if (!IsInitialized())
@@ -3775,9 +3778,8 @@ void CMergeEditView::OnViewMargin()
  */
 void CMergeEditView::OnUpdateViewMargin(CCmdUI* pCmdUI)
 {
-	bool bViewMargin = GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN);
 	pCmdUI->Enable(true);
-	pCmdUI->SetCheck(bViewMargin);
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
 }
 
 /**
@@ -3836,12 +3838,7 @@ void CMergeEditView::OnUpdateChangeScheme(CCmdUI* pCmdUI)
 {
 	const bool bIsCurrentScheme = (m_CurSourceDef->type == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
 	pCmdUI->SetRadio(bIsCurrentScheme);
-
-	bool syntaxHLEnabled = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
-	if (syntaxHLEnabled)
-		pCmdUI->Enable(true);
-	else
-		pCmdUI->Enable(false);
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT));
 }
 
 /**

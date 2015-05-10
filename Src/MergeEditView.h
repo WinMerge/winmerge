@@ -323,6 +323,8 @@ protected:
 	afx_msg void OnUpdateViewLineNumbers(CCmdUI* pCmdUI);
 	afx_msg void OnViewWordWrap();
 	afx_msg void OnUpdateViewWordWrap(CCmdUI* pCmdUI);
+	afx_msg void OnViewWhitespace();
+	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);
 	afx_msg void OnOpenFile();
 	afx_msg void OnOpenFileWith();
 	afx_msg void OnOpenFileWithEditor();

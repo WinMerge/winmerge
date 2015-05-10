@@ -175,18 +175,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_MEASUREITEM()
 	ON_WM_INITMENUPOPUP()
 	ON_WM_INITMENU()
-	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENT, OnOptionsShowDifferent)
-	ON_COMMAND(ID_OPTIONS_SHOWIDENTICAL, OnOptionsShowIdentical)
-	ON_COMMAND(ID_OPTIONS_SHOWUNIQUELEFT, OnOptionsShowUniqueLeft)
-	ON_COMMAND(ID_OPTIONS_SHOWUNIQUERIGHT, OnOptionsShowUniqueRight)
-	ON_COMMAND(ID_OPTIONS_SHOWBINARIES, OnOptionsShowBinaries)
-	ON_COMMAND(ID_OPTIONS_SHOWSKIPPED, OnOptionsShowSkipped)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUERIGHT, OnUpdateOptionsShowuniqueright)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWBINARIES, OnUpdateOptionsShowBinaries)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWSKIPPED, OnUpdateOptionsShowSkipped)
 	ON_WM_CREATE()
 	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
 	ON_COMMAND(ID_HELP_GNULICENSE, OnHelpGnulicense)
@@ -198,8 +186,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
 	ON_UPDATE_COMMAND_UI(ID_HELP_CONTENTS, OnUpdateHelpContents)
 	ON_WM_CLOSE()
-	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_WM_DESTROY()
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
@@ -815,107 +801,6 @@ int CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocatio
 	return 0;
 }
 
-void CMainFrame::RedisplayAllDirDocs()
-{
-	const DirDocList &dirdocs = GetAllDirDocs();
-	POSITION pos = dirdocs.GetHeadPosition();
-	while (pos)
-	{
-		CDirDoc * pDirDoc = dirdocs.GetNext(pos);
-		pDirDoc->Redisplay();
-	}
-}
-
-/**
- * @brief Show/Hide different files/directories
- */
-void CMainFrame::OnOptionsShowDifferent() 
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-/**
- * @brief Show/Hide identical files/directories
- */
-void CMainFrame::OnOptionsShowIdentical() 
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_IDENTICAL, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-/**
- * @brief Show/Hide left-only files/directories
- */
-void CMainFrame::OnOptionsShowUniqueLeft() 
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_LEFT, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-/**
- * @brief Show/Hide right-only files/directories
- */
-void CMainFrame::OnOptionsShowUniqueRight() 
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_RIGHT, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-/**
- * @brief Show/Hide binary files
- */
-void CMainFrame::OnOptionsShowBinaries()
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_BINARIES, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-/**
- * @brief Show/Hide skipped files/directories
- */
-void CMainFrame::OnOptionsShowSkipped()
-{
-	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_SKIPPED, !val); // reverse
-	RedisplayAllDirDocs();
-}
-
-void CMainFrame::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT));
-}
-
-void CMainFrame::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL));
-}
-
-void CMainFrame::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT));
-}
-
-void CMainFrame::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT));
-}
-
-void CMainFrame::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES));
-}
-
-void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED));
-}
-
 /**
  * @brief Show GNU licence information in notepad (local file) or in Web Browser
  */
@@ -923,13 +808,6 @@ void CMainFrame::OnHelpGnulicense()
 {
 	const String spath = paths_ConcatPath(env_GetProgPath(), LicenseFile);
 	theApp.OpenFileOrUrl(spath.c_str(), LicenceUrl);
-}
-
-/// Wrapper to set the global option 'm_bAllowMixedEol'
-void CMainFrame::SetEOLMixed(BOOL bAllow)
-{
-	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, bAllow == TRUE);
-	ApplyViewWhitespace();
 }
 
 /**
@@ -965,8 +843,6 @@ void CMainFrame::OnOptions()
 		theApp.m_pGlobalFileFilter->SetUserFilterPath(filterPath);
 
 		theApp.UpdateCodepageModule();
-		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
-		SetEOLMixed(GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 
 		sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
@@ -1446,7 +1322,7 @@ void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 		if (s != szItem)
 			list.push_back(s);
 	}
-	cnt = list.size() > nMaxItems ? nMaxItems : list.size();
+	cnt = list.size() > nMaxItems ? nMaxItems : static_cast<UINT>(list.size());
 	for (UINT i=0 ; i<cnt; ++i)
 		AfxGetApp()->WriteProfileString(szRegSubKey, string_format(_T("Item_%d"), i).c_str(), list[i]);
 	// update count
@@ -1465,51 +1341,6 @@ void CMainFrame::ApplyDiffOptions()
 		pMergeDoc->RefreshOptions();
 		pMergeDoc->FlushAndRescan(TRUE);
 	}
-}
-
-/**
- * @brief Apply tabs and eols settings to all merge documents
- */
-void CMainFrame::ApplyViewWhitespace() 
-{
-	const MergeDocList &mergedocs = GetAllMergeDocs();
-	POSITION pos = mergedocs.GetHeadPosition();
-	while (pos)
-	{
-		CMergeDoc *pMergeDoc = mergedocs.GetNext(pos);
-		for (int pane = 0; pane < pMergeDoc->m_nBuffers; pane++)
-		{
-			CMergeEditView * pView = pMergeDoc->GetView(pane);
-			CMergeEditView * pDetailView = pMergeDoc->GetDetailView(pane);
-			if (pView)
-			{
-				pView->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-				pView->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-					GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-					pView->GetDocument()->IsMixedEOL(pView->m_nThisPane));
-			}
-			if (pDetailView)
-			{
-				pDetailView->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-				pDetailView->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-					GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-					pDetailView->GetDocument()->IsMixedEOL(pDetailView->m_nThisPane));
-			}
-		}
-	}
-}
-
-void CMainFrame::OnViewWhitespace() 
-{
-	bool bViewWhitespace = GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE);
-	GetOptionsMgr()->SaveOption(OPT_VIEW_WHITESPACE, !bViewWhitespace);
-	ApplyViewWhitespace();
-}
-
-/// Enables View/View Whitespace menuitem when merge view is active
-void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 }
 
 /// Get list of OpenDocs (documents underlying edit sessions)
@@ -1715,10 +1546,7 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 
 void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
 {
-	if (GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
 		pCmdUI->SetRadio(PLUGIN_MANUAL == g_bUnpackerMode);
@@ -1750,10 +1578,7 @@ void CMainFrame::OnPluginPrediffMode(UINT nID )
 
 void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI) 
 {
-	if (GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_PREDIFFER_MANUAL)
 		pCmdUI->SetRadio(PLUGIN_MANUAL == g_bPredifferMode);
@@ -1765,10 +1590,7 @@ void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnUpdateReloadPlugins(CCmdUI* pCmdUI)
 {
-	if (GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 }
 
 void CMainFrame::OnReloadPlugins()
@@ -2237,10 +2059,7 @@ void CMainFrame::OnUpdateWindowCloseAll(CCmdUI* pCmdUI)
 	}
 
 	const DirDocList &dirdocs = GetAllDirDocs();
-	if (!dirdocs.IsEmpty())
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(!dirdocs.IsEmpty());
 }
 
 /**
@@ -2563,7 +2382,7 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 
 	if (nID != 0) // will be zero on a separator
 	{
-		strFullText = theApp.LoadString(nID);
+		strFullText = theApp.LoadString(static_cast<UINT>(nID));
 		// don't handle the message if no string resource found
 		if (strFullText.empty())
 			return FALSE;
@@ -2603,7 +2422,7 @@ bool CMainFrame::AskCloseConfirmation()
 	const MergeDocList &mergedocs = GetAllMergeDocs();
 
 	int ret = IDYES;
-	const int count = dirdocs.GetCount() + mergedocs.GetCount();
+	const size_t count = dirdocs.GetCount() + mergedocs.GetCount();
 	if (count > 1)
 	{
 		// Check that we don't have one empty dirdoc + mergedoc situation.
