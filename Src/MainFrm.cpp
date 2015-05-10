@@ -1550,10 +1550,7 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 
 void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
 {
-	if (GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
 		pCmdUI->SetRadio(PLUGIN_MANUAL == g_bUnpackerMode);
@@ -1585,10 +1582,7 @@ void CMainFrame::OnPluginPrediffMode(UINT nID )
 
 void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI) 
 {
-	if (GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_PREDIFFER_MANUAL)
 		pCmdUI->SetRadio(PLUGIN_MANUAL == g_bPredifferMode);
@@ -1600,10 +1594,7 @@ void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnUpdateReloadPlugins(CCmdUI* pCmdUI)
 {
-	if (GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 }
 
 void CMainFrame::OnReloadPlugins()
@@ -2072,10 +2063,7 @@ void CMainFrame::OnUpdateWindowCloseAll(CCmdUI* pCmdUI)
 	}
 
 	const DirDocList &dirdocs = GetAllDirDocs();
-	if (!dirdocs.IsEmpty())
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(!dirdocs.IsEmpty());
 }
 
 /**

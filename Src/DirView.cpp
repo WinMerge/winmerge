@@ -2546,11 +2546,7 @@ void CDirView::OnFirstdiff()
 
 void CDirView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
 {
-	int firstDiff = GetFirstDifferentItem();
-	if (firstDiff > -1)
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(GetFirstDifferentItem() > -1);
 }
 
 // Go to last diff
@@ -2577,11 +2573,7 @@ void CDirView::OnLastdiff()
 
 void CDirView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 {
-	int firstDiff = GetFirstDifferentItem();
-	if (firstDiff > -1)
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(GetFirstDifferentItem() > -1);
 }
 
 // Go to next diff
@@ -2617,10 +2609,7 @@ void CDirView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 
 	// Check if different files were found and
 	// there is different item after focused item
-	if ((lastDiff > -1) && (focused < lastDiff))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable((lastDiff > -1) && (focused < lastDiff));
 }
 
 // Go to prev diff
@@ -2656,10 +2645,7 @@ void CDirView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 
 	// Check if different files were found and
 	// there is different item before focused item
-	if ((firstDiff > -1) && (firstDiff < focused))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable((firstDiff > -1) && (firstDiff < focused));
 }
 
 void CDirView::OnCurdiff()
@@ -2690,11 +2676,7 @@ void CDirView::OnCurdiff()
 
 void CDirView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 {
-	int selection = GetFirstSelectedInd();
-	if (selection > -1)
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(GetFirstSelectedInd() > -1);
 }
 
 int CDirView::GetFocusedItem()
@@ -3289,10 +3271,7 @@ void CDirView::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI)
 		int sel = -1;
 		sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemDeletableOnBoth(di))
-			pCmdUI->Enable(TRUE);
-		else
-			pCmdUI->Enable(FALSE);
+		pCmdUI->Enable(IsItemDeletableOnBoth(di));
 	}
 }
 
@@ -3623,10 +3602,7 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
 	// and they may not all have the same setting
 	// so I'm not trying this right now
 
-	if (GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	BCMenu *pPopup = (BCMenu*) pCmdUI->m_pSubMenu;
 	if (pPopup == NULL)
