@@ -7,206 +7,210 @@
 
 #include "UnicodeString.h"
 
+#ifndef OP
+#define OP(x) 
+#endif
+
 // User's language
-extern const String OPT_SELECTED_LANGUAGE;
+extern const String OPT_SELECTED_LANGUAGE OP("Locale/LanguageId");
 
 // View-menu
-extern const String OPT_SHOW_UNIQUE_LEFT;
-extern const String OPT_SHOW_UNIQUE_RIGHT;
-extern const String OPT_SHOW_DIFFERENT;
-extern const String OPT_SHOW_IDENTICAL;
-extern const String OPT_SHOW_BINARIES;
-extern const String OPT_SHOW_SKIPPED;
-extern const String OPT_TREE_MODE;
+extern const String OPT_SHOW_UNIQUE_LEFT OP("Settings/ShowUniqueLeft");
+extern const String OPT_SHOW_UNIQUE_RIGHT OP("Settings/ShowUniqueRight");
+extern const String OPT_SHOW_DIFFERENT OP("Settings/ShowDifferent");
+extern const String OPT_SHOW_IDENTICAL OP("Settings/ShowIdentical");
+extern const String OPT_SHOW_BINARIES OP("Settings/ShowBinaries");
+extern const String OPT_SHOW_SKIPPED OP("Settings/ShowSkipped");
+extern const String OPT_TREE_MODE OP("Settings/TreeMode");
 
 // Show/hide toolbar/statusbar/tabbar
-extern const String OPT_SHOW_TOOLBAR;
-extern const String OPT_SHOW_STATUSBAR;
-extern const String OPT_SHOW_TABBAR;
-extern const String OPT_TOOLBAR_SIZE;
-extern const String OPT_RESIZE_PANES;
+extern const String OPT_SHOW_TOOLBAR OP("Settings/ShowToolbar");
+extern const String OPT_SHOW_STATUSBAR OP("Settings/ShowStatusbar");
+extern const String OPT_SHOW_TABBAR OP("Settings/ShowTabbar");
+extern const String OPT_TOOLBAR_SIZE OP("Settings/ToolbarSize");
+extern const String OPT_RESIZE_PANES OP("Settings/AutoResizePanes");
 
-extern const String OPT_SYNTAX_HIGHLIGHT;
-extern const String OPT_VIEW_WHITESPACE;
-extern const String OPT_CONNECT_MOVED_BLOCKS;
-extern const String OPT_SCROLL_TO_FIRST;
+extern const String OPT_SYNTAX_HIGHLIGHT OP("Settings/HiliteSyntax");
+extern const String OPT_VIEW_WHITESPACE OP("Settings/ViewWhitespace");
+extern const String OPT_CONNECT_MOVED_BLOCKS OP("Settings/ConnectMovedBlocks");
+extern const String OPT_SCROLL_TO_FIRST OP("Settings/ScrollToFirst");
 
 // Difference (in-line) highlight
-extern const String OPT_WORDDIFF_HIGHLIGHT;
-extern const String OPT_BREAK_ON_WORDS;
-extern const String OPT_BREAK_TYPE;
-extern const String OPT_BREAK_SEPARATORS;
+extern const String OPT_WORDDIFF_HIGHLIGHT OP("Settings/HiliteWordDiff");
+extern const String OPT_BREAK_ON_WORDS OP("Settings/BreakOnWords");
+extern const String OPT_BREAK_TYPE OP("Settings/BreakType");
+extern const String OPT_BREAK_SEPARATORS OP("Settings/HiliteBreakSeparators");
 
 // Backup options
-extern const String OPT_BACKUP_FOLDERCMP;
-extern const String OPT_BACKUP_FILECMP;
-extern const String OPT_BACKUP_LOCATION;
-extern const String OPT_BACKUP_GLOBALFOLDER;
-extern const String OPT_BACKUP_ADD_BAK;
-extern const String OPT_BACKUP_ADD_TIME;
+extern const String OPT_BACKUP_FOLDERCMP OP("Backup/EnableFolder");
+extern const String OPT_BACKUP_FILECMP OP("Backup/EnableFile");
+extern const String OPT_BACKUP_LOCATION OP("Backup/Location");
+extern const String OPT_BACKUP_GLOBALFOLDER OP("Backup/GlobalFolder");
+extern const String OPT_BACKUP_ADD_BAK OP("Backup/NameAddBak");
+extern const String OPT_BACKUP_ADD_TIME OP("Backup/NameAddTime");
 
-extern const String OPT_DIRVIEW_SORT_COLUMN;
-extern const String OPT_DIRVIEW_SORT_COLUMN3;
-extern const String OPT_DIRVIEW_SORT_ASCENDING;
-extern const String OPT_DIRVIEW_EXPAND_SUBDIRS;
+extern const String OPT_DIRVIEW_SORT_COLUMN OP("Settings/DirViewSortCol");
+extern const String OPT_DIRVIEW_SORT_COLUMN3 OP("Settings/DirViewSortCol3");
+extern const String OPT_DIRVIEW_SORT_ASCENDING OP("Settings/DirViewSortAscending");
+extern const String OPT_DIRVIEW_EXPAND_SUBDIRS OP("Settings/DirViewExpandSubdirs");
 
 // File compare
-extern const String OPT_AUTOMATIC_RESCAN;
-extern const String OPT_ALLOW_MIXED_EOL;
-extern const String OPT_TAB_SIZE;
-extern const String OPT_TAB_TYPE;
-extern const String OPT_WORDWRAP;
-extern const String OPT_VIEW_LINENUMBERS;
-extern const String OPT_VIEW_FILEMARGIN;
-extern const String OPT_DIFF_CONTEXT;
+extern const String OPT_AUTOMATIC_RESCAN OP("Settings/AutomaticRescan");
+extern const String OPT_ALLOW_MIXED_EOL OP("Settings/AllowMixedEOL");
+extern const String OPT_TAB_SIZE OP("Settings/TabSize");
+extern const String OPT_TAB_TYPE OP("Settings/TabType");
+extern const String OPT_WORDWRAP OP("Settings/WordWrap");
+extern const String OPT_VIEW_LINENUMBERS OP("Settings/ViewLineNumbers");
+extern const String OPT_VIEW_FILEMARGIN OP("Settings/ViewFileMargin");
+extern const String OPT_DIFF_CONTEXT OP("Settings/DiffContext");
 
-extern const String OPT_EXT_EDITOR_CMD;
-extern const String OPT_USE_RECYCLE_BIN;
-extern const String OPT_SINGLE_INSTANCE;
-extern const String OPT_MERGE_MODE;
-extern const String OPT_CLOSE_WITH_ESC;
-extern const String OPT_CLOSE_WITH_OK;
-extern const String OPT_VERIFY_OPEN_PATHS;
-extern const String OPT_AUTO_COMPLETE_SOURCE;
-extern const String OPT_IGNORE_SMALL_FILETIME;
-extern const String OPT_ASK_MULTIWINDOW_CLOSE;
-extern const String OPT_PRESERVE_FILETIMES;
+extern const String OPT_EXT_EDITOR_CMD OP("Settings/ExternalEditor");
+extern const String OPT_USE_RECYCLE_BIN OP("Settings/UseRecycleBin");
+extern const String OPT_SINGLE_INSTANCE OP("Settings/SingleInstance");
+extern const String OPT_MERGE_MODE OP("Settings/MergingMode");
+extern const String OPT_CLOSE_WITH_ESC OP("Settings/CloseWithEsc");
+extern const String OPT_CLOSE_WITH_OK OP("Settings/CloseWithOK");
+extern const String OPT_VERIFY_OPEN_PATHS OP("Settings/VerifyOpenPaths");
+extern const String OPT_AUTO_COMPLETE_SOURCE OP("Settings/AutoCompleteSource");
+extern const String OPT_IGNORE_SMALL_FILETIME OP("Settings/IgnoreSmallFileTime");
+extern const String OPT_ASK_MULTIWINDOW_CLOSE OP("Settings/AskClosingMultipleWindows");
+extern const String OPT_PRESERVE_FILETIMES OP("Settings/PreserveFiletimes");
 
-extern const String OPT_CP_DEFAULT_MODE;
-extern const String OPT_CP_DEFAULT_CUSTOM;
-extern const String OPT_CP_DETECT;
+extern const String OPT_CP_DEFAULT_MODE OP("Settings/CodepageDefaultMode");
+extern const String OPT_CP_DEFAULT_CUSTOM OP("Settings/CodepageDefaultCustomValue");
+extern const String OPT_CP_DETECT OP("Settings/CodepageDetection");
 
-extern const String OPT_PROJECTS_PATH;
-extern const String OPT_USE_SYSTEM_TEMP_PATH;
-extern const String OPT_CUSTOM_TEMP_PATH;
+extern const String OPT_PROJECTS_PATH OP("Settings/ProjectsPath");
+extern const String OPT_USE_SYSTEM_TEMP_PATH OP("Settings/UseSystemTempPath");
+extern const String OPT_CUSTOM_TEMP_PATH OP("Settings/CustomTempPath");
 
-extern const String OPT_SPLIT_HORIZONTALLY;
+extern const String OPT_SPLIT_HORIZONTALLY OP("Settings/SplitHorizontally");
 
 // Color options
 // The difference color
-extern const String OPT_CLR_DIFF;
+extern const String OPT_CLR_DIFF OP("Settings/DifferenceColor");
 // The selected difference color
-extern const String OPT_CLR_SELECTED_DIFF;
+extern const String OPT_CLR_SELECTED_DIFF OP("Settings/SelectedDifferenceColor");
 // The difference deleted color
-extern const String OPT_CLR_DIFF_DELETED;
+extern const String OPT_CLR_DIFF_DELETED OP("Settings/DifferenceDeletedColor");
 // The selected difference deleted color
-extern const String OPT_CLR_SELECTED_DIFF_DELETED;
+extern const String OPT_CLR_SELECTED_DIFF_DELETED OP("Settings/SelectedDifferenceDeletedColor");
 // The difference text color
-extern const String OPT_CLR_DIFF_TEXT;
+extern const String OPT_CLR_DIFF_TEXT OP("Settings/DifferenceTextColor");
 // The selected difference text color
-extern const String OPT_CLR_SELECTED_DIFF_TEXT;
+extern const String OPT_CLR_SELECTED_DIFF_TEXT OP("Settings/SelectedDifferenceTextColor");
 // The ignored lines color
-extern const String OPT_CLR_TRIVIAL_DIFF;
+extern const String OPT_CLR_TRIVIAL_DIFF OP("Settings/TrivialDifferenceColor");
 // The ignored and deleted lines color
-extern const String OPT_CLR_TRIVIAL_DIFF_DELETED;
+extern const String OPT_CLR_TRIVIAL_DIFF_DELETED OP("Settings/TrivialDifferenceDeletedColor");
 // The ignored text color
-extern const String OPT_CLR_TRIVIAL_DIFF_TEXT;
+extern const String OPT_CLR_TRIVIAL_DIFF_TEXT OP("Settings/TrivialDifferenceTextColor");
 // The moved block color
-extern const String OPT_CLR_MOVEDBLOCK;
+extern const String OPT_CLR_MOVEDBLOCK OP("Settings/MovedBlockColor");
 // The moved block deleted lines color
-extern const String OPT_CLR_MOVEDBLOCK_DELETED;
+extern const String OPT_CLR_MOVEDBLOCK_DELETED OP("Settings/MovedBlockDeletedColor");
 // The moved block text color
-extern const String OPT_CLR_MOVEDBLOCK_TEXT;
+extern const String OPT_CLR_MOVEDBLOCK_TEXT OP("Settings/MovedBlockTextColor");
 // The selected moved block color
-extern const String OPT_CLR_SELECTED_MOVEDBLOCK;
+extern const String OPT_CLR_SELECTED_MOVEDBLOCK OP("Settings/SelectedMovedBlockColor");
 // The selected moved block deleted lines
-extern const String OPT_CLR_SELECTED_MOVEDBLOCK_DELETED;
+extern const String OPT_CLR_SELECTED_MOVEDBLOCK_DELETED OP("Settings/SelectedMovedBlockDeletedColor");
 // The selected moved block text color
-extern const String OPT_CLR_SELECTED_MOVEDBLOCK_TEXT;
+extern const String OPT_CLR_SELECTED_MOVEDBLOCK_TEXT OP("Settings/SelectedMovedBlockTextColor");
 // The SNP block color
-extern const String OPT_CLR_SNP;
+extern const String OPT_CLR_SNP OP("Settings/SNPColor");
 // The SNP block deleted lines color
-extern const String OPT_CLR_SNP_DELETED;
+extern const String OPT_CLR_SNP_DELETED OP("Settings/SNPDeletedColor");
 // The SNP block text color
-extern const String OPT_CLR_SNP_TEXT;
+extern const String OPT_CLR_SNP_TEXT OP("Settings/SNPTextColor");
 // The selected SNP block color
-extern const String OPT_CLR_SELECTED_SNP;
+extern const String OPT_CLR_SELECTED_SNP OP("Settings/SelectedSNPColor");
 // The selected SNP block deleted lines
-extern const String OPT_CLR_SELECTED_SNP_DELETED;
+extern const String OPT_CLR_SELECTED_SNP_DELETED OP("Settings/SelectedSNPDeletedColor");
 // The selected SNP block text color
-extern const String OPT_CLR_SELECTED_SNP_TEXT;
+extern const String OPT_CLR_SELECTED_SNP_TEXT OP("Settings/SelectedSNPTextColor");
 // The word difference color
-extern const String OPT_CLR_WORDDIFF;
+extern const String OPT_CLR_WORDDIFF OP("Settings/WordDifferenceColor");
 // The word difference deleted color
-extern const String OPT_CLR_WORDDIFF_DELETED;
+extern const String OPT_CLR_WORDDIFF_DELETED OP("Settings/WordDifferenceDeletedColor");
 // The word difference text color
-extern const String OPT_CLR_WORDDIFF_TEXT;
+extern const String OPT_CLR_WORDDIFF_TEXT OP("Settings/WordDifferenceTextColor");
 // The selected word difference color
-extern const String OPT_CLR_SELECTED_WORDDIFF;
+extern const String OPT_CLR_SELECTED_WORDDIFF OP("Settings/SelectedWordDifferenceColor");
 // The word difference deleted color
-extern const String OPT_CLR_SELECTED_WORDDIFF_DELETED;
+extern const String OPT_CLR_SELECTED_WORDDIFF_DELETED OP("Settings/SelectedWordDifferenceDeletedColor");
 // The selected word difference text color
-extern const String OPT_CLR_SELECTED_WORDDIFF_TEXT;
+extern const String OPT_CLR_SELECTED_WORDDIFF_TEXT OP("Settings/SelectedWordDifferenceTextColor");
 // Whether to use default (theme) text colors
-extern const String OPT_CLR_DEFAULT_TEXT_COLORING;
+extern const String OPT_CLR_DEFAULT_TEXT_COLORING OP("Settings/DefaultTextColoring");
 
 // Compare options
-extern const String OPT_CMP_IGNORE_WHITESPACE;
-extern const String OPT_CMP_IGNORE_BLANKLINES;
-extern const String OPT_CMP_FILTER_COMMENTLINES;
-extern const String OPT_CMP_IGNORE_CASE;
-extern const String OPT_CMP_IGNORE_EOL;
-extern const String OPT_CMP_METHOD;
-extern const String OPT_CMP_MOVED_BLOCKS;
-extern const String OPT_CMP_MATCH_SIMILAR_LINES;
-extern const String OPT_CMP_STOP_AFTER_FIRST;
-extern const String OPT_CMP_QUICK_LIMIT;
-extern const String OPT_CMP_WALK_UNIQUE_DIRS;
-extern const String OPT_CMP_IGNORE_REPARSE_POINTS;
+extern const String OPT_CMP_IGNORE_WHITESPACE OP("Settings/IgnoreSpace");
+extern const String OPT_CMP_IGNORE_BLANKLINES OP("Settings/IgnoreBlankLines");
+extern const String OPT_CMP_FILTER_COMMENTLINES OP("Settings/FilterCommentsLines");
+extern const String OPT_CMP_IGNORE_CASE OP("Settings/IgnoreCase");
+extern const String OPT_CMP_IGNORE_EOL OP("Settings/IgnoreEol");
+extern const String OPT_CMP_METHOD OP("Settings/CompMethod2");
+extern const String OPT_CMP_MOVED_BLOCKS OP("Settings/MovedBlocks");
+extern const String OPT_CMP_MATCH_SIMILAR_LINES OP("Settings/MatchSimilarLines");
+extern const String OPT_CMP_STOP_AFTER_FIRST OP("Settings/StopAfterFirst");
+extern const String OPT_CMP_QUICK_LIMIT OP("Settings/QuickMethodLimit");
+extern const String OPT_CMP_WALK_UNIQUE_DIRS OP("Settings/ScanUnpairedDir");
+extern const String OPT_CMP_IGNORE_REPARSE_POINTS OP("Settings/IgnoreReparsePoints");
 
 // Image Compare options
-extern const String OPT_CMP_IMG_FILEPATTERNS;
-extern const String OPT_CMP_IMG_SHOWDIFFERENCES;
-extern const String OPT_CMP_IMG_OVERLAYMOVE;
-extern const String OPT_CMP_IMG_ZOOM;
-extern const String OPT_CMP_IMG_USEBACKCOLOR;
-extern const String OPT_CMP_IMG_BACKCOLOR;
-extern const String OPT_CMP_IMG_DIFFBLOCKSIZE;
-extern const String OPT_CMP_IMG_THRESHOLD;
+extern const String OPT_CMP_IMG_FILEPATTERNS OP("Settings/ImageFilePatterns");
+extern const String OPT_CMP_IMG_SHOWDIFFERENCES OP("Settings/ImageShowDifferences");
+extern const String OPT_CMP_IMG_OVERLAYMOVE OP("Settings/ImageOverlayMode");
+extern const String OPT_CMP_IMG_ZOOM OP("Settings/ImageZoom");
+extern const String OPT_CMP_IMG_USEBACKCOLOR OP("Settings/ImageUseBackColor");
+extern const String OPT_CMP_IMG_BACKCOLOR OP("Settings/ImageBackColor");
+extern const String OPT_CMP_IMG_DIFFBLOCKSIZE OP("Settings/ImageDiffBlockSize");
+extern const String OPT_CMP_IMG_THRESHOLD OP("Settings/ImageColorDistanceThreshold");
 
 // Image Binary options
-extern const String OPT_CMP_BIN_FILEPATTERNS;
+extern const String OPT_CMP_BIN_FILEPATTERNS OP("Settings/BinaryFilePatterns");
 
 /// Are regular expression linefilters enabled?
-extern const String OPT_LINEFILTER_ENABLED;
+extern const String OPT_LINEFILTER_ENABLED OP("Settings/IgnoreRegExp");
 /// Currently selected filefilter
-extern const String OPT_FILEFILTER_CURRENT;
-extern const String OPT_FILTER_USERPATH;
-extern const String OPT_FILEFILTER_SHARED;
+extern const String OPT_FILEFILTER_CURRENT OP("Settings/FileFilterCurrent");
+extern const String OPT_FILTER_USERPATH OP("Settings/UserFilterPath");
+extern const String OPT_FILEFILTER_SHARED OP("Settings/Filters/Shared");
 
 // Version control
-extern const String OPT_VCS_SYSTEM;
-extern const String OPT_VSS_PATH;
+extern const String OPT_VCS_SYSTEM OP("Settings/VersionSystem");
+extern const String OPT_VSS_PATH OP("Settings/VssPath");
 
 // Archive support
-extern const String OPT_ARCHIVE_ENABLE;
-extern const String OPT_ARCHIVE_PROBETYPE;
+extern const String OPT_ARCHIVE_ENABLE OP("Merge7z/Enable");
+extern const String OPT_ARCHIVE_PROBETYPE OP("Merge7z/ProbeSignature");
 
 // Plugins
-extern const String OPT_PLUGINS_ENABLED;
+extern const String OPT_PLUGINS_ENABLED OP("Settings/PluginsEnabled");
 
 // Startup options
-extern const String OPT_SHOW_SELECT_FILES_AT_STARTUP;
+extern const String OPT_SHOW_SELECT_FILES_AT_STARTUP OP("Settings/ShowFileDialog");
 
 // MDI Tab Bar
-extern const String OPT_TABBAR_AUTO_MAXWIDTH;
+extern const String OPT_TABBAR_AUTO_MAXWIDTH OP("Settings/TabBarAutoMaxWidth");
 
 // Font options
-extern const String OPT_FONT_FILECMP;
-extern const String OPT_FONT_DIRCMP;
+extern const String OPT_FONT_FILECMP OP("Font/");
+extern const String OPT_FONT_DIRCMP OP("FontDirCompare/");
 
-extern const String OPT_FONT_USECUSTOM;
-extern const String OPT_FONT_HEIGHT;
-extern const String OPT_FONT_WIDTH;
-extern const String OPT_FONT_ESCAPEMENT;
-extern const String OPT_FONT_ORIENTATION;
-extern const String OPT_FONT_WEIGHT;
-extern const String OPT_FONT_ITALIC;
-extern const String OPT_FONT_UNDERLINE;
-extern const String OPT_FONT_STRIKEOUT;
-extern const String OPT_FONT_CHARSET;
-extern const String OPT_FONT_OUTPRECISION;
-extern const String OPT_FONT_CLIPPRECISION;
-extern const String OPT_FONT_QUALITY;
-extern const String OPT_FONT_PITCHANDFAMILY;
-extern const String OPT_FONT_FACENAME;
+extern const String OPT_FONT_USECUSTOM OP("Specified");
+extern const String OPT_FONT_HEIGHT OP("Height");
+extern const String OPT_FONT_WIDTH OP("Width");
+extern const String OPT_FONT_ESCAPEMENT OP("Escapement");
+extern const String OPT_FONT_ORIENTATION OP("Orientation");
+extern const String OPT_FONT_WEIGHT OP("Weight");
+extern const String OPT_FONT_ITALIC OP("Italic");
+extern const String OPT_FONT_UNDERLINE OP("Underline");
+extern const String OPT_FONT_STRIKEOUT OP("StrikeOut");
+extern const String OPT_FONT_CHARSET OP("CharSet");
+extern const String OPT_FONT_OUTPRECISION OP("OutPrecision");
+extern const String OPT_FONT_CLIPPRECISION OP("ClipPrecision");
+extern const String OPT_FONT_QUALITY OP("Quality");
+extern const String OPT_FONT_PITCHANDFAMILY OP("PitchAndFamily");
+extern const String OPT_FONT_FACENAME OP("FaceName");
