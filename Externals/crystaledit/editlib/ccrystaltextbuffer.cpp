@@ -649,7 +649,7 @@ applyEOLMode()
 	LPCTSTR lpEOLtoApply = GetDefaultEol();
 	bool bChanged = false;
 	const size_t size = m_aLines.size();
-	for (int i = 0 ; i < size; i++)
+	for (size_t i = 0 ; i < size; i++)
 	{
 		// the last real line has no EOL
 		if (!m_aLines[i].HasEol())
