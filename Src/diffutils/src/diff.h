@@ -308,6 +308,7 @@ EXTERN FILE *outfile;
 /* analyze.c */
 /* WinMerge: add last two params */
 struct change * diff_2_files PARAMS((struct file_data[], int, int *, int, int*));
+void moved_block_analysis(struct change ** pscript, struct file_data fd[]);
 
 /* context.c */
 void print_context_header PARAMS((struct file_data[], int));
@@ -370,11 +371,13 @@ void setup_output PARAMS((char const *, char const *, int));
 void translate_range PARAMS((struct file_data const *, int, int, int *, int *));
 void cleanup_file_buffers(struct file_data fd[]);
 int FileIsBinary(int fd);
+int isunicode(unsigned char *pBuffer, int size);
 
 /* version.c */
 extern char const version_string[];
 
 #ifdef __cplusplus
+#undef HUGE
 }
 #endif
 
