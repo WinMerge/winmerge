@@ -837,6 +837,9 @@ void CMainFrame::OnOptions()
 			UpdateResources();
 		}
 
+		// Set new temporary path
+		theApp.SetupTempPath();
+
 		// Set new filterpath
 		String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 		theApp.m_pGlobalFileFilter->SetUserFilterPath(filterPath);
