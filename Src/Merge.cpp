@@ -288,11 +288,7 @@ BOOL CMergeApp::InitInstance()
 	OptionsInit(); // Implementation in OptionsInit.cpp
 
 	// Initialize temp folder
-	String instTemp = env_GetPerInstanceString(TempFolderPrefix);
-	if (GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH))
-		env_SetTempPath(paths_ConcatPath(env_GetSystemTempPath(), instTemp));
-	else
-		env_SetTempPath(paths_ConcatPath(GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH), instTemp));
+	SetupTempPath();
 
 	// Cleanup left over tempfiles from previous instances.
 	// Normally this should not neet to do anything - but if for some reason
@@ -1369,6 +1365,15 @@ void CMergeApp::AddToRecentProjectsMRU(LPCTSTR sPathName)
 		m_pRecentFileList->Add(sPathName);
 		m_pRecentFileList->WriteList();
 	}
+}
+
+void CMergeApp::SetupTempPath()
+{
+	String instTemp = env_GetPerInstanceString(TempFolderPrefix);
+	if (GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH))
+		env_SetTempPath(paths_ConcatPath(env_GetSystemTempPath(), instTemp));
+	else
+		env_SetTempPath(paths_ConcatPath(GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH), instTemp));
 }
 
 /**
