@@ -166,7 +166,7 @@
     <Link>
       <AdditionalOptions>/verbose:lib %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\Build\MergeUnicodeRelease\WinMergeU.exe</OutputFile>
+      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Build\expat;..\Build\scew;..\Build\heksedit;..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -222,7 +222,7 @@
     <Link>
       <AdditionalOptions>/verbose:lib %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\Build\X64\MergeUnicodeRelease\WinMergeU.exe</OutputFile>
+      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\scew\X64;..\Build\heksedit\X64;..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -272,7 +272,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\Build\MergeUnicodeDebug/WinMergeU.exe</OutputFile>
+      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Build\expat;..\Build\scew;..\Build\heksedit;..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -320,7 +320,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\Build\MergeUnicodeDebug/WinMergeU.exe</OutputFile>
+      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Build\expat;..\Build\scew;..\Build\heksedit;..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -372,7 +372,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\Build\X64\MergeUnicodeDebug/WinMergeU.exe</OutputFile>
+      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\scew\X64;..\Build\heksedit\X64;..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -426,7 +426,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\Build\X64\MergeUnicodeDebug/WinMergeU.exe</OutputFile>
+      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\scew\X64;..\Build\heksedit\X64;..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
