@@ -19,5 +19,15 @@ for %%i in ( ^
   MSBuild %%i /t:build /p:Configuration=Release /p:Platform="Win32" /p:PlatformToolset=v120_xp || pause
   MSBuild %%i /t:build /p:Configuration=Release /p:Platform="x64" /p:PlatformToolset=v120_xp || pause
 )
+
+if exist "%SIGNBAT_PATH%" (
+  "%SIGNBAT_PATH%" Build\Release\WinIMerge.exe
+  "%SIGNBAT_PATH%" Build\Release\WinIMergeLib.dll
+  "%SIGNBAT_PATH%" Build\Release\cidiff.exe
+  "%SIGNBAT_PATH%" Build\x64\Release\WinIMerge.exe
+  "%SIGNBAT_PATH%" Build\x64\Release\WinIMergeLib.dll
+  "%SIGNBAT_PATH%" Build\x64\Release\cidiff.exe
+)
+
 endlocal
 
