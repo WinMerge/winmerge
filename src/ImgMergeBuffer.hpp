@@ -202,14 +202,14 @@ public:
 					for (unsigned i = 0; i < m_diffBlockSize; ++i)
 					{
 						int sy = y + i - m_offset[srcPane].y; 
-						if (sy >= 0 && sy < m_imgOrig32[srcPane].height())
+						if (sy >= 0 && sy < static_cast<int>(m_imgOrig32[srcPane].height()))
 						{
 							const unsigned char *scanline_src = m_imgOrig32[srcPane].scanLine(sy);
 							unsigned char *scanline_dst = m_imgOrig32[dstPane].scanLine(y + i - m_offset[dstPane].y);
 							for (unsigned j = 0; j < m_diffBlockSize; ++j)
 							{
 								int sx = x + j - m_offset[srcPane].x; 
-								if (sx >= 0 && sx < m_imgOrig32[srcPane].width())
+								if (sx >= 0 && sx < static_cast<int>(m_imgOrig32[srcPane].width()))
 									memcpy(&scanline_dst[(x + j - m_offset[dstPane].x) * 4], &scanline_src[sx * 4], 4);
 							}
 						}

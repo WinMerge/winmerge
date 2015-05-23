@@ -16,6 +16,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #pragma once
+#pragma warning(disable: 4819)
 
 #include <Windows.h>
 #include "FreeImagePlus.h"
@@ -931,9 +932,9 @@ private:
 			evt.delta = GET_WHEEL_DELTA_WPARAM(wParam);
 			goto NEXT;
 		case WM_KEYDOWN:
-			evt.eventType = KEYDOWN; evt.keycode = wParam; goto NEXT;
+			evt.eventType = KEYDOWN; evt.keycode = static_cast<int>(wParam); goto NEXT;
 		case WM_KEYUP:
-			evt.eventType = KEYUP; evt.keycode = wParam; goto NEXT;
+			evt.eventType = KEYUP; evt.keycode = static_cast<int>(wParam); goto NEXT;
 		case WM_CONTEXTMENU:
 			evt.eventType = CONTEXTMENU; goto NEXT;
 		case WM_SIZE:
