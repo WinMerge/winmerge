@@ -289,7 +289,7 @@ public:
 		FIBITMAP *bitmaptmp, *bitmap;
 		bitmaptmp = FreeImage_LockPage(multi_, page);
 		bitmap = FreeImage_Clone(bitmaptmp);
-		FreeImage_UnlockPage(multi_, bitmap, false);
+		FreeImage_UnlockPage(multi_, bitmaptmp, false);
 		return Image(bitmap);
 	}
 	void replacePage(int page, const Image& image)
