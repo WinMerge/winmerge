@@ -217,6 +217,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -281,6 +282,7 @@
       <DebugInformationFormat />
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -350,6 +352,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\PocoUtilmtd.lib</OutputFile>
@@ -400,6 +403,7 @@
       <DebugInformationFormat />
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\PocoUtilmt.lib</OutputFile>
@@ -452,6 +456,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\PocoUtilmdd.lib</OutputFile>
@@ -502,6 +507,7 @@
       <DebugInformationFormat />
       <CompileAs>Default</CompileAs>
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
