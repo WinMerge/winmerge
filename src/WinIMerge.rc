@@ -222,7 +222,7 @@ BEGIN
             VALUE "FileDescription", "WinIMerge"
             VALUE "FileVersion", STRFILEVER
             VALUE "InternalName", "WinIMerge.exe"
-            VALUE "LegalCopyright", "Copyright (C) 2014 sdottaka@sourceforge.net"
+            VALUE "LegalCopyright", "Copyright (C) 2014-2015 sdottaka@users.sourceforge.net"
             VALUE "OriginalFilename", "WinIMerge.exe"
             VALUE "ProductName", "WinIMerge"
             VALUE "ProductVersion", STRPRODUCTVER

@@ -601,7 +601,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case ID_HELP_ABOUT:
 			MessageBoxW(hWnd, 
 				L"WinIMerge\n\n"
-				L"(c) 2014 sdottaka@sourceforge.net All rights reserved.\n\n"
+				L"(c) 2014-2015 sdottaka@users.sourceforge.net All rights reserved.\n\n"
 				L"This software uses the FreeImage open source image library. \n"
 				L"See http://freeimage.sourceforge.net for details.\n"
 				L"FreeImage is used under the GNU GPL version.\n", L"WinIMerge", MB_OK | MB_ICONINFORMATION);
