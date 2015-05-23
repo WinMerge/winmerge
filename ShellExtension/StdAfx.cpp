@@ -6,10 +6,7 @@
 
 #ifdef _ATL_STATIC_REGISTRY
 #include <statreg.h>
-#include <statreg.cpp>
 #endif
-
-#include <atlimpl.cpp>
 
 /**
  * @brief Get appropriate clipboard format for TCHAR text
