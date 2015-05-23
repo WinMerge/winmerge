@@ -14,7 +14,7 @@ See http://freeimage.sourceforge.net for details.
 
 FreeImage is used under the the GNU GPL version.
 
-## How to build (Visual Studio 2010)
+## How to build (Visual Studio 2013)
 ~~~
 hg clone https://bitbucket.org/sdottaka/winimergebuild
 cd winimergebuild\winimerge
