@@ -192,6 +192,9 @@
     <ClInclude Include="..\..\Externals\sevenzip\C\CpuArch.h">
       <Filter>C</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\resource.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Merge7z907.cpp">
