@@ -1,5 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinIMerge", "src\winimerge.vcxproj", "{36365C8C-04A0-4892-9B83-AD6E05D50D67}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C9101B3C-4CFE-4D3E-9708-5C0F55AC909A} = {C9101B3C-4CFE-4D3E-9708-5C0F55AC909A}
