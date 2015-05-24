@@ -289,7 +289,7 @@ void CVersionInfo::GetVersionInfo()
 	{
 		m_bVersionFound = TRUE;
 		m_pVffInfo.reset(new BYTE[dwVerInfoSize]);
-		if (GetFileVersionInfo(szFileName, dwVerHnd, dwVerInfoSize, m_pVffInfo.get()))
+		if (GetFileVersionInfo(szFileName, 0, dwVerInfoSize, m_pVffInfo.get()))
 		{
 			GetFixedVersionInfo();
 			if (m_bVersionOnly == FALSE)

@@ -23,9 +23,9 @@ String GetSysError(int nerr /* =-1 */)
 		))
 	{
 		str = (LPCTSTR)lpMsgBuf;
+		// Free the buffer.
+		LocalFree( lpMsgBuf );
 	}
-	// Free the buffer.
-	LocalFree( lpMsgBuf );
 	return str;
 }
 
