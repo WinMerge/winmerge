@@ -223,14 +223,12 @@ public:
 	int enumCodePages(CodePageInfo *cpinfo, int count)
 	{
 		IEnumCodePage *pEnumCodePage = NULL;
-		PMIMECPINFO pcpInfo;
 		ULONG ccpInfo;
 		HRESULT hr = m_pmlang->EnumCodePages(MIMECONTF_SAVABLE_BROWSER | MIMECONTF_VALID | MIMECONTF_VALID_NLS, 0, &pEnumCodePage);
 		if (FAILED(hr))
 			return 0;
-		pcpInfo = (PMIMECPINFO)CoTaskMemAlloc(sizeof(MIMECPINFO) * count);
-		pEnumCodePage->Next(count, pcpInfo, &ccpInfo);
-		CoTaskMemRealloc((void*)pcpInfo, sizeof(MIMECPINFO)*ccpInfo);
+		std::unique_ptr<MIMECPINFO[]> pcpInfo(new MIMECPINFO[count]);
+		pEnumCodePage->Next(count, pcpInfo.get(), &ccpInfo);
 
 		for (int i = 0; i < (int)ccpInfo; i++)
 		{
