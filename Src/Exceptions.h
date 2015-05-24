@@ -30,6 +30,7 @@
 #include <cstdio>
 #include <windows.h>
 #include <tchar.h>
+#include <strsafe.h>
 
 #endif
 
@@ -93,8 +94,7 @@ public:
 	{
 		static TCHAR message[512];
 		_sntprintf(message, sizeof(message)/sizeof(message[0]), _T("Exception %s (0x%.8x)"), getSeMessage(), getSeNumber());
-		_tcsncpy(lpszError, message, nMaxError-1);
-		lpszError[nMaxError-1] = 0;
+		StringCchCopy(lpszError, nMaxError, message);
 		return true;
 	}
 #else
