@@ -228,7 +228,8 @@ public:
 		if (FAILED(hr))
 			return 0;
 		std::unique_ptr<MIMECPINFO[]> pcpInfo(new MIMECPINFO[count]);
-		pEnumCodePage->Next(count, pcpInfo.get(), &ccpInfo);
+		if (FAILED(pEnumCodePage->Next(count, pcpInfo.get(), &ccpInfo)))
+			return 0;
 
 		for (int i = 0; i < (int)ccpInfo; i++)
 		{

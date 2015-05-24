@@ -263,7 +263,8 @@ HGLOBAL CGhostTextView::PrepareDragData ()
 	ASSERT(::GlobalSize(hData) == cbData);
 
 	LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
-	memcpy (pszData, text, cbData);
+	if (pszData)
+		memcpy (pszData, text, cbData);
 	::GlobalUnlock (hData);
 
 	m_ptDraggedTextBegin = m_ptDrawSelStart;

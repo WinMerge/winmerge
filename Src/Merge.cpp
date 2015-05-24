@@ -363,13 +363,15 @@ BOOL CMergeApp::InitInstance()
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
-	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
-	HDC hdc = ::GetDC(NULL);
-	int lfHeight = -MulDiv(9, GetDeviceCaps(hdc, LOGPIXELSY), 72);
-	::ReleaseDC(NULL, hdc);
-	if (abs(ncm.lfMenuFont.lfHeight) > abs(lfHeight))
-		ncm.lfMenuFont.lfHeight = lfHeight;
-	m_fontGUI.CreateFontIndirect(&ncm.lfMenuFont);
+	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
+	{
+		HDC hdc = ::GetDC(NULL);
+		int lfHeight = -MulDiv(9, GetDeviceCaps(hdc, LOGPIXELSY), 72);
+		::ReleaseDC(NULL, hdc);
+		if (abs(ncm.lfMenuFont.lfHeight) > abs(lfHeight))
+			ncm.lfMenuFont.lfHeight = lfHeight;
+		m_fontGUI.CreateFontIndirect(&ncm.lfMenuFont);
+	}
 
 	if (m_pSyntaxColors)
 		Options::SyntaxColors::Load(m_pSyntaxColors.get());

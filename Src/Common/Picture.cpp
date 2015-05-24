@@ -129,8 +129,8 @@ CSize CPicture::GetImageSize(CDC* pDC) const
 		return CSize(0,0);
 	
 	LONG hmWidth, hmHeight; // HIMETRIC units
-	m_spIPicture->get_Width(&hmWidth);
-	m_spIPicture->get_Height(&hmHeight);
+	if (FAILED(m_spIPicture->get_Width(&hmWidth)) || FAILED(m_spIPicture->get_Height(&hmHeight)))
+		return CSize(0, 0);
 	CSize sz(hmWidth,hmHeight);
 	if (pDC==NULL) {
 		CWindowDC dc(NULL);

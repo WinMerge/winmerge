@@ -53,7 +53,7 @@ void DLLPSTUB::Throw(LPCSTR name, HMODULE handle, DWORD dwError, BOOL bFreeLibra
 		szError[1] = '\n';
 		strError += szError;
 	}
-	if (bFreeLibrary)
+	if (bFreeLibrary && handle)
 	{
 		FreeLibrary(handle);
 	}
