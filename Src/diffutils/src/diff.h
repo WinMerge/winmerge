@@ -377,6 +377,7 @@ int isunicode(unsigned char *pBuffer, int size);
 extern char const version_string[];
 
 #ifdef __cplusplus
+#undef HUGE
 }
 #endif
 

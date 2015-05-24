@@ -107,39 +107,44 @@ public:
 	std::string GetIconPNGData(int iconIndex) const
 	{
 		HIMAGELIST hImageList = ListView_GetImageList(m_hwndListCtrl, LVSIL_SMALL);
-		IMAGEINFO imageInfo = {0};
-		LARGE_INTEGER li = {0};
-		IStream *pStream = NULL;
-		CImage image;
-
-		ImageList_GetImageInfo(hImageList, iconIndex, &imageInfo);
-		int w = imageInfo.rcImage.right - imageInfo.rcImage.left;
-		int h = imageInfo.rcImage.bottom - imageInfo.rcImage.top;
-		CreateStreamOnHGlobal(NULL, TRUE, &pStream);
-		HDC hdcMem = CreateCompatibleDC(NULL);
-		BITMAPINFO bmpinfo = {0};
-		bmpinfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-		bmpinfo.bmiHeader.biWidth = w;
-		bmpinfo.bmiHeader.biHeight = h;
-		bmpinfo.bmiHeader.biPlanes = 1;
-		bmpinfo.bmiHeader.biBitCount = 32;
-		bmpinfo.bmiHeader.biCompression = BI_RGB;
-		HBITMAP hbmpImage = CreateDIBSection( NULL, &bmpinfo, DIB_RGB_COLORS, NULL, NULL, NULL);
-		HBITMAP hbmpOld = (HBITMAP)SelectObject(hdcMem, hbmpImage);
-		ImageList_Draw(hImageList, iconIndex, hdcMem, 0, 0, ILD_TRANSPARENT);
-		image.Attach(hbmpImage);
-		image.SetHasAlphaChannel(true);
-		image.Save(pStream, Gdiplus::ImageFormatPNG);
-		STATSTG stat;
-		pStream->Stat(&stat, STATFLAG_NONAME);
-		std::string ret(stat.cbSize.LowPart, 0);
-		pStream->Seek(li, STREAM_SEEK_SET, NULL);
-		pStream->Read(&ret[0], stat.cbSize.LowPart, NULL);
-		pStream->Release();
-
-		SelectObject(hdcMem, hbmpOld);
-		DeleteObject(hdcMem);
-		DeleteObject(hbmpImage);
+		IMAGEINFO imageInfo;
+		std::string ret;
+		if (ImageList_GetImageInfo(hImageList, iconIndex, &imageInfo))
+		{
+			HDC hdcMem = CreateCompatibleDC(NULL);
+			BITMAPINFO bmpinfo = { 0 };
+			bmpinfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+			int w = imageInfo.rcImage.right - imageInfo.rcImage.left;
+			int h = imageInfo.rcImage.bottom - imageInfo.rcImage.top;
+			bmpinfo.bmiHeader.biWidth = w;
+			bmpinfo.bmiHeader.biHeight = h;
+			bmpinfo.bmiHeader.biPlanes = 1;
+			bmpinfo.bmiHeader.biBitCount = 32;
+			bmpinfo.bmiHeader.biCompression = BI_RGB;
+			HBITMAP hbmpImage = CreateDIBSection(NULL, &bmpinfo, DIB_RGB_COLORS, NULL, NULL, NULL);
+			HBITMAP hbmpOld = (HBITMAP)SelectObject(hdcMem, hbmpImage);
+			ImageList_Draw(hImageList, iconIndex, hdcMem, 0, 0, ILD_TRANSPARENT);
+			CImage image;
+			image.Attach(hbmpImage);
+			image.SetHasAlphaChannel(true);
+			IStream *pStream = NULL;
+			if (SUCCEEDED(CreateStreamOnHGlobal(NULL, TRUE, &pStream)))
+			{
+				image.Save(pStream, Gdiplus::ImageFormatPNG);
+				STATSTG stat;
+				if (SUCCEEDED(pStream->Stat(&stat, STATFLAG_NONAME)))
+				{
+					LARGE_INTEGER li = {0};
+					ret.resize(0, stat.cbSize.LowPart);
+					pStream->Seek(li, STREAM_SEEK_SET, NULL);
+					pStream->Read(&ret[0], stat.cbSize.LowPart, NULL);
+				}
+				pStream->Release();
+			}
+			SelectObject(hdcMem, hbmpOld);
+			DeleteObject(hdcMem);
+			DeleteObject(hbmpImage);
+		}
 		return ret;
 	}
 

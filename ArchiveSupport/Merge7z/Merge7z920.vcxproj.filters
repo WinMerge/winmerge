@@ -51,9 +51,6 @@
     <ClInclude Include="tools.h">
       <Filter>Quellcodedateien</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\resource.h">
-      <Filter>Ressourcendateien</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\DLL.h">
       <Filter>Windows</Filter>
     </ClInclude>
@@ -194,6 +191,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Externals\sevenzip\C\CpuArch.h">
       <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\resource.h">
+      <Filter>Header-Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -358,7 +358,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\Externals\sevenzip\CPP\7zip\Ui\Gui\resource.rc">
+    <ResourceCompile Include="resource_for_vs2013.rc">
       <Filter>Ressourcendateien</Filter>
     </ResourceCompile>
   </ItemGroup>

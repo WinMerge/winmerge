@@ -18,6 +18,13 @@ MSBuild WinMerge.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="
 MSBuild WinMerge.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="x64" || pause
 endlocal
 
+if exist "%SIGNBAT_PATH%" (
+  call "%SIGNBAT_PATH%" Build\MergeUnicodeRelease\WinMergeU.exe
+  call "%SIGNBAT_PATH%" Build\MergeUnicodeRelease\MergeLang.dll
+  call "%SIGNBAT_PATH%" Build\x64\MergeUnicodeRelease\WinMergeU.exe
+  call "%SIGNBAT_PATH%" Build\x64\MergeUnicodeRelease\MergeLang.dll
+)
+
 for %%i in ("%ProgramFiles(x86)%" "%ProgramFiles%") do (
   if exist "%%~i\Inno Setup 5\iscc.exe" (
     "%%~i\Inno Setup 5\iscc.exe" "Installer\innosetup\WinMerge.iss" || pause

@@ -42,7 +42,7 @@ void DLLPSTUB::Throw(LPCSTR name, HMODULE handle, DWORD dwError, BOOL bFreeLibra
 		module[0] = '@';
 		if (::GetModuleFileName(handle, module + 1, 4095) == 0)
 		{
-			wsprintf(module + 1, _T("%08lX"), handle);
+			wsprintf(module + 1, _T("%p"), handle);
 		}
 		strError += strError.IsEmpty() ? module + 1 : module;
 	}
@@ -53,7 +53,7 @@ void DLLPSTUB::Throw(LPCSTR name, HMODULE handle, DWORD dwError, BOOL bFreeLibra
 		szError[1] = '\n';
 		strError += szError;
 	}
-	if (bFreeLibrary)
+	if (bFreeLibrary && handle)
 	{
 		FreeLibrary(handle);
 	}

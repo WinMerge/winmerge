@@ -118,6 +118,7 @@ public:
 	BOOL SyncFileToVCS(const String& pszDest,	BOOL &bApplyToAll, String& psError);
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
+	void SetupTempPath();
 
 // Implementation
 protected:

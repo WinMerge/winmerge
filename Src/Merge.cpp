@@ -62,6 +62,7 @@
 #include "ConflictFileParser.h"
 #include "codepage.h"
 #include "JumpList.h"
+#include "paths.h"
 #include "stringdiffs.h"
 #include "TFile.h"
 #include "SourceControl.h"
@@ -286,11 +287,7 @@ BOOL CMergeApp::InitInstance()
 	OptionsInit(); // Implementation in OptionsInit.cpp
 
 	// Initialize temp folder
-	String instTemp = env_GetPerInstanceString(TempFolderPrefix);
-	if (GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH))
-		env_SetTempPath(paths_ConcatPath(env_GetSystemTempPath(), instTemp));
-	else
-		env_SetTempPath(paths_ConcatPath(GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH), instTemp));
+	SetupTempPath();
 
 	// Cleanup left over tempfiles from previous instances.
 	// Normally this should not neet to do anything - but if for some reason
@@ -367,13 +364,15 @@ BOOL CMergeApp::InitInstance()
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
-	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
+	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
+	{
 	HDC hdc = ::GetDC(NULL);
 	int lfHeight = -MulDiv(9, GetDeviceCaps(hdc, LOGPIXELSY), 72);
 	::ReleaseDC(NULL, hdc);
 	if (abs(ncm.lfMenuFont.lfHeight) > abs(lfHeight))
 		ncm.lfMenuFont.lfHeight = lfHeight;
 	m_fontGUI.CreateFontIndirect(&ncm.lfMenuFont);
+	}
 
 	if (m_pSyntaxColors)
 		Options::SyntaxColors::Load(m_pSyntaxColors.get());
@@ -1381,6 +1380,15 @@ void CMergeApp::AddToRecentProjectsMRU(LPCTSTR sPathName)
 		m_pRecentFileList->Add(sPathName);
 		m_pRecentFileList->WriteList();
 	}
+}
+
+void CMergeApp::SetupTempPath()
+{
+	String instTemp = env_GetPerInstanceString(TempFolderPrefix);
+	if (GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH))
+		env_SetTempPath(paths_ConcatPath(env_GetSystemTempPath(), instTemp));
+	else
+		env_SetTempPath(paths_ConcatPath(GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH), instTemp));
 }
 
 /**

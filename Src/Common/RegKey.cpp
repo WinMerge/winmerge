@@ -9,6 +9,7 @@
 #include <windows.h>
 #include <cassert>
 #include <algorithm>
+#include <strsafe.h>
 #include "UnicodeString.h"
 #include "coretypes.h"
 
@@ -343,8 +344,5 @@ void CRegKeyEx::ReadChars (LPCTSTR pszKey, LPTSTR pData, DWORD dwLen, LPCTSTR de
 	LONG ret = RegQueryValueEx (m_hKey, (LPTSTR) pszKey, NULL,
 		&dwType, (LPBYTE)pData, &len);
 	if (ret != ERROR_SUCCESS)
-	{
-		_tcsncpy(pData, defval, std::min((DWORD)_tcslen(defval), dwLen));
-		pData[std::min((DWORD)_tcslen(defval), dwLen-1)] = _T('\0');
-	}
+		StringCchCopy(pData, dwLen, defval);
 }

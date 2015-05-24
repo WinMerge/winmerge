@@ -9,8 +9,8 @@
 #include <locale.h>
 #include "version.h"
 #include "BCMenu.h"
-#include "paths.h"
 #include "Environment.h"
+#include "paths.h"
 #include "unicoder.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
