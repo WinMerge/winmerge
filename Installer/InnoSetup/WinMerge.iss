@@ -113,6 +113,8 @@ ChangesEnvironment=true
 OutputDir=..\..\Build
 AlwaysShowComponentsList=true
 
+SignTool=signbat $f
+SignedUninstaller=yes
 
 [Languages]
 ;Inno Setup's Native Language
