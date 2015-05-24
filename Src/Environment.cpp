@@ -106,9 +106,10 @@ String env_GetProgPath()
  */
 String env_GetWindowsDirectory()
 {
-	TCHAR buf[MAX_PATH] = {0};
-	GetWindowsDirectory(buf, MAX_PATH);
-	return buf;
+	TCHAR path[MAX_PATH];
+	path[0] = _T('\0');
+	GetWindowsDirectory(path, MAX_PATH);
+	return path;
 }
 
 /**
@@ -118,23 +119,9 @@ String env_GetWindowsDirectory()
  */
 String env_GetMyDocuments()
 {
-	LPITEMIDLIST pidl;
-	LPMALLOC pMalloc;
-	String path;
-
-	HRESULT rv = SHGetSpecialFolderLocation(NULL, CSIDL_PERSONAL, &pidl);
-	if (rv == S_OK)
-	{
-		TCHAR szPath[MAX_PATH] = {0};
-		if (SHGetPathFromIDList(pidl, szPath))
-		{
-			path = szPath;
-		}
-
-		SHGetMalloc(&pMalloc);
-		pMalloc->Free(pidl);
-		pMalloc->Release();
-	}
+	TCHAR path[MAX_PATH];
+	path[0] = _T('\0');
+	SHGetSpecialFolderPath(NULL, path, CSIDL_MYDOCUMENTS, FALSE);
 	return path;
 }
 
