@@ -260,13 +260,10 @@ CTempPathContext *CTempPathContext::DeleteHead()
  */
 DWORD NTAPI VersionOf7z()
 {
-	TCHAR path[MAX_PATH];
-	GetModuleFileName(0, path, sizeof path/sizeof*path);
-	PathRemoveFileSpec(path);
-	PathAppend(path, _T("Merge7z\\7z.dll"));
+	String path = paths_ConcatPath(env_GetProgPath(), _T("Merge7z\\7z.dll"));
 	unsigned versionMS = 0;
 	unsigned versionLS = 0;
-	CVersionInfo(path).GetFixedFileVersion(versionMS, versionLS);
+	CVersionInfo(path.c_str()).GetFixedFileVersion(versionMS, versionLS);
 	return versionMS;
 }
 

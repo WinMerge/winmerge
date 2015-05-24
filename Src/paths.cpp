@@ -13,6 +13,7 @@
 #include <shlwapi.h>
 #include "PathContext.h"
 #include "unicoder.h"
+#include "coretools.h"
 
 static bool IsSlash(const String& pszStart, size_t nPos);
 static bool GetDirName(const String& sDir, String& sName);
@@ -65,16 +66,15 @@ PATH_EXISTENCE paths_DoesPathExist(const String& szPath, bool (*IsArchiveFile)(c
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
-	const TCHAR *lpcszPath;
-	TCHAR expandedPath[_MAX_PATH] = {0};
+	const TCHAR *lpcszPath = szPath.c_str();
+	TCHAR expandedPath[_MAX_PATH];
 
-	if (_tcschr(szPath.c_str(), '%') &&
-		ExpandEnvironmentStrings(szPath.c_str(), expandedPath, _MAX_PATH))
+	if (_tcschr(lpcszPath, '%'))
 	{
-		lpcszPath = expandedPath;
+		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, _MAX_PATH);
+		if (dwLen > 0 && dwLen < _MAX_PATH)
+			lpcszPath = expandedPath;
 	}
-	else
-		lpcszPath = szPath.c_str();
 
 	DWORD attr = GetFileAttributes(lpcszPath);
 
@@ -214,21 +214,18 @@ String paths_GetLongPath(const String& szPath, bool bExpandEnvs)
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
-	TCHAR expandedPath[_MAX_PATH] = {0};
-	const TCHAR *lpcszPath = NULL;
-
-	if (bExpandEnvs && _tcschr(sPath.c_str(), '%'))
+	TCHAR expandedPath[_MAX_PATH];
+	const TCHAR *lpcszPath = sPath.c_str();
+	if (bExpandEnvs && _tcschr(lpcszPath, '%'))
 	{
-		if (ExpandEnvironmentStrings(sPath.c_str(), expandedPath, _MAX_PATH))
-		{
+		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, _MAX_PATH);
+		if (dwLen > 0 && dwLen < _MAX_PATH)
 			lpcszPath = expandedPath;
-		}
 	}
-	else
-		lpcszPath = sPath.c_str();
 
-	if (!GetFullPathName(lpcszPath, _MAX_PATH, fullPath, &lpPart))
-		_tcscpy(fullPath, sPath.c_str());
+	DWORD dwLen = GetFullPathName(lpcszPath, _MAX_PATH, fullPath, &lpPart);
+	if (dwLen == 0 || dwLen >= _MAX_PATH)
+		_tcscpy_safe(fullPath, lpcszPath);
 
 	// We are done if this is not a short name.
 	if (_tcschr(fullPath, _T('~')) == NULL)
@@ -316,11 +313,15 @@ bool paths_CreateIfNeeded(const String& szPath)
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
-	TCHAR fullPath[_MAX_PATH] = _T("");
-	if (!_tcschr(szPath.c_str(), '%') || !ExpandEnvironmentStrings(szPath.c_str(), fullPath, _MAX_PATH))
+	TCHAR fullPath[_MAX_PATH];
+	if (_tcschr(szPath.c_str(), '%'))
 	{
-		_tcscpy(fullPath, szPath.c_str());
+		DWORD dwLen = ExpandEnvironmentStrings(szPath.c_str(), fullPath, _MAX_PATH);
+		if (dwLen == 0 || dwLen >= _MAX_PATH)
+			_tcscpy_safe(fullPath, szPath.c_str());
 	}
+	else
+		_tcscpy_safe(fullPath, szPath.c_str());
 	// Now fullPath holds our desired path
 
 	TCHAR *ptr = fullPath;
@@ -461,7 +462,7 @@ String ExpandShortcut(const String &inFile)
 		{
 			WCHAR wsz[MAX_PATH];
 #ifdef _UNICODE
-			wcsncpy((wchar_t *)wsz, inFile.c_str(), sizeof(wsz) / sizeof(WCHAR));
+			_tcscpy_safe(wsz, inFile.c_str());
 #else
 			::MultiByteToWideChar(CP_ACP, 0, inFile.c_str(), -1, wsz, MAX_PATH);
 #endif

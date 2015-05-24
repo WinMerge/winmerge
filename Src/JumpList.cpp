@@ -41,9 +41,11 @@ IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& p
 	if (SUCCEEDED(pShellLink->QueryInterface(IID_IPropertyStore, (void **)&pPS)))
 	{
 		PROPVARIANT pv;
-		InitPropVariantFromString(title.c_str(), &pv);
-		pPS->SetValue(PKEY_Title, pv);
-		PropVariantClear(&pv);
+		if (SUCCEEDED(InitPropVariantFromString(title.c_str(), &pv)))
+		{
+			pPS->SetValue(PKEY_Title, pv);
+			PropVariantClear(&pv);
+		}
 		pPS->Commit();
 		pPS->Release();
 	}
@@ -98,30 +100,33 @@ std::vector<Item> GetRecentDocs(size_t nMaxItems)
 	if (SUCCEEDED(pDocumentLists->GetList(ADLT_RECENT, static_cast<UINT>(nMaxItems), IID_IObjectArray, (void **)&pObjectArray)))
 	{
 		UINT nObjects;
-		pObjectArray->GetCount(&nObjects);
-		for (UINT i = 0; i < nObjects; ++i)
+		if (SUCCEEDED(pObjectArray->GetCount(&nObjects)))
 		{
-			IShellLinkW *pShellLink;
-			if (SUCCEEDED(pObjectArray->GetAt(i, IID_IShellLinkW, (void **)&pShellLink)))
+			for (UINT i = 0; i < nObjects; ++i)
 			{
-				wchar_t szPath[MAX_PATH];
-				wchar_t szDescription[MAX_PATH];
-				wchar_t szArguments[MAX_PATH * 6];
-				pShellLink->GetPath(szPath, sizeof(szPath)/sizeof(szPath[0]), NULL, SLGP_RAWPATH);
-				pShellLink->GetDescription(szDescription, sizeof(szDescription)/sizeof(szDescription[0]));
-				pShellLink->GetArguments(szArguments, sizeof(szArguments)/sizeof(szArguments[0]));
-				IPropertyStore *pPS = NULL;
-				PROPVARIANT pv;
-				InitPropVariantFromString(L"", &pv);
-				if (SUCCEEDED(pShellLink->QueryInterface(IID_IPropertyStore, (void **)&pPS)))
+				IShellLinkW *pShellLink;
+				if (SUCCEEDED(pObjectArray->GetAt(i, IID_IShellLinkW, (void **)&pShellLink)))
 				{
-					pPS->GetValue(PKEY_Title, &pv);
-					pPS->Release();
+					wchar_t szPath[MAX_PATH];
+					wchar_t szDescription[MAX_PATH];
+					wchar_t szArguments[MAX_PATH * 6];
+					pShellLink->GetPath(szPath, sizeof(szPath) / sizeof(szPath[0]), NULL, SLGP_RAWPATH);
+					pShellLink->GetDescription(szDescription, sizeof(szDescription) / sizeof(szDescription[0]));
+					pShellLink->GetArguments(szArguments, sizeof(szArguments) / sizeof(szArguments[0]));
+					IPropertyStore *pPS = NULL;
+					if (SUCCEEDED(pShellLink->QueryInterface(IID_IPropertyStore, (void **)&pPS)))
+					{
+						PROPVARIANT pv;
+						if (SUCCEEDED(pPS->GetValue(PKEY_Title, &pv)))
+						{
+							list.push_back(Item(ucr::toTString(szPath), ucr::toTString(szArguments), ucr::toTString(pv.bstrVal), ucr::toTString(szDescription)));
+							PropVariantClear(&pv);
+						}
+						pPS->Release();
+					}
+					pShellLink->Release();
 				}
-				list.push_back(Item(ucr::toTString(szPath), ucr::toTString(szArguments), ucr::toTString(pv.bstrVal), ucr::toTString(szDescription)));
-				PropVariantClear(&pv);
-				pShellLink->Release();
-			}		
+			}
 		}
 		pObjectArray->Release();
 	}

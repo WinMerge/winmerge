@@ -481,11 +481,10 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 	{
 		pDispInfo->ceItem.mask |= CBEIF_DI_SETITEM;
 		SHFILEINFO sfi = {0};
-		TCHAR szDrive[5] = {0};
 		CString sText;
 		GetLBText(static_cast<int>(pDispInfo->ceItem.iItem), sText);
-		lstrcpyn(szDrive, sText, 4);
-		if (sText[1] != '\\' && GetDriveType(szDrive) != DRIVE_REMOTE)
+		CString sDrive = sText.Left(3);
+		if (!(sText.GetLength() > 2 && (sText[1] == '\\' || GetDriveType(sDrive) == DRIVE_REMOTE)))
 		{
 			// The path is not a network path.
 			if (SHGetFileInfo(sText, 0, &sfi, sizeof(sfi), 

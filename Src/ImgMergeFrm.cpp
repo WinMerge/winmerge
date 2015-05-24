@@ -1737,18 +1737,16 @@ void CImgMergeFrame::OnUpdateImgUseBackColor(CCmdUI* pCmdUI)
  */
 bool CImgMergeFrame::GenerateReport(LPCTSTR szFileName)
 {
-	TCHAR imgdir_full[MAX_PATH];
-	String imgdir, imgfilepath[3], diffimg_filename[3];
-	lstrcpy(imgdir_full, ucr::toTString(szFileName).c_str());
-	PathRemoveExtension(imgdir_full);
-	PathAddExtension(imgdir_full, _T(".files"));
-	imgdir = PathFindFileName(imgdir_full);
+	String imgdir_full, imgdir, imgfilepath[3], diffimg_filename[3], path, name, ext;
+	paths_SplitFilename(szFileName, &path, &name, &ext);
+	imgdir_full = paths_ConcatPath(path, name) + _T(".files");
+	imgdir = paths_FindFileName(imgdir_full);
 	paths_CreateIfNeeded(imgdir_full);
 	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
 	{
 		imgfilepath[i] = ucr::toTString(m_pImgMergeWindow->GetFileName(i));
 		diffimg_filename[i] = string_format(_T("%s/%d.png"), imgdir.c_str(), i + 1);
-		m_pImgMergeWindow->SaveDiffImageAs(i, ucr::toUTF16(string_format(_T("%s\\%d.png"), imgdir_full, i + 1)).c_str());
+		m_pImgMergeWindow->SaveDiffImageAs(i, ucr::toUTF16(string_format(_T("%s\\%d.png"), imgdir_full.c_str(), i + 1)).c_str());
 	}
 
 	UniStdioFile file;

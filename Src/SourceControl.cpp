@@ -240,8 +240,8 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		static TCHAR buffer1[nBufferSize];
 		static TCHAR buffer2[nBufferSize];
 
-		_tcscpy(buffer1, strSavePath.c_str());
-		_tcscpy(buffer2, m_vssHelper.GetProjectBase().c_str());
+		_tcscpy_safe(buffer1, strSavePath.c_str());
+		_tcscpy_safe(buffer2, m_vssHelper.GetProjectBase().c_str());
 		_tcslwr(buffer1);
 		_tcslwr(buffer2);
 
@@ -254,14 +254,14 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		if (pdest)
 		{
 			size_t index  = pdest - buffer1 + 1;
-			_tcscpy(buffer, buffer1);
+			_tcscpy_safe(buffer, buffer1);
 			TCHAR * fp = &buffer[index + _tcslen(pbuf2)];
 			sname = fp;
 
 			if (sname[0] == ':')
 			{
-				_tcscpy(buffer2, sname.c_str());
-				_tcscpy(buffer, (TCHAR*)&buffer2[2]);
+				_tcscpy_safe(buffer2, sname.c_str());
+				_tcscpy_safe(buffer, (TCHAR*)&buffer2[2]);
 				sname = buffer;
 			}
 		}

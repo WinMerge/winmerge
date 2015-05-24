@@ -17,7 +17,7 @@ struct Merge7zFormatRegister
 	}
 	static Merge7z::Format *GuessFormat(const String& path)
 	{
-		for (int i = 0; i < Merge7zFormatRegister::optionalFormats.size(); ++i)
+		for (size_t i = 0; i < Merge7zFormatRegister::optionalFormats.size(); ++i)
 		{
 			Merge7z::Format* pFormat = Merge7zFormatRegister::optionalFormats[i](path);
 			if (pFormat)

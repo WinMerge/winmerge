@@ -831,7 +831,7 @@ void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		if (m_nCodepage != nCodepage)
 		{
 			const char *pszCodepageName = GetEncodingNameFromCodePage(nCodepage);
-			m_sCodepageName = pszCodepageName ? A2CT(pszCodepageName) : _T("");
+			m_sCodepageName = pszCodepageName ? ucr::toTString(pszCodepageName) : _T("");
 			if (bHasBom)
 				m_sCodepageName += _T(" with BOM");
 		}
