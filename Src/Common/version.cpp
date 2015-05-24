@@ -9,6 +9,7 @@
 #include <cstdio>
 #include <tchar.h>
 #include <assert.h>
+#include <strsafe.h>
 #include "coretypes.h"
 #include "UnicodeString.h"
 
@@ -281,7 +282,7 @@ void CVersionInfo::GetVersionInfo()
 	if (m_strFileName.empty())
 		GetModuleFileName(NULL, szFileName, MAX_PATH);
 	else
-		_tcsncpy(szFileName, m_strFileName.c_str(), MAX_PATH - 1);
+		StringCchCopy(szFileName, MAX_PATH, m_strFileName.c_str());
 	
 	DWORD dwVerInfoSize = GetFileVersionInfoSize(szFileName, &dwVerHnd);
 	if (dwVerInfoSize)

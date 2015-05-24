@@ -45,6 +45,7 @@
 #include "paths.h"
 #include "Environment.h"
 #include "FileFilter.h"
+#include "coretools.h"
 
 using std::vector;
 using Poco::RegularExpression;
@@ -991,13 +992,13 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
 		// structured exception are catched here thanks to class SE_Exception
 		if (!(e.GetErrorMessage(errorText, 500, NULL)))
 			// don't localize this as we do not localize the known exceptions
-			_tcscpy(errorText, _T("Unknown CException"));
+			_tcscpy_safe(errorText, _T("Unknown CException"));
 		bExceptionCatched = true;
 	}
 	catch(...) 
 	{
 		// don't localize this as we do not localize the known exceptions
-		_tcscpy(errorText, _T("Unknown C++ exception"));
+		_tcscpy_safe(errorText, _T("Unknown C++ exception"));
 		bExceptionCatched = true;
 	}
 
@@ -1044,13 +1045,13 @@ static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH 
 		// structured exception are catched here thanks to class SE_Exception
 		if (!(e.GetErrorMessage(errorText, 500, NULL)))
 			// don't localize this as we do not localize the known exceptions
-			_tcscpy(errorText, _T("Unknown CException"));
+			_tcscpy_safe(errorText, _T("Unknown CException"));
 		bExceptionCatched = true;
 	}
 	catch(...) 
 	{
 		// don't localize this as we do not localize the known exceptions
-		_tcscpy(errorText, _T("Unknown C++ exception"));
+		_tcscpy_safe(errorText, _T("Unknown C++ exception"));
 		bExceptionCatched = true;
 	}
 

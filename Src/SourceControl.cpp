@@ -20,6 +20,7 @@
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
 #include "CCPromptDlg.h"
 #include "VSSHelper.h"
+#include "coretools.h"
 
 using Poco::format;
 using Poco::Process;
@@ -231,8 +232,8 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 			static TCHAR buffer1[nBufferSize];
 			static TCHAR buffer2[nBufferSize];
 
-			_tcscpy(buffer1, strSavePath.c_str());
-			_tcscpy(buffer2, m_pVssHelper->GetProjectBase().c_str());
+			_tcscpy_safe(buffer1, strSavePath.c_str());
+			_tcscpy_safe(buffer2, m_pVssHelper->GetProjectBase().c_str());
 			_tcslwr(buffer1);
 			_tcslwr(buffer2);
 
@@ -250,14 +251,14 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 			{
 				int index  = (int)(pdest - buffer1 + 1);
 			
-				_tcscpy(buffer, buffer1);
+				_tcscpy_safe(buffer, buffer1);
 				TCHAR * fp = &buffer[int(index + _tcslen(pbuf2))];
 				sname = fp;
 
 				if (sname[0] == ':')
 				{
-					_tcscpy(buffer2, sname);
-					_tcscpy(buffer, (TCHAR*)&buffer2[2]);
+					_tcscpy_safe(buffer2, (LPCTSTR)sname);
+					_tcscpy_safe(buffer, (TCHAR*)&buffer2[2]);
 					sname = buffer;
 				}
 			}

@@ -52,6 +52,7 @@ struct _RPC_ASYNC_STATE;	// avoid MSC warning C4115
 #include <shlwapi.h>
 #include <tchar.h>
 #include <stdarg.h>
+#include <strsafe.h>
 #include "lwdisp.h"
 #include "dllproxy.h"
 
@@ -119,23 +120,23 @@ static LPTSTR FormatMessageFromString(LPCTSTR format, ...)
 static void mycpyt2w(LPCTSTR tsz, wchar_t * wdest, size_t limit)
 {
 #ifdef _UNICODE
-	wcsncpy(wdest, tsz, limit);
+	StringCchCopyW(wdest, limit, tsz);
 #else
 	MultiByteToWideChar(CP_ACP, 0, tsz, -1, wdest, (int)limit);
-#endif
 	// always terminate the string
 	wdest[limit-1] = 0;
+#endif
 }
 
 static void mycpyt2a(LPCTSTR tsz, char * adest, size_t limit)
 {
 #ifdef _UNICODE
 	WideCharToMultiByte(CP_ACP, 0, tsz, -1, adest, (int)limit, 0, 0);
-#else
-	strncpy(adest, tsz, limit);
-#endif
 	// always terminate the string
 	adest[limit-1] = 0;
+#else
+	StringCchCopyA(adest, list, tsz);
+#endif
 }
 
 #ifdef _WIN64
