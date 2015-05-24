@@ -158,8 +158,8 @@ CDirView::CDirView()
 	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS | LVS_EDITLABELS;
 
 	m_bTreeMode =  GetOptionsMgr()->GetBool(OPT_TREE_MODE);
-	m_bShowDifferent =  GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL);
-	m_bShowIdentical =  GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT);
+	m_bShowDifferent =  GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT);
+	m_bShowIdentical =  GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL);
 	m_bShowUniqueLeft =  GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT);
 	m_bShowUniqueRight =  GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT);
 	m_bShowBinaries =  GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES);
