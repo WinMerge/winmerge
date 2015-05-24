@@ -178,7 +178,7 @@ void PropCodepage::OnDetectCodepage2()
 
 void PropCodepage::OnDetectAutodetecttype()
 {
-	m_nAutodetectType = m_comboAutodetectType.GetItemData(m_comboAutodetectType.GetCurSel());	
+	m_nAutodetectType = static_cast<int>(m_comboAutodetectType.GetItemData(m_comboAutodetectType.GetCurSel()));	
 }
 
 void PropCodepage::OnCpUi() 
