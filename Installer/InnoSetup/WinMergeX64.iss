@@ -115,6 +115,9 @@ AlwaysShowComponentsList=true
 
 ArchitecturesInstallIn64BitMode=x64
 
+SignTool=signbat $f
+SignedUninstaller=yes
+
 [Languages]
 ;Inno Setup's Native Language
 Name: English; MessagesFile: ..\..\Translations\InnoSetup\English.isl
