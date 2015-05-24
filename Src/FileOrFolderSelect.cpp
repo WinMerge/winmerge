@@ -136,7 +136,6 @@ BOOL SelectFolder(String& path, LPCTSTR root_path /*=NULL*/,
 			HWND hwndOwner /*=NULL*/) 
 {
 	BROWSEINFO bi;
-	LPMALLOC pMalloc;
 	LPITEMIDLIST pidl;
 	TCHAR szPath[MAX_PATH] = {0};
 	BOOL bRet = FALSE;
@@ -155,7 +154,6 @@ BOOL SelectFolder(String& path, LPCTSTR root_path /*=NULL*/,
 	bi.lParam = (LPARAM)root_path;
 
 	pidl = SHBrowseForFolder(&bi);
-
 	if (pidl)
 	{
 		if (SHGetPathFromIDList(pidl, szPath))
@@ -163,10 +161,7 @@ BOOL SelectFolder(String& path, LPCTSTR root_path /*=NULL*/,
 			path = szPath;
 			bRet = TRUE;
 		}
-
-		SHGetMalloc(&pMalloc);
-		pMalloc->Free(pidl);
-		pMalloc->Release();
+		CoTaskMemFree(pidl);
 	}
 	return bRet;
 }
