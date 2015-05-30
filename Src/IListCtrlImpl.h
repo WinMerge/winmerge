@@ -106,7 +106,7 @@ public:
 				if (SUCCEEDED(pStream->Stat(&stat, STATFLAG_NONAME)))
 				{
 					LARGE_INTEGER li = {0};
-					ret.resize(0, stat.cbSize.LowPart);
+					ret.resize(stat.cbSize.LowPart, 0);
 					pStream->Seek(li, STREAM_SEEK_SET, NULL);
 					pStream->Read(&ret[0], stat.cbSize.LowPart, NULL);
 				}
