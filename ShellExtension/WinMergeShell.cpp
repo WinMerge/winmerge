@@ -54,7 +54,6 @@ enum ExtensionFlags
 {
 	EXT_ENABLED = 0x01, /**< ShellExtension enabled/disabled. */
 	EXT_ADVANCED = 0x02, /**< Advanced menuitems enabled/disabled. */
-	EXT_SUBFOLDERS = 0x04, /**< Subfolders included by default? */
 };
 
 /// Max. filecount to select
@@ -63,6 +62,7 @@ static const int MaxFileCount = 3;
 #define REGDIR _T("Software\\Thingamahoochie\\WinMerge")
 static const TCHAR f_RegDir[] = REGDIR;
 static const TCHAR f_RegLocaleDir[] = REGDIR _T("\\Locale");
+static const TCHAR f_RegSettingsDir[] = REGDIR _T("\\Settings");
 
 /**
  * @name Registry valuenames.
@@ -78,6 +78,8 @@ static const TCHAR f_RegValuePath[] = _T("Executable");
 static const TCHAR f_RegValuePriPath[] = _T("PriExecutable");
 /** LanguageId */
 static const TCHAR f_LanguageId[] = _T("LanguageId");
+/** Recurse */
+static const TCHAR f_Recurse[] = _T("Recurse");
 /*@}*/
 
 /**
@@ -664,8 +666,9 @@ String CWinMergeShell::FormatCmdLine(const String &winmergePath,
 
 	// Check if user wants to use context menu
 	BOOL bSubfoldersByDefault = FALSE;
-	if (m_dwContextMenuEnabled & EXT_SUBFOLDERS) // User wants subfolders by def
-		bSubfoldersByDefault = TRUE;
+	CRegKeyEx reg;
+	if (reg.Open(HKEY_CURRENT_USER, f_RegSettingsDir) == ERROR_SUCCESS)
+		bSubfoldersByDefault = reg.ReadBool(f_Recurse, FALSE);
 
 	if (bAlterSubFolders && !bSubfoldersByDefault)
 		strCommandline += _T(" /r");
