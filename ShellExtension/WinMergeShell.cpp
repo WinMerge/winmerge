@@ -111,13 +111,17 @@ public:
 
 		m_lcidOld = GetThreadLocale();
 
-		int iLangId = reg.ReadDword(f_LanguageId, (DWORD) - 1);
+		int iLangId = reg.ReadDword(f_LanguageId, (DWORD)-1);
 		if (iLangId != -1)
+		{
 			SetThreadLocale(MAKELCID(iLangId, SORT_DEFAULT));
+			SetThreadUILanguage(iLangId);
+		}
 	}
 	~CWinMergeTempLocale()
 	{
 		SetThreadLocale(m_lcidOld);
+		SetThreadUILanguage(LANGIDFROMLCID(m_lcidOld));
 	}
 };
 
