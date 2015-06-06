@@ -1839,8 +1839,6 @@ BEGIN
     GROUPBOX        "Explorer",IDC_STATIC,7,7,218,80
     CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,27,28,190,10
-    CONTROL         "In&clude subfolders by default",IDC_EXPLORER_SUBFOLDERS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,38,190,10
     CONTROL         "&Add to context menu",IDC_EXPLORER_CONTEXT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,18,200,10
     PUSHBUTTON      "&Register shell extension",IDC_REGISTER_SHELLEXTENSION,17,48,200,14
