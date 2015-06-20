@@ -125,6 +125,7 @@ Fill (LPCTSTR text)
 {
   if (text && *text)
     {
+      int ol = GetCount ();
       int nPos = FindStringExact (-1, text);
       if (nPos  != CB_ERR)
         DeleteString (nPos);
@@ -132,7 +133,8 @@ Fill (LPCTSTR text)
       int l = GetCount ();
       if (l > REMEMBER_COUNT)
         DeleteString (--l);
-      SetComboBoxHeight (*this);
+      if (ol != l)
+        SetComboBoxHeight (*this);
       SetComboBoxWidth (*this);
       SetCurSel (0);
       if (!m_sGroup.IsEmpty ())
