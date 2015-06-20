@@ -142,7 +142,7 @@ public:
 		RECT rcClip = {rc.left + 1, rc.top + 1, rc.right - 1, rc.bottom - 1};
 		ScrollWindow(m_hWnd, sih.nPos - m_nHScrollPos, siv.nPos - m_nVScrollPos, NULL, &rcClip);
 		CalcScrollBarRange();
-		InvalidateRect(m_hWnd, NULL, TRUE);
+		InvalidateRect(m_hWnd, NULL, FALSE);
 	}
 
 	RGBQUAD GetBackColor() const
@@ -196,8 +196,12 @@ public:
 			unsigned height = static_cast<unsigned>(m_fip->getHeight() * m_zoom) + MARGIN * 2; 
 			if (m_nHScrollPos > static_cast<int>(width  - rc.right))
 				m_nHScrollPos = width  - rc.right;
+			if (m_nHScrollPos < 0)
+				m_nHScrollPos = 0;
 			if (m_nVScrollPos > static_cast<int>(height - rc.bottom))
 				m_nVScrollPos = height - rc.bottom;
+			if (m_nVScrollPos < 0)
+				m_nVScrollPos = 0;
 			CalcScrollBarRange();
 			InvalidateRect(m_hWnd, NULL, TRUE);
 		}
