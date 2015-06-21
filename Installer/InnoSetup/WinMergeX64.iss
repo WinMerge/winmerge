@@ -479,6 +479,7 @@ Source: ..\..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags:
 Source: ..\..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSExcelFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSWordFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
+Source: ..\..\Plugins\dlls\ApplyPatch.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\X64\IgnoreColumns.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 Source: ..\..\Plugins\dlls\X64\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 Source: ..\..\Plugins\dlls\X64\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
@@ -1200,13 +1201,15 @@ begin
 end;
 
 procedure RegisterPreviousData(PreviousDataKey: Integer);
-begin  SetPreviousData(PreviousDataKey, 'UseAs3WayMergeTool', BooleanToString(g_CheckListBox.Checked[0]));
+begin
+  SetPreviousData(PreviousDataKey, 'UseAs3WayMergeTool', BooleanToString(g_CheckListBox.Checked[0]));
   SetPreviousData(PreviousDataKey, 'MergeAtRightPane', BooleanToString(g_CheckListBox.Checked[1]));
   SetPreviousData(PreviousDataKey, 'MergeAtCenterPane', BooleanToString(g_CheckListBox.Checked[2]));
   SetPreviousData(PreviousDataKey, 'MergeAtLeftPane', BooleanToString(g_CheckListBox.Checked[3]));
   SetPreviousData(PreviousDataKey, 'AutoMergeAtStartup', BooleanToString(g_CheckListBox.Checked[4]));
 end;
-function GetSysColor(ColorType: Integer): Integer;
+
+function GetSysColor(ColorType: Integer): Integer;
 external 'GetSysColor@user32.dll';
 
 procedure InitializeWizard();
@@ -1227,4 +1230,5 @@ begin
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtRightPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtRightPane', 'true')), True, nil);
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtCenterPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtCenterPane', 'false')), True, nil);
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtLeftPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtLeftPane', 'false')), True, nil);
-  g_CheckListBox.AddCheckBox(ExpandConstant('{cm:AutoMergeAtStartup}'), '', 1, StringToBoolean(GetPreviousData('AutoMergeAtStartup', 'true')), True, False, True, nil);end;
+  g_CheckListBox.AddCheckBox(ExpandConstant('{cm:AutoMergeAtStartup}'), '', 1, StringToBoolean(GetPreviousData('AutoMergeAtStartup', 'true')), True, False, True, nil);
+end;
