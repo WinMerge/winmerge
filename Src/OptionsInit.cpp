@@ -162,6 +162,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);
 
 	m_pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
+	m_pOptions->InitOption(OPT_PLUGINS_DISABLED_LIST, _T(""));
 
 	m_pOptions->InitOption(OPT_TABBAR_AUTO_MAXWIDTH, true);
 

@@ -452,6 +452,8 @@ void GetFreeFunctionsInScripts(std::vector<String>& sNamesArray, const wchar_t *
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++)
 	{
 		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
+		if (plugin->m_disabled)
+			continue;
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		std::vector<String> scriptNamesArray;
 		std::vector<int> scriptIdsArray;
