@@ -42,6 +42,9 @@ mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\Merge7z" 2> NUL
 mkdir "%DISTDIR%\2.14-zip-version\WinMerge\Merge7z\Lang" 2> NUL
 mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\Merge7z\Lang" 2> NUL
 
+mkdir "%DISTDIR%\2.14-zip-version\WinMerge\GnuWin32" 2> NUL
+mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\GnuWin32" 2> NUL
+
 rem Readme
 for %%i in (Build\Docs\*.*) do (
   copy "%%i" "%DISTDIR%\2.14-zip-version\WinMerge\%%~nxi"
@@ -123,6 +126,9 @@ copy Externals\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\2.14-x64-zip-ver
 rem copy Externals\WinIMerge\Build\x64\Release\WinIMerge.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\Build\x64\Release\WinIMergeLib.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 
+rem Patch
+xcopy /s "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-zip-version\WinMerge\GnuWin32\"
+xcopy /s "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-x64-zip-version\WinMerge\GnuWin32\"
 
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip" "%DISTDIR%\2.14-zip-version\WinMerge\"
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip" "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
