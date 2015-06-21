@@ -366,12 +366,14 @@ BOOL CMergeApp::InitInstance()
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
 	{
-	HDC hdc = ::GetDC(NULL);
-	int lfHeight = -MulDiv(9, GetDeviceCaps(hdc, LOGPIXELSY), 72);
-	::ReleaseDC(NULL, hdc);
-	if (abs(ncm.lfMenuFont.lfHeight) > abs(lfHeight))
-		ncm.lfMenuFont.lfHeight = lfHeight;
-	m_fontGUI.CreateFontIndirect(&ncm.lfMenuFont);
+		HDC hdc = ::GetDC(NULL);
+		int lfHeight = -MulDiv(9, GetDeviceCaps(hdc, LOGPIXELSY), 72);
+		::ReleaseDC(NULL, hdc);
+		if (abs(ncm.lfMenuFont.lfHeight) > abs(lfHeight))
+			ncm.lfMenuFont.lfHeight = lfHeight;
+		if (wcscmp(ncm.lfMenuFont.lfFaceName, L"Meiryo") == 0 || wcscmp(ncm.lfMenuFont.lfFaceName, L"\U000030e1\U000030a4\U000030ea\U000030aa"/* "Meiryo" in Japanese */) == 0)
+			wcscpy_s(ncm.lfMenuFont.lfFaceName, L"Meiryo UI");
+		m_fontGUI.CreateFontIndirect(&ncm.lfMenuFont);
 	}
 
 	if (m_pSyntaxColors)

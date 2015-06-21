@@ -25,7 +25,6 @@ public:
 	enum { IDD = IDD_PROPPAGE_SHELL };
 	bool m_bContextAdded;
 	bool m_bContextAdvanced;
-	bool m_bContextSubfolders;
 
 // Overrides
 	protected:
@@ -41,7 +40,6 @@ protected:
 
 	void GetContextRegValues();
 	void AdvancedContextMenuCheck();
-	void SubfolderOptionCheck();
 	void UpdateButtons();
 
 	DECLARE_MESSAGE_MAP()

@@ -180,6 +180,7 @@ Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Type
 Name: Frhed; Description: {cm:Frhed}; Flags: disablenouninstallwarning; Types: full typical
 Name: WinIMerge; Description: {cm:WinIMerge}; Flags: disablenouninstallwarning; Types: full typical
 Name: ArchiveSupport; Description: {cm:ArchiveSupport}; Flags: disablenouninstallwarning; Types: full typical
+Name: Patch; Description: {cm:Patch}; Flags: disablenouninstallwarning; Types: full typical
 
 ;Language components
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
@@ -478,6 +479,7 @@ Source: ..\..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags:
 Source: ..\..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSExcelFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSWordFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
+Source: ..\..\Plugins\dlls\ApplyPatch.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\X64\IgnoreColumns.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 Source: ..\..\Plugins\dlls\X64\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 Source: ..\..\Plugins\dlls\X64\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
@@ -503,6 +505,9 @@ Source: ..\..\Externals\winimerge\GPL.txt; DestDir: {app}\WinIMerge; Components:
 Source: ..\..\Externals\winimerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
 ;Source: ..\..\Externals\winimerge\Build\x64\Release\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
 Source: ..\..\Externals\winimerge\Build\x64\Release\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Components: WinIMerge
+
+;GnuWin32 Patch for Windows
+Source: C:\Program Files\WinMerge\GnuWin32\*.*; DestDir: {app}\GnuWin32; Flags: recursesubdirs; Components: Patch
 
 [Dirs]
 Name: "{app}\MergePlugins"
@@ -1196,13 +1201,15 @@ begin
 end;
 
 procedure RegisterPreviousData(PreviousDataKey: Integer);
-begin  SetPreviousData(PreviousDataKey, 'UseAs3WayMergeTool', BooleanToString(g_CheckListBox.Checked[0]));
+begin
+  SetPreviousData(PreviousDataKey, 'UseAs3WayMergeTool', BooleanToString(g_CheckListBox.Checked[0]));
   SetPreviousData(PreviousDataKey, 'MergeAtRightPane', BooleanToString(g_CheckListBox.Checked[1]));
   SetPreviousData(PreviousDataKey, 'MergeAtCenterPane', BooleanToString(g_CheckListBox.Checked[2]));
   SetPreviousData(PreviousDataKey, 'MergeAtLeftPane', BooleanToString(g_CheckListBox.Checked[3]));
   SetPreviousData(PreviousDataKey, 'AutoMergeAtStartup', BooleanToString(g_CheckListBox.Checked[4]));
 end;
-function GetSysColor(ColorType: Integer): Integer;
+
+function GetSysColor(ColorType: Integer): Integer;
 external 'GetSysColor@user32.dll';
 
 procedure InitializeWizard();
@@ -1223,4 +1230,5 @@ begin
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtRightPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtRightPane', 'true')), True, nil);
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtCenterPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtCenterPane', 'false')), True, nil);
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtLeftPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtLeftPane', 'false')), True, nil);
-  g_CheckListBox.AddCheckBox(ExpandConstant('{cm:AutoMergeAtStartup}'), '', 1, StringToBoolean(GetPreviousData('AutoMergeAtStartup', 'true')), True, False, True, nil);end;
+  g_CheckListBox.AddCheckBox(ExpandConstant('{cm:AutoMergeAtStartup}'), '', 1, StringToBoolean(GetPreviousData('AutoMergeAtStartup', 'true')), True, False, True, nil);
+end;

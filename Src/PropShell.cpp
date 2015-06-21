@@ -26,7 +26,6 @@ static char THIS_FILE[] = __FILE__;
 /// Flags for enabling and mode of extension
 #define CONTEXT_F_ENABLED 0x01
 #define CONTEXT_F_ADVANCED 0x02
-#define CONTEXT_F_SUBFOLDERS 0x04
 
 // registry values
 static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
@@ -80,7 +79,6 @@ PropShell::PropShell(COptionsMgr *optionsMgr)
 : OptionsPanel(optionsMgr, PropShell::IDD)
 , m_bContextAdded(false)
 , m_bContextAdvanced(false)
-, m_bContextSubfolders(false)
 {
 }
 
@@ -100,7 +98,6 @@ BOOL PropShell::OnInitDialog()
 	UpdateButtons();
 	GetContextRegValues();
 	AdvancedContextMenuCheck();
-	SubfolderOptionCheck();
 	UpdateData(FALSE);
 
 	SetTimer(0, 1000, NULL);
@@ -114,7 +111,6 @@ void PropShell::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(PropShell)
 	DDX_Check(pDX, IDC_EXPLORER_CONTEXT, m_bContextAdded);
 	DDX_Check(pDX, IDC_EXPLORER_ADVANCED, m_bContextAdvanced);
-	DDX_Check(pDX, IDC_EXPLORER_SUBFOLDERS, m_bContextSubfolders);
 	//}}AFX_DATA_MAP
 }
 
@@ -165,16 +161,12 @@ void PropShell::GetContextRegValues()
 
 	if (dwContextEnabled & CONTEXT_F_ADVANCED)
 		m_bContextAdvanced = true;
-
-	if (dwContextEnabled & CONTEXT_F_SUBFOLDERS)
-		m_bContextSubfolders = true;
 }
 
 /// Set registry values for ShellExtension
 void PropShell::OnAddToExplorer()
 {
 	AdvancedContextMenuCheck();
-	SubfolderOptionCheck();
 	UpdateButtons();
 }
 
@@ -216,11 +208,6 @@ void PropShell::SaveMergePath()
 	else
 		dwContextEnabled &= ~CONTEXT_F_ADVANCED;
 
-	if (m_bContextSubfolders)
-		dwContextEnabled |= CONTEXT_F_SUBFOLDERS;
-	else
-		dwContextEnabled &= ~CONTEXT_F_SUBFOLDERS;
-
 	retVal = reg.WriteDword(f_RegValueEnabled, dwContextEnabled);
 	if (retVal != ERROR_SUCCESS)
 	{
@@ -240,16 +227,6 @@ void PropShell::AdvancedContextMenuCheck()
 	}
 }
 
-/// Enable/Disable "Include subfolders by default" checkbox.
-void PropShell::SubfolderOptionCheck()
-{
-	if (!IsDlgButtonChecked(IDC_EXPLORER_CONTEXT))
-	{
-		CheckDlgButton(IDC_EXPLORER_SUBFOLDERS, FALSE);
-		m_bContextSubfolders = false;
-	}
-}
-
 void PropShell::UpdateButtons()
 {
 	bool registered = IsShellExtensionRegistered();
@@ -257,8 +234,6 @@ void PropShell::UpdateButtons()
 	GetDlgItem(IDC_REGISTER_SHELLEXTENSION)->EnableWindow(!registered);
 	GetDlgItem(IDC_UNREGISTER_SHELLEXTENSION)->EnableWindow(registered);
 	GetDlgItem(IDC_EXPLORER_ADVANCED)->EnableWindow(
-		GetDlgItem(IDC_EXPLORER_CONTEXT)->IsWindowEnabled() && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
-	GetDlgItem(IDC_EXPLORER_SUBFOLDERS)->EnableWindow(
 		GetDlgItem(IDC_EXPLORER_CONTEXT)->IsWindowEnabled() && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
 }
 

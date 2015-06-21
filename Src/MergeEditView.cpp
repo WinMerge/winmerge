@@ -2577,7 +2577,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
 	{
 		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
-		if (!plugin->TestAgainstRegList(pd->m_strBothFilenames))
+		if (plugin->m_disabled || !plugin->TestAgainstRegList(pd->m_strBothFilenames))
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
@@ -2585,7 +2585,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
 	{
 		const PluginInfoPtr & plugin = piScriptArray2->at(iScript);
-		if (!plugin->TestAgainstRegList(pd->m_strBothFilenames))
+		if (plugin->m_disabled || !plugin->TestAgainstRegList(pd->m_strBothFilenames))
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
@@ -2600,7 +2600,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
 	{
 		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
-		if (plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
+		if (plugin->m_disabled || plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
@@ -2608,7 +2608,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
 	{
 		const PluginInfoPtr & plugin = piScriptArray2->at(iScript);
-		if (plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
+		if (plugin->m_disabled || plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
