@@ -103,7 +103,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_MERGE_MODE, false);
 	// OPT_WORDDIFF_HIGHLIGHT is initialized above
 	m_pOptions->InitOption(OPT_BREAK_ON_WORDS, false);
-	m_pOptions->InitOption(OPT_BREAK_TYPE, 0);
+	m_pOptions->InitOption(OPT_BREAK_TYPE, 1);
 
 	m_pOptions->InitOption(OPT_CLOSE_WITH_ESC, true);
 	m_pOptions->InitOption(OPT_CLOSE_WITH_OK, false);
