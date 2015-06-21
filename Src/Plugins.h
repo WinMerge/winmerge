@@ -50,7 +50,7 @@ class PluginInfo
 {
 public:
 	PluginInfo()
-		: m_lpDispatch(NULL), m_filters(NULL), m_bAutomatic(FALSE), m_nFreeFunctions(0)
+		: m_lpDispatch(NULL), m_filters(NULL), m_bAutomatic(FALSE), m_nFreeFunctions(0), m_disabled(false)
 	{	
 	}
 
@@ -78,6 +78,7 @@ public:
 	String      m_filtersText;
 	String      m_description;
 	bool        m_bAutomatic;
+	bool        m_disabled;
 	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;
@@ -108,6 +109,7 @@ public:
 	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText);
 	PluginInfo * GetPluginByName(const wchar_t *transformationEvent, const String& name);
 	PluginInfo * GetPluginInfo(LPDISPATCH piScript);
+	void SaveSettings();
 
 	void FreeAllScripts();
 	void FreeScriptsForEvent(const wchar_t *transformationEvent);

@@ -188,6 +188,7 @@ extern const String OPT_ARCHIVE_PROBETYPE OP("Merge7z/ProbeSignature");
 
 // Plugins
 extern const String OPT_PLUGINS_ENABLED OP("Settings/PluginsEnabled");
+extern const String OPT_PLUGINS_DISABLED_LIST OP("Settings/PluginsDisabledList");
 
 // Startup options
 extern const String OPT_SHOW_SELECT_FILES_AT_STARTUP OP("Settings/ShowFileDialog");
