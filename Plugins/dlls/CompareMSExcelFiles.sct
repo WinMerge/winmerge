@@ -93,13 +93,10 @@ Function writeCellValues(fo, sht)
 End Function
 
 Function writeFormulas(fo, sht)
-	Dim rng, row, col, rows, cols, formula
+	Dim rng, row, col, formula
 
-	rows = sht.UsedRange.Rows.Count
-	cols = sht.UsedRange.Columns.Count
-
-	For row = 1 To rows
-		For col = 1 To cols
+	For row = sht.UsedRange.Row To sht.UsedRange.Row + sht.UsedRange.Rows.Count - 1
+		For col = sht.UsedRange.Column To sht.UsedRange.Column + sht.UsedRange.Columns.Count - 1
 			Set rng = sht.Cells(Row, Col)
 			formula = rng.Formula
 			If Left(formula, 1) = "=" Then 
