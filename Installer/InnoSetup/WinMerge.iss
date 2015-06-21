@@ -387,7 +387,8 @@ Name: {app}\MergePlugins\editor addin.sct; Type: Files; Check: not IsComponentSe
 Name: {app}\MergePlugins\insert datetime.sct; Type: Files; Check: not IsComponentSelected('Plugins')
 Name: {app}\MergePlugins\CompareMSExcelFiles.dll; Type: Files; Check: IsComponentSelected('Plugins')
 Name: {app}\MergePlugins\CompareMSWordFiles.dll; Type: Files; Check: IsComponentSelected('Plugins')
-Name: {app}\MergePlugins; Type: DirIfEmpty; Check: not IsComponentSelected('Plugins')
+Name: {app}\MergePlugins; Type: DirIfEmpty; Check: not IsComponentSelected('Plugins')
+
 Name: {app}\Filters\ADAMulti.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\ASPNET.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\CSharp_loose.flt; Type: Files; Check: not IsComponentSelected('Filters')
@@ -499,6 +500,7 @@ Source: ..\..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags:
 Source: ..\..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSExcelFiles.sct; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSWordFiles.sct; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
+Source: ..\..\Plugins\dlls\ApplyPatch.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\IgnoreColumns.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 Source: ..\..\Plugins\dlls\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 Source: ..\..\Plugins\dlls\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
