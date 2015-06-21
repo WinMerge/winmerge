@@ -1,0 +1,530 @@
+<scriptlet>
+<implements type="Automation" id="dispatcher">
+    <property name="PluginEvent">
+        <get/>
+    </property>
+    <property name="PluginDescription">
+        <get/>
+    </property>
+    <property name="PluginFileFilters">
+        <get/>
+    </property>
+    <property name="PluginIsAutomatic">
+        <get/>
+    </property>
+    <method name="UnpackFile"/>
+    <method name="PackFile"/>
+    <method name="IsFolder"/>
+    <method name="UnpackFolder"/>
+    <method name="PackFolder"/>
+    <method name="ShowSettingsDialog"/>
+</implements>
+
+<script language="VBS">
+
+'/////////////////////////////////////////////////////////////////////////////
+'    This is a plugin for WinMerge.
+'    It will apply selected patch to specified file or folder using GnuWin32 Patch For Windows.
+'    Copyright (C) 2015 Takashi Sawanaka
+'
+'    This program is free software; you can redistribute it and/or modify
+'    it under the terms of the GNU General Public License as published by
+'    the Free Software Foundation; either version 2 of the License, or
+'    (at your option) any later version.
+'
+'    This program is distributed in the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty of
+'    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'    GNU General Public License for more details.
+'
+'    You should have received a copy of the GNU General Public License
+'    along with this program; if not, write to the Free Software
+'    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+'
+
+Option Explicit
+
+Const REGKEY_PATH = "HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge"
+Const PLUGIN_NAME = "ApplyPatch.sct WinMerge Plugin"
+
+Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
+Dim wsh: Set wsh = CreateObject("WScript.Shell")
+
+Function get_PluginEvent()
+    get_PluginEvent = "FILE_FOLDER_PACK_UNPACK"
+End Function
+
+Function get_PluginDescription()
+    get_PluginDescription = "Apply patch using GnuWin32 Patch for Windows"
+End Function
+
+Function get_PluginFileFilters()
+    get_PluginFileFilters = "\.diff$;\.patch$"
+End Function
+
+Function get_PluginIsAutomatic()
+    get_PluginIsAutomatic = True
+End Function
+
+Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
+    Dim filePatched, cmdLine, msg
+
+    UnpackFile = False
+
+    If Not IsPatchFile(fileSrc) Then
+        ' FIXME:
+        fso.CopyFile fileSrc, fileDst
+        pbChanged = True
+        pSubcode = 1
+        UnpackFile = True
+        Exit Function
+    End If
+
+    filePatched = wsh.RegRead(REGKEY_PATH & "\Files\Left\Item_0")
+    If IsPatchFile(filePatched) Then
+        filePatched = wsh.RegRead(REGKEY_PATH & "\Files\Right\Item_0")
+    End If
+
+    If IsLangJapanese() Then
+        msg = "パッチ '" & fso.GetFileName(fileSrc) & "' を適用するファイルを指定してください" & vbCrLf & "(※ 指定したファイルを一時フォルダにコピーし、一時フォルダ側のファイルにパッチを適用します)"
+    Else
+        msg = "Enter the name of the file to which the patch '" & fso.GetFileName(fileSrc) & "' is applied"
+    End If
+    Do While True
+        filePatched = InputBox(msg, PLUGIN_NAME, filePatched)
+        If filePatched = "" Then
+            Exit Function
+        End If
+        If fso.FileExists(filePatched) Then Exit Do
+        If IsLangJapanese() Then
+            MsgBox "ファイル '" & filePatched & "' は存在しません", vbExclamation
+        Else
+            MsgBox "file '" & filePatched & "' does not exist", vbExclamation
+        End If
+    Loop
+
+    cmdLine = "type """ & fileSrc & """ | patch " & IIf(IsWindowsTextFormat(fileSrc), "", "--binary ") & "$FILE"
+    If IsLangJapanese() Then
+        msg = "patch コマンドへ渡す引数を指定してください"
+    Else
+        msg = "Enter the command line arguments for patch command"
+    End If
+    cmdLine = InputBox(msg, PLUGIN_NAME, cmdLine)
+    If cmdLine = "" Then Exit Function
+    cmdLine = Replace(cmdLine, "$FILE", fileDst)
+        
+    fso.CopyFile filePatched, fileDst
+
+    Run wsh, "cmd.exe /s /c ""set PATH=" & GetPatchExeFolder() & ";%PATH% & " & cmdLine & " & pause"""
+
+    pbChanged = True
+    pSubcode = 0
+    UnpackFile = True
+End Function
+
+Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
+    If pSubcode <> 0 Then
+        ' FIXME:
+        fso.CopyFile fileSrc, fileDst
+        pbChanged = True
+        PackFile = True
+        Exit Function
+    End If
+    PackFile = False
+End Function
+
+Function IsFolder(file)
+    IsFolder = True
+End Function
+
+Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
+    Dim dirPatched, cmdLine, msg, files, stripCount
+
+    UnpackFolder = False
+
+    If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
+
+    dirPatched = wsh.RegRead(REGKEY_PATH & "\Files\Left\Item_0")
+    If Not fso.FolderExists(dirPatched) Then
+        dirPatched = wsh.RegRead(REGKEY_PATH & "\Files\Right\Item_0")
+    End If
+
+    If IsLangJapanese() Then
+        msg = "パッチ '" & fso.GetFileName(fileSrc) & "'を適用するフォルダを指定してください" & vbCrLf & "(※ 指定したフォルダ内のファイルを一時フォルダにコピーし、一時フォルダ側のファイルにパッチを適用します)"
+    Else
+        msg = "Enter the name of the folder to which the patch '" & fso.GetFileName(fileSrc) & "' is applied"
+    End If
+    Do While True
+        dirPatched = InputBox(msg, PLUGIN_NAME, dirPatched)
+        If dirPatched = "" Then
+            fso.CopyFile fileSrc, fso.BuildPath(folderDst, fso.GetFileName(fileSrc)) & ".txt"
+            Exit Function
+        End If
+        If fso.FolderExists(dirPatched) Then Exit Do
+        If IsLangJapanese() Then
+            MsgBox "フォルダ '" & dirPatched & "' は存在しません", vbExclamation
+        Else
+            MsgBox "folder '" & dirPatched & "' does not exist", vbExclamation
+        End If
+    Loop
+
+    files = GetFileNamesInPatch(fileSrc)
+    stripCount = GuessStripCount(files, dirPatched)
+
+    cmdLine = "type """ & fileSrc & """ | patch " & IIf(IsWindowsTextFormat(fileSrc), "", "--binary") & " -p" & stripCount
+    If IsLangJapanese() Then
+        msg = "patch コマンドへ渡す引数を指定してください"
+    Else
+        msg = "Enter the command line arguments for patch command"
+    End If
+    cmdLine = InputBox(msg, PLUGIN_NAME, cmdLine)
+    If cmdLine = "" Then
+        fso.CopyFile fileSrc, fso.BuildPath(folderDst, fso.GetFileName(fileSrc)) & ".txt"
+        Exit Function
+    End If
+        
+    stripCount = GetStripCountFromCmdLine(cmdLine)
+    If stripCount = 0 Then
+        If HasAbsolutePathInList(files) Then
+            If IsLangJapanese() Then
+               msg = "絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
+            Else
+               msg = "Should not specify the '-p0' command line option for the patch file which includes absolute paths"
+            End If
+            MsgBox msg, vbExclamation
+            Exit Function
+        End If
+    End If
+
+    CopyOriginalFiles dirPatched, folderDst, files, stripCount
+
+    Run wsh, "cmd.exe /s /c ""set PATH=" & GetPatchExeFolder() & ";%PATH% & cd /d " & folderDst & " & " & cmdLine & " & pause"""
+
+    pbChanged = True
+    pSubcode = 0
+    UnpackFolder = True
+End Function
+
+Function PackFolder(fileSrc, folderDst, pbChanged, pSubcode)
+    PackFolder = False
+End Function
+
+Function ShowSettingsDialog()
+    Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
+    Dim tfile: Set tfile = fso.CreateTextFile(tname)
+    tfile.Write getResource("dialog1")
+    tfile.Close
+    Run wsh, "mshta.exe """ & tname & """"
+    fso.DeleteFile tname 
+End Function
+
+Sub Run(sh, cmd)
+    sh.Run cmd, 1, True
+End Sub
+
+Function GetPatchExeFolder()
+    Dim winMergeExePath
+    On Error Resume Next
+    winMergeExePath = "C:\Program Files\WinMerge\WinMergeU.exe"
+    winMergeExePath = wsh.RegRead(REGKEY_PATH & "\Executable")
+    GetPatchExeFolder = fso.BuildPath(fso.GetParentFolderName(winMergeExePath), "GnuWin32\bin")
+End Function
+
+Function SafeUBound(ary)
+    On Error Resume Next
+    SafeUBound = -1
+    SafeUBound = UBound(ary)
+End Function
+
+Function IIf(cond, t, f)
+    If cond Then IIf = t Else IIf = f
+End Function
+
+Function IsPatchFile(path)
+    Dim patterns, pattern, re
+    patterns = Split(get_PluginFileFilters(), ";")
+    For Each pattern In patterns
+        Set re = CreateObject("VBScript.RegExp")
+        re.Pattern = pattern
+        re.IgnoreCase = True
+        If re.Test(path) Then
+            IsPatchFile = True
+            Exit Function
+        End If
+    Next
+    IsPatchFile = False
+End Function
+
+Function IsWindowsTextFormat(path)
+    IsWindowsTextFormat = (InStr(ReadAllText(path), vbCrLf) > 0)
+End Function
+
+Function IsAbsolutePath(path)
+    IsAbsolutePath = (Mid(path, 2, 1) = ":" Or Left(path, 1) = "/" Or Left(path, 1) = "\")
+End Function
+
+Function HasAbsolutePathInList(files)
+    Dim i
+    For i = 0 To SafeUBound(files)
+        If IsAbsolutePath(files(i)(0)) Then
+            HasAbsolutePathInList = True
+            Exit Function
+        End If
+    Next
+    HasAbsolutePathInList = False
+End Function
+
+Function IsNullDevice(path)
+    IsNullDevice = (path = "/dev/null" Or UCase(path) = "NUL")
+End Function
+
+Function StripDir(fileName, stripCount)
+    Dim i, pos, posNext1, posNext2
+    If stripCount = -1 Then
+        StripDir = fso.GetFileName(fileName)
+        Exit Function
+    ElseIf stripCount = 0 Then
+        StripDir = fileName
+        Exit Function
+    End If
+    pos = 1
+    For i = 0 To stripCount - 1
+        posNext1 = InStr(pos, fileName, "/")
+        posNext2 = InStr(pos, fileName, "\")
+        If posNext1 > 0 And (posNext1 < posNext2 Or posNext2 = 0) Then
+            pos = posNext1 + 1
+        ElseIf posNext2 > 0 And (posNext2 < posNext1 Or posNext1 = 0) Then
+            pos = posNext2 + 1
+        Else
+            pos = 0
+            Exit For
+        End If
+    Next
+    If pos = 0 Then
+        StripDir = ""
+    Else
+        StripDir = Mid(fileName, pos)
+    End If
+End Function
+
+Function MakePatchedFileName(destDir, fileName, stripCount)
+    Dim strippedFileName
+    If Not IsNullDevice(fileName) Then
+        strippedFileName = StripDir(fileName, stripCount)
+        If strippedFileName = "" Then
+            MakePatchedFileName = ""
+        Else
+            If Not IsAbsolutePath(strippedFileName) Then
+                MakePatchedFileName = fso.BuildPath(destDir, strippedFileName)
+            Else
+                MakePatchedFileName = strippedFileName
+            End If
+        End If
+    Else
+        MakePatchedFileName = fileName
+    End If
+End Function
+
+Function GuessStripCount(fileNamesInPatch, destDir)
+    Dim i, j, fileName, stripCount
+    Dim matchCount, maxMatchCount
+    GuessStripCount = 0
+    stripCount = 0
+    maxMatchCount = 0
+    If SafeUBound(fileNamesInPatch) < 0 Then Exit Function
+    Do While True
+        matchCount = 0
+        For i = 0 To SafeUBound(fileNamesInPatch)
+            For j = 0 To 1
+                If Not IsNullDevice(fileNamesInPatch(i)(j)) Then
+                    fileName = MakePatchedFileName(destDir, fileNamesInPatch(i)(j), stripCount)
+                    If fso.FileExists(fileName) Then
+                        matchCount = matchCount + 1
+                    End If
+                End If
+            Next
+        Next
+        If matchCount > maxMatchCount Then
+            GuessStripCount = stripCount
+        End If
+        stripCount = stripCount + 1
+        If stripCount > 64 Then Exit Do
+    Loop
+End Function
+
+Sub CreateFolderEx(ByVal dirName)
+    Dim parent
+    parent = fso.GetParentFolderName(dirName)
+    If fso.FolderExists(parent) Then
+        If Not fso.FolderExists(dirName) Then
+            fso.CreateFolder dirName
+        End If
+    Else
+        CreateFolderEx parent
+        fso.CreateFolder dirName
+    End If
+End Sub
+
+Sub CopyOriginalFiles(srcDir, destDir, fileNamesInPatch, stripCount)
+    Dim i
+    Dim fileNameSrc, fileNameDest
+    For i = 0 To SafeUBound(fileNamesInPatch)
+        If Not IsNullDevice(fileNamesInPatch(i)(0)) Then
+            fileNameSrc = MakePatchedFileName(srcDir, fileNamesInPatch(i)(0), stripCount)
+            fileNameDest = MakePatchedFileName(destDir, fileNamesInPatch(i)(0), stripCount)
+            If fso.FileExists(fileNameSrc) Then
+                If Not fso.FolderExists(fso.GetParentFolderName(fileNameDest)) Then
+                    CreateFolderEx fso.GetParentFolderName(fileNameDest)
+                End If
+                fso.CopyFile fileNameSrc, fileNameDest
+            End If
+        End If
+    Next
+End Sub
+
+Function ReadAllText(fileName)
+    Dim stream
+    Set stream = CreateObject("ADODB.Stream")
+    stream.Open
+    stream.Charset = "_autodetect_all"
+    stream.LoadFromFile fileName
+    ReadAllText = stream.ReadText
+    stream.Close
+End Function
+
+Function GetFileNamesInPatch(fileName)
+    Dim i, n, count, line, lines, text
+    Dim re, ml, mr
+    Dim ary()
+
+    Set re = CreateObject("VBScript.RegExp")
+    re.Pattern = "^(---|\+\+\+|\*\*\*) ([^\t\r\n]+)"
+
+    text = ReadAllText(fileName)
+
+    lines = Split(text, vbLf)
+    Do While i <= UBound(lines)
+        line = lines(i)
+        Set ml = re.Execute(line)
+        If ml.count > 0 Then
+            i = i + 1
+            If i <= UBound(lines) Then
+                line = lines(i)
+                Set mr = re.Execute(line)
+                If mr.count > 0 Then
+                    ReDim Preserve ary(n)
+                    ary(n) = Array(ml(0).SubMatches(1), mr(0).SubMatches(1))
+                    n = n + 1
+                End If
+            End If
+        End If
+        i = i + 1
+    Loop
+    GetFileNamesInPatch = ary
+End Function
+
+Function IsLangJapanese()
+    Dim languageId
+    languageId = 1033
+    On Error Resume Next
+    languageId = CLng(wsh.RegRead(REGKEY_PATH & "\Locale\LanguageId"))
+    IsLangJapanese = (languageId = 1041)
+End Function
+
+Function GetStripCountFromCmdLine(cmdLine)
+    Dim re, m
+    Set re = CreateObject("VBScript.RegExp")
+    re.Pattern = "( -p(\d+)| --strip=(\d+))"
+    Set m = re.Execute(cmdLine)
+    If m.count > 0 Then
+        If Not IsEmpty(m(0).SubMatches(1)) Then
+            GetStripCountFromCmdLine = CLng(m(0).SubMatches(1))
+        Else
+            GetStripCountFromCmdLine = CLng(m(0).SubMatches(2))
+        End If
+    Else
+        GetStripCountFromCmdLine = -1
+    End If
+End Function
+
+</script>
+
+<resource id="dialog1">
+<![CDATA[
+<html>
+  <head>
+    <title>ApplyPatch.sct WinMerge Plugin Options</title>
+    <meta content="text/html" charset="Shift_JIS">
+    <style>
+      body { background-color: lightgray; }
+      ul { list-style:none; }
+    </style>
+    <script type="text/javascript">
+      var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\ApplyPatch.sct\\";
+
+      function regRead(key, defaultValue) {
+        try {
+          return (new ActiveXObject("WScript.Shell")).RegRead(key);
+        } catch (e) {
+          return defaultValue;
+        }
+      }
+
+      function regWrite(key, value, type) {
+        (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
+      }
+
+      function isLangJapanese() {
+        var languageId = regRead(REGKEY_PATH & "\Locale\LanguageId", 1033);
+        return (languageId = 1041);
+      }
+
+      function onload() {
+
+        var w = 600, h = 400;
+        window.resizeTo(w, h);
+        window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
+
+        setLanguage();
+      }
+
+      function setLanguage() {
+        var div = document.getElementById("language") || document.createElement('div')
+        div.id = "language";
+        var html = '&shy;<style>';
+        if (isLangJapanese()) {
+          html += '.en { display: none } .ja { display: inline }';
+        } else {
+          html += '.ja { display: none } .en { display: inline }';
+        }
+        div.innerHTML = html;
+        if (!document.getElementById("language"))
+          document.body.appendChild(div);
+      }
+
+      function btnOk_onclick() {
+      }
+
+      function btnCancel_onclick() {
+        window.close();
+      }
+
+    </script>
+  </head>
+  <body onload="onload();">
+    <div>
+      <ul>
+        <li>
+          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
+          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
+          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
+          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
+]]>
+</resource>
+
+</scriptlet>

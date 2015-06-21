@@ -93,13 +93,10 @@ Function writeCellValues(fo, sht)
 End Function
 
 Function writeFormulas(fo, sht)
-	Dim rng, row, col, rows, cols, formula
+	Dim rng, row, col, formula
 
-	rows = sht.UsedRange.Rows.Count
-	cols = sht.UsedRange.Columns.Count
-
-	For row = 1 To rows
-		For col = 1 To cols
+	For row = sht.UsedRange.Row To sht.UsedRange.Row + sht.UsedRange.Rows.Count - 1
+		For col = sht.UsedRange.Column To sht.UsedRange.Column + sht.UsedRange.Columns.Count - 1
 			Set rng = sht.Cells(Row, Col)
 			formula = rng.Formula
 			If Left(formula, 1) = "=" Then 
@@ -107,6 +104,22 @@ Function writeFormulas(fo, sht)
 			End If
 		Next
 	Next
+End Function
+
+Function getUsedRangeIncludingShapes(sht)
+	Dim shp, rng
+	Dim col_max, row_max
+	col_max = 0
+	row_max = 0
+	For Each shp In sht.Shapes
+		Set rng = shp.BottomRightCell
+		If row_max < rng.Row + rng.Rows.Count - 1 Then row_max = rng.Row + rng.Rows.Count - 1
+		If col_max < rng.Column + rng.Columns.Count - 1 Then col_max = rng.Column + rng.Columns.Count - 1
+	Next
+	Set rng = sht.UsedRange
+	If row_max < rng.Row + rng.Rows.Count - 1 Then row_max = rng.Row + rng.Rows.Count - 1
+	If col_max < rng.Column + rng.Columns.Count - 1 Then col_max = rng.Column + rng.Columns.Count - 1
+	Set getUsedRangeIncludingShapes = sht.Range("A1", sht.Cells(row_max, col_max))
 End Function
 
 Function writeTextsInShapes(fo, sht)
@@ -163,7 +176,7 @@ Function saveRangeAsImage(sht, rng, filename)
 End Function
 
 Function saveSheetAsImage(sht, filename)
-	If Not saveRangeAsImage(sht, sht.UsedRange, filename) Then
+	If Not saveRangeAsImage(sht, getUsedRangeIncludingShapes(sht), filename) Then
 		Dim shtNew
 		Set shtNew = sht.Parent.Sheets.Add
 		shtNew.Range("A1") = "Error!"

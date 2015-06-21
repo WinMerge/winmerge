@@ -28,9 +28,12 @@
 #define POCO_NO_UNWINDOWS 1
 #include <vector>
 #include <list>
+#include <unordered_set>
 #include <algorithm>
 #include <cstdarg>
 #include <cassert>
+#include <iostream>
+#include <sstream>
 #include <Poco/Mutex.h>
 #include <Poco/ScopedLock.h>
 #include <Poco/RegularExpression.h>
@@ -46,6 +49,8 @@
 #include "Environment.h"
 #include "FileFilter.h"
 #include "coretools.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
 
 using std::vector;
 using Poco::RegularExpression;
@@ -648,14 +653,25 @@ static void RemoveScriptletCandidate(const String &scriptletFilepath)
 	}
 }
 
+static std::unordered_set<String> GetDisabledPluginList()
+{
+	std::unordered_set<String> list;
+	std::basic_stringstream<TCHAR> ss(GetOptionsMgr()->GetString(OPT_PLUGINS_DISABLED_LIST));
+	String name;
+	while (std::getline(ss, name, _T('|')))
+		list.insert(name);
+	return list;
+}
+
 /** 
  * @brief Get available scriptlets for an event
  *
  * @return Returns an array of valid LPDISPATCH
  */
-static PluginArray * GetAvailableScripts( const wchar_t *transformationEvent, bool getScriptletsToo ) 
+static PluginArray * GetAvailableScripts( const wchar_t *transformationEvent) 
 {
 	vector<String>& scriptlets = LoadTheScriptletList();
+	std::unordered_set<String> disabled_plugin_list = GetDisabledPluginList();
 
 	PluginArray * pPlugins = new PluginArray;
 
@@ -671,6 +687,7 @@ static PluginArray * GetAvailableScripts( const wchar_t *transformationEvent, bo
 		if (rtn == 1)
 		{
 			// Plugin has this event
+			plugin->m_disabled = (disabled_plugin_list.find(plugin->m_name) != disabled_plugin_list.end());
 			pPlugins->push_back(plugin);
 		}
 		else if (rtn < 0)
@@ -740,7 +757,7 @@ PluginArray * CScriptsOfThread::GetAvailableScripts(const wchar_t *transformatio
 		if (wcscmp(transformationEvent, TransformationCategories[i]) == 0)
 		{
 			if (m_aPluginsByEvent[i] == NULL)
-				m_aPluginsByEvent[i].reset(::GetAvailableScripts(transformationEvent, bInMainThread()));
+				m_aPluginsByEvent[i].reset(::GetAvailableScripts(transformationEvent));
 			return m_aPluginsByEvent[i].get();
 		}
 	// return a pointer to an empty list
@@ -748,7 +765,22 @@ PluginArray * CScriptsOfThread::GetAvailableScripts(const wchar_t *transformatio
 	return &noPlugin;
 }
 
-
+void CScriptsOfThread::SaveSettings()
+{
+	std::vector<String> list;
+	for (int i = 0; i < nTransformationEvents; i++)
+	{
+		if (m_aPluginsByEvent[i] == NULL)
+			m_aPluginsByEvent[i].reset(::GetAvailableScripts(TransformationCategories[i]));
+		for (int j = 0; j < m_aPluginsByEvent[i]->size(); ++j)
+		{
+			const PluginInfoPtr & plugin = m_aPluginsByEvent[i]->at(j);
+			if (plugin->m_disabled)
+				list.push_back(String(plugin->m_name));
+		}
+	}
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_DISABLED_LIST, string_join(list.begin(), list.end(), _T("|")));
+}
 
 void CScriptsOfThread::FreeAllScripts()
 {
@@ -780,7 +812,7 @@ PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transfor
 	for (int step = 0 ; step < piFileScriptArray->size() ; step ++)
 	{
 		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
-		if (plugin->m_bAutomatic == false)
+		if (plugin->m_bAutomatic == false || plugin->m_disabled)
 			continue;
 		if (plugin->TestAgainstRegList(filteredText) == false)
 			continue;
@@ -793,10 +825,10 @@ PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEven
 {
 	int i;
 	for (i = 0 ; i < nTransformationEvents ; i ++)
-		if (wcscmp(transformationEvent, TransformationCategories[i]) == 0)
+		if (!transformationEvent || wcscmp(transformationEvent, TransformationCategories[i]) == 0)
 		{
 			if (m_aPluginsByEvent[i] == NULL)
-				m_aPluginsByEvent[i].reset(::GetAvailableScripts(transformationEvent, bInMainThread()));
+				m_aPluginsByEvent[i].reset(::GetAvailableScripts(TransformationCategories[i]));
 
 			for (int j = 0 ; j <  m_aPluginsByEvent[i]->size() ; j++)
 				if (m_aPluginsByEvent[i]->at(j)->m_name == name)

@@ -393,10 +393,22 @@ PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveF
 		return DOES_NOT_EXIST;
 	PATH_EXISTENCE p2 = paths_DoesPathExist(paths[1], IsArchiveFile);
 	if (p1 != p2)
-		return DOES_NOT_EXIST;
+	{
+		p1 = paths_DoesPathExist(paths[0]);
+		p2 = paths_DoesPathExist(paths[1]);
+		if (p1 != p2)
+			return DOES_NOT_EXIST;
+	}
 	if (paths.GetSize() < 3) return p1; 
 	PATH_EXISTENCE p3 = paths_DoesPathExist(paths[2], IsArchiveFile);
-	if (p2 != p3) return DOES_NOT_EXIST;
+	if (p2 != p3)
+	{
+		p1 = paths_DoesPathExist(paths[0]);
+		p2 = paths_DoesPathExist(paths[1]);
+		p3 = paths_DoesPathExist(paths[2]);
+		if (p1 != p2 || p2 != p3)
+			return DOES_NOT_EXIST;
+	}
 	return p1;
 }
 

@@ -75,6 +75,8 @@ void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent)
 	{
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
 		m_pfile->WriteString(_T("\r\n  "));
+		if (plugin->m_disabled)
+			m_pfile->WriteString(_T("!"));
 		m_pfile->WriteString(plugin->m_name);
 		m_pfile->WriteString(_T(" ["));
 		m_pfile->WriteString(plugin->m_filepath);

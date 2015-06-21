@@ -71,10 +71,10 @@ void PluginsListDlg::InitList()
 {
 	// Show selection across entire row.
 	// Also enable infotips.
-	m_list.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
+	m_list.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
 	String title = _("Name");
-	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, 150);
+	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, 200);
 	title = _("Type");
 	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, 100);
 	title = _("Description");
@@ -113,6 +113,7 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 		int ind = m_list.InsertItem(m_list.GetItemCount(), plugin->m_name.c_str());
 		m_list.SetItemText(ind, 1, pluginType.c_str());
 		m_list.SetItemText(ind, 2, plugin->m_description.c_str());
+		m_list.SetCheck(ind, !plugin->m_disabled);
 	}
 }
 
@@ -122,15 +123,14 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 void PluginsListDlg::OnBnClickedOk()
 {
 	CButton *btn = (CButton *)GetDlgItem(IDC_PLUGINS_ENABLE);
-	int check = btn->GetCheck();
-	if (check == BST_CHECKED)
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_ENABLED, (btn->GetCheck() == BST_CHECKED));
+
+	for (int i = 0; i < m_list.GetItemCount(); ++i)
 	{
-		GetOptionsMgr()->SaveOption(OPT_PLUGINS_ENABLED, true);
+		PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(NULL, String(m_list.GetItemText(i, 0)));
+		plugin->m_disabled = !m_list.GetCheck(i);
 	}
-	else
-	{
-		GetOptionsMgr()->SaveOption(OPT_PLUGINS_ENABLED, false);
-	}
+	CAllThreadsScripts::GetActiveSet()->SaveSettings();
 	OnOK();
 }
 

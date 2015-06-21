@@ -979,11 +979,16 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 		}
 	}
 
-	DecompressResult res = DecompressArchive(m_hWnd, files);
-	if (res.pTempPathContext)
+	CTempPathContext *pTempPathContext = NULL;
+	if (pathsType == IS_EXISTING_DIR)
 	{
-		pathsType = res.pathsType;
-		files = res.files;
+		DecompressResult res= DecompressArchive(m_hWnd, files);
+		if (res.pTempPathContext)
+		{
+			pathsType = res.pathsType;
+			files = res.files;
+			pTempPathContext = res.pTempPathContext;
+		}
 	}
 
 	// Determine if we want new a dirview open now that we know if it was
@@ -1014,7 +1019,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 			}
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
-			pDirDoc->InitCompare(files, bRecurse, res.pTempPathContext);
+			pDirDoc->InitCompare(files, bRecurse, pTempPathContext);
 
 			pDirDoc->SetDescriptions(theApp.m_strDescriptions);
 			pDirDoc->SetTitle(NULL);
