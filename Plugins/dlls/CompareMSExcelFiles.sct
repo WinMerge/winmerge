@@ -109,6 +109,22 @@ Function writeFormulas(fo, sht)
 	Next
 End Function
 
+Function getUsedRangeIncludingShapes(sht)
+	Dim shp, rng
+	Dim col_max, row_max
+	col_max = 0
+	row_max = 0
+	For Each shp In sht.Shapes
+		Set rng = shp.BottomRightCell
+		If row_max < rng.Row + rng.Rows.Count - 1 Then row_max = rng.Row + rng.Rows.Count - 1
+		If col_max < rng.Column + rng.Columns.Count - 1 Then col_max = rng.Column + rng.Columns.Count - 1
+	Next
+	Set rng = sht.UsedRange
+	If row_max < rng.Row + rng.Rows.Count - 1 Then row_max = rng.Row + rng.Rows.Count - 1
+	If col_max < rng.Column + rng.Columns.Count - 1 Then col_max = rng.Column + rng.Columns.Count - 1
+	Set getUsedRangeIncludingShapes = sht.Range("A1", sht.Cells(row_max, col_max))
+End Function
+
 Function writeTextsInShapes(fo, sht)
 	Dim shp
 	On Error Resume Next
@@ -163,7 +179,7 @@ Function saveRangeAsImage(sht, rng, filename)
 End Function
 
 Function saveSheetAsImage(sht, filename)
-	If Not saveRangeAsImage(sht, sht.UsedRange, filename) Then
+	If Not saveRangeAsImage(sht, getUsedRangeIncludingShapes(sht), filename) Then
 		Dim shtNew
 		Set shtNew = sht.Parent.Sheets.Add
 		shtNew.Range("A1") = "Error!"
