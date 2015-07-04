@@ -850,9 +850,9 @@ void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
 	String sPath = env_GetProgPath();
 	LANGID LangId = GetLangId();
 	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
-		sPath += DocsPath_ja;
+		sPath = paths_ConcatPath(sPath, DocsPath_ja);
 	else
-		sPath += DocsPath;
+		sPath = paths_ConcatPath(sPath, DocsPath);
 	if (helpLocation == NULL)
 	{
 		if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
