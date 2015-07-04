@@ -805,7 +805,7 @@ int CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocatio
  */
 void CMainFrame::OnHelpGnulicense() 
 {
-	const String spath = env_GetProgPath() + LicenseFile;
+	const String spath = paths_ConcatPath(env_GetProgPath(), LicenseFile);
 	theApp.OpenFileOrUrl(spath.c_str(), LicenceUrl);
 }
 
