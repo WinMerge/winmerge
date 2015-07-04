@@ -514,11 +514,11 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 	ThreadPool threadPool;
 	std::vector<DiffWorkerPtr> workers;
 	const int compareMethod = myStruct->context->GetCompareMethod();
-	size_t nworkers = (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT) ? Environment::processorCount() : 1;
+	unsigned nworkers = (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT) ? Environment::processorCount() : 1;
 	NotificationQueue queue;
 
 	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
-	for (size_t i = 0; i < nworkers; ++i)
+	for (unsigned i = 0; i < nworkers; ++i)
 	{
 		workers.push_back(DiffWorkerPtr(new DiffWorker(queue, myStruct->context, i)));
 		threadPool.start(*workers[i]);
