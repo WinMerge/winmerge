@@ -6,12 +6,6 @@ del /s BuildTmp\*.res
 call SetVersion.cmd
 cscript /nologo ExpandEnvironmenStrings.vbs Version.in > Version.h
 
-rem Filters
-mkdir Build\Filters 2> NUL
-for %%i in (Filters\*.flt Filters\*.tmpl Filters\*.txt) do (
-  cscript convertlf2crlf.vbs "%%i" Build\Filters\%%~nxi"
-)
-
 setlocal
 call "%VS120COMNTOOLS%vsvars32.bat"
 MSBuild WinMerge.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="Win32" || pause
