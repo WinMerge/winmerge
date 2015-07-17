@@ -31,7 +31,7 @@ class CVssPromptDlg : public CDialog
 {
 // Construction
 public:
-	CVssPromptDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit CVssPromptDlg(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CVssPromptDlg)

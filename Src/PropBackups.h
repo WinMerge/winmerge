@@ -16,7 +16,7 @@ class COptionsMgr;
 class PropBackups : public OptionsPanel
 {
 public:
-	PropBackups(COptionsMgr *optionsMgr);
+	explicit PropBackups(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

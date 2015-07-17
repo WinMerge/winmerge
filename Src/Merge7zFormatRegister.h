@@ -7,7 +7,7 @@
 
 struct Merge7zFormatRegister
 {
-	Merge7zFormatRegister(Merge7z::Format *(*pfnGuessFormat)(const String& path))
+	explicit Merge7zFormatRegister(Merge7z::Format *(*pfnGuessFormat)(const String& path))
 	{
 		Add(pfnGuessFormat);
 	}

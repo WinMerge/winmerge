@@ -13,7 +13,7 @@ class PropCodepage : public OptionsPanel
 {
 // Construction
 public:
-	PropCodepage(COptionsMgr *optionsMgr);
+	explicit PropCodepage(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

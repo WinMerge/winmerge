@@ -14,7 +14,7 @@ class PropShell : public OptionsPanel
 {
 // Construction
 public:
-	PropShell(COptionsMgr *optionsMgr);
+	explicit PropShell(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

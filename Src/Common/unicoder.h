@@ -24,7 +24,7 @@ struct buffer
 	size_t capacity; /**< Buffer's size in bytes. */
 	size_t size; /**< Size of the data in the buffer, <= capacity. */
 
-	buffer(size_t initialSize);
+	explicit buffer(size_t initialSize);
 	~buffer();
 	void resize(size_t newSize);
 };

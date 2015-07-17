@@ -43,14 +43,14 @@ private:
 	String m_strPrivateBuild;
 
 public:
-	CVersionInfo(BOOL bVersionOnly);
-	CVersionInfo(WORD wLanguage);
+	explicit CVersionInfo(BOOL bVersionOnly);
+	explicit CVersionInfo(WORD wLanguage);
 	CVersionInfo(LPCTSTR szFileToVersion,
 				   BOOL bDllVersion);
 	CVersionInfo(LPCTSTR szFileToVersion = NULL,
 				   LPCTSTR szLanguage = NULL,
 				   LPCTSTR szCodepage = NULL);
-	CVersionInfo(HINSTANCE hModule);
+	explicit CVersionInfo(HINSTANCE hModule);
 	String GetFileVersion() const;
 	String GetCompanyName() const;
 	String GetFileDescription() const;

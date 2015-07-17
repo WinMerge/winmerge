@@ -232,7 +232,7 @@ bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 {
 	if (nDiff < (int) m_diffs.size())
 	{
-		m_diffs[nDiff] = di;
+		m_diffs[nDiff] = DiffRangeInfo(di);
 		return true;
 	}
 	else

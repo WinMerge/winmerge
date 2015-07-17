@@ -68,7 +68,7 @@ class SyntaxColors
 {
 public:
 	SyntaxColors();
-	SyntaxColors(const SyntaxColors *pColors);
+	explicit SyntaxColors(const SyntaxColors *pColors);
 	void Clone(const SyntaxColors *pColors);
 	COLORREF GetColor(UINT index) const { return m_colors[index]; }
 	void SetColor(UINT index, COLORREF color);

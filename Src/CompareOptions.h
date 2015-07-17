@@ -100,7 +100,7 @@ class DiffutilsOptions : public CompareOptions
 {
 public:
 	DiffutilsOptions();
-	DiffutilsOptions(const CompareOptions& options);
+	explicit DiffutilsOptions(const CompareOptions& options);
 	DiffutilsOptions(const DiffutilsOptions& options);
 	void SetToDiffUtils();
 	void GetAsDiffOptions(DIFFOPTIONS &options) const;
@@ -120,7 +120,7 @@ class QuickCompareOptions : public CompareOptions
 {
 public:
 	QuickCompareOptions();
-	QuickCompareOptions(const CompareOptions& options);
+	explicit QuickCompareOptions(const CompareOptions& options);
 
 	bool m_bStopAfterFirstDiff; /**< Optimize compare by stopping after first difference? */
 };

@@ -3074,7 +3074,7 @@ void CMergeDoc::OnOK()
 
 void CMergeDoc::OnFileRecompareAsXML()
 {
-	PackingInfo infoUnpacker = PLUGIN_BUILTIN_XML;
+	PackingInfo infoUnpacker(PLUGIN_BUILTIN_XML);
 	SetUnpacker(&infoUnpacker);
 	OnFileReload();
 }

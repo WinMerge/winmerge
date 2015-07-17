@@ -33,7 +33,7 @@ class WMGotoDlg : public CDialog
 {
 // Construction
 public:
-	WMGotoDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit WMGotoDlg(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(WMGotoDlg)
