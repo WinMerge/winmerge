@@ -41,7 +41,7 @@
 class MergeCmdLineInfo
 {
 public:
-	MergeCmdLineInfo(const TCHAR *);
+	explicit MergeCmdLineInfo(const TCHAR *);
 
 public:
 

@@ -33,7 +33,7 @@ class CompareStatisticsDlg : public CDialog
 	DECLARE_DYNAMIC(CompareStatisticsDlg)
 
 public:
-	CompareStatisticsDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit CompareStatisticsDlg(CWnd* pParent = NULL);   // standard constructor
 	void SetCompareStats(const CompareStats * pStats);
 
 // Dialog Data

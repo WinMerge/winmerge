@@ -43,7 +43,7 @@ public:
 
 // Construction
 public:
-	CDirColsDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit CDirColsDlg(CWnd* pParent = NULL);   // standard constructor
 	void AddColumn(const String & name, const String & desc, int log, int phy=-1)
 		{ column c(name, desc, log, phy); m_cols.push_back(c); }
 	void AddDefColumn(const String & name, int log, int phy=-1)

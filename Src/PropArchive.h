@@ -16,7 +16,7 @@ class COptionsMgr;
 class PropArchive : public OptionsPanel
 {
 public:
-	PropArchive(COptionsMgr *optionsMgr);
+	explicit PropArchive(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

@@ -76,7 +76,7 @@ void writeElement(XMLWriter& writer, const std::string& tagname, const std::stri
 class ProjectFileHandler: public ContentHandler
 {
 public:
-	ProjectFileHandler(ProjectFile *pProject) : m_pProject(pProject) {}
+	explicit ProjectFileHandler(ProjectFile *pProject) : m_pProject(pProject) {}
 
 	void setDocumentLocator(const Locator* loc) {}
 	void startDocument() {}

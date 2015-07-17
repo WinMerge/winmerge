@@ -8,7 +8,7 @@
 class TFile : public Poco::File
 {
 public:
-	TFile(const String& path) : File(ucr::toUTF8(path)) {}
+	explicit TFile(const String& path) : File(ucr::toUTF8(path)) {}
 	void copyTo(const String& path) const { File::copyTo(ucr::toUTF8(path)); }
 	void moveTo(const String& path) { File::moveTo(ucr::toUTF8(path)); }
 	void renameTo(const String& path) { File::renameTo(ucr::toUTF8(path)); }

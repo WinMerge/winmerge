@@ -42,11 +42,11 @@ public:
 	typedef PathContextIterator const_iterator;
 
 	PathContext();
-	PathContext(const String& sLeft);
+	explicit PathContext(const String& sLeft);
 	PathContext(const String& sLeft, const String& sRight);
 	PathContext(const String& sLeft, const String& sMiddle, const String& sRight);
 	PathContext(const PathContext &paths);
-	PathContext(const std::vector<String>& paths);
+	explicit PathContext(const std::vector<String>& paths);
 
 	String GetAt(int nIndex) const;
 	String& GetElement(int nIndex);
@@ -78,7 +78,7 @@ private:
 class PathContextIterator : public std::iterator<std::forward_iterator_tag, String>
 {
 public:
-	PathContextIterator(const PathContext *pPathContext) : m_pPathContext(pPathContext)
+	explicit PathContextIterator(const PathContext *pPathContext) : m_pPathContext(pPathContext)
 	{
 		m_sel =  (pPathContext->GetSize() == 0) ? -1 : 0;
 	}

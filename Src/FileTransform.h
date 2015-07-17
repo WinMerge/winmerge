@@ -74,7 +74,7 @@ public:
 		}
 		bToBeScanned = bMode;
 	};
-	PluginForFile(PLUGIN_MODE bMode) 
+	explicit PluginForFile(PLUGIN_MODE bMode) 
 	{
 		Initialize(bMode);
 	};
@@ -97,7 +97,7 @@ public:
 class PackingInfo : public PluginForFile
 {
 public:
-	PackingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)g_bUnpackerMode)
+	explicit PackingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)g_bUnpackerMode)
 	: PluginForFile(bMode)
 	, subcode(0)
 	, pufile(0)
@@ -122,7 +122,7 @@ public:
 class PrediffingInfo : public PluginForFile
 {
 public:
-	PrediffingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)g_bPredifferMode)
+	explicit PrediffingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)g_bPredifferMode)
 	: PluginForFile(bMode)
 	{
 	}

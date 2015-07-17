@@ -1986,7 +1986,7 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 	if (cchData == 0 || pchData[cchData - 1] != _T('\0'))
 		return FALSE;
 	ReplyMessage(TRUE);
-	MergeCmdLineInfo cmdInfo = pchData;
+	MergeCmdLineInfo cmdInfo(pchData);
 	theApp.ParseArgsAndDoOpen(cmdInfo, this);
 	return TRUE;
 }

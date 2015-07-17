@@ -20,7 +20,7 @@ class PropEditor : public OptionsPanel
 {
 // Construction
 public:
-	PropEditor(COptionsMgr *optionsMgr);
+	explicit PropEditor(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

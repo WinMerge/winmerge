@@ -29,7 +29,7 @@ class CCCPromptDlg : public CDialog
 {
 // Construction
 public:
-	CCCPromptDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit CCCPromptDlg(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CCCPromptDlg)

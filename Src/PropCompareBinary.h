@@ -17,7 +17,7 @@ class PropCompareBinary : public OptionsPanel
 {
 // Construction
 public:
-	PropCompareBinary(COptionsMgr *optionsMgr);
+	explicit PropCompareBinary(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

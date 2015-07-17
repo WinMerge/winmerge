@@ -267,7 +267,7 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 			TRY
 			{
 				//  BSP - ...to get the specific source safe item to be checked out
-				vssi = vssdb.GetVSSItem( strItem.c_str(), 0 );
+				vssi = IVSSItem(vssdb.GetVSSItem( strItem.c_str(), 0 ));
 			}
 			CATCH_ALL(e)
 			{

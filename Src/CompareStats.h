@@ -67,7 +67,7 @@ public:
 		RESULT_COUNT  //THIS MUST BE THE LAST ITEM
 	};
 
-	CompareStats(int nDirs);
+	explicit CompareStats(int nDirs);
 	~CompareStats();
 	void SetCompareThreadCount(int nCompareThreads)
 	{

@@ -61,7 +61,7 @@ created with default values that are assoicated with most commen languages.
 class FilterCommentsManager
 {
 public:
-	FilterCommentsManager(const String &IniFileName = _T(""));
+	explicit FilterCommentsManager(const String &IniFileName = _T(""));
 	FilterCommentsSet GetSetForFileType(const String& FileTypeName);
 
 private:

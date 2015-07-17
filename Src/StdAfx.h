@@ -98,7 +98,7 @@ private:
 	LARGE_INTEGER freq;
 	TCHAR funcname[256];
 public:
-	CWinMergeProfile(LPCTSTR pFuncName) {
+	explicit CWinMergeProfile(LPCTSTR pFuncName) {
 		lstrcpy(funcname, pFuncName);
 		QueryPerformanceFrequency(&freq);
 		QueryPerformanceCounter(&li[0]);

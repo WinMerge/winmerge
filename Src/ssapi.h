@@ -6,7 +6,7 @@ class IVSSItemOld : public COleDispatchDriver
 {
 public:
 	IVSSItemOld() {}		// Calls COleDispatchDriver default constructor
-	IVSSItemOld(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSItemOld(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSItemOld(const IVSSItemOld& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -50,7 +50,7 @@ class IVSSItem : public COleDispatchDriver
 {
 public:
 	IVSSItem() {}		// Calls COleDispatchDriver default constructor
-	IVSSItem(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSItem(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSItem(const IVSSItem& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -96,7 +96,7 @@ class IVSSVersions : public COleDispatchDriver
 {
 public:
 	IVSSVersions() {}		// Calls COleDispatchDriver default constructor
-	IVSSVersions(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSVersions(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSVersions(const IVSSVersions& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -112,7 +112,7 @@ class IVSSVersionOld : public COleDispatchDriver
 {
 public:
 	IVSSVersionOld() {}		// Calls COleDispatchDriver default constructor
-	IVSSVersionOld(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSVersionOld(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSVersionOld(const IVSSVersionOld& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -135,7 +135,7 @@ class IVSSVersion : public COleDispatchDriver
 {
 public:
 	IVSSVersion() {}		// Calls COleDispatchDriver default constructor
-	IVSSVersion(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSVersion(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSVersion(const IVSSVersion& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -159,7 +159,7 @@ class IVSSItems : public COleDispatchDriver
 {
 public:
 	IVSSItems() {}		// Calls COleDispatchDriver default constructor
-	IVSSItems(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSItems(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSItems(const IVSSItems& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -177,7 +177,7 @@ class IVSSCheckouts : public COleDispatchDriver
 {
 public:
 	IVSSCheckouts() {}		// Calls COleDispatchDriver default constructor
-	IVSSCheckouts(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSCheckouts(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSCheckouts(const IVSSCheckouts& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -195,7 +195,7 @@ class IVSSCheckout : public COleDispatchDriver
 {
 public:
 	IVSSCheckout() {}		// Calls COleDispatchDriver default constructor
-	IVSSCheckout(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSCheckout(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSCheckout(const IVSSCheckout& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -218,7 +218,7 @@ class IVSSDatabaseOld : public COleDispatchDriver
 {
 public:
 	IVSSDatabaseOld() {}		// Calls COleDispatchDriver default constructor
-	IVSSDatabaseOld(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSDatabaseOld(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSDatabaseOld(const IVSSDatabaseOld& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -241,7 +241,7 @@ class IVSSDatabase : public COleDispatchDriver
 {
 public:
 	IVSSDatabase() {}		// Calls COleDispatchDriver default constructor
-	IVSSDatabase(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSDatabase(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSDatabase(const IVSSDatabase& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -271,7 +271,7 @@ class IVSSUser : public COleDispatchDriver
 {
 public:
 	IVSSUser() {}		// Calls COleDispatchDriver default constructor
-	IVSSUser(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSSUser(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSSUser(const IVSSUser& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
@@ -314,7 +314,7 @@ class IVSS : public COleDispatchDriver
 {
 public:
 	IVSS() {}		// Calls COleDispatchDriver default constructor
-	IVSS(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+	explicit IVSS(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
 	IVSS(const IVSS& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
