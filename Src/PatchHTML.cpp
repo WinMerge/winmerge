@@ -330,14 +330,14 @@ static struct change *
 find_hunk (struct change *start)
 {
   struct change *prev;
-  int top0, top1;
+  int top0;
   int thresh;
 
   do
     {
       /* Compute number of first line in each file beyond this changed.  */
       top0 = start->line0 + start->deleted;
-      top1 = start->line1 + start->inserted;
+      int top1 = start->line1 + start->inserted;
       prev = start;
       start = start->link;
       /* Threshold distance is 2*CONTEXT between two non-ignorable changes,
@@ -395,13 +395,12 @@ static void
 output_1_escapedhtml(const char *text, const char *limit)
 {
   FILE *out = outfile;
-  unsigned char c;
   const char *t = text;
   int column = 0;
   int spcolumn = -2;
 
   while (t < limit)
-    switch ((c = *t++))
+    switch (unsigned char c = *t++)
       {
       case '&':
 	fprintf (out, "&amp;");

@@ -386,7 +386,6 @@ void CMergeApp::CheckinToClearCase(const String &strDestinationPath)
 {
 	String spath, sname;
 	paths_SplitFilename(strDestinationPath, &spath, &sname, 0);
-	int code;
 	std::vector<std::string> args;
 	std::string sname_utf8;
 	
@@ -399,7 +398,7 @@ void CMergeApp::CheckinToClearCase(const String &strDestinationPath)
 	try
 	{
 		ProcessHandle hVss(Process::launch(vssPath, args));
-		code = Process::wait(hVss);
+		int code = Process::wait(hVss);
 		if (code != 0)
 		{
 			if (LangMessageBox(IDS_VSS_CHECKINERROR, MB_ICONWARNING | MB_YESNO) == IDYES)

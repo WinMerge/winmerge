@@ -21,13 +21,9 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 	size_t diff12i = 0;
 	size_t diff3i = 0;
 
-	size_t diff10itmp;
-	size_t diff12itmp;
-
-	bool lastDiffBlockIsDiff12;
 	bool firstDiffBlockIsDiff12;
 
-	Element dr3, dr10, dr12, dr10first, dr10last, dr12first, dr12last;
+		Element dr3, dr10, dr12, dr10first, dr10last, dr12first, dr12last;
 
 	int linelast0 = 0;
 	int linelast1 = 0;
@@ -78,10 +74,10 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 			else
 				firstDiffBlockIsDiff12 = false;
 		}
-		lastDiffBlockIsDiff12 = firstDiffBlockIsDiff12;
+		bool lastDiffBlockIsDiff12 = firstDiffBlockIsDiff12;
 
-		diff10itmp = diff10i;
-		diff12itmp = diff12i;
+		size_t diff10itmp = diff10i;
+		size_t diff12itmp = diff12i;
 		for (;;)
 		{
 			if (diff10itmp >= diff10count || diff12itmp >= diff12count)
