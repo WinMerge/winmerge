@@ -511,7 +511,6 @@ std::string CMarkdown::GetTagName() const
 {
 	const char *p = first;
 	const char *q = first;
-	unsigned char c;
 	if (q < ahead && (p = ++q) < ahead)
 	{
 		if (*q == '!' && (*++q == '-' || *q == '['))
@@ -520,6 +519,7 @@ std::string CMarkdown::GetTagName() const
 		}
 		else
 		{
+			unsigned char c;
 			while (q < ahead && !isspace(c = *q) && c != '[' && c != '>' && c != '"' && c != '\'' && c != '=' && c != '/')
 			{
 				++q;
