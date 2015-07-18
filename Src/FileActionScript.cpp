@@ -27,7 +27,6 @@
 #include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "MainFrm.h"
 #include "ShellFileOperations.h"
 #include "paths.h"
 
