@@ -74,7 +74,7 @@ CMergeEditView::CMergeEditView()
 {
 	SetParser(&m_xParser);
 	
-	Options::DiffColors::Load(m_cachedColors);
+	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 }
 
 CMergeEditView::~CMergeEditView()
@@ -2917,7 +2917,7 @@ void CMergeEditView::RefreshOptions()
 		GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane));
 
-	Options::DiffColors::Load(m_cachedColors);
+	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 }
 
 /**

@@ -366,7 +366,7 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	}
 
 	COLORSETTINGS colors;
-	Options::DiffColors::Load(colors);
+	Options::DiffColors::Load(GetOptionsMgr(), colors);
 	m_pImgMergeWindow->SetDiffColor(colors.clrDiff);
 	m_pImgMergeWindow->SetSelDiffColor(colors.clrSelDiff);
 	m_pImgMergeWindow->AddEventListener(OnChildPaneEvent, this);
@@ -1708,7 +1708,7 @@ void CImgMergeFrame::OnImgUseBackColor()
 		RGBQUAD backColor = m_pImgMergeWindow->GetBackColor();
 		CColorDialog dialog(RGB(backColor.rgbRed, backColor.rgbGreen, backColor.rgbBlue));
 		static DWORD dwCustColors[16];
-		Options::CustomColors::Load(dwCustColors);
+		Options::CustomColors::Load(GetOptionsMgr(), dwCustColors);
 		dialog.m_cc.lpCustColors = dwCustColors;
 		if (dialog.DoModal() == IDOK)
 		{

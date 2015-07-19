@@ -6,7 +6,6 @@
 #include "OptionsFont.h"
 #include "unicoder.h"
 #include "ExConverter.h"
-#include "MergeApp.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 
@@ -15,9 +14,8 @@ namespace Options { namespace Font {
 /**
  * @brief Set default font values.
  */
-void SetDefaults()
+void SetDefaults(COptionsMgr *pOptionsMgr)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	LOGFONT lfDefault;
 	ZeroMemory(&lfDefault, sizeof(LOGFONT));
 
@@ -50,9 +48,8 @@ void SetDefaults()
 	}
 }
 
-LOGFONT Load(const String& name)
+LOGFONT Load(const COptionsMgr *pOptionsMgr, const String& name)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	LOGFONT lfnew;
 	ZeroMemory(&lfnew, sizeof(LOGFONT));
 
@@ -74,9 +71,8 @@ LOGFONT Load(const String& name)
 	return lfnew;
 }
 
-void Save(const String& name, const LOGFONT* lf, bool bUseCustom)
+void Save(COptionsMgr *pOptionsMgr, const String& name, const LOGFONT* lf, bool bUseCustom)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	pOptionsMgr->SaveOption(name + OPT_FONT_USECUSTOM, bUseCustom);
 	pOptionsMgr->SaveOption(name + OPT_FONT_HEIGHT, lf->lfHeight);
 	pOptionsMgr->SaveOption(name + OPT_FONT_WIDTH, lf->lfWidth);
@@ -94,9 +90,8 @@ void Save(const String& name, const LOGFONT* lf, bool bUseCustom)
 	pOptionsMgr->SaveOption(name + OPT_FONT_FACENAME, lf->lfFaceName);
 }
 
-void Reset(const String& name)
+void Reset(COptionsMgr *pOptionsMgr, const String& name)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	pOptionsMgr->SaveOption(name + OPT_FONT_USECUSTOM, false);
 	pOptionsMgr->Reset(name + OPT_FONT_HEIGHT);
 	pOptionsMgr->Reset(name + OPT_FONT_WIDTH);

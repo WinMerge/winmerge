@@ -3,11 +3,13 @@
 #include <windows.h>
 #include "UnicodeString.h"
 
+class COptionsMgr;
+
 namespace Options { namespace Font {
 
-void SetDefaults();
-LOGFONT Load(const String& name);
-void Save(const String& name, const LOGFONT* lf, bool bUseCustom);
-void Reset(const String& name);
+void SetDefaults(COptionsMgr *pOptionsMgr);
+LOGFONT Load(const COptionsMgr *pOptionsMgr, const String& name);
+void Save(COptionsMgr *pOptionsMgr, const String& name, const LOGFONT* lf, bool bUseCustom);
+void Reset(COptionsMgr *pOptionsMgr, const String& name);
 
 }}

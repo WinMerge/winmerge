@@ -25,7 +25,7 @@
 #include "RegKey.h"
 #include "coretools.h"
 #include "FileOrFolderSelect.h"
-#include "Merge.h" // GetDefaultEditor()
+#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
@@ -87,14 +87,11 @@ void PropRegistry::ReadOptions()
  */
 void PropRegistry::WriteOptions()
 {
-	CMergeApp *app = static_cast<CMergeApp*>(AfxGetApp());
-	String sDefaultEditor = app->GetDefaultEditor();
-
 	GetOptionsMgr()->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
 
 	String sExtEditor = string_trim_ws((LPCTSTR)m_strEditorPath);
 	if (sExtEditor.empty())
-		sExtEditor = sDefaultEditor;
+		sExtEditor = GetOptionsMgr()->GetDefault<String>(OPT_EXT_EDITOR_CMD);
 	GetOptionsMgr()->SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
 
 	String sFilterPath = string_trim_ws((LPCTSTR)m_strUserFilterPath);
