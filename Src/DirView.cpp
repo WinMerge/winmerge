@@ -166,7 +166,7 @@ CDirView::CDirView()
 	m_bShowSkipped =  GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
-	Options::DiffColors::Load(m_cachedColors);
+	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 }
 
 CDirView::~CDirView()
@@ -3666,7 +3666,7 @@ void CDirView::RefreshOptions()
 {
 	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
-	Options::DiffColors::Load(m_cachedColors);
+	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 }
 
 /**

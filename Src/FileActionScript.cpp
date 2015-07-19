@@ -29,6 +29,7 @@
 #include "OptionsMgr.h"
 #include "ShellFileOperations.h"
 #include "paths.h"
+#include "SourceControl.h"
 
 using std::vector;
 
@@ -103,7 +104,7 @@ int FileActionScript::VCSCheckOut(const String &path, BOOL &bApplyToAll)
 	String strErr;
 	int retVal = SCRIPT_SUCCESS;
 
-	if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) == VCS_NONE)
+	if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) == SourceControl::VCS_NONE)
 		return retVal;
 
 	// TODO: First param is not used!
@@ -157,7 +158,7 @@ int FileActionScript::CreateOperationsScripts()
 			// Before we can write over destination file, we must unlock
 			// (checkout) it. This also notifies VCS system that the file
 			// has been modified.
-			if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) != VCS_NONE)
+			if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) != SourceControl::VCS_NONE)
 			{
 				int retVal = VCSCheckOut((*iter).dest, bApplyToAll);
 				if (retVal == SCRIPT_USERCANCEL)

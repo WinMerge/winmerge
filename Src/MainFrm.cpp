@@ -325,8 +325,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	m_lfDiff = Options::Font::Load(OPT_FONT_FILECMP);
-	m_lfDir = Options::Font::Load(OPT_FONT_DIRCMP);
+	m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
+	m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
 	
 	if (!CreateToolbar())
 	{
@@ -1121,7 +1121,7 @@ void CMainFrame::OnViewSelectfont()
 
 	if (ChooseFont(&cf))
 	{
-		Options::Font::Save(frame == FRAME_FOLDER ? OPT_FONT_DIRCMP : OPT_FONT_FILECMP, lf, true);
+		Options::Font::Save(GetOptionsMgr(), frame == FRAME_FOLDER ? OPT_FONT_DIRCMP : OPT_FONT_FILECMP, lf, true);
 		UpdateFont(frame);
 	}
 }
@@ -1146,15 +1146,15 @@ void CMainFrame::OnViewUsedefaultfont()
 
 	if (frame == FRAME_FOLDER)
 	{
-		Options::Font::Reset(OPT_FONT_DIRCMP);
-		m_lfDir = Options::Font::Load(OPT_FONT_DIRCMP);
-		Options::Font::Save(OPT_FONT_DIRCMP, &m_lfDir, false);
+		Options::Font::Reset(GetOptionsMgr(), OPT_FONT_DIRCMP);
+		m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
+		Options::Font::Save(GetOptionsMgr(), OPT_FONT_DIRCMP, &m_lfDir, false);
 	}
 	else
 	{
-		Options::Font::Reset(OPT_FONT_FILECMP);
-		m_lfDiff = Options::Font::Load(OPT_FONT_FILECMP);
-		Options::Font::Save(OPT_FONT_FILECMP, &m_lfDiff, false);
+		Options::Font::Reset(GetOptionsMgr(), OPT_FONT_FILECMP);
+		m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
+		Options::Font::Save(GetOptionsMgr(), OPT_FONT_FILECMP, &m_lfDiff, false);
 	}
 
 	UpdateFont(frame);

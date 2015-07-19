@@ -5,6 +5,7 @@
  */
 
 #include "StdAfx.h"
+#include "SourceControl.h"
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Process.h>
 #include <Poco/Format.h>
@@ -67,10 +68,10 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 
 	switch(nVerSys)
 	{
-	case VCS_NONE:	//no versioning system
+	case SourceControl::VCS_NONE:	//no versioning system
 		// Already handled in CheckSavePath()
 		break;
-	case VCS_VSS4:	// Visual Source Safe
+	case SourceControl::VCS_VSS4:	// Visual Source Safe
 	{
 		// Prompt for user choice
 		CVssPromptDlg dlg;
@@ -130,7 +131,7 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 			return FALSE; // User selected cancel
 	}
 	break;
-	case VCS_VSS5: // CVisual SourceSafe 5.0+ (COM)
+	case SourceControl::VCS_VSS5: // CVisual SourceSafe 5.0+ (COM)
 	{
 		// prompt for user choice
 		CVssPromptDlg dlg;
@@ -315,7 +316,7 @@ BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 			return FALSE; // User selected cancel
 	}
 	break;
-	case VCS_CLEARCASE:
+	case SourceControl::VCS_CLEARCASE:
 	{
 		// prompt for user choice
 		CCCPromptDlg dlg;

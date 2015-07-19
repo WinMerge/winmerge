@@ -140,7 +140,7 @@ void PropSyntaxColors::WriteOptions()
 	// which writes to m_pTempColors
 	// so user's latest choices are in m_pTempColors
 	// (we don't have to read them from screen)
-	Options::SyntaxColors::Save(m_pTempColors);
+	Options::SyntaxColors::Save(GetOptionsMgr(), m_pTempColors);
 }
 
 /** 
@@ -150,7 +150,7 @@ void PropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
 {
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
 	CColorDialog dialog(currentColor);
-	Options::CustomColors::Load(m_cCustColors);
+	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors);
 	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
@@ -159,7 +159,7 @@ void PropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
 		colorButton.SetColor(currentColor);
 		m_pTempColors->SetColor(colorIndex, currentColor);
 	}
-	Options::CustomColors::Save(m_cCustColors);
+	Options::CustomColors::Save(GetOptionsMgr(), m_cCustColors);
 }
 
 void PropSyntaxColors::OnBnClickedEcolorKeywords()

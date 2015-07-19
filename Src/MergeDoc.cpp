@@ -167,7 +167,7 @@ CMergeDoc::CMergeDoc()
 	m_nDiffContext = GetOptionsMgr()->GetInt(OPT_DIFF_CONTEXT);
 
 	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
-	Options::DiffOptions::Load(options);
+	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
 	m_diffWrapper.SetOptions(&options);
 	m_diffWrapper.SetPrediffer(NULL);
@@ -2749,7 +2749,7 @@ void CMergeDoc::RefreshOptions()
 	DIFFOPTIONS options = {0};
 	
 	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
-	Options::DiffOptions::Load(options);
+	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
 	m_diffWrapper.SetOptions(&options);
 
