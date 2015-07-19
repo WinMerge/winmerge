@@ -23,7 +23,7 @@ public:
 
 // Construction
 public:
-	CSharedFilterDlg(CWnd* pParent);   // standard constructor
+	explicit CSharedFilterDlg(CWnd* pParent);   // standard constructor
 
 // Implementation
 protected:

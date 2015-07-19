@@ -39,7 +39,7 @@ class CPatchDlg : public CDialog
 {
 // Construction
 public:
-	CPatchDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit CPatchDlg(CWnd* pParent = NULL);   // standard constructor
 
 	// Functions to add and get selected files (as PATCHFILEs)
 	void AddItem(const PATCHFILES& pf);

@@ -18,7 +18,7 @@ class PluginsListDlg : public CDialog
 	DECLARE_DYNAMIC(PluginsListDlg)
 
 public:
-	PluginsListDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit PluginsListDlg(CWnd* pParent = NULL);   // standard constructor
 	virtual ~PluginsListDlg();
 
 // Dialog Data

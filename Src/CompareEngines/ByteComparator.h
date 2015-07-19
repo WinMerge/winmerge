@@ -25,7 +25,7 @@ namespace CompareEngines
 class ByteComparator
 {
 public:
-	ByteComparator(const QuickCompareOptions * options);
+	explicit ByteComparator(const QuickCompareOptions * options);
 
 public:
 	/** @brief Return values for CompareBuffers method. */

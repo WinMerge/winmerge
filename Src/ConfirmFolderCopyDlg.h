@@ -32,7 +32,7 @@ class ConfirmFolderCopyDlg : public CDialog
 	DECLARE_DYNAMIC(ConfirmFolderCopyDlg)
 
 public:
-	ConfirmFolderCopyDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit ConfirmFolderCopyDlg(CWnd* pParent = NULL);   // standard constructor
 	virtual ~ConfirmFolderCopyDlg();
 
 // Dialog Data

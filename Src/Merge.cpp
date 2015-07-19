@@ -295,7 +295,7 @@ BOOL CMergeApp::InitInstance()
 	CleanupWMtemp();
 
 	// Parse command-line arguments.
-	MergeCmdLineInfo cmdInfo = GetCommandLine();
+	MergeCmdLineInfo cmdInfo(GetCommandLine());
 
 	// If paths were given to commandline we consider this being an invoke from
 	// commandline (from other application, shellextension etc).

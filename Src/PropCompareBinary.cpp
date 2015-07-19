@@ -21,7 +21,7 @@ static char THIS_FILE[] = __FILE__;
 class Heksedit
 {
 public:
-	Heksedit(CWnd *pwndParent)
+	explicit Heksedit(CWnd *pwndParent)
 	{
 		pv = LoadLibrary(_T("Frhed\\hekseditU.dll"));
 		if (!pv)

@@ -83,7 +83,7 @@ static FastMutex scriptletsSem;
 
 template<class T> struct AutoReleaser
 {
-	AutoReleaser(T *ptr) : p(ptr) {}
+	explicit AutoReleaser(T *ptr) : p(ptr) {}
 	~AutoReleaser() { if (p) p->Release(); }
 	T *p;
 };

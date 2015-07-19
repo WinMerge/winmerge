@@ -3121,7 +3121,7 @@ void CDirView::OnMergeCompare2()
 void CDirView::OnMergeCompareXML()
 {
 	CWaitCursor waitstatus;
-	PackingInfo packingInfo = PLUGIN_BUILTIN_XML;
+	PackingInfo packingInfo(PLUGIN_BUILTIN_XML);
 	OpenSelection(SELECTIONTYPE_NORMAL, &packingInfo);
 }
 

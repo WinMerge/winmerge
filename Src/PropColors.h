@@ -18,7 +18,7 @@ class PropMergeColors : public OptionsPanel
 {
 // Construction
 public:
-	PropMergeColors(COptionsMgr *optionsMgr);
+	explicit PropMergeColors(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

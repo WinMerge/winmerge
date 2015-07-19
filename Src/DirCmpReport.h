@@ -35,7 +35,7 @@ class DirCmpReport
 {
 public:
 
-	DirCmpReport(const std::vector<String>& colRegKeys);
+	explicit DirCmpReport(const std::vector<String>& colRegKeys);
 	void SetList(IListCtrl *pList);
 	void SetRootPaths(const PathContext &paths);
 	void SetColumns(int columns);

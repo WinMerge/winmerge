@@ -360,7 +360,6 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 	DISPPARAMS dispparams;
 	UINT nArgErr = (UINT)-1;
 	EXCEPINFO excepInfo = {0};
-	int i;
 	dispparams.cArgs = LOBYTE((UINT_PTR)op);
 	dispparams.cNamedArgs = 0;
 	if (wFlags & (DISPATCH_PROPERTYPUT|DISPATCH_PROPERTYPUTREF))
@@ -375,7 +374,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 		VARIANT varParams[12];
 		VARIANT varData[12];
 
-		for (i = 0; i < (int)dispparams.cArgs; i++)
+		for (int i = 0; i < (int)dispparams.cArgs; i++)
 		{
 			if (V_ISBYREF(&argv[i]))
 			{
@@ -414,7 +413,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 
 		if (bNeedToConv)
 		{
-			for (i = 0; i < (int)dispparams.cArgs; i++)
+			for (int i = 0; i < (int)dispparams.cArgs; i++)
 			{
 				VariantInit(&varData[i]);
 				VariantCopyInd(&varData[i], &argv[i]);
@@ -452,7 +451,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 		{
 			if (bNeedToConv)
 			{
-				for (i = 0; i < (int)dispparams.cArgs; i++)
+				for (int i = 0; i < (int)dispparams.cArgs; i++)
 				{
 					if (V_ISBYREF(&argv[i]))
 					{

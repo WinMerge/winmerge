@@ -16,7 +16,7 @@ class PropVss : public OptionsPanel
 
 // Construction & Destruction
 public:
-	PropVss(COptionsMgr *optionsMgr);
+	explicit PropVss(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

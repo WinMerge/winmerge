@@ -37,7 +37,7 @@ class PropRegistry : public OptionsPanel
 {
 // Construction
 public:
-	PropRegistry(COptionsMgr *optionsMgr);
+	explicit PropRegistry(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
