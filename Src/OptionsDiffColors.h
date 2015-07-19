@@ -36,10 +36,12 @@ struct COLORSETTINGS
 	COLORREF	clrSelWordDiffText;	/**< Selected word difference text color */
 };
 
+class COptionsMgr;
+
 namespace Options { namespace DiffColors {
 
-void SetDefaults();
-void Load(COLORSETTINGS& colors);
-void Save(const COLORSETTINGS& colors);
+void SetDefaults(COptionsMgr *pOptionsMgr);
+void Load(const COptionsMgr *pOptionsMgr, COLORSETTINGS& colors);
+void Save(COptionsMgr *pOptionsMgr, const COLORSETTINGS& colors);
 
 }}

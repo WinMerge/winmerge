@@ -32,6 +32,7 @@
 #include "unicoder.h"
 #include "Environment.h"
 #include "OptionsMgr.h"
+#include "OptionsInit.h"
 #include "RegOptionsMgr.h"
 #include "OpenDoc.h"
 #include "OpenFrm.h"
@@ -284,7 +285,7 @@ BOOL CMergeApp::InitInstance()
 	// Load registry keys from WinMerge.reg if existing WinMerge.reg
 	env_LoadRegistryFromFile(paths_ConcatPath(env_GetProgPath(), _T("WinMerge.reg")));
 
-	OptionsInit(); // Implementation in OptionsInit.cpp
+	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
 
 	// Initialize temp folder
 	SetupTempPath();
@@ -377,7 +378,7 @@ BOOL CMergeApp::InitInstance()
 	}
 
 	if (m_pSyntaxColors)
-		Options::SyntaxColors::Load(m_pSyntaxColors.get());
+		Options::SyntaxColors::Load(GetOptionsMgr(), m_pSyntaxColors.get());
 
 	if (m_pLineFilters)
 		m_pLineFilters->Initialize(GetOptionsMgr());
@@ -396,9 +397,22 @@ BOOL CMergeApp::InitInstance()
 	if (pathMyFolders.empty())
 	{
 		// No filter path, set it to default and make sure it exists.
-		String pathFilters = GetDefaultFilterUserPath(TRUE);
-		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathFilters);
-		theApp.m_pGlobalFileFilter->SetFileFilterPath(pathFilters.c_str());
+		pathMyFolders = GetOptionsMgr()->GetDefault<String>(OPT_FILTER_USERPATH);
+		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathMyFolders);
+		theApp.m_pGlobalFileFilter->SetUserFilterPath(pathMyFolders.c_str());
+	}
+	if (!paths_CreateIfNeeded(pathMyFolders))
+	{
+		// Failed to create a folder, check it didn't already
+		// exist.
+		DWORD errCode = GetLastError();
+		if (errCode != ERROR_ALREADY_EXISTS)
+		{
+			// Failed to create a folder for filters, fallback to
+			// "My Documents"-folder. It is not worth the trouble to
+			// bother user about this or user more clever solutions.
+			GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, env_GetMyDocuments());
+		}
 	}
 
 	sd_Init(); // String diff init
@@ -1327,48 +1341,6 @@ std::wstring CMergeApp::LoadDialogCaption(LPCTSTR lpDialogTemplateID) const
 {
 	return m_pLangDlg->LoadDialogCaption(lpDialogTemplateID);
 }
-
-/**
- * @brief Get default editor path.
- * @return full path to the editor program executable.
- */
-String CMergeApp::GetDefaultEditor() const
-{
-	return paths_ConcatPath(env_GetWindowsDirectory(), _T("NOTEPAD.EXE"));
-}
-
-/**
- * @brief Get default user filter folder path.
- * This function returns the default filter path for user filters.
- * If wanted so (@p bCreate) path can be created if it does not
- * exist yet. But you really want to create the patch only when
- * there is no user path defined.
- * @param [in] bCreate If TRUE filter path is created if it does
- *  not exist.
- * @return Default folder for user filters.
- */
-String CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/) const
-{
-	String pathMyFolders = env_GetMyDocuments();
-	String pathFilters(pathMyFolders);
-	pathFilters = paths_ConcatPath(pathFilters, DefaultRelativeFilterPath);
-
-	if (bCreate && !paths_CreateIfNeeded(pathFilters))
-	{
-		// Failed to create a folder, check it didn't already
-		// exist.
-		DWORD errCode = GetLastError();
-		if (errCode != ERROR_ALREADY_EXISTS)
-		{
-			// Failed to create a folder for filters, fallback to
-			// "My Documents"-folder. It is not worth the trouble to
-			// bother user about this or user more clever solutions.
-			pathFilters = pathMyFolders;
-		}
-	}
-	return pathFilters;
-}
-
 
 /**
  * @brief Adds specified file to the recent projects list.

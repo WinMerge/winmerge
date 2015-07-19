@@ -7,7 +7,6 @@
 #include "OptionsSyntaxColors.h"
 #include <vector>
 #include "SyntaxColors.h"
-#include "MergeApp.h"
 #include "UnicodeString.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -23,9 +22,8 @@ namespace Options { namespace SyntaxColors {
  * @brief Load color values from storage
  * @param [out] pSyntaxColors pointer to SyntaxColors
  */
-void Load(::SyntaxColors *pSyntaxColors)
+void Load(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	String valuename(DefColorsPath);
 
 	int count = COLORINDEX_COUNT;
@@ -70,9 +68,8 @@ void Load(::SyntaxColors *pSyntaxColors)
  * @brief Save color values to storage
  * @param [in] pSyntaxColors pointer to SyntaxColors
  */
-void Save(const ::SyntaxColors *pSyntaxColors)
+void Save(COptionsMgr *pOptionsMgr, const ::SyntaxColors *pSyntaxColors)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	String valuename(DefColorsPath);
 
 	int count = COLORINDEX_COUNT;

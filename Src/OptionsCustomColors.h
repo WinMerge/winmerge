@@ -2,9 +2,11 @@
 
 #include <windows.h>
 
+class COptionsMgr;
+
 namespace Options { namespace CustomColors {
 
-void Load(COLORREF * colors);
-void Save(const COLORREF * colors);
+void Load(COptionsMgr *pOptionsMgr, COLORREF * colors);
+void Save(COptionsMgr *pOptionsMgr, const COLORREF * colors);
 
 }}

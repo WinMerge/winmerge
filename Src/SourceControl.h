@@ -3,11 +3,7 @@
  *
  * @brief Declaration file for SourceControl
  */
-// ID line follows -- this is updated by SVN
-// $Id$
-
-#ifndef _SOURCECONTROL_H_
-#define _SOURCECONTROL_H_
+#pragma once
 
 #include "UnicodeString.h"
 #include "VSSHelper.h"
@@ -43,4 +39,3 @@ public:
 	bool m_bVssSuppressPathCheck; /**< Suppresses VSS int code asking about different path */
 };
 
-#endif

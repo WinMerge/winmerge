@@ -4,9 +4,7 @@
  * @brief Options initialisation.
  */
 
-#include "stdafx.h"
 #include <vector>
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
@@ -16,6 +14,8 @@
 #include "DiffWrapper.h" // CMP_CONTENT
 #include "unicoder.h"
 #include "SourceControl.h"
+#include "paths.h"
+#include "Environment.h"
 #include "Constants.h"
 
 // Functions to copy values set by installer from HKLM to HKCU.
@@ -26,6 +26,9 @@ static bool IsFirstRun(HKEY key);
 static void CopyFromLMtoCU(HKEY lmKey, HKEY cuKey, LPCTSTR valname);
 static void ResetFirstRun(HKEY key);
 
+namespace Options
+{
+
 /**
  * @brief Initialise options and set default values.
  *
@@ -33,147 +36,149 @@ static void ResetFirstRun(HKEY key);
  * using WinMerge and many users never change them. So pick
  * default values carefully!
  */
-void CMergeApp::OptionsInit()
+void Init(COptionsMgr *pOptions)
 {
 	// Copy some values from HKLM to HKCU
 	CopyHKLMValues();
 
-	static_cast<CRegOptionsMgr *>(m_pOptions.get())->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
+	static_cast<CRegOptionsMgr *>(pOptions)->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
 
 	LANGID LangId = GetUserDefaultLangID();
 	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
 	{
 		// Default language to Japanese unless installer set it otherwise
-		m_pOptions->InitOption(OPT_SELECTED_LANGUAGE, 0x411);
+		pOptions->InitOption(OPT_SELECTED_LANGUAGE, 0x411);
 	}
 	else
 	{
 		// Default language to English unless installer set it otherwise
-		m_pOptions->InitOption(OPT_SELECTED_LANGUAGE, 0x409);
+		pOptions->InitOption(OPT_SELECTED_LANGUAGE, 0x409);
 	}
 
 	// Initialise options (name, default value)
-	m_pOptions->InitOption(OPT_SHOW_UNIQUE_LEFT, true);
-	m_pOptions->InitOption(OPT_SHOW_UNIQUE_RIGHT, true);
-	m_pOptions->InitOption(OPT_SHOW_DIFFERENT, true);
-	m_pOptions->InitOption(OPT_SHOW_IDENTICAL, true);
-	m_pOptions->InitOption(OPT_SHOW_BINARIES, true);
-	m_pOptions->InitOption(OPT_SHOW_SKIPPED, false);
+	pOptions->InitOption(OPT_SHOW_UNIQUE_LEFT, true);
+	pOptions->InitOption(OPT_SHOW_UNIQUE_RIGHT, true);
+	pOptions->InitOption(OPT_SHOW_DIFFERENT, true);
+	pOptions->InitOption(OPT_SHOW_IDENTICAL, true);
+	pOptions->InitOption(OPT_SHOW_BINARIES, true);
+	pOptions->InitOption(OPT_SHOW_SKIPPED, false);
 
-	m_pOptions->InitOption(OPT_SHOW_TOOLBAR, true);
-	m_pOptions->InitOption(OPT_SHOW_STATUSBAR, true);
-	m_pOptions->InitOption(OPT_SHOW_TABBAR, true);
-	m_pOptions->InitOption(OPT_TOOLBAR_SIZE, 0);
-	m_pOptions->InitOption(OPT_RESIZE_PANES, false);
+	pOptions->InitOption(OPT_SHOW_TOOLBAR, true);
+	pOptions->InitOption(OPT_SHOW_STATUSBAR, true);
+	pOptions->InitOption(OPT_SHOW_TABBAR, true);
+	pOptions->InitOption(OPT_TOOLBAR_SIZE, 0);
+	pOptions->InitOption(OPT_RESIZE_PANES, false);
 
-	m_pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
-	m_pOptions->InitOption(OPT_WORDWRAP, false);
-	m_pOptions->InitOption(OPT_VIEW_LINENUMBERS, false);
-	m_pOptions->InitOption(OPT_VIEW_WHITESPACE, false);
-	m_pOptions->InitOption(OPT_CONNECT_MOVED_BLOCKS, 0);
-	m_pOptions->InitOption(OPT_SCROLL_TO_FIRST, false);
-	m_pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);
-	m_pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)1);
-	m_pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
-	m_pOptions->InitOption(OPT_DIFF_CONTEXT, (int)-1);
-	m_pOptions->InitOption(OPT_SPLIT_HORIZONTALLY, false);
+	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
+	pOptions->InitOption(OPT_WORDWRAP, false);
+	pOptions->InitOption(OPT_VIEW_LINENUMBERS, false);
+	pOptions->InitOption(OPT_VIEW_WHITESPACE, false);
+	pOptions->InitOption(OPT_CONNECT_MOVED_BLOCKS, 0);
+	pOptions->InitOption(OPT_SCROLL_TO_FIRST, false);
+	pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);
+	pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)1);
+	pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
+	pOptions->InitOption(OPT_DIFF_CONTEXT, (int)-1);
+	pOptions->InitOption(OPT_SPLIT_HORIZONTALLY, false);
 
-	m_pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
-	m_pOptions->InitOption(OPT_BREAK_SEPARATORS, _T(".,:;?[](){}<>`'!\"#$%&^~\\|@+-*/"));
+	pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
+	pOptions->InitOption(OPT_BREAK_SEPARATORS, _T(".,:;?[](){}<>`'!\"#$%&^~\\|@+-*/"));
 
-	m_pOptions->InitOption(OPT_BACKUP_FOLDERCMP, false);
-	m_pOptions->InitOption(OPT_BACKUP_FILECMP, true);
-	m_pOptions->InitOption(OPT_BACKUP_LOCATION, (int)0);
-	m_pOptions->InitOption(OPT_BACKUP_GLOBALFOLDER, _T(""));
-	m_pOptions->InitOption(OPT_BACKUP_ADD_BAK, true);
-	m_pOptions->InitOption(OPT_BACKUP_ADD_TIME, false);
+	pOptions->InitOption(OPT_BACKUP_FOLDERCMP, false);
+	pOptions->InitOption(OPT_BACKUP_FILECMP, true);
+	pOptions->InitOption(OPT_BACKUP_LOCATION, (int)0);
+	pOptions->InitOption(OPT_BACKUP_GLOBALFOLDER, _T(""));
+	pOptions->InitOption(OPT_BACKUP_ADD_BAK, true);
+	pOptions->InitOption(OPT_BACKUP_ADD_TIME, false);
 
-	m_pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN, (int)-1);
-	m_pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN3, (int)-1);
-	m_pOptions->InitOption(OPT_DIRVIEW_SORT_ASCENDING, true);
-	m_pOptions->InitOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, false);
-	m_pOptions->InitOption(OPT_DIRVIEW_EXPAND_SUBDIRS, false);
+	pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN, (int)-1);
+	pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN3, (int)-1);
+	pOptions->InitOption(OPT_DIRVIEW_SORT_ASCENDING, true);
+	pOptions->InitOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, false);
+	pOptions->InitOption(OPT_DIRVIEW_EXPAND_SUBDIRS, false);
 
-	m_pOptions->InitOption(OPT_AUTOMATIC_RESCAN, false);
-	m_pOptions->InitOption(OPT_ALLOW_MIXED_EOL, false);
-	m_pOptions->InitOption(OPT_TAB_SIZE, (int)4);
-	m_pOptions->InitOption(OPT_TAB_TYPE, (int)0);	// 0 means tabs inserted
+	pOptions->InitOption(OPT_AUTOMATIC_RESCAN, false);
+	pOptions->InitOption(OPT_ALLOW_MIXED_EOL, false);
+	pOptions->InitOption(OPT_TAB_SIZE, (int)4);
+	pOptions->InitOption(OPT_TAB_TYPE, (int)0);	// 0 means tabs inserted
 
-	m_pOptions->InitOption(OPT_EXT_EDITOR_CMD, GetDefaultEditor());
-	m_pOptions->InitOption(OPT_USE_RECYCLE_BIN, true);
-	m_pOptions->InitOption(OPT_SINGLE_INSTANCE, false);
-	m_pOptions->InitOption(OPT_MERGE_MODE, false);
+	pOptions->InitOption(OPT_EXT_EDITOR_CMD, paths_ConcatPath(env_GetWindowsDirectory(), _T("NOTEPAD.EXE")));
+	pOptions->InitOption(OPT_USE_RECYCLE_BIN, true);
+	pOptions->InitOption(OPT_SINGLE_INSTANCE, false);
+	pOptions->InitOption(OPT_MERGE_MODE, false);
 	// OPT_WORDDIFF_HIGHLIGHT is initialized above
-	m_pOptions->InitOption(OPT_BREAK_ON_WORDS, false);
-	m_pOptions->InitOption(OPT_BREAK_TYPE, 1);
+	pOptions->InitOption(OPT_BREAK_ON_WORDS, false);
+	pOptions->InitOption(OPT_BREAK_TYPE, 1);
 
-	m_pOptions->InitOption(OPT_CLOSE_WITH_ESC, true);
-	m_pOptions->InitOption(OPT_CLOSE_WITH_OK, false);
-	m_pOptions->InitOption(OPT_IGNORE_SMALL_FILETIME, false);
-	m_pOptions->InitOption(OPT_ASK_MULTIWINDOW_CLOSE, false);
-	m_pOptions->InitOption(OPT_PRESERVE_FILETIMES, false);
-	m_pOptions->InitOption(OPT_TREE_MODE, false);
+	pOptions->InitOption(OPT_CLOSE_WITH_ESC, true);
+	pOptions->InitOption(OPT_CLOSE_WITH_OK, false);
+	pOptions->InitOption(OPT_IGNORE_SMALL_FILETIME, false);
+	pOptions->InitOption(OPT_ASK_MULTIWINDOW_CLOSE, false);
+	pOptions->InitOption(OPT_PRESERVE_FILETIMES, false);
+	pOptions->InitOption(OPT_TREE_MODE, false);
 
-	m_pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
-	m_pOptions->InitOption(OPT_CMP_MOVED_BLOCKS, false);
-	m_pOptions->InitOption(OPT_CMP_MATCH_SIMILAR_LINES, false);
-	m_pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
-	m_pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
-	m_pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, false);
-	m_pOptions->InitOption(OPT_CMP_IGNORE_REPARSE_POINTS, false);
+	pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
+	pOptions->InitOption(OPT_CMP_MOVED_BLOCKS, false);
+	pOptions->InitOption(OPT_CMP_MATCH_SIMILAR_LINES, false);
+	pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
+	pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
+	pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, false);
+	pOptions->InitOption(OPT_CMP_IGNORE_REPARSE_POINTS, false);
 
-	m_pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
+	pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
 
-	m_pOptions->InitOption(OPT_CMP_IMG_FILEPATTERNS, _T("*.bmp;*.cut;*.dds;*.exr;*.g3;*.gif;*.hdr;*.ico;*.iff;*.lbm;*.j2k;*.j2c;*.jng;*.jp2;*.jpg;*.jif;*.jpeg;*.jpe;*.jxr;*.wdp;*.hdp;*.koa;*.mng;*.pcd;*.pcx;*.pfm;*.pct;*.pict;*.pic;*.png;*.pbm;*.pgm;*.ppm;*.psd;*.ras;*.sgi;*.rgb;*.rgba;*.bw;*.tga;*.targa;*.tif;*.tiff;*.wap;*.wbmp;*.wbm;*.webp;*.xbm;*.xpm"));
-	m_pOptions->InitOption(OPT_CMP_IMG_SHOWDIFFERENCES, true);
-	m_pOptions->InitOption(OPT_CMP_IMG_OVERLAYMOVE, 0);
-	m_pOptions->InitOption(OPT_CMP_IMG_ZOOM, 1000);
-	m_pOptions->InitOption(OPT_CMP_IMG_USEBACKCOLOR, true);
-	m_pOptions->InitOption(OPT_CMP_IMG_BACKCOLOR, 0xFFFFFF);
-	m_pOptions->InitOption(OPT_CMP_IMG_DIFFBLOCKSIZE, 8);
-	m_pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0);
+	pOptions->InitOption(OPT_CMP_IMG_FILEPATTERNS, _T("*.bmp;*.cut;*.dds;*.exr;*.g3;*.gif;*.hdr;*.ico;*.iff;*.lbm;*.j2k;*.j2c;*.jng;*.jp2;*.jpg;*.jif;*.jpeg;*.jpe;*.jxr;*.wdp;*.hdp;*.koa;*.mng;*.pcd;*.pcx;*.pfm;*.pct;*.pict;*.pic;*.png;*.pbm;*.pgm;*.ppm;*.psd;*.ras;*.sgi;*.rgb;*.rgba;*.bw;*.tga;*.targa;*.tif;*.tiff;*.wap;*.wbmp;*.wbm;*.webp;*.xbm;*.xpm"));
+	pOptions->InitOption(OPT_CMP_IMG_SHOWDIFFERENCES, true);
+	pOptions->InitOption(OPT_CMP_IMG_OVERLAYMOVE, 0);
+	pOptions->InitOption(OPT_CMP_IMG_ZOOM, 1000);
+	pOptions->InitOption(OPT_CMP_IMG_USEBACKCOLOR, true);
+	pOptions->InitOption(OPT_CMP_IMG_BACKCOLOR, 0xFFFFFF);
+	pOptions->InitOption(OPT_CMP_IMG_DIFFBLOCKSIZE, 8);
+	pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0);
 
-	m_pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
-	m_pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);
-	m_pOptions->InitOption(OPT_CUSTOM_TEMP_PATH, _T(""));
+	pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
+	pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);
+	pOptions->InitOption(OPT_CUSTOM_TEMP_PATH, _T(""));
 
-	m_pOptions->InitOption(OPT_LINEFILTER_ENABLED, false);
-	m_pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
+	pOptions->InitOption(OPT_LINEFILTER_ENABLED, false);
+	pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 	// CMainFrame initializes this when it is empty.
-	m_pOptions->InitOption(OPT_FILTER_USERPATH, GetDefaultFilterUserPath());
-	m_pOptions->InitOption(OPT_FILEFILTER_SHARED, false);
+	pOptions->InitOption(OPT_FILTER_USERPATH, paths_ConcatPath(env_GetMyDocuments(), DefaultRelativeFilterPath));
+	pOptions->InitOption(OPT_FILEFILTER_SHARED, false);
 
-	m_pOptions->InitOption(OPT_CP_DEFAULT_MODE, (int)0);
-	m_pOptions->InitOption(OPT_CP_DEFAULT_CUSTOM, (int)GetACP());
+	pOptions->InitOption(OPT_CP_DEFAULT_MODE, (int)0);
+	pOptions->InitOption(OPT_CP_DEFAULT_CUSTOM, (int)GetACP());
 
 	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
-		m_pOptions->InitOption(OPT_CP_DETECT, (int)(50932 << 16) | 3);
+		pOptions->InitOption(OPT_CP_DETECT, (int)(50932 << 16) | 3);
 	else if (LangId == MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED))
-		m_pOptions->InitOption(OPT_CP_DETECT, (int)(50936 << 16) | 3);
+		pOptions->InitOption(OPT_CP_DETECT, (int)(50936 << 16) | 3);
 	else if (PRIMARYLANGID(LangId) == LANG_KOREAN)
-		m_pOptions->InitOption(OPT_CP_DETECT, (int)(50949 << 16) | 3);
+		pOptions->InitOption(OPT_CP_DETECT, (int)(50949 << 16) | 3);
 	else if (LangId == MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL))
-		m_pOptions->InitOption(OPT_CP_DETECT, (int)(50950 << 16) | 3);
+		pOptions->InitOption(OPT_CP_DETECT, (int)(50950 << 16) | 3);
 	else
-		m_pOptions->InitOption(OPT_CP_DETECT, (int)(50001 << 16) | 3);
+		pOptions->InitOption(OPT_CP_DETECT, (int)(50001 << 16) | 3);
 
-	m_pOptions->InitOption(OPT_VCS_SYSTEM, SourceControl::VCS_NONE);
-	m_pOptions->InitOption(OPT_VSS_PATH, _T(""));
-	m_pOptions->InitOption(OPT_VSS_DATABASE, _T(""));
-	m_pOptions->InitOption(OPT_VSS_PROJECT, _T(""));
-	m_pOptions->InitOption(OPT_VSS_USER, _T(""));
+	pOptions->InitOption(OPT_VCS_SYSTEM, SourceControl::VCS_NONE);
+	pOptions->InitOption(OPT_VSS_PATH, _T(""));
+	pOptions->InitOption(OPT_VSS_DATABASE, _T(""));
+	pOptions->InitOption(OPT_VSS_PROJECT, _T(""));
+	pOptions->InitOption(OPT_VSS_USER, _T(""));
 
-	m_pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
-	m_pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);
+	pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
+	pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);
 
-	m_pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
-	m_pOptions->InitOption(OPT_PLUGINS_DISABLED_LIST, _T(""));
+	pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
+	pOptions->InitOption(OPT_PLUGINS_DISABLED_LIST, _T(""));
 
-	m_pOptions->InitOption(OPT_TABBAR_AUTO_MAXWIDTH, true);
+	pOptions->InitOption(OPT_TABBAR_AUTO_MAXWIDTH, true);
 
-	Options::DiffOptions::SetDefaults();
-	Options::DiffColors::SetDefaults();
-	Options::Font::SetDefaults();
+	Options::DiffOptions::SetDefaults(pOptions);
+	Options::DiffColors::SetDefaults(pOptions);
+	Options::Font::SetDefaults(pOptions);
+}
+
 }
 
 /**

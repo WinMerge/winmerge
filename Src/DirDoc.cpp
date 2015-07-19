@@ -243,7 +243,7 @@ void CDirDoc::Rescan()
 	LoadLineFilterList();
 
 	DIFFOPTIONS options = {0};
-	Options::DiffOptions::Load(options);
+	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
 	m_pCtxt->CreateCompareOptions(GetOptionsMgr()->GetInt(OPT_CMP_METHOD), options);
 
