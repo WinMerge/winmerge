@@ -16,7 +16,7 @@ class PropGeneral : public OptionsPanel
 {
 // Construction
 public:
-	PropGeneral(COptionsMgr *optionsMgr);
+	explicit PropGeneral(COptionsMgr *optionsMgr);
 	~PropGeneral();
 
 // Implement IOptionsPanel

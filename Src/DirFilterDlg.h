@@ -23,7 +23,7 @@ class DirFilterDlg : public CDialog
 	DECLARE_DYNAMIC(DirFilterDlg)
 
 public:
-	DirFilterDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit DirFilterDlg(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
 	enum { IDD = IDD_DIR_FILTER };

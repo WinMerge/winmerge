@@ -197,7 +197,7 @@ public:
 					{
 						bezerocount++;
 						if (data[i + 1] == 0x0a || data[i + 1] == 0x0d)
-							lecrorlf++;
+							becrorlf++;
 					}
 					else if (data[i + 1] == 0)
 					{

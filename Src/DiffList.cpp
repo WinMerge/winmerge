@@ -232,7 +232,7 @@ bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 {
 	if (nDiff < (int) m_diffs.size())
 	{
-		m_diffs[nDiff] = di;
+		m_diffs[nDiff] = DiffRangeInfo(di);
 		return true;
 	}
 	else
@@ -291,12 +291,11 @@ int DiffList::LineToDiff(int nLine) const
 
 	// Use binary search to search for a diff.
 	int left = 0; // Left limit
-	int middle = 0; // Compared item
 	int right = nDiffCount - 1; // Right limit
 
 	while (left <= right)
 	{
-		middle = (left + right) / 2;
+		int middle = (left + right) / 2; // Compared item
 		int result = LineRelDiff(nLine, middle);
 		switch (result)
 		{

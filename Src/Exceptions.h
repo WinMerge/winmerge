@@ -51,7 +51,7 @@ class SE_Exception
 private:
 	unsigned long nSE;
 public:
-	SE_Exception(unsigned long n) : nSE(n) {}
+	explicit SE_Exception(unsigned long n) : nSE(n) {}
 	~SE_Exception() {};
 
 	unsigned long getSeNumber() { return nSE; }

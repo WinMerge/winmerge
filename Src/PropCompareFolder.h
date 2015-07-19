@@ -26,7 +26,7 @@ class PropCompareFolder : public OptionsPanel
 {
 // Construction
 public:
-	PropCompareFolder(COptionsMgr *optionsMgr);
+	explicit PropCompareFolder(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

@@ -44,9 +44,9 @@ public:
 	 * A constructor taking a language id as parameter.
 	 * @param [in] id Language ID to use.
 	 */
-	LangFileInfo(LANGID id): id(id) { };
+	explicit LangFileInfo(LANGID id): id(id) { };
 	
-	LangFileInfo(LPCTSTR path);
+	explicit LangFileInfo(LPCTSTR path);
 	String GetString(LCTYPE type) const;
 
 private:
@@ -583,11 +583,11 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 			AfxMessageBox(_T("Failed to load MergeLang.dll"), MB_ICONSTOP);
 		return FALSE;
 	}
-	CVersionInfo viInstance = AfxGetInstanceHandle();
+	CVersionInfo viInstance(AfxGetInstanceHandle());
 	unsigned instanceVerMS = 0;
 	unsigned instanceVerLS = 0;
 	viInstance.GetFixedFileVersion(instanceVerMS, instanceVerLS);
-	CVersionInfo viResource = m_hCurrentDll;
+	CVersionInfo viResource(m_hCurrentDll);
 	unsigned resourceVerMS = 0;
 	unsigned resourceVerLS = 0;
 	viResource.GetFixedFileVersion(resourceVerMS, resourceVerLS);
@@ -828,7 +828,7 @@ String CLanguageSelect::GetFileName(LANGID wLangId) const
 	while ((h = FindFile(h, pattern.c_str(), &ff)) != INVALID_HANDLE_VALUE)
 	{
 		filename = paths_ConcatPath(path, ff.cFileName);
-		LangFileInfo lfi = filename.c_str();
+		LangFileInfo lfi(filename.c_str());
 		if (lfi.id == wLangId)
 			ff.dwFileAttributes = INVALID_FILE_ATTRIBUTES; // terminate loop
 		else

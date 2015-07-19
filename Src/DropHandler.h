@@ -17,7 +17,7 @@ public:
 	HRESULT STDMETHODCALLTYPE DragLeave(void);
 	HRESULT STDMETHODCALLTYPE Drop(IDataObject *pDataObj, DWORD grfKeyState, POINTL pt, DWORD *pdwEffect);
 
-	DropHandler(std::function<void(const std::vector<String>&)> callback);
+	explicit DropHandler(std::function<void(const std::vector<String>&)> callback);
 	~DropHandler();
 
 private:

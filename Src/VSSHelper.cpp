@@ -56,8 +56,6 @@ bool VSSHelper::SetProjectBase(const String& strPath)
 bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 {
 	const UINT nBufferSize = 1024;
-	TCHAR buffer[nBufferSize] = {0};
-	bool bVCPROJ = false;
 
 	String tempFile = env_GetTempFileName(env_GetTempPath(), _T("_LT"));
 	if (tempFile.empty())
@@ -71,6 +69,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 	String strExt = string_makelower(ext);
 	if (strExt == _T("vcproj") || strExt == _T("sln"))
 	{
+		bool bVCPROJ = false;
 		GetFullVSSPath(strSavePath, bVCPROJ);
 
 		HANDLE hfile;
@@ -114,6 +113,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 		}
 
 		static TCHAR charset[] = _T(" \t\n\r=");
+		TCHAR buffer[nBufferSize] = {0};
 		DWORD numwritten = 0;
 		bool succeed = true;
 	
@@ -399,7 +399,6 @@ bool VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf) co
 
 bool VSSHelper::GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf) const
 {
-	TCHAR buffer[1024] = {0};
 	DWORD dwNumWritten = 0;
 
 	assert(hFile != NULL && hFile != INVALID_HANDLE_VALUE &&
@@ -409,6 +408,8 @@ bool VSSHelper::GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf) const
 	String capp;
 	if (*buf != '\\' && !_tcsstr(buf, _T(".")))
 	{
+		TCHAR buffer[1024] = {0};
+
 		//write out \\u0020s for every space in buffer2
 		for (TCHAR * pc = buf; *pc; pc++)
 		{

@@ -27,7 +27,7 @@ struct FileLocation
 	 * The constructor taking a path as a parameter.
 	 * @param [in] path Full path for the file.
 	 */
-	FileLocation(const String& path) : filepath(path)
+	explicit FileLocation(const String& path) : filepath(path)
 	{
 	}
 
