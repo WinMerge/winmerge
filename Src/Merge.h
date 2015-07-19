@@ -52,7 +52,7 @@ class SourceControl;
 
 enum { IDLE_TIMER = 9754 };
 
-/**
+/** 
  * @brief WinMerge application class
  */
 class CMergeApp : public CWinApp
@@ -100,13 +100,9 @@ public:
 	void AddToRecentProjectsMRU(LPCTSTR sPathName);
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
-	String GetDefaultEditor() const;
-	String GetDefaultFilterUserPath(BOOL bCreate = FALSE) const;
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper * GetGlobalFileFilter() { return m_pGlobalFileFilter.get(); }
-	void OptionsInit();
-	void ResetOptions() { OptionsInit(); }
 	void SetFontDefaults();
 	void ShowHelp(LPCTSTR helpLocation = NULL);
 	void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);

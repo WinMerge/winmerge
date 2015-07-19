@@ -115,7 +115,7 @@ void PropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorInd
 
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
 	CColorDialog dialog(currentColor);
-	Options::CustomColors::Load(m_cCustColors);
+	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors);
 	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
@@ -124,7 +124,7 @@ void PropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorInd
 		colorButton.SetColor(currentColor);
 		m_pTempColors->SetColor(colorIndex, currentColor);
 	}
-	Options::CustomColors::Save(m_cCustColors);
+	Options::CustomColors::Save(GetOptionsMgr(), m_cCustColors);
 }
 
 /** 

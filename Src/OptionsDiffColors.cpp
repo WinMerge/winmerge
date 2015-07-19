@@ -4,15 +4,13 @@
  * @brief Implementation for OptionsDiffColors class.
  */
 #include "OptionsDiffColors.h"
-#include "MergeApp.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 
 namespace Options { namespace DiffColors {
 
-void SetDefaults()
+void SetDefaults(COptionsMgr *pOptionsMgr)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	pOptionsMgr->InitOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
 	pOptionsMgr->InitOption(OPT_CLR_DIFF_DELETED, (int)RGB(192, 192, 192));
 	pOptionsMgr->InitOption(OPT_CLR_DIFF_TEXT, (int)RGB(0,0,0));
@@ -43,9 +41,8 @@ void SetDefaults()
 	pOptionsMgr->InitOption(OPT_CLR_DEFAULT_TEXT_COLORING, true);
 }
 
-void Load(COLORSETTINGS& colors)
+void Load(const COptionsMgr *pOptionsMgr, COLORSETTINGS& colors)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	colors.clrDiff = pOptionsMgr->GetInt(OPT_CLR_DIFF);
 	colors.clrSelDiff = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
 	colors.clrDiffDeleted = pOptionsMgr->GetInt(OPT_CLR_DIFF_DELETED);
@@ -75,9 +72,8 @@ void Load(COLORSETTINGS& colors)
 	colors.clrSelWordDiffText = pOptionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
 }
 
-void Save(const COLORSETTINGS& colors)
+void Save(COptionsMgr *pOptionsMgr, const COLORSETTINGS& colors)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	pOptionsMgr->SaveOption(OPT_CLR_DIFF, (int)colors.clrDiff);
 	pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF, (int)colors.clrSelDiff);
 	pOptionsMgr->SaveOption(OPT_CLR_DIFF_DELETED, (int)colors.clrDiffDeleted);

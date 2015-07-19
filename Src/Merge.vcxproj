@@ -1039,6 +1039,7 @@
     <ClInclude Include="OptionsDiffColors.h" />
     <ClInclude Include="OptionsDiffOptions.h" />
     <ClInclude Include="OptionsFont.h" />
+    <ClInclude Include="OptionsInit.h" />
     <ClInclude Include="OptionsPanel.h" />
     <ClInclude Include="OptionsSyntaxColors.h" />
     <ClInclude Include="PatchDlg.h" />
@@ -1083,6 +1084,7 @@
     <ClInclude Include="Common\sizecbar.h" />
     <ClInclude Include="Common\SortHeaderCtrl.h" />
     <ClInclude Include="Common\SplitterWndEx.h" />
+    <ClInclude Include="SourceControl.h" />
     <ClInclude Include="ssapi.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="stringdiffs.h" />

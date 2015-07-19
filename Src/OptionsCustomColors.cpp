@@ -1,6 +1,5 @@
 #include "OptionsCustomColors.h"
 #include "OptionsMgr.h"
-#include "MergeApp.h"
 
 namespace Options { namespace CustomColors
 {
@@ -8,9 +7,8 @@ namespace Options { namespace CustomColors
 /** @brief Setting name for user-defined custom colors. */
 const TCHAR Section[] = _T("Custom Colors");
 
-void Load(COLORREF * colors)
+void Load(COptionsMgr *pOptionsMgr, COLORREF * colors)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	for (int i = 0; i < 16; i++)
 	{
 		String valuename = string_format(_T("%s/%d"), Section, i);
@@ -19,9 +17,8 @@ void Load(COLORREF * colors)
 	}
 }
 
-void Save(const COLORREF * colors)
+void Save(COptionsMgr *pOptionsMgr, const COLORREF * colors)
 {
-	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	for (int i = 0; i < 16; i++)
 	{
 		String valuename = string_format(_T("%s/%d"), Section, i);
