@@ -162,10 +162,12 @@ extern const String OPT_CMP_IGNORE_REPARSE_POINTS OP("Settings/IgnoreReparsePoin
 extern const String OPT_CMP_IMG_FILEPATTERNS OP("Settings/ImageFilePatterns");
 extern const String OPT_CMP_IMG_SHOWDIFFERENCES OP("Settings/ImageShowDifferences");
 extern const String OPT_CMP_IMG_OVERLAYMOVE OP("Settings/ImageOverlayMode");
+extern const String OPT_CMP_IMG_OVERLAYALPHA OP("Settings/ImageOverlayAlpha");
 extern const String OPT_CMP_IMG_ZOOM OP("Settings/ImageZoom");
 extern const String OPT_CMP_IMG_USEBACKCOLOR OP("Settings/ImageUseBackColor");
 extern const String OPT_CMP_IMG_BACKCOLOR OP("Settings/ImageBackColor");
 extern const String OPT_CMP_IMG_DIFFBLOCKSIZE OP("Settings/ImageDiffBlockSize");
+extern const String OPT_CMP_IMG_DIFFCOLORALPHA OP("Settings/ImageDiffColorAlpha");
 extern const String OPT_CMP_IMG_THRESHOLD OP("Settings/ImageColorDistanceThreshold");
 
 // Image Binary options

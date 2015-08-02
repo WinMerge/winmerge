@@ -130,10 +130,12 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IMG_FILEPATTERNS, _T("*.bmp;*.cut;*.dds;*.exr;*.g3;*.gif;*.hdr;*.ico;*.iff;*.lbm;*.j2k;*.j2c;*.jng;*.jp2;*.jpg;*.jif;*.jpeg;*.jpe;*.jxr;*.wdp;*.hdp;*.koa;*.mng;*.pcd;*.pcx;*.pfm;*.pct;*.pict;*.pic;*.png;*.pbm;*.pgm;*.ppm;*.psd;*.ras;*.sgi;*.rgb;*.rgba;*.bw;*.tga;*.targa;*.tif;*.tiff;*.wap;*.wbmp;*.wbm;*.webp;*.xbm;*.xpm"));
 	pOptions->InitOption(OPT_CMP_IMG_SHOWDIFFERENCES, true);
 	pOptions->InitOption(OPT_CMP_IMG_OVERLAYMOVE, 0);
+	pOptions->InitOption(OPT_CMP_IMG_OVERLAYALPHA, 30);
 	pOptions->InitOption(OPT_CMP_IMG_ZOOM, 1000);
 	pOptions->InitOption(OPT_CMP_IMG_USEBACKCOLOR, true);
 	pOptions->InitOption(OPT_CMP_IMG_BACKCOLOR, 0xFFFFFF);
 	pOptions->InitOption(OPT_CMP_IMG_DIFFBLOCKSIZE, 8);
+	pOptions->InitOption(OPT_CMP_IMG_DIFFCOLORALPHA, 70);
 	pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0);
 
 	pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
