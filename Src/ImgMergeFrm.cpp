@@ -65,6 +65,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_WM_SIZE()
 	ON_WM_GETMINMAXINFO()
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
+	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	ON_COMMAND(ID_FILE_SAVE_LEFT, OnFileSaveLeft)
 	ON_COMMAND(ID_FILE_SAVE_MIDDLE, OnFileSaveMiddle)
@@ -157,6 +159,7 @@ CImgMergeFrame::CImgMergeFrame()
 , m_pDirDoc(NULL)
 , m_bAutoMerged(false)
 , m_pImgMergeWindow(NULL)
+, m_pImgToolWindow(NULL)
 {
 	std::fill_n(m_nBufferType, 3, BUFFER_NORMAL);
 	std::fill_n(m_bRO, 3, false);
@@ -187,10 +190,16 @@ CImgMergeFrame::~CImgMergeFrame()
 	{
 		bool (*WinIMerge_DestroyWindow)(IImgMergeWindow *) = 
 			(bool (*)(IImgMergeWindow *))GetProcAddress(hModule, "WinIMerge_DestroyWindow");
-		if (WinIMerge_DestroyWindow)
+		bool (*WinIMerge_DestroyToolWindow)(IImgToolWindow *) = 
+			(bool (*)(IImgToolWindow *))GetProcAddress(hModule, "WinIMerge_DestroyToolWindow");
+		if (WinIMerge_DestroyWindow && WinIMerge_DestroyToolWindow)
 		{
-			WinIMerge_DestroyWindow(m_pImgMergeWindow);
+			if (m_pImgMergeWindow)
+				WinIMerge_DestroyWindow(m_pImgMergeWindow);
+			if (m_pImgToolWindow)
+				WinIMerge_DestroyToolWindow(m_pImgToolWindow);
 			m_pImgMergeWindow = NULL;
+			m_pImgToolWindow = NULL;
 		}
 	}
 }
@@ -356,10 +365,10 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	if (!hModule)
 		return FALSE;
 
-	IImgMergeWindow * (*WinIMerge_CreateWindow)(HINSTANCE hInstance, HWND hWndParent) = 
-			(IImgMergeWindow * (*)(HINSTANCE hInstance, HWND hWndParent))GetProcAddress(hModule, "WinIMerge_CreateWindow");
+	IImgMergeWindow * (*WinIMerge_CreateWindow)(HINSTANCE hInstance, HWND hWndParent, int nID) = 
+			(IImgMergeWindow * (*)(HINSTANCE hInstance, HWND hWndParent, int nID))GetProcAddress(hModule, "WinIMerge_CreateWindow");
 	if (!WinIMerge_CreateWindow || 
-		(m_pImgMergeWindow = WinIMerge_CreateWindow(hModule, m_hWnd)) == NULL)
+		(m_pImgMergeWindow = WinIMerge_CreateWindow(hModule, m_hWnd, AFX_IDW_PANE_FIRST)) == NULL)
 	{
 		FreeLibrary(hModule);
 		return FALSE;
@@ -381,6 +390,40 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		m_fileInfo[pane].Update(m_filePaths[pane]);
 
+	// Merge frame has also a dockable bar at the very left
+	// This is not the client area, but we create it now because we want
+	// to use the CCreateContext
+	String sCaption = theApp.LoadString(IDS_LOCBAR_CAPTION);
+	if (!m_wndLocationBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
+	{
+		TRACE0("Failed to create LocationBar\n");
+		return FALSE;
+	}
+
+	IImgToolWindow * (*WinIMerge_CreateToolWindow)(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *) = 
+			(IImgToolWindow * (*)(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *pImgMergeWindow))GetProcAddress(hModule, "WinIMerge_CreateToolWindow");
+	if (!WinIMerge_CreateToolWindow ||
+		(m_pImgToolWindow = WinIMerge_CreateToolWindow(hModule, m_wndLocationBar.m_hWnd, m_pImgMergeWindow)) == NULL)
+	{
+		return FALSE;
+	}
+
+	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
+
+	return TRUE;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// CImgMergeFrame message handlers
+
+int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
+
+	if (CMDIChildWnd::OnCreate(lpCreateStruct) == -1)
+		return -1;
+
+	EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))
 	{
@@ -389,6 +432,13 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	}
 
 	m_wndFilePathBar.SetPaneCount(m_pImgMergeWindow->GetPaneCount());
+
+	// Merge frame also has a dockable bar at the very left
+	// created in OnCreateClient 
+	m_wndLocationBar.SetBarStyle(m_wndLocationBar.GetBarStyle() |
+		CBRS_SIZE_DYNAMIC | CBRS_ALIGN_LEFT);
+	m_wndLocationBar.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+	DockControlBar(&m_wndLocationBar, AFX_IDW_DOCKBAR_LEFT);
 
 	for (int nPane = 0; nPane < m_pImgMergeWindow->GetPaneCount(); nPane++)
 	{
@@ -407,11 +457,40 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount());
 
-	return TRUE;
+	return 0;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// CImgMergeFrame message handlers
+/**
+* @brief We must use this function before a call to SetDockState
+*
+* @note Without this, SetDockState will assert or crash if a bar from the
+* CDockState is missing in the current CChildFrame.
+* The bars are identified with their ID. This means the missing bar bug is triggered
+* when we run WinMerge after changing the ID of a bar.
+*/
+BOOL CImgMergeFrame::EnsureValidDockState(CDockState& state)
+{
+	for (int i = (int)state.m_arrBarInfo.GetSize() - 1; i >= 0; i--)
+	{
+		BOOL barIsCorrect = TRUE;
+		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
+		if (!pInfo)
+			barIsCorrect = FALSE;
+		else
+		{
+			if (!pInfo->m_bFloating)
+			{
+				pInfo->m_pBar = GetControlBar(pInfo->m_nBarID);
+				if (!pInfo->m_pBar)
+					barIsCorrect = FALSE; //toolbar id's probably changed	
+			}
+		}
+
+		if (!barIsCorrect)
+			state.m_arrBarInfo.RemoveAt(i);
+	}
+	return TRUE;
+}
 
 /**
  * @brief Save the window's position, free related resources, and destroy the window
@@ -419,6 +498,7 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 BOOL CImgMergeFrame::DestroyWindow() 
 {
 	SavePosition();
+	SaveOptions();
 	// If we are active, save the restored/maximized state
 	// If we are not, do nothing and let the active frame do the job.
  	if (GetParentFrame()->GetActiveFrame() == this)
@@ -436,12 +516,14 @@ void CImgMergeFrame::LoadOptions()
 {
 	m_pImgMergeWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
 	m_pImgMergeWindow->SetOverlayMode(static_cast<IImgMergeWindow::OVERLAY_MODE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYMOVE)));
+	m_pImgMergeWindow->SetOverlayAlpha(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYALPHA) / 100.0);
 	m_pImgMergeWindow->SetZoom(GetOptionsMgr()->GetInt(OPT_CMP_IMG_ZOOM) / 1000.0);
 	m_pImgMergeWindow->SetUseBackColor(GetOptionsMgr()->GetBool(OPT_CMP_IMG_USEBACKCOLOR));
 	COLORREF clrBackColor = GetOptionsMgr()->GetInt(OPT_CMP_IMG_BACKCOLOR);
 	RGBQUAD backColor = {GetRValue(clrBackColor), GetGValue(clrBackColor), GetBValue(clrBackColor)};
 	m_pImgMergeWindow->SetBackColor(backColor);
 	m_pImgMergeWindow->SetDiffBlockSize(GetOptionsMgr()->GetInt(OPT_CMP_IMG_DIFFBLOCKSIZE));
+	m_pImgMergeWindow->SetDiffColorAlpha(GetOptionsMgr()->GetInt(OPT_CMP_IMG_DIFFCOLORALPHA) / 100.0);
 	m_pImgMergeWindow->SetColorDistanceThreshold(GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0);
 }
 
@@ -449,11 +531,13 @@ void CImgMergeFrame::SaveOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SHOWDIFFERENCES, m_pImgMergeWindow->GetShowDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OVERLAYMOVE, m_pImgMergeWindow->GetOverlayMode());
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OVERLAYALPHA, static_cast<int>(m_pImgMergeWindow->GetOverlayAlpha() * 100));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_ZOOM, static_cast<int>(m_pImgMergeWindow->GetZoom() * 1000));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_USEBACKCOLOR, m_pImgMergeWindow->GetUseBackColor());
 	RGBQUAD backColor = m_pImgMergeWindow->GetBackColor();
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_BACKCOLOR, static_cast<int>(RGB(backColor.rgbRed, backColor.rgbGreen, backColor.rgbBlue)));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_DIFFBLOCKSIZE, m_pImgMergeWindow->GetDiffBlockSize());
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_DIFFCOLORALPHA, static_cast<int>(m_pImgMergeWindow->GetDiffColorAlpha() * 100.0));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_THRESHOLD, static_cast<int>(m_pImgMergeWindow->GetColorDistanceThreshold() * 1000));
 }
 /**
@@ -466,15 +550,31 @@ void CImgMergeFrame::SavePosition()
 {
 	CRect rc;
 	GetWindowRect(&rc);
-	theApp.WriteProfileInt(_T("Settings"), _T("WLeft"), rc.Width());
 	theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), m_pImgMergeWindow->GetActivePane());
+
+	// save the bars layout
+	// save docking positions and sizes
+	CDockState m_pDockState;
+	GetDockState(m_pDockState);
+	m_pDockState.SaveState(_T("Settings"));
+	// for the dimensions of the diff pane, use the CSizingControlBar save
+	m_wndLocationBar.SaveState(_T("Settings"));
 }
 
 void CImgMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
 {
 	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 	if (bActivate)
+	{
 		GetMainFrame()->PostMessage(WM_USER + 1);
+
+		CDockState pDockState;
+		pDockState.LoadState(_T("Settings"));
+		if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+			SetDockState(pDockState);
+		// for the dimensions of the diff and location pane, use the CSizingControlBar loader
+		m_wndLocationBar.LoadState(_T("Settings"));
+	}
 }
 
 void CImgMergeFrame::OnClose() 
@@ -748,12 +848,14 @@ void CImgMergeFrame::UpdateHeaderPath(int pane)
 /// update splitting position for panels 1/2 and headerbar and statusbar 
 void CImgMergeFrame::UpdateHeaderSizes()
 {
-	if (IsWindowVisible())
+	if (IsWindowVisible() && m_pImgMergeWindow)
 	{
 		int w[3];
 		int pane;
-		CRect rc;
+		CRect rc, rcMergeWindow;
 		GetClientRect(&rc);
+		::GetWindowRect(m_pImgMergeWindow->GetHWND(), &rcMergeWindow);
+		ScreenToClient(rcMergeWindow);
 		if (!m_pImgMergeWindow->GetHorizontalSplit())
 		{
 			for (pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); pane++)
@@ -770,8 +872,9 @@ void CImgMergeFrame::UpdateHeaderSizes()
 		}
 		// resize controls in header dialog bar
 		m_wndFilePathBar.Resize(w);
+		rc.left = rcMergeWindow.left;
 		rc.top = rc.bottom - m_rectBorder.bottom;
-		rc.right = 0;
+		rc.right = rc.left;
 		for (pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); pane++)
 		{
 			rc.right += w[pane] + 4 + 2;
@@ -995,6 +1098,7 @@ bool CImgMergeFrame::CloseNow()
 		return false;
 
 	SavePosition(); // Save settings before closing!
+	SaveOptions();
 	MDIActivate();
 	MDIDestroy();
 	return true;
@@ -1079,14 +1183,7 @@ BOOL CImgMergeFrame::PreTranslateMessage(MSG* pMsg)
 void CImgMergeFrame::OnSize(UINT nType, int cx, int cy) 
 {
 	CMDIChildWnd::OnSize(nType, cx, cy);
-	if (m_pImgMergeWindow)
-	{
-		UpdateHeaderSizes();
-		CRect rcPathBar , rcStatusBar;
-		m_wndFilePathBar.GetClientRect(&rcPathBar);
-		m_wndStatusBar[0].GetClientRect(&rcStatusBar);
-		m_pImgMergeWindow->SetWindowRect(CRect(0, rcPathBar.Height(), cx, cy - rcStatusBar.Height()));
-	}
+	UpdateHeaderSizes();
 }
 
 void CImgMergeFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
