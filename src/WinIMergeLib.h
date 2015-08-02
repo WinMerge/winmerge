@@ -29,7 +29,8 @@ struct IImgMergeWindow
 		RBUTTONDOWN,     RBUTTONUP, RBUTTONDBLCLK,
 		MOUSEMOVE, MOUSEWHEEL, CONTEXTMENU,
 		KEYDOWN, KEYUP,
-		SIZE, HSCROLL, VSCROLL, SETFOCUS, KILLFOCUS
+		SIZE, HSCROLL, VSCROLL, SETFOCUS, KILLFOCUS,
+		REFRESH, SCROLLTODIFF, OPEN
 	};
 	struct Event
 	{
@@ -43,6 +44,7 @@ struct IImgMergeWindow
 		int width;
 		int height;
 		int keycode;
+		int diffIndex;
 	};
 	typedef void (*EventListenerFunc)(const Event& evt);
 	virtual bool OpenImages(const wchar_t *filename1, const wchar_t *filename2) = 0;
@@ -128,8 +130,16 @@ struct IImgMergeWindow
 	virtual void AddEventListener(EventListenerFunc func, void *userdata) = 0;
 };
 
+struct IImgToolWindow
+{
+	virtual HWND GetHWND() const = 0;
+	virtual void Sync() = 0;
+};
+
 extern "C"
 {
-	IImgMergeWindow * WinIMerge_CreateWindow(HINSTANCE hInstance, HWND hWndParent);
+	IImgMergeWindow * WinIMerge_CreateWindow(HINSTANCE hInstance, HWND hWndParent, int nID = 0);
 	bool WinIMerge_DestroyWindow(IImgMergeWindow *pImgMergeWindow);
+	IImgToolWindow * WinIMerge_CreateToolWindow(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *pImgMergeWindow);
+	bool WinIMerge_DestroyToolWindow(IImgToolWindow *pImgToolWindow);
 };

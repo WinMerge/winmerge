@@ -626,6 +626,20 @@ public:
 		return m_imgOrig32[pane].height();
 	}
 
+	int  GetDiffImageWidth() const
+	{
+		if (m_nImages <= 0)
+			return -1;
+		return m_imgDiff[0].width();
+	}
+
+	int  GetDiffImageHeight() const
+	{
+		if (m_nImages <= 0)
+			return -1;
+		return m_imgDiff[0].height();
+	}
+
 	int  GetImageBitsPerPixel(int pane) const
 	{
 		if (pane < 0 || pane >= m_nImages)
@@ -649,6 +663,49 @@ public:
 		if (pane < 0 || pane >= m_nImages)
 			return NULL;
 		return &m_imgDiff[pane];
+	}
+
+	Image *GetDiffMapImage(unsigned w, unsigned h)
+	{
+		m_imgDiffMap.clear();
+		m_imgDiffMap.setSize(w, h);
+		if (m_nImages == 0)
+			return &m_imgDiffMap;
+		double diffMapBlockSizeW = static_cast<double>(m_diffBlockSize) * w / m_imgDiff[0].width();
+		double diffMapBlockSizeH = static_cast<double>(m_diffBlockSize) * h / m_imgDiff[0].height();
+		for (unsigned by = 0; by < m_diff.height(); ++by)
+		{
+			for (unsigned bx = 0; bx < m_diff.width(); ++bx)
+			{
+				int diffIndex = m_diff(bx, by);
+				if (diffIndex != 0)
+				{
+					Image::Color color = (diffIndex - 1 == m_currentDiffIndex) ? m_selDiffColor : m_diffColor;
+					unsigned bsy = static_cast<unsigned>(diffMapBlockSizeH + 1);
+					unsigned y = static_cast<unsigned>(by * diffMapBlockSizeH + bsy - 1);
+					if (y >= h)
+						bsy = h - y;
+					for (unsigned i = 0; i < bsy; ++i)
+					{
+						unsigned y = static_cast<unsigned>(by * diffMapBlockSizeH + i);
+						unsigned char *scanline = m_imgDiffMap.scanLine(y);
+						unsigned bsx = static_cast<unsigned>(diffMapBlockSizeW + 1);
+						unsigned x = static_cast<unsigned>(bx * diffMapBlockSizeW + bsx - 1);
+						if (x >= w)
+							bsx = w - x;
+						for (unsigned j = 0; j < bsx; ++j)
+						{
+							unsigned x = static_cast<unsigned>(bx * diffMapBlockSizeW + j);
+							scanline[x * 4 + 0] = Image::valueB(color);
+							scanline[x * 4 + 1] = Image::valueG(color);
+							scanline[x * 4 + 2] = Image::valueR(color);
+							scanline[x * 4 + 3] = 0xff;
+						}
+					}
+				}
+			}
+		}
+		return &m_imgDiffMap;
 	}
 
 	Point<unsigned> GetImageOffset(int pane) const
@@ -1045,6 +1102,7 @@ protected:
 	Image m_imgOrig[3];
 	Image m_imgOrig32[3];
 	Image m_imgDiff[3];
+	Image m_imgDiffMap;
 	std::wstring m_filename[3];
 	bool m_showDifferences;
 	OVERLAY_MODE m_overlayMode;

@@ -1,16 +1,35 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by WinIMerge.rc
+// Used by WinIMergeLib.rc
 //
 #define IDD_WINIMERGE_DIALOG            102
+#define IDD_DIALOGBAR                   103
 #define ID_FILE_OPEN                    105
 #define ID_FILE_OPEN3                   106
 #define ID_FILE_GENERATE_REPORT         107
 #define ID_FILE_EXIT                    108
 #define IDI_WINIMERGE                   109
 #define IDC_WINIMERGE                   110
+#define IDC_DIFFMAP                     110
 #define IDR_MAINFRAME                   128
 #define IDR_POPUPMENU                   130
+#define IDC_DIFF_HIGHLIGHT              1000
+#define IDC_DIFF_BLOCKSIZE_SLIDER       1001
+#define IDC_DIFF_BLOCKALPHA_SLIDER      1002
+#define IDC_DIFF_CDTHRESHOLD_SLIDER     1003
+#define IDC_DIFF_BLOCKSIZE_STATIC       1004
+#define IDC_DIFF_BLOCKALPHA_STATIC      1005
+#define IDC_DIFF_CDTHRESHOLD_STATIC     1006
+#define IDC_OVERLAY_MODE                1007
+#define IDC_OVERLAY_ALPHA_SLIDER        1008
+#define IDC_OVERLAY_ALPHA_STATIC        1009
+#define IDC_ZOOM_SLIDER                 1010
+#define IDC_ZOOM_STATIC                 1011
+#define IDC_PAGE_SPIN                   1012
+#define IDC_PAGE_EDIT                   1013
+#define IDC_DIFF_GROUP                  1014
+#define IDC_OVERLAY_GROUP               1015
+#define IDC_VIEW_GROUP                  1016
 #define ID_VIEW_ZOOM_25                 32780
 #define ID_VIEW_ZOOM_50                 32781
 #define ID_VIEW_ZOOM_100                32782
@@ -73,7 +92,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        131
 #define _APS_NEXT_COMMAND_VALUE         32847
-#define _APS_NEXT_CONTROL_VALUE         1000
+#define _APS_NEXT_CONTROL_VALUE         1017
 #define _APS_NEXT_SYMED_VALUE           111
 #endif
 #endif

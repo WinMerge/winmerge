@@ -107,7 +107,7 @@ public:
 		return m_hWnd == GetFocus();
 	}
 
-	void ScrollTo(int x, int y)
+	void ScrollTo(int x, int y, bool force = false)
 	{
 		SCROLLINFO sih = {0}, siv = {0};
 		sih.cbSize = sizeof SCROLLINFO;
@@ -122,8 +122,15 @@ public:
 
 		if (rc.right - rc.left < m_fip->getWidth() * m_zoom + MARGIN * 2)
 		{
-			if (x * m_zoom + MARGIN < m_nHScrollPos || m_nHScrollPos + rc.right < x * m_zoom + MARGIN)
+			if (force)
+			{
 				m_nHScrollPos = static_cast<int>(x * m_zoom + MARGIN - rc.right / 2);
+			}
+			else
+			{
+				if (x * m_zoom + MARGIN < m_nHScrollPos || m_nHScrollPos + rc.right < x * m_zoom + MARGIN)
+					m_nHScrollPos = static_cast<int>(x * m_zoom + MARGIN - rc.right / 2);
+			}
 			if (m_nHScrollPos < 0)
 				m_nHScrollPos = 0;
 			else if (m_nHScrollPos > sih.nMax - static_cast<int>(sih.nPage))
@@ -131,8 +138,15 @@ public:
 		}
 		if (rc.bottom - rc.top < m_fip->getHeight() * m_zoom + MARGIN * 2)
 		{
-			if (y * m_zoom + MARGIN < m_nVScrollPos || m_nVScrollPos + rc.bottom < y * m_zoom + MARGIN)
+			if (force)
+			{
 				m_nVScrollPos = static_cast<int>(y * m_zoom + MARGIN - rc.bottom / 2);
+			}
+			else
+			{
+				if (y * m_zoom + MARGIN < m_nVScrollPos || m_nVScrollPos + rc.bottom < y * m_zoom + MARGIN)
+					m_nVScrollPos = static_cast<int>(y * m_zoom + MARGIN - rc.bottom / 2);
+			}
 			if (m_nVScrollPos < 0)
 				m_nVScrollPos = 0;
 			else if (m_nVScrollPos > siv.nMax - static_cast<int>(siv.nPage))

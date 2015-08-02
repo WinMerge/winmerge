@@ -18,13 +18,14 @@
 #include <Windows.h>
 #include "ImgWindow.hpp"
 #include "ImgMergeWindow.hpp"
+#include "ImgToolWindow.hpp"
 
 extern "C" IImgMergeWindow *
-WinIMerge_CreateWindow(HINSTANCE hInstance, HWND hWndParent)
+WinIMerge_CreateWindow(HINSTANCE hInstance, HWND hWndParent, int nID)
 {
 	RECT rc = {0};
 	CImgMergeWindow *pImgMergeWindow = new CImgMergeWindow();
-	pImgMergeWindow->Create(hInstance, hWndParent, rc);
+	pImgMergeWindow->Create(hInstance, hWndParent, nID, rc);
 	return static_cast<IImgMergeWindow *>(pImgMergeWindow);
 }
 
@@ -34,6 +35,25 @@ WinIMerge_DestroyWindow(IImgMergeWindow *pImgMergeWindow)
 	CImgMergeWindow *pImgMergeWindow2 = static_cast<CImgMergeWindow *>(pImgMergeWindow);
 	pImgMergeWindow2->Destroy();
 	delete pImgMergeWindow2;
+	return true;
+}
+
+extern "C" IImgToolWindow *
+WinIMerge_CreateToolWindow(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *pImgMergeWindow)
+{
+	RECT rc = {0};
+	CImgToolWindow *pImgToolWindow = new CImgToolWindow();
+	pImgToolWindow->Create(hInstance, hWndParent);
+	pImgToolWindow->SetImgMergeWindow(pImgMergeWindow);
+	return static_cast<IImgToolWindow *>(pImgToolWindow);
+}
+
+extern "C" bool
+WinIMerge_DestroyToolWindow(IImgToolWindow *pImgToolWindow)
+{
+	CImgToolWindow *pImgToolWindow2 = static_cast<CImgToolWindow *>(pImgToolWindow);
+	pImgToolWindow2->Destroy();
+	delete pImgToolWindow2;
 	return true;
 }
 

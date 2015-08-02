@@ -70,12 +70,12 @@ public:
 	{
 	}
 
-	bool Create(HINSTANCE hInstance, HWND hWndParent, const RECT &rc)
+	bool Create(HINSTANCE hInstance, HWND hWndParent, int nID, const RECT &rc)
 	{
 		m_hInstance = hInstance;
 		MyRegisterClass(hInstance);
 		m_hWnd = CreateWindowExW(0, L"WinImgMergeWindowClass", NULL, WS_CHILD | WS_VISIBLE,
-			rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, hWndParent, NULL, hInstance, this);
+			rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, hWndParent, reinterpret_cast<HMENU>(nID), hInstance, this);
 		return m_hWnd ? true : false;
 	}
 
@@ -516,6 +516,22 @@ public:
 			for (int i = 0; i < m_nImages; ++i)
 				m_imgWindow[i].Invalidate();
 		}
+
+		Event evt;
+		evt.eventType = SCROLLTODIFF;
+		evt.diffIndex = diffIndex;
+		notify(evt);
+	}
+
+	void ScrollTo(int x, int y, bool force = false)
+	{
+		for (int i = 0; i < m_nImages; ++i)
+			m_imgWindow[i].ScrollTo(x, y, force);
+		Event evt;
+		evt.eventType = VSCROLL;
+		notify(evt);
+		evt.eventType = HSCROLL;
+		notify(evt);
 	}
 
 	void Invalidate()
@@ -524,6 +540,10 @@ public:
 			return;
 		for (int i = 0; i < m_nImages; ++i)
 			m_imgWindow[i].Invalidate();
+
+		Event evt;
+		evt.eventType = REFRESH;
+		notify(evt);
 	}
 
 	bool OpenImages(int nImages, const wchar_t * const filename[3])
@@ -543,6 +563,11 @@ public:
 			m_imgWindow[i].SetWindowRect(rects[i]);
 			m_imgWindow[i].SetImage(m_buffer.GetImage(i)->getFipImage());
 		}
+
+		Event evt;
+		evt.eventType = OPEN;
+		notify(evt);
+
 		return bSucceeded;
 	}
 
@@ -617,6 +642,16 @@ public:
 		return m_buffer.GetImageHeight(pane);
 	}
 
+	int  GetDiffImageWidth() const
+	{
+		return m_buffer.GetDiffImageWidth();
+	}
+
+	int  GetDiffImageHeight() const
+	{
+		return m_buffer.GetDiffImageHeight();
+	}
+
 	int  GetImageBitsPerPixel(int pane) const
 	{
 		return m_buffer.GetImageBitsPerPixel(pane);
@@ -638,6 +673,16 @@ public:
 	{
 		m_buffer.AddImageOffset(pane, dx, dy);
 		Invalidate();
+	}
+
+	Image *GetImage(int pane)
+	{
+		return m_buffer.GetImage(pane);
+	}
+
+	Image *GetDiffMapImage(unsigned w, unsigned h)
+	{
+		return m_buffer.GetDiffMapImage(w, h);
 	}
 
 private:
@@ -889,6 +934,17 @@ private:
 		return 0;
 	}
 
+	void notify(const Event &evt)
+	{
+		Event evt2 = evt;
+		std::vector<EventListenerInfo>::iterator it;
+		for (it = m_listener.begin(); it != m_listener.end(); ++it)
+		{
+			evt2.userdata = (*it).userdata;
+			(*it).func(evt2);
+		}
+	}
+
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	{
 		if (iMsg == WM_NCCREATE)
@@ -948,15 +1004,8 @@ private:
 		case WM_KILLFOCUS:
 			evt.eventType = KILLFOCUS; goto NEXT;
 		NEXT:
-		{
-			std::vector<EventListenerInfo>::iterator it;
-			for (it = pImgWnd->m_listener.begin(); it != pImgWnd->m_listener.end(); ++it)
-			{
-				evt.userdata = (*it).userdata;
-				(*it).func(evt);
-			}
+			pImgWnd->notify(evt);
 			break;
-		}
 		}
 		switch (iMsg)
 		{

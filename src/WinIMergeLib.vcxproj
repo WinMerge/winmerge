@@ -178,6 +178,7 @@
     <ClInclude Include="ImgDiffBuffer.hpp" />
     <ClInclude Include="ImgMergeBuffer.hpp" />
     <ClInclude Include="ImgMergeWindow.hpp" />
+    <ClInclude Include="ImgToolWindow.hpp" />
     <ClInclude Include="ImgWindow.hpp" />
     <ClInclude Include="image.hpp" />
     <ClInclude Include="Resource.h" />

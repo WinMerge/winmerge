@@ -28,13 +28,25 @@
 #pragma comment(lib, "comctl32.lib")
 #pragma comment(lib, "shlwapi.lib")
 
+#if defined _M_IX86
+#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#elif defined _M_IA64
+#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='ia64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#elif defined _M_X64
+#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#else
+#pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#endif
+
 HINSTANCE m_hInstance;
 HINSTANCE hInstDLL;
 HWND m_hWnd;
 HWND m_hwndStatusBar;
+HWND m_hwndImgToolWindow;
 wchar_t m_szTitle[256] = L"WinIMerge";
 wchar_t m_szWindowClass[256] = L"WinIMergeClass";
 IImgMergeWindow *m_pImgMergeWindow = NULL;
+IImgToolWindow *m_pImgToolWindow = NULL;
 
 struct CmdLineInfo
 {
@@ -86,7 +98,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 
 	while (GetMessage(&msg, NULL, 0, 0)) 
 	{
-		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) 
+		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg) && (m_hwndImgToolWindow == 0 || !IsDialogMessage(m_hwndImgToolWindow, &msg)))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -323,6 +335,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			0, 0, 0, 0, hWnd, (HMENU)1000, m_hInstance, NULL);
 		m_pImgMergeWindow = WinIMerge_CreateWindow(hInstDLL, hWnd);
 		m_pImgMergeWindow->AddEventListener(OnChildPaneEvent, NULL);
+		m_pImgToolWindow = WinIMerge_CreateToolWindow(hInstDLL, hWnd, m_pImgMergeWindow);
+		m_hwndImgToolWindow = m_pImgToolWindow->GetHWND();
 		SetTimer(hWnd, 1, 250, NULL);
 		UpdateMenuState(hWnd);
 		break;
@@ -341,12 +355,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	case WM_SIZE:
 	{
-		RECT rc, rcStatusBar;
+		RECT rc, rcToolWindow, rcStatusBar;
 		GetClientRect(hWnd, &rc);
 		GetClientRect(m_hwndStatusBar, &rcStatusBar);
+		GetClientRect(m_hwndImgToolWindow, &rcToolWindow);
 		rc.bottom -= rcStatusBar.bottom;
+		rc.right -= rcToolWindow.right;
 		m_pImgMergeWindow->SetWindowRect(rc);
-		MoveWindow(m_hwndStatusBar, 0, rc.bottom, rc.right, rc.bottom + rcStatusBar.bottom, TRUE);
+		MoveWindow(m_hwndImgToolWindow, rc.right, 0, rcToolWindow.right, rc.bottom, TRUE);
+		MoveWindow(m_hwndStatusBar, rc.left, rc.bottom, rc.right, rc.bottom + rcStatusBar.bottom, TRUE);
 		break;
 	}
 	case WM_COMMAND:
