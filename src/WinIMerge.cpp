@@ -50,7 +50,7 @@ IImgToolWindow *m_pImgToolWindow = NULL;
 
 struct CmdLineInfo
 {
-	CmdLineInfo(const wchar_t *cmdline) : nImages(0)
+	explicit CmdLineInfo(const wchar_t *cmdline) : nImages(0)
 	{
 		if (cmdline[0] == 0)
 			return;

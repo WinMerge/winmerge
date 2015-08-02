@@ -32,7 +32,7 @@ public:
 	fipImageEx(FREE_IMAGE_TYPE image_type = FIT_BITMAP, unsigned width = 0, unsigned height = 0, unsigned bpp = 0) :
 	fipWinImage(image_type, width, height, bpp) {}
 	fipImageEx(const fipImageEx& Image) : fipWinImage(Image) {}
-	fipImageEx(FIBITMAP *bitmap) { *this = bitmap; }
+	explicit fipImageEx(FIBITMAP *bitmap) { *this = bitmap; }
 	virtual ~fipImageEx() {}
 
 	fipImageEx& operator=(const fipImageEx& Image)
@@ -148,7 +148,7 @@ public:
 class fipMultiPageEx : public fipMultiPage
 {
 public:
-	fipMultiPageEx(BOOL keep_cache_in_memory = FALSE) : fipMultiPage(keep_cache_in_memory) {}
+	explicit fipMultiPageEx(BOOL keep_cache_in_memory = FALSE) : fipMultiPage(keep_cache_in_memory) {}
    
 	BOOL openU(const wchar_t* lpszPathName, BOOL create_new, BOOL read_only, int flags = 0)
 	{
@@ -215,8 +215,8 @@ public:
 	typedef RGBQUAD Color;
 	Image() {}
 	Image(int w, int h) : image_(FIT_BITMAP, w, h, 32) {}
-	Image(const Image& other) { image_ = other.image_; }
-	Image(FIBITMAP *bitmap) : image_(bitmap) {}
+	Image(const Image& other) : image_(other.image_) {}
+	explicit Image(FIBITMAP *bitmap) : image_(bitmap) {}
 	BYTE *scanLine(int y) { return image_.getScanLine(image_.getHeight() - y - 1); }
 	const BYTE *scanLine(int y) const { return image_.getScanLine(image_.getHeight() - y - 1); }
 	bool convertTo32Bits() { return !!image_.convertTo32Bits(); }
@@ -227,7 +227,7 @@ public:
 		return !!image_.saveU(filename.c_str());
 #else
 		char filenameA[260];
-		snprintf(filenameA, sizeof(filenameA), "%ls", filename);
+		snprintf(filenameA, sizeof(filenameA), "%ls", filename.c_str());
 		return !!image_.save(filenameA);
 #endif
 	}
