@@ -30,6 +30,7 @@
 #include "DiffFileInfo.h"
 #include "IMergeDoc.h"
 #include "../Externals/winimerge/src/WinIMergeLib.h"
+#include "LocationBar.h"
 
 class CDirDoc;
 
@@ -91,6 +92,7 @@ public:
 
 // Implementation
 private:
+	BOOL EnsureValidDockState(CDockState& state);
 	void LoadOptions();
 	void SaveOptions();
 	void SavePosition();
@@ -109,7 +111,9 @@ private:
 	static void OnChildPaneEvent(const IImgMergeWindow::Event& evt);
 	HICON m_hIdentical;
 	HICON m_hDifferent;
+	CLocationBar m_wndLocationBar;
 	IImgMergeWindow *m_pImgMergeWindow;
+	IImgToolWindow *m_pImgToolWindow;
 	PathContext m_filePaths;
 	String m_strDesc[3];
 	BUFFERTYPE m_nBufferType[3];
@@ -119,6 +123,7 @@ private:
 	CDirDoc *m_pDirDoc;
 
 	//{{AFX_MSG(CImgMergeFrame)
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	afx_msg void OnClose();
