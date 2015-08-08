@@ -556,9 +556,9 @@ void CImgMergeFrame::SavePosition()
 	// save docking positions and sizes
 	CDockState m_pDockState;
 	GetDockState(m_pDockState);
-	m_pDockState.SaveState(_T("Settings"));
+	m_pDockState.SaveState(_T("Settings-ImgMergeFrame"));
 	// for the dimensions of the diff pane, use the CSizingControlBar save
-	m_wndLocationBar.SaveState(_T("Settings"));
+	m_wndLocationBar.SaveState(_T("Settings-ImgMergeFrame"));
 }
 
 void CImgMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
@@ -569,11 +569,11 @@ void CImgMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDe
 		GetMainFrame()->PostMessage(WM_USER + 1);
 
 		CDockState pDockState;
-		pDockState.LoadState(_T("Settings"));
+		pDockState.LoadState(_T("Settings-ImgMergeFrame"));
 		if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
 			SetDockState(pDockState);
 		// for the dimensions of the diff and location pane, use the CSizingControlBar loader
-		m_wndLocationBar.LoadState(_T("Settings"));
+		m_wndLocationBar.LoadState(_T("Settings-ImgMergeFrame"));
 	}
 }
 
