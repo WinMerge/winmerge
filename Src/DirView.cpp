@@ -60,7 +60,7 @@
 #include "FileOrFolderSelect.h"
 #include "IntToIntMap.h"
 #include <numeric>
-#include <boost/bind.hpp>
+#include <functional>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -69,6 +69,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 using std::swap;
+using namespace std::placeholders;
 
 /**
  * @brief Location for folder compare specific help to open.
@@ -110,7 +111,7 @@ CDirView::CDirView()
 		, m_pCmpProgressBar(nullptr)
 		, m_compareStart(0)
 		, m_bTreeMode(false)
-		, m_dirfilter(boost::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1))
+		, m_dirfilter(std::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1))
 		, m_pShellContextMenuLeft(nullptr)
 		, m_pShellContextMenuMiddle(nullptr)
 		, m_pShellContextMenuRight(nullptr)
@@ -438,7 +439,7 @@ void CDirView::ReloadColumns()
 	UpdateColumnNames();
 	m_pColItems->LoadColumnWidths(
 		(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnWidths")),
-		boost::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
+		std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
 	SetColAlignments();
 }
 
@@ -706,8 +707,8 @@ bool CDirView::ListShellContextMenu(SIDE_TYPE stype)
 		shellContextMenu = m_pShellContextMenuRight.get(); break;
 	}
 	shellContextMenu->Initialize();
-	ApplyFolderNameAndFileName(SelBegin(), SelEnd(), stype, GetDiffContext(), 
-		boost::bind(&CShellContextMenu::AddItem, shellContextMenu, _1, _2));
+	ApplyFolderNameAndFileName(SelBegin(), SelEnd(), stype, GetDiffContext(),
+		[&](const String& path, const String& filename) { shellContextMenu->AddItem(path, filename); });
 	return shellContextMenu->RequeryShellContextMenu();
 }
 
@@ -978,7 +979,7 @@ void CDirView::OnDestroy()
 	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
 	theApp.WriteProfileString(secname.c_str(), _T("ColumnOrders"), m_pColItems->SaveColumnOrders().c_str());
 	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
-		m_pColItems->SaveColumnWidths(boost::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
+		m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
 
 	CListView::OnDestroy();
 
@@ -2095,7 +2096,7 @@ BOOL CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
 	// so we can reload them on the end drag
 	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
 	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
-		m_pColItems->SaveColumnWidths(boost::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
+		m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
 	return TRUE;
 }
 
@@ -2185,7 +2186,7 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 		UpdateColumnNames();
 		m_pColItems->LoadColumnWidths(
 			(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnWidths")),
-			boost::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
+			std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
 		Redisplay();
 	}
 	else if (nIDEvent == STATUSBAR_UPDATE)
@@ -3698,7 +3699,7 @@ void CDirView::OnEditColumns()
 	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
 	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
 		(dlg.m_bReset ? m_pColItems->ResetColumnWidths(DefColumnWidth) :
-		                m_pColItems->SaveColumnWidths(boost::bind(&CListCtrl::GetColumnWidth, m_pList, _1))).c_str());
+		                m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1))).c_str());
 
 	// Reset our data to reflect the new data from the dialog
 	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();
