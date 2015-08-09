@@ -522,7 +522,7 @@ void CDirView::Redisplay()
 	uintptr_t diffpos = ctxt.GetFirstDiffPosition();
 	RedisplayChildren(diffpos, 0, cnt, alldiffs);
 	if (pDoc->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPLETED)
-		theApp.SetLastCompareResult(alldiffs);
+		GetParentFrame()->SetLastCompareResult(alldiffs);
 	SortColumnsAppropriately();
 	SetRedraw(TRUE);
 }
