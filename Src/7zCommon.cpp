@@ -389,7 +389,10 @@ UINT DirItemEnumerator::Open()
 {
 	m_nIndex = -1;
 	m_curFolderPrefix = m_rgFolderPrefix.begin();
-	m_index = (m_nFlags & Right) != 0 ? 1 : 0;
+	if (m_pView->GetDocument()->m_nDirs < 3)
+		m_index = (m_nFlags & Right) != 0 ? 1 : 0;
+	else
+		m_index = ((m_nFlags & Right) != 0) ? 2 : ((m_nFlags & Middle) != 0 ? 1 : 0);
 	size_t nrgFolderPrefix = m_rgFolderPrefix.size();
 	if (nrgFolderPrefix)
 	{

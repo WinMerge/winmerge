@@ -103,6 +103,7 @@ struct DirViewFilterSettings
 	{
 		show_skipped = getoptbool(OPT_SHOW_SKIPPED);
 		show_unique_left = getoptbool(OPT_SHOW_UNIQUE_LEFT);
+		show_unique_middle = getoptbool(OPT_SHOW_UNIQUE_MIDDLE);
 		show_unique_right = getoptbool(OPT_SHOW_UNIQUE_RIGHT);
 		show_binaries = getoptbool(OPT_SHOW_BINARIES);
 		show_identical = getoptbool(OPT_SHOW_IDENTICAL);
@@ -111,6 +112,7 @@ struct DirViewFilterSettings
 	};
 	bool show_skipped;
 	bool show_unique_left;
+	bool show_unique_middle;
 	bool show_unique_right;
 	bool show_binaries;
 	bool show_identical;
@@ -124,9 +126,11 @@ String NumToStr(int n);
 String FormatFilesAffectedString(int nFilesAffected, int nFilesTotal);
 String FormatMenuItemString(SIDE_TYPE src, int count, int total);
 String FormatMenuItemString(SIDE_TYPE src, SIDE_TYPE dst, int count, int total);
-String FormatMenuItemStringBoth(int count, int total);
+String FormatMenuItemStringAll(int nDirs, int count, int total);
 String FormatMenuItemString(const String& fmt1, const String& fmt2, int count, int total);
 String FormatMenuItemStringTo(SIDE_TYPE src, int count, int total);
+String FormatMenuItemStringAllTo(int nDirs, int count, int total);
+String FormatMenuItemStringDifferencesTo(int count, int total);
 
 void ConfirmActionList(const CDiffContext& ctxt, const FileActionScript & actionList);
 UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContext& ctxt, DIFFITEM &di);
@@ -223,6 +227,21 @@ struct DirActions
 		return (di.diffcode.diffcode != 0 && ::IsItemCopyableToOn(di, SideToIndex(m_ctxt, src)));
 	}
 
+	bool IsItemCopyableBothToOn(const DIFFITEM& di) const
+	{
+		if (di.diffcode.diffcode != 0)
+		{
+			int i;
+			for (i = 0; i < m_ctxt.GetCompareDirs(); ++i)
+			{
+				if (!::IsItemCopyableToOn(di, i))
+					break;
+			}
+			return (i == m_ctxt.GetCompareDirs());
+		}
+		return false;
+	}
+
 	template <SIDE_TYPE src>
 	bool IsItemMovableToOn(const DIFFITEM& di) const
 	{
@@ -236,6 +255,7 @@ struct DirActions
 		const int idx = SideToIndex(m_ctxt, src);
 		return (di.diffcode.diffcode != 0 && !m_RO[idx] && IsItemDeletable(di, idx));
 	}
+
 	bool IsItemDeletableOnBoth(const DIFFITEM& di) const
 	{
 		if (di.diffcode.diffcode != 0)
@@ -266,15 +286,15 @@ struct DirActions
 	}
 
 	template <SIDE_TYPE src>
-	bool IsItemOpenanbleOn(const DIFFITEM& di) const
+	bool IsItemOpenableOn(const DIFFITEM& di) const
 	{
-		return (di.diffcode.diffcode != 0 && IsItemOpenableOn(di, SideToIndex(m_ctxt, src)));
+		return (di.diffcode.diffcode != 0 && ::IsItemOpenableOn(di, SideToIndex(m_ctxt, src)));
 	}
 
 	template <SIDE_TYPE src>
-	bool IsItemOpenanbleOnWith(const DIFFITEM& di) const
+	bool IsItemOpenableOnWith(const DIFFITEM& di) const
 	{
-		return (di.diffcode.diffcode != 0 && IsItemOpenableOnWith(di, SideToIndex(m_ctxt, src)));
+		return (di.diffcode.diffcode != 0 && ::IsItemOpenableOnWith(di, SideToIndex(m_ctxt, src)));
 	}
 
 	bool IsItemFile(const DIFFITEM& di) const
@@ -482,57 +502,6 @@ Counts Count(const InputIterator& begin, const InputIterator& end, const Predica
 	}
 	return Counts(count, total);
 }
-
-struct ContextMenuCounts {
-	int nTotal; // total #items (includes files & directories, either side)
-	int nCopyable[3];
-	int nDeletable[3];
-	int nDeletableOnBoth;
-	int nOpenable[3];
-	int nOpenableOnBoth;
-	int nOpenableOnWith[3];
-	int nDiffItems;
-};
-
-template<class InputIterator>
-ContextMenuCounts CountForContextMenu(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt)
-{
-	ContextMenuCounts counts = {0};
-	int nDirs = ctxt.GetCompareDirs();
-	for (InputIterator it = begin; it != end; ++it)
-	{
-		const DIFFITEM& di = *it;
-		if (di.diffcode.diffcode == 0) // Invalid value, this must be special item
-			continue;
-		int nOpenablePerItem = 0;
-		for (int j = 0; j < nDirs; ++j)
-		{
-			if (IsItemCopyable(di, j))
-				++counts.nCopyable[j];
-			if (IsItemDeletable(di, j))
-				++counts.nDeletable[j];		
-			if (IsItemOpenableOn(di, j))
-			{
-				++nOpenablePerItem;
-				++counts.nOpenable[j];
-			}
-			if (IsItemOpenableOnWith(di, j))
-				++counts.nOpenableOnWith[j];
-		}
-		if (IsItemDeletableOnBoth(ctxt, di))
-			++counts.nDeletableOnBoth;
-
-		if (IsItemNavigableDiff(ctxt, di))
-			++counts.nDiffItems;
-
-		if (nOpenablePerItem == nDirs)
-			++counts.nOpenableOnBoth;
-
-		++counts.nTotal;
-	}
-	return counts;
-}
-
 
 /**
  * @brief Rename selected item on both left and right sides.

@@ -74,11 +74,12 @@ public:
 	enum
 	{
 		Left = 0x00,
-		Right = 0x10,
-		Original = 0x20,
-		Altered = 0x40,
-		DiffsOnly = 0x80,
-		BalanceFolders = 0x100
+		Middle = 0x10,
+		Right = 0x20,
+		Original = 0x40,
+		Altered = 0x80,
+		DiffsOnly = 0x100,
+		BalanceFolders = 0x200
 	};
 	DirItemEnumerator(CDirView *, int);
 	virtual UINT Open();

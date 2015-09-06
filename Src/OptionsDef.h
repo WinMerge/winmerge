@@ -16,6 +16,7 @@ extern const String OPT_SELECTED_LANGUAGE OP("Locale/LanguageId");
 
 // View-menu
 extern const String OPT_SHOW_UNIQUE_LEFT OP("Settings/ShowUniqueLeft");
+extern const String OPT_SHOW_UNIQUE_MIDDLE OP("Settings/ShowUniqueMiddle");
 extern const String OPT_SHOW_UNIQUE_RIGHT OP("Settings/ShowUniqueRight");
 extern const String OPT_SHOW_DIFFERENT OP("Settings/ShowDifferent");
 extern const String OPT_SHOW_IDENTICAL OP("Settings/ShowIdentical");

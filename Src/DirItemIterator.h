@@ -122,6 +122,7 @@ public:
 	{
 		m_sel = it.m_sel;
 		m_pList = it.m_pList;
+		m_pdi = it.m_pdi;
 		return *this;
 	}
 
