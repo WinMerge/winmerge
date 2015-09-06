@@ -264,6 +264,7 @@ BEGIN
         MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
         MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Midd&le Unique Items",   ID_OPTIONS_SHOWUNIQUEMIDDLE
         MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
@@ -615,21 +616,29 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Copy"
         BEGIN
-            MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "L&eft to...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "Left to Middle (%1 of %2)",   ID_DIR_COPY_LEFT_TO_MIDDLE
+            MENUITEM "Left to Right (%1 of %2)",    ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to... (%1 of %2)",       ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Middle to Left (%1 of %2)",   ID_DIR_COPY_MIDDLE_TO_LEFT
+            MENUITEM "Middle to Right (%1 of %2)",  ID_DIR_COPY_MIDDLE_TO_RIGHT
+            MENUITEM "Middle to... (%1 of %2)",     ID_DIR_COPY_MIDDLE_TO_BROWSE
+            MENUITEM "Right to Middle (%1 of %2)",  ID_DIR_COPY_RIGHT_TO_MIDDLE
+            MENUITEM "Right to Left (%1 of %2)",    ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to... (%1 of %2)",      ID_DIR_COPY_RIGHT_TO_BROWSE
         END
         POPUP "&Move"
         BEGIN
-            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "Left to... (%1 of %2)",       ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "Middle to... (%1 of %2)",     ID_DIR_MOVE_MIDDLE_TO_BROWSE
+            MENUITEM "Right to... (%1 of %2)",      ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
         POPUP "&Delete"
         BEGIN
             MENUITEM "&Left",                       ID_DIR_DEL_LEFT
+            MENUITEM "&Middle",                     ID_DIR_DEL_MIDDLE
             MENUITEM "&Right",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Both",                       ID_DIR_DEL_BOTH
+            MENUITEM "&All",                        ID_DIR_DEL_ALL
         END
         MENUITEM "Re&name",                         ID_DIR_ITEM_RENAME
         MENUITEM "&Hide Items",                     ID_DIR_HIDE_FILENAMES
@@ -640,6 +649,12 @@ BEGIN
             MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
             MENUITEM "&with...",                    ID_DIR_OPEN_LEFT_WITH
         END
+        POPUP "Open Midd&le"
+        BEGIN
+            MENUITEM "with &Registered Application", ID_DIR_OPEN_MIDDLE
+            MENUITEM "with &External Editor",       ID_DIR_OPEN_MIDDLE_WITHEDITOR
+            MENUITEM "&with...",                    ID_DIR_OPEN_MIDDLE_WITH
+        END
         POPUP "O&pen Right"
         BEGIN
             MENUITEM "with &Registered Application", ID_DIR_OPEN_RIGHT
@@ -649,24 +664,30 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Cop&y Pathnames"
         BEGIN
-            MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
-            MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
-            MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "Middle (%1 of %2)",          ID_DIR_COPY_PATHNAMES_MIDDLE
+            MENUITEM "Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "All (%1 of %2)",             ID_DIR_COPY_PATHNAMES_ALL
         END
         MENUITEM "Copy &Filenames",                 ID_DIR_COPY_FILENAMES
         POPUP "Copy Items To Clip&board"
         BEGIN
-            MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_LEFT_TO_CLIPBOARD
-            MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_RIGHT_TO_CLIPBOARD
-            MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_BOTH_TO_CLIPBOARD
+            MENUITEM "Left (%1 of %2)",            ID_DIR_COPY_LEFT_TO_CLIPBOARD
+            MENUITEM "Middle (%1 of %2)",          ID_DIR_COPY_MIDDLE_TO_CLIPBOARD
+            MENUITEM "Right (%1 of %2)",           ID_DIR_COPY_RIGHT_TO_CLIPBOARD
+            MENUITEM "Both (%1 of %2)",            ID_DIR_COPY_BOTH_TO_CLIPBOARD
+            MENUITEM "All (%1 of %2)",             ID_DIR_COPY_ALL_TO_CLIPBOARD
         END
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
-            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
-            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
-            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
-            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "Left to... (%1 of %2)",         ID_DIR_ZIP_LEFT
+            MENUITEM "Middle to... (%1 of %2)",       ID_DIR_ZIP_MIDDLE
+            MENUITEM "Right to... (%1 of %2)",        ID_DIR_ZIP_RIGHT
+            MENUITEM "Both to... (%1 of %2)",         ID_DIR_ZIP_BOTH
+            MENUITEM "All to... (%1 of %2)",          ID_DIR_ZIP_ALL
+            MENUITEM "Differences to... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
         MENUITEM SEPARATOR
         MENUITEM "&Refresh",                        ID_RESCAN
@@ -2273,30 +2294,53 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    IDS_COPY_TO_LEFT        "Right to Left (%1)"
-    IDS_COPY_TO_RIGHT       "Left to Right (%1)"
-    IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
-    IDS_COPY_TO_RIGHT2      "Left to Right (%1 of %2)"
+    IDS_COPY_RIGHT_TO_LEFT   "Right to Left (%1)"
+    IDS_COPY_RIGHT_TO_MIDDLE "Right to Middle (%1)"
+    IDS_COPY_MIDDLE_TO_LEFT  "Middle to Left (%1)"
+    IDS_COPY_MIDDLE_TO_RIGHT "Middle to Right (%1)"
+    IDS_COPY_LEFT_TO_RIGHT   "Left to Right (%1)"
+    IDS_COPY_LEFT_TO_MIDDLE  "Left to Middle (%1)"
+    IDS_COPY_RIGHT_TO_LEFT2  "Right to Left (%1 of %2)"
+    IDS_COPY_RIGHT_TO_MIDDLE2 "Right to Middle (%1 of %2)"
+    IDS_COPY_MIDDLE_TO_LEFT2 "Middle to Left (%1 of %2)"
+    IDS_COPY_MIDDLE_TO_RIGHT2 "Middle to Right (%1 of %2)"
+    IDS_COPY_LEFT_TO_RIGHT2  "Left to Right (%1 of %2)"
+    IDS_COPY_LEFT_TO_MIDDLE2 "Left to Middle (%1 of %2)"
     IDS_COPY_LEFT_TO        "Left to... (%1)"
+    IDS_COPY_MIDDLE_TO      "Middle to... (%1)"
     IDS_COPY_RIGHT_TO       "Right to... (%1)"
+    IDS_COPY_BOTH_TO        "Both to... (%1)"
+    IDS_COPY_ALL_TO         "All to... (%1)"
+    IDS_COPY_DIFFERENCES_TO "Differences to... (%1)"
     IDS_COPY_LEFT_TO2       "Left to... (%1 of %2)"
+    IDS_COPY_MIDDLE_TO2     "Middle to... (%1 of %2)"
     IDS_COPY_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_COPY_BOTH_TO2       "Both to... (%1 of %2)"
+    IDS_COPY_ALL_TO2        "All to... (%1 of %2)"
+    IDS_COPY_DIFFERENCES_TO2 "Differences to... (%1 of %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
 STRINGTABLE
 BEGIN
     IDS_DEL_LEFT_FMT        "Left (%1)"
+    IDS_DEL_MIDDLE_FMT      "Middle (%1)"
     IDS_DEL_RIGHT_FMT       "Right (%1)"
     IDS_DEL_BOTH_FMT        "Both (%1)"
+    IDS_DEL_ALL_FMT         "All (%1)"
     IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
+    IDS_DEL_MIDDLE_FMT2     "Middle (%1 of %2)"
     IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
     IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
+    IDS_DEL_ALL_FMT2        "All (%1 of %2)"
     IDS_MOVE_LEFT_TO        "Left to... (%1)"
+    IDS_MOVE_MIDDLE_TO      "Middle to... (%1)"
     IDS_MOVE_RIGHT_TO       "Right to... (%1)"
     IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
+    IDS_MOVE_MIDDLE_TO2     "Middle to... (%1 of %2)"
     IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
     IDS_SELECT_DEST_LEFT    "Left side - select destination folder:"
+    IDS_SELECT_DEST_MIDDLE  "Middle side - select destination folder:"
     IDS_SELECT_DEST_RIGHT   "Right side - select destination folder:"
     IDS_FILES_AFFECTED_FMT  "(%1 Files Affected)"
     IDS_FILES_AFFECTED_FMT2 "(%1 of %2 Files Affected)"

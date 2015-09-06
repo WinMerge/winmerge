@@ -142,20 +142,36 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_L2R, (OnUpdateDirCopy<SIDE_LEFT, SIDE_RIGHT>))
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_RIGHT, (OnCtxtDirCopy<SIDE_LEFT, SIDE_RIGHT>))
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_RIGHT, (OnUpdateCtxtDirCopy<SIDE_LEFT, SIDE_RIGHT>))
+	ON_COMMAND(ID_DIR_COPY_LEFT_TO_MIDDLE, (OnCtxtDirCopy<SIDE_LEFT, SIDE_MIDDLE>))
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_MIDDLE, (OnUpdateCtxtDirCopy<SIDE_LEFT, SIDE_MIDDLE>))
 	ON_COMMAND(ID_R2L, (OnDirCopy<SIDE_RIGHT, SIDE_LEFT>))
 	ON_UPDATE_COMMAND_UI(ID_R2L, (OnUpdateDirCopy<SIDE_RIGHT, SIDE_LEFT>))
 	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_LEFT, (OnCtxtDirCopy<SIDE_RIGHT, SIDE_LEFT>))
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_LEFT, (OnUpdateCtxtDirCopy<SIDE_RIGHT, SIDE_LEFT>))
+	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_MIDDLE, (OnCtxtDirCopy<SIDE_RIGHT, SIDE_MIDDLE>))
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_MIDDLE, (OnUpdateCtxtDirCopy<SIDE_RIGHT, SIDE_MIDDLE>))
+	ON_COMMAND(ID_DIR_COPY_MIDDLE_TO_LEFT, (OnCtxtDirCopy<SIDE_MIDDLE, SIDE_LEFT>))
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_MIDDLE_TO_LEFT, (OnUpdateCtxtDirCopy<SIDE_MIDDLE, SIDE_LEFT>))
+	ON_COMMAND(ID_DIR_COPY_MIDDLE_TO_RIGHT, (OnCtxtDirCopy<SIDE_MIDDLE, SIDE_RIGHT>))
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_MIDDLE_TO_RIGHT, (OnUpdateCtxtDirCopy<SIDE_MIDDLE, SIDE_RIGHT>))
 	ON_COMMAND(ID_DIR_DEL_LEFT, OnCtxtDirDel<SIDE_LEFT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_DEL_LEFT, OnUpdateCtxtDirDel<SIDE_LEFT>)
 	ON_COMMAND(ID_DIR_DEL_RIGHT, OnCtxtDirDel<SIDE_RIGHT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_DEL_MIDDLE, OnUpdateCtxtDirDel<SIDE_MIDDLE>)
+	ON_COMMAND(ID_DIR_DEL_MIDDLE, OnCtxtDirDel<SIDE_MIDDLE>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_DEL_RIGHT, OnUpdateCtxtDirDel<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_DEL_BOTH, OnCtxtDirDelBoth)
 	ON_UPDATE_COMMAND_UI(ID_DIR_DEL_BOTH, OnUpdateCtxtDirDelBoth)
+	ON_COMMAND(ID_DIR_DEL_ALL, OnCtxtDirDelBoth)
+	ON_UPDATE_COMMAND_UI(ID_DIR_DEL_ALL, OnUpdateCtxtDirDelBoth)
 	ON_COMMAND(ID_DIR_OPEN_LEFT, OnCtxtDirOpen<SIDE_LEFT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT, OnUpdateCtxtDirOpen<SIDE_LEFT>)
 	ON_COMMAND(ID_DIR_OPEN_LEFT_WITH, OnCtxtDirOpenWith<SIDE_LEFT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT_WITH, OnUpdateCtxtDirOpenWith<SIDE_LEFT>)
+	ON_COMMAND(ID_DIR_OPEN_MIDDLE, OnCtxtDirOpen<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_MIDDLE, OnUpdateCtxtDirOpen<SIDE_MIDDLE>)
+	ON_COMMAND(ID_DIR_OPEN_MIDDLE_WITH, OnCtxtDirOpenWith<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_MIDDLE_WITH, OnUpdateCtxtDirOpenWith<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_OPEN_RIGHT, OnCtxtDirOpen<SIDE_RIGHT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT, OnUpdateCtxtDirOpen<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_OPEN_RIGHT_WITH, OnCtxtDirOpenWith<SIDE_RIGHT>)
@@ -164,11 +180,15 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_POPUP_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
 	ON_COMMAND(ID_DIR_OPEN_LEFT_WITHEDITOR, OnCtxtDirOpenWithEditor<SIDE_LEFT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT_WITHEDITOR, OnUpdateCtxtDirOpenWithEditor<SIDE_LEFT>)
+	ON_COMMAND(ID_DIR_OPEN_MIDDLE_WITHEDITOR, OnCtxtDirOpenWithEditor<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_MIDDLE_WITHEDITOR, OnUpdateCtxtDirOpenWithEditor<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_OPEN_RIGHT_WITHEDITOR, OnCtxtDirOpenWithEditor<SIDE_RIGHT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_WITHEDITOR, OnUpdateCtxtDirOpenWithEditor<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_BROWSE, OnCtxtDirCopyTo<SIDE_LEFT>)
+	ON_COMMAND(ID_DIR_COPY_MIDDLE_TO_BROWSE, OnCtxtDirCopyTo<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_BROWSE, OnCtxtDirCopyTo<SIDE_RIGHT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_BROWSE, OnUpdateCtxtDirCopyTo<SIDE_LEFT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_MIDDLE_TO_BROWSE, OnUpdateCtxtDirCopyTo<SIDE_MIDDLE>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_BROWSE, OnUpdateCtxtDirCopyTo<SIDE_RIGHT>)
 	ON_WM_DESTROY()
 	ON_WM_CHAR()
@@ -199,10 +219,18 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateReadOnly<SIDE_RIGHT>)
 	ON_COMMAND(ID_TOOLS_CUSTOMIZECOLUMNS, OnCustomizeColumns)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
-	ON_COMMAND(ID_DIR_ZIP_LEFT, OnCtxtDirZipLeft)
-	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZipRight)
-	ON_COMMAND(ID_DIR_ZIP_BOTH, OnCtxtDirZipBoth)
-	ON_COMMAND(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnCtxtDirZipBothDiffsOnly)
+	ON_COMMAND(ID_DIR_ZIP_LEFT, OnCtxtDirZip<DirItemEnumerator::Left>)
+	ON_COMMAND(ID_DIR_ZIP_MIDDLE, OnCtxtDirZip<DirItemEnumerator::Middle>)
+	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZip<DirItemEnumerator::Right>)
+	ON_COMMAND(ID_DIR_ZIP_BOTH, OnCtxtDirZip<DirItemEnumerator::Original | DirItemEnumerator::Altered | DirItemEnumerator::BalanceFolders>)
+	ON_COMMAND(ID_DIR_ZIP_ALL, OnCtxtDirZip<DirItemEnumerator::Original | DirItemEnumerator::Altered | DirItemEnumerator::BalanceFolders>)
+	ON_COMMAND(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnCtxtDirZip<DirItemEnumerator::Original | DirItemEnumerator::Altered | DirItemEnumerator::BalanceFolders | DirItemEnumerator::DiffsOnly>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_LEFT, OnUpdateCtxtDirCopyTo<SIDE_LEFT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_MIDDLE, OnUpdateCtxtDirCopyTo<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_RIGHT, OnUpdateCtxtDirCopyTo<SIDE_RIGHT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_BOTH, OnUpdateCtxtDirCopyBothTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_ALL, OnUpdateCtxtDirCopyBothTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnUpdateCtxtDirCopyBothDiffsOnlyTo)
 	ON_COMMAND(ID_DIR_SHELL_CONTEXT_MENU_LEFT, OnCtxtDirShellContextMenu<SIDE_LEFT>)
 	ON_COMMAND(ID_DIR_SHELL_CONTEXT_MENU_MIDDLE, OnCtxtDirShellContextMenu<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_SHELL_CONTEXT_MENU_RIGHT, OnCtxtDirShellContextMenu<SIDE_RIGHT>)
@@ -211,18 +239,34 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnPluginPredifferMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnUpdatePluginPredifferMode)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_LEFT, OnCopyPathnames<SIDE_LEFT>)
+	ON_COMMAND(ID_DIR_COPY_PATHNAMES_MIDDLE, OnCopyPathnames<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_RIGHT, OnCopyPathnames<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_BOTH, OnCopyBothPathnames)
+	ON_COMMAND(ID_DIR_COPY_PATHNAMES_ALL, OnCopyBothPathnames)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_LEFT, OnUpdateCtxtDirCopyTo<SIDE_LEFT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_MIDDLE, OnUpdateCtxtDirCopyTo<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_RIGHT, OnUpdateCtxtDirCopyTo<SIDE_RIGHT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_BOTH, OnUpdateCtxtDirCopyBothTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_PATHNAMES_ALL, OnUpdateCtxtDirCopyBothTo)
 	ON_COMMAND(ID_DIR_COPY_FILENAMES, OnCopyFilenames)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILENAMES, OnUpdateCopyFilenames)
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_CLIPBOARD, OnCopyToClipboard<SIDE_LEFT>)
+	ON_COMMAND(ID_DIR_COPY_MIDDLE_TO_CLIPBOARD, OnCopyToClipboard<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnCopyToClipboard<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnCopyBothToClipboard)
+	ON_COMMAND(ID_DIR_COPY_ALL_TO_CLIPBOARD, OnCopyBothToClipboard)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_CLIPBOARD, OnUpdateCtxtDirCopyTo<SIDE_LEFT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_MIDDLE_TO_CLIPBOARD, OnUpdateCtxtDirCopyTo<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnUpdateCtxtDirCopyTo<SIDE_RIGHT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnUpdateCtxtDirCopyBothTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_ALL_TO_CLIPBOARD, OnUpdateCtxtDirCopyBothTo)
 	ON_COMMAND(ID_DIR_ITEM_RENAME, OnItemRename)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ITEM_RENAME, OnUpdateItemRename)
 	ON_COMMAND(ID_DIR_HIDE_FILENAMES, OnHideFilenames)
 	ON_COMMAND(ID_DIR_MOVE_LEFT_TO_BROWSE, OnCtxtDirMoveTo<SIDE_LEFT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_LEFT_TO_BROWSE, OnUpdateCtxtDirMoveTo<SIDE_LEFT>)
+	ON_COMMAND(ID_DIR_MOVE_MIDDLE_TO_BROWSE, OnCtxtDirMoveTo<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_MIDDLE_TO_BROWSE, OnUpdateCtxtDirMoveTo<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnCtxtDirMoveTo<SIDE_RIGHT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnUpdateCtxtDirMoveTo<SIDE_RIGHT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_HIDE_FILENAMES, OnUpdateHideFilenames)
@@ -257,12 +301,14 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENT, OnOptionsShowDifferent)
 	ON_COMMAND(ID_OPTIONS_SHOWIDENTICAL, OnOptionsShowIdentical)
 	ON_COMMAND(ID_OPTIONS_SHOWUNIQUELEFT, OnOptionsShowUniqueLeft)
+	ON_COMMAND(ID_OPTIONS_SHOWUNIQUEMIDDLE, OnOptionsShowUniqueMiddle)
 	ON_COMMAND(ID_OPTIONS_SHOWUNIQUERIGHT, OnOptionsShowUniqueRight)
 	ON_COMMAND(ID_OPTIONS_SHOWBINARIES, OnOptionsShowBinaries)
 	ON_COMMAND(ID_OPTIONS_SHOWSKIPPED, OnOptionsShowSkipped)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUEMIDDLE, OnUpdateOptionsShowuniquemiddle)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUERIGHT, OnUpdateOptionsShowuniqueright)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWBINARIES, OnUpdateOptionsShowBinaries)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWSKIPPED, OnUpdateOptionsShowSkipped)
@@ -623,7 +669,41 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	ASSERT(pPopup != NULL);
 
 	if (pDoc->m_nDirs < 3)
+	{
+		pPopup->RemoveMenu(ID_DIR_COPY_LEFT_TO_MIDDLE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_COPY_MIDDLE_TO_LEFT, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_COPY_MIDDLE_TO_RIGHT, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_COPY_MIDDLE_TO_BROWSE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_COPY_RIGHT_TO_MIDDLE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_MOVE_MIDDLE_TO_BROWSE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_DEL_MIDDLE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_DEL_ALL, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_OPEN_MIDDLE, MF_BYCOMMAND);
+
+		for (int i = 0; i < pPopup->GetMenuItemCount(); ++i)
+		{
+			if (pPopup->GetMenuItemID(i) == ID_DIR_HIDE_FILENAMES)
+				pPopup->RemoveMenu(i + 3, MF_BYPOSITION);
+		}
+
+		pPopup->RemoveMenu(ID_DIR_OPEN_MIDDLE_WITHEDITOR, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_OPEN_MIDDLE_WITH, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_COPY_PATHNAMES_MIDDLE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_COPY_PATHNAMES_ALL, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_COPY_MIDDLE_TO_CLIPBOARD, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_COPY_ALL_TO_CLIPBOARD, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_ZIP_MIDDLE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_ZIP_ALL, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_SHELL_CONTEXT_MENU_MIDDLE, MF_BYCOMMAND);
+
+	}
+	else
+	{
+		pPopup->RemoveMenu(ID_DIR_COPY_PATHNAMES_BOTH, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_COPY_BOTH_TO_CLIPBOARD, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_ZIP_BOTH, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_DEL_BOTH, MF_BYCOMMAND);
+	}
 
 	CMenu menuPluginsHolder;
 	menuPluginsHolder.LoadMenu(IDR_POPUP_PLUGINS_SETTINGS);
@@ -631,31 +711,6 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	String s = _("Plugin Settings");
 	pPopup->AppendMenu(MF_SEPARATOR);
 	pPopup->AppendMenu(MF_POPUP, (int)menuPluginsHolder.m_hMenu, s.c_str());
-
-
-	// TODO: It would be more efficient to set
-	// all the popup items now with one traverse over selected items
-	// instead of using updates, in which we make a traverse for every item
-	// Perry, 2002-12-04
-
-	//2003/12/17 Jochen:
-	//-	Archive related menu items follow the above suggestion.
-	//-	For disabling to work properly, the tracking frame's m_bAutoMenuEnable
-	//	member has to temporarily be turned off.
-	ContextMenuCounts counts = CountForContextMenu(SelBegin(), SelEnd(), GetDiffContext());
-
-	FormatContextMenu(pPopup, ID_DIR_COPY_PATHNAMES_LEFT, counts.nOpenable[0], counts.nTotal);
-	FormatContextMenu(pPopup, ID_DIR_COPY_PATHNAMES_RIGHT, counts.nOpenable[GetDocument()->m_nDirs - 1], counts.nTotal);
-	FormatContextMenu(pPopup, ID_DIR_COPY_PATHNAMES_BOTH, counts.nOpenableOnBoth, counts.nTotal);
-
-	FormatContextMenu(pPopup, ID_DIR_COPY_LEFT_TO_CLIPBOARD, counts.nOpenable[0], counts.nTotal);
-	FormatContextMenu(pPopup, ID_DIR_COPY_RIGHT_TO_CLIPBOARD, counts.nOpenable[GetDocument()->m_nDirs - 1], counts.nTotal);
-	FormatContextMenu(pPopup, ID_DIR_COPY_BOTH_TO_CLIPBOARD, counts.nOpenableOnBoth, counts.nTotal);
-
-	FormatContextMenu(pPopup, ID_DIR_ZIP_LEFT, counts.nOpenable[0], counts.nTotal);
-	FormatContextMenu(pPopup, ID_DIR_ZIP_RIGHT, counts.nOpenable[GetDocument()->m_nDirs - 1], counts.nTotal);
-	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH, counts.nOpenableOnBoth, counts.nTotal);
-	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH_DIFFS_ONLY, counts.nDiffItems, counts.nTotal);
 
 	CFrameWnd *pFrame = GetTopLevelFrame();
 	ASSERT(pFrame != NULL);
@@ -1419,7 +1474,7 @@ void CDirView::OnUpdateCtxtDirDelBoth(CCmdUI* pCmdUI)
 {
 	Counts counts = Count(&DirActions::IsItemDeletableOnBoth);
 	pCmdUI->Enable(counts.count > 0);
-	pCmdUI->SetText(FormatMenuItemStringBoth(counts.count, counts.total).c_str());
+	pCmdUI->SetText(FormatMenuItemStringAll(GetDocument()->m_nDirs, counts.count, counts.total).c_str());
 }
 
 /**
@@ -1433,6 +1488,20 @@ void CDirView::OnUpdateCtxtDirCopyTo(CCmdUI* pCmdUI)
 	pCmdUI->SetText(FormatMenuItemStringTo(stype, counts.count, counts.total).c_str());
 }
 
+void CDirView::OnUpdateCtxtDirCopyBothTo(CCmdUI* pCmdUI)
+{
+	Counts counts = Count(&DirActions::IsItemCopyableBothToOn);
+	pCmdUI->Enable(counts.count > 0);
+	pCmdUI->SetText(FormatMenuItemStringAllTo(GetDocument()->m_nDirs, counts.count, counts.total).c_str());
+}
+
+void CDirView::OnUpdateCtxtDirCopyBothDiffsOnlyTo(CCmdUI* pCmdUI)
+{
+	Counts counts = Count(&DirActions::IsItemNavigableDiff);
+	pCmdUI->Enable(counts.count > 0);
+	pCmdUI->SetText(FormatMenuItemStringDifferencesTo(counts.count, counts.total).c_str());
+}
+	
 /**
  * @brief Get keydata associated with item in given index.
  * @param [in] idx Item's index to list in UI.
@@ -1614,7 +1683,7 @@ void CDirView::OnCtxtDirOpenWithEditor()
 template<SIDE_TYPE stype>
 void CDirView::OnUpdateCtxtDirOpenWithEditor(CCmdUI* pCmdUI)
 {
-	Counts counts = Count(&DirActions::IsItemOpenanbleOnWith<stype>);
+	Counts counts = Count(&DirActions::IsItemOpenableOnWith<stype>);
 	pCmdUI->Enable(counts.count > 0 && counts.total == 1);
 }
 
@@ -1632,7 +1701,7 @@ int CDirView::GetSingleSelectedItem() const
 template<SIDE_TYPE stype>
 void CDirView::OnUpdateCtxtDirOpen(CCmdUI* pCmdUI)
 {
-	Counts counts = Count(&DirActions::IsItemOpenanbleOn<stype>);
+	Counts counts = Count(&DirActions::IsItemOpenableOn<stype>);
 	pCmdUI->Enable(counts.count > 0 && counts.total == 1);
 }
 
@@ -1640,7 +1709,7 @@ void CDirView::OnUpdateCtxtDirOpen(CCmdUI* pCmdUI)
 template<SIDE_TYPE stype>
 void CDirView::OnUpdateCtxtDirOpenWith(CCmdUI* pCmdUI)
 {
-	Counts counts = Count(&DirActions::IsItemOpenanbleOnWith<stype>);
+	Counts counts = Count(&DirActions::IsItemOpenableOnWith<stype>);
 	pCmdUI->Enable(counts.count > 0 && counts.total == 1);
 }
 
@@ -2456,10 +2525,8 @@ void CDirView::AddParentFolderItem(bool bEnable)
 	AddNewItem(0, SPECIAL_ITEM_POS, bEnable ? DIFFIMG_DIRUP : DIFFIMG_DIRUP_DISABLE, 0);
 }
 
-/**
- * @brief Zip selected files from left side.
- */
-void CDirView::OnCtxtDirZipLeft()
+template <int flag>
+void CDirView::OnCtxtDirZip()
 {
 	if (!HasZipSupport())
 	{
@@ -2469,67 +2536,7 @@ void CDirView::OnCtxtDirZipLeft()
 
 	DirItemEnumerator
 	(
-		this, LVNI_SELECTED
-		|	DirItemEnumerator::Left
-	).CompressArchive();
-}
-
-/**
- * @brief Zip selected files from right side.
- */
-void CDirView::OnCtxtDirZipRight()
-{
-	if (!HasZipSupport())
-	{
-		LangMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
-		return;
-	}
-
-	DirItemEnumerator
-	(
-		this, LVNI_SELECTED
-		|	DirItemEnumerator::Right
-	).CompressArchive();
-}
-
-/**
- * @brief Zip selected files from both sides, using original/altered format.
- */
-void CDirView::OnCtxtDirZipBoth()
-{
-	if (!HasZipSupport())
-	{
-		LangMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
-		return;
-	}
-
-	DirItemEnumerator
-	(
-		this, LVNI_SELECTED
-		|	DirItemEnumerator::Original
-		|	DirItemEnumerator::Altered
-		|	DirItemEnumerator::BalanceFolders
-	).CompressArchive();
-}
-
-/**
- * @brief Zip selected diffs from both sides, using original/altered format.
- */
-void CDirView::OnCtxtDirZipBothDiffsOnly()
-{
-	if (!HasZipSupport())
-	{
-		LangMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
-		return;
-	}
-
-	DirItemEnumerator
-	(
-		this, LVNI_SELECTED
-		|	DirItemEnumerator::Original
-		|	DirItemEnumerator::Altered
-		|	DirItemEnumerator::BalanceFolders
-		|	DirItemEnumerator::DiffsOnly
+		this, LVNI_SELECTED | flag
 	).CompressArchive();
 }
 
@@ -3047,6 +3054,16 @@ void CDirView::OnOptionsShowUniqueLeft()
 }
 
 /**
+ * @brief Show/Hide middle-only files/directories
+ */
+void CDirView::OnOptionsShowUniqueMiddle() 
+{
+	m_dirfilter.show_unique_middle = !m_dirfilter.show_unique_middle;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_MIDDLE, m_dirfilter.show_unique_middle);
+	Redisplay();
+}
+
+/**
  * @brief Show/Hide right-only files/directories
  */
 void CDirView::OnOptionsShowUniqueRight() 
@@ -3089,6 +3106,12 @@ void CDirView::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI)
 void CDirView::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_dirfilter.show_unique_left);
+}
+
+void CDirView::OnUpdateOptionsShowuniquemiddle(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->m_nDirs > 2);
+	pCmdUI->SetCheck(m_dirfilter.show_unique_middle);
 }
 
 void CDirView::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 

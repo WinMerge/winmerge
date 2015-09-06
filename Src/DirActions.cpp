@@ -252,7 +252,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 		bUpdateSrc = true;
 		bUpdateDest = true;
 		di.diffcode.setSideFlag(act.UIDestination);
-		if (act.dirflag)
+		if (act.dirflag || ctxt.GetCompareDirs() > 2)
 			SetDiffCompare(di, DIFFCODE::NOCMP);
 		else
 			SetDiffCompare(di, DIFFCODE::SAME);
@@ -585,8 +585,18 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
 			// left/right filters
 			if (di.diffcode.isSideFirstOnly() && !filter.show_unique_left)
 				return false;
-			if (di.diffcode.isSideSecondOnly() && !filter.show_unique_right)
-				return false;
+			if (ctxt.GetCompareDirs() < 3)
+			{
+				if (di.diffcode.isSideSecondOnly() && !filter.show_unique_right)
+					return false;
+			}
+			else
+			{
+				if (di.diffcode.isSideSecondOnly() && !filter.show_unique_middle)
+					return false;
+				if (di.diffcode.isSideThirdOnly() && !filter.show_unique_right)
+					return false;
+			}
 
 			// result filters
 			if (di.diffcode.isResultError() && FALSE/* !GetMainFrame()->m_bShowErrors FIXME:*/)
@@ -597,8 +607,18 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
 			// left/right filters
 			if (di.diffcode.isSideFirstOnly() && !filter.show_unique_left)
 				return false;
-			if (di.diffcode.isSideSecondOnly() && !filter.show_unique_right)
-				return false;
+			if (ctxt.GetCompareDirs() < 3)
+			{
+				if (di.diffcode.isSideSecondOnly() && !filter.show_unique_right)
+					return false;
+			}
+			else
+			{
+				if (di.diffcode.isSideSecondOnly() && !filter.show_unique_middle)
+					return false;
+				if (di.diffcode.isSideThirdOnly() && !filter.show_unique_right)
+					return false;
+			}
 
 			// ONLY filter folders by result (identical/different) for tree-view.
 			// In the tree-view we show subfolders with identical/different
@@ -1121,7 +1141,7 @@ String FormatMenuItemString(SIDE_TYPE src, SIDE_TYPE dst, int count, int total)
 	else if (src == SIDE_LEFT && dst == SIDE_MIDDLE)
 	{
 		fmt1 = _("Left to Middle (%1)");
-		fmt2 = _("Left to middle (%1 of %2)");
+		fmt2 = _("Left to Middle (%1 of %2)");
 	}
 	else if (src == SIDE_MIDDLE && dst == SIDE_LEFT)
 	{
@@ -1167,9 +1187,12 @@ String FormatMenuItemString(SIDE_TYPE src, int count, int total)
 	return FormatMenuItemString(fmt1, fmt2, count, total);
 }
 
-String FormatMenuItemStringBoth(int count, int total)
+String FormatMenuItemStringAll(int nDirs, int count, int total)
 {
-	return FormatMenuItemString(_("Both (%1)"), _("Both (%1 of %2)"), count, total);
+	if (nDirs < 3)
+		return FormatMenuItemString(_("Both (%1)"), _("Both (%1 of %2)"), count, total);
+	else
+		return FormatMenuItemString(_("All (%1)"), _("All (%1 of %2)"), count, total);
 }
 
 String FormatMenuItemStringTo(SIDE_TYPE src, int count, int total)
@@ -1191,6 +1214,19 @@ String FormatMenuItemStringTo(SIDE_TYPE src, int count, int total)
 		fmt2 = _("Right to... (%1 of %2)");
 	}
 	return FormatMenuItemString(fmt1, fmt2, count, total);
+}
+
+String FormatMenuItemStringAllTo(int nDirs, int count, int total)
+{
+	if (nDirs < 3)
+		return FormatMenuItemString(_("Both to... (%1)"), _("Both to... (%1 of %2)"), count, total);
+	else
+		return FormatMenuItemString(_("All to... (%1)"), _("All to... (%1 of %2)"), count, total);
+}
+
+String FormatMenuItemStringDifferencesTo(int count, int total)
+{
+	return FormatMenuItemString(_("Differences to... (%1)"), _("Differences to... (%1 of %2)"), count, total);
 }
 
 /**

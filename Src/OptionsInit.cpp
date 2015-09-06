@@ -57,6 +57,7 @@ void Init(COptionsMgr *pOptions)
 
 	// Initialise options (name, default value)
 	pOptions->InitOption(OPT_SHOW_UNIQUE_LEFT, true);
+	pOptions->InitOption(OPT_SHOW_UNIQUE_MIDDLE, true);
 	pOptions->InitOption(OPT_SHOW_UNIQUE_RIGHT, true);
 	pOptions->InitOption(OPT_SHOW_DIFFERENT, true);
 	pOptions->InitOption(OPT_SHOW_IDENTICAL, true);

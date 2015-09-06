@@ -258,6 +258,8 @@ protected:
 	afx_msg void OnCtxtDirCopyTo();
 	template<SIDE_TYPE stype>
 	afx_msg void OnUpdateCtxtDirCopyTo(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateCtxtDirCopyBothTo(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateCtxtDirCopyBothDiffsOnlyTo(CCmdUI* pCmdUI);
 	afx_msg void OnDestroy();
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);
@@ -288,10 +290,8 @@ protected:
 	afx_msg void OnCtxtOpenWithUnpacker();
 	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
-	afx_msg void OnCtxtDirZipLeft();
-	afx_msg void OnCtxtDirZipRight();
-	afx_msg void OnCtxtDirZipBoth();
-	afx_msg void OnCtxtDirZipBothDiffsOnly();
+	template<int flag>
+	afx_msg void OnCtxtDirZip();
 	template<SIDE_TYPE stype>
 	afx_msg void OnCtxtDirShellContextMenu();
 	afx_msg void OnUpdateCtxtDir(CCmdUI* pCmdUI);
@@ -331,12 +331,14 @@ protected:
 	afx_msg void OnOptionsShowDifferent();
 	afx_msg void OnOptionsShowIdentical();
 	afx_msg void OnOptionsShowUniqueLeft();
+	afx_msg void OnOptionsShowUniqueMiddle();
 	afx_msg void OnOptionsShowUniqueRight();
 	afx_msg void OnOptionsShowBinaries();
 	afx_msg void OnOptionsShowSkipped();
 	afx_msg void OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowidentical(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowuniquemiddle(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI);
