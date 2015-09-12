@@ -10,8 +10,8 @@ setlocal
 set VisualStudioVersion=12.0
 call "%VS120COMNTOOLS%vsvars32.bat"
 for %%i in ( ^
-  ..\freeimage\Source\FreeImageLib\FreeImageLib.vcxproj ^
-  ..\freeimage\Wrapper\FreeImagePlus\FreeImagePlus.vcxproj ^
+  ..\freeimage\Source\FreeImageLib\FreeImageLib.2013.vcxproj ^
+  ..\freeimage\Wrapper\FreeImagePlus\FreeImagePlus.2013.vcxproj ^
   src\WinIMergeLib.vcxproj ^
   src\WinIMerge.vcxproj ^
   src\cidiff.vcxproj ^
