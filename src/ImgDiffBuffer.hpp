@@ -682,16 +682,16 @@ public:
 				{
 					Image::Color color = (diffIndex - 1 == m_currentDiffIndex) ? m_selDiffColor : m_diffColor;
 					unsigned bsy = static_cast<unsigned>(diffMapBlockSizeH + 1);
-					unsigned y = static_cast<unsigned>(by * diffMapBlockSizeH + bsy - 1);
-					if (y >= h)
+					unsigned y = static_cast<unsigned>(by * diffMapBlockSizeH);
+					if (y + bsy - 1 >= h)
 						bsy = h - y;
 					for (unsigned i = 0; i < bsy; ++i)
 					{
 						unsigned y = static_cast<unsigned>(by * diffMapBlockSizeH + i);
 						unsigned char *scanline = m_imgDiffMap.scanLine(y);
 						unsigned bsx = static_cast<unsigned>(diffMapBlockSizeW + 1);
-						unsigned x = static_cast<unsigned>(bx * diffMapBlockSizeW + bsx - 1);
-						if (x >= w)
+						unsigned x = static_cast<unsigned>(bx * diffMapBlockSizeW);
+						if (x + bsx - 1 >= w)
 							bsx = w - x;
 						for (unsigned j = 0; j < bsx; ++j)
 						{
