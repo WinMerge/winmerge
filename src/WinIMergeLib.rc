@@ -35,7 +35,7 @@ BEGIN
     LTEXT           "ブロックサイズ",IDC_STATIC,5,19,42,8
     CONTROL         "",IDC_DIFF_BLOCKSIZE_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,5,27,72,15
     RTEXT           "",IDC_DIFF_BLOCKSIZE_STATIC,50,19,18,8
-    LTEXT           "ブロック透明度",IDC_STATIC,5,43,40,8
+    LTEXT           "ブロック透明度",IDC_STATIC,5,43,48,8
     CONTROL         "",IDC_DIFF_BLOCKALPHA_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,5,51,70,15
     RTEXT           "",IDC_DIFF_BLOCKALPHA_STATIC,50,43,18,8
     LTEXT           "色距離閾値",IDC_STATIC,5,67,43,8
@@ -138,7 +138,7 @@ BEGIN
     LTEXT           "Block Size",IDC_STATIC,5,19,42,8
     CONTROL         "",IDC_DIFF_BLOCKSIZE_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,6,27,72,15
     RTEXT           "",IDC_DIFF_BLOCKSIZE_STATIC,50,19,18,8
-    LTEXT           "Block Alpha",IDC_STATIC,5,43,40,8
+    LTEXT           "Block Alpha",IDC_STATIC,5,43,48,8
     CONTROL         "",IDC_DIFF_BLOCKALPHA_SLIDER,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,6,51,70,15
     RTEXT           "",IDC_DIFF_BLOCKALPHA_STATIC,50,43,18,8
     LTEXT           "CD Threshold",IDC_STATIC,5,67,43,8
