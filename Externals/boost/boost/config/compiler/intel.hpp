@@ -14,6 +14,76 @@
 
 //  Intel compiler setup:
 
+#if defined(__INTEL_COMPILER) && (__INTEL_COMPILER >= 1500) && (defined(_MSC_VER) || defined(__GNUC__))
+
+#ifdef _MSC_VER
+
+#include <boost/config/compiler/visualc.hpp>
+
+#if (__INTEL_COMPILER >= 1500) && (_MSC_VER >= 1900)
+//
+// These appear to be supported, even though VC++ may not support them:
+//
+#define BOOST_HAS_EXPM1
+#define BOOST_HAS_LOG1P
+#undef BOOST_NO_CXX14_BINARY_LITERALS
+// This one may be a little risky to enable??
+#undef BOOST_NO_SFINAE_EXPR
+
+#endif
+
+#else
+
+#include <boost/config/compiler/gcc.hpp>
+
+#endif
+
+#undef BOOST_COMPILER
+
+#if defined(__INTEL_COMPILER)
+#if __INTEL_COMPILER == 9999
+#  define BOOST_INTEL_CXX_VERSION 1200 // Intel bug in 12.1.
+#else
+#  define BOOST_INTEL_CXX_VERSION __INTEL_COMPILER
+#endif
+#elif defined(__ICL)
+#  define BOOST_INTEL_CXX_VERSION __ICL
+#elif defined(__ICC)
+#  define BOOST_INTEL_CXX_VERSION __ICC
+#elif defined(__ECC)
+#  define BOOST_INTEL_CXX_VERSION __ECC
+#endif
+
+// Flags determined by comparing output of 'icpc -dM -E' with and without '-std=c++0x'
+#if (!(defined(_WIN32) || defined(_WIN64)) && defined(__STDC_HOSTED__) && (__STDC_HOSTED__ && (BOOST_INTEL_CXX_VERSION <= 1200))) || defined(__GXX_EXPERIMENTAL_CPP0X__) || defined(__GXX_EXPERIMENTAL_CXX0X__)
+#  define BOOST_INTEL_STDCXX0X
+#endif
+#if defined(_MSC_VER) && (_MSC_VER >= 1600)
+#  define BOOST_INTEL_STDCXX0X
+#endif
+
+#ifdef __GNUC__
+#  define BOOST_INTEL_GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
+#endif
+
+#if !defined(BOOST_COMPILER)
+#  if defined(BOOST_INTEL_STDCXX0X)
+#    define BOOST_COMPILER "Intel C++ C++0x mode version " BOOST_STRINGIZE(BOOST_INTEL_CXX_VERSION)
+#  else
+#    define BOOST_COMPILER "Intel C++ version " BOOST_STRINGIZE(BOOST_INTEL_CXX_VERSION)
+#  endif
+#endif
+
+#define BOOST_INTEL BOOST_INTEL_CXX_VERSION
+
+#if defined(_WIN32) || defined(_WIN64)
+#  define BOOST_INTEL_WIN BOOST_INTEL
+#else
+#  define BOOST_INTEL_LINUX BOOST_INTEL
+#endif
+
+#else
+
 #include "boost/config/compiler/common_edg.hpp"
 
 #if defined(__INTEL_COMPILER)
@@ -442,9 +512,10 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 #  define BOOST_HAS_INT128
 #endif
 
+#endif
 //
 // last known and checked version:
-#if (BOOST_INTEL_CXX_VERSION > 1310)
+#if (BOOST_INTEL_CXX_VERSION > 1500)
 #  if defined(BOOST_ASSERT_CONFIG)
 #     error "Unknown compiler version - please run the configure tests and report the results"
 #  elif defined(_MSC_VER)

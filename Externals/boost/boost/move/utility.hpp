@@ -16,6 +16,14 @@
 #ifndef BOOST_MOVE_MOVE_UTILITY_HPP
 #define BOOST_MOVE_MOVE_UTILITY_HPP
 
+#ifndef BOOST_CONFIG_HPP
+#  include <boost/config.hpp>
+#endif
+#
+#if defined(BOOST_HAS_PRAGMA_ONCE)
+#  pragma once
+#endif
+
 #include <boost/move/detail/config_begin.hpp>
 #include <boost/move/utility_core.hpp>
 #include <boost/move/traits.hpp>
