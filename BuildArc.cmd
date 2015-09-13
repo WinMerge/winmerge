@@ -127,8 +127,8 @@ rem copy Externals\WinIMerge\Build\x64\Release\WinIMerge.exe "%DISTDIR%\2.14-x64
 copy Externals\WinIMerge\Build\x64\Release\WinIMergeLib.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 
 rem Patch
-xcopy /s "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-zip-version\WinMerge\GnuWin32\"
-xcopy /s "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-x64-zip-version\WinMerge\GnuWin32\"
+xcopy /s/y "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-zip-version\WinMerge\GnuWin32\"
+xcopy /s/y "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-x64-zip-version\WinMerge\GnuWin32\"
 
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip" "%DISTDIR%\2.14-zip-version\WinMerge\"
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip" "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
