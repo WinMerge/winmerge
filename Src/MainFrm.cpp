@@ -962,6 +962,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 			pOpenDoc->m_dwFlags[2] = dwFlags[2];
 		}
 		pOpenDoc->m_files = files;
+		pOpenDoc->m_bRecurse = bRecurse;
 		if (infoUnpacker)
 			pOpenDoc->m_infoHandler = *infoUnpacker;
 		CFrameWnd *pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, NULL);
