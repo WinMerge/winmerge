@@ -66,8 +66,8 @@ rem ShellExtension
 copy "Build\ShellExtensionUnicode Release mindependency\ShellExtensionU.dll" "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy "Build\X64\ShellExtensionUnicode Release mindependency\ShellExtensionX64.dll" "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy "Build\X64\ShellExtensionUnicode Release mindependency\ShellExtensionX64.dll" "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
-copy ShellExtension\*.bat "%DISTDIR%\2.14-zip-version\WinMerge\"
-copy ShellExtension\*.bat "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
+copy ShellExtension\*Register.bat "%DISTDIR%\2.14-zip-version\WinMerge\"
+copy ShellExtension\*Register.bat "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
 
 rem Translation
 copy Build\MergeUnicodeRelease\Languages\Japanese.po "%DISTDIR%\2.14-zip-version\WinMerge\Languages\"
