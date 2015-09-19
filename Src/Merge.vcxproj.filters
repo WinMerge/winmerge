@@ -454,9 +454,6 @@
     <ClCompile Include="Common\ColorButton.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\CSubclass.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DiffTextBuffer.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -701,6 +698,51 @@
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OptionsDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\BCMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Bitmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CCPromptDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\MDITabBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\MessageBoxDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Picture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\PropertyPageHost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\scbarcf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\scbarg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ShellContextMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\sizecbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SplitterWndEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SuperComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VssPromptDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
