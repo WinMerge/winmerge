@@ -176,7 +176,7 @@ void PropEditor::OnEnKillfocusTabEdit()
 	String valueAsText;
 	pEdit->GetWindowText(PopString(valueAsText));
 	int value = 0;
-	try { value = string_stoi(valueAsText); } catch (...) {};	
+	try { value = std::stoi(valueAsText); } catch (...) {};	
 	if (value < 1 || value > MAX_TABSIZE)
 	{
 		String msg = string_format_string1(
