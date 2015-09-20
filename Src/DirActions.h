@@ -299,7 +299,7 @@ struct DirActions
 
 	bool IsItemFile(const DIFFITEM& di) const
 	{
-		return (di.diffcode.diffcode != 0 && di.diffcode.isDirectory());
+		return (di.diffcode.diffcode != 0 && !di.diffcode.isDirectory());
 	}
 
 	template <SIDE_TYPE src>
