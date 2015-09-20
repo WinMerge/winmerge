@@ -36,7 +36,12 @@ public:
 		if (m_sel != -1)
 		{
 			if (m_pList->GetItemData(m_sel) == reinterpret_cast<void *>((uintptr_t)-1L))
-				m_sel = m_pList->GetNextItem(m_sel, m_selected, m_reverse);
+			{
+				if (m_reverse && m_sel == 0)
+					m_sel = -1;
+				else
+					m_sel = m_pList->GetNextItem(m_sel, m_selected, m_reverse);
+			}
 		}
 	}
 
@@ -106,8 +111,13 @@ public:
 			m_pdi = reinterpret_cast<const DIFFITEM *>(m_pList->GetItemData(m_sel));
 			if (m_pdi == reinterpret_cast<const DIFFITEM *>(-1L))
 			{
-				m_sel = m_pList->GetNextItem(m_sel, m_selected, m_reverse);
-				m_pdi = reinterpret_cast<const DIFFITEM *>(m_pList->GetItemData(m_sel));
+				if (m_reverse && m_sel == 0)
+					m_sel = -1;
+				else
+				{
+					m_sel = m_pList->GetNextItem(m_sel, m_selected, m_reverse);
+					m_pdi = reinterpret_cast<const DIFFITEM *>(m_pList->GetItemData(m_sel));
+				}
 			}
 		}
 	}
