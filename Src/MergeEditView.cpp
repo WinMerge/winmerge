@@ -2862,7 +2862,7 @@ void CMergeEditView::OnWMGoto()
 		pCurrentView = GetGroupView(m_nThisPane);
 
 		int num = 0;
-		try { num = string_stoi(dlg.m_strParam) - 1; } catch(...) {}
+		try { num = std::stoi(dlg.m_strParam) - 1; } catch(...) {}
 
 		if (dlg.m_nGotoWhat == 0)
 		{

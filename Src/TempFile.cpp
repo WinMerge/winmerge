@@ -177,7 +177,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 			// Check if this instance of WM is still running
 			try
 			{
-				int pid = string_stoi(tempfolderPID);
+				int pid = std::stoi(tempfolderPID);
 				if (!WMrunning(processIDs, pid))
 				{
 					tempfolderPID = paths_ConcatPath(paths_GetParentPath(pattern), ff.cFileName); 
