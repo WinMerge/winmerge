@@ -288,6 +288,12 @@ void COpenView::OnInitialUpdate()
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
 }
 
+void COpenView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
+{
+	m_bRecurse = GetDocument()->m_bRecurse;
+	UpdateData(FALSE);
+}
+
 // COpenView diagnostics
 
 #ifdef _DEBUG
