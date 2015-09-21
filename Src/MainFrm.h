@@ -286,10 +286,10 @@ protected:
 private:
 	void addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems = 20);
 	void FileNew(int nPanes);
-	const OpenDocList &GetAllOpenDocs();
-	const MergeDocList &GetAllMergeDocs();
-	const DirDocList &GetAllDirDocs();
-	const HexMergeDocList &GetAllHexMergeDocs();
+	OpenDocList &GetAllOpenDocs();
+	MergeDocList &GetAllMergeDocs();
+	DirDocList &GetAllDirDocs();
+	HexMergeDocList &GetAllHexMergeDocs();
 	void UpdateFont(FRAMETYPE frame);
 	BOOL CreateToolbar();
 	BOOL CreateComboBoxOnToolbar();

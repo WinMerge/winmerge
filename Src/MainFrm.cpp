@@ -31,6 +31,7 @@
 #include <shlwapi.h>
 #include <Poco/Exception.h>
 #include <afxinet.h>
+#include <boost/range/mfc.hpp>
 #include "Constants.h"
 #include "Merge.h"
 #include "FileFilterHelper.h"
@@ -80,6 +81,8 @@
 #include "version.h"
 
 using std::vector;
+using boost::begin;
+using boost::end;
 
 /*
  One source file must compile the stubs for multimonitor
@@ -98,7 +101,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource, CImageList& ImgList);
-static const CPtrList &GetDocList(const CMultiDocTemplate *pTemplate);
+static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
 DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles);
 
@@ -278,14 +281,14 @@ static const UINT WINDOW_FLASH_TIMEOUT = 500;
 /**
   * @brief Return a const reference to a CMultiDocTemplate's list of documents.
   */
-static const CPtrList &GetDocList(const CMultiDocTemplate *pTemplate)
+static CPtrList &GetDocList(CMultiDocTemplate *pTemplate)
 {
 	struct Template : public CMultiDocTemplate
 	{
 	public:
 		using CMultiDocTemplate::m_docList;
 	};
-	return static_cast<const struct Template *>(pTemplate)->m_docList;
+	return static_cast<struct Template *>(pTemplate)->m_docList;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -869,21 +872,10 @@ void CMainFrame::OnOptions()
 		ApplyDiffOptions();
 
 		// Update all dirdoc settings
-		const DirDocList &dirDocs = GetAllDirDocs();
-		POSITION pos = dirDocs.GetHeadPosition();
-		while (pos)
-		{
-			CDirDoc * pDirDoc = dirDocs.GetNext(pos);
+		for (auto pDirDoc : GetAllDirDocs())
 			pDirDoc->RefreshOptions();
-		}
-
-		const HexMergeDocList &hexdocs = GetAllHexMergeDocs();
-		pos = hexdocs.GetHeadPosition();
-		while (pos)
-		{
-			CHexMergeDoc * pMergeDoc = hexdocs.GetNext(pos);
+		for (auto pMergeDoc : GetAllHexMergeDocs())
 			pMergeDoc->RefreshOptions();
-		}
 	}
 }
 
@@ -1079,22 +1071,14 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 {
 	if (frame == FRAME_FOLDER)
 	{
-		const DirDocList &dirdocs = GetAllDirDocs();
-		POSITION pos = dirdocs.GetHeadPosition();
-		while (pos)
-		{
-			CDirDoc * pDoc = dirdocs.GetNext(pos);
+		for (auto pDoc : GetAllDirDocs())
 			if (pDoc)
 				pDoc->GetMainView()->SetFont(m_lfDir);
-		}
 	}
 	else
 	{
-		const MergeDocList &mergedocs = GetAllMergeDocs();
-		POSITION pos = mergedocs.GetHeadPosition();
-		while (pos)
+		for (auto pDoc : GetAllMergeDocs())
 		{
-			CMergeDoc * pDoc = mergedocs.GetNext(pos);
 			for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 			{
 				CMergeEditView * pView = pDoc->GetView(pane);
@@ -1193,21 +1177,10 @@ void CMainFrame::UpdateResources()
 {
 	m_wndStatusBar.SetPaneText(0, theApp.LoadString(AFX_IDS_IDLEMESSAGE).c_str());
 
-	const DirDocList &dirdocs = GetAllDirDocs();
-	POSITION pos = dirdocs.GetHeadPosition();
-	while (pos)
-	{
-		CDirDoc * pDoc = dirdocs.GetNext(pos);
+	for (auto pDoc : GetAllDirDocs())
 		pDoc->UpdateResources();
-	}
-
-	const MergeDocList &mergedocs = GetAllMergeDocs();
-	pos = mergedocs.GetHeadPosition();
-	while (pos)
-	{
-		CMergeDoc * pDoc = mergedocs.GetNext(pos);
+	for (auto pDoc : GetAllMergeDocs())
 		pDoc->UpdateResources();
-	}
 }
 
 /**
@@ -1356,11 +1329,8 @@ void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 
 void CMainFrame::ApplyDiffOptions() 
 {
-	const MergeDocList &docs = GetAllMergeDocs();
-	POSITION pos = docs.GetHeadPosition();
-	while (pos)
+	for (auto pMergeDoc : GetAllMergeDocs())
 	{
-		CMergeDoc * pMergeDoc = docs.GetNext(pos);
 		// Re-read MergeDoc settings (also updates view settings)
 		// and rescan using new options
 		pMergeDoc->RefreshOptions();
@@ -1369,27 +1339,27 @@ void CMainFrame::ApplyDiffOptions()
 }
 
 /// Get list of OpenDocs (documents underlying edit sessions)
-const OpenDocList &CMainFrame::GetAllOpenDocs()
+OpenDocList &CMainFrame::GetAllOpenDocs()
 {
-	return static_cast<const OpenDocList &>(GetDocList(theApp.m_pOpenTemplate));
+	return static_cast<OpenDocList &>(GetDocList(theApp.m_pOpenTemplate));
 }
 
 /// Get list of MergeDocs (documents underlying edit sessions)
-const MergeDocList &CMainFrame::GetAllMergeDocs()
+MergeDocList &CMainFrame::GetAllMergeDocs()
 {
-	return static_cast<const MergeDocList &>(GetDocList(theApp.m_pDiffTemplate));
+	return static_cast<MergeDocList &>(GetDocList(theApp.m_pDiffTemplate));
 }
 
 /// Get list of DirDocs (documents underlying a scan)
-const DirDocList &CMainFrame::GetAllDirDocs()
+DirDocList &CMainFrame::GetAllDirDocs()
 {
-	return static_cast<const DirDocList &>(GetDocList(theApp.m_pDirTemplate));
+	return static_cast<DirDocList &>(GetDocList(theApp.m_pDirTemplate));
 }
 
 /// Get list of HexMergeDocs (documents underlying edit sessions)
-const HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
+HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
 {
-	return static_cast<const HexMergeDocList &>(GetDocList(theApp.m_pHexMergeTemplate));
+	return static_cast<HexMergeDocList &>(GetDocList(theApp.m_pHexMergeTemplate));
 }
 
 /**
@@ -1590,14 +1560,10 @@ void CMainFrame::OnPluginPrediffMode(UINT nID )
 		break;
 	}
 	PrediffingInfo infoPrediffer;
-	const MergeDocList &mergedocs = GetAllMergeDocs();
-	POSITION pos = mergedocs.GetHeadPosition();
-	while (pos)
-		mergedocs.GetNext(pos)->SetPrediffer(&infoPrediffer);
-	const DirDocList &dirdocs = GetAllDirDocs();
-	pos = dirdocs.GetHeadPosition();
-	while (pos)
-		dirdocs.GetNext(pos)->GetPluginManager().SetPrediffSettingAll(g_bPredifferMode);
+	for (auto pMergeDoc : GetAllMergeDocs())
+		pMergeDoc->SetPrediffer(&infoPrediffer);
+	for (auto pDirDoc : GetAllDirDocs())
+		pDirDoc->GetPluginManager().SetPrediffSettingAll(g_bPredifferMode);
 	theApp.WriteProfileInt(_T("Settings"), _T("PredifferMode"), g_bPredifferMode);
 }
 
@@ -1845,23 +1811,13 @@ void CMainFrame::OnToolsFilters()
 
 		if (bFileCompareRescan)
 		{
-			const MergeDocList &docs = GetAllMergeDocs();
-			POSITION pos = docs.GetHeadPosition();
-			while (pos)
-			{
-				CMergeDoc * pMergeDoc = docs.GetNext(pos);
+			for (auto pMergeDoc : GetAllMergeDocs())
 				pMergeDoc->FlushAndRescan(TRUE);
-			}
 		}
 		else if (bFolderCompareRescan)
 		{
-			const DirDocList &dirDocs = GetAllDirDocs();
-			POSITION pos = dirDocs.GetHeadPosition();
-			while (pos)
-			{
-				CDirDoc * pDirDoc = dirDocs.GetNext(pos);
+			for (auto pDirDoc : GetAllDirDocs())
 				pDirDoc->Rescan();
-			}
 		}
 	}
 }
@@ -2683,20 +2639,10 @@ void CMainFrame::OnIncludeSubfolders()
 {
 	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), !(theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1));
 	// Update all dirdoc settings
-	const DirDocList &dirDocs = GetAllDirDocs();
-	POSITION pos = dirDocs.GetHeadPosition();
-	while (pos)
-	{
-		CDirDoc * pDirDoc = dirDocs.GetNext(pos);
+	for (auto pDirDoc : GetAllDirDocs())
 		pDirDoc->RefreshOptions();
-	}
-	const OpenDocList &openDocs = GetAllOpenDocs();
-	pos = openDocs.GetHeadPosition();
-	while (pos)
-	{
-		COpenDoc * pOpenDoc = openDocs.GetNext(pos);
+	for (auto pOpenDoc : GetAllOpenDocs())
 		pOpenDoc->RefreshOptions();
-	}
 }
 
 void CMainFrame::OnUpdateIncludeSubfolders(CCmdUI* pCmdUI)
@@ -2851,13 +2797,9 @@ void CMainFrame::UpdateDocTitle()
 
 		ASSERT(pTemplate != NULL);
 
-		POSITION pos = pTemplate->GetFirstDocPosition();
-		CDocument* pDoc;
-
-		while (pos != NULL)
+		for (auto pDoc : GetDocList(static_cast<CMultiDocTemplate *>(pTemplate)))
 		{
-			pDoc = pTemplate->GetNextDoc(pos);
-			pDoc->SetTitle(NULL);
+			static_cast<CDocument *>(const_cast<void *>(pDoc))->SetTitle(NULL);
 			((CFrameWnd*)AfxGetApp()->m_pMainWnd)->OnUpdateFrameTitle(TRUE);
 		}
 	}
