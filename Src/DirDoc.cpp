@@ -28,6 +28,7 @@
 #include "StdAfx.h"
 #include "DirDoc.h"
 #include <Poco/StringTokenizer.h>
+#include <boost/range/mfc.hpp>
 #include "Merge.h"
 #include "IMergeDoc.h"
 #include "CompareOptions.h"
@@ -56,6 +57,8 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 using Poco::StringTokenizer;
+using boost::begin;
+using boost::end;
 
 int CDirDoc::m_nDirsTemp = 2;
 
@@ -89,12 +92,8 @@ CDirDoc::CDirDoc()
 CDirDoc::~CDirDoc()
 {
 	// Inform all of our merge docs that we're closing
-	POSITION pos = m_MergeDocs.GetHeadPosition();
-	while (pos)
-	{
-		IMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
+	for (auto pMergeDoc : m_MergeDocs)
 		pMergeDoc->DirDocClosing(this);
-	}
 	// Delete all temporary folders belonging to this document
 	while (m_pTempPathContext)
 	{
@@ -410,13 +409,9 @@ void CDirDoc::MergeDocClosing(IMergeDoc * pMergeDoc)
  */
 BOOL CDirDoc::CloseMergeDocs()
 {
-	POSITION pos = m_MergeDocs.GetHeadPosition();
-	while (pos)
-	{
-		IMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
+	for (auto pMergeDoc : m_MergeDocs)
 		if (!pMergeDoc->CloseNow())
 			return FALSE;
-	}
 	return TRUE;
 }
 
