@@ -469,6 +469,7 @@ void CDirDoc::CompareReady()
  */
 void CDirDoc::RefreshOptions()
 {
+	m_pCtxt->m_bRecursive = (theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1);
 	if (m_pDirView)
 		m_pDirView->RefreshOptions();
 }

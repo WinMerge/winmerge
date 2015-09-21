@@ -245,6 +245,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_CASESENSITIVE, OnUpdateDiffCaseSensitive)
 	ON_COMMAND(IDC_DIFF_IGNOREEOL, OnDiffIgnoreEOL)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
+	ON_COMMAND(IDC_RECURS_CHECK, OnIncludeSubfolders)
+	ON_UPDATE_COMMAND_UI(IDC_RECURS_CHECK, OnUpdateIncludeSubfolders)
 	ON_COMMAND_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnCompareMethod)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnUpdateCompareMethod)
 	ON_COMMAND_RANGE(ID_MRU_FIRST, ID_MRU_LAST, OnMRUs)
@@ -2674,6 +2676,32 @@ void CMainFrame::OnDiffIgnoreEOL()
 void CMainFrame::OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnIncludeSubfolders()
+{
+	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), !(theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1));
+	// Update all dirdoc settings
+	const DirDocList &dirDocs = GetAllDirDocs();
+	POSITION pos = dirDocs.GetHeadPosition();
+	while (pos)
+	{
+		CDirDoc * pDirDoc = dirDocs.GetNext(pos);
+		pDirDoc->RefreshOptions();
+	}
+	const OpenDocList &openDocs = GetAllOpenDocs();
+	pos = openDocs.GetHeadPosition();
+	while (pos)
+	{
+		COpenDoc * pOpenDoc = openDocs.GetNext(pos);
+		pOpenDoc->RefreshOptions();
+	}
+}
+
+void CMainFrame::OnUpdateIncludeSubfolders(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1);
 	pCmdUI->Enable();
 }
 

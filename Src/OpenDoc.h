@@ -14,6 +14,7 @@ class COpenDoc : public CDocument
 public:
 	COpenDoc();
 	virtual ~COpenDoc();
+	void RefreshOptions();
 
 	DWORD   m_dwFlags[3];
 	PathContext m_files;
