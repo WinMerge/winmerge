@@ -66,7 +66,7 @@ private:
 private:
 
 	void BuildWordsArray(const String & str, std::vector<word>& words);
-	UINT Hash(const String & str, int begin, int end, UINT h ) const;
+	unsigned Hash(const String & str, int begin, int end, unsigned h ) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
 	bool IsWord(const word & word1) const;
 	/**
