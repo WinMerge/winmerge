@@ -1093,7 +1093,7 @@ void SetItemViewFlag(CDiffContext& ctxt, unsigned flag, unsigned mask)
 
 	while (pos != NULL)
 	{
-		UINT curFlags = ctxt.GetCustomFlags1(pos);
+		unsigned curFlags = ctxt.GetCustomFlags1(pos);
 		curFlags &= ~mask; // Zero bits masked
 		curFlags |= flag;
 		ctxt.SetCustomFlags1(pos, curFlags);
