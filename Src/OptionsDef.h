@@ -207,8 +207,8 @@ extern const String OPT_FONT_FILECMP OP("Font/");
 extern const String OPT_FONT_DIRCMP OP("FontDirCompare/");
 
 extern const String OPT_FONT_USECUSTOM OP("Specified");
+extern const String OPT_FONT_POINTSIZE OP("PointSize");
 extern const String OPT_FONT_HEIGHT OP("Height");
-extern const String OPT_FONT_WIDTH OP("Width");
 extern const String OPT_FONT_ESCAPEMENT OP("Escapement");
 extern const String OPT_FONT_ORIENTATION OP("Orientation");
 extern const String OPT_FONT_WEIGHT OP("Weight");
