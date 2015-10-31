@@ -545,7 +545,7 @@ static String ColStatusAbbrGet(const CDiffContext *pCtxt, const void *p)
 	else if (di.diffcode.isSideSecondOnly())
 	{
 		if (nDirs < 3)
-			id = N_("Left Only");
+			id = N_("Right Only");
 		else
 			id = N_("Middle Only");
 	}
@@ -567,7 +567,7 @@ static String ColStatusAbbrGet(const CDiffContext *pCtxt, const void *p)
 	}
 	else if (di.diffcode.isResultSame())
 	{
-		id = N_("No item in right");
+		id = N_("Identical");
 	}
 	else if (di.diffcode.isResultDiff())
 	{
