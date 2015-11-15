@@ -20,12 +20,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 
-// reduce some noise produced with the MSVC compiler
-#if defined (_AFXDLL)
-#pragma warning(disable : 4131)
-#endif
-
-
 static void print_normal_hunk PARAMS((struct change *));
 
 /* Print the edit-script SCRIPT as a normal diff.
