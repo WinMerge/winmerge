@@ -20,12 +20,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include <windows.h>
 #include "diff.h"
 
-// reduce some noise produced with the MSVC compiler
-#if defined (_AFXDLL)
-#pragma warning(disable : 4131 4127)
-#endif
-
-
 /* Queue up one-line messages to be printed at the end,
    when -l is specified.  Each message is recorded with a `struct msg'.  */
 
