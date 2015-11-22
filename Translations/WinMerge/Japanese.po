@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-09-06 23:41+0900\n"
+"PO-Revision-Date: 2015-11-22 21:01+0900\n"
 "Last-Tranuslator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1717,7 +1717,7 @@ msgstr "ŒŸõ"
 #: Merge.rc:1033
 #, c-format
 msgid "Fi&nd what:"
-msgstr "ŒŸõ•¶š—ñ(&N)"
+msgstr "ŒŸõ•¶š—ñ(&N):"
 
 #: Merge.rc:991
 #: Merge.rc:1017
