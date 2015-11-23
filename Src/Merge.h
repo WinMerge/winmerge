@@ -44,6 +44,7 @@ class COptionsMgr;
 class LineFiltersList;
 class SyntaxColors;
 class SourceControl;
+class FilterCommentsManager;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -73,6 +74,7 @@ public:
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
+	std::unique_ptr<FilterCommentsManager> m_pFilterCommentsManager;
 
 	/**
 	 * @name Textual labels/descriptors

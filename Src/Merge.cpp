@@ -52,6 +52,7 @@
 #include "paths.h"
 #include "FileFilterHelper.h"
 #include "LineFiltersList.h"
+#include "FilterCommentsManager.h"
 #include "SyntaxColors.h"
 #include "OptionsSyntaxColors.h"
 #include "Plugins.h"
@@ -207,6 +208,7 @@ CMergeApp::CMergeApp() :
 , m_bClearCaseTool(FALSE)
 , m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
 , m_pLineFilters(new LineFiltersList())
+, m_pFilterCommentsManager(new FilterCommentsManager())
 , m_pSyntaxColors(new SyntaxColors())
 , m_pSourceControl(new SourceControl())
 , m_bMergingMode(FALSE)
