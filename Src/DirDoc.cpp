@@ -273,6 +273,8 @@ void CDirDoc::Rescan()
 	// Make sure filters are up-to-date
 	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
 	m_pCtxt->m_piFilterGlobal = theApp.m_pGlobalFileFilter.get();
+	
+	m_pCtxt->m_pFilterCommentsManager = theApp.m_pFilterCommentsManager.get();
 
 	// Show current compare method name and active filter name in statusbar
 	pf->SetFilterStatusDisplay(theApp.m_pGlobalFileFilter->GetFilterNameOrMask().c_str());

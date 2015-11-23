@@ -374,6 +374,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	{
 		m_diffWrapper.SetFilterList(_T(""));
 	}
+	m_diffWrapper.SetFilterCommentsManager(theApp.m_pFilterCommentsManager.get());
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{

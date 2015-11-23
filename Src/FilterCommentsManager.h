@@ -62,7 +62,7 @@ class FilterCommentsManager
 {
 public:
 	explicit FilterCommentsManager(const String &IniFileName = _T(""));
-	FilterCommentsSet GetSetForFileType(const String& FileTypeName);
+	FilterCommentsSet GetSetForFileType(const String& FileTypeName) const;
 
 private:
 	FilterCommentsManager(const FilterCommentsManager&); //Don't allow copy
@@ -73,5 +73,4 @@ private:
 	//Use CString instead of std::string, so as to allow UNICODE file extensions
 	std::map<String, FilterCommentsSet> m_FilterCommentsSetByFileType;
 	String m_IniFileName;
-	bool m_loaded;
 };

@@ -33,6 +33,7 @@ public:
 	~DiffUtils();
 	bool SetCompareOptions(const CompareOptions & options);
 	void SetFilterList(FilterList * list);
+	void SetFilterCommentsManager(const FilterCommentsManager *pFilterCommentsManager);
 	void ClearFilterList();
 	void SetFileData(int items, file_data *data);
 	int diffutils_compare_files();
@@ -50,7 +51,6 @@ private:
 	int m_ndiffs; /**< Real diffs found. */
 	int m_ntrivialdiffs; /**< Ignored diffs found. */
 	int m_codepage; /**< Codepage used in line filter */
-	std::unique_ptr<FilterCommentsManager> m_FilterCommentsManager; /**< Comments filtering manager */
 	std::unique_ptr<CDiffWrapper> m_pDiffWrapper;
 };
 
