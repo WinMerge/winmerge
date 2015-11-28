@@ -38,10 +38,10 @@ public :
 
 	BOOL SubClassEdit(UINT nID, CWnd* pParent);
 	void RefreshDisplayText();
-	LPCTSTR GetUpdatedTipText(CDC * pDC, int maxWidth);
+	const String& GetUpdatedTipText(CDC * pDC, int maxWidth);
 
-	void SetActive(BOOL bActive);
-	void SetOriginalText(const CString& szString );
+	void SetActive(bool bActive);
+	void SetOriginalText(const String& sString );
 	void SetBackColor(COLORREF rgb);
 	void SetTextColor(COLORREF rgb);
 
@@ -51,13 +51,13 @@ protected:
 	HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	DECLARE_MESSAGE_MAP();
 
-	void GetOriginalText( CString& rString ) const;
+	void GetOriginalText( String& rString ) const;
 
 private:
 	void CustomCopy(int iBegin, int iEnd =-1);
 
-	CString m_sToolTipString; /**< buffer for return data from GetUpdatedTipText */
-	CString m_sOriginalText; /**< Full path that was given to control */
+	String m_sToolTipString; /**< buffer for return data from GetUpdatedTipText */
+	String m_sOriginalText; /**< Full path that was given to control */
 	BOOL m_bActive; /**< Is the control active-looking? */
 	COLORREF m_crText; /**< Control's text color. */
 	COLORREF m_crBackGnd; /**< Control's background color. */

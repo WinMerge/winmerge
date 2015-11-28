@@ -99,7 +99,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 					_T("- failed to open file: %s"), strSavePath.c_str());
 				LogErrorString(sError);
 				String errMsg = GetSysError(GetLastError());
-				sError = LangFormatString2(IDS_ERROR_FILEOPEN, errMsg.c_str(), strSavePath.c_str());
+				sError = string_format_string2(_("Cannot open file\n%1\n\n%2"), errMsg, strSavePath);
 			}
 			if (tfile == INVALID_HANDLE_VALUE)
 			{
@@ -107,7 +107,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 					_T("- failed to open temporary file: %s"), tempFile.c_str());
 				LogErrorString(sError);
 				String errMsg = GetSysError(GetLastError());
-				sError = LangFormatString2(IDS_ERROR_FILEOPEN, errMsg.c_str(), tempFile.c_str());
+				sError = string_format_string2(_("Cannot open file\n%1\n\n%2"), errMsg, strSavePath);
 			}
 			return false;
 		}
@@ -161,7 +161,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 		else
 		{
 			String errMsg = GetSysError(GetLastError());
-			sError = LangFormatString2(IDS_ERROR_FILEOPEN, strSavePath.c_str(), errMsg.c_str());
+			sError = string_format_string2(_("Cannot open file\n%1\n\n%2"), errMsg, strSavePath);
 			return false;
 		}
 	}

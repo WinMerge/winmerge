@@ -801,7 +801,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	}
 
 	String strItem;
-	CString strNum;
+	String strNum;
 	int nLine = -1;
 	int bar = IsInsideBar(rc, pt);
 
@@ -812,11 +812,11 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		if (bar == BAR_YAREA)
 			bar = BAR_0;
 		nLine = GetLineFromYPos(pt.y, bar);
-		strNum.Format(_T("%d"), nLine + 1); // Show linenumber not lineindex
+		strNum = string_to_str(nLine + 1); // Show linenumber not lineindex
 	}
 	else
 		pPopup->EnableMenuItem(ID_LOCBAR_GOTODIFF, MF_GRAYED);
-	strItem = LangFormatString1(IDS_LOCBAR_GOTOLINE_FMT, strNum);
+	strItem = string_format_string1(_("G&oto Line %1"), strNum);
 	pPopup->SetMenuText(ID_LOCBAR_GOTODIFF, strItem.c_str(), MF_BYCOMMAND);
 
 	// invoke context menu

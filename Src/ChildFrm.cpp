@@ -174,7 +174,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	String sCaption = theApp.LoadString(IDS_LOCBAR_CAPTION);
+	String sCaption = _("Location Pane");
 	if (!m_wndLocationBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
 	{
 		TRACE0("Failed to create LocationBar\n");
@@ -188,7 +188,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very bottom
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	sCaption = theApp.LoadString(IDS_DIFFBAR_CAPTION);
+	sCaption = _("Diff Pane");
 	if (!m_wndDetailBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_DETAIL_BAR))
 	{
 		TRACE0("Failed to create DiffViewBar\n");
@@ -293,9 +293,9 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 	// Set filename bars inactive so colors get initialized
-	m_wndFilePathBar.SetActive(0, FALSE);
-	m_wndFilePathBar.SetActive(1, FALSE);
-	m_wndFilePathBar.SetActive(2, FALSE);
+	m_wndFilePathBar.SetActive(0, false);
+	m_wndFilePathBar.SetActive(1, false);
+	m_wndFilePathBar.SetActive(2, false);
 
 	// Merge frame also has a dockable bar at the very left
 	// created in OnCreateClient 
@@ -323,7 +323,7 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// Set text to read-only info panes
 	// Text is hidden if file is writable
-	String sText = theApp.LoadString(IDS_STATUSBAR_READONLY);
+	String sText = _("RO");
 	m_wndStatusBar.SetPaneText(PANE_PANE0_RO, sText.c_str(), TRUE);
 	m_wndStatusBar.SetPaneText(PANE_PANE1_RO, sText.c_str(), TRUE);
 	m_wndStatusBar.SetPaneText(PANE_PANE2_RO, sText.c_str(), TRUE);
@@ -763,17 +763,17 @@ void CChildFrame::MergeStatus::Update()
 		CString str;
 		if (m_nChars == -1)
 		{
-			str.Format(theApp.LoadString(IDS_EMPTY_LINE_STATUS_INFO).c_str(),
+			str.Format(_("Line: %s").c_str(),
 				m_sLine.c_str());
 		}
 		else if (m_sEolDisplay.empty())
 		{
-			str.Format(theApp.LoadString(IDS_LINE_STATUS_INFO).c_str(),
+			str.Format(_("Ln: %s  Col: %d/%d  Ch: %d/%d  Cp: %d(%s)").c_str(),
 				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars, m_nCodepage, m_sCodepageName.c_str());
 		}
 		else
 		{
-			str.Format(theApp.LoadString(IDS_LINE_STATUS_INFO_EOL).c_str(),
+			str.Format(_("Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s  Cp: %d(%s)").c_str(),
 				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars, m_sEolDisplay.c_str(), m_nCodepage, m_sCodepageName.c_str());
 		}
 
@@ -794,19 +794,19 @@ static String EolString(const String & sEol)
 {
 	if (sEol == _T("\r\n"))
 	{
-		return LoadResString(IDS_EOL_CRLF);
+		return _("CRLF");
 	}
 	if (sEol == _T("\n"))
 	{
-		return LoadResString(IDS_EOL_LF);
+		return _("LF");
 	}
 	if (sEol == _T("\r"))
 	{
-		return LoadResString(IDS_EOL_CR);
+		return _("CR");
 	}
 	if (sEol.empty())
 	{
-		return LoadResString(IDS_EOL_NONE);
+		return _("None");
 	}
 	if (sEol == _T("hidden"))
 		return _T("");

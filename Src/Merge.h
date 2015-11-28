@@ -43,7 +43,8 @@ class ProjectFile;
 class COptionsMgr;
 class LineFiltersList;
 class SyntaxColors;
-class VSSHelper;
+class SourceControl;
+class FilterCommentsManager;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -66,29 +67,14 @@ public:
 	std::unique_ptr<CLanguageSelect> m_pLangDlg;
 	std::unique_ptr<FileFilterHelper> m_pGlobalFileFilter;
 	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
-	std::unique_ptr<VSSHelper> m_pVssHelper; /**< Helper class for VSS integration */
+	std::unique_ptr<SourceControl> m_pSourceControl;
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
-
-	/**
-	 * @name Version Control System (VCS) integration.
-	 */
-	/*@{*/ 
-protected:
-	CString m_strVssUser; /**< Visual Source Safe User ID */
-	CString m_strVssPassword; /**< Visual Source Safe Password */
-	CString m_strVssDatabase; /**< Visual Source Safe database */
-	CString m_strCCComment; /**< ClearCase comment */
-public:
-	BOOL m_bCheckinVCS;     /**< TRUE if files should be checked in after checkout */
-	BOOL m_CheckOutMulti; /**< Suppresses VSS int. code asking checkout for every file */
-	BOOL m_bVCProjSync; /**< VC project opened from VSS sync? */
-	BOOL m_bVssSuppressPathCheck; /**< Suppresses VSS int code asking about different path */
-	/*@}*/
+	std::unique_ptr<FilterCommentsManager> m_pFilterCommentsManager;
 
 	/**
 	 * @name Textual labels/descriptors
@@ -106,6 +92,7 @@ public:
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
+	bool TranslateString(const std::string&, String&) const; 
 	std::wstring LoadDialogCaption(LPCTSTR) const;
 
 	CMergeApp();
@@ -124,10 +111,6 @@ public:
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 	void ShowVSSError(CException *e, const String& strItem);
 	void CheckinToClearCase(const String& strDestinationPath);
-// Implementation in SourceControl.cpp
-	void InitializeSourceControlMembers();
-	BOOL SaveToVersionControl(const String& strSavePath);
-// End SourceControl.cpp
 	BOOL CreateBackup(BOOL bFolder, const String& pszPath);
 	int HandleReadonlySave(String& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
 	BOOL SyncFileToVCS(const String& pszDest,	BOOL &bApplyToAll, String& psError);

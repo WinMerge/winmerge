@@ -34,6 +34,6 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-	BOOL m_bEnableSupport;
-	BOOL m_bProbeType;
+	bool m_bEnableSupport;
+	bool m_bProbeType;
 };

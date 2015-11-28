@@ -267,9 +267,10 @@ void CImgMergeFrame::DoAutoMerge(int dstPane)
 	m_pImgMergeWindow->FirstConflict();
 
 	AfxMessageBox(
-		LangFormatString2(IDS_AUTO_MERGE, 
-			string_format(_T("%d"), autoMergedCount).c_str(),
-			string_format(_T("%d"), m_pImgMergeWindow->GetConflictCount()).c_str()).c_str(),
+		string_format_string2(
+			_T("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
+			string_format(_T("%d"), autoMergedCount),
+			string_format(_T("%d"), m_pImgMergeWindow->GetConflictCount())).c_str(),
 		MB_ICONINFORMATION);
 }
 
@@ -302,7 +303,7 @@ void CImgMergeFrame::CheckFileChanged(void)
 	{
 		if (IsFileChangedOnDisk(pane))
 		{
-			String msg = LangFormatString1(IDS_FILECHANGED_RESCAN, m_filePaths[pane].c_str());
+			String msg = string_format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
 			{
 				OnFileReload();
@@ -616,14 +617,14 @@ bool CImgMergeFrame::DoFileSaveAs(int pane)
 {
 	const String &path = m_filePaths.GetPath(pane);
 	String strPath;
-	int id;
+	String title;
 	if (pane == 0)
-		id = IDS_SAVE_LEFT_AS;
+		title = _("Save Left File As");
 	else if (pane == m_pImgMergeWindow->GetPaneCount() - 1)
-		id = IDS_SAVE_RIGHT_AS;
+		title = _("Save Right File As");
 	else
-		id = IDS_SAVE_MIDDLE_AS;
-	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, path.c_str(), id, NULL, FALSE))
+		title = _("Save Middle File As");
+	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, path.c_str(), title, NULL, FALSE))
 	{
 		std::wstring filename = ucr::toUTF16(strPath).c_str();
 		BOOL bApplyToAll = FALSE;
@@ -969,11 +970,12 @@ void CImgMergeFrame::UpdateDiffItem(CDirDoc *pDirDoc)
 		const String &pathLeft = m_filePaths.GetLeft();
 		const String &pathRight = m_filePaths.GetRight();
 		CDiffContext &ctxt = const_cast<CDiffContext &>(pDirDoc->GetDiffContext());
-		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft, pathRight))
-		{
-			DIFFITEM &di = pDirDoc->GetDiffRefByKey(pos);
-			//::UpdateDiffItem(m_nBuffers, di, &ctxt);
-		}
+// FIXME:
+//		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft, pathRight))
+//		{
+//			DIFFITEM &di = pDirDoc->GetDiffRefByKey(pos);
+//			::UpdateDiffItem(m_nBuffers, di, &ctxt);
+//		}
 	}
 	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount());
 }
@@ -1848,7 +1850,9 @@ bool CImgMergeFrame::GenerateReport(LPCTSTR szFileName)
 	if (!file.Open(szFileName, _T("wt")))
 	{
 		String errMsg = GetSysError(GetLastError());
-		ResMsgBox1(IDS_REPORT_ERROR, errMsg.c_str(), MB_OK | MB_ICONSTOP);
+		String msg = string_format_string1(
+			_("Error creating the report:\n%1"), errMsg);
+		AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
 		return false;
 	}
 
@@ -1898,7 +1902,7 @@ void CImgMergeFrame::OnToolsGenerateReport()
 	String s;
 	CString folder;
 
-	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, folder, IDS_SAVE_AS_TITLE, IDS_HTML_REPORT_FILES, false, _T("htm")))
+	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, folder, _("Save As"), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), false, _T("htm")))
 		return;
 
 	GenerateReport(s.c_str());

@@ -465,19 +465,19 @@ stringdiffs::PopulateDiffs()
 /* Given a hash value and a new character, return a new hash value. */
 #define HASH(h, c) ((c) + ROL (h, 7))
 
-UINT
-stringdiffs::Hash(const String & str, int begin, int end, UINT h) const
+unsigned
+stringdiffs::Hash(const String & str, int begin, int end, unsigned h) const
 {
 	for (int i = begin; i <= end; ++i)
 	{
-		UINT ch = (UINT)str[i];
+		unsigned ch = static_cast<unsigned>(str[i]);
 		if (m_case_sensitive)
 		{
 			h += HASH(h, ch);
 		}
 		else
 		{
-			ch = (UINT)_totupper(ch);
+			ch = static_cast<unsigned>(_totupper(ch));
 			h += HASH(h, ch);
 		}
 	}

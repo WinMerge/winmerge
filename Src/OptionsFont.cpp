@@ -27,12 +27,13 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 	if (pexconv)
 		pexconv->getCodePageInfo(GetACP(), &cpi);
 
+	HDC hDC = GetDC(NULL);
 	for (int i = 0; i < 2; ++i)
 	{
 		String name = (i == 0 ? OPT_FONT_FILECMP : OPT_FONT_DIRCMP);
 		pOptionsMgr->InitOption(name + OPT_FONT_USECUSTOM, false);
-		pOptionsMgr->InitOption(name + OPT_FONT_HEIGHT, -16);
-		pOptionsMgr->InitOption(name + OPT_FONT_WIDTH, 0);
+		pOptionsMgr->InitOption(name + OPT_FONT_POINTSIZE, 0);
+		pOptionsMgr->InitOption(name + OPT_FONT_HEIGHT, -MulDiv(12, GetDeviceCaps(hDC, LOGPIXELSY), 72));
 		pOptionsMgr->InitOption(name + OPT_FONT_ESCAPEMENT, 0);
 		pOptionsMgr->InitOption(name + OPT_FONT_ORIENTATION, 0);
 		pOptionsMgr->InitOption(name + OPT_FONT_WEIGHT, FW_NORMAL);
@@ -46,15 +47,18 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 		pOptionsMgr->InitOption(name + OPT_FONT_CHARSET, (int) cpi.bGDICharset);
 		pOptionsMgr->InitOption(name + OPT_FONT_FACENAME, ucr::toTString(cpi.fixedWidthFont));
 	}
+	ReleaseDC(NULL, hDC);
 }
 
 LOGFONT Load(const COptionsMgr *pOptionsMgr, const String& name)
 {
 	LOGFONT lfnew;
 	ZeroMemory(&lfnew, sizeof(LOGFONT));
-
-	lfnew.lfHeight = pOptionsMgr->GetInt(name + OPT_FONT_HEIGHT);
-	lfnew.lfWidth = pOptionsMgr->GetInt(name + OPT_FONT_WIDTH);
+	HDC hDC = GetDC(NULL);
+	lfnew.lfHeight = -MulDiv(pOptionsMgr->GetInt(name + OPT_FONT_POINTSIZE), GetDeviceCaps(hDC, LOGPIXELSY), 72);
+	if (lfnew.lfHeight == 0)
+		lfnew.lfHeight = pOptionsMgr->GetInt(name + OPT_FONT_HEIGHT);
+	lfnew.lfWidth = 0;
 	lfnew.lfEscapement = pOptionsMgr->GetInt(name + OPT_FONT_ESCAPEMENT);
 	lfnew.lfOrientation = pOptionsMgr->GetInt(name + OPT_FONT_ORIENTATION);
 	lfnew.lfWeight = pOptionsMgr->GetInt(name + OPT_FONT_WEIGHT);
@@ -68,14 +72,15 @@ LOGFONT Load(const COptionsMgr *pOptionsMgr, const String& name)
 	lfnew.lfPitchAndFamily = pOptionsMgr->GetInt(name + OPT_FONT_PITCHANDFAMILY);
 	lstrcpyn(lfnew.lfFaceName,
 		pOptionsMgr->GetString(name + OPT_FONT_FACENAME).c_str(), sizeof(lfnew.lfFaceName)/sizeof(lfnew.lfFaceName[0]));
+	ReleaseDC(NULL, hDC);
 	return lfnew;
 }
 
 void Save(COptionsMgr *pOptionsMgr, const String& name, const LOGFONT* lf, bool bUseCustom)
 {
+	HDC hDC = GetDC(NULL);
 	pOptionsMgr->SaveOption(name + OPT_FONT_USECUSTOM, bUseCustom);
-	pOptionsMgr->SaveOption(name + OPT_FONT_HEIGHT, lf->lfHeight);
-	pOptionsMgr->SaveOption(name + OPT_FONT_WIDTH, lf->lfWidth);
+	pOptionsMgr->SaveOption(name + OPT_FONT_POINTSIZE, -MulDiv(lf->lfHeight, 72, GetDeviceCaps(hDC, LOGPIXELSY)));
 	pOptionsMgr->SaveOption(name + OPT_FONT_ESCAPEMENT, lf->lfEscapement);
 	pOptionsMgr->SaveOption(name + OPT_FONT_ORIENTATION, lf->lfOrientation);
 	pOptionsMgr->SaveOption(name + OPT_FONT_WEIGHT, lf->lfWeight);
@@ -88,13 +93,14 @@ void Save(COptionsMgr *pOptionsMgr, const String& name, const LOGFONT* lf, bool 
 	pOptionsMgr->SaveOption(name + OPT_FONT_QUALITY, lf->lfQuality);
 	pOptionsMgr->SaveOption(name + OPT_FONT_PITCHANDFAMILY, (int)lf->lfPitchAndFamily);
 	pOptionsMgr->SaveOption(name + OPT_FONT_FACENAME, lf->lfFaceName);
+	ReleaseDC(NULL, hDC);
 }
 
 void Reset(COptionsMgr *pOptionsMgr, const String& name)
 {
 	pOptionsMgr->SaveOption(name + OPT_FONT_USECUSTOM, false);
+	pOptionsMgr->Reset(name + OPT_FONT_POINTSIZE);
 	pOptionsMgr->Reset(name + OPT_FONT_HEIGHT);
-	pOptionsMgr->Reset(name + OPT_FONT_WIDTH);
 	pOptionsMgr->Reset(name + OPT_FONT_ESCAPEMENT);
 	pOptionsMgr->Reset(name + OPT_FONT_ORIENTATION);
 	pOptionsMgr->Reset(name + OPT_FONT_WEIGHT);

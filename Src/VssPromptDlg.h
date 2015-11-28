@@ -21,53 +21,29 @@
  */
 #pragma once
 
-#include "SuperComboBox.h"
-#include "afxwin.h"
+#include <memory>
+#include "UnicodeString.h"
 
-/**
- * @brief Class for VSS dialog
- */
-class CVssPromptDlg : public CDialog
+class CVssPromptDlg
 {
 // Construction
 public:
-	explicit CVssPromptDlg(CWnd* pParent = NULL);   // standard constructor
+	CVssPromptDlg();
+	~CVssPromptDlg();
+	int DoModal();
 
-// Dialog Data
-	//{{AFX_DATA(CVssPromptDlg)
-	enum { IDD = IDD_VSS };
-	CSuperComboBox	m_ctlProject;
-	CString	m_strProject;
-	CString	m_strUser;
-	CString	m_strPassword;
-	CString	m_strMessage;
-	//}}AFX_DATA
+	String	m_strProject;
+	String	m_strUser;
+	String	m_strPassword;
+	String	m_strMessage;
+	String m_strSelectedDatabase;
+	bool m_bMultiCheckouts;
+	bool m_bVCProjSync;
 
+private:
+	CVssPromptDlg(const CVssPromptDlg &);
+	CVssPromptDlg & operator=(const CVssPromptDlg &);
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CVssPromptDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
-protected:
-
-	// Generated message map functions
-	//{{AFX_MSG(CVssPromptDlg)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	afx_msg void OnSaveas();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-public:
-	CString m_strSelectedDatabase;
-	CComboBox m_ctlDBCombo;
-	BOOL m_bMultiCheckouts;
-	CButton m_ctlMultiCheckouts;
-	BOOL m_bVCProjSync;
+	class Impl;
+	std::unique_ptr<Impl> m_pimpl;
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.

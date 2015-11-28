@@ -31,6 +31,7 @@
 #include "PatchHTML.h"
 #include "FileOrFolderSelect.h"
 #include "Environment.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -118,8 +119,8 @@ void CPatchDlg::OnOK()
 	size_t selectCount = m_fileList.size();
 	if (selectCount == 1)
 	{
-		BOOL file1Ok = (paths_DoesPathExist((const TCHAR *)m_file1) == IS_EXISTING_FILE);
-		BOOL file2Ok = (paths_DoesPathExist((const TCHAR *)m_file2) == IS_EXISTING_FILE);
+		bool file1Ok = (paths_DoesPathExist(m_file1) == IS_EXISTING_FILE);
+		bool file2Ok = (paths_DoesPathExist(m_file2) == IS_EXISTING_FILE);
 
 		if (!file1Ok || !file2Ok)
 		{
@@ -133,25 +134,27 @@ void CPatchDlg::OnOK()
 	}
 
 	// Check that result (patch) file is absolute path
-	if (!paths_IsPathAbsolute((LPCTSTR)m_fileResult))
+	if (!paths_IsPathAbsolute(m_fileResult))
 	{
-		if (m_fileResult.GetLength() == 0)
+		if (m_fileResult.length() == 0)
 		{
 			TCHAR szTempFile[MAX_PATH];
 			GetTempFileName(env_GetTempPath().c_str(), _T("pat"), 0, szTempFile);
 			m_fileResult = szTempFile;
-			m_ctlResult.SetWindowText(m_fileResult);
-			DeleteFile(m_fileResult);
+			m_ctlResult.SetWindowText(m_fileResult.c_str());
+			DeleteFile(m_fileResult.c_str());
 		}
-		if (paths_IsPathAbsolute((LPCTSTR)m_fileResult) == FALSE)
+		if (paths_IsPathAbsolute(m_fileResult) == FALSE)
 		{
-			ResMsgBox1(IDS_PATH_NOT_ABSOLUTE, m_fileResult, MB_ICONSTOP);
+			String msg = string_format_string1(_("The specified output path is not an absolute path: %1"),
+				m_fileResult);
+			AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 			m_ctlResult.SetFocus();
 			return;
 		}
 	}
 	
-	BOOL fileExists = (paths_DoesPathExist((const TCHAR *)m_fileResult) == IS_EXISTING_FILE);
+	bool fileExists = (paths_DoesPathExist(m_fileResult) == IS_EXISTING_FILE);
 
 	// Result file already exists and append not selected
 	if (fileExists && !m_appendFile)
@@ -176,9 +179,9 @@ void CPatchDlg::OnOK()
 	int contextSel = m_comboContext.GetCurSel();
 	if (contextSel != CB_ERR)
 	{
-		CString contextText;
-		m_comboContext.GetLBText(contextSel, contextText);
-		m_contextLines = _ttoi(contextText);
+		String contextText;
+		m_comboContext.GetLBText(contextSel, PopString(contextText));
+		m_contextLines = std::stoi(contextText);
 	}
 	else
 		m_contextLines = 0;
@@ -230,18 +233,15 @@ BOOL CPatchDlg::OnInitDialog()
 	}
 	else if (count > 1)	// Multiple files added, show number of files
 	{
-		String num = string_format(_T("%d"), static_cast<int>(count));
-		String msg = LangFormatString1(IDS_DIFF_SELECTEDFILES, num.c_str());
-		m_file1 = msg.c_str();
-		m_file2 = msg.c_str();
+		m_file1 = m_file2 = string_format_string1(_("[%1 files selected]"), string_to_str(count)).c_str();
 	}
 	UpdateData(FALSE);
 
 	// Add patch styles to combobox
-	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_NORMAL).c_str());
-	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_CONTEXT).c_str());
-	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_UNIFIED).c_str());
-	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_HTML).c_str());
+	m_comboStyle.AddString(_("Normal").c_str());
+	m_comboStyle.AddString(_("Context").c_str());
+	m_comboStyle.AddString(_("Unified").c_str());
+	m_comboStyle.AddString(_("HTML").c_str());
 
 	m_outputStyle = OUTPUT_NORMAL;
 	m_comboStyle.SetCurSel(0);
@@ -271,9 +271,9 @@ void CPatchDlg::OnDiffBrowseFile1()
 	String folder;
 
 	folder = m_file1;
-	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), IDS_OPEN_TITLE, NULL, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), _("Open"), _T(""), TRUE))
 	{
-		ChangeFile(s.c_str(), TRUE);
+		ChangeFile(s, true);
 		m_ctlFile1.SetWindowText(s.c_str());
 	}
 }
@@ -287,9 +287,9 @@ void CPatchDlg::OnDiffBrowseFile2()
 	String folder;
 
 	folder = m_file2;
-	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), IDS_OPEN_TITLE, NULL, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), _("Open"), _T(""), TRUE))
 	{
-		ChangeFile(s.c_str(), FALSE);
+		ChangeFile(s, false);
 		m_ctlFile2.SetWindowText(s.c_str());
 	}
 }
@@ -300,7 +300,7 @@ void CPatchDlg::OnDiffBrowseFile2()
  * @param [in] sFile New file for patch creation.
  * @param [in] bLeft If true left file is changed, otherwise right file.
  */
-void CPatchDlg::ChangeFile(const CString &sFile, BOOL bLeft)
+void CPatchDlg::ChangeFile(const String &sFile, bool bLeft)
 {
 	PATCHFILES pf;
 	size_t count = GetItemCount();
@@ -312,9 +312,9 @@ void CPatchDlg::ChangeFile(const CString &sFile, BOOL bLeft)
 	else if (count > 1)
 	{
 		if (bLeft)
-			m_file1.Empty();
+			m_file1.clear();
 		else
-			m_file2.Empty();
+			m_file2.clear();
 	}
 	ClearItems();
 
@@ -341,7 +341,7 @@ void CPatchDlg::OnDiffBrowseResult()
 	String folder;
 
 	folder = m_fileResult;
-	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), IDS_SAVE_AS_TITLE, NULL, FALSE))
+	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), _("Save As"), _T(""), FALSE))
 	{
 		m_fileResult = s.c_str();
 		m_ctlResult.SetWindowText(s.c_str());
@@ -356,11 +356,9 @@ void CPatchDlg::OnSelchangeFile1Combo()
 	int sel = m_ctlFile1.GetCurSel();
 	if (sel != CB_ERR)
 	{
-		CString file;
-		m_ctlFile1.GetLBText(sel, file);
-		m_ctlFile1.SetWindowText(file);
-		ChangeFile(file, TRUE);
-		m_file1 = file;
+		m_ctlFile1.GetLBText(sel, PopString(m_file1));
+		m_ctlFile1.SetWindowText(m_file1.c_str());
+		ChangeFile(m_file1, true);
 	}
 }
 
@@ -372,11 +370,9 @@ void CPatchDlg::OnSelchangeFile2Combo()
 	int sel = m_ctlFile2.GetCurSel();
 	if (sel != CB_ERR)
 	{
-		CString file;
-		m_ctlFile2.GetLBText(sel, file);
-		m_ctlFile2.SetWindowText(file);
-		ChangeFile(file, FALSE);
-		m_file2 = file;
+		m_ctlFile2.GetLBText(sel, PopString(m_file2));
+		m_ctlFile2.SetWindowText(m_file2.c_str());
+		ChangeFile(m_file2, false);
 	}
 }
 
@@ -388,8 +384,8 @@ void CPatchDlg::OnSelchangeResultCombo()
 	int sel = m_ctlResult.GetCurSel();
 	if (sel != CB_ERR)
 	{
-		m_ctlResult.GetLBText(sel, m_fileResult);
-		m_ctlResult.SetWindowText(m_fileResult);
+		m_ctlResult.GetLBText(sel, PopString(m_fileResult));
+		m_ctlResult.SetWindowText(m_fileResult.c_str());
 	}
 }
 
@@ -424,17 +420,13 @@ void CPatchDlg::OnSelchangeDiffStyle()
  */
 void CPatchDlg::OnDiffSwapFiles()
 {
-	CString file1;
-	CString file2;
 	PATCHFILES files;
 
-	m_ctlFile1.GetWindowText(file1);
-	m_ctlFile2.GetWindowText(file2);
+	m_ctlFile1.GetWindowText(PopString(m_file1));
+	m_ctlFile2.GetWindowText(PopString(m_file2));
 
-	m_ctlFile1.SetWindowText(file2);
-	m_ctlFile2.SetWindowText(file1);
-	m_file1 = file2;
-	m_file2 = file1;
+	m_ctlFile1.SetWindowText(m_file2.c_str());
+	m_ctlFile2.SetWindowText(m_file1.c_str());
 
 	//  swapped files
 	Swap();
@@ -486,22 +478,20 @@ void CPatchDlg::UpdateSettings()
 	switch (m_outputStyle)
 	{
 	case DIFF_OUTPUT_NORMAL:
-		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_NORMAL).c_str());
+		m_comboStyle.SelectString(-1, _("Normal").c_str());
 		break;
 	case DIFF_OUTPUT_CONTEXT:
-		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_CONTEXT).c_str());
+		m_comboStyle.SelectString(-1, _("Context").c_str());
 		break;
 	case DIFF_OUTPUT_UNIFIED:
-		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_UNIFIED).c_str());
+		m_comboStyle.SelectString(-1, _("Unified").c_str());
 		break;
 	case DIFF_OUTPUT_HTML:
-		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_HTML).c_str());
+		m_comboStyle.SelectString(-1, _("HTML").c_str());
 		break;
 	}
 
-	CString str;
-	str.Format(_T("%d"), m_contextLines);
-	m_comboContext.SelectString(-1, str);
+	m_comboContext.SelectString(-1, string_to_str(m_contextLines).c_str());
 
 	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED || m_outputStyle == OUTPUT_HTML)
 		m_comboContext.EnableWindow(TRUE);
@@ -523,9 +513,9 @@ void CPatchDlg::LoadSettings()
 	if (m_contextLines < 0 || m_contextLines > 50)
 		m_contextLines = 0;
 
-	m_caseSensitive = theApp.GetProfileInt(_T("PatchCreator"), _T("CaseSensitive"), TRUE);
-	m_ignoreEOLDifference = theApp.GetProfileInt(_T("PatchCreator"), _T("EOLSensitive"), TRUE);
-	m_ignoreBlanks = theApp.GetProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), FALSE);
+	m_caseSensitive = !!theApp.GetProfileInt(_T("PatchCreator"), _T("CaseSensitive"), true);
+	m_ignoreEOLDifference = !!theApp.GetProfileInt(_T("PatchCreator"), _T("EOLSensitive"), true);
+	m_ignoreBlanks = !!theApp.GetProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), false);
 	
 	m_whitespaceCompare = theApp.GetProfileInt(_T("PatchCreator"), _T("Whitespace"), WHITESPACE_COMPARE_ALL);
 	if (m_whitespaceCompare < WHITESPACE_COMPARE_ALL ||
@@ -534,8 +524,8 @@ void CPatchDlg::LoadSettings()
 		m_whitespaceCompare = WHITESPACE_COMPARE_ALL;
 	}
 	
-	m_openToEditor = theApp.GetProfileInt(_T("PatchCreator"), _T("OpenToEditor"), FALSE);
-	m_includeCmdLine = theApp.GetProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), FALSE);
+	m_openToEditor = !!theApp.GetProfileInt(_T("PatchCreator"), _T("OpenToEditor"), false);
+	m_includeCmdLine = !!theApp.GetProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), false);
 
 	UpdateSettings();
 }

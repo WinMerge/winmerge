@@ -221,7 +221,7 @@ void CHexMergeView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* 
 {
 	CView::OnActivateView(bActivate, pActivateView, pDeactiveView);
 	CHexMergeFrame *pFrameWnd = static_cast<CHexMergeFrame *>(GetParentFrame());
-	pFrameWnd->GetHeaderInterface()->SetActive(m_nThisPane, bActivate);
+	pFrameWnd->GetHeaderInterface()->SetActive(m_nThisPane, !!bActivate);
 }
 
 /**
@@ -299,7 +299,7 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	// Warn user in case file has been changed by someone else
 	if (IsFileChangedOnDisk(path))
 	{
-		String msg = LangFormatString1(IDS_FILECHANGED_ONDISK, path);
+		String msg = string_format_string1(_("Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"), path);
 		if (AfxMessageBox(msg.c_str(), MB_ICONWARNING | MB_YESNO) == IDNO)
 			return S_OK;
 	}

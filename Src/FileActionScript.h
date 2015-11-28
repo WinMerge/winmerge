@@ -56,11 +56,12 @@ struct FileAction
 		ACT_COPY = 1, /**< Copy the item(s). */
 		ACT_MOVE,     /**< Move the item(s). */
 		ACT_DEL,      /**< Delete the item(s). */
+		ACT_RENAME,   /**< Rename the item(s). */
 	};
 
 	String src; /**< Source for action */
 	String dest; /**< Destination action */
-	BOOL dirflag; /**< Is it directory? (TRUE means directory) */
+	bool dirflag; /**< Is it directory? (TRUE means directory) */
 	ACT_TYPE atype; /**< Action's type */
 };
 
@@ -79,20 +80,9 @@ struct FileActionItem : public FileAction
 	{
 		UI_SYNC = 1,   /**< Make items identical (synchronized). */
 		UI_DESYNC,     /**< Make items different. */
-		UI_DEL_LEFT,   /**< Remove left item. */
-		UI_DEL_RIGHT,  /**< Remove right item. */
-		UI_DEL_BOTH,   /**< Remove both items (removes the row). */
+		UI_DEL,        /**< Remove left item. */
 		UI_DONT_CARE,  /**< Ignore the GUI change. */
-	};
-
-	/**
-	 * @brief Side of the action.
-	 * This lists possible values for origin and destination sides.
-	 */
-	enum UI_SIDE
-	{
-		UI_LEFT,
-		UI_RIGHT
+		UI_RENAME      /**< Rename item. */
 	};
 
 	/**
@@ -101,9 +91,9 @@ struct FileActionItem : public FileAction
 	 * other items. This can be e.g. indext of the item in the GUI.
 	 */
 	int context;
-	UI_RESULT UIResult; /**< Resulting UI action */
-	UI_SIDE UIOrigin; /**< Original UI-side */
-	UI_SIDE UIDestination; /**< Destination UI-side */
+	int UIResult; /**< Resulting UI action */
+	int UIOrigin; /**< Original UI-side */
+	int UIDestination; /**< Destination UI-side */
 };
 
 /** 
@@ -116,6 +106,7 @@ struct FileActionItem : public FileAction
 class FileActionScript
 {
 public:
+	typedef 
 	FileActionScript();
 	~FileActionScript();
 
@@ -124,7 +115,7 @@ public:
 	BOOL Run();
 
 	// Manipulate the FileActionList
-	int GetActionItemCount() const;
+	size_t GetActionItemCount() const;
 
 	/**
 	 * Add new item to the action list.
@@ -153,6 +144,8 @@ private:
 	BOOL m_bHasCopyOperations; /**< flag if we've put anything into m_pCopyOperations */
 	std::unique_ptr<ShellFileOperations> m_pMoveOperations; /**< Move operations. */
 	BOOL m_bHasMoveOperations; /**< flag if we've put anything into m_pMoveOperations */
+	std::unique_ptr<ShellFileOperations> m_pRenameOperations; /**< Rename operations. */
+	BOOL m_bHasRenameOperations; /**< flag if we've put anything into m_pRenameOperations */
 	std::unique_ptr<ShellFileOperations> m_pDelOperations; /**< Delete operations. */
 	BOOL m_bHasDelOperations; /**< flag if we've put anything into m_pDelOperations */
 	BOOL m_bUseRecycleBin; /**< Use recycle bin for script actions? */

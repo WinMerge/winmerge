@@ -27,6 +27,7 @@
 
 #include <vector>
 #include <memory>
+#include "UnicodeString.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CSelectUnpackerDlgDlg dialog
@@ -42,8 +43,8 @@ private:
 
 public:
 // Construction
-	CSelectUnpackerDlg(LPCTSTR filename, CWnd* pParent /*=NULL*/);
-	CSelectUnpackerDlg(LPCTSTR filename1, LPCTSTR filename2, CWnd* pParent /*=NULL*/);
+	CSelectUnpackerDlg(const String& filename, CWnd* pParent /*=NULL*/);
+	CSelectUnpackerDlg(const String& filename1, const String& filename2, CWnd* pParent /*=NULL*/);
 	~CSelectUnpackerDlg();
 
 	void SetInitialInfoHandler(PackingInfo * infoHandler);
@@ -54,9 +55,9 @@ public:
 	enum { IDD = IDD_SELECTUNPACKER };
 	CButton	m_btnOK;
 	CComboBox	m_cboUnpackerName;
-	BOOL	m_bNoExtensionCheck;
-	CString	m_strDescription;
-	CString	m_strExtensions;
+	bool	m_bNoExtensionCheck;
+	String	m_strDescription;
+	String	m_strExtensions;
 	//}}AFX_DATA
 
 
@@ -79,12 +80,12 @@ protected:
 	std::unique_ptr<PluginInfo> automaticPlugin;
 
 	// input value
-	CString m_filteredFilenames;
+	String m_filteredFilenames;
 
 	/// current plugin choice
 	PluginInfo * m_pPlugin;
 	/// current plugin choice
-	CString m_strPluginName;
+	String m_strPluginName;
 
 	void prepareListbox();
 

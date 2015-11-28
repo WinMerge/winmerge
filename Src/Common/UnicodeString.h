@@ -25,6 +25,7 @@
 
 #include <string>
 #include <cstdarg>
+#include <cstdint>
 
 #ifdef _WIN32
 #  include <tchar.h>
@@ -70,6 +71,9 @@ String string_trim_ws_end(const String & str);
 // Formatting
 String string_format_arg_list(const TCHAR *fmt, va_list args);
 String string_format(const TCHAR *fmt, ...);
+String string_format_strings(const String& fmt, const String *args[], size_t nargs);
+String string_format_string1(const String& fmt, const String& arg1);
+String string_format_string2(const String& fmt, const String& arg1, const String& arg2);
 
 template <class InputIterator>
 String string_join(const InputIterator& begin, const InputIterator& end, const String& delim)
@@ -89,3 +93,24 @@ String string_join(const InputIterator& begin, const InputIterator& end, const S
 	}
 	return result;
 }
+
+template <class Formatter, class InputIterator>
+String string_join(const InputIterator& begin, const InputIterator& end, const String& delim, Formatter func)
+{
+	String result;
+	for (InputIterator it = begin; it != end; ++it)
+	{
+		if (!result.empty()) result.append(delim);
+		result += func(*it);
+	}
+	return result;
+}
+
+inline String string_to_str(int val) { return string_format(_T("%d"), val); }
+inline String string_to_str(unsigned val) { return string_format(_T("%u"), val); }
+inline String string_to_str(long val) { return string_format(_T("%ld"), val); }
+inline String string_to_str(unsigned long val) { return string_format(_T("%lu"), val); }
+inline String string_to_str(int64_t val) { return string_format(_T("%I64d"), val); }
+inline String string_to_str(uint64_t val) { return string_format(_T("%I64u"), val); }
+inline String string_to_str(float val) { return string_format(_T("%f"), val); }
+inline String string_to_str(double val) { return string_format(_T("%f"), val); }

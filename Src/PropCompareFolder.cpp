@@ -10,6 +10,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -81,11 +82,11 @@ void PropCompareFolder::ReadOptions()
 void PropCompareFolder::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, (int)m_compareMethod);
-	GetOptionsMgr()->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_EXPAND_SUBDIRS, m_bExpandSubdirs == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst);
+	GetOptionsMgr()->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff);
+	GetOptionsMgr()->SaveOption(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders);
+	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_EXPAND_SUBDIRS, m_bExpandSubdirs);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints);
 
 	if (m_nQuickCompareLimit > 2000)
 		m_nQuickCompareLimit = 2000;
@@ -101,17 +102,17 @@ BOOL PropCompareFolder::OnInitDialog()
 	CPropertyPage::OnInitDialog();
 	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
 
-	String item = theApp.LoadString(IDS_COMPMETHOD_FULL_CONTENTS);
+	String item = _("Full Contents");
 	combo->AddString(item.c_str());
-	item = theApp.LoadString(IDS_COMPMETHOD_QUICK_CONTENTS);
+	item = _("Quick Contents");
 	combo->AddString(item.c_str());
-	item = theApp.LoadString(IDS_COMPMETHOD_BINARY_CONTENTS);
+	item = _("Binary Contents");
 	combo->AddString(item.c_str());
-	item = theApp.LoadString(IDS_COMPMETHOD_MODDATE);
+	item = _("Modified Date");
 	combo->AddString(item.c_str());
-	item = theApp.LoadString(IDS_COMPMETHOD_DATESIZE);
+	item = _("Modified Date and Size");
 	combo->AddString(item.c_str());
-	item = theApp.LoadString(IDS_COMPMETHOD_SIZE);
+	item = _("Size");
 	combo->AddString(item.c_str());
 	combo->SetCurSel(m_compareMethod);
 

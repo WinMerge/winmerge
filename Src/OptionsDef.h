@@ -16,6 +16,7 @@ extern const String OPT_SELECTED_LANGUAGE OP("Locale/LanguageId");
 
 // View-menu
 extern const String OPT_SHOW_UNIQUE_LEFT OP("Settings/ShowUniqueLeft");
+extern const String OPT_SHOW_UNIQUE_MIDDLE OP("Settings/ShowUniqueMiddle");
 extern const String OPT_SHOW_UNIQUE_RIGHT OP("Settings/ShowUniqueRight");
 extern const String OPT_SHOW_DIFFERENT OP("Settings/ShowDifferent");
 extern const String OPT_SHOW_IDENTICAL OP("Settings/ShowIdentical");
@@ -183,6 +184,9 @@ extern const String OPT_FILEFILTER_SHARED OP("Settings/Filters/Shared");
 // Version control
 extern const String OPT_VCS_SYSTEM OP("Settings/VersionSystem");
 extern const String OPT_VSS_PATH OP("Settings/VssPath");
+extern const String OPT_VSS_DATABASE OP("Settings/VssDatabase");
+extern const String OPT_VSS_PROJECT OP("Settings/VssProject");
+extern const String OPT_VSS_USER OP("Settings/VssUser");
 
 // Archive support
 extern const String OPT_ARCHIVE_ENABLE OP("Merge7z/Enable");
@@ -203,8 +207,8 @@ extern const String OPT_FONT_FILECMP OP("Font/");
 extern const String OPT_FONT_DIRCMP OP("FontDirCompare/");
 
 extern const String OPT_FONT_USECUSTOM OP("Specified");
+extern const String OPT_FONT_POINTSIZE OP("PointSize");
 extern const String OPT_FONT_HEIGHT OP("Height");
-extern const String OPT_FONT_WIDTH OP("Width");
 extern const String OPT_FONT_ESCAPEMENT OP("Escapement");
 extern const String OPT_FONT_ORIENTATION OP("Orientation");
 extern const String OPT_FONT_WEIGHT OP("Weight");

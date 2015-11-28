@@ -23,15 +23,53 @@
 
 #include "stdafx.h"
 #include "AboutDlg.h"
-#include "Constants.h"
 #include "Merge.h"
-#include "version.h"
-#include "paths.h"
-#include "Environment.h"
+#include "DDXHelper.h"
+#include "Picture.h"
+#include "resource.h" // IDD_ABOUTBOX
 
+/** 
+ * @brief About-dialog class.
+ * 
+ * Shows About-dialog bitmap and draws version number and other
+ * texts into it.
+ */
+class CAboutDlg::Impl : public CDialog
+{
+public:
+	CAboutDlg::Impl(CAboutDlg *p, CWnd* pParent = NULL);
 
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
-	//{{AFX_MSG_MAP(CAboutDlg)
+// Dialog Data
+	//{{AFX_DATA(CAboutDlg::Impl)
+	enum { IDD = IDD_ABOUTBOX };
+	//}}AFX_DATA
+
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(CAboutDlg::Impl)
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	//}}AFX_VIRTUAL
+
+// Implementation
+protected:
+	//{{AFX_MSG(CAboutDlg::Impl)
+	virtual BOOL OnInitDialog();
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedOpenContributors();
+	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult);
+
+private:
+	CAboutDlg *m_p;
+	CPicture m_image;
+	CFont m_font;
+};
+
+BEGIN_MESSAGE_MAP(CAboutDlg::Impl, CDialog)
+	//{{AFX_MSG_MAP(CAboutDlg::Impl)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
 	ON_WM_DRAWITEM()
@@ -39,24 +77,26 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	ON_NOTIFY(NM_CLICK, IDC_WWW, OnBnClickedWWW)
 END_MESSAGE_MAP()
 
-CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
+CAboutDlg::Impl::Impl(CAboutDlg *p, CWnd* pParent /*=NULL*/)
+	: CDialog(CAboutDlg::Impl::IDD)
+	, m_p(p)
 {
 }
 
-void CAboutDlg::DoDataExchange(CDataExchange* pDX)
+void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CAboutDlg)
-	DDX_Control(pDX, IDC_COMPANY, m_ctlCompany);
-	DDX_Text(pDX, IDC_VERSION, m_strVersion);
-	DDX_Text(pDX, IDC_PRIVATEBUILD, m_strPrivateBuild);
+	//{{AFX_DATA_MAP(CAboutDlg::Impl)
+	DDX_Text(pDX, IDC_COMPANY, m_p->m_info.copyright);
+	DDX_Text(pDX, IDC_VERSION, m_p->m_info.version);
+	DDX_Text(pDX, IDC_PRIVATEBUILD, m_p->m_info.private_build);
 	//}}AFX_DATA_MAP
 }
 
 /** 
  * @brief Read version info from resource to dialog.
  */
-BOOL CAboutDlg::OnInitDialog()
+BOOL CAboutDlg::Impl::OnInitDialog() 
 {
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
@@ -70,55 +110,14 @@ BOOL CAboutDlg::OnInitDialog()
 		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Tahoma"));
 	ReleaseDC(pDC);
 
-	String text = LoadResString(IDS_SPLASH_DEVELOPERS);
-	string_replace(text, _T(", "), _T("\n"));
-	CWnd *sta = GetDlgItem(IDC_STATIC);
-	sta->SetWindowTextW(text.c_str());
-	sta->SetFont(&m_font);
-
-	CVersionInfo version(AfxGetResourceHandle());
-	String sVersion = version.GetProductVersion();
-	m_strVersion = LangFormatString1(IDS_VERSION_FMT, sVersion.c_str()).c_str();
-	if (m_strVersion.Find(_T(" - ")) != -1)
-	{
-		m_strVersion.Replace(_T(" - "), _T("\n"));
-		m_strVersion += _T(" ");
-	}
-	else
-	{
-		m_strVersion += _T("\n");
-	}
-
-#ifdef _UNICODE
-	m_strVersion += theApp.LoadString(IDS_UNICODE).c_str();
-#endif
-
-#if defined _M_IX86
-	m_strVersion += _T(" x86");
-#elif defined _M_IA64
-	m_strVersion += _T(" IA64");
-#elif defined _M_X64
-	m_strVersion += _T(" ");
-	m_strVersion += theApp.LoadString(IDS_WINX64).c_str();
-#endif
+	GetDlgItem(IDC_STATIC)->SetWindowText(m_p->m_info.developers.c_str());
+	GetDlgItem(IDC_STATIC)->SetFont(&m_font);
 	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
 
-	String sPrivateBuild = version.GetPrivateBuild();
-	if (!sPrivateBuild.empty())
-	{
-		m_strPrivateBuild = LangFormatString1(IDS_PRIVATEBUILD_FMT,
-			sPrivateBuild.c_str()).c_str();
-	}
-
-	String copyright = LoadResString(IDS_SPLASH_GPLTEXT);
-	copyright += _T("\n");
-	copyright += version.GetLegalCopyright();
-	copyright += _T(" All rights reserved.");
-	m_ctlCompany.SetWindowText(copyright.c_str());
 	CString link;
 	GetDlgItem(IDC_WWW)->GetWindowText(link);
-	link = CString(_T("<a href=\"")) + WinMergeURL + CString(_T("\">")) + link + _T("</a>");
-	GetDlgItem(IDC_WWW)->SetWindowText(link);
+	link = CString(_T("<a href=\"")) + m_p->m_info.website.c_str() + CString(_T("\">")) + link + _T("</a>");
+	GetDlgItem(IDC_WWW)->SetWindowText(link);	
 
 	UpdateData(FALSE);
 	
@@ -126,7 +125,7 @@ BOOL CAboutDlg::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-HBRUSH CAboutDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+HBRUSH CAboutDlg::Impl::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
 	if (nCtlColor == CTLCOLOR_STATIC && pWnd != GetDlgItem(IDC_WWW))
 	{
@@ -136,7 +135,7 @@ HBRUSH CAboutDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 
-void CAboutDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
+void CAboutDlg::Impl::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
 	CRect rc;
 	GetDlgItem(nIDCtl)->GetClientRect(&rc);
@@ -146,36 +145,18 @@ void CAboutDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
  * @brief Show contributors list.
  * Opens Contributors.txt into notepad.
  */
-void CAboutDlg::OnBnClickedOpenContributors()
+void CAboutDlg::Impl::OnBnClickedOpenContributors()
 {
-	String defPath = env_GetProgPath();
-	// Don't add quotation marks yet, CFile doesn't like them
-	String docPath = paths_ConcatPath(defPath, ContributorsPath);
-	HINSTANCE ret = 0;
-	
-	if (paths_DoesPathExist(docPath) == IS_EXISTING_FILE)
-	{
-		// Now, add quotation marks so ShellExecute() doesn't fail if path
-		// includes spaces
-		docPath.insert(0, _T("\""));
-		docPath.insert(docPath.length(), _T("\""));
-		ret = ShellExecute(m_hWnd, NULL, _T("notepad"), docPath.c_str(), defPath.c_str(), SW_SHOWNORMAL);
-
-		// values < 32 are errors (ref to MSDN)
-		if ((int)ret < 32)
-		{
-			// Try to open with associated application (.txt)
-			ret = ShellExecute(m_hWnd, _T("open"), docPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
-			if ((int)ret < 32)
-				ResMsgBox1(IDS_ERROR_EXECUTE_FILE, _T("Notepad.exe"), MB_ICONSTOP);
-		}
-	}
-	else
-		ResMsgBox1(IDS_ERROR_FILE_NOT_FOUND, docPath.c_str(), MB_ICONSTOP);
+	int tmp = 0;
+	m_p->m_onclick_contributers.notify(m_p, tmp);
 }
 
-void CAboutDlg::OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult)
+void CAboutDlg::Impl::OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	PNMLINK pNMLink = (PNMLINK)pNMHDR;
 	ShellExecute(NULL, _T("open"), pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
 }
+
+CAboutDlg::CAboutDlg() : m_pimpl(new CAboutDlg::Impl(this)) {}
+CAboutDlg::~CAboutDlg() {}
+int CAboutDlg::DoModal() { return static_cast<int>(m_pimpl->DoModal()); }

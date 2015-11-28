@@ -57,6 +57,7 @@ void Init(COptionsMgr *pOptions)
 
 	// Initialise options (name, default value)
 	pOptions->InitOption(OPT_SHOW_UNIQUE_LEFT, true);
+	pOptions->InitOption(OPT_SHOW_UNIQUE_MIDDLE, true);
 	pOptions->InitOption(OPT_SHOW_UNIQUE_RIGHT, true);
 	pOptions->InitOption(OPT_SHOW_DIFFERENT, true);
 	pOptions->InitOption(OPT_SHOW_IDENTICAL, true);
@@ -164,6 +165,9 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_VCS_SYSTEM, SourceControl::VCS_NONE);
 	pOptions->InitOption(OPT_VSS_PATH, _T(""));
+	pOptions->InitOption(OPT_VSS_DATABASE, _T(""));
+	pOptions->InitOption(OPT_VSS_PROJECT, _T(""));
+	pOptions->InitOption(OPT_VSS_USER, _T(""));
 
 	pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
 	pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);
@@ -219,9 +223,11 @@ static void CopyHKLMValues()
  */
 static bool OpenHKLM(HKEY *key, LPCTSTR relpath)
 {
-	TCHAR valuename[256] = _T("Software\\Thingamahoochie\\WinMerge\\");
+	TCHAR valuename[256];
 	if (relpath)
-		lstrcat(valuename, relpath);
+		wsprintf(valuename, _T("%s\\%s"), RegDir, relpath);
+	else
+		lstrcpy(valuename, RegDir);
 	LONG retval = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
 			valuename, 0, KEY_READ, key);
 	if (retval == ERROR_SUCCESS)
@@ -240,9 +246,11 @@ static bool OpenHKLM(HKEY *key, LPCTSTR relpath)
  */
 static bool OpenHKCU(HKEY *key, LPCTSTR relpath)
 {
-	TCHAR valuename[256] = _T("Software\\Thingamahoochie\\WinMerge\\");
+	TCHAR valuename[256];
 	if (relpath)
-		lstrcat(valuename, relpath);
+		wsprintf(valuename, _T("%s\\%s"), RegDir, relpath);
+	else
+		lstrcpy(valuename, RegDir);
 	LONG retval = RegOpenKeyEx(HKEY_CURRENT_USER,
 			valuename, 0, KEY_ALL_ACCESS, key);
 	if (retval == ERROR_SUCCESS)

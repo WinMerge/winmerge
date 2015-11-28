@@ -82,20 +82,16 @@ public:
 	void InitCompare(const PathContext & paths, bool bRecursive, CTempPathContext *);
 	void DiffThreadCallback(int& state);
 	void Rescan();
-	bool GetRecursive() const { return m_bRecursive; }
 	bool GetReadOnly(int nIndex) const;
+	const bool *GetReadOnly(void) const;
 	void SetReadOnly(int nIndex, bool bReadOnly);
-	bool HasDirView() { return m_pDirView != NULL; }
+	bool HasDirView() const { return m_pDirView != NULL; }
 	void RefreshOptions();
 	void CompareReady();
 	void UpdateChangedItem(PathContext & paths,
 		UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical);
-	uintptr_t FindItemFromPaths(const String& pathLeft, const String& pathRight);
-	void SetDiffSide(UINT diffcode, int idx);
-	void SetDiffCompare(UINT diffcode, int idx);
 	void UpdateResources();
 	void InitStatusStrings();
-	void UpdateStatusFromDisk(uintptr_t diffPos, int idx);
 	void ReloadItemStatus(uintptr_t diffPos, int idx);
 	void Redisplay();
 	virtual ~CDirDoc();
@@ -103,45 +99,19 @@ public:
 	void AddMergeDoc(IMergeDoc * pMergeDoc);
 	void MergeDocClosing(IMergeDoc * pMergeDoc);
 	CDiffThread m_diffThread;
-	void SetDiffStatus(UINT diffcode, UINT mask, int idx);
-	void SetDiffCounts(UINT diffs, UINT ignored, int idx);
-	void UpdateDiffAfterOperation(const FileActionItem & act, uintptr_t pos);
 	void UpdateHeaderPath(BOOL bLeft);
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;
 	void SetDescriptions(const String strDesc[]);
 	void ApplyDisplayRoot(int nIndex, String &);
 
-	void SetPluginPrediffSetting(const String& filteredFilenames, int newsetting);
-	void SetPluginPrediffSettingAll(int newsetting) { m_pluginman.SetPrediffSettingAll(newsetting); }
-	void SetPluginPrediffer(const String& filteredFilenames, const String & prediffer);
-	void FetchPluginInfos(const String& filteredFilenames, 
-	                      PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
-
 	bool HasDiffs() const { return m_pCtxt != NULL; }
 	const CDiffContext & GetDiffContext() const { return *m_pCtxt; }
-	const DIFFITEM & GetDiffByKey(uintptr_t key) const { return m_pCtxt->GetDiffAt(key); }
-	DIFFITEM & GetDiffRefByKey(uintptr_t key) { return m_pCtxt->GetDiffRefAt(key); }
-	String GetLeftBasePath() const { return m_pCtxt->GetNormalizedLeft(); }
-	String GetRightBasePath() const { return m_pCtxt->GetNormalizedRight(); }
-	String GetBasePath(int nIndex) const { return m_pCtxt->GetNormalizedPath(nIndex); }
-	void RemoveDiffByKey(uintptr_t key) { m_pCtxt->RemoveDiff(key); }
+	CDiffContext& GetDiffContext() { return *m_pCtxt.get(); }
 	void SetMarkedRescan() {m_bMarkedRescan = TRUE; }
-	struct AllowUpwardDirectory
-	{
-		enum ReturnCode
-		{
-			Never,
-			No,
-			ParentIsRegularPath,
-			ParentIsTempPath
-		};
-	};
-	AllowUpwardDirectory::ReturnCode AllowUpwardDirectory(PathContext &paths);
-	void SetItemViewFlag(uintptr_t key, UINT flag, UINT mask);
-	void SetItemViewFlag(UINT flag, UINT mask);
 	const CompareStats * GetCompareStats() const { return m_pCompareStats.get(); };
 	bool IsArchiveFolders() const;
+	PluginManager& GetPluginManager() { return m_pluginman; };
 
 protected:
 	void LoadLineFilterList();
@@ -159,7 +129,6 @@ private:
 	std::unique_ptr<CompareStats> m_pCompareStats; /**< Compare statistics */
 	MergeDocPtrList m_MergeDocs; /**< List of file compares opened from this compare */
 	bool m_bRO[3]; /**< Is left/middle/right side read-only */
-	bool m_bRecursive; /**< Is current compare recursive? */
 	String m_strDesc[3]; /**< Left/middle/right side desription text */
 	PluginManager m_pluginman;
 	bool m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */

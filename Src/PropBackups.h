@@ -7,6 +7,7 @@
 #pragma once
 
 #include "OptionsPanel.h"
+#include "UnicodeString.h"
 
 class COptionsMgr;
 
@@ -32,11 +33,11 @@ public:
 		FOLDER_GLOBAL,
 	};
 
-	BOOL m_bCreateForFolderCmp;
-	BOOL m_bCreateForFileCmp;
-	CString m_sGlobalFolder;
-	BOOL m_bAppendBak;
-	BOOL m_bAppendTime;
+	bool m_bCreateForFolderCmp;
+	bool m_bCreateForFileCmp;
+	String m_sGlobalFolder;
+	bool m_bAppendBak;
+	bool m_bAppendTime;
 	int m_nBackupFolder;
 
 protected:

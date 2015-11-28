@@ -29,15 +29,13 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-
-// registry dir to WinMerge
-static LPCTSTR f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 
 // registry values
 static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
@@ -89,18 +87,18 @@ void PropRegistry::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
 
-	String sExtEditor = string_trim_ws((LPCTSTR)m_strEditorPath);
+	String sExtEditor = string_trim_ws(m_strEditorPath);
 	if (sExtEditor.empty())
 		sExtEditor = GetOptionsMgr()->GetDefault<String>(OPT_EXT_EDITOR_CMD);
 	GetOptionsMgr()->SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
 
-	String sFilterPath = string_trim_ws((LPCTSTR)m_strUserFilterPath);
+	String sFilterPath = string_trim_ws(m_strUserFilterPath);
 	GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, sFilterPath);
 
 	bool useSysTemp = m_tempFolderType == 0;
 	GetOptionsMgr()->SaveOption(OPT_USE_SYSTEM_TEMP_PATH, useSysTemp);
 
-	String tempFolder = string_trim_ws((LPCTSTR)m_tempFolder);
+	String tempFolder = string_trim_ws(m_tempFolder);
 	GetOptionsMgr()->SaveOption(OPT_CUSTOM_TEMP_PATH, tempFolder);
 }
 
@@ -119,7 +117,7 @@ BOOL PropRegistry::OnInitDialog()
 void PropRegistry::OnBrowseEditor()
 {
 	String path;
-	if (SelectFile(GetSafeHwnd(), path, m_strEditorPath, IDS_OPEN_TITLE, IDS_PROGRAMFILES, TRUE))
+	if (SelectFile(GetSafeHwnd(), path, m_strEditorPath.c_str(), _("Open"), _("Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"), TRUE))
 	{
 		SetDlgItemText(IDC_EXT_EDITOR_PATH, path.c_str());
 	}
@@ -129,7 +127,7 @@ void PropRegistry::OnBrowseEditor()
 void PropRegistry::OnBrowseFilterPath()
 {
 	String path;
-	if (SelectFolder(path, m_strUserFilterPath, IDS_OPEN_TITLE, GetSafeHwnd()))
+	if (SelectFolder(path, m_strUserFilterPath.c_str(), _("Open"), GetSafeHwnd()))
 	{
 		SetDlgItemText(IDC_FILTER_USER_PATH, path.c_str());
 	}
@@ -139,7 +137,7 @@ void PropRegistry::OnBrowseFilterPath()
 void PropRegistry::OnBrowseTmpFolder()
 {
 	String path;
-	if (SelectFolder(path, m_tempFolder, NULL, GetSafeHwnd()))
+	if (SelectFolder(path, m_tempFolder.c_str(), _T(""), GetSafeHwnd()))
 	{
 		SetDlgItemText(IDC_TMPFOLDER_NAME, path.c_str());
 	}

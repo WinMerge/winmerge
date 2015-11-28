@@ -70,9 +70,6 @@ void NTAPI LangTranslateDialog(HWND);
 	/** @brief Lang aware version of AfxMessageBox() */
 int NTAPI LangMessageBox(UINT, UINT nType = MB_OK, UINT nIDHelp = (UINT)-1);
 
-	/** @brief Format single-argument resource string and display via AfxMessageBox */
-int ResMsgBox1(UINT msgid, LPCTSTR arg, UINT nType = MB_OK, UINT nIDHelp = 0);
-
 	/** @brief Get appropriate clipboard format for TCHAR text, ie, CF_TEXT or CF_UNICODETEXT */
 int GetClipTcharTextFormat();
 

@@ -5,35 +5,99 @@
  *
  * @date  Created: 2003-08-19
  */
-
-
-#include "stdafx.h"
 #include "DirViewColItems.h"
-#include <shlwapi.h>
 #include <cstdint>
 #include <Poco/Timestamp.h>
+#include <Shlwapi.h>
 #include "UnicodeString.h"
-#include "Merge.h"
-#include "DirView.h"
-#include "DirDoc.h"
-#include "resource.h"
+#include "DiffItem.h"
+#include "DiffContext.h"
 #include "locality.h"
-#include "unicoder.h"
-#include "coretools.h"
 #include "paths.h"
+#include "MergeApp.h"
 
 using Poco::Timestamp;
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+#ifndef countof
+#define countof(x) sizeof(x)/sizeof((x)[0])
 #endif
 
 using std::swap;
+using boost::int64_t;
+
+namespace
+{
+const char *COLHDR_FILENAME     = N_("Filename");
+const char *COLHDR_DIR          = N_("Folder");
+const char *COLHDR_RESULT       = N_("Comparison result");
+const char *COLHDR_LTIMEM       = N_("Left Date");
+const char *COLHDR_RTIMEM       = N_("Right Date");
+const char *COLHDR_MTIMEM       = N_("Middle Date");
+const char *COLHDR_EXTENSION    = N_("Extension");
+const char *COLHDR_LSIZE        = N_("Left Size");
+const char *COLHDR_RSIZE        = N_("Right Size");
+const char *COLHDR_MSIZE        = N_("Middle Size");
+const char *COLHDR_RSIZE_SHORT  = N_("Right Size (Short)");
+const char *COLHDR_LSIZE_SHORT  = N_("Left Size (Short)");
+const char *COLHDR_MSIZE_SHORT  = N_("Middle Size (Short)");
+const char *COLHDR_LTIMEC       = N_("Left Creation Time");
+const char *COLHDR_RTIMEC       = N_("Right Creation Time");
+const char *COLHDR_MTIMEC       = N_("Middle Creation Time");
+const char *COLHDR_NEWER        = N_("Newer File");
+const char *COLHDR_LVERSION     = N_("Left File Version");
+const char *COLHDR_RVERSION     = N_("Right File Version");
+const char *COLHDR_MVERSION     = N_("Middle File Version");
+const char *COLHDR_RESULT_ABBR  = N_("Short Result");
+const char *COLHDR_LATTRIBUTES  = N_("Left Attributes");
+const char *COLHDR_RATTRIBUTES  = N_("Right Attributes");
+const char *COLHDR_MATTRIBUTES  = N_("Middle Attributes");
+const char *COLHDR_LEOL_TYPE    = N_("Left EOL");
+const char *COLHDR_MEOL_TYPE    = N_("Middle EOL");
+const char *COLHDR_REOL_TYPE    = N_("Right EOL");
+const char *COLHDR_LENCODING    = N_("Left Encoding");
+const char *COLHDR_RENCODING    = N_("Right Encoding");
+const char *COLHDR_MENCODING    = N_("Middle Encoding");
+const char *COLHDR_NIDIFFS      = N_("Ignored Diff.");
+const char *COLHDR_NSDIFFS      = N_("Differences");
+const char *COLHDR_BINARY       = N_("Binary");
+
+const char *COLDESC_FILENAME    = N_("Filename or folder name.");
+const char *COLDESC_DIR         = N_("Subfolder name when subfolders are included.");
+const char *COLDESC_RESULT      = N_("Comparison result, long form.");
+const char *COLDESC_LTIMEM      = N_("Left side modification date.");
+const char *COLDESC_RTIMEM      = N_("Right side modification date.");
+const char *COLDESC_MTIMEM      = N_("Middle side modification date.");
+const char *COLDESC_EXTENSION   = N_("File's extension.");
+const char *COLDESC_LSIZE       = N_("Left file size in bytes.");
+const char *COLDESC_RSIZE       = N_("Right file size in bytes.");
+const char *COLDESC_MSIZE       = N_("Middle file size in bytes.");
+const char *COLDESC_LSIZE_SHORT = N_("Left file size abbreviated.");
+const char *COLDESC_RSIZE_SHORT = N_("Right file size abbreviated.");
+const char *COLDESC_MSIZE_SHORT = N_("Middle file size abbreviated.");
+const char *COLDESC_LTIMEC      = N_("Left side creation time.");
+const char *COLDESC_RTIMEC      = N_("Right side creation time.");
+const char *COLDESC_MTIMEC      = N_("Middle side creation time.");
+const char *COLDESC_NEWER       = N_("Tells which side has newer modification date.");
+const char *COLDESC_LVERSION    = N_("Left side file version, only for some filetypes.");
+const char *COLDESC_RVERSION    = N_("Right side file version, only for some filetypes.");
+const char *COLDESC_MVERSION    = N_("Middle side file version, only for some filetypes.");
+const char *COLDESC_RESULT_ABBR = N_("Short comparison result.");
+const char *COLDESC_LATTRIBUTES = N_("Left side attributes.");
+const char *COLDESC_RATTRIBUTES = N_("Right side attributes.");
+const char *COLDESC_MATTRIBUTES = N_("Middle side attributes.");
+const char *COLDESC_LEOL_TYPE   = N_("Left side file EOL type");
+const char *COLDESC_REOL_TYPE   = N_("Right side file EOL type");
+const char *COLDESC_MEOL_TYPE   = N_("Middle side file EOL type");
+const char *COLDESC_LENCODING   = N_("Left side encoding.");
+const char *COLDESC_RENCODING   = N_("Right side encoding.");
+const char *COLDESC_MENCODING   = N_("Middle side encoding.");
+const char *COLDESC_NIDIFFS     = N_("Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged.");
+const char *COLDESC_NSDIFFS     = N_("Number of differences in file. This number does not include ignored differences.");
+const char *COLDESC_BINARY      = N_("Shows an asterisk (*) if the file is binary.");
+}
 
 /**
- * @brief Function to compare two int64_ts for a sort
+ * @brief Function to compare two int64_t's for a sort
  */
 static int cmp64(int64_t i1, int64_t i2)
 {
@@ -53,7 +117,7 @@ static int sign64(int64_t val)
  * @brief Function to compare two diffcodes for a sort
  * @todo How shall we order diff statuses?
  */
-static UINT cmpdiffcode(UINT diffcode1, UINT diffcode2)
+static unsigned cmpdiffcode(unsigned diffcode1, unsigned diffcode2)
 {
 	// Lower priority of the same items (FIXME:)
 	if (((diffcode1 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME) && ((diffcode2 & DIFFCODE::COMPAREFLAGS) != DIFFCODE::SAME))
@@ -171,7 +235,7 @@ static String ColPathGet(const CDiffContext *, const void *p)
 		int length_s = (i_ahead != std::string::npos ? i_ahead : s.length()) - i;
 		int length_t = (j_ahead != std::string::npos ? j_ahead : t.length()) - j;
 		if (length_s != length_t ||
-			!StrIsIntlEqual(FALSE, s.c_str() + i, t.c_str() + j, length_s))
+			memcmp(s.c_str() + i, t.c_str() + j, length_s) != 0)
 		{
 			String u(t.c_str() + j, length_t + 1);
 			u[length_t] = '|';
@@ -202,76 +266,76 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 	String s;
 	if (di.diffcode.isResultError())
 	{
-		s = theApp.LoadString(IDS_CANT_COMPARE_FILES);
+		s = _("Unable to compare files");
 	}
 	else if (di.diffcode.isResultAbort())
 	{
-		s = theApp.LoadString(IDS_ABORTED_ITEM);
+		s = _("Item aborted");
 	}
 	else if (di.diffcode.isResultFiltered())
 	{
 		if (di.diffcode.isDirectory())
-			s = theApp.LoadString(IDS_DIR_SKIPPED);
+			s = _("Folder skipped");
 		else
-			s = theApp.LoadString(IDS_FILE_SKIPPED);
+			s = _("File skipped");
 	}
 	else if (di.diffcode.isSideFirstOnly())
 	{
-		s = theApp.LoadString(IDS_LEFT_ONLY_IN_FMT);
-		string_replace(s, _T("%1"), di.getFilepath(0, pCtxt->GetNormalizedLeft()).c_str());
+		s = string_format_string1(_("Left only: %1"),
+				di.getFilepath(0, pCtxt->GetNormalizedLeft()));
 	}
 	else if (di.diffcode.isSideSecondOnly())
 	{
 		if (nDirs < 3)
 		{
-			s = theApp.LoadString(IDS_RIGHT_ONLY_IN_FMT);
-			string_replace(s, _T("%1"), di.getFilepath(1, pCtxt->GetNormalizedRight()).c_str());
+			s = string_format_string1(_("Right only: %1"),
+					di.getFilepath(1, pCtxt->GetNormalizedRight()));
 		}
 		else
 		{
-			s = theApp.LoadString(IDS_MIDDLE_ONLY_IN_FMT);
-			string_replace(s, _T("%1"), di.getFilepath(1, pCtxt->GetNormalizedMiddle()).c_str());
+			s = string_format_string1(_("Middle only: %1"),
+					di.getFilepath(1, pCtxt->GetNormalizedMiddle()));
 		}
 	}
 	else if (di.diffcode.isSideThirdOnly())
 	{
-		s = theApp.LoadString(IDS_RIGHT_ONLY_IN_FMT);
-		string_replace(s, _T("%1"), di.getFilepath(2, pCtxt->GetNormalizedRight()));
+		s = string_format_string1(_("Right only: %1"),
+				di.getFilepath(2, pCtxt->GetNormalizedRight()));
 	}
 	else if (nDirs > 2 && !di.diffcode.existsFirst())
 	{
-		s = theApp.LoadString(IDS_DOES_NOT_EXIST_IN_FMT);
-		string_replace(s, _T("%1"), pCtxt->GetNormalizedLeft());
+		s = string_format_string1(_("Does not exist in %1"),
+				pCtxt->GetNormalizedLeft());
 	}
 	else if (nDirs > 2 && !di.diffcode.existsSecond())
 	{
-		s = theApp.LoadString(IDS_DOES_NOT_EXIST_IN_FMT);
-		string_replace(s, _T("%1"), pCtxt->GetNormalizedMiddle());
+		s = string_format_string1(_("Does not exist in %1"),
+				pCtxt->GetNormalizedMiddle());
 	}
 	else if (nDirs > 2 && !di.diffcode.existsThird())
 	{
-		s = theApp.LoadString(IDS_DOES_NOT_EXIST_IN_FMT);
-		string_replace(s, _T("%1"), pCtxt->GetNormalizedRight());
+		s = string_format_string1(_("Does not exist in %1"),
+				pCtxt->GetNormalizedRight());
 	}
 	else if (di.diffcode.isResultSame())
 	{
 		if (di.diffcode.isText())
-			s = theApp.LoadString(IDS_TEXT_FILES_SAME);
+			s = _("Text files are identical");
 		else if (di.diffcode.isBin())
-			s = theApp.LoadString(IDS_BIN_FILES_SAME);
+			s = _("Binary files are identical");
 		else
-			s = theApp.LoadString(IDS_IDENTICAL);
+			s = _("Identical");
 	}
 	else if (di.diffcode.isResultDiff()) // diff
 	{
 		if (di.diffcode.isText())
-			s = theApp.LoadString(IDS_TEXT_FILES_DIFF);
+			s = _("Text files are different");
 		else if (di.diffcode.isBin())
-			s = theApp.LoadString(IDS_BIN_FILES_DIFF);
+			s = _("Binary files are different");
 		else if (di.diffcode.isDirectory())
-			s = theApp.LoadString(IDS_FOLDERS_ARE_DIFFERENT);
+			s = _("Folders are different");
 		else
-			s = theApp.LoadString(IDS_FILES_ARE_DIFFERENT);
+			s = _("Files are different");
 	}
 	return s;
 }
@@ -453,7 +517,7 @@ static String ColRversionGet(const CDiffContext * pCtxt, const void *p)
 static String ColStatusAbbrGet(const CDiffContext *pCtxt, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
-	int id = 0;
+	const char *id = 0;
 	int nDirs = pCtxt->GetCompareDirs();
 
 	// Note that order of items does matter. We must check for
@@ -461,56 +525,56 @@ static String ColStatusAbbrGet(const CDiffContext *pCtxt, const void *p)
 	// skipped unique items are labeled as skipped, not unique.
 	if (di.diffcode.isResultError())
 	{
-		id = IDS_CMPRES_ERROR;
+		id = N_("Error");
 	}
 	else if (di.diffcode.isResultAbort())
 	{
-		id = IDS_ABORTED_ITEM;
+		id = N_("Item aborted");
 	}
 	else if (di.diffcode.isResultFiltered())
 	{
 		if (di.diffcode.isDirectory())
-			id = IDS_DIR_SKIPPED;
+			id = N_("Folder skipped");
 		else
-			id = IDS_FILE_SKIPPED;
+			id = N_("File skipped");
 	}
 	else if (di.diffcode.isSideFirstOnly())
 	{
-		id = IDS_LEFTONLY;
+		id = N_("Left Only");
 	}
 	else if (di.diffcode.isSideSecondOnly())
 	{
 		if (nDirs < 3)
-			id = IDS_RIGHTONLY;
+			id = N_("Right Only");
 		else
-			id = IDS_MIDDLEONLY;
+			id = N_("Middle Only");
 	}
 	else if (di.diffcode.isSideThirdOnly())
 	{
-		id = IDS_RIGHTONLY;
+		id = N_("Right Only");
 	}
 	else if (nDirs > 2 && !di.diffcode.existsFirst())
 	{
-		id = IDS_NOITEMLEFT;
+		id = N_("No item in left");
 	}
 	else if (nDirs > 2 && !di.diffcode.existsSecond())
 	{
-		id = IDS_NOITEMMIDDLE;
+		id = N_("No item in middle");
 	}
 	else if (nDirs > 2 && !di.diffcode.existsThird())
 	{
-		id = IDS_NOITEMRIGHT;
+		id = N_("No item in right");
 	}
 	else if (di.diffcode.isResultSame())
 	{
-		id = IDS_IDENTICAL;
+		id = N_("Identical");
 	}
 	else if (di.diffcode.isResultDiff())
 	{
-		id = IDS_DIFFERENT;
+		id = N_("Different");
 	}
 
-	return id ? theApp.LoadString(id) : _T("");
+	return id ? tr(id) : _T("");
 }
 
 /**
@@ -568,31 +632,30 @@ static String GetEOLType(const CDiffContext *, const void *p, int index)
 	}
 	if (di.diffcode.isBin())
 	{
-		int id = IDS_EOL_BIN;
-		return theApp.LoadString(id);
+		return _("Binary");
 	}
 
-	int id = 0;
+	char *id = 0;
 	if (stats.ncrlfs > 0 && stats.ncrs == 0 && stats.nlfs == 0)
 	{
-		id = IDS_EOL_DOS;
+		id = N_("Win");
 	}
 	else if (stats.ncrlfs == 0 && stats.ncrs > 0 && stats.nlfs == 0)
 	{
-		id = IDS_EOL_MAC;
+		id = N_("Mac");
 	}
 	else if (stats.ncrlfs == 0 && stats.ncrs == 0 && stats.nlfs > 0)
 	{
-		id = IDS_EOL_UNIX;
+		id = N_("Unix");
 	}
 	else
 	{
 		return string_format(_T("%s:%d/%d/%d"),
-			theApp.LoadString(IDS_EOL_MIXED).c_str(),
+			_("Mixed").c_str(),
 			stats.ncrlfs, stats.ncrs, stats.nlfs);
 	}
 	
-	return theApp.LoadString(id);
+	return tr(id);
 }
 
 /**
@@ -846,67 +909,67 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
  */
 static DirColInfo f_cols[] =
 {
-	{ _T("Name"), IDS_COLHDR_FILENAME, IDS_COLDESC_FILENAME, &ColFileNameGet<String>, &ColFileNameSort, 0, 0, true, LVCFMT_LEFT },
-	{ _T("Path"), IDS_COLHDR_DIR, IDS_COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, LVCFMT_LEFT },
-	{ _T("Status"), IDS_COLHDR_RESULT, IDS_COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, LVCFMT_LEFT },
-	{ _T("Lmtime"), IDS_COLHDR_LTIMEM, IDS_COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].mtime), 3, false, LVCFMT_LEFT },
-	{ _T("Rmtime"), IDS_COLHDR_RTIMEM, IDS_COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].mtime), 4, false, LVCFMT_LEFT },
-	{ _T("Lctime"), IDS_COLHDR_LTIMEC, IDS_COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Rctime"), IDS_COLHDR_RTIMEC, IDS_COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Ext"), IDS_COLHDR_EXTENSION, IDS_COLDESC_EXTENSION, &ColExtGet, &ColExtSort, 0, 5, true, LVCFMT_LEFT },
-	{ _T("Lsize"), IDS_COLHDR_LSIZE, IDS_COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, LVCFMT_RIGHT },
-	{ _T("Rsize"), IDS_COLHDR_RSIZE, IDS_COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, LVCFMT_RIGHT },
-	{ _T("LsizeShort"), IDS_COLHDR_LSIZE_SHORT, IDS_COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, LVCFMT_RIGHT },
-	{ _T("RsizeShort"), IDS_COLHDR_RSIZE_SHORT, IDS_COLDESC_RSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, LVCFMT_RIGHT },
-	{ _T("Newer"), IDS_COLHDR_NEWER, IDS_COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Lversion"), IDS_COLHDR_LVERSION, IDS_COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Rversion"), IDS_COLHDR_RVERSION, IDS_COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("StatusAbbr"), IDS_COLHDR_RESULT_ABBR, IDS_COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Binary"), IDS_COLHDR_BINARY, IDS_COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Lattr"), IDS_COLHDR_LATTRIBUTES, IDS_COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].flags), -1, true, LVCFMT_LEFT },
-	{ _T("Rattr"), IDS_COLHDR_RATTRIBUTES, IDS_COLDESC_RATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].flags), -1, true, LVCFMT_LEFT },
-	{ _T("Lencoding"), IDS_COLHDR_LENCODING, IDS_COLDESC_LENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0]), -1, true, LVCFMT_LEFT },
-	{ _T("Rencoding"), IDS_COLHDR_RENCODING, IDS_COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1]), -1, true, LVCFMT_LEFT },
-	{ _T("Snsdiffs"), IDS_COLHDR_NSDIFFS, IDS_COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, LVCFMT_RIGHT },
-	{ _T("Snidiffs"), IDS_COLHDR_NIDIFFS, IDS_COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, LVCFMT_RIGHT },
-	{ _T("Leoltype"), IDS_COLHDR_LEOL_TYPE, IDS_COLDESC_LEOL_TYPE, &ColLEOLTypeGet, 0, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Reoltype"), IDS_COLHDR_REOL_TYPE, IDS_COLDESC_REOL_TYPE, &ColREOLTypeGet, 0, 0, -1, true, LVCFMT_LEFT },
+	{ _T("Name"), COLHDR_FILENAME, COLDESC_FILENAME, &ColFileNameGet<String>, &ColFileNameSort, 0, 0, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Path"), COLHDR_DIR, COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Status"), COLHDR_RESULT, COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lmtime"), COLHDR_LTIMEM, COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].mtime), 3, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Rmtime"), COLHDR_RTIMEM, COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].mtime), 4, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Lctime"), COLHDR_LTIMEC, COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].ctime), -1, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Rctime"), COLHDR_RTIMEC, COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].ctime), -1, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Ext"), COLHDR_EXTENSION, COLDESC_EXTENSION, &ColExtGet, &ColExtSort, 0, 5, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lsize"), COLHDR_LSIZE, COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Rsize"), COLHDR_RSIZE, COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("LsizeShort"), COLHDR_LSIZE_SHORT, COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("RsizeShort"), COLHDR_RSIZE_SHORT, COLDESC_RSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Newer"), COLHDR_NEWER, COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lversion"), COLHDR_LVERSION, COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rversion"), COLHDR_RVERSION, COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("StatusAbbr"), COLHDR_RESULT_ABBR, COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Binary"), COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lattr"), COLHDR_LATTRIBUTES, COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].flags), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rattr"), COLHDR_RATTRIBUTES, COLDESC_RATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].flags), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lencoding"), COLHDR_LENCODING, COLDESC_LENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0]), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rencoding"), COLHDR_RENCODING, COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1]), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Snsdiffs"), COLHDR_NSDIFFS, COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Snidiffs"), COLHDR_NIDIFFS, COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Leoltype"), COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColLEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Reoltype"), COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColREOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 };
 static DirColInfo f_cols3[] =
 {
-	{ _T("Name"), IDS_COLHDR_FILENAME, IDS_COLDESC_FILENAME, &ColFileNameGet<String>, &ColFileNameSort, 0, 0, true, LVCFMT_LEFT },
-	{ _T("Path"), IDS_COLHDR_DIR, IDS_COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, LVCFMT_LEFT },
-	{ _T("Status"), IDS_COLHDR_RESULT, IDS_COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, LVCFMT_LEFT },
-	{ _T("Lmtime"), IDS_COLHDR_LTIMEM, IDS_COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].mtime), 3, false, LVCFMT_LEFT },
-	{ _T("Mmtime"), IDS_COLHDR_MTIMEM, IDS_COLDESC_MTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].mtime), 4, false, LVCFMT_LEFT },
-	{ _T("Rmtime"), IDS_COLHDR_RTIMEM, IDS_COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].mtime), 5, false, LVCFMT_LEFT },
-	{ _T("Lctime"), IDS_COLHDR_LTIMEC, IDS_COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Mctime"), IDS_COLHDR_MTIMEC, IDS_COLDESC_MTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Rctime"), IDS_COLHDR_RTIMEC, IDS_COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Ext"), IDS_COLHDR_EXTENSION, IDS_COLDESC_EXTENSION, &ColExtGet, &ColExtSort, 0, 6, true, LVCFMT_LEFT },
-	{ _T("Lsize"), IDS_COLHDR_LSIZE, IDS_COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, LVCFMT_RIGHT },
-	{ _T("Msize"), IDS_COLHDR_MSIZE, IDS_COLDESC_MSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, LVCFMT_RIGHT },
-	{ _T("Rsize"), IDS_COLHDR_RSIZE, IDS_COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].size), -1, false, LVCFMT_RIGHT },
-	{ _T("LsizeShort"), IDS_COLHDR_LSIZE_SHORT, IDS_COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, LVCFMT_RIGHT },
-	{ _T("MsizeShort"), IDS_COLHDR_MSIZE_SHORT, IDS_COLDESC_MSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, LVCFMT_RIGHT },
-	{ _T("RsizeShort"), IDS_COLHDR_RSIZE_SHORT, IDS_COLDESC_RSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].size), -1, false, LVCFMT_RIGHT },
-	{ _T("Newer"), IDS_COLHDR_NEWER, IDS_COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Lversion"), IDS_COLHDR_LVERSION, IDS_COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Mversion"), IDS_COLHDR_MVERSION, IDS_COLDESC_MVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Rversion"), IDS_COLHDR_RVERSION, IDS_COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("StatusAbbr"), IDS_COLHDR_RESULT_ABBR, IDS_COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Binary"), IDS_COLHDR_BINARY, IDS_COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Lattr"), IDS_COLHDR_LATTRIBUTES, IDS_COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].flags), -1, true, LVCFMT_LEFT },
-	{ _T("Mattr"), IDS_COLHDR_MATTRIBUTES, IDS_COLDESC_MATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].flags), -1, true, LVCFMT_LEFT },
-	{ _T("Rattr"), IDS_COLHDR_RATTRIBUTES, IDS_COLDESC_RATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].flags), -1, true, LVCFMT_LEFT },
-	{ _T("Lencoding"), IDS_COLHDR_LENCODING, IDS_COLDESC_LENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0]), -1, true, LVCFMT_LEFT },
-	{ _T("Mencoding"), IDS_COLHDR_MENCODING, IDS_COLDESC_MENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1]), -1, true, LVCFMT_LEFT },
-	{ _T("Rencoding"), IDS_COLHDR_RENCODING, IDS_COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2]), -1, true, LVCFMT_LEFT },
-	{ _T("Snsdiffs"), IDS_COLHDR_NSDIFFS, IDS_COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, LVCFMT_RIGHT },
-	{ _T("Snidiffs"), IDS_COLHDR_NIDIFFS, IDS_COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, LVCFMT_RIGHT },
-	{ _T("Leoltype"), IDS_COLHDR_LEOL_TYPE, IDS_COLDESC_LEOL_TYPE, &ColLEOLTypeGet, &ColAttrSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Meoltype"), IDS_COLHDR_MEOL_TYPE, IDS_COLDESC_MEOL_TYPE, &ColMEOLTypeGet, &ColAttrSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Reoltype"), IDS_COLHDR_REOL_TYPE, IDS_COLDESC_REOL_TYPE, &ColREOLTypeGet, &ColAttrSort, 0, -1, true, LVCFMT_LEFT },
+	{ _T("Name"), COLHDR_FILENAME, COLDESC_FILENAME, &ColFileNameGet<String>, &ColFileNameSort, 0, 0, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Path"), COLHDR_DIR, COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Status"), COLHDR_RESULT, COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lmtime"), COLHDR_LTIMEM, COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].mtime), 3, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Mmtime"), COLHDR_MTIMEM, COLDESC_MTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].mtime), 4, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Rmtime"), COLHDR_RTIMEM, COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].mtime), 5, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Lctime"), COLHDR_LTIMEC, COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].ctime), -1, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Mctime"), COLHDR_MTIMEC, COLDESC_MTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].ctime), -1, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Rctime"), COLHDR_RTIMEC, COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].ctime), -1, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Ext"), COLHDR_EXTENSION, COLDESC_EXTENSION, &ColExtGet, &ColExtSort, 0, 6, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lsize"), COLHDR_LSIZE, COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Msize"), COLHDR_MSIZE, COLDESC_MSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Rsize"), COLHDR_RSIZE, COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("LsizeShort"), COLHDR_LSIZE_SHORT, COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("MsizeShort"), COLHDR_MSIZE_SHORT, COLDESC_MSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("RsizeShort"), COLHDR_RSIZE_SHORT, COLDESC_RSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Newer"), COLHDR_NEWER, COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lversion"), COLHDR_LVERSION, COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Mversion"), COLHDR_MVERSION, COLDESC_MVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rversion"), COLHDR_RVERSION, COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("StatusAbbr"), COLHDR_RESULT_ABBR, COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Binary"), COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lattr"), COLHDR_LATTRIBUTES, COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].flags), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Mattr"), COLHDR_MATTRIBUTES, COLDESC_MATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].flags), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rattr"), COLHDR_RATTRIBUTES, COLDESC_RATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].flags), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lencoding"), COLHDR_LENCODING, COLDESC_LENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0]), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Mencoding"), COLHDR_MENCODING, COLDESC_MENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1]), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rencoding"), COLHDR_RENCODING, COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2]), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Snsdiffs"), COLHDR_NSDIFFS, COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Snidiffs"), COLHDR_NIDIFFS, COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Leoltype"), COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColLEOLTypeGet, &ColAttrSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Meoltype"), COLHDR_MEOL_TYPE, COLDESC_MEOL_TYPE, &ColMEOLTypeGet, &ColAttrSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Reoltype"), COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColREOLTypeGet, &ColAttrSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 };
 
 /**
@@ -919,16 +982,16 @@ const int g_ncols3 = countof(f_cols3);
  * @brief Registry base value name for saving/loading info for this column
  */
 String
-CDirView::GetColRegValueNameBase(int col) const
+DirViewColItems::GetColRegValueNameBase(int col) const
 {
-	if (GetDocument()->m_nDirs < 3)
+	if (m_nDirs < 3)
 	{
-		ASSERT(col>=0 && col<countof(f_cols));
+		assert(col>=0 && col<countof(f_cols));
 		return string_format(_T("WDirHdr_%s"), f_cols[col].regName);
 	}
 	else
 	{
-		ASSERT(col>=0 && col<countof(f_cols3));
+		assert(col>=0 && col<countof(f_cols3));
 		return string_format(_T("WDirHdr_%s"), f_cols3[col].regName);
 	}
 }
@@ -937,16 +1000,16 @@ CDirView::GetColRegValueNameBase(int col) const
  * @brief Get default physical order for specified logical column
  */
 int
-CDirView::GetColDefaultOrder(int col) const
+DirViewColItems::GetColDefaultOrder(int col) const
 {
-	if (GetDocument()->m_nDirs < 3)
+	if (m_nDirs < 3)
 	{
-		ASSERT(col>=0 && col<countof(f_cols));
+		assert(col>=0 && col<countof(f_cols));
 		return f_cols[col].physicalIndex;
 	}
 	else
 	{
-		ASSERT(col>=0 && col<countof(f_cols3));
+		assert(col>=0 && col<countof(f_cols3));
 		return f_cols3[col].physicalIndex;
 	}
 }
@@ -955,13 +1018,13 @@ CDirView::GetColDefaultOrder(int col) const
  * @brief Return the info about the specified physical column
  */
 const DirColInfo *
-CDirView::DirViewColItems_GetDirColInfo(int col) const
+DirViewColItems::GetDirColInfo(int col) const
 {
-	if (GetDocument()->m_nDirs < 3)
+	if (m_nDirs < 3)
 	{
 		if (col < 0 || col >= countof(f_cols))
 		{
-			ASSERT(0); // fix caller, should not ask for nonexistent columns
+			assert(0); // fix caller, should not ask for nonexistent columns
 			return 0;
 		}
 		return &f_cols[col];
@@ -970,7 +1033,7 @@ CDirView::DirViewColItems_GetDirColInfo(int col) const
 	{
 		if (col < 0 || col >= countof(f_cols3))
 		{
-			ASSERT(0); // fix caller, should not ask for nonexistent columns
+			assert(0); // fix caller, should not ask for nonexistent columns
 			return 0;
 		}
 		return &f_cols3[col];
@@ -981,26 +1044,26 @@ CDirView::DirViewColItems_GetDirColInfo(int col) const
  * @brief Check if specified physical column has specified resource id name
  */
 bool
-CDirView::IsColById(int col, int id) const
+DirViewColItems::IsColById(int col, const char *idname) const
 {
-	int nDirs = GetDocument()->m_nDirs;
+	int nDirs = m_nDirs;
 	if (nDirs < 3)
 	{
 		if (col < 0 || col >= countof(f_cols))
 		{
-			ASSERT(0); // fix caller, should not ask for nonexistent columns
+			assert(0); // fix caller, should not ask for nonexistent columns
 			return false;
 		}
-		return f_cols[col].idName == id;
+		return f_cols[col].idName == idname;
 	}
 	else
 	{
 		if (col < 0 || col >= sizeof(f_cols3)/sizeof(f_cols3[0]))
 		{
-			ASSERT(0); // fix caller, should not ask for nonexistent columns
+			assert(0); // fix caller, should not ask for nonexistent columns
 			return false;
 		}
-		return f_cols3[col].idName == id;
+		return f_cols3[col].idName == idname;
 	}
 }
 
@@ -1008,47 +1071,359 @@ CDirView::IsColById(int col, int id) const
  * @brief Is specified physical column the name column?
  */
 bool
-CDirView::IsColName(int col) const
+DirViewColItems::IsColName(int col) const
 {
-	return IsColById(col, IDS_COLHDR_FILENAME);
+	return IsColById(col, COLHDR_FILENAME);
 }
 /**
  * @brief Is specified physical column the left modification time column?
  */
 bool
-CDirView::IsColLmTime(int col) const
+DirViewColItems::IsColLmTime(int col) const
 {
-	return IsColById(col, IDS_COLHDR_LTIMEM);
+	return IsColById(col, COLHDR_LTIMEM);
 }
 /**
  * @brief Is specified physical column the middle modification time column?
  */
 bool
-CDirView::IsColMmTime(int col) const
+DirViewColItems::IsColMmTime(int col) const
 {
-	return IsColById(col, IDS_COLHDR_MTIMEM);
+	return IsColById(col, COLHDR_MTIMEM);
 }
 /**
  * @brief Is specified physical column the right modification time column?
  */
 bool
-CDirView::IsColRmTime(int col) const
+DirViewColItems::IsColRmTime(int col) const
 {
-	return IsColById(col, IDS_COLHDR_RTIMEM);
+	return IsColById(col, COLHDR_RTIMEM);
 }
 /**
  * @brief Is specified physical column the full status (result) column?
  */
 bool
-CDirView::IsColStatus(int col) const
+DirViewColItems::IsColStatus(int col) const
 {
-	return IsColById(col, IDS_COLHDR_RESULT);
+	return IsColById(col, COLHDR_RESULT);
 }
 /**
  * @brief Is specified physical column the full status (result) column?
  */
 bool
-CDirView::IsColStatusAbbr(int col) const
+DirViewColItems::IsColStatusAbbr(int col) const
 {
-	return IsColById(col, IDS_COLHDR_RESULT_ABBR);
+	return IsColById(col, COLHDR_RESULT_ABBR);
+}
+
+/**
+ * @brief return whether column normally sorts ascending (dates do not)
+ */
+bool
+DirViewColItems::IsDefaultSortAscending(int col) const
+{
+	const DirColInfo * pColInfo = GetDirColInfo(col);
+	if (!pColInfo)
+	{
+		assert(0); // fix caller, should not ask for nonexistent columns
+		return 0;
+	}
+	return pColInfo->defSortUp;
+}
+
+/**
+ * @brief Return display name of column
+ */
+String
+DirViewColItems::GetColDisplayName(int col) const
+{
+	const DirColInfo * colinfo = GetDirColInfo(col);
+	return tr(colinfo->idName);
+}
+
+/**
+ * @brief Return description of column
+ */
+String
+DirViewColItems::GetColDescription(int col) const
+{
+	const DirColInfo * colinfo = GetDirColInfo(col);
+	return tr(colinfo->idDesc);
+}
+
+/**
+ * @brief Return total number of known columns
+ */
+int
+DirViewColItems::GetColCount() const
+{
+	if (m_nDirs < 3)
+		return g_ncols;
+	else
+		return g_ncols3;
+}
+
+/**
+ * @brief Get text for specified column.
+ * This function retrieves the text for the specified colum. Text is
+ * retrieved by using column-specific handler functions.
+ * @param [in] pCtxt Compare context.
+ * @param [in] col Column number.
+ * @param [in] di Difference data.
+ * @return Text for the specified column.
+ */
+String
+DirViewColItems::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
+		const DIFFITEM & di) const
+{
+	// Custom properties have custom get functions
+	const DirColInfo * pColInfo = GetDirColInfo(col);
+	if (!pColInfo)
+	{
+		assert(0); // fix caller, should not ask for nonexistent columns
+		return _T("???");
+	}
+	ColGetFncPtrType fnc = pColInfo->getfnc;
+	size_t offset = pColInfo->offset;
+	String s = (*fnc)(pCtxt, reinterpret_cast<const char *>(&di) + offset);
+
+	// Add '*' to newer time field
+	if (m_nDirs < 3)
+	{
+		if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0)
+		{
+			if
+			(
+				IsColLmTime(col) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime // Left modification time
+			||	IsColRmTime(col) && di.diffFileInfo[0].mtime < di.diffFileInfo[1].mtime // Right modification time
+			)
+			{
+				s.insert(0, _T("* "));
+			}
+		}
+	}
+	else
+	{
+		if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0 ||  di.diffFileInfo[2].mtime != 0)
+		{
+			if
+			(
+				IsColLmTime(col) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime && di.diffFileInfo[0].mtime > di.diffFileInfo[2].mtime // Left modification time
+			||	IsColMmTime(col) && di.diffFileInfo[1].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[1].mtime > di.diffFileInfo[2].mtime // Middle modification time
+			||	IsColRmTime(col) && di.diffFileInfo[2].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[2].mtime > di.diffFileInfo[1].mtime // Right modification time
+			)
+			{
+				s.insert(0, _T("* "));
+			}
+		}
+	}
+
+	return s;
+}
+
+
+/**
+ * @brief Sort two items on specified column.
+ * This function determines order of two items in specified column. Order
+ * is determined by column-specific functions.
+ * @param [in] pCtxt Compare context.
+ * @param [in] col Column number to sort.
+ * @param [in] ldi Left difference item data.
+ * @param [in] rdi Right difference item data.
+ * @return Order of items.
+ */
+int
+DirViewColItems::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi,
+		const DIFFITEM & rdi, bool bTreeMode) const
+{
+	// Custom properties have custom sort functions
+	const DirColInfo * pColInfo = GetDirColInfo(col);
+	if (!pColInfo)
+	{
+		assert(0); // fix caller, should not ask for nonexistent columns
+		return 0;
+	}
+	size_t offset = pColInfo->offset;
+	const void * arg1;
+	const void * arg2;
+	if (bTreeMode)
+	{
+		int lLevel = ldi.GetDepth();
+		int rLevel = rdi.GetDepth();
+		const DIFFITEM *lcur = &ldi, *rcur = &rdi;
+		if (lLevel < rLevel)
+		{
+			for (; lLevel != rLevel; rLevel--)
+				rcur = rcur->parent;
+		}
+		else if (rLevel < lLevel)
+		{
+			for (; lLevel != rLevel; lLevel--)
+				lcur = lcur->parent;
+		}
+		while (lcur->parent != rcur->parent)
+		{
+			lcur = lcur->parent;
+			rcur = rcur->parent;
+		}
+		arg1 = reinterpret_cast<const char *>(lcur) + offset;
+		arg2 = reinterpret_cast<const char *>(rcur) + offset;
+	}
+	else
+	{
+		arg1 = reinterpret_cast<const char *>(&ldi) + offset;
+		arg2 = reinterpret_cast<const char *>(&rdi) + offset;
+	}
+	if (ColSortFncPtrType fnc = pColInfo->sortfnc)
+	{
+		return (*fnc)(pCtxt, arg1, arg2);
+	}
+	if (ColGetFncPtrType fnc = pColInfo->getfnc)
+	{
+		String p = (*fnc)(pCtxt, arg1);
+		String q = (*fnc)(pCtxt, arg2);
+		return string_compare_nocase(p, q);
+	}
+	return 0;
+}
+
+void DirViewColItems::SetColumnOrdering(const int colorder[])
+{
+	m_dispcols = 0;
+	for (int i = 0; i < m_numcols; ++i)
+	{
+		m_colorder[i] = colorder[i];
+		int phy = m_colorder[i];
+		if (phy>=0)
+		{
+			++m_dispcols;
+			m_invcolorder[phy] = i;
+		}
+	}
+}
+
+/**
+ * @brief Set column ordering to default initial order
+ */
+void DirViewColItems::ResetColumnOrdering()
+{
+	ClearColumnOrders();
+	m_dispcols = 0;
+	for (int i=0; i<m_numcols; ++i)
+	{
+		int phy = GetColDefaultOrder(i);
+		m_colorder[i] = phy;
+		if (phy>=0)
+		{
+			m_invcolorder[phy] = i;
+			++m_dispcols;
+		}
+	}
+}
+
+/**
+ * @brief Reset all current column ordering information
+ */
+void DirViewColItems::ClearColumnOrders()
+{
+	m_colorder.resize(m_numcols);
+	m_invcolorder.resize(m_numcols);
+	for (int i=0; i<m_numcols; ++i)
+	{
+		m_colorder[i] = -1;
+		m_invcolorder[i] = -1;
+	}
+}
+
+/**
+ * @brief Remove any windows reordering of columns (params are physical columns)
+ */
+void DirViewColItems::MoveColumn(int psrc, int pdest)
+{
+	// actually moved column
+	m_colorder[m_invcolorder[psrc]] = pdest;
+	// shift all other affected columns
+	int dir = psrc > pdest ? +1 : -1;
+	int i=0;
+	for (i=pdest; i!=psrc; i += dir)
+	{
+		m_colorder[m_invcolorder[i]] = i+dir;
+	}
+	// fix inverse mapping
+	for (i=0; i<m_numcols; ++i)
+	{
+		if (m_colorder[i] >= 0)
+			m_invcolorder[m_colorder[i]] = i;
+	}
+}
+
+/**
+ * @brief Resets column widths to defaults.
+ */
+String DirViewColItems::ResetColumnWidths(int defcolwidth)
+{
+	String result;
+	for (int i = 0; i < m_numcols; i++)
+	{
+		if (!result.empty()) result += ' ';
+		result += string_to_str(defcolwidth);
+	}
+	return result;
+}
+
+/**
+ * @brief Load column orders from registry
+ */
+void DirViewColItems::LoadColumnOrders(String colorders)
+{
+	assert(m_numcols == -1);
+	m_numcols = GetColCount();
+	ClearColumnOrders();
+	m_dispcols = 0;
+	std::basic_istringstream<TCHAR> ss(colorders);
+
+	// Load column orders
+	// Break out if one is missing
+	// Break out & mark failure (m_dispcols == -1) if one is invalid
+	int i=0;
+	for (i=0; i<m_numcols; ++i)
+	{
+		int ord = -1;
+		ss >> ord;
+		if (ord<-1 || ord >= m_numcols)
+			break;
+		m_colorder[i] = ord;
+		if (ord>=0)
+		{
+			++m_dispcols;
+			if (m_invcolorder[ord] != -1)
+			{
+				m_dispcols = -1;
+				break;
+			}
+			m_invcolorder[ord] = i;
+		}
+	}
+	// Check that a contiguous range was set
+	for (i=0; i<m_dispcols; ++i)
+	{
+		if (m_invcolorder[i] < 0)
+		{
+			m_dispcols = -1;
+			break;
+		}
+	}
+	// Must have at least one column
+	if (m_dispcols<=1)
+	{
+		ResetColumnOrdering();
+	}
+}
+
+/// store current column orders into registry
+String DirViewColItems::SaveColumnOrders()
+{
+	assert(m_colorder.size() == m_numcols);
+	assert(m_invcolorder.size() == m_numcols);
+	return string_join<String (*)(int)>(m_colorder.begin(), m_colorder.end(), _T(" "), string_to_str);
 }

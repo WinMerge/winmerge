@@ -32,7 +32,6 @@ DiffUtils::DiffUtils()
 		: m_pOptions(nullptr)
 		, m_pFilterList(nullptr)
 		, m_inf(nullptr)
-		, m_FilterCommentsManager(new ::FilterCommentsManager)
 		, m_pDiffWrapper(new ::CDiffWrapper)
 		, m_ndiffs(0)
 		, m_ntrivialdiffs(0)
@@ -79,6 +78,11 @@ void DiffUtils::ClearFilterList()
 void DiffUtils::SetFilterList(FilterList * list)
 {
 	m_pFilterList = list;
+}
+
+void DiffUtils::SetFilterCommentsManager(const FilterCommentsManager *pFilterCommentsManager)
+{
+	m_pDiffWrapper->SetFilterCommentsManager(pFilterCommentsManager);
 }
 
 /**
@@ -175,7 +179,7 @@ int DiffUtils::diffutils_compare_files()
 						options.bIgnoreCase = m_pOptions->m_bIgnoreCase;
 						options.bIgnoreEol = m_pOptions->m_bIgnoreEOLDifference;
 						m_pDiffWrapper->SetOptions(&options);
-  						m_pDiffWrapper->PostFilter(thisob->line0, QtyLinesLeft+1, thisob->line1, QtyLinesRight+1, op, *m_FilterCommentsManager, asLwrCaseExt);
+  						m_pDiffWrapper->PostFilter(thisob->line0, QtyLinesLeft+1, thisob->line1, QtyLinesRight+1, op, asLwrCaseExt);
 						if(op == OP_TRIVIAL)
 						{
 							thisob->trivial = 1;

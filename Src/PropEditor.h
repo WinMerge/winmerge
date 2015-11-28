@@ -7,6 +7,7 @@
 #pragma once
 
 #include "OptionsPanel.h"
+#include "UnicodeString.h"
 
 class COptionsMgr;
 
@@ -29,15 +30,15 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropEditor)
 	enum { IDD = IDD_PROPPAGE_EDITOR };
-	BOOL    m_bHiliteSyntax;
+	bool    m_bHiliteSyntax;
 	int	    m_nTabType;
-	UINT    m_nTabSize;
-	BOOL    m_bAutomaticRescan;
-	BOOL    m_bAllowMixedEol;
-	BOOL    m_bViewLineDifferences;
-	BOOL    m_bBreakOnWords;
+	unsigned m_nTabSize;
+	bool    m_bAutomaticRescan;
+	bool    m_bAllowMixedEol;
+	bool    m_bViewLineDifferences;
+	bool    m_bBreakOnWords;
 	int     m_nBreakType;
-	CString m_breakChars;
+	String m_breakChars;
 	//}}AFX_DATA
 
 private:
