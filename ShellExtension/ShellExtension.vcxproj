@@ -284,7 +284,6 @@ echo Warning : Cannot register Unicode DLL on Windows 95
     <CustomBuildStep Include="ShellExtensionU.def" />
     <None Include="WinMerge.bmp" />
     <None Include="WinMergeDir.bmp" />
-    <None Include="WinMergeParent.bmp" />
     <None Include="WinMergeShell.rgs" />
   </ItemGroup>
   <ItemGroup>
@@ -506,6 +505,10 @@ echo Warning : Cannot register Unicode DLL on Windows 95
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|x64'">true</ExcludedFromBuild>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="WinMerge32.bmp" />
+    <Image Include="WinMergeDir32.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

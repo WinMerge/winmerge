@@ -189,12 +189,16 @@ static HBITMAP MakeBitmapBackColorTransparent(HBITMAP hbmSrc)
 CWinMergeShell::CWinMergeShell()
 {
 	m_dwMenuState = 0;
+	int cx = GetSystemMetrics(SM_CXMENUCHECK);
+	int cy = GetSystemMetrics(SM_CYMENUCHECK);
+	int id_fileicon = cx > 16 ? IDB_WINMERGE32 : IDB_WINMERGE;
+	int id_diricon = cx > 16 ? IDB_WINMERGEDIR32 : IDB_WINMERGEDIR;
 
 	// compress or stretch icon bitmap according to menu item height
-	HBITMAP hMergeBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGE), IMAGE_BITMAP,
-			GetSystemMetrics(SM_CXMENUCHECK), GetSystemMetrics(SM_CYMENUCHECK), LR_DEFAULTCOLOR);
-	HBITMAP hMergeDirBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGEDIR), IMAGE_BITMAP,
-			GetSystemMetrics(SM_CXMENUCHECK), GetSystemMetrics(SM_CYMENUCHECK), LR_DEFAULTCOLOR);
+	HBITMAP hMergeBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(id_fileicon), IMAGE_BITMAP,
+			cx, cy, LR_DEFAULTCOLOR);
+	HBITMAP hMergeDirBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(id_diricon), IMAGE_BITMAP,
+			cx, cy, LR_DEFAULTCOLOR);
 
 	OSVERSIONINFO osvi;
 	osvi.dwOSVersionInfoSize = sizeof OSVERSIONINFO;

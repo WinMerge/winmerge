@@ -41,9 +41,6 @@
     <None Include="WinMergeDir.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="WinMergeParent.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="ShellExtension.idl">
@@ -172,5 +169,13 @@
     <CustomBuildStep Include="ShellExtensionU.def">
       <Filter>Source Files</Filter>
     </CustomBuildStep>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="WinMerge32.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="WinMergeDir32.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

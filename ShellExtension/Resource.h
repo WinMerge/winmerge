@@ -16,6 +16,8 @@
 #define IDS_RESELECT_FIRST              110
 #define IDB_WINMERGE                    202
 #define IDB_WINMERGEDIR                 203
+#define IDB_WINMERGE32                  204
+#define IDB_WINMERGEDIR32               205
 
 // Next default values for new objects
 //
