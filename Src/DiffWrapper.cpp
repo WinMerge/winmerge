@@ -74,7 +74,7 @@ static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
  * Initializes members and creates new FilterCommentsManager.
  */
 CDiffWrapper::CDiffWrapper()
-: m_FilterCommentsManager(new FilterCommentsManager)
+: m_pFilterCommentsManager(nullptr)
 , m_bCreatePatchFile(false)
 , m_bUseDiffList(false)
 , m_bAddCmdLine(true)
@@ -494,18 +494,16 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 @param [in]  LineNumberRight		- First line number to read from right file
 @param [in]  QtyLinesRight		- Number of lines in the block for right file
 @param [in,out]  Op				- This variable is set to trivial if block should be ignored.
-@param [in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
 @param [in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
 void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-	int QtyLinesRight, OP_TYPE &Op, FilterCommentsManager &filtercommentsmanager,
-	const String& FileNameExt) const
+	int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt) const
 {
-	if (Op == OP_TRIVIAL)
+	if (Op == OP_TRIVIAL || !m_pFilterCommentsManager)
 		return;
 	
 	//First we need to get lowercase file name extension
-	FilterCommentsSet filtercommentsset = filtercommentsmanager.GetSetForFileType(FileNameExt);
+	FilterCommentsSet filtercommentsset = m_pFilterCommentsManager->GetSetForFileType(FileNameExt);
 	if (filtercommentsset.StartMarker.empty() && 
 		filtercommentsset.EndMarker.empty() &&
 		filtercommentsset.InlineMarker.empty())
@@ -1264,7 +1262,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				{
 					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, *m_FilterCommentsManager, asLwrCaseExt);
+					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, asLwrCaseExt);
 				}
 
 				if (m_pFilterList && m_pFilterList->HasRegExps())

@@ -66,8 +66,8 @@ rem ShellExtension
 copy "Build\ShellExtensionUnicode Release mindependency\ShellExtensionU.dll" "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy "Build\X64\ShellExtensionUnicode Release mindependency\ShellExtensionX64.dll" "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy "Build\X64\ShellExtensionUnicode Release mindependency\ShellExtensionX64.dll" "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
-copy ShellExtension\*.bat "%DISTDIR%\2.14-zip-version\WinMerge\"
-copy ShellExtension\*.bat "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
+copy ShellExtension\*Register.bat "%DISTDIR%\2.14-zip-version\WinMerge\"
+copy ShellExtension\*Register.bat "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
 
 rem Translation
 copy Build\MergeUnicodeRelease\Languages\Japanese.po "%DISTDIR%\2.14-zip-version\WinMerge\Languages\"
@@ -121,14 +121,16 @@ copy Externals\WinIMerge\GPL.txt "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\
 copy Externals\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
 rem copy Externals\WinIMerge\Build\Release\WinIMerge.exe "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\Build\Release\WinIMergeLib.dll "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
+copy "%VS120COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC120.OpenMP\vcomp120.dll" "%DISTDIR%\2.14-zip-version\WinMerge\
 copy Externals\WinIMerge\GPL.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 rem copy Externals\WinIMerge\Build\x64\Release\WinIMerge.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\Build\x64\Release\WinIMergeLib.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
+copy "%VS120COMNTOOLS%\..\..\VC\redist\x64\Microsoft.VC120.OpenMP\vcomp120.dll" "%DISTDIR%\2.14-x64-zip-version\WinMerge\
 
 rem Patch
-xcopy /s "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-zip-version\WinMerge\GnuWin32\"
-xcopy /s "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-x64-zip-version\WinMerge\GnuWin32\"
+xcopy /s/y "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-zip-version\WinMerge\GnuWin32\"
+xcopy /s/y "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-x64-zip-version\WinMerge\GnuWin32\"
 
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip" "%DISTDIR%\2.14-zip-version\WinMerge\"
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip" "%DISTDIR%\2.14-x64-zip-version\WinMerge\"

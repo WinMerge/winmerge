@@ -26,8 +26,8 @@ private:
 
 // Implementation methods
 private:
-	bool CheckText(CString text) const;
-	void AppendResult(CString result);
+	bool CheckText(String text) const;
+	void AppendResult(String result);
 
 // Dialog Data
 	//{{AFX_DATA(CTestFilterDlg)

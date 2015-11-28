@@ -613,7 +613,9 @@
     <ClCompile Include="DiffWrapper.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="DirActions.cpp" />
+    <ClCompile Include="DirActions.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="DirCmpReport.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -632,8 +634,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="DirView.cpp" />
-    <ClCompile Include="DirViewColHandler.cpp" />
-    <ClCompile Include="DirViewColItems.cpp" />
+    <ClCompile Include="DirViewColItems.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Common\dllproxy.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -809,11 +812,10 @@
     </ClCompile>
     <ClCompile Include="Common\sizecbar.cpp" />
     <ClCompile Include="Common\SortHeaderCtrl.cpp" />
-    <ClCompile Include="SourceControl.cpp" />
-    <ClCompile Include="Common\SplitterWndEx.cpp" />
-    <ClCompile Include="ssapi.cpp">
+    <ClCompile Include="SourceControl.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Common\SplitterWndEx.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -944,6 +946,7 @@
     <ClInclude Include="Common\coretools.h" />
     <ClInclude Include="Common\coretypes.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="DirActions.h" />
     <ClInclude Include="HexMergeView.h" />
     <ClInclude Include="DropHandler.h" />
     <ClInclude Include="IMergeDoc.h" />

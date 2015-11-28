@@ -70,7 +70,7 @@ public:
 		}
 		else
 		{
-			pluginName = LoadResString(IDS_USERCHOICE_AUTOMATIC);
+			pluginName = _("<Automatic>");
 		}
 		bToBeScanned = bMode;
 	};

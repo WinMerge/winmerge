@@ -15,6 +15,7 @@
 #include "ProjectFile.h"
 #include "FileOrFolderSelect.h"
 #include "FileFilterHelper.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -28,9 +29,9 @@ IMPLEMENT_DYNCREATE(ProjectFilePathsDlg, CPropertyPage)
  * @brief Standard constructor.
  */
 ProjectFilePathsDlg::ProjectFilePathsDlg() : CPropertyPage(ProjectFilePathsDlg::IDD)
-, m_bLeftPathReadOnly(FALSE)
-, m_bRightPathReadOnly(FALSE)
-, m_bIncludeSubfolders(FALSE)
+, m_bLeftPathReadOnly(false)
+, m_bRightPathReadOnly(false)
+, m_bIncludeSubfolders(false)
 {
 	//{{AFX_DATA_INIT(ProjectFilePathsDlg)
 	//}}AFX_DATA_INIT
@@ -80,9 +81,9 @@ void ProjectFilePathsDlg::OnBnClickedProjLfileBrowse()
 {
 	UpdateData(TRUE);
 	String s;
-	if (::SelectFileOrFolder(GetSafeHwnd(), s, m_sLeftFile))
+	if (::SelectFileOrFolder(GetSafeHwnd(), s, m_sLeftFile.c_str()))
 	{
-		m_sLeftFile = s.c_str();
+		m_sLeftFile = s;
 		UpdateData(FALSE);
 	}
 }
@@ -94,9 +95,9 @@ void ProjectFilePathsDlg::OnBnClickedProjRfileBrowse()
 {
 	UpdateData(TRUE);
 	String s;
-	if (::SelectFileOrFolder(GetSafeHwnd(), s, m_sRightFile))
+	if (::SelectFileOrFolder(GetSafeHwnd(), s, m_sRightFile.c_str()))
 	{
-		m_sRightFile = s.c_str();
+		m_sRightFile = s;
 		UpdateData(FALSE);
 	}
 }
@@ -106,7 +107,7 @@ void ProjectFilePathsDlg::OnBnClickedProjRfileBrowse()
  */
 void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
 {
-	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
+	String filterPrefix = _("[F] ");
 	CString curFilter;
 
 	const BOOL bUseMask = theApp.m_pGlobalFileFilter->IsUsingMask();
@@ -137,7 +138,7 @@ void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
  */
 void ProjectFilePathsDlg::OnBnClickedProjOpen()
 {
-	String fileName = AskProjectFileName(TRUE);
+	String fileName = AskProjectFileName(true);
 	if (fileName.empty())
 		return;
 
@@ -146,12 +147,12 @@ void ProjectFilePathsDlg::OnBnClickedProjOpen()
 		return;
 
 	bool left_ro, right_ro;
-	m_sLeftFile = project.GetLeft(&left_ro).c_str();
-	m_sRightFile = project.GetRight(&right_ro).c_str();
+	m_sLeftFile = project.GetLeft(&left_ro);
+	m_sRightFile = project.GetRight(&right_ro);
 	m_bLeftPathReadOnly = left_ro;
 	m_bRightPathReadOnly = right_ro;
-	m_sFilter = project.GetFilter().c_str();
-	m_bIncludeSubfolders = project.GetSubfolders();
+	m_sFilter = project.GetFilter();
+	m_bIncludeSubfolders = !!project.GetSubfolders();
 
 	UpdateData(FALSE);
 	LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
@@ -164,35 +165,32 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 {
 	UpdateData(TRUE);
 
-	m_sLeftFile.TrimLeft();
-	m_sLeftFile.TrimRight();
-	m_sLeftFile.TrimLeft();
-	m_sLeftFile.TrimRight();
-	m_sFilter.TrimLeft();
-	m_sFilter.TrimRight();
+	m_sLeftFile = string_trim_ws(m_sLeftFile);
+	m_sRightFile = string_trim_ws(m_sRightFile);
+	m_sFilter = string_trim_ws(m_sFilter);
 
-	String fileName = AskProjectFileName(FALSE);
+	String fileName = AskProjectFileName(false);
 	if (fileName.empty())
 		return;
 
 	ProjectFile project;
 
-	bool left_ro = !!m_bLeftPathReadOnly, right_ro = !!m_bRightPathReadOnly;
-	if (!m_sLeftFile.IsEmpty())
-		project.SetLeft((LPCTSTR)m_sLeftFile, &left_ro);
-	if (!m_sRightFile.IsEmpty())
-		project.SetRight((LPCTSTR)m_sRightFile, &right_ro);
-	if (!m_sFilter.IsEmpty())
+	bool left_ro = m_bLeftPathReadOnly, right_ro = m_bRightPathReadOnly;
+	if (!m_sLeftFile.empty())
+		project.SetLeft(m_sLeftFile, &left_ro);
+	if (!m_sRightFile.empty())
+		project.SetRight(m_sRightFile, &right_ro);
+	if (!m_sFilter.empty())
 	{
 		// Remove possbile prefix from the filter name
-		String prefix = theApp.LoadString(IDS_FILTER_PREFIX);
-		int ind = m_sFilter.Find(prefix.c_str(), 0);
+		String prefix = _("[F] ");
+		size_t ind = m_sFilter.find(prefix, 0);
 		if (ind == 0)
 		{
-			m_sFilter.Delete(0, static_cast<int>(prefix.length()));
+			m_sFilter.erase(0, prefix.length());
 		}
-		m_sFilter.TrimLeft();
-		project.SetFilter((LPCTSTR)m_sFilter);
+		m_sFilter = string_trim_ws_begin(m_sFilter);
+		project.SetFilter(m_sFilter);
 	}
 	project.SetSubfolders(m_bIncludeSubfolders);
 
@@ -210,37 +208,25 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
  * @param [in] left Left path.
  * @param [in] right Right path.
  */
-void ProjectFilePathsDlg::SetPaths(LPCTSTR left, LPCTSTR right)
+void ProjectFilePathsDlg::SetPaths(const String& left, const String& right)
 {
-	if (left != NULL)
-	{
-		PATH_EXISTENCE pe = paths_DoesPathExist(left);
-		if (pe != DOES_NOT_EXIST)
-		{
-			m_sLeftFile = left;
-		}
-	}
-	if (right != NULL)
-	{
-		PATH_EXISTENCE pe = paths_DoesPathExist(right);
-		if (pe != DOES_NOT_EXIST)
-		{
-			m_sRightFile = right;
-		}
-	}
+	if (paths_DoesPathExist(left) != DOES_NOT_EXIST)
+		m_sLeftFile = left;
+	if (paths_DoesPathExist(right) != DOES_NOT_EXIST)
+		m_sRightFile = right;
 }
 
 /** 
  * @brief Allow user to select a file to open/save.
  */
-CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
+String ProjectFilePathsDlg::AskProjectFileName(bool bOpen)
 {
 	// get the default projects path
 	String strProjectFileName;
 	String strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
 
 	if (!::SelectFile(GetSafeHwnd(), strProjectFileName, strProjectPath.c_str(),
-			NULL, IDS_PROJECTFILES, bOpen))
+			_T(""), _("WinMerge Project Files (*.WinMerge)|*.WinMerge||"), bOpen))
 		return _T("");
 
 	if (strProjectFileName.empty())
@@ -248,18 +234,13 @@ CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
 
 	// Add projectfile extension if it is missing
 	// So we allow 'filename.otherext' but add extension for 'filename'
-	String extension;
-	paths_SplitFilename(strProjectFileName, NULL, NULL, &extension);
-	if (extension.empty())
-	{
-		strProjectFileName += _T(".");
-		strProjectFileName += theApp.LoadString(IDS_PROJECTFILES_EXT).c_str();
-	}
+	if (paths_FindExtension(strProjectFileName).empty())
+		strProjectFileName += _T(".WinMerge");
 
 	// get the path part from the filename
 	strProjectPath = paths_GetParentPath(strProjectFileName);
 	// store this as the new project path
 	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath);
-	return strProjectFileName.c_str();
+	return strProjectFileName;
 }
 

@@ -26,15 +26,15 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropGeneral)
 	enum { IDD = IDD_PROPPAGE_GENERAL };
-	BOOL  m_bScroll;
-	BOOL  m_bSingleInstance;
-	BOOL  m_bVerifyPaths;
-	BOOL  m_bCloseWindowWithEsc;
-	BOOL  m_bAskMultiWindowClose;
-	int		m_nAutoCompleteSource;
-	BOOL	m_bPreserveFiletime;
-	BOOL	m_bShowSelectFolderOnStartup;
-	BOOL	m_bCloseWithOK;
+	bool  m_bScroll;
+	bool  m_bSingleInstance;
+	bool  m_bVerifyPaths;
+	bool  m_bCloseWindowWithEsc;
+	bool  m_bAskMultiWindowClose;
+	int   m_nAutoCompleteSource;
+	bool  m_bPreserveFiletime;
+	bool  m_bShowSelectFolderOnStartup;
+	bool  m_bCloseWithOK;
 	CComboBox	m_ctlLangList;
 	//}}AFX_DATA
 

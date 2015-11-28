@@ -19,12 +19,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 
-// reduce some noise produced with the MSVC compiler
-#if defined (_AFXDLL)
-#pragma warning(disable : 4131 4013 4090)
-#endif
-
-
 /* Rotate a value n bits to the left. */
 #define UINT_BIT (sizeof (unsigned) * CHAR_BIT)
 #define ROL(v, n) ((v) << (n) | (v) >> (UINT_BIT - (n)))

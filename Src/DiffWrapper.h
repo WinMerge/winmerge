@@ -178,6 +178,7 @@ public:
 	void WritePatchFileHeader(enum output_style output_style, bool bAppendFiles);
 	void WritePatchFileTerminator(enum output_style output_style);
 	void SetFilterList(const String& filterStr);
+	void SetFilterCommentsManager(const FilterCommentsManager *pFilterCommentsManager) { m_pFilterCommentsManager = pFilterCommentsManager; };
 	void EnablePlugins(bool enable);
 	bool IsTrivialBytes(const char* Start, const char* End,
 		const FilterCommentsSet& filtercommentsset) const;
@@ -188,8 +189,7 @@ public:
 		int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
 		FilterCommentsSet& filtercommentsset) const;
 	void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-		int QtyLinesRight, OP_TYPE &Op, FilterCommentsManager &filtercommentsmanager,
-		const String& FileNameExt) const;
+		int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt) const;
 
 protected:
 	String FormatSwitchString() const;
@@ -226,6 +226,6 @@ private:
 	int m_codepage; /**< Codepage used in line filter */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
-	std::unique_ptr<FilterCommentsManager> m_FilterCommentsManager; /**< Comments filtering manager */
+	const FilterCommentsManager* m_pFilterCommentsManager; /**< Comments filtering manager */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 };

@@ -12,6 +12,8 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "DDXHelper.h"
+#include "Constants.h"
 #include "Environment.h"
 #include "paths.h"
 
@@ -24,9 +26,6 @@ static char THIS_FILE[] = __FILE__;
 /// Flags for enabling and mode of extension
 #define CONTEXT_F_ENABLED 0x01
 #define CONTEXT_F_ADVANCED 0x02
-
- // registry dir to WinMerge
-static LPCTSTR f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 
 // registry values
 static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
@@ -78,8 +77,8 @@ static bool RegisterShellExtension(bool unregister)
 
 PropShell::PropShell(COptionsMgr *optionsMgr) 
 : OptionsPanel(optionsMgr, PropShell::IDD)
-, m_bContextAdded(FALSE)
-, m_bContextAdvanced(FALSE)
+, m_bContextAdded(false)
+, m_bContextAdvanced(false)
 {
 }
 
@@ -145,11 +144,11 @@ void PropShell::GetContextRegValues()
 {
 	CRegKeyEx reg;
 	LONG retVal = 0;
-	retVal = reg.Open(HKEY_CURRENT_USER, f_RegDir);
+	retVal = reg.Open(HKEY_CURRENT_USER, RegDir);
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = string_format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
-			f_RegDir, retVal, GetSysError(retVal).c_str());
+			RegDir, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 		return;
 	}
@@ -158,10 +157,10 @@ void PropShell::GetContextRegValues()
 	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
 
 	if (dwContextEnabled & CONTEXT_F_ENABLED)
-		m_bContextAdded = TRUE;
+		m_bContextAdded = true;
 
 	if (dwContextEnabled & CONTEXT_F_ADVANCED)
-		m_bContextAdvanced = TRUE;
+		m_bContextAdvanced = true;
 }
 
 /// Set registry values for ShellExtension
@@ -179,11 +178,11 @@ void PropShell::SaveMergePath()
 	GetModuleFileName(AfxGetInstanceHandle(), temp, MAX_PATH);
 
 	CRegKeyEx reg;
-	retVal = reg.Open(HKEY_CURRENT_USER, f_RegDir);
+	retVal = reg.Open(HKEY_CURRENT_USER, RegDir);
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = string_format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
-			f_RegDir, retVal, GetSysError(retVal).c_str());
+			RegDir, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 		return;
 	}
@@ -224,7 +223,7 @@ void PropShell::AdvancedContextMenuCheck()
 	if (!IsDlgButtonChecked(IDC_EXPLORER_CONTEXT))
 	{
 		CheckDlgButton(IDC_EXPLORER_ADVANCED, FALSE);
-		m_bContextAdvanced = FALSE;
+		m_bContextAdvanced = false;
 	}
 }
 

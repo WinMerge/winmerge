@@ -101,7 +101,7 @@ String FileTextEncoding::GetName() const
 		return _T("UTF-8");
 	}
 
-	return string_format(_T("%d"), m_codepage);
+	return string_to_str(m_codepage);
 }
 
 int FileTextEncoding::Collate(const FileTextEncoding & fte1, const FileTextEncoding & fte2)

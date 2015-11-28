@@ -31,6 +31,7 @@
 #include "ClipBoard.h"
 #include "Shlwapi.h"
 #include "paths.h"
+#include <algorithm>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -60,25 +61,25 @@ END_MESSAGE_MAP()
  * - out: formatted string
  * @return Number of lines path is splitted to.
  */
-int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath)
+int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFilepath)
 {
 	int iBegin = 0;
 	int nLines = 1;
 	
 	while (1)
 	{
-		CString line;
+		String line;
 
 		// find the next truncation point
 		int iEndMin = 0;
-		int iEndMax = sFilepath.GetLength() - iBegin + 1;
+		int iEndMax = sFilepath.length() - iBegin + 1;
 		while(1)
 		{
 			int iEnd = (iEndMin + iEndMax) / 2;
 			if (iEnd == iEndMin)
 				break;
-			line = sFilepath.Mid(iBegin, iEnd);
-			int width = (pDC->GetTextExtent(line)).cx;
+			line = sFilepath.substr(iBegin, iEnd);
+			int width = (pDC->GetTextExtent(line.c_str())).cx;
 			if (width > maxWidth)
 				iEndMax = iEnd;
 			else
@@ -89,16 +90,16 @@ int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath)
 		// here iEndMin is the last character displayed in maxWidth
 
 		// exit the loop if we can display the remaining characters with no truncation
-		if (iBegin + iEndMin == sFilepath.GetLength())
+		if (iBegin + iEndMin == sFilepath.length())
 			break;
 
 		// truncate the text to the previous "\" if possible
-		line = sFilepath.Mid(iBegin, iEndMin);
-		int lastSlash = line.ReverseFind('\\');
-		if (lastSlash >= 0)
+		line = sFilepath.substr(iBegin, iEndMin);
+		int lastSlash = line.rfind('\\');
+		if (lastSlash != String::npos)
 			iEndMin = lastSlash + 1;
 
-		sFilepath.Insert(iBegin + iEndMin, _T("\n"));
+		sFilepath.insert(iBegin + iEndMin, _T("\n"));
 		iBegin += iEndMin + 2;
 		nLines ++;
 	}
@@ -133,7 +134,7 @@ BOOL CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
  * @brief Return the control's original text.
  * @return Control's original text.
  */
-void CFilepathEdit::GetOriginalText(CString& rString) const
+void CFilepathEdit::GetOriginalText(String& rString) const
 {		
 	rString = m_sOriginalText;
 }
@@ -143,12 +144,12 @@ void CFilepathEdit::GetOriginalText(CString& rString) const
  * This function sets the text (original text) to show in the control.
  * The control may modify the text for displaying in the GUI.
  */
-void CFilepathEdit::SetOriginalText(const CString& szString)
+void CFilepathEdit::SetOriginalText(const String& sString)
 {
-	if (m_sOriginalText == szString)
+	if (m_sOriginalText.compare(sString) == 0)
 		return;
 
-	m_sOriginalText = szString;
+	m_sOriginalText = sString;
 
 	RefreshDisplayText();
 }
@@ -159,20 +160,20 @@ void CFilepathEdit::SetOriginalText(const CString& szString)
  */
 void CFilepathEdit::RefreshDisplayText()
 {
-	CString line = m_sOriginalText;
+	String line = m_sOriginalText;
 
 	// we want to keep the first and the last path component, and in between,
 	// as much characters as possible from the right
 	// PathCompactPath keeps, in between, as much characters as possible from the left
 	// so we reverse everything between the first and the last component before calling PathCompactPath
-	int iBeginLast = line.ReverseFind('\\');
-	int iEndIntro = line.Find('\\');
-	if (iBeginLast >= 0 && iEndIntro != iBeginLast)
+	size_t iBeginLast = line.rfind('\\');
+	size_t iEndIntro = line.find('\\');
+	if (iBeginLast != String::npos && iEndIntro != iBeginLast)
 	{
-		CString textToReverse = line.Mid(iEndIntro + 1, iBeginLast -
+		String textToReverse = line.substr(iEndIntro + 1, iBeginLast -
 				(iEndIntro + 1));
-		textToReverse.MakeReverse();
-		line = line.Left(iEndIntro + 1) + textToReverse + line.Mid(iBeginLast);
+		std::reverse(textToReverse.begin(), textToReverse.end());
+		line = line.substr(0, iEndIntro + 1) + textToReverse + line.substr(iBeginLast);
 	}
 
 	// get a device context object
@@ -184,36 +185,37 @@ void CFilepathEdit::RefreshDisplayText()
 	CRect rect;
 	GetRect(rect);
 	// take GetBuffer (lenght +3) to count for ellipsis
-	PathCompactPath(lDC.GetSafeHdc(), line.GetBuffer(line.GetLength() + 3),
-			rect.Width());
-	line.ReleaseBuffer();
+	std::vector<TCHAR> tmp(line.length() + 3);
+	std::copy(line.begin(), line.end(), tmp.begin());
+	PathCompactPath(lDC.GetSafeHdc(), &tmp[0],	rect.Width());
+	line = &tmp[0];
 	
 	// set old font back
 	lDC.SelectObject(pFontOld);
 
 	// we reverse back everything between the first and the last component
 	// it works OK as "..." reversed = "..." again
-	iBeginLast = line.ReverseFind('\\');
-	iEndIntro = line.Find('\\');
-	if (iBeginLast >= 0 && iEndIntro != iBeginLast)
+	iBeginLast = line.rfind('\\');
+	iEndIntro = line.find('\\');
+	if (iBeginLast != String::npos && iEndIntro != iBeginLast)
 	{
-		CString textToReverse = line.Mid(iEndIntro + 1, iBeginLast -
+		String textToReverse = line.substr(iEndIntro + 1, iBeginLast -
 				(iEndIntro+1));
-		textToReverse.MakeReverse();
-		line = line.Left(iEndIntro + 1) + textToReverse + line.Mid(iBeginLast);
+		std::reverse(textToReverse.begin(), textToReverse.end());
+		line = line.substr(0, iEndIntro + 1) + textToReverse + line.substr(iBeginLast);
 	}
 
-	SetWindowText(line);
+	SetWindowText(line.c_str());
 }
 
 /**
  * @brief Updates and returns the tooltip for this edit box
  */
-LPCTSTR CFilepathEdit::GetUpdatedTipText(CDC * pDC, int maxWidth)
+const String& CFilepathEdit::GetUpdatedTipText(CDC * pDC, int maxWidth)
 {
 	GetOriginalText(m_sToolTipString);
 	FormatFilePathForDisplayWidth(pDC, maxWidth, m_sToolTipString);
-	return (LPCTSTR)m_sToolTipString;
+	return m_sToolTipString;
 }
 
 /**
@@ -224,9 +226,9 @@ LPCTSTR CFilepathEdit::GetUpdatedTipText(CDC * pDC, int maxWidth)
 void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 {
 	if (iEnd == -1)
-		iEnd = m_sOriginalText.GetLength();
+		iEnd = m_sOriginalText.length();
 
-	PutToClipboard((LPTSTR) m_sOriginalText.Mid(iBegin, iEnd - iBegin).GetBuffer(0), m_hWnd);
+	PutToClipboard(m_sOriginalText.substr(iBegin, iEnd - iBegin), m_hWnd);
 }
 
 /**
@@ -255,7 +257,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		DWORD sel = GetSel();
 		if (HIWORD(sel) == LOWORD(sel))
 			pPopup->EnableMenuItem(ID_EDITOR_COPY, MF_GRAYED);
-		if (paths_EndsWithSlash(static_cast<LPCTSTR>(m_sOriginalText)))
+		if (paths_EndsWithSlash(m_sOriginalText))
 			// no filename, we have to disable the unwanted menu entry
 			pPopup->EnableMenuItem(ID_EDITOR_COPY_FILENAME, MF_GRAYED);
 
@@ -275,10 +277,10 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			return;
 		case ID_EDITOR_COPY_FILENAME:
 			{
-			int lastSlash = m_sOriginalText.ReverseFind('\\');
-			if (lastSlash == -1)
-				lastSlash = m_sOriginalText.ReverseFind('/');
-			if (lastSlash != -1)
+			size_t lastSlash = m_sOriginalText.rfind('\\');
+			if (lastSlash == String::npos)
+				lastSlash = m_sOriginalText.rfind('/');
+			if (lastSlash != String::npos)
 				iBegin = lastSlash+1;
 			else
 				iBegin = 0;
@@ -286,7 +288,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			break;
 		case ID_EDITOR_COPY_PATH:
 			// pass the heading "*" for modified files
-			if (m_sOriginalText.GetAt(0) == '*')
+			if (m_sOriginalText.at(0) == '*')
 				iBegin = 2;
 			else
 				iBegin = 0;
@@ -299,13 +301,27 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 	}
 }
 
+static COLORREF GetDarkenColor(COLORREF a, double r)
+{
+	const int R = GetRValue(a) * r;
+	const int G = GetGValue(a) * r;
+	const int B = GetBValue(a) * r;
+	return RGB(R, G, B);
+}
+
 void CFilepathEdit::OnNcPaint()
 {
 	CWindowDC dc(this);
 	CRect rect;
+	const int margin = 4;
 	GetWindowRect(rect);
 	rect.OffsetRect(-rect.TopLeft());
-	dc.FillSolidRect(rect, m_crBackGnd);
+	dc.FillSolidRect(CRect(rect.left, rect.top, rect.left + margin, rect.bottom), GetDarkenColor(m_crBackGnd, 0.98));
+	dc.FillSolidRect(CRect(rect.left, rect.top, rect.left + 1, rect.bottom), GetDarkenColor(m_crBackGnd, 0.90));
+	dc.FillSolidRect(CRect(rect.right - margin, rect.top, rect.right, rect.bottom), m_crBackGnd);
+	dc.FillSolidRect(CRect(rect.left + 1, rect.top, rect.right, rect.top + margin), GetDarkenColor(m_crBackGnd, 0.98));
+	dc.FillSolidRect(CRect(rect.left, rect.top, rect.right, rect.top + 1), GetDarkenColor(m_crBackGnd, 0.90));
+	dc.FillSolidRect(CRect(rect.left + margin, rect.bottom - margin, rect.right, rect.bottom), m_crBackGnd);
 }
 
 /**
@@ -315,7 +331,7 @@ void CFilepathEdit::OnNcPaint()
  * for user this active look informs which editor pane is active.
  * @param [in] bActive If TRUE set control look like active control.
  */
-void CFilepathEdit::SetActive(BOOL bActive)
+void CFilepathEdit::SetActive(bool bActive)
 {
 	m_bActive = bActive;
 

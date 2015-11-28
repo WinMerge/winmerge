@@ -5,6 +5,8 @@
  */
 #pragma once
 
+#include "UnicodeString.h"
+
 /**
  * @brief A dialog listing plugins.
  * This dialog shows a list of currently available plugins. In addition
@@ -25,7 +27,7 @@ public:
 protected:
 	void InitList();
 	void AddPlugins();
-	void AddPluginsToList(LPCWSTR pluginEvent, LPCTSTR pluginType);
+	void AddPluginsToList(const wchar_t *pluginEvent, const String& pluginType);
 
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 

@@ -175,12 +175,19 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 			tempfolderPID = foldername.substr(_tcslen(TempFolderPrefix));
 
 			// Check if this instance of WM is still running
-			if (!WMrunning(processIDs, _ttoi (tempfolderPID.c_str())))
+			try
 			{
-				tempfolderPID = paths_ConcatPath(paths_GetParentPath(pattern), ff.cFileName); 
-				if (res = ClearTempfolder(tempfolderPID))
-					bok = !!FindNextFile(h, &ff) ;
-				continue;
+				int pid = std::stoi(tempfolderPID);
+				if (!WMrunning(processIDs, pid))
+				{
+					tempfolderPID = paths_ConcatPath(paths_GetParentPath(pattern), ff.cFileName); 
+					if (res = ClearTempfolder(tempfolderPID))
+						bok = !!FindNextFile(h, &ff) ;
+					continue;
+				}
+			}
+			catch (...)
+			{
 			}
 		}
 		bok = !!FindNextFile(h, &ff) ;

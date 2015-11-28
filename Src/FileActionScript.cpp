@@ -40,10 +40,12 @@ FileActionScript::FileActionScript()
 : m_bUseRecycleBin(TRUE)
 , m_bHasCopyOperations(FALSE)
 , m_bHasMoveOperations(FALSE)
+, m_bHasRenameOperations(FALSE)
 , m_bHasDelOperations(FALSE)
 , m_hParentWindow(NULL)
 , m_pCopyOperations(new ShellFileOperations())
 , m_pMoveOperations(new ShellFileOperations())
+, m_pRenameOperations(new ShellFileOperations())
 , m_pDelOperations(new ShellFileOperations())
 {
 }
@@ -88,7 +90,7 @@ void FileActionScript::UseRecycleBin(BOOL bUseRecycleBin)
  * @brief Return amount of actions (copy, move, etc) in script.
  * @return Amount of actions.
  */
-int FileActionScript::GetActionItemCount() const
+size_t FileActionScript::GetActionItemCount() const
 {
 	return m_actions.size();
 }
@@ -173,7 +175,7 @@ int FileActionScript::CreateOperationsScripts()
 			{
 				if (!theApp.CreateBackup(TRUE, (*iter).dest.c_str()))
 				{
-					String strErr = theApp.LoadString(IDS_ERROR_BACKUP);
+					String strErr = _("Error backing up file");
 					AfxMessageBox(strErr.c_str(), MB_OK | MB_ICONERROR);
 					bContinue = FALSE;
 				}
@@ -216,6 +218,25 @@ int FileActionScript::CreateOperationsScripts()
 	}
 	if (m_bHasMoveOperations)
 		m_pMoveOperations->SetOperation(operation, operFlags,  m_hParentWindow);
+
+	// Rename operations nextbbbb
+	operation = FO_RENAME;
+	operFlags = FOF_MULTIDESTFILES;
+	if (m_bUseRecycleBin)
+		operFlags |= FOF_ALLOWUNDO;
+
+	iter = m_actions.begin();
+	while (iter != m_actions.end())
+	{
+		if ((*iter).atype == FileAction::ACT_RENAME)
+		{
+			m_pRenameOperations->AddSourceAndDestination((*iter).src, (*iter).dest);
+			m_bHasRenameOperations = TRUE;
+		}
+		++iter;
+	}
+	if (m_bHasRenameOperations)
+		m_pRenameOperations->SetOperation(operation, operFlags, m_hParentWindow);
 
 	// Delete operations last
 	operation = FO_DELETE;
@@ -291,6 +312,16 @@ BOOL FileActionScript::Run()
 		if (bFileOpSucceed && !bUserCancelled)
 		{
 			bFileOpSucceed = RunOp(m_pMoveOperations.get(), bUserCancelled);
+		}
+		else
+			bRetVal = FALSE;
+	}
+
+	if (m_bHasRenameOperations)
+	{
+		if (bFileOpSucceed && !bUserCancelled)
+		{
+			bFileOpSucceed = RunOp(m_pRenameOperations.get(), bUserCancelled);
 		}
 		else
 			bRetVal = FALSE;

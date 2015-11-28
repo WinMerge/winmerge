@@ -2,14 +2,16 @@
 
 // We include dllpstub.h for Merge7z.h
 // Merge7z::Proxy embeds a DLLPSTUB
+#include <list>
+#include <map>
+#include <PropIdl.h>
 #include "dllpstub.h"
 #include "../ArchiveSupport/Merge7z/Merge7z.h"
-
-#include "DirView.h"
 #include "paths.h"
-#include <list>
 
-class DirView;
+class CDirView;
+class CListCtrl;
+struct DIFFITEM;
 
 extern __declspec(thread) Merge7z::Proxy Merge7z;
 
@@ -44,7 +46,7 @@ public:
 /**
  * @brief Merge7z::DirItemEnumerator to compress items from DirView.
  */
-class CDirView::DirItemEnumerator : public Merge7z::DirItemEnumerator
+class DirItemEnumerator : public Merge7z::DirItemEnumerator
 {
 private:
 	CDirView *m_pView;
@@ -63,9 +65,8 @@ private:
 	std::list<String> m_rgFolderPrefix;
 	std::list<String>::iterator m_curFolderPrefix;
 	String m_strFolderPrefix;
-	BOOL m_bRight;
-	std::map<String, void *> m_rgImpliedFoldersLeft;
-	std::map<String, void *> m_rgImpliedFoldersRight;
+	int m_index;
+	std::map<String, void *> m_rgImpliedFolders[3];
 //	helper methods
 	const DIFFITEM &Next();
 	bool MultiStepCompressArchive(LPCTSTR);
@@ -73,17 +74,17 @@ public:
 	enum
 	{
 		Left = 0x00,
-		Right = 0x10,
-		Original = 0x20,
-		Altered = 0x40,
-		DiffsOnly = 0x80,
-		BalanceFolders = 0x100
+		Middle = 0x10,
+		Right = 0x20,
+		Original = 0x40,
+		Altered = 0x80,
+		DiffsOnly = 0x100,
+		BalanceFolders = 0x200
 	};
 	DirItemEnumerator(CDirView *, int);
 	virtual UINT Open();
 	virtual Merge7z::Envelope *Enum(Item &);
 	void CompressArchive(LPCTSTR = 0);
-	void CollectFiles(String &);
 };
 
 int NTAPI HasZipSupport();
@@ -99,12 +100,3 @@ struct DecompressResult
 	PATH_EXISTENCE pathsType;
 };
 DecompressResult DecompressArchive(HWND hWnd, const PathContext& infiles);
-
-/**
- * @brief assign BSTR to String, and return BSTR for optional SysFreeString()
- */
-inline BSTR Assign(CString &dst, BSTR src)
-{
-	dst = src;
-	return src;
-}

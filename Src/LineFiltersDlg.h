@@ -26,7 +26,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(LineFiltersDlg)
 	enum { IDD = IDD_PROPPAGE_FILTER };
-	BOOL	m_bIgnoreRegExp;
+	bool	m_bIgnoreRegExp;
 	//}}AFX_DATA
 
 // Overrides
@@ -54,7 +54,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 	void InitList();
-	int AddRow(LPCTSTR filter = NULL, BOOL enabled = FALSE);
+	int AddRow(const String& filter = NULL, bool enabled = false);
 	void EditSelectedFilter();
 
 private:

@@ -418,7 +418,7 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			String codepage;
 			q = EatParam(q, codepage);
-			m_nCodepage = _ttoi(codepage.c_str());
+			try { m_nCodepage = std::stoi(codepage); } catch (...) { /* FIXME: */ }
 		}
 		else if (param == _T("ignorews"))
 		{

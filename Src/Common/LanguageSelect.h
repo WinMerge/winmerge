@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <map>
 
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect class
@@ -27,6 +28,7 @@ public:
 
 	bool TranslateString(size_t line, std::string &) const;
 	bool TranslateString(size_t line, std::wstring &) const;
+	bool TranslateString(const std::string&, String &) const;
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
@@ -40,6 +42,8 @@ private:
 	HINSTANCE m_hCurrentDll;
 	LANGID m_wCurLanguage;
 	std::vector<std::string> m_strarray;
+	typedef std::map<std::string, int> EngLinenoMap;
+	EngLinenoMap m_map_lineno;
 	unsigned m_codepage;
 // Implementation methods
 private:

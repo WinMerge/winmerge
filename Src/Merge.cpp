@@ -52,6 +52,7 @@
 #include "paths.h"
 #include "FileFilterHelper.h"
 #include "LineFiltersList.h"
+#include "FilterCommentsManager.h"
 #include "SyntaxColors.h"
 #include "OptionsSyntaxColors.h"
 #include "Plugins.h"
@@ -66,8 +67,9 @@
 #include "paths.h"
 #include "stringdiffs.h"
 #include "TFile.h"
-#include "VSSHelper.h"
 #include "SourceControl.h"
+#include "paths.h"
+#include "Constants.h"
 
 // For shutdown cleanup
 #include "charsets.h"
@@ -169,8 +171,6 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 END_MESSAGE_MAP()
 
-static void AddEnglishResourceHook();
-
 /**
 * @brief Mapping from command line argument name (eg, ignorews) to WinMerge
 * option name (eg, Settings/IgnoreSpace).
@@ -208,11 +208,9 @@ CMergeApp::CMergeApp() :
 , m_bClearCaseTool(FALSE)
 , m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
 , m_pLineFilters(new LineFiltersList())
+, m_pFilterCommentsManager(new FilterCommentsManager())
 , m_pSyntaxColors(new SyntaxColors())
-, m_pVssHelper(new VSSHelper())
-, m_CheckOutMulti(FALSE)
-, m_bVCProjSync(FALSE)
-, m_bVssSuppressPathCheck(FALSE)
+, m_pSourceControl(new SourceControl())
 , m_bMergingMode(FALSE)
 {
 	// add construction code here,
@@ -360,7 +358,9 @@ BOOL CMergeApp::InitInstance()
 
 	UpdateCodepageModule();
 
-	InitializeSourceControlMembers();
+	if (m_pSourceControl)
+		m_pSourceControl->InitializeSourceControlMembers();
+
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
@@ -423,8 +423,6 @@ BOOL CMergeApp::InitInstance()
 	// Initialize i18n (multiple language) support
 
 	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
-
-	AddEnglishResourceHook(); // Use English string when l10n (foreign) string missing
 
 	m_mainThreadScripts = new CAssureScriptsForThread;
 
@@ -511,11 +509,18 @@ BOOL CMergeApp::InitInstance()
 	return bContinue;
 }
 
+static void OpenContributersFile(int&)
+{
+	theApp.OpenFileToExternalEditor(paths_ConcatPath(env_GetProgPath(), ContributorsPath));
+}
+
 // App command to run the dialog
 void CMergeApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
+	aboutDlg.m_onclick_contributers += Poco::delegate(OpenContributersFile);
 	aboutDlg.DoModal();
+	aboutDlg.m_onclick_contributers.clear();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -532,7 +537,7 @@ int CMergeApp::ExitInstance()
 	charsets_cleanup();
 
 	//  Save registry keys if existing WinMerge.reg
-	env_SaveRegistryToFile(paths_ConcatPath(env_GetProgPath(), _T("WinMerge.reg")), f_RegDir);
+	env_SaveRegistryToFile(paths_ConcatPath(env_GetProgPath(), _T("WinMerge.reg")), RegDir);
 
 	// Remove tempfolder
 	const String temp = env_GetTempPath();
@@ -541,37 +546,6 @@ int CMergeApp::ExitInstance()
 	CWinApp::ExitInstance();
 	return 0;
 }
-
-static void AddEnglishResourceHook()
-{
-#ifdef _AFXDLL
-	// After calling AfxSetResourceHandle to point to a language
-	// resource DLL, then the application is no longer on the
-	// resource lookup (defined by AfxFindResourceHandle).
-	
-	// Add a dummy extension DLL record whose resource handle
-	// points to the application resources, just to provide
-	// fallback to English for any resources missing from 
-	// the language resource DLL.
-	
-	// (Why didn't Microsoft think of this? Bruno Haible who
-	// made gettext certainly thought of this.)
-
-	// NB: This does not fix the problem that if a control is
-	// missing from a dialog (because it was added only to the
-	// English version, for example) then the DDX_ function is
-	// going to fail. I see no easy way to intercept all DDX
-	// functions except by macro overriding the call--Perry, 2002-12-07.
-
-	static AFX_EXTENSION_MODULE FakeEnglishDLL = { NULL, NULL };
-	memset(&FakeEnglishDLL, 0, sizeof(FakeEnglishDLL));
-	FakeEnglishDLL.hModule = AfxGetApp()->m_hInstance;
-	FakeEnglishDLL.hResource = FakeEnglishDLL.hModule;
-	FakeEnglishDLL.bInitialized = TRUE;
-	new CDynLinkLibrary(FakeEnglishDLL); // hook into MFC extension DLL chain
-#endif
-}
-
 
 int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 {
@@ -804,7 +778,7 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 {
 	String sCmd = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
 	String sFile(file);
-	string_replace(sCmd, _T("$linenum"), string_format(_T("%d"), nLineNumber));
+	string_replace(sCmd, _T("$linenum"), string_to_str(nLineNumber));
 
 	size_t nIndex = sCmd.find(_T("$file"));
 	if (nIndex != String::npos)
@@ -836,7 +810,8 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 	if (!retVal)
 	{
 		// Error invoking external editor
-		ResMsgBox1(IDS_ERROR_EXECUTE_FILE, sCmd.c_str(), MB_ICONSTOP);
+		String msg = string_format_string1(_("Failed to execute external editor: %1"), sCmd);
+		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 	}
 	else
 	{
@@ -967,8 +942,6 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 			< MAX_PATH)
 		{
 			success = TRUE;
-			if (!paths_EndsWithSlash(bakPath))
-				bakPath += _T("\\");
 			bakPath = paths_ConcatPath(bakPath, filename);
 			bakPath += _T(".");
 			bakPath += ext;
@@ -979,9 +952,10 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 		
 		if (!success)
 		{
-			if (ResMsgBox1(IDS_BACKUP_FAILED_PROMPT, pszPath.c_str(),
-					MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, 
-					IDS_BACKUP_FAILED_PROMPT) != IDYES)
+			String msg = string_format_string1(
+				_("Unable to backup original file:\n%1\n\nContinue anyway?"),
+				pszPath);
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN) != IDYES)
 				return FALSE;
 		}
 		return TRUE;
@@ -1014,9 +988,9 @@ int CMergeApp::SyncFileToVCS(const String& pszDest, BOOL &bApplyToAll,
 		return nRetVal;
 	
 	// If VC project opened from VSS sync and version control used
-	if ((nVerSys == SourceControl::VCS_VSS4 || nVerSys == SourceControl::VCS_VSS5) && m_bVCProjSync)
+	if ((nVerSys == SourceControl::VCS_VSS4 || nVerSys == SourceControl::VCS_VSS5) && m_pSourceControl->m_bVCProjSync)
 	{
-		if (!m_pVssHelper->ReLinkVCProj(strSavePath, sError))
+		if (!m_pSourceControl->m_vssHelper.ReLinkVCProj(strSavePath, sError))
 			nRetVal = -1;
 	}
 	return nRetVal;
@@ -1068,7 +1042,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		// RO files etc.
 		if (nVerSys != SourceControl::VCS_NONE)
 		{
-			BOOL bRetVal = SaveToVersionControl(strSavePath);
+			bool bRetVal = m_pSourceControl->SaveToVersionControl(strSavePath);
 			if (bRetVal)
 				return IDYES;
 			else
@@ -1084,7 +1058,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 			if (bMultiFile)
 			{
 				// Multiple files or folder
-				str = LangFormatString1(IDS_SAVEREADONLY_MULTI, strSavePath.c_str());
+				str = string_format_string1(_("%1\nis marked read-only. Would you like to override the read-only item?"), strSavePath);
 				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
 						MB_YES_TO_ALL, IDS_SAVEREADONLY_MULTI);
@@ -1092,7 +1066,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 			else
 			{
 				// Single file
-				str = LangFormatString1(IDS_SAVEREADONLY_FMT, strSavePath.c_str());
+				str = string_format_string1(_("%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"), strSavePath);
 				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
 						IDS_SAVEREADONLY_FMT);
@@ -1115,7 +1089,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		case IDNO:
 			if (!bMultiFile)
 			{
-				if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, strSavePath.c_str(), IDS_SAVE_AS_TITLE, NULL, FALSE))
+				if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, strSavePath.c_str(), _("Save As"), _T(""), FALSE))
 				{
 					strSavePath = s;
 					nRetVal = IDNO;
@@ -1193,9 +1167,9 @@ bool CMergeApp::LoadProjectFile(const String& sProject, ProjectFile &project)
 	}
 	catch (Poco::Exception& e)
 	{
-		String sErr = LoadString(IDS_UNK_ERROR_READING_PROJECT);
+		String sErr = _("Unknown error attempting to open project file");
 		sErr += ucr::toTString(e.displayText());
-		String msg = LangFormatString2(IDS_ERROR_FILEOPEN, sProject.c_str(), sErr.c_str());
+		String msg = string_format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 		return false;
 	}
@@ -1211,9 +1185,9 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
 	}
 	catch (Poco::Exception& e)
 	{
-		String sErr = LoadString(IDS_UNK_ERROR_SAVING_PROJECT);
+		String sErr = _("Unknown error attempting to save project file");
 		sErr += ucr::toTString(e.displayText());
-		String msg = LangFormatString2(IDS_ERROR_FILEOPEN, sProject.c_str(), sErr.c_str());
+		String msg = string_format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 		return false;
 	}
@@ -1320,6 +1294,11 @@ void CMergeApp::TranslateDialog(HWND h) const
 String CMergeApp::LoadString(UINT id) const
 {
 	return m_pLangDlg->LoadString(id);
+}
+
+bool CMergeApp::TranslateString(const std::string& str, String& translated_str) const
+{
+	return m_pLangDlg->TranslateString(str, translated_str);
 }
 
 /**

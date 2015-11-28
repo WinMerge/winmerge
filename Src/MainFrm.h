@@ -42,6 +42,7 @@ class SyntaxColors;
 class LineFiltersList;
 class TempFile;
 struct FileLocation;
+class SourceControl;
 class DropHandler;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
@@ -134,6 +135,7 @@ public:
 // Implementation methods
 protected:
 	virtual ~CMainFrame();
+
 
 // Public implementation data
 public:
@@ -271,6 +273,8 @@ protected:
 	afx_msg void OnUpdateDiffCaseSensitive(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreEOL();
 	afx_msg void OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI);
+	afx_msg void OnIncludeSubfolders();
+	afx_msg void OnUpdateIncludeSubfolders(CCmdUI* pCmdUI);
 	afx_msg void OnCompareMethod(UINT nID);
 	afx_msg void OnUpdateCompareMethod(CCmdUI* pCmdUI);
 	afx_msg void OnMRUs(UINT nID);
@@ -282,10 +286,10 @@ protected:
 private:
 	void addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems = 20);
 	void FileNew(int nPanes);
-	const OpenDocList &GetAllOpenDocs();
-	const MergeDocList &GetAllMergeDocs();
-	const DirDocList &GetAllDirDocs();
-	const HexMergeDocList &GetAllHexMergeDocs();
+	OpenDocList &GetAllOpenDocs();
+	MergeDocList &GetAllMergeDocs();
+	DirDocList &GetAllDirDocs();
+	HexMergeDocList &GetAllHexMergeDocs();
 	void UpdateFont(FRAMETYPE frame);
 	BOOL CreateToolbar();
 	BOOL CreateComboBoxOnToolbar();

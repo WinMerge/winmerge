@@ -30,12 +30,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
    "Algorithms for Approximate String Matching", E. Ukkonen,
    Information and Control Vol. 64, 1985, pp. 100-118.  */
 
-// reduce some noise produced with the MSVC compiler
-#if defined (_AFXDLL)
-#pragma warning(disable : 4131 4127 4013 4090)
-#endif
-
-
 #include "diff.h"
 #include "cmpbuf.h"
 

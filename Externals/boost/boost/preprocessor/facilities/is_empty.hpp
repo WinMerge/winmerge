@@ -21,7 +21,6 @@
 #
 # else
 #
-# include <boost/preprocessor/config/config.hpp>
 # if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MSVC() && ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MWCC()
 # include <boost/preprocessor/tuple/elem.hpp>
 # include <boost/preprocessor/facilities/identity.hpp>

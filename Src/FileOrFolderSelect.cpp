@@ -59,7 +59,7 @@ static String LastSelectedFolder;
  * @param [in] defaultExtension Extension to append if user doesn't provide one
  */
 BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/,
-		UINT titleid /*=-1*/, UINT filterid /*=0*/,
+		const String& stitle /*=_T("")*/, const String& sfilter /*=_T("")*/,
 		BOOL is_open /*=TRUE*/, LPCTSTR defaultExtension /*=NULL*/)
 {
 	path.clear(); // Clear output param
@@ -82,12 +82,11 @@ BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/,
 		}
 	}
 
-	if (!filterid)
-		filterid = IDS_ALLFILES;
-	if (!titleid)
-		titleid = IDS_OPEN_TITLE;
-	String title = LoadResString(titleid);
-	String filters = LoadResString(filterid);
+	String filters = sfilter, title = stitle;
+	if (sfilter.empty())
+		filters = _("All Files (*.*)|*.*||");
+	if (stitle.empty())
+		title = _("Open");
 
 	// Convert extension mask from MFC style separators ('|')
 	//  to Win32 style separators ('\0')
@@ -132,14 +131,14 @@ BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/,
  * @return TRUE if valid folder selected (not cancelled)
  */
 BOOL SelectFolder(String& path, LPCTSTR root_path /*=NULL*/, 
-			UINT titleid /*=0*/, 
+			const String& stitle /*=_T("")*/, 
 			HWND hwndOwner /*=NULL*/) 
 {
 	BROWSEINFO bi;
 	LPITEMIDLIST pidl;
 	TCHAR szPath[MAX_PATH] = {0};
 	BOOL bRet = FALSE;
-	String title = LoadResString(titleid);
+	String title = stitle;
 	if (root_path == NULL)
 		LastSelectedFolder.clear();
 	else
@@ -213,7 +212,7 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
  */
 BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/)
 {
-	String title = LoadResString(IDS_OPEN_TITLE);
+	String title = _("Open");
 
 	// This will tell common file dialog what to show
 	// and also this will hold its return value
@@ -233,19 +232,14 @@ BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 		}
 	}
 
-	int filterid = IDS_ALLFILES;
-
-	if (!filterid)
-		filterid = IDS_ALLFILES;
-
-	String filters = LoadResString(filterid);
+	String filters = _("All Files (*.*)|*.*||");
 
 	// Convert extension mask from MFC style separators ('|')
 	//  to Win32 style separators ('\0')
 	LPTSTR filtersStr = &*filters.begin();
 	ConvertFilter(filtersStr);
 
-	String dirSelTag = LoadResString(IDS_DIRSEL_TAG);
+	String dirSelTag = _("Folder Selection");
 
 	// Set initial filename to folder selection tag
 	dirSelTag += _T("."); // Treat it as filename

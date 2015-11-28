@@ -34,6 +34,7 @@
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "charsets.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -45,8 +46,8 @@ PropCodepage::PropCodepage(COptionsMgr *optionsMgr)
  : OptionsPanel(optionsMgr, PropCodepage::IDD)
 , m_nCodepageSystem(-1)
 , m_nCustomCodepageValue(0)
-, m_bDetectCodepage(FALSE)
-, m_bDetectCodepage2(FALSE)
+, m_bDetectCodepage(false)
+, m_bDetectCodepage2(false)
 , m_nAutodetectType(50001)
 {
 }
@@ -82,7 +83,7 @@ void PropCodepage::ReadOptions()
 {
 	m_nCodepageSystem = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_MODE);
 	m_nCustomCodepageValue = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_CUSTOM);
-	m_cCustomCodepageValue.Format(_T("%d"),m_nCustomCodepageValue);
+	m_cCustomCodepageValue = string_to_str(m_nCustomCodepageValue);
 	m_bDetectCodepage = GetOptionsMgr()->GetInt(OPT_CP_DETECT) & 1;
 	m_bDetectCodepage2 = (GetOptionsMgr()->GetInt(OPT_CP_DETECT) & 2) != 0;
 	m_nAutodetectType = ((unsigned)GetOptionsMgr()->GetInt(OPT_CP_DETECT) >> 16);
@@ -98,7 +99,7 @@ void PropCodepage::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CP_DEFAULT_MODE, (int)m_nCodepageSystem);
 	GetEncodingCodePageFromNameString();
 	GetOptionsMgr()->SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)m_nCustomCodepageValue);
-	GetOptionsMgr()->SaveOption(OPT_CP_DETECT, m_bDetectCodepage | (m_bDetectCodepage2 << 1) | (m_nAutodetectType << 16));
+	GetOptionsMgr()->SaveOption(OPT_CP_DETECT, (m_bDetectCodepage ? 1 : 0) | (m_bDetectCodepage2 << 1) | (m_nAutodetectType << 16));
 }
 
 BOOL PropCodepage::OnInitDialog() 
@@ -119,9 +120,7 @@ BOOL PropCodepage::OnInitDialog()
 	else
 		m_comboAutodetectType.EnableWindow(FALSE);
 
-	CString str;
-	str.Format(_T("%d"), m_nCustomCodepageValue);
-	m_comboCustomCodepageValue.SetWindowText(str);
+	m_comboCustomCodepageValue.SetWindowText(string_to_str(m_nCustomCodepageValue).c_str());
 
 	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv != NULL)
@@ -188,12 +187,9 @@ void PropCodepage::OnCpUi()
 
 void PropCodepage::GetEncodingCodePageFromNameString()
 {
-	int nCustomCodepageValue = _ttol(m_cCustomCodepageValue);
+	int nCustomCodepageValue = _ttol(m_cCustomCodepageValue.c_str());
 	if (nCustomCodepageValue == 0)
-	{
-		nCustomCodepageValue = GetEncodingCodePageFromName(
-			ucr::toSystemCP(static_cast<const TCHAR *>(m_cCustomCodepageValue)).c_str());
-	}
+		nCustomCodepageValue = GetEncodingCodePageFromName(ucr::toSystemCP(m_cCustomCodepageValue).c_str());
 	//if found a new codepage valid
 	if (nCustomCodepageValue)
 		m_nCustomCodepageValue = nCustomCodepageValue;

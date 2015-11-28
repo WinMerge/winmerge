@@ -194,6 +194,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 						m_pDiffUtilsEngine->SetFilterList(pCtxt->m_pFilterList.get());
 					else
 						m_pDiffUtilsEngine->ClearFilterList();
+					m_pDiffUtilsEngine->SetFilterCommentsManager(pCtxt->m_pFilterCommentsManager);
 					m_pDiffUtilsEngine->SetFileData(2, m_diffFileData.m_inf);
 					code = m_pDiffUtilsEngine->diffutils_compare_files();
 					m_pDiffUtilsEngine->GetDiffCounts(m_ndiffs, m_ntrivialdiffs);
@@ -224,6 +225,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 						m_pDiffUtilsEngine->SetFilterList(pCtxt->m_pFilterList.get());
 					else
 						m_pDiffUtilsEngine->ClearFilterList();
+					m_pDiffUtilsEngine->SetFilterCommentsManager(pCtxt->m_pFilterCommentsManager);
 
 					bool bRet;
 					int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0;

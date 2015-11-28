@@ -22,45 +22,26 @@
  */
 #pragma once
 
-#include "Picture.h"
-#include "resource.h" // IDD_ABOUTBOX
+#include <memory>
+#include <Poco/BasicEvent.h>
+#include "UnicodeString.h"
+#include "MergeApp.h"
 
-/** 
- * @brief About-dialog class.
- * 
- * Shows About-dialog bitmap and draws version number and other
- * texts into it.
- */
-class CAboutDlg : public CDialog
+class CAboutDlg
 {
+// Construction
 public:
 	CAboutDlg();
+	~CAboutDlg();
+	int DoModal();
 
-// Dialog Data
-	//{{AFX_DATA(CAboutDlg)
-	enum { IDD = IDD_ABOUTBOX };
-	CStatic	m_ctlCompany;
-	CString	m_strVersion;
-	CString m_strPrivateBuild;
-	CPicture m_image;
-	CFont m_font;
-	//}}AFX_DATA
+	AboutInfo m_info;
+	Poco::BasicEvent<int> m_onclick_contributers;
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAboutDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+private:
+	CAboutDlg(const CAboutDlg &);
+	CAboutDlg & operator=(const CAboutDlg &);
 
-// Implementation
-protected:
-	//{{AFX_MSG(CAboutDlg)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-public:
-	afx_msg void OnBnClickedOpenContributors();
-	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
-	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
-	afx_msg void OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult);
+	class Impl;
+	std::unique_ptr<Impl> m_pimpl;
 };

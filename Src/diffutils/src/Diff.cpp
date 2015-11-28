@@ -30,11 +30,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include "io.h"
 #include "diffwrapper.h"
 
-// reduce some noise produced with the MSVC compiler
-#if defined (_AFXDLL)
-#pragma warning(disable : 4706)
-#endif
-
 
 
 #ifndef DEFAULT_WIDTH

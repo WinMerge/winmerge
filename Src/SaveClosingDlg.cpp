@@ -23,6 +23,7 @@
 #include "stdafx.h"
 #include "SaveClosingDlg.h"
 #include "Merge.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -44,10 +45,10 @@ SaveClosingDlg::SaveClosingDlg(CWnd* pParent /*=NULL*/)
  , m_leftSave(SAVECLOSING_SAVE)
  , m_middleSave(SAVECLOSING_SAVE)
  , m_rightSave(SAVECLOSING_SAVE)
- , m_bAskForLeft(FALSE)
- , m_bAskForMiddle(FALSE)
- , m_bAskForRight(FALSE)
- , m_bDisableCancel(FALSE)
+ , m_bAskForLeft(false)
+ , m_bAskForMiddle(false)
+ , m_bAskForRight(false)
+ , m_bDisableCancel(false)
 {
 }
 
@@ -152,7 +153,7 @@ BOOL SaveClosingDlg::OnInitDialog()
  * @param [in] bLeft Do we ask about left-side file?
  * @param [in] bRight Do we ask about right-side file?
  */
-void SaveClosingDlg::DoAskFor(BOOL bLeft /*= FALSE*/, BOOL bMiddle /*= FALSE*/, BOOL bRight /*= FALSE*/)
+void SaveClosingDlg::DoAskFor(bool bLeft /*= false*/, bool bMiddle /*= false*/, bool bRight /*= false*/)
 {
 	m_bAskForLeft = bLeft;
 	m_bAskForMiddle = bMiddle;

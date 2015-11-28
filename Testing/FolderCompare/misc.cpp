@@ -1,7 +1,7 @@
 #include <iostream>
 #include "UnicodeString.h"
 #include "unicoder.h"
-#include <windows.h>
+#include <Windows.h>
 
 String GetSysError(int nerr /* =-1 */)
 {
@@ -46,4 +46,9 @@ void LogErrorString(const String& sz)
 void AppErrorMessageBox(const String& msg)
 {
 	MessageBox(NULL, msg.c_str(), NULL, MB_ICONSTOP);
+}
+
+String tr(const std::string& str)
+{
+	return ucr::toTString(str);
 }

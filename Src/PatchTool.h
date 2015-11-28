@@ -68,14 +68,14 @@ public:
 		const String &file2, const String &altPath2);
 	int CreatePatch();
 	String GetPatchFile() const;
-	BOOL GetOpenToEditor() const;
+	bool GetOpenToEditor() const;
 
 protected:
-	BOOL ShowDialog(CPatchDlg *pDlgPatch);
+	bool ShowDialog(CPatchDlg *pDlgPatch);
 
 private:
     std::vector<PATCHFILES> m_fileList; /**< List of files to patch. */
 	CDiffWrapper m_diffWrapper; /**< DiffWrapper instance we use to create patch. */
 	String m_sPatchFile; /**< Patch file path and filename. */
-	BOOL m_bOpenToEditor; /**< Is patch file opened to external editor? */
+	bool m_bOpenToEditor; /**< Is patch file opened to external editor? */
 };

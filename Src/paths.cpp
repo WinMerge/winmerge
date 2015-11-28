@@ -103,7 +103,11 @@ String paths_FindFileName(const String& path)
 {
 	const TCHAR *filename = path.c_str();
 	while (const TCHAR *slash = _tcspbrk(filename, _T("\\/")))
+	{
+		if (*(slash + 1) == '\0')
+			break;
 		filename = slash + 1;
+	}
 	return filename;
 }
 

@@ -28,8 +28,6 @@
 #include "paths.h"
 #include "TFile.h"
 
-using std::shared_ptr;
-
 /**
 	* @brief Convert file flags to string presentation.
 	* This function converts file flags to a string presentation that can be

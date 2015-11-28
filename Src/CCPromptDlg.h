@@ -22,43 +22,25 @@
  */
 #pragma once
 
-/**
- * @brief A dialog for ClearCase checkout/checkin.
- */
-class CCCPromptDlg : public CDialog
+#include <memory>
+#include "UnicodeString.h"
+
+class CCCPromptDlg
 {
 // Construction
 public:
-	explicit CCCPromptDlg(CWnd* pParent = NULL);   // standard constructor
+	CCCPromptDlg();
+	~CCCPromptDlg();
+	int DoModal();
 
-// Dialog Data
-	//{{AFX_DATA(CCCPromptDlg)
-	enum { IDD = IDD_CLEARCASE };
-	CString	m_comments;
-	//}}AFX_DATA
+	String	m_comments;
+	bool m_bMultiCheckouts;
+	bool m_bCheckin;
 
+private:
+	CCCPromptDlg(const CCCPromptDlg &);
+	CCCPromptDlg & operator=(const CCCPromptDlg &);
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CCCPromptDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
-protected:
-	virtual BOOL OnInitDialog();
-
-	// Generated message map functions
-	//{{AFX_MSG(CCCPromptDlg)
-	afx_msg void OnSaveas();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-
-public:
-	BOOL m_bMultiCheckouts;
-	BOOL m_bCheckin;
+	class Impl;
+	std::unique_ptr<Impl> m_pimpl;
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

@@ -51,6 +51,9 @@ const TCHAR ExecutableFilenameU[] = _T("WinMergeU.exe");
 /** @brief Temp folder name prefix for WinMerge temp folders. */
 const TCHAR TempFolderPrefix[] = _T("WinMerge_TEMP_");
 
+/** @brief registry dir to WinMerge */
+const TCHAR RegDir[] = _T("Software\\Thingamahoochie\\WinMerge");
+
 /**
  * @brief Flags used when opening files
  */

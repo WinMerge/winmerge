@@ -22,6 +22,7 @@
 #pragma once
 
 #include "CMoveConstraint.h"
+#include "UnicodeString.h"
 
 /**
  * @brief Dialog for item copy confirmation.
@@ -44,12 +45,12 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	
-	CString m_question;
-	CString m_fromText;
-	CString m_fromPath;
-	CString m_toText;
-	CString m_toPath;
-	CString m_caption;
+	String m_question;
+	String m_fromText;
+	String m_fromPath;
+	String m_toText;
+	String m_toPath;
+	String m_caption;
 	afx_msg void OnBnClickedNo();
 	afx_msg void OnBnClickedYes();
 

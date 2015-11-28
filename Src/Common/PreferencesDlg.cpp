@@ -16,7 +16,7 @@
 #include "OptionsMgr.h"
 #include "SyntaxColors.h"
 #include "Merge.h"
-#include "paths.h" //paths_SplitFilename()
+#include "paths.h"
 #include "FileOrFolderSelect.h"
 
 #ifdef _DEBUG
@@ -216,7 +216,7 @@ void CPreferencesDlg::OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult)
 		m_pphost.SetActivePage(pPage, FALSE);
 
 		// update caption
-		String sCaption = LangFormatString1(IDS_OPTIONS_TITLE, GetItemPath(htiSel));
+		String sCaption = string_format_string1(_("Options (%1)"), (LPCTSTR)GetItemPath(htiSel));
 		SetWindowText(sCaption.c_str());
 	}
 
@@ -251,7 +251,7 @@ CString CPreferencesDlg::GetItemPath(HTREEITEM hti)
  * @brief Read options from storage to UI controls.
  * @param [in] bUpdate If TRUE UpdateData() is called
  */
-void CPreferencesDlg::ReadOptions(BOOL bUpdate)
+void CPreferencesDlg::ReadOptions(bool bUpdate)
 {
 	m_pageGeneral.ReadOptions();
 	m_pageMergeColors.ReadOptions();
@@ -322,7 +322,7 @@ void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
 void CPreferencesDlg::OnImportButton()
 {
 	String s;
-	if (SelectFile(GetSafeHwnd(), s, NULL, IDS_OPT_IMPORT_CAPTION, IDS_INIFILES, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, NULL, _("Select file for import"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||"), TRUE))
 	{
 		if (m_pOptionsMgr->ImportOptions(s) == COption::OPT_OK)
 		{
@@ -340,14 +340,12 @@ void CPreferencesDlg::OnImportButton()
 void CPreferencesDlg::OnExportButton()
 {
 	String settingsFile;
-	if (SelectFile(GetSafeHwnd(), settingsFile, NULL, IDS_OPT_EXPORT_CAPTION, IDS_INIFILES,
+	if (SelectFile(GetSafeHwnd(), settingsFile, NULL, _("Select file for export"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||"),
 		FALSE))
 	{
 		// Add settings file extension if it is missing
 		// So we allow 'filename.otherext' but add extension for 'filename'
-		String extension;
-		paths_SplitFilename(settingsFile, NULL, NULL, &extension);
-		if (extension.empty())
+		if (paths_FindExtension(settingsFile).empty())
 			settingsFile += _T(".ini");
 
 		// Save all new settings before exporting
@@ -369,7 +367,7 @@ void CPreferencesDlg::OnExportButton()
  * @param [in] pPage Propertypage to update.
  * @param bSaveAndValidate UpdateData direction parameter.
  */
-void CPreferencesDlg::SafeUpdatePage(CPropertyPage* pPage, BOOL bSaveAndValidate)
+void CPreferencesDlg::SafeUpdatePage(CPropertyPage* pPage, bool bSaveAndValidate)
 {
 	if (pPage->GetSafeHwnd() != NULL)
 		pPage->UpdateData(bSaveAndValidate);

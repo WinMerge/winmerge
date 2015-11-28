@@ -30,13 +30,13 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropCompare)
 	enum { IDD = IDD_PROPPAGE_COMPARE };
-	BOOL    m_bIgnoreEol;
-	BOOL    m_bIgnoreCase;
-	BOOL    m_bIgnoreBlankLines;
+	bool    m_bIgnoreEol;
+	bool    m_bIgnoreCase;
+	bool    m_bIgnoreBlankLines;
 	int     m_nIgnoreWhite;
-	BOOL    m_bMovedBlocks;
-	BOOL    m_bMatchSimilarLines;
-	BOOL    m_bFilterCommentsLines;
+	bool    m_bMovedBlocks;
+	bool    m_bMatchSimilarLines;
+	bool    m_bFilterCommentsLines;
 	//}}AFX_DATA
 
 
