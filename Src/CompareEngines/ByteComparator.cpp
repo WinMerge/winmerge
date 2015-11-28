@@ -46,8 +46,6 @@ static inline bool iswsch(TCHAR ch)
 static void TextScan(FileTextStats & stats, const char *ptr, const char *end, bool eof,
 		bool crflag, int64_t offset)
 {
-	const char *start = ptr; // remember for recording zero-byte offsets
-
 	// Handle any crs left from last buffer
 	if (crflag)
 	{
