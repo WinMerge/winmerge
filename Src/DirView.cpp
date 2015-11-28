@@ -2399,14 +2399,15 @@ struct FileCmpReport: public IFileCmpReport
 		const CDiffContext& ctxt = m_pDirView->GetDiffContext();
 		const DIFFITEM &di = m_pDirView->GetDiffItem(nIndex);
 		
-		sLinkPath = paths_ConcatPath(ctxt.GetLeftPath(),
-			paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename));
+		String sLinkFullPath = paths_ConcatPath(ctxt.GetLeftPath(), di.diffFileInfo[0].GetFile());
 
-		if (di.diffcode.isDirectory() || !IsItemNavigableDiff(ctxt, di) || IsArchiveFile(sLinkPath))
+		if (di.diffcode.isDirectory() || !IsItemNavigableDiff(ctxt, di) || IsArchiveFile(sLinkFullPath))
 		{
 			sLinkPath.clear();
 			return false;
 		}
+
+		sLinkPath = di.diffFileInfo[0].GetFile();
 
 		string_replace(sLinkPath, _T("\\"), _T("_"));
 		sLinkPath += _T(".html");
