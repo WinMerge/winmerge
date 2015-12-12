@@ -444,7 +444,7 @@ struct DirActions
 			if (paths_DoesPathExist(act.src) == DOES_NOT_EXIST)
 				throw ContentsChangedException(act.src);
 
-			act.dest = paths_ConcatPath(pscript->m_destBase, di.diffFileInfo[index].filename);
+			act.dest = paths_ConcatPath(pscript->m_destBase, di.diffFileInfo[index].GetFile());
 			act.dirflag = di.diffcode.isDirectory();
 			act.context = it.first;
 			act.atype = atype;
