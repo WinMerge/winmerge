@@ -51,7 +51,7 @@
 
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
-#define VS120COMNTOOLS GetEnv('VS120COMNTOOLS')
+#define VS140COMNTOOLS GetEnv('VS140COMNTOOLS')
 
 [Setup]
 AppName=WinMerge
@@ -93,7 +93,7 @@ UninstallDisplayIcon={app}\{code:ExeName}
 ;Artwork References
 WizardImageFile=Art\Large Logo.bmp
 WizardSmallImageFile=Art\Small Logo.bmp
-WizardImageStretch=false
+WizardImageStretch=true
 
 ;It is confusing, if Setup/Uninstall use the same icon like WinMerge!
 ;SetupIconFile=..\..\src\res\Merge.ico
@@ -460,7 +460,7 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt; DestDir: {app}\Docs; Co
 Source: ..\..\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Docs\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
+Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Build\Manual\htmlhelp\WinMerge_ja.chm; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
@@ -483,14 +483,14 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Turkish.txt; DestDir: {app}\Docs; 
 Source: ..\..\Translations\WinMerge\Ukrainian.po; DestDir: {app}\Languages; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt; DestDir: {app}\Docs; Components: Languages\Ukrainian
 
-Source: ..\..\Build\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
-Source: ..\..\Build\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
+Source: ..\..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
+Source: ..\..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 
 ;Documentation
-Source: ..\..\Build\Docs\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Build\Docs\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Docs\Users\ReleaseNotes.html; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Build\Docs\ChangeLog.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Docs\Users\ChangeLog.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: Core
 Source: ..\..\Docs\users\GPL.rtf; DestDir: {app}\Docs\; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 
@@ -527,7 +527,7 @@ Source: ..\..\Externals\winimerge\GPL.txt; DestDir: {app}\WinIMerge; Components:
 Source: ..\..\Externals\winimerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
 ;Source: ..\..\Externals\winimerge\Build\Release\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
 Source: ..\..\Externals\winimerge\Build\Release\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: {#VS120COMNTOOLS}\..\..\VC\redist\x86\Microsoft.VC120.OpenMP\vcomp120.dll; DestDir: {app}; Components: WinIMerge
+Source: {#VS140COMNTOOLS}\..\..\VC\redist\x86\Microsoft.VC140.OpenMP\vcomp140.dll; DestDir: {app}; Components: WinIMerge
 
 ;GnuWin32 Patch for Windows
 Source: C:\Program Files\WinMerge\GnuWin32\*.*; DestDir: {app}\GnuWin32; Flags: recursesubdirs; Components: Patch

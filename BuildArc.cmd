@@ -46,7 +46,7 @@ mkdir "%DISTDIR%\2.14-zip-version\WinMerge\GnuWin32" 2> NUL
 mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\GnuWin32" 2> NUL
 
 rem Readme
-for %%i in (Build\Docs\*.*) do (
+for %%i in (Translations\Docs\Readme\*.*) do (
   copy "%%i" "%DISTDIR%\2.14-zip-version\WinMerge\%%~nxi"
   copy "%%i" "%DISTDIR%\2.14-x64-zip-version\WinMerge\%%~nxi"
 )
