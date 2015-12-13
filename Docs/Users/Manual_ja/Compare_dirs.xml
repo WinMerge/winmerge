@@ -7,9 +7,6 @@
   <para>このトピックは、フォルダ比較ウィンドウを使用して、
     フォルダを比較・マージする方法を説明しています。</para>
 
-  <xi:include href="Text_encoding.xml"
-              xmlns:xi="http://www.w3.org/2001/XInclude" />
-
   <section id="Compare_dirs_starting">
     <title>フォルダ比較操作の開始</title>
 
@@ -829,7 +826,7 @@ I get the partial list, but no Abort indicator.--></para>
       <menuchoice>
           <guimenu>ファイル</guimenu>
 
-          <!-- TODO: 日本語版では、ファイル - 読み取り専用 - 左側を〜 と一階層多い -->
+          <!-- TODO: 日本語版では、ファイル - 読み取り専用 - 左側を? と一階層多い -->
 <guimenuitem>左側を読み取り専用</guimenuitem>
         </menuchoice>、または、<menuchoice>
           <guimenu>ファイル</guimenu>
