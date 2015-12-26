@@ -522,27 +522,26 @@ bool DoItemRename(InputIterator& it, const CDiffContext& ctxt, const String& szN
 	String failpath;
 	DIFFITEM &di = *it;
 	paths = ::GetItemFileNames(ctxt, di);
-	for (int i = 0; i < paths.GetSize(); ++i)
+	for (int index = 0; index < nDirs; index++)
 	{
-		if (paths_DoesPathExist(paths[i]) == DOES_NOT_EXIST)
+		if (di.diffcode.exists(index) && paths_DoesPathExist(paths[index]) == DOES_NOT_EXIST)
 			throw ContentsChangedException(failpath);
 	}
 
 	bool bRename[3] = {false};
-	int index;
-	for (index = 0; index < nDirs; index++)
+	for (int index = 0; index < nDirs; index++)
 	{
 		if (di.diffcode.exists(index))
 			bRename[index] = RenameOnSameDir(paths[index], szNewItemName);
 	}
 
 	int nSuccessCount = 0;
-	for (index = 0; index < nDirs; index++)
+	for (int index = 0; index < nDirs; index++)
 		nSuccessCount += bRename[index] ? 1 : 0;
 
 	if (nSuccessCount > 0)
 	{
-		for (index = 0; index < nDirs; index++)
+		for (int index = 0; index < nDirs; index++)
 		{
 			if (bRename[index])
 				di.diffFileInfo[index].filename = szNewItemName;
