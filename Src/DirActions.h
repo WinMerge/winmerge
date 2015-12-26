@@ -535,22 +535,12 @@ bool DoItemRename(InputIterator& it, const CDiffContext& ctxt, const String& szN
 			bRename[index] = RenameOnSameDir(paths[index], szNewItemName);
 	}
 
-	int nSuccessCount = 0;
+	if (std::count(bRename, bRename + nDirs, true) == 0)
+		return false;
+	
 	for (int index = 0; index < nDirs; index++)
-		nSuccessCount += bRename[index] ? 1 : 0;
-
-	if (nSuccessCount > 0)
-	{
-		for (int index = 0; index < nDirs; index++)
-		{
-			if (bRename[index])
-				di.diffFileInfo[index].filename = szNewItemName;
-			else
-				di.diffFileInfo[index].filename = _T("");
-		}
-	}
-
-	return (bRename[0] || bRename[1] || (nDirs > 2 && bRename[2]));
+		di.diffFileInfo[index].filename = bRename[index] ? szNewItemName : _T("");
+	return true;
 }
 
 template<class InputIterator, class OutputIterator>
