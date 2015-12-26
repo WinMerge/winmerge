@@ -173,18 +173,6 @@ CImgMergeFrame::~CImgMergeFrame()
 		m_pDirDoc = NULL;
 	}
 
-	if (m_hIdentical != NULL)
-	{
-		DestroyIcon(m_hIdentical);
-		m_hIdentical = NULL;
-	}
-
-	if (m_hDifferent != NULL)
-	{
-		DestroyIcon(m_hDifferent);
-		m_hDifferent = NULL;
-	}
-
 	HMODULE hModule = GetModuleHandle(_T("WinIMergeLib.dll"));
 	if (hModule)
 	{

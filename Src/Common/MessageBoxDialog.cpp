@@ -167,15 +167,6 @@ CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, UINT nMessageID,
  */
 CMessageBoxDialog::~CMessageBoxDialog ( )
 {
-	// Check whether an icon was loaded.
-	if ( m_hIcon != NULL )
-	{
-		// Free the icon.
-		DestroyIcon(m_hIcon);
-
-		// Reset the icon handle.
-		m_hIcon = NULL;
-	}
 }
 
 //////////////////////////////////////////////////////////////////////////////
