@@ -256,18 +256,6 @@ BOOL CDirFrame::DestroyWindow()
 		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
 	}
 
-	if (m_hIdentical != NULL)
-	{
-		DestroyIcon(m_hIdentical);
-		m_hIdentical = NULL;
-	}
-
-	if (m_hDifferent != NULL)
-	{
-		DestroyIcon(m_hDifferent);
-		m_hDifferent = NULL;
-	}
-
 	return CMDIChildWnd::DestroyWindow();
 }
 
