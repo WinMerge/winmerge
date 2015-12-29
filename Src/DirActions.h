@@ -434,7 +434,7 @@ struct DirActions
 		const int index = SideToIndex(m_ctxt, src);
 		const DIFFITEM& di = *it.second;
 
-		if (di.diffcode.diffcode != 0 && IsItemCopyable(di, index) && 
+		if (di.diffcode.diffcode != 0 && di.diffcode.exists(index) &&
 			(atype == FileAction::ACT_MOVE ? (!m_RO[index] && IsItemDeletable(di, index)) : true))
 		{
 			FileActionItem act;
