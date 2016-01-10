@@ -328,6 +328,7 @@ protected:
 	afx_msg void OnUpdateViewExpandAllSubdirs(CCmdUI* pCmdUI);
 	afx_msg void OnViewCollapseAllSubdirs();
 	afx_msg void OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI);
+	afx_msg void OnViewSwapPanes();
 	afx_msg void OnOptionsShowDifferent();
 	afx_msg void OnOptionsShowIdentical();
 	afx_msg void OnOptionsShowUniqueLeft();

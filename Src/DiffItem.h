@@ -162,6 +162,16 @@ public:
 	// rescan
 	bool isScanNeeded() const { return ((diffcode & DIFFCODE::SCANFLAGS) == DIFFCODE::NEEDSCAN); }
 
+	void swap(int idx1, int idx2)
+	{
+		bool e[3] = { false, false, false };
+		for (int i = 0; i < 3; ++i)
+			e[i] = exists(i);
+		std::swap(e[idx1], e[idx2]);
+		setSideNone();
+		for (int i = 0; i < 3; ++i)
+			if (e[i]) setSideFlag(i);
+	}
 };
 
 /**
@@ -199,4 +209,5 @@ struct DIFFITEM : ListEntry
 	bool IsAncestor(const DIFFITEM *pdi) const;
 	bool HasChildren() const;
 	void RemoveChildren();
+	void Swap(int idx1, int idx2);
 };

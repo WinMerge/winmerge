@@ -40,6 +40,8 @@ public:
 	unsigned GetCustomFlags1(uintptr_t diffpos) const;
 	void SetCustomFlags1(uintptr_t diffpos, unsigned flag);
 
+	void Swap(int idx1, int idx2);
+
 protected:
 	ListEntry m_root; /**< Root of list of diffitems */
 };

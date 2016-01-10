@@ -238,3 +238,12 @@ CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode) const
 		}
 	}
 }
+
+void CompareStats::Swap(int idx1, int idx2)
+{
+	idx2 = m_nDirs < 3 ? idx2 + 1 : idx2;
+	std::swap(m_counts[RESULT_LUNIQUE + idx1], m_counts[RESULT_LUNIQUE + idx2]);
+	std::swap(m_counts[RESULT_LMISSING + idx1], m_counts[RESULT_LMISSING + idx2]);
+	std::swap(m_counts[RESULT_LDIRUNIQUE + idx1], m_counts[RESULT_LDIRUNIQUE + idx2]);
+	std::swap(m_counts[RESULT_LDIRMISSING + idx1], m_counts[RESULT_LDIRMISSING + idx2]);
+}

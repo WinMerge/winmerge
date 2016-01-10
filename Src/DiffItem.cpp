@@ -65,3 +65,14 @@ void DIFFITEM::RemoveChildren()
 		delete p;
 	}
 }
+
+void DIFFITEM::Swap(int idx1, int idx2)
+{
+	std::swap(diffFileInfo[idx1], diffFileInfo[idx2]);
+	diffcode.swap(idx1, idx2);
+	if (HasChildren())
+	{
+		for (ListEntry *p = children.IsSibling(children.Flink); p; p = children.IsSibling(p->Flink))
+			static_cast<DIFFITEM *>(p)->Swap(idx1, idx2);
+	}
+}

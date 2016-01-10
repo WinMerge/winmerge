@@ -198,3 +198,9 @@ void DiffItemList::SetCustomFlags1(uintptr_t diffpos, unsigned flag)
 	DIFFITEM & di = GetDiffRefAt(diffpos);
 	di.customFlags1 = flag;
 }
+
+void DiffItemList::Swap(int idx1, int idx2)
+{
+	for (ListEntry *p = m_root.IsSibling(m_root.Flink); p; p = m_root.IsSibling(p->Flink))
+		static_cast<DIFFITEM *>(p)->Swap(idx1, idx2);
+}

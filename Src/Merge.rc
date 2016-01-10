@@ -278,6 +278,8 @@ BEGIN
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
+        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM SEPARATOR
         POPUP "&Toolbar"
         BEGIN
             MENUITEM "&None",                       ID_TOOLBAR_NONE

@@ -144,6 +144,15 @@ public:
 
 	int GetCompareDirs() const { return m_paths.GetSize(); }
 
+	void Swap(int idx1, int idx2)
+	{
+		String tmp;
+		tmp = m_paths.GetPath(idx1);
+		m_paths.SetPath(idx1, m_paths.GetPath(idx2));
+		m_paths.SetPath(idx2, tmp);
+		DiffItemList::Swap(idx1, idx2);
+	}
+
 	IDiffFilter * m_piFilterGlobal; /**< Interface for file filtering. */
 	IPluginInfos * m_piPluginInfos;
 	int m_iGuessEncodingType;

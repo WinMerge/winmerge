@@ -183,6 +183,7 @@
     <ClCompile Include="..\..\..\Src\CompareEngines\TimeSizeCompare.cpp" />
     <ClCompile Include="..\..\..\Src\CompareOptions.cpp" />
     <ClCompile Include="..\..\..\Src\Common\coretools.cpp" />
+    <ClCompile Include="..\..\..\Src\DiffFileInfo.cpp" />
     <ClCompile Include="..\..\..\Src\DiffItem.cpp" />
     <ClCompile Include="..\..\..\Src\diffutils\src\Diff.cpp" />
     <ClCompile Include="..\..\..\Src\DirItem.cpp" />

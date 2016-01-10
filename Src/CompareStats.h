@@ -90,8 +90,8 @@ public:
 	CompareStats::CMP_STATE GetCompareState() const;
 	void SetCurrentDiffItem(const DIFFITEM *di);
 	bool IsCompareDone() const { return m_bCompareDone; }
-
 	CompareStats::RESULT GetResultFromCode(unsigned diffcode) const;
+	void Swap(int idx1, int idx2);
 
 private:
 	int m_counts[RESULT_COUNT]; /**< Table storing result counts */
