@@ -112,6 +112,7 @@ public:
 	const CompareStats * GetCompareStats() const { return m_pCompareStats.get(); };
 	bool IsArchiveFolders() const;
 	PluginManager& GetPluginManager() { return m_pluginman; };
+	void Swap(int idx1, int idx2);
 
 protected:
 	void LoadLineFilterList();

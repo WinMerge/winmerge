@@ -634,3 +634,13 @@ bool CDirDoc::IsArchiveFolders() const
 	else
 		return false;
 }
+
+void CDirDoc::Swap(int idx1, int idx2)
+{
+	std::swap(m_bRO[idx1], m_bRO[idx2]);
+	std::swap(m_strDesc[idx1], m_strDesc[idx2]);
+	m_pCtxt->Swap(idx1, idx2);
+	m_pCompareStats->Swap(idx1, idx2);
+	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
+		UpdateHeaderPath(nIndex);
+}
