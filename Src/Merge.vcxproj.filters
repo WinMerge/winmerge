@@ -700,9 +700,6 @@
     <ClCompile Include="OptionsDef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CCPromptDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="OptionsPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -744,6 +741,9 @@
     </ClCompile>
     <ClCompile Include="Common\PropertyPageHost.cpp">
       <Filter>MFCGui\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="CCPromptDlg.cpp">
+      <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
