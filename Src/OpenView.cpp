@@ -311,11 +311,12 @@ COpenDoc* COpenView::GetDocument() const // non-debug version is inline
 void COpenView::OnPaint()
 {
 	CPaintDC dc(this);
-	m_picture.Render(&dc);
 	CSize size = m_picture.GetImageSize(&dc);
+	CRect rcImage(0, 0, size.cx * GetSystemMetrics(SM_CXSMICON) / 16, size.cy * GetSystemMetrics(SM_CYSMICON) / 16);
 	CRect rc;
+	m_picture.Render(&dc, rcImage);
 	GetClientRect(&rc);
-    dc.PatBlt(size.cx, 0, rc.Width() - size.cx, size.cy, PATCOPY);
+    dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
 
 	rc.left = rc.right - GetSystemMetrics(SM_CXVSCROLL);
 	rc.top = rc.bottom - GetSystemMetrics(SM_CYHSCROLL);

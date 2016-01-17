@@ -33,6 +33,16 @@ BEGIN_MESSAGE_MAP(CMDITabBar, CControlBar)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
+static int determineIconSize()
+{
+	const int iconCX = GetSystemMetrics(SM_CXSMICON);
+	if (iconCX < 24)
+		return 16;
+	if (iconCX < 32)
+		return 24;
+	return 32;
+}
+
 /** 
  * @brief Create tab bar.
  * @param pParentWnd [in] main frame window pointer
@@ -45,7 +55,7 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 	if (!CWnd::Create(WC_TABCONTROL, NULL, WS_CHILD | WS_VISIBLE | TCS_OWNERDRAWFIXED, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_FIRST+30))
 		return FALSE;
 
-	TabCtrl_SetPadding(m_hWnd, 16, 4);
+	TabCtrl_SetPadding(m_hWnd, determineIconSize(), 4);
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
@@ -340,16 +350,17 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		rc.top += 3;
 		SetTextColor(lpDraw->hDC, GetSysColor(COLOR_BTNTEXT));
 	}
-	rc.left += 16;
+	CSize iconsize(determineIconSize(), determineIconSize());
+	rc.left += iconsize.cx;
 	SetBkMode(lpDraw->hDC, TRANSPARENT);
 	HWND hwndFrame = reinterpret_cast<HWND>(item.lParam);
 	if (::IsWindow(hwndFrame))
 	{
-		HICON hIcon = CWnd::FromHandle(hwndFrame)->GetIcon(TRUE);
+		HICON hIcon = (HICON)::SendMessage(hwndFrame, WM_GETICON, ICON_SMALL2, 0);
 		if (!hIcon)
 			hIcon = (HICON)GetClassLongPtr(hwndFrame, GCLP_HICONSM);
 		if (hIcon)
-			DrawIconEx(lpDraw->hDC, rc.left - 16 - 2, rc.top + (rc.bottom - rc.top - 16) / 2, hIcon, 16, 16, 0, NULL, DI_NORMAL);
+			DrawIconEx(lpDraw->hDC, rc.left - iconsize.cx - 2, rc.top + (rc.bottom - rc.top - iconsize.cy) / 2, hIcon, iconsize.cx, iconsize.cy, 0, NULL, DI_NORMAL);
 	}
 	DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 
@@ -449,12 +460,13 @@ void CMDITabBar::OnLButtonUp(UINT nFlags, CPoint point)
 CRect CMDITabBar::GetCloseButtonRect(int nItem) const
 {
 	CRect rc;
+	CSize size(determineIconSize(), determineIconSize());
 	GetItemRect(nItem, &rc);
-	rc.left = rc.right - 20;
-	rc.right = rc.left + 16;
+	rc.left = rc.right - size.cx - 4;
+	rc.right = rc.left + size.cx;
 	int y = (rc.top + rc.bottom) / 2;
-	rc.top = y - 16 / 2 + 1;
-	rc.bottom = rc.top + 16;
+	rc.top = y - size.cy / 2 + 1;
+	rc.bottom = rc.top + size.cy;
 	return rc;
 }
 

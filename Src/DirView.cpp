@@ -351,8 +351,15 @@ CDirDoc* CDirView::GetDocument() // non-debug version is inline
 
 void CDirView::OnInitialUpdate()
 {
-	const int iconCX = 16;
-	const int iconCY = 16;
+	const int iconCX = []() {
+		const int cx = GetSystemMetrics(SM_CXSMICON);
+		if (cx < 24)
+			return 16;
+		if (cx < 32)
+			return 24;
+		return 32;
+	}();
+	const int iconCY = iconCX;
 	CListView::OnInitialUpdate();
 	m_pList = &GetListCtrl();
 	m_pIList.reset(new IListCtrlImpl(m_pList->m_hWnd));
@@ -380,33 +387,22 @@ void CDirView::OnInitialUpdate()
 	// NOTE: these must be in the exactly the same order than in enum
 	// definition in begin of this file!
 	VERIFY(m_imageList.Create(iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LFILE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_MFILE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_RFILE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_MRFILE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LRFILE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LMFILE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_NOTEQUALFILE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_EQUALFILE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_EQUALBINARY)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_BINARYDIFF)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LFOLDER)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_MFOLDER)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_RFOLDER)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_MRFOLDER)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LRFOLDER)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LMFOLDER)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FILESKIP)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERSKIP)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_NOTEQUALFOLDER)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_EQUALFOLDER)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDER)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_COMPARE_ERROR)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERUP)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERUP_DISABLE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_COMPARE_ABORTED)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_NOTEQUALTEXTFILE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_EQUALTEXTFILE)));
+	int icon_ids[] = {
+		IDI_LFILE, IDI_MFILE, IDI_RFILE,
+		IDI_MRFILE, IDI_LRFILE, IDI_LMFILE,
+		IDI_NOTEQUALFILE, IDI_EQUALFILE,
+		IDI_EQUALBINARY, IDI_BINARYDIFF,
+		IDI_LFOLDER, IDI_MFOLDER, IDI_RFOLDER,
+		IDI_MRFOLDER, IDI_LRFOLDER, IDI_LMFOLDER,
+		IDI_FILESKIP, IDI_FOLDERSKIP,
+		IDI_NOTEQUALFOLDER, IDI_EQUALFOLDER, IDI_FOLDER,
+		IDI_COMPARE_ERROR,
+		IDI_FOLDERUP, IDI_FOLDERUP_DISABLE,
+		IDI_COMPARE_ABORTED,
+		IDI_NOTEQUALTEXTFILE, IDI_EQUALTEXTFILE
+	};
+	for (auto id : icon_ids)
+		VERIFY(-1 != m_imageList.Add((HICON)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(id), IMAGE_ICON, iconCX, iconCY, 0)));
 	m_pList->SetImageList(&m_imageList, LVSIL_SMALL);
 
 	// Load the icons used for the list view (expanded/collapsed state icons)
