@@ -353,7 +353,7 @@ void DirCmpReport::GenerateHTMLHeader()
 			enc.rdbuf()->setLineLength(0);
 			enc << m_pList->GetIconPNGData(i);
 			enc.close();
-			WriteString(string_format(_T("\t\t.icon%d { background-image: url('data:image/png;base64,%s'); background-repeat: no-repeat; }\n"), i, ucr::toTString(stream.str()).c_str()));
+			WriteString(string_format(_T("\t\t.icon%d { background-image: url('data:image/png;base64,%s'); background-repeat: no-repeat; background-size: 16px 16px; }\n"), i, ucr::toTString(stream.str()).c_str()));
 		}
 	}
 	for (int i = 0; i < maxIndent + 1; ++i)
