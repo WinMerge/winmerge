@@ -166,16 +166,6 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 		MAKEINTRESOURCE(IDI_EQUALBINARY), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
 	pBitmapCtrl->SetIcon(hIcon);
 
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_ITOTALFOLDERS);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_SIGMA), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_ITOTALFILES);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_SIGMA), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
