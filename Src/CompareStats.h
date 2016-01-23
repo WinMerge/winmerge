@@ -92,6 +92,7 @@ public:
 	bool IsCompareDone() const { return m_bCompareDone; }
 	CompareStats::RESULT GetResultFromCode(unsigned diffcode) const;
 	void Swap(int idx1, int idx2);
+	int GetCompareDirs() const { return m_nDirs; }
 
 private:
 	int m_counts[RESULT_COUNT]; /**< Table storing result counts */

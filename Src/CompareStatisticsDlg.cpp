@@ -31,18 +31,14 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
-/** @brief Icon size in the dialog. */
-static const CSize IconSize(16, 16);
-
 /////////////////////////////////////////////////////////////////////////////
 // SaveClosingDlg dialog
 
 IMPLEMENT_DYNAMIC(CompareStatisticsDlg, CDialog)
 
-CompareStatisticsDlg::CompareStatisticsDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CompareStatisticsDlg::IDD, pParent)
-, m_pCompareStats(NULL)
+CompareStatisticsDlg::CompareStatisticsDlg(const CompareStats* pStats, CWnd* pParent /*=NULL*/) :
+	m_pCompareStats(pStats),
+	CDialog(pStats->GetCompareDirs() < 3 ? IDD_COMPARE_STATISTICS : IDD_COMPARE_STATISTICS3, pParent)
 {
 	//{{AFX_DATA_INIT(CompareStatisticsDlg)
 	//}}AFX_DATA_INIT
@@ -66,115 +62,82 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 	int totalFiles = 0;
 	int totalFolders = 0;
+	const int iconCX = []() {
+		const int cx = GetSystemMetrics(SM_CXSMICON);
+		if (cx < 24)
+			return 16;
+		if (cx < 32)
+			return 24;
+		return 32;
+	}();
+	const int iconCY = iconCX;
 
-	// Identicals
-	int count = m_pCompareStats->GetCount(CompareStats::RESULT_DIR);
-	totalFolders += count;
-	SetDlgItemInt(IDC_STAT_IDENTICFOLDER, count);
-	count = m_pCompareStats->GetCount(CompareStats::RESULT_SAME);
-	totalFiles += count;
-	SetDlgItemInt(IDC_STAT_IDENTICFILE, count);
-	count = m_pCompareStats->GetCount(CompareStats::RESULT_BINSAME);
-	totalFiles += count;
-	SetDlgItemInt(IDC_STAT_IDENTICBINARY, count);
-
-	// Different
-	count = m_pCompareStats->GetCount(CompareStats::RESULT_DIFF);
-	totalFiles += count;
-	SetDlgItemInt(IDC_STAT_DIFFFILE, count);
-	count = m_pCompareStats->GetCount(CompareStats::RESULT_BINDIFF);
-	totalFiles += count;
-	SetDlgItemInt(IDC_STAT_DIFFBINARY, count);
-
-	// Unique
-	count = m_pCompareStats->GetCount(CompareStats::RESULT_LDIRUNIQUE);
-	totalFolders += count;
-	SetDlgItemInt(IDC_STAT_LUNIQFOLDER, count);
-	count = m_pCompareStats->GetCount(CompareStats::RESULT_LUNIQUE);
-	totalFiles += count;
-	SetDlgItemInt(IDC_STAT_LUNIQFILE, count);
-	count = m_pCompareStats->GetCount(CompareStats::RESULT_MDIRUNIQUE);
-	totalFolders += count;
-	SetDlgItemInt(IDC_STAT_MUNIQFOLDER, count);
-	count = m_pCompareStats->GetCount(CompareStats::RESULT_MUNIQUE);
-	totalFiles += count;
-	SetDlgItemInt(IDC_STAT_MUNIQFILE, count);
-	count = m_pCompareStats->GetCount(CompareStats::RESULT_RDIRUNIQUE);
-	totalFolders += count;
-	SetDlgItemInt(IDC_STAT_RUNIQFOLDER, count);
-	count = m_pCompareStats->GetCount(CompareStats::RESULT_RUNIQUE);
-	totalFiles += count;
-	SetDlgItemInt(IDC_STAT_RUNIQFILE, count);
+	static const struct { int ctlID; CompareStats::RESULT resultType; bool isDir; } ctlResultTypeMap[] =
+	{
+		{ IDC_STAT_IDENTICFOLDER,  CompareStats::RESULT_DIR,         true },
+		{ IDC_STAT_IDENTICFILE,    CompareStats::RESULT_SAME,        false },
+		{ IDC_STAT_IDENTICBINARY,  CompareStats::RESULT_BINSAME,     false },
+		{ IDC_STAT_DIFFFILE,       CompareStats::RESULT_DIFF,        false },
+		{ IDC_STAT_DIFFBINARY,     CompareStats::RESULT_BINDIFF,     false },
+		{ IDC_STAT_LUNIQFOLDER,    CompareStats::RESULT_LDIRUNIQUE,  true },
+		{ IDC_STAT_LUNIQFILE,      CompareStats::RESULT_LUNIQUE,     false },
+		{ IDC_STAT_MUNIQFOLDER,    CompareStats::RESULT_MDIRUNIQUE,  true },
+		{ IDC_STAT_MUNIQFILE,      CompareStats::RESULT_MUNIQUE,     false },
+		{ IDC_STAT_RUNIQFOLDER,    CompareStats::RESULT_RDIRUNIQUE,  true },
+		{ IDC_STAT_RUNIQFILE,      CompareStats::RESULT_RUNIQUE,     false },
+		{ IDC_STAT_LMISSINGFOLDER, CompareStats::RESULT_LDIRMISSING, true },
+		{ IDC_STAT_LMISSINGFILE,   CompareStats::RESULT_LMISSING,    false },
+		{ IDC_STAT_MMISSINGFOLDER, CompareStats::RESULT_MDIRMISSING, true },
+		{ IDC_STAT_MMISSINGFILE,   CompareStats::RESULT_MMISSING,    false },
+		{ IDC_STAT_RMISSINGFOLDER, CompareStats::RESULT_RDIRMISSING, true },
+		{ IDC_STAT_RMISSINGFILE,   CompareStats::RESULT_RMISSING,    false },
+	};
+	for (auto&& map : ctlResultTypeMap)
+	{
+		int count = m_pCompareStats->GetCount(map.resultType);
+		if (!map.isDir)
+			totalFiles += count;
+		else
+			totalFolders += count;
+		SetDlgItemInt(map.ctlID, count);
+	}
 
 	// Total
 	SetDlgItemInt(IDC_STAT_TOTALFOLDER, totalFolders);
 	SetDlgItemInt(IDC_STAT_TOTALFILE, totalFiles);
 
 	// Load small folder icons
-	CStatic * pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_ILUNIQFOLDER);
-	HICON hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_LFOLDER), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IMUNIQFOLDER);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_MFOLDER), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
+	static const struct { int ctlID; int iconID; } ctlIconMap[] =
+	{
+		{ IDC_STAT_ILUNIQFOLDER,    IDI_LFOLDER },
+		{ IDC_STAT_IMUNIQFOLDER,    IDI_MFOLDER },
+		{ IDC_STAT_IRUNIQFOLDER,    IDI_RFOLDER },
+		{ IDC_STAT_ILMISSINGFOLDER, IDI_MRFOLDER },
+		{ IDC_STAT_IMMISSINGFOLDER, IDI_LRFOLDER },
+		{ IDC_STAT_IRMISSINGFOLDER, IDI_LMFOLDER },
+		{ IDC_STAT_INOTEQUAL,       IDI_NOTEQUALFILE },
+		{ IDC_STAT_IDIFFBINFILE,    IDI_BINARYDIFF },
+		{ IDC_STAT_ILUNIQFILE,      IDI_LFILE },
+		{ IDC_STAT_IMUNIQFILE,      IDI_MFILE },
+		{ IDC_STAT_IRUNIQFILE,      IDI_RFILE },
+		{ IDC_STAT_ILMISSINGFILE,   IDI_MRFILE },
+		{ IDC_STAT_IMMISSINGFILE,   IDI_LRFILE },
+		{ IDC_STAT_IRMISSINGFILE,   IDI_LMFILE },
+		{ IDC_STAT_IEQUALFILE,      IDI_EQUALFILE },
+		{ IDC_STAT_IEQUALBINFILE,   IDI_EQUALBINARY },
+	};
 	
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IRUNIQFOLDER);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_RFOLDER), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-	
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IIDENTICFOLDER);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_FOLDER), IMAGE_ICON, IconSize.cy, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-	
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_INOTEQUAL);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_NOTEQUALFILE), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IDIFFBINFILE);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_BINARYDIFF), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_ILUNIQFILE);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_LFILE), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IMUNIQFILE);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_MFILE), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IRUNIQFILE);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_RFILE), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IEQUALFILE);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_EQUALFILE), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
-
-	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IEQUALBINFILE);
-	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_EQUALBINARY), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
-	pBitmapCtrl->SetIcon(hIcon);
+	for (auto&& map : ctlIconMap)
+	{
+		CStatic * pBitmapCtrl = static_cast<CStatic *>(GetDlgItem(map.ctlID));
+		if (pBitmapCtrl)
+		{
+			HICON hIcon = (HICON)LoadImage(AfxGetInstanceHandle(),
+				MAKEINTRESOURCE(map.iconID), IMAGE_ICON, iconCX, iconCY, LR_SHARED);
+			pBitmapCtrl->SetIcon(hIcon);
+		}
+	}
 
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
-}
-
-/**
- * @brief Set compare stats for the dialog.
- * @param [in] pStats Pointer to the structure containing compare stats.
- */
-void CompareStatisticsDlg::SetCompareStats(const CompareStats * pStats)
-{
-	m_pCompareStats = pStats;
 }

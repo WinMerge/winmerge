@@ -33,8 +33,7 @@ class CompareStatisticsDlg : public CDialog
 	DECLARE_DYNAMIC(CompareStatisticsDlg)
 
 public:
-	explicit CompareStatisticsDlg(CWnd* pParent = NULL);   // standard constructor
-	void SetCompareStats(const CompareStats * pStats);
+	CompareStatisticsDlg(const CompareStats * pStats, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CompareStatisticsDlg)

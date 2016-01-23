@@ -149,57 +149,32 @@ CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode) const
 	if (di.isResultFiltered())
 	{
 		// skipped
-		if (di.isDirectory())
-		{
-			return RESULT_DIRSKIP;
-		}
-		else
-		{
-			return RESULT_SKIP;
-		}
+		return di.isDirectory() ? RESULT_DIRSKIP : RESULT_SKIP;
 	}
 	else if (di.isSideFirstOnly())
 	{
 		// left-only
-		if (di.isDirectory())
-		{
-			return RESULT_LDIRUNIQUE;
-		}
-		else
-		{
-			return RESULT_LUNIQUE;
-		}
+		return di.isDirectory() ? RESULT_LDIRUNIQUE : RESULT_LUNIQUE;
 	}
 	else if (di.isSideSecondOnly())
 	{
 		// right-only
 		if (di.isDirectory())
-		{
-			if (m_nDirs < 3)
-				return RESULT_RDIRUNIQUE;
-			else
-				return RESULT_MDIRUNIQUE;
-		}
+			return (m_nDirs < 3) ? RESULT_RDIRUNIQUE : RESULT_MDIRUNIQUE;
 		else
-		{
-			if (m_nDirs < 3)
-				return RESULT_RUNIQUE;
-			else
-				return RESULT_MUNIQUE;
-		}
+			return (m_nDirs < 3) ? RESULT_RUNIQUE : RESULT_MUNIQUE;
 	}
 	else if (di.isSideThirdOnly())
 	{
 		// right-only
-		if (di.isDirectory())
-		{
-			return RESULT_RDIRUNIQUE;
-		}
-		else
-		{
-			return RESULT_RUNIQUE;
-		}
+		return di.isDirectory() ? RESULT_RDIRUNIQUE : RESULT_RUNIQUE;
 	}
+	else if (m_nDirs > 2 && !di.exists(0) && di.exists(1) && di.exists(2))
+		return di.isDirectory() ? RESULT_LDIRMISSING : RESULT_LMISSING;
+	else if (m_nDirs > 2 && di.exists(0) && !di.exists(1) && di.exists(2))
+		return di.isDirectory() ? RESULT_MDIRMISSING : RESULT_MMISSING;
+	else if (m_nDirs > 2 && di.exists(0) && di.exists(1) && !di.exists(2))
+		return di.isDirectory() ? RESULT_RDIRMISSING : RESULT_RMISSING;
 	else if (di.isResultError())
 	{
 		// could be directory error ?
@@ -209,14 +184,7 @@ CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode) const
 	else if (di.isResultSame())
 	{
 		// same
-		if (di.isBin())
-		{
-			return RESULT_BINSAME;
-		}
-		else
-		{
-			return RESULT_SAME;
-		}
+		return di.isBin() ? RESULT_BINSAME : RESULT_SAME;
 	}
 	else
 	{
@@ -227,14 +195,7 @@ CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode) const
 		}
 		else
 		{
-			if (di.isBin())
-			{
-				return RESULT_BINDIFF;
-			}
-			else
-			{
-				return RESULT_DIFF;
-			}
+			return di.isBin() ? RESULT_BINDIFF : RESULT_DIFF;
 		}
 	}
 }
