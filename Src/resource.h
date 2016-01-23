@@ -377,8 +377,6 @@
 #define IDC_STAT_IMUNIQFILE             21223
 #define IDC_STAT_IEQUALFILE             1225
 #define IDC_STAT_IEQUALBINFILE          1226
-#define IDC_STAT_ITOTALFOLDERS          1227
-#define IDC_STAT_ITOTALFILES            1228
 #define IDC_EDITOR_CHARLEVEL            1229
 #define IDC_EDITOR_WORDLEVEL            1230
 #define IDC_AFFECTS_GROUP               1241
