@@ -73,6 +73,17 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 	return TRUE;
 };
 
+CSize CEditorFilePathBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
+{
+	TEXTMETRIC tm;
+	CDC *pdc = GetDC();
+	CFont *pOldFont = pdc->SelectObject(m_pFont.get());
+	pdc->GetTextMetrics(&tm);
+	pdc->SelectObject(pOldFont);
+	ReleaseDC(pdc);
+	return CSize(SHRT_MAX, tm.tmHeight + 6);
+}
+
 void CEditorFilePathBar::SetPaneCount(int nPanes)
 {
 	m_nPanes = nPanes;

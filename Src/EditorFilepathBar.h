@@ -54,6 +54,7 @@ public :
 	~CEditorFilePathBar();
 
 	BOOL Create( CWnd* pParentWnd);
+	virtual CSize CalcFixedLayout(BOOL bStretch, BOOL bHorz);
 
 // Dialog Data
 	enum { IDD = IDD_EDITOR_HEADERBAR };
