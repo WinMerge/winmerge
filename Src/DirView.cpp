@@ -3172,8 +3172,7 @@ void CDirView::OnUpdateMergeCompare2(CCmdUI *pCmdUI)
 
 void CDirView::OnViewCompareStatistics()
 {
-	CompareStatisticsDlg dlg;
-	dlg.SetCompareStats(GetDocument()->GetCompareStats());
+	CompareStatisticsDlg dlg(GetDocument()->GetCompareStats());
 	dlg.DoModal();
 }
 
