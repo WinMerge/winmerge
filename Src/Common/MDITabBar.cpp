@@ -40,7 +40,9 @@ static int determineIconSize()
 		return 16;
 	if (iconCX < 32)
 		return 24;
-	return 32;
+	if (iconCX < 48)
+		return 32;
+	return 48;
 }
 
 /** 

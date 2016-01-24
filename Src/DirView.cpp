@@ -357,7 +357,9 @@ void CDirView::OnInitialUpdate()
 			return 16;
 		if (cx < 32)
 			return 24;
-		return 32;
+		if (cx < 48)
+			return 32;
+		return 48;
 	}();
 	const int iconCY = iconCX;
 	CListView::OnInitialUpdate();
