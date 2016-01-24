@@ -18,12 +18,14 @@
 #define IDB_WINMERGEDIR                 203
 #define IDB_WINMERGE32                  204
 #define IDB_WINMERGEDIR32               205
+#define IDB_WINMERGE48                  206
+#define IDB_WINMERGEDIR48               207
 
 // Next default values for new objects
 //
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        204
+#define _APS_NEXT_RESOURCE_VALUE        208
 #define _APS_NEXT_COMMAND_VALUE         32768
 #define _APS_NEXT_CONTROL_VALUE         201
 #define _APS_NEXT_SYMED_VALUE           111

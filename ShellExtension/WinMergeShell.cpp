@@ -191,8 +191,8 @@ CWinMergeShell::CWinMergeShell()
 	m_dwMenuState = 0;
 	int cx = GetSystemMetrics(SM_CXMENUCHECK);
 	int cy = GetSystemMetrics(SM_CYMENUCHECK);
-	int id_fileicon = cx > 16 ? IDB_WINMERGE32 : IDB_WINMERGE;
-	int id_diricon = cx > 16 ? IDB_WINMERGEDIR32 : IDB_WINMERGEDIR;
+	int id_fileicon = cx > 16 ? (cx > 32 ? IDB_WINMERGE48 : IDB_WINMERGE32) : IDB_WINMERGE;
+	int id_diricon = cx > 16 ? (cx > 32 ? IDB_WINMERGEDIR48 : IDB_WINMERGEDIR32) : IDB_WINMERGEDIR;
 
 	// compress or stretch icon bitmap according to menu item height
 	HBITMAP hMergeBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(id_fileicon), IMAGE_BITMAP,
