@@ -299,8 +299,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,16,5,8
- PRODUCTVERSION 1,16,5,8
+ FILEVERSION 1,16,5,9
+ PRODUCTVERSION 1,16,5,9
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -317,12 +317,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html"
             VALUE "FileDescription", "WinMerge Shell Integration library"
-            VALUE "FileVersion", "1.16.5.8"
+            VALUE "FileVersion", "1.16.5.9"
             VALUE "InternalName", "ShellExtension"
             VALUE "LegalCopyright", "Copyright 2003-2016"
             VALUE "OriginalFilename", "ShellExtension.DLL"
             VALUE "ProductName", "WinMerge Shell Integration library"
-            VALUE "ProductVersion", "1.16.5.8"
+            VALUE "ProductVersion", "1.16.5.9"
         END
     END
     BLOCK "VarFileInfo"
@@ -346,8 +346,10 @@ IDR_WINMERGESHELL       REGISTRY                "WinMergeShell.rgs"
 
 IDB_WINMERGE            BITMAP                  "WinMerge.bmp"
 IDB_WINMERGE32          BITMAP                  "WinMerge32.bmp"
+IDB_WINMERGE48          BITMAP                  "WinMerge48.bmp"
 IDB_WINMERGEDIR         BITMAP                  "WinMergeDir.bmp"
 IDB_WINMERGEDIR32       BITMAP                  "WinMergeDir32.bmp"
+IDB_WINMERGEDIR48       BITMAP                  "WinMergeDir48.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
