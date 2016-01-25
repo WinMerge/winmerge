@@ -72,19 +72,44 @@ End Sub
 ''
 ' ...
 Class CString
-  Dim Comment, References, Context, Id, Str
+  Dim Comment, UniqueId, Context, Id, Str
 End Class
+
+Function MyMod(ByVal a, ByVal b)
+    a = Fix(CDbl(a))
+    b = Fix(CDbl(b))
+    MyMod = a - Fix(a / b) * b
+End Function
+
+Function GetUniqueId(ByRef oUIDs, ByVal sString)
+  Dim i, iHash
+  iHash = CDbl(0)
+  For i = 0 To Len(sString)
+    iHash = MyMod(iHash * 31 + Asc(sString), &H7FFFFFFF&)
+  Next
+  Do While True
+    If Not oUIDs.Exists(iHash) Then
+      oUIDs.Add iHash, sString
+      Exit Do
+    ElseIf oUIDs(iHash) = sString Then
+      Exit Do
+    End If
+    iHash = MyMod(iHash + 1, &H7FFFFFFF&)
+  Loop
+  GetUniqueId = iHash
+End Function
 
 ''
 ' ...
 Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
-  Dim oBlacklist, oStrings, oString, oRcFile, sLine, iLine
+  Dim oBlacklist, oStrings, oString, oRcFile, sLine, iLine, oUIDs
   Dim sRcFileName, iBlockType, sReference, sString, sComment, sContext, oMatch, sTemp, sKey
   Dim oLcFile, sLcLine, fContinuation
 
   Set oBlacklist = GetStringBlacklist("StringBlacklist.txt")
   
   Set oStrings = CreateObject("Scripting.Dictionary")
+  Set oUIDs = CreateObject("Scripting.Dictionary")
   
   If (oFSO.FileExists(sRcFilePath) = True) Then 'If the RC file exists...
     sRcFileName = oFSO.GetFileName(sRcFilePath)
@@ -98,7 +123,6 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
       sLine = Trim(sLcLine)
       iLine = iLine + 1
       
-      sReference = sRcFileName & ":" & iLine
       sString = ""
       sComment = ""
       sContext = ""
@@ -144,8 +168,8 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
               If FoundRegExpMatch(sLine, """((?:""""|[^""])*)""", oMatch) Then 'String...
                 sTemp = oMatch.SubMatches(0)
                 If (sTemp <> "") And (oBlacklist.Exists(sTemp) = False) Then 'If NOT blacklisted...
-                  sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sReference & """", 1, 1)
                   sString = Replace(sTemp, """""", "\""")
+                  sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sRcFileName & ":" & Hex(GetUniqueId(oUIDs, sString)) & """", 1, 1)
                   If (FoundRegExpMatch(sLine, "//#\. (.*?)$", oMatch) = True) Then 'If found a comment for the translators...
                     sComment = Trim(oMatch.SubMatches(0))
                   ElseIf (FoundRegExpMatch(sLine, "//msgctxt (.*?)$", oMatch) = True) Then 'If found a context for the translation...
@@ -180,11 +204,7 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
         If (sComment <> "") Then
           oString.Comment = sComment
         End If
-        If (oString.References <> "") Then
-          oString.References = oString.References & vbTab & sReference
-        Else
-          oString.References = sReference
-        End If
+        oString.UniqueId = sRcFileName & ":" & Hex(GetUniqueId(oUIDs, sString))
         oString.Context = sContext
         oString.Id = sString
         oString.Str = ""
@@ -232,7 +252,7 @@ End Function
 ''
 ' ...
 Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
-  Dim oPotFile, sKey, oString, aReferences, i
+  Dim oPotFile, sKey, oString, i
   
   Set oPotFile = oFSO.CreateTextFile(sPotPath, True)
   
@@ -263,10 +283,7 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
     If (oString.Comment <> "") Then 'If comment exists...
       oPotFile.Write "#. " & oString.Comment & vbLf
     End If
-    aReferences = SplitByTab(oString.References)
-    For i = LBound(aReferences) To UBound(aReferences) 'For all references...
-      oPotFile.Write "#: " & aReferences(i) & vbLf
-    Next
+    oPotFile.Write "#: " & oString.UniqueId & vbLf
     oPotFile.Write "#, c-format" & vbLf
     If (oString.Context <> "") Then 'If context exists...
       oPotFile.Write "msgctxt """ & oString.Context & """" & vbLf

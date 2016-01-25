@@ -26,8 +26,8 @@ public:
 	WORD GetLangId() const { return m_wCurLanguage; }
 	void InitializeLanguage(WORD langID);
 
-	bool TranslateString(size_t line, std::string &) const;
-	bool TranslateString(size_t line, std::wstring &) const;
+	bool TranslateString(unsigned uid, std::string &) const;
+	bool TranslateString(unsigned uid, std::wstring &) const;
 	bool TranslateString(const std::string&, String &) const;
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
@@ -41,9 +41,9 @@ public:
 private:
 	HINSTANCE m_hCurrentDll;
 	LANGID m_wCurLanguage;
-	std::vector<std::string> m_strarray;
-	typedef std::map<std::string, int> EngLinenoMap;
-	EngLinenoMap m_map_lineno;
+	std::map<unsigned, std::string> m_map_uid_to_msgid;
+	typedef std::map<std::string, unsigned> EngMsgIDToUIDMap;
+	EngMsgIDToUIDMap m_map_msgid_to_uid;
 	unsigned m_codepage;
 // Implementation methods
 private:
