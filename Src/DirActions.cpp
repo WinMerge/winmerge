@@ -262,7 +262,6 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 	case FileActionItem::UI_DEL:
 		if (di.diffcode.isSideOnly(act.UIOrigin))
 		{
-			ctxt.RemoveDiff(reinterpret_cast<uintptr_t>(&di));
 			bRemoveItem = true;
 		}
 		else
