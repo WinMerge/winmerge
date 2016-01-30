@@ -28,6 +28,7 @@ public:
 	String m_strDisplayRoot[3];
 	String m_strRoot[3];
 	CTempPathContext *DeleteHead();
+	void Swap(int idx1, int idx2);
 };
 
 /**

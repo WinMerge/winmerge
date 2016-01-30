@@ -255,6 +255,14 @@ CTempPathContext *CTempPathContext::DeleteHead()
 	return pParent;
 }
 
+void CTempPathContext::Swap(int idx1, int idx2)
+{
+	std::swap(m_strDisplayRoot[idx1], m_strDisplayRoot[idx2]);
+	std::swap(m_strRoot[idx1], m_strRoot[idx2]);
+	if (m_pParent)
+		m_pParent->Swap(idx1, idx2);
+}
+
 /**
  * @brief Return installed or local version of 7-Zip.
  */

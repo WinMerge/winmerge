@@ -99,7 +99,7 @@ public:
 	void AddMergeDoc(IMergeDoc * pMergeDoc);
 	void MergeDocClosing(IMergeDoc * pMergeDoc);
 	CDiffThread m_diffThread;
-	void UpdateHeaderPath(BOOL bLeft);
+	void UpdateHeaderPath(int nIndex);
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;
 	void SetDescriptions(const String strDesc[]);
