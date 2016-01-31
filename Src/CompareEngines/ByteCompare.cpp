@@ -107,7 +107,6 @@ int ByteCompare::CompareFiles(FileLocation *location)
 	// We could compare directly in UCS-2LE here, as an optimization, in that case
 	char buff[2][WMCMPBUFF]; // buffered access to files
 	int i;
-	int result;
 	unsigned diffcode = 0;
 
 	// area of buffer currently holding data
@@ -180,7 +179,7 @@ int ByteCompare::CompareFiles(FileLocation *location)
 		int64_t offset1 = (ptr1 - &buff[1][0]);
 
 		// are these two buffers the same?
-		result = comparator.CompareBuffers(m_textStats[0], m_textStats[1],
+		int result = comparator.CompareBuffers(m_textStats[0], m_textStats[1],
 				ptr0, ptr1, end0, end1, eof[0], eof[1], offset0, offset1);
 		if (result == ByteComparator::RESULT_DIFF)
 		{

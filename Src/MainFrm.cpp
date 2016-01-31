@@ -2002,9 +2002,9 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 void CMainFrame::OnWindowCloseAll()
 {
 	CMDIChildWnd *pChild = MDIGetActive();
-	CDocument* pDoc;
 	while (pChild)
 	{
+		CDocument* pDoc;
 		if ((pDoc = pChild->GetActiveDocument()) != NULL)
 		{
 			if (!pDoc->SaveModified())

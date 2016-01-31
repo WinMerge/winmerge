@@ -123,7 +123,6 @@ int DiffUtils::diffutils_compare_files()
 	if (script)
 	{
 		struct change *next = script;
-		struct change *thisob = 0, *end = 0;
 
 		String asLwrCaseExt;
 		String LowerCaseExt = ucr::toTString(m_inf[0].name);
@@ -138,8 +137,8 @@ int DiffUtils::diffutils_compare_files()
 		while (next)
 		{
 			/* Find a set of changes that belong together.  */
-			thisob = next;
-			end = find_change(next);
+			struct change *thisob = next;
+			struct change *end = find_change(next);
 
 			/* Disconnect them from the rest of the changes,
 			making them a hunk, and remember the rest for next iteration.  */

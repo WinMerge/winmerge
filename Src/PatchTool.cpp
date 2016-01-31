@@ -93,8 +93,6 @@ void CPatchTool::AddFiles(const String &file1, const String &altPath1,
 int CPatchTool::CreatePatch()
 {
 	DIFFSTATUS status;
-	bool bResult = true;
-	bool bDiffSuccess;
 	int retVal = 0;
 
 	CPatchDlg dlgPatch;
@@ -107,6 +105,8 @@ int CPatchTool::CreatePatch()
 
 	if (ShowDialog(&dlgPatch))
 	{
+		bool bResult = true;
+
 		if (!paths_CreateIfNeeded(paths_GetPathOnly(dlgPatch.m_fileResult)))
 		{
 			LangMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
@@ -133,7 +133,7 @@ int CPatchTool::CreatePatch()
 			m_diffWrapper.SetPaths(PathContext(filename1, filename2), false);
 			m_diffWrapper.SetAlternativePaths(PathContext(files.pathLeft, files.pathRight));
 			m_diffWrapper.SetCompareFiles(PathContext(files.lfile, files.rfile));
-			bDiffSuccess = m_diffWrapper.RunFileDiff();
+			bool bDiffSuccess = m_diffWrapper.RunFileDiff();
 			m_diffWrapper.GetDiffStatus(&status);
 
 			if (!bDiffSuccess)

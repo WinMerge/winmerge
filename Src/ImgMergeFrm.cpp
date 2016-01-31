@@ -1147,13 +1147,11 @@ BOOL CImgMergeFrame::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->message == WM_KEYDOWN)
 	{
-		bool bHandled = false;
-		
 		// If we are in merging mode (merge with cursor keys)
 		// handle some keys here
 		if (theApp.GetMergingMode())
 		{
-			bHandled = MergeModeKeyDown(pMsg);
+			bool bHandled = MergeModeKeyDown(pMsg);
 			if (bHandled)
 				return true;
 		}

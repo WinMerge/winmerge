@@ -28,8 +28,6 @@ BinaryCompare::~BinaryCompare()
 static int compare_files(const String& file1, const String& file2)
 {
 	const size_t bufsize = 1024 * 256;
-	char buf1[bufsize];
-	char buf2[bufsize];
 	int code;
 	int fd1 = _wopen(file1.c_str(), O_BINARY | O_RDONLY);
 	int fd2 = _wopen(file2.c_str(), O_BINARY | O_RDONLY);
@@ -37,6 +35,8 @@ static int compare_files(const String& file1, const String& file2)
 	{
 		for (;;)
 		{
+			char buf1[bufsize];
+			char buf2[bufsize];
 			int size1 = read(fd1, buf1, sizeof(buf1));
 			int size2 = read(fd2, buf2, sizeof(buf2));
 			if (size1 <= 0 || size2 <= 0)

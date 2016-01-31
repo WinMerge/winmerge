@@ -1012,7 +1012,6 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		BOOL &bApplyToAll)
 {
 	CFileStatus status;
-	UINT userChoice = 0;
 	int nRetVal = IDOK;
 	BOOL bFileRO = FALSE;
 	BOOL bFileExists = FALSE;
@@ -1035,6 +1034,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 	
 	if (bFileExists && bFileRO)
 	{
+		UINT userChoice = 0;
 		// Version control system used?
 		// Checkout file from VCS and modify, don't ask about overwriting
 		// RO files etc.

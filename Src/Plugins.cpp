@@ -114,10 +114,10 @@ bool IsWindowsScriptThere()
 // list the function IDs and names in a script or activeX dll
 int GetFunctionsFromScript(IDispatch *piDispatch, vector<String>& namesArray, vector<int>& IdArray, INVOKEKIND wantedKind)
 {
-	HRESULT hr;
 	UINT iValidFunc = 0;
 	if (piDispatch)
 	{
+		HRESULT hr;
 		ITypeInfo *piTypeInfo=0;
 		unsigned  iTInfo = 0; // 0 for type information of IDispatch itself
 		LCID  lcid=0; // locale for localized method names (ignore if no localized names)

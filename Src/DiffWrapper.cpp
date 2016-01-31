@@ -995,7 +995,6 @@ void CDiffWrapper::GetDiffStatus(DIFFSTATUS *status) const
 String CDiffWrapper::FormatSwitchString() const
 {
 	String switches;
-	TCHAR tmpNum[5] = {0};
 	
 	switch (m_options.m_outputStyle)
 	{
@@ -1027,6 +1026,7 @@ String CDiffWrapper::FormatSwitchString() const
 
 	if (m_options.m_contextLines > 0)
 	{
+		TCHAR tmpNum[5] = {0};
 		_itot(m_options.m_contextLines, tmpNum, 10);
 		switches += tmpNum;
 	}
@@ -1196,13 +1196,12 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 	}
 
 	struct change *next = script;
-	struct change *thisob=0, *end=0;
 	
 	while (next)
 	{
 		/* Find a set of changes that belong together.  */
-		thisob = next;
-		end = find_change(next);
+		struct change *thisob = next;
+		struct change *end = find_change(next);
 		
 		/* Disconnect them from the rest of the changes,
 		making them a hunk, and remember the rest for next iteration.  */
@@ -1218,9 +1217,9 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 			/* Determine range of line numbers involved in each file.  */
 			int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
 			analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, inf);
-			OP_TYPE op=OP_NONE;
 			if (deletes || inserts || thisob->trivial)
 			{
+				OP_TYPE op = OP_NONE;
 				if (deletes && inserts)
 					op = OP_DIFF;
 				else if (deletes || inserts)
@@ -1340,7 +1339,6 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 		int trans_a0, trans_b0, trans_a1, trans_b1;
 		int first0, last0, first1, last1, deletes, inserts;
 		OP_TYPE op;
-		struct change *thisob, *end;
 		const file_data *pinf;
 
 		switch (file)
@@ -1352,8 +1350,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 		while (next)
 		{
 			/* Find a set of changes that belong together.  */
-			thisob = next;
-			end = find_change(next);
+			struct change *thisob = next;
+			struct change *end = find_change(next);
 			
 			/* Disconnect them from the rest of the changes,
 			making them a hunk, and remember the rest for next iteration.  */

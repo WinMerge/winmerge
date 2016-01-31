@@ -337,7 +337,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		CPen m_penBack;
 		int x0,y0,dy;
 		int nIconNormal=-1;
-		INT_PTR xoffset=-1,global_offset=-1;
+		INT_PTR xoffset=-1;
 		CImageList *bitmap=NULL;
 		
 		// set some colors
@@ -357,7 +357,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		if(lpDIS->itemData != NULL){
 			nIconNormal = (((BCMenuData*)(lpDIS->itemData))->menuIconNormal);
 			xoffset = (((BCMenuData*)(lpDIS->itemData))->xoffset);
-			global_offset = (((BCMenuData*)(lpDIS->itemData))->global_offset);
+			INT_PTR global_offset = (((BCMenuData*)(lpDIS->itemData))->global_offset);
 			bitmap = (((BCMenuData*)(lpDIS->itemData))->bitmap);
 			strText = ((BCMenuData*) (lpDIS->itemData))->GetString();
 
@@ -651,7 +651,7 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 		CPen m_penBack;
 		int x0,y0,dx,dy;
 		int nIconNormal=-1;
-		INT_PTR xoffset=-1,global_offset=-1;
+		INT_PTR xoffset=-1;
 		CImageList *bitmap=NULL;
 		
 		// set some colors
@@ -673,7 +673,7 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 			xoffset = (((BCMenuData*)(lpDIS->itemData))->xoffset);
 			bitmap = (((BCMenuData*)(lpDIS->itemData))->bitmap);
 			strText = ((BCMenuData*) (lpDIS->itemData))->GetString();
-			global_offset = (((BCMenuData*)(lpDIS->itemData))->global_offset);
+			INT_PTR global_offset = (((BCMenuData*)(lpDIS->itemData))->global_offset);
 
 			if(nIconNormal<0&&xoffset<0&&global_offset>=0){
 				xoffset=global_offset;
@@ -1469,10 +1469,8 @@ BOOL BCMenu::LoadToolbars(const UINT *arID,int n)
 
 BOOL BCMenu::LoadToolbar(UINT nToolBar)
 {
-	UINT nID,nStyle;
 	BOOL returnflag=FALSE;
 	CToolBar bar;
-	int xoffset=-1,xset;
 	
 	CWnd* pWnd = AfxGetMainWnd();
 	if (pWnd == NULL)pWnd = CWnd::GetDesktopWindow();
@@ -1483,11 +1481,13 @@ BOOL BCMenu::LoadToolbar(UINT nToolBar)
 		if(AddBitmapToImageList(&imglist,nToolBar)){
 			returnflag=TRUE;
 			for(int i=0;i<bar.GetCount();++i){
-				nID = bar.GetItemID(i); 
+				UINT nID = bar.GetItemID(i); 
 				if(nID && GetMenuState(nID, MF_BYCOMMAND)
 					!=0xFFFFFFFF){
-					xoffset=bar.CommandToIndex(nID);
+					int xoffset=bar.CommandToIndex(nID);
 					if(xoffset>=0){
+						UINT nStyle;
+						int xset;
 						bar.GetButtonInfo(xoffset,nID,nStyle,xset);
 						if(xset>0)xoffset=xset;
 					}
@@ -1507,8 +1507,6 @@ BOOL BCMenu::LoadFromToolBar(UINT nID,UINT nToolBar,int& xoffset)
 	if (hRsrc == NULL)
 		return FALSE;
 
-	int xset,offset;
-	UINT nStyle;
 	BOOL returnflag=FALSE;
 	CToolBar bar;
 	
@@ -1516,8 +1514,10 @@ BOOL BCMenu::LoadFromToolBar(UINT nID,UINT nToolBar,int& xoffset)
 	if (pWnd == NULL)pWnd = CWnd::GetDesktopWindow();
 	bar.Create(pWnd);
 	if(bar.LoadToolBar(nToolBar)){
-		offset=bar.CommandToIndex(nID);
+		int offset=bar.CommandToIndex(nID);
 		if(offset>=0){
+			UINT nStyle;
+			int xset;
 			bar.GetButtonInfo(offset,nID,nStyle,xset);
 			if(xset>0)xoffset=xset;
 			returnflag=TRUE;
@@ -1627,8 +1627,8 @@ BCMenuData *BCMenu::FindMenuOption(wchar_t *lpstrText)
 			if(pmenulist)return(pmenulist);
 		}
 		else{
-			const wchar_t *szWide;//SK: we use const to prevent misuse of this Ptr
 			for(j=0;j<=m_MenuList.GetUpperBound();++j){     
+				const wchar_t *szWide;//SK: we use const to prevent misuse of this Ptr
 				szWide = m_MenuList[j]->GetWideString ();
 				if(szWide && !wcscmp(lpstrText,szWide))//SK: modified for dynamic allocation
 					return(m_MenuList[j]);
@@ -1682,9 +1682,6 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 	INT_PTR j=0;
 	WORD    dwFlags = 0;              // Flags of the Menu Item
 	WORD    dwID  = 0;              // ID of the Menu Item
-	UINT    uFlags;                  // Actual Flags.
-	wchar_t *szCaption=NULL;
-	int      nLen   = 0;                // Length of caption
 	CTypedPtrArray<CPtrArray, BCMenu*>  m_Stack;    // Popup menu stack
 	CArray<BOOL,BOOL>  m_StackEnd;    // Popup menu stack
 	m_Stack.Add(this);                  // Add it to this...
@@ -1699,14 +1696,13 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 		}
 		else dwID = 0;
 		
-		uFlags = (UINT)dwFlags; // Remove MF_END from the flags that will
+		UINT uFlags = (UINT)dwFlags; // Remove MF_END from the flags that will
 		if(uFlags & MF_END) // be passed to the Append(OD)Menu functions.
 			uFlags -= MF_END;
 		
 		// Obtain Caption (and length)
 		
-		nLen = 0;
-		szCaption=new wchar_t[wcslen((wchar_t *)pTp)+1];
+		wchar_t *szCaption=new wchar_t[wcslen((wchar_t *)pTp)+1];
 		wcscpy(szCaption,(wchar_t *)pTp);
 		pTp=&pTp[(wcslen((wchar_t *)pTp)+1)*sizeof(wchar_t)];//modified SK
 		
@@ -1996,15 +1992,14 @@ void BCMenu::DeleteMenuList(void)
 void BCMenu::SynchronizeMenu(void)
 {
 	CTypedPtrArray<CPtrArray, BCMenuData*> temp;
-	BCMenuData *mdata;
 	CString string;
 	UINT_PTR submenu,nID=0;
-	UINT state,j;
+	UINT j;
 	
 	InitializeMenuList(0);
 	for(j=0;j<GetMenuItemCount();++j){
-		mdata=NULL;
-		state=GetMenuState(j,MF_BYPOSITION);
+		BCMenuData *mdata=NULL;
+		UINT state=GetMenuState(j,MF_BYPOSITION);
 		if(state&MF_POPUP){
 			submenu=(UINT_PTR)GetSubMenu(j)->m_hMenu;
 			mdata=FindMenuList(submenu);
@@ -2835,15 +2830,14 @@ int BCMenu::GetMenuPosition(char* pText)
 int BCMenu::GetMenuPosition(wchar_t* pText)
 {
 	int i,j;
-	BCMenu* psubmenu;
 	for(i=0;i<GetMenuItemCount();++i)
 	{
-		psubmenu=(BCMenu *)GetSubMenu(i);
+		BCMenu* psubmenu=(BCMenu *)GetSubMenu(i);
 		if(!psubmenu)
 		{
-			const wchar_t *szWide;//SK: we use const to prevent misuse of this Ptr
 			for(j=0;j<=m_MenuList.GetUpperBound();++j)
 			{     
+				const wchar_t *szWide;//SK: we use const to prevent misuse of this Ptr
 				szWide = m_MenuList[j]->GetWideString ();
 				if(szWide && !wcscmp(pText,szWide))//SK: modified for dynamic allocation
 					return j;
