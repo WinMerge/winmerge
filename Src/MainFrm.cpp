@@ -948,7 +948,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	{
 		if (!m_pMenus[MENU_OPENVIEW])
 			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
-		COpenDoc *pOpenDoc = (COpenDoc *)theApp.m_pOpenTemplate->CreateNewDocument();
+		COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
 		if (dwFlags)
 		{
 			pOpenDoc->m_dwFlags[0] = dwFlags[0];
@@ -1009,11 +1009,11 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 			CDirDoc::m_nDirsTemp = files.GetSize();
 			if (!m_pMenus[MENU_DIRVIEW])
 				theApp.m_pDirTemplate->m_hMenuShared = NewDirViewMenu();
-			pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->OpenDocumentFile(NULL);
+			pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->OpenDocumentFile(NULL));
 		}
 		else
 		{
-			pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->CreateNewDocument();
+			pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 		}
 	}
 
@@ -1371,7 +1371,7 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
 {
 	// Create a new merge doc
 	DocClass::m_nBuffersTemp = nFiles;
-	DocClass *pMergeDoc = (DocClass*)pTemplate->OpenDocumentFile(NULL);
+	DocClass *pMergeDoc = static_cast<DocClass*>(pTemplate->OpenDocumentFile(NULL));
 	if (pMergeDoc)
 	{
 		pDirDoc->AddMergeDoc(pMergeDoc);
@@ -1411,7 +1411,7 @@ void CMainFrame::OnToolsGeneratePatch()
 	// Mergedoc active?
 	if (frame == FRAME_FILE)
 	{
-		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+		CMergeDoc * pMergeDoc = static_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 		// If there are changes in files, tell user to save them first
 		BOOL bModified = FALSE;
 		for (int pane = 0; pane < pMergeDoc->m_nBuffers; pane++)
@@ -1433,7 +1433,7 @@ void CMainFrame::OnToolsGeneratePatch()
 	// Dirview active
 	else if (frame == FRAME_FOLDER)
 	{
-		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
+		CDirDoc * pDoc = static_cast<CDirDoc*>(pFrame->GetActiveDocument());
 		const CDiffContext& ctxt = pDoc->GetDiffContext();
 		CDirView *pView = pDoc->GetMainView();
 
@@ -1676,7 +1676,7 @@ void CMainFrame::OnSaveConfigData()
  */
 void CMainFrame::FileNew(int nPanes) 
 {
-	CDirDoc *pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->CreateNewDocument();
+	CDirDoc *pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage
@@ -2075,7 +2075,7 @@ void CMainFrame::OnSaveProject()
 
 	if (frame == FRAME_FILE)
 	{
-		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+		CMergeDoc * pMergeDoc = static_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 		left = pMergeDoc->m_filePaths.GetLeft();
 		right = pMergeDoc->m_filePaths.GetRight();
 		pathsDlg.SetPaths(left, right);
@@ -2085,7 +2085,7 @@ void CMainFrame::OnSaveProject()
 	else if (frame == FRAME_FOLDER)
 	{
 		// Get paths currently in compare
-		const CDirDoc * pDoc = (const CDirDoc*)pFrame->GetActiveDocument();
+		const CDirDoc * pDoc = static_cast<const CDirDoc*>(pFrame->GetActiveDocument());
 		const CDiffContext& ctxt = pDoc->GetDiffContext();
 		left = paths_AddTrailingSlash(ctxt.GetNormalizedLeft());
 		right = paths_AddTrailingSlash(ctxt.GetNormalizedRight());

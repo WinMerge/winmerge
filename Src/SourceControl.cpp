@@ -76,6 +76,7 @@ SourceControl::SourceControl() :
   m_CheckOutMulti(false)
 , m_bVCProjSync(false)
 , m_bVssSuppressPathCheck(false)
+, m_bCheckinVCS(false)
 {
 }
 

@@ -44,7 +44,7 @@ DIFFITEM* DiffItemList::AddDiff(DIFFITEM *parent)
  */
 void DiffItemList::RemoveDiff(uintptr_t diffpos)
 {
-	DIFFITEM *p = (DIFFITEM *)diffpos;
+	DIFFITEM *p = reinterpret_cast<DIFFITEM *>(diffpos);
 	p->RemoveSelf();
 	delete p;
 }
@@ -73,7 +73,7 @@ uintptr_t DiffItemList::GetFirstDiffPosition() const
  */
 uintptr_t DiffItemList::GetFirstChildDiffPosition(uintptr_t parentdiffpos) const
 {
-	DIFFITEM *parent = (DIFFITEM *)parentdiffpos;
+	DIFFITEM *parent = reinterpret_cast<DIFFITEM *>(parentdiffpos);
 	if (parent)
 		return (uintptr_t)parent->children.IsSibling(parent->children.Flink);
 	else
@@ -87,7 +87,7 @@ uintptr_t DiffItemList::GetFirstChildDiffPosition(uintptr_t parentdiffpos) const
  */
 const DIFFITEM &DiffItemList::GetNextDiffPosition(uintptr_t & diffpos) const
 {
-	DIFFITEM *p = (DIFFITEM *)diffpos;
+	DIFFITEM *p = reinterpret_cast<DIFFITEM *>(diffpos);
 	if (p->HasChildren())
 	{
 		diffpos = GetFirstChildDiffPosition(diffpos);
@@ -124,7 +124,7 @@ DIFFITEM &DiffItemList::GetNextDiffRefPosition(uintptr_t & diffpos)
  */
 const DIFFITEM &DiffItemList::GetNextSiblingDiffPosition(uintptr_t & diffpos) const
 {
-	DIFFITEM *p = (DIFFITEM *)diffpos;
+	DIFFITEM *p = reinterpret_cast<DIFFITEM *>(diffpos);
 	if (p->parent)
 		diffpos = (uintptr_t)p->parent->children.IsSibling(p->Flink);
 	else

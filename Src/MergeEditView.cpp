@@ -2667,7 +2667,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
 	theApp.TranslateMenu(menu.m_hMenu);
 
-	BCMenu *pSub = (BCMenu *)menu.GetSubMenu(0);
+	BCMenu *pSub = static_cast<BCMenu *>(menu.GetSubMenu(0));
 	ASSERT(pSub != NULL);
 
 	// Context menu opened using keyboard has no coordinates
@@ -3461,7 +3461,7 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 */
 void CMergeEditView::OnBeginPrinting(CDC * pDC, CPrintInfo * pInfo)
 {
-	((CChildFrame *)GetParentFrame())->PostMessage(WM_TIMER);
+	GetParentFrame()->PostMessage(WM_TIMER);
 
 	for (int pane = 0; pane < GetDocument()->m_nBuffers; pane++)
 	{
@@ -3482,7 +3482,7 @@ void CMergeEditView::OnEndPrinting(CDC * pDC, CPrintInfo * pInfo)
 	for (int pane = 0; pane < GetDocument()->m_nBuffers; pane++)
 		GetDocument()->GetView(pane)->CGhostTextView::OnEndPrinting(pDC, pInfo);
 
-	((CChildFrame *)GetParentFrame())->PostMessage(WM_TIMER);
+	GetParentFrame()->PostMessage(WM_TIMER);
 }
 
 /**
