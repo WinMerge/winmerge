@@ -354,7 +354,7 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 		int nColumns = m_wndSplitter.GetColumnCount();
 		CHexMergeView *pView[3] = {0};
 		for (pane = 0; pane < nColumns; ++pane)
-			pView[pane] = (CHexMergeView *)m_wndSplitter.GetPane(0, pane);
+			pView[pane] = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0, pane));
 
 		// Update mod indicators
 		TCHAR ind[2];

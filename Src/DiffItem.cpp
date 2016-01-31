@@ -52,7 +52,7 @@ bool DIFFITEM::IsAncestor(const DIFFITEM *pdi) const
 /** @brief Return whether the current item has children */
 bool DIFFITEM::HasChildren() const
 {
-	DIFFITEM *p = (DIFFITEM *)children.IsSibling(children.Flink);
+	DIFFITEM *p = static_cast<DIFFITEM *>(children.IsSibling(children.Flink));
 	return p ? true : false;
 }
 
@@ -60,7 +60,7 @@ void DIFFITEM::RemoveChildren()
 {
 	while (HasChildren())
 	{
-		DIFFITEM *p = (DIFFITEM *)children.Flink;
+		DIFFITEM *p = static_cast<DIFFITEM *>(children.Flink);
 		p->RemoveSelf();
 		delete p;
 	}

@@ -135,7 +135,7 @@ protected:
 
 #ifndef _DEBUG  // debug version in DiffView.cpp
 inline CMergeDoc* CLocationView::GetDocument()
-   { return (CMergeDoc*)m_pDocument; }
+   { return reinterpret_cast<CMergeDoc*>(m_pDocument); }
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

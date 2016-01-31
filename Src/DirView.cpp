@@ -664,7 +664,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	theApp.TranslateMenu(menu.m_hMenu);
 
 	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
-	BCMenu *pPopup = (BCMenu*) menu.GetSubMenu(0);
+	BCMenu *pPopup = static_cast<BCMenu*>(menu.GetSubMenu(0));
 	ASSERT(pPopup != NULL);
 
 	if (pDoc->m_nDirs < 3)
@@ -732,7 +732,7 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
 	theApp.TranslateMenu(menu.m_hMenu);
 	// 2nd submenu of IDR_POPUP_DIRVIEW is for header popup
-	BCMenu* pPopup = (BCMenu *)menu.GetSubMenu(1);
+	BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(1));
 	ASSERT(pPopup != NULL);
 
 	// invoke context menu
@@ -1945,7 +1945,7 @@ CDirFrame * CDirView::GetParentFrame()
 {
 	// can't verify cast without introducing more coupling
 	// (CDirView doesn't include DirFrame.h)
-	return (CDirFrame *)CListView::GetParentFrame();
+	return static_cast<CDirFrame *>(CListView::GetParentFrame());
 }
 
 void CDirView::OnRefresh()
@@ -2641,7 +2641,7 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
 
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
-	BCMenu *pPopup = (BCMenu*) pCmdUI->m_pSubMenu;
+	BCMenu *pPopup = static_cast<BCMenu*>(pCmdUI->m_pSubMenu);
 	if (pPopup == NULL)
 		return;
 

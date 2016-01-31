@@ -410,7 +410,7 @@ public:
 
 #ifndef _DEBUG  // debug version in DirView.cpp
 inline CDirDoc* CDirView::GetDocument()
-{ return (CDirDoc*)m_pDocument; }
+{ return reinterpret_cast<CDirDoc*>(m_pDocument); }
 #endif
 
 

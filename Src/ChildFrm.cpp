@@ -221,7 +221,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CMergeEditView * pView[3];
 	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		pView[pane] = (CMergeEditView *)m_wndSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, 0, pane));
+		pView[pane] = static_cast<CMergeEditView *>(m_wndSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, 0, pane)));
 		// connect merge views up to display of status info
 		pView[pane]->SetStatusInterface(&m_status[pane]);
 		pView[pane]->m_nThisPane = pane;
@@ -234,7 +234,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CMergeEditView * pDetail[3];
 	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		pDetail[pane] = (CMergeEditView *)m_wndDetailSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, pane, 0));
+		pDetail[pane] = static_cast<CMergeEditView *>(m_wndDetailSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, pane, 0)));
 		pDetail[pane]->m_nThisPane = pane;
 	}
 	// tell merge doc about these views
@@ -243,7 +243,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_wndFilePathBar.SetPaneCount(pDoc->m_nBuffers);
 	
 	// Set frame window handles so we can post stage changes back
-	((CLocationView *)pWnd)->SetFrameHwnd(GetSafeHwnd());
+	static_cast<CLocationView *>(pWnd)->SetFrameHwnd(GetSafeHwnd());
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
 	m_wndDetailBar.SetFrameHwnd(GetSafeHwnd());
 

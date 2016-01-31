@@ -603,7 +603,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		int iStatusMsgId;
 		int iUnpackerStatusMsgId;
 
-		UpdateButtonStatesThreadParams *pParams = (UpdateButtonStatesThreadParams *)msg.wParam;
+		UpdateButtonStatesThreadParams *pParams = reinterpret_cast<UpdateButtonStatesThreadParams *>(msg.wParam);
 		PathContext paths = pParams->m_paths;
 		HWND hWnd = pParams->m_hWnd;
 		delete pParams;
