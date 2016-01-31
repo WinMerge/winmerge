@@ -49,7 +49,7 @@ public:
 
 // All this object does is forward ShouldAbort calls to its containing CDiffThread
 
-	DiffThreadAbortable(CDiffThread * diffthread) : m_diffthread(diffthread) { }
+	explicit DiffThreadAbortable(CDiffThread * diffthread) : m_diffthread(diffthread) { }
 	CDiffThread * m_diffthread;
 };
 

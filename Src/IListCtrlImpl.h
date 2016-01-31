@@ -7,7 +7,7 @@
 class IListCtrlImpl : public IListCtrl
 {
 public:
-	IListCtrlImpl(HWND hwndListCtrl) : m_hwndListCtrl(hwndListCtrl)
+	explicit IListCtrlImpl(HWND hwndListCtrl) : m_hwndListCtrl(hwndListCtrl)
 	{
 	}
 
