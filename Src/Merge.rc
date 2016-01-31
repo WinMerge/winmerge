@@ -1626,7 +1626,7 @@ BEGIN
     LTEXT           "Which type of filter do you want to create?",IDC_STATIC,
                     14,7,229,11
     CONTROL         "Shared Filter (for all users on this machine)",IDC_SHARED,"Button",
-                    BS_AUTORADIOBUTTON,20,22,223,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,20,22,223,10
     CONTROL         "Private Filter (only for current user)",IDC_PRIVATE,"Button",
                     BS_AUTORADIOBUTTON,20,37,223,10
     DEFPUSHBUTTON   "OK",IDOK,65,55,50,14
