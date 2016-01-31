@@ -25,6 +25,8 @@
 #include <vector>
 #include "UnicodeString.h"
 #include "Merge.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
 #include "FileFilterMgr.h"
 #include "FileFilterHelper.h"
 #include "paths.h"
@@ -420,8 +422,13 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 	if (!globalPath.empty() && !userPath.empty())
 	{
-		path = CSharedFilterDlg::PromptForNewFilter(this, globalPath, userPath);
-		if (path.empty()) return;
+		CSharedFilterDlg dlg(
+			GetOptionsMgr()->GetBool(OPT_FILEFILTER_SHARED) ? 
+				CSharedFilterDlg::SHARED : CSharedFilterDlg::PRIVATE);
+		if (dlg.DoModal() != IDOK)
+			return;
+		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_SHARED, (dlg.GetSelectedFilterType() == CSharedFilterDlg::SHARED));
+		path = dlg.GetSelectedFilterType() == CSharedFilterDlg::SHARED ? globalPath : userPath;
 	}
 
 	if (path.length())

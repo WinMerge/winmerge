@@ -17,13 +17,11 @@
  */
 class CSharedFilterDlg : public CDialog
 {
-public:
-	static String PromptForNewFilter(CWnd * Parent, const String &SharedFolder,
-		const String &PrivateFolder);
-
 // Construction
 public:
-	explicit CSharedFilterDlg(CWnd* pParent);   // standard constructor
+	enum FilterType : int { SHARED = 0, PRIVATE = 1 };
+	CSharedFilterDlg(FilterType type, CWnd* pParent = NULL);
+	FilterType GetSelectedFilterType() const { return m_selectedType; }
 
 // Implementation
 protected:
@@ -31,12 +29,7 @@ protected:
 // Dialog Data
 	//{{AFX_DATA(CSharedFilterDlg)
 	enum { IDD = IDD_SHARED_FILTER };
-	CButton m_SharedButton;
-	CButton m_PrivateButton;
 	//}}AFX_DATA
-	String m_SharedFolder;  /**< Folder for shared filters. */
-	String m_PrivateFolder; /**< Folder for private filters. */
-
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -48,14 +41,13 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(CSharedFilterDlg)
-	virtual void OnOK();
 	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 // Implementation data
 private:
-	String m_ChosenFolder;
+	FilterType m_selectedType;
 };
 
 //{{AFX_INSERT_LOCATION}}
