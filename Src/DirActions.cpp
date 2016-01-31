@@ -722,8 +722,6 @@ bool GetOpenOneItem(const CDiffContext& ctxt, uintptr_t pos1, const DIFFITEM *pd
 bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uintptr_t pos1, uintptr_t pos2, const DIFFITEM *pdi[3],
 		PathContext & paths, int & sel1, int & sel2, bool & isDir, int nPane[3], String& errmsg)
 {
-	String pathLeft, pathRight;
-
 	// Two items selected, get their info
 	pdi[0] = &ctxt.GetDiffAt(pos1);
 	pdi[1] = &ctxt.GetDiffAt(pos2);
@@ -736,7 +734,6 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uint
 		return false;
 	}
 
-	String temp;
 	switch (selectionType)
 	{
 	case SELECTIONTYPE_NORMAL:
