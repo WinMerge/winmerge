@@ -2390,7 +2390,7 @@ void CDirView::GetCurrentColRegKeys(std::vector<String>& colKeys)
 
 struct FileCmpReport: public IFileCmpReport
 {
-	FileCmpReport(CDirView *pDirView) : m_pDirView(pDirView) {}
+	explicit FileCmpReport(CDirView *pDirView) : m_pDirView(pDirView) {}
 	bool operator()(REPORT_TYPE nReportType, IListCtrl *pList, int nIndex, const String &sDestDir, String &sLinkPath)
 	{
 		const CDiffContext& ctxt = m_pDirView->GetDiffContext();

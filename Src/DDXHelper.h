@@ -7,19 +7,19 @@
 class PopString : public CString
 {
 public:
-    PopString(String & final) : CString(final.c_str()), m_final(final)
-    {
+	explicit PopString(String & final) : CString(final.c_str()), m_final(final)
+	{
 	}
 
-    ~PopString()
-    {
-        m_final = (PCTSTR) *this;
-    }
+	~PopString()
+	{
+		m_final = (PCTSTR) *this;
+	}
 private:
-    PopString(const PopString &);  // private copy constructor to prevent copying
-    PopString & operator=(const PopString &);  // private copy operator
+	PopString(const PopString &);  // private copy constructor to prevent copying
+	PopString & operator=(const PopString &);  // private copy operator
 
-    String & m_final;
+	String & m_final;
 };
 
 inline void DDX_Check(CDataExchange* pDX, int nIDC, bool& value)

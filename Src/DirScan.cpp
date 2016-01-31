@@ -69,7 +69,7 @@ private:
 class WorkCompletedNotification: public Poco::Notification
 {
 public:
-	WorkCompletedNotification(DIFFITEM& di): m_di(di) {}
+	explicit WorkCompletedNotification(DIFFITEM& di): m_di(di) {}
 	DIFFITEM& data() const { return m_di; }
 private:
 	DIFFITEM& m_di;

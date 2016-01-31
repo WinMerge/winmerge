@@ -49,7 +49,7 @@ extern const int g_ncols3;
 class DirViewColItems
 {
 public:
-	DirViewColItems(int nDirs):
+	explicit DirViewColItems(int nDirs):
 	  m_nDirs(nDirs), m_numcols(-1), m_dispcols(-1) {}
 	String GetColRegValueNameBase(int col) const;
 	int GetColDefaultOrder(int col) const;

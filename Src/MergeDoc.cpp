@@ -764,7 +764,7 @@ bool CMergeDoc::Undo()
 class RescanSuppress
 {
 public:
-	RescanSuppress(CMergeDoc & doc) : m_doc(doc)
+	explicit RescanSuppress(CMergeDoc & doc) : m_doc(doc)
 	{
 		m_bSuppress = true;
 		m_bPrev = doc.m_bEnableRescan;
