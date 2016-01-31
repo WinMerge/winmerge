@@ -69,6 +69,9 @@ CMergeEditView::CMergeEditView()
 , m_piMergeEditStatus(0)
 , m_bAutomaticRescan(false)
 , fTimerWaitingForIdle(0)
+, m_lineBegin(0)
+, m_lineEnd(-1)
+, m_CurrentPredifferID(0)
 {
 	SetParser(&m_xParser);
 	

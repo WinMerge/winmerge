@@ -38,6 +38,7 @@ FileFilterHelper::FileFilterHelper()
 : m_pMaskFilter(nullptr)
 , m_bUseMask(true)
 , m_fileFilterMgr(new FileFilterMgr)
+, m_currentFilter(nullptr)
 {
 }
 
