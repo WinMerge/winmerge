@@ -2664,10 +2664,9 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 		{
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 			{
-				CCrystalTextView::TextDefinition *enuType;
 				if (!bTyped[nBuffer])
 				{
-					enuType = GetView(paneTyped)->GetTextType(sext.c_str());
+					CCrystalTextView::TextDefinition *enuType = GetView(paneTyped)->GetTextType(sext.c_str());
 					GetView(nBuffer)->SetTextType(enuType);
 					GetDetailView(nBuffer)->SetTextType(enuType);
 				}

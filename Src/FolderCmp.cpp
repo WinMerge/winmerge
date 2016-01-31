@@ -306,7 +306,6 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			}
 			else
 			{
-				int code10, code12;
 				if (m_pByteCompare == NULL)
 					m_pByteCompare.reset(new ByteCompare());
 				bool success = m_pByteCompare->SetCompareOptions(
@@ -322,7 +321,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					m_pByteCompare->SetFileData(2, diffdata10.m_diffFileData.m_inf);
 	
 					// use our own byte-by-byte compare
-					code10 = m_pByteCompare->CompareFiles(diffdata10.m_diffFileData.m_FileLocation);
+					int code10 = m_pByteCompare->CompareFiles(diffdata10.m_diffFileData.m_FileLocation);
 	
 					m_pByteCompare->GetTextStats(0, &diffdata10.m_diffFileData.m_textStats[0]);
 					m_pByteCompare->GetTextStats(1, &diffdata10.m_diffFileData.m_textStats[1]);
@@ -331,7 +330,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					m_pByteCompare->SetFileData(2, diffdata12.m_diffFileData.m_inf);
 	
 					// use our own byte-by-byte compare
-					code12 = m_pByteCompare->CompareFiles(diffdata12.m_diffFileData.m_FileLocation);
+					int code12 = m_pByteCompare->CompareFiles(diffdata12.m_diffFileData.m_FileLocation);
 	
 					m_pByteCompare->GetTextStats(0, &diffdata12.m_diffFileData.m_textStats[0]);
 					m_pByteCompare->GetTextStats(1, &diffdata12.m_diffFileData.m_textStats[1]);

@@ -553,12 +553,13 @@ void CChildFrame::UpdateHeaderSizes()
 	
 	if(IsWindowVisible())
 	{
-		int w[3],wmin;
+		int w[3];
 		int pane;
 		if (m_wndSplitter.GetColumnCount() > 1)
 		{
 			for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
 			{
+				int wmin;
 				m_wndSplitter.GetColumnInfo(pane, w[pane], wmin);
 				if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
 			}

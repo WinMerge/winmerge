@@ -1854,8 +1854,6 @@ void CDirView::OnCurdiff()
 	const int count = m_pList->GetItemCount();
 	bool found = false;
 	int i = GetFirstSelectedInd();
-	UINT selected = 0;
-	UINT focused = 0;
 
 	// No selection - no diff to go
 	if (i == -1)
@@ -1863,8 +1861,8 @@ void CDirView::OnCurdiff()
 
 	while (i < count && found == false)
 	{
-		selected = m_pList->GetItemState(i, LVIS_SELECTED);
-		focused = m_pList->GetItemState(i, LVIS_FOCUSED);
+		UINT selected = m_pList->GetItemState(i, LVIS_SELECTED);
+		UINT focused = m_pList->GetItemState(i, LVIS_FOCUSED);
 
 		if (selected == LVIS_SELECTED && focused == LVIS_FOCUSED)
 		{

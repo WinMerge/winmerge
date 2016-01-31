@@ -306,7 +306,6 @@ int CRegOptionsMgr::LoadOption(const String& name)
 	String strValueName;
 	String strRegPath(m_registryRoot);
 	HKEY hKey = NULL;
-	LONG retValReg = 0;
 	int valType = varprop::VT_NULL;
 	int retVal = COption::OPT_OK;
 
@@ -320,7 +319,7 @@ int CRegOptionsMgr::LoadOption(const String& name)
 	
 	if (retVal == COption::OPT_OK)
 	{
-		retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
+		LONG retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
 			0, KEY_READ, &hKey);
 
 		if (retValReg == ERROR_SUCCESS)
@@ -347,7 +346,6 @@ int CRegOptionsMgr::SaveOption(const String& name)
 	String strValueName;
 	String strRegPath(m_registryRoot);
 	HKEY hKey = NULL;
-	LONG retValReg = 0;
 	int valType = varprop::VT_NULL;
 	int retVal = COption::OPT_OK;
 
@@ -361,7 +359,7 @@ int CRegOptionsMgr::SaveOption(const String& name)
 	
 	if (retVal == COption::OPT_OK)
 	{
-		retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
+		LONG retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
 			0, KEY_WRITE, &hKey);
 
 		if (retValReg == ERROR_SUCCESS)
@@ -443,7 +441,6 @@ int CRegOptionsMgr::SaveOption(const String& name, bool value)
 int CRegOptionsMgr::RemoveOption(const String& name)
 {
 	HKEY hKey = NULL;
-	LONG retValReg = 0;
 	int retVal = COption::OPT_OK;
 	String strRegPath(m_registryRoot);
 	String strPath;
@@ -452,7 +449,7 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 	SplitName(name, strPath, strValueName);
 	strRegPath += strPath;
 
-	retValReg = RegOpenKey(HKEY_CURRENT_USER, strRegPath.c_str(), &hKey);
+	LONG retValReg = RegOpenKey(HKEY_CURRENT_USER, strRegPath.c_str(), &hKey);
 	if (retValReg == ERROR_SUCCESS)
 	{
 		retValReg = RegDeleteValue(hKey, strValueName.c_str());
@@ -479,18 +476,16 @@ int CRegOptionsMgr::SetRegRootKey(const String& key)
 {
 	String keyname(key);
 	HKEY hKey = NULL;
-	LONG retValReg = 0;
 	DWORD action = 0;
 	int retVal = COption::OPT_OK;
-	size_t ind = 0;
 
-	ind = keyname.find(_T("Software"));
+	size_t ind = keyname.find(_T("Software"));
 	if (ind != 0)
 		keyname.insert(0, _T("Software\\"));
 	
 	m_registryRoot = keyname;
 
-	retValReg =  RegCreateKeyEx(HKEY_CURRENT_USER, m_registryRoot.c_str(), 0, NULL,
+	LONG retValReg =  RegCreateKeyEx(HKEY_CURRENT_USER, m_registryRoot.c_str(), 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &action);
 
 	if (retValReg == ERROR_SUCCESS)
