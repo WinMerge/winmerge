@@ -45,7 +45,7 @@ public:
 		}
 	}
 
-	DirItemWithIndexIterator() : m_pList(NULL), m_sel(-1)
+	DirItemWithIndexIterator() : m_pList(NULL), m_sel(-1), m_selected(false), m_reverse(false)
 	{
 	}
 
@@ -55,6 +55,8 @@ public:
 	{
 		m_sel = it.m_sel;
 		m_pList = it.m_pList;
+		m_selected = it.m_selected;
+		m_reverse = it.m_reverse;
 		return *this;
 	}
 
@@ -122,7 +124,7 @@ public:
 		}
 	}
 
-	DirItemIterator() : m_pList(nullptr), m_sel(-1), m_reverse(false), m_pdi(nullptr)
+	DirItemIterator() : m_pList(nullptr), m_sel(-1), m_selected(false), m_reverse(false), m_pdi(nullptr)
 	{
 	}
 
@@ -133,6 +135,8 @@ public:
 		m_sel = it.m_sel;
 		m_pList = it.m_pList;
 		m_pdi = it.m_pdi;
+		m_selected = it.m_selected;
+		m_reverse = it.m_reverse;
 		return *this;
 	}
 

@@ -66,6 +66,9 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_bRecursive(false)
 , m_bWalkUniques(true)
 , m_bIgnoreReparsePoints(false)
+, m_iGuessEncodingType(0)
+, m_nQuickCompareLimit(0)
+, m_pFilterCommentsManager(nullptr)
 {
 	int index;
 	for (index = 0; index < paths.GetSize(); index++)

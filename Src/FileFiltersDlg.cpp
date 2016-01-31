@@ -54,6 +54,7 @@ IMPLEMENT_DYNCREATE(FileFiltersDlg, CPropertyPage)
  * @brief Constructor.
  */
 FileFiltersDlg::FileFiltersDlg() : CPropertyPage(FileFiltersDlg::IDD)
+, m_Filters(nullptr)
 {
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;

@@ -738,6 +738,8 @@ CChildFrame::MergeStatus::MergeStatus()
 , m_nChars(0)
 , m_nCodepage(-1)
 , m_bHasBom(false)
+, m_pFrame(nullptr)
+, m_base(0)
 {
 }
 
