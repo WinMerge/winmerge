@@ -22,8 +22,6 @@
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
