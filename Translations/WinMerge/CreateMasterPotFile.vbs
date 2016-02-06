@@ -215,7 +215,6 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
           oStrings.Add sContext & sString, oString
         End If
       End If
-      If sLine = "#ifndef APSTUDIO_INVOKED" Then Exit Do
       oLcFile.WriteLine sLcLine
       fContinuation = sLine <> "" And InStr(",|", Right(sLine, 1)) <> 0
     Loop
