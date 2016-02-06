@@ -2687,18 +2687,6 @@ msgstr ""
 msgid "&Hex View"
 msgstr ""
 
-#. StringFileInfo.Block
-#: Merge.rc:6DC3523
-#, c-format
-msgid "040904e4"
-msgstr "0c0a04e4"
-
-#. VarFileInfo.Translation
-#: Merge.rc:53CC5469
-#, c-format
-msgid "0x409, 1252"
-msgstr "0xc0a, 1252"
-
 #: Merge.rc:206940
 #, c-format
 msgid "EXT"

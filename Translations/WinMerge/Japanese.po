@@ -2700,18 +2700,6 @@ msgstr "画像ファイルパターン(&P):"
 msgid "&Hex View"
 msgstr "HEX表示(&H)"
 
-#. StringFileInfo.Block
-#: Merge.rc:6DC3523
-#, c-format
-msgid "040904e4"
-msgstr "041103a4"
-
-#. VarFileInfo.Translation
-#: Merge.rc:53CC5469
-#, c-format
-msgid "0x409, 1252"
-msgstr "0x411, 932"
-
 #: Merge.rc:206940
 #, c-format
 msgid "EXT"

@@ -1980,50 +1980,6 @@ BEGIN
 END
 
 
-#ifndef _MAC
-/////////////////////////////////////////////////////////////////////////////
-//
-// Version
-//
-#include "../Version.h"
-VS_VERSION_INFO VERSIONINFO
- FILEVERSION FILEVER
- PRODUCTVERSION PRODUCTVER
- FILEFLAGSMASK 0x3fL
-#ifdef _DEBUG
- FILEFLAGS 0x9L
-#else
- FILEFLAGS 0x8L
-#endif
- FILEOS 0x4L
- FILETYPE 0x1L
- FILESUBTYPE 0x0L
-BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "040904e4"
-        BEGIN
-            VALUE "Comments", "\0"
-            VALUE "CompanyName", "http://winmerge.org\0"
-            VALUE "FileDescription", "WinMerge\0"
-            VALUE "FileVersion", STRFILEVER
-            VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "(c) 1996-2014 Dean P. Grimm / Thingamahoochie Software\0"
-            VALUE "OriginalFilename", "WinMerge.EXE\0"
-            VALUE "PrivateBuild", ""
-            VALUE "ProductName", "WinMerge\0"
-            VALUE "ProductVersion", STRPRODUCTVER
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x409, 1252
-    END
-END
-
-#endif    // !_MAC
-
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
