@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2016-01-26 00:44+0000\n"
+"POT-Creation-Date: 2016-02-06 10:45+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2675,18 +2675,6 @@ msgstr ""
 #: Merge.rc:4DB19839
 #, c-format
 msgid "&Hex View"
-msgstr ""
-
-#. StringFileInfo.Block
-#: Merge.rc:6DC3523
-#, c-format
-msgid "040904e4"
-msgstr ""
-
-#. VarFileInfo.Translation
-#: Merge.rc:53CC5469
-#, c-format
-msgid "0x409, 1252"
 msgstr ""
 
 #: Merge.rc:206940
