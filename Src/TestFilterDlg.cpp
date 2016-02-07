@@ -6,11 +6,9 @@
 
 #include "stdafx.h"
 #include "TestFilterDlg.h"
-#include "Merge.h"
 #include "resource.h"
 #include "UnicodeString.h"
 #include "FileFilterMgr.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -23,7 +21,7 @@
  * @param [in] pFilterMgr File filter manager.
  */
 CTestFilterDlg::CTestFilterDlg(CWnd* pParent, FileFilter * pFileFilter, FileFilterMgr *pFilterMgr)
-: CDialog(CTestFilterDlg::IDD, pParent)
+: CTrDialog(CTestFilterDlg::IDD, pParent)
 , m_pFileFilter(pFileFilter)
 , m_pFileFilterMgr(pFilterMgr)
 {
@@ -31,14 +29,14 @@ CTestFilterDlg::CTestFilterDlg(CWnd* pParent, FileFilter * pFileFilter, FileFilt
 
 void CTestFilterDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CTestFilterDlg)
 		// NOTE: the ClassWizard will add DDX and DDV calls here
 	//}}AFX_DATA_MAP
 }
 
 
-BEGIN_MESSAGE_MAP(CTestFilterDlg, CDialog)
+BEGIN_MESSAGE_MAP(CTestFilterDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CTestFilterDlg)
 	ON_BN_CLICKED(IDC_TEST_BTN, OnTestBtn)
 	//}}AFX_MSG_MAP
@@ -53,8 +51,7 @@ END_MESSAGE_MAP()
  */
 BOOL CTestFilterDlg::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 
 	GetDlgItem(IDC_TEST_TEXT)->SetFocus();
 
@@ -86,7 +83,7 @@ void CTestFilterDlg::OnOK()
    ASSERT (pWnd); 
    if (IDCANCEL == pWnd->GetDlgCtrlID()) 
    { 
-       CDialog::OnCancel(); 
+       CTrDialog::OnCancel(); 
    }
    else
    {

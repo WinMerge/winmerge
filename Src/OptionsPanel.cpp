@@ -12,7 +12,7 @@
  * @brief Constructor.
  */
 OptionsPanel::OptionsPanel(COptionsMgr *optionsMgr, UINT nIDTemplate)
- : CPropertyPage(nIDTemplate)
+ : CTrPropertyPage(nIDTemplate)
  , m_pOptionsMgr(optionsMgr)
 {
 }

@@ -31,7 +31,6 @@
 #include "PatchHTML.h"
 #include "FileOrFolderSelect.h"
 #include "Environment.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -46,7 +45,7 @@ using std::swap;
  * @brief Constructor, initializes members.
  */
 CPatchDlg::CPatchDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CPatchDlg::IDD, pParent)
+	: CTrDialog(CPatchDlg::IDD, pParent)
 	, m_caseSensitive(FALSE)
 	, m_ignoreBlanks(0)
 	, m_ignoreEOLDifference(FALSE)
@@ -64,7 +63,7 @@ CPatchDlg::CPatchDlg(CWnd* pParent /*=NULL*/)
  */
 void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPatchDlg)
 	DDX_Control(pDX, IDC_DIFF_STYLE, m_comboStyle);
 	DDX_Control(pDX, IDC_DIFF_CONTEXT, m_comboContext);
@@ -85,7 +84,7 @@ void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPatchDlg, CDialog)
+BEGIN_MESSAGE_MAP(CPatchDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CPatchDlg)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_FILE1, OnDiffBrowseFile1)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_FILE2, OnDiffBrowseFile2)
@@ -197,7 +196,7 @@ void CPatchDlg::OnOK()
 		m_ctlFile2.SaveState(_T("Files\\DiffFile2"));
 	}
 	
-	CDialog::OnOK();
+	CTrDialog::OnOK();
 }
 
 /** 
@@ -209,8 +208,7 @@ void CPatchDlg::OnOK()
  */
 BOOL CPatchDlg::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 
 	// Load combobox history
 	m_ctlFile1.LoadState(_T("Files\\DiffFile1"));

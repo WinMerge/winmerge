@@ -6,7 +6,6 @@
 
 #include "stdafx.h"
 #include "PropCompareBinary.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
@@ -87,18 +86,6 @@ void PropCompareBinary::ReadOptions()
 void PropCompareBinary::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_BIN_FILEPATTERNS, m_sFilePatterns);
-}
-
-/** 
- * @brief Called before propertysheet is drawn.
- */
-BOOL PropCompareBinary::OnInitDialog() 
-{
-	theApp.TranslateDialog(m_hWnd);
-	CPropertyPage::OnInitDialog();
-
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 /** 

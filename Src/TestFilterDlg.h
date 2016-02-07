@@ -6,6 +6,8 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
+
 struct FileFilter;
 class FileFilterMgr;
 
@@ -13,7 +15,7 @@ class FileFilterMgr;
  * @brief Dialog allowing user to test out file filter strings.
  * The user can type a text and test if selected file filter matches to it.
  */
-class CTestFilterDlg : public CDialog
+class CTestFilterDlg : public CTrDialog
 {
 // Construction
 public:

@@ -7,14 +7,13 @@
 #include "stdafx.h"
 #include "PluginsListDlg.h"
 #include "UnicodeString.h"
-#include "Merge.h"
 #include "Plugins.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 
-IMPLEMENT_DYNAMIC(PluginsListDlg, CDialog)
+IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 
-BEGIN_MESSAGE_MAP(PluginsListDlg, CDialog)
+BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
 	ON_NOTIFY(NM_DBLCLK, IDC_PLUGINSLIST_LIST, OnNMDblclkList)
@@ -24,7 +23,7 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 PluginsListDlg::PluginsListDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(PluginsListDlg::IDD, pParent)
+	: CTrDialog(PluginsListDlg::IDD, pParent)
 {
 }
 
@@ -37,7 +36,7 @@ PluginsListDlg::~PluginsListDlg()
 
 void PluginsListDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_PLUGINSLIST_LIST, m_list);
 }
 
@@ -46,8 +45,7 @@ void PluginsListDlg::DoDataExchange(CDataExchange* pDX)
  */
 BOOL PluginsListDlg::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 	
 	InitList();
 	AddPlugins();

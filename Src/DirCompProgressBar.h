@@ -5,6 +5,7 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
 #include "CompareStats.h"
 
 class ITaskBarList3;
@@ -30,7 +31,7 @@ class ITaskBarList3;
  * compared items count. Maybe we should use different timer and bigger
  * interval for total count updates?
  */
-class DirCompProgressBar : public CDialogBar
+class DirCompProgressBar : public CTrDialogBar
 {
 // Construction
 public:

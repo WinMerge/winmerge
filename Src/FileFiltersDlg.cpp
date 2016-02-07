@@ -53,7 +53,7 @@ IMPLEMENT_DYNCREATE(FileFiltersDlg, CPropertyPage)
 /**
  * @brief Constructor.
  */
-FileFiltersDlg::FileFiltersDlg() : CPropertyPage(FileFiltersDlg::IDD)
+FileFiltersDlg::FileFiltersDlg() : CTrPropertyPage(FileFiltersDlg::IDD)
 , m_Filters(nullptr)
 {
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
@@ -165,8 +165,7 @@ void FileFiltersDlg::SelectFilterByIndex(int index)
  */
 BOOL FileFiltersDlg::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrPropertyPage::OnInitDialog();
 
 	InitList();
 

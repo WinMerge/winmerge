@@ -10,7 +10,6 @@
 #include "stdafx.h"
 #include "DirColsDlg.h"
 #include <algorithm>
-#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -24,7 +23,7 @@
  * @param [in] pParent Dialog's parent component (window).
  */
 CDirColsDlg::CDirColsDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CDirColsDlg::IDD, pParent)
+	: CTrDialog(CDirColsDlg::IDD, pParent)
 	, m_bReset(false)
 {
 }
@@ -34,13 +33,13 @@ CDirColsDlg::CDirColsDlg(CWnd* pParent /*=NULL*/)
  */
 void CDirColsDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CDirColsDlg)
 	DDX_Control(pDX, IDC_COLDLG_LIST, m_listColumns);
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(CDirColsDlg, CDialog)
+BEGIN_MESSAGE_MAP(CDirColsDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CDirColsDlg)
 	ON_BN_CLICKED(IDC_UP, OnUp)
 	ON_BN_CLICKED(IDC_DOWN, OnDown)
@@ -68,8 +67,7 @@ void CDirColsDlg::InitList()
  */
 BOOL CDirColsDlg::OnInitDialog() 
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 	InitList();
 	LoadLists();
 	
@@ -246,7 +244,7 @@ void CDirColsDlg::OnOK()
 			col1.phy_col = -1;
 	}
 
-	CDialog::OnOK();
+	CTrDialog::OnOK();
 }
 
 /**

@@ -6,13 +6,11 @@
 
 #include "stdafx.h"
 #include "PropTextColors.h"
-#include "Merge.h"
 #include "SyntaxColors.h"
 #include "OptionsCustomColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -63,8 +61,7 @@ END_MESSAGE_MAP()
  */
 BOOL PropTextColors::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CPropertyPage::OnInitDialog();
+	OptionsPanel::OnInitDialog();
 
 	if (m_bCustomColors)
 		EnableColorButtons(TRUE);

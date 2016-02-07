@@ -7,11 +7,9 @@
 #include "stdafx.h"
 #include "PropArchive.h"
 #include "Constants.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -65,7 +63,7 @@ void PropArchive::WriteOptions()
  */
 BOOL PropArchive::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
+	OptionsPanel::OnInitDialog();
 	UpdateData(FALSE);
 
 	UpdateControls();

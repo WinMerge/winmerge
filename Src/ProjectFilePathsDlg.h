@@ -5,12 +5,13 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
 #include "UnicodeString.h"
 
 /**
  * @brief Dialog allowing user to load, edit and save project files.
  */
-class ProjectFilePathsDlg : public CPropertyPage
+class ProjectFilePathsDlg : public CTrPropertyPage
 {
 	DECLARE_DYNCREATE(ProjectFilePathsDlg)
 
@@ -34,7 +35,6 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(ProjectFilePathsDlg)
-	afx_msg BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

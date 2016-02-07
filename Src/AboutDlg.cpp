@@ -23,8 +23,7 @@
 
 #include "stdafx.h"
 #include "AboutDlg.h"
-#include "Merge.h"
-#include "DDXHelper.h"
+#include "TrDialogs.h"
 #include "Picture.h"
 #include "resource.h" // IDD_ABOUTBOX
 
@@ -34,7 +33,7 @@
  * Shows About-dialog bitmap and draws version number and other
  * texts into it.
  */
-class CAboutDlg::Impl : public CDialog
+class CAboutDlg::Impl : public CTrDialog
 {
 public:
 	CAboutDlg::Impl(CAboutDlg *p, CWnd* pParent = NULL);
@@ -68,7 +67,7 @@ private:
 	CFont m_font;
 };
 
-BEGIN_MESSAGE_MAP(CAboutDlg::Impl, CDialog)
+BEGIN_MESSAGE_MAP(CAboutDlg::Impl, CTrDialog)
 	//{{AFX_MSG_MAP(CAboutDlg::Impl)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
@@ -78,14 +77,14 @@ BEGIN_MESSAGE_MAP(CAboutDlg::Impl, CDialog)
 END_MESSAGE_MAP()
 
 CAboutDlg::Impl::Impl(CAboutDlg *p, CWnd* pParent /*=NULL*/)
-	: CDialog(CAboutDlg::Impl::IDD)
+	: CTrDialog(CAboutDlg::Impl::IDD)
 	, m_p(p)
 {
 }
 
 void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CAboutDlg::Impl)
 	DDX_Text(pDX, IDC_COMPANY, m_p->m_info.copyright);
 	DDX_Text(pDX, IDC_VERSION, m_p->m_info.version);
@@ -98,8 +97,7 @@ void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
  */
 BOOL CAboutDlg::Impl::OnInitDialog() 
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 
 	m_image.Load(IDR_SPLASH);
 
@@ -132,7 +130,7 @@ HBRUSH CAboutDlg::Impl::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 		pDC->SetBkMode(TRANSPARENT);
 		return (HBRUSH)GetStockObject(NULL_BRUSH);
 	}
-	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+	return CTrDialog::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 
 void CAboutDlg::Impl::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)

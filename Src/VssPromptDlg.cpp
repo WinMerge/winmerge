@@ -27,9 +27,8 @@
 #include "stdafx.h"
 #include "VssPromptDlg.h"
 #include "SuperComboBox.h"
-#include "Merge.h"
+#include "TrDialogs.h"
 #include "RegKey.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -38,7 +37,7 @@
 /**
  * @brief Class for VSS dialog
  */
-class CVssPromptDlg::Impl : public CDialog
+class CVssPromptDlg::Impl : public CTrDialog
 {
 // Construction
 public:
@@ -85,7 +84,7 @@ private:
  * @param [in] pParent Pointer to parent component.
  */
 CVssPromptDlg::Impl::Impl(CVssPromptDlg *p, CWnd* pParent /*=NULL*/)
-	: CDialog(CVssPromptDlg::Impl::IDD, pParent)
+	: CTrDialog(CVssPromptDlg::Impl::IDD, pParent)
 	, m_p(p)
 
 {
@@ -94,7 +93,7 @@ CVssPromptDlg::Impl::Impl(CVssPromptDlg *p, CWnd* pParent /*=NULL*/)
 
 void CVssPromptDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CVssPromptDlg::Impl)
 	DDX_Control(pDX, IDC_PROJECT_COMBO, m_ctlProject);
 	DDX_CBString(pDX, IDC_PROJECT_COMBO, m_p->m_strProject);
@@ -110,7 +109,7 @@ void CVssPromptDlg::Impl::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CVssPromptDlg::Impl, CDialog)
+BEGIN_MESSAGE_MAP(CVssPromptDlg::Impl, CTrDialog)
 	//{{AFX_MSG_MAP(CVssPromptDlg::Impl)
 	ON_BN_CLICKED(IDC_SAVE_AS, OnSaveas)
 	//}}AFX_MSG_MAP
@@ -125,8 +124,7 @@ END_MESSAGE_MAP()
  */
 BOOL CVssPromptDlg::Impl::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 
 	m_ctlProject.LoadState(_T("Vss"));
 
@@ -181,7 +179,7 @@ void CVssPromptDlg::Impl::OnOK()
 	}
 
 	m_ctlProject.SaveState(_T("Vss"));
-	CDialog::OnOK();
+	CTrDialog::OnOK();
 }
 
 /**

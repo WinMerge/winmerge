@@ -32,7 +32,6 @@
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "LanguageSelect.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -61,8 +60,7 @@ PropGeneral::~PropGeneral()
 
 BOOL PropGeneral::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CPropertyPage::OnInitDialog();
+	OptionsPanel::OnInitDialog();
 
 	CComboBox *pWnd = (CComboBox*)GetDlgItem(IDC_AUTO_COMPLETE_SOURCE);
 	ASSERT(NULL != pWnd);

@@ -6,7 +6,6 @@
 
 #include "stdafx.h"
 #include "PropColors.h"
-#include "Merge.h"
 #include "OptionsCustomColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -104,15 +103,6 @@ BEGIN_MESSAGE_MAP(PropMergeColors, CDialog)
 	ON_BN_CLICKED(IDC_SEL_WORDDIFF_TEXT_COLOR, OnSelWordDiffTextColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/** 
- * @brief Called before propertysheet is drawn.
- */
-BOOL PropMergeColors::OnInitDialog()
-{
-	theApp.TranslateDialog(m_hWnd);
-	return CPropertyPage::OnInitDialog();
-}
 
 /** 
  * @brief Reads options values from storage to UI.
@@ -346,7 +336,7 @@ template<int checkbox_id, int colorbutton_id>
 void PropMergeColors::OnUseTextColor()
 {
 	CColorButton *cButton = dynamic_cast<CColorButton *>(GetDlgItem(colorbutton_id));
-	if (((CButton *)GetDlgItem(checkbox_id))->GetCheck() != 0)
+	if (IsDlgButtonChecked(checkbox_id) != 0)
 	{
 		cButton->ShowWindow(SW_SHOW);
 		cButton->SetColor(0);

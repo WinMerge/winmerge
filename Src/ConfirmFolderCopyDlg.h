@@ -21,13 +21,14 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
 #include "CMoveConstraint.h"
 #include "UnicodeString.h"
 
 /**
  * @brief Dialog for item copy confirmation.
  */
-class ConfirmFolderCopyDlg : public CDialog
+class ConfirmFolderCopyDlg : public CTrDialog
 {
 	DECLARE_DYNAMIC(ConfirmFolderCopyDlg)
 

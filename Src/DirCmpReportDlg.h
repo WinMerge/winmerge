@@ -7,6 +7,7 @@
 #pragma once
 
 #include "DirReportTypes.h"
+#include "TrDialogs.h"
 #include "SuperComboBox.h"
 
 /** 
@@ -15,7 +16,7 @@
  * for user. Also filename and path for report file can be chosen
  * with this dialog.
  */
-class DirCmpReportDlg : public CDialog
+class DirCmpReportDlg : public CTrDialog
 {
 	DECLARE_DYNAMIC(DirCmpReportDlg)
 

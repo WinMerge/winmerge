@@ -9,7 +9,6 @@
 #include "SyntaxColors.h"
 #include "OptionsSyntaxColors.h"
 #include "OptionsCustomColors.h"
-#include "Merge.h"
 #include "OptionsPanel.h"
 
 #ifdef _DEBUG
@@ -110,15 +109,6 @@ BEGIN_MESSAGE_MAP(PropSyntaxColors, CPropertyPage)
 	ON_BN_CLICKED(IDC_SCOLOR_USER1_BOLD, OnBnClickedEcolorUser1Bold)
 	ON_BN_CLICKED(IDC_SCOLOR_USER2_BOLD, OnBnClickedEcolorUser2Bold)
 END_MESSAGE_MAP()
-
-/** 
- * @brief Called before propertysheet is drawn.
- */
-BOOL PropSyntaxColors::OnInitDialog()
-{
-	theApp.TranslateDialog(m_hWnd);
-	return CPropertyPage::OnInitDialog();
-}
 
 /** 
  * @brief Reads options values from storage to UI.

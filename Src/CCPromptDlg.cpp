@@ -22,8 +22,7 @@
 
 #include "stdafx.h"
 #include "CCPromptDlg.h"
-#include "Merge.h"
-#include "DDXHelper.h"
+#include "TrDialogs.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,7 +31,7 @@
 /**
  * @brief A dialog for ClearCase checkout/checkin.
  */
-class CCCPromptDlg::Impl : public CDialog
+class CCCPromptDlg::Impl : public CTrDialog
 {
 // Construction
 public:
@@ -53,8 +52,6 @@ public:
 
 // Implementation
 protected:
-	virtual BOOL OnInitDialog();
-
 	// Generated message map functions
 	//{{AFX_MSG(CCCPromptDlg::Impl)
 	afx_msg void OnSaveas();
@@ -66,14 +63,14 @@ private:
 };
 
 CCCPromptDlg::Impl::Impl(CCCPromptDlg *p, CWnd* pParent /*=NULL*/)
-	: CDialog(CCCPromptDlg::Impl::IDD, pParent)
+	: CTrDialog(CCCPromptDlg::Impl::IDD, pParent)
 	, m_p(p)
 {
 }
 
 void CCCPromptDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CCCPromptDlg::Impl)
 	DDX_Text(pDX, IDC_COMMENTS, m_p->m_comments);
 	DDX_Check(pDX, IDC_MULTI_CHECKOUT, m_p->m_bMultiCheckouts);
@@ -81,24 +78,11 @@ void CCCPromptDlg::Impl::DoDataExchange(CDataExchange* pDX)
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(CCCPromptDlg::Impl, CDialog)
+BEGIN_MESSAGE_MAP(CCCPromptDlg::Impl, CTrDialog)
 	//{{AFX_MSG_MAP(CCCPromptDlg::Impl)
 	ON_BN_CLICKED(IDC_SAVE_AS, OnSaveas)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/**
- * @brief Handler for WM_INITDIALOG; conventional location to initialize
- * controls. At this point dialog and control windows exist.
- */
-BOOL CCCPromptDlg::Impl::OnInitDialog() 
-{
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
-
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
-}
 
 void CCCPromptDlg::Impl::OnSaveas() 
 {

@@ -9,6 +9,7 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
 #include "PropGeneral.h"
 #include "PropCompare.h"
 #include "PropEditor.h"
@@ -33,7 +34,7 @@ class SyntaxColors;
 /////////////////////////////////////////////////////////////////////////////
 // CPreferencesDlg dialog
 
-class CPreferencesDlg : public CDialog
+class CPreferencesDlg : public CTrDialog
 {
 // Construction
 public:

@@ -41,7 +41,6 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCompareImage)
-	afx_msg BOOL OnInitDialog();
 	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

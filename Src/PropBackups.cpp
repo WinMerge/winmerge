@@ -6,13 +6,11 @@
 
 #include "stdafx.h"
 #include "PropBackups.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "FileOrFolderSelect.h"
 #include "paths.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -77,18 +75,6 @@ void PropBackups::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_GLOBALFOLDER, String(m_sGlobalFolder));
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_BAK, m_bAppendBak == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_TIME, m_bAppendTime == TRUE);
-}
-
-/** 
- * @brief Called before propertysheet is drawn.
- */
-BOOL PropBackups::OnInitDialog()
-{
-	theApp.TranslateDialog(m_hWnd);
-    CPropertyPage::OnInitDialog();
-
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 /** 

@@ -6,7 +6,6 @@
 
 #include "stdafx.h"
 #include "PropCompareImage.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
@@ -57,18 +56,6 @@ void PropCompareImage::ReadOptions()
 void PropCompareImage::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_FILEPATTERNS, m_sFilePatterns);
-}
-
-/** 
- * @brief Called before propertysheet is drawn.
- */
-BOOL PropCompareImage::OnInitDialog() 
-{
-	theApp.TranslateDialog(m_hWnd);
-	CPropertyPage::OnInitDialog();
-
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 /** 

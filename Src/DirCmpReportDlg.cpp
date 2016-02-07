@@ -12,15 +12,14 @@
 #include "paths.h"
 #include "FileOrFolderSelect.h"
 #include "Merge.h"
-#include "DDXHelper.h"
 
-IMPLEMENT_DYNAMIC(DirCmpReportDlg, CDialog)
+IMPLEMENT_DYNAMIC(DirCmpReportDlg, CTrDialog)
 
 /**
  * @brief Constructor.
  */
 DirCmpReportDlg::DirCmpReportDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(DirCmpReportDlg::IDD, pParent)
+	: CTrDialog(DirCmpReportDlg::IDD, pParent)
 	, m_bCopyToClipboard(false)
 	, m_bIncludeFileCmpReport(false)
 	, m_nReportType(REPORT_TYPE_COMMALIST)
@@ -35,7 +34,7 @@ DirCmpReportDlg::DirCmpReportDlg(CWnd* pParent /*=NULL*/)
  */
 void DirCmpReportDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_REPORT_FILE, m_ctlReportFile);
 	DDX_Control(pDX, IDC_REPORT_STYLECOMBO, m_ctlStyle);
 	DDX_Text(pDX, IDC_REPORT_FILE, m_sReportFile);
@@ -43,7 +42,7 @@ void DirCmpReportDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_REPORT_INCLUDEFILECMPREPORT, m_bIncludeFileCmpReport);
 }
 
-BEGIN_MESSAGE_MAP(DirCmpReportDlg, CDialog)
+BEGIN_MESSAGE_MAP(DirCmpReportDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_REPORT_BROWSEFILE, OnBtnClickReportBrowse)
 	ON_BN_DOUBLECLICKED(IDC_REPORT_COPYCLIPBOARD, OnBtnDblclickCopyClipboard)
 	ON_CBN_SELCHANGE(IDC_REPORT_STYLECOMBO, OnCbnSelchangeReportStylecombo)
@@ -89,8 +88,7 @@ static ReportTypeInfo f_types[] = {
  */
 BOOL DirCmpReportDlg::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
 	m_nReportType = static_cast<REPORT_TYPE>(theApp.GetProfileInt(_T("ReportFiles"), _T("ReportType"), 0));
@@ -187,5 +185,5 @@ void DirCmpReportDlg::OnOK()
 	theApp.WriteProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), m_bCopyToClipboard);
 	theApp.WriteProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), m_bIncludeFileCmpReport);
 
-	CDialog::OnOK();
+	CTrDialog::OnOK();
 }

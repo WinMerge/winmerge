@@ -25,11 +25,9 @@
 #include "RegKey.h"
 #include "coretools.h"
 #include "FileOrFolderSelect.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -98,17 +96,6 @@ void PropRegistry::WriteOptions()
 
 	String tempFolder = string_trim_ws(m_tempFolder);
 	GetOptionsMgr()->SaveOption(OPT_CUSTOM_TEMP_PATH, tempFolder);
-}
-
-BOOL PropRegistry::OnInitDialog()
-{
-	theApp.TranslateDialog(m_hWnd);
-	CPropertyPage::OnInitDialog();
-
-	UpdateData(FALSE);
-
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 /// Open file browse dialog to locate editor

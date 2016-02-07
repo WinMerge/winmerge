@@ -3,10 +3,12 @@
 
 #pragma once
 
+#include "TrDialogs.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // CEncodingErrorBar dialog
 
-class CEncodingErrorBar : public CDialogBar
+class CEncodingErrorBar : public CTrDialogBar
 {
 // Construction
 public:

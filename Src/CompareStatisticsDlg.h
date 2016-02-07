@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
+
 class CompareStats;
 
 /**
@@ -28,7 +30,7 @@ class CompareStats;
  * This dialog shows statistics about current folder compare. It shows amounts
  * if items in different compare status categories.
  */
-class CompareStatisticsDlg : public CDialog
+class CompareStatisticsDlg : public CTrDialog
 {
 	DECLARE_DYNAMIC(CompareStatisticsDlg)
 

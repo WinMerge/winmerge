@@ -22,8 +22,6 @@
 
 #include "stdafx.h"
 #include "SaveClosingDlg.h"
-#include "Merge.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,14 +30,14 @@
 /////////////////////////////////////////////////////////////////////////////
 // SaveClosingDlg dialog
 
-IMPLEMENT_DYNAMIC(SaveClosingDlg, CDialog)
+IMPLEMENT_DYNAMIC(SaveClosingDlg, CTrDialog)
 
 /**
  * @brief Constructor.
  * @param [in] pParent Dialog's parent window.
  */
 SaveClosingDlg::SaveClosingDlg(CWnd* pParent /*=NULL*/)
- : CDialog(SaveClosingDlg::IDD, pParent)
+ : CTrDialog(SaveClosingDlg::IDD, pParent)
  , m_leftSave(SAVECLOSING_SAVE)
  , m_middleSave(SAVECLOSING_SAVE)
  , m_rightSave(SAVECLOSING_SAVE)
@@ -52,7 +50,7 @@ SaveClosingDlg::SaveClosingDlg(CWnd* pParent /*=NULL*/)
 
 void SaveClosingDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(SaveClosingDlg)
 	DDX_Text(pDX, IDC_SAVECLOSING_LEFTFILE, m_sLeftFile);
 	DDX_Text(pDX, IDC_SAVECLOSING_MIDDLEFILE, m_sMiddleFile);
@@ -64,7 +62,7 @@ void SaveClosingDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(SaveClosingDlg, CDialog)
+BEGIN_MESSAGE_MAP(SaveClosingDlg, CTrDialog)
 	//{{AFX_MSG_MAP(SaveClosingDlg)
 	ON_BN_CLICKED(IDC_SAVECLOSING_DISCARDALL, OnDiscardAll)
 	//}}AFX_MSG_MAP
@@ -80,8 +78,7 @@ END_MESSAGE_MAP()
  */
 BOOL SaveClosingDlg::OnInitDialog() 
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 
 	GetDlgItem(IDC_SAVECLOSING_SAVELEFT)->SetFocus();
 	if (!m_bAskForLeft)

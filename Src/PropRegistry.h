@@ -64,7 +64,6 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropRegistry)
-	virtual BOOL OnInitDialog();
 	afx_msg void OnBrowseEditor();
 	afx_msg void OnBrowseFilterPath();
 	afx_msg void OnBrowseTmpFolder();

@@ -15,7 +15,6 @@
 #include "ProjectFile.h"
 #include "FileOrFolderSelect.h"
 #include "FileFilterHelper.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -26,7 +25,7 @@ IMPLEMENT_DYNCREATE(ProjectFilePathsDlg, CPropertyPage)
 /** 
  * @brief Standard constructor.
  */
-ProjectFilePathsDlg::ProjectFilePathsDlg() : CPropertyPage(ProjectFilePathsDlg::IDD)
+ProjectFilePathsDlg::ProjectFilePathsDlg() : CTrPropertyPage(ProjectFilePathsDlg::IDD)
 , m_bLeftPathReadOnly(false)
 , m_bRightPathReadOnly(false)
 , m_bIncludeSubfolders(false)
@@ -60,17 +59,6 @@ BEGIN_MESSAGE_MAP(ProjectFilePathsDlg, CDialog)
 	ON_BN_CLICKED(IDC_PROJ_OPEN, OnBnClickedProjOpen)
 	ON_BN_CLICKED(IDC_PROJ_SAVE, OnBnClickedProjSave)
 END_MESSAGE_MAP()
-
-/** 
- * @brief Initialize dialog.
- */
-BOOL ProjectFilePathsDlg::OnInitDialog() 
-{
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
-	return FALSE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
-}
 
 /** 
  * @brief Called when Browse-button for left path is selected.

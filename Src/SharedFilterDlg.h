@@ -6,6 +6,8 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // CSharedFilterDlg dialog
 
@@ -15,7 +17,7 @@
  * (placed into WinMerge executable's subfolder) or private filter
  * (placed into profile folder).
  */
-class CSharedFilterDlg : public CDialog
+class CSharedFilterDlg : public CTrDialog
 {
 // Construction
 public:
@@ -41,7 +43,6 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(CSharedFilterDlg)
-	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

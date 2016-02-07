@@ -21,6 +21,7 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
 #include <vector>
 
 struct FileFilterInfo;
@@ -29,7 +30,7 @@ struct FileFilterInfo;
  * @brief Class for dialog allowing user to select
  * and edit used file filters
  */
-class FileFiltersDlg : public CPropertyPage
+class FileFiltersDlg : public CTrPropertyPage
 {
 	DECLARE_DYNCREATE(FileFiltersDlg)
 

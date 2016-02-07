@@ -22,8 +22,6 @@
 
 #include "stdafx.h"
 #include "ConfirmFolderCopyDlg.h"
-#include "Merge.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,9 +30,9 @@
 
 // ConfirmFolderCopyDlg dialog
 
-IMPLEMENT_DYNAMIC(ConfirmFolderCopyDlg, CDialog)
+IMPLEMENT_DYNAMIC(ConfirmFolderCopyDlg, CTrDialog)
 ConfirmFolderCopyDlg::ConfirmFolderCopyDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(ConfirmFolderCopyDlg::IDD, pParent)
+	: CTrDialog(ConfirmFolderCopyDlg::IDD, pParent)
 {
 }
 
@@ -44,7 +42,7 @@ ConfirmFolderCopyDlg::~ConfirmFolderCopyDlg()
 
 void ConfirmFolderCopyDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(ConfirmFolderCopyDlg)
 	DDX_Text(pDX, IDC_FLDCONFIRM_FROM_TEXT, m_fromText);
 	DDX_Text(pDX, IDC_FLDCONFIRM_TO_TEXT, m_toText);
@@ -55,7 +53,7 @@ void ConfirmFolderCopyDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(ConfirmFolderCopyDlg, CDialog)
+BEGIN_MESSAGE_MAP(ConfirmFolderCopyDlg, CTrDialog)
 	ON_BN_CLICKED(IDNO, OnBnClickedNo)
 	ON_BN_CLICKED(IDYES, OnBnClickedYes)
 END_MESSAGE_MAP()
@@ -69,8 +67,7 @@ END_MESSAGE_MAP()
  */
 BOOL ConfirmFolderCopyDlg::OnInitDialog() 
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 
 	// Load warning icon
 	// TODO: we can have per-action icons?
