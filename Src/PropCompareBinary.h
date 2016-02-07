@@ -41,7 +41,6 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCompareBinary)
-	afx_msg BOOL OnInitDialog();
 	afx_msg void OnViewSettings();
 	afx_msg void OnBinaryMode();
 	afx_msg void OnCharacterSet();

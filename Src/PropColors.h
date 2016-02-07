@@ -62,7 +62,6 @@ private:
 	//{{AFX_VIRTUAL(PropMergeColors)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	virtual BOOL OnInitDialog();
 	//}}AFX_VIRTUAL
 
 // Implementation

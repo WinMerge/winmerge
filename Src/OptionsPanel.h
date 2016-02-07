@@ -7,13 +7,14 @@
 #pragma once
 
 #include "IOptionsPanel.h"
+#include "TrDialogs.h"
 
 class COptionsMgr;
 
 /**
  * @brief A base class for WinMerge options dialogs.
  */
-class OptionsPanel : public CPropertyPage, public IOptionsPanel
+class OptionsPanel : public CTrPropertyPage, public IOptionsPanel
 {
 public:
 	OptionsPanel(COptionsMgr *optionsMgr, UINT nIDTemplate);

@@ -35,7 +35,7 @@ const TCHAR PATHDELIM = '>';
 
 CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 		UINT nMenuID, CWnd* pParent)   // standard constructor
-: CDialog(IDD_PREFERENCES, pParent)
+: CTrDialog(IDD_PREFERENCES, pParent)
 , m_pOptionsMgr(regOptions)
 , m_pageGeneral(regOptions)
 , m_pageCompare(regOptions)
@@ -85,8 +85,7 @@ END_MESSAGE_MAP()
 
 BOOL CPreferencesDlg::OnInitDialog() 
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 
 	m_tcPages.SetIndent(0);
 

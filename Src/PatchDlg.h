@@ -22,6 +22,7 @@
 #pragma once
 
 #include "resource.h"
+#include "TrDialogs.h"
 #include "SuperComboBox.h"
 #include "UnicodeString.h"
 
@@ -35,7 +36,7 @@ struct PATCHFILES;
  * This dialog allows user to select files from which to create a patch,
  * patch file's filename and several options related to patch.
  */
-class CPatchDlg : public CDialog
+class CPatchDlg : public CTrDialog
 {
 // Construction
 public:

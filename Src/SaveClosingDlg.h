@@ -21,6 +21,7 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
 #include "CMoveConstraint.h"
 #include "UnicodeString.h"
 
@@ -35,7 +36,7 @@
  * controls inside it are disabled. Asked file(s) are selected using
  * DoAskFor() function.
  */
-class SaveClosingDlg : public CDialog
+class SaveClosingDlg : public CTrDialog
 {
 	DECLARE_DYNAMIC(SaveClosingDlg)
 

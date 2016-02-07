@@ -6,11 +6,9 @@
 
 #include "stdafx.h"
 #include "LoadSaveCodepageDlg.h"
-#include "Merge.h"
 #include "resource.h"
 #include "unicoder.h"
 #include "ExConverter.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -21,7 +19,7 @@
 
 
 CLoadSaveCodepageDlg::CLoadSaveCodepageDlg(int nFiles, CWnd* pParent /*=NULL*/)
-: CDialog(CLoadSaveCodepageDlg::IDD, pParent)
+: CTrDialog(CLoadSaveCodepageDlg::IDD, pParent)
 , m_bAffectsLeft(true)
 , m_bAffectsMiddle(true)
 , m_bAffectsRight(true)
@@ -47,7 +45,7 @@ void CLoadSaveCodepageDlg::SetLeftRightAffectStrings(const String & sAffectsLeft
 
 void CLoadSaveCodepageDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CLoadSaveCodepageDlg)
 	DDX_Check(pDX, IDC_AFFECTS_LEFT_BTN, m_bAffectsLeft);
 	DDX_Check(pDX, IDC_AFFECTS_MIDDLE_BTN, m_bAffectsMiddle);
@@ -62,7 +60,7 @@ void CLoadSaveCodepageDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CLoadSaveCodepageDlg, CDialog)
+BEGIN_MESSAGE_MAP(CLoadSaveCodepageDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CLoadSaveCodepageDlg)
 	ON_BN_CLICKED(IDC_AFFECTS_LEFT_BTN, OnAffectsLeftBtnClicked)
 	ON_BN_CLICKED(IDC_AFFECTS_MIDDLE_BTN, OnAffectsMiddleBtnClicked)
@@ -80,8 +78,7 @@ END_MESSAGE_MAP()
  */
 BOOL CLoadSaveCodepageDlg::OnInitDialog() 
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 
 	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv != NULL)
@@ -214,7 +211,7 @@ void CLoadSaveCodepageDlg::UpdateSaveGroup()
  */
 void CLoadSaveCodepageDlg::OnOK ()
 {
-	CDialog::OnOK();
+	CTrDialog::OnOK();
 	if (m_bLoadSaveSameCodepage)
 	{
 		m_nSaveCodepage = m_nLoadCodepage;

@@ -682,6 +682,7 @@
     <ClCompile Include="Common\UniFile.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TrDialogs.cpp" />
     <ClCompile Include="UniMarkdownFile.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -941,6 +942,7 @@
     <ClInclude Include="Common\unicoder.h" />
     <ClInclude Include="Common\UnicodeString.h" />
     <ClInclude Include="Common\UniFile.h" />
+    <ClInclude Include="TrDialogs.h" />
     <ClInclude Include="UniMarkdownFile.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\version.h" />
@@ -962,6 +964,7 @@
     <None Include="..\Externals\crystaledit\editlib\ccrystaltextview.inl" />
     <None Include="..\Externals\crystaledit\editlib\filesup.inl" />
     <None Include="..\Externals\crystaledit\editlib\memcombo.inl" />
+    <None Include="ClassDiagram.cd" />
     <None Include="res\binarydiff.ico" />
     <None Include="res\both.bmp" />
     <None Include="res\equalbinary.ico" />

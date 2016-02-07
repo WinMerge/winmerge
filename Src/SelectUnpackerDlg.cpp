@@ -26,10 +26,8 @@
 
 #include "stdafx.h"
 #include "SelectUnpackerDlg.h"
-#include "Merge.h"
 #include "Plugins.h"
 #include "FileTransform.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -107,14 +105,14 @@ void CSelectUnpackerDlg::Initialize()
 
 
 CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename, CWnd* pParent /*=NULL*/)
-	: CDialog(CSelectUnpackerDlg::IDD, pParent)
+	: CTrDialog(CSelectUnpackerDlg::IDD, pParent)
 {
 	m_filteredFilenames = filename;
 	Initialize();
 }
 
 CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename1, const String& filename2, CWnd* pParent /*=NULL*/)
-	: CDialog(CSelectUnpackerDlg::IDD, pParent)
+	: CTrDialog(CSelectUnpackerDlg::IDD, pParent)
 {
 	m_filteredFilenames = filename1;
 	m_filteredFilenames += _T("|");
@@ -177,7 +175,7 @@ const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 
 void CSelectUnpackerDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CSelectUnpackerDlg)
 	DDX_Control(pDX, IDOK, m_btnOK);
 	DDX_Control(pDX, IDC_UNPACKER_NAME, m_cboUnpackerName);
@@ -188,7 +186,7 @@ void CSelectUnpackerDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CSelectUnpackerDlg, CDialog)
+BEGIN_MESSAGE_MAP(CSelectUnpackerDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CSelectUnpackerDlg)
 	ON_BN_CLICKED(IDC_UNPACKER_ALLOW_ALL, OnUnpackerAllowAll)
 	ON_CBN_SELCHANGE(IDC_UNPACKER_NAME, OnSelchangeUnpackerName)
@@ -203,13 +201,12 @@ void CSelectUnpackerDlg::OnOK()
 {
 	AfxGetApp()->WriteProfileInt(_T("Plugins"), _T("UnpackDontCheckExtension"), m_bNoExtensionCheck);
 
-	CDialog::OnOK();
+	CTrDialog::OnOK();
 }
 
 BOOL CSelectUnpackerDlg::OnInitDialog() 
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 
 	m_bNoExtensionCheck = !!AfxGetApp()->GetProfileInt(_T("Plugins"), _T("UnpackDontCheckExtension"), false);
 

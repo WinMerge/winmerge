@@ -8,6 +8,7 @@
 #pragma once
 
 #include <vector>
+#include "TrDialogs.h"
 #include "UnicodeString.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -24,7 +25,7 @@
  * must be always be last in the list with order number -1.
  * @todo: Allow hidden columns between visible columns.
  */
-class CDirColsDlg : public CDialog
+class CDirColsDlg : public CTrDialog
 {
 // Public types
 public:

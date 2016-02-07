@@ -29,12 +29,10 @@
 #include "PropCodepage.h"
 #include "common/unicoder.h"
 #include "common/ExConverter.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "charsets.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -102,8 +100,7 @@ void PropCodepage::WriteOptions()
 
 BOOL PropCodepage::OnInitDialog() 
 {
-	theApp.TranslateDialog(m_hWnd);
-	CPropertyPage::OnInitDialog();
+	OptionsPanel::OnInitDialog();
 	
 	CEdit * pEdit = (CEdit *) GetDlgItem(IDC_CUSTOM_CP_NUMBER);
 

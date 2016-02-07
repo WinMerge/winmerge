@@ -6,11 +6,9 @@
 
 #include "stdafx.h"
 #include "PropEditor.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -107,8 +105,7 @@ void PropEditor::WriteOptions()
  */
 BOOL PropEditor::OnInitDialog() 
 {
-	theApp.TranslateDialog(m_hWnd);
-	CPropertyPage::OnInitDialog();
+	OptionsPanel::OnInitDialog();
 
 	CEdit * pEdit = (CEdit *) GetDlgItem(IDC_TAB_EDIT);
 

@@ -22,8 +22,7 @@
 
 #include "stdafx.h"
 #include "WMGotoDlg.h"
-#include "Merge.h"
-#include "DDXHelper.h"
+#include "TrDialogs.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,7 +35,7 @@
  * choice for target panel. When dialog is opened, its values are initialized
  * for active file's line number.
  */
-class WMGotoDlg::Impl : public CDialog
+class WMGotoDlg::Impl : public CTrDialog
 {
 // Construction
 public:
@@ -59,7 +58,6 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(WMGotoDlg)
-    virtual BOOL OnInitDialog();
 		// NOTE: the ClassWizard will add member functions here
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
@@ -75,24 +73,13 @@ private:
  * @brief Constructor.
  */
 WMGotoDlg::Impl::Impl(WMGotoDlg *p, CWnd* pParent /*=NULL*/)
-	: CDialog(WMGotoDlg::Impl::IDD, pParent), m_p(p)
+	: CTrDialog(WMGotoDlg::Impl::IDD, pParent), m_p(p)
 {
 }
-
-/**
- * @brief Initialize dialog.
- */
-BOOL WMGotoDlg::Impl::OnInitDialog()
-{
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
-	return TRUE;
-}
-
 
 void WMGotoDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(WMGotoDlg)
 	DDX_Text(pDX, IDC_WMGOTO_PARAM, m_p->m_strParam);
 	DDX_Radio(pDX, IDC_WMGOTO_FILELEFT, m_p->m_nFile);
@@ -101,7 +88,7 @@ void WMGotoDlg::Impl::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(WMGotoDlg::Impl, CDialog)
+BEGIN_MESSAGE_MAP(WMGotoDlg::Impl, CTrDialog)
 	//{{AFX_MSG_MAP(WMGotoDlg::Impl)
 		// NOTE: the ClassWizard will add message map macros here
 	//}}AFX_MSG_MAP

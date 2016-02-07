@@ -27,6 +27,7 @@
 
 #include <vector>
 #include <memory>
+#include "TrDialogs.h"
 #include "UnicodeString.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -35,7 +36,7 @@
 class PackingInfo;
 class PluginInfo;
 
-class CSelectUnpackerDlg : public CDialog
+class CSelectUnpackerDlg : public CTrDialog
 {
 private:
 // Construction

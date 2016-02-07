@@ -5,12 +5,13 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
 #include "UnicodeString.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CLoadSaveCodepageDlg dialog
 
-class CLoadSaveCodepageDlg : public CDialog
+class CLoadSaveCodepageDlg : public CTrDialog
 {
 public:
 // Construction

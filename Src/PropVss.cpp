@@ -27,12 +27,10 @@
 #include "stdafx.h"
 #include "PropVss.h"
 #include "FileOrFolderSelect.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "SourceControl.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -105,8 +103,7 @@ void PropVss::OnBrowseButton()
  */
 BOOL PropVss::OnInitDialog() 
 {
-	theApp.TranslateDialog(m_hWnd);
-	CPropertyPage::OnInitDialog();
+	OptionsPanel::OnInitDialog();
 
 	LoadVssOptionStrings();
 

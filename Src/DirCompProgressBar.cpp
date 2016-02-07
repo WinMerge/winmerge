@@ -6,7 +6,6 @@
 
 #include "stdafx.h"
 #include "DirCompProgressBar.h"
-#include "Merge.h"
 #include "CompareStats.h"
 #include "DiffContext.h"
 #include "paths.h"
@@ -54,7 +53,7 @@ DirCompProgressBar::~DirCompProgressBar()
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	if (m_pTaskbarList)
 	{
-		m_pTaskbarList->SetProgressState(theApp.GetMainWnd()->m_hWnd, TBPF_NOPROGRESS);
+		m_pTaskbarList->SetProgressState(AfxGetMainWnd()->m_hWnd, TBPF_NOPROGRESS);
 		m_pTaskbarList->Release();
 	}
 #endif
@@ -77,16 +76,15 @@ END_MESSAGE_MAP()
  */
 BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 {
-	if (! CDialogBar::Create(pParentWnd, DirCompProgressBar::IDD, 
+	if (! CTrDialogBar::Create(pParentWnd, DirCompProgressBar::IDD, 
 			CBRS_BOTTOM | CBRS_TOOLTIPS | CBRS_FLYBY, DirCompProgressBar::IDD))
 		return FALSE; 
 
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_ALL, IID_ITaskbarList3, (void**)&m_pTaskbarList);
 	if (m_pTaskbarList)
-		m_pTaskbarList->SetProgressState(theApp.GetMainWnd()->m_hWnd, TBPF_INDETERMINATE);
+		m_pTaskbarList->SetProgressState(AfxGetMainWnd()->m_hWnd, TBPF_INDETERMINATE);
 #endif
-	theApp.TranslateDialog(m_hWnd);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -118,7 +116,7 @@ void DirCompProgressBar::SetProgressState(int comparedItems, int totalItems)
 
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	if (m_pTaskbarList)
-		m_pTaskbarList->SetProgressValue(theApp.GetMainWnd()->m_hWnd, comparedItems, totalItems);
+		m_pTaskbarList->SetProgressValue(AfxGetMainWnd()->m_hWnd, comparedItems, totalItems);
 #endif
 }
 

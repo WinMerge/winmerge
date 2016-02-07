@@ -3,7 +3,6 @@
 
 #include "stdafx.h"
 #include "EncodingErrorBar.h"
-#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,11 +39,9 @@ END_MESSAGE_MAP()
 
 BOOL CEncodingErrorBar::Create(CWnd *pParentWnd) 
 {
-	if (! CDialogBar::Create(pParentWnd, CEncodingErrorBar::IDD, 
+	if (! CTrDialogBar::Create(pParentWnd, CEncodingErrorBar::IDD, 
 			CBRS_BOTTOM | CBRS_TOOLTIPS | CBRS_FLYBY, CEncodingErrorBar::IDD))
 		return FALSE;
-
-	theApp.TranslateDialog(m_hWnd);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

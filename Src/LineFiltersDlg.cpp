@@ -8,7 +8,6 @@
 #include "LineFiltersList.h"
 #include "Merge.h"
 #include "LineFiltersDlg.h"
-#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -20,13 +19,13 @@ static TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 /////////////////////////////////////////////////////////////////////////////
 // CPropLineFilter property page
 
-IMPLEMENT_DYNAMIC(LineFiltersDlg, CPropertyPage)
+IMPLEMENT_DYNAMIC(LineFiltersDlg, CTrPropertyPage)
 
 /**
  * @brief Constructor.
  */
 LineFiltersDlg::LineFiltersDlg()
-: CPropertyPage(LineFiltersDlg::IDD)
+: CTrPropertyPage(LineFiltersDlg::IDD)
 , m_pList(NULL)
 {
 	//{{AFX_DATA_INIT(LineFiltersDlg)
@@ -70,8 +69,7 @@ END_MESSAGE_MAP()
  */
 BOOL LineFiltersDlg::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CPropertyPage::OnInitDialog();
+	CTrPropertyPage::OnInitDialog();
 
 	InitList();
 	

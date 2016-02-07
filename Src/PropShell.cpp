@@ -7,12 +7,10 @@
 
 #include "stdafx.h"
 #include "PropShell.h"
-#include "Merge.h"
 #include "RegKey.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
-#include "DDXHelper.h"
 #include "Constants.h"
 #include "Environment.h"
 #include "paths.h"
@@ -82,8 +80,7 @@ PropShell::PropShell(COptionsMgr *optionsMgr)
 
 BOOL PropShell::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CPropertyPage::OnInitDialog();
+	OptionsPanel::OnInitDialog();
 
 #ifndef BCM_SETSHIELD
 #define BCM_SETSHIELD            (0x1600/*BCM_FIRST*/ + 0x000C)

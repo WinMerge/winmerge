@@ -5,6 +5,7 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
 #include "UnicodeString.h"
 
 /**
@@ -13,7 +14,7 @@
  * to the plugin (file)name it shows plugin type and description. The
  * dialog also has a control to enable/disable plugins.
  */
-class PluginsListDlg : public CDialog
+class PluginsListDlg : public CTrDialog
 {
 	DECLARE_DYNAMIC(PluginsListDlg)
 

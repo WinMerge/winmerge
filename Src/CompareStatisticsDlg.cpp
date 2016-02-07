@@ -23,7 +23,6 @@
 #include "stdafx.h"
 #include "CompareStatisticsDlg.h"
 #include "CompareStats.h"
-#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,17 +31,17 @@
 /////////////////////////////////////////////////////////////////////////////
 // SaveClosingDlg dialog
 
-IMPLEMENT_DYNAMIC(CompareStatisticsDlg, CDialog)
+IMPLEMENT_DYNAMIC(CompareStatisticsDlg, CTrDialog)
 
 CompareStatisticsDlg::CompareStatisticsDlg(const CompareStats* pStats, CWnd* pParent /*=NULL*/) :
 	m_pCompareStats(pStats),
-	CDialog(pStats->GetCompareDirs() < 3 ? IDD_COMPARE_STATISTICS : IDD_COMPARE_STATISTICS3, pParent)
+	CTrDialog(pStats->GetCompareDirs() < 3 ? IDD_COMPARE_STATISTICS : IDD_COMPARE_STATISTICS3, pParent)
 {
 	//{{AFX_DATA_INIT(CompareStatisticsDlg)
 	//}}AFX_DATA_INIT
 }
 
-BEGIN_MESSAGE_MAP(CompareStatisticsDlg, CDialog)
+BEGIN_MESSAGE_MAP(CompareStatisticsDlg, CTrDialog)
 	//{{AFX_MSG_MAP(SaveClosingDlg)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -56,8 +55,7 @@ END_MESSAGE_MAP()
  */
 BOOL CompareStatisticsDlg::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 	int totalFiles = 0;
 	int totalFolders = 0;
 	const int iconCX = []() {

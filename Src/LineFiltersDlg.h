@@ -6,6 +6,8 @@
  */
 #pragma once
 
+#include "TrDialogs.h"
+
 class LineFiltersList;
 
 /**
@@ -13,7 +15,7 @@ class LineFiltersList;
  * This dialog allows user to add, edit and remove line filters. Currently
  * active filters are selected by enabling their checkbox.
  */
-class LineFiltersDlg : public CPropertyPage
+class LineFiltersDlg : public CTrPropertyPage
 {
 	DECLARE_DYNAMIC(LineFiltersDlg)
 
