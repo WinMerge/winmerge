@@ -51,7 +51,7 @@ BOOL PluginsListDlg::OnInitDialog()
 	AddPlugins();
 	m_list.SetItemState(0, LVIS_SELECTED, LVIS_SELECTED);
 
-	SetDlgItemChecked(IDC_PLUGINS_ENABLE, 
+	CheckDlgButton(IDC_PLUGINS_ENABLE, 
 		GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? BST_CHECKED : BST_UNCHECKED);
 
 	return FALSE;  // return TRUE unless you set the focus to a control
