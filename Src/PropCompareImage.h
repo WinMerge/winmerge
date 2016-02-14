@@ -26,7 +26,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropCompareImage)
 	enum { IDD = IDD_PROPPAGE_COMPARE_IMAGE };
-	CString m_sFilePatterns;
+	String m_sFilePatterns;
 	//}}AFX_DATA
 
 

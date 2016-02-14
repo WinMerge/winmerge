@@ -29,7 +29,7 @@ private:
 // Implementation methods
 private:
 	bool CheckText(String text) const;
-	void AppendResult(String result);
+	void AppendResult(const String& result);
 
 // Dialog Data
 	//{{AFX_DATA(CTestFilterDlg)
@@ -49,7 +49,6 @@ private:
 	// Generated message map functions
 	//{{AFX_MSG(CTestFilterDlg)
 	virtual BOOL OnInitDialog();
-	virtual void OnOK();
 	afx_msg void OnTestBtn();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

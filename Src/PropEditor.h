@@ -47,7 +47,6 @@ private:
 	void UpdateDataToWindow() { UpdateData(FALSE); }
 	void UpdateDataFromWindow() { UpdateData(TRUE); }
 	void UpdateLineDiffControls();
-	void EnableDlgItem(int item, bool enable);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

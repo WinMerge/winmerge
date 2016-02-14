@@ -104,7 +104,7 @@ void PropRegistry::OnBrowseEditor()
 	String path;
 	if (SelectFile(GetSafeHwnd(), path, m_strEditorPath.c_str(), _("Open"), _("Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"), TRUE))
 	{
-		SetDlgItemText(IDC_EXT_EDITOR_PATH, path.c_str());
+		SetDlgItemText(IDC_EXT_EDITOR_PATH, path);
 	}
 }
 
@@ -114,7 +114,7 @@ void PropRegistry::OnBrowseFilterPath()
 	String path;
 	if (SelectFolder(path, m_strUserFilterPath.c_str(), _("Open"), GetSafeHwnd()))
 	{
-		SetDlgItemText(IDC_FILTER_USER_PATH, path.c_str());
+		SetDlgItemText(IDC_FILTER_USER_PATH, path);
 	}
 }
 
@@ -124,6 +124,6 @@ void PropRegistry::OnBrowseTmpFolder()
 	String path;
 	if (SelectFolder(path, m_tempFolder.c_str(), _T(""), GetSafeHwnd()))
 	{
-		SetDlgItemText(IDC_TMPFOLDER_NAME, path.c_str());
+		SetDlgItemText(IDC_TMPFOLDER_NAME, path);
 	}
 }

@@ -55,7 +55,7 @@ void PropBackups::ReadOptions()
 	m_bCreateForFolderCmp = GetOptionsMgr()->GetBool(OPT_BACKUP_FOLDERCMP);
 	m_bCreateForFileCmp = GetOptionsMgr()->GetBool(OPT_BACKUP_FILECMP);
 	m_nBackupFolder = GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION);
-	m_sGlobalFolder = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER).c_str();
+	m_sGlobalFolder = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);
 	m_bAppendBak = GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK);
 	m_bAppendTime = GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_TIME);
 }
@@ -72,9 +72,9 @@ void PropBackups::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_LOCATION, m_nBackupFolder);
-	GetOptionsMgr()->SaveOption(OPT_BACKUP_GLOBALFOLDER, String(m_sGlobalFolder));
-	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_BAK, m_bAppendBak == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_TIME, m_bAppendTime == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_GLOBALFOLDER, m_sGlobalFolder);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_BAK, m_bAppendBak);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_TIME, m_bAppendTime);
 }
 
 /** 
@@ -85,6 +85,6 @@ void PropBackups::OnBnClickedBackupBrowse()
 	String path;
 	if (SelectFolder(path, m_sGlobalFolder.c_str(), _T(""), GetSafeHwnd()))
 	{
-		SetDlgItemText(IDC_BACKUP_FOLDER, path.c_str());
+		SetDlgItemText(IDC_BACKUP_FOLDER, path);
 	}
 }

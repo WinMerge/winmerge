@@ -220,33 +220,19 @@ void PropTextColors::OnDefaultsStandardColors()
 	// Reset all text colors to default every time user checks defaults button
 	SerializeColorsToFromScreen(SET_DEFAULTS);
 
-	CButton * btn = (CButton *)GetDlgItem(IDC_DEFAULT_STANDARD_COLORS);
-	if (btn->GetCheck() == BST_UNCHECKED)
-	{
-		EnableColorButtons(FALSE);
-	}
-	else
-	{
-		EnableColorButtons(TRUE);
-	}
+	EnableColorButtons(IsDlgButtonChecked(IDC_DEFAULT_STANDARD_COLORS) == 1);
 }
 
 /** 
  * @brief Enable / disable color controls on dialog.
  * @param [in] bEnable If TRUE color controls are enabled.
  */
-void PropTextColors::EnableColorButtons(BOOL bEnable)
+void PropTextColors::EnableColorButtons(bool bEnable)
 {
-	CStatic * stc = (CStatic *) GetDlgItem(IDC_CUSTOM_COLORS_GROUP);
-	stc->EnableWindow(bEnable);
-	stc = (CStatic *) GetDlgItem(IDC_WHITESPACE_COLOR_LABEL);
-	stc->EnableWindow(bEnable);
-	stc = (CStatic *) GetDlgItem(IDC_TEXT_COLOR_LABEL);
-	stc->EnableWindow(bEnable);
-	stc = (CStatic *) GetDlgItem(IDC_SELECTION_COLOR_LABEL);
-	stc->EnableWindow(bEnable);
-	stc = (CStatic *) GetDlgItem(IDC_BACKGROUND_COLUMN_LABEL);
-	stc->EnableWindow(bEnable);
-	stc = (CStatic *) GetDlgItem(IDC_TEXT_COLUMN_LABEL);
-	stc->EnableWindow(bEnable);
+	EnableDlgItem(IDC_CUSTOM_COLORS_GROUP, bEnable);
+	EnableDlgItem(IDC_WHITESPACE_COLOR_LABEL, bEnable);
+	EnableDlgItem(IDC_TEXT_COLOR_LABEL, bEnable);
+	EnableDlgItem(IDC_SELECTION_COLOR_LABEL, bEnable);
+	EnableDlgItem(IDC_BACKGROUND_COLUMN_LABEL, bEnable);
+	EnableDlgItem(IDC_TEXT_COLUMN_LABEL, bEnable);
 }

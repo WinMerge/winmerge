@@ -31,7 +31,6 @@ public:
 private:
 	void UpdateDataToWindow() { UpdateData(FALSE); }
 	void UpdateDataFromWindow() { UpdateData(TRUE); }
-	void EnableDlgItem(int item, bool enable);
 	void UpdateSaveGroup();
 
 // Implementation data

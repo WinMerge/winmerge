@@ -108,14 +108,14 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Tahoma"));
 	ReleaseDC(pDC);
 
-	GetDlgItem(IDC_STATIC)->SetWindowText(m_p->m_info.developers.c_str());
+	SetDlgItemText(IDC_STATIC, m_p->m_info.developers);
 	GetDlgItem(IDC_STATIC)->SetFont(&m_font);
 	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
 
-	CString link;
-	GetDlgItem(IDC_WWW)->GetWindowText(link);
-	link = CString(_T("<a href=\"")) + m_p->m_info.website.c_str() + CString(_T("\">")) + link + _T("</a>");
-	GetDlgItem(IDC_WWW)->SetWindowText(link);	
+	String link;
+	GetDlgItemText(IDC_WWW, link);
+	link = _T("<a href=\"") + m_p->m_info.website + _T("\">") + link + _T("</a>");
+	SetDlgItemText(IDC_WWW, link);	
 
 	UpdateData(FALSE);
 	

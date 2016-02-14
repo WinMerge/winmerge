@@ -275,19 +275,12 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 			if (m_cols[j].log_col == data)
 				break;
 		}
-		GetDlgItem(IDC_COLDLG_DESC)->SetWindowText(m_cols[j].desc.c_str());
+		SetDlgItemText(IDC_COLDLG_DESC, m_cols[j].desc);
 
 		// Disable Up/Down -buttons when first/last items are selected.
-		if (ind == 0)
-			GetDlgItem(IDC_UP)->EnableWindow(FALSE);
-		else
-			GetDlgItem(IDC_UP)->EnableWindow(TRUE);
-
-		if (ind == m_listColumns.GetItemCount() - m_listColumns.GetSelectedCount())
-			GetDlgItem(IDC_DOWN)->EnableWindow(FALSE);
-		else
-			GetDlgItem(IDC_DOWN)->EnableWindow(TRUE);
-
+		EnableDlgItem(IDC_UP, ind != 0);
+		EnableDlgItem(IDC_DOWN,
+			ind != m_listColumns.GetItemCount() - m_listColumns.GetSelectedCount());
 	}
 	*pResult = 0;
 }

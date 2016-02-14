@@ -94,12 +94,11 @@ void ProjectFilePathsDlg::OnBnClickedProjRfileBrowse()
 void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
 {
 	String filterPrefix = _("[F] ");
-	CString curFilter;
+	String curFilter;
 
 	const BOOL bUseMask = theApp.m_pGlobalFileFilter->IsUsingMask();
 	GetDlgItemText(IDC_PROJ_FILTER_EDIT, curFilter);
-	curFilter.TrimLeft();
-	curFilter.TrimRight();
+	curFilter = string_trim_ws(curFilter);
 
 	GetMainFrame()->SelectFilter();
 	
@@ -109,13 +108,13 @@ void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
 		// If we had filter chosen and now has mask we can overwrite filter
 		if (!bUseMask || curFilter[0] != '*')
 		{
-			SetDlgItemText(IDC_PROJ_FILTER_EDIT, filterNameOrMask.c_str());
+			SetDlgItemText(IDC_PROJ_FILTER_EDIT, filterNameOrMask);
 		}
 	}
 	else
 	{
 		filterNameOrMask = filterPrefix + filterNameOrMask;
-		SetDlgItemText(IDC_PROJ_FILTER_EDIT, filterNameOrMask.c_str());
+		SetDlgItemText(IDC_PROJ_FILTER_EDIT, filterNameOrMask);
 	}
 }
 

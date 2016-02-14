@@ -45,7 +45,7 @@ END_MESSAGE_MAP()
  */
 void PropCompareImage::ReadOptions()
 {
-	m_sFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS).c_str();
+	m_sFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS);
 }
 
 /** 

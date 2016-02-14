@@ -102,18 +102,10 @@ BOOL PropCodepage::OnInitDialog()
 {
 	OptionsPanel::OnInitDialog();
 	
-	CEdit * pEdit = (CEdit *) GetDlgItem(IDC_CUSTOM_CP_NUMBER);
-
 	// Enable/disable "Custom codepage" edit field
-	if (IsDlgButtonChecked(IDC_CP_CUSTOM))
-		pEdit->EnableWindow(TRUE);
-	else
-		pEdit->EnableWindow(FALSE);
-
-	if (IsDlgButtonChecked(IDC_DETECT_CODEPAGE2))
-		m_comboAutodetectType.EnableWindow(TRUE);
-	else
-		m_comboAutodetectType.EnableWindow(FALSE);
+	EnableDlgItem(IDC_CUSTOM_CP_NUMBER, IsDlgButtonChecked(IDC_CP_CUSTOM) == 1);
+	m_comboAutodetectType.EnableWindow(
+		IsDlgButtonChecked(IDC_DETECT_CODEPAGE2) == 1);
 
 	m_comboCustomCodepageValue.SetWindowText(string_to_str(m_nCustomCodepageValue).c_str());
 
@@ -127,10 +119,8 @@ BOOL PropCodepage::OnInitDialog()
 		{
 			if (cpi[i].codepage == 1200 /* UNICODE */)
 				continue;
-			TCHAR desc[256];
-			wsprintf(desc, _T("%05d - %ls"), cpi[i].codepage, cpi[i].desc);
-			m_comboCustomCodepageValue.AddString(desc);
-			m_comboCustomCodepageValue.SetItemData(j, cpi[i].codepage);
+			String desc = string_format(_T("%05d - %ls"), cpi[i].codepage, cpi[i].desc);
+			m_comboCustomCodepageValue.AddString(desc.c_str());
 			if (cpi[i].codepage == m_nCustomCodepageValue)
 				m_comboCustomCodepageValue.SetCurSel(j);
 			j++;
@@ -154,20 +144,18 @@ BOOL PropCodepage::OnInitDialog()
 
 void PropCodepage::OnCpSystem() 
 {
-	GetDlgItem(IDC_CUSTOM_CP_NUMBER)->EnableWindow(FALSE);	
+	EnableDlgItem(IDC_CUSTOM_CP_NUMBER, false);
 }
 
 void PropCodepage::OnCpCustom() 
 {
-	GetDlgItem(IDC_CUSTOM_CP_NUMBER)->EnableWindow(TRUE);	
+	EnableDlgItem(IDC_CUSTOM_CP_NUMBER, true);
 }
 
 void PropCodepage::OnDetectCodepage2() 
 {
-	if (IsDlgButtonChecked(IDC_DETECT_CODEPAGE2))
-		m_comboAutodetectType.EnableWindow(TRUE);
-	else
-		m_comboAutodetectType.EnableWindow(FALSE);
+	m_comboAutodetectType.EnableWindow(
+		IsDlgButtonChecked(IDC_DETECT_CODEPAGE2) == 1);
 }
 
 void PropCodepage::OnDetectAutodetecttype()
@@ -177,7 +165,7 @@ void PropCodepage::OnDetectAutodetecttype()
 
 void PropCodepage::OnCpUi() 
 {
-	GetDlgItem(IDC_CUSTOM_CP_NUMBER)->EnableWindow(FALSE);	
+	EnableDlgItem(IDC_CUSTOM_CP_NUMBER, false);	
 }
 
 void PropCodepage::GetEncodingCodePageFromNameString()

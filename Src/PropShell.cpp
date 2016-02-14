@@ -86,8 +86,8 @@ BOOL PropShell::OnInitDialog()
 #define BCM_SETSHIELD            (0x1600/*BCM_FIRST*/ + 0x000C)
 #endif
 
-	::SendMessage(GetDlgItem(IDC_REGISTER_SHELLEXTENSION)->m_hWnd, BCM_SETSHIELD, 0, TRUE);
-	::SendMessage(GetDlgItem(IDC_UNREGISTER_SHELLEXTENSION)->m_hWnd, BCM_SETSHIELD, 0, TRUE);
+	SendDlgItemMessage(IDC_REGISTER_SHELLEXTENSION, BCM_SETSHIELD, 0, TRUE);
+	SendDlgItemMessage(IDC_UNREGISTER_SHELLEXTENSION, BCM_SETSHIELD, 0, TRUE);
 
 	// Update shell extension checkboxes
 	UpdateButtons();
@@ -225,11 +225,11 @@ void PropShell::AdvancedContextMenuCheck()
 void PropShell::UpdateButtons()
 {
 	bool registered = IsShellExtensionRegistered();
-	GetDlgItem(IDC_EXPLORER_CONTEXT)->EnableWindow(registered);
-	GetDlgItem(IDC_REGISTER_SHELLEXTENSION)->EnableWindow(!registered);
-	GetDlgItem(IDC_UNREGISTER_SHELLEXTENSION)->EnableWindow(registered);
-	GetDlgItem(IDC_EXPLORER_ADVANCED)->EnableWindow(
-		GetDlgItem(IDC_EXPLORER_CONTEXT)->IsWindowEnabled() && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
+	EnableDlgItem(IDC_EXPLORER_CONTEXT, registered);
+	EnableDlgItem(IDC_REGISTER_SHELLEXTENSION, !registered);
+	EnableDlgItem(IDC_UNREGISTER_SHELLEXTENSION, registered);
+	EnableDlgItem(IDC_EXPLORER_ADVANCED, 
+		registered && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
 }
 
 void PropShell::OnRegisterShellExtension()

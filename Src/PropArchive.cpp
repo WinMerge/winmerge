@@ -32,6 +32,7 @@ void PropArchive::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	DDX_Check(pDX, IDC_ARCHIVE_ENABLE, m_bEnableSupport);
 	DDX_Check(pDX, IDC_ARCHIVE_DETECTTYPE, m_bProbeType);
+	UpdateControls();
 }
 
 
@@ -59,20 +60,6 @@ void PropArchive::WriteOptions()
 }
 
 /** 
- * @brief Called before propertysheet is drawn.
- */
-BOOL PropArchive::OnInitDialog()
-{
-	OptionsPanel::OnInitDialog();
-	UpdateData(FALSE);
-
-	UpdateControls();
-	
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
-}
-
-/** 
  * @brief Called when archive support is enabled or disabled.
  */
 void PropArchive::OnEnableClicked()
@@ -85,11 +72,5 @@ void PropArchive::OnEnableClicked()
  */
 void PropArchive::UpdateControls()
 {
-	CButton *chkEnabled = (CButton *) GetDlgItem(IDC_ARCHIVE_ENABLE);
-	CButton *chkProbe = (CButton *) GetDlgItem(IDC_ARCHIVE_DETECTTYPE);
-
-	BOOL enableItems = FALSE;
-	if (chkEnabled->GetCheck() == 1)
-		enableItems = TRUE;
-	chkProbe->EnableWindow(enableItems);
+	EnableDlgItem(IDC_ARCHIVE_DETECTTYPE, IsDlgButtonChecked(IDC_ARCHIVE_ENABLE) == 1);
 }

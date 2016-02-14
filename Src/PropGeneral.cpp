@@ -152,5 +152,5 @@ void PropGeneral::WriteOptions()
 void PropGeneral::OnResetAllMessageBoxes()
 {
 	CMessageBoxDialog::ResetMessageBoxes();
-	LangMessageBox(IDS_MESSAGE_BOX_ARE_RESET, MB_ICONINFORMATION);
+	AfxMessageBox(_("All message boxes are now displayed again.").c_str(), MB_ICONINFORMATION);
 }

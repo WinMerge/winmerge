@@ -80,41 +80,41 @@ BOOL SaveClosingDlg::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
-	GetDlgItem(IDC_SAVECLOSING_SAVELEFT)->SetFocus();
+	SetDlgItemFocus(IDC_SAVECLOSING_SAVELEFT);
 	if (!m_bAskForLeft)
 	{
 		// Left items disabled move focus to middle side items
-		GetDlgItem(IDC_SAVECLOSING_SAVEMIDDLE)->SetFocus();
+		SetDlgItemFocus(IDC_SAVECLOSING_SAVEMIDDLE);
 
-		GetDlgItem(IDC_SAVECLOSING_LEFTFRAME)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SAVECLOSING_LEFTFILE)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SAVECLOSING_SAVELEFT)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SAVECLOSING_DISCARDLEFT)->EnableWindow(FALSE);
+		EnableDlgItem(IDC_SAVECLOSING_LEFTFRAME, false);
+		EnableDlgItem(IDC_SAVECLOSING_LEFTFILE, false);
+		EnableDlgItem(IDC_SAVECLOSING_SAVELEFT, false);
+		EnableDlgItem(IDC_SAVECLOSING_DISCARDLEFT, false);
 	}
 
 	if (!m_bAskForMiddle)
 	{
 		// Middle items disabled move focus to right side items
 		if (!m_bAskForLeft)
-			GetDlgItem(IDC_SAVECLOSING_SAVERIGHT)->SetFocus();
+			SetDlgItemFocus(IDC_SAVECLOSING_SAVERIGHT);
 
-		GetDlgItem(IDC_SAVECLOSING_MIDDLEFRAME)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SAVECLOSING_MIDDLEFILE)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SAVECLOSING_SAVEMIDDLE)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SAVECLOSING_DISCARDMIDDLE)->EnableWindow(FALSE);
+		EnableDlgItem(IDC_SAVECLOSING_MIDDLEFRAME, false);
+		EnableDlgItem(IDC_SAVECLOSING_MIDDLEFILE, false);
+		EnableDlgItem(IDC_SAVECLOSING_SAVEMIDDLE, false);
+		EnableDlgItem(IDC_SAVECLOSING_DISCARDMIDDLE, false);
 	}
 	
 	if (!m_bAskForRight)
 	{
-		GetDlgItem(IDC_SAVECLOSING_RIGHTFRAME)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SAVECLOSING_RIGHTFILE)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SAVECLOSING_SAVERIGHT)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SAVECLOSING_DISCARDRIGHT)->EnableWindow(FALSE);
+		EnableDlgItem(IDC_SAVECLOSING_RIGHTFRAME, false);
+		EnableDlgItem(IDC_SAVECLOSING_RIGHTFILE, false);
+		EnableDlgItem(IDC_SAVECLOSING_SAVERIGHT, false);
+		EnableDlgItem(IDC_SAVECLOSING_DISCARDRIGHT, false);
 	}
 
 	if (m_bDisableCancel)
 	{
-		GetDlgItem(IDCANCEL)->EnableWindow(FALSE);
+		EnableDlgItem(IDCANCEL, false);
 	}
 
 	// setup handler for resizing this dialog	
