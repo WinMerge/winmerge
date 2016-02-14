@@ -1,7 +1,5 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
-// $Id: Merge.rc 7034 2009-11-14 17:02:15Z gerundt $
-
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -15,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -29,21 +25,20 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
-    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
     "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
     "\r\n"
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
@@ -101,46 +96,46 @@ BEGIN
         MENUITEM "View &Differences",           ID_IMG_VIEWDIFFERENCES
         POPUP "Diff &Block Size"
         BEGIN
-            MENUITEM "&1",                      ID_IMG_DIFFBLOCKSIZE_1
-            MENUITEM "&2",                      ID_IMG_DIFFBLOCKSIZE_2
-            MENUITEM "&4",                      ID_IMG_DIFFBLOCKSIZE_4
-            MENUITEM "&8",                      ID_IMG_DIFFBLOCKSIZE_8
-            MENUITEM "1&6",                     ID_IMG_DIFFBLOCKSIZE_16
-            MENUITEM "&32",                     ID_IMG_DIFFBLOCKSIZE_32
+            MENUITEM "&1",                          ID_IMG_DIFFBLOCKSIZE_1
+            MENUITEM "&2",                          ID_IMG_DIFFBLOCKSIZE_2
+            MENUITEM "&4",                          ID_IMG_DIFFBLOCKSIZE_4
+            MENUITEM "&8",                          ID_IMG_DIFFBLOCKSIZE_8
+            MENUITEM "1&6",                         ID_IMG_DIFFBLOCKSIZE_16
+            MENUITEM "&32",                         ID_IMG_DIFFBLOCKSIZE_32
         END
         POPUP "&Ignore Color Difference (Color Distance Threshold)"
         BEGIN
-            MENUITEM "&0",                      ID_IMG_THRESHOLD_0
-            MENUITEM "&2",                      ID_IMG_THRESHOLD_2
-            MENUITEM "&4",                      ID_IMG_THRESHOLD_4
-            MENUITEM "&8",                      ID_IMG_THRESHOLD_8
-            MENUITEM "1&6",                     ID_IMG_THRESHOLD_16
-            MENUITEM "&32",                     ID_IMG_THRESHOLD_32
-            MENUITEM "64",                      ID_IMG_THRESHOLD_64
+            MENUITEM "&0",                          ID_IMG_THRESHOLD_0
+            MENUITEM "&2",                          ID_IMG_THRESHOLD_2
+            MENUITEM "&4",                          ID_IMG_THRESHOLD_4
+            MENUITEM "&8",                          ID_IMG_THRESHOLD_8
+            MENUITEM "1&6",                         ID_IMG_THRESHOLD_16
+            MENUITEM "&32",                         ID_IMG_THRESHOLD_32
+            MENUITEM "64",                          ID_IMG_THRESHOLD_64
         END
         MENUITEM SEPARATOR
         MENUITEM "&Previous Page",              ID_IMG_PREVPAGE
         MENUITEM "&Next Page",                  ID_IMG_NEXTPAGE
         POPUP "&Active Pane"
         BEGIN
-            MENUITEM "&Previous Page",          ID_IMG_CURPANE_PREVPAGE
-            MENUITEM "&Next Page",              ID_IMG_CURPANE_NEXTPAGE
+            MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
+            MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE
         END
         MENUITEM SEPARATOR
         POPUP "&Zoom"
         BEGIN
-            MENUITEM "&800%",                   ID_IMG_ZOOM_800
-            MENUITEM "&400%",                   ID_IMG_ZOOM_400
-            MENUITEM "&200%",                   ID_IMG_ZOOM_200
-            MENUITEM "&100%",                   ID_IMG_ZOOM_100
-            MENUITEM "&50%",                    ID_IMG_ZOOM_50
-            MENUITEM "&25%",                    ID_IMG_ZOOM_25
+            MENUITEM "&800%",                       ID_IMG_ZOOM_800
+            MENUITEM "&400%",                       ID_IMG_ZOOM_400
+            MENUITEM "&200%",                       ID_IMG_ZOOM_200
+            MENUITEM "&100%",                       ID_IMG_ZOOM_100
+            MENUITEM "&50%",                        ID_IMG_ZOOM_50
+            MENUITEM "&25%",                        ID_IMG_ZOOM_25
         END
         POPUP "&Overlay"
         BEGIN
-            MENUITEM "&None",                   ID_IMG_OVERLAY_NONE
-            MENUITEM "&XOR",                    ID_IMG_OVERLAY_XOR
-            MENUITEM "&Alpha Blend",            ID_IMG_OVERLAY_ALPHABLEND
+            MENUITEM "&None",                       ID_IMG_OVERLAY_NONE
+            MENUITEM "&XOR",                        ID_IMG_OVERLAY_XOR
+            MENUITEM "&Alpha Blend",                ID_IMG_OVERLAY_ALPHABLEND
         END
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
     END
@@ -155,13 +150,13 @@ BEGIN
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Op&en Conflict File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
-        MENUITEM "Open Pro&ject...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
         POPUP "Recent F&iles Or Folders"
         BEGIN
-            MENUITEM "< Empty >",               ID_NO_MRU
+            MENUITEM "< Empty >",                   ID_NO_MRU
         END
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
@@ -196,7 +191,7 @@ BEGIN
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "&Edit with Unpacker...",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "&Edit with Unpacker...",      ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
@@ -232,8 +227,8 @@ BEGIN
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Op&en Conflict File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
-        MENUITEM "Open Pro&ject...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         POPUP "&Read-only"
         BEGIN
@@ -246,7 +241,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
         BEGIN
-            MENUITEM "< Empty >",               ID_NO_MRU
+            MENUITEM "< Empty >",                   ID_NO_MRU
         END
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
@@ -325,7 +320,7 @@ BEGIN
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "&Edit with Unpacker...",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "&Edit with Unpacker...",      ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
@@ -361,21 +356,21 @@ BEGIN
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Op&en Conflict File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
-        MENUITEM "Open Pro&ject...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
         POPUP "Sav&e"
         BEGIN
-            MENUITEM "Save &Left",              ID_FILE_SAVE_LEFT
-            MENUITEM "Save &Middle",            ID_FILE_SAVE_MIDDLE
-            MENUITEM "Save &Right",             ID_FILE_SAVE_RIGHT
+            MENUITEM "Save &Left",                  ID_FILE_SAVE_LEFT
+            MENUITEM "Save &Middle",                ID_FILE_SAVE_MIDDLE
+            MENUITEM "Save &Right",                 ID_FILE_SAVE_RIGHT
         END
         POPUP "Save &As"
         BEGIN
-            MENUITEM "Save &Left As...",        ID_FILE_SAVEAS_LEFT
-            MENUITEM "Save &Middle As...",      ID_FILE_SAVEAS_MIDDLE
-            MENUITEM "Save &Right As...",       ID_FILE_SAVEAS_RIGHT
+            MENUITEM "Save &Left As...",            ID_FILE_SAVEAS_LEFT
+            MENUITEM "Save &Middle As...",          ID_FILE_SAVEAS_MIDDLE
+            MENUITEM "Save &Right As...",           ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
         MENUITEM "&Print...",                   ID_FILE_PRINT
@@ -384,9 +379,9 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Read-only"
         BEGIN
-            MENUITEM "L&eft Read-only",         ID_FILE_LEFT_READONLY
-            MENUITEM "M&iddle Read-only",       ID_FILE_MIDDLE_READONLY
-            MENUITEM "Ri&ght Read-only",        ID_FILE_RIGHT_READONLY
+            MENUITEM "L&eft Read-only",             ID_FILE_LEFT_READONLY
+            MENUITEM "M&iddle Read-only",           ID_FILE_MIDDLE_READONLY
+            MENUITEM "Ri&ght Read-only",            ID_FILE_RIGHT_READONLY
         END
         MENUITEM SEPARATOR
         POPUP "&Convert Line Endings to"
@@ -396,19 +391,19 @@ BEGIN
             MENUITEM "&Mac (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Merge Mode\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM "&Merge Mode\tF9",             ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
         POPUP "Recompare As"
         BEGIN
-            MENUITEM "&XML",                    ID_MERGE_COMPARE_XML
-            MENUITEM "&Binary",                 ID_MERGE_COMPARE_HEX
+            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
+            MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
         END
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
         BEGIN
-            MENUITEM "< Empty >",               ID_NO_MRU
+            MENUITEM "< Empty >",                   ID_NO_MRU
         END
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
@@ -430,15 +425,14 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Advanced"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
-                                                    ID_EDIT_COPY_LINENUMBERS
+            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C", ID_EDIT_COPY_LINENUMBERS
         END
         POPUP "&Bookmarks"
         BEGIN
-            MENUITEM "&Toggle Bookmark\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
-            MENUITEM "&Next Bookmark\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "&Toggle Bookmark\tCtrl+F2",   ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "&Next Bookmark\tF2",          ID_EDIT_GOTO_NEXT_BOOKMARK
             MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
-            MENUITEM "&Clear All Bookmarks",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+            MENUITEM "&Clear All Bookmarks",        ID_EDIT_CLEAR_ALL_BOOKMARKS
         END
         MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
@@ -450,24 +444,24 @@ BEGIN
         MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
         POPUP "&Zoom"
         BEGIN
-            MENUITEM "Zoom &In\tCtrl++",        ID_VIEW_ZOOMIN
-            MENUITEM "Zoom &Out\tCtrl+-",       ID_VIEW_ZOOMOUT
-            MENUITEM "&Normal\tCtrl+*",         ID_VIEW_ZOOMNORMAL //#. Zoom to normal
+            MENUITEM "Zoom &In\tCtrl++",            ID_VIEW_ZOOMIN
+            MENUITEM "Zoom &Out\tCtrl+-",           ID_VIEW_ZOOMOUT
+            MENUITEM "&Normal\tCtrl+*",             ID_VIEW_ZOOMNORMAL
         END
         POPUP "Syntax Highlight"
         BEGIN
-            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+            MENUITEM "<PlaceHolder>",               ID_VIEW_CHANGESCHEME
         END
         MENUITEM SEPARATOR
         POPUP "&Diff Context"
         BEGIN
-            MENUITEM "&All",                    ID_VIEW_DIFFCONTEXT_ALL
-            MENUITEM "&0",                      ID_VIEW_DIFFCONTEXT_0
-            MENUITEM "&1",                      ID_VIEW_DIFFCONTEXT_1
-            MENUITEM "&3",                      ID_VIEW_DIFFCONTEXT_3
-            MENUITEM "&5",                      ID_VIEW_DIFFCONTEXT_5
-            MENUITEM "&7",                      ID_VIEW_DIFFCONTEXT_7
-            MENUITEM "&9",                      ID_VIEW_DIFFCONTEXT_9
+            MENUITEM "&All",                        ID_VIEW_DIFFCONTEXT_ALL
+            MENUITEM "&0",                          ID_VIEW_DIFFCONTEXT_0
+            MENUITEM "&1",                          ID_VIEW_DIFFCONTEXT_1
+            MENUITEM "&3",                          ID_VIEW_DIFFCONTEXT_3
+            MENUITEM "&5",                          ID_VIEW_DIFFCONTEXT_5
+            MENUITEM "&7",                          ID_VIEW_DIFFCONTEXT_7
+            MENUITEM "&9",                          ID_VIEW_DIFFCONTEXT_9
         END
         MENUITEM SEPARATOR
         MENUITEM "&Lock Panes",                 ID_VIEW_RESIZE_PANES
@@ -498,27 +492,27 @@ BEGIN
         MENUITEM "&Next Difference\tAlt+Down",  ID_NEXTDIFF
         MENUITEM "&Previous Difference\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Ne&xt Conflict\tAlt+Shift+Down",   ID_NEXTCONFLICT
+        MENUITEM "Ne&xt Conflict\tAlt+Shift+Down", ID_NEXTCONFLICT
         MENUITEM "Pre&vious Conflict\tAlt+Shift+Up", ID_PREVCONFLICT
         MENUITEM SEPARATOR
         POPUP "A&dvanced"
         BEGIN
-            MENUITEM "Next Difference Between Left and Middle\tAlt+1",  ID_NEXTDIFFLM
+            MENUITEM "Next Difference Between Left and Middle\tAlt+1", ID_NEXTDIFFLM
             MENUITEM "Previous Difference Between Left And Middle\tAlt+Shift+1", ID_PREVDIFFLM
             MENUITEM SEPARATOR
-            MENUITEM "Next Difference Between Left and Right\tAlt+2",  ID_NEXTDIFFLR
+            MENUITEM "Next Difference Between Left and Right\tAlt+2", ID_NEXTDIFFLR
             MENUITEM "Previous Difference Between Left And Right\tAlt+Shift+2", ID_PREVDIFFLR
             MENUITEM SEPARATOR
-            MENUITEM "Next Difference Between Middle and Right\tAlt+3",  ID_NEXTDIFFMR
+            MENUITEM "Next Difference Between Middle and Right\tAlt+3", ID_NEXTDIFFMR
             MENUITEM "Previous Difference Between Middle And Right\tAlt+Shift+3", ID_PREVDIFFMR
             MENUITEM SEPARATOR
-            MENUITEM "Next Left Only Difference\tAlt+7",  ID_NEXTDIFFLO
+            MENUITEM "Next Left Only Difference\tAlt+7", ID_NEXTDIFFLO
             MENUITEM "Previous Left Only Difference\tAlt+Shift+7", ID_PREVDIFFLO
             MENUITEM SEPARATOR
-            MENUITEM "Next Middle Only Difference\tAlt+8",  ID_NEXTDIFFMO
+            MENUITEM "Next Middle Only Difference\tAlt+8", ID_NEXTDIFFMO
             MENUITEM "Previous Middle Only Difference\tAlt+Shift+8", ID_PREVDIFFMO
             MENUITEM SEPARATOR
-            MENUITEM "Next Right Only Difference\tAlt+9",  ID_NEXTDIFFRO
+            MENUITEM "Next Right Only Difference\tAlt+9", ID_NEXTDIFFRO
             MENUITEM "Previous Right Only Difference\tAlt+Shift+9", ID_PREVDIFFRO
         END
         MENUITEM SEPARATOR
@@ -540,7 +534,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "A&uto Merge\tAlt+Ctrl+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
-        MENUITEM "Add &Synchronization Point\tAlt+S",  ID_ADD_SYNCPOINT
+        MENUITEM "Add &Synchronization Point\tAlt+S", ID_ADD_SYNCPOINT
         MENUITEM "Clear Sync&hronization Points", ID_CLEAR_SYNCPOINTS
     END
     POPUP "&Tools"
@@ -559,16 +553,16 @@ BEGIN
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "&Edit with Unpacker...",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "&Edit with Unpacker...",      ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN
-            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",               ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         POPUP "&Scripts"
         BEGIN
-            MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
+            MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
@@ -603,10 +597,10 @@ BEGIN
         MENUITEM "Comp&are",                    ID_MERGE_COMPARE
         POPUP "Compare Non-hor&izontally"
         BEGIN
-            MENUITEM "First &left item with second left item",   ID_MERGE_COMPARE_LEFT1_LEFT2
+            MENUITEM "First &left item with second left item", ID_MERGE_COMPARE_LEFT1_LEFT2
             MENUITEM "First &right item with second right item", ID_MERGE_COMPARE_RIGHT1_RIGHT2
-            MENUITEM "&First left item with second right item",  ID_MERGE_COMPARE_LEFT1_RIGHT2
-            MENUITEM "&Second left item with first right item",  ID_MERGE_COMPARE_LEFT2_RIGHT1
+            MENUITEM "&First left item with second right item", ID_MERGE_COMPARE_LEFT1_RIGHT2
+            MENUITEM "&Second left item with first right item", ID_MERGE_COMPARE_LEFT2_RIGHT1
         END
         POPUP "Co&mpare As"
         BEGIN
@@ -640,8 +634,8 @@ BEGIN
             MENUITEM "&Both",                       ID_DIR_DEL_BOTH
             MENUITEM "&All",                        ID_DIR_DEL_ALL
         END
-        MENUITEM "Re&name",                         ID_DIR_ITEM_RENAME
-        MENUITEM "&Hide Items",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "Re&name",                     ID_DIR_ITEM_RENAME
+        MENUITEM "&Hide Items",                 ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Open Left"
         BEGIN
@@ -664,37 +658,37 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Cop&y Pathnames"
         BEGIN
-            MENUITEM "Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
-            MENUITEM "Middle (%1 of %2)",          ID_DIR_COPY_PATHNAMES_MIDDLE
-            MENUITEM "Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
-            MENUITEM "Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
-            MENUITEM "All (%1 of %2)",             ID_DIR_COPY_PATHNAMES_ALL
+            MENUITEM "Left (%1 of %2)",             ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "Middle (%1 of %2)",           ID_DIR_COPY_PATHNAMES_MIDDLE
+            MENUITEM "Right (%1 of %2)",            ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "Both (%1 of %2)",             ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "All (%1 of %2)",              ID_DIR_COPY_PATHNAMES_ALL
         END
-        MENUITEM "Copy &Filenames",                 ID_DIR_COPY_FILENAMES
+        MENUITEM "Copy &Filenames",             ID_DIR_COPY_FILENAMES
         POPUP "Copy Items To Clip&board"
         BEGIN
-            MENUITEM "Left (%1 of %2)",            ID_DIR_COPY_LEFT_TO_CLIPBOARD
-            MENUITEM "Middle (%1 of %2)",          ID_DIR_COPY_MIDDLE_TO_CLIPBOARD
-            MENUITEM "Right (%1 of %2)",           ID_DIR_COPY_RIGHT_TO_CLIPBOARD
-            MENUITEM "Both (%1 of %2)",            ID_DIR_COPY_BOTH_TO_CLIPBOARD
-            MENUITEM "All (%1 of %2)",             ID_DIR_COPY_ALL_TO_CLIPBOARD
+            MENUITEM "Left (%1 of %2)",             ID_DIR_COPY_LEFT_TO_CLIPBOARD
+            MENUITEM "Middle (%1 of %2)",           ID_DIR_COPY_MIDDLE_TO_CLIPBOARD
+            MENUITEM "Right (%1 of %2)",            ID_DIR_COPY_RIGHT_TO_CLIPBOARD
+            MENUITEM "Both (%1 of %2)",             ID_DIR_COPY_BOTH_TO_CLIPBOARD
+            MENUITEM "All (%1 of %2)",              ID_DIR_COPY_ALL_TO_CLIPBOARD
         END
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
-            MENUITEM "Left to... (%1 of %2)",         ID_DIR_ZIP_LEFT
-            MENUITEM "Middle to... (%1 of %2)",       ID_DIR_ZIP_MIDDLE
-            MENUITEM "Right to... (%1 of %2)",        ID_DIR_ZIP_RIGHT
-            MENUITEM "Both to... (%1 of %2)",         ID_DIR_ZIP_BOTH
-            MENUITEM "All to... (%1 of %2)",          ID_DIR_ZIP_ALL
-            MENUITEM "Differences to... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "Left to... (%1 of %2)",       ID_DIR_ZIP_LEFT
+            MENUITEM "Middle to... (%1 of %2)",     ID_DIR_ZIP_MIDDLE
+            MENUITEM "Right to... (%1 of %2)",      ID_DIR_ZIP_RIGHT
+            MENUITEM "Both to... (%1 of %2)",       ID_DIR_ZIP_BOTH
+            MENUITEM "All to... (%1 of %2)",        ID_DIR_ZIP_ALL
+            MENUITEM "Differences to... (%1 of %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Refresh",                        ID_RESCAN
+        MENUITEM "&Refresh",                    ID_RESCAN
         MENUITEM SEPARATOR
-        MENUITEM "Left Shell menu"                  ID_DIR_SHELL_CONTEXT_MENU_LEFT
-        MENUITEM "Middle Shell menu"                ID_DIR_SHELL_CONTEXT_MENU_MIDDLE
-        MENUITEM "Right Shell menu"                 ID_DIR_SHELL_CONTEXT_MENU_RIGHT
+        MENUITEM "Left Shell menu",             ID_DIR_SHELL_CONTEXT_MENU_LEFT
+        MENUITEM "Middle Shell menu",           ID_DIR_SHELL_CONTEXT_MENU_MIDDLE
+        MENUITEM "Right Shell menu",            ID_DIR_SHELL_CONTEXT_MENU_RIGHT
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -740,22 +734,22 @@ BEGIN
     BEGIN
         POPUP "W&hitespaces"
         BEGIN
-            MENUITEM "Com&pare",            IDC_DIFF_WHITESPACE_COMPARE
-            MENUITEM "I&gnore changes",     IDC_DIFF_WHITESPACE_IGNORE
-            MENUITEM "Ig&nore all",         IDC_DIFF_WHITESPACE_IGNOREALL
+            MENUITEM "Com&pare",                    IDC_DIFF_WHITESPACE_COMPARE
+            MENUITEM "I&gnore changes",             IDC_DIFF_WHITESPACE_IGNORE
+            MENUITEM "Ig&nore all",                 IDC_DIFF_WHITESPACE_IGNOREALL
         END
-        MENUITEM "Case sensi&tive", IDC_DIFF_CASESENSITIVE
+        MENUITEM "Case sensi&tive",             IDC_DIFF_CASESENSITIVE
         MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
         MENUITEM SEPARATOR
-        MENUITEM "&Include Subfolders", IDC_RECURS_CHECK
+        MENUITEM "&Include Subfolders",         IDC_RECURS_CHECK
         POPUP "&Compare method:"
         BEGIN
-            MENUITEM "Full Contents",          ID_COMPMETHOD_FULL_CONTENTS
-            MENUITEM "Quick Contents",         ID_COMPMETHOD_QUICK_CONTENTS
-            MENUITEM "Binary Contents",        ID_COMPMETHOD_BINARY_CONTENTS
-            MENUITEM "Modified Date",          ID_COMPMETHOD_MODDATE
-            MENUITEM "Modified Date and Size", ID_COMPMETHOD_DATESIZE
-            MENUITEM "Size",                   ID_COMPMETHOD_SIZE
+            MENUITEM "Full Contents",               ID_COMPMETHOD_FULL_CONTENTS
+            MENUITEM "Quick Contents",              ID_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Binary Contents",             ID_COMPMETHOD_BINARY_CONTENTS
+            MENUITEM "Modified Date",               ID_COMPMETHOD_MODDATE
+            MENUITEM "Modified Date and Size",      ID_COMPMETHOD_DATESIZE
+            MENUITEM "Size",                        ID_COMPMETHOD_SIZE
         END
     END
 END
@@ -769,17 +763,17 @@ END
 IDR_MAINFRAME ACCELERATORS
 BEGIN
     "1",            ID_NEXTDIFFLM,          VIRTKEY, ALT, NOINVERT
-    "1",            ID_PREVDIFFLM,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "1",            ID_PREVDIFFLM,          VIRTKEY, SHIFT, ALT, NOINVERT
     "2",            ID_NEXTDIFFLR,          VIRTKEY, ALT, NOINVERT
-    "2",            ID_PREVDIFFLR,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "2",            ID_PREVDIFFLR,          VIRTKEY, SHIFT, ALT, NOINVERT
     "3",            ID_NEXTDIFFMR,          VIRTKEY, ALT, NOINVERT
-    "3",            ID_PREVDIFFMR,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "3",            ID_PREVDIFFMR,          VIRTKEY, SHIFT, ALT, NOINVERT
     "7",            ID_NEXTDIFFLO,          VIRTKEY, ALT, NOINVERT
-    "7",            ID_PREVDIFFLO,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "7",            ID_PREVDIFFLO,          VIRTKEY, SHIFT, ALT, NOINVERT
     "8",            ID_NEXTDIFFMO,          VIRTKEY, ALT, NOINVERT
-    "8",            ID_PREVDIFFMO,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "8",            ID_PREVDIFFMO,          VIRTKEY, SHIFT, ALT, NOINVERT
     "9",            ID_NEXTDIFFRO,          VIRTKEY, ALT, NOINVERT
-    "9",            ID_PREVDIFFRO,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "9",            ID_PREVDIFFRO,          VIRTKEY, SHIFT, ALT, NOINVERT
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -787,7 +781,7 @@ BEGIN
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "J",            ID_FILE_OPENPROJECT,    VIRTKEY, CONTROL, NOINVERT
-    "M",            ID_AUTO_MERGE,          VIRTKEY, ALT, CONTROL, NOINVERT
+    "M",            ID_AUTO_MERGE,          VIRTKEY, CONTROL, ALT, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
@@ -804,7 +798,7 @@ BEGIN
     VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
-    VK_DOWN,        ID_NEXTCONFLICT,        VIRTKEY, ALT, SHIFT, NOINVERT
+    VK_DOWN,        ID_NEXTCONFLICT,        VIRTKEY, SHIFT, ALT, NOINVERT
     VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
     VK_F8,          ID_NEXTCONFLICT,        VIRTKEY, SHIFT, NOINVERT
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
@@ -833,7 +827,7 @@ BEGIN
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_RIGHT,       ID_COPY_FROM_LEFT,      VIRTKEY, SHIFT, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
-    VK_UP,          ID_PREVCONFLICT,        VIRTKEY, ALT, SHIFT, NOINVERT
+    VK_UP,          ID_PREVCONFLICT,        VIRTKEY, SHIFT, ALT, NOINVERT
     VK_ADD,         ID_VIEW_ZOOMIN,         VIRTKEY, CONTROL, NOINVERT
     VK_SUBTRACT,    ID_VIEW_ZOOMOUT,        VIRTKEY, CONTROL, NOINVERT
     VK_MULTIPLY,    ID_VIEW_ZOOMNORMAL,     VIRTKEY, CONTROL, NOINVERT
@@ -847,8 +841,7 @@ END
 //
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 366, 235
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About WinMerge"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -856,78 +849,63 @@ BEGIN
     LTEXT           "",IDC_STATIC,7,60,200,120
     LTEXT           "Version 1.0",IDC_VERSION,240,153,133,20,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,240,173,133,10
-    CONTROL         "Visit the WinMerge HomePage!",IDC_WWW,"SysLink",LWS_TRANSPARENT|LWS_IGNORERETURN,120,220,167,10
+    CONTROL         "Visit the WinMerge HomePage!",IDC_WWW,"SysLink",LWS_IGNORERETURN | 0x1,120,220,167,10
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,172,350,42
     DEFPUSHBUTTON   "OK",IDOK,295,218,65,14
     PUSHBUTTON      "Contributors",IDC_OPEN_CONTRIBUTORS,7,218,65,14
 END
 
 IDD_OPEN DIALOGEX 0, 0, 460, 260
-STYLE DS_CENTER | DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_CHILD | WS_CAPTION
 CAPTION "Select Files or Folders"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "&1:",IDC_STATIC,13,84,65,10
-    CONTROL         "",IDC_PATH0_COMBO,"ComboBoxEx32",CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
-                    81,82,367,94
+    CONTROL         "",IDC_PATH0_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,81,82,367,94
     PUSHBUTTON      "",IDC_SWAP01_BUTTON,384,98,15,14
     PUSHBUTTON      "&Browse...",IDC_PATH0_BUTTON,402,98,50,14
     RTEXT           "&2:",IDC_STATIC,13,116,65,10
-    CONTROL         "",IDC_PATH1_COMBO,"ComboBoxEx32",CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-                    ,81,114,367,95
+    CONTROL         "",IDC_PATH1_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,81,114,367,95
     PUSHBUTTON      "",IDC_SWAP12_BUTTON,384,130,15,14
     PUSHBUTTON      "B&rowse...",IDC_PATH1_BUTTON,402,130,50,14
     RTEXT           "&3(Optional):",IDC_STATIC,13,148,65,10
-    CONTROL         "",IDC_PATH2_COMBO,"ComboBoxEx32",CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
-                    81,146,367,95
+    CONTROL         "",IDC_PATH2_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,81,146,367,95
     PUSHBUTTON      "",IDC_SWAP02_BUTTON,384,162,15,14
     PUSHBUTTON      "Br&owse...",IDC_PATH2_BUTTON,402,162,50,14
     RTEXT           "Fi&lter:",IDC_STATIC,13,178,65,10
-    COMBOBOX        IDC_EXT_COMBO,81,178,317,95,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EXT_COMBO,81,178,317,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Select...",IDC_SELECT_FILTER,402,178,50,14
     RTEXT           "&Unpacker:",IDC_STATIC,13,196,65,10
-    EDITTEXT        IDC_UNPACKER_EDIT,81,194,317,12,ES_AUTOHSCROLL |
-                    ES_READONLY
+    EDITTEXT        IDC_UNPACKER_EDIT,81,194,317,12,ES_AUTOHSCROLL | ES_READONLY
     PUSHBUTTON      "&Select...",IDC_SELECT_UNPACKER,402,194,50,14
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,81,210,181,10
+    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,81,210,181,10
     LTEXT           "Status:",IDC_OPEN_STATUS,15,226,284,10
     DEFPUSHBUTTON   "OK",IDOK,282,242,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,342,242,50,14
     PUSHBUTTON      "Help",ID_HELP,402,242,50,14
-    GROUPBOX        "Files or Folders to Compare",IDC_FILES_DIRS_GROUP,7,
-                    67,452,159
+    GROUPBOX        "Files or Folders to Compare",IDC_FILES_DIRS_GROUP,7,67,452,159
     CONTROL         "Re&ad-only",IDC_PATH0_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,342,100,72,10
     CONTROL         "Rea&d-only",IDC_PATH1_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,342,132,72,10
     CONTROL         "Read-o&nly",IDC_PATH2_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,342,164,72,10
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Visual SourceSafe"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
     LTEXT           "Database:",IDC_STATIC,7,64,50,10
-    COMBOBOX        IDC_DATABASE_LIST,62,63,188,114,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_DATABASE_LIST,62,63,188,114,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Project:",IDC_STATIC,7,81,50,10
-    COMBOBOX        IDC_PROJECT_COMBO,62,78,188,114,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PROJECT_COMBO,62,78,188,114,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "User:",IDC_STATIC,7,99,50,10
     EDITTEXT        IDC_USER,62,96,63,14,ES_AUTOHSCROLL
     RTEXT           "Password:",IDC_STATIC,132,99,55,10
     EDITTEXT        IDC_PASSWORD,190,96,60,14,ES_PASSWORD | ES_AUTOHSCROLL
-    CONTROL         "Link to Destination VSS project",IDC_VCPROJ_SYNC,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,10
+    CONTROL         "Link to Destination VSS project",IDC_VCPROJ_SYNC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,10
+    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,10
     DEFPUSHBUTTON   "Check Out",IDOK,41,145,70,14
     PUSHBUTTON      "Save As...",IDC_SAVE_AS,115,145,70,14
     PUSHBUTTON      "Cancel",IDCANCEL,190,145,60,14
@@ -939,8 +917,7 @@ CAPTION "Versioning System"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "&Versioning System:",IDC_STATIC,7,6,221,10
-    COMBOBOX        IDC_VER_SYS,7,18,166,98,CBS_DROPDOWNLIST | WS_VSCROLL |
-                    WS_TABSTOP
+    COMBOBOX        IDC_VER_SYS,7,18,166,98,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "&Path to cleartool.exe:",IDC_VSS_L1,7,36,221,10
     EDITTEXT        IDC_PATH_EDIT,7,48,166,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Browse...",IDC_BROWSE_BUTTON,178,48,50,14
@@ -951,108 +928,78 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Automatically &scroll to first difference",
-                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    6,220,10
-    CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,220,10
-    CONTROL         "&Automatically verify paths in Open-dialog",
-                    IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,30,220,10
+    CONTROL         "Automatically &scroll to first difference",IDC_SCROLL_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,220,10
+    CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,220,10
+    CONTROL         "&Automatically verify paths in Open-dialog",IDC_VERIFY_OPEN_PATHS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,30,220,10
     CONTROL         "All&ow only one instance to run",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,42,220,10
     CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,54,220,10
-    CONTROL         "&Preserve file time in file compare",
-                    IDC_PRESERVE_FILETIME,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,7,66,220,10
+    CONTROL         "&Preserve file time in file compare",IDC_PRESERVE_FILETIME,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,66,220,10
     CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,78,220,10
     CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP | BS_MULTILINE,7,90,220,20
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,90,220,20
     LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,110,220,10
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,122,220,41,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,122,220,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Language:",IDC_STATIC,7,140,80,10
-    COMBOBOX        IDC_LANGUAGE_LIST,7,152,221,41,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
-                    IDC_STATIC,7,186,173,40
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,183,205,45,14,NOT
-                    WS_TABSTOP
+    COMBOBOX        IDC_LANGUAGE_LIST,7,152,221,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",IDC_STATIC,7,186,173,40
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,183,205,45,14,NOT WS_TABSTOP
 END
 
 IDD_EDIT_FIND DIALOGEX 30, 73, 293, 96
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Find"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Fi&nd what:",IDC_STATIC,7,9,60,10
-    COMBOBOX        IDC_EDIT_FINDTEXT,69,7,150,65,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,24,140,10
-    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,36,140,10
-    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,48,140,10
-    CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",
-                    BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,60,140,10
-    CONTROL         "&Don't close this dialog box",IDC_FINDDLG_DONTCLOSE,"Button",
-                    BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,72,140,10
+    COMBOBOX        IDC_EDIT_FINDTEXT,69,7,150,65,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,24,140,10
+    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,36,140,10
+    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,48,140,10
+    CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,140,10
+    CONTROL         "&Don't close this dialog box",IDC_FINDDLG_DONTCLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,140,10
     DEFPUSHBUTTON   "Find &Prev",IDC_EDIT_FINDPREV,226,7,60,14,WS_GROUP
     DEFPUSHBUTTON   "&Find Next",IDOK,226,24,60,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,226,41,60,14
 END
 
 IDD_DIR_FILTER DIALOGEX 30, 73, 293, 74
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Find"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Fi&nd what:",IDC_STATIC,7,9,50,10
-    COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,140,10
-    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,140,10
-    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,140,10
+    COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,140,10
+    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,140,10
+    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,140,10
     DEFPUSHBUTTON   "&Ok",IDOK,226,7,60,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,226,24,60,14
 END
 
 IDD_EDIT_REPLACE DIALOGEX 36, 44, 314, 96
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Replace"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Fi&nd what:",IDC_STATIC,7,9,70,10
-    COMBOBOX        IDC_EDIT_FINDTEXT,80,7,160,66,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EDIT_FINDTEXT,80,7,160,66,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Re&place with:",IDC_STATIC,7,24,70,10
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,80,22,160,66,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,42,140,10
-    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,54,140,10
-    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,66,140,10
-    CONTROL         "&Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
-                    BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
-                    WS_TABSTOP,7,78,140,16
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,80,22,160,66,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,42,140,10
+    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,54,140,10
+    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,66,140,10
+    CONTROL         "&Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,78,140,16
     GROUPBOX        "Replace in",IDC_STATIC,149,40,90,36,WS_GROUP
-    CONTROL         "&Selection",IDC_EDIT_SCOPE_SELECTION,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
-    CONTROL         "Wh&ole file",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
-                    BS_AUTORADIOBUTTON,154,61,80,10
+    CONTROL         "&Selection",IDC_EDIT_SCOPE_SELECTION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
+    CONTROL         "Wh&ole file",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",BS_AUTORADIOBUTTON,154,61,80,10
     DEFPUSHBUTTON   "&Find Next",IDC_EDIT_SKIP,247,7,60,14,WS_GROUP
     PUSHBUTTON      "&Replace",IDC_EDIT_REPLACE,247,24,60,14
     PUSHBUTTON      "Replace &All",IDC_EDIT_REPLACE_ALL,247,41,60,14
@@ -1060,21 +1007,17 @@ BEGIN
 END
 
 IDD_CLEARCASE DIALOGEX 0, 0, 279, 134
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Rational ClearCase"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "CheckOut",IDOK,129,115,70,14
     PUSHBUTTON      "Cancel",IDCANCEL,203,115,70,14
     PUSHBUTTON      "Save As...",IDC_SAVE_AS,129,115,70,14,NOT WS_VISIBLE
-    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
-                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Comments",IDC_STATIC,18,7,243,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,83,243,10
-    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,93,243,10
+    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,83,243,10
+    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,93,243,10
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 365, 188
@@ -1082,14 +1025,9 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Linefilters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Enable Line Filters",
-                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    7,351,15
-    LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,28,
-                    351,10
-    CONTROL         "",IDC_LFILTER_LIST,"SysListView32",LVS_REPORT | 
-                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | 
-                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,8,39,350,121
+    CONTROL         "Enable Line Filters",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,351,15
+    LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,28,351,10
+    CONTROL         "",IDC_LFILTER_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,8,39,350,121
     PUSHBUTTON      "New",IDC_LFILTER_ADDBTN,7,167,50,14
     PUSHBUTTON      "Edit",IDC_LFILTER_EDITBTN,62,167,50,14
     PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,116,167,50,14
@@ -1101,116 +1039,53 @@ CAPTION "Colors"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "Difference:",IDC_STATIC,7,29,90,20
-    CONTROL         "",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,29,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,29,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     RTEXT           "Selected Difference:",IDC_STATIC,7,49,90,20
-    CONTROL         "",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,49,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,49,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     CTEXT           "Background",IDC_STATIC,96,15,50,10
     CTEXT           "Deleted",IDC_STATIC,145,15,38,10
-    CONTROL         "",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,156,29,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,49,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_DIFFERENCE_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,189,29,10,14
-    CONTROL         "",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,199,29,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SEL_DIFFERENCE_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,189,49,10,14
-    CONTROL         "",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,49,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,29,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,49,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_DIFFERENCE_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,29,10,14
+    CONTROL         "",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,199,29,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_DIFFERENCE_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,49,10,14
+    CONTROL         "",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,199,49,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     CTEXT           "Text",IDC_STATIC,193,15,29,10
-    CONTROL         "",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,69,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,69,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     RTEXT           "Ignored Difference:",IDC_STATIC,7,69,90,20
-    CONTROL         "",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,69,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_TRIVIAL_DIFF_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,189,69,10,14
-    CONTROL         "",IDC_TRIVIAL_DIFF_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,69,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,69,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_TRIVIAL_DIFF_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,69,10,14
+    CONTROL         "",IDC_TRIVIAL_DIFF_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,199,69,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     RTEXT           "Moved:",IDC_STATIC,7,89,90,20
-    CONTROL         "",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_MOVEDBLOCK_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,189,89,10,14
-    CONTROL         "",IDC_MOVEDBLOCK_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,89,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_MOVEDBLOCK_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,89,10,14
+    CONTROL         "",IDC_MOVEDBLOCK_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,199,89,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     RTEXT           "Selected Moved:",IDC_STATIC,7,109,90,20
-    CONTROL         "",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SEL_MOVEDBLOCK_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,189,109,10,14
-    CONTROL         "",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_MOVEDBLOCK_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,109,10,14
+    CONTROL         "",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     RTEXT           "Same As The Next(3 panes):",IDC_STATIC,7,129,90,20
-    CONTROL         "",IDC_SNP_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SNP_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,129,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SNP_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,189,129,10,14
-    CONTROL         "",IDC_SNP_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SNP_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SNP_DELETED_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,129,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SNP_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,129,10,14
+    CONTROL         "",IDC_SNP_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     RTEXT           "Same As The Next(Selected):",IDC_STATIC,7,149,90,20
-    CONTROL         "",IDC_SEL_SNP_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SEL_SNP_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,149,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SEL_SNP_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,189,149,10,14
-    CONTROL         "",IDC_SEL_SNP_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,149,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_SNP_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_SNP_DELETED_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,149,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_SNP_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,149,10,14
+    CONTROL         "",IDC_SEL_SNP_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,199,149,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     RTEXT           "Word Difference:",IDC_STATIC,7,169,90,20
-    CONTROL         "",IDC_WORDDIFF_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,169,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_WORDDIFF_DELETED_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,156,169,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_WORDDIFF_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,189,169,10,14
-    CONTROL         "",IDC_WORDDIFF_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,169,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_WORDDIFF_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,169,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_WORDDIFF_DELETED_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,169,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_WORDDIFF_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,169,10,14
+    CONTROL         "",IDC_WORDDIFF_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,199,169,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     RTEXT           "Selected Word Diff:",IDC_STATIC,7,189,90,20
-    CONTROL         "",IDC_SEL_WORDDIFF_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,189,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SEL_WORDDIFF_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,189,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SEL_WORDDIFF_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,189,189,10,14
-    CONTROL         "",IDC_SEL_WORDDIFF_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,189,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_WORDDIFF_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,189,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_WORDDIFF_DELETED_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,189,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SEL_WORDDIFF_USE_TEXT_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,189,10,14
+    CONTROL         "",IDC_SEL_WORDDIFF_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,199,189,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     PUSHBUTTON      "GitHub/Bitbucket",IDC_COLORSCHEME_GITHUBBITBUCKET,76,208,70,14
     PUSHBUTTON      "Defaults",IDC_COLORDEFAULTS_BTN,146,208,70,14
 END
@@ -1229,60 +1104,44 @@ BEGIN
     EDITTEXT        IDC_FILTER_USER_PATH,7,66,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "B&rowse...",IDC_FILTER_USER_BROWSE,179,66,50,14
     GROUPBOX        "Temporary files folder",IDC_STATIC,7,90,218,56
-    CONTROL         "S&ystem's temp folder",IDC_TMPFOLDER_SYSTEM,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,17,102,199,10
-    CONTROL         "C&ustom folder:",IDC_STATIC,"Button",BS_AUTORADIOBUTTON,
-                    17,114,199,10
+    CONTROL         "S&ystem's temp folder",IDC_TMPFOLDER_SYSTEM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,102,199,10
+    CONTROL         "C&ustom folder:",IDC_STATIC,"Button",BS_AUTORADIOBUTTON,17,114,199,10
     EDITTEXT        IDC_TMPFOLDER_NAME,27,126,136,14,ES_AUTOHSCROLL | WS_GROUP
     PUSHBUTTON      "Br&owse...",IDC_TMPFOLDER_BROWSE,167,126,50,14
 END
 
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 190
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Patch Generator"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "File&1:",IDC_STATIC,7,10,36,10
-    COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Browse...",IDC_DIFF_BROWSE_FILE1,283,7,52,14
     LTEXT           "File&2:",IDC_STATIC,7,27,36,10
-    COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Br&owse...",IDC_DIFF_BROWSE_FILE2,283,24,52,14
     PUSHBUTTON      "&Swap",IDC_DIFF_SWAPFILES,283,41,52,14
-    CONTROL         "&Append to existing file",IDC_DIFF_APPENDFILE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
+    CONTROL         "&Append to existing file",IDC_DIFF_APPENDFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
     LTEXT           "&Result:",IDC_STATIC,7,66,37,10
-    COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Bro&wse...",IDC_DIFF_BROWSE_RESULT,283,63,52,14
     GROUPBOX        "&Format",IDC_STATIC,7,81,142,46
     LTEXT           "St&yle:",IDC_STATIC,13,95,46,10
-    COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL |
-                    WS_TABSTOP
+    COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "&Context:",IDC_STATIC,13,109,46,10
-    COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWN | CBS_SORT |
-                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWN | CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "W&hitespaces",IDC_STATIC,155,81,123,46
-    CONTROL         "Com&pare",IDC_DIFF_WHITESPACE_COMPARE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
-    CONTROL         "I&gnore changes",IDC_DIFF_WHITESPACE_IGNORE,"Button",
-                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
-    CONTROL         "Ig&nore all",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
-                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
+    CONTROL         "Com&pare",IDC_DIFF_WHITESPACE_COMPARE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
+    CONTROL         "I&gnore changes",IDC_DIFF_WHITESPACE_IGNORE,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
+    CONTROL         "Ig&nore all",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
     CONTROL         "Ignor&e blank lines",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP | WS_GROUP,7,134,142,10
-    CONTROL         "Case sensi&tive",IDC_DIFF_CASESENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
-    CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",
-                    IDC_DIFF_IGNOREEOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,156,221,10
-    CONTROL         "Inclu&de command line",IDC_DIFF_INCLCMDLINE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
-    CONTROL         "Open to e&xternal editor",IDC_DIFF_OPENTOEDITOR,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,134,142,10
+    CONTROL         "Case sensi&tive",IDC_DIFF_CASESENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
+    CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",IDC_DIFF_IGNOREEOL,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,221,10
+    CONTROL         "Inclu&de command line",IDC_DIFF_INCLCMDLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
+    CONTROL         "Open to e&xternal editor",IDC_DIFF_OPENTOEDITOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
     PUSHBUTTON      "Defaults",IDC_DIFF_DEFAULTS,7,170,70,14
     DEFPUSHBUTTON   "OK",IDOK,230,170,52,14
     PUSHBUTTON      "Cancel",IDCANCEL,283,170,52,14
@@ -1292,26 +1151,17 @@ IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_STATIC_TITLE_PANE0,0,2,160,12,ES_AUTOHSCROLL |
-                    ES_READONLY | WS_BORDER | NOT
-                    WS_TABSTOP
-    EDITTEXT        IDC_STATIC_TITLE_PANE1,163,2,160,12,ES_AUTOHSCROLL |
-                    ES_READONLY | WS_BORDER | NOT
-                    WS_TABSTOP
-    EDITTEXT        IDC_STATIC_TITLE_PANE2,326,2,0,12,ES_AUTOHSCROLL |
-                    ES_READONLY | WS_BORDER | NOT
-                    WS_TABSTOP
+    EDITTEXT        IDC_STATIC_TITLE_PANE0,0,2,160,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_STATIC_TITLE_PANE1,163,2,160,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_STATIC_TITLE_PANE2,326,2,0,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
 END
 
 IDD_DIRCOLS DIALOGEX 0, 0, 307, 163
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Display Columns"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_COLDLG_LIST,"SysListView32",LVS_REPORT |
-                    LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER |
-                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,7,134,124
+    CONTROL         "",IDC_COLDLG_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,7,134,124
     PUSHBUTTON      "Move &Up",IDC_UP,151,8,55,14
     PUSHBUTTON      "Move &Down",IDC_DOWN,151,26,55,14
     EDITTEXT        IDC_COLDLG_DESC,151,80,145,50,ES_MULTILINE | ES_READONLY
@@ -1321,62 +1171,50 @@ BEGIN
 END
 
 IDD_SELECTUNPACKER DIALOGEX 0, 0, 318, 102
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Select Unpacker"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,168,84,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,222,84,50,14
     LTEXT           "File unpacker:",IDC_STATIC,7,9,83,10
-    COMBOBOX        IDC_UNPACKER_NAME,92,7,220,54,CBS_DROPDOWNLIST |
-                    WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Display all unpackers, don't check the extension",
-                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX | BS_TOP |
-                    BS_MULTILINE | WS_TABSTOP,92,64,220,20
+    COMBOBOX        IDC_UNPACKER_NAME,92,7,220,54,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Display all unpackers, don't check the extension",IDC_UNPACKER_ALLOW_ALL,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,92,64,220,20
     LTEXT           "Extensions list:",IDC_STATIC,7,26,63,10
     LTEXT           "Description:",IDC_STATIC,7,43,63,10
-    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,92,24,220,12,
-                    ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_UNPACKER_DESCRIPTION,92,38,220,24,ES_MULTILINE | ES_AUTOVSCROLL |
-                    ES_READONLY
+    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,92,24,220,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_UNPACKER_DESCRIPTION,92,38,220,24,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
 END
 
 IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 256, 60
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD 
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,167,15,83,14
-    CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,7,
-                    44,241,10
+    CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,7,44,241,10
     RTEXT           "0",IDC_ITEMSCOMPARED,75,29,30,10
     RTEXT           "0",IDC_ITEMSTOTAL,75,19,30,10
     LTEXT           "Comparing items...",IDC_STATIC,7,7,150,10
     LTEXT           "Items compared:",IDC_STATIC,7,29,85,10
     LTEXT           "Items total:",IDC_STATIC,7,19,85,10
-    LTEXT           "", IDC_PATH_COMPARING, 137, 29, 242, 10
+    LTEXT           "",IDC_PATH_COMPARING,137,29,242,10
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 80
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Go To"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "G&oto:",IDC_STATIC,7,9,36,10
     EDITTEXT        IDC_WMGOTO_PARAM,45,7,102,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "File",IDC_STATIC,7,27,57,45
-    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP,13,38,48,10
-    CONTROL         "&Middle",IDC_WMGOTO_FILEMIDDLE,"Button",
-                    BS_AUTORADIOBUTTON,13,48,47,10
-    CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",
-                    BS_AUTORADIOBUTTON,13,58,47,10
+    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,38,48,10
+    CONTROL         "&Middle",IDC_WMGOTO_FILEMIDDLE,"Button",BS_AUTORADIOBUTTON,13,48,47,10
+    CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",BS_AUTORADIOBUTTON,13,58,47,10
     GROUPBOX        "Goto what",IDC_STATIC,69,27,78,45
-    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP,76,38,68,10
-    CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",
-                    BS_AUTORADIOBUTTON,76,48,68,10
+    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,76,38,68,10
+    CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",BS_AUTORADIOBUTTON,76,48,68,10
     DEFPUSHBUTTON   "&Go To",IDOK,153,7,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,153,24,50,14
 END
@@ -1390,15 +1228,14 @@ BEGIN
     CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,19,206,10
     CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",BS_AUTORADIOBUTTON,14,30,206,10
     CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,14,41,206,10
-    CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP | WS_GROUP,7,60,221,10
+    CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,60,221,10
     CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,221,10
     CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",IDC_EOL_SENSITIVE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,221,10
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,96,221,10
     CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,221,10
     GROUPBOX        "Comments",IDC_STATIC,7,164,221,32
-    CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,15,177,205,10
+    CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,177,205,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,7,198,70,14
 END
 
@@ -1407,37 +1244,25 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Editor"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Highlight syntax",IDC_HILITE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,6,215,10
-    CONTROL         "&Automatic rescan",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
-    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,30,215,10
+    CONTROL         "&Highlight syntax",IDC_HILITE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,215,10
+    CONTROL         "&Automatic rescan",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,30,215,10
     GROUPBOX        "Tabs",IDC_STATIC,7,42,221,72,WS_GROUP
     LTEXT           "&Tab size:",IDC_STATIC,14,54,201,10
-    EDITTEXT        IDC_TAB_EDIT,24,66,18,12,ES_RIGHT | ES_AUTOHSCROLL | 
-                    ES_NUMBER,WS_EX_RIGHT
-    CONTROL         "&Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,14,84,201,10
-    CONTROL         "Insert &Spaces",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,14,96,201,10
-    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,114,
-                    221,102,WS_GROUP
-    CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,14,126,201,10
-    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,24,138,194,10
-    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
-                    BS_AUTORADIOBUTTON,24,150,194,10
-    COMBOBOX        IDC_BREAK_TYPE,38,162,163,34,CBS_DROPDOWNLIST |
-                    WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    EDITTEXT        IDC_TAB_EDIT,24,66,18,12,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    CONTROL         "&Insert Tabs",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,84,201,10
+    CONTROL         "Insert &Spaces",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,14,96,201,10
+    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,114,221,102,WS_GROUP
+    CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,126,201,10
+    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,24,138,194,10
+    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",BS_AUTORADIOBUTTON,24,150,194,10
+    COMBOBOX        IDC_BREAK_TYPE,38,162,163,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
     LTEXT           "W&ord break characters:",IDC_STATIC,24,180,194,10
     EDITTEXT        IDC_BREAK_CHARS,24,192,178,14,ES_AUTOHSCROLL
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
 END
@@ -1447,9 +1272,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "Filefilters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
-                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
-                    WS_BORDER | WS_TABSTOP,7,7,342,100
+    CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,7,342,100
     PUSHBUTTON      "Test",IDC_FILTERFILE_TEST_BTN,7,114,50,14
     PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,137,114,50,14
     PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,192,114,50,14
@@ -1458,32 +1281,22 @@ BEGIN
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 217
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU | WS_THICKFRAME
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Save modified files?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Left side file",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
-    EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
-                    ES_READONLY
-    CONTROL         "&Save changes",IDC_SAVECLOSING_SAVELEFT,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
-    CONTROL         "&Discard changes",IDC_SAVECLOSING_DISCARDLEFT,"Button",
-                    BS_AUTORADIOBUTTON,16,46,230,10
+    EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "&Save changes",IDC_SAVECLOSING_SAVELEFT,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
+    CONTROL         "&Discard changes",IDC_SAVECLOSING_DISCARDLEFT,"Button",BS_AUTORADIOBUTTON,16,46,230,10
     GROUPBOX        "Middle side file",IDC_SAVECLOSING_MIDDLEFRAME,7,70,248,55
-    EDITTEXT        IDC_SAVECLOSING_MIDDLEFILE,16,82,230,14,ES_AUTOHSCROLL |
-                    ES_READONLY
-    CONTROL         "Sa&ve changes",IDC_SAVECLOSING_SAVEMIDDLE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
-    CONTROL         "Disca&rd changes",IDC_SAVECLOSING_DISCARDMIDDLE,"Button",
-                    BS_AUTORADIOBUTTON,16,109,230,10
+    EDITTEXT        IDC_SAVECLOSING_MIDDLEFILE,16,82,230,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Sa&ve changes",IDC_SAVECLOSING_SAVEMIDDLE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
+    CONTROL         "Disca&rd changes",IDC_SAVECLOSING_DISCARDMIDDLE,"Button",BS_AUTORADIOBUTTON,16,109,230,10
     GROUPBOX        "Right side file",IDC_SAVECLOSING_RIGHTFRAME,7,133,248,55
-    EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,145,230,14,ES_AUTOHSCROLL |
-                    ES_READONLY
-    CONTROL         "S&ave changes",IDC_SAVECLOSING_SAVERIGHT,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,162,230,10
-    CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
-                    BS_AUTORADIOBUTTON,16,172,230,10
+    EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,145,230,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "S&ave changes",IDC_SAVECLOSING_SAVERIGHT,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,162,230,10
+    CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",BS_AUTORADIOBUTTON,16,172,230,10
     PUSHBUTTON      "Disca&rd All",IDC_SAVECLOSING_DISCARDALL,7,195,75,14
     DEFPUSHBUTTON   "OK",IDOK,149,195,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,205,195,50,14
@@ -1495,42 +1308,30 @@ CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Default Codepage",IDC_STATIC,7,7,221,81
-    LTEXT           "Select the default codepage assumed when loading non-Unicode files:",
-                    IDC_STATIC,14,18,208,20
-    CONTROL         "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session",
-                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
-                    BS_MULTILINE | WS_TABSTOP,13,90,210,20
-    CONTROL         "Detect codepage for text files using mlang.dll\nneed to restart session",
-                    IDC_DETECT_CODEPAGE2,"Button",BS_AUTOCHECKBOX | BS_TOP | 
-                    BS_MULTILINE | WS_TABSTOP,13,114,210,34
-    COMBOBOX        IDC_DETECT_AUTODETECTTYPE,23,150,125,130,
-                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,13,42,210,10
-    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
-                    BS_AUTORADIOBUTTON,13,55,210,10
-    CONTROL         "Custom codepage:",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,68,80,10
-    COMBOBOX        IDC_CUSTOM_CP_NUMBER,96,67,122,130,CBS_DROPDOWN | WS_GROUP |
-                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Select the default codepage assumed when loading non-Unicode files:",IDC_STATIC,14,18,208,20
+    CONTROL         "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session",IDC_DETECT_CODEPAGE,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,90,210,20
+    CONTROL         "Detect codepage for text files using mlang.dll\nneed to restart session",IDC_DETECT_CODEPAGE2,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,114,210,34
+    COMBOBOX        IDC_DETECT_AUTODETECTTYPE,23,150,125,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,42,210,10
+    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",BS_AUTORADIOBUTTON,13,55,210,10
+    CONTROL         "Custom codepage:",IDC_CP_CUSTOM,"Button",BS_AUTORADIOBUTTON,13,68,80,10
+    COMBOBOX        IDC_CUSTOM_CP_NUMBER,96,67,122,130,CBS_DROPDOWN | WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
 IDD_PREFERENCES DIALOGEX 0, 0, 352, 260
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Options"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,187,237,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,241,237,50,14
     PUSHBUTTON      "Help",IDC_TREEOPT_HELP,295,237,50,14
-    CONTROL         "",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
-                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
-    CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
-                    WS_DISABLED,110,0,235,222
+    CONTROL         "",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
+    CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE | WS_DISABLED,110,0,235,222
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
-    LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
-                    SS_SUNKEN
+    LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE | SS_SUNKEN
     PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
     PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
@@ -1550,71 +1351,40 @@ BEGIN
     RTEXT           "User 1:",IDC_STATIC,0,160,70,10
     RTEXT           "User 2:",IDC_STATIC,0,180,70,10
     CTEXT           "Text",IDC_STATIC,73,7,34,10
-    CONTROL         "",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,110,21,55,10
-    CONTROL         "",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,110,40,55,10
-    CONTROL         "",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,110,60,55,10
-    CONTROL         "",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,110,80,55,10
-    CONTROL         "",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_OPERATORS_BOLD,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,110,100,55,10
-    CONTROL         "",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,110,120,55,10
-    CONTROL         "",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,110,140,55,10
-    CONTROL         "",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,110,160,55,10
-    CONTROL         "",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,110,180,55,10
+    CONTROL         "",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,21,55,10
+    CONTROL         "",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,40,55,10
+    CONTROL         "",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,60,55,10
+    CONTROL         "",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,80,55,10
+    CONTROL         "",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_OPERATORS_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,100,55,10
+    CONTROL         "",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,120,55,10
+    CONTROL         "",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,140,55,10
+    CONTROL         "",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,160,55,10
+    CONTROL         "",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,180,55,10
     PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,162,198,70,14
 END
 
 IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 97
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Folder Compare Report"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Report &File:",IDC_STATIC,7,7,100,10
-    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL |
-                    CBS_AUTOHSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Browse...",IDC_REPORT_BROWSEFILE,211,18,50,14
     LTEXT           "&Style:",IDC_STATIC,7,37,50,10
-    COMBOBOX        IDC_REPORT_STYLECOMBO,60,35,144,70,CBS_DROPDOWNLIST |
-                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "&Include File Compare Report",IDC_REPORT_INCLUDEFILECMPREPORT,"Button",
-                    BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,7,53,133,10
-    CONTROL         "&Copy to Clipboard",IDC_REPORT_COPYCLIPBOARD,"Button",
-                    BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,7,69,133,10
+    COMBOBOX        IDC_REPORT_STYLECOMBO,60,35,144,70,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Include File Compare Report",IDC_REPORT_INCLUDEFILECMPREPORT,
+                    "Button",BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,7,53,133,10
+    CONTROL         "&Copy to Clipboard",IDC_REPORT_COPYCLIPBOARD,"Button",BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,7,69,133,10
     DEFPUSHBUTTON   "OK",IDOK,157,76,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,211,76,50,14
 END
@@ -1624,12 +1394,11 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Shared or Private Filter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Which type of filter do you want to create?",IDC_STATIC,
-                    14,7,229,11
-    CONTROL         "Shared Filter (for all users on this machine)",IDC_SHARED,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,20,22,223,10
-    CONTROL         "Private Filter (only for current user)",IDC_PRIVATE,"Button",
-                    BS_AUTORADIOBUTTON,20,37,223,10
+    LTEXT           "Which type of filter do you want to create?",IDC_STATIC,14,7,229,11
+    CONTROL         "Shared Filter (for all users on this machine)",IDC_SHARED,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,20,22,223,10
+    CONTROL         "Private Filter (only for current user)",IDC_PRIVATE,
+                    "Button",BS_AUTORADIOBUTTON,20,37,223,10
     DEFPUSHBUTTON   "OK",IDOK,65,55,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,135,55,50,14
 END
@@ -1639,16 +1408,13 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Archive Support"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,6,221,10
-    CONTROL         "&Detect archive type from file signature",
-                    IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP | WS_GROUP,7,18,221,10
+    CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,221,10
+    CONTROL         "&Detect archive type from file signature",IDC_ARCHIVE_DETECTTYPE,
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,18,221,10
 END
 
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 174
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Compare Statistics"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1659,7 +1425,7 @@ BEGIN
     ICON            "",IDC_STAT_INOTEQUAL,131,24,16,16
     RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
     RTEXT           "Binary:",IDC_STATIC,10,40,56,10
-    ICON            "",IDC_STAT_IDIFFBINFILE, 131,37,16,16
+    ICON            "",IDC_STAT_IDIFFBINFILE,131,37,16,16
     RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
     GROUPBOX        "Unique",IDC_STATIC,7,55,186,40
     RTEXT           "Left:",IDC_STATIC,11,66,56,10
@@ -1688,8 +1454,7 @@ BEGIN
 END
 
 IDD_COMPARE_STATISTICS3 DIALOGEX 0, 0, 257, 224
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Compare Statistics"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1700,7 +1465,7 @@ BEGIN
     ICON            "",IDC_STAT_INOTEQUAL,131,24,16,16
     RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
     RTEXT           "Binary:",IDC_STATIC,10,40,56,10
-    ICON            "",IDC_STAT_IDIFFBINFILE, 131,37,16,16
+    ICON            "",IDC_STAT_IDIFFBINFILE,131,37,16,16
     RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
     GROUPBOX        "Unique",IDC_STATIC,7,55,186,90
     RTEXT           "Left:",IDC_STATIC,11,66,56,10
@@ -1749,31 +1514,24 @@ BEGIN
 END
 
 IDD_LOAD_SAVE_CODEPAGE DIALOGEX 0, 0, 278, 150
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Affects",IDC_AFFECTS_GROUP,5,7,266,47
-    CONTROL         "&Left",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,12,18,54,10
+    CONTROL         "&Left",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,18,54,10
     LTEXT           "(Affects)",IDC_LEFT_FILES_LABEL,70,18,193,10
-    CONTROL         "&Middle",IDC_AFFECTS_MIDDLE_BTN,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,12,29,54,10
+    CONTROL         "&Middle",IDC_AFFECTS_MIDDLE_BTN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,29,54,10
     LTEXT           "(Affects)",IDC_MIDDLE_FILES_LABEL,70,29,193,10
-    CONTROL         "&Right",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,12,40,54,10
+    CONTROL         "&Right",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,40,54,10
     LTEXT           "(Affects)",IDC_RIGHT_FILES_LABEL,70,40,193,10
     GROUPBOX        "Select Codepage for",IDC_LOADING_GROUP,5,59,266,63
     LTEXT           "&File Loading:",IDC_LOAD_FILES_LABEL,12,75,172,10
-    COMBOBOX        IDC_LOAD_CODEPAGE_TEXTBOX,86,74,165,12,CBS_DROPDOWN |
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_LOAD_CODEPAGE_TEXTBOX,86,74,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     LTEXT           "File &Saving:",IDC_SAVE_FILES_LABEL,12,90,67,10
-    COMBOBOX        IDC_SAVE_CODEPAGE_TEXTBOX,86,90,165,12,CBS_DROPDOWN |
-                    WS_VSCROLL | WS_TABSTOP
-    CONTROL         "&Use same codepage for both",
-                    IDC_LOAD_SAVE_SAME_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,12,107,250,10
+    COMBOBOX        IDC_SAVE_CODEPAGE_TEXTBOX,86,90,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Use same codepage for both",IDC_LOAD_SAVE_SAME_CODEPAGE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,107,250,10
     DEFPUSHBUTTON   "&Apply",IDOK,165,128,50,14
     PUSHBUTTON      "&Cancel",IDCANCEL,221,128,50,14
 END
@@ -1787,12 +1545,9 @@ BEGIN
     LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,100,6,142,10
     LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,90,10
     EDITTEXT        IDC_TEST_TEXT,100,19,142,12,ES_AUTOHSCROLL
-    CONTROL         "&Folder Name",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,7,36,92,10
+    CONTROL         "&Folder Name",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,36,92,10
     LTEXT           "Result:",IDC_STATIC,7,49,34,10
-    EDITTEXT        IDC_RESULTS,7,59,235,57,ES_MULTILINE | ES_AUTOVSCROLL | 
-                    ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL | 
-                    NOT WS_TABSTOP
+    EDITTEXT        IDC_RESULTS,7,59,235,57,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL | NOT WS_TABSTOP
     DEFPUSHBUTTON   "&Test",IDC_TEST_BTN,133,121,50,14
     PUSHBUTTON      "&Close",IDCANCEL,192,121,50,14
 END
@@ -1802,36 +1557,23 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Use customized text colors",
-                    IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,25,14,161,10
-    GROUPBOX        "Custom text colors",IDC_CUSTOM_COLORS_GROUP,27,33,159,
-                    111
+    CONTROL         "&Use customized text colors",IDC_DEFAULT_STANDARD_COLORS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,25,14,161,10
+    GROUPBOX        "Custom text colors",IDC_CUSTOM_COLORS_GROUP,27,33,159,111
     LTEXT           "Whitespace:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
     LTEXT           "Regular text:",IDC_TEXT_COLOR_LABEL,31,87,61,10
     LTEXT           "Selection:",IDC_SELECTION_COLOR_LABEL,31,116,61,10
     CTEXT           "Background",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,10
     CTEXT           "Text",IDC_TEXT_COLUMN_LABEL,145,44,29,10
-    CONTROL         "",IDC_WHITESPACE_BKGD_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,113,58,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_REGULAR_BKGD_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,113,87,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SELECTION_BKGD_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,113,116,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_SELECTION_TEXT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,156,116,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
-    CONTROL         "",IDC_REGULAR_TEXT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,156,87,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_WHITESPACE_BKGD_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,58,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_REGULAR_BKGD_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,87,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SELECTION_BKGD_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,116,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_SELECTION_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,116,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_REGULAR_TEXT_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,156,87,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
 END
 
 IDD_PROJFILES_PATHS DIALOGEX 0, 0, 322, 124
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Paths"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1846,8 +1588,7 @@ BEGIN
     RTEXT           "&Filter:",IDC_STATIC,7,74,40,10
     EDITTEXT        IDC_PROJ_FILTER_EDIT,50,72,210,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Select...",IDC_PROJ_FILTER_SELECT,265,72,50,14
-    CONTROL         "&Include Subfolders",IDC_PROJ_INC_SUBFOLDERS,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,50,90,130,10
+    CONTROL         "&Include Subfolders",IDC_PROJ_INC_SUBFOLDERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,50,90,130,10
     PUSHBUTTON      "Open...",IDC_PROJ_OPEN,211,103,50,14
     PUSHBUTTON      "Save...",IDC_PROJ_SAVE,265,103,50,14
 END
@@ -1858,54 +1599,40 @@ CAPTION "Backup Files"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Create backup files in:",IDC_STATIC,7,6,222,10
-    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,18,212,10
-    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,30,212,10
+    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,212,10
+    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,212,10
     LTEXT           "Create backup files into:",IDC_STATIC,7,42,222,10
-    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,17,54,212,10
-    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
-                    BS_AUTORADIOBUTTON,17,66,212,10
+    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,54,212,10
+    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",BS_AUTORADIOBUTTON,17,66,212,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,78,145,14,ES_AUTOHSCROLL | WS_GROUP
     PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,78,50,14
     LTEXT           "Backup filename:",IDC_STATIC,7,96,222,10
-    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,108,212,10
-    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,120,212,10
+    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,108,212,10
+    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,120,212,10
 END
 
 IDD_CONFIRM_COPY DIALOGEX 0, 0, 285, 100
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU | WS_THICKFRAME
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Confirm Copy"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDI_FOLDER,IDC_FLDCONFIRM_ICON,7,7,20,20
-    LTEXT           "Are you sure you want to copy XXX items?",
-                    IDC_FLDCONFIRM_QUERY,45,7,233,10
+    LTEXT           "Are you sure you want to copy XXX items?",IDC_FLDCONFIRM_QUERY,45,7,233,10
     LTEXT           "From left",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,10
-    EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | 
-                    ES_READONLY
+    EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "To right",IDC_FLDCONFIRM_TO_TEXT,46,48,230,10
-    EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | 
-                    ES_READONLY
+    EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | ES_READONLY
     DEFPUSHBUTTON   "Yes",IDYES,174,79,50,14
     PUSHBUTTON      "No",IDNO,228,79,50,14
 END
 
 IDD_PLUGINS_LIST DIALOGEX 0, 0, 370, 211
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Plugins"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Enable plugins",IDC_PLUGINS_ENABLE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,266,10
-    CONTROL         "",IDC_PLUGINSLIST_LIST,"SysListView32",LVS_REPORT |
-                    LVS_ALIGNLEFT | LVS_NOSORTHEADER | LVS_SHOWSELALWAYS | LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,
-                    7,22,356,155
+    CONTROL         "&Enable plugins",IDC_PLUGINS_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,266,10
+    CONTROL         "",IDC_PLUGINSLIST_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,22,356,155
     DEFPUSHBUTTON   "P&lugin Settings...",IDC_PLUGIN_SETTINGS,170,190,75,14
     DEFPUSHBUTTON   "OK",IDOK,254,190,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,313,190,50,14
@@ -1917,10 +1644,8 @@ CAPTION "Shell Integration"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Explorer",IDC_STATIC,7,6,218,80
-    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,27,30,190,10
-    CONTROL         "&Add to context menu",IDC_EXPLORER_CONTEXT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,18,200,10
+    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,30,190,10
+    CONTROL         "&Add to context menu",IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,200,10
     PUSHBUTTON      "&Register shell extension",IDC_REGISTER_SHELLEXTENSION,17,48,200,14
     PUSHBUTTON      "&Unregister shell extension",IDC_UNREGISTER_SHELLEXTENSION,17,64,200,14
 END
@@ -1928,7 +1653,7 @@ END
 IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 235, 205
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Folder"
-FONT 8, "MS Shell Dlg", 00, 0, 0x1
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "&Compare method:",IDC_STATIC,7,6,100,10
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,6,114,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
@@ -1940,10 +1665,9 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,48,202,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,202,10
-    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,202,10
+    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,202,10
     LTEXT           "&Quick compare limit (MB):",IDC_STATIC,7,84,200,10
-    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,96,50,14,ES_AUTOHSCROLL,ES_NUMBER
+    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,96,50,14,ES_AUTOHSCROLL,WS_EX_RTLREADING
     PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,198,70,14
 END
 
@@ -2780,8 +2504,7 @@ BEGIN
     IDS_FRHED_NOTINSTALLED   "frhed(http://frhed.sourceforge.net/) not installed"
 END
 
-// END STRINGS SYNCHRO
-#endif    // English (U.S.) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -2805,3 +2528,4 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
