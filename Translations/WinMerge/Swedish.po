@@ -1361,6 +1361,21 @@ msgstr "Hjälp"
 msgid "Files or Folders to Compare"
 msgstr "Filer eller kataloger som skall jämföras"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Bara& läsbar"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1546,7 +1561,7 @@ msgstr "Ersä&tt med:"
 msgid "&Don't wrap end of file"
 msgstr "Vänd inte vid slutet av filen"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Ersätt i"
@@ -2455,7 +2470,7 @@ msgstr "Sökvägar"
 msgid "&Left:"
 msgstr "&Vänster:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "Bara& läsbar"
@@ -2464,11 +2479,6 @@ msgstr "Bara& läsbar"
 #, c-format
 msgid "&Right:"
 msgstr "&Höger:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Bara& läsbar"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3621,7 +3631,7 @@ msgstr "Vänster (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Höger (%1)"
@@ -3747,7 +3757,7 @@ msgstr "Resultat av jämförelsen"
 msgid "Left Date"
 msgstr "Vänster datum"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Höger datum"
@@ -3767,7 +3777,7 @@ msgstr "Filsuffix"
 msgid "Left Size"
 msgstr "Vänster storlek"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Höger storlek"
@@ -3947,7 +3957,7 @@ msgstr "Katalogerna är olika"
 msgid "Left Only"
 msgstr "Endast vänster"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Endast höger"

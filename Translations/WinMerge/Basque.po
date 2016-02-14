@@ -1364,6 +1364,21 @@ msgstr "Laguntza"
 msgid "Files or Folders to Compare"
 msgstr "Alderatzeko Agiriak edo Agiritegiak"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Irakurri-&bakarrik"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1549,7 +1564,7 @@ msgstr "Ordez&tu honekin:"
 msgid "&Don't wrap end of file"
 msgstr "&Ez inguratu agiri amaiera"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Ordeztu hemen"
@@ -2458,7 +2473,7 @@ msgstr "Helburuak"
 msgid "&Left:"
 msgstr "E&zkerra:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "I&rakurri-bakarrik"
@@ -2467,11 +2482,6 @@ msgstr "I&rakurri-bakarrik"
 #, c-format
 msgid "&Right:"
 msgstr "E&skuina:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Irakurri-&bakarrik"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3624,7 +3634,7 @@ msgstr "Ezkerra (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Eskuina (%1)"
@@ -3749,7 +3759,7 @@ msgstr "Alderaketa emaitza"
 msgid "Left Date"
 msgstr "Ezker Eguna"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Eskuin Eguna"
@@ -3769,7 +3779,7 @@ msgstr "Luzapena"
 msgid "Left Size"
 msgstr "Ezker Neurria"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Eskuin Neurria"
@@ -3949,7 +3959,7 @@ msgstr "Agiritegiak ezberdinak dira"
 msgid "Left Only"
 msgstr "Ezkerra Bakarrik"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Eskuina Bakarrik"

@@ -1360,6 +1360,21 @@ msgstr "Ajuda"
 msgid "Files or Folders to Compare"
 msgstr "Fitxers o directoris a comparar"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Només de l&ectura"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1545,7 +1560,7 @@ msgstr "Substitueix-ho p&er:"
 msgid "&Don't wrap end of file"
 msgstr "No facis la &volta al final del fitxer"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Substitueix a"
@@ -2450,7 +2465,7 @@ msgstr "Camins"
 msgid "&Left:"
 msgstr "&Esquerra:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "Només de &lectura"
@@ -2459,11 +2474,6 @@ msgstr "Només de &lectura"
 #, c-format
 msgid "&Right:"
 msgstr "&Dreta:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Només de l&ectura"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3556,7 +3566,7 @@ msgstr "Esquerra (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Dreta (%1)"
@@ -3681,7 +3691,7 @@ msgstr "Resultat de la comparació"
 msgid "Left Date"
 msgstr "Data esquerra"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Data dreta"
@@ -3701,7 +3711,7 @@ msgstr "Extensió"
 msgid "Left Size"
 msgstr "Mida esquerra"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Mida dreta"
@@ -3881,7 +3891,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "Només l'esquerre"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Només el dret"

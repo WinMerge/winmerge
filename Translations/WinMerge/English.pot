@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2016-02-06 19:23+0000\n"
+"POT-Creation-Date: 2016-02-14 12:13+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1357,6 +1357,21 @@ msgstr ""
 msgid "Files or Folders to Compare"
 msgstr ""
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr ""
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1542,7 +1557,7 @@ msgstr ""
 msgid "&Don't wrap end of file"
 msgstr ""
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr ""
@@ -2447,7 +2462,7 @@ msgstr ""
 msgid "&Left:"
 msgstr ""
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr ""
@@ -2455,11 +2470,6 @@ msgstr ""
 #: Merge.rc:89AF4FE
 #, c-format
 msgid "&Right:"
-msgstr ""
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
 msgstr ""
 
 #: Merge.rc:AC3AA1C
@@ -3433,7 +3443,7 @@ msgstr ""
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr ""
@@ -3538,7 +3548,7 @@ msgstr ""
 msgid "Left Date"
 msgstr ""
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr ""
@@ -3558,7 +3568,7 @@ msgstr ""
 msgid "Left Size"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr ""
@@ -3738,7 +3748,7 @@ msgstr ""
 msgid "Left Only"
 msgstr ""
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr ""

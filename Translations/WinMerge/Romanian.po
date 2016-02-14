@@ -1361,6 +1361,21 @@ msgstr "Ajutor"
 msgid "Files or Folders to Compare"
 msgstr "Fiºiere sau directoare pentru comparare"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Num&ai-citire"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1546,7 +1561,7 @@ msgstr "C&u ce:"
 msgid "&Don't wrap end of file"
 msgstr "Nu relua de la începutul &fiºierului"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Înlocuieºte în"
@@ -2451,7 +2466,7 @@ msgstr "Cãi"
 msgid "&Left:"
 msgstr "Stân&ga:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "Numai-citir&e"
@@ -2460,11 +2475,6 @@ msgstr "Numai-citir&e"
 #, c-format
 msgid "&Right:"
 msgstr "D&reapta:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Num&ai-citire"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3595,7 +3605,7 @@ msgstr "Stânga (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Dreapta (%1)"
@@ -3720,7 +3730,7 @@ msgstr "Rezultat comparare"
 msgid "Left Date"
 msgstr "Datã stânga"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Datã dreapta"
@@ -3740,7 +3750,7 @@ msgstr "Extensie"
 msgid "Left Size"
 msgstr "Mãrime stânga"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Mãrime dreapta"
@@ -3920,7 +3930,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "Numai stânga"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Numai dreapta"

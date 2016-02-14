@@ -1361,6 +1361,21 @@ msgstr "Pomoc"
 msgid "Files or Folders to Compare"
 msgstr "Súbory alebo adresáre pre porovnanie"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Len na èít&anie"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1546,7 +1561,7 @@ msgstr "Nahradi:"
 msgid "&Don't wrap end of file"
 msgstr "&Nezalamova koniec súboru"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Nahradi vo"
@@ -2451,7 +2466,7 @@ msgstr "Cesty"
 msgid "&Left:"
 msgstr "&¼avı:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "&Len na èítanie"
@@ -2460,11 +2475,6 @@ msgstr "&Len na èítanie"
 #, c-format
 msgid "&Right:"
 msgstr "P&ravı:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Len na èít&anie"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3577,7 +3587,7 @@ msgstr "¼avı (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Zma %1 z %2 vybranıch poloiek z pravej strany"
@@ -3702,7 +3712,7 @@ msgstr "Vısledok porovnania"
 msgid "Left Date"
 msgstr "Dátum v¾avo"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Dátum vpravo"
@@ -3722,7 +3732,7 @@ msgstr "Prípona"
 msgid "Left Size"
 msgstr "Ve¾kos v¾avo"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Ve¾kos vpravo"
@@ -3902,7 +3912,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "Iba v¾avo"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Iba vpravo"
