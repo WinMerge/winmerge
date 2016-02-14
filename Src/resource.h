@@ -902,7 +902,6 @@
 #define IDS_TEXT_REPORT_FILES           18540
 #define IDS_HTML_REPORT_FILES           18541
 #define IDS_XML_REPORT_FILES            18542
-#define ID_FILE_NEW3                    32767
 #define IDS_EOL_DOS                     30400
 #define IDS_EOL_MAC                     30401
 #define IDS_EOL_UNIX                    30402
@@ -924,6 +923,7 @@
 #define IDS_PLUGINS_TYPE_UNPACKER       30435
 #define IDS_PLUGINS_TYPE_PREDIFFER      30436
 #define IDS_PLUGINS_TYPE_EDITSCRIPT     30437
+#define ID_FILE_NEW3                    32767
 #define ID_FILE_SAVE_LEFT               32768
 #define ID_FILE_SAVE_MIDDLE             32769
 #define ID_FILE_SAVE_RIGHT              32770
@@ -1192,7 +1192,7 @@
 #define IDS_UNPACK_AUTO                 33291
 #define IDS_NO_PREDIFFER                33292
 #define IDS_SUGGESTED_PLUGINS           33293
-#define IDS_NOT_SUGGESTED_PLUGINS       33294 
+#define IDS_NOT_SUGGESTED_PLUGINS       33294
 #define IDS_COMPMETHOD_FULL_CONTENTS    33297
 #define IDS_COMPMETHOD_QUICK_CONTENTS   33298
 #define IDS_COMPMETHOD_BINARY_CONTENTS  33299
@@ -1207,14 +1207,14 @@
 #define IDS_NO_EDIT_SCRIPTS             33422
 #define IDS_NO_SCT_SCRIPTS              33423
 #define IDS_USERCHOICE_NONE             33424
-#define IDS_USERCHOICE_AUTOMATIC        33425 
+#define IDS_USERCHOICE_AUTOMATIC        33425
 #define IDS_CLOSE_LEFT_TABS             33441
 #define IDS_CLOSE_RIGHT_TABS            33442
 #define IDS_CLOSE_OTHER_TABS            33443
 #define IDS_TABBAR_AUTO_MAXWIDTH        33444
 
 // Next default values for new objects
-//
+// 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
