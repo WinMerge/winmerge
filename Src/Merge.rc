@@ -2789,7 +2789,6 @@ END
 // Generated from the TEXTINCLUDE 3 resource.
 //
 #define _AFX_NO_OLE_RESOURCES
-#define _AFX_NO_TRACKER_RESOURCES
 #define _AFX_NO_PROPERTY_RESOURCES
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
