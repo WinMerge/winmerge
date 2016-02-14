@@ -67,8 +67,6 @@ public:
 	void AddFiles(const String &file1, const String &altPath1,
 		const String &file2, const String &altPath2);
 	int CreatePatch();
-	String GetPatchFile() const;
-	bool GetOpenToEditor() const;
 
 protected:
 	bool ShowDialog(CPatchDlg *pDlgPatch);
