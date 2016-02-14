@@ -66,6 +66,7 @@
 #include "Constants.h"
 #include "Merge7zFormatMergePluginImpl.h"
 #include "7zCommon.h"
+#include "PatchTool.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -107,6 +108,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
+	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
 	ON_UPDATE_COMMAND_UI(ID_RESCAN, OnUpdateFileReload)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
@@ -3281,6 +3283,28 @@ void CMergeDoc::OnToolsGenerateReport()
 	GenerateReport(s.c_str());
 
 	LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+}
+
+/**
+ * @brief Generate patch from files selected.
+ *
+ * Creates a patch from selected files in active directory compare, or
+ * active file compare. Files in file compare must be saved before
+ * creating a patch.
+ */
+void CMergeDoc::OnToolsGeneratePatch()
+{
+	// If there are changes in files, tell user to save them first
+	if (IsModified())
+	{
+		LangMessageBox(IDS_SAVEFILES_FORPATCH, MB_ICONSTOP);
+		return;
+	}
+
+	CPatchTool patcher;
+	patcher.AddFiles(m_filePaths.GetLeft(),
+			m_filePaths.GetRight());
+	patcher.CreatePatch();
 }
 
 /**

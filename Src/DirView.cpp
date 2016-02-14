@@ -59,6 +59,7 @@
 #include "Merge7zFormatMergePluginImpl.h"
 #include "FileOrFolderSelect.h"
 #include "IntToIntMap.h"
+#include "PatchTool.h"
 #include <numeric>
 #include <functional>
 
@@ -217,6 +218,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateReadOnly<SIDE_RIGHT>)
 	ON_COMMAND(ID_TOOLS_CUSTOMIZECOLUMNS, OnCustomizeColumns)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
+	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_COMMAND(ID_DIR_ZIP_LEFT, OnCtxtDirZip<DirItemEnumerator::Left>)
 	ON_COMMAND(ID_DIR_ZIP_MIDDLE, OnCtxtDirZip<DirItemEnumerator::Middle>)
 	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZip<DirItemEnumerator::Right>)
@@ -2482,6 +2484,62 @@ void CDirView::OnToolsGenerateReport()
 			AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
 		}
 	}
+}
+
+/**
+ * @brief Generate patch from files selected.
+ *
+ * Creates a patch from selected files in active directory compare, or
+ * active file compare. Files in file compare must be saved before
+ * creating a patch.
+ */
+void CDirView::OnToolsGeneratePatch()
+{
+	CPatchTool patcher;
+	const CDiffContext& ctxt = GetDiffContext();
+
+	// Get selected items from folder compare
+	BOOL bValidFiles = TRUE;
+	for (DirItemIterator it = SelBegin(); bValidFiles && it != SelEnd(); ++it)
+	{
+		const DIFFITEM &item = *it;
+		if (item.diffcode.isBin())
+		{
+			LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
+				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
+			bValidFiles = FALSE;
+		}
+		else if (item.diffcode.isDirectory())
+		{
+			LangMessageBox(IDS_CANNOT_CREATE_DIRPATCH, MB_ICONWARNING |
+				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_DIRPATCH);
+			bValidFiles = FALSE;
+		}
+
+		if (bValidFiles)
+		{
+			// Format full paths to files (leftFile/rightFile)
+			String leftFile = item.getFilepath(0, ctxt.GetNormalizedPath(0));
+			if (!leftFile.empty())
+				leftFile = paths_ConcatPath(leftFile, item.diffFileInfo[0].filename);
+			String rightFile = item.getFilepath(1, ctxt.GetNormalizedPath(1));
+			if (!rightFile.empty())
+				rightFile = paths_ConcatPath(rightFile, item.diffFileInfo[1].filename);
+
+			// Format relative paths to files in folder compare
+			String leftpatch = item.diffFileInfo[0].path;
+			if (!leftpatch.empty())
+				leftpatch += _T("/");
+			leftpatch += item.diffFileInfo[0].filename;
+			String rightpatch = item.diffFileInfo[1].path;
+			if (!rightpatch.empty())
+				rightpatch += _T("/");
+			rightpatch += item.diffFileInfo[1].filename;
+			patcher.AddFiles(leftFile, leftpatch, rightFile, rightpatch);
+		}
+	}
+
+	patcher.CreatePatch();
 }
 
 /**

@@ -347,6 +347,7 @@ protected:
 	afx_msg void OnDiffContext(UINT nID);
 	afx_msg void OnUpdateDiffContext(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
+	afx_msg void OnToolsGeneratePatch();
 	afx_msg void OnCtxtOpenWithUnpacker();
 	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnBnClickedFileEncoding();

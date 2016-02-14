@@ -27,6 +27,7 @@
 #include "PathContext.h"
 #include "PatchDlg.h"
 #include "paths.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -170,6 +171,11 @@ int CPatchTool::CreatePatch()
 		}
 	}
 	dlgPatch.ClearItems();
+	if (retVal)
+	{
+		if (m_bOpenToEditor)
+			theApp.OpenFileToExternalEditor(m_sPatchFile);
+	}
 	return retVal;
 }
 
@@ -213,21 +219,4 @@ bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 		return false;
 
 	return bRetVal;
-}
-
-/** 
- * @brief Returns filename and path for patch-file
- */
-String CPatchTool::GetPatchFile() const
-{
-	return m_sPatchFile;
-}
-
-/** 
- * @brief Returns TRUE if user wants to open patch file
- * to external editor (specified in WinMerge options).
- */
-bool CPatchTool::GetOpenToEditor() const
-{
-	return m_bOpenToEditor;
 }

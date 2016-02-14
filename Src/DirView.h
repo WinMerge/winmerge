@@ -290,6 +290,7 @@ protected:
 	afx_msg void OnCtxtOpenWithUnpacker();
 	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
+	afx_msg void OnToolsGeneratePatch();
 	template<int flag>
 	afx_msg void OnCtxtDirZip();
 	template<SIDE_TYPE stype>
