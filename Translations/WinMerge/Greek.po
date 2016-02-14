@@ -1360,6 +1360,21 @@ msgstr "Βοήθεια"
 msgid "Files or Folders to Compare"
 msgstr "Αρχεία ή Φάκελοι προς Σύγκριση"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Μόνο για Ανά&γνωση"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1545,7 +1560,7 @@ msgstr "Αντι&κατάσταση με:"
 msgid "&Don't wrap end of file"
 msgstr "Χωρίς ανα&δίπλωση στο τέλος του αρχείου"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Αντικατάσταση εντός"
@@ -2450,7 +2465,7 @@ msgstr "Διαδρομές"
 msgid "&Left:"
 msgstr "Α&ριστερό:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "Μόνο για Ανά&γνωση"
@@ -2459,11 +2474,6 @@ msgstr "Μόνο για Ανά&γνωση"
 #, c-format
 msgid "&Right:"
 msgstr "Δε&ξιό:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Μόνο για Ανά&γνωση"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3594,7 +3604,7 @@ msgstr "Αριστερό (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Δεξιό (%1)"
@@ -3719,7 +3729,7 @@ msgstr "Αποτέλεσμα Συγκρίσεως"
 msgid "Left Date"
 msgstr "Ημερομηνία Αριστερού"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Ημερομηνία Δεξιού"
@@ -3739,7 +3749,7 @@ msgstr "Επέκταση"
 msgid "Left Size"
 msgstr "Μέγεθος Αριστερού"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Μέγεθος Δεξιού"
@@ -3919,7 +3929,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "Αριστερά μόνο"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Δεξιά μόνο"

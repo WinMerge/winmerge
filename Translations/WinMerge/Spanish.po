@@ -1363,6 +1363,21 @@ msgstr "Ayuda"
 msgid "Files or Folders to Compare"
 msgstr "Archivos o Carpetas a Comparar"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Só&lo lectura"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1548,7 +1563,7 @@ msgstr "Reem&plazar con:"
 msgid "&Don't wrap end of file"
 msgstr "&Detenerse al final del archivo"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Reemplazar en"
@@ -2457,7 +2472,7 @@ msgstr "Rutas"
 msgid "&Left:"
 msgstr "&Izquierda:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "Sól&o lectura"
@@ -2466,11 +2481,6 @@ msgstr "Sól&o lectura"
 #, c-format
 msgid "&Right:"
 msgstr "&Derecha:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Só&lo lectura"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3623,7 +3633,7 @@ msgstr "Lado izquierdo (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Lado derecho (%1)"
@@ -3748,7 +3758,7 @@ msgstr "Resultado"
 msgid "Left Date"
 msgstr "Fecha izq."
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Fecha dcha."
@@ -3768,7 +3778,7 @@ msgstr "Extensión"
 msgid "Left Size"
 msgstr "Tamaño izq."
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Tamaño dcha."
@@ -3948,7 +3958,7 @@ msgstr "Las carpetas son diferentes"
 msgid "Left Only"
 msgstr "Sólo Izquierda"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Sólo Derecha"

@@ -1362,6 +1362,21 @@ msgstr "Довідка"
 msgid "Files or Folders to Compare"
 msgstr "Файли або теки для порівняння"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Лише читання"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1547,7 +1562,7 @@ msgstr "За&міна: "
 msgid "&Don't wrap end of file"
 msgstr "Не зупинятися при досягненні кінця файлу"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Замінити"
@@ -2456,7 +2471,7 @@ msgstr "Шляхи"
 msgid "&Left:"
 msgstr "&Лівий:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "Лише читання"
@@ -2465,11 +2480,6 @@ msgstr "Лише читання"
 #, c-format
 msgid "&Right:"
 msgstr "&Правий:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Лише читання"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3620,7 +3630,7 @@ msgstr "Ліворуч (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Праворуч (%1)"
@@ -3745,7 +3755,7 @@ msgstr "Результат порівняння"
 msgid "Left Date"
 msgstr "Дата ліворуч"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Дата праворуч"
@@ -3765,7 +3775,7 @@ msgstr "Розширення"
 msgid "Left Size"
 msgstr "Розмір ліворуч"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Розмір праворуч"
@@ -3945,7 +3955,7 @@ msgstr "Теки різні"
 msgid "Left Only"
 msgstr "Лише ліворуч"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Лише праворуч"

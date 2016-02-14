@@ -1360,6 +1360,21 @@ msgstr "Помоћ"
 msgid "Files or Folders to Compare"
 msgstr "Упореди датотеке или фасцикле"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "С&амо за читање"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1545,7 +1560,7 @@ msgstr "За&мени са:"
 msgid "&Don't wrap end of file"
 msgstr "&Без прелома текста"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Замени у"
@@ -2454,7 +2469,7 @@ msgstr "Путање"
 msgid "&Left:"
 msgstr "&Левa:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "Само за читањ&е"
@@ -2463,11 +2478,6 @@ msgstr "Само за читањ&е"
 #, c-format
 msgid "&Right:"
 msgstr "&Деснa:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "С&амо за читање"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3618,7 +3628,7 @@ msgstr "Лева (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Десна (%1)"
@@ -3743,7 +3753,7 @@ msgstr "Резултат поређења"
 msgid "Left Date"
 msgstr "Датум лево"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Датум десно"
@@ -3763,7 +3773,7 @@ msgstr "Наставак"
 msgid "Left Size"
 msgstr "Величина лево"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Величина десно"
@@ -3943,7 +3953,7 @@ msgstr "Фасцикле су различите"
 msgid "Left Only"
 msgstr "Само лева"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Само десна"

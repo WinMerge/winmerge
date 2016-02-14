@@ -1361,6 +1361,21 @@ msgstr "Помощ"
 msgid "Files or Folders to Compare"
 msgstr "Файлове или директории за сравняване"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Само за четене"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1546,7 +1561,7 @@ msgstr "&Замени с:"
 msgid "&Don't wrap end of file"
 msgstr "До края на файла"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Замени в"
@@ -2451,7 +2466,7 @@ msgstr "Пътища"
 msgid "&Left:"
 msgstr "От &ляво:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "Само за четене"
@@ -2460,11 +2475,6 @@ msgstr "Само за четене"
 #, c-format
 msgid "&Right:"
 msgstr "От &дясно:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Само за четене"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3557,7 +3567,7 @@ msgstr "Ляво (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Дясно (%1)"
@@ -3682,7 +3692,7 @@ msgstr "Резултати при сравняване"
 msgid "Left Date"
 msgstr "Лява дата"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Дясна дата"
@@ -3702,7 +3712,7 @@ msgstr "Разширение"
 msgid "Left Size"
 msgstr "Размер на лявата част"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Размер на дясната част"
@@ -3882,7 +3892,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "Само левият"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Само десният"

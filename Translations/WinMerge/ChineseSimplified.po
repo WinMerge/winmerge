@@ -1361,6 +1361,21 @@ msgstr "帮助"
 msgid "Files or Folders to Compare"
 msgstr "要对比的文件或文件夹"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "只读(&A)"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1546,7 +1561,7 @@ msgstr "替换为(&P):"
 msgid "&Don't wrap end of file"
 msgstr "至文件末尾不再从头搜索(&D)"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "替换范围"
@@ -2451,7 +2466,7 @@ msgstr "路径"
 msgid "&Left:"
 msgstr "左侧(&L):"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "只读(&E)"
@@ -2460,11 +2475,6 @@ msgstr "只读(&E)"
 #, c-format
 msgid "&Right:"
 msgstr "右侧(&R):"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "只读(&A)"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3556,7 +3566,7 @@ msgstr "左侧 (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "右侧 (%1)"
@@ -3682,7 +3692,7 @@ msgstr "对比结果"
 msgid "Left Date"
 msgstr "左侧日期"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "右侧日期"
@@ -3702,7 +3712,7 @@ msgstr "扩展名"
 msgid "Left Size"
 msgstr "左侧文件大小"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "右侧文件大小"
@@ -3882,7 +3892,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "只存在左侧"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "只存在右侧"

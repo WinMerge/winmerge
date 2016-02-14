@@ -511,6 +511,9 @@
 #define IDC_HEXVIEW                     8803
 #define IDC_IGNORE_REPARSEPOINTS        8804
 #define IDC_CLOSE_WITH_OK               8805
+#define IDC_PATH0_READONLY              8806
+#define IDC_PATH1_READONLY              8807
+#define IDC_PATH2_READONLY              8808
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -1217,7 +1220,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        244
 #define _APS_NEXT_COMMAND_VALUE         33445
-#define _APS_NEXT_CONTROL_VALUE         8806
+#define _APS_NEXT_CONTROL_VALUE         8809
 #define _APS_NEXT_SYMED_VALUE           115
 #endif
 #endif

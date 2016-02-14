@@ -1361,6 +1361,21 @@ msgstr "Yardým"
 msgid "Files or Folders to Compare"
 msgstr "Karþýlaþtýrýlacak Dosya veya Klasörler"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "S&alt okunur"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1549,7 +1564,7 @@ msgstr "Þununla &deðiþtir:"
 msgid "&Don't wrap end of file"
 msgstr "&Dosyanýn sonuna kaydýrma!"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Burada Deðiþtir"
@@ -2458,7 +2473,7 @@ msgstr "Yollar"
 msgid "&Left:"
 msgstr "So&l:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "Salt &okunur"
@@ -2467,11 +2482,6 @@ msgstr "Salt &okunur"
 #, c-format
 msgid "&Right:"
 msgstr "&Sað:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "S&alt okunur"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3624,7 +3634,7 @@ msgstr "Soldakini (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Saðdakini (%1 tane)"
@@ -3749,7 +3759,7 @@ msgstr "Karþýlaþtýrma sonucu"
 msgid "Left Date"
 msgstr "Soldakinin Tarihi"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Saðdakinin Tarihi"
@@ -3769,7 +3779,7 @@ msgstr "Uzantý"
 msgid "Left Size"
 msgstr "Soldakinin Boyutu"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Saðdakinin Boyutu"
@@ -3949,7 +3959,7 @@ msgstr "Klasörler farklý"
 msgid "Left Only"
 msgstr "Yalnýz Soldaki"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Yalnýz Saðdaki"

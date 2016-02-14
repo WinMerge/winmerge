@@ -1361,6 +1361,21 @@ msgstr "Súgó"
 msgid "Files or Folders to Compare"
 msgstr "Összehasonlítandó fájlok vagy könyvtárak"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Cs&ak olvasható"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1546,7 +1561,7 @@ msgstr "Cs&ere erre:"
 msgid "&Don't wrap end of file"
 msgstr "&Álljon meg a fájl végénél"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "A csere tartománya"
@@ -2451,7 +2466,7 @@ msgstr ""
 msgid "&Left:"
 msgstr "&Bal:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "Csak olvasható"
@@ -2460,11 +2475,6 @@ msgstr "Csak olvasható"
 #, c-format
 msgid "&Right:"
 msgstr "&Jobb:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Cs&ak olvasható"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3531,7 +3541,7 @@ msgstr "Bal (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Jobb (%1)"
@@ -3649,7 +3659,7 @@ msgstr "Összehasonlítási eredmények"
 msgid "Left Date"
 msgstr "Bal oldali dátum"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Jobb oldali dátum"
@@ -3669,7 +3679,7 @@ msgstr "Kiterjesztés"
 msgid "Left Size"
 msgstr "Bal oldali méret"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Jobb oldali méret"
@@ -3849,7 +3859,7 @@ msgstr "A könyvtárak különböznek"
 msgid "Left Only"
 msgstr "Csak bal oldal"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Csak jobb oldal"

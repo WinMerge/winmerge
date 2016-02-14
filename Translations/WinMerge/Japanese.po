@@ -1362,6 +1362,21 @@ msgstr "ヘルプ"
 msgid "Files or Folders to Compare"
 msgstr "比較するファイルまたはフォルダ"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "読み取り専用(&A)"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr "読み取り専用(&D)"
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr "読み取り専用(&N)"
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1551,7 +1566,7 @@ msgstr "置換後の文字列(&P):"
 msgid "&Don't wrap end of file"
 msgstr "ファイルの終端で折り返さない(&D)"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "置換"
@@ -2470,7 +2485,7 @@ msgstr "パス"
 msgid "&Left:"
 msgstr "左(&L):"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "読み取り専用(&E)"
@@ -2479,11 +2494,6 @@ msgstr "読み取り専用(&E)"
 #, c-format
 msgid "&Right:"
 msgstr "右(&R):"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "読み取り専用(&A)"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3685,7 +3695,7 @@ msgstr "左 (%1)"
 msgid "Middle (%1)"
 msgstr "中央 (%1)"
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "右 (%1)"
@@ -3815,7 +3825,7 @@ msgstr "比較結果"
 msgid "Left Date"
 msgstr "左日付"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "右日付"
@@ -3835,7 +3845,7 @@ msgstr "拡張子"
 msgid "Left Size"
 msgstr "左サイズ"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "右サイズ"
@@ -4015,7 +4025,7 @@ msgstr "フォルダは異なっています"
 msgid "Left Only"
 msgstr "左側のみ"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "右側のみ"

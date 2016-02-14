@@ -1362,6 +1362,21 @@ msgstr "도움말"
 msgid "Files or Folders to Compare"
 msgstr "비교할 디렉토리/파일"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "읽기 전용(&A)"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1547,7 +1562,7 @@ msgstr "변경 내용(&P):"
 msgid "&Don't wrap end of file"
 msgstr "EOF 랩 안 함(&D)"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "적용 범위"
@@ -2452,7 +2467,7 @@ msgstr "경로"
 msgid "&Left:"
 msgstr "왼쪽(&L):"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "읽기 전용(&E)"
@@ -2461,11 +2476,6 @@ msgstr "읽기 전용(&E)"
 #, c-format
 msgid "&Right:"
 msgstr "오른쪽(&R):"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "읽기 전용(&A)"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3578,7 +3588,7 @@ msgstr "왼쪽 (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "오른쪽 (%1)"
@@ -3696,7 +3706,7 @@ msgstr "비교 결과"
 msgid "Left Date"
 msgstr "왼쪽 날짜"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "오른쪽 날짜"
@@ -3716,7 +3726,7 @@ msgstr "확장자"
 msgid "Left Size"
 msgstr "왼쪽 크기"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "오른쪽 크기"
@@ -3896,7 +3906,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "왼쪽만 존재"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "오른쪽만 존재"

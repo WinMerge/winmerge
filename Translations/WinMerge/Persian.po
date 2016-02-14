@@ -1360,6 +1360,21 @@ msgstr " —«Â‰„« "
 msgid "Files or Folders to Compare"
 msgstr " Å—Ê‰œÂ Â« Ì« ÅÊ‘Â Â«Ì „ﬁ«Ì”Â ‘Ê‰œÂ "
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "&a ›ﬁÿ ŒÊ«‰œ‰Ì "
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1545,7 +1560,7 @@ msgstr "&p Ã«Ìê“Ì‰Ì »« : "
 msgid "&Don't wrap end of file"
 msgstr "&D Å«Ì«‰ Å—Ê‰œÂ —« ”ÿ—»‰œÌ ‰ò‰ "
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr " Ã«Ìê“Ì‰Ì œ— "
@@ -2454,7 +2469,7 @@ msgstr " „”Ì—Â« "
 msgid "&Left:"
 msgstr "&L çÅ : "
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "&e ›ﬁÿ ŒÊ«‰œ‰Ì "
@@ -2463,11 +2478,6 @@ msgstr "&e ›ﬁÿ ŒÊ«‰œ‰Ì "
 #, c-format
 msgid "&Right:"
 msgstr "&R —«”  : "
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "&a ›ﬁÿ ŒÊ«‰œ‰Ì "
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3619,7 +3629,7 @@ msgstr " çÅ - %1"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr " —«”  - %1"
@@ -3743,7 +3753,7 @@ msgstr " ‰ ÌÃÂ „ﬁ«Ì”Â "
 msgid "Left Date"
 msgstr "  «—ÌŒ çÅ "
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "  «—ÌŒ —«”  "
@@ -3763,7 +3773,7 @@ msgstr "  Ê”⁄Â "
 msgid "Left Size"
 msgstr " «‰œ«“Â çÅ "
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr " «‰œ«“Â —«”  "
@@ -3943,7 +3953,7 @@ msgstr " ÅÊ‘Â Â« „ ›«Ê  Â” ‰œ "
 msgid "Left Only"
 msgstr " ›ﬁÿ çÅ "
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr " ›ﬁÿ —«”  "

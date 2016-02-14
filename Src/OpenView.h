@@ -64,6 +64,7 @@ public:
 	CButton	m_ctlRecurse;
 	CSuperComboBox	m_ctlPath[3];
 	CString m_strPath[3];
+	BOOL m_bReadOnly[3];
 	PathContext m_files;
 	BOOL	m_bRecurse;
 	CString	m_strExt;

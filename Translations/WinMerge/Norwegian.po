@@ -1361,6 +1361,21 @@ msgstr "Hjelp"
 msgid "Files or Folders to Compare"
 msgstr "Filer eller mapper som skal sammenlignes"
 
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Sk&rivebeskyttet"
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
@@ -1546,7 +1561,7 @@ msgstr "Ers&tatt med:"
 msgid "&Don't wrap end of file"
 msgstr "&Ikke bryt ved filende"
 
-#: Merge.rc:39174D96
+#: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
 msgstr "Erstatt i"
@@ -2455,7 +2470,7 @@ msgstr "Baner"
 msgid "&Left:"
 msgstr "&Venstre:"
 
-#: Merge.rc:39174D97
+#: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
 msgstr "S&krivebeskyttet"
@@ -2464,11 +2479,6 @@ msgstr "S&krivebeskyttet"
 #, c-format
 msgid "&Right:"
 msgstr "&Høyre:"
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Re&ad-only"
-msgstr "Sk&rivebeskyttet"
 
 #: Merge.rc:AC3AA1C
 #, c-format
@@ -3621,7 +3631,7 @@ msgstr "Venstre (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D99
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
 msgstr "Høyre (%1)"
@@ -3746,7 +3756,7 @@ msgstr "Resultat av sammenligningen"
 msgid "Left Date"
 msgstr "Venstre dato"
 
-#: Merge.rc:39174D9A
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
 msgstr "Høyre dato"
@@ -3766,7 +3776,7 @@ msgstr "Filtype"
 msgid "Left Size"
 msgstr "Venstre størrelse"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
 msgstr "Høyre størrelse"
@@ -3946,7 +3956,7 @@ msgstr "Mapper er forskjellige"
 msgid "Left Only"
 msgstr "Bare venstre"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
 msgstr "Bare høyre"

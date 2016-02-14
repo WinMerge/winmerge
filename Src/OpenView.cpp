@@ -135,6 +135,9 @@ void COpenView::DoDataExchange(CDataExchange* pDX)
 	DDX_CBStringExact(pDX, IDC_PATH0_COMBO, m_strPath[0]);
 	DDX_CBStringExact(pDX, IDC_PATH1_COMBO, m_strPath[1]);
 	DDX_CBStringExact(pDX, IDC_PATH2_COMBO, m_strPath[2]);
+	DDX_Check(pDX, IDC_PATH0_READONLY, m_bReadOnly[0]);
+	DDX_Check(pDX, IDC_PATH1_READONLY, m_bReadOnly[1]);
+	DDX_Check(pDX, IDC_PATH2_READONLY, m_bReadOnly[2]);
 	DDX_Check(pDX, IDC_RECURS_CHECK, m_bRecurse);
 	DDX_CBStringExact(pDX, IDC_EXT_COMBO, m_strExt);
 	DDX_Text(pDX, IDC_UNPACKER_EDIT, m_strUnpacker);
@@ -224,6 +227,7 @@ void COpenView::OnInitialUpdate()
 	{
 		m_strPath[file] = m_files[file].c_str();
 		m_ctlPath[file].SetWindowText(m_files[file].c_str());
+		m_bReadOnly[file] = (m_dwFlags[file] & FFILEOPEN_READONLY) != 0;
 	}
 
 	m_ctlPath[0].AttachSystemImageList();
@@ -443,6 +447,8 @@ void COpenView::OnOK()
 			break;
 		m_files.SetSize(nFiles + 1);
 		m_files[nFiles] = m_strPath[index];
+		m_dwFlags[nFiles] &= ~FFILEOPEN_READONLY;
+		m_dwFlags[nFiles] |= m_bReadOnly[index] ? FFILEOPEN_READONLY : 0;
 		nFiles++;
 	}
 	// If left path is a project-file, load it
