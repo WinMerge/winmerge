@@ -446,7 +446,7 @@ BEGIN
         BEGIN
             MENUITEM "Zoom &In\tCtrl++",            ID_VIEW_ZOOMIN
             MENUITEM "Zoom &Out\tCtrl+-",           ID_VIEW_ZOOMOUT
-            MENUITEM "&Normal\tCtrl+*",             ID_VIEW_ZOOMNORMAL
+            MENUITEM "&Normal\tCtrl+*",             ID_VIEW_ZOOMNORMAL //#. Zoom to normal
         END
         POPUP "Syntax Highlight"
         BEGIN
@@ -884,9 +884,9 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,342,242,50,14
     PUSHBUTTON      "Help",ID_HELP,402,242,50,14
     GROUPBOX        "Files or Folders to Compare",IDC_FILES_DIRS_GROUP,7,67,452,159
-    CONTROL         "Re&ad-only",IDC_PATH0_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,342,100,72,10
-    CONTROL         "Rea&d-only",IDC_PATH1_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,342,132,72,10
-    CONTROL         "Read-o&nly",IDC_PATH2_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,342,164,72,10
+    CONTROL         "Re&ad-only",IDC_PATH0_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,306,100,72,10
+    CONTROL         "Rea&d-only",IDC_PATH1_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,306,132,72,10
+    CONTROL         "Read-o&nly",IDC_PATH2_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,306,164,72,10
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
