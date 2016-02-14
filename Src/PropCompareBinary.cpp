@@ -75,7 +75,7 @@ END_MESSAGE_MAP()
  */
 void PropCompareBinary::ReadOptions()
 {
-	m_sFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS).c_str();
+	m_sFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS);
 }
 
 /** 

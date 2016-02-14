@@ -147,7 +147,7 @@ void DirCmpReportDlg::OnBtnDblclickCopyClipboard()
 
 void DirCmpReportDlg::OnCbnSelchangeReportStylecombo()
 {
-	GetDlgItem(IDC_REPORT_INCLUDEFILECMPREPORT)->EnableWindow(
+	EnableDlgItem(IDC_REPORT_INCLUDEFILECMPREPORT,
 		m_ctlStyle.GetItemData(m_ctlStyle.GetCurSel()) == REPORT_TYPE_SIMPLEHTML);
 }
 

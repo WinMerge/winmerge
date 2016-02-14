@@ -44,6 +44,7 @@ void PropEditor::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_HILITE_CHECK, m_bHiliteSyntax);
 	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
+	DDV_MaxChars(pDX, std::to_string(m_nTabSize).c_str(), 2);
 	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
 	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
 	DDX_Check(pDX, IDC_VIEW_LINE_DIFFERENCES, m_bViewLineDifferences);
@@ -107,12 +108,6 @@ BOOL PropEditor::OnInitDialog()
 {
 	OptionsPanel::OnInitDialog();
 
-	CEdit * pEdit = (CEdit *) GetDlgItem(IDC_TAB_EDIT);
-
-	// Limit max text of tabsize to 2 chars
-	if (pEdit != NULL)
-		pEdit->SetLimitText(2);
-
 	LoadBreakTypeStrings();
 	UpdateDataToWindow();
 	UpdateLineDiffControls();
@@ -139,16 +134,6 @@ void PropEditor::OnLineDiffControlClicked()
 	UpdateLineDiffControls();
 }
 
-/**
- * @brief Shortcut to enable or disable a control
- * @param [in] item ID of dialog control to enable/disable.
- * @param [in] enable if true control is enabled, else disabled.
- */
-void PropEditor::EnableDlgItem(int item, bool enable)
-{
-	GetDlgItem(item)->EnableWindow(!!enable);
-}
-
 /** 
  * @brief Update availability of line difference controls
  */
@@ -167,11 +152,7 @@ void PropEditor::UpdateLineDiffControls()
  */
 void PropEditor::OnEnKillfocusTabEdit()
 {
-	CEdit * pEdit = (CEdit *)GetDlgItem(IDC_TAB_EDIT);
-	String valueAsText;
-	pEdit->GetWindowText(PopString(valueAsText));
-	int value = 0;
-	try { value = std::stoi(valueAsText); } catch (...) {};	
+	unsigned value = GetDlgItemInt(IDC_TAB_EDIT);
 	if (value < 1 || value > MAX_TABSIZE)
 	{
 		String msg = string_format_string1(

@@ -26,10 +26,8 @@ void DirCompProgressBar::ClearStat()
 	CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);
 	pProg->SetPos(0);
 
-	CStatic *pCompared = (CStatic *) GetDlgItem(IDC_ITEMSCOMPARED);
-	CStatic *pTotal = (CStatic *) GetDlgItem(IDC_ITEMSTOTAL);
-	pCompared->SetWindowText(_T("0"));
-	pTotal->SetWindowText(_T("0"));
+	SetDlgItemInt(IDC_ITEMSCOMPARED, 0);
+	SetDlgItemInt(IDC_ITEMSTOTAL, 0);
 
 	m_prevState = CompareStats::STATE_IDLE;
 }
@@ -102,16 +100,8 @@ void DirCompProgressBar::SetCompareStat(CompareStats * pCompareStats)
 void DirCompProgressBar::SetProgressState(int comparedItems, int totalItems)
 {
 	CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);
-	CStatic *pCompared = (CStatic *) GetDlgItem(IDC_ITEMSCOMPARED);
-	CStatic *pTotal = (CStatic *) GetDlgItem(IDC_ITEMSTOTAL);
-
-	TCHAR num[15] = {0};
-	_itot(totalItems, num, 10);
-	pTotal->SetWindowText(num);
-
-	pProg->SetRange32(0, totalItems);
-	_itot(comparedItems, num, 10);
-	pCompared->SetWindowText(num);
+	SetDlgItemInt(IDC_ITEMSTOTAL, totalItems);
+	SetDlgItemInt(IDC_ITEMSCOMPARED, comparedItems);
 	pProg->SetPos(comparedItems);
 
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
@@ -158,7 +148,7 @@ void DirCompProgressBar::OnTimer(UINT_PTR nIDEvent)
 		{
 			SetProgressState(m_pCompareStats->GetComparedItems(), m_pCompareStats->GetTotalItems());
 			if (const DIFFITEM *pdi = m_pCompareStats->GetCurDiffItem())
-				GetDlgItem(IDC_PATH_COMPARING)->SetWindowTextW(pdi->diffFileInfo[0].GetFile().c_str());
+				SetDlgItemText(IDC_PATH_COMPARING, pdi->diffFileInfo[0].GetFile());
 		}
 		// Compare is ready
 		// Update total items too since we might get only this one state

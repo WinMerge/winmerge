@@ -51,12 +51,8 @@ BOOL PluginsListDlg::OnInitDialog()
 	AddPlugins();
 	m_list.SetItemState(0, LVIS_SELECTED, LVIS_SELECTED);
 
-	bool pluginsEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
-	if (pluginsEnabled)
-	{
-		CButton *btn = (CButton *)GetDlgItem(IDC_PLUGINS_ENABLE);
-		btn->SetCheck(BST_CHECKED);
-	}
+	SetDlgItemChecked(IDC_PLUGINS_ENABLE, 
+		GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? BST_CHECKED : BST_UNCHECKED);
 
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -120,8 +116,8 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
  */
 void PluginsListDlg::OnBnClickedOk()
 {
-	CButton *btn = (CButton *)GetDlgItem(IDC_PLUGINS_ENABLE);
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_ENABLED, (btn->GetCheck() == BST_CHECKED));
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_ENABLED, 
+		(IsDlgButtonChecked(IDC_PLUGINS_ENABLE) == 1));
 
 	for (int i = 0; i < m_list.GetItemCount(); ++i)
 	{

@@ -91,12 +91,9 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 		int i, j;
 		for (i = 0, j = 0; i < count; i++)
 		{
-			TCHAR desc[256];
-			wsprintf(desc, _T("%05d - %ls"), cpi[i].codepage, cpi[i].desc);
-			combol.AddString(desc);
-			combol.SetItemData(j, cpi[i].codepage);
-			combos.AddString(desc);
-			combos.SetItemData(j, cpi[i].codepage);
+			String desc = string_format(_T("%05d - %ls"), cpi[i].codepage, cpi[i].desc);
+			combol.AddString(desc.c_str());
+			combos.AddString(desc.c_str());
 			if (cpi[i].codepage == m_nLoadCodepage)
 			{
 				combol.SetCurSel(j);
@@ -110,9 +107,9 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 
 	AfxGetMainWnd()->CenterWindow(this);
 
-	SetDlgItemText(IDC_LEFT_FILES_LABEL, m_sAffectsLeftString.c_str());
-	SetDlgItemText(IDC_MIDDLE_FILES_LABEL, m_sAffectsMiddleString.c_str());
-	SetDlgItemText(IDC_RIGHT_FILES_LABEL, m_sAffectsRightString.c_str());
+	SetDlgItemText(IDC_LEFT_FILES_LABEL, m_sAffectsLeftString);
+	SetDlgItemText(IDC_MIDDLE_FILES_LABEL, m_sAffectsMiddleString);
+	SetDlgItemText(IDC_RIGHT_FILES_LABEL, m_sAffectsRightString);
 
 	UpdateSaveGroup();
 
@@ -121,14 +118,6 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
-}
-
-/**
- * @brief Shortcut to enable or disable a control
- */
-void CLoadSaveCodepageDlg::EnableDlgItem(int item, bool enable)
-{
-	GetDlgItem(item)->EnableWindow(!!enable);
 }
 
 /**

@@ -27,7 +27,6 @@ public:
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	virtual BOOL OnInitDialog();
 	void UpdateControls();
 
 	afx_msg void OnEnableClicked();

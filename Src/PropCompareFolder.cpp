@@ -111,11 +111,7 @@ BOOL PropCompareFolder::OnInitDialog()
 	combo->AddString(item.c_str());
 	combo->SetCurSel(m_compareMethod);
 
-	CButton * pBtn = (CButton*) GetDlgItem(IDC_COMPARE_STOPFIRST);
-	if (m_compareMethod == 1)
-		pBtn->EnableWindow(TRUE);
-	else
-		pBtn->EnableWindow(FALSE);
+	EnableDlgItem(IDC_COMPARE_STOPFIRST, m_compareMethod == 1);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -143,9 +139,5 @@ void PropCompareFolder::OnDefaults()
 void PropCompareFolder::OnCbnSelchangeComparemethodcombo()
 {
 	CComboBox * pCombo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
-	CButton * pBtn = (CButton*) GetDlgItem(IDC_COMPARE_STOPFIRST);
-	if (pCombo->GetCurSel() == 1)
-		pBtn->EnableWindow(TRUE);
-	else
-		pBtn->EnableWindow(FALSE);
+	EnableDlgItem(IDC_COMPARE_STOPFIRST, pCombo->GetCurSel() == 1);
 }

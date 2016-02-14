@@ -58,7 +58,7 @@ protected:
 	void BrowseColorAndSave(CColorButton & colorButton, int colorIndex);
 	void SerializeColorsToFromScreen(OPERATION op);
 	void SerializeColorToFromScreen(OPERATION op, CColorButton & btn, int colorIndex);
-	void EnableColorButtons(BOOL bEnable);
+	void EnableColorButtons(bool bEnable);
 
 	// Generated message map functions
 	//{{AFX_MSG(PropTextColors)

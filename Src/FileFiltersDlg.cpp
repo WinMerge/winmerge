@@ -263,17 +263,6 @@ void FileFiltersDlg::OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 }
 
 /**
- * @brief Shortcut to enable or disable a control.
- * @param [in] parent Pointer to dialog.
- * @param [in] item Control's resourceID in dialog.
- * @param [in] enable TRUE if item is enabled, FALSE if disabled.
- */
-static void EnableDlgItem(CWnd * parent, int item, bool enable)
-{
-	parent->GetDlgItem(item)->EnableWindow(!!enable);
-}
-
-/**
  * @brief Is item in list the <None> item?
  * @param [in] item Item to test.
  * @return true if item is <None> item.
@@ -305,9 +294,9 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 
 		bool isNone = string_compare_nocase(txt, txtNone) == 0;
 
-		EnableDlgItem(this, IDC_FILTERFILE_TEST_BTN, !isNone);
-		EnableDlgItem(this, IDC_FILTERFILE_EDITBTN, !isNone);
-		EnableDlgItem(this, IDC_FILTERFILE_DELETEBTN, !isNone);
+		EnableDlgItem(IDC_FILTERFILE_TEST_BTN, !isNone);
+		EnableDlgItem(IDC_FILTERFILE_EDITBTN, !isNone);
+		EnableDlgItem(IDC_FILTERFILE_DELETEBTN, !isNone);
 	}
 	*pResult = 0;
 }
@@ -400,7 +389,8 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 	if (globalPath.empty() && userPath.empty())
 	{
-		LangMessageBox(IDS_FILEFILTER_NO_USERFOLDER, MB_ICONSTOP);
+		AfxMessageBox(
+			_("User's filter file folder is not defined!\n\nPlease select filter folder in Options/System.").c_str(), MB_ICONSTOP);
 		return;
 	}
 

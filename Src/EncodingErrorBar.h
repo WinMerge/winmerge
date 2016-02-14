@@ -15,7 +15,7 @@ public:
 	CEncodingErrorBar();
 
 	BOOL Create(CWnd* pParentWnd);
-	void SetText(const CString& sText);
+	void SetText(const String& sText);
 
 // Dialog Data
 	//{{AFX_DATA(CEncodingErrorBar)

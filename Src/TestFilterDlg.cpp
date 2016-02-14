@@ -53,10 +53,10 @@ BOOL CTestFilterDlg::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
-	GetDlgItem(IDC_TEST_TEXT)->SetFocus();
+	SetDlgItemFocus(IDC_TEST_TEXT);
 
 	String name = m_pFileFilterMgr->GetFilterName(m_pFileFilter);
-	SetDlgItemText(IDC_HEADER_FILTER_NAME, name.c_str());
+	SetDlgItemText(IDC_HEADER_FILTER_NAME, name);
 	
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -66,7 +66,7 @@ BOOL CTestFilterDlg::OnInitDialog()
 void CTestFilterDlg::OnTestBtn() 
 {
 	String text;
-	GetDlgItemText(IDC_TEST_TEXT, PopString(text));
+	GetDlgItemText(IDC_TEST_TEXT, text);
 
 	bool passed = CheckText(text);
 
@@ -76,21 +76,6 @@ void CTestFilterDlg::OnTestBtn()
 	AppendResult(text);
 }
 
-/** @brief user pressed <enter> key. */
-void CTestFilterDlg::OnOK()
-{
-   CWnd *pWnd = GetFocus(); 
-   ASSERT (pWnd); 
-   if (IDCANCEL == pWnd->GetDlgCtrlID()) 
-   { 
-       CTrDialog::OnCancel(); 
-   }
-   else
-   {
-	   OnTestBtn();
-   }
-}
-
 /**
  * @brief Test text against filter.
  * @param [in] text Text to test.
@@ -98,8 +83,7 @@ void CTestFilterDlg::OnOK()
  */
 bool CTestFilterDlg::CheckText(String text) const
 {
-	CButton * IsDirButton = (CButton *)GetDlgItem(IDC_IS_DIRECTORY);
-	bool isDir = (IsDirButton->GetCheck() == BST_CHECKED);
+	bool isDir = (IsDlgButtonChecked(IDC_IS_DIRECTORY) == 1);
 	if (isDir)
 	{
 		// Convert any forward slashes to canonical Windows-style backslashes
@@ -113,25 +97,17 @@ bool CTestFilterDlg::CheckText(String text) const
 }
 
 /**
- * @brief Add text to end of edit control.
- * @param [in] edit Edit contror into which the text is added.
- * @param [in] text Text to add to edit control.
- */
-void AppendToEditBox(CEdit & edit, const String& text)
-{
-	int len = edit.GetWindowTextLength();
-	edit.SetSel(len, len);
-	edit.ReplaceSel(text.c_str());
-}
-
-/**
  * @brief Add new result to end of result edit box.
  * @param [in] result Result text to add.
  */
-void CTestFilterDlg::AppendResult(String result)
+void CTestFilterDlg::AppendResult(const String& result)
 {
-	CEdit * edit = (CEdit *)GetDlgItem(IDC_RESULTS);
-	if (edit->GetWindowTextLength()>0)
-		result = _T("\r\n") + result;
-	AppendToEditBox(*edit, result);
+	String text;
+	GetDlgItemText(IDC_RESULTS, text);
+	if (text.length() > 0)
+		text += _T("\r\n") + result;
+	else
+		text = result;
+	SetDlgItemText(IDC_RESULTS, text);
+	SendDlgItemMessage(IDC_RESULTS, WM_VSCROLL, SB_BOTTOM, 0L);
 }

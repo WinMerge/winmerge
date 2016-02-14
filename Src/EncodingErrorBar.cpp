@@ -47,7 +47,7 @@ BOOL CEncodingErrorBar::Create(CWnd *pParentWnd)
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CEncodingErrorBar::SetText(const CString& sText)
+void CEncodingErrorBar::SetText(const String& sText)
 {
 	SetDlgItemText(IDC_STATIC, sText);
 }
