@@ -138,7 +138,7 @@ void PropMergeColors::BrowseColor(CColorButton & colorButton)
 
 void PropMergeColors::UpdateTextColorButtonState(int checkboxId, CColorButton &btn)
 {
-	SetDlgItemChecked(checkboxId, btn.GetColor() != COLOR_NONE);
+	CheckDlgButton(checkboxId, btn.GetColor() != COLOR_NONE ? BST_CHECKED : BST_UNCHECKED);
 	btn.ShowWindow(btn.GetColor() != COLOR_NONE ? SW_SHOW : SW_HIDE);
 }
 
