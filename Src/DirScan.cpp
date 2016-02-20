@@ -775,14 +775,6 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 	// Is it a directory?
 	if (di.diffcode.isDirectory())
 	{
-		// 1. Test against filters
-		if (!pCtxt->m_piFilterGlobal ||
-			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeDir(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename)) ||
-			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeDir(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename, di.diffFileInfo[2].filename))
-			)
-			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
-		else
-			di.diffcode.diffcode |= DIFFCODE::SKIPPED;
 		// We don't actually 'compare' directories, just add non-ignored
 		// directories to list.
 		StoreDiffData(di, pCtxt, NULL);
