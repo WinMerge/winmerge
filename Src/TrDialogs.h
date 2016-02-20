@@ -2,34 +2,37 @@
 
 #include "DDXHelper.h"
 
-namespace DlgUtils
+#undef GetDlgItemText
+#undef SetDlgItemText
+
+template<class T>
+class DlgUtils
 {
-	template <class T>
-	void EnableDlgItem(T* dlg, unsigned id, bool enabled)
+	T *dlg() { return static_cast<T *>(this); }
+
+public:
+	void EnableDlgItem(unsigned id, bool enabled)
 	{
-		dlg->GetDlgItem(id)->EnableWindow(enabled);
+		dlg()->GetDlgItem(id)->EnableWindow(enabled);
 	}
 
-	template <class T>
-	void SetDlgItemFocus(T* dlg, unsigned id)
+	void SetDlgItemFocus(unsigned id)
 	{
-		dlg->GetDlgItem(id)->SetFocus();
+		dlg()->GetDlgItem(id)->SetFocus();
 	}
 
-	template <class T>
-	unsigned GetDlgItemText(T* dlg, unsigned id, String& text)
+	unsigned GetDlgItemText(unsigned id, String& text)
 	{
-		return static_cast<CWnd *>(dlg)->GetDlgItemText(id, PopString(text));
+		return dlg()->GetDlgItemTextW(id, PopString(text));
 	}
 
-	template <class T>
-	void SetDlgItemText(T* dlg, unsigned id, const String& text)
+	void SetDlgItemText(unsigned id, const String& text)
 	{
-		return static_cast<CWnd *>(dlg)->SetDlgItemText(id, text.c_str());
+		return dlg()->SetDlgItemTextW(id, text.c_str());
 	}
-}
+};
 
-class CTrDialog : public CDialog
+class CTrDialog : public CDialog, public DlgUtils<CTrDialog>
 {
 	DECLARE_DYNAMIC(CTrDialog)
 public:
@@ -38,13 +41,9 @@ public:
 	CTrDialog(LPCTSTR lpszTemplateName, CWnd *pParentWnd = NULL) : CDialog(lpszTemplateName, pParentWnd) {}
 
 	virtual BOOL OnInitDialog();
-	void EnableDlgItem(unsigned id, bool enabled) { DlgUtils::EnableDlgItem(this, id, enabled); }
-	void SetDlgItemFocus(unsigned id) { DlgUtils::SetDlgItemFocus(this, id); }
-	unsigned GetDlgItemText(unsigned id, String& text) { return DlgUtils::GetDlgItemText(this, id, text); }
-	void SetDlgItemText(unsigned id, const String& text) { DlgUtils::SetDlgItemText(this, id, text); }
 };
 
-class CTrPropertyPage : public CPropertyPage
+class CTrPropertyPage : public CPropertyPage, public DlgUtils<CTrPropertyPage>
 {
 	DECLARE_DYNAMIC(CTrPropertyPage)
 public:
@@ -55,13 +54,9 @@ public:
 		: CPropertyPage(lpszTemplateName, nIDCaption, dwSize) {}
 
 	virtual BOOL OnInitDialog();
-	void EnableDlgItem(unsigned id, bool enabled) { DlgUtils::EnableDlgItem(this, id, enabled); }
-	void SetDlgItemFocus(unsigned id) { DlgUtils::SetDlgItemFocus(this, id); }
-	unsigned GetDlgItemText(unsigned id, String& text) { return DlgUtils::GetDlgItemText(this, id, text); }
-	void SetDlgItemText(unsigned id, const String& text) { DlgUtils::SetDlgItemText(this, id, text); }
 };
 
-class CTrDialogBar : public CDialogBar
+class CTrDialogBar : public CDialogBar, public DlgUtils<CTrDialogBar>
 {
 	DECLARE_DYNAMIC(CTrDialogBar)
 public:
@@ -69,8 +64,4 @@ public:
 		UINT nStyle, UINT nID);
 	virtual BOOL Create(CWnd* pParentWnd, UINT nIDTemplate,
 		UINT nStyle, UINT nID);
-	void EnableDlgItem(unsigned id, bool enabled) { DlgUtils::EnableDlgItem(this, id, enabled); }
-	void SetDlgItemFocus(unsigned id) { DlgUtils::SetDlgItemFocus(this, id); }
-	unsigned GetDlgItemText(unsigned id, String& text) { return DlgUtils::GetDlgItemText(this, id, text); }
-	void SetDlgItemText(unsigned id, const String& text) { DlgUtils::SetDlgItemText(this, id, text); }
 };
