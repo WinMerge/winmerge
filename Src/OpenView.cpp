@@ -124,11 +124,7 @@ void COpenView::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(COpenView)
-	DDX_Control(pDX, IDC_SELECT_UNPACKER, m_ctlSelectUnpacker);
-	DDX_Control(pDX, IDC_UNPACKER_EDIT, m_ctlUnpacker);
 	DDX_Control(pDX, IDC_EXT_COMBO, m_ctlExt);
-	DDX_Control(pDX, IDOK, m_ctlOk);
-	DDX_Control(pDX, IDC_RECURS_CHECK, m_ctlRecurse);
 	DDX_Control(pDX, IDC_PATH0_COMBO, m_ctlPath[0]);
 	DDX_Control(pDX, IDC_PATH1_COMBO, m_ctlPath[1]);
 	DDX_Control(pDX, IDC_PATH2_COMBO, m_ctlPath[2]);
@@ -228,7 +224,7 @@ void COpenView::OnInitialUpdate()
 
 	for (int file = 0; file < m_files.GetSize(); file++)
 	{
-		m_strPath[file] = m_files[file].c_str();
+		m_strPath[file] = m_files[file];
 		m_ctlPath[file].SetWindowText(m_files[file].c_str());
 		m_bReadOnly[file] = (m_dwFlags[file] & FFILEOPEN_READONLY) != 0;
 	}
@@ -241,7 +237,7 @@ void COpenView::OnInitialUpdate()
 	BOOL bDoUpdateData = TRUE;
 	for (int index = 0; index < countof(m_strPath); index++)
 	{
-		if (!m_strPath[index].IsEmpty())
+		if (!m_strPath[index].empty())
 			bDoUpdateData = FALSE;
 	}
 	UpdateData(bDoUpdateData);
@@ -269,9 +265,9 @@ void COpenView::OnInitialUpdate()
 
 	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
-		m_ctlOk.EnableWindow(TRUE);
-		m_ctlUnpacker.EnableWindow(TRUE);
-		m_ctlSelectUnpacker.EnableWindow(TRUE);
+		EnableDlgItem(IDOK, true);
+		EnableDlgItem(IDC_UNPACKER_EDIT, true);
+		EnableDlgItem(IDC_SELECT_UNPACKER, true);
 	}
 
 	UpdateButtonStates();
@@ -284,7 +280,7 @@ void COpenView::OnInitialUpdate()
 	if (!bOverwriteRecursive)
 		m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1;
 
-	m_strUnpacker = m_infoHandler.pluginName.c_str();
+	m_strUnpacker = m_infoHandler.pluginName;
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
 	SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
@@ -383,14 +379,14 @@ void COpenView::OnButton(int index)
 	String sfolder;
 	UpdateData(TRUE); 
 
-	PATH_EXISTENCE existence = paths_DoesPathExist((const TCHAR *)m_strPath[index], IsArchiveFile);
+	PATH_EXISTENCE existence = paths_DoesPathExist(m_strPath[index], IsArchiveFile);
 	switch (existence)
 	{
 	case IS_EXISTING_DIR:
 		sfolder = m_strPath[index];
 		break;
 	case IS_EXISTING_FILE:
-		sfolder = paths_GetPathOnly(String(m_strPath[index]));
+		sfolder = paths_GetPathOnly(m_strPath[index]);
 		break;
 	case DOES_NOT_EXIST:
 		// Do nothing, empty foldername will be passed to dialog
@@ -402,8 +398,8 @@ void COpenView::OnButton(int index)
 
 	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder.c_str()))
 	{
-		m_strPath[index] = s.c_str();
-		m_strBrowsePath[index] = s.c_str();
+		m_strPath[index] = s;
+		m_strBrowsePath[index] = s;
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}	
@@ -421,12 +417,12 @@ void COpenView::OnPathButton()
 template<int id1, int id2>
 void COpenView::OnSwapButton() 
 {
-	CString s1, s2;
-	GetDlgItem(id1)->GetWindowText(s1);
-	GetDlgItem(id2)->GetWindowText(s2);
+	String s1, s2;
+	GetDlgItemText(id1, s1);
+	GetDlgItemText(id2, s2);
 	std::swap(s1, s2);
-	GetDlgItem(id1)->SetWindowText(s1);
-	GetDlgItem(id2)->SetWindowText(s2);
+	SetDlgItemText(id1, s1);
+	SetDlgItemText(id2, s2);
 }
 
 /** 
@@ -446,7 +442,7 @@ void COpenView::OnOK()
 	int nFiles = 0;
 	for (index = 0; index < countof(m_strPath); index++)
 	{
-		if (index == 2 && m_strPath[index].IsEmpty())
+		if (index == 2 && m_strPath[index].empty())
 			break;
 		m_files.SetSize(nFiles + 1);
 		m_files[nFiles] = m_strPath[index];
@@ -456,10 +452,9 @@ void COpenView::OnOK()
 	}
 	// If left path is a project-file, load it
 	String ext;
-	paths_SplitFilename((LPCTSTR)m_strPath[0], NULL, NULL, &ext);
-	CString sExt(ext.c_str());
-	if (m_strPath[1].IsEmpty() && sExt.CompareNoCase(ProjectFile::PROJECTFILE_EXT.c_str()) == 0)
-		LoadProjectFile((const TCHAR *)m_strPath[0]);
+	paths_SplitFilename(m_strPath[0], NULL, NULL, &ext);
+	if (m_strPath[1].empty() && string_compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
+		LoadProjectFile(m_strPath[0]);
 
 	pathsType = GetPairComparability(m_files, IsArchiveFile);
 
@@ -473,7 +468,7 @@ void COpenView::OnOK()
 	{
 		// If user has edited path by hand, expand environment variables
 		bool bExpand = false;
-		if (m_strBrowsePath[index].CompareNoCase(m_files[index].c_str()) != 0)
+		if (string_compare_nocase(m_strBrowsePath[index], m_files[index]) != 0)
 			bExpand = true;
 
 		if (!paths_IsURLorCLSID(m_files[index]))
@@ -489,8 +484,7 @@ void COpenView::OnOK()
 	UpdateData(FALSE);
 	KillTimer(IDT_CHECKFILES);
 
-	String filter((LPCTSTR)m_strExt);
-	filter = string_trim_ws(filter);
+	String filter(string_trim_ws(m_strExt));
 
 	// If prefix found from start..
 	if (filter.find(filterPrefix, 0) == 0)
@@ -509,7 +503,7 @@ void COpenView::OnOK()
 	{
 		BOOL bFilterSet = theApp.m_pGlobalFileFilter->SetFilter(filter);
 		if (!bFilterSet)
-			m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask().c_str();
+			m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 	}
 
@@ -619,8 +613,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		BOOL bProject = FALSE;
 		String ext;
 		paths_SplitFilename(paths[0], NULL, NULL, &ext);
-		CString sExt(ext.c_str());
-		if (paths[1].empty() && sExt.CompareNoCase(ProjectFile::PROJECTFILE_EXT.c_str()) == 0)
+		if (paths[1].empty() && string_compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 			bProject = TRUE;
 
 		if (!bProject)
@@ -720,10 +713,10 @@ void COpenView::UpdateButtonStates()
 
 	UpdateButtonStatesThreadParams *pParams = new UpdateButtonStatesThreadParams;
 	pParams->m_hWnd = this->m_hWnd;
-	if (m_strPath[2].IsEmpty())
-		pParams->m_paths = PathContext((const TCHAR *)m_strPath[0], (const TCHAR *)m_strPath[1]);
+	if (m_strPath[2].empty())
+		pParams->m_paths = PathContext(m_strPath[0], m_strPath[1]);
 	else
-		pParams->m_paths = PathContext((const TCHAR *)m_strPath[0], (const TCHAR *)m_strPath[1], (const TCHAR *)m_strPath[2]);
+		pParams->m_paths = PathContext(m_strPath[0], m_strPath[1], m_strPath[2]);
 
 	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_USER + 2, (WPARAM)pParams, 0);
 }
@@ -752,8 +745,8 @@ void COpenView::OnSelchangeCombo(int index)
 	int sel = m_ctlPath[index].GetCurSel();
 	if (sel != CB_ERR)
 	{
-		m_ctlPath[index].GetLBText(sel, m_strPath[index]);
-		m_ctlPath[index].SetWindowText(m_strPath[index]);
+		m_ctlPath[index].GetLBText(sel, PopString(m_strPath[index]));
+		m_ctlPath[index].SetWindowText(m_strPath[index].c_str());
 		UpdateData(TRUE);
 	}
 	UpdateButtonStates();
@@ -813,7 +806,7 @@ void COpenView::OnSelectUnpacker()
 	int nFiles = 0;
 	for (index = 0; index < countof(m_strPath); index++)
 	{
-		if (index == 2 && m_strPath[index].IsEmpty())
+		if (index == 2 && m_strPath[index].empty())
 			break;
 		m_files.SetSize(nFiles + 1);
 		m_files[nFiles] = m_strPath[index];
@@ -833,7 +826,7 @@ void COpenView::OnSelectUnpacker()
 	{
 		m_infoHandler = dlg.GetInfoHandler();
 
-		m_strUnpacker = m_infoHandler.pluginName.c_str();
+		m_strUnpacker = m_infoHandler.pluginName;
 
 		UpdateData(FALSE);
 	}
@@ -841,11 +834,11 @@ void COpenView::OnSelectUnpacker()
 
 LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 {
-	BOOL bEnabledButtons = (BOOL)wParam;
+	bool bEnabledButtons = wParam != 0;
 
-	m_ctlOk.EnableWindow(bEnabledButtons);
-	m_ctlUnpacker.EnableWindow(bEnabledButtons);
-	m_ctlSelectUnpacker.EnableWindow(bEnabledButtons);
+	EnableDlgItem(IDOK, bEnabledButtons);
+	EnableDlgItem(IDC_UNPACKER_EDIT, bEnabledButtons);
+	EnableDlgItem(IDC_SELECT_UNPACKER, bEnabledButtons);
 
 	SetStatus(HIWORD(lParam));
 	SetStatus(LOWORD(lParam));
@@ -862,7 +855,7 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 void COpenView::SetStatus(UINT msgID)
 {
 	String msg = theApp.LoadString(msgID);
-	SetDlgItemText(IDC_OPEN_STATUS, msg.c_str());
+	SetDlgItemText(IDC_OPEN_STATUS, msg);
 }
 
 /**
@@ -874,7 +867,7 @@ void COpenView::SetStatus(UINT msgID)
 void COpenView::SetUnpackerStatus(UINT msgID)
 {
 	String msg = theApp.LoadString(msgID);
-	SetDlgItemText(IDC_UNPACKER_EDIT, msg.c_str());
+	SetDlgItemText(IDC_UNPACKER_EDIT, msg);
 }
 
 /** 
@@ -883,12 +876,11 @@ void COpenView::SetUnpackerStatus(UINT msgID)
 void COpenView::OnSelectFilter()
 {
 	String filterPrefix = _("[F] ");
-	CString curFilter;
+	String curFilter;
 
 	const BOOL bUseMask = theApp.m_pGlobalFileFilter->IsUsingMask();
 	GetDlgItemText(IDC_EXT_COMBO, curFilter);
-	curFilter.TrimLeft();
-	curFilter.TrimRight();
+	curFilter = string_trim_ws(curFilter);
 
 	GetMainFrame()->SelectFilter();
 	
@@ -898,13 +890,13 @@ void COpenView::OnSelectFilter()
 		// If we had filter chosen and now has mask we can overwrite filter
 		if (!bUseMask || curFilter[0] != '*')
 		{
-			SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask.c_str());
+			SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask);
 		}
 	}
 	else
 	{
 		filterNameOrMask = filterPrefix + filterNameOrMask;
-		SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask.c_str());
+		SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask);
 	}
 }
 
@@ -945,11 +937,9 @@ BOOL COpenView::LoadProjectFile(const String &path)
 	}
 	if (prj.HasFilter())
 	{
-		m_strExt = prj.GetFilter().c_str();
-		m_strExt.TrimLeft();
-		m_strExt.TrimRight();
+		m_strExt = string_trim_ws(prj.GetFilter());
 		if (m_strExt[0] != '*')
-			m_strExt.Insert(0, filterPrefix.c_str());
+			m_strExt.insert(0, filterPrefix);
 	}
 	return TRUE;
 }
@@ -961,10 +951,7 @@ BOOL COpenView::LoadProjectFile(const String &path)
 void COpenView::TrimPaths()
 {
 	for (int index = 0; index < countof(m_strPath); index++)
-	{
-		m_strPath[index].TrimLeft();
-		m_strPath[index].TrimRight();
-	}
+		m_strPath[index] = string_trim_ws(m_strPath[index]);
 }
 
 /** 
@@ -1026,29 +1013,29 @@ void COpenView::OnDropFiles(const std::vector<String>& files)
 	UpdateData(TRUE);
 	if (fileCount == 3)
 	{
-		m_strPath[0] = files[0].c_str();
-		m_strPath[1] = files[1].c_str();
-		m_strPath[2] = files[2].c_str();
+		m_strPath[0] = files[0];
+		m_strPath[1] = files[1];
+		m_strPath[2] = files[2];
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}
 	else if (fileCount == 2)
 	{
-		m_strPath[0] = files[0].c_str();
-		m_strPath[1] = files[1].c_str();
+		m_strPath[0] = files[0];
+		m_strPath[1] = files[1];
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}
 	else if (fileCount == 1)
 	{
-		if (m_strPath[0].IsEmpty())
-			m_strPath[0] = files[0].c_str();
-		else if (m_strPath[1].IsEmpty())
-			m_strPath[1] = files[0].c_str();
-		else if (m_strPath[2].IsEmpty())
-			m_strPath[2] = files[0].c_str();
+		if (m_strPath[0].empty())
+			m_strPath[0] = files[0];
+		else if (m_strPath[1].empty())
+			m_strPath[1] = files[0];
+		else if (m_strPath[2].empty())
+			m_strPath[2] = files[0];
 		else
-			m_strPath[0] = files[0].c_str();
+			m_strPath[0] = files[0];
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}
@@ -1067,7 +1054,7 @@ BOOL COpenView::PreTranslateMessage(MSG* pMsg)
 			case '2': id = IDC_PATH1_COMBO; goto LABEL_NUM_KEY;
 			case '3': id = IDC_PATH2_COMBO;
 			LABEL_NUM_KEY:
-				GetDlgItem(id)->SetFocus();
+				SetDlgItemFocus(id);
 				return TRUE;
 			case 's':
 			case 'S': id = IDC_SELECT_UNPACKER;

@@ -18,9 +18,9 @@ public:
 
 	DWORD   m_dwFlags[3];
 	PathContext m_files;
-	BOOL	m_bRecurse;
-	CString	m_strExt;
-	CString	m_strUnpacker;
+	bool	m_bRecurse;
+	String	m_strExt;
+	String	m_strUnpacker;
 	PackingInfo m_infoHandler;
 
 protected:

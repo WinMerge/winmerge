@@ -50,9 +50,6 @@ void PropVss::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropVss)
-	DDX_Control(pDX, IDC_VSS_L1, m_ctlVssL1);
-	DDX_Control(pDX, IDC_PATH_EDIT, m_ctlPath);
-	DDX_Control(pDX, IDC_BROWSE_BUTTON, m_ctlBrowse);
 	DDX_Text(pDX, IDC_PATH_EDIT, m_strPath);
 	DDX_CBIndex(pDX, IDC_VER_SYS, m_nVerSys);
 	DDX_Control(pDX, IDC_VER_SYS, m_ctlVerSys);
@@ -92,8 +89,8 @@ void PropVss::OnBrowseButton()
 	String s;
 	if (SelectFile(GetSafeHwnd(), s))
 	{
-		m_strPath = s.c_str();
-		m_ctlPath.SetWindowText(s.c_str());
+		m_strPath = s;
+		SetDlgItemText(IDC_PATH_EDIT, s);
 	}
 }
 
@@ -120,10 +117,10 @@ void PropVss::OnSelendokVerSys()
 {
 	UpdateData(TRUE);
 	String tempStr = m_nVerSys == SourceControl::VCS_CLEARCASE ? _("&Path to cleartool.exe:") : _("&Path to SS.EXE:");
-	m_ctlVssL1.SetWindowText(tempStr.c_str());
-	m_ctlPath.EnableWindow(m_nVerSys == SourceControl::VCS_VSS4 || m_nVerSys == SourceControl::VCS_CLEARCASE);
-	m_ctlVssL1.EnableWindow(m_nVerSys == SourceControl::VCS_VSS4 || m_nVerSys == SourceControl::VCS_CLEARCASE);
-	m_ctlBrowse.EnableWindow(m_nVerSys == SourceControl::VCS_VSS4 || m_nVerSys == SourceControl::VCS_CLEARCASE);
+	SetDlgItemText(IDC_VSS_L1, tempStr);
+	EnableDlgItem(IDC_PATH_EDIT, m_nVerSys == SourceControl::VCS_VSS4 || m_nVerSys == SourceControl::VCS_CLEARCASE);
+	EnableDlgItem(IDC_VSS_L1, m_nVerSys == SourceControl::VCS_VSS4 || m_nVerSys == SourceControl::VCS_CLEARCASE);
+	EnableDlgItem(IDC_BROWSE_BUTTON, m_nVerSys == SourceControl::VCS_VSS4 || m_nVerSys == SourceControl::VCS_CLEARCASE);
 }
 
 /**

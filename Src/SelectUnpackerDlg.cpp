@@ -177,7 +177,6 @@ void CSelectUnpackerDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CSelectUnpackerDlg)
-	DDX_Control(pDX, IDOK, m_btnOK);
 	DDX_Control(pDX, IDC_UNPACKER_NAME, m_cboUnpackerName);
 	DDX_Check(pDX, IDC_UNPACKER_ALLOW_ALL, m_bNoExtensionCheck);
 	DDX_Text(pDX, IDC_UNPACKER_DESCRIPTION, m_strDescription);
