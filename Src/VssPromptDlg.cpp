@@ -69,7 +69,6 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CComboBox m_ctlDBCombo;
-	CButton m_ctlMultiCheckouts;
 
 private:
 	CVssPromptDlg *m_p;
@@ -104,7 +103,6 @@ void CVssPromptDlg::Impl::DoDataExchange(CDataExchange* pDX)
 	DDX_CBString(pDX, IDC_DATABASE_LIST, m_p->m_strSelectedDatabase);
 	DDX_Control(pDX, IDC_DATABASE_LIST, m_ctlDBCombo);
 	DDX_Check(pDX, IDC_MULTI_CHECKOUT, m_p->m_bMultiCheckouts);
-	DDX_Control(pDX, IDC_MULTI_CHECKOUT, m_ctlMultiCheckouts);
 	DDX_Check(pDX, IDC_VCPROJ_SYNC, m_p->m_bVCProjSync);
 }
 

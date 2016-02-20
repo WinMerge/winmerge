@@ -26,8 +26,6 @@ public:
 	//{{AFX_DATA(PropVss)
 	enum { IDD = IDD_PROP_VSS };
 	CStatic	m_ctlVssL1;
-	CEdit	m_ctlPath;
-	CButton	m_ctlBrowse;
 	String	m_strPath;
 	int		m_nVerSys;
 	CComboBox  m_ctlVerSys;

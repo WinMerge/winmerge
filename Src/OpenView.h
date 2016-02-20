@@ -33,6 +33,7 @@
 #include "PathContext.h"
 #include "Picture.h"
 #include "CMoveConstraint.h"
+#include "TrDialogs.h"
 
 class ProjectFile;
 class COpenDoc;
@@ -47,7 +48,7 @@ class DropHandler;
  * The dialog shows also a status of the selected paths (found/not found),
  * if enabled in the options (enabled by default).
  */
- class COpenView : public CFormView
+class COpenView : public CFormView, public DlgUtils<COpenView>
 {
 protected: // create from serialization only
 	COpenView();
@@ -57,18 +58,14 @@ public:
 // Dialog Data
 	//{{AFX_DATA(COpenView)
 	enum { IDD = IDD_OPEN };
-	CButton	m_ctlSelectUnpacker;
-	CEdit	m_ctlUnpacker;
 	CSuperComboBox	m_ctlExt;
-	CButton	m_ctlOk;
-	CButton	m_ctlRecurse;
 	CSuperComboBox	m_ctlPath[3];
-	CString m_strPath[3];
-	BOOL m_bReadOnly[3];
+	String m_strPath[3];
+	bool m_bReadOnly[3];
 	PathContext m_files;
-	BOOL	m_bRecurse;
-	CString	m_strExt;
-	CString	m_strUnpacker;
+	bool	m_bRecurse;
+	String	m_strExt;
+	String	m_strUnpacker;
 	//}}AFX_DATA
 
 // other public data
@@ -86,7 +83,7 @@ public:
 
 // Implementation data
 private:
-	CString m_strBrowsePath[3]; /**< Left/middle/right path from browse dialog. */
+	String m_strBrowsePath[3]; /**< Left/middle/right path from browse dialog. */
 	CWinThread *m_pUpdateButtonStatusThread;
 	CPicture m_picture; /**< Image loader/viewer for logo image */
 	CRectTracker m_rectTracker;
