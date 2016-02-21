@@ -72,8 +72,7 @@ BOOL ConfirmFolderCopyDlg::OnInitDialog()
 	// Load warning icon
 	// TODO: we can have per-action icons?
 	HICON icon = AfxGetApp()->LoadStandardIcon(IDI_EXCLAMATION);
-	CStatic * pIcon = (CStatic *) GetDlgItem(IDC_FLDCONFIRM_ICON);
-	pIcon->SetIcon(icon);
+	SendDlgItemMessage(IDC_FLDCONFIRM_ICON, STM_SETICON, (WPARAM)icon, 0L);
 
 	if (!m_caption.empty())
 		SetWindowText(m_caption.c_str());

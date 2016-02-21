@@ -33,7 +33,6 @@ private:
 
 	//{{AFX_DATA(PropTextColors)
 	enum { IDD = IDD_PROPPAGE_COLORS_TEXT };
-	CColorButton    m_btnDefaultStandardColors;
 	CColorButton    m_btnWhitespaceBackground;
 	CColorButton    m_btnRegularBackground;
 	CColorButton    m_btnRegularText;
@@ -54,7 +53,6 @@ protected:
 
 	typedef enum { SET_DEFAULTS, READ_OPTIONS, LOAD_COLORS } OPERATION;
 
-	virtual BOOL OnInitDialog();
 	void BrowseColorAndSave(CColorButton & colorButton, int colorIndex);
 	void SerializeColorsToFromScreen(OPERATION op);
 	void SerializeColorToFromScreen(OPERATION op, CColorButton & btn, int colorIndex);
