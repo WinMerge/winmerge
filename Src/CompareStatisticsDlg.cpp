@@ -127,12 +127,11 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 	
 	for (auto&& map : ctlIconMap)
 	{
-		CStatic * pBitmapCtrl = static_cast<CStatic *>(GetDlgItem(map.ctlID));
-		if (pBitmapCtrl)
+		if (GetDlgItem(map.ctlID))
 		{
 			HICON hIcon = (HICON)LoadImage(AfxGetInstanceHandle(),
 				MAKEINTRESOURCE(map.iconID), IMAGE_ICON, iconCX, iconCY, LR_SHARED);
-			pBitmapCtrl->SetIcon(hIcon);
+			SendDlgItemMessage(map.ctlID, STM_SETICON, (WPARAM)hIcon, 0L);
 		}
 	}
 

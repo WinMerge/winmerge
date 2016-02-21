@@ -34,7 +34,6 @@ void PropTextColors::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropTextColors)
-	DDX_Control(pDX, IDC_DEFAULT_STANDARD_COLORS, m_btnDefaultStandardColors);
 	DDX_Check(pDX, IDC_DEFAULT_STANDARD_COLORS, m_bCustomColors);
 	DDX_Control(pDX, IDC_WHITESPACE_BKGD_COLOR, m_btnWhitespaceBackground);
 	DDX_Control(pDX, IDC_REGULAR_BKGD_COLOR, m_btnRegularBackground);
@@ -42,6 +41,7 @@ void PropTextColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_SELECTION_BKGD_COLOR, m_btnSelectionBackground);
 	DDX_Control(pDX, IDC_SELECTION_TEXT_COLOR, m_btnSelectionText);
 	//}}AFX_DATA_MAP
+	EnableColorButtons(m_bCustomColors);
 }
 
 
@@ -55,21 +55,6 @@ BEGIN_MESSAGE_MAP(PropTextColors, CDialog)
 	ON_BN_CLICKED(IDC_SELECTION_TEXT_COLOR, OnSelectionTextColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/** 
- * @brief Enable/Disable controls when dialog is shown.
- */
-BOOL PropTextColors::OnInitDialog()
-{
-	OptionsPanel::OnInitDialog();
-
-	if (m_bCustomColors)
-		EnableColorButtons(TRUE);
-	else
-		EnableColorButtons(FALSE);
-    
-	return TRUE;  // return TRUE  unless you set the focus to a control
-}
 
 /** 
  * @brief Reads options values from storage to UI.
@@ -105,7 +90,7 @@ void PropTextColors::WriteOptions()
 void PropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorIndex)
 {
 	// Ignore user if colors are slaved to system
-	if (m_btnDefaultStandardColors.GetCheck() == BST_UNCHECKED)
+	if (IsDlgButtonChecked(IDC_DEFAULT_STANDARD_COLORS) == BST_UNCHECKED)
 		return;
 
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
@@ -220,7 +205,7 @@ void PropTextColors::OnDefaultsStandardColors()
 	// Reset all text colors to default every time user checks defaults button
 	SerializeColorsToFromScreen(SET_DEFAULTS);
 
-	EnableColorButtons(IsDlgButtonChecked(IDC_DEFAULT_STANDARD_COLORS) == 1);
+	UpdateData();
 }
 
 /** 

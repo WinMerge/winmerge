@@ -25,7 +25,6 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropVss)
 	enum { IDD = IDD_PROP_VSS };
-	CStatic	m_ctlVssL1;
 	String	m_strPath;
 	int		m_nVerSys;
 	CComboBox  m_ctlVerSys;
