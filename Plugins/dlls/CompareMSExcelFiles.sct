@@ -194,7 +194,7 @@ Function get_PluginDescription()
 End Function
 
 Function get_PluginFileFilters()
-	get_PluginFileFilters = "\.xls(\..*)?$;\.xlsx(\..*)?$;\.xlsm(\..*)?$;\.xlsb(\..*)?;\.xla(\..*)?$;\.xlax(\..*)?$"
+	get_PluginFileFilters = "\.xls(\..*)?$;\.xlsx(\..*)?$;\.xlsm(\..*)?$;\.xlsb(\..*)?;\.xla(\..*)?$;\.xlax(\..*)?$;\.xltx(\..*)?$;\.xltm(\..*)?$"
 End Function
 
 Function get_PluginIsAutomatic()
