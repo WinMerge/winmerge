@@ -32,6 +32,7 @@
 #include <cassert>
 #include <exception>
 #include <vector>
+#include <list>
 #include <Poco/Format.h>
 #include <Poco/Debugger.h>
 #include <Poco/StringTokenizer.h>
@@ -533,7 +534,8 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, 1, filtercommentsset);
 	}
 
-	for(int i = 0; (i < QtyLinesLeft) || (i < QtyLinesRight); i++)
+	std::list<std::string> LeftLines, RightLines;
+	for (int i = 0; (i < QtyLinesLeft) || (i < QtyLinesRight); i++)
 	{
 		//Lets test  all lines if only a comment is different.
 		const char *	LineStrLeft = "";
@@ -627,12 +629,14 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 				std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
 			}
 
-			if (LineDataLeft != LineDataRight)
-			{	
-				return;
-			}
+			if (!LineDataLeft.empty())
+				LeftLines.push_back(LineDataLeft);
+			if (!LineDataRight.empty())
+				RightLines.push_back(LineDataRight);
 		}
 	}
+	if (LeftLines != RightLines)
+		return;
 	//only difference is trival
 	Op = OP_TRIVIAL;
 }
