@@ -409,8 +409,8 @@ void CDirDoc::MergeDocClosing(IMergeDoc * pMergeDoc)
  */
 BOOL CDirDoc::CloseMergeDocs()
 {
-	for (auto pMergeDoc : m_MergeDocs)
-		if (!pMergeDoc->CloseNow())
+	while (!m_MergeDocs.IsEmpty())
+		if (!m_MergeDocs.GetTail()->CloseNow())
 			return FALSE;
 	return TRUE;
 }
