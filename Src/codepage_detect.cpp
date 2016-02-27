@@ -198,7 +198,9 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len, int defcodepag
 static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, size_t len, int guessEncodingType)
 {
 	unsigned cp = ucr::getDefaultCodepage();
-	if (guessEncodingType & 2)
+	if (!ucr::CheckForInvalidUtf8(src, len))
+		cp = CP_UTF8;
+	else if (guessEncodingType & 2)
 	{
 		IExconverter *pexconv = Exconverter::getInstance();
 		if (pexconv && src != NULL)
@@ -206,11 +208,6 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
 			int autodetectType = (unsigned)guessEncodingType >> 16;
 			cp = pexconv->detectInputCodepage(autodetectType, cp, src, len);
 		}
-	}
-	else
-	{
-		if (!ucr::CheckForInvalidUtf8(src, len))
-			cp = CP_UTF8;
 	}
 	if (guessEncodingType & 1)
 	{
