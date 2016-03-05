@@ -41,7 +41,6 @@
 #include "FileOrFolderSelect.h"
 #include "UniFile.h"
 #include "SaveClosingDlg.h"
-#include "../Externals/winimerge/src/WinIMergeLib.h"
 #include <cmath>
 #include <cstdint>
 #include <Shlwapi.h>

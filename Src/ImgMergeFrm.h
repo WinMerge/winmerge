@@ -29,7 +29,7 @@
 #include "PathContext.h"
 #include "DiffFileInfo.h"
 #include "IMergeDoc.h"
-#include "../Externals/winimerge/src/WinIMergeLib.h"
+#include "WinIMergeLib.h"
 #include "LocationBar.h"
 
 class CDirDoc;
