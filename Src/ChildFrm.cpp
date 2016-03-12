@@ -33,7 +33,6 @@
 #include "MergeEditView.h"
 #include "LocationView.h"
 #include "DiffViewBar.h"
-#include "charsets.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 
@@ -42,15 +41,6 @@
 #endif
 
 #define SWAPPARAMS_IF(c, a, b) (c ? a : b), (c ? b : a)
-
-/** @brief RO status panel width */
-static UINT RO_PANEL_WIDTH = 40;
-/** @brief Encoding status panel width */
-static UINT ENCODING_PANEL_WIDTH = 80;
-/** @brief EOL type status panel width */
-static UINT EOL_PANEL_WIDTH = 60;
-
-static String EolString(const String & sEol);
 
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame
@@ -76,38 +66,6 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-/**
- * @brief Statusbar pane indexes
- */
-enum
-{
-	PANE_PANE0_INFO = 0,
-	PANE_PANE0_RO,
-	PANE_PANE0_EOL,
-	PANE_PANE1_INFO,
-	PANE_PANE1_RO,
-	PANE_PANE1_EOL,
-	PANE_PANE2_INFO,
-	PANE_PANE2_RO,
-	PANE_PANE2_EOL,
-};
-
-/**
- * @brief Bottom statusbar panels and indicators
- */
-static UINT indicatorsBottom[] =
-{
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-};
-
 #define IDT_SAVEPOSITION 2
 
 /////////////////////////////////////////////////////////////////////////////
@@ -122,11 +80,6 @@ CChildFrame::CChildFrame()
 , m_hDifferent(NULL)
 #pragma warning(default:4355)
 {
-	for (int pane = 0; pane < countof(m_status); pane++)
-	{
-		m_status[pane].m_pFrame = this;
-		m_status[pane].m_base = PANE_PANE0_INFO + pane * 3;
-	}
 	m_bActivated = FALSE;
 	m_nLastSplitPos = 0;
 	m_pMergeDoc = 0;
@@ -221,7 +174,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	{
 		pView[pane] = static_cast<CMergeEditView *>(m_wndSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, 0, pane)));
 		// connect merge views up to display of status info
-		pView[pane]->SetStatusInterface(&m_status[pane]);
+		pView[pane]->SetStatusInterface(m_wndStatusBar.GetIMergeEditStatus(pane));
 		pView[pane]->m_nThisPane = pane;
 	}
 	// tell merge doc about these views
@@ -239,6 +192,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_pMergeDoc->SetMergeDetailViews(pDetail);
 
 	m_wndFilePathBar.SetPaneCount(pDoc->m_nBuffers);
+	m_wndStatusBar.SetPaneCount(pDoc->m_nBuffers);
 	
 	// Set frame window handles so we can post stage changes back
 	static_cast<CLocationView *>(pWnd)->SetFrameHwnd(GetSafeHwnd());
@@ -311,20 +265,11 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// Merge frame also has a status bar at bottom, 
 	// m_wndDetailBar is below, so we create this bar after m_wndDetailBar
-	if (!m_wndStatusBar.Create(this) ||
-		!m_wndStatusBar.SetIndicators(indicatorsBottom,
-		  sizeof(indicatorsBottom)/sizeof(UINT)))
+	if (!m_wndStatusBar.Create(this))
 	{
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}	
-
-	// Set text to read-only info panes
-	// Text is hidden if file is writable
-	String sText = _("RO");
-	m_wndStatusBar.SetPaneText(PANE_PANE0_RO, sText.c_str(), TRUE);
-	m_wndStatusBar.SetPaneText(PANE_PANE1_RO, sText.c_str(), TRUE);
-	m_wndStatusBar.SetPaneText(PANE_PANE2_RO, sText.c_str(), TRUE);
 
 	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALTEXTFILE);
 	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALTEXTFILE);
@@ -582,26 +527,7 @@ void CChildFrame::UpdateHeaderSizes()
 		// resize controls in header dialog bar
 		m_wndFilePathBar.Resize(w);
 
-		// Set bottom statusbar panel widths
-		// Kimmo - I don't know why 4 seems to be right for me
-		int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
-		for (pane = 0; pane < GetMergeDoc()->m_nBuffers; pane++)
-		{
-			int paneWidth = w[pane] - (RO_PANEL_WIDTH + EOL_PANEL_WIDTH +
-				(2 * borderWidth));
-			if (paneWidth < borderWidth)
-				paneWidth = borderWidth;
-
-			m_wndStatusBar.SetPaneStyle(PANE_PANE0_INFO + pane * 3, SBPS_NORMAL);
-			m_wndStatusBar.SetPaneInfo(PANE_PANE0_INFO + pane * 3, ID_STATUS_PANE0FILE_INFO + pane,
-				SBPS_NORMAL, paneWidth);
-			m_wndStatusBar.SetPaneStyle(PANE_PANE0_RO + pane * 3, SBPS_NORMAL);
-			m_wndStatusBar.SetPaneInfo(PANE_PANE0_RO + pane * 3, ID_STATUS_PANE0FILE_RO + pane,
-				SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
-			m_wndStatusBar.SetPaneStyle(PANE_PANE0_EOL + pane * 3, SBPS_NORMAL);
-			m_wndStatusBar.SetPaneInfo(PANE_PANE0_EOL + pane * 3, ID_STATUS_PANE0FILE_EOL + pane,
-				SBPS_NORMAL, EOL_PANEL_WIDTH - borderWidth);
-		}
+		m_wndStatusBar.Resize(w);
 	}
 }
 
@@ -731,112 +657,12 @@ void CChildFrame::CloseNow()
 	MDIDestroy();
 }
 
-/// Bridge class which implements the interface from crystal editor to frame status line display
-CChildFrame::MergeStatus::MergeStatus()
-: m_nColumn(0)
-, m_nColumns(0)
-, m_nChar(0)
-, m_nChars(0)
-, m_nCodepage(-1)
-, m_bHasBom(false)
-, m_pFrame(nullptr)
-, m_base(0)
-{
-}
-
-/// Send status line info (about one side of merge view) to screen
-void CChildFrame::MergeStatus::Update()
-{
-	if (IsWindow(m_pFrame->m_wndStatusBar.m_hWnd))
-	{
-		CString str;
-		if (m_nChars == -1)
-		{
-			str.Format(_("Line: %s").c_str(),
-				m_sLine.c_str());
-		}
-		else if (m_sEolDisplay.empty())
-		{
-			str.Format(_("Ln: %s  Col: %d/%d  Ch: %d/%d  Cp: %d(%s)").c_str(),
-				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars, m_nCodepage, m_sCodepageName.c_str());
-		}
-		else
-		{
-			str.Format(_("Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s  Cp: %d(%s)").c_str(),
-				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars, m_sEolDisplay.c_str(), m_nCodepage, m_sCodepageName.c_str());
-		}
-
-		m_pFrame->m_wndStatusBar.SetPaneText(m_base, str);
-	}
-}
-
-/**
- * @brief Update any resources necessary after a GUI language change
- */
-void CChildFrame::MergeStatus::UpdateResources()
-{
-	Update();
-}
-
-/// Visible representation of eol
-static String EolString(const String & sEol)
-{
-	if (sEol == _T("\r\n"))
-	{
-		return _("CRLF");
-	}
-	if (sEol == _T("\n"))
-	{
-		return _("LF");
-	}
-	if (sEol == _T("\r"))
-	{
-		return _("CR");
-	}
-	if (sEol.empty())
-	{
-		return _("None");
-	}
-	if (sEol == _T("hidden"))
-		return _T("");
-	return _T("?");
-}
-
-/// Receive status line info from crystal window and display
-void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
-		int nColumns, int nChar, int nChars, LPCTSTR szEol, int nCodepage, bool bHasBom)
-{
-	if (m_sLine != szLine || m_nColumn != nColumn || m_nColumns != nColumns ||
-		m_nChar != nChar || m_nChars != nChars || m_sEol != szEol != 0 || m_nCodepage != nCodepage || m_bHasBom != bHasBom)
-	{
-		USES_CONVERSION;
-		m_sLine = szLine;
-		m_nColumn = nColumn;
-		m_nColumns = nColumns;
-		m_nChar = nChar;
-		m_nChars = nChars;
-		m_sEol = szEol;
-		m_sEolDisplay = EolString(m_sEol);
-		if (m_nCodepage != nCodepage)
-		{
-			const char *pszCodepageName = GetEncodingNameFromCodePage(nCodepage);
-			m_sCodepageName = pszCodepageName ? ucr::toTString(pszCodepageName) : _T("");
-			if (bHasBom)
-				m_sCodepageName += _T(" with BOM");
-		}
-		m_nCodepage = nCodepage;
-		m_bHasBom = bHasBom;
-		Update();
-	}
-}
-
 /**
  * @brief Update any resources necessary after a GUI language change
  */
 void CChildFrame::UpdateResources()
 {
-	for (int pane = 0; pane < GetMergeDoc()->m_nBuffers; pane++)
-		m_status[pane].UpdateResources();
+	m_wndStatusBar.UpdateResources();
 	m_wndLocationBar.UpdateResources();
 	m_wndDetailBar.UpdateResources();
 }

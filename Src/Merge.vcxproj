@@ -427,6 +427,7 @@
     <ClCompile Include="Merge7zFormatShellImpl.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="MergeStatusBar.cpp" />
     <ClCompile Include="OptionsDef.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -801,6 +802,7 @@
     <ClInclude Include="Merge7zFormatMergePluginImpl.h" />
     <ClInclude Include="Merge7zFormatRegister.h" />
     <ClInclude Include="Merge7zFormatShellImpl.h" />
+    <ClInclude Include="MergeStatusBar.h" />
     <ClInclude Include="OptionsCustomColors.h" />
     <ClInclude Include="Diff3.h" />
     <ClInclude Include="DiffContext.h" />
@@ -964,7 +966,6 @@
     <None Include="..\Externals\crystaledit\editlib\ccrystaltextview.inl" />
     <None Include="..\Externals\crystaledit\editlib\filesup.inl" />
     <None Include="..\Externals\crystaledit\editlib\memcombo.inl" />
-    <None Include="ClassDiagram.cd" />
     <None Include="res\binarydiff.ico" />
     <None Include="res\both.bmp" />
     <None Include="res\equalbinary.ico" />

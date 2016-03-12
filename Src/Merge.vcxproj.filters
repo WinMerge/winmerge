@@ -748,6 +748,9 @@
     <ClCompile Include="TrDialogs.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MergeStatusBar.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1389,6 +1392,9 @@
     <ClInclude Include="TrDialogs.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MergeStatusBar.h">
+      <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">
@@ -1505,7 +1511,6 @@
     <None Include="..\Externals\crystaledit\editlib\memcombo.inl">
       <Filter>EditLib</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc">

@@ -26,7 +26,7 @@
 #pragma once
 
 #include "SplitterWndEx.h"
-#include "MergeEditStatus.h"
+#include "MergeStatusBar.h"
 #include "EditorFilepathBar.h"
 #include "DiffViewBar.h"
 #include "LocationBar.h"
@@ -61,39 +61,8 @@ protected:
 	CEditorFilePathBar m_wndFilePathBar;
 	CDiffViewBar m_wndDetailBar;
 	CSplitterWndEx m_wndDetailSplitter;
-	CStatusBar m_wndStatusBar;
+	CMergeStatusBar m_wndStatusBar;
 	CLocationBar m_wndLocationBar;
-	// Object that displays status line info for one side of a merge view
-	class MergeStatus : public IMergeEditStatus
-	{
-	public:
-		// ctr
-		MergeStatus();
-		// Implement MergeEditStatus
-		void SetLineInfo(LPCTSTR szLine, int nColumn, int nColumns,
-			int nChar, int nChars, LPCTSTR szEol, int nCodepage, bool bHasBom);
-		void UpdateResources();
-	protected:
-		void Update();
-	public:
-		CChildFrame * m_pFrame;
-		int m_base; /**< 0 for left, 1 for right */
-	private:
-		String m_sLine;
-		int m_nColumn; /**< Current column, tab-expanded */
-		int m_nColumns; /**< Amount of columns, tab-expanded */
-		int m_nChar; /**< Current char */
-		int m_nChars; /**< Amount of chars in line */
-		int m_nCodepage;
-		bool m_bHasBom;
-		String m_sEol;
-		String m_sEolDisplay;
-		String m_sCodepageName;
-	};
-	friend class MergeStatus; // MergeStatus accesses status bar
-	MergeStatus m_status[3];
-
-
 
 // Overrides
 public:
