@@ -436,6 +436,10 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			q = SetOption(q, OPT_CMP_IGNORE_EOL);
 		}
+		else if (param == _T("ignorecodepage"))
+		{
+			q = SetOption(q, OPT_CMP_IGNORE_CODEPAGE);
+		}
 	}
 	// If "compare file dir" make it "compare file dir\file".
 	if (m_Files.GetSize() >= 2)

@@ -186,6 +186,7 @@
 #define IDC_WHITESPACE                  1029
 #define IDC_USER                        1031
 #define IDC_EOL_SENSITIVE               1032
+#define IDC_CP_SENSITIVE                1033
 #define IDC_PASSWORD                    1034
 #define IDC_DIFFERENCE_COLOR            1035
 #define IDC_SEL_DIFFERENCE_COLOR        1037
@@ -1037,8 +1038,11 @@
 #define ID_STATUS_PANE0FILE_EOL         32976
 #define ID_STATUS_PANE1FILE_EOL         32977
 #define ID_STATUS_PANE2FILE_EOL         32978
-#define ID_STATUS_FILTER                32979
-#define ID_STATUS_PLUGIN                32980
+#define ID_STATUS_PANE0FILE_ENCODING    32979
+#define ID_STATUS_PANE1FILE_ENCODING    32980
+#define ID_STATUS_PANE2FILE_ENCODING    32981
+#define ID_STATUS_FILTER                32982
+#define ID_STATUS_PLUGIN                32983
 #define ID_DIR_ZIP_LEFT                 32991
 #define ID_DIR_ZIP_MIDDLE               32992
 #define ID_DIR_ZIP_RIGHT                32993

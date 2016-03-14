@@ -129,11 +129,8 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			m_diffFileData.m_FileLocation[nIndex].encoding = encoding[nIndex];
 		}
 
-		for (nIndex = 1; nIndex < nDirs; nIndex++)
-		{
-			if (encoding[0].m_unicoding != encoding[nIndex].m_unicoding || encoding[0].m_codepage != encoding[nIndex].m_codepage)
-				bForceUTF8 = true;
-		}
+		if (!std::equal(encoding + 1, encoding + nDirs, encoding))
+			bForceUTF8 = true;
 		int codepage = bForceUTF8 ? CP_UTF8 : (encoding[0].m_unicoding ? CP_UTF8 : encoding[0].m_codepage);
 		for (nIndex = 0; nIndex < nDirs; nIndex++)
 		{
@@ -378,6 +375,11 @@ exitPrepAndCompare:
 			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathUnpacked[1].c_str())); }
 		if (nDirs > 2 && filepathUnpacked[2] != files[2])
 			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathUnpacked[2].c_str())); }
+
+		if (!pCtxt->m_bIgnoreCodepage && 
+		    (code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME &&
+		    !std::equal(encoding + 1, encoding + nDirs, encoding))
+			code = (code & ~DIFFCODE::COMPAREFLAGS) | DIFFCODE::DIFF;
 	}
 	else if (nCompMethod == CMP_BINARY_CONTENT)
 	{

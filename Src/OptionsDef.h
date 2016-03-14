@@ -151,6 +151,7 @@ extern const String OPT_CMP_IGNORE_BLANKLINES OP("Settings/IgnoreBlankLines");
 extern const String OPT_CMP_FILTER_COMMENTLINES OP("Settings/FilterCommentsLines");
 extern const String OPT_CMP_IGNORE_CASE OP("Settings/IgnoreCase");
 extern const String OPT_CMP_IGNORE_EOL OP("Settings/IgnoreEol");
+extern const String OPT_CMP_IGNORE_CODEPAGE OP("Settings/IgnoreCodepage");
 extern const String OPT_CMP_METHOD OP("Settings/CompMethod2");
 extern const String OPT_CMP_MOVED_BLOCKS OP("Settings/MovedBlocks");
 extern const String OPT_CMP_MATCH_SIMILAR_LINES OP("Settings/MatchSimilarLines");

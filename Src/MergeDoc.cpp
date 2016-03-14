@@ -574,7 +574,13 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		}
 	}
 
-	GetParentFrame()->SetLastCompareResult(m_diffList.GetSignificantDiffs());
+	if (!GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE) &&
+		identical == IDENTLEVEL_ALL &&
+		std::any_of(m_ptBuf, m_ptBuf + m_nBuffers,
+			[&](std::unique_ptr<CDiffTextBuffer>& buf) { return buf->getEncoding() != m_ptBuf[0]->getEncoding(); }))
+		identical = IDENTLEVEL_NONE;
+
+	GetParentFrame()->SetLastCompareResult(identical != IDENTLEVEL_ALL ? 1 : 0);
 
 	return nResult;
 }
@@ -742,7 +748,10 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 			}
 
 			if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
+			{
+				GetMainFrame()->SendMessageToDescendants(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0, TRUE, TRUE);
 				LangMessageBox(IDS_FILESSAME, nFlags);
+			}
 
 			// Exit application if files are identical.
 			if (theApp.m_bExitIfNoDiff == MergeCmdLineInfo::Exit ||
