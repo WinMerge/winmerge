@@ -30,6 +30,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropCompare)
 	enum { IDD = IDD_PROPPAGE_COMPARE };
+	bool    m_bIgnoreCodepage;
 	bool    m_bIgnoreEol;
 	bool    m_bIgnoreCase;
 	bool    m_bIgnoreBlankLines;
