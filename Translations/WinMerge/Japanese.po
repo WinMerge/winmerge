@@ -1940,6 +1940,11 @@ msgstr "空行を無視する(&K)"
 msgid "Ignore &case"
 msgstr "大文字と小文字を区別しない(&C)"
 
+#: Merge.rc:6C318DC8
+#, c-format
+msgid "Ignore codepage &differences"
+msgstr "コードページの違いを無視する(&D)"
+
 #: Merge.rc:285B56CE
 #, c-format
 msgid "E&nable moved block detection"
@@ -3219,20 +3224,20 @@ msgstr "Theirs File"
 msgid "Mine File"
 msgstr "Mine File"
 
-#: Merge.rc:55269C51
+#: Merge.rc:DD21174
 #, c-format
-msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s  Cp: %d(%s)"
-msgstr "行: %s  列: %d/%d  文字: %d/%d  EOL: %s  コードページ: %d(%s)"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+msgstr "行: %s  列: %d/%d  文字: %d/%d  EOL: %s"
 
 #: Merge.rc:15875423
 #, c-format
 msgid "Line: %s"
 msgstr "行: %s"
 
-#: Merge.rc:50DE3D68
+#: Merge.rc:6F3BCB35
 #, c-format
-msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  Cp: %d(%s)"
-msgstr "行: %s  列: %d/%d  文字: %d/%d  コードページ: %d(%s)"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr "行: %s  列: %d/%d  文字: %d/%d"
 
 #: Merge.rc:7C664E1
 #, c-format
@@ -3710,7 +3715,7 @@ msgstr "両側 (%1)"
 msgid "All (%1)"
 msgstr "全て (%1)"
 
-#: Merge.rc:DD21174
+#: Merge.rc:DD21175
 #, c-format
 msgid "Left side - select destination folder:"
 msgstr "左側 - コピー/移動先フォルダの指定:"

@@ -1931,6 +1931,11 @@ msgstr "Ignorer blan&ke linjer"
 msgid "Ignore &case"
 msgstr "Ignorer store/små &bokstaver"
 
+#: Merge.rc:6C318DC8
+#, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
 #: Merge.rc:285B56CE
 #, c-format
 msgid "E&nable moved block detection"
@@ -3170,9 +3175,9 @@ msgstr "Deres fil"
 msgid "Mine File"
 msgstr "Min fil"
 
-#: Merge.rc:55269C51
+#: Merge.rc:DD21174
 #, c-format
-msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s  Cp: %d(%s)"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""
 
 #: Merge.rc:15875423
@@ -3180,9 +3185,9 @@ msgstr ""
 msgid "Line: %s"
 msgstr "Linje: %s"
 
-#: Merge.rc:50DE3D68
+#: Merge.rc:6F3BCB35
 #, c-format
-msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  Cp: %d(%s)"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr ""
 
 #: Merge.rc:7C664E1
@@ -3646,7 +3651,7 @@ msgstr "Begge (%1)"
 msgid "All (%1)"
 msgstr ""
 
-#: Merge.rc:DD21174
+#: Merge.rc:DD21175
 #, c-format
 msgid "Left side - select destination folder:"
 msgstr "Venstre side - velg målmappe:"

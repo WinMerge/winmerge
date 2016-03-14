@@ -1932,6 +1932,11 @@ msgstr "공백 라인 무시(&K)"
 msgid "Ignore &case"
 msgstr "대소문자 무시(&C)"
 
+#: Merge.rc:6C318DC8
+#, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
 #: Merge.rc:285B56CE
 #, c-format
 msgid "E&nable moved block detection"
@@ -3160,9 +3165,9 @@ msgstr "그 파일"
 msgid "Mine File"
 msgstr "마인 파일"
 
-#: Merge.rc:55269C51
+#: Merge.rc:DD21174
 #, c-format
-msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s  Cp: %d(%s)"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""
 
 #: Merge.rc:15875423
@@ -3170,9 +3175,9 @@ msgstr ""
 msgid "Line: %s"
 msgstr "라인: %s"
 
-#: Merge.rc:50DE3D68
+#: Merge.rc:6F3BCB35
 #, c-format
-msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  Cp: %d(%s)"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr ""
 
 #: Merge.rc:7C664E1
@@ -3603,7 +3608,7 @@ msgstr "모두 (%1)"
 msgid "All (%1)"
 msgstr ""
 
-#: Merge.rc:DD21174
+#: Merge.rc:DD21175
 #, c-format
 msgid "Left side - select destination folder:"
 msgstr "왼쪽 - 이동할 디렉토리를 선택하세요:"
