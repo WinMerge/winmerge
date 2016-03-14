@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2016-03-13 11:08+0000\n"
+"POT-Creation-Date: 2016-03-15 00:30+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1927,9 +1927,9 @@ msgstr ""
 msgid "Ignore &case"
 msgstr ""
 
-#: Merge.rc:51F11514
+#: Merge.rc:6C318DC8
 #, c-format
-msgid "Ignore codepage differences"
+msgid "Ignore codepage &differences"
 msgstr ""
 
 #: Merge.rc:285B56CE
