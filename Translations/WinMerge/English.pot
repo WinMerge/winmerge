@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2016-02-21 21:44+0000\n"
+"POT-Creation-Date: 2016-03-13 11:08+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1927,6 +1927,11 @@ msgstr ""
 msgid "Ignore &case"
 msgstr ""
 
+#: Merge.rc:51F11514
+#, c-format
+msgid "Ignore codepage differences"
+msgstr ""
+
 #: Merge.rc:285B56CE
 #, c-format
 msgid "E&nable moved block detection"
@@ -3082,9 +3087,9 @@ msgstr ""
 msgid "Mine File"
 msgstr ""
 
-#: Merge.rc:55269C51
+#: Merge.rc:DD21174
 #, c-format
-msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s  Cp: %d(%s)"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""
 
 #: Merge.rc:15875423
@@ -3092,9 +3097,9 @@ msgstr ""
 msgid "Line: %s"
 msgstr ""
 
-#: Merge.rc:50DE3D68
+#: Merge.rc:6F3BCB35
 #, c-format
-msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  Cp: %d(%s)"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr ""
 
 #: Merge.rc:7C664E1
@@ -3458,7 +3463,7 @@ msgstr ""
 msgid "All (%1)"
 msgstr ""
 
-#: Merge.rc:DD21174
+#: Merge.rc:DD21175
 #, c-format
 msgid "Left side - select destination folder:"
 msgstr ""

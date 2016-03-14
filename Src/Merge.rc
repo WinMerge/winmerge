@@ -1739,8 +1739,10 @@ END
 // WinMerge Project Files
 STRINGTABLE
 BEGIN
-    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
-    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
+    IDS_UNK_ERROR_READING_PROJECT 
+                            "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT 
+                            "Unknown error attempting to save project file"
     IDS_PROJFILEDLG_CAPTION "Project File"
     IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
     IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
@@ -1900,13 +1902,13 @@ BEGIN
 END
 
 // LINEFILTER STRINGS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_FILTERLINE_REGEXP   "Regular expression"
 END
 
 // GENERAL FILTER STRINGS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_FILTERCHANGED       "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 END
@@ -1927,15 +1929,16 @@ BEGIN
     IDS_EMPTY_MIDDLE_FILE   "Untitled middle"
     IDS_EMPTY_RIGHT_FILE    "Untitled right"
     IDS_CONFLICT_THEIRS_FILE "Theirs File"
-    IDS_CONFLICT_MINE_FILE   "Mine File"
+    IDS_CONFLICT_MINE_FILE  "Mine File"
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN
-    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s  Cp: %d(%s)"
+    IDS_LINE_STATUS_INFO_EOL 
+                            "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
-    IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d  Cp: %d(%s)"
+    IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
@@ -1960,8 +1963,8 @@ BEGIN
     IDS_OPEN_MIDDLEINVALID  "Middle path is invalid!"
     IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
     IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
-    IDS_OPEN_LEFTMIDDLEINVALID  "Left and middle path is invalid!"
-    IDS_OPEN_LEFTRIGHTINVALID   "Left and right path is invalid!"
+    IDS_OPEN_LEFTMIDDLEINVALID "Left and middle path is invalid!"
+    IDS_OPEN_LEFTRIGHTINVALID "Left and right path is invalid!"
     IDS_OPEN_MIDDLERIGHTINVALID "Middle and right path is invalid!"
     IDS_OPEN_ALLINVALID     "All paths are invalid!"
     IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
@@ -1973,7 +1976,7 @@ STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
-    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
+    IDS_ERROR_FILEOPEN      "Cannot open file\n%1\n\n%2"
     IDS_ERROR_CONF_RESOLVE  "Failed to parse conflict file."
     IDS_NOT_CONFLICT_FILE   "The file\n%1\nis not a conflict file."
 END
@@ -1985,11 +1988,13 @@ BEGIN
     IDS_SAVE_FMT            "Save changes to %1?"
     IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
     IDS_ERROR_BACKUP        "Error backing up file"
-    IDS_BACKUP_FAILED_PROMPT
+    IDS_BACKUP_FAILED_PROMPT 
                             "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
-    IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_LEFT 
+                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT 
+                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
     IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
@@ -2012,11 +2017,12 @@ BEGIN
     IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
     IDS_VSSERROR            "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
     IDS_VSS_RUN_ERROR       "Error executing versioning system command."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH 
+                            "The VSS Working Folder and the location of the current file do not match. Continue?"
     IDS_VSS_NODATABASES     "No VSS database(s) found!"
     IDS_VSS_ERRORFROM       "Error from VSS:"
-    IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
-    IDS_VSS_UNCOERROR        "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
+    IDS_VSS_CHECKINERROR    "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
+    IDS_VSS_UNCOERROR       "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
 END
 
 // VSS system
@@ -2033,17 +2039,17 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    IDS_COPY_RIGHT_TO_LEFT   "Right to Left (%1)"
+    IDS_COPY_RIGHT_TO_LEFT  "Right to Left (%1)"
     IDS_COPY_RIGHT_TO_MIDDLE "Right to Middle (%1)"
-    IDS_COPY_MIDDLE_TO_LEFT  "Middle to Left (%1)"
+    IDS_COPY_MIDDLE_TO_LEFT "Middle to Left (%1)"
     IDS_COPY_MIDDLE_TO_RIGHT "Middle to Right (%1)"
-    IDS_COPY_LEFT_TO_RIGHT   "Left to Right (%1)"
-    IDS_COPY_LEFT_TO_MIDDLE  "Left to Middle (%1)"
-    IDS_COPY_RIGHT_TO_LEFT2  "Right to Left (%1 of %2)"
+    IDS_COPY_LEFT_TO_RIGHT  "Left to Right (%1)"
+    IDS_COPY_LEFT_TO_MIDDLE "Left to Middle (%1)"
+    IDS_COPY_RIGHT_TO_LEFT2 "Right to Left (%1 of %2)"
     IDS_COPY_RIGHT_TO_MIDDLE2 "Right to Middle (%1 of %2)"
     IDS_COPY_MIDDLE_TO_LEFT2 "Middle to Left (%1 of %2)"
     IDS_COPY_MIDDLE_TO_RIGHT2 "Middle to Right (%1 of %2)"
-    IDS_COPY_LEFT_TO_RIGHT2  "Left to Right (%1 of %2)"
+    IDS_COPY_LEFT_TO_RIGHT2 "Left to Right (%1 of %2)"
     IDS_COPY_LEFT_TO_MIDDLE2 "Left to Middle (%1 of %2)"
     IDS_COPY_LEFT_TO        "Left to... (%1)"
     IDS_COPY_MIDDLE_TO      "Middle to... (%1)"
@@ -2096,13 +2102,14 @@ BEGIN
     IDS_CONFIRM_MULTIPLE_MOVE "Are you sure you want to move %d items:"
     IDS_CONFIRM_COPY_CAPTION "Confirm Copy"
     IDS_CONFIRM_MOVE_CAPTION "Confirm Move"
-    IDS_CONFIRM_CLOSE_WINDOW "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+    IDS_CONFIRM_CLOSE_WINDOW 
+                            "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE
 STRINGTABLE
 BEGIN
-    IDS_ERROR_EXECUTE_FILE   "Failed to execute external editor: %1"
+    IDS_ERROR_EXECUTE_FILE  "Failed to execute external editor: %1"
 END
 
 // DIRECTORY DIFFING : 7ZIP
@@ -2255,7 +2262,7 @@ BEGIN
     IDS_REPORT_TABLIST      "Tab-separated list"
     IDS_REPORT_SIMPLEHTML   "Simple HTML"
     IDS_REPORT_SIMPLEXML    "Simple XML"
-    IDS_REPORT_FILEOVERWRITE
+    IDS_REPORT_FILEOVERWRITE 
                             "The report file already exists. Do you want to overwrite existing file?"
     IDS_REPORT_ERROR        "Error creating the report:\n%1"
     IDS_REPORT_SUCCESS      "The report has been created successfully."
@@ -2270,18 +2277,23 @@ BEGIN
     IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
     IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
-    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
+    IDS_CANNOT_OPEN_BINARYFILE "Cannot open a binary file to editor."
     IDS_CREATE_PAIR_FOLDER  "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
 END
 
 // Encoding issues
 STRINGTABLE
 BEGIN
-    IDS_SUGGEST_IGNORECODEPAGE "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
-    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
-    IDS_LOSSY_TRANSCODING_FIRST  "Information lost due to encoding errors: first file"
-    IDS_LOSSY_TRANSCODING_SECOND "Information lost due to encoding errors: second file"
-    IDS_LOSSY_TRANSCODING_THIRD  "Information lost due to encoding errors: third file"
+    IDS_SUGGEST_IGNORECODEPAGE 
+                            "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+    IDS_LOSSY_TRANSCODING_BOTH 
+                            "Information lost due to encoding errors: both files"
+    IDS_LOSSY_TRANSCODING_FIRST 
+                            "Information lost due to encoding errors: first file"
+    IDS_LOSSY_TRANSCODING_SECOND 
+                            "Information lost due to encoding errors: second file"
+    IDS_LOSSY_TRANSCODING_THIRD 
+                            "Information lost due to encoding errors: third file"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2337,7 +2349,8 @@ BEGIN
     IDS_FILEWRITE_ERROR     "Could not write to file %1."
     IDS_PATH_NOT_ABSOLUTE   "The specified output path is not an absolute path: %1"
     IDS_MUST_SPECIFY_OUTPUT "Specify an output file"
-    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a patch file from binary files."
+    IDS_CANNOT_CREATE_BINARYPATCH 
+                            "Cannot create a patch file from binary files."
     IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
     IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
     IDS_FOLDER_NOTEXIST     "Folder does not exist."
@@ -2420,7 +2433,8 @@ STRINGTABLE
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
     IDS_CHECKFORUPDATES_UPTODATE "Your software is up to date"
-    IDS_CHECKFORUPDATES_NEWVERSION "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
+    IDS_CHECKFORUPDATES_NEWVERSION 
+                            "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
     IDS_CHECKFORUPDATES_FAILED "Failed to download latest version information"
 END
 
@@ -2437,71 +2451,71 @@ END
 // LOCATIONBAR CONTEXT MENU
 STRINGTABLE
 BEGIN
-    IDS_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
+    IDS_LOCBAR_GOTOLINE_FMT "G&oto Line %1"
 END
 
 // AUTOCOMPLETE COMBOBOX OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
-    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
-    IDS_AUTOCOMPLETE_MRU        "From MRU list"
+    IDS_AUTOCOMPLETE_DISABLED "Disabled"
+    IDS_AUTOCOMPLETE_FILE_SYS "From file system"
+    IDS_AUTOCOMPLETE_MRU    "From MRU list"
 END
 
 // COLOR SCHEMES
 STRINGTABLE
 BEGIN
-    IDS_COLORSCHEME_PLAIN           "No Highlighting"
-    IDS_COLORSCHEME_ASP             "ASP"
-    IDS_COLORSCHEME_BASIC           "Basic"
-    IDS_COLORSCHEME_BATCH           "Batch"
-    IDS_COLORSCHEME_C               "C/C++"
-    IDS_COLORSCHEME_CSHARP          "C#"
-    IDS_COLORSCHEME_CSS             "CSS"
-    IDS_COLORSCHEME_DCL             "DCL"
-    IDS_COLORSCHEME_FORTRAN         "Fortran"
-    IDS_COLORSCHEME_HTML            "HTML"
-    IDS_COLORSCHEME_INI             "INI"
-    IDS_COLORSCHEME_INNOSETUP       "InnoSetup"
-    IDS_COLORSCHEME_INSTALLSHIELD   "InstallShield"
-    IDS_COLORSCHEME_JAVA            "Java"
-    IDS_COLORSCHEME_LISP            "AutoLISP"
-    IDS_COLORSCHEME_NSIS            "NSIS"
-    IDS_COLORSCHEME_PASCAL          "Pascal"
-    IDS_COLORSCHEME_PERL            "Perl"
-    IDS_COLORSCHEME_PHP             "PHP"
-    IDS_COLORSCHEME_PO              "Portable Object"
-    IDS_COLORSCHEME_POWERSHELL      "PowerShell"
-    IDS_COLORSCHEME_PYTHON          "Python"
-    IDS_COLORSCHEME_REXX            "REXX"
-    IDS_COLORSCHEME_RSRC            "Resources"
-    IDS_COLORSCHEME_RUBY            "Ruby"
-    IDS_COLORSCHEME_SGML            "SGML"
-    IDS_COLORSCHEME_SH              "Shell"
-    IDS_COLORSCHEME_SIOD            "SIOD"
-    IDS_COLORSCHEME_SQL             "SQL"
-    IDS_COLORSCHEME_TCL             "TCL"
-    IDS_COLORSCHEME_TEX             "TEX"
-    IDS_COLORSCHEME_VERILOG         "Verilog"
-    IDS_COLORSCHEME_XML             "XML"
+    IDS_COLORSCHEME_PLAIN   "No Highlighting"
+    IDS_COLORSCHEME_ASP     "ASP"
+    IDS_COLORSCHEME_BASIC   "Basic"
+    IDS_COLORSCHEME_BATCH   "Batch"
+    IDS_COLORSCHEME_C       "C/C++"
+    IDS_COLORSCHEME_CSHARP  "C#"
+    IDS_COLORSCHEME_CSS     "CSS"
+    IDS_COLORSCHEME_DCL     "DCL"
+    IDS_COLORSCHEME_FORTRAN "Fortran"
+    IDS_COLORSCHEME_HTML    "HTML"
+    IDS_COLORSCHEME_INI     "INI"
+    IDS_COLORSCHEME_INNOSETUP "InnoSetup"
+    IDS_COLORSCHEME_INSTALLSHIELD "InstallShield"
+    IDS_COLORSCHEME_JAVA    "Java"
+    IDS_COLORSCHEME_LISP    "AutoLISP"
+    IDS_COLORSCHEME_NSIS    "NSIS"
+    IDS_COLORSCHEME_PASCAL  "Pascal"
+    IDS_COLORSCHEME_PERL    "Perl"
+    IDS_COLORSCHEME_PHP     "PHP"
+    IDS_COLORSCHEME_PO      "Portable Object"
+    IDS_COLORSCHEME_POWERSHELL "PowerShell"
+    IDS_COLORSCHEME_PYTHON  "Python"
+    IDS_COLORSCHEME_REXX    "REXX"
+    IDS_COLORSCHEME_RSRC    "Resources"
+    IDS_COLORSCHEME_RUBY    "Ruby"
+    IDS_COLORSCHEME_SGML    "SGML"
+    IDS_COLORSCHEME_SH      "Shell"
+    IDS_COLORSCHEME_SIOD    "SIOD"
+    IDS_COLORSCHEME_SQL     "SQL"
+    IDS_COLORSCHEME_TCL     "TCL"
+    IDS_COLORSCHEME_TEX     "TEX"
+    IDS_COLORSCHEME_VERILOG "Verilog"
+    IDS_COLORSCHEME_XML     "XML"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
-    IDS_CLOSE_LEFT_TABS    "Close &Left Tabs"
-    IDS_CLOSE_RIGHT_TABS   "Close R&ight Tabs"
-    IDS_CLOSE_OTHER_TABS   "Close &Other Tabs"
+    IDS_CLOSE_LEFT_TABS     "Close &Left Tabs"
+    IDS_CLOSE_RIGHT_TABS    "Close R&ight Tabs"
+    IDS_CLOSE_OTHER_TABS    "Close &Other Tabs"
     IDS_TABBAR_AUTO_MAXWIDTH "Enable &Auto Max Width"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
-    IDS_IMAGE_MENU         "&Image"
+    IDS_IMAGE_MENU          "&Image"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
-    IDS_FRHED_NOTINSTALLED   "frhed(http://frhed.sourceforge.net/) not installed"
+    IDS_FRHED_NOTINSTALLED  "frhed(http://frhed.sourceforge.net/) not installed"
 END
 
 #endif    // English (United States) resources

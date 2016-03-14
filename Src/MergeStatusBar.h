@@ -26,6 +26,7 @@
 #pragma once
 
 #include "MergeEditStatus.h"
+#include "OptionsDiffColors.h"
 #include "UnicodeString.h"
 
 class CMergeStatusBar : public CStatusBar
@@ -39,6 +40,7 @@ public :
 	void SetPaneCount(int nPanes) { m_nPanes = nPanes; }
 	void UpdateResources();
 	IMergeEditStatus* GetIMergeEditStatus(int nPane) { return &m_status[nPane]; }
+	void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 
 protected:
 	DECLARE_MESSAGE_MAP();
@@ -46,6 +48,9 @@ protected:
 private:
 	// this dialog uses custom edit boxes
 	int m_nPanes;
+	COLORSETTINGS m_cachedColors;
+	bool m_bDiff[4];
+	unsigned m_dispFlags[4];
 
 protected:
 	// Object that displays status line info for one side of a merge view
