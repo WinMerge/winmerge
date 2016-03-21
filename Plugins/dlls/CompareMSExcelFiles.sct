@@ -76,18 +76,22 @@ Function writeObjectProperties(fo, items)
 End Function
 
 Function writeCellValues(fo, sht)
-	Dim varCells, row, col, line
-
+	Dim varCells, row, col, ary()
 	varCells = sht.UsedRange.Value
 	If TypeName(varCells) = "String" Then
 		fo.WriteLine varCells
 	ElseIf Not IsEmpty(varCells) Then
+		ReDim ary(UBound(varCells, 2))
+		On Error Resume Next
 		For row = 1 To UBound(varCells, 1)
-			line = ""
 			For col = 1 To UBound(varCells, 2)
-				line = line & varCells(Row, Col) & vbTab
+				ary(col - 1) = CStr(varCells(row, col))
+				If Err.Number <> 0 Then
+					ary(col - 1) = "Error" & Err.Number
+					Err.Clear
+				End If
 			Next
-			fo.WriteLine line
+			fo.WriteLine Join(ary, vbTab)
 		Next
 	End If
 End Function
