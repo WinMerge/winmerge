@@ -1,0 +1,417 @@
+<scriptlet>
+<implements type="Automation" id="dispatcher">
+	<property name="PluginEvent">
+		<get/>
+	</property>
+	<property name="PluginDescription">
+		<get/>
+	</property>
+	<property name="PluginFileFilters">
+		<get/>
+	</property>
+	<property name="PluginIsAutomatic">
+		<get/>
+	</property>
+	<method name="UnpackFile"/>
+	<method name="PackFile"/>
+	<method name="IsFolder"/>
+	<method name="UnpackFolder"/>
+	<method name="PackFolder"/>
+	<method name="ShowSettingsDialog"/>
+</implements>
+
+<script language="VBS">
+
+'/////////////////////////////////////////////////////////////////////////////
+'    This is a plugin for WinMerge.
+'    It will display the text content of MS PowerPoint files.
+'    Copyright (C) 2016 Takashi Sawanaka
+'
+'    This program is free software; you can redistribute it and/or modify
+'    it under the terms of the GNU General Public License as published by
+'    the Free Software Foundation; either version 2 of the License, or
+'    (at your option) any later version.
+'
+'    This program is distributed in the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty of
+'    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'    GNU General Public License for more details.
+'
+'    You should have received a copy of the GNU General Public License
+'    along with this program; if not, write to the Free Software
+'    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+'
+
+Option Explicit
+
+Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\CompareMSPowerPointFiles.sct\"
+Dim MsgCannotGetMacros
+MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
+	"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
+	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf
+
+Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
+Dim wsh: Set wsh = CreateObject("WScript.Shell")
+
+Function isAccessibleVBAProject(prs)
+	Dim count
+	count = -1
+	On Error Resume Next
+	count = pr.VBProject.VBComponents.Count
+	isAccessibleVBAProject = (count > 0)
+End Function
+
+Function regRead(Key, DefaultValue)
+	regRead = DefaultValue
+	On Error Resume Next
+	regRead = wsh.RegRead(Key)
+End Function
+
+Function writeObjectProperties(fo, items)
+	On Error Resume Next
+	Dim o
+	For Each o In items
+		fo.WriteLine o.Name & ": " & o.Value
+	Next
+End Function
+
+Function writeShape(fo, shp)
+	Dim shp2
+	fo.Write shp.Name & ": "
+	If shp.HasTable Then
+		For r = 1 To shp.Table.Rows.Count
+			For c = 1 To shp.Table.Columns.Count
+				fo.Write "(" & r & ", " & c & "): "
+				writeShape fo, shp.Table.Cell(r, c).Shape
+			Next
+		Next
+	ElseIf shp.Type = 6 Then 'msoGroup = 6
+		For Each shp2 In shp.GroupItems
+		    writeShape fo, shp2
+		Next
+	ElseIf shp.HasTextFrame Then
+		fo.WriteLine shp.TextFrame.TextRange.Characters.Text
+	End If
+End Function
+
+Function writeTextsInShapes(fo, sld)
+	Dim shp
+	On Error Resume Next
+	For Each shp In sld.Shapes
+		writeShape fo, shp
+	Next
+	On Error GoTo 0
+End Function
+
+Function getModuleExtension(cmp)
+	Select Case cmp.Type
+	Case 2
+		getModuleExtension = ".cls"
+	Case 3
+		getModuleExtension = ".frm"
+	Case Else
+		getModuleExtension = ".bas"
+	End Select
+End Function
+
+Function saveSlideAsImage(sld, filename)
+        sld.Export filename, "PNG"
+End Function
+
+Function get_PluginEvent()
+	get_PluginEvent = "FILE_FOLDER_PACK_UNPACK"
+End Function
+
+Function get_PluginDescription()
+	get_PluginDescription = "Display the text content of MS PowerPoint files"
+End Function
+
+Function get_PluginFileFilters()
+	get_PluginFileFilters = "\.ppt(\..*)?$;\.pptx(\..*)?$;\.pptm(\..*)?$;\.ppa(\..*)?$;\.ppam(\..*)?$;\.potx(\..*)?$;\.potm(\..*)?$"
+End Function
+
+Function get_PluginIsAutomatic()
+	get_PluginIsAutomatic = True
+End Function
+
+Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
+	Dim fo
+	Dim pp
+	Dim prs
+	Dim sld
+	Dim cmp
+
+	Set fo = fso.CreateTextFile(fileDst, True, True)
+
+	Set pp = CreateObject("PowerPoint.Application")
+	pp.Visible = True
+	pp.DisplayAlerts = False
+
+	Set prs = pp.Presentations.Open(fileSrc)
+
+	On Error Resume Next
+
+	If regRead(RegKeyPath & "CompareDocumentProperties", False) Then
+		fo.WriteLine "[Document Properties]"
+		writeObjectProperties fo, prs.BuiltinDocumentProperties
+		fo.WriteLine ""
+	End If
+
+	For Each sld In prs.Slides
+		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
+			fo.WriteLine "[" & sld.Name & "]"
+			writeTextsInShapes fo, sld
+			fo.WriteLine ""
+		End If
+	Next
+
+	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
+		If Not isAccessibleVBAProject(prs) Then
+			fo.WriteLine MsgCannotGetMacros
+		End If
+		For Each cmp In prs.VBProject.VBComponents
+			fo.WriteLine "[CodeModule." & cmp.Name & "]"
+			If cmp.CodeModule.CountOfLines > 0 Then
+				fo.WriteLine cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines)
+			End If
+			fo.WriteLine ""
+		Next
+	End If
+
+	Set sld = Nothing
+	prs.Close
+	Set prs = Nothing
+	pp.Quit
+	Set pp = Nothing
+	fo.Close
+	Set fo = Nothing
+
+	pbChanged = True
+	pSubcode = 0
+	UnpackFile = True
+
+End Function
+
+Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
+	PackFile = False
+End Function
+
+Function IsFolder(file)
+	IsFolder = regRead(RegKeyPath & "UnpackToFolder", False)
+End Function
+
+Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
+	Dim fo
+	Dim pp
+	Dim prs
+	Dim sld
+	Dim cmp
+
+	If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
+
+	Set pp = CreateObject("PowerPoint.Application")
+	pp.Visible = True
+	pp.DisplayAlerts = False
+
+	Set prs = pp.Presentations.Open(fileSrc)
+
+	On Error Resume Next
+
+	If regRead(RegKeyPath & "CompareDocumentProperties", False) Then
+		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), True, True)
+		writeObjectProperties fo, prs.BuiltinDocumentProperties
+		fo.Close
+	End If
+
+	For Each sld In prs.Slides
+		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name & ".txt"), True, True)
+			writeTextsInShapes fo, sld
+			fo.Close
+		End If
+
+		If regRead(RegKeyPath & "CompareSlideAsImage", True) Then
+			saveSlideAsImage sld, fso.BuildPath(folderDst, sld.Name & ".png")
+		End If
+	Next
+	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
+		If Not isAccessibleVBAProject(prs) Then
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), True, True)
+			fo.WriteLine MsgCannotGetMacros
+			fo.Close
+		End If
+		
+		For Each cmp In prs.VBProject.VBComponents
+			cmp.Export fso.BuildPath(folderDst, cmp.Name & getModuleExtension(cmp))
+		Next
+	End If
+
+	Set sld = Nothing
+	prs.Close
+	Set prs = Nothing
+	pp.Quit
+	Set pp = Nothing
+	Set fo = Nothing
+
+	pbChanged = True
+	pSubcode = 0
+	UnpackFolder = True
+End Function
+
+Function PackFolder(fileSrc, folderDst, pbChanged, pSubcode)
+	PackFolder = False
+End Function
+
+Function ShowSettingsDialog()
+	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
+	Dim tfile: Set tfile = fso.CreateTextFile(tname)
+	tfile.Write getResource("dialog1")
+	tfile.Close
+	Run wsh, "mshta.exe """ & tname & """"
+	fso.DeleteFile tname 
+End Function
+
+Sub Run(sh, cmd)
+	sh.Run cmd, 1, True
+End Sub
+
+</script>
+
+<resource id="dialog1">
+<![CDATA[
+<html>
+  <head>
+    <title>CompareMSExcelFiles.sct WinMerge Plugin Options</title>
+    <meta content="text/html" charset="Shift_JIS">
+    <style>
+      body { background-color: lightgray; }
+      ul { list-style:none; }
+    </style>
+    <script type="text/javascript">
+      var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\CompareMSPowerPointFiles.sct\\";
+
+      function regRead(key, defaultValue) {
+        try {
+          return (new ActiveXObject("WScript.Shell")).RegRead(key);
+        } catch (e) {
+          return defaultValue;
+        }
+      }
+
+      function regWrite(key, value, type) {
+        (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
+      }
+
+      function onload() {
+
+        var w = 600, h = 400;
+        window.resizeTo(w, h);
+        window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
+
+        cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
+        setLanguage(navigator.browserLanguage);
+        chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
+        chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
+        chkCompareSlideAsImage.checked = regRead(REGKEY_PATH + "CompareSlideAsImage", true);
+        chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
+        chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
+        chkUnpackToFolder_onclick();
+        chkCompareSlideAsImage_onclick();
+      }
+
+      function setLanguage(lang) {
+        var div = document.getElementById("language") || document.createElement('div')
+        div.id = "language";
+        var html = '&shy;<style>';
+        if (lang.substr(0, 2).toLowerCase() === 'ja') {
+          html += '.en { display: none } .ja { display: inline }';
+        } else {
+          html += '.ja { display: none } .en { display: inline }';
+        }
+        div.innerHTML = html;
+        if (!document.getElementById("language"))
+          document.body.appendChild(div);
+      }
+
+      function cboLanguage_onclick() {
+        setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
+      }
+
+      function chkUnpackToFolder_onclick() {
+        if (!chkUnpackToFolder.checked)
+          chkCompareSlideAsImage.checked = false;
+      }
+
+      function chkCompareSlideAsImage_onclick() {
+        if (chkCompareSlideAsImage.checked)
+          chkUnpackToFolder.checked = true;
+      }
+
+      function btnOk_onclick() {
+        regWrite(REGKEY_PATH + "UnpackToFolder", chkUnpackToFolder.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareDocumentProperties", chkCompareDocumentProperties.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareSlideAsImage", chkCompareSlideAsImage.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
+      }
+
+      function btnCancel_onclick() {
+        window.close();
+      }
+
+    </script>
+  </head>
+  <body onload="onload();">
+    <div>
+      <ul>
+        <li>
+          <label class="en">Language: </label>
+          <label class="ja">言語: </label>
+          <select id="cboLanguage" onclick="cboLanguage_onclick();" >
+            <option value="English">English</option>
+            <option value="Japanese">Japanese</option>
+          </select>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
+          <label class="en">Extract slide data to multiple files </label>
+          <label class="ja">スライドの情報を複数ファイルに展開する </label>
+        </li>
+        <li>
+          <input id="chkCompareDocumentProperties" type="checkbox" />
+          <label class="en">Compare document properties </label>
+          <label class="ja">ドキュメントプロパティを比較する </label>
+        </li>
+        <li>
+          <input id="chkCompareSlideAsImage" type="checkbox" onclick="chkCompareSlideAsImage_onclick();"/>
+          <label class="en">Compare slides as image (very slow)</label>
+          <label class="ja">スライドを画像化して比較する (処理時間増大)</label>
+        </li>
+        <li>
+          <input id="chkCompareTextsInShapes" type="checkbox" />
+          <label class="en">Compare texts in shapes </label>
+          <label class="ja">図形内のテキストを比較する </label>
+        </li>
+        <li>
+          <input id="chkCompareVBAMacros" type="checkbox" />
+          <label class="en">Compare VBA macros </label>
+          <label class="ja">VBA マクロを比較する </label>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
+          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
+          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
+          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
+]]>
+</resource>
+
+</scriptlet>
