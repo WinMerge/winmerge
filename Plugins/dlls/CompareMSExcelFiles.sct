@@ -141,6 +141,17 @@ Function getUsedRangeIncludingShapes(sht)
 	Set getUsedRangeIncludingShapes = sht.Range("A1", sht.Cells(row_max, col_max))
 End Function
 
+Sub ungroupShapes(sht)
+    On Error Resume Next
+    Dim cnt, shp
+    Do
+        cnt = sht.Shapes.Count
+        For Each shp In sht.Shapes
+            shp.ungroup
+        Next
+    Loop While cnt <> sht.Shapes.Count
+End Sub
+
 Function writeTextsInShapes(fo, sht)
 	Dim shp
 	On Error Resume Next
@@ -262,6 +273,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 		End If
 		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
 			fo.WriteLine "[" & sht.Name & ".Shapes]"
+			ungroupShapes sht
 			writeTextsInShapes fo, sht
 			fo.WriteLine ""
 		End If
@@ -348,6 +360,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 
 		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
 			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & "_Shapes.txt"), True, True)
+			ungroupShapes sht
 			writeTextsInShapes fo, sht
 			fo.Close
 		End If
