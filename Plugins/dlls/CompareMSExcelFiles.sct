@@ -96,18 +96,33 @@ Function writeCellValues(fo, sht)
 	End If
 End Function
 
-Function writeFormulas(fo, sht)
-	Dim rng, row, col, formula
+Function GetAddr(row, col)
+    Dim c
+    c = col - 1
+    Do
+        GetAddr = Chr(65 + (c Mod 26)) & GetAddr
+        c = (c \ 26) - 1
+    Loop While c >= 0
+    GetAddr = GetAddr & row
+End Function
 
-	For row = sht.UsedRange.Row To sht.UsedRange.Row + sht.UsedRange.Rows.Count - 1
-		For col = sht.UsedRange.Column To sht.UsedRange.Column + sht.UsedRange.Columns.Count - 1
-			Set rng = sht.Cells(Row, Col)
-			formula = rng.Formula
-			If Left(formula, 1) = "=" Then 
-				fo.WriteLine rng.Address(False, False) & ": " & formula
-			End If
+Function writeFormulas(fo, sht)
+	Dim row, col, rowOffset, colOffset, varCells, formula
+	rowOffset = sht.UsedRange.Row
+	colOffset = sht.UsedRange.Column
+	varCells = sht.UsedRange.Formula
+	If TypeName(varCells) = "String" Then
+		fo.WriteLine GetAddr(rowOffset - 1, colOffset - 1) & ": " & varCells
+	Else
+		For row = 1 To UBound(varCells, 1)
+			For col = 1 To UBound(varCells, 2)
+				formula = varCells(row, col)
+				If Left(formula, 1) = "=" Then 
+					fo.WriteLine GetAddr(row + rowOffset - 1, col + colOffset - 1) & ": " & formula
+				End If
+			Next
 		Next
-	Next
+	End If
 End Function
 
 Function getUsedRangeIncludingShapes(sht)
@@ -515,8 +530,8 @@ End Sub
         </li>
         <li>
           <input id="chkCompareFormulas" type="checkbox" />
-          <label class="en">Compare formulas (very slow)</label>
-          <label class="ja">”®‚ğ”äŠr‚·‚é (ˆ—ŠÔ‘‘å)</label>
+          <label class="en">Compare formulas</label>
+          <label class="ja">”®‚ğ”äŠr‚·‚é</label>
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
