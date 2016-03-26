@@ -14,6 +14,9 @@ copy Build\Release\cidiff.exe "%DISTDIR%\WinIMerge\bin"
 copy Build\x64\Release\WinIMerge.exe "%DISTDIR%\WinIMerge\bin64"
 copy Build\x64\Release\WinIMergeLib.dll "%DISTDIR%\WinIMerge\bin64"
 copy Build\x64\Release\cidiff.exe "%DISTDIR%\WinIMerge\bin64"
+copy "%VS140COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC140.OpenMP\vcomp140.dll" "%DISTDIR%\WinIMerge\bin"
+copy "%VS140COMNTOOLS%\..\..\VC\redist\x64\Microsoft.VC140.OpenMP\vcomp140.dll" "%DISTDIR%\WinIMerge\bin64"
+
 copy GPL.txt "%DISTDIR%\WinIMerge"
 copy freeimage-license-gplv2.txt "%DISTDIR%\WinIMerge"
 
