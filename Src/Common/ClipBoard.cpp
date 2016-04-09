@@ -26,9 +26,11 @@ bool PutToClipboard(const String & text, HWND currentWindowHandle)
 		HGLOBAL hData = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, (text.length()+1) * sizeof(TCHAR));
 		if (hData != NULL)
 		{
-			LPTSTR pszData = (LPTSTR)::GlobalLock(hData);
-			_tcscpy(pszData, text.c_str());
-			GlobalUnlock(hData);
+			if (LPTSTR pszData = static_cast<LPTSTR>(::GlobalLock(hData)))
+			{
+				_tcscpy(pszData, text.c_str());
+				GlobalUnlock(hData);
+			}
 			UINT fmt = GetClipTcharTextFormat();
 			bOK = SetClipboardData(fmt, hData) != NULL;
 		}
