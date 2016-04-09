@@ -939,7 +939,7 @@ void DiffList::AppendDiffList(const DiffList& list, int offset[], int doffset[])
 			if (doffset)
 			{
 				dr.dbegin[file] += doffset[file];
-				dr.dend[file] += offset[file];
+				dr.dend[file] += doffset[file];
 			}
 		}
 		AddDiff(dr);
