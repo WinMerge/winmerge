@@ -936,43 +936,6 @@ CAssureScriptsForThread::~CAssureScriptsForThread()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// reallocation, take care of flag bWriteable
-
-static void reallocBuffer(LPSTR & pszBuf, UINT & nOldSize, UINT nSize, bool bWriteable)
-{
-	if (!bWriteable)
-		// alloc a new buffer
-		pszBuf = (LPSTR) malloc(nSize);
-	else if (nSize > nOldSize) 
-	{
-		// free the previous buffer, alloc a new one (so we don't copy the old values)
-		free(pszBuf);
-		pszBuf = (LPSTR) malloc(nSize);
-	}
-	else
-		// just truncate the buffer
-		pszBuf = (LPSTR) realloc(pszBuf, nSize);
-	nOldSize = nSize;
-}
-static void reallocBuffer(LPWSTR & pszBuf, UINT & nOldSize, UINT nSize, bool bWriteable)
-{
-	if (!bWriteable)
-		// alloc a new buffer
-		pszBuf = (LPWSTR) malloc(nSize*sizeof(WCHAR));
-	else if (nSize > nOldSize) 
-	{
-		// free the previous buffer, alloc a new one (so we don't copy the old values)
-		free(pszBuf);
-		pszBuf = (LPWSTR) malloc(nSize*sizeof(WCHAR));
-	}
-	else
-		// just truncate the buffer
-		pszBuf = (LPWSTR) realloc(pszBuf, nSize*sizeof(WCHAR));
-	nOldSize = nSize;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
 // wrap invokes with error handlers
 
 /**
