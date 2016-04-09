@@ -729,7 +729,7 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 				// avoid dereference of empty vector or last vector
 				if (found_uid)
 				{
-					if (m_map_uid_to_msgid.at(uid) == msgid)
+					if (m_map_uid_to_msgid.find(uid) != m_map_uid_to_msgid.end() && m_map_uid_to_msgid.at(uid) == msgid)
 						m_map_uid_to_msgid[uid] = msgstr;
 					else
 						++mismatched;
