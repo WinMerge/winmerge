@@ -37,13 +37,15 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 	HGLOBAL hDrop = GlobalAlloc(GHND, sizeof(DROPFILES) + sizeof(TCHAR) * strPaths.length());
 	if (!hDrop)
 		return;
-	TCHAR *pDrop = (TCHAR *)GlobalLock(hDrop);
-	DROPFILES df = {0};
-	df.pFiles = sizeof(DROPFILES);
-	df.fWide = (sizeof(TCHAR) > 1);
-	memcpy(pDrop, &df, sizeof(DROPFILES));
-	memcpy((BYTE *)pDrop + sizeof(DROPFILES), (LPCTSTR)strPaths.c_str(), sizeof(TCHAR) * strPaths.length());
-	GlobalUnlock(hDrop);
+	if (TCHAR *pDrop = static_cast<TCHAR *>(GlobalLock(hDrop)))
+	{
+		DROPFILES df = {0};
+		df.pFiles = sizeof(DROPFILES);
+		df.fWide = (sizeof(TCHAR) > 1);
+		memcpy(pDrop, &df, sizeof(DROPFILES));
+		memcpy((BYTE *)pDrop + sizeof(DROPFILES), (LPCTSTR)strPaths.c_str(), sizeof(TCHAR) * strPaths.length());
+		GlobalUnlock(hDrop);
+	}
 
 	// CF_DROPEFFECT
 	HGLOBAL hDropEffect = GlobalAlloc(GHND, sizeof(DWORD));
@@ -52,8 +54,11 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 		GlobalFree(hDrop);
 		return;
 	}
-	*((DWORD *)(GlobalLock(hDropEffect))) = DROPEFFECT_COPY;
-	GlobalUnlock(hDropEffect);
+	if (DWORD *p = static_cast<DWORD *>(GlobalLock(hDropEffect)))
+	{
+		*p = DROPEFFECT_COPY;
+		GlobalUnlock(hDropEffect);
+	}
 
 	// CF_UNICODETEXT
 	HGLOBAL hPathnames = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, sizeof(TCHAR) * (strPathsSepSpc.length() + 1));
@@ -63,10 +68,12 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 		GlobalFree(hDropEffect);
 		return;
 	}
-	void *pPathnames = GlobalLock(hPathnames);
-	memcpy((BYTE *)pPathnames, (LPCTSTR)strPathsSepSpc.c_str(), sizeof(TCHAR) * strPathsSepSpc.length());
-	((TCHAR *)pPathnames)[strPathsSepSpc.length()] = 0;
-	GlobalUnlock(hPathnames);
+	if (void *pPathnames = GlobalLock(hPathnames))
+	{
+		memcpy((BYTE *)pPathnames, (LPCTSTR)strPathsSepSpc.c_str(), sizeof(TCHAR) * strPathsSepSpc.length());
+		((TCHAR *)pPathnames)[strPathsSepSpc.length()] = 0;
+		GlobalUnlock(hPathnames);
+	}
 
 	UINT CF_DROPEFFECT = RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT);
 	if (::OpenClipboard(AfxGetMainWnd()->GetSafeHwnd()))
