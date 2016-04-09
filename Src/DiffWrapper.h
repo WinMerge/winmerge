@@ -136,6 +136,21 @@ struct DIFFSTATUS
 	bool bPatchFileFailed; /**< Creating patch file failed */
 
 	DIFFSTATUS() { memset(this, 0, sizeof(*this)); } // start out with all flags clear
+	void MergeStatus(const DIFFSTATUS& other)
+	{
+		if (Identical == IDENTLEVEL_ALL)
+			Identical = Identical;
+		else if (
+			 (Identical == IDENTLEVEL_EXCEPTLEFT   && other.Identical != IDENTLEVEL_EXCEPTLEFT) ||
+			 (Identical == IDENTLEVEL_EXCEPTRIGHT  && other.Identical != IDENTLEVEL_EXCEPTRIGHT) ||
+			 (Identical == IDENTLEVEL_EXCEPTMIDDLE && other.Identical != IDENTLEVEL_EXCEPTMIDDLE))
+			Identical = IDENTLEVEL_NONE;
+		if (other.bPatchFileFailed)
+			bPatchFileFailed = true;
+		if (other.bBinaries)
+			bBinaries = true;
+		std::copy(other.bMissingNL, other.bMissingNL + 3, bMissingNL);
+	}
 };
 
 class FilterCommentsManager;

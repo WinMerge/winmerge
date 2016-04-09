@@ -448,6 +448,8 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
 			CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage);
 
+	DIFFSTATUS status;
+
 	if (!HasSyncPoints())
 	{
 		// Save text buffer to file
@@ -459,6 +461,11 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 		m_diffWrapper.SetCreateDiffList(&m_diffList);
 		diffSuccess = !!m_diffWrapper.RunFileDiff();
+
+		// Read diff-status
+		m_diffWrapper.GetDiffStatus(&status);
+		if (bBinary) // believe caller if we were told these are binaries
+			status.bBinaries = true;
 	}
 	else
 	{
@@ -484,15 +491,16 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 			m_diffList.AppendDiffList(templist, nRealLine);
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				nStartLine[nBuffer] += nLines[nBuffer];
+
+			// Read diff-status
+			DIFFSTATUS status_part;
+			m_diffWrapper.GetDiffStatus(&status_part);
+			if (bBinary) // believe caller if we were told these are binaries
+				status.bBinaries = true;
+			status.MergeStatus(status_part);
 		}
 		m_diffWrapper.SetCreateDiffList(&m_diffList);
 	}
-
-	// Read diff-status
-	DIFFSTATUS status;
-	m_diffWrapper.GetDiffStatus(&status);
-	if (bBinary) // believe caller if we were told these are binaries
-		status.bBinaries = true;
 
 	// If comparing whitespaces and
 	// other file has EOL before EOF and other not...
