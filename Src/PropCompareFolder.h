@@ -39,6 +39,7 @@ public:
 	bool    m_bStopAfterFirst;
 	bool    m_bIgnoreSmallTimeDiff;
 	bool    m_bIncludeUniqFolders;
+	bool    m_bIncludeSubdirs;
 	bool    m_bExpandSubdirs;
 	bool    m_bIgnoreReparsePoints;
 	unsigned m_nQuickCompareLimit;
@@ -59,8 +60,10 @@ protected:
 	afx_msg BOOL OnInitDialog();
 	afx_msg void OnDefaults();
 	afx_msg void OnCbnSelchangeComparemethodcombo();
+	afx_msg void OnBnClickedRecursCheck();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+	void UpdateControls();
 };
 
 //{{AFX_INSERT_LOCATION}}

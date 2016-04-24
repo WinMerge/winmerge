@@ -159,6 +159,7 @@ extern const String OPT_CMP_STOP_AFTER_FIRST OP("Settings/StopAfterFirst");
 extern const String OPT_CMP_QUICK_LIMIT OP("Settings/QuickMethodLimit");
 extern const String OPT_CMP_WALK_UNIQUE_DIRS OP("Settings/ScanUnpairedDir");
 extern const String OPT_CMP_IGNORE_REPARSE_POINTS OP("Settings/IgnoreReparsePoints");
+extern const String OPT_CMP_INCLUDE_SUBDIRS OP("Settings/Recurse");
 
 // Image Compare options
 extern const String OPT_CMP_IMG_FILEPATTERNS OP("Settings/ImageFilePatterns");

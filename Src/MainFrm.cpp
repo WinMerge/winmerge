@@ -872,6 +872,8 @@ void CMainFrame::OnOptions()
 		// Update all dirdoc settings
 		for (auto pDirDoc : GetAllDirDocs())
 			pDirDoc->RefreshOptions();
+		for (auto pOpenDoc : GetAllOpenDocs())
+			pOpenDoc->RefreshOptions();
 		for (auto pMergeDoc : GetAllHexMergeDocs())
 			pMergeDoc->RefreshOptions();
 	}
@@ -1411,7 +1413,7 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 	const size_t fileCount = files.GetSize();
 
 	// If Ctrl pressed, do recursive compare
-	bool recurse = !!::GetAsyncKeyState(VK_CONTROL) || !!theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0);
+	bool recurse = !!::GetAsyncKeyState(VK_CONTROL) || GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 
 	// If user has <Shift> pressed with one file selected,
 	// assume it is an archive and set filenames to same
@@ -2551,7 +2553,7 @@ void CMainFrame::OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI)
 
 void CMainFrame::OnIncludeSubfolders()
 {
-	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), !(theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1));
+	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, !GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS));
 	// Update all dirdoc settings
 	for (auto pDirDoc : GetAllDirDocs())
 		pDirDoc->RefreshOptions();
@@ -2561,7 +2563,7 @@ void CMainFrame::OnIncludeSubfolders()
 
 void CMainFrame::OnUpdateIncludeSubfolders(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1);
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS));
 	pCmdUI->Enable();
 }
 

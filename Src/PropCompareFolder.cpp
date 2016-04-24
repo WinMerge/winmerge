@@ -26,6 +26,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_bStopAfterFirst(FALSE)
  , m_bIgnoreSmallTimeDiff(FALSE)
  , m_bIncludeUniqFolders(FALSE)
+ , m_bIncludeSubdirs(FALSE)
  , m_bExpandSubdirs(FALSE)
  , m_bIgnoreReparsePoints(FALSE)
  , m_nQuickCompareLimit(4 * Mega)
@@ -40,10 +41,12 @@ void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_COMPARE_STOPFIRST, m_bStopAfterFirst);
 	DDX_Check(pDX, IDC_IGNORE_SMALLTIMEDIFF, m_bIgnoreSmallTimeDiff);
 	DDX_Check(pDX, IDC_COMPARE_WALKSUBDIRS, m_bIncludeUniqFolders);
+	DDX_Check(pDX, IDC_RECURS_CHECK, m_bIncludeSubdirs);
 	DDX_Check(pDX, IDC_EXPAND_SUBDIRS, m_bExpandSubdirs);
 	DDX_Check(pDX, IDC_IGNORE_REPARSEPOINTS, m_bIgnoreReparsePoints);
 	DDX_Text(pDX, IDC_COMPARE_QUICKC_LIMIT, m_nQuickCompareLimit);
 	//}}AFX_DATA_MAP
+	UpdateControls();
 }
 
 
@@ -52,6 +55,7 @@ BEGIN_MESSAGE_MAP(PropCompareFolder, CPropertyPage)
 	ON_BN_CLICKED(IDC_COMPAREFOLDER_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 	ON_CBN_SELCHANGE(IDC_COMPAREMETHODCOMBO, OnCbnSelchangeComparemethodcombo)
+	ON_BN_CLICKED(IDC_RECURS_CHECK, OnBnClickedRecursCheck)
 END_MESSAGE_MAP()
 
 /** 
@@ -65,6 +69,7 @@ void PropCompareFolder::ReadOptions()
 	m_bStopAfterFirst = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
 	m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
 	m_bIncludeUniqFolders = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
+	m_bIncludeSubdirs = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT) / Mega ;
@@ -81,6 +86,7 @@ void PropCompareFolder::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst);
 	GetOptionsMgr()->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders);
+	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, m_bIncludeSubdirs);
 	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_EXPAND_SUBDIRS, m_bExpandSubdirs);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints);
 
@@ -111,8 +117,6 @@ BOOL PropCompareFolder::OnInitDialog()
 	combo->AddString(item.c_str());
 	combo->SetCurSel(m_compareMethod);
 
-	EnableDlgItem(IDC_COMPARE_STOPFIRST, m_compareMethod == 1);
-
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -125,6 +129,7 @@ void PropCompareFolder::OnDefaults()
 	m_compareMethod = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_METHOD);
 	m_bStopAfterFirst = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_STOP_AFTER_FIRST);
 	m_bIncludeUniqFolders = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_WALK_UNIQUE_DIRS);
+	m_bIncludeSubdirs = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_INCLUDE_SUBDIRS);
 	m_bExpandSubdirs = GetOptionsMgr()->GetDefault<bool>(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_bIgnoreReparsePoints = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_nQuickCompareLimit = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_QUICK_LIMIT) / Mega;
@@ -138,6 +143,17 @@ void PropCompareFolder::OnDefaults()
  */
 void PropCompareFolder::OnCbnSelchangeComparemethodcombo()
 {
-	CComboBox * pCombo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
+	UpdateControls();
+}
+
+void PropCompareFolder::OnBnClickedRecursCheck()
+{
+	UpdateControls();
+}
+
+void PropCompareFolder::UpdateControls()
+{
+	CComboBox * pCombo = (CComboBox*)GetDlgItem(IDC_COMPAREMETHODCOMBO);
 	EnableDlgItem(IDC_COMPARE_STOPFIRST, pCombo->GetCurSel() == 1);
+	EnableDlgItem(IDC_EXPAND_SUBDIRS, IsDlgButtonChecked(IDC_RECURS_CHECK) == 1);
 }

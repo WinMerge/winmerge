@@ -278,7 +278,7 @@ void COpenView::OnInitialUpdate()
 	if (m_dwFlags[0] & FFILEOPEN_CMDLINE || m_dwFlags[1] & FFILEOPEN_CMDLINE)
 		bOverwriteRecursive = TRUE;
 	if (!bOverwriteRecursive)
-		m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1;
+		m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 
 	m_strUnpacker = m_infoHandler.pluginName;
 	UpdateData(FALSE);
@@ -508,7 +508,7 @@ void COpenView::OnOK()
 	}
 
 	SaveComboboxStates();
-	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), m_bRecurse);
+	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, m_bRecurse);
 	LoadComboboxStates();
 
 	m_constraint.Persist(true, false);

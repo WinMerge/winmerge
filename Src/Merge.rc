@@ -1664,12 +1664,14 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,36,222,10
     CONTROL         "&Include unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,48,202,10
-    CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
+    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,202,10
-    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,202,10
-    LTEXT           "&Quick compare limit (MB):",IDC_STATIC,7,84,200,10
-    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,96,50,14,ES_AUTOHSCROLL,WS_EX_RTLREADING
-    PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,198,70,14
+    CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,202,10
+    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,202,10
+    LTEXT           "&Quick compare limit (MB):",IDC_STATIC,7,96,200,10
+    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,108,50,14,ES_AUTOHSCROLL,WS_EX_RTLREADING
+    PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,210,70,14
 END
 
 IDD_PROPPAGE_COMPARE_BINARY DIALOGEX 0, 0, 235, 205
