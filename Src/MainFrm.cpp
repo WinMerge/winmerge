@@ -2578,7 +2578,7 @@ void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 
 void CMainFrame::OnMRUs(UINT nID)
 {
-	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(9);
+	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
 	const int idx = nID - ID_MRU_FIRST;
 	if (idx < mrus.size())
 	{
@@ -2599,7 +2599,7 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 	while (i --)
 		::DeleteMenu(hMenu, 0, MF_BYPOSITION);
 
-	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(9);
+	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
 
 	if (mrus.size() == 0)
 	{
@@ -2611,7 +2611,9 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 		// or fill in the submenu with the scripts names
 		int ID = ID_MRU_FIRST;	// first ID in menu
 		for (i = 0 ; i < mrus.size() ; i++, ID++)
-			::AppendMenu(hMenu, MF_STRING, ID, (string_format(_T("&%d "), i+1) + mrus[i].title).c_str());
+			::AppendMenu(hMenu, MF_STRING, ID, 
+				((i < 9 ? string_format(_T("&%d "), i+1) : string_format(_T("&%c "), 'a' + i - 9)) 
+					+ mrus[i].title).c_str());
 	}
 
 	pCmdUI->Enable(true);

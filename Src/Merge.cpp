@@ -340,7 +340,7 @@ BOOL CMergeApp::InitInstance()
 		}
 	}
 
-	LoadStdProfileSettings(8);  // Load standard INI file options (including MRU)
+	LoadStdProfileSettings(GetOptionsMgr()->GetInt(OPT_MRU_MAX));  // Load standard INI file options (including MRU)
 
 	InitializeFileFilters();
 
