@@ -317,7 +317,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 				GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
 				if (text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
 				{
-					VERIFY (CCrystalTextBuffer::DeleteText (pSource, 
+					VERIFY (DeleteText (pSource, 
 						apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x,
 						0, false, false));
 					ptCursorPos = apparent_ptStartPos;
@@ -363,7 +363,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 		else
 		{
 			int nEndLine, nEndChar;
-			VERIFY(CCrystalTextBuffer::InsertText (pSource, 
+			VERIFY(InsertText (pSource, 
 				apparent_ptStartPos.y, apparent_ptStartPos.x, ur.GetText (), ur.GetTextLength (), nEndLine, nEndChar, 
 				0, false));
 			ptCursorPos = m_ptLastChange;
@@ -778,14 +778,14 @@ bool CGhostTextBuffer::DeleteText (CCrystalTextView * pSource, int nStartLine,
 					nEndChar2 = 0;
 					nEndLine2++;
 				}
-				if (!CGhostTextBuffer::DeleteText2 (pSource, nStartLine2, nStartChar2, nEndLine2, nEndChar2, nAction, bHistory))
+				if (!DeleteText2 (pSource, nStartLine2, nStartChar2, nEndLine2, nEndChar2, nAction, bHistory))
 					return false;
 			}
 		}
 	}
 	else
 	{
-		if (!CGhostTextBuffer::DeleteText2 (pSource, nStartLine, nStartChar, nEndLine, nEndChar, nAction, bHistory))
+		if (!DeleteText2 (pSource, nStartLine, nStartChar, nEndLine, nEndChar, nAction, bHistory))
 			return false;
 	}
 

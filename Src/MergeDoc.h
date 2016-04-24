@@ -232,6 +232,7 @@ public:
 	CChildFrame * GetParentFrame();
 
 	void AddSyncPoint();
+	bool DeleteSyncPoint(int pane, int nLine, bool bRescan = true);
 	void ClearSyncPoints();
 	bool HasSyncPoints();
 	std::vector<std::vector<int> > CMergeDoc::GetSyncPointList();
