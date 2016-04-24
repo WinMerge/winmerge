@@ -178,6 +178,8 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_TABBAR_AUTO_MAXWIDTH, true);
 
+	pOptions->InitOption(OPT_MRU_MAX, 9);
+
 	Options::DiffOptions::SetDefaults(pOptions);
 	Options::DiffColors::SetDefaults(pOptions);
 	Options::Font::SetDefaults(pOptions);

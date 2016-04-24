@@ -203,6 +203,9 @@ extern const String OPT_SHOW_SELECT_FILES_AT_STARTUP OP("Settings/ShowFileDialog
 // MDI Tab Bar
 extern const String OPT_TABBAR_AUTO_MAXWIDTH OP("Settings/TabBarAutoMaxWidth");
 
+// MRU
+extern const String OPT_MRU_MAX OP("Settings/MRUMax");
+
 // Font options
 extern const String OPT_FONT_FILECMP OP("Font/");
 extern const String OPT_FONT_DIRCMP OP("FontDirCompare/");
