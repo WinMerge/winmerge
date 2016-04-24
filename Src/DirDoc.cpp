@@ -466,7 +466,7 @@ void CDirDoc::CompareReady()
 void CDirDoc::RefreshOptions()
 {
 	if (m_pCtxt)
-		m_pCtxt->m_bRecursive = (theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1);
+		m_pCtxt->m_bRecursive = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 	if (m_pDirView)
 		m_pDirView->RefreshOptions();
 }

@@ -1242,7 +1242,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject)
 			dwFlags[2] |= FFILEOPEN_READONLY;
 	}
 
-	WriteProfileInt(_T("Settings"), _T("Recurse"), bRecursive);
+	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 	
 	BOOL rtn = GetMainFrame()->DoFileOpen(&files, dwFlags, bRecursive);
 

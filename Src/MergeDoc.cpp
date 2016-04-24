@@ -2980,7 +2980,7 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 		{
 			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, 
-				(theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1), NULL, _T(""), &infoUnpacker);
+				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), NULL, _T(""), &infoUnpacker);
 			CloseNow();
 		}
 		else

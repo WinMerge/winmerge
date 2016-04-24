@@ -3,6 +3,8 @@
 
 #include "stdafx.h"
 #include "OpenDoc.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "Merge.h"
 
 // COpenDoc
@@ -28,7 +30,7 @@ COpenDoc::~COpenDoc()
 
 void COpenDoc::RefreshOptions()
 {
-	m_bRecurse = (theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1);
+	m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 	UpdateAllViews(NULL);
 }
 
