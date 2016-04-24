@@ -3330,18 +3330,17 @@ void CMergeDoc::OnToolsGeneratePatch()
 void CMergeDoc::AddSyncPoint()
 {
 	int nLine[3];
-	bool bRemovePreviousFromLine = false;
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
 		 int tmp = m_pView[nBuffer]->GetCursorPos().y;
 		 nLine[nBuffer] = m_ptBuf[nBuffer]->ComputeApparentLine(m_ptBuf[nBuffer]->ComputeRealLine(tmp));
 
 		if (m_ptBuf[nBuffer]->GetLineFlags(nLine[nBuffer]) & LF_INVALID_BREAKPOINT)
-			bRemovePreviousFromLine = true;
+			DeleteSyncPoint(nBuffer, nLine[nBuffer], false);
 	}
 	
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-		m_ptBuf[nBuffer]->SetLineFlag(nLine[nBuffer], LF_INVALID_BREAKPOINT, true, bRemovePreviousFromLine);
+		m_ptBuf[nBuffer]->SetLineFlag(nLine[nBuffer], LF_INVALID_BREAKPOINT, true, false);
 
 	m_bHasSyncPoints = true;
 
@@ -3349,6 +3348,29 @@ void CMergeDoc::AddSyncPoint()
 		m_pView[nBuffer]->SetSelectionMargin(true);
 
 	FlushAndRescan(true);
+}
+
+/**
+ * @brief Delete a synchronization point
+ */
+bool CMergeDoc::DeleteSyncPoint(int pane, int nLine, bool bRescan)
+{
+	const auto syncpoints = GetSyncPointList();	
+	for (auto syncpnt : syncpoints)
+	{
+		if (syncpnt[pane] == nLine)
+		{
+			for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+				m_ptBuf[nBuffer]->SetLineFlag(syncpnt[nBuffer], LF_INVALID_BREAKPOINT, false, false);
+		}
+	}
+
+	if (syncpoints.size() == 1)
+		m_bHasSyncPoints = false;
+
+	if (bRescan)
+		FlushAndRescan(true);
+	return true;
 }
 
 /**
@@ -3385,10 +3407,12 @@ bool CMergeDoc::HasSyncPoints()
 std::vector<std::vector<int> > CMergeDoc::GetSyncPointList()
 {
 	std::vector<std::vector<int> > list;
+	if (!m_bHasSyncPoints)
+		return list;
 	int idx[3] = {-1, -1, -1};
 	std::vector<int> points(m_nBuffers);
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-		points[nBuffer]	= m_ptBuf[nBuffer]->GetLineCount() - 1;
+		points[nBuffer] = m_ptBuf[nBuffer]->GetLineCount() - 1;
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
 		int nLineCount = m_ptBuf[nBuffer]->GetLineCount();

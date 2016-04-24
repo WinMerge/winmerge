@@ -696,3 +696,17 @@ bool CDiffTextBuffer::curUndoGroup()
 {
 	return (m_aUndoBuf.size() != 0 && m_aUndoBuf[0].m_dwFlags&UNDO_BEGINGROUP);
 }
+
+bool CDiffTextBuffer::
+DeleteText2(CCrystalTextView * pSource, int nStartLine, int nStartChar,
+	int nEndLine, int nEndChar, int nAction, bool bHistory /*=true*/)
+{
+	for (auto syncpnt : m_pOwnerDoc->GetSyncPointList())
+	{
+		const int nLineSyncPoint = syncpnt[m_nThisPane];
+		if (((nStartChar == 0 && nStartLine == nLineSyncPoint) || nStartLine < nLineSyncPoint) &&
+			nLineSyncPoint < nEndLine)
+			m_pOwnerDoc->DeleteSyncPoint(m_nThisPane, nLineSyncPoint, false);
+	}
+	return CGhostTextBuffer::DeleteText2(pSource, nStartLine, nStartChar, nEndLine, nEndChar, nAction, bHistory);
+}

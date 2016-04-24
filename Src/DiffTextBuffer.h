@@ -76,4 +76,7 @@ public :
 	void prepareForRescan();
 	virtual void OnNotifyLineHasBeenEdited(int nLine);
 	bool IsInitialized() const;
+	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
+		int nStartPos, int nEndLine, int nEndPos,
+		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
 };
