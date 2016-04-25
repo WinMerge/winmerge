@@ -16,9 +16,6 @@
 #include <stdlib.h>
 #ifndef _WIN32
 #include <strings.h>
-#define InterlockedCompareExchangePointer(addr, newv, oldv) __sync_val_compare_and_swap(addr, oldv, newv)
-#else
-#include <Windows.h>
 #endif
 #include "charsets.h"
 
@@ -1006,18 +1003,6 @@ static int SortCompareByCodePage(const void *elem1, const void *elem2)
 static struct _charsetInfo const *FindByName(const char *name)
 {
 	struct _charsetInfo const *info = NULL;
-	if (index1 == NULL)
-	{
-		size_t i;
-		const struct _charsetInfo **index = (struct _charsetInfo **)calloc(numCharsetInfo, sizeof(void *));
-		for (i = numCharsetInfo ; i-- ; )
-		{
-			index[i] = charsetInfo + i;
-		}
-		qsort((void*)index, numCharsetInfo, sizeof(void *), CompareByName);
-		if (InterlockedCompareExchangePointer((void **)&index1, (void *)index, NULL) != NULL)
-			free((void *)index);
-	}
 	if (index1 && name)
 	{
 		struct _charsetInfo const key = {0, name, 0, no};
@@ -1034,17 +1019,6 @@ static struct _charsetInfo const *FindByName(const char *name)
 static struct _charsetInfo const *FindById(unsigned id)
 {
 	size_t numIndex = charsetInfo[numCharsetInfo - 1].id + 1;
-	if (index2 == NULL)
-	{
-		size_t i;
-		const struct _charsetInfo **index = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
-		for (i = numCharsetInfo ; i-- ; )
-		{
-			index[charsetInfo[i].id] = charsetInfo + i;
-		}
-		if (InterlockedCompareExchangePointer((void **)&index2, (void *)index, NULL) != NULL)
-			free((void *)index);
-	}
 	return index2 && id < numIndex ? index2[id] : NULL;
 }
 
@@ -1052,18 +1026,6 @@ static struct _charsetInfo const *FindByCodePage(unsigned codepage)
 {
 	struct _charsetInfo const *info = NULL;
 	size_t numIndex = charsetInfo[numCharsetInfo - 1].id + 1;
-	if (index3 == NULL)
-	{
-		size_t i;
-		const struct _charsetInfo **index = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
-		for (i = numCharsetInfo + 1 ; i-- ; )
-		{
-			index[charsetInfo[i].id] = charsetInfo + i;
-		}
-		qsort((void*)index, numIndex, sizeof(void *), SortCompareByCodePage);
-		if (InterlockedCompareExchangePointer((void **)&index3, (void *)index, NULL) != NULL)
-			free((void *)index);
-	}
 	if (index3 && codepage)
 	{
 		struct _charsetInfo const key = {0, 0, codepage, no};
@@ -1075,6 +1037,29 @@ static struct _charsetInfo const *FindByCodePage(unsigned codepage)
 		} while (pinfo > index3 && CompareByCodePage(--pinfo, &pkey) == 0);
 	}
 	return info;
+}
+
+void charsets_init(void)
+{
+	size_t i;
+	size_t numIndex = charsetInfo[numCharsetInfo - 1].id + 1;
+	index1 = (struct _charsetInfo **)calloc(numCharsetInfo, sizeof(void *));
+	for (i = numCharsetInfo ; i-- ; )
+	{
+		index1[i] = charsetInfo + i;
+	}
+	qsort((void*)index1, numCharsetInfo, sizeof(void *), CompareByName);
+	index2 = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
+	for (i = numCharsetInfo ; i-- ; )
+	{
+		index2[charsetInfo[i].id] = charsetInfo + i;
+	}
+	index3 = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
+	for (i = numCharsetInfo + 1 ; i-- ; )
+	{
+		index3[charsetInfo[i].id] = charsetInfo + i;
+	}
+	qsort((void*)index3, numIndex, sizeof(void *), SortCompareByCodePage);
 }
 
 void charsets_cleanup(void)
