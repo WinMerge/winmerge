@@ -354,6 +354,7 @@ BOOL CMergeApp::InitInstance()
 		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 	}
 
+	charsets_init();
 	UpdateCodepageModule();
 
 	if (m_pSourceControl)

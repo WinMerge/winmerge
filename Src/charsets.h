@@ -23,6 +23,7 @@ extern unsigned GetEncodingCodePageFromId(unsigned id);
 extern const char *GetEncodingNameFromId(unsigned id);
 extern const char *GetEncodingNameFromCodePage(unsigned cp);
 
+extern void charsets_init(void);
 extern void charsets_cleanup(void);
 
 #undef extern
