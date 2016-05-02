@@ -1150,12 +1150,11 @@ PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
       HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, cbData);
       if (hData != NULL)
         {
-          GlobalReAlloc(hData, cbData, 0);
-		  DWORD dwSize = GlobalSize(hData);
+          DWORD dwSize = GlobalSize(hData);
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
           memcpy (pszData, pszText, cbData);
-		  if (dwSize > cbData)
-			  memset(reinterpret_cast<char *>(pszData) + cbData, 0, dwSize - cbData);
+          if (dwSize > cbData)
+              memset(reinterpret_cast<char *>(pszData) + cbData, 0, dwSize - cbData);
           GlobalUnlock (hData);
           UINT fmt = GetClipTcharTextFormat();
           bOK = SetClipboardData (fmt, hData) != NULL;

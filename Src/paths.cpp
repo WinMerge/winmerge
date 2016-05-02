@@ -484,12 +484,9 @@ String ExpandShortcut(const String &inFile)
 
 			if (SUCCEEDED(hres))
 			{
-				WIN32_FIND_DATA wfd;
 				// find the path from that
 				TCHAR buf[MAX_PATH] = {0};
-				HRESULT hres = psl->GetPath(buf, MAX_PATH, &wfd,
-					SLGP_UNCPRIORITY);
-
+				HRESULT hres = psl->GetPath(buf, MAX_PATH, NULL, SLGP_UNCPRIORITY);
 				outFile = buf;
 			}
 			ppf->Release();

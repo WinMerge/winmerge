@@ -168,7 +168,7 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		pif[1]->set_sibling(pif[0]);
 		pif[1]->share_undorecords(pif[0]);
 	}
-	else
+	else if (m_pMergeDoc->m_nBuffers > 2)
 	{
 		pif[0]->set_sibling(pif[1]);
 		pif[1]->set_sibling2(pif[0], pif[2]);
