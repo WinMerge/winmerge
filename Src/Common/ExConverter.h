@@ -1,12 +1,13 @@
 #pragma once
 
 #include "UnicodeString.h"
+#include <vector>
 
 struct CodePageInfo
 {
 	int codepage;
-	wchar_t desc[256];
-    wchar_t fixedWidthFont[256];
+	String desc;
+    String fixedWidthFont;
     char bGDICharset;
 };
 
@@ -18,7 +19,7 @@ struct IExconverter
 	virtual bool convertToUnicode(int srcCodepage, const char * src, size_t * srcbytes, wchar_t * dest, size_t *destchars) = 0;
 	virtual void clearCookie() = 0;
 	virtual int detectInputCodepage(int autodetectType, int defcodepage, const char *data, size_t size) = 0;
-	virtual int enumCodePages(CodePageInfo *cpinfo, int count) = 0;
+	virtual std::vector<CodePageInfo> enumCodePages() = 0;
 	virtual bool getCodepageFromCharsetName(const String& sCharsetName, int& codepage) = 0;
 	virtual bool getCodepageDescription(int codepage, String& sCharsetName) = 0;
 	virtual bool isValidCodepage(int codepage) = 0;
