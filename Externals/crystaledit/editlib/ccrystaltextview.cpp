@@ -3253,8 +3253,8 @@ void CCrystalTextView::GetLineBySubLine(int nSubLineIndex, int &nLine, int &nSub
   const int nLineCount = GetLineCount();
 
   // binary search
-  int base = 0, lim, i, nSubLineIndex2;
-  for (lim = nLineCount; lim != 0; lim >>= 1)
+  int base = 0, i = 0, nSubLineIndex2 = 0;
+  for (int lim = nLineCount; lim != 0; lim >>= 1)
     {
       i = base + (lim >> 1);
       nSubLineIndex2 = GetSubLineIndex(i);
@@ -4766,8 +4766,6 @@ PrepareDragData ()
   HGLOBAL hData =::GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, cbData);
   if (hData == NULL)
     return NULL;
-  ::GlobalReAlloc(hData, cbData, 0);
-  ASSERT(::GlobalSize(hData) == cbData);
 
   LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
   memcpy (pszData, text, cbData);

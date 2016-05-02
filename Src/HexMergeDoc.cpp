@@ -532,7 +532,7 @@ HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, const bool bRO[])
 {
 	CHexMergeFrame *pf = GetParentFrame();
 	ASSERT(pf);
-	HRESULT hr;
+	HRESULT hr = E_FAIL;
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{

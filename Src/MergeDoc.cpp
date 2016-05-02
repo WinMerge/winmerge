@@ -1951,7 +1951,7 @@ void CMergeDoc::PrimeTextBuffers()
 		VERIFY(m_diffList.GetDiff(nDiff, curDiff));
 
 		// move matched lines after curDiff
-		int nline[3];
+		int nline[3] = { 0 };
 		for (file = 0; file < m_nBuffers; file++)
 			nline[file] = lcount[file] - curDiff.end[file] - 1; // #lines on left/middle/right after current diff
 		// Matched lines should really match...

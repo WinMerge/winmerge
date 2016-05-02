@@ -753,12 +753,12 @@ bool CDirView::ListShellContextMenu(SIDE_TYPE stype)
 {
 	CShellContextMenu* shellContextMenu;
 	switch (stype) {
-	case SIDE_LEFT:
-		shellContextMenu = m_pShellContextMenuLeft.get(); break;
 	case SIDE_MIDDLE:
 		shellContextMenu = m_pShellContextMenuMiddle.get(); break;
 	case SIDE_RIGHT:
 		shellContextMenu = m_pShellContextMenuRight.get(); break;
+	default:
+		shellContextMenu = m_pShellContextMenuLeft.get(); break;
 	}
 	shellContextMenu->Initialize();
 	ApplyFolderNameAndFileName(SelBegin(), SelEnd(), stype, GetDiffContext(),

@@ -257,8 +257,6 @@ HGLOBAL CGhostTextView::PrepareDragData ()
 	HGLOBAL hData =::GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, cbData);
 	if (hData == NULL)
 		return NULL;
-	::GlobalReAlloc(hData, cbData, 0);
-	ASSERT(::GlobalSize(hData) == cbData);
 
 	LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
 	if (pszData)

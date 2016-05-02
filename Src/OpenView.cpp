@@ -601,8 +601,8 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 
 		BOOL bButtonEnabled = TRUE;
 		BOOL bInvalid[3] = {FALSE, FALSE, FALSE};
-		int iStatusMsgId;
-		int iUnpackerStatusMsgId;
+		int iStatusMsgId = 0;
+		int iUnpackerStatusMsgId = 0;
 
 		UpdateButtonStatesThreadParams *pParams = reinterpret_cast<UpdateButtonStatesThreadParams *>(msg.wParam);
 		PathContext paths = pParams->m_paths;
