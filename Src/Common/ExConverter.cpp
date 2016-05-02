@@ -220,24 +220,26 @@ public:
 		return codepage;
 	}
 
-	int enumCodePages(CodePageInfo *cpinfo, int count)
+	std::vector<CodePageInfo> enumCodePages()
 	{
+		std::vector<CodePageInfo> cpinfo;
 		IEnumCodePage *pEnumCodePage = NULL;
 		ULONG ccpInfo;
 		HRESULT hr = m_pmlang->EnumCodePages(MIMECONTF_SAVABLE_BROWSER | MIMECONTF_VALID | MIMECONTF_VALID_NLS, 0, &pEnumCodePage);
 		if (FAILED(hr))
-			return 0;
-		std::unique_ptr<MIMECPINFO[]> pcpInfo(new MIMECPINFO[count]);
-		if (FAILED(pEnumCodePage->Next(count, pcpInfo.get(), &ccpInfo)))
-			return 0;
+			return cpinfo;
+		std::unique_ptr<MIMECPINFO[]> pcpInfo(new MIMECPINFO[256]);
+		if (FAILED(pEnumCodePage->Next(256, pcpInfo.get(), &ccpInfo)))
+			return cpinfo;
 
+		cpinfo.resize(ccpInfo);
 		for (int i = 0; i < (int)ccpInfo; i++)
 		{
 			cpinfo[i].codepage = pcpInfo[i].uiCodePage;
-			lstrcpyW(cpinfo[i].desc, pcpInfo[i].wszDescription);
+			cpinfo[i].desc = ucr::toTString(pcpInfo[i].wszDescription);
 		}
 
-		return ccpInfo;
+		return cpinfo;
 	}
 
 	bool getCodepageFromCharsetName(const String& sCharsetName, int& codepage)
@@ -275,7 +277,7 @@ public:
 		HRESULT hr = m_pmlang->GetCodePageInfo(codepage, GetSystemDefaultLangID(), &mcpi);
 		if (FAILED(hr))
 			return false;
-		wcscpy(pCodePageInfo->fixedWidthFont, mcpi.wszFixedWidthFont);
+		pCodePageInfo->fixedWidthFont = ucr::toTString(mcpi.wszFixedWidthFont);
 		pCodePageInfo->bGDICharset = mcpi.bGDICharset;
 		return true;
 	}

@@ -21,7 +21,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 
 	CodePageInfo cpi = {0};
 	cpi.bGDICharset = ANSI_CHARSET;
-	wcscpy(cpi.fixedWidthFont, L"Courier New");
+	cpi.fixedWidthFont = _T("Courier New");
 
 	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv)
