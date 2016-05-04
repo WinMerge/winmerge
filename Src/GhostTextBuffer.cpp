@@ -225,7 +225,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			}
 		}
 	}
-	text.ReleaseBuffer(pszBuf - text);
+	text.ReleaseBuffer(static_cast<int>(pszBuf - text));
 	text.FreeExtra();
 }
 
@@ -448,8 +448,7 @@ void CGhostTextBuffer::RemoveAllGhostLines()
  */
 int CGhostTextBuffer::ApparentLastRealLine() const
 {
-	const int size = m_RealityBlocks.size();
-	if (size == 0)
+	if (m_RealityBlocks.size() == 0)
 		return -1;
 	const RealityBlock &block = m_RealityBlocks.back();
 	return block.nStartApparent + block.nCount - 1;
@@ -478,7 +477,7 @@ int CGhostTextBuffer::ComputeRealLine(int nApparentLine) const
  */
 int CGhostTextBuffer::ComputeApparentLine(int nRealLine) const
 {
-	const int size = m_RealityBlocks.size();
+	const int size = static_cast<int>(m_RealityBlocks.size());
 	if (size == 0)
 		return 0;
 
@@ -519,7 +518,7 @@ int CGhostTextBuffer::ComputeApparentLine(int nRealLine) const
 int CGhostTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine,
 		int& decToReal) const
 {
-	const int size = m_RealityBlocks.size();
+	const int size = static_cast<int>(m_RealityBlocks.size());
 	if (size == 0) 
 	{
 		decToReal = 0;
@@ -698,7 +697,7 @@ This means that this only has effect in DEBUG build
 */
 void CGhostTextBuffer::checkFlagsFromReality(bool bFlag) const
 {
-	const int size = m_RealityBlocks.size();
+	const int size = static_cast<int>(m_RealityBlocks.size());
 	int i = 0;
 	for (int b = 0 ; b < size ; b ++)
 	{
