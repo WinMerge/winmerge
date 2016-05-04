@@ -860,6 +860,11 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	CPoint currentPosDst = m_pView[dstPane]->GetCursorPos();
 	currentPosDst.x = 0;
 
+	CPoint pt(0, 0);
+	m_pView[dstPane]->SetCursorPos(pt);
+	m_pView[dstPane]->SetNewSelection(pt, pt, false);
+	m_pView[dstPane]->SetNewAnchor(pt);
+
 	// copy from bottom up is more efficient
 	for (int i = lastDiff - 1; i >= firstDiff; --i)
 	{
@@ -966,6 +971,11 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 
 	CPoint currentPosDst = m_pView[dstPane]->GetCursorPos();
 	currentPosDst.x = 0;
+
+	CPoint pt(0, 0);
+	m_pView[dstPane]->SetCursorPos(pt);
+	m_pView[dstPane]->SetNewSelection(pt, pt, false);
+	m_pView[dstPane]->SetNewAnchor(pt);
 
 	// copy from bottom up is more efficient
 	for (int i = lastDiff; i >= firstDiff; --i)

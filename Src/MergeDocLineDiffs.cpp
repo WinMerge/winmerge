@@ -148,6 +148,13 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 {
 	int file;
 	DIFFRANGE cd;
+
+	for (file = 0; file < m_nBuffers; file++)
+	{
+		if (nLineIndex >= m_ptBuf[file]->GetLineCount())
+			return;
+	}
+
 	int nDiff = m_diffList.LineToDiff(nLineIndex);
 	if (nDiff == -1)
 		return;
