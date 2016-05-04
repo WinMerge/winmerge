@@ -1357,7 +1357,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
   while (!failed)
     {
       --tmpPos;
-      const UndoRecord ur = m_aUndoBuf[tmpPos];
+      const UndoRecord ur = GetUndoRecord(tmpPos);
       // Undo records are stored in file line numbers
       // and must be converted to apparent (screen) line numbers for use
       CPoint apparent_ptStartPos = ur.m_ptStartPos;
@@ -1381,7 +1381,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
               GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
               if (text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
                 {
-                  VERIFY (InternalDeleteText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x));
+                  VERIFY (DeleteText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
                   ptCursorPos = apparent_ptStartPos;
                 }
               else
@@ -1406,7 +1406,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
       else
         {
           int nEndLine, nEndChar;
-          VERIFY (InternalInsertText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, ur.GetText (), ur.GetTextLength (), nEndLine, nEndChar));
+          VERIFY (InsertText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, ur.GetText (), ur.GetTextLength (), nEndLine, nEndChar, 0, false));
           ptCursorPos = m_ptLastChange;
 
         }
@@ -1447,7 +1447,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
   for (;;)
     {
-      const UndoRecord ur = m_aUndoBuf[m_nUndoPosition];
+      const UndoRecord ur = GetUndoRecord(m_nUndoPosition);
       CPoint apparent_ptStartPos = ur.m_ptStartPos;
       CPoint apparent_ptEndPos = ur.m_ptEndPos;
 
@@ -1461,13 +1461,16 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
         }
       else
         {
+          if (apparent_ptStartPos != apparent_ptEndPos)
+            {
 #ifdef _ADVANCED_BUGCHECK
-          CString text;
-          GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
-          ASSERT (text.GetLength() == ur.GetTextLength() && memcmp (text, ur.GetText (), text.GetLength() * sizeof(TCHAR)) == 0);
+              CString text;
+              GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
+              ASSERT (text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0);
 #endif
-          VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, 
-            apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
+              VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, 
+                apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
+            }
           ptCursorPos = apparent_ptStartPos;
         }
       m_nUndoPosition++;
@@ -1528,6 +1531,13 @@ AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
   m_aUndoBuf.push_back (ur);
   m_nUndoPosition = (int) m_aUndoBuf.size ();
 }
+
+UndoRecord CCrystalTextBuffer::GetUndoRecord(int nUndoPos) const
+{
+  return m_aUndoBuf[nUndoPos];
+}
+
+/**
 /**
  * @brief Get EOL style string.
  * @param [in] nCRLFMode.
@@ -1661,14 +1671,14 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
                   nEndChar2 = 0;
                   nEndLine2++;
                 }
-              if (!CCrystalTextBuffer::DeleteText2 (pSource, nStartLine2, nStartChar2, nEndLine2, nEndChar2, nAction, bHistory))
+              if (!DeleteText2 (pSource, nStartLine2, nStartChar2, nEndLine2, nEndChar2, nAction, bHistory))
                 return false;
             }
         }
     }
   else
     {
-      if (!CCrystalTextBuffer::DeleteText2 (pSource, nStartLine, nStartChar, nEndLine, nEndChar, nAction, bHistory))
+      if (!DeleteText2 (pSource, nStartLine, nStartChar, nEndLine, nEndChar, nAction, bHistory))
         return false;
     }
 
@@ -1676,6 +1686,17 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
     FlushUndoGroup (pSource);
 
   return true;
+}
+
+CDWordArray *CCrystalTextBuffer::
+CopyRevisionNumbers(int nStartLine, int nEndLine) const
+{
+  // save line revision numbers for undo
+  CDWordArray *paSavedRevisonNumbers = new CDWordArray;
+  paSavedRevisonNumbers->SetSize(nEndLine - nStartLine + 1);
+  for (int i = 0; i < nEndLine - nStartLine + 1; i++)
+    (*paSavedRevisonNumbers)[i] = m_aLines[nStartLine + i].m_dwRevisionNumber;
+  return paSavedRevisonNumbers;
 }
 
 bool CCrystalTextBuffer::
@@ -1686,11 +1707,7 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
 
   // save line revision numbers for undo
-  CDWordArray *paSavedRevisonNumbers = new CDWordArray;
-  paSavedRevisonNumbers->SetSize(nEndLine - nStartLine + 1);
-  int i;
-  for (i = 0; i < nEndLine - nStartLine + 1; i++)
-    (*paSavedRevisonNumbers)[i] = m_aLines[nStartLine + i].m_dwRevisionNumber;
+  CDWordArray *paSavedRevisonNumbers = CopyRevisionNumbers(nStartLine, nEndLine);
 
   if (!InternalDeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar))
   {
@@ -1700,8 +1717,7 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 
   // update line revision numbers of modified lines
   m_dwCurrentRevisionNumber++;
-  if (nStartChar != 0 || nEndChar != 0)
-    m_aLines[nStartLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
+  m_aLines[nStartLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
   if (bHistory == false)
   {

@@ -184,6 +184,9 @@ public :
     //  [JRT] Support For Descriptions On Undo/Redo Actions
     virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
                                 LPCTSTR pszText, int cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
+    virtual UndoRecord GetUndoRecord (int nUndoPos) const;
+
+    virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const;
 
     //  Overridable: provide action description
     virtual bool GetActionDescription (int nAction, CString & desc) const;
