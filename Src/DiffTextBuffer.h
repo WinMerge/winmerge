@@ -44,7 +44,7 @@ public :
 	void SetTempPath(const String &path);
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
-		int nLinesToValidate, int nActionType = CE_ACTION_UNKNOWN,
+		int nActionType = CE_ACTION_UNKNOWN,
 		CDWordArray *paSavedRevisonNumbers = NULL);
 	bool curUndoGroup();
 	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);

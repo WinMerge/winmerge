@@ -194,11 +194,11 @@ bool CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine) const
 
 void CDiffTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
-		int nLinesToValidate, int nActionType /*= CE_ACTION_UNKNOWN*/,
+		int nActionType /*= CE_ACTION_UNKNOWN*/,
 		CDWordArray *paSavedRevisonNumbers)
 {
 	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText,
-		cchText, nLinesToValidate, nActionType, paSavedRevisonNumbers);
+		cchText, nActionType, paSavedRevisonNumbers);
 	if (m_aUndoBuf[m_nUndoPosition - 1].m_dwFlags & UNDO_BEGINGROUP)
 	{
 		m_pOwnerDoc->undoTgt.erase(m_pOwnerDoc->curUndo, m_pOwnerDoc->undoTgt.end());

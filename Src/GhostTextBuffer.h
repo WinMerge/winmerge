@@ -7,7 +7,6 @@
 
 #include <vector>
 #include "ccrystaltextbuffer.h"
-#include "GhostUndoRecord.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,38 +42,6 @@ class EDITPADC_CLASS CGhostTextBuffer : public CCrystalTextBuffer
 public:
 	DECLARE_DYNCREATE (CGhostTextBuffer)
 
-protected :
-#pragma pack(push, 1)
-	//  Nested class declarations
-	enum
-	{
-		UNDO_INSERT = 0x0001,
-		UNDO_BEGINGROUP = 0x0100
-	};
-
-
-
-#pragma pack(pop)
-
-protected:
-	/** 
-	We need another array with our richer structure.
-
-	We share the positions with the CCrystalTextBuffer object. 
-	We share m_bUndoGroup, its utility is to check we opened the UndoBeginGroup.
-	We share m_nUndoBufSize which is the max buffer size.
-	*/
-	std::vector<GhostUndoRecord> m_aUndoBuf;
-	/** 
-	This one must be duplicated because the flag UNDO_BEGINGROUP needs to be set in both 
-	CGhostTextBuffer::m_aUndoBuf and CCrystalTextBuffer::m_aUndoBuf CArrays 
-	*/
-	bool m_bUndoBeginGroup;
-
-	// [JRT] Support For Descriptions On Undo/Redo Actions
-	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                              LPCTSTR pszText, int cchText, int nRealLinesChanged, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
-
 private:
 	/**
 	 * @brief A struct mapping real lines and apparent (screen) lines.
@@ -97,7 +64,6 @@ private:
 public :
 	// Construction/destruction code
 	CGhostTextBuffer ();
-	virtual bool InitNew (CRLFSTYLE nCrlfStyle = CRLF_STYLE_DOS);
 
 	/** 
 	This should work in base code as ghost lines are real empty lines
@@ -114,21 +80,16 @@ public :
 	virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos,
 		LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar,
 		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
-	virtual bool DeleteText (CCrystalTextView * pSource, int nStartLine,
-		int nStartPos, int nEndLine, int nEndPos,
-		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true, bool bExcludeInvisibleLines = true);
 	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
 		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
 	bool InsertGhostLine (CCrystalTextView * pSource, int nLine);
 
-	// Undo/Redo
-	virtual bool Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
-	virtual bool Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
+	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
+	                            LPCTSTR pszText, int cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
+	virtual UndoRecord GetUndoRecord(int nUndoPos) const;
 
-	// Undo grouping
-	virtual void BeginUndoGroup (bool bMergeWithPrevious = false);
-	virtual void FlushUndoGroup (CCrystalTextView * pSource);
+	virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const;
 
 public:
 	//@{
@@ -157,13 +118,6 @@ public:
 
 private:
 	void RecomputeRealityMapping();
-	/** 
-	Code to set EOL, if the status ghost/real of the line changes 
-
-	We should call a CCrystalTextBuffer function to add the correct EOL
-	(if CCrystalTextBuffer keeps the default EOL for the file)
-	*/
-	void RecomputeEOL(CCrystalTextView * pSource, int nStartLine, int nEndLine);
 	/** For debugging purpose */
 	void checkFlagsFromReality(bool bFlag) const;
 

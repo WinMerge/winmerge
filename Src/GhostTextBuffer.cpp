@@ -54,19 +54,6 @@ IMPLEMENT_DYNCREATE (CGhostTextBuffer, CCrystalTextBuffer)
  */
 CGhostTextBuffer::CGhostTextBuffer()
 {
-	m_bUndoGroup = false;
-	CCrystalTextBuffer::m_bUndoBeginGroup = m_bUndoBeginGroup = false;
-}
-
-/**
- * @brief Initialize a new buffer.
- * @param [in] nCrlfStyle EOL style for the buffer.
- * @return true if the initialization succeeded.
- */
-bool CGhostTextBuffer::InitNew (CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_DOS*/ )
-{
-	m_bUndoBeginGroup = false;
-	return CCrystalTextBuffer::InitNew(nCrlfStyle);
 }
 
 /**
@@ -98,7 +85,6 @@ bool CGhostTextBuffer::InternalInsertGhostLine (CCrystalTextView * pSource,
 	if (!m_bModified)
 		SetModified (true);
 
-	OnNotifyLineHasBeenEdited(nLine);
 	return true;
 }
 
@@ -254,344 +240,6 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// undo/redo functions
-
-bool CGhostTextBuffer::
-Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
-{
-	ASSERT (CanUndo ());
-	ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
-	bool failed = false;
-	int tmpPos = m_nUndoPosition;
-
-	while (!failed)
-	{
-		--tmpPos;
-		GhostUndoRecord ur = m_aUndoBuf[tmpPos];
-		// Undo records are stored in file line numbers
-		// and must be converted to apparent (screen) line numbers for use
-		CPoint apparent_ptStartPos = ur.m_ptStartPos;
-		apparent_ptStartPos.y = ComputeApparentLine(ur.m_ptStartPos.y, ur.m_ptStartPos_nGhost);
-		CPoint apparent_ptEndPos = ur.m_ptEndPos;
-		apparent_ptEndPos.y = ComputeApparentLine(ur.m_ptEndPos.y, ur.m_ptEndPos_nGhost);
-
-		if (ur.m_ptStartPos_nGhost > 0)
-			// if we need a ghost line at position apparent_ptStartPos.y
-			if (apparent_ptStartPos.y >= m_aLines.size() || (GetLineFlags(apparent_ptStartPos.y) & LF_GHOST) == 0)
-			{
-				// if we don't find it, we insert it 
-				InsertGhostLine (pSource, apparent_ptStartPos.y);
-				// and recompute apparent_ptEndPos
-				apparent_ptEndPos.y = ComputeApparentLine (ur.m_ptEndPos.y, ur.m_ptEndPos_nGhost);
-			} 
-
-		// EndPos defined only for UNDO_INSERT (when we delete)
-		if (ur.m_dwFlags & UNDO_INSERT && ur.m_ptEndPos_nGhost > 0)
-			// if we need a ghost line at position apparent_ptStartPos.y
-			if (apparent_ptEndPos.y >= m_aLines.size() || (GetLineFlags(apparent_ptEndPos.y) & LF_GHOST) == 0)
-			{
-				// if we don't find it, we insert it
-				InsertGhostLine (pSource, apparent_ptEndPos.y);
-			}
-
-		if (ur.m_dwFlags & UNDO_INSERT)
-		{
-			// WINMERGE -- Check that text in undo buffer matches text in
-			// file buffer. If not, then rescan() has moved lines and undo
-			// is skipped.
-
-			// we need to put the cursor before the deleted section
-			CString text;
-			ur.m_redo_ptEndPos.x = apparent_ptEndPos.x;
-			ur.m_redo_ptEndPos.y = ComputeRealLineAndGhostAdjustment (apparent_ptEndPos.y, ur.m_redo_ptEndPos_nGhost);
-
-			// flags are going to be deleted so we store them now
-			int bLastLineGhost = ((GetLineFlags(apparent_ptEndPos.y) & LF_GHOST) != 0);
-
-			const size_t size = m_aLines.size();
-			if ((apparent_ptStartPos.y < size) &&
-					(apparent_ptStartPos.x <= m_aLines[apparent_ptStartPos.y].Length()) &&
-					(apparent_ptEndPos.y < size) &&
-					(apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].Length()))
-			{
-				GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
-				if (text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
-				{
-					VERIFY (DeleteText (pSource, 
-						apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x,
-						0, false, false));
-					ptCursorPos = apparent_ptStartPos;
-				}
-				else
-				{
-					//..Try to ensure that we are undoing correctly...
-					//  Just compare the text as it was before Undo operation
-#ifdef _ADVANCED_BUGCHECK
-					ASSERT(0);
-#endif
-					failed = true;
-					break;
-				}
-
-			}
-			else
-			{
-				failed = true;
-				break;
-			}
-
-			OnNotifyLineHasBeenEdited(apparent_ptStartPos.y);
-
-			// default : the remaining line inherits the status of the last line of the deleted block
-			SetLineFlag(apparent_ptStartPos.y, LF_GHOST, bLastLineGhost, false, false);
-
-			// the number of real lines must be the same before the action and after undo
-			int nNumberDeletedRealLines = ur.m_ptEndPos.y - ur.m_ptStartPos.y;
-			if (nNumberDeletedRealLines == ur.m_nRealLinesCreated)
-				;
-			else if (nNumberDeletedRealLines == ur.m_nRealLinesCreated-1)
-				// we inserted in a ghost line (which then became real), we must send it back to its world
-				SetLineFlag(apparent_ptStartPos.y, LF_GHOST, true, false, false);
-			else
-				ASSERT(0);
-
-			// it is not easy to know when Recompute so we do it always
-			RecomputeRealityMapping();
-
-			RecomputeEOL (pSource, apparent_ptStartPos.y, apparent_ptStartPos.y);
-		}
-		else
-		{
-			int nEndLine, nEndChar;
-			VERIFY(InsertText (pSource, 
-				apparent_ptStartPos.y, apparent_ptStartPos.x, ur.GetText (), ur.GetTextLength (), nEndLine, nEndChar, 
-				0, false));
-			ptCursorPos = m_ptLastChange;
-
-			// for the flags, the logic is nearly the same as in insertText
-			int bFirstLineGhost = ((GetLineFlags(apparent_ptStartPos.y) & LF_GHOST) != 0);
-			// when inserting an EOL terminated text into a ghost line,
-			// there is a dicrepancy between nInsertedLines and nEndLine-nRealLine
-			int bDiscrepancyInInsertedLines;
-			if (bFirstLineGhost && nEndChar == 0 && ApparentLastRealLine() >= nEndLine)
-				bDiscrepancyInInsertedLines = true;
-			else
-				bDiscrepancyInInsertedLines = false;
-
-			int i;
-			for (i = apparent_ptStartPos.y ; i < nEndLine ; i++)
-				OnNotifyLineHasBeenEdited(i);
-			if (bDiscrepancyInInsertedLines == 0)
-				OnNotifyLineHasBeenEdited(i);
-
-			// We know the number of real lines in the deleted block (including partial lines for extremities)
-			// there may be more lines (difficult to explain) then they must be ghost
-			for (i = apparent_ptStartPos.y ; i < apparent_ptStartPos.y + ur.m_nRealLinesInDeletedBlock ; i++)
-				SetLineFlag (i, LF_GHOST, false, false, false);
-			for (   ; i <= nEndLine ; i++)
-			{
-				if (i < nEndLine)
-					SetLineFlag (i, LF_GHOST, true, false, false);
-				else if (apparent_ptStartPos.x != 0 || nEndChar != 0)
-					SetLineFlag (i, LF_GHOST, true, false, false);
-			}
-
-			// it is not easy to know when Recompute so we do it always
-			RecomputeRealityMapping();
-
-			RecomputeEOL (pSource, apparent_ptStartPos.y, nEndLine);
-		}
-
-		// store infos for redo
-		ur.m_redo_ptStartPos.x = apparent_ptStartPos.x;
-		ur.m_redo_ptStartPos.y = ComputeRealLineAndGhostAdjustment( apparent_ptStartPos.y, ur.m_redo_ptStartPos_nGhost);
-		if (ur.m_dwFlags & UNDO_INSERT)
-			ur.m_redo_ptEndPos = CPoint( -1, 0 );
-		else
-		{
-			ur.m_redo_ptEndPos.x = m_ptLastChange.x;
-			ur.m_redo_ptEndPos.y = ComputeRealLineAndGhostAdjustment (m_ptLastChange.y, ur.m_redo_ptEndPos_nGhost);
-		}
-
-		// restore line revision numbers
-		int naSavedRevisonNumbersSize = (int) ur.m_paSavedRevisonNumbers->GetSize();
-		for (int i = 0; i < naSavedRevisonNumbersSize; i++)
-			m_aLines[apparent_ptStartPos.y + i].m_dwRevisionNumber = (*ur.m_paSavedRevisonNumbers)[i];
-
-		m_aUndoBuf[tmpPos] = ur;
-
-		if (ur.m_dwFlags & UNDO_BEGINGROUP)
-			break;
-	}
-	if (m_bModified && m_nSyncPosition == tmpPos)
-		SetModified (false);
-	if (!m_bModified && m_nSyncPosition != tmpPos)
-		SetModified (true);
-	if (failed)
-	{
-		// If the Undo failed, clear the entire Undo/Redo stack
-		// Not only can we not Redo the failed Undo, but the Undo
-		// may have partially completed (if in a group)
-		m_nUndoPosition = 0;
-		m_aUndoBuf.clear();
-	}
-	else
-	{
-		m_nUndoPosition = tmpPos;
-	}
-	return !failed;
-}
-
-bool CGhostTextBuffer::
-Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
-{
-	ASSERT (CanRedo ());
-	ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
-	ASSERT ((m_aUndoBuf[m_nUndoPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
-
-	while(1)
-	{
-		GhostUndoRecord ur = m_aUndoBuf[m_nUndoPosition];
-		CPoint apparent_ptStartPos = ur.m_redo_ptStartPos;
-		apparent_ptStartPos.y = ComputeApparentLine (ur.m_redo_ptStartPos.y, ur.m_redo_ptStartPos_nGhost);
-		CPoint apparent_ptEndPos = ur.m_redo_ptEndPos;
-		apparent_ptEndPos.y = ComputeApparentLine (ur.m_redo_ptEndPos.y, ur.m_redo_ptEndPos_nGhost);
-
-		if (ur.m_redo_ptStartPos_nGhost > 0) 
-			// we need a ghost line at position apparent_ptStartPos.y
-			if (apparent_ptStartPos.y >= m_aLines.size() || (GetLineFlags(apparent_ptStartPos.y) & LF_GHOST) == 0)
-			{
-				// if we don't find it, we insert it 
-				InsertGhostLine (pSource, apparent_ptStartPos.y);
-				// and recompute apparent_ptEndPos
-				apparent_ptEndPos.y = ComputeApparentLine (ur.m_redo_ptEndPos.y, ur.m_redo_ptEndPos_nGhost);
-			} 
-
-		// EndPos defined only for UNDO_DELETE (when we delete)
-		if ((ur.m_dwFlags & UNDO_INSERT) == 0 && ur.m_redo_ptEndPos_nGhost > 0)
-			// we need a ghost line at position apparent_ptStartPos.y
-			if (apparent_ptEndPos.y >= m_aLines.size() || (GetLineFlags(apparent_ptEndPos.y) & LF_GHOST) == 0)
-			{
-				// if we don't find it, we insert it
-				InsertGhostLine (pSource, apparent_ptEndPos.y);
-			}
-
-		// now we can use normal (CGhostTextBuffer::) insertTxt or deleteText
-		if (ur.m_dwFlags & UNDO_INSERT)
-		{
-			int nEndLine, nEndChar;
-			VERIFY(InsertText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x,
-				ur.GetText(), ur.GetTextLength(), nEndLine, nEndChar, 0, false));
-			ptCursorPos = m_ptLastChange;
-		}
-		else
-		{
-#ifdef _ADVANCED_BUGCHECK
-			CString text;
-			GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
-			ASSERT(text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0);
-#endif
-			VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, 
-				apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
-			ptCursorPos = apparent_ptStartPos;
-		}
-		m_nUndoPosition++;
-		if (m_nUndoPosition == m_aUndoBuf.size ())
-			break;
-		if ((m_aUndoBuf[m_nUndoPosition].m_dwFlags & UNDO_BEGINGROUP) != 0)
-			break;
-	}
-
-	if (m_bModified && m_nSyncPosition == m_nUndoPosition)
-		SetModified (false);
-	if (!m_bModified && m_nSyncPosition != m_nUndoPosition)
-		SetModified (true);
-	return true;
-}
-
-
-/** 
-we must set both our m_bUndoBeginGroup and the one of CCrystalTextBuffer
-*/
-void CGhostTextBuffer::BeginUndoGroup (bool bMergeWithPrevious /*= false*/ )
-{
-	ASSERT (!m_bUndoGroup);
-	m_bUndoGroup = true;
-	m_bUndoBeginGroup = m_nUndoPosition == 0 || !bMergeWithPrevious;
-	CCrystalTextBuffer::m_bUndoBeginGroup = m_bUndoBeginGroup;
-}
-
-/** Use ou own flushing function as we need to use our own m_aUndoBuf */
-void CGhostTextBuffer::FlushUndoGroup (CCrystalTextView * pSource)
-{
-	ASSERT (m_bUndoGroup);
-	if (pSource != NULL)
-	{
-		ASSERT (m_nUndoPosition == m_aUndoBuf.size ());
-		if (m_nUndoPosition > 0)
-		{
-			pSource->OnEditOperation (m_aUndoBuf[m_nUndoPosition - 1].m_nAction,
-				m_aUndoBuf[m_nUndoPosition - 1].GetText (), m_aUndoBuf[m_nUndoPosition - 1].GetTextLength ());
-		}
-	}
-	m_bUndoGroup = false;
-}
-
-
-/** The CPoint received parameters are apparent (on screen) line numbers */
-void CGhostTextBuffer::AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
-		const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
-		int nRealLinesChanged, int nActionType, CDWordArray *paSavedRevisonNumbers)
-{
-	//  Forgot to call BeginUndoGroup()?
-	ASSERT (m_bUndoGroup);
-	ASSERT (m_aUndoBuf.size () == 0 || (m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
-
-	//  Strip unnecessary undo records (edit after undo wipes all potential redo records)
-	int nBufSize = (int) m_aUndoBuf.size ();
-	if (m_nUndoPosition < nBufSize)
-	{
-		m_aUndoBuf.resize (m_nUndoPosition);
-	}
-
-	//  Add new record
-	GhostUndoRecord ur;
-	ur.m_dwFlags = bInsert ? UNDO_INSERT : 0;
-	ur.m_nAction = nActionType;
-	if (m_bUndoBeginGroup)
-	{
-		ur.m_dwFlags |= UNDO_BEGINGROUP;
-		m_bUndoBeginGroup = false;
-	}
-	ur.m_ptStartPos = ptStartPos;
-	ur.m_ptEndPos = ptEndPos;
-	ur.m_ptStartPos.y = ComputeRealLineAndGhostAdjustment( ptStartPos.y, ur.m_ptStartPos_nGhost);
-	ur.m_ptEndPos.y = ComputeRealLineAndGhostAdjustment( ptEndPos.y, ur.m_ptEndPos_nGhost);
-	if (bInsert)
-		ur.m_nRealLinesCreated = nRealLinesChanged;
-	else
-		ur.m_nRealLinesInDeletedBlock = nRealLinesChanged;
-	ur.SetText (pszText, cchText);
-	ur.m_paSavedRevisonNumbers = paSavedRevisonNumbers;
-
-	// Optimize memory allocation
-	if (m_aUndoBuf.capacity() == m_aUndoBuf.size())
-	{
-		if (m_aUndoBuf.size() == 0)
-			m_aUndoBuf.reserve(16);
-		else if (m_aUndoBuf.size() < 1025)
-			m_aUndoBuf.reserve(m_aUndoBuf.size() * 2);
-		else
-			m_aUndoBuf.reserve(m_aUndoBuf.size() + 1024);
-	}
-	m_aUndoBuf.push_back (ur);
-	m_nUndoPosition = (int) m_aUndoBuf.size ();
-}
-
-
-
-
-////////////////////////////////////////////////////////////////////////////
 // edition functions
 
 /**
@@ -618,29 +266,24 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 		int nAction, bool bHistory /*=true*/)
 {
 	bool bGroupFlag = false;
-	if (bHistory)
-	{
-		if (!m_bUndoGroup)
-		{
-			BeginUndoGroup ();
-			bGroupFlag = true;
-		} 
-	}
+	int bFirstLineGhost = ((GetLineFlags(nLine) & LF_GHOST) != 0);
 
-	// save line revision numbers for undo
-	CDWordArray *paSavedRevisonNumbers = new CDWordArray;
-	paSavedRevisonNumbers->SetSize(1);
-	(*paSavedRevisonNumbers)[0] = m_aLines[nLine].m_dwRevisionNumber;
+	if (bFirstLineGhost && cchText > 0 && !LineInfo::IsEol(pszText[cchText - 1]))
+	{
+		CString text = GetStringEol(GetCRLFMode());
+		if (bHistory && !m_bUndoGroup)
+		{
+			BeginUndoGroup();
+			bGroupFlag = true;
+		}
+		CCrystalTextBuffer::InsertText(pSource, nLine, 0, text, text.GetLength(), nEndLine, nEndChar, 0, bHistory);
+	}
 
 	if (!CCrystalTextBuffer::InsertText (pSource, nLine, nPos, pszText,
 		cchText, nEndLine, nEndChar, nAction, bHistory))
 	{
-		delete paSavedRevisonNumbers;
 		return false;
 	}
-
-	// set WinMerge flags
-	int bFirstLineGhost = ((GetLineFlags(nLine) & LF_GHOST) != 0);
 
 	// when inserting an EOL terminated text into a ghost line,
 	// there is a dicrepancy between nInsertedLines and nEndLine-nRealLine
@@ -704,19 +347,6 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 		RecomputeRealityMapping();
 	}
 
-	RecomputeEOL (pSource, nLine, nEndLine);
-	if (bHistory == false)
-	{
-		delete paSavedRevisonNumbers;
-		return true;
-	}
-
-	// little trick as we share the m_nUndoPosition with the base class
-	ASSERT (  m_nUndoPosition > 0);
-	m_nUndoPosition --;
-	AddUndoRecord (true, CPoint (nPos, nLine), CPoint (nEndChar, nEndLine),
-		pszText, cchText, nRealLinesCreated, nAction, paSavedRevisonNumbers);
-
 	if (bGroupFlag)
 		FlushUndoGroup (pSource);
 
@@ -726,128 +356,41 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 	return true;
 }
 
-/**
- * @brief Remove text from the buffer.
- * @param [in] pSource View from which to remove the text.
- * @param [in] nLine Line number (apparent/screen) where the deletion starts.
- * @param [in] nPos Character position where the deletion starts.
- * @param [in] nEndLine Line number (apparent/screen) where the deletion ends.
- * @param [out] nEndChar Character position where the deletion ends.
- * @param [in] nAction Edit action.
- * @param [in] bHistory Save insertion for undo/redo?
- * @return true if the deletion succeeded, false otherwise.
- */
-bool CGhostTextBuffer::DeleteText (CCrystalTextView * pSource, int nStartLine,
-		int nStartChar, int nEndLine, int nEndChar, int nAction,
-		bool bHistory /*=true*/, bool bExcludeInvisibleLines /*=true*/)
+CDWordArray *CGhostTextBuffer::
+CopyRevisionNumbers(int nStartLine, int nEndLine) const
 {
-	// If we want to add undo record, but haven't created undo group yet,
-	// create new group for this action. It gets flushed at end of the
-	// function.
-	bool bGroupFlag = false;
-	if (bHistory)
+	CDWordArray *paSavedRevisonNumbers = CCrystalTextBuffer::CopyRevisionNumbers(nStartLine, nEndLine);
+	for (int nLine = nEndLine; nLine >= nStartLine; --nLine)
 	{
-		if (!m_bUndoGroup)
-		{
-			BeginUndoGroup ();
-			bGroupFlag = true;
-		} 
+		if ((GetLineFlags(nLine) & LF_GHOST) != 0)
+			paSavedRevisonNumbers->RemoveAt(nLine - nStartLine);
 	}
-
-	if (bExcludeInvisibleLines && pSource && pSource->GetEnableHideLines ())
+	if ((GetLineFlags(nEndLine) & LF_GHOST) != 0)
 	{
-		for (int nLineIndex = nEndLine; nLineIndex >= nStartLine; nLineIndex--)
-		{
-			if (!(GetLineFlags (nLineIndex) & LF_INVISIBLE))
+		for (int nLine = nEndLine + 1; nLine < GetLineCount(); ++nLine)
+			if ((GetLineFlags(nLine) & LF_GHOST) == 0)
 			{
-				int nEndLine2 = nLineIndex;
-				int nStartLine2;
-				for (nStartLine2 = nLineIndex - 1; nStartLine2 >= nStartLine; nStartLine2--)
-				{
-					if (GetLineFlags (nStartLine2) & LF_INVISIBLE)
-						break;
-				}  
-				nStartLine2++;
-				nLineIndex = nStartLine2;
-				int nStartChar2 = (nStartLine == nStartLine2) ? nStartChar : 0;
-				int nEndChar2;
-				if (nEndLine == nEndLine2)
-					nEndChar2 = nEndChar;
-				else
-				{
-					nEndChar2 = 0;
-					nEndLine2++;
-				}
-				if (!DeleteText2 (pSource, nStartLine2, nStartChar2, nEndLine2, nEndChar2, nAction, bHistory))
-					return false;
+				paSavedRevisonNumbers->Add(GetLineFlags(nLine));
+				break;
 			}
-		}
 	}
-	else
-	{
-		if (!DeleteText2 (pSource, nStartLine, nStartChar, nEndLine, nEndChar, nAction, bHistory))
-			return false;
-	}
-
-	if (bGroupFlag)
-		FlushUndoGroup (pSource);
-
-	return true;
+	return paSavedRevisonNumbers;
 }
 
 bool CGhostTextBuffer::
 DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, int nAction, bool bHistory /*=true*/)
 {
-	// save line revision numbers for undo
-	CDWordArray *paSavedRevisonNumbers = new CDWordArray;
-	paSavedRevisonNumbers->SetSize(nEndLine - nStartLine + 1);
-	int i, j;
-	for (i = 0, j = 0; i < nEndLine - nStartLine + 1; i++)
-	{
-		DWORD dwLineFlag = GetLineFlags(nStartLine + i);
-		if (!(dwLineFlag & LF_GHOST))
-			(*paSavedRevisonNumbers)[j++] = m_aLines[nStartLine + i].m_dwRevisionNumber;
-	}
-	paSavedRevisonNumbers->SetSize(j);
-
-	// flags are going to be deleted so we store them now
-	int bLastLineGhost = ((GetLineFlags(nEndLine) & LF_GHOST) != 0);
-	int bFirstLineGhost = ((GetLineFlags(nStartLine) & LF_GHOST) != 0);
-	// count the number of real lines in the deleted block (for first/last line,
-	// include partial real lines)
-	int nRealLinesInDeletedBlock = ComputeRealLine(nEndLine) - ComputeRealLine(nStartLine);
-	if (!bLastLineGhost)
-		nRealLinesInDeletedBlock ++;
-
 	CString sTextToDelete;
 	GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
-	if (!CCrystalTextBuffer::DeleteText (pSource, nStartLine, nStartChar,
+	if (!CCrystalTextBuffer::DeleteText2 (pSource, nStartLine, nStartChar,
 		nEndLine, nEndChar, nAction, bHistory))
 	{
-		delete paSavedRevisonNumbers;
 		return false;
 	}
 
 	if (nStartChar != 0 || nEndChar != 0)
 		OnNotifyLineHasBeenEdited(nStartLine);
-	// update line revision numbers of modified lines
-	if (nStartChar != 0 || nEndChar != 0)
-		m_aLines[nStartLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
-
-	// the first line inherits the status of the last one 
-	// but exception... if the last line is a ghost, we preserve the status of the first line
-	// (then if we use backspace in a ghost line, we don't delete the previous line)
-//	if (bLastLineGhost == false)
-//		SetLineFlag(nStartLine, LF_GHOST, false, false, false);
-//	else
-//	{
-//		int bFlagException = (bFirstLineGhost == 0);
-//		if (bFlagException)
-//			SetLineFlag(nStartLine, LF_GHOST, false, false, false);
-//		else
-//			SetLineFlag(nStartLine, LF_GHOST, true, false, false);
-//	}
 
 	// now we can recompute
 	if (nStartLine != nEndLine)
@@ -855,21 +398,7 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 		// TODO: Be smarter, and don't recompute if it is easy to see what changed
 		RecomputeRealityMapping();
 	}
-
-	RecomputeEOL (pSource, nStartLine, nStartLine);
-	if (bHistory == false)
-	{
-		delete paSavedRevisonNumbers;
-		return true;
-	}
-
-	// little trick as we share the m_nUndoPosition with the base class
-	ASSERT (  m_nUndoPosition > 0);
-	m_nUndoPosition --;
-	AddUndoRecord (false, CPoint (nStartChar, nStartLine), CPoint (0, -1),
-			sTextToDelete, sTextToDelete.GetLength(), nRealLinesInDeletedBlock,
-			 nAction, paSavedRevisonNumbers);
-
+		
 	return true;
 }
 
@@ -947,34 +476,8 @@ int CGhostTextBuffer::ApparentLastRealLine() const
  */
 int CGhostTextBuffer::ComputeRealLine(int nApparentLine) const
 {
-	const int size = m_RealityBlocks.size();
-	if (size == 0)
-		return 0;
-
-	// after last apparent line ?
-	ASSERT(nApparentLine < GetLineCount());
-
-	// after last block ?
-	const RealityBlock &maxblock = m_RealityBlocks.back();
-	if (nApparentLine >= maxblock.nStartApparent + maxblock.nCount)
-		return maxblock.nStartReal + maxblock.nCount;
-
-	// binary search to find correct (or nearest block)
-	int blo = 0;
-	int bhi = size - 1;
-	while (blo <= bhi)
-	{
-		int i = (blo + bhi) / 2;
-		const RealityBlock &block = m_RealityBlocks[i];
-		if (nApparentLine < block.nStartApparent)
-			bhi = i - 1;
-		else if (nApparentLine >= block.nStartApparent + block.nCount)
-			blo = i + 1;
-		else // found it inside this block
-			return (nApparentLine - block.nStartApparent) + block.nStartReal;
-	}
-	// it is a ghost line just before block blo
-	return m_RealityBlocks[blo].nStartReal;
+	int decToReal;
+	return ComputeRealLineAndGhostAdjustment(nApparentLine, decToReal);
 }
 
 /**
@@ -1199,59 +702,6 @@ inReality:
 	goto inReality;
 }
 
-/** we recompute EOL from the real line before nStartLine to nEndLine */
-void CGhostTextBuffer::RecomputeEOL(CCrystalTextView * pSource, int nStartLine, int nEndLine)
-{
-	if (ApparentLastRealLine() <= nEndLine)
-	{
-		// EOL may have to change on the real line before nStartLine
-		int nRealBeforeStart;
-		for (nRealBeforeStart = nStartLine-1 ; nRealBeforeStart >= 0 ; nRealBeforeStart--)
-			if ((GetLineFlags(nRealBeforeStart) & LF_GHOST) == 0)
-				break;
-		if (nRealBeforeStart >= 0)
-			nStartLine = nRealBeforeStart;
-	}
-	int bLastRealLine = (ApparentLastRealLine() <= nEndLine);
-	for (int i = nEndLine ; i >= nStartLine ; i --)
-	{
-		if ((GetLineFlags(i) & LF_GHOST) == 0)
-		{
-			if (bLastRealLine)
-			{
-				bLastRealLine = 0;
-				if (m_aLines[i].HasEol()) 
-				{
-					// if the last real line has an EOL, remove it
-					m_aLines[i].RemoveEol();
-					if (pSource != NULL)
-						UpdateViews (pSource, NULL, UPDATE_HORZRANGE | UPDATE_SINGLELINE, i);
-				}
-			}
-			else
-			{
-				if (!m_aLines[i].HasEol()) 
-				{
-					// if a real line (not the last) has no EOL, add one
-					AppendLine (i, GetDefaultEol(), (int) _tcslen(GetDefaultEol()));
-					if (pSource != NULL)
-						UpdateViews (pSource, NULL, UPDATE_HORZRANGE | UPDATE_SINGLELINE, i);
-				}
-			}
-		}
-		else 
-		{
-			if (m_aLines[i].HasEol()) 
-			{
-				// if a ghost line has an EOL, remove it
-				m_aLines[i].RemoveEol();
-				if (pSource != NULL)
-					UpdateViews (pSource, NULL, UPDATE_HORZRANGE | UPDATE_SINGLELINE, i);
-			}
-		}
-	}
-}
-
 /** 
 Check all lines, and ASSERT if reality blocks differ from flags. 
 This means that this only has effect in DEBUG build
@@ -1278,4 +728,37 @@ void CGhostTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 	return;
 }
 
+static int CountEol(LPCTSTR pszText, int cchText)
+{
+	int nEol = 0;
+	for (int nTextPos = 0; nTextPos < cchText; ++nTextPos)
+	{
+		if (LineInfo::IsEol(pszText[nTextPos]))
+		{
+			if (nTextPos + 1 < cchText && LineInfo::IsDosEol(&pszText[nTextPos]))
+				++nTextPos;
+			++nEol;
+		}
+	}
+	return nEol;
+}
+
+void CGhostTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
+	const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
+	int nActionType /*= CE_ACTION_UNKNOWN*/,
+	CDWordArray *paSavedRevisonNumbers)
+{
+	CPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
+	CPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + CountEol(pszText, cchText));
+	CCrystalTextBuffer::AddUndoRecord(bInsert, real_ptStartPos, real_ptEndPos, pszText,
+		cchText, nActionType, paSavedRevisonNumbers);
+}
+
+UndoRecord CGhostTextBuffer::GetUndoRecord(int nUndoPos) const
+{
+	UndoRecord ur = m_aUndoBuf[nUndoPos];
+	ur.m_ptStartPos.y = ComputeApparentLine(ur.m_ptStartPos.y, 0);
+	ur.m_ptEndPos.y = ur.m_ptStartPos.y + (m_aUndoBuf[nUndoPos].m_ptEndPos.y - m_aUndoBuf[nUndoPos].m_ptStartPos.y);
+	return ur;
+}
 
