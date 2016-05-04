@@ -69,8 +69,6 @@ bool CGhostTextBuffer::InternalInsertGhostLine (CCrystalTextView * pSource,
 	//  You must call InitNew() or LoadFromFile() first!
 
 	ASSERT (nLine >= 0 && nLine <= m_aLines.size ());
-	if (m_bReadOnly)
-		return false;
 
 	CInsertContext context;
 	context.m_ptStart.x = 0;
@@ -81,9 +79,6 @@ bool CGhostTextBuffer::InternalInsertGhostLine (CCrystalTextView * pSource,
 	CCrystalTextBuffer::InsertLine (_T(""), 0, nLine);
 	if (pSource != NULL)
 		UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nLine);
-
-	if (!m_bModified)
-		SetModified (true);
 
 	return true;
 }
@@ -103,8 +98,6 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 	//  You must call InitNew() or LoadFromFile() first!
 	ASSERT (nLine >= 0 && nLine <= m_aLines.size ());
 
-	if (m_bReadOnly)
-		return false;
 	if (nCount == 0)
 		return true;
 
@@ -139,9 +132,6 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 					nLine);
 		}
 	}
-
-	if (!m_bModified)
-		SetModified (true);
 
 	return true;
 }
