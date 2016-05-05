@@ -1412,9 +1412,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
         }
 
       // restore line revision numbers
-      int naSavedRevisonNumbersSize = (int) ur.m_paSavedRevisonNumbers->GetSize();
-      for (int i = 0; i < naSavedRevisonNumbersSize; i++)
-        m_aLines[ur.m_ptStartPos.y + i].m_dwRevisionNumber = (*ur.m_paSavedRevisonNumbers)[i];
+      RestoreRevisionNumbers(ur.m_ptStartPos.y, ur.m_paSavedRevisonNumbers);
 
       if (ur.m_dwFlags & UNDO_BEGINGROUP)
         break;
@@ -1697,6 +1695,13 @@ CopyRevisionNumbers(int nStartLine, int nEndLine) const
   for (int i = 0; i < nEndLine - nStartLine + 1; i++)
     (*paSavedRevisonNumbers)[i] = m_aLines[nStartLine + i].m_dwRevisionNumber;
   return paSavedRevisonNumbers;
+}
+
+void CCrystalTextBuffer::
+RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisonNumbers)
+{
+  for (int i = 0; i < paSavedRevisonNumbers->GetSize(); i++)
+	m_aLines[nStartLine + i].m_dwRevisionNumber = (*paSavedRevisonNumbers)[i];
 }
 
 bool CCrystalTextBuffer::

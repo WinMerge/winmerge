@@ -187,6 +187,7 @@ public :
     virtual UndoRecord GetUndoRecord (int nUndoPos) const;
 
     virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const;
+    virtual void RestoreRevisionNumbers(int nStartLine, CDWordArray *psaSavedRevisionNumbers);
 
     //  Overridable: provide action description
     virtual bool GetActionDescription (int nAction, CString & desc) const;
