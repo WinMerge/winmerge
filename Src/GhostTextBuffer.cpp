@@ -367,6 +367,19 @@ CopyRevisionNumbers(int nStartLine, int nEndLine) const
 	return paSavedRevisonNumbers;
 }
 
+void CGhostTextBuffer::
+RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisonNumbers)
+{
+	for (int i = 0, j = 0; i < paSavedRevisonNumbers->GetSize(); j++)
+	{
+		if ((GetLineFlags(nStartLine + j) & LF_GHOST) == 0)
+		{
+			m_aLines[nStartLine + j].m_dwRevisionNumber = (*paSavedRevisonNumbers)[i];
+			++i;
+		}
+	}
+}
+
 bool CGhostTextBuffer::
 DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, int nAction, bool bHistory /*=true*/)
