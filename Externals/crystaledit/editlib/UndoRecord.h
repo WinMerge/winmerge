@@ -16,7 +16,7 @@ public:
   DWORD m_dwFlags;
   CPoint m_ptStartPos, m_ptEndPos;  //  Block of text participating
   int m_nAction;            //  For information only: action type
-  CDWordArray *m_paSavedRevisonNumbers;
+  CDWordArray *m_paSavedRevisionNumbers;
 
 private:
   //  TCHAR   *m_pcText;
@@ -43,7 +43,7 @@ private:
   UndoRecord () // default constructor
     : m_dwFlags(0)
     , m_nAction(0)
-    , m_paSavedRevisonNumbers(NULL)
+    , m_paSavedRevisionNumbers(NULL)
     , m_pszText(NULL)
   {
   }
@@ -51,7 +51,7 @@ private:
   UndoRecord (const UndoRecord & src) // copy constructor
     : m_dwFlags(0)
     , m_nAction(0)
-    , m_paSavedRevisonNumbers(NULL)
+    , m_paSavedRevisionNumbers(NULL)
     , m_pszText(NULL)
   {
     Clone(src);
@@ -68,8 +68,8 @@ private:
   virtual ~UndoRecord () // destructor
   {
     FreeText();
-    if (m_paSavedRevisonNumbers)
-    delete m_paSavedRevisonNumbers;
+    if (m_paSavedRevisionNumbers)
+    delete m_paSavedRevisionNumbers;
   }
 
   void SetText (LPCTSTR pszText, int cchText);

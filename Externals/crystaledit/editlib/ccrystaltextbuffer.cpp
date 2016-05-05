@@ -1412,7 +1412,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
         }
 
       // restore line revision numbers
-      RestoreRevisionNumbers(ur.m_ptStartPos.y, ur.m_paSavedRevisonNumbers);
+      RestoreRevisionNumbers(ur.m_ptStartPos.y, ur.m_paSavedRevisionNumbers);
 
       if (ur.m_dwFlags & UNDO_BEGINGROUP)
         break;
@@ -1489,7 +1489,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 void CCrystalTextBuffer::
 AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
     const CPoint & ptEndPos, LPCTSTR pszText, int cchText, int nActionType,
-    CDWordArray *paSavedRevisonNumbers)
+    CDWordArray *paSavedRevisionNumbers)
 {
   //  Forgot to call BeginUndoGroup()?
   ASSERT (m_bUndoGroup);
@@ -1514,7 +1514,7 @@ AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
   ur.m_ptStartPos = ptStartPos;
   ur.m_ptEndPos = ptEndPos;
   ur.SetText (pszText, cchText);
-  ur.m_paSavedRevisonNumbers = paSavedRevisonNumbers;
+  ur.m_paSavedRevisionNumbers = paSavedRevisionNumbers;
 
   // Optimize memory allocation
   if (m_aUndoBuf.capacity() == m_aUndoBuf.size())
@@ -1580,13 +1580,13 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
     bool bHistory /*=true*/)
 {
   // save line revision numbers for undo
-  CDWordArray *paSavedRevisonNumbers = new CDWordArray;
-  paSavedRevisonNumbers->SetSize(1);
-  (*paSavedRevisonNumbers)[0] = m_aLines[nLine].m_dwRevisionNumber;
+  CDWordArray *paSavedRevisionNumbers = new CDWordArray;
+  paSavedRevisionNumbers->SetSize(1);
+  (*paSavedRevisionNumbers)[0] = m_aLines[nLine].m_dwRevisionNumber;
 
   if (!InternalInsertText (pSource, nLine, nPos, pszText, cchText, nEndLine, nEndChar))
   {
-    delete paSavedRevisonNumbers;
+    delete paSavedRevisionNumbers;
     return false;
   }
 
@@ -1599,7 +1599,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 
   if (bHistory == false)
   {
-    delete paSavedRevisonNumbers;
+    delete paSavedRevisionNumbers;
     return true;
   }
 
@@ -1611,7 +1611,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
     }
 
   AddUndoRecord (true, CPoint (nPos, nLine), CPoint (nEndChar, nEndLine),
-                 pszText, cchText, nAction, paSavedRevisonNumbers);
+                 pszText, cchText, nAction, paSavedRevisionNumbers);
 
   if (bGroupFlag)
     FlushUndoGroup (pSource);
@@ -1690,18 +1690,18 @@ CDWordArray *CCrystalTextBuffer::
 CopyRevisionNumbers(int nStartLine, int nEndLine) const
 {
   // save line revision numbers for undo
-  CDWordArray *paSavedRevisonNumbers = new CDWordArray;
-  paSavedRevisonNumbers->SetSize(nEndLine - nStartLine + 1);
+  CDWordArray *paSavedRevisionNumbers = new CDWordArray;
+  paSavedRevisionNumbers->SetSize(nEndLine - nStartLine + 1);
   for (int i = 0; i < nEndLine - nStartLine + 1; i++)
-    (*paSavedRevisonNumbers)[i] = m_aLines[nStartLine + i].m_dwRevisionNumber;
-  return paSavedRevisonNumbers;
+    (*paSavedRevisionNumbers)[i] = m_aLines[nStartLine + i].m_dwRevisionNumber;
+  return paSavedRevisionNumbers;
 }
 
 void CCrystalTextBuffer::
-RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisonNumbers)
+RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers)
 {
-  for (int i = 0; i < paSavedRevisonNumbers->GetSize(); i++)
-	m_aLines[nStartLine + i].m_dwRevisionNumber = (*paSavedRevisonNumbers)[i];
+  for (int i = 0; i < paSavedRevisionNumbers->GetSize(); i++)
+	m_aLines[nStartLine + i].m_dwRevisionNumber = (*paSavedRevisionNumbers)[i];
 }
 
 bool CCrystalTextBuffer::
@@ -1712,11 +1712,11 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
 
   // save line revision numbers for undo
-  CDWordArray *paSavedRevisonNumbers = CopyRevisionNumbers(nStartLine, nEndLine);
+  CDWordArray *paSavedRevisionNumbers = CopyRevisionNumbers(nStartLine, nEndLine);
 
   if (!InternalDeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar))
   {
-    delete paSavedRevisonNumbers;
+    delete paSavedRevisionNumbers;
     return false;
   }
 
@@ -1726,12 +1726,12 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 
   if (bHistory == false)
   {
-    delete paSavedRevisonNumbers;
+    delete paSavedRevisionNumbers;
     return true;
   }
 
   AddUndoRecord (false, CPoint (nStartChar, nStartLine), CPoint (nEndChar, nEndLine),
-                 sTextToDelete, sTextToDelete.GetLength(), nAction, paSavedRevisonNumbers);
+                 sTextToDelete, sTextToDelete.GetLength(), nAction, paSavedRevisionNumbers);
 
   return true;
 }

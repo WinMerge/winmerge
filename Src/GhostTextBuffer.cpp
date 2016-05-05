@@ -349,32 +349,32 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 CDWordArray *CGhostTextBuffer::
 CopyRevisionNumbers(int nStartLine, int nEndLine) const
 {
-	CDWordArray *paSavedRevisonNumbers = CCrystalTextBuffer::CopyRevisionNumbers(nStartLine, nEndLine);
+	CDWordArray *paSavedRevisionNumbers = CCrystalTextBuffer::CopyRevisionNumbers(nStartLine, nEndLine);
 	for (int nLine = nEndLine; nLine >= nStartLine; --nLine)
 	{
 		if ((GetLineFlags(nLine) & LF_GHOST) != 0)
-			paSavedRevisonNumbers->RemoveAt(nLine - nStartLine);
+			paSavedRevisionNumbers->RemoveAt(nLine - nStartLine);
 	}
 	if ((GetLineFlags(nEndLine) & LF_GHOST) != 0)
 	{
 		for (int nLine = nEndLine + 1; nLine < GetLineCount(); ++nLine)
 			if ((GetLineFlags(nLine) & LF_GHOST) == 0)
 			{
-				paSavedRevisonNumbers->Add(GetLineFlags(nLine));
+				paSavedRevisionNumbers->Add(GetLineFlags(nLine));
 				break;
 			}
 	}
-	return paSavedRevisonNumbers;
+	return paSavedRevisionNumbers;
 }
 
 void CGhostTextBuffer::
-RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisonNumbers)
+RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers)
 {
-	for (int i = 0, j = 0; i < paSavedRevisonNumbers->GetSize(); j++)
+	for (int i = 0, j = 0; i < paSavedRevisionNumbers->GetSize(); j++)
 	{
 		if ((GetLineFlags(nStartLine + j) & LF_GHOST) == 0)
 		{
-			m_aLines[nStartLine + j].m_dwRevisionNumber = (*paSavedRevisonNumbers)[i];
+			m_aLines[nStartLine + j].m_dwRevisionNumber = (*paSavedRevisionNumbers)[i];
 			++i;
 		}
 	}
@@ -748,12 +748,12 @@ static int CountEol(LPCTSTR pszText, int cchText)
 void CGhostTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 	const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
 	int nActionType /*= CE_ACTION_UNKNOWN*/,
-	CDWordArray *paSavedRevisonNumbers)
+	CDWordArray *paSavedRevisionNumbers)
 {
 	CPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
 	CPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + CountEol(pszText, cchText));
 	CCrystalTextBuffer::AddUndoRecord(bInsert, real_ptStartPos, real_ptEndPos, pszText,
-		cchText, nActionType, paSavedRevisonNumbers);
+		cchText, nActionType, paSavedRevisionNumbers);
 }
 
 UndoRecord CGhostTextBuffer::GetUndoRecord(int nUndoPos) const
