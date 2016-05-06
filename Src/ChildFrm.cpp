@@ -336,7 +336,7 @@ static BOOL CALLBACK EnumChildProc(HWND hwnd, LPARAM lParam)
 	}
 	else
 	{
-		BOOL bHidden = (BOOL)RemoveProp(hwnd, _T("Hidden"));
+		BOOL bHidden = static_cast<BOOL>(reinterpret_cast<uintptr_t>(RemoveProp(hwnd, _T("Hidden"))));
 		if (!bHidden)
 			::SendMessage(hwnd, WM_SETREDRAW, (WPARAM)lParam, 0);
 	}

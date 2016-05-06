@@ -61,7 +61,7 @@ END_MESSAGE_MAP()
  */
 int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFilepath)
 {
-	int iBegin = 0;
+	size_t iBegin = 0;
 	int nLines = 1;
 	
 	while (1)
@@ -69,11 +69,11 @@ int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFilepath)
 		String line;
 
 		// find the next truncation point
-		int iEndMin = 0;
-		int iEndMax = sFilepath.length() - iBegin + 1;
+		size_t iEndMin = 0;
+		size_t iEndMax = sFilepath.length() - iBegin + 1;
 		while(1)
 		{
-			int iEnd = (iEndMin + iEndMax) / 2;
+			size_t iEnd = (iEndMin + iEndMax) / 2;
 			if (iEnd == iEndMin)
 				break;
 			line = sFilepath.substr(iBegin, iEnd);
@@ -93,7 +93,7 @@ int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFilepath)
 
 		// truncate the text to the previous "\" if possible
 		line = sFilepath.substr(iBegin, iEndMin);
-		int lastSlash = line.rfind('\\');
+		size_t lastSlash = line.rfind('\\');
 		if (lastSlash != String::npos)
 			iEndMin = lastSlash + 1;
 
@@ -221,9 +221,9 @@ const String& CFilepathEdit::GetUpdatedTipText(CDC * pDC, int maxWidth)
  *
  * @note The standard Copy function works with the (compacted) windowText 
  */
-void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
+void CFilepathEdit::CustomCopy(size_t iBegin, size_t iEnd /*=-1*/)
 {
-	if (iEnd == -1)
+	if (iEnd == String::npos)
 		iEnd = m_sOriginalText.length();
 
 	PutToClipboard(m_sOriginalText.substr(iBegin, iEnd - iBegin), m_hWnd);
@@ -267,7 +267,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			TPM_NONOTIFY  | TPM_RETURNCMD, point.x, point.y, AfxGetMainWnd());
 
 		// compute the beginning of the text to copy (in OriginalText)
-		int iBegin = 0;
+		size_t iBegin = 0;
 		switch (command)
 		{
 		case ID_EDITOR_COPY:
@@ -301,9 +301,9 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 
 static COLORREF GetDarkenColor(COLORREF a, double r)
 {
-	const int R = GetRValue(a) * r;
-	const int G = GetGValue(a) * r;
-	const int B = GetBValue(a) * r;
+	const int R = static_cast<int>(GetRValue(a) * r);
+	const int G = static_cast<int>(GetGValue(a) * r);
+	const int B = static_cast<int>(GetBValue(a) * r);
 	return RGB(R, G, B);
 }
 

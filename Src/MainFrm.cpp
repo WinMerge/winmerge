@@ -556,10 +556,10 @@ void CMainFrame::OnMeasureItem(int nIDCtl,
 	BOOL setflag = FALSE;
 	if (lpMeasureItemStruct->CtlType == ODT_MENU)
 	{
-		if (IsMenu((HMENU)lpMeasureItemStruct->itemID))
+		if (IsMenu(reinterpret_cast<HMENU>(static_cast<uintptr_t>(lpMeasureItemStruct->itemID))))
 		{
 			CMenu* cmenu =
-				CMenu::FromHandle((HMENU)lpMeasureItemStruct->itemID);
+				CMenu::FromHandle(reinterpret_cast<HMENU>(static_cast<uintptr_t>(lpMeasureItemStruct->itemID)));
 
 			if (m_pMenus[MENU_DEFAULT]->IsMenu(cmenu))
 			{
