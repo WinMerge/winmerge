@@ -709,7 +709,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	theApp.TranslateMenu(menuPluginsHolder.m_hMenu);
 	String s = _("Plugin Settings");
 	pPopup->AppendMenu(MF_SEPARATOR);
-	pPopup->AppendMenu(MF_POPUP, (int)menuPluginsHolder.m_hMenu, s.c_str());
+	pPopup->AppendMenu(MF_POPUP, static_cast<int>(reinterpret_cast<uintptr_t>(menuPluginsHolder.m_hMenu)), s.c_str());
 
 	CFrameWnd *pFrame = GetTopLevelFrame();
 	ASSERT(pFrame != NULL);
@@ -1625,10 +1625,10 @@ void CDirView::DoOpen(SIDE_TYPE stype)
 	if (sel == -1) return;
 	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
 	if (file.empty()) return;
-	int rtn = (int)ShellExecute(::GetDesktopWindow(), _T("edit"), file.c_str(), 0, 0, SW_SHOWNORMAL);
-	if (rtn==SE_ERR_NOASSOC)
-		rtn = (int)ShellExecute(::GetDesktopWindow(), _T("open"), file.c_str(), 0, 0, SW_SHOWNORMAL);
-	if (rtn==SE_ERR_NOASSOC)
+	HINSTANCE rtn = ShellExecute(::GetDesktopWindow(), _T("edit"), file.c_str(), 0, 0, SW_SHOWNORMAL);
+	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
+		rtn = ShellExecute(::GetDesktopWindow(), _T("open"), file.c_str(), 0, 0, SW_SHOWNORMAL);
+	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
 		DoOpenWith(stype);
 }
 

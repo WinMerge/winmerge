@@ -938,7 +938,7 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 		if (mii.hSubMenu)
 		{
 			TranslateMenu(mii.hSubMenu);
-			mii.wID = reinterpret_cast<UINT>(mii.hSubMenu);
+			mii.wID = static_cast<UINT>(reinterpret_cast<uintptr_t>(mii.hSubMenu));
 		}
 		if (BCMenuData *pItemData = reinterpret_cast<BCMenuData *>(mii.dwItemData))
 		{

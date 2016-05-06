@@ -3289,12 +3289,12 @@ void CMergeEditView::OnOpenFile()
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
 		return;
-	int rtn = (int)ShellExecute(::GetDesktopWindow(), _T("edit"), sFileName.c_str(),
+	HINSTANCE rtn = ShellExecute(::GetDesktopWindow(), _T("edit"), sFileName.c_str(),
 			0, 0, SW_SHOWNORMAL);
-	if (rtn==SE_ERR_NOASSOC)
-		rtn = (int)ShellExecute(::GetDesktopWindow(), _T("open"), sFileName.c_str(),
+	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
+		rtn = ShellExecute(::GetDesktopWindow(), _T("open"), sFileName.c_str(),
 			 0, 0, SW_SHOWNORMAL);
-	if (rtn==SE_ERR_NOASSOC)
+	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
 		OnOpenFileWith();
 }
 

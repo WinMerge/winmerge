@@ -54,7 +54,7 @@ protected:
 	void GetOriginalText( String& rString ) const;
 
 private:
-	void CustomCopy(int iBegin, int iEnd =-1);
+	void CustomCopy(size_t iBegin, size_t iEnd = String::npos);
 
 	String m_sToolTipString; /**< buffer for return data from GetUpdatedTipText */
 	String m_sOriginalText; /**< Full path that was given to control */

@@ -166,7 +166,7 @@ namespace
 	HRESULT GetFileItemsFromIDataObject_ShellIDList(IDataObject *pDataObj, std::vector<String>& root_files)
 	{
 		String tmpdir;
-		FORMATETC fmtetc_filedescriptor = { RegisterClipboardFormat(CFSTR_SHELLIDLIST), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+		FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_SHELLIDLIST)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 		STGMEDIUM medium = { 0 };
 		HRESULT hr;
 		if ((hr = pDataObj->GetData(&fmtetc_filedescriptor, &medium)) == S_OK)
@@ -229,7 +229,7 @@ namespace
 
 	HRESULT ExtractFileItemFromIDataObject_FileContents(IDataObject *pDataObj, int lindex, const String& filepath)
 	{
-		FORMATETC fmtetc_filecontents = { RegisterClipboardFormat(CFSTR_FILECONTENTS), NULL, DVASPECT_CONTENT, lindex, TYMED_HGLOBAL | TYMED_ISTREAM };
+		FORMATETC fmtetc_filecontents = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILECONTENTS)), NULL, DVASPECT_CONTENT, lindex, TYMED_HGLOBAL | TYMED_ISTREAM };
 		STGMEDIUM medium = { 0 };
 		HRESULT hr;
 		if ((hr = pDataObj->GetData(&fmtetc_filecontents, &medium)) == S_OK)
@@ -247,7 +247,7 @@ namespace
 	HRESULT GetFileItemsFromIDataObject_FileDescriptor(IDataObject *pDataObj, std::vector<String>& root_files)
 	{
 		String tmpdir = env_GetTempChildPath();
-		FORMATETC fmtetc_filedescriptor = { RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+		FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 		STGMEDIUM medium = { 0 };
 		HRESULT hr;
 		if ((hr = pDataObj->GetData(&fmtetc_filedescriptor, &medium)) == S_OK)
@@ -317,8 +317,8 @@ ULONG STDMETHODCALLTYPE DropHandler::Release(void)
 HRESULT STDMETHODCALLTYPE DropHandler::DragEnter(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
 {
 	FORMATETC fmtetc_cf_hdrop = { CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
-	FORMATETC fmtetc_shellidlist = { RegisterClipboardFormat(CFSTR_SHELLIDLIST), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
-	FORMATETC fmtetc_filedescriptor = { RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+	FORMATETC fmtetc_shellidlist = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_SHELLIDLIST)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+	FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 	if (pDataObj->QueryGetData(&fmtetc_cf_hdrop) == S_OK ||
 	    pDataObj->QueryGetData(&fmtetc_shellidlist) == S_OK ||
 	    pDataObj->QueryGetData(&fmtetc_filedescriptor) == S_OK)
@@ -346,8 +346,8 @@ HRESULT DropHandler::Drop(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, D
 	CWaitCursor waitstatus;
 	std::vector<String> files;
 	FORMATETC fmtetc_cf_hdrop = { CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
-	FORMATETC fmtetc_shellidlist = { RegisterClipboardFormat(CFSTR_SHELLIDLIST), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
-	FORMATETC fmtetc_filedescriptor = { RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+	FORMATETC fmtetc_shellidlist = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_SHELLIDLIST)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+	FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 	if (pDataObj->QueryGetData(&fmtetc_cf_hdrop) == S_OK &&
 		GetFileItemsFromIDataObject_CF_HDROP(pDataObj, files) == S_OK && files.size() > 0)
 		ok = true;
