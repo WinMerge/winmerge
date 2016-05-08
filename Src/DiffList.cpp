@@ -36,8 +36,6 @@ void DIFFRANGE::swap_sides(int index1, int index2)
 {
 	swap(begin[index1], begin[index2]);
 	swap(end[index1], end[index2]);
-	swap(dbegin[index1], dbegin[index2]);
-	swap(dend[index1], dend[index2]);
 	swap(blank[index1], blank[index2]);
 }
 
@@ -249,9 +247,9 @@ bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 int DiffList::LineRelDiff(int nLine, int nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
-	if (static_cast<int>(nLine) < dfi->dbegin[0])
+	if (static_cast<int>(nLine) < dfi->dbegin)
 		return -1;
-	else if (static_cast<int>(nLine) > dfi->dend[0])
+	else if (static_cast<int>(nLine) > dfi->dend)
 		return 1;
 	else
 		return 0;
@@ -266,7 +264,7 @@ int DiffList::LineRelDiff(int nLine, int nDiff) const
 bool DiffList::LineInDiff(int nLine, int nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
-	if (static_cast<int>(nLine) >= dfi->dbegin[0] && static_cast<int>(nLine) <= dfi->dend[0])
+	if (static_cast<int>(nLine) >= dfi->dbegin && static_cast<int>(nLine) <= dfi->dend)
 		return true;
 	else
 		return false;
@@ -284,9 +282,9 @@ int DiffList::LineToDiff(int nLine) const
 		return -1;
 
 	// First check line is not before first or after last diff
-	if (static_cast<int>(nLine) < DiffRangeAt(0)->dbegin[0])
+	if (static_cast<int>(nLine) < DiffRangeAt(0)->dbegin)
 		return -1;
-	if (static_cast<int>(nLine) > DiffRangeAt(nDiffCount-1)->dend[0])
+	if (static_cast<int>(nLine) > DiffRangeAt(nDiffCount-1)->dend)
 		return -1;
 
 	// Use binary search to search for a diff.
@@ -338,7 +336,7 @@ bool DiffList::GetPrevDiff(int nLine, int & nDiff) const
 		const int size = (int) m_diffs.size();
 		for (int i = (int) size - 1; i >= 0 ; i--)
 		{
-			if ((int)DiffRangeAt(i)->dend[0] <= nLine)
+			if ((int)DiffRangeAt(i)->dend <= nLine)
 			{
 				numDiff = i;
 				break;
@@ -370,7 +368,7 @@ bool DiffList::GetNextDiff(int nLine, int & nDiff) const
 		const int nDiffCount = (int) m_diffs.size();
 		for (int i = 0; i < nDiffCount; i++)
 		{
-			if ((int)DiffRangeAt(i)->dbegin[0] >= nLine)
+			if ((int)DiffRangeAt(i)->dbegin >= nLine)
 			{
 				numDiff = i;
 				break;
@@ -405,7 +403,7 @@ int DiffList::PrevSignificantDiffFromLine(int nLine) const
 	for (int i = size - 1; i >= 0 ; i--)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
-		if (dfi->op != OP_TRIVIAL && dfi->dend[0] <= static_cast<int>(nLine))
+		if (dfi->op != OP_TRIVIAL && dfi->dend <= static_cast<int>(nLine))
 		{
 			nDiff = i;
 			break;
@@ -427,7 +425,7 @@ int DiffList::NextSignificantDiffFromLine(int nLine) const
 	for (size_t i = 0; i < nDiffCount; i++)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
-		if (dfi->op != OP_TRIVIAL && dfi->dbegin[0] >= static_cast<int>(nLine))
+		if (dfi->op != OP_TRIVIAL && dfi->dbegin >= static_cast<int>(nLine))
 		{
 			nDiff = i;
 			break;
@@ -591,31 +589,31 @@ int DiffList::PrevSignificant3wayDiffFromLine(int nLine, int nDiffType) const
 		switch (nDiffType)
 		{
 		case THREEWAYDIFFTYPE_LEFTMIDDLE:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_3RDONLY && dfi->dend[0] <= static_cast<int>(nLine))
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_3RDONLY && dfi->dend <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_LEFTRIGHT:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_2NDONLY && dfi->dend[0] <= static_cast<int>(nLine))
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_2NDONLY && dfi->dend <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLERIGHT:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_1STONLY && dfi->dend[0] <= static_cast<int>(nLine))
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_1STONLY && dfi->dend <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_LEFTONLY:
-			if (dfi->op == OP_1STONLY && dfi->dend[0] <= static_cast<int>(nLine))
+			if (dfi->op == OP_1STONLY && dfi->dend <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLEONLY:
-			if (dfi->op == OP_2NDONLY && dfi->dend[0] <= static_cast<int>(nLine))
+			if (dfi->op == OP_2NDONLY && dfi->dend <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_RIGHTONLY:
-			if (dfi->op == OP_3RDONLY && dfi->dend[0] <= static_cast<int>(nLine))
+			if (dfi->op == OP_3RDONLY && dfi->dend <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_CONFLICT:
-			if (dfi->op == OP_DIFF && dfi->dend[0] <= nLine)
+			if (dfi->op == OP_DIFF && dfi->dend <= nLine)
 				return i;
 			break;
 		}
@@ -638,31 +636,31 @@ int DiffList::NextSignificant3wayDiffFromLine(int nLine, int nDiffType) const
 		switch (nDiffType)
 		{
 		case THREEWAYDIFFTYPE_LEFTMIDDLE:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_3RDONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_3RDONLY && dfi->dbegin >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_LEFTRIGHT:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_2NDONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_2NDONLY && dfi->dbegin >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLERIGHT:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_1STONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_1STONLY && dfi->dbegin >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_LEFTONLY:
-			if (dfi->op == OP_1STONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
+			if (dfi->op == OP_1STONLY && dfi->dbegin >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLEONLY:
-			if (dfi->op == OP_2NDONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
+			if (dfi->op == OP_2NDONLY && dfi->dbegin >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_RIGHTONLY:
-			if (dfi->op == OP_3RDONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
+			if (dfi->op == OP_3RDONLY && dfi->dbegin >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_CONFLICT:
-			if (dfi->op == OP_DIFF && dfi->dbegin[0] >= nLine)
+			if (dfi->op == OP_DIFF && dfi->dbegin >= nLine)
 				return i;
 			break;
 		}
@@ -924,7 +922,7 @@ void DiffList::GetExtraLinesCounts(int nFiles, int extras[])
 	}
 }
 
-void DiffList::AppendDiffList(const DiffList& list, int offset[], int doffset[])
+void DiffList::AppendDiffList(const DiffList& list, int offset[], int doffset)
 {
 	for (std::vector<DiffRangeInfo>::const_iterator it = list.m_diffs.begin(); it != list.m_diffs.end(); ++it)
 	{
@@ -937,10 +935,12 @@ void DiffList::AppendDiffList(const DiffList& list, int offset[], int doffset[])
 				dr.end[file] += offset[file];
 			}
 			if (doffset)
-			{
-				dr.dbegin[file] += doffset[file];
-				dr.dend[file] += doffset[file];
-			}
+				dr.blank[file] += doffset;
+		}
+		if (doffset)
+		{
+			dr.dbegin += doffset;
+			dr.dend += doffset;
 		}
 		AddDiff(dr);
 	}

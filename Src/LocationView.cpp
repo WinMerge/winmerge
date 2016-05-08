@@ -285,7 +285,7 @@ void CLocationView::CalculateBlocks()
 		int bs[4] = {0};
 		int minY = INT_MAX, maxY = -1;
 
-		bs[nBlocks++] = diff.dbegin[0];
+		bs[nBlocks++] = diff.dbegin;
 		for (i = 0; i < pDoc->m_nBuffers; i++)
 		{
 			if (diff.blank[i] >= 0)
@@ -305,7 +305,7 @@ void CLocationView::CalculateBlocks()
 			bs[nBlocks++] = minY;
 			bs[nBlocks++] = maxY;
 		}
-		bs[nBlocks] = diff.dend[0] + 1;
+		bs[nBlocks] = diff.dend + 1;
 		if (bs[nBlocks] >= nLineCount)
 			bs[nBlocks] = nLineCount - 1;
 

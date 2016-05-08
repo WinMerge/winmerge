@@ -872,12 +872,12 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 		{
 			SetCurrentDiff(i);
 			const DIFFRANGE *pdi = m_diffList.DiffRangeAt(i);
-			if (currentPosDst.y > pdi->dend[dstPane])
+			if (currentPosDst.y > pdi->dend)
 			{
 				if (pdi->blank[dstPane] >= 0)
-					currentPosDst.y -= pdi->dend[dstPane] - pdi->blank[dstPane] + 1;
+					currentPosDst.y -= pdi->dend - pdi->blank[dstPane] + 1;
 				else if (pdi->blank[srcPane] >= 0)
-					currentPosDst.y -= pdi->dend[dstPane] - pdi->blank[srcPane] + 1;
+					currentPosDst.y -= pdi->dend - pdi->blank[srcPane] + 1;
 			}			
 			// Group merge with previous (merge undo data to one action)
 			bGroupWithPrevious = true;
@@ -985,12 +985,12 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 		if (srcPane != -1)
 		{
 			SetCurrentDiff(i);
-			if (currentPosDst.y > pdi->dend[dstPane])
+			if (currentPosDst.y > pdi->dend)
 			{
 				if (pdi->blank[dstPane] >= 0)
-					currentPosDst.y -= pdi->dend[dstPane] - pdi->blank[dstPane] + 1;
+					currentPosDst.y -= pdi->dend - pdi->blank[dstPane] + 1;
 				else if (pdi->blank[srcPane] >= 0)
-					currentPosDst.y -= pdi->dend[dstPane] - pdi->blank[srcPane] + 1;
+					currentPosDst.y -= pdi->dend - pdi->blank[srcPane] + 1;
 			}			
 			// Group merge with previous (merge undo data to one action)
 			if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, false))
@@ -1042,8 +1042,8 @@ void CMergeDoc::DoAutoMerge(int dstPane)
  */
 bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
 {
-	const int cd_dbegin = dr.dbegin[0];
-	const int cd_dend = dr.dend[0];
+	const int cd_dbegin = dr.dbegin;
+	const int cd_dend = dr.dend;
 	int nBuffer;
 
 	// Must ensure line number is in range before getting line flags
@@ -1126,8 +1126,8 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		CDiffTextBuffer& sbuf = *m_ptBuf[srcPane];
 		CDiffTextBuffer& dbuf = *m_ptBuf[dstPane];
 		bool bSrcWasMod = sbuf.IsModified();
-		const int cd_dbegin = cd.dbegin[srcPane];
-		const int cd_dend = cd.dend[srcPane];
+		const int cd_dbegin = cd.dbegin;
+		const int cd_dend = cd.dend;
 		const int cd_blank = cd.blank[srcPane];
 		bool bInSync = SanityCheckDiff(cd);
 
@@ -1999,9 +1999,9 @@ void CMergeDoc::PrimeTextBuffers()
 
 			lcount[file] -= nline[file];
 
-			// set dbegin, dend, blank, and line flags
-			curDiff.dbegin[file] = lcountnew[file];
 		}
+		// set dbegin, dend, blank, and line flags
+		curDiff.dbegin = lcountnew[0];
 
 		switch (curDiff.op)
 		{
@@ -2014,15 +2014,15 @@ void CMergeDoc::PrimeTextBuffers()
 		case OP_3RDONLY:
 			// set curdiff
 			{
+				curDiff.dend = lcountnew[0]+nmaxline-1;
 				for (file = 0; file < m_nBuffers; file++)
 				{
-					curDiff.dend[file] = lcountnew[file]+nmaxline-1;
 					curDiff.blank[file] = -1;
 					int nextra = nmaxline - nline[file];
 					if (nmaxline > nline[file])
 					{
 						// more lines on left, ghost lines on right side
-						curDiff.blank[file] = curDiff.dend[file]+1 - nextra;
+						curDiff.blank[file] = curDiff.dend + 1 - nextra;
 					}
 				}
 			}
@@ -2032,7 +2032,7 @@ void CMergeDoc::PrimeTextBuffers()
 				{
 					// left side
 					int i;
-					for (i = curDiff.dbegin[file]; i <= curDiff.dend[file] ; i++)
+					for (i = curDiff.dbegin; i <= curDiff.dend; i++)
 					{
 						if (curDiff.blank[file] == -1 || (int)i < curDiff.blank[file])
 						{

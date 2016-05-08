@@ -173,34 +173,21 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 	String str[3];
 	std::unique_ptr<int[]> nOffsets[3];
 	const int LineLimit = 20;
-	bool diffPerLine = false;
-	
-	for (file = 0; file < m_nBuffers; file++)
-	{
-		if (cd.dend[file] - cd.dbegin[file] > LineLimit)
-		{
-			diffPerLine = true;
-			break;
-		}
-	}
+	bool diffPerLine = (cd.dend - cd.dbegin > LineLimit) ? true : false;
 
-	int nLineBegins[3], nLineEnds[3];
-	for (file = 0; file < m_nBuffers; file++)
+	int nLineBegin, nLineEnd;
+	if (!diffPerLine)
 	{
-		if (!diffPerLine)
-		{
-			nLineBegins[file] = cd.dbegin[file];
-			nLineEnds[file] = cd.dend[file];
-		}
-		else
-		{
-			nLineBegins[file] = nLineEnds[file] = nLineIndex;
-		}
+		nLineBegin = cd.dbegin;
+		nLineEnd = cd.dend;
+	}
+	else
+	{
+		nLineBegin = nLineEnd = nLineIndex;
 	}
 
 	for (file = 0; file < m_nBuffers; file++)
 	{
-		int nLineBegin = nLineBegins[file], nLineEnd = nLineEnds[file];
 		nOffsets[file].reset(new int[nLineEnd - nLineBegin + 1]);
 		CString strText;
 		if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
@@ -231,7 +218,6 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 		for (file = 0; file < m_nBuffers; file++)
 		{
 			int nLine;
-			int nLineBegin = nLineBegins[file], nLineEnd = nLineEnds[file];
 			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			{
 				if (it->begin[file] == nOffsets[file][nLine-nLineBegin] || it->begin[file] < nOffsets[file][nLine-nLineBegin+1])

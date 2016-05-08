@@ -328,7 +328,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 		
 		// Check that first selected line is first diff's first line or above it
 		VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
-		if ((int)di.dbegin[0] < firstLine)
+		if ((int)di.dbegin < firstLine)
 		{
 			if (firstDiff < lastDiff)
 				++firstDiff;
@@ -336,7 +336,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 
 		// Check that last selected line is last diff's last line or below it
 		VERIFY(pd->m_diffList.GetDiff(lastDiff, di));
-		if ((int)di.dend[0] > lastLine)
+		if ((int)di.dend > lastLine)
 		{
 			if (firstDiff < lastDiff)
 				--lastDiff;
@@ -760,9 +760,9 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 		DIFFRANGE curDiff;
 		VERIFY(pd->m_diffList.GetDiff(nDiff, curDiff));
 
-		newlineBegin = curDiff.dbegin[0];
+		newlineBegin = curDiff.dbegin;
 		ASSERT (newlineBegin >= 0);
-		newlineEnd = curDiff.dend[0];
+		newlineEnd = curDiff.dend;
 	}
 
 	if (newlineBegin == m_lineBegin && newlineEnd == m_lineEnd)
@@ -1164,7 +1164,7 @@ void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 	{
 		// Enable if the beginning of the last significant difference is after caret
 		CPoint pos = GetCursorPos();
-		pCmdUI->Enable(pos.y < (long)dfi->dbegin[0]);
+		pCmdUI->Enable(pos.y < (long)dfi->dbegin);
 	}
 }
 
@@ -1248,7 +1248,7 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 	{
 		// Enable if the end of the first significant difference is before caret
 		CPoint pos = GetCursorPos();
-		pCmdUI->Enable(pos.y > (long)dfi->dend[0]);
+		pCmdUI->Enable(pos.y > (long)dfi->dend);
 	}
 }
 
@@ -1355,7 +1355,7 @@ void CMergeEditView::OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 	{
 		// Enable if the beginning of the last significant difference is after caret
 		CPoint pos = GetCursorPos();
-		pCmdUI->Enable(pos.y < (long)dfi->dbegin[0]);
+		pCmdUI->Enable(pos.y < (long)dfi->dbegin);
 	}
 }
 
@@ -1437,7 +1437,7 @@ void CMergeEditView::OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 	{
 		// Enable if the end of the first significant difference is before caret
 		CPoint pos = GetCursorPos();
-		pCmdUI->Enable(pos.y > (long)dfi->dend[0]);
+		pCmdUI->Enable(pos.y > (long)dfi->dend);
 	}
 }
 
@@ -2060,9 +2060,9 @@ void CMergeEditView::ShowDiff(bool bScroll, bool bSelectText)
 		pd->m_diffList.GetDiff(nDiff, curDiff);
 
 		ptStart.x = 0;
-		ptStart.y = curDiff.dbegin[0];
+		ptStart.y = curDiff.dbegin;
 		ptEnd.x = 0;
-		ptEnd.y = curDiff.dend[0];
+		ptEnd.y = curDiff.dend;
 
 		if (bScroll)
 		{
@@ -3662,10 +3662,10 @@ bool CMergeEditView::IsDiffVisible(int nDiff)
  */
 bool CMergeEditView::IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow /*=0*/)
 {
-	const int nDiffStart = GetSubLineIndex(diff.dbegin[0]);
-	const int nDiffEnd = GetSubLineIndex(diff.dend[0]);
+	const int nDiffStart = GetSubLineIndex(diff.dbegin);
+	const int nDiffEnd = GetSubLineIndex(diff.dend);
 	// Diff's height is last line - first line + last line's line count
-	const int nDiffHeight = nDiffEnd - nDiffStart + GetSubLines(diff.dend[0]) + 1;
+	const int nDiffHeight = nDiffEnd - nDiffStart + GetSubLines(diff.dend) + 1;
 
 	// If diff first line outside current view - context OR
 	// if diff last line outside current view - context OR

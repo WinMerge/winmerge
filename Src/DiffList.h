@@ -65,8 +65,8 @@ struct DIFFRANGE
 {
 	int begin[3];	/**< First diff line in original file1,2,3 */
 	int end[3];	/**< Last diff line in original file1,2,3 */
-	int dbegin[3];	/**< Synchronised (ghost lines added) first diff line in file1,2,3 */
-	int dend[3];	/**< Synchronised (ghost lines added) last diff line in file1,2,3 */
+	int dbegin;	/**< Synchronised (ghost lines added) first diff line in file1,2,3 */
+	int dend;	/**< Synchronised (ghost lines added) last diff line in file1,2,3 */
 	int blank[3];		/**< Number of blank lines in file1,2,3 */
 	OP_TYPE op;		/**< Operation done with this diff */
 	DIFFRANGE()
@@ -171,7 +171,7 @@ public:
 
 	std::vector<DiffRangeInfo>& GetDiffRangeInfoVector() { return m_diffs; }
 
-	void AppendDiffList(const DiffList& list, int offset[] = NULL, int doffset[] = NULL);
+	void AppendDiffList(const DiffList& list, int offset[] = NULL, int doffset = 0);
 
 private:
 	std::vector<DiffRangeInfo> m_diffs; /**< Difference list. */
