@@ -140,7 +140,6 @@ uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, co
 bool IsItemCopyable(const DIFFITEM & di, int index);
 bool IsItemDeletable(const DIFFITEM & di, int index);
 bool IsItemDeletableOnBoth(const CDiffContext& ctxt, const DIFFITEM & di);
-bool IsItemOpenable(const CDiffContext& ctxt, const DIFFITEM & di, bool treemode);
 bool AreItemsOpenable(const CDiffContext& ctxt, SELECTIONTYPE selectionType, const DIFFITEM & di1, const DIFFITEM & di2);
 bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM & di1, const DIFFITEM & di2, const DIFFITEM & di3);
 bool IsItemOpenableOn(const DIFFITEM & di, int index);
