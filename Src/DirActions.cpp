@@ -373,28 +373,6 @@ bool IsItemDeletableOnBoth(const CDiffContext& ctxt, const DIFFITEM & di)
 	return true;
 }
 
-/**
- * @brief Determine if item can be opened.
- * Basically we only disable opening unique files at the moment.
- * Unique folders can be opened since we ask for creating matching folder
- * to another side.
- * @param [in] di DIFFITEM for item to check.
- * @return true if the item can be opened, false otherwise.
- */
-bool IsItemOpenable(const CDiffContext& ctxt, const DIFFITEM & di, bool treemode)
-{
-	if (treemode && ctxt.m_bRecursive)
-	{
-		if (di.diffcode.isDirectory() || !IsItemExistAll(ctxt, di))
-			return false;
-	}
-	else 
-	{
-		if (!di.diffcode.isDirectory() && !IsItemExistAll(ctxt, di))
-			return false;
-	}
-	return true;
-}
 /// is it possible to compare these two items?
 bool AreItemsOpenable(const CDiffContext& ctxt, SELECTIONTYPE selectionType, const DIFFITEM & di1, const DIFFITEM & di2)
 {

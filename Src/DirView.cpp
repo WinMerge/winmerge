@@ -1726,7 +1726,7 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI)
 	{
 		// One item selected
 		const DIFFITEM& di = GetDiffItem(sel1);
-		if (selectionType != SELECTIONTYPE_NORMAL || !::IsItemOpenable(GetDiffContext(), di, m_bTreeMode))
+		if (selectionType != SELECTIONTYPE_NORMAL)
 		{
 			pCmdUI->Enable(FALSE);
 			return;
