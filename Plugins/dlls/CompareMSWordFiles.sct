@@ -83,6 +83,17 @@ Function writeBookmarks(fo, items)
 	Next
 End Function
 
+Sub ungroupShapes(doc)
+    On Error Resume Next
+    Dim cnt, shp
+    Do
+        cnt = doc.Shapes.Count
+        For Each shp In doc.Shapes
+            shp.ungroup
+        Next
+    Loop While cnt <> doc.Shapes.Count
+End Sub
+
 Function writeTextsInShapes(fo, doc)
 	Dim shp
 	On Error Resume Next
@@ -153,6 +164,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 
 	If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
 		fo.WriteLine "[Shapes]"
+		ungroupShapes doc
 		writeTextsInShapes fo, doc
 		fo.WriteLine ""
 	End If
@@ -228,6 +240,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 
 	If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
 		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "Shapes.txt"), True, True)
+		ungroupShapes doc
 		writeTextsInShapes fo, doc
 		fo.Close
 	End If
