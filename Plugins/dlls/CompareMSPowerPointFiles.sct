@@ -91,13 +91,15 @@ Function writeShape(fo, shp)
 		Next
 	ElseIf shp.HasTextFrame Then
 		fo.WriteLine shp.TextFrame.TextRange.Characters.Text
+	Else
+		fo.WriteLine ""
 	End If
 End Function
 
-Function writeTextsInShapes(fo, sld)
+Function writeTextsInShapes(fo, shps)
 	Dim shp
 	On Error Resume Next
-	For Each shp In sld.Shapes
+	For Each shp In shps
 		writeShape fo, shp
 	Next
 	On Error GoTo 0
@@ -160,7 +162,12 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	For Each sld In prs.Slides
 		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
 			fo.WriteLine "[" & sld.Name & "]"
-			writeTextsInShapes fo, sld
+			writeTextsInShapes fo, sld.Shapes
+			fo.WriteLine ""
+		End If
+		If regRead(RegKeyPath & "CompareTextsInNotesPage", True) Then
+			fo.WriteLine "[" & sld.Name & ".NotesPage]"
+			writeTextsInShapes fo, sld.NotesPage.Shapes
 			fo.WriteLine ""
 		End If
 	Next
@@ -226,7 +233,13 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	For Each sld In prs.Slides
 		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
 			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name & ".txt"), True, True)
-			writeTextsInShapes fo, sld
+			writeTextsInShapes fo, sld.Shapes
+			fo.Close
+		End If
+
+		If regRead(RegKeyPath & "CompareTextsInNotesPage", True) Then
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name & "_NotesPage.txt"), True, True)
+			writeTextsInShapes fo, sld.NotesPage.Shapes
 			fo.Close
 		End If
 
@@ -314,6 +327,7 @@ End Sub
         chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
         chkCompareSlideAsImage.checked = regRead(REGKEY_PATH + "CompareSlideAsImage", true);
         chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
+        chkCompareTextsInNotesPage.checked = regRead(REGKEY_PATH + "CompareTextsInNotesPage", true);
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
         chkUnpackToFolder_onclick();
         chkCompareSlideAsImage_onclick();
@@ -352,6 +366,7 @@ End Sub
         regWrite(REGKEY_PATH + "CompareDocumentProperties", chkCompareDocumentProperties.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareSlideAsImage", chkCompareSlideAsImage.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareTextsInNotesPage", chkCompareTextsInNotesPage.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
       }
 
@@ -393,6 +408,11 @@ End Sub
           <input id="chkCompareTextsInShapes" type="checkbox" />
           <label class="en">Compare texts in shapes </label>
           <label class="ja">図形内のテキストを比較する </label>
+        </li>
+        <li>
+          <input id="chkCompareTextsInNotesPage" type="checkbox" />
+          <label class="en">Compare texts in notes page </label>
+          <label class="ja">ノート内のテキストを比較する </label>
         </li>
         <li>
           <input id="chkCompareVBAMacros" type="checkbox" />
