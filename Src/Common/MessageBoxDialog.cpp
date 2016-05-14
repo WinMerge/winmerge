@@ -1192,32 +1192,28 @@ void CMessageBoxDialog::ParseStyle ( )
 			case MB_ICONEXCLAMATION:
 
 				// Load the icon with the exclamation mark.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(
-					MAKEINTRESOURCE(IDI_EXCLAMATION));
+				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_EXCLAMATION);
 
 				break;
 
 			case MB_ICONHAND:
 
 				// Load the icon with the error symbol.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(
-					MAKEINTRESOURCE(IDI_HAND));
+				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_HAND);
 
 				break;
 
 			case MB_ICONQUESTION:
 
 				// Load the icon with the question mark.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(
-					MAKEINTRESOURCE(IDI_QUESTION));
+				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_QUESTION);
 
 				break;
 
 			case MB_ICONASTERISK:
 
 				// Load the icon with the information symbol.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(
-					MAKEINTRESOURCE(IDI_ASTERISK));
+				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_ASTERISK);
 
 				break;
 

@@ -763,7 +763,7 @@ OnMouseMove (UINT nFlags, CPoint point)
             }
 
           //  Moving to normal selection mode
-          ::SetCursor (::LoadCursor (NULL, MAKEINTRESOURCE (IDC_IBEAM)));
+          ::SetCursor (::LoadCursor (NULL, IDC_IBEAM));
           m_bLineSelection = m_bWordSelection = false;
         }
 

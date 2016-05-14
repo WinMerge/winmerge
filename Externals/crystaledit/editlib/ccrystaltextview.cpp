@@ -3787,11 +3787,11 @@ OnSetCursor (CWnd * pWnd, UINT nHitTest, UINT message)
               //  [JRT]:  Support For Disabling Drag and Drop...
               if (!m_bDisableDragAndDrop)   // If Drag And Drop Not Disabled
 
-                ::SetCursor (::LoadCursor (NULL, MAKEINTRESOURCE (IDC_ARROW)));     // Set To Arrow Cursor
+                ::SetCursor (::LoadCursor (NULL, IDC_ARROW));     // Set To Arrow Cursor
 
             }
           else
-            ::SetCursor (::LoadCursor (NULL, MAKEINTRESOURCE (IDC_IBEAM)));
+            ::SetCursor (::LoadCursor (NULL, IDC_IBEAM));
         }
       return true;
     }
