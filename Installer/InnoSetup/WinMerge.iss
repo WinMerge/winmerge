@@ -51,6 +51,7 @@
 
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
+#define VS120COMNTOOLS GetEnv('VS120COMNTOOLS')
 #define VS140COMNTOOLS GetEnv('VS140COMNTOOLS')
 
 [Setup]
@@ -528,7 +529,7 @@ Source: ..\..\Externals\winimerge\GPL.txt; DestDir: {app}\WinIMerge; Components:
 Source: ..\..\Externals\winimerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
 ;Source: ..\..\Externals\winimerge\Build\Release\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
 Source: ..\..\Externals\winimerge\Build\Release\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: {#VS140COMNTOOLS}\..\..\VC\redist\x86\Microsoft.VC120.OpenMP\vcomp120.dll; DestDir: {app}; Components: WinIMerge
+Source: {#VS120COMNTOOLS}\..\..\VC\redist\x86\Microsoft.VC120.OpenMP\vcomp120.dll; DestDir: {app}; Components: WinIMerge
 Source: {#VS140COMNTOOLS}\..\..\VC\redist\x86\Microsoft.VC140.OpenMP\vcomp140.dll; DestDir: {app}; Components: WinIMerge
 
 ;GnuWin32 Patch for Windows

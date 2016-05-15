@@ -51,6 +51,7 @@
 
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\X64\MergeUnicodeRelease\WinMergeU.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\X64\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
+#define VS120COMNTOOLS GetEnv('VS120COMNTOOLS')
 #define VS140COMNTOOLS GetEnv('VS140COMNTOOLS')
 
 [Setup]
