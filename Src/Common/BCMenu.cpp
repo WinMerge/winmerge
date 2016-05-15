@@ -221,7 +221,7 @@ BOOL BCMenu::IsMenu(HMENU submenu)
 	INT_PTR numSubMenus = m_AllSubMenus.GetUpperBound();
 	for(m=0;m<=numSubMenus;++m){
 		if(submenu==m_AllSubMenus[m] || 
-		  reinterpret_cast<UINT>(submenu) == reinterpret_cast<UINT>(m_AllSubMenus[m]))
+		  static_cast<UINT>(reinterpret_cast<uintptr_t>(submenu)) == static_cast<UINT>(reinterpret_cast<uintptr_t>(m_AllSubMenus[m])))
 			return(TRUE);
 	}
 	return(FALSE);

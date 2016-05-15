@@ -67,7 +67,7 @@ private:
 // Implementation
 protected:
 
-	enum { COLOR_NONE = 0xffffffff };
+	static const COLORREF COLOR_NONE = 0xffffffff;
 	typedef enum { SET_DEFAULTS, WRITE_OPTIONS, READ_OPTIONS } OPERATION;
 	typedef enum { COLORSCHEME_GITHUBBITBUCKET} COLORSCHEME;
 

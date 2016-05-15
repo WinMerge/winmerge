@@ -1166,7 +1166,7 @@ bool InvokeUnpackBuffer(VARIANT & array, int & nChanged, IDispatch *piScript, in
 
 		if (nNewArraySize != nArraySize)
 		{
-			SAFEARRAYBOUND sab = {nArraySize, 0};
+			SAFEARRAYBOUND sab = {static_cast<ULONG>(nArraySize), 0};
 			SafeArrayRedim(array.parray, &sab);
 		}
 		nChanged ++;
@@ -1221,7 +1221,7 @@ bool InvokePackBuffer(VARIANT & array, int & nChanged, IDispatch *piScript, int 
 
 		if (nNewArraySize != nArraySize)
 		{
-			SAFEARRAYBOUND sab = {nArraySize, 0};
+			SAFEARRAYBOUND sab = {static_cast<ULONG>(nArraySize), 0};
 			SafeArrayRedim(array.parray, &sab);
 		}
 	}

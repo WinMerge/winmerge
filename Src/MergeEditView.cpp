@@ -462,7 +462,7 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 		j++;
 	}
 
-	return j;
+	return static_cast<int>(j);
 }
 
 COLORREF CMergeEditView::GetColor(int nColorIndex)
@@ -2939,7 +2939,7 @@ void CMergeEditView::OnScripts(UINT nID )
 	bool bChanged = TextTransform_Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
 	if (bChanged)
 		// now replace the text
-		ReplaceSelection(text.c_str(), text.length(), 0);
+		ReplaceSelection(text.c_str(), static_cast<int>(text.length()), 0);
 }
 
 /**
@@ -3240,15 +3240,13 @@ void CMergeEditView::OnEditCopyLineNumbers()
 	CString strText;
 	CString strLine;
 	CString strNumLine;
-	UINT line = 0;
-	int nNumWidth = 0;
 
 	CMergeDoc *pDoc = GetDocument();
 	GetSelection(ptStart, ptEnd);
 
 	// Get last selected line (having widest linenumber)
-	line = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(ptEnd.y);
-	nNumWidth = string_to_str(line + 1).length();
+	UINT line = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(ptEnd.y);
+	size_t nNumWidth = string_to_str(line + 1).length();
 	
 	for (int i = ptStart.y; i <= ptEnd.y; i++)
 	{
@@ -3260,7 +3258,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 
 		// Insert spaces to align different width linenumbers (99, 100)
 		strLine = GetLineText(i);
-		CString sSpaces(' ', nNumWidth - string_to_str(line + 1).length());
+		CString sSpaces(' ', static_cast<int>(nNumWidth - string_to_str(line + 1).length()));
 		
 		strText += sSpaces;
 		strNumLine.Format(_T("%d: %s"), line + 1, strLine);
