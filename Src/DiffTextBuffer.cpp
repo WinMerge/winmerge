@@ -63,9 +63,9 @@ static bool IsTextFileStylePure(const UniMemFile::txtstats & stats)
 static void EscapeControlChars(String &s)
 {
 	// Compute buffer length required for escaping
-	int n = s.length();
+	size_t n = s.length();
 	LPCTSTR q = s.c_str();
-	int i = n;
+	size_t i = n;
 	while (i)
 	{
 		TCHAR c = q[--i];
@@ -397,7 +397,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			{
 				// TODO: Should record lossy status of line
 			}
-			AppendLine(lineno, sline.c_str(), sline.length());
+			AppendLine(lineno, sline.c_str(), static_cast<int>(sline.length()));
 			++lineno;
 			preveol = eol;
 		} while (!done);
@@ -489,7 +489,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	ASSERT (m_bInit);
 
 	if (nLines == -1)
-		nLines = m_aLines.size() - nStartLine;
+		nLines = static_cast<int>(m_aLines.size() - nStartLine);
 
 	if (pszFileName.empty())
 		return SAVE_FAILED;	// No filename, cannot save...
@@ -547,7 +547,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	// line loop : get each real line and write it in the file
 	String sLine;
 	String sEol = GetStringEol(nCrlfStyle);
-	for (size_t line = nStartLine; line < nStartLine + nLines; ++line)
+	for (int line = nStartLine; line < nStartLine + nLines; ++line)
 	{
 		if (GetLineFlags(line) & LF_GHOST)
 			continue;

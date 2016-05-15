@@ -508,7 +508,7 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 			int textRealSize = textForeseenSize;
 
 			// allocate the memory
-			SAFEARRAYBOUND rgsabound = {textForeseenSize, 0};
+			SAFEARRAYBOUND rgsabound = {static_cast<ULONG>(textForeseenSize), 0};
 			m_array.vt = VT_UI1 | VT_ARRAY;
 			m_array.parray = SafeArrayCreate(VT_UI1, 1, &rgsabound);
 			char * parrayData;
@@ -527,7 +527,7 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 			}
 			// size may have changed
 			SafeArrayUnaccessData(m_array.parray);
-			SAFEARRAYBOUND rgsaboundnew = {textRealSize, 0};
+			SAFEARRAYBOUND rgsaboundnew = {static_cast<ULONG>(textRealSize), 0};
 			SafeArrayRedim(m_array.parray, &rgsaboundnew);
 		}
 		ValidateInternal(false, false);

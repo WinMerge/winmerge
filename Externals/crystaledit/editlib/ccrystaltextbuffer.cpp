@@ -1249,7 +1249,7 @@ GetUndoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
 
   ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
 
-  int nPosition;
+  intptr_t nPosition;
   if (pos == NULL)
     {
       //  Start from beginning
@@ -1257,7 +1257,7 @@ GetUndoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
     }
   else
     {
-      nPosition = (int) pos;
+      nPosition = reinterpret_cast<intptr_t>(pos);
       ASSERT (nPosition > 0 && nPosition < m_nUndoPosition);
       ASSERT ((m_aUndoBuf[nPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
     }
@@ -1287,7 +1287,7 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
   ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
   ASSERT ((m_aUndoBuf[m_nUndoPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
 
-  int nPosition;
+  intptr_t nPosition;
   if (pos == NULL)
     {
       //  Start from beginning
@@ -1295,7 +1295,7 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
     }
   else
     {
-      nPosition = (int) pos;
+      nPosition = reinterpret_cast<intptr_t>(pos);
       ASSERT (nPosition > m_nUndoPosition);
       ASSERT ((m_aUndoBuf[nPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
     }

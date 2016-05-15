@@ -222,7 +222,7 @@ private:
 
 	typedef struct tagMSGBOXBTN
 	{
-		int		nID;				// ID of a dialog button.
+		UINT	nID;				// ID of a dialog button.
 		UINT	nTitle;				// ID of the title string resource.
 	} MSGBOXBTN;
 

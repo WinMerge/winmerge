@@ -1224,9 +1224,9 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject)
 		bRecursive = project.GetSubfolders() > 0;
 
 	DWORD dwFlags[3] = {
-		files.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT,
-		files.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT,
-		files.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT
+		static_cast<DWORD>(files.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
+		static_cast<DWORD>(files.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
+		static_cast<DWORD>(files.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT)
 	};
 	if (bLeftReadOnly)
 		dwFlags[0] |= FFILEOPEN_READONLY;
