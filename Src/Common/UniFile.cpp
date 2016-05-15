@@ -615,8 +615,6 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		else
 		{
 			ch = ucr::get_unicode_char(m_current, (ucr::UNICODESET)m_unicoding, m_codepage);
-			if (!ch)
-				doneline = true;
 		}
 		// convert from Unicode codepoint to TCHAR string
 		// could be multicharacter if decomposition took place, for example
