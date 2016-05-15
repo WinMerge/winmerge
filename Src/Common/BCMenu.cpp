@@ -154,7 +154,6 @@ Constructor and Destructor.
 
 BCMenu::BCMenu()
 {
-	m_bDynIcons = FALSE;     // O.S. - no dynamic icons by default
 	disable_old_style=FALSE;
 	m_selectcheck = -1;
 	m_unselectcheck = -1;
@@ -2266,41 +2265,34 @@ BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, BOOL bDi
 {
 	BOOL bReturn=FALSE;
 
-	// O.S.
-	if (m_bDynIcons){
-		bmplist->Add((HICON)nResourceID);
-		bReturn=TRUE;
+	HBITMAP hbmp=LoadSysColorBitmap(nResourceID);
+	if(hbmp){
+		CBitmap bmp;
+		bmp.Attach(hbmp);
+		if (bDisabled)
+			GetDisabledBitmap(bmp);
+		if(m_bitmapBackgroundFlag){
+			if(bmplist->Add(&bmp,m_bitmapBackground)>=0)bReturn=TRUE;
+		}
+		else{
+			if(bmplist->Add(&bmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=TRUE;
+		}
+		bmp.Detach();
+		DeleteObject(hbmp);
 	}
-	else{
-		HBITMAP hbmp=LoadSysColorBitmap(nResourceID);
-		if(hbmp){
-			CBitmap bmp;
-			bmp.Attach(hbmp);
+	else{ // a hicolor bitmap
+		CBitmap mybmp;
+		if(mybmp.LoadBitmap(nResourceID)){
+			hicolor_bitmaps=TRUE;
 			if (bDisabled)
-				GetDisabledBitmap(bmp);
+				GetDisabledBitmap(mybmp, GetSysColor(COLOR_3DFACE));
+			else
+				GetTransparentBitmap(mybmp);
 			if(m_bitmapBackgroundFlag){
-				if(bmplist->Add(&bmp,m_bitmapBackground)>=0)bReturn=TRUE;
+				if(bmplist->Add(&mybmp,m_bitmapBackground)>=0)bReturn=TRUE;
 			}
 			else{
-				if(bmplist->Add(&bmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=TRUE;
-			}
-			bmp.Detach();
-			DeleteObject(hbmp);
-		}
-		else{ // a hicolor bitmap
-			CBitmap mybmp;
-			if(mybmp.LoadBitmap(nResourceID)){
-				hicolor_bitmaps=TRUE;
-				if (bDisabled)
-					GetDisabledBitmap(mybmp, GetSysColor(COLOR_3DFACE));
-				else
-					GetTransparentBitmap(mybmp);
-				if(m_bitmapBackgroundFlag){
-					if(bmplist->Add(&mybmp,m_bitmapBackground)>=0)bReturn=TRUE;
-				}
-				else{
-					if(bmplist->Add(&mybmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=TRUE;
-				}
+				if(bmplist->Add(&mybmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=TRUE;
 			}
 		}
 	}

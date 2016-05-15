@@ -300,7 +300,6 @@ protected:
 	BOOL checkmapsshare;
 	int m_selectcheck;
 	int m_unselectcheck;
-	BOOL m_bDynIcons;
 	BOOL m_loadmenu;
 }; 
 
