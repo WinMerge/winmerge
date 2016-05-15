@@ -287,7 +287,6 @@ protected:
 	static int m_iconY;
 	COLORREF m_bitmapBackground;
 	BOOL m_bitmapBackgroundFlag;
-	BOOL disable_old_style;
 	static UINT original_drawmode;
 	static BOOL original_select_disabled;
 	static UINT xp_drawmode;

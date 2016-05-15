@@ -154,7 +154,6 @@ Constructor and Destructor.
 
 BCMenu::BCMenu()
 {
-	disable_old_style=FALSE;
 	m_selectcheck = -1;
 	m_unselectcheck = -1;
 	checkmaps=NULL;
@@ -430,17 +429,12 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
                         rect.top+m_iconY+4+dy);
 					pDC->Draw3dRect (rect2,m_clrBack,m_clrBack);
-					if(disable_old_style)
-						DitherBlt(lpDIS->hDC,rect.left+2,rect.top+2+dy,m_iconX,m_iconY,
-						(HBITMAP)(bitmapstandard),0,0,m_clrBack);
-					else{
-						if(hicolor_bitmaps)
-							DitherBlt3(pDC,rect.left+2,rect.top+2+dy,m_iconX,m_iconY,
-							bitmapstandard,m_clrBack);
-						else
-							DitherBlt2(pDC,rect.left+2,rect.top+2+dy,m_iconX,m_iconY,
-							bitmapstandard,0,0,m_clrBack);
-					}
+					if(hicolor_bitmaps)
+						DitherBlt3(pDC,rect.left+2,rect.top+2+dy,m_iconX,m_iconY,
+						bitmapstandard,m_clrBack);
+					else
+						DitherBlt2(pDC,rect.left+2,rect.top+2+dy,m_iconX,m_iconY,
+						bitmapstandard,0,0,m_clrBack);
 					bitmapstandard.DeleteObject();
 				}
 			}
@@ -739,16 +733,12 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 					GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
 					COLORREF transparentcol=m_newclrBack;
 					if(state&ODS_SELECTED)transparentcol=crSelectFill;
-					if(disable_old_style)
-						DitherBlt(lpDIS->hDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-						(HBITMAP)(bitmapstandard),0,0,transparentcol);
+					if(hicolor_bitmaps)
+						DitherBlt3(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
+						bitmapstandard,transparentcol);
 					else
-						if(hicolor_bitmaps)
-							DitherBlt3(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-							bitmapstandard,transparentcol);
-						else
-							DitherBlt2(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-							bitmapstandard,0,0,transparentcol);
+						DitherBlt2(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
+						bitmapstandard,0,0,transparentcol);
 					if(state&ODS_SELECTED)pDC->Draw3dRect (rect,crSelect,crSelect);
 					bitmapstandard.DeleteObject();
 				}
@@ -2461,22 +2451,6 @@ void BCMenu::DitherBlt3(CDC *drawdc, int nXDest, int nYDest, int nWidth,
 	dc.SelectObject(pdcOldBmp);
 	dc.DeleteDC();
 }
-
-void BCMenu::SetDisableOldStyle(void)
-{
-	disable_old_style=TRUE;
-}
-
-void BCMenu::UnSetDisableOldStyle(void)
-{
-	disable_old_style=FALSE;
-}
-
-BOOL BCMenu::GetDisableOldStyle(void)
-{
-	return(disable_old_style);
-}
-
 
 WORD BCMenu::NumBitmapColors(LPBITMAPINFOHEADER lpBitmap)
 {
