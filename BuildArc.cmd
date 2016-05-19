@@ -60,7 +60,7 @@ copy Build\Manual\htmlhelp\WinMerge_ja.chm "%DISTDIR%\2.14-x64-zip-version\WinMe
 rem Excecutables
 copy Build\MergeUnicodeRelease\WinMergeU.exe "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy Build\X64\MergeUnicodeRelease\WinMergeU.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
-copy Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\
+copy Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
 
 rem ShellExtension
 copy "Build\ShellExtensionUnicode Release mindependency\ShellExtensionU.dll" "%DISTDIR%\2.14-zip-version\WinMerge\"
@@ -123,12 +123,14 @@ copy Externals\WinIMerge\GPL.txt "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\
 copy Externals\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
 rem copy Externals\WinIMerge\Build\Release\WinIMerge.exe "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\Build\Release\WinIMergeLib.dll "%DISTDIR%\2.14-zip-version\WinMerge\WinIMerge\"
-copy "%VS140COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC140.OpenMP\vcomp140.dll" "%DISTDIR%\2.14-zip-version\WinMerge\
+copy "%VS120COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC120.OpenMP\vcomp120.dll" "%DISTDIR%\2.14-zip-version\WinMerge\"
+copy "%VS140COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC140.OpenMP\vcomp140.dll" "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy Externals\WinIMerge\GPL.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 rem copy Externals\WinIMerge\Build\x64\Release\WinIMerge.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
 copy Externals\WinIMerge\Build\x64\Release\WinIMergeLib.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\WinIMerge\"
-copy "%VS140COMNTOOLS%\..\..\VC\redist\x64\Microsoft.VC140.OpenMP\vcomp140.dll" "%DISTDIR%\2.14-x64-zip-version\WinMerge\
+copy "%VS120COMNTOOLS%\..\..\VC\redist\x64\Microsoft.VC120.OpenMP\vcomp120.dll" "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
+copy "%VS140COMNTOOLS%\..\..\VC\redist\x64\Microsoft.VC140.OpenMP\vcomp140.dll" "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
 
 rem Patch
 xcopy /s/y "C:\Program Files\WinMerge\GnuWin32" "%DISTDIR%\2.14-zip-version\WinMerge\GnuWin32\"

@@ -1,0 +1,15 @@
+Translations/WinMerge/*.bak
+Testing/GoogleTest/UnitTests/x64Release
+Testing/GoogleTest/UnitTests/Release
+Externals/poco/Foundation/obj64
+Externals/poco/Foundation/obj
+Externals/poco/Util/obj64
+Externals/poco/Util/obj
+Externals/poco/XML/obj64
+Externals/poco/XML/obj
+Externals/poco/lib
+Externals/poco/lib64
+BuildTmp
+Build
+Testing/GoogleTest/UnitTests/UnitTests.exe
+Testing/GoogleTest/UnitTests/*.pdb
