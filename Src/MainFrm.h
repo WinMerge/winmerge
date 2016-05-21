@@ -110,7 +110,6 @@ public:
 		const DWORD dwFlags[], const PackingInfo * infoUnpacker = NULL);
 
 	void UpdateResources();
-	CString SetStatus(LPCTSTR status);
 	void ClearStatusbarItemCount();
 	void ApplyDiffOptions();
 	void SelectFilter();

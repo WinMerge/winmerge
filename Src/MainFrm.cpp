@@ -1380,14 +1380,6 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
 	return pMergeDoc;
 }
 
-// Set status in the main status pane
-CString CMainFrame::SetStatus(LPCTSTR status)
-{
-	CString old = m_wndStatusBar.GetPaneText(0);
-	m_wndStatusBar.SetPaneText(0, status);
-	return old;
-}
-
 // Clear the item count in the main status pane
 void CMainFrame::ClearStatusbarItemCount()
 {
