@@ -222,9 +222,9 @@ BOOL CPatchDlg::OnInitDialog()
 	if (count == 1)
 	{
         const PATCHFILES& files = m_fileList.front();
-		m_file1 = files.lfile.c_str();
+		m_file1 = files.lfile;
 		m_ctlFile1.SetWindowText(files.lfile.c_str());
-		m_file2 = files.rfile.c_str();
+		m_file2 = files.rfile;
 		m_ctlFile2.SetWindowText(files.rfile.c_str());
 	}
 	else if (count > 1)	// Multiple files added, show number of files
@@ -339,7 +339,7 @@ void CPatchDlg::OnDiffBrowseResult()
 	folder = m_fileResult;
 	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), _("Save As"), _T(""), FALSE))
 	{
-		m_fileResult = s.c_str();
+		m_fileResult = s;
 		m_ctlResult.SetWindowText(s.c_str());
 	}
 }

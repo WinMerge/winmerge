@@ -100,7 +100,7 @@ bool IsWindowsScriptThere()
 	if (!keyFile.QueryRegMachine(_T("SOFTWARE\\Classes\\scriptletfile\\AutoRegister")))
 		return false;
 
-	String filename = keyFile.ReadString(_T(""), _T("")).c_str();
+	String filename = keyFile.ReadString(_T(""), _T(""));
 	keyFile.Close();
 	if (filename.empty())
 		return false;

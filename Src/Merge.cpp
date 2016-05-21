@@ -347,7 +347,7 @@ BOOL CMergeApp::InitInstance()
 	// Read last used filter from registry
 	// If filter fails to set, reset to default
 	const String filterString = m_pOptions->GetString(OPT_FILEFILTER_CURRENT);
-	BOOL bFilterSet = m_pGlobalFileFilter->SetFilter(filterString.c_str());
+	BOOL bFilterSet = m_pGlobalFileFilter->SetFilter(filterString);
 	if (!bFilterSet)
 	{
 		String filter = m_pGlobalFileFilter->GetFilterNameOrMask();
@@ -398,7 +398,7 @@ BOOL CMergeApp::InitInstance()
 		// No filter path, set it to default and make sure it exists.
 		pathMyFolders = GetOptionsMgr()->GetDefault<String>(OPT_FILTER_USERPATH);
 		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathMyFolders);
-		theApp.m_pGlobalFileFilter->SetUserFilterPath(pathMyFolders.c_str());
+		theApp.m_pGlobalFileFilter->SetUserFilterPath(pathMyFolders);
 	}
 	if (!paths_CreateIfNeeded(pathMyFolders))
 	{
@@ -637,7 +637,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())
 	{
-		m_pGlobalFileFilter->SetFilter(cmdInfo.m_sFileFilter.c_str());
+		m_pGlobalFileFilter->SetFilter(cmdInfo.m_sFileFilter);
 	}
 
 	// Set codepage.
@@ -681,14 +681,14 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, cmdInfo.m_bRecurse, NULL,
-				cmdInfo.m_sPreDiffer.c_str());
+				cmdInfo.m_sPreDiffer);
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 				dwFlags, cmdInfo.m_bRecurse, NULL,
-				cmdInfo.m_sPreDiffer.c_str());
+				cmdInfo.m_sPreDiffer);
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
@@ -699,14 +699,14 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			}
 			else if (IsConflictFile(sFilepath))
 			{
-				bCompared = pMainFrame->DoOpenConflict(sFilepath.c_str());
+				bCompared = pMainFrame->DoOpenConflict(sFilepath);
 			}
 			else
 			{
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
 					dwFlags, cmdInfo.m_bRecurse, NULL,
-					cmdInfo.m_sPreDiffer.c_str());
+					cmdInfo.m_sPreDiffer);
 			}
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag

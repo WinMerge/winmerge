@@ -239,7 +239,7 @@ static String ColPathGet(const CDiffContext *, const void *p)
 		{
 			String u(t.c_str() + j, length_t + 1);
 			u[length_t] = '|';
-			s.insert(i, u.c_str());
+			s.insert(i, u);
 			i_ahead += u.length();
 		}
 		i = i_ahead + 1;

@@ -575,7 +575,7 @@ void CDirDoc::ApplyDisplayRoot(int nIndex, String &sText)
 	if (m_pTempPathContext)
 	{
 		sText.erase(0, m_pTempPathContext->m_strRoot[nIndex].length());
-		sText.insert(0, m_pTempPathContext->m_strDisplayRoot[nIndex].c_str());
+		sText.insert(0, m_pTempPathContext->m_strDisplayRoot[nIndex]);
 	}
 }
 

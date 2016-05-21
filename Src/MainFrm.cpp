@@ -1426,9 +1426,9 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 	DWORD dwFlags[3] = {FFILEOPEN_NONE, FFILEOPEN_NONE, FFILEOPEN_NONE};
 	if (fileCount == 1)
 	{
-		if (theApp.IsProjectFile(files[0].c_str()))
+		if (theApp.IsProjectFile(files[0]))
 		{
-			theApp.LoadAndOpenProjectFile(files[0].c_str());
+			theApp.LoadAndOpenProjectFile(files[0]);
 			return;
 		}
 		if (IsConflictFile(files[0]))
@@ -2435,10 +2435,10 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 	// from where they get deleted when MainFrame is deleted.
 	String ext = paths_FindExtension(conflictFile);
 	TempFilePtr wTemp(new TempFile());
-	String workFile = wTemp->Create(_T("confw_"), ext.c_str());
+	String workFile = wTemp->Create(_T("confw_"), ext);
 	m_tempFiles.push_back(wTemp);
 	TempFilePtr vTemp(new TempFile());
-	String revFile = vTemp->Create(_T("confv_"), ext.c_str());
+	String revFile = vTemp->Create(_T("confv_"), ext);
 	m_tempFiles.push_back(vTemp);
 
 	// Parse conflict file into two files.
