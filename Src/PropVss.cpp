@@ -69,7 +69,7 @@ END_MESSAGE_MAP()
 void PropVss::ReadOptions()
 {
 	m_nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
-	m_strPath = GetOptionsMgr()->GetString(OPT_VSS_PATH).c_str();
+	m_strPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
 }
 
 /** 

@@ -69,11 +69,11 @@ END_MESSAGE_MAP()
  */
 void PropRegistry::ReadOptions()
 {
-	m_strEditorPath = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD).c_str();
+	m_strEditorPath = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
 	m_bUseRecycleBin = GetOptionsMgr()->GetBool(OPT_USE_RECYCLE_BIN);
-	m_strUserFilterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH).c_str();
+	m_strUserFilterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 	m_tempFolderType = GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH) ? 0 : 1;
-	m_tempFolder = GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH).c_str();
+	m_tempFolder = GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH);
 }
 
 /** 

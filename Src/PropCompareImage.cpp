@@ -63,6 +63,6 @@ void PropCompareImage::WriteOptions()
  */
 void PropCompareImage::OnDefaults()
 {
-	m_sFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_IMG_FILEPATTERNS).c_str();
+	m_sFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_IMG_FILEPATTERNS);
 	UpdateData(FALSE);
 }

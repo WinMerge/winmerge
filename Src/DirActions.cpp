@@ -108,7 +108,7 @@ static void ThrowConfirmationNeededException(const CDiffContext& ctxt, const Str
 	String sOrig;
 	String sDest;
 	
-	exp.m_caption = caption.c_str();
+	exp.m_caption = caption;
 	
 	if (origin == 0)
 		sOrig = _("From left:");
@@ -888,9 +888,9 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2,
 	pathsTemp = GetItemFileNames(ctxt, *pdi[2]);
 	pathRight = pathsTemp[2];
 
-	paths.SetLeft(pathLeft.c_str());
-	paths.SetMiddle(pathMiddle.c_str());
-	paths.SetRight(pathRight.c_str());
+	paths.SetLeft(pathLeft);
+	paths.SetMiddle(pathMiddle);
+	paths.SetRight(pathRight);
 
 	if (pdi[0]->diffcode.isDirectory())
 	{

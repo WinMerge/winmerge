@@ -531,7 +531,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		UniFile::UniError uniErr = file.GetLastUniError();
 		if (uniErr.HasError())
 		{
-			sError = uniErr.GetError().c_str();
+			sError = uniErr.GetError();
 			if (bTempFile)
 				LogErrorString(string_format(_T("Opening file %s failed: %s"),
 					pszFileName.c_str(), sError.c_str()));

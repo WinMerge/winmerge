@@ -77,7 +77,7 @@ void PropEditor::ReadOptions()
 	m_bViewLineDifferences = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
 	m_bBreakOnWords = GetOptionsMgr()->GetBool(OPT_BREAK_ON_WORDS);
 	m_nBreakType = GetOptionsMgr()->GetInt(OPT_BREAK_TYPE);
-	m_breakChars = GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str();
+	m_breakChars = GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS);
 }
 
 /** 

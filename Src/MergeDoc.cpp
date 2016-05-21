@@ -406,7 +406,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		String temp = m_tempFiles[nBuffer].GetPath();
 		if (temp.empty())
 		{
-			temp = m_tempFiles[nBuffer].CreateFromFile(m_filePaths.GetPath(nBuffer).c_str(),
+			temp = m_tempFiles[nBuffer].CreateFromFile(m_filePaths.GetPath(nBuffer),
 				tnames[nBuffer]);
 		}
 		if (temp.empty())
@@ -2538,7 +2538,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	DWORD nSuccess[3];
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		nSuccess[nBuffer] = LoadOneFile(nBuffer, (LPCTSTR)fileloc[nBuffer].filepath.c_str(), bRO[nBuffer],
+		nSuccess[nBuffer] = LoadOneFile(nBuffer, fileloc[nBuffer].filepath, bRO[nBuffer],
 			fileloc[nBuffer].encoding);
 	}
 	const bool bFiltersEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
@@ -2590,7 +2590,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 			m_pEncodingErrorBar.reset(new CEncodingErrorBar());
 			m_pEncodingErrorBar->Create(this->m_pView[0]->GetParentFrame());
 		}
-		m_pEncodingErrorBar->SetText(LoadResString(idres).c_str());
+		m_pEncodingErrorBar->SetText(LoadResString(idres));
 		m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), TRUE, FALSE);
 	}
 
@@ -2825,7 +2825,7 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 	if (bChanges)
 		sText.insert(0, _T("* "));
 
-	pf->GetHeaderInterface()->SetText(pane, sText.c_str());
+	pf->GetHeaderInterface()->SetText(pane, sText);
 
 	SetTitle(NULL);
 }

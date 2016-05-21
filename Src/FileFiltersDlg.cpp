@@ -456,7 +456,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		}
 		EditFileFilter(s);
 		FileFilterMgr *pMgr = theApp.m_pGlobalFileFilter->GetManager();
-		int retval = pMgr->AddFilter(s.c_str());
+		int retval = pMgr->AddFilter(s);
 		if (retval == FILTER_OK)
 		{
 			// Remove all from filterslist and re-add so we can update UI
@@ -582,7 +582,7 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 		else
 		{
 			FileFilterMgr *pMgr = theApp.m_pGlobalFileFilter->GetManager();
-			pMgr->AddFilter(userPath.c_str());
+			pMgr->AddFilter(userPath);
 
 			// Remove all from filterslist and re-add so we can update UI
 			String selected;

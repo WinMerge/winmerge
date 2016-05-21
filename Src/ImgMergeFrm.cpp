@@ -891,11 +891,11 @@ void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 				String file;
 				String ext;
 				paths_SplitFilename(m_filePaths[nBuffer], NULL, &file, &ext);
-				sFileName[nBuffer] += file.c_str();
+				sFileName[nBuffer] += file;
 				if (!ext.empty())
 				{
 					sFileName[nBuffer] += _T(".");
-					sFileName[nBuffer] += ext.c_str();
+					sFileName[nBuffer] += ext;
 				}
 			}
 		}
@@ -1008,33 +1008,33 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 	if (!m_filePaths.GetLeft().empty())
 	{
 		if (theApp.m_strSaveAsPath.IsEmpty())
-			dlg.m_sLeftFile = m_filePaths.GetLeft().c_str();
+			dlg.m_sLeftFile = m_filePaths.GetLeft();
 		else
 			dlg.m_sLeftFile = theApp.m_strSaveAsPath;
 	}
 	else
-		dlg.m_sLeftFile = m_strDesc[0].c_str();
+		dlg.m_sLeftFile = m_strDesc[0];
 	if (m_pImgMergeWindow->GetPaneCount() == 3)
 	{
 		if (!m_filePaths.GetMiddle().empty())
 		{
 			if (theApp.m_strSaveAsPath.IsEmpty())
-				dlg.m_sMiddleFile = m_filePaths.GetMiddle().c_str();
+				dlg.m_sMiddleFile = m_filePaths.GetMiddle();
 			else
 				dlg.m_sMiddleFile = theApp.m_strSaveAsPath;
 		}
 		else
-			dlg.m_sMiddleFile = m_strDesc[1].c_str();
+			dlg.m_sMiddleFile = m_strDesc[1];
 	}
 	if (!m_filePaths.GetRight().empty())
 	{
 		if (theApp.m_strSaveAsPath.IsEmpty())
-			dlg.m_sRightFile = m_filePaths.GetRight().c_str();
+			dlg.m_sRightFile = m_filePaths.GetRight();
 		else
 			dlg.m_sRightFile = theApp.m_strSaveAsPath;
 	}
 	else
-		dlg.m_sRightFile = m_strDesc[m_pImgMergeWindow->GetPaneCount() - 1].c_str();
+		dlg.m_sRightFile = m_strDesc[m_pImgMergeWindow->GetPaneCount() - 1];
 
 	if (dlg.DoModal() == IDOK)
 	{
