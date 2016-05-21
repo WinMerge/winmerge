@@ -68,7 +68,7 @@ public:
 	std::unique_ptr<FileFilterHelper> m_pGlobalFileFilter;
 	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
 	std::unique_ptr<SourceControl> m_pSourceControl;
-	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
+	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */

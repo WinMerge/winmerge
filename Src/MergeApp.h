@@ -42,7 +42,7 @@ namespace AppMsgBox
 	int information(const String& msg, int type = OK);
 };
 
-/** @brief Load string from string resources; shortcut for CString::LoadString */
+/** @brief Load string from string resources; shortcut for String::LoadString */
 String LoadResString(unsigned id);
 
 String tr(const std::string &str);
