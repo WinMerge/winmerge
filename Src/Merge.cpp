@@ -660,7 +660,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;
 		m_bEscShutdown = cmdInfo.m_bEscShutdown;
 
-		m_strSaveAsPath = cmdInfo.m_sOutputpath.c_str();
+		m_strSaveAsPath = cmdInfo.m_sOutputpath;
 
 		m_strDescriptions[0] = cmdInfo.m_sLeftDesc;
 		if (cmdInfo.m_Files.GetSize() < 3)

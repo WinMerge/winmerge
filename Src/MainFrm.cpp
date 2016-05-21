@@ -2442,7 +2442,7 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 	{
 		// Open two parsed files to WinMerge, telling WinMerge to
 		// save over original file (given as third filename).
-		theApp.m_strSaveAsPath = conflictFile.c_str();
+		theApp.m_strSaveAsPath = conflictFile;
 		String theirs = _("Theirs File");
 		String my = _("Mine File");
 		theApp.m_strDescriptions[0] = theirs;
