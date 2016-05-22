@@ -278,7 +278,7 @@ public:
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
 	bool OpenWithUnpackerDialog();
-	bool GenerateReport(LPCTSTR szFileName);
+	bool GenerateReport(const String& sFileName) const;
 	void SetAutoMerged(bool bAutoMerged) { m_bAutoMerged = bAutoMerged; }
 	bool GetAutoMerged() const { return m_bAutoMerged; };
 	bool IsModified() const

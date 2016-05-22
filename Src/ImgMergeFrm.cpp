@@ -1815,10 +1815,10 @@ void CImgMergeFrame::OnUpdateImgUseBackColor(CCmdUI* pCmdUI)
 /**
  * @brief Generate report from file compare results.
  */
-bool CImgMergeFrame::GenerateReport(LPCTSTR szFileName)
+bool CImgMergeFrame::GenerateReport(const String& sFileName) const
 {
 	String imgdir_full, imgdir, imgfilepath[3], diffimg_filename[3], path, name, ext;
-	paths_SplitFilename(szFileName, &path, &name, &ext);
+	paths_SplitFilename(sFileName, &path, &name, &ext);
 	imgdir_full = paths_ConcatPath(path, name) + _T(".files");
 	imgdir = paths_FindFileName(imgdir_full);
 	paths_CreateIfNeeded(imgdir_full);
@@ -1830,7 +1830,7 @@ bool CImgMergeFrame::GenerateReport(LPCTSTR szFileName)
 	}
 
 	UniStdioFile file;
-	if (!file.Open(szFileName, _T("wt")))
+	if (!file.Open(sFileName, _T("wt")))
 	{
 		String errMsg = GetSysError(GetLastError());
 		String msg = string_format_string1(
@@ -1888,7 +1888,7 @@ void CImgMergeFrame::OnToolsGenerateReport()
 	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, folder, _("Save As"), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), false, _T("htm")))
 		return;
 
-	GenerateReport(s.c_str());
+	GenerateReport(s);
 
 	LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }

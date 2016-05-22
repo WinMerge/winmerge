@@ -66,7 +66,7 @@ public:
 	void SetLastCompareResult(int nResult);
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
-	bool GenerateReport(LPCTSTR szFileName);
+	bool GenerateReport(const String& sFileName) const;
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
 	bool IsFileChangedOnDisk(int pane) const;
