@@ -2419,7 +2419,7 @@ struct FileCmpReport: public IFileCmpReport
 
 		if (pMergeDoc)
 		{
-			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
+			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath));
 			pMergeDoc->CloseNow();
 		}
 

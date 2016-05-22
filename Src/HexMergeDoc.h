@@ -80,7 +80,7 @@ public:
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void DirDocClosing(CDirDoc * pDirDoc);
 	bool CloseNow();
-	bool GenerateReport(LPCTSTR szFileName) { return true; }
+	bool GenerateReport(const String& sFileName) const { return true; }
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	void RefreshOptions();

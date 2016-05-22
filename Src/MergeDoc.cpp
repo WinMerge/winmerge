@@ -3130,7 +3130,7 @@ String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const
 /**
  * @brief Generate report from file compare results.
  */
-bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
+bool CMergeDoc::GenerateReport(const String& sFileName) const
 {
 	// calculate HTML font size
 	LOGFONT lf;
@@ -3141,7 +3141,7 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 
 	// create HTML report
 	UniStdioFile file;
-	if (!file.Open(szFileName, _T("wt")))
+	if (!file.Open(sFileName, _T("wt")))
 	{
 		String errMsg = GetSysError(GetLastError());
 		String msg = string_format_string1(

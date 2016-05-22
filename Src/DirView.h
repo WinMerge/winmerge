@@ -193,7 +193,6 @@ protected:
 
 // Implementation data
 protected:
-	CString GenerateReport();
 	CSortHeaderCtrl m_ctlSortHeader;
 	CImageList m_imageList;
 	CImageList m_imageState;
