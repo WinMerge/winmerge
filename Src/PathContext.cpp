@@ -86,8 +86,7 @@ PathContext::PathContext(const String& sLeft, const String& sMiddle, const Strin
 PathContext::PathContext(const PathContext &paths)
 {
 	m_nFiles = paths.m_nFiles;
-	for (int i = 0; i < m_nFiles; i++)
-		m_path[i].SetPath(paths[i]);
+	std::copy(paths.m_path, paths.m_path + m_nFiles, m_path);
 }
 
 PathContext::PathContext(const std::vector<String> &paths)

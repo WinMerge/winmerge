@@ -82,6 +82,11 @@ CSizingControlBar::CSizingControlBar()
     m_bDragShowContent = FALSE;
     m_nDockBarID = 0;
     m_dwSCBStyle = 0;
+	m_htEdge = 0;
+	m_nTrackPosMin = 0;
+	m_nTrackPosMax = 0;
+	m_nTrackPosOld = 0;
+	m_nTrackEdgeOfs = 0;
 }
 
 CSizingControlBar::~CSizingControlBar()
