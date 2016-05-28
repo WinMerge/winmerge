@@ -172,7 +172,6 @@ IDB_MERGE_COMPARE_LEFT2_RIGHT1 BITMAP           "res\\compare_left2_right1.bmp"
 //
 
 IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
-IDR_MERGEHAND           CURSOR                  "res\\hand.cur"
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////

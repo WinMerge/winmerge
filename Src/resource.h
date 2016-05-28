@@ -15,7 +15,6 @@
 #define IDR_MERGEVIEWMENU               109 // = IDR_MERGEDOCTYPE
 #define IDR_DIRDOCTYPE                  110
 #define IDR_DIRVIEWMENU                 110 // = IDR_DIRDOCTYPE
-#define IDR_MERGEHAND                   112
 #define IDR_POPUP_DIFF_OPTIONS          113
 #define IDR_POPUP_IMGMERGEVIEW          114
 #define IDD_ABOUTBOX                    200
