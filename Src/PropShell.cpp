@@ -1,5 +1,5 @@
 /** 
- * @file  PropShell.h
+ * @file  PropShell.cpp
  *
  * @brief Implementation file for Shell Options dialog.
  *
