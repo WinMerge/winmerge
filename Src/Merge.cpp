@@ -632,6 +632,7 @@ void CMergeApp::InitializeFileFilters()
 BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame)
 {
 	BOOL bCompared = FALSE;
+	String strDesc[3];
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
 	// Set the global file filter.
@@ -662,15 +663,15 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 
 		m_strSaveAsPath = cmdInfo.m_sOutputpath;
 
-		m_strDescriptions[0] = cmdInfo.m_sLeftDesc;
+		strDesc[0] = cmdInfo.m_sLeftDesc;
 		if (cmdInfo.m_Files.GetSize() < 3)
 		{
-			m_strDescriptions[1] = cmdInfo.m_sRightDesc;
+			strDesc[1] = cmdInfo.m_sRightDesc;
 		}
 		else
 		{
-			m_strDescriptions[1] = cmdInfo.m_sMiddleDesc;
-			m_strDescriptions[2] = cmdInfo.m_sRightDesc;
+			strDesc[1] = cmdInfo.m_sMiddleDesc;
+			strDesc[2] = cmdInfo.m_sRightDesc;
 		}
 
 		if (cmdInfo.m_Files.GetSize() > 2)
@@ -680,14 +681,14 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-				dwFlags, cmdInfo.m_bRecurse, NULL,
+				dwFlags, strDesc, cmdInfo.m_bRecurse, NULL,
 				cmdInfo.m_sPreDiffer);
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-				dwFlags, cmdInfo.m_bRecurse, NULL,
+				dwFlags, strDesc, cmdInfo.m_bRecurse, NULL,
 				cmdInfo.m_sPreDiffer);
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
@@ -705,7 +706,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-					dwFlags, cmdInfo.m_bRecurse, NULL,
+					dwFlags, strDesc, cmdInfo.m_bRecurse, NULL,
 					cmdInfo.m_sPreDiffer);
 			}
 		}
@@ -1245,7 +1246,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject)
 
 	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 	
-	BOOL rtn = GetMainFrame()->DoFileOpen(&files, dwFlags, bRecursive);
+	BOOL rtn = GetMainFrame()->DoFileOpen(&files, dwFlags, NULL, bRecursive);
 
 	AddToRecentProjectsMRU(sProject.c_str());
 	return !!rtn;

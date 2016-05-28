@@ -67,15 +67,6 @@ enum
 	SAVE_CANCELLED, /**< Saving was cancelled */  
 };
 
-/**
- * @brief Result of trying to open file in MergeEditView display
- */
-typedef enum {
-	OPENRESULTS_SUCCESS,       /**< Open succeeded */
-	OPENRESULTS_FAILED_BINARY, /**< Open failed because one or both files were binary */
-	OPENRESULTS_FAILED_MISC    /**< Open failed for some other reason */
-} OPENRESULTS_TYPE;
-
 enum MERGEVIEW_INDEX_TYPE
 {
 	MERGEVIEW_PANE0 = 0,         /**< Pane0 MergeView */
@@ -195,8 +186,8 @@ public:
 	void UpdateHeaderActivity(int pane, bool bActivate);
 	void RefreshOptions();
 	void UpdateResources();
-	OPENRESULTS_TYPE OpenDocs(FileLocation fileloc[],
-		bool bRO[], int nPane = -1, int nLineIndex = -1);
+	bool OpenDocs(int nFiles, const FileLocation fileloc[],
+		const bool bRO[], const String strDesc[], int nPane = -1, int nLineIndex = -1);
 	int LoadFile(CString sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(bool &bBinary, IDENTLEVEL &identical, bool bForced = false);
@@ -302,7 +293,7 @@ private:
 	bool GetByteColoringOption() const;
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
-	DWORD LoadOneFile(int index, String filename, bool readOnly, const FileTextEncoding & encoding);
+	DWORD LoadOneFile(int index, String filename, bool readOnly, const String& strDesc, const FileTextEncoding & encoding);
 
 // Implementation data
 protected:

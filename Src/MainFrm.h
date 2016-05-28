@@ -99,15 +99,15 @@ public:
 	void UpdatePrediffersMenu();
 
 	BOOL DoFileOpen(const PathContext *pFiles = NULL,
-		const DWORD dwFlags[] = NULL, bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), const PackingInfo * infoUnpacker = NULL);
-	int ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const PackingInfo * infoUnpacker = NULL);
-	int ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const PackingInfo * infoUnpacker = NULL);
-	void ShowHexMergeDoc(CDirDoc * pDirDoc,
-		const PathContext &paths, const bool bRO[]);
-	int ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const PackingInfo * infoUnpacker = NULL);
+		const DWORD dwFlags[] = NULL, const String strDesc[] = NULL, bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), const PackingInfo * infoUnpacker = NULL);
+	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const PackingInfo * infoUnpacker = NULL);
+	bool ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const PackingInfo * infoUnpacker = NULL);
+	bool ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const PackingInfo * infoUnpacker = NULL);
+	bool ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const PackingInfo * infoUnpacker = NULL);
 
 	void UpdateResources();
 	void ClearStatusbarItemCount();

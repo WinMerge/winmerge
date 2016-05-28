@@ -2459,21 +2459,18 @@ void CMergeDoc::SanityCheckCodepage(FileLocation & fileinfo)
  * @param [in] encoding File's encoding.
  * @return One of FileLoadResult values.
  */
-DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly,
+DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const String& strDesc, 
 		const FileTextEncoding & encoding)
 {
 	DWORD loadSuccess = FileLoadResult::FRESULT_ERROR;;
 	
+	m_strDesc[index] = strDesc;
 	if (!filename.empty())
 	{
-		if (theApp.m_strDescriptions[index].empty())
+		if (strDesc.empty())
 			m_nBufferType[index] = BUFFER_NORMAL;
 		else
-		{
 			m_nBufferType[index] = BUFFER_NORMAL_NAMED;
-			m_strDesc[index] = theApp.m_strDescriptions[index];
-			theApp.m_strDescriptions[index].erase();
-		}
 		m_pSaveFileInfo[index]->Update(filename);
 		m_pRescanFileInfo[index]->Update(filename);
 
@@ -2483,7 +2480,6 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly,
 	{
 		m_nBufferType[index] = BUFFER_UNNAMED;
 		m_ptBuf[index]->InitNew();
-		m_strDesc[index] = theApp.m_strDescriptions[index];
 		m_ptBuf[index]->m_encoding = encoding;
 		loadSuccess = FileLoadResult::FRESULT_OK;
 	}
@@ -2500,12 +2496,15 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly,
  * @todo Options are still read from CMainFrame, this will change
  * @sa CMainFrame::ShowMergeDoc()
  */
-OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
-		bool bRO[], int nPane/* = -1 */, int nLineIndex/* = -1 */)
+bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
+		const bool bRO[], const String strDesc[], int nPane/* = -1 */, int nLineIndex/* = -1 */)
 {
 	IDENTLEVEL identical = IDENTLEVEL_NONE;
 	int nRescanResult = RESCAN_OK;
 	int nBuffer;
+	FileLocation fileloc[3];
+
+	std::copy(ifileloc, ifileloc + 3, fileloc);
 
 	// Filter out invalid codepages, or editor will display all blank
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -2538,7 +2537,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	DWORD nSuccess[3];
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		nSuccess[nBuffer] = LoadOneFile(nBuffer, fileloc[nBuffer].filepath, bRO[nBuffer],
+		nSuccess[nBuffer] = LoadOneFile(nBuffer, fileloc[nBuffer].filepath, bRO[nBuffer], strDesc ? strDesc[nBuffer] : _T(""),
 			fileloc[nBuffer].encoding);
 	}
 	const bool bFiltersEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
@@ -2556,14 +2555,13 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	// Bail out if either side failed
 	if (std::find_if(nSuccess, nSuccess + m_nBuffers, std::not1(std::ptr_fun(FileLoadResult::IsOk))) != nSuccess + m_nBuffers)
 	{
-		OPENRESULTS_TYPE retVal = OPENRESULTS_FAILED_MISC;
 		CChildFrame *pFrame = GetParentFrame();
 		if (pFrame)
 		{
 			// Use verify macro to trap possible error in debug.
 			VERIFY(pFrame->DestroyWindow());
 		}
-		return retVal;
+		return false;
 	}
 
 	// Warn user if file load was lossy (bad encoding)
@@ -2761,7 +2759,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 		// your temp directory, doing nothing is graceful enough for that).
 		ShowRescanError(nRescanResult, identical);
 		GetParentFrame()->DestroyWindow();
-		return OPENRESULTS_FAILED_MISC;
+		return false;
 	}
 
 	// Force repaint of location pane to update it in case we had some warning
@@ -2769,7 +2767,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	if (m_pView[0])
 		m_pView[0]->RepaintLocationPane();
 
-	return OPENRESULTS_SUCCESS;
+	return true;
 }
 
 /**
@@ -2989,7 +2987,7 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 		if (HasZipSupport() && std::count_if(m_filePaths.begin(), m_filePaths.end(), ArchiveGuessFormat) == m_nBuffers)
 		{
 			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
-			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, 
+			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, 
 				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), NULL, _T(""), &infoUnpacker);
 			CloseNow();
 		}
@@ -3030,11 +3028,10 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].encoding.m_unicoding = m_ptBuf[pane]->getUnicoding();
 		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
 		fileloc[pane].setPath(m_filePaths[pane]);
-		theApp.m_strDescriptions[pane] = m_strDesc[pane];
 	}
 	int nActivePane = GetActiveMergeView()->m_nThisPane;
 	CPoint pt = m_pView[nActivePane]->GetCursorPos();
-	OpenDocs(fileloc, bRO, nActivePane, pt.y);
+	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc, nActivePane, pt.y);
 }
 
 /**
@@ -3077,12 +3074,16 @@ void CMergeDoc::OnBnClickedPlugin()
 
 void CMergeDoc::OnBnClickedHexView()
 {
-	bool bRO[3];
+	DWORD dwFlags[3] = { 0 };
+	FileLocation fileloc[3];
 	for (int pane = 0; pane < m_nBuffers; pane++)
-		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
+	{
+		fileloc[pane].setPath(m_filePaths[pane]);
+		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
+	}
 	if (m_pEncodingErrorBar && m_pEncodingErrorBar->IsWindowVisible())
 		m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
-	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_filePaths, bRO);
+	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
 	GetParentFrame()->ShowWindow(SW_RESTORE);
 	GetParentFrame()->DestroyWindow();
 }

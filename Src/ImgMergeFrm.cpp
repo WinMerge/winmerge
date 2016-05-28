@@ -41,6 +41,8 @@
 #include "FileOrFolderSelect.h"
 #include "UniFile.h"
 #include "SaveClosingDlg.h"
+#include "FileLocation.h"
+#include "Constants.h"
 #include <cmath>
 #include <cstdint>
 #include <Shlwapi.h>
@@ -189,21 +191,15 @@ CImgMergeFrame::~CImgMergeFrame()
 	}
 }
 
-bool CImgMergeFrame::OpenImages(const PathContext& paths, const bool bRO[], int nPane, CMDIFrameWnd *pParent)
+bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], int nPane, CMDIFrameWnd *pParent)
 {
-	m_filePaths = paths;
 
-	for (int pane = 0; pane < paths.GetSize(); ++pane)
+	for (int pane = 0; pane < nFiles; ++pane)
 	{
+		m_filePaths.SetPath(pane, fileloc[pane].filepath);
 		m_bRO[pane] = bRO[pane];
-		if (theApp.m_strDescriptions[pane].empty())
-			m_nBufferType[pane] = BUFFER_NORMAL;
-		else
-		{
-			m_nBufferType[pane] = BUFFER_NORMAL_NAMED;
-			m_strDesc[pane] = theApp.m_strDescriptions[pane];
-			theApp.m_strDescriptions[pane].erase();
-		}
+		m_strDesc[pane] = strDesc ? strDesc[pane] : _T("");
+		m_nBufferType[pane] = (!strDesc || strDesc[pane].empty()) ? BUFFER_NORMAL : BUFFER_NORMAL_NAMED;
 	}
 	SetTitle(NULL);
 
@@ -794,7 +790,14 @@ void CImgMergeFrame::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 
 void CImgMergeFrame::OnFileRecompareAsBinary()
 {
-	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_filePaths, m_bRO);
+	DWORD dwFlags[3] = { 0 };
+	FileLocation fileloc[3];
+	for (int pane = 0; pane < m_filePaths.GetSize(); pane++)
+	{
+		fileloc[pane].setPath(m_filePaths[pane]);
+		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_bRO[pane] ? FFILEOPEN_READONLY : 0);
+	}
+	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_filePaths.GetSize(), fileloc, dwFlags, m_strDesc);
 	ShowWindow(SW_RESTORE);
 	DestroyWindow();
 }

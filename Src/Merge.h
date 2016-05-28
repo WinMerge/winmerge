@@ -76,17 +76,6 @@ public:
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
 	std::unique_ptr<FilterCommentsManager> m_pFilterCommentsManager;
 
-	/**
-	 * @name Textual labels/descriptors
-	 * These descriptors overwrite dir/filename usually shown in headerbar
-	 * and can be given from command-line. For example version control
-	 * system can set these to "WinMerge v2.1.2.0" and "WinMerge 2.1.4.0"
-	 * which is more pleasant and informative than temporary paths.
-	 */
-	/*@{*/ 
-	String m_strDescriptions[3];
-	/*@}*/
-
 	WORD GetLangId() const;
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
