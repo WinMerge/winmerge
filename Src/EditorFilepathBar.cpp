@@ -64,10 +64,22 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 			CBRS_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, CEditorFilePathBar::IDD))
 		return FALSE;
 
+	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
+	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
+	{
+		m_pFont.reset(new CFont());
+		if (m_pFont)
+			m_pFont->CreateFontIndirect(&ncm.lfStatusFont);
+	}
+
 	// subclass the two custom edit boxes
 	for (int pane = 0; pane < countof(m_Edit); pane++)
+	{
 		m_Edit[pane].SubClassEdit(IDC_STATIC_TITLE_PANE0 + pane, this);
-
+		if (m_pFont)
+			m_Edit[pane].SetFont(m_pFont.get());
+		m_Edit[pane].SetMargins(4, 4);
+	}
 	return TRUE;
 };
 
@@ -85,49 +97,6 @@ CSize CEditorFilePathBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 void CEditorFilePathBar::SetPaneCount(int nPanes)
 {
 	m_nPanes = nPanes;
-}
-
-/**
- * @brief Set look of headerbars similar to other window.
- *
- * @param [in] pWnd Pointer to window we want to imitate
- * @return TRUE if parent must recompute layout
- */
-BOOL CEditorFilePathBar::LookLikeThisWnd(const CWnd * pWnd)
-{
-	// Update font. Note that we must delete previous font
-	// before creating a new one.
-	CFont * pFont = pWnd->GetFont();
-	if (pFont)
-	{
-		m_pFont.reset(new CFont);
-		if (m_pFont != NULL)
-		{
-			LOGFONT lfFont = {0};
-			if (pFont->GetLogFont(&lfFont))
-			{
-				m_pFont->CreateFontIndirect(&lfFont);
-				for (int pane = 0; pane < m_nPanes; pane++)
-				{
-					m_Edit[pane].SetFont(m_pFont.get());
-					m_Edit[pane].SetMargins(4, 4);
-				}
-			}
-		}
-	}
-
-	// Set same dimensions (than window we imitate)
-	CRect rectNew;
-	pWnd->GetWindowRect(rectNew);
-	CRect rectCurrent;
-	GetWindowRect(rectCurrent);
-	if (rectNew != rectCurrent)
-	{
-		SetWindowPos(NULL,0,0,rectNew.Width(), rectNew.Height(),
-			SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOMOVE);     
-		return TRUE;
-	}
-	return FALSE;
 }
 
 /** 

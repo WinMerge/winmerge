@@ -193,10 +193,6 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 		nCmdShow = SW_SHOWNORMAL;
 
 	CMDIChildWnd::ActivateFrame(nCmdShow);
-
-	// prepare file path bar to look as a status bar
-	if (m_wndFilePathBar.LookLikeThisWnd(&m_wndStatusBar) == TRUE)
-		RecalcLayout();
 }
 
 /**

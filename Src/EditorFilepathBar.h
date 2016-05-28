@@ -59,7 +59,6 @@ public :
 // Dialog Data
 	enum { IDD = IDD_EDITOR_HEADERBAR };
 	
-	BOOL LookLikeThisWnd(const CWnd * pWnd);
 	void Resize();
 	void Resize(int widths[]);
 
