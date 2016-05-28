@@ -19,7 +19,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  PropCodepage.h
+ * @file  PropCodepage.cpp
  *
  * @brief Implementation file for PropCodepage propertyheet
  *

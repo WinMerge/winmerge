@@ -19,9 +19,9 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  EditorFilepathBar.cpp
+ * @file  MergeStatusBar.cpp
  *
- * @brief Implementation file for CEditorFilepathBar class
+ * @brief Implementation file for CMergeStatusBar class
  */
 
 #include "stdafx.h"
