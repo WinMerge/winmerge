@@ -64,3 +64,5 @@ VERSION(2,2)
 "*"//2010-04-24	Jochen Neubeck	New formats introduced with 7z459 beta:
 //								XAR, MUB, HFS, DMG, ELF (not sure if they work)
 //								Support 7z465, 7z907, 7z909-7z913
+"*"//2013-02-17	Jochen Neubeck	From now on maintained as part of WinMerge 2011
+"*"//2013-12-01	Jochen Neubeck	Fix inability to open NSIS installers

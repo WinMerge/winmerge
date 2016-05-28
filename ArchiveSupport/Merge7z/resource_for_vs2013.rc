@@ -1,3 +1,0 @@
-#include "windows.h"
-#define _WINUSER_    // fix for fatal error RC10056 
-#include "../../Externals/sevenzip/CPP/7zip/UI/GUI/resource.rc"

@@ -14,7 +14,6 @@
 #define DllBuild_Merge7z_10 public
 #else
 #define DllBuild_Merge7z_10 private
-#define DLLPSTUB /##/
 #endif
 
 #if DllBuild_Merge7z >= 13
@@ -40,6 +39,7 @@ interface Merge7z
 			Local7z = 2,
 			GuessFormatBySignature = 4,
 			GuessFormatByExtension = 8,
+			ShowPassword = 16,
 			Default = sizeof(TCHAR) == sizeof(WCHAR) ? Unicode : 0
 		};
 	};
