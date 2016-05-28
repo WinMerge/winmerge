@@ -31,6 +31,7 @@
 #include "IMergeDoc.h"
 #include "WinIMergeLib.h"
 #include "LocationBar.h"
+#include "FileLocation.h"
 
 class CDirDoc;
 
@@ -57,7 +58,7 @@ public:
 
 // Operations
 public:
-	bool OpenImages(const PathContext& paths, const bool bRO[], int nPane, CMDIFrameWnd *pParent);
+	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], int nPane, CMDIFrameWnd *pParent);
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void UpdateResources();
 	bool CloseNow();

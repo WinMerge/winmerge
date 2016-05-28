@@ -1190,7 +1190,7 @@ void CDirView::OpenParentDirectory()
 		DWORD dwFlags[3];
 		for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
 			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
-		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
+		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, NULL, GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
 		// fall through (no break!)
 	case AllowUpwardDirectory::No:
@@ -1324,12 +1324,12 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	{
 		// Open subfolders
 		// Don't add folders to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, NULL, GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
 	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
 	{
 		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, GetDiffContext().m_bRecursive, NULL, _T(""), infoUnpacker);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, NULL, GetDiffContext().m_bRecursive, NULL, _T(""), infoUnpacker);
 	}
 	else
 	{
@@ -1342,40 +1342,36 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 
 		// Open identical and different files
 		FileLocation fileloc[3];
+		String strDesc[3];
 		if (paths.GetSize() < 3)
 		{
-			theApp.m_strDescriptions[0].erase();
-			theApp.m_strDescriptions[1].erase();
 			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.exists(0))
 			{
 				paths[0] = _T("");
-				theApp.m_strDescriptions[0] = _("Untitled left");
+				strDesc[0] = _("Untitled left");
 			}
 			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.exists(1))
 			{
 				paths[1] = _T("");
-				theApp.m_strDescriptions[1] = _("Untitled right");
+				strDesc[1] = _("Untitled right");
 			}
 		}
 		else
 		{
-			theApp.m_strDescriptions[0].erase();
-			theApp.m_strDescriptions[1].erase();
-			theApp.m_strDescriptions[2].erase();
 			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(0))
 			{
 				paths[0] = _T("");
-				theApp.m_strDescriptions[0] = _("Untitled left");
+				strDesc[0] = _("Untitled left");
 			}
 			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(1))
 			{
 				paths[1] = _T("");
-				theApp.m_strDescriptions[1] = _("Untitled middle");
+				strDesc[1] = _("Untitled middle");
 			}
 			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(2))
 			{
 				paths[2] = _T("");
-				theApp.m_strDescriptions[2] = _("Untitled right");
+				strDesc[2] = _("Untitled right");
 			}
 		}
 
@@ -1385,7 +1381,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 			fileloc[nIndex].encoding = pdi[nIndex]->diffFileInfo[nPane[nIndex]].encoding;
 		}
 		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc,
-			dwFlags, infoUnpacker);
+			dwFlags, strDesc, infoUnpacker);
 	}
 }
 
@@ -1439,11 +1435,14 @@ void CDirView::OpenSelectionHex()
 	}
 
 	// Open identical and different files
-	bool bRO[3];
-	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
-		bRO[nIndex] = !!pDoc->GetReadOnly(nPane[nIndex]);
-
-	GetMainFrame()->ShowHexMergeDoc(pDoc, paths, bRO);
+	DWORD dwFlags[3] = { 0 };
+	FileLocation fileloc[3];
+	for (int pane = 0; pane < paths.GetSize(); pane++)
+	{
+		fileloc[pane].setPath(paths[pane]);
+		dwFlags[pane] |= FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[pane]) ? FFILEOPEN_READONLY : 0);
+	}
+	GetMainFrame()->ShowHexMergeDoc(pDoc, paths.GetSize(), fileloc, dwFlags, NULL);
 }
 
 /// User chose (context menu) delete left

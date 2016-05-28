@@ -498,7 +498,7 @@ bool CHexMergeDoc::CloseNow()
 /**
 * @brief Load one file
 */
-HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
+HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly, const String& strDesc)
 {
 	if (filename[0])
 	{
@@ -507,7 +507,6 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
 		m_pView[index]->SetReadOnly(readOnly);
 		m_filePaths.SetPath(index, filename);
 		ASSERT(m_nBufferType[index] == BUFFER_NORMAL); // should have been initialized to BUFFER_NORMAL in constructor
-		String strDesc = theApp.m_strDescriptions[index];
 		if (!strDesc.empty())
 		{
 			m_strDesc[index] = strDesc;
@@ -517,8 +516,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
 	else
 	{
 		m_nBufferType[index] = BUFFER_UNNAMED;
-		m_strDesc[index] = theApp.m_strDescriptions[index];
-
+		m_strDesc[index] = strDesc;
 	}
 	UpdateHeaderPath(index);
 	m_pView[index]->ResizeWindow();
@@ -528,18 +526,21 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
 /**
  * @brief Load files and initialize frame's compare result icon
  */
-HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, const bool bRO[])
+bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], int nPane)
 {
 	CHexMergeFrame *pf = GetParentFrame();
 	ASSERT(pf);
-	HRESULT hr = E_FAIL;
+	bool bSucceeded = true;
 	int nBuffer;
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	for (nBuffer = 0; nBuffer < nFiles; nBuffer++)
 	{
-		if (FAILED(hr = LoadOneFile(nBuffer, paths.GetPath(nBuffer).c_str(), bRO[nBuffer])))
+		if (FAILED(LoadOneFile(nBuffer, fileloc[nBuffer].filepath.c_str(), bRO[nBuffer], strDesc ? strDesc[nBuffer] : _T(""))))
+		{
+			bSucceeded = false;
 			break;
+		}
 	}
-	if (nBuffer == m_nBuffers)
+	if (nBuffer == nFiles)
 	{
 		UpdateDiffItem(0);
 		// An extra ResizeWindow() on the left view aligns scroll ranges, and
@@ -553,7 +554,7 @@ HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, const bool bRO[])
 		// Use verify macro to trap possible error in debug.
 		VERIFY(pf->DestroyWindow());
 	}
-	return hr;
+	return bSucceeded;
 }
 
 void CHexMergeDoc::CheckFileChanged(void)
@@ -730,14 +731,15 @@ void CHexMergeDoc::OnFileReload()
 	if (!PromptAndSaveIfNeeded(true))
 		return;
 	
+	FileLocation fileloc[3];
 	bool bRO[3];
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
+		fileloc[pane].setPath(m_filePaths[pane]);
 		bRO[pane] = !!m_pView[pane]->GetReadOnly();
-		theApp.m_strDescriptions[pane] = m_strDesc[pane];
 	}
 	int nActivePane = GetActiveMergeView()->m_nThisPane;
-	OpenDocs(m_filePaths, bRO);
+	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc, nActivePane);
 }
 
 /**

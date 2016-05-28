@@ -26,6 +26,7 @@
 
 #include "PathContext.h"
 #include "DiffFileInfo.h"
+#include "FileLocation.h"
 #include "IMergeDoc.h"
 
 class CDirDoc;
@@ -84,14 +85,14 @@ public:
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	void RefreshOptions();
-	HRESULT OpenDocs(const PathContext &paths, const bool bRO[]);
+	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], int nPane);
 	void CheckFileChanged(void);
 private:
 	static void CopySel(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
 	static void CopyAll(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
 	void DoFileSave(int nBuffer);
 	void DoFileSaveAs(int nBuffer);
-	HRESULT LoadOneFile(int index, LPCTSTR filename, BOOL readOnly);
+	HRESULT LoadOneFile(int index, LPCTSTR filename, BOOL readOnly, const String& strDesc);
 // Implementation data
 protected:
 	CHexMergeView * m_pView[3]; /**< Pointer to left/right view */
