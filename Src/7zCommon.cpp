@@ -101,7 +101,6 @@ DATE:		BY:					DESCRIPTION:
 #include <shlwapi.h>
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "Merge.h"		// DirDocFilter theApp GetOptionsMgr()
 #include "resource.h"
 #include "DirView.h"
 #include "DirDoc.h"

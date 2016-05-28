@@ -2,7 +2,6 @@
 //
 #include "stdafx.h"
 #include "OpenFrm.h"
-#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -146,7 +145,7 @@ void COpenFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 
 void COpenFrame::ActivateFrame(int nCmdShow) 
 {
-	if (!GetMDIFrame()->MDIGetActive() && theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), TRUE))
+	if (!GetMDIFrame()->MDIGetActive() && AfxGetApp()->GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), TRUE))
 	{
 		nCmdShow = SW_SHOWMAXIMIZED;
 	}
@@ -172,7 +171,7 @@ BOOL COpenFrame::DestroyWindow()
 		WINDOWPLACEMENT wp;
 		wp.length = sizeof(WINDOWPLACEMENT);
 		GetWindowPlacement(&wp);
-		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
+		AfxGetApp()->WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
 	}
 
 	return CMDIChildWnd::DestroyWindow();

@@ -7,7 +7,6 @@
 
 #include "stdafx.h"
 #include "LocationBar.h"
-#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

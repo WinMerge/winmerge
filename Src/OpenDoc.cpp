@@ -5,7 +5,6 @@
 #include "OpenDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "Merge.h"
 
 // COpenDoc
 

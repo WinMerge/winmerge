@@ -14,7 +14,6 @@
 #include "cs2cs.h"
 #include "locality.h"
 #include "paths.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "Environment.h"

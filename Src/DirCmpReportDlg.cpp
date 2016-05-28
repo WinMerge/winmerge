@@ -11,7 +11,6 @@
 #include "DirReportTypes.h"
 #include "paths.h"
 #include "FileOrFolderSelect.h"
-#include "Merge.h"
 
 IMPLEMENT_DYNAMIC(DirCmpReportDlg, CTrDialog)
 
@@ -91,9 +90,9 @@ BOOL DirCmpReportDlg::OnInitDialog()
 	CTrDialog::OnInitDialog();
 
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
-	m_nReportType = static_cast<REPORT_TYPE>(theApp.GetProfileInt(_T("ReportFiles"), _T("ReportType"), 0));
-	m_bCopyToClipboard = !!theApp.GetProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), false);
-	m_bIncludeFileCmpReport = !!theApp.GetProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), false);
+	m_nReportType = static_cast<REPORT_TYPE>(AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("ReportType"), 0));
+	m_bCopyToClipboard = !!AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), false);
+	m_bIncludeFileCmpReport = !!AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), false);
 
 	for (int i = 0; i < sizeof(f_types) / sizeof(f_types[0]); ++i)
 	{
@@ -181,9 +180,9 @@ void DirCmpReportDlg::OnOK()
 	}
 
 	m_ctlReportFile.SaveState(_T("ReportFiles"));
-	theApp.WriteProfileInt(_T("ReportFiles"), _T("ReportType"), m_nReportType);
-	theApp.WriteProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), m_bCopyToClipboard);
-	theApp.WriteProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), m_bIncludeFileCmpReport);
+	AfxGetApp()->WriteProfileInt(_T("ReportFiles"), _T("ReportType"), m_nReportType);
+	AfxGetApp()->WriteProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), m_bCopyToClipboard);
+	AfxGetApp()->WriteProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), m_bIncludeFileCmpReport);
 
 	CTrDialog::OnOK();
 }

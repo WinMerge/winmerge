@@ -30,7 +30,6 @@
 #include <afxinet.h>
 #include "UnicodeString.h"
 #include "FileTextEncoding.h"
-#include "Merge.h"
 #include "HexMergeFrm.h"
 #include "HexMergeView.h"
 #include "DiffItem.h"
