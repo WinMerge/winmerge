@@ -22,7 +22,6 @@
 
 #include "StdAfx.h"
 #include "PatchDlg.h"
-#include "Merge.h"
 #include "PatchTool.h"
 #include "diff.h"
 #include "coretools.h"
@@ -500,28 +499,28 @@ void CPatchDlg::UpdateSettings()
  */
 void CPatchDlg::LoadSettings()
 {
-	int patchStyle = theApp.GetProfileInt(_T("PatchCreator"), _T("PatchStyle"), 0);
+	int patchStyle = AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("PatchStyle"), 0);
 	if ((patchStyle < DIFF_OUTPUT_NORMAL || patchStyle > DIFF_OUTPUT_UNIFIED) &&  patchStyle != DIFF_OUTPUT_HTML)
 		patchStyle = DIFF_OUTPUT_NORMAL;
 	m_outputStyle = (enum output_style) patchStyle;
 	
-	m_contextLines = theApp.GetProfileInt(_T("PatchCreator"), _T("ContextLines"), 0);
+	m_contextLines = AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("ContextLines"), 0);
 	if (m_contextLines < 0 || m_contextLines > 50)
 		m_contextLines = 0;
 
-	m_caseSensitive = !!theApp.GetProfileInt(_T("PatchCreator"), _T("CaseSensitive"), true);
-	m_ignoreEOLDifference = !!theApp.GetProfileInt(_T("PatchCreator"), _T("EOLSensitive"), true);
-	m_ignoreBlanks = !!theApp.GetProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), false);
+	m_caseSensitive = !!AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("CaseSensitive"), true);
+	m_ignoreEOLDifference = !!AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("EOLSensitive"), true);
+	m_ignoreBlanks = !!AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), false);
 	
-	m_whitespaceCompare = theApp.GetProfileInt(_T("PatchCreator"), _T("Whitespace"), WHITESPACE_COMPARE_ALL);
+	m_whitespaceCompare = AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("Whitespace"), WHITESPACE_COMPARE_ALL);
 	if (m_whitespaceCompare < WHITESPACE_COMPARE_ALL ||
 		m_whitespaceCompare > WHITESPACE_IGNORE_ALL)
 	{
 		m_whitespaceCompare = WHITESPACE_COMPARE_ALL;
 	}
 	
-	m_openToEditor = !!theApp.GetProfileInt(_T("PatchCreator"), _T("OpenToEditor"), false);
-	m_includeCmdLine = !!theApp.GetProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), false);
+	m_openToEditor = !!AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("OpenToEditor"), false);
+	m_includeCmdLine = !!AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), false);
 
 	UpdateSettings();
 }
@@ -531,14 +530,14 @@ void CPatchDlg::LoadSettings()
  */
 void CPatchDlg::SaveSettings()
 {
-	theApp.WriteProfileInt(_T("PatchCreator"), _T("PatchStyle"), m_outputStyle);
-	theApp.WriteProfileInt(_T("PatchCreator"), _T("ContextLines"), m_contextLines);
-	theApp.WriteProfileInt(_T("PatchCreator"), _T("CaseSensitive"), m_caseSensitive);
-	theApp.WriteProfileInt(_T("PatchCreator"), _T("EOLSensitive"), m_ignoreEOLDifference);
-	theApp.WriteProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), m_ignoreBlanks);
-	theApp.WriteProfileInt(_T("PatchCreator"), _T("Whitespace"), m_whitespaceCompare);
-	theApp.WriteProfileInt(_T("PatchCreator"), _T("OpenToEditor"), m_openToEditor);
-	theApp.WriteProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), m_includeCmdLine);
+	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("PatchStyle"), m_outputStyle);
+	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("ContextLines"), m_contextLines);
+	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("CaseSensitive"), m_caseSensitive);
+	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("EOLSensitive"), m_ignoreEOLDifference);
+	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), m_ignoreBlanks);
+	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("Whitespace"), m_whitespaceCompare);
+	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("OpenToEditor"), m_openToEditor);
+	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), m_includeCmdLine);
 }
 
 /** 

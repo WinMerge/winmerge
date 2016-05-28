@@ -9,7 +9,6 @@
 #include "MergeDoc.h"
 #include <vector>
 #include <memory>
-#include "Merge.h"
 #include "MergeEditView.h"
 #include "DiffTextBuffer.h"
 #include "stringdiffs.h"

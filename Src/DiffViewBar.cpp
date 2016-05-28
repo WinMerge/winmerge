@@ -7,7 +7,6 @@
 
 #include "stdafx.h"
 #include "DiffViewBar.h"
-#include "Merge.h"
 #include "SplitterWndEx.h"
 
 #ifdef _DEBUG

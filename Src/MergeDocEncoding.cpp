@@ -28,7 +28,6 @@
 
 #include "stdafx.h"
 #include "MergeDoc.h"
-#include "Merge.h"
 #include "LoadSaveCodepageDlg.h"
 #include "unicoder.h"
 
