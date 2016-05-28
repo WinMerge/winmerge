@@ -520,10 +520,6 @@ void CChildFrame::UpdateHeaderSizes()
 			}
 		}
 
-		// prepare file path bar to look as a status bar
-		if (m_wndFilePathBar.LookLikeThisWnd(&m_wndStatusBar) == TRUE)
-			RecalcLayout();
-
 		// resize controls in header dialog bar
 		m_wndFilePathBar.Resize(w);
 
