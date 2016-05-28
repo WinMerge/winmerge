@@ -20,21 +20,12 @@ Please mind 2. a) of the GNU General Public License, and log your changes below.
 
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
-2003/12/09	Jochen Tucht		Created
-2005/02/26	Jochen Tucht		Changed as explained in revision.txt
-2005/08/20	Jochen Tucht		Remove unused EnumList
+2003-12-09	Jochen Tucht		Created
+2005-02-26	Jochen Tucht		Changed as explained in revision.txt
+2005-08-20	Jochen Tucht		Remove unused EnumList
 */
 
 #include "stdafx.h"
-
-#ifndef StrIsIntlEqual
-#ifdef UNICODE
-#define StrIsIntlEqual          StrIsIntlEqualW
-#else
-#define StrIsIntlEqual          StrIsIntlEqualA
-#endif
-#endif
-
 #include "tools.h"
 
 /**
@@ -54,7 +45,7 @@ Complain::Complain(DWORD dwError, LPCTSTR pszContext, HMODULE hContext)
 		pszMessage += wsprintf(pszMessage, _T("%.500s"), pszContext);
 		if (hContext)
 		{
-			*pszMessage++ = '@';
+			*pszMessage++ = _T('@');
 			int cch = ::GetModuleFileName(hContext, pszMessage, 500);
 			if (cch == 0)
 			{
@@ -62,8 +53,8 @@ Complain::Complain(DWORD dwError, LPCTSTR pszContext, HMODULE hContext)
 			}
 			pszMessage += cch;
 		}
-		*pszMessage++ = ':';
-		*pszMessage++ = '\n';
+		*pszMessage++ = _T(':');
+		*pszMessage++ = _T('\n');
 	}
 	FormatMessage
 	(
@@ -110,4 +101,3 @@ void NTAPI Release(IUnknown *punk)
 		}
 	}
 }
-

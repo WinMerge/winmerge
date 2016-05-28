@@ -60,12 +60,11 @@ void ReloadLang(); //Implemented in /*/FileManager/LangUtils.cpp
 
 using namespace NWindows;
 using namespace NFile;
-using namespace NName;
 
 void AddDirFileInfo(
 	const UString &prefix, 
 	const UString &fullPathName,
-	NFind::CFileInfoW &fileInfo, 
+	NFind::CFileInfo &fileInfo, 
 	CDirItems &dirItems)
 {
 	CDirItem item;
@@ -88,15 +87,15 @@ static void EnumerateDirectory(
 	const UString &prefix,
 	CDirItems &dirItems)
 {
-	NFind::CEnumeratorW enumerator(baseFolderPrefix + directory + wchar_t(kAnyStringWildcard));
-	NFind::CFileInfoW fileInfo;
+	NFind::CEnumerator enumerator(baseFolderPrefix + directory + L'*');
+	NFind::CFileInfo fileInfo;
 	while (enumerator.Next(fileInfo))
 	{ 
 		AddDirFileInfo(prefix, directory + fileInfo.Name, fileInfo, dirItems);
 		if (fileInfo.IsDir())
 		{
-			EnumerateDirectory(baseFolderPrefix, directory + fileInfo.Name + wchar_t(kDirDelimiter),
-			prefix + fileInfo.Name + wchar_t(kDirDelimiter), dirItems);
+			EnumerateDirectory(baseFolderPrefix, directory + fileInfo.Name + WCHAR_PATH_SEPARATOR,
+			prefix + fileInfo.Name + WCHAR_PATH_SEPARATOR, dirItems);
 		}
 	}
 }
@@ -192,7 +191,7 @@ static HMODULE DllProxyHelper(LPCSTR *proxy, ...)
 HRESULT Format7zDLL::Interface::CreateObject(const GUID *interfaceID, void **outObject)
 {
 	PROPVARIANT value;
-	HRESULT result = proxy->GetHandlerProperty(NArchive::kClassID, &value);
+	HRESULT result = proxy->GetHandlerProperty(NArchive::NHandlerPropID::kClassID, &value);
 	if SUCCEEDED(result)
 	{
 		if (value.vt != VT_BSTR || SysStringByteLen(value.bstrVal) != sizeof(GUID))
@@ -242,7 +241,7 @@ HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path,
 	HRESULT result = E_FAIL;
 	if (Merge7z::Format::Inspector *inspector = Open(hwndParent, path))
 	{
-		if (CMyComBSTR(GetHandlerAddExtension(hwndParent)).Length())
+		if (AutoBSTR(GetHandlerAddExtension(hwndParent)).Len())
 		{
 			//Most handlers seem to be happy with missing index array, but rpm
 			//handler doesn't know how to "extract all" and needs index array
@@ -344,15 +343,15 @@ FILETIME Format7zDLL::Interface::Inspector::LastWriteTime(UINT32 index)
 
 void Format7zDLL::Interface::GetDefaultName(HWND hwndParent, UString &ustrDefaultName)
 {
-	int dot = ustrDefaultName.ReverseFind('.');
-	int slash = ustrDefaultName.ReverseFind('\\');
+	int dot = ustrDefaultName.ReverseFind(L'.');
+	int slash = ustrDefaultName.ReverseFind(L'\\');
 	if (dot > slash)
 	{
 		LPCWSTR pchExtension = ustrDefaultName;
 		pchExtension += dot + 1;
-		static const OLECHAR wBlank[] = L" ";
-		CMyComBSTR bstrHandlerExtension = GetHandlerExtension(hwndParent);
-		CMyComBSTR bstrHandlerAddExtension = GetHandlerAddExtension(hwndParent);
+		static OLECHAR const wBlank[] = L" ";
+		AutoBSTR const bstrHandlerExtension = GetHandlerExtension(hwndParent);
+		AutoBSTR const bstrHandlerAddExtension = GetHandlerAddExtension(hwndParent);
 		LPWSTR pchHandlerExtension = bstrHandlerExtension.m_str;
 		LPWSTR pchHandlerAddExtension = bstrHandlerAddExtension.m_str;
 		while (int cchHandlerAddExtension = StrCSpnW(pchHandlerAddExtension += StrSpnW(pchHandlerAddExtension, wBlank), wBlank))
@@ -360,9 +359,9 @@ void Format7zDLL::Interface::GetDefaultName(HWND hwndParent, UString &ustrDefaul
 			int cchHandlerExtension = StrCSpnW(pchHandlerExtension += StrSpnW(pchHandlerExtension, wBlank), wBlank);
 			if (StrIsIntlEqualW(FALSE, pchExtension, pchHandlerExtension, cchHandlerExtension) && pchExtension[cchHandlerExtension] == 0)
 			{
-				pchHandlerAddExtension[cchHandlerAddExtension] = '\0'; // will also stop iteration
-				ustrDefaultName.ReleaseBuffer(dot);
-				if (*pchHandlerAddExtension == '.') // consider != '*'
+				pchHandlerAddExtension[cchHandlerAddExtension] = L'\0'; // will also stop iteration
+				ustrDefaultName.ReleaseBuf_SetEnd(dot);
+				if (*pchHandlerAddExtension == L'.') // consider != '*'
 				{
 					ustrDefaultName += pchHandlerAddExtension;
 					dot += cchHandlerAddExtension; // make ReleaseBuffer(dot) below a NOP
@@ -371,7 +370,7 @@ void Format7zDLL::Interface::GetDefaultName(HWND hwndParent, UString &ustrDefaul
 			pchHandlerExtension += cchHandlerExtension;
 			pchHandlerAddExtension += cchHandlerAddExtension;
 		}
-		ustrDefaultName.ReleaseBuffer(dot);
+		ustrDefaultName.ReleaseBuf_SetEnd(dot);
 		ustrDefaultName.Delete(0, slash + 1);
 	}
 	else
@@ -440,7 +439,7 @@ UINT32 Format7zDLL::Interface::Updater::Add(Merge7z::DirItemEnumerator::Item &et
 	if (etorItem.Mask.Item && (etorItem.Mask.Item & (etorItem.Mask.NeedFindFile|etorItem.Mask.CheckIfPresent)) != etorItem.Mask.NeedFindFile)
 	{
 		// Check the info from the disk
-		NFile::NFind::CFileInfoW fileInfo;
+		NFile::NFind::CFileInfo fileInfo;
 		if (NFile::NFind::CFindFile().FindFirst(FullPath, fileInfo))
 		{
 			if (!(etorItem.Mask.Item & etorItem.Mask.Name))
@@ -547,7 +546,7 @@ HRESULT Format7zDLL::Interface::GetHandlerProperty(HWND hwndParent, PROPID propI
 BSTR Format7zDLL::Interface::GetHandlerName(HWND hwndParent)
 {
 	PROPVARIANT value;
-	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kName, &value, VT_BSTR)) ? value.bstrVal : 0;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::NHandlerPropID::kName, &value, VT_BSTR)) ? value.bstrVal : 0;
 }
 
 /**
@@ -556,7 +555,7 @@ BSTR Format7zDLL::Interface::GetHandlerName(HWND hwndParent)
 BSTR Format7zDLL::Interface::GetHandlerClassID(HWND hwndParent)
 {
 	PROPVARIANT value;
-	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kClassID, &value, VT_BSTR)) ? value.bstrVal : 0;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::NHandlerPropID::kClassID, &value, VT_BSTR)) ? value.bstrVal : 0;
 }
 
 /**
@@ -565,7 +564,7 @@ BSTR Format7zDLL::Interface::GetHandlerClassID(HWND hwndParent)
 BSTR Format7zDLL::Interface::GetHandlerExtension(HWND hwndParent)
 {
 	PROPVARIANT value;
-	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kExtension, &value, VT_BSTR)) ? value.bstrVal : 0;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::NHandlerPropID::kExtension, &value, VT_BSTR)) ? value.bstrVal : 0;
 }
 
 /**
@@ -574,7 +573,7 @@ BSTR Format7zDLL::Interface::GetHandlerExtension(HWND hwndParent)
 BSTR Format7zDLL::Interface::GetHandlerAddExtension(HWND hwndParent)
 {
 	PROPVARIANT value;
-	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kAddExtension, &value, VT_BSTR)) ? value.bstrVal : 0;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::NHandlerPropID::kAddExtension, &value, VT_BSTR)) ? value.bstrVal : 0;
 }
 
 /**
@@ -583,7 +582,7 @@ BSTR Format7zDLL::Interface::GetHandlerAddExtension(HWND hwndParent)
 VARIANT_BOOL Format7zDLL::Interface::GetHandlerUpdate(HWND hwndParent)
 {
 	PROPVARIANT value;
-	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kUpdate, &value, VT_BOOL)) ? value.boolVal : 0;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::NHandlerPropID::kUpdate, &value, VT_BOOL)) ? value.boolVal : 0;
 }
 
 /**
@@ -592,7 +591,7 @@ VARIANT_BOOL Format7zDLL::Interface::GetHandlerUpdate(HWND hwndParent)
 VARIANT_BOOL Format7zDLL::Interface::GetHandlerKeepName(HWND hwndParent)
 {
 	PROPVARIANT value;
-	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kKeepName, &value, VT_BOOL)) ? value.boolVal : 0;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::NHandlerPropID::kKeepName, &value, VT_BOOL)) ? value.boolVal : 0;
 }
 
 /**
@@ -653,7 +652,7 @@ struct Format7zDLL::Proxy *Format7zDLL::Proxy::operator->()
 		{
 			PROPVARIANT value;
 			::VariantInit((LPVARIANT)&value);
-			if (SUCCEEDED(handle.GetHandlerProperty2(--i, NArchive::kClassID, &value)) &&
+			if (SUCCEEDED(handle.GetHandlerProperty2(--i, NArchive::NHandlerPropID::kClassID, &value)) &&
 				value.vt == VT_BSTR &&
 				SysStringByteLen(value.bstrVal) == sizeof(GUID) &&
 				IsEqualGUID(clsId, *value.puuid))
@@ -917,21 +916,21 @@ LPCTSTR Merge7z::LoadLang(LPCTSTR langFile)
 		}
 	}
 	g_LangPath = GetSystemString(g_cPath7z);
-	g_LangPath += TEXT("Lang\\");
+	g_LangPath += L"Lang\\";
 	g_LangPath += langFile;
-	int slash = g_LangPath.ReverseFind('\\');
-	int minus = g_LangPath.ReverseFind('-');
-	int dot = g_LangPath.ReverseFind('.');
+	int slash = g_LangPath.ReverseFind(L'\\');
+	int minus = g_LangPath.ReverseFind(L'-');
+	int dot = g_LangPath.ReverseFind(L'.');
 	if (dot <= slash)
 	{
-		dot = g_LangPath.Length();
-		g_LangPath += TEXT(".txt");
+		dot = g_LangPath.Len();
+		g_LangPath += L".txt";
 	}
 	if (minus > slash && !PathFileExists(g_LangPath))
 	{
 		// 2nd chance: filename == language code
 		CSysString Region = g_LangPath.Mid(minus, dot - minus);
-		Region.Replace('-', '\\');
+		Region.Replace(L'-', L'\\');
 		g_LangPath.Delete(minus, dot - minus);
 		if (!PathFileExists(g_LangPath))
 		{
@@ -955,7 +954,21 @@ void ReadRegLang(UString &langFile)
 	langFile = GetUnicodeString(g_LangPath);
 }
 
-void SaveRegLang(const UString &langFile)
+void SaveRegLang(const UString &)
+{
+}
+
+/**
+ * @brief Provide substitutes for Read_ShowPassword()/Save_ShowPassword.
+ */
+#include "7zip/UI/Common/ZipRegistry.h"
+
+bool NExtract::Read_ShowPassword()
+{
+	return (g_dwFlags & Merge7z::Initialize::ShowPassword) != 0;
+}
+
+void NExtract::Save_ShowPassword(bool)
 {
 }
 

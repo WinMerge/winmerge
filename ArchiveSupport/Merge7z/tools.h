@@ -16,4 +16,14 @@ public:
 	int Alert(HWND, UINT = MB_ICONSTOP|MB_TASKMODAL);
 };
 
+class AutoBSTR
+{
+public:
+	AutoBSTR(BSTR str) : m_str(str) { }
+	~AutoBSTR() { SysFreeString(m_str); }
+	UINT Len() const { return SysStringLen(m_str); }
+	UINT ByteLen() const { return SysStringByteLen(m_str); }
+	BSTR const m_str;
+};
+
 void NTAPI Release(IUnknown *);

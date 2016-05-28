@@ -4,7 +4,7 @@
 #include "7zip/Archive/IArchive.h"
 #include "Common/StringConvert.h"
 #include "Windows/PropVariant.h"
-#include "Windows/PropVariantConversions.h"
+#include "Windows/PropVariantConv.h"
 #include "Windows/FileDir.h"
 #include "Windows/FileFind.h"
 
@@ -13,8 +13,7 @@
 
 // Merge7z includes
 #include "tools.h"
-#define DllBuild_Merge7z 28
-#define DLLPSTUB /##/
+#define DllBuild_Merge7z 30
 #include "Merge7z.h"
 
 typedef char SZ_EXTENSION[8];

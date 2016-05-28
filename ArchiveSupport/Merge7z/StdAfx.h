@@ -4,56 +4,7 @@
 #include <commctrl.h>
 #include <basetyps.h>
 #include <vector>
-//<jtuc>
-//-	help 7z sources compile with old SDK headers
-#ifndef GWLP_WNDPROC
-#define INT_PTR int // MS has switched to int
-typedef long LONG_PTR;
-typedef unsigned long ULONG_PTR;
 
-#define GetWindowLongPtrA   GetWindowLongA
-#define GetWindowLongPtrW   GetWindowLongW
-#define SetWindowLongPtrA   SetWindowLongA
-#define SetWindowLongPtrW   SetWindowLongW
+#define LANG
 
-#ifdef UNICODE
-#define GetWindowLongPtr  GetWindowLongPtrW
-#define SetWindowLongPtr  SetWindowLongPtrW
-#else
-#define SetWindowLongPtr  SetWindowLongPtrA
-#define GetWindowLongPtr  GetWindowLongPtrA
-#endif // !UNICODE
-
-#define GWLP_WNDPROC GWL_WNDPROC
-#define GWLP_USERDATA GWL_USERDATA
-#define DWLP_MSGRESULT DWL_MSGRESULT
-
-#define IS_INTRESOURCE(_r) (((ULONG_PTR)(_r) >> 16) == 0)
-
-//#define BIF_NEWDIALOGSTYLE 0
-//#define BTNS_BUTTON 0	
-#endif
-
-#ifndef ListView_SetCheckState
-#define	ListView_SetCheckState(hLv, iItem, bCheck) ListView_SetItemState(hLv, iItem, bCheck ? INDEXTOSTATEIMAGEMASK(2) : INDEXTOSTATEIMAGEMASK(1), LVIS_STATEIMAGEMASK)
-#endif
-
-typedef unsigned short UINT16, *PUINT16;
-//</jtuc>
-
-#define LANG        
-
-// the following defines control how ReadArchiverInfoList() will collect the
-// list of available formats.
-
-/*#define EXCLUDE_COM
-#define FORMAT_7Z
-#define FORMAT_BZIP2
-#define FORMAT_GZIP
-#define FORMAT_TAR
-#define FORMAT_ZIP
-#define FORMAT_CPIO
-#define FORMAT_RPM
-#define FORMAT_ARJ*/
-  
-//#define _SFX
+#define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[1]))
