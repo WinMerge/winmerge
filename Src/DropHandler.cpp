@@ -307,11 +307,12 @@ ULONG STDMETHODCALLTYPE DropHandler::AddRef(void)
 
 ULONG STDMETHODCALLTYPE DropHandler::Release(void)
 {
-	if (InterlockedDecrement(&m_cRef) == 0) {
+	ULONG cRef = InterlockedDecrement(&m_cRef); 
+	if (cRef == 0) {
 		delete this;
 		return 0;
 	}
-	return m_cRef;
+	return cRef;
 }
 
 HRESULT STDMETHODCALLTYPE DropHandler::DragEnter(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
