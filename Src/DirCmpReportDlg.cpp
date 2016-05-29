@@ -82,6 +82,13 @@ static ReportTypeInfo f_types[] = {
 	},
 };
 
+void DirCmpReportDlg::LoadSettings()
+{
+	m_nReportType = static_cast<REPORT_TYPE>(AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("ReportType"), 0));
+	m_bCopyToClipboard = !!AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), false);
+	m_bIncludeFileCmpReport = !!AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), false);
+}
+
 /**
  * @brief Dialog initializer function.
  */
@@ -89,10 +96,9 @@ BOOL DirCmpReportDlg::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
+	LoadSettings();
+
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
-	m_nReportType = static_cast<REPORT_TYPE>(AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("ReportType"), 0));
-	m_bCopyToClipboard = !!AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), false);
-	m_bIncludeFileCmpReport = !!AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), false);
 
 	for (int i = 0; i < sizeof(f_types) / sizeof(f_types[0]); ++i)
 	{

@@ -38,6 +38,7 @@ public:
 	explicit DirCmpReport(const std::vector<String>& colRegKeys);
 	void SetList(IListCtrl *pList);
 	void SetRootPaths(const PathContext &paths);
+	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
 	void SetColumns(int columns);
 	void SetFileCmpReport(IFileCmpReport *pFileCmpReport);
 	bool GenerateReport(String &errStr);
@@ -58,6 +59,7 @@ private:
 	IListCtrl * m_pList; /**< Pointer to UI-list */
 	PathContext m_rootPaths; /**< Root paths, printed to report */
 	String m_sTitle; /**< Report title, built from root paths */
+	String m_sReportFile;
 	int m_nColumns; /**< Columns in UI */
 	String m_sSeparator; /**< Column separator for report */
 	CFile *m_pFile; /**< File to write report to */

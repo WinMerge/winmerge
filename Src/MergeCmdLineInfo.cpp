@@ -273,6 +273,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			// -o "outputfilename"
 			q = EatParam(q, m_sOutputpath);
 		}
+		else if (param == _T("or"))
+		{
+			// -or "reportfilename"
+			q = EatParam(q, m_sReportFile);
+		}
 		else if (param == _T("dl"))
 		{
 			// -dl "desc" - description for left file

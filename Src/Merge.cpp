@@ -681,14 +681,14 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-				dwFlags, strDesc, cmdInfo.m_bRecurse, NULL,
+				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, NULL,
 				cmdInfo.m_sPreDiffer);
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-				dwFlags, strDesc, cmdInfo.m_bRecurse, NULL,
+				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, NULL,
 				cmdInfo.m_sPreDiffer);
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
@@ -706,7 +706,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-					dwFlags, strDesc, cmdInfo.m_bRecurse, NULL,
+					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, NULL, 
 					cmdInfo.m_sPreDiffer);
 			}
 		}
@@ -1200,7 +1200,7 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
  * @param [in] sProject Full path to project file.
  * @return TRUE if loading project file and starting compare succeeded.
  */
-bool CMergeApp::LoadAndOpenProjectFile(const String& sProject)
+bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sReportFile)
 {
 	ProjectFile project;
 	if (!LoadProjectFile(sProject, project))
@@ -1246,7 +1246,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject)
 
 	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 	
-	BOOL rtn = GetMainFrame()->DoFileOpen(&files, dwFlags, NULL, bRecursive);
+	BOOL rtn = GetMainFrame()->DoFileOpen(&files, dwFlags, NULL, sReportFile, bRecursive);
 
 	AddToRecentProjectsMRU(sProject.c_str());
 	return !!rtn;

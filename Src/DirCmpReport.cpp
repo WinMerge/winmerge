@@ -124,7 +124,10 @@ bool DirCmpReport::GenerateReport(String &errStr)
 	bool bRet = false;
 
 	DirCmpReportDlg dlg;
-	if (dlg.DoModal() == IDOK) try
+	dlg.LoadSettings();
+	dlg.m_sReportFile = m_sReportFile;
+
+	if (!m_sReportFile.empty() || dlg.DoModal() == IDOK) try
 	{
 		CWaitCursor waitstatus;
 		if (dlg.m_bCopyToClipboard)
