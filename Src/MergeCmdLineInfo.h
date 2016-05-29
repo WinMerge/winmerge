@@ -82,6 +82,7 @@ public:
 	String m_sPreDiffer; /**< Pre-differ name. */
 
 	String m_sOutputpath;
+	String m_sReportFile;
 
 	PathContext m_Files; /**< Files (or directories) to compare. */
 

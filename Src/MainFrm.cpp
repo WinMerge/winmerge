@@ -624,7 +624,8 @@ FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 
 bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
-	const DWORD dwFlags[] /*=0*/, const String strDesc[], const PackingInfo * infoUnpacker /*= NULL*/)
+	const DWORD dwFlags[] /*=0*/, const String strDesc[], const String& sReportFile,
+	const PackingInfo * infoUnpacker /*= NULL*/)
 {
 	int pane;
 	FileFilterHelper filterImg, filterBin;
@@ -635,11 +636,11 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	for (pane = 0; pane < nFiles; ++pane)
 	{
 		if (filterImg.includeFile(ifileloc[pane].filepath))
-			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, infoUnpacker);
+			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
 		else if (filterBin.includeFile(ifileloc[pane].filepath))
-			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, infoUnpacker);
+			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
 	}
-	return ShowMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, infoUnpacker);
+	return ShowMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
 }
 
 std::array<bool, 3> GetROFromFlags(int nFiles, const DWORD dwFlags[])
@@ -678,7 +679,8 @@ int GetActivePaneFromFlags(int nFiles, const DWORD dwFlags[])
  */
 bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
-	const DWORD dwFlags[], const String strDesc[], const PackingInfo * infoUnpacker /*= NULL*/)
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile,
+	const PackingInfo * infoUnpacker /*= NULL*/)
 {
 	if (!m_pMenus[MENU_MERGEVIEW])
 		theApp.m_pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
@@ -736,42 +738,54 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	}
 
 	// Note that OpenDocs() takes care of closing compare window when needed.
-	bool openResults = pMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags));
+	if (!pMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags)))
+		return false;
 
-	if (openResults == true)
+	for (int pane = 0; pane < nFiles; pane++)
 	{
-		for (int pane = 0; pane < nFiles; pane++)
+		if (dwFlags)
 		{
-			if (dwFlags)
+			BOOL bModified = (dwFlags[pane] & FFILEOPEN_MODIFIED) > 0;
+			if (bModified)
 			{
-				BOOL bModified = (dwFlags[pane] & FFILEOPEN_MODIFIED) > 0;
-				if (bModified)
-				{
-					pMergeDoc->m_ptBuf[pane]->SetModified(TRUE);
-					pMergeDoc->UpdateHeaderPath(pane);
-				}
-				if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
-				{
-					pMergeDoc->DoAutoMerge(pane);
-				}
+				pMergeDoc->m_ptBuf[pane]->SetModified(TRUE);
+				pMergeDoc->UpdateHeaderPath(pane);
+			}
+			if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
+			{
+				pMergeDoc->DoAutoMerge(pane);
 			}
 		}
 	}
-	return openResults;
+
+	if (!sReportFile.empty())
+		pMergeDoc->GenerateReport(sReportFile);
+
+	return true;
 }
 
 bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-	const DWORD dwFlags[] /*=0*/, const String strDesc[], const PackingInfo * infoUnpacker /*= NULL*/)
+	const DWORD dwFlags[] /*=0*/, const String strDesc[], const String& sReportFile,
+	const PackingInfo * infoUnpacker /*= NULL*/)
 {
 	if (!m_pMenus[MENU_HEXMERGEVIEW])
 		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
-	if (CHexMergeDoc *pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(theApp.m_pHexMergeTemplate, pDirDoc, nFiles))
-		return pHexMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags));
-	return false;
+	CHexMergeDoc *pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(theApp.m_pHexMergeTemplate, pDirDoc, nFiles);
+	if (!pHexMergeDoc)
+		return false;
+
+	if (!pHexMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags)))
+		return false;
+	
+	if (!sReportFile.empty())
+		pHexMergeDoc->GenerateReport(sReportFile);
+
+	return true;
 }
 
 bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const PackingInfo * infoUnpacker/* = NULL*/)
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile,
+	const PackingInfo * infoUnpacker/* = NULL*/)
 {
 	CImgMergeFrame *pImgMergeFrame = new CImgMergeFrame();
 	if (!CImgMergeFrame::menu.m_hMenu)
@@ -782,19 +796,18 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	pDirDoc->AddMergeDoc(pImgMergeFrame);
 		
 	if (!pImgMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags), this))
+		return ShowMergeDoc(pDirDoc, nFiles, fileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
+
+	for (int pane = 0; pane < nFiles; pane++)
 	{
-		ShowMergeDoc(pDirDoc, nFiles, fileloc, dwFlags, strDesc, infoUnpacker);
-	}
-	else
-	{
-		for (int pane = 0; pane < nFiles; pane++)
-		{
-			if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
-				pImgMergeFrame->DoAutoMerge(pane);
-		}
+		if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
+			pImgMergeFrame->DoAutoMerge(pane);
 	}
 
-	return 0;
+	if (!sReportFile.empty())
+		pImgMergeFrame->GenerateReport(sReportFile);
+
+	return true;
 }
 
 /**
@@ -899,7 +912,7 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
  * @return TRUE if opening files and compare succeeded, FALSE otherwise.
  */
 BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
-	const DWORD dwFlags[] /*=0*/, const String strDesc[], bool bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
+	const DWORD dwFlags[] /*=0*/, const String strDesc[], const String& sReportFile, bool bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
 	String prediffer /*=_T("")*/, const PackingInfo *infoUnpacker/*=NULL*/)
 {
 	if (pDirDoc && !pDirDoc->CloseMergeDocs())
@@ -1009,6 +1022,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 			// exception. There is no point in checking return value.
 			pDirDoc->InitCompare(files, bRecurse, pTempPathContext);
 
+			pDirDoc->SetReportFile(sReportFile);
 			pDirDoc->SetDescriptions(strDesc);
 			pDirDoc->SetTitle(NULL);
 			for (int nIndex = 0; nIndex < files.GetSize(); nIndex++)
@@ -1030,7 +1044,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, prediffer);
 		}
 
-		ShowAutoMergeDoc(pDirDoc, files.GetSize(), fileloc, dwFlags, strDesc,
+		ShowAutoMergeDoc(pDirDoc, files.GetSize(), fileloc, dwFlags, strDesc, sReportFile,
 				infoUnpacker);
 	}
 
@@ -1406,7 +1420,7 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 		}
 	}
 
-	DoFileOpen(&files, dwFlags, NULL, recurse);
+	DoFileOpen(&files, dwFlags, NULL, _T(""), recurse);
 }
 
 void CMainFrame::OnPluginUnpackMode(UINT nID )

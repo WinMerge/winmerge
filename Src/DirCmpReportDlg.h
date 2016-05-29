@@ -31,6 +31,8 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
+	void LoadSettings();
+
 	// Generated message map functions
 	//{{AFX_MSG(DirCmpReportDlg)
 	afx_msg void OnBtnClickReportBrowse();

@@ -1190,7 +1190,7 @@ void CDirView::OpenParentDirectory()
 		DWORD dwFlags[3];
 		for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
 			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
-		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, NULL, GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
+		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, NULL, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
 		// fall through (no break!)
 	case AllowUpwardDirectory::No:
@@ -1324,12 +1324,12 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	{
 		// Open subfolders
 		// Don't add folders to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, NULL, GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, NULL, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
 	}
 	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
 	{
 		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, NULL, GetDiffContext().m_bRecursive, NULL, _T(""), infoUnpacker);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, NULL, _T(""), GetDiffContext().m_bRecursive, NULL, _T(""), infoUnpacker);
 	}
 	else
 	{
@@ -1381,7 +1381,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 			fileloc[nIndex].encoding = pdi[nIndex]->diffFileInfo[nPane[nIndex]].encoding;
 		}
 		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc,
-			dwFlags, strDesc, infoUnpacker);
+			dwFlags, strDesc, _T(""), infoUnpacker);
 	}
 }
 
@@ -2084,6 +2084,12 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 		Redisplay();
 
+		if (!pDoc->GetReportFile().empty())
+		{
+			OnToolsGenerateReport();
+			pDoc->SetReportFile(_T(""));
+		}
+
 		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 			OnFirstdiff();
 		else
@@ -2441,12 +2447,6 @@ private:
 void CDirView::OnToolsGenerateReport()
 {
 	CDirDoc *pDoc = GetDocument();
-	if (!pDoc->HasDiffs())
-	{
-		// No items, no report
-		return;
-	}
-
 	const CDiffContext& ctxt = GetDiffContext();
 
 	// Make list of registry keys for columns
@@ -2470,11 +2470,15 @@ void CDirView::OnToolsGenerateReport()
 	report.SetRootPaths(paths);
 	report.SetColumns(m_pColItems->GetDispColCount());
 	report.SetFileCmpReport(&freport);
+	report.SetReportFile(pDoc->GetReportFile());
 	String errStr;
 	if (report.GenerateReport(errStr))
 	{
 		if (errStr.empty())
-			LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+		{
+			if (pDoc->GetReportFile().empty())
+				LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+		}
 		else
 		{
 			String msg = string_format_string1(

@@ -2987,7 +2987,7 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 		if (HasZipSupport() && std::count_if(m_filePaths.begin(), m_filePaths.end(), ArchiveGuessFormat) == m_nBuffers)
 		{
 			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
-			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, 
+			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, _T(""), 
 				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), NULL, _T(""), &infoUnpacker);
 			CloseNow();
 		}

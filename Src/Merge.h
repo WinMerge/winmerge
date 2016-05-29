@@ -129,7 +129,7 @@ protected:
 
 	bool LoadProjectFile(const String& sProject, ProjectFile &project);
 	bool SaveProjectFile(const String& sProject, const ProjectFile &project);
-	bool LoadAndOpenProjectFile(const String& sFilepath);
+	bool LoadAndOpenProjectFile(const String& sFilepath, const String& sReportFile = _T(""));
 	bool IsProjectFile(const String& filepath) const;
 
 	//@{

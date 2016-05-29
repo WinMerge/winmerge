@@ -85,6 +85,8 @@ public:
 	bool GetReadOnly(int nIndex) const;
 	const bool *GetReadOnly(void) const;
 	void SetReadOnly(int nIndex, bool bReadOnly);
+	String GetReportFile() const { return m_sReportFile; }
+	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
 	bool HasDirView() const { return m_pDirView != NULL; }
 	void RefreshOptions();
 	void CompareReady();
@@ -131,6 +133,7 @@ private:
 	MergeDocPtrList m_MergeDocs; /**< List of file compares opened from this compare */
 	bool m_bRO[3]; /**< Is left/middle/right side read-only */
 	String m_strDesc[3]; /**< Left/middle/right side desription text */
+	String m_sReportFile;
 	PluginManager m_pluginman;
 	bool m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
 };
