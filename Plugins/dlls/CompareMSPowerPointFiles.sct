@@ -294,7 +294,7 @@ End Sub
 <![CDATA[
 <html>
   <head>
-    <title>CompareMSExcelFiles.sct WinMerge Plugin Options</title>
+    <title>CompareMSPowerPointFiles.sct WinMerge Plugin Options</title>
     <meta content="text/html" charset="Shift_JIS">
     <style>
       body { background-color: lightgray; }
