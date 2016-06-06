@@ -478,6 +478,7 @@ void COpenView::OnOK()
 			// Add trailing '\' for directories if its missing
 			if (paths_DoesPathExist(m_files[index]) == IS_EXISTING_DIR)
 				m_files[index] = paths_AddTrailingSlash(m_files[index]);
+			m_strPath[index] = m_files[index];
 		}
 	}
 
