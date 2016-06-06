@@ -236,6 +236,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
 	ON_COMMAND(ID_HELP_CHECKFORUPDATES, OnHelpCheckForUpdates)
+	ON_UPDATE_COMMAND_UI(ID_HELP_CHECKFORUPDATES, OnUpdateHelpCheckForUpdates)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
@@ -2319,7 +2320,7 @@ void CMainFrame::OnHelpCheckForUpdates()
 	CInternetSession session;
 	try
 	{
-		CHttpFile *file = (CHttpFile *)session.OpenURL(CurrentVersionURL);
+		CHttpFile *file = (CHttpFile *)session.OpenURL(GetOptionsMgr()->GetString(OPT_CURRENT_VERSION_URL).c_str());
 		if (!file)
 			return;
 		char buf[256] = { 0 };
@@ -2355,7 +2356,7 @@ void CMainFrame::OnHelpCheckForUpdates()
 		{
 			String msg = string_format_string2(_("A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"), current_version, version.GetProductVersion());
 			if (AfxMessageBox(msg.c_str(), MB_ICONINFORMATION | MB_YESNO) == IDYES)
-				ShellExecute(NULL, _T("open"), DownloadUrl, NULL, NULL, SW_SHOWNORMAL);
+				ShellExecute(NULL, _T("open"), GetOptionsMgr()->GetString(OPT_DOWNLOAD_URL).c_str(), NULL, NULL, SW_SHOWNORMAL);
 			break;
 		}
 		}
@@ -2366,6 +2367,11 @@ void CMainFrame::OnHelpCheckForUpdates()
 		e.GetErrorMessage(msg, sizeof(msg)/sizeof(msg[0]));
 		AfxMessageBox(msg, MB_ICONERROR);
 	}
+}
+
+void CMainFrame::OnUpdateHelpCheckForUpdates(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(!GetOptionsMgr()->GetString(OPT_CURRENT_VERSION_URL).empty());
 }
 
 /**
