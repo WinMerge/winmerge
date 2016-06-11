@@ -173,7 +173,6 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		return 0;
 
 	DirItemArray::size_type i=0, j=0, k=0;
-	unsigned nDiffCode;
 	while (1)
 	{
 		if (pCtxt->ShouldAbort())
@@ -182,97 +181,93 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		if (i >= dirs[0].size() && j >= dirs[1].size() && (nDirs < 3 || k >= dirs[2].size()))
 			break;
 
+		unsigned nDiffCode = DIFFCODE::DIR;
 		// Comparing directories leftDirs[i].name to rightDirs[j].name
 		if (i<dirs[0].size() && (j==dirs[1].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive)<0)
 			&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[0][i].filename, dirs[2][k].filename, casesensitive)<0) ))
 		{
-			nDiffCode = DIFFCODE::FIRST | DIFFCODE::DIR;
-			if (!bUniques)
-			{
-				if (nDirs < 3)
-					AddToList(subdir[0], subdir[1], &dirs[0][i], 0, nDiffCode, myStruct, parent);
-				else
-					AddToList(subdir[0], subdir[1], subdir[2], &dirs[0][i], 0, 0, nDiffCode, myStruct, parent);
-				// Advance left pointer over left-only entry, and then retest with new pointers
-				++i;
-				continue;
-			}
+			nDiffCode |= DIFFCODE::FIRST;
 		}
 		else if (j<dirs[1].size() && (i==dirs[0].size() || collstr(dirs[1][j].filename, dirs[0][i].filename, casesensitive)<0)
 			&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive)<0) ))
 		{
-			nDiffCode = DIFFCODE::SECOND | DIFFCODE::DIR;
-			if (!bUniques)
-			{
-				if (nDirs < 3)
-					AddToList(subdir[0], subdir[1], 0, &dirs[1][j], nDiffCode, myStruct, parent);
-				else
-					AddToList(subdir[0], subdir[1], subdir[2], 0, &dirs[1][j], 0, nDiffCode, myStruct, parent);
-				// Advance right pointer over right-only entry, and then retest with new pointers
-				++j;
-				continue;
-			}
+			nDiffCode |= DIFFCODE::SECOND;
 		}
 		else if (nDirs < 3)
 		{
-			nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
+			nDiffCode |= DIFFCODE::BOTH;
 		}
 		else
 		{
 			if (k<dirs[2].size() && (i==dirs[0].size() || collstr(dirs[2][k].filename, dirs[0][i].filename, casesensitive)<0)
 				&&                     (j==dirs[1].size() || collstr(dirs[2][k].filename, dirs[1][j].filename, casesensitive)<0) )
 			{
-				nDiffCode = DIFFCODE::THIRD | DIFFCODE::DIR;
-				if (!bUniques)
-				{
-					AddToList(subdir[0], subdir[1], subdir[2], 0, 0, &dirs[2][k], nDiffCode, myStruct, parent);
-					++k;
-					// Advance right pointer over right-only entry, and then retest with new pointers
-					continue;
-
-				}	
-
+				nDiffCode |= DIFFCODE::THIRD;
 			}
 			else if ((i<dirs[0].size() && j<dirs[1].size() && collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive) == 0)
 				&& (k==dirs[2].size() || collstr(dirs[2][k].filename, dirs[0][i].filename, casesensitive) != 0))
 			{
-				nDiffCode = DIFFCODE::FIRST | DIFFCODE::SECOND | DIFFCODE::DIR;
-				if (!bUniques)
-				{
-					AddToList(subdir[0], subdir[1], subdir[2], &dirs[0][i], &dirs[1][j], 0, nDiffCode, myStruct, parent);
-					++i;
-					++j;
-					continue;	
-				}
+				nDiffCode |= DIFFCODE::FIRST | DIFFCODE::SECOND;
 			}
 			else if ((i<dirs[0].size() && k<dirs[2].size() && collstr(dirs[0][i].filename, dirs[2][k].filename, casesensitive) == 0)
 				&& (j==dirs[1].size() || collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive) != 0))
 			{
-				nDiffCode = DIFFCODE::FIRST | DIFFCODE::THIRD | DIFFCODE::DIR;
-				if (!bUniques)
-				{
-					AddToList(subdir[0], subdir[1], subdir[2], &dirs[0][i], 0, &dirs[2][k], nDiffCode, myStruct, parent);
-					++i;
-					++k;
-					continue;
-				}
+				nDiffCode |= DIFFCODE::FIRST | DIFFCODE::THIRD;
 			}
 			else if ((j<dirs[1].size() && k<dirs[2].size() && collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive) == 0)
 				&& (i==dirs[0].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive) != 0))
 			{
-				nDiffCode = DIFFCODE::SECOND | DIFFCODE::THIRD | DIFFCODE::DIR;
-				if (!bUniques)
-				{
-					AddToList(subdir[0], subdir[1], subdir[2], 0, &dirs[1][j], &dirs[2][k], nDiffCode, myStruct, parent);
-					++j;
-					++k;
-					continue;
-				}
+				nDiffCode |= DIFFCODE::SECOND | DIFFCODE::THIRD;
 			}
 			else
 			{
-				nDiffCode = DIFFCODE::ALL | DIFFCODE::DIR;
+				nDiffCode |= DIFFCODE::ALL;
 			}
+		}
+
+		String leftnewsub;
+		String rightnewsub;
+		String middlenewsub;
+		if (nDirs < 3)
+		{
+			leftnewsub  = (nDiffCode & DIFFCODE::FIRST)  ? subprefix[0] + dirs[0][i].filename.get() : subprefix[0] + dirs[1][j].filename.get();
+			rightnewsub = (nDiffCode & DIFFCODE::SECOND) ? subprefix[1] + dirs[1][j].filename.get() : subprefix[1] + dirs[0][i].filename.get();
+
+			// Test against filter so we don't include contents of filtered out directories
+			// Also this is only place we can test for both-sides directories in recursive compare
+			if ((pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub)) ||
+				(pCtxt->m_bIgnoreReparsePoints && (
+				(nDiffCode & DIFFCODE::FIRST) && (dirs[0][i].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
+					(nDiffCode & DIFFCODE::SECOND) && (dirs[1][j].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
+					)
+				)
+				nDiffCode |= DIFFCODE::SKIPPED;
+		}
+		else
+		{
+			leftnewsub   = subprefix[0];
+			if (nDiffCode & DIFFCODE::FIRST)       leftnewsub += dirs[0][i].filename;
+			else if (nDiffCode & DIFFCODE::SECOND) leftnewsub += dirs[1][j].filename;
+			else if (nDiffCode & DIFFCODE::THIRD)  leftnewsub += dirs[2][k].filename;
+			middlenewsub = subprefix[1];
+			if (nDiffCode & DIFFCODE::SECOND)      middlenewsub += dirs[1][j].filename;
+			else if (nDiffCode & DIFFCODE::FIRST)  middlenewsub += dirs[0][i].filename;
+			else if (nDiffCode & DIFFCODE::THIRD)  middlenewsub += dirs[2][k].filename;
+			rightnewsub  = subprefix[2];
+			if (nDiffCode & DIFFCODE::THIRD)       rightnewsub += dirs[2][k].filename;
+			else if (nDiffCode & DIFFCODE::FIRST)  rightnewsub += dirs[0][i].filename;
+			else if (nDiffCode & DIFFCODE::SECOND) rightnewsub += dirs[1][j].filename;
+
+			// Test against filter so we don't include contents of filtered out directories
+			// Also this is only place we can test for both-sides directories in recursive compare
+			if ((pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, middlenewsub, rightnewsub)) ||
+				(pCtxt->m_bIgnoreReparsePoints && (
+				  (nDiffCode & DIFFCODE::FIRST)  && (dirs[0][i].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
+				  (nDiffCode & DIFFCODE::SECOND) && (dirs[1][j].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
+				  (nDiffCode & DIFFCODE::THIRD)  && (dirs[2][k].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
+				)
+			   )
+				nDiffCode |= DIFFCODE::SKIPPED;
 		}
 
 		// add to list
@@ -293,52 +288,14 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		else
 		{
 			// Recursive compare
-			String leftnewsub;
-			String rightnewsub;
-			String middlenewsub;
 			if (nDirs < 3)
 			{
-				leftnewsub  = (nDiffCode & DIFFCODE::FIRST)  ? subprefix[0] + dirs[0][i].filename.get() : subprefix[0] + dirs[1][j].filename.get();
-				rightnewsub = (nDiffCode & DIFFCODE::SECOND) ? subprefix[1] + dirs[1][j].filename.get() : subprefix[1] + dirs[0][i].filename.get();
-			}
-			else
-			{
-				leftnewsub   = subprefix[0];
-				if (nDiffCode & DIFFCODE::FIRST)       leftnewsub += dirs[0][i].filename;
-				else if (nDiffCode & DIFFCODE::SECOND) leftnewsub += dirs[1][j].filename;
-				else if (nDiffCode & DIFFCODE::THIRD)  leftnewsub += dirs[2][k].filename;
-				middlenewsub = subprefix[1];
-				if (nDiffCode & DIFFCODE::SECOND)      middlenewsub += dirs[1][j].filename;
-				else if (nDiffCode & DIFFCODE::FIRST)  middlenewsub += dirs[0][i].filename;
-				else if (nDiffCode & DIFFCODE::THIRD)  middlenewsub += dirs[2][k].filename;
-				rightnewsub  = subprefix[2];
-				if (nDiffCode & DIFFCODE::THIRD)       rightnewsub += dirs[2][k].filename;
-				else if (nDiffCode & DIFFCODE::FIRST)  rightnewsub += dirs[0][i].filename;
-				else if (nDiffCode & DIFFCODE::SECOND) rightnewsub += dirs[1][j].filename;
-			}
-			if (nDirs < 3)
-			{
-				// Test against filter so we don't include contents of filtered out directories
-				// Also this is only place we can test for both-sides directories in recursive compare
-				if ((pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub)) ||
-					(pCtxt->m_bIgnoreReparsePoints && (
-					  (nDiffCode & DIFFCODE::FIRST)  && (dirs[0][i].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
-					  (nDiffCode & DIFFCODE::SECOND) && (dirs[1][j].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
-					)
-				   )
+				DIFFITEM *me = AddToList(subdir[0], subdir[1], 
+					nDiffCode & DIFFCODE::FIRST  ? &dirs[0][i] : NULL, 
+					nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
+					nDiffCode, myStruct, parent);
+				if ((nDiffCode & DIFFCODE::SKIPPED) == 0 && ((nDiffCode & DIFFCODE::SIDEFLAGS) == DIFFCODE::BOTH || bUniques))
 				{
-					nDiffCode |= DIFFCODE::SKIPPED;
-					AddToList(subdir[0], subdir[1], 
-						nDiffCode & DIFFCODE::FIRST  ? &dirs[0][i] : NULL, 
-						nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
-						nDiffCode, myStruct, parent);
-				}
-				else
-				{
-					DIFFITEM *me = AddToList(subdir[0], subdir[1], 
-						nDiffCode & DIFFCODE::FIRST  ? &dirs[0][i] : NULL, 
-						nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
-						nDiffCode, myStruct, parent);
 					// Scan recursively all subdirectories too, we are not adding folders
 					String newsubdir[3] = {leftnewsub, rightnewsub};
 					int result = DirScan_GetItems(paths, newsubdir, myStruct, casesensitive,
@@ -349,30 +306,13 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			}
 			else
 			{
-				// Test against filter so we don't include contents of filtered out directories
-				// Also this is only place we can test for both-sides directories in recursive compare
-				if ((pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, middlenewsub, rightnewsub)) ||
-					(pCtxt->m_bIgnoreReparsePoints && (
-					  (nDiffCode & DIFFCODE::FIRST)  && (dirs[0][i].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
-					  (nDiffCode & DIFFCODE::SECOND) && (dirs[1][j].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
-					  (nDiffCode & DIFFCODE::THIRD)  && (dirs[2][k].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
-					)
-				   )
+				DIFFITEM *me = AddToList(subdir[0], subdir[1], subdir[2], 
+					nDiffCode & DIFFCODE::FIRST  ? &dirs[0][i] : NULL,
+					nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
+					nDiffCode & DIFFCODE::THIRD  ? &dirs[2][k] : NULL,
+					nDiffCode, myStruct, parent);
+				if ((nDiffCode & DIFFCODE::SKIPPED) == 0 && ((nDiffCode & DIFFCODE::SIDEFLAGS) == DIFFCODE::ALL || bUniques))
 				{
-					nDiffCode |= DIFFCODE::SKIPPED;
-					AddToList(subdir[0], subdir[1], subdir[2], 
-						nDiffCode & DIFFCODE::FIRST  ? &dirs[0][i] : NULL,
-						nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
-						nDiffCode & DIFFCODE::THIRD  ? &dirs[2][k] : NULL,
-						nDiffCode, myStruct, parent);
-				}
-				else
-				{
-					DIFFITEM *me = AddToList(subdir[0], subdir[1], subdir[2], 
-						nDiffCode & DIFFCODE::FIRST  ? &dirs[0][i] : NULL,
-						nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
-						nDiffCode & DIFFCODE::THIRD  ? &dirs[2][k] : NULL,
-						nDiffCode, myStruct, parent);
 					// Scan recursively all subdirectories too, we are not adding folders
 					String newsubdir[3] = {leftnewsub, middlenewsub, rightnewsub};
 					int result = DirScan_GetItems(paths, newsubdir, myStruct, casesensitive,
@@ -439,7 +379,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 					collstr(files[2][k].filename, files[0][i].filename, casesensitive)<0)
 				&& (j==files[1].size() || collstr(files[2][k].filename, files[1][j].filename, casesensitive)<0) )
 			{
-				int nDiffCode = DIFFCODE::THIRD | DIFFCODE::FILE;
+				const unsigned nDiffCode = DIFFCODE::THIRD | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], 0, 0, &files[2][k], nDiffCode, myStruct, parent);
 				++k;
 				// Advance right pointer over right-only entry, and then retest with new pointers
@@ -449,7 +389,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			if ((i<files[0].size() && j<files[1].size() && collstr(files[0][i].filename, files[1][j].filename, casesensitive) == 0)
 			    && (k==files[2].size() || collstr(files[0][i].filename, files[2][k].filename, casesensitive) != 0))
 			{
-				int nDiffCode = DIFFCODE::FIRST | DIFFCODE::SECOND | DIFFCODE::FILE;
+				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::SECOND | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], &files[1][j], 0, nDiffCode, myStruct, parent);
 				++i;
 				++j;
@@ -458,7 +398,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			else if ((i<files[0].size() && k<files[2].size() && collstr(files[0][i].filename, files[2][k].filename, casesensitive) == 0)
 			    && (j==files[1].size() || collstr(files[1][j].filename, files[2][k].filename, casesensitive) != 0))
 			{
-				int nDiffCode = DIFFCODE::FIRST | DIFFCODE::THIRD | DIFFCODE::FILE;
+				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::THIRD | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], 0, &files[2][k], nDiffCode, myStruct, parent);
 				++i;
 				++k;
@@ -467,7 +407,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			else if ((j<files[1].size() && k<files[2].size() && collstr(files[1][j].filename, files[2][k].filename, casesensitive) == 0)
 			    && (i==files[0].size() || collstr(files[0][i].filename, files[1][j].filename, casesensitive) != 0))
 			{
-				int nDiffCode = DIFFCODE::SECOND | DIFFCODE::THIRD | DIFFCODE::FILE;
+				const unsigned nDiffCode = DIFFCODE::SECOND | DIFFCODE::THIRD | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], 0, &files[1][j], &files[2][k], nDiffCode, myStruct, parent);
 				++j;
 				++k;
@@ -479,7 +419,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			if (nDirs < 3)
 			{
 				assert(j<files[1].size());
-				const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
+				const unsigned nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], &files[0][i], &files[1][j], nDiffCode, myStruct, parent);
 				++i;
 				++j;
@@ -489,7 +429,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			{
 				assert(j<files[1].size());
 				assert(k<files[2].size());
-				const int nDiffCode = DIFFCODE::ALL | DIFFCODE::FILE;
+				const unsigned nDiffCode = DIFFCODE::ALL | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], &files[1][j], &files[2][k], nDiffCode, myStruct, parent);
 				++i;
 				++j;
