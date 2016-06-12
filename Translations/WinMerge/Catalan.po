@@ -249,6 +249,11 @@ msgstr "&Petita"
 msgid "&Big"
 msgstr "&Gran"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -349,7 +354,7 @@ msgstr "Finestres en mosaic &vertical"
 msgid "&Cascade"
 msgstr "Finestres en &cascada"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&Ajuda"
@@ -1015,7 +1020,7 @@ msgstr "Dreta a esquerra (%1 de %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Dreta a... (%1 de %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Mou"
@@ -1025,7 +1030,7 @@ msgstr "&Mou"
 msgid "&Delete"
 msgstr "&Suprimeix"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "De l'&esquerra"
@@ -1040,7 +1045,7 @@ msgstr ""
 msgid "&Right"
 msgstr "De la &dreta"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "D'&ambdós costats"
@@ -1750,7 +1755,7 @@ msgstr "Fitxer &1:"
 msgid "File&2:"
 msgstr "Fitxer &2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "Inter&canvia"
@@ -2425,7 +2430,7 @@ msgstr "&Nom de la carpeta"
 msgid "Result:"
 msgstr "Resultat:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Prova"
@@ -2840,7 +2845,7 @@ msgstr "No a t&ot"
 msgid "&Continue"
 msgstr "&Continua"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "&Omet"

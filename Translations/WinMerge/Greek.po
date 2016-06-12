@@ -249,6 +249,11 @@ msgstr "Μι&κρή"
 msgid "&Big"
 msgstr "Με&γάλη"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -349,7 +354,7 @@ msgstr "Παράθεση Κατα&κορύφως"
 msgid "&Cascade"
 msgstr "Επικάλυ&ψη"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&Βοήθεια"
@@ -1015,7 +1020,7 @@ msgstr "Δεξιό στο Αριστερό (%1 από %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Δεξιό στο... (%1 από %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Μετακίνηση"
@@ -1025,7 +1030,7 @@ msgstr "&Μετακίνηση"
 msgid "&Delete"
 msgstr "&Διαγραφή"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "Α&ριστερό"
@@ -1040,7 +1045,7 @@ msgstr ""
 msgid "&Right"
 msgstr "Δε&ξιό"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "Αμ&φότερα"
@@ -1750,7 +1755,7 @@ msgstr "Αρχείο&1:"
 msgid "File&2:"
 msgstr "Αρχείο&2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "Αντιμετά&θεση"
@@ -2425,7 +2430,7 @@ msgstr "Όνομα &Φακέλου"
 msgid "Result:"
 msgstr "Αποτέλεσμα:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Δοκιμή"
@@ -2872,7 +2877,7 @@ msgstr "Όχι σε ό&λα"
 msgid "&Continue"
 msgstr "&Συνέχεια"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "&Παράλειψη"

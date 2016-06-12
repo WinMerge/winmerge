@@ -251,6 +251,11 @@ msgstr "小(&S)"
 msgid "&Big"
 msgstr "大(&B)"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr "特大(&H)"
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -351,7 +356,7 @@ msgstr "左右に並べて表示(&V)"
 msgid "&Cascade"
 msgstr "重ねて表示(&C)"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "ヘルプ(&H)"
@@ -1017,7 +1022,7 @@ msgstr "右を左に (%1 / %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "右を... (%1/%2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "移動(&M)"
@@ -1027,7 +1032,7 @@ msgstr "移動(&M)"
 msgid "&Delete"
 msgstr "削除(&D)"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "左(&L)"
@@ -1042,7 +1047,7 @@ msgstr "中央(&M)"
 msgid "&Right"
 msgstr "右(&R)"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "両側(&B)"
@@ -1760,7 +1765,7 @@ msgstr "ファイル&1:"
 msgid "File&2:"
 msgstr "ファイル&2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "交換(&S)"
@@ -2445,7 +2450,7 @@ msgstr "フォルダ名(&F)"
 msgid "Result:"
 msgstr "結果:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "テスト(&T)"
@@ -2920,7 +2925,7 @@ msgstr "全ていいえ(&L)"
 msgid "&Continue"
 msgstr "続行(&C)"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "スキップ(&S)"

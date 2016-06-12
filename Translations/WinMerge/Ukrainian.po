@@ -251,6 +251,11 @@ msgstr "&Маленькі піктограми"
 msgid "&Big"
 msgstr "&Великі піктограми"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -351,7 +356,7 @@ msgstr "Розмістити &вертикально"
 msgid "&Cascade"
 msgstr "&Каскад"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&Довідка"
@@ -1017,7 +1022,7 @@ msgstr "Справа ліворуч (%1 з %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Справа... (%1 з %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Перемістити"
@@ -1027,7 +1032,7 @@ msgstr "&Перемістити"
 msgid "&Delete"
 msgstr "&Вилучити"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "&Ліворуч"
@@ -1042,7 +1047,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Праворуч"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&Обидва"
@@ -1752,7 +1757,7 @@ msgstr "Файл 1:"
 msgid "File&2:"
 msgstr "Файл 2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "Поміняти"
@@ -2431,7 +2436,7 @@ msgstr "Тека"
 msgid "Result:"
 msgstr "Результат:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Випробувати"
@@ -2878,7 +2883,7 @@ msgstr "Ні д&ля всіх"
 msgid "&Continue"
 msgstr "Про&довжити"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "П&ропустити"

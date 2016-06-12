@@ -252,6 +252,11 @@ msgstr "Klein"
 msgid "&Big"
 msgstr "Groot"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -352,7 +357,7 @@ msgstr "&Verticaal verdelen"
 msgid "&Cascade"
 msgstr "&Trapsgewijs"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&Help"
@@ -1018,7 +1023,7 @@ msgstr "Van rechts naar links (%1 van %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Van rechts naar... (%1 van %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Verplaatsen"
@@ -1028,7 +1033,7 @@ msgstr "&Verplaatsen"
 msgid "&Delete"
 msgstr "Ver&wijderen"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "&Links"
@@ -1043,7 +1048,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Rechts"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&Beide"
@@ -1757,7 +1762,7 @@ msgstr "Bestand&1:"
 msgid "File&2:"
 msgstr "Bestand&2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "&Wisselen"
@@ -2438,7 +2443,7 @@ msgstr "Mapnaam"
 msgid "Result:"
 msgstr "Resultaat:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Test"
@@ -2893,7 +2898,7 @@ msgstr "Nee op a&lles"
 msgid "&Continue"
 msgstr "&Doorgaan"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "&Overslaan"

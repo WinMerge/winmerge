@@ -251,6 +251,11 @@ msgstr "&Ma³y"
 msgid "&Big"
 msgstr "&Du¿y"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -351,7 +356,7 @@ msgstr "P&ionowo"
 msgid "&Cascade"
 msgstr "&Kaskadowo"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&Pomoc"
@@ -1017,7 +1022,7 @@ msgstr "Prawa na lew¹ (%1 z %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Prawa na... (%1 z %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "Prze&nieœ"
@@ -1027,7 +1032,7 @@ msgstr "Prze&nieœ"
 msgid "&Delete"
 msgstr "&Usuñ"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "&Lewa"
@@ -1042,7 +1047,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Prawa"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&Obie"
@@ -1752,7 +1757,7 @@ msgstr "Plik&1:"
 msgid "File&2:"
 msgstr "Plik&2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "Za&mieñ"
@@ -2431,7 +2436,7 @@ msgstr "Nazwa &folderu"
 msgid "Result:"
 msgstr "Wynik:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Testuj"
@@ -2878,7 +2883,7 @@ msgstr "Nie na w&szystkie"
 msgid "&Continue"
 msgstr "&Kontynuuj"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "Pom&iñ"

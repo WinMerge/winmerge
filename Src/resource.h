@@ -1118,7 +1118,8 @@
 #define ID_TOOLBAR_NONE                 33194
 #define ID_TOOLBAR_SMALL                33195
 #define ID_TOOLBAR_BIG                  33196
-#define ID_VIEW_RESIZE_PANES            33197
+#define ID_TOOLBAR_HUGE                 33197
+#define ID_VIEW_RESIZE_PANES            33198
 #define ID_VIEW_ZOOMIN                  33199
 #define ID_VIEW_ZOOMOUT                 33200
 #define ID_VIEW_ZOOMNORMAL              33202

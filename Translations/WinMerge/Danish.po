@@ -251,6 +251,11 @@ msgstr "&Lille"
 msgid "&Big"
 msgstr "&Stor"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -351,7 +356,7 @@ msgstr "&Vertikale vinduer"
 msgid "&Cascade"
 msgstr "&Kaskade"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&Hjælp"
@@ -1017,7 +1022,7 @@ msgstr "Højre til venstre (%1 af %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Højre til... (%1 af %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Flyt"
@@ -1027,7 +1032,7 @@ msgstr "&Flyt"
 msgid "&Delete"
 msgstr "&Slet"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "&Venstre"
@@ -1042,7 +1047,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Højre"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&Begge"
@@ -1756,7 +1761,7 @@ msgstr "Fil&1:"
 msgid "File&2:"
 msgstr "Fil&2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "&Byt"
@@ -2437,7 +2442,7 @@ msgstr "&Mappenavn"
 msgid "Result:"
 msgstr "Resultater:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Test"
@@ -2892,7 +2897,7 @@ msgstr "Nej til a&lle"
 msgid "&Continue"
 msgstr "&Fortsæt"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "&Spring over"

@@ -250,6 +250,11 @@ msgstr "&Малък"
 msgid "&Big"
 msgstr "&Голям"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -350,7 +355,7 @@ msgstr "Подреди &вертикално"
 msgid "&Cascade"
 msgstr "Подреди &каскадно"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&Помощ"
@@ -1016,7 +1021,7 @@ msgstr "Десен към ляв (%1 от %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Десен към... (%1 от %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Премести"
@@ -1026,7 +1031,7 @@ msgstr "&Премести"
 msgid "&Delete"
 msgstr "&Изтрий"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "&От ляво"
@@ -1041,7 +1046,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&От дясно"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&Двете"
@@ -1751,7 +1756,7 @@ msgstr "Файл&1:"
 msgid "File&2:"
 msgstr "Файл&2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "&Размени"
@@ -2426,7 +2431,7 @@ msgstr "&Име на папка"
 msgid "Result:"
 msgstr "Резултат:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Тествай"
@@ -2841,7 +2846,7 @@ msgstr "Не за В&сички"
 msgid "&Continue"
 msgstr "&Продължи"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "&Прескочи"

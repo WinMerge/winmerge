@@ -252,6 +252,11 @@ msgstr "&Pequeno"
 msgid "&Big"
 msgstr "&Grande"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -352,7 +357,7 @@ msgstr "Lado a Lado &Verticalmente"
 msgid "&Cascade"
 msgstr "&Em Cascata"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&Ajuda"
@@ -1018,7 +1023,7 @@ msgstr "Direita para a Esquerda (%1 de %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Direita para... (%1 de %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Mover"
@@ -1028,7 +1033,7 @@ msgstr "&Mover"
 msgid "&Delete"
 msgstr "&Apagar"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "&Esquerda"
@@ -1043,7 +1048,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Direita"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&Ambos"
@@ -1753,7 +1758,7 @@ msgstr "Arquivo&1:"
 msgid "File&2:"
 msgstr "Arquivo&2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "&Trocar"
@@ -2432,7 +2437,7 @@ msgstr "&Nome da Pasta"
 msgid "Result:"
 msgstr "Resultado:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Teste"
@@ -2879,7 +2884,7 @@ msgstr "Não para t&odos"
 msgid "&Continue"
 msgstr "&Continuar"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "&Pular"

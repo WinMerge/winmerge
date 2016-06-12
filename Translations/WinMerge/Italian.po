@@ -250,6 +250,11 @@ msgstr "&Piccola"
 msgid "&Big"
 msgstr "&Grande"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -350,7 +355,7 @@ msgstr "Affianca &verticalmente"
 msgid "&Cascade"
 msgstr "&Sovrapponi"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&?"
@@ -1016,7 +1021,7 @@ msgstr "Da Destra a Sinistra  (%1 su %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Destra in... (%1 su %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Sposta"
@@ -1026,7 +1031,7 @@ msgstr "&Sposta"
 msgid "&Delete"
 msgstr "&Elimina"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "&Sinistra"
@@ -1041,7 +1046,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Destra"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&Entrambi"
@@ -1751,7 +1756,7 @@ msgstr "File&1:"
 msgid "File&2:"
 msgstr "File&2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "&Scambia"
@@ -2426,7 +2431,7 @@ msgstr "&Nome cartella"
 msgid "Result:"
 msgstr "Risultato:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Prova"
@@ -2866,7 +2871,7 @@ msgstr "No a t&utto"
 msgid "&Continue"
 msgstr "&Continua"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "&Salta"

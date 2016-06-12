@@ -251,6 +251,11 @@ msgstr "작게(&S)"
 msgid "&Big"
 msgstr "크게(&B)"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -351,7 +356,7 @@ msgstr "수평 정렬(&V)"
 msgid "&Cascade"
 msgstr "계단식 정렬(&C)"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "도움말(&H)"
@@ -1017,7 +1022,7 @@ msgstr "왼쪽으로 (%1 / %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "오른쪽 파일 위치지정 복사 (%1 / %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "이동(&M)"
@@ -1027,7 +1032,7 @@ msgstr "이동(&M)"
 msgid "&Delete"
 msgstr "삭제(&D)"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "왼쪽만(&L)"
@@ -1042,7 +1047,7 @@ msgstr ""
 msgid "&Right"
 msgstr "오른쪽만(&R)"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "모두(&B)"
@@ -1752,7 +1757,7 @@ msgstr "파일&1:"
 msgid "File&2:"
 msgstr "파일&2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "맞바꾸기(&S)"
@@ -2427,7 +2432,7 @@ msgstr "폴더명(&F)"
 msgid "Result:"
 msgstr "결과:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "시험(&T)"
@@ -2874,7 +2879,7 @@ msgstr "모두 아니오(&L)"
 msgid "&Continue"
 msgstr "계속(&C)"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "무시(&S)"

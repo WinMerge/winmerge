@@ -172,6 +172,7 @@ BEGIN
             MENUITEM "&None",                       ID_TOOLBAR_NONE
             MENUITEM "&Small",                      ID_TOOLBAR_SMALL
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
@@ -278,6 +279,7 @@ BEGIN
             MENUITEM "&None",                       ID_TOOLBAR_NONE
             MENUITEM "&Small",                      ID_TOOLBAR_SMALL
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
@@ -479,6 +481,7 @@ BEGIN
             MENUITEM "&None",                       ID_TOOLBAR_NONE
             MENUITEM "&Small",                      ID_TOOLBAR_SMALL
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
