@@ -249,6 +249,11 @@ msgstr "&S ˜æ˜ "
 msgid "&Big"
 msgstr "&B ÈÒÑ"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -349,7 +354,7 @@ msgstr "&V íÏä ÚãæÏí "
 msgid "&Cascade"
 msgstr "&C ÂÈÔÇÑí "
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&H ÑÇåäãÇ "
@@ -1015,7 +1020,7 @@ msgstr "  ÑÇÓÊ  Èå  - %1 ÇÒ %2 "
 msgid "Right to... (%1 of %2)"
 msgstr "  ÑÇÓÊ Èå ... - %1 ÇÒ %2 "
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&M ÌÇÈÌÇ ˜ÑÏä "
@@ -1025,7 +1030,7 @@ msgstr "&M ÌÇÈÌÇ ˜ÑÏä "
 msgid "&Delete"
 msgstr "&D ÍĞİ "
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "&L  "
@@ -1040,7 +1045,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&R ÑÇÓÊ "
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&B åÑ Ïæ "
@@ -1750,7 +1755,7 @@ msgstr "&1 ÑæäÏå  : "
 msgid "File&2:"
 msgstr "&2 ÑæäÏå  : "
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "&S ãÚÇæÖå "
@@ -2429,7 +2434,7 @@ msgstr "&F äÇã æÔå "
 msgid "Result:"
 msgstr " äÊíÌå : "
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&T ÂÒãÇíÔ "
@@ -2876,7 +2881,7 @@ msgstr "&l åãí ÎíÑ "
 msgid "&Continue"
 msgstr "&C ÇÏÇãå "
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "&S ÑÔ "

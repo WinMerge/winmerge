@@ -79,6 +79,7 @@
 #include "DropHandler.h"
 #include "LanguageSelect.h"
 #include "version.h"
+#include "Bitmap.h"
 
 using std::vector;
 using boost::begin;
@@ -98,7 +99,7 @@ using boost::end;
 #define new DEBUG_NEW
 #endif
 
-static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource, CImageList& ImgList);
+static void LoadToolbarImageList(int imageWidth, UINT nIDResource, CImageList& ImgList);
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
 DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles);
@@ -227,12 +228,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_TIMER()
 	ON_WM_ACTIVATE()
 	ON_WM_ACTIVATEAPP()
-	ON_COMMAND(ID_TOOLBAR_NONE, OnToolbarNone)
-	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_NONE, OnUpdateToolbarNone)
-	ON_COMMAND(ID_TOOLBAR_SMALL, OnToolbarSmall)
-	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_SMALL, OnUpdateToolbarSmall)
-	ON_COMMAND(ID_TOOLBAR_BIG, OnToolbarBig)
-	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_BIG, OnUpdateToolbarBig)
+	ON_COMMAND_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnToolbarSize)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnUpdateToolbarSize)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
 	ON_COMMAND(ID_HELP_CHECKFORUPDATES, OnHelpCheckForUpdates)
@@ -2099,29 +2096,18 @@ BOOL CMainFrame::CreateToolbar()
 /** @brief Load toolbar images from the resource. */
 void CMainFrame::LoadToolbarImages()
 {
-	int toolbarSize = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
+	const int toolbarSize = 16 << GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
 
 	m_ToolbarImages[TOOLBAR_IMAGES_ENABLED].DeleteImageList();
 	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].DeleteImageList();
 	CSize sizeButton(0, 0);
 
-	if (toolbarSize == 0)
-	{
-		LoadToolbarImageList(TOOLBAR_SIZE_16x16, IDB_TOOLBAR_ENABLED,
-			m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
-		LoadToolbarImageList(TOOLBAR_SIZE_16x16, IDB_TOOLBAR_DISABLED,
-			m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
-		sizeButton = CSize(24, 24);
-	}
-	else if (toolbarSize == 1)
-	{
-		LoadToolbarImageList(TOOLBAR_SIZE_32x32, IDB_TOOLBAR_ENABLED32,
-			m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
-		LoadToolbarImageList(TOOLBAR_SIZE_32x32, IDB_TOOLBAR_DISABLED32,
-			m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
-		sizeButton = CSize(40, 40);
-	}
+	LoadToolbarImageList(toolbarSize, toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
+		m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
+	LoadToolbarImageList(toolbarSize, toolbarSize <= 16 ? IDB_TOOLBAR_DISABLED : IDB_TOOLBAR_DISABLED32,
+		m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+	sizeButton = CSize(toolbarSize + 8, toolbarSize + 8);
 
 	BarCtrl.SetButtonSize(sizeButton);
 	BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
@@ -2143,35 +2129,23 @@ void CMainFrame::LoadToolbarImages()
  */
 static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nCount, CImageList& ImgList, COLORREF crMask = RGB(255,0,255))
 {
-	CBitmap bm;
+	CBitmap bm, *pbmpStreched;
 	VERIFY(bm.LoadBitmap(nIDResource));
+	pbmpStreched = StretchBitmap(&bm, nWidth * nCount, nHeight);
 	VERIFY(ImgList.Create(nWidth, nHeight, ILC_COLORDDB|ILC_MASK, nCount, 0));
-	int nIndex = ImgList.Add(&bm, crMask);
+	int nIndex = ImgList.Add(pbmpStreched, crMask);
 	ASSERT(-1 != nIndex);
+	delete pbmpStreched;
 }
 
 /**
  * @brief Load toolbar image list.
  */
-static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource,
+static void LoadToolbarImageList(int imageWidth, UINT nIDResource,
 		CImageList& ImgList)
 {
 	const int ImageCount = 22;
-	int imageWidth = 0;
-	int imageHeight = 0;
-
-	switch (size)
-	{
-		case CMainFrame::TOOLBAR_SIZE_16x16:
-			imageWidth = 16;
-			imageHeight = 15;
-			break;
-		case CMainFrame::TOOLBAR_SIZE_32x32:
-			imageWidth = 32;
-			imageHeight = 31;
-			break;
-	}
-
+	const int imageHeight = imageWidth - 1;
 	LoadHiColImageList(nIDResource, imageWidth, imageHeight, ImageCount, ImgList);
 }
 
@@ -2186,56 +2160,32 @@ void CMainFrame::OnUpdateFrameTitle(BOOL bAddToTitle)
 		m_wndTabBar.UpdateTabs();
 }
 
-/** @brief Hide the toolbar. */
-void CMainFrame::OnToolbarNone()
+/** @brief Show none/small/big/huge toolbar. */
+void CMainFrame::OnToolbarSize(UINT id)
 {
-	GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, false);
-	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, FALSE, 0);
+	if (id == ID_TOOLBAR_NONE)
+	{
+		GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, false);
+		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, false, 0);
+	}
+	else
+	{
+		GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, true);
+		GetOptionsMgr()->SaveOption(OPT_TOOLBAR_SIZE, id - ID_TOOLBAR_SMALL);
+
+		LoadToolbarImages();
+
+		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, true, 0);
+	}
 }
 
-/** @brief Update menuitem for hidden toolbar. */
-void CMainFrame::OnUpdateToolbarNone(CCmdUI* pCmdUI)
+/** @brief Show none/small/big/huge toolbar. */
+void CMainFrame::OnUpdateToolbarSize(CCmdUI *pCmdUI)
 {
-	bool enabled = GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
-	pCmdUI->SetRadio(!enabled);
-}
-
-/** @brief Show small toolbar. */
-void CMainFrame::OnToolbarSmall()
-{
-	GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, true);
-	GetOptionsMgr()->SaveOption(OPT_TOOLBAR_SIZE, 0);
-
-	LoadToolbarImages();
-
-	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, TRUE, 0);
-}
-
-/** @brief Update menuitem for small toolbar. */
-void CMainFrame::OnUpdateToolbarSmall(CCmdUI* pCmdUI)
-{
-	bool enabled = GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
-	int toolbar = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
-	pCmdUI->SetRadio(enabled && toolbar == 0);
-}
-
-/** @brief Show big toolbar. */
-void CMainFrame::OnToolbarBig()
-{
-	GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, true);
-	GetOptionsMgr()->SaveOption(OPT_TOOLBAR_SIZE, 1);
-
-	LoadToolbarImages();
-
-	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, TRUE, 0);
-}
-
-/** @brief Update menuitem for big toolbar. */
-void CMainFrame::OnUpdateToolbarBig(CCmdUI* pCmdUI)
-{
-	bool enabled = GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
-	int toolbar = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
-	pCmdUI->SetRadio(enabled && toolbar == 1);
+	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
+		pCmdUI->SetRadio(pCmdUI->m_nID == ID_TOOLBAR_NONE);
+	else
+		pCmdUI->SetRadio((pCmdUI->m_nID - ID_TOOLBAR_SMALL) == GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE));
 }
 
 /** @brief Lang aware version of CFrameWnd::OnToolTipText() */

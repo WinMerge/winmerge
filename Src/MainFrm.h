@@ -141,13 +141,6 @@ public:
 	BOOL m_bFirstTime; /**< If first time frame activated, get  pos from reg */
 	BOOL m_bFlashing; /**< Window is flashing. */
 
-	/** @brief Possible toolbar image sizes. */
-	enum TOOLBAR_SIZE
-	{
-		TOOLBAR_SIZE_16x16,
-		TOOLBAR_SIZE_32x32,
-	};
-
 // Implementation data
 protected:
 
@@ -253,12 +246,8 @@ protected:
 #else
 	afx_msg void OnActivateApp(BOOL bActive, HTASK hTask);
 #endif
-	afx_msg void OnToolbarNone();
-	afx_msg void OnUpdateToolbarNone(CCmdUI* pCmdUI);
-	afx_msg void OnToolbarSmall();
-	afx_msg void OnUpdateToolbarSmall(CCmdUI* pCmdUI);
-	afx_msg void OnToolbarBig();
-	afx_msg void OnUpdateToolbarBig(CCmdUI* pCmdUI);
+	afx_msg void OnToolbarSize(UINT id);
+	afx_msg void OnUpdateToolbarSize(CCmdUI* pCmdUI);
 	afx_msg BOOL OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnHelpCheckForUpdates();
 	afx_msg void OnUpdateHelpCheckForUpdates(CCmdUI* pCmdUI);

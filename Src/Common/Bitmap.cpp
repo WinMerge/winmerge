@@ -127,3 +127,22 @@ CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap)
 	dcMem.DeleteDC();
 	return pBitmapDarkened;
 }
+
+CBitmap *StretchBitmap(CBitmap *pBitmap, int cx, int cy)
+{
+	CDC dcMemSrc, dcMemDst, dcScreen;
+	dcScreen.Attach(::GetDC(NULL));
+	BITMAP bm;
+	dcMemSrc.CreateCompatibleDC(&dcScreen);
+	dcMemDst.CreateCompatibleDC(&dcScreen);
+	CBitmap *pBitmapStretched = new CBitmap();
+	pBitmap->GetObject(sizeof(bm), &bm);
+	pBitmapStretched->CreateCompatibleBitmap(&dcScreen, cx, cy);
+	CBitmap *pOldBitmapSrc = dcMemSrc.SelectObject(pBitmap);
+	CBitmap *pOldBitmapDst = dcMemDst.SelectObject(pBitmapStretched);
+	dcMemDst.StretchBlt(0, 0, cx, cy, &dcMemSrc, 0, 0, bm.bmWidth, bm.bmHeight, SRCCOPY);
+	dcMemSrc.SelectObject(pOldBitmapSrc);
+	dcMemDst.SelectObject(pOldBitmapDst);
+	::ReleaseDC(NULL, dcScreen.Detach());
+	return pBitmapStretched;
+}

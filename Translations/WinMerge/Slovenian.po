@@ -251,6 +251,11 @@ msgstr "&Male ikone"
 msgid "&Big"
 msgstr "&Velike ikone"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -351,7 +356,7 @@ msgstr "&Navpièna okna"
 msgid "&Cascade"
 msgstr "&Kaskadna okna"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&Pomoè"
@@ -1017,7 +1022,7 @@ msgstr "Z desne proti levi (%1 od %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Desna do ... (%1 od%2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Pre&makni"
@@ -1027,7 +1032,7 @@ msgstr "&Pre&makni"
 msgid "&Delete"
 msgstr "&Izbriši"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "&levi okvir"
@@ -1042,7 +1047,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&desni okvir"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&Oboje"
@@ -1754,7 +1759,7 @@ msgstr "Datoteka&1"
 msgid "File&2:"
 msgstr "Datoteka&2"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "&Zamenjaj"
@@ -2433,7 +2438,7 @@ msgstr "&Ime mape"
 msgid "Result:"
 msgstr "Rezultat:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Test"
@@ -2880,7 +2885,7 @@ msgstr "Ne za &vse"
 msgid "&Continue"
 msgstr "&Nadaljuj"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "&Preskoèi"

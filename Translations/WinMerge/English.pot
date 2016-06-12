@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2016-05-29 20:02+0000\n"
+"POT-Creation-Date: 2016-06-12 12:11+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -246,6 +246,11 @@ msgstr ""
 msgid "&Big"
 msgstr ""
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -346,7 +351,7 @@ msgstr ""
 msgid "&Cascade"
 msgstr ""
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr ""
@@ -1012,7 +1017,7 @@ msgstr ""
 msgid "Right to... (%1 of %2)"
 msgstr ""
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr ""
@@ -1022,7 +1027,7 @@ msgstr ""
 msgid "&Delete"
 msgstr ""
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr ""
@@ -1037,7 +1042,7 @@ msgstr ""
 msgid "&Right"
 msgstr ""
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr ""
@@ -1747,7 +1752,7 @@ msgstr ""
 msgid "File&2:"
 msgstr ""
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr ""
@@ -2422,7 +2427,7 @@ msgstr ""
 msgid "Result:"
 msgstr ""
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr ""
@@ -2837,7 +2842,7 @@ msgstr ""
 msgid "&Continue"
 msgstr ""
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr ""

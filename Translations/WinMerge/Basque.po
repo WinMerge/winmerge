@@ -253,6 +253,11 @@ msgstr "&Txikia"
 msgid "&Big"
 msgstr "&Handia"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -353,7 +358,7 @@ msgstr "Eradonki &Zutia"
 msgid "&Cascade"
 msgstr "&Urjauzia"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "&Laguntza"
@@ -1019,7 +1024,7 @@ msgstr "Eskuina Ezkerrera (%1 %2-tik)"
 msgid "Right to... (%1 of %2)"
 msgstr "Eskuina hona... (%1 %2-tik)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Mugitu"
@@ -1029,7 +1034,7 @@ msgstr "&Mugitu"
 msgid "&Delete"
 msgstr "&Ezabatu"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "Ezker&ra"
@@ -1044,7 +1049,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&E&skuina"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&Biak"
@@ -1754,7 +1759,7 @@ msgstr "&1 Agiria:"
 msgid "File&2:"
 msgstr "&2 Agiria:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "A&ldaketa"
@@ -2433,7 +2438,7 @@ msgstr "&Agiritegi Izena"
 msgid "Result:"
 msgstr "Emaitza:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Azterketa"
@@ -2880,7 +2885,7 @@ msgstr "Ez gu&ztiari"
 msgid "&Continue"
 msgstr "&Jarraitu"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "&Jauzi"

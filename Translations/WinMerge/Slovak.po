@@ -250,6 +250,11 @@ msgstr "&Malı"
 msgid "&Big"
 msgstr "&Ve¾kı"
 
+#: Merge.rc:43017E48
+#, c-format
+msgid "&Huge"
+msgstr ""
+
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
@@ -350,7 +355,7 @@ msgstr "Dladice &zvisle"
 msgid "&Cascade"
 msgstr "&Kaskáda"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Help"
 msgstr "Po&moc"
@@ -1016,7 +1021,7 @@ msgstr "Sprava do¾ava (%1 z %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Sprava... (%1 z %2)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Move"
 msgstr "&Presunú"
@@ -1026,7 +1031,7 @@ msgstr "&Presunú"
 msgid "&Delete"
 msgstr "&Zmaza"
 
-#: Merge.rc:43017E4A
+#: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
 msgstr "¼&avı"
@@ -1041,7 +1046,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Pravı"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
 msgstr "&Oba"
@@ -1751,7 +1756,7 @@ msgstr "Súbor&1:"
 msgid "File&2:"
 msgstr "Súbor&2:"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "&Vymeni navzájom"
@@ -2426,7 +2431,7 @@ msgstr "&Názov adresára"
 msgid "Result:"
 msgstr "Vısledok:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "&Testova"
@@ -2855,7 +2860,7 @@ msgstr "Nie pre &všetky"
 msgid "&Continue"
 msgstr "Po&kraèova"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "Pre&skoèi"
