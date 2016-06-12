@@ -99,7 +99,7 @@ using boost::end;
 #define new DEBUG_NEW
 #endif
 
-static void LoadToolbarImageList(int imageWidth, UINT nIDResource, CImageList& ImgList);
+static void LoadToolbarImageList(int imageWidth, UINT nIDResource, UINT nIDResourceMask, bool bGrayscale, CImageList& ImgList);
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
 DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles);
@@ -2103,10 +2103,14 @@ void CMainFrame::LoadToolbarImages()
 	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].DeleteImageList();
 	CSize sizeButton(0, 0);
 
-	LoadToolbarImageList(toolbarSize, toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
-	LoadToolbarImageList(toolbarSize, toolbarSize <= 16 ? IDB_TOOLBAR_DISABLED : IDB_TOOLBAR_DISABLED32,
-		m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+	LoadToolbarImageList(toolbarSize,
+		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
+		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED_MASK : IDB_TOOLBAR_ENABLED_MASK32,
+		false, m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
+	LoadToolbarImageList(toolbarSize,
+		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
+		toolbarSize <= 16 ? IDB_TOOLBAR_ENABLED_MASK : IDB_TOOLBAR_ENABLED_MASK32,
+		true, m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
 	sizeButton = CSize(toolbarSize + 8, toolbarSize + 8);
 
 	BarCtrl.SetButtonSize(sizeButton);
@@ -2127,26 +2131,27 @@ void CMainFrame::LoadToolbarImages()
 /**
  * @brief Load a transparent 24-bit color image list.
  */
-static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nCount, CImageList& ImgList, COLORREF crMask = RGB(255,0,255))
+static void LoadHiColImageList(UINT nIDResource, UINT nIDResourceMask, int nWidth, int nHeight, int nCount, bool bGrayscale, CImageList& ImgList)
 {
-	CBitmap bm, *pbmpStreched;
-	VERIFY(bm.LoadBitmap(nIDResource));
-	pbmpStreched = StretchBitmap(&bm, nWidth * nCount, nHeight);
+	CBitmap bm, bmMask;
+	bm.Attach(LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(nIDResource), IMAGE_BITMAP, nWidth * nCount, nHeight, LR_DEFAULTCOLOR));
+	bmMask.Attach(LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(nIDResourceMask), IMAGE_BITMAP, nWidth * nCount, nHeight, LR_MONOCHROME));
+	if (bGrayscale)
+		GrayScale(&bm);
 	VERIFY(ImgList.Create(nWidth, nHeight, ILC_COLORDDB|ILC_MASK, nCount, 0));
-	int nIndex = ImgList.Add(pbmpStreched, crMask);
+	int nIndex = ImgList.Add(&bm, &bmMask);
 	ASSERT(-1 != nIndex);
-	delete pbmpStreched;
 }
 
 /**
  * @brief Load toolbar image list.
  */
-static void LoadToolbarImageList(int imageWidth, UINT nIDResource,
+static void LoadToolbarImageList(int imageWidth, UINT nIDResource, UINT nIDResourceMask, bool bGrayscale,
 		CImageList& ImgList)
 {
 	const int ImageCount = 22;
 	const int imageHeight = imageWidth - 1;
-	LoadHiColImageList(nIDResource, imageWidth, imageHeight, ImageCount, ImgList);
+	LoadHiColImageList(nIDResource, nIDResourceMask, imageWidth, imageHeight, ImageCount, bGrayscale, ImgList);
 }
 
 /**

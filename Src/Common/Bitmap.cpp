@@ -128,21 +128,34 @@ CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap)
 	return pBitmapDarkened;
 }
 
-CBitmap *StretchBitmap(CBitmap *pBitmap, int cx, int cy)
+bool GrayScale(CBitmap *pBitmap)
 {
-	CDC dcMemSrc, dcMemDst, dcScreen;
-	dcScreen.Attach(::GetDC(NULL));
 	BITMAP bm;
-	dcMemSrc.CreateCompatibleDC(&dcScreen);
-	dcMemDst.CreateCompatibleDC(&dcScreen);
-	CBitmap *pBitmapStretched = new CBitmap();
-	pBitmap->GetObject(sizeof(bm), &bm);
-	pBitmapStretched->CreateCompatibleBitmap(&dcScreen, cx, cy);
-	CBitmap *pOldBitmapSrc = dcMemSrc.SelectObject(pBitmap);
-	CBitmap *pOldBitmapDst = dcMemDst.SelectObject(pBitmapStretched);
-	dcMemDst.StretchBlt(0, 0, cx, cy, &dcMemSrc, 0, 0, bm.bmWidth, bm.bmHeight, SRCCOPY);
-	dcMemSrc.SelectObject(pOldBitmapSrc);
-	dcMemDst.SelectObject(pOldBitmapDst);
-	::ReleaseDC(NULL, dcScreen.Detach());
-	return pBitmapStretched;
+	pBitmap->GetBitmap(&bm);
+	if (bm.bmBitsPixel < 24)
+		return false;
+	const int nCount = bm.bmWidthBytes * bm.bmHeight;
+	const int bypp = bm.bmBitsPixel / 8;
+	std::unique_ptr<BYTE[]> pbuf(new BYTE[nCount]);
+	pBitmap->GetBitmapBits(nCount, pbuf.get());
+	for (int i = 0, x = 0, y = 0; i < nCount - bypp; i += bypp, x += bypp)
+	{
+		const BYTE b = pbuf[i];
+		const BYTE g = pbuf[i + 1];
+		const BYTE r = pbuf[i + 2];
+		const BYTE gray = static_cast<BYTE>(
+			 (static_cast<int>(0.114 * 256) * (((255 - b) >> 1) + b)
+			+ static_cast<int>(0.587 * 256) * (((255 - g) >> 1) + g)
+			+ static_cast<int>(0.299 * 256) * (((255 - r) >> 1) + r)) >> 8);
+		pbuf[i] = gray;
+		pbuf[i + 1] = gray;
+		pbuf[i + 2] = gray;
+		if (x >= bm.bmWidthBytes - bypp)
+		{
+			++y;
+			x = 0;
+			i = y * bm.bmWidthBytes;
+		}
+	}
+	return pBitmap->SetBitmapBits(nCount, pbuf.get()) != 0;
 }
