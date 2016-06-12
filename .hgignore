@@ -18,6 +18,8 @@ glob:*.pdb
 glob:*.obj
 glob:*.lib
 glob:*.idb
+glob:*.db
+glob:*.opendb
 glob:*.tlb
 glob:*.o
 glob:*.vsp
