@@ -90,7 +90,6 @@
 #define IDB_EDIT_GOTO_NEXT_BOOKMARK     343
 #define IDB_EDIT_GOTO_PREV_BOOKMARK     344
 #define IDB_EDIT_CLEAR_ALL_BOOKMARKS    345
-#define IDB_TOOLBAR_DISABLED            346
 #define IDB_LEFT                        347
 #define IDB_MIDDLE                      348
 #define IDB_RIGHT                       349
@@ -108,7 +107,6 @@
 #define IDB_MOVE_LEFT_TO_BROWSE         361
 #define IDB_MOVE_MIDDLE_TO_BROWSE       362
 #define IDB_MOVE_RIGHT_TO_BROWSE        363
-#define IDB_TOOLBAR_DISABLED32          364
 #define IDB_TOOLBAR_ENABLED32           365
 #define IDB_VIEW_ZOOMIN                 366
 #define IDB_VIEW_ZOOMOUT                367
@@ -123,6 +121,8 @@
 #define IDB_COPY_FROM_LEFT              376
 #define IDB_COPY_FROM_RIGHT             377
 #define IDB_TOOLBAR_ENABLED             378
+#define IDB_TOOLBAR_ENABLED_MASK        379
+#define IDB_TOOLBAR_ENABLED_MASK32      380
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_MFOLDER                     502
