@@ -269,13 +269,13 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 	CRect rect,rect2;
 	UINT state = (((BCMenuData*)(lpDIS->itemData))->nFlags);
-	COLORREF m_newclrBack=GetSysColor(COLOR_3DFACE);
-	COLORREF m_clrBack=GetSysColor(COLOR_WINDOW);
-	m_clrBack=DarkenColor(m_clrBack,0.02);
-	CFont m_fontMenu,*pFont=NULL;
-	CBrush m_newbrBackground,m_brBackground;
-	m_brBackground.CreateSolidBrush(m_clrBack);
-	m_newbrBackground.CreateSolidBrush(m_newclrBack);
+	COLORREF newclrBack=GetSysColor(COLOR_3DFACE);
+	COLORREF clrBack=GetSysColor(COLOR_WINDOW);
+	clrBack=DarkenColor(clrBack,0.02);
+	CFont fontMenu,*pFont=NULL;
+	CBrush newbrBackground,brBackground;
+	brBackground.CreateSolidBrush(clrBack);
+	newbrBackground.CreateSolidBrush(newclrBack);
 	int BCMENU_PAD=4;
 	int barwidth=m_iconX+BCMENU_PAD;
 	
@@ -286,29 +286,29 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 	
 	if(state & MF_SEPARATOR){
 		rect.CopyRect(&lpDIS->rcItem);
-		pDC->FillRect (rect,&m_brBackground);
+		pDC->FillRect (rect,&brBackground);
 		rect2.SetRect(rect.left,rect.top,rect.left+barwidth,rect.bottom);
 		rect.top+=rect.Height()>>1;
 		rect.left = rect2.right+BCMENU_PAD;
 		pDC->DrawEdge(&rect,EDGE_ETCHED,BF_TOP);
-		pDC->FillRect (rect2,&m_newbrBackground);
-		pDC->Draw3dRect (rect2,m_newclrBack,m_newclrBack);
+		pDC->FillRect (rect2,&newbrBackground);
+		pDC->Draw3dRect (rect2,newclrBack,newclrBack);
 	}
 	else{
 		BOOL standardflag=FALSE,selectedflag=FALSE,disableflag=FALSE;
 		COLORREF crText = GetSysColor(COLOR_MENUTEXT);
 		COLORREF crSelect = GetSysColor(COLOR_HIGHLIGHT);
 		COLORREF crSelectFill = LightenColor(crSelect,0.7);
-		CBrush m_brSelect;
-		CPen m_penBack;
+		CBrush brSelect;
+		CPen penBack;
 		int x0,y0,dx,dy;
 		int nIconNormal=-1;
 		INT_PTR xoffset=-1;
 		CImageList *bitmap=NULL;
 		
 		// set some colors
-		m_penBack.CreatePen (PS_SOLID,0,m_clrBack);
-		m_brSelect.CreateSolidBrush(crSelectFill);
+		penBack.CreatePen (PS_SOLID,0,clrBack);
+		brSelect.CreateSolidBrush(crSelectFill);
 		
 		// draw the colored rectangle portion
 		
@@ -348,24 +348,24 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 		
 		if(state&ODS_SELECTED){ // draw the down edges
 			
-			CPen *pOldPen = pDC->SelectObject (&m_penBack);
+			CPen *pOldPen = pDC->SelectObject (&penBack);
 			
-			pDC->FillRect (rect,&m_brSelect);
+			pDC->FillRect (rect,&brSelect);
 			pDC->Draw3dRect (rect,crSelect,crSelect);
 			
 			pDC->SelectObject (pOldPen);
 		}
 		else {
 			rect2.SetRect(rect.left,rect.top,rect.left+barwidth,rect.bottom);
-			CPen *pOldPen = pDC->SelectObject (&m_penBack);
-			pDC->FillRect (rect,&m_brBackground);
-			pDC->FillRect (rect2,&m_newbrBackground);
+			CPen *pOldPen = pDC->SelectObject (&penBack);
+			pDC->FillRect (rect,&brBackground);
+			pDC->FillRect (rect2,&newbrBackground);
 			pDC->SelectObject (pOldPen);
 			
 			// draw the up edges
 			
-			pDC->Draw3dRect (rect,m_clrBack,m_clrBack);
-			pDC->Draw3dRect (rect2,m_newclrBack,m_newclrBack);
+			pDC->Draw3dRect (rect,clrBack,clrBack);
+			pDC->Draw3dRect (rect2,newclrBack,newclrBack);
 		}
 		
 		// draw the text if there is any
@@ -376,13 +376,13 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 		dx = (int)(0.5+(barwidth-m_iconX)/2.0);
 		dx = dx<0 ? 0 : dx;
 		rect2.SetRect(rect.left+1,rect.top+1,rect.left+barwidth-2,rect.bottom-1);
-		
+
 		if(standardflag||selectedflag||disableflag){
 			if(disableflag){
 				if(!selectedflag){
 					CBitmap bitmapstandard;
 					GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
-					COLORREF transparentcol=m_newclrBack;
+					COLORREF transparentcol=newclrBack;
 					if(state&ODS_SELECTED)transparentcol=crSelectFill;
 					if(hicolor_bitmaps)
 						DitherBlt3(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
@@ -404,7 +404,7 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 					pDC->Draw3dRect(rect2,crSelect,crSelect);
 					ptImage.x-=1;ptImage.y-=1;
 				}
-				else pDC->FillRect (rect2,&m_brSelect);
+				else pDC->FillRect (rect2,&brSelect);
 				if(bitmap){
 					bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 				}
@@ -420,8 +420,8 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 					if(bitmap)bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 				}
 				else{
-					pDC->FillRect (rect2,&m_newbrBackground);
-					pDC->Draw3dRect (rect2,m_newclrBack,m_newclrBack);
+					pDC->FillRect (rect2,&newbrBackground);
+					pDC->Draw3dRect (rect2,newclrBack,newclrBack);
 					CPoint ptImage(rect.left+dx,rect.top+dy);
 					if(bitmap){
 						bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
@@ -486,11 +486,11 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 			pDC->SetBkMode( iOldMode );
 		}
 		
-		m_penBack.DeleteObject();
-		m_brSelect.DeleteObject();
+		penBack.DeleteObject();
+		brSelect.DeleteObject();
 	}
-	m_brBackground.DeleteObject();
-	m_newbrBackground.DeleteObject();
+	brBackground.DeleteObject();
+	newbrBackground.DeleteObject();
 }
 
 BOOL BCMenu::GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBitmap &bmp)
