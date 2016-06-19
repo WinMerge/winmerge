@@ -276,7 +276,6 @@ public:
 	void UnSetBitmapBackground(void);
 	// obsolete functions for setting how menu images are dithered for disabled menu options
 	static inline COLORREF LightenColor(COLORREF col,double factor);
-	static COLORREF DarkenColor(COLORREF col,double factor);
 
 public:
 	// Miscellaneous Protected Member functions
@@ -293,9 +292,9 @@ protected:
 	void InitializeMenuList(int value);
 	void DeleteMenuList(void);
 	BCMenuData *FindMenuList(UINT_PTR nID);
-	void DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS);
+	void DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS);
+	BOOL Draw3DCheckmark(CDC *dc, const CRect& rc,BOOL bSelected,HBITMAP hbmCheck);
 	void DrawItem_Theme (LPDRAWITEMSTRUCT lpDIS);
-	BOOL DrawXPCheckmark(CDC *dc, const CRect& rc, HBITMAP hbmCheck,COLORREF &colorout,BOOL selected);
 	void DitherBlt(HDC hdcDest, int nXDest, int nYDest, int nWidth, 
 		int nHeight, HBITMAP hbm, int nXSrc, int nYSrc,COLORREF bgcolor);
 	void DitherBlt2(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
