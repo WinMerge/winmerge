@@ -33,6 +33,8 @@
 #define new DEBUG_NEW
 #endif
 
+#define BCMENU_GAP 1
+
 #if _MFC_VER <0x400
 #error This code does not work on Versions of MFC prior to 4.0
 #endif
@@ -255,89 +257,50 @@ void BCMenu::DrawItem(LPDRAWITEMSTRUCT)
 void BCMenu::DrawItem (LPDRAWITEMSTRUCT lpDIS)
 {
 	ASSERT(lpDIS != NULL);
-	if (!m_hTheme)
-		DrawItem_WinXP(lpDIS);
-	else
-		DrawItem_Theme(lpDIS);
-}
-
-inline COLORREF BCMenu::LightenColor(COLORREF col,double factor)
-{
-	if(factor>0.0&&factor<=1.0){
-		BYTE red,green,blue,lightred,lightgreen,lightblue;
-		red = GetRValue(col);
-		green = GetGValue(col);
-		blue = GetBValue(col);
-		lightred = (BYTE)((factor*(255-red)) + red);
-		lightgreen = (BYTE)((factor*(255-green)) + green);
-		lightblue = (BYTE)((factor*(255-blue)) + blue);
-		col = RGB(lightred,lightgreen,lightblue);
+	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
+	if(pDC->GetDeviceCaps(RASTERCAPS) & RC_PALETTE)DrawItem_Win9xNT2000(lpDIS);
+	else{
+		if (!m_hTheme)
+			DrawItem_Win9xNT2000(lpDIS);
+		else
+			DrawItem_Theme(lpDIS);
 	}
-	return(col);
 }
 
-COLORREF BCMenu::DarkenColor(COLORREF col,double factor)
-{
-	if(factor>0.0&&factor<=1.0){
-		BYTE red,green,blue,lightred,lightgreen,lightblue;
-		red = GetRValue(col);
-		green = GetGValue(col);
-		blue = GetBValue(col);
-		lightred = (BYTE)(red-(factor*red));
-		lightgreen = (BYTE)(green-(factor*green));
-		lightblue = (BYTE)(blue-(factor*blue));
-		col = RGB(lightred,lightgreen,lightblue);
-	}
-	return(col);
-}
-
-
-void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
+void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 {
 	ASSERT(lpDIS != NULL);
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
-	CRect rect,rect2;
+	CRect rect;
 	UINT state = (((BCMenuData*)(lpDIS->itemData))->nFlags);
-	COLORREF newclrBack=GetSysColor(COLOR_3DFACE);
-	COLORREF clrBack=GetSysColor(COLOR_WINDOW);
-	clrBack=DarkenColor(clrBack,0.02);
-	CFont fontMenu,*pFont=NULL;
-	CBrush newbrBackground,brBackground;
-	brBackground.CreateSolidBrush(clrBack);
-	newbrBackground.CreateSolidBrush(newclrBack);
-	int BCMENU_PAD=4;
-	int barwidth=m_iconX+BCMENU_PAD;
+	CBrush m_brBackground;
+	COLORREF m_clrBack;
+
+	m_clrBack=GetSysColor(COLOR_MENU);
 	
-	// remove the selected bit if it's grayed out
-	if(lpDIS->itemState & ODS_GRAYED){
-		if(lpDIS->itemState & ODS_SELECTED)lpDIS->itemState=lpDIS->itemState & ~ODS_SELECTED;
-	}
-	
+	m_brBackground.CreateSolidBrush(m_clrBack);
+
 	if(state & MF_SEPARATOR){
 		rect.CopyRect(&lpDIS->rcItem);
-		pDC->FillRect (rect,&brBackground);
-		rect2.SetRect(rect.left,rect.top,rect.left+barwidth,rect.bottom);
-		rect.top+=rect.Height()>>1;
-		rect.left = rect2.right+BCMENU_PAD;
+		pDC->FillRect (rect,&m_brBackground);
+		rect.top += (rect.Height()>>1);
 		pDC->DrawEdge(&rect,EDGE_ETCHED,BF_TOP);
-		pDC->FillRect (rect2,&newbrBackground);
-		pDC->Draw3dRect (rect2,newclrBack,newclrBack);
 	}
 	else{
+		CRect rect2;
 		BOOL standardflag=FALSE,selectedflag=FALSE,disableflag=FALSE;
+		BOOL checkflag=FALSE;
 		COLORREF crText = GetSysColor(COLOR_MENUTEXT);
-		COLORREF crSelect = GetSysColor(COLOR_HIGHLIGHT);
-		COLORREF crSelectFill = LightenColor(crSelect,0.7);
-		CBrush brSelect;
-		CPen penBack;
-		int x0,y0,dx,dy;
+		CBrush m_brSelect;
+		CPen m_penBack;
+		int x0,y0,dy;
 		int nIconNormal=-1;
 		INT_PTR xoffset=-1;
 		CImageList *bitmap=NULL;
 		
 		// set some colors
-		penBack.CreatePen (PS_SOLID,0,clrBack);
-		brSelect.CreateSolidBrush(crSelectFill);
+		m_penBack.CreatePen (PS_SOLID,0,m_clrBack);
+		m_brSelect.CreateSolidBrush(GetSysColor(COLOR_HIGHLIGHT));
 		
 		// draw the colored rectangle portion
 		
@@ -352,16 +315,15 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 		if(lpDIS->itemData != NULL){
 			nIconNormal = (((BCMenuData*)(lpDIS->itemData))->menuIconNormal);
 			xoffset = (((BCMenuData*)(lpDIS->itemData))->xoffset);
+			INT_PTR global_offset = (((BCMenuData*)(lpDIS->itemData))->global_offset);
 			bitmap = (((BCMenuData*)(lpDIS->itemData))->bitmap);
 			strText = ((BCMenuData*) (lpDIS->itemData))->GetString();
-			INT_PTR global_offset = (((BCMenuData*)(lpDIS->itemData))->global_offset);
 
-			if(nIconNormal<0&&xoffset<0&&global_offset>=0){
+			if(nIconNormal<0&&global_offset>=0){
 				xoffset=global_offset;
 				nIconNormal=0;
 				bitmap = &m_AllImages;
 			}
-
 			
 			if(state&ODS_CHECKED && nIconNormal<0){
 			}
@@ -377,102 +339,106 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 		
 		if(state&ODS_SELECTED){ // draw the down edges
 			
-			CPen *pOldPen = pDC->SelectObject (&penBack);
+			CPen *pOldPen = pDC->SelectObject (&m_penBack);
 			
-			pDC->FillRect (rect,&brSelect);
-			pDC->Draw3dRect (rect,crSelect,crSelect);
+			// You need only Text highlight and thats what you get
+			
+			if(checkflag||standardflag||selectedflag||disableflag||state&ODS_CHECKED)
+				rect2.SetRect(rect.left+m_iconX+4+BCMENU_GAP,rect.top,rect.right,rect.bottom);
+			pDC->FillRect (rect2,&m_brSelect);
 			
 			pDC->SelectObject (pOldPen);
+			crText = GetSysColor(COLOR_HIGHLIGHTTEXT);
 		}
 		else {
-			rect2.SetRect(rect.left,rect.top,rect.left+barwidth,rect.bottom);
-			CPen *pOldPen = pDC->SelectObject (&penBack);
-			pDC->FillRect (rect,&brBackground);
-			pDC->FillRect (rect2,&newbrBackground);
+			CPen *pOldPen = pDC->SelectObject (&m_penBack);
+			pDC->FillRect (rect,&m_brBackground);
 			pDC->SelectObject (pOldPen);
 			
-			// draw the up edges
-			
-			pDC->Draw3dRect (rect,clrBack,clrBack);
-			pDC->Draw3dRect (rect2,newclrBack,newclrBack);
+			// draw the up edges	
+			pDC->Draw3dRect (rect,m_clrBack,m_clrBack);
 		}
 		
 		// draw the text if there is any
 		//We have to paint the text only if the image is nonexistant
 		
-		dy = (int)(0.5+(rect.Height()-m_iconY)/2.0);
+		dy = (rect.Height()-4-m_iconY)/2;
 		dy = dy<0 ? 0 : dy;
-		dx = (int)(0.5+(barwidth-m_iconX)/2.0);
-		dx = dx<0 ? 0 : dx;
-		rect2.SetRect(rect.left+1,rect.top+1,rect.left+barwidth-2,rect.bottom-1);
-
-		if(standardflag||selectedflag||disableflag){
+		
+		if(checkflag||standardflag||selectedflag||disableflag){
+			rect2.SetRect(rect.left+1,rect.top+1+dy,rect.left+m_iconX+3,
+				rect.top+m_iconY+3+dy);
+			pDC->Draw3dRect (rect2,m_clrBack,m_clrBack);
 			if(disableflag){
 				if(!selectedflag){
 					CBitmap bitmapstandard;
 					GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
-					COLORREF transparentcol=newclrBack;
-					if(state&ODS_SELECTED)transparentcol=crSelectFill;
+					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
+                        rect.top+m_iconY+4+dy);
+					pDC->Draw3dRect (rect2,m_clrBack,m_clrBack);
 					if(hicolor_bitmaps)
-						DitherBlt3(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-						bitmapstandard,transparentcol);
+						DitherBlt3(pDC,rect.left+2,rect.top+2+dy,m_iconX,m_iconY,
+						bitmapstandard,m_clrBack);
 					else
-						DitherBlt2(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-						bitmapstandard,0,0,transparentcol);
-					if(state&ODS_SELECTED)pDC->Draw3dRect (rect,crSelect,crSelect);
+						DitherBlt2(pDC,rect.left+2,rect.top+2+dy,m_iconX,m_iconY,
+						bitmapstandard,0,0,m_clrBack);
 					bitmapstandard.DeleteObject();
 				}
 			}
 			else if(selectedflag){
-				CPoint ptImage(rect.left+dx,rect.top+dy);
-				if(state&ODS_CHECKED){
-					CBrush brushin;
-					brushin.CreateSolidBrush(LightenColor(crSelect,0.55));
-					pDC->FillRect(rect2,&brushin);
-					brushin.DeleteObject();
-					pDC->Draw3dRect(rect2,crSelect,crSelect);
-					ptImage.x-=1;ptImage.y-=1;
-				}
-				else pDC->FillRect (rect2,&brSelect);
-				if(bitmap){
-					bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
-				}
+				pDC->FillRect (rect2,&m_brBackground);
+				rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
+					rect.top+m_iconY+4+dy);
+				if(state&ODS_CHECKED)
+					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
+					GetSysColor(COLOR_3DHILIGHT));
+				else
+					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DHILIGHT),
+					GetSysColor(COLOR_3DSHADOW));
+				CPoint ptImage(rect.left+2,rect.top+2+dy);
+				if(bitmap)bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 			}
 			else{
 				if(state&ODS_CHECKED){
-					CBrush brushin;
-					brushin.CreateSolidBrush(LightenColor(crSelect,0.85));
-					pDC->FillRect(rect2,&brushin);
-					brushin.DeleteObject();
-					pDC->Draw3dRect(rect2,crSelect,crSelect);
-					CPoint ptImage(rect.left+dx-1,rect.top+dy-1);
-					if(bitmap)bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
+					CBrush brush;
+					COLORREF col = m_clrBack;
+					col = LightenColor(col,0.6);
+					brush.CreateSolidBrush(col);
+					pDC->FillRect(rect2,&brush);
+					brush.DeleteObject();
+					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
+                        rect.top+m_iconY+4+dy);
+					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
+					GetSysColor(COLOR_3DHILIGHT));
 				}
 				else{
-					pDC->FillRect (rect2,&newbrBackground);
-					pDC->Draw3dRect (rect2,newclrBack,newclrBack);
-					CPoint ptImage(rect.left+dx,rect.top+dy);
-					if(bitmap){
-						bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
-					}
+					pDC->FillRect (rect2,&m_brBackground);
+					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
+                        rect.top+m_iconY+4+dy);
+					pDC->Draw3dRect (rect2,m_clrBack,m_clrBack);
 				}
+				CPoint ptImage(rect.left+2,rect.top+2+dy);
+				if(bitmap)bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 			}
 		}
-		if(nIconNormal<0 && state&ODS_CHECKED){
+		if(nIconNormal<0 && state&ODS_CHECKED && !checkflag){
+			rect2.SetRect(rect.left+1,rect.top+2+dy,rect.left+m_iconX+1,
+				rect.top+m_iconY+2+dy);
 			CMenuItemInfo info;
 			info.fMask = MIIM_CHECKMARKS;
 			::GetMenuItemInfo((HMENU)lpDIS->hwndItem,lpDIS->itemID,
 				MF_BYCOMMAND, &info);
 			if(state&ODS_CHECKED || info.hbmpUnchecked) {
-				DrawXPCheckmark(pDC, rect2,state&ODS_CHECKED ? info.hbmpChecked :
-				info.hbmpUnchecked,crSelect,state&ODS_SELECTED);
+				Draw3DCheckmark(pDC, rect2, state&ODS_SELECTED,
+					state&ODS_CHECKED ? info.hbmpChecked :
+				info.hbmpUnchecked);
 			}
 		}
 		
 		//This is needed always so that we can have the space for check marks
 		
 		x0=rect.left;y0=rect.top;
-		rect.left = rect.left + barwidth + 8; 
+		rect.left = rect.left + m_iconX + 8 + BCMENU_GAP; 
 		
 		if(!strText.IsEmpty()){
 			
@@ -503,23 +469,50 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 				if(tablocr!=-1) pDC->DrawText (rightStr,rectt,nFormatr);
 			}
 			else{
-				RECT offset = *rectt;
-				offset.left+=1;
-				offset.right+=1;
-				offset.top+=1;
-				offset.bottom+=1;
-				pDC->SetTextColor(GetSysColor(COLOR_GRAYTEXT));
-				pDC->DrawText(leftStr,rectt, nFormat);
-				if(tablocr!=-1) pDC->DrawText (rightStr,rectt,nFormatr);
+				
+				// Draw the disabled text
+				if(!(state & ODS_SELECTED)){
+					RECT offset = *rectt;
+					offset.left+=1;
+					offset.right+=1;
+					offset.top+=1;
+					offset.bottom+=1;
+					pDC->SetTextColor(GetSysColor(COLOR_BTNHILIGHT));
+					pDC->DrawText(leftStr,&offset, nFormat);
+					if(tablocr!=-1) pDC->DrawText (rightStr,&offset,nFormatr);
+					pDC->SetTextColor(GetSysColor(COLOR_GRAYTEXT));
+					pDC->DrawText(leftStr,rectt, nFormat);
+					if(tablocr!=-1) pDC->DrawText (rightStr,rectt,nFormatr);
+				}
+				else{
+					// And the standard Grey text:
+					pDC->SetTextColor(m_clrBack);
+					pDC->DrawText(leftStr,rectt, nFormat);
+					if(tablocr!=-1) pDC->DrawText (rightStr,rectt,nFormatr);
+				}
 			}
 			pDC->SetBkMode( iOldMode );
 		}
 		
-		penBack.DeleteObject();
-		brSelect.DeleteObject();
+		m_penBack.DeleteObject();
+		m_brSelect.DeleteObject();
 	}
-	brBackground.DeleteObject();
-	newbrBackground.DeleteObject();
+	m_brBackground.DeleteObject();
+}
+
+inline COLORREF BCMenu::LightenColor(COLORREF col,double factor)
+{
+	if(factor>0.0&&factor<=1.0){
+		BYTE red,green,blue,lightred,lightgreen,lightblue;
+		red = GetRValue(col);
+		green = GetGValue(col);
+		blue = GetBValue(col);
+		lightred = (BYTE)((factor*(255-red)) + red);
+		lightgreen = (BYTE)((factor*(255-green)) + green);
+		lightblue = (BYTE)((factor*(255-blue)) + blue);
+		col = RGB(lightred,lightgreen,lightblue);
+	}
+	return(col);
 }
 
 void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
@@ -1909,25 +1902,19 @@ void BCMenu::UnSetBitmapBackground(void)
 	m_bitmapBackgroundFlag=FALSE;
 }
 
-BOOL BCMenu::DrawXPCheckmark(CDC *dc, const CRect& rc, HBITMAP hbmCheck,COLORREF &colorout,BOOL selected)
+BOOL BCMenu::Draw3DCheckmark(CDC *dc, const CRect& rc,
+                             BOOL bSelected, HBITMAP hbmCheck)
 {
-	CBrush brushin;
-	COLORREF col;
-	int dx,dy;
-	dy = (rc.Height()>>1)-3;
-	dy = dy<0 ? 0 : dy;
-	dx = (rc.Width()>>1)-3;
-	dx = dx<0 ? 0 : dx;
-
-	if(selected) col = LightenColor(colorout,0.55);
-	else col = LightenColor(colorout,0.85);
-	brushin.CreateSolidBrush(col);
-	dc->FillRect(rc,&brushin);
-	brushin.DeleteObject();
-	dc->Draw3dRect (rc,colorout,colorout);
-
-	if (!hbmCheck)DrawCheckMark(dc,rc.left+dx,rc.top+dy,GetSysColor(COLOR_MENUTEXT));
-	else DrawRadioDot(dc,rc.left+dx,rc.top+dy,GetSysColor(COLOR_MENUTEXT));
+	CRect rcDest = rc;
+	CBrush brush;
+	COLORREF col=GetSysColor(COLOR_MENU);
+	if(!bSelected)col = LightenColor(col,0.6);
+	brush.CreateSolidBrush(col);
+	dc->FillRect(rcDest,&brush);
+	brush.DeleteObject();
+	dc->DrawEdge(&rcDest, BDR_SUNKENOUTER, BF_RECT);
+	if (!hbmCheck)DrawCheckMark(dc,rc.left+4,rc.top+4,GetSysColor(COLOR_MENUTEXT));
+	else DrawRadioDot(dc,rc.left+5,rc.top+4,GetSysColor(COLOR_MENUTEXT));
 	return TRUE;
 }
 
