@@ -27,6 +27,8 @@
 #include "BCMenu.h"        // BCMenu class declaration
 #include <afxpriv.h>       //SK: makes A2W and other spiffy AFX macros work
 
+#pragma comment(lib, "uxtheme.lib")
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -41,6 +43,14 @@ CImageList BCMenu::m_AllImages;
 CArray<int,int&> BCMenu::m_AllImagesID;
 int BCMenu::m_iconX = 16;
 int BCMenu::m_iconY = 15;
+MARGINS BCMenu::m_marginCheck = { 0 };
+SIZE BCMenu::m_sizeCheck = { 0 };
+int BCMenu::m_textBorder = 0;
+int BCMenu::m_checkBgWidth = 0;
+int BCMenu::m_gutterWidth = 0;
+int BCMenu::m_arrowWidth = 0;
+HTHEME BCMenu::m_hTheme = NULL;
+
 
 // The Representation of a 32 bit color table entry
 #pragma pack(push)
@@ -138,6 +148,22 @@ BCMenu::BCMenu()
 	m_bitmapBackground=RGB(192,192,192); //gray
 	m_bitmapBackgroundFlag=FALSE;
 	m_loadmenu=FALSE;
+	if (!m_hTheme && IsThemeActive())
+	{
+		m_hTheme = OpenThemeData(NULL, _T("MENU"));
+		if (m_hTheme)
+		{
+			MARGINS marginCheckBg, marginArrow;		
+			GetThemePartSize(m_hTheme, NULL, MENU_POPUPCHECK, 0, NULL, TS_TRUE, &m_sizeCheck);
+			GetThemeMargins(m_hTheme, NULL, MENU_POPUPCHECK, 0, TMT_CONTENTMARGINS, NULL, &m_marginCheck);
+			GetThemeMargins(m_hTheme, NULL, MENU_POPUPCHECKBACKGROUND, 0, TMT_CONTENTMARGINS, NULL, &marginCheckBg);
+			GetThemeMargins(m_hTheme, NULL, MENU_POPUPSUBMENU, 0, TMT_CONTENTMARGINS, NULL, &marginArrow);
+			GetThemeInt(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_BORDERSIZE, &m_textBorder);
+			m_checkBgWidth = m_marginCheck.cxLeftWidth + m_sizeCheck.cx + m_marginCheck.cxRightWidth;
+			m_gutterWidth = marginCheckBg.cxLeftWidth + m_checkBgWidth + marginCheckBg.cxRightWidth;
+			m_arrowWidth = marginArrow.cxRightWidth;
+		}
+	}
 }
 
 
@@ -229,7 +255,10 @@ void BCMenu::DrawItem(LPDRAWITEMSTRUCT)
 void BCMenu::DrawItem (LPDRAWITEMSTRUCT lpDIS)
 {
 	ASSERT(lpDIS != NULL);
-	DrawItem_WinXP(lpDIS);
+	if (!m_hTheme)
+		DrawItem_WinXP(lpDIS);
+	else
+		DrawItem_Theme(lpDIS);
 }
 
 inline COLORREF BCMenu::LightenColor(COLORREF col,double factor)
@@ -493,6 +522,126 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 	newbrBackground.DeleteObject();
 }
 
+void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
+{
+	ASSERT(lpDIS != NULL);
+	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
+	HDC hDC = lpDIS->hDC;
+	CRect rect(&lpDIS->rcItem);
+	UINT state = lpDIS->itemState;
+	CRect rectGutter(rect.left, rect.top, rect.left + m_gutterWidth, rect.bottom);
+
+	const int stateId =
+		(state & ODS_GRAYED) ?
+			((state & ODS_SELECTED) ? MPI_DISABLEDHOT : MPI_DISABLED)
+		:
+			((state & ODS_SELECTED) ? MPI_HOT : MPI_NORMAL);
+
+	DrawThemeBackground(m_hTheme, hDC, MENU_POPUPBACKGROUND, 0, &rect, NULL);
+	DrawThemeBackground(m_hTheme, hDC, MENU_POPUPGUTTER, 0, &rectGutter, NULL);
+	DrawThemeBackground(m_hTheme, hDC, MENU_POPUPITEM, stateId, &rect, NULL);
+	
+	BCMenuData *mdata = reinterpret_cast<BCMenuData*>(lpDIS->itemData);
+	if(!mdata)
+		return;
+
+	if ((mdata->nFlags & MF_SEPARATOR)){
+		CRect rectSeparator(rectGutter.right, rect.top, rect.right, rect.bottom);
+		DrawThemeBackground(m_hTheme, hDC, MENU_POPUPSEPARATOR, 0, &rectSeparator, NULL);
+		return;
+	}
+
+	int nIconNormal = mdata->menuIconNormal;
+	INT_PTR xoffset = mdata->xoffset;
+	CImageList *bitmap = mdata->bitmap;
+	CString	strText = mdata->GetString();
+	INT_PTR global_offset = mdata->global_offset;
+
+	if(nIconNormal<0&&xoffset<0&&global_offset>=0){
+		xoffset=global_offset;
+		nIconNormal=0;
+		bitmap = &m_AllImages;
+	}
+	
+	int dy = (int)(0.5+(rect.Height()-m_iconY)/2.0);
+	dy = dy<0 ? 0 : dy;
+	int dx = (int)(0.5+(m_checkBgWidth-m_iconX)/2.0);
+	dx = dx<0 ? 0 : dx;
+
+	if(nIconNormal != -1){
+		if(state & ODS_GRAYED){
+			CBitmap bitmapstandard;
+			GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
+			COLORREF transparentcol = pDC->GetPixel(rect.left+dx,rect.top+dy);
+			if(hicolor_bitmaps)
+				DitherBlt3(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
+				bitmapstandard,transparentcol);
+			else
+				DitherBlt2(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
+				bitmapstandard,0,0,transparentcol);
+			bitmapstandard.DeleteObject();
+		}
+		else{
+			if(bitmap){
+				CPoint ptImage(rect.left+dx,rect.top+dy);
+				bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
+			}
+		}
+	}
+	if(nIconNormal<0 && state&ODS_CHECKED){
+		CMenuItemInfo info;
+		info.fMask = MIIM_CHECKMARKS;
+		::GetMenuItemInfo((HMENU)lpDIS->hwndItem,lpDIS->itemID,
+			MF_BYCOMMAND, &info);
+		if(state&ODS_CHECKED || info.hbmpUnchecked) {
+			int stateIdCheck = 0;
+			if (!info.hbmpChecked)
+				stateIdCheck = (state & ODS_GRAYED) ? MC_CHECKMARKDISABLED : MC_CHECKMARKNORMAL;
+			else
+				stateIdCheck = (state & ODS_GRAYED) ? MC_BULLETDISABLED : MC_BULLETNORMAL;
+			int stateIdCheckBk = (state & ODS_GRAYED) ? MCB_DISABLED : MCB_NORMAL;
+			CRect rectCheck(
+				rect.left + m_marginCheck.cxLeftWidth,
+				rect.top + m_marginCheck.cyTopHeight,
+				rect.left + m_marginCheck.cxLeftWidth + m_sizeCheck.cx,
+				rect.top + m_marginCheck.cyTopHeight + m_sizeCheck.cy);
+			CRect rectCheckBg(rect.left,rect.top,rect.left+m_checkBgWidth,rect.bottom);
+			DrawThemeBackground(m_hTheme, hDC, MENU_POPUPCHECKBACKGROUND, stateIdCheckBk, &rectCheckBg, NULL);
+			DrawThemeBackground(m_hTheme, hDC, MENU_POPUPCHECK, stateIdCheck, &rectCheck, NULL);
+		}
+	}
+	
+	if(!strText.IsEmpty()){
+		
+		CRect rectt(rectGutter.right + m_textBorder, rect.top, rect.right, rect.bottom);
+		
+		//   Find tabs
+		
+		CString leftStr,rightStr;
+		leftStr.Empty();rightStr.Empty();
+		int tablocr=strText.ReverseFind(_T('\t'));
+		if(tablocr!=-1){
+			rightStr=strText.Mid(tablocr+1);
+			leftStr=strText.Left(strText.Find(_T('\t')));
+			rectt.right-=m_iconX;
+		}
+		else leftStr=strText;
+		
+		int iOldMode = pDC->GetBkMode();
+		pDC->SetBkMode( TRANSPARENT);
+		
+		// Draw the text in the correct colour:
+		
+		UINT nFormat  = DT_LEFT|DT_SINGLELINE|DT_VCENTER;
+		UINT nFormatr = DT_RIGHT|DT_SINGLELINE|DT_VCENTER;
+		pDC->SetTextColor(
+			(!(lpDIS->itemState & ODS_GRAYED)) ? GetSysColor(COLOR_MENUTEXT) : GetSysColor(COLOR_GRAYTEXT));
+		pDC->DrawText (leftStr,rectt,nFormat);
+		if(tablocr!=-1) pDC->DrawText (rightStr,rectt,nFormatr);
+		pDC->SetBkMode( iOldMode );
+	}
+}
+
 BOOL BCMenu::GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBitmap &bmp)
 {
 	CDC dc;
@@ -593,7 +742,10 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		
 		// Set width and height:
 		
-		lpMIS->itemWidth = m_iconX+BCMENU_PAD+8+t.cx;
+		if (!m_hTheme)
+			lpMIS->itemWidth = m_iconX+BCMENU_PAD+8+t.cx;
+		else
+			lpMIS->itemWidth = m_gutterWidth+m_textBorder+t.cx+m_arrowWidth;
 		int temp = GetSystemMetrics(SM_CYMENU);
 		lpMIS->itemHeight = temp>m_iconY+BCMENU_PAD ? temp : m_iconY+BCMENU_PAD;
 		m_fontMenu.DeleteObject();

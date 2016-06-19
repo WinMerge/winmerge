@@ -286,7 +286,6 @@ protected:
 	BCMenu *FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>&bcsubs,
 								  CArray<UINT,UINT&>&bclocs);
 	BCMenuData *FindMenuOption(wchar_t *lpstrText);
-	void InsertSpaces(void);
 	void DrawCheckMark(CDC* pDC,int x,int y,COLORREF color,BOOL narrowflag=FALSE);
 	void DrawRadioDot(CDC *pDC,int x,int y,COLORREF color);
 	BCMenuData *NewODMenu(UINT pos,UINT nFlags,UINT_PTR nID,CString string);
@@ -295,6 +294,7 @@ protected:
 	void DeleteMenuList(void);
 	BCMenuData *FindMenuList(UINT_PTR nID);
 	void DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS);
+	void DrawItem_Theme (LPDRAWITEMSTRUCT lpDIS);
 	BOOL DrawXPCheckmark(CDC *dc, const CRect& rc, HBITMAP hbmCheck,COLORREF &colorout,BOOL selected);
 	void DitherBlt(HDC hdcDest, int nXDest, int nYDest, int nWidth, 
 		int nHeight, HBITMAP hbm, int nXSrc, int nYSrc,COLORREF bgcolor);
@@ -331,6 +331,13 @@ protected:
 	BOOL m_bitmapBackgroundFlag;
 	static BOOL hicolor_bitmaps;
 	BOOL m_loadmenu;
+	static MARGINS m_marginCheck;
+	static SIZE m_sizeCheck;
+	static int m_textBorder;
+	static int m_checkBgWidth;
+	static int m_gutterWidth;
+	static int m_arrowWidth;
+	static HTHEME m_hTheme;
 }; 
 
 #endif
