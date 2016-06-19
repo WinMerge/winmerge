@@ -715,7 +715,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		size.cx=size.cy=0;
 		
 		VERIFY(::GetTextExtentPoint32W(pDC->m_hDC,lpstrText,
-			wcslen(lpstrText),&size)); //SK should also work on 95
+			lstrlenW(lpstrText),&size)); //SK should also work on 95
 #ifndef UNICODE //can't be UNICODE for Win32s
 		else{//it's Win32suckx
 			RECT rect;
@@ -776,17 +776,17 @@ BOOL BCMenu::AppendODMenuW(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
 	if(nIconNormal>=0){
 		CImageList bitmap;
 		int xoffset=0;
-		LoadFromToolBar(nID,nIconNormal,xoffset);
+		LoadFromToolBar(static_cast<UINT>(nID),nIconNormal,xoffset);
 		if(mdata->bitmap){
 			mdata->bitmap->DeleteImageList();
 			mdata->bitmap=NULL;
 		}
 		bitmap.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
 		if(AddBitmapToImageList(&bitmap,nIconNormal)){
-			mdata->global_offset = AddToGlobalImageList(&bitmap,xoffset,nID);
+			mdata->global_offset = AddToGlobalImageList(&bitmap,xoffset,static_cast<int>(nID));
 		}
 	}
-	else mdata->global_offset = GlobalImageListOffset(nID);
+	else mdata->global_offset = GlobalImageListOffset(static_cast<int>(nID));
 
 	mdata->nFlags = nFlags;
 	mdata->nID = nID;
@@ -868,17 +868,17 @@ BOOL BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PT
 	if(nIconNormal>=0){
 		CImageList bitmap;
 		int xoffset=0;
-		LoadFromToolBar(nID,nIconNormal,xoffset);
+		LoadFromToolBar(static_cast<UINT>(nID),nIconNormal,xoffset);
 		if(mdata->bitmap){
 			mdata->bitmap->DeleteImageList();
 			mdata->bitmap=NULL;
 		}
 		bitmap.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
 		if(AddBitmapToImageList(&bitmap,nIconNormal)){
-			mdata->global_offset = AddToGlobalImageList(&bitmap,xoffset,nID);
+			mdata->global_offset = AddToGlobalImageList(&bitmap,xoffset, static_cast<int>(nID));
 		}
 	}
-	else mdata->global_offset = GlobalImageListOffset(nID);
+	else mdata->global_offset = GlobalImageListOffset(static_cast<int>(nID));
 	mdata->nFlags = nFlags;
 	mdata->nID = nID;
 	BOOL returnflag=CMenu::InsertMenu(nPosition,nFlags,nID,(LPCTSTR)mdata);
@@ -921,7 +921,7 @@ BOOL BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PT
 			mdata->bitmap->DeleteImageList();
 			mdata->bitmap=NULL;
 		}
-		mdata->global_offset = AddToGlobalImageList(il,xoffset,nID);
+		mdata->global_offset = AddToGlobalImageList(il,xoffset, static_cast<int>(nID));
 	}
 	mdata->nFlags = nFlags;
 	mdata->nID = nID;
@@ -936,7 +936,7 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,int nIconNormal)
 	CArray<UINT,UINT&>bclocs;
 	
 	// Find the old BCMenuData structure:
-	BCMenu *psubmenu = FindMenuOption(nID,nLoc);
+	BCMenu *psubmenu = FindMenuOption(static_cast<int>(nID),nLoc);
 	do{
 		if(psubmenu && nLoc>=0)mdata = psubmenu->m_MenuList[nLoc];
 		else{
@@ -953,26 +953,26 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,int nIconNormal)
 		if(nIconNormal>=0){
 			CImageList bitmap;
 			int xoffset=0;
-			LoadFromToolBar(nID,nIconNormal,xoffset);
+			LoadFromToolBar(static_cast<UINT>(nID),nIconNormal,xoffset);
 			if(mdata->bitmap){
 				mdata->bitmap->DeleteImageList();
 				mdata->bitmap=NULL;
 			}
 			bitmap.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
 			if(AddBitmapToImageList(&bitmap,nIconNormal)){
-				mdata->global_offset = AddToGlobalImageList(&bitmap,xoffset,nID);
+				mdata->global_offset = AddToGlobalImageList(&bitmap,xoffset, static_cast<int>(nID));
 			}
 		}
-		else mdata->global_offset = GlobalImageListOffset(nID);
+		else mdata->global_offset = GlobalImageListOffset(static_cast<int>(nID));
 		mdata->nFlags &= ~(MF_BYPOSITION);
 		mdata->nFlags |= MF_OWNERDRAW;
 		mdata->nID = nID;
 		bcsubs.Add(psubmenu);
 		bclocs.Add(nLoc);
-		if(psubmenu && nLoc>=0)psubmenu = FindAnotherMenuOption(nID,nLoc,bcsubs,bclocs);
+		if(psubmenu && nLoc>=0)psubmenu = FindAnotherMenuOption(static_cast<int>(nID),nLoc,bcsubs,bclocs);
 		else psubmenu=NULL;
 	}while(psubmenu);
-	return (CMenu::ModifyMenu(nID,mdata->nFlags,nID,(LPCTSTR)mdata));
+	return (CMenu::ModifyMenu(static_cast<UINT>(nID),mdata->nFlags, static_cast<UINT>(nID),(LPCTSTR)mdata));
 }
 
 BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xoffset)
@@ -983,7 +983,7 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xo
 	CArray<UINT,UINT&>bclocs;
 	
 	// Find the old BCMenuData structure:
-	BCMenu *psubmenu = FindMenuOption(nID,nLoc);
+	BCMenu *psubmenu = FindMenuOption(static_cast<int>(nID),nLoc);
 	do{
 		if(psubmenu && nLoc>=0)mdata = psubmenu->m_MenuList[nLoc];
 		else{
@@ -1002,17 +1002,17 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xo
 				mdata->bitmap->DeleteImageList();
 				mdata->bitmap=NULL;
 			}
-			mdata->global_offset = AddToGlobalImageList(il,xoffset,nID);
+			mdata->global_offset = AddToGlobalImageList(il,xoffset, static_cast<int>(nID));
 		}
 		mdata->nFlags &= ~(MF_BYPOSITION);
 		mdata->nFlags |= MF_OWNERDRAW;
 		mdata->nID = nID;
 		bcsubs.Add(psubmenu);
 		bclocs.Add(nLoc);
-		if(psubmenu && nLoc>=0)psubmenu = FindAnotherMenuOption(nID,nLoc,bcsubs,bclocs);
+		if(psubmenu && nLoc>=0)psubmenu = FindAnotherMenuOption(static_cast<int>(nID),nLoc,bcsubs,bclocs);
 		else psubmenu=NULL;
 	}while(psubmenu);
-	return (CMenu::ModifyMenu(nID,mdata->nFlags,nID,(LPCTSTR)mdata));
+	return (CMenu::ModifyMenu(static_cast<UINT>(nID),mdata->nFlags,nID,(LPCTSTR)mdata));
 }
 
 BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CBitmap *bmp)
@@ -1222,7 +1222,7 @@ BCMenuData *BCMenu::FindMenuItem(UINT_PTR nID)
 	}
 	if (!pData){
 		UINT loc;
-		BCMenu *pMenu = FindMenuOption(nID, loc);
+		BCMenu *pMenu = FindMenuOption(static_cast<int>(nID), loc);
 		ASSERT(pMenu != this);
 		if (loc >= 0){
 			return pMenu->FindMenuItem(nID);
@@ -1270,10 +1270,9 @@ BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>
 
 BCMenu *BCMenu::FindMenuOption(int nId,UINT& nLoc)
 {
-	UINT i;
 	BCMenu *psubmenu,*pgoodmenu;
 	
-	for(i=0;i<GetMenuItemCount();++i){
+	for(int i=0;i<GetMenuItemCount();++i){
 #ifdef _CPPRTTI 
 		psubmenu=dynamic_cast<BCMenu *>(GetSubMenu(i));
 #else
@@ -1585,10 +1584,9 @@ void BCMenu::SynchronizeMenu(void)
 	CTypedPtrArray<CPtrArray, BCMenuData*> temp;
 	CString string;
 	UINT_PTR submenu,nID=0;
-	UINT j;
 	
 	InitializeMenuList(0);
-	for(j=0;j<GetMenuItemCount();++j){
+	for(int j=0;j<GetMenuItemCount();++j){
 		BCMenuData *mdata=NULL;
 		UINT state=GetMenuState(j,MF_BYPOSITION);
 		if(state&MF_POPUP){
@@ -2129,9 +2127,8 @@ BOOL BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 					}
 				}
 				int num = pSubMenu->GetMenuItemCount();
-				INT_PTR i=0;
-				for(i=num-1;i>=0;--i)pSubMenu->DeleteMenu(i,MF_BYPOSITION);
-				for(i=m_MenuList.GetUpperBound();i>=0;i--){
+				for(int i=num-1;i>=0;--i)pSubMenu->DeleteMenu(i,MF_BYPOSITION);
+				for(INT_PTR i=m_MenuList.GetUpperBound();i>=0;i--){
 					if(m_MenuList[i]->nID==(UINT_PTR)pSubMenu->m_hMenu){
 						delete m_MenuList.GetAt(i);
 						m_MenuList.RemoveAt(i);
@@ -2369,7 +2366,7 @@ int BCMenu::GlobalImageListOffset(int nID)
 	int existsloc = -1;
 	for(INT_PTR i=0;i<numcurrent;++i){
 		if(m_AllImagesID[i]==nID){
-			existsloc=i;
+			existsloc=static_cast<int>(i);
 			break;
 		}
 	}
@@ -2386,11 +2383,11 @@ INT_PTR BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
 	HICON hIcon = il->ExtractIcon(xoffset);
 	if(hIcon){
 		CBitmap bmp,bmp2,bmp3;
-		INT_PTR numcurrent=(UINT)m_AllImagesID.GetSize();
+		INT_PTR numcurrent=m_AllImagesID.GetSize();
 		int existsloc = -1;
 		for(INT_PTR i=0;i<numcurrent;++i){
 			if(m_AllImagesID[i]==nID){
-				existsloc=i;
+				existsloc=static_cast<int>(i);
 				break;
 			}
 		}
