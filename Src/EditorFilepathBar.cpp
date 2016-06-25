@@ -41,7 +41,7 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CEditorFilePathBar::CEditorFilePathBar()
-: m_pFont(nullptr), m_nPanes(2)
+: m_nPanes(2)
 {
 }
 
@@ -66,18 +66,13 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
-	{
-		m_pFont.reset(new CFont());
-		if (m_pFont)
-			m_pFont->CreateFontIndirect(&ncm.lfStatusFont);
-	}
+		m_font.CreateFontIndirect(&ncm.lfStatusFont);
 
 	// subclass the two custom edit boxes
 	for (int pane = 0; pane < countof(m_Edit); pane++)
 	{
 		m_Edit[pane].SubClassEdit(IDC_STATIC_TITLE_PANE0 + pane, this);
-		if (m_pFont)
-			m_Edit[pane].SetFont(m_pFont.get());
+		m_Edit[pane].SetFont(&m_font);
 		m_Edit[pane].SetMargins(4, 4);
 	}
 	return TRUE;
@@ -87,7 +82,7 @@ CSize CEditorFilePathBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 {
 	TEXTMETRIC tm;
 	CClientDC dc(this);
-	CFont *pOldFont = dc.SelectObject(m_pFont.get());
+	CFont *pOldFont = dc.SelectObject(&m_font);
 	dc.GetTextMetrics(&tm);
 	dc.SelectObject(pOldFont);
 	return CSize(SHRT_MAX, tm.tmHeight + 6);

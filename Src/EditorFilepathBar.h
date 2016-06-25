@@ -25,7 +25,6 @@
  */
 #pragma once
 
-#include <memory>
 #include "FilepathEdit.h"
 
 /**
@@ -74,6 +73,6 @@ protected:
 private:
 	// this dialog uses custom edit boxes
 	CFilepathEdit m_Edit[3]; /**< Edit controls. */
-	std::unique_ptr<CFont> m_pFont; /**< Font for editcontrols */
+	CFont m_font; /**< Font for editcontrols */
 	int m_nPanes;
 };
