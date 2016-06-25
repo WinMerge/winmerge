@@ -33,12 +33,12 @@
 #define new DEBUG_NEW
 #endif
 
-/** @brief RO status panel width */
-static const UINT RO_PANEL_WIDTH = 40;
-/** @brief Encoding status panel width */
-static const UINT ENCODING_PANEL_WIDTH = 230;
-/** @brief EOL type status panel width */
-static const UINT EOL_PANEL_WIDTH = 60;
+/** @brief RO status panel width (point) */
+static const UINT RO_PANEL_WIDTH = 30;
+/** @brief Encoding status panel width (point) */
+static const UINT ENCODING_PANEL_WIDTH = 120;
+/** @brief EOL type status panel width (point) */
+static const UINT EOL_PANEL_WIDTH = 45;
 
 /**
  * @brief Statusbar pane indexes
@@ -171,9 +171,12 @@ void CMergeStatusBar::Resize(int widths[])
 	// Set bottom statusbar panel widths
 	// Kimmo - I don't know why 4 seems to be right for me
 	int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
+	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+
 	for (int pane = 0; pane < m_nPanes; pane++)
 	{
-		int paneWidth = widths[pane] - (RO_PANEL_WIDTH + ENCODING_PANEL_WIDTH + EOL_PANEL_WIDTH +
+		int paneWidth = widths[pane] - (pointToPixel(RO_PANEL_WIDTH + ENCODING_PANEL_WIDTH + EOL_PANEL_WIDTH) +
 			(2 * borderWidth));
 		if (paneWidth < borderWidth)
 			paneWidth = borderWidth;
@@ -181,11 +184,11 @@ void CMergeStatusBar::Resize(int widths[])
 		SetPaneInfo(PANE_PANE0_INFO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_INFO + pane,
 			SBPS_NORMAL, paneWidth);
 		SetPaneInfo(PANE_PANE0_ENCODING + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_ENCODING + pane,
-			SBT_OWNERDRAW, ENCODING_PANEL_WIDTH - borderWidth);
+			SBT_OWNERDRAW, pointToPixel(ENCODING_PANEL_WIDTH) - borderWidth);
 		SetPaneInfo(PANE_PANE0_RO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_RO + pane,
-			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+			SBPS_NORMAL, pointToPixel(RO_PANEL_WIDTH) - borderWidth);
 		SetPaneInfo(PANE_PANE0_EOL + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_EOL + pane,
-			SBT_OWNERDRAW, EOL_PANEL_WIDTH - borderWidth);
+			SBT_OWNERDRAW, pointToPixel(EOL_PANEL_WIDTH) - borderWidth);
 	}
 }
 
