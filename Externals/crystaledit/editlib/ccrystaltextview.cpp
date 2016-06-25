@@ -1421,7 +1421,6 @@ void CCrystalTextView::InvalidateScreenRect(bool bInvalidateView)
 {
   if (m_pCacheBitmap != NULL)
     {
-      m_pCacheBitmap->DeleteObject ();
       delete m_pCacheBitmap;
       m_pCacheBitmap = NULL;
     }
@@ -2387,7 +2386,6 @@ ResetView ()
     {
       if (m_apFonts[I] != NULL)
         {
-          m_apFonts[I]->DeleteObject ();
           delete m_apFonts[I];
           m_apFonts[I] = NULL;
         }
@@ -3443,7 +3441,6 @@ OnDestroy ()
     {
       if (m_apFonts[I] != NULL)
         {
-          m_apFonts[I]->DeleteObject ();
           delete m_apFonts[I];
           m_apFonts[I] = NULL;
         }
@@ -4603,7 +4600,6 @@ SetFont (const LOGFONT & lf)
     {
       if (m_apFonts[I] != NULL)
         {
-          m_apFonts[I]->DeleteObject ();
           delete m_apFonts[I];
           m_apFonts[I] = NULL;
         }
