@@ -86,11 +86,10 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 CSize CEditorFilePathBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 {
 	TEXTMETRIC tm;
-	CDC *pdc = GetDC();
-	CFont *pOldFont = pdc->SelectObject(m_pFont.get());
-	pdc->GetTextMetrics(&tm);
-	pdc->SelectObject(pOldFont);
-	ReleaseDC(pdc);
+	CClientDC dc(this);
+	CFont *pOldFont = dc.SelectObject(m_pFont.get());
+	dc.GetTextMetrics(&tm);
+	dc.SelectObject(pOldFont);
 	return CSize(SHRT_MAX, tm.tmHeight + 6);
 }
 

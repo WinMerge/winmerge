@@ -701,12 +701,10 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		m_fontMenu.CreateFontIndirect (&m_lf);
 		
 		// Obtain the width of the text:
-		CWnd *pWnd = AfxGetMainWnd();            // Get main window
-		if (pWnd == NULL) pWnd = CWnd::GetDesktopWindow();
-		CDC *pDC = pWnd->GetDC();              // Get device context
+		CClientDC dc(AfxGetMainWnd() ? AfxGetMainWnd() : CWnd::GetDesktopWindow());     // Get device context
 		CFont* pFont=NULL;    // Select menu font in...
 		
-		pFont = pDC->SelectObject (&m_fontMenu);// Select menu font in...
+		pFont = dc.SelectObject (&m_fontMenu);// Select menu font in...
         
 		//Get pointer to text SK
 		const wchar_t *lpstrText = ((BCMenuData*)(lpMIS->itemData))->GetWideString();//SK: we use const to prevent misuse
@@ -714,13 +712,13 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		SIZE size;
 		size.cx=size.cy=0;
 		
-		VERIFY(::GetTextExtentPoint32W(pDC->m_hDC,lpstrText,
+		VERIFY(::GetTextExtentPoint32W(dc.m_hDC,lpstrText,
 			lstrlenW(lpstrText),&size)); //SK should also work on 95
 #ifndef UNICODE //can't be UNICODE for Win32s
 		else{//it's Win32suckx
 			RECT rect;
 			rect.left=rect.top=0;
-			size.cy=DrawText(pDC->m_hDC,(LPCTSTR)lpstrText,
+			size.cy=DrawText(dc.>m_hDC,(LPCTSTR)lpstrText,
 				wcslen(lpstrText),&rect,
 				DT_SINGLELINE|DT_LEFT|DT_VCENTER|DT_CALCRECT);
 			//+3 makes at least three pixels space to the menu border
@@ -730,8 +728,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 #endif    
 		
 		CSize t = CSize(size);
-		pDC->SelectObject (pFont);  // Select old font in
-		pWnd->ReleaseDC(pDC);  // Release the DC
+		dc.SelectObject (pFont);  // Select old font in
 		
 		// Set width and height:
 		

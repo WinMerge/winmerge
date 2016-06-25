@@ -75,11 +75,10 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 		return CSize(SHRT_MAX, 0);
 	
 	TEXTMETRIC tm;
-	CDC *pdc = GetDC();
-	CFont *pOldFont = pdc->SelectObject(&m_font);
-	pdc->GetTextMetrics(&tm);
-	pdc->SelectObject(pOldFont);
-	ReleaseDC(pdc);
+	CClientDC dc(this);
+	CFont *pOldFont = dc.SelectObject(&m_font);
+	dc.GetTextMetrics(&tm);
+	dc.SelectObject(pOldFont);
 
 	return CSize(SHRT_MAX, tm.tmHeight + 10);
 }
