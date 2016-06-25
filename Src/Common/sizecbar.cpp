@@ -557,7 +557,6 @@ void CSizingControlBar::OnNcPaint()
     dc.BitBlt(0, 0, rcBar.Width(), rcBar.Height(), &mdc, 0, 0, SRCCOPY);
 
     mdc.SelectObject(pOldBm);
-    bm.DeleteObject();
     mdc.DeleteDC();
 }
 
