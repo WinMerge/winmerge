@@ -76,8 +76,6 @@ public:
 		FRAME_OTHER, /**< No frame? */
 	};
 
-	enum { WM_NONINTERACTIVE = 888 }; // timer value
-
 	CMainFrame();
 
 // Attributes
@@ -139,7 +137,6 @@ protected:
 // Public implementation data
 public:
 	BOOL m_bFirstTime; /**< If first time frame activated, get  pos from reg */
-	BOOL m_bFlashing; /**< Window is flashing. */
 
 // Implementation data
 protected:
@@ -236,11 +233,9 @@ protected:
 	afx_msg void OnFileOpenproject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnUser1(WPARAM wParam, LPARAM lParam);
-	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnWindowCloseAll();
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();
-	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 #if _MFC_VER > 0x0600
 	afx_msg void OnActivateApp(BOOL bActive, DWORD dwThreadID);
 #else
