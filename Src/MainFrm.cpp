@@ -225,8 +225,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
-	ON_WM_TIMER()
-	ON_WM_ACTIVATE()
 	ON_WM_ACTIVATEAPP()
 	ON_COMMAND_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnToolbarSize)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnUpdateToolbarSize)
@@ -268,12 +266,6 @@ static UINT StatusbarIndicators[] =
 	ID_INDICATOR_OVR,       // Insert
 };
 
-/** @brief Timer ID for window flashing timer. */
-static const UINT ID_TIMER_FLASH = 1;
-
-/** @brief Timeout for window flashing timer, in milliseconds. */
-static const UINT WINDOW_FLASH_TIMEOUT = 500;
-
 /**
   * @brief Return a const reference to a CMultiDocTemplate's list of documents.
   */
@@ -295,8 +287,7 @@ static CPtrList &GetDocList(CMultiDocTemplate *pTemplate)
  * @todo Preference for logging?
  */
 CMainFrame::CMainFrame()
-: m_bFlashing(FALSE)
-, m_bFirstTime(TRUE)
+: m_bFirstTime(TRUE)
 , m_pDropHandler(NULL)
 {
 	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
@@ -1865,28 +1856,6 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 }
 
 /**
- * @brief Handle timer events.
- * @param [in] nIDEvent Timer that timed out.
- */
-void CMainFrame::OnTimer(UINT_PTR nIDEvent)
-{
-	switch (nIDEvent)
-	{
-	case WM_NONINTERACTIVE:
-		KillTimer(WM_NONINTERACTIVE);
-		PostMessage(WM_CLOSE);
-		break;
-	
-	case ID_TIMER_FLASH:
-		// This timer keeps running until window is activated
-		// See OnActivate()
-		FlashWindow(TRUE);
-		break;
-	}
-	CMDIFrameWnd::OnTimer(nIDEvent);
-}
-
-/**
  * @brief Close all open windows.
  * 
  * Asks about saving unsaved files and then closes all open windows.
@@ -1998,35 +1967,7 @@ void CMainFrame::StartFlashing()
 {
 	CWnd * activeWindow = GetActiveWindow();
 	if (activeWindow != this)
-	{
-		FlashWindow(TRUE);
-		m_bFlashing = TRUE;
-		SetTimer(ID_TIMER_FLASH, WINDOW_FLASH_TIMEOUT, NULL);
-	}
-}
-
-/** 
- * @brief Stop flashing window when window is activated.
- *
- * If WinMerge is inactive when compare finishes, we start flashing window
- * to alert user. When user activates WinMerge window we stop flashing.
- * @param [in] nState Tells if window is being activated or deactivated.
- * @param [in] pWndOther Pointer to window whose status is changing.
- * @param [in] Is window minimized?
- */
-void CMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
-{
-	CMDIFrameWnd::OnActivate(nState, pWndOther, bMinimized);
-
-	if (nState == WA_ACTIVE || nState == WA_CLICKACTIVE)
-	{
-		if (m_bFlashing)
-		{
-			m_bFlashing = FALSE;
-			FlashWindow(FALSE);
-			KillTimer(ID_TIMER_FLASH);
-		}
-	}
+		FlashWindowEx(FLASHW_ALL | FLASHW_TIMERNOFG, 0, 0);
 }
 
 #if _MFC_VER > 0x0600
