@@ -3887,40 +3887,33 @@ void CMergeEditView::ZoomText(short amount)
 	LOGFONT lf = { 0 };
 	GetFont(lf);
 
-	CDC* pDC = GetDC();
-	ASSERT_VALID(pDC);
-	
-	if (pDC) 
+	const int nLogPixelsY = CClientDC(this).GetDeviceCaps(LOGPIXELSY);
+	int nPointSize = -MulDiv(lf.lfHeight, 72, nLogPixelsY);
+
+	if ( amount == 0)
 	{
-		const int nLogPixelsY = pDC->GetDeviceCaps(LOGPIXELSY);
+		nPointSize = -MulDiv(GetOptionsMgr()->GetInt(String(OPT_FONT_FILECMP) + OPT_FONT_HEIGHT), 72, nLogPixelsY);
+	}
 
-		int nPointSize = -MulDiv(lf.lfHeight, 72, nLogPixelsY);
+	nPointSize += amount;
+	if (nPointSize < 2)
+		nPointSize = 2;
 
-		if ( amount == 0)
+	lf.lfHeight = -MulDiv(nPointSize, nLogPixelsY, 72);
+
+	CMergeDoc *pDoc = GetDocument();
+	ASSERT(pDoc != NULL);
+
+	if (pDoc != NULL )
+	{
+		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
-			nPointSize = -MulDiv(GetOptionsMgr()->GetInt(String(OPT_FONT_FILECMP) + OPT_FONT_HEIGHT), 72, nLogPixelsY);
-		}
-
-		nPointSize += amount;
-		if (nPointSize < 2)
-			nPointSize = 2;
-
-		lf.lfHeight = -MulDiv(nPointSize, nLogPixelsY, 72);
-
-		CMergeDoc *pDoc = GetDocument();
-		ASSERT(pDoc != NULL);
-
-		if (pDoc != NULL )
-		{
-			for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
+			CMergeEditView *pView = GetGroupView(nPane);
+			ASSERT(pView != NULL);
+			
+			if (pView != NULL)
 			{
-				CMergeEditView *pView = GetGroupView(nPane);
-				ASSERT(pView != NULL);
-				
-				if (pView != NULL)
-				{
-					pView->SetFont(lf);
-				}
+				pView->SetFont(lf);
 			}
 		}
 	}

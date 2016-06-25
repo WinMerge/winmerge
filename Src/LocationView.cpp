@@ -1001,16 +1001,15 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 			if (m_visibleTop != nTopCoord || m_visibleBottom != nBottomCoord)
 			{
 				// Visible area was changed
-				CDC *pDC = GetDC();
 				if (m_pSavedBackgroundBitmap)
 				{
-					CMyMemDC dc(pDC);
+					CClientDC dc(this);
+					CMyMemDC dcMem(&dc);
 					// Clear previous visible rect
-					DrawBitmap(&dc, 0, 0, m_pSavedBackgroundBitmap.get());
+					DrawBitmap(&dcMem, 0, 0, m_pSavedBackgroundBitmap.get());
 
-					DrawVisibleAreaRect(&dc, nTopLine, nBottomLine);
+					DrawVisibleAreaRect(&dcMem, nTopLine, nBottomLine);
 				}
-				ReleaseDC(pDC);
 			}
 		}
 		else

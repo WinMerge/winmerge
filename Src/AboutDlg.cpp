@@ -101,12 +101,10 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 
 	m_image.Load(IDR_SPLASH);
 
-	CDC *pDC = GetDC();
-	int fontHeight = -MulDiv(10, pDC->GetDeviceCaps(LOGPIXELSY), 72);
+	const int fontHeight = -MulDiv(10, CClientDC(this).GetDeviceCaps(LOGPIXELSY), 72);
 	m_font.CreateFont(fontHeight, 0, 0, 0, FW_MEDIUM, FALSE, FALSE,
 		0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
 		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Tahoma"));
-	ReleaseDC(pDC);
 
 	SetDlgItemText(IDC_STATIC, m_p->m_info.developers);
 	GetDlgItem(IDC_STATIC)->SetFont(&m_font);
