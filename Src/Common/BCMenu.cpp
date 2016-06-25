@@ -273,12 +273,12 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 	CRect rect;
 	UINT state = (((BCMenuData*)(lpDIS->itemData))->nFlags);
-	COLORREF m_clrBack=GetSysColor(COLOR_MENU);
-	CBrush m_brBackground(m_clrBack);
+	COLORREF clrBack=GetSysColor(COLOR_MENU);
+	CBrush brBackground(clrBack);
 
 	if(state & MF_SEPARATOR){
 		rect.CopyRect(&lpDIS->rcItem);
-		pDC->FillRect (rect,&m_brBackground);
+		pDC->FillRect (rect,&brBackground);
 		rect.top += (rect.Height()>>1);
 		pDC->DrawEdge(&rect,EDGE_ETCHED,BF_TOP);
 	}
@@ -293,8 +293,8 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		CImageList *bitmap=NULL;
 		
 		// set some colors
-		CPen m_penBack(PS_SOLID,0,m_clrBack);
-		CBrush m_brSelect(GetSysColor(COLOR_HIGHLIGHT));
+		CPen penBack(PS_SOLID,0,clrBack);
+		CBrush brSelect(GetSysColor(COLOR_HIGHLIGHT));
 		
 		// draw the colored rectangle portion
 		
@@ -333,24 +333,24 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		
 		if(state&ODS_SELECTED){ // draw the down edges
 			
-			CPen *pOldPen = pDC->SelectObject (&m_penBack);
+			CPen *pOldPen = pDC->SelectObject (&penBack);
 			
 			// You need only Text highlight and thats what you get
 			
 			if(checkflag||standardflag||selectedflag||disableflag||state&ODS_CHECKED)
 				rect2.SetRect(rect.left+m_iconX+4+BCMENU_GAP,rect.top,rect.right,rect.bottom);
-			pDC->FillRect (rect2,&m_brSelect);
+			pDC->FillRect (rect2,&brSelect);
 			
 			pDC->SelectObject (pOldPen);
 			crText = GetSysColor(COLOR_HIGHLIGHTTEXT);
 		}
 		else {
-			CPen *pOldPen = pDC->SelectObject (&m_penBack);
-			pDC->FillRect (rect,&m_brBackground);
+			CPen *pOldPen = pDC->SelectObject (&penBack);
+			pDC->FillRect (rect,&brBackground);
 			pDC->SelectObject (pOldPen);
 			
 			// draw the up edges	
-			pDC->Draw3dRect (rect,m_clrBack,m_clrBack);
+			pDC->Draw3dRect (rect,clrBack,clrBack);
 		}
 		
 		// draw the text if there is any
@@ -362,24 +362,24 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		if(checkflag||standardflag||selectedflag||disableflag){
 			rect2.SetRect(rect.left+1,rect.top+1+dy,rect.left+m_iconX+3,
 				rect.top+m_iconY+3+dy);
-			pDC->Draw3dRect (rect2,m_clrBack,m_clrBack);
+			pDC->Draw3dRect (rect2,clrBack,clrBack);
 			if(disableflag){
 				if(!selectedflag){
 					CBitmap bitmapstandard;
 					GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
 					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
                         rect.top+m_iconY+4+dy);
-					pDC->Draw3dRect (rect2,m_clrBack,m_clrBack);
+					pDC->Draw3dRect (rect2,clrBack,clrBack);
 					if(hicolor_bitmaps)
 						DitherBlt3(pDC,rect.left+2,rect.top+2+dy,m_iconX,m_iconY,
-						bitmapstandard,m_clrBack);
+						bitmapstandard,clrBack);
 					else
 						DitherBlt2(pDC,rect.left+2,rect.top+2+dy,m_iconX,m_iconY,
-						bitmapstandard,0,0,m_clrBack);
+						bitmapstandard,0,0,clrBack);
 				}
 			}
 			else if(selectedflag){
-				pDC->FillRect (rect2,&m_brBackground);
+				pDC->FillRect (rect2,&brBackground);
 				rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
 					rect.top+m_iconY+4+dy);
 				if(state&ODS_CHECKED)
@@ -393,17 +393,17 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 			}
 			else{
 				if(state&ODS_CHECKED){
-					pDC->FillRect(rect2,&CBrush(LightenColor(m_clrBack,0.6)));
+					pDC->FillRect(rect2,&CBrush(LightenColor(clrBack,0.6)));
 					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
                         rect.top+m_iconY+4+dy);
 					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
 					GetSysColor(COLOR_3DHILIGHT));
 				}
 				else{
-					pDC->FillRect (rect2,&m_brBackground);
+					pDC->FillRect (rect2,&brBackground);
 					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
                         rect.top+m_iconY+4+dy);
-					pDC->Draw3dRect (rect2,m_clrBack,m_clrBack);
+					pDC->Draw3dRect (rect2,clrBack,clrBack);
 				}
 				CPoint ptImage(rect.left+2,rect.top+2+dy);
 				if(bitmap)bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
@@ -474,7 +474,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 				}
 				else{
 					// And the standard Grey text:
-					pDC->SetTextColor(m_clrBack);
+					pDC->SetTextColor(clrBack);
 					pDC->DrawText(leftStr,rectt, nFormat);
 					if(tablocr!=-1) pDC->DrawText (rightStr,rectt,nFormatr);
 				}
@@ -672,21 +672,17 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		lpMIS->itemHeight = 3;
 	}
 	else{
-		CFont m_fontMenu;
-		LOGFONT m_lf;
-		ZeroMemory ((PVOID) &m_lf,sizeof (LOGFONT));
-		NONCLIENTMETRICS nm;
-		nm.cbSize = sizeof (NONCLIENTMETRICS);
+		CFont fontMenu;
+		NONCLIENTMETRICS nm = { sizeof NONCLIENTMETRICS };
 		VERIFY(SystemParametersInfo(SPI_GETNONCLIENTMETRICS,
 			nm.cbSize,&nm,0)); 
-		m_lf =  nm.lfMenuFont;
-		m_fontMenu.CreateFontIndirect (&m_lf);
+		fontMenu.CreateFontIndirect (&nm.lfMenuFont);
 		
 		// Obtain the width of the text:
 		CClientDC dc(AfxGetMainWnd() ? AfxGetMainWnd() : CWnd::GetDesktopWindow());     // Get device context
 		CFont* pFont=NULL;    // Select menu font in...
 		
-		pFont = dc.SelectObject (&m_fontMenu);// Select menu font in...
+		pFont = dc.SelectObject (&fontMenu);// Select menu font in...
         
 		//Get pointer to text SK
 		const wchar_t *lpstrText = ((BCMenuData*)(lpMIS->itemData))->GetWideString();//SK: we use const to prevent misuse
@@ -1341,10 +1337,10 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 	INT_PTR j=0;
 	WORD    dwFlags = 0;              // Flags of the Menu Item
 	WORD    dwID  = 0;              // ID of the Menu Item
-	CTypedPtrArray<CPtrArray, BCMenu*>  m_Stack;    // Popup menu stack
-	CArray<BOOL,BOOL>  m_StackEnd;    // Popup menu stack
-	m_Stack.Add(this);                  // Add it to this...
-	m_StackEnd.Add(FALSE);
+	CTypedPtrArray<CPtrArray, BCMenu*>  stack;    // Popup menu stack
+	CArray<BOOL,BOOL>  stackEnd;    // Popup menu stack
+	stack.Add(this);                  // Add it to this...
+	stackEnd.Add(FALSE);
 	
 	do{
 		// Obtain Flags and (if necessary), the ID...
@@ -1369,31 +1365,31 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 		
 		//WideCharToMultiByte
 		if(dwFlags & MF_POPUP){
-			if(dwFlags & MF_END)m_StackEnd.SetAt(m_Stack.GetUpperBound(),TRUE);
+			if(dwFlags & MF_END)stackEnd.SetAt(stack.GetUpperBound(),TRUE);
 			BCMenu* pSubMenu = new BCMenu;
 			pSubMenu->CreatePopupMenu();
 			
 			// Append it to the top of the stack:
 			
-			m_Stack[m_Stack.GetUpperBound()]->AppendODMenuW(szCaption,uFlags,
+			stack[stack.GetUpperBound()]->AppendODMenuW(szCaption,uFlags,
 				(UINT_PTR)pSubMenu->m_hMenu, -1);
-			m_Stack.Add(pSubMenu);
-			m_StackEnd.Add(FALSE);
+			stack.Add(pSubMenu);
+			stackEnd.Add(FALSE);
 		}
 		else {
-			m_Stack[m_Stack.GetUpperBound()]->AppendODMenuW(szCaption, uFlags,
+			stack[stack.GetUpperBound()]->AppendODMenuW(szCaption, uFlags,
 				dwID, -1);
-			if(dwFlags & MF_END)m_StackEnd.SetAt(m_Stack.GetUpperBound(),TRUE);
-			j = m_Stack.GetUpperBound();
-			while(j>=0 && m_StackEnd.GetAt(j)){
-				m_Stack.RemoveAt(j);
-				m_StackEnd.RemoveAt(j);
+			if(dwFlags & MF_END)stackEnd.SetAt(stack.GetUpperBound(),TRUE);
+			j = stack.GetUpperBound();
+			while(j>=0 && stackEnd.GetAt(j)){
+				stack.RemoveAt(j);
+				stackEnd.RemoveAt(j);
 				--j;
 			}
 		}
 		
 		delete[] szCaption;
-	}while(m_Stack.GetUpperBound() != -1);
+	}while(stack.GetUpperBound() != -1);
 	
 	for(int i=0;i<GetMenuItemCount();++i){
 		CString str=m_MenuList[i]->GetString();
@@ -1497,8 +1493,8 @@ void BCMenu::DrawRadioDot(CDC *pDC,int x,int y,COLORREF color)
 void BCMenu::DrawCheckMark(CDC* pDC,int x,int y,COLORREF color,BOOL narrowflag)
 {
 	int dp=0;
-	CPen m_penBack(PS_SOLID,0,color);
-	CPen *pOldPen = pDC->SelectObject (&m_penBack);
+	CPen penBack(PS_SOLID,0,color);
+	CPen *pOldPen = pDC->SelectObject (&penBack);
 	if(narrowflag)dp=1;
 
 	pDC->MoveTo(x,y+2);
