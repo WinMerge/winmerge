@@ -3854,8 +3854,7 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 
 	if (nFlags == MK_SHIFT)
 	{
-		SCROLLINFO si = {0};
-		si.cbSize = sizeof(si);
+		SCROLLINFO si = { sizeof SCROLLINFO };
 		si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
 
 		VERIFY(GetScrollInfo(SB_HORZ, &si));

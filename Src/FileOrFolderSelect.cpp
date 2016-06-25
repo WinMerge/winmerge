@@ -93,9 +93,7 @@ BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/,
 	LPTSTR filtersStr = &*filters.begin();
 	ConvertFilter(filtersStr);
 
-	OPENFILENAME_NT4 ofn;
-	memset(&ofn, 0, sizeof(ofn));
-	ofn.lStructSize = sizeof(ofn);
+	OPENFILENAME_NT4 ofn = { sizeof OPENFILENAME_NT4 };
 	ofn.hwndOwner = parent;
 	ofn.lpstrFilter = filtersStr;
 	ofn.lpstrCustomFilter = NULL;
@@ -245,9 +243,7 @@ BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 	dirSelTag += _T("."); // Treat it as filename
 	lstrcpy(sSelectedFile, dirSelTag.c_str()); // What is assignment above good for?
 
-	OPENFILENAME_NT4 ofn;
-	memset(&ofn, 0, sizeof(ofn));
-	ofn.lStructSize = sizeof(ofn);
+	OPENFILENAME_NT4 ofn = { sizeof OPENFILENAME_NT4 };
 	ofn.hwndOwner = parent;
 	ofn.lpstrFilter = filtersStr;
 	ofn.lpstrCustomFilter = NULL;

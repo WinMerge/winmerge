@@ -660,8 +660,7 @@ void CLocationView::OnMouseMove(UINT nFlags, CPoint point)
 		// Just a random choose as both view share the same scroll bar.
 		CWnd *pView = m_view[0];
 
-		SCROLLINFO si = {0};
-		si.cbSize = sizeof(si);
+		SCROLLINFO si = { sizeof SCROLLINFO };
 		si.fMask = SIF_POS;
 		si.nPos = nSubLine;
 		pView->SetScrollInfo(SB_VERT, &si);

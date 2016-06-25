@@ -797,8 +797,7 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 	}
 
 	BOOL retVal = FALSE;
-	STARTUPINFO stInfo = {0};
-	stInfo.cb = sizeof(STARTUPINFO);
+	STARTUPINFO stInfo = { sizeof STARTUPINFO };
 	PROCESS_INFORMATION processInfo;
 
 	retVal = CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
