@@ -273,12 +273,8 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 	CRect rect;
 	UINT state = (((BCMenuData*)(lpDIS->itemData))->nFlags);
-	CBrush m_brBackground;
-	COLORREF m_clrBack;
-
-	m_clrBack=GetSysColor(COLOR_MENU);
-	
-	m_brBackground.CreateSolidBrush(m_clrBack);
+	COLORREF m_clrBack=GetSysColor(COLOR_MENU);
+	CBrush m_brBackground(m_clrBack);
 
 	if(state & MF_SEPARATOR){
 		rect.CopyRect(&lpDIS->rcItem);
@@ -291,16 +287,14 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		BOOL standardflag=FALSE,selectedflag=FALSE,disableflag=FALSE;
 		BOOL checkflag=FALSE;
 		COLORREF crText = GetSysColor(COLOR_MENUTEXT);
-		CBrush m_brSelect;
-		CPen m_penBack;
 		int x0,y0,dy;
 		int nIconNormal=-1;
 		INT_PTR xoffset=-1;
 		CImageList *bitmap=NULL;
 		
 		// set some colors
-		m_penBack.CreatePen (PS_SOLID,0,m_clrBack);
-		m_brSelect.CreateSolidBrush(GetSysColor(COLOR_HIGHLIGHT));
+		CPen m_penBack(PS_SOLID,0,m_clrBack);
+		CBrush m_brSelect(GetSysColor(COLOR_HIGHLIGHT));
 		
 		// draw the colored rectangle portion
 		
@@ -400,11 +394,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 			}
 			else{
 				if(state&ODS_CHECKED){
-					CBrush brush;
-					COLORREF col = m_clrBack;
-					col = LightenColor(col,0.6);
-					brush.CreateSolidBrush(col);
-					pDC->FillRect(rect2,&brush);
+					pDC->FillRect(rect2,&CBrush(LightenColor(m_clrBack,0.6)));
 					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
                         rect.top+m_iconY+4+dy);
 					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
@@ -1496,10 +1486,8 @@ BOOL BCMenu::GetMenuText(UINT id, CString& string, UINT nFlags/*= MF_BYPOSITION*
 void BCMenu::DrawRadioDot(CDC *pDC,int x,int y,COLORREF color)
 {
 	CRect rcDot(x,y,x+6,y+6);
-	CBrush brush;
-	CPen pen;
-	brush.CreateSolidBrush(color);
-	pen.CreatePen(PS_SOLID,0,color);
+	CBrush brush(color);
+	CPen pen(PS_SOLID,0,color);
 	CBrush *pOldBrush=pDC->SelectObject(&brush);
 	CPen *pOldPen=pDC->SelectObject(&pen);
 	pDC->Ellipse(&rcDot);
@@ -1510,8 +1498,7 @@ void BCMenu::DrawRadioDot(CDC *pDC,int x,int y,COLORREF color)
 void BCMenu::DrawCheckMark(CDC* pDC,int x,int y,COLORREF color,BOOL narrowflag)
 {
 	int dp=0;
-	CPen m_penBack;
-	m_penBack.CreatePen (PS_SOLID,0,color);
+	CPen m_penBack(PS_SOLID,0,color);
 	CPen *pOldPen = pDC->SelectObject (&m_penBack);
 	if(narrowflag)dp=1;
 
@@ -1668,15 +1655,13 @@ void BCMenu::GetTransparentBitmap(CBitmap &bmp)
 
 	// use this to get the background color, takes into account color shifting
 	CDC ddc2;
-	CBrush brush;
 	CBitmap bmp2;
 	ddc2.CreateCompatibleDC(NULL);
 	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
 	col=RGB(255,0,255); // Original was RGB(192,192,192)
-	brush.CreateSolidBrush(col);
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
-	ddc2.FillRect(rect,&brush);
+	ddc2.FillRect(rect,&CBrush(col));
 	ddc2.SelectObject(pddcOldBmp2);
 	newcol=GetSysColor(COLOR_3DFACE);
 
@@ -1702,7 +1687,7 @@ void BCMenu::GetTransparentBitmap(CBitmap &bmp)
 void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 {
 	CDC ddc;
-	COLORREF col,discol;
+	COLORREF discol;
 	BITMAP BitMap;
 
 	bmp.GetBitmap(&BitMap);
@@ -1711,15 +1696,12 @@ void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 
 	// use this to get the background color, takes into account color shifting
 	CDC ddc2;
-	CBrush brush;
 	CBitmap bmp2;
 	ddc2.CreateCompatibleDC(NULL);
 	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
-	col=GetSysColor(COLOR_3DFACE);
-	brush.CreateSolidBrush(col);
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
-	ddc2.FillRect(rect,&brush);
+	ddc2.FillRect(rect,&CBrush(GetSysColor(COLOR_3DFACE)));
 	ddc2.SelectObject(pddcOldBmp2);
 	discol=GetSysColor(COLOR_BTNSHADOW);
 
@@ -1802,11 +1784,9 @@ BOOL BCMenu::Draw3DCheckmark(CDC *dc, const CRect& rc,
                              BOOL bSelected, HBITMAP hbmCheck)
 {
 	CRect rcDest = rc;
-	CBrush brush;
 	COLORREF col=GetSysColor(COLOR_MENU);
 	if(!bSelected)col = LightenColor(col,0.6);
-	brush.CreateSolidBrush(col);
-	dc->FillRect(rcDest,&brush);
+	dc->FillRect(rcDest,&CBrush(col));
 	dc->DrawEdge(&rcDest, BDR_SUNKENOUTER, BF_RECT);
 	if (!hbmCheck)DrawCheckMark(dc,rc.left+4,rc.top+4,GetSysColor(COLOR_MENUTEXT));
 	else DrawRadioDot(dc,rc.left+5,rc.top+4,GetSysColor(COLOR_MENUTEXT));
@@ -1841,9 +1821,8 @@ void BCMenu::DitherBlt2(CDC *drawdc, int nXDest, int nYDest, int nWidth,
 	//SK: Looks better on the old shell
 	dc.SetBkColor(RGB(0, 0, 0));
 	dc.SetTextColor(RGB(255, 255, 255));
-	CBrush brShadow, brHilight;
-	brHilight.CreateSolidBrush(GetSysColor(COLOR_BTNHILIGHT));
-	brShadow.CreateSolidBrush(GetSysColor(COLOR_BTNSHADOW));
+	CBrush brHilight(GetSysColor(COLOR_BTNHILIGHT));
+	CBrush brShadow(GetSysColor(COLOR_BTNSHADOW));
 	CBrush * pOldBrush = dc.SelectObject(&brHilight);
 	dc.BitBlt(0,0, nWidth, nHeight, &ddc, 0, 0, 0x00E20746L);
 	drawdc->BitBlt(nXDest+1,nYDest+1,nWidth, nHeight, &dc,0,0,SRCCOPY);

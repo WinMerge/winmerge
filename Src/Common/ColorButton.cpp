@@ -34,9 +34,7 @@ CColorButton::CColorButton(COLORREF clrFill)
  */
 void CColorButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct) 
 {
-	CBrush brush;
-	brush.CreateSolidBrush(m_clrFill);
-	::FillRect(lpDrawItemStruct->hDC, &lpDrawItemStruct->rcItem, brush);
+	::FillRect(lpDrawItemStruct->hDC, &lpDrawItemStruct->rcItem, CBrush(m_clrFill));
 }
 
 /** 
