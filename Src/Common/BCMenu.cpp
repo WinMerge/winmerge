@@ -658,7 +658,6 @@ BOOL BCMenu::GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBit
 	ImageList_DrawIndirect(&drawing);
 
 	dc.SelectObject( pOldBmp );
-	dc.DeleteDC();
 	return(TRUE);
 }
 
@@ -1938,10 +1937,8 @@ void BCMenu::DitherBlt2(CDC *drawdc, int nXDest, int nYDest, int nWidth,
 	drawdc->BitBlt(nXDest,nYDest,nWidth, nHeight, &dc,0,0,SRCCOPY);
 	// reset DCs
 	ddc.SelectObject(pddcOldBmp);
-	ddc.DeleteDC();
 	dc.SelectObject(pOldBrush);
 	dc.SelectObject(pdcOldBmp);
-	dc.DeleteDC();
 }
 
 void BCMenu::DitherBlt3(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
@@ -1954,7 +1951,6 @@ void BCMenu::DitherBlt3(CDC *drawdc, int nXDest, int nYDest, int nWidth,
 	drawdc->BitBlt(nXDest,nYDest,nWidth, nHeight, &dc,0,0,SRCCOPY);
 	// reset DCs
 	dc.SelectObject(pdcOldBmp);
-	dc.DeleteDC();
 }
 
 WORD BCMenu::NumBitmapColors(LPBITMAPINFOHEADER lpBitmap)

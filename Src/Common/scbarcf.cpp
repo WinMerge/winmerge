@@ -57,9 +57,6 @@ CSizingControlBarCF::CSizingControlBarCF()
     m_sFontFace = (::EnumFontFamilies(dc.m_hDC,
         _T("Tahoma"), (FONTENUMPROC) EnumFontFamProc, 0) == 0) ?
         _T("Tahoma") : _T("Arial");
-
-    dc.DeleteDC();
-    
 }
 
 BEGIN_MESSAGE_MAP(CSizingControlBarCF, baseCSizingControlBarCF)
