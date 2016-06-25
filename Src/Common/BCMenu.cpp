@@ -376,7 +376,6 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 					else
 						DitherBlt2(pDC,rect.left+2,rect.top+2+dy,m_iconX,m_iconY,
 						bitmapstandard,0,0,m_clrBack);
-					bitmapstandard.DeleteObject();
 				}
 			}
 			else if(selectedflag){
