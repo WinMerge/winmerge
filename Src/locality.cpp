@@ -88,8 +88,7 @@ String GetLocaleStr(const TCHAR *str, int decimalDigits)
 	TCHAR DecimalSep[8];
 	TCHAR SepDefault[] = _T(".");
 	TCHAR ThousandSep[8];
-	NUMBERFMT NumFormat;
-	memset(&NumFormat, 0, sizeof(NumFormat));
+	NUMBERFMT NumFormat = { 0 };
 	NumFormat.NumDigits = decimalDigits; // LOCALE_IDIGITS
 	NumFormat.LeadingZero = getLocaleUint(LOCALE_ILZERO, 0);
 	NumFormat.Grouping = GetLocaleGrouping(3);

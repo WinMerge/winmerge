@@ -69,13 +69,12 @@ void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = NULL)
   if(!cnt)
     return;
   CClientDC      dc(&Control);
-  NONCLIENTMETRICS  info;
+  NONCLIENTMETRICS  info = { 0 };
   CFont        oFont, *oldFont;
   int          width = 0, nMax = ::GetSystemMetrics(SM_CXSCREEN) - 48;
   CRect        rc;
   CSize        size;
 
-  memset(&info.lfMenuFont, 0, sizeof(LOGFONT));
   SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(info), &info, 0);
   info.lfMenuFont.lfHeight = -MulDiv(9, dc.GetDeviceCaps(LOGPIXELSY), 72);
   info.lfMenuFont.lfWidth = 0;

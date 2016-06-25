@@ -601,8 +601,7 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 		GetListCtrl().ScreenToClient(&insidePt);
 		// TODO: correct for hscroll ?
 		// Ask header control if click was on one of its header items
-		HDHITTESTINFO hhti;
-		memset(&hhti, 0, sizeof(hhti));
+		HDHITTESTINFO hhti = { 0 };
 		hhti.pt = insidePt;
 		int col = static_cast<int>(GetListCtrl().GetHeaderCtrl()->SendMessage(HDM_HITTEST, 0, (LPARAM) & hhti));
 		if (col >= 0)
@@ -612,8 +611,7 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 			return;
 		}
 		// bail out if point is not in any row
-		LVHITTESTINFO lhti;
-		memset(&lhti, 0, sizeof(lhti));
+		LVHITTESTINFO lhti = { 0 };
 		insidePt = point;
 		ScreenToClient(&insidePt);
 		lhti.pt = insidePt;

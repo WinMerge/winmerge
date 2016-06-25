@@ -157,8 +157,7 @@ String env_GetSystemTempPath()
 
 static bool launchProgram(const String& sCmd, WORD wShowWindow)
 {
-	STARTUPINFO stInfo = {0};
-	stInfo.cb = sizeof(STARTUPINFO);
+	STARTUPINFO stInfo = { sizeof STARTUPINFO };
 	stInfo.dwFlags = STARTF_USESHOWWINDOW;
 	stInfo.wShowWindow = wShowWindow;
 	PROCESS_INFORMATION processInfo;

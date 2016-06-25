@@ -1092,10 +1092,8 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 void CMainFrame::OnViewSelectfont() 
 {
 	FRAMETYPE frame = GetFrameType(GetActiveFrame());
-	CHOOSEFONT cf;
+	CHOOSEFONT cf = { sizeof CHOOSEFONT };
 	LOGFONT *lf = NULL;
-	ZeroMemory(&cf, sizeof(CHOOSEFONT));
-	cf.lStructSize = sizeof(CHOOSEFONT);
 	cf.Flags = CF_INITTOLOGFONTSTRUCT|CF_FORCEFONTEXIST|CF_SCREENFONTS;
 	if (frame == FRAME_FILE)
 		cf.Flags |= CF_FIXEDPITCHONLY; // Only fixed-width fonts for merge view
@@ -2120,8 +2118,7 @@ void CMainFrame::LoadToolbarImages()
 	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].Detach();
 
 	// resize the rebar.
-	REBARBANDINFO rbbi;
-	rbbi.cbSize = sizeof(rbbi);
+	REBARBANDINFO rbbi = { sizeof REBARBANDINFO };
 	rbbi.fMask = RBBIM_CHILDSIZE;
 	rbbi.cyMinChild = sizeButton.cy;
 	m_wndReBar.GetReBarCtrl().SetBandInfo(0, &rbbi);

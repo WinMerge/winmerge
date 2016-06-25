@@ -157,8 +157,7 @@ void CMDITabBar::OnContextMenu(CWnd *pWnd, CPoint point)
 	m_pMainFrame->MDIActivate(pMDIChild);
 	CMenu* pPopup = pMDIChild->GetSystemMenu(FALSE);
 	if (!pPopup) return;
-	MENUITEMINFO mii = {0};
-	mii.cbSize = sizeof(MENUITEMINFO);
+	MENUITEMINFO mii = { sizeof MENUITEMINFO };
 	if (!pPopup->GetMenuItemInfo(ID_CLOSE_OTHER_TABS, &mii, FALSE))
 	{
 		pPopup->AppendMenu(MF_SEPARATOR, 0, _T(""));
@@ -388,8 +387,7 @@ void CMDITabBar::OnMouseMove(UINT nFlags, CPoint point)
 	m_rcCurrentCloseButtom = rc;
 	if (!m_bMouseTracking)
 	{
-		TRACKMOUSEEVENT tme = {0};
-		tme.cbSize = sizeof(TRACKMOUSEEVENT);
+		TRACKMOUSEEVENT tme = { sizeof TRACKMOUSEEVENT };
 		tme.dwFlags = TME_LEAVE;
 		tme.hwndTrack = m_hWnd;
 		TrackMouseEvent(&tme);
@@ -413,8 +411,7 @@ void CMDITabBar::OnMouseMove(UINT nFlags, CPoint point)
 
 void CMDITabBar::OnMouseLeave()
 {
-	TRACKMOUSEEVENT tme = {0};
-	tme.cbSize = sizeof(TRACKMOUSEEVENT);
+	TRACKMOUSEEVENT tme = { sizeof(TRACKMOUSEEVENT) };
 	tme.dwFlags = TME_LEAVE | TME_CANCEL;
 	tme.hwndTrack = m_hWnd;
 	TrackMouseEvent(&tme);
