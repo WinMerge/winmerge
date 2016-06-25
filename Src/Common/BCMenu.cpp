@@ -405,7 +405,6 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 					col = LightenColor(col,0.6);
 					brush.CreateSolidBrush(col);
 					pDC->FillRect(rect2,&brush);
-					brush.DeleteObject();
 					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
                         rect.top+m_iconY+4+dy);
 					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
@@ -493,11 +492,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 			}
 			pDC->SetBkMode( iOldMode );
 		}
-		
-		m_penBack.DeleteObject();
-		m_brSelect.DeleteObject();
 	}
-	m_brBackground.DeleteObject();
 }
 
 inline COLORREF BCMenu::LightenColor(COLORREF col,double factor)
@@ -572,7 +567,6 @@ void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 			else
 				DitherBlt2(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
 				bitmapstandard,0,0,transparentcol);
-			bitmapstandard.DeleteObject();
 		}
 		else{
 			if(bitmap){
@@ -738,7 +732,6 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 			lpMIS->itemWidth = m_gutterWidth+m_textBorder+t.cx+m_arrowWidth;
 		int temp = GetSystemMetrics(SM_CYMENU);
 		lpMIS->itemHeight = temp>m_iconY+BCMENU_PAD ? temp : m_iconY+BCMENU_PAD;
-		m_fontMenu.DeleteObject();
 	}
 }
 
@@ -1513,8 +1506,6 @@ void BCMenu::DrawRadioDot(CDC *pDC,int x,int y,COLORREF color)
 	pDC->Ellipse(&rcDot);
 	pDC->SelectObject(pOldBrush);
 	pDC->SelectObject(pOldPen);
-	pen.DeleteObject();
-	brush.DeleteObject();
 }
 
 void BCMenu::DrawCheckMark(CDC* pDC,int x,int y,COLORREF color,BOOL narrowflag)
@@ -1547,7 +1538,6 @@ void BCMenu::DrawCheckMark(CDC* pDC,int x,int y,COLORREF color,BOOL narrowflag)
 	pDC->LineTo(x+6,y+3-dp);
 	
 	pDC->SelectObject (pOldPen);
-	m_penBack.DeleteObject();
 }
 
 BCMenuData *BCMenu::FindMenuList(UINT_PTR nID)
@@ -1772,7 +1762,6 @@ void BCMenu::GetTransparentBitmap(CBitmap &bmp)
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
 	ddc2.FillRect(rect,&brush);
-	brush.DeleteObject();
 	ddc2.SelectObject(pddcOldBmp2);
 	newcol=GetSysColor(COLOR_3DFACE);
 
@@ -1816,7 +1805,6 @@ void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
 	ddc2.FillRect(rect,&brush);
-	brush.DeleteObject();
 	ddc2.SelectObject(pddcOldBmp2);
 	discol=GetSysColor(COLOR_BTNSHADOW);
 
@@ -1864,8 +1852,6 @@ BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, BOOL bDi
 		else{
 			if(bmplist->Add(&bmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=TRUE;
 		}
-		bmp.Detach();
-		DeleteObject(hbmp);
 	}
 	else{ // a hicolor bitmap
 		CBitmap mybmp;
@@ -1906,7 +1892,6 @@ BOOL BCMenu::Draw3DCheckmark(CDC *dc, const CRect& rc,
 	if(!bSelected)col = LightenColor(col,0.6);
 	brush.CreateSolidBrush(col);
 	dc->FillRect(rcDest,&brush);
-	brush.DeleteObject();
 	dc->DrawEdge(&rcDest, BDR_SUNKENOUTER, BF_RECT);
 	if (!hbmCheck)DrawCheckMark(dc,rc.left+4,rc.top+4,GetSysColor(COLOR_MENUTEXT));
 	else DrawRadioDot(dc,rc.left+5,rc.top+4,GetSysColor(COLOR_MENUTEXT));
@@ -1957,10 +1942,6 @@ void BCMenu::DitherBlt2(CDC *drawdc, int nXDest, int nYDest, int nWidth,
 	dc.SelectObject(pOldBrush);
 	dc.SelectObject(pdcOldBmp);
 	dc.DeleteDC();
-	
-	brShadow.DeleteObject();
-	brHilight.DeleteObject();
-	bwbmp.DeleteObject();
 }
 
 void BCMenu::DitherBlt3(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
