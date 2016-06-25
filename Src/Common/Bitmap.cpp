@@ -31,7 +31,6 @@ CBitmap *CopyRectToBitmap(CDC *pDC, const CRect & rect)
 	CBitmap *pOldBitmap = dcMem.SelectObject(pBitmap);
 	dcMem.BitBlt(0, 0, rc.Width(), rc.Height(), pDC, rc.left, rc.top, SRCCOPY);
 	dcMem.SelectObject(pOldBitmap);
-	dcMem.DeleteDC();
 	return pBitmap;
 }
 
@@ -51,7 +50,6 @@ void DrawBitmap(CDC *pDC, int x, int y, CBitmap *pBitmap)
 	CBitmap *pOldBitmap = dcMem.SelectObject(pBitmap);
 	pDC->BitBlt(x, y, bm.bmWidth, bm.bmHeight, &dcMem, 0, 0, SRCCOPY);
 	dcMem.SelectObject(pOldBitmap);
-	dcMem.DeleteDC();
 }
 
 /**
@@ -124,7 +122,6 @@ CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap)
 
 	SetDIBits(dcMem.m_hDC, (HBITMAP)*pBitmapDarkened, 0, bm.bmHeight, pbuf.get(), &bi, DIB_RGB_COLORS);
 	dcMem.SelectObject(pOldBitmap);
-	dcMem.DeleteDC();
 	return pBitmapDarkened;
 }
 
