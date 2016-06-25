@@ -295,8 +295,6 @@ protected:
 	void DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS);
 	BOOL Draw3DCheckmark(CDC *dc, const CRect& rc,BOOL bSelected,HBITMAP hbmCheck);
 	void DrawItem_Theme (LPDRAWITEMSTRUCT lpDIS);
-	void DitherBlt(HDC hdcDest, int nXDest, int nYDest, int nWidth, 
-		int nHeight, HBITMAP hbm, int nXSrc, int nYSrc,COLORREF bgcolor);
 	void DitherBlt2(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
 		int nHeight, CBitmap &bmp, int nXSrc, int nYSrc,COLORREF bgcolor);
 	void DitherBlt3(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
