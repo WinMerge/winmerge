@@ -67,12 +67,15 @@ void PluginsListDlg::InitList()
 	// Also enable infotips.
 	m_list.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
+	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+
 	String title = _("Name");
-	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, 200);
+	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(150));
 	title = _("Type");
-	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, 100);
+	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(75));
 	title = _("Description");
-	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, 300);
+	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, pointToPixel(225));
 }
 
 /**
