@@ -56,10 +56,13 @@ END_MESSAGE_MAP()
  */
 void CDirColsDlg::InitList()
 {
+	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+
 	// Show selection across entire row.
 	// Also enable infotips.
 	m_listColumns.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
-	m_listColumns.InsertColumn(0, _T(""), LVCFMT_LEFT, 150);
+	m_listColumns.InsertColumn(0, _T(""), LVCFMT_LEFT, pointToPixel(112));
 }
 
 /**
