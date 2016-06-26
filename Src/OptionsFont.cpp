@@ -16,9 +16,6 @@ namespace Options { namespace Font {
  */
 void SetDefaults(COptionsMgr *pOptionsMgr)
 {
-	LOGFONT lfDefault;
-	ZeroMemory(&lfDefault, sizeof(LOGFONT));
-
 	CodePageInfo cpi = {0};
 	cpi.bGDICharset = ANSI_CHARSET;
 	cpi.fixedWidthFont = _T("Courier New");
@@ -52,8 +49,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 
 LOGFONT Load(const COptionsMgr *pOptionsMgr, const String& name)
 {
-	LOGFONT lfnew;
-	ZeroMemory(&lfnew, sizeof(LOGFONT));
+	LOGFONT lfnew = { 0 };
 	HDC hDC = GetDC(NULL);
 	lfnew.lfHeight = -MulDiv(pOptionsMgr->GetInt(name + OPT_FONT_POINTSIZE), GetDeviceCaps(hDC, LOGPIXELSY), 72);
 	if (lfnew.lfHeight == 0)

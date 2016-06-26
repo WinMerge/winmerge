@@ -290,7 +290,6 @@ CMainFrame::CMainFrame()
 : m_bFirstTime(TRUE)
 , m_pDropHandler(NULL)
 {
-	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
 }
 
 CMainFrame::~CMainFrame()
