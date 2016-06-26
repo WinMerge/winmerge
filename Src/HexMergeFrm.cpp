@@ -90,11 +90,13 @@ CHexMergeFrame::~CHexMergeFrame()
  */
 void CHexMergeFrame::CreateHexWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndPane)
 {
+	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	wndStatusBar.Create(pwndPane, WS_CHILD|WS_VISIBLE);
 	wndStatusBar.SetIndicators(0, 3);
 	wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH, 0);
-	wndStatusBar.SetPaneInfo(1, 0, 0, 80);
-	wndStatusBar.SetPaneInfo(2, 0, 0, 80);
+	wndStatusBar.SetPaneInfo(1, 0, 0, pointToPixel(60));
+	wndStatusBar.SetPaneInfo(2, 0, 0, pointToPixel(60));
 	wndStatusBar.SetParent(this);
 	wndStatusBar.SetWindowPos(&wndBottom, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 }

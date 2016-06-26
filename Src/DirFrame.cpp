@@ -48,11 +48,11 @@ enum
 /**
  * @brief Width of compare method name pane in statusbar
  */
-const int COMPMETHOD_PANEL_WIDTH = 140;
+const int COMPMETHOD_PANEL_WIDTH = 105;
 /**
  * @brief Width of filter name pane in statusbar
  */
-const int FILTER_PANEL_WIDTH = 180;
+const int FILTER_PANEL_WIDTH = 135;
 
 /**
  * @brief Bottom statusbar panels and indicators
@@ -128,11 +128,13 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}	
 	
 	String sText = _("RO");
-	m_wndStatusBar.SetPaneInfo(PANE_COMPMETHOD, ID_STATUS_FILTER, 0, COMPMETHOD_PANEL_WIDTH);
-	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, 0, FILTER_PANEL_WIDTH);
-	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, 0, RO_PANEL_WIDTH);
-	m_wndStatusBar.SetPaneInfo(PANE_MIDDLE_RO, ID_STATUS_MIDDLEDIR_RO, 0, RO_PANEL_WIDTH);
-	m_wndStatusBar.SetPaneInfo(PANE_RIGHT_RO, ID_STATUS_RIGHTDIR_RO, 0, RO_PANEL_WIDTH);
+	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	m_wndStatusBar.SetPaneInfo(PANE_COMPMETHOD, ID_STATUS_FILTER, 0, pointToPixel(COMPMETHOD_PANEL_WIDTH));
+	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, 0, pointToPixel(FILTER_PANEL_WIDTH));
+	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, 0, pointToPixel(RO_PANEL_WIDTH));
+	m_wndStatusBar.SetPaneInfo(PANE_MIDDLE_RO, ID_STATUS_MIDDLEDIR_RO, 0, pointToPixel(RO_PANEL_WIDTH));
+	m_wndStatusBar.SetPaneInfo(PANE_RIGHT_RO, ID_STATUS_RIGHTDIR_RO, 0, pointToPixel(RO_PANEL_WIDTH));
 	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_MIDDLE_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText.c_str(), TRUE);
