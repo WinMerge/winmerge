@@ -359,9 +359,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	theApp.SetIndicators(m_wndStatusBar, StatusbarIndicators,
 			countof(StatusbarIndicators));
 
-	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, 0, 300);
-	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, 100); 
-	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, 150); 
+	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, 0, pointToPixel(225));
+	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, pointToPixel(75)); 
+	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112)); 
 
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR) == false)
 		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
