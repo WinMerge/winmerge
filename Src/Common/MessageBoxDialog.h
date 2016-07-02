@@ -214,6 +214,8 @@ private:
 									// registry, if the MB_DONT_DISPLAY_AGAIN
 									// or MB_DONT_ASK_AGAIN flag is given.
 	CFont       m_font;
+	CFont       m_fontMainInstruction;
+	COLORREF    m_clrMainInstructionFont;
 
 private:
 
