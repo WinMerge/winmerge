@@ -897,7 +897,7 @@ CString CMessageBoxDialog::GenerateRegistryKey ( )
         for ( String::size_type i = 0; i < m_strMessage.length(); i++ )
 		{
 			// Get the char at the given position and add it to the checksum.
-			nChecksum += (int)m_strMessage[i] * i;
+			nChecksum += static_cast<int>(static_cast<int>(m_strMessage[i]) * i);
 		}
 
 		// Convert the checksum to a string.
@@ -1378,7 +1378,7 @@ void CMessageBoxDialog::CreateCheckboxControl ( )
 		CFont* pOldFont = dc.SelectObject(pWndFont);
 
 		// Retrieve the size of the text.
-		m_sCheckbox = dc.GetTextExtent(strCheckboxTitle.c_str(), strCheckboxTitle.length());
+		m_sCheckbox = dc.GetTextExtent(strCheckboxTitle.c_str(), static_cast<int>(strCheckboxTitle.length()));
 
 		// Add the additional value to the width of the checkbox.
 		m_sCheckbox.cx += XDialogUnitToPixel(CX_CHECKBOX_ADDON);
@@ -1448,7 +1448,7 @@ void CMessageBoxDialog::CreateButtonControls ( )
 		}
 
 		// Retrieve the size of the text.
-		CSize sButtonText = dc.GetTextExtent(strButtonText.c_str(), strButtonText.length());
+		CSize sButtonText = dc.GetTextExtent(strButtonText.c_str(), static_cast<int>(strButtonText.length()));
 
 		// Resize the button.
 		m_sButton.cx = max(m_sButton.cx, sButtonText.cx);
@@ -1550,9 +1550,9 @@ void CMessageBoxDialog::DefineLayout ( )
 	}
 
 	// Calculate the width of the buttons.
-	int cxButtons =
+	int cxButtons = static_cast<int>(
 		( m_aButtons.size() - 1 ) * XDialogUnitToPixel(CX_BUTTON_SPACE) +
-		m_aButtons.size() * m_sButton.cx;
+		m_aButtons.size() * m_sButton.cx);
 	int cyButtons = m_sButton.cy;
 
 	// Add the size of the buttons to the dialog.

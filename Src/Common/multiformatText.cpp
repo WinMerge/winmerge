@@ -242,7 +242,7 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 				{
 					pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 					pchar = pshmIn->begin() + m_nBomSize;
-					nchars = pshmIn->end() - pchar;
+					nchars = static_cast<unsigned>(pshmIn->end() - pchar);
 				}
 				catch (...)
 				{
@@ -328,7 +328,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 					pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
 					pchar = pshmIn->begin() + m_nBomSize;
-					nchars = pshmIn->end() - pchar;
+					nchars = static_cast<unsigned>(pshmIn->end() - pchar);
 				}
 				catch (...)
 				{
@@ -402,7 +402,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 					pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
 					pchar = pshmIn->begin()+m_nBomSize; // pass the BOM
-					nchars = pshmIn->end()-pchar;
+					nchars = static_cast<unsigned>(pshmIn->end() - pchar);
 				}
 				catch (...)
 				{
@@ -493,7 +493,7 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
 				pchar = pshmIn->begin() + m_nBomSize;
-				nchars = pshmIn->end()-pchar;
+				nchars = static_cast<unsigned>(pshmIn->end() - pchar);
 			}
 			else
 			{
@@ -636,7 +636,7 @@ bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filep
 			else
 			{
 				bool lossy = false;
-				destbytes = ucr::CrossConvert((const char *)pszBuf+pos, srcbytes, obuf.begin(), destbytes, codepage, CP_UTF8, &lossy);
+				destbytes = ucr::CrossConvert((const char *)pszBuf+pos, static_cast<unsigned>(srcbytes), obuf.begin(), static_cast<unsigned>(destbytes), codepage, CP_UTF8, &lossy);
 			}
 			fout.write(obuf.begin(), destbytes);
 			pos += srcbytes;

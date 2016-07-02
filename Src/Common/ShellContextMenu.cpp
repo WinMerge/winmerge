@@ -190,7 +190,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 
 	IContextMenuPtr pCMenu1;
 	if (FAILED(hr = pCurrFolder->GetUIObjectOf(NULL,
-											   pidls.Size(),
+											   static_cast<unsigned>(pidls.Size()),
 											   pidls.GetList(),
 											   IID_IContextMenu,
 											   0, 
