@@ -112,9 +112,24 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 
     m_aButtons.clear();
 
+	m_clrMainInstructionFont = CLR_NONE;
+
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
 	m_font.CreateFontIndirect(&ncm.lfMessageFont);
+
+	LOGFONT lf = { 0 };
+	HTHEME hTheme = OpenThemeData(NULL, _T("TEXTSTYLE"));
+	if (hTheme && SUCCEEDED(GetThemeFont(hTheme, NULL, TEXT_MAININSTRUCTION, 0, TMT_FONT, &lf)))
+	{
+		m_fontMainInstruction.CreateFontIndirect(&lf);
+		GetThemeColor(hTheme, TEXT_MAININSTRUCTION, 0, TMT_TEXTCOLOR, &m_clrMainInstructionFont);
+		CloseThemeData(hTheme);
+	}
+	else
+	{
+		m_fontMainInstruction.CreateFontIndirect(&ncm.lfMessageFont);
+	}
 }
 
 /*
@@ -818,6 +833,8 @@ HBRUSH CMessageBoxDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	{
 		pDC->SetBkMode(OPAQUE);
 		pDC->SetBkColor(::GetSysColor(COLOR_WINDOW));
+		if (m_clrMainInstructionFont != CLR_NONE)
+			pDC->SetTextColor(m_clrMainInstructionFont);
 		return static_cast<HBRUSH>(GetSysColorBrush(COLOR_WINDOW));
 	}
 	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
@@ -1278,7 +1295,7 @@ void CMessageBoxDialog::CreateMessageControl ( )
 	dcDisplay.CreateDC(_T("DISPLAY"), NULL, NULL, NULL);
 
 	// Select the new font and store the old one.
-	CFont* pOldFont = dcDisplay.SelectObject(&m_font);
+	CFont* pOldFont = dcDisplay.SelectObject(&m_fontMainInstruction);
 
 	// Define the maximum width of the message.
 	int nMaxWidth = ( GetSystemMetrics(SM_CXSCREEN) / 2 ) + 100;
@@ -1333,7 +1350,7 @@ void CMessageBoxDialog::CreateMessageControl ( )
 	}
 
 	// Set the font of the dialog.
-	m_stcMessage.SetFont(&m_font);
+	m_stcMessage.SetFont(&m_fontMainInstruction);
 }
 
 /*
