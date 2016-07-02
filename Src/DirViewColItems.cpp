@@ -230,17 +230,17 @@ static String ColPathGet(const CDiffContext *, const void *p)
 	{
 		const TCHAR *pi = _tcschr(s.c_str() + i, '\\');
 		const TCHAR *pj = _tcschr(t.c_str() + j, '\\');
-		int i_ahead = pi ? pi - s.c_str() : std::string::npos;
-		int j_ahead = pj ? pj - t.c_str() : std::string::npos;
-		int length_s = (i_ahead != std::string::npos ? i_ahead : s.length()) - i;
-		int length_t = (j_ahead != std::string::npos ? j_ahead : t.length()) - j;
+		int i_ahead = static_cast<int>(pi ? pi - s.c_str() : std::string::npos);
+		int j_ahead = static_cast<int>(pj ? pj - t.c_str() : std::string::npos);
+		int length_s = static_cast<int>((i_ahead != std::string::npos ? i_ahead : s.length()) - i);
+		int length_t = static_cast<int>((j_ahead != std::string::npos ? j_ahead : t.length()) - j);
 		if (length_s != length_t ||
 			memcmp(s.c_str() + i, t.c_str() + j, length_s) != 0)
 		{
 			String u(t.c_str() + j, length_t + 1);
 			u[length_t] = '|';
 			s.insert(i, u);
-			i_ahead += u.length();
+			i_ahead += static_cast<int>(u.length());
 		}
 		i = i_ahead + 1;
 		j = j_ahead + 1;

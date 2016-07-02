@@ -257,7 +257,7 @@ CSize CSizingControlBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
     GetRowSizingBars(arrSCBars);
     AFX_SIZEPARENTPARAMS layout;
     layout.hDWP = pDockBar->m_bLayoutQuery ?
-        NULL : ::BeginDeferWindowPos(arrSCBars.GetSize());
+        NULL : ::BeginDeferWindowPos(static_cast<int>(arrSCBars.GetSize()));
     for (int i = 0; i < arrSCBars.GetSize(); i++)
         if (arrSCBars[i]->m_nStateFlags & (delayHide|delayShow))
             arrSCBars[i]->RecalcDelayShow(&layout);
@@ -763,7 +763,7 @@ void CSizingControlBar::OnTrackUpdateSize(CPoint& point)
 
         // the others are shrinking
         int nFirst = bBefore ? nGrowingBar - 1 : nGrowingBar + 1;
-        int nLimit = bBefore ? -1 : arrSCBars.GetSize();
+        int nLimit = bBefore ? -1 : static_cast<int>(arrSCBars.GetSize());
 
         for (int i = nFirst; nDelta != 0 && i != nLimit; i += (bBefore ? -1 : 1))
         {
@@ -872,7 +872,7 @@ void CSizingControlBar::GetRowInfo(int& nFirst, int& nLast, int& nThis)
     nThis = m_pDockBar->FindBar(this);
     ASSERT(nThis != -1);
 
-    int i, nBars = m_pDockBar->m_arrBars.GetSize();
+    int i, nBars = static_cast<int>(m_pDockBar->m_arrBars.GetSize());
 
     // find the first and the last bar in row
     for (nFirst = -1, i = nThis - 1; i >= 0 && nFirst == -1; i--)
@@ -908,7 +908,7 @@ void CSizingControlBar::GetRowSizingBars(CSCBArray& arrSCBars, int& nThis)
         if (pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
         {
             if (pBar == this)
-                nThis = arrSCBars.GetSize();
+                nThis = static_cast<int>(arrSCBars.GetSize());
 
             arrSCBars.Add(pBar);
         }
@@ -989,7 +989,7 @@ BOOL CSizingControlBar::NegotiateSpace(int nLengthTotal, BOOL bHorz)
 
     CSCBArray arrSCBars;
     GetRowSizingBars(arrSCBars);
-    int nNumBars = arrSCBars.GetSize();
+    int nNumBars = static_cast<int>(arrSCBars.GetSize());
     int nDelta = nLengthAvail - nLengthActual;
 
     // return faster when there is only one sizing bar per row (this one)
