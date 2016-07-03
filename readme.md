@@ -9,6 +9,7 @@ This is a fork of https://sourceforge.net/projects/winmerge(https://bitbucket.or
 - Includes improved plugins
 - Includes frhed and 7-zip plugin
 - Support for jump list since Windows 7
+- Improved drag&drop support
 
 # Screenshots
 
@@ -28,4 +29,15 @@ This is a fork of https://sourceforge.net/projects/winmerge(https://bitbucket.or
 
 ![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/diffcontext0.png)
 
+## Excel Plugin&Image Compare
+
+![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/excelimagecmp.png)
+
+## Excel Plugin Setting
+
+![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/excelplugin.png)
+
+## Binary Compare
+
+![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/binarycmp.png)
 
