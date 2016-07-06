@@ -379,7 +379,7 @@ void COpenView::OnButton(int index)
 	String sfolder;
 	UpdateData(TRUE); 
 
-	PATH_EXISTENCE existence = paths_DoesPathExist(m_strPath[index], IsArchiveFile);
+	PATH_EXISTENCE existence = paths_DoesPathExist(m_strPath[index]);
 	switch (existence)
 	{
 	case IS_EXISTING_DIR:
