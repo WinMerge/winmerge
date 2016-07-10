@@ -19,6 +19,11 @@ if exist "%SIGNBAT_PATH%" (
   call "%SIGNBAT_PATH%" Build\x64\MergeUnicodeRelease\MergeLang.dll
 )
 
+mkdir Build\MergeUnicodeRelease\%APPVER% >2 NUL
+mkdir Build\x64\MergeUnicodeRelease\%APPVER% >2 NUL
+copy Build\MergeUnicodeRelease\*.pdb "Build\MergeUnicodeRelease\%APPVER%\"
+copy Build\x64\MergeUnicodeRelease\*.pdb "Build\x64\MergeUnicodeRelease\%APPVER%\"
+
 for %%i in ("%ProgramFiles(x86)%" "%ProgramFiles%") do (
   if exist "%%~i\Inno Setup 5\iscc.exe" (
     "%%~i\Inno Setup 5\iscc.exe" "Installer\innosetup\WinMerge.iss" || pause
