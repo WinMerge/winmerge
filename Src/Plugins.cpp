@@ -1411,7 +1411,6 @@ bool InvokeIsFolder(const String& path, IDispatch *piScript)
 
 	// clear the returned variant
 	VariantClear(&vboolHandled);
-	VariantClear(&vbstrPath);
 
 	return (bSuccess);
 }
