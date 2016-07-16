@@ -329,7 +329,9 @@ protected:
 	static BOOL hicolor_bitmaps;
 	BOOL m_loadmenu;
 	static MARGINS m_marginCheck;
+	static MARGINS m_marginSeparator;
 	static SIZE m_sizeCheck;
+	static SIZE m_sizeSeparator;
 	static int m_textBorder;
 	static int m_checkBgWidth;
 	static int m_gutterWidth;
