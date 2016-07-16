@@ -46,7 +46,9 @@ CArray<int,int&> BCMenu::m_AllImagesID;
 int BCMenu::m_iconX = 16;
 int BCMenu::m_iconY = 15;
 MARGINS BCMenu::m_marginCheck = { 0 };
+MARGINS BCMenu::m_marginSeparator = { 0 };
 SIZE BCMenu::m_sizeCheck = { 0 };
+SIZE BCMenu::m_sizeSeparator = { 0 };
 int BCMenu::m_textBorder = 0;
 int BCMenu::m_checkBgWidth = 0;
 int BCMenu::m_gutterWidth = 0;
@@ -155,9 +157,11 @@ BCMenu::BCMenu()
 		m_hTheme = OpenThemeData(NULL, _T("MENU"));
 		if (m_hTheme)
 		{
-			MARGINS marginCheckBg, marginArrow;		
+			MARGINS marginCheckBg, marginArrow;	
 			GetThemePartSize(m_hTheme, NULL, MENU_POPUPCHECK, 0, NULL, TS_TRUE, &m_sizeCheck);
 			GetThemeMargins(m_hTheme, NULL, MENU_POPUPCHECK, 0, TMT_CONTENTMARGINS, NULL, &m_marginCheck);
+			GetThemePartSize(m_hTheme, NULL, MENU_POPUPSEPARATOR, 0, NULL, TS_TRUE, &m_sizeSeparator); 
+			GetThemeMargins(m_hTheme, NULL, MENU_POPUPSEPARATOR, 0, TMT_SIZINGMARGINS, NULL, &m_marginSeparator);
 			GetThemeMargins(m_hTheme, NULL, MENU_POPUPCHECKBACKGROUND, 0, TMT_CONTENTMARGINS, NULL, &marginCheckBg);
 			GetThemeMargins(m_hTheme, NULL, MENU_POPUPSUBMENU, 0, TMT_CONTENTMARGINS, NULL, &marginArrow);
 			GetThemeInt(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_BORDERSIZE, &m_textBorder);
@@ -523,7 +527,10 @@ void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 		return;
 
 	if ((mdata->nFlags & MF_SEPARATOR)){
-		CRect rectSeparator(rectGutter.right, rect.top, rect.right, rect.bottom);
+		CRect rectSeparator(rectGutter.right + m_marginSeparator.cxLeftWidth,
+			rect.top + m_marginSeparator.cyTopHeight,
+		    rect.right - m_marginSeparator.cxRightWidth,
+			rect.top + m_marginSeparator.cyTopHeight + m_sizeSeparator.cy);
 		DrawThemeBackground(m_hTheme, hDC, MENU_POPUPSEPARATOR, 0, &rectSeparator, NULL);
 		return;
 	}
@@ -668,8 +675,10 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 	int BCMENU_PAD=4;
 	if(state & MF_SEPARATOR){
 		lpMIS->itemWidth = 0;
-		int temp = GetSystemMetrics(SM_CYMENU)>>1;
-		lpMIS->itemHeight = 3;
+		if (m_hTheme)
+			lpMIS->itemHeight = m_marginSeparator.cyTopHeight + m_sizeSeparator.cy + m_marginSeparator.cyBottomHeight;
+		else
+			lpMIS->itemHeight = 3;
 	}
 	else{
 		CFont fontMenu;
@@ -1464,7 +1473,7 @@ BOOL BCMenu::GetMenuText(UINT id, CString& string, UINT nFlags/*= MF_BYPOSITION*
 	
 	if(MF_BYPOSITION&nFlags){
 		INT_PTR numMenuItems = m_MenuList.GetUpperBound();
-		if(id<=numMenuItems){
+		if(static_cast<INT_PTR>(id)<=numMenuItems){
 			string=m_MenuList[id]->GetString();
 			returnflag=TRUE;
 		}
@@ -2207,7 +2216,7 @@ BOOL BCMenu::SetMenuText(UINT id, CString string, UINT nFlags/*= MF_BYPOSITION*/
 	if(MF_BYPOSITION&nFlags)
 	{
 		INT_PTR numMenuItems = m_MenuList.GetUpperBound();
-		if(id<=numMenuItems){
+		if(static_cast<INT_PTR>(id)<=numMenuItems){
 #ifdef UNICODE
 			m_MenuList[id]->SetWideString((LPCTSTR)string);
 #else
