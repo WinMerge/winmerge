@@ -1150,7 +1150,7 @@ PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
       HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, cbData);
       if (hData != NULL)
         {
-          DWORD dwSize = GlobalSize(hData);
+          SIZE_T dwSize = GlobalSize(hData);
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
           memcpy (pszData, pszText, cbData);
           if (dwSize > cbData)

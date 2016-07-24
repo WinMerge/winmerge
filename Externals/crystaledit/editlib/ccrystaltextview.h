@@ -195,7 +195,7 @@ protected:
     bool IsInsideSelBlock (CPoint ptTextPos);
 
     bool m_bBookmarkExist;        // More bookmarks
-    void ToggleBookmark(UINT nLine);
+    void ToggleBookmark(int nLine);
 
 public :
     virtual void ResetView ();
@@ -220,7 +220,7 @@ protected :
     CPoint m_ptDraggedTextBegin, m_ptDraggedTextEnd;
     void UpdateCaret ();
     void SetAnchor (const CPoint & ptNewAnchor);
-    UINT GetMarginWidth (CDC *pdc = NULL);
+    int GetMarginWidth (CDC *pdc = NULL);
     bool IsValidTextPos (const CPoint &point);
     bool IsValidTextPosX (const CPoint &point);
     bool IsValidTextPosY (const CPoint &point);

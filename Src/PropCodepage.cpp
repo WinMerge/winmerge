@@ -113,20 +113,19 @@ BOOL PropCodepage::OnInitDialog()
 	if (pexconv != NULL)
 	{
 		std::vector<CodePageInfo> cpi = pexconv->enumCodePages();
-		int i, j;
-		for (i = 0, j = 0; i < cpi.size(); i++)
+		for (size_t i = 0, j = 0; i < cpi.size(); i++)
 		{
 			if (cpi[i].codepage == 1200 /* UNICODE */)
 				continue;
 			String desc = string_format(_T("%05d - %s"), cpi[i].codepage, cpi[i].desc.c_str());
 			m_comboCustomCodepageValue.AddString(desc.c_str());
 			if (cpi[i].codepage == m_nCustomCodepageValue)
-				m_comboCustomCodepageValue.SetCurSel(j);
+				m_comboCustomCodepageValue.SetCurSel(static_cast<int>(j));
 			j++;
 		}
 
 		static int autodetectTypeList[] = {50001, 50936, 50950, 50932, 50949};
-		for (i = 0; i < sizeof(autodetectTypeList)/sizeof(int); i++)
+		for (size_t i = 0; i < sizeof(autodetectTypeList)/sizeof(int); i++)
 		{
 			String desc;
 			pexconv->getCodepageDescription(autodetectTypeList[i], desc);

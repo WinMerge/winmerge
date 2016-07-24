@@ -32,6 +32,9 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 #include "cmpbuf.h"
+#ifdef _WIN32
+#  include <io.h>
+#endif
 
 DECL_TLS int no_discards;
 DECL_TLS int need_free_buffers=0;
