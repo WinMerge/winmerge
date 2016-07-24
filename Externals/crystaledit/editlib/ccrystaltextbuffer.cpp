@@ -646,13 +646,12 @@ applyEOLMode()
 {
 	LPCTSTR lpEOLtoApply = GetDefaultEol();
 	bool bChanged = false;
-	const size_t size = m_aLines.size();
-	for (size_t i = 0 ; i < size; i++)
+	for (size_t i = 0 ; i < m_aLines.size(); i++)
 	{
 		// the last real line has no EOL
 		if (!m_aLines[i].HasEol())
 			continue;
-		bChanged |= ChangeLineEol(i, lpEOLtoApply);
+		bChanged |= ChangeLineEol(static_cast<int>(i), lpEOLtoApply);
 	}
 
 	if (bChanged)
@@ -1305,7 +1304,7 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
 
   //  Advance to next undo group
   nPosition++;
-  if (nPosition < m_aUndoBuf.size ())
+  if (nPosition < static_cast<intptr_t>(m_aUndoBuf.size ()))
     {
       std::vector<UndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
       while (iter != m_aUndoBuf.end () && ((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
@@ -1314,7 +1313,7 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
           ++nPosition;
         }
     }
-  if (nPosition >= m_aUndoBuf.size ())
+  if (nPosition >= static_cast<intptr_t>(m_aUndoBuf.size ()))
     return NULL;                //  No more redo actions!
 
   return (POSITION) nPosition;

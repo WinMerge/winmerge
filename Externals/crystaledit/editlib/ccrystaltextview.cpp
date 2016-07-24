@@ -5403,9 +5403,9 @@ OnFilePageSetup ()
  * This functions adds bookmark or removes bookmark on given line.
  * @param [in] Index (0-based) of line to add/remove bookmark.
  */
-void CCrystalTextView::ToggleBookmark(UINT nLine)
+void CCrystalTextView::ToggleBookmark(int nLine)
 {
-  ASSERT(nLine < GetLineCount());
+  ASSERT(nLine >= 0 && nLine < GetLineCount());
   if (m_pTextBuffer != NULL)
     {
       DWORD dwFlags = GetLineFlags (nLine);
@@ -5562,7 +5562,7 @@ GetViewLineNumbers () const
  * biggest number fits.
  * @return Margin area width in pixels.
  */
-UINT CCrystalTextView::
+int CCrystalTextView::
 GetMarginWidth (CDC *pdc)
 {
   int nMarginWidth = 0;

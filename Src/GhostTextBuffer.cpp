@@ -68,7 +68,7 @@ bool CGhostTextBuffer::InternalInsertGhostLine (CCrystalTextView * pSource,
 	ASSERT (m_bInit);             //  Text buffer not yet initialized.
 	//  You must call InitNew() or LoadFromFile() first!
 
-	ASSERT (nLine >= 0 && nLine <= m_aLines.size ());
+	ASSERT (nLine >= 0 && nLine <= static_cast<intptr_t>(m_aLines.size ()));
 
 	CInsertContext context;
 	context.m_ptStart.x = 0;
@@ -96,7 +96,7 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 {
 	ASSERT (m_bInit);             //  Text buffer not yet initialized.
 	//  You must call InitNew() or LoadFromFile() first!
-	ASSERT (nLine >= 0 && nLine <= m_aLines.size ());
+	ASSERT (nLine >= 0 && nLine <= static_cast<intptr_t>(m_aLines.size ()));
 
 	if (nCount == 0)
 		return true;
@@ -154,9 +154,9 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
                  bool bExcludeInvisibleLines/*=true*/)
 {
 	const size_t lines = m_aLines.size();
-	ASSERT(nStartLine >= 0 && nStartLine < lines);
+	ASSERT(nStartLine >= 0 && nStartLine < static_cast<intptr_t>(lines));
 	ASSERT(nStartChar >= 0 && nStartChar <= GetLineLength(nStartLine));
-	ASSERT(nEndLine >= 0 && nEndLine < lines);
+	ASSERT(nEndLine >= 0 && nEndLine < static_cast<intptr_t>(lines));
 	ASSERT(nEndChar >= 0 && nEndChar <= GetFullLineLength(nEndLine));
 	ASSERT(nStartLine < nEndLine || nStartLine == nEndLine && nStartChar <= nEndChar);
 	// some edit functions (copy...) should do nothing when there is no selection.

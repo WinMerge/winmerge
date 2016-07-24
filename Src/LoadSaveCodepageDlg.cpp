@@ -87,16 +87,15 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 		combol.Attach(::GetDlgItem(m_hWnd, IDC_LOAD_CODEPAGE_TEXTBOX));
 		combos.Attach(::GetDlgItem(m_hWnd, IDC_SAVE_CODEPAGE_TEXTBOX));
 		std::vector<CodePageInfo> cpi = pexconv->enumCodePages();
-		int i, j;
-		for (i = 0, j = 0; i < cpi.size(); i++)
+		for (size_t i = 0, j = 0; i < cpi.size(); i++)
 		{
 			String desc = string_format(_T("%05d - %s"), cpi[i].codepage, cpi[i].desc.c_str());
 			combol.AddString(desc.c_str());
 			combos.AddString(desc.c_str());
 			if (cpi[i].codepage == m_nLoadCodepage)
 			{
-				combol.SetCurSel(j);
-				combos.SetCurSel(j);
+				combol.SetCurSel(static_cast<int>(j));
+				combos.SetCurSel(static_cast<int>(j));
 			}
 			j++;
 		}
