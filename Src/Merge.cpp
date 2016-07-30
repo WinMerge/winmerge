@@ -157,7 +157,8 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	//{{AFX_MSG_MAP(CMergeApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
 	ON_COMMAND(ID_HELP, OnHelp)
-	ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, OnOpenRecentFile)
+	ON_COMMAND_EX_RANGE(ID_FILE_PROJECT_MRU_FIRST, ID_FILE_PROJECT_MRU_LAST, OnOpenRecentFile)
+	ON_UPDATE_COMMAND_UI(ID_FILE_PROJECT_MRU_FIRST, &CWinApp::OnUpdateRecentFileMenu)
 	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
 	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
@@ -1335,7 +1336,7 @@ void CMergeApp::SetupTempPath()
  */
 BOOL CMergeApp::OnOpenRecentFile(UINT nID)
 {
-	return LoadAndOpenProjectFile((const TCHAR *)m_pRecentFileList->m_arrNames[nID-ID_FILE_MRU_FILE1]);
+	return LoadAndOpenProjectFile(static_cast<const TCHAR *>(m_pRecentFileList->m_arrNames[nID-ID_FILE_PROJECT_MRU_FIRST]));
 }
 
 /**

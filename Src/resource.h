@@ -1216,6 +1216,8 @@
 #define IDS_CLOSE_RIGHT_TABS            33542
 #define IDS_CLOSE_OTHER_TABS            33543
 #define IDS_TABBAR_AUTO_MAXWIDTH        33544
+#define ID_FILE_PROJECT_MRU_FIRST       33545
+#define ID_FILE_PROJECT_MRU_LAST        33644
 
 // Next default values for new objects
 // 
