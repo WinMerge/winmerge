@@ -153,7 +153,7 @@ BEGIN
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
-        MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        MENUITEM "Recent Projects",             ID_FILE_PROJECT_MRU_FIRST
         POPUP "Recent F&iles Or Folders"
         BEGIN
             MENUITEM "< Empty >",                   ID_NO_MRU
