@@ -57,8 +57,9 @@ void CMergeDoc::AdjustDiffBlocks()
 				{
 					for (lineend0 = line0; lineend0 < nlines0; lineend0++)
 					{
-						if (map_line0 != DiffMap::GHOST_MAP_ENTRY &&
-								map_line0 != DiffMap::BAD_MAP_ENTRY)
+						const int map_lineend0 = diffmap.m_map[lineend0];
+						if (map_lineend0 != DiffMap::GHOST_MAP_ENTRY &&
+								map_lineend0 != DiffMap::BAD_MAP_ENTRY)
 							break;
 					}
 					dr.begin[0]  = diffrange.begin[0] + line0;
