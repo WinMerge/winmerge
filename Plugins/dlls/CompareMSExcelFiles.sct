@@ -205,14 +205,55 @@ Function saveRangeAsImage(sht, rng, filename)
 
 End Function
 
-Function saveSheetAsImage(sht, filename)
-	If Not saveRangeAsImage(sht, getUsedRangeIncludingShapes(sht), filename) Then
-		Dim shtNew
-		Set shtNew = sht.Parent.Sheets.Add
-		shtNew.Range("A1") = "Error!"
-		saveRangeAsImage shtNew, shtNew.Range("A1"), filename
-		shtNew.Delete
-	End If
+Function getTimeStamp()
+    Dim dt, tm, ms
+    tm = Timer
+    ms = Fix((tm - Fix(tm)) * 1000)
+    tm = Fix(tm)
+    getTimeStamp = (tm \ (60 * 60)) & ":" & ((tm \ 60) Mod 60) & ":" & (tm Mod 60) & "." & ms
+End Function
+
+Function findRowByPosition(sht, ByVal rowBegin, ByVal rowEnd, ByVal pos)
+    Dim height, rowPrev, row, rowBeginOrg
+    row = rowEnd
+    rowBeginOrg = rowBegin
+    rowPrev = row
+    Do
+        height = sht.Range("A" & rowBeginOrg & ":A" & row).height
+        If height < pos Then
+            rowBegin = row
+        Else
+            rowEnd = row
+        End If
+        row = (rowEnd - rowBegin) \ 2 + rowBegin
+        If row = rowPrev Then
+            findRowByPosition = row
+            Exit Function
+        End If
+        rowPrev = row
+    Loop
+End Function
+
+Function saveSheetAsImage(sht, basefilename)
+	Dim rngUsed, rngImage, row, rowEnd, filename, num
+	Set rngUsed = getUsedRangeIncludingShapes(sht)
+	row = rngUsed.Row
+	num = 1
+	Do 
+		rowEnd = findRowByPosition(sht, row, rngUsed.Row + rngUsed.Rows.Count - 1, 5000)
+		Set rngImage = sht.Range(sht.Cells(row, rngUsed.Column), sht.Cells(rowEnd, rngUsed.Column + rngUsed.Columns.Count - 1))
+		filename = basefilename & "(" & num & ").png"
+		If Not saveRangeAsImage(sht, rngImage, filename) Then
+			Dim shtNew
+			Set shtNew = sht.Parent.Sheets.Add
+			shtNew.Range("A1") = getTimeStamp() & ": Error" & Err.Number & ": " & Err.Description
+			shtNew.Columns.AutoFit
+			saveRangeAsImage shtNew, shtNew.Range("A1"), filename
+			shtNew.Delete
+		End If
+		row = rowEnd + 1
+		num = num + 1
+	Loop While row < rngUsed.row + rngUsed.Rows.Count - 1 
 End Function
 
 Function get_PluginEvent()
@@ -366,7 +407,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 		End If
 
 		If regRead(RegKeyPath & "CompareWorksheetsAsImage", True) Then
-			saveSheetAsImage sht, fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & ".png")
+			saveSheetAsImage sht, fso.BuildPath(folderDst, "(" & No & ")" & sht.Name)
 		End If
 		No = No + 1
 	Next
