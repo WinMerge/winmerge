@@ -110,7 +110,6 @@
 #define IDB_TOOLBAR_ENABLED32           365
 #define IDB_VIEW_ZOOMIN                 366
 #define IDB_VIEW_ZOOMOUT                367
-#define IDB_TREE_STATE                  368
 #define IDB_FILE_OPENCONFLICT           369
 #define IDB_PLUGINS_LIST                370
 #define IDB_MERGE_COMPARE               371
@@ -155,6 +154,8 @@
 #define IDI_NOTEQUALTEXTFILE            529
 #define IDI_EQUALIMAGE                  530
 #define IDI_NOTEQUALIMAGE               531
+#define IDI_TREE_STATE_COLLAPSED        532
+#define IDI_TREE_STATE_EXPANDED         533
 #define IDC_PATH0_BUTTON                1001
 #define IDC_PATH1_BUTTON                1002
 #define IDC_PATH2_BUTTON                1003

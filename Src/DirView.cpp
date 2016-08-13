@@ -408,7 +408,9 @@ void CDirView::OnInitialUpdate()
 	m_pList->SetImageList(&m_imageList, LVSIL_SMALL);
 
 	// Load the icons used for the list view (expanded/collapsed state icons)
-	VERIFY(m_imageState.Create(IDB_TREE_STATE, 16, 1, RGB(255, 0, 255)));
+	VERIFY(m_imageState.Create(iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1));
+	for (auto id : { IDI_TREE_STATE_COLLAPSED, IDI_TREE_STATE_EXPANDED })
+		VERIFY(-1 != m_imageState.Add((HICON)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(id), IMAGE_ICON, iconCX, iconCY, 0)));
 
 	// Restore column orders as they had them last time they ran
 	m_pColItems->LoadColumnOrders(

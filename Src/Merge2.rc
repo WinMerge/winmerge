@@ -46,6 +46,8 @@ IDI_EQUALTEXTFILE       ICON                    "res\\equaltextfile.ico"
 IDI_NOTEQUALTEXTFILE    ICON                    "res\\notequaltextfile.ico"
 IDI_EQUALIMAGE          ICON                    "res\\equalimage.ico"
 IDI_NOTEQUALIMAGE       ICON                    "res\\notequalimage.ico"
+IDI_TREE_STATE_COLLAPSED ICON                   "res\\treestate_collapsed.ico"
+IDI_TREE_STATE_EXPANDED ICON                    "res\\treestate_expanded.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -157,7 +159,6 @@ IDB_MOVE_MIDDLE_TO_BROWSE BITMAP                "res\\move_middle_to_browse.bmp"
 IDB_MOVE_RIGHT_TO_BROWSE BITMAP                 "res\\move_right_to_browse.bmp"
 IDB_VIEW_ZOOMIN         BITMAP                  "res\\zoom_in.bmp"
 IDB_VIEW_ZOOMOUT        BITMAP                  "res\\zoom_out.bmp"
-IDB_TREE_STATE          BITMAP                  "res\\treestate.bmp"
 IDB_FILE_OPENCONFLICT   BITMAP                  "res\\open_conflict.bmp"
 IDB_PLUGINS_LIST        BITMAP                  "res\\plugins.bmp"
 IDB_MERGE_COMPARE       BITMAP                  "res\\compare.bmp"
