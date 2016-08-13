@@ -2504,7 +2504,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	int nBuffer;
 	FileLocation fileloc[3];
 
-	std::copy(ifileloc, ifileloc + 3, fileloc);
+	std::copy_n(ifileloc, 3, fileloc);
 
 	// Filter out invalid codepages, or editor will display all blank
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)

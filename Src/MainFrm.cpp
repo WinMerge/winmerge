@@ -678,7 +678,7 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 
 	// Make local copies, so we can change encoding if we guess it below
 	FileLocation fileloc[3];
-	std::copy(ifileloc, ifileloc + nFiles, fileloc);
+	std::copy_n(ifileloc, nFiles, fileloc);
 
 	ASSERT(pMergeDoc);		// must ASSERT to get an answer to the question below ;-)
 	if (!pMergeDoc)
