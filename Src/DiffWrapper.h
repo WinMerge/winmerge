@@ -149,7 +149,7 @@ struct DIFFSTATUS
 			bPatchFileFailed = true;
 		if (other.bBinaries)
 			bBinaries = true;
-		std::copy(other.bMissingNL, other.bMissingNL + 3, bMissingNL);
+		std::copy_n(other.bMissingNL, 3, bMissingNL);
 	}
 };
 
