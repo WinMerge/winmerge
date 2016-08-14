@@ -119,8 +119,8 @@ struct PATCHOPTIONS
 };
 
 typedef enum {
-	IDENTLEVEL_NONE,
 	IDENTLEVEL_ALL,
+	IDENTLEVEL_NONE,
 	IDENTLEVEL_EXCEPTLEFT,
 	IDENTLEVEL_EXCEPTMIDDLE,
 	IDENTLEVEL_EXCEPTRIGHT,
@@ -139,7 +139,7 @@ struct DIFFSTATUS
 	void MergeStatus(const DIFFSTATUS& other)
 	{
 		if (Identical == IDENTLEVEL_ALL)
-			Identical = Identical;
+			Identical = other.Identical;
 		else if (
 			 (Identical == IDENTLEVEL_EXCEPTLEFT   && other.Identical != IDENTLEVEL_EXCEPTLEFT) ||
 			 (Identical == IDENTLEVEL_EXCEPTRIGHT  && other.Identical != IDENTLEVEL_EXCEPTRIGHT) ||
