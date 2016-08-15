@@ -311,7 +311,6 @@ int DiffList::LineToDiff(int nLine) const
 			std::stringstream s;
 			s << "Invalid return value " << result << " from LineRelDiff(): -1, 0 or 1 expected!";
 			throw s.str();
-			break;
 			}
 		}
 	}
