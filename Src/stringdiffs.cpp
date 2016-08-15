@@ -144,10 +144,10 @@ sd_ComputeWordDiffs(int nFiles, const String str[3],
 			{
 				wdiff& diff = (*pDiffs)[i];
 				diff.begin[2] = diff.begin[1];
-				diff.begin[0] = diff.begin[0];
+				//diff.begin[0] = diff.begin[0];
 				diff.begin[1] = 0;
 				diff.end[2] = diff.end[1];
-				diff.end[0] = diff.end[0];
+				//diff.end[0] = diff.end[0];
 				diff.end[1] = -1;
 			}
 		}
@@ -161,11 +161,11 @@ sd_ComputeWordDiffs(int nFiles, const String str[3],
 			for (size_t i = 0; i < pDiffs->size(); i++)
 			{
 				wdiff& diff = (*pDiffs)[i];
-				diff.begin[1] = diff.begin[1];
-				diff.begin[0] = diff.begin[0];
+				//diff.begin[1] = diff.begin[1];
+				//diff.begin[0] = diff.begin[0];
 				diff.begin[2] = 0;
-				diff.end[1] = diff.end[1];
-				diff.end[0] = diff.end[0];
+				//diff.end[1] = diff.end[1];
+				//diff.end[0] = diff.end[0];
 				diff.end[2] = -1;
 			}
 		}
