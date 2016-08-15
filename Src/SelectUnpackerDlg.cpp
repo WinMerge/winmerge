@@ -105,18 +105,14 @@ void CSelectUnpackerDlg::Initialize()
 
 
 CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename, CWnd* pParent /*=NULL*/)
-	: CTrDialog(CSelectUnpackerDlg::IDD, pParent)
+	: CTrDialog(CSelectUnpackerDlg::IDD, pParent), m_filteredFilenames(filename)
 {
-	m_filteredFilenames = filename;
 	Initialize();
 }
 
 CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename1, const String& filename2, CWnd* pParent /*=NULL*/)
-	: CTrDialog(CSelectUnpackerDlg::IDD, pParent)
+	: CTrDialog(CSelectUnpackerDlg::IDD, pParent), m_filteredFilenames(filename1 + _T("|") + filename2)
 {
-	m_filteredFilenames = filename1;
-	m_filteredFilenames += _T("|");
-	m_filteredFilenames += filename2;
 	Initialize();
 }
 
