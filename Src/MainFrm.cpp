@@ -289,6 +289,7 @@ static CPtrList &GetDocList(CMultiDocTemplate *pTemplate)
 CMainFrame::CMainFrame()
 : m_bFirstTime(TRUE)
 , m_pDropHandler(NULL)
+, m_bShowErrors(false)
 {
 }
 
