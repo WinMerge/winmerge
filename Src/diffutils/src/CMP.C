@@ -336,7 +336,7 @@ cmp ()
 		    {
 		      if (opt_print_chars)
 			{
-			  printf ("%6lu %3o ", char_number, c0);
+			  printf ("%6lu %3o ", (unsigned long)char_number, c0);
 			  printc (4, c0);
 			  printf (" %3o ", c1);
 			  printc (0, c1);
