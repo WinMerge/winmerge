@@ -62,6 +62,7 @@ public:
 	int nByteOrder;
 	Poco::SharedMemory *m_pSharedMemory;
 	FileImage(const TCHAR *, size_t trunc = 0, unsigned flags = 0);
+	FileImage(const FileImage& other) = delete;
 	~FileImage();
 	static int GuessByteOrder(unsigned);
 };
