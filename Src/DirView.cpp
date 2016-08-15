@@ -2950,7 +2950,7 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		{
 			try {
 				*pResult = DoItemRename(SelBegin(), GetDiffContext(), String(sText));
-			} catch (ContentsChangedException e) {
+			} catch (ContentsChangedException& e) {
 				AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 			}
 		}
