@@ -99,7 +99,7 @@ private:
 	This flag is set when we receive an OnTimer command, and we want 
 	to wait for theApp::OnIdle before processing it 
 	*/
-	bool fTimerWaitingForIdle;
+	unsigned fTimerWaitingForIdle;
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 
 	/// active prediffer ID : helper to check the radio button
