@@ -848,7 +848,7 @@ static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, con
 		// Don't break CDirView::DoCopyRightToLeft()
 		if (rent)
 			di->diffFileInfo[0].filename = rent->filename;
-		else
+		else if (ment)
 			di->diffFileInfo[0].filename = ment->filename;
 	}
 
@@ -865,7 +865,7 @@ static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, con
 		// Don't break CDirView::DoCopyLeftToRight()
 		if (lent)
 			di->diffFileInfo[1].filename = lent->filename;
-		else
+		else if (rent)
 			di->diffFileInfo[1].filename = rent->filename;
 	}
 
@@ -882,7 +882,7 @@ static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, con
 		// Don't break CDirView::DoCopyLeftToRight()
 		if (lent)
 			di->diffFileInfo[2].filename = lent->filename;
-		else
+		else if (ment)
 			di->diffFileInfo[2].filename = ment->filename;
 	}
 
