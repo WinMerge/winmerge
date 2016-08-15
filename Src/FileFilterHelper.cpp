@@ -225,7 +225,7 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 		if (strFileName.empty() || strFileName[0] != '\\')
 			strFileName = _T("\\") + strFileName;
 		// append a point if there is no extension
-		if (strFileName.find('.') == -1)
+		if (strFileName.find('.') == String::npos)
 			strFileName = strFileName + _T(".");
 
 		return m_pMaskFilter->Match(ucr::toUTF8(strFileName));

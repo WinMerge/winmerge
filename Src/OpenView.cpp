@@ -488,7 +488,7 @@ void COpenView::OnOK()
 	String filter(string_trim_ws(m_strExt));
 
 	// If prefix found from start..
-	if (filter.find(filterPrefix, 0) == 0)
+	if (filter.substr(0, filterPrefix.length()) == filterPrefix)
 	{
 		// Remove prefix + space
 		filter.erase(0, filterPrefix.length());
