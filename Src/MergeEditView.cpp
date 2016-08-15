@@ -365,7 +365,7 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 	CCrystalEditViewEx::OnActivateView(bActivate, pActivateView, pDeactiveView);
 
 	CMergeDoc* pDoc = GetDocument();
-	pDoc->UpdateHeaderActivity(m_nThisPane, bActivate != false);
+	pDoc->UpdateHeaderActivity(m_nThisPane, !!bActivate);
 }
 
 int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
