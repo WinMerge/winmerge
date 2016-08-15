@@ -672,7 +672,6 @@ void BCMenu::MeasureItem(LPMEASUREITEMSTRUCT)
 void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 {
 	UINT state = (((BCMenuData*)(lpMIS->itemData))->nFlags);
-	int BCMENU_PAD=4;
 	if(state & MF_SEPARATOR){
 		lpMIS->itemWidth = 0;
 		if (m_hTheme)
@@ -719,6 +718,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		
 		// Set width and height:
 		
+		const int BCMENU_PAD=4;
 		if (!m_hTheme)
 			lpMIS->itemWidth = m_iconX+BCMENU_PAD+8+t.cx;
 		else
