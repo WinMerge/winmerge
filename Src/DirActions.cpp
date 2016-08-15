@@ -34,10 +34,10 @@ static void ThrowConfirmationNeededException(const CDiffContext& ctxt, const Str
 		const String& src, const String& dest, bool destIsSide);
 
 ContentsChangedException::ContentsChangedException(const String& failpath)
+	: m_msg(string_format_string1(
+	        _("Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."),
+	        failpath))
 {
-	m_msg = string_format_string1(
-	_("Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."),
-	failpath);
 }
 
 /**
