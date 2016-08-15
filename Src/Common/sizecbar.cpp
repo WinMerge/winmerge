@@ -249,7 +249,7 @@ CSize CSizingControlBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
             return CSize(m_szVert.cx, 32767);
 
     // dirty cast - we need access to protected CDockBar members
-    CSCBDockBar* pDockBar = (CSCBDockBar*) m_pDockBar;
+    CSCBDockBar* pDockBar = static_cast<CSCBDockBar*>(m_pDockBar);
 
     // force imediate RecalcDelayShow() for all sizing bars on the row
     // with delayShow/delayHide flags set to avoid IsVisible() problems
@@ -902,7 +902,7 @@ void CSizingControlBar::GetRowSizingBars(CSCBArray& arrSCBars, int& nThis)
     for (int i = nFirstT; i <= nLastT; i++)
     {
         CSizingControlBar* pBar =
-            (CSizingControlBar*) m_pDockBar->m_arrBars[i];
+            static_cast<CSizingControlBar*>(m_pDockBar->m_arrBars[i]);
         if (HIWORD(pBar) == 0) continue; // placeholder
         if (!pBar->IsVisible()) continue;
         if (pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
@@ -931,7 +931,7 @@ BOOL CSizingControlBar::NegotiateSpace(int nLengthTotal, BOOL bHorz)
     int i=0;
     for (i = nFirst; i <= nLast; i++)
     {
-        pBar = (CSizingControlBar*) m_pDockBar->m_arrBars[i];
+        pBar = static_cast<CSizingControlBar*>(m_pDockBar->m_arrBars[i]);
         if (HIWORD(pBar) == 0) continue; // placeholder
         if (!pBar->IsVisible()) continue;
         BOOL bIsSizingBar = 
@@ -1060,7 +1060,7 @@ void CSizingControlBar::AlignControlBars()
     for (int i = nFirst; i <= nLast; i++)
     {
         CSizingControlBar* pBar =
-            (CSizingControlBar*) m_pDockBar->m_arrBars[i];
+            static_cast<CSizingControlBar*>(m_pDockBar->m_arrBars[i]);
         if (HIWORD(pBar) == 0) continue; // placeholder
         if (!pBar->IsVisible()) continue;
 
@@ -1179,7 +1179,7 @@ void CSizingControlBar::GlobalLoadState(CFrameWnd* pFrame,
     while (pos != NULL)
     {
         CSizingControlBar* pBar = 
-            (CSizingControlBar*) pFrame->m_listControlBars.GetNext(pos);
+            static_cast<CSizingControlBar*>(pFrame->m_listControlBars.GetNext(pos));
         ASSERT(pBar != NULL);
         if (pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
             pBar->LoadState(lpszProfileName);
@@ -1193,7 +1193,7 @@ void CSizingControlBar::GlobalSaveState(CFrameWnd* pFrame,
     while (pos != NULL)
     {
         CSizingControlBar* pBar =
-            (CSizingControlBar*) pFrame->m_listControlBars.GetNext(pos);
+            static_cast<CSizingControlBar*>(pFrame->m_listControlBars.GetNext(pos));
         ASSERT(pBar != NULL);
         if (pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
             pBar->SaveState(lpszProfileName);
@@ -1354,7 +1354,7 @@ CSizingControlBar* CSCBMiniDockFrameWnd::GetSizingControlBar()
     if (!pWnd->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
         return NULL;
 
-    return (CSizingControlBar*) pWnd;
+    return static_cast<CSizingControlBar*>(pWnd);
 }
 
 void CSCBMiniDockFrameWnd::OnSize(UINT nType, int cx, int cy) 
