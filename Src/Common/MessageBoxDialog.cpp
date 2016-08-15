@@ -141,40 +141,11 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
  */
 CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, UINT nMessageID,
 	UINT nTitleID, UINT nStyle, UINT nHelp ) 
-	: CDialog ( CMessageBoxDialog::IDD, pParent )
+	: CMessageBoxDialog(pParent, 
+		LoadResString(nMessageID).c_str(), 
+		nTitleID == 0 ? AfxGetAppName() : LoadResString(nTitleID).c_str(), 
+		nStyle, nHelp )
 {
-	// Check whether a title was given.
-	if ( nTitleID == 0 )
-	{
-		// Use the application name.
-		m_strTitle = AfxGetAppName();
-	}
-	else
-	{
-		// Try to load the title from the resources.
-		m_strTitle = LoadResString(nTitleID);
-	}
-
-	// Save the information about the message box.
-	m_strMessage = LoadResString(nMessageID);
-	m_nStyle			= nStyle;
-	m_nHelp				= nHelp;
-
-	// Do the default initialization.
-	m_hIcon				= NULL;
-	m_nTimeoutSeconds	= 0;
-	m_bTimeoutDisabled	= FALSE;
-	m_nTimeoutTimer		= 0;
-	m_strRegistryKey	= _T("");
-	m_nDefaultButton	= IDC_STATIC;
-	m_nEscapeButton		= IDC_STATIC;
-	m_sDialogUnit		= CSize(0, 0);
-	m_sIcon				= CSize(0, 0);
-	m_sMessage			= CSize(0, 0);
-	m_sCheckbox			= CSize(0, 0);
-	m_sButton			= CSize(0, 0);
-
-	m_aButtons.clear();
 }
 
 /*
