@@ -25,6 +25,7 @@ struct DiffFileData
 // instance interface
 
 	DiffFileData();
+	DiffFileData(const DiffFileData& other) = delete;
 	~DiffFileData();
 
 	bool OpenFiles(const String& szFilepath1, const String& szFilepath2);
