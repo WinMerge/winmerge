@@ -910,8 +910,11 @@ void toUTF8(const String& tstr, std::string& u8str)
 		if (uc >= 0xd800 && uc < 0xdc00)
 		{
 			++it;
-			wchar_t uc2 = *it;
-			uc = ((uc & 0x3ff) << 10) + (uc2 & 0x3ff) + 0x10000;
+			if (it != tstr.end())
+			{
+				wchar_t uc2 = *it;
+				uc = ((uc & 0x3ff) << 10) + (uc2 & 0x3ff) + 0x10000;
+			}
 		}
 		p += Ucs4_to_Utf8(uc, reinterpret_cast<unsigned char *>(p));
 	}
