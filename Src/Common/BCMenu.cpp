@@ -422,7 +422,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 				MF_BYCOMMAND, &info);
 			if(state&ODS_CHECKED || info.hbmpUnchecked) {
 				Draw3DCheckmark(pDC, rect2, state&ODS_SELECTED,
-					state&ODS_CHECKED ? info.hbmpChecked :
+					(state&ODS_CHECKED) ? info.hbmpChecked :
 				info.hbmpUnchecked);
 			}
 		}

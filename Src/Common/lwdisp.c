@@ -685,7 +685,7 @@ static STDMETHODIMP Invoke(struct LWDispatch *This,
 	VARIANT varEmpty;
 	HRESULT sc = dispIdMember < 0 ? dispIdMember : (HRESULT)wFlags;
 	if (pDispParams->cNamedArgs >
-		(wFlags & (DISPATCH_PROPERTYPUT|DISPATCH_PROPERTYPUTREF) ? 1U : 0U))
+		((wFlags & (DISPATCH_PROPERTYPUT|DISPATCH_PROPERTYPUTREF)) ? 1U : 0U))
 		return DISP_E_NONAMEDARGS;
 	VariantInit(&varEmpty);
 	sc =

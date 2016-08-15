@@ -180,7 +180,7 @@ slurp (current)
     {
       enum UNICODESET sig = get_unicode_signature(current);
       size_t alloc_extra
-        = (1 << sig) & ((1 << UCS2LE) | (1 << UCS2BE) | (1 << UCS4LE) | (1 << UCS4BE))
+        = ((1 << sig) & ((1 << UCS2LE) | (1 << UCS2BE) | (1 << UCS4LE) | (1 << UCS4BE)))
           // some flavor of non octet encoded unicode?
           ? ~0U	// yes, allocate extra room for transcoding
           : 0U;	// no, allocate no extra room for transcoding

@@ -409,7 +409,7 @@ UINT DirItemEnumerator::Open()
 	}
 	return
 	static_cast<UINT>((
-		m_nFlags & LVNI_SELECTED
+		(m_nFlags & LVNI_SELECTED)
 	?	pView(m_pView)->GetSelectedCount()
 	:	pView(m_pView)->GetItemCount()
 	) * nrgFolderPrefix);
