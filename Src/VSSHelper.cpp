@@ -101,6 +101,10 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 				String errMsg = GetSysError(GetLastError());
 				sError = string_format_string2(_("Cannot open file\n%1\n\n%2"), errMsg, strSavePath);
 			}
+			else
+			{
+				CloseHandle(hfile);
+			}
 			if (tfile == INVALID_HANDLE_VALUE)
 			{
 				sError = string_format(_T("CMainFrame::ReLinkVCProj() ")
@@ -108,6 +112,10 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 				LogErrorString(sError);
 				String errMsg = GetSysError(GetLastError());
 				sError = string_format_string2(_("Cannot open file\n%1\n\n%2"), errMsg, strSavePath);
+			}
+			else
+			{
+				CloseHandle(tfile);
 			}
 			return false;
 		}
