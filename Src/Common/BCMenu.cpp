@@ -922,7 +922,7 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,int nIconNormal)
 	// Find the old BCMenuData structure:
 	BCMenu *psubmenu = FindMenuOption(static_cast<int>(nID),nLoc);
 	do{
-		if(psubmenu && nLoc>=0)mdata = psubmenu->m_MenuList[nLoc];
+		if(psubmenu && nLoc!=-1)mdata = psubmenu->m_MenuList[nLoc];
 		else{
 			// Create a new BCMenuData structure:
 			mdata = new BCMenuData;
@@ -953,7 +953,7 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,int nIconNormal)
 		mdata->nID = nID;
 		bcsubs.Add(psubmenu);
 		bclocs.Add(nLoc);
-		if(psubmenu && nLoc>=0)psubmenu = FindAnotherMenuOption(static_cast<int>(nID),nLoc,bcsubs,bclocs);
+		if(psubmenu && nLoc!=-1)psubmenu = FindAnotherMenuOption(static_cast<int>(nID),nLoc,bcsubs,bclocs);
 		else psubmenu=NULL;
 	}while(psubmenu);
 	return (CMenu::ModifyMenu(static_cast<UINT>(nID),mdata->nFlags, static_cast<UINT>(nID),(LPCTSTR)mdata));
@@ -969,7 +969,7 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xo
 	// Find the old BCMenuData structure:
 	BCMenu *psubmenu = FindMenuOption(static_cast<int>(nID),nLoc);
 	do{
-		if(psubmenu && nLoc>=0)mdata = psubmenu->m_MenuList[nLoc];
+		if(psubmenu && nLoc!=-1)mdata = psubmenu->m_MenuList[nLoc];
 		else{
 			// Create a new BCMenuData structure:
 			mdata = new BCMenuData;
@@ -993,7 +993,7 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xo
 		mdata->nID = nID;
 		bcsubs.Add(psubmenu);
 		bclocs.Add(nLoc);
-		if(psubmenu && nLoc>=0)psubmenu = FindAnotherMenuOption(static_cast<int>(nID),nLoc,bcsubs,bclocs);
+		if(psubmenu && nLoc!=-1)psubmenu = FindAnotherMenuOption(static_cast<int>(nID),nLoc,bcsubs,bclocs);
 		else psubmenu=NULL;
 	}while(psubmenu);
 	return (CMenu::ModifyMenu(static_cast<UINT>(nID),mdata->nFlags,nID,(LPCTSTR)mdata));
@@ -1208,7 +1208,7 @@ BCMenuData *BCMenu::FindMenuItem(UINT_PTR nID)
 		UINT loc;
 		BCMenu *pMenu = FindMenuOption(static_cast<int>(nID), loc);
 		ASSERT(pMenu != this);
-		if (loc >= 0){
+		if (loc != -1){
 			return pMenu->FindMenuItem(nID);
 		}
 	}
