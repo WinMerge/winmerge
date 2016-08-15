@@ -209,7 +209,7 @@ struct ContentsChangedException
 struct DirActions
 {
 	typedef bool (DirActions::*method_type2)(const DIFFITEM& di) const;
-	typedef FileActionScript *(DirActions::*method_type)(FileActionScript *, const std::pair<int, const DIFFITEM *> it) const;
+	typedef FileActionScript *(DirActions::*method_type)(FileActionScript *, const std::pair<int, const DIFFITEM *>& it) const;
 
 	DirActions(const CDiffContext& ctxt, const bool RO[], method_type func = NULL, method_type2 func2 = NULL) : 
 		m_ctxt(ctxt), m_RO(RO), m_cur_method(func), m_cur_method2(func2) {}
@@ -346,7 +346,7 @@ struct DirActions
 	}
 
 	template<SIDE_TYPE src, SIDE_TYPE to>
-	FileActionScript *Copy(FileActionScript *pscript, const std::pair<int, const DIFFITEM *> it) const
+	FileActionScript *Copy(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
 	{
 		return CopyItem(pscript, it, src, to);
 	}
@@ -375,12 +375,12 @@ struct DirActions
 	}
 
 	template<SIDE_TYPE src>
-	FileActionScript *DeleteOn(FileActionScript *pscript, const std::pair<int, const DIFFITEM *> it) const
+	FileActionScript *DeleteOn(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
 	{
 		return DeleteItem(pscript, it, src);
 	}
 
-	FileActionScript *DeleteOnBoth(FileActionScript *pscript, const std::pair<int, const DIFFITEM *> it) const
+	FileActionScript *DeleteOnBoth(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
 	{
 		const DIFFITEM& di = *it.second;
 
@@ -405,7 +405,7 @@ struct DirActions
 		return pscript;
 	}
 
-	FileActionScript *DeleteOnEitherOrBoth(FileActionScript *pscript, const std::pair<int, const DIFFITEM *> it) const
+	FileActionScript *DeleteOnEitherOrBoth(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
 	{
 		const DIFFITEM& di = *it.second;
 		if (di.diffcode.diffcode != 0)
@@ -455,18 +455,18 @@ struct DirActions
 	}
 
 	template<SIDE_TYPE src>
-	FileActionScript *CopyTo(FileActionScript *pscript, const std::pair<int, const DIFFITEM *> it) const
+	FileActionScript *CopyTo(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
 	{
 		return CopyOrMoveItemTo(pscript, it, FileAction::ACT_COPY, src);
 	}
 
 	template<SIDE_TYPE src>
-	FileActionScript *MoveTo(FileActionScript *pscript, const std::pair<int, const DIFFITEM *> it) const
+	FileActionScript *MoveTo(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
 	{
 		return CopyOrMoveItemTo(pscript, it, FileAction::ACT_MOVE, src);
 	}
 
-	FileActionScript *operator()(FileActionScript *pscript, const std::pair<int, const DIFFITEM *> it) const
+	FileActionScript *operator()(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
 	{
 		return ((*this).*m_cur_method)(pscript, it);
 	}
