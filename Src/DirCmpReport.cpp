@@ -165,8 +165,10 @@ bool DirCmpReport::GenerateReport(String &errStr)
 				DWORD size = GetLength32(file);
 				// Rewrite CF_HTML header with valid offsets
 				file.SeekToBegin();
-				wsprintfA(buffer, header, cbHeader, size - 1,
-					cbHeader + sizeof start - 1, size - sizeof end + 1);
+				wsprintfA(buffer, header, cbHeader, 
+					static_cast<int>(size - 1),
+					static_cast<int>(cbHeader + sizeof start - 1),
+					static_cast<int>(size - sizeof end + 1));
 				file.Write(buffer, cbHeader);
 				SetClipboardData(CF_HTML, GlobalReAlloc(file.Detach(), size, 0));
 			}

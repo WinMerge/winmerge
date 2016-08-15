@@ -804,7 +804,7 @@ void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 				{
 					// Add the remaining seconds to the text of the button.
 					TCHAR szTimeoutSeconds[40];
-					wsprintf(szTimeoutSeconds, _T(" = %d"), m_nTimeoutSeconds);
+					wsprintf(szTimeoutSeconds, _T(" = %u"), m_nTimeoutSeconds);
 					strButtonText += szTimeoutSeconds;
 				}
 				// Set the text of the button.

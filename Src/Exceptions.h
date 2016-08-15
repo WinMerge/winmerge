@@ -93,7 +93,7 @@ public:
 	virtual bool GetErrorMessage( TCHAR *lpszError, unsigned nMaxError, unsigned *pnHelpContext = NULL )
 	{
 		static TCHAR message[512];
-		_sntprintf(message, sizeof(message)/sizeof(message[0]), _T("Exception %s (0x%.8x)"), getSeMessage(), getSeNumber());
+		_sntprintf(message, sizeof(message)/sizeof(message[0]), _T("Exception %s (0x%.8x)"), getSeMessage(), static_cast<unsigned>(getSeNumber()));
 		StringCchCopy(lpszError, nMaxError, message);
 		return true;
 	}

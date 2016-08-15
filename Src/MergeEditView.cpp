@@ -3245,7 +3245,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 	GetSelection(ptStart, ptEnd);
 
 	// Get last selected line (having widest linenumber)
-	UINT line = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(ptEnd.y);
+	int line = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(ptEnd.y);
 	size_t nNumWidth = string_to_str(line + 1).length();
 	
 	for (int i = ptStart.y; i <= ptEnd.y; i++)
