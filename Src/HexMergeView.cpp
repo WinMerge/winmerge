@@ -266,7 +266,7 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 		FILE_SHARE_READ | FILE_SHARE_WRITE,
 		0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	HRESULT hr = SE(h != INVALID_HANDLE_VALUE);
-	if (hr != S_OK)
+	if (h == INVALID_HANDLE_VALUE)
 		return hr;
 	DWORD length = GetFileSize(h, 0);
 	hr = SE(length != INVALID_FILE_SIZE);
@@ -318,12 +318,15 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	HANDLE h = CreateFile(sIntermediateFilename.c_str(), GENERIC_WRITE, FILE_SHARE_READ,
 		0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	HRESULT hr = SE(h != INVALID_HANDLE_VALUE);
-	if (hr != S_OK)
+	if (h == INVALID_HANDLE_VALUE)
 		return hr;
 	DWORD length = GetLength();
 	void *buffer = GetBuffer(length);
 	if (buffer == 0)
+	{
+		CloseHandle(h);
 		return E_POINTER;
+	}
 	DWORD cb = 0;
 	hr = SE(WriteFile(h, buffer, length, &cb, 0) && cb == length);
 	CloseHandle(h);
