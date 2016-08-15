@@ -235,7 +235,7 @@ BOOL BCMenu::DestroyMenu()
 		CMenu *ptr=FromHandle(m_SubMenus[m]);
 		if(ptr){
 			BOOL flag=ptr->IsKindOf(RUNTIME_CLASS( BCMenu ));
-			if(flag)delete((BCMenu *)ptr);
+			if(flag)delete(static_cast<BCMenu *>(ptr));
 		}
 	}
 	m_SubMenus.RemoveAll();
@@ -276,7 +276,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 	ASSERT(lpDIS != NULL);
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 	CRect rect;
-	UINT state = (((BCMenuData*)(lpDIS->itemData))->nFlags);
+	UINT state = reinterpret_cast<BCMenuData*>(lpDIS->itemData)->nFlags;
 	COLORREF clrBack=GetSysColor(COLOR_MENU);
 	CBrush brBackground(clrBack);
 
@@ -311,11 +311,12 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		CString strText;
 		
 		if(lpDIS->itemData != NULL){
-			nIconNormal = (((BCMenuData*)(lpDIS->itemData))->menuIconNormal);
-			xoffset = (((BCMenuData*)(lpDIS->itemData))->xoffset);
-			INT_PTR global_offset = (((BCMenuData*)(lpDIS->itemData))->global_offset);
-			bitmap = (((BCMenuData*)(lpDIS->itemData))->bitmap);
-			strText = ((BCMenuData*) (lpDIS->itemData))->GetString();
+			BCMenuData *mdata = reinterpret_cast<BCMenuData *>(lpDIS->itemData);
+			nIconNormal = mdata->menuIconNormal;
+			xoffset = mdata->xoffset;
+			INT_PTR global_offset = mdata->global_offset;
+			bitmap = mdata->bitmap;
+			strText = mdata->GetString();
 
 			if(nIconNormal<0&&global_offset>=0){
 				xoffset=global_offset;
@@ -671,7 +672,7 @@ void BCMenu::MeasureItem(LPMEASUREITEMSTRUCT)
 
 void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 {
-	UINT state = (((BCMenuData*)(lpMIS->itemData))->nFlags);
+	UINT state = reinterpret_cast<BCMenuData*>(lpMIS->itemData)->nFlags;
 	if(state & MF_SEPARATOR){
 		lpMIS->itemWidth = 0;
 		if (m_hTheme)
@@ -693,7 +694,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		pFont = dc.SelectObject (&fontMenu);// Select menu font in...
         
 		//Get pointer to text SK
-		const wchar_t *lpstrText = ((BCMenuData*)(lpMIS->itemData))->GetWideString();//SK: we use const to prevent misuse
+		const wchar_t *lpstrText = reinterpret_cast<BCMenuData*>(lpMIS->itemData)->GetWideString();//SK: we use const to prevent misuse
 		    
 		SIZE size;
 		size.cx=size.cy=0;
@@ -1226,7 +1227,7 @@ BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>
 #ifdef _CPPRTTI 
 		psubmenu=dynamic_cast<BCMenu *>(GetSubMenu(i));
 #else
-		psubmenu=(BCMenu *)GetSubMenu((int)i);
+		psubmenu=static_cast<BCMenu *>(GetSubMenu((int)i));
 #endif
 		if(psubmenu){
 			pgoodmenu=psubmenu->FindAnotherMenuOption(nId,nLoc,bcsubs,bclocs);
@@ -1259,7 +1260,7 @@ BCMenu *BCMenu::FindMenuOption(int nId,UINT& nLoc)
 #ifdef _CPPRTTI 
 		psubmenu=dynamic_cast<BCMenu *>(GetSubMenu(i));
 #else
-		psubmenu=(BCMenu *)GetSubMenu(i);
+		psubmenu=static_cast<BCMenu *>(GetSubMenu(i));
 #endif
 		if(psubmenu){
 			pgoodmenu=psubmenu->FindMenuOption(nId,nLoc);
@@ -1284,7 +1285,7 @@ BCMenuData *BCMenu::FindMenuOption(wchar_t *lpstrText)
 #ifdef _CPPRTTI 
 		psubmenu=dynamic_cast<BCMenu *>(GetSubMenu(i));
 #else
-		psubmenu=(BCMenu *)GetSubMenu(i);
+		psubmenu=static_cast<BCMenu *>(GetSubMenu(i));
 #endif
 		if(psubmenu){
 			pmenulist=psubmenu->FindMenuOption(lpstrText);
@@ -1616,7 +1617,7 @@ void BCMenu::UpdateMenu(CMenu *pmenu)
 #ifdef _CPPRTTI 
 	BCMenu *psubmenu = dynamic_cast<BCMenu *>(pmenu);
 #else
-	BCMenu *psubmenu = (BCMenu *)pmenu;
+	BCMenu *psubmenu = static_cast<BCMenu *>(pmenu);
 #endif
 	if(psubmenu)psubmenu->SynchronizeMenu();
 }
@@ -1627,7 +1628,7 @@ LRESULT BCMenu::FindKeyboardShortcut(UINT nChar, UINT nFlags,
 #ifdef _CPPRTTI 
 	BCMenu *pBCMenu = dynamic_cast<BCMenu *>(pMenu);
 #else
-	BCMenu *pBCMenu = (BCMenu *)pMenu;
+	BCMenu *pBCMenu = static_cast<BCMenu *>(pMenu);
 #endif
 	if(pBCMenu && nFlags&MF_POPUP){
 		CString key(_T('&'),2);//SK: modified for Unicode correctness
@@ -1913,7 +1914,7 @@ BOOL BCMenu::RemoveMenu(UINT uiId,UINT nFlags)
 			m_MenuList.RemoveAt(uiId);
 		}
 		else{
-			BCMenu* pSubMenu = (BCMenu*) GetSubMenu(uiId);
+			BCMenu* pSubMenu = static_cast<BCMenu*>(GetSubMenu(uiId));
 			if(NULL==pSubMenu){
 				UINT uiCommandId = GetMenuItemID(uiId);
 				for(int i=0;i<m_MenuList.GetSize(); i++){
@@ -1977,7 +1978,7 @@ BOOL BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 			}
 		}
 		else{
-			BCMenu* pSubMenu = (BCMenu*) GetSubMenu(uiId);
+			BCMenu* pSubMenu = static_cast<BCMenu*>(GetSubMenu(uiId));
 			if(NULL==pSubMenu){
 				UINT uiCommandId = GetMenuItemID(uiId);
 				for(int i=0;i<m_MenuList.GetSize(); i++){
@@ -2124,7 +2125,7 @@ BCMenu* BCMenu::GetSubBCMenu(wchar_t* lpszSubMenuName)
 		CMenu *ptr=FromHandle(bchmenu);
 		if(ptr){
 			BOOL flag=ptr->IsKindOf(RUNTIME_CLASS( BCMenu ));
-			if(flag)return((BCMenu *)ptr);
+			if(flag)return(static_cast<BCMenu *>(ptr));
 		}
 	}
 	return NULL;
@@ -2138,7 +2139,7 @@ int BCMenu::GetMenuPosition(wchar_t* pText)
 	int i,j;
 	for(i=0;i<GetMenuItemCount();++i)
 	{
-		BCMenu* psubmenu=(BCMenu *)GetSubMenu(i);
+		BCMenu* psubmenu=static_cast<BCMenu *>(GetSubMenu(i));
 		if(!psubmenu)
 		{
 			for(j=0;j<=m_MenuList.GetUpperBound();++j)
@@ -2343,7 +2344,7 @@ bool BCMenu::AppendMenu (BCMenu* pMenuToAdd, bool add_separator /*= true*/, int 
 		pMenuToAdd->GetMenuText( iLoop, sMenuAddString, MF_BYPOSITION );
 
 		// Try to get the sub-menu of the current menu item
-		BCMenu* pSubMenu = (BCMenu*)pMenuToAdd->GetSubMenu(iLoop);
+		BCMenu* pSubMenu = static_cast<BCMenu*>(pMenuToAdd->GetSubMenu(iLoop));
 
 		// Check if we have a sub menu
 		if (!pSubMenu)
