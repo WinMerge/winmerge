@@ -99,7 +99,7 @@ struct AllowUpwardDirectory
 struct DirViewFilterSettings
 {
 	template<class GetOptionBool>
-	DirViewFilterSettings(GetOptionBool getoptbool)
+	explicit DirViewFilterSettings(GetOptionBool getoptbool)
 	{
 		show_skipped = getoptbool(OPT_SHOW_SKIPPED);
 		show_unique_left = getoptbool(OPT_SHOW_UNIQUE_LEFT);
@@ -202,7 +202,7 @@ struct ConfirmationNeededException
 
 struct ContentsChangedException
 {
-	ContentsChangedException(const String& failpath);
+	explicit ContentsChangedException(const String& failpath);
 	String m_msg;
 };
 

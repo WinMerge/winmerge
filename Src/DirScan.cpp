@@ -886,7 +886,7 @@ static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, con
 			di->diffFileInfo[2].filename = ment->filename;
 	}
 
-	di->diffcode = code;
+	di->diffcode.diffcode = code;
 
 	myStruct->context->m_pCompareStats->IncreaseTotalItems();
 	myStruct->pSemaphore->set();

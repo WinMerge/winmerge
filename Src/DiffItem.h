@@ -59,7 +59,7 @@ struct DIFFCODE
 
 	unsigned diffcode;
 
-	DIFFCODE(unsigned diffcode = 0) : diffcode(diffcode) { }
+	explicit DIFFCODE(unsigned diffcode = 0) : diffcode(diffcode) { }
 
 protected:
 	/// Worker function, to check one area (mask) of code for a particular value (result)

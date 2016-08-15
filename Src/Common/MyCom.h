@@ -17,8 +17,8 @@ class CMyComPtr
 public:
   // typedef T _PtrClass;
   CMyComPtr() { _p = NULL;}
-  CMyComPtr(T* p) {if ((_p = p) != NULL) p->AddRef(); }
-  CMyComPtr(const CMyComPtr<T>& lp)
+  explicit CMyComPtr(T* p) {if ((_p = p) != NULL) p->AddRef(); }
+  explicit CMyComPtr(const CMyComPtr<T>& lp)
   {
     if ((_p = lp._p) != NULL)
       _p->AddRef();
@@ -89,7 +89,7 @@ class CMyComBSTR
 public:
   BSTR m_str;
   CMyComBSTR(): m_str(NULL) {}
-  CMyComBSTR(LPCOLESTR src) { m_str = ::SysAllocString(src); }
+  explicit CMyComBSTR(LPCOLESTR src) { m_str = ::SysAllocString(src); }
   // Move constructor
   explicit CMyComBSTR(BSTR *bstr): m_str(*bstr) { *bstr = NULL; }
   // CMyComBSTR(int nSize) { m_str = ::SysAllocStringLen(NULL, nSize); }
@@ -173,8 +173,8 @@ private:
 	const CLIPFORMAT cf;
 public:
 	operator CLIPFORMAT() const { return cf; }
-	CMyClipFormat(CLIPFORMAT cf) : cf(cf) { }
-	CMyClipFormat(LPCTSTR cfstr) : cf(RegisterClipboardFormat(cfstr)) { }
+	explicit CMyClipFormat(CLIPFORMAT cf) : cf(cf) { }
+	explicit CMyClipFormat(LPCTSTR cfstr) : cf(RegisterClipboardFormat(cfstr)) { }
 };
 
 class CMyFormatEtc : public FORMATETC
@@ -216,39 +216,39 @@ class CMyVariant : public VARIANT
 public:
 	CMyVariant() { VariantInit(this); }
 	~CMyVariant() { VariantClear(this); }
-	CMyVariant(short value)
+	explicit CMyVariant(short value)
 	{
 		V_VT(this) = VT_I2;
 		V_I2(this) = value;
 	}
-	CMyVariant(long value)
+	explicit CMyVariant(long value)
 	{
 		V_VT(this) = VT_I4;
 		V_I4(this) = value;
 	}
-	CMyVariant(bool value)
+	explicit CMyVariant(bool value)
 	{
 		V_VT(this) = VT_BOOL;
 		V_BOOL(this) = value ? VARIANT_TRUE : VARIANT_FALSE;
 	}
-	CMyVariant(LPCOLESTR value)
+	explicit CMyVariant(LPCOLESTR value)
 	{
 		V_VT(this) = VT_BSTR;
 		V_BSTR(this) = SysAllocString(value);
 	}
-	CMyVariant(LPCOLESTR value, UINT len)
+	explicit CMyVariant(LPCOLESTR value, UINT len)
 	{
 		V_VT(this) = VT_BSTR;
 		V_BSTR(this) = SysAllocStringLen(value, len);
 	}
-	CMyVariant(IDispatch *value)
+	explicit CMyVariant(IDispatch *value)
 	{
 		V_VT(this) = VT_DISPATCH;
 		V_DISPATCH(this) = value;
 		if (value)
 			value->AddRef();
 	}
-	CMyVariant(const CMyVariant &src)
+	explicit CMyVariant(const CMyVariant &src)
 	{
 		VariantInit(this);
 #if _MSC_VER < 1500 
