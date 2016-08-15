@@ -41,7 +41,7 @@ class CVssPromptDlg::Impl : public CTrDialog
 {
 // Construction
 public:
-	CVssPromptDlg::Impl(CVssPromptDlg *p, CWnd* pParent = NULL);   // standard constructor
+	Impl(CVssPromptDlg *p, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CVssPromptDlg::Impl)

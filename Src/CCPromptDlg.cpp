@@ -35,7 +35,7 @@ class CCCPromptDlg::Impl : public CTrDialog
 {
 // Construction
 public:
-	CCCPromptDlg::Impl(CCCPromptDlg *p, CWnd* pParent = NULL);   // standard constructor
+	Impl(CCCPromptDlg *p, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CCCPromptDlg::Impl)

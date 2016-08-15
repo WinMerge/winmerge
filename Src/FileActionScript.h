@@ -106,7 +106,6 @@ struct FileActionItem : public FileAction
 class FileActionScript
 {
 public:
-	typedef 
 	FileActionScript();
 	~FileActionScript();
 
