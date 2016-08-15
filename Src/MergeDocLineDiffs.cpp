@@ -211,7 +211,7 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 
 	int i;
 	std::vector<wdiff>::iterator it;
-	for (i = 0, it = worddiffs.begin(); it != worddiffs.end(); i++, it++)
+	for (i = 0, it = worddiffs.begin(); it != worddiffs.end(); ++i, ++it)
 	{
 		WordDiff wd;
 		for (file = 0; file < m_nBuffers; file++)
