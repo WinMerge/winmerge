@@ -149,7 +149,7 @@ LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
 	wchar_t wpath[512];
 
 	sc = CLSIDFromProgID(L"WinMerge32BitPluginProxy.Loader", &clsid);
-	if SUCCEEDED(sc)
+	if (SUCCEEDED(sc))
 		sc = CoCreateInstance(&clsid, 0, CLSCTX_LOCAL_SERVER|CLSCTX_ACTIVATE_32_BIT_SERVER, &IID_IDispatch, &pv);
 	if (FAILED(sc))
 	{
