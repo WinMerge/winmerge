@@ -198,7 +198,7 @@ class CSCBDockContext : public CDockContext
 {
 public:
 // Construction
-    CSCBDockContext(CControlBar* pBar) : CDockContext(pBar) {}
+    explicit CSCBDockContext(CControlBar* pBar) : CDockContext(pBar) {}
 
 // Drag Operations
     virtual void StartDrag(CPoint pt);

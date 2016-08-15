@@ -143,7 +143,7 @@ CompareStats::CMP_STATE CompareStats::GetCompareState() const
  */
 CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode) const
 {
-	DIFFCODE di = diffcode;
+	DIFFCODE di(diffcode);
 	
 	// Test first for skipped so we pick all skipped items as such 
 	if (di.isResultFiltered())
