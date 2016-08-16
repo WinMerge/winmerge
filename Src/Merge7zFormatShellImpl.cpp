@@ -65,7 +65,7 @@ HRESULT Merge7zFormatShellImpl::DeCompressArchive(HWND, LPCTSTR path, LPCTSTR fo
 	if (FAILED(hr))
 		return hr;
 
-	hr = pFileOperation->SetOperationFlags(0);
+	pFileOperation->SetOperationFlags(0);
 
 	IShellItemPtr pShellItemDest, pShellItem;
 	IEnumShellItemsPtr pEnumShellItems;

@@ -294,7 +294,7 @@ static void CopyFromLMtoCU(HKEY lmKey, HKEY cuKey, LPCTSTR valname)
 			retval = RegQueryValueEx(lmKey, valname, 0, &type, &buf[0], &len);
 			if (retval == ERROR_SUCCESS)
 			{
-				retval = RegSetValueEx(cuKey, valname , 0, type,
+				RegSetValueEx(cuKey, valname , 0, type,
 					&buf[0], len);
 			}
 		}

@@ -41,7 +41,6 @@ namespace
 		std::vector<String> files;
 		// Get the number of pathnames that have been dropped
 		UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
-		UINT fileCount = 0;
 
 		// get all file names. but we'll only need the first one.
 		for (WORD x = 0; x < wNumFilesDropped; x++)
@@ -362,5 +361,5 @@ HRESULT DropHandler::Drop(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, D
 		files.resize(3);
 	if (!files.empty())
 		m_callback(files);
-	return S_OK;
+	return ok ? S_OK : E_FAIL;
 }

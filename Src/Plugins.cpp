@@ -117,14 +117,13 @@ int GetFunctionsFromScript(IDispatch *piDispatch, vector<String>& namesArray, ve
 	UINT iValidFunc = 0;
 	if (piDispatch)
 	{
-		HRESULT hr;
 		ITypeInfo *piTypeInfo=0;
 		unsigned  iTInfo = 0; // 0 for type information of IDispatch itself
 		LCID  lcid=0; // locale for localized method names (ignore if no localized names)
-		if (SUCCEEDED(hr = piDispatch->GetTypeInfo(iTInfo, lcid, &piTypeInfo)))
+		if (SUCCEEDED(piDispatch->GetTypeInfo(iTInfo, lcid, &piTypeInfo)))
 		{
 			TYPEATTR *pTypeAttr=0;
-			if (SUCCEEDED(hr = piTypeInfo->GetTypeAttr(&pTypeAttr)))
+			if (SUCCEEDED(piTypeInfo->GetTypeAttr(&pTypeAttr)))
 			{
 				// allocate arrays for the returned structures
 				// the names array is NULL terminated
@@ -136,7 +135,7 @@ int GetFunctionsFromScript(IDispatch *piDispatch, vector<String>& namesArray, ve
 				{
 					UINT iFuncDesc = iMaxFunc - iFunc;
 					FUNCDESC *pFuncDesc;
-					if (SUCCEEDED(hr = piTypeInfo->GetFuncDesc(iFuncDesc, &pFuncDesc)))
+					if (SUCCEEDED(piTypeInfo->GetFuncDesc(iFuncDesc, &pFuncDesc)))
 					{
 						// exclude properties
 						// exclude IDispatch inherited methods
@@ -144,7 +143,7 @@ int GetFunctionsFromScript(IDispatch *piDispatch, vector<String>& namesArray, ve
 						{
 							BSTR bstrName;
 							UINT cNames;
-							if (SUCCEEDED(hr = piTypeInfo->GetNames(pFuncDesc->memid,
+							if (SUCCEEDED(piTypeInfo->GetNames(pFuncDesc->memid,
 								&bstrName, 1, &cNames)))
 							{
 								IdArray[iValidFunc] = pFuncDesc->memid;

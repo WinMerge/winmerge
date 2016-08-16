@@ -1596,7 +1596,6 @@ void CDirView::GetItemFileNames(int sel, String& strLeft, String& strRight) cons
  */
 void CDirView::GetItemFileNames(int sel, PathContext * paths) const
 {
-	String strPath[3];
 	UINT_PTR diffpos = GetItemKey(sel);
 	if (diffpos == SPECIAL_ITEM_POS)
 	{
@@ -1724,7 +1723,6 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI)
 	if (sel2 == -1)
 	{
 		// One item selected
-		const DIFFITEM& di = GetDiffItem(sel1);
 		if (selectionType != SELECTIONTYPE_NORMAL)
 		{
 			pCmdUI->Enable(FALSE);

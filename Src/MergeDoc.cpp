@@ -1044,22 +1044,15 @@ bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
 {
 	const int cd_dbegin = dr.dbegin;
 	const int cd_dend = dr.dend;
-	int nBuffer;
 
-	// Must ensure line number is in range before getting line flags
-	if (cd_dend >= m_ptBuf[0]->GetLineCount())
-		return false;
-	DWORD dwLeftFlags = m_ptBuf[0]->GetLineFlags(cd_dend);
-
-	// Must ensure line number is in range before getting line flags
-	if (cd_dend >= m_ptBuf[1]->GetLineCount())
-		return false;
-	DWORD dwRightFlags = m_ptBuf[1]->GetLineFlags(cd_dend);
-
-	// Optimization - check last line first so we don't need to
-	// check whole diff for obvious cases
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
+		// Must ensure line number is in range before getting line flags
+		if (cd_dend >= m_ptBuf[nBuffer]->GetLineCount())
+			return false;
+
+		// Optimization - check last line first so we don't need to
+		// check whole diff for obvious cases
 		DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(cd_dend);
 		if (!(dwFlags & LF_WINMERGE_FLAGS))
 			return false;
@@ -1067,7 +1060,7 @@ bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
 
 	for (int line = cd_dbegin; line < cd_dend; line++)
 	{
-		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(cd_dend);
 			if (!(dwFlags & LF_WINMERGE_FLAGS))
