@@ -486,7 +486,7 @@ String ExpandShortcut(const String &inFile)
 			{
 				// find the path from that
 				TCHAR buf[MAX_PATH] = {0};
-				HRESULT hres = psl->GetPath(buf, MAX_PATH, NULL, SLGP_UNCPRIORITY);
+				psl->GetPath(buf, MAX_PATH, NULL, SLGP_UNCPRIORITY);
 				outFile = buf;
 			}
 			ppf->Release();

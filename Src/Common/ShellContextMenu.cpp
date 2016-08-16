@@ -77,7 +77,7 @@ HMENU CShellContextMenu::GetHMENU() const
 
 bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& retval)
 {
-	HRESULT hr = E_FAIL;
+	//HRESULT hr = E_FAIL;
 	switch (message)
 	{
 	case WM_DRAWITEM:
@@ -85,7 +85,7 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 	case WM_MEASUREITEM:
 		if (m_pShellContextMenu3)
 		{
-			if (FAILED(hr = m_pShellContextMenu3->HandleMenuMsg(message, wParam, lParam/*, &retval*/)))
+			if (FAILED(/*hr = */m_pShellContextMenu3->HandleMenuMsg(message, wParam, lParam/*, &retval*/)))
 			{
 				//TRACE(_T("HandleMenuMsg(%x) failed with error: %lx\n"), message, hr);
 				//if (message == WM_DRAWITEM)
@@ -99,7 +99,7 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 		}
 		else if (m_pShellContextMenu2)
 		{
-			if (FAILED(hr = m_pShellContextMenu2->HandleMenuMsg(message, wParam, lParam)))
+			if (FAILED(/*hr = */m_pShellContextMenu2->HandleMenuMsg(message, wParam, lParam)))
 			{
 				//TRACE(_T("HandleMenuMsg(%x) failed with error: %lx\n"), message, hr);
 				//assert(0);
@@ -112,7 +112,7 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 		if (m_pShellContextMenu3)
 		{
 			retval = 0;
-			if (FAILED(hr = m_pShellContextMenu3->HandleMenuMsg2(message, wParam, lParam, &retval)))
+			if (FAILED(/*hr = */m_pShellContextMenu3->HandleMenuMsg2(message, wParam, lParam, &retval)))
 			{
 				//TRACE(_T("HandleMenuMsg2(%x) failed with error: %lx\n"), message, hr);
 				//assert(0);
@@ -125,9 +125,9 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 
 bool CShellContextMenu::QueryShellContextMenu()
 {
-	HRESULT hr = E_FAIL;
+	//HRESULT hr = E_FAIL;
 	IShellFolderPtr pDesktop;
-	if (FAILED(hr = SHGetDesktopFolder(&pDesktop)))
+	if (FAILED(/*hr = */SHGetDesktopFolder(&pDesktop)))
 		return false;
 
 	String parentDir; // use it to track that all selected files are in the same parent directory
@@ -145,7 +145,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 			parentDir = currentDir;
 
 			LPITEMIDLIST dirPidl;
-			if (FAILED(hr = pDesktop->ParseDisplayName(NULL,					   // hwnd
+			if (FAILED(/*hr = */pDesktop->ParseDisplayName(NULL,					   // hwnd
 													   NULL,					   // pbc
 													   CT2OLE(currentDir.c_str()), // pszDisplayName
 													   NULL,					   // pchEaten
@@ -156,7 +156,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 				return false;
 			}
 
-			if (FAILED(hr = pDesktop->BindToObject(dirPidl,			 // pidl
+			if (FAILED(/*hr = */pDesktop->BindToObject(dirPidl,			 // pidl
 												   NULL,			 // pbc
 												   IID_IShellFolder, // riid
 												   reinterpret_cast<void**>(&pCurrFolder))))
@@ -170,7 +170,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 		}
 
 		LPITEMIDLIST pidl;
-		if (FAILED(hr = pCurrFolder->ParseDisplayName(NULL,
+		if (FAILED(/*hr = */pCurrFolder->ParseDisplayName(NULL,
 													  NULL,
 													  CT2OLE(file.filename.c_str()), 
 													  NULL,
@@ -189,7 +189,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 	}
 
 	IContextMenuPtr pCMenu1;
-	if (FAILED(hr = pCurrFolder->GetUIObjectOf(NULL,
+	if (FAILED(/*hr = */pCurrFolder->GetUIObjectOf(NULL,
 											   static_cast<unsigned>(pidls.Size()),
 											   pidls.GetList(),
 											   IID_IContextMenu,
@@ -214,7 +214,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 	}
 
 	ASSERT(::IsMenu(m_hShellContextMenu));
-	if (FAILED(hr = m_pPreferredMenu->QueryContextMenu(m_hShellContextMenu,
+	if (FAILED(/*hr = */m_pPreferredMenu->QueryContextMenu(m_hShellContextMenu,
 													   0,
 													   m_cmdFirst,
 													   m_cmdLast,

@@ -242,7 +242,6 @@ BOOL COccManager::IsDialogMessage(CWnd* pWndDlg, LPMSG lpMsg)
 {
 	CWnd* pWndFocus = CWnd::GetFocus();
 	HWND hWndFocus = pWndFocus->GetSafeHwnd();
-	HWND hWndDlg = pWndDlg->GetSafeHwnd();
 	UINT uMsg = lpMsg->message;
 
 	if (((uMsg >= WM_KEYFIRST) && (uMsg <= WM_KEYLAST)) ||

@@ -2484,22 +2484,6 @@ void CMergeEditView::OnUpdateStatusRO(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Call ::AppendMenu, and if it fails get error string into local variable
- *
- * This only provides functionality for debugging.
- */
-static bool DoAppendMenu(HMENU hMenu, UINT uFlags, UINT_PTR uIDNewItem, LPCTSTR lpNewItem)
-{
-	bool ok = ::AppendMenu(hMenu, uFlags, uIDNewItem, lpNewItem) != false;
-	if (!ok)
-	{
-		int nerr = GetLastError();
-		String syserr = GetSysError(nerr);
-	}
-	return ok;
-}
-
-/**
  * @brief Create the dynamic submenu for scripts
  */
 HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
@@ -2516,20 +2500,20 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 	if (functionNamesList.size() == 0)
 	{
 		// no script : create a <empty> entry
-		DoAppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, _("< Empty >").c_str());
+		AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, _("< Empty >").c_str());
 	}
 	else
 	{
 		// or fill in the submenu with the scripts names
 		int ID = ID_SCRIPT_FIRST;	// first ID in menu
 		for (i = 0 ; i < functionNamesList.size() ; i++, ID++)
-			DoAppendMenu(hMenu, MF_STRING, ID, functionNamesList[i].c_str());
+			AppendMenu(hMenu, MF_STRING, ID, functionNamesList[i].c_str());
 
 		functionNamesList.clear();
 	}
 
 	if (!IsWindowsScriptThere())
-		DoAppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, _("WSH not found - .sct scripts disabled").c_str());
+		AppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, _("WSH not found - .sct scripts disabled").c_str());
 
 	return hMenu;
 }
@@ -2558,7 +2542,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	ASSERT(pd);
 
 	// title
-	DoAppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
+	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
 
 	// get the scriptlet files
 	PluginArray * piScriptArray = 
@@ -2568,8 +2552,8 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	// build the menu : first part, suggested plugins
 	// title
-	DoAppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-	DoAppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
+	AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
 
 	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
 	int iScript;
@@ -2579,7 +2563,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin->m_disabled || !plugin->TestAgainstRegList(pd->m_strBothFilenames))
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
+		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
 	}
 	for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
 	{
@@ -2587,13 +2571,13 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin->m_disabled || !plugin->TestAgainstRegList(pd->m_strBothFilenames))
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
+		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
 	}
 
 	// build the menu : second part, others plugins
 	// title
-	DoAppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-	DoAppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
+	AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
 
 	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
@@ -2602,7 +2586,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin->m_disabled || plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
+		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
 	}
 	for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
 	{
@@ -2610,7 +2594,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin->m_disabled || plugin->TestAgainstRegList(pd->m_strBothFilenames) != false)
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
+		AppendMenu(hMenu, MF_STRING, ID, plugin->m_name.c_str());
 	}
 
 	// compute the m_CurrentPredifferID (to set the radio button)
@@ -3791,13 +3775,13 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 	const HMENU hSubMenu = pCmdUI->m_pSubMenu->m_hMenu;
 
 	String name = theApp.LoadString(ID_COLORSCHEME_FIRST);
-	DoAppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
-	DoAppendMenu(hSubMenu, MF_SEPARATOR, 0, NULL);
+	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
+	AppendMenu(hSubMenu, MF_SEPARATOR, 0, NULL);
 
 	for (int i = ID_COLORSCHEME_FIRST + 1; i <= ID_COLORSCHEME_LAST; ++i)
 	{
 		name = theApp.LoadString(i);
-		DoAppendMenu(hSubMenu, MF_STRING, i, name.c_str());
+		AppendMenu(hSubMenu, MF_STRING, i, name.c_str());
 	}
 
 	pCmdUI->Enable(true);

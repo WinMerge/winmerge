@@ -81,10 +81,12 @@ bool CMergeDoc::DoFileEncodingDialog()
 		for (int pane = 0; pane < m_nBuffers; pane++)
 		{
 			bRO[pane] = m_ptBuf[pane]->GetReadOnly();
-			if ((pane == 0 && doLeft) ||
+			if (!bRO[pane] && (
+				(pane == 0 && doLeft) ||
 				(pane == 1 && doRight  && m_nBuffers <  3) ||
 				(pane == 1 && doMiddle && m_nBuffers == 3) ||
-				(pane == 2 && doRight  && m_nBuffers == 3))
+				(pane == 2 && doRight  && m_nBuffers == 3)
+				))
 			{
 				m_ptBuf[pane]->setCodepage(nSaveCodepage);
 				m_ptBuf[pane]->SetModified();

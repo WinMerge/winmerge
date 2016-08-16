@@ -673,7 +673,7 @@ isWordBreak(int breakType, const TCHAR *str, int index)
 #ifdef _UNICODE
 	if ((ch & 0xff00) == 0)
 	{
-		TCHAR nextCh = str[index + 1];
+//		TCHAR nextCh = str[index + 1];
 		// breakType==0 means whitespace only
 		if (!breakType)
 			return false;
