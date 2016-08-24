@@ -1334,60 +1334,64 @@ void RestoreTreeState(CDiffContext& ctxt, DirViewTreeState *pTreeState)
 AllowUpwardDirectory::ReturnCode
 CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTempPathContext, PathContext &pathsParent)
 {
-	const String & path0 = ctxt.GetNormalizedPath(0);
-	const String & path1 = ctxt.GetNormalizedPath(1);
-	const String & path2 = ctxt.GetCompareDirs() > 2 ? ctxt.GetNormalizedPath(2) : _T("");
+	std::vector<String> path(ctxt.GetCompareDirs());
+	for (int i = 0; i < path.size(); ++i)
+		path[i] = ctxt.GetNormalizedPath(i);
 
 	// If we have temp context it means we are comparing archives
 	if (pTempPathContext)
 	{
-		String name0 = paths_FindFileName(path0);
-		String name1 = paths_FindFileName(path1);
-		String name2 = (ctxt.GetCompareDirs() > 2) ? paths_FindFileName(path2) : _T("");
+		std::vector<String> name(path.size());
+		for (int i = 0; i < path.size(); ++i)
+			name[i] = paths_FindFileName(path[i]);
 
-		/* FIXME: for 3way diff*/
 		String::size_type cchLeftRoot = pTempPathContext->m_strRoot[0].length();
-		if (path0.length() <= cchLeftRoot)
+		if (path[0].length() <= cchLeftRoot)
 		{
 			pathsParent.SetSize(ctxt.GetCompareDirs());
 			if (pTempPathContext->m_pParent)
 			{
-				pathsParent[0] = pTempPathContext->m_pParent->m_strRoot[0];
-				pathsParent[1] = pTempPathContext->m_pParent->m_strRoot[1];
-				if (GetPairComparability(PathContext(pathsParent[0], pathsParent[1])) != IS_EXISTING_DIR)
+				for (int i = 0; i < path.size(); ++i)
+					pathsParent[i] = pTempPathContext->m_pParent->m_strRoot[i];
+				if (GetPairComparability(pathsParent) != IS_EXISTING_DIR)
 					return AllowUpwardDirectory::Never;
 				return AllowUpwardDirectory::ParentIsTempPath;
 			}
-			pathsParent[0] = pTempPathContext->m_strDisplayRoot[0];
-			pathsParent[1] = pTempPathContext->m_strDisplayRoot[1];
-			if (!ctxt.m_piFilterGlobal->includeFile(pathsParent[0], pathsParent[1]))
-				return AllowUpwardDirectory::Never;
-			if (string_compare_nocase(name0, _T("ORIGINAL")) == 0 && string_compare_nocase(name1, _T("ALTERED")) == 0)
+			for (int i = 0; i < path.size(); ++i)
+				pathsParent[i] = pTempPathContext->m_strDisplayRoot[i];
+			if (pathsParent.size() < 3)
 			{
-				pathsParent[0] = paths_GetParentPath(pathsParent[0]);
-				pathsParent[1] = paths_GetParentPath(pathsParent[1]);
-			}
-			name0 = paths_FindFileName(pathsParent[0]);
-			name1 = paths_FindFileName(pathsParent[1]);
-			if (string_compare_nocase(name0, name1) == 0)
-			{
-				pathsParent[0] = paths_GetParentPath(pathsParent[0]);
-				pathsParent[1] = paths_GetParentPath(pathsParent[1]);
-				if (GetPairComparability(PathContext(pathsParent[0], pathsParent[1])) != IS_EXISTING_DIR)
+				if (!ctxt.m_piFilterGlobal->includeFile(pathsParent[0], pathsParent[1]))
 					return AllowUpwardDirectory::Never;
-				return AllowUpwardDirectory::ParentIsTempPath;
+			}
+			else
+			{
+				if (!ctxt.m_piFilterGlobal->includeFile(pathsParent[0], pathsParent[1], pathsParent[2]))
+					return AllowUpwardDirectory::Never;
+			}
+			if (path.size() == 2 && 
+				string_compare_nocase(name[0], _T("ORIGINAL")) == 0 && 
+				string_compare_nocase(name[1], _T("ALTERED")) == 0)
+			{
+				for (int i = 0; i < path.size(); ++i)
+					pathsParent[i] = paths_GetParentPath(pathsParent[i]);
+				for (int i = 0; i < path.size(); ++i)
+					name[i] = paths_FindFileName(pathsParent[i]);
+				if (string_compare_nocase(name[0], name[1]) == 0)
+				{
+					if (GetPairComparability(pathsParent) != IS_EXISTING_DIR)
+						return AllowUpwardDirectory::Never;
+					return AllowUpwardDirectory::ParentIsTempPath;
+				}
 			}
 			return AllowUpwardDirectory::No;
 		}
-		name1 = name0;
 	}
 
 	// If regular parent folders exist, allow opening them
 	pathsParent.SetSize(ctxt.GetCompareDirs());
-	pathsParent[0] = paths_GetParentPath(path0);
-	pathsParent[1] = paths_GetParentPath(path1);
-	if (ctxt.GetCompareDirs() > 2)
-		pathsParent[2] = paths_GetParentPath(path2);
+	for (int i = 0; i < path.size(); ++i)
+		pathsParent[i] = paths_GetParentPath(path[i]);
 	if (GetPairComparability(pathsParent) != IS_EXISTING_DIR)
 		return AllowUpwardDirectory::Never;
 	return AllowUpwardDirectory::ParentIsRegularPath;
