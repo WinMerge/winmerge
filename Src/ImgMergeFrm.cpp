@@ -159,6 +159,7 @@ CImgMergeFrame::CImgMergeFrame()
 , m_bAutoMerged(false)
 , m_pImgMergeWindow(NULL)
 , m_pImgToolWindow(NULL)
+, m_nLastSplitPos(0)
 {
 	std::fill_n(m_nBufferType, 3, BUFFER_NORMAL);
 	std::fill_n(m_bRO, 3, false);
@@ -860,7 +861,11 @@ void CImgMergeFrame::UpdateHeaderSizes()
 				w[pane] = rc.Width() / m_pImgMergeWindow->GetPaneCount() - 4;
 		}
 		// resize controls in header dialog bar
-		m_wndFilePathBar.Resize(w);
+		if (w[0] != m_nLastSplitPos && w > 0)
+		{
+			m_wndFilePathBar.Resize(w);
+			m_nLastSplitPos = w[0];
+		}
 		rc.left = rcMergeWindow.left;
 		rc.top = rc.bottom - m_rectBorder.bottom;
 		rc.right = rc.left;
@@ -1214,7 +1219,11 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 		UpdateHeaderSizes();
 		for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		{
-			UpdateHeaderPath(pane);
+			// Update mod indicators
+			String ind = m_wndFilePathBar.GetText(pane);
+			if (m_pImgMergeWindow->IsModified(pane) ? ind[0] != _T('*') : ind[0] == _T('*'))
+				UpdateHeaderPath(pane);
+
 			m_wndFilePathBar.SetActive(pane, pane == m_pImgMergeWindow->GetActivePane());
 			String text;
 			if (pt.x >= 0 && pt.y >= 0 &&

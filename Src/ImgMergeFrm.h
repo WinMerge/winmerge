@@ -110,6 +110,7 @@ private:
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
 	bool MergeModeKeyDown(MSG* pMsg);
 	static void OnChildPaneEvent(const IImgMergeWindow::Event& evt);
+	int m_nLastSplitPos;
 	HICON m_hIdentical;
 	HICON m_hDifferent;
 	CLocationBar m_wndLocationBar;
