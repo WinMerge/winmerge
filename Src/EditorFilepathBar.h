@@ -33,6 +33,7 @@
 class IHeaderBar
 {
 public:
+	virtual String GetText(int pane) const = 0;
 	virtual void SetText(int pane, const String& sString) = 0;
 	virtual void SetActive(int pane, bool bActive) = 0;
 	virtual void SetPaneCount(int nPanes) = 0;
@@ -63,6 +64,7 @@ public :
 
 	// Implement IFilepathHeaders
 	void SetText(int pane, const String& sString);
+	String GetText(int pane) const;
 	void SetActive(int pane, bool bActive);
 	void SetPaneCount(int nPanes);
 

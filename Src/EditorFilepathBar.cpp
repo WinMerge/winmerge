@@ -189,6 +189,24 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 }
 
 /** 
+ * @brief Get the path for one side
+ *
+ * @param [in] pane Index (0-based) of pane to update.
+ */
+String CEditorFilePathBar::GetText(int pane) const
+{
+	ASSERT (pane >= 0 && pane < countof(m_Edit));
+
+	// Check for NULL since window may be closing..
+	if (m_hWnd == NULL)
+		return _T("");
+
+	CString str;
+	m_Edit[pane].GetWindowText(str);
+	return String(str);
+}
+
+/** 
  * @brief Set the path for one side
  *
  * @param [in] pane Index (0-based) of pane to update.
