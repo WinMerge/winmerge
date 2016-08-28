@@ -144,6 +144,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_COMMAND(ID_IMG_USEBACKCOLOR, OnImgUseBackColor)
 	ON_UPDATE_COMMAND_UI(ID_IMG_USEBACKCOLOR, OnUpdateImgUseBackColor)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
+	ON_COMMAND(ID_REFRESH, OnRefresh)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -215,6 +216,8 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 		nCmdShow = SW_SHOWMAXIMIZED;
 	ShowWindow(nCmdShow);
 	BringToTop(nCmdShow);
+
+	OnRefresh();
 
 	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 		m_pImgMergeWindow->FirstDiff();
@@ -437,8 +440,6 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALIMAGE);
 	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALIMAGE);
-
-	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount());
 
 	return 0;
 }
@@ -955,7 +956,7 @@ void CImgMergeFrame::UpdateSplitter()
 /**
  * @brief Update associated diff item
  */
-void CImgMergeFrame::UpdateDiffItem(CDirDoc *pDirDoc)
+int CImgMergeFrame::UpdateDiffItem(CDirDoc *pDirDoc)
 {
 	// If directory compare has results
 	if (pDirDoc && pDirDoc->HasDiffs())
@@ -970,7 +971,9 @@ void CImgMergeFrame::UpdateDiffItem(CDirDoc *pDirDoc)
 //			::UpdateDiffItem(m_nBuffers, di, &ctxt);
 //		}
 	}
-	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount());
+	int result = m_pImgMergeWindow->GetDiffCount() > 0 ? 1 : 0;
+	SetLastCompareResult(result != 0);
+	return result;
 }
 
 /**
@@ -1750,7 +1753,7 @@ void CImgMergeFrame::OnUpdateImgThreshold(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnImgPrevPage()
 {
 	m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() - 1);
-	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount());
+	UpdateDiffItem(m_pDirDoc);
 }
 
 void CImgMergeFrame::OnUpdateImgPrevPage(CCmdUI* pCmdUI)
@@ -1761,7 +1764,7 @@ void CImgMergeFrame::OnUpdateImgPrevPage(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnImgNextPage()
 {
 	m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() + 1);
-	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount());
+	UpdateDiffItem(m_pDirDoc);
 }
 
 void CImgMergeFrame::OnUpdateImgNextPage(CCmdUI* pCmdUI)
@@ -1773,7 +1776,7 @@ void CImgMergeFrame::OnUpdateImgNextPage(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnImgCurPanePrevPage()
 {
 	m_pImgMergeWindow->SetCurrentPage(m_pImgMergeWindow->GetActivePane(), m_pImgMergeWindow->GetCurrentPage(m_pImgMergeWindow->GetActivePane()) - 1);
-	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount());
+	UpdateDiffItem(m_pDirDoc);
 }
 
 void CImgMergeFrame::OnUpdateImgCurPanePrevPage(CCmdUI* pCmdUI)
@@ -1784,7 +1787,7 @@ void CImgMergeFrame::OnUpdateImgCurPanePrevPage(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnImgCurPaneNextPage()
 {
 	m_pImgMergeWindow->SetCurrentPage(m_pImgMergeWindow->GetActivePane(), m_pImgMergeWindow->GetCurrentPage(m_pImgMergeWindow->GetActivePane()) + 1);
-	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount());
+	UpdateDiffItem(m_pDirDoc);
 }
 
 void CImgMergeFrame::OnUpdateImgCurPaneNextPage(CCmdUI* pCmdUI)
@@ -1905,3 +1908,8 @@ void CImgMergeFrame::OnToolsGenerateReport()
 	LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }
 
+void CImgMergeFrame::OnRefresh()
+{
+	if (UpdateDiffItem(m_pDirDoc) == 0)
+		LangMessageBox(IDS_FILESSAME, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN);
+}

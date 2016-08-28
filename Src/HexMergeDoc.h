@@ -76,7 +76,7 @@ public:
 // Implementation
 public:
 	~CHexMergeDoc();
-	void UpdateDiffItem(CDirDoc * pDirDoc);
+	int UpdateDiffItem(CDirDoc * pDirDoc);
 	BOOL PromptAndSaveIfNeeded(BOOL bAllowCancel);
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void DirDocClosing(CDirDoc * pDirDoc);
@@ -125,6 +125,7 @@ protected:
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
+	afx_msg void OnRefresh();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
