@@ -137,6 +137,7 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
+	ON_COMMAND(ID_REFRESH, OnRefresh)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -181,7 +182,7 @@ CHexMergeView * CHexMergeDoc::GetActiveMergeView() const
 /**
  * @brief Update associated diff item
  */
-void CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
+int CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
 {
 	// If directory compare has results
 	if (pDirDoc && pDirDoc->HasDiffs())
@@ -212,6 +213,7 @@ void CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
 			break;
 	}
 	GetParentFrame()->SetLastCompareResult(bDiff);
+	return bDiff ? 1 : 0;
 }
 
 /**
@@ -541,10 +543,12 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 	}
 	if (nBuffer == nFiles)
 	{
-		UpdateDiffItem(0);
 		// An extra ResizeWindow() on the left view aligns scroll ranges, and
 		// also triggers initial diff coloring by invalidating the client area.
 		m_pView[0]->ResizeWindow();
+
+		OnRefresh();
+
 		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 			m_pView[0]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
 	}
@@ -826,4 +830,10 @@ void CHexMergeDoc::OnViewZoomNormal()
 {
 	for (int pane = 0; pane < m_nBuffers; pane++)
 		m_pView[pane]->ZoomText(0);
+}
+
+void CHexMergeDoc::OnRefresh()
+{
+	if (UpdateDiffItem(m_pDirDoc) == 0)
+		LangMessageBox(IDS_FILESSAME, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN);
 }

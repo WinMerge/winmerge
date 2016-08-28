@@ -101,7 +101,7 @@ private:
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
 // Generated message map functions
 private:
-	void UpdateDiffItem(CDirDoc * pDirDoc);
+	int UpdateDiffItem(CDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);
@@ -211,6 +211,7 @@ private:
 	afx_msg void OnImgUseBackColor();
 	afx_msg void OnUpdateImgUseBackColor(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
+	afx_msg void OnRefresh();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
