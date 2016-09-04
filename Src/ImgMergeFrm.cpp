@@ -43,6 +43,7 @@
 #include "SaveClosingDlg.h"
 #include "FileLocation.h"
 #include "Constants.h"
+#include "DropHandler.h"
 #include <cmath>
 #include <cstdint>
 #include <Shlwapi.h>
@@ -184,7 +185,11 @@ CImgMergeFrame::~CImgMergeFrame()
 		if (WinIMerge_DestroyWindow && WinIMerge_DestroyToolWindow)
 		{
 			if (m_pImgMergeWindow)
+			{
+				for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+					RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
 				WinIMerge_DestroyWindow(m_pImgMergeWindow);
+			}
 			if (m_pImgToolWindow)
 				WinIMerge_DestroyToolWindow(m_pImgToolWindow);
 			m_pImgMergeWindow = NULL;
@@ -232,6 +237,31 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 	m_pImgMergeWindow->SetActivePane(nPane);
 
 	return true;
+}
+
+void CImgMergeFrame::ChangeFile(int nBuffer, const String& path)
+{
+	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+		RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
+
+	m_filePaths[nBuffer] = path;
+	m_nBufferType[nBuffer] = BUFFER_NORMAL;
+	m_strDesc[nBuffer] = _T("");
+
+	if (m_filePaths.GetSize() == 2)
+		m_pImgMergeWindow->OpenImages(ucr::toUTF16(m_filePaths[0]).c_str(), ucr::toUTF16(m_filePaths[1]).c_str());
+	else
+		m_pImgMergeWindow->OpenImages(ucr::toUTF16(m_filePaths[0]).c_str(), ucr::toUTF16(m_filePaths[1]).c_str(), ucr::toUTF16(m_filePaths[2]).c_str());
+
+	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
+	{
+		m_fileInfo[pane].Update(m_filePaths[pane]);
+
+		RegisterDragDrop(m_pImgMergeWindow->GetPaneHWND(pane),
+			new DropHandler(std::bind(&CImgMergeFrame::OnDropFiles, this, pane, std::placeholders::_1)));
+	}
+
+	UpdateHeaderPath(nBuffer);
 }
 
 bool CImgMergeFrame::IsModified() const
@@ -374,7 +404,12 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(m_filePaths[0]).c_str(), ucr::toUTF16(m_filePaths[1]).c_str(), ucr::toUTF16(m_filePaths[2]).c_str());
 
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
+	{
 		m_fileInfo[pane].Update(m_filePaths[pane]);
+		
+		RegisterDragDrop(m_pImgMergeWindow->GetPaneHWND(pane), 
+			new DropHandler(std::bind(&CImgMergeFrame::OnDropFiles, this, pane, std::placeholders::_1)));
+	}
 
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
@@ -1912,4 +1947,15 @@ void CImgMergeFrame::OnRefresh()
 {
 	if (UpdateDiffItem(m_pDirDoc) == 0)
 		LangMessageBox(IDS_FILESSAME, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN);
+}
+
+void CImgMergeFrame::OnDropFiles(int pane, const std::vector<String>& files)
+{
+	if (files.size() > 1 || paths_IsDirectory(files[0]))
+	{
+		GetMainFrame()->GetDropHandler()->GetCallback()(files);
+		return;
+	}
+
+	ChangeFile(pane, files[0]);
 }

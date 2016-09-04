@@ -20,6 +20,8 @@ public:
 	explicit DropHandler(std::function<void(const std::vector<String>&)> callback);
 	~DropHandler();
 
+	std::function<void(const std::vector<String>&)> GetCallback() const { return m_callback; };
+
 private:
 	LONG m_cRef;
 	std::function<void(const std::vector<String>&)> m_callback;

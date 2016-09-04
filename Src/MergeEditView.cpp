@@ -42,6 +42,8 @@
 #include "ChildFrm.h"
 #include "unicoder.h"
 #include "MergeLineFlags.h"
+#include "paths.h"
+#include "DropHandler.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -355,6 +357,7 @@ void CMergeEditView::OnInitialUpdate()
 {
 	CCrystalEditViewEx::OnInitialUpdate();
 	SetFont(dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff);
+	SetAlternateDropTarget(new DropHandler(std::bind(&CMergeEditView::OnDropFiles, this, std::placeholders::_1)));
 
 	m_lineBegin = 0;
 	m_lineEnd = -1;
@@ -3926,3 +3929,13 @@ void CMergeEditView::OnViewZoomNormal()
 	ZoomText(0);
 }
 
+void CMergeEditView::OnDropFiles(const std::vector<String>& files)
+{
+	if (files.size() > 1 || paths_IsDirectory(files[0]))
+	{
+		GetMainFrame()->GetDropHandler()->GetCallback()(files);
+		return;
+	}
+
+	GetDocument()->ChangeFile(m_nThisPane, files[0]);
+}
