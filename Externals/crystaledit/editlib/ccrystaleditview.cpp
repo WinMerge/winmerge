@@ -105,8 +105,8 @@ private :
     CCrystalEditView * m_pOwner;
 public :
     CEditDropTargetImpl (CCrystalEditView * pOwner)
+      : m_pOwner(pOwner), m_pAlternateDropTarget(NULL)
     {
-      m_pOwner = pOwner;
     };
 
     virtual DROPEFFECT OnDragEnter (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint point);
@@ -114,6 +114,8 @@ public :
     virtual DROPEFFECT OnDragOver (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint point);
     virtual BOOL OnDrop (CWnd * pWnd, COleDataObject * pDataObject, DROPEFFECT dropEffect, CPoint point);
     virtual DROPEFFECT OnDragScroll (CWnd * pWnd, DWORD dwKeyState, CPoint point);
+
+    IDropTarget * m_pAlternateDropTarget;
   };
 
 
@@ -1179,6 +1181,12 @@ OnDragEnter (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint
   UINT fmt = GetClipTcharTextFormat();
   if (!pDataObject->IsDataAvailable (fmt))
     {
+      if (m_pAlternateDropTarget)
+        {
+          DROPEFFECT dwEffect = DROPEFFECT_NONE;
+          m_pAlternateDropTarget->DragEnter(pDataObject->m_lpDataObject, dwKeyState, { point.x, point.y }, &dwEffect);
+          return dwEffect;
+        }
       m_pOwner->HideDropIndicator ();
       return DROPEFFECT_NONE;
     }
@@ -1207,6 +1215,12 @@ OnDragOver (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint 
         (m_pOwner->GetDisableDragAndDrop ()))    // Or Drag And Drop Disabled
 
     {
+      if (m_pAlternateDropTarget)
+        {
+          DROPEFFECT dwEffect = DROPEFFECT_COPY | DROPEFFECT_MOVE | DROPEFFECT_LINK;
+          m_pAlternateDropTarget->DragOver(dwKeyState, { point.x, point.y }, &dwEffect);
+          return dwEffect;
+        }
       m_pOwner->HideDropIndicator ();   // Hide Drop Caret
 
       return DROPEFFECT_NONE;   // Return DE_NONE
@@ -1225,6 +1239,12 @@ OnDragOver (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint 
   if (!bDataSupported)          // If No Supported Formats Available
 
     {
+      if (m_pAlternateDropTarget)
+        {
+          DROPEFFECT dwEffect = DROPEFFECT_COPY | DROPEFFECT_MOVE | DROPEFFECT_LINK;
+          m_pAlternateDropTarget->DragOver(dwKeyState, { point.x, point.y }, &dwEffect);
+          return dwEffect;
+        }
       m_pOwner->HideDropIndicator ();   // Hide Drop Caret
 
       return DROPEFFECT_NONE;   // Return DE_NONE
@@ -1251,6 +1271,12 @@ OnDrop (CWnd * pWnd, COleDataObject * pDataObject, DROPEFFECT dropEffect, CPoint
         (m_pOwner->GetDisableDragAndDrop ()))    // Or Drag And Drop Disabled
 
     {
+      if (m_pAlternateDropTarget)
+        {
+          DROPEFFECT dwEffect = DROPEFFECT_NONE;
+          m_pAlternateDropTarget->Drop(pDataObject->m_lpDataObject, 0, { point.x, point.y }, &dwEffect);
+          return dwEffect;
+        }
       return DROPEFFECT_NONE;   // Return DE_NONE
 
     }
@@ -1267,6 +1293,12 @@ OnDrop (CWnd * pWnd, COleDataObject * pDataObject, DROPEFFECT dropEffect, CPoint
   if (!bDataSupported)          // If No Supported Formats Available
 
     {
+      if (m_pAlternateDropTarget)
+        {
+          DROPEFFECT dwEffect = DROPEFFECT_NONE;
+          m_pAlternateDropTarget->Drop(pDataObject->m_lpDataObject, 0, { point.x, point.y }, &dwEffect);
+          return dwEffect;
+        }
       return DROPEFFECT_NONE;   // Return DE_NONE
 
     }
@@ -1326,6 +1358,12 @@ DoDragScroll (const CPoint & point)
 	  //UpdateSiblingScrollPos(true);
       return;
     }
+}
+
+void CCrystalEditView::
+SetAlternateDropTarget (IDropTarget *pDropTarget)
+{
+  m_pDropTarget->m_pAlternateDropTarget = pDropTarget;
 }
 
 bool CCrystalEditView::

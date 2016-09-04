@@ -117,6 +117,8 @@ public :
     void ShowDropIndicator (const CPoint & point);
     void HideDropIndicator ();
 
+    void SetAlternateDropTarget (IDropTarget *pDropTarget);
+
     bool DoDropText (COleDataObject * pDataObject, const CPoint & ptClient);
     void DoDragScroll (const CPoint & point);
 

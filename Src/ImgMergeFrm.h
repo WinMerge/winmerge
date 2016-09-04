@@ -59,6 +59,7 @@ public:
 // Operations
 public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], int nPane, CMDIFrameWnd *pParent);
+	void ChangeFile(int pane, const String& path);
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void UpdateResources();
 	bool CloseNow();
@@ -110,6 +111,7 @@ private:
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
 	bool MergeModeKeyDown(MSG* pMsg);
 	static void OnChildPaneEvent(const IImgMergeWindow::Event& evt);
+	void OnDropFiles(int pane, const std::vector<String>& files);
 	int m_nLastSplitPos;
 	HICON m_hIdentical;
 	HICON m_hDifferent;

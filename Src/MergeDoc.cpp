@@ -2763,6 +2763,30 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	return true;
 }
 
+void CMergeDoc::ChangeFile(int nBuffer, const String& path)
+{
+	if (!PromptAndSaveIfNeeded(true))
+		return;
+
+	FileLocation fileloc[3];
+	String strDesc[3];
+	bool bRO[3];
+	for (int pane = 0; pane < m_nBuffers; pane++)
+	{
+		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
+		fileloc[pane].encoding.m_unicoding = m_ptBuf[pane]->getUnicoding();
+		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
+		fileloc[pane].setPath(m_filePaths[pane]);
+	}
+	std::copy_n(m_strDesc, m_nBuffers, strDesc);
+
+	strDesc[nBuffer] = _T("");
+	fileloc[nBuffer].setPath(path);
+	fileloc[nBuffer].encoding = GuessCodepageEncoding(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
+	
+	OpenDocs(m_nBuffers, fileloc, bRO, strDesc, nBuffer, 0);
+}
+
 /**
  * @brief Re-load a document.
  * This methods re-loads the file compare document. The re-loaded document is
@@ -3433,3 +3457,4 @@ std::vector<std::vector<int> > CMergeDoc::GetSyncPointList()
 	}
 	return list;
 }
+

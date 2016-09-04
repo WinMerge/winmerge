@@ -204,6 +204,7 @@ protected:
 	void OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int type);
 	void OnPrev3wayDiff(int type);
 	void OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int type);
+	void OnDropFiles(const std::vector<String>& files);
 
 	// Generated message map functions
 protected:

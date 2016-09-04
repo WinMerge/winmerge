@@ -117,6 +117,7 @@ public:
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
 	void UpdateDocTitle();
 	void ReloadMenu();
+	DropHandler *GetDropHandler() const { return m_pDropHandler; }
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
