@@ -266,7 +266,8 @@ static void GetScriptletsAt(const String& sSearchPath, const String& extension, 
 			if (!(ffi.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			{
 				strFileSpec = paths_ConcatPath(sSearchPath, ffi.cFileName);
-				scriptlets.push_back(strFileSpec);  
+				if (strFileSpec.substr(strFileSpec.length() - extension.length()) == extension) // excludes *.sct~ files
+					scriptlets.push_back(strFileSpec);  
 			}
 		}
 		while (FindNextFile(hff, &ffi));
