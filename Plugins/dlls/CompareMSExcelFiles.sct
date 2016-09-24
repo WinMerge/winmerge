@@ -481,7 +481,7 @@ End Sub
 
       function onload() {
 
-        var w = 600, h = 400;
+        var w = 800, h = 600;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
@@ -559,23 +559,23 @@ End Sub
       <ul>
         <li>
           <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
-          <label class="en">Extract workbook data to multiple files </label>
-          <label class="ja">ワークブックの情報を複数ファイルに展開する </label>
+          <label class="en">Extract workbook data to multiple files</label>
+          <label class="ja">ワークブックの情報を複数ファイルに展開する</label>
         </li>
         <li>
           <input id="chkCompareDocumentProperties" type="checkbox" />
-          <label class="en">Compare document properties </label>
-          <label class="ja">ドキュメントプロパティを比較する </label>
+          <label class="en">Compare document properties</label>
+          <label class="ja">ドキュメントプロパティを比較する</label>
         </li>
         <li>
           <input id="chkCompareNames" type="checkbox" />
-          <label class="en">Compare names </label>
-          <label class="ja">名前の定義を比較する </label>
+          <label class="en">Compare names</label>
+          <label class="ja">名前の定義を比較する</label>
         </li>
         <li>
           <input id="chkCompareCellValues" type="checkbox" />
-          <label class="en">Compare cell values </label>
-          <label class="ja">各セルの値を比較する </label>
+          <label class="en">Compare cell values</label>
+          <label class="ja">各セルの値を比較する</label>
         </li>
         <li>
           <input id="chkCompareWorksheetsAsImage" type="checkbox" onclick="chkCompareWorksheetsAsImage_onclick();"/>
@@ -589,13 +589,13 @@ End Sub
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
-          <label class="en">Compare texts in shapes </label>
-          <label class="ja">図形内のテキストを比較する </label>
+          <label class="en">Compare texts in shapes</label>
+          <label class="ja">図形内のテキストを比較する</label>
         </li>
         <li>
           <input id="chkCompareVBAMacros" type="checkbox" />
-          <label class="en">Compare VBA macros </label>
-          <label class="ja">VBA マクロを比較する </label>
+          <label class="en">Compare VBA macros</label>
+          <label class="ja">VBA マクロを比較する</label>
         </li>
       </ul>
       <ul>
