@@ -285,7 +285,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	xl.EnableEvents = False
 	xl.DisplayAlerts = False
 
-	Set wbk = xl.Workbooks.Open(fileSrc)
+	Set wbk = xl.Workbooks.Open(fileSrc, regRead(RegKeyPath & "UpdateLinks", 0))
 
 	On Error Resume Next
 
@@ -369,7 +369,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	xl.EnableEvents = False
 	xl.DisplayAlerts = False
 
-	Set wbk = xl.Workbooks.Open(fileSrc)
+	Set wbk = xl.Workbooks.Open(fileSrc, regRead(RegKeyPath & "UpdateLinks", 0))
 
 	On Error Resume Next
 
@@ -488,6 +488,7 @@ End Sub
         cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
         setLanguage(navigator.browserLanguage);
         chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
+        chkUpdateLinks.checked = (regRead(REGKEY_PATH + "UpdateLinks", 0) == 3);
         chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
         chkCompareNames.checked = regRead(REGKEY_PATH + "CompareNames", true);
         chkCompareCellValues.checked = regRead(REGKEY_PATH + "CompareCellValues", true);
@@ -529,6 +530,7 @@ End Sub
 
       function btnOk_onclick() {
         regWrite(REGKEY_PATH + "UnpackToFolder", chkUnpackToFolder.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "UpdateLinks", chkUpdateLinks.checked ? 3 : 0, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareDocumentProperties", chkCompareDocumentProperties.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareNames", chkCompareNames.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareCellValues", chkCompareCellValues.checked, "REG_DWORD");
@@ -561,6 +563,11 @@ End Sub
           <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
           <label class="en">Extract workbook data to multiple files</label>
           <label class="ja">ワークブックの情報を複数ファイルに展開する</label>
+        </li>
+        <li>
+          <input id="chkUpdateLinks" type="checkbox" />
+          <label class="en">Update external references(links)</label>
+          <label class="ja">比較時、外部参照(リンク)を更新する</label>
         </li>
         <li>
           <input id="chkCompareDocumentProperties" type="checkbox" />
