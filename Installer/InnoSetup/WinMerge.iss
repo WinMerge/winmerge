@@ -174,7 +174,7 @@ Name: custom; Description: {cm:CustomInstallation}; Flags: iscustom
 Name: Core; Description: {cm:AppCoreFiles}; Types: full custom typical compact; Flags: fixed
 
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
-Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full
+Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full typical
 Name: Frhed; Description: {cm:Frhed}; Flags: disablenouninstallwarning; Types: full typical
 Name: WinIMerge; Description: {cm:WinIMerge}; Flags: disablenouninstallwarning; Types: full typical
 Name: ArchiveSupport; Description: {cm:ArchiveSupport}; Flags: disablenouninstallwarning; Types: full typical
