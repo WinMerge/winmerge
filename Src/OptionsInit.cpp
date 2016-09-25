@@ -163,7 +163,7 @@ void Init(COptionsMgr *pOptions)
 	else if (LangId == MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL))
 		pOptions->InitOption(OPT_CP_DETECT, (int)(50950 << 16) | 3);
 	else
-		pOptions->InitOption(OPT_CP_DETECT, (int)(50001 << 16) | 3);
+		pOptions->InitOption(OPT_CP_DETECT, (int)(50001 << 16) | 1);
 
 	pOptions->InitOption(OPT_VCS_SYSTEM, SourceControl::VCS_NONE);
 	pOptions->InitOption(OPT_VSS_PATH, _T(""));
