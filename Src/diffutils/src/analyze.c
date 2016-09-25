@@ -869,14 +869,15 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 			size_t buffer_size = buffer_lcm (STAT_BLOCKSIZE (filevec[0].stat),
 				STAT_BLOCKSIZE (filevec[1].stat));
 			for (i = 0; i < 2; i++)
-				filevec[i].buffer = (char *)xrealloc (filevec[i].buffer, buffer_size);
+				if (filevec[i].buffered_chars < buffer_size)
+					filevec[i].buffer = (char *)xrealloc (filevec[i].buffer, buffer_size);
 			
 			for (;;  filevec[0].buffered_chars = filevec[1].buffered_chars = 0)
 			{
 				//  Read a buffer's worth from both files.  
 				for (i = 0; i < 2; i++)
 					if (0 <= filevec[i].desc)
-						while (filevec[i].buffered_chars != buffer_size)
+						while (filevec[i].buffered_chars < buffer_size)
 						{
 							int r = read (filevec[i].desc,
 								filevec[i].buffer
