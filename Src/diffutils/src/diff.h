@@ -292,7 +292,7 @@ struct file_data {
     int equiv_max;
 
     /* text stats for WinMerge */
-    int count_crlfs, count_crs, count_lfs;
+    int count_crlfs, count_crs, count_lfs, count_zeros;
 };
 
 /* Describe the two files currently being compared.  */
@@ -371,7 +371,6 @@ void setup_output PARAMS((char const *, char const *, int));
 void translate_range PARAMS((struct file_data const *, int, int, int *, int *));
 void cleanup_file_buffers(struct file_data fd[]);
 int FileIsBinary(int fd);
-int isunicode(unsigned char *pBuffer, int size);
 
 /* version.c */
 extern char const version_string[];
