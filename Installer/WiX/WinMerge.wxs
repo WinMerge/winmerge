@@ -56,8 +56,6 @@
         <Directory Id="WinMergeMenuFolder" Name="WinMerge" />
       </Directory>
       <Directory Id="DesktopFolder" />
-      <Merge Id="CRT" Language="0" SourceFile="$(var.CrtMergeModule)" DiskId="1" />
-      <Merge Id="MFC" Language="0" SourceFile="$(var.MfcMergeModule)" DiskId="1" />
     </Directory>
     
     <Property Id="TASK_STARTMENUSHORTCUTS">1</Property>

@@ -10,20 +10,6 @@
           Vital="yes" />
       </Component>
       
-      <Component Id="libexpat" Guid="*" Win64="$(var.Win64)">
-        <File Id="libexpatDLL" 
-          Name="libexpat.dll" 
-          Source="$(var.ExpatBuildDir)\libexpat.dll" 
-          Vital="yes" />
-      </Component>
-      
-      <Component Id="pcre" Guid="*" Win64="$(var.Win64)">
-        <File Id="pcreDLL" 
-          Name="pcre.dll" 
-          Source="$(var.PcreBuildDir)\pcre.dll" 
-          Vital="yes" />
-      </Component>
-      
       <Component Id="MergeLang" Guid="*" Win64="$(var.Win64)">
         <File Id="MergeLangDLL" 
           Name="MergeLang.dll" 
