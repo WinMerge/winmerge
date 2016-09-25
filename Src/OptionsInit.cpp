@@ -116,7 +116,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_IGNORE_SMALL_FILETIME, false);
 	pOptions->InitOption(OPT_ASK_MULTIWINDOW_CLOSE, false);
 	pOptions->InitOption(OPT_PRESERVE_FILETIMES, false);
-	pOptions->InitOption(OPT_TREE_MODE, false);
+	pOptions->InitOption(OPT_TREE_MODE, true);
 
 	pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
 	pOptions->InitOption(OPT_CMP_MOVED_BLOCKS, false);
