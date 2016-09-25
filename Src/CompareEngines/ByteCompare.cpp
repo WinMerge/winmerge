@@ -290,6 +290,7 @@ static void CopyTextStats(const FileTextStats * stats, FileTextStats * myTextSta
 	myTextStats->ncrlfs = stats->ncrlfs;
 	myTextStats->ncrs = stats->ncrs;
 	myTextStats->nlfs = stats->nlfs;
+	myTextStats->nzeros = stats->nzeros;
 }
 
 /**

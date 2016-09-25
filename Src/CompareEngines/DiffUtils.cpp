@@ -337,6 +337,7 @@ static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats)
 	myTextStats->ncrlfs = inf->count_crlfs;
 	myTextStats->ncrs = inf->count_crs;
 	myTextStats->nlfs = inf->count_lfs;
+	myTextStats->nzeros = inf->count_zeros;
 }
 
 /**

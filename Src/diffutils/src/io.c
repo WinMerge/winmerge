@@ -20,6 +20,7 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include "diff.h"
 #ifdef _WIN32
 #  include <io.h>
+#  define read _read
 #endif
 
 /* Rotate a value n bits to the left. */
@@ -78,8 +79,8 @@ static DECL_TLS int equivs_alloc;
 
 static void find_and_hash_each_line PARAMS((struct file_data *));
 static void find_identical_ends PARAMS((struct file_data[]));
-static char *prepare_text_end PARAMS((struct file_data *));
-static enum UNICODESET get_unicode_signature(struct file_data *);
+static char *prepare_text_end PARAMS((struct file_data *, short));
+static enum UNICODESET get_unicode_signature(struct file_data *, unsigned *bom);
 
 /* Check for binary files and compare them for exact identity.  */
 
@@ -89,28 +90,47 @@ static enum UNICODESET get_unicode_signature(struct file_data *);
 #define binary_file_p(buf, size) (size != 0 && memchr (buf, '\0', size) != 0)
 
 /** @brief Get unicode signature from file_data. */
-static enum UNICODESET get_unicode_signature(struct file_data *current)
+static enum UNICODESET get_unicode_signature(struct file_data *current, unsigned *bom)
 {
   // initialize to a pattern that differs everywhere from all possible unicode signatures
   unsigned long sig = 0x3F3F3F3F;
   // copy at most 4 bytes from buffer
   memcpy(&sig, current->buffer, min(current->buffered_chars, 4));
   // check for the two possible 4 bytes signatures
+  int tmp;
+  int *bomsize = bom ? bom : &tmp;
+  
   if (sig == 0x0000FEFF)
-    return UCS4LE;
+    {
+      *bomsize = 4;
+      return UCS4LE;
+    }
   if (sig == 0xFFFE0000)
-    return UCS4BE;
+    {
+      *bomsize = 4;
+      return UCS4BE;
+    }
   // check for the only possible 3 bytes signature
   sig &= 0xFFFFFF;
   if (sig == 0xBFBBEF)
-    return UTF8;
+    {
+      *bomsize = 3;
+      return UTF8;
+    }
   // check for the two possible 2 bytes signatures
   sig &= 0xFFFF;
   if (sig == 0xFEFF)
-    return UCS2LE;
+    {
+      *bomsize = 2;
+      return UCS2LE;
+    }
   if (sig == 0xFFFE)
-    return UCS2BE;
+    {
+      *bomsize = 2;
+      return UCS2BE;
+    }
   // none of the above checks has passed, so probably no unicode
+  *bomsize = 0;
   return NONE;
 }
 
@@ -123,7 +143,7 @@ sip (current, skip_test)
      struct file_data *current;
      int skip_test;
 {
-  int isbinary;
+  int isbinary = 0;
   /* If we have a nonexistent file at this stage, treat it as empty.  */
   if (current->desc < 0)
     {
@@ -156,13 +176,12 @@ sip (current, skip_test)
             current->buffered_chars);
           if (current->buffered_chars == -1)
             pfatal_with_name (current->name);
-          isbinary = binary_file_p (current->buffer, current->buffered_chars);
-          isbinary &= !isunicode(current->buffer, current->buffered_chars);
-          return isbinary;
+          if (!get_unicode_signature(current, NULL))
+            isbinary = binary_file_p(current->buffer, current->buffered_chars);
         }
     }
   
-  return 0;
+  return isbinary;
 }
 
 /* Slurp the rest of the current file completely into memory.  */
@@ -178,9 +197,9 @@ slurp (current)
     ;
   else if (always_text_flag || current->buffered_chars != 0)
     {
-      enum UNICODESET sig = get_unicode_signature(current);
+      enum UNICODESET sig = get_unicode_signature(current, NULL);
       size_t alloc_extra
-        = ((1 << sig) & ((1 << UCS2LE) | (1 << UCS2BE) | (1 << UCS4LE) | (1 << UCS4BE)))
+        = (1 << sig) & ((1 << UCS2LE) | (1 << UCS2BE) | (1 << UCS4LE) | (1 << UCS4BE))
           // some flavor of non octet encoded unicode?
           ? ~0U	// yes, allocate extra room for transcoding
           : 0U;	// no, allocate no extra room for transcoding
@@ -197,7 +216,7 @@ slurp (current)
                  Allocate at least one block, to prevent overrunning the buffer
                  when comparing growing binary files. */
                   current->bufsize = max (current->bufsize,
-                    current->stat.st_size + (alloc_extra & current->stat.st_size / 2) + sizeof (word) + 1);
+                    (size_t)current->stat.st_size + (alloc_extra & (size_t)current->stat.st_size / 2) + sizeof (word) + 1);
                 }
               else
                 {
@@ -277,14 +296,8 @@ find_and_hash_each_line (current)
       h = 0;
 
 
-      /*
-     loops advance pointer to eol (end of line)
-     respecting UNIX (\r), MS-DOS/Windows (\r\n), and MAC (\r) eols
-     Normally eol characters are hashed
-     If ignore_eol_diff option is set, eol characters are not hashed
-     and the eol characters are removed from line as well, in code
-     further down (after hashing_done label)
-      */
+      /* loops advance pointer to eol (end of line)
+         respecting UNIX (\r), MS-DOS/Windows (\r\n), and MAC (\r) eols */
 
       /* Hash this line until we find a newline. */
       if (ignore_case_flag)
@@ -292,8 +305,6 @@ find_and_hash_each_line (current)
           if (ignore_all_space_flag)
             while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
               {
-                if (ignore_eol_diff && (c=='\r' || c=='\n'))
-                  continue;
                 if (! ISWSPACE (c))
                   h = HASH (h, isupper (c) ? tolower (c) : c);
               }
@@ -301,34 +312,16 @@ find_and_hash_each_line (current)
             /* Note that \r must be hashed (if !ignore_eol_diff) */
             while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
               {
-                if (ignore_eol_diff && (c=='\r' || c=='\n'))
-                  continue;
                 if (ISWSPACE (c))
                   {
                     /* skip whitespace after whitespace */
                     while (ISWSPACE (c = *p++))
                       ;
-                    if (c=='\n')
+                    if (c == '\n')
                       {
                         goto hashing_done; /* never hash trailing \n */
                       }
-                    else if (c == '\r')
-                      {
-                        /*
-                            \r must be hashed if !ignore_eol_diff
-                            Also, we must always advance to end of line
-                            which means we can only stop on \r if not
-                            followed by \n
-                        */
-                        if (ignore_eol_diff)
-                          {
-                            if (*p == '\n') /* continue to LF after CR */
-                              continue;
-                            else
-                              goto hashing_done;
-                          }
-                      }
-                    else
+                    else if (c != '\r')
                       {
                   /* runs of whitespace not ending line hashed as one space */
                         h = HASH (h, ' ');
@@ -343,8 +336,6 @@ find_and_hash_each_line (current)
           else
             while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
               {
-                if (ignore_eol_diff && (c=='\r' || c=='\n'))
-                  continue;
                 h = HASH (h, isupper (c) ? tolower (c) : c);
               }
         }
@@ -353,8 +344,6 @@ find_and_hash_each_line (current)
           if (ignore_all_space_flag)
             while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
               {
-                if (ignore_eol_diff && (c=='\r' || c=='\n'))
-                  continue;
                 if (! ISWSPACE (c))
                   h = HASH (h, c);
               }
@@ -362,34 +351,16 @@ find_and_hash_each_line (current)
             /* Note that \r must be hashed (if !ignore_eol_diff) */
             while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
               {
-                if (ignore_eol_diff && (c=='\r' || c=='\n'))
-                  continue;
                 if (ISWSPACE (c))
                   {
                     /* skip whitespace after whitespace */
                     while (ISWSPACE (c = *p++))
                       ;
-                    if (c=='\n')
+                    if (c == '\n')
                       {
                         goto hashing_done; /* never hash trailing \n */
                       }
-                    else if (c == '\r')
-                      {
-                        /*
-                            \r must be hashed if !ignore_eol_diff
-                            Also, we must always advance to end of line
-                            which means we can only stop on \r if not
-                            followed by \n
-                        */
-                        if (ignore_eol_diff)
-                          {
-                            if (*p == '\n') /* continue to LF after CR */
-                              continue;
-                            else
-                              goto hashing_done;
-                          }
-                      }
-                    else
+                    else if (c != '\r')
                       {
                   /* runs of whitespace not ending line hashed as one space */
                         h = HASH (h, ' ');
@@ -404,8 +375,6 @@ find_and_hash_each_line (current)
           else
             while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
               {
-                if (ignore_eol_diff && (c=='\r' || c=='\n'))
-                  continue;
                 h = HASH (h, c);
               }
         }
@@ -413,25 +382,6 @@ hashing_done:;
 
       bucket = &buckets[h % nbuckets];
       length = (char const HUGE *) p - ip - ((char const HUGE *) p == incomplete_tail);
-      if (ignore_eol_diff)
-        {
-          /* Remove all eols characters and adjust line length */
-          if (length>1 && p[-2]=='\r' && p[-1]=='\n')
-            {
-              ++current->count_crlfs;
-              //((char HUGE *)p)[-2] = 0;
-              length -= 2;
-            }
-          else if (p[-1] == '\n' || p[-1] == '\r')
-            {
-              if (p[-1] == '\n')
-                ++current->count_lfs;
-              else
-                ++current->count_crs;
-              //((char HUGE *)p)[-1] = 0;
-              --length;
-            }
-        }
       for (i = *bucket;  ;  i = eqs[i].next)
         if (!i)
           {
@@ -526,14 +476,17 @@ hashing_done:;
    Return effective start of text to be compared. */
 
 static char *
-prepare_text_end (current)
+prepare_text_end (current, side)
      struct file_data *current;
+	 short side;
 {
   FSIZE buffered_chars = current->buffered_chars;
   char *const p = current->buffer;
   char *r = p; // receives the return value
-
-  enum UNICODESET sig = get_unicode_signature(current);
+  char *q, *t;
+  unsigned bom = 0;
+  enum UNICODESET sig = get_unicode_signature(current, &bom);
+  char *const u = p + bom;
 
   if (sig == UCS4LE)
     {
@@ -541,7 +494,7 @@ prepare_text_end (current)
       unsigned long *q = (unsigned long *)p + buffered_words / 2;
       buffered_chars += buffered_words;
       r = p + buffered_chars;
-      while (--q > (unsigned long *)p) // exclude the BOM
+      while (--q >= (unsigned long *)u) // exclude the BOM
         {
           unsigned long u = *q;
           if (u >= 0x80000000)
@@ -595,7 +548,7 @@ prepare_text_end (current)
       unsigned long *q = (unsigned long *)p + buffered_words / 2;
       buffered_chars += buffered_words;
       r = p + buffered_chars;
-      while (--q > (unsigned long *)p) // exclude the BOM
+      while (--q >= (unsigned long *)u) // exclude the BOM
         {
           unsigned long u =
           ((*q & 0x000000FF) << 24) |
@@ -653,7 +606,7 @@ prepare_text_end (current)
       unsigned short *q = (unsigned short *)p + buffered_words;
       buffered_chars += buffered_words;
       r = p + buffered_chars;
-      while (--q > (unsigned short *)p) // exclude the BOM
+      while (--q >= (unsigned short *)u) // exclude the BOM
         {
           unsigned short u = *q;
           if (u >= 0x800)
@@ -679,7 +632,7 @@ prepare_text_end (current)
       unsigned short *q = (unsigned short *)p + buffered_words;
       buffered_chars += buffered_words;
       r = p + buffered_chars;
-      while (--q > (unsigned short *)p) // exclude the BOM
+      while (--q >= (unsigned short *)u) // exclude the BOM
         {
           unsigned short u = (*q << 8) | (*q >> 8); // fix byte order
           if (u >= 0x800)
@@ -701,7 +654,7 @@ prepare_text_end (current)
     }
   else if (sig == UTF8)
     {
-        r = p + 3; // skip the BOM
+      r = u; // skip the BOM
     }
 
   if (buffered_chars == 0 || p[buffered_chars - 1] == '\n' || p[buffered_chars - 1] == '\r')
@@ -710,13 +663,44 @@ prepare_text_end (current)
     {
       p[buffered_chars++] = '\n';
       current->missing_newline = 1;
+      --current->count_lfs; // compensate for extra newline
     }
-  current->buffered_chars = buffered_chars;
-  
+
+	current->buffered_chars = buffered_chars;
+
+	/* Count line endings and map them to '\n' if ignore_eol_diff is set. */
+	t = q = p + buffered_chars;
+	while (q > r)
+	{
+		switch (*--t = *--q)
+		{
+		case '\r':
+			++current->count_crs;
+			if (ignore_eol_diff)
+				*t = '\n';
+			break;
+		case '\n':
+			if (q > r && q[-1] == '\r')
+			{
+				++current->count_crlfs;
+				--current->count_crs; // compensate for bogus increment
+				if (ignore_eol_diff)
+					++t;
+			}
+			else
+			{
+				++current->count_lfs;
+			}
+			break;
+		case '\0':
+			++current->count_zeros;
+			break;
+		}
+	}
+
   /* Don't use uninitialized storage when planting or using sentinels.  */
-  if (p)
-    bzero (p + buffered_chars, sizeof (word));
-  return r;
+  bzero (p + buffered_chars, sizeof (word));
+  return t;
 }
 
 /* Given a vector of two file_data objects, find the identical
@@ -737,15 +721,17 @@ find_identical_ends (filevec)
   int buffered_prefix, prefix_count, prefix_mask;
   int ttt;
 
-  slurp (&filevec[0]);
-  buffer0 = prepare_text_end (&filevec[0]);
   if (filevec[0].desc != filevec[1].desc)
     {
+      slurp (&filevec[0]);
+      buffer0 = prepare_text_end (&filevec[0], 0);
       slurp (&filevec[1]);
-      buffer1 = prepare_text_end (&filevec[1]);
+      buffer1 = prepare_text_end (&filevec[1], 1);
     }
   else
     {
+      slurp (&filevec[0]);
+      buffer0 = prepare_text_end (&filevec[0], -1);
       filevec[1].buffer = filevec[0].buffer;
       filevec[1].bufsize = filevec[0].bufsize;
       filevec[1].buffered_chars = filevec[0].buffered_chars;
@@ -1032,14 +1018,23 @@ read_files (filevec, pretend_binary, bin_file)
       filevec[1].bufsize = filevec[0].bufsize;
       filevec[1].buffered_chars = filevec[0].buffered_chars;
     }
-  if (appears_binary || (bin_file && *bin_file > 0))
-    return 1;
+
+  find_identical_ends (filevec);
 
   /* Don't slurp rest of file when comparing file to itself. */
   if (filevec[0].desc == filevec[1].desc)
-    return 0;
+    {
+	  filevec[1].count_crs = filevec[0].count_crs;
+	  filevec[1].count_lfs = filevec[0].count_lfs;
+	  filevec[1].count_crlfs = filevec[0].count_crlfs;
+	  filevec[1].count_zeros = filevec[0].count_zeros;
+      return 0;
+    }
 
-  find_identical_ends (filevec);
+  if (appears_binary || (bin_file && *bin_file > 0))
+    return 1;
+
+  //find_identical_ends (filevec);
 
   equivs_alloc = filevec[0].alloc_lines + filevec[1].alloc_lines + 1;
 #ifdef __MSDOS__
