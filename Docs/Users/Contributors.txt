@@ -107,6 +107,7 @@ Localization:
 
 * Portuguese (Portugal):
   Nelson Simão
+  Lippe35
 
 * Romanian:
   Cristian Arghiroiu <cristi.arghiroiu@gmail.com>
