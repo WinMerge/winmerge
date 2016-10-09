@@ -11,6 +11,12 @@ This is a fork of https://sourceforge.net/projects/winmerge(https://bitbucket.or
 - Support for jump list since Windows 7
 - Improved drag&drop support
 
+# Download
+
+[Stable Release](https://github.com/sdottaka/winmerge-v2/releases/latest)
+
+[Experimental Releases](https://github.com/sdottaka/winmerge-v2/releases/)
+
 # Screenshots
 
 ## Folder Compare
@@ -40,4 +46,3 @@ This is a fork of https://sourceforge.net/projects/winmerge(https://bitbucket.or
 ## Binary Compare
 
 ![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/binarycmp.png)
-
