@@ -1028,6 +1028,8 @@ read_files (filevec, pretend_binary, bin_file)
 	  filevec[1].count_lfs = filevec[0].count_lfs;
 	  filevec[1].count_crlfs = filevec[0].count_crlfs;
 	  filevec[1].count_zeros = filevec[0].count_zeros;
+      if (appears_binary || (bin_file && *bin_file > 0))
+        return 1;
       return 0;
     }
 
