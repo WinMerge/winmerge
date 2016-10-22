@@ -113,8 +113,8 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_RESCAN, OnUpdateFileReload)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
-	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_9, OnDiffContext)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_9, OnUpdateDiffContext)
+	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_TOGGLE, OnDiffContext)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_TOGGLE, OnUpdateDiffContext)
 	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
 	ON_UPDATE_COMMAND_UI(ID_POPUP_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
 	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
@@ -1877,8 +1877,12 @@ void CMergeDoc::OnDiffContext(UINT nID)
 		m_nDiffContext = 7; break;
 	case ID_VIEW_DIFFCONTEXT_9:
 		m_nDiffContext = 9; break;
-	default:
-		m_nDiffContext = -1; break;
+	case ID_VIEW_DIFFCONTEXT_TOGGLE:
+		m_nDiffContext = -m_nDiffContext - 1; break;
+	case ID_VIEW_DIFFCONTEXT_ALL:
+		if (m_nDiffContext >= 0)
+			m_nDiffContext = -m_nDiffContext - 1;
+		break;
 	}
 	GetOptionsMgr()->SaveOption(OPT_DIFF_CONTEXT, m_nDiffContext);
 	FlushAndRescan(true);
@@ -1904,6 +1908,8 @@ void CMergeDoc::OnUpdateDiffContext(CCmdUI* pCmdUI)
 		bCheck = (m_nDiffContext == 7); break;
 	case ID_VIEW_DIFFCONTEXT_9:
 		bCheck = (m_nDiffContext == 9); break;
+	case ID_VIEW_DIFFCONTEXT_TOGGLE:
+		bCheck = false; break;
 	default:
 		bCheck = (m_nDiffContext < 0); break;
 	}
@@ -2110,7 +2116,7 @@ void CMergeDoc::HideLines()
 	int nLine;
 	int file;
 
-	if (m_nDiffContext == -1)
+	if (m_nDiffContext < 0)
 	{
 		for (file = 0; file < m_nBuffers; file++)
 			m_pView[file]->SetEnableHideLines(false);

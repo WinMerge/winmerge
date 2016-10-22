@@ -762,9 +762,44 @@ msgstr "구문 강조"
 msgid "&Diff Context"
 msgstr ""
 
-#: Merge.rc:22956A8
+#: Merge.rc:68816EE4
 #, c-format
-msgid "&All"
+msgid "&All Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA17
+#, c-format
+msgid "&0 Lines"
+msgstr ""
+
+#: Merge.rc:89AF4F9
+#, c-format
+msgid "&1 Line"
+msgstr ""
+
+#: Merge.rc:AC3AA18
+#, c-format
+msgid "&3 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA19
+#, c-format
+msgid "&5 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1A
+#, c-format
+msgid "&7 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1B
+#, c-format
+msgid "&9 Lines"
+msgstr ""
+
+#: Merge.rc:44B58195
+#, c-format
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
 #: Merge.rc:27AC6D81
@@ -932,12 +967,12 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
-#: Merge.rc:68816EE4
+#: Merge.rc:68816EE5
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
 
-#: Merge.rc:AC3AA17
+#: Merge.rc:AC3AA1C
 #, c-format
 msgid "&Scripts"
 msgstr "스크립트(&S)"
@@ -1027,7 +1062,7 @@ msgstr "오른쪽 파일 위치지정 복사 (%1 / %2)"
 msgid "&Move"
 msgstr "이동(&M)"
 
-#: Merge.rc:89AF4F9
+#: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
 msgstr "삭제(&D)"
@@ -1037,7 +1072,7 @@ msgstr "삭제(&D)"
 msgid "&Left"
 msgstr "왼쪽만(&L)"
 
-#: Merge.rc:89AF4FA
+#: Merge.rc:89AF4FB
 #, c-format
 msgid "&Middle"
 msgstr ""
@@ -1052,6 +1087,11 @@ msgstr "오른쪽만(&R)"
 msgid "&Both"
 msgstr "모두(&B)"
 
+#: Merge.rc:22956A8
+#, c-format
+msgid "&All"
+msgstr ""
+
 #: Merge.rc:4876CD3D
 #, c-format
 msgid "Re&name"
@@ -1062,7 +1102,7 @@ msgstr "이름 바꾸기(&N)"
 msgid "&Hide Items"
 msgstr "숨기기(&H)"
 
-#: Merge.rc:68816EE5
+#: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
 msgstr "왼쪽 파일 열기(&O)"
@@ -1137,7 +1177,7 @@ msgstr ""
 msgid "Differences to... (%1 of %2)"
 msgstr ""
 
-#: Merge.rc:AC3AA18
+#: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
 msgstr "새로 고침(&R)"
@@ -1307,7 +1347,7 @@ msgstr "배포자"
 msgid "Select Files or Folders"
 msgstr "디렉토리/파일 선택"
 
-#: Merge.rc:68816EE6
+#: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "찾아보기(&B)"
@@ -1337,12 +1377,12 @@ msgstr ""
 msgid "Select..."
 msgstr "선택..."
 
-#: Merge.rc:68816EE7
+#: Merge.rc:68816EE8
 #, c-format
 msgid "&Unpacker:"
 msgstr "언팩커(&U):"
 
-#: Merge.rc:68816EE8
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "선택(&S)..."
@@ -1542,7 +1582,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EE9
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Find Next"
 msgstr "다음 찾기(&F)"
@@ -1572,7 +1612,7 @@ msgstr "EOF 랩 안 함(&D)"
 msgid "Replace in"
 msgstr "적용 범위"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
 msgstr "현재 파일(&S)"
@@ -1582,7 +1622,7 @@ msgstr "현재 파일(&S)"
 msgid "Wh&ole file"
 msgstr "모든 파일(&O)"
 
-#: Merge.rc:AC3AA19
+#: Merge.rc:AC3AA1E
 #, c-format
 msgid "&Replace"
 msgstr "바꾸기(&R)"
@@ -1767,7 +1807,7 @@ msgstr "맞바꾸기(&S)"
 msgid "&Append to existing file"
 msgstr "존재하는 파일에 덧붙이기(&A)"
 
-#: Merge.rc:AC3AA1A
+#: Merge.rc:AC3AA1F
 #, c-format
 msgid "&Result:"
 msgstr "결과(&R):"
@@ -1777,7 +1817,7 @@ msgstr "결과(&R):"
 msgid "Bro&wse..."
 msgstr "찾아보기(&W)"
 
-#: Merge.rc:89AF4FB
+#: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
 msgstr "형식(&F)"
@@ -1912,7 +1952,7 @@ msgstr "비교"
 msgid "Whitespace"
 msgstr "공백"
 
-#: Merge.rc:AC3AA1B
+#: Merge.rc:AC3AA20
 #, c-format
 msgid "&Compare"
 msgstr "공백 비교(&W)"
@@ -1982,7 +2022,7 @@ msgstr "원본 EOL 보존(&P)"
 msgid "Tabs"
 msgstr "탭"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
 msgstr "탭 크기(&T):"
@@ -2237,7 +2277,7 @@ msgstr "보고서 파일(&F):"
 msgid "Browse..."
 msgstr "찾아보기..."
 
-#: Merge.rc:89AF4FC
+#: Merge.rc:89AF4FD
 #, c-format
 msgid "&Style:"
 msgstr "형식(&S):"
@@ -2402,7 +2442,7 @@ msgstr "양쪽 모두 동일 코드페이지 적용(&U)"
 msgid "&Apply"
 msgstr "적용(&A)"
 
-#: Merge.rc:89AF4FD
+#: Merge.rc:89AF4FE
 #, c-format
 msgid "&Cancel"
 msgstr "취소(&C)"
@@ -2482,12 +2522,12 @@ msgstr "왼쪽(&L):"
 msgid "R&ead-only"
 msgstr "읽기 전용(&E)"
 
-#: Merge.rc:89AF4FE
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Right:"
 msgstr "오른쪽(&R):"
 
-#: Merge.rc:AC3AA1C
+#: Merge.rc:AC3AA21
 #, c-format
 msgid "&Filter:"
 msgstr "필터(&F):"
@@ -2844,7 +2884,7 @@ msgstr "중지(&A)"
 msgid "&Retry"
 msgstr "재시도(&)"
 
-#: Merge.rc:89AF4FF
+#: Merge.rc:89AF500
 #, c-format
 msgid "&Ignore"
 msgstr "무시(&I)"

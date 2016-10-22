@@ -762,10 +762,45 @@ msgstr "シンタックスハイライト"
 msgid "&Diff Context"
 msgstr "Diffコンテキスト(&D):"
 
-#: Merge.rc:22956A8
+#: Merge.rc:68816EE4
 #, c-format
-msgid "&All"
-msgstr "全て(&A)"
+msgid "&All Lines"
+msgstr "全行(&A)"
+
+#: Merge.rc:AC3AA17
+#, c-format
+msgid "&0 Lines"
+msgstr "&0行"
+
+#: Merge.rc:89AF4F9
+#, c-format
+msgid "&1 Line"
+msgstr "&1行"
+
+#: Merge.rc:AC3AA18
+#, c-format
+msgid "&3 Lines"
+msgstr "&3行"
+
+#: Merge.rc:AC3AA19
+#, c-format
+msgid "&5 Lines"
+msgstr "&5行"
+
+#: Merge.rc:AC3AA1A
+#, c-format
+msgid "&7 Lines"
+msgstr "&7行"
+
+#: Merge.rc:AC3AA1B
+#, c-format
+msgid "&9 Lines"
+msgstr "&9行"
+
+#: Merge.rc:44B58195
+#, c-format
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr "全行/0～9行切替(&T)\tCtrl+D"
 
 #: Merge.rc:27AC6D81
 #, c-format
@@ -932,12 +967,12 @@ msgstr "同期ポイントを追加(&S)\tAlt+S"
 msgid "Clear Sync&hronization Points"
 msgstr "すべての同期ポイントをクリア(&H)"
 
-#: Merge.rc:68816EE4
+#: Merge.rc:68816EE5
 #, c-format
 msgid "&Prediffer"
 msgstr "比較前処理プラグイン(&P)"
 
-#: Merge.rc:AC3AA17
+#: Merge.rc:AC3AA1C
 #, c-format
 msgid "&Scripts"
 msgstr "スクリプト(&S)"
@@ -1027,7 +1062,7 @@ msgstr "右を... (%1/%2)"
 msgid "&Move"
 msgstr "移動(&M)"
 
-#: Merge.rc:89AF4F9
+#: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
 msgstr "削除(&D)"
@@ -1037,7 +1072,7 @@ msgstr "削除(&D)"
 msgid "&Left"
 msgstr "左(&L)"
 
-#: Merge.rc:89AF4FA
+#: Merge.rc:89AF4FB
 #, c-format
 msgid "&Middle"
 msgstr "中央(&M)"
@@ -1052,6 +1087,11 @@ msgstr "右(&R)"
 msgid "&Both"
 msgstr "両側(&B)"
 
+#: Merge.rc:22956A8
+#, c-format
+msgid "&All"
+msgstr "全て(&A)"
+
 #: Merge.rc:4876CD3D
 #, c-format
 msgid "Re&name"
@@ -1062,7 +1102,7 @@ msgstr "名前の変更(&N)"
 msgid "&Hide Items"
 msgstr "項目を非表示(&H)"
 
-#: Merge.rc:68816EE5
+#: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
 msgstr "左を開く(&O)"
@@ -1137,7 +1177,7 @@ msgstr "全てを... (%1 / %2)"
 msgid "Differences to... (%1 of %2)"
 msgstr "差異を... (%1 / %2)"
 
-#: Merge.rc:AC3AA18
+#: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
 msgstr "選択項目を再比較(&R)"
@@ -1307,7 +1347,7 @@ msgstr "貢献者"
 msgid "Select Files or Folders"
 msgstr "ファイルまたはフォルダの選択..."
 
-#: Merge.rc:68816EE6
+#: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "参照(&B)..."
@@ -1337,12 +1377,12 @@ msgstr "フィルタ(&L):"
 msgid "Select..."
 msgstr "選択..."
 
-#: Merge.rc:68816EE7
+#: Merge.rc:68816EE8
 #, c-format
 msgid "&Unpacker:"
 msgstr "展開プラグイン(&U):"
 
-#: Merge.rc:68816EE8
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "選択(&S)..."
@@ -1546,7 +1586,7 @@ msgstr "このダイアログボックスを閉じない(&D)"
 msgid "Find &Prev"
 msgstr "前を検索(&P)"
 
-#: Merge.rc:68816EE9
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Find Next"
 msgstr "次を検索(&F)"
@@ -1576,7 +1616,7 @@ msgstr "ファイルの終端で折り返さない(&D)"
 msgid "Replace in"
 msgstr "置換"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
 msgstr "選択範囲(&S)"
@@ -1586,7 +1626,7 @@ msgstr "選択範囲(&S)"
 msgid "Wh&ole file"
 msgstr "ファイル全体(&O)"
 
-#: Merge.rc:AC3AA19
+#: Merge.rc:AC3AA1E
 #, c-format
 msgid "&Replace"
 msgstr "置換して次に(&R)"
@@ -1775,7 +1815,7 @@ msgstr "交換(&S)"
 msgid "&Append to existing file"
 msgstr "既存のファイルに追加する(&A)"
 
-#: Merge.rc:AC3AA1A
+#: Merge.rc:AC3AA1F
 #, c-format
 msgid "&Result:"
 msgstr "結果(&R):"
@@ -1785,7 +1825,7 @@ msgstr "結果(&R):"
 msgid "Bro&wse..."
 msgstr "参照(&W)..."
 
-#: Merge.rc:89AF4FB
+#: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
 msgstr "出力形式(&F)"
@@ -1920,7 +1960,7 @@ msgstr "比較"
 msgid "Whitespace"
 msgstr "空白"
 
-#: Merge.rc:AC3AA1B
+#: Merge.rc:AC3AA20
 #, c-format
 msgid "&Compare"
 msgstr "比較する(&C)"
@@ -1990,7 +2030,7 @@ msgstr "元のEOL文字を保存する(&P)"
 msgid "Tabs"
 msgstr "タブ"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
 msgstr "タブ幅(&T):"
@@ -2255,7 +2295,7 @@ msgstr "レポートファイル(&F):"
 msgid "Browse..."
 msgstr "参照..."
 
-#: Merge.rc:89AF4FC
+#: Merge.rc:89AF4FD
 #, c-format
 msgid "&Style:"
 msgstr "スタイル(&S):"
@@ -2420,7 +2460,7 @@ msgstr "両側に同じコードページを使用"
 msgid "&Apply"
 msgstr "適用(&A)"
 
-#: Merge.rc:89AF4FD
+#: Merge.rc:89AF4FE
 #, c-format
 msgid "&Cancel"
 msgstr "キャンセル(&C)"
@@ -2500,12 +2540,12 @@ msgstr "左(&L):"
 msgid "R&ead-only"
 msgstr "読み取り専用(&E)"
 
-#: Merge.rc:89AF4FE
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Right:"
 msgstr "右(&R):"
 
-#: Merge.rc:AC3AA1C
+#: Merge.rc:AC3AA21
 #, c-format
 msgid "&Filter:"
 msgstr "フィルタ(&F):"
@@ -2890,7 +2930,7 @@ msgstr "中止(&A)"
 msgid "&Retry"
 msgstr "再試行(&R)"
 
-#: Merge.rc:89AF4FF
+#: Merge.rc:89AF500
 #, c-format
 msgid "&Ignore"
 msgstr "無視(&I)"

@@ -762,9 +762,44 @@ msgstr "Kolorowanie sk³adni"
 msgid "&Diff Context"
 msgstr ""
 
-#: Merge.rc:22956A8
+#: Merge.rc:68816EE4
 #, c-format
-msgid "&All"
+msgid "&All Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA17
+#, c-format
+msgid "&0 Lines"
+msgstr ""
+
+#: Merge.rc:89AF4F9
+#, c-format
+msgid "&1 Line"
+msgstr ""
+
+#: Merge.rc:AC3AA18
+#, c-format
+msgid "&3 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA19
+#, c-format
+msgid "&5 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1A
+#, c-format
+msgid "&7 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1B
+#, c-format
+msgid "&9 Lines"
+msgstr ""
+
+#: Merge.rc:44B58195
+#, c-format
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
 #: Merge.rc:27AC6D81
@@ -932,12 +967,12 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
-#: Merge.rc:68816EE4
+#: Merge.rc:68816EE5
 #, c-format
 msgid "&Prediffer"
 msgstr "&Ró¿nicowanie wstêpne"
 
-#: Merge.rc:AC3AA17
+#: Merge.rc:AC3AA1C
 #, c-format
 msgid "&Scripts"
 msgstr "&Skrypty"
@@ -1027,7 +1062,7 @@ msgstr "Prawa na... (%1 z %2)"
 msgid "&Move"
 msgstr "Prze&nieœ"
 
-#: Merge.rc:89AF4F9
+#: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
 msgstr "&Usuñ"
@@ -1037,7 +1072,7 @@ msgstr "&Usuñ"
 msgid "&Left"
 msgstr "&Lewa"
 
-#: Merge.rc:89AF4FA
+#: Merge.rc:89AF4FB
 #, c-format
 msgid "&Middle"
 msgstr ""
@@ -1052,6 +1087,11 @@ msgstr "&Prawa"
 msgid "&Both"
 msgstr "&Obie"
 
+#: Merge.rc:22956A8
+#, c-format
+msgid "&All"
+msgstr ""
+
 #: Merge.rc:4876CD3D
 #, c-format
 msgid "Re&name"
@@ -1062,7 +1102,7 @@ msgstr "Zmieñ &nazwê"
 msgid "&Hide Items"
 msgstr "U&kryj elementy"
 
-#: Merge.rc:68816EE5
+#: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
 msgstr "O&twórz lew¹"
@@ -1137,7 +1177,7 @@ msgstr ""
 msgid "Differences to... (%1 of %2)"
 msgstr ""
 
-#: Merge.rc:AC3AA18
+#: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
 msgstr "O&dœwie¿"
@@ -1307,7 +1347,7 @@ msgstr "Wspó³twórcy"
 msgid "Select Files or Folders"
 msgstr "Wybierz pliki lub foldery..."
 
-#: Merge.rc:68816EE6
+#: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Przegl¹daj..."
@@ -1337,12 +1377,12 @@ msgstr ""
 msgid "Select..."
 msgstr "Wybierz..."
 
-#: Merge.rc:68816EE7
+#: Merge.rc:68816EE8
 #, c-format
 msgid "&Unpacker:"
 msgstr "Program &rozpakowuj¹cy:"
 
-#: Merge.rc:68816EE8
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "&Wybierz..."
@@ -1542,7 +1582,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EE9
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Find Next"
 msgstr "&Nastêpny"
@@ -1572,7 +1612,7 @@ msgstr "Szukaj tylko do koñca pliku"
 msgid "Replace in"
 msgstr "Zast¹p w"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
 msgstr "&Zaznaczenie"
@@ -1582,7 +1622,7 @@ msgstr "&Zaznaczenie"
 msgid "Wh&ole file"
 msgstr "Ca³y &plik"
 
-#: Merge.rc:AC3AA19
+#: Merge.rc:AC3AA1E
 #, c-format
 msgid "&Replace"
 msgstr "&Zast¹p"
@@ -1767,7 +1807,7 @@ msgstr "Za&mieñ"
 msgid "&Append to existing file"
 msgstr "Dodaj do &istniej¹cego pliku"
 
-#: Merge.rc:AC3AA1A
+#: Merge.rc:AC3AA1F
 #, c-format
 msgid "&Result:"
 msgstr "&Wynik:"
@@ -1777,7 +1817,7 @@ msgstr "&Wynik:"
 msgid "Bro&wse..."
 msgstr "&Przegl¹daj..."
 
-#: Merge.rc:89AF4FB
+#: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
 msgstr "&Format"
@@ -1912,7 +1952,7 @@ msgstr "Porównaj"
 msgid "Whitespace"
 msgstr "Bia³e znaki"
 
-#: Merge.rc:AC3AA1B
+#: Merge.rc:AC3AA20
 #, c-format
 msgid "&Compare"
 msgstr "&Porównaj"
@@ -1982,7 +2022,7 @@ msgstr "Zachowaj &oryginalne znaki koñca linii"
 msgid "Tabs"
 msgstr "Tabulatory"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
 msgstr "&Rozmiar tabulatora:"
@@ -2241,7 +2281,7 @@ msgstr "&Plik raportu:"
 msgid "Browse..."
 msgstr "Przegl¹daj..."
 
-#: Merge.rc:89AF4FC
+#: Merge.rc:89AF4FD
 #, c-format
 msgid "&Style:"
 msgstr "&Styl:"
@@ -2406,7 +2446,7 @@ msgstr "&U¿yj tej samej strony kodowej dla obu"
 msgid "&Apply"
 msgstr "Z&astosuj"
 
-#: Merge.rc:89AF4FD
+#: Merge.rc:89AF4FE
 #, c-format
 msgid "&Cancel"
 msgstr "A&nuluj"
@@ -2486,12 +2526,12 @@ msgstr "&Lewa:"
 msgid "R&ead-only"
 msgstr "Ty&lko do odczytu"
 
-#: Merge.rc:89AF4FE
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Right:"
 msgstr "&Prawa:"
 
-#: Merge.rc:AC3AA1C
+#: Merge.rc:AC3AA21
 #, c-format
 msgid "&Filter:"
 msgstr "&Filtr:"
@@ -2848,7 +2888,7 @@ msgstr "&Przerwij"
 msgid "&Retry"
 msgstr "P&onów"
 
-#: Merge.rc:89AF4FF
+#: Merge.rc:89AF500
 #, c-format
 msgid "&Ignore"
 msgstr "&Ignoruj"

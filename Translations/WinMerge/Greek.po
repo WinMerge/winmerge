@@ -760,9 +760,44 @@ msgstr "&Χρωματισμός Κώδικα"
 msgid "&Diff Context"
 msgstr ""
 
-#: Merge.rc:22956A8
+#: Merge.rc:68816EE4
 #, c-format
-msgid "&All"
+msgid "&All Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA17
+#, c-format
+msgid "&0 Lines"
+msgstr ""
+
+#: Merge.rc:89AF4F9
+#, c-format
+msgid "&1 Line"
+msgstr ""
+
+#: Merge.rc:AC3AA18
+#, c-format
+msgid "&3 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA19
+#, c-format
+msgid "&5 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1A
+#, c-format
+msgid "&7 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1B
+#, c-format
+msgid "&9 Lines"
+msgstr ""
+
+#: Merge.rc:44B58195
+#, c-format
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
 #: Merge.rc:27AC6D81
@@ -930,12 +965,12 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
-#: Merge.rc:68816EE4
+#: Merge.rc:68816EE5
 #, c-format
 msgid "&Prediffer"
 msgstr "Προεπε&ξεργαστής Διαφορών"
 
-#: Merge.rc:AC3AA17
+#: Merge.rc:AC3AA1C
 #, c-format
 msgid "&Scripts"
 msgstr "Μακ&ροεντολές"
@@ -1025,7 +1060,7 @@ msgstr "Δεξιό στο... (%1 από %2)"
 msgid "&Move"
 msgstr "&Μετακίνηση"
 
-#: Merge.rc:89AF4F9
+#: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
 msgstr "&Διαγραφή"
@@ -1035,7 +1070,7 @@ msgstr "&Διαγραφή"
 msgid "&Left"
 msgstr "Α&ριστερό"
 
-#: Merge.rc:89AF4FA
+#: Merge.rc:89AF4FB
 #, c-format
 msgid "&Middle"
 msgstr ""
@@ -1050,6 +1085,11 @@ msgstr "Δε&ξιό"
 msgid "&Both"
 msgstr "Αμ&φότερα"
 
+#: Merge.rc:22956A8
+#, c-format
+msgid "&All"
+msgstr ""
+
 #: Merge.rc:4876CD3D
 #, c-format
 msgid "Re&name"
@@ -1060,7 +1100,7 @@ msgstr "Μετο&νομασία"
 msgid "&Hide Items"
 msgstr "Απόκρυ&ψη Αντικειμένων"
 
-#: Merge.rc:68816EE5
+#: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
 msgstr "Άνοιγμα Α&ριστερού"
@@ -1135,7 +1175,7 @@ msgstr ""
 msgid "Differences to... (%1 of %2)"
 msgstr ""
 
-#: Merge.rc:AC3AA18
+#: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
 msgstr "Ανα&νέωση"
@@ -1305,7 +1345,7 @@ msgstr "Συντελεστές"
 msgid "Select Files or Folders"
 msgstr "Επιλογή Αρχείων ή Φακέλων"
 
-#: Merge.rc:68816EE6
+#: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "Ανα&ζήτηση..."
@@ -1335,12 +1375,12 @@ msgstr ""
 msgid "Select..."
 msgstr "Επιλογή..."
 
-#: Merge.rc:68816EE7
+#: Merge.rc:68816EE8
 #, c-format
 msgid "&Unpacker:"
 msgstr "Απο&συμπιεστικό:"
 
-#: Merge.rc:68816EE8
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "&Επιλογή..."
@@ -1540,7 +1580,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EE9
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Find Next"
 msgstr "Εύρεση &Επομένου"
@@ -1570,7 +1610,7 @@ msgstr "Χωρίς ανα&δίπλωση στο τέλος του αρχείου"
 msgid "Replace in"
 msgstr "Αντικατάσταση εντός"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
 msgstr "&Επιλογής"
@@ -1580,7 +1620,7 @@ msgstr "&Επιλογής"
 msgid "Wh&ole file"
 msgstr "Ό&λου του Αρχείου"
 
-#: Merge.rc:AC3AA19
+#: Merge.rc:AC3AA1E
 #, c-format
 msgid "&Replace"
 msgstr "Αντι&κατάσταση"
@@ -1765,7 +1805,7 @@ msgstr "Αντιμετά&θεση"
 msgid "&Append to existing file"
 msgstr "Προσάρτηση σε υπάρχον αρχείο"
 
-#: Merge.rc:AC3AA1A
+#: Merge.rc:AC3AA1F
 #, c-format
 msgid "&Result:"
 msgstr "&Αποτέλεσμα:"
@@ -1775,7 +1815,7 @@ msgstr "&Αποτέλεσμα:"
 msgid "Bro&wse..."
 msgstr "Ανα&ζήτηση..."
 
-#: Merge.rc:89AF4FB
+#: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
 msgstr "Μορ&φή"
@@ -1910,7 +1950,7 @@ msgstr "Σύγκριση"
 msgid "Whitespace"
 msgstr "Χαρακτήρες Διαστήματος"
 
-#: Merge.rc:AC3AA1B
+#: Merge.rc:AC3AA20
 #, c-format
 msgid "&Compare"
 msgstr "&Σύγκριση"
@@ -1980,7 +2020,7 @@ msgstr "Δια&τήρηση αρχικών χαρακτήρων τερματισμού"
 msgid "Tabs"
 msgstr "Στηλοθέτες"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
 msgstr "Πλάτος Στηλο&θετών"
@@ -2235,7 +2275,7 @@ msgstr "Αρχείο Ανα&φοράς"
 msgid "Browse..."
 msgstr "Ανα&ζήτηση..."
 
-#: Merge.rc:89AF4FC
+#: Merge.rc:89AF4FD
 #, c-format
 msgid "&Style:"
 msgstr "&Στυλ:"
@@ -2400,7 +2440,7 @@ msgstr "Χρήση ιδίας κωδικοσελίδας για αμφότερα"
 msgid "&Apply"
 msgstr "Ε&φαρμογή"
 
-#: Merge.rc:89AF4FD
+#: Merge.rc:89AF4FE
 #, c-format
 msgid "&Cancel"
 msgstr "Ά&κυρο"
@@ -2480,12 +2520,12 @@ msgstr "Α&ριστερό:"
 msgid "R&ead-only"
 msgstr "Μόνο για Ανά&γνωση"
 
-#: Merge.rc:89AF4FE
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Right:"
 msgstr "Δε&ξιό:"
 
-#: Merge.rc:AC3AA1C
+#: Merge.rc:AC3AA21
 #, c-format
 msgid "&Filter:"
 msgstr "&Φίλτρο:"
@@ -2842,7 +2882,7 @@ msgstr "&Ματαίωση"
 msgid "&Retry"
 msgstr "&Επανάληψη"
 
-#: Merge.rc:89AF4FF
+#: Merge.rc:89AF500
 #, c-format
 msgid "&Ignore"
 msgstr "Να &αγνοηθεί"
