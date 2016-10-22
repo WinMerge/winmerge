@@ -761,9 +761,44 @@ msgstr "Evidenziazione sintassi"
 msgid "&Diff Context"
 msgstr ""
 
-#: Merge.rc:22956A8
+#: Merge.rc:68816EE4
 #, c-format
-msgid "&All"
+msgid "&All Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA17
+#, c-format
+msgid "&0 Lines"
+msgstr ""
+
+#: Merge.rc:89AF4F9
+#, c-format
+msgid "&1 Line"
+msgstr ""
+
+#: Merge.rc:AC3AA18
+#, c-format
+msgid "&3 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA19
+#, c-format
+msgid "&5 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1A
+#, c-format
+msgid "&7 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1B
+#, c-format
+msgid "&9 Lines"
+msgstr ""
+
+#: Merge.rc:44B58195
+#, c-format
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
 #: Merge.rc:27AC6D81
@@ -931,12 +966,12 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
-#: Merge.rc:68816EE4
+#: Merge.rc:68816EE5
 #, c-format
 msgid "&Prediffer"
 msgstr "&Prediffer"
 
-#: Merge.rc:AC3AA17
+#: Merge.rc:AC3AA1C
 #, c-format
 msgid "&Scripts"
 msgstr "&Script"
@@ -1026,7 +1061,7 @@ msgstr "Destra in... (%1 su %2)"
 msgid "&Move"
 msgstr "&Sposta"
 
-#: Merge.rc:89AF4F9
+#: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
 msgstr "&Elimina"
@@ -1036,7 +1071,7 @@ msgstr "&Elimina"
 msgid "&Left"
 msgstr "&Sinistra"
 
-#: Merge.rc:89AF4FA
+#: Merge.rc:89AF4FB
 #, c-format
 msgid "&Middle"
 msgstr ""
@@ -1051,6 +1086,11 @@ msgstr "&Destra"
 msgid "&Both"
 msgstr "&Entrambi"
 
+#: Merge.rc:22956A8
+#, c-format
+msgid "&All"
+msgstr ""
+
 #: Merge.rc:4876CD3D
 #, c-format
 msgid "Re&name"
@@ -1061,7 +1101,7 @@ msgstr "&Rinomina"
 msgid "&Hide Items"
 msgstr "&Nascondi elementi"
 
-#: Merge.rc:68816EE5
+#: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
 msgstr "Apri &file di sinistra"
@@ -1136,7 +1176,7 @@ msgstr ""
 msgid "Differences to... (%1 of %2)"
 msgstr ""
 
-#: Merge.rc:AC3AA18
+#: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
 msgstr "A&ggiorna"
@@ -1306,7 +1346,7 @@ msgstr "Hanno contribuito"
 msgid "Select Files or Folders"
 msgstr "Seleziona i file o le cartelle"
 
-#: Merge.rc:68816EE6
+#: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "S&foglia..."
@@ -1336,12 +1376,12 @@ msgstr ""
 msgid "Select..."
 msgstr "S&eleziona..."
 
-#: Merge.rc:68816EE7
+#: Merge.rc:68816EE8
 #, c-format
 msgid "&Unpacker:"
 msgstr "Scompa&ttatore:"
 
-#: Merge.rc:68816EE8
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "Sele&ziona..."
@@ -1541,7 +1581,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EE9
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Find Next"
 msgstr "&Trova succ."
@@ -1571,7 +1611,7 @@ msgstr "&Fermati alla fine del file"
 msgid "Replace in"
 msgstr "Sostituisci in"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
 msgstr "Sele&zione"
@@ -1581,7 +1621,7 @@ msgstr "Sele&zione"
 msgid "Wh&ole file"
 msgstr "T&utto il file"
 
-#: Merge.rc:AC3AA19
+#: Merge.rc:AC3AA1E
 #, c-format
 msgid "&Replace"
 msgstr "&Sostituisci"
@@ -1766,7 +1806,7 @@ msgstr "&Scambia"
 msgid "&Append to existing file"
 msgstr "&Appendi a un file esistente"
 
-#: Merge.rc:AC3AA1A
+#: Merge.rc:AC3AA1F
 #, c-format
 msgid "&Result:"
 msgstr "Ris&ultato:"
@@ -1776,7 +1816,7 @@ msgstr "Ris&ultato:"
 msgid "Bro&wse..."
 msgstr "Sf&oglia..."
 
-#: Merge.rc:89AF4FB
+#: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
 msgstr "&Formato"
@@ -1911,7 +1951,7 @@ msgstr "Confronto"
 msgid "Whitespace"
 msgstr "Spazi bianchi"
 
-#: Merge.rc:AC3AA1B
+#: Merge.rc:AC3AA20
 #, c-format
 msgid "&Compare"
 msgstr "&Confronta"
@@ -1981,7 +2021,7 @@ msgstr "&Conserva i caratteri originali di fine riga"
 msgid "Tabs"
 msgstr "Tabulazioni"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
 msgstr "&Dimensioni:"
@@ -2236,7 +2276,7 @@ msgstr "&File di rapporto:"
 msgid "Browse..."
 msgstr "Sfoglia..."
 
-#: Merge.rc:89AF4FC
+#: Merge.rc:89AF4FD
 #, c-format
 msgid "&Style:"
 msgstr "&Stile:"
@@ -2401,7 +2441,7 @@ msgstr "&Usa lo stesso codice di pagina per entrambi"
 msgid "&Apply"
 msgstr "&Applica"
 
-#: Merge.rc:89AF4FD
+#: Merge.rc:89AF4FE
 #, c-format
 msgid "&Cancel"
 msgstr "Annu&lla"
@@ -2481,12 +2521,12 @@ msgstr "&Sinistra:"
 msgid "R&ead-only"
 msgstr "Sola &lettura"
 
-#: Merge.rc:89AF4FE
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Right:"
 msgstr "&Destra:"
 
-#: Merge.rc:AC3AA1C
+#: Merge.rc:AC3AA21
 #, c-format
 msgid "&Filter:"
 msgstr "&Filtro:"
@@ -2836,7 +2876,7 @@ msgstr "&Termina"
 msgid "&Retry"
 msgstr "&Riprova"
 
-#: Merge.rc:89AF4FF
+#: Merge.rc:89AF500
 #, c-format
 msgid "&Ignore"
 msgstr "&Ignora"

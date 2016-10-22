@@ -457,13 +457,14 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Diff Context"
         BEGIN
-            MENUITEM "&All",                        ID_VIEW_DIFFCONTEXT_ALL
-            MENUITEM "&0",                          ID_VIEW_DIFFCONTEXT_0
-            MENUITEM "&1",                          ID_VIEW_DIFFCONTEXT_1
-            MENUITEM "&3",                          ID_VIEW_DIFFCONTEXT_3
-            MENUITEM "&5",                          ID_VIEW_DIFFCONTEXT_5
-            MENUITEM "&7",                          ID_VIEW_DIFFCONTEXT_7
-            MENUITEM "&9",                          ID_VIEW_DIFFCONTEXT_9
+            MENUITEM "&All Lines",                        ID_VIEW_DIFFCONTEXT_ALL
+            MENUITEM "&0 Lines",                          ID_VIEW_DIFFCONTEXT_0
+            MENUITEM "&1 Line",                           ID_VIEW_DIFFCONTEXT_1
+            MENUITEM "&3 Lines",                          ID_VIEW_DIFFCONTEXT_3
+            MENUITEM "&5 Lines",                          ID_VIEW_DIFFCONTEXT_5
+            MENUITEM "&7 Lines",                          ID_VIEW_DIFFCONTEXT_7
+            MENUITEM "&9 Lines",                          ID_VIEW_DIFFCONTEXT_9
+            MENUITEM "&Toggle All and 0-9 Lines\tCtrl+D", ID_VIEW_DIFFCONTEXT_TOGGLE
         END
         MENUITEM SEPARATOR
         MENUITEM "&Lock Panes",                 ID_VIEW_RESIZE_PANES
@@ -779,6 +780,7 @@ BEGIN
     "9",            ID_PREVDIFFRO,          VIRTKEY, SHIFT, ALT, NOINVERT
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_VIEW_DIFFCONTEXT_TOGGLE, VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT

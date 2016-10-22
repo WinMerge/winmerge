@@ -762,9 +762,44 @@ msgstr "Підсвічування синтаксису"
 msgid "&Diff Context"
 msgstr ""
 
-#: Merge.rc:22956A8
+#: Merge.rc:68816EE4
 #, c-format
-msgid "&All"
+msgid "&All Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA17
+#, c-format
+msgid "&0 Lines"
+msgstr ""
+
+#: Merge.rc:89AF4F9
+#, c-format
+msgid "&1 Line"
+msgstr ""
+
+#: Merge.rc:AC3AA18
+#, c-format
+msgid "&3 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA19
+#, c-format
+msgid "&5 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1A
+#, c-format
+msgid "&7 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1B
+#, c-format
+msgid "&9 Lines"
+msgstr ""
+
+#: Merge.rc:44B58195
+#, c-format
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
 #: Merge.rc:27AC6D81
@@ -932,12 +967,12 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
-#: Merge.rc:68816EE4
+#: Merge.rc:68816EE5
 #, c-format
 msgid "&Prediffer"
 msgstr "&Попереднє порівняння"
 
-#: Merge.rc:AC3AA17
+#: Merge.rc:AC3AA1C
 #, c-format
 msgid "&Scripts"
 msgstr "С&ценарії"
@@ -1027,7 +1062,7 @@ msgstr "Справа... (%1 з %2)"
 msgid "&Move"
 msgstr "&Перемістити"
 
-#: Merge.rc:89AF4F9
+#: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
 msgstr "&Вилучити"
@@ -1037,7 +1072,7 @@ msgstr "&Вилучити"
 msgid "&Left"
 msgstr "&Ліворуч"
 
-#: Merge.rc:89AF4FA
+#: Merge.rc:89AF4FB
 #, c-format
 msgid "&Middle"
 msgstr ""
@@ -1052,6 +1087,11 @@ msgstr "&Праворуч"
 msgid "&Both"
 msgstr "&Обидва"
 
+#: Merge.rc:22956A8
+#, c-format
+msgid "&All"
+msgstr ""
+
 #: Merge.rc:4876CD3D
 #, c-format
 msgid "Re&name"
@@ -1062,7 +1102,7 @@ msgstr "&Перейменувати"
 msgid "&Hide Items"
 msgstr "&Сховати"
 
-#: Merge.rc:68816EE5
+#: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
 msgstr "&Відкрити лівий файл"
@@ -1137,7 +1177,7 @@ msgstr ""
 msgid "Differences to... (%1 of %2)"
 msgstr ""
 
-#: Merge.rc:AC3AA18
+#: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
 msgstr "&Поновити"
@@ -1307,7 +1347,7 @@ msgstr "Автори"
 msgid "Select Files or Folders"
 msgstr "Виберіть файли або теки..."
 
-#: Merge.rc:68816EE6
+#: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Перегляд..."
@@ -1337,12 +1377,12 @@ msgstr ""
 msgid "Select..."
 msgstr "Вибрати..."
 
-#: Merge.rc:68816EE7
+#: Merge.rc:68816EE8
 #, c-format
 msgid "&Unpacker:"
 msgstr "&Розпакувальник:"
 
-#: Merge.rc:68816EE8
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "Вибрати..."
@@ -1542,7 +1582,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EE9
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Find Next"
 msgstr "&Далі"
@@ -1572,7 +1612,7 @@ msgstr "Не зупинятися при досягненні кінця файлу"
 msgid "Replace in"
 msgstr "Замінити"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
 msgstr "В ві&дзначеному"
@@ -1582,7 +1622,7 @@ msgstr "В ві&дзначеному"
 msgid "Wh&ole file"
 msgstr "В всьому &файлі"
 
-#: Merge.rc:AC3AA19
+#: Merge.rc:AC3AA1E
 #, c-format
 msgid "&Replace"
 msgstr "&Замінити"
@@ -1767,7 +1807,7 @@ msgstr "Поміняти"
 msgid "&Append to existing file"
 msgstr "Додати в існуючий файл"
 
-#: Merge.rc:AC3AA1A
+#: Merge.rc:AC3AA1F
 #, c-format
 msgid "&Result:"
 msgstr "Результат:"
@@ -1777,7 +1817,7 @@ msgstr "Результат:"
 msgid "Bro&wse..."
 msgstr "Пере&гляд..."
 
-#: Merge.rc:89AF4FB
+#: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
 msgstr "Формат"
@@ -1912,7 +1952,7 @@ msgstr "Порівняння"
 msgid "Whitespace"
 msgstr "Пропуски"
 
-#: Merge.rc:AC3AA1B
+#: Merge.rc:AC3AA20
 #, c-format
 msgid "&Compare"
 msgstr "Враховувати &пропуски"
@@ -1982,7 +2022,7 @@ msgstr "Оригінальні символи закінчення рядка"
 msgid "Tabs"
 msgstr "Відступи"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
 msgstr "Розмір &відступу:"
@@ -2241,7 +2281,7 @@ msgstr "&Файл звіту:"
 msgid "Browse..."
 msgstr "Перегляд ..."
 
-#: Merge.rc:89AF4FC
+#: Merge.rc:89AF4FD
 #, c-format
 msgid "&Style:"
 msgstr "&Стиль:"
@@ -2406,7 +2446,7 @@ msgstr "Використати ту саму сторінку кодування"
 msgid "&Apply"
 msgstr "&Застосувати"
 
-#: Merge.rc:89AF4FD
+#: Merge.rc:89AF4FE
 #, c-format
 msgid "&Cancel"
 msgstr "&Скасувати"
@@ -2486,12 +2526,12 @@ msgstr "&Лівий:"
 msgid "R&ead-only"
 msgstr "Лише читання"
 
-#: Merge.rc:89AF4FE
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Right:"
 msgstr "&Правий:"
 
-#: Merge.rc:AC3AA1C
+#: Merge.rc:AC3AA21
 #, c-format
 msgid "&Filter:"
 msgstr "&Фільтр:"
@@ -2848,7 +2888,7 @@ msgstr "&Перервати"
 msgid "&Retry"
 msgstr "Пов&торювати"
 
-#: Merge.rc:89AF4FF
+#: Merge.rc:89AF500
 #, c-format
 msgid "&Ignore"
 msgstr "&Нехтувати"

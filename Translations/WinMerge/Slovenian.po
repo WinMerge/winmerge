@@ -762,9 +762,44 @@ msgstr "Oznaèevanje sintakse"
 msgid "&Diff Context"
 msgstr ""
 
-#: Merge.rc:22956A8
+#: Merge.rc:68816EE4
 #, c-format
-msgid "&All"
+msgid "&All Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA17
+#, c-format
+msgid "&0 Lines"
+msgstr ""
+
+#: Merge.rc:89AF4F9
+#, c-format
+msgid "&1 Line"
+msgstr ""
+
+#: Merge.rc:AC3AA18
+#, c-format
+msgid "&3 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA19
+#, c-format
+msgid "&5 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1A
+#, c-format
+msgid "&7 Lines"
+msgstr ""
+
+#: Merge.rc:AC3AA1B
+#, c-format
+msgid "&9 Lines"
+msgstr ""
+
+#: Merge.rc:44B58195
+#, c-format
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
 #: Merge.rc:27AC6D81
@@ -932,12 +967,12 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
-#: Merge.rc:68816EE4
+#: Merge.rc:68816EE5
 #, c-format
 msgid "&Prediffer"
 msgstr "&Predpregled razlik"
 
-#: Merge.rc:AC3AA17
+#: Merge.rc:AC3AA1C
 #, c-format
 msgid "&Scripts"
 msgstr "&Skripte"
@@ -1027,7 +1062,7 @@ msgstr "Desna do ... (%1 od%2)"
 msgid "&Move"
 msgstr "&Pre&makni"
 
-#: Merge.rc:89AF4F9
+#: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
 msgstr "&Izbriši"
@@ -1037,7 +1072,7 @@ msgstr "&Izbriši"
 msgid "&Left"
 msgstr "&levi okvir"
 
-#: Merge.rc:89AF4FA
+#: Merge.rc:89AF4FB
 #, c-format
 msgid "&Middle"
 msgstr ""
@@ -1052,6 +1087,11 @@ msgstr "&desni okvir"
 msgid "&Both"
 msgstr "&Oboje"
 
+#: Merge.rc:22956A8
+#, c-format
+msgid "&All"
+msgstr ""
+
 #: Merge.rc:4876CD3D
 #, c-format
 msgid "Re&name"
@@ -1062,7 +1102,7 @@ msgstr "P&reimenuj"
 msgid "&Hide Items"
 msgstr "&Skrij predmete"
 
-#: Merge.rc:68816EE5
+#: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
 msgstr "&Odpri levo"
@@ -1137,7 +1177,7 @@ msgstr ""
 msgid "Differences to... (%1 of %2)"
 msgstr ""
 
-#: Merge.rc:AC3AA18
+#: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
 msgstr "&Osveži"
@@ -1307,7 +1347,7 @@ msgstr "Donatorji"
 msgid "Select Files or Folders"
 msgstr "Izberite datoteke ali mape"
 
-#: Merge.rc:68816EE6
+#: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Brskaj ..."
@@ -1337,12 +1377,12 @@ msgstr ""
 msgid "Select..."
 msgstr "Izberi ..."
 
-#: Merge.rc:68816EE7
+#: Merge.rc:68816EE8
 #, c-format
 msgid "&Unpacker:"
 msgstr "&Pretvornik:"
 
-#: Merge.rc:68816EE8
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "&Izberi ..."
@@ -1544,7 +1584,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EE9
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Find Next"
 msgstr "&Najdi naslednje"
@@ -1574,7 +1614,7 @@ msgstr "&Po koncu datoteke ne nadaljuj na zaèetku"
 msgid "Replace in"
 msgstr "Zamenjaj v"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
 msgstr "&Izbor"
@@ -1584,7 +1624,7 @@ msgstr "&Izbor"
 msgid "Wh&ole file"
 msgstr "&Cela datoteka"
 
-#: Merge.rc:AC3AA19
+#: Merge.rc:AC3AA1E
 #, c-format
 msgid "&Replace"
 msgstr "&Zamenjaj"
@@ -1769,7 +1809,7 @@ msgstr "&Zamenjaj"
 msgid "&Append to existing file"
 msgstr "&Dodaj k obstojeèi datoteki"
 
-#: Merge.rc:AC3AA1A
+#: Merge.rc:AC3AA1F
 #, c-format
 msgid "&Result:"
 msgstr "&Rezultat:"
@@ -1779,7 +1819,7 @@ msgstr "&Rezultat:"
 msgid "Bro&wse..."
 msgstr "&Brskaj ..."
 
-#: Merge.rc:89AF4FB
+#: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
 msgstr "&Format"
@@ -1914,7 +1954,7 @@ msgstr "Primerjaj"
 msgid "Whitespace"
 msgstr "Prazen znak"
 
-#: Merge.rc:AC3AA1B
+#: Merge.rc:AC3AA20
 #, c-format
 msgid "&Compare"
 msgstr "&Primerjaj"
@@ -1984,7 +2024,7 @@ msgstr "Obdrži izvorni tip znakov za konec vrstice (EOL)"
 msgid "Tabs"
 msgstr "Tabulatorji"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
 msgstr "&število presledkov, ki jih tabulator nadomesti"
@@ -2243,7 +2283,7 @@ msgstr "Poroèilna &datoteka:"
 msgid "Browse..."
 msgstr "Brskaj ..."
 
-#: Merge.rc:89AF4FC
+#: Merge.rc:89AF4FD
 #, c-format
 msgid "&Style:"
 msgstr "&Stil:"
@@ -2408,7 +2448,7 @@ msgstr "&Uporabi enako kodno tabelo za oboje"
 msgid "&Apply"
 msgstr "&Uporabi"
 
-#: Merge.rc:89AF4FD
+#: Merge.rc:89AF4FE
 #, c-format
 msgid "&Cancel"
 msgstr "&Preklièi"
@@ -2488,12 +2528,12 @@ msgstr "&Levi okvir:"
 msgid "R&ead-only"
 msgstr "Samo za branje"
 
-#: Merge.rc:89AF4FE
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Right:"
 msgstr "&Desni okvir:"
 
-#: Merge.rc:AC3AA1C
+#: Merge.rc:AC3AA21
 #, c-format
 msgid "&Filter:"
 msgstr "&Filter:"
@@ -2850,7 +2890,7 @@ msgstr "&Prekini"
 msgid "&Retry"
 msgstr "&Poskusi ponovno"
 
-#: Merge.rc:89AF4FF
+#: Merge.rc:89AF500
 #, c-format
 msgid "&Ignore"
 msgstr "&Prezri"
