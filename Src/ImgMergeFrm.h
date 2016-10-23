@@ -66,6 +66,7 @@ public:
 	void DirDocClosing(CDirDoc * pDirDoc) { m_pDirDoc = NULL; }
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 	void SetLastCompareResult(int nResult);
+	void UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const;
