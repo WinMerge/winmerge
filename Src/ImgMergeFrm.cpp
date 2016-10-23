@@ -262,6 +262,7 @@ void CImgMergeFrame::ChangeFile(int nBuffer, const String& path)
 	}
 
 	UpdateHeaderPath(nBuffer);
+	UpdateLastCompareResult();
 }
 
 bool CImgMergeFrame::IsModified() const
@@ -950,6 +951,8 @@ void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 			sTitle = string_join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
 	}
 	CMDIChildWnd::SetTitle(sTitle.c_str());
+	if (m_hWnd)
+		SetWindowText(sTitle.c_str());
 }
 
 /**
@@ -978,6 +981,11 @@ void CImgMergeFrame::SetLastCompareResult(int nResult)
 	}
 
 	theApp.SetLastCompareResult(nResult);
+}
+
+void CImgMergeFrame::UpdateLastCompareResult()
+{
+	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount() > 0 ? 1 : 0);
 }
 
 void CImgMergeFrame::UpdateAutoPaneResize()
@@ -1339,6 +1347,7 @@ void CImgMergeFrame::OnEditUndo()
 	m_pImgMergeWindow->Undo();
 	if (!m_pImgMergeWindow->IsUndoable())
 		m_bAutoMerged = false;
+	UpdateLastCompareResult();
 }
 
 /**
@@ -1355,6 +1364,7 @@ void CImgMergeFrame::OnUpdateEditUndo(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnEditRedo()
 {
 	m_pImgMergeWindow->Redo();
+	UpdateLastCompareResult();
 }
 
 /**
@@ -1536,6 +1546,7 @@ void CImgMergeFrame::OnUpdateX2Y(CCmdUI* pCmdUI, int srcPane, int dstPane)
 void CImgMergeFrame::OnX2Y(int srcPane, int dstPane)
 {
 	m_pImgMergeWindow->CopyDiff(m_pImgMergeWindow->GetCurrentDiffIndex(), srcPane, dstPane);
+	UpdateLastCompareResult();
 }
 
 /**
@@ -1645,6 +1656,7 @@ void CImgMergeFrame::OnAllLeft()
 	CWaitCursor waitstatus;
 
 	m_pImgMergeWindow->CopyDiffAll(srcPane, dstPane);
+	UpdateLastCompareResult();
 }
 
 /**
@@ -1675,6 +1687,7 @@ void CImgMergeFrame::OnAllRight()
 	CWaitCursor waitstatus;
 
 	m_pImgMergeWindow->CopyDiffAll(srcPane, dstPane);
+	UpdateLastCompareResult();
 }
 
 /**
@@ -1788,7 +1801,7 @@ void CImgMergeFrame::OnUpdateImgThreshold(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnImgPrevPage()
 {
 	m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() - 1);
-	UpdateDiffItem(m_pDirDoc);
+	UpdateLastCompareResult();
 }
 
 void CImgMergeFrame::OnUpdateImgPrevPage(CCmdUI* pCmdUI)
@@ -1799,7 +1812,7 @@ void CImgMergeFrame::OnUpdateImgPrevPage(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnImgNextPage()
 {
 	m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() + 1);
-	UpdateDiffItem(m_pDirDoc);
+	UpdateLastCompareResult();
 }
 
 void CImgMergeFrame::OnUpdateImgNextPage(CCmdUI* pCmdUI)
@@ -1811,7 +1824,7 @@ void CImgMergeFrame::OnUpdateImgNextPage(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnImgCurPanePrevPage()
 {
 	m_pImgMergeWindow->SetCurrentPage(m_pImgMergeWindow->GetActivePane(), m_pImgMergeWindow->GetCurrentPage(m_pImgMergeWindow->GetActivePane()) - 1);
-	UpdateDiffItem(m_pDirDoc);
+	UpdateLastCompareResult();
 }
 
 void CImgMergeFrame::OnUpdateImgCurPanePrevPage(CCmdUI* pCmdUI)
@@ -1822,7 +1835,7 @@ void CImgMergeFrame::OnUpdateImgCurPanePrevPage(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnImgCurPaneNextPage()
 {
 	m_pImgMergeWindow->SetCurrentPage(m_pImgMergeWindow->GetActivePane(), m_pImgMergeWindow->GetCurrentPage(m_pImgMergeWindow->GetActivePane()) + 1);
-	UpdateDiffItem(m_pDirDoc);
+	UpdateLastCompareResult();
 }
 
 void CImgMergeFrame::OnUpdateImgCurPaneNextPage(CCmdUI* pCmdUI)
