@@ -2104,7 +2104,7 @@ msgstr "Rejeitar alterações"
 #: Merge.rc:5578260F
 #, c-format
 msgid "Disca&rd All"
-msgstr "Rejei&tar tudo"
+msgstr "Rejei&tar Tudo"
 
 #: Merge.rc:4C3E0A2F
 #, c-format
@@ -2124,12 +2124,12 @@ msgstr "Seleccionar a página de código predefinida quando carregar ficheiros non
 #: Merge.rc:5CC85DF4
 #, c-format
 msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
-msgstr ""
+msgstr "Detectar informação da página de código para estes ficheiros: .html, .rc, .xml \nnecessário para reiniciar sessão"
 
 #: Merge.rc:3BCD5104
 #, c-format
 msgid "Detect codepage for text files using mlang.dll\nneed to restart session"
-msgstr ""
+msgstr "Detectar página de código para ficheiros de texto que utilizam mlang.dll\nnecessário para reiniciar sessão"
 
 #: Merge.rc:E6D7F1
 #, c-format
@@ -2144,7 +2144,7 @@ msgstr "A mesma que o interface de utilizador do WinMerge"
 #: Merge.rc:8AF7E6A
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "Página de código personalizada"
 
 #: Merge.rc:6CD65B95
 #, c-format
@@ -2244,7 +2244,7 @@ msgstr "Estilo:"
 #: Merge.rc:545FEEA4
 #, c-format
 msgid "&Include File Compare Report"
-msgstr ""
+msgstr "Incluir relatório de comparação de ficheiros"
 
 #: Merge.rc:3938FFC5
 #, c-format
@@ -2254,7 +2254,7 @@ msgstr "Copiar para a Área de Transferência"
 #: Merge.rc:43600E90
 #, c-format
 msgid "Shared or Private Filter"
-msgstr "Filtro partilhado ou privado"
+msgstr "Filtro Partilhado ou Privado"
 
 #: Merge.rc:74E96E1E
 #, c-format
@@ -2264,17 +2264,17 @@ msgstr "Qual o tipo de filtro que deseja criar?"
 #: Merge.rc:444EF527
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "Filtro partilhado (para todos os utilizadores deste computador)"
+msgstr "Filtro Partilhado (para todos os utilizadores deste computador)"
 
 #: Merge.rc:11304E6
 #, c-format
 msgid "Private Filter (only for current user)"
-msgstr "Filtro privado (apenas para o utilizador actual)"
+msgstr "Filtro Privado (apenas para o utilizador actual)"
 
 #: Merge.rc:7D9F30CF
 #, c-format
 msgid "Archive Support"
-msgstr "Suporte de arquivo"
+msgstr "Suporte de Arquivo"
 
 #: Merge.rc:545FEEA5
 #, c-format
@@ -2339,7 +2339,7 @@ msgstr "Idêntico"
 #: Merge.rc:6FA9B0F7
 #, c-format
 msgid "Total:"
-msgstr "Total"
+msgstr "Total:"
 
 #: Merge.rc:76245120
 #, c-format
@@ -2354,7 +2354,7 @@ msgstr "Meio"
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Missing Left:"
-msgstr "Faltas da Esqueda:"
+msgstr "Faltas da Esquerda:"
 
 #: Merge.rc:2A79A039
 #, c-format
@@ -2424,7 +2424,7 @@ msgstr "Inserir texto a testar:"
 #: Merge.rc:4DE14277
 #, c-format
 msgid "&Folder Name"
-msgstr "Nome do arquivo"
+msgstr "Nome da Pasta"
 
 #: Merge.rc:4876CD3F
 #, c-format
@@ -2514,7 +2514,7 @@ msgstr "Criar cópia de ficheiros em:"
 #: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
-msgstr "Comparação de arquivos"
+msgstr "Comparação de pastas"
 
 #: Merge.rc:7A4CFAFD
 #, c-format
@@ -2529,12 +2529,12 @@ msgstr "Criar cópia de ficheiros para:"
 #: Merge.rc:381D79E7
 #, c-format
 msgid "&Original file's folder"
-msgstr "Pasta de arquivos originais"
+msgstr "Pasta de ficheiros originais"
 
 #: Merge.rc:714B45FE
 #, c-format
 msgid "&Global backup folder:"
-msgstr "Cópia geral de arquivos:"
+msgstr "Cópia geral de pastas:"
 
 #: Merge.rc:1F7B33EC
 #, c-format
@@ -2544,12 +2544,12 @@ msgstr "Nome da cópia do ficheiro"
 #: Merge.rc:381D79E8
 #, c-format
 msgid "&Append .bak -extension"
-msgstr ""
+msgstr "&Anexar extenção .bak"
 
 #: Merge.rc:129644DE
 #, c-format
 msgid "A&ppend timestamp"
-msgstr ""
+msgstr "A&nexar data"
 
 #: Merge.rc:CAEDA36
 #, c-format
@@ -2559,7 +2559,7 @@ msgstr "Confirmar cópia"
 #: Merge.rc:36D268E9
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr ""
+msgstr "Tem a certeza que deseja copiar XXX itens?"
 
 #: Merge.rc:30CDE281
 #, c-format
@@ -2584,17 +2584,17 @@ msgstr "Não"
 #: Merge.rc:B612C23
 #, c-format
 msgid "Plugins"
-msgstr ""
+msgstr "Plugins"
 
 #: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
-msgstr ""
+msgstr "Activar plugins"
 
 #: Merge.rc:62909ED6
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "Integração Shell"
 
 #: Merge.rc:31DC8C62
 #, c-format
@@ -2609,17 +2609,17 @@ msgstr "Activar menu avançado"
 #: Merge.rc:4EF81631
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "&Adicionar ao menu de contexto"
 
 #: Merge.rc:26A6974B
 #, c-format
 msgid "&Register shell extension"
-msgstr ""
+msgstr "&Registar extensão shell"
 
 #: Merge.rc:175DEEEF
 #, c-format
 msgid "&Unregister shell extension"
-msgstr ""
+msgstr "Extensão shell não registada"
 
 #: Merge.rc:7262BE24
 #, c-format
@@ -2639,22 +2639,22 @@ msgstr "Ignorar diferenças de tempo inferiores a 3 segundos"
 #: Merge.rc:6D5B7719
 #, c-format
 msgid "&Include unique subfolders contents"
-msgstr ""
+msgstr "&Incluir conteúdos exclusivos da sub-pastas"
 
 #: Merge.rc:3E136C28
 #, c-format
 msgid "&Automatically expand all subfolders"
-msgstr ""
+msgstr "Expandir &automaticamente todas as sub-pastas"
 
 #: Merge.rc:5D032167
 #, c-format
 msgid "Ignore &Reparse Points"
-msgstr ""
+msgstr "Ignorar pontos de &análise"
 
 #: Merge.rc:2E2C5208
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr ""
+msgstr "&Limite da comparação rápida (MB):"
 
 #: Merge.rc:17BC2F9E
 #, c-format
@@ -2664,12 +2664,12 @@ msgstr "Binário"
 #: Merge.rc:7AAB28B8
 #, c-format
 msgid "Binary File &Patterns:"
-msgstr ""
+msgstr "Ficheiro Binário & Padrão"
 
 #: Merge.rc:4F5264C9
 #, c-format
 msgid "Frhed settings"
-msgstr ""
+msgstr "Definições"
 
 #: Merge.rc:1A8FADD5
 #, c-format
@@ -2694,7 +2694,7 @@ msgstr "Imagem"
 #: Merge.rc:2C4A6C6D
 #, c-format
 msgid "Image File &Patterns:"
-msgstr "&Padrão de imagem do ficheiro"
+msgstr "&Padrão de Imagem do Ficheiro"
 
 #: Merge.rc:4DB19839
 #, c-format
