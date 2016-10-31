@@ -46,7 +46,7 @@ mkdir "%DISTDIR%\2.14-zip-version\WinMerge\GnuWin32" 2> NUL
 mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\GnuWin32" 2> NUL
 
 rem Readme
-for %%i in (Translations\Docs\Readme\ReadMe-Japanese.txt) do (
+for %%i in (Translations\Docs\Readme\ReadMe-*.txt) do (
   copy "%%i" "%DISTDIR%\2.14-zip-version\WinMerge\%%~nxi"
   copy "%%i" "%DISTDIR%\2.14-x64-zip-version\WinMerge\%%~nxi"
 )
@@ -70,9 +70,9 @@ copy ShellExtension\*Register.bat "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy ShellExtension\*Register.bat "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
 
 rem Translation
-copy Build\MergeUnicodeRelease\Languages\Japanese.po "%DISTDIR%\2.14-zip-version\WinMerge\Languages\"
+copy Build\MergeUnicodeRelease\Languages\*.po "%DISTDIR%\2.14-zip-version\WinMerge\Languages\"
 copy Build\MergeUnicodeRelease\MergeLang.dll "%DISTDIR%\2.14-zip-version\WinMerge\"
-copy Build\X64\MergeUnicodeRelease\Languages\Japanese.po "%DISTDIR%\2.14-x64-zip-version\WinMerge\Languages\"
+copy Build\X64\MergeUnicodeRelease\Languages\*.po "%DISTDIR%\2.14-x64-zip-version\WinMerge\Languages\"
 copy Build\X64\MergeUnicodeRelease\MergeLang.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
 
 rem Filters
