@@ -2839,7 +2839,7 @@ msgstr "Programadores:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, T
 #: Merge.rc:3EF068BF
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge não tem GARANTIA. Este é um software livre e pode ser redistribuído sobre determinadas circunstâncias; Consulte a Licença Pública Geral GNU ou vá ao Menu Ajuda para mais detalhes."
+msgstr "WinMerge não tem GARANTIA. Este é um software livre e pode ser redistribuído sobre determinadas circunstâncias; Consulte a Licença Pública Geral GNU ou vá ao Menu Ajuda para mais informações."
 
 #: Merge.rc:1D2E49FF
 #, c-format
@@ -3089,17 +3089,17 @@ msgstr "O filtro de ficheiro já existe. Substítuir filtro existente?"
 #: Merge.rc:237A126
 #, c-format
 msgid "Regular expression"
-msgstr ""
+msgstr "Expressão regular"
 
 #: Merge.rc:34BD4316
 #, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
-msgstr ""
+msgstr "Os filtros foram actualizados. Deseja actualizar as comparações de todas as pastas abertas?\n\nSe não quiser actualizar todas as comparações agora, pode seleccionar Não e actualizar a comparação mais tarde."
 
 #: Merge.rc:1DC30E67
 #, c-format
 msgid "&Path to SS.EXE:"
-msgstr ""
+msgstr "Patch para SS.EXE:"
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3114,7 +3114,7 @@ msgstr "Comparação de ficheiros"
 #: Merge.rc:2FEFC30D
 #, c-format
 msgid "Untitled left"
-msgstr "Sem título esquerdo"
+msgstr "Sem título esquerda"
 
 #: Merge.rc:730B3FD4
 #, c-format
@@ -3670,12 +3670,12 @@ msgstr "Ficheiro mais recente"
 #: Merge.rc:353D7BD9
 #, c-format
 msgid "Left File Version"
-msgstr "Versão do Ficheiro Esquerdo"
+msgstr "Versão do Ficheiro da Esquerda"
 
 #: Merge.rc:237A129
 #, c-format
 msgid "Right File Version"
-msgstr "Versão do Ficheiro Direito"
+msgstr "Versão do Ficheiro da Direita"
 
 #: Merge.rc:17F5B415
 #, c-format
@@ -3685,52 +3685,52 @@ msgstr "Versão do Ficheiro do Meio"
 #: Merge.rc:194397DE
 #, c-format
 msgid "Short Result"
-msgstr "Resultado resumido"
+msgstr "Resultado Resumido"
 
 #: Merge.rc:71676C49
 #, c-format
 msgid "Left Attributes"
-msgstr "Atributos da Esquerda"
+msgstr "Atributos Esq"
 
 #: Merge.rc:32BFDBAE
 #, c-format
 msgid "Right Attributes"
-msgstr "Atributos da Direita"
+msgstr "Atributos Dtª"
 
 #: Merge.rc:729280DC
 #, c-format
 msgid "Middle Attributes"
-msgstr "Atributos do Meio"
+msgstr "Atributos Meio"
 
 #: Merge.rc:15875424
 #, c-format
 msgid "Left EOL"
-msgstr "EOL da Esquerda"
+msgstr "EOL Esq"
 
 #: Merge.rc:D0645BD
 #, c-format
 msgid "Middle EOL"
-msgstr "EOL do Meio"
+msgstr "EOL Meio"
 
 #: Merge.rc:5F87E5D
 #, c-format
 msgid "Right EOL"
-msgstr "EOL da Direita"
+msgstr "EOL Dtª"
 
 #: Merge.rc:5C8E17CF
 #, c-format
 msgid "Left Encoding"
-msgstr "Codificação da Esquerda"
+msgstr "Codificação Esq"
 
 #: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
-msgstr "Codificação da Direita"
+msgstr "Codificação Dtª"
 
 #: Merge.rc:2A79A03A
 #, c-format
 msgid "Middle Encoding"
-msgstr "Codificação do Meio"
+msgstr "Codificação Meio"
 
 #: Merge.rc:6B6D8966
 #, c-format
@@ -3800,27 +3800,27 @@ msgstr "As pastas são diferentes"
 #: Merge.rc:1B633073
 #, c-format
 msgid "Left Only"
-msgstr "Apenas da Esquerda"
+msgstr "Apenas Esquerda"
 
 #: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
-msgstr "Apenas da Direita"
+msgstr "Apenas Direita"
 
 #: Merge.rc:13C27218
 #, c-format
 msgid "Middle Only"
-msgstr "Apenas do Meio"
+msgstr "Apenas Meio"
 
 #: Merge.rc:638BD42C
 #, c-format
 msgid "No item in left"
-msgstr "Sem itens na esquerda"
+msgstr "Sem itens à esquerda"
 
 #: Merge.rc:DEEB1BA
 #, c-format
 msgid "No item in right"
-msgstr "Sem itens na direita"
+msgstr "Sem itens à direita"
 
 #: Merge.rc:2FE785D7
 #, c-format
@@ -4085,7 +4085,7 @@ msgstr "Impossível criar ficheiros temporários. Verifique as suas definições de 
 #: Merge.rc:11E6F584
 #, c-format
 msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
-msgstr "Estes ficheiros utilizam diferentes tipos de procedimento. \n\nDeseja tratar todos os tipos de procedimento por igual para comparação?\n\nNota: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
+msgstr "Estes ficheiros utilizam diferentes tipos de procedimento.\n\nDeseja tratar todos os tipos de procedimentos por igual para comparação?\n\nNota: Se deseja tratar todos os tipos de procedimentos por igual, defina a opção 'Ignorar diferentes tipos de procedimentos..' na tabulação de comparação no diálogo opções (disponível em Editar/Opções)."
 
 #: Merge.rc:46FB8639
 #, c-format
@@ -4345,7 +4345,7 @@ msgstr "\nActualizar (F5)"
 #: Merge.rc:414AF01
 #, c-format
 msgid "\nPrevious Difference (Alt+Up)"
-msgstr "nDiferenças Anteriores (Alt+Up)"
+msgstr "nDiferença Anterior (Alt+Up)"
 
 #: Merge.rc:16618519
 #, c-format
@@ -4435,7 +4435,7 @@ msgstr "Outros plugins"
 #: Merge.rc:2A918FD6
 #, c-format
 msgid "Private Build: %1"
-msgstr "Compilação privada: %1"
+msgstr "Compilação Privada: %1"
 
 #: Merge.rc:40D543C8
 #, c-format
@@ -4445,7 +4445,7 @@ msgstr "O WinMerge está actualizado com a última versão"
 #: Merge.rc:43B4B204
 #, c-format
 msgid "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
-msgstr "Está disponível uma nova versão do WinMerge. \n%1 está disponível (versão instalada %2). Pretende transferir agora?"
+msgstr "Está disponível uma nova versão do WinMerge.\n%1 está disponível (versão instalada %2). Pretende transferir agora?"
 
 #: Merge.rc:696AAFE9
 #, c-format
