@@ -83,7 +83,7 @@ private:
 
 // Generated message map functions
 private:
-	int m_nLastSplitPos;
+	int m_nLastSplitPos[2];
 	void UpdateHeaderSizes();
 	BOOL m_bActivated;
 	CMergeDoc * m_pMergeDoc;

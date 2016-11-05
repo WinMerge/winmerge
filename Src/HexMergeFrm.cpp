@@ -77,7 +77,7 @@ CHexMergeFrame::CHexMergeFrame()
 : m_hIdentical(NULL)
 , m_hDifferent(NULL)
 {
-	m_nLastSplitPos = 0;
+	std::fill_n(m_nLastSplitPos, 2, 0);
 	m_pMergeDoc = 0;
 }
 
@@ -267,27 +267,33 @@ void CHexMergeFrame::UpdateHeaderSizes()
 	if (IsWindowVisible())
 	{
 		int w[3],wmin;
-		int pane;
-		for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+		int nPaneCount = m_wndSplitter.GetColumnCount();
+		for (int pane = 0; pane < nPaneCount; pane++)
 		{
 			m_wndSplitter.GetColumnInfo(pane, w[pane], wmin);
 			if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
 		}
-		// resize controls in header dialog bar
-		m_wndFilePathBar.Resize(w);
-		RECT rcFrame, rc;
-		GetClientRect(&rcFrame);
-		rc = rcFrame;
-		rc.top = rc.bottom - m_rectBorder.bottom;
-		rc.right = 0;
-		for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+		
+		if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + nPaneCount - 1, w))
 		{
-			if (pane < m_wndSplitter.GetColumnCount() - 1)
-				rc.right += w[pane] + 6;
-			else
-				rc.right = rcFrame.right;
-			m_wndStatusBar[pane].MoveWindow(&rc);
-			rc.left = rc.right;
+			std::copy_n(w, nPaneCount - 1, m_nLastSplitPos);
+
+			// resize controls in header dialog bar
+			m_wndFilePathBar.Resize(w);
+			RECT rcFrame, rc;
+			GetClientRect(&rcFrame);
+			rc = rcFrame;
+			rc.top = rc.bottom - m_rectBorder.bottom;
+			rc.right = 0;
+			for (int pane = 0; pane < nPaneCount; pane++)
+			{
+				if (pane < nPaneCount - 1)
+					rc.right += w[pane] + 6;
+				else
+					rc.right = rcFrame.right;
+				m_wndStatusBar[pane].MoveWindow(&rc);
+				rc.left = rc.right;
+			}
 		}
 	}
 }
@@ -343,13 +349,8 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 {
 	if (IsWindowVisible())
 	{
-		int w,wmin;
-		m_wndSplitter.GetColumnInfo(0, w, wmin);
-		if (w != m_nLastSplitPos && w > 0)
-		{
-			UpdateHeaderSizes();
-			m_nLastSplitPos = w;
-		}
+		UpdateHeaderSizes();
+
 		int pane;
 		int nColumns = m_wndSplitter.GetColumnCount();
 		CHexMergeView *pView[3] = {0};

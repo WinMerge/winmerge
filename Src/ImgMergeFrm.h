@@ -113,7 +113,7 @@ private:
 	bool MergeModeKeyDown(MSG* pMsg);
 	static void OnChildPaneEvent(const IImgMergeWindow::Event& evt);
 	void OnDropFiles(int pane, const std::vector<String>& files);
-	int m_nLastSplitPos;
+	int m_nLastSplitPos[2];
 	HICON m_hIdentical;
 	HICON m_hDifferent;
 	CLocationBar m_wndLocationBar;

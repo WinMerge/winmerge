@@ -161,8 +161,8 @@ CImgMergeFrame::CImgMergeFrame()
 , m_bAutoMerged(false)
 , m_pImgMergeWindow(NULL)
 , m_pImgToolWindow(NULL)
-, m_nLastSplitPos(0)
 {
+	std::fill_n(m_nLastSplitPos, 2, 0);
 	std::fill_n(m_nBufferType, 3, BUFFER_NORMAL);
 	std::fill_n(m_bRO, 3, false);
 }
@@ -878,14 +878,14 @@ void CImgMergeFrame::UpdateHeaderSizes()
 	if (IsWindowVisible() && m_pImgMergeWindow)
 	{
 		int w[3];
-		int pane;
 		CRect rc, rcMergeWindow;
+		int nPaneCount = m_pImgMergeWindow->GetPaneCount();
 		GetClientRect(&rc);
 		::GetWindowRect(m_pImgMergeWindow->GetHWND(), &rcMergeWindow);
 		ScreenToClient(rcMergeWindow);
 		if (!m_pImgMergeWindow->GetHorizontalSplit())
 		{
-			for (pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); pane++)
+			for (int pane = 0; pane < nPaneCount; pane++)
 			{
 				RECT rc = m_pImgMergeWindow->GetPaneWindowRect(pane);
 				w[pane] = rc.right - rc.left - 4;
@@ -894,23 +894,26 @@ void CImgMergeFrame::UpdateHeaderSizes()
 		}
 		else
 		{
-			for (pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); pane++)
-				w[pane] = rc.Width() / m_pImgMergeWindow->GetPaneCount() - 4;
+			for (int pane = 0; pane < nPaneCount; pane++)
+				w[pane] = rc.Width() / nPaneCount - 4;
 		}
-		// resize controls in header dialog bar
-		if (w[0] != m_nLastSplitPos && w > 0)
+
+		if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + nPaneCount - 1, w))
 		{
+			std::copy_n(w, nPaneCount - 1, m_nLastSplitPos);
+
+			// resize controls in header dialog bar
 			m_wndFilePathBar.Resize(w);
-			m_nLastSplitPos = w[0];
-		}
-		rc.left = rcMergeWindow.left;
-		rc.top = rc.bottom - m_rectBorder.bottom;
-		rc.right = rc.left;
-		for (pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); pane++)
-		{
-			rc.right += w[pane] + 4 + 2;
-			m_wndStatusBar[pane].MoveWindow(&rc);
-			rc.left = rc.right;
+
+			rc.left = rcMergeWindow.left;
+			rc.top = rc.bottom - m_rectBorder.bottom;
+			rc.right = rc.left;
+			for (int pane = 0; pane < nPaneCount; pane++)
+			{
+				rc.right += w[pane] + 4 + 2;
+				m_wndStatusBar[pane].MoveWindow(&rc);
+				rc.left = rc.right;
+			}
 		}
 	}
 }

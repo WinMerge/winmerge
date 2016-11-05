@@ -78,7 +78,7 @@ private:
 	void CreateHexWndStatusBar(CStatusBar &, CWnd *);
 // Generated message map functions
 private:
-	int m_nLastSplitPos;
+	int m_nLastSplitPos[2];
 	void UpdateHeaderSizes();
 	CHexMergeDoc * m_pMergeDoc;
 	HICON m_hIdentical;
