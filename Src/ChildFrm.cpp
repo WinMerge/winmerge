@@ -81,7 +81,7 @@ CChildFrame::CChildFrame()
 #pragma warning(default:4355)
 {
 	m_bActivated = FALSE;
-	m_nLastSplitPos = 0;
+	std::fill_n(m_nLastSplitPos, 2, 0);
 	m_pMergeDoc = 0;
 }
 
@@ -500,6 +500,7 @@ void CChildFrame::UpdateHeaderSizes()
 	{
 		int w[3];
 		int pane;
+		CMergeDoc * pDoc = GetMergeDoc();
 		if (m_wndSplitter.GetColumnCount() > 1)
 		{
 			for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
@@ -512,7 +513,6 @@ void CChildFrame::UpdateHeaderSizes()
 		else
 		{
 			CRect rect;
-			CMergeDoc * pDoc = GetMergeDoc();
 			m_wndSplitter.GetWindowRect(&rect);
 			for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 			{
@@ -520,10 +520,15 @@ void CChildFrame::UpdateHeaderSizes()
 			}
 		}
 
-		// resize controls in header dialog bar
-		m_wndFilePathBar.Resize(w);
+		if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + pDoc->m_nBuffers - 1, w))
+		{
+			std::copy_n(w, pDoc->m_nBuffers - 1, m_nLastSplitPos);
 
-		m_wndStatusBar.Resize(w);
+			// resize controls in header dialog bar
+			m_wndFilePathBar.Resize(w);
+
+			m_wndStatusBar.Resize(w);
+		}
 	}
 }
 
@@ -576,16 +581,7 @@ void CChildFrame::UpdateSplitter()
  */
 void CChildFrame::OnIdleUpdateCmdUI()
 {
-	if (IsWindowVisible())
-	{
-		int w,wmin;
-		m_wndSplitter.GetColumnInfo(0, w, wmin);
-		if (w != m_nLastSplitPos && w > 0)
-		{
-			UpdateHeaderSizes();
-			m_nLastSplitPos = w;
-		}
-	}
+	UpdateHeaderSizes();
 	CMDIChildWnd::OnIdleUpdateCmdUI();
 }
 
