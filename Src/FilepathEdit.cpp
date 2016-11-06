@@ -183,7 +183,7 @@ void CFilepathEdit::RefreshDisplayText()
 	CRect rect;
 	GetRect(rect);
 	// take GetBuffer (lenght +3) to count for ellipsis
-	std::vector<TCHAR> tmp(line.length() + 3);
+	std::vector<TCHAR> tmp(line.length() + 4);
 	std::copy(line.begin(), line.end(), tmp.begin());
 	PathCompactPath(lDC.GetSafeHdc(), &tmp[0],	rect.Width());
 	line = &tmp[0];
