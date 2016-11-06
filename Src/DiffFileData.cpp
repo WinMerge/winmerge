@@ -151,10 +151,9 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 	const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
 	const String& filteredFilenames, PrediffingInfo * infoPrediffer)
 {
-	bool bMayOverwrite = false; // temp variable set each time it is used
-
 	// third step : prediff (plugins)
-	bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
+	bool bMayOverwrite =  // temp variable set each time it is used
+		(filepathTransformed != filepath); // may overwrite if we've already copied to temp file
 
 	// FileTransform_Prediffing tries each prediffer for the pointed out filteredFilenames
 	// if a prediffer fails, we consider it is not the good one, that's all
