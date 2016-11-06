@@ -448,9 +448,9 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
               //  Reallocate line buffer
               nCurrentMax += 256;
 			  TCHAR *pcNewLineBuf = new TCHAR[nCurrentMax];
-			  memcpy(pcNewLineBuf, pcLineBuf, nCurrentMax - 256);
+			  memcpy(pcNewLineBuf, pcLineBuf, sizeof(TCHAR) * (nCurrentMax - 256));
 			  delete [] pcLineBuf;
-			  pcNewLineBuf = pcLineBuf;
+			  pcLineBuf = pcNewLineBuf;
             }
 
           // detect both types of EOL for each line
