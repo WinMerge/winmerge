@@ -22,7 +22,7 @@
 struct IImgMergeWindow
 {
 	enum OVERLAY_MODE {
-		OVERLAY_NONE = 0, OVERLAY_XOR, OVERLAY_ALPHABLEND
+		OVERLAY_NONE = 0, OVERLAY_XOR, OVERLAY_ALPHABLEND, OVERLAY_ALPHABLEND_ANIM
 	};
 	enum EVENT_TYPE {
 		LBUTTONDOWN = 0, LBUTTONUP, LBUTTONDBLCLK, 
@@ -96,6 +96,8 @@ struct IImgMergeWindow
 	virtual void SetOverlayAlpha(double alpha) = 0;
 	virtual bool GetShowDifferences() const = 0;
 	virtual void SetShowDifferences(bool visible) = 0;
+	virtual bool GetBlinkDifferences() const = 0;
+	virtual void SetBlinkDifferences(bool visible) = 0;
 	virtual int  GetDiffCount() const = 0;
 	virtual int  GetConflictCount() const = 0;
 	virtual int  GetCurrentDiffIndex() const = 0;
