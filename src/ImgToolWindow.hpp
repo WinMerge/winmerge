@@ -106,6 +106,7 @@ private:
 		SendDlgItemMessage(hwnd, IDC_OVERLAY_MODE, CB_ADDSTRING, 0, (LPARAM)(_T("None")));
 		SendDlgItemMessage(hwnd, IDC_OVERLAY_MODE, CB_ADDSTRING, 0, (LPARAM)(_T("XOR")));
 		SendDlgItemMessage(hwnd, IDC_OVERLAY_MODE, CB_ADDSTRING, 0, (LPARAM)(_T("Alpha")));
+		SendDlgItemMessage(hwnd, IDC_OVERLAY_MODE, CB_ADDSTRING, 0, (LPARAM)(_T("Alpha Animation")));
 		return TRUE;
 	}
 
@@ -116,6 +117,10 @@ private:
 		case IDC_DIFF_HIGHLIGHT:
 			if (codeNotify == BN_CLICKED)
 				m_pImgMergeWindow->SetShowDifferences(Button_GetCheck(hwndCtl) == BST_CHECKED);
+			break;
+		case IDC_DIFF_BLINK:
+			if (codeNotify == BN_CLICKED)
+				m_pImgMergeWindow->SetBlinkDifferences(Button_GetCheck(hwndCtl) == BST_CHECKED);
 			break;
 		case IDC_OVERLAY_MODE:
 			if (codeNotify == CBN_SELCHANGE)

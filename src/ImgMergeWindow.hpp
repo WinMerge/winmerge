@@ -322,6 +322,10 @@ public:
 	{
 		m_buffer.SetOverlayMode(static_cast<CImgMergeBuffer::OVERLAY_MODE>(overlayMode));
 		Invalidate();
+		if (overlayMode == OVERLAY_ALPHABLEND_ANIM)
+			SetTimer(m_hWnd, 2, 50, NULL);
+		else
+			KillTimer(m_hWnd, 2);
 	}
 
 	double GetOverlayAlpha() const
@@ -344,6 +348,21 @@ public:
 	{
 		m_buffer.SetShowDifferences(visible);
 		Invalidate();
+	}
+
+	bool GetBlinkDifferences() const
+	{
+		return m_buffer.GetBlinkDifferences();
+	}
+
+	void SetBlinkDifferences(bool blink)
+	{
+		m_buffer.SetBlinkDifferences(blink);
+		Invalidate();
+		if (blink)
+			SetTimer(m_hWnd, 1, 400, NULL);
+		else
+			KillTimer(m_hWnd, 1);
 	}
 
 	int  GetDiffCount() const
@@ -534,12 +553,12 @@ public:
 		notify(evt);
 	}
 
-	void Invalidate()
+	void Invalidate(bool erase = false)
 	{
 		if (m_nImages <= 1)
 			return;
 		for (int i = 0; i < m_nImages; ++i)
-			m_imgWindow[i].Invalidate();
+			m_imgWindow[i].Invalidate(erase);
 
 		Event evt;
 		evt.eventType = REFRESH;
@@ -924,6 +943,13 @@ private:
 			break;
 		case WM_MOUSEWHEEL:
 			PostMessage(m_imgWindow[0].GetHWND(), iMsg, wParam, lParam);
+			break;
+		case WM_TIMER:
+			m_buffer.RefreshImages();
+			if (m_nImages <= 1)
+				break;
+			for (int i = 0; i < m_nImages; ++i)
+				m_imgWindow[i].Invalidate(false);
 			break;
 		case WM_DESTROY:
 			OnDestroy();

@@ -24,6 +24,8 @@
 #include <cstring>
 #include <cmath>
 #include <vector>
+#include <chrono>
+#include <cmath>
 
 template<class T> struct Point
 {
@@ -150,12 +152,16 @@ class CImgDiffBuffer
 
 public:
 	enum OVERLAY_MODE {
-		OVERLAY_NONE = 0, OVERLAY_XOR, OVERLAY_ALPHABLEND
+		OVERLAY_NONE = 0, OVERLAY_XOR, OVERLAY_ALPHABLEND, OVERLAY_ALPHABLEND_ANIM
 	};
+	
+	enum { BLINK_TIME = 800 };
+	enum { OVERLAY_ALPHABLEND_ANIM_TIME = 1000 };
 
 	CImgDiffBuffer() : 
 		  m_nImages(0)
 		, m_showDifferences(true)
+		, m_blinkDifferences(false)
 		, m_overlayMode(OVERLAY_NONE)
 		, m_overlayAlpha(0.3)
 		, m_diffBlockSize(8)
@@ -344,6 +350,17 @@ public:
 	{
 		m_showDifferences = visible;
 		CompareImages();
+	}
+
+	bool GetBlinkDifferences() const
+	{
+		return m_blinkDifferences;
+	}
+
+	void SetBlinkDifferences(bool blink)
+	{
+		m_blinkDifferences = blink;
+		RefreshImages();
 	}
 
 	const DiffInfo *GetDiffInfo(int diffIndex) const
@@ -557,7 +574,7 @@ public:
 		for (int i = 0; i < m_nImages; ++i)
 			CopyOriginalImageToDiffImage(i);
 		void (CImgDiffBuffer::*func)(int src, int dst) = NULL;
-		if (m_overlayMode == OVERLAY_ALPHABLEND)
+		if (m_overlayMode == OVERLAY_ALPHABLEND || m_overlayMode == OVERLAY_ALPHABLEND_ANIM)
 			func = &CImgDiffBuffer::AlphaBlendImages2;
 		else if (m_overlayMode == OVERLAY_XOR)
 			func = &CImgDiffBuffer::XorImages2;
@@ -578,8 +595,22 @@ public:
 		}
 		if (m_showDifferences)
 		{
-			for (int i = 0; i < m_nImages; ++i)
-				MarkDiff(i, m_diff);
+			bool showDiff = true;
+			if (m_blinkDifferences)
+			{
+				auto now = std::chrono::system_clock::now();
+				auto tse = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+				if ((tse.count() % BLINK_TIME) < BLINK_TIME / 2)
+				{
+					showDiff = false;
+				}
+
+			}
+			if (showDiff)
+			{
+				for (int i = 0; i < m_nImages; ++i)
+					MarkDiff(i, m_diff);
+			}
 		}
 	}
 
@@ -1082,16 +1113,32 @@ protected:
 		unsigned w = m_imgOrig32[src].width();
 		unsigned h = m_imgOrig32[src].height();
 		unsigned offset_x = m_offset[src].x;
+		double overlayAlpha = m_overlayAlpha;
+		if (m_overlayMode == OVERLAY_ALPHABLEND_ANIM)
+		{
+			auto now = std::chrono::system_clock::now();
+			auto tse = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch());
+			double t = (tse.count() % OVERLAY_ALPHABLEND_ANIM_TIME);
+			if (t < OVERLAY_ALPHABLEND_ANIM_TIME * 2 / 10)
+				overlayAlpha = t / (OVERLAY_ALPHABLEND_ANIM_TIME * 2 / 10);
+			else if (t < OVERLAY_ALPHABLEND_ANIM_TIME * 5 / 10)
+				overlayAlpha = 1.0;
+			else if (t < OVERLAY_ALPHABLEND_ANIM_TIME * 7 / 10)
+				overlayAlpha = ((OVERLAY_ALPHABLEND_ANIM_TIME * 2 / 10) - (t - (OVERLAY_ALPHABLEND_ANIM_TIME * 5 / 10)))
+				              / (OVERLAY_ALPHABLEND_ANIM_TIME * 2 / 10);
+			else
+				overlayAlpha = 0.0;
+		}
 		for (unsigned y = 0; y < h; ++y)
 		{
 			const unsigned char *scanline_src = m_imgOrig32[src].scanLine(y);
 			unsigned char *scanline_dst = m_imgDiff[dst].scanLine(y + m_offset[src].y);
 			for (unsigned x = 0; x < w; ++x)
 			{
-				scanline_dst[(x + offset_x) * 4 + 0] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 0] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 0] * m_overlayAlpha);
-				scanline_dst[(x + offset_x) * 4 + 1] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 1] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 1] * m_overlayAlpha);
-				scanline_dst[(x + offset_x) * 4 + 2] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 2] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 2] * m_overlayAlpha);
-				scanline_dst[(x + offset_x) * 4 + 3] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 3] * (1 - m_overlayAlpha) + scanline_src[x * 4 + 3] * m_overlayAlpha);
+				scanline_dst[(x + offset_x) * 4 + 0] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 0] * (1 - overlayAlpha) + scanline_src[x * 4 + 0] * overlayAlpha);
+				scanline_dst[(x + offset_x) * 4 + 1] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 1] * (1 - overlayAlpha) + scanline_src[x * 4 + 1] * overlayAlpha);
+				scanline_dst[(x + offset_x) * 4 + 2] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 2] * (1 - overlayAlpha) + scanline_src[x * 4 + 2] * overlayAlpha);
+				scanline_dst[(x + offset_x) * 4 + 3] = static_cast<unsigned char>(scanline_dst[(x + offset_x) * 4 + 3] * (1 - overlayAlpha) + scanline_src[x * 4 + 3] * overlayAlpha);
 			}
 		}	
 	}
@@ -1105,6 +1152,7 @@ protected:
 	Image m_imgDiffMap;
 	std::wstring m_filename[3];
 	bool m_showDifferences;
+	bool m_blinkDifferences;
 	OVERLAY_MODE m_overlayMode;
 	double m_overlayAlpha;
 	unsigned m_diffBlockSize;

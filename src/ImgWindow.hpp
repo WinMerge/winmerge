@@ -221,9 +221,9 @@ public:
 		}
 	}
 
-	void Invalidate()
+	void Invalidate(bool erase = false)
 	{
-		InvalidateRect(m_hWnd, NULL, TRUE);
+		InvalidateRect(m_hWnd, NULL, erase);
 	}
 
 	void SetImage(fipWinImage *pfip)

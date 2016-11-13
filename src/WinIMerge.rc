@@ -126,6 +126,7 @@ BEGIN
             MENUITEM "&None",                       ID_VIEW_OVERLAY_NONE
             MENUITEM "&XOR",                        ID_VIEW_OVERLAY_XOR
             MENUITEM "&Alpha Blend",                ID_VIEW_OVERLAY_ALPHABLEND
+            MENUITEM "Alpha &Blend Animation",      ID_VIEW_OVERLAY_ALPHABLEND_ANIM
         END
         MENUITEM "Split &Horizontally",         ID_VIEW_SPLITHORIZONTALLY
         MENUITEM "&Set Background Color",       ID_VIEW_USEBACKCOLOR
