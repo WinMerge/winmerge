@@ -350,12 +350,12 @@ TurkishLanguage=Turkish menus and dialogs
 UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
+ExplorerContextMenu=&Permitir o menu de contexto no Explorador
 IntegrateTortoiseCVS=Integrate with &TortoiseCVS
 IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
 IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
 IntegrateClearCase=Integrate with Rational &ClearCase
-AddToPath=&Add WinMerge folder to your system path
+AddToPath=&Criar pasta do WinMerge no Menu Iniciar Programas
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3-Way Merge

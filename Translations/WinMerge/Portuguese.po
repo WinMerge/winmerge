@@ -378,7 +378,7 @@ msgstr "&Configurações"
 #: Merge.rc:175DEEEB
 #, c-format
 msgid "&GNU General Public License"
-msgstr "GNU Licença Pública Geral"
+msgstr "Licença Pública Geral GNU"
 
 #: Merge.rc:3938FFC3
 #, c-format
@@ -1849,7 +1849,7 @@ msgstr "Abrir em editor externo"
 #: Merge.rc:28D5CCAA
 #, c-format
 msgid "Display Columns"
-msgstr "Mostrar colunas"
+msgstr "Mostrar Colunas"
 
 #: Merge.rc:4856953D
 #, c-format
@@ -2839,7 +2839,7 @@ msgstr "Programadores:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, T
 #: Merge.rc:3EF068BF
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge não tem GARANTIA. Este é um software livre e pode ser redistribuído sobre determinadas circunstâncias; Consulte a Licença Pública Geral GNU ou vá ao Menu Ajuda para mais informações."
+msgstr "O WinMerge não tem GARANTIA. Este é um software livre e pode ser redistribuído sobre determinadas circunstâncias; Consulte a Licença Pública Geral GNU ou vá ao Menu Ajuda para mais informações."
 
 #: Merge.rc:1D2E49FF
 #, c-format
