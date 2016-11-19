@@ -1,9 +1,0 @@
-syntax: glob
-BuildTmp
-Dist
-ipch
-*.exp
-*.tlog
-*.opensdf
-*.sdf
-*.un~
