@@ -355,7 +355,7 @@ IntegrateTortoiseCVS=Integrate with &TortoiseCVS
 IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
 IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
 IntegrateClearCase=Integrate with Rational &ClearCase
-AddToPath=&Criar pasta do WinMerge no Menu Iniciar Programas
+AddToPath=&Criar pasta do WinMerge no caminho do sistema
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3-Way Merge
