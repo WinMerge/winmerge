@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -22,23 +22,28 @@
     <ProjectGuid>{733E7C0B-AC3D-47AC-A8DA-E13644D6294D}</ProjectGuid>
     <RootNamespace>FolderCompare</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -170,6 +175,9 @@
     <ClCompile Include="..\..\Src\charsets.c" />
     <ClCompile Include="..\..\Src\codepage_detect.cpp" />
     <ClCompile Include="..\..\Src\Common\ExConverter.cpp" />
+    <ClCompile Include="..\..\Src\Common\OptionsMgr.cpp" />
+    <ClCompile Include="..\..\Src\Common\RegOptionsMgr.cpp" />
+    <ClCompile Include="..\..\Src\CompareEngines\BinaryCompare.cpp" />
     <ClCompile Include="..\..\Src\CompareOptions.cpp" />
     <ClCompile Include="..\..\Src\CompareStats.cpp" />
     <ClCompile Include="..\..\Src\Common\coretools.cpp" />
@@ -200,6 +208,7 @@
     <ClCompile Include="..\..\Src\MovedBlocks.cpp" />
     <ClCompile Include="..\..\Src\MovedLines.cpp" />
     <ClCompile Include="..\..\Src\Common\multiformatText.cpp" />
+    <ClCompile Include="..\..\Src\OptionsDef.cpp" />
     <ClCompile Include="..\..\Src\PatchHTML.cpp" />
     <ClCompile Include="..\..\Src\PathContext.cpp" />
     <ClCompile Include="..\..\Src\paths.cpp" />
@@ -225,7 +234,6 @@
     <ClCompile Include="..\..\Src\diffutils\src\ifdef.c" />
     <ClCompile Include="..\..\Src\diffutils\src\io.c" />
     <ClCompile Include="..\..\Src\diffutils\src\normal.c" />
-    <ClCompile Include="..\..\Src\diffutils\lib\regex.c" />
     <ClCompile Include="..\..\Src\diffutils\src\side.c" />
     <ClCompile Include="..\..\Src\diffutils\src\util.c" />
     <ClCompile Include="FolderCompare.cpp" />
@@ -234,6 +242,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\codepage_detect.h" />
     <ClInclude Include="..\..\Src\Common\ExConverter.h" />
+    <ClInclude Include="..\..\Src\Common\OptionsMgr.h" />
+    <ClInclude Include="..\..\Src\Common\RegOptionsMgr.h" />
+    <ClInclude Include="..\..\Src\CompareEngines\BinaryCompare.h" />
     <ClInclude Include="..\..\Src\CompareOptions.h" />
     <ClInclude Include="..\..\Src\CompareStats.h" />
     <ClInclude Include="..\..\Src\Common\coretools.h" />
@@ -262,8 +273,10 @@
     <ClInclude Include="..\..\Src\Common\LogFile.h" />
     <ClInclude Include="..\..\Src\Common\lwdisp.h" />
     <ClInclude Include="..\..\Src\markdown.h" />
+    <ClInclude Include="..\..\Src\MergeApp.h" />
     <ClInclude Include="..\..\Src\MovedLines.h" />
     <ClInclude Include="..\..\Src\Common\multiformatText.h" />
+    <ClInclude Include="..\..\Src\OptionsDef.h" />
     <ClInclude Include="..\..\Src\PatchHTML.h" />
     <ClInclude Include="..\..\Src\PathContext.h" />
     <ClInclude Include="..\..\Src\paths.h" />
@@ -283,7 +296,6 @@
     <ClInclude Include="..\..\Src\diffutils\lib\cmpbuf.h" />
     <ClInclude Include="..\..\Src\diffutils\config.h" />
     <ClInclude Include="..\..\Src\diffutils\src\diff.h" />
-    <ClInclude Include="..\..\Src\diffutils\lib\regex.h" />
     <ClInclude Include="..\..\Src\diffutils\src\system.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

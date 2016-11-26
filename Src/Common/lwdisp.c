@@ -135,7 +135,7 @@ static void mycpyt2a(LPCTSTR tsz, char * adest, size_t limit)
 	// always terminate the string
 	adest[limit-1] = 0;
 #else
-	StringCchCopyA(adest, list, tsz);
+	StringCchCopyA(adest, limit, tsz);
 #endif
 }
 
@@ -373,8 +373,9 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 		BOOL bNeedToConv = FALSE;
 		VARIANT varParams[12];
 		VARIANT varData[12];
+		int i;
 
-		for (int i = 0; i < (int)dispparams.cArgs; i++)
+		for (i = 0; i < (int)dispparams.cArgs; i++)
 		{
 			if (V_ISBYREF(&argv[i]))
 			{
@@ -413,7 +414,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 
 		if (bNeedToConv)
 		{
-			for (int i = 0; i < (int)dispparams.cArgs; i++)
+			for (i = 0; i < (int)dispparams.cArgs; i++)
 			{
 				VariantInit(&varData[i]);
 				VariantCopyInd(&varData[i], &argv[i]);
@@ -451,7 +452,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 		{
 			if (bNeedToConv)
 			{
-				for (int i = 0; i < (int)dispparams.cArgs; i++)
+				for (i = 0; i < (int)dispparams.cArgs; i++)
 				{
 					if (V_ISBYREF(&argv[i]))
 					{

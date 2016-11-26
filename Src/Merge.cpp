@@ -114,7 +114,7 @@ namespace Turn_STL_exceptions_into_MFC_exceptions
 		}
 		virtual BOOL GetErrorMessage(LPTSTR lpszError, UINT nMaxError, PUINT)
 		{
-			_sntprintf(lpszError, nMaxError, _T("%hs"), m_pSTLException->what());
+			StringCchPrintf(lpszError, nMaxError, _T("%hs"), m_pSTLException->what());
 			return TRUE;
 		}
 	};

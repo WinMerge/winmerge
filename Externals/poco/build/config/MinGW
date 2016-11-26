@@ -66,9 +66,9 @@ RELEASEOPT_LINK = -O2
 #
 # System Specific Flags
 #
-SYSFLAGS = -D_WIN32 -DMINGW32 -DWINVER=0x500 -DPOCO_NO_FPENVIRONMENT -DPCRE_STATIC -DPOCO_THREAD_STACK_SIZE -DFoundation_Config_INCLUDED -I/usr/local/include -I/usr/include
+SYSFLAGS = -D_WIN32 -DMINGW32 -DWINVER=0x501 -DPOCO_NO_FPENVIRONMENT -DPCRE_STATIC -DPOCO_THREAD_STACK_SIZE -DFoundation_Config_INCLUDED -I/usr/local/include -I/usr/include
 
 #
 # System Specific Libraries
 #
-SYSLIBS  = -L/usr/local/lib -L/usr/lib -liphlpapi -lws2_32 -lssl -lcrypto -lws2_32 -lgdi32
+SYSLIBS  = -L/usr/local/lib -L/usr/lib -L/c/OpenSSL-Win32/lib/MinGW -liphlpapi -lws2_32 -lssl-1_1 -lcrypto-1_1 -lws2_32 -lgdi32 -pg

@@ -110,7 +110,7 @@ inline String string_to_str(int val) { return string_format(_T("%d"), val); }
 inline String string_to_str(unsigned val) { return string_format(_T("%u"), val); }
 inline String string_to_str(long val) { return string_format(_T("%ld"), val); }
 inline String string_to_str(unsigned long val) { return string_format(_T("%lu"), val); }
-inline String string_to_str(int64_t val) { return string_format(_T("%I64d"), val); }
-inline String string_to_str(uint64_t val) { return string_format(_T("%I64u"), val); }
+inline String string_to_str(long long val) { return string_format(_T("%I64d"), val); }
+inline String string_to_str(unsigned long long val) { return string_format(_T("%I64u"), val); }
 inline String string_to_str(float val) { return string_format(_T("%f"), val); }
 inline String string_to_str(double val) { return string_format(_T("%f"), val); }

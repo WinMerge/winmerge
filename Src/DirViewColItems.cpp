@@ -157,7 +157,7 @@ static String MakeShortSize(int64_t size)
 {
 	TCHAR buffer[48];
 	if (size < 1024)
-		_sntprintf(buffer, _countof(buffer), _T("%d B"), static_cast<int>(size));
+		return string_format(_T("%d B"), static_cast<int>(size));
 	else
 		StrFormatByteSize64(size, buffer, _countof(buffer));
 	return buffer;

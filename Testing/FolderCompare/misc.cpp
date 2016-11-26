@@ -1,7 +1,16 @@
 #include <iostream>
 #include "UnicodeString.h"
 #include "unicoder.h"
+#include "OptionsMgr.h"
+#include "RegOptionsMgr.h"
 #include <Windows.h>
+
+CRegOptionsMgr m_optionsMgr;
+
+COptionsMgr * GetOptionsMgr()
+{
+	return &m_optionsMgr;
+}
 
 String GetSysError(int nerr /* =-1 */)
 {

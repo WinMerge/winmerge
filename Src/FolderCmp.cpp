@@ -85,6 +85,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		FolderCmp diffdata10, diffdata12;
 		String filepathUnpacked[3];
 		String filepathTransformed[3];
+		int codepage = 0;
 
 		// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
 		// but how can we receive the infoHandler ? DirScan actually only 
@@ -131,7 +132,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 		if (!std::equal(encoding + 1, encoding + nDirs, encoding))
 			bForceUTF8 = true;
-		int codepage = bForceUTF8 ? CP_UTF8 : (encoding[0].m_unicoding ? CP_UTF8 : encoding[0].m_codepage);
+		codepage = bForceUTF8 ? CP_UTF8 : (encoding[0].m_unicoding ? CP_UTF8 : encoding[0].m_codepage);
 		for (nIndex = 0; nIndex < nDirs; nIndex++)
 		{
 		// Invoke prediff'ing plugins

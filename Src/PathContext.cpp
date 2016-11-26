@@ -7,6 +7,7 @@
 
 #include "PathContext.h"
 #include <cassert>
+#include <algorithm>
 #include "paths.h"
 #include "Environment.h"
 

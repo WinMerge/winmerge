@@ -1,7 +1,7 @@
 INCLUDES=-I../../Src -I../../Src/Common -I../../Src/diffutils -I../../Src/diffutils/lib -I../../Src/diffutils/src -I../../Src/CompareEngines -I../../Externals/boost -I../../Externals/Poco/Foundation/include -I../../Externals/Poco/XML/include -I../../Externals/Poco/Util/include
 
 CFLAGS=-g -pg -DHAVE_CONFIG_H -DREGEX_MALLOC -D__NT__ $(INCLUDES)
-CXXFLAGS=-g -pg $(INCLUDES)
+CXXFLAGS=-g -pg -std=gnu++11 $(INCLUDES)
 TARGET=FolderCompare.exe
 
 OBJS=\
@@ -21,10 +21,10 @@ OBJS=\
 ../../Src/Common/ExConverter.o \
 ../../Src/CompareEngines/ByteComparator.o \
 ../../Src/CompareEngines/ByteCompare.o \
+../../Src/CompareEngines/BinaryCompare.o \
 ../../Src/CompareEngines/DiffUtils.o \
 ../../Src/CompareEngines/TimeSizeCompare.o \
 ../../Src/diffutils/lib/cmpbuf.o \
-../../Src/diffutils/lib/regex.o \
 ../../Src/diffutils/src/analyze.o \
 ../../Src/diffutils/src/context.o \
 ../../Src/diffutils/src/Diff.o \
@@ -68,6 +68,7 @@ OBJS=\
 ../../Src/MergeCmdLineInfo.o \
 ../../Src/MovedBlocks.o \
 ../../Src/MovedLines.o \
+../../Src/OptionsDef.o \
 ../../Src/PatchHTML.o \
 ../../Src/PathContext.o \
 ../../Src/paths.o \

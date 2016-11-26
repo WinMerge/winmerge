@@ -192,9 +192,6 @@
     <ClCompile Include="..\..\Src\diffutils\src\normal.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\diffutils\lib\regex.c">
-      <Filter>DiffEngine</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\diffutils\src\side.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
@@ -208,6 +205,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Common\ExConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\CompareEngines\BinaryCompare.cpp">
+      <Filter>CompareEngines</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\RegOptionsMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\OptionsDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\OptionsMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -362,14 +371,26 @@
     <ClInclude Include="..\..\Src\diffutils\src\diff.h">
       <Filter>DiffEngine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\diffutils\lib\regex.h">
-      <Filter>DiffEngine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\diffutils\src\system.h">
       <Filter>DiffEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\ExConverter.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\CompareEngines\BinaryCompare.h">
+      <Filter>CompareEngines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\RegOptionsMgr.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\MergeApp.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\OptionsDef.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\OptionsMgr.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

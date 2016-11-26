@@ -20,7 +20,7 @@
 #include "markdown.h"
 
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(__MINGW32__)
 #  define strcasecmp(a, b) _stricmp((a), (b))
 #  define strncasecmp(a, b, n) _strnicmp((a), (b), (n))
 #endif

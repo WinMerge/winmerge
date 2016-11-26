@@ -58,7 +58,7 @@ int main()
 		std::cout << cmpstats.GetComparedItems() << std::endl;
 	}
 
-	Poco::UIntPtr pos = ctx.GetFirstDiffPosition();
+	uintptr_t pos = ctx.GetFirstDiffPosition();
 	while (pos)
 	{
 		DIFFITEM& di = ctx.GetNextDiffRefPosition(pos);
