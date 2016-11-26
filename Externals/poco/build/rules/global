@@ -255,7 +255,7 @@ LIBRARY = $(foreach p,$(POCO_ADD_LIBRARY),-L$(p)) -L$(LIBPATH) $(POCO_LIBRARY)
 ifeq ($(strip $(STRIP)),)
 STRIPCMD = 
 else
-STRIPCMD = $(STRIP) $@$(BINEXT)
+STRIPCMD = $(STRIP) $@
 endif
 
 #

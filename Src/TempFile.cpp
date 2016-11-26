@@ -13,6 +13,7 @@
 #include "paths.h"
 #include "Environment.h"
 #include "Constants.h"
+#include "unicoder.h"
 
 using std::vector;
 
@@ -177,7 +178,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 			// Check if this instance of WM is still running
 			try
 			{
-				int pid = std::stoi(tempfolderPID);
+				int pid = atoi(ucr::toUTF8(tempfolderPID).c_str());
 				if (!WMrunning(processIDs, pid))
 				{
 					tempfolderPID = paths_ConcatPath(paths_GetParentPath(pattern), ff.cFileName); 

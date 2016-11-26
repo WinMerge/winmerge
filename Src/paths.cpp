@@ -7,6 +7,7 @@
 #include "paths.h"
 #include <windows.h>
 #include <cassert>
+#include <cstring>
 #include <direct.h>
 #include <mbctype.h> // MBCS (multibyte codepage stuff)
 #include <shlobj.h>
@@ -163,7 +164,7 @@ static bool GetDirName(const String& sDir, String& sName)
 		// because my first return value is not a dot directory, as I would have expected
 		WIN32_FIND_DATA ffd;
 		TCHAR sPath[8];
-		wsprintf(sPath, _T("%s\\*"), sDir.c_str());
+		StringCchPrintf(sPath, sizeof(sPath)/sizeof(sPath[0]), _T("%s\\*"), sDir.c_str());
 		HANDLE h = FindFirstFile(sPath, &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 			return false;
@@ -244,7 +245,7 @@ String paths_GetLongPath(const String& szPath, bool bExpandEnvs)
 	// indicated by ^           ^                    ^
 	if (_tcslen(ptr) > 2)
 		end = _tcschr(fullPath+2, _T('\\'));
-	if (end && !_tcsnicmp(fullPath, _T("\\\\"),2))
+	if (end && !_tcsncmp(fullPath, _T("\\\\"),2))
 		end = _tcschr(end+1, _T('\\'));
 
 	if (!end)
@@ -331,7 +332,7 @@ bool paths_CreateIfNeeded(const String& szPath)
 	// indicated by ^           ^                    ^
 	if (_tcslen(ptr) > 2)
 		end = _tcschr(fullPath+2, _T('\\'));
-	if (end && !_tcsnicmp(fullPath, _T("\\\\"),2))
+	if (end && !_tcsncmp(fullPath, _T("\\\\"),2))
 		end = _tcschr(end+1, _T('\\'));
 
 	if (!end) return false;

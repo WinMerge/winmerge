@@ -33,6 +33,7 @@
 #include "Constants.h"
 #include "Paths.h"
 #include "OptionsDef.h"
+#include "unicoder.h"
 
 // MergeCmdLineInfo
 
@@ -423,7 +424,7 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			String codepage;
 			q = EatParam(q, codepage);
-			try { m_nCodepage = std::stoi(codepage); } catch (...) { /* FIXME: */ }
+			m_nCodepage = atoi(ucr::toUTF8(codepage).c_str());
 		}
 		else if (param == _T("ignorews"))
 		{

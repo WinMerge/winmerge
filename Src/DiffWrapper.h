@@ -24,6 +24,7 @@
 #pragma once
 
 #include <memory>
+#include <algorithm>
 #include "diff.h"
 #include "FileLocation.h"
 #include "PathContext.h"

@@ -9,6 +9,7 @@
 #define NOMINMAX
 #include <windows.h>
 #include <tchar.h>
+#include <cstring>
 #include <cassert>
 #include <climits>
 #include <mbctype.h>

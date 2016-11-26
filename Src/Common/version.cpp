@@ -201,12 +201,12 @@ static String MakeVersionString(DWORD hi, DWORD lo)
 	TCHAR ver[50];
 	if (LOWORD(lo) == 0)
 	{
-		_sntprintf(ver, countof(ver) - 1, _T("%d.%d.%d"), HIWORD(hi),
+		StringCchPrintf(ver, countof(ver) - 1, _T("%d.%d.%d"), HIWORD(hi),
 				LOWORD(hi), HIWORD(lo));
 	}
 	else
 	{
-		_sntprintf(ver, countof(ver) - 1, _T("%d.%d.%d.%d"), HIWORD(hi),
+		StringCchPrintf(ver, countof(ver) - 1, _T("%d.%d.%d.%d"), HIWORD(hi),
 				LOWORD(hi), HIWORD(lo), LOWORD(lo));
 	}
 	String sver(ver);
@@ -326,9 +326,9 @@ void CVersionInfo::QueryStrings()
 		WORD codepage;
 		GetCodepageForLanguage(m_wLanguage, codepage);
 		TCHAR temp[20];
-		_sntprintf(temp, countof(temp) - 1, _T("%04x"), m_wLanguage);
+		StringCchPrintf(temp, countof(temp) - 1, _T("%04x"), m_wLanguage);
 		m_strLanguage = temp;
-		_sntprintf(temp, countof(temp) - 1, _T("%04x"), codepage);
+		StringCchPrintf(temp, countof(temp) - 1, _T("%04x"), codepage);
 		m_strCodepage = temp;
 	}
 	else if (m_strLanguage.empty()
@@ -341,10 +341,10 @@ void CVersionInfo::QueryStrings()
 				(LPVOID *)&lpTranslate, (UINT *)&langLen))
 		{
 			TCHAR temp[20];
-			_sntprintf(temp, countof(temp) - 1, _T("%4.4X"),
+			StringCchPrintf(temp, countof(temp) - 1, _T("%4.4X"),
 					lpTranslate[0].wLanguage);
 			m_strLanguage = temp;
-			_sntprintf(temp, countof(temp) - 1, _T("%4.4X"),
+			StringCchPrintf(temp, countof(temp) - 1, _T("%4.4X"),
 					lpTranslate[0].wCodePage);
 			m_strCodepage = temp;
 		}
@@ -375,7 +375,7 @@ void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 	BOOL    bRetCode;
 
 	TCHAR szSelector[256];
-	_sntprintf(szSelector, countof(szSelector) - 1,
+	StringCchPrintf(szSelector, countof(szSelector) - 1,
 			_T("\\StringFileInfo\\%s%s\\%s"),
 			m_strLanguage.c_str(), m_strCodepage.c_str(), szId);
 	bRetCode = VerQueryValue((LPVOID)m_pVffInfo.get(),
