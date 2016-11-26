@@ -38,7 +38,6 @@
 #include "FileLocation.h"
 #include "MainFrm.h"
 #include "resource.h"
-#include "coretools.h"
 #include "FileTransform.h"
 #include "SelectUnpackerDlg.h"
 #include "paths.h"

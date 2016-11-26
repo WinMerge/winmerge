@@ -23,7 +23,6 @@
 #include "stdafx.h"
 #include "PropRegistry.h"
 #include "RegKey.h"
-#include "coretools.h"
 #include "FileOrFolderSelect.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"

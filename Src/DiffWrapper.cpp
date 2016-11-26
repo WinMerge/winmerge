@@ -687,7 +687,7 @@ bool CDiffWrapper::RunFileDiff()
 	PathContext files = m_files;
 	int file;
 	for (file = 0; file < m_files.GetSize(); file++)
-		replace_char(&*files[file].begin(), '/', '\\');
+		files[file] = paths_ToWindowsPath(files[file]);
 
 	bool bRet = true;
 	String strFileTemp[3];
@@ -1533,8 +1533,8 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path1 = m_files[0];
 	if (path2.empty())
 		path2 = m_files[1];
-	replace_char(&*path1.begin(), '\\', '/');
-	replace_char(&*path2.begin(), '\\', '/');
+	path1 = paths_ToUnixPath(path1);
+	path2 = paths_ToUnixPath(path2);
 	inf_patch[0].name = strdup(ucr::toSystemCP(path1).c_str());
 	inf_patch[1].name = strdup(ucr::toSystemCP(path2).c_str());
 

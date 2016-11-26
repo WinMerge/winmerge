@@ -22,7 +22,6 @@
 #include "FileActionScript.h"
 #include "locality.h"
 #include "FileFilterHelper.h"
-#include "coretools.h"
 #include "OptionsMgr.h"
 
 static void ThrowConfirmCopy(const CDiffContext& ctxt, int origin, int destination, int count,
@@ -304,8 +303,8 @@ uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, co
 
 	// Path can contain (because of difftools?) '/' and '\'
 	// so for comparing purposes, convert whole path to use '\\'
-	replace_char(&*path1.begin(), '/', '\\');
-	replace_char(&*path2.begin(), '/', '\\');
+	path1 = paths_ToWindowsPath(path1);
+	path2 = paths_ToWindowsPath(path2);
 
 	String base1 = ctxt.GetLeftPath(); // include trailing backslash
 	if (path1.compare(0, base1.length(), base1.c_str()) != 0)

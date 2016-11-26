@@ -247,7 +247,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		_tcslwr(buffer2);
 
 		//make sure they both have \\ instead of /
-		replace_char(buffer1, '/', '\\');
+		_tcscpy_safe(buffer1, paths_ToWindowsPath(buffer1).c_str());
 
 		m_vssHelper.SetProjectBase(buffer2);
 		TCHAR * pbuf2 = &buffer2[2];//skip the $/
