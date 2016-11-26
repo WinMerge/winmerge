@@ -38,7 +38,6 @@
 #include "DirView.h"
 #include "DirFrame.h"
 #include "MainFrm.h"
-#include "coretools.h"
 #include "paths.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"

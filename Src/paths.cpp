@@ -762,3 +762,25 @@ bool paths_IsDecendant(const String& path, const String& ancestor)
 	return path.length() > ancestor.length() && 
 		   string_compare_nocase(String(path.c_str(), path.c_str() + ancestor.length()), ancestor) == 0;
 }
+
+static void replace_char(TCHAR *s, int target, int repl)
+{
+	TCHAR *p;
+	for (p=s; *p != _T('\0'); p = _tcsinc(p))
+		if (*p == target)
+			*p = (TCHAR)repl;
+}
+
+String paths_ToWindowsPath(const String& path)
+{
+	String winpath = path;
+	replace_char(&*winpath.begin(), '/', '\\');
+	return winpath;
+}
+
+String paths_ToUnixPath(const String& path)
+{
+	String unixpath = path;
+	replace_char(&*unixpath.begin(), '\\', '/');
+	return unixpath;
+}
