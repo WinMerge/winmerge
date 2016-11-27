@@ -27,7 +27,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // CDirView view
 #include <afxcview.h>
-#include <map>
 #include <memory>
 #include "OptionsDiffColors.h"
 #include "SortHeaderCtrl.h"

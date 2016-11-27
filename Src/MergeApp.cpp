@@ -3,7 +3,6 @@
 #include "Merge.h"
 #include "version.h"
 #include "paths.h"
-#include "Environment.h"
 #include "Constants.h"
 #include "unicoder.h"
 

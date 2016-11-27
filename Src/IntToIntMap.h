@@ -5,6 +5,8 @@
  */
 #pragma once
 
+#include <map>
+
 /**
  * @brief An int->int map with helper methods for finding largest bin
  */

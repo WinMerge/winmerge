@@ -12,7 +12,6 @@
 #include "OptionsDiffColors.h"
 #include "OptionsFont.h"
 #include "DiffWrapper.h" // CMP_CONTENT
-#include "unicoder.h"
 #include "SourceControl.h"
 #include "paths.h"
 #include "Environment.h"

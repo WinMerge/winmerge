@@ -22,7 +22,6 @@
 #include "FileActionScript.h"
 #include "locality.h"
 #include "FileFilterHelper.h"
-#include "OptionsMgr.h"
 
 static void ThrowConfirmCopy(const CDiffContext& ctxt, int origin, int destination, int count,
 		const String& src, const String& dest, bool destIsSide);

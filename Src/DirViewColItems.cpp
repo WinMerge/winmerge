@@ -23,7 +23,6 @@ using Poco::Timestamp;
 #endif
 
 using std::swap;
-using boost::int64_t;
 
 namespace
 {

@@ -13,7 +13,6 @@
 #include <shlobj.h>
 #include <shlwapi.h>
 #include "PathContext.h"
-#include "unicoder.h"
 #include "coretools.h"
 
 static bool IsSlash(const String& pszStart, size_t nPos);

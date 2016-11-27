@@ -6,7 +6,6 @@
 
 #include "StdAfx.h"
 #include "LanguageSelect.h"
-#include <locale.h>
 #include "version.h"
 #include "BCMenu.h"
 #include "Environment.h"

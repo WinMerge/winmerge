@@ -26,11 +26,8 @@
 
 #include "DiffContext.h"
 #include <Poco/ScopedLock.h>
-#include <cstring>
-#include <algorithm>
 #include "CompareOptions.h"
 #include "version.h"
-#include "FilterList.h"
 #include "paths.h"
 #include "codepage_detect.h"
 #include "DiffItemList.h"

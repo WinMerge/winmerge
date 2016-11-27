@@ -23,13 +23,11 @@
 
 #include "VSSHelper.h"
 #include <windows.h>
-#include <algorithm>
 #include <cassert>
 #include "UnicodeString.h"
 #include "paths.h"
 #include "Environment.h"
 #include "MergeApp.h"
-#include "resource.h"
 
 String VSSHelper::GetProjectBase() const
 {

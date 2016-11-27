@@ -40,7 +40,6 @@
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
 #include "ChildFrm.h"
-#include "unicoder.h"
 #include "MergeLineFlags.h"
 #include "paths.h"
 #include "DropHandler.h"

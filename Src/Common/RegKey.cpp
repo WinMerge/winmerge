@@ -8,10 +8,8 @@
 #include "RegKey.h"
 #include <windows.h>
 #include <cassert>
-#include <algorithm>
 #include <strsafe.h>
 #include "UnicodeString.h"
-#include "coretypes.h"
 
 /**
  * @brief Default constructor.

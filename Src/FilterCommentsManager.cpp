@@ -23,7 +23,6 @@
 #include "FilterCommentsManager.h"
 #include <Poco/Util/IniFileConfiguration.h>
 #include <Poco/AutoPtr.h>
-#include <string>
 #include <map>
 #include <cstdio>
 #include <memory>

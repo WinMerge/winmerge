@@ -24,7 +24,6 @@
 
 #include <memory>
 #include <Poco/BasicEvent.h>
-#include "UnicodeString.h"
 #include "MergeApp.h"
 
 class CAboutDlg

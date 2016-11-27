@@ -8,7 +8,6 @@
 #include "stdafx.h"
 #include "PropShell.h"
 #include "RegKey.h"
-#include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "Constants.h"

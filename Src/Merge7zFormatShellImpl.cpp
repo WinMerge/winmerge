@@ -9,7 +9,6 @@
 #include <comip.h>
 #include <vector>
 #include "unicoder.h"
-#include "paths.h"
 #include "Merge7zFormatRegister.h"
 
 typedef _com_ptr_t<_com_IIID<IFileOperation, &__uuidof(IFileOperation)>> IFileOperationPtr;

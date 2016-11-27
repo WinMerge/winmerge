@@ -62,14 +62,11 @@
 #include "OptionsDef.h"
 #include "MergeCmdLineInfo.h"
 #include "ConflictFileParser.h"
-#include "codepage.h"
 #include "JumpList.h"
-#include "paths.h"
 #include "stringdiffs.h"
 #include "TFile.h"
 #include "SourceControl.h"
 #include "paths.h"
-#include "Constants.h"
 
 // For shutdown cleanup
 #include "charsets.h"

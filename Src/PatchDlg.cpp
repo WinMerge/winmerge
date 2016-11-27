@@ -26,7 +26,6 @@
 #include "diff.h"
 #include "paths.h"
 #include "CompareOptions.h"
-#include "PatchHTML.h"
 #include "FileOrFolderSelect.h"
 #include "Environment.h"
 

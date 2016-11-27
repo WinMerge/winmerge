@@ -7,7 +7,6 @@
 #include "stdafx.h"
 #include "LoadSaveCodepageDlg.h"
 #include "resource.h"
-#include "unicoder.h"
 #include "ExConverter.h"
 
 #ifdef _DEBUG

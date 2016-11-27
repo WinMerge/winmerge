@@ -20,7 +20,6 @@
 
 #include "FileFilterMgr.h"
 #include <vector>
-#include <cstring>
 #include <Poco/String.h>
 #include <Poco/Glob.h>
 #include <Poco/DirectoryIterator.h>

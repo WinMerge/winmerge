@@ -6,7 +6,6 @@
 #pragma once
 
 #include <vector>
-#include <string>
 #include <memory>
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/RegularExpression.h>

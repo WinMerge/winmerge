@@ -7,8 +7,6 @@
 #include "LineFiltersList.h"
 #include <vector>
 #include <cassert>
-#include <cstring>
-#include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "UnicodeString.h"
 

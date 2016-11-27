@@ -7,11 +7,9 @@
 
 #include "StdAfx.h"
 #include "DiffTextBuffer.h"
-#include <cstdint>
 #include <Poco/Exception.h>
 #include "UniFile.h"
 #include "files.h"
-#include "cs2cs.h"
 #include "locality.h"
 #include "paths.h"
 #include "OptionsDef.h"

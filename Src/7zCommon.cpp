@@ -101,7 +101,6 @@ DATE:		BY:					DESCRIPTION:
 #include <shlwapi.h>
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "resource.h"
 #include "DirView.h"
 #include "DirDoc.h"
 #include "DirActions.h"

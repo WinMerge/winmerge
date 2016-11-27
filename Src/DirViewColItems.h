@@ -10,7 +10,6 @@
 #include "UnicodeString.h"
 #include <vector>
 #include <sstream>
-#include <cassert>
 
 struct DIFFITEM;
 class CDiffContext;
