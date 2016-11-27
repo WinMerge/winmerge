@@ -27,6 +27,7 @@
 
 #include "StdAfx.h"
 #include "MergeDoc.h"
+#include <cstdint>
 #include <io.h>
 #include <Poco/Timestamp.h>
 #include "UnicodeString.h"
@@ -68,7 +69,6 @@
 #endif
 
 using std::swap;
-using boost::int64_t;
 
 /** @brief Max len of path in caption. */
 static const UINT CAPTION_PATH_MAX = 50;
