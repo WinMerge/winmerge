@@ -1,8 +1,5 @@
 #include <gtest/gtest.h>
 #include <windows.h>
-#include <tchar.h>
-#include <io.h>
-#include <direct.h>
 #include "paths.h"
 
 // Expects that C:\Temp exists for creating temporary testing files.

@@ -8,7 +8,6 @@
 #include "Environment.h"
 #include <windows.h>
 #include <shlobj.h>
-#include <cassert>
 #include <sstream>
 #include <Poco/Path.h>
 #include <Poco/Process.h>

@@ -27,9 +27,6 @@
 #include "StdAfx.h"
 #include "MainFrm.h"
 #include <vector>
-#include <Poco/Exception.h>
-#include <shlwapi.h>
-#include <Poco/Exception.h>
 #include <afxinet.h>
 #include <boost/range/mfc.hpp>
 #include "Constants.h"
@@ -44,7 +41,6 @@
 #include "DirView.h"
 #include "DirDoc.h"
 #include "OpenDoc.h"
-#include "OpenView.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
 #include "HexMergeDoc.h"
@@ -56,7 +52,6 @@
 #include "Environment.h"
 #include "PatchTool.h"
 #include "Plugins.h"
-#include "SelectUnpackerDlg.h"
 #include "ConfigLog.h"
 #include "7zCommon.h"
 #include "Merge7zFormatMergePluginImpl.h"
@@ -65,16 +60,13 @@
 #include "OptionsDef.h"
 #include "codepage_detect.h"
 #include "unicoder.h"
-#include "codepage.h"
 #include "PreferencesDlg.h"
 #include "ProjectFilePathsDlg.h"
 #include "FileOrFolderSelect.h"
-#include "unicoder.h"
 #include "PluginsListDlg.h"
 #include "stringdiffs.h"
 #include "MergeCmdLineInfo.h"
 #include "OptionsFont.h"
-#include "TFile.h"
 #include "JumpList.h"
 #include "DropHandler.h"
 #include "LanguageSelect.h"

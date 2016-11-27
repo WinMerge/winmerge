@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include "codepage.h"
 #include "unicoder.h"
 
 namespace

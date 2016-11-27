@@ -27,7 +27,6 @@
 #include "stdafx.h"
 #include "OpenView.h"
 #include <vector>
-#include <sys/types.h>
 #include <sys/stat.h>
 #include "UnicodeString.h"
 #include "Merge.h"

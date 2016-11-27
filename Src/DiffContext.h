@@ -7,12 +7,12 @@
 
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Mutex.h>
-#include <Poco/ThreadLocal.h>
 #include <memory>
 #include <cstdint>
 #include "PathContext.h"
 #include "DiffFileInfo.h"
 #include "DiffItemList.h"
+#include "FilterList.h"
 
 class PackingInfo;
 class PrediffingInfo;
@@ -21,7 +21,6 @@ struct DIFFITEM;
 class CompareStats;
 class IAbortable;
 class CDiffWrapper;
-class FilterList;
 class CompareOptions;
 struct DIFFOPTIONS;
 class FilterCommentsManager;

@@ -31,7 +31,6 @@
 #include "Environment.h"
 #include "paths.h"
 #include "MergeApp.h"
-#include "resource.h"
 
 static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 		LPARAM lpData);

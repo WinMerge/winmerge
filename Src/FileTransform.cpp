@@ -28,7 +28,6 @@
 #include <vector>
 #include <Poco/Exception.h>
 #include "Plugins.h"
-#include "paths.h"
 #include "multiformatText.h"
 #include "UniMarkdownFile.h"
 #include "Environment.h"

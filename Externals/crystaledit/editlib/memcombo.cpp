@@ -15,7 +15,6 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "resource.h"
 #include "editreg.h"
 #include "memcombo.h"
 #include "registry.h"

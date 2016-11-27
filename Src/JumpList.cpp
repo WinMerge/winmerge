@@ -6,7 +6,6 @@
  */
 #include "JumpList.h"
 #include <vector>
-#include <ObjBase.h>
 #include <ShlObj.h>
 #include <propvarutil.h>
 #include <propkey.h>

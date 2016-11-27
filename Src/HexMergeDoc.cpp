@@ -29,12 +29,10 @@
 #include "HexMergeDoc.h"
 #include <afxinet.h>
 #include "UnicodeString.h"
-#include "FileTextEncoding.h"
 #include "HexMergeFrm.h"
 #include "HexMergeView.h"
 #include "DiffItem.h"
 #include "FolderCmp.h"
-#include "Environment.h"
 #include "DiffContext.h"	// FILE_SAME
 #include "DirDoc.h"
 #include "DirActions.h"

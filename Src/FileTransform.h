@@ -27,7 +27,6 @@
 
 #include <vector>
 #include "UnicodeString.h"
-#include "resource.h"
 #include "MergeApp.h"
 
 class UniFile;

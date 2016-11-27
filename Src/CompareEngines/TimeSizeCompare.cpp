@@ -5,8 +5,6 @@
  */
 
 #include "TimeSizeCompare.h"
-#include <cstdlib>
-#include <vector>
 #include <cstdint>
 #include <Poco/Timestamp.h>
 #include "DiffItem.h"

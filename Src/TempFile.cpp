@@ -9,7 +9,6 @@
 #include <windows.h>
 #include <tlhelp32.h> 
 #include <shlwapi.h>
-#include <algorithm>
 #include "paths.h"
 #include "Environment.h"
 #include "Constants.h"

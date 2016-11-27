@@ -27,14 +27,11 @@
 
 #ifdef _MSC_VER
 
-#include <cstdio>
 #include <windows.h>
 #include <tchar.h>
 #include <strsafe.h>
 
 #endif
-
-#include "UnicodeString.h"
 
 /**
  * @brief C exception "wrapper" class for C++ try/catch

@@ -9,7 +9,6 @@
 
 #pragma once
 
-#include "sizecbar.h"
 #include "scbarcf.h"
 
 

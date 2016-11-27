@@ -43,7 +43,6 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffOptions.h"
-#include "FileActionScript.h"
 #include "LineFiltersList.h"
 #include "FileFilterHelper.h"
 #include "unicoder.h"

@@ -28,8 +28,6 @@
 
 
 #include "MergeCmdLineInfo.h"
-#include <cstring>
-#include <algorithm>
 #include "Constants.h"
 #include "Paths.h"
 #include "OptionsDef.h"

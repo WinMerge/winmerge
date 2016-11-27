@@ -2,7 +2,6 @@
 #include <windows.h>
 #include <tchar.h>
 #include <vector>
-#include <direct.h>
 #include "UnicodeString.h"
 #include "ShellFileOperations.h"
 

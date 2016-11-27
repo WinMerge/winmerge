@@ -45,8 +45,6 @@
 #include "Constants.h"
 #include "DropHandler.h"
 #include <cmath>
-#include <cstdint>
-#include <Shlwapi.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

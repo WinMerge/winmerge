@@ -7,7 +7,6 @@
  */
 
 #include "DiffFileData.h"
-#include <vector>
 #ifdef _WIN32
 #include <io.h>
 #else
