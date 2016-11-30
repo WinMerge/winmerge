@@ -292,7 +292,7 @@ StatusUninstalling=A desinstalar o %1...
 
 NameAndVersion=%1 versão %2
 AdditionalIcons=Ícones adicionais:
-OptionalFeatures=Optional Features:
+OptionalFeatures=Opções adicionais:
 CreateDesktopIcon=Criar ícone no Ambiente de &Trabalho
 CreateQuickLaunchIcon=&Criar ícone na barra de Iniciação Rápida
 ProgramOnTheWeb=%1 na Web
