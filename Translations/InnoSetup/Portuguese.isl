@@ -367,12 +367,12 @@ MergeAtLeftPane=Merge at left pane
 AutoMergeAtStartup=Auto-merge at startup time
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ReadMe=Ler
+UsersGuide=Guia do utilizador
+ViewStartMenuFolder=&Ver a pasta do WinMerge do Menu Iniciar
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=O instalador detectou que alterou a localização de "%s" para "%s". Deseja eliminar a pasta anterior do Menu Iniciar?
 
 ; Project file description
 ProjectFileDesc=WinMerge Project file
