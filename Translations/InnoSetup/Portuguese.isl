@@ -305,14 +305,14 @@ AssocingFileExtension=A associar o %1 aos ficheiros com a extensão %2...
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Instalação padrão
+FullInstallation=Instalação completa
+CompactInstallation=Instalação compacta
+CustomInstallation=Instalação personalizada
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-Filters=Filters
+AppCoreFiles=Ficheiros principais WinMerge
+Filters=Filtros
 Plugins=Plugins
 
 ;Localization Components
@@ -351,10 +351,10 @@ UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Permitir o menu de contexto no Explorador
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
+IntegrateTortoiseCVS=Intregar com &TortoiseCVS
+IntegrateTortoiseGIT=Intregar com To&rtoiseGIT
+IntegrateTortoiseSVN=Intregar com T&ortoiseSVN
+IntegrateClearCase=Intregar com Rational &ClearCase
 AddToPath=&Criar pasta do WinMerge no caminho do sistema
 
 ; 3-way merge wizard page
@@ -372,7 +372,7 @@ UsersGuide=Guia do utilizador
 ViewStartMenuFolder=&Ver a pasta do WinMerge do Menu Iniciar
 
 ;Code Dialogs
-DeletePreviousStartMenu=O instalador detectou que alterou a localização de "%s" para "%s". Deseja eliminar a pasta anterior do Menu Iniciar?
+DeletePreviousStartMenu=O assistente de instalação detectou que alterou a localização de "%s" para "%s". Deseja eliminar a pasta anterior do Menu Iniciar?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=Ficheiro do projecto WinMerge
