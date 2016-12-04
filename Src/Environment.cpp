@@ -17,14 +17,17 @@
 using Poco::Path;
 using Poco::Process;
 
+namespace env
+{
+
 /**
  * @brief Temp path.
- * Static string used by env_GetTempPath() for storing temp path.
+ * Static string used by GetTemporaryPath() for storing temp path.
  */
 static String strTempPath;
 static String strProgPath;
 
-void env_SetTempPath(const String& path)
+void SetTemporaryPath(const String& path)
 {
 	strTempPath = paths::AddTrailingSlash(paths::GetLongPath(path));
 	paths::CreateIfNeeded(strTempPath);
@@ -37,11 +40,11 @@ void env_SetTempPath(const String& path)
  * @note Temp path is cached after first call.
  * @todo Should we return NULL for error case?
  */
-String env_GetTempPath()
+String GetTemporaryPath()
 {
 	if (strTempPath.empty())
 	{
-		strTempPath = env_GetSystemTempPath();
+		strTempPath = GetSystemTempPath();
 		if (strTempPath.empty())
 			return strTempPath;
 
@@ -57,12 +60,12 @@ String env_GetTempPath()
  * @param [out] pnerr Error code if error happened.
  * @return Full path for temporary file or empty string if error happened.
  */
-String env_GetTempFileName(const String& lpPathName, const String& lpPrefixString, int * pnerr)
+String GetTemporaryFileName(const String& lpPathName, const String& lpPrefixString, int * pnerr)
 {
 	TCHAR buffer[MAX_PATH] = {0};
 	if (lpPathName.length() > MAX_PATH-14)
 		return _T(""); // failure
-	int rtn = GetTempFileName(lpPathName.c_str(), lpPrefixString.c_str(), 0, buffer);
+	int rtn = ::GetTempFileName(lpPathName.c_str(), lpPrefixString.c_str(), 0, buffer);
 	if (!rtn)
 	{
 		int err = GetLastError();
@@ -73,22 +76,22 @@ String env_GetTempFileName(const String& lpPathName, const String& lpPrefixStrin
 	return buffer;
 }
 
-String env_GetTempChildPath()
+String GetTempChildPath()
 {
 	String path;
 	do
 	{
-		path = paths::ConcatPath(env_GetTempPath(), string_format(_T("%08x"), rand()));
+		path = paths::ConcatPath(GetTemporaryPath(), string_format(_T("%08x"), rand()));
 	} while (paths::IsDirectory(path) || !paths::CreateIfNeeded(path));
 	return path;
 }
 
-void env_SetProgPath(const String& path)
+void SetProgPath(const String& path)
 {
 	strProgPath = paths::AddTrailingSlash(path);
 }
 
-String env_GetProgPath()
+String GetProgPath()
 {
 	if (strProgPath.empty())
 	{
@@ -103,11 +106,11 @@ String env_GetProgPath()
  * @brief Get Windows directory.
  * @return Windows directory.
  */
-String env_GetWindowsDirectory()
+String GetWindowsDirectory()
 {
 	TCHAR path[MAX_PATH];
 	path[0] = _T('\0');
-	GetWindowsDirectory(path, MAX_PATH);
+	::GetWindowsDirectory(path, MAX_PATH);
 	return path;
 }
 
@@ -116,7 +119,7 @@ String env_GetWindowsDirectory()
  * This function returns full path to User's My Documents -folder.
  * @return Full path to My Documents -folder.
  */
-String env_GetMyDocuments()
+String GetMyDocuments()
 {
 	TCHAR path[MAX_PATH];
 	path[0] = _T('\0');
@@ -131,7 +134,7 @@ String env_GetMyDocuments()
  * @param [in] name Additional name used as part of the string.
  * @return Unique string for the instance.
  */
-String env_GetPerInstanceString(const String& name)
+String GetPerInstanceString(const String& name)
 {
 	std::basic_stringstream<TCHAR> stream;
 	stream << name << Process::id();
@@ -142,7 +145,7 @@ String env_GetPerInstanceString(const String& name)
  * @brief Get system temporary directory.
  * @return System temporary director.
  */
-String env_GetSystemTempPath()
+String GetSystemTempPath()
 {
 	try
 	{
@@ -173,7 +176,7 @@ static bool launchProgram(const String& sCmd, WORD wShowWindow)
 /**
  * @brief Load registry keys from .reg file if existing .reg file
  */
-bool env_LoadRegistryFromFile(const String& sRegFilePath)
+bool LoadRegistryFromFile(const String& sRegFilePath)
 {
 	if (paths::DoesPathExist(sRegFilePath) != paths::IS_EXISTING_FILE)
 		return false;
@@ -183,10 +186,12 @@ bool env_LoadRegistryFromFile(const String& sRegFilePath)
 /** 
  * @brief Save registry keys to .reg file if existing .reg file
  */
-bool env_SaveRegistryToFile(const String& sRegFilePath, const String& sRegDir)
+bool SaveRegistryToFile(const String& sRegFilePath, const String& sRegDir)
 {
 	if (paths::DoesPathExist(sRegFilePath) != paths::IS_EXISTING_FILE)
 		return false;
 	DeleteFile(sRegFilePath.c_str());
 	return launchProgram(_T("reg.exe export HKCU\\") + sRegDir + _T(" \"") + sRegFilePath + _T("\""), SW_HIDE);
+}
+
 }

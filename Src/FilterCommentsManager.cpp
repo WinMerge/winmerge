@@ -50,7 +50,7 @@ void FilterCommentsManager::Load()
 	int SectionNo = 0;
 	if (m_IniFileName.empty())
 	{
-		m_IniFileName = paths::ConcatPath(env_GetProgPath(), _T("IgnoreSectionMarkers.ini"));
+		m_IniFileName = paths::ConcatPath(env::GetProgPath(), _T("IgnoreSectionMarkers.ini"));
 	}
 
 	try

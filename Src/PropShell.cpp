@@ -43,7 +43,7 @@ static bool RegisterShellExtension(bool unregister)
 	GetSystemDirectory(szSystem32, sizeof(szSystem32) / sizeof(szSystem32[0]));
 	GetSystemWow64Directory(szSysWow64, sizeof(szSysWow64) / sizeof(szSysWow64[0]));
 
-	String progpath = env_GetProgPath();
+	String progpath = env::GetProgPath();
 	String regsvr32 = paths::ConcatPath(szSystem32, _T("regsvr32.exe"));
 	String args;
 	SHELLEXECUTEINFO sei = { sizeof(sei) };

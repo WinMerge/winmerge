@@ -192,7 +192,7 @@ bool CConfigLog::DoFile(String &sError)
 	CVersionInfo version;
 	String text;
 
-	String sFileName = paths::ConcatPath(env_GetMyDocuments(), WinMergeDocumentsFolder);
+	String sFileName = paths::ConcatPath(env::GetMyDocuments(), WinMergeDocumentsFolder);
 	paths::CreateIfNeeded(sFileName);
 	m_sFileName = paths::ConcatPath(sFileName, _T("WinMerge.txt"));
 

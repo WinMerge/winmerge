@@ -34,7 +34,7 @@ namespace
 			// before each test).
 			TCHAR temp[MAX_PATH] = {0};
 			GetModuleFileName(NULL, temp, MAX_PATH);
-			env_SetProgPath(paths::GetPathOnly(temp) + _T("/../FileFilter"));
+			env::SetProgPath(paths::GetPathOnly(temp) + _T("/../FileFilter"));
 			m_fileFilterHelper.LoadAllFileFilters();
 		}
 

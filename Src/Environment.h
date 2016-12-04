@@ -7,19 +7,24 @@
 
 #include "UnicodeString.h"
 
-void env_SetTempPath(const String& path);
-String env_GetTempPath();
-String env_GetTempFileName(const String& lpPathName, const String& lpPrefixString,
+namespace env
+{
+
+void SetTemporaryPath(const String& path);
+String GetTemporaryPath();
+String GetTemporaryFileName(const String& lpPathName, const String& lpPrefixString,
 		int * pnerr = NULL);
-String env_GetTempChildPath();
-void env_SetProgPath(const String& path);
-String env_GetProgPath();
+String GetTempChildPath();
+void SetProgPath(const String& path);
+String GetProgPath();
 
-String env_GetWindowsDirectory();
-String env_GetMyDocuments();
-String env_GetSystemTempPath();
+String GetWindowsDirectory();
+String GetMyDocuments();
+String GetSystemTempPath();
 
-String env_GetPerInstanceString(const String& name);
+String GetPerInstanceString(const String& name);
 
-bool env_LoadRegistryFromFile(const String& sRegFilePath);
-bool env_SaveRegistryToFile(const String& sRegFilePath, const String& sRegDir);
+bool LoadRegistryFromFile(const String& sRegFilePath);
+bool SaveRegistryToFile(const String& sRegFilePath, const String& sRegDir);
+
+}

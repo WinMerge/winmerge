@@ -279,7 +279,7 @@ BOOL CMergeApp::InitInstance()
 	pOldFilter->Revoke();
 
 	// Load registry keys from WinMerge.reg if existing WinMerge.reg
-	env_LoadRegistryFromFile(paths::ConcatPath(env_GetProgPath(), _T("WinMerge.reg")));
+	env::LoadRegistryFromFile(paths::ConcatPath(env::GetProgPath(), _T("WinMerge.reg")));
 
 	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
 
@@ -406,7 +406,7 @@ BOOL CMergeApp::InitInstance()
 			// Failed to create a folder for filters, fallback to
 			// "My Documents"-folder. It is not worth the trouble to
 			// bother user about this or user more clever solutions.
-			GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, env_GetMyDocuments());
+			GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, env::GetMyDocuments());
 		}
 	}
 
@@ -506,7 +506,7 @@ BOOL CMergeApp::InitInstance()
 
 static void OpenContributersFile(int&)
 {
-	theApp.OpenFileToExternalEditor(paths::ConcatPath(env_GetProgPath(), ContributorsPath));
+	theApp.OpenFileToExternalEditor(paths::ConcatPath(env::GetProgPath(), ContributorsPath));
 }
 
 // App command to run the dialog
@@ -532,10 +532,10 @@ int CMergeApp::ExitInstance()
 	charsets_cleanup();
 
 	//  Save registry keys if existing WinMerge.reg
-	env_SaveRegistryToFile(paths::ConcatPath(env_GetProgPath(), _T("WinMerge.reg")), RegDir);
+	env::SaveRegistryToFile(paths::ConcatPath(env::GetProgPath(), _T("WinMerge.reg")), RegDir);
 
 	// Remove tempfolder
-	const String temp = env_GetTempPath();
+	const String temp = env::GetTemporaryPath();
 	ClearTempfolder(temp);
 	delete m_mainThreadScripts;
 	CWinApp::ExitInstance();
@@ -832,7 +832,7 @@ void CMergeApp::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
  */
 void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
 {
-	String sPath = env_GetProgPath();
+	String sPath = env::GetProgPath();
 	LANGID LangId = GetLangId();
 	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
 		sPath = paths::ConcatPath(sPath, DocsPath_ja);
@@ -1320,11 +1320,11 @@ void CMergeApp::AddToRecentProjectsMRU(LPCTSTR sPathName)
 
 void CMergeApp::SetupTempPath()
 {
-	String instTemp = env_GetPerInstanceString(TempFolderPrefix);
+	String instTemp = env::GetPerInstanceString(TempFolderPrefix);
 	if (GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH))
-		env_SetTempPath(paths::ConcatPath(env_GetSystemTempPath(), instTemp));
+		env::SetTemporaryPath(paths::ConcatPath(env::GetSystemTempPath(), instTemp));
 	else
-		env_SetTempPath(paths::ConcatPath(GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH), instTemp));
+		env::SetTemporaryPath(paths::ConcatPath(GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH), instTemp));
 }
 
 /**

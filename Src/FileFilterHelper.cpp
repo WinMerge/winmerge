@@ -454,7 +454,7 @@ void FileFilterHelper::LoadAllFileFilters()
 	m_fileFilterMgr->DeleteAllFilters();
 
 	// Program application directory
-	m_sGlobalFilterPath = paths::ConcatPath(env_GetProgPath(), _T("Filters"));
+	m_sGlobalFilterPath = paths::ConcatPath(env::GetProgPath(), _T("Filters"));
 	paths::normalize(m_sGlobalFilterPath);
 	String pattern(_T("*"));
 	pattern += FileFilterExt;

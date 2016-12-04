@@ -571,7 +571,7 @@ static vector<String>& LoadTheScriptletList()
 	FastMutex::ScopedLock lock(scriptletsSem);
 	if (!scriptletsLoaded)
 	{
-		String path = paths::ConcatPath(env_GetProgPath(), _T("MergePlugins"));
+		String path = paths::ConcatPath(env::GetProgPath(), _T("MergePlugins"));
 
 		if (IsWindowsScriptThere())
 			GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet

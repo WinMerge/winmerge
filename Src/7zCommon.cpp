@@ -264,7 +264,7 @@ void CTempPathContext::Swap(int idx1, int idx2)
  */
 DWORD NTAPI VersionOf7z()
 {
-	String path = paths::ConcatPath(env_GetProgPath(), _T("Merge7z\\7z.dll"));
+	String path = paths::ConcatPath(env::GetProgPath(), _T("Merge7z\\7z.dll"));
 	unsigned versionMS = 0;
 	unsigned versionLS = 0;
 	CVersionInfo(path.c_str()).GetFixedFileVersion(versionMS, versionLS);
@@ -627,7 +627,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 		if (piHandler = ArchiveGuessFormat(res.files[0]))
 		{
 			res.pTempPathContext = new CTempPathContext;
-			path = env_GetTempChildPath();
+			path = env::GetTempChildPath();
 			for (int index = 0; index < res.files.GetSize(); index++)
 				res.pTempPathContext->m_strDisplayRoot[index] = res.files[index];
 			if (res.files.GetSize() == 2 && res.files[0] == res.files[1])
@@ -656,7 +656,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				for (int index = 0; index < res.files.GetSize(); index++)
 					res.pTempPathContext->m_strDisplayRoot[index] = res.files[index];
 			}
-			path = env_GetTempChildPath();
+			path = env::GetTempChildPath();
 			do
 			{
 				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[1].c_str(), path.c_str())))
@@ -681,7 +681,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				for (int index = 0; index < res.files.GetSize(); index++)
 					res.pTempPathContext->m_strDisplayRoot[index] = res.files[index];
 			}
-			path = env_GetTempChildPath();
+			path = env::GetTempChildPath();
 			do
 			{
 				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[2].c_str(), path.c_str())))

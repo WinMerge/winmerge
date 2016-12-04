@@ -807,7 +807,7 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId, BOOL bShowError)
 String CLanguageSelect::GetFileName(LANGID wLangId) const
 {
 	String filename;
-	String path = paths::ConcatPath(env_GetProgPath(), szRelativePath);
+	String path = paths::ConcatPath(env::GetProgPath(), szRelativePath);
 	String pattern = paths::ConcatPath(path, _T("*.po"));
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
@@ -1032,7 +1032,7 @@ std::wstring CLanguageSelect::LoadDialogCaption(LPCTSTR lpDialogTemplateID) cons
 std::vector<std::pair<LANGID, String> > CLanguageSelect::GetAvailableLanguages() const
 {
 	std::vector<std::pair<LANGID, String> > list;
-	String path = paths::ConcatPath(env_GetProgPath(), szRelativePath);
+	String path = paths::ConcatPath(env::GetProgPath(), szRelativePath);
 	String pattern = paths::ConcatPath(path, _T("*.po"));
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
