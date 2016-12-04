@@ -15,6 +15,9 @@
 #include "PathContext.h"
 #include "coretools.h"
 
+namespace paths
+{
+
 static bool IsSlash(const String& pszStart, size_t nPos);
 static bool GetDirName(const String& sDir, String& sName);
 
@@ -42,7 +45,7 @@ static bool IsSlash(const String& pszStart, size_t nPos)
  * @param [in] s String to check.
  * @return true if last char in string is slash.
  */
-bool paths_EndsWithSlash(const String& s)
+bool EndsWithSlash(const String& s)
 {
 	if (size_t len = s.length())
 		return IsSlash(s, (int)len - 1);
@@ -59,7 +62,7 @@ bool paths_EndsWithSlash(const String& s)
  * - IS_EXISTING_DIR : path points to existing folder
  * - IS_EXISTING_FILE : path points to existing file
  */
-PATH_EXISTENCE paths_DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&))
+PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&))
 {
 	if (szPath.empty())
 		return DOES_NOT_EXIST;
@@ -99,7 +102,7 @@ PATH_EXISTENCE paths_DoesPathExist(const String& szPath, bool (*IsArchiveFile)(c
  * @param [in] Path
  * @return Filename
  */
-String paths_FindFileName(const String& path)
+String FindFileName(const String& path)
 {
 	const TCHAR *filename = path.c_str();
 	while (const TCHAR *slash = _tcspbrk(filename, _T("\\/")))
@@ -116,7 +119,7 @@ String paths_FindFileName(const String& path)
  * @param [in] Path
  * @return Filename
  */
-String paths_FindExtension(const String& path)
+String FindExtension(const String& path)
 {
 	return ::PathFindExtension(path.c_str());
 }
@@ -127,21 +130,21 @@ String paths_FindExtension(const String& path)
  * case and they are left intact. Since C:\ is a valid path but C: is not.
  * @param [in,out] sPath Path to strip.
  */
-void paths_normalize(String & sPath)
+void normalize(String & sPath)
 {
 	size_t len = sPath.length();
 	if (!len)
 		return;
 
 	// prefix root with current drive
-	sPath = paths_GetLongPath(sPath);
+	sPath = GetLongPath(sPath);
 
 	// Do not remove trailing slash from root directories
 	if (len == 3 && sPath[1] == ':')
 		return;
 
 	// remove any trailing slash
-	if (paths_EndsWithSlash(sPath))
+	if (EndsWithSlash(sPath))
 		sPath.resize(sPath.length() - 1);
 }
 
@@ -192,7 +195,7 @@ static bool GetDirName(const String& sDir, String& sName)
  * @param [in] bExpandEnvs If true environment variables are expanded.
  * @return Converted path.
  */
-String paths_GetLongPath(const String& szPath, bool bExpandEnvs)
+String GetLongPath(const String& szPath, bool bExpandEnvs)
 {
 	String sPath = szPath;
 	size_t len = sPath.length();
@@ -299,7 +302,7 @@ String paths_GetLongPath(const String& szPath, bool bExpandEnvs)
  * @param [in] sPath Path to check/create.
  * @return true if path exists or if we successfully created it.
  */
-bool paths_CreateIfNeeded(const String& szPath)
+bool CreateIfNeeded(const String& szPath)
 {
 	if (szPath.empty())
 		return false;
@@ -387,25 +390,25 @@ PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveF
 	// fail if not both specified
 	if (paths.GetSize() < 2 || paths[0].empty() || paths[1].empty())
 		return DOES_NOT_EXIST;
-	PATH_EXISTENCE p1 = paths_DoesPathExist(paths[0], IsArchiveFile);
+	PATH_EXISTENCE p1 = DoesPathExist(paths[0], IsArchiveFile);
 	// short circuit testing right if left doesn't exist
 	if (p1 == DOES_NOT_EXIST)
 		return DOES_NOT_EXIST;
-	PATH_EXISTENCE p2 = paths_DoesPathExist(paths[1], IsArchiveFile);
+	PATH_EXISTENCE p2 = DoesPathExist(paths[1], IsArchiveFile);
 	if (p1 != p2)
 	{
-		p1 = paths_DoesPathExist(paths[0]);
-		p2 = paths_DoesPathExist(paths[1]);
+		p1 = DoesPathExist(paths[0]);
+		p2 = DoesPathExist(paths[1]);
 		if (p1 != p2)
 			return DOES_NOT_EXIST;
 	}
 	if (paths.GetSize() < 3) return p1; 
-	PATH_EXISTENCE p3 = paths_DoesPathExist(paths[2], IsArchiveFile);
+	PATH_EXISTENCE p3 = DoesPathExist(paths[2], IsArchiveFile);
 	if (p2 != p3)
 	{
-		p1 = paths_DoesPathExist(paths[0]);
-		p2 = paths_DoesPathExist(paths[1]);
-		p3 = paths_DoesPathExist(paths[2]);
+		p1 = DoesPathExist(paths[0]);
+		p2 = DoesPathExist(paths[1]);
+		p3 = DoesPathExist(paths[2]);
 		if (p1 != p2 || p2 != p3)
 			return DOES_NOT_EXIST;
 	}
@@ -420,7 +423,7 @@ PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveF
  * @param [in] inPath Path to check;
  * @return true if the path points to shortcut, false otherwise.
  */
-bool paths_IsShortcut(const String& inPath)
+bool IsShortcut(const String& inPath)
 {
 	const TCHAR ShortcutExt[] = _T(".lnk");
 	TCHAR ext[_MAX_EXT] = {0};
@@ -431,7 +434,7 @@ bool paths_IsShortcut(const String& inPath)
 		return false;
 }
 
-bool paths_IsDirectory(const String &path)
+bool IsDirectory(const String &path)
 {
 	return !!PathIsDirectory(path.c_str());
 }
@@ -507,13 +510,13 @@ String ExpandShortcut(const String &inFile)
  * @return Formatted path. If one of arguments is empty then returns
  * non-empty argument. If both argumets are empty empty string is returned.
  */
-String paths_ConcatPath(const String & path, const String & subpath)
+String ConcatPath(const String & path, const String & subpath)
 {
 	if (path.empty())
 		return subpath;
 	if (subpath.empty())
 		return path;
-	if (paths_EndsWithSlash(path))
+	if (EndsWithSlash(path))
 	{
 		return String(path).append(subpath.c_str() + (IsSlash(subpath, 0) ? 1 : 0));
 	}
@@ -537,7 +540,7 @@ String paths_ConcatPath(const String & path, const String & subpath)
  * @param [in] path Path to get parent path for.
  * @return Parent path.
  */
-String paths_GetParentPath(const String& path)
+String GetParentPath(const String& path)
 {
 	String parentPath(path);
 	size_t len = parentPath.length();
@@ -569,7 +572,7 @@ String paths_GetParentPath(const String& path)
  * @param [in] path Original path.
  * @return Last subdirectory in path.
  */
-String paths_GetLastSubdir(const String & path)
+String GetLastSubdir(const String & path)
 {
 	String parentPath(path);
 	size_t len = parentPath.length();
@@ -593,7 +596,7 @@ String paths_GetLastSubdir(const String & path)
  * @param [in] path Path to check.
  * @return true if given path is absolute path.
  */
-bool paths_IsPathAbsolute(const String &path)
+bool IsPathAbsolute(const String &path)
 {
 	if (path.length() < 3)
 		return false;
@@ -624,17 +627,17 @@ bool paths_IsPathAbsolute(const String &path)
  * path points to file or folder failed to create returns empty
  * string.
  */
-String paths_EnsurePathExist(const String & sPath)
+String EnsurePathExist(const String & sPath)
 {
-	int rtn = paths_DoesPathExist(sPath);
+	int rtn = DoesPathExist(sPath);
 	if (rtn == IS_EXISTING_DIR)
 		return sPath;
 	if (rtn == IS_EXISTING_FILE)
 		return _T("");
-	if (!paths_CreateIfNeeded(sPath))
+	if (!CreateIfNeeded(sPath))
 		return _T("");
 	// Check creating folder succeeded
-	if (paths_DoesPathExist(sPath) == IS_EXISTING_DIR)
+	if (DoesPathExist(sPath) == IS_EXISTING_DIR)
 		return sPath;
 	else
 		return _T("");
@@ -664,7 +667,7 @@ bool IsSlashOrColon(const TCHAR *pszChar, const TCHAR *begin)
  * @param [out] pFile File name part, excluding extension.
  * @param [out] pExt Filename extension part, excluding leading dot.
  */
-void paths_SplitFilename(const String& pathLeft, String* pPath, String* pFile, String* pExt)
+void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String* pExt)
 {
 	const TCHAR *pszChar = pathLeft.c_str() + pathLeft.length();
 	const TCHAR *pend = pszChar;
@@ -727,14 +730,14 @@ endSplit:
 }
 
 // Split Rational ClearCase view name (file_name@@file_version).
-void paths_SplitViewName(const TCHAR *s, String * path, String * name, String * ext)
+void SplitViewName(const TCHAR *s, String * path, String * name, String * ext)
 {
 	String sViewName(s);
 	size_t nOffset = sViewName.find(_T("@@"));
 	if (nOffset != String::npos)
 	{
 		sViewName.erase(nOffset);
-		paths_SplitFilename(sViewName, path, name, ext);
+		SplitFilename(sViewName, path, name, ext);
 	}
 }
 
@@ -743,20 +746,20 @@ void paths_SplitViewName(const TCHAR *s, String * path, String * name, String * 
  * @param [in] fullpath Full path to split.
  * @return Path without filename.
  */
-String paths_GetPathOnly(const String& fullpath)
+String GetPathOnly(const String& fullpath)
 {
 	if (fullpath.empty()) return _T("");
 	String spath;
-	paths_SplitFilename(fullpath, &spath, 0, 0);
+	SplitFilename(fullpath, &spath, 0, 0);
 	return spath;
 }
 
-bool paths_IsURLorCLSID(const String& path)
+bool IsURLorCLSID(const String& path)
 {
 	return (path.find(_T("://")) != String::npos || path.find(_T("::{")) != String::npos);
 }
 
-bool paths_IsDecendant(const String& path, const String& ancestor)
+bool IsDecendant(const String& path, const String& ancestor)
 {
 	return path.length() > ancestor.length() && 
 		   string_compare_nocase(String(path.c_str(), path.c_str() + ancestor.length()), ancestor) == 0;
@@ -770,16 +773,18 @@ static void replace_char(TCHAR *s, int target, int repl)
 			*p = (TCHAR)repl;
 }
 
-String paths_ToWindowsPath(const String& path)
+String ToWindowsPath(const String& path)
 {
 	String winpath = path;
 	replace_char(&*winpath.begin(), '/', '\\');
 	return winpath;
 }
 
-String paths_ToUnixPath(const String& path)
+String ToUnixPath(const String& path)
 {
 	String unixpath = path;
 	replace_char(&*unixpath.begin(), '\\', '/');
 	return unixpath;
+}
+
 }

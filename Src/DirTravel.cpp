@@ -78,7 +78,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 	}
 
 #else
-	String sPattern = paths_ConcatPath(sDir, _T("*.*"));
+	String sPattern = paths::ConcatPath(sDir, _T("*.*"));
 
 	WIN32_FIND_DATA ff;
 	HANDLE h;

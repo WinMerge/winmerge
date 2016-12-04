@@ -93,7 +93,7 @@ void FileFilterMgr::LoadFromDirectory(const String& dir, const String& szPattern
 					return;
 			}
 
-			String filterpath = paths_ConcatPath(dir, ucr::toTString(filename));
+			String filterpath = paths::ConcatPath(dir, ucr::toTString(filename));
 			AddFilter(filterpath);
 		}
 	}
@@ -189,7 +189,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 	file.ReadBom(); // in case it is a Unicode file, let UniMemFile handle BOM
 
 	String fileName;
-	paths_SplitFilename(szFilepath, NULL, &fileName, NULL);
+	paths::SplitFilename(szFilepath, NULL, &fileName, NULL);
 	FileFilter *pfilter = new FileFilter;
 	pfilter->fullpath = szFilepath;
 	pfilter->name = fileName; // Filename is the default name

@@ -37,7 +37,7 @@ THE SOFTWARE.
 #include <Poco/Exception.h>
 #include "UnicodeString.h"
 #include "unicoder.h"
-#include "paths.h" // paths_GetLongbPath()
+#include "paths.h" // paths::GetLongbPath()
 #include "TFile.h"
 #ifdef _WIN32
 #include <windows.h>
@@ -124,7 +124,7 @@ bool UniLocalFile::DoGetFileStatus()
 	m_statusFetched = -1;
 	m_lastError.ClearError();
 
-	m_filepath = paths_GetLongPath(m_filepath);
+	m_filepath = paths::GetLongPath(m_filepath);
 
 	try
 	{

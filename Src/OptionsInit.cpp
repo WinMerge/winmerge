@@ -102,7 +102,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_TAB_SIZE, (int)4);
 	pOptions->InitOption(OPT_TAB_TYPE, (int)0);	// 0 means tabs inserted
 
-	pOptions->InitOption(OPT_EXT_EDITOR_CMD, paths_ConcatPath(env_GetWindowsDirectory(), _T("NOTEPAD.EXE")));
+	pOptions->InitOption(OPT_EXT_EDITOR_CMD, paths::ConcatPath(env_GetWindowsDirectory(), _T("NOTEPAD.EXE")));
 	pOptions->InitOption(OPT_USE_RECYCLE_BIN, true);
 	pOptions->InitOption(OPT_SINGLE_INSTANCE, false);
 	pOptions->InitOption(OPT_MERGE_MODE, false);
@@ -147,7 +147,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_LINEFILTER_ENABLED, false);
 	pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 	// CMainFrame initializes this when it is empty.
-	pOptions->InitOption(OPT_FILTER_USERPATH, paths_ConcatPath(env_GetMyDocuments(), DefaultRelativeFilterPath));
+	pOptions->InitOption(OPT_FILTER_USERPATH, paths::ConcatPath(env_GetMyDocuments(), DefaultRelativeFilterPath));
 	pOptions->InitOption(OPT_FILEFILTER_SHARED, false);
 
 	pOptions->InitOption(OPT_CP_DEFAULT_MODE, (int)0);

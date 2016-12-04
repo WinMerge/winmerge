@@ -177,8 +177,8 @@ bool DirCmpReport::GenerateReport(String &errStr)
 		if (!dlg.m_sReportFile.empty())
 		{
 			String path;
-			paths_SplitFilename(dlg.m_sReportFile, &path, NULL, NULL);
-			if (!paths_CreateIfNeeded(path))
+			paths::SplitFilename(dlg.m_sReportFile, &path, NULL, NULL);
+			if (!paths::CreateIfNeeded(path))
 			{
 				errStr = _("Folder does not exist.");
 				return FALSE;
@@ -419,11 +419,11 @@ void DirCmpReport::GenerateXmlHeader()
 void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 {
 	String sFileName, sParentDir;
-	paths_SplitFilename((const TCHAR *)m_pFile->GetFilePath(), &sParentDir, &sFileName, NULL);
+	paths::SplitFilename((const TCHAR *)m_pFile->GetFilePath(), &sParentDir, &sFileName, NULL);
 	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T("."))) + _T(".files");
-	String sDestDir = paths_ConcatPath(sParentDir, sRelDestDir);
+	String sDestDir = paths::ConcatPath(sParentDir, sRelDestDir);
 	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport)
-		paths_CreateIfNeeded(sDestDir);
+		paths::CreateIfNeeded(sDestDir);
 
 	int nRows = m_pList->GetRowCount();
 

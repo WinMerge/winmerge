@@ -610,7 +610,7 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 		{
 			String strPath = m_pCtxt->GetPath(index);
 			ApplyDisplayRoot(index, strPath);
-			sDirName[index] = paths_FindFileName(strPath);
+			sDirName[index] = paths::FindFileName(strPath);
 		}
 		if (std::count(&sDirName[0], &sDirName[0] + m_nDirs, sDirName[0]) == m_nDirs)
 			sTitle = sDirName[0] + string_format(_T(" x %d"), m_nDirs);

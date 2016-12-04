@@ -108,7 +108,7 @@ int CPatchTool::CreatePatch()
 	{
 		bool bResult = true;
 
-		if (!paths_CreateIfNeeded(paths_GetPathOnly(dlgPatch.m_fileResult)))
+		if (!paths::CreateIfNeeded(paths::GetPathOnly(dlgPatch.m_fileResult)))
 		{
 			LangMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
 			return 0;

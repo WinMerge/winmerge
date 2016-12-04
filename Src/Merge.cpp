@@ -279,7 +279,7 @@ BOOL CMergeApp::InitInstance()
 	pOldFilter->Revoke();
 
 	// Load registry keys from WinMerge.reg if existing WinMerge.reg
-	env_LoadRegistryFromFile(paths_ConcatPath(env_GetProgPath(), _T("WinMerge.reg")));
+	env_LoadRegistryFromFile(paths::ConcatPath(env_GetProgPath(), _T("WinMerge.reg")));
 
 	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
 
@@ -396,7 +396,7 @@ BOOL CMergeApp::InitInstance()
 		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathMyFolders);
 		theApp.m_pGlobalFileFilter->SetUserFilterPath(pathMyFolders);
 	}
-	if (!paths_CreateIfNeeded(pathMyFolders))
+	if (!paths::CreateIfNeeded(pathMyFolders))
 	{
 		// Failed to create a folder, check it didn't already
 		// exist.
@@ -506,7 +506,7 @@ BOOL CMergeApp::InitInstance()
 
 static void OpenContributersFile(int&)
 {
-	theApp.OpenFileToExternalEditor(paths_ConcatPath(env_GetProgPath(), ContributorsPath));
+	theApp.OpenFileToExternalEditor(paths::ConcatPath(env_GetProgPath(), ContributorsPath));
 }
 
 // App command to run the dialog
@@ -532,7 +532,7 @@ int CMergeApp::ExitInstance()
 	charsets_cleanup();
 
 	//  Save registry keys if existing WinMerge.reg
-	env_SaveRegistryToFile(paths_ConcatPath(env_GetProgPath(), _T("WinMerge.reg")), RegDir);
+	env_SaveRegistryToFile(paths::ConcatPath(env_GetProgPath(), _T("WinMerge.reg")), RegDir);
 
 	// Remove tempfolder
 	const String temp = env_GetTempPath();
@@ -820,7 +820,7 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
  */
 void CMergeApp::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
 {
-	if (paths_DoesPathExist(szFile) == IS_EXISTING_FILE)
+	if (paths::DoesPathExist(szFile) == paths::IS_EXISTING_FILE)
 		ShellExecute(NULL, _T("open"), _T("notepad.exe"), szFile, NULL, SW_SHOWNORMAL);
 	else
 		ShellExecute(NULL, _T("open"), szUrl, NULL, NULL, SW_SHOWNORMAL);
@@ -835,19 +835,19 @@ void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
 	String sPath = env_GetProgPath();
 	LANGID LangId = GetLangId();
 	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
-		sPath = paths_ConcatPath(sPath, DocsPath_ja);
+		sPath = paths::ConcatPath(sPath, DocsPath_ja);
 	else
-		sPath = paths_ConcatPath(sPath, DocsPath);
+		sPath = paths::ConcatPath(sPath, DocsPath);
 	if (helpLocation == NULL)
 	{
-		if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
+		if (paths::DoesPathExist(sPath) == paths::IS_EXISTING_FILE)
 			::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOC, NULL);
 		else
 			ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
 	}
 	else
 	{
-		if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
+		if (paths::DoesPathExist(sPath) == paths::IS_EXISTING_FILE)
 		{
 			sPath += helpLocation;
 			::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOPIC, NULL);
@@ -877,14 +877,14 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 		return TRUE;
 
 	// create backup copy of file if destination file exists
-	if (paths_DoesPathExist(pszPath) == IS_EXISTING_FILE)
+	if (paths::DoesPathExist(pszPath) == paths::IS_EXISTING_FILE)
 	{
 		String bakPath;
 		String path;
 		String filename;
 		String ext;
 	
-		paths_SplitFilename(paths_GetLongPath(pszPath), &path, &filename, &ext);
+		paths::SplitFilename(paths::GetLongPath(pszPath), &path, &filename, &ext);
 
 		// Determine backup folder
 		if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
@@ -901,7 +901,7 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 			if (bakPath.empty())
 				bakPath = path;
 			else
-				bakPath = paths_GetLongPath(bakPath);
+				bakPath = paths::GetLongPath(bakPath);
 		}
 		else
 		{
@@ -937,7 +937,7 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 			< MAX_PATH)
 		{
 			success = TRUE;
-			bakPath = paths_ConcatPath(bakPath, filename);
+			bakPath = paths::ConcatPath(bakPath, filename);
 			bakPath += _T(".");
 			bakPath += ext;
 		}
@@ -1144,7 +1144,7 @@ void CMergeApp::ShowVSSError(CException *e, const String& strItem)
 bool CMergeApp::IsProjectFile(const String& filepath) const
 {
 	String ext;
-	paths_SplitFilename(filepath, NULL, NULL, &ext);
+	paths::SplitFilename(filepath, NULL, NULL, &ext);
 	if (string_compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 		return true;
 	else
@@ -1322,9 +1322,9 @@ void CMergeApp::SetupTempPath()
 {
 	String instTemp = env_GetPerInstanceString(TempFolderPrefix);
 	if (GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH))
-		env_SetTempPath(paths_ConcatPath(env_GetSystemTempPath(), instTemp));
+		env_SetTempPath(paths::ConcatPath(env_GetSystemTempPath(), instTemp));
 	else
-		env_SetTempPath(paths_ConcatPath(GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH), instTemp));
+		env_SetTempPath(paths::ConcatPath(GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH), instTemp));
 }
 
 /**

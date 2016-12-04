@@ -254,7 +254,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		DWORD sel = GetSel();
 		if (HIWORD(sel) == LOWORD(sel))
 			pPopup->EnableMenuItem(ID_EDITOR_COPY, MF_GRAYED);
-		if (paths_EndsWithSlash(m_sOriginalText))
+		if (paths::EndsWithSlash(m_sOriginalText))
 			// no filename, we have to disable the unwanted menu entry
 			pPopup->EnableMenuItem(ID_EDITOR_COPY_FILENAME, MF_GRAYED);
 

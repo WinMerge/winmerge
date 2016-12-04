@@ -150,7 +150,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 	{
 		for (nIndex = 0; nIndex < paths.GetSize(); nIndex++)
 		{
-			sDir[nIndex] = paths_ConcatPath(sDir[nIndex], subdir[nIndex]);
+			sDir[nIndex] = paths::ConcatPath(sDir[nIndex], subdir[nIndex]);
 			subprefix[nIndex] = subdir[nIndex] + backslash;
 		}
 	}

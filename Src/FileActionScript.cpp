@@ -301,7 +301,7 @@ BOOL FileActionScript::Run()
 		while (iter != m_actions.end())
 		{
 			if ((*iter).dirflag)
-				paths_CreateIfNeeded((*iter).dest);
+				paths::CreateIfNeeded((*iter).dest);
 			++iter;
 		}
 		bFileOpSucceed = RunOp(m_pCopyOperations.get(), bUserCancelled);

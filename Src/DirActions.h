@@ -331,7 +331,7 @@ struct DirActions
 			act.dest = GetItemFileName(m_ctxt, di, dstidx);
 			
 			// We must check that paths still exists
-			if (paths_DoesPathExist(act.src) == DOES_NOT_EXIST)
+			if (paths::DoesPathExist(act.src) == paths::DOES_NOT_EXIST)
 				throw ContentsChangedException(act.src);
 
 			act.context = it.first;
@@ -361,7 +361,7 @@ struct DirActions
 			act.src = GetItemFileName(m_ctxt, di, index);
 
 			// We must check that path still exists
-			if (paths_DoesPathExist(act.src) == DOES_NOT_EXIST)
+			if (paths::DoesPathExist(act.src) == paths::DOES_NOT_EXIST)
 				throw ContentsChangedException(act.src);
 
 			act.context = it.first;
@@ -392,7 +392,7 @@ struct DirActions
 				FileActionItem act;
 				act.src = GetItemFileName(m_ctxt, di, i);
 				// We must first check that paths still exists
-				if (paths_DoesPathExist(act.src) == DOES_NOT_EXIST)
+				if (paths::DoesPathExist(act.src) == paths::DOES_NOT_EXIST)
 					throw ContentsChangedException(act.src);
 				act.context = it.first;
 				act.dirflag = di.diffcode.isDirectory();
@@ -440,10 +440,10 @@ struct DirActions
 			act.src = GetItemFileName(m_ctxt, di, index);
 			 
 			// We must check that path still exists
-			if (paths_DoesPathExist(act.src) == DOES_NOT_EXIST)
+			if (paths::DoesPathExist(act.src) == paths::DOES_NOT_EXIST)
 				throw ContentsChangedException(act.src);
 
-			act.dest = paths_ConcatPath(pscript->m_destBase, di.diffFileInfo[index].GetFile());
+			act.dest = paths::ConcatPath(pscript->m_destBase, di.diffFileInfo[index].GetFile());
 			act.dirflag = di.diffcode.isDirectory();
 			act.context = it.first;
 			act.atype = atype;
@@ -523,7 +523,7 @@ bool DoItemRename(InputIterator& it, const CDiffContext& ctxt, const String& szN
 	paths = ::GetItemFileNames(ctxt, di);
 	for (int index = 0; index < nDirs; index++)
 	{
-		if (di.diffcode.exists(index) && paths_DoesPathExist(paths[index]) == DOES_NOT_EXIST)
+		if (di.diffcode.exists(index) && paths::DoesPathExist(paths[index]) == paths::DOES_NOT_EXIST)
 			throw ContentsChangedException(failpath);
 	}
 

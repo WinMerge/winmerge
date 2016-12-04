@@ -687,7 +687,7 @@ bool CDiffWrapper::RunFileDiff()
 	PathContext files = m_files;
 	int file;
 	for (file = 0; file < m_files.GetSize(); file++)
-		files[file] = paths_ToWindowsPath(files[file]);
+		files[file] = paths::ToWindowsPath(files[file]);
 
 	bool bRet = true;
 	String strFileTemp[3];
@@ -756,7 +756,7 @@ bool CDiffWrapper::RunFileDiff()
 #ifdef _DEBUG
 		// throw the diff into a temp file
 		String sTempPath = env_GetTempPath(); // get path to Temp folder
-		String path = paths_ConcatPath(sTempPath, _T("Diff.txt"));
+		String path = paths::ConcatPath(sTempPath, _T("Diff.txt"));
 
 		outfile = _tfopen(path.c_str(), _T("w+"));
 		if (outfile != NULL)
@@ -1533,8 +1533,8 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path1 = m_files[0];
 	if (path2.empty())
 		path2 = m_files[1];
-	path1 = paths_ToUnixPath(path1);
-	path2 = paths_ToUnixPath(path2);
+	path1 = paths::ToUnixPath(path1);
+	path2 = paths::ToUnixPath(path2);
 	inf_patch[0].name = strdup(ucr::toSystemCP(path1).c_str());
 	inf_patch[1].name = strdup(ucr::toSystemCP(path2).c_str());
 

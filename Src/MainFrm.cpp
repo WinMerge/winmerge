@@ -798,7 +798,7 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
  */
 void CMainFrame::OnHelpGnulicense() 
 {
-	const String spath = paths_ConcatPath(env_GetProgPath(), LicenseFile);
+	const String spath = paths::ConcatPath(env_GetProgPath(), LicenseFile);
 	theApp.OpenFileOrUrl(spath.c_str(), LicenceUrl);
 }
 
@@ -871,8 +871,8 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
 		params += _T("\"") + paths[nIndex] + _T("\" ");
 
 		String path = paths[nIndex];
-		paths_normalize(path);
-		title += paths_FindFileName(path);
+		paths::normalize(path);
+		title += paths::FindFileName(path);
 		if (nIndex < paths.GetSize() - 1)
 			title += _T(" - ");
 	}
@@ -918,8 +918,8 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	};
 
 	// pop up dialog unless arguments exist (and are compatible)
-	PATH_EXISTENCE pathsType = GetPairComparability(files, IsArchiveFile);
-	if (pathsType == DOES_NOT_EXIST)
+	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(files, IsArchiveFile);
+	if (pathsType == paths::DOES_NOT_EXIST)
 	{
 		if (!m_pMenus[MENU_OPENVIEW])
 			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
@@ -941,14 +941,14 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	else
 	{
 		// Add trailing '\' for directories if its missing
-		if (pathsType == IS_EXISTING_DIR)
+		if (pathsType == paths::IS_EXISTING_DIR)
 		{
-			if (!paths_EndsWithSlash(files[0]) && !IsArchiveFile(files[0]))
-				files[0] = paths_AddTrailingSlash(files[0]);
-			if (!paths_EndsWithSlash(files[1]) && !IsArchiveFile(files[1]))
-				files[1] = paths_AddTrailingSlash(files[1]);
-			if (files.GetSize() == 3 && !paths_EndsWithSlash(files[2]) && !IsArchiveFile(files[1]))
-				files[2] = paths_AddTrailingSlash(files[2]);
+			if (!paths::EndsWithSlash(files[0]) && !IsArchiveFile(files[0]))
+				files[0] = paths::AddTrailingSlash(files[0]);
+			if (!paths::EndsWithSlash(files[1]) && !IsArchiveFile(files[1]))
+				files[1] = paths::AddTrailingSlash(files[1]);
+			if (files.GetSize() == 3 && !paths::EndsWithSlash(files[2]) && !IsArchiveFile(files[1]))
+				files[2] = paths::AddTrailingSlash(files[2]);
 		}
 
 		//save the MRU left and right files.
@@ -964,7 +964,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	}
 
 	CTempPathContext *pTempPathContext = NULL;
-	if (pathsType == IS_EXISTING_DIR)
+	if (pathsType == paths::IS_EXISTING_DIR)
 	{
 		DecompressResult res= DecompressArchive(m_hWnd, files);
 		if (res.pTempPathContext)
@@ -979,7 +979,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	// and archive. Don't open new dirview if we are comparing files.
 	if (!pDirDoc)
 	{
-		if (pathsType == IS_EXISTING_DIR)
+		if (pathsType == paths::IS_EXISTING_DIR)
 		{
 			CDirDoc::m_nDirsTemp = files.GetSize();
 			if (!m_pMenus[MENU_DIRVIEW])
@@ -993,7 +993,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	}
 
 	// open the diff
-	if (pathsType == IS_EXISTING_DIR)
+	if (pathsType == paths::IS_EXISTING_DIR)
 	{
 		if (pDirDoc)
 		{
@@ -1807,7 +1807,7 @@ void CMainFrame::OnFileOpenproject()
 			_("WinMerge Project Files (*.WinMerge)|*.WinMerge||"), TRUE))
 		return;
 	
-	strProjectPath = paths_GetParentPath(sFilepath);
+	strProjectPath = paths::GetParentPath(sFilepath);
 	// store this as the new project path
 	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath);
 
@@ -1940,8 +1940,8 @@ void CMainFrame::OnSaveProject()
 		// Get paths currently in compare
 		const CDirDoc * pDoc = static_cast<const CDirDoc*>(pFrame->GetActiveDocument());
 		const CDiffContext& ctxt = pDoc->GetDiffContext();
-		left = paths_AddTrailingSlash(ctxt.GetNormalizedLeft());
-		right = paths_AddTrailingSlash(ctxt.GetNormalizedRight());
+		left = paths::AddTrailingSlash(ctxt.GetNormalizedLeft());
+		right = paths::AddTrailingSlash(ctxt.GetNormalizedRight());
 		
 		// Set-up the dialog
 		pathsDlg.SetPaths(left, right);
@@ -2304,7 +2304,7 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 
 	// Create temp files and put them into the list,
 	// from where they get deleted when MainFrame is deleted.
-	String ext = paths_FindExtension(conflictFile);
+	String ext = paths::FindExtension(conflictFile);
 	TempFilePtr wTemp(new TempFile());
 	String workFile = wTemp->Create(_T("confw_"), ext);
 	m_tempFiles.push_back(wTemp);

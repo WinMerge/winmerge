@@ -140,7 +140,7 @@ void CConfigLog::WriteLocaleSettings(unsigned locid, const String& title)
  */
 void CConfigLog::WriteVersionOf1(int indent, const String& path)
 {
-	String name = paths_FindFileName(path);
+	String name = paths::FindFileName(path);
 	CVersionInfo vi(path.c_str(), TRUE);
 	String text = string_format
 	(
@@ -192,9 +192,9 @@ bool CConfigLog::DoFile(String &sError)
 	CVersionInfo version;
 	String text;
 
-	String sFileName = paths_ConcatPath(env_GetMyDocuments(), WinMergeDocumentsFolder);
-	paths_CreateIfNeeded(sFileName);
-	m_sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
+	String sFileName = paths::ConcatPath(env_GetMyDocuments(), WinMergeDocumentsFolder);
+	paths::CreateIfNeeded(sFileName);
+	m_sFileName = paths::ConcatPath(sFileName, _T("WinMerge.txt"));
 
 	if (!m_pfile->OpenCreateUtf8(m_sFileName))
 	{

@@ -20,7 +20,7 @@ String DIFFITEM::getFilepath(int nIndex, const String &sRoot) const
 {
 	if (diffcode.exists(nIndex))
 	{
-		return paths_ConcatPath(sRoot, diffFileInfo[nIndex].path);
+		return paths::ConcatPath(sRoot, diffFileInfo[nIndex].path);
 	}
 	return _T("");
 }

@@ -1366,13 +1366,13 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	// Check third arg possibly given from command-line
 	if (!theApp.m_strSaveAsPath.empty())
 	{
-		if (paths_DoesPathExist(theApp.m_strSaveAsPath) == IS_EXISTING_DIR)
+		if (paths::DoesPathExist(theApp.m_strSaveAsPath) == paths::IS_EXISTING_DIR)
 		{
 			// third arg was a directory, so get append the filename
 			String sname;
-			paths_SplitFilename(szPath, 0, &sname, 0);
+			paths::SplitFilename(szPath, 0, &sname, 0);
 			strSavePath = theApp.m_strSaveAsPath;
-			strSavePath = paths_ConcatPath(strSavePath, sname);
+			strSavePath = paths::ConcatPath(strSavePath, sname);
 		}
 		else
 			strSavePath = theApp.m_strSaveAsPath;	
@@ -2904,7 +2904,7 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 	else
 	{
 		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-			sFileName[nBuffer] = !m_strDesc[nBuffer].empty() ? m_strDesc[nBuffer] : paths_FindFileName(m_filePaths[nBuffer]);
+			sFileName[nBuffer] = !m_strDesc[nBuffer].empty() ? m_strDesc[nBuffer] : paths::FindFileName(m_filePaths[nBuffer]);
 		if (std::count(&sFileName[0], &sFileName[0] + m_nBuffers, sFileName[0]) == m_nBuffers)
 			sTitle = sFileName[0] + string_format(_T(" x %d"), m_nBuffers);
 		else
@@ -3134,19 +3134,19 @@ void CMergeDoc::OnFileRecompareAsBinary()
 String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const
 {
 	String sExt;
-	paths_SplitFilename(sFileName, NULL, NULL, &sExt);
+	paths::SplitFilename(sFileName, NULL, NULL, &sExt);
 
 	if (theApp.m_bClearCaseTool)
 	{
 		// If no extension found in real file name.
 		if (sExt.empty())
 		{
-			paths_SplitViewName(sFileName, NULL, NULL, &sExt);
+			paths::SplitViewName(sFileName, NULL, NULL, &sExt);
 		}
 		// If no extension found in repository file name.
 		if (true == sExt.empty())
 		{
-			paths_SplitViewName(sDescription, NULL, NULL, &sExt);
+			paths::SplitViewName(sDescription, NULL, NULL, &sExt);
 		}
 	}
 	return sExt;

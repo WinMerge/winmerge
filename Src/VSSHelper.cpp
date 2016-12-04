@@ -46,7 +46,7 @@ bool VSSHelper::SetProjectBase(const String& strPath)
 	if (m_strVssProjectBase[0] != '$' && m_strVssProjectBase[1] != '\\')
 		m_strVssProjectBase.insert(0, _T("$\\"));
 	
-	if (paths_EndsWithSlash(m_strVssProjectBase))
+	if (paths::EndsWithSlash(m_strVssProjectBase))
 		m_strVssProjectBase.resize(m_strVssProjectBase.size() - 1);
 	return true;
 }
@@ -63,7 +63,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 	}
 
 	String ext;
-	paths_SplitFilename(strSavePath, NULL, NULL, &ext);
+	paths::SplitFilename(strSavePath, NULL, NULL, &ext);
 	String strExt = string_makelower(ext);
 	if (strExt == _T("vcproj") || strExt == _T("sln"))
 	{
@@ -178,7 +178,7 @@ void VSSHelper::GetFullVSSPath(const String& strSavePath, bool & bVCProj)
 {
 	String ext;
 	String path;
-	paths_SplitFilename(strSavePath, &path, NULL, &ext);
+	paths::SplitFilename(strSavePath, &path, NULL, &ext);
 	String strExt = string_makelower(ext); 
 	if (strExt == _T("vcproj"))
 		bVCProj = true;
@@ -196,7 +196,7 @@ void VSSHelper::GetFullVSSPath(const String& strSavePath, bool & bVCProj)
 
 	//take out last '\\'
 	int nLen = m_strVssProjectBase.size();
-	if (paths_EndsWithSlash(m_strVssProjectBase))
+	if (paths::EndsWithSlash(m_strVssProjectBase))
 		m_strVssProjectBase.resize(nLen - 1);
 
 	String strSearch = m_strVssProjectBase.c_str() + 2; // Don't compare first 2
@@ -209,8 +209,8 @@ void VSSHelper::GetFullVSSPath(const String& strSavePath, bool & bVCProj)
 			m_strVssProjectFull.erase(0, 2);
 	}
 
-	paths_SplitFilename(m_strVssProjectFull, &path, NULL, NULL);
-	m_strVssProjectBase = paths_AddTrailingSlash(m_strVssProjectBase);
+	paths::SplitFilename(m_strVssProjectFull, &path, NULL, NULL);
+	m_strVssProjectBase = paths::AddTrailingSlash(m_strVssProjectBase);
 
 	m_strVssProjectFull += m_strVssProjectBase + path;
 

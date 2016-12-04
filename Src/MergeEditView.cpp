@@ -3930,7 +3930,7 @@ void CMergeEditView::OnViewZoomNormal()
 
 void CMergeEditView::OnDropFiles(const std::vector<String>& files)
 {
-	if (files.size() > 1 || paths_IsDirectory(files[0]))
+	if (files.size() > 1 || paths::IsDirectory(files[0]))
 	{
 		GetMainFrame()->GetDropHandler()->GetCallback()(files);
 		return;

@@ -807,13 +807,13 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId, BOOL bShowError)
 String CLanguageSelect::GetFileName(LANGID wLangId) const
 {
 	String filename;
-	String path = paths_ConcatPath(env_GetProgPath(), szRelativePath);
-	String pattern = paths_ConcatPath(path, _T("*.po"));
+	String path = paths::ConcatPath(env_GetProgPath(), szRelativePath);
+	String pattern = paths::ConcatPath(path, _T("*.po"));
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
 	while ((h = FindFile(h, pattern.c_str(), &ff)) != INVALID_HANDLE_VALUE)
 	{
-		filename = paths_ConcatPath(path, ff.cFileName);
+		filename = paths::ConcatPath(path, ff.cFileName);
 		LangFileInfo lfi(filename.c_str());
 		if (lfi.id == wLangId)
 			ff.dwFileAttributes = INVALID_FILE_ATTRIBUTES; // terminate loop
@@ -1032,8 +1032,8 @@ std::wstring CLanguageSelect::LoadDialogCaption(LPCTSTR lpDialogTemplateID) cons
 std::vector<std::pair<LANGID, String> > CLanguageSelect::GetAvailableLanguages() const
 {
 	std::vector<std::pair<LANGID, String> > list;
-	String path = paths_ConcatPath(env_GetProgPath(), szRelativePath);
-	String pattern = paths_ConcatPath(path, _T("*.po"));
+	String path = paths::ConcatPath(env_GetProgPath(), szRelativePath);
+	String pattern = paths::ConcatPath(path, _T("*.po"));
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
 	do
@@ -1041,7 +1041,7 @@ std::vector<std::pair<LANGID, String> > CLanguageSelect::GetAvailableLanguages()
 		LangFileInfo &lfi =
 			h == INVALID_HANDLE_VALUE
 		?	LangFileInfo(wSourceLangId)
-		:	LangFileInfo(paths_ConcatPath(path, ff.cFileName).c_str());
+		:	LangFileInfo(paths::ConcatPath(path, ff.cFileName).c_str());
 		String str;
 		str += lfi.GetString(LOCALE_SLANGUAGE);
 		str += _T(" - ");

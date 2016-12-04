@@ -24,7 +24,7 @@ PathInfo::PathInfo(const PathInfo &pi)
 String PathInfo::GetPath(bool bNormalized /*= true*/) const
 { 
 	if (!bNormalized)
-		return paths_AddTrailingSlash(m_sPath);
+		return paths::AddTrailingSlash(m_sPath);
 	else
 		return m_sPath;
 }
@@ -53,7 +53,7 @@ void PathInfo::SetPath(const String & sPath)
  */
 void PathInfo::NormalizePath()
 {
-	paths_normalize(m_sPath);
+	paths::normalize(m_sPath);
 }
 
 PathContext::PathContext()

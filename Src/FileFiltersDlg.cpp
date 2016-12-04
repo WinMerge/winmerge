@@ -398,9 +398,9 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	}
 
 	// Format path to template file
-	String templatePath = paths_ConcatPath(globalPath, FILE_FILTER_TEMPLATE);
+	String templatePath = paths::ConcatPath(globalPath, FILE_FILTER_TEMPLATE);
 
-	if (paths_DoesPathExist(templatePath) != IS_EXISTING_FILE)
+	if (paths::DoesPathExist(templatePath) != paths::IS_EXISTING_FILE)
 	{
 		String msg = string_format_string2(
 			_("Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."),
@@ -423,7 +423,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	}
 
 	if (path.length())
-		path = paths_AddTrailingSlash(path);
+		path = paths::AddTrailingSlash(path);
 	
 	String s;
 	if (SelectFile(GetSafeHwnd(), s, path.c_str(), _("Select filename for new filter"), _("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"),
@@ -560,12 +560,12 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	if (SelectFile(GetSafeHwnd(), s, path.c_str(), _("Locate filter file to install"), _("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"),
 		TRUE))
 	{
-		userPath = paths_ConcatPath(userPath, paths_FindFileName(s));
+		userPath = paths::ConcatPath(userPath, paths::FindFileName(s));
 		if (!CopyFile(s.c_str(), userPath.c_str(), TRUE))
 		{
 			// If file already exists, ask from user
 			// If user wants to, overwrite existing filter
-			if (paths_DoesPathExist(userPath) == IS_EXISTING_FILE)
+			if (paths::DoesPathExist(userPath) == paths::IS_EXISTING_FILE)
 			{
 				int res = LangMessageBox(IDS_FILEFILTER_OVERWRITE, MB_YESNO |
 					MB_ICONWARNING);
