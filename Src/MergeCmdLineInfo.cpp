@@ -168,7 +168,7 @@ void MergeCmdLineInfo::ParseClearCaseCmdLine(const TCHAR *q, const TCHAR *basede
 		if (!flag)
 		{
 			// Not a flag
-			param = paths_GetLongPath(param);
+			param = paths::GetLongPath(param);
 			m_Files.SetPath(m_Files.GetSize(), param);
 			if (param == m_sLeftDesc)
 				m_dwLeftFlags &= ~FFILEOPEN_READONLY;
@@ -206,7 +206,7 @@ void MergeCmdLineInfo::ParseClearCaseCmdLine(const TCHAR *q, const TCHAR *basede
 	}
 	if (!sOutFile.empty())
 	{
-		String path = paths_GetLongPath(sOutFile);
+		String path = paths::GetLongPath(sOutFile);
 		m_sOutputpath = path;
 	}
 }
@@ -228,16 +228,16 @@ void MergeCmdLineInfo::AddPath(const String &path)
 	else if (ord == 1)
 		m_dwRightFlags |= FFILEOPEN_CMDLINE;
 
-	if (!paths_IsURLorCLSID(path))
+	if (!paths::IsURLorCLSID(path))
 	{
 		// Convert paths given in Linux-style ('/' as separator) given from
 		// Cygwin to Windows style ('\' as separator)
 		string_replace(param, _T("/"), _T("\\"));
 
 		// If shortcut, expand it first
-		if (paths_IsShortcut(param))
-			param = ExpandShortcut(param);
-		param = paths_GetLongPath(param);
+		if (paths::IsShortcut(param))
+			param = paths::ExpandShortcut(param);
+		param = paths::GetLongPath(param);
 		m_Files.SetPath(m_Files.GetSize(), param);
 	}
 	else
@@ -448,12 +448,12 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 	// If "compare file dir" make it "compare file dir\file".
 	if (m_Files.GetSize() >= 2)
 	{
-		PATH_EXISTENCE p1 = paths_DoesPathExist(m_Files[0]);
-		PATH_EXISTENCE p2 = paths_DoesPathExist(m_Files[1]);
+		paths::PATH_EXISTENCE p1 = paths::DoesPathExist(m_Files[0]);
+		paths::PATH_EXISTENCE p2 = paths::DoesPathExist(m_Files[1]);
 
-		if ((p1 == IS_EXISTING_FILE) && (p2 == IS_EXISTING_DIR))
+		if ((p1 == paths::IS_EXISTING_FILE) && (p2 == paths::IS_EXISTING_DIR))
 		{
-			m_Files[1] = paths_ConcatPath(m_Files[1], paths_FindFileName(m_Files[0]));
+			m_Files[1] = paths::ConcatPath(m_Files[1], paths::FindFileName(m_Files[0]));
 		}
 	}
 	if (m_bShowUsage)

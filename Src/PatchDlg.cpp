@@ -113,8 +113,8 @@ void CPatchDlg::OnOK()
 	size_t selectCount = m_fileList.size();
 	if (selectCount == 1)
 	{
-		bool file1Ok = (paths_DoesPathExist(m_file1) == IS_EXISTING_FILE);
-		bool file2Ok = (paths_DoesPathExist(m_file2) == IS_EXISTING_FILE);
+		bool file1Ok = (paths::DoesPathExist(m_file1) == paths::IS_EXISTING_FILE);
+		bool file2Ok = (paths::DoesPathExist(m_file2) == paths::IS_EXISTING_FILE);
 
 		if (!file1Ok || !file2Ok)
 		{
@@ -128,7 +128,7 @@ void CPatchDlg::OnOK()
 	}
 
 	// Check that result (patch) file is absolute path
-	if (!paths_IsPathAbsolute(m_fileResult))
+	if (!paths::IsPathAbsolute(m_fileResult))
 	{
 		if (m_fileResult.length() == 0)
 		{
@@ -138,7 +138,7 @@ void CPatchDlg::OnOK()
 			m_ctlResult.SetWindowText(m_fileResult.c_str());
 			DeleteFile(m_fileResult.c_str());
 		}
-		if (paths_IsPathAbsolute(m_fileResult) == FALSE)
+		if (paths::IsPathAbsolute(m_fileResult) == FALSE)
 		{
 			String msg = string_format_string1(_("The specified output path is not an absolute path: %1"),
 				m_fileResult);
@@ -148,7 +148,7 @@ void CPatchDlg::OnOK()
 		}
 	}
 	
-	bool fileExists = (paths_DoesPathExist(m_fileResult) == IS_EXISTING_FILE);
+	bool fileExists = (paths::DoesPathExist(m_fileResult) == paths::IS_EXISTING_FILE);
 
 	// Result file already exists and append not selected
 	if (fileExists && !m_appendFile)

@@ -40,7 +40,7 @@ namespace
 		// Objects declared here can be used by all tests in the test case for Foo.
 	};
 
-	// Test the paths_EndsWithSlash() function
+	// Test the paths::EndsWithSlash() function
 	TEST_F(FileVersionTest, construct)
 	{
 		FileVersion version;

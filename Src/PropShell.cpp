@@ -44,26 +44,26 @@ static bool RegisterShellExtension(bool unregister)
 	GetSystemWow64Directory(szSysWow64, sizeof(szSysWow64) / sizeof(szSysWow64[0]));
 
 	String progpath = env_GetProgPath();
-	String regsvr32 = paths_ConcatPath(szSystem32, _T("regsvr32.exe"));
+	String regsvr32 = paths::ConcatPath(szSystem32, _T("regsvr32.exe"));
 	String args;
 	SHELLEXECUTEINFO sei = { sizeof(sei) };
 	sei.lpVerb = _T("runas");
 	if (szSysWow64[0])
 	{
-		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths_ConcatPath(progpath, _T("ShellExtensionX64.dll")) + _T("\"");
+		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths::ConcatPath(progpath, _T("ShellExtensionX64.dll")) + _T("\"");
 		sei.lpFile = regsvr32.c_str();
 		sei.lpParameters = args.c_str();
 		ShellExecuteEx(&sei);
 
-		regsvr32 = paths_ConcatPath(szSysWow64, _T("regsvr32.exe"));
-		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths_ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
+		regsvr32 = paths::ConcatPath(szSysWow64, _T("regsvr32.exe"));
+		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths::ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
 		sei.lpFile = regsvr32.c_str();
 		sei.lpParameters = args.c_str();
 		return !!ShellExecuteEx(&sei);
 	}
 	else
 	{
-		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths_ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
+		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths::ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
 		sei.lpFile = regsvr32.c_str();
 		sei.lpParameters = args.c_str();
 		return !!ShellExecuteEx(&sei);

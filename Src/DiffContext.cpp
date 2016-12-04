@@ -105,7 +105,7 @@ void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, int nIndex)
  */
 bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex)
 {
-	String filepath = paths_ConcatPath(paths_ConcatPath(m_paths[nIndex], di.diffFileInfo[nIndex].path), di.diffFileInfo[nIndex].filename);
+	String filepath = paths::ConcatPath(paths::ConcatPath(m_paths[nIndex], di.diffFileInfo[nIndex].path), di.diffFileInfo[nIndex].filename);
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
 	if (!dfi.Update(filepath))
 		return false;
@@ -154,11 +154,11 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
 	String spath;
 	if (!di.diffcode.exists(nIndex))
 		return;
-	String ext = paths_FindExtension(di.diffFileInfo[nIndex].filename);
+	String ext = paths::FindExtension(di.diffFileInfo[nIndex].filename);
 	if (!CheckFileForVersion(ext))
 		return;
 	spath = di.getFilepath(nIndex, GetNormalizedPath(nIndex));
-	spath = paths_ConcatPath(spath, di.diffFileInfo[nIndex].filename);
+	spath = paths::ConcatPath(spath, di.diffFileInfo[nIndex].filename);
 	
 	// Get version info if it exists
 	CVersionInfo ver(spath.c_str());

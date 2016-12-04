@@ -105,7 +105,7 @@ bool IsWindowsScriptThere()
 	if (filename.empty())
 		return false;
 
-	return (paths_DoesPathExist(filename) == IS_EXISTING_FILE);
+	return (paths::DoesPathExist(filename) == paths::IS_EXISTING_FILE);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -256,7 +256,7 @@ int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex)
 static void GetScriptletsAt(const String& sSearchPath, const String& extension, vector<String>& scriptlets )
 {
 	WIN32_FIND_DATA ffi;
-	String strFileSpec = paths_ConcatPath(sSearchPath, _T("*") + extension);
+	String strFileSpec = paths::ConcatPath(sSearchPath, _T("*") + extension);
 	HANDLE hff = FindFirstFile(strFileSpec.c_str(), &ffi);
 	
 	if (  hff != INVALID_HANDLE_VALUE )
@@ -265,7 +265,7 @@ static void GetScriptletsAt(const String& sSearchPath, const String& extension, 
 		{
 			if (!(ffi.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			{
-				strFileSpec = paths_ConcatPath(sSearchPath, ffi.cFileName);
+				strFileSpec = paths::ConcatPath(sSearchPath, ffi.cFileName);
 				if (strFileSpec.substr(strFileSpec.length() - extension.length()) == extension) // excludes *.sct~ files
 					scriptlets.push_back(strFileSpec);  
 			}
@@ -472,7 +472,7 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 	else
 	{
 		// no description, use filename
-		m_description = paths_FindFileName(scriptletFilepath);
+		m_description = paths::FindFileName(scriptletFilepath);
 	}
 	VariantClear(&ret);
 
@@ -523,7 +523,7 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 	LoadFilterString();
 
 	// keep the filename
-	m_name = paths_FindFileName(scriptletFilepath);
+	m_name = paths::FindFileName(scriptletFilepath);
 
 	// Clear the autorelease holder
 	drv.p = NULL;
@@ -571,7 +571,7 @@ static vector<String>& LoadTheScriptletList()
 	FastMutex::ScopedLock lock(scriptletsSem);
 	if (!scriptletsLoaded)
 	{
-		String path = paths_ConcatPath(env_GetProgPath(), _T("MergePlugins"));
+		String path = paths::ConcatPath(env_GetProgPath(), _T("MergePlugins"));
 
 		if (IsWindowsScriptThere())
 			GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet

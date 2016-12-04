@@ -309,7 +309,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	DWORD nRetVal = FileLoadResult::FRESULT_OK;
 
 	// Set encoding based on extension, if we know one
-	paths_SplitFilename(pszFileName, NULL, NULL, &sExt);
+	paths::SplitFilename(pszFileName, NULL, NULL, &sExt);
 	CCrystalTextView::TextDefinition *def = 
 		CCrystalTextView::GetTextType(sExt.c_str());
 	if (def && def->encoding != -1)

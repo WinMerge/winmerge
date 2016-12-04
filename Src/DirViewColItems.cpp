@@ -200,7 +200,7 @@ static String ColExtGet(const CDiffContext *, const void *p) //sfilename
 	if (di.diffcode.isDirectory())
 		return _T("");
 	const String &r = di.diffFileInfo[0].filename;
-	String s = paths_FindExtension(r);
+	String s = paths::FindExtension(r);
 	return s.c_str() + _tcsspn(s.c_str(), _T("."));
 }
 

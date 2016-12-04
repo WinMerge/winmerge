@@ -342,7 +342,7 @@ void CPreferencesDlg::OnExportButton()
 	{
 		// Add settings file extension if it is missing
 		// So we allow 'filename.otherext' but add extension for 'filename'
-		if (paths_FindExtension(settingsFile).empty())
+		if (paths::FindExtension(settingsFile).empty())
 			settingsFile += _T(".ini");
 
 		// Save all new settings before exporting

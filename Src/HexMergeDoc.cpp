@@ -666,7 +666,7 @@ void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 	else
 	{
 		for (int nBuffer = 0; nBuffer < m_filePaths.GetSize(); nBuffer++)
-			sFileName[nBuffer] = !m_strDesc[nBuffer].empty() ? m_strDesc[nBuffer] : paths_FindFileName(m_filePaths[nBuffer]);
+			sFileName[nBuffer] = !m_strDesc[nBuffer].empty() ? m_strDesc[nBuffer] : paths::FindFileName(m_filePaths[nBuffer]);
 		if (std::count(&sFileName[0], &sFileName[0] + m_nBuffers, sFileName[0]) == m_nBuffers)
 			sTitle = sFileName[0] + string_format(_T(" x %d"), m_nBuffers);
 		else

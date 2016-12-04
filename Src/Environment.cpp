@@ -26,8 +26,8 @@ static String strProgPath;
 
 void env_SetTempPath(const String& path)
 {
-	strTempPath = paths_AddTrailingSlash(paths_GetLongPath(path));
-	paths_CreateIfNeeded(strTempPath);
+	strTempPath = paths::AddTrailingSlash(paths::GetLongPath(path));
+	paths::CreateIfNeeded(strTempPath);
 }
 
 /** 
@@ -45,7 +45,7 @@ String env_GetTempPath()
 		if (strTempPath.empty())
 			return strTempPath;
 
-		paths_CreateIfNeeded(strTempPath);
+		paths::CreateIfNeeded(strTempPath);
 	}
 	return strTempPath;
 }
@@ -78,14 +78,14 @@ String env_GetTempChildPath()
 	String path;
 	do
 	{
-		path = paths_ConcatPath(env_GetTempPath(), string_format(_T("%08x"), rand()));
-	} while (paths_IsDirectory(path) || !paths_CreateIfNeeded(path));
+		path = paths::ConcatPath(env_GetTempPath(), string_format(_T("%08x"), rand()));
+	} while (paths::IsDirectory(path) || !paths::CreateIfNeeded(path));
 	return path;
 }
 
 void env_SetProgPath(const String& path)
 {
-	strProgPath = paths_AddTrailingSlash(path);
+	strProgPath = paths::AddTrailingSlash(path);
 }
 
 String env_GetProgPath()
@@ -94,7 +94,7 @@ String env_GetProgPath()
 	{
 		TCHAR temp[MAX_PATH] = {0};
 		GetModuleFileName(NULL, temp, MAX_PATH);
-		strProgPath = paths_GetPathOnly(temp);
+		strProgPath = paths::GetPathOnly(temp);
 	}
 	return strProgPath;
 }
@@ -175,7 +175,7 @@ static bool launchProgram(const String& sCmd, WORD wShowWindow)
  */
 bool env_LoadRegistryFromFile(const String& sRegFilePath)
 {
-	if (paths_DoesPathExist(sRegFilePath) != IS_EXISTING_FILE)
+	if (paths::DoesPathExist(sRegFilePath) != paths::IS_EXISTING_FILE)
 		return false;
 	return launchProgram(_T("reg.exe import \"") + sRegFilePath + _T("\""), SW_HIDE);
 }
@@ -185,7 +185,7 @@ bool env_LoadRegistryFromFile(const String& sRegFilePath)
  */
 bool env_SaveRegistryToFile(const String& sRegFilePath, const String& sRegDir)
 {
-	if (paths_DoesPathExist(sRegFilePath) != IS_EXISTING_FILE)
+	if (paths::DoesPathExist(sRegFilePath) != paths::IS_EXISTING_FILE)
 		return false;
 	DeleteFile(sRegFilePath.c_str());
 	return launchProgram(_T("reg.exe export HKCU\\") + sRegDir + _T(" \"") + sRegFilePath + _T("\""), SW_HIDE);

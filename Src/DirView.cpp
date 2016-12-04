@@ -2398,7 +2398,7 @@ struct FileCmpReport: public IFileCmpReport
 		const CDiffContext& ctxt = m_pDirView->GetDiffContext();
 		const DIFFITEM &di = m_pDirView->GetDiffItem(nIndex);
 		
-		String sLinkFullPath = paths_ConcatPath(ctxt.GetLeftPath(), di.diffFileInfo[0].GetFile());
+		String sLinkFullPath = paths::ConcatPath(ctxt.GetLeftPath(), di.diffFileInfo[0].GetFile());
 
 		if (di.diffcode.isDirectory() || !IsItemNavigableDiff(ctxt, di) || IsArchiveFile(sLinkFullPath))
 		{
@@ -2421,7 +2421,7 @@ struct FileCmpReport: public IFileCmpReport
 
 		if (pMergeDoc)
 		{
-			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath));
+			pMergeDoc->GenerateReport(paths::ConcatPath(sDestDir, sLinkPath));
 			pMergeDoc->CloseNow();
 		}
 
@@ -2521,10 +2521,10 @@ void CDirView::OnToolsGeneratePatch()
 			// Format full paths to files (leftFile/rightFile)
 			String leftFile = item.getFilepath(0, ctxt.GetNormalizedPath(0));
 			if (!leftFile.empty())
-				leftFile = paths_ConcatPath(leftFile, item.diffFileInfo[0].filename);
+				leftFile = paths::ConcatPath(leftFile, item.diffFileInfo[0].filename);
 			String rightFile = item.getFilepath(1, ctxt.GetNormalizedPath(1));
 			if (!rightFile.empty())
-				rightFile = paths_ConcatPath(rightFile, item.diffFileInfo[1].filename);
+				rightFile = paths::ConcatPath(rightFile, item.diffFileInfo[1].filename);
 
 			// Format relative paths to files in folder compare
 			String leftpatch = item.diffFileInfo[0].path;

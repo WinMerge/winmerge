@@ -162,13 +162,13 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 {
 	if (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE) == 0)
 		return NULL;
-	if (paths_IsDirectory(path))
+	if (paths::IsDirectory(path))
 		return NULL;
 	String path2(path);
 	// Map extensions through ExternalArchiveFormat.ini
 	static TCHAR null[] = _T("");
 	static const TCHAR section[] = _T("extensions");
-	String entry = paths_FindExtension(path);
+	String entry = paths::FindExtension(path);
 	TCHAR value[20];
 	static LPCTSTR filename = NULL;
 	if (filename == NULL)
@@ -264,7 +264,7 @@ void CTempPathContext::Swap(int idx1, int idx2)
  */
 DWORD NTAPI VersionOf7z()
 {
-	String path = paths_ConcatPath(env_GetProgPath(), _T("Merge7z\\7z.dll"));
+	String path = paths::ConcatPath(env_GetProgPath(), _T("Merge7z\\7z.dll"));
 	unsigned versionMS = 0;
 	unsigned versionLS = 0;
 	CVersionInfo(path.c_str()).GetFixedFileVersion(versionMS, versionLS);
@@ -459,10 +459,10 @@ Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
 	const String &sFilename = di.diffFileInfo[m_index].filename;
 	const String &sSubdir = di.diffFileInfo[m_index].path;
 	if (sSubdir.length())
-		envelope->Name = paths_ConcatPath(sSubdir, sFilename);
+		envelope->Name = paths::ConcatPath(sSubdir, sFilename);
 	else
 		envelope->Name = sFilename;
-	envelope->FullPath = paths_ConcatPath(
+	envelope->FullPath = paths::ConcatPath(
 			di.getFilepath(m_index, ctxt.GetNormalizedPath(m_index)),
 			sFilename);
 
@@ -617,7 +617,7 @@ void DirItemEnumerator::CompressArchive(LPCTSTR path)
 
 DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 {
-	DecompressResult res(files, NULL, IS_EXISTING_DIR);
+	DecompressResult res(files, NULL, paths::IS_EXISTING_DIR);
 	try
 	{
 		String path;

@@ -67,7 +67,7 @@ void PropBackups::WriteOptions()
 {
 	string_trim_ws(m_sGlobalFolder);
 	if (m_sGlobalFolder.length() > 3)
-		m_sGlobalFolder = paths_AddTrailingSlash(m_sGlobalFolder);
+		m_sGlobalFolder = paths::AddTrailingSlash(m_sGlobalFolder);
 
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp);

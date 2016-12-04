@@ -97,7 +97,7 @@ SourceControl::InitializeSourceControlMembers()
 		{
 			TCHAR temp[_MAX_PATH] = {0};
 			reg.ReadChars(_T("SCCServerPath"), temp, _MAX_PATH, _T(""));
-			vssPath = paths_ConcatPath(paths_GetPathOnly(temp), _T("Ss.exe"));
+			vssPath = paths::ConcatPath(paths::GetPathOnly(temp), _T("Ss.exe"));
 			GetOptionsMgr()->SaveOption(OPT_VSS_PATH, vssPath);
 		}
 	}
@@ -112,7 +112,7 @@ SourceControl::InitializeSourceControlMembers()
 bool SourceControl::SaveToVersionControl(const String& strSavePath)
 {
 	String spath, sname;
-	paths_SplitFilename(strSavePath, &spath, &sname, NULL);
+	paths::SplitFilename(strSavePath, &spath, &sname, NULL);
 	int userChoice = 0;
 	int nVerSys = 0;
 
@@ -247,7 +247,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		_tcslwr(buffer2);
 
 		//make sure they both have \\ instead of /
-		_tcscpy_safe(buffer1, paths_ToWindowsPath(buffer1).c_str());
+		_tcscpy_safe(buffer1, paths::ToWindowsPath(buffer1).c_str());
 
 		m_vssHelper.SetProjectBase(buffer2);
 		TCHAR * pbuf2 = &buffer2[2];//skip the $/
@@ -373,7 +373,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 void SourceControl::CheckinToClearCase(const String &strDestinationPath)
 {
 	String spath, sname;
-	paths_SplitFilename(strDestinationPath, &spath, &sname, 0);
+	paths::SplitFilename(strDestinationPath, &spath, &sname, 0);
 	std::vector<std::string> args;
 	std::string sname_utf8;
 	

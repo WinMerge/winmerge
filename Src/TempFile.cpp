@@ -155,8 +155,8 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 	String tempfolderPID;
 	String filepattern(TempFolderPrefix);
 	filepattern += _T("*.*");
-	String pattern = paths_GetParentPath(env_GetTempPath());
-	pattern = paths_ConcatPath(pattern, filepattern);
+	String pattern = paths::GetParentPath(env_GetTempPath());
+	pattern = paths::ConcatPath(pattern, filepattern);
 	WIN32_FIND_DATA ff;
 	HANDLE h;
 	bool res = true;
@@ -180,7 +180,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 				int pid = atoi(ucr::toUTF8(tempfolderPID).c_str());
 				if (!WMrunning(processIDs, pid))
 				{
-					tempfolderPID = paths_ConcatPath(paths_GetParentPath(pattern), ff.cFileName); 
+					tempfolderPID = paths::ConcatPath(paths::GetParentPath(pattern), ff.cFileName); 
 					if (res = ClearTempfolder(tempfolderPID))
 						bok = !!FindNextFile(h, &ff) ;
 					continue;
@@ -217,7 +217,7 @@ bool ClearTempfolder(const String &pathName)
 {
 	// SHFileOperation expects a ZZ terminated list of paths!
 	String normalizedPathName = pathName;
-	paths_normalize(normalizedPathName); // remove trailing slash
+	paths::normalize(normalizedPathName); // remove trailing slash
 	const size_t pathSize = normalizedPathName.length() + 2;
 	std::vector<TCHAR> path(pathSize, 0);
 	memcpy(&path[0], normalizedPathName.c_str(), normalizedPathName.length() * sizeof(TCHAR));

@@ -163,7 +163,7 @@ String FileFilterHelper::GetFileFilterPath(const String& filterName) const
 void FileFilterHelper::SetUserFilterPath(const String & filterPath)
 {
 	m_sUserSelFilterPath = filterPath;
-	paths_normalize(m_sUserSelFilterPath);
+	paths::normalize(m_sUserSelFilterPath);
 }
 
 /** 
@@ -454,8 +454,8 @@ void FileFilterHelper::LoadAllFileFilters()
 	m_fileFilterMgr->DeleteAllFilters();
 
 	// Program application directory
-	m_sGlobalFilterPath = paths_ConcatPath(env_GetProgPath(), _T("Filters"));
-	paths_normalize(m_sGlobalFilterPath);
+	m_sGlobalFilterPath = paths::ConcatPath(env_GetProgPath(), _T("Filters"));
+	paths::normalize(m_sGlobalFilterPath);
 	String pattern(_T("*"));
 	pattern += FileFilterExt;
 	LoadFileFilterDirPattern(m_sGlobalFilterPath, pattern);
@@ -468,7 +468,7 @@ void FileFilterHelper::LoadAllFileFilters()
  */
 String FileFilterHelper::GetGlobalFilterPathWithCreate() const
 {
-	return paths_EnsurePathExist(m_sGlobalFilterPath);
+	return paths::EnsurePathExist(m_sGlobalFilterPath);
 }
 
 /**
@@ -476,6 +476,6 @@ String FileFilterHelper::GetGlobalFilterPathWithCreate() const
  */
 String FileFilterHelper::GetUserFilterPathWithCreate() const
 {
-	return paths_EnsurePathExist(m_sUserSelFilterPath);
+	return paths::EnsurePathExist(m_sUserSelFilterPath);
 }
 

@@ -195,9 +195,9 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
  */
 void ProjectFilePathsDlg::SetPaths(const String& left, const String& right)
 {
-	if (paths_DoesPathExist(left) != DOES_NOT_EXIST)
+	if (paths::DoesPathExist(left) != paths::DOES_NOT_EXIST)
 		m_sLeftFile = left;
-	if (paths_DoesPathExist(right) != DOES_NOT_EXIST)
+	if (paths::DoesPathExist(right) != paths::DOES_NOT_EXIST)
 		m_sRightFile = right;
 }
 
@@ -219,11 +219,11 @@ String ProjectFilePathsDlg::AskProjectFileName(bool bOpen)
 
 	// Add projectfile extension if it is missing
 	// So we allow 'filename.otherext' but add extension for 'filename'
-	if (paths_FindExtension(strProjectFileName).empty())
+	if (paths::FindExtension(strProjectFileName).empty())
 		strProjectFileName += _T(".WinMerge");
 
 	// get the path part from the filename
-	strProjectPath = paths_GetParentPath(strProjectFileName);
+	strProjectPath = paths::GetParentPath(strProjectFileName);
 	// store this as the new project path
 	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath);
 	return strProjectFileName;

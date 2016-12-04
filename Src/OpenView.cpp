@@ -378,20 +378,20 @@ void COpenView::OnButton(int index)
 	String sfolder;
 	UpdateData(TRUE); 
 
-	PATH_EXISTENCE existence = paths_DoesPathExist(m_strPath[index]);
+	paths::PATH_EXISTENCE existence = paths::DoesPathExist(m_strPath[index]);
 	switch (existence)
 	{
-	case IS_EXISTING_DIR:
+	case paths::IS_EXISTING_DIR:
 		sfolder = m_strPath[index];
 		break;
-	case IS_EXISTING_FILE:
-		sfolder = paths_GetPathOnly(m_strPath[index]);
+	case paths::IS_EXISTING_FILE:
+		sfolder = paths::GetPathOnly(m_strPath[index]);
 		break;
-	case DOES_NOT_EXIST:
+	case paths::DOES_NOT_EXIST:
 		// Do nothing, empty foldername will be passed to dialog
 		break;
 	default:
-		_RPTF0(_CRT_ERROR, "Invalid return value from paths_DoesPathExist()");
+		_RPTF0(_CRT_ERROR, "Invalid return value from paths::DoesPathExist()");
 		break;
 	}
 
@@ -431,7 +431,7 @@ void COpenView::OnSwapButton()
  */
 void COpenView::OnOK() 
 {
-	int pathsType; // enum from PATH_EXISTENCE in paths.h
+	int pathsType; // enum from paths::PATH_EXISTENCE in paths.h
 	const String filterPrefix = _("[F] ");
 
 	UpdateData(TRUE);
@@ -451,13 +451,13 @@ void COpenView::OnOK()
 	}
 	// If left path is a project-file, load it
 	String ext;
-	paths_SplitFilename(m_strPath[0], NULL, NULL, &ext);
+	paths::SplitFilename(m_strPath[0], NULL, NULL, &ext);
 	if (m_strPath[1].empty() && string_compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 		LoadProjectFile(m_strPath[0]);
 
-	pathsType = GetPairComparability(m_files, IsArchiveFile);
+	pathsType = paths::GetPairComparability(m_files, IsArchiveFile);
 
-	if (pathsType == DOES_NOT_EXIST)
+	if (pathsType == paths::DOES_NOT_EXIST)
 	{
 		LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
 		return;
@@ -470,13 +470,13 @@ void COpenView::OnOK()
 		if (string_compare_nocase(m_strBrowsePath[index], m_files[index]) != 0)
 			bExpand = true;
 
-		if (!paths_IsURLorCLSID(m_files[index]))
+		if (!paths::IsURLorCLSID(m_files[index]))
 		{
-			m_files[index] = paths_GetLongPath(m_files[index], bExpand);
+			m_files[index] = paths::GetLongPath(m_files[index], bExpand);
 	
 			// Add trailing '\' for directories if its missing
-			if (paths_DoesPathExist(m_files[index]) == IS_EXISTING_DIR)
-				m_files[index] = paths_AddTrailingSlash(m_files[index]);
+			if (paths::DoesPathExist(m_files[index]) == paths::IS_EXISTING_DIR)
+				m_files[index] = paths::AddTrailingSlash(m_files[index]);
 			m_strPath[index] = m_files[index];
 		}
 	}
@@ -613,24 +613,24 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		// Check if we have project file as left side path
 		BOOL bProject = FALSE;
 		String ext;
-		paths_SplitFilename(paths[0], NULL, NULL, &ext);
+		paths::SplitFilename(paths[0], NULL, NULL, &ext);
 		if (paths[1].empty() && string_compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 			bProject = TRUE;
 
 		if (!bProject)
 		{
-			if (paths_DoesPathExist(paths[0], IsArchiveFile) == DOES_NOT_EXIST)
+			if (paths::DoesPathExist(paths[0], IsArchiveFile) == paths::DOES_NOT_EXIST)
 				bInvalid[0] = TRUE;
-			if (paths_DoesPathExist(paths[1], IsArchiveFile) == DOES_NOT_EXIST)
+			if (paths::DoesPathExist(paths[1], IsArchiveFile) == paths::DOES_NOT_EXIST)
 				bInvalid[1] = TRUE;
-			if (paths.GetSize() > 2 && paths_DoesPathExist(paths[2], IsArchiveFile) == DOES_NOT_EXIST)
+			if (paths.GetSize() > 2 && paths::DoesPathExist(paths[2], IsArchiveFile) == paths::DOES_NOT_EXIST)
 				bInvalid[2] = TRUE;
 		}
 
 		// Enable buttons as appropriate
 		if (GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 		{
-			PATH_EXISTENCE pathsType = DOES_NOT_EXIST;
+			paths::PATH_EXISTENCE pathsType = paths::DOES_NOT_EXIST;
 
 			if (paths.GetSize() <= 2)
 			{
@@ -642,8 +642,8 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 					iStatusMsgId = IDS_OPEN_RIGHTINVALID;
 				else if (!bInvalid[0] && !bInvalid[1])
 				{
-					pathsType = GetPairComparability(paths, IsArchiveFile);
-					if (pathsType == DOES_NOT_EXIST)
+					pathsType = paths::GetPairComparability(paths, IsArchiveFile);
+					if (pathsType == paths::DOES_NOT_EXIST)
 						iStatusMsgId = IDS_OPEN_MISMATCH;
 					else
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
@@ -667,14 +667,14 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 					iStatusMsgId = IDS_OPEN_LEFTINVALID;
 				else if (!bInvalid[0] && !bInvalid[1] && !bInvalid[2])
 				{
-					pathsType = GetPairComparability(paths, IsArchiveFile);
-					if (pathsType == DOES_NOT_EXIST)
+					pathsType = paths::GetPairComparability(paths, IsArchiveFile);
+					if (pathsType == paths::DOES_NOT_EXIST)
 						iStatusMsgId = IDS_OPEN_MISMATCH;
 					else
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
 				}
 			}
-			if (pathsType == IS_EXISTING_FILE || bProject)
+			if (pathsType == paths::IS_EXISTING_FILE || bProject)
 				iUnpackerStatusMsgId = 0;	//Empty field
 			else
 				iUnpackerStatusMsgId = IDS_OPEN_UNPACKERDISABLED;
@@ -682,7 +682,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 			if (bProject)
 				bButtonEnabled = TRUE;
 			else
-				bButtonEnabled = (pathsType != DOES_NOT_EXIST);
+				bButtonEnabled = (pathsType != paths::DOES_NOT_EXIST);
 		}
 
 		PostMessage(hWnd, WM_USER + 1, bButtonEnabled, MAKELPARAM(iStatusMsgId, iUnpackerStatusMsgId)); 
@@ -800,7 +800,7 @@ void COpenView::OnTimer(UINT_PTR nIDEvent)
  */
 void COpenView::OnSelectUnpacker()
 {
-	PATH_EXISTENCE pathsType;
+	paths::PATH_EXISTENCE pathsType;
 	UpdateData(TRUE);
 
 	int index;
@@ -813,9 +813,9 @@ void COpenView::OnSelectUnpacker()
 		m_files[nFiles] = m_strPath[index];
 		nFiles++;
 	}
-	pathsType = GetPairComparability(m_files);
+	pathsType = paths::GetPairComparability(m_files);
 
-	if (pathsType != IS_EXISTING_FILE) 
+	if (pathsType != paths::IS_EXISTING_FILE) 
 		return;
 
 	// let the user select a handler

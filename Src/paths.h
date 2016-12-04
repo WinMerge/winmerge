@@ -8,6 +8,9 @@
 #include "PathContext.h"
 #include "UnicodeString.h"
 
+namespace paths
+{
+
 /**
  * @brief Possible values when checking for file/folder existence.
  */
@@ -19,28 +22,30 @@ typedef enum
 	IS_EXISTING_DIR_ARCHIVE, /**< It is existing folder */
 } PATH_EXISTENCE;
 
-bool paths_EndsWithSlash(const String& s);
+bool EndsWithSlash(const String& s);
 
-PATH_EXISTENCE paths_DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&) = NULL);
-String paths_FindFileName(const String& path);
-String paths_FindExtension(const String& path);
-void paths_normalize(String & sPath);
-String paths_GetLongPath(const String& szPath, bool bExpandEnvs = true);
-bool paths_CreateIfNeeded(const String& szPath);
+PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&) = NULL);
+String FindFileName(const String& path);
+String FindExtension(const String& path);
+void normalize(String & sPath);
+String GetLongPath(const String& szPath, bool bExpandEnvs = true);
+bool CreateIfNeeded(const String& szPath);
 PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveFile)(const String&) = NULL);
-bool paths_IsDirectory(const String& path);
-bool paths_IsShortcut(const String& inPath);
+bool IsDirectory(const String& path);
+bool IsShortcut(const String& inPath);
 String ExpandShortcut(const String &inFile);
-String paths_ConcatPath(const String & path, const String & subpath);
-String paths_GetParentPath(const String& path);
-String paths_GetLastSubdir(const String & path);
-bool paths_IsPathAbsolute(const String & path);
-String paths_EnsurePathExist(const String & sPath);
-void paths_SplitFilename(const String& s, String * path, String * name, String * ext);
-void paths_SplitViewName(const TCHAR *s, String * path, String * name, String * ext);
-String paths_GetPathOnly(const String& fullpath);
-bool paths_IsURLorCLSID(const String& path);
-bool paths_IsDecendant(const String& path, const String& ancestor);
-inline String paths_AddTrailingSlash(const String& path) { return !paths_EndsWithSlash(path) ? path + _T("\\") : path; }
-String paths_ToWindowsPath(const String& path);
-String paths_ToUnixPath(const String& path);
+String ConcatPath(const String & path, const String & subpath);
+String GetParentPath(const String& path);
+String GetLastSubdir(const String & path);
+bool IsPathAbsolute(const String & path);
+String EnsurePathExist(const String & sPath);
+void SplitFilename(const String& s, String * path, String * name, String * ext);
+void SplitViewName(const TCHAR *s, String * path, String * name, String * ext);
+String GetPathOnly(const String& fullpath);
+bool IsURLorCLSID(const String& path);
+bool IsDecendant(const String& path, const String& ancestor);
+inline String AddTrailingSlash(const String& path) { return !EndsWithSlash(path) ? path + _T("\\") : path; }
+String ToWindowsPath(const String& path);
+String ToUnixPath(const String& path);
+
+}	

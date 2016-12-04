@@ -73,10 +73,10 @@ BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/,
 		// If initial path info includes a file
 		// we put the bare filename into sSelectedFile
 		// so the common file dialog will start up with that file selected
-		if (paths_DoesPathExist(initialPath) == IS_EXISTING_FILE)
+		if (paths::DoesPathExist(initialPath) == paths::IS_EXISTING_FILE)
 		{
 			String temp;
-			paths_SplitFilename(initialPath, 0, &temp, 0);
+			paths::SplitFilename(initialPath, 0, &temp, 0);
 			lstrcpy(sSelectedFile, temp.c_str());
 		}
 	}
@@ -183,7 +183,7 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 		int answer = MessageBox(hwnd, strMessage.c_str(), _T("フォルダの作成"), MB_YESNO);
 		if (answer == IDYES)
 		{
-			if (!paths_CreateIfNeeded((TCHAR*)lParam))
+			if (!paths::CreateIfNeeded((TCHAR*)lParam))
 			{
 				MessageBox(hwnd, _T("フォルダの作成に失敗しました"), _T("フォルダの作成"), MB_OK | MB_ICONWARNING);
 			}
@@ -221,10 +221,10 @@ BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 		// If initial path info includes a file
 		// we put the bare filename into sSelectedFile
 		// so the common file dialog will start up with that file selected
-		if (paths_DoesPathExist(initialPath) == IS_EXISTING_FILE)
+		if (paths::DoesPathExist(initialPath) == paths::IS_EXISTING_FILE)
 		{
 			String temp;
-			paths_SplitFilename(initialPath, 0, &temp, 0);
+			paths::SplitFilename(initialPath, 0, &temp, 0);
 			lstrcpy(sSelectedFile, temp.c_str());
 		}
 	}
@@ -265,8 +265,8 @@ BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 		{
 			// We have a valid folder name, but propably garbage as a filename.
 			// Return folder name
-			String folder = paths_GetPathOnly(sSelectedFile);
-			path = paths_AddTrailingSlash(folder);
+			String folder = paths::GetPathOnly(sSelectedFile);
+			path = paths::AddTrailingSlash(folder);
 		}
 	}
 	return bRetVal;

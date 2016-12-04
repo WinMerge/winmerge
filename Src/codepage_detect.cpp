@@ -260,7 +260,7 @@ FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncoding
 	}
 	if (fi.nByteOrder < 4 && guessEncodingType != 0)
 	{
-		String ext = paths_FindExtension(filepath);
+		String ext = paths::FindExtension(filepath);
 		const char *src = (char *)fi.pImage;
 		size_t len = fi.cbImage;
 		if (len == mapmaxlen)

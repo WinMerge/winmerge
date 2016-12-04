@@ -132,11 +132,11 @@ static void ThrowConfirmationNeededException(const CDiffContext& ctxt, const Str
 	}
 
 	String strSrc(src);
-	if (paths_DoesPathExist(src) == IS_EXISTING_DIR)
-		strSrc = paths_AddTrailingSlash(src);
+	if (paths::DoesPathExist(src) == paths::IS_EXISTING_DIR)
+		strSrc = paths::AddTrailingSlash(src);
 	String strDest(dest);
-	if (paths_DoesPathExist(dest) == IS_EXISTING_DIR)
-		strDest = paths_AddTrailingSlash(dest);
+	if (paths::DoesPathExist(dest) == paths::IS_EXISTING_DIR)
+		strDest = paths::AddTrailingSlash(dest);
 
 	exp.m_question = question;
 	exp.m_fromText = sOrig;
@@ -290,8 +290,8 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
  */
 uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, const String& pathRight)
 {
-	String file1 = paths_FindFileName(pathLeft);
-	String file2 = paths_FindFileName(pathRight);
+	String file1 = paths::FindFileName(pathLeft);
+	String file2 = paths::FindFileName(pathRight);
 
 	// Filenames must be identical
 	if (string_compare_nocase(file1, file2) != 0)
@@ -302,8 +302,8 @@ uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, co
 
 	// Path can contain (because of difftools?) '/' and '\'
 	// so for comparing purposes, convert whole path to use '\\'
-	path1 = paths_ToWindowsPath(path1);
-	path2 = paths_ToWindowsPath(path2);
+	path1 = paths::ToWindowsPath(path1);
+	path2 = paths::ToWindowsPath(path2);
 
 	String base1 = ctxt.GetLeftPath(); // include trailing backslash
 	if (path1.compare(0, base1.length(), base1.c_str()) != 0)
@@ -426,15 +426,15 @@ bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM & di1, const DIFF
 	String sLeftBasePath = ctxt.GetPath(0);
 	String sMiddleBasePath = ctxt.GetPath(1);
 	String sRightBasePath = ctxt.GetPath(2);
-	String sLeftPath1 = paths_ConcatPath(di1.getFilepath(0, sLeftBasePath), di1.diffFileInfo[0].filename);
-	String sLeftPath2 = paths_ConcatPath(di2.getFilepath(0, sLeftBasePath), di2.diffFileInfo[0].filename);
-	String sLeftPath3 = paths_ConcatPath(di3.getFilepath(0, sLeftBasePath), di3.diffFileInfo[0].filename);
-	String sMiddlePath1 = paths_ConcatPath(di1.getFilepath(1, sMiddleBasePath), di1.diffFileInfo[1].filename);
-	String sMiddlePath2 = paths_ConcatPath(di2.getFilepath(1, sMiddleBasePath), di2.diffFileInfo[1].filename);
-	String sMiddlePath3 = paths_ConcatPath(di3.getFilepath(1, sMiddleBasePath), di3.diffFileInfo[1].filename);
-	String sRightPath1 = paths_ConcatPath(di1.getFilepath(2, sRightBasePath), di1.diffFileInfo[2].filename);
-	String sRightPath2 = paths_ConcatPath(di2.getFilepath(2, sRightBasePath), di2.diffFileInfo[2].filename);
-	String sRightPath3 = paths_ConcatPath(di3.getFilepath(2, sRightBasePath), di3.diffFileInfo[2].filename);
+	String sLeftPath1 = paths::ConcatPath(di1.getFilepath(0, sLeftBasePath), di1.diffFileInfo[0].filename);
+	String sLeftPath2 = paths::ConcatPath(di2.getFilepath(0, sLeftBasePath), di2.diffFileInfo[0].filename);
+	String sLeftPath3 = paths::ConcatPath(di3.getFilepath(0, sLeftBasePath), di3.diffFileInfo[0].filename);
+	String sMiddlePath1 = paths::ConcatPath(di1.getFilepath(1, sMiddleBasePath), di1.diffFileInfo[1].filename);
+	String sMiddlePath2 = paths::ConcatPath(di2.getFilepath(1, sMiddleBasePath), di2.diffFileInfo[1].filename);
+	String sMiddlePath3 = paths::ConcatPath(di3.getFilepath(1, sMiddleBasePath), di3.diffFileInfo[1].filename);
+	String sRightPath1 = paths::ConcatPath(di1.getFilepath(2, sRightBasePath), di1.diffFileInfo[2].filename);
+	String sRightPath2 = paths::ConcatPath(di2.getFilepath(2, sRightBasePath), di2.diffFileInfo[2].filename);
+	String sRightPath3 = paths::ConcatPath(di3.getFilepath(2, sRightBasePath), di3.diffFileInfo[2].filename);
 	// Must not be binary (unless archive)
 	if
 	(
@@ -668,11 +668,11 @@ bool GetOpenOneItem(const CDiffContext& ctxt, uintptr_t pos1, const DIFFITEM *pd
 		// Check both folders exist. If either folder is missing that means
 		// folder has been changed behind our back, so we just tell user to
 		// refresh the compare.
-		PATH_EXISTENCE path1Exists = paths_DoesPathExist(paths[0]);
-		PATH_EXISTENCE path2Exists = paths_DoesPathExist(paths[1]);
-		if (path1Exists != IS_EXISTING_DIR || path2Exists != IS_EXISTING_DIR)
+		paths::PATH_EXISTENCE path1Exists = paths::DoesPathExist(paths[0]);
+		paths::PATH_EXISTENCE path2Exists = paths::DoesPathExist(paths[1]);
+		if (path1Exists != paths::IS_EXISTING_DIR || path2Exists != paths::IS_EXISTING_DIR)
 		{
-			String invalid = path1Exists == IS_EXISTING_DIR ? paths[0] : paths[1];
+			String invalid = path1Exists == paths::IS_EXISTING_DIR ? paths[0] : paths[1];
 			errmsg = string_format_string1(
 				_("Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."),
 				invalid);
@@ -744,7 +744,7 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, uint
 	if (pdi[0]->diffcode.isDirectory())
 	{
 		isDir = true;
-		if (GetPairComparability(paths) != IS_EXISTING_DIR)
+		if (paths::GetPairComparability(paths) != paths::IS_EXISTING_DIR)
 		{
 			errmsg = _("The selected folder is invalid.");
 			return false;
@@ -893,7 +893,7 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2,
 	if (pdi[0]->diffcode.isDirectory())
 	{
 		isDir = true;
-		if (GetPairComparability(paths) != IS_EXISTING_DIR)
+		if (paths::GetPairComparability(paths) != paths::IS_EXISTING_DIR)
 		{
 			errmsg = _("The selected folder is invalid.");
 			return false;
@@ -909,17 +909,17 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2,
  */
 void GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM & di, String& strLeft, String& strRight)
 {
-	const String leftrelpath = paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
-	const String rightrelpath = paths_ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename);
+	const String leftrelpath = paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
+	const String rightrelpath = paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename);
 	const String & leftpath = ctxt.GetPath(0);
 	const String & rightpath = ctxt.GetPath(1);
-	strLeft = paths_ConcatPath(leftpath, leftrelpath);
-	strRight = paths_ConcatPath(rightpath, rightrelpath);
+	strLeft = paths::ConcatPath(leftpath, leftrelpath);
+	strRight = paths::ConcatPath(rightpath, rightrelpath);
 }
 
 String GetItemFileName(const CDiffContext& ctxt, const DIFFITEM & di, int index)
 {
-	return paths_ConcatPath(ctxt.GetPath(index), paths_ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename));
+	return paths::ConcatPath(ctxt.GetPath(index), paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename));
 }
 
 PathContext GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM & di)
@@ -927,9 +927,9 @@ PathContext GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM & di)
 	PathContext paths;
 	for (int nIndex = 0; nIndex < ctxt.GetCompareDirs(); nIndex++)
 	{
-		const String relpath = paths_ConcatPath(di.diffFileInfo[nIndex].path, di.diffFileInfo[nIndex].filename);
+		const String relpath = paths::ConcatPath(di.diffFileInfo[nIndex].path, di.diffFileInfo[nIndex].filename);
 		const String & path = ctxt.GetPath(nIndex);
-		paths.SetPath(nIndex, paths_ConcatPath(path, relpath));
+		paths.SetPath(nIndex, paths::ConcatPath(path, relpath));
 	}
 	return paths;
 }
@@ -1213,13 +1213,13 @@ bool RenameOnSameDir(const String& szOldFileName, const String& szNewFileName)
 {
 	bool bSuccess = false;
 
-	if (DOES_NOT_EXIST != paths_DoesPathExist(szOldFileName))
+	if (paths::DOES_NOT_EXIST != paths::DoesPathExist(szOldFileName))
 	{
-		String sFullName = paths_ConcatPath(paths_GetPathOnly(szOldFileName), szNewFileName);
+		String sFullName = paths::ConcatPath(paths::GetPathOnly(szOldFileName), szNewFileName);
 
 		// No need to rename if new file already exist.
 		if ((sFullName != szOldFileName) ||
-			(DOES_NOT_EXIST == paths_DoesPathExist(sFullName)))
+			(paths::DOES_NOT_EXIST == paths::DoesPathExist(sFullName)))
 		{
 			ShellFileOperations fileOp;
 			fileOp.SetOperation(FO_RENAME, 0);
@@ -1288,7 +1288,7 @@ DirViewTreeState *SaveTreeState(const CDiffContext& ctxt)
 		const DIFFITEM &di = ctxt.GetNextDiffPosition(diffpos);
 		if (di.HasChildren())
 		{
-			String relpath = paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
+			String relpath = paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
 			pTreeState->insert(std::pair<String, bool>(relpath, !!(di.customFlags1 & ViewCustomFlags::EXPANDED)));
 		}
 	}
@@ -1303,7 +1303,7 @@ void RestoreTreeState(CDiffContext& ctxt, DirViewTreeState *pTreeState)
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
 		if (di.HasChildren())
 		{
-			String relpath = paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
+			String relpath = paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
 			std::map<String, bool>::iterator p = pTreeState->find(relpath);
 			if (p != pTreeState->end())
 			{
@@ -1341,7 +1341,7 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 	{
 		std::vector<String> name(path.size());
 		for (int i = 0; i < path.size(); ++i)
-			name[i] = paths_FindFileName(path[i]);
+			name[i] = paths::FindFileName(path[i]);
 
 		String::size_type cchLeftRoot = pTempPathContext->m_strRoot[0].length();
 		if (path[0].length() <= cchLeftRoot)
@@ -1351,7 +1351,7 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 			{
 				for (int i = 0; i < path.size(); ++i)
 					pathsParent[i] = pTempPathContext->m_pParent->m_strRoot[i];
-				if (GetPairComparability(pathsParent) != IS_EXISTING_DIR)
+				if (paths::GetPairComparability(pathsParent) != paths::IS_EXISTING_DIR)
 					return AllowUpwardDirectory::Never;
 				return AllowUpwardDirectory::ParentIsTempPath;
 			}
@@ -1372,12 +1372,12 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 				string_compare_nocase(name[1], _T("ALTERED")) == 0)
 			{
 				for (int i = 0; i < path.size(); ++i)
-					pathsParent[i] = paths_GetParentPath(pathsParent[i]);
+					pathsParent[i] = paths::GetParentPath(pathsParent[i]);
 				for (int i = 0; i < path.size(); ++i)
-					name[i] = paths_FindFileName(pathsParent[i]);
+					name[i] = paths::FindFileName(pathsParent[i]);
 				if (string_compare_nocase(name[0], name[1]) == 0)
 				{
-					if (GetPairComparability(pathsParent) != IS_EXISTING_DIR)
+					if (paths::GetPairComparability(pathsParent) != paths::IS_EXISTING_DIR)
 						return AllowUpwardDirectory::Never;
 					return AllowUpwardDirectory::ParentIsTempPath;
 				}
@@ -1389,8 +1389,8 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 	// If regular parent folders exist, allow opening them
 	pathsParent.SetSize(ctxt.GetCompareDirs());
 	for (int i = 0; i < path.size(); ++i)
-		pathsParent[i] = paths_GetParentPath(path[i]);
-	if (GetPairComparability(pathsParent) != IS_EXISTING_DIR)
+		pathsParent[i] = paths::GetParentPath(path[i]);
+	if (paths::GetPairComparability(pathsParent) != paths::IS_EXISTING_DIR)
 		return AllowUpwardDirectory::Never;
 	return AllowUpwardDirectory::ParentIsRegularPath;
 }

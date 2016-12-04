@@ -175,7 +175,7 @@ void DirCmpReportDlg::OnOK()
 
 	if (!m_sReportFile.empty())
 	{
-		if (paths_DoesPathExist(m_sReportFile) == IS_EXISTING_FILE)
+		if (paths::DoesPathExist(m_sReportFile) == paths::IS_EXISTING_FILE)
 		{
 			int overWrite = LangMessageBox(IDS_REPORT_FILEOVERWRITE,
 					MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,

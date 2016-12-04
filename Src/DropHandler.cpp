@@ -70,20 +70,20 @@ namespace
 
 		for (UINT i = 0; i < files.size(); i++)
 		{
-			if (paths_IsShortcut(files[i]))
+			if (paths::IsShortcut(files[i]))
 			{
 				// if this was a shortcut, we need to expand it to the target path
-				String expandedFile = ExpandShortcut(files[i]);
+				String expandedFile = paths::ExpandShortcut(files[i]);
 
 				// if that worked, we should have a real file name
 				if (!expandedFile.empty())
 					files[i] = expandedFile;
 			}
-			else if (paths_IsDecendant(files[i], szTempPath) || paths_IsDecendant(files[i], szTempPathShort))
+			else if (paths::IsDecendant(files[i], szTempPath) || paths::IsDecendant(files[i], szTempPathShort))
 			{
 				String tmpdir = env_GetTempChildPath();
 				CopyFileOrFolder(files[i], tmpdir);
-				files[i] = paths_ConcatPath(tmpdir, paths_FindFileName(files[i]));
+				files[i] = paths::ConcatPath(tmpdir, paths::FindFileName(files[i]));
 			}
 		}
 		return files;
@@ -210,7 +210,7 @@ namespace
 										wchar_t *pName;
 										if (SUCCEEDED(hr = pShellItem->GetDisplayName(SIGDN_PARENTRELATIVEPARSING, &pName)))
 										{
-											root_files.push_back(paths_ConcatPath(tmpdir, ucr::toTString(pName)));
+											root_files.push_back(paths::ConcatPath(tmpdir, ucr::toTString(pName)));
 											CoTaskMemFree(pName);
 										}
 									}
@@ -257,9 +257,9 @@ namespace
 				for (unsigned i = 0; i < file_group_descriptor->cItems; ++i)
 				{
 					String filename = file_group_descriptor->fgd[i].cFileName;
-					String filepath = paths_ConcatPath(tmpdir, filename);
+					String filepath = paths::ConcatPath(tmpdir, filename);
 					if (file_group_descriptor->fgd[i].dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-						paths_CreateIfNeeded(filepath);
+						paths::CreateIfNeeded(filepath);
 					else
 					{
 						ExtractFileItemFromIDataObject_FileContents(pDataObj, i, filepath);

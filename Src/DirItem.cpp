@@ -57,7 +57,7 @@ String FileFlags::ToString() const
 void DirItem::SetFile(const String &fullPath)
 {
 	String ext, filename2, path2;
-	paths_SplitFilename(fullPath, &path2, &filename2, &ext);
+	paths::SplitFilename(fullPath, &path2, &filename2, &ext);
 	filename2 += _T(".");
 	filename2 += ext;
 	filename = filename2;
@@ -70,7 +70,7 @@ void DirItem::SetFile(const String &fullPath)
  */
 String DirItem::GetFile() const
 {
-	return paths_ConcatPath(path.get(), filename.get());
+	return paths::ConcatPath(path.get(), filename.get());
 }
 
 /**

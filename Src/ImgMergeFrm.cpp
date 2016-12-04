@@ -936,7 +936,7 @@ void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 			{
 				String file;
 				String ext;
-				paths_SplitFilename(m_filePaths[nBuffer], NULL, &file, &ext);
+				paths::SplitFilename(m_filePaths[nBuffer], NULL, &file, &ext);
 				sFileName[nBuffer] += file;
 				if (!ext.empty())
 				{
@@ -1882,10 +1882,10 @@ void CImgMergeFrame::OnUpdateImgUseBackColor(CCmdUI* pCmdUI)
 bool CImgMergeFrame::GenerateReport(const String& sFileName) const
 {
 	String imgdir_full, imgdir, imgfilepath[3], diffimg_filename[3], path, name, ext;
-	paths_SplitFilename(sFileName, &path, &name, &ext);
-	imgdir_full = paths_ConcatPath(path, name) + _T(".files");
-	imgdir = paths_FindFileName(imgdir_full);
-	paths_CreateIfNeeded(imgdir_full);
+	paths::SplitFilename(sFileName, &path, &name, &ext);
+	imgdir_full = paths::ConcatPath(path, name) + _T(".files");
+	imgdir = paths::FindFileName(imgdir_full);
+	paths::CreateIfNeeded(imgdir_full);
 	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
 	{
 		imgfilepath[i] = ucr::toTString(m_pImgMergeWindow->GetFileName(i));
@@ -1965,7 +1965,7 @@ void CImgMergeFrame::OnRefresh()
 
 void CImgMergeFrame::OnDropFiles(int pane, const std::vector<String>& files)
 {
-	if (files.size() > 1 || paths_IsDirectory(files[0]))
+	if (files.size() > 1 || paths::IsDirectory(files[0]))
 	{
 		GetMainFrame()->GetDropHandler()->GetCallback()(files);
 		return;
