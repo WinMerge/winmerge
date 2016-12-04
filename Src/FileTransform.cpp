@@ -394,10 +394,10 @@ bool FileTransform_Prediffing(PrediffingInfo * handler, String & filepath, const
 
 bool FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
 {
-	String tempDir = env_GetTempPath();
+	String tempDir = env::GetTemporaryPath();
 	if (tempDir.empty())
 		return false;
-	String tempFilepath = env_GetTempFileName(tempDir, _T("_W3"));
+	String tempFilepath = env::GetTemporaryFileName(tempDir, _T("_W3"));
 	if (tempFilepath.empty())
 		return false;
 	// TODO : is it better with the BOM or without (just change the last argument)

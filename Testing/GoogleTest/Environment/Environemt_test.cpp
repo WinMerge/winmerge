@@ -40,13 +40,13 @@ namespace
 
 	TEST_F(EnvironmentTest, LoadRegistryFromFile)
 	{
-		EXPECT_EQ(false, env_LoadRegistryFromFile(_T("nonexistfile.reg")));
+		EXPECT_EQ(false, env::LoadRegistryFromFile(_T("nonexistfile.reg")));
 
 		system(
 			"reg add    HKCU\\Software\\Thingamahoochie\\test /v Path /t REG_EXPAND_SZ /d \"abc\" & "
 			"reg export HKCU\\Software\\Thingamahoochie\\test test.reg & "
 			"reg delete HKCU\\Software\\Thingamahoochie\\test /f");
-		EXPECT_EQ(true, env_LoadRegistryFromFile(_T("test.reg")));
+		EXPECT_EQ(true, env::LoadRegistryFromFile(_T("test.reg")));
 		EXPECT_EQ(0, system("reg query HKCU\\Software\\Thingamahoochie\\test /v Path | findstr abc"));
 		system("reg delete HKCU\\Software\\Thingamahoochie\\test /f");
 		remove("test.reg");
@@ -54,11 +54,11 @@ namespace
 
 	TEST_F(EnvironmentTest, SaveRegistry)
 	{
-		EXPECT_EQ(false, env_SaveRegistryToFile(_T("nonexistfile.reg"), _T("Software\\Thingamahoochie\\tes")));
+		EXPECT_EQ(false, env::SaveRegistryToFile(_T("nonexistfile.reg"), _T("Software\\Thingamahoochie\\tes")));
 
 		system("reg add    HKCU\\Software\\Thingamahoochie\\test /v Path /t REG_EXPAND_SZ /d \"abc\"");
 		system("echo. > test2.reg");
-		EXPECT_EQ(true, env_SaveRegistryToFile(_T("test2.reg"), _T("Software\\Thingamahoochie\\test")));
+		EXPECT_EQ(true, env::SaveRegistryToFile(_T("test2.reg"), _T("Software\\Thingamahoochie\\test")));
 		EXPECT_EQ(0, system("type test2.reg|findstr Path"));
 		system("reg delete HKCU\\Software\\Thingamahoochie\\test /f");
 		remove("test2.reg");

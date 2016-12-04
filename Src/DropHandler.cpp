@@ -81,7 +81,7 @@ namespace
 			}
 			else if (paths::IsDecendant(files[i], szTempPath) || paths::IsDecendant(files[i], szTempPathShort))
 			{
-				String tmpdir = env_GetTempChildPath();
+				String tmpdir = env::GetTempChildPath();
 				CopyFileOrFolder(files[i], tmpdir);
 				files[i] = paths::ConcatPath(tmpdir, paths::FindFileName(files[i]));
 			}
@@ -197,7 +197,7 @@ namespace
 							if (SUCCEEDED(hr = pFileOperation.CreateInstance(CLSID_FileOperation, NULL, CLSCTX_ALL)))
 							{
 								if (tmpdir.empty())
-									tmpdir = env_GetTempChildPath();
+									tmpdir = env::GetTempChildPath();
 								pFileOperation->SetOperationFlags(0);
 								PIDLIST_ABSOLUTE pidlDest;
 								if (SUCCEEDED(hr = SHParseDisplayName(ucr::toUTF16(tmpdir).c_str(), NULL, &pidlDest, 0, NULL)))
@@ -245,7 +245,7 @@ namespace
 
 	HRESULT GetFileItemsFromIDataObject_FileDescriptor(IDataObject *pDataObj, std::vector<String>& root_files)
 	{
-		String tmpdir = env_GetTempChildPath();
+		String tmpdir = env::GetTempChildPath();
 		FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 		STGMEDIUM medium = { 0 };
 		HRESULT hr;

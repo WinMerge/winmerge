@@ -55,7 +55,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 {
 	const UINT nBufferSize = 1024;
 
-	String tempFile = env_GetTempFileName(env_GetTempPath(), _T("_LT"));
+	String tempFile = env::GetTemporaryFileName(env::GetTemporaryPath(), _T("_LT"));
 	if (tempFile.empty())
 	{
 		LogErrorString(_T("CMainFrame::ReLinkVCProj() - couldn't get tempfile"));

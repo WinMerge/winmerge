@@ -755,7 +755,7 @@ bool CDiffWrapper::RunFileDiff()
 		// what differences diff-engine sees!
 #ifdef _DEBUG
 		// throw the diff into a temp file
-		String sTempPath = env_GetTempPath(); // get path to Temp folder
+		String sTempPath = env::GetTemporaryPath(); // get path to Temp folder
 		String path = paths::ConcatPath(sTempPath, _T("Diff.txt"));
 
 		outfile = _tfopen(path.c_str(), _T("w+"));

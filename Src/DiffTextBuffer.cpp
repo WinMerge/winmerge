@@ -516,7 +516,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	}
 	else
 	{
-		sIntermediateFilename = env_GetTempFileName(m_strTempPath,
+		sIntermediateFilename = env::GetTemporaryFileName(m_strTempPath,
 			_T("MRG_"), NULL);
 		if (sIntermediateFilename.empty())
 			return SAVE_FAILED;  //Nothing to do if even tempfile name fails

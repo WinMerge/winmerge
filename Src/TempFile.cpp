@@ -36,7 +36,7 @@ TempFile::~TempFile()
  */
 String TempFile::Create(const String& prefix, const String& ext)
 {
-	String temp = env_GetTempPath();
+	String temp = env::GetTemporaryPath();
 	if (temp.empty())
 	{
 		return _T("");
@@ -46,7 +46,7 @@ String TempFile::Create(const String& prefix, const String& ext)
 	if (pref.empty())
 		pref = _T("wmtmp");
 
-	temp = env_GetTempFileName(temp, pref, NULL);
+	temp = env::GetTemporaryFileName(temp, pref, NULL);
 	if (!temp.empty())
 	{
 		if (!ext.empty())
@@ -71,7 +71,7 @@ String TempFile::Create(const String& prefix, const String& ext)
  */
 String TempFile::CreateFromFile(const String& filepath, const String& prefix)
 {
-	String temp = env_GetTempPath();
+	String temp = env::GetTemporaryPath();
 	if (temp.empty())
 	{
 		return _T("");
@@ -81,7 +81,7 @@ String TempFile::CreateFromFile(const String& filepath, const String& prefix)
 	if (pref.empty())
 		pref = _T("wmtmp");
 
-	temp = env_GetTempFileName(temp, pref, NULL);
+	temp = env::GetTemporaryFileName(temp, pref, NULL);
 	if (!temp.empty())
 	{
 		// Scratchpads don't have a file to copy.
@@ -155,7 +155,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 	String tempfolderPID;
 	String filepattern(TempFolderPrefix);
 	filepattern += _T("*.*");
-	String pattern = paths::GetParentPath(env_GetTempPath());
+	String pattern = paths::GetParentPath(env::GetTemporaryPath());
 	pattern = paths::ConcatPath(pattern, filepattern);
 	WIN32_FIND_DATA ff;
 	HANDLE h;

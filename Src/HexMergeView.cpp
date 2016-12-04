@@ -311,8 +311,8 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	if (!theApp.CreateBackup(FALSE, path))
 		return S_OK;
 	// Write data to an intermediate file
-	String tempPath = env_GetTempPath();
-	String sIntermediateFilename = env_GetTempFileName(tempPath, _T("MRG_"), 0);
+	String tempPath = env::GetTemporaryPath();
+	String sIntermediateFilename = env::GetTemporaryFileName(tempPath, _T("MRG_"), 0);
 	if (sIntermediateFilename.empty())
 		return E_FAIL; //Nothing to do if even tempfile name fails
 	HANDLE h = CreateFile(sIntermediateFilename.c_str(), GENERIC_WRITE, FILE_SHARE_READ,

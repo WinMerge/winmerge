@@ -410,7 +410,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	CheckFileChanged();
 
-	String tempPath = env_GetTempPath();
+	String tempPath = env::GetTemporaryPath();
 
 	// Set up DiffWrapper
 	m_diffWrapper.GetOptions(&diffOptions);

@@ -106,7 +106,7 @@ const TCHAR *storageForPlugins::GetDestFileName()
 {
 	if (m_tempFilenameDst.empty())
 	{
-		m_tempFilenameDst = env_GetTempFileName(env_GetTempPath(), _T ("_WM"));
+		m_tempFilenameDst = env::GetTemporaryFileName(env::GetTemporaryPath(), _T ("_WM"));
 	}
 	return m_tempFilenameDst.c_str();
 }
