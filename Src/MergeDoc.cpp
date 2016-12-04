@@ -2469,6 +2469,12 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 		m_pRescanFileInfo[index]->Update(filename);
 
 		loadSuccess = LoadFile(filename.c_str(), index, readOnly, encoding);
+		if (FileLoadResult::IsLossy(loadSuccess))
+		{
+			m_ptBuf[index]->FreeAll();
+			loadSuccess = LoadFile(filename.c_str(), index, readOnly,
+				GuessCodepageEncoding(filename, GetOptionsMgr()->GetInt(OPT_CP_DETECT), -1));
+		}
 	}
 	else
 	{

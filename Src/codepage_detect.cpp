@@ -25,9 +25,6 @@
 #  define strncasecmp(a, b, n) _strnicmp((a), (b), (n))
 #endif
 
-/** @brief Buffer size used in this file. */
-static const int BufSize = 65536;
-
 /**
  * @brief Prefixes to handle when searching for codepage names
  * NB: prefixes ending in '-' must go first!
@@ -211,8 +208,6 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
 	}
 	if (guessEncodingType & 1)
 	{
-		if (len > BufSize)
-			len = BufSize;
 		String lower_ext = string_makelower(ext);
 		if (lower_ext == _T(".rc"))
 		{
@@ -236,10 +231,9 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
  * @param [in] bGuessEncoding Try to guess codepage (not just unicode encoding).
  * @return Structure getting the encoding info.
  */
-FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType)
+FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType, int mapmaxlen)
 {
 	FileTextEncoding encoding;
-	const int mapmaxlen = BufSize;
 	CMarkdown::FileImage fi(filepath.c_str(), mapmaxlen);
 	encoding.SetCodepage(ucr::getDefaultCodepage());
 	encoding.m_bom = false;
