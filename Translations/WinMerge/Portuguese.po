@@ -2239,7 +2239,7 @@ msgstr "Operadores:"
 #: Merge.rc:79321BE2
 #, c-format
 msgid "Strings:"
-msgstr ""
+msgstr "Strings"
 
 #: Merge.rc:1E0ED5B2
 #, c-format
