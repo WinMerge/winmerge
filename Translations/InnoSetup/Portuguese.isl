@@ -358,9 +358,9 @@ IntegrateClearCase=Intregar com Rational &ClearCase
 AddToPath=&Criar pasta do WinMerge no caminho do sistema
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
-RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+ThreeWayMergeWizardPageCaption=3-Combinação de modos
+ThreeWayMergeWizardPageDescription=Utiliza o WinMerge como ferramenta de três vias para TortoiseSVN/GIT?
+RegisterWinMergeAs3WayMergeTool=Registar o WinMerge como ferramenta de combinação de três vias
 MergeAtRightPane=Combinar na janela direita
 MergeAtCenterPane=Combinar na janela do meio
 MergeAtLeftPane=Combinar na janela esquerda
@@ -372,7 +372,7 @@ UsersGuide=Guia do utilizador
 ViewStartMenuFolder=&Ver a pasta do WinMerge do Menu Iniciar
 
 ;Code Dialogs
-DeletePreviousStartMenu=O assistente de instalação detectou que alterou a localização de "%s" para "%s". Deseja eliminar a pasta anterior do Menu Iniciar?
+DeletePreviousStartMenu=O Assistente de Instalação detectou que alterou a localização de "%s" para "%s". Deseja eliminar a pasta anterior do Menu Iniciar?
 
 ; Project file description
 ProjectFileDesc=Ficheiro do projecto WinMerge
