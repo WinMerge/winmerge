@@ -4,6 +4,7 @@
 # Translators:
 # * Koko <kokokoko at giga.net.tw>
 # * wck3 <wck3171 at pchome.com.tw>
+# * Calvin Lin <ylin77 at gmail.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id: ChineseTraditional.po 7123 2010-02-19 19:03:56Z gerundt $
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2009-11-08 13:51+0000\n"
 "PO-Revision-Date: 2010-02-19 17:04+0800\n"
-"Last-Translator: wck3 <wck3171@pchome.com.tw>\n"
+"Last-Translator: Calvin Lin <ylin77 at gmail.com>\n"
 "Language-Team: ChineseTraditional <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP950\n"

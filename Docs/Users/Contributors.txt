@@ -41,6 +41,7 @@ Localization:
 
 * Traditional Chinese:
   Koko <kokokoko@giga.net.tw>
+  Calvin Lin <ylin77 at gmail.com>
 
 * Croatian:
   Hasan Osmanagiæ <hasan.osmanagic@public.carnet.hr>
