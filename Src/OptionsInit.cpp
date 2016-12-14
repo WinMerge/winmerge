@@ -122,6 +122,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_MATCH_SIMILAR_LINES, false);
 	pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
 	pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
+	pOptions->InitOption(OPT_CMP_COMPARE_THREADS, -1);
 	pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, false);
 	pOptions->InitOption(OPT_CMP_IGNORE_REPARSE_POINTS, false);
 	pOptions->InitOption(OPT_CMP_IGNORE_CODEPAGE, true);

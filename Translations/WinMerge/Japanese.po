@@ -2715,6 +2715,11 @@ msgstr "リパースポイントを無視する(&R)"
 msgid "&Quick compare limit (MB):"
 msgstr "クイックコンテンツ制限(MB)(&Q):"
 
+#: Merge.rc:2188DD49
+#, c-format
+msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "比較スレッドの数 (負の値を指定するとスレッド数は、使用可能なCPUコア数が加算された値になります)(&N):"
+
 #: Merge.rc:17BC2F9E
 #, c-format
 msgid "Binary"

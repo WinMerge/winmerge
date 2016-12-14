@@ -2701,6 +2701,11 @@ msgstr ""
 msgid "&Quick compare limit (MB):"
 msgstr "Limit sz&ybkiego porównania (MB):"
 
+#: Merge.rc:2188DD49
+#, c-format
+msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+
 #: Merge.rc:17BC2F9E
 #, c-format
 msgid "Binary"
