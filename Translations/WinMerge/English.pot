@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2016-10-22 19:52+0000\n"
+"POT-Creation-Date: 2016-12-15 01:14+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2690,6 +2690,11 @@ msgstr ""
 #: Merge.rc:2E2C5208
 #, c-format
 msgid "&Quick compare limit (MB):"
+msgstr ""
+
+#: Merge.rc:2188DD49
+#, c-format
+msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 #: Merge.rc:17BC2F9E

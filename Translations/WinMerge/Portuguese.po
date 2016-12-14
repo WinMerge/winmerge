@@ -2696,6 +2696,11 @@ msgstr "Ignorar pontos de &análise"
 msgid "&Quick compare limit (MB):"
 msgstr "&Limite da comparação rápida (MB):"
 
+#: Merge.rc:2188DD49
+#, c-format
+msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+
 #: Merge.rc:17BC2F9E
 #, c-format
 msgid "Binary"

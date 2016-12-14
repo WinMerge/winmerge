@@ -157,6 +157,7 @@ extern const String OPT_CMP_MOVED_BLOCKS OP("Settings/MovedBlocks");
 extern const String OPT_CMP_MATCH_SIMILAR_LINES OP("Settings/MatchSimilarLines");
 extern const String OPT_CMP_STOP_AFTER_FIRST OP("Settings/StopAfterFirst");
 extern const String OPT_CMP_QUICK_LIMIT OP("Settings/QuickMethodLimit");
+extern const String OPT_CMP_COMPARE_THREADS OP("Settings/CompareThreads");
 extern const String OPT_CMP_WALK_UNIQUE_DIRS OP("Settings/ScanUnpairedDir");
 extern const String OPT_CMP_IGNORE_REPARSE_POINTS OP("Settings/IgnoreReparsePoints");
 extern const String OPT_CMP_INCLUDE_SUBDIRS OP("Settings/Recurse");

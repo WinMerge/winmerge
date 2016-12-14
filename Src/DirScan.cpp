@@ -34,6 +34,8 @@
 #include "paths.h"
 #include "Plugins.h"
 #include "MergeApp.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 using Poco::NotificationQueue;
 using Poco::Notification;
@@ -454,8 +456,19 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 	ThreadPool threadPool;
 	std::vector<DiffWorkerPtr> workers;
 	const int compareMethod = myStruct->context->GetCompareMethod();
-	unsigned nworkers = (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT) ? Environment::processorCount() : 1;
+	int nworkers = 1;
 	NotificationQueue queue;
+
+	if (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT)
+	{
+		nworkers = GetOptionsMgr()->GetInt(OPT_CMP_COMPARE_THREADS);
+		if (nworkers <= 0)
+		{
+			nworkers += Environment::processorCount();
+			if (nworkers <= 0)
+				nworkers = 1;
+		}
+	}
 
 	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
 	for (unsigned i = 0; i < nworkers; ++i)

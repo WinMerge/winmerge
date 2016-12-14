@@ -2710,6 +2710,11 @@ msgstr "忽略重新分析點(&R)"
 msgid "&Quick compare limit (MB):"
 msgstr "快速比較之檔案大小上限 (MB)(&Q)："
 
+#: Merge.rc:2188DD49
+#, c-format
+msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr ""
+
 #: Merge.rc:17BC2F9E
 #, c-format
 msgid "Binary"
