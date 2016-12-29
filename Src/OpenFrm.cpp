@@ -68,8 +68,12 @@ void COpenFrame::RecalcLayout(BOOL bNotify)
 		CRect rc = m_rcNormalView;
 		if (rc.Width() > sz.cx)                   // if window > form:
 			rc.left += (rc.Width() -sz.cx) >> 1;   // move over half the extra
+		else
+			rc.left = rc.Width() - sz.cx;
 		if (rc.Height() > sz.cy)                  // ditto for height
 			rc.top  += (rc.Height()-sz.cy) >> 1;   // ...
+		else
+			rc.top = rc.Height() - sz.cy;
 
 		// This actually moves the view window
 		pView->SetWindowPos(NULL, rc.left, rc.top, sz.cx, sz.cy,
