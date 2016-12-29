@@ -136,6 +136,7 @@ BEGIN
             MENUITEM "&None",                       ID_IMG_OVERLAY_NONE
             MENUITEM "&XOR",                        ID_IMG_OVERLAY_XOR
             MENUITEM "&Alpha Blend",                ID_IMG_OVERLAY_ALPHABLEND
+            MENUITEM "Alpha &Blend Animation",      ID_IMG_OVERLAY_ALPHABLEND_ANIM
         END
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
     END
