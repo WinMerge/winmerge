@@ -453,11 +453,8 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
  */
 int DirScan_CompareItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 {
-	ThreadPool threadPool;
-	std::vector<DiffWorkerPtr> workers;
 	const int compareMethod = myStruct->context->GetCompareMethod();
 	int nworkers = 1;
-	NotificationQueue queue;
 
 	if (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT)
 	{
@@ -470,6 +467,9 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 		}
 	}
 
+	ThreadPool threadPool(2, nworkers);
+	std::vector<DiffWorkerPtr> workers;
+	NotificationQueue queue;
 	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
 	for (unsigned i = 0; i < nworkers; ++i)
 	{
