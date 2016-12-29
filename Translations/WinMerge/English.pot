@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2016-12-15 01:14+0000\n"
+"POT-Creation-Date: 2016-12-29 21:13+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -154,6 +154,11 @@ msgstr ""
 #: Merge.rc:4DE14272
 #, c-format
 msgid "&Alpha Blend"
+msgstr ""
+
+#: Merge.rc:237A0532
+#, c-format
+msgid "Alpha &Blend Animation"
 msgstr ""
 
 #: Merge.rc:100AAFAC
@@ -3238,7 +3243,7 @@ msgstr ""
 msgid "Middle and right path is invalid!"
 msgstr ""
 
-#: Merge.rc:237A0532
+#: Merge.rc:237A0533
 #, c-format
 msgid "All paths are invalid!"
 msgstr ""

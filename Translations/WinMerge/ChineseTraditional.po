@@ -161,6 +161,11 @@ msgstr "關閉(&N)"
 msgid "&Alpha Blend"
 msgstr "透明效果(&A)"
 
+#: Merge.rc:237A0532
+#, c-format
+msgid "Alpha &Blend Animation"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
@@ -3337,7 +3342,7 @@ msgstr "左邊和右邊路徑無效！"
 msgid "Middle and right path is invalid!"
 msgstr "中間和右邊路徑無效！"
 
-#: Merge.rc:237A0532
+#: Merge.rc:237A0533
 #, c-format
 msgid "All paths are invalid!"
 msgstr "所有路徑無效！"

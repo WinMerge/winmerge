@@ -161,6 +161,11 @@ msgstr "なし(&N)"
 msgid "&Alpha Blend"
 msgstr "アルファブレンド(&A)"
 
+#: Merge.rc:237A0532
+#, c-format
+msgid "Alpha &Blend Animation"
+msgstr "アルファブレンドアニメ表示(&B)"
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
@@ -3375,7 +3380,7 @@ msgstr "左側と右側のパスは不正なパスです!"
 msgid "Middle and right path is invalid!"
 msgstr "中央と右側のパスは不正なパスです!"
 
-#: Merge.rc:237A0532
+#: Merge.rc:237A0533
 #, c-format
 msgid "All paths are invalid!"
 msgstr "全てのパスが不正なパスです!"

@@ -160,6 +160,11 @@ msgstr "&Nessuna"
 msgid "&Alpha Blend"
 msgstr ""
 
+#: Merge.rc:237A0532
+#, c-format
+msgid "Alpha &Blend Animation"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
@@ -3309,7 +3314,7 @@ msgstr ""
 msgid "Middle and right path is invalid!"
 msgstr ""
 
-#: Merge.rc:237A0532
+#: Merge.rc:237A0533
 #, c-format
 msgid "All paths are invalid!"
 msgstr ""
