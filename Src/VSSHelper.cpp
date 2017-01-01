@@ -125,7 +125,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 	
 		while (succeed && GetWordFromFile(hfile, buffer, nBufferSize, charset))
 		{
-			if (!WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL))
+			if (!WriteFile(tfile, buffer, lstrlen(buffer), &numwritten, NULL))
 				succeed = false;
 			if (bVCPROJ)
 			{
@@ -195,13 +195,13 @@ void VSSHelper::GetFullVSSPath(const String& strSavePath, bool & bVCProj)
 	m_strVssProjectBase = string_makelower(m_strVssProjectBase);
 
 	//take out last '\\'
-	int nLen = m_strVssProjectBase.size();
+	size_t nLen = m_strVssProjectBase.size();
 	if (paths::EndsWithSlash(m_strVssProjectBase))
 		m_strVssProjectBase.resize(nLen - 1);
 
 	String strSearch = m_strVssProjectBase.c_str() + 2; // Don't compare first 2
-	int index = strSavePath.find(strSearch); //Search for project base path
-	if (index > -1)
+	size_t index = strSavePath.find(strSearch); //Search for project base path
+	if (index != String::npos)
 	{
 		index++;
 		m_strVssProjectFull = savepath.c_str() + index + strSearch.length();
@@ -344,13 +344,13 @@ bool VSSHelper::GetVCProjName(HANDLE hFile, HANDLE tFile) const
 	//nab the equals sign
 	if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T("=")))
 		return false;
-	if (!WriteFile(tFile, buffer, _tcslen(buffer),
+	if (!WriteFile(tFile, buffer, lstrlen(buffer),
 			&dwNumWritten, NULL))
 		return false;
 
 	String stemp = _T("\"&quot;") + m_strVssProjectFull + 
 		_T("&quot;");
-	if (!WriteFile(tFile, stemp.c_str(), stemp.size(),
+	if (!WriteFile(tFile, stemp.c_str(), static_cast<DWORD>(stemp.size()),
 			&dwNumWritten, NULL))
 		return false;
 
@@ -364,7 +364,7 @@ bool VSSHelper::GetVCProjName(HANDLE hFile, HANDLE tFile) const
 		if (!WriteFile(tFile, _T("\""), 1, &dwNumWritten, NULL))
 			return false;
 	}
-	if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
+	if (!WriteFile(tFile, buffer, lstrlen(buffer), &dwNumWritten, NULL))
 		return false;
 
 	return true;
@@ -382,7 +382,7 @@ bool VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf) co
 	//nab until next no space, and no =
 	if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T(" =")))
 		return false;
-	if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
+	if (!WriteFile(tFile, buffer, lstrlen(buffer), &dwNumWritten, NULL))
 		return false;
 	//nab word
 	if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T("\\\n.")))
@@ -392,12 +392,12 @@ bool VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf) co
 		if (buffer[0] != '\\')
 			_tcsncat(buf, buffer, _tcslen(buffer));
 
-		if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
+		if (!WriteFile(tFile, buffer, lstrlen(buffer), &dwNumWritten, NULL))
 			return false;
 		if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T("\\\n.")))
 			return false;
 	}
-	if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
+	if (!WriteFile(tFile, buffer, lstrlen(buffer), &dwNumWritten, NULL))
 		return false;
 
 	return true;
@@ -429,10 +429,10 @@ bool VSSHelper::GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf) const
 		//nab until the no space, and no =
 		if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T(" =")))
 			return false;
-		if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
+		if (!WriteFile(tFile, buffer, lstrlen(buffer), &dwNumWritten, NULL))
 			return false;
 		String stemp = _T("\\u0022") + m_strVssProjectFull + capp + _T("\\u0022");
-		if (!WriteFile(tFile, stemp.c_str(), stemp.size(),
+		if (!WriteFile(tFile, stemp.c_str(), static_cast<DWORD>(stemp.size()),
 				&dwNumWritten, NULL))
 			return false;
 		

@@ -595,7 +595,7 @@ fwrite_textify( const void *buffer, size_t size, size_t count, FILE *stream )
 	so the tricky part is just avoiding outputing \r\n\r\n for the \r\n pair.
 	*/
 
-	int bytes=0;
+	size_t bytes=0;
 	unsigned int i;
 	const char * text = buffer;
 	int cr = 0;
