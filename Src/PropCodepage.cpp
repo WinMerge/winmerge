@@ -125,7 +125,7 @@ BOOL PropCodepage::OnInitDialog()
 		}
 
 		static int autodetectTypeList[] = {50001, 50936, 50950, 50932, 50949};
-		for (size_t i = 0; i < sizeof(autodetectTypeList)/sizeof(int); i++)
+		for (int i = 0; i < sizeof(autodetectTypeList)/sizeof(int); i++)
 		{
 			String desc;
 			pexconv->getCodepageDescription(autodetectTypeList[i], desc);
