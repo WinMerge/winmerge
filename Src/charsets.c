@@ -633,7 +633,6 @@ static struct _charsetInfo
   { 160, "iso_8859-6:1987",                               28596,  no }, /* IANA */
   { 160, "iso_8859-6",                                    28596,  no }, /* IANA */
   { 160, "ecma-114",                                      28596,  no }, /* IANA */
-  { 160, "asmo-708",                                      28596,  no }, /* IANA */
   { 160, "arabic",                                        28596,  no }, /* IANA */
   { 160, "csisolatinarabic",                              28596,  no }, /* IANA */
   { 161, "iso-8859-7",                                    28597,  no }, /* IANA */
@@ -968,6 +967,7 @@ static struct _charsetInfo
   { 282, "x-mac-korean",                                  10003,  no }, /* MICROSOFT */
   { 283, "x-mac-turkish",                                 10081,  no }, /* MICROSOFT */
   { 284, "cp20932",                                       20932,  no }, /* MICROSOFT */
+  { 285, "asmo-708",                                        708,  no }, /* IANA */
 
   /* final entry */
   {   0, NULL,                                                0,  no }
