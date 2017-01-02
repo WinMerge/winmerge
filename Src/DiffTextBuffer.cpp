@@ -293,7 +293,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	String sFileName(pszFileNameInit);
-	if (!FileTransform_Unpacking(infoUnpacker, sFileName, sToFindUnpacker))
+	if (!FileTransform::Unpacking(infoUnpacker, sFileName, sToFindUnpacker))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
@@ -598,7 +598,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// repack the file here, overwrite the temporary file we did save in
 		String csTempFileName = sIntermediateFilename;
 		infoUnpacker->subcode = m_unpackerSubcode;
-		if (!FileTransform_Packing(csTempFileName, *infoUnpacker))
+		if (!FileTransform::Packing(csTempFileName, *infoUnpacker))
 		{
 			try
 			{

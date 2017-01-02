@@ -2492,7 +2492,7 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 {
 	// get scripts list
 	std::vector<String> functionNamesList;
-	GetFreeFunctionsInScripts(functionNamesList, L"EDITOR_SCRIPT");
+	FileTransform::GetFreeFunctionsInScripts(functionNamesList, L"EDITOR_SCRIPT");
 
 	// empty the menu
 	int i = GetMenuItemCount(hMenu);
@@ -2922,7 +2922,7 @@ void CMergeEditView::OnScripts(UINT nID )
 	String text = GetSelectedText();
 
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
-	bool bChanged = TextTransform_Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
+	bool bChanged = FileTransform::Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text.c_str(), static_cast<int>(text.length()), 0);

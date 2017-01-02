@@ -35,6 +35,9 @@
 
 using Poco::Exception;
 
+namespace FileTransform
+{
+
 int g_bUnpackerMode = PLUGIN_MANUAL;
 int g_bPredifferMode = PLUGIN_MANUAL;
 
@@ -46,7 +49,7 @@ int g_bPredifferMode = PLUGIN_MANUAL;
 // transformations : packing unpacking
 
 // known handler
-bool FileTransform_Packing(String & filepath, PackingInfo handler)
+bool Packing(String & filepath, PackingInfo handler)
 {
 	// no handler : return true
 	if (handler.pluginName.empty())
@@ -100,7 +103,7 @@ bool FileTransform_Packing(String & filepath, PackingInfo handler)
 }
 
 // known handler
-bool FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode)
+bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode)
 {
 	// no handler : return true
 	if (!handler || handler->pluginName.empty())
@@ -164,7 +167,7 @@ bool FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
 
 
 // scan plugins for the first handler
-bool FileTransform_Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode)
+bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode)
 {
 	// PLUGIN_BUILTIN_XML : read source file through custom UniFile
 	if (handler->bToBeScanned == PLUGIN_BUILTIN_XML)
@@ -244,19 +247,19 @@ bool FileTransform_Unpacking(String & filepath, const String& filteredText, Pack
 	return bSuccess;
 }
 
-bool FileTransform_Unpacking(PackingInfo *handler, String& filepath, const String& filteredText)
+bool Unpacking(PackingInfo *handler, String& filepath, const String& filteredText)
 {
 	if (handler->bToBeScanned)
-		return FileTransform_Unpacking(filepath, filteredText, handler, &handler->subcode);
+		return Unpacking(filepath, filteredText, handler, &handler->subcode);
 	else
-		return FileTransform_Unpacking(filepath, handler, &handler->subcode);
+		return Unpacking(filepath, handler, &handler->subcode);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // transformation prediffing
     
 // known handler
-bool FileTransform_Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
+bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 {
 	// no handler : return true
 	if (handler.pluginName.empty())
@@ -318,7 +321,7 @@ bool FileTransform_Prediffing(String & filepath, PrediffingInfo handler, bool bM
 
 
 // scan plugins for the first handler
-bool FileTransform_Prediffing(String & filepath, const String& filteredText, PrediffingInfo * handler, bool bMayOverwrite)
+bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * handler, bool bMayOverwrite)
 {
 	storageForPlugins bufferData;
 	// detect Ansi or Unicode file
@@ -381,18 +384,18 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
 	return bSuccess;
 }
 
-bool FileTransform_Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite)
+bool Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite)
 {
 	if (handler->bToBeScanned)
-		return FileTransform_Prediffing(filepath, filteredText, handler, bMayOverwrite);
+		return Prediffing(filepath, filteredText, handler, bMayOverwrite);
 	else
-		return FileTransform_Prediffing(filepath, *handler, bMayOverwrite);
+		return Prediffing(filepath, *handler, bMayOverwrite);
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
+bool AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
 {
 	String tempDir = env::GetTemporaryPath();
 	if (tempDir.empty())
@@ -402,7 +405,7 @@ bool FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, bool bMayO
 		return false;
 	// TODO : is it better with the BOM or without (just change the last argument)
 	int nFileChanged = 0;
-	bool bSuccess = AnyCodepageToUTF8(codepage, filepath, tempFilepath, nFileChanged, false); 
+	bool bSuccess = ::AnyCodepageToUTF8(codepage, filepath, tempFilepath, nFileChanged, false); 
 	if (bSuccess && nFileChanged)
 	{
 		// we do not overwrite so we delete the old file
@@ -467,7 +470,7 @@ void GetFreeFunctionsInScripts(std::vector<String>& sNamesArray, const wchar_t *
 	}
 }
 
-bool TextTransform_Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen)
+bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen)
 {
 	if (iFncChosen < 0)
 		return false;
@@ -497,6 +500,8 @@ bool TextTransform_Interactive(String & text, const wchar_t *TransformationEvent
 	InvokeTransformText(text, nChanged, piScriptArray->at(iScript)->m_lpDispatch, fncID);
 
 	return (nChanged != 0);
+}
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
