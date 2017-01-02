@@ -192,7 +192,6 @@
     <ClCompile Include="..\..\Src\DirItem.cpp" />
     <ClCompile Include="..\..\Src\DirScan.cpp" />
     <ClCompile Include="..\..\Src\DirTravel.cpp" />
-    <ClCompile Include="..\..\Src\Common\dllproxy.c" />
     <ClCompile Include="..\..\Src\Environment.cpp" />
     <ClCompile Include="..\..\Src\FileFilter.cpp" />
     <ClCompile Include="..\..\Src\FileFilterHelper.cpp" />
@@ -259,7 +258,6 @@
     <ClInclude Include="..\..\Src\DirItem.h" />
     <ClInclude Include="..\..\Src\DirScan.h" />
     <ClInclude Include="..\..\Src\DirTravel.h" />
-    <ClInclude Include="..\..\Src\Common\dllproxy.h" />
     <ClInclude Include="..\..\Src\Environment.h" />
     <ClInclude Include="..\..\Src\FileFilter.h" />
     <ClInclude Include="..\..\Src\FileFilterHelper.h" />

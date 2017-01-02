@@ -484,9 +484,6 @@
     <ClCompile Include="DirViewColItems.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Common\dllproxy.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="dllpstub.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -827,7 +824,6 @@
     <ClInclude Include="DirTravel.h" />
     <ClInclude Include="DirView.h" />
     <ClInclude Include="DirViewColItems.h" />
-    <ClInclude Include="Common\dllproxy.h" />
     <ClInclude Include="dllpstub.h" />
     <ClInclude Include="EditorFilepathBar.h" />
     <ClInclude Include="EncodingErrorBar.h" />
