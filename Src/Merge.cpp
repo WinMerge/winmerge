@@ -215,7 +215,7 @@ CMergeApp::CMergeApp() :
 
 CMergeApp::~CMergeApp()
 {
-	sd_Close();
+	strdiff::Close();
 }
 /////////////////////////////////////////////////////////////////////////////
 // The one and only CMergeApp object
@@ -410,8 +410,8 @@ BOOL CMergeApp::InitInstance()
 		}
 	}
 
-	sd_Init(); // String diff init
-	sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
+	strdiff::Init(); // String diff init
+	strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
 	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
 

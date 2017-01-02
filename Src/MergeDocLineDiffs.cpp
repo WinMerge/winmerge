@@ -205,12 +205,12 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 	int breakType = GetBreakType(); // whitespace only or include punctuation
 	bool byteColoring = GetByteColoringOption();
 
-	std::vector<wdiff> worddiffs;
+	std::vector<strdiff::wdiff> worddiffs;
 	// Make the call to stringdiffs, which does all the hard & tedious computations
-	sd_ComputeWordDiffs(m_nBuffers, str, casitive, xwhite, breakType, byteColoring, &worddiffs);
+	strdiff::ComputeWordDiffs(m_nBuffers, str, casitive, xwhite, breakType, byteColoring, &worddiffs);
 
 	int i;
-	std::vector<wdiff>::iterator it;
+	std::vector<strdiff::wdiff>::iterator it;
 	for (i = 0, it = worddiffs.begin(); it != worddiffs.end(); ++i, ++it)
 	{
 		WordDiff wd;

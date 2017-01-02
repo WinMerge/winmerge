@@ -12,6 +12,9 @@
 // We don't use _DEBUG since stringdiff logging is verbose and slows down WinMerge
 //#define STRINGDIFF_LOGGING
 
+namespace strdiff
+{
+
 /**
  * @brief kind of diff blocks.
  */
@@ -36,7 +39,7 @@ enum
 struct wdiff;
 
 /**
- * @brief Class to hold together data needed to implement sd_ComputeWordDiffs
+ * @brief Class to hold together data needed to implement strdiff::ComputeWordDiffs
  */
 class stringdiffs
 {
@@ -112,3 +115,5 @@ private:
 	std::vector<word> m_words2;
 	std::vector<wdiff> m_wdiffs;
 };
+
+}
