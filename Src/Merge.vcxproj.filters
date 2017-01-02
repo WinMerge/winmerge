@@ -109,9 +109,6 @@
     <ClCompile Include="DirTravel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\dllproxy.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dllpstub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -814,9 +811,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DirTravel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\dllproxy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dllpstub.h">

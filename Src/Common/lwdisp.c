@@ -54,7 +54,6 @@ struct _RPC_ASYNC_STATE;	// avoid MSC warning C4115
 #include <stdarg.h>
 #include <strsafe.h>
 #include "lwdisp.h"
-#include "dllproxy.h"
 
 /**
 * @brief Display or return error message string (from
@@ -184,21 +183,24 @@ LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
 
 LPDISPATCH CreateDispatchBySourceAndCLSID(LPCTSTR source, CLSID *pObjectCLSID)
 {
-	SCODE sc;
 	LPDISPATCH pv = NULL;
-	IClassFactory *piClassFactory;
-	EXPORT_DLLPROXY
-	(
-		Dll, "",
-		HRESULT(NTAPI*DllGetClassObject)(REFCLSID,REFIID,IClassFactory**);
-	);
-	mycpyt2a(source, Dll.SIG+strlen(Dll.SIG), sizeof(Dll.SIG)-strlen(Dll.SIG));
-	if ((FARPROC)DLLPROXY(Dll)->DllGetClassObject != DllProxy_ModuleState.Unresolved)
-		if (SUCCEEDED(sc=DLLPROXY(Dll)->DllGetClassObject(pObjectCLSID, &IID_IClassFactory, &piClassFactory)))
+	HMODULE hLibrary = LoadLibrary(source);
+	if (hLibrary)
+	{
+		HRESULT (NTAPI*DllGetClassObject)(REFCLSID,REFIID,IClassFactory**)
+			= (HRESULT(NTAPI*)(REFCLSID, REFIID, IClassFactory**))GetProcAddress(hLibrary, "DllGetClassObject");
+		if (DllGetClassObject)
 		{
-			sc=piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
+			SCODE sc;
+			IClassFactory *piClassFactory;
+			if (SUCCEEDED(sc = DllGetClassObject(pObjectCLSID, &IID_IClassFactory, &piClassFactory)))
+			{
+				sc = piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
+			}
 		}
-
+		if (!pv)
+			FreeLibrary(hLibrary);
+	}
 	return pv;
 }
 

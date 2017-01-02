@@ -187,7 +187,6 @@
     <ClCompile Include="..\..\..\Src\DiffItem.cpp" />
     <ClCompile Include="..\..\..\Src\diffutils\src\Diff.cpp" />
     <ClCompile Include="..\..\..\Src\DirItem.cpp" />
-    <ClCompile Include="..\..\..\Src\Common\dllproxy.c" />
     <ClCompile Include="..\..\..\Src\Environment.cpp" />
     <ClCompile Include="..\..\..\Src\Common\ExConverter.cpp" />
     <ClCompile Include="..\..\..\Src\FileFilter.cpp" />
@@ -268,7 +267,6 @@
     <ClInclude Include="..\..\..\Src\CompareEngines\DiffUtils.h" />
     <ClInclude Include="..\..\..\Src\DiffItem.h" />
     <ClInclude Include="..\..\..\Src\DirItem.h" />
-    <ClInclude Include="..\..\..\Src\Common\dllproxy.h" />
     <ClInclude Include="..\..\..\Src\Environment.h" />
     <ClInclude Include="..\..\..\Src\Common\ExConverter.h" />
     <ClInclude Include="..\..\..\Src\FileFilter.h" />
