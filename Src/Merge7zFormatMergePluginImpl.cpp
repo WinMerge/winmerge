@@ -36,7 +36,7 @@ Merge7z::Format *Merge7zFormatMergePluginImpl::GuessFormat(const String& path)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.pluginName);
 	if (!plugin)
 		return NULL;
-	if (!InvokeIsFolder(path, plugin->m_lpDispatch))
+	if (!plugin::InvokeIsFolder(path, plugin->m_lpDispatch))
 		return NULL;
 	format->m_plugin = plugin;
 	return format;
@@ -48,7 +48,7 @@ HRESULT Merge7zFormatMergePluginImpl::DeCompressArchive(HWND, LPCTSTR path, LPCT
 		return E_FAIL;
 	paths::CreateIfNeeded(path);
 	int nChanged = 0;
-	return InvokeUnpackFolder(path, folder, nChanged, m_plugin->m_lpDispatch, m_infoUnpacker.subcode) ? S_OK : E_FAIL;
+	return plugin::InvokeUnpackFolder(path, folder, nChanged, m_plugin->m_lpDispatch, m_infoUnpacker.subcode) ? S_OK : E_FAIL;
 }
 
 HRESULT Merge7zFormatMergePluginImpl::CompressArchive(HWND, LPCTSTR path, Merge7z::DirItemEnumerator *)

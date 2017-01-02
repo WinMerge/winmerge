@@ -2514,7 +2514,7 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 		functionNamesList.clear();
 	}
 
-	if (!IsWindowsScriptThere())
+	if (!plugin::IsWindowsScriptThere())
 		AppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, _("WSH not found - .sct scripts disabled").c_str());
 
 	return hMenu;

@@ -89,6 +89,10 @@ template<class T> struct AutoReleaser
 };
 
 ////////////////////////////////////////////////////////////////////////////////
+
+namespace plugin
+{
+
 /**
  * @brief Check for the presence of Windows Script
  *
@@ -244,6 +248,8 @@ int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex)
 	return fncID;
 }
 
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // find scripts/activeX for an event : each event is assigned to a subdirectory 
 
@@ -393,7 +399,7 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 	VARIANT ret;
 	// invoke mandatory method get PluginEvent
 	VariantInit(&ret);
-	if (!SearchScriptForDefinedProperties(lpDispatch, L"PluginEvent"))
+	if (!plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginEvent"))
 	{
 		scinfo.Log(_T("PluginEvent method missing"));
 		return -20; // error
@@ -416,29 +422,29 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 	bool bFound = true;
 	if (wcscmp(transformationEvent, L"BUFFER_PREDIFF") == 0)
 	{
-		bFound &= SearchScriptForMethodName(lpDispatch, L"PrediffBufferW");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PrediffBufferW");
 	}
 	else if (wcscmp(transformationEvent, L"FILE_PREDIFF") == 0)
 	{
-		bFound &= SearchScriptForMethodName(lpDispatch, L"PrediffFile");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PrediffFile");
 	}
 	else if (wcscmp(transformationEvent, L"BUFFER_PACK_UNPACK") == 0)
 	{
-		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackBufferA");
-		bFound &= SearchScriptForMethodName(lpDispatch, L"PackBufferA");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackBufferA");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackBufferA");
 	}
 	else if (wcscmp(transformationEvent, L"FILE_PACK_UNPACK") == 0)
 	{
-		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFile");
-		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFile");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackFile");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackFile");
 	}
 	else if (wcscmp(transformationEvent, L"FILE_FOLDER_PACK_UNPACK") == 0)
 	{
-		bFound &= SearchScriptForMethodName(lpDispatch, L"IsFolder");
-		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFile");
-		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFile");
-		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFolder");
-		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFolder");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"IsFolder");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackFile");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackFile");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"UnpackFolder");
+		bFound &= plugin::SearchScriptForMethodName(lpDispatch, L"PackFolder");
 	}
 	if (!bFound)
 	{
@@ -451,7 +457,7 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 	// there may be several functions inside one script, count the number of functions
 	if (wcscmp(transformationEvent, L"EDITOR_SCRIPT") == 0)
 	{
-		m_nFreeFunctions = CountMethodsInScript(lpDispatch);
+		m_nFreeFunctions = plugin::CountMethodsInScript(lpDispatch);
 		if (m_nFreeFunctions == 0)
 			// error (Plugin doesn't offer any method, what is this ?)
 			return -50;
@@ -459,7 +465,7 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 
 
 	// get optional property PluginDescription
-	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginDescription"))
+	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginDescription"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginDescription", opGet[0], NULL);
 		if (FAILED(h) || ret.vt != VT_BSTR)
@@ -478,7 +484,7 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 
 	// get PluginFileFilters
 	bool hasPluginFileFilters = false;
-	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginFileFilters"))
+	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginFileFilters"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginFileFilters", opGet[0], NULL);
 		if (FAILED(h) || ret.vt != VT_BSTR)
@@ -497,7 +503,7 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 	VariantClear(&ret);
 
 	// get optional property PluginIsAutomatic
-	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginIsAutomatic"))
+	if (plugin::SearchScriptForDefinedProperties(lpDispatch, L"PluginIsAutomatic"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginIsAutomatic", opGet[0], NULL);
 		if (FAILED(h) || ret.vt != VT_BOOL)
@@ -573,7 +579,7 @@ static vector<String>& LoadTheScriptletList()
 	{
 		String path = paths::ConcatPath(env::GetProgPath(), _T("MergePlugins"));
 
-		if (IsWindowsScriptThere())
+		if (plugin::IsWindowsScriptThere())
 			GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
 		else
 			LogErrorString(_T("\n  .sct plugins disabled (Windows Script Host not found)"));
@@ -1063,6 +1069,9 @@ static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH 
 ////////////////////////////////////////////////////////////////////////////////
 // invoke for plugins
 
+namespace plugin
+{
+
 /*
  * ----- about VariantClear -----
  * VariantClear is done in safeInvokeW/safeInvokeA except for :
@@ -1430,4 +1439,6 @@ bool InvokeShowSettingsDialog(IDispatch *piScript)
 	VariantClear(&vboolHandled);
 
 	return (bSuccess);
+}
+
 }
