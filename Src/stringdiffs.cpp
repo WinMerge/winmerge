@@ -1,7 +1,7 @@
 /** 
  * @file  stringdiffs.cpp
  *
- * @brief Implementation file for sd_ComputeWordDiffs (q.v.)
+ * @brief Implementation file for ComputeWordDiffs (q.v.)
  *
  */
 
@@ -17,6 +17,9 @@
 
 using std::vector;
 
+namespace strdiff
+{
+
 static bool Initialized;
 static bool CustomChars;
 static TCHAR *BreakChars;
@@ -25,13 +28,13 @@ static TCHAR BreakCharDefaults[] = _T(",.;:");
 static bool isSafeWhitespace(TCHAR ch);
 static bool isWordBreak(int breakType, const TCHAR *str, int index);
 
-void sd_Init()
+void Init()
 {
 	BreakChars = &BreakCharDefaults[0];
 	Initialized = true;
 }
 
-void sd_Close()
+void Close()
 {
 	if (CustomChars)
 	{
@@ -42,7 +45,7 @@ void sd_Close()
 	Initialized = false;
 }
 
-void sd_SetBreakChars(const TCHAR *breakChars)
+void SetBreakChars(const TCHAR *breakChars)
 {
 	assert(Initialized);
 
@@ -54,12 +57,12 @@ void sd_SetBreakChars(const TCHAR *breakChars)
 }
 
 void
-sd_ComputeWordDiffs(const String& str1, const String& str2,
+ComputeWordDiffs(const String& str1, const String& str2,
 	bool case_sensitive, int whitespace, int breakType, bool byte_level,
 	std::vector<wdiff> * pDiffs)
 {
 	String strs[3] = {str1, str2, _T("")};
-	sd_ComputeWordDiffs(2, strs, case_sensitive, whitespace, breakType, byte_level, pDiffs);
+	ComputeWordDiffs(2, strs, case_sensitive, whitespace, breakType, byte_level, pDiffs);
 }
 
 struct Comp02Functor
@@ -94,7 +97,7 @@ struct Comp02Functor
  * @brief Construct our worker object and tell it to do the work
  */
 void
-sd_ComputeWordDiffs(int nFiles, const String str[3],
+ComputeWordDiffs(int nFiles, const String str[3],
 	bool case_sensitive, int whitespace, int breakType, bool byte_level,
 	std::vector<wdiff> * pDiffs)
 {
@@ -759,7 +762,7 @@ AdvanceOverWhitespace(LPCTSTR * pcurrent, LPCTSTR end)
  * Assumes whitespace is never leadbyte or trailbyte!
  */
 void
-sd_ComputeByteDiff(String & str1, String & str2, 
+ComputeByteDiff(String & str1, String & str2, 
 		   bool casitive, int xwhite, 
 		   int begin[2], int end[2], bool equal)
 {
@@ -1009,7 +1012,7 @@ void stringdiffs::wordLevelToByteLevel()
 		String str1_2, str2_2;
 		str1_2 = m_str1.substr(diff.begin[0], diff.end[0] - diff.begin[0] + 1);
 		str2_2 = m_str2.substr(diff.begin[1], diff.end[1] - diff.begin[1] + 1);
-		sd_ComputeByteDiff(str1_2, str2_2, m_case_sensitive, m_whitespace, begin, end, false);
+		ComputeByteDiff(str1_2, str2_2, m_case_sensitive, m_whitespace, begin, end, false);
 		if (begin[0] == -1)
 		{
 			// no visible diff on side1
@@ -1033,3 +1036,4 @@ void stringdiffs::wordLevelToByteLevel()
 	}
 }
 
+}

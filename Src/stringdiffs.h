@@ -1,13 +1,16 @@
 /** 
  * @file  stringdiffs.h
  *
- * @brief Interface file declaring sd_ComputeWordDiffs (q.v.)
+ * @brief Interface file declaring ComputeWordDiffs (q.v.)
  *
  */
 #pragma once
 
 #include "UnicodeString.h"
 #include <vector>
+
+namespace strdiff
+{
 
 /** @brief One difference between two strings */
 struct wdiff {
@@ -38,18 +41,20 @@ struct wdiff {
 	}
 };
 
-void sd_Init();
-void sd_Close();
+void Init();
+void Close();
 
-void sd_SetBreakChars(const TCHAR *breakChars);
+void SetBreakChars(const TCHAR *breakChars);
 
-void sd_ComputeWordDiffs(const String& str1, const String& str2,
+void ComputeWordDiffs(const String& str1, const String& str2,
 	bool case_sensitive, int whitespace, int breakType, bool byte_level,
 	std::vector<wdiff> * pDiffs);
-void sd_ComputeWordDiffs(int nStrings, const String str[3], 
+void ComputeWordDiffs(int nStrings, const String str[3], 
                    bool case_sensitive, int whitespace, int breakType, bool byte_level,
 				   std::vector<wdiff> * pDiffs);
 
-void sd_ComputeByteDiff(const String& str1, const String& str2,
+void ComputeByteDiff(const String& str1, const String& str2,
 			bool casitive, int xwhite, 
 			int begin[2], int end[2], bool equal);
+
+}

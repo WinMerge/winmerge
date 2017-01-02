@@ -288,7 +288,7 @@ CMainFrame::CMainFrame()
 CMainFrame::~CMainFrame()
 {
 	GetOptionsMgr()->SaveOption(OPT_TABBAR_AUTO_MAXWIDTH, m_wndTabBar.GetAutoMaxWidth());
-	sd_Close();
+	strdiff::Close();
 }
 
 #ifdef _UNICODE
@@ -839,7 +839,7 @@ void CMainFrame::OnOptions()
 
 		theApp.UpdateCodepageModule();
 
-		sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
+		strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
 		// make an attempt at rescanning any open diff sessions
 		ApplyDiffOptions();
