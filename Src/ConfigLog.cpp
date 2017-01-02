@@ -294,7 +294,7 @@ bool CConfigLog::DoFile(String &sError)
 	WritePluginsInLogFile(L"BUFFER_PREDIFF");
 	FileWriteString(_T("\r\n Editor scripts: "));
 	WritePluginsInLogFile(L"EDITOR_SCRIPT");
-	if (IsWindowsScriptThere() == FALSE)
+	if (plugin::IsWindowsScriptThere() == FALSE)
 		FileWriteString(_T("\r\n .sct scripts disabled (Windows Script Host not found)\r\n"));
 
 	FileWriteString(_T("\r\n\r\n"));

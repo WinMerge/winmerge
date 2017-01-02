@@ -72,7 +72,7 @@ bool Packing(String & filepath, PackingInfo handler)
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = InvokePackFile(srcFileName,
+		bHandled = plugin::InvokePackFile(srcFileName,
 			dstFileName,
 			bufferData.GetNChanged(),
 			piScript, handler.subcode);
@@ -81,7 +81,7 @@ bool Packing(String & filepath, PackingInfo handler)
 	}
 	else
 	{
-		bHandled = InvokePackBuffer(*bufferData.GetDataBufferAnsi(),
+		bHandled = plugin::InvokePackBuffer(*bufferData.GetDataBufferAnsi(),
 			bufferData.GetNChanged(),
 			piScript, handler.subcode);
 		if (bHandled)
@@ -132,7 +132,7 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = InvokeUnpackFile(srcFileName,
+		bHandled = plugin::InvokeUnpackFile(srcFileName,
 			dstFileName,
 			bufferData.GetNChanged(),
 			piScript, subcode);
@@ -141,7 +141,7 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 	}
 	else
 	{
-		bHandled = InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
+		bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
 			bufferData.GetNChanged(),
 			piScript, subcode);
 		if (bHandled)
@@ -197,7 +197,7 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = InvokeUnpackFile(srcFileName,
+		bHandled = plugin::InvokeUnpackFile(srcFileName,
 			dstFileName,
 			bufferData.GetNChanged(),
 			plugin->m_lpDispatch, handler->subcode);
@@ -215,7 +215,7 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 		{
 			handler->pluginName = plugin->m_name;
 			handler->bWithFile = false;
-			bHandled = InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
+			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
 				bufferData.GetNChanged(),
 				plugin->m_lpDispatch, handler->subcode);
 			if (bHandled)
@@ -287,7 +287,7 @@ bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = InvokePrediffFile(srcFileName,
+		bHandled = plugin::InvokePrediffFile(srcFileName,
 			dstFileName,
 			bufferData.GetNChanged(),
 			piScript);
@@ -297,7 +297,7 @@ bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 	else
 	{
 		// probably it is for VB/VBscript so use a BSTR as argument
-		bHandled = InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
+		bHandled = plugin::InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
 			bufferData.GetNChanged(),
 			piScript);
 		if (bHandled)
@@ -340,7 +340,7 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = InvokePrediffFile(srcFileName,
+		bHandled = plugin::InvokePrediffFile(srcFileName,
 			dstFileName,
 			bufferData.GetNChanged(),
 			plugin->m_lpDispatch);
@@ -356,7 +356,7 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 			handler->pluginName = plugin->m_name;
 			handler->bWithFile = false;
 			// probably it is for VB/VBscript so use a BSTR as argument
-			bHandled = InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
+			bHandled = plugin::InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
 				bufferData.GetNChanged(),
 				plugin->m_lpDispatch);
 			if (bHandled)
@@ -459,7 +459,7 @@ void GetFreeFunctionsInScripts(std::vector<String>& sNamesArray, const wchar_t *
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		std::vector<String> scriptNamesArray;
 		std::vector<int> scriptIdsArray;
-		int nScriptFnc = GetMethodsFromScript(piScript, scriptNamesArray, scriptIdsArray);
+		int nScriptFnc = plugin::GetMethodsFromScript(piScript, scriptNamesArray, scriptIdsArray);
 		sNamesArray.resize(nFnc+nScriptFnc);
 
 		int iFnc;
@@ -493,11 +493,11 @@ bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChos
 
 	// iFncChosen is the index of the function in the script file
 	// we must convert it to the function ID
-	int fncID = GetMethodIDInScript(piScriptArray->at(iScript)->m_lpDispatch, iFncChosen);
+	int fncID = plugin::GetMethodIDInScript(piScriptArray->at(iScript)->m_lpDispatch, iFncChosen);
 
 	// execute the transform operation
 	int nChanged = 0;
-	InvokeTransformText(text, nChanged, piScriptArray->at(iScript)->m_lpDispatch, fncID);
+	plugin::InvokeTransformText(text, nChanged, piScriptArray->at(iScript)->m_lpDispatch, fncID);
 
 	return (nChanged != 0);
 }

@@ -165,7 +165,8 @@ public:
 	~CAssureScriptsForThread();
 };
 
-
+namespace plugin
+{
 
 /**
  * @brief Check for the presence of Windows Script
@@ -180,13 +181,6 @@ bool IsWindowsScriptThere();
  *
  */
 int GetMethodsFromScript(LPDISPATCH piDispatch, std::vector<String>& namesArray, std::vector<int>& IdArray);
-/**
- * @brief Is a function available in this scriptlet or activeX/COM DLL ?
- *
- * @param functionName name of the function in wchar_t
- */
-bool SearchScriptForFunctionName(LPDISPATCH piDispatch, wchar_t *functionName);
-
 
 /**
  * @brief Get the number of methods in the script
@@ -258,3 +252,5 @@ bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & n
  * @brief Call the plugin "ShowSettingsDialog" method
  */
 bool InvokeShowSettingsDialog(LPDISPATCH piScript);
+
+}

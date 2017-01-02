@@ -143,7 +143,7 @@ void PluginsListDlg::OnBnClickedPluginSettings()
 			if (plugin)
 			{
 				EnableWindow(false);
-				InvokeShowSettingsDialog(plugin->m_lpDispatch);
+				plugin::InvokeShowSettingsDialog(plugin->m_lpDispatch);
 				EnableWindow(true);
 				SetForegroundWindow();
 				break;
