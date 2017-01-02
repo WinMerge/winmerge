@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include "codepage.h"
 #include "unicoder.h"
 
 namespace
@@ -61,7 +60,7 @@ namespace
 		int n;
 
 		// UTF8->UCS2LE
-		n = ucr::CrossConvert(str_utf8, strlen(str_utf8), (char *)wbuf, sizeof(wbuf), CP_UTF8, 1200, &lossy);
+		n = ucr::CrossConvert(str_utf8, strlen(str_utf8), (char *)wbuf, sizeof(wbuf), ucr::CP_UTF_8, 1200, &lossy);
 		EXPECT_STREQ(str_ucs2, wbuf);
 		EXPECT_EQ(wcslen(str_ucs2) * sizeof(wchar_t), n);
 
@@ -77,12 +76,12 @@ namespace
 		EXPECT_EQ(wcslen(str_ucs2) * sizeof(wchar_t), n);
 
 		// UTF8->UCS2BE
-		n = ucr::CrossConvert(str_utf8, strlen(str_utf8), (char *)wbuf, sizeof(wbuf), CP_UTF8, 1201, &lossy);
+		n = ucr::CrossConvert(str_utf8, strlen(str_utf8), (char *)wbuf, sizeof(wbuf), ucr::CP_UTF_8, 1201, &lossy);
 		EXPECT_STREQ(str_ucs2be, wbuf);
 		EXPECT_EQ(wcslen(str_ucs2be) * sizeof(wchar_t), n);
 
 		// UCS2BE->UTF8
-		n = ucr::CrossConvert((char *)str_ucs2be, wcslen(str_ucs2be) * sizeof(wchar_t), buf, sizeof(buf), 1201, CP_UTF8, &lossy);
+		n = ucr::CrossConvert((char *)str_ucs2be, wcslen(str_ucs2be) * sizeof(wchar_t), buf, sizeof(buf), 1201, ucr::CP_UTF_8, &lossy);
 		EXPECT_STREQ(str_utf8, buf);
 		EXPECT_EQ(strlen(str_utf8), n);
 

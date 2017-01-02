@@ -13,7 +13,6 @@
 #include <memory>
 #include "unicoder.h"
 #include "ExConverter.h"
-#include "codepage.h"
 #include "charsets.h"
 #include "FileTextEncoding.h"
 #include "paths.h"
@@ -196,7 +195,7 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
 {
 	unsigned cp = ucr::getDefaultCodepage();
 	if (!ucr::CheckForInvalidUtf8(src, len))
-		cp = CP_UTF8;
+		cp = ucr::CP_UTF_8;
 	else if (guessEncodingType & 2)
 	{
 		IExconverter *pexconv = Exconverter::getInstance();
@@ -241,17 +240,17 @@ FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncoding
 	{
 	case 8 + 2 + 0:
 		encoding.SetUnicoding(ucr::UCS2LE);
-		encoding.SetCodepage(CP_UCS2LE);
+		encoding.SetCodepage(ucr::CP_UCS2LE);
 		encoding.m_bom = true;
 		break;
 	case 8 + 2 + 1:
 		encoding.SetUnicoding(ucr::UCS2BE);
-		encoding.SetCodepage(CP_UCS2BE);
+		encoding.SetCodepage(ucr::CP_UCS2BE);
 		encoding.m_bom = true;
 		break;
 	case 8 + 1:
 		encoding.SetUnicoding(ucr::UTF8);
-		encoding.SetCodepage(CP_UTF8);
+		encoding.SetCodepage(ucr::CP_UTF_8);
 		encoding.m_bom = true;
 		break;
 	default:

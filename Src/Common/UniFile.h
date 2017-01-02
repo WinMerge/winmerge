@@ -92,15 +92,15 @@ public:
 		m_codepage = codepage;
 		switch (m_codepage)
 		{
-		case CP_UCS2LE:
+		case ucr::CP_UCS2LE:
 			m_unicoding = ucr::UCS2LE;
 			m_charsize = 2;
 			break;
-		case CP_UCS2BE:
+		case ucr::CP_UCS2BE:
 			m_unicoding = ucr::UCS2BE;
 			m_charsize = 2;
 			break;
-		case CP_UTF8:
+		case ucr::CP_UTF_8:
 			m_charsize = 1;
 			m_unicoding = ucr::UTF8;
 			break;

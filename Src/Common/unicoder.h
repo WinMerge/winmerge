@@ -9,7 +9,6 @@
 #pragma once
 
 #include "UnicodeString.h"
-#include "codepage.h"
 #include <cstdint>
 
 namespace ucr
@@ -27,6 +26,13 @@ struct buffer
 	explicit buffer(size_t initialSize);
 	~buffer();
 	void resize(size_t newSize);
+};
+
+enum
+{
+	CP_UTF_8  = 65001,
+	CP_UCS2LE = 1200,
+	CP_UCS2BE = 1201
 };
 
 /** @brief Known Unicode encodings. */

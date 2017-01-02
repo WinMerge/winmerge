@@ -63,6 +63,7 @@
 #include "Merge7zFormatMergePluginImpl.h"
 #include "7zCommon.h"
 #include "PatchTool.h"
+#include "charsets.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -309,7 +310,7 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, bool 
 	{
 	// we subvert the buffer's memory of the original file encoding
 		buf.setUnicoding(ucr::UTF8);  // write as UTF-8 (for preprocessing)
-		buf.setCodepage(CP_UTF8); // should not matter
+		buf.setCodepage(ucr::CP_UTF_8); // should not matter
 		buf.setHasBom(false);
 	}
 
@@ -439,7 +440,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	else
 		m_diffWrapper.SetPaths(PathContext(m_tempFiles[0].GetPath(), m_tempFiles[1].GetPath(), m_tempFiles[2].GetPath()), true);
 	m_diffWrapper.SetCompareFiles(m_filePaths);
-	m_diffWrapper.SetCodepage(bForceUTF8 ? CP_UTF8 : (m_ptBuf[0]->m_encoding.m_unicoding ? CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage));
+	m_diffWrapper.SetCodepage(bForceUTF8 ? ucr::CP_UTF_8 : (m_ptBuf[0]->m_encoding.m_unicoding ? CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage));
 	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
 			CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage);
 
@@ -2421,10 +2422,7 @@ bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
 {
 	if (!cp) // 0 is our signal value for invalid
 		return false;
-	// Codepage must be actually installed on system
-	// for us to be able to use it
-	// We accept whatever codepages that codepage module says are installed
-	return true;/*isCodepageInstalled(cp);*/ /* FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME */
+	return GetEncodingNameFromCodePage(cp) != NULL;
 }
 
 /**
@@ -3175,7 +3173,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		return false;
 	}
 
-	file.SetCodepage(CP_UTF8);
+	file.SetCodepage(ucr::CP_UTF_8);
 
 	String header = 
 		string_format(

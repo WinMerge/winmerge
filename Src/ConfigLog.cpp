@@ -31,7 +31,6 @@
 #include "Plugins.h"
 #include "paths.h"
 #include "unicoder.h"
-#include "codepage.h"
 #include "Environment.h"
 #include "MergeApp.h"
 #include "OptionsMgr.h"

@@ -36,7 +36,7 @@ bool UniMarkdownFile::DoOpen(const String& filename, AccessMode mode)
 		// CMarkdown wants octets, so we may need to transcode to UTF8.
 		// As transcoding strips the BOM, we must check for it in advance.
 		if (IsUnicode())
-			m_codepage = CP_UTF8;
+			m_codepage = ucr::CP_UTF_8;
 		// The CMarkdown::File constructor cares about transcoding.
 		CMarkdown::File f(
 			reinterpret_cast<const TCHAR *>(m_base),

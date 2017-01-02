@@ -1905,7 +1905,7 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName) const
 		return false;
 	}
 
-	file.SetCodepage(CP_UTF8);
+	file.SetCodepage(ucr::CP_UTF_8);
 
 	file.WriteString(
 		_T("<!DOCTYPE html>\n")

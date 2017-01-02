@@ -328,19 +328,19 @@ bool UniMemFile::ReadBom()
 	switch (m_unicoding)
 	{
 	case ucr::UCS2LE:
-		m_codepage = CP_UCS2LE;
+		m_codepage = ucr::CP_UCS2LE;
 		m_charsize = 2;
 		m_data = lpByte + 2;
 		unicode = true;
 		break;
 	case ucr::UCS2BE:
-		m_codepage = CP_UCS2BE;
+		m_codepage = ucr::CP_UCS2BE;
 		m_charsize = 2;
 		m_data = lpByte + 2;
 		unicode = true;
 		break;
 	case ucr::UTF8:
-		m_codepage = CP_UTF8;
+		m_codepage = ucr::CP_UTF_8;
 		m_charsize = 1;
 		if (bom)
 			m_data = lpByte + 3;
@@ -835,19 +835,19 @@ bool UniStdioFile::ReadBom()
 	switch (m_unicoding)
 	{
 	case ucr::UCS2LE:
-		m_codepage = CP_UCS2LE;
+		m_codepage = ucr::CP_UCS2LE;
 		m_charsize = 2;
 		m_data = 2;
 		unicode = true;
 		break;
 	case ucr::UCS2BE:
-		m_codepage = CP_UCS2BE;
+		m_codepage = ucr::CP_UCS2BE;
 		m_charsize = 2;
 		m_data = 2;
 		unicode = true;
 		break;
 	case ucr::UTF8:
-		m_codepage = CP_UTF8;
+		m_codepage = ucr::CP_UTF_8;
 		if (bom)
 			m_data = 3;
 		else

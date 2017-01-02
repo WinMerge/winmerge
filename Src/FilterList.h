@@ -7,9 +7,8 @@
 
 #include <vector>
 #include <memory>
-#define POCO_NO_UNWINDOWS 1
 #include <Poco/RegularExpression.h>
-#include "codepage.h"
+#include "unicoder.h"
 
 /**
  * @brief Container for one filtering rule / compiled expression.
@@ -41,7 +40,7 @@ public:
 	void AddRegExp(const std::string& regularExpression);
 	void RemoveAllFilters();
 	bool HasRegExps() const;
-	bool Match(const std::string& string, int codepage = CP_UTF8);
+	bool Match(const std::string& string, int codepage = ucr::CP_UTF_8);
 	const char * GetLastMatchExpression() const;
 
 private:

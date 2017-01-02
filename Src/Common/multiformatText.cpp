@@ -43,7 +43,6 @@
 #include "ExConverter.h"
 #include "paths.h"
 #include "UniFile.h"
-#include "codepage.h"
 #include "codepage_detect.h"
 #include "Environment.h"
 #include "TFile.h"
@@ -211,7 +210,7 @@ void storageForPlugins::ValidateInternal(bool bNewIsFile, bool bNewIsUnicode)
 	m_bCurrentIsFile = bNewIsFile;
 	if (bNewIsUnicode)
 	{
-		m_codepage = CP_UCS2LE;
+		m_codepage = ucr::CP_UCS2LE;
 		m_nBomSize = 2;	
 	}
 	else
@@ -280,7 +279,7 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 				int bom_bytes = ucr::writeBom(shmOut.begin(), ucr::UCS2LE);
 				// to UCS-2 conversion, from unicoder.cpp maketstring
 				bool lossy;
-				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin()+bom_bytes, textForeseenSize-1, m_codepage, CP_UCS2LE, &lossy);
+				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin()+bom_bytes, textForeseenSize-1, m_codepage, ucr::CP_UCS2LE, &lossy);
 			}
 			// size may have changed
 			fileOut.setSize(textRealSize + bom_bytes);
@@ -357,7 +356,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 			{
 				// to UCS-2 conversion, from unicoder.cpp maketstring
 				bool lossy;
-				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)pbstrBuffer, textForeseenSize-1, m_codepage, CP_UCS2LE, &lossy);
+				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)pbstrBuffer, textForeseenSize-1, m_codepage, ucr::CP_UCS2LE, &lossy);
 				SysFreeString(m_bstr);
 				m_bstr = SysAllocStringLen(tempBSTR.get(), textRealSize / sizeof(wchar_t));
 				if (!m_bstr)
@@ -630,13 +629,13 @@ bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filep
 			if (pexconv)
 			{
 				size_t srcbytes2 = srcbytes;
-				if (!pexconv->convert(codepage, CP_UTF8, (const unsigned char *)pszBuf+pos, &srcbytes2, (unsigned char *)obuf.begin(), &destbytes))
+				if (!pexconv->convert(codepage, ucr::CP_UTF_8, (const unsigned char *)pszBuf+pos, &srcbytes2, (unsigned char *)obuf.begin(), &destbytes))
 					throw "failed to convert file contents to utf-8";
 			}
 			else
 			{
 				bool lossy = false;
-				destbytes = ucr::CrossConvert((const char *)pszBuf+pos, static_cast<unsigned>(srcbytes), obuf.begin(), static_cast<unsigned>(destbytes), codepage, CP_UTF8, &lossy);
+				destbytes = ucr::CrossConvert((const char *)pszBuf+pos, static_cast<unsigned>(srcbytes), obuf.begin(), static_cast<unsigned>(destbytes), codepage, ucr::CP_UTF_8, &lossy);
 			}
 			fout.write(obuf.begin(), destbytes);
 			pos += srcbytes;
