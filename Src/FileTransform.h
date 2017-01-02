@@ -29,6 +29,12 @@
 #include "UnicodeString.h"
 #include "MergeApp.h"
 
+namespace FileTransform
+{
+extern int g_bUnpackerMode;
+extern int g_bPredifferMode;
+}
+
 class UniFile;
 
 /**
@@ -44,10 +50,6 @@ enum PLUGIN_MODE
 	PREDIFF_MANUAL = PLUGIN_MANUAL,
 	PREDIFF_AUTO = PLUGIN_AUTO,
 };
-
-extern int g_bUnpackerMode;
-extern int g_bPredifferMode;
-
 
 /**
  * @brief Plugin information for a given file
@@ -96,7 +98,7 @@ public:
 class PackingInfo : public PluginForFile
 {
 public:
-	explicit PackingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)g_bUnpackerMode)
+	explicit PackingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)FileTransform::g_bUnpackerMode)
 	: PluginForFile(bMode)
 	, subcode(0)
 	, pufile(0)
@@ -121,12 +123,14 @@ public:
 class PrediffingInfo : public PluginForFile
 {
 public:
-	explicit PrediffingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)g_bPredifferMode)
+	explicit PrediffingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)FileTransform::g_bPredifferMode)
 	: PluginForFile(bMode)
 	{
 	}
 };
 
+namespace FileTransform
+{
 
 // Events handler
 // WinMerge uses one of these entry points to call a plugin
@@ -145,15 +149,15 @@ public:
  * @note Event FILE_UNPACK
  * Apply only the first correct handler
  */
-bool FileTransform_Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode);
+bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode);
 /**
  * @brief Prepare one file for loading, known handler
  *
  * @param filepath : [in, out] Most plugins change this filename
  */
-bool FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode);
+bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode);
 
-bool FileTransform_Unpacking(PackingInfo * handler, String & filepath, const String& filteredText);
+bool Unpacking(PackingInfo * handler, String & filepath, const String& filteredText);
 
 /**
  * @brief Prepare one file for saving, known handler
@@ -165,7 +169,7 @@ bool FileTransform_Unpacking(PackingInfo * handler, String & filepath, const Str
  * @note Event FILE_PACK
  * Never do Unicode conversion, it was done in SaveFromFile
  */
-bool FileTransform_Packing(String & filepath, PackingInfo handler);
+bool Packing(String & filepath, PackingInfo handler);
 
 /**
  * @brief Prepare one file for diffing, scan all available plugins (events+filename filtering) 
@@ -178,15 +182,15 @@ bool FileTransform_Packing(String & filepath, PackingInfo handler);
  * @note Event FILE_PREDIFF BUFFER_PREDIFF
  * Apply only the first correct handler
  */
-bool FileTransform_Prediffing(String & filepath, const String& filteredText, PrediffingInfo * handler, bool bMayOverwrite);
+bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * handler, bool bMayOverwrite);
 /**
  * @brief Prepare one file for diffing, known handler
  *
  * @param filepath : [in, out] Most plugins change this filename
  */
-bool FileTransform_Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite);
+bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite);
 
-bool FileTransform_Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite);
+bool Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite);
 
 /**
  * @brief Transform all files to UTF8 aslong possible
@@ -199,7 +203,7 @@ bool FileTransform_Prediffing(PrediffingInfo * handler, String & filepath, const
  * convert all Ansi or unicode-files to UTF8 
  * if other file is unicode or uses a different codepage
  */
-bool FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite);
+bool AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite);
 
 
 /**
@@ -231,4 +235,6 @@ void GetFreeFunctionsInScripts(std::vector<String> & sNamesArray, const wchar_t 
  *
  * @note Event EDITOR_SCRIPT, ?
  */
-bool TextTransform_Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen);
+bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen);
+
+}

@@ -112,7 +112,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			// Invoke unpacking plugins
 			if (infoUnpacker && strutils::compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
 			{
-				if (!FileTransform_Unpacking(infoUnpacker, filepathUnpacked[nIndex], filteredFilenames))
+				if (!FileTransform::Unpacking(infoUnpacker, filepathUnpacked[nIndex], filteredFilenames))
 					goto exitPrepAndCompare;
 
 				// we use the same plugins for both files, so they must be defined before second file

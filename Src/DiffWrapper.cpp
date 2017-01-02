@@ -709,7 +709,7 @@ bool CDiffWrapper::RunFileDiff()
 
 			// this can only fail if the data can not be saved back (no more
 			// place on disk ???) What to do then ??
-			if (!FileTransform_Prediffing(m_infoPrediffer.get(), strFileTemp[file], m_sToFindPrediffer, m_bPathsAreTemp))
+			if (!FileTransform::Prediffing(m_infoPrediffer.get(), strFileTemp[file], m_sToFindPrediffer, m_bPathsAreTemp))
 			{
 				// display a message box
 				String sError = strutils::format(

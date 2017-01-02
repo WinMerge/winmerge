@@ -358,8 +358,8 @@ BOOL CMergeApp::InitInstance()
 	if (m_pSourceControl)
 		m_pSourceControl->InitializeSourceControlMembers();
 
-	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
-	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
+	FileTransform::g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
+	FileTransform::g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
