@@ -82,18 +82,18 @@ void PropRegistry::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
 
-	String sExtEditor = string_trim_ws(m_strEditorPath);
+	String sExtEditor = strutils::trim_ws(m_strEditorPath);
 	if (sExtEditor.empty())
 		sExtEditor = GetOptionsMgr()->GetDefault<String>(OPT_EXT_EDITOR_CMD);
 	GetOptionsMgr()->SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
 
-	String sFilterPath = string_trim_ws(m_strUserFilterPath);
+	String sFilterPath = strutils::trim_ws(m_strUserFilterPath);
 	GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, sFilterPath);
 
 	bool useSysTemp = m_tempFolderType == 0;
 	GetOptionsMgr()->SaveOption(OPT_USE_SYSTEM_TEMP_PATH, useSysTemp);
 
-	String tempFolder = string_trim_ws(m_tempFolder);
+	String tempFolder = strutils::trim_ws(m_tempFolder);
 	GetOptionsMgr()->SaveOption(OPT_CUSTOM_TEMP_PATH, tempFolder);
 }
 

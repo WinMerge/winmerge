@@ -613,9 +613,9 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 			sDirName[index] = paths::FindFileName(strPath);
 		}
 		if (std::count(&sDirName[0], &sDirName[0] + m_nDirs, sDirName[0]) == m_nDirs)
-			sTitle = sDirName[0] + string_format(_T(" x %d"), m_nDirs);
+			sTitle = sDirName[0] + strutils::format(_T(" x %d"), m_nDirs);
  		else
-			sTitle = string_join(&sDirName[0], &sDirName[0] + m_nDirs, _T(" - "));
+			sTitle = strutils::join(&sDirName[0], &sDirName[0] + m_nDirs, _T(" - "));
  		CDocument::SetTitle(sTitle.c_str());
 	}	
 }

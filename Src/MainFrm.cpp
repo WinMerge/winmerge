@@ -1023,7 +1023,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 
 		if (!prediffer.empty())
 		{
-			String strBothFilenames = string_join(files.begin(), files.end(), _T("|"));
+			String strBothFilenames = strutils::join(files.begin(), files.end(), _T("|"));
 			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, prediffer);
 		}
 
@@ -1287,13 +1287,13 @@ void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 	list.push_back(szItem);
 	for (UINT i=0 ; i<cnt; ++i)
 	{
-		s = AfxGetApp()->GetProfileString(szRegSubKey, string_format(_T("Item_%d"), i).c_str());
+		s = AfxGetApp()->GetProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str());
 		if (s != szItem)
 			list.push_back(s);
 	}
 	cnt = list.size() > nMaxItems ? nMaxItems : static_cast<UINT>(list.size());
 	for (UINT i=0 ; i<cnt; ++i)
-		AfxGetApp()->WriteProfileString(szRegSubKey, string_format(_T("Item_%d"), i).c_str(), list[i]);
+		AfxGetApp()->WriteProfileString(szRegSubKey, strutils::format(_T("Item_%d"), i).c_str(), list[i]);
 	// update count
 	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
 }
@@ -1538,7 +1538,7 @@ void CMainFrame::OnSaveConfigData()
 	else
 	{
 		String sFileName = configLog.GetFileName();
-		String msg = string_format_string2(_("Cannot open file\n%1\n\n%2"), sFileName, sError);
+		String msg = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), sFileName, sError);
 		AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
 	}
 }
@@ -2214,14 +2214,14 @@ void CMainFrame::OnHelpCheckForUpdates()
 		file->Read(buf, sizeof(buf));
 		file->Close();
 		String current_version = ucr::toTString(buf);
-		string_replace(current_version, _T("\r\n"), _T(""));
+		strutils::replace(current_version, _T("\r\n"), _T(""));
 		delete file;
 
 		int exe_vers[4] = { 0 }, cur_vers[4] = { 0 };
 		_stscanf(version.GetProductVersion().c_str(), _T("%d.%d.%d.%d"), &exe_vers[0], &exe_vers[1], &exe_vers[2], &exe_vers[3]);
 		_stscanf(current_version.c_str(),             _T("%d.%d.%d.%d"), &cur_vers[0], &cur_vers[1], &cur_vers[2], &cur_vers[3]);
-		String exe_version_hex = string_format(_T("%08x%08x%08x%08x"), exe_vers[0], exe_vers[1], exe_vers[2], exe_vers[3]);
-		String cur_version_hex = string_format(_T("%08x%08x%08x%08x"), cur_vers[0], cur_vers[1], cur_vers[2], cur_vers[3]);
+		String exe_version_hex = strutils::format(_T("%08x%08x%08x%08x"), exe_vers[0], exe_vers[1], exe_vers[2], exe_vers[3]);
+		String cur_version_hex = strutils::format(_T("%08x%08x%08x%08x"), cur_vers[0], cur_vers[1], cur_vers[2], cur_vers[3]);
 
 		switch (exe_version_hex.compare(cur_version_hex))
 		{
@@ -2241,7 +2241,7 @@ void CMainFrame::OnHelpCheckForUpdates()
 		}
 		case -1:
 		{
-			String msg = string_format_string2(_("A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"), current_version, version.GetProductVersion());
+			String msg = strutils::format_string2(_("A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"), current_version, version.GetProductVersion());
 			if (AfxMessageBox(msg.c_str(), MB_ICONINFORMATION | MB_YESNO) == IDYES)
 				ShellExecute(NULL, _T("open"), GetOptionsMgr()->GetString(OPT_DOWNLOAD_URL).c_str(), NULL, NULL, SW_SHOWNORMAL);
 			break;
@@ -2296,7 +2296,7 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 		bool confFile = IsConflictFile(conflictFile);
 		if (!confFile)
 		{
-			String message = string_format_string1(_("The file\n%1\nis not a conflict file."), conflictFile);
+			String message = strutils::format_string1(_("The file\n%1\nis not a conflict file."), conflictFile);
 			AfxMessageBox(message.c_str(), MB_ICONSTOP);
 			return FALSE;
 		}
@@ -2481,7 +2481,7 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 		int ID = ID_MRU_FIRST;	// first ID in menu
 		for (i = 0 ; i < mrus.size() ; i++, ID++)
 			::AppendMenu(hMenu, MF_STRING, ID, 
-				((i < 9 ? string_format(_T("&%d "), i+1) : string_format(_T("&%c "), 'a' + i - 9)) 
+				((i < 9 ? strutils::format(_T("&%d "), i+1) : strutils::format(_T("&%c "), 'a' + i - 9)) 
 					+ mrus[i].title).c_str());
 	}
 

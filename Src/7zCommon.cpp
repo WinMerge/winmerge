@@ -638,7 +638,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 					break;
 				if (res.files[0].find(path) == 0)
 				{
-					VERIFY(::DeleteFile(res.files[0].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), res.files[0].c_str())), false));
+					VERIFY(::DeleteFile(res.files[0].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[0].c_str())), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[0].c_str());
 				res.files[0] = OLE2T(pTmp);
@@ -663,7 +663,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 					break;;
 				if (res.files[1].find(path) == 0)
 				{
-					VERIFY(::DeleteFile(res.files[1].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), res.files[1].c_str())), false));
+					VERIFY(::DeleteFile(res.files[1].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[1].c_str())), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[1].c_str());
 				res.files[1] = OLE2T(pTmp);
@@ -688,7 +688,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 					break;;
 				if (res.files[2].find(path) == 0)
 				{
-					VERIFY(::DeleteFile(res.files[2].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), res.files[2].c_str())), false));
+					VERIFY(::DeleteFile(res.files[2].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[2].c_str())), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[1].c_str());
 				res.files[2] = OLE2T(pTmp);

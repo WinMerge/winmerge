@@ -87,7 +87,7 @@ bool CTestFilterDlg::CheckText(String text) const
 	if (isDir)
 	{
 		// Convert any forward slashes to canonical Windows-style backslashes
-		string_replace(text, _T("/"), _T("\\"));
+		strutils::replace(text, _T("/"), _T("\\"));
 		return m_pFileFilterMgr->TestDirNameAgainstFilter(m_pFileFilter, text);
 	}
 	else

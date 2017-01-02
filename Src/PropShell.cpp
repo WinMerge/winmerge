@@ -141,7 +141,7 @@ void PropShell::GetContextRegValues()
 	retVal = reg.Open(HKEY_CURRENT_USER, RegDir);
 	if (retVal != ERROR_SUCCESS)
 	{
-		String msg = string_format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
+		String msg = strutils::format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
 			RegDir, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 		return;
@@ -175,7 +175,7 @@ void PropShell::SaveMergePath()
 	retVal = reg.Open(HKEY_CURRENT_USER, RegDir);
 	if (retVal != ERROR_SUCCESS)
 	{
-		String msg = string_format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
+		String msg = strutils::format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
 			RegDir, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 		return;
@@ -185,7 +185,7 @@ void PropShell::SaveMergePath()
 	retVal = reg.WriteString(f_RegValuePath, temp);
 	if (retVal != ERROR_SUCCESS)
 	{
-		String msg = string_format(_T("Failed to set registry value %s:\n\t%d : %s"),
+		String msg = strutils::format(_T("Failed to set registry value %s:\n\t%d : %s"),
 			f_RegValuePath, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 	}
@@ -205,7 +205,7 @@ void PropShell::SaveMergePath()
 	retVal = reg.WriteDword(f_RegValueEnabled, dwContextEnabled);
 	if (retVal != ERROR_SUCCESS)
 	{
-		String msg = string_format(_T("Failed to set registry value %s to %d:\n\t%d : %s"),
+		String msg = strutils::format(_T("Failed to set registry value %s to %d:\n\t%d : %s"),
 			f_RegValueEnabled, dwContextEnabled, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 	}

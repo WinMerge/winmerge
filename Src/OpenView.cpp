@@ -452,7 +452,7 @@ void COpenView::OnOK()
 	// If left path is a project-file, load it
 	String ext;
 	paths::SplitFilename(m_strPath[0], NULL, NULL, &ext);
-	if (m_strPath[1].empty() && string_compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
+	if (m_strPath[1].empty() && strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 		LoadProjectFile(m_strPath[0]);
 
 	pathsType = paths::GetPairComparability(m_files, IsArchiveFile);
@@ -467,7 +467,7 @@ void COpenView::OnOK()
 	{
 		// If user has edited path by hand, expand environment variables
 		bool bExpand = false;
-		if (string_compare_nocase(m_strBrowsePath[index], m_files[index]) != 0)
+		if (strutils::compare_nocase(m_strBrowsePath[index], m_files[index]) != 0)
 			bExpand = true;
 
 		if (!paths::IsURLorCLSID(m_files[index]))
@@ -484,7 +484,7 @@ void COpenView::OnOK()
 	UpdateData(FALSE);
 	KillTimer(IDT_CHECKFILES);
 
-	String filter(string_trim_ws(m_strExt));
+	String filter(strutils::trim_ws(m_strExt));
 
 	// If prefix found from start..
 	if (filter.substr(0, filterPrefix.length()) == filterPrefix)
@@ -614,7 +614,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		BOOL bProject = FALSE;
 		String ext;
 		paths::SplitFilename(paths[0], NULL, NULL, &ext);
-		if (paths[1].empty() && string_compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
+		if (paths[1].empty() && strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 			bProject = TRUE;
 
 		if (!bProject)
@@ -881,7 +881,7 @@ void COpenView::OnSelectFilter()
 
 	const BOOL bUseMask = theApp.m_pGlobalFileFilter->IsUsingMask();
 	GetDlgItemText(IDC_EXT_COMBO, curFilter);
-	curFilter = string_trim_ws(curFilter);
+	curFilter = strutils::trim_ws(curFilter);
 
 	GetMainFrame()->SelectFilter();
 	
@@ -938,7 +938,7 @@ BOOL COpenView::LoadProjectFile(const String &path)
 	}
 	if (prj.HasFilter())
 	{
-		m_strExt = string_trim_ws(prj.GetFilter());
+		m_strExt = strutils::trim_ws(prj.GetFilter());
 		if (m_strExt[0] != '*')
 			m_strExt.insert(0, filterPrefix);
 	}
@@ -952,7 +952,7 @@ BOOL COpenView::LoadProjectFile(const String &path)
 void COpenView::TrimPaths()
 {
 	for (int index = 0; index < countof(m_strPath); index++)
-		m_strPath[index] = string_trim_ws(m_strPath[index]);
+		m_strPath[index] = strutils::trim_ws(m_strPath[index]);
 }
 
 /** 

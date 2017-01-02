@@ -387,7 +387,7 @@ void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 	{
 		s = lpVersion;
 		if (!s.empty())
-			s = string_trim_ws(s);
+			s = strutils::trim_ws(s);
 	}
 	else
 		s.clear();

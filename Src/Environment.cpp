@@ -81,7 +81,7 @@ String GetTempChildPath()
 	String path;
 	do
 	{
-		path = paths::ConcatPath(GetTemporaryPath(), string_format(_T("%08x"), rand()));
+		path = paths::ConcatPath(GetTemporaryPath(), strutils::format(_T("%08x"), rand()));
 	} while (paths::IsDirectory(path) || !paths::CreateIfNeeded(path));
 	return path;
 }

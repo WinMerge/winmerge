@@ -182,7 +182,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 	for (int i = 0; i < count; i++)
 	{
 		String desc = m_listFilters.GetItemText(i, 2);
-		if (string_compare_nocase(desc, m_sFileFilterPath) == 0)
+		if (strutils::compare_nocase(desc, m_sFileFilterPath) == 0)
 		{
 			SelectFilterByIndex(i);
 		}
@@ -275,7 +275,7 @@ bool FileFiltersDlg::IsFilterItemNone(int item) const
 	String txtNone = _("<None>");
 	String txt = m_listFilters.GetItemText(item, 0);
 
-	return (string_compare_nocase(txt, txtNone) == 0);
+	return (strutils::compare_nocase(txt, txtNone) == 0);
 }
 
 /**
@@ -295,7 +295,7 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 		String txtNone = _("<None>");
 		String txt = m_listFilters.GetItemText(pNMLV->iItem, 0);
 
-		bool isNone = string_compare_nocase(txt, txtNone) == 0;
+		bool isNone = strutils::compare_nocase(txt, txtNone) == 0;
 
 		EnableDlgItem(IDC_FILTERFILE_TEST_BTN, !isNone);
 		EnableDlgItem(IDC_FILTERFILE_EDITBTN, !isNone);
@@ -402,7 +402,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 	if (paths::DoesPathExist(templatePath) != paths::IS_EXISTING_FILE)
 	{
-		String msg = string_format_string2(
+		String msg = strutils::format_string2(
 			_("Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."),
 			FILE_FILTER_TEMPLATE, templatePath);
 		AfxMessageBox(msg.c_str(), MB_ICONERROR);
@@ -451,7 +451,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		// user has already allowed it.
 		if (!CopyFile(templatePath.c_str(), s.c_str(), FALSE))
 		{
-			String msg = string_format_string1(
+			String msg = strutils::format_string1(
 				_( "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."),
 				templatePath);
 			AfxMessageBox(msg.c_str(), MB_ICONERROR);
@@ -488,7 +488,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 	{
 		path = m_listFilters.GetItemText(sel, 2);
 
-		String sConfirm = string_format_string1(_("Are you sure you want to delete\n\n%1 ?"), path);
+		String sConfirm = strutils::format_string1(_("Are you sure you want to delete\n\n%1 ?"), path);
 		int res = AfxMessageBox(sConfirm.c_str(), MB_ICONWARNING | MB_YESNO);
 		if (res == IDYES)
 		{
@@ -506,7 +506,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 			}
 			else
 			{
-				String msg = string_format_string1(
+				String msg = strutils::format_string1(
 					_("Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"),
 					path);
 				AfxMessageBox(msg.c_str(), MB_ICONSTOP);

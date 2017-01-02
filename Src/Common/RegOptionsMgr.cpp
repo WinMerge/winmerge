@@ -533,7 +533,7 @@ int CRegOptionsMgr::ExportOptions(const String& filename) const
 		}
 		else if (value.GetType() == varprop::VT_INT)
 		{
-			strVal = string_to_str(value.GetInt());
+			strVal = strutils::to_str(value.GetInt());
 		}
 		else if (value.GetType() == varprop::VT_STRING)
 		{

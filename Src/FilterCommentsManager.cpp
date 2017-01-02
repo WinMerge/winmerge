@@ -59,7 +59,7 @@ void FilterCommentsManager::Load()
 		for(SectionNo = 0;;++SectionNo) 
 		{//Get each set of markers
 			FilterCommentsSet filtercommentsset;
-			std::string SectionName = "set" + ucr::toUTF8(string_to_str(SectionNo));
+			std::string SectionName = "set" + ucr::toUTF8(strutils::to_str(SectionNo));
 			filtercommentsset.StartMarker = pConf->getString(SectionName + ".StartMarker", "");
 			filtercommentsset.EndMarker = pConf->getString(SectionName + ".EndMarker", "");
 			filtercommentsset.InlineMarker = pConf->getString(SectionName + ".InlineMarker", "");
@@ -72,7 +72,7 @@ void FilterCommentsManager::Load()
 			int FileTypeNo = 0;
 			for(FileTypeNo = 0;;++FileTypeNo) 
 			{//Get each file type associated with current set of markers
-				std::string FileTypeFieldName = ".FileType" + ucr::toUTF8(string_to_str(FileTypeNo));
+				std::string FileTypeFieldName = ".FileType" + ucr::toUTF8(strutils::to_str(FileTypeNo));
 				std::string FileTypeExtensionName = pConf->getString(SectionName + FileTypeFieldName, "");
 				if (FileTypeExtensionName.empty())
 					break;

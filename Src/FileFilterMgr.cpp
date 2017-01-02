@@ -113,7 +113,7 @@ void FileFilterMgr::RemoveFilter(const String& szFilterFile)
 	vector<FileFilterPtr>::iterator iter = m_filters.begin();
 	while (iter != m_filters.end())
 	{
-		if (string_compare_nocase((*iter)->fullpath, szFilterFile) == 0)
+		if (strutils::compare_nocase((*iter)->fullpath, szFilterFile) == 0)
 		{
 			m_filters.erase(iter);
 			break;
@@ -139,7 +139,7 @@ void FileFilterMgr::DeleteAllFilters()
 static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str)
 {
 	const String& commentLeader = _T("##"); // Starts comment
-	str = string_trim_ws_begin(str);
+	str = strutils::trim_ws_begin(str);
 
 	// Ignore lines beginning with '##'
 	size_t pos = str.find(commentLeader);
@@ -153,7 +153,7 @@ static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & 
 	// Remove comment and whitespaces before it
 	if (pos != std::string::npos)
 		str = str.substr(0, pos);
-	str = string_trim_ws_end(str);
+	str = strutils::trim_ws_end(str);
 	if (str.empty())
 		return;
 
@@ -203,13 +203,13 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 		String tmpLine;
 		bLinesLeft = file.ReadString(tmpLine, &lossy);
 		sLine = tmpLine;
-		sLine = string_trim_ws(sLine);
+		sLine = strutils::trim_ws(sLine);
 
 		if (0 == sLine.compare(0, 5, _T("name:"), 5))
 		{
 			// specifies display name
 			String str = sLine.substr(5);
-			str = string_trim_ws_begin(str);
+			str = strutils::trim_ws_begin(str);
 			if (!str.empty())
 				pfilter->name = str;
 		}
@@ -217,7 +217,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 		{
 			// specifies display name
 			String str = sLine.substr(5);
-			str = string_trim_ws_begin(str);
+			str = strutils::trim_ws_begin(str);
 			if (!str.empty())
 				pfilter->description = str;
 		}
@@ -225,7 +225,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 		{
 			// specifies default
 			String str = sLine.substr(4);
-			str = string_trim_ws_begin(str);
+			str = strutils::trim_ws_begin(str);
 			if (str == _T("0") || str == _T("no") || str == _T("exclude"))
 				pfilter->default_include = false;
 			else if (str == _T("1") || str == _T("yes") || str == _T("include"))
@@ -260,7 +260,7 @@ FileFilter * FileFilterMgr::GetFilterByPath(const String& szFilterPath)
 	vector<FileFilterPtr>::const_iterator iter = m_filters.begin();
 	while (iter != m_filters.end())
 	{
-		if (string_compare_nocase((*iter)->fullpath, szFilterPath) == 0)
+		if (strutils::compare_nocase((*iter)->fullpath, szFilterPath) == 0)
 			return (*iter).get();
 		++iter;
 	}

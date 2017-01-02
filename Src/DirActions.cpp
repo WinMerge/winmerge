@@ -32,7 +32,7 @@ static void ThrowConfirmationNeededException(const CDiffContext& ctxt, const Str
 		const String& src, const String& dest, bool destIsSide);
 
 ContentsChangedException::ContentsChangedException(const String& failpath)
-	: m_msg(string_format_string1(
+	: m_msg(strutils::format_string1(
 	        _("Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."),
 	        failpath))
 {
@@ -56,7 +56,7 @@ static void ThrowConfirmCopy(const CDiffContext& ctxt, int origin, int destinati
 {
 	String caption = _("Confirm Copy");
 	String strQuestion = count == 1 ? _("Are you sure you want to copy:") : 
-		string_format(_("Are you sure you want to copy %d items:").c_str(), count);
+		strutils::format(_("Are you sure you want to copy %d items:").c_str(), count);
 
 	ThrowConfirmationNeededException(ctxt, caption, strQuestion, origin,
 		destination, count,	src, dest, destIsSide);
@@ -80,7 +80,7 @@ static void ThrowConfirmMove(const CDiffContext& ctxt, int origin, int destinati
 {
 	String caption = _("Confirm Move");
 	String strQuestion = count == 1 ? _("Are you sure you want to move:") : 
-		string_format(_("Are you sure you want to move %d items:").c_str(), count);
+		strutils::format(_("Are you sure you want to move %d items:").c_str(), count);
 
 	ThrowConfirmationNeededException(ctxt, caption, strQuestion, origin,
 		destination, count,	src, dest, destIsSide);
@@ -294,7 +294,7 @@ uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, co
 	String file2 = paths::FindFileName(pathRight);
 
 	// Filenames must be identical
-	if (string_compare_nocase(file1, file2) != 0)
+	if (strutils::compare_nocase(file1, file2) != 0)
 		return NULL;
 
 	String path1(pathLeft, 0, pathLeft.length() - file1.length()); // include trailing backslash
@@ -415,7 +415,7 @@ bool AreItemsOpenable(const CDiffContext& ctxt, SELECTIONTYPE selectionType, con
 	// Allow to compare items if left & right path refer to same directory
 	// (which means there is effectively two files involved). No need to check
 	// side flags. If files weren't on both sides, we'd have no DIFFITEMs.
-	if (string_compare_nocase(sLeftBasePath, sRightBasePath) == 0)
+	if (strutils::compare_nocase(sLeftBasePath, sRightBasePath) == 0)
 		return true;
 
 	return false;
@@ -473,7 +473,7 @@ bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM & di1, const DIFF
 	// Allow to compare items if left & right path refer to same directory
 	// (which means there is effectively two files involved). No need to check
 	// side flags. If files weren't on both sides, we'd have no DIFFITEMs.
-	if (string_compare_nocase(sLeftBasePath, sMiddleBasePath) == 0 && string_compare_nocase(sLeftBasePath, sRightBasePath) == 0)
+	if (strutils::compare_nocase(sLeftBasePath, sMiddleBasePath) == 0 && strutils::compare_nocase(sLeftBasePath, sRightBasePath) == 0)
 		return true;
 
 	return false;
@@ -673,7 +673,7 @@ bool GetOpenOneItem(const CDiffContext& ctxt, uintptr_t pos1, const DIFFITEM *pd
 		if (path1Exists != paths::IS_EXISTING_DIR || path2Exists != paths::IS_EXISTING_DIR)
 		{
 			String invalid = path1Exists == paths::IS_EXISTING_DIR ? paths[0] : paths[1];
-			errmsg = string_format_string1(
+			errmsg = strutils::format_string1(
 				_("Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."),
 				invalid);
 			return false;
@@ -1089,17 +1089,17 @@ void MarkForRescan(DIFFITEM &di)
 String FormatFilesAffectedString(int nFilesAffected, int nFilesTotal)
 {
 	if (nFilesAffected == nFilesTotal)
-		return string_format_string1(_("(%1 Files Affected)"), NumToStr(nFilesTotal));
+		return strutils::format_string1(_("(%1 Files Affected)"), NumToStr(nFilesTotal));
 	else
-		return string_format_string2(_("(%1 of %2 Files Affected)"), NumToStr(nFilesAffected), NumToStr(nFilesTotal));
+		return strutils::format_string2(_("(%1 of %2 Files Affected)"), NumToStr(nFilesAffected), NumToStr(nFilesTotal));
 }
 
 String FormatMenuItemString(const String& fmt1, const String& fmt2, int count, int total)
 {
 	if (count == total)
-		return string_format_string1(fmt1, NumToStr(total));
+		return strutils::format_string1(fmt1, NumToStr(total));
 	else
-		return string_format_string2(fmt2, NumToStr(count), NumToStr(total));
+		return strutils::format_string2(fmt2, NumToStr(count), NumToStr(total));
 }
 
 String FormatMenuItemString(SIDE_TYPE src, SIDE_TYPE dst, int count, int total)
@@ -1368,14 +1368,14 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 					return AllowUpwardDirectory::Never;
 			}
 			if (path.size() == 2 && 
-				string_compare_nocase(name[0], _T("ORIGINAL")) == 0 && 
-				string_compare_nocase(name[1], _T("ALTERED")) == 0)
+				strutils::compare_nocase(name[0], _T("ORIGINAL")) == 0 && 
+				strutils::compare_nocase(name[1], _T("ALTERED")) == 0)
 			{
 				for (int i = 0; i < path.size(); ++i)
 					pathsParent[i] = paths::GetParentPath(pathsParent[i]);
 				for (int i = 0; i < path.size(); ++i)
 					name[i] = paths::FindFileName(pathsParent[i]);
-				if (string_compare_nocase(name[0], name[1]) == 0)
+				if (strutils::compare_nocase(name[0], name[1]) == 0)
 				{
 					if (paths::GetPairComparability(pathsParent) != paths::IS_EXISTING_DIR)
 						return AllowUpwardDirectory::Never;

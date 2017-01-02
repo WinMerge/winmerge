@@ -52,7 +52,7 @@ namespace
 		String orig(_T("OneTwoThree"));
 		String find(_T("Blaa"));
 		String rep(_T("Five"));
-		string_replace(orig, find, rep);
+		strutils::replace(orig, find, rep);
 		EXPECT_EQ(_T("OneTwoThree"), orig);
 	}
 
@@ -61,7 +61,7 @@ namespace
 		String orig(_T("OneTwoThree"));
 		String find(_T("Two"));
 		String rep(_T("Five"));
-		string_replace(orig, find, rep);
+		strutils::replace(orig, find, rep);
 		EXPECT_EQ(_T("OneFiveThree"), orig);
 	}
 
@@ -70,7 +70,7 @@ namespace
 		String orig(_T("OneTwoThree"));
 		String find(_T("Two"));
 		String rep(_T(""));
-		string_replace(orig, find, rep);
+		strutils::replace(orig, find, rep);
 		EXPECT_EQ(_T("OneThree"), orig);
 	}
 
@@ -79,7 +79,7 @@ namespace
 		String orig(_T("OneTwoThree"));
 		String find(_T("One"));
 		String rep(_T("five"));
-		string_replace(orig, find, rep);
+		strutils::replace(orig, find, rep);
 		EXPECT_EQ(_T("fiveTwoThree"), orig);
 	}
 
@@ -88,7 +88,7 @@ namespace
 		String orig(_T("OneTwoThree"));
 		String find(_T("One"));
 		String rep(_T(""));
-		string_replace(orig, find, rep);
+		strutils::replace(orig, find, rep);
 		EXPECT_EQ(_T("TwoThree"), orig);
 	}
 
@@ -97,7 +97,7 @@ namespace
 		String orig(_T("OneTwoThree"));
 		String find(_T("Three"));
 		String rep(_T("seven"));
-		string_replace(orig, find, rep);
+		strutils::replace(orig, find, rep);
 		EXPECT_EQ(_T("OneTwoseven"), orig);
 	}
 
@@ -106,252 +106,252 @@ namespace
 		String orig(_T("OneTwoThree"));
 		String find(_T("Three"));
 		String rep(_T(""));
-		string_replace(orig, find, rep);
+		strutils::replace(orig, find, rep);
 		EXPECT_EQ(_T("OneTwo"), orig);
 	}
 
 	TEST_F(UnicodeStringTest, MakelowerEmpty)
 	{
 		String orig(_T(""));
-		String result = string_makelower(orig);
+		String result = strutils::makelower(orig);
 		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, MakelowerWhitespace)
 	{
 		String orig(_T(" \t"));
-		String result = string_makelower(orig);
+		String result = strutils::makelower(orig);
 		EXPECT_EQ(_T(" \t"), result);
 	}
 
 	TEST_F(UnicodeStringTest, Makelower1)
 	{
 		String orig(_T("onetwothree"));
-		String result = string_makelower(orig);
+		String result = strutils::makelower(orig);
 		EXPECT_EQ(_T("onetwothree"), result);
 	}
 
 	TEST_F(UnicodeStringTest, Makelower2)
 	{
 		String orig(_T("OneTwoThree"));
-		String result = string_makelower(orig);
+		String result = strutils::makelower(orig);
 		EXPECT_EQ(_T("onetwothree"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsbeginEmpty)
 	{
 		String orig(_T(""));
-		String result = string_trim_ws_begin(orig);
+		String result = strutils::trim_ws_begin(orig);
 		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsbeginNoWs)
 	{
 		String orig(_T("abc"));
-		String result = string_trim_ws_begin(orig);
+		String result = strutils::trim_ws_begin(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsbeginWsEnd)
 	{
 		String orig(_T("abc\t"));
-		String result = string_trim_ws_begin(orig);
+		String result = strutils::trim_ws_begin(orig);
 		EXPECT_EQ(_T("abc\t"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsbeginWsOnly)
 	{
 		String orig(_T("\t"));
-		String result = string_trim_ws_begin(orig);
+		String result = strutils::trim_ws_begin(orig);
 		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsbeginWs1)
 	{
 		String orig(_T("\tabc"));
-		String result = string_trim_ws_begin(orig);
+		String result = strutils::trim_ws_begin(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 	
 	TEST_F(UnicodeStringTest, TrimwsbeginWs2)
 	{
 		String orig(_T("\t\n abc"));
-		String result = string_trim_ws_begin(orig);
+		String result = strutils::trim_ws_begin(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsendEmpty)
 	{
 		String orig(_T(""));
-		String result = string_trim_ws_end(orig);
+		String result = strutils::trim_ws_end(orig);
 		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsendNoWs)
 	{
 		String orig(_T("abc"));
-		String result = string_trim_ws_end(orig);
+		String result = strutils::trim_ws_end(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsendWsBegin)
 	{
 		String orig(_T("\tabc"));
-		String result = string_trim_ws_end(orig);
+		String result = strutils::trim_ws_end(orig);
 		EXPECT_EQ(_T("\tabc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsendWsOnly)
 	{
 		String orig(_T("\t"));
-		String result = string_trim_ws_end(orig);
+		String result = strutils::trim_ws_end(orig);
 		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsendWs1)
 	{
 		String orig(_T("abc\t"));
-		String result = string_trim_ws_end(orig);
+		String result = strutils::trim_ws_end(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 	
 	TEST_F(UnicodeStringTest, TrimwsendWs2)
 	{
 		String orig(_T("abc\t\n "));
-		String result = string_trim_ws_end(orig);
+		String result = strutils::trim_ws_end(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsEmpty)
 	{
 		String orig(_T(""));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsNoWs)
 	{
 		String orig(_T("abc"));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsOnly)
 	{
 		String orig(_T("\t"));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsOnly2)
 	{
 		String orig(_T("\t \n"));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsOnly3)
 	{
 		String orig(_T(" \t  \t "));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsBegin)
 	{
 		String orig(_T("\tabc"));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsBegin2)
 	{
 		String orig(_T("\t\n abc"));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsEnd1)
 	{
 		String orig(_T("abc\t"));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 	
 	TEST_F(UnicodeStringTest, TrimwsWsEnd2)
 	{
 		String orig(_T("abc\t\n "));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsBoth1)
 	{
 		String orig(_T("\tabc\t"));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsBoth2)
 	{
 		String orig(_T("\n \tabc \t\n"));
-		String result = string_trim_ws(orig);
+		String result = strutils::trim_ws(orig);
 		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseEmpty)
 	{
-		EXPECT_EQ(0, string_compare_nocase(_T(""), _T("")));
+		EXPECT_EQ(0, strutils::compare_nocase(_T(""), _T("")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseWhitespace1)
 	{
-		EXPECT_EQ(0, string_compare_nocase(_T(" "), _T(" ")));
+		EXPECT_EQ(0, strutils::compare_nocase(_T(" "), _T(" ")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseWhitespace)
 	{
-		EXPECT_NE(0, string_compare_nocase(_T(" "), _T("\t")));
+		EXPECT_NE(0, strutils::compare_nocase(_T(" "), _T("\t")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseLowercase)
 	{
-		EXPECT_EQ(0, string_compare_nocase(_T("abc"), _T("abc")));
+		EXPECT_EQ(0, strutils::compare_nocase(_T("abc"), _T("abc")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseUppercase)
 	{
-		EXPECT_EQ(0, string_compare_nocase(_T("ABC"), _T("ABC")));
+		EXPECT_EQ(0, strutils::compare_nocase(_T("ABC"), _T("ABC")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseMixedcase)
 	{
-		EXPECT_EQ(0, string_compare_nocase(_T("AbC"), _T("AbC")));
+		EXPECT_EQ(0, strutils::compare_nocase(_T("AbC"), _T("AbC")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseIdentical1)
 	{
-		EXPECT_EQ(0, string_compare_nocase(_T("abc"), _T("aBc")));
+		EXPECT_EQ(0, strutils::compare_nocase(_T("abc"), _T("aBc")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseIdentical2)
 	{
-		EXPECT_EQ(0, string_compare_nocase(_T("ABc"), _T("abc")));
+		EXPECT_EQ(0, strutils::compare_nocase(_T("ABc"), _T("abc")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseDifferent1)
 	{
-		EXPECT_NE(0, string_compare_nocase(_T("abc"), _T("adc")));
+		EXPECT_NE(0, strutils::compare_nocase(_T("abc"), _T("adc")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseDifferent2)
 	{
-		EXPECT_NE(0, string_compare_nocase(_T("aBc"), _T("adc")));
+		EXPECT_NE(0, strutils::compare_nocase(_T("aBc"), _T("adc")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseDifferent3)
 	{
-		EXPECT_NE(0, string_compare_nocase(_T("abc"), _T("aDc")));
+		EXPECT_NE(0, strutils::compare_nocase(_T("abc"), _T("aDc")));
 	}
 
 }  // namespace

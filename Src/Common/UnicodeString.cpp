@@ -32,12 +32,15 @@
 #include <cerrno>
 #include <vector>
 
+namespace strutils
+{
+
 /**
  * @brief Convert a string to lower case string.
  * @param [in] str String to convert to lower case.
  * @return Lower case string.
  */
-String string_makelower(const String &str)
+String makelower(const String &str)
 {
 	String ret(str);
 	String::size_type i = 0;
@@ -51,7 +54,7 @@ String string_makelower(const String &str)
  * @param [in] str String to convert to upper case.
  * @return upper case string.
  */
-String string_makeupper(const String &str)
+String makeupper(const String &str)
 {
 	String ret(str);
 	String::size_type i = 0;
@@ -69,7 +72,7 @@ String string_makeupper(const String &str)
  * @param [in] find A string to search and replace with another (@p replace).
  * @param [in] replace A string used to replace original (@p find).
  */
-void string_replace(String &target, const String &find, const String &replace)
+void replace(String &target, const String &find, const String &replace)
 {
 	const String::size_type find_len = find.length();
 	const String::size_type replace_len = replace.length();
@@ -87,7 +90,7 @@ void string_replace(String &target, const String &find, const String &replace)
  * @param [in] str2 Second string to compare.
  * @return As strcmp(), 0 if strings match.
  */
-int string_compare_nocase(const String &str1, const String &str2)
+int compare_nocase(const String &str1, const String &str2)
 {
 	return _tcsicoll(str1.c_str(), str2.c_str());
 }
@@ -97,7 +100,7 @@ int string_compare_nocase(const String &str1, const String &str2)
  * @param [in] str the original string.
  * @return Trimmed string.
  */
-String string_trim_ws(const String & str)
+String trim_ws(const String & str)
 {
 	if (str.empty())
 		return str;
@@ -127,7 +130,7 @@ String string_trim_ws(const String & str)
  * @param [in] str the original string.
  * @return Trimmed string.
  */
-String string_trim_ws_begin(const String & str)
+String trim_ws_begin(const String & str)
 {
 	if (str.empty())
 		return str;
@@ -147,7 +150,7 @@ String string_trim_ws_begin(const String & str)
  * @param [in] str the original string.
  * @return Trimmed string.
  */
-String string_trim_ws_end(const String & str)
+String trim_ws_end(const String & str)
 {
 	if (str.empty())
 		return str;
@@ -162,7 +165,7 @@ String string_trim_ws_end(const String & str)
 	return result;
 }
 
-String string_format_arg_list(const TCHAR *fmt, va_list args)
+String format_arg_list(const TCHAR *fmt, va_list args)
 {
 	if (!fmt)
 		return _T("");
@@ -183,16 +186,16 @@ String string_format_arg_list(const TCHAR *fmt, va_list args)
  * @brief printf()-style formatting for STL string.
  * Use this function to format String:s in printf() style.
  */
-String string_format(const TCHAR *fmt, ...)
+String format(const TCHAR *fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
-	String s = string_format_arg_list(fmt, args);
+	String s = format_arg_list(fmt, args);
 	va_end(args);
 	return s;
 }
 
-String string_format_strings(const String& fmt, const String *args[], size_t nargs)
+String format_strings(const String& fmt, const String *args[], size_t nargs)
 {
 	String str;
 	str.reserve(fmt.length() * 2);
@@ -218,14 +221,16 @@ String string_format_strings(const String& fmt, const String *args[], size_t nar
 	return str;
 }
 
-String string_format_string1(const String& fmt, const String& arg1)
+String format_string1(const String& fmt, const String& arg1)
 {
 	const String* args[] = {&arg1};
-	return string_format_strings(fmt, args, 1);
+	return format_strings(fmt, args, 1);
 }
 
-String string_format_string2(const String& fmt, const String& arg1, const String& arg2)
+String format_string2(const String& fmt, const String& arg1, const String& arg2)
 {
 	const String* args[] = {&arg1, &arg2};
-	return string_format_strings(fmt, args, 2);
+	return format_strings(fmt, args, 2);
+}
+
 }

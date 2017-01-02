@@ -127,7 +127,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 	{
 		// Prompt for user choice
 		CVssPromptDlg dlg;
-		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath);
+		dlg.m_strMessage = strutils::format_string1(_("Save changes to %1?"), strSavePath);
 		dlg.m_strProject = m_vssHelper.GetProjectBase();
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
@@ -185,7 +185,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		CVssPromptDlg dlg;
 		CRegKeyEx reg;
 
-		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath);
+		dlg.m_strMessage = strutils::format_string1(_("Save changes to %1?"), strSavePath);
 		dlg.m_strProject = m_vssHelper.GetProjectBase();
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
@@ -281,7 +281,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 			CMyComBSTR bstrLocalSpec;
 			vssi->get_LocalSpec(&bstrLocalSpec);
 			// BSP - ...and compare it to the directory WinMerge is using.
-			if (string_compare_nocase(ucr::toTString(bstrLocalSpec.m_str), strSavePath))
+			if (strutils::compare_nocase(ucr::toTString(bstrLocalSpec.m_str), strSavePath))
 			{
 				// BSP - if the directories are different, let the user confirm the CheckOut
 				int iRes = AppMsgBox::warning(_("The VSS Working Folder and the location of the current file do not match. Continue?"), 

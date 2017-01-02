@@ -99,7 +99,7 @@ static String GetLocaleString(LCID locid, LCTYPE lctype)
  */
 void CConfigLog::WriteItem(int indent, const String& key, LPCTSTR value)
 {
-	String text = string_format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key.c_str(), key.c_str(), value);
+	String text = strutils::format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key.c_str(), key.c_str(), value);
 	m_pfile->WriteString(text);
 }
 
@@ -116,7 +116,7 @@ void CConfigLog::WriteItem(int indent, const String& key, const String &str)
  */
 void CConfigLog::WriteItem(int indent, const String& key, long value)
 {
-	String text = string_format(_T("%*.0s%s: %ld\r\n"), indent, key.c_str(), key.c_str(), value);
+	String text = strutils::format(_T("%*.0s%s: %ld\r\n"), indent, key.c_str(), key.c_str(), value);
 	m_pfile->WriteString(text);
 }
 
@@ -141,7 +141,7 @@ void CConfigLog::WriteVersionOf1(int indent, const String& path)
 {
 	String name = paths::FindFileName(path);
 	CVersionInfo vi(path.c_str(), TRUE);
-	String text = string_format
+	String text = strutils::format
 	(
 		name == path
 	?	_T("%*s%-20s %s=%u.%02u %s=%04u\r\n")

@@ -688,7 +688,7 @@ std::pair<int, int> CountPredifferYesNo(const InputIterator& begin, const InputI
 			&& !di.diffcode.isResultFiltered())
 		{
 			PathContext files = GetItemFileNames(ctxt, di);
-			String filteredFilenames = string_join(files.begin(), files.end(), _T("|"));
+			String filteredFilenames = strutils::join(files.begin(), files.end(), _T("|"));
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);

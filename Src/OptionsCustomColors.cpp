@@ -11,7 +11,7 @@ void Load(COptionsMgr *pOptionsMgr, COLORREF * colors)
 {
 	for (int i = 0; i < 16; i++)
 	{
-		String valuename = string_format(_T("%s/%d"), Section, i);
+		String valuename = strutils::format(_T("%s/%d"), Section, i);
 		pOptionsMgr->InitOption(valuename, RGB(255, 255, 255), true);
 		colors[i] = pOptionsMgr->GetInt(valuename);
 	}
@@ -21,7 +21,7 @@ void Save(COptionsMgr *pOptionsMgr, const COLORREF * colors)
 {
 	for (int i = 0; i < 16; i++)
 	{
-		String valuename = string_format(_T("%s/%d"), Section, i);
+		String valuename = strutils::format(_T("%s/%d"), Section, i);
 		if (colors[i] == RGB(255, 255, 255))
 			pOptionsMgr->RemoveOption(valuename);
 		else 

@@ -221,7 +221,7 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 		}
 
 		// preprend a backslash if there is none
-		String strFileName = string_makelower(szFileName);
+		String strFileName = strutils::makelower(szFileName);
 		if (strFileName.empty() || strFileName[0] != '\\')
 			strFileName = _T("\\") + strFileName;
 		// append a point if there is no extension
@@ -301,14 +301,14 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 		{
 			bFilterAdded = true;
 			String strRegex = token;
-			string_replace(strRegex, _T("."), _T("\\."));
-			string_replace(strRegex, _T("?"), _T("."));
-			string_replace(strRegex, _T("("), _T("\\("));
-			string_replace(strRegex, _T(")"), _T("\\)"));
-			string_replace(strRegex, _T("["), _T("\\["));
-			string_replace(strRegex, _T("]"), _T("\\]"));
-			string_replace(strRegex, _T("$"), _T("\\$"));
-			string_replace(strRegex, _T("*"), _T(".*"));
+			strutils::replace(strRegex, _T("."), _T("\\."));
+			strutils::replace(strRegex, _T("?"), _T("."));
+			strutils::replace(strRegex, _T("("), _T("\\("));
+			strutils::replace(strRegex, _T(")"), _T("\\)"));
+			strutils::replace(strRegex, _T("["), _T("\\["));
+			strutils::replace(strRegex, _T("]"), _T("\\]"));
+			strutils::replace(strRegex, _T("$"), _T("\\$"));
+			strutils::replace(strRegex, _T("*"), _T(".*"));
 			strRegex += _T("$");
 			strPattern += _T("(^|\\\\)") + strRegex;
 		}
@@ -325,7 +325,7 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 	else
 	{
 
-		strPattern = string_makelower(strPattern);
+		strPattern = strutils::makelower(strPattern);
 		strParsed = strPattern; //+ _T("$");
 	}
 	return strParsed;
@@ -378,7 +378,7 @@ bool FileFilterHelper::SetFilter(const String &filter)
 	}
 
 	// Remove leading and trailing whitespace characters from the string.
-	String flt = string_trim_ws(filter);
+	String flt = strutils::trim_ws(filter);
 
 	// Star means we have a file extension mask
 	if (filter.find_first_of(_T("*?")) != -1)
@@ -459,7 +459,7 @@ void FileFilterHelper::LoadAllFileFilters()
 	String pattern(_T("*"));
 	pattern += FileFilterExt;
 	LoadFileFilterDirPattern(m_sGlobalFilterPath, pattern);
-	if (string_compare_nocase(m_sGlobalFilterPath, m_sUserSelFilterPath) != 0)
+	if (strutils::compare_nocase(m_sGlobalFilterPath, m_sUserSelFilterPath) != 0)
 		LoadFileFilterDirPattern(m_sUserSelFilterPath, pattern);
 }
 

@@ -159,11 +159,11 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 
 	for (unsigned i = 0; i < count; i++)
 	{
-		String name = string_format(_T("%s/Filter%02u"), FiltersRegPath, i);
+		String name = strutils::format(_T("%s/Filter%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, _T(""));
 		String filter = m_pOptionsMgr->GetString(name);
 
-		name = string_format(_T("%s/Enabled%02u"), FiltersRegPath, i);
+		name = strutils::format(_T("%s/Enabled%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, (int)true);
 		int enabled = m_pOptionsMgr->GetInt(name);
 		bool bEnabled = enabled ? true : false;
@@ -188,29 +188,29 @@ void LineFiltersList::SaveFilters()
 	{
 		const LineFilterItemPtr& item = m_items[i];
 
-		String name = string_format(_T("%s/Filter%02u"), FiltersRegPath, i);
+		String name = strutils::format(_T("%s/Filter%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, _T(""));
 		m_pOptionsMgr->SaveOption(name, item->filterStr);
 
-		name = string_format(_T("%s/Enabled%02u"), FiltersRegPath, i);
+		name = strutils::format(_T("%s/Enabled%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, 0);
 		m_pOptionsMgr->SaveOption(name, (int)item->enabled);
 	}
 
 	// Remove options we don't need anymore
 	// We could have earlier 10 pcs but now we only need 5
-	String filter = string_format(_T("%s/Filter%02u"), FiltersRegPath, count);
+	String filter = strutils::format(_T("%s/Filter%02u"), FiltersRegPath, count);
 	int retval1 = m_pOptionsMgr->RemoveOption(filter);
 
-	filter = string_format(_T("%s/Enabled%02u"), FiltersRegPath, count);
+	filter = strutils::format(_T("%s/Enabled%02u"), FiltersRegPath, count);
 	int retval2 = m_pOptionsMgr->RemoveOption(filter);
 	
 	while (retval1 == COption::OPT_OK || retval2 == COption::OPT_OK)
 	{
 		++count;
-		filter = string_format(_T("%s/Filter%02u"), FiltersRegPath, count);
+		filter = strutils::format(_T("%s/Filter%02u"), FiltersRegPath, count);
 		retval1 = m_pOptionsMgr->RemoveOption(filter);
-		filter = string_format(_T("%s/Enabled%02u"), FiltersRegPath, count);
+		filter = strutils::format(_T("%s/Enabled%02u"), FiltersRegPath, count);
 		retval2 = m_pOptionsMgr->RemoveOption(filter);
 	}
 }

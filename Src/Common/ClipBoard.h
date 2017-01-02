@@ -31,7 +31,7 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 	}
 
 	strPaths += _T('\0');
-	strPathsSepSpc = string_trim_ws_end(strPathsSepSpc);
+	strPathsSepSpc = strutils::trim_ws_end(strPathsSepSpc);
 
 	// CF_HDROP
 	HGLOBAL hDrop = GlobalAlloc(GHND, sizeof(DROPFILES) + sizeof(TCHAR) * strPaths.length());

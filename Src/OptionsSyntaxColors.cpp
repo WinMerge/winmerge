@@ -49,13 +49,13 @@ void Load(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
 			if (pOptionsMgr->GetBool(OPT_CLR_DEFAULT_TEXT_COLORING))
 				serializable = false;
 		}
-		valuename = string_format(_T("%s/Color%02u"), DefColorsPath, i);
+		valuename = strutils::format(_T("%s/Color%02u"), DefColorsPath, i);
 		pOptionsMgr->InitOption(valuename, color, serializable);
 		color = pOptionsMgr->GetInt(valuename);
 		ref = color;
 		pSyntaxColors->SetColor(i, ref);
 	
-		valuename = string_format(_T("%s/Bold%02u"), DefColorsPath, i);
+		valuename = strutils::format(_T("%s/Bold%02u"), DefColorsPath, i);
 		bool bBold = pSyntaxColors->GetBold(i);
 		pOptionsMgr->InitOption(valuename, bBold);
 		int nBold = pOptionsMgr->GetBool(valuename);
@@ -79,9 +79,9 @@ void Save(COptionsMgr *pOptionsMgr, const ::SyntaxColors *pSyntaxColors)
 	for (unsigned i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
 	{
 		int color = pSyntaxColors->GetColor(i);
-		pOptionsMgr->SaveOption(string_format(_T("%s/Color%02u"), DefColorsPath, i), color);
+		pOptionsMgr->SaveOption(strutils::format(_T("%s/Color%02u"), DefColorsPath, i), color);
 		bool bold = pSyntaxColors->GetBold(i);
-		pOptionsMgr->SaveOption(string_format(_T("%s/Bold%02u"), DefColorsPath, i), bold);
+		pOptionsMgr->SaveOption(strutils::format(_T("%s/Bold%02u"), DefColorsPath, i), bold);
 	}
 }
 

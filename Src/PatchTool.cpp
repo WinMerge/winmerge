@@ -151,7 +151,7 @@ int CPatchTool::CreatePatch()
 			}
 			else if (status.bPatchFileFailed)
 			{
-				String errMsg = string_format_string1(_("Could not write to file %1."), dlgPatch.m_fileResult);
+				String errMsg = strutils::format_string1(_("Could not write to file %1."), dlgPatch.m_fileResult);
 				AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
 				bResult = false;
 				break;

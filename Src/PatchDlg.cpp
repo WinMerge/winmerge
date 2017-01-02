@@ -140,7 +140,7 @@ void CPatchDlg::OnOK()
 		}
 		if (paths::IsPathAbsolute(m_fileResult) == FALSE)
 		{
-			String msg = string_format_string1(_("The specified output path is not an absolute path: %1"),
+			String msg = strutils::format_string1(_("The specified output path is not an absolute path: %1"),
 				m_fileResult);
 			AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 			m_ctlResult.SetFocus();
@@ -226,7 +226,7 @@ BOOL CPatchDlg::OnInitDialog()
 	}
 	else if (count > 1)	// Multiple files added, show number of files
 	{
-		m_file1 = m_file2 = string_format_string1(_("[%1 files selected]"), string_to_str(count)).c_str();
+		m_file1 = m_file2 = strutils::format_string1(_("[%1 files selected]"), strutils::to_str(count)).c_str();
 	}
 	UpdateData(FALSE);
 
@@ -484,7 +484,7 @@ void CPatchDlg::UpdateSettings()
 		break;
 	}
 
-	m_comboContext.SelectString(-1, string_to_str(m_contextLines).c_str());
+	m_comboContext.SelectString(-1, strutils::to_str(m_contextLines).c_str());
 
 	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED || m_outputStyle == OUTPUT_HTML)
 		m_comboContext.EnableWindow(TRUE);

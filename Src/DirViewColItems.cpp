@@ -156,7 +156,7 @@ static String MakeShortSize(int64_t size)
 {
 	TCHAR buffer[48];
 	if (size < 1024)
-		return string_format(_T("%d B"), static_cast<int>(size));
+		return strutils::format(_T("%d B"), static_cast<int>(size));
 	else
 		StrFormatByteSize64(size, buffer, _countof(buffer));
 	return buffer;
@@ -280,40 +280,40 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 	}
 	else if (di.diffcode.isSideFirstOnly())
 	{
-		s = string_format_string1(_("Left only: %1"),
+		s = strutils::format_string1(_("Left only: %1"),
 				di.getFilepath(0, pCtxt->GetNormalizedLeft()));
 	}
 	else if (di.diffcode.isSideSecondOnly())
 	{
 		if (nDirs < 3)
 		{
-			s = string_format_string1(_("Right only: %1"),
+			s = strutils::format_string1(_("Right only: %1"),
 					di.getFilepath(1, pCtxt->GetNormalizedRight()));
 		}
 		else
 		{
-			s = string_format_string1(_("Middle only: %1"),
+			s = strutils::format_string1(_("Middle only: %1"),
 					di.getFilepath(1, pCtxt->GetNormalizedMiddle()));
 		}
 	}
 	else if (di.diffcode.isSideThirdOnly())
 	{
-		s = string_format_string1(_("Right only: %1"),
+		s = strutils::format_string1(_("Right only: %1"),
 				di.getFilepath(2, pCtxt->GetNormalizedRight()));
 	}
 	else if (nDirs > 2 && !di.diffcode.existsFirst())
 	{
-		s = string_format_string1(_("Does not exist in %1"),
+		s = strutils::format_string1(_("Does not exist in %1"),
 				pCtxt->GetNormalizedLeft());
 	}
 	else if (nDirs > 2 && !di.diffcode.existsSecond())
 	{
-		s = string_format_string1(_("Does not exist in %1"),
+		s = strutils::format_string1(_("Does not exist in %1"),
 				pCtxt->GetNormalizedMiddle());
 	}
 	else if (nDirs > 2 && !di.diffcode.existsThird())
 	{
-		s = string_format_string1(_("Does not exist in %1"),
+		s = strutils::format_string1(_("Does not exist in %1"),
 				pCtxt->GetNormalizedRight());
 	}
 	else if (di.diffcode.isResultSame())
@@ -649,7 +649,7 @@ static String GetEOLType(const CDiffContext *, const void *p, int index)
 	}
 	else
 	{
-		return string_format(_T("%s:%d/%d/%d"),
+		return strutils::format(_T("%s:%d/%d/%d"),
 			_("Mixed").c_str(),
 			stats.ncrlfs, stats.ncrs, stats.nlfs);
 	}
@@ -716,7 +716,7 @@ static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void 
 		return -1;
 	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
-	return string_compare_nocase(ColFileNameGet<boost::flyweight<String> >(pCtxt, p), ColFileNameGet<boost::flyweight<String> >(pCtxt, q));
+	return strutils::compare_nocase(ColFileNameGet<boost::flyweight<String> >(pCtxt, p), ColFileNameGet<boost::flyweight<String> >(pCtxt, q));
 }
 
 /**
@@ -734,7 +734,7 @@ static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q)
 		return -1;
 	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
-	return string_compare_nocase(ColExtGet(pCtxt, p), ColExtGet(pCtxt, q));
+	return strutils::compare_nocase(ColExtGet(pCtxt, p), ColExtGet(pCtxt, q));
 }
 
 /**
@@ -746,7 +746,7 @@ static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q)
  */
 static int ColPathSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return string_compare_nocase(ColPathGet(pCtxt, p), ColPathGet(pCtxt, q));
+	return strutils::compare_nocase(ColPathGet(pCtxt, p), ColPathGet(pCtxt, q));
 }
 
 /**
@@ -986,12 +986,12 @@ DirViewColItems::GetColRegValueNameBase(int col) const
 	if (m_nDirs < 3)
 	{
 		assert(col>=0 && col<countof(f_cols));
-		return string_format(_T("WDirHdr_%s"), f_cols[col].regName);
+		return strutils::format(_T("WDirHdr_%s"), f_cols[col].regName);
 	}
 	else
 	{
 		assert(col>=0 && col<countof(f_cols3));
-		return string_format(_T("WDirHdr_%s"), f_cols3[col].regName);
+		return strutils::format(_T("WDirHdr_%s"), f_cols3[col].regName);
 	}
 }
 
@@ -1281,7 +1281,7 @@ DirViewColItems::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ld
 	{
 		String p = (*fnc)(pCtxt, arg1);
 		String q = (*fnc)(pCtxt, arg2);
-		return string_compare_nocase(p, q);
+		return strutils::compare_nocase(p, q);
 	}
 	return 0;
 }
@@ -1365,7 +1365,7 @@ String DirViewColItems::ResetColumnWidths(int defcolwidth)
 	for (int i = 0; i < m_numcols; i++)
 	{
 		if (!result.empty()) result += ' ';
-		result += string_to_str(defcolwidth);
+		result += strutils::to_str(defcolwidth);
 	}
 	return result;
 }
@@ -1424,5 +1424,5 @@ String DirViewColItems::SaveColumnOrders()
 {
 	assert(m_colorder.size() == m_numcols);
 	assert(m_invcolorder.size() == m_numcols);
-	return string_join<String (*)(int)>(m_colorder.begin(), m_colorder.end(), _T(" "), string_to_str);
+	return strutils::join<String (*)(int)>(m_colorder.begin(), m_colorder.end(), _T(" "), strutils::to_str);
 }

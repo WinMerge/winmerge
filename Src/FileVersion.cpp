@@ -50,7 +50,7 @@ String FileVersion::GetFileVersionString() const
 	if (m_fileVersionMS == 0xffffffff && m_fileVersionLS >= 0xfffffffe)
 		return _T("");
 
-	return string_format(_T("%u.%u.%u.%u"), HIWORD(m_fileVersionMS),
+	return strutils::format(_T("%u.%u.%u.%u"), HIWORD(m_fileVersionMS),
 		LOWORD(m_fileVersionMS), HIWORD(m_fileVersionLS),
 		LOWORD(m_fileVersionLS));
 }

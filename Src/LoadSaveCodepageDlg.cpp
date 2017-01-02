@@ -88,7 +88,7 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 		std::vector<CodePageInfo> cpi = pexconv->enumCodePages();
 		for (size_t i = 0, j = 0; i < cpi.size(); i++)
 		{
-			String desc = string_format(_T("%05d - %s"), cpi[i].codepage, cpi[i].desc.c_str());
+			String desc = strutils::format(_T("%05d - %s"), cpi[i].codepage, cpi[i].desc.c_str());
 			combol.AddString(desc.c_str());
 			combos.AddString(desc.c_str());
 			if (cpi[i].codepage == m_nLoadCodepage)
