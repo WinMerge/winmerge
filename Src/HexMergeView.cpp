@@ -297,7 +297,7 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	// Warn user in case file has been changed by someone else
 	if (IsFileChangedOnDisk(path))
 	{
-		String msg = string_format_string1(_("Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"), path);
+		String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"), path);
 		if (AfxMessageBox(msg.c_str(), MB_ICONWARNING | MB_YESNO) == IDNO)
 			return S_OK;
 	}
@@ -340,7 +340,7 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	hr = SE(DeleteFile(sIntermediateFilename.c_str()));
 	if (hr != S_OK)
 	{
-		LogErrorString(string_format(_T("DeleteFile(%s) failed: %s"),
+		LogErrorString(strutils::format(_T("DeleteFile(%s) failed: %s"),
 			sIntermediateFilename.c_str(), GetSysError(hr).c_str()));
 	}
 	return S_OK;

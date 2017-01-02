@@ -809,11 +809,11 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		if (bar == BAR_YAREA)
 			bar = BAR_0;
 		nLine = GetLineFromYPos(pt.y, bar);
-		strNum = string_to_str(nLine + 1); // Show linenumber not lineindex
+		strNum = strutils::to_str(nLine + 1); // Show linenumber not lineindex
 	}
 	else
 		pPopup->EnableMenuItem(ID_LOCBAR_GOTODIFF, MF_GRAYED);
-	strItem = string_format_string1(_("G&oto Line %1"), strNum);
+	strItem = strutils::format_string1(_("G&oto Line %1"), strNum);
 	pPopup->SetMenuText(ID_LOCBAR_GOTODIFF, strItem.c_str(), MF_BYCOMMAND);
 
 	// invoke context menu

@@ -530,10 +530,10 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		{
 			sError = uniErr.GetError();
 			if (bTempFile)
-				LogErrorString(string_format(_T("Opening file %s failed: %s"),
+				LogErrorString(strutils::format(_T("Opening file %s failed: %s"),
 					pszFileName.c_str(), sError.c_str()));
 			else
-				LogErrorString(string_format(_T("Opening file %s failed: %s"),
+				LogErrorString(strutils::format(_T("Opening file %s failed: %s"),
 					sIntermediateFilename.c_str(), sError.c_str()));
 		}
 		return SAVE_FAILED;

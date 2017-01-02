@@ -281,10 +281,10 @@ void CImgMergeFrame::DoAutoMerge(int dstPane)
 	m_pImgMergeWindow->FirstConflict();
 
 	AfxMessageBox(
-		string_format_string2(
+		strutils::format_string2(
 			_T("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
-			string_format(_T("%d"), autoMergedCount),
-			string_format(_T("%d"), m_pImgMergeWindow->GetConflictCount())).c_str(),
+			strutils::format(_T("%d"), autoMergedCount),
+			strutils::format(_T("%d"), m_pImgMergeWindow->GetConflictCount())).c_str(),
 		MB_ICONINFORMATION);
 }
 
@@ -317,7 +317,7 @@ void CImgMergeFrame::CheckFileChanged(void)
 	{
 		if (IsFileChangedOnDisk(pane))
 		{
-			String msg = string_format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
+			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
 			{
 				OnFileReload();
@@ -947,9 +947,9 @@ void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 		}
 		const int nBuffers = m_filePaths.GetSize();
 		if (std::count(&sFileName[0], &sFileName[0] + nBuffers, sFileName[0]) == nBuffers)
-			sTitle = sFileName[0] + string_format(_T(" x %d"), nBuffers);
+			sTitle = sFileName[0] + strutils::format(_T(" x %d"), nBuffers);
 		else
-			sTitle = string_join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
+			sTitle = strutils::join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
 	}
 	CMDIChildWnd::SetTitle(sTitle.c_str());
 	if (m_hWnd)
@@ -1278,15 +1278,15 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 				pt.y < m_pImgMergeWindow->GetImageHeight(pane))
 			{
 				POINT ptOffset = m_pImgMergeWindow->GetImageOffset(pane);
-				text += string_format(_T("Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "), pt.x - ptOffset.x, pt.y - ptOffset.y,
+				text += strutils::format(_T("Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "), pt.x - ptOffset.x, pt.y - ptOffset.y,
 					color[pane].rgbRed, color[pane].rgbGreen, color[pane].rgbBlue, color[pane].rgbReserved);
 				if (pane == 1 && m_pImgMergeWindow->GetPaneCount() == 3)
-					text += string_format(_T("Dist:%g,%g "), colorDistance01, colorDistance12);
+					text += strutils::format(_T("Dist:%g,%g "), colorDistance01, colorDistance12);
 				else
-					text += string_format(_T("Dist:%g "), colorDistance01);
+					text += strutils::format(_T("Dist:%g "), colorDistance01);
 			}
 
-			text += string_format(_T("Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"), 
+			text += strutils::format(_T("Page:%d/%d Zoom:%d%% %dx%dpx %dbpp"), 
 					m_pImgMergeWindow->GetCurrentPage(pane) + 1,
 					m_pImgMergeWindow->GetPageCount(pane),
 					static_cast<int>(m_pImgMergeWindow->GetZoom() * 100),
@@ -1325,7 +1325,7 @@ void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	else if (m_pImgMergeWindow->GetCurrentDiffIndex() < 0)
 	{
 		s = theApp.LoadString(nDiffs == 1 ? IDS_1_DIFF_FOUND : IDS_NO_DIFF_SEL_FMT);
-		string_replace(s, _T("%1"), _itot(nDiffs, sCnt, 10));
+		strutils::replace(s, _T("%1"), _itot(nDiffs, sCnt, 10));
 	}
 	
 	// There are differences and diff selected
@@ -1334,8 +1334,8 @@ void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	{
 		s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
 		const int signInd = m_pImgMergeWindow->GetCurrentDiffIndex();
-		string_replace(s, _T("%1"), _itot(signInd + 1, sIdx, 10));
-		string_replace(s, _T("%2"), _itot(nDiffs, sCnt, 10));
+		strutils::replace(s, _T("%1"), _itot(signInd + 1, sIdx, 10));
+		strutils::replace(s, _T("%2"), _itot(nDiffs, sCnt, 10));
 	}
 	pCmdUI->SetText(s.c_str());
 }
@@ -1891,15 +1891,15 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName) const
 	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
 	{
 		imgfilepath[i] = ucr::toTString(m_pImgMergeWindow->GetFileName(i));
-		diffimg_filename[i] = string_format(_T("%s/%d.png"), imgdir.c_str(), i + 1);
-		m_pImgMergeWindow->SaveDiffImageAs(i, ucr::toUTF16(string_format(_T("%s\\%d.png"), imgdir_full.c_str(), i + 1)).c_str());
+		diffimg_filename[i] = strutils::format(_T("%s/%d.png"), imgdir.c_str(), i + 1);
+		m_pImgMergeWindow->SaveDiffImageAs(i, ucr::toUTF16(strutils::format(_T("%s\\%d.png"), imgdir_full.c_str(), i + 1)).c_str());
 	}
 
 	UniStdioFile file;
 	if (!file.Open(sFileName, _T("wt")))
 	{
 		String errMsg = GetSysError(GetLastError());
-		String msg = string_format_string1(
+		String msg = strutils::format_string1(
 			_("Error creating the report:\n%1"), errMsg);
 		AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
 		return false;
@@ -1926,13 +1926,13 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName) const
 		_T("<table>\n")
 		_T("<tr>\n"));
 	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
-		file.WriteString(string_format(_T("<th class=\"title\">%s</th>\n"), imgfilepath[i].c_str()));
+		file.WriteString(strutils::format(_T("<th class=\"title\">%s</th>\n"), imgfilepath[i].c_str()));
 	file.WriteString(
 		_T("</tr>\n")
 		_T("<tr>\n"));
 	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
 		file.WriteString(
-			string_format(_T("<td><div class=\"img\"><img src=\"%s\" alt=\"%s\"></div></td>\n"),
+			strutils::format(_T("<td><div class=\"img\"><img src=\"%s\" alt=\"%s\"></div></td>\n"),
 			diffimg_filename[i].c_str(), diffimg_filename[i].c_str()));
 	file.WriteString(
 		_T("</tr>\n")

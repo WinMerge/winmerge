@@ -762,7 +762,7 @@ bool IsURLorCLSID(const String& path)
 bool IsDecendant(const String& path, const String& ancestor)
 {
 	return path.length() > ancestor.length() && 
-		   string_compare_nocase(String(path.c_str(), path.c_str() + ancestor.length()), ancestor) == 0;
+		   strutils::compare_nocase(String(path.c_str(), path.c_str() + ancestor.length()), ancestor) == 0;
 }
 
 static void replace_char(TCHAR *s, int target, int repl)

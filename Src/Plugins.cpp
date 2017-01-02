@@ -292,7 +292,7 @@ void PluginInfo::LoadFilterString()
 		if (sPiece.empty())
 			break;
 
-		sPiece = string_makeupper(string_trim_ws_begin(sPiece));
+		sPiece = strutils::makeupper(strutils::trim_ws_begin(sPiece));
 
 		int re_opts = 0;
 		std::string regexString = ucr::toUTF8(sPiece);
@@ -326,7 +326,7 @@ bool PluginInfo::TestAgainstRegList(const String& szTest) const
 		sLine = sLine.substr(0, pos);
 		if (sPiece.empty())
 			continue;
-		sPiece = string_makeupper(string_trim_ws_begin(sPiece));
+		sPiece = strutils::makeupper(strutils::trim_ws_begin(sPiece));
 
 		if (::TestAgainstRegList(&m_filters, sPiece))
 			return true;
@@ -538,7 +538,7 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 static void ReportPluginLoadFailure(const String & scriptletFilepath, const wchar_t *transformationEvent)
 {
 	String sEvent = ucr::toTString(transformationEvent);
-	AppErrorMessageBox(string_format(_T("Exception loading plugin for event: %s\r\n%s"), sEvent.c_str(), scriptletFilepath.c_str()));
+	AppErrorMessageBox(strutils::format(_T("Exception loading plugin for event: %s\r\n%s"), sEvent.c_str(), scriptletFilepath.c_str()));
 }
 
 /**
@@ -586,7 +586,7 @@ static vector<String>& LoadTheScriptletList()
 		for (i = 0 ; i < theScriptletList.size() ; i++)
 		{
 			String scriptlet = theScriptletList.at(i);
-			if (scriptlet.length() > 4 && string_compare_nocase(scriptlet.substr(scriptlet.length() - 4), _T(".sct")) != 0)
+			if (scriptlet.length() > 4 && strutils::compare_nocase(scriptlet.substr(scriptlet.length() - 4), _T(".sct")) != 0)
 			{
 				// don't need to lock this file
 				theScriptletHandleList.push_back(NULL);
@@ -779,7 +779,7 @@ void CScriptsOfThread::SaveSettings()
 				list.push_back(String(plugin->m_name));
 		}
 	}
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_DISABLED_LIST, string_join(list.begin(), list.end(), _T("|")));
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_DISABLED_LIST, strutils::join(list.begin(), list.end(), _T("|")));
 }
 
 void CScriptsOfThread::FreeAllScripts()
@@ -950,7 +950,7 @@ static void ShowPluginErrorMessage(IDispatch *piScript, LPTSTR description)
 	PluginInfo * pInfo = CAllThreadsScripts::GetActiveSet()->GetPluginInfo(piScript);
 	assert(pInfo != NULL);
 	assert(description != NULL);	
-	AppErrorMessageBox(string_format(_T("%s: %s"), pInfo->m_name.c_str(), description));
+	AppErrorMessageBox(strutils::format(_T("%s: %s"), pInfo->m_name.c_str(), description));
 }
 
 /**

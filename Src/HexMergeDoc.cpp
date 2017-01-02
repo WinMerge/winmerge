@@ -564,7 +564,7 @@ void CHexMergeDoc::CheckFileChanged(void)
 	{
 		if (m_pView[pane]->IsFileChangedOnDisk(m_filePaths[pane].c_str()))
 		{
-			String msg = string_format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
+			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
 			{
 				OnFileReload();
@@ -668,9 +668,9 @@ void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 		for (int nBuffer = 0; nBuffer < m_filePaths.GetSize(); nBuffer++)
 			sFileName[nBuffer] = !m_strDesc[nBuffer].empty() ? m_strDesc[nBuffer] : paths::FindFileName(m_filePaths[nBuffer]);
 		if (std::count(&sFileName[0], &sFileName[0] + m_nBuffers, sFileName[0]) == m_nBuffers)
-			sTitle = sFileName[0] + string_format(_T(" x %d"), m_nBuffers);
+			sTitle = sFileName[0] + strutils::format(_T(" x %d"), m_nBuffers);
 		else
-			sTitle = string_join(&sFileName[0], &sFileName[0] + m_nBuffers, _T(" - "));
+			sTitle = strutils::join(&sFileName[0], &sFileName[0] + m_nBuffers, _T(" - "));
 	}
 	CDocument::SetTitle(sTitle.c_str());
 }

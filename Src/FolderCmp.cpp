@@ -90,7 +90,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 		// Transformation happens here
 		// text used for automatic mode : plugin filter must match it
-		String filteredFilenames = string_join(files.begin(), files.end(), _T("|"));
+		String filteredFilenames = strutils::join(files.begin(), files.end(), _T("|"));
 
 		PackingInfo * infoUnpacker=0;
 		PrediffingInfo * infoPrediffer=0;
@@ -110,7 +110,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 			//DiffFileData diffdata; //(filepathTransformed1, filepathTransformed2);
 			// Invoke unpacking plugins
-			if (infoUnpacker && string_compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
+			if (infoUnpacker && strutils::compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
 			{
 				if (!FileTransform_Unpacking(infoUnpacker, filepathUnpacked[nIndex], filteredFilenames))
 					goto exitPrepAndCompare;
@@ -362,17 +362,17 @@ exitPrepAndCompare:
 		
 		// delete the temp files after comparison
 		if (filepathTransformed[0] != filepathUnpacked[0])
-			try { TFile(filepathTransformed[0]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathTransformed[0].c_str())); }
+			try { TFile(filepathTransformed[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[0].c_str())); }
 		if (filepathTransformed[1] != filepathUnpacked[1])
-			try { TFile(filepathTransformed[1]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathTransformed[1].c_str())); }
+			try { TFile(filepathTransformed[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[1].c_str())); }
 		if (nDirs > 2 && filepathTransformed[2] != filepathUnpacked[2])
-			try { TFile(filepathTransformed[2]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathTransformed[2].c_str())); }
+			try { TFile(filepathTransformed[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[2].c_str())); }
 		if (filepathUnpacked[0] != files[0])
-			try { TFile(filepathUnpacked[0]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathUnpacked[0].c_str())); }
+			try { TFile(filepathUnpacked[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[0].c_str())); }
 		if (filepathUnpacked[1] != files[1])
-			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathUnpacked[1].c_str())); }
+			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[1].c_str())); }
 		if (nDirs > 2 && filepathUnpacked[2] != files[2])
-			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathUnpacked[2].c_str())); }
+			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[2].c_str())); }
 
 		if (!pCtxt->m_bIgnoreCodepage && 
 		    (code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME &&

@@ -207,7 +207,7 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
 	}
 	if (guessEncodingType & 1)
 	{
-		String lower_ext = string_makelower(ext);
+		String lower_ext = strutils::makelower(ext);
 		if (lower_ext == _T(".rc"))
 		{
 			cp = demoGuessEncoding_rc(src, len, cp);

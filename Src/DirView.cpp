@@ -2095,7 +2095,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		// If compare took more than TimeToSignalCompare seconds, notify user
 		clock_t elapsed = clock() - m_compareStart;
 		GetParentFrame()->SetMessageText(
-			string_format(_("Elapsed time: %ld ms").c_str(), elapsed).c_str()
+			strutils::format(_("Elapsed time: %ld ms").c_str(), elapsed).c_str()
 		);
 		if (elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
 			MessageBeep(IDOK);
@@ -2260,7 +2260,7 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 	else if (nIDEvent == STATUSBAR_UPDATE)
 	{
 		int items = GetSelectedCount();
-		String msg = (items == 1) ? _("1 item selected") : string_format_string1(_("%1 items selected"), string_to_str(items));
+		String msg = (items == 1) ? _("1 item selected") : strutils::format_string1(_("%1 items selected"), strutils::to_str(items));
 		GetParentFrame()->SetStatus(msg.c_str());
 	}
 	
@@ -2408,7 +2408,7 @@ struct FileCmpReport: public IFileCmpReport
 
 		sLinkPath = di.diffFileInfo[0].GetFile();
 
-		string_replace(sLinkPath, _T("\\"), _T("_"));
+		strutils::replace(sLinkPath, _T("\\"), _T("_"));
 		sLinkPath += _T(".html");
 
 		m_pDirView->MoveFocus(m_pDirView->GetFirstSelectedInd(), nIndex, m_pDirView->GetSelectedCount());
@@ -2478,7 +2478,7 @@ void CDirView::OnToolsGenerateReport()
 		}
 		else
 		{
-			String msg = string_format_string1(
+			String msg = strutils::format_string1(
 				_("Error creating the report:\n%1"),
 				errStr);
 			AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
@@ -2723,14 +2723,14 @@ void CDirView::OnCopyPathnames()
 {
 	std::list<String> list;
 	CopyPathnames(SelBegin(), SelEnd(), std::back_inserter(list), stype, GetDiffContext());
-	PutToClipboard(string_join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
+	PutToClipboard(strutils::join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
 }
 
 void CDirView::OnCopyBothPathnames()
 {
 	std::list<String> list;
 	CopyBothPathnames(SelBegin(), SelEnd(), std::back_inserter(list), GetDiffContext());
-	PutToClipboard(string_join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
+	PutToClipboard(strutils::join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
 }
 
 /**
@@ -2740,7 +2740,7 @@ void CDirView::OnCopyFilenames()
 {
 	std::list<String> list;
 	CopyFilenames(SelBegin(), SelEnd(), std::back_inserter(list));
-	PutToClipboard(string_join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
+	PutToClipboard(strutils::join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
 }
 
 /**
@@ -2876,7 +2876,7 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 			(pNMListView->uNewState & LVIS_SELECTED))
 	{
 		int items = GetSelectedCount();
-		String msg = (items == 1) ? _("1 item selected") : string_format_string1(_("%1 items selected"), string_to_str(items));
+		String msg = (items == 1) ? _("1 item selected") : strutils::format_string1(_("%1 items selected"), strutils::to_str(items));
 		GetParentFrame()->SetStatus(msg.c_str());
 	}
 	*pResult = 0;
@@ -2983,7 +2983,7 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	{
 		// No item has focus
 		// "Items: %1"
-		s = string_format_string1(_("Items: %1"), string_to_str(count));
+		s = strutils::format_string1(_("Items: %1"), strutils::to_str(count));
 	}
 	else
 	{
@@ -2999,8 +2999,8 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 				--count;
 			}
 			// "Item %1 of %2"
-			s = string_format_string2(_("Item %1 of %2"), 
-					string_to_str(focusItem + 1), string_to_str(count));
+			s = strutils::format_string2(_("Item %1 of %2"), 
+					strutils::to_str(focusItem + 1), strutils::to_str(count));
 		}
 	}
 	pCmdUI->SetText(s.c_str());
@@ -3580,7 +3580,7 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 
 	std::list<String> list;
 	CopyPathnamesForDragAndDrop(SelBegin(), SelEnd(), std::back_inserter(list), GetDiffContext());
-	String filesForDroping = string_join(list.begin(), list.end(), _T("\n"));
+	String filesForDroping = strutils::join(list.begin(), list.end(), _T("\n"));
 
 	CSharedFile file(GMEM_DDESHARE | GMEM_MOVEABLE | GMEM_ZEROINIT);
 	file.Write(filesForDroping.data(), static_cast<unsigned>(filesForDroping.length() * sizeof(TCHAR)));

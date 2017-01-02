@@ -107,7 +107,7 @@ public:
 			if (phy >= 0)
 			{
 				if (!result.empty()) result += ' ';
-				result += string_to_str(getcolwidth(phy));
+				result += strutils::to_str(getcolwidth(phy));
 			}
 		}
 		return result;

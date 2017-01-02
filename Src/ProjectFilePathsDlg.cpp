@@ -98,7 +98,7 @@ void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
 
 	const BOOL bUseMask = theApp.m_pGlobalFileFilter->IsUsingMask();
 	GetDlgItemText(IDC_PROJ_FILTER_EDIT, curFilter);
-	curFilter = string_trim_ws(curFilter);
+	curFilter = strutils::trim_ws(curFilter);
 
 	GetMainFrame()->SelectFilter();
 	
@@ -150,9 +150,9 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 {
 	UpdateData(TRUE);
 
-	m_sLeftFile = string_trim_ws(m_sLeftFile);
-	m_sRightFile = string_trim_ws(m_sRightFile);
-	m_sFilter = string_trim_ws(m_sFilter);
+	m_sLeftFile = strutils::trim_ws(m_sLeftFile);
+	m_sRightFile = strutils::trim_ws(m_sRightFile);
+	m_sFilter = strutils::trim_ws(m_sFilter);
 
 	String fileName = AskProjectFileName(false);
 	if (fileName.empty())
@@ -174,7 +174,7 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 		{
 			m_sFilter.erase(0, prefix.length());
 		}
-		m_sFilter = string_trim_ws_begin(m_sFilter);
+		m_sFilter = strutils::trim_ws_begin(m_sFilter);
 		project.SetFilter(m_sFilter);
 	}
 	project.SetSubfolders(m_bIncludeSubfolders);

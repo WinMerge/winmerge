@@ -774,13 +774,13 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 {
 	String sCmd = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
 	String sFile(file);
-	string_replace(sCmd, _T("$linenum"), string_to_str(nLineNumber));
+	strutils::replace(sCmd, _T("$linenum"), strutils::to_str(nLineNumber));
 
 	size_t nIndex = sCmd.find(_T("$file"));
 	if (nIndex != String::npos)
 	{
 		sFile.insert(0, _T("\""));
-		string_replace(sCmd, _T("$file"), sFile);
+		strutils::replace(sCmd, _T("$file"), sFile);
 		nIndex = sCmd.find(' ', nIndex + sFile.length());
 		if (nIndex != String::npos)
 			sCmd.insert(nIndex, _T("\""));
@@ -805,7 +805,7 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 	if (!retVal)
 	{
 		// Error invoking external editor
-		String msg = string_format_string1(_("Failed to execute external editor: %1"), sCmd);
+		String msg = strutils::format_string1(_("Failed to execute external editor: %1"), sCmd);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 	}
 	else
@@ -947,7 +947,7 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 		
 		if (!success)
 		{
-			String msg = string_format_string1(
+			String msg = strutils::format_string1(
 				_("Unable to backup original file:\n%1\n\nContinue anyway?"),
 				pszPath);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN) != IDYES)
@@ -1053,7 +1053,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 			if (bMultiFile)
 			{
 				// Multiple files or folder
-				str = string_format_string1(_("%1\nis marked read-only. Would you like to override the read-only item?"), strSavePath);
+				str = strutils::format_string1(_("%1\nis marked read-only. Would you like to override the read-only item?"), strSavePath);
 				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
 						MB_YES_TO_ALL, IDS_SAVEREADONLY_MULTI);
@@ -1061,7 +1061,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 			else
 			{
 				// Single file
-				str = string_format_string1(_("%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"), strSavePath);
+				str = strutils::format_string1(_("%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"), strSavePath);
 				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
 						IDS_SAVEREADONLY_FMT);
@@ -1145,7 +1145,7 @@ bool CMergeApp::IsProjectFile(const String& filepath) const
 {
 	String ext;
 	paths::SplitFilename(filepath, NULL, NULL, &ext);
-	if (string_compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
+	if (strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 		return true;
 	else
 		return false;
@@ -1164,7 +1164,7 @@ bool CMergeApp::LoadProjectFile(const String& sProject, ProjectFile &project)
 	{
 		String sErr = _("Unknown error attempting to open project file");
 		sErr += ucr::toTString(e.displayText());
-		String msg = string_format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
+		String msg = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 		return false;
 	}
@@ -1182,7 +1182,7 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
 	{
 		String sErr = _("Unknown error attempting to save project file");
 		sErr += ucr::toTString(e.displayText());
-		String msg = string_format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
+		String msg = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 		return false;
 	}
@@ -1213,7 +1213,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	if (project.HasFilter())
 	{
 		String filter = project.GetFilter();
-		filter = string_trim_ws(filter);
+		filter = strutils::trim_ws(filter);
 		m_pGlobalFileFilter->SetFilter(filter);
 	}
 	if (project.HasSubfolders())

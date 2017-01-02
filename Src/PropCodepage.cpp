@@ -79,7 +79,7 @@ void PropCodepage::ReadOptions()
 {
 	m_nCodepageSystem = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_MODE);
 	m_nCustomCodepageValue = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_CUSTOM);
-	m_cCustomCodepageValue = string_to_str(m_nCustomCodepageValue);
+	m_cCustomCodepageValue = strutils::to_str(m_nCustomCodepageValue);
 	m_bDetectCodepage = GetOptionsMgr()->GetInt(OPT_CP_DETECT) & 1;
 	m_bDetectCodepage2 = (GetOptionsMgr()->GetInt(OPT_CP_DETECT) & 2) != 0;
 	m_nAutodetectType = ((unsigned)GetOptionsMgr()->GetInt(OPT_CP_DETECT) >> 16);
@@ -107,7 +107,7 @@ BOOL PropCodepage::OnInitDialog()
 	m_comboAutodetectType.EnableWindow(
 		IsDlgButtonChecked(IDC_DETECT_CODEPAGE2) == 1);
 
-	m_comboCustomCodepageValue.SetWindowText(string_to_str(m_nCustomCodepageValue).c_str());
+	m_comboCustomCodepageValue.SetWindowText(strutils::to_str(m_nCustomCodepageValue).c_str());
 
 	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv != NULL)
@@ -117,7 +117,7 @@ BOOL PropCodepage::OnInitDialog()
 		{
 			if (cpi[i].codepage == 1200 /* UNICODE */)
 				continue;
-			String desc = string_format(_T("%05d - %s"), cpi[i].codepage, cpi[i].desc.c_str());
+			String desc = strutils::format(_T("%05d - %s"), cpi[i].codepage, cpi[i].desc.c_str());
 			m_comboCustomCodepageValue.AddString(desc.c_str());
 			if (cpi[i].codepage == m_nCustomCodepageValue)
 				m_comboCustomCodepageValue.SetCurSel(static_cast<int>(j));

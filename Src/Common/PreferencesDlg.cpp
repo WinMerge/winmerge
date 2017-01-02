@@ -213,7 +213,7 @@ void CPreferencesDlg::OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult)
 		m_pphost.SetActivePage(pPage, FALSE);
 
 		// update caption
-		String sCaption = string_format_string1(_("Options (%1)"), (LPCTSTR)GetItemPath(htiSel));
+		String sCaption = strutils::format_string1(_("Options (%1)"), (LPCTSTR)GetItemPath(htiSel));
 		SetWindowText(sCaption.c_str());
 	}
 

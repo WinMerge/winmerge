@@ -124,7 +124,7 @@ bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex)
  */
 static bool CheckFileForVersion(const String& ext)
 {
-	String lower_ext = string_makelower(ext);
+	String lower_ext = strutils::makelower(ext);
 	if (lower_ext == _T(".exe") || lower_ext == _T(".dll") || lower_ext == _T(".sys") ||
 	    lower_ext == _T(".drv") || lower_ext == _T(".ocx") || lower_ext == _T(".cpl") ||
 	    lower_ext == _T(".scr") || lower_ext == _T(".lang"))

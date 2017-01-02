@@ -81,7 +81,7 @@ const TCHAR *MergeCmdLineInfo::EatParam(const TCHAR *p, String &param, bool *fla
 	param.assign(p ? p : _T(""), q - p);
 	if (q > p && flag)
 	{
-		param = string_makelower(param);
+		param = strutils::makelower(param);
 	}
 	// Strip any leading or trailing whitespace or quotes
 	param.erase(0, param.find_first_not_of(_T(" \t\r\n\"")));
@@ -232,7 +232,7 @@ void MergeCmdLineInfo::AddPath(const String &path)
 	{
 		// Convert paths given in Linux-style ('/' as separator) given from
 		// Cygwin to Windows style ('\' as separator)
-		string_replace(param, _T("/"), _T("\\"));
+		strutils::replace(param, _T("/"), _T("\\"));
 
 		// If shortcut, expand it first
 		if (paths::IsShortcut(param))

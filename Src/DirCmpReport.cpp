@@ -41,9 +41,9 @@ static String GetCurrentTimeString()
 static String BeginEl(const String& elName, const String& attr = _T(""))
 {
 	if (attr.empty())
-		return string_format(_T("<%s>"), elName.c_str());
+		return strutils::format(_T("<%s>"), elName.c_str());
 	else
-		return string_format(_T("<%s %s>"), elName.c_str(), attr.c_str());
+		return strutils::format(_T("<%s %s>"), elName.c_str(), attr.c_str());
 }
 
 /**
@@ -53,7 +53,7 @@ static String BeginEl(const String& elName, const String& attr = _T(""))
  */
 static String EndEl(const String& elName)
 {
-	return string_format(_T("</%s>"), elName.c_str());
+	return strutils::format(_T("</%s>"), elName.c_str());
 }
 
 /**
@@ -85,7 +85,7 @@ void DirCmpReport::SetRootPaths(const PathContext &paths)
 {
 	m_rootPaths.SetLeft(paths.GetLeft());
 	m_rootPaths.SetRight(paths.GetRight());
-	m_sTitle = string_format_string2(_("Compare %1 with %2"),
+	m_sTitle = strutils::format_string2(_("Compare %1 with %2"),
 		m_rootPaths.GetLeft(), m_rootPaths.GetRight());
 }
 
@@ -358,11 +358,11 @@ void DirCmpReport::GenerateHTMLHeader()
 			enc.rdbuf()->setLineLength(0);
 			enc << m_pList->GetIconPNGData(i);
 			enc.close();
-			WriteString(string_format(_T("\t\t.icon%d { background-image: url('data:image/png;base64,%s'); background-repeat: no-repeat; background-size: 16px 16px; }\n"), i, ucr::toTString(stream.str()).c_str()));
+			WriteString(strutils::format(_T("\t\t.icon%d { background-image: url('data:image/png;base64,%s'); background-repeat: no-repeat; background-size: 16px 16px; }\n"), i, ucr::toTString(stream.str()).c_str()));
 		}
 	}
 	for (int i = 0; i < maxIndent + 1; ++i)
-		WriteString(string_format(_T("\t\t.indent%d { padding-left: %dpx; background-position: %dpx center; }\n"), i, 2 * 2 + 16 + 8 * i, 2 + 8 * i));
+		WriteString(strutils::format(_T("\t\t.indent%d { padding-left: %dpx; background-position: %dpx center; }\n"), i, 2 * 2 + 16 + 8 * i, 2 + 8 * i));
 	WriteString(_T("\t-->\n\t</style>\n"));
 	WriteString(_T("</head>\n<body>\n"));
 	GenerateHTMLHeaderBodyPortion();
@@ -396,9 +396,9 @@ void DirCmpReport::GenerateXmlHeader()
 {
 	WriteString(_T("")); // @todo xml declaration
 	WriteString(_T("<WinMergeDiffReport version=\"1\">\n"));
-	WriteString(string_format(_T("<left>%s</left>\n"), m_rootPaths.GetLeft().c_str()));
-	WriteString(string_format(_T("<right>%s</right>\n"), m_rootPaths.GetRight().c_str()));
-	WriteString(string_format(_T("<time>%s</time>\n"), GetCurrentTimeString().c_str()));
+	WriteString(strutils::format(_T("<left>%s</left>\n"), m_rootPaths.GetLeft().c_str()));
+	WriteString(strutils::format(_T("<right>%s</right>\n"), m_rootPaths.GetRight().c_str()));
+	WriteString(strutils::format(_T("<time>%s</time>\n"), GetCurrentTimeString().c_str()));
 
 	// Add column headers
 	const String rowEl = _T("column_name");
@@ -443,7 +443,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 		else
 		{
 			COLORREF color = m_pList->GetBackColor(currRow);
-			String attr = string_format(_T("style='background-color: #%02x%02x%02x'"),
+			String attr = strutils::format(_T("style='background-color: #%02x%02x%02x'"),
 				GetRValue(color), GetGValue(color), GetBValue(color));
 			WriteString(BeginEl(rowEl, attr));
 		}
@@ -458,7 +458,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 			else
 			{
 				if (currCol == 0)
-					WriteString(BeginEl(colEl, string_format(_T("class=\"icon%d indent%d\""), m_pList->GetIconIndex(currRow), m_pList->GetIndent(currRow))));
+					WriteString(BeginEl(colEl, strutils::format(_T("class=\"icon%d indent%d\""), m_pList->GetIconIndex(currRow), m_pList->GetIndent(currRow))));
 				else
 					WriteString(BeginEl(colEl));
 			}
