@@ -52,9 +52,6 @@
     <ClCompile Include="charsets.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="codepage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="codepage_detect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -751,9 +748,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="codepage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="codepage_detect.h">

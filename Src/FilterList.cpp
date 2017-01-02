@@ -80,9 +80,9 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 	// convert string into UTF-8
 	ucr::buffer buf(string.length() * 2);
 
-	if (codepage != CP_UTF8)
+	if (codepage != ucr::CP_UTF_8)
 			ucr::convert(ucr::NONE, codepage, reinterpret_cast<const unsigned char *>(string.c_str()), 
-					string.length(), ucr::UTF8, CP_UTF8, &buf);
+					string.length(), ucr::UTF8, ucr::CP_UTF_8, &buf);
 
 	unsigned i = 0;
 	while (i < count && retval == false)

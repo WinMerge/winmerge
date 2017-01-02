@@ -389,9 +389,6 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Common\CMoveConstraint.cpp" />
-    <ClCompile Include="codepage.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="codepage_detect.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -777,7 +774,6 @@
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="Common\ClipBoard.h" />
     <ClInclude Include="Common\CMoveConstraint.h" />
-    <ClInclude Include="codepage.h" />
     <ClInclude Include="codepage_detect.h" />
     <ClInclude Include="Common\ColorButton.h" />
     <ClInclude Include="Common\ExConverter.h" />

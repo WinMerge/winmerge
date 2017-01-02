@@ -30,9 +30,6 @@
     <ClCompile Include="..\..\..\Src\charsets.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\codepage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\codepage_detect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -139,9 +136,6 @@
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\Encoding\codepage_detect_test.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Encoding\codepage_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\DirItem\DirItem_test.cpp">
@@ -255,9 +249,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\charsets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Src\codepage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\codepage_detect.h">

@@ -26,7 +26,6 @@
 #include "CompareStats.h"
 #include "FolderCmp.h"
 #include "FileFilterHelper.h"
-#include "codepage.h"
 #include "IAbortable.h"
 #include "FolderCmp.h"
 #include "DirItem.h"

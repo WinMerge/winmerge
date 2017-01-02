@@ -12,7 +12,6 @@
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Mutex.h>
 #include "unicoder.h"
-#include "codepage.h"
 
 #if !defined(__IMultiLanguage2_INTERFACE_DEFINED__) && !defined(__GNUC__)
 #error "IMultiLanguage2 is not defined in mlang.h. Please install latest Platform SDK."
@@ -89,9 +88,9 @@ public:
 	{
 		bool bsucceeded;
 #ifdef POCO_ARCH_BIG_ENDIAN
-		if (srcCodepage == CP_UCS2BE)
+		if (srcCodepage == ucr::CP_UCS2BE)
 #else
-		if (srcCodepage == CP_UCS2LE)
+		if (srcCodepage == ucr::CP_UCS2LE)
 #endif
 		{
 			size_t srcwchars = *srcbytes / sizeof(wchar_t);
@@ -144,7 +143,7 @@ public:
 		UINT srcsize;
 		HRESULT hr;
 
-		hr = m_pmlang->CreateConvertCharset(autodetectType, CP_UCS2LE, MLCONVCHARF_AUTODETECT, &pcc);
+		hr = m_pmlang->CreateConvertCharset(autodetectType, ucr::CP_UCS2LE, MLCONVCHARF_AUTODETECT, &pcc);
 		if (FAILED(hr))
 			return defcodepage;
 		srcsize = static_cast<UINT>(size);
@@ -161,20 +160,20 @@ public:
 				if (size < 2 || (data[0] != 0 && data[1] != 0))
 				{
 					codepagestotry[0] = defcodepage;
-					codepagestotry[1] = CP_UTF8;
+					codepagestotry[1] = ucr::CP_UTF_8;
 				}
 			}
 			else
 			{
 				if (size < 2 || (data[0] != 0 && data[1] != 0))
-					codepagestotry[0] = CP_UTF8;
+					codepagestotry[0] = ucr::CP_UTF_8;
 			}
 			codepage = defcodepage;
 			int i;
 			for (i = 0; i < sizeof(codepagestotry)/sizeof(codepagestotry[0]) - 1; i++)
 			{
 				if (codepagestotry[i] == 0) break;
-				pcc->Initialize(codepagestotry[i], CP_UCS2LE, 0);
+				pcc->Initialize(codepagestotry[i], ucr::CP_UCS2LE, 0);
 				srcsize = static_cast<UINT>(size);
 				dstsize = static_cast<UINT>(size * sizeof(wchar_t));
 				SetLastError(0);
@@ -209,9 +208,9 @@ public:
 				if (lezerocount > 0 || bezerocount > 0)
 				{
 					if ((lecrorlf == 0 && size < 512 || (lecrorlf > 0 && (size / lecrorlf > 1024))) && lezerocount > bezerocount)
-						codepage = CP_UCS2LE;
+						codepage = ucr::CP_UCS2LE;
 					else if ((becrorlf == 0 && size < 512 || (becrorlf > 0 && (size / becrorlf > 1024))) && lezerocount < bezerocount)
-						codepage = CP_UCS2BE;
+						codepage = ucr::CP_UCS2BE;
 				}
 			}
 		}
