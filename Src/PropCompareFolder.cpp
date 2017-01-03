@@ -161,4 +161,5 @@ void PropCompareFolder::UpdateControls()
 	CComboBox * pCombo = (CComboBox*)GetDlgItem(IDC_COMPAREMETHODCOMBO);
 	EnableDlgItem(IDC_COMPARE_STOPFIRST, pCombo->GetCurSel() == 1);
 	EnableDlgItem(IDC_EXPAND_SUBDIRS, IsDlgButtonChecked(IDC_RECURS_CHECK) == 1);
+	EnableDlgItem(IDC_COMPARE_THREAD_COUNT, pCombo->GetCurSel() <= 1 ? true : false); // true: fullcontent, quickcontent
 }
