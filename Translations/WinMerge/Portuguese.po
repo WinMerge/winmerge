@@ -2269,7 +2269,7 @@ msgstr "Negrito"
 #: Merge.rc:387F7980
 #, c-format
 msgid "Folder Compare Report"
-msgstr "Relatório de comparação de arquivos"
+msgstr "Relatório de comparação de pastas"
 
 #: Merge.rc:3ECF34A3
 #, c-format
@@ -2319,17 +2319,17 @@ msgstr "Filtro Privado (apenas para o utilizador actual)"
 #: Merge.rc:7D9F30CF
 #, c-format
 msgid "Archive Support"
-msgstr "Suporte de Arquivo"
+msgstr "Suporte de Ficheiros"
 
 #: Merge.rc:545FEEA5
 #, c-format
 msgid "&Enable archive file support"
-msgstr "Activar suporte de arquivo"
+msgstr "Activar suporte de ficheiros"
 
 #: Merge.rc:70C9C72D
 #, c-format
 msgid "&Detect archive type from file signature"
-msgstr "Detectar tipo de arquivo pela assinatura"
+msgstr "Detectar tipo de ficheiro pela assinatura"
 
 #: Merge.rc:1AC98D0B
 #, c-format
@@ -3200,7 +3200,7 @@ msgstr "Item %1"
 #: Merge.rc:6C6653C7
 #, c-format
 msgid "Select two existing folders or files to compare"
-msgstr "Seleccione dois arquivos ou ficheiros existentes para comparar"
+msgstr "Seleccione duas pastas ou dois ficheiros existentes para comparar"
 
 #: Merge.rc:444C5DDC
 #, c-format
@@ -3210,17 +3210,17 @@ msgstr "Selecção de pasta"
 #: Merge.rc:73F34BA1
 #, c-format
 msgid "Select two folders or two files to compare."
-msgstr "Seleccione dois arquivos ou ficheiros para comparar."
+msgstr "Seleccione duas pastas ou dois ficheiros para comparar."
 
 #: Merge.rc:20155F59
 #, c-format
 msgid "Left path is invalid!"
-msgstr "A pasta de destino da esquerda é inválido!"
+msgstr "A pasta de destino da esquerda é inválida!"
 
 #: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle path is invalid!"
-msgstr ""
+msgstr "A pasta de destino do meio é inválida"
 
 #: Merge.rc:6DBD6124
 #, c-format
@@ -3235,22 +3235,22 @@ msgstr "Ambas as pastas de destino são inválidas!"
 #: Merge.rc:5F458439
 #, c-format
 msgid "Left and middle path is invalid!"
-msgstr ""
+msgstr "A pasta de destino da esquerda e do meio é inválida"
 
 #: Merge.rc:F75DAF8
 #, c-format
 msgid "Left and right path is invalid!"
-msgstr ""
+msgstr "A pasta de destino da esquerda e da direita é inválida"
 
 #: Merge.rc:3703FFD7
 #, c-format
 msgid "Middle and right path is invalid!"
-msgstr ""
+msgstr "A pasta de destino do meio e da direita é inválida"
 
 #: Merge.rc:237A0533
 #, c-format
 msgid "All paths are invalid!"
-msgstr ""
+msgstr "Todos as pastas de destino são inválidas"
 
 #: Merge.rc:39B1AD01
 #, c-format
@@ -3260,7 +3260,7 @@ msgstr "Seleccione dois ficheiros para activar a selecção de extractor."
 #: Merge.rc:30FF7A4E
 #, c-format
 msgid "Cannot compare file and folder!"
-msgstr "Impossível comparar ficheiro ou arquivo!"
+msgstr "Impossível comparar ficheiro ou pasta!"
 
 #: Merge.rc:62AC5DDB
 #, c-format
@@ -3280,12 +3280,12 @@ msgstr "Impossível abrir ficheiro\n%1\n\n%2"
 #: Merge.rc:53CCF475
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr ""
+msgstr "Erro ao analisar ficheiro em conflito"
 
 #: Merge.rc:5A765252
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
-msgstr ""
+msgstr "O ficheiro\n%1\não está em conflito."
 
 #: Merge.rc:67019DCD
 #, c-format
@@ -3300,7 +3300,7 @@ msgstr "Guardar alterações em %1?"
 #: Merge.rc:6A1C6855
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 é apenas de leitura. Deseja substituir o ficheiro apenas de leitra ? (Não, para guardar com novo nome.)"
+msgstr "%1 é apenas de leitura. Deseja substituir o ficheiro apenas de leitura ? (Não, para guardar com novo nome.)"
 
 #: Merge.rc:673BD332
 #, c-format
@@ -3595,7 +3595,7 @@ msgstr "Erro ao executar editor externo: %1"
 #: Merge.rc:7350CBB7
 #, c-format
 msgid "Unknown archive format"
-msgstr "Formato de arquivo desconhecido"
+msgstr "Formato de ficheiro desconhecido"
 
 #: Merge.rc:64ABCD7F
 #, c-format
