@@ -466,7 +466,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 		}
 	}
 
-	ThreadPool threadPool(2, nworkers);
+	ThreadPool threadPool(nworkers, nworkers);
 	std::vector<DiffWorkerPtr> workers;
 	NotificationQueue queue;
 	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
