@@ -2269,7 +2269,7 @@ msgstr "Negrito"
 #: Merge.rc:387F7980
 #, c-format
 msgid "Folder Compare Report"
-msgstr "Relatório de comparação de pastas"
+msgstr "Relatório de comparação de ficheiros"
 
 #: Merge.rc:3ECF34A3
 #, c-format
@@ -3200,7 +3200,7 @@ msgstr "Item %1"
 #: Merge.rc:6C6653C7
 #, c-format
 msgid "Select two existing folders or files to compare"
-msgstr "Seleccione duas pastas ou dois ficheiros existentes para comparar"
+msgstr "Seleccione duas pastas existentes ou ficheiros para comparar"
 
 #: Merge.rc:444C5DDC
 #, c-format
@@ -3285,7 +3285,7 @@ msgstr "Erro ao analisar ficheiro em conflito"
 #: Merge.rc:5A765252
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
-msgstr "O ficheiro\n%1\não está em conflito."
+msgstr "O ficheiro\n%1\nnão está em conflito."
 
 #: Merge.rc:67019DCD
 #, c-format
