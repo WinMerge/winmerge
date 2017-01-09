@@ -4342,6 +4342,26 @@ msgstr ""
 "%1\n"
 "al otro lado y abrir éstas carpetas?"
 
+#: Merge.rc:36F211E1
+#, c-format
+msgid "Do you want to move to the next file?"
+msgstr ""
+
+#: Merge.rc:6A0A36F1
+#, c-format
+msgid "Do you want to move to the previous file?"
+msgstr ""
+
+#: Merge.rc:36F211E2
+#, c-format
+msgid "Do you want to move to the next page?"
+msgstr ""
+
+#: Merge.rc:6A0A36F2
+#, c-format
+msgid "Do you want to move to the previous page?"
+msgstr ""
+
 #: Merge.rc:4A700AB0
 #, c-format
 msgid ""

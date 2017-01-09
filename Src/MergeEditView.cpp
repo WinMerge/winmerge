@@ -43,6 +43,7 @@
 #include "MergeLineFlags.h"
 #include "paths.h"
 #include "DropHandler.h"
+#include "DirDoc.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1107,11 +1108,11 @@ void CMergeEditView::OnNextdiff()
 		return;
 
 	// Returns -1 if no diff selected
+	int nextDiff = -1;
 	int curDiff = pd->GetCurrentDiff();
 	if (curDiff != -1)
 	{
 		// We're on a diff
-		int nextDiff = curDiff;
 		if (!IsDiffVisible(curDiff))
 		{
 			// Selected difference not visible, select next from cursor
@@ -1130,11 +1131,6 @@ void CMergeEditView::OnNextdiff()
 				nextDiff = pd->m_diffList.NextSignificantDiff(curDiff);
 			}
 		}
-		if (nextDiff == -1)
-			nextDiff = curDiff;
-
-		// nextDiff is the next one if there is one, else it is the one we're on
-		SelectDiff(nextDiff, true, false);
 	}
 	else
 	{
@@ -1143,10 +1139,14 @@ void CMergeEditView::OnNextdiff()
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CPoint(0, line)))
 			line = m_nTopLine;
-		curDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
-		if (curDiff >= 0)
-			SelectDiff(curDiff, true, false);
+		nextDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
 	}
+
+	int lastDiff = pd->m_diffList.LastSignificantDiff();
+	if (nextDiff >= 0 && nextDiff <= lastDiff)
+		SelectDiff(nextDiff, true, false);
+	else if (CDirDoc *pDirDoc = pd->GetDirDoc())
+		pDirDoc->MoveToNextDiff(pd);
 }
 
 /**
@@ -1156,18 +1156,23 @@ void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
 	const DIFFRANGE * dfi = pd->m_diffList.LastSignificantDiffRange();
+	bool enabled;
 
 	if (!dfi)
 	{
 		// There aren't any significant differences
-		pCmdUI->Enable(false);
+		enabled = false;
 	}
 	else
 	{
 		// Enable if the beginning of the last significant difference is after caret
-		CPoint pos = GetCursorPos();
-		pCmdUI->Enable(pos.y < (long)dfi->dbegin);
+		enabled = (GetCursorPos().y < (long)dfi->dbegin);
 	}
+
+	if (!enabled && pd->GetDirDoc())
+		enabled = pd->GetDirDoc()->MoveableToNextDiff();
+
+	pCmdUI->Enable(enabled);
 }
 
 /**
@@ -1191,11 +1196,11 @@ void CMergeEditView::OnPrevdiff()
 		return;
 
 	// GetCurrentDiff() returns -1 if no diff selected
+	int prevDiff = -1;
 	int curDiff = pd->GetCurrentDiff();
 	if (curDiff != -1)
 	{
 		// We're on a diff
-		int prevDiff = curDiff;
 		if (!IsDiffVisible(curDiff))
 		{
 			// Selected difference not visible, select previous from cursor
@@ -1214,11 +1219,6 @@ void CMergeEditView::OnPrevdiff()
 				prevDiff = pd->m_diffList.PrevSignificantDiff(curDiff);
 			}
 		}
-		if (prevDiff == -1)
-			prevDiff = curDiff;
-
-		// prevDiff is the preceding one if there is one, else it is the one we're on
-		SelectDiff(prevDiff, true, false);
 	}
 	else
 	{
@@ -1227,10 +1227,14 @@ void CMergeEditView::OnPrevdiff()
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CPoint(0, line)))
 			line = m_nTopLine;
-		curDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
-		if (curDiff >= 0)
-			SelectDiff(curDiff, true, false);
+		prevDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
 	}
+
+	int firstDiff = pd->m_diffList.FirstSignificantDiff();
+	if (prevDiff >= 0 && prevDiff >= firstDiff)
+		SelectDiff(prevDiff, true, false);
+	else if (CDirDoc *pDirDoc = pd->GetDirDoc())
+		pDirDoc->MoveToPrevDiff(pd);
 }
 
 /**
@@ -1240,18 +1244,23 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
 	const DIFFRANGE * dfi = pd->m_diffList.FirstSignificantDiffRange();
+	bool enabled;
 
 	if (!dfi)
 	{
 		// There aren't any significant differences
-		pCmdUI->Enable(false);
+		enabled = false;
 	}
 	else
 	{
 		// Enable if the end of the first significant difference is before caret
-		CPoint pos = GetCursorPos();
-		pCmdUI->Enable(pos.y > (long)dfi->dend);
+		enabled = (GetCursorPos().y > (long)dfi->dend);
 	}
+
+	if (!enabled && pd->GetDirDoc())
+		enabled = pd->GetDirDoc()->MoveableToPrevDiff();
+
+	pCmdUI->Enable(enabled);
 }
 
 void CMergeEditView::OnNextConflict()

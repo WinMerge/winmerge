@@ -47,6 +47,7 @@
 #include "FileFilterHelper.h"
 #include "unicoder.h"
 #include "DirActions.h"
+#include "MessageBoxDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -644,4 +645,50 @@ void CDirDoc::Swap(int idx1, int idx2)
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
 		UpdateHeaderPath(nIndex);
 	SetTitle(NULL);
+}
+
+bool CDirDoc::MoveableToNextDiff()
+{
+	if (!m_pDirView)
+		return false;
+	CMessageBoxDialog dlg(nullptr, _("Do you want to move to the next file?").c_str());
+	const int nFormerResult = dlg.GetFormerResult();
+	if (nFormerResult != -1 && nFormerResult == IDNO)
+		return false;
+	return m_pDirView->HasNextDiff();
+}
+
+bool CDirDoc::MoveableToPrevDiff()
+{
+	if (!m_pDirView)
+		return false;
+	CMessageBoxDialog dlg(nullptr, _("Do you want to move to the previous file?").c_str());
+	const int nFormerResult = dlg.GetFormerResult();
+	if (nFormerResult != -1 && nFormerResult == IDNO)
+		return false;
+	return m_pDirView->HasPrevDiff();
+}
+
+void CDirDoc::MoveToNextDiff(IMergeDoc *pMergeDoc)
+{
+	if (!m_pDirView)
+		return;
+	if (AfxMessageBox(_("Do you want to move to the next file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN) == IDYES)
+	{
+		pMergeDoc->CloseNow();
+		m_pDirView->OpenNextDiff();
+		GetMainFrame()->OnUpdateFrameTitle(FALSE);
+	}
+}
+
+void CDirDoc::MoveToPrevDiff(IMergeDoc *pMergeDoc)
+{
+	if (!m_pDirView)
+		return;
+	if (AfxMessageBox(_("Do you want to move to the previous file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN) == IDYES)
+	{
+		pMergeDoc->CloseNow();
+		m_pDirView->OpenPrevDiff();
+		GetMainFrame()->OnUpdateFrameTitle(FALSE);
+	}
 }

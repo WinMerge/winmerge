@@ -115,6 +115,10 @@ public:
 	bool IsArchiveFolders() const;
 	PluginManager& GetPluginManager() { return m_pluginman; };
 	void Swap(int idx1, int idx2);
+	bool MoveableToNextDiff();
+	bool MoveableToPrevDiff();
+	void MoveToNextDiff(IMergeDoc *pMergeDoc);
+	void MoveToPrevDiff(IMergeDoc *pMergeDoc);
 
 protected:
 	void LoadLineFilterList();

@@ -1460,7 +1460,18 @@ void CImgMergeFrame::OnUpdateLastdiff(CCmdUI* pCmdUI)
  */
 void CImgMergeFrame::OnNextdiff()
 {
-	m_pImgMergeWindow->NextDiff();
+	if (m_pImgMergeWindow->GetCurrentDiffIndex() != m_pImgMergeWindow->GetDiffCount() - 1)
+		m_pImgMergeWindow->NextDiff();
+	else if (m_pImgMergeWindow->GetCurrentMaxPage() != m_pImgMergeWindow->GetMaxPageCount() - 1)
+	{
+		if (AfxMessageBox(_("Do you want to move to the next page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN) == IDYES)
+		{
+			m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() + 1);
+			UpdateLastCompareResult();
+		}
+	}
+	else if (m_pDirDoc)
+		m_pDirDoc->MoveToNextDiff(this);
 }
 
 /**
@@ -1468,10 +1479,15 @@ void CImgMergeFrame::OnNextdiff()
  */
 void CImgMergeFrame::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(
+	bool enabled =
+		m_pImgMergeWindow->GetCurrentMaxPage() < m_pImgMergeWindow->GetMaxPageCount() - 1 ||
 		m_pImgMergeWindow->GetNextDiffIndex() >= 0 ||
-		(m_pImgMergeWindow->GetDiffCount() > 0 && m_pImgMergeWindow->GetCurrentDiffIndex() == -1)
-	);
+		(m_pImgMergeWindow->GetDiffCount() > 0 && m_pImgMergeWindow->GetCurrentDiffIndex() == -1);
+
+	if (!enabled && m_pDirDoc)
+		enabled = m_pDirDoc->MoveableToNextDiff();
+
+	pCmdUI->Enable(enabled);
 }
 
 /**
@@ -1479,7 +1495,20 @@ void CImgMergeFrame::OnUpdateNextdiff(CCmdUI* pCmdUI)
  */
 void CImgMergeFrame::OnPrevdiff()
 {
-	m_pImgMergeWindow->PrevDiff();
+	if (m_pImgMergeWindow->GetCurrentDiffIndex() > 0)
+	{
+		m_pImgMergeWindow->PrevDiff();
+	}
+	else if (m_pImgMergeWindow->GetCurrentMaxPage() != 0)
+	{
+		if (AfxMessageBox(_("Do you want to move to the previous page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN) == IDYES)
+		{
+			m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() - 1);
+			UpdateLastCompareResult();
+		}
+	}
+	else if (m_pDirDoc)
+		m_pDirDoc->MoveToPrevDiff(this);
 }
 
 /**
@@ -1487,10 +1516,15 @@ void CImgMergeFrame::OnPrevdiff()
  */
 void CImgMergeFrame::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(
+	bool enabled =
+		m_pImgMergeWindow->GetCurrentMaxPage() > 0 ||
 		m_pImgMergeWindow->GetPrevDiffIndex() >= 0 ||
-		(m_pImgMergeWindow->GetDiffCount() > 0 && m_pImgMergeWindow->GetCurrentDiffIndex() == -1)
-	);
+		(m_pImgMergeWindow->GetDiffCount() > 0 && m_pImgMergeWindow->GetCurrentDiffIndex() == -1);
+
+	if (!enabled && m_pDirDoc)
+		enabled = m_pDirDoc->MoveableToPrevDiff();
+
+	pCmdUI->Enable(enabled);
 }
 
 /**
