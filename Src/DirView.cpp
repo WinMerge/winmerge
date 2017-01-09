@@ -1801,9 +1801,25 @@ void CDirView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetFirstDifferentItem() > -1);
 }
 
-// Go to next diff
-// If none or one item selected select found item
-void CDirView::OnNextdiff()
+bool CDirView::HasNextDiff()
+{
+	int lastDiff = GetLastDifferentItem();
+
+	// Check if different files were found and
+	// there is different item after focused item
+	return (lastDiff > -1) && (GetFocusedItem() < lastDiff);
+}
+
+bool CDirView::HasPrevDiff()
+{
+	int firstDiff = GetFirstDifferentItem();
+
+	// Check if different files were found and
+	// there is different item before focused item
+	return (firstDiff > -1) && (firstDiff < GetFocusedItem());
+}
+
+void CDirView::MoveToNextDiff()
 {
 	int currentInd = GetFocusedItem();
 	DirItemIterator begin(m_pIList.get(), currentInd + 1);
@@ -1813,22 +1829,11 @@ void CDirView::OnNextdiff()
 		MoveFocus(currentInd, it.m_sel, GetSelectedCount());
 }
 
-
-void CDirView::OnUpdateNextdiff(CCmdUI* pCmdUI)
-{
-	int focused = GetFocusedItem();
-	int lastDiff = GetLastDifferentItem();
-
-	// Check if different files were found and
-	// there is different item after focused item
-	pCmdUI->Enable((lastDiff > -1) && (focused < lastDiff));
-}
-
-// Go to prev diff
-// If none or one item selected select found item
-void CDirView::OnPrevdiff()
+void CDirView::MoveToPrevDiff()
 {
 	int currentInd = GetFocusedItem();
+	if (currentInd <= 0)
+		return;
 	DirItemIterator begin(m_pIList.get(), currentInd - 1, false, true);
 	DirItemIterator it =
 		std::find_if(begin, RevEnd(), MakeDirActions(&DirActions::IsItemNavigableDiff));
@@ -1836,15 +1841,60 @@ void CDirView::OnPrevdiff()
 		MoveFocus(currentInd, it.m_sel, GetSelectedCount());
 }
 
+void CDirView::OpenNextDiff()
+{
+	MoveToNextDiff();
+	int currentInd = GetFocusedItem();
+	const DIFFITEM& dip = GetDiffItem(currentInd);
+	if (!dip.diffcode.isDirectory())
+	{
+		OpenSelection();
+	}
+	else
+	{
+		GetParentFrame()->ActivateFrame();
+	}
+}
+
+void CDirView::OpenPrevDiff()
+{
+	MoveToPrevDiff();
+	int currentInd = GetFocusedItem();
+	const DIFFITEM& dip = GetDiffItem(currentInd);
+	if (!dip.diffcode.isDirectory())
+	{
+		OpenSelection();
+	}
+	else
+	{
+		GetParentFrame()->ActivateFrame();
+	}
+}
+
+// Go to next diff
+// If none or one item selected select found item
+void CDirView::OnNextdiff()
+{
+	MoveToNextDiff();
+}
+
+
+void CDirView::OnUpdateNextdiff(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(HasNextDiff());
+}
+
+// Go to prev diff
+// If none or one item selected select found item
+void CDirView::OnPrevdiff()
+{
+	MoveToPrevDiff();
+}
+
 
 void CDirView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
-	int focused = GetFocusedItem();
-	int firstDiff = GetFirstDifferentItem();
-
-	// Check if different files were found and
-	// there is different item before focused item
-	pCmdUI->Enable((firstDiff > -1) && (firstDiff < focused));
+	pCmdUI->Enable(HasPrevDiff());
 }
 
 void CDirView::OnCurdiff()

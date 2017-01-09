@@ -2290,6 +2290,10 @@ BEGIN
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
     IDS_CANNOT_OPEN_BINARYFILE "Cannot open a binary file to editor."
     IDS_CREATE_PAIR_FOLDER  "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
+    IDS_MOVE_TO_NEXTFILE    "Do you want to move to the next file?"
+    IDS_MOVE_TO_PREVFILE    "Do you want to move to the previous file?"
+    IDS_MOVE_TO_NEXTPAGE    "Do you want to move to the next page?"
+    IDS_MOVE_TO_PREVPAGE    "Do you want to move to the previous page?"
 END
 
 // Encoding issues

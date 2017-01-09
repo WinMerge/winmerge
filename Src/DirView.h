@@ -115,6 +115,13 @@ public:
 
 	LRESULT HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
+	bool HasNextDiff();
+	bool HasPrevDiff();
+	void MoveToNextDiff();
+	void MoveToPrevDiff();
+	void OpenNextDiff();
+	void OpenPrevDiff();
+
 // Implementation types
 private:
 

@@ -215,6 +215,7 @@ public:
 	void SetMergeViews(CMergeEditView * pView[]);
 	void SetMergeDetailViews(CMergeEditView * pView[]);
 	void SetDirDoc(CDirDoc * pDirDoc);
+	CDirDoc * GetDirDoc() const { return m_pDirDoc; }
 	void DirDocClosing(CDirDoc * pDirDoc);
 	bool CloseNow();
 	void SwapFiles();

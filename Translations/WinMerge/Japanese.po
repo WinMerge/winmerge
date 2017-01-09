@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-01-24 16:57+0900\n"
+"PO-Revision-Date: 2017-01-08 11:40+0900\n"
 "Last-Tranuslator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -4422,6 +4422,26 @@ msgstr ""
 "\n"
 "他方にマッチする以下のフォルダを作成し、フォルダを開きますか?:\n"
 "%1"
+
+#: Merge.rc:36F211E1
+#, c-format
+msgid "Do you want to move to the next file?"
+msgstr "次のファイルに移動しますか?"
+
+#: Merge.rc:6A0A36F1
+#, c-format
+msgid "Do you want to move to the previous file?"
+msgstr "前のファイルに移動しますか?"
+
+#: Merge.rc:36F211E2
+#, c-format
+msgid "Do you want to move to the next page?"
+msgstr "次のページに移動しますか?"
+
+#: Merge.rc:6A0A36F2
+#, c-format
+msgid "Do you want to move to the previous page?"
+msgstr "前のページに移動しますか?"
 
 #: Merge.rc:4A700AB0
 #, c-format
