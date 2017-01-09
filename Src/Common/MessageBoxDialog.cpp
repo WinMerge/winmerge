@@ -385,6 +385,23 @@ static UINT ModelessMesssageBoxThread(LPVOID lpParam)
 }
 
 /*
+ * Method for retrieving the former result of the message box from the registry.
+ */
+int CMessageBoxDialog::GetFormerResult()
+{
+	// Check whether the registry key was already generated.
+	if (m_strRegistryKey.IsEmpty())
+	{
+		// Create the registry key for this dialog.
+		m_strRegistryKey = GenerateRegistryKey();
+	}
+
+	// Try to read the former result of the message box from the registry.
+	return AfxGetApp()->GetProfileInt(
+		REGISTRY_SECTION_MESSAGEBOX, m_strRegistryKey, (-1));
+}
+
+/*
  *	Method for displaying the dialog.
  *
  *	If the MB_DONT_DISPLAY_AGAIN or MB_DONT_ASK_AGAIN flag is set, this
@@ -399,16 +416,8 @@ INT_PTR CMessageBoxDialog::DoModal ( )
 	if ( ( m_nStyle & MB_DONT_DISPLAY_AGAIN ) ||
 		( m_nStyle & MB_DONT_ASK_AGAIN ) )
 	{
-		// Check whether the registry key was already generated.
-		if ( m_strRegistryKey.IsEmpty() )
-		{
-			// Create the registry key for this dialog.
-			m_strRegistryKey = GenerateRegistryKey();
-		}
-
 		// Try to read the former result of the message box from the registry.
-		int nFormerResult = AfxGetApp()->GetProfileInt(
-			REGISTRY_SECTION_MESSAGEBOX, m_strRegistryKey, (-1));
+		int nFormerResult = GetFormerResult();
 
 		// Check whether a result was retrieved.
 		if ( nFormerResult != (-1) )

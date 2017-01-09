@@ -149,6 +149,9 @@ public:
 	// Method for retrieving whether a timeout is disabled.
 	BOOL GetTimeoutDisabled ( );
 
+	// Method for retrieving the former result of the message box from the registry.
+	int GetFormerResult();
+
 public:
 
 	//////////////////////////////////////////////////////////////////////////
