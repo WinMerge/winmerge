@@ -49,6 +49,36 @@ namespace
 #endif
 	}
 
+	TEST_F(UnicoderTest, CheckForInvalidUtf8)
+	{
+		std::string utf8 = ucr::toUTF8(L"\u00a0");
+		EXPECT_EQ(false, ucr::CheckForInvalidUtf8(utf8.c_str(), utf8.length()));
+		utf8 = ucr::toUTF8(L"\u263a");
+		EXPECT_EQ(false, ucr::CheckForInvalidUtf8(utf8.c_str(), utf8.length()));
+		utf8 = ucr::toUTF8(L"\u263a|\u00a0");
+		EXPECT_EQ(false, ucr::CheckForInvalidUtf8(utf8.c_str(), utf8.length()));
+
+		EXPECT_EQ(true, ucr::CheckForInvalidUtf8("", 0));
+		EXPECT_EQ(true, ucr::CheckForInvalidUtf8(" ", 1));
+		EXPECT_EQ(true, ucr::CheckForInvalidUtf8("ab", 2));
+		EXPECT_EQ(true, ucr::CheckForInvalidUtf8("abc", 3));
+
+		utf8 = ucr::toUTF8(L"\u00a0");
+		EXPECT_EQ(true, ucr::CheckForInvalidUtf8(utf8.c_str(), utf8.length() - 1));
+		utf8 = ucr::toUTF8(L"\u263a");
+		EXPECT_EQ(true, ucr::CheckForInvalidUtf8(utf8.c_str(), utf8.length() - 1));
+
+		utf8 = ucr::toUTF8(L"\u00a0");
+		utf8[utf8.length() - 1] &= 0x7f;
+		EXPECT_EQ(true, ucr::CheckForInvalidUtf8(utf8.c_str(), utf8.length()));
+		utf8 = ucr::toUTF8(L"\u263a");
+		utf8[utf8.length() - 2] &= 0x7f;
+		EXPECT_EQ(true, ucr::CheckForInvalidUtf8(utf8.c_str(), utf8.length()));
+		utf8 = ucr::toUTF8(L"\u263a");
+		utf8[utf8.length() - 1] &= 0x7f;
+		EXPECT_EQ(true, ucr::CheckForInvalidUtf8(utf8.c_str(), utf8.length()));
+	}
+
 	TEST_F(UnicoderTest, CrossConvert)
 	{
 		wchar_t wbuf[256];
