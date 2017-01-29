@@ -106,8 +106,8 @@ namespace
 	}
 	TEST_F(PathTest, Exists_relfiles)
 	{
-		const TCHAR path[] = _T(".\\..\\Paths\\paths::test.cpp");
-		const TCHAR path2[] = _T("..\\Paths\\paths::test.cpp");
+		const TCHAR path[] = _T(".\\..\\Paths\\paths_test.cpp");
+		const TCHAR path2[] = _T("..\\Paths\\paths_test.cpp");
 		EXPECT_EQ(paths::IS_EXISTING_FILE, paths::DoesPathExist(path));
 		EXPECT_EQ(paths::IS_EXISTING_FILE, paths::DoesPathExist(path2));
 	}
