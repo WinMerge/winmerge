@@ -1140,16 +1140,16 @@ bool CheckForInvalidUtf8(const char *pBuffer, size_t size)
 			return true;
 		pVal2++;
 	}
-	if (size <= 3)
-		return false;
 	pVal2 = (unsigned char *)pBuffer;
 	bool bUTF8 = false;
-	for (size_t i = 0; i < (size - 3); ++i)
+	for (size_t i = 0; i < size; ++i)
 	{
 		if ((*pVal2 & 0x80) == 0x00)
 			;
 		else if ((*pVal2 & 0xE0) == 0xC0)
 		{
+			if (i >= size - 1)
+				return true;
 			pVal2++;
 			i++;
 			if ((*pVal2 & 0xC0) != 0x80)
@@ -1158,6 +1158,8 @@ bool CheckForInvalidUtf8(const char *pBuffer, size_t size)
 		}
 		else if ((*pVal2 & 0xF0) == 0xE0)
 		{
+			if (i >= size - 2)
+				return true;
 			pVal2++;
 			i++;
 			if ((*pVal2 & 0xC0) != 0x80)
@@ -1170,6 +1172,8 @@ bool CheckForInvalidUtf8(const char *pBuffer, size_t size)
 		}
 		else if ((*pVal2 & 0xF8) == 0xF0)
 		{
+			if (i >= size - 3)
+				return true;
 			pVal2++;
 			i++;
 			if ((*pVal2 & 0xC0) != 0x80)
