@@ -13,11 +13,13 @@ namespace
 		CharsetsTest()
 		{
 			// You can do set-up work for each test	here.
+			charsets_init();
 		}
 
 		virtual ~CharsetsTest()
 		{
 			// You can do clean-up work	that doesn't throw exceptions here.
+			charsets_cleanup();
 		}
 
 		// If	the	constructor	and	destructor are not enough for setting up
