@@ -151,4 +151,9 @@ echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 ) > "%DISTDIR%\jp_files.txt"
 
+
+for /F "delims=" %%f in ('type "%DISTDIR%\jp_files.txt"') do (
+  "%ProgramFiles(x86)%\VirusTotalUploader2\VirusTotalUploader2.2.exe" %%f
+)
+
 pause
