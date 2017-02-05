@@ -790,23 +790,17 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 {
 	if (pCmpData)
 	{
-		// Set text statistics
-		if (di.diffcode.isSideLeftOnlyOrBoth())
-			di.diffFileInfo[0].m_textStats = pCmpData->m_diffFileData.m_textStats[0];
-		if (di.diffcode.isSideRightOnlyOrBoth())
-			di.diffFileInfo[1].m_textStats = pCmpData->m_diffFileData.m_textStats[1];
-
 		di.nsdiffs = pCmpData->m_ndiffs;
 		di.nidiffs = pCmpData->m_ntrivialdiffs;
 
-		if (!di.diffcode.isSideFirstOnly())
+		for (int i = 0; i < pCtxt->GetCompareDirs(); ++i)
 		{
-			di.diffFileInfo[1].encoding = pCmpData->m_diffFileData.m_FileLocation[1].encoding;
-		}
-		
-		if (!di.diffcode.isSideSecondOnly())
-		{
-			di.diffFileInfo[0].encoding = pCmpData->m_diffFileData.m_FileLocation[0].encoding;
+			// Set text statistics
+			if (di.diffcode.exists(i))
+			{
+				di.diffFileInfo[i].m_textStats = pCmpData->m_diffFileData.m_textStats[i];
+				di.diffFileInfo[i].encoding = pCmpData->m_diffFileData.m_FileLocation[i].encoding;
+			}
 		}
 	}
 
