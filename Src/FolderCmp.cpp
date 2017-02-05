@@ -227,8 +227,14 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 					m_pDiffUtilsEngine->SetFileData(2, diffdata10.m_diffFileData.m_inf);
 					bRet = m_pDiffUtilsEngine->Diff2Files(&script10, 0, &bin_flag10, false, NULL);
+					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
+					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[0]);
+
 					m_pDiffUtilsEngine->SetFileData(2, diffdata12.m_diffFileData.m_inf);
 					bRet = m_pDiffUtilsEngine->Diff2Files(&script12, 0, &bin_flag12, false, NULL);
+					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
+					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
+
 					code = DIFFCODE::FILE;
 
 					CDiffWrapper dw;
@@ -296,8 +302,6 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 				// Set to special value to indicate invalid
 				m_ndiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
 				m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
-				di.diffFileInfo[0].m_textStats = m_diffFileData.m_textStats[0];
-				di.diffFileInfo[1].m_textStats = m_diffFileData.m_textStats[1];	
 			}
 			else
 			{
@@ -318,8 +322,8 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					// use our own byte-by-byte compare
 					int code10 = m_pByteCompare->CompareFiles(diffdata10.m_diffFileData.m_FileLocation);
 	
-					m_pByteCompare->GetTextStats(0, &diffdata10.m_diffFileData.m_textStats[0]);
-					m_pByteCompare->GetTextStats(1, &diffdata10.m_diffFileData.m_textStats[1]);
+					m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[1]);
+					m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[0]);
 
 					// 12
 					m_pByteCompare->SetFileData(2, diffdata12.m_diffFileData.m_inf);
@@ -327,8 +331,8 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					// use our own byte-by-byte compare
 					int code12 = m_pByteCompare->CompareFiles(diffdata12.m_diffFileData.m_FileLocation);
 	
-					m_pByteCompare->GetTextStats(0, &diffdata12.m_diffFileData.m_textStats[0]);
-					m_pByteCompare->GetTextStats(1, &diffdata12.m_diffFileData.m_textStats[1]);
+					m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[1]);
+					m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[2]);
 
 					code = DIFFCODE::FILE;
 					if (DIFFCODE::isResultError(code10) || DIFFCODE::isResultError(code12))
@@ -349,10 +353,6 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 				// Set to special value to indicate invalid
 				m_ndiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
 				m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
-				// FIXME:
-				di.diffFileInfo[0].m_textStats = diffdata10.m_diffFileData.m_textStats[1];
-				di.diffFileInfo[1].m_textStats = diffdata10.m_diffFileData.m_textStats[0];	
-				di.diffFileInfo[2].m_textStats = diffdata12.m_diffFileData.m_textStats[1];	
 			}
 		}
 exitPrepAndCompare:
