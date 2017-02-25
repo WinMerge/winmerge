@@ -2516,6 +2516,11 @@ msgstr "Звичайний текст:"
 msgid "Selection:"
 msgstr "Відзнач. текст:"
 
+#: Merge.rc:2FC0BA7C
+#, c-format
+msgid "Margin:"
+msgstr ""
+
 #: Merge.rc:D109E01
 #, c-format
 msgid "Paths"

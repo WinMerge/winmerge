@@ -38,6 +38,7 @@ private:
 	CColorButton    m_btnRegularText;
 	CColorButton    m_btnSelectionBackground;
 	CColorButton    m_btnSelectionText;
+	CColorButton    m_btnMarginBackground;
 	bool            m_bCustomColors;
 	//}}AFX_DATA
 
@@ -65,6 +66,7 @@ protected:
 	afx_msg void OnRegularTextColor();
 	afx_msg void OnSelectionBackgroundColor();
 	afx_msg void OnSelectionTextColor();
+	afx_msg void OnMarginBackgroundColor();
 	afx_msg void OnDefaultsStandardColors();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

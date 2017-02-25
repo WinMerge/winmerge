@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2017-01-08 11:41+0000\n"
+"POT-Creation-Date: 2017-02-25 15:05+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2505,6 +2505,11 @@ msgstr ""
 #: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
+msgstr ""
+
+#: Merge.rc:2FC0BA7C
+#, c-format
+msgid "Margin:"
 msgstr ""
 
 #: Merge.rc:D109E01
