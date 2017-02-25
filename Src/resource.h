@@ -491,6 +491,8 @@
 #define IDC_PATH_COMPARING              1348
 #define IDC_REGISTER_SHELLEXTENSION     1349
 #define IDC_UNREGISTER_SHELLEXTENSION   1350
+#define IDC_MARGIN_COLOR_LABEL          1351
+#define IDC_MARGIN_BKGD_COLOR           1352
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1232,7 +1234,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        245
+#define _APS_NEXT_RESOURCE_VALUE        246
 #define _APS_NEXT_COMMAND_VALUE         33545
 #define _APS_NEXT_CONTROL_VALUE         8809
 #define _APS_NEXT_SYMED_VALUE           115

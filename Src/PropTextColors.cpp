@@ -40,6 +40,7 @@ void PropTextColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_REGULAR_TEXT_COLOR, m_btnRegularText);
 	DDX_Control(pDX, IDC_SELECTION_BKGD_COLOR, m_btnSelectionBackground);
 	DDX_Control(pDX, IDC_SELECTION_TEXT_COLOR, m_btnSelectionText);
+	DDX_Control(pDX, IDC_MARGIN_BKGD_COLOR, m_btnMarginBackground);
 	//}}AFX_DATA_MAP
 	EnableColorButtons(m_bCustomColors);
 }
@@ -53,6 +54,7 @@ BEGIN_MESSAGE_MAP(PropTextColors, CDialog)
 	ON_BN_CLICKED(IDC_REGULAR_TEXT_COLOR, OnRegularTextColor)
 	ON_BN_CLICKED(IDC_SELECTION_BKGD_COLOR, OnSelectionBackgroundColor)
 	ON_BN_CLICKED(IDC_SELECTION_TEXT_COLOR, OnSelectionTextColor)
+	ON_BN_CLICKED(IDC_MARGIN_BKGD_COLOR, OnMarginBackgroundColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -147,6 +149,14 @@ void PropTextColors::OnSelectionTextColor()
 	BrowseColorAndSave(m_btnSelectionText, COLORINDEX_SELTEXT);
 }
 
+/** 
+ * @brief User wants to change margin background color
+ */
+void PropTextColors::OnMarginBackgroundColor() 
+{
+	BrowseColorAndSave(m_btnMarginBackground, COLORINDEX_SELMARGIN);
+}
+
 /**
  * @brief Load all colors, Save all colors, or set all colors to default
  * @param [in] op Operation to do, one of
@@ -166,6 +176,8 @@ void PropTextColors::SerializeColorsToFromScreen(OPERATION op)
 
 	SerializeColorToFromScreen(op, m_btnSelectionBackground, COLORINDEX_SELBKGND);
 	SerializeColorToFromScreen(op, m_btnSelectionText, COLORINDEX_SELTEXT);
+
+	SerializeColorToFromScreen(op, m_btnMarginBackground, COLORINDEX_SELMARGIN);
 }
 
 /**
@@ -218,6 +230,7 @@ void PropTextColors::EnableColorButtons(bool bEnable)
 	EnableDlgItem(IDC_WHITESPACE_COLOR_LABEL, bEnable);
 	EnableDlgItem(IDC_TEXT_COLOR_LABEL, bEnable);
 	EnableDlgItem(IDC_SELECTION_COLOR_LABEL, bEnable);
+	EnableDlgItem(IDC_MARGIN_COLOR_LABEL, bEnable);
 	EnableDlgItem(IDC_BACKGROUND_COLUMN_LABEL, bEnable);
 	EnableDlgItem(IDC_TEXT_COLUMN_LABEL, bEnable);
 }

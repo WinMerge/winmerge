@@ -2530,6 +2530,11 @@ msgstr "標準テキスト:"
 msgid "Selection:"
 msgstr "選択:"
 
+#: Merge.rc:2FC0BA7C
+#, c-format
+msgid "Margin:"
+msgstr "マージン:"
+
 #: Merge.rc:D109E01
 #, c-format
 msgid "Paths"

@@ -2512,6 +2512,11 @@ msgstr "텍스트:"
 msgid "Selection:"
 msgstr "선택 부분:"
 
+#: Merge.rc:2FC0BA7C
+#, c-format
+msgid "Margin:"
+msgstr ""
+
 #: Merge.rc:D109E01
 #, c-format
 msgid "Paths"

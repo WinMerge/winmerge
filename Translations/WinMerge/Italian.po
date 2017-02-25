@@ -2511,6 +2511,11 @@ msgstr "Testo normale:"
 msgid "Selection:"
 msgstr "Selezione:"
 
+#: Merge.rc:2FC0BA7C
+#, c-format
+msgid "Margin:"
+msgstr ""
+
 #: Merge.rc:D109E01
 #, c-format
 msgid "Paths"
