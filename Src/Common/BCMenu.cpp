@@ -264,7 +264,7 @@ void BCMenu::DrawItem (LPDRAWITEMSTRUCT lpDIS)
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 	if(pDC->GetDeviceCaps(RASTERCAPS) & RC_PALETTE)DrawItem_Win9xNT2000(lpDIS);
 	else{
-		if (!m_hTheme)
+		if (!m_hTheme || !IsThemeActive())
 			DrawItem_Win9xNT2000(lpDIS);
 		else
 			DrawItem_Theme(lpDIS);
