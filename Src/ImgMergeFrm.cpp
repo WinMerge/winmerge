@@ -348,14 +348,29 @@ void CImgMergeFrame::CreateImgWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndP
 
 void CImgMergeFrame::OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 {
-	if (evt.eventType == IImgMergeWindow::KEYDOWN && GetAsyncKeyState(VK_SHIFT))
+	if (evt.eventType == IImgMergeWindow::KEYDOWN)
 	{
 		CImgMergeFrame *pFrame = reinterpret_cast<CImgMergeFrame *>(evt.userdata);
-		int nActivePane = pFrame->m_pImgMergeWindow->GetActivePane();
-		int m = GetAsyncKeyState(VK_CONTROL) ? 8 : 1;
-		int dx = (-(evt.keycode == VK_LEFT) + (evt.keycode == VK_RIGHT)) * m;
-		int dy = (-(evt.keycode == VK_UP  ) + (evt.keycode == VK_DOWN )) * m;
-		pFrame->m_pImgMergeWindow->AddImageOffset(nActivePane, dx, dy);
+		switch (evt.keycode)
+		{
+		case VK_PRIOR:
+		case VK_NEXT:
+			::SendMessage(pFrame->m_pImgMergeWindow->GetPaneHWND(evt.pane), WM_VSCROLL, evt.keycode == VK_PRIOR ? SB_PAGEUP : SB_PAGEDOWN, 0);
+			break;
+		case VK_LEFT:
+		case VK_RIGHT:
+		case VK_UP:
+		case VK_DOWN:
+			if (GetAsyncKeyState(VK_SHIFT))
+			{
+				int nActivePane = pFrame->m_pImgMergeWindow->GetActivePane();
+				int m = GetAsyncKeyState(VK_CONTROL) ? 8 : 1;
+				int dx = (-(evt.keycode == VK_LEFT) + (evt.keycode == VK_RIGHT)) * m;
+				int dy = (-(evt.keycode == VK_UP) + (evt.keycode == VK_DOWN)) * m;
+				pFrame->m_pImgMergeWindow->AddImageOffset(nActivePane, dx, dy);
+			}
+			break;
+		}
 	}
 
 /*	if (evt.eventType == IImgMergeWindow::CONTEXTMENU)
