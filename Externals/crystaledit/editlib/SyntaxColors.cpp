@@ -75,7 +75,7 @@ bool SyntaxColors::GetSystemColorIndex(int nColorIndex, int * pSysIndex) const
 			*pSysIndex = COLOR_WINDOWTEXT;
 			return true;
 		case COLORINDEX_SELMARGIN:
-			*pSysIndex = COLOR_3DLIGHT;
+			*pSysIndex = COLOR_BTNFACE;
 			return true;
 		case COLORINDEX_SELTEXT:
 			*pSysIndex = COLOR_HIGHLIGHTTEXT;

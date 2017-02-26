@@ -333,8 +333,8 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		rc.top += 2;
 		if (GetSysColor(COLOR_3DFACE) == GetSysColor(COLOR_WINDOW))
 		{
-			FillRect(lpDraw->hDC, &lpDraw->rcItem, (HBRUSH)GetSysColorBrush(COLOR_WINDOWTEXT));
-			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_WINDOW));
+			FillRect(lpDraw->hDC, &lpDraw->rcItem, (HBRUSH)GetSysColorBrush(COLOR_HIGHLIGHT));
+			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_HIGHLIGHTTEXT));
 		}
 		else
 		{
