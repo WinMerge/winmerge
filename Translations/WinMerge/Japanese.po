@@ -166,12 +166,27 @@ msgstr "アルファブレンド(&A)"
 msgid "Alpha &Blend Animation"
 msgstr "アルファブレンドアニメ表示(&B)"
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr "ドラッグモード(&M)"
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "移動(&M)"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr "オフセット調整(&A)"
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr "透明色を設定(&S)"
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "ファイル(&F)"
@@ -226,7 +241,7 @@ msgstr "< なし >"
 msgid "E&xit"
 msgstr "終了(&X)"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "編集(&E)"
@@ -236,7 +251,7 @@ msgstr "編集(&E)"
 msgid "&Options..."
 msgstr "設定(&O)..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "表示(&V)"
@@ -256,7 +271,7 @@ msgstr "小(&S)"
 msgid "&Big"
 msgstr "大(&B)"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr "特大(&H)"
@@ -361,7 +376,7 @@ msgstr "左右に並べて表示(&V)"
 msgid "&Cascade"
 msgstr "重ねて表示(&C)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "ヘルプ(&H)"
@@ -681,7 +696,7 @@ msgstr "切り取り(&T)\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "コピー(&C)\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "貼り付け(&P)\tCtrl+V"
@@ -1061,11 +1076,6 @@ msgstr "右を左に (%1 / %2)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "右を... (%1/%2)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "移動(&M)"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1970,7 +1980,7 @@ msgstr "空白"
 msgid "&Compare"
 msgstr "比較する(&C)"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "変更を無視する(&I)"
@@ -2445,7 +2455,7 @@ msgstr "(Affects)"
 msgid "Select Codepage for"
 msgstr "コードページの選択"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "ファイル読込み(&F):"

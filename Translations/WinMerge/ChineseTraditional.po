@@ -166,12 +166,27 @@ msgstr "透明效果(&A)"
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "移動(&M)"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr "設定背景顏色(&S)"
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "檔案(&F)"
@@ -226,7 +241,7 @@ msgstr "< 無 >"
 msgid "E&xit"
 msgstr "結束(&X)"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "編輯(&E)"
@@ -236,7 +251,7 @@ msgstr "編輯(&E)"
 msgid "&Options..."
 msgstr "選項(&O)..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "檢視(&V)"
@@ -256,7 +271,7 @@ msgstr "小圖示(&S)"
 msgid "&Big"
 msgstr "大圖示(&B)"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr "超大圖示(&H)"
@@ -363,7 +378,7 @@ msgstr "垂直並排(&V)"
 msgid "&Cascade"
 msgstr "前後疊放(&C)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "說明(&H)"
@@ -683,7 +698,7 @@ msgstr "剪下(&U)\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "複製(&C)\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "貼上(&P)\tCtrl+V"
@@ -1067,11 +1082,6 @@ msgstr "右邊到左邊 (%2 之 %1)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "右邊到... (%2 之 %1)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "移動(&M)"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1970,7 +1980,7 @@ msgstr "空白處"
 msgid "&Compare"
 msgstr "比對空白處(&W)"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "忽略空白數量之變動而造成的差異(&H)"
@@ -2440,7 +2450,7 @@ msgstr "(影響)"
 msgid "Select Codepage for"
 msgstr "選定編碼頁給"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "要載入的檔案(&F)："

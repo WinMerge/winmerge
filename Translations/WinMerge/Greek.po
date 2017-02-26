@@ -164,12 +164,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "&Μετακίνηση"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "&Αρχείο"
@@ -224,7 +239,7 @@ msgstr "< Άδειο >"
 msgid "E&xit"
 msgstr "Έξοδο&ς"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "&Επεξεργασία"
@@ -234,7 +249,7 @@ msgstr "&Επεξεργασία"
 msgid "&Options..."
 msgstr "Επιλ&ογές..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "Πρ&οβολή"
@@ -254,7 +269,7 @@ msgstr "Μι&κρή"
 msgid "&Big"
 msgstr "Με&γάλη"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -359,7 +374,7 @@ msgstr "Παράθεση Κατα&κορύφως"
 msgid "&Cascade"
 msgstr "Επικάλυ&ψη"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "&Βοήθεια"
@@ -679,7 +694,7 @@ msgstr "Απο&κοπή\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "Αντι&γραφή\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Προ&σάρτηση\tCtrl+V"
@@ -1059,11 +1074,6 @@ msgstr "Δεξιό στο Αριστερό (%1 από %2)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Δεξιό στο... (%1 από %2)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "&Μετακίνηση"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1960,7 +1970,7 @@ msgstr "Χαρακτήρες Διαστήματος"
 msgid "&Compare"
 msgstr "&Σύγκριση"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "Η μεταβολή να α&γνοείται"
@@ -2425,7 +2435,7 @@ msgstr "(Επηρεάζει)"
 msgid "Select Codepage for"
 msgstr "Επιλογή Κωδικοσελίδας για"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "Ανά&γνωση Αρχείου:"

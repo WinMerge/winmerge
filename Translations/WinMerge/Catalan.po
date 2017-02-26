@@ -164,12 +164,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "&Mou"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "&Fitxer"
@@ -224,7 +239,7 @@ msgstr "< Buit >"
 msgid "E&xit"
 msgstr "&Surt"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "E&dita"
@@ -234,7 +249,7 @@ msgstr "E&dita"
 msgid "&Options..."
 msgstr "O&pcions..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "&Visualització"
@@ -254,7 +269,7 @@ msgstr "&Petita"
 msgid "&Big"
 msgstr "&Gran"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -359,7 +374,7 @@ msgstr "Finestres en mosaic &vertical"
 msgid "&Cascade"
 msgstr "Finestres en &cascada"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "&Ajuda"
@@ -679,7 +694,7 @@ msgstr "&Retalla\tControl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "C&opia\tControl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Engan&xa\tControl+V"
@@ -1059,11 +1074,6 @@ msgstr "Dreta a esquerra (%1 de %2)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Dreta a... (%1 de %2)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "&Mou"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1960,7 +1970,7 @@ msgstr "Espais en blanc"
 msgid "&Compare"
 msgstr "Compara els &espais"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "Ignora els &canvis en els espais"
@@ -2425,7 +2435,7 @@ msgstr "(Afecta)"
 msgid "Select Codepage for"
 msgstr "Selecciona pàgina de codis per a"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "&Càrrega de fitxers:"

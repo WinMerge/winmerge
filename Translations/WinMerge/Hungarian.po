@@ -165,12 +165,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "&Áthelyezés"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "&Fájl"
@@ -225,7 +240,7 @@ msgstr "< Üres >"
 msgid "E&xit"
 msgstr "&Kilépés"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "S&zerkesztés"
@@ -235,7 +250,7 @@ msgstr "S&zerkesztés"
 msgid "&Options..."
 msgstr "&Beállítások..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "&Nézet"
@@ -255,7 +270,7 @@ msgstr "Kic&si"
 msgid "&Big"
 msgstr "Nagy"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -360,7 +375,7 @@ msgstr "Elrendezés &függõlegesen"
 msgid "&Cascade"
 msgstr "&Felosztás"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "&Súgó"
@@ -680,7 +695,7 @@ msgstr "&Kivágás\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "&Másolás\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Beillesztés\tCtrl+V"
@@ -1060,11 +1075,6 @@ msgstr "Jobbról balra (%1 of %2)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Jobbról... (%1 of %2)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "&Áthelyezés"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1961,7 +1971,7 @@ msgstr "Szóközök"
 msgid "&Compare"
 msgstr "&Összehasonlítás"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "&Változtatások kihagyása"
@@ -2426,7 +2436,7 @@ msgstr ""
 msgid "Select Codepage for"
 msgstr "Kódlap kiválasztása"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "Fájl töltése:"

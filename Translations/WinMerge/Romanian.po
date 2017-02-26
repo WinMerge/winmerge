@@ -165,12 +165,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "&Mutã"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "&Fiºier"
@@ -225,7 +240,7 @@ msgstr "< Gol >"
 msgid "E&xit"
 msgstr "Ieºir&e"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "&Editare"
@@ -235,7 +250,7 @@ msgstr "&Editare"
 msgid "&Options..."
 msgstr "&Opþiuni..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "&Vizualizare"
@@ -255,7 +270,7 @@ msgstr "&Mic"
 msgid "&Big"
 msgstr "Ma&re"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -360,7 +375,7 @@ msgstr "Alãturã &vertical"
 msgid "&Cascade"
 msgstr "&Cascadã"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "A&jutor"
@@ -680,7 +695,7 @@ msgstr "&Taie\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "&Copie\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Li&peºte\tCtrl+V"
@@ -1060,11 +1075,6 @@ msgstr "De la dreapta la stânga (%1 din %2)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Dreapta la... (%1 din %2)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "&Mutã"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1961,7 +1971,7 @@ msgstr "Blanc"
 msgid "&Compare"
 msgstr "&Comparã"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ignorã schimbare"
@@ -2426,7 +2436,7 @@ msgstr "(Afecteazã)"
 msgid "Select Codepage for"
 msgstr "Selecteazã codare caractere pentru"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "Încãrcare &fiºier:"

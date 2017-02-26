@@ -168,12 +168,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "&Mugitu"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "&Agiria"
@@ -228,7 +243,7 @@ msgstr "< Hutsik >"
 msgid "E&xit"
 msgstr "Ir&ten"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "&Editatu"
@@ -238,7 +253,7 @@ msgstr "&Editatu"
 msgid "&Options..."
 msgstr "&Aukerak..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "&Ikusi"
@@ -258,7 +273,7 @@ msgstr "&Txikia"
 msgid "&Big"
 msgstr "&Handia"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -363,7 +378,7 @@ msgstr "Eradonki &Zutia"
 msgid "&Cascade"
 msgstr "&Urjauzia"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "&Laguntza"
@@ -683,7 +698,7 @@ msgstr "&Ebaki\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiatu\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Itsatsi\tCtrl+V"
@@ -1063,11 +1078,6 @@ msgstr "Eskuina Ezkerrera (%1 %2-tik)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Eskuina hona... (%1 %2-tik)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "&Mugitu"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1964,7 +1974,7 @@ msgstr "&Zurigunea"
 msgid "&Compare"
 msgstr "Al&deratu"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ezikusi aldaketa"
@@ -2433,7 +2443,7 @@ msgstr "(Eraginak)"
 msgid "Select Codepage for"
 msgstr "Hautatu Kode-orrialdea"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "&Agiria Gertatzen:"

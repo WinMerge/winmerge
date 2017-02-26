@@ -32,6 +32,9 @@ struct IImgMergeWindow
 		SIZE, HSCROLL, VSCROLL, SETFOCUS, KILLFOCUS,
 		REFRESH, SCROLLTODIFF, OPEN
 	};
+	enum DRAGGING_MODE {
+		NONE = 0, MOVE, ADJUST_OFFSET
+	};
 	struct Event
 	{
 		void *userdata;
@@ -130,6 +133,8 @@ struct IImgMergeWindow
 	virtual void AddImageOffset(int pane, int dx, int dy) = 0;
 	virtual POINT GetImageOffset(int pane) const = 0;
 	virtual void AddEventListener(EventListenerFunc func, void *userdata) = 0;
+	virtual DRAGGING_MODE GetDraggingMode() const = 0;
+	virtual void SetDraggingMode(DRAGGING_MODE draggingMode) = 0;
 };
 
 struct IImgToolWindow

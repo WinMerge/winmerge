@@ -165,12 +165,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "&Taþý"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "&Dosya"
@@ -225,7 +240,7 @@ msgstr "< Boþ >"
 msgid "E&xit"
 msgstr "Çý&kýþ"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "Düz&en"
@@ -235,7 +250,7 @@ msgstr "Düz&en"
 msgid "&Options..."
 msgstr "A&yarlar..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "&Görünüm"
@@ -255,7 +270,7 @@ msgstr "Küçük"
 msgid "&Big"
 msgstr "&Büyük"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -360,7 +375,7 @@ msgstr "&Dikey Döþe"
 msgid "&Cascade"
 msgstr "&Basamakla"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "Ya&rdým"
@@ -680,7 +695,7 @@ msgstr "K&es\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopyala\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Ya&pýþtýr\tCtrl+V"
@@ -1060,11 +1075,6 @@ msgstr "Saðdakini Sola (%1 / %2)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Saðdakini þuraya... (%1 / %2)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "&Taþý"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1964,7 +1974,7 @@ msgstr "Boþluk"
 msgid "&Compare"
 msgstr "&Karþýlaþtýr"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "&Deðiþikliði yok say"
@@ -2433,7 +2443,7 @@ msgstr "(Etkiler)"
 msgid "Select Codepage for"
 msgstr "Þunun için Kod Sayfasý Seçin"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "&Dosya Yükleniyor:"

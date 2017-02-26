@@ -165,12 +165,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "&Pre&mjesti"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "&Datoteka"
@@ -225,7 +240,7 @@ msgstr "< ništa >"
 msgid "E&xit"
 msgstr "I&zlaz"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "&Ureðivanje"
@@ -235,7 +250,7 @@ msgstr "&Ureðivanje"
 msgid "&Options..."
 msgstr "Pos&tavke..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "&Izgled"
@@ -255,7 +270,7 @@ msgstr "&Male ikone"
 msgid "&Big"
 msgstr "&Velike ikone"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -360,7 +375,7 @@ msgstr "Okna &okomito"
 msgid "&Cascade"
 msgstr "Okna &kaskadno"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "&Pomoæ"
@@ -680,7 +695,7 @@ msgstr "Od&reži\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiraj\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Zalijepi\tCtrl+V"
@@ -1060,11 +1075,6 @@ msgstr "Desno do lijevo (%1 od %2)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Desno do... (%1 od %2)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "&Pre&mjesti"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1961,7 +1971,7 @@ msgstr "Skriveni znaci i razmaci"
 msgid "&Compare"
 msgstr "&Usporedi"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "Zanemari &izmjene"
@@ -2430,7 +2440,7 @@ msgstr "(Primjeni na)"
 msgid "Select Codepage for"
 msgstr "Odabir kodne stranice za"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "&Uèitavanje datoteke:"

@@ -167,6 +167,7 @@ extern const String OPT_CMP_IMG_FILEPATTERNS OP("Settings/ImageFilePatterns");
 extern const String OPT_CMP_IMG_SHOWDIFFERENCES OP("Settings/ImageShowDifferences");
 extern const String OPT_CMP_IMG_OVERLAYMOVE OP("Settings/ImageOverlayMode");
 extern const String OPT_CMP_IMG_OVERLAYALPHA OP("Settings/ImageOverlayAlpha");
+extern const String OPT_CMP_IMG_DRAGGING_MODE OP("Settings/ImageDraggingMode");
 extern const String OPT_CMP_IMG_ZOOM OP("Settings/ImageZoom");
 extern const String OPT_CMP_IMG_USEBACKCOLOR OP("Settings/ImageUseBackColor");
 extern const String OPT_CMP_IMG_BACKCOLOR OP("Settings/ImageBackColor");
