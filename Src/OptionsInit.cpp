@@ -134,6 +134,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IMG_SHOWDIFFERENCES, true);
 	pOptions->InitOption(OPT_CMP_IMG_OVERLAYMOVE, 0);
 	pOptions->InitOption(OPT_CMP_IMG_OVERLAYALPHA, 30);
+	pOptions->InitOption(OPT_CMP_IMG_DRAGGING_MODE, 1);
 	pOptions->InitOption(OPT_CMP_IMG_ZOOM, 1000);
 	pOptions->InitOption(OPT_CMP_IMG_USEBACKCOLOR, true);
 	pOptions->InitOption(OPT_CMP_IMG_BACKCOLOR, 0xFFFFFF);

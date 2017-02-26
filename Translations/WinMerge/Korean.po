@@ -166,12 +166,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "이동(&M)"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "파일(&F)"
@@ -226,7 +241,7 @@ msgstr "< 비어 있음 >"
 msgid "E&xit"
 msgstr "끝내기(&X)"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "편집(&E)"
@@ -236,7 +251,7 @@ msgstr "편집(&E)"
 msgid "&Options..."
 msgstr "설정(&O)..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "보기(&V)"
@@ -256,7 +271,7 @@ msgstr "작게(&S)"
 msgid "&Big"
 msgstr "크게(&B)"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -361,7 +376,7 @@ msgstr "수평 정렬(&V)"
 msgid "&Cascade"
 msgstr "계단식 정렬(&C)"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "도움말(&H)"
@@ -681,7 +696,7 @@ msgstr "잘라내기(&T)\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "복사(&C)\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "붙여넣기(&P)\tCtrl+V"
@@ -1061,11 +1076,6 @@ msgstr "왼쪽으로 (%1 / %2)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "오른쪽 파일 위치지정 복사 (%1 / %2)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "이동(&M)"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1962,7 +1972,7 @@ msgstr "공백"
 msgid "&Compare"
 msgstr "공백 비교(&W)"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "변경 내용 무시(&H)"
@@ -2427,7 +2437,7 @@ msgstr "(적용)"
 msgid "Select Codepage for"
 msgstr "코드페이지 선택:"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "열 때의 코드페이지(&F):"

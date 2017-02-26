@@ -128,6 +128,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_ZOOM_25, ID_IMG_ZOOM_800, OnUpdateImgZoom)
 	ON_COMMAND_RANGE(ID_IMG_OVERLAY_NONE, ID_IMG_OVERLAY_ALPHABLEND_ANIM, OnImgOverlayMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_OVERLAY_NONE, ID_IMG_OVERLAY_ALPHABLEND_ANIM, OnUpdateImgOverlayMode)
+	ON_COMMAND_RANGE(ID_IMG_DRAGGINGMODE_NONE, ID_IMG_DRAGGINGMODE_ADJUST_OFFSET, OnImgDraggingMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_DRAGGINGMODE_NONE, ID_IMG_DRAGGINGMODE_ADJUST_OFFSET, OnUpdateImgDraggingMode)
 	ON_COMMAND_RANGE(ID_IMG_DIFFBLOCKSIZE_1, ID_IMG_DIFFBLOCKSIZE_32, OnImgDiffBlockSize)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_DIFFBLOCKSIZE_1, ID_IMG_DIFFBLOCKSIZE_32, OnUpdateImgDiffBlockSize)
 	ON_COMMAND_RANGE(ID_IMG_THRESHOLD_0, ID_IMG_THRESHOLD_64, OnImgThreshold)
@@ -550,6 +552,7 @@ void CImgMergeFrame::LoadOptions()
 	m_pImgMergeWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
 	m_pImgMergeWindow->SetOverlayMode(static_cast<IImgMergeWindow::OVERLAY_MODE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYMOVE)));
 	m_pImgMergeWindow->SetOverlayAlpha(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYALPHA) / 100.0);
+	m_pImgMergeWindow->SetDraggingMode(static_cast<IImgMergeWindow::DRAGGING_MODE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_DRAGGING_MODE)));
 	m_pImgMergeWindow->SetZoom(GetOptionsMgr()->GetInt(OPT_CMP_IMG_ZOOM) / 1000.0);
 	m_pImgMergeWindow->SetUseBackColor(GetOptionsMgr()->GetBool(OPT_CMP_IMG_USEBACKCOLOR));
 	COLORREF clrBackColor = GetOptionsMgr()->GetInt(OPT_CMP_IMG_BACKCOLOR);
@@ -565,6 +568,7 @@ void CImgMergeFrame::SaveOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SHOWDIFFERENCES, m_pImgMergeWindow->GetShowDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OVERLAYMOVE, m_pImgMergeWindow->GetOverlayMode());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OVERLAYALPHA, static_cast<int>(m_pImgMergeWindow->GetOverlayAlpha() * 100));
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_DRAGGING_MODE, static_cast<int>(m_pImgMergeWindow->GetDraggingMode()));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_ZOOM, static_cast<int>(m_pImgMergeWindow->GetZoom() * 1000));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_USEBACKCOLOR, m_pImgMergeWindow->GetUseBackColor());
 	RGBQUAD backColor = m_pImgMergeWindow->GetBackColor();
@@ -1820,6 +1824,17 @@ void CImgMergeFrame::OnImgOverlayMode(UINT nId)
 void CImgMergeFrame::OnUpdateImgOverlayMode(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetRadio((pCmdUI->m_nID - ID_IMG_OVERLAY_NONE) == m_pImgMergeWindow->GetOverlayMode());
+}
+
+void CImgMergeFrame::OnImgDraggingMode(UINT nId)
+{
+	m_pImgMergeWindow->SetDraggingMode(static_cast<IImgMergeWindow::DRAGGING_MODE>(nId - ID_IMG_DRAGGINGMODE_NONE));
+	SaveOptions();
+}
+
+void CImgMergeFrame::OnUpdateImgDraggingMode(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio((pCmdUI->m_nID - ID_IMG_DRAGGINGMODE_NONE) == static_cast<int>(m_pImgMergeWindow->GetDraggingMode()));
 }
 
 void CImgMergeFrame::OnImgDiffBlockSize(UINT nId)

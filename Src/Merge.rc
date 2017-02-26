@@ -138,6 +138,12 @@ BEGIN
             MENUITEM "&Alpha Blend",                ID_IMG_OVERLAY_ALPHABLEND
             MENUITEM "Alpha &Blend Animation",      ID_IMG_OVERLAY_ALPHABLEND_ANIM
         END
+        POPUP "Dragging &Mode"
+        BEGIN
+            MENUITEM "&None",                       ID_IMG_DRAGGINGMODE_NONE
+            MENUITEM "&Move",                       ID_IMG_DRAGGINGMODE_MOVE
+            MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
+        END
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
     END
 END

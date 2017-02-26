@@ -166,12 +166,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "&Перемістити"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "&Файл"
@@ -226,7 +241,7 @@ msgstr "< Нема >"
 msgid "E&xit"
 msgstr "В&ихід"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "&Редакція"
@@ -236,7 +251,7 @@ msgstr "&Редакція"
 msgid "&Options..."
 msgstr "&Налаштування..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "Ви&гляд"
@@ -256,7 +271,7 @@ msgstr "&Маленькі піктограми"
 msgid "&Big"
 msgstr "&Великі піктограми"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -361,7 +376,7 @@ msgstr "Розмістити &вертикально"
 msgid "&Cascade"
 msgstr "&Каскад"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "&Довідка"
@@ -681,7 +696,7 @@ msgstr "Ви&різати\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "&Копіювати\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Вставити\tCtrl+V"
@@ -1061,11 +1076,6 @@ msgstr "Справа ліворуч (%1 з %2)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Справа... (%1 з %2)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "&Перемістити"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1962,7 +1972,7 @@ msgstr "Пропуски"
 msgid "&Compare"
 msgstr "Враховувати &пропуски"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "Нехтувати зміненими пропусками"
@@ -2431,7 +2441,7 @@ msgstr "(застосувати)"
 msgid "Select Codepage for"
 msgstr "Вибрати сторінку кодування для"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "Завант. файлу:"

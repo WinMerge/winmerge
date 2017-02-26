@@ -166,12 +166,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr "Prze&nieœ"
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr "&Plik"
@@ -226,7 +241,7 @@ msgstr "< pusty >"
 msgid "E&xit"
 msgstr "Zakoñcz"
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr "&Edycja"
@@ -236,7 +251,7 @@ msgstr "&Edycja"
 msgid "&Options..."
 msgstr "&Opcje..."
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr "&Widok"
@@ -256,7 +271,7 @@ msgstr "&Ma³y"
 msgid "&Big"
 msgstr "&Du¿y"
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -361,7 +376,7 @@ msgstr "P&ionowo"
 msgid "&Cascade"
 msgstr "&Kaskadowo"
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr "&Pomoc"
@@ -681,7 +696,7 @@ msgstr "&Wytnij\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiuj\tCtrl+C"
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Wk&lej\tCtrl+V"
@@ -1061,11 +1076,6 @@ msgstr "Prawa na lew¹ (%1 z %2)"
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Prawa na... (%1 z %2)"
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
-msgstr "Prze&nieœ"
 
 #: Merge.rc:89AF4FA
 #, c-format
@@ -1962,7 +1972,7 @@ msgstr "Bia³e znaki"
 msgid "&Compare"
 msgstr "&Porównaj"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr "Ignoruj &zmiany"
@@ -2431,7 +2441,7 @@ msgstr "(dzia³anie)"
 msgid "Select Codepage for"
 msgstr "Wybierz stronê kodow¹ dla"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr "&£adowanie pliku:"

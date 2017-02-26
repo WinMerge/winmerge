@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2017-02-25 15:05+0000\n"
+"POT-Creation-Date: 2017-02-26 23:50+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -161,12 +161,27 @@ msgstr ""
 msgid "Alpha &Blend Animation"
 msgstr ""
 
+#: Merge.rc:5806E58F
+#, c-format
+msgid "Dragging &Mode"
+msgstr ""
+
+#: Merge.rc:43017E45
+#, c-format
+msgid "&Move"
+msgstr ""
+
+#: Merge.rc:5A9A713A
+#, c-format
+msgid "&Adjust Offset"
+msgstr ""
+
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
 
-#: Merge.rc:43017E45
+#: Merge.rc:43017E46
 #, c-format
 msgid "&File"
 msgstr ""
@@ -221,7 +236,7 @@ msgstr ""
 msgid "E&xit"
 msgstr ""
 
-#: Merge.rc:43017E46
+#: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
 msgstr ""
@@ -231,7 +246,7 @@ msgstr ""
 msgid "&Options..."
 msgstr ""
 
-#: Merge.rc:43017E47
+#: Merge.rc:43017E48
 #, c-format
 msgid "&View"
 msgstr ""
@@ -251,7 +266,7 @@ msgstr ""
 msgid "&Big"
 msgstr ""
 
-#: Merge.rc:43017E48
+#: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
 msgstr ""
@@ -356,7 +371,7 @@ msgstr ""
 msgid "&Cascade"
 msgstr ""
 
-#: Merge.rc:43017E49
+#: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
 msgstr ""
@@ -676,7 +691,7 @@ msgstr ""
 msgid "&Copy\tCtrl+C"
 msgstr ""
 
-#: Merge.rc:5A9A713A
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr ""
@@ -1055,11 +1070,6 @@ msgstr ""
 #: Merge.rc:6DBD6123
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr ""
-
-#: Merge.rc:43017E4A
-#, c-format
-msgid "&Move"
 msgstr ""
 
 #: Merge.rc:89AF4FA
@@ -1957,7 +1967,7 @@ msgstr ""
 msgid "&Compare"
 msgstr ""
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Ignore change"
 msgstr ""
@@ -2422,7 +2432,7 @@ msgstr ""
 msgid "Select Codepage for"
 msgstr ""
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&File Loading:"
 msgstr ""
