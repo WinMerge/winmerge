@@ -18,6 +18,7 @@
 #include "Merge.h"
 #include "paths.h"
 #include "FileOrFolderSelect.h"
+#include "OptionsSyntaxColors.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -323,6 +324,7 @@ void CPreferencesDlg::OnImportButton()
 	{
 		if (m_pOptionsMgr->ImportOptions(s) == COption::OPT_OK)
 		{
+			Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors);
 			ReadOptions(TRUE);
 			LangMessageBox(IDS_OPT_IMPORT_DONE, MB_ICONINFORMATION);
 		}
