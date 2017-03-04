@@ -27,14 +27,6 @@ PropSyntaxColors::PropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColor
 : OptionsPanel(optionsMgr, PropSyntaxColors::IDD)
 {
 	m_pTempColors = pColors;
-
-	// Set colors for buttons, do NOT invalidate
-	for (auto&& colorIndex : ColorIndices)
-	{
-		m_colorButtons[colorIndex].SetColor(m_pTempColors->GetColor(colorIndex), FALSE);
-		m_nBolds[colorIndex] = GetCheckVal(colorIndex);
-	}
-
 	memset(m_cCustColors, 0, sizeof(m_cCustColors));
 }
 
@@ -90,6 +82,12 @@ END_MESSAGE_MAP()
  */
 void PropSyntaxColors::ReadOptions()
 {
+	// Set colors for buttons
+	for (auto&& colorIndex : ColorIndices)
+	{
+		m_colorButtons[colorIndex].SetColor(m_pTempColors->GetColor(colorIndex));
+		m_nBolds[colorIndex] = GetCheckVal(colorIndex);
+	}
 }
 
 /** 

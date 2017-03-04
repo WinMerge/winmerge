@@ -189,23 +189,12 @@ void PropTextColors::SerializeColorsToFromScreen(OPERATION op)
  */
 void PropTextColors::SerializeColorToFromScreen(OPERATION op, CColorButton & btn, int colorIndex)
 {
-	
 	switch (op)
 	{
 	case SET_DEFAULTS:
-		{
-		COLORREF color = m_pTempColors->GetColor(colorIndex);
-		btn.SetColor(color);
-		return;
-		}
-
 	case LOAD_COLORS:
-		{
-		COLORREF color = m_pTempColors->GetColor(colorIndex);
-		// Set colors for buttons, do NOT invalidate
-		btn.SetColor(color, FALSE);
-		return;
-		}
+		btn.SetColor(m_pTempColors->GetColor(colorIndex));
+		break;
 	}
 }
 

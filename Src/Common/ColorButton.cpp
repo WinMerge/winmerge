@@ -45,6 +45,6 @@ void CColorButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 void CColorButton::SetColor(COLORREF clrFill, BOOL bInvalidate /* = TRUE*/)
 {
 	m_clrFill = clrFill;
-	if (bInvalidate)
+	if (bInvalidate && m_hWnd)
 		Invalidate();
 }
