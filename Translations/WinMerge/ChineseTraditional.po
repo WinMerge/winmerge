@@ -1128,6 +1128,11 @@ msgstr "隱藏檔案(&H)"
 msgid "&Open Left"
 msgstr "開啟左邊(&O)"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1980,7 +1985,7 @@ msgstr "空白處"
 msgid "&Compare"
 msgstr "比對空白處(&W)"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "忽略空白數量之變動而造成的差異(&H)"
@@ -2450,7 +2455,7 @@ msgstr "(影響)"
 msgid "Select Codepage for"
 msgstr "選定編碼頁給"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "要載入的檔案(&F)："

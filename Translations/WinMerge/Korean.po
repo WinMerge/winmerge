@@ -1122,6 +1122,11 @@ msgstr "숨기기(&H)"
 msgid "&Open Left"
 msgstr "왼쪽 파일 열기(&O)"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1972,7 +1977,7 @@ msgstr "공백"
 msgid "&Compare"
 msgstr "공백 비교(&W)"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "변경 내용 무시(&H)"
@@ -2437,7 +2442,7 @@ msgstr "(적용)"
 msgid "Select Codepage for"
 msgstr "코드페이지 선택:"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "열 때의 코드페이지(&F):"

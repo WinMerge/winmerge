@@ -1121,6 +1121,11 @@ msgstr "&Skry poloky"
 msgid "&Open Left"
 msgstr "&Otvori ¾avı"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1971,7 +1976,7 @@ msgstr "Netlaèite¾né znaky"
 msgid "&Compare"
 msgstr "Porovnáva &netlaèite¾né znaky"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "Ignorova &zmeny v prázdnom mieste"
@@ -2436,7 +2441,7 @@ msgstr "(Ovplyvòuje)"
 msgid "Select Codepage for"
 msgstr "Zvo¾te kódovú stránku pre"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&Naèítanie súboru:"

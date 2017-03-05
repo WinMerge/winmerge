@@ -653,18 +653,21 @@ BEGIN
             MENUITEM "with &Registered Application", ID_DIR_OPEN_LEFT
             MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
             MENUITEM "&with...",                    ID_DIR_OPEN_LEFT_WITH
+            MENUITEM "&Parent Folder",              ID_DIR_OPEN_LEFT_PARENT_FOLDER
         END
         POPUP "Open Midd&le"
         BEGIN
             MENUITEM "with &Registered Application", ID_DIR_OPEN_MIDDLE
             MENUITEM "with &External Editor",       ID_DIR_OPEN_MIDDLE_WITHEDITOR
             MENUITEM "&with...",                    ID_DIR_OPEN_MIDDLE_WITH
+            MENUITEM "&Parent Folder",              ID_DIR_OPEN_MIDDLE_PARENT_FOLDER
         END
         POPUP "O&pen Right"
         BEGIN
             MENUITEM "with &Registered Application", ID_DIR_OPEN_RIGHT
             MENUITEM "with &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
             MENUITEM "&with...",                    ID_DIR_OPEN_RIGHT_WITH
+            MENUITEM "&Parent Folder",              ID_DIR_OPEN_RIGHT_PARENT_FOLDER
         END
         MENUITEM SEPARATOR
         POPUP "Cop&y Pathnames"

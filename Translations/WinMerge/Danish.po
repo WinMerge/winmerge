@@ -1122,6 +1122,11 @@ msgstr "&Skjul emner"
 msgid "&Open Left"
 msgstr "&Åben venstre"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1976,7 +1981,7 @@ msgstr "Mellemrum"
 msgid "&Compare"
 msgstr "&Sammenlign"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ignorer ændringer"
@@ -2447,7 +2452,7 @@ msgstr "(Påvirker)"
 msgid "Select Codepage for"
 msgstr "Vælg codepage til"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&Fil Indlæsning:"

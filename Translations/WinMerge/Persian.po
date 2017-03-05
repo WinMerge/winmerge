@@ -1120,6 +1120,11 @@ msgstr "&H äåÇä ˜ÑÏä ãæÇÑÏ  "
 msgid "&Open Left"
 msgstr "&O ÈÇÒ˜ÑÏä ÓãÊ í "
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1970,7 +1975,7 @@ msgstr " İÇÕáå ÓİíÏ "
 msgid "&Compare"
 msgstr "&C åãÓäÌí / ãŞÇíÓå ˜ÑÏä "
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "&I Ôã æÔí ÇÒ ÊÛííÑ "
@@ -2439,7 +2444,7 @@ msgstr " - ÂËÇÑ / äÊÇíÌ - "
 msgid "Select Codepage for"
 msgstr " ÇäÊÎÇÈ ÕİÍå ˜Ï ÈÑÇí "
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&F ÈÇÑĞÇÑí ÑæäÏå : "
