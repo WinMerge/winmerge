@@ -21,6 +21,18 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "Testing\Google
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Poco", "Poco", "{220B870C-D051-463E-997B-8C392081EE15}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files", "{DC3B258E-444F-460D-8FD9-09A8165212FA}"
+	ProjectSection(SolutionItems) = preProject
+		BuildAll2.cmd = BuildAll2.cmd
+		BuildArc.cmd = BuildArc.cmd
+		BuildBin.cmd = BuildBin.cmd
+		BuildInstaller.cmd = BuildInstaller.cmd
+		BuildManual.cmd = BuildManual.cmd
+		SetVersion.cmd = SetVersion.cmd
+		UploadToGithub.cmd = UploadToGithub.cmd
+		UploadToVirusTotal.cmd = UploadToVirusTotal.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Unicode|Win32 = Debug Unicode|Win32
