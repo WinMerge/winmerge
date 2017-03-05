@@ -1121,6 +1121,11 @@ msgstr "&Dölj filnamn"
 msgid "&Open Left"
 msgstr "&Öppna vänster"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1971,7 +1976,7 @@ msgstr "Mellanslag"
 msgid "&Compare"
 msgstr "Jämför &mellanslag"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ignorera mellanslagsskillnader "
@@ -2440,7 +2445,7 @@ msgstr "(Påverkar)"
 msgid "Select Codepage for"
 msgstr "Välj Codepage för"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&Filöppnande:"

@@ -1121,6 +1121,11 @@ msgstr "&Agochar elementos"
 msgid "&Open Left"
 msgstr "&Abrir arquivo esquerdo"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1971,7 +1976,7 @@ msgstr "Espazo en branco"
 msgid "&Compare"
 msgstr "&Comparar"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ignorar trocos"
@@ -2441,7 +2446,7 @@ msgstr "(Afecta)"
 msgid "Select Codepage for"
 msgstr "Selecciona a páxina de códigos para"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&Cargar o arquivo:"

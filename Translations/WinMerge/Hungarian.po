@@ -1121,6 +1121,11 @@ msgstr "Elemek &rejtése"
 msgid "&Open Left"
 msgstr "&Bal oldal megnyitása"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1971,7 +1976,7 @@ msgstr "Szóközök"
 msgid "&Compare"
 msgstr "&Összehasonlítás"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "&Változtatások kihagyása"
@@ -2436,7 +2441,7 @@ msgstr ""
 msgid "Select Codepage for"
 msgstr "Kódlap kiválasztása"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "Fájl töltése:"

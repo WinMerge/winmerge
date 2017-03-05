@@ -1121,6 +1121,11 @@ msgstr "&Sakrij stavke"
 msgid "&Open Left"
 msgstr "&Otvori lijevi"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1971,7 +1976,7 @@ msgstr "Skriveni znaci i razmaci"
 msgid "&Compare"
 msgstr "&Usporedi"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "Zanemari &izmjene"
@@ -2440,7 +2445,7 @@ msgstr "(Primjeni na)"
 msgid "Select Codepage for"
 msgstr "Odabir kodne stranice za"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&Uèitavanje datoteke:"

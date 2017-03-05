@@ -296,6 +296,12 @@ struct DirActions
 		return (di.diffcode.diffcode != 0 && ::IsItemOpenableOnWith(di, SideToIndex(m_ctxt, src)));
 	}
 
+	template <SIDE_TYPE src>
+	bool IsParentFolderOpenable(const DIFFITEM& di) const
+	{
+		return (di.diffcode.diffcode != 0 && di.diffcode.exists(SideToIndex(m_ctxt, src)));
+	}
+
 	bool IsItemFile(const DIFFITEM& di) const
 	{
 		return (di.diffcode.diffcode != 0 && !di.diffcode.isDirectory());

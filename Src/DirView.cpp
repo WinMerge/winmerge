@@ -166,14 +166,20 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT, OnUpdateCtxtDirOpen<SIDE_LEFT>)
 	ON_COMMAND(ID_DIR_OPEN_LEFT_WITH, OnCtxtDirOpenWith<SIDE_LEFT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT_WITH, OnUpdateCtxtDirOpenWith<SIDE_LEFT>)
+	ON_COMMAND(ID_DIR_OPEN_LEFT_PARENT_FOLDER, OnCtxtDirOpenParentFolder<SIDE_LEFT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT_PARENT_FOLDER, OnUpdateCtxtDirOpenParentFolder<SIDE_LEFT>)
 	ON_COMMAND(ID_DIR_OPEN_MIDDLE, OnCtxtDirOpen<SIDE_MIDDLE>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_MIDDLE, OnUpdateCtxtDirOpen<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_OPEN_MIDDLE_WITH, OnCtxtDirOpenWith<SIDE_MIDDLE>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_MIDDLE_WITH, OnUpdateCtxtDirOpenWith<SIDE_MIDDLE>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_MIDDLE_PARENT_FOLDER, OnUpdateCtxtDirOpenParentFolder<SIDE_MIDDLE>)
+	ON_COMMAND(ID_DIR_OPEN_MIDDLE_PARENT_FOLDER, OnCtxtDirOpenParentFolder<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_OPEN_RIGHT, OnCtxtDirOpen<SIDE_RIGHT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT, OnUpdateCtxtDirOpen<SIDE_RIGHT>)
 	ON_COMMAND(ID_DIR_OPEN_RIGHT_WITH, OnCtxtDirOpenWith<SIDE_RIGHT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_WITH, OnUpdateCtxtDirOpenWith<SIDE_RIGHT>)
+	ON_COMMAND(ID_DIR_OPEN_RIGHT_PARENT_FOLDER, OnCtxtDirOpenParentFolder<SIDE_RIGHT>)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_PARENT_FOLDER, OnUpdateCtxtDirOpenParentFolder<SIDE_RIGHT>)
 	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
 	ON_UPDATE_COMMAND_UI(ID_POPUP_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
 	ON_COMMAND(ID_DIR_OPEN_LEFT_WITHEDITOR, OnCtxtDirOpenWithEditor<SIDE_LEFT>)
@@ -1654,6 +1660,16 @@ void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 	theApp.OpenFileToExternalEditor(file);
 }
 
+void CDirView::DoOpenParentFolder(SIDE_TYPE stype)
+{
+	int sel = GetSingleSelectedItem();
+	if (sel == -1) return;
+	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
+	if (file.empty()) return;
+	String parentFolder = paths::GetParentPath(file);
+	ShellExecute(::GetDesktopWindow(), _T("open"), parentFolder.c_str(), 0, 0, SW_SHOWNORMAL);
+}
+
 /// User chose (context menu) open left
 template<SIDE_TYPE stype>
 void CDirView::OnCtxtDirOpen()
@@ -1673,6 +1689,13 @@ template<SIDE_TYPE stype>
 void CDirView::OnCtxtDirOpenWithEditor()
 {
 	DoOpenWithEditor(stype);
+}
+
+/// User chose (context menu) open left parent folder
+template<SIDE_TYPE stype>
+void CDirView::OnCtxtDirOpenParentFolder()
+{
+	DoOpenParentFolder(stype);
 }
 
 /// Update context menuitem "Open left | with editor"
@@ -1706,6 +1729,14 @@ template<SIDE_TYPE stype>
 void CDirView::OnUpdateCtxtDirOpenWith(CCmdUI* pCmdUI)
 {
 	Counts counts = Count(&DirActions::IsItemOpenableOnWith<stype>);
+	pCmdUI->Enable(counts.count > 0 && counts.total == 1);
+}
+
+// Enable/disable Open Parent Folder menu choice on context menu
+template<SIDE_TYPE stype>
+void CDirView::OnUpdateCtxtDirOpenParentFolder(CCmdUI* pCmdUI)
+{
+	Counts counts = Count(&DirActions::IsParentFolderOpenable<stype>);
 	pCmdUI->Enable(counts.count > 0 && counts.total == 1);
 }
 

@@ -1121,6 +1121,11 @@ msgstr "Ascunde e&lementele"
 msgid "&Open Left"
 msgstr "Deschide stâ&nga"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1971,7 +1976,7 @@ msgstr "Blanc"
 msgid "&Compare"
 msgstr "&Comparã"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ignorã schimbare"
@@ -2436,7 +2441,7 @@ msgstr "(Afecteazã)"
 msgid "Select Codepage for"
 msgstr "Selecteazã codare caractere pentru"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "Încãrcare &fiºier:"

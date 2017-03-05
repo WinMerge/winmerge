@@ -1122,6 +1122,11 @@ msgstr "&Сховати"
 msgid "&Open Left"
 msgstr "&Відкрити лівий файл"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1972,7 +1977,7 @@ msgstr "Пропуски"
 msgid "&Compare"
 msgstr "Враховувати &пропуски"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "Нехтувати зміненими пропусками"
@@ -2441,7 +2446,7 @@ msgstr "(застосувати)"
 msgid "Select Codepage for"
 msgstr "Вибрати сторінку кодування для"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "Завант. файлу:"

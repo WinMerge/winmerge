@@ -140,6 +140,7 @@ private:
 	void DoOpen(SIDE_TYPE stype);
 	void DoOpenWith(SIDE_TYPE stype);
 	void DoOpenWithEditor(SIDE_TYPE stype);
+	void DoOpenParentFolder(SIDE_TYPE stype);
 	void DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI);
 	void ConfirmAndPerformActions(FileActionScript & actions);
 	void PerformActionList(FileActionScript & actions);
@@ -259,6 +260,10 @@ protected:
 	afx_msg void OnCtxtDirOpenWithEditor();
 	template<SIDE_TYPE stype>
 	afx_msg void OnUpdateCtxtDirOpenWithEditor(CCmdUI* pCmdUI);
+	template<SIDE_TYPE stype>
+	afx_msg void OnCtxtDirOpenParentFolder();
+	template<SIDE_TYPE stype>
+	afx_msg void OnUpdateCtxtDirOpenParentFolder(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
 	afx_msg void OnCtxtDirCopyTo();
 	template<SIDE_TYPE stype>

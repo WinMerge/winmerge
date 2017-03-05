@@ -1121,6 +1121,11 @@ msgstr "隐藏(&H)"
 msgid "&Open Left"
 msgstr "打开左侧(&O)"
 
+#: Merge.rc:5A9A713C
+#, c-format
+msgid "&Parent Folder"
+msgstr ""
+
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
@@ -1971,7 +1976,7 @@ msgstr "空白"
 msgid "&Compare"
 msgstr "对比空白和制表符(&C)"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "忽略空白和制表符更改(&I)"
@@ -2436,7 +2441,7 @@ msgstr "(影响)"
 msgid "Select Codepage for"
 msgstr "选择要使用的代码页"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "打开文件(&F):"
