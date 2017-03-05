@@ -68,17 +68,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">.\..\Build\MergeUnicodeDebug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">.\..\Build\Merge\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">.\..\BuildTmp\MergeLang\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">.\..\Build\$(Platform)\Merge$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">.\..\BuildTmp\MergeLang\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">.\..\Build\Merge\$(Configuration)64\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">.\..\BuildTmp\MergeLang\$(Configuration)64\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">.\..\Build\MergeUnicodeRelease\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">.\..\Build\Merge\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">.\..\BuildTmp\MergeLang\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">.\..\Build\$(Platform)\Merge$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">.\..\BuildTmp\MergeLang\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">.\..\Build\Merge\$(Configuration)64\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">.\..\BuildTmp\MergeLang\$(Configuration)64\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">
@@ -113,23 +113,8 @@
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
 cscript UpdatePoFilesFromPotFile.vbs
 popd
-mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeUnicodeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeUnicodeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeUnicodeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeUnicodeRelease\Languages\"
-</Command>
+mkdir $(OutDir)\Languages\ 2&gt; NUL
+copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">
@@ -167,23 +152,8 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
 cscript UpdatePoFilesFromPotFile.vbs
 popd
-mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeUnicodeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeUnicodeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeUnicodeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeUnicodeRelease\Languages\"
-</Command>
+mkdir $(OutDir)\Languages\ 2&gt; NUL
+copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">
@@ -216,22 +186,8 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
 cscript UpdatePoFilesFromPotFile.vbs
 popd
-mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeUnicodeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeUnicodeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeUnicodeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeUnicodeRelease\Languages\"
+mkdir $(OutDir)\Languages\ 2&gt; NUL
+copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -268,23 +224,8 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
 cscript UpdatePoFilesFromPotFile.vbs
 popd
-mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL
-mkdir $(ProjectDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeUnicodeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\MergeUnicodeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeRelease\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeUnicodeDebug\Languages\"
-copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\MergeUnicodeRelease\Languages\"
-</Command>
+mkdir $(OutDir)\Languages\ 2&gt; NUL
+copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
