@@ -72,18 +72,18 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">.\..\Build\Merge$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">.\..\BuildTmp\Merge$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">.\..\Build\Merge\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">.\..\BuildTmp\Merge\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">.\..\Build\$(Platform)\Merge$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">.\..\BuildTmp\$(Platform)\Merge$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">.\..\Build\Merge\$(Configuration)64\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">.\..\BuildTmp\Merge\$(Configuration)64\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">false</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">true</EmbedManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">.\..\Build\Merge$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">.\..\BuildTmp\Merge$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">.\..\Build\Merge\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">.\..\BuildTmp\Merge\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">.\..\Build\$(Platform)\Merge$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">.\..\BuildTmp\$(Platform)\Merge$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">.\..\Build\Merge\$(Configuration)64\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">.\..\BuildTmp\Merge\$(Configuration)64\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</EmbedManifest>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">Win$(ProjectName)U</TargetName>
@@ -127,7 +127,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat;..\Build\scew;..\Build\heksedit;..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -183,7 +183,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\scew\X64;..\Build\heksedit\X64;..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -234,7 +234,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat;..\Build\scew;..\Build\heksedit;..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
@@ -286,7 +286,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\scew\X64;..\Build\heksedit\X64;..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>

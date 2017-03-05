@@ -20,3 +20,4 @@ Translations/WinMerge/MergeLang.rc
 *.bak
 *.VC.db
 *.VC.VC.opendb
+ipch/*
