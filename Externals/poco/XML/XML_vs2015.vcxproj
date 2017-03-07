@@ -99,6 +99,8 @@
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\PocoXMLmtd.lib</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
+      <SubSystem>Windows</SubSystem>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">
@@ -124,6 +126,7 @@
     </ClCompile>
     <Lib>
       <OutputFile>..\lib64\PocoXMLmtd.lib</OutputFile>
+      <SubSystem>Windows</SubSystem>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">
@@ -151,6 +154,8 @@
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\PocoXMLmt.lib</OutputFile>
+      <TargetMachine>MachineX86</TargetMachine>
+      <SubSystem>Windows</SubSystem>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">
@@ -179,6 +184,7 @@
     </ClCompile>
     <Lib>
       <OutputFile>..\lib64\PocoXMLmt.lib</OutputFile>
+      <SubSystem>Windows</SubSystem>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
