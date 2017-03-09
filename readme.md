@@ -1,4 +1,4 @@
-This is a fork of https://sourceforge.net/projects/winmerge(https://bitbucket.org/kimmov/winmerge-v2)
+This is a fork of https://sourceforge.net/projects/winmerge (https://bitbucket.org/kimmov/winmerge-v2)
 
 # Differences from orignal
 
