@@ -1,6 +1,7 @@
-Translations/WinMerge/*.bak
 Testing/GoogleTest/UnitTests/x64Release
+Testing/GoogleTest/UnitTests/x64Debug
 Testing/GoogleTest/UnitTests/Release
+Testing/GoogleTest/UnitTests/Debug/
 Externals/poco/Foundation/obj64
 Externals/poco/Foundation/obj
 Externals/poco/Util/obj64
@@ -13,3 +14,10 @@ BuildTmp
 Build
 Testing/GoogleTest/UnitTests/UnitTests.exe
 Testing/GoogleTest/UnitTests/*.pdb
+Testing/Data/ShellFileOpTest/File1.txt
+Translations/WinMerge/MergeLang.rc
+.vs/
+*.bak
+*.VC.db
+*.VC.VC.opendb
+ipch/*
