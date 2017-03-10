@@ -327,8 +327,18 @@ String CConfigLog::GetBuildFlags() const
 {
 	String flags;
 
-#ifdef WIN64
+#if defined WIN64
 	flags += _T(" WIN64 ");
+#elif defined WIN32
+	flags += _T(" WIN32 ");
+#endif
+
+#if defined UNICODE
+	flags += _T(" UNICODE ");
+#endif
+
+#if defined _DEBUG
+	flags += _T(" _DEBUG ");
 #endif
 
 	return flags;
