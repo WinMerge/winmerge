@@ -1085,7 +1085,7 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	SE_Handler seh;
 	try
 	{
-		// Diff files. depth is zero because we are not 6comparing dirs
+		// Diff files. depth is zero because we are not comparing dirs
 		*diffs = diff_2_files (diffData->m_inf, 0, bin_status,
 				(m_pMovedLines[0] != NULL), bin_file);
 		CopyDiffutilTextStats(diffData->m_inf, diffData);

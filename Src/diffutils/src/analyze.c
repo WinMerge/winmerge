@@ -32,6 +32,7 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 #include "cmpbuf.h"
+#include <cassert>
 #ifdef _WIN32
 #  include <io.h>
 #endif
@@ -836,6 +837,7 @@ briefly_report (changes, filevec)
 // depth. 
 // WinMerge: add moved_blocks_flag for detecting moved blocks and
 // bin_file for getting info which file is binary file (can be NULL)
+// Winmerge: assume S_ISREG() files, not pipes, directories or devices
 struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_status,
 	int moved_blocks_flag, int * bin_file)
 {
@@ -850,63 +852,70 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 	// only when the first chunk is read.
 	// Also, --brief without any --ignore-* options means
 	// we can speed things up by treating the files as binary.  
-	
 	if (read_files (filevec, no_details_flag & ~ignore_some_changes, bin_file))
 	{
-		//  Files with different lengths must be different.  
-		if (filevec[0].stat.st_size != filevec[1].stat.st_size
-			&& (filevec[0].desc < 0 || S_ISREG (filevec[0].stat.st_mode))
-			&& (filevec[1].desc < 0 || S_ISREG (filevec[1].stat.st_mode)))
+		//  We can now safely assume to have a pair of Binary files.
+
+		// Are both files Open and Regular (no Pipes, Directories, Devices (e.g. NUL))
+		if (filevec[0].desc < 0 || filevec[1].desc < 0 ||
+			!(S_ISREG (filevec[0].stat.st_mode)) || !(S_ISREG (filevec[1].stat.st_mode))   )
 			changes = 1;
-		
-		//  Standard input equals itself.  
-		else if (filevec[0].desc == filevec[1].desc)
-			changes = 0;
 		else
-			//  Scan both files, a buffer at a time, looking for a difference.  
+		//  Files with different lengths must be different.  
+		if (filevec[0].stat.st_size != filevec[1].stat.st_size)
+			changes = 1;
+		else
+		//  Identical descriptor implies identical files
+		if (filevec[0].desc == filevec[1].desc)
+			changes = 0;
+		//  Scan both files, a buffer at a time, looking for a difference.  
+		else
 		{
-			//  Allocate same-sized buffers for both files.  
-			size_t buffer_size = buffer_lcm (STAT_BLOCKSIZE (filevec[0].stat),
-				STAT_BLOCKSIZE (filevec[1].stat));
-			for (i = 0; i < 2; i++)
-				if (filevec[i].buffered_chars < buffer_size)
-					filevec[i].buffer = (char *)xrealloc (filevec[i].buffer, buffer_size);
+			//  Same-sized buffers for both files were allocated in read_files().  
+			size_t buffer_size = filevec[0].bufsize;
 			
-			for (;;  filevec[0].buffered_chars = filevec[1].buffered_chars = 0)
+			for (;;)
 			{
 				//  Read a buffer's worth from both files.  
 				for (i = 0; i < 2; i++)
-					if (0 <= filevec[i].desc)
-						while (filevec[i].buffered_chars < buffer_size)
-						{
-							int r = read (filevec[i].desc,
-								filevec[i].buffer
-								+ filevec[i].buffered_chars,
-								buffer_size - filevec[i].buffered_chars);
-							if (r == 0)
-								break;
-							if (r < 0)
-								pfatal_with_name (filevec[i].name);
-							filevec[i].buffered_chars += r;
-						}
+					while (filevec[i].buffered_chars < buffer_size)
+					  {
+						int r = read (filevec[i].desc,
+									  filevec[i].buffer	+ filevec[i].buffered_chars,
+									  (int)(buffer_size - filevec[i].buffered_chars));
+						if (r == 0)
+							break;
+						if (r < 0)
+							pfatal_with_name (filevec[i].name);
+						filevec[i].buffered_chars += r;
+					  }
 						
-						//  If the buffers differ, the files differ.  
-						if (filevec[0].buffered_chars != filevec[1].buffered_chars
-							|| (filevec[0].buffered_chars != 0
-							&& memcmp (filevec[0].buffer,
+				//  If the buffers have different number of chars, the files differ.  
+				if (filevec[0].buffered_chars != filevec[1].buffered_chars)
+				{
+					changes = 1;
+					break;
+				}
+
+				//  If we reach end-of-file, the files are the same.  
+				if (filevec[0].buffered_chars==0) // therefore: filevec[1].buffered_chars==0
+				{
+					changes = 0;
+					break;
+				}	
+
+				//	If buffers have different contents, the files are different.
+				if (memcmp (filevec[0].buffer,
 							filevec[1].buffer,
-							filevec[0].buffered_chars) != 0))
-						{
-							changes = 1;
-							break;
-						}
-						
-						//  If we reach end of file, the files are the same.  
-						if (filevec[0].buffered_chars != buffer_size)
-						{
-							changes = 0;
-							break;
-						}
+							filevec[0].buffered_chars) != 0)
+				{
+					changes = 1;
+					break;
+				}
+
+				//	Files appear identical so far...
+				//	Prepare to loop again for the next pair of buffers.
+				filevec[0].buffered_chars = filevec[1].buffered_chars = 0;
 			}
 		}
 		
@@ -948,11 +957,11 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 		
       /* Set TOO_EXPENSIVE to be approximate square root of input size,
 	 bounded below by 256.  */
-      too_expensive = 1;
-      for (i = filevec[0].nondiscarded_lines + filevec[1].nondiscarded_lines;
-	   i != 0; i >>= 2)
-	too_expensive <<= 1;
-      too_expensive = max (256, too_expensive);
+        too_expensive = 1;
+        for (i = filevec[0].nondiscarded_lines + filevec[1].nondiscarded_lines;
+	         i != 0; i >>= 2)
+		  too_expensive <<= 1;
+        too_expensive = max (256, too_expensive);
 
 		files[0] = filevec[0];
 		files[1] = filevec[1];
