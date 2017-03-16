@@ -157,7 +157,8 @@ AboutInfo::AboutInfo()
 #endif
 
 #if defined _M_IX86
-	version += _T(" x86");
+	version += _T(" ");
+	version += _("x86");
 #elif defined _M_IA64
 	version += _T(" IA64");
 #elif defined _M_X64
@@ -165,10 +166,16 @@ AboutInfo::AboutInfo()
 	version += _("X64");
 #endif
 
+#if defined _DEBUG
+	version += _T(" (");
+	version += _("Debug");
+	version += _T(")");
+#endif
+
 	copyright = _("WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details.");
 	copyright += _T("\n");
 	copyright += verinfo.GetLegalCopyright();
-	copyright += _T(" All rights reserved.");
+	copyright += _T(" - All rights reserved.");
 
 	private_build = verinfo.GetPrivateBuild();
 	if (!private_build.empty())
