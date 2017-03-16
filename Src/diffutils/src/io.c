@@ -22,6 +22,7 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #  include <io.h>
 #  define read _read
 #endif
+#include <cassert>
 
 /* Rotate a value n bits to the left. */
 #define UINT_BIT (sizeof (unsigned) * CHAR_BIT)
@@ -144,8 +145,8 @@ sip (current, skip_test)
      int skip_test;
 {
   int isbinary = 0;
-  /* If we have a nonexistent file at this stage, treat it as empty.  */
-  if (current->desc < 0)
+  /* If we have a nonexistent file (or NUL: device) at this stage, treat it as empty.  */
+  if (current->desc < 0 || !(S_ISREG (current->stat.st_mode)))
     {
       /* Leave room for a sentinel.  */
       current->buffer = xmalloc (sizeof (word));
@@ -243,9 +244,14 @@ slurp (current)
         }
 #ifndef __MSDOS__
       /* Allocate 50% extra room for a necessary transcoding to UTF-8.
-         Allocate enough room for appended newline and sentinel. */
-      current->bufsize = current->buffered_chars + (alloc_extra & current->buffered_chars / 2) + sizeof (word) + 1;
-      current->buffer = xrealloc (current->buffer, current->bufsize);
+         Allocate enough room for appended newline and sentinel. 
+		 But don't reallocate if the buffer is already big enough */
+	  FSIZE tmp_bufsize = current->buffered_chars + (alloc_extra & current->buffered_chars / 2) + sizeof (word) + 1;
+	  if (tmp_bufsize > current->bufsize) 
+	    { 
+		  current->buffer = xrealloc (current->buffer, tmp_bufsize);
+		  current->bufsize = tmp_bufsize;
+	    }
 #endif /*!__MSDOS__*/
     }
 }
@@ -1012,13 +1018,64 @@ read_files (filevec, pretend_binary, bin_file)
       else
         appears_binary |= sip (&filevec[1], skip_test | appears_binary);
     }
-  else
-    {
-      filevec[1].buffer = filevec[0].buffer;
-      filevec[1].bufsize = filevec[0].bufsize;
-      filevec[1].buffered_chars = filevec[0].buffered_chars;
-    }
+	
+	// Are both files Open and Regular (no Pipes, Directories, Devices (e.g. NUL))
+	if (filevec[0].desc < 0 || filevec[1].desc < 0 ||
+		!(S_ISREG (filevec[0].stat.st_mode)) || !(S_ISREG (filevec[1].stat.st_mode))   )
+	{
+		assert(!S_ISCHR(filevec[0].stat.st_mode) || strcmp(filevec[0].name, "NUL")==0);
+		assert(!S_ISCHR(filevec[1].stat.st_mode) || strcmp(filevec[1].name, "NUL")==0);
+		return appears_binary;
+	}
 
+  if (appears_binary)
+	{
+		// Because of the way 3-way binary comparison works, both buffers need
+		// to be exactly the same size.  It also makes sense if the buffers are
+		// large enough to hold a large chunk of the file with each read(); 
+		// within reason of course.  Note: if the buffers are too big, the 
+		// multi-processor performance is degraded.
+		
+		// Note that one or both buffers already have some amount of data.
+
+		const FSIZE tmax_reasonable = (1 << 19) -1;		// 2**19 bytes, about 524KB
+
+		FSIZE tmax_bufsize = max ((size_t)filevec[0].stat.st_size, 
+								  (size_t)filevec[1].stat.st_size);
+		tmax_bufsize = min (tmax_bufsize, tmax_reasonable);
+		
+		FSIZE tmin_bufsize = max(filevec[0].buffered_chars, filevec[1].buffered_chars);
+		tmax_bufsize = max (tmax_bufsize, tmin_bufsize);
+
+		if (tmax_bufsize > filevec[0].bufsize)
+		  {
+			filevec[0].buffer = xrealloc (filevec[0].buffer, tmax_bufsize);
+			filevec[0].bufsize = tmax_bufsize;
+		  }
+		if (filevec[0].desc != filevec[1].desc && tmax_bufsize > filevec[1].bufsize)
+		  {
+			filevec[1].buffer = xrealloc (filevec[1].buffer, tmax_bufsize);
+			filevec[1].bufsize = tmax_bufsize;
+		  }
+	}
+	  
+  if (filevec[0].desc == filevec[1].desc)
+	{
+		// The files may be exactly the same file.  Give them the same buffer, etc.
+		assert( filevec[1].buffer == NULL );
+
+		filevec[1].buffer = filevec[0].buffer;
+		filevec[1].bufsize = filevec[0].bufsize;
+		filevec[1].buffered_chars = filevec[0].buffered_chars;
+	}
+	
+  // Binary comparisons *must not* go past here;  line-break sentinel markers may 
+  // be put into the buffers.  Since read_files() only gets called for filevec[0], 
+  // this causes a false mis-compare of all binary files (because filevec[1] would 
+  // never get these non-necessary changes).
+  if (appears_binary)
+		return 1;
+		
   find_identical_ends (filevec);
 
   /* Don't slurp rest of file when comparing file to itself. */
@@ -1028,15 +1085,8 @@ read_files (filevec, pretend_binary, bin_file)
 	  filevec[1].count_lfs = filevec[0].count_lfs;
 	  filevec[1].count_crlfs = filevec[0].count_crlfs;
 	  filevec[1].count_zeros = filevec[0].count_zeros;
-      if (appears_binary || (bin_file && *bin_file > 0))
-        return 1;
       return 0;
     }
-
-  if (appears_binary || (bin_file && *bin_file > 0))
-    return 1;
-
-  //find_identical_ends (filevec);
 
   equivs_alloc = filevec[0].alloc_lines + filevec[1].alloc_lines + 1;
 #ifdef __MSDOS__
