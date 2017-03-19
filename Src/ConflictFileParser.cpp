@@ -39,6 +39,8 @@ static const TCHAR Separator[] = _T("=======");
 static const TCHAR TheirsEnd[] = _T(">>>>>>> ");
 /** @brief String starting Mine block (and conflict). */
 static const TCHAR MineBegin[] = _T("<<<<<<< ");
+/** @brief String starting Base block (and conflict). */
+static const TCHAR BaseBegin[] = _T("||||||| ");
 
 /**
  * @brief Check if the file is a conflict file.
@@ -87,12 +89,13 @@ bool IsConflictFile(const String& conflictFileName)
  * @return true if conflict file was successfully parsed, false otherwise.
  */
 bool ParseConflictFile(const String& conflictFileName,
-		const String& workingCopyFileName, const String& newRevisionFileName,
-		int iGuessEncodingType, bool &bNestedConflicts)
+		const String& workingCopyFileName, const String& newRevisionFileName, const String& baseRevisionFileName,
+		int iGuessEncodingType, bool &bNestedConflicts, bool &b3way)
 {
 	UniMemFile conflictFile;
 	UniStdioFile workingCopy;
 	UniStdioFile newRevision;
+	UniStdioFile baseRevision;
 	String line;
 	std::string::size_type pos;
 	int state;
@@ -100,6 +103,7 @@ bool ParseConflictFile(const String& conflictFileName,
 	bool bResult = false;
 	String revision = _T("none");
 	bNestedConflicts = false;
+	b3way = false;
 
 	// open input file
 	bool success = conflictFile.OpenReadOnly(conflictFileName);
@@ -107,6 +111,7 @@ bool ParseConflictFile(const String& conflictFileName,
 	// Create output files
 	bool success2 = workingCopy.Open(workingCopyFileName, _T("wb"));
 	bool success3 = newRevision.Open(newRevisionFileName, _T("wb"));
+	bool success4 = baseRevision.Open(baseRevisionFileName, _T("wb"));
 
 	// detect codepage of conflict file
 	FileTextEncoding encoding = GuessCodepageEncoding(conflictFileName, iGuessEncodingType);
@@ -120,6 +125,9 @@ bool ParseConflictFile(const String& conflictFileName,
 	newRevision.SetUnicoding(encoding.m_unicoding);
 	newRevision.SetBom(encoding.m_bom);
 	newRevision.SetCodepage(encoding.m_codepage);
+	baseRevision.SetUnicoding(encoding.m_unicoding);
+	baseRevision.SetBom(encoding.m_bom);
+	baseRevision.SetCodepage(encoding.m_codepage);
 
 	state = 0;
 	bool linesToRead = true;
@@ -146,6 +154,9 @@ bool ParseConflictFile(const String& conflictFileName,
 				newRevision.WriteString(line);
 				newRevision.WriteString(eol);
 
+				baseRevision.WriteString(line);
+				baseRevision.WriteString(eol);
+
 				workingCopy.WriteString(line);
 				workingCopy.WriteString(eol);
 			}
@@ -164,23 +175,40 @@ bool ParseConflictFile(const String& conflictFileName,
 			}
 			else
 			{
-				pos = line.find(Separator);
-				if ((pos != std::string::npos) && (pos == (line.length() - 7)))
+				pos = line.find(BaseBegin);
+				if (pos != std::string::npos)
 				{
 					line = line.substr(0, pos);
 					if (!line.empty())
 					{
-						workingCopy.WriteString(line);
-						workingCopy.WriteString(eol);
+						baseRevision.WriteString(line);
+						baseRevision.WriteString(eol);
 					}
 
-					//  new revision section
-					state = 2;
+					// base revision section
+					state = 5;
+					b3way = true;
 				}
 				else
 				{
-					workingCopy.WriteString(line);
-					workingCopy.WriteString(eol);
+					pos = line.find(Separator);
+					if ((pos != std::string::npos) && (pos == (line.length() - 7)))
+					{
+						line = line.substr(0, pos);
+						if (!line.empty())
+						{
+							workingCopy.WriteString(line);
+							workingCopy.WriteString(eol);
+						}
+
+						//  new revision section
+						state = 2;
+					}
+					else
+					{
+						workingCopy.WriteString(line);
+						workingCopy.WriteString(eol);
+					}
 				}
 			}
 			break;
@@ -275,10 +303,34 @@ bool ParseConflictFile(const String& conflictFileName,
 			newRevision.WriteString(line);
 			newRevision.WriteString(eol);
 			break;
+
+			// in base revision section
+		case 5:
+			pos = line.find(Separator);
+			if ((pos != std::string::npos) && (pos == (line.length() - 7)))
+			{
+				line = line.substr(0, pos);
+				if (!line.empty())
+				{
+					baseRevision.WriteString(line);
+					baseRevision.WriteString(eol);
+				}
+
+				//  new revision section
+				state = 2;
+			}
+			else
+			{
+				baseRevision.WriteString(line);
+				baseRevision.WriteString(eol);
+			}
+			break;
+
 		}
 	} while (linesToRead);
 
 	// Close
+	baseRevision.Close();
 	newRevision.Close();
 	workingCopy.Close();
 	conflictFile.Close();
