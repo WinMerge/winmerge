@@ -2311,21 +2311,34 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 	TempFilePtr vTemp(new TempFile());
 	String revFile = vTemp->Create(_T("confv_"), ext);
 	m_tempFiles.push_back(vTemp);
+	TempFilePtr bTemp(new TempFile());
+	String baseFile = vTemp->Create(_T("confb_"), ext);
+	m_tempFiles.push_back(bTemp);
 
 	// Parse conflict file into two files.
-	bool inners;
+	bool inners, threeWay;
 	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
-	bool success = ParseConflictFile(conflictFile, workFile, revFile, iGuessEncodingType, inners);
+	bool success = ParseConflictFile(conflictFile, workFile, revFile, baseFile, iGuessEncodingType, inners, threeWay);
 
 	if (success)
 	{
 		// Open two parsed files to WinMerge, telling WinMerge to
 		// save over original file (given as third filename).
 		theApp.m_strSaveAsPath = conflictFile;
-		String strDesc[2] = { _("Theirs File"), _("Mine File") };
-		DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
-		conflictCompared = DoFileOpen(&PathContext(revFile, workFile), 
-					dwFlags);
+		if (!threeWay)
+		{
+			String strDesc[2] = { _("Theirs File"), _("Mine File") };
+			DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
+			conflictCompared = DoFileOpen(&PathContext(revFile, workFile), 
+						dwFlags, strDesc);
+		}
+		else
+		{
+			String strDesc[3] = { _("Base File"),  _("Theirs File"), _("Mine File") };
+			DWORD dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
+			conflictCompared = DoFileOpen(&PathContext(baseFile, revFile, workFile), 
+						dwFlags, strDesc);
+		}
 	}
 	else
 	{
