@@ -1363,6 +1363,7 @@ DoDragScroll (const CPoint & point)
 void CCrystalEditView::
 SetAlternateDropTarget (IDropTarget *pDropTarget)
 {
+  ASSERT(m_pDropTarget->m_pAlternateDropTarget == NULL);
   m_pDropTarget->m_pAlternateDropTarget = pDropTarget;
 }
 
@@ -1443,6 +1444,7 @@ OnDestroy ()
   if (m_pDropTarget != NULL)
     {
       m_pDropTarget->Revoke ();
+	  delete m_pDropTarget->m_pAlternateDropTarget;
       delete m_pDropTarget;
       m_pDropTarget = NULL;
     }
