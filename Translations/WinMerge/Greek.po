@@ -99,10 +99,10 @@ msgstr "’ν&οιγμα"
 msgid "with &Registered Application"
 msgstr "με Αντιστοιχισμένη Ε&φαρμογή"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "μ&ε άλλη Εφαρμογή"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1119,6 +1119,11 @@ msgstr "Απόκρυ&ψη Αντικειμένων"
 #, c-format
 msgid "&Open Left"
 msgstr "’νοιγμα Α&ριστερού"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "μ&ε άλλη Εφαρμογή"
 
 #: Merge.rc:5A9A713C
 #, c-format

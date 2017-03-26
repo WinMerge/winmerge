@@ -83,7 +83,7 @@ BEGIN
         POPUP "Op&en"
         BEGIN
             MENUITEM "with &Registered Application", ID_FILE_OPEN_REGISTERED
-            MENUITEM "with &External Editor",       ID_FILE_OPEN_WITHEDITOR
+            MENUITEM "with &External Editor\tCtrl+Alt+E",       ID_FILE_OPEN_WITHEDITOR
             MENUITEM "&with...",                    ID_FILE_OPEN_WITH
         END
     END
@@ -791,6 +791,7 @@ BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "D",            ID_VIEW_DIFFCONTEXT_TOGGLE, VIRTKEY, CONTROL, NOINVERT
+	"E",            ID_FILE_OPEN_WITHEDITOR, VIRTKEY, ALT, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT

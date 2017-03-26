@@ -101,10 +101,10 @@ msgstr "開啟(&E)"
 msgid "with &Registered Application"
 msgstr "用登錄的應用程式(&R)"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "用外在編輯器(&E)"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1127,6 +1127,11 @@ msgstr "隱藏檔案(&H)"
 #, c-format
 msgid "&Open Left"
 msgstr "開啟左邊(&O)"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "用外在編輯器(&E)"
 
 #: Merge.rc:5A9A713C
 #, c-format

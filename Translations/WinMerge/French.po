@@ -104,10 +104,10 @@ msgstr "&Ouvrir"
 msgid "with &Registered Application"
 msgstr "avec l'application &désignée"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "avec l'éditeur &externe"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1124,6 +1124,11 @@ msgstr "D&issimuler l'élément(s)"
 #, c-format
 msgid "&Open Left"
 msgstr "Ouvrir à &gauche"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "avec l'éditeur &externe"
 
 #: Merge.rc:5A9A713C
 #, c-format

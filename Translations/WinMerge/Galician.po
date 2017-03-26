@@ -100,10 +100,10 @@ msgstr "&Abrir"
 msgid "with &Registered Application"
 msgstr "coa Aplicación &Rexistrada"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "cun &Editor Externo"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1120,6 +1120,11 @@ msgstr "&Agochar elementos"
 #, c-format
 msgid "&Open Left"
 msgstr "&Abrir arquivo esquerdo"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "cun &Editor Externo"
 
 #: Merge.rc:5A9A713C
 #, c-format

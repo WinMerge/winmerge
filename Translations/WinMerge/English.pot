@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2017-03-05 12:02+0000\n"
+"POT-Creation-Date: 2017-03-26 14:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -96,9 +96,9 @@ msgstr ""
 msgid "with &Registered Application"
 msgstr ""
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
+msgid "with &External Editor\tCtrl+Alt+E"
 msgstr ""
 
 #: Merge.rc:AC3AA12
@@ -1115,6 +1115,11 @@ msgstr ""
 #: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
+msgstr ""
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
 msgstr ""
 
 #: Merge.rc:5A9A713C

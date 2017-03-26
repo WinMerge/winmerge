@@ -102,10 +102,10 @@ msgstr "От&крыть"
 msgid "with &Registered Application"
 msgstr "зарегистрированным приложением"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "внешним редактором"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1122,6 +1122,11 @@ msgstr "&Скрыть"
 #, c-format
 msgid "&Open Left"
 msgstr "Открыть левый файл"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "внешним редактором"
 
 #: Merge.rc:5A9A713C
 #, c-format
