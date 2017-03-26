@@ -103,10 +103,10 @@ msgstr "Ire&ki"
 msgid "with &Registered Application"
 msgstr "&Erregistratutako Aplikazioarekin"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "&Kanpoko Editorearekin"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1123,6 +1123,11 @@ msgstr "&Ezkutatu Gaiak"
 #, c-format
 msgid "&Open Left"
 msgstr "&Ireki Ezkerrekoa"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "&Kanpoko Editorearekin"
 
 #: Merge.rc:5A9A713C
 #, c-format

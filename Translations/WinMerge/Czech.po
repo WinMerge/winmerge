@@ -100,10 +100,10 @@ msgstr "&Otevøít"
 msgid "with &Registered Application"
 msgstr "pøidruženou &aplikací"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "externím &editorem"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1120,6 +1120,11 @@ msgstr "&Skrýt položky"
 #, c-format
 msgid "&Open Left"
 msgstr "Otevøít &levé"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "externím &editorem"
 
 #: Merge.rc:5A9A713C
 #, c-format

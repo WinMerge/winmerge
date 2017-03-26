@@ -101,10 +101,10 @@ msgstr "開く(&E)"
 msgid "with &Registered Application"
 msgstr "登録されたアプリケーションで(&R)"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "外部エディタで(&E)"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr "外部エディタで(&E)\tCtrl+Alt+E"
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1121,6 +1121,11 @@ msgstr "項目を非表示(&H)"
 #, c-format
 msgid "&Open Left"
 msgstr "左を開く(&O)"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "外部エディタで(&E)"
 
 #: Merge.rc:5A9A713C
 #, c-format

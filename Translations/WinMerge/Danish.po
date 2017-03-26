@@ -101,10 +101,10 @@ msgstr "Åb&en"
 msgid "with &Registered Application"
 msgstr "med det &registrerede program"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "med en &ekstern editor"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1121,6 +1121,11 @@ msgstr "&Skjul emner"
 #, c-format
 msgid "&Open Left"
 msgstr "&Åben venstre"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "med en &ekstern editor"
 
 #: Merge.rc:5A9A713C
 #, c-format

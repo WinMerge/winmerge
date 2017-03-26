@@ -102,10 +102,10 @@ msgstr "A&brir"
 msgid "with &Registered Application"
 msgstr "con la Aplicación &Registrada"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "con un Editor &Externo"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1122,6 +1122,11 @@ msgstr "&Ocultar elementos"
 #, c-format
 msgid "&Open Left"
 msgstr "Abrir archivo &Izquierdo"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "con un Editor &Externo"
 
 #: Merge.rc:5A9A713C
 #, c-format

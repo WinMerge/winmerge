@@ -100,10 +100,10 @@ msgstr "D&eschide"
 msgid "with &Registered Application"
 msgstr "cu aplicaþia în&registratã"
 
-#: Merge.rc:46724E8D
+#: Merge.rc:321D741E
 #, c-format
-msgid "with &External Editor"
-msgstr "cu editor &extern"
+msgid "with &External Editor\tCtrl+Alt+E"
+msgstr ""
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -1120,6 +1120,11 @@ msgstr "Ascunde e&lementele"
 #, c-format
 msgid "&Open Left"
 msgstr "Deschide stâ&nga"
+
+#: Merge.rc:46724E8D
+#, c-format
+msgid "with &External Editor"
+msgstr "cu editor &extern"
 
 #: Merge.rc:5A9A713C
 #, c-format
