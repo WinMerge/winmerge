@@ -175,15 +175,26 @@ End Function
 Function saveRangeAsImage(sht, rng, filename)
 	Dim obj
 	Dim shtNew
+	Dim wbkNew
+	Dim oldSheetsInNewWorkbook
 
 	saveRangeAsImage = True
 
 	On Error Resume Next
 	Err.Clear
 
-	Set shtNew = sht.Parent.Sheets.Add
-	Set obj = sht.Parent.Charts.Add
-	rng.CopyPicture 1, 2 ' xlScreen=1, xlBitmap=2
+	sht.Activate
+	With sht.Parent.Windows(1)
+		.DisplayGridlines = False
+		.View = 1
+	End With
+
+	oldSheetsInNewWorkbook = sht.Application.SheetsInNewWorkbook
+	sht.Application.SheetsInNewWorkbook = 1
+	set wbkNew = sht.Application.Workbooks.Add
+	sht.Application.SheetsInNewWorkbook = oldSheetsInNewWorkbook
+	Set shtNew = wbkNew.Sheets(1)
+	Set obj = wbkNew.Charts.Add
 	Set obj = obj.Location(2, shtNew.Name) ' xlLocationAsObject=2
 
 	If sht.Application.Version <= 11 Then
@@ -193,15 +204,25 @@ Function saveRangeAsImage(sht, rng, filename)
 		obj.Parent.Width = rng.Width
 		obj.Parent.Height = rng.Height
 	End If
-	If Err.Number = 0 Then
-		obj.Paste
-		obj.Export filename, "PNG"
+
+	If sht.Application.Version < 14 Then
+		rng.CopyPicture 1, 2 ' xlScreen=1, xlBitmap=2
+		If Err.Number = 0 Then
+			obj.Paste
+			obj.Export filename, "PNG"
+		End If
+	Else
+		rng.Copy
+		If Err.Number = 0 Then
+			shtNew.Pictures.Paste
+			obj.Export filename, "PNG"
+		End If
 	End If
+
 	If Err.Number <> 0 Then
 		saveRangeAsImage = False
 	End If
-	obj.Parent.Delete
-	shtNew.Delete
+	wbkNew.Close False
 
 End Function
 
@@ -234,26 +255,56 @@ Function findRowByPosition(sht, ByVal rowBegin, ByVal rowEnd, ByVal pos)
     Loop
 End Function
 
+Function findColumnByPosition(sht, ByVal columnBegin, ByVal columnEnd, ByVal pos)
+    Dim width, columnPrev, column, columnBeginOrg
+    column = columnEnd
+    columnBeginOrg = columnBegin
+    columnPrev = column
+    Do
+        width = sht.Range(sht.Cells(1, columnBeginOrg), sht.Cells(1, column)).width
+        If width < pos Then
+            columnBegin = column
+        Else
+            columnEnd = column
+        End If
+        column = (columnEnd - columnBegin) \ 2 + columnBegin
+        If column = columnPrev Then
+            findColumnByPosition = column
+            Exit Function
+        End If
+        columnPrev = column
+    Loop
+End Function
+
 Function saveSheetAsImage(sht, basefilename)
-	Dim rngUsed, rngImage, row, rowEnd, filename, num
+	Dim rngUsed, rngImage, row, rowEnd, column, columnEnd, filename, numX, numY, imageWidth, imageHeight
+	imageWidth = regRead(RegKeyPath & "ImageWidth", 1000)
+	imageHeight = regRead(RegKeyPath & "ImageHeight", 3000)
 	Set rngUsed = getUsedRangeIncludingShapes(sht)
-	row = rngUsed.Row
-	num = 1
+	numX = 1
+	column = rngUsed.Column
 	Do 
-		rowEnd = findRowByPosition(sht, row, rngUsed.Row + rngUsed.Rows.Count - 1, 5000)
-		Set rngImage = sht.Range(sht.Cells(row, rngUsed.Column), sht.Cells(rowEnd, rngUsed.Column + rngUsed.Columns.Count - 1))
-		filename = basefilename & "(" & num & ").png"
-		If Not saveRangeAsImage(sht, rngImage, filename) Then
-			Dim shtNew
-			Set shtNew = sht.Parent.Sheets.Add
-			shtNew.Range("A1") = getTimeStamp() & ": Error" & Err.Number & ": " & Err.Description
-			shtNew.Columns.AutoFit
-			saveRangeAsImage shtNew, shtNew.Range("A1"), filename
-			shtNew.Delete
-		End If
-		row = rowEnd + 1
-		num = num + 1
-	Loop While row < rngUsed.row + rngUsed.Rows.Count - 1 
+		columnEnd = findColumnByPosition(sht, column, rngUsed.Column + rngUsed.Columns.Count - 1, imageWidth)
+		numY = 1
+		row = rngUsed.Row
+		Do 
+			rowEnd = findRowByPosition(sht, row, rngUsed.Row + rngUsed.Rows.Count - 1, imageHeight)
+			Set rngImage = sht.Range(sht.Cells(row, column), sht.Cells(rowEnd, columnEnd))
+			filename = basefilename & "(" & numX & "-" & numY & ").png"
+			If Not saveRangeAsImage(sht, rngImage, filename) Then
+				Dim shtNew
+				Set shtNew = sht.Parent.Sheets.Add
+				shtNew.Range("A1") = getTimeStamp() & ": Error" & Err.Number & ": " & Err.Description
+				shtNew.Columns.AutoFit
+				saveRangeAsImage shtNew, shtNew.Range("A1"), filename
+				shtNew.Delete
+			End If
+			row = rowEnd + 1
+			numY = numY + 1
+		Loop While row < rngUsed.row + rngUsed.Rows.Count - 1 
+		column = columnEnd + 1
+		numX = numX + 1
+	Loop While column < rngUsed.column + rngUsed.Columns.Count - 1 
 End Function
 
 Function get_PluginEvent()
@@ -369,6 +420,10 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	xl.EnableEvents = False
 	xl.DisplayAlerts = False
 
+	Dim backgroundChecking
+	backgroundChecking = xl.ErrorCheckingOptions.BackgroundChecking
+	xl.ErrorCheckingOptions.BackgroundChecking = False
+    
 	Set wbk = xl.Workbooks.Open(fileSrc, regRead(RegKeyPath & "UpdateLinks", 0))
 
 	On Error Resume Next
@@ -426,6 +481,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	Set sht = Nothing
 	wbk.Close
 	Set wbk = Nothing
+	xl.ErrorCheckingOptions.BackgroundChecking = backgroundChecking
 	xl.Quit
 	Set xl = Nothing
 	Set fo = Nothing
@@ -493,6 +549,8 @@ End Sub
         chkCompareNames.checked = regRead(REGKEY_PATH + "CompareNames", true);
         chkCompareCellValues.checked = regRead(REGKEY_PATH + "CompareCellValues", true);
         chkCompareWorksheetsAsImage.checked = regRead(REGKEY_PATH + "CompareWorksheetsAsImage", true);
+        txtImageWidth.value  = regRead(REGKEY_PATH + "ImageWidth",  1000);
+        txtImageHeight.value = regRead(REGKEY_PATH + "ImageHeight", 3000);
         chkCompareFormulas.checked = regRead(REGKEY_PATH + "CompareFormulas", false);
         chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
@@ -535,6 +593,8 @@ End Sub
         regWrite(REGKEY_PATH + "CompareNames", chkCompareNames.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareCellValues", chkCompareCellValues.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareWorksheetsAsImage", chkCompareWorksheetsAsImage.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "ImageWidth",  Number(txtImageWidth.value),  "REG_DWORD");
+        regWrite(REGKEY_PATH + "ImageHeight", Number(txtImageHeight.value), "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
@@ -543,7 +603,14 @@ End Sub
       function btnCancel_onclick() {
         window.close();
       }
-
+      
+      function onlyNumeric() {
+        var k = event.keyCode;
+        if ( k ==  9 || k == 13 || k == 37 || k == 39 || k == 46 || k ==  8 || ( k >= 48 && k <= 57 ) || ( k >= 96 && k <= 105 )) return true;
+        event.returnValue = false;
+        return false;
+      }
+      
     </script>
   </head>
   <body onload="onload();">
@@ -588,6 +655,11 @@ End Sub
           <input id="chkCompareWorksheetsAsImage" type="checkbox" onclick="chkCompareWorksheetsAsImage_onclick();"/>
           <label class="en">Compare worksheets as image (very slow)</label>
           <label class="ja">ワークシートを画像化して比較する (処理時間増大)</label>
+          <span class="en"> - Image split size: </span>
+          <span class="ja"> - 画像分割サイズ: </span>
+          <input id="txtImageWidth"  type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();"/>
+          <span> x </span>
+          <input id="txtImageHeight" type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();"/>
         </li>
         <li>
           <input id="chkCompareFormulas" type="checkbox" />
