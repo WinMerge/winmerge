@@ -1187,50 +1187,52 @@ DirViewColItems::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
 	String s = (*fnc)(pCtxt, reinterpret_cast<const char *>(&di) + offset);
 
 	// Add '*' to newer time field
-	if (IsColLmTime(col) || IsColMmTime(col) || IsColRmTime(col) )
-	if (m_nDirs < 3)
+	if (IsColLmTime(col) || IsColMmTime(col) || IsColRmTime(col))
 	{
-		if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0)
+		if (m_nDirs < 3)
 		{
-			if
-			(
-				IsColLmTime(col) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime // Left modification time
-			||	IsColRmTime(col) && di.diffFileInfo[0].mtime < di.diffFileInfo[1].mtime // Right modification time
-			)
+			if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0)
 			{
-				s.insert(0, _T("* "));
-			}
-			else
-			{
-				s.insert(0, _T("  "));  // Looks best with a fixed-font, but not too bad otherwise
-			}
-			// GreyMerlin (14 Nov 2009) - the flagging of Date needs to be done with
-			//		something not involving extra characters.  Perhaps <red> for oldest, 
-			//		<green> for newest.  Note (20 March 2017): the introduction of 3-Way
-			//		Merge and the yellow difference highlighting adds to the design
-			//		difficulty of any changes.  So maybe this "* "/"  " scheme is good enough.
+				if
+					(
+						IsColLmTime(col) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime // Left modification time
+						|| IsColRmTime(col) && di.diffFileInfo[0].mtime < di.diffFileInfo[1].mtime // Right modification time
+						)
+				{
+					s.insert(0, _T("* "));
+				}
+				else
+				{
+					s.insert(0, _T("  "));  // Looks best with a fixed-font, but not too bad otherwise
+				}
+				// GreyMerlin (14 Nov 2009) - the flagging of Date needs to be done with
+				//		something not involving extra characters.  Perhaps <red> for oldest, 
+				//		<green> for newest.  Note (20 March 2017): the introduction of 3-Way
+				//		Merge and the yellow difference highlighting adds to the design
+				//		difficulty of any changes.  So maybe this "* "/"  " scheme is good enough.
 
+			}
 		}
-	}
-	else
-	{
-		if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0 ||  di.diffFileInfo[2].mtime != 0)
+		else
 		{
-			if
-			(
-				IsColLmTime(col) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime && di.diffFileInfo[0].mtime > di.diffFileInfo[2].mtime // Left modification time
-			||	IsColMmTime(col) && di.diffFileInfo[1].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[1].mtime > di.diffFileInfo[2].mtime // Middle modification time
-			||	IsColRmTime(col) && di.diffFileInfo[2].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[2].mtime > di.diffFileInfo[1].mtime // Right modification time
-			)
+			if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0 || di.diffFileInfo[2].mtime != 0)
 			{
-				s.insert(0, _T("* "));
-			}
-			else
-			{
-				s.insert(0, _T("  "));  // Looks best with a fixed-font, but not too bad otherwise
-			}
-			// GreyMerlin (14 Nov 2009) - See note above.
+				if
+					(
+						IsColLmTime(col) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime && di.diffFileInfo[0].mtime > di.diffFileInfo[2].mtime // Left modification time
+						|| IsColMmTime(col) && di.diffFileInfo[1].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[1].mtime > di.diffFileInfo[2].mtime // Middle modification time
+						|| IsColRmTime(col) && di.diffFileInfo[2].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[2].mtime > di.diffFileInfo[1].mtime // Right modification time
+						)
+				{
+					s.insert(0, _T("* "));
+				}
+				else
+				{
+					s.insert(0, _T("  "));  // Looks best with a fixed-font, but not too bad otherwise
+				}
+				// GreyMerlin (14 Nov 2009) - See note above.
 
+			}
 		}
 	}
 
