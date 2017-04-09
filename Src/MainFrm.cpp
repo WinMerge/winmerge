@@ -1045,8 +1045,14 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 	if (frame == FRAME_FOLDER)
 	{
 		for (auto pDoc : GetAllDirDocs())
+		{
 			if (pDoc)
-				pDoc->GetMainView()->SetFont(m_lfDir);
+			{
+				CDirView *pView = pDoc->GetMainView();
+				if (pView)
+					pView->SetFont(m_lfDir);
+			}
+		}
 	}
 	else
 	{
