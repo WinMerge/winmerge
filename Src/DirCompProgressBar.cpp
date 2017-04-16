@@ -103,6 +103,7 @@ void DirCompProgressBar::SetProgressState(int comparedItems, int totalItems)
 	SetDlgItemInt(IDC_ITEMSTOTAL, totalItems);
 	SetDlgItemInt(IDC_ITEMSCOMPARED, comparedItems);
 	pProg->SetPos(comparedItems);
+	pProg->SetRange32(0, totalItems);
 
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	if (m_pTaskbarList)
