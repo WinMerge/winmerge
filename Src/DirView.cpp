@@ -3111,6 +3111,7 @@ void CDirView::OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI)
 void CDirView::OnViewTreeMode()
 {
 	m_bTreeMode = !m_bTreeMode;
+	m_dirfilter.tree_mode = m_bTreeMode;
 	GetOptionsMgr()->SaveOption(OPT_TREE_MODE, m_bTreeMode); // reverse
 	Redisplay();
 }
