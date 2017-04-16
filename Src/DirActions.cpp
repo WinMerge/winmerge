@@ -610,7 +610,16 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
 				if (di.diffcode.isResultSame() && !filter.show_identical)
 					return false;
 				if (di.diffcode.isResultDiff() && !filter.show_different)
+				{
+					uintptr_t diffpos = ctxt.GetFirstChildDiffPosition(reinterpret_cast<uintptr_t>(&di));
+					while (diffpos)
+					{
+						const DIFFITEM &dic = ctxt.GetNextSiblingDiffPosition(diffpos);
+						if (IsShowable(ctxt, dic, filter))
+							return true;
+					}
 					return false;
+				}
 			}
 		}
 	}
