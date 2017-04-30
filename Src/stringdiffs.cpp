@@ -528,13 +528,13 @@ stringdiffs::caseMatch(TCHAR ch1, TCHAR ch2) const
 int
 stringdiffs::onp(std::vector<char> &edscript)
 {
-	int M = m_words1.size() - 1;
-	int N = m_words2.size() - 1;
+	int M = static_cast<int>(m_words1.size() - 1);
+	int N = static_cast<int>(m_words2.size() - 1);
 	bool exchanged = false;
 	if (M > N)
 	{
-		M = m_words2.size() - 1;
-		N = m_words1.size() - 1;
+		M = static_cast<int>(m_words2.size() - 1);
+		N = static_cast<int>(m_words1.size() - 1);
 		exchanged = true;
 	}
 	int *fp = (new int[(M+1) + 1 + (N+1)]) + (M+1);
@@ -620,9 +620,8 @@ stringdiffs::onp(std::vector<char> &edscript)
 int
 stringdiffs::snake(int k, int y, bool exchanged)
 {
-
-	int M = exchanged ? m_words2.size() - 1 : m_words1.size() - 1;
-	int N = exchanged ? m_words1.size() - 1 : m_words2.size() - 1;
+	int M = static_cast<int>(exchanged ? m_words2.size() - 1 : m_words1.size() - 1);
+	int N = static_cast<int>(exchanged ? m_words1.size() - 1 : m_words2.size() - 1);
 	int x = y - k;
 	while (x < M && y < N && (exchanged ? AreWordsSame(m_words1[y + 1], m_words2[x + 1]) : AreWordsSame(m_words1[x + 1], m_words2[y + 1]))) {
 		x = x + 1; y = y + 1;
@@ -770,8 +769,8 @@ ComputeByteDiff(String & str1, String & str2,
 	// Also this way can distinguish if we set begin[0] to -1 for no diff in line
 	begin[0] = end[0] = begin[1] = end[1] = 0;
 
-	int len1 = str1.length();
-	int len2 = str2.length();
+	int len1 = static_cast<int>(str1.length());
+	int len2 = static_cast<int>(str2.length());
 
 	LPCTSTR pbeg1 = str1.c_str();
 	LPCTSTR pbeg2 = str2.c_str();
@@ -903,8 +902,8 @@ ComputeByteDiff(String & str1, String & str2,
 
 	// Store results of advance into return variables (begin[0] & begin[1])
 	// -1 in a begin variable means no visible diff area
-	begin[0] = py1 - pbeg1;
-	begin[1] = py2 - pbeg2;
+	begin[0] = static_cast<int>(py1 - pbeg1);
+	begin[1] = static_cast<int>(py2 - pbeg2);
 
 	LPCTSTR pz1 = pen1;
 	LPCTSTR pz2 = pen2;
@@ -988,8 +987,8 @@ ComputeByteDiff(String & str1, String & str2,
 	}*/
 
 	// Store results of advance into return variables (end[0] & end[1])
-	end[0] = pz1 - pbeg1;
-	end[1] = pz2 - pbeg2;
+	end[0] = static_cast<int>(pz1 - pbeg1);
+	end[1] = static_cast<int>(pz2 - pbeg2);
 
 	// Check if difference region was empty
 	if (begin[0] == end[0] + 1 && begin[1] == end[1] + 1)
