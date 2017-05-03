@@ -112,8 +112,6 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 
     m_aButtons.clear();
 
-	m_clrMainInstructionFont = CLR_NONE;
-
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
 	m_font.CreateFontIndirect(&ncm.lfMessageFont);
@@ -129,6 +127,7 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 	else
 	{
 		m_fontMainInstruction.CreateFontIndirect(&ncm.lfMessageFont);
+		m_clrMainInstructionFont = GetSysColor(COLOR_WINDOWTEXT);
 	}
 }
 
@@ -813,8 +812,7 @@ HBRUSH CMessageBoxDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	{
 		pDC->SetBkMode(OPAQUE);
 		pDC->SetBkColor(::GetSysColor(COLOR_WINDOW));
-		if (m_clrMainInstructionFont != CLR_NONE)
-			pDC->SetTextColor(m_clrMainInstructionFont);
+		pDC->SetTextColor(m_clrMainInstructionFont);
 		return static_cast<HBRUSH>(GetSysColorBrush(COLOR_WINDOW));
 	}
 	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
