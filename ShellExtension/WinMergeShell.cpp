@@ -157,46 +157,24 @@ static String GetResourceString(UINT resourceID)
 	return strResource;
 }
 
-static HBITMAP MakeBitmapBackColorTransparent(HBITMAP hbmSrc)
+HBITMAP ConvertHICONtoHBITMAP(HICON hIcon, int cx, int cy)
 {
-	HDC hdcSrc = CreateCompatibleDC(NULL);
-	BITMAP bm;
-	GetObject(hbmSrc, sizeof(bm), &bm);
-	HBITMAP hbmSrcOld = (HBITMAP)SelectObject(hdcSrc, hbmSrc);
-	BITMAPINFO bi = {0};
-	bi.bmiHeader.biSize = sizeof BITMAPINFOHEADER;
-	bi.bmiHeader.biPlanes = 1;
-	bi.bmiHeader.biBitCount = 32;
-	bi.bmiHeader.biCompression = BI_RGB;
-	bi.bmiHeader.biWidth = bm.bmWidth;
-	bi.bmiHeader.biHeight = -bm.bmHeight;
-	DWORD *pBits = NULL;
-	HBITMAP hbmNew = CreateDIBSection(NULL, &bi, DIB_RGB_COLORS, (void **)&pBits, NULL, 0);
-	if (pBits)
+	LPVOID lpBits;
+	BITMAPINFO bmi = { { sizeof(BITMAPINFOHEADER), cx, cy, 1, IsWindows8OrGreater() ? 32u : 24u } };
+	HBITMAP hbmp = CreateDIBSection(NULL, (BITMAPINFO*)&bmi, DIB_RGB_COLORS, &lpBits, NULL, 0);
+	HDC hdcMem = CreateCompatibleDC(NULL);
+	HBITMAP hbmpPrev = (HBITMAP)SelectObject(hdcMem, hbmp);
+	RECT rc = { 0, 0, cx, cy };
+	if (bmi.bmiHeader.biBitCount <= 24)
 	{
-		COLORREF clrTP = GetPixel(hdcSrc, 0, 0);
-		int bR = GetRValue(clrTP), bG = GetGValue(clrTP), bB = GetBValue(clrTP);
-	
-		for (int y = 0; y < bm.bmHeight; ++y)
-		{
-			for (int x = 0; x < bm.bmWidth; ++x)
-			{
-				COLORREF clrCur = GetPixel(hdcSrc, x, y);
-				int cR = GetRValue(clrCur), cG = GetGValue(clrCur), cB = GetBValue(clrCur);
-				if (!(abs(cR - bR) <= 1 && abs(cG - bG) <= 1 && abs(cB - bB) <= 1))
-				{
-					pBits[y * bm.bmWidth + x] = cB | (cG << 8) | (cR << 16) | 0xFF000000;
-				}
-			}
-		}
+		SetBkColor(hdcMem, GetSysColor(COLOR_MENU));
+		ExtTextOut(hdcMem, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
 	}
-
-	SelectObject(hdcSrc, hbmSrcOld);
-	DeleteDC(hdcSrc);
-
-	return hbmNew;
+	DrawIconEx(hdcMem, 0, 0, hIcon, cx, cy, 0, NULL, DI_NORMAL);
+	SelectObject(hdcMem, hbmpPrev);
+	DeleteDC(hdcMem);
+	return hbmp;
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeShell
@@ -207,31 +185,19 @@ CWinMergeShell::CWinMergeShell()
 	m_dwMenuState = 0;
 	int cx = GetSystemMetrics(SM_CXMENUCHECK);
 	int cy = GetSystemMetrics(SM_CYMENUCHECK);
-	int id_fileicon = cx > 16 ? (cx > 32 ? IDB_WINMERGE48 : IDB_WINMERGE32) : IDB_WINMERGE;
-	int id_diricon = cx > 16 ? (cx > 32 ? IDB_WINMERGEDIR48 : IDB_WINMERGEDIR32) : IDB_WINMERGEDIR;
 
 	// compress or stretch icon bitmap according to menu item height
-	HBITMAP hMergeBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(id_fileicon), IMAGE_BITMAP,
-			cx, cy, LR_DEFAULTCOLOR);
-	HBITMAP hMergeDirBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(id_diricon), IMAGE_BITMAP,
-			cx, cy, LR_DEFAULTCOLOR);
+	HICON hMergeIcon = (HICON)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDI_WINMERGE), IMAGE_ICON,
+		cx, cy, LR_DEFAULTCOLOR);
+	HICON hMergeDirIcon = (HICON)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDI_WINMERGEDIR), IMAGE_ICON,
+		cx, cy, LR_DEFAULTCOLOR);
 
-	OSVERSIONINFO osvi;
-	osvi.dwOSVersionInfoSize = sizeof OSVERSIONINFO;
-	GetVersionEx(&osvi);
-	if (osvi.dwMajorVersion >= 6)
-	{
-		m_MergeBmp = MakeBitmapBackColorTransparent(hMergeBmp);
-		DeleteObject(hMergeBmp);
+	m_MergeBmp = ConvertHICONtoHBITMAP(hMergeIcon, cx, cy);
+	m_MergeDirBmp = ConvertHICONtoHBITMAP(hMergeDirIcon, cx, cy);
 
-		m_MergeDirBmp = MakeBitmapBackColorTransparent(hMergeDirBmp);
-		DeleteObject(hMergeDirBmp);
-	}
-	else
-	{
-		m_MergeBmp = hMergeBmp;
-		m_MergeDirBmp = hMergeDirBmp;
-	}
+	DestroyIcon(hMergeIcon);
+	DestroyIcon(hMergeDirIcon);
+
 }
 
 /// Default destructor, unloads bitmap

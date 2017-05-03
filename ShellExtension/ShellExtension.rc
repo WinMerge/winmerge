@@ -341,15 +341,11 @@ IDR_WINMERGESHELL       REGISTRY                "WinMergeShell.rgs"
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Bitmap
+// Icon
 //
 
-IDB_WINMERGE            BITMAP                  "WinMerge.bmp"
-IDB_WINMERGE32          BITMAP                  "WinMerge32.bmp"
-IDB_WINMERGE48          BITMAP                  "WinMerge48.bmp"
-IDB_WINMERGEDIR         BITMAP                  "WinMergeDir.bmp"
-IDB_WINMERGEDIR32       BITMAP                  "WinMergeDir32.bmp"
-IDB_WINMERGEDIR48       BITMAP                  "WinMergeDir48.bmp"
+IDI_WINMERGE            ICON                    "WinMerge.ico"
+IDI_WINMERGEDIR         ICON                    "WinMergeDir.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //

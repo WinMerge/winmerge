@@ -14,18 +14,14 @@
 #define IDS_HELP_COMPARESTORED          108
 #define IDS_HELP_COMPARESAVED           109
 #define IDS_RESELECT_FIRST              110
-#define IDB_WINMERGE                    202
-#define IDB_WINMERGEDIR                 203
-#define IDB_WINMERGE32                  204
-#define IDB_WINMERGEDIR32               205
-#define IDB_WINMERGE48                  206
-#define IDB_WINMERGEDIR48               207
+#define IDI_WINMERGE                    208
+#define IDI_WINMERGEDIR                 209
 
 // Next default values for new objects
 //
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        208
+#define _APS_NEXT_RESOURCE_VALUE        210
 #define _APS_NEXT_COMMAND_VALUE         32768
 #define _APS_NEXT_CONTROL_VALUE         201
 #define _APS_NEXT_SYMED_VALUE           111
