@@ -2089,10 +2089,8 @@ CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInf
 		fileInfo = m_pRescanFileInfo[nBuffer].get();
 
 	// We assume file existed, so disappearing means removal
-	if (_taccess(szPath, 0) == -1)
+	if (!dfi.Update(szPath))
 		return FileRemoved;
-
-	dfi.Update(szPath);
 
 	int64_t timeDiff = dfi.mtime - fileInfo->mtime;
 	if (timeDiff < 0) timeDiff = -timeDiff;
