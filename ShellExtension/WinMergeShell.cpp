@@ -100,6 +100,20 @@ enum
 
 static String GetResourceString(UINT resourceID);
 
+bool IsWindowsVistaOrGreater()
+{
+	OSVERSIONINFO ovi = { sizeof OSVERSIONINFO };
+	GetVersionEx(&ovi);
+	return (ovi.dwMajorVersion >= 6);
+}
+
+bool IsWindows8OrGreater()
+{
+	OSVERSIONINFO ovi = { sizeof OSVERSIONINFO };
+	GetVersionEx(&ovi);
+	return (ovi.dwMajorVersion >= 6 && ovi.dwMinorVersion >= 2);
+}
+
 class CWinMergeTempLocale
 {
 private:
@@ -116,13 +130,15 @@ public:
 		int iLangId = reg.ReadDword(f_LanguageId, (DWORD)-1);
 		if (iLangId != -1)
 		{
-			SetThreadUILanguage(iLangId);
+			if (!IsWindowsVistaOrGreater())
+				SetThreadUILanguage(iLangId);
 			SetThreadLocale(MAKELCID(iLangId, SORT_DEFAULT));
 		}
 	}
 	~CWinMergeTempLocale()
 	{
-		SetThreadUILanguage(LANGIDFROMLCID(m_lcidOld));
+		if (!IsWindowsVistaOrGreater())
+			SetThreadUILanguage(LANGIDFROMLCID(m_lcidOld));
 		SetThreadLocale(m_lcidOld);
 	}
 };
@@ -638,7 +654,7 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 
 		case MENU_ONESEL_PREV:
 			strHelp = GetResourceString(IDS_HELP_COMPARESAVED);
-			string_replace(strHelp, _T("%1"), m_strPreviousPath);
+			strutils::replace(strHelp, _T("%1"), m_strPreviousPath);
 			break;
 
 		case MENU_TWOSEL:
