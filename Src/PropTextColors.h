@@ -8,6 +8,7 @@
 
 #include "ColorButton.h"
 #include "OptionsPanel.h"
+#include <array>
 
 class COptionsMgr;
 class SyntaxColors;
@@ -29,7 +30,7 @@ public:
 private:
 
 	SyntaxColors *m_pTempColors;
-	COLORREF m_cCustColors[16];
+	std::array<COLORREF, 16> m_cCustColors;
 
 	//{{AFX_DATA(PropTextColors)
 	enum { IDD = IDD_PROPPAGE_COLORS_TEXT };

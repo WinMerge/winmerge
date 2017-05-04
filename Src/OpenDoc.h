@@ -2,6 +2,7 @@
 
 #include "PathContext.h"
 #include "FileTransform.h"
+#include <array>
 
 class ProjectFile;
 
@@ -16,7 +17,7 @@ public:
 	virtual ~COpenDoc();
 	void RefreshOptions();
 
-	DWORD   m_dwFlags[3];
+	std::array<DWORD, 3> m_dwFlags;
 	PathContext m_files;
 	bool	m_bRecurse;
 	String	m_strExt;

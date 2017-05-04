@@ -25,9 +25,10 @@ IMPLEMENT_DYNAMIC(PropSyntaxColors, CPropertyPage)
 
 PropSyntaxColors::PropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
 : OptionsPanel(optionsMgr, PropSyntaxColors::IDD)
+, m_nBolds()
+, m_pTempColors(pColors)
+, m_cCustColors()
 {
-	m_pTempColors = pColors;
-	memset(m_cCustColors, 0, sizeof(m_cCustColors));
 }
 
 void PropSyntaxColors::DoDataExchange(CDataExchange* pDX)
@@ -110,8 +111,8 @@ void PropSyntaxColors::BrowseColorAndSave(unsigned colorIndex)
 {
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
 	CColorDialog dialog(currentColor);
-	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors);
-	dialog.m_cc.lpCustColors = m_cCustColors;
+	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors.data());
+	dialog.m_cc.lpCustColors = m_cCustColors.data();
 	
 	if (dialog.DoModal() == IDOK)
 	{
@@ -119,7 +120,7 @@ void PropSyntaxColors::BrowseColorAndSave(unsigned colorIndex)
 		m_colorButtons[colorIndex].SetColor(currentColor);
 		m_pTempColors->SetColor(colorIndex, currentColor);
 	}
-	Options::CustomColors::Save(GetOptionsMgr(), m_cCustColors);
+	Options::CustomColors::Save(GetOptionsMgr(), m_cCustColors.data());
 }
 
 template <unsigned colorIndex>

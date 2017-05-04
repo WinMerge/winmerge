@@ -12,8 +12,8 @@ IMPLEMENT_DYNCREATE(COpenDoc, CDocument)
 
 COpenDoc::COpenDoc() :
 	m_bRecurse(FALSE)
+,	m_dwFlags()
 {
-	memset(m_dwFlags, 0, sizeof(m_dwFlags));
 }
 
 BOOL COpenDoc::OnNewDocument()
