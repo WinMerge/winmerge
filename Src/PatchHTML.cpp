@@ -433,7 +433,7 @@ output_1_escapedhtml(const char *text, const char *limit)
 	      putc (' ', out);
 	      spaces--;
 	    }
-	  if (spaces <= 0)
+	  if (spaces == 0)
 	    break;
 	  do
 	    fprintf (out, "&nbsp;");

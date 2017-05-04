@@ -1388,8 +1388,6 @@ DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
 
   UINT cbData = (UINT) ::GlobalSize (hData);
   UINT cchText = cbData / sizeof(TCHAR) - 1;
-  if (cchText < 0)
-    return false;
   LPTSTR pszText = (LPTSTR)::GlobalLock (hData);
   if (pszText == NULL)
     return false;
