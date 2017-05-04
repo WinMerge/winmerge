@@ -248,11 +248,8 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 int CRegOptionsMgr::InitOption(const String& name, const String& defaultValue)
 {
 	varprop::VariantValue defValue;
-	int retVal = COption::OPT_OK;
-	
 	defValue.SetString(defaultValue);
-	retVal = InitOption(name, defValue);
-	return retVal;
+	return InitOption(name, defValue);
 }
 
 int CRegOptionsMgr::InitOption(const String& name, const TCHAR *defaultValue)
@@ -288,11 +285,8 @@ int CRegOptionsMgr::InitOption(const String& name, int defaultValue, bool serial
 int CRegOptionsMgr::InitOption(const String& name, bool defaultValue)
 {
 	varprop::VariantValue defValue;
-	int retVal = COption::OPT_OK;
-	
 	defValue.SetBool(defaultValue);
-	retVal = InitOption(name, defValue);
-	return retVal;
+	return InitOption(name, defValue);
 }
 
 /**
@@ -306,14 +300,13 @@ int CRegOptionsMgr::LoadOption(const String& name)
 	String strValueName;
 	String strRegPath(m_registryRoot);
 	HKEY hKey = NULL;
-	int valType = varprop::VT_NULL;
 	int retVal = COption::OPT_OK;
 
 	SplitName(name, strPath, strValueName);
 	strRegPath += strPath;
 
 	value = Get(name);
-	valType = value.GetType();
+	int valType = value.GetType();
 	if (valType == varprop::VT_NULL)
 		retVal = COption::OPT_NOTFOUND;
 	
@@ -346,14 +339,13 @@ int CRegOptionsMgr::SaveOption(const String& name)
 	String strValueName;
 	String strRegPath(m_registryRoot);
 	HKEY hKey = NULL;
-	int valType = varprop::VT_NULL;
 	int retVal = COption::OPT_OK;
 
 	SplitName(name, strPath, strValueName);
 	strRegPath += strPath;
 
 	value = Get(name);
-	valType = value.GetType();
+	int valType = value.GetType();
 	if (valType == varprop::VT_NULL)
 		retVal = COption::OPT_NOTFOUND;
 	
@@ -378,8 +370,7 @@ int CRegOptionsMgr::SaveOption(const String& name)
  */
 int CRegOptionsMgr::SaveOption(const String& name, const varprop::VariantValue& value)
 {
-	int retVal = COption::OPT_OK;
-	retVal = Set(name, value);
+	int retVal = Set(name, value);
 	if (retVal == COption::OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;
@@ -391,10 +382,8 @@ int CRegOptionsMgr::SaveOption(const String& name, const varprop::VariantValue& 
 int CRegOptionsMgr::SaveOption(const String& name, const String& value)
 {
 	varprop::VariantValue val;
-	int retVal = COption::OPT_OK;
-
 	val.SetString(value);
-	retVal = Set(name, val);
+	int retVal = Set(name, val);
 	if (retVal == COption::OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;
@@ -414,10 +403,8 @@ int CRegOptionsMgr::SaveOption(const String& name, const TCHAR *value)
 int CRegOptionsMgr::SaveOption(const String& name, int value)
 {
 	varprop::VariantValue val;
-	int retVal = COption::OPT_OK;
-
 	val.SetInt(value);
-	retVal = Set(name, val);
+	int retVal = Set(name, val);
 	if (retVal == COption::OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;
@@ -429,10 +416,8 @@ int CRegOptionsMgr::SaveOption(const String& name, int value)
 int CRegOptionsMgr::SaveOption(const String& name, bool value)
 {
 	varprop::VariantValue val;
-	int retVal = COption::OPT_OK;
-
 	val.SetBool(value);
-	retVal = Set(name, val);
+	int retVal = Set(name, val);
 	if (retVal == COption::OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;
