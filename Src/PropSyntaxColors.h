@@ -9,6 +9,7 @@
 #include "ColorButton.h"
 #include "OptionsPanel.h"
 #include "SyntaxColors.h"
+#include <array>
 
 const int NumCustomColors = 16;
 
@@ -44,9 +45,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	
 private:
-	CColorButton m_colorButtons[COLORINDEX_LAST + 1];
-	int m_nBolds[COLORINDEX_LAST + 1];
+	std::array<CColorButton, COLORINDEX_LAST + 1> m_colorButtons;
+	std::array<int, COLORINDEX_LAST + 1> m_nBolds;
 
 	SyntaxColors *m_pTempColors;
-	COLORREF m_cCustColors[16];
+	std::array<COLORREF, 16> m_cCustColors;
 };

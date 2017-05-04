@@ -87,9 +87,8 @@ CDiffWrapper::CDiffWrapper()
 , m_bPathsAreTemp(false)
 , m_pFilterList(nullptr)
 , m_bPluginsEnabled(false)
+, m_status()
 {
-	memset(&m_status, 0, sizeof(DIFFSTATUS));
-
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
 }

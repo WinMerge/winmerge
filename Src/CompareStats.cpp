@@ -21,8 +21,8 @@ CompareStats::CompareStats(int nDirs)
 , m_state(STATE_IDLE)
 , m_bCompareDone(false)
 , m_nDirs(nDirs)
+, m_counts()
 {
-	memset(&m_counts[0], 0, sizeof(m_counts));
 }
 
 /** 
@@ -105,7 +105,7 @@ const DIFFITEM *CompareStats::GetCurDiffItem()
  */
 void CompareStats::Reset()
 {
-	memset(&m_counts[0], 0, sizeof(m_counts));
+	std::fill(std::begin(m_counts), std::end(m_counts), 0);
 	SetCompareState(STATE_IDLE);
 	m_nTotalItems = 0;
 	m_nComparedItems = 0;

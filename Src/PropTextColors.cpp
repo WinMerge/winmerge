@@ -26,8 +26,8 @@ PropTextColors::PropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
  : OptionsPanel(optionsMgr, PropTextColors::IDD)
 , m_bCustomColors(false)
 , m_pTempColors(pColors)
+, m_cCustColors()
 {
-	memset(m_cCustColors, 0, sizeof(m_cCustColors));
 }
 
 void PropTextColors::DoDataExchange(CDataExchange* pDX)
@@ -97,8 +97,8 @@ void PropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorInd
 
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
 	CColorDialog dialog(currentColor);
-	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors);
-	dialog.m_cc.lpCustColors = m_cCustColors;
+	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors.data());
+	dialog.m_cc.lpCustColors = m_cCustColors.data();
 	
 	if (dialog.DoModal() == IDOK)
 	{
@@ -106,7 +106,7 @@ void PropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorInd
 		colorButton.SetColor(currentColor);
 		m_pTempColors->SetColor(colorIndex, currentColor);
 	}
-	Options::CustomColors::Save(GetOptionsMgr(), m_cCustColors);
+	Options::CustomColors::Save(GetOptionsMgr(), m_cCustColors.data());
 }
 
 /** 

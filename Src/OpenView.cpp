@@ -107,11 +107,9 @@ COpenView::COpenView()
 	, m_pUpdateButtonStatusThread(NULL)
 	, m_bRecurse(FALSE)
 	, m_pDropHandler(NULL)
+	, m_dwFlags()
+	, m_bAutoCompleteReady()
 {
-	m_bAutoCompleteReady[0] = false;
-	m_bAutoCompleteReady[1] = false;
-	m_bAutoCompleteReady[2] = false;
-	memset(m_dwFlags, 0, sizeof(m_dwFlags));
 }
 
 COpenView::~COpenView()
@@ -527,7 +525,7 @@ void COpenView::OnOK()
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
 	GetMainFrame()->DoFileOpen(
-		&PathContext(pDoc->m_files), &std::vector<DWORD>(pDoc->m_dwFlags, pDoc->m_dwFlags + 3)[0], 
+		&PathContext(pDoc->m_files), std::array<DWORD, 3>(pDoc->m_dwFlags).data(), 
 		NULL, _T(""), !!pDoc->m_bRecurse, NULL, _T(""), &PackingInfo(pDoc->m_infoHandler));
 }
 

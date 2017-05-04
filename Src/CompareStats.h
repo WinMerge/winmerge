@@ -9,6 +9,7 @@
 #include <Poco/Mutex.h>
 #include <Poco/AtomicCounter.h>
 #include <vector>
+#include <array>
 
 struct DIFFITEM;
 
@@ -95,7 +96,7 @@ public:
 	int GetCompareDirs() const { return m_nDirs; }
 
 private:
-	int m_counts[RESULT_COUNT]; /**< Table storing result counts */
+	std::array<int, RESULT_COUNT> m_counts; /**< Table storing result counts */
 	mutable Poco::FastMutex m_csProtect; /**< For synchronizing read/write of counts */
 	long m_nTotalItems; /**< Total items found to compare */
 	long m_nComparedItems; /**< Compared items so far */

@@ -403,9 +403,9 @@ void CVersionInfo::GetFixedVersionInfo()
 	BOOL bRetCode = VerQueryValue(
 		(LPVOID)m_pVffInfo.get(), _T("\\"), (LPVOID *)&pffi, &len);
 	if (bRetCode)
-		memcpy(&m_FixedFileInfo, pffi, sizeof(m_FixedFileInfo));
+		m_FixedFileInfo = *pffi;
 	else
-		memset(&m_FixedFileInfo, 0, sizeof(m_FixedFileInfo));
+		m_FixedFileInfo = { 0 };
 	m_dvi.dwMajorVersion = HIWORD(m_FixedFileInfo.dwFileVersionMS);
 	m_dvi.dwMinorVersion = LOWORD(m_FixedFileInfo.dwFileVersionMS);
 	m_dvi.dwBuildNumber = HIWORD(m_FixedFileInfo.dwFileVersionLS);

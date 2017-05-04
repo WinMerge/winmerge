@@ -34,6 +34,7 @@
 #include "Picture.h"
 #include "CMoveConstraint.h"
 #include "TrDialogs.h"
+#include <array>
 
 class ProjectFile;
 class COpenDoc;
@@ -70,7 +71,7 @@ public:
 
 // other public data
 	/// unpacker info
-	DWORD m_dwFlags[3];
+	std::array<DWORD, 3> m_dwFlags;
 	PackingInfo m_infoHandler;
 
 // Attributes
@@ -90,7 +91,7 @@ private:
 	CSize m_sizeOrig;
 	prdlg::CMoveConstraint m_constraint;
 	CFont m_fontSwapButton;
-	bool m_bAutoCompleteReady[3];
+	std::array<bool, 3> m_bAutoCompleteReady;
 	DropHandler *m_pDropHandler;
 // Overrides
 	public:

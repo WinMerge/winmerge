@@ -20,8 +20,8 @@
  */
 PropMergeColors::PropMergeColors(COptionsMgr *optionsMgr)
  : OptionsPanel(optionsMgr, PropMergeColors::IDD)
+ , m_cCustColors()
 {
-	memset(m_cCustColors, 0, sizeof(m_cCustColors));
 }
 
 void PropMergeColors::DoDataExchange(CDataExchange* pDX)
@@ -128,12 +128,12 @@ void PropMergeColors::WriteOptions()
 void PropMergeColors::BrowseColor(CColorButton & colorButton)
 {
 	CColorDialog dialog(colorButton.GetColor());
-	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors);
-	dialog.m_cc.lpCustColors = m_cCustColors;
+	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors.data());
+	dialog.m_cc.lpCustColors = m_cCustColors.data();
 	
 	if (dialog.DoModal() == IDOK)
 		colorButton.SetColor(dialog.GetColor());
-	Options::CustomColors::Save(GetOptionsMgr(), m_cCustColors);
+	Options::CustomColors::Save(GetOptionsMgr(), m_cCustColors.data());
 }
 
 void PropMergeColors::UpdateTextColorButtonState(int checkboxId, CColorButton &btn)
