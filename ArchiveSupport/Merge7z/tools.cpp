@@ -49,7 +49,7 @@ Complain::Complain(DWORD dwError, LPCTSTR pszContext, HMODULE hContext)
 			int cch = ::GetModuleFileName(hContext, pszMessage, 500);
 			if (cch == 0)
 			{
-				cch = wsprintf(pszMessage, _T("%08lX"), hContext);
+				cch = wsprintf(pszMessage, _T("%p"), hContext);
 			}
 			pszMessage += cch;
 		}
