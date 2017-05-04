@@ -223,7 +223,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					m_pDiffUtilsEngine->SetFilterCommentsManager(pCtxt->m_pFilterCommentsManager);
 
 					bool bRet;
-					int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0;
+					int bin_flag10 = 0, bin_flag12 = 0;
 
 					m_pDiffUtilsEngine->SetFileData(2, diffdata10.m_diffFileData.m_inf);
 					bRet = m_pDiffUtilsEngine->Diff2Files(&script10, 0, &bin_flag10, false, NULL);

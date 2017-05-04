@@ -56,6 +56,8 @@ bool IsConflictFile(const String& conflictFileName)
 
 	// open input file
 	bool success = conflictFile.OpenReadOnly(conflictFileName);
+	if (!success)
+		return false;
 
 	// Search for a conflict marker
 	bool linesToRead = true;
