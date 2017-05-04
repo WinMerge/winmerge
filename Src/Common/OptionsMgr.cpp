@@ -383,10 +383,8 @@ void COption::Reset()
  */
 int COptionsMgr::AddOption(const String& name, const varprop::VariantValue& defaultValue)
 {
-	int retVal = COption::OPT_OK;
 	COption tmpOption;
-
-	retVal = tmpOption.Init(name, defaultValue);
+	int retVal = tmpOption.Init(name, defaultValue);
 	if (retVal == COption::OPT_OK)
 		m_optionsMap[name] = tmpOption;
 
