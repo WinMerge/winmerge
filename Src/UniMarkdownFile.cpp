@@ -166,7 +166,6 @@ bool UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 			line = maketstring((const char *)current, m_current - current);
 			if (m_current < m_transparent)
 			{
-				current = m_current;
 				unsigned char eol = *m_current++;
 				if (m_current < m_transparent && *m_current == (eol ^ ('\r'^'\n')))
 				{

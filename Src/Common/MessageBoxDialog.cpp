@@ -1538,9 +1538,6 @@ void CMessageBoxDialog::DefineLayout ( )
 				XDialogUnitToPixel(CX_BORDER));
 			sClient.cy = max(sClient.cy, nYPosition + m_sCheckbox.cy +
 				YDialogUnitToPixel(CY_BORDER));
-
-			// Define the y positions.
-			nYPosition += m_sCheckbox.cy + YDialogUnitToPixel(CY_BORDER);
 		}
 	}
 

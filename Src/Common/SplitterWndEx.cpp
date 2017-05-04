@@ -91,7 +91,6 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	ASSERT(curCol >= 0 && curCol < m_nMaxCols);
 
 	ASSERT(m_nRows > 0);
-	const int oldLimit = pScrollBar->GetScrollLimit();
 
 	// broadcast to all panes (other horizontal scrollbars and other panes)
 	for (int col = 0; col < m_nCols; col++)
