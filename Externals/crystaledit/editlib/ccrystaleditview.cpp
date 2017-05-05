@@ -545,9 +545,9 @@ Paste ()
         }
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       
-      int x, y;
       if (!bColumnSelection)
         {
+          int x, y;
           m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), y, x, CE_ACTION_PASTE);  //  [JRT]
           ptCursorPos.x = x;
           ptCursorPos.y = y;
@@ -1942,9 +1942,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
           else
             {
               //  Insert part of the previos line
-              TCHAR *pszInsertStr;
               if ((GetFlags () & (SRCOPT_BRACEGNU|SRCOPT_BRACEANSI)) && isopenbrace (pszLineChars[nLength - 1]))
                 {
+                  TCHAR *pszInsertStr;
                   if (m_pTextBuffer->GetInsertTabs())
                     {
                       pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * 2);
@@ -2644,13 +2644,12 @@ void CCrystalEditView::OnEditGotoLastChange()
 
 int CCrystalEditView::SpellGetLine (struct SpellData_t *pdata)
 {
-  int nCount;
   CCrystalEditView *pView = (CCrystalEditView*) pdata->pUserData;
   static TCHAR szBuffer[4096];
 
   if (pdata->nRow < pView->GetLineCount ())
     {
-      nCount = pView->GetLineLength (pdata->nRow) + 1;
+      int nCount = pView->GetLineLength (pdata->nRow) + 1;
       /*if (pdata->pszBuffer)
         free (pdata->pszBuffer);
       pdata->pszBuffer = (LPTSTR) malloc (nCount + 2);*/
@@ -2674,7 +2673,6 @@ int CCrystalEditView::SpellNotify (int nEvent, struct SpellData_t *pdata)
 {
   CCrystalEditView *pView = (CCrystalEditView*) pdata->pUserData;
   CPoint ptStartPos, ptEndPos;
-  int x, y;
 
   switch (nEvent)
     {
@@ -2701,6 +2699,7 @@ int CCrystalEditView::SpellNotify (int nEvent, struct SpellData_t *pdata)
       case SN_REPLACED:
         if (pView->IsSelection ())
           {
+            int x, y;
             pView->GetSelection (ptStartPos, ptEndPos);
             pView->m_pTextBuffer->DeleteText (pView, ptStartPos.y, ptStartPos.x, ptEndPos.y, ptEndPos.x, CE_ACTION_SPELL);
             pView->m_pTextBuffer->InsertText (pView, ptStartPos.y, ptStartPos.x, pdata->pszWord, _tcslen(pdata->pszWord), y, x, CE_ACTION_SPELL);
