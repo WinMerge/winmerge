@@ -1936,8 +1936,8 @@ void CMergeDoc::PrimeTextBuffers()
 	m_diffList.GetExtraLinesCounts(m_nBuffers, extras);
 
 	// resize m_aLines once for each view
-	UINT lcount[3];
-	UINT lcountnew[3];
+	UINT lcount[3] = {0};
+	UINT lcountnew[3] = {0};
 	
 	for (file = 0; file < m_nBuffers; file++)
 	{

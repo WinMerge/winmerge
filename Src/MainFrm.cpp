@@ -628,13 +628,11 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 
 std::array<bool, 3> GetROFromFlags(int nFiles, const DWORD dwFlags[])
 {
-	std::array<bool, 3> bRO;
+	std::array<bool, 3> bRO = { false, false, false };
 	for (int pane = 0; pane < nFiles; pane++)
 	{
 		if (dwFlags)
 			bRO[pane] = ((dwFlags[pane] & FFILEOPEN_READONLY) > 0);
-		else
-			bRO[pane] = false;
 	}
 	return bRO;
 }

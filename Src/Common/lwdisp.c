@@ -373,8 +373,8 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 	{
 		BOOL bParamByRef = FALSE;
 		BOOL bNeedToConv = FALSE;
-		VARIANT varParams[12];
-		VARIANT varData[12];
+		VARIANT varParams[12] = { 0 };
+		VARIANT varData[12] = { 0 };
 		int i;
 
 		for (i = 0; i < (int)dispparams.cArgs; i++)
