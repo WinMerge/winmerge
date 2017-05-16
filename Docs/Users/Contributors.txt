@@ -90,6 +90,7 @@ Localization:
   Sukjoon <bbcool@gmail.com>
   Lee Jae-Hong <pyrasis@users.sourceforge.net>
   Sushizang <sushizang@empal.com>
+  sheppaul <sheppaul at gmail.com>
 
 * Norwegian:
   Hans Fredrik Nordhaug <hansfn@users.sourceforge.net>
