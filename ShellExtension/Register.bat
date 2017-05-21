@@ -34,15 +34,15 @@ IF EXIST "%~dp0\WinMerge32BitPluginProxy.exe" Call :Execute "%~dp0\WinMerge32Bit
 Goto End
 
 :Execute
-Ver | %WINDIR%\System32\Find "Version 6." > NUL
+Ver | %WINDIR%\System32\Find "Version 5." > NUL
 IF NOT ERRORLEVEL 1 (
-  rem Windows Vista, Server 2008?
+  rem Windows 2000, XP, Sever 2003
+  %1 %2 %3
+) Else (
+  rem Windows Vista, Server 200x, Server 201x, Windows 8, Windows 10
   Echo args="": For Each a in WScript.Arguments: If InStr^(a, " "^) ^> 0 Then args = args ^& """" ^& a ^& """ " Else args = args ^& a ^& " " End If: Next: CreateObject^("Shell.Application"^).ShellExecute "%~1", args, "", "runas" > "%TEMP%\Elevated.vbs"
   Wscript //nologo "%TEMP%\Elevated.vbs" %2 %3
   Del "%TEMP%\Elevated.vbs" 2> NUL
-) Else (
-  rem Windows NT4.0, 2000, XP, Sever 2003
-  %1 %2 %3
 )
 Goto :EOF
 
