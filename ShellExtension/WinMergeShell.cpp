@@ -111,7 +111,7 @@ bool IsWindows8OrGreater()
 {
 	OSVERSIONINFO ovi = { sizeof OSVERSIONINFO };
 	GetVersionEx(&ovi);
-	return (ovi.dwMajorVersion >= 6 && ovi.dwMinorVersion >= 2);
+	return (ovi.dwMajorVersion * 1000 + ovi.dwMinorVersion >= 6002);
 }
 
 class CWinMergeTempLocale
