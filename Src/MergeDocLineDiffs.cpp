@@ -187,6 +187,8 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 
 	for (file = 0; file < m_nBuffers; file++)
 	{
+		if (m_ptBuf[file]->GetLineCount() >= nLineEnd)
+			return;
 		nOffsets[file].reset(new int[nLineEnd - nLineBegin + 1]);
 		CString strText;
 		if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
