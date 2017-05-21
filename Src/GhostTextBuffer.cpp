@@ -760,7 +760,7 @@ UndoRecord CGhostTextBuffer::GetUndoRecord(int nUndoPos) const
 {
 	UndoRecord ur = m_aUndoBuf[nUndoPos];
 	ur.m_ptStartPos.y = ComputeApparentLine(ur.m_ptStartPos.y, 0);
-	ur.m_ptEndPos.y = ur.m_ptStartPos.y + (m_aUndoBuf[nUndoPos].m_ptEndPos.y - m_aUndoBuf[nUndoPos].m_ptStartPos.y);
+	ur.m_ptEndPos.y = ComputeApparentLine(ur.m_ptEndPos.y, 0);
 	return ur;
 }
 
