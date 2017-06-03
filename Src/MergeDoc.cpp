@@ -930,6 +930,14 @@ static std::pair<MergeResult, Type> DoMergeValue(Type left, Type middle, Type ri
  */
 void CMergeDoc::DoAutoMerge(int dstPane)
 {
+	DIFFOPTIONS prevOpt, tempOpt;
+	m_diffWrapper.GetOptions(&prevOpt);
+	tempOpt = prevOpt;
+	tempOpt.nIgnoreWhitespace = WHITESPACE_COMPARE_ALL;
+	m_diffWrapper.SetOptions(&tempOpt);
+	FlushAndRescan();
+	m_diffWrapper.SetOptions(&prevOpt);
+
 	const int lastDiff = m_diffList.GetSize() - 1;
 	const int firstDiff = 0;
 	bool bGroupWithPrevious = false;
