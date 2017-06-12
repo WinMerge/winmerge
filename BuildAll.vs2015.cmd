@@ -1,4 +1,4 @@
 cd /d "%~dp0"
-call buildmanual.cmd
-call buildbin.cmd
-call buildarc.cmd
+call BuildManual.cmd
+call BuildBin.vs2015.cmd
+call BuildArc.cmd
