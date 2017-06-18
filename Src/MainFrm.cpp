@@ -857,7 +857,7 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
 	String params, title;
 	for (int nIndex = 0; nIndex < paths.GetSize(); ++nIndex)
 	{
-		if (flags[nIndex] & FFILEOPEN_READONLY)
+		if (flags && (flags[nIndex] & FFILEOPEN_READONLY))
 		{
 			switch (nIndex)
 			{
@@ -1029,7 +1029,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 				infoUnpacker);
 	}
 
-	if (pFiles && !(dwFlags[0] & FFILEOPEN_NOMRU))
+	if (pFiles && (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU)))
 	{
 		String filter = GetOptionsMgr()->GetString(OPT_FILEFILTER_CURRENT);
 		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, bRecurse, filter);
