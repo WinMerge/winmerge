@@ -401,6 +401,18 @@ int CMessageBoxDialog::GetFormerResult()
 }
 
 /*
+ * Method for storing the former result of the message box to the registry.
+ */
+int CMessageBoxDialog::SetFormerResult(int nResult)
+{
+	int nOldResult = GetFormerResult();
+	// Try to write the former result of the message box to the registry.
+	AfxGetApp()->WriteProfileInt(
+		REGISTRY_SECTION_MESSAGEBOX, m_strRegistryKey, nResult);
+	return nOldResult;
+}
+
+/*
  *	Method for displaying the dialog.
  *
  *	If the MB_DONT_DISPLAY_AGAIN or MB_DONT_ASK_AGAIN flag is set, this
@@ -470,16 +482,7 @@ void CMessageBoxDialog::EndDialog ( int nResult )
 	if ( ( ( m_nStyle & MB_DONT_DISPLAY_AGAIN ) && bDontDisplayAgain ) ||
 		( ( m_nStyle & MB_DONT_ASK_AGAIN ) && bDontDisplayAgain ) )
 	{
-		// Check whether the registry key was already generated.
-		if ( m_strRegistryKey.IsEmpty() )
-		{
-			// Create the registry key for this dialog.
-			m_strRegistryKey = GenerateRegistryKey();
-		}
-		
-		// Store the result of the dialog in the registry.
-		AfxGetApp()->WriteProfileInt(REGISTRY_SECTION_MESSAGEBOX, 
-			m_strRegistryKey, nResult);
+		SetFormerResult(nResult);
 	}
 	
 	// Call the parent method.
