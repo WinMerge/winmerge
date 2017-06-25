@@ -151,6 +151,8 @@ public:
 
 	// Method for retrieving the former result of the message box from the registry.
 	int GetFormerResult();
+	// Method for storing the former result of the message box to the registry.
+	int SetFormerResult(int nResult);
 
 public:
 
