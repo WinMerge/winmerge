@@ -92,6 +92,15 @@ class EDITPADC_CLASS CCrystalTextView : public CView
 
     friend CCrystalParser;
 
+public:
+    //  Syntax coloring overrides
+    struct TEXTBLOCK
+    {
+        int m_nCharPos;
+        int m_nColorIndex;
+        int m_nBgColorIndex;
+    };
+
 protected:
     //  Search parameters
     bool m_bLastSearch;
@@ -558,14 +567,6 @@ protected:
 	void InvalidateScreenRect(bool bInvalidateView = true);
 	//END SW
 
-    //  Syntax coloring overrides
-    struct TEXTBLOCK
-      {
-        int m_nCharPos;
-        int m_nColorIndex;
-		int m_nBgColorIndex;
-      };
-
     virtual HINSTANCE GetResourceHandle ();
 
 	//BEGIN SW
@@ -584,6 +585,7 @@ protected:
 public:
 	virtual CString GetHTMLLine (int nLineIndex, LPCTSTR pszTag);
 	virtual CString GetHTMLStyles ();
+	std::vector<TEXTBLOCK> GetTextBlocks(int nLineIndex);
 protected:
     virtual CString GetHTMLAttribute (int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd);
 

@@ -1661,6 +1661,38 @@ MergeTextBlocks (TEXTBLOCK *pBuf1, int nBlocks1, TEXTBLOCK *pBuf2,
   return j;
 }
 
+std::vector<CCrystalTextView::TEXTBLOCK>
+CCrystalTextView::GetTextBlocks(int nLineIndex)
+{
+  int nLength = GetViewableLineLength (nLineIndex);
+
+  //  Parse the line
+  DWORD dwCookie = GetParseCookie(nLineIndex - 1);
+  TEXTBLOCK *pBuf = new TEXTBLOCK[(nLength + 1) * 3]; // be aware of nLength == 0
+  int nBlocks = 0;
+  // insert at least one textblock of normal color at the beginning
+  pBuf[0].m_nCharPos = 0;
+  pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
+  pBuf[0].m_nBgColorIndex = COLORINDEX_BKGND;
+  nBlocks++;
+  (*m_ParseCookies)[nLineIndex] = ParseLine(dwCookie, nLineIndex, pBuf, nBlocks);
+  ASSERT((*m_ParseCookies)[nLineIndex] != -1);
+  
+  TEXTBLOCK *pAddedBuf;
+  int nAddedBlocks = GetAdditionalTextBlocks(nLineIndex, pAddedBuf);
+  
+  TEXTBLOCK *pMergedBuf;
+  int nMergedBlocks = MergeTextBlocks(pBuf, nBlocks, pAddedBuf, nAddedBlocks, pMergedBuf);
+  
+  std::vector<TEXTBLOCK> blocks(pMergedBuf, pMergedBuf + nMergedBlocks);
+  
+  delete[] pMergedBuf;
+  delete[] pAddedBuf;
+  delete[] pBuf;
+  
+  return blocks;
+}
+
 void CCrystalTextView::
 DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 {
