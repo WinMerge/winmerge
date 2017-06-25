@@ -28,6 +28,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #pragma once
 
 #include <map>
+#include <vector>
 #include "UnicodeString.h"
 #include "varprop.h"
 
@@ -101,6 +102,14 @@ public:
 	int GetDefault(const String& name, unsigned & value) const;
 	int GetDefault(const String& name, bool & value) const;
 	template <typename T> T GetDefault(const String& name) const { T v; GetDefault(name, v); return v; }
+	template <template<typename T, typename = std::allocator<T>> class Container = std::vector>
+	Container<String> GetNameList() const
+	{
+		Container<String> nameList;
+		for (const auto& e : m_optionsMap)
+			nameList.push_back(e.first);
+		return nameList;
+	}
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) = 0;
 	virtual int InitOption(const String& name, const String& defaultValue) = 0;
