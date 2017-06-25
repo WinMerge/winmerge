@@ -4957,3 +4957,4 @@ msgstr "이미지(&I)"
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
 msgstr "Frhed(http://frhed.sourceforge.net/)가 설치되어 있지 않습니다"
+

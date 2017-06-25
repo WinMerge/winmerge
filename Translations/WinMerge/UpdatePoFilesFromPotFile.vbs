@@ -185,6 +185,11 @@ Function GetContentFromPoFile(ByVal sPoPath, sCharset)
       Set oSubContent = New CSubContent
     End If
   Loop
+  If iMsgStarted <> 0 Then 'If there is pending translation...
+    If (oContent.Exists(sMsgCtxt & sMsgId) = False) Then 'If the key is NOT already used...
+      oContent.Add sMsgCtxt & sMsgId, oSubContent
+    End If
+  End If
   oTextFile.Close
   Set GetContentFromPoFile = oContent
 End Function
