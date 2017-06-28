@@ -228,7 +228,8 @@ public:
 	bool DeleteSyncPoint(int pane, int nLine, bool bRescan = true);
 	void ClearSyncPoints();
 	bool HasSyncPoints();
-	std::vector<std::vector<int> > CMergeDoc::GetSyncPointList();
+	std::vector<std::vector<int> > GetSyncPointList();
+	String GetDescription(int pane) const { return m_strDesc[pane]; }
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
