@@ -67,6 +67,7 @@
 #include "TFile.h"
 #include "SourceControl.h"
 #include "paths.h"
+#include "TestMain.h"
 
 // For shutdown cleanup
 #include "charsets.h"
@@ -500,6 +501,10 @@ BOOL CMergeApp::InitInstance()
 	{
 		pMainFrame->PostMessage(WM_CLOSE, 0, 0);
 	}
+
+#ifdef TEST_WINMERGE
+	WinMergeTest::TestAll();
+#endif
 
 	return bContinue;
 }
