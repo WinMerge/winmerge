@@ -55,8 +55,10 @@
 // BOOST_MOVE_IS_POD(T) should evaluate to true if T is a POD type
 // BOOST_MOVE_HAS_TRIVIAL_CONSTRUCTOR(T) should evaluate to true if "T x;" has no effect
 // BOOST_MOVE_HAS_TRIVIAL_COPY(T) should evaluate to true if T(t) <==> memcpy
+// (Note: this trait does not guarantee T is copy constructible, the copy constructor could be deleted but still be trivial)
 // BOOST_MOVE_HAS_TRIVIAL_MOVE_CONSTRUCTOR(T) should evaluate to true if T(boost::move(t)) <==> memcpy
 // BOOST_MOVE_HAS_TRIVIAL_ASSIGN(T) should evaluate to true if t = u <==> memcpy
+// (Note: this trait does not guarantee T is assignable , the copy assignmen could be deleted but still be trivial)
 // BOOST_MOVE_HAS_TRIVIAL_MOVE_ASSIGN(T) should evaluate to true if t = boost::move(u) <==> memcpy
 // BOOST_MOVE_HAS_TRIVIAL_DESTRUCTOR(T) should evaluate to true if ~T() has no effect
 // BOOST_MOVE_HAS_NOTHROW_CONSTRUCTOR(T) should evaluate to true if "T x;" can not throw
@@ -117,9 +119,7 @@
 #     define BOOST_MOVE_HAS_TRIVIAL_CONSTRUCTOR(T) __has_trivial_constructor(T)
 #   endif
 #   if __has_feature(has_trivial_copy)
-#     //There are problems with deleted copy constructors detected as trivially copyable.
-#     //http://stackoverflow.com/questions/12754886/has-trivial-copy-behaves-differently-in-clang-and-gcc-whos-right
-#     define BOOST_MOVE_HAS_TRIVIAL_COPY(T) (__has_trivial_copy(T) && ::boost::move_detail::is_copy_constructible<T>::value)
+#     define BOOST_MOVE_HAS_TRIVIAL_COPY(T) __has_trivial_copy(T)
 #   endif
 #   if __has_feature(has_trivial_assign)
 #     define BOOST_MOVE_HAS_TRIVIAL_ASSIGN(T) (__has_trivial_assign(T) )
@@ -235,7 +235,9 @@
 #endif
 
 #ifdef BOOST_MOVE_HAS_TRIVIAL_COPY
-   #define BOOST_MOVE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE(T)   BOOST_MOVE_HAS_TRIVIAL_COPY(T)
+   #define BOOST_MOVE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE(T)   ::boost::move_detail::is_pod<T>::value ||\
+                                                          (::boost::move_detail::is_copy_constructible<T>::value &&\
+                                                           BOOST_MOVE_HAS_TRIVIAL_COPY(T))
 #else
    #define BOOST_MOVE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE(T)   ::boost::move_detail::is_pod<T>::value
 #endif
@@ -246,12 +248,6 @@
    #define BOOST_MOVE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE(T)  ::boost::move_detail::is_pod<T>::value
 #endif
 
-#ifdef BOOST_MOVE_HAS_TRIVIAL_COPY
-   #define BOOST_MOVE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE(T)   BOOST_MOVE_HAS_TRIVIAL_COPY(T)
-#else
-   #define BOOST_MOVE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE(T)   ::boost::move_detail::is_pod<T>::value
-#endif
-
 #ifdef BOOST_MOVE_HAS_TRIVIAL_MOVE_CONSTRUCTOR
    #define BOOST_MOVE_IS_TRIVIALLY_MOVE_CONSTRUCTIBLE(T)   BOOST_MOVE_HAS_TRIVIAL_MOVE_CONSTRUCTOR(T)
 #else
@@ -259,7 +255,9 @@
 #endif
 
 #ifdef BOOST_MOVE_HAS_TRIVIAL_ASSIGN
-   #define BOOST_MOVE_IS_TRIVIALLY_COPY_ASSIGNABLE(T) BOOST_MOVE_HAS_TRIVIAL_ASSIGN(T)
+   #define BOOST_MOVE_IS_TRIVIALLY_COPY_ASSIGNABLE(T) ::boost::move_detail::is_pod<T>::value ||\
+                                                      ( ::boost::move_detail::is_copy_assignable<T>::value &&\
+                                                         BOOST_MOVE_HAS_TRIVIAL_ASSIGN(T))
 #else
    #define BOOST_MOVE_IS_TRIVIALLY_COPY_ASSIGNABLE(T) ::boost::move_detail::is_pod<T>::value
 #endif
@@ -480,7 +478,7 @@ template <class T>
 struct remove_all_extents<T[]>
 {  typedef typename remove_all_extents<T>::type type; };
 
-template <class T, size_t N>
+template <class T, std::size_t N>
 struct remove_all_extents<T[N]>
 {  typedef typename remove_all_extents<T>::type type;};
 
@@ -821,9 +819,7 @@ struct is_trivially_copy_constructible
 {
    //In several compilers BOOST_MOVE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE return true even with
    //deleted copy constructors so make sure the type is copy constructible.
-   static const bool value = ::boost::move_detail::is_pod<T>::value ||
-                             ( ::boost::move_detail::is_copy_constructible<T>::value &&
-                               BOOST_MOVE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE(T) );
+   static const bool value = BOOST_MOVE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE(T);
 };
 
 //////////////////////////////////////
@@ -831,7 +827,7 @@ struct is_trivially_copy_constructible
 //////////////////////////////////////
 template<class T>
 struct is_trivially_move_constructible
-{  static const bool value = BOOST_MOVE_IS_TRIVIALLY_MOVE_CONSTRUCTIBLE(T); };
+{ static const bool value = BOOST_MOVE_IS_TRIVIALLY_MOVE_CONSTRUCTIBLE(T); };
 
 //////////////////////////////////////
 //       is_trivially_copy_assignable
@@ -841,9 +837,7 @@ struct is_trivially_copy_assignable
 {
    //In several compilers BOOST_MOVE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE return true even with
    //deleted copy constructors so make sure the type is copy constructible.
-   static const bool value = ::boost::move_detail::is_pod<T>::value ||
-                             ( ::boost::move_detail::is_copy_assignable<T>::value &&
-                               BOOST_MOVE_IS_TRIVIALLY_COPY_ASSIGNABLE(T) );
+   static const bool value = BOOST_MOVE_IS_TRIVIALLY_COPY_ASSIGNABLE(T);
 };                             
 
 //////////////////////////////////////
@@ -1003,9 +997,9 @@ BOOST_MOVE_ALIGNED_STORAGE_WITH_BOOST_ALIGNMENT(0x1000)
 
 #else //BOOST_NO_ALIGNMENT
 
-template<class T, size_t Len>
+template<class T, std::size_t Len>
 union aligned_union
-{	
+{   
    T aligner;
    char dummy[Len];
 };
@@ -1023,7 +1017,7 @@ struct aligned_next<Len, Align, T, true>
 //End of search defaults to max_align_t
 template<std::size_t Len, std::size_t Align>
 struct aligned_next<Len, Align, max_align_t, false>
-{	typedef aligned_union<max_align_t, Len> type;   };
+{   typedef aligned_union<max_align_t, Len> type;   };
 
 //Now define a search list through types
 #define BOOST_MOVE_ALIGNED_NEXT_STEP(TYPE, NEXT_TYPE)\
