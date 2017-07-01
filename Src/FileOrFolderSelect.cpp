@@ -259,9 +259,7 @@ BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 	if (bRetVal)
 	{
 		path = sSelectedFile;
-		struct _stati64 statBuffer;
-		int nRetVal = _tstati64(path.c_str(), &statBuffer);
-		if (nRetVal == -1)
+		if (paths::DoesPathExist(path) == paths::DOES_NOT_EXIST)
 		{
 			// We have a valid folder name, but propably garbage as a filename.
 			// Return folder name
