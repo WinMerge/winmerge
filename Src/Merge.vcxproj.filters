@@ -223,37 +223,37 @@
     <ClCompile Include="VSSHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\src\ANALYZE.C">
+    <ClCompile Include="diffutils\src\analyze.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\lib\CMPBUF.C">
+    <ClCompile Include="diffutils\lib\cmpbuf.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\src\CONTEXT.C">
+    <ClCompile Include="diffutils\src\context.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\Diff.cpp">
       <Filter>DiffEngine</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\src\ED.C">
+    <ClCompile Include="diffutils\src\ed.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\GnuVersion.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\src\IFDEF.C">
+    <ClCompile Include="diffutils\src\ifdef.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\src\IO.C">
+    <ClCompile Include="diffutils\src\io.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\src\NORMAL.C">
+    <ClCompile Include="diffutils\src\normal.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\src\SIDE.C">
+    <ClCompile Include="diffutils\src\side.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\src\UTIL.C">
+    <ClCompile Include="diffutils\src\util.c">
       <Filter>DiffEngine</Filter>
     </ClCompile>
     <ClCompile Include="CompareEngines\ByteComparator.cpp">
@@ -750,6 +750,9 @@
     </ClCompile>
     <ClCompile Include="TestMain.cpp">
       <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="diffutils\src\mystat.cpp">
+      <Filter>DiffEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -231,7 +231,7 @@ struct file_data {
     int             desc;	/* File descriptor  */
     char const      *name;	/* File name  */
 #ifdef _WIN32
-    struct _stat    stat;	/* File status from fstat()  */
+    struct _stat64  stat;	/* File status from fstat()  */
 #else
     struct stat     stat;	/* File status from fstat()  */
 #endif
@@ -374,6 +374,12 @@ int FileIsBinary(int fd);
 
 /* version.c */
 extern char const version_string[];
+
+#ifdef _WIN32
+/* mystat.cpp */
+int myfstat(int fd, struct _stat64 *buf);
+int mywstat(const wchar_t *filename, struct _stat64 *buf);
+#endif
 
 #ifdef __cplusplus
 #undef HUGE

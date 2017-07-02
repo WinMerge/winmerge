@@ -1543,8 +1543,8 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	// If not, then we can't help it, and hence assert that this won't happen.
 	if (!m_bPathsAreTemp)
 	{
-		_tstat(m_files[0].c_str(), &inf_patch[0].stat);
-		_tstat(m_files[1].c_str(), &inf_patch[1].stat);
+		mywstat(m_files[0].c_str(), &inf_patch[0].stat);
+		mywstat(m_files[1].c_str(), &inf_patch[1].stat);
 	}
 	else
 	{
