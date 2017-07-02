@@ -7,7 +7,7 @@ call SetVersion.cmd
 cscript /nologo ExpandEnvironmenStrings.vbs Version.in > Version.h
 
 setlocal
-call "%VS120COMNTOOLS%vsvars32.bat"
+call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"
 MSBuild WinMerge.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="Win32" || pause
 MSBuild WinMerge.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="x64" || pause
 endlocal
