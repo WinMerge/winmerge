@@ -43,15 +43,3 @@ int NTAPI LangMessageBox(UINT nIDPrompt, UINT nType, UINT nIDHelp)
 		nIDHelp = nIDPrompt;
 	return AfxMessageBox(string.c_str(), nType, nIDHelp);
 }
-
-
-// Get appropriate clipboard format for TCHAR text
-int GetClipTcharTextFormat()
-{
-#ifdef _UNICODE
-	return CF_UNICODETEXT;
-#else
-	return CF_TEXT;
-#endif // _UNICODE
-}
-

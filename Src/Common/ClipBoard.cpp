@@ -6,8 +6,6 @@
 
 #include "ClipBoard.h"
 
-inline UINT GetClipTcharTextFormat() { return (sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT); }
-
 /**
  * @brief Copies string to clipboard.
  * @param [in] text Text to copy to clipboard.
