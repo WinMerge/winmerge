@@ -191,6 +191,7 @@
     <ClCompile Include="..\..\..\Src\DiffFileInfo.cpp" />
     <ClCompile Include="..\..\..\Src\DiffItem.cpp" />
     <ClCompile Include="..\..\..\Src\diffutils\src\Diff.cpp" />
+    <ClCompile Include="..\..\..\Src\diffutils\src\mystat.cpp" />
     <ClCompile Include="..\..\..\Src\DirItem.cpp" />
     <ClCompile Include="..\..\..\Src\Environment.cpp" />
     <ClCompile Include="..\..\..\Src\Common\ExConverter.cpp" />
@@ -211,6 +212,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\BinaryCompare\BinaryCompare_test.cpp" />
+    <ClCompile Include="..\diffutils\mystat_test.cpp" />
     <ClCompile Include="..\ShellFileOperations\ShellFileOperations_test.cpp" />
     <ClCompile Include="..\TimeSizeCompare\TimeSizeCompare_test.cpp" />
     <ClCompile Include="misc.cpp" />

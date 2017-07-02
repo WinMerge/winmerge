@@ -674,6 +674,7 @@
     <ClCompile Include="TempFile.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Test.cpp" />
     <ClCompile Include="TestFilterDlg.cpp" />
     <ClCompile Include="Common\unicoder.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -684,6 +685,7 @@
     <ClCompile Include="Common\UniFile.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TestMain.cpp" />
     <ClCompile Include="TrDialogs.cpp" />
     <ClCompile Include="UniMarkdownFile.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -730,6 +732,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="diffutils\src\util.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="diffutils\src\mystat.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="CompareEngines\ByteComparator.cpp">
@@ -939,6 +944,7 @@
     <ClInclude Include="stringdiffsi.h" />
     <ClInclude Include="Common\SuperComboBox.h" />
     <ClInclude Include="TempFile.h" />
+    <ClInclude Include="TestMain.h" />
     <ClInclude Include="TestFilterDlg.h" />
     <ClInclude Include="Common\unicoder.h" />
     <ClInclude Include="Common\UnicodeString.h" />

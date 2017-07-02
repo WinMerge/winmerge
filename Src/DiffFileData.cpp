@@ -92,7 +92,7 @@ bool DiffFileData::DoOpenFiles()
 
 		// Get file stats (diffutils uses these)
 #ifdef _WIN32
-		if (_fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
+		if (myfstat(m_inf[i].desc, &m_inf[i].stat) != 0)
 #else
 		if (fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
 #endif
