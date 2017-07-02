@@ -216,6 +216,8 @@ public :
     SyntaxColors * GetSyntaxColors() { return m_pColors; }
     void SetColorContext(SyntaxColors * pColors) { m_pColors = pColors; }
 
+    static int GetClipTcharTextFormat() { return sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT; }
+
 protected :
     CPoint WordToRight (CPoint pt);
     CPoint WordToLeft (CPoint pt);

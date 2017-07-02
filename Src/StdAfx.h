@@ -70,9 +70,6 @@ void NTAPI LangTranslateDialog(HWND);
 	/** @brief Lang aware version of AfxMessageBox() */
 int NTAPI LangMessageBox(UINT, UINT nType = MB_OK, UINT nIDHelp = (UINT)-1);
 
-	/** @brief Get appropriate clipboard format for TCHAR text, ie, CF_TEXT or CF_UNICODETEXT */
-int GetClipTcharTextFormat();
-
 	/** @brief include for the custom dialog boxes, with do not ask/display again */
 #include "MessageBoxDialog.h"
 
