@@ -83,7 +83,7 @@ BEGIN
         POPUP "Op&en"
         BEGIN
             MENUITEM "with &Registered Application", ID_FILE_OPEN_REGISTERED
-            MENUITEM "with &External Editor\tCtrl+Alt+E",       ID_FILE_OPEN_WITHEDITOR
+            MENUITEM "with &External Editor\tCtrl+Alt+E", ID_FILE_OPEN_WITHEDITOR
             MENUITEM "&with...",                    ID_FILE_OPEN_WITH
         END
     END
@@ -464,13 +464,13 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Diff Context"
         BEGIN
-            MENUITEM "&All Lines",                        ID_VIEW_DIFFCONTEXT_ALL
-            MENUITEM "&0 Lines",                          ID_VIEW_DIFFCONTEXT_0
-            MENUITEM "&1 Line",                           ID_VIEW_DIFFCONTEXT_1
-            MENUITEM "&3 Lines",                          ID_VIEW_DIFFCONTEXT_3
-            MENUITEM "&5 Lines",                          ID_VIEW_DIFFCONTEXT_5
-            MENUITEM "&7 Lines",                          ID_VIEW_DIFFCONTEXT_7
-            MENUITEM "&9 Lines",                          ID_VIEW_DIFFCONTEXT_9
+            MENUITEM "&All Lines",                  ID_VIEW_DIFFCONTEXT_ALL
+            MENUITEM "&0 Lines",                    ID_VIEW_DIFFCONTEXT_0
+            MENUITEM "&1 Line",                     ID_VIEW_DIFFCONTEXT_1
+            MENUITEM "&3 Lines",                    ID_VIEW_DIFFCONTEXT_3
+            MENUITEM "&5 Lines",                    ID_VIEW_DIFFCONTEXT_5
+            MENUITEM "&7 Lines",                    ID_VIEW_DIFFCONTEXT_7
+            MENUITEM "&9 Lines",                    ID_VIEW_DIFFCONTEXT_9
             MENUITEM "&Toggle All and 0-9 Lines\tCtrl+D", ID_VIEW_DIFFCONTEXT_TOGGLE
         END
         MENUITEM SEPARATOR
@@ -791,7 +791,7 @@ BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "D",            ID_VIEW_DIFFCONTEXT_TOGGLE, VIRTKEY, CONTROL, NOINVERT
-	"E",            ID_FILE_OPEN_WITHEDITOR, VIRTKEY, ALT, CONTROL, NOINVERT
+    "E",            ID_FILE_OPEN_WITHEDITOR, VIRTKEY, CONTROL, ALT, NOINVERT
     "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
@@ -1682,16 +1682,15 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,36,222,10
     CONTROL         "&Include unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,48,202,10
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,202,10
+    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,202,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,202,10
     CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,202,10
     LTEXT           "&Quick compare limit (MB):",IDC_STATIC,7,96,200,10
-    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,108,30,14,ES_AUTOHSCROLL,
+    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,108,30,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,198,70,14
     LTEXT           "&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,7,124,200,30
-    EDITTEXT        IDC_COMPARE_THREAD_COUNT,7,156,30,14,ES_AUTOHSCROLL,
+    EDITTEXT        IDC_COMPARE_THREAD_COUNT,7,156,30,14,ES_AUTOHSCROLL
 END
 
 IDD_PROPPAGE_COMPARE_BINARY DIALOGEX 0, 0, 235, 205
