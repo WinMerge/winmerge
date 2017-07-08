@@ -1146,7 +1146,10 @@ void CMergeEditView::OnNextdiff()
 	if (nextDiff >= 0 && nextDiff <= lastDiff)
 		SelectDiff(nextDiff, true, false);
 	else if (CDirDoc *pDirDoc = pd->GetDirDoc())
-		pDirDoc->MoveToNextDiff(pd);
+	{
+		if (pDirDoc->MoveableToNextDiff())
+			pDirDoc->MoveToNextDiff(pd);
+	}
 }
 
 /**
@@ -1234,7 +1237,10 @@ void CMergeEditView::OnPrevdiff()
 	if (prevDiff >= 0 && prevDiff >= firstDiff)
 		SelectDiff(prevDiff, true, false);
 	else if (CDirDoc *pDirDoc = pd->GetDirDoc())
-		pDirDoc->MoveToPrevDiff(pd);
+	{
+		if (pDirDoc->MoveableToPrevDiff())
+			pDirDoc->MoveToPrevDiff(pd);
+	}
 }
 
 /**
