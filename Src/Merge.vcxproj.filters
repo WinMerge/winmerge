@@ -957,16 +957,16 @@
     <ClInclude Include="VSSHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="diffutils\lib\CMPBUF.H">
+    <ClInclude Include="diffutils\lib\cmpbuf.h">
       <Filter>DiffEngine</Filter>
     </ClInclude>
-    <ClInclude Include="diffutils\CONFIG.H">
+    <ClInclude Include="diffutils\config.h">
       <Filter>DiffEngine</Filter>
     </ClInclude>
-    <ClInclude Include="diffutils\src\DIFF.H">
+    <ClInclude Include="diffutils\src\diff.h">
       <Filter>DiffEngine</Filter>
     </ClInclude>
-    <ClInclude Include="diffutils\src\SYSTEM.H">
+    <ClInclude Include="diffutils\src\system.h">
       <Filter>DiffEngine</Filter>
     </ClInclude>
     <ClInclude Include="CompareEngines\ByteComparator.h">
