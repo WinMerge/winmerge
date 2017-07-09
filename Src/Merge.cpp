@@ -287,11 +287,6 @@ BOOL CMergeApp::InitInstance()
 	// Initialize temp folder
 	SetupTempPath();
 
-	// Cleanup left over tempfiles from previous instances.
-	// Normally this should not neet to do anything - but if for some reason
-	// WinMerge did not delete temp files this makes sure they are removed.
-	CleanupWMtemp();
-
 	// Parse command-line arguments.
 	MergeCmdLineInfo cmdInfo(GetCommandLine());
 
@@ -542,6 +537,12 @@ int CMergeApp::ExitInstance()
 	// Remove tempfolder
 	const String temp = env::GetTemporaryPath();
 	ClearTempfolder(temp);
+
+	// Cleanup left over tempfiles from previous instances.
+	// Normally this should not neet to do anything - but if for some reason
+	// WinMerge did not delete temp files this makes sure they are removed.
+	CleanupWMtemp();
+
 	delete m_mainThreadScripts;
 	CWinApp::ExitInstance();
 	return 0;
