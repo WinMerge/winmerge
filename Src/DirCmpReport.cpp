@@ -67,6 +67,7 @@ DirCmpReport::DirCmpReport(const std::vector<String> & colRegKeys)
 , m_sSeparator(_T(","))
 , m_pFileCmpReport(NULL)
 , m_bIncludeFileCmpReport(false)
+, m_bOutputUTF8(false)
 {
 }
 
@@ -209,21 +210,25 @@ void DirCmpReport::GenerateReport(REPORT_TYPE nReportType)
 	switch (nReportType)
 	{
 	case REPORT_TYPE_SIMPLEHTML:
+		m_bOutputUTF8 = true;
 		GenerateHTMLHeader();
 		GenerateXmlHtmlContent(false);
 		GenerateHTMLFooter();
 		break;
 	case REPORT_TYPE_SIMPLEXML:
+		m_bOutputUTF8 = true;
 		GenerateXmlHeader();
 		GenerateXmlHtmlContent(true);
 		GenerateXmlFooter();
 		break;
 	case REPORT_TYPE_COMMALIST:
+		m_bOutputUTF8 = false;
 		m_sSeparator = _T(",");
 		GenerateHeader();
 		GenerateContent();
 		break;
 	case REPORT_TYPE_TABLIST:
+		m_bOutputUTF8 = false;
 		m_sSeparator = _T("\t");
 		GenerateHeader();
 		GenerateContent();
@@ -237,7 +242,7 @@ void DirCmpReport::GenerateReport(REPORT_TYPE nReportType)
  */
 void DirCmpReport::WriteString(const String& sText)
 {
-	std::string sOctets = ucr::toThreadCP(sText);
+	std::string sOctets(m_bOutputUTF8 ? ucr::toUTF8(sText) : ucr::toThreadCP(sText));
 	const char *pchOctets = sOctets.c_str();
 	void *pvOctets = const_cast<char *>(pchOctets);
 	size_t cchAhead = sOctets.length();
@@ -310,7 +315,9 @@ void DirCmpReport::GenerateHTMLHeader()
 {
 	WriteString(_T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n")
 		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
-		_T("<html>\n<head>\n\t<title>"));
+		_T("<html>\n<head>\n")
+		_T("\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
+		_T("\t<title>"));
 	WriteString(m_sTitle);
 	WriteString(_T("</title>\n"));
 	WriteString(_T("\t<style type=\"text/css\">\n\t<!--\n"));
