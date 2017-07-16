@@ -66,4 +66,5 @@ private:
 	const std::vector<String>& m_colRegKeys; /**< Key names for currently displayed columns */
 	IFileCmpReport *m_pFileCmpReport;
 	bool m_bIncludeFileCmpReport;
+	bool m_bOutputUTF8;
 };
