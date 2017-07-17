@@ -2973,6 +2973,8 @@ void CMergeDoc::SwapFiles()
 	m_diffList.Swap(0, m_nBuffers - 1);
 	swap(m_pView[0]->m_piMergeEditStatus, m_pView[m_nBuffers - 1]->m_piMergeEditStatus);
 
+	ClearWordDiffCache();
+
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		m_ptBuf[nBuffer]->m_nThisPane = nBuffer;
