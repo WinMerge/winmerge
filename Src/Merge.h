@@ -94,12 +94,10 @@ public:
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper * GetGlobalFileFilter() { return m_pGlobalFileFilter.get(); }
-	void SetFontDefaults();
 	void ShowHelp(LPCTSTR helpLocation = NULL);
 	void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 	void ShowVSSError(CException *e, const String& strItem);
-	void CheckinToClearCase(const String& strDestinationPath);
 	BOOL CreateBackup(BOOL bFolder, const String& pszPath);
 	int HandleReadonlySave(String& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
 	BOOL SyncFileToVCS(const String& pszDest,	BOOL &bApplyToAll, String& psError);

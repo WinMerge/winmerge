@@ -226,7 +226,6 @@ protected:
 	afx_msg void OnFileNew3();
 	afx_msg void OnToolsFilters();
 	afx_msg void OnViewStatusBar();
-	afx_msg void OnViewToolbar();
 	afx_msg void OnUpdateViewTabBar(CCmdUI* pCmdUI);
 	afx_msg void OnViewTabBar();
 	afx_msg void OnUpdateResizePanes(CCmdUI* pCmdUI);
@@ -251,7 +250,6 @@ protected:
 	afx_msg void OnPluginsList();
 	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
 	afx_msg void OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnUpdateDiffOptions(CCmdUI* pCmdUI);
 	afx_msg void OnDiffWhitespace(UINT nID);
 	afx_msg void OnUpdateDiffWhitespace(CCmdUI* pCmdUI);
 	afx_msg void OnDiffCaseSensitive();
@@ -277,7 +275,6 @@ private:
 	HexMergeDocList &GetAllHexMergeDocs();
 	void UpdateFont(FRAMETYPE frame);
 	BOOL CreateToolbar();
-	BOOL CreateComboBoxOnToolbar();
 	CMergeEditView * GetActiveMergeEditView();
 	void LoadToolbarImages();
 	HMENU NewMenu( int view, int ID );

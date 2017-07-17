@@ -89,8 +89,6 @@ public:
 	void CheckFileChanged(void);
 	String GetDescription(int pane) const { return m_strDesc[pane]; };
 private:
-	static void CopySel(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
-	static void CopyAll(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
 	void DoFileSave(int nBuffer);
 	void DoFileSaveAs(int nBuffer);
 	HRESULT LoadOneFile(int index, LPCTSTR filename, BOOL readOnly, const String& strDesc);
