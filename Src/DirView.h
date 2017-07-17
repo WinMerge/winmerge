@@ -113,8 +113,6 @@ public:
 	void AddParentFolderItem(bool bEnable);
 	void RefreshOptions();
 
-	LRESULT HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lParam);
-
 	bool HasNextDiff();
 	bool HasPrevDiff();
 	void MoveToNextDiff();
@@ -130,8 +128,6 @@ private:
 	void GetItemFileNames(int sel, String& strLeft, String& strRight) const;
 	void GetItemFileNames(int sel, PathContext * paths) const;
 	void FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg);
-	bool IsItemLeftOnly(int code);
-	bool IsItemRightOnly(int code);
 	DirActions MakeDirActions(DirActions::method_type func) const;
 	DirActions MakeDirActions(DirActions::method_type2 func) const;
 	Counts Count(DirActions::method_type2 func) const;
