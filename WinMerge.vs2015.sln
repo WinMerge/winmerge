@@ -1,3 +1,4 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
@@ -38,6 +39,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files"
 		SetVersion.cmd = SetVersion.cmd
 		UploadToGithub.cmd = UploadToGithub.cmd
 		UploadToVirusTotal.cmd = UploadToVirusTotal.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VBS Scripts", "VBS Scripts", "{8B625EC8-5063-4336-84F9-AA7FD5348525}"
+	ProjectSection(SolutionItems) = preProject
+		ExpandEnvironmenStrings.vbs = ExpandEnvironmenStrings.vbs
 	EndProjectSection
 EndProject
 Global
@@ -104,5 +110,6 @@ Global
 		{8164D41D-B053-405B-826C-CF37AC0EF176} = {220B870C-D051-463E-997B-8C392081EE15}
 		{9E211743-85FE-4977-82F3-4F04B40C912D} = {220B870C-D051-463E-997B-8C392081EE15}
 		{6FF56CDB-787A-4714-A28C-919003F9FA6C} = {220B870C-D051-463E-997B-8C392081EE15}
+		{8B625EC8-5063-4336-84F9-AA7FD5348525} = {DC3B258E-444F-460D-8FD9-09A8165212FA}
 	EndGlobalSection
 EndGlobal

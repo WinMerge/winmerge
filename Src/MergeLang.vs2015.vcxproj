@@ -248,6 +248,10 @@ cscript CreateMasterPotFile.vbs
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Translations\WinMerge\CreateMasterPotFile.vbs" />
+    <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.vbs" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

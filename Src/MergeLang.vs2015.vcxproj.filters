@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\Translations\WinMerge\CreateMasterPotFile.vbs">
+      <Filter>VBS Scripts</Filter>
+    </None>
+    <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.vbs">
+      <Filter>VBS Scripts</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="VBS Scripts">
+      <UniqueIdentifier>{51a3b56c-eeee-43c9-a0e7-c2561a2e74fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource FIles">
+      <UniqueIdentifier>{6ed17c4f-f8ad-4783-b08d-accd2076a66b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\Translations\WinMerge\MergeLang.rc">
+      <Filter>Resource FIles</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Merge.rc">
+      <Filter>Resource FIles</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>
