@@ -7,10 +7,10 @@ call SetVersion.cmd
 cscript /nologo ExpandEnvironmenStrings.vbs Version.in > Version.h
 
 setlocal
-set VisualStudioVersion=14.0
-call "%VS140COMNTOOLS%vsvars32.bat"
-MSBuild WinMerge.vs2015.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="Win32" || pause
-MSBuild WinMerge.vs2015.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="x64" || pause
+set VisualStudioVersion=15.0
+call "%VS141COMNTOOLS%vsvars32.bat"
+MSBuild WinMerge.vs2017.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="Win32" || pause
+MSBuild WinMerge.vs2017.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="x64" || pause
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
