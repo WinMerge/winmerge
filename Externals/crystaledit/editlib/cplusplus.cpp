@@ -70,16 +70,22 @@ static LPCTSTR s_apszCppKeywordList[] =
     _T ("_persistent"),
     _T ("_stdcall"),
     _T ("_syscall"),
+    _T ("alignas"),
+    _T ("alignof"),
     _T ("auto"),
     _T ("bool"),
     _T ("break"),
     _T ("case"),
     _T ("catch"),
+    _T ("char16_t"),
+    _T ("char32_t"),
     _T ("char"),
     _T ("class"),
     _T ("const"),
     _T ("const_cast"),
+    _T ("constexpr"),
     _T ("continue"),
+    _T ("decltype"),
     _T ("cset"),
     _T ("default"),
     _T ("delete"),
@@ -109,6 +115,8 @@ static LPCTSTR s_apszCppKeywordList[] =
     _T ("naked"),
     _T ("namespace"),
     _T ("new"),
+    _T ("noexcept"),
+    _T ("nullptr"),
     _T ("ondemand"),
     _T ("operator"),
     _T ("persistent"),
@@ -122,12 +130,14 @@ static LPCTSTR s_apszCppKeywordList[] =
     _T ("signed"),
     _T ("sizeof"),
     _T ("static"),
+    _T ("static_assert"),
     _T ("static_cast"),
     _T ("struct"),
     _T ("switch"),
     _T ("template"),
     _T ("this"),
     _T ("thread"),
+    _T ("thread_local"),
     _T ("throw"),
     _T ("transient"),
     _T ("transient"),
@@ -233,24 +243,47 @@ IsUser1Keyword (LPCTSTR pszChars, int nLength)
 static bool
 IsCppNumber (LPCTSTR pszChars, int nLength)
 {
-  if (nLength > 2 && pszChars[0] == '0' && pszChars[1] == 'x')
+  if (nLength > 2 && pszChars[0] == '0')
     {
-      for (int I = 2; I < nLength; I++)
+      if (pszChars[1] == 'x')
         {
-          if (_istdigit (pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
-                (pszChars[I] >= 'a' && pszChars[I] <= 'f'))
-            continue;
-          return false;
+          for (int I = 2; I < nLength; I++)
+            {
+              if (_istdigit (pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
+                    (pszChars[I] >= 'a' && pszChars[I] <= 'f') || pszChars[I] == '_')
+                continue;
+              return false;
+            }
+          return true;
         }
-      return true;
+      else if (pszChars[1] == '0')
+        {
+          for (int I = 2; I < nLength; I++)
+            {
+              if ((pszChars[I] >= '0' && pszChars[I] <= '7') || pszChars[I] == '_')
+                continue;
+              return false;
+            }
+          return true;
+        }
+      else if (pszChars[1] == 'b')
+        {
+          for (int I = 2; I < nLength; I++)
+            {
+              if ((pszChars[I] >= '0' && pszChars[I] <= '1') || pszChars[I] == '_')
+                continue;
+              return false;
+            }
+          return true;
+        }
     }
-  if (!_istdigit (pszChars[0]))
+  if (!_istdigit (pszChars[0]) && pszChars[0] != '.')
     return false;
   for (int I = 1; I < nLength; I++)
     {
       if (!_istdigit (pszChars[I]) && pszChars[I] != '+' &&
             pszChars[I] != '-' && pszChars[I] != '.' && pszChars[I] != 'e' &&
-            pszChars[I] != 'E')
+            pszChars[I] != 'E' && pszChars[I] != '_')
         return false;
     }
   return true;
@@ -283,8 +316,9 @@ ParseLineC (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
 
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
+  LPCTSTR pszCommentBegin = nullptr;
+  LPCTSTR pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
-  bool bWasCommentStart = false;
   bool bDecIndex = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
@@ -371,13 +405,12 @@ out:
       //  Extended comment /*....*/
       if (dwCookie & COOKIE_EXT_COMMENT)
         {
-          // if (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*')
-          if ((I > 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*' /*&& *::CharPrev(pszChars, pszChars + nPrevI) != '/'*/ && !bWasCommentStart) || (I == 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
+          if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = true;
+              pszCommentEnd = pszChars + I + 1;
             }
-          bWasCommentStart = false;
           continue;
         }
 
@@ -416,15 +449,13 @@ out:
               continue;
             }
         }
-      if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/')
+      if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/'))
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
-          bWasCommentStart = true;
+          pszCommentBegin = pszChars + I + 1;
           continue;
         }
-
-      bWasCommentStart = false;
 
       if (bFirstChar)
         {
