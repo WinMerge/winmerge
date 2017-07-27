@@ -472,6 +472,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\filesup.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\fortran.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\fpattern.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\go.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\gotodlg.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\html.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ini.cpp" />
@@ -492,6 +493,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\rexx.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\rsrc.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ruby.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\rust.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\sgml.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\sh.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\siod.cpp" />

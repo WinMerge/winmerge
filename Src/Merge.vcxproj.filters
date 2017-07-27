@@ -754,6 +754,12 @@
     <ClCompile Include="diffutils\src\mystat.cpp">
       <Filter>DiffEngine</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\go.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\rust.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
