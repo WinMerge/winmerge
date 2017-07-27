@@ -20,6 +20,7 @@ C#
 CSS
 DCL
 Fortran
+Go
 HTML
 INI
 InnoSetup
@@ -34,6 +35,7 @@ PowerShell
 Python
 REXX
 Ruby
+Rust
 SGML
 SIOD
 SQL
