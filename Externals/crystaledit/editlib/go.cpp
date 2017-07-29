@@ -3,7 +3,7 @@
 //  Version:    1.0.0.0
 //  Created:    23-Jul-2017
 //
-//  Copyright:  Stcherbatchenko Andrei Portions by Takashi Sawanaka
+//  Copyright:  Stcherbatchenko Andrei, portions by Takashi Sawanaka
 //  E-mail:     sdottaka@users.sourceforge.net
 //
 //  Go syntax highlighing definition
