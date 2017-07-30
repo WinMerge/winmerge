@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="UnicodeDebug|Win32">
+      <Configuration>UnicodeDebug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="UnicodeDebug|x64">
+      <Configuration>UnicodeDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="UnicodeRelease|Win32">
+      <Configuration>UnicodeRelease</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="UnicodeRelease|x64">
+      <Configuration>UnicodeRelease</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>MergeLang</ProjectName>
+    <ProjectGuid>{4B011DDA-2279-437D-903C-8028913AF31B}</ProjectGuid>
+    <RootNamespace>MergeLang</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">.\..\Build\MergeUnicodeDebug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">.\..\BuildTmp\MergeLang\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">.\..\Build\$(Platform)\Merge$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">.\..\BuildTmp\MergeLang\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">.\..\Build\MergeUnicodeRelease\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">.\..\BuildTmp\MergeLang\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">.\..\Build\$(Platform)\Merge$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">.\..\BuildTmp\MergeLang\$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;MERGELANG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)MergeLang.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)MergeLang.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <NoEntryPoint>true</NoEntryPoint>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(OutDir)MergeLang.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>pushd $(ProjectDir)..\Translations\WinMerge
+cscript UpdatePoFilesFromPotFile.vbs
+popd
+mkdir $(OutDir)\Languages\ 2&gt; NUL
+copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;MERGELANG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)MergeLang.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)MergeLang.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <NoEntryPoint>true</NoEntryPoint>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(OutDir)MergeLang.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>pushd $(ProjectDir)..\Translations\WinMerge
+cscript UpdatePoFilesFromPotFile.vbs
+popd
+mkdir $(OutDir)\Languages\ 2&gt; NUL
+copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;MERGELANG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)MergeLang.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <NoEntryPoint>true</NoEntryPoint>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(OutDir)MergeLang.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>pushd $(ProjectDir)..\Translations\WinMerge
+cscript UpdatePoFilesFromPotFile.vbs
+popd
+mkdir $(OutDir)\Languages\ 2&gt; NUL
+copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;MERGELANG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)MergeLang.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <NoEntryPoint>true</NoEntryPoint>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(OutDir)MergeLang.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>pushd $(ProjectDir)..\Translations\WinMerge
+cscript UpdatePoFilesFromPotFile.vbs
+popd
+mkdir $(OutDir)\Languages\ 2&gt; NUL
+copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(OutDir)\Languages\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="Merge.rc">
+      <Command Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">$(ProjectDir)..\Translations\WinMerge\English.pot</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">$(ProjectDir)..\Translations\WinMerge\English.pot</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">$(ProjectDir)..\Translations\WinMerge\English.pot</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">$(ProjectDir)..\Translations\WinMerge\English.pot</Outputs>
+    </CustomBuild>
+    <ResourceCompile Include="..\Translations\WinMerge\MergeLang.rc">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Translations\WinMerge\CreateMasterPotFile.vbs" />
+    <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.vbs" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
