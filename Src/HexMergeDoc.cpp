@@ -44,6 +44,8 @@
 #include "OptionsMgr.h"
 #include "FileOrFolderSelect.h"
 #include "DiffWrapper.h"
+#include "SyntaxColors.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -629,6 +631,11 @@ static void Customize(IHexEditorWindow::Colors *colors)
 	colors->iSelDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
 	if (colors->iSelDiffTextColorValue == 0xFFFFFFFF)
 		colors->iSelDiffTextColorValue = 0;
+	SyntaxColors *pSyntaxColors = theApp.GetMainSyntaxColors();
+	colors->iTextColorValue = pSyntaxColors->GetColor(COLORINDEX_NORMALTEXT);
+	colors->iBkColorValue = pSyntaxColors->GetColor(COLORINDEX_BKGND);
+	colors->iSelTextColorValue = pSyntaxColors->GetColor(COLORINDEX_SELTEXT);
+	colors->iSelBkColorValue = pSyntaxColors->GetColor(COLORINDEX_SELBKGND);
 }
 
 /**
