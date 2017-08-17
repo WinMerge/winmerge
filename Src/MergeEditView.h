@@ -133,7 +133,7 @@ public:
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	void GetSelection(CPoint &ptStart, CPoint &ptEnd) { CCrystalTextView::GetSelection(ptStart, ptEnd); }
 	virtual void UpdateSiblingScrollPos (bool bHorz);
-	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf);
+	virtual std::vector<TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 	virtual COLORREF GetColor(int nColorIndex);
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
 			COLORREF & crText, bool & bDrawWhitespace);

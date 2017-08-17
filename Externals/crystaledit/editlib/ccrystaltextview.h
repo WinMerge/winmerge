@@ -575,14 +575,14 @@ protected:
 	// function to draw a single screen line
 	// (a wrapped line can consist of many screen lines
 	virtual void DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &rcClip,
-		TEXTBLOCK *pBuf, int nBlocks, int &nActualItem,
+		const std::vector<TEXTBLOCK>& blocks,
 		COLORREF crText, COLORREF crBkgnd, bool bDrawWhitespace,
 		LPCTSTR pszChars,
 		int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos );
 	//END SW
 
-	int MergeTextBlocks(TEXTBLOCK *pBuf1, int nBlocks1, TEXTBLOCK *pBuf2, int nBlocks2, TEXTBLOCK *&pBufMerged);
-	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf);
+	std::vector<TEXTBLOCK> MergeTextBlocks(const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBLOCK>& blocks2) const;
+	virtual std::vector<TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 
 public:
 	virtual CString GetHTMLLine (int nLineIndex, LPCTSTR pszTag);
