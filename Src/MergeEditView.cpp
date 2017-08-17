@@ -371,31 +371,30 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 	pDoc->UpdateHeaderActivity(m_nThisPane, !!bActivate);
 }
 
-int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
+std::vector<CCrystalTextView::TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 {
-	pBuf = NULL;
-
+	static const std::vector<TEXTBLOCK> emptyBlocks;
 	if (IsDetailViewPane())
 	{
 		if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
-			return 0;
+			return emptyBlocks;
 	}
 
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
 	if ((dwLineFlags & LF_SNP) == LF_SNP || (dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
-		return 0;
+		return emptyBlocks;
 
 	if (!GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT))
-		return 0;
+		return emptyBlocks;
 
 	CMergeDoc *pDoc = GetDocument();
 	if (pDoc->IsEditedAfterRescan(m_nThisPane))
-		return 0;
+		return emptyBlocks;
 	
 	vector<WordDiff> worddiffs;
 	int nDiff = pDoc->m_diffList.LineToDiff(nLineIndex);
 	if (nDiff == -1)
-		return 0;
+		return emptyBlocks;
 
 	DIFFRANGE cd;
 	pDoc->m_diffList.GetDiff(nDiff, cd);
@@ -406,17 +405,17 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 			unemptyLineCount++;
 	}
 	if (unemptyLineCount < 2)
-		return 0;
+		return emptyBlocks;
 
 	pDoc->GetWordDiffArray(nLineIndex, &worddiffs);
 	size_t nWordDiffs = worddiffs.size();
 
 	bool lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
 
-	pBuf = new TEXTBLOCK[nWordDiffs * 2 + 1];
-	pBuf[0].m_nCharPos = 0;
-	pBuf[0].m_nColorIndex = COLORINDEX_NONE;
-	pBuf[0].m_nBgColorIndex = COLORINDEX_NONE;
+	std::vector<TEXTBLOCK> blocks(nWordDiffs * 2 + 1);
+	blocks[0].m_nCharPos = 0;
+	blocks[0].m_nColorIndex = COLORINDEX_NONE;
+	blocks[0].m_nBgColorIndex = COLORINDEX_NONE;
 	size_t i, j;
 	for (i = 0, j = 1; i < nWordDiffs; i++)
 	{
@@ -439,33 +438,35 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 				worddiffs[i].begin[pane] == worddiffs[i].end[pane])
 				deleted = true;
 		}
-		pBuf[j].m_nCharPos = begin[m_nThisPane];
+		blocks[j].m_nCharPos = begin[m_nThisPane];
 		if (lineInCurrentDiff)
 		{
 			if (m_cachedColors.clrSelDiffText != CLR_NONE)
-				pBuf[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
+				blocks[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
 			else
-				pBuf[j].m_nColorIndex = COLORINDEX_NONE;
-			pBuf[j].m_nBgColorIndex = COLORINDEX_APPLYFORCE | 
+				blocks[j].m_nColorIndex = COLORINDEX_NONE;
+			blocks[j].m_nBgColorIndex = COLORINDEX_APPLYFORCE | 
 				(deleted ? COLORINDEX_HIGHLIGHTBKGND4 : COLORINDEX_HIGHLIGHTBKGND1);
 		}
 		else
 		{
 			if (m_cachedColors.clrDiffText != CLR_NONE)
-				pBuf[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT2 | COLORINDEX_APPLYFORCE;
+				blocks[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT2 | COLORINDEX_APPLYFORCE;
 			else
-				pBuf[j].m_nColorIndex = COLORINDEX_NONE;
-			pBuf[j].m_nBgColorIndex = COLORINDEX_APPLYFORCE |
+				blocks[j].m_nColorIndex = COLORINDEX_NONE;
+			blocks[j].m_nBgColorIndex = COLORINDEX_APPLYFORCE |
 				(deleted ? COLORINDEX_HIGHLIGHTBKGND3 : COLORINDEX_HIGHLIGHTBKGND2);
 		}
 		j++;
-		pBuf[j].m_nCharPos = end[m_nThisPane];
-		pBuf[j].m_nColorIndex = COLORINDEX_NONE;
-		pBuf[j].m_nBgColorIndex = COLORINDEX_NONE;
+		blocks[j].m_nCharPos = end[m_nThisPane];
+		blocks[j].m_nColorIndex = COLORINDEX_NONE;
+		blocks[j].m_nBgColorIndex = COLORINDEX_NONE;
 		j++;
 	}
 
-	return static_cast<int>(j);
+	blocks.resize(j);
+
+	return blocks;
 }
 
 COLORREF CMergeEditView::GetColor(int nColorIndex)
