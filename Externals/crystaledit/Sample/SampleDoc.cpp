@@ -48,6 +48,7 @@ CSampleDoc::CSampleDoc() : m_xTextBuffer(this)
 
 CSampleDoc::~CSampleDoc()
 {
+	delete m_pSyntaxColors;
 }
 
 BOOL CSampleDoc::OnNewDocument()
