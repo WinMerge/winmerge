@@ -1703,22 +1703,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   int nLength = GetViewableLineLength (nLineIndex);
   LPCTSTR pszChars = GetLineChars (nLineIndex);
 
-  //  Parse the line
-  DWORD dwCookie = GetParseCookie (nLineIndex - 1);
-  std::vector<TEXTBLOCK> blocks((nLength+1) * 3); // be aware of nLength == 0
-  int nBlocks = 0;
-
-  // insert at least one textblock of normal color at the beginning
-  blocks[0].m_nCharPos = 0;
-  blocks[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
-  blocks[0].m_nBgColorIndex = COLORINDEX_BKGND;
-  nBlocks++;
-
-  (*m_ParseCookies)[nLineIndex] = ParseLine (dwCookie, nLineIndex, blocks.data(), nBlocks);
-  ASSERT ((*m_ParseCookies)[nLineIndex] != - 1);
-  blocks.resize(nBlocks);
-
-  std::vector<TEXTBLOCK> mergedBlocks = MergeTextBlocks(blocks, GetAdditionalTextBlocks(nLineIndex));
+  std::vector<TEXTBLOCK> blocks = GetTextBlocks(nLineIndex);
 
   int nActualItem = 0;
   int nActualOffset = 0;
@@ -1743,7 +1728,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
       // draw start of line to first break
       DrawScreenLine(
         pdc, origin, rc,
-        mergedBlocks,
+        blocks,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, 0, anBreaks[0], nActualOffset, CPoint( 0, nLineIndex ) );
 
@@ -1754,7 +1739,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
           ASSERT( anBreaks[i] >= 0 && anBreaks[i] < nLength );
           DrawScreenLine(
             pdc, origin, rc,
-            mergedBlocks,
+            blocks,
             crText, crBkgnd, bDrawWhitespace,
             pszChars, anBreaks[i], anBreaks[i + 1] - anBreaks[i],
             nActualOffset, CPoint( anBreaks[i], nLineIndex ) );
@@ -1763,7 +1748,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
       // draw from last break till end of line
       DrawScreenLine(
         pdc, origin, rc,
-        mergedBlocks,
+        blocks,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, anBreaks[i], nLength - anBreaks[i],
         nActualOffset, CPoint( anBreaks[i], nLineIndex ) );
@@ -1771,7 +1756,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   else
       DrawScreenLine(
         pdc, origin, rc,
-        mergedBlocks,
+        blocks,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, 0, nLength, nActualOffset, CPoint(0, nLineIndex));
 
@@ -1984,20 +1969,7 @@ GetHTMLLine (int nLineIndex, LPCTSTR pszTag)
   COLORREF crBkgnd, crText;
   GetLineColors (nLineIndex, crBkgnd, crText, bDrawWhitespace);
 
-  //  Parse the line
-  DWORD dwCookie = GetParseCookie (nLineIndex - 1);
-  std::vector<TEXTBLOCK> blocks((nLength+1) * 3); // be aware of nLength == 0
-  int nBlocks = 0;
-  // insert at least one textblock of normal color at the beginning
-  blocks[0].m_nCharPos = 0;
-  blocks[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
-  blocks[0].m_nBgColorIndex = COLORINDEX_BKGND;
-  nBlocks++;
-  (*m_ParseCookies)[nLineIndex] = ParseLine (dwCookie, nLineIndex, blocks.data(), nBlocks);
-  ASSERT ((*m_ParseCookies)[nLineIndex] != - 1);
-  blocks.resize(nBlocks);
-
-  std::vector<TEXTBLOCK> mergedBlocks = MergeTextBlocks(blocks, GetAdditionalTextBlocks(nLineIndex));
+  std::vector<TEXTBLOCK> blocks = GetTextBlocks(nLineIndex);
 
   CString strHTML;
   CString strExpanded;
@@ -2012,25 +1984,25 @@ GetHTMLLine (int nLineIndex, LPCTSTR pszTag)
   strHTML += GetHTMLAttribute (COLORINDEX_NORMALTEXT, COLORINDEX_BKGND, crText, crBkgnd);
   strHTML += _T("><code>");
 
-  for (i = 0; i < mergedBlocks.size() - 1; i++)
+  for (i = 0; i < blocks.size() - 1; i++)
     {
-      ExpandChars (pszChars, mergedBlocks[i].m_nCharPos, mergedBlocks[i + 1].m_nCharPos - mergedBlocks[i].m_nCharPos, strExpanded, 0);
+      ExpandChars (pszChars, blocks[i].m_nCharPos, blocks[i + 1].m_nCharPos - blocks[i].m_nCharPos, strExpanded, 0);
       if (!strExpanded.IsEmpty())
         {
           strHTML += _T("<span ");
-          strHTML += GetHTMLAttribute (mergedBlocks[i].m_nColorIndex, mergedBlocks[i].m_nBgColorIndex, crText, crBkgnd);
+          strHTML += GetHTMLAttribute (blocks[i].m_nColorIndex, blocks[i].m_nBgColorIndex, crText, crBkgnd);
           strHTML += _T(">");
           strHTML += EscapeHTML (strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
           strHTML += _T("</span>");
         }
     }
-  if (nBlocks > 0)
+  if (blocks.size() > 0)
   {
-    ExpandChars (pszChars, mergedBlocks[i].m_nCharPos, nLength - mergedBlocks[i].m_nCharPos, strExpanded, 0);
+    ExpandChars (pszChars, blocks[i].m_nCharPos, nLength - blocks[i].m_nCharPos, strExpanded, 0);
     if (!strExpanded.IsEmpty())
       {
         strHTML += _T("<span ");
-        strHTML += GetHTMLAttribute (mergedBlocks[i].m_nColorIndex, mergedBlocks[i].m_nBgColorIndex, crText, crBkgnd);
+        strHTML += GetHTMLAttribute (blocks[i].m_nColorIndex, blocks[i].m_nBgColorIndex, crText, crBkgnd);
         strHTML += _T(">");
         strHTML += EscapeHTML (strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
         strHTML += _T("</span>");
