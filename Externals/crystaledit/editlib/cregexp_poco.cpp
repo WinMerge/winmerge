@@ -109,7 +109,7 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Mat
 		}
 	}
 
-    return (result >= 0);
+    return (result > 0);
 }
 
 #define FLAG_UP_CASE     1

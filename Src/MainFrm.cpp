@@ -72,6 +72,7 @@
 #include "LanguageSelect.h"
 #include "version.h"
 #include "Bitmap.h"
+#include "CCrystalTextMarkers.h"
 
 using std::vector;
 using boost::begin;
@@ -838,6 +839,8 @@ void CMainFrame::OnOptions()
 		theApp.UpdateCodepageModule();
 
 		strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
+
+		theApp.GetMainMarkers()->SetEnabled(GetOptionsMgr()->GetBool(OPT_MARKER_ENABLED));
 
 		// make an attempt at rescanning any open diff sessions
 		ApplyDiffOptions();

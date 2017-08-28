@@ -2286,6 +2286,36 @@ msgstr "Потребител 2:"
 msgid "Bold"
 msgstr "Удебелен"
 
+#: Merge.rc:5A9A713E
+#, c-format
+msgid "&Enable marker"
+msgstr ""
+
+#: Merge.rc:2CEE4749
+#, c-format
+msgid "Marker colors"
+msgstr ""
+
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Search Marker:"
+msgstr ""
+
+#: Merge.rc:7B76381B
+#, c-format
+msgid "User Defined Marker1:"
+msgstr ""
+
+#: Merge.rc:7B76381C
+#, c-format
+msgid "User Defined Marker2:"
+msgstr ""
+
+#: Merge.rc:7B76381D
+#, c-format
+msgid "User Defined Marker3:"
+msgstr ""
+
 #: Merge.rc:387F7980
 #, c-format
 msgid "Folder Compare Report"
@@ -2416,7 +2446,7 @@ msgstr "Затвори"
 msgid "Middle:"
 msgstr ""
 
-#: Merge.rc:2CEE4749
+#: Merge.rc:2CEE474A
 #, c-format
 msgid "Missing Left:"
 msgstr ""
@@ -2446,7 +2476,7 @@ msgstr "(Промени)"
 msgid "Select Codepage for"
 msgstr "Изберете кодировка за"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "&Зареждане на файл:"
@@ -2944,6 +2974,11 @@ msgstr "Не питай пак този въпрос."
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+#: Merge.rc:2FC0BA7D
+#, c-format
+msgid "Markers"
 msgstr ""
 
 #: Merge.rc:2C1D73C8

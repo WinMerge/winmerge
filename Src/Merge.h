@@ -43,6 +43,7 @@ class ProjectFile;
 class COptionsMgr;
 class LineFiltersList;
 class SyntaxColors;
+class CCrystalTextMarkers;
 class SourceControl;
 class FilterCommentsManager;
 
@@ -67,10 +68,12 @@ public:
 	std::unique_ptr<CLanguageSelect> m_pLangDlg;
 	std::unique_ptr<FileFilterHelper> m_pGlobalFileFilter;
 	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
+	std::unique_ptr<CCrystalTextMarkers> m_pMarkers; /**< Marker container */
 	std::unique_ptr<SourceControl> m_pSourceControl;
 	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
+	CCrystalTextMarkers * GetMainMarkers() const { return m_pMarkers.get(); }
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */

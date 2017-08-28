@@ -60,6 +60,7 @@
 #define IDD_ENCODINGERROR               241
 #define IDD_PROPPAGE_COMPARE_IMAGE      242
 #define IDD_PROPPAGE_COMPARE_BINARY     243
+#define IDD_PROPPAGE_COLORS_MARKER      244
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
@@ -518,6 +519,16 @@
 #define IDC_PATH0_READONLY              8806
 #define IDC_PATH1_READONLY              8807
 #define IDC_PATH2_READONLY              8808
+#define IDC_MARKER_ENABLED              8809
+#define IDC_MARKER_COLORS_GROUP         8810
+#define IDC_MARKER0_COLOR_LABEL         8811
+#define IDC_MARKER1_COLOR_LABEL         8812
+#define IDC_MARKER2_COLOR_LABEL         8813
+#define IDC_MARKER3_COLOR_LABEL         8814
+#define IDC_MARKER0_BKGD_COLOR          8815
+#define IDC_MARKER1_BKGD_COLOR          8816
+#define IDC_MARKER2_BKGD_COLOR          8817
+#define IDC_MARKER3_BKGD_COLOR          8818
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -542,17 +553,18 @@
 #define IDS_OPTIONSPG_COLORS            9044
 #define IDS_OPTIONSPG_TEXTCOLORS        9045
 #define IDS_OPTIONSPG_SYNTAXCOLORS      9046
-#define IDS_OPTIONSPG_SYSTEM            9047
-#define IDS_OPTIONSPG_VERSIONCONTROL    9048
-#define IDS_OPTIONSPG_CODEPAGE          9049
-#define IDS_OPTIONSPG_ARCHIVE           9050
-#define IDS_OPTIONSPG_BACKUPS           9051
-#define IDS_OPTIONSPG_SHELL             9052
-#define IDS_OPTIONSPG_MERGECOLORS       9053
-#define IDS_OPTIONSPG_GENCOMPARE        9054
-#define IDS_OPTIONSPG_FOLDERCOMPARE     9055
-#define IDS_OPTIONSPG_IMAGECOMPARE      9056
-#define IDS_OPTIONSPG_BINARYCOMPARE     9057
+#define IDS_OPTIONSPG_MARKERCOLORS      9047
+#define IDS_OPTIONSPG_SYSTEM            9048
+#define IDS_OPTIONSPG_VERSIONCONTROL    9049
+#define IDS_OPTIONSPG_CODEPAGE          9050
+#define IDS_OPTIONSPG_ARCHIVE           9051
+#define IDS_OPTIONSPG_BACKUPS           9052
+#define IDS_OPTIONSPG_SHELL             9053
+#define IDS_OPTIONSPG_MERGECOLORS       9054
+#define IDS_OPTIONSPG_GENCOMPARE        9055
+#define IDS_OPTIONSPG_FOLDERCOMPARE     9056
+#define IDS_OPTIONSPG_IMAGECOMPARE      9057
+#define IDS_OPTIONSPG_BINARYCOMPARE     9058
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002
@@ -1242,9 +1254,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        246
+#define _APS_NEXT_RESOURCE_VALUE        247
 #define _APS_NEXT_COMMAND_VALUE         33545
-#define _APS_NEXT_CONTROL_VALUE         8809
+#define _APS_NEXT_CONTROL_VALUE         8817
 #define _APS_NEXT_SYMED_VALUE           115
 #endif
 #endif

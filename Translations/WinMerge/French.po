@@ -2294,6 +2294,36 @@ msgstr "Usager 2:"
 msgid "Bold"
 msgstr "Surbrillance"
 
+#: Merge.rc:5A9A713E
+#, c-format
+msgid "&Enable marker"
+msgstr ""
+
+#: Merge.rc:2CEE4749
+#, c-format
+msgid "Marker colors"
+msgstr ""
+
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Search Marker:"
+msgstr ""
+
+#: Merge.rc:7B76381B
+#, c-format
+msgid "User Defined Marker1:"
+msgstr ""
+
+#: Merge.rc:7B76381C
+#, c-format
+msgid "User Defined Marker2:"
+msgstr ""
+
+#: Merge.rc:7B76381D
+#, c-format
+msgid "User Defined Marker3:"
+msgstr ""
+
 #: Merge.rc:387F7980
 #, c-format
 msgid "Folder Compare Report"
@@ -2424,7 +2454,7 @@ msgstr "Fermer"
 msgid "Middle:"
 msgstr ""
 
-#: Merge.rc:2CEE4749
+#: Merge.rc:2CEE474A
 #, c-format
 msgid "Missing Left:"
 msgstr ""
@@ -2454,7 +2484,7 @@ msgstr "(Concernés)"
 msgid "Select Codepage for"
 msgstr "Sélectionner le code de page pour"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "&Chargement de fichier:"
@@ -2985,6 +3015,11 @@ msgstr "Ne plus poser cette &question."
 #, c-format
 msgid "Syntax"
 msgstr "Syntaxe"
+
+#: Merge.rc:2FC0BA7D
+#, c-format
+msgid "Markers"
+msgstr ""
 
 #: Merge.rc:2C1D73C8
 #, c-format

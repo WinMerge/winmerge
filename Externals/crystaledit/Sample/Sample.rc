@@ -212,6 +212,7 @@ BEGIN
     "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
     "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL
     VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
