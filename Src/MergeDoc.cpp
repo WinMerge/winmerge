@@ -2598,6 +2598,10 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		m_pView[nBuffer]->SetColorContext(theApp.GetMainSyntaxColors());
 		m_pDetailView[nBuffer]->SetColorContext(theApp.GetMainSyntaxColors());
 
+		// Currently there is only one set of markers, which all documents & views share
+		m_pView[nBuffer]->SetMarkersContext(theApp.GetMainMarkers());
+		m_pDetailView[nBuffer]->SetMarkersContext(theApp.GetMainMarkers());
+
 		// Set read-only statuses
 		m_ptBuf[nBuffer]->SetReadOnly(bRO[nBuffer]);
 	}

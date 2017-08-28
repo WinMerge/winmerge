@@ -11,6 +11,7 @@
 
 #include "CCrystalTextBuffer.h"
 #include "SyntaxColors.h"
+#include "CCrystalTextMarkers.h"
 
 class CSampleDoc : public CDocument
 {
@@ -33,6 +34,7 @@ public:
 	CSampleTextBuffer m_xTextBuffer;
 	LOGFONT m_lf;
 	SyntaxColors *m_pSyntaxColors;
+	CCrystalTextMarkers *m_pMarkers;
 
 // Operations
 public:

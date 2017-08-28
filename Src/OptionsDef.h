@@ -145,6 +145,9 @@ extern const String OPT_CLR_SELECTED_WORDDIFF_TEXT OP("Settings/SelectedWordDiff
 // Whether to use default (theme) text colors
 extern const String OPT_CLR_DEFAULT_TEXT_COLORING OP("Settings/DefaultTextColoring");
 
+// Marker options
+extern const String OPT_MARKER_ENABLED OP("Settings/MarkerEnabled");
+
 // Compare options
 extern const String OPT_CMP_IGNORE_WHITESPACE OP("Settings/IgnoreSpace");
 extern const String OPT_CMP_IGNORE_BLANKLINES OP("Settings/IgnoreBlankLines");

@@ -313,6 +313,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\batch.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview2.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ceditreplacedlg.cpp" />
@@ -639,6 +640,7 @@
     <ClCompile Include="PropEditor.cpp" />
     <ClCompile Include="Common\PropertyPageHost.cpp" />
     <ClCompile Include="PropGeneral.cpp" />
+    <ClCompile Include="PropMarkerColors.cpp" />
     <ClCompile Include="PropRegistry.cpp" />
     <ClCompile Include="PropShell.cpp" />
     <ClCompile Include="PropSyntaxColors.cpp" />
@@ -754,6 +756,7 @@
   <ItemGroup>
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaleditview.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextview.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ceditreplacedlg.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\cfindtextdlg.h" />
@@ -920,6 +923,7 @@
     <ClInclude Include="PropEditor.h" />
     <ClInclude Include="Common\PropertyPageHost.h" />
     <ClInclude Include="PropGeneral.h" />
+    <ClInclude Include="PropMarkerColors.h" />
     <ClInclude Include="PropRegistry.h" />
     <ClInclude Include="PropShell.h" />
     <ClInclude Include="PropSyntaxColors.h" />

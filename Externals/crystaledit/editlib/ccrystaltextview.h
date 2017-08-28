@@ -51,7 +51,7 @@ struct ViewableWhitespaceChars;
 class SyntaxColors;
 class CFindTextDlg;
 struct LastSearchInfos;
-
+class CCrystalTextMarkers;
 
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView class declaration
@@ -131,6 +131,7 @@ private :
     int m_nScreenLines, m_nScreenChars;
 
     SyntaxColors * m_pColors;
+    CCrystalTextMarkers * m_pMarkers;
 
     //BEGIN SW
     /**
@@ -215,7 +216,8 @@ public :
 
     SyntaxColors * GetSyntaxColors() { return m_pColors; }
     void SetColorContext(SyntaxColors * pColors) { m_pColors = pColors; }
-
+    CCrystalTextMarkers * GetMarkers() const { return m_pMarkers; }
+    void SetMarkersContext(CCrystalTextMarkers * pMarkers);
     static int GetClipTcharTextFormat() { return sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT; }
 
 protected :
@@ -582,6 +584,7 @@ protected:
 	//END SW
 
 	std::vector<TEXTBLOCK> MergeTextBlocks(const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBLOCK>& blocks2) const;
+	std::vector<TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
 	virtual std::vector<TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 
 public:

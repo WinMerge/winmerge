@@ -754,6 +754,9 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\rust.cpp">
       <Filter>EditLib\parsers</Filter>
     </ClCompile>
+    <ClCompile Include="PropMarkerColors.cpp">
+      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1391,6 +1394,8 @@
     </ClInclude>
     <ClInclude Include="MergeStatusBar.h">
       <Filter>MFCGui\Header Files</Filter>
+    <ClInclude Include="PropMarkerColors.h">
+      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

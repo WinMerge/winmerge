@@ -85,6 +85,7 @@ void CSampleView::OnInitialUpdate()
 
 	SetFont(GetDocument()->m_lf);
 	SetColorContext(GetDocument()->m_pSyntaxColors);
+	SetMarkersContext(GetDocument()->m_pMarkers);
 	SetWordWrapping(true);
 }
 

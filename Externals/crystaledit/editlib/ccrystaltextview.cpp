@@ -103,6 +103,7 @@
 #include "gotodlg.h"
 #include "ViewableWhitespace.h"
 #include "SyntaxColors.h"
+#include "ccrystaltextmarkers.h"
 #include "string_util.h"
 
 using std::vector;
@@ -154,6 +155,8 @@ LOGFONT CCrystalTextView::m_LogFont;
 IMPLEMENT_DYNCREATE (CCrystalTextView, CView)
 
 HINSTANCE CCrystalTextView::s_hResourceInst = NULL;
+
+static int FindStringHelper(LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
 
 BEGIN_MESSAGE_MAP (CCrystalTextView, CView)
 //{{AFX_MSG_MAP(CCrystalTextView)
@@ -594,6 +597,8 @@ CCrystalTextView::~CCrystalTextView ()
   delete m_pnActualLineLength;
   m_pnActualLineLength = NULL;
   delete m_pIcons;
+  if (m_pMarkers)
+      m_pMarkers->DeleteView(this);
 }
 
 BOOL CCrystalTextView::
@@ -1662,6 +1667,52 @@ MergeTextBlocks (const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBL
 }
 
 std::vector<CCrystalTextView::TEXTBLOCK>
+CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
+{
+  std::vector<TEXTBLOCK> allblocks;
+  if (!m_pMarkers->GetEnabled())
+    return allblocks;
+
+  int nLength = GetViewableLineLength (nLineIndex);
+
+  for (const auto& marker : m_pMarkers->GetMarkers())
+    {
+      int nBlocks = 0;
+      std::vector<TEXTBLOCK> blocks((nLength + 1) * 3); // be aware of nLength == 0
+      blocks[0].m_nCharPos = 0;
+      blocks[0].m_nColorIndex = COLORINDEX_NONE;
+      blocks[0].m_nBgColorIndex = COLORINDEX_NONE;
+      ++nBlocks;
+      const TCHAR *pszChars = GetLineChars(nLineIndex);
+      if (pszChars)
+        {
+          for (const TCHAR *p = pszChars; ; )
+            {
+              RxNode *node = nullptr;
+              RxMatchRes matches;
+              int nMatchLen = 0;
+              int nPos = ::FindStringHelper(p, marker.second.sFindWhat, marker.second.dwFlags | FIND_NO_WRAP, nMatchLen, node, &matches);
+              if (nPos == -1)
+                  break;
+              blocks[nBlocks].m_nCharPos = static_cast<int>(p - pszChars) + nPos;
+              blocks[nBlocks].m_nBgColorIndex = marker.second.nBgColorIndex | COLORINDEX_APPLYFORCE;
+              blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
+              ++nBlocks;
+              blocks[nBlocks].m_nCharPos = static_cast<int>(p - pszChars) + nPos + nMatchLen;
+              blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
+              blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
+              ++nBlocks;
+              p += nPos + nMatchLen;
+            }
+          blocks.resize(nBlocks);
+          allblocks = MergeTextBlocks(allblocks, blocks);
+        }
+    }
+
+  return allblocks;
+}
+
+std::vector<CCrystalTextView::TEXTBLOCK>
 CCrystalTextView::GetTextBlocks(int nLineIndex)
 {
   int nLength = GetViewableLineLength (nLineIndex);
@@ -1679,7 +1730,10 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   ASSERT((*m_ParseCookies)[nLineIndex] != -1);
   blocks.resize(nBlocks);
   
-  return MergeTextBlocks(blocks, GetAdditionalTextBlocks(nLineIndex));
+  return MergeTextBlocks(blocks, 
+          (m_pMarkers && m_pMarkers->GetEnabled() && m_pMarkers->GetMarkers().size() > 0) ?
+          MergeTextBlocks(GetAdditionalTextBlocks(nLineIndex), GetMarkerTextBlocks(nLineIndex)) :
+          GetAdditionalTextBlocks(nLineIndex));
 }
 
 void CCrystalTextView::
@@ -4849,6 +4903,12 @@ bool CCrystalTextView::
 FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags,
           bool bWrapSearch, CPoint * pptFoundPos)
 {
+  if (m_pMarkers)
+    {
+      m_pMarkers->SetMarker(_T("EDITOR_MARKER"), pszText, dwFlags, COLORINDEX_MARKERBKGND1);
+      if (m_pMarkers->GetEnabled())
+        m_pMarkers->UpdateViews();
+    }
   int nLineCount = GetLineCount ();
   return FindTextInBlock (pszText, ptStartPos, CPoint (0, 0),
                           CPoint (GetLineLength (nLineCount - 1), nLineCount - 1),
@@ -6290,6 +6350,12 @@ bool CCrystalTextView::IsTextBufferInitialized () const
 CString CCrystalTextView::GetTextBufferEol(int nLine) const
 {
   return m_pTextBuffer->GetLineEol(nLine); 
+}
+
+void CCrystalTextView::SetMarkersContext(CCrystalTextMarkers * pMarkers)
+{
+  pMarkers->AddView(this);
+  m_pMarkers = pMarkers;
 }
 
 #ifdef _UNICODE
