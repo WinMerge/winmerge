@@ -2307,8 +2307,8 @@ msgstr "太字"
 
 #: Merge.rc:5A9A713E
 #, c-format
-msgid "マーカーを有効にする(&E)"
-msgstr ""
+msgid "&Enable marker"
+msgstr "マーカーを有効にする(&E)"
 
 #: Merge.rc:2CEE4749
 #, c-format
@@ -2328,12 +2328,12 @@ msgstr "ユーザー定義マーカー1:"
 #: Merge.rc:7B76381C
 #, c-format
 msgid "User Defined Marker2:"
-msgstr "ユーザー定義マーカー1:"
+msgstr "ユーザー定義マーカー2:"
 
 #: Merge.rc:7B76381D
 #, c-format
 msgid "User Defined Marker3:"
-msgstr "ユーザー定義マーカー1:"
+msgstr "ユーザー定義マーカー3:"
 
 #: Merge.rc:387F7980
 #, c-format
