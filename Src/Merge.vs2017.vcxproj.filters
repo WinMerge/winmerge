@@ -1394,6 +1394,7 @@
     </ClInclude>
     <ClInclude Include="MergeStatusBar.h">
       <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="PropMarkerColors.h">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClInclude>
