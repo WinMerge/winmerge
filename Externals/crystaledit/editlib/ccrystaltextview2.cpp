@@ -1054,15 +1054,6 @@ OnLButtonDblClk (UINT nFlags, CPoint point)
       UpdateCaret ();
       EnsureVisible (m_ptCursorPos);
       SetSelection (ptStart, ptEnd);
-
-      const TCHAR *pszChars = GetLineChars(ptStart.y);
-      if (m_pMarkers && ptEnd.x - ptStart.x > 0)
-        {
-          m_pMarkers->SetMarker(_T("EDITOR_MARKER"), CString(pszChars + ptStart.x, ptEnd.x - ptStart.x), FIND_MATCH_CASE | FIND_WHOLE_WORD, COLORINDEX_MARKERBKGND1);
-          if (m_pMarkers->GetEnabled())
-            m_pMarkers->UpdateViews();
-        }
-
       SetCapture ();
       m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, NULL);
       ASSERT (m_nDragSelTimer != 0);
