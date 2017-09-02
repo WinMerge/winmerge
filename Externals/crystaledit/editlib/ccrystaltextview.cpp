@@ -1458,6 +1458,11 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
   static const int ZEROWIDTHBLOCK_WIDTH = 2;
   int nActualItem = 0;
 
+  for (nActualItem = 0; 
+    nActualItem < blocks.size() - 1 && blocks[nActualItem + 1].m_nCharPos < nOffset;
+    ++nActualItem)
+    ;
+
   frect.top = ptOrigin.y;
   frect.bottom = frect.top + nLineHeight;
 
