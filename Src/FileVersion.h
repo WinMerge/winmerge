@@ -25,4 +25,5 @@ public:
 	void SetFileVersion(unsigned versionMS, unsigned versionLS);
 	void SetFileVersionNone() { m_fileVersionMS = 0xffffffff; m_fileVersionLS = 0xfffffffe; };
 	String GetFileVersionString() const;
+	uint64_t GetFileVersionQWORD() const { return (static_cast<uint64_t>(m_fileVersionMS) << 32) + m_fileVersionLS; };
 };
