@@ -1025,16 +1025,20 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 	CString title;
 	int nVerSys = 0;
 
-	try
+	if (!strSavePath.empty())
 	{
-		TFile file(strSavePath);
-		bFileExists = file.exists();
-		if (bFileExists)
-			bFileRO = !file.canWrite();
+		try
+		{
+			TFile file(strSavePath);
+			bFileExists = file.exists();
+			if (bFileExists)
+				bFileRO = !file.canWrite();
+		}
+		catch (...)
+		{
+		}
 	}
-	catch (...)
-	{
-	}
+
 	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
 	
 	if (bFileExists && bFileRO)
