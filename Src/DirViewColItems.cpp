@@ -103,6 +103,15 @@ static int cmp64(int64_t i1, int64_t i2)
 	if (i1==i2) return 0;
 	return i1>i2 ? 1 : -1;
 }
+
+/**
+ * @brief Function to compare two uint64_t's for a sort
+ */
+static int cmpu64(uint64_t i1, uint64_t i2)
+{
+	if (i1==i2) return 0;
+	return i1>i2 ? 1 : -1;
+}
 /**
  * @brief Convert int64_t to int sign
  */
@@ -484,6 +493,17 @@ static String GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, int n
 	return dfi.version.GetFileVersionString();
 }
 
+static uint64_t GetVersionQWORD(const CDiffContext * pCtxt, const DIFFITEM * pdi, int nIndex)
+{
+	DIFFITEM & di = const_cast<DIFFITEM &>(*pdi);
+	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
+	if (dfi.version.IsCleared())
+	{
+		pCtxt->UpdateVersion(di, nIndex);
+	}
+	return dfi.version.GetFileVersionQWORD();
+}
+
 /**
  * @brief Format Version column data (for left-side).
  * @param [in] pCtxt Pointer to compare context.
@@ -497,6 +517,18 @@ static String ColLversionGet(const CDiffContext * pCtxt, const void *p)
 }
 
 /**
+ * @brief Format Version column data (for middle-side).
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to DIFFITEM.
+ * @return String to show in the column.
+ */
+static String ColMversionGet(const CDiffContext * pCtxt, const void *p)
+{
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
+	return GetVersion(pCtxt, &di, 1);
+}
+
+/**
  * @brief Format Version column data (for right-side).
  * @param [in] pCtxt Pointer to compare context.
  * @param [in] p Pointer to DIFFITEM.
@@ -505,7 +537,7 @@ static String ColLversionGet(const CDiffContext * pCtxt, const void *p)
 static String ColRversionGet(const CDiffContext * pCtxt, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
-	return GetVersion(pCtxt, &di, 1);
+	return GetVersion(pCtxt, &di, pCtxt->GetCompareDirs() < 3 ? 1 : 2);
 }
 
 /**
@@ -810,7 +842,7 @@ static int ColDiffsSort(const CDiffContext *, const void *p, const void *q)
  */
 static int ColNewerSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColNewerGet(pCtxt, p) == ColNewerGet(pCtxt, q);
+	return ColNewerGet(pCtxt, p).compare(ColNewerGet(pCtxt, q));
 }
 
 /**
@@ -822,7 +854,19 @@ static int ColNewerSort(const CDiffContext *pCtxt, const void *p, const void *q)
  */
 static int ColLversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColLversionGet(pCtxt, p) == ColLversionGet(pCtxt, q);
+	return cmpu64(GetVersionQWORD(pCtxt, reinterpret_cast<const DIFFITEM *>(p), 0), GetVersionQWORD(pCtxt, reinterpret_cast<const DIFFITEM *>(q), 0));
+}
+
+/**
+ * @brief Compare middle-side file versions.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to DIFFITEM having first version to compare.
+ * @param [in] q Pointer to DIFFITEM having second version to compare.
+ * @return Compare result.
+ */
+static int ColMversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
+{
+	return cmpu64(GetVersionQWORD(pCtxt, reinterpret_cast<const DIFFITEM *>(p), 1), GetVersionQWORD(pCtxt, reinterpret_cast<const DIFFITEM *>(q), 1));
 }
 
 /**
@@ -834,7 +878,8 @@ static int ColLversionSort(const CDiffContext *pCtxt, const void *p, const void 
  */
 static int ColRversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColRversionGet(pCtxt, p) == ColRversionGet(pCtxt, q);
+	const int i = pCtxt->GetCompareDirs() < 3 ? 1 : 2;
+	return cmpu64(GetVersionQWORD(pCtxt, reinterpret_cast<const DIFFITEM *>(p), i), GetVersionQWORD(pCtxt, reinterpret_cast<const DIFFITEM *>(q), i));
 }
 
 /**
@@ -874,7 +919,9 @@ static int ColAttrSort(const CDiffContext *, const void *p, const void *q)
 {
 	const FileFlags &r = *static_cast<const FileFlags *>(p);
 	const FileFlags &s = *static_cast<const FileFlags *>(q);
-	return r.ToString() == s.ToString();
+	if (r.attributes == s.attributes)
+		return 0;
+	return r.attributes < s.attributes ? -1 : 1;
 }
 
 /**
@@ -954,7 +1001,7 @@ static DirColInfo f_cols3[] =
 	{ _T("RsizeShort"), COLHDR_RSIZE_SHORT, COLDESC_RSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].size), -1, false, DirColInfo::ALIGN_RIGHT },
 	{ _T("Newer"), COLHDR_NEWER, COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Lversion"), COLHDR_LVERSION, COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
-	{ _T("Mversion"), COLHDR_MVERSION, COLDESC_MVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Mversion"), COLHDR_MVERSION, COLDESC_MVERSION, &ColMversionGet, &ColMversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Rversion"), COLHDR_RVERSION, COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("StatusAbbr"), COLHDR_RESULT_ABBR, COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Binary"), COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
@@ -966,9 +1013,9 @@ static DirColInfo f_cols3[] =
 	{ _T("Rencoding"), COLHDR_RENCODING, COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2]), -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Snsdiffs"), COLHDR_NSDIFFS, COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, DirColInfo::ALIGN_RIGHT },
 	{ _T("Snidiffs"), COLHDR_NIDIFFS, COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, DirColInfo::ALIGN_RIGHT },
-	{ _T("Leoltype"), COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColLEOLTypeGet, &ColAttrSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
-	{ _T("Meoltype"), COLHDR_MEOL_TYPE, COLDESC_MEOL_TYPE, &ColMEOLTypeGet, &ColAttrSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
-	{ _T("Reoltype"), COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColREOLTypeGet, &ColAttrSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Leoltype"), COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColLEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Meoltype"), COLHDR_MEOL_TYPE, COLDESC_MEOL_TYPE, &ColMEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Reoltype"), COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColREOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 };
 
 /**
