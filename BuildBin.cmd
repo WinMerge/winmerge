@@ -7,7 +7,12 @@ call SetVersion.cmd
 cscript /nologo ExpandEnvironmenStrings.vbs Version.in > Version.h
 
 setlocal
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"
+for /f "usebackq tokens=*" %%i in (`"%programfiles(x86)%\microsoft visual studio\installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do (
+  set InstallDir=%%i
+)
+if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
+  call "%InstallDir%\Common7\Tools\vsdevcmd.bat %*
+)
 MSBuild WinMerge.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="Win32" || pause
 MSBuild WinMerge.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="x64" || pause
 endlocal
