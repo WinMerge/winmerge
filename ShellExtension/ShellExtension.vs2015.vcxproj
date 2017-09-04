@@ -73,8 +73,8 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">.\..\Build\$(PlatformName)\$(ProjectName)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">.\..\BuildTmp\$(ProjectName)$(Configuration)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">.\..\BuildTmp\$(PlatformName)\$(ProjectName)$(Configuration)\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">false</LinkIncremental>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|Win32'">.\..\Build\$(ProjectName)$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|x64'">.\..\Build\$(PlatformName)\$(ProjectName)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|Win32'">.\..\BuildTmp\$(ProjectName)$(Configuration)\</IntDir>
@@ -114,6 +114,7 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(IntDir)/$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <TypeLibraryName>.\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.tlb</TypeLibraryName>
@@ -151,6 +152,7 @@
       <ProgramDatabaseFile>$(OutDir)/$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(IntDir)/$(TargetName).lib</ImportLibrary>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
       <TypeLibraryName>.\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.tlb</TypeLibraryName>
