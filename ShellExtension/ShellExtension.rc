@@ -7,6 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
+#define _USING_V110_SDK71_ 1
 #include "afxres.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -32,6 +33,7 @@ END
 
 2 TEXTINCLUDE 
 BEGIN
+	"#define _USING_V110_SDK71_ 1""\r\n"
     "#include ""afxres.h""\r\n"
     "\0"
 END
