@@ -100,19 +100,57 @@ enum
 
 static String GetResourceString(UINT resourceID);
 
-bool IsWindowsVistaOrGreater()
+// GreyMerlin (03 Sept 2017) - The following Version Info checking code is a 
+// short extract from the Microsoft <versionhelpers.h> file.  Unfortunatly, 
+// that file is not available for WinXP-compatible Platform Toolsets (e.g. 
+// v141_xp for VS2017).  Fortunatly, all the actual API interfaces do exist 
+// in WinXP (actually, in all Windows products since Win2000).  Use of this 
+// <versionhelpers.h> code avoids the unpleasant deprecation of the GetVersionEx()
+// API begining with Win 8.1.  This Version Info checking code is also fully 
+// compatible with all non-XP-compatible Toolsets as well (e.g. v141).
+
+#ifndef _WIN32_WINNT_VISTA
+#define _WIN32_WINNT_VISTA	0x0600
+#endif
+#ifndef _WIN32_WINNT_WIN8
+#define _WIN32_WINNT_WIN8	0x0602
+#endif
+
+#ifndef VERSIONHELPERAPI
+#define VERSIONHELPERAPI inline bool
+
+VERSIONHELPERAPI
+IsWindowsVersionOrGreater(WORD wMajorVersion, WORD wMinorVersion, WORD wServicePackMajor)
 {
-	OSVERSIONINFO ovi = { sizeof OSVERSIONINFO };
-	GetVersionEx(&ovi);
-	return (ovi.dwMajorVersion >= 6);
+    OSVERSIONINFOEXW osvi = { sizeof(osvi), 0, 0, 0, 0, {0}, 0, 0 };
+    DWORDLONG        const dwlConditionMask = VerSetConditionMask(
+        VerSetConditionMask(
+        VerSetConditionMask(
+            0, VER_MAJORVERSION, VER_GREATER_EQUAL),
+               VER_MINORVERSION, VER_GREATER_EQUAL),
+               VER_SERVICEPACKMAJOR, VER_GREATER_EQUAL);
+
+    osvi.dwMajorVersion = wMajorVersion;
+    osvi.dwMinorVersion = wMinorVersion;
+    osvi.wServicePackMajor = wServicePackMajor;
+
+    return VerifyVersionInfoW(&osvi, VER_MAJORVERSION | VER_MINORVERSION | VER_SERVICEPACKMAJOR, dwlConditionMask) != FALSE;
 }
 
-bool IsWindows8OrGreater()
+
+VERSIONHELPERAPI
+IsWindowsVistaOrGreater()
 {
-	OSVERSIONINFO ovi = { sizeof OSVERSIONINFO };
-	GetVersionEx(&ovi);
-	return (ovi.dwMajorVersion * 1000 + ovi.dwMinorVersion >= 6002);
+    return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_VISTA), LOBYTE(_WIN32_WINNT_VISTA), 0);
 }
+
+
+VERSIONHELPERAPI
+IsWindows8OrGreater()
+{
+    return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WIN8), LOBYTE(_WIN32_WINNT_WIN8), 0);
+}
+#endif // VERSIONHELPERAPI
 
 class CWinMergeTempLocale
 {

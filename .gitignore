@@ -21,3 +21,5 @@
 
 Testing/Data/ShellFileOpTest/File1.txt
 Translations/WinMerge/MergeLang.rc
+/ShellExtension/dlldata.c
+/ShellExtension/ShellExtension.h

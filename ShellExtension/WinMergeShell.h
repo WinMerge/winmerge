@@ -24,8 +24,7 @@
 // ID line follows -- this is updated by SVN
 // $Id: WinMergeShell.h 6933 2009-07-26 14:07:03Z kimmov $
 
-#ifndef __WINMERGESHELL_H_
-#define __WINMERGESHELL_H_
+#pragma once
 
 #include <shlobj.h>
 #include <shlguid.h>
@@ -86,4 +85,3 @@ public:
 	STDMETHOD(QueryContextMenu)(HMENU, UINT, UINT, UINT, UINT);
 };
 
-#endif //__WINMERGESHELL_H_
