@@ -113,7 +113,7 @@ public:
 	void SelectFilter();
 	void StartFlashing();
 	bool AskCloseConfirmation();
-	BOOL DoOpenConflict(const String& conflictFile, bool checked = false);
+	BOOL DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
 	void UpdateDocTitle();
 	void ReloadMenu();

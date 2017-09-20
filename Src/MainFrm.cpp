@@ -782,7 +782,7 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 
 	for (int pane = 0; pane < nFiles; pane++)
 	{
-		if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
+		if (dwFlags && (dwFlags[pane] & FFILEOPEN_AUTOMERGE))
 			pImgMergeFrame->DoAutoMerge(pane);
 	}
 
@@ -1403,7 +1403,7 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 		}
 		if (IsConflictFile(files[0]))
 		{
-			DoOpenConflict(files[0], true);
+			DoOpenConflict(files[0], nullptr, true);
 			return;
 		}
 	}
@@ -2294,7 +2294,7 @@ void CMainFrame::OnFileOpenConflict()
  * @param [in] checked If true, do not check if it really is project file.
  * @return TRUE if conflict file was opened for resolving.
  */
-BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
+BOOL CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc[], bool checked)
 {
 	BOOL conflictCompared = FALSE;
 
@@ -2334,17 +2334,22 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 		theApp.m_strSaveAsPath = conflictFile;
 		if (!threeWay)
 		{
-			String strDesc[2] = { _("Theirs File"), _("Mine File") };
+			String strDesc2[2] = { 
+				(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Theirs File"),
+				(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("Mine File") };
 			DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			conflictCompared = DoFileOpen(&PathContext(revFile, workFile), 
-						dwFlags, strDesc);
+						dwFlags, strDesc2);
 		}
 		else
 		{
-			String strDesc[3] = { _("Base File"),  _("Theirs File"), _("Mine File") };
+			String strDesc3[3] = {
+				(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Base File"),
+				(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("Theirs File"),
+				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			DWORD dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			conflictCompared = DoFileOpen(&PathContext(baseFile, revFile, workFile), 
-						dwFlags, strDesc);
+						dwFlags, strDesc3);
 		}
 	}
 	else

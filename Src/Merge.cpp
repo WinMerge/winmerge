@@ -704,7 +704,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			}
 			else if (IsConflictFile(sFilepath))
 			{
-				bCompared = pMainFrame->DoOpenConflict(sFilepath);
+				bCompared = pMainFrame->DoOpenConflict(sFilepath, strDesc);
 			}
 			else
 			{
