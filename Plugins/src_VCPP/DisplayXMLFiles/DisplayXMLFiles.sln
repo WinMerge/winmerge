@@ -1,38 +1,59 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayXMLFiles", "DisplayXMLFiles.vcproj", "{39A01D56-5BAA-489F-93D4-AB32082B297F}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayXMLFiles", "DisplayXMLFiles.vcxproj", "{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}"
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Release = Release
-		Release MinDependency = Release MinDependency
-		Release MinSize = Release MinSize
-		Unicode Debug = Unicode Debug
-		Unicode Release MinDependency = Unicode Release MinDependency
-		Unicode Release MinSize = Unicode Release MinSize
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release MinDependency|x64 = Release MinDependency|x64
+		Release MinDependency|x86 = Release MinDependency|x86
+		Release MinSize|x64 = Release MinSize|x64
+		Release MinSize|x86 = Release MinSize|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+		Unicode Debug|x64 = Unicode Debug|x64
+		Unicode Debug|x86 = Unicode Debug|x86
+		Unicode Release MinDependency|x64 = Unicode Release MinDependency|x64
+		Unicode Release MinDependency|x86 = Unicode Release MinDependency|x86
+		Unicode Release MinSize|x64 = Unicode Release MinSize|x64
+		Unicode Release MinSize|x86 = Unicode Release MinSize|x86
 	EndGlobalSection
-	GlobalSection(ProjectDependencies) = postSolution
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Debug|x64.ActiveCfg = Debug|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Debug|x64.Build.0 = Debug|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Debug|x86.ActiveCfg = Debug|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release MinDependency|x64.ActiveCfg = Release MinDependency|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release MinDependency|x64.Build.0 = Release MinDependency|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release MinDependency|x86.ActiveCfg = Release MinDependency|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release MinDependency|x86.Build.0 = Release MinDependency|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release MinSize|x64.ActiveCfg = Release MinSize|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release MinSize|x64.Build.0 = Release MinSize|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release MinSize|x86.ActiveCfg = Release MinSize|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release MinSize|x86.Build.0 = Release MinSize|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release|x64.ActiveCfg = Unicode Release MinDependency|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release|x64.Build.0 = Unicode Release MinDependency|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release|x86.ActiveCfg = Unicode Release MinDependency|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Release|x86.Build.0 = Unicode Release MinDependency|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Debug|x64.ActiveCfg = Unicode Debug|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Debug|x64.Build.0 = Unicode Debug|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Debug|x86.ActiveCfg = Unicode Debug|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Debug|x86.Build.0 = Unicode Debug|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Release MinDependency|x64.ActiveCfg = Unicode Release MinDependency|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Release MinDependency|x64.Build.0 = Unicode Release MinDependency|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Release MinDependency|x86.ActiveCfg = Unicode Release MinDependency|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Release MinDependency|x86.Build.0 = Unicode Release MinDependency|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Release MinSize|x64.ActiveCfg = Unicode Release MinSize|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Release MinSize|x64.Build.0 = Unicode Release MinSize|x64
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Release MinSize|x86.ActiveCfg = Unicode Release MinSize|Win32
+		{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}.Unicode Release MinSize|x86.Build.0 = Unicode Release MinSize|Win32
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Debug.ActiveCfg = Debug|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Debug.Build.0 = Debug|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Release.ActiveCfg = Unicode Release MinSize|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Release.Build.0 = Unicode Release MinSize|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Release MinDependency.ActiveCfg = Release MinDependency|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Release MinDependency.Build.0 = Release MinDependency|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Release MinSize.ActiveCfg = Release MinSize|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Release MinSize.Build.0 = Release MinSize|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Unicode Debug.ActiveCfg = Unicode Debug|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Unicode Debug.Build.0 = Unicode Debug|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Unicode Release MinDependency.ActiveCfg = Unicode Release MinDependency|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Unicode Release MinDependency.Build.0 = Unicode Release MinDependency|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Unicode Release MinSize.ActiveCfg = Unicode Release MinSize|Win32
-		{39A01D56-5BAA-489F-93D4-AB32082B297F}.Unicode Release MinSize.Build.0 = Unicode Release MinSize|Win32
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+		SolutionGuid = {C8047016-4019-42A3-BE1E-08A94EB62E0A}
 	EndGlobalSection
 EndGlobal

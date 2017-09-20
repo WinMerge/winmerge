@@ -316,12 +316,12 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 	{
 		// There was an error
 		// Give a warning and return without converting anything
-		TCHAR sError[1024];
-		_stprintf(sError, _T("%s at line %d\n"),
+		char sError[1024];
+		sprintf(sError, "%s at line %d\n",
 			XML_ErrorString(XML_GetErrorCode(parser)),
 			XML_GetCurrentLineNumber(parser));
 		
-		::MessageBox(NULL, sError, _T("The xml has an error"), MB_OK | MB_ICONWARNING | MB_SETFOREGROUND | MB_TOPMOST);
+		::MessageBoxA(NULL, sError, "The xml has an error", MB_OK | MB_ICONWARNING | MB_SETFOREGROUND | MB_TOPMOST);
 		XML_ParserFree(parser);
 		delete [] buf;
 		fclose(pInput);
