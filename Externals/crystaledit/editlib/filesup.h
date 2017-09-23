@@ -26,11 +26,3 @@ CString EDITPADC_CLASS GetNameExt (const CString & sString);
 int EDITPADC_CLASS GetNamePosition (LPCTSTR pszString);
 CString EDITPADC_CLASS GetPath (const CString & sString, bool bClose = false);
 CString EDITPADC_CLASS GetPathName (const CString & sString);
-
-/////////////////////////////////////////////////////////////////////////////
-
-#ifndef _DEBUG
-#include "filesup.inl"
-#endif // _DEBUG
-
-/////////////////////////////////////////////////////////////////////////////

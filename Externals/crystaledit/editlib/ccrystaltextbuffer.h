@@ -313,9 +313,21 @@ public :
     DECLARE_MESSAGE_MAP ()
   };
 
-#if ! (defined(CE_FROM_DLL) || defined(CE_DLL_BUILD))
-#include "ccrystaltextbuffer.inl"
-#endif
+
+inline bool CCrystalTextBuffer::IsModified () const
+{
+  return m_bModified;
+}
+
+inline bool CCrystalTextBuffer::GetInsertTabs() const          //UPDATE-BEGIN
+{
+    return m_bInsertTabs;
+}
+
+inline void CCrystalTextBuffer::SetInsertTabs(bool bInsertTabs)
+{
+    m_bInsertTabs = bInsertTabs;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 

@@ -1123,11 +1123,6 @@
     <ClInclude Include="CompareEngines\TimeSizeCompare.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Externals\crystaledit\editlib\ccrystaleditview.inl" />
-    <None Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.inl" />
-    <None Include="..\Externals\crystaledit\editlib\ccrystaltextview.inl" />
-    <None Include="..\Externals\crystaledit\editlib\filesup.inl" />
-    <None Include="..\Externals\crystaledit\editlib\memcombo.inl" />
     <None Include="res\binarydiff.ico" />
     <None Include="res\both.bmp" />
     <None Include="res\equalbinary.ico" />

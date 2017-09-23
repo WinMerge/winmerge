@@ -994,9 +994,11 @@ protected :
 #define ASSERT_VALIDTEXTPOS(pt)
 #endif
 
-#if ! (defined(CE_FROM_DLL) || defined(CE_DLL_BUILD))
-#include "ccrystaltextview.inl"
-#endif
+
+inline bool CCrystalTextView::IsDraggingText () const
+{
+  return m_bDraggingText;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 

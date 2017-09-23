@@ -17,15 +17,6 @@
 #include "StdAfx.h"
 #include "filesup.h"
 
-#ifdef  _DEBUG
-#include "filesup.inl"
-#endif // _DEBUG
-
-#ifdef INLINE
-#undef INLINE
-#endif
-#define INLINE
-
 ////////////////////////////////////////////////////////////////////////////////
 
 bool FileExist(LPCTSTR lpszPath)
@@ -34,8 +25,7 @@ bool FileExist(LPCTSTR lpszPath)
   return CFile::GetStatus(lpszPath, status) != 0;
 }
 
-INLINE int
-GetExtPosition (LPCTSTR pszString)
+int GetExtPosition (LPCTSTR pszString)
 {
   if (!pszString || !*pszString)
     return 0;
@@ -53,8 +43,7 @@ GetExtPosition (LPCTSTR pszString)
   return len;
 }
 
-INLINE CString
-GetExt (CString sString)
+CString GetExt (CString sString)
 {
   if (!sString.IsEmpty ())
     {
@@ -67,22 +56,19 @@ GetExt (CString sString)
   return sString;
 }
 
-INLINE CString
-GetName (const CString & sString)
+CString GetName (const CString & sString)
 {
   int nPosition = GetNamePosition (sString), nPosition2 = GetExtPosition (sString);
 
   return sString.IsEmpty ()? sString : (nPosition2 == sString.GetLength ()? sString.Mid (nPosition) : sString.Mid (nPosition, nPosition2 - nPosition));
 }
 
-INLINE CString
-GetNameExt (const CString & sString)
+CString GetNameExt (const CString & sString)
 {
   return sString.IsEmpty ()? sString : sString.Mid (GetNamePosition (sString));
 }
 
-INLINE int
-GetNamePosition (LPCTSTR pszString)
+int GetNamePosition (LPCTSTR pszString)
 {
   if (!pszString || !*pszString)
     return 0;
@@ -100,8 +86,7 @@ GetNamePosition (LPCTSTR pszString)
   return posit;
 }
 
-INLINE CString
-GetPath (const CString & sString, bool bClose /*= false*/ )
+CString GetPath (const CString & sString, bool bClose /*= false*/ )
 {
   if (sString.IsEmpty ())
     return sString;
@@ -120,8 +105,7 @@ GetPath (const CString & sString, bool bClose /*= false*/ )
   return sString.Left (bClose ? posit : test == _T (':') ? posit : posit - 1);
 }
 
-INLINE CString
-GetPathName (const CString & sString)
+CString GetPathName (const CString & sString)
 {
   int nPosition = GetExtPosition (sString);
 

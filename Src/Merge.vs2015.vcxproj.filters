@@ -1520,21 +1520,6 @@
     <None Include="..\Docs\Users\ChangeLog.txt">
       <Filter>ChangeLogs</Filter>
     </None>
-    <None Include="..\Externals\crystaledit\editlib\ccrystaleditview.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="..\Externals\crystaledit\editlib\ccrystaltextview.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="..\Externals\crystaledit\editlib\filesup.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="..\Externals\crystaledit\editlib\memcombo.inl">
-      <Filter>EditLib</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc">
