@@ -260,7 +260,3 @@ inline void CCrystalEditView::SetInsertTabs (bool bInsertTabs)
 {
   m_pTextBuffer->SetInsertTabs(bInsertTabs);
 }
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-

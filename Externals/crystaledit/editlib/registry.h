@@ -404,5 +404,3 @@ struct EDITPADC_CLASS CReg
 #endif /* cplusplus */
 
 bool EDITPADC_CLASS RegDeleteSubKeys (HKEY hKey);
-
-/*////////////////////////////////////////////////////////////////////////////*/
