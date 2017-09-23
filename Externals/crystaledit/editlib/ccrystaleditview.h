@@ -27,6 +27,7 @@
 #pragma once
 
 #include "ccrystaltextview.h"
+#include "ccrystaltextbuffer.h"
 #include "wispelld.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -219,9 +220,46 @@ protected :
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if ! (defined(CE_FROM_DLL) || defined(CE_DLL_BUILD))
-#include "ccrystaleditview.inl"
-#endif
+inline bool CCrystalEditView::
+GetOverwriteMode ()
+const
+{
+  return m_bOvrMode;
+}
+
+inline void CCrystalEditView::SetOverwriteMode (bool bOvrMode /*= true*/ )
+{
+  m_bOvrMode = bOvrMode;
+}
+
+inline bool CCrystalEditView::
+GetDisableBSAtSOL ()
+const
+{
+  return m_bDisableBSAtSOL;
+}
+
+inline bool CCrystalEditView::GetAutoIndent ()
+const
+{
+  return m_bAutoIndent;
+}
+
+inline void CCrystalEditView::SetAutoIndent (bool bAutoIndent)
+{
+  m_bAutoIndent = bAutoIndent;
+}
+
+inline bool CCrystalEditView::GetInsertTabs ()
+const
+{
+  return m_pTextBuffer->GetInsertTabs();
+}
+
+inline void CCrystalEditView::SetInsertTabs (bool bInsertTabs)
+{
+  m_pTextBuffer->SetInsertTabs(bInsertTabs);
+}
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.

@@ -22,16 +22,12 @@ CCrystalEditViewEx::CCrystalEditViewEx()
 
 HINSTANCE CCrystalEditViewEx::GetResourceHandle()
 {
-#ifdef CE_DLL_BUILD
-	return g_hDllInstance;
-#else
 	// -> HE
 	// call inherited
 	return CCrystalEditView::GetResourceHandle();
 	// <- HE
 	// OLD
 	//return AfxGetInstanceHandle();
-#endif
 }
 
 
