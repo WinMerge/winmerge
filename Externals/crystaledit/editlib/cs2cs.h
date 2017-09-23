@@ -1,7 +1,6 @@
 /* Ferda Prantl - character coding conversion engine  */
 
-#ifndef __CS2CS_H__INCLUDED__
-#define __CS2CS_H__INCLUDED__
+#pragma once
 
 #define FD_CODE_ASCII      0
 #define FD_CODE_CP1250     1
@@ -56,4 +55,3 @@ TCHAR EDITPADC_CLASS iconvert_char (TCHAR ch, int source_coding, int destination
 int EDITPADC_CLASS iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabet_only);
 int EDITPADC_CLASS iconvert_new (LPCTSTR source, LPTSTR *destination, int source_coding, int destination_coding, bool alphabet_only);
 
-#endif // __CS2CS_H__INCLUDED__

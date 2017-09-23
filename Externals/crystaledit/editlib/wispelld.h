@@ -7,8 +7,7 @@
  *  defined with this macro as being exported.
  */
 
-#ifndef __WISPELLD_H__
-#define __WISPELLD_H__
+#pragma once
 
 /*#ifdef WISPELL_EXPORTS
 #define WISPELL_API __declspec (dllexport)
@@ -60,5 +59,3 @@ typedef struct SpellData_t
 /* WISPELL_API int SpellInit (SpellData*); */   /* initializes the control structure */
 /* WISPELL_API int SpellCheck (SpellData*); */  /* performs spell checking (the dialog may appear) */
 /* WISPELL_API int SpellConfig (SpellData*); */ /* performs spell checking configuration (the dialog appears) */
-
-#endif /* __WISPELLD_H__ */

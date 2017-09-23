@@ -7,8 +7,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#ifndef _EDITOR_UNDO_RECORD_H_
-#define _EDITOR_UNDO_RECORD_H_
+#pragma once
 
 class UndoRecord
 {
@@ -93,4 +92,3 @@ private:
   }
 };
 
-#endif // _EDITOR_UNDO_RECORD_H_
