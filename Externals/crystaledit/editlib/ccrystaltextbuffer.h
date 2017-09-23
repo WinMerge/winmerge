@@ -31,10 +31,6 @@
 // ID line follows -- this is updated by SVN
 // $Id: ccrystaltextbuffer.h 6879 2009-06-29 10:00:33Z kimmov $
 
-
-#if !defined(AFX_CCRYSTALTEXTBUFFER_H__AD7F2F49_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)
-#define AFX_CCRYSTALTEXTBUFFER_H__AD7F2F49_6CB3_11D2_8C32_0080ADB86836__INCLUDED_
-
 #pragma once
 
 #include <vector>
@@ -325,5 +321,3 @@ public :
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_CCRYSTALTEXTBUFFER_H__AD7F2F49_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)

@@ -14,8 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef __FPATTERN_H__INCLUDED__
-#define __FPATTERN_H__INCLUDED__
+#pragma once
 
 /******************************************************************************
  * fpattern.h
@@ -145,4 +144,3 @@ int EDITPADC_CLASS fpattern_isvalid (LPCTSTR pat);
 int EDITPADC_CLASS fpattern_match (LPCTSTR pat, LPCTSTR fname);
 int EDITPADC_CLASS fpattern_matchn (LPCTSTR pat, LPCTSTR fname);
 
-#endif // __FPATTERN_H__INCLUDED__

@@ -1,5 +1,4 @@
-#ifndef _DDXHELPER_H_
-#define _DDXHELPER_H_
+#pragma once
 
 #include "UnicodeString.h"
 
@@ -51,4 +50,3 @@ inline void DDX_CBStringExact(CDataExchange* pDX, int nIDC, String& value)
 	DDX_CBStringExact(pDX, nIDC, PopString(value));
 }
 
-#endif

@@ -23,8 +23,7 @@
 //        and maybe "ugly" code ...
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef __EDITREG_H__INCLUDED__
-#define __EDITREG_H__INCLUDED__
+#pragma once
 
 //  Registry keys & values
 #define REG_EDITPAD         _T ("Software\\Thingamahoochie\\WinMerge\\Editor")
@@ -35,4 +34,3 @@
 #define MAX_REMEMBERED 100
 #define REMEMBERED_TO_REMOVE 10
 
-#endif // __EDITREG_H__INCLUDED__

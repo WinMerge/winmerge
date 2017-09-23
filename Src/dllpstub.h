@@ -1,4 +1,4 @@
-#ifndef DECORATE_U
+#pragma once
 
 /**
  * @brief define the suffixes to decorate TCHAR width specific module/function names
@@ -40,5 +40,3 @@ struct DLLPSTUB
 	static void Throw(LPCSTR name, HMODULE, DWORD dwError, BOOL bFreeLibrary);
 	HMODULE Load();
 };
-
-#endif

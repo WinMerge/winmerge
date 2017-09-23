@@ -14,8 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef __REGEX_H
-#define __REGEX_H
+#pragma once
 
 /*
  * Operator:
@@ -105,4 +104,3 @@ int EDITPADC_CLASS RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, 
 int EDITPADC_CLASS RxReplace(LPCTSTR rep, LPCTSTR Src, int len, RxMatchRes match, LPTSTR *Dest, int *Dlen);
 void EDITPADC_CLASS RxFree(RxNode *Node);
 
-#endif

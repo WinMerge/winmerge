@@ -14,12 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef __CHCONDLG_H__INCLUDED__
-#define __CHCONDLG_H__INCLUDED__
-
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
 
 #include "editcmd.h"
 
@@ -68,4 +63,3 @@ protected :
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
-#endif // __CHCONDLG_H__INCLUDED__
