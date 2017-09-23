@@ -63,6 +63,3 @@ private:
 	COLORREF m_crBackGnd; /**< Control's background color. */
 	CBrush m_brBackGnd; /**< Background brush for the control. */
 };
-
-
-/////////////////////////////////////////////////////////////////////////////

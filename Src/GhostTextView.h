@@ -118,6 +118,3 @@ public:
 	virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber);
 
 };
-
-
-/////////////////////////////////////////////////////////////////////////////

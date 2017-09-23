@@ -64,6 +64,3 @@ private:
 
 	LineFiltersList * m_pList; /**< Helper list for getting/setting filters. */
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

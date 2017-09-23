@@ -419,9 +419,3 @@ public:
 inline CDirDoc* CDirView::GetDocument()
 { return reinterpret_cast<CDirDoc*>(m_pDocument); }
 #endif
-
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.

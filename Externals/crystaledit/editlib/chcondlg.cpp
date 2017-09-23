@@ -56,7 +56,7 @@ EDITPADC_CLASS void FillComboBox (CComboBox &Control, LPCTSTR *pszItems)
 
 CCharConvDlg::CCharConvDlg () : CDialog (CCharConvDlg::IDD, NULL)
 {
-  //{{AFX_DATA_INIT(CCharConvDlg)
+    //{{AFX_DATA_INIT(CCharConvDlg)
 	m_nSource = 1;
 	m_nDest = 1;
 	m_bAlpha = false;
@@ -68,7 +68,7 @@ void CCharConvDlg::
 DoDataExchange (CDataExchange * pDX)
 {
   CDialog::DoDataExchange (pDX);
-  //{{AFX_DATA_MAP(CCharConvDlg)
+    //{{AFX_DATA_MAP(CCharConvDlg)
 	DDX_Control(pDX, IDC_SRC, m_ctlSource);
 	DDX_Control(pDX, IDC_DEST, m_ctlDest);
 	DDX_CBIndex(pDX, IDC_SRC, m_nSource);
@@ -79,7 +79,7 @@ DoDataExchange (CDataExchange * pDX)
 }
 
 BEGIN_MESSAGE_MAP (CCharConvDlg, CDialog)
-//{{AFX_MSG_MAP(CCharConvDlg)
+    //{{AFX_MSG_MAP(CCharConvDlg)
 	ON_BN_CLICKED(IDPREVIEW, OnPreview)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP ()

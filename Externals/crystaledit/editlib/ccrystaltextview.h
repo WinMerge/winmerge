@@ -999,8 +999,3 @@ inline bool CCrystalTextView::IsDraggingText () const
 {
   return m_bDraggingText;
 }
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
