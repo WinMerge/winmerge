@@ -608,21 +608,13 @@ OutputIterator CopyPathnamesForDragAndDrop(const InputIterator& begin, const Inp
 		if (di.diffcode.diffcode == 0)
 			continue;
 
-		if (!IsItemExistAll(ctxt, di) || di.diffcode.isResultDiff())
+		for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
 		{
-			for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
+			if (di.diffcode.exists(i))
 			{
-				if (di.diffcode.exists(i))
-				{
-					*result = GetItemFileName(ctxt, di, i);
-					++result;
-				}
+				*result = GetItemFileName(ctxt, di, i);
+				++result;
 			}
-		}
-		else
-		{
-			*result = GetItemFileName(ctxt, di, 0);
-			++result;
 		}
 	}
 	return result;
