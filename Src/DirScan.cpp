@@ -562,7 +562,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */
-int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
+static int CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 {
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
@@ -584,7 +584,7 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiff
 			if (pCtxt->m_bRecursive)
 			{
 				di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
-				int ndiff = DirScan_CompareRequestedItems(myStruct, curpos);
+				int ndiff = CompareRequestedItems(myStruct, curpos);
 				if (ndiff > 0)
 				{
 					if (existsalldirs)
@@ -608,6 +608,12 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiff
 			res++;
 	}
 	return res;
+}
+
+int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
+{
+	CAssureScriptsForThread scriptsForRescan;
+	return CompareRequestedItems(myStruct, parentdiffpos);
 }
 
 static int markChildrenForRescan(CDiffContext *pCtxt, uintptr_t parentdiffpos)
