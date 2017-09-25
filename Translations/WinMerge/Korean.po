@@ -719,6 +719,11 @@ msgstr "찾기(&I)...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "바꾸기(&C)...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1660,6 +1665,31 @@ msgstr "바꾸기(&R)"
 msgid "Replace &All"
 msgstr "모두 바꿈(&A)"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "새로 만들기"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "적용(&A)"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1689,11 +1719,6 @@ msgstr "줄 필터 사용"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "정규식 (매 줄마다 적용):"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "새로 만들기"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1830,7 +1855,7 @@ msgstr "파일&2:"
 msgid "&Swap"
 msgstr "맞바꾸기(&S)"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "기존 파일에 덧붙이기(&A)"
@@ -1965,7 +1990,7 @@ msgstr "줄(&N)"
 msgid "&Difference"
 msgstr "차이점(&D)"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "이동(&G)"
@@ -2298,11 +2323,6 @@ msgstr "사용자 2:"
 msgid "Bold"
 msgstr "굵게"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2353,7 +2373,7 @@ msgstr "스타일(&S):"
 msgid "&Include File Compare Report"
 msgstr "파일 비교 보고서 포함(&I)"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "클립보드로 복사(&C)"
@@ -2453,7 +2473,7 @@ msgstr "전체:"
 msgid "Close"
 msgstr "닫기"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr "가운데:"
@@ -2488,7 +2508,7 @@ msgstr "(적용)"
 msgid "Select Codepage for"
 msgstr "코드페이지 선택"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "파일 불러오기(&F):"
@@ -2502,11 +2522,6 @@ msgstr "파일 저장하기(&S):"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "양쪽에 같은 코드페이지 사용(&U)"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "적용(&A)"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2573,7 +2588,7 @@ msgstr "일반 텍스트:"
 msgid "Selection:"
 msgstr "선택:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr "여백:"
@@ -3039,11 +3054,6 @@ msgstr "다시 묻지 않음(&Q)"
 #, c-format
 msgid "Syntax"
 msgstr "구문"
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
-msgstr ""
 
 #: Merge.rc:2C1D73C8
 #, c-format
@@ -3659,7 +3669,7 @@ msgstr "VSS 작업 폴더와 현재 파일의 위치가 일치하지 않습니다. 계속할까요?"
 msgid "No VSS database(s) found!"
 msgstr "VSS 데이터베이스가 없습니다!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "VSS 오류:"

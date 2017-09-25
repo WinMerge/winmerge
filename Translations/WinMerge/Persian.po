@@ -714,6 +714,11 @@ msgstr "&i íÇİÊä  ...  \tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "&c ÌÇíÒíäí ... \tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1655,6 +1660,31 @@ msgstr "&R ÌÇíÒíäí "
 msgid "Replace &All"
 msgstr "&A ÌÇíÒíäí åãí"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr " ÌÏíÏ "
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "&A Èå ˜ÇÑ ÈÓÊä "
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1684,11 +1714,6 @@ msgstr " İÚÇá äãæÏä ÕÇİíåÇí ÎØ "
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr " ÚÈÇÑÇÊ ŞÇÚÏå ãäÏ - åÑ ÎØ í˜í : "
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr " ÌÏíÏ "
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1825,7 +1850,7 @@ msgstr "&2 ÑæäÏå  : "
 msgid "&Swap"
 msgstr "&S ãÚÇæÖå "
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "&A íæäÏ ÒÏä Èå ÑæäÏå ãæÌæÏ "
@@ -1960,7 +1985,7 @@ msgstr "&n ÎØ "
 msgid "&Difference"
 msgstr "&D ÊİÇæÊ "
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "&G ÈÑæ Èå "
@@ -2289,11 +2314,6 @@ msgstr " ˜ÇÑÈÑ 2 : "
 msgid "Bold"
 msgstr " ÊíÑå "
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2344,7 +2364,7 @@ msgstr "&S ÓÈ˜ "
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&C ÑæäæÔÊ ÈÑÏÇÑí Èå ÍÇİÙå íÇÏÏÇÔÊ / ˜áí ÈæÑÏ "
@@ -2444,7 +2464,7 @@ msgstr " ÓÑÌãÚ : "
 msgid "Close"
 msgstr " ÈÓÊä "
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2479,7 +2499,7 @@ msgstr " - ÂËÇÑ / äÊÇíÌ - "
 msgid "Select Codepage for"
 msgstr " ÇäÊÎÇÈ ÕİÍå ˜Ï ÈÑÇí "
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&F ÈÇÑĞÇÑí ÑæäÏå : "
@@ -2493,11 +2513,6 @@ msgstr "&S ĞÎíÑå ÑæäÏå : "
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "&U ÇÓÊİÇÏå ÇÒ ÕİÍå ˜Ï í˜ÓÇä ÈÑÇí åÑ Ïæ "
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "&A Èå ˜ÇÑ ÈÓÊä "
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2564,7 +2579,7 @@ msgstr " ãÊä ãäÙã : "
 msgid "Selection:"
 msgstr " ÇäÊÎÇÈ : "
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -3009,11 +3024,6 @@ msgstr "&q ÏæÈÇÑå Çíä ÑÓÔ ÑÇ äÑÓ "
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
-msgstr ""
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
 msgstr ""
 
 #: Merge.rc:2C1D73C8
@@ -3628,7 +3638,7 @@ msgstr " æÔå ˜ÇÑí æ ã˜Çä ÑæäÏå ÌÇÑí ÊØÈíŞ äÏÇÑäÏ. ˜ÇÑ ÇÏÇãå íÇÈÏ¿ VSS "
 msgid "No VSS database(s) found!"
 msgstr "VSS  ÇíÇå(åÇí) ÏÇÏå íÏÇ äÔÏ ! "
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "  : VSS  ÎØÇ ÇÒ  "

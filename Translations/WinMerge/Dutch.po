@@ -717,6 +717,11 @@ msgstr "Z&oeken...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "Vervan&gen...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1662,6 +1667,31 @@ msgstr "Ve&rvangen"
 msgid "Replace &All"
 msgstr "&Alles vervangen"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "Nieuw"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "Toepassen"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1691,11 +1721,6 @@ msgstr "Regelfilters inschakelen"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Reguliere expressies (één per regel):"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "Nieuw"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1832,7 +1857,7 @@ msgstr "Bestand&2:"
 msgid "&Swap"
 msgstr "&Wisselen"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "Toevoegen &aan bestaand bestand"
@@ -1967,7 +1992,7 @@ msgstr "Re&gel"
 msgid "&Difference"
 msgstr "&Verschil"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "&Ga naar"
@@ -2298,11 +2323,6 @@ msgstr "Gebruiker 2:"
 msgid "Bold"
 msgstr "Vet"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2353,7 +2373,7 @@ msgstr "&Stijl:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Naar klembord kopiëren"
@@ -2453,7 +2473,7 @@ msgstr "Totaal:"
 msgid "Close"
 msgstr "Sluiten"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2488,7 +2508,7 @@ msgstr "(Aanpassingen)"
 msgid "Select Codepage for"
 msgstr "Selecteer codetabel voor"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "Bestanden laden:"
@@ -2502,11 +2522,6 @@ msgstr "Bestanden op&slaan:"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "Gebr&uik dezelfde codetabel voor beide"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "Toepassen"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2573,7 +2588,7 @@ msgstr "Gewone tekst:"
 msgid "Selection:"
 msgstr "Selectie:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -3027,11 +3042,6 @@ msgstr "Deze &vraag niet meer stellen."
 #, c-format
 msgid "Syntax"
 msgstr "Syntax"
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
-msgstr ""
 
 #: Merge.rc:2C1D73C8
 #, c-format
@@ -3668,7 +3678,7 @@ msgstr ""
 msgid "No VSS database(s) found!"
 msgstr "Geen VSS database(s) gevonden!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "Fout uit VSS:"

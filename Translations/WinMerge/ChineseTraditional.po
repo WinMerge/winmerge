@@ -718,6 +718,11 @@ msgstr "尋找(&I)...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "取代(&C)...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1665,6 +1670,31 @@ msgstr "取代(&R)"
 msgid "Replace &All"
 msgstr "全部取代(&A)"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "新增"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "套用(&A)"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1694,11 +1724,6 @@ msgstr "啟用行篩除器"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "類型表式 (每行一式)："
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "新增"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1835,7 +1860,7 @@ msgstr "檔案2(&2)："
 msgid "&Swap"
 msgstr "對調(&S)"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "附加到現有檔案(&A)"
@@ -1970,7 +1995,7 @@ msgstr "行(&N)"
 msgid "&Difference"
 msgstr "差異區塊(&D)"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "移至(&G)"
@@ -2300,11 +2325,6 @@ msgstr "使用者 2："
 msgid "Bold"
 msgstr "粗體"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2355,7 +2375,7 @@ msgstr "樣式(&S)："
 msgid "&Include File Compare Report"
 msgstr "包括檔案比較報告(&I)"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "複製到剪貼簿(&C)"
@@ -2455,7 +2475,7 @@ msgstr "總計："
 msgid "Close"
 msgstr "關閉"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr "中間："
@@ -2490,7 +2510,7 @@ msgstr "(影響)"
 msgid "Select Codepage for"
 msgstr "選定編碼頁給"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "要載入的檔案(&F)："
@@ -2504,11 +2524,6 @@ msgstr "要儲存的檔案(&S)："
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "兩檔都用相同的編碼頁(&U)"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "套用(&A)"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2575,7 +2590,7 @@ msgstr "類型表式文："
 msgid "Selection:"
 msgstr "選取："
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -3021,11 +3036,6 @@ msgstr "不要再提示這個問題(&Q)"
 #, c-format
 msgid "Syntax"
 msgstr "語法"
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
-msgstr ""
 
 #: Merge.rc:2C1D73C8
 #, c-format
@@ -3639,7 +3649,7 @@ msgstr "VSS 作業資料夾和目前檔案位置不符合。要繼續嗎？"
 msgid "No VSS database(s) found!"
 msgstr "找不到 VSS 資料庫！"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "VSS 發生錯誤："

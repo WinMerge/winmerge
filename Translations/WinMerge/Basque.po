@@ -718,6 +718,11 @@ msgstr "&Bilatu...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "&Ordeztu...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1659,6 +1664,31 @@ msgstr "&Ordeztu"
 msgid "Replace &All"
 msgstr "Ordeztu &Dena"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "Berria"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "&Ezarri"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1688,11 +1718,6 @@ msgstr "Gaitu Lerro Iragazkiak"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Adierazpen Arruntak (bat lerroko)"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "Berria"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1829,7 +1854,7 @@ msgstr "&2 Agiria:"
 msgid "&Swap"
 msgstr "A&ldaketa"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "E&rantsi dagoen agirira"
@@ -1964,7 +1989,7 @@ msgstr "&Lerroa"
 msgid "&Difference"
 msgstr "&Ezberdintasuna"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "&Joan Hona"
@@ -2293,11 +2318,6 @@ msgstr "2 Erabiltzailea:"
 msgid "Bold"
 msgstr "Lodia"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2348,7 +2368,7 @@ msgstr "&Estiloa"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopiatu Gakoan"
@@ -2448,7 +2468,7 @@ msgstr "Guztira:"
 msgid "Close"
 msgstr "Itxi"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2483,7 +2503,7 @@ msgstr "(Eraginak)"
 msgid "Select Codepage for"
 msgstr "Hautatu Kode-orrialdea"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&Agiria Gertatzen:"
@@ -2497,11 +2517,6 @@ msgstr "Agira &Gordetzen:"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "Erabili &kode-orrialde bera bientzat"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "&Ezarri"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2568,7 +2583,7 @@ msgstr "Idazki arrunta:"
 msgid "Selection:"
 msgstr "Hautapena:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -3014,11 +3029,6 @@ msgstr "Ez egin ga&ldera hau berriro."
 #, c-format
 msgid "Syntax"
 msgstr "Joskera"
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
-msgstr ""
 
 #: Merge.rc:2C1D73C8
 #, c-format
@@ -3634,7 +3644,7 @@ msgstr "VSS Lan Agirtegia eta uneko agiriaren kokalekua ez datoz bat. Jarraitu?"
 msgid "No VSS database(s) found!"
 msgstr "Ez da aurkitu VSS datubaserik!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "Akatsa VSS-tik:"

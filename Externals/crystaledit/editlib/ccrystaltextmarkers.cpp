@@ -8,6 +8,9 @@
 #include "stdafx.h"
 #include "ccrystaltextmarkers.h"
 #include "ccrystaltextview.h"
+#include "registry.h"
+#include "editreg.h"
+#include <algorithm>
 
 CCrystalTextMarkers::CCrystalTextMarkers() :
 	m_enabled(true)
@@ -18,9 +21,9 @@ CCrystalTextMarkers::~CCrystalTextMarkers()
 {
 }
 
-bool CCrystalTextMarkers::SetMarker(const TCHAR *pKey, const CString& sFindWhat, DWORD dwFlags, enum COLORINDEX nBgColorIndex)
+bool CCrystalTextMarkers::SetMarker(const TCHAR *pKey, const CString& sFindWhat, DWORD dwFlags, enum COLORINDEX nBgColorIndex, bool bUserDefined, bool bVisible)
 {
-	Marker marker = { sFindWhat, dwFlags, nBgColorIndex };
+	Marker marker = { sFindWhat, dwFlags, nBgColorIndex, bUserDefined, bVisible };
 	m_markers.insert_or_assign(pKey, marker);
 	return true;
 }
@@ -33,6 +36,23 @@ void CCrystalTextMarkers::DeleteMarker(const TCHAR *pKey)
 void CCrystalTextMarkers::DeleteAllMarker()
 {
 	m_markers.clear();
+}
+
+CString CCrystalTextMarkers::MakeNewId() const
+{
+	int id_max = 0;
+	for (const auto& marker : m_markers)
+	{
+		if (marker.first.GetLength() > 6)
+		{
+			int tmp = _ttoi(marker.first.Mid(6));
+			if (id_max < tmp)
+				id_max = tmp;
+		}
+	}
+	CString newid;
+	newid.Format(_T("MARKER%4d"), id_max + 1);
+	return newid;
 }
 
 void CCrystalTextMarkers::AddView(CCrystalTextView *pView)
@@ -51,4 +71,84 @@ void CCrystalTextMarkers::UpdateViews()
 {
 	for (auto& pView : m_views)
 		pView->UpdateView(nullptr, nullptr, 0, -1);
+}
+
+CString CCrystalTextMarkers::Serialize() const
+{
+	CString text;
+	text += m_enabled ? _T("Enabled") : _T("Disabled");
+	text += _T("\n");
+	for (const auto& marker : m_markers)
+	{
+		if (marker.second.bUserDefined)
+		{
+			text.AppendFormat(_T("%s:%s\t%d\t%d\t%d\t%d\n"),
+				marker.first, marker.second.sFindWhat, 
+				marker.second.dwFlags, marker.second.nBgColorIndex,
+				marker.second.bUserDefined, marker.second.bVisible);
+		}
+	}
+	return text;
+}
+
+bool CCrystalTextMarkers::Deserialize(const CString& value)
+{
+	for (const auto& marker : m_markers)
+	{
+		if (marker.second.bUserDefined)
+			m_markers.erase(marker.first);
+	}
+
+	int pos = 0;
+	int pos_delim = value.Find(_T("\n"), pos);
+	if (pos_delim == -1)
+		return false;
+	m_enabled = (value.Mid(pos, pos_delim - pos) == _T("Enabled"));
+	pos = pos_delim + 1;
+
+	while (pos < value.GetLength())
+	{
+		pos_delim = value.Find(_T(":"), pos);
+		if (pos_delim == -1)
+			return false;
+		CString key = value.Mid(pos, pos_delim - pos);
+		pos = pos_delim + 1;
+
+		CStringArray ary;
+		for (int i = 0; i < 4; ++i)
+		{
+			pos_delim = value.Find(_T("\t"), pos);
+			if (pos_delim == -1)
+				return false;
+			ary.Add(value.Mid(pos, pos_delim - pos));
+			pos = pos_delim + 1;
+		}
+
+		Marker marker;
+		marker.sFindWhat = ary[0];
+		marker.dwFlags = _ttoi(ary[1]);
+		marker.nBgColorIndex = static_cast<COLORINDEX>(_ttoi(ary[2]));
+		marker.bVisible = _ttoi(ary[3]) != 0;
+		marker.bUserDefined = true;
+
+		pos_delim = value.Find(_T("\n"), pos);
+		if (pos_delim == -1)
+			return false;
+		pos = pos_delim + 1;
+
+		m_markers.insert_or_assign(key, marker);
+	}
+	return true;
+}
+
+bool CCrystalTextMarkers::SaveToRegistry() const
+{
+    return RegSaveString(HKEY_CURRENT_USER, REG_EDITPAD, _T ("Marker") + m_sGroupName, Serialize());
+}
+
+bool CCrystalTextMarkers::LoadFromRegistry()
+{
+	CString value;
+	RegLoadString(HKEY_CURRENT_USER, REG_EDITPAD, _T ("Marker") + m_sGroupName, value);
+	return Deserialize(value);
 }

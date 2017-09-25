@@ -763,6 +763,9 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.cpp">
       <Filter>EditLib</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
     <ClCompile Include="PropMarkerColors.cpp">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClCompile>
@@ -1412,6 +1415,9 @@
     </ClInclude>
     <ClInclude Include="PropMarkerColors.h">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.h">
+      <Filter>EditLib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -475,6 +475,7 @@
     <ClCompile Include="..\editlib\ccrystaltextmarkers.cpp" />
     <ClCompile Include="..\editlib\ccrystaltextview.cpp" />
     <ClCompile Include="..\editlib\ccrystaltextview2.cpp" />
+    <ClCompile Include="..\editlib\ctextmarkerdlg.cpp" />
     <ClCompile Include="..\editlib\ceditreplacedlg.cpp" />
     <ClCompile Include="..\editlib\cfindtextdlg.cpp" />
     <ClCompile Include="..\editlib\chcondlg.cpp" />
@@ -568,6 +569,7 @@
     <ClInclude Include="..\editlib\ccrystaltextbuffer.h" />
     <ClInclude Include="..\editlib\ccrystaltextmarkers.h" />
     <ClInclude Include="..\editlib\ccrystaltextview.h" />
+    <ClInclude Include="..\editlib\ctextmarkerdlg.h" />
     <ClInclude Include="..\editlib\ceditreplacedlg.h" />
     <ClInclude Include="..\editlib\cfindtextdlg.h" />
     <ClInclude Include="..\editlib\chcondlg.h" />
@@ -612,9 +614,15 @@
     <None Include="..\editlib\ccrystaltextview.inl" />
     <None Include="..\editlib\filesup.inl" />
     <None Include="..\editlib\memcombo.inl" />
+    <None Include="res\mg_cur.cur" />
     <None Include="res\Sample.rc2" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Sample.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

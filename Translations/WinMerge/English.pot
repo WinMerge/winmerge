@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2017-08-29 01:00+0000\n"
+"POT-Creation-Date: 2017-09-25 01:24+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -709,6 +709,11 @@ msgstr ""
 #: Merge.rc:44BC83EC
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
+msgstr ""
+
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
 msgstr ""
 
 #: Merge.rc:669F87F4
@@ -1652,6 +1657,31 @@ msgstr ""
 msgid "Replace &All"
 msgstr ""
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr ""
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr ""
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1680,11 +1710,6 @@ msgstr ""
 #: Merge.rc:5E8200FF
 #, c-format
 msgid "Regular Expressions (one per line):"
-msgstr ""
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
 msgstr ""
 
 #: Merge.rc:3ECBF05
@@ -1822,7 +1847,7 @@ msgstr ""
 msgid "&Swap"
 msgstr ""
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr ""
@@ -1957,7 +1982,7 @@ msgstr ""
 msgid "&Difference"
 msgstr ""
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr ""
@@ -2282,11 +2307,6 @@ msgstr ""
 msgid "Bold"
 msgstr ""
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2337,7 +2357,7 @@ msgstr ""
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr ""
@@ -2437,7 +2457,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2472,7 +2492,7 @@ msgstr ""
 msgid "Select Codepage for"
 msgstr ""
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr ""
@@ -2485,11 +2505,6 @@ msgstr ""
 #: Merge.rc:175DEEED
 #, c-format
 msgid "&Use same codepage for both"
-msgstr ""
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
 msgstr ""
 
 #: Merge.rc:89AF4FE
@@ -2557,7 +2572,7 @@ msgstr ""
 msgid "Selection:"
 msgstr ""
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -2970,11 +2985,6 @@ msgstr ""
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
-msgstr ""
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
 msgstr ""
 
 #: Merge.rc:2C1D73C8
@@ -3453,7 +3463,7 @@ msgstr ""
 msgid "No VSS database(s) found!"
 msgstr ""
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr ""

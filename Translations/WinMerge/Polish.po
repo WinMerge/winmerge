@@ -716,6 +716,11 @@ msgstr "W&yszukaj...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "&Zast¹p...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1657,6 +1662,31 @@ msgstr "&Zast¹p"
 msgid "Replace &All"
 msgstr "&Wszystkie"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "Nowy"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "Z&astosuj"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1686,11 +1716,6 @@ msgstr "W³¹cz filtry linii"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Wyra¿enia regularne (1 na wiersz):"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "Nowy"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1827,7 +1852,7 @@ msgstr "Plik&2:"
 msgid "&Swap"
 msgstr "Za&mieñ"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "Dodaj do &istniej¹cego pliku"
@@ -1962,7 +1987,7 @@ msgstr "&Wiersz"
 msgid "&Difference"
 msgstr "&Ró¿nica"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "&IdŸ do"
@@ -2291,11 +2316,6 @@ msgstr "U¿ytkownika 2:"
 msgid "Bold"
 msgstr "Pogrubienie"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2346,7 +2366,7 @@ msgstr "&Styl:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopiuj do schowka"
@@ -2446,7 +2466,7 @@ msgstr "Wszystkich:"
 msgid "Close"
 msgstr "Zamknij"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2481,7 +2501,7 @@ msgstr "(dzia³anie)"
 msgid "Select Codepage for"
 msgstr "Wybierz stronê kodow¹ dla"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&£adowanie pliku:"
@@ -2495,11 +2515,6 @@ msgstr "&Zapisywanie pliku:"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "&U¿yj tej samej strony kodowej dla obu"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "Z&astosuj"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2566,7 +2581,7 @@ msgstr "Czcionka regularna:"
 msgid "Selection:"
 msgstr "Zaznaczenie:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -3012,11 +3027,6 @@ msgstr "Nie &pytaj ponownie."
 #, c-format
 msgid "Syntax"
 msgstr "Sk³adnia"
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
-msgstr ""
 
 #: Merge.rc:2C1D73C8
 #, c-format
@@ -3632,7 +3642,7 @@ msgstr "Katalog roboczy VSS oraz lokalizacja bie¿acego pliku nie zgadzaj¹ siê. K
 msgid "No VSS database(s) found!"
 msgstr "Nie znaleziono bazy VSS!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "B³¹d VSS:"

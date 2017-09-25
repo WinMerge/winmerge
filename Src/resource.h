@@ -61,6 +61,7 @@
 #define IDD_PROPPAGE_COMPARE_IMAGE      242
 #define IDD_PROPPAGE_COMPARE_BINARY     243
 #define IDD_PROPPAGE_COLORS_MARKER      244
+#define IDD_EDIT_MARKER                 245
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
@@ -529,6 +530,11 @@
 #define IDC_MARKER1_BKGD_COLOR          8816
 #define IDC_MARKER2_BKGD_COLOR          8817
 #define IDC_MARKER3_BKGD_COLOR          8818
+#define IDC_EDIT_MARKERS_ENABLED        8819
+#define IDC_EDIT_MARKER_LIST            8820
+#define IDC_EDIT_MARKER_BGCOLORIDX      8821
+#define IDC_EDIT_MARKER_NEW             8822
+#define IDC_EDIT_MARKER_DELETE          8823
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -925,6 +931,7 @@
 #define IDS_TEXT_REPORT_FILES           18540
 #define IDS_HTML_REPORT_FILES           18541
 #define IDS_XML_REPORT_FILES            18542
+#define ID_EDIT_MARK                    21406 // editcmd.h
 #define IDS_EOL_DOS                     30400
 #define IDS_EOL_MAC                     30401
 #define IDS_EOL_UNIX                    30402
