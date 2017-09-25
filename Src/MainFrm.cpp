@@ -2334,7 +2334,7 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 		{
 			String strDesc2[2] = { 
 				(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Theirs File"),
-				(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("Mine File") };
+				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			conflictCompared = DoFileOpen(&PathContext(revFile, workFile), 
 						dwFlags, strDesc2);
