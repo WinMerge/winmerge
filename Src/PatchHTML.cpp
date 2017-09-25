@@ -155,10 +155,14 @@ print_html_diff_header (struct file_data inf[])
   fprintf (outfile, 
     "<table cellspacing=\"0\" cellpadding=\"0\">\n"
     "    <tr class=\"vc_diff_header\">\n");
+  
+  char ctimeBuffer[26];
+  ctime_s(ctimeBuffer, sizeof(ctimeBuffer), &inf[0].stat.st_mtime);
   fprintf (outfile, 
-    "    <th style=\"width:50%%; vertical-align:top;\">Left: %s</th>\n", ctime (&inf[0].stat.st_mtime));
+    "    <th style=\"width:50%%; vertical-align:top;\">Left: %s</th>\n", ctimeBuffer);
+  ctime_s(ctimeBuffer, sizeof(ctimeBuffer), &inf[1].stat.st_mtime);
   fprintf (outfile, 
-    "    <th style=\"width:50%%; vertical-align:top;\">Right: %s</th>\n", ctime (&inf[1].stat.st_mtime));
+    "    <th style=\"width:50%%; vertical-align:top;\">Right: %s</th>\n", ctimeBuffer);
   fprintf (outfile, 
     "    </tr>\n");
 }

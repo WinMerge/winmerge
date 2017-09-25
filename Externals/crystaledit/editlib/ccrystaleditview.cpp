@@ -1667,7 +1667,7 @@ ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
           if (lpszNewStr && m_nLastReplaceLen > 0)
             {
               LPTSTR buf = text.GetBuffer (m_nLastReplaceLen + 1);
-              _tcsncpy (buf, lpszNewStr, m_nLastReplaceLen);
+              _tcsncpy_s (buf, m_nLastReplaceLen+1, lpszNewStr, m_nLastReplaceLen);
               text.ReleaseBuffer (m_nLastReplaceLen);
             }
           else
@@ -1869,7 +1869,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
           CPoint ptCursorPos = GetCursorPos ();
           ASSERT (ptCursorPos.y > 0);
 
-          //  Take indentation from the previos line
+          //  Take indentation from the previous line
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y - 1);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y - 1);
           int nPos = 0;
@@ -1899,22 +1899,24 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
                         }
                     }
                 }
-              //  Insert part of the previos line
+              //  Insert part of the previous line
               TCHAR *pszInsertStr;
               if ((GetFlags () & (SRCOPT_BRACEGNU|SRCOPT_BRACEANSI)) && isopenbrace (pszLineChars[nLength - 1]))
                 {
                   if (m_pTextBuffer->GetInsertTabs())
                     {
-                      pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * (nPos + 2));
-                      _tcsncpy (pszInsertStr, pszLineChars, nPos);
+					  const size_t InsertSiz = (nPos + 2);
+                      pszInsertStr = static_cast<TCHAR *> (_alloca (sizeof(TCHAR) * InsertSiz));
+                      _tcsncpy_s (pszInsertStr, InsertSiz, pszLineChars, nPos);
                       pszInsertStr[nPos++] = _T ('\t');
                     }
                   else
                     {
                       int nTabSize = GetTabSize ();
                       int nChars = nTabSize - nPos % nTabSize;
-                      pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * (nPos + nChars + 1));
-                      _tcsncpy (pszInsertStr, pszLineChars, nPos);
+					  const size_t InsertSiz = (nPos + nChars + 1);
+                      pszInsertStr = static_cast<TCHAR *> (_alloca (sizeof (TCHAR) * InsertSiz));
+                      _tcsncpy_s (pszInsertStr, InsertSiz, pszLineChars, nPos);
                       while (nChars--)
                         {
                           pszInsertStr[nPos++] = _T (' ');
@@ -1923,8 +1925,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
                 }
               else
                 {
-                  pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * (nPos + 1));
-                  _tcsncpy (pszInsertStr, pszLineChars, nPos);
+				  const size_t InsertSiz = (nPos + 1);
+                  pszInsertStr = static_cast<TCHAR *> (_alloca (sizeof (TCHAR) * InsertSiz));
+                  _tcsncpy_s (pszInsertStr, InsertSiz, pszLineChars, nPos);
                 }
               pszInsertStr[nPos] = 0;
 
@@ -1941,7 +1944,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
             }
           else
             {
-              //  Insert part of the previos line
+              //  Insert part of the previous line
               if ((GetFlags () & (SRCOPT_BRACEGNU|SRCOPT_BRACEANSI)) && isopenbrace (pszLineChars[nLength - 1]))
                 {
                   TCHAR *pszInsertStr;
@@ -2003,7 +2006,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
           //  Enter stroke!
           CPoint ptCursorPos = GetCursorPos ();
 
-          //  Take indentation from the previos line
+          //  Take indentation from the previous line
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y );
           int nPos = 0;
@@ -2048,7 +2051,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
           //  Enter stroke!
           CPoint ptCursorPos = GetCursorPos ();
 
-          //  Take indentation from the previos line
+          //  Take indentation from the previous line
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y );
           int nPos = 0;
@@ -2104,7 +2107,7 @@ OnEditAutoComplete ()
       CString sText;
       LPTSTR pszBuffer = sText.GetBuffer (nLength + 2);
       *pszBuffer = _T('<');
-      _tcsncpy (pszBuffer + 1, pszBegin, nLength);
+      _tcsncpy_s (pszBuffer + 1, nLength - 1, pszBegin, nLength);
       sText.ReleaseBuffer (nLength + 1);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
@@ -2166,7 +2169,7 @@ OnEditAutoExpand ()
       nLength = pszEnd - pszBegin;
       CString sText, sExpand;
       LPTSTR pszBuffer = sText.GetBuffer (nLength + 1);
-      _tcsncpy (pszBuffer, pszBegin, nLength);
+      _tcsncpy_s (pszBuffer, nLength + 1, pszBegin, nLength);
       sText.ReleaseBuffer (nLength);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
@@ -2656,7 +2659,7 @@ int CCrystalEditView::SpellGetLine (struct SpellData_t *pdata)
       pdata->pszBuffer = szBuffer;
       *pdata->pszBuffer = _T ('^');
       if (nCount > 1)
-        _tcscpy (pdata->pszBuffer + 1, pView->GetLineChars (pdata->nRow));
+        _tcscpy_s (pdata->pszBuffer + 1, sizeof(szBuffer)-1, pView->GetLineChars (pdata->nRow));
       else
         pdata->pszBuffer[nCount++] = _T (' ');
       pdata->pszBuffer[nCount++] = _T ('\n');
@@ -2744,7 +2747,7 @@ bool CCrystalEditView::LoadSpellDll (bool bAlert /*= true*/)
       SpellConfig = (int (*) (SpellData*)) GetProcAddress (hSpellDll, "SpellConfig");
       if (SpellInit)
         SpellInit (&spellData);
-      _tcscpy (spellData.szIspell, szWIspellPath);
+      _tcscpy_s (spellData.szIspell, szWIspellPath);
       spellData.GetLine = SpellGetLine;
       spellData.Notify = SpellNotify;
     }

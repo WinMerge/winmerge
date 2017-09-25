@@ -180,7 +180,7 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len, int defcodepag
 		size_t n = len < sizeof line - 1 ? len : sizeof line - 1;
 		memcpy(line, base, n);
 		line[n] = 0;
-	} while (len && sscanf(line, "#pragma code_page(%5u)", &cp) != 1);
+	} while (len && sscanf_s(line, "#pragma code_page(%5u)", &cp) != 1);
 	return cp;
 }
 
