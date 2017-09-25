@@ -427,7 +427,7 @@ bool IsShortcut(const String& inPath)
 {
 	const TCHAR ShortcutExt[] = _T(".lnk");
 	TCHAR ext[_MAX_EXT] = {0};
-	_tsplitpath(inPath.c_str(), NULL, NULL, NULL, ext);
+	_tsplitpath_s(inPath.c_str(), NULL, 0, NULL, 0, NULL, 0, ext, _MAX_EXT);
 	if (_tcsicmp(ext, ShortcutExt) == 0)
 		return true;
 	else

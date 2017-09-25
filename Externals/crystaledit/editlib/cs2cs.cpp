@@ -231,11 +231,12 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
 int
 iconvert_new (LPCTSTR source, LPTSTR *destination, int source_coding, int destination_coding, bool alphabet_only)
   {
-    LPTSTR dest = (LPTSTR) malloc (_tcslen (source) + 1 + 10); /* reserved for MYCHARSET= replacement */
+	const size_t destSiz = _tcslen(source) + 1 + 10;
+    LPTSTR dest = static_cast<LPTSTR> (malloc (sizeof(TCHAR) * destSiz)); /* reserved for MYCHARSET= replacement */
     int result = -3;
     if (dest)
       {
-        _tcscpy (dest, source);
+        _tcscpy_s (dest, destSiz, source);
         result = iconvert (dest, source_coding, destination_coding, alphabet_only);
         if (!result)
           {

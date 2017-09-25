@@ -171,21 +171,22 @@ begin_output ()
     return;
 
   /* Construct the header of this piece of diff.  */
-  name = xmalloc (strlen (current_name0) + strlen (current_name1)
-		  + strlen (switch_string) + 7);
+  const size_t nameSiz = strlen(current_name0) + strlen(current_name1)
+	  + strlen(switch_string) + 7;
+  name = xmalloc (nameSiz);
   /* Posix.2 section 4.17.6.1.1 specifies this format.  But there are some
      bugs in the first printing (IEEE Std 1003.2-1992 p 251 l 3304):
      it says that we must print only the last component of the pathnames,
      and it requires two spaces after "diff" if there are no options.
      These requirements are silly and do not match historical practice.  */
-  sprintf (name, "diff%s %s %s", switch_string, current_name0, current_name1);
+  sprintf_s (name, nameSiz, "diff%s %s %s", switch_string, current_name0, current_name1);
 
   if (paginate_flag)
     {
 #if defined(__MSDOS__) || defined(__NT__) || defined(WIN32)
       char command[120];
 
-      sprintf(command, "%s -f -h \"%s\"", PR_FILE_NAME, name);
+      sprintf_s(command, sizeof(command), "%s -f -h \"%s\"", PR_FILE_NAME, name);
       if ((outfile = popen(command, "w")) == NULL)
         pfatal_with_name ("popen");
 #else
@@ -888,7 +889,7 @@ concat (s1, s2, s3)
 {
   size_t len = strlen (s1) + strlen (s2) + strlen (s3);
   char *new = xmalloc (len + 1);
-  sprintf (new, "%s%s%s", s1, s2, s3);
+  sprintf_s (new, len+1, "%s%s%s", s1, s2, s3);
   return new;
 }
 

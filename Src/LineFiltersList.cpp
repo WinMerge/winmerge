@@ -226,15 +226,16 @@ void LineFiltersList::Import(const String& filters)
 {
 	const TCHAR sep[] = _T("\r\n");
 	TCHAR *p_filters = (TCHAR *)&filters[0];
+	TCHAR *pfilterNext = nullptr;
 	
 	if (!filters.empty())
 	{
 		// find each regular expression and add to list
-		TCHAR *token = _tcstok(p_filters, sep);
+		TCHAR *token = _tcstok_s(p_filters, sep, &pfilterNext);
 		while (token)
 		{
 			AddFilter(token, true);
-			token = _tcstok(NULL, sep);
+			token = _tcstok_s(NULL, sep, &pfilterNext);
 		}
 		SaveFilters();
 	}

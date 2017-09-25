@@ -193,9 +193,10 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
 	
 	if (szWideString)
     {
-		m_szMenuText = new wchar_t[sizeof(wchar_t)*(wcslen(szWideString)+1)];
+		const size_t MenuSiz = wcslen(szWideString) + 1;
+		m_szMenuText = new wchar_t[MenuSiz];
 		if (m_szMenuText)
-			wcscpy(m_szMenuText,szWideString);
+			wcscpy_s(m_szMenuText, MenuSiz, szWideString);
     }
 	else
 		m_szMenuText=NULL;//set to NULL so we need not bother about dangling non-NULL Ptrs
@@ -1367,8 +1368,9 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 		
 		// Obtain Caption (and length)
 		
-		wchar_t *szCaption=new wchar_t[wcslen((wchar_t *)pTp)+1];
-		wcscpy(szCaption,(wchar_t *)pTp);
+		const size_t CaptionSiz = wcslen((wchar_t *)pTp)+1;
+		wchar_t *szCaption=new wchar_t[CaptionSiz];
+		wcscpy_s(szCaption, CaptionSiz, reinterpret_cast<wchar_t *>(pTp));
 		pTp=&pTp[(wcslen((wchar_t *)pTp)+1)*sizeof(wchar_t)];//modified SK
 		
 		// Handle popup menus first....

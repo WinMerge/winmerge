@@ -698,7 +698,7 @@ CMoveConstraint::Persist(bool saving, bool position)
 		if (m_pFormView)
 			CWnd::FromHandle(m_hwndDlg)->GetParent()->ScreenToClient(&wprc);
 		CRect rc;
-		int ct=_stscanf(str, _T("%d,%d,%d,%d"), &rc.left, &rc.top, &rc.right, &rc.bottom);
+		int ct=_stscanf_s(str, _T("%d,%d,%d,%d"), &rc.left, &rc.top, &rc.right, &rc.bottom);
 		if (ct==4)
 		{
 			if (position)
