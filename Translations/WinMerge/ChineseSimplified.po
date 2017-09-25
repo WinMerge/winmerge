@@ -715,6 +715,11 @@ msgstr "查找(&I)...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "替换(&C)...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1656,6 +1661,31 @@ msgstr "替换(&R)"
 msgid "Replace &All"
 msgstr "全部替换(&A)"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "新建"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "应用(&A)"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1685,11 +1715,6 @@ msgstr "忽略符合下列样式的行"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "正则表达式 (每行一个):"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "新建"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1826,7 +1851,7 @@ msgstr "文件&2:"
 msgid "&Swap"
 msgstr "上下交换(&S)"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "添加到已有文件的末尾(&A)"
@@ -1961,7 +1986,7 @@ msgstr "行(&N)"
 msgid "&Difference"
 msgstr "不同处(&D)"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "转到(&G)"
@@ -2286,11 +2311,6 @@ msgstr "用户定义 2:"
 msgid "Bold"
 msgstr "加粗"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2341,7 +2361,7 @@ msgstr "样式(&S):"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "复制到剪贴板(&C)"
@@ -2441,7 +2461,7 @@ msgstr "总计:"
 msgid "Close"
 msgstr "关闭"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2476,7 +2496,7 @@ msgstr "(影响)"
 msgid "Select Codepage for"
 msgstr "选择要使用的代码页"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "打开文件(&F):"
@@ -2490,11 +2510,6 @@ msgstr "保存文件(&S):"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "两边使用相同的代码页(&U)"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "应用(&A)"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2561,7 +2576,7 @@ msgstr "普通文字:"
 msgid "Selection:"
 msgstr "选中区域:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -2974,11 +2989,6 @@ msgstr "不再询问此问题(&Q)。"
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
-msgstr ""
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
 msgstr ""
 
 #: Merge.rc:2C1D73C8
@@ -3566,7 +3576,7 @@ msgstr "VSS 工作文件夹(Working Folder)与当前文件位置不符。是否继续？"
 msgid "No VSS database(s) found!"
 msgstr "未找到 VSS 数据库！"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "VSS 返回错误:"

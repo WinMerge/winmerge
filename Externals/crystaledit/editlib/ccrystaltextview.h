@@ -914,6 +914,7 @@ protected :
     afx_msg void OnEditFind ();
     afx_msg void OnEditRepeat ();
     afx_msg void OnUpdateEditRepeat (CCmdUI * pCmdUI);
+    afx_msg void OnEditMark ();
     afx_msg void OnEditDeleteBack();
     afx_msg void OnChar( UINT nChar, UINT nRepCnt, UINT nFlags );
 

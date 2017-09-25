@@ -157,11 +157,17 @@ void SyntaxColors::SetDefaults()
 		case COLORINDEX_HIGHLIGHTTEXT2:
 			color = RGB (0, 0, 0);
 			break;
+		case COLORINDEX_MARKERBKGND0:
+			color = RGB (255, 255, 127);
+			break;
 		case COLORINDEX_MARKERBKGND1:
+			color = RGB (127, 255, 127);
+			break;
 		case COLORINDEX_MARKERBKGND2:
+			color = RGB (255, 127, 127);
+			break;
 		case COLORINDEX_MARKERBKGND3:
-		case COLORINDEX_MARKERBKGND4:
-			color = RGB (255, 255, 128);
+			color = RGB (127, 127, 255);
 			break;
 		default:
 		//  return RGB(255, 0, 0);

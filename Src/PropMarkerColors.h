@@ -35,7 +35,6 @@ private:
 	//{{AFX_DATA(PropMarkerColors)
 	enum { IDD = IDD_PROPPAGE_COLORS_MARKER };
 	CColorButton    m_btnMarkerColors[4];
-	bool            m_bMarkerEnabled;
 	//}}AFX_DATA
 
 	// Overrides
@@ -53,12 +52,10 @@ protected:
 	void BrowseColorAndSave(CColorButton & colorButton, int colorIndex);
 	void SerializeColorsToFromScreen(OPERATION op);
 	void SerializeColorToFromScreen(OPERATION op, CColorButton & btn, int colorIndex);
-	void EnableColorButtons(bool bEnable);
 
 	// Generated message map functions
 	//{{AFX_MSG(PropMarkerColors)
 	afx_msg void OnMarkerColors(UINT nID);
-	afx_msg void OnEnableMarker();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

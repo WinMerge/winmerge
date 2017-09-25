@@ -715,6 +715,11 @@ msgstr "&H¾ada...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "Nahradi...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1656,6 +1661,31 @@ msgstr "Nahraïi"
 msgid "Replace &All"
 msgstr "Nahraïi všetko"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "Novı"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "&Poui"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1685,11 +1715,6 @@ msgstr "Zapnú riadkové filtre"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Regulárne vırazy (jeden na riadok):"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "Novı"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1826,7 +1851,7 @@ msgstr "Súbor&2:"
 msgid "&Swap"
 msgstr "&Vymeni navzájom"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "&Rozšíri existujúci súbor"
@@ -1961,7 +1986,7 @@ msgstr "Riad&ok"
 msgid "&Difference"
 msgstr "&Rozdiel"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "&Prejs na"
@@ -2286,11 +2311,6 @@ msgstr "Pouívate¾ 2:"
 msgid "Bold"
 msgstr "Hrubo"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2341,7 +2361,7 @@ msgstr "&Štıl:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopírova do schránky"
@@ -2441,7 +2461,7 @@ msgstr "Celkom:"
 msgid "Close"
 msgstr "Zatvori"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2476,7 +2496,7 @@ msgstr "(Ovplyvòuje)"
 msgid "Select Codepage for"
 msgstr "Zvo¾te kódovú stránku pre"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&Naèítanie súboru:"
@@ -2490,11 +2510,6 @@ msgstr "&Ukladanie súboru:"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "&Poui pre obe rovnakú kódovú stránku"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "&Poui"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2561,7 +2576,7 @@ msgstr "Benı text:"
 msgid "Selection:"
 msgstr "Vıber:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -2988,11 +3003,6 @@ msgstr "U sa túto otázku nepıta."
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
-msgstr ""
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
 msgstr ""
 
 #: Merge.rc:2C1D73C8
@@ -3587,7 +3597,7 @@ msgstr "pracovnı adresár VSS Working Folder a umiestnenie aktuálneho súboru sa n
 msgid "No VSS database(s) found!"
 msgstr "Nebola nájdená databáza VSS!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "Chyba VSS:"

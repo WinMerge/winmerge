@@ -21,7 +21,6 @@
  */
 PropMarkerColors::PropMarkerColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
  : OptionsPanel(optionsMgr, PropMarkerColors::IDD)
-, m_bMarkerEnabled(true)
 , m_pTempColors(pColors)
 , m_cCustColors()
 {
@@ -31,19 +30,16 @@ void PropMarkerColors::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropMarkerColors)
-	DDX_Check(pDX, IDC_MARKER_ENABLED, m_bMarkerEnabled);
 	DDX_Control(pDX, IDC_MARKER0_BKGD_COLOR, m_btnMarkerColors[0]);
 	DDX_Control(pDX, IDC_MARKER1_BKGD_COLOR, m_btnMarkerColors[1]);
 	DDX_Control(pDX, IDC_MARKER2_BKGD_COLOR, m_btnMarkerColors[2]);
 	DDX_Control(pDX, IDC_MARKER3_BKGD_COLOR, m_btnMarkerColors[3]);
 	//}}AFX_DATA_MAP
-	EnableColorButtons(m_bMarkerEnabled);
 }
 
 
 BEGIN_MESSAGE_MAP(PropMarkerColors, CDialog)
 	//{{AFX_MSG_MAP(PropMarkerColors)
-	ON_BN_CLICKED(IDC_MARKER_ENABLED, OnEnableMarker)
 	ON_COMMAND_RANGE(IDC_MARKER0_BKGD_COLOR, IDC_MARKER3_BKGD_COLOR, OnMarkerColors)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -54,7 +50,6 @@ END_MESSAGE_MAP()
  */
 void PropMarkerColors::ReadOptions()
 {
-	m_bMarkerEnabled = !!GetOptionsMgr()->GetBool(OPT_MARKER_ENABLED);
 	SerializeColorsToFromScreen(LOAD_COLORS);
 }
 
@@ -64,7 +59,6 @@ void PropMarkerColors::ReadOptions()
  */
 void PropMarkerColors::WriteOptions()
 {
-	GetOptionsMgr()->SaveOption(OPT_MARKER_ENABLED, m_bMarkerEnabled);
 	// User can only change colors via BrowseColorAndSave,
 	// which writes to m_pTempColors
 	// so user's latest choices are in m_pTempColors
@@ -100,7 +94,7 @@ void PropMarkerColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
  */
 void PropMarkerColors::OnMarkerColors(UINT nID) 
 {
-	BrowseColorAndSave(m_btnMarkerColors[nID - IDC_MARKER0_BKGD_COLOR], COLORINDEX_MARKERBKGND1 + nID - IDC_MARKER0_BKGD_COLOR);
+	BrowseColorAndSave(m_btnMarkerColors[nID - IDC_MARKER0_BKGD_COLOR], COLORINDEX_MARKERBKGND0 + nID - IDC_MARKER0_BKGD_COLOR);
 }
 
 /**
@@ -116,7 +110,7 @@ void PropMarkerColors::SerializeColorsToFromScreen(OPERATION op)
 		m_pTempColors->SetDefaults();
 
 	for (int i = 0; i < 4; ++i)
-		SerializeColorToFromScreen(op, m_btnMarkerColors[i], COLORINDEX_MARKERBKGND1 + i);
+		SerializeColorToFromScreen(op, m_btnMarkerColors[i], COLORINDEX_MARKERBKGND0 + i);
 }
 
 /**
@@ -135,29 +129,4 @@ void PropMarkerColors::SerializeColorToFromScreen(OPERATION op, CColorButton & b
 		btn.SetColor(m_pTempColors->GetColor(colorIndex));
 		break;
 	}
-}
-
-/**
-* @brief Set colors to track standard (theme) colors
-*/
-void PropMarkerColors::OnEnableMarker()
-{
-	UpdateData();
-}
-
-/**
-* @brief Enable / disable color controls on dialog.
-* @param [in] bEnable If TRUE color controls are enabled.
-*/
-void PropMarkerColors::EnableColorButtons(bool bEnable)
-{
-	EnableDlgItem(IDC_MARKER_COLORS_GROUP, bEnable);
-	EnableDlgItem(IDC_MARKER0_COLOR_LABEL, bEnable);
-	EnableDlgItem(IDC_MARKER1_COLOR_LABEL, bEnable);
-	EnableDlgItem(IDC_MARKER2_COLOR_LABEL, bEnable);
-	EnableDlgItem(IDC_MARKER3_COLOR_LABEL, bEnable);
-	EnableDlgItem(IDC_MARKER0_BKGD_COLOR, bEnable);
-	EnableDlgItem(IDC_MARKER1_BKGD_COLOR, bEnable);
-	EnableDlgItem(IDC_MARKER2_BKGD_COLOR, bEnable);
-	EnableDlgItem(IDC_MARKER3_BKGD_COLOR, bEnable);
 }

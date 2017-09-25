@@ -45,6 +45,7 @@ CSampleDoc::CSampleDoc() : m_xTextBuffer(this)
 
 	m_pSyntaxColors = new SyntaxColors();
 	m_pMarkers = new CCrystalTextMarkers();
+	m_pMarkers->LoadFromRegistry();
 }
 
 CSampleDoc::~CSampleDoc()

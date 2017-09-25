@@ -373,6 +373,9 @@ BOOL CMergeApp::InitInstance()
 	if (m_pSyntaxColors)
 		Options::SyntaxColors::Load(GetOptionsMgr(), m_pSyntaxColors.get());
 
+	if (m_pMarkers)
+		m_pMarkers->LoadFromRegistry();
+
 	if (m_pLineFilters)
 		m_pLineFilters->Initialize(GetOptionsMgr());
 

@@ -97,6 +97,7 @@
 #include "ccrystaltextview.h"
 #include "ccrystaltextbuffer.h"
 #include "cfindtextdlg.h"
+#include "ctextmarkerdlg.h"
 #include "fpattern.h"
 #include "filesup.h"
 #include "registry.h"
@@ -183,6 +184,7 @@ ON_WM_CREATE ()
 ON_COMMAND (ID_EDIT_FIND, OnEditFind)
 ON_COMMAND (ID_EDIT_REPEAT, OnEditRepeat)
 ON_UPDATE_COMMAND_UI (ID_EDIT_REPEAT, OnUpdateEditRepeat)
+ON_COMMAND (ID_EDIT_MARK, OnEditMark)
 ON_WM_MOUSEWHEEL ()
 ON_MESSAGE (WM_IME_STARTCOMPOSITION, OnImeStartComposition) /* IME */
 //}}AFX_MSG_MAP
@@ -1682,6 +1684,8 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
 
   for (const auto& marker : m_pMarkers->GetMarkers())
     {
+	  if (!marker.second.bVisible)
+		  continue;
       int nBlocks = 0;
       std::vector<TEXTBLOCK> blocks((nLength + 1) * 3); // be aware of nLength == 0
       blocks[0].m_nCharPos = 0;
@@ -4910,7 +4914,7 @@ FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags,
 {
   if (m_pMarkers)
     {
-      m_pMarkers->SetMarker(_T("EDITOR_MARKER"), pszText, dwFlags, COLORINDEX_MARKERBKGND1);
+      m_pMarkers->SetMarker(_T("EDITOR_MARKER"), pszText, dwFlags, COLORINDEX_MARKERBKGND0, false);
       if (m_pMarkers->GetEnabled())
         m_pMarkers->UpdateViews();
     }
@@ -5286,12 +5290,7 @@ OnEditFind ()
       CPoint ptSelStart, ptSelEnd;
       GetSelection (ptSelStart, ptSelEnd);
       if (ptSelStart.y == ptSelEnd.y)
-        {
-          LPCTSTR pszChars = GetLineChars (ptSelStart.y);
-          int nChars = ptSelEnd.x - ptSelStart.x;
-          _tcsncpy (m_pFindTextDlg->m_sText.GetBuffer (nChars + 1), pszChars + ptSelStart.x, nChars);
-          m_pFindTextDlg->m_sText.ReleaseBuffer (nChars);
-        }
+	    GetText (ptSelStart, ptSelEnd, m_pFindTextDlg->m_sText);
     }
   else
     {
@@ -5379,6 +5378,41 @@ void CCrystalTextView::
 OnUpdateEditRepeat (CCmdUI * pCmdUI)
 {
   pCmdUI->Enable (true);
+}
+
+void CCrystalTextView::
+OnEditMark ()
+{
+  CString sText;
+  DWORD dwFlags;
+  if (!RegLoadNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("MarkerFlags"), &dwFlags))
+	dwFlags = 0;
+
+  //  Take the current selection, if any
+  if (IsSelection ())
+    {
+      CPoint ptSelStart, ptSelEnd;
+      GetSelection (ptSelStart, ptSelEnd);
+      if (ptSelStart.y == ptSelEnd.y)
+	    GetText (ptSelStart, ptSelEnd, sText);
+    }
+  else
+    {
+      CPoint ptCursorPos = GetCursorPos ();
+      CPoint ptStart = WordToLeft (ptCursorPos);
+      CPoint ptEnd = WordToRight (ptCursorPos);
+      if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
+        GetText (ptStart, ptEnd, sText);
+    }
+
+  CTextMarkerDlg markerDlg(*m_pMarkers, sText, dwFlags);
+
+  if (markerDlg.DoModal() == IDOK)
+    {
+      //  Save search parameters to registry
+      VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("MarkerFlags"), markerDlg.GetLastSearchFlags()));
+	  m_pMarkers->SaveToRegistry();
+    }
 }
 
 void CCrystalTextView::

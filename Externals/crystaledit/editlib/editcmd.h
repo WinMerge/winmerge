@@ -235,6 +235,7 @@
 #define ID_VIEW_SELMARGIN               21402
 #define ID_DATE_TIME                    21403
 #define ID_READ_ONLY                    21405
+#define ID_EDIT_MARK                    21406
 #define ID_SOURCE_PLAIN                 21500
 #define ID_SOURCE_ASP                   21501
 #define ID_SOURCE_BASIC                 21502

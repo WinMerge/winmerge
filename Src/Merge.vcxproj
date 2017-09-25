@@ -469,6 +469,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\cs2cs.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\csharp.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\css.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\dcl.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\filesup.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\fortran.cpp" />
@@ -916,6 +917,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\crystalparser.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystaltextblock.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\cs2cs.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\editcmd.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\editreg.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\edtlib.h" />

@@ -11,11 +11,15 @@
 #define IDD_MESSAGE_BOX                 219
 #define IDD_EDIT_FIND                   220
 #define IDD_EDIT_REPLACE                221
+#define IDD_EDIT_MARKER                 222
+#define IDC_EDIT_MARKER_LIST            8601
+#define IDC_EDIT_MARKERS_ENABLED        8602
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
 #define IDC_EDIT_REGEXP                 8606
 #define IDC_EDIT_REPLACE                8607
+#define IDC_EDIT_MARKER_BGCOLORIDX      8607
 #define IDC_EDIT_REPLACE_ALL            8608
 #define IDC_EDIT_REPLACE_WITH           8609
 #define IDC_EDIT_SKIP                   8610
@@ -45,6 +49,8 @@
 #define IDS_MESSAGEBOX_HELP             9014
 #define IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN 9015
 #define IDS_MESSAGEBOX_DONT_ASK_AGAIN   9016
+#define IDC_EDIT_MARKER_NEW             12322
+#define IDC_EDIT_MARKER_DELETE          12323
 #define IDS_NUM_REPLACED                18032
 #define IDS_EDIT_TEXT_NOT_FOUND         18033
 #define IDS_EOL_DOS                     30400
@@ -71,9 +77,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        134
-#define _APS_NEXT_COMMAND_VALUE         32800
-#define _APS_NEXT_CONTROL_VALUE         1000
+#define _APS_NEXT_RESOURCE_VALUE        135
+#define _APS_NEXT_COMMAND_VALUE         32802
+#define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

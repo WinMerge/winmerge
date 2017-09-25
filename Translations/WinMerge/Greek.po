@@ -714,6 +714,11 @@ msgstr "Ανα&ζήτηση...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "Αντικατά&σταση...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1655,6 +1660,31 @@ msgstr "Αντι&κατάσταση"
 msgid "Replace &All"
 msgstr "Αντικατάσταση Ό&λων"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "Δημιουργία"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "Ε&φαρμογή"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1684,11 +1714,6 @@ msgstr "Ενεργοποίηση Φίλτρων Γραμμών"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Τυποποιημένες Εκ&φράσεις (μία ανά γραμμή):"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "Δημιουργία"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1825,7 +1850,7 @@ msgstr "Αρχείο&2:"
 msgid "&Swap"
 msgstr "Αντιμετά&θεση"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "Προσάρτηση σε υπάρχον αρχείο"
@@ -1960,7 +1985,7 @@ msgstr "&Γραμμή"
 msgid "&Difference"
 msgstr "&Διαφορά"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "Μετά&βαση"
@@ -2285,11 +2310,6 @@ msgstr "από Χρήστη 2:"
 msgid "Bold"
 msgstr "Έντονα"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2340,7 +2360,7 @@ msgstr "&Στυλ:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Αντι&γραφή στο Πρόχειρο"
@@ -2440,7 +2460,7 @@ msgstr "Σύνολο:"
 msgid "Close"
 msgstr "Κλείσιμο"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2475,7 +2495,7 @@ msgstr "(Επηρεάζει)"
 msgid "Select Codepage for"
 msgstr "Επιλογή Κωδικοσελίδας για"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "Ανά&γνωση Αρχείου:"
@@ -2489,11 +2509,6 @@ msgstr "Απο&θήκ. Αρχείου:"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "Χρήση ιδίας κωδικοσελίδας για αμφότερα"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "Ε&φαρμογή"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2560,7 +2575,7 @@ msgstr "Απλό κείμενο:"
 msgid "Selection:"
 msgstr "Επιλογή:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -3005,11 +3020,6 @@ msgstr "Να μην ξαναγίνει αυτή η &ερώτηση."
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
-msgstr ""
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
 msgstr ""
 
 #: Merge.rc:2C1D73C8
@@ -3604,7 +3614,7 @@ msgstr "Ο φάκελος εργασίας του VSS και η θέση του τρέχοντος αρχείου δεν είναι σε
 msgid "No VSS database(s) found!"
 msgstr "Δε βρέθηκαν βάσεις δεδομένων του VSS!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "Σφάλμα του  VSS:"

@@ -715,6 +715,11 @@ msgstr "Keresé&s...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "&Csere...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1656,6 +1661,31 @@ msgstr "&Csere"
 msgid "Replace &All"
 msgstr "&Mindet"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "Új"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "&Alkalmaz"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1685,11 +1715,6 @@ msgstr ""
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Reguláris kifejezések (soronként egy):"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "Új"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1826,7 +1851,7 @@ msgstr "Fájl&2:"
 msgid "&Swap"
 msgstr "&Megfordítás"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "&Hozzáfûzés a létezõ fájlhoz"
@@ -1961,7 +1986,7 @@ msgstr "&Sorra"
 msgid "&Difference"
 msgstr "&Eltérésre"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "&Ugrás"
@@ -2286,11 +2311,6 @@ msgstr "Felhasználó 2:"
 msgid "Bold"
 msgstr "Félkövér"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2341,7 +2361,7 @@ msgstr "&Stílus:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Másolás vágólapra"
@@ -2441,7 +2461,7 @@ msgstr "Összesen:"
 msgid "Close"
 msgstr "Bezár"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2476,7 +2496,7 @@ msgstr ""
 msgid "Select Codepage for"
 msgstr "Kódlap kiválasztása"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "Fájl töltése:"
@@ -2490,11 +2510,6 @@ msgstr "Fájl menté&se:"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "&Ugyanazon kódlap használata mindkettõhöz"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "&Alkalmaz"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2561,7 +2576,7 @@ msgstr "Sima szöveg:"
 msgid "Selection:"
 msgstr "Kijelölés:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -2974,11 +2989,6 @@ msgstr "&Ne jelenjen meg többet ez a kérdés."
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
-msgstr ""
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
 msgstr ""
 
 #: Merge.rc:2C1D73C8
@@ -3546,7 +3556,7 @@ msgstr "A VSS Munka Könyvtár és a jelenlegi fájl útvonala nem egyezik. Folytassu
 msgid "No VSS database(s) found!"
 msgstr "Nem található VSS adatbázis!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "Hiba a VSS-bõl:"

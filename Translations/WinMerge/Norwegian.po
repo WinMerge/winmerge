@@ -715,6 +715,11 @@ msgstr "S&øk...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "&Erstatt...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1656,6 +1661,31 @@ msgstr "&Erstatt"
 msgid "Replace &All"
 msgstr "Erstatt &alle"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "Ny"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "&Bruk"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1685,11 +1715,6 @@ msgstr "Aktiver linjefiltere"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Regulære uttrykk (en pr. linje):"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "Ny"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1826,7 +1851,7 @@ msgstr "Fil&2:"
 msgid "&Swap"
 msgstr "B&ytt"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "&Legg til i eksisterende fil"
@@ -1961,7 +1986,7 @@ msgstr "Li&nje"
 msgid "&Difference"
 msgstr "&Forskjell"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "&Gå til"
@@ -2290,11 +2315,6 @@ msgstr "Bruker 2:"
 msgid "Bold"
 msgstr "Fet"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2345,7 +2365,7 @@ msgstr "&Stil:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopier til utklippstavle"
@@ -2445,7 +2465,7 @@ msgstr "Totalt:"
 msgid "Close"
 msgstr "Lukk"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2480,7 +2500,7 @@ msgstr "(Påvirker)"
 msgid "Select Codepage for"
 msgstr "Velg tegnsett til"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&Fil-lasting:"
@@ -2494,11 +2514,6 @@ msgstr "Fil-&lagring:"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "&Bruk samme tegnsett for begge"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "&Bruk"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2565,7 +2580,7 @@ msgstr "Normal tekst:"
 msgid "Selection:"
 msgstr "Markering:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -3010,11 +3025,6 @@ msgstr "Ikke still dette &spørsmålet igjen."
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
-msgstr ""
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
 msgstr ""
 
 #: Merge.rc:2C1D73C8
@@ -3631,7 +3641,7 @@ msgstr "VSS Working Folder og plassering av gjeldende fil stemmer ikke overens. 
 msgid "No VSS database(s) found!"
 msgstr "Ingen VSS database(r) funnet!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "Feil fra VSS:"

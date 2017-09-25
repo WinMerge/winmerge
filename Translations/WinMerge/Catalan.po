@@ -714,6 +714,11 @@ msgstr "&Cerca...\tControl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "Subst&itueix...\tControl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1655,6 +1660,31 @@ msgstr "S&ubstitueix-ho"
 msgid "Replace &All"
 msgstr "Su&bstitueix-ho tot"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "Nova"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "&Aplica"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1684,11 +1714,6 @@ msgstr "Habilita els filtres de línia"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Expressions &regulars (una per línia):"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "Nova"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1825,7 +1850,7 @@ msgstr "Fitxer &2:"
 msgid "&Swap"
 msgstr "Inter&canvia"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "A&fegeix al final del fitxer existent"
@@ -1960,7 +1985,7 @@ msgstr "&Línia"
 msgid "&Difference"
 msgstr "&Diferència"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "&Vés-hi"
@@ -2285,11 +2310,6 @@ msgstr "Usuari 2:"
 msgid "Bold"
 msgstr "Negreta"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2340,7 +2360,7 @@ msgstr "&Estil:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Copia al Porta-retalls"
@@ -2440,7 +2460,7 @@ msgstr ""
 msgid "Close"
 msgstr "Tanca"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2475,7 +2495,7 @@ msgstr "(Afecta)"
 msgid "Select Codepage for"
 msgstr "Selecciona pàgina de codis per a"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&Càrrega de fitxers:"
@@ -2489,11 +2509,6 @@ msgstr "&Desament de fitxers:"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "&Empra la mateixa pàgina de codis a ambdós"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "&Aplica"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2560,7 +2575,7 @@ msgstr "Text regular:"
 msgid "Selection:"
 msgstr "Selecció:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -2973,11 +2988,6 @@ msgstr "No tornis a preguntar-ho."
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
-msgstr ""
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
 msgstr ""
 
 #: Merge.rc:2C1D73C8
@@ -3566,7 +3576,7 @@ msgstr "La carpeta de treball del VSS i la ubicació del fitxer actual no concord
 msgid "No VSS database(s) found!"
 msgstr "No s'han trobat cap base de dades del VSS!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "Error del VSS:"

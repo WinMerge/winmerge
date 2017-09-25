@@ -716,6 +716,11 @@ msgstr "検索(&F)...\tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "置換(&E)...\tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr "マーカー(&M)...\tCtrl+Shift+M"
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1661,6 +1666,31 @@ msgstr "置換して次に(&R)"
 msgid "Replace &All"
 msgstr "すべて置換(&A)"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr "マーカー"
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr "マーカーを有効にする(&M)"
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "新規(&N)"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr "背景色(&B)"
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "適用(&A)"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1690,11 +1720,6 @@ msgstr "行フィルタを有効にする"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "正規表現 (行あたり一つ):"
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "新規(&N)"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1835,7 +1860,7 @@ msgstr "ファイル&2:"
 msgid "&Swap"
 msgstr "交換(&S)"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "既存のファイルに追加する(&A)"
@@ -1970,7 +1995,7 @@ msgstr "行(&I)"
 msgid "&Difference"
 msgstr "差異(&D)"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "移動(&G)"
@@ -2305,11 +2330,6 @@ msgstr "ユーザー2:"
 msgid "Bold"
 msgstr "太字"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr "マーカーを有効にする(&E)"
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2360,7 +2380,7 @@ msgstr "スタイル(&S):"
 msgid "&Include File Compare Report"
 msgstr "ファイル比較レポートを含める(&I)"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "クリップボードにコピー(&C)"
@@ -2460,7 +2480,7 @@ msgstr "合計:"
 msgid "Close"
 msgstr "閉じる"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr "中央:"
@@ -2495,7 +2515,7 @@ msgstr "(Affects)"
 msgid "Select Codepage for"
 msgstr "コードページの選択"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "ファイル読込み(&F):"
@@ -2509,11 +2529,6 @@ msgstr "ファイル保存(&S)"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "両側に同じコードページを使用"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "適用(&A)"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2580,7 +2595,7 @@ msgstr "標準テキスト:"
 msgid "Selection:"
 msgstr "選択:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr "マージン:"
@@ -3054,11 +3069,6 @@ msgstr "再びこの質問をしない(&Q)"
 #, c-format
 msgid "Syntax"
 msgstr "シンタックス"
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
-msgstr "マーカー"
 
 #: Merge.rc:2C1D73C8
 #, c-format
@@ -3692,7 +3702,7 @@ msgstr "VSS作業フォルダと現在のファイル位置は一致していません。続行しますか?"
 msgid "No VSS database(s) found!"
 msgstr "VSSのデータベースがみつかりません!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "VSSからのエラー:"

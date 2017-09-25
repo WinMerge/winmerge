@@ -117,8 +117,6 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_PRESERVE_FILETIMES, false);
 	pOptions->InitOption(OPT_TREE_MODE, true);
 
-	pOptions->InitOption(OPT_MARKER_ENABLED, true);
-
 	pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
 	pOptions->InitOption(OPT_CMP_MOVED_BLOCKS, false);
 	pOptions->InitOption(OPT_CMP_MATCH_SIMILAR_LINES, false);

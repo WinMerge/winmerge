@@ -219,6 +219,9 @@
     <ClCompile Include="..\editlib\ccrystaltextmarkers.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
+    <ClCompile Include="..\editlib\ctextmarkerdlg.cpp">
+      <Filter>editlib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Sample.rc">
@@ -331,6 +334,9 @@
     <ClInclude Include="..\editlib\ccrystaltextmarkers.h">
       <Filter>editlib</Filter>
     </ClInclude>
+    <ClInclude Include="..\editlib\ctextmarkerdlg.h">
+      <Filter>editlib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\mg_icons.bmp">
@@ -364,6 +370,9 @@
     </None>
     <None Include="..\editlib\memcombo.inl">
       <Filter>editlib</Filter>
+    </None>
+    <None Include="res\mg_cur.cur">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
 </Project>

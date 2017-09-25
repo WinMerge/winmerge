@@ -716,6 +716,11 @@ msgstr "&Najdi ... \tCtrl+F"
 msgid "Repla&ce...\tCtrl+H"
 msgstr "Zamen&jaj ... \tCtrl+H"
 
+#: Merge.rc:4B91C2D1
+#, c-format
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr ""
+
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
@@ -1659,6 +1664,31 @@ msgstr "&Zamenjaj"
 msgid "Replace &All"
 msgstr "Zamenjaj &vse"
 
+#: Merge.rc:2FC0BA7B
+#, c-format
+msgid "Markers"
+msgstr ""
+
+#: Merge.rc:61E8009D
+#, c-format
+msgid "Enable &Markers"
+msgstr ""
+
+#: Merge.rc:24A380
+#, c-format
+msgid "New"
+msgstr "Nova"
+
+#: Merge.rc:3938FFC5
+#, c-format
+msgid "&Background color:"
+msgstr ""
+
+#: Merge.rc:1D2E49FB
+#, c-format
+msgid "&Apply"
+msgstr "&Uporabi"
+
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
@@ -1688,11 +1718,6 @@ msgstr "Omogoèi vrstiène filtre"
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Regularni izrazi (eden na vrstico): "
-
-#: Merge.rc:24A380
-#, c-format
-msgid "New"
-msgstr "Nova"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -1829,7 +1854,7 @@ msgstr "Datoteka&2"
 msgid "&Swap"
 msgstr "&Zamenjaj"
 
-#: Merge.rc:4B91C2D1
+#: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
 msgstr "&Dodaj k obstojeèi datoteki"
@@ -1964,7 +1989,7 @@ msgstr "&Vrstica"
 msgid "&Difference"
 msgstr "&Razlika"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
 msgstr "Pojdi &na"
@@ -2293,11 +2318,6 @@ msgstr "Uporabnik 2:"
 msgid "Bold"
 msgstr "Krepko"
 
-#: Merge.rc:5A9A713E
-#, c-format
-msgid "&Enable marker"
-msgstr ""
-
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
@@ -2348,7 +2368,7 @@ msgstr "&Stil:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopiraj v odložišèe"
@@ -2448,7 +2468,7 @@ msgstr "Celotno:"
 msgid "Close"
 msgstr "Zapri"
 
-#: Merge.rc:2FC0BA7B
+#: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
 msgstr ""
@@ -2483,7 +2503,7 @@ msgstr "(Spremeni)"
 msgid "Select Codepage for"
 msgstr "Izberi kodno tabelo datoteke za"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&nalaganje datoteke:"
@@ -2497,11 +2517,6 @@ msgstr "&shranjevanje datoteke:"
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "&Uporabi enako kodno tabelo za oboje"
-
-#: Merge.rc:1D2E49FC
-#, c-format
-msgid "&Apply"
-msgstr "&Uporabi"
 
 #: Merge.rc:89AF4FE
 #, c-format
@@ -2568,7 +2583,7 @@ msgstr "Navadno besedilo:"
 msgid "Selection:"
 msgstr "Izbira:"
 
-#: Merge.rc:2FC0BA7C
+#: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
 msgstr ""
@@ -3014,11 +3029,6 @@ msgstr "Tega vprašanja ne postavi veè."
 #, c-format
 msgid "Syntax"
 msgstr "Sintaksa"
-
-#: Merge.rc:2FC0BA7D
-#, c-format
-msgid "Markers"
-msgstr ""
 
 #: Merge.rc:2C1D73C8
 #, c-format
@@ -3635,7 +3645,7 @@ msgstr "VSS delovna mapa in lokacija trenutne datoteke se ne ujemata. Nadaljujem
 msgid "No VSS database(s) found!"
 msgstr "Ne morem najti VSS podatkovne baze!"
 
-#: Merge.rc:61E8009D
+#: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
 msgstr "Napaka od VSS:"
