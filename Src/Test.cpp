@@ -9,6 +9,7 @@
 #include "MergeEditView.h"
 #include "DirDoc.h"
 #include "DirView.h"
+#include "ImgMergeFrm.h"
 #include "DiffContext.h"
 #include "CompareStats.h"
 #include "unicoder.h"
@@ -190,6 +191,70 @@ TEST(CommandLineTest, Desc)
 	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
 	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
 	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(CommandLineTest, Desc2)
+{
+	String projectRoot = getProjectRoot();
+	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dl TestL /dr TestR " + 
+		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
+	);
+	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
+	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(CommandLineTest, Desc3)
+{
+	String projectRoot = getProjectRoot();
+	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dr TestR " + 
+		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
+	);
+	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	EXPECT_EQ(L"Theirs File", pDoc->GetDescription(0));
+	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(CommandLineTest, Desc4)
+{
+	String projectRoot = getProjectRoot();
+	MergeCmdLineInfo cmdInfo((String(GetCommandLineW()) + L" /dl TestL " + 
+		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
+	);
+	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
+	EXPECT_EQ(L"Mine File", pDoc->GetDescription(1));
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(ImageCompareTest, Open)
+{
+	String projectRoot = getProjectRoot();
+	PathContext files = {
+		paths::ConcatPath(projectRoot, L"Src/res/right_to_middle.bmp"),
+		paths::ConcatPath(projectRoot, L"Src/res/right_to_left.bmp")
+	};
+	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
+	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
+	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&files));
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CImgMergeFrame *pDoc = dynamic_cast<CImgMergeFrame *>(pFrame);
+	EXPECT_NE(nullptr, pDoc);
+
+	pFrame->PostMessage(WM_CLOSE);
+	dlg.SetFormerResult(nPrevFormerResult);
+
 }
 
 #endif
