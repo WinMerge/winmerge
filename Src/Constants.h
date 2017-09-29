@@ -28,7 +28,6 @@ const TCHAR CurrentVersionURL[] = _T("http://winmerge.org/winmerge_current_versi
 
 /** @brief Relative (to WinMerge executable ) path to local help file. */
 const TCHAR DocsPath[] = _T("Docs/WinMerge.chm");
-const TCHAR DocsPath_ja[] = _T("Docs/WinMerge_ja.chm");
 
 /** @brief Contributors list. */
 const TCHAR ContributorsPath[] = _T("contributors.txt");
