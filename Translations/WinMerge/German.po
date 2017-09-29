@@ -388,6 +388,16 @@ msgstr "&Hilfe"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Hilfe\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -583,7 +593,7 @@ msgstr "&Spalten anpassen..."
 msgid "Generate &Report..."
 msgstr "&Bericht generieren..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Speichern\tStrg+S"
@@ -678,12 +688,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Rückgängig\tStrg+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Wiederherstellen\tStrg+Y"
@@ -693,7 +703,7 @@ msgstr "&Wiederherstellen\tStrg+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Auss&chneiden\tStrg+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopieren\tStrg+C"
@@ -784,7 +794,7 @@ msgstr "&Normal\tStrg+*"
 msgid "Syntax Highlight"
 msgstr "Syntaxhervorhebung"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1249,7 +1259,7 @@ msgstr "Kopiere &Dateiname"
 msgid "Prediffer Settings"
 msgstr "&Prediffer Einstellungen"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&Kein Prediffer"
@@ -1389,7 +1399,7 @@ msgstr "&Suchen..."
 msgid "B&rowse..."
 msgstr "Su&chen..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1631,7 +1641,7 @@ msgstr "&OK"
 msgid "Replace"
 msgstr "Ersetzen"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Erse&tzen durch:"
@@ -2156,7 +2166,7 @@ msgstr "Geänderte Dateien speichern?"
 msgid "Left side file"
 msgstr "Linke Datei"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "Änderungen &speichern"
@@ -3968,7 +3978,7 @@ msgstr "Rechtes Zeilenende"
 msgid "Left Encoding"
 msgstr "Linke Kodierung"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Rechte Kodierung"
@@ -4013,7 +4023,7 @@ msgstr "Nur Links: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Nur Rechts: %1"

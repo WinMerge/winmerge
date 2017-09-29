@@ -389,6 +389,16 @@ msgstr "도움말(&H)"
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge 도움말(&W)\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -584,7 +594,7 @@ msgstr "열 사용자 정의(&C)..."
 msgid "Generate &Report..."
 msgstr "보고서 만들기(&R)..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "저장(&S)\tCtrl+S"
@@ -679,12 +689,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr "바이너리(&B)"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "실행 취소(&U)\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "다시 실행(&R)\tCtrl+Y"
@@ -694,7 +704,7 @@ msgstr "다시 실행(&R)\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "잘라내기(&T)\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "복사(&C)\tCtrl+C"
@@ -785,7 +795,7 @@ msgstr "보통(&N)\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "구문 강조"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr "차이점 전후(&D)"
@@ -1250,7 +1260,7 @@ msgstr "파일 이름 복사(&F)"
 msgid "Prediffer Settings"
 msgstr "Prediffer 설정"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "prediffer 없음(&N)"
@@ -1390,7 +1400,7 @@ msgstr "찾아보기(&B)"
 msgid "B&rowse..."
 msgstr "찾아보기(&R)"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr "&3(선택 사항):"
@@ -1630,7 +1640,7 @@ msgstr "확인(&O)"
 msgid "Replace"
 msgstr "바꾸기"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "바꿀 내용(&P):"
@@ -2155,7 +2165,7 @@ msgstr "변경된 파일을 저장할까요?"
 msgid "Left side file"
 msgstr "왼쪽 파일"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "변경사항 저장(&S)"
@@ -4033,7 +4043,7 @@ msgstr "오른쪽 줄끝"
 msgid "Left Encoding"
 msgstr "왼쪽 인코딩"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "오른쪽 인코딩"
@@ -4078,7 +4088,7 @@ msgstr "왼쪽만: %1"
 msgid "Middle only: %1"
 msgstr "가운데만: %1"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "오른쪽만: %1"

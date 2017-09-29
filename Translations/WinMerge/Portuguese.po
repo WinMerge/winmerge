@@ -385,6 +385,16 @@ msgstr "A&juda"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Ajuda\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -580,7 +590,7 @@ msgstr "Personalizar Colunas..."
 msgid "Generate &Report..."
 msgstr "A &Gerar Relatório..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Guardar\tCtrl+S"
@@ -675,12 +685,12 @@ msgstr ""
 msgid "&Binary"
 msgstr "&Binário"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Desfazer\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Refazer\tCtrl+Z"
@@ -690,7 +700,7 @@ msgstr "&Refazer\tCtrl+Z"
 msgid "Cu&t\tCtrl+X"
 msgstr "Co&rtar\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Copiar...\tCtrl+C"
@@ -781,7 +791,7 @@ msgstr "&Normal\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Combinar"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr "Contexto de Divisão"
@@ -1246,7 +1256,7 @@ msgstr "Co&piar Nome do Ficheiro"
 msgid "Prediffer Settings"
 msgstr "Definições de pré-diferenciação"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "Não pré-diferenciar"
@@ -1386,7 +1396,7 @@ msgstr "Pesquisar..."
 msgid "B&rowse..."
 msgstr "P&esquisar..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr "&3(Opcional):"
@@ -1626,7 +1636,7 @@ msgstr "OK"
 msgid "Replace"
 msgstr "Substituir"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Substituir por:"
@@ -2151,7 +2161,7 @@ msgstr "Guardar ficheiros modificados?"
 msgid "Left side file"
 msgstr "Ficheiro da esquerda"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "&Guardar alterações"
@@ -3802,7 +3812,7 @@ msgstr "EOL Dtª"
 msgid "Left Encoding"
 msgstr "Codificação Esq"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Codificação Dtª"
@@ -3847,7 +3857,7 @@ msgstr "Apenas da esquerda: %1"
 msgid "Middle only: %1"
 msgstr "Apenas do meio: %1"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Apenas da direita: %1"

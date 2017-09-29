@@ -385,6 +385,16 @@ msgstr "A&jutor"
 msgid "&WinMerge Help\tF1"
 msgstr "Ajutor &WinMerge\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -580,7 +590,7 @@ msgstr "Personalizare &coloane..."
 msgid "Generate &Report..."
 msgstr "Generare &raport..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Salvare\tCtrl+S"
@@ -675,12 +685,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "An&uleazã\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Refã\tCtrl+Y"
@@ -690,7 +700,7 @@ msgstr "&Refã\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Taie\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Copie\tCtrl+C"
@@ -781,7 +791,7 @@ msgstr "&Normal\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Evidenþiere sintaxã"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1246,7 +1256,7 @@ msgstr "Copie numele de &fiºier"
 msgid "Prediffer Settings"
 msgstr "Setãri prediferenþiator"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "Fãrã predifere&nþiator"
@@ -1386,7 +1396,7 @@ msgstr "Rãsf&oieºte..."
 msgid "B&rowse..."
 msgstr "&Rãsfoieºte..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1626,7 +1636,7 @@ msgstr "&Ok"
 msgid "Replace"
 msgstr "Înlocuieºte"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "C&u ce:"
@@ -2151,7 +2161,7 @@ msgstr "Salvare fiºiere modificate?"
 msgid "Left side file"
 msgstr "Fiºier stânga"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "&Salveazã modificãrile"
@@ -3980,7 +3990,7 @@ msgstr "SDL dreapta"
 msgid "Left Encoding"
 msgstr "Set de caractere stânga"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Set de caractere dreapta"
@@ -4025,7 +4035,7 @@ msgstr "Numai stânga: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Numai dreapta: %1"

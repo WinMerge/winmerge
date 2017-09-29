@@ -388,6 +388,16 @@ msgstr "&Laguntza"
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge &Laguntza\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -583,7 +593,7 @@ msgstr "&Antolatu Zutabeak..."
 msgid "Generate &Report..."
 msgstr "Sortu &Jakinarazpena..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Gorde\tCtrl+S"
@@ -678,12 +688,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr "&Binarioa"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Desegin\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Birre&gin\tCtrl+Y"
@@ -693,7 +703,7 @@ msgstr "Birre&gin\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Ebaki\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiatu\tCtrl+C"
@@ -784,7 +794,7 @@ msgstr "&Normala\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Joskera Nabar&mentzea"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1249,7 +1259,7 @@ msgstr "Kopiatu &Agirizena"
 msgid "Prediffer Settings"
 msgstr "Aurrezberdintasun Ezarpenak"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&Ez aurrezberd"
@@ -1389,7 +1399,7 @@ msgstr "Bil&atu..."
 msgid "B&rowse..."
 msgstr "Bi&latu..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1629,7 +1639,7 @@ msgstr "&Ongi"
 msgid "Replace"
 msgstr "Ordeztu"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Ordez&tu honekin:"
@@ -2154,7 +2164,7 @@ msgstr "Gorde amaitutako agiriak?"
 msgid "Left side file"
 msgstr "Ezkerralde agiria"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "Gor&de aldaketak"
@@ -4009,7 +4019,7 @@ msgstr "Eskuin EOL"
 msgid "Left Encoding"
 msgstr "Ezker Kodeaketa"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Eskuin Kodeaketa"
@@ -4054,7 +4064,7 @@ msgstr "Ezkerra bakarrik: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Eskuina bakarrik: %1"

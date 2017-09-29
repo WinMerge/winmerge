@@ -385,6 +385,16 @@ msgstr "&Pomoæ"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Pomoæ\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -580,7 +590,7 @@ msgstr "&Prilagodba kolona..."
 msgid "Generate &Report..."
 msgstr "Pohrani &izvještaj..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Pohrani\tCtrl+S"
@@ -675,12 +685,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Poništi\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Vrati\tCtrl+Y"
@@ -690,7 +700,7 @@ msgstr "&Vrati\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Od&reži\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiraj\tCtrl+C"
@@ -781,7 +791,7 @@ msgstr "&Izvorna velièina\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Oznaèavanje sintakse"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1246,7 +1256,7 @@ msgstr "Kopiraj &naziv datoteke"
 msgid "Prediffer Settings"
 msgstr "Dodaci - postavke "
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&Nema dodataka"
@@ -1386,7 +1396,7 @@ msgstr "&Odabir..."
 msgid "B&rowse..."
 msgstr "&Odabir..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1626,7 +1636,7 @@ msgstr "&U redu"
 msgid "Replace"
 msgstr "Zamijeni"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Zamijeni s:"
@@ -2151,7 +2161,7 @@ msgstr "Pohraniti izmijenjenu datoteku?"
 msgid "Left side file"
 msgstr "Datoteka s lijeva"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "&Pohrani promjene"
@@ -4006,7 +4016,7 @@ msgstr "Završetak retka desne datoteke."
 msgid "Left Encoding"
 msgstr "Kodiranje lijevo"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Kodiranje desno"
@@ -4051,7 +4061,7 @@ msgstr "Samo lijevi: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Samo desni: %1"

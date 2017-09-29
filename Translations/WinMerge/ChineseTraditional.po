@@ -388,6 +388,16 @@ msgstr "說明(&H)"
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge 說明(&W)\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -583,7 +593,7 @@ msgstr "自訂欄位(&C)..."
 msgid "Generate &Report..."
 msgstr "產生報告(&R)..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "儲存(&S)\tCtrl+S"
@@ -678,12 +688,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr "二進制(&B)"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "復原(&U)\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "再做(&R)\tCtrl+Y"
@@ -693,7 +703,7 @@ msgstr "再做(&R)\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "剪下(&U)\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "複製(&C)\tCtrl+C"
@@ -784,7 +794,7 @@ msgstr "恢復原始(&N)\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "語法高亮度顯示"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr "差異上下文(&D)"
@@ -1253,7 +1263,7 @@ msgstr "複製檔名(&F)"
 msgid "Prediffer Settings"
 msgstr "先行處理器設定"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "不要先行處理器(&N)"
@@ -1393,7 +1403,7 @@ msgstr "瀏覽(&B)..."
 msgid "B&rowse..."
 msgstr "瀏覽(&R)..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr "3(非必要)(&3)"
@@ -1635,7 +1645,7 @@ msgstr "確定(&O)"
 msgid "Replace"
 msgstr "取代"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "取代為(&P)："
@@ -2160,7 +2170,7 @@ msgstr "儲存修改的檔案？"
 msgid "Left side file"
 msgstr "左邊檔案"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "儲存變更(&S)"
@@ -4014,7 +4024,7 @@ msgstr "右邊 EOL"
 msgid "Left Encoding"
 msgstr "左邊編碼"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "右邊編碼"
@@ -4059,7 +4069,7 @@ msgstr "僅左邊：%1"
 msgid "Middle only: %1"
 msgstr "僅中間：%1"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "僅右邊：%1"

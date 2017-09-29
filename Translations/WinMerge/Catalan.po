@@ -384,6 +384,16 @@ msgstr "&Ajuda"
 msgid "&WinMerge Help\tF1"
 msgstr ""
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -579,7 +589,7 @@ msgstr "&Personalitza les columnes..."
 msgid "Generate &Report..."
 msgstr "Gene&ra un informe..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Desa\tControl+S"
@@ -674,12 +684,12 @@ msgstr ""
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Desfés\tControl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Re&fés\tControl+Y"
@@ -689,7 +699,7 @@ msgstr "Re&fés\tControl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Retalla\tControl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "C&opia\tControl+C"
@@ -780,7 +790,7 @@ msgstr ""
 msgid "Syntax Highlight"
 msgstr "Ressaltat de sintaxi"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1245,7 +1255,7 @@ msgstr "Copia el nom del &fitxer"
 msgid "Prediffer Settings"
 msgstr "Ajustos de prediferenciació"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&Sense prediferenciació"
@@ -1385,7 +1395,7 @@ msgstr "&Navega..."
 msgid "B&rowse..."
 msgstr ""
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1625,7 +1635,7 @@ msgstr "&D'acord"
 msgid "Replace"
 msgstr "Substitueix"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Substitueix-ho p&er:"
@@ -2150,7 +2160,7 @@ msgstr "Voleu desar els fitxers modificats?"
 msgid "Left side file"
 msgstr "Fitxer del costat esquerre"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "&Desa-hi els canvis"
@@ -3941,7 +3951,7 @@ msgstr "Salt de línia dreta"
 msgid "Left Encoding"
 msgstr "Codificació esquerra"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Codificació dreta"
@@ -3986,7 +3996,7 @@ msgstr "Només esquerra: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Només dreta: %1"

@@ -386,6 +386,16 @@ msgstr "&Pomoè"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge pomoè\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -581,7 +591,7 @@ msgstr "&Prilagodi stolpce ..."
 msgid "Generate &Report..."
 msgstr "Izdelaj &poroèilo ..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Shrani\tCtrl+S"
@@ -676,12 +686,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr "&Binarno"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Razveljavi\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Uveljavi\tCtrl+Y"
@@ -691,7 +701,7 @@ msgstr "&Uveljavi\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Iz&reži\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiraj\tCtrl+C"
@@ -782,7 +792,7 @@ msgstr "&Izvorna velikost\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Oznaèevanje sintakse"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1247,7 +1257,7 @@ msgstr "Kopiraj &ime datoteke"
 msgid "Prediffer Settings"
 msgstr "Nastavitve predpregleda razlik"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&Brez predpregleda razlik"
@@ -1387,7 +1397,7 @@ msgstr "&Brskaj ..."
 msgid "B&rowse..."
 msgstr "B&rskaj ..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1629,7 +1639,7 @@ msgstr "&V redu"
 msgid "Replace"
 msgstr "Zamenjaj"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Zamenjaj z:"
@@ -2154,7 +2164,7 @@ msgstr "Shrani spremenjene datoteke?"
 msgid "Left side file"
 msgstr "Leva stran datoteke"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "&Shrani spremembe"
@@ -4010,7 +4020,7 @@ msgstr "Znake za konec vrstice (EOL) na desni datoteki"
 msgid "Left Encoding"
 msgstr "Kodiranje levo"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Kodiranje desno"
@@ -4055,7 +4065,7 @@ msgstr "Samo leva: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Samo desna: %1"

@@ -384,6 +384,16 @@ msgstr "&Βοήθεια"
 msgid "&WinMerge Help\tF1"
 msgstr "Βοήθεια WinMerge\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -579,7 +589,7 @@ msgstr "&Προσαρμογή Στηλών..."
 msgid "Generate &Report..."
 msgstr "Δημιουργία Ανα&φοράς..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "Απο&θήκευση\tCtrl+S"
@@ -674,12 +684,12 @@ msgstr ""
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Α&ναίρεση\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Επανάλη&ψη\tCtrl+Y"
@@ -689,7 +699,7 @@ msgstr "Επανάλη&ψη\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Απο&κοπή\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Αντι&γραφή\tCtrl+C"
@@ -780,7 +790,7 @@ msgstr "&Κανονικό\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "&Χρωματισμός Κώδικα"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1245,7 +1255,7 @@ msgstr "Αντιγραφή Ο&νόματος"
 msgid "Prediffer Settings"
 msgstr "Ρυθμίσεις Προεπεξεργαστή Διαφορών"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "Χωρίς προεπεξεργασία διαφορών"
@@ -1385,7 +1395,7 @@ msgstr "Ανα&ζήτηση..."
 msgid "B&rowse..."
 msgstr "Ανα&ζήτηση..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1625,7 +1635,7 @@ msgstr "&ΟΚ"
 msgid "Replace"
 msgstr "Αντικατάσταση"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Αντι&κατάσταση με:"
@@ -2150,7 +2160,7 @@ msgstr "Αποθήκευση τροποποιημένων αρχείων;"
 msgid "Left side file"
 msgstr "Αρχείο αριστερής πλευράς"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "Απο&θήκευση αλλαγών"
@@ -3979,7 +3989,7 @@ msgstr "Χαρακτήρας Τερματισμού Δεξιού"
 msgid "Left Encoding"
 msgstr "Κωδικοσελίδα Αριστερού"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Κωδικοσελίδα Δεξιού"
@@ -4024,7 +4034,7 @@ msgstr "Αριστερά μόνο: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Δεξιά μόνο: %1"

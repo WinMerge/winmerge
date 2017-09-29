@@ -384,6 +384,16 @@ msgstr "&H —«Â‰„« "
 msgid "&WinMerge Help\tF1"
 msgstr "&W —«Â‰„«Ì ÊÌ‰„—Ã \tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -579,7 +589,7 @@ msgstr "&C ”›«—‘Ì ò—œ‰ ” Ê‰Â« ... "
 msgid "Generate &Report..."
 msgstr "&R  Ê·Ìœ ê“«—‘ ... "
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&S –ŒÌ—Â \tCtrl+S"
@@ -674,12 +684,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&U »Ì «À— ‘œ‰ ¬Œ—Ì‰ œ” Ê— \tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&R  ò—«— ¬Œ—Ì‰ œ” Ê— \tCtrl+Y"
@@ -689,7 +699,7 @@ msgstr "&R  ò—«— ¬Œ—Ì‰ œ” Ê— \tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&t »—‘ \tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&C —Ê‰Ê‘  »—œ«—Ì \tCtrl+C"
@@ -780,7 +790,7 @@ msgstr "&N „⁄„Ê·Ì \tCtrl+*"
 msgid "Syntax Highlight"
 msgstr " „‘Œ’ ‰„Êœ‰ ‰ÕÊ "
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1245,7 +1255,7 @@ msgstr "&F —Ê‰Ê‘  »—œ«—Ì ‰«„ Å—Ê‰œÂ"
 msgid "Prediffer Settings"
 msgstr "  ‰ŸÌ„Â«Ì ÅÌ‘ ›—ﬁ ê–«—  "
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&N »œÊ‰ ÅÌ‘ ›—ﬁ ê–«— "
@@ -1385,7 +1395,7 @@ msgstr "&B „—Ê— "
 msgid "B&rowse..."
 msgstr "&r „—Ê— ... "
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1625,7 +1635,7 @@ msgstr "&O  «ÌÌœ "
 msgid "Replace"
 msgstr " Ã«Ìê“Ì‰Ì "
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "&p Ã«Ìê“Ì‰Ì »« : "
@@ -2150,7 +2160,7 @@ msgstr " ¬Ì« Å—Ê‰œÂ Â«Ì «’·«Õ ‘œÂ –ŒÌ—Â ‘Ê‰œø "
 msgid "Left side file"
 msgstr " Å—Ê‰œÂ ”„  çÅÌ "
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "&S –ŒÌ—Â  €ÌÌ—«  "
@@ -4003,7 +4013,7 @@ msgstr "  —«”   EOL "
 msgid "Left Encoding"
 msgstr " òœ»‰œÌ çÅ "
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr " òœ»‰œÌ —«”  "
@@ -4048,7 +4058,7 @@ msgstr " ›ﬁÿ çÅ : %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr " ›ﬁÿ —«”  : %1"
