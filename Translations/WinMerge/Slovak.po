@@ -385,6 +385,16 @@ msgstr "Po&moc"
 msgid "&WinMerge Help\tF1"
 msgstr "PomocnÌk &WinMerge\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -580,7 +590,7 @@ msgstr "&PrispÙsobiù stÂpce..."
 msgid "Generate &Report..."
 msgstr "Vystvoriù &spr·vu..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Uloûiù\tCtrl+S"
@@ -675,12 +685,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Vr·tiù\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Opakovaù\tCtrl+Y"
@@ -690,7 +700,7 @@ msgstr "&Opakovaù\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "V&ystrihn˙ù\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&KopÌrovaù\tCtrl+C"
@@ -781,7 +791,7 @@ msgstr "&Norm·lna veækosù\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Zv˝razÚovanie syntaxe"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1246,7 +1256,7 @@ msgstr "KopÌrovaù n·zov &s˙boru"
 msgid "Prediffer Settings"
 msgstr "Nastavenia preprocesora"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&Bez preprocesora"
@@ -1386,7 +1396,7 @@ msgstr "&Prech·dzaù..."
 msgid "B&rowse..."
 msgstr ""
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1626,7 +1636,7 @@ msgstr "&OK"
 msgid "Replace"
 msgstr "Nahradiù"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Nahradiù:"
@@ -2151,7 +2161,7 @@ msgstr "Uloûiù zmenenÈ s˙bory?"
 msgid "Left side file"
 msgstr "S˙bor na æavej strane"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "&Uloûiù zmeny"
@@ -3962,7 +3972,7 @@ msgstr "Konce riadkov vpravo"
 msgid "Left Encoding"
 msgstr "KÛdovanie væavo"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "KÛdovanie vpravo"
@@ -4007,7 +4017,7 @@ msgstr "Iba væavo: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Iba vpravo: %1"

@@ -387,6 +387,16 @@ msgstr "&Помощь"
 msgid "&WinMerge Help\tF1"
 msgstr "Справка &WinMerge\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -582,7 +592,7 @@ msgstr "&Настроить колонки..."
 msgid "Generate &Report..."
 msgstr "Создать &отчет..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Сохранить\tCtrl+S"
@@ -677,12 +687,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Отмена\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "В&ернуть\tCtrl+Y"
@@ -692,7 +702,7 @@ msgstr "В&ернуть\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Вы&резать\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Копировать\tCtrl+C"
@@ -783,7 +793,7 @@ msgstr "Обычный\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Подсветка синтаксиса"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1248,7 +1258,7 @@ msgstr "Скопировать имя файла"
 msgid "Prediffer Settings"
 msgstr "Параметры предсравнения"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&Нет предсравнения"
@@ -1388,7 +1398,7 @@ msgstr "&Обзор..."
 msgid "B&rowse..."
 msgstr "Обзор"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1628,7 +1638,7 @@ msgstr "&Ok"
 msgid "Replace"
 msgstr "Замена"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "За&мена: "
@@ -2153,7 +2163,7 @@ msgstr "Сохранить изменения в файлах"
 msgid "Left side file"
 msgstr "Файл с левой стороны"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "&Сохранить изменения"
@@ -4005,7 +4015,7 @@ msgstr "Правый EOL"
 msgid "Left Encoding"
 msgstr "Кодирование файла слева"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Кодирование файла справа"
@@ -4050,7 +4060,7 @@ msgstr "Только слева: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Только справа: %1"

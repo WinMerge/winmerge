@@ -386,6 +386,16 @@ msgstr "ヘルプ(&H)"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge ヘルプ\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -581,7 +591,7 @@ msgstr "列の設定(&C)..."
 msgid "Generate &Report..."
 msgstr "レポートの生成(&R)..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "保存(&S)\tCtrl+S"
@@ -676,12 +686,12 @@ msgstr "XML(&X)"
 msgid "&Binary"
 msgstr "バイナリ(&B)"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "元に戻す(&U)\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "やり直し(&R)\tCtrl+Y"
@@ -691,7 +701,7 @@ msgstr "やり直し(&R)\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "切り取り(&T)\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "コピー(&C)\tCtrl+C"
@@ -782,7 +792,7 @@ msgstr "元に戻す(&N)\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "シンタックスハイライト"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr "Diffコンテキスト(&D):"
@@ -1247,7 +1257,7 @@ msgstr "ファイル名をコピー(&F)"
 msgid "Prediffer Settings"
 msgstr "比較前処理プラグイン設定"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "使用しない(&N)"
@@ -1387,7 +1397,7 @@ msgstr "参照(&B)..."
 msgid "B&rowse..."
 msgstr "参照(&R)"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr "&3(オプション)"
@@ -1631,7 +1641,7 @@ msgstr "&Ok"
 msgid "Replace"
 msgstr "置換"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "置換後の文字列(&P):"
@@ -2160,7 +2170,7 @@ msgstr "変更されたファイルを保存しますか?"
 msgid "Left side file"
 msgstr "左側ファイル"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "変更を保存する(&S)"
@@ -4075,7 +4085,7 @@ msgstr "右EOL"
 msgid "Left Encoding"
 msgstr "左エンコーディング"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "右エンコーディング"
@@ -4120,7 +4130,7 @@ msgstr "左側のみ: %1"
 msgid "Middle only: %1"
 msgstr "中央のみ: %1"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "右側のみ: %1"

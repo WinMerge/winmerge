@@ -385,6 +385,16 @@ msgstr "Ya&rdým"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Yardýmý\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -580,7 +590,7 @@ msgstr "&Sütunlarý Ayarla..."
 msgid "Generate &Report..."
 msgstr "&Rapor Hazýrla..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Kaydet\tCtrl+S"
@@ -675,12 +685,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Geri Al\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Yinele\tCtrl+Y"
@@ -690,7 +700,7 @@ msgstr "&Yinele\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "K&es\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopyala\tCtrl+C"
@@ -781,7 +791,7 @@ msgstr "&Normal\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Sözdizimi Vurgusu"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1246,7 +1256,7 @@ msgstr "&Dosya Adýný Kopyala"
 msgid "Prediffer Settings"
 msgstr "Ön Fark Ayarlarý"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "Ö&n fark yok"
@@ -1386,7 +1396,7 @@ msgstr "Gö&zat..."
 msgid "B&rowse..."
 msgstr "Gö&zat..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1629,7 +1639,7 @@ msgstr "&Tamam"
 msgid "Replace"
 msgstr "Deðiþtir"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Þununla &deðiþtir:"
@@ -2154,7 +2164,7 @@ msgstr "Dosya deðiþiklikleri kaydedilsin mi?"
 msgid "Left side file"
 msgstr "Sol taraftaki dosya"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "Deðiþiklikleri &kaydet"
@@ -4009,7 +4019,7 @@ msgstr "Sað Satýr Sonu"
 msgid "Left Encoding"
 msgstr "Soldaki Kodlama"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Saðdaki Kodlama"
@@ -4054,7 +4064,7 @@ msgstr "Yalnýz solda: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Yalnýz saðda: %1"

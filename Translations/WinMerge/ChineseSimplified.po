@@ -385,6 +385,16 @@ msgstr "帮助(&H)"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge帮助\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -580,7 +590,7 @@ msgstr "选择列(&C)..."
 msgid "Generate &Report..."
 msgstr "生成报告(&R)..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "保存(&S)\tCtrl+S"
@@ -675,12 +685,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "撤销(&U)\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "重复(&R)\tCtrl+Y"
@@ -690,7 +700,7 @@ msgstr "重复(&R)\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "剪切(&T)\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "复制(&C)\tCtrl+C"
@@ -781,7 +791,7 @@ msgstr "正常大小(&N)\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "语法高亮"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1246,7 +1256,7 @@ msgstr "复制文件名(&F)"
 msgid "Prediffer Settings"
 msgstr "预对比设置"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "不使用(&N)"
@@ -1386,7 +1396,7 @@ msgstr "浏览(&B)..."
 msgid "B&rowse..."
 msgstr "浏览(&R)..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1626,7 +1636,7 @@ msgstr "确定(&O)"
 msgid "Replace"
 msgstr "替换"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "替换为(&P):"
@@ -2151,7 +2161,7 @@ msgstr "保存修改后的文件吗？"
 msgid "Left side file"
 msgstr "左侧文件"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "保存修改(&S)"
@@ -3942,7 +3952,7 @@ msgstr "右侧换行符"
 msgid "Left Encoding"
 msgstr "左侧文件编码"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "右侧文件编码"
@@ -3987,7 +3997,7 @@ msgstr "仅在左侧: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "仅在右侧: %1"

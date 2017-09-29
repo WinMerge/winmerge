@@ -385,6 +385,16 @@ msgstr "&Hjälp"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Hjälp\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -580,7 +590,7 @@ msgstr "&Anpassa kolumner..."
 msgid "Generate &Report..."
 msgstr "Generera &rapport..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Spara\tCtrl+S"
@@ -675,12 +685,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Ångra\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Gör om\tCtrl+Y"
@@ -690,7 +700,7 @@ msgstr "&Gör om\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Klipp ut\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "K&opiera\tCtrl+C"
@@ -781,7 +791,7 @@ msgstr "&Normal\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Syntaxmarkering"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1246,7 +1256,7 @@ msgstr "Kopiera Filnamn"
 msgid "Prediffer Settings"
 msgstr "Prediffer-inställningar"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&Ingen Prediffer"
@@ -1386,7 +1396,7 @@ msgstr "&Bläddra..."
 msgid "B&rowse..."
 msgstr "Bläddra..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&3(Optional):"
 msgstr ""
@@ -1626,7 +1636,7 @@ msgstr "&OK"
 msgid "Replace"
 msgstr "Ersätt"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Ersä&tt med:"
@@ -2151,7 +2161,7 @@ msgstr "Spara ändrade filer?"
 msgid "Left side file"
 msgstr "Vänster fil"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "&Spara ändringar"
@@ -4007,7 +4017,7 @@ msgstr "Höger radslutstyp"
 msgid "Left Encoding"
 msgstr "Vänster kodning"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Höger kodning"
@@ -4052,7 +4062,7 @@ msgstr "Bara vänster: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Bara höger: %1"

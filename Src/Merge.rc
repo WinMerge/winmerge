@@ -218,6 +218,8 @@ BEGIN
     BEGIN
         MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
+        MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
+        MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "&Check For Updates",          ID_HELP_CHECKFORUPDATES
         MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
@@ -348,6 +350,8 @@ BEGIN
     BEGIN
         MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
+        MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
+        MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "&Check For Updates",          ID_HELP_CHECKFORUPDATES
         MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
@@ -594,6 +598,8 @@ BEGIN
     BEGIN
         MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
+        MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
+        MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "&Check For Updates",          ID_HELP_CHECKFORUPDATES
         MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
