@@ -76,7 +76,7 @@ void UnicodeConverter::toUTF16(const std::string& utf8String, std::wstring& utf1
 }
 
 
-void UnicodeConverter::toUTF16(const char* utf8String, int length, std::wstring& utf16String)
+void UnicodeConverter::toUTF16(const char* utf8String, size_t length, std::wstring& utf16String)
 {
 	poco_check_ptr (utf8String);
 
@@ -147,7 +147,7 @@ void UnicodeConverter::toUTF8(const std::wstring& utf16String, std::string& utf8
 }
 
 
-void UnicodeConverter::toUTF8(const wchar_t* utf16String, int length, std::string& utf8String)
+void UnicodeConverter::toUTF8(const wchar_t* utf16String, size_t length, std::string& utf8String)
 {
 	utf8String.clear();
 	UTF8Encoding utf8Encoding;
@@ -159,7 +159,7 @@ void UnicodeConverter::toUTF8(const wchar_t* utf16String, int length, std::strin
 
 void UnicodeConverter::toUTF8(const wchar_t* utf16String, std::string& utf8String)
 {
-	toUTF8(utf16String, (int) wcslen(utf16String), utf8String);
+	toUTF8(utf16String, wcslen(utf16String), utf8String);
 }
 
 

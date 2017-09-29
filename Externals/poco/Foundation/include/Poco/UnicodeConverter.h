@@ -58,7 +58,7 @@ public:
 	static void toUTF16(const std::string& utf8String, std::wstring& utf16String);
 		/// Converts the given UTF-8 encoded string into an UTF-16 encoded wstring.
 
-	static void toUTF16(const char* utf8String, int length, std::wstring& utf16String);	
+	static void toUTF16(const char* utf8String, size_t length, std::wstring& utf16String);	
 		/// Converts the given UTF-8 encoded character sequence into an UTF-16 encoded string.
 
 	static void toUTF16(const char* utf8String, std::wstring& utf16String);	
@@ -67,7 +67,7 @@ public:
 	static void toUTF8(const std::wstring& utf16String, std::string& utf8String);
 		/// Converts the given UTF-16 encoded wstring into an UTF-8 encoded string.
 
-	static void toUTF8(const wchar_t* utf16String, int length, std::string& utf8String);
+	static void toUTF8(const wchar_t* utf16String, size_t length, std::string& utf8String);
 		/// Converts the given zero-terminated UTF-16 encoded wide character sequence into an UTF-8 encoded wstring.
 
 	static void toUTF8(const wchar_t* utf16String, std::string& utf8String);
