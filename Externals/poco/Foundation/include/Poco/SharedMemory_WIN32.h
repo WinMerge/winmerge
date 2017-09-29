@@ -98,7 +98,7 @@ private:
 	std::string _name;
 	HANDLE  _memHandle;
 	HANDLE  _fileHandle;
-	DWORD   _size;
+	LONGLONG  _size;
 	DWORD   _mode;
 	char*   _address;
 };
