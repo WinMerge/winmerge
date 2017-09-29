@@ -317,7 +317,7 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html"
+            VALUE "CompanyName", "http://winmerge.org"
             VALUE "FileDescription", "WinMerge Shell Integration library"
             VALUE "FileVersion", "1.16.5.11"
             VALUE "InternalName", "ShellExtension"

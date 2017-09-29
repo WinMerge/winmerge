@@ -1,7 +1,7 @@
 cd /d "%~dp0"
 
 call SetVersion.cmd
-set DISTDIR=c:\web page\geocities
+set DISTDIR=.\Build\Releases
 
 set GITHUB_USER=sdottaka
 set GITHUB_REPO=winmerge-v2
@@ -10,7 +10,7 @@ set GITHUB_REPO=winmerge-v2
 @echo off
 echo virustotal.com's result:
 echo.
-for /F "delims=" %%f in ('type "%DISTDIR%\jp_files.txt"') do (
+for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
   for /F %%h in ('certutil -hashfile %%f SHA256 ^| findstr -v hash') do echo %%~nxf: https://www.virustotal.com/en/file/%%h/analysis/
 )
 @echo on
@@ -20,7 +20,7 @@ type _tmp_.txt | c:\tools\github-release release --tag %APPVER% --name "WinMerge
 
 del _tmp_.txt
 
-for /F "delims=" %%f in ('type "%DISTDIR%\jp_files.txt"') do (
+for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
   c:\tools\github-release upload -t %APPVER% -n %%~nxf -f %%f
 )
 

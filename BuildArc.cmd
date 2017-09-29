@@ -1,8 +1,10 @@
 cd /d "%~dp0"
 
 call SetVersion.cmd
-set DISTDIR=\Web Page\geocities
+set DISTDIR=.\Build\Releases
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
+
+mkdir "%DISTDIR%" 2> NUL
 
 copy "Build\WinMerge-%RCVER%-Setup.exe" "WinMerge-%APPVER%-Setup.exe"
 copy "Build\WinMerge-%RCVER%-x64-Setup.exe" "WinMerge-%APPVER%-x64-Setup.exe"
@@ -149,16 +151,16 @@ echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-x64-Setup.exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
-) > "%DISTDIR%\jp_files.txt"
+) > "%DISTDIR%\files.txt"
 
 
-for /F "delims=" %%f in ('type "%DISTDIR%\jp_files.txt"') do (
+for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
   "%ProgramFiles(x86)%\VirusTotalUploader2\VirusTotalUploader2.2.exe" %%f
 )
 
 @echo off
 echo.
-for /F "delims=" %%f in ('type "%DISTDIR%\jp_files.txt"') do (
+for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
   for /F %%h in ('certutil -hashfile %%f SHA256 ^| findstr -v hash') do echo %%~nxf: https://www.virustotal.com/en/file/%%h/analysis/
 )
 

@@ -59,12 +59,12 @@ AppName=WinMerge
 AppVersion={#AppVersion}
 AppVerName=WinMerge {#AppVersion}
 AppPublisher=Thingamahoochie Software
-AppPublisherURL=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
-AppSupportURL=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
-AppUpdatesURL=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
+AppPublisherURL=http://WinMerge.org/
+AppSupportURL=http://WinMerge.org/
+AppUpdatesURL=http://WinMerge.org/
 
 ; Installer executable's version resource info
-VersionInfoCompany=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
+VersionInfoCompany=http://winmerge.org
 VersionInfoDescription=WinMerge Installer
 VersionInfoVersion={#AppVersion}
 
