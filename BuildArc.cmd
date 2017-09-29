@@ -55,9 +55,7 @@ for %%i in (Translations\Docs\Readme\ReadMe-*.txt) do (
 
 rem Help
 copy Build\Manual\htmlhelp\WinMerge.chm "%DISTDIR%\2.14-zip-version\WinMerge\Docs"
-copy Build\Manual\htmlhelp\WinMerge_ja.chm "%DISTDIR%\2.14-zip-version\WinMerge\Docs"
 copy Build\Manual\htmlhelp\WinMerge.chm "%DISTDIR%\2.14-x64-zip-version\WinMerge\Docs"
-copy Build\Manual\htmlhelp\WinMerge_ja.chm "%DISTDIR%\2.14-x64-zip-version\WinMerge\Docs"
 
 rem Excecutables
 copy Build\MergeUnicodeRelease\WinMergeU.exe "%DISTDIR%\2.14-zip-version\WinMerge\"
