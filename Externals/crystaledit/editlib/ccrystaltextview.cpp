@@ -4835,7 +4835,11 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int 
       nLen = nLength;
       for (;;)
         {
-          LPCTSTR pszPos = _tcsstr (pszFindWhere, pszFindWhat);
+		  LPCTSTR pszPos;
+		  if (dwFlags & FIND_MATCH_CASE)
+			  pszPos = _tcsstr(pszFindWhere, pszFindWhat);
+		  else
+			  pszPos = StrStrI(pszFindWhere, pszFindWhat);
           if (pszPos == NULL)
             return -1;
           if ((dwFlags & FIND_WHOLE_WORD) == 0)
@@ -4978,8 +4982,6 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
   else
     {
       nEolns = 0;
-      if ((dwFlags & FIND_MATCH_CASE) == 0)
-        what.MakeUpper ();
     }
   if (dwFlags & FIND_DIRECTION_UP)
     {
@@ -5038,8 +5040,6 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                   LPCTSTR pszChars = GetLineChars (ptCurrentPos.y);
                   _tcsncpy(line.GetBuffer(ptCurrentPos.x + 2), pszChars, ptCurrentPos.x + 1);
                   line.ReleaseBuffer (ptCurrentPos.x + 1);
-                  if ((dwFlags & FIND_MATCH_CASE) == 0)
-                    line.MakeUpper ();
                 }
 
               int nFoundPos = -1;
@@ -5132,8 +5132,6 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                   LPTSTR pszBuf = line.GetBuffer (nLineLength + 1);
                   _tcsncpy (pszBuf, pszChars, nLineLength);
                   line.ReleaseBuffer (nLineLength);
-                  if ((dwFlags & FIND_MATCH_CASE) == 0)
-                    line.MakeUpper ();
                 }
 
               //  Perform search in the line
