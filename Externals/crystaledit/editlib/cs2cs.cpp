@@ -65,11 +65,11 @@ long
 str_pos (LPCTSTR whole, LPCTSTR piece)
 {
   LPCTSTR s = whole;
-  long l = _tcslen (piece);
+  size_t l = _tcslen (piece);
 
   while (*s)
     if (!_tcsnicmp (s++, piece, l))
-      return s - whole - 1;
+      return static_cast<long>(s - whole - 1);
   return -2;
 }
 
@@ -107,7 +107,7 @@ skip_word (LPCTSTR s)
   return skip_spaces (s);
 }
 
-long
+size_t
 get_coding (LPCTSTR name, type_codes *codes, int *coding)
 {
   long i, pos;
@@ -122,11 +122,11 @@ get_coding (LPCTSTR name, type_codes *codes, int *coding)
   return -2;
 }
 
-long
+size_t
 fget_coding (LPCTSTR text, int *coding)
 {
-  long posit = 0;
-  long i = 0;
+  size_t posit = 0;
+  size_t i = 0;
   LPCTSTR s, s1;
 
   while ((i = str_pos (text, FD_ENCODING_LBRACKET)) >= 0)
@@ -179,7 +179,7 @@ TCHAR iconvert_char (TCHAR ch, int source_coding, int destination_coding, bool a
 int
 iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabet_only)
   {
-    long posit = -2, i, j;
+    size_t posit = -2, i, j;
     LPCTSTR source_chars, destination_chars, cod_pos = NULL;
     TCHAR ch;
     LPTSTR s = string;
@@ -195,7 +195,7 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
     if (destination_coding < 0)
       return -2;
   
-    int chars_count = alphabet_only ? chars_alphabet_count : chars_all_count;
+    const size_t chars_count = alphabet_only ? chars_alphabet_count : chars_all_count;
     source_chars = source_codes[source_coding].codes;
     destination_chars = destination_codes[destination_coding].codes;
     for (;;)
