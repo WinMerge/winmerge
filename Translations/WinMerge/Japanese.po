@@ -389,12 +389,12 @@ msgstr "&WinMerge ヘルプ\tF1"
 #: Merge.rc:1B17601E
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "リリースノート(&E)"
 
 #: Merge.rc:6E470BE7
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "翻訳(&T)"
 
 #: Merge.rc:3938FFC2
 #, c-format
@@ -5082,4 +5082,14 @@ msgstr "画像(&I)"
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
 msgstr ""
+
+#: Merge.rc:73B321AA
+#, c-format
+msgid "%1 does not exist. Do you want to create it?"
+msgstr "%1 は存在しません。作成しますか?"
+
+#: Merge.rc:3A5D5964
+#, c-format
+msgid "Failed to create folder."
+msgstr "フォルダの作成に失敗しました。"
 
