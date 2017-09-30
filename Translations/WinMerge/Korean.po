@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2017-10-14 10:21+0900\n"
+"PO-Revision-Date: 2017-05-16 08:22+0900\n"
 "Last-Translator: sheppaul <sheppaul at gmail.com>\n"
 "Language-Team: Korean <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-Poedit-SourceCharset: CP949\n"
 "X-Poedit-Basepath: ../../Src\n"
 "Language: ko\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -392,12 +392,17 @@ msgstr "WinMerge 도움말(&W)\tF1"
 #: Merge.rc:1B17601E
 #, c-format
 msgid "R&elease Notes"
-msgstr "릴리즈 노트(&E)"
+msgstr ""
 
 #: Merge.rc:6E470BE7
 #, c-format
 msgid "&Translations"
-msgstr "번역(&T)"
+msgstr ""
+
+#: Merge.rc:3938FFC2
+#, c-format
+msgid "&Check For Updates"
+msgstr "업데이트 확인(&C)"
 
 #: Merge.rc:1C6125F4
 #, c-format
@@ -409,7 +414,7 @@ msgstr "설정 로그(&O)"
 msgid "&GNU General Public License"
 msgstr "GNU 일반 공중 라이선스(&G)"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr "WinMerge 정보(&A)..."
@@ -727,7 +732,7 @@ msgstr "바꾸기(&C)...\tCtrl+H"
 #: Merge.rc:4B91C2D1
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr "마커(&M)...\tCtrl+Shift+M"
+msgstr ""
 
 #: Merge.rc:669F87F4
 #, c-format
@@ -749,7 +754,7 @@ msgstr "책갈피(&B)"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "책갈피 토글(&T)\tCtrl+F2"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "다음 책갈피(&N)\tF2"
@@ -1385,30 +1390,20 @@ msgstr "공헌자"
 msgid "Select Files or Folders"
 msgstr "폴더/파일 선택"
 
-#: Merge.rc:43017E4D
-#, c-format
-msgid "&1st:"
-msgstr ""
-
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "찾아보기(&B)"
-
-#: Merge.rc:43017E4E
-#, c-format
-msgid "&2nd:"
-msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "찾아보기(&R)"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:6E470BEE
 #, c-format
-msgid "&3rd(Optional):"
-msgstr "&3rd(선택 사항):"
+msgid "&3(Optional):"
+msgstr "&3(선택 사항):"
 
 #: Merge.rc:78E0CE0F
 #, c-format
@@ -1683,22 +1678,22 @@ msgstr "모두 바꿈(&A)"
 #: Merge.rc:2FC0BA7B
 #, c-format
 msgid "Markers"
-msgstr "마커"
+msgstr ""
 
 #: Merge.rc:61E8009D
 #, c-format
 msgid "Enable &Markers"
-msgstr "마커 활성화(&M)"
+msgstr ""
 
 #: Merge.rc:24A380
 #, c-format
 msgid "New"
 msgstr "새로 만들기"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
-msgstr "배경 색상(&B):"
+msgstr ""
 
 #: Merge.rc:1D2E49FB
 #, c-format
@@ -1830,7 +1825,7 @@ msgstr "삭제한 파일은 휴지통으로 보내기(&P)"
 msgid "&External editor:"
 msgstr "외부 편집기(&E):"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "필터 폴더(&F):"
@@ -1865,7 +1860,7 @@ msgstr "파일&1:"
 msgid "File&2:"
 msgstr "파일&2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "맞바꾸기(&S)"
@@ -2170,7 +2165,7 @@ msgstr "변경된 파일을 저장할까요?"
 msgid "Left side file"
 msgstr "왼쪽 파일"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "변경사항 저장(&S)"
@@ -2341,27 +2336,27 @@ msgstr "굵게"
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
-msgstr "마커 색상"
+msgstr ""
 
 #: Merge.rc:56BD1FBA
 #, c-format
 msgid "Search Marker:"
-msgstr "마커 검색:"
+msgstr ""
 
 #: Merge.rc:7B76381B
 #, c-format
 msgid "User Defined Marker1:"
-msgstr "사용자 정의 마커1:"
+msgstr ""
 
 #: Merge.rc:7B76381C
 #, c-format
 msgid "User Defined Marker2:"
-msgstr "사용자 정의 마커2:"
+msgstr ""
 
 #: Merge.rc:7B76381D
 #, c-format
 msgid "User Defined Marker3:"
-msgstr "사용자 정의 마커3:"
+msgstr ""
 
 #: Merge.rc:387F7980
 #, c-format
@@ -2388,7 +2383,7 @@ msgstr "스타일(&S):"
 msgid "&Include File Compare Report"
 msgstr "파일 비교 보고서 포함(&I)"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "클립보드로 복사(&C)"
@@ -2568,7 +2563,7 @@ msgstr "폴더 이름(&F)"
 msgid "Result:"
 msgstr "결과:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "테스트(&T)"
@@ -2653,7 +2648,7 @@ msgstr "파일 백업"
 msgid "Create backup files in:"
 msgstr "백업 파일 만들기:"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "폴더 비교에서(&F)"
@@ -2728,7 +2723,7 @@ msgstr "아니오"
 msgid "Plugins"
 msgstr "플러그인"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "플러그인 사용"
@@ -2823,7 +2818,7 @@ msgstr "Frhed 설정"
 msgid "View &Settings..."
 msgstr "보기 설정(&S)..."
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr "바이너리 모드(&B)..."
@@ -3045,7 +3040,7 @@ msgstr "모두 아니오(&L)"
 msgid "&Continue"
 msgstr "계속(&C)"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "건너뛰기(&S)"
@@ -5021,10 +5016,10 @@ msgstr "Frhed(http://frhed.sourceforge.net/)가 설치되어 있지 않습니다"
 #: Merge.rc:73B321AA
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
-msgstr "%1이 없습니다. 그것을 만들까요?"
+msgstr ""
 
 #: Merge.rc:3A5D5964
 #, c-format
 msgid "Failed to create folder."
-msgstr "폴더 생성에 실패했습니다."
+msgstr ""
 

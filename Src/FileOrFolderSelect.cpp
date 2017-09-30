@@ -178,14 +178,14 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 	}
 	else if (uMsg == BFFM_VALIDATEFAILED)
 	{
-		String strMessage = (TCHAR *)lParam;
-		strMessage += _T("フォルダは存在しません。作成しますか?");
-		int answer = MessageBox(hwnd, strMessage.c_str(), _T("フォルダの作成"), MB_YESNO);
+		String strMessage = 
+			strutils::format_string1(_("%1 does not exist. Do you want to create it?"), (TCHAR *)lParam);
+		int answer = MessageBox(hwnd, strMessage.c_str(), NULL, MB_YESNO);
 		if (answer == IDYES)
 		{
 			if (!paths::CreateIfNeeded((TCHAR*)lParam))
 			{
-				MessageBox(hwnd, _T("フォルダの作成に失敗しました"), _T("フォルダの作成"), MB_OK | MB_ICONWARNING);
+				MessageBox(hwnd, _("Failed to create folder.").c_str(), NULL, MB_OK | MB_ICONWARNING);
 			}
 		}
 		return 1;

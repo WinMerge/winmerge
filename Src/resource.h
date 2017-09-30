@@ -1262,6 +1262,8 @@
 #define IDS_TABBAR_AUTO_MAXWIDTH        33544
 #define ID_FILE_PROJECT_MRU_FIRST       33545
 #define ID_FILE_PROJECT_MRU_LAST        33644
+#define IDS_CREATE_FOLDER               33645
+#define IDS_CREATE_FOLDER_ERROR         33646
 
 // Next default values for new objects
 // 
@@ -1269,7 +1271,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        247
-#define _APS_NEXT_COMMAND_VALUE         33545
+#define _APS_NEXT_COMMAND_VALUE         33647
 #define _APS_NEXT_CONTROL_VALUE         8817
 #define _APS_NEXT_SYMED_VALUE           115
 #endif

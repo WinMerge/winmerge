@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2017-01-08 11:40+0900\n"
-"Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
+"Last-Tranuslator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP932\n"
@@ -22,6 +22,7 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "Language: ja\n"
 "X-Generator: Poedit 1.8.6\n"
+"Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:5F458438
@@ -385,6 +386,16 @@ msgstr "ヘルプ(&H)"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge ヘルプ\tF1"
 
+#: Merge.rc:1B17601E
+#, c-format
+msgid "R&elease Notes"
+msgstr "リリースノート(&E)"
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr "翻訳(&T)"
+
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
@@ -469,26 +480,6 @@ msgstr "スキップされた項目の表示(&K)"
 #, c-format
 msgid "S&how Binary Files"
 msgstr "バイナリファイルの表示(&H)"
-
-#: Merge.rc:5A9A713B
-#, c-format
-msgid "&3-way Compare"
-msgstr "3方向比較(&3)"
-
-#: Merge.rc:200AD0D1
-#, c-format
-msgid "Show &Left Only Different Items"
-msgstr "左のみ差異のある項目の表示(&L)"
-
-#: Merge.rc:4899EBE1
-#, c-format
-msgid "Show &Middle Only Different Items"
-msgstr "中央のみ差異のある項目の表示(&M)"
-
-#: Merge.rc:614F49A9
-#, c-format
-msgid "Show &Right Only Different Items"
-msgstr "右のみ差異のある項目の表示(&R)"
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -600,7 +591,7 @@ msgstr "列の設定(&C)..."
 msgid "Generate &Report..."
 msgstr "レポートの生成(&R)..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "保存(&S)\tCtrl+S"
@@ -695,12 +686,12 @@ msgstr "XML(&X)"
 msgid "&Binary"
 msgstr "バイナリ(&B)"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "元に戻す(&U)\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "やり直し(&R)\tCtrl+Y"
@@ -710,12 +701,12 @@ msgstr "やり直し(&R)\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "切り取り(&T)\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "コピー(&C)\tCtrl+C"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "貼り付け(&P)\tCtrl+V"
@@ -801,7 +792,7 @@ msgstr "元に戻す(&N)\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "シンタックスハイライト"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr "Diffコンテキスト(&D):"
@@ -1151,7 +1142,7 @@ msgstr "左を開く(&O)"
 msgid "with &External Editor"
 msgstr "外部エディタで(&E)"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Parent Folder"
 msgstr "親フォルダ(&P)"
@@ -1266,7 +1257,7 @@ msgstr "ファイル名をコピー(&F)"
 msgid "Prediffer Settings"
 msgstr "比較前処理プラグイン設定"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "使用しない(&N)"
@@ -1396,30 +1387,20 @@ msgstr "貢献者"
 msgid "Select Files or Folders"
 msgstr "ファイルまたはフォルダの選択..."
 
-#: Merge.rc:43017E4D
-#, c-format
-msgid "&1st:"
-msgstr "&1st:"
-
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "参照(&B)..."
-
-#: Merge.rc:43017E4E
-#, c-format
-msgid "&2nd:"
-msgstr "&2nd:"
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "参照(&R)"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:6E470BEE
 #, c-format
-msgid "&3rd(Optional):"
-msgstr "&3rd(オプション)"
+msgid "&3(Optional):"
+msgstr "&3(オプション)"
 
 #: Merge.rc:78E0CE0F
 #, c-format
@@ -1660,7 +1641,7 @@ msgstr "&Ok"
 msgid "Replace"
 msgstr "置換"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "置換後の文字列(&P):"
@@ -1849,7 +1830,7 @@ msgstr "削除されたファイルをごみ箱に移動する(&P)"
 msgid "&External editor:"
 msgstr "外部エディタ(&E): (置換される引数 $file, $linenum):"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "フィルタフォルダ(&F):"
@@ -1884,7 +1865,7 @@ msgstr "ファイル&1:"
 msgid "File&2:"
 msgstr "ファイル&2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr "交換(&S)"
@@ -2044,7 +2025,7 @@ msgstr "空白"
 msgid "&Compare"
 msgstr "比較する(&C)"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "変更を無視する(&I)"
@@ -2189,7 +2170,7 @@ msgstr "変更されたファイルを保存しますか?"
 msgid "Left side file"
 msgstr "左側ファイル"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr "変更を保存する(&S)"
@@ -2544,7 +2525,7 @@ msgstr "(Affects)"
 msgid "Select Codepage for"
 msgstr "コードページの選択"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "ファイル読込み(&F):"
@@ -2589,7 +2570,7 @@ msgstr "フォルダ名(&F)"
 msgid "Result:"
 msgstr "結果:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr "テスト(&T)"
@@ -2674,7 +2655,7 @@ msgstr "バックアップファイル"
 msgid "Create backup files in:"
 msgstr "作成するバックアップ:"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "フォルダ比較(&F)"
@@ -2749,7 +2730,7 @@ msgstr "いいえ"
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "プラグインを有効にする(&E)"
@@ -2844,7 +2825,7 @@ msgstr "Frhed 設定"
 msgid "View &Settings..."
 msgstr "表示設定(&S)..."
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr "バイナリモード(&B)..."
@@ -3074,7 +3055,7 @@ msgstr "全ていいえ(&L)"
 msgid "&Continue"
 msgstr "続行(&C)"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr "スキップ(&S)"
@@ -4104,7 +4085,7 @@ msgstr "右EOL"
 msgid "Left Encoding"
 msgstr "左エンコーディング"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "右エンコーディング"
@@ -4149,7 +4130,7 @@ msgstr "左側のみ: %1"
 msgid "Middle only: %1"
 msgstr "中央のみ: %1"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "右側のみ: %1"
@@ -4218,21 +4199,6 @@ msgstr "エラー"
 #, c-format
 msgid "Text files are identical"
 msgstr "テキストファイルは同一です"
-
-#: Merge.rc:1DEEB161
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr "(中央と右側は同一です)"
-
-#: Merge.rc:1D99B043
-#, c-format
-msgid "(Left and right are identical)"
-msgstr "(左側と右側は同一です)"
-
-#: Merge.rc:159C584C
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr "(左側と中央は同一です)"
 
 #: Merge.rc:12D66B45
 #, c-format
@@ -5087,11 +5053,6 @@ msgstr "Resources"
 msgid "Shell"
 msgstr "Shell"
 
-#: Merge.rc:4E44AD6
-#, c-format
-msgid "VHDL"
-msgstr ""
-
 #: Merge.rc:8AF7E6B
 #, c-format
 msgid "Close &Left Tabs"
@@ -5121,4 +5082,14 @@ msgstr "画像(&I)"
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
 msgstr ""
+
+#: Merge.rc:73B321AA
+#, c-format
+msgid "%1 does not exist. Do you want to create it?"
+msgstr "%1 は存在しません。作成しますか?"
+
+#: Merge.rc:3A5D5964
+#, c-format
+msgid "Failed to create folder."
+msgstr "フォルダの作成に失敗しました。"
 

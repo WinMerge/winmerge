@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2017-10-22 18:25+0000\n"
+"POT-Creation-Date: 2017-09-30 16:28+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -391,6 +391,11 @@ msgstr ""
 msgid "&Translations"
 msgstr ""
 
+#: Merge.rc:3938FFC2
+#, c-format
+msgid "&Check For Updates"
+msgstr ""
+
 #: Merge.rc:1C6125F4
 #, c-format
 msgid "C&onfiguration"
@@ -401,7 +406,7 @@ msgstr ""
 msgid "&GNU General Public License"
 msgstr ""
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr ""
@@ -741,7 +746,7 @@ msgstr ""
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr ""
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr ""
@@ -1377,19 +1382,9 @@ msgstr ""
 msgid "Select Files or Folders"
 msgstr ""
 
-#: Merge.rc:43017E4D
-#, c-format
-msgid "&1st:"
-msgstr ""
-
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
-msgstr ""
-
-#: Merge.rc:43017E4E
-#, c-format
-msgid "&2nd:"
 msgstr ""
 
 #: Merge.rc:78E0CE0E
@@ -1397,9 +1392,9 @@ msgstr ""
 msgid "B&rowse..."
 msgstr ""
 
-#: Merge.rc:78B3B626
+#: Merge.rc:6E470BEE
 #, c-format
-msgid "&3rd(Optional):"
+msgid "&3(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1687,7 +1682,7 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -1822,7 +1817,7 @@ msgstr ""
 msgid "&External editor:"
 msgstr ""
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr ""
@@ -1857,7 +1852,7 @@ msgstr ""
 msgid "File&2:"
 msgstr ""
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Swap"
 msgstr ""
@@ -2162,7 +2157,7 @@ msgstr ""
 msgid "Left side file"
 msgstr ""
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BEF
 #, c-format
 msgid "&Save changes"
 msgstr ""
@@ -2372,7 +2367,7 @@ msgstr ""
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr ""
@@ -2552,7 +2547,7 @@ msgstr ""
 msgid "Result:"
 msgstr ""
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Test"
 msgstr ""
@@ -2637,7 +2632,7 @@ msgstr ""
 msgid "Create backup files in:"
 msgstr ""
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr ""
@@ -2712,7 +2707,7 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr ""
@@ -2807,7 +2802,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -2977,7 +2972,7 @@ msgstr ""
 msgid "&Continue"
 msgstr ""
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Skip"
 msgstr ""

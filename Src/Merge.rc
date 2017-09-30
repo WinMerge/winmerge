@@ -2659,6 +2659,12 @@ BEGIN
     IDS_FRHED_NOTINSTALLED  "frhed(http://frhed.sourceforge.net/) not installed"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_CREATE_FOLDER        "%1 does not exist. Do you want to create it?"
+    IDS_CREATE_FOLDER_ERROR  "Failed to create folder."
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
