@@ -31,11 +31,12 @@ Clone(const UndoRecord &src)
   }
 
 void UndoRecord::
-SetText (LPCTSTR pszText, int nLength)
+SetText (LPCTSTR pszText, size_t nLength)
 {
   FreeText();
   if (nLength != 1)
     {
+	  ASSERT (nLength < INT_MAX);
       m_pszText = (TextBuffer *)malloc(sizeof(TextBuffer) + nLength * sizeof(TCHAR));
       m_pszText->size = nLength;
       memcpy(m_pszText->data, pszText, nLength * sizeof(TCHAR));

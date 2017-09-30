@@ -121,9 +121,9 @@ public :
     virtual bool QueryEditable ();
     virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1);
 
-    bool ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags);
+    bool ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags);
 
-    virtual void OnEditOperation (int nAction, LPCTSTR pszText, int cchText);
+    virtual void OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText);
 
     virtual bool DoSetTextType (TextDefinition *def);
 

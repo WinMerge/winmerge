@@ -851,7 +851,7 @@ public :
     void UpdateCompositionWindowFont();
 
     //  Overridable: an opportunity for Auto-Indent, Smart-Indent etc.
-    virtual void OnEditOperation (int nAction, LPCTSTR pszText, int cchText);
+    virtual void OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText);
 
     // Overrides
     // ClassWizard generated virtual function overrides
