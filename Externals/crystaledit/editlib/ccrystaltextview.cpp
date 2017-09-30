@@ -476,7 +476,7 @@ LoadSettings ()
       m_LogFont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
       m_LogFont.lfQuality = DEFAULT_QUALITY;
       m_LogFont.lfPitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
-      _tcscpy (m_LogFont.lfFaceName, _T ("Courier New"));
+      _tcscpy_s (m_LogFont.lfFaceName, _T ("Courier New"));
     }
 }
 
@@ -4495,7 +4495,7 @@ int CCrystalTextView::
 OnCreate (LPCREATESTRUCT lpCreateStruct)
 {
   memset (&m_lfBaseFont, 0, sizeof (m_lfBaseFont));
-  _tcscpy (m_lfBaseFont.lfFaceName, _T ("FixedSys"));
+  _tcscpy_s (m_lfBaseFont.lfFaceName, _T ("FixedSys"));
   m_lfBaseFont.lfHeight = 0;
   m_lfBaseFont.lfWeight = FW_NORMAL;
   m_lfBaseFont.lfItalic = false;
@@ -5017,7 +5017,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                       if (nLineLength > 0)
                         {
                           LPTSTR pszBuf = item.GetBuffer (nLineLength + 1);
-                          _tcsncpy (pszBuf, pszChars, nLineLength);
+                          _tcsncpy_s (pszBuf, nLineLength+1, pszChars, nLineLength);
                           item.ReleaseBuffer (nLineLength);
                           line = item + line;
                         }
@@ -5038,7 +5038,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                       ptCurrentPos.x = nLineLength - 1;
 
                   LPCTSTR pszChars = GetLineChars (ptCurrentPos.y);
-                  _tcsncpy(line.GetBuffer(ptCurrentPos.x + 2), pszChars, ptCurrentPos.x + 1);
+                  _tcsncpy_s (line.GetBuffer(ptCurrentPos.x + 2), ptCurrentPos.x + 2, pszChars, ptCurrentPos.x + 1);
                   line.ReleaseBuffer (ptCurrentPos.x + 1);
                 }
 
@@ -5108,7 +5108,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                       if (nLineLength > 0)
                         {
                           LPTSTR pszBuf = item.GetBuffer (nLineLength + 1);
-                          _tcsncpy (pszBuf, pszChars, nLineLength);
+                          _tcsncpy_s (pszBuf, nLineLength + 1, pszChars, nLineLength);
                           item.ReleaseBuffer (nLineLength);
                           line += item;
                         }
@@ -5130,7 +5130,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
 
                   //  Prepare necessary part of line
                   LPTSTR pszBuf = line.GetBuffer (nLineLength + 1);
-                  _tcsncpy (pszBuf, pszChars, nLineLength);
+                  _tcsncpy_s (pszBuf, nLineLength + 1, pszChars, nLineLength);
                   line.ReleaseBuffer (nLineLength);
                 }
 
