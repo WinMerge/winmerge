@@ -10,7 +10,10 @@
 #include <cstring>
 #include <direct.h>
 #include <mbctype.h> // MBCS (multibyte codepage stuff)
+#pragma warning (push)			// prevent "warning C4091: 'typedef ': ignored on left of 'tagGPFIDL_FLAGS' when no variable is declared"
+#pragma warning (disable:4091)	// VC bug when using XP enabled toolsets.
 #include <shlobj.h>
+#pragma warning (pop)
 #include <shlwapi.h>
 #include "PathContext.h"
 #include "coretools.h"
