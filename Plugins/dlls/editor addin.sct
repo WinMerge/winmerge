@@ -25,6 +25,13 @@ Function get_PluginDescription()
          get_PluginDescription = "Basic text functions for the context menu"
 End Function
 
+Function IsLangJapanese()
+    Dim languageId
+    languageId = 1033
+    On Error Resume Next
+    languageId = CLng(wsh.RegRead(REGKEY_PATH & "\Locale\LanguageId"))
+    IsLangJapanese = (languageId = 1041)
+End Function
 
 ' transformation functions
 Function MakeUpper(Text)
@@ -37,9 +44,17 @@ End Function
 
 Function ExecFilterCommand(Text)
 	Dim cmd
-	cmd = InputBox("現在の選択範囲の文字列をフィルタコマンドで処理した結果で置換します。コマンドを入力してください。")
+	If IsLangJapanese() Then
+		cmd = InputBox("現在の選択範囲の文字列をフィルタコマンドで処理した結果で置換します。コマンドを入力してください。")
+	Else
+		cmd = InputBox("Enter filter command to replace the selection.")
+	End If
 	If cmd = "" Then
-		Err.Raise 30001, "キャンセルされました"
+		If IsLangJapanese() Then
+			Err.Raise 30001, "キャンセルされました"
+		Else
+			Err.Raise 30001, "Canceled"
+		End If
 		Exit Function
 	End If
 

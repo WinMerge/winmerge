@@ -4657,3 +4657,13 @@ msgstr "Imagem"
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
 msgstr "frhed(http://frhed.sourceforge.net/) não instalado"
 
+#: Merge.rc:73B321AA
+#, c-format
+msgid "%1 does not exist. Do you want to create it?"
+msgstr ""
+
+#: Merge.rc:3A5D5964
+#, c-format
+msgid "Failed to create folder."
+msgstr ""
+
