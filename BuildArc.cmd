@@ -6,10 +6,8 @@ set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 
 mkdir "%DISTDIR%" 2> NUL
 
-copy "Build\WinMerge-%RCVER%-Setup.exe" "WinMerge-%APPVER%-Setup.exe"
-copy "Build\WinMerge-%RCVER%-x64-Setup.exe" "WinMerge-%APPVER%-x64-Setup.exe"
-7z.exe a -tzip "%DISTDIR%\WinMerge-%SAFEAPPVER%-Setup.exe.zip" "WinMerge-%APPVER%-Setup.exe"
-7z.exe a -tzip "%DISTDIR%\WinMerge-%SAFEAPPVER%-x64-Setup.exe.zip" "WinMerge-%APPVER%-x64-Setup.exe"
+copy "Build\WinMerge-%RCVER%-Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-Setup.exe"
+copy "Build\WinMerge-%RCVER%-x64-Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-x64-Setup.exe"
 
 mkdir "%DISTDIR%\zip-version\WinMerge\" 2> NUL
 mkdir "%DISTDIR%\x64-zip-version\WinMerge\" 2> NUL
@@ -144,8 +142,8 @@ del "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 7z.exe a -t7z -xr!*.gcno -xr!*.gcda -xr!*.gcov -xr!*.orig -xr!*.o -xr!*.a -xr!.dep -xr!*.out -xr!debug_static* -xr!debug_shared* -xr!release_static* -xr!release_shared* -xr!*.bak -xr!*.lang -xr!*.db -xr!*.ncb  -xr!*.sdf -xr!*.bsc -xr!*.opt -xr!*.plg -xr!*.suo -xr!*.obj -xr!*.ilk -xr!*.pdb -xr!*.pch -xr!*.res -xr!*.exe -xr!*.sbr -xr!*.zip -xr!WinMergeSplash.psd -xr!*.lib -xr!*.exp -xr!*.idb -xr!*.%COMPUTERNAME%.%USERNAME%.user -xr!BuildLog.htm -xr!CVS -xr!.svn -xr!ipch -xr!*.tlb -xr!*.tlog -xr!*.*~ -xr!CVS -xr!.hg -xr!*.log -xr!*.lastbuildstate -xr!FreeImage*.dll -xr!WinIMergeLib.dll -xr!WinIMerge.exe -xr!BuildTmp "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" ArchiveSupport Docs Externals Filters Installer Plugins ShellExtension Src Testing Tools Translations Web readme.txt Version.h *.cmd *.bat *.inf *.sln *.vbs
 
 (
-echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-Setup.exe.zip"
-echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-x64-Setup.exe.zip"
+echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-Setup.exe"
+echo "%DISTDIR%\WinMerge-%SAFEAPPVER%-x64-Setup.exe"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
