@@ -70,7 +70,7 @@ void CSelectUnpackerDlg::Initialize()
 	m_UnpackerPlugins.Add(automaticPlugin.get());
 	m_bWithFileFlags.push_back(true);
 	// add the real unpackers to the unpackers list
-	int i;
+	size_t i;
 	for (i = 0 ; i < piFileScriptArray->size() ; i++)
 	{
 		// during the dialog, we use a pointer to the scriptsOfThreads array

@@ -26,7 +26,6 @@
 #define new DEBUG_NEW
 #endif
 
-#pragma warning ( disable : 4711 )
 /*////////////////////////////////////////////////////////////////////////////*/
 
 /* initializes registry value data */
@@ -1457,4 +1456,3 @@ void CReg::FindClose ()
 #endif /* cplusplus */
 
 /*////////////////////////////////////////////////////////////////////////////*/
-#pragma warning ( default : 4711 )

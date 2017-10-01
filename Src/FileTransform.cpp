@@ -450,7 +450,7 @@ void GetFreeFunctionsInScripts(std::vector<String>& sNamesArray, const wchar_t *
 
 	// fill in these structures
 	int nFnc = 0;	
-	int iScript;
+	size_t iScript;
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++)
 	{
 		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
@@ -479,7 +479,7 @@ bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChos
 	PluginArray * piScriptArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(TransformationEvent);
 
-	int iScript;
+	size_t iScript;
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++)
 	{
 		if (iFncChosen < piScriptArray->at(iScript)->m_nFreeFunctions)

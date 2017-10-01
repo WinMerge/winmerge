@@ -21,10 +21,6 @@
  */
 #pragma once
 
-#ifdef _MSC_VER
-#pragma warning(disable: 4520)
-#endif
-
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/File.h>
 #include <Poco/Timestamp.h>

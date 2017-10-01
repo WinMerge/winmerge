@@ -147,7 +147,6 @@ const COLORREF SAVED_REVMARK_CLR = RGB(0x00, 0xFF, 0x00);
 
 #define ICON_INDEX_WRAPLINE         15
 
-#pragma warning ( disable : 4100 )
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView
 
@@ -6567,4 +6566,3 @@ SetTextTypeByContent (LPCTSTR pszContent)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-#pragma warning ( default : 4100 )

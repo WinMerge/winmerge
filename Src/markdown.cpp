@@ -292,12 +292,12 @@ CMarkdown::operator bool()
 
 size_t CMarkdown::FindTag(const char *tags, const char *markup) const
 {
-	while (size_t len = strlen(tags))
+	while (ptrdiff_t len = strlen(tags))
 	{
 		unsigned char c;
 		if
 		(
-			ahead - markup > len
+			(ahead - markup) > len
 		&&	memcmp(markup, tags, len) == 0
 		&&	(isspace(c = markup[len]) || c == '[' || c == '>' || c == '"' || c == '\'' || c == '=')
 		)
@@ -796,7 +796,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			pCopy = new unsigned char[cbImage];
 			if (pCopy)
 			{
-				for (int i = 0; i < cbImage / 2; ++i)
+				for (size_t i = 0; i < cbImage / 2; ++i)
 					*((uint16_t *)pCopy + i) = Poco::ByteOrder::flipBytes(*((uint16_t *)pImage + i));
 			}
 
@@ -837,7 +837,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			pCopy = new unsigned char[cbImage];
 			if (pCopy)
 			{
-				for (int i = 0; i < cbImage / 2; ++i)
+				for (size_t i = 0; i < cbImage / 2; ++i)
 					*((uint16_t *)pCopy + i) = Poco::ByteOrder::flipBytes(*((uint16_t *)pImage + i));
 			}
 			delete m_pSharedMemory;
@@ -871,7 +871,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 				if (pCopy2)
 				{
 					cbImage = 0;
-					for (int i = 0; i < cchImage; i += 4)
+					for (size_t i = 0; i < cchImage; i += 4)
 					{
 						memcpy(&uch, pchImage + i, 4);
 						if (nByteOrder & 2)

@@ -2492,7 +2492,7 @@ void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 void CMainFrame::OnMRUs(UINT nID)
 {
 	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
-	const int idx = nID - ID_MRU_FIRST;
+	const size_t idx = nID - ID_MRU_FIRST;
 	if (idx < mrus.size())
 	{
 		MergeCmdLineInfo cmdInfo((_T("\"") + mrus[idx].path + _T("\" ") + mrus[idx].params).c_str());
@@ -2508,7 +2508,7 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 		return;
 	
 	// empty the menu
-	int i = ::GetMenuItemCount(hMenu);
+	size_t i = ::GetMenuItemCount(hMenu);
 	while (i --)
 		::DeleteMenu(hMenu, 0, MF_BYPOSITION);
 
