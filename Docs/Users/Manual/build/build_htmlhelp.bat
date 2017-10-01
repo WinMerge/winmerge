@@ -28,12 +28,12 @@ if not exist "%docbook_outputdir%\css" mkdir "%docbook_outputdir%\css"
 copy "..\css\*.css" "%docbook_outputdir%\css\."
 
 echo Create HTML files...
-\docbook\bin\xsltproc  --xinclude --nonet --stringparam base.dir "htmlhelp/" --path .. %docbook_use_stylesheet% %docbook_inputfile%
+%docbook_java_exe% %docbook_java_parameters% -cp %docbook_saxon_jar%;%docbook_xerces_jar%;%docbook_saxon_xsl% -Djavax.xml.parsers.DocumentBuilderFactory=%DBFACTORY% -Djavax.xml.parsers.SAXParserFactory=%SPFACTORY% -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=%XINCLUDE% com.icl.saxon.StyleSheet %docbook_inputfile% %docbook_use_stylesheet% base.dir=%docbook_outputdir%\
 if exist "htmlhelp.hhp" goto compile
 
 :compile
 echo Compile HTML Help...
-\docbook\bin\hhc "htmlhelp.hhp"
+%docbook_hhc_exe% "htmlhelp.hhp"
 move "htmlhelp.chm" "%docbook_outputdir_final%\WinMerge.chm"
 
 :clean
@@ -68,7 +68,6 @@ goto end
 
 :error
 echo ERROR!!!
-pause
 goto end
 
 :end
