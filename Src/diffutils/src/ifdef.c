@@ -387,7 +387,7 @@ scan_char_literal (lit, intptr)
 	      return 0;
 	    value = 8 * value + digit;
 	  }
-	digits = p - lit - 2;
+	digits = (int)(p - lit - 2);
 	if (! (1 <= digits && digits <= 3))
 	  return 0;
 	break;

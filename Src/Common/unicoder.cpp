@@ -137,7 +137,7 @@ int Utf8len_fromCodepoint(unsigned ch)
  */
 size_t stringlen_of_utf8(const char* text, size_t size)
 {
-	unsigned len = 0;
+	size_t len = 0;
 	for (size_t i = 0; i < size;)
 	{
 		int chlen = Utf8len_fromLeadByte(text[i]);

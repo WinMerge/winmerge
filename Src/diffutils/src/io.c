@@ -171,10 +171,7 @@ sip (current, skip_test)
           /* Check first part of file to see if it's a binary file.  */
           current->buffered_chars = read (current->desc,
             current->buffer,
-#ifdef __MSDOS__
-            (unsigned int)
-#endif /*__MSDOS__*/
-            current->buffered_chars);
+            (unsigned int)current->buffered_chars);
           if (current->buffered_chars == -1)
             pfatal_with_name (current->name);
           if (!get_unicode_signature(current, NULL))
@@ -235,7 +232,7 @@ slurp (current)
             }
           cc = read (current->desc,
           current->buffer + current->buffered_chars,
-          current->bufsize - current->buffered_chars);
+          (unsigned int)(current->bufsize - current->buffered_chars));
           if (cc == 0)
             break;
           if (cc == -1)
@@ -875,7 +872,7 @@ find_identical_ends (filevec)
       for (prefix_count = 1;  prefix_count < context + 1;  prefix_count *= 2)
         ;
       prefix_mask = prefix_count - 1;
-      ttt = p0 - (char HUGE *)filevec[0].prefix_end;
+      ttt = (int)(p0 - (char HUGE *)filevec[0].prefix_end);
       alloc_lines0
         = prefix_count
         + GUESS_LINES (0, 0, ttt)
@@ -919,7 +916,7 @@ find_identical_ends (filevec)
 
   /* Allocate line buffer 1.  */
   tem = prefix_count ? filevec[1].suffix_begin - buffer1 : n1;
-  ttt = filevec[1].prefix_end - buffer1;
+  ttt = (int)(filevec[1].prefix_end - buffer1);
   alloc_lines1
     = (buffered_prefix
        + GUESS_LINES (lines, ttt, tem)
@@ -944,8 +941,8 @@ find_identical_ends (filevec)
   filevec[0].linbuf = linbuf0 + buffered_prefix;
   filevec[1].linbuf = linbuf1 + buffered_prefix;
   filevec[0].linbuf_base = filevec[1].linbuf_base = - buffered_prefix;
-  filevec[0].alloc_lines = alloc_lines0 - buffered_prefix;
-  filevec[1].alloc_lines = alloc_lines1 - buffered_prefix;
+  filevec[0].alloc_lines = (int)(alloc_lines0 - buffered_prefix);
+  filevec[1].alloc_lines = (int)(alloc_lines1 - buffered_prefix);
   filevec[0].prefix_lines = filevec[1].prefix_lines = lines;
 }
 
