@@ -2941,7 +2941,7 @@ void CMergeEditView::OnScripts(UINT nID )
 	bool bChanged = FileTransform::Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
 	if (bChanged)
 		// now replace the text
-		ReplaceSelection(text.c_str(), static_cast<int>(text.length()), 0);
+		ReplaceSelection(text.c_str(), text.length(), 0);
 }
 
 /**
