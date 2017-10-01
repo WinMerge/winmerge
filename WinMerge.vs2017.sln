@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
@@ -31,9 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files"
 	ProjectSection(SolutionItems) = preProject
 		BuildAll.vs2015.cmd = BuildAll.vs2015.cmd
 		BuildAll.vs2017.cmd = BuildAll.vs2017.cmd
-		BuildAll2.cmd = BuildAll2.cmd
 		BuildArc.cmd = BuildArc.cmd
-		BuildBin.cmd = BuildBin.cmd
 		BuildBin.vs2015.cmd = BuildBin.vs2015.cmd
 		BuildBin.vs2017.cmd = BuildBin.vs2017.cmd
 		BuildInstaller.cmd = BuildInstaller.cmd

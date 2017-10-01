@@ -745,6 +745,12 @@
     <ClCompile Include="MergeStatusBar.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestMain.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="diffutils\src\mystat.cpp">
       <Filter>DiffEngine</Filter>
     </ClCompile>
@@ -753,12 +759,6 @@
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\rust.cpp">
       <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="Test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestMain.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.cpp">
       <Filter>EditLib</Filter>
