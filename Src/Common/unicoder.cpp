@@ -41,7 +41,6 @@ static int f_nDefaultCodepage = GetACP();
  */
 int Ucs4_to_Utf8(unsigned unich, unsigned char * utf8)
 {
-#pragma warning(disable: 4244) // possible loss of data due to type conversion
 	if (unich <= 0x7f)
 	{
 		utf8[0] = (unsigned char)unich;
@@ -94,7 +93,6 @@ int Ucs4_to_Utf8(unsigned unich, unsigned char * utf8)
 		utf8[0] = '?';
 		return 1;
 	}
-#pragma warning(default: 4244) // possible loss of data due to type conversion
 }
 
 /**
@@ -207,7 +205,6 @@ unsigned GetUtf8Char(unsigned char * str)
  */
 int to_utf8_advance(unsigned u, unsigned char * &lpd)
 {
-#pragma warning(disable: 4244) // possible loss of data due to type conversion
 	if (u < 0x80)
 	{
 		*lpd++ = u;
@@ -258,7 +255,6 @@ int to_utf8_advance(unsigned u, unsigned char * &lpd)
 		*lpd++ = '?';
 		return 1;
 	}
-#pragma warning(default: 4244) // possible loss of data due to type conversion
 }
 
 /**
@@ -970,7 +966,7 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, si
 	{
 		// simple byte swap
 		dest->resize(srcbytes + 2);
-		for (int i = 0; i < srcbytes; i += 2)
+		for (size_t i = 0; i < srcbytes; i += 2)
 		{
 			// Byte-swap into destination
 			dest->ptr[i] = src[i+1];

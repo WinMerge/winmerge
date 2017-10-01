@@ -29,7 +29,6 @@ extern "C"{
 #endif 
 
 #ifdef _MSC_VER
-#pragma warning(disable: 4100 4189 4512)
 #define UNUSED_ARG(ARG) ARG
 #elif defined(__GNUC__)
 #define UNUSED_ARG(ARG) ARG

@@ -277,7 +277,7 @@ void HelpFormatter::formatText(std::ostream& ostr, const std::string& text, int 
 
 void HelpFormatter::formatWord(std::ostream& ostr, int& pos, const std::string& word, int indent) const
 {
-	if (pos + word.length() > _width)
+	if (pos + static_cast<int>(word.length()) > _width)
 	{
 		ostr << '\n';
 		pos = 0;

@@ -125,9 +125,6 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc construction/destruction
 
-
-#pragma warning(disable:4355)
-
 /**
  * @brief Constructor.
  */
@@ -169,8 +166,6 @@ CMergeDoc::CMergeDoc()
 	m_diffWrapper.SetOptions(&options);
 	m_diffWrapper.SetPrediffer(NULL);
 }
-
-#pragma warning(default:4355)
 
 /**
  * @brief Destructor.
@@ -468,7 +463,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		const std::vector<std::vector<int> > syncpoints = GetSyncPointList();	
 		int nStartLine[3] = {0};
 		int nLines[3], nRealLine[3];
-		for (int i = 0; i <= syncpoints.size(); ++i)
+		for (size_t i = 0; i <= syncpoints.size(); ++i)
 		{
 			// Save text buffer to file
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -3458,7 +3453,7 @@ std::vector<std::vector<int> > CMergeDoc::GetSyncPointList()
 			if (m_ptBuf[nBuffer]->GetLineFlags(nLine) & LF_INVALID_BREAKPOINT)
 			{
 				idx[nBuffer]++;
-				if (list.size() <= idx[nBuffer])
+				if (static_cast<int>(list.size()) <= idx[nBuffer])
 					list.push_back(points);
 				list[idx[nBuffer]][nBuffer] = nLine;
 			}

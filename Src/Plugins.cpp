@@ -588,8 +588,7 @@ static vector<String>& LoadTheScriptletList()
 		scriptletsLoaded = true;
 
 		// lock the *.sct to avoid them being deleted/moved away
-		int i;
-		for (i = 0 ; i < theScriptletList.size() ; i++)
+		for (size_t i = 0 ; i < theScriptletList.size() ; i++)
 		{
 			String scriptlet = theScriptletList.at(i);
 			if (scriptlet.length() > 4 && strutils::compare_nocase(scriptlet.substr(scriptlet.length() - 4), _T(".sct")) != 0)
@@ -625,8 +624,7 @@ static void UnloadTheScriptletList()
 	FastMutex::ScopedLock lock(scriptletsSem);
 	if (scriptletsLoaded)
 	{
-		int i;
-		for (i = 0 ; i < theScriptletHandleList.size() ; i++)
+		for (size_t i = 0 ; i < theScriptletHandleList.size() ; i++)
 		{
 			HANDLE hFile = theScriptletHandleList.at(i);
 			if (hFile != 0)
@@ -644,7 +642,7 @@ static void UnloadTheScriptletList()
  */
 static void RemoveScriptletCandidate(const String &scriptletFilepath)
 {
-	for (int i=0; i<theScriptletList.size(); ++i)
+	for (size_t i=0; i<theScriptletList.size(); ++i)
 	{
 		if (scriptletFilepath == theScriptletList[i])
 		{
@@ -681,9 +679,8 @@ static PluginArray * GetAvailableScripts( const wchar_t *transformationEvent)
 
 	PluginArray * pPlugins = new PluginArray;
 
-	int i;
 	std::list<String> badScriptlets;
-	for (i = 0 ; i < scriptlets.size() ; i++)
+	for (size_t i = 0 ; i < scriptlets.size() ; i++)
 	{
 		// Note all the info about the plugin
 		PluginInfoPtr plugin(new PluginInfo);
@@ -778,7 +775,7 @@ void CScriptsOfThread::SaveSettings()
 	{
 		if (m_aPluginsByEvent[i] == NULL)
 			m_aPluginsByEvent[i].reset(::GetAvailableScripts(TransformationCategories[i]));
-		for (int j = 0; j < m_aPluginsByEvent[i]->size(); ++j)
+		for (size_t j = 0; j < m_aPluginsByEvent[i]->size(); ++j)
 		{
 			const PluginInfoPtr & plugin = m_aPluginsByEvent[i]->at(j);
 			if (plugin->m_disabled)
@@ -815,7 +812,7 @@ void CScriptsOfThread::FreeScriptsForEvent(const wchar_t *transformationEvent)
 PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText)
 {
 	PluginArray * piFileScriptArray = GetAvailableScripts(transformationEvent);
-	for (int step = 0 ; step < piFileScriptArray->size() ; step ++)
+	for (size_t step = 0 ; step < piFileScriptArray->size() ; step ++)
 	{
 		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
 		if (plugin->m_bAutomatic == false || plugin->m_disabled)
@@ -829,14 +826,13 @@ PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transfor
 
 PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEvent, const String& name)
 {
-	int i;
-	for (i = 0 ; i < nTransformationEvents ; i ++)
+	for (int i = 0 ; i < nTransformationEvents ; i ++)
 		if (!transformationEvent || wcscmp(transformationEvent, TransformationCategories[i]) == 0)
 		{
 			if (m_aPluginsByEvent[i] == NULL)
 				m_aPluginsByEvent[i].reset(::GetAvailableScripts(TransformationCategories[i]));
 
-			for (int j = 0 ; j <  m_aPluginsByEvent[i]->size() ; j++)
+			for (size_t j = 0 ; j <  m_aPluginsByEvent[i]->size() ; j++)
 				if (m_aPluginsByEvent[i]->at(j)->m_name == name)
 					return m_aPluginsByEvent[i]->at(j).get();
 		}
@@ -845,13 +841,12 @@ PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEven
 
 PluginInfo *  CScriptsOfThread::GetPluginInfo(LPDISPATCH piScript)
 {
-	int i, j;
-	for (i = 0 ; i < nTransformationEvents ; i ++) 
+	for (int i = 0 ; i < nTransformationEvents ; i ++) 
 	{
 		if (m_aPluginsByEvent[i] == NULL)
 			continue;
 		const PluginArrayPtr& pArray = m_aPluginsByEvent[i];
-		for (j = 0 ; j < pArray->size() ; j++)
+		for (size_t j = 0 ; j < pArray->size() ; j++)
 			if ((*pArray)[j]->m_lpDispatch == piScript)
 				return (*pArray)[j].get();
 	}
@@ -891,8 +886,7 @@ CScriptsOfThread * CAllThreadsScripts::GetActiveSet()
 {
 	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
 	unsigned long nThreadId = GetCurrentThreadId();
-	int i;
-	for (i = 0 ; i < m_aAvailableThreads.size() ; i++)
+	for (size_t i = 0 ; i < m_aAvailableThreads.size() ; i++)
 		if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == nThreadId)
 			return m_aAvailableThreads[i];
 	assert(0);
@@ -902,8 +896,7 @@ CScriptsOfThread * CAllThreadsScripts::GetActiveSetNoAssert()
 {
 	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
 	unsigned long nThreadId = GetCurrentThreadId();
-	int i;
-	for (i = 0 ; i < m_aAvailableThreads.size() ; i++)
+	for (size_t i = 0 ; i < m_aAvailableThreads.size() ; i++)
 		if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == nThreadId)
 			return m_aAvailableThreads[i];
 	return NULL;

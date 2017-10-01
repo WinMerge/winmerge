@@ -409,7 +409,7 @@ void ThreadPool::collect()
 void ThreadPool::housekeep()
 {
 	_age = 0;
-	if (_threads.size() <= _minCapacity)
+	if (static_cast<int>(_threads.size()) <= _minCapacity)
 		return;
 
 	ThreadVec idleThreads;
@@ -461,7 +461,7 @@ PooledThread* ThreadPool::getThread()
 	}
 	if (!pThread)
 	{
-		if (_threads.size() < _maxCapacity)
+		if (static_cast<int>(_threads.size()) < _maxCapacity)
 		{
             pThread = createThread();
             try
