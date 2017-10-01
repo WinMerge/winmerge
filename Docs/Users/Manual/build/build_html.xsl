@@ -16,7 +16,7 @@
      3 Aug 2009: Added 'user.header.content' template
      ******************************************************************** -->
 
-<xsl:import href="/docbook/xsl/html/chunk.xsl"/>
+<xsl:import href="../build/xsl/html/chunk.xsl"/>
 <xsl:import href="build_common.xsl"/>
 
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  

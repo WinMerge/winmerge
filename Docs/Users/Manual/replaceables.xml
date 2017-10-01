@@ -16,13 +16,13 @@
         <row>
           <entry>Current version (minor)</entry>
 
-          <entry><phrase id="version-full">2.14.0</phrase></entry>
+          <entry><phrase id="version-full">2.16.0</phrase></entry>
         </row>
 
         <row>
           <entry>Current version (major)</entry>
 
-          <entry><phrase id="version">2.14</phrase></entry>
+          <entry><phrase id="version">2.16</phrase></entry>
         </row>
       </tbody>
     </tgroup>
