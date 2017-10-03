@@ -174,7 +174,7 @@ String format_arg_list(const TCHAR *fmt, va_list args)
 	std::vector<TCHAR> buffer(length, 0);
 	while (result == -1)
 	{
-		result = _vsntprintf_s(&buffer[0], length, length, fmt, args);
+		result = _vsntprintf_s(&buffer[0], length, _TRUNCATE, fmt, args);
 		length *= 2;
 		buffer.resize(length, 0);
 	}
