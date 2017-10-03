@@ -354,4 +354,11 @@ namespace
 		EXPECT_NE(0, strutils::compare_nocase(_T("abc"), _T("aDc")));
 	}
 
+	TEST_F(UnicodeStringTest, Format1)
+	{
+		EXPECT_TRUE(String(255, ' ') == strutils::format(_T("%s"), String(255, ' ').c_str()));
+		EXPECT_TRUE(String(256, ' ') == strutils::format(_T("%s"), String(256, ' ').c_str()));
+		EXPECT_TRUE(String(257, ' ') == strutils::format(_T("%s"), String(257, ' ').c_str()));
+	}
+
 }  // namespace
