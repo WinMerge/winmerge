@@ -285,11 +285,13 @@ void LocalDateTime::determineTzd(bool adjust)
 #if defined(_WIN32) || defined(POCO_NO_POSIX_TSF)
 #if defined(_WIN32_WCE)
 		std::tm* broken = wceex_localtime(&epochTime);
-#else
-		std::tm* broken = std::localtime(&epochTime);
-#endif
 		if (!broken) throw Poco::SystemException("cannot get local time");
-		_tzd = (Timezone::utcOffset() + ((broken->tm_isdst == 1) ? 3600 : 0));
+#else
+		std::tm broken;
+		if (::localtime_s(&broken, &epochTime) != 0)
+			throw Poco::SystemException("cannot get local time");
+#endif
+		_tzd = (Timezone::utcOffset() + ((broken.tm_isdst == 1) ? 3600 : 0));
 #else
 		std::tm broken;
 #if defined(POCO_VXWORKS)

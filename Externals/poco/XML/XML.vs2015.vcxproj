@@ -279,7 +279,6 @@
     <ClCompile Include="src\NamespaceStrategy.cpp" />
     <ClCompile Include="src\ParserEngine.cpp" />
     <ClCompile Include="src\XMLException.cpp" />
-    <ClCompile Include="src\XMLString.cpp" />
     <ClCompile Include="src\XMLWriter.cpp" />
     <ClCompile Include="src\Attributes.cpp" />
     <ClCompile Include="src\AttributesImpl.cpp" />
