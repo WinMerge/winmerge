@@ -170,16 +170,18 @@ begin_output ()
   if (outfile != 0)
     return;
 
+  char *mySwitch = (switch_string != NULL ? switch_string : "");
+
   /* Construct the header of this piece of diff.  */
   const size_t nameSiz = strlen(current_name0) + strlen(current_name1)
-	  + strlen(switch_string) + 7;
+	  + strlen(mySwitch) + 7;
   name = xmalloc (nameSiz);
   /* Posix.2 section 4.17.6.1.1 specifies this format.  But there are some
      bugs in the first printing (IEEE Std 1003.2-1992 p 251 l 3304):
      it says that we must print only the last component of the pathnames,
      and it requires two spaces after "diff" if there are no options.
      These requirements are silly and do not match historical practice.  */
-  sprintf_s (name, nameSiz, "diff%s %s %s", switch_string, current_name0, current_name1);
+  sprintf_s (name, nameSiz, "diff%s %s %s", mySwitch, current_name0, current_name1);
 
   if (paginate_flag)
     {
