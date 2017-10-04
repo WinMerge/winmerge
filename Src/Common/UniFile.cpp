@@ -783,8 +783,7 @@ bool UniStdioFile::DoOpen(const String& filename, const String& mode)
 	// But we don't care since size is set to 0 anyway.
 	GetFileStatus();
 
-	m_fp = _tfopen(m_filepath.c_str(), mode.c_str());
-	if (!m_fp)
+	if (_tfopen_s(&m_fp, m_filepath.c_str(), mode.c_str()) != 0)
 		return false;
 
 	unsigned sizehi = (unsigned)(m_filesize >> 32);

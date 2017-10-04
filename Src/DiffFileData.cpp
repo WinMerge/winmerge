@@ -71,7 +71,7 @@ bool DiffFileData::DoOpenFiles()
 		// Actual paths are m_FileLocation[i].filepath
 		// but these are often temporary files
 		// Displayable (original) paths are m_sDisplayFilepath[i]
-		m_inf[i].name = strdup(ucr::toSystemCP(m_sDisplayFilepath[i]).c_str());
+		m_inf[i].name = _strdup(ucr::toSystemCP(m_sDisplayFilepath[i]).c_str());
 		if (m_inf[i].name == NULL)
 			return false;
 
@@ -81,8 +81,8 @@ bool DiffFileData::DoOpenFiles()
 		if (m_inf[i].desc == 0)
 		{
 #ifdef _WIN32
-			m_inf[i].desc = _topen(m_FileLocation[i].filepath.c_str(),
-					O_RDONLY | O_BINARY, _S_IREAD);
+			_tsopen_s(&m_inf[i].desc, m_FileLocation[i].filepath.c_str(),
+					O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
 #else
 			m_inf[i].desc = open(m_FileLocation[i].filepath.c_str(), O_RDONLY);
 #endif
@@ -134,7 +134,7 @@ void DiffFileData::Reset()
 
 		if (m_inf[i].desc > 0)
 		{
-			close(m_inf[i].desc);
+			_close(m_inf[i].desc);
 		}
 		m_inf[i].desc = 0;
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));

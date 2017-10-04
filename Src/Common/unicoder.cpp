@@ -813,7 +813,7 @@ unsigned char *convertTtoUTF8(LPCTSTR src, int srcbytes/* = -1*/)
 {
 	buffer buf(256);
 	convertTtoUTF8(&buf, src, srcbytes);
-	return (unsigned char *)strdup((const char *)buf.ptr);
+	return (unsigned char *)_strdup((const char *)buf.ptr);
 }
 
 TCHAR *convertUTF8toT(buffer * buf, LPCSTR src, int srcbytes/* = -1*/)

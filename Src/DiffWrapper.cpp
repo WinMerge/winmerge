@@ -757,12 +757,11 @@ bool CDiffWrapper::RunFileDiff()
 		String sTempPath = env::GetTemporaryPath(); // get path to Temp folder
 		String path = paths::ConcatPath(sTempPath, _T("Diff.txt"));
 
-		outfile = _tfopen(path.c_str(), _T("w+"));
-		if (outfile != NULL)
+		if (_tfopen_s(&outfile, path.c_str(), _T("w+")) == 0)
 		{
 			print_normal_script(script);
 			fclose(outfile);
-			outfile = NULL;
+			outfile = nullptr;
 		}
 #endif
 	}
@@ -1030,7 +1029,7 @@ String CDiffWrapper::FormatSwitchString() const
 	if (m_options.m_contextLines > 0)
 	{
 		TCHAR tmpNum[5] = {0};
-		_itot(m_options.m_contextLines, tmpNum, 10);
+		_itot_s(m_options.m_contextLines, tmpNum, sizeof(tmpNum)/sizeof(TCHAR), 10);
 		switches += tmpNum;
 	}
 
@@ -1443,14 +1442,15 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 
 void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAppendFiles)
 {
-	outfile = NULL;
+	outfile = nullptr;
 	if (!m_sPatchFile.empty())
 	{
 		const TCHAR *mode = (bAppendFiles ? _T("a+") : _T("w+"));
-		outfile = _tfopen(m_sPatchFile.c_str(), mode);
+		if (_tfopen_s(&outfile, m_sPatchFile.c_str(), mode) != 0)
+			outfile = nullptr;
 	}
 
-	if (!outfile)
+	if (outfile == nullptr)
 	{
 		m_status.bPatchFileFailed = true;
 		return;
@@ -1474,18 +1474,19 @@ void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAp
 	}
 	
 	fclose(outfile);
-	outfile = NULL;
+	outfile = nullptr;
 }
 
 void CDiffWrapper::WritePatchFileTerminator(enum output_style output_style)
 {
-	outfile = NULL;
+	outfile = nullptr;
 	if (!m_sPatchFile.empty())
 	{
-		outfile = _tfopen(m_sPatchFile.c_str(), _T("a+"));
+		if (_tfopen_s(&outfile, m_sPatchFile.c_str(), _T("a+")) != 0)
+			outfile = nullptr;
 	}
 
-	if (!outfile)
+	if (outfile == nullptr)
 	{
 		m_status.bPatchFileFailed = true;
 		return;
@@ -1509,7 +1510,7 @@ void CDiffWrapper::WritePatchFileTerminator(enum output_style output_style)
 	}
 	
 	fclose(outfile);
-	outfile = NULL;
+	outfile = nullptr;
 }
 
 /**
@@ -1534,8 +1535,8 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path2 = m_files[1];
 	path1 = paths::ToUnixPath(path1);
 	path2 = paths::ToUnixPath(path2);
-	inf_patch[0].name = strdup(ucr::toSystemCP(path1).c_str());
-	inf_patch[1].name = strdup(ucr::toSystemCP(path2).c_str());
+	inf_patch[0].name = _strdup(ucr::toSystemCP(path1).c_str());
+	inf_patch[1].name = _strdup(ucr::toSystemCP(path2).c_str());
 
 	// If paths in m_s1File and m_s2File point to original files, then we can use
 	// them to fix potentially meaningless stats from potentially temporary files,
@@ -1551,14 +1552,15 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		assert(false);
 	}
 
-	outfile = NULL;
+	outfile = nullptr;
 	if (!m_sPatchFile.empty())
 	{
 		const TCHAR *mode = (m_bAppendFiles ? _T("a+") : _T("w+"));
-		outfile = _tfopen(m_sPatchFile.c_str(), mode);
+		if (_tfopen_s(&outfile, m_sPatchFile.c_str(), mode) != 0)
+			outfile = nullptr;
 	}
 
-	if (!outfile)
+	if (outfile == nullptr)
 	{
 		m_status.bPatchFileFailed = true;
 		return;
@@ -1577,12 +1579,12 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	if (strcmp(inf[0].name, "NUL") == 0)
 	{
 		free((void *)inf[0].name);
-		inf[0].name = strdup("/dev/null");
+		inf[0].name = _strdup("/dev/null");
 	}
 	if (strcmp(inf[1].name, "NUL") == 0)
 	{
 		free((void *)inf[1].name);
-		inf[1].name = strdup("/dev/null");
+		inf[1].name = _strdup("/dev/null");
 	}
 
 	// Output patchfile
@@ -1621,7 +1623,7 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	}
 	
 	fclose(outfile);
-	outfile = NULL;
+	outfile = nullptr;
 
 	free((void *)inf_patch[0].name);
 	free((void *)inf_patch[1].name);
