@@ -137,7 +137,8 @@ void UUID::swap(UUID& uuid)
 	std::swap(_timeMid, uuid._timeMid);
 	std::swap(_timeHiAndVersion, uuid._timeHiAndVersion);
 	std::swap(_clockSeq, uuid._clockSeq);
-	std::swap_ranges(_node, _node + 6, &uuid._node[0]);
+	for (int i = 0; i < 6; i++)
+		std::swap(_node[i], uuid._node[i]);
 }
 
 

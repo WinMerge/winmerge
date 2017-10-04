@@ -305,9 +305,6 @@
     <ClCompile Include="src\XMLException.cpp">
       <Filter>XML\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\XMLString.cpp">
-      <Filter>XML\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\XMLWriter.cpp">
       <Filter>XML\Source Files</Filter>
     </ClCompile>
