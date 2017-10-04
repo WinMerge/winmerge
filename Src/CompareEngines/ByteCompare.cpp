@@ -146,7 +146,7 @@ int ByteCompare::CompareFiles(FileLocation *location)
 			{
 				// Assume our blocks are in range of int
 				int space = sizeof(buff[i])/sizeof(buff[i][0]) - (int) bfend[i];
-				int rtn = read(m_inf[i].desc, &buff[i][bfend[i]], (unsigned)space);
+				int rtn = _read(m_inf[i].desc, &buff[i][bfend[i]], (unsigned)space);
 				if (rtn == -1)
 					return DIFFCODE::CMPERR;
 				if (rtn < space)

@@ -1818,7 +1818,8 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	else if (GetCurrentDiff() < 0)
 	{
 		s = nDiffs == 1 ? _("1 Difference Found") : _("%1 Differences Found");
-		strutils::replace(s, _T("%1"), _itot(nDiffs, sCnt, 10));
+		_itot_s(nDiffs, sCnt, sizeof(sCnt)/sizeof(TCHAR), 10);
+		strutils::replace(s, _T("%1"), sCnt);
 	}
 	
 	// There are differences and diff selected
@@ -1827,8 +1828,10 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	{
 		s = _("Difference %1 of %2");
 		const int signInd = m_diffList.GetSignificantIndex(GetCurrentDiff());
-		strutils::replace(s, _T("%1"), _itot(signInd + 1, sIdx, 10));
-		strutils::replace(s, _T("%2"), _itot(nDiffs, sCnt, 10));
+		_itot_s(signInd + 1, sIdx, sizeof(sIdx)/sizeof(TCHAR), 10);
+		strutils::replace(s, _T("%1"), sIdx);
+		_itot_s(nDiffs, sCnt, sizeof(sCnt)/sizeof(TCHAR), 10);
+		strutils::replace(s, _T("%2"), sCnt);
 	}
 	pCmdUI->SetText(s.c_str());
 }
