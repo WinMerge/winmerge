@@ -1408,7 +1408,7 @@
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestMain.h">
-      <Filter>Header Files</Filter>
+      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.h">
       <Filter>EditLib</Filter>
