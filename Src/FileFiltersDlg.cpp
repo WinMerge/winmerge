@@ -434,7 +434,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		TCHAR ext[_MAX_EXT] = {0};
 		TCHAR dir[_MAX_DIR] = {0};
 		TCHAR drive[_MAX_DRIVE] = {0};
-		_tsplitpath_s(s.c_str(), drive, sizeof(drive), dir, sizeof(dir), file, sizeof(file), ext, sizeof(ext));
+		_tsplitpath_s(s.c_str(), drive, _MAX_DRIVE, dir, _MAX_DIR, file, _MAX_FNAME, ext, _MAX_EXT);
 		if (_tcslen(ext) == 0)
 		{
 			s += FileFilterExt;

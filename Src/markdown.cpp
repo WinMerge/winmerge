@@ -193,7 +193,7 @@ std::string CMarkdown::Entities(const std::string& v)
 	char *p, *q = &ret[0];
 	while (*(p = q))
 	{
-		char *value = 0;
+		char *value = nullptr;
 		switch (*p)
 		{
 		case '&': value = "&amp;"; break;
@@ -203,13 +203,13 @@ std::string CMarkdown::Entities(const std::string& v)
 		case '>' : value = "&gt;"; break;
 		}
 		++q;
-		if (value)
+		if (value != nullptr)
 		{
-			size_t i = p - &ret[0];
-			size_t j = q - &ret[0];
 			size_t cchValue = strlen(value);
 			if (cchValue > 1)
 			{
+				ptrdiff_t i = p - &ret[0];
+				ptrdiff_t j = q - &ret[0];
 				size_t b = v.length();
 				ret.resize(b + cchValue - 1);
 				p = &ret[0] + i;

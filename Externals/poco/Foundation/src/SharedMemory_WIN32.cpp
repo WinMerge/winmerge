@@ -55,7 +55,7 @@ SharedMemoryImpl::SharedMemoryImpl(const std::string& name, std::size_t size, Sh
 	_address(0)
 {
 	LARGE_INTEGER mySize;
-	mySize.QuadPart = size;
+	mySize.QuadPart = _size;
 	if (mode == SharedMemory::AM_WRITE)
 		_mode = PAGE_READWRITE;
 

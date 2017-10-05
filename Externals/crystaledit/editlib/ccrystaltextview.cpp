@@ -1702,10 +1702,12 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
               size_t nPos = ::FindStringHelper(p, marker.second.sFindWhat, marker.second.dwFlags | FIND_NO_WRAP, nMatchLen, node, &matches);
               if (nPos == -1)
                   break;
+			  ASSERT(((p - pszChars) + nPos) < INT_MAX);
               blocks[nBlocks].m_nCharPos = static_cast<int>((p - pszChars) + nPos);
               blocks[nBlocks].m_nBgColorIndex = marker.second.nBgColorIndex | COLORINDEX_APPLYFORCE;
               blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
               ++nBlocks;
+			  ASSERT(((p - pszChars) + nPos + nMatchLen) < INT_MAX);
               blocks[nBlocks].m_nCharPos = static_cast<int>((p - pszChars) + nPos + nMatchLen);
               blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
               blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
@@ -4816,6 +4818,7 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int 
       if (rxnode && RxExec (rxnode, pszFindWhere, _tcslen (pszFindWhere), pszFindWhere, rxmatch))
         {
           pos = rxmatch->Open[0];
+		  ASSERT((rxmatch->Close[0] - rxmatch->Open[0]) < INT_MAX);
           nLen = static_cast<int>(rxmatch->Close[0] - rxmatch->Open[0]);
         }
       else
