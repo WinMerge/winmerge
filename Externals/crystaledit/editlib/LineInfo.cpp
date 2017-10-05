@@ -81,7 +81,7 @@ void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
     delete[] m_pcLine;
   m_pcLine = new TCHAR[m_nMax];
   ZeroMemory(m_pcLine, m_nMax * sizeof(TCHAR));
-  size_t dwLen = sizeof (TCHAR) * m_nLength;
+  const size_t dwLen = sizeof (TCHAR) * m_nLength;
   CopyMemory (m_pcLine, pszLine, dwLen);
   m_pcLine[m_nLength] = '\0';
 

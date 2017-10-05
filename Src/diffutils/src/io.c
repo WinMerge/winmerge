@@ -230,6 +230,7 @@ slurp (current)
               current->buffer = xrealloc (current->buffer, current->bufsize);
 #endif /*__MSDOS__*/
             }
+		  assert((current->bufsize - current->buffered_chars) < UINT_MAX);
           cc = read (current->desc,
           current->buffer + current->buffered_chars,
           (unsigned int)(current->bufsize - current->buffered_chars));
@@ -872,6 +873,7 @@ find_identical_ends (filevec)
       for (prefix_count = 1;  prefix_count < context + 1;  prefix_count *= 2)
         ;
       prefix_mask = prefix_count - 1;
+	  assert((p0 - (char HUGE *)filevec[0].prefix_end) < INT_MAX);
       ttt = (int)(p0 - (char HUGE *)filevec[0].prefix_end);
       alloc_lines0
         = prefix_count
@@ -916,6 +918,7 @@ find_identical_ends (filevec)
 
   /* Allocate line buffer 1.  */
   tem = prefix_count ? filevec[1].suffix_begin - buffer1 : n1;
+  assert((filevec[1].prefix_end - buffer1) < INT_MAX);
   ttt = (int)(filevec[1].prefix_end - buffer1);
   alloc_lines1
     = (buffered_prefix
@@ -941,6 +944,8 @@ find_identical_ends (filevec)
   filevec[0].linbuf = linbuf0 + buffered_prefix;
   filevec[1].linbuf = linbuf1 + buffered_prefix;
   filevec[0].linbuf_base = filevec[1].linbuf_base = - buffered_prefix;
+  assert((alloc_lines0 - buffered_prefix) < INT_MAX);
+  assert((alloc_lines1 - buffered_prefix) < INT_MAX);
   filevec[0].alloc_lines = (int)(alloc_lines0 - buffered_prefix);
   filevec[1].alloc_lines = (int)(alloc_lines1 - buffered_prefix);
   filevec[0].prefix_lines = filevec[1].prefix_lines = lines;

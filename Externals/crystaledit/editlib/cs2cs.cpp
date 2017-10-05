@@ -61,7 +61,7 @@ str_fill (LPTSTR s, TCHAR ch, long count)
   *s = _T ('\0');
 }
 
-long
+size_t
 str_pos (LPCTSTR whole, LPCTSTR piece)
 {
   LPCTSTR s = whole;
@@ -69,7 +69,7 @@ str_pos (LPCTSTR whole, LPCTSTR piece)
 
   while (*s)
     if (!_tcsnicmp (s++, piece, l))
-      return static_cast<long>(s - whole - 1);
+      return (s - whole - 1);
   return -2;
 }
 
@@ -110,9 +110,9 @@ skip_word (LPCTSTR s)
 size_t
 get_coding (LPCTSTR name, type_codes *codes, int *coding)
 {
-  long i, pos;
+  size_t pos;
 
-  for (i = 0; i < codes_count; i++)
+  for (int i = 0; i < codes_count; i++)
     if ((pos = str_pos (name, codes[i].name)) >= 0)
       {
         *coding = i;
@@ -179,7 +179,7 @@ TCHAR iconvert_char (TCHAR ch, int source_coding, int destination_coding, bool a
 int
 iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabet_only)
   {
-    size_t posit = -2, i, j;
+    size_t posit = -2;
     LPCTSTR source_chars, destination_chars, cod_pos = NULL;
     TCHAR ch;
     LPTSTR s = string;
@@ -195,12 +195,13 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
     if (destination_coding < 0)
       return -2;
   
-    const size_t chars_count = alphabet_only ? chars_alphabet_count : chars_all_count;
+    int chars_count = alphabet_only ? chars_alphabet_count : chars_all_count;
     source_chars = source_codes[source_coding].codes;
     destination_chars = destination_codes[destination_coding].codes;
     for (;;)
       if (cod_pos == s)
         {
+		  size_t i, j;
           i = _tcslen (source_codes[source_coding].name);
           j = _tcslen (destination_codes[destination_coding].name);
           if (i != j)
@@ -213,7 +214,7 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
           ch = *s;
           if (!ch)
             break;
-          i = chars_count;
+          int i = chars_count;
           if ((unsigned) ch > 127)
             for (i = 0; i < chars_count; i++)
               if (ch == source_chars[i])

@@ -2798,7 +2798,7 @@ OnUpdateToolsCharCoding (CCmdUI * pCmdUI)
   pCmdUI->Enable (IsSelection ());
 }
 
-long str_pos (LPCTSTR whole, LPCTSTR piece);
+size_t str_pos (LPCTSTR whole, LPCTSTR piece);
 
 void CCrystalEditView::
 OnToolsCharCoding ()
