@@ -1029,7 +1029,7 @@ String CDiffWrapper::FormatSwitchString() const
 	if (m_options.m_contextLines > 0)
 	{
 		TCHAR tmpNum[5] = {0};
-		_itot_s(m_options.m_contextLines, tmpNum, sizeof(tmpNum)/sizeof(TCHAR), 10);
+		_itot_s(m_options.m_contextLines, tmpNum, 10);
 		switches += tmpNum;
 	}
 
