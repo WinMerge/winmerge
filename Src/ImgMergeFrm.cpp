@@ -1344,7 +1344,7 @@ void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	else if (m_pImgMergeWindow->GetCurrentDiffIndex() < 0)
 	{
 		s = theApp.LoadString(nDiffs == 1 ? IDS_1_DIFF_FOUND : IDS_NO_DIFF_SEL_FMT);
-		_itot_s(nDiffs, sCnt, sizeof(sCnt)/sizeof(TCHAR), 10);
+		_itot_s(nDiffs, sCnt, 10);
 		strutils::replace(s, _T("%1"), sCnt);
 	}
 	
@@ -1354,9 +1354,9 @@ void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	{
 		s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
 		const int signInd = m_pImgMergeWindow->GetCurrentDiffIndex();
-		_itot_s(signInd + 1, sIdx, sizeof(sIdx)/sizeof(TCHAR), 10);
+		_itot_s(signInd + 1, sIdx, 10);
 		strutils::replace(s, _T("%1"), sIdx);
-		_itot_s(nDiffs, sCnt, sizeof(sCnt)/sizeof(TCHAR), 10);
+		_itot_s(nDiffs, sCnt, 10);
 		strutils::replace(s, _T("%2"), sCnt);
 	}
 	pCmdUI->SetText(s.c_str());
