@@ -50,19 +50,21 @@ SharedMemoryImpl::SharedMemoryImpl(const std::string& name, std::size_t size, Sh
 	_name(name),
 	_memHandle(INVALID_HANDLE_VALUE),
 	_fileHandle(INVALID_HANDLE_VALUE),
-	_size(static_cast<DWORD>(size)),
+	_size(size),
 	_mode(PAGE_READONLY),
 	_address(0)
 {
+	LARGE_INTEGER mySize;
+	mySize.QuadPart = _size;
 	if (mode == SharedMemory::AM_WRITE)
 		_mode = PAGE_READWRITE;
 
 #if defined (POCO_WIN32_UTF8)
 	std::wstring utf16name;
 	UnicodeConverter::toUTF16(_name, utf16name);
-	_memHandle = CreateFileMappingW(INVALID_HANDLE_VALUE, NULL, _mode, 0, _size, utf16name.c_str());
+	_memHandle = CreateFileMappingW(INVALID_HANDLE_VALUE, NULL, _mode, mySize.HighPart, mySize.LowPart, utf16name.c_str());
 #else
-	_memHandle = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, _mode, 0, _size, _name.c_str());
+	_memHandle = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, _mode, mySize.HighPart, mySize.LowPart, _name.c_str());
 #endif
 
 	if (!_memHandle)
@@ -131,7 +133,7 @@ void SharedMemoryImpl::map()
 	DWORD access = FILE_MAP_READ;
 	if (_mode == PAGE_READWRITE)
 		access = FILE_MAP_WRITE;
-	LPVOID addr = MapViewOfFile(_memHandle, access, 0, 0, _size);
+	LPVOID addr = MapViewOfFile(_memHandle, access, 0, 0, static_cast<SIZE_T>(_size));
 	if (!addr)
 		throw SystemException("Cannot map shared memory object", _name);
 

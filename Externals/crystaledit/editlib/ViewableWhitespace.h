@@ -6,8 +6,7 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id: ViewableWhitespace.h 3410 2006-07-31 17:14:15Z kimmov $
 
-#ifndef ViewableWhitespace_included_h
-#define ViewableWhitespace_included_h
+#pragma once
 
 /**
  * @brief Structure containing characters for viewable whitespace chars.
@@ -27,4 +26,3 @@ struct ViewableWhitespaceChars
 
 const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage);
 
-#endif // ViewableWhitespace_included_h

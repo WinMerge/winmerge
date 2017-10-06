@@ -41,7 +41,6 @@ static int f_nDefaultCodepage = GetACP();
  */
 int Ucs4_to_Utf8(unsigned unich, unsigned char * utf8)
 {
-#pragma warning(disable: 4244) // possible loss of data due to type conversion
 	if (unich <= 0x7f)
 	{
 		utf8[0] = (unsigned char)unich;
@@ -94,7 +93,6 @@ int Ucs4_to_Utf8(unsigned unich, unsigned char * utf8)
 		utf8[0] = '?';
 		return 1;
 	}
-#pragma warning(default: 4244) // possible loss of data due to type conversion
 }
 
 /**
@@ -137,7 +135,7 @@ int Utf8len_fromCodepoint(unsigned ch)
  */
 size_t stringlen_of_utf8(const char* text, size_t size)
 {
-	unsigned len = 0;
+	size_t len = 0;
 	for (size_t i = 0; i < size;)
 	{
 		int chlen = Utf8len_fromLeadByte(text[i]);
@@ -207,7 +205,6 @@ unsigned GetUtf8Char(unsigned char * str)
  */
 int to_utf8_advance(unsigned u, unsigned char * &lpd)
 {
-#pragma warning(disable: 4244) // possible loss of data due to type conversion
 	if (u < 0x80)
 	{
 		*lpd++ = u;
@@ -258,7 +255,6 @@ int to_utf8_advance(unsigned u, unsigned char * &lpd)
 		*lpd++ = '?';
 		return 1;
 	}
-#pragma warning(default: 4244) // possible loss of data due to type conversion
 }
 
 /**
@@ -817,7 +813,7 @@ unsigned char *convertTtoUTF8(LPCTSTR src, int srcbytes/* = -1*/)
 {
 	buffer buf(256);
 	convertTtoUTF8(&buf, src, srcbytes);
-	return (unsigned char *)strdup((const char *)buf.ptr);
+	return (unsigned char *)_strdup((const char *)buf.ptr);
 }
 
 TCHAR *convertUTF8toT(buffer * buf, LPCSTR src, int srcbytes/* = -1*/)
@@ -970,7 +966,7 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, si
 	{
 		// simple byte swap
 		dest->resize(srcbytes + 2);
-		for (int i = 0; i < srcbytes; i += 2)
+		for (size_t i = 0; i < srcbytes; i += 2)
 		{
 			// Byte-swap into destination
 			dest->ptr[i] = src[i+1];

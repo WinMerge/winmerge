@@ -23,8 +23,7 @@
 // like to play with new stuff.
 //*************************************************************************
 
-#ifndef BCMenu_H
-#define BCMenu_H
+#pragma once
 
 #include <afxtempl.h>
 
@@ -339,6 +338,3 @@ protected:
 	static HTHEME m_hTheme;
 }; 
 
-#endif
-
-//*************************************************************************

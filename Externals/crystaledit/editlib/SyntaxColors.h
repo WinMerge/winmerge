@@ -6,8 +6,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#ifndef _SYNTAX_COLORS_H_
-#define _SYNTAX_COLORS_H_
+#pragma once
 
 #include <Windows.h>
 #include <vector>
@@ -88,5 +87,3 @@ private:
 	std::vector<COLORREF> m_colors; /**< Syntax highlight colors */
 	std::vector<bool> m_bolds; /**< Bold font enable/disable */
 };
-
-#endif // _SYNTAX_COLORS_H_

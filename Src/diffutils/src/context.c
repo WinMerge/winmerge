@@ -45,9 +45,12 @@ print_context_label (mark, inf, label)
   if (label)
     fprintf (outfile, "%s %s\n", mark, label);
   else
+	{
     /* See Posix.2 section 4.17.6.1.4 for this format.  */
-    fprintf (outfile, "%s %s\t%s",
-	     mark, inf->name, ctime (&inf->stat.st_mtime));
+	char ctimeBuffer[26];
+	ctime_s(ctimeBuffer, sizeof(ctimeBuffer), &inf->stat.st_mtime);
+    fprintf (outfile, "%s %s\t%s", mark, inf->name, ctimeBuffer);
+	}
 }
 
 /* Print a header for a context diff, with the file names and dates.  */

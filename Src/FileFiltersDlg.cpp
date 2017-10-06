@@ -326,7 +326,7 @@ void FileFiltersDlg::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
 		{
 			// Set item text to tooltip
 			String strText = m_listFilters.GetItemText(lvhti.iItem, lvhti.iSubItem);
-			_tcscpy(pInfoTip->pszText, strText.c_str());
+			_tcscpy_s(pInfoTip->pszText, pInfoTip->cchTextMax, strText.c_str());
 		}
 	}
 }
@@ -434,7 +434,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		TCHAR ext[_MAX_EXT] = {0};
 		TCHAR dir[_MAX_DIR] = {0};
 		TCHAR drive[_MAX_DRIVE] = {0};
-		_tsplitpath(s.c_str(), drive, dir, file, ext);
+		_tsplitpath_s(s.c_str(), drive, _MAX_DRIVE, dir, _MAX_DIR, file, _MAX_FNAME, ext, _MAX_EXT);
 		if (_tcslen(ext) == 0)
 		{
 			s += FileFilterExt;

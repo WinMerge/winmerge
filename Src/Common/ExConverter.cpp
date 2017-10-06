@@ -169,7 +169,7 @@ public:
 					codepagestotry[0] = ucr::CP_UTF_8;
 			}
 			codepage = defcodepage;
-			int i;
+			size_t i;
 			for (i = 0; i < sizeof(codepagestotry)/sizeof(codepagestotry[0]) - 1; i++)
 			{
 				if (codepagestotry[i] == 0) break;

@@ -1,7 +1,10 @@
 #include <StdAfx.h>
 #include "DropHandler.h"
 #include <memory>
-#include <ShlObj.h>
+#pragma warning (push)			// prevent "warning C4091: 'typedef ': ignored on left of 'tagGPFIDL_FLAGS' when no variable is declared"
+#pragma warning (disable:4091)	// VC bug when using XP enabled toolsets.
+#include <shlobj.h>
+#pragma warning (pop)
 #include <comip.h>
 #include "paths.h"
 #include "Environment.h"

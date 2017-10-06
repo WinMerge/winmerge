@@ -65,7 +65,7 @@ void LineInfo::FreeBuffer()
  * @param [in] pszLine Line data.
  * @param [in] nLength Line length.
  */
-void LineInfo::Create(LPCTSTR pszLine, int nLength)
+void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
 {
   if (nLength == 0)
     {
@@ -75,12 +75,13 @@ void LineInfo::Create(LPCTSTR pszLine, int nLength)
 
   m_nLength = nLength;
   m_nMax = ALIGN_BUF_SIZE (m_nLength + 1);
+  ASSERT (m_nMax < INT_MAX);
   ASSERT (m_nMax >= m_nLength + 1);
   if (m_pcLine != NULL)
     delete[] m_pcLine;
   m_pcLine = new TCHAR[m_nMax];
   ZeroMemory(m_pcLine, m_nMax * sizeof(TCHAR));
-  const DWORD dwLen = sizeof (TCHAR) * m_nLength;
+  const size_t dwLen = sizeof (TCHAR) * m_nLength;
   CopyMemory (m_pcLine, pszLine, dwLen);
   m_pcLine[m_nLength] = '\0';
 
@@ -112,12 +113,13 @@ void LineInfo::CreateEmpty()
  * @param [in] pszChars String to append to the line.
  * @param [in] nLength Length of the string to append.
  */
-void LineInfo::Append(LPCTSTR pszChars, int nLength)
+void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
 {
-  int nBufNeeded = m_nLength + nLength + 1;
+  size_t nBufNeeded = m_nLength + nLength + 1;
   if (nBufNeeded > m_nMax)
     {
       m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
+	  ASSERT (m_nMax < INT_MAX);
       ASSERT (m_nMax >= m_nLength + nLength);
       TCHAR *pcNewBuf = new TCHAR[m_nMax];
       if (FullLength() > 0)
@@ -181,7 +183,8 @@ bool LineInfo::ChangeEol(LPCTSTR lpEOL)
     if (_tcscmp(m_pcLine + Length(), lpEOL) == 0)
       return false;
 
-  int nBufNeeded = m_nLength + nNewEolChars+1;
+  size_t nBufNeeded = m_nLength + nNewEolChars+1;
+  ASSERT (nBufNeeded < INT_MAX);
   if (nBufNeeded > m_nMax)
     {
       m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
@@ -204,7 +207,7 @@ bool LineInfo::ChangeEol(LPCTSTR lpEOL)
  * @param [in] nStartChar Start position for removal.
  * @param [in] nEndChar End position for removal.
  */
-void LineInfo::Delete(int nStartChar, int nEndChar)
+void LineInfo::Delete(size_t nStartChar, size_t nEndChar)
 {
   if (nEndChar < Length() || m_nEolChars)
     {
@@ -220,7 +223,7 @@ void LineInfo::Delete(int nStartChar, int nEndChar)
  * @brief Delete line contents from given index to the end.
  * @param [in] Index of first character to remove.
  */
-void LineInfo::DeleteEnd(int nStartChar)
+void LineInfo::DeleteEnd(size_t nStartChar)
 {
   m_nLength = nStartChar;
   if (m_pcLine)
@@ -257,7 +260,7 @@ void LineInfo::RemoveEol()
  * @param [in] index Index of first character to get.
  * @note Make a copy from returned string, as it can get reallocated.
  */
-LPCTSTR LineInfo::GetLine(int index) const
+LPCTSTR LineInfo::GetLine(size_t index) const
 {
   return &m_pcLine[index];
 }

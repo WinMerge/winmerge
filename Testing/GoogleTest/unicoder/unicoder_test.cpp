@@ -90,28 +90,28 @@ namespace
 		int n;
 
 		// UTF8->UCS2LE
-		n = ucr::CrossConvert(str_utf8, strlen(str_utf8), (char *)wbuf, sizeof(wbuf), ucr::CP_UTF_8, 1200, &lossy);
+		n = ucr::CrossConvert(str_utf8, static_cast<unsigned>(strlen(str_utf8)), (char *)wbuf, sizeof(wbuf), ucr::CP_UTF_8, 1200, &lossy);
 		EXPECT_STREQ(str_ucs2, wbuf);
 		EXPECT_EQ(wcslen(str_ucs2) * sizeof(wchar_t), n);
 
 		// UCS2BE->UCS2LE
-		_swab((char *)str_ucs2, (char *)str_ucs2be, (wcslen(str_ucs2) + 1) * sizeof(wchar_t));
-		n = ucr::CrossConvert((char *)str_ucs2be, wcslen(str_ucs2) * sizeof(wchar_t), (char *)wbuf, sizeof(wbuf), 1201, 1200, &lossy);
+		_swab((char *)str_ucs2, (char *)str_ucs2be, static_cast<int>((wcslen(str_ucs2) + 1) * sizeof(wchar_t)));
+		n = ucr::CrossConvert((char *)str_ucs2be, static_cast<unsigned>(wcslen(str_ucs2) * sizeof(wchar_t)), (char *)wbuf, sizeof(wbuf), 1201, 1200, &lossy);
 		EXPECT_STREQ(str_ucs2, wbuf);
 		EXPECT_EQ(wcslen(str_ucs2) * sizeof(wchar_t), n);
 
 		// UCS2LE->UCS2LE
-		n = ucr::CrossConvert((char *)str_ucs2, wcslen(str_ucs2) * sizeof(wchar_t), (char *)wbuf, sizeof(wbuf), 1200, 1200, &lossy);
+		n = ucr::CrossConvert((char *)str_ucs2, static_cast<unsigned>(wcslen(str_ucs2) * sizeof(wchar_t)), (char *)wbuf, sizeof(wbuf), 1200, 1200, &lossy);
 		EXPECT_STREQ(str_ucs2, wbuf);
 		EXPECT_EQ(wcslen(str_ucs2) * sizeof(wchar_t), n);
 
 		// UTF8->UCS2BE
-		n = ucr::CrossConvert(str_utf8, strlen(str_utf8), (char *)wbuf, sizeof(wbuf), ucr::CP_UTF_8, 1201, &lossy);
+		n = ucr::CrossConvert(str_utf8, static_cast<unsigned>(strlen(str_utf8)), (char *)wbuf, sizeof(wbuf), ucr::CP_UTF_8, 1201, &lossy);
 		EXPECT_STREQ(str_ucs2be, wbuf);
 		EXPECT_EQ(wcslen(str_ucs2be) * sizeof(wchar_t), n);
 
 		// UCS2BE->UTF8
-		n = ucr::CrossConvert((char *)str_ucs2be, wcslen(str_ucs2be) * sizeof(wchar_t), buf, sizeof(buf), 1201, ucr::CP_UTF_8, &lossy);
+		n = ucr::CrossConvert((char *)str_ucs2be, static_cast<unsigned>(wcslen(str_ucs2be) * sizeof(wchar_t)), buf, sizeof(buf), 1201, ucr::CP_UTF_8, &lossy);
 		EXPECT_STREQ(str_utf8, buf);
 		EXPECT_EQ(strlen(str_utf8), n);
 

@@ -24,14 +24,10 @@
 //        and maybe "ugly" code ...
 ////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_CCRYSTALEDITVIEW_H__8F3F8B63_6F66_11D2_8C34_0080ADB86836__INCLUDED_)
-#define AFX_CCRYSTALEDITVIEW_H__8F3F8B63_6F66_11D2_8C34_0080ADB86836__INCLUDED_
-
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
 
 #include "ccrystaltextview.h"
+#include "ccrystaltextbuffer.h"
 #include "wispelld.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -125,9 +121,9 @@ public :
     virtual bool QueryEditable ();
     virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1);
 
-    bool ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags);
+    bool ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags);
 
-    virtual void OnEditOperation (int nAction, LPCTSTR pszText, int cchText);
+    virtual void OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText);
 
     virtual bool DoSetTextType (TextDefinition *def);
 
@@ -224,11 +220,43 @@ protected :
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if ! (defined(CE_FROM_DLL) || defined(CE_DLL_BUILD))
-#include "ccrystaleditview.inl"
-#endif
+inline bool CCrystalEditView::
+GetOverwriteMode ()
+const
+{
+  return m_bOvrMode;
+}
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
+inline void CCrystalEditView::SetOverwriteMode (bool bOvrMode /*= true*/ )
+{
+  m_bOvrMode = bOvrMode;
+}
 
-#endif // !defined(AFX_CCRYSTALEDITVIEW_H__8F3F8B63_6F66_11D2_8C34_0080ADB86836__INCLUDED_)
+inline bool CCrystalEditView::
+GetDisableBSAtSOL ()
+const
+{
+  return m_bDisableBSAtSOL;
+}
+
+inline bool CCrystalEditView::GetAutoIndent ()
+const
+{
+  return m_bAutoIndent;
+}
+
+inline void CCrystalEditView::SetAutoIndent (bool bAutoIndent)
+{
+  m_bAutoIndent = bAutoIndent;
+}
+
+inline bool CCrystalEditView::GetInsertTabs ()
+const
+{
+  return m_pTextBuffer->GetInsertTabs();
+}
+
+inline void CCrystalEditView::SetInsertTabs (bool bInsertTabs)
+{
+  m_pTextBuffer->SetInsertTabs(bInsertTabs);
+}

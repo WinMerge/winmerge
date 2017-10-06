@@ -880,9 +880,9 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 				for (i = 0; i < 2; i++)
 					while (filevec[i].buffered_chars < buffer_size)
 					  {
-						int r = read (filevec[i].desc,
-									  filevec[i].buffer	+ filevec[i].buffered_chars,
-									  (int)(buffer_size - filevec[i].buffered_chars));
+						int r = _read (filevec[i].desc,
+									   filevec[i].buffer	+ filevec[i].buffered_chars,
+									   (int)(buffer_size - filevec[i].buffered_chars));
 						if (r == 0)
 							break;
 						if (r < 0)

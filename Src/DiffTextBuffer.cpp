@@ -84,8 +84,8 @@ static void EscapeControlChars(String &s)
 		// Is it a control character in the range 0..31 except TAB?
 		if (!(c & ~_T('\x1F')) && c != _T('\t'))
 		{
-			// Bitwise OR with 0x100 so _itot() will output 3 hex digits
-			_itot(0x100 | c, p + n - 4, 16);
+			// Bitwise OR with 0x100 so _itot_s() will output 3 hex digits
+			_itot_s(0x100 | c, p + n - 4, 4, 16);
 			// Replace terminating zero with leadout character
 			p[n - 1] = _T('\\');
 			// Prepare to replace 1st hex digit with leadin character
@@ -150,7 +150,7 @@ bool CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine) const
 		strLine.Empty();
 	else
 	{
-		_tcsncpy(strLine.GetBuffer(nLineLength + 1),
+		_tcsncpy_s(strLine.GetBuffer(nLineLength + 1), nLineLength + 1,
 			CCrystalTextBuffer::GetLineChars(nLineIndex), nLineLength);
 		strLine.ReleaseBuffer(nLineLength);
 	}

@@ -6,10 +6,7 @@
  */
 #pragma once
 
-#ifndef DirReportTypes_h_included
 #include "DirReportTypes.h"
-#endif
-
 #include "SuperComboBox.h"
 
 /** 
