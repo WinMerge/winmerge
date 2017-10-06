@@ -2244,8 +2244,8 @@ void CMainFrame::OnHelpCheckForUpdates()
 		delete file;
 
 		int exe_vers[4] = { 0 }, cur_vers[4] = { 0 };
-		_stscanf(version.GetProductVersion().c_str(), _T("%d.%d.%d.%d"), &exe_vers[0], &exe_vers[1], &exe_vers[2], &exe_vers[3]);
-		_stscanf(current_version.c_str(),             _T("%d.%d.%d.%d"), &cur_vers[0], &cur_vers[1], &cur_vers[2], &cur_vers[3]);
+		_stscanf_s(version.GetProductVersion().c_str(), _T("%d.%d.%d.%d"), &exe_vers[0], &exe_vers[1], &exe_vers[2], &exe_vers[3]);
+		_stscanf_s(current_version.c_str(),             _T("%d.%d.%d.%d"), &cur_vers[0], &cur_vers[1], &cur_vers[2], &cur_vers[3]);
 		String exe_version_hex = strutils::format(_T("%08x%08x%08x%08x"), exe_vers[0], exe_vers[1], exe_vers[2], exe_vers[3]);
 		String cur_version_hex = strutils::format(_T("%08x%08x%08x%08x"), cur_vers[0], cur_vers[1], cur_vers[2], cur_vers[3]);
 
@@ -2492,7 +2492,7 @@ void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 void CMainFrame::OnMRUs(UINT nID)
 {
 	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
-	const int idx = nID - ID_MRU_FIRST;
+	const size_t idx = nID - ID_MRU_FIRST;
 	if (idx < mrus.size())
 	{
 		MergeCmdLineInfo cmdInfo((_T("\"") + mrus[idx].path + _T("\" ") + mrus[idx].params).c_str());
@@ -2508,7 +2508,7 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 		return;
 	
 	// empty the menu
-	int i = ::GetMenuItemCount(hMenu);
+	size_t i = ::GetMenuItemCount(hMenu);
 	while (i --)
 		::DeleteMenu(hMenu, 0, MF_BYPOSITION);
 

@@ -147,7 +147,6 @@ const COLORREF SAVED_REVMARK_CLR = RGB(0x00, 0xFF, 0x00);
 
 #define ICON_INDEX_WRAPLINE         15
 
-#pragma warning ( disable : 4100 )
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView
 
@@ -157,7 +156,7 @@ IMPLEMENT_DYNCREATE (CCrystalTextView, CView)
 
 HINSTANCE CCrystalTextView::s_hResourceInst = NULL;
 
-static int FindStringHelper(LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
+static size_t FindStringHelper(LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
 
 BEGIN_MESSAGE_MAP (CCrystalTextView, CView)
 //{{AFX_MSG_MAP(CCrystalTextView)
@@ -476,7 +475,7 @@ LoadSettings ()
       m_LogFont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
       m_LogFont.lfQuality = DEFAULT_QUALITY;
       m_LogFont.lfPitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
-      _tcscpy (m_LogFont.lfFaceName, _T ("Courier New"));
+      _tcscpy_s (m_LogFont.lfFaceName, _T ("Courier New"));
     }
 }
 
@@ -1458,7 +1457,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
   int nBgColorIndexZeorWidthBlock;
   bool bPrevZeroWidthBlock = false;
   static const int ZEROWIDTHBLOCK_WIDTH = 2;
-  int nActualItem = 0;
+  size_t nActualItem = 0;
 
   for (nActualItem = 0; 
     nActualItem < blocks.size() - 1 && blocks[nActualItem + 1].m_nCharPos < nOffset;
@@ -1475,7 +1474,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
       ASSERT(blocks[nActualItem].m_nCharPos >= 0 &&
          blocks[nActualItem].m_nCharPos <= nLineLength);
 
-      int I=0;
+      size_t I=0;
       for (I = nActualItem; I < blocks.size() - 1 &&
         blocks[I + 1].m_nCharPos <= nOffset + nCount; I ++)
         {
@@ -1603,7 +1602,7 @@ public:
 std::vector<CCrystalTextView::TEXTBLOCK> CCrystalTextView::
 MergeTextBlocks (const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBLOCK>& blocks2) const
 {
-  int i, j, k;
+  size_t i, j, k;
 
   std::vector<TEXTBLOCK> mergedBlocks(blocks1.size() + blocks2.size());
 
@@ -1700,14 +1699,16 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
               RxNode *node = nullptr;
               RxMatchRes matches;
               int nMatchLen = 0;
-              int nPos = ::FindStringHelper(p, marker.second.sFindWhat, marker.second.dwFlags | FIND_NO_WRAP, nMatchLen, node, &matches);
+              size_t nPos = ::FindStringHelper(p, marker.second.sFindWhat, marker.second.dwFlags | FIND_NO_WRAP, nMatchLen, node, &matches);
               if (nPos == -1)
                   break;
-              blocks[nBlocks].m_nCharPos = static_cast<int>(p - pszChars) + nPos;
+			  ASSERT(((p - pszChars) + nPos) < INT_MAX);
+              blocks[nBlocks].m_nCharPos = static_cast<int>((p - pszChars) + nPos);
               blocks[nBlocks].m_nBgColorIndex = marker.second.nBgColorIndex | COLORINDEX_APPLYFORCE;
               blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
               ++nBlocks;
-              blocks[nBlocks].m_nCharPos = static_cast<int>(p - pszChars) + nPos + nMatchLen;
+			  ASSERT(((p - pszChars) + nPos + nMatchLen) < INT_MAX);
+              blocks[nBlocks].m_nCharPos = static_cast<int>((p - pszChars) + nPos + nMatchLen);
               blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
               blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
               ++nBlocks;
@@ -2036,7 +2037,7 @@ GetHTMLLine (int nLineIndex, LPCTSTR pszTag)
 
   CString strHTML;
   CString strExpanded;
-  int i;
+  size_t i;
   int nNonbreakChars = 0;
   bool bLastCharSpace = false;
   const int nScreenChars = GetScreenChars ();
@@ -4495,7 +4496,7 @@ int CCrystalTextView::
 OnCreate (LPCREATESTRUCT lpCreateStruct)
 {
   memset (&m_lfBaseFont, 0, sizeof (m_lfBaseFont));
-  _tcscpy (m_lfBaseFont.lfFaceName, _T ("FixedSys"));
+  _tcscpy_s (m_lfBaseFont.lfFaceName, _T ("FixedSys"));
   m_lfBaseFont.lfHeight = 0;
   m_lfBaseFont.lfWeight = FW_NORMAL;
   m_lfBaseFont.lfItalic = false;
@@ -4525,7 +4526,7 @@ SetAnchor (const CPoint & ptNewAnchor)
 }
 
 void CCrystalTextView::
-OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
+OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
 {
 }
 
@@ -4804,12 +4805,12 @@ PrepareDragData ()
   return hData;
 }
 
-static int
+static size_t
 FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch)
 {
   if (dwFlags & FIND_REGEXP)
     {
-      int pos;
+      size_t pos;
 
       if (rxnode)
         RxFree (rxnode);
@@ -4817,7 +4818,8 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int 
       if (rxnode && RxExec (rxnode, pszFindWhere, _tcslen (pszFindWhere), pszFindWhere, rxmatch))
         {
           pos = rxmatch->Open[0];
-          nLen = rxmatch->Close[0] - rxmatch->Open[0];
+		  ASSERT((rxmatch->Close[0] - rxmatch->Open[0]) < INT_MAX);
+          nLen = static_cast<int>(rxmatch->Close[0] - rxmatch->Open[0]);
         }
       else
         {
@@ -5017,7 +5019,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                       if (nLineLength > 0)
                         {
                           LPTSTR pszBuf = item.GetBuffer (nLineLength + 1);
-                          _tcsncpy (pszBuf, pszChars, nLineLength);
+                          _tcsncpy_s (pszBuf, nLineLength+1, pszChars, nLineLength);
                           item.ReleaseBuffer (nLineLength);
                           line = item + line;
                         }
@@ -5038,30 +5040,30 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                       ptCurrentPos.x = nLineLength - 1;
 
                   LPCTSTR pszChars = GetLineChars (ptCurrentPos.y);
-                  _tcsncpy(line.GetBuffer(ptCurrentPos.x + 2), pszChars, ptCurrentPos.x + 1);
+                  _tcsncpy_s (line.GetBuffer(ptCurrentPos.x + 2), ptCurrentPos.x + 2, pszChars, ptCurrentPos.x + 1);
                   line.ReleaseBuffer (ptCurrentPos.x + 1);
                 }
 
-              int nFoundPos = -1;
+              size_t nFoundPos = -1;
               int nMatchLen = what.GetLength();
               int nLineLen = line.GetLength();
-              int nPos;
+              size_t nPos;
               do
                 {
                   nPos = ::FindStringHelper(line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
-                  if( nPos >= 0 )
+                  if( nPos != -1 )
                     {
                       nFoundPos = (nFoundPos == -1)? nPos : nFoundPos + nPos;
                       nFoundPos+= nMatchLen;
-                      line = line.Right( nLineLen - (nMatchLen + nPos) );
+                      line = line.Right( static_cast<LONG>(nLineLen - (nMatchLen + nPos)) );
                       nLineLen = line.GetLength();
                     }
                 }
-              while( nPos >= 0 );
+              while( nPos != -1 );
 
-              if( nFoundPos >= 0 )	// Found text!
+              if( nFoundPos != -1 )	// Found text!
                 {
-                  ptCurrentPos.x = nFoundPos - nMatchLen;
+                  ptCurrentPos.x = static_cast<int>(nFoundPos - nMatchLen);
                   *pptFoundPos = ptCurrentPos;
                   return true;
                 }
@@ -5108,7 +5110,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                       if (nLineLength > 0)
                         {
                           LPTSTR pszBuf = item.GetBuffer (nLineLength + 1);
-                          _tcsncpy (pszBuf, pszChars, nLineLength);
+                          _tcsncpy_s (pszBuf, nLineLength + 1, pszChars, nLineLength);
                           item.ReleaseBuffer (nLineLength);
                           line += item;
                         }
@@ -5130,20 +5132,20 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
 
                   //  Prepare necessary part of line
                   LPTSTR pszBuf = line.GetBuffer (nLineLength + 1);
-                  _tcsncpy (pszBuf, pszChars, nLineLength);
+                  _tcsncpy_s (pszBuf, nLineLength + 1, pszChars, nLineLength);
                   line.ReleaseBuffer (nLineLength);
                 }
 
               //  Perform search in the line
-              int nPos =::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
-              if (nPos >= 0)
+              size_t nPos = ::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
+              if (nPos != -1)
                 {
                   if (m_pszMatched)
                     free(m_pszMatched);
                   m_pszMatched = _tcsdup (line);
                   if (nEolns)
                     {
-                      CString item = line.Left (nPos);
+                      CString item = line.Left (static_cast<LONG>(nPos));
                       LPCTSTR current = _tcsrchr (item, _T('\n'));
                       if (current)
                         current++;
@@ -5153,18 +5155,18 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                       if (nEolns)
                         {
                           ptCurrentPos.y += nEolns;
-                          ptCurrentPos.x = nPos - (current - (LPCTSTR) item);
+                          ptCurrentPos.x = static_cast<LONG>(nPos - (current - (LPCTSTR) item));
                         }
                       else
                         {
-                          ptCurrentPos.x += nPos - (current - (LPCTSTR) item);
+                          ptCurrentPos.x += static_cast<LONG>(nPos - (current - (LPCTSTR) item));
                         }
                       if (ptCurrentPos.x < 0)
                         ptCurrentPos.x = 0;
                     }
                   else
                     {
-                      ptCurrentPos.x += nPos;
+                      ptCurrentPos.x += static_cast<LONG>(nPos);
                     }
                   //  Check of the text found is outside the block.
                   if (ptCurrentPos.y == ptBlockEnd.y && ptCurrentPos.x >= ptBlockEnd.x)
@@ -6567,4 +6569,3 @@ SetTextTypeByContent (LPCTSTR pszContent)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-#pragma warning ( default : 4100 )

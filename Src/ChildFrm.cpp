@@ -75,10 +75,8 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CChildFrame::CChildFrame()
-#pragma warning(disable:4355) // 'this' : used in base member initializer list
 : m_hIdentical(NULL)
 , m_hDifferent(NULL)
-#pragma warning(default:4355)
 {
 	m_bActivated = FALSE;
 	std::fill_n(m_nLastSplitPos, 2, 0);

@@ -20,6 +20,7 @@ and this notice must be preserved on all copies.  */
 
 
 #include "diff.h"
+#include <cassert>
 
 struct group
 {
@@ -387,7 +388,8 @@ scan_char_literal (lit, intptr)
 	      return 0;
 	    value = 8 * value + digit;
 	  }
-	digits = p - lit - 2;
+	assert((p - lit - 2) < INT_MAX);
+	digits = (int)(p - lit - 2);
 	if (! (1 <= digits && digits <= 3))
 	  return 0;
 	break;

@@ -14,8 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef __FILESUP_H__INCLUDED__
-#define __FILESUP_H__INCLUDED__
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -27,13 +26,3 @@ CString EDITPADC_CLASS GetNameExt (const CString & sString);
 int EDITPADC_CLASS GetNamePosition (LPCTSTR pszString);
 CString EDITPADC_CLASS GetPath (const CString & sString, bool bClose = false);
 CString EDITPADC_CLASS GetPathName (const CString & sString);
-
-/////////////////////////////////////////////////////////////////////////////
-
-#ifndef _DEBUG
-#include "filesup.inl"
-#endif // _DEBUG
-
-/////////////////////////////////////////////////////////////////////////////
-
-#endif // __FILESUP_H__INCLUDED__

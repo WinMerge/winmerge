@@ -934,12 +934,12 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 		// nice way to add a real time (invalid chars etc).
 		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_TIME))
 		{
-			struct tm *tm;
+			struct tm tm;
 			time_t curtime = 0;
 			time(&curtime);
-			tm = localtime(&curtime);
+			::localtime_s(&tm, &curtime);
 			CString timestr;
-			timestr.Format(_T("%04d%02d%02d%02d%02d%02d"), tm->tm_year+1900, tm->tm_mon+1, tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec);
+			timestr.Format(_T("%04d%02d%02d%02d%02d%02d"), tm.tm_year+1900, tm.tm_mon+1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 			filename += _T("-");
 			filename += timestr;
 		}

@@ -472,9 +472,9 @@ Path& Path::setDevice(const std::string& device)
 	
 const std::string& Path::directory(int n) const
 {
-	poco_assert (0 <= n && n <= _dirs.size());
+	poco_assert (0 <= n && n <= (int)_dirs.size());
 	
-	if (n < _dirs.size())
+	if (n < static_cast<int>(_dirs.size()))
 		return _dirs[n];
 	else
 		return _name;	
@@ -483,9 +483,9 @@ const std::string& Path::directory(int n) const
 
 const std::string& Path::operator [] (int n) const
 {
-	poco_assert (0 <= n && n <= _dirs.size());
+	poco_assert (0 <= n && n <= (int)_dirs.size());
 	
-	if (n < _dirs.size())
+	if (n < static_cast<int>(_dirs.size()))
 		return _dirs[n];
 	else
 		return _name;	
@@ -865,7 +865,7 @@ void Path::parseVMS(const std::string& path)
 								{
 									if (name == "-")
 									{
-										if (_dirs.size() > d)
+										if (static_cast<int>(_dirs.size()) > d)
 											_dirs.pop_back();
 									}
 									else _dirs.push_back(name);

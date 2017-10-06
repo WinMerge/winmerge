@@ -70,7 +70,7 @@ int NumberParser::parse(const std::string& s)
 bool NumberParser::tryParse(const std::string& s, int& value)
 {
 	char temp;
-	return std::sscanf(s.c_str(), "%d%c", &value, &temp) == 1;
+	return ::sscanf_s(s.c_str(), "%d%c", &value, &temp, 1U) == 1;
 }
 
 
@@ -87,7 +87,7 @@ unsigned NumberParser::parseUnsigned(const std::string& s)
 bool NumberParser::tryParseUnsigned(const std::string& s, unsigned& value)
 {
 	char temp;
-	return std::sscanf(s.c_str(), "%u%c", &value, &temp) == 1;
+	return ::sscanf_s(s.c_str(), "%u%c", &value, &temp, 1U) == 1;
 }
 
 
@@ -104,7 +104,7 @@ unsigned NumberParser::parseHex(const std::string& s)
 bool NumberParser::tryParseHex(const std::string& s, unsigned& value)
 {
 	char temp;
-	return std::sscanf(s.c_str(), "%x%c", &value, &temp) == 1;
+	return ::sscanf_s(s.c_str(), "%x%c", &value, &temp, 1U) == 1;
 }
 
 
@@ -124,7 +124,7 @@ Int64 NumberParser::parse64(const std::string& s)
 bool NumberParser::tryParse64(const std::string& s, Int64& value)
 {
 	char temp;
-	return std::sscanf(s.c_str(), "%" I64_FMT "d%c", &value, &temp) == 1;
+	return ::sscanf_s(s.c_str(), "%" I64_FMT "d%c", &value, &temp, 1U) == 1;
 }
 
 
@@ -141,7 +141,7 @@ UInt64 NumberParser::parseUnsigned64(const std::string& s)
 bool NumberParser::tryParseUnsigned64(const std::string& s, UInt64& value)
 {
 	char temp;
-	return std::sscanf(s.c_str(), "%" I64_FMT "u%c", &value, &temp) == 1;
+	return ::sscanf_s(s.c_str(), "%" I64_FMT "u%c", &value, &temp, 1U) == 1;
 }
 
 
@@ -158,7 +158,7 @@ UInt64 NumberParser::parseHex64(const std::string& s)
 bool NumberParser::tryParseHex64(const std::string& s, UInt64& value)
 {
 	char temp;
-	return std::sscanf(s.c_str(), "%" I64_FMT "x%c", &value, &temp) == 1;
+	return ::sscanf_s(s.c_str(), "%" I64_FMT "x%c", &value, &temp, 1U) == 1;
 }
 
 

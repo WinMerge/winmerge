@@ -141,6 +141,3 @@ private:
 	PluginManager m_pluginman;
 	bool m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.

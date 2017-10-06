@@ -243,8 +243,8 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 
 		_tcscpy_safe(buffer1, strSavePath.c_str());
 		_tcscpy_safe(buffer2, m_vssHelper.GetProjectBase().c_str());
-		_tcslwr(buffer1);
-		_tcslwr(buffer2);
+		_tcslwr_s(buffer1, nBufferSize);
+		_tcslwr_s(buffer2, nBufferSize);
 
 		//make sure they both have \\ instead of /
 		_tcscpy_safe(buffer1, paths::ToWindowsPath(buffer1).c_str());

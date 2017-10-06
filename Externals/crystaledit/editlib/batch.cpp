@@ -654,7 +654,8 @@ IsBatKeyword (LPCTSTR pszChars, int nLength)
 static bool
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  TCHAR buffer[13];
+  const int bufsiz = 13;
+  TCHAR buffer[bufsiz];
 
   if (nLength < 4 || pszChars[nLength - 4] != '.')
     {
@@ -664,13 +665,13 @@ IsUser1Keyword (LPCTSTR pszChars, int nLength)
     {
       for (int L = 0; L < sizeof(s_apszUser1KeywordList)/sizeof(TCHAR *); L++)
         {
-          _tcscpy (buffer, s_apszUser1KeywordList[L]);
-          _tcscat (buffer, _T (".COM"));
+          _tcscpy_s (buffer, bufsiz, s_apszUser1KeywordList[L]);
+          _tcscat_s (buffer, bufsiz, _T (".COM"));
           if (_tcsnicmp (buffer, pszChars, nLength) == 0
                 && buffer[nLength] == 0)
             return true;
-          _tcscpy (buffer, s_apszUser1KeywordList[L]);
-          _tcscat (buffer, _T (".EXE"));
+          _tcscpy_s (buffer, bufsiz, s_apszUser1KeywordList[L]);
+          _tcscat_s (buffer ,bufsiz, _T (".EXE"));
           if (_tcsnicmp (buffer, pszChars, nLength) == 0
                 && buffer[nLength] == 0)
             return true;

@@ -3121,8 +3121,15 @@ void CDirView::OnViewTreeMode()
  */
 void CDirView::OnUpdateViewTreeMode(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(m_bTreeMode);
-	pCmdUI->Enable(GetDiffContext().m_bRecursive);
+	// Don't show Tree Mode as 'checked' if the
+	// menu item is greyed out (disabled).  Its very confusing.
+	if( GetDocument()->GetDiffContext().m_bRecursive ) {
+		pCmdUI->SetCheck(m_bTreeMode);
+		pCmdUI->Enable(TRUE);
+	} else {
+		pCmdUI->SetCheck(FALSE);
+		pCmdUI->Enable(FALSE);
+	}
 }
 
 /**

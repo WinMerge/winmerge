@@ -17,8 +17,7 @@ You should have received a copy of the GNU General Public License
 along with GNU DIFF; see the file COPYING.  If not, write to
 the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
-#ifndef __DIFF_H__
-#define __DIFF_H__
+#pragma once
 
 #include "system.h"
 #include <ctype.h>
@@ -386,4 +385,3 @@ int mywstat(const wchar_t *filename, struct _stat64 *buf);
 }
 #endif
 
-#endif

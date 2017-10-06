@@ -273,13 +273,13 @@ void Logger::formatDump(std::string& message, const void* buffer, std::size_t le
 	message.reserve(message.size() + length*6);
 	if (!message.empty()) message.append("\n");
 	unsigned char* base = (unsigned char*) buffer;
-	int addr = 0;
+	size_t addr = 0;
 	while (addr < length)
 	{
 		if (addr > 0) message.append("\n");
 		message.append(NumberFormatter::formatHex(addr, 4));
 		message.append("  ");
-		int offset = 0;
+		ptrdiff_t offset = 0;
 		while (addr + offset < length && offset < BYTES_PER_LINE)
 		{
 			message.append(NumberFormatter::formatHex(base[addr + offset], 2));

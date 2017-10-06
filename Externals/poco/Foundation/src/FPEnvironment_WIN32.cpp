@@ -42,7 +42,7 @@ namespace Poco {
 
 FPEnvironmentImpl::FPEnvironmentImpl()
 {
-	_env = _controlfp(0, 0);
+	 ::_controlfp_s(&_env, 0, 0);
 }
 
 
@@ -54,7 +54,7 @@ FPEnvironmentImpl::FPEnvironmentImpl(const FPEnvironmentImpl& env)
 
 FPEnvironmentImpl::~FPEnvironmentImpl()
 {
-	_controlfp(_env, MCW_RC);
+	::_controlfp_s(&_env, _env, MCW_RC);
 }
 
 
@@ -67,7 +67,7 @@ FPEnvironmentImpl& FPEnvironmentImpl::operator = (const FPEnvironmentImpl& env)
 
 void FPEnvironmentImpl::keepCurrentImpl()
 {
-	_env = _controlfp(0, 0);
+	::_controlfp_s(&_env, 0, 0);
 }
 
 
@@ -85,13 +85,15 @@ bool FPEnvironmentImpl::isFlagImpl(FlagImpl flag)
 
 void FPEnvironmentImpl::setRoundingModeImpl(RoundingModeImpl mode)
 {
-	_controlfp(mode, MCW_RC);
+	unsigned _env;
+	::_controlfp_s(&_env, mode, MCW_RC);
 }
 
 
 FPEnvironmentImpl::RoundingModeImpl FPEnvironmentImpl::getRoundingModeImpl()
 {
-	return RoundingModeImpl(_controlfp(0, 0) & MCW_RC);
+	unsigned _env;
+	return RoundingModeImpl(::_controlfp_s(&_env, 0, 0) & MCW_RC);
 }
 
 

@@ -2511,7 +2511,7 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 	FileTransform::GetFreeFunctionsInScripts(functionNamesList, L"EDITOR_SCRIPT");
 
 	// empty the menu
-	int i = GetMenuItemCount(hMenu);
+	size_t i = GetMenuItemCount(hMenu);
 	while (i --)
 		DeleteMenu(hMenu, 0, MF_BYPOSITION);
 
@@ -2574,7 +2574,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
 
 	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-	int iScript;
+	size_t iScript;
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
 	{
 		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
@@ -2941,7 +2941,7 @@ void CMergeEditView::OnScripts(UINT nID )
 	bool bChanged = FileTransform::Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
 	if (bChanged)
 		// now replace the text
-		ReplaceSelection(text.c_str(), static_cast<int>(text.length()), 0);
+		ReplaceSelection(text.c_str(), text.length(), 0);
 }
 
 /**
@@ -3069,7 +3069,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
  */
 int CMergeEditView::FindPrediffer(LPCTSTR prediffer) const
 {
-	int i;
+	size_t i;
 	int ID = ID_PREDIFFERS_FIRST;
 
 	// Search file prediffers

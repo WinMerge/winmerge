@@ -119,7 +119,6 @@ public :
   };
 
 
-#pragma warning ( disable : 4100 )
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalEditView
 
@@ -400,7 +399,7 @@ DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction)
     }
 
   p[0] = 0;
-  text.ReleaseBuffer (p - pszBuf);
+  text.ReleaseBuffer (static_cast<int>(p - pszBuf));
   text.FreeExtra ();
 
   if (nEndLine + 1 < GetLineCount())
@@ -447,7 +446,8 @@ InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction
   int L;
   int nBufSize = 1;
   int nLineCount = GetLineCount ();
-  int nPasteTextLineCount = aLineLengths.GetSize ();
+  ASSERT(aLineLengths.GetSize() < INT_MAX);
+  int nPasteTextLineCount = static_cast<int>(aLineLengths.GetSize ());
   for (L = 0; L < nPasteTextLineCount; L++)
     {
       if (nLine + L < nLineCount)
@@ -497,7 +497,7 @@ InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction
   else if (nLine != nLineCount - 1 || GetLineLength (nLineCount - 1) != 0)
     m_pTextBuffer->DeleteText (this, nLine, 0, nLineCount - 1, GetLineLength (nLineCount - 1), nAction);
   int x, y;
-  m_pTextBuffer->InsertText (this, nLine, 0, pszBuf, p - pszBuf, x, y, nAction);
+  m_pTextBuffer->InsertText (this, nLine, 0, pszBuf, static_cast<int>(p - pszBuf), x, y, nAction);
 
   if (bFlushUndoGroup)
     m_pTextBuffer->FlushUndoGroup (this);
@@ -1634,7 +1634,7 @@ OnEditReplace ()
  * @return true if succeeded.
  */
 bool CCrystalEditView::
-ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
+ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags)
 {
   if (!cchNewText)
     return DeleteCurrentSelection();
@@ -1660,27 +1660,28 @@ ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
   int y = 0;
   if (dwFlags & FIND_REGEXP)
     {
-      LPTSTR lpszNewStr;
+      LPTSTR lpszNewStr = nullptr;
       if (m_pszMatched && !RxReplace(pszNewText, m_pszMatched, m_nLastFindWhatLen, m_rxmatch, &lpszNewStr, &m_nLastReplaceLen))
         {
           CString text;
           if (lpszNewStr && m_nLastReplaceLen > 0)
             {
               LPTSTR buf = text.GetBuffer (m_nLastReplaceLen + 1);
-              _tcsncpy (buf, lpszNewStr, m_nLastReplaceLen);
+              _tcsncpy_s (buf, m_nLastReplaceLen+1, lpszNewStr, m_nLastReplaceLen);
               text.ReleaseBuffer (m_nLastReplaceLen);
             }
           else
             text.Empty ();
           m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), y, x, CE_ACTION_REPLACE);  //  [JRT+FRD]
-          if (lpszNewStr)
+          if (lpszNewStr != nullptr)
             free(lpszNewStr);
         }
     }
   else
     {
       m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszNewText, cchNewText, y, x, CE_ACTION_REPLACE);  //  [JRT]
-      m_nLastReplaceLen = cchNewText;
+	  ASSERT(cchNewText < INT_MAX);
+      m_nLastReplaceLen = static_cast<int>(cchNewText);
     }
 
   CPoint ptEndOfBlock = CPoint (x, y);
@@ -1858,7 +1859,7 @@ int bracetype (TCHAR c);
 int bracetype (LPCTSTR s);
 
 void CCrystalEditView::
-OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
+OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
 {
   if (m_bAutoIndent)
     {
@@ -1869,7 +1870,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
           CPoint ptCursorPos = GetCursorPos ();
           ASSERT (ptCursorPos.y > 0);
 
-          //  Take indentation from the previos line
+          //  Take indentation from the previous line
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y - 1);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y - 1);
           int nPos = 0;
@@ -1899,22 +1900,24 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
                         }
                     }
                 }
-              //  Insert part of the previos line
+              //  Insert part of the previous line
               TCHAR *pszInsertStr;
               if ((GetFlags () & (SRCOPT_BRACEGNU|SRCOPT_BRACEANSI)) && isopenbrace (pszLineChars[nLength - 1]))
                 {
                   if (m_pTextBuffer->GetInsertTabs())
                     {
-                      pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * (nPos + 2));
-                      _tcsncpy (pszInsertStr, pszLineChars, nPos);
+					  const size_t InsertSiz = (nPos + 2);
+                      pszInsertStr = static_cast<TCHAR *> (_alloca (sizeof(TCHAR) * InsertSiz));
+                      _tcsncpy_s (pszInsertStr, InsertSiz, pszLineChars, nPos);
                       pszInsertStr[nPos++] = _T ('\t');
                     }
                   else
                     {
                       int nTabSize = GetTabSize ();
                       int nChars = nTabSize - nPos % nTabSize;
-                      pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * (nPos + nChars + 1));
-                      _tcsncpy (pszInsertStr, pszLineChars, nPos);
+					  const size_t InsertSiz = (nPos + nChars + 1);
+                      pszInsertStr = static_cast<TCHAR *> (_alloca (sizeof (TCHAR) * InsertSiz));
+                      _tcsncpy_s (pszInsertStr, InsertSiz, pszLineChars, nPos);
                       while (nChars--)
                         {
                           pszInsertStr[nPos++] = _T (' ');
@@ -1923,8 +1926,9 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
                 }
               else
                 {
-                  pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * (nPos + 1));
-                  _tcsncpy (pszInsertStr, pszLineChars, nPos);
+				  const size_t InsertSiz = (nPos + 1);
+                  pszInsertStr = static_cast<TCHAR *> (_alloca (sizeof (TCHAR) * InsertSiz));
+                  _tcsncpy_s (pszInsertStr, InsertSiz, pszLineChars, nPos);
                 }
               pszInsertStr[nPos] = 0;
 
@@ -1941,7 +1945,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
             }
           else
             {
-              //  Insert part of the previos line
+              //  Insert part of the previous line
               if ((GetFlags () & (SRCOPT_BRACEGNU|SRCOPT_BRACEANSI)) && isopenbrace (pszLineChars[nLength - 1]))
                 {
                   TCHAR *pszInsertStr;
@@ -2003,7 +2007,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
           //  Enter stroke!
           CPoint ptCursorPos = GetCursorPos ();
 
-          //  Take indentation from the previos line
+          //  Take indentation from the previous line
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y );
           int nPos = 0;
@@ -2048,7 +2052,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
           //  Enter stroke!
           CPoint ptCursorPos = GetCursorPos ();
 
-          //  Take indentation from the previos line
+          //  Take indentation from the previous line
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y );
           int nPos = 0;
@@ -2100,11 +2104,11 @@ OnEditAutoComplete ()
         pszBegin--;
       if (!xisalnum (*pszBegin))
         pszBegin++;
-      nLength = pszEnd - pszBegin;
+      nLength = static_cast<int>(pszEnd - pszBegin);
       CString sText;
       LPTSTR pszBuffer = sText.GetBuffer (nLength + 2);
       *pszBuffer = _T('<');
-      _tcsncpy (pszBuffer + 1, pszBegin, nLength);
+      _tcsncpy_s (pszBuffer + 1, nLength - 1, pszBegin, nLength);
       sText.ReleaseBuffer (nLength + 1);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
@@ -2163,10 +2167,10 @@ OnEditAutoExpand ()
         pszBegin--;
       if (!xisalnum (*pszBegin))
         pszBegin++;
-      nLength = pszEnd - pszBegin;
+      nLength = static_cast<int>(pszEnd - pszBegin);
       CString sText, sExpand;
       LPTSTR pszBuffer = sText.GetBuffer (nLength + 1);
-      _tcsncpy (pszBuffer, pszBegin, nLength);
+      _tcsncpy_s (pszBuffer, nLength + 1, pszBegin, nLength);
       sText.ReleaseBuffer (nLength);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
@@ -2656,7 +2660,7 @@ int CCrystalEditView::SpellGetLine (struct SpellData_t *pdata)
       pdata->pszBuffer = szBuffer;
       *pdata->pszBuffer = _T ('^');
       if (nCount > 1)
-        _tcscpy (pdata->pszBuffer + 1, pView->GetLineChars (pdata->nRow));
+        _tcscpy_s (pdata->pszBuffer + 1, sizeof(szBuffer)-1, pView->GetLineChars (pdata->nRow));
       else
         pdata->pszBuffer[nCount++] = _T (' ');
       pdata->pszBuffer[nCount++] = _T ('\n');
@@ -2679,7 +2683,7 @@ int CCrystalEditView::SpellNotify (int nEvent, struct SpellData_t *pdata)
       case SN_FOUND:
         ptStartPos.x = pdata->nColumn - 1;
         ptStartPos.y = pdata->nRow - 1;
-        ptEndPos.x = pdata->nColumn - 1 + _tcslen (pdata->pszWord);
+        ptEndPos.x = pdata->nColumn - 1 + static_cast<LONG>(_tcslen (pdata->pszWord));
         ptEndPos.y = pdata->nRow - 1;
         if (!pView->IsValidTextPos (ptStartPos))
           if (ptStartPos.x > 0)
@@ -2744,7 +2748,7 @@ bool CCrystalEditView::LoadSpellDll (bool bAlert /*= true*/)
       SpellConfig = (int (*) (SpellData*)) GetProcAddress (hSpellDll, "SpellConfig");
       if (SpellInit)
         SpellInit (&spellData);
-      _tcscpy (spellData.szIspell, szWIspellPath);
+      _tcscpy_s (spellData.szIspell, szWIspellPath);
       spellData.GetLine = SpellGetLine;
       spellData.Notify = SpellNotify;
     }
@@ -2794,7 +2798,7 @@ OnUpdateToolsCharCoding (CCmdUI * pCmdUI)
   pCmdUI->Enable (IsSelection ());
 }
 
-long str_pos (LPCTSTR whole, LPCTSTR piece);
+size_t str_pos (LPCTSTR whole, LPCTSTR piece);
 
 void CCrystalEditView::
 OnToolsCharCoding ()
@@ -3061,4 +3065,3 @@ void CCrystalEditView::OnRButtonDown(UINT nFlags, CPoint point)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-#pragma warning ( default : 4100 )

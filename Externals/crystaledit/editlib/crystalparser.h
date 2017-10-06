@@ -13,12 +13,7 @@
 //	- LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX_CRYSTALPARSER_H__17435DA0_1F72_11D3_929E_FD90DABF8479__INCLUDED_)
-#define AFX_CRYSTALPARSER_H__17435DA0_1F72_11D3_929E_FD90DABF8479__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
 
 #include "crystaltextblock.h"
 
@@ -105,5 +100,3 @@ protected:
 	CCrystalTextView *m_pTextView;
 
 };
-
-#endif // !defined(AFX_CRYSTALPARSER_H__17435DA0_1F72_11D3_929E_FD90DABF8479__INCLUDED_)

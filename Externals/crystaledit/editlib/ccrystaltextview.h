@@ -31,12 +31,7 @@
 // ID line follows -- this is updated by SVN
 // $Id: ccrystaltextview.h 6888 2009-06-30 10:36:28Z kimmov $
 
-#if !defined(AFX_CCRYSTALTEXTVIEW_H__AD7F2F41_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)
-#define AFX_CCRYSTALTEXTVIEW_H__AD7F2F41_6CB3_11D2_8C32_0080ADB86836__INCLUDED_
-
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
 
 #include <vector>
 #include "cregexp.h"
@@ -856,7 +851,7 @@ public :
     void UpdateCompositionWindowFont();
 
     //  Overridable: an opportunity for Auto-Indent, Smart-Indent etc.
-    virtual void OnEditOperation (int nAction, LPCTSTR pszText, int cchText);
+    virtual void OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText);
 
     // Overrides
     // ClassWizard generated virtual function overrides
@@ -999,13 +994,8 @@ protected :
 #define ASSERT_VALIDTEXTPOS(pt)
 #endif
 
-#if ! (defined(CE_FROM_DLL) || defined(CE_DLL_BUILD))
-#include "ccrystaltextview.inl"
-#endif
 
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_CCRYSTALTEXTVIEW_H__AD7F2F41_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)
+inline bool CCrystalTextView::IsDraggingText () const
+{
+  return m_bDraggingText;
+}

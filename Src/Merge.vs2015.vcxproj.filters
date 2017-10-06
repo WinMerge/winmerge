@@ -1408,7 +1408,7 @@
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestMain.h">
-      <Filter>Header Files</Filter>
+      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.h">
       <Filter>EditLib</Filter>
@@ -1519,21 +1519,6 @@
     </None>
     <None Include="..\Docs\Users\ChangeLog.txt">
       <Filter>ChangeLogs</Filter>
-    </None>
-    <None Include="..\Externals\crystaledit\editlib\ccrystaleditview.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="..\Externals\crystaledit\editlib\ccrystaltextview.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="..\Externals\crystaledit\editlib\filesup.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="..\Externals\crystaledit\editlib\memcombo.inl">
-      <Filter>EditLib</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

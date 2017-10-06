@@ -176,7 +176,7 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 		TCHAR cPath[INTERNET_MAX_PATH_LENGTH];
 		DWORD cchPath = SearchPath(NULL, _T("ExternalArchiveFormat.ini"), NULL,
 			INTERNET_MAX_PATH_LENGTH, cPath, NULL);
-		filename = cchPath && cchPath < INTERNET_MAX_PATH_LENGTH ? StrDup(cPath) : null;
+		filename = cchPath && cchPath < INTERNET_MAX_PATH_LENGTH ? _tcsdup(cPath) : null;
 	}
 	if (*filename &&
 		GetPrivateProfileString(section, entry.c_str(), null, value, 20, filename) &&
