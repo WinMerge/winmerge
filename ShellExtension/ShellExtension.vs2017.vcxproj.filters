@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\common\RegKey.cpp">
+    <ClCompile Include="RegKey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ShellExtension.cpp">
@@ -24,7 +24,7 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Src\Common\UnicodeString.cpp">
+    <ClCompile Include="UnicodeString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WinMergeShell.cpp">
@@ -42,10 +42,7 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\common\coretools.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\common\RegKey.h">
+    <ClInclude Include="RegKey.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
@@ -54,7 +51,7 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Src\Common\UnicodeString.h">
+    <ClInclude Include="UnicodeString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WinMergeShell.h">
