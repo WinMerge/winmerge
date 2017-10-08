@@ -365,6 +365,10 @@ stringdiffs::BuildWordsArray(const String & str, std::vector<word>& words)
 {
 	int i=0, begin=0;
 
+	size_t sLen = str.length();
+	assert(sLen < INT_MAX);
+	int iLen = static_cast<int>(sLen);
+
 	// dummy;
 	words.push_back(word(0, -1, 0, 0));
 
@@ -383,7 +387,7 @@ inspace:
 
 		words.push_back(word(begin, e, dlspace, Hash(str, begin, e, 0)));
 	}
-	if (i == str.length())
+	if (i == iLen)
 		return;
 	begin = i;
 	goto inword;
@@ -391,7 +395,7 @@ inspace:
 	// state when we are inside a word
 inword:
 	bool atspace=false;
-	if (i == str.length() || ((atspace = isSafeWhitespace(str[i])) != 0) || isWordBreak(m_breakType, str.c_str(), i))
+	if (i == iLen || ((atspace = isSafeWhitespace(str[i])) != 0) || isWordBreak(m_breakType, str.c_str(), i))
 	{
 		if (begin<i)
 		{
@@ -401,7 +405,7 @@ inword:
 			
 			words.push_back(word(begin, e, dlword, Hash(str, begin, e, 0)));
 		}
-		if (i == str.length())
+		if (i == iLen)
 		{
 			return;
 		}
