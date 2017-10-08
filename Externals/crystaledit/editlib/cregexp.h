@@ -95,8 +95,8 @@ typedef struct _RxNode RxNode;
 struct _RxNode;
 
 typedef struct {
-    size_t Open[NSEXPS];    // -1 = not matched
-    size_t Close[NSEXPS];
+    ptrdiff_t Open[NSEXPS];    // -1 = not matched
+    ptrdiff_t Close[NSEXPS];
 } RxMatchRes;
 
 RxNode EDITPADC_CLASS *RxCompile(LPCTSTR Regexp, unsigned int RxOpt = RX_CASE);

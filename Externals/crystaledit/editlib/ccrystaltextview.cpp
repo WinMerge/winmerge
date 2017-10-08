@@ -156,7 +156,7 @@ IMPLEMENT_DYNCREATE (CCrystalTextView, CView)
 
 HINSTANCE CCrystalTextView::s_hResourceInst = NULL;
 
-static size_t FindStringHelper(LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
+static ptrdiff_t FindStringHelper(LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
 
 BEGIN_MESSAGE_MAP (CCrystalTextView, CView)
 //{{AFX_MSG_MAP(CCrystalTextView)
@@ -4805,12 +4805,12 @@ PrepareDragData ()
   return hData;
 }
 
-static size_t
+static ptrdiff_t
 FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch)
 {
   if (dwFlags & FIND_REGEXP)
     {
-      size_t pos;
+      ptrdiff_t pos;
 
       if (rxnode)
         RxFree (rxnode);
@@ -5044,7 +5044,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                   line.ReleaseBuffer (ptCurrentPos.x + 1);
                 }
 
-              size_t nFoundPos = -1;
+              ptrdiff_t nFoundPos = -1;
               int nMatchLen = what.GetLength();
               int nLineLen = line.GetLength();
               size_t nPos;
