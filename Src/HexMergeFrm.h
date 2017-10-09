@@ -28,7 +28,7 @@
 #include "SplitterWndEx.h"
 #include "EditorFilepathBar.h"
 
-#define HEKSEDIT_INTERFACE_VERSION 1
+#define HEKSEDIT_INTERFACE_VERSION 2
 #include "heksedit.h"
 
 class CHexMergeDoc;
