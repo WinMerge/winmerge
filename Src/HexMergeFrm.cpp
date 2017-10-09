@@ -168,15 +168,16 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	{
 		pif[0]->set_sibling(pif[1]);
 		pif[1]->set_sibling(pif[0]);
-		pif[1]->share_undorecords(pif[0]);
+		pif[1]->share_undorecords(pif[0]->share_undorecords(nullptr));
 	}
 	else if (m_pMergeDoc->m_nBuffers > 2)
 	{
 		pif[0]->set_sibling(pif[1]);
 		pif[1]->set_sibling2(pif[0], pif[2]);
 		pif[2]->set_sibling(pif[1]);
-		pif[1]->share_undorecords(pif[0]);
-		pif[2]->share_undorecords(pif[0]);
+		pif[2]->share_undorecords(
+			pif[1]->share_undorecords(
+				pif[0]->share_undorecords(nullptr)));
 	}
 
 	// tell merge doc about these views
