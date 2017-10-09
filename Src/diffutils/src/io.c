@@ -20,7 +20,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include "diff.h"
 #ifdef _WIN32
 #  include <io.h>
-#  define read _read
 #endif
 #include <cassert>
 
@@ -169,7 +168,7 @@ sip (current, skip_test)
       else
         {
           /* Check first part of file to see if it's a binary file.  */
-          current->buffered_chars = read (current->desc,
+          current->buffered_chars = _read (current->desc,
             current->buffer,
             (unsigned int)current->buffered_chars);
           if (current->buffered_chars == -1)
@@ -231,7 +230,7 @@ slurp (current)
 #endif /*__MSDOS__*/
             }
 		  assert((current->bufsize - current->buffered_chars) < UINT_MAX);
-          cc = read (current->desc,
+          cc = _read (current->desc,
           current->buffer + current->buffered_chars,
           (unsigned int)(current->bufsize - current->buffered_chars));
           if (cc == 0)
@@ -487,20 +486,20 @@ prepare_text_end (current, side)
   FSIZE buffered_chars = current->buffered_chars;
   char *const p = current->buffer;
   char *r = p; // receives the return value
-  char *q, *t;
+  char *q0, *t;
   unsigned bom = 0;
   enum UNICODESET sig = get_unicode_signature(current, &bom);
-  char *const u = p + bom;
+  char *const u0 = p + bom;
 
   if (sig == UCS4LE)
     {
       FSIZE buffered_words = buffered_chars / 2;
-      unsigned long *q = (unsigned long *)p + buffered_words / 2;
+      unsigned long *q1 = (unsigned long *)p + buffered_words / 2;
       buffered_chars += buffered_words;
       r = p + buffered_chars;
-      while (--q >= (unsigned long *)u) // exclude the BOM
+      while (--q1 >= (unsigned long *)u0) // exclude the BOM
         {
-          unsigned long u = *q;
+          unsigned long u = *q1;
           if (u >= 0x80000000)
             {
               *--r = '?';
@@ -552,7 +551,7 @@ prepare_text_end (current, side)
       unsigned long *q = (unsigned long *)p + buffered_words / 2;
       buffered_chars += buffered_words;
       r = p + buffered_chars;
-      while (--q >= (unsigned long *)u) // exclude the BOM
+      while (--q >= (unsigned long *)u0) // exclude the BOM
         {
           unsigned long u =
           ((*q & 0x000000FF) << 24) |
@@ -610,7 +609,7 @@ prepare_text_end (current, side)
       unsigned short *q = (unsigned short *)p + buffered_words;
       buffered_chars += buffered_words;
       r = p + buffered_chars;
-      while (--q >= (unsigned short *)u) // exclude the BOM
+      while (--q >= (unsigned short *)u0) // exclude the BOM
         {
           unsigned short u = *q;
           if (u >= 0x800)
@@ -636,7 +635,7 @@ prepare_text_end (current, side)
       unsigned short *q = (unsigned short *)p + buffered_words;
       buffered_chars += buffered_words;
       r = p + buffered_chars;
-      while (--q >= (unsigned short *)u) // exclude the BOM
+      while (--q >= (unsigned short *)u0) // exclude the BOM
         {
           unsigned short u = (*q << 8) | (*q >> 8); // fix byte order
           if (u >= 0x800)
@@ -658,7 +657,7 @@ prepare_text_end (current, side)
     }
   else if (sig == UTF8)
     {
-      r = u; // skip the BOM
+      r = u0; // skip the BOM
     }
 
   if (buffered_chars == 0 || p[buffered_chars - 1] == '\n' || p[buffered_chars - 1] == '\r')
@@ -673,10 +672,10 @@ prepare_text_end (current, side)
 	current->buffered_chars = buffered_chars;
 
 	/* Count line endings and map them to '\n' if ignore_eol_diff is set. */
-	t = q = p + buffered_chars;
-	while (q > r)
+	t = q0 = p + buffered_chars;
+	while (q0 > r)
 	{
-		switch (*--t = *--q)
+		switch (*--t = *--q0)
 		{
 		case '\r':
 			++current->count_crs;
@@ -684,7 +683,7 @@ prepare_text_end (current, side)
 				*t = '\n';
 			break;
 		case '\n':
-			if (q > r && q[-1] == '\r')
+			if (q0 > r && q0[-1] == '\r')
 			{
 				++current->count_crlfs;
 				--current->count_crs; // compensate for bogus increment

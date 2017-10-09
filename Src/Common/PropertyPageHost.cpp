@@ -153,13 +153,13 @@ BOOL CPropertyPageHost::SetActivePage(int nIndex, BOOL bAndFocus)
 
 	if (m_nSelIndex != -1)
 	{
-		CPropertyPage* pPage = GetActivePage();
-		ASSERT (pPage);
+		CPropertyPage* pPage1 = GetActivePage();
+		ASSERT (pPage1);
 
-		if (pPage)
+		if (pPage1)
 		{
-			pPage->ShowWindow(SW_HIDE);
-			pPage->OnKillActive();
+			pPage1->ShowWindow(SW_HIDE);
+			pPage1->OnKillActive();
 		}
 	}
 

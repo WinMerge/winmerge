@@ -922,7 +922,6 @@ int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
 void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBottomLine)
 {
 	CMergeDoc* pDoc = GetDocument();
-	const int nScreenLines = pDoc->GetView(0)->GetScreenLines();
 	
 	if (nTopLine == -1)
 		nTopLine = pDoc->GetView(0)->GetTopSubLine();

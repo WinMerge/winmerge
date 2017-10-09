@@ -767,13 +767,13 @@ void CSizingControlBar::OnTrackUpdateSize(CPoint& point)
 
         for (int i = nFirst; nDelta != 0 && i != nLimit; i += (bBefore ? -1 : 1))
         {
-            CSizingControlBar* pBar = arrSCBars[i];
+            CSizingControlBar* pBar1 = arrSCBars[i];
                 
             int nDeltaT = min(nDelta,
-                (bHorz ? pBar->m_szHorz.cx : pBar->m_szVert.cy) -
-                (bHorz ? pBar->m_szMinHorz.cx : pBar->m_szMinVert.cy));
+                (bHorz ? pBar1->m_szHorz.cx : pBar1->m_szVert.cy) -
+                (bHorz ? pBar1->m_szMinHorz.cx : pBar1->m_szMinVert.cy));
 
-            (bHorz ? pBar->m_szHorz.cx : pBar->m_szVert.cy) -= nDeltaT;
+            (bHorz ? pBar1->m_szHorz.cx : pBar1->m_szVert.cy) -= nDeltaT;
             nDelta -= nDeltaT;
         }
     }

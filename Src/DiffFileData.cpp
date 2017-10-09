@@ -165,8 +165,8 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 	{
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file
-		bool bMayOverwrite = 0 != strutils::compare_nocase(filepathTransformed, filepath);
-		if (!FileTransform::AnyCodepageToUTF8(encoding.m_codepage, filepathTransformed, bMayOverwrite))
+		bool bMayOverwrite1 = 0 != strutils::compare_nocase(filepathTransformed, filepath);
+		if (!FileTransform::AnyCodepageToUTF8(encoding.m_codepage, filepathTransformed, bMayOverwrite1))
 			return false;
 	}
 	return true;

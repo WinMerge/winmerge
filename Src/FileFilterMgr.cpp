@@ -88,7 +88,7 @@ void FileFilterMgr::LoadFromDirectory(const String& dir, const String& szPattern
 				// caller specified a specific extension
 				// (This is really a workaround for brokenness in windows, which
 				//  doesn't screen correctly on extension in pattern)
-				std::string ext = filename.substr(filename.length() - extlen);
+				const std::string ext = filename.substr(filename.length() - extlen);
 				if (icompare(u8ext, ext) != 0)
 					return;
 			}

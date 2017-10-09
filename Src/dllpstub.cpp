@@ -127,13 +127,13 @@ HMODULE DLLPSTUB::Load()
 		if ((name = *proxy) != NULL)
 		{
 			DWORD dwError = ERROR_MOD_NOT_FOUND;
-			HMODULE handle = 0;
+			HMODULE handle1 = 0;
 			if (proxy[1] == name)
 			{
 				dwError = ERROR_PROC_NOT_FOUND;
-				handle = (HMODULE)proxy[2];
+				handle1 = (HMODULE)proxy[2];
 			}
-			Throw(name, handle, dwError, FALSE);
+			Throw(name, handle1, dwError, FALSE);
 		}
 	}
 	return handle;

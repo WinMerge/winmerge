@@ -277,11 +277,11 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 	ASSERT(lpDIS != NULL);
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 	CRect rect;
-	UINT state = reinterpret_cast<BCMenuData*>(lpDIS->itemData)->nFlags;
+	UINT state0 = reinterpret_cast<BCMenuData*>(lpDIS->itemData)->nFlags;
 	COLORREF clrBack=GetSysColor(COLOR_MENU);
 	CBrush brBackground(clrBack);
 
-	if(state & MF_SEPARATOR){
+	if(state0 & MF_SEPARATOR){
 		rect.CopyRect(&lpDIS->rcItem);
 		pDC->FillRect (rect,&brBackground);
 		rect.top += (rect.Height()>>1);
