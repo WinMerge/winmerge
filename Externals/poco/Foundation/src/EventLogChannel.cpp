@@ -288,9 +288,9 @@ std::wstring EventLogChannel::findLibrary(const wchar_t* name)
 	HMODULE dll = LoadLibraryW(name);
 	if (dll)
 	{
-		wchar_t name[MAX_PATH + 1];
-		int n = GetModuleFileNameW(dll, name, sizeof(name));
-		if (n > 0) path = name;
+		wchar_t name1[MAX_PATH + 1];
+		int n = GetModuleFileNameW(dll, name1, sizeof(name1));
+		if (n > 0) path = name1;
 		FreeLibrary(dll);
 	}
 	return path;

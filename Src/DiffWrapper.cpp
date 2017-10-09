@@ -458,9 +458,9 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 				int TrivLinePos = i+1;
 				for(; TrivLinePos != (StartPos + QtyLinesInBlock);++TrivLinePos)
 				{
-					size_t len = files[FileNo].linbuf[TrivLinePos + 1] - files[FileNo].linbuf[TrivLinePos];
+					size_t len1 = files[FileNo].linbuf[TrivLinePos + 1] - files[FileNo].linbuf[TrivLinePos];
 					const char *LineStrTrvCk = files[FileNo].linbuf[TrivLinePos];
-					std::string LineDataTrvCk(LineStrTrvCk, linelen(LineStrTrvCk, len));
+					std::string LineDataTrvCk(LineStrTrvCk, linelen(LineStrTrvCk, len1));
 					if (LineDataTrvCk.size() &&
 						!IsTrivialBytes(LineDataTrvCk.c_str(), LineDataTrvCk.c_str() + LineDataTrvCk.size(), filtercommentsset))
 					{
@@ -1333,7 +1333,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	const file_data * inf10, 
 	const file_data * inf12)
 {
-	DiffList diff10, diff12, *pdiff;
+	DiffList diff10, diff12;
 	diff10.Clear();
 	diff12.Clear();
 

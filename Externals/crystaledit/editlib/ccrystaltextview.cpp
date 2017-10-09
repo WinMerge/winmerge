@@ -973,10 +973,10 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
     }
   else
     {
-      for (int i=0; i<nLength; ++i)
+      for (int i1=0; i1<nLength; ++i1)
       {
-        line += pszChars[i];
-        nCurPos += GetCharWidthFromChar(pszChars[i]) / GetCharWidth();
+        line += pszChars[i1];
+        nCurPos += GetCharWidthFromChar(pszChars[i1]) / GetCharWidth();
       }
     }
   return nCurPos;
@@ -1098,22 +1098,22 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               // A raw estimate of the number of characters to display
               // For wide characters, nCountFit may be overvalued
               int nWidth = rcClip.right - ptOrigin.x;
-              int nCount = lineLen - ibegin;
+              int nCount1 = lineLen - ibegin;
               int nCountFit = nWidth / nCharWidth + 2/* wide char */;
-              if (nCount > nCountFit) {
+              if (nCount1 > nCountFit) {
 #ifndef _UNICODE
                 if (_ismbslead((unsigned char *)(LPCSTR)line, (unsigned char *)(LPCSTR)line + nCountFit - 1))
                   nCountFit++;
 #endif
-                nCount = nCountFit;
+                nCount1 = nCountFit;
               }
 
               // Table of charwidths as CCrystalEditor thinks they are
               // Seems that CrystalEditor's and ExtTextOut()'s charwidths aren't
               // same with some fonts and text is drawn only partially
               // if this table is not used.
-              vector<int> nWidths(nCount + 2);
-              for ( ; i < nCount + ibegin ; i++)
+              vector<int> nWidths(nCount1 + 2);
+              for ( ; i < nCount1 + ibegin ; i++)
                 {
                   if (line[i] == '\t') // Escape sequence leadin?
                   {
@@ -1149,7 +1149,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   RECT rcTextBlock = {ptOrigin.x, ptOrigin.y, ptOrigin.x + nSumWidth + 2, ptOrigin.y + nLineHeight};
                   IntersectRect(&rcIntersect, &rcClip, &rcTextBlock);
                   VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED | ETO_OPAQUE,
-                      &rcIntersect, LPCTSTR(line) + ibegin, nCount, &nWidths[0]));
+                      &rcIntersect, LPCTSTR(line) + ibegin, nCount1, &nWidths[0]));
                   // Draw rounded rectangles around control characters
                   pdc->SaveDC();
                   pdc->IntersectClipRect(&rcClip);
@@ -1159,7 +1159,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   HGDIOBJ hPen = ::CreatePen(PS_SOLID, 1, ::GetTextColor(hDC));
                   hPen = ::SelectObject(hDC, hPen);
                   int x = ptOrigin.x;
-                  for (int j = 0 ; j < nCount ; ++j)
+                  for (int j = 0 ; j < nCount1 ; ++j)
                   {
                     // Assume narrowed space is converted escape sequence leadin.
                     if (line[ibegin + j] == ' ' && nWidths[j] < nCharWidth)
@@ -5452,15 +5452,15 @@ OnFilePageSetup ()
     }
   if (dlg.DoModal () == IDOK)
     {
-      CReg reg;
-      if (reg.Create (HKEY_CURRENT_USER, REG_EDITPAD, KEY_WRITE))
+      CReg reg1;
+      if (reg1.Create (HKEY_CURRENT_USER, REG_EDITPAD, KEY_WRITE))
         {
-          VERIFY (reg.SaveNumber (_T ("PageWidth"), dlg.m_psd.ptPaperSize.x));
-          VERIFY (reg.SaveNumber (_T ("PageHeight"), dlg.m_psd.ptPaperSize.y));
-          VERIFY (reg.SaveNumber (_T ("PageLeft"), dlg.m_psd.rtMargin.left));
-          VERIFY (reg.SaveNumber (_T ("PageRight"), dlg.m_psd.rtMargin.right));
-          VERIFY (reg.SaveNumber (_T ("PageTop"), dlg.m_psd.rtMargin.top));
-          VERIFY (reg.SaveNumber (_T ("PageBottom"), dlg.m_psd.rtMargin.bottom));
+          VERIFY (reg1.SaveNumber (_T ("PageWidth"), dlg.m_psd.ptPaperSize.x));
+          VERIFY (reg1.SaveNumber (_T ("PageHeight"), dlg.m_psd.ptPaperSize.y));
+          VERIFY (reg1.SaveNumber (_T ("PageLeft"), dlg.m_psd.rtMargin.left));
+          VERIFY (reg1.SaveNumber (_T ("PageRight"), dlg.m_psd.rtMargin.right));
+          VERIFY (reg1.SaveNumber (_T ("PageTop"), dlg.m_psd.rtMargin.top));
+          VERIFY (reg1.SaveNumber (_T ("PageBottom"), dlg.m_psd.rtMargin.bottom));
         }
       pApp->SelectPrinter (dlg.m_psd.hDevNames, dlg.m_psd.hDevMode, false);
     }

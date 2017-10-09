@@ -215,14 +215,14 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 	
 	for (size_t i = 0; i < diff3i; i++)
 	{
-		Element& dr3 = diff3.at(i);
+		Element& dr3r = diff3.at(i);
 		if (i < diff3i - 1)
 		{
 			Element& dr3next = diff3.at(i + 1);
 			for (int j = 0; j < 3; j++)
 			{
-				if (dr3.end[j] >= dr3next.begin[j])
-					dr3.end[j] = dr3next.begin[j] - 1;
+				if (dr3r.end[j] >= dr3next.begin[j])
+					dr3r.end[j] = dr3next.begin[j] - 1;
 			}
 		}
 	}

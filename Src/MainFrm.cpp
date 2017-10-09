@@ -1793,11 +1793,11 @@ void CMainFrame::OnResizePanes()
 		if (bResize)
 			pFrame->UpdateSplitter();
 	}
-	else if (CHexMergeFrame *pFrame = DYNAMIC_DOWNCAST(CHexMergeFrame, pActiveFrame))
+	else if (CHexMergeFrame *pFrame1 = DYNAMIC_DOWNCAST(CHexMergeFrame, pActiveFrame))
 	{
-		pFrame->UpdateAutoPaneResize();
+		pFrame1->UpdateAutoPaneResize();
 		if (bResize)
-			pFrame->UpdateSplitter();
+			pFrame1->UpdateSplitter();
 	}
 }
 

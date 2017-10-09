@@ -2856,7 +2856,7 @@ void CMergeEditView::OnWMGoto()
 
 	if (dlg.DoModal() == IDOK)
 	{
-		CMergeDoc * pDoc = GetDocument();
+		CMergeDoc * pDoc1 = GetDocument();
 		CMergeEditView * pCurrentView = NULL;
 
 		// Get views
@@ -2867,21 +2867,21 @@ void CMergeEditView::OnWMGoto()
 
 		if (dlg.m_nGotoWhat == 0)
 		{
-			int nRealLine = num;
-			if (nRealLine < 0)
-				nRealLine = 0;
-			if (nRealLine > nLastLine)
-				nRealLine = nLastLine;
+			int nRealLine1 = num;
+			if (nRealLine1 < 0)
+				nRealLine1 = 0;
+			if (nRealLine1 > nLastLine)
+				nRealLine1 = nLastLine;
 
-			GotoLine(nRealLine, true, (pDoc->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile);
+			GotoLine(nRealLine1, true, (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile);
 		}
 		else
 		{
 			int diff = num;
 			if (diff < 0)
 				diff = 0;
-			if (diff >= pDoc->m_diffList.GetSize())
-				diff = pDoc->m_diffList.GetSize();
+			if (diff >= pDoc1->m_diffList.GetSize())
+				diff = pDoc1->m_diffList.GetSize();
 
 			pCurrentView->SelectDiff(diff, true, false);
 		}
@@ -3154,9 +3154,9 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 		}
 		else
 		{
-			CPoint ptPos(0, pView->GetLineCount() - 1);
-			pView->SetCursorPos(ptPos);
-			pView->SetAnchor(ptPos);
+			CPoint ptPos1(0, pView->GetLineCount() - 1);
+			pView->SetCursorPos(ptPos1);
+			pView->SetAnchor(ptPos1);
 		}
 	}
 
