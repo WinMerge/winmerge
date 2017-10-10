@@ -111,7 +111,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 				ent.mtime = 0;
 
 			if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-				ent.size = -1;  // No size for directories
+				ent.size = DirItem::FILE_SIZE_NONE;  // No size for directories
 			else
 			{
 				ent.size = ((int64_t)ff.nFileSizeHigh << 32) + ff.nFileSizeLow;
