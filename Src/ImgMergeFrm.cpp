@@ -1277,8 +1277,8 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 		RGBQUAD color[3];
 		for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 			color[pane] = m_pImgMergeWindow->GetPixelColor(pane, pt.x, pt.y);
-		double colorDistance01, colorDistance12;
-		colorDistance01 = m_pImgMergeWindow->GetColorDistance(0, 1, pt.x, pt.y);
+		double colorDistance01 = m_pImgMergeWindow->GetColorDistance(0, 1, pt.x, pt.y);
+		double colorDistance12 = 0;
 		if (m_pImgMergeWindow->GetPaneCount() == 3)
 			colorDistance12 = m_pImgMergeWindow->GetColorDistance(1, 2, pt.x, pt.y);
 

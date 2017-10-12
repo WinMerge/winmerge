@@ -1454,7 +1454,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
   CRect		frect = rcClip;
   const int nLineLength = GetViewableLineLength( ptTextPos.y );
   const int nLineHeight = GetLineHeight();
-  int nBgColorIndexZeorWidthBlock;
+  int nBgColorIndexZeorWidthBlock = COLORINDEX_NONE;
   bool bPrevZeroWidthBlock = false;
   static const int ZEROWIDTHBLOCK_WIDTH = 2;
   size_t nActualItem = 0;

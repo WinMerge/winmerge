@@ -1337,11 +1337,12 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 
 	for (int file = 0; file < 2; file++)
 	{
-		struct change *next;
+		struct change *next = nullptr;
 		int trans_a0, trans_b0, trans_a1, trans_b1;
 		int first0, last0, first1, last1, deletes, inserts;
 		OP_TYPE op;
-		const file_data *pinf;
+		const file_data *pinf = nullptr;
+		DiffList *pdiff = nullptr;
 
 		switch (file)
 		{
@@ -1384,18 +1385,11 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					// Store information about these blocks in moved line info
 					if (GetDetectMovedBlocks())
 					{
-						int index1 = -1;
-						int index2 = -1;
-						MovedLines::ML_SIDE side1;
-						MovedLines::ML_SIDE side2;
-						if (file == 0 /* diff10 */)
-						{
-							index1 = 0;
-							index2 = 1;
-							side1 = MovedLines::SIDE_RIGHT;
-							side2 = MovedLines::SIDE_LEFT;
-						}
-						else if (file == 1 /* diff12 */)
+						int index1 = 0;  // defaults for (file == 0 /* diff10 */)
+						int index2 = 1;
+						MovedLines::ML_SIDE side1 = MovedLines::SIDE_RIGHT;
+						MovedLines::ML_SIDE side2 = MovedLines::SIDE_LEFT;
+						if (file == 1 /* diff12 */)
 						{
 							index1 = 2;
 							index2 = 1;
