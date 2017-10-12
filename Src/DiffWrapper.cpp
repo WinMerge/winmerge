@@ -1000,30 +1000,32 @@ String CDiffWrapper::FormatSwitchString() const
 	
 	switch (m_options.m_outputStyle)
 	{
-	case OUTPUT_CONTEXT:
-		switches = _T(" C");
-		break;
-	case OUTPUT_UNIFIED:
-		switches = _T(" U");
-		break;
-	case OUTPUT_ED:
-		switches = _T(" e");
-		break;
-	case OUTPUT_FORWARD_ED:
-		switches = _T(" f");
-		break;
-	case OUTPUT_RCS:
-		switches = _T(" n");
-		break;
-	case OUTPUT_NORMAL:
+	case DIFF_OUTPUT_NORMAL:
 		switches = _T(" ");
 		break;
-	case OUTPUT_IFDEF:
+	case DIFF_OUTPUT_CONTEXT:
+		switches = _T(" C");
+		break;
+	case DIFF_OUTPUT_UNIFIED:
+		switches = _T(" U");
+		break;
+#if 0
+	case DIFF_OUTPUT_ED:
+		switches = _T(" e");
+		break;
+	case DIFF_OUTPUT_FORWARD_ED:
+		switches = _T(" f");
+		break;
+	case DIFF_OUTPUT_RCS:
+		switches = _T(" n");
+		break;
+	case DIFF_OUTPUT_IFDEF:
 		switches = _T(" D");
 		break;
-	case OUTPUT_SDIFF:
+	case DIFF_OUTPUT_SDIFF:
 		switches = _T(" y");
 		break;
+#endif
 	}
 
 	if (m_options.m_contextLines > 0)
@@ -1453,14 +1455,16 @@ void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAp
 	// Output patchfile
 	switch (output_style)
 	{
+	case OUTPUT_NORMAL:
 	case OUTPUT_CONTEXT:
 	case OUTPUT_UNIFIED:
+#if 0
 	case OUTPUT_ED:
 	case OUTPUT_FORWARD_ED:
 	case OUTPUT_RCS:
-	case OUTPUT_NORMAL:
 	case OUTPUT_IFDEF:
 	case OUTPUT_SDIFF:
+#endif
 		break;
 	case OUTPUT_HTML:
 		print_html_header();
@@ -1489,14 +1493,16 @@ void CDiffWrapper::WritePatchFileTerminator(enum output_style output_style)
 	// Output patchfile
 	switch (output_style)
 	{
+	case OUTPUT_NORMAL:
 	case OUTPUT_CONTEXT:
 	case OUTPUT_UNIFIED:
+#if 0
 	case OUTPUT_ED:
 	case OUTPUT_FORWARD_ED:
 	case OUTPUT_RCS:
-	case OUTPUT_NORMAL:
 	case OUTPUT_IFDEF:
 	case OUTPUT_SDIFF:
+#endif
 		break;
 	case OUTPUT_HTML:
 		print_html_terminator();
@@ -1584,6 +1590,9 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	// Output patchfile
 	switch (output_style)
 	{
+	case OUTPUT_NORMAL:
+		print_normal_script(script);
+		break;
 	case OUTPUT_CONTEXT:
 		print_context_header(inf_patch, 0);
 		print_context_script(script, 0);
@@ -1592,6 +1601,7 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		print_context_header(inf_patch, 1);
 		print_context_script(script, 1);
 		break;
+#if 0
 	case OUTPUT_ED:
 		print_ed_script(script);
 		break;
@@ -1601,15 +1611,13 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	case OUTPUT_RCS:
 		print_rcs_script(script);
 		break;
-	case OUTPUT_NORMAL:
-		print_normal_script(script);
-		break;
 	case OUTPUT_IFDEF:
 		print_ifdef_script(script);
 		break;
 	case OUTPUT_SDIFF:
 		print_sdiff_script(script);
 		break;
+#endif
 	case OUTPUT_HTML:
 		print_html_diff_header(inf_patch);
 		print_html_script(script);

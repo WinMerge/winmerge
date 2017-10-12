@@ -53,29 +53,34 @@ extern "C" {
 #endif
 
 enum output_style {
+	
+  // NOTE: these values are stored in the user's Registry - don't change their value !!
+  //   (see enum DiffOutputType in Src/CompareOptions.h)
   /* Default output style.  */
-  OUTPUT_NORMAL,
+  OUTPUT_NORMAL = 0,
   /* Output the differences with lines of context before and after (-c).  */
-  OUTPUT_CONTEXT,
+  OUTPUT_CONTEXT = 1,
   /* Output the differences in a unified context diff format (-u). */
-  OUTPUT_UNIFIED,
+  OUTPUT_UNIFIED = 2,
   /* Output the differences as commands suitable for `ed' (-e).  */
-  OUTPUT_ED,
+#if 0
+  OUTPUT_ED = 3,
   /* Output the diff as a forward ed script (-f).  */
-  OUTPUT_FORWARD_ED,
+  OUTPUT_FORWARD_ED = 4,
   /* Like -f, but output a count of changed lines in each "command" (-n). */
-  OUTPUT_RCS,
+  OUTPUT_RCS = 5,
   /* Output merged #ifdef'd file (-D).  */
-  OUTPUT_IFDEF,
+  OUTPUT_IFDEF = 6,
   /* Output sdiff style (-y).  */
-  OUTPUT_SDIFF,
+  OUTPUT_SDIFF = 7,
+#endif
   /* Output html style.  */
-  OUTPUT_HTML
+  OUTPUT_HTML = 8
 };
 
 /* True for output styles that are robust,
    i.e. can handle a file that ends in a non-newline.  */
-#define ROBUST_OUTPUT_STYLE(S) ((S) != OUTPUT_ED && (S) != OUTPUT_FORWARD_ED)
+#define ROBUST_OUTPUT_STYLE(S) ((S)>=0) // ((S) != OUTPUT_ED && (S) != OUTPUT_FORWARD_ED)
 
 EXTERN int output_style;
 
