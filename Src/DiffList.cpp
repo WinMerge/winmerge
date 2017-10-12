@@ -448,8 +448,8 @@ void DiffList::ConstructSignificantChain()
 	m_lastSignificantLeftRight = -1;
 	m_lastSignificantMiddleRight = -1;
 	m_lastSignificantConflict = -1;
-	int prev = -1;
-	const int size = (int) m_diffs.size();
+	ptrdiff_t prev = -1;
+	const ptrdiff_t size = (int) m_diffs.size();
 
 	// must be called after diff list is entirely populated
     for (int i = 0; i < size; ++i)

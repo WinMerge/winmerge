@@ -61,7 +61,7 @@ str_fill (LPTSTR s, TCHAR ch, long count)
   *s = _T ('\0');
 }
 
-size_t
+ptrdiff_t
 str_pos (LPCTSTR whole, LPCTSTR piece)
 {
   LPCTSTR s = whole;
@@ -107,7 +107,7 @@ skip_word (LPCTSTR s)
   return skip_spaces (s);
 }
 
-size_t
+ptrdiff_t
 get_coding (LPCTSTR name, type_codes *codes, int *coding)
 {
   size_t pos;
@@ -122,11 +122,12 @@ get_coding (LPCTSTR name, type_codes *codes, int *coding)
   return -2;
 }
 
-size_t
+
+ptrdiff_t
 fget_coding (LPCTSTR text, int *coding)
 {
-  size_t posit = 0;
-  size_t i = 0;
+  ptrdiff_t posit = 0;
+  ptrdiff_t i = 0;
   LPCTSTR s, s1;
 
   while ((i = str_pos (text, FD_ENCODING_LBRACKET)) >= 0)
@@ -179,7 +180,7 @@ TCHAR iconvert_char (TCHAR ch, int source_coding, int destination_coding, bool a
 int
 iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabet_only)
   {
-    size_t posit = -2;
+    ptrdiff_t posit = -2;
     LPCTSTR source_chars, destination_chars, cod_pos = NULL;
     TCHAR ch;
     LPTSTR s = string;
