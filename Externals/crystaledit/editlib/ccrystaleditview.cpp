@@ -423,7 +423,7 @@ InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction
   int nLineBegin = 0;
   for (int nTextPos = 0; nTextPos < cchText; )
     {
-      TCHAR ch;
+      TCHAR ch = 0;
       aLines.Add ((LPTSTR)&pszText[nTextPos]);
 
       for (; nTextPos < cchText; nTextPos++)

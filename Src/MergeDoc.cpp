@@ -344,7 +344,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 {
 	DIFFOPTIONS diffOptions = {0};
 	DiffFileInfo fileInfo;
-	bool diffSuccess;
+	bool diffSuccess = false;
 	int nResult = RESCAN_OK;
 	FileChange FileChanged[3] = {FileNoChange, FileNoChange, FileNoChange};
 	int nBuffer;
