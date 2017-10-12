@@ -230,7 +230,7 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
  * @param [in] bGuessEncoding Try to guess codepage (not just unicode encoding).
  * @return Structure getting the encoding info.
  */
-FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType, int mapmaxlen)
+FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType, ptrdiff_t mapmaxlen)
 {
 	FileTextEncoding encoding;
 	CMarkdown::FileImage fi(filepath.c_str(), mapmaxlen);

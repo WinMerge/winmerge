@@ -11,4 +11,4 @@
 /** @brief Buffer size used in this file. */
 static const int BufSize = 65536;
 
-FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType, int mapmaxlen = BufSize);
+FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType, ptrdiff_t mapmaxlen = BufSize);
