@@ -1036,9 +1036,9 @@ OnEditUntab ()
     return;
 
   bool bTabify = false;
-  CPoint ptSelStart, ptSelEnd;
   if (IsSelection ())
     {
+	  CPoint ptSelStart, ptSelEnd;
       GetSelection (ptSelStart, ptSelEnd);
       bTabify = ptSelStart.y != ptSelEnd.y;
     }
@@ -2366,17 +2366,17 @@ OnEditLowerCase ()
 
       if (IsSelection ())
         {
-          CPoint ptSelStart, ptSelEnd;
-          GetSelection (ptSelStart, ptSelEnd);
+          CPoint ptSelStart1, ptSelEnd1;
+          GetSelection (ptSelStart1, ptSelEnd1);
     
-          ptCursorPos = ptSelStart;
+          ptCursorPos = ptSelStart1;
           /*SetAnchor (ptCursorPos);
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);*/
     
           // [JRT]:
-          m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_LOWERCASE);
+          m_pTextBuffer->DeleteText (this, ptSelStart1.y, ptSelStart1.x, ptSelEnd1.y, ptSelEnd1.x, CE_ACTION_LOWERCASE);
         }
 
       int x, y;
@@ -2414,17 +2414,17 @@ OnEditUpperCase ()
 
       if (IsSelection ())
         {
-          CPoint ptSelStart, ptSelEnd;
-          GetSelection (ptSelStart, ptSelEnd);
+          CPoint ptSelStart1, ptSelEnd1;
+          GetSelection (ptSelStart1, ptSelEnd1);
     
-          ptCursorPos = ptSelStart;
+          ptCursorPos = ptSelStart1;
           /*SetAnchor (ptCursorPos);
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);*/
     
           // [JRT]:
-          m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_UPPERCASE);
+          m_pTextBuffer->DeleteText (this, ptSelStart1.y, ptSelStart1.x, ptSelEnd1.y, ptSelEnd1.x, CE_ACTION_UPPERCASE);
         }
 
       int x, y;
@@ -2466,17 +2466,17 @@ OnEditSwapCase ()
 
       if (IsSelection ())
         {
-          CPoint ptSelStart, ptSelEnd;
-          GetSelection (ptSelStart, ptSelEnd);
+          CPoint ptSelStart1, ptSelEnd1;
+          GetSelection (ptSelStart1, ptSelEnd1);
     
-          ptCursorPos = ptSelStart;
+          ptCursorPos = ptSelStart1;
           /*SetAnchor (ptCursorPos);
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);*/
     
           // [JRT]:
-          m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_SWAPCASE);
+          m_pTextBuffer->DeleteText (this, ptSelStart1.y, ptSelStart1.x, ptSelEnd1.y, ptSelEnd1.x, CE_ACTION_SWAPCASE);
         }
 
       int x, y;
@@ -2531,17 +2531,17 @@ OnEditCapitalize ()
 
       if (IsSelection ())
         {
-          CPoint ptSelStart, ptSelEnd;
-          GetSelection (ptSelStart, ptSelEnd);
+          CPoint ptSelStart1, ptSelEnd1;
+          GetSelection (ptSelStart1, ptSelEnd1);
     
-          ptCursorPos = ptSelStart;
+          ptCursorPos = ptSelStart1;
           /*SetAnchor (ptCursorPos);
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);*/
     
           // [JRT]:
-          m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_CAPITALIZE);
+          m_pTextBuffer->DeleteText (this, ptSelStart1.y, ptSelStart1.x, ptSelEnd1.y, ptSelEnd1.x, CE_ACTION_CAPITALIZE);
         }
 
       int x, y;
@@ -2600,17 +2600,17 @@ OnEditSentence ()
 
       if (IsSelection ())
         {
-          CPoint ptSelStart, ptSelEnd;
-          GetSelection (ptSelStart, ptSelEnd);
+          CPoint ptSelStart1, ptSelEnd1;
+          GetSelection (ptSelStart1, ptSelEnd1);
     
-          ptCursorPos = ptSelStart;
+          ptCursorPos = ptSelStart1;
           /*SetAnchor (ptCursorPos);
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);*/
     
           // [JRT]:
-          m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_SENTENCIZE);
+          m_pTextBuffer->DeleteText (this, ptSelStart1.y, ptSelStart1.x, ptSelEnd1.y, ptSelEnd1.x, CE_ACTION_SENTENCIZE);
         }
 
       int x, y;

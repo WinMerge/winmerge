@@ -904,8 +904,8 @@ void CImgMergeFrame::UpdateHeaderSizes()
 		{
 			for (int pane = 0; pane < nPaneCount; pane++)
 			{
-				RECT rc = m_pImgMergeWindow->GetPaneWindowRect(pane);
-				w[pane] = rc.right - rc.left - 4;
+				RECT rc1 = m_pImgMergeWindow->GetPaneWindowRect(pane);
+				w[pane] = rc1.right - rc1.left - 4;
 				if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
 			}
 		}
@@ -1928,8 +1928,8 @@ void CImgMergeFrame::OnImgUseBackColor()
 		if (dialog.DoModal() == IDOK)
 		{
 			COLORREF clrBackColor = dialog.GetColor();
-			RGBQUAD backColor = {GetBValue(clrBackColor), GetGValue(clrBackColor), GetRValue(clrBackColor)};
-			m_pImgMergeWindow->SetBackColor(backColor);
+			RGBQUAD backColor1 = {GetBValue(clrBackColor), GetGValue(clrBackColor), GetRValue(clrBackColor)};
+			m_pImgMergeWindow->SetBackColor(backColor1);
 			m_pImgMergeWindow->SetUseBackColor(bUseBackColor);
 		}
 	}
