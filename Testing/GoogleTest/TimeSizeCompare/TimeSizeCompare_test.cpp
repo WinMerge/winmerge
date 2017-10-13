@@ -77,12 +77,12 @@ namespace
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime + 10000000;
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime + 20000000;
 
-		di.diffFileInfo[0].size = -1;
+		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 0;
 		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_SIZE, 2, di));
 	
 		di.diffFileInfo[0].size = 0;
-		di.diffFileInfo[1].size = -1;
+		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_SIZE, 2, di));
 	
 		di.diffFileInfo[0].size = 1;

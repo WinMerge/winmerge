@@ -683,24 +683,24 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 	std::string directive;
 	while (fgets(buf, sizeof buf, f))
 	{
-		if (char *p = EatPrefix(buf, "#:"))
+		if (char *p0 = EatPrefix(buf, "#:"))
 		{
-			if (char *q = strchr(p, ':'))
+			if (char *q = strchr(p0, ':'))
 			{
 				uid = strtoul(q + 1, &q, 16);
 				found_uid = true;
 				--unresolved;
 			}
 		}
-		else if (char *p = EatPrefix(buf, "#,"))
+		else if (char *p1 = EatPrefix(buf, "#,"))
 		{
-			format = p;
+			format = p1;
 			format.erase(0, format.find_first_not_of(" \t\r\n"));
 			format.erase(format.find_last_not_of(" \t\r\n") + 1);
 		}
-		else if (char *p = EatPrefix(buf, "#."))
+		else if (char *p2 = EatPrefix(buf, "#."))
 		{
-			directive = p;
+			directive = p2;
 			directive.erase(0, directive.find_first_not_of(" \t\r\n"));
 			directive.erase(directive.find_last_not_of(" \t\r\n") + 1);
 		}
@@ -905,8 +905,8 @@ void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) con
 		if (id >= ID_INDICATOR_EXT)
 		{
 			String text = LoadString(id);
-			int cx = dc.GetTextExtent(text.c_str(), static_cast<int>(text.length())).cx;
-			sb.SetPaneInfo(i, id, style | SBPS_DISABLED, cx);
+			int cx1 = dc.GetTextExtent(text.c_str(), static_cast<int>(text.length())).cx;
+			sb.SetPaneInfo(i, id, style | SBPS_DISABLED, cx1);
 			sb.SetPaneText(i, text.c_str(), FALSE);
 		}
 		else if (rgid)

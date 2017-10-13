@@ -129,12 +129,12 @@ namespace
 		files.SetLeft(_T("A"));
 		files.SetRight(_T("B"));
 		di.diffFileInfo[0].size = 1;
-		di.diffFileInfo[1].size = -1;
+		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("A"));
 		files.SetRight(_T("B"));
-		di.diffFileInfo[0].size = -1;
+		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 1;
 		EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
 

@@ -344,7 +344,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 {
 	DIFFOPTIONS diffOptions = {0};
 	DiffFileInfo fileInfo;
-	bool diffSuccess;
+	bool diffSuccess = false;
 	int nResult = RESCAN_OK;
 	FileChange FileChanged[3] = {FileNoChange, FileNoChange, FileNoChange};
 	int nBuffer;
@@ -1719,9 +1719,9 @@ void CMergeDoc::DoFileSave(int nBuffer)
 		// If DirDoc contains compare results
 		if (m_pDirDoc && m_pDirDoc->HasDiffs())
 		{
-			for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			for (int nBuffer1 = 0; nBuffer1 < m_nBuffers; nBuffer1++)
 			{
-				if (m_bEditAfterRescan[nBuffer])
+				if (m_bEditAfterRescan[nBuffer1])
 				{
 					FlushAndRescan(false);
 					break;

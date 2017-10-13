@@ -352,10 +352,10 @@ std::string AbstractConfiguration::uncheckedExpand(const std::string& value) con
 				std::string prop;
 				while (it != end && *it != '}') prop += *it++;
 				if (it != end) ++it;
-				std::string value;
-				if (getRaw(prop, value))
+				std::string value1;
+				if (getRaw(prop, value1))
 				{
-					result.append(internalExpand(value));
+					result.append(internalExpand(value1));
 				}
 				else
 				{

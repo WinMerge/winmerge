@@ -84,7 +84,7 @@ bool DirItem::Update(const String &sFilePath)
 {
 	bool retVal = false;
 
-	size = -1;
+	size = DirItem::FILE_SIZE_NONE;
 	flags.reset();
 	mtime = 0;
 
@@ -135,7 +135,7 @@ void DirItem::ClearPartial()
 {
 	ctime = 0;
 	mtime = 0;
-	size = -1;
+	size = DirItem::FILE_SIZE_NONE;
 	version.Clear();
 	flags.reset();
 }

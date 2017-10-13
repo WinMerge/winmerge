@@ -278,7 +278,7 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 			int bom_bytes = 0;
 			{
 				SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
-				int bom_bytes = ucr::writeBom(shmOut.begin(), ucr::UCS2LE);
+				bom_bytes = ucr::writeBom(shmOut.begin(), ucr::UCS2LE);
 				// to UCS-2 conversion, from unicoder.cpp maketstring
 				bool lossy;
 				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin()+bom_bytes, textForeseenSize-1, m_codepage, ucr::CP_UCS2LE, &lossy);
@@ -570,7 +570,6 @@ static const char *findNextLine(ucr::UNICODESET unicoding, const char *pstart, c
 	default:
 		return findNextLine<char, false>(pstart, pend);
 	}
-	return pend;
 }
 
 bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM)

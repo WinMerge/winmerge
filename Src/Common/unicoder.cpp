@@ -512,7 +512,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 		{
 			if (GetLastError() == ERROR_INVALID_FLAGS)
 			{
-				int n = MultiByteToWideChar(codepage, 0, lpd, static_cast<int>(len), wbuff, static_cast<int>(wlen-1));
+				n = MultiByteToWideChar(codepage, 0, lpd, static_cast<int>(len), wbuff, static_cast<int>(wlen-1));
 				if (n)
 				{
 					/* NB: MultiByteToWideChar is documented as only zero-terminating 
