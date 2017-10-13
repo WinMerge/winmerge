@@ -175,7 +175,7 @@ MoveWordLeft (bool bSelect)
 
   if (nPos > 0)
     {
-      int nPrevPos = (int) (::CharPrev(pszChars, pszChars + nPos) - pszChars);
+      nPrevPos = (int) (::CharPrev(pszChars, pszChars + nPos) - pszChars);
       nPos = nPrevPos;
       if (xisalnum (pszChars[nPos]))
         {
@@ -830,7 +830,7 @@ OnLButtonUp (UINT nFlags, CPoint point)
       AdjustTextPoint (point);
       CPoint ptNewCursorPos = ClientToText (point);
 
-      CPoint ptStart, ptEnd;
+	  CPoint ptStart;
       if (m_bLineSelection)
         {
           CPoint ptEnd;
@@ -882,6 +882,7 @@ OnLButtonUp (UINT nFlags, CPoint point)
         }
       else
         {
+		  CPoint ptEnd;
           if (m_bWordSelection)
             {
               if (ptNewCursorPos.y < m_ptAnchor.y ||

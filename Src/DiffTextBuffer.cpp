@@ -628,9 +628,9 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// Write tempfile over original file
 		try
 		{
-			TFile file(sIntermediateFilename);
-			file.copyTo(pszFileName);
-			file.remove();
+			TFile file1(sIntermediateFilename);
+			file1.copyTo(pszFileName);
+			file1.remove();
 			if (bClearModifiedFlag)
 			{
 				SetModified(false);

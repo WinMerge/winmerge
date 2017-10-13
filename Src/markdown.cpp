@@ -149,9 +149,9 @@ std::string CMarkdown::Resolve(const EntityMap &map, const std::string& v)
 		}
 		else
 		{
-			EntityMap::const_iterator p = map.find(key);
-			if (p != map.end())
-				value = p->second;
+			EntityMap::const_iterator p1 = map.find(key);
+			if (p1 != map.end())
+				value = p1->second;
 		}
 		*q = ';';
 		++q;

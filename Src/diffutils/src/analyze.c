@@ -979,9 +979,11 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 		//  Get the results of comparison in the form of a chain
 		// of `struct change's -- an edit script.  
 		
+#if 0
 		if (output_style == OUTPUT_ED)
 			script = build_reverse_script (filevec);
 		else
+#endif
 			script = build_script (filevec);
 		
 		//  Set CHANGES if we had any diffs.

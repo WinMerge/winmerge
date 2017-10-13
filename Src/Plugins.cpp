@@ -959,7 +959,7 @@ static void ShowPluginErrorMessage(IDispatch *piScript, LPTSTR description)
  */
 static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...)
 {
-	HRESULT h;
+	HRESULT h = E_FAIL;
 	SE_Handler seh;
 	TCHAR errorText[500];
 	bool bExceptionCatched = false;	
@@ -1012,7 +1012,7 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
  */
 static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH op, ...)
 {
-	HRESULT h;
+	HRESULT h = E_FAIL;
 	SE_Handler seh;
 	TCHAR errorText[500];
 	bool bExceptionCatched = false;

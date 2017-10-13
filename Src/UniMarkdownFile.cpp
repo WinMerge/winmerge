@@ -166,15 +166,15 @@ bool UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 			line = maketstring((const char *)current, m_current - current);
 			if (m_current < m_transparent)
 			{
-				unsigned char eol = *m_current++;
-				if (m_current < m_transparent && *m_current == (eol ^ ('\r'^'\n')))
+				unsigned char eol1 = *m_current++;
+				if (m_current < m_transparent && *m_current == (eol1 ^ ('\r'^'\n')))
 				{
 					++m_current;
 					++m_txtstats.ncrlfs;
 				}
 				else
 				{
-					++(eol == '\r' ? m_txtstats.ncrs : m_txtstats.nlfs);
+					++(eol1 == '\r' ? m_txtstats.ncrs : m_txtstats.nlfs);
 				}
 			}
 			bDone = true;
@@ -183,17 +183,17 @@ bool UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 		{
 			while (m_current < m_base + m_filesize && isspace(*m_current))
 			{
-				unsigned char eol = *m_current++;
-				if (eol == '\r' || eol == '\n')
+				unsigned char eol1 = *m_current++;
+				if (eol1 == '\r' || eol1 == '\n')
 				{
-					if (m_current < m_base + m_filesize && *m_current == (eol ^ ('\r'^'\n')))
+					if (m_current < m_base + m_filesize && *m_current == (eol1 ^ ('\r'^'\n')))
 					{
 						++m_current;
 						++m_txtstats.ncrlfs;
 					}
 					else
 					{
-						++(eol == '\r' ? m_txtstats.ncrs : m_txtstats.nlfs);
+						++(eol1 == '\r' ? m_txtstats.ncrs : m_txtstats.nlfs);
 					}
 				}
 			}
