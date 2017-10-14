@@ -1,8 +1,5 @@
 cd /d "%~dp0"
 
-del /s Build\*.exe
-del /s BuildTmp\*.res
-
 call SetVersion.cmd
 cscript /nologo ExpandEnvironmenStrings.vbs Version.in > Version.h
 
