@@ -1,3 +1,4 @@
+setlocal
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 set downloadsdir=%temp%\WinMergeDownloadDeps
 set urls_destdirs=^
