@@ -396,11 +396,6 @@ msgstr "リリースノート(&E)"
 msgid "&Translations"
 msgstr "翻訳(&T)"
 
-#: Merge.rc:3938FFC2
-#, c-format
-msgid "&Check For Updates"
-msgstr "更新を確認(&C)"
-
 #: Merge.rc:1C6125F4
 #, c-format
 msgid "C&onfiguration"
@@ -411,7 +406,7 @@ msgstr "設定(&O)"
 msgid "&GNU General Public License"
 msgstr "&GNU General Public License"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC2
 #, c-format
 msgid "&About WinMerge..."
 msgstr "WinMergeについて(&A)..."
@@ -590,6 +585,11 @@ msgstr "列の設定(&C)..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "レポートの生成(&R)..."
+
+#: Merge.rc:3938FFC3
+#, c-format
+msgid "&Check For Updates"
+msgstr "更新を確認(&C)"
 
 #: Merge.rc:6E470BE8
 #, c-format

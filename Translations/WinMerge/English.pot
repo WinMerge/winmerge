@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2017-09-30 16:28+0000\n"
+"POT-Creation-Date: 2017-10-18 07:28+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -391,11 +391,6 @@ msgstr ""
 msgid "&Translations"
 msgstr ""
 
-#: Merge.rc:3938FFC2
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:1C6125F4
 #, c-format
 msgid "C&onfiguration"
@@ -406,7 +401,7 @@ msgstr ""
 msgid "&GNU General Public License"
 msgstr ""
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC2
 #, c-format
 msgid "&About WinMerge..."
 msgstr ""
@@ -584,6 +579,11 @@ msgstr ""
 #: Merge.rc:2F07210E
 #, c-format
 msgid "Generate &Report..."
+msgstr ""
+
+#: Merge.rc:3938FFC3
+#, c-format
+msgid "&Check For Updates"
 msgstr ""
 
 #: Merge.rc:6E470BE8

@@ -209,10 +209,6 @@ extern const String OPT_TABBAR_AUTO_MAXWIDTH OP("Settings/TabBarAutoMaxWidth");
 // MRU
 extern const String OPT_MRU_MAX OP("Settings/MRUMax");
 
-// Check For Updates
-extern const String OPT_CURRENT_VERSION_URL OP("CheckForUpdates/CurrentVersionURL");
-extern const String OPT_DOWNLOAD_URL OP("CheckForUpdates/DownloadURL");
-
 // Font options
 extern const String OPT_FONT_FILECMP OP("Font/");
 extern const String OPT_FONT_DIRCMP OP("FontDirCompare/");
