@@ -182,9 +182,6 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_MRU_MAX, 9);
 
-	pOptions->InitOption(OPT_CURRENT_VERSION_URL, CurrentVersionURL);
-	pOptions->InitOption(OPT_DOWNLOAD_URL, DownloadUrl);
-
 	Options::DiffOptions::SetDefaults(pOptions);
 	Options::DiffColors::SetDefaults(pOptions);
 	Options::Font::SetDefaults(pOptions);

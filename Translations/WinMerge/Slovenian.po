@@ -396,11 +396,6 @@ msgstr ""
 msgid "&Translations"
 msgstr ""
 
-#: Merge.rc:3938FFC2
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:1C6125F4
 #, c-format
 msgid "C&onfiguration"
@@ -411,7 +406,7 @@ msgstr "&Nastavitve"
 msgid "&GNU General Public License"
 msgstr "&GNU Javna licenca"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC2
 #, c-format
 msgid "&About WinMerge..."
 msgstr "&O programu WinMerge ..."
@@ -590,6 +585,11 @@ msgstr "&Prilagodi stolpce ..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Izdelaj &poroèilo ..."
+
+#: Merge.rc:3938FFC3
+#, c-format
+msgid "&Check For Updates"
+msgstr ""
 
 #: Merge.rc:6E470BE8
 #, c-format
