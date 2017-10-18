@@ -10,7 +10,7 @@ call Externals\hg_clone.cmd
 hg archive %workdir%
 for /d %%d in (Externals\*) do (
   pushd %%d
-  if exist .hg hg archive %workdir%\%%d 
+  if exist .hg hg archive ..\..\%workdir%\%%d 
   popd
 )
 
@@ -24,8 +24,8 @@ for /F %%f in (Build\Releases\files.txt) do (
 copy Build\Releases\files.txt ..\..\Build\Releases\
 mkdir ..\..\Build\Releases\PDB\%APPVER%\Win32 2> NUL
 mkdir ..\..\Build\Releases\PDB\%APPVER%\x64 2> NUL
-copy  Build\MergeUnicodeReleases\*.pdb ..\..\Build\Releases\PDB\%APPVER%\Win32\
-copy  Build\x64\MergeUnicodeReleases\*.pdb ..\..\Build\Releases\PDB\%APPVER%\x64\
+copy  Build\MergeUnicodeRelease\*.pdb ..\..\Build\Releases\PDB\%APPVER%\Win32\
+copy  Build\x64\MergeUnicodeRelease\*.pdb ..\..\Build\Releases\PDB\%APPVER%\x64\
 popd
 
 popd
