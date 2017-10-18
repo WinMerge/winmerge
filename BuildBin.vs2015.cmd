@@ -17,7 +17,7 @@ if exist "%SIGNBAT_PATH%" (
   call "%SIGNBAT_PATH%" Build\x64\MergeUnicodeRelease\MergeLang.dll
 )
 
-mkdir Build\MergeUnicodeRelease\%APPVER%\Win32 2> NUL
-mkdir Build\x64\MergeUnicodeRelease\%APPVER%\x64 2> NUL
-copy Build\MergeUnicodeRelease\*.pdb "Build\Releases\%APPVER%\Win32"
-copy Build\x64\MergeUnicodeRelease\*.pdb "Build\Releases\\%APPVER%\x64"
+mkdir Build\MergeUnicodeRelease\%APPVER% 2> NUL
+mkdir Build\x64\MergeUnicodeRelease\%APPVER% 2> NUL
+copy Build\MergeUnicodeRelease\*.pdb "Build\MergeUnicodeRelease\%APPVER%\"
+copy Build\x64\MergeUnicodeRelease\*.pdb "Build\x64\MergeUnicodeRelease\%APPVER%\"
