@@ -17,13 +17,13 @@ for /d %%d in (Externals\*) do (
 pushd %workdir%
 call DownloadDeps.cmd
 call BuildAll.vs2017.cmd
+
+mkdir ..\..\Build\Releases\PDB\%APPVER%\Win32 2> NUL
+mkdir ..\..\Build\Releases\PDB\%APPVER%\x64 2> NUL
 for /F %%f in (Build\Releases\files.txt) do (
   copy %%f ..\..\Build\Releases\
 )
-
 copy Build\Releases\files.txt ..\..\Build\Releases\
-mkdir ..\..\Build\Releases\PDB\%APPVER%\Win32 2> NUL
-mkdir ..\..\Build\Releases\PDB\%APPVER%\x64 2> NUL
 copy  Build\MergeUnicodeRelease\*.pdb ..\..\Build\Releases\PDB\%APPVER%\Win32\
 copy  Build\x64\MergeUnicodeRelease\*.pdb ..\..\Build\Releases\PDB\%APPVER%\x64\
 popd
