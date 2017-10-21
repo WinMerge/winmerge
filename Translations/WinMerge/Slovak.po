@@ -585,11 +585,6 @@ msgstr "&PrispÙsobiù stÂpce..."
 msgid "Generate &Report..."
 msgstr "Vystvoriù &spr·vu..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -750,7 +745,7 @@ msgstr "&Z·loûky"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Prepn˙ù z·loûku\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&œalöia z·loûka\tF2"
@@ -1686,7 +1681,7 @@ msgstr ""
 msgid "New"
 msgstr "Nov˝"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2371,7 +2366,7 @@ msgstr "&ät˝l:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&KopÌrovaù do schr·nky"

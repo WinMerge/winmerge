@@ -584,11 +584,6 @@ msgstr "&Personalitza les columnes..."
 msgid "Generate &Report..."
 msgstr "Gene&ra un informe..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -749,7 +744,7 @@ msgstr "&Punts d'interès"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Activa/desactiva el punt d'interès\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Següent punt d'interès\tF2"
@@ -1685,7 +1680,7 @@ msgstr ""
 msgid "New"
 msgstr "Nova"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2370,7 +2365,7 @@ msgstr "&Estil:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Copia al Porta-retalls"

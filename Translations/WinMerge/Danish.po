@@ -586,11 +586,6 @@ msgstr "&Tilpas søjler..."
 msgid "Generate &Report..."
 msgstr "Generer en &rapport..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -751,7 +746,7 @@ msgstr "&Bogmærker"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Vis/skjul bogmærke\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Næste bogmærke\tF2"
@@ -1691,7 +1686,7 @@ msgstr ""
 msgid "New"
 msgstr "Ny"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2382,7 +2377,7 @@ msgstr "&Stil"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopier til Udklipsholder"

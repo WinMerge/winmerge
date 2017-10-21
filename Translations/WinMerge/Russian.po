@@ -587,11 +587,6 @@ msgstr "&Настроить колонки..."
 msgid "Generate &Report..."
 msgstr "Создать &отчет..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -752,7 +747,7 @@ msgstr "&Закладки"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Закладка\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Следующая закладка\tF2"
@@ -1688,7 +1683,7 @@ msgstr ""
 msgid "New"
 msgstr "Новый"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2377,7 +2372,7 @@ msgstr "&Стиль:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Копировать в буфер обмена"

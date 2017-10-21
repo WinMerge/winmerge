@@ -586,11 +586,6 @@ msgstr "列の設定(&C)..."
 msgid "Generate &Report..."
 msgstr "レポートの生成(&R)..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr "更新を確認(&C)"
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -751,7 +746,7 @@ msgstr "ブックマーク(&B)"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "ブックマークの作成・削除(&T)\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "次のブックマークへ移動(&N)\tF2"
@@ -1691,7 +1686,7 @@ msgstr "マーカーを有効にする(&M)"
 msgid "New"
 msgstr "新規(&N)"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr "背景色(&B)"
@@ -2390,7 +2385,7 @@ msgstr "スタイル(&S):"
 msgid "&Include File Compare Report"
 msgstr "ファイル比較レポートを含める(&I)"
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "クリップボードにコピー(&C)"

@@ -585,11 +585,6 @@ msgstr "&Oszlopok testreszabása..."
 msgid "Generate &Report..."
 msgstr "&Jelentés generálása..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -750,7 +745,7 @@ msgstr "Könyvjelzõk"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Könyvjelzõ ki/be\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "Következõ könyvjelzõ\tF2"
@@ -1686,7 +1681,7 @@ msgstr ""
 msgid "New"
 msgstr "Új"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2371,7 +2366,7 @@ msgstr "&Stílus:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Másolás vágólapra"

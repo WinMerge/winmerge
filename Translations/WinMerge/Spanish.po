@@ -587,11 +587,6 @@ msgstr "&Personalizar columnas..."
 msgid "Generate &Report..."
 msgstr "Generar Info&rme..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -752,7 +747,7 @@ msgstr "&Marcadores"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Al&ternar marcador\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "Marcador siguie&nte\tF2"
@@ -1688,7 +1683,7 @@ msgstr ""
 msgid "New"
 msgstr "Nuevo"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2377,7 +2372,7 @@ msgstr "E&stilo:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Copiar al Portapapeles"

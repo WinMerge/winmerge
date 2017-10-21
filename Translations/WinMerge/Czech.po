@@ -585,11 +585,6 @@ msgstr "Vlastní &sloupce..."
 msgid "Generate &Report..."
 msgstr "&Protokol porovnání..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -750,7 +745,7 @@ msgstr "Zá&ložky"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Pøepnout &záložku\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Další záložka\tF2"
@@ -1688,7 +1683,7 @@ msgstr ""
 msgid "New"
 msgstr "&Nový"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2373,7 +2368,7 @@ msgstr "Uložit jako &typ:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopírovat do schránky"

@@ -584,11 +584,6 @@ msgstr "&Προσαρμογή Στηλών..."
 msgid "Generate &Report..."
 msgstr "Δημιουργία Ανα&φοράς..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -749,7 +744,7 @@ msgstr "Σημάν&σεις"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Μεταβολή Σημάν&σεως\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "Επο&μένη Σήμανση\tF2"
@@ -1685,7 +1680,7 @@ msgstr ""
 msgid "New"
 msgstr "Δημιουργία"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2370,7 +2365,7 @@ msgstr "&Στυλ:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Αντι&γραφή στο Πρόχειρο"
