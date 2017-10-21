@@ -72,11 +72,11 @@ public :
 	// if line has any text (including eol), set strLine to text (including eol)
 	bool GetFullLine(int nLineIndex, CString &strLine) const;
 
-	virtual void SetModified (bool bModified = TRUE);
+	virtual void SetModified (bool bModified = TRUE) override;
 	void prepareForRescan();
-	virtual void OnNotifyLineHasBeenEdited(int nLine);
+	virtual void OnNotifyLineHasBeenEdited(int nLine) override;
 	bool IsInitialized() const;
 	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
-		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
+		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true) override;
 };

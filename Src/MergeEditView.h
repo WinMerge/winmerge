@@ -114,7 +114,7 @@ public:
 	bool EnableRescan(bool bEnable);
 	bool IsReadOnly(int pane) const;
 	void ShowDiff(bool bScroll, bool bSelectText);
-	virtual void OnEditOperation(int nAction, LPCTSTR pszText, int cchText);
+	virtual void OnEditOperation(int nAction, LPCTSTR pszText, size_t cchText) override;
 	void UpdateLineLengths();
 	bool IsLineInCurrentDiff(int nLine) const;
 	void SelectNone();
@@ -132,11 +132,11 @@ public:
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	void GetSelection(CPoint &ptStart, CPoint &ptEnd) { CCrystalTextView::GetSelection(ptStart, ptEnd); }
-	virtual void UpdateSiblingScrollPos (bool bHorz);
-	virtual std::vector<TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
-	virtual COLORREF GetColor(int nColorIndex);
+	virtual void UpdateSiblingScrollPos (bool bHorz) override;
+	virtual std::vector<TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
+	virtual COLORREF GetColor(int nColorIndex) override;
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
-			COLORREF & crText, bool & bDrawWhitespace);
+			COLORREF & crText, bool & bDrawWhitespace) override;
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
 		, COLORREF & crBkgnd, COLORREF & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
@@ -146,23 +146,23 @@ public:
 	int GetTopSubLine() const { return m_nTopSubLine; }
 	int GetSubLines(int nLineIndex) { return CCrystalTextView::GetSubLines(nLineIndex); }
 	virtual int GetSubLineCount() { return CCrystalTextView::GetSubLineCount(); }
-	virtual int GetSubLineIndex(int nLineIndex) { return CCrystalTextView::GetSubLineIndex(nLineIndex); }
-	virtual void GetLineBySubLine(int nSubLineIndex, int &nLine, int &nSubLine) {
+	virtual int GetSubLineIndex(int nLineIndex) override { return CCrystalTextView::GetSubLineIndex(nLineIndex); }
+	virtual void GetLineBySubLine(int nSubLineIndex, int &nLine, int &nSubLine) override {
 		CCrystalTextView::GetLineBySubLine(nSubLineIndex, nLine, nSubLine);
 	}
-	virtual int GetEmptySubLines( int nLineIndex );
-	virtual void InvalidateSubLineIndexCache( int nLineIndex );
+	virtual int GetEmptySubLines( int nLineIndex ) override;
+	virtual void InvalidateSubLineIndexCache( int nLineIndex ) override;
 	void RepaintLocationPane();
 	bool SetPredifferByName(const CString & prediffer);
 	void SetPredifferByMenu(UINT nID);
 	void DocumentsLoaded();
 	void SetLocationView(const CLocationView * pView = NULL);
 	void UpdateLocationViewPosition(int nTopLine = -1, int nBottomLine = -1);
-	virtual void RecalcPageLayouts(CDC * pdc, CPrintInfo * pInfo);
-	virtual void GetPrintHeaderText(int nPageNum, CString & text);
-	virtual void PrintHeader(CDC * pdc, int nPageNum);
-	virtual void PrintFooter(CDC * pdc, int nPageNum);
-	virtual void SetWordWrapping( bool bWordWrap );
+	virtual void RecalcPageLayouts(CDC * pdc, CPrintInfo * pInfo) override;
+	virtual void GetPrintHeaderText(int nPageNum, CString & text) override;
+	virtual void PrintHeader(CDC * pdc, int nPageNum) override;
+	virtual void PrintFooter(CDC * pdc, int nPageNum) override;
+	virtual void SetWordWrapping( bool bWordWrap ) override;
 	void UpdateStatusbar();
 	CMergeEditView *GetGroupView(int nPane) const;
 	bool IsDetailViewPane() const;

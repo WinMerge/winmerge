@@ -1938,7 +1938,7 @@ void CMergeEditView::OnUpdateClearSyncPoints(CCmdUI* pCmdUI)
  * @sa CCrystalEditView::OnEditOperation()
  * @todo More edit-events for rescan delaying?
  */
-void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, int cchText)
+void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchText)
 {
 	if (IsReadOnly(m_nThisPane))
 	{
