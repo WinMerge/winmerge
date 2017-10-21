@@ -190,7 +190,7 @@ bool CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine) const
 }
 
 void CDiffTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
-		const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
+		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 		int nActionType /*= CE_ACTION_UNKNOWN*/,
 		CDWordArray *paSavedRevisionNumbers)
 {
