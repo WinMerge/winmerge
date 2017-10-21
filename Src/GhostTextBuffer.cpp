@@ -151,7 +151,7 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
                  CString &text, CRLFSTYLE nCrlfStyle /* CRLF_STYLE_AUTOMATIC */,
-                 bool bExcludeInvisibleLines/*=true*/)
+                 bool bExcludeInvisibleLines/*=true*/) const
 {
 	const size_t lines = m_aLines.size();
 	ASSERT(nStartLine >= 0 && nStartLine < static_cast<intptr_t>(lines));
@@ -252,7 +252,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
  *   (m_ptCursorPos, m_ptLastChange for example).
  */
 bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
-		int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar,
+		int nPos, LPCTSTR pszText, size_t cchText, int &nEndLine, int &nEndChar,
 		int nAction, bool bHistory /*=true*/)
 {
 	bool bGroupFlag = false;
