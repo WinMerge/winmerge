@@ -86,7 +86,7 @@ public :
 	bool InsertGhostLine (CCrystalTextView * pSource, int nLine);
 
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-	                            LPCTSTR pszText, int cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = NULL);
+	                            LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = NULL) override;
 	virtual UndoRecord GetUndoRecord(int nUndoPos) const;
 
 	virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const;

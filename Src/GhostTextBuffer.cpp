@@ -730,7 +730,7 @@ void CGhostTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 	return;
 }
 
-static int CountEol(LPCTSTR pszText, int cchText)
+static int CountEol(LPCTSTR pszText, size_t cchText)
 {
 	int nEol = 0;
 	for (int nTextPos = 0; nTextPos < cchText; ++nTextPos)
@@ -746,7 +746,7 @@ static int CountEol(LPCTSTR pszText, int cchText)
 }
 
 void CGhostTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
-	const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
+	const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 	int nActionType /*= CE_ACTION_UNKNOWN*/,
 	CDWordArray *paSavedRevisionNumbers)
 {
