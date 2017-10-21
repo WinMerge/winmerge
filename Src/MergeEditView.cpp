@@ -2656,12 +2656,12 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	// Remove copying item copying from active side
 	if (m_nThisPane == 0) // left?
 	{
-		menu.RemoveMenu(ID_R2L, MF_BYCOMMAND);
+		menu.RemoveMenu(ID_COPY_FROM_RIGHT, MF_BYCOMMAND);
 		menu.RemoveMenu(ID_COPY_FROM_LEFT, MF_BYCOMMAND);
 	}
 	if (m_nThisPane == GetDocument()->m_nBuffers - 1)
 	{
-		menu.RemoveMenu(ID_L2R, MF_BYCOMMAND);
+		menu.RemoveMenu(ID_COPY_FROM_LEFT, MF_BYCOMMAND);
 		menu.RemoveMenu(ID_COPY_FROM_RIGHT, MF_BYCOMMAND);
 	}
 
