@@ -5,7 +5,8 @@ call SetVersion.cmd
 set DISTDIR=.\Build\Releases
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 
-del /q /s "%DISTDIR%" > NUL 2> NUL
+rmdir /q /s "%DISTDIR%\zip-version" > NUL 2> NUL
+rmdir /q /s "%DISTDIR%\x64-zip-version" > NUL 2> NUL
 mkdir "%DISTDIR%" 2> NUL
 
 copy "Build\WinMerge-%RCVER%-Setup.exe" "%DISTDIR%\WinMerge-%SAFEAPPVER%-Setup.exe"
@@ -117,16 +118,5 @@ echo "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip"
 echo "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 ) > "%DISTDIR%\files.txt"
-
-
-for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
-  "%ProgramFiles(x86)%\VirusTotalUploader2\VirusTotalUploader2.2.exe" %%f
-)
-
-@echo off
-echo.
-for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
-  for /F %%h in ('certutil -hashfile %%f SHA256 ^| findstr -v hash') do echo %%~nxf: https://www.virustotal.com/en/file/%%h/analysis/
-)
 
 popd
