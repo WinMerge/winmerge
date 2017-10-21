@@ -588,11 +588,6 @@ msgstr "自訂欄位(&C)..."
 msgid "Generate &Report..."
 msgstr "產生報告(&R)..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr "檢查更新(&C)"
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -753,7 +748,7 @@ msgstr "書籤(&B)"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "放置/清除書籤(&T)\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "下一書籤(&N)\tF2"
@@ -1695,7 +1690,7 @@ msgstr ""
 msgid "New"
 msgstr "新增"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2385,7 +2380,7 @@ msgstr "樣式(&S)："
 msgid "&Include File Compare Report"
 msgstr "包括檔案比較報告(&I)"
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "複製到剪貼簿(&C)"

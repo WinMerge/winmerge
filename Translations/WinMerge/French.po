@@ -589,11 +589,6 @@ msgstr "&Ajuster les colonnes..."
 msgid "Generate &Report..."
 msgstr "Générer un &rapport..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -754,7 +749,7 @@ msgstr "Si&gnets"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Placer ou &retirer un signet\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "Signet &suivant\tF2"
@@ -1690,7 +1685,7 @@ msgstr ""
 msgid "New"
 msgstr "Nouveau"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2379,7 +2374,7 @@ msgstr "&Style:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Copier au presse-papiers"

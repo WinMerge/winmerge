@@ -585,11 +585,6 @@ msgstr "选择列(&C)..."
 msgid "Generate &Report..."
 msgstr "生成报告(&R)..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr ""
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -750,7 +745,7 @@ msgstr "书签(&B)"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "设置/取消(&T)\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "下一个(&N)\tF2"
@@ -1686,7 +1681,7 @@ msgstr ""
 msgid "New"
 msgstr "新建"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2371,7 +2366,7 @@ msgstr "样式(&S):"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "复制到剪贴板(&C)"

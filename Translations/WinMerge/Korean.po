@@ -589,11 +589,6 @@ msgstr "열 사용자 정의(&C)..."
 msgid "Generate &Report..."
 msgstr "보고서 만들기(&R)..."
 
-#: Merge.rc:3938FFC3
-#, c-format
-msgid "&Check For Updates"
-msgstr "업데이트 확인(&C)"
-
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -754,7 +749,7 @@ msgstr "책갈피(&B)"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "책갈피 토글(&T)\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "다음 책갈피(&N)\tF2"
@@ -1690,7 +1685,7 @@ msgstr "마커 활성화(&M)"
 msgid "New"
 msgstr "새로 만들기"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr "배경 색상(&B):"
@@ -2383,7 +2378,7 @@ msgstr "스타일(&S):"
 msgid "&Include File Compare Report"
 msgstr "파일 비교 보고서 포함(&I)"
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "클립보드로 복사(&C)"
