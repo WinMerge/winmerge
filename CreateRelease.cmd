@@ -2,7 +2,7 @@ set workdir=BuildTmp\Src
 
 pushd "%~dp0"
 
-del /q /s %workdir% > NUL 2> NUL
+rmdir /q /s %workdir% > NUL 2> NUL
 mkdir %workdir% 2> NUL
 
 call Externals\hg_clone.cmd
@@ -27,6 +27,8 @@ mkdir ..\..\Build\Releases\PDB\%APPVER%\x64 2> NUL
 copy  Build\MergeUnicodeRelease\*.pdb ..\..\Build\Releases\PDB\%APPVER%\Win32\
 copy  Build\x64\MergeUnicodeRelease\*.pdb ..\..\Build\Releases\PDB\%APPVER%\x64\
 popd
+
+call UploadToVirusTotal.cmd
 
 popd
 
