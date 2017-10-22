@@ -385,9 +385,14 @@ msgstr "A&jutor"
 msgid "&WinMerge Help\tF1"
 msgstr "Ajutor &WinMerge\tF1"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:1B17601E
 #, c-format
-msgid "&Check For Updates"
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
 msgstr ""
 
 #: Merge.rc:1C6125F4
@@ -400,7 +405,7 @@ msgstr "C&onfigurare"
 msgid "&GNU General Public License"
 msgstr "Licenþa Publicã Generalã &GNU"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC2
 #, c-format
 msgid "&About WinMerge..."
 msgstr "&Despre WinMerge..."
@@ -469,26 +474,6 @@ msgstr "Aratã elementele omise"
 #, c-format
 msgid "S&how Binary Files"
 msgstr "Aratã fiºierele binare"
-
-#: Merge.rc:5A9A713B
-#, c-format
-msgid "&3-way Compare"
-msgstr ""
-
-#: Merge.rc:200AD0D1
-#, c-format
-msgid "Show &Left Only Different Items"
-msgstr ""
-
-#: Merge.rc:4899EBE1
-#, c-format
-msgid "Show &Middle Only Different Items"
-msgstr ""
-
-#: Merge.rc:614F49A9
-#, c-format
-msgid "Show &Right Only Different Items"
-msgstr ""
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -600,7 +585,7 @@ msgstr "Personalizare &coloane..."
 msgid "Generate &Report..."
 msgstr "Generare &raport..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Salvare\tCtrl+S"
@@ -695,12 +680,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "An&uleazã\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Refã\tCtrl+Y"
@@ -710,12 +695,12 @@ msgstr "&Refã\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Taie\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Copie\tCtrl+C"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Li&peºte\tCtrl+V"
@@ -760,7 +745,7 @@ msgstr "Semn de &carte"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Basculeazã semn de carte\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "Urmãtorul sem&n de carte\tF2"
@@ -801,7 +786,7 @@ msgstr "&Normal\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Evidenþiere sintaxã"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1151,7 +1136,7 @@ msgstr "Deschide stâ&nga"
 msgid "with &External Editor"
 msgstr "cu editor &extern"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -1266,7 +1251,7 @@ msgstr "Copie numele de &fiºier"
 msgid "Prediffer Settings"
 msgstr "Setãri prediferenþiator"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "Fãrã predifere&nþiator"
@@ -1396,19 +1381,29 @@ msgstr "Contribuitori"
 msgid "Select Files or Folders"
 msgstr "Selecteazã fiºiere sau directoare"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "Rãsf&oieºte..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "&Rãsfoieºte..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1646,7 +1641,7 @@ msgstr "&Ok"
 msgid "Replace"
 msgstr "Înlocuieºte"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "C&u ce:"
@@ -1696,7 +1691,7 @@ msgstr ""
 msgid "New"
 msgstr "Nou"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -1831,7 +1826,7 @@ msgstr "Trimite fiºierele ºterse cãtre Recycle Bin"
 msgid "&External editor:"
 msgstr "Editor &extern:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "Directorul cu &filtre:"
@@ -1866,7 +1861,7 @@ msgstr "&Fiºier 1:"
 msgid "File&2:"
 msgstr "F&iºier 2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "Interschim&bã"
@@ -2026,7 +2021,7 @@ msgstr "Blanc"
 msgid "&Compare"
 msgstr "&Comparã"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ignorã schimbare"
@@ -2381,7 +2376,7 @@ msgstr "&Stil:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, fuzzy, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Copie în memorie"
@@ -2516,7 +2511,7 @@ msgstr "(Afecteazã)"
 msgid "Select Codepage for"
 msgstr "Selecteazã codare caractere pentru"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "Încãrcare &fiºier:"
@@ -2561,7 +2556,7 @@ msgstr "Nu&me director"
 msgid "Result:"
 msgstr "Rezultat:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Testeazã"
@@ -2646,7 +2641,7 @@ msgstr "Copii de siguranþã"
 msgid "Create backup files in:"
 msgstr "Creazã copii de siguranþã pentru:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "Comparare &directoare"
@@ -2721,7 +2716,7 @@ msgstr "Nu"
 msgid "Plugins"
 msgstr ""
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr ""
@@ -2816,7 +2811,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3018,7 +3013,7 @@ msgstr "Nu la to&ate"
 msgid "&Continue"
 msgstr "&Continuã"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "O&mite"
@@ -4000,7 +3995,7 @@ msgstr "SDL dreapta"
 msgid "Left Encoding"
 msgstr "Set de caractere stânga"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Set de caractere dreapta"
@@ -4045,7 +4040,7 @@ msgstr "Numai stânga: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Numai dreapta: %1"
@@ -4113,21 +4108,6 @@ msgstr "Eroare"
 #: Merge.rc:12D66B44
 #, c-format
 msgid "Text files are identical"
-msgstr ""
-
-#: Merge.rc:1DEEB161
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr ""
-
-#: Merge.rc:1D99B043
-#, c-format
-msgid "(Left and right are identical)"
-msgstr ""
-
-#: Merge.rc:159C584C
-#, c-format
-msgid "(Left and middle are identical)"
 msgstr ""
 
 #: Merge.rc:12D66B45
@@ -4878,11 +4858,6 @@ msgstr "Resurse"
 msgid "Shell"
 msgstr "Shell"
 
-#: Merge.rc:4E44AD6
-#, c-format
-msgid "VHDL"
-msgstr ""
-
 #: Merge.rc:8AF7E6B
 #, c-format
 msgid "Close &Left Tabs"
@@ -4911,5 +4886,15 @@ msgstr ""
 #: Merge.rc:4D3A8E6D
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
+msgstr ""
+
+#: Merge.rc:73B321AA
+#, c-format
+msgid "%1 does not exist. Do you want to create it?"
+msgstr ""
+
+#: Merge.rc:3A5D5964
+#, c-format
+msgid "Failed to create folder."
 msgstr ""
 

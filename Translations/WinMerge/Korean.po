@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-02-05 13:49+0900\n"
+"PO-Revision-Date: 2017-10-14 10:21+0900\n"
 "Last-Translator: sheppaul <sheppaul at gmail.com>\n"
 "Language-Team: Korean <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -479,26 +479,6 @@ msgstr "건너뛴 항목 보기(&H)"
 msgid "S&how Binary Files"
 msgstr "바이너리 파일 보기(&H)"
 
-#: Merge.rc:5A9A713B
-#, c-format
-msgid "&3-way Compare"
-msgstr "&3 방향 비교"
-
-#: Merge.rc:200AD0D1
-#, c-format
-msgid "Show &Left Only Different Items"
-msgstr "왼쪽만 다른 항목 보기(&L)"
-
-#: Merge.rc:4899EBE1
-#, c-format
-msgid "Show &Middle Only Different Items"
-msgstr "가운데만 다른 항목 보기(&M)"
-
-#: Merge.rc:614F49A9
-#, c-format
-msgid "Show &Right Only Different Items"
-msgstr "오른쪽만 다른 항목 보기(&R)"
-
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
@@ -724,7 +704,7 @@ msgstr "잘라내기(&T)\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "복사(&C)\tCtrl+C"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "붙여넣기(&P)\tCtrl+V"
@@ -1160,7 +1140,7 @@ msgstr "왼쪽 열기(&O)"
 msgid "with &External Editor"
 msgstr "외부 편집기로(&E)"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Parent Folder"
 msgstr "상위 폴더(&P)"
@@ -1388,7 +1368,7 @@ msgstr "(개인 빌드)"
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
-msgstr "WinMerge 홈페이지 방문!"
+msgstr "WinMerge 홈페이지 방문ㅎ!"
 
 #: Merge.rc:1326F
 #, c-format
@@ -1408,7 +1388,7 @@ msgstr "폴더/파일 선택"
 #: Merge.rc:43017E4D
 #, c-format
 msgid "&1st:"
-msgstr "첫 번째(&1)"
+msgstr ""
 
 #: Merge.rc:68816EE7
 #, c-format
@@ -1418,7 +1398,7 @@ msgstr "찾아보기(&B)"
 #: Merge.rc:43017E4E
 #, c-format
 msgid "&2nd:"
-msgstr "두 번째(&2)"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
@@ -1428,7 +1408,7 @@ msgstr "찾아보기(&R)"
 #: Merge.rc:78B3B626
 #, c-format
 msgid "&3rd(Optional):"
-msgstr "세 번째(&3):"
+msgstr "&3rd(선택 사항):"
 
 #: Merge.rc:78E0CE0F
 #, c-format
@@ -2045,7 +2025,7 @@ msgstr "공백 문자"
 msgid "&Compare"
 msgstr "비교하기(&W)"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "변경사항 무시하기(&H)"
@@ -2543,7 +2523,7 @@ msgstr "(적용)"
 msgid "Select Codepage for"
 msgstr "코드페이지 선택"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "파일 불러오기(&F):"
@@ -3084,11 +3064,6 @@ msgstr "이 메시지를 다시 표시하지 않음(&M)"
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "다시 묻지 않음(&Q)"
-
-#: Merge.rc:78ACB5DB
-#, c-format
-msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
-msgstr "이 메시지 상자를 다시 표시하려면, 옵션 대화상자의 일반 페이지에서 초기화 버튼을 누르세요."
 
 #: Merge.rc:39000D57
 #, c-format
@@ -4188,21 +4163,6 @@ msgstr "오류"
 msgid "Text files are identical"
 msgstr "텍스트 파일이 같습니다"
 
-#: Merge.rc:1DEEB161
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr "(가운데와 오른쪽은 동일합니다)"
-
-#: Merge.rc:1D99B043
-#, c-format
-msgid "(Left and right are identical)"
-msgstr "(왼쪽과 오른쪽은 동일합니다)"
-
-#: Merge.rc:159C584C
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr "(왼쪽과 가운데는 동일합니다)"
-
 #: Merge.rc:12D66B45
 #, c-format
 msgid "Text files are different"
@@ -5028,11 +4988,6 @@ msgstr "자원"
 msgid "Shell"
 msgstr "쉘"
 
-#: Merge.rc:4E44AD6
-#, c-format
-msgid "VHDL"
-msgstr "VHDL"
-
 #: Merge.rc:8AF7E6B
 #, c-format
 msgid "Close &Left Tabs"
@@ -5072,15 +5027,4 @@ msgstr "%1이 없습니다. 그것을 만들까요?"
 #, c-format
 msgid "Failed to create folder."
 msgstr "폴더 생성에 실패했습니다."
-
-#: Merge.rc:64F70DD6
-#, c-format
-msgid ""
-"You can specify the following parameters to the path:\n"
-"$file: Path name of the current file\n"
-"$linenum: Line number of the current cursor position"
-msgstr ""
-"경로에 다음 매개 변수를 지정할 수 있습니다:\n"
-"$file: 현재 파일의 경로명\n"
-"$linenum: 현재 커서 위치의 줄 번호"
 

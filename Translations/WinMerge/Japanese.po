@@ -1396,20 +1396,30 @@ msgstr "貢献者"
 msgid "Select Files or Folders"
 msgstr "ファイルまたはフォルダの選択..."
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr "&1st:"
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "参照(&B)..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr "&2nd:"
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "参照(&R)"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
-msgstr "&3(オプション)"
+msgid "&3rd(Optional):"
+msgstr "&3rd(オプション)"
 
 #: Merge.rc:78E0CE0F
 #, c-format
@@ -1839,7 +1849,7 @@ msgstr "削除されたファイルをごみ箱に移動する(&P)"
 msgid "&External editor:"
 msgstr "外部エディタ(&E): (置換される引数 $file, $linenum):"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "フィルタフォルダ(&F):"
@@ -1874,7 +1884,7 @@ msgstr "ファイル&1:"
 msgid "File&2:"
 msgstr "ファイル&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "交換(&S)"
@@ -2579,7 +2589,7 @@ msgstr "フォルダ名(&F)"
 msgid "Result:"
 msgstr "結果:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "テスト(&T)"
@@ -2664,7 +2674,7 @@ msgstr "バックアップファイル"
 msgid "Create backup files in:"
 msgstr "作成するバックアップ:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "フォルダ比較(&F)"
@@ -2739,7 +2749,7 @@ msgstr "いいえ"
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "プラグインを有効にする(&E)"
@@ -2834,7 +2844,7 @@ msgstr "Frhed 設定"
 msgid "View &Settings..."
 msgstr "表示設定(&S)..."
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr "バイナリモード(&B)..."
@@ -3064,7 +3074,7 @@ msgstr "全ていいえ(&L)"
 msgid "&Continue"
 msgstr "続行(&C)"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "スキップ(&S)"

@@ -385,9 +385,14 @@ msgstr "帮助(&H)"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge帮助\tF1"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:1B17601E
 #, c-format
-msgid "&Check For Updates"
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
 msgstr ""
 
 #: Merge.rc:1C6125F4
@@ -400,7 +405,7 @@ msgstr "配置(&O)"
 msgid "&GNU General Public License"
 msgstr "&GNU General Public License"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC2
 #, c-format
 msgid "&About WinMerge..."
 msgstr "关于 WinMerge(&A)..."
@@ -469,26 +474,6 @@ msgstr "显示跳过的项目(&K)"
 #, c-format
 msgid "S&how Binary Files"
 msgstr "显示二进制文件(&H)"
-
-#: Merge.rc:5A9A713B
-#, c-format
-msgid "&3-way Compare"
-msgstr ""
-
-#: Merge.rc:200AD0D1
-#, c-format
-msgid "Show &Left Only Different Items"
-msgstr ""
-
-#: Merge.rc:4899EBE1
-#, c-format
-msgid "Show &Middle Only Different Items"
-msgstr ""
-
-#: Merge.rc:614F49A9
-#, c-format
-msgid "Show &Right Only Different Items"
-msgstr ""
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -600,7 +585,7 @@ msgstr "选择列(&C)..."
 msgid "Generate &Report..."
 msgstr "生成报告(&R)..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "保存(&S)\tCtrl+S"
@@ -695,12 +680,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "撤销(&U)\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "重复(&R)\tCtrl+Y"
@@ -710,12 +695,12 @@ msgstr "重复(&R)\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "剪切(&T)\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "复制(&C)\tCtrl+C"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "粘贴(&P)\tCtrl+V"
@@ -760,7 +745,7 @@ msgstr "书签(&B)"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "设置/取消(&T)\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "下一个(&N)\tF2"
@@ -801,7 +786,7 @@ msgstr "正常大小(&N)\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "语法高亮"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1151,7 +1136,7 @@ msgstr "打开左侧(&O)"
 msgid "with &External Editor"
 msgstr "用外部编辑器(&E)"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -1266,7 +1251,7 @@ msgstr "复制文件名(&F)"
 msgid "Prediffer Settings"
 msgstr "预对比设置"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "不使用(&N)"
@@ -1396,19 +1381,29 @@ msgstr "贡献者"
 msgid "Select Files or Folders"
 msgstr "选择文件或文件夹..."
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "浏览(&B)..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "浏览(&R)..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1646,7 +1641,7 @@ msgstr "确定(&O)"
 msgid "Replace"
 msgstr "替换"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "替换为(&P):"
@@ -1696,7 +1691,7 @@ msgstr ""
 msgid "New"
 msgstr "新建"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -1831,7 +1826,7 @@ msgstr "将删除的文件移至回收站(&S)"
 msgid "&External editor:"
 msgstr "外部编辑器(&E)"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "过滤器路径(&F):"
@@ -1866,7 +1861,7 @@ msgstr "文件&1:"
 msgid "File&2:"
 msgstr "文件&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "上下交换(&S)"
@@ -2026,7 +2021,7 @@ msgstr "空白"
 msgid "&Compare"
 msgstr "对比空白和制表符(&C)"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "忽略空白和制表符更改(&I)"
@@ -2381,7 +2376,7 @@ msgstr "样式(&S):"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "复制到剪贴板(&C)"
@@ -2516,7 +2511,7 @@ msgstr "(影响)"
 msgid "Select Codepage for"
 msgstr "选择要使用的代码页"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "打开文件(&F):"
@@ -2561,7 +2556,7 @@ msgstr "文件夹名(&F)"
 msgid "Result:"
 msgstr "结果:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "测试(&T)"
@@ -2646,7 +2641,7 @@ msgstr "备份文件"
 msgid "Create backup files in:"
 msgstr "进行以下操作时创建备份文件:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "文件夹对比(&F)"
@@ -2721,7 +2716,7 @@ msgstr "否"
 msgid "Plugins"
 msgstr ""
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr ""
@@ -2816,7 +2811,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -2986,7 +2981,7 @@ msgstr "全部都否(&L)"
 msgid "&Continue"
 msgstr "继续(&C)"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "跳过(&S)"
@@ -3962,7 +3957,7 @@ msgstr "右侧换行符"
 msgid "Left Encoding"
 msgstr "左侧文件编码"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "右侧文件编码"
@@ -4007,7 +4002,7 @@ msgstr "仅在左侧: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "仅在右侧: %1"
@@ -4075,21 +4070,6 @@ msgstr "错误"
 #: Merge.rc:12D66B44
 #, c-format
 msgid "Text files are identical"
-msgstr ""
-
-#: Merge.rc:1DEEB161
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr ""
-
-#: Merge.rc:1D99B043
-#, c-format
-msgid "(Left and right are identical)"
-msgstr ""
-
-#: Merge.rc:159C584C
-#, c-format
-msgid "(Left and middle are identical)"
 msgstr ""
 
 #: Merge.rc:12D66B45
@@ -4828,11 +4808,6 @@ msgstr "资源文件"
 msgid "Shell"
 msgstr "Shell"
 
-#: Merge.rc:4E44AD6
-#, c-format
-msgid "VHDL"
-msgstr ""
-
 #: Merge.rc:8AF7E6B
 #, c-format
 msgid "Close &Left Tabs"
@@ -4861,5 +4836,15 @@ msgstr ""
 #: Merge.rc:4D3A8E6D
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
+msgstr ""
+
+#: Merge.rc:73B321AA
+#, c-format
+msgid "%1 does not exist. Do you want to create it?"
+msgstr ""
+
+#: Merge.rc:3A5D5964
+#, c-format
+msgid "Failed to create folder."
 msgstr ""
 

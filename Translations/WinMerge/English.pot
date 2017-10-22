@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-01-27 13:26+0000\n"
+"POT-Creation-Date: 2017-10-22 18:25+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -471,26 +471,6 @@ msgstr ""
 msgid "S&how Binary Files"
 msgstr ""
 
-#: Merge.rc:5A9A713B
-#, c-format
-msgid "&3-way Compare"
-msgstr ""
-
-#: Merge.rc:200AD0D1
-#, c-format
-msgid "Show &Left Only Different Items"
-msgstr ""
-
-#: Merge.rc:4899EBE1
-#, c-format
-msgid "Show &Middle Only Different Items"
-msgstr ""
-
-#: Merge.rc:614F49A9
-#, c-format
-msgid "Show &Right Only Different Items"
-msgstr ""
-
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
@@ -716,7 +696,7 @@ msgstr ""
 msgid "&Copy\tCtrl+C"
 msgstr ""
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr ""
@@ -1152,7 +1132,7 @@ msgstr ""
 msgid "with &External Editor"
 msgstr ""
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -2037,7 +2017,7 @@ msgstr ""
 msgid "&Compare"
 msgstr ""
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr ""
@@ -2527,7 +2507,7 @@ msgstr ""
 msgid "Select Codepage for"
 msgstr ""
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr ""
@@ -3015,11 +2995,6 @@ msgstr ""
 #: Merge.rc:57F02FB4
 #, c-format
 msgid "Don't ask this &question again."
-msgstr ""
-
-#: Merge.rc:78ACB5DB
-#, c-format
-msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
 #: Merge.rc:39000D57
@@ -3953,21 +3928,6 @@ msgstr ""
 msgid "Text files are identical"
 msgstr ""
 
-#: Merge.rc:1DEEB161
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr ""
-
-#: Merge.rc:1D99B043
-#, c-format
-msgid "(Left and right are identical)"
-msgstr ""
-
-#: Merge.rc:159C584C
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr ""
-
 #: Merge.rc:12D66B45
 #, c-format
 msgid "Text files are different"
@@ -4668,11 +4628,6 @@ msgstr ""
 msgid "Shell"
 msgstr ""
 
-#: Merge.rc:4E44AD6
-#, c-format
-msgid "VHDL"
-msgstr ""
-
 #: Merge.rc:8AF7E6B
 #, c-format
 msgid "Close &Left Tabs"
@@ -4711,10 +4666,5 @@ msgstr ""
 #: Merge.rc:3A5D5964
 #, c-format
 msgid "Failed to create folder."
-msgstr ""
-
-#: Merge.rc:64F70DD6
-#, c-format
-msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 msgstr ""
 

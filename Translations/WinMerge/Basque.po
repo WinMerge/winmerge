@@ -388,9 +388,14 @@ msgstr "&Laguntza"
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge &Laguntza\tF1"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:1B17601E
 #, c-format
-msgid "&Check For Updates"
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
 msgstr ""
 
 #: Merge.rc:1C6125F4
@@ -403,7 +408,7 @@ msgstr "It&xurapena"
 msgid "&GNU General Public License"
 msgstr "&GNU Baimen Publiko Orokorra "
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC2
 #, c-format
 msgid "&About WinMerge..."
 msgstr "&WinMergeri buruz..."
@@ -472,26 +477,6 @@ msgstr "Erakutsi &Jauzitako Gaiak"
 #, c-format
 msgid "S&how Binary Files"
 msgstr "&Erakutsi Agiri Binarioak"
-
-#: Merge.rc:5A9A713B
-#, c-format
-msgid "&3-way Compare"
-msgstr ""
-
-#: Merge.rc:200AD0D1
-#, c-format
-msgid "Show &Left Only Different Items"
-msgstr ""
-
-#: Merge.rc:4899EBE1
-#, c-format
-msgid "Show &Middle Only Different Items"
-msgstr ""
-
-#: Merge.rc:614F49A9
-#, c-format
-msgid "Show &Right Only Different Items"
-msgstr ""
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -603,7 +588,7 @@ msgstr "&Antolatu Zutabeak..."
 msgid "Generate &Report..."
 msgstr "Sortu &Jakinarazpena..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Gorde\tCtrl+S"
@@ -698,12 +683,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr "&Binarioa"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Desegin\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Birre&gin\tCtrl+Y"
@@ -713,12 +698,12 @@ msgstr "Birre&gin\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Ebaki\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiatu\tCtrl+C"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Itsatsi\tCtrl+V"
@@ -763,7 +748,7 @@ msgstr "Laster&markak"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Aldatu Lastermarka\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Hurrengo Lastermarka\tF2"
@@ -804,7 +789,7 @@ msgstr "&Normala\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Joskera Nabar&mentzea"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1154,7 +1139,7 @@ msgstr "&Ireki Ezkerrekoa"
 msgid "with &External Editor"
 msgstr "&Kanpoko Editorearekin"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -1269,7 +1254,7 @@ msgstr "Kopiatu &Agirizena"
 msgid "Prediffer Settings"
 msgstr "Aurrezberdintasun Ezarpenak"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&Ez aurrezberd"
@@ -1399,19 +1384,29 @@ msgstr "&Laguntzaileak"
 msgid "Select Files or Folders"
 msgstr "Hautatu Agiriak edo Agiritegiak"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "Bil&atu..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "Bi&latu..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1649,7 +1644,7 @@ msgstr "&Ongi"
 msgid "Replace"
 msgstr "Ordeztu"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Ordez&tu honekin:"
@@ -1699,7 +1694,7 @@ msgstr ""
 msgid "New"
 msgstr "Berria"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -1834,7 +1829,7 @@ msgstr "&Bidali ezabatutako agiriak Birziklatze Ontzira"
 msgid "&External editor:"
 msgstr "&Kanpoko editatzailea:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Iragazki agiritegia:"
@@ -1869,7 +1864,7 @@ msgstr "&1 Agiria:"
 msgid "File&2:"
 msgstr "&2 Agiria:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "A&ldaketa"
@@ -2029,7 +2024,7 @@ msgstr "&Zurigunea"
 msgid "&Compare"
 msgstr "Al&deratu"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ezikusi aldaketa"
@@ -2388,7 +2383,7 @@ msgstr "&Estiloa"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopiatu Gakoan"
@@ -2523,7 +2518,7 @@ msgstr "(Eraginak)"
 msgid "Select Codepage for"
 msgstr "Hautatu Kode-orrialdea"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "&Agiria Gertatzen:"
@@ -2568,7 +2563,7 @@ msgstr "&Agiritegi Izena"
 msgid "Result:"
 msgstr "Emaitza:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Azterketa"
@@ -2653,7 +2648,7 @@ msgstr "Babeskopia Agiriak"
 msgid "Create backup files in:"
 msgstr "Sortu babeskopia agiriak hemen:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "&Agiritegi alderaketa"
@@ -2728,7 +2723,7 @@ msgstr "Ez"
 msgid "Plugins"
 msgstr "Pluginak"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "Gaitu &pluginak"
@@ -2823,7 +2818,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3025,7 +3020,7 @@ msgstr "Ez gu&ztiari"
 msgid "&Continue"
 msgstr "&Jarraitu"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Jauzi"
@@ -4029,7 +4024,7 @@ msgstr "Eskuin EOL"
 msgid "Left Encoding"
 msgstr "Ezker Kodeaketa"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Eskuin Kodeaketa"
@@ -4074,7 +4069,7 @@ msgstr "Ezkerra bakarrik: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Eskuina bakarrik: %1"
@@ -4143,21 +4138,6 @@ msgstr "Akatsa"
 #, c-format
 msgid "Text files are identical"
 msgstr "Idazki agiriak berdinak dira"
-
-#: Merge.rc:1DEEB161
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr ""
-
-#: Merge.rc:1D99B043
-#, c-format
-msgid "(Left and right are identical)"
-msgstr ""
-
-#: Merge.rc:159C584C
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr ""
 
 #: Merge.rc:12D66B45
 #, c-format
@@ -4907,11 +4887,6 @@ msgstr "Resources"
 msgid "Shell"
 msgstr "Shell"
 
-#: Merge.rc:4E44AD6
-#, c-format
-msgid "VHDL"
-msgstr ""
-
 #: Merge.rc:8AF7E6B
 #, c-format
 msgid "Close &Left Tabs"
@@ -4940,5 +4915,15 @@ msgstr ""
 #: Merge.rc:4D3A8E6D
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
+msgstr ""
+
+#: Merge.rc:73B321AA
+#, c-format
+msgid "%1 does not exist. Do you want to create it?"
+msgstr ""
+
+#: Merge.rc:3A5D5964
+#, c-format
+msgid "Failed to create folder."
 msgstr ""
 

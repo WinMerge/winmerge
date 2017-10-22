@@ -384,9 +384,14 @@ msgstr "Помо&ћ"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Помоћ\tF1"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:1B17601E
 #, c-format
-msgid "&Check For Updates"
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
 msgstr ""
 
 #: Merge.rc:1C6125F4
@@ -399,7 +404,7 @@ msgstr "&Поставке"
 msgid "&GNU General Public License"
 msgstr "&GNU јавна лиценца"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC2
 #, c-format
 msgid "&About WinMerge..."
 msgstr "&О WinMerge..."
@@ -468,26 +473,6 @@ msgstr "Прикажи &изостављене ставке"
 #, c-format
 msgid "S&how Binary Files"
 msgstr "Прика&жи бинарне датотеке"
-
-#: Merge.rc:5A9A713B
-#, c-format
-msgid "&3-way Compare"
-msgstr ""
-
-#: Merge.rc:200AD0D1
-#, c-format
-msgid "Show &Left Only Different Items"
-msgstr ""
-
-#: Merge.rc:4899EBE1
-#, c-format
-msgid "Show &Middle Only Different Items"
-msgstr ""
-
-#: Merge.rc:614F49A9
-#, c-format
-msgid "Show &Right Only Different Items"
-msgstr ""
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -599,7 +584,7 @@ msgstr "Подеси &стубце..."
 msgid "Generate &Report..."
 msgstr "Нап&рави извештај..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Сачувај\tCtrl+S"
@@ -694,12 +679,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Опо&зови\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Понови\tCtrl+Y"
@@ -709,12 +694,12 @@ msgstr "&Понови\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Исе&ци\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Умно&жи\tCtrl+C"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713B
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Налепи\tCtrl+V"
@@ -759,7 +744,7 @@ msgstr "З&абелешке"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Замени забелешке\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Следећа забелешка\tF2"
@@ -800,7 +785,7 @@ msgstr "Изворно\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Нагласите склоп речи"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1150,7 +1135,7 @@ msgstr "&Отвори леву"
 msgid "with &External Editor"
 msgstr "са др&угим уређивачем"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -1265,7 +1250,7 @@ msgstr "Умножи на&зив датотеке"
 msgid "Prediffer Settings"
 msgstr "Својства дефинисаног поређења"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "Нема дефинисаног поређења"
@@ -1395,19 +1380,29 @@ msgstr "Сарадници"
 msgid "Select Files or Folders"
 msgstr "Изабери датотеке или фасцикле"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Прегледај..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "П&регледај..."
 
-#: Merge.rc:6E470BED
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1645,7 +1640,7 @@ msgstr "&У реду"
 msgid "Replace"
 msgstr "Замени"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "За&мени са:"
@@ -1695,7 +1690,7 @@ msgstr ""
 msgid "New"
 msgstr "Нови"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -1830,7 +1825,7 @@ msgstr "Пошаљи избри&сано у корпу"
 msgid "&External editor:"
 msgstr "Спољњи ур&еђивач:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "Фасцикла филтера:"
@@ -1865,7 +1860,7 @@ msgstr "Датотека&1:"
 msgid "File&2:"
 msgstr "Датотека&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "&Замени"
@@ -2025,7 +2020,7 @@ msgstr "Размак"
 msgid "&Compare"
 msgstr "&Упореди"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Ignore change"
 msgstr "Занемар&и промене"
@@ -2384,7 +2379,7 @@ msgstr "&Начин"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC6
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Сачувај у остави"
@@ -2519,7 +2514,7 @@ msgstr "(Усмерите)"
 msgid "Select Codepage for"
 msgstr "Одабери кодну страну за"
 
-#: Merge.rc:5A9A713F
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&File Loading:"
 msgstr "У&читавање датотеке:"
@@ -2564,7 +2559,7 @@ msgstr "Име &фасцикле"
 msgid "Result:"
 msgstr "Исход:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Провера"
@@ -2649,7 +2644,7 @@ msgstr "Резервне датотеке"
 msgid "Create backup files in:"
 msgstr "Направи резервне датотеке у:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "Упореди &фасциклу"
@@ -2724,7 +2719,7 @@ msgstr "Не"
 msgid "Plugins"
 msgstr "Додаци"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "Омогући додатк&е"
@@ -2819,7 +2814,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3021,7 +3016,7 @@ msgstr "Не за с&ве"
 msgid "&Continue"
 msgstr "Наста&ви"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "Изо&стави"
@@ -4023,7 +4018,7 @@ msgstr "Завршетак реда десне датотеке"
 msgid "Left Encoding"
 msgstr "Кодирање леве"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Кодирање десне"
@@ -4068,7 +4063,7 @@ msgstr "Само лева: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Само десна: %"
@@ -4137,21 +4132,6 @@ msgstr "Грешка"
 #, c-format
 msgid "Text files are identical"
 msgstr "Текстови датотека су исти"
-
-#: Merge.rc:1DEEB161
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr ""
-
-#: Merge.rc:1D99B043
-#, c-format
-msgid "(Left and right are identical)"
-msgstr ""
-
-#: Merge.rc:159C584C
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr ""
 
 #: Merge.rc:12D66B45
 #, c-format
@@ -4901,11 +4881,6 @@ msgstr "Resources"
 msgid "Shell"
 msgstr "Shell"
 
-#: Merge.rc:4E44AD6
-#, c-format
-msgid "VHDL"
-msgstr ""
-
 #: Merge.rc:8AF7E6B
 #, c-format
 msgid "Close &Left Tabs"
@@ -4934,5 +4909,15 @@ msgstr ""
 #: Merge.rc:4D3A8E6D
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
+msgstr ""
+
+#: Merge.rc:73B321AA
+#, c-format
+msgid "%1 does not exist. Do you want to create it?"
+msgstr ""
+
+#: Merge.rc:3A5D5964
+#, c-format
+msgid "Failed to create folder."
 msgstr ""
 

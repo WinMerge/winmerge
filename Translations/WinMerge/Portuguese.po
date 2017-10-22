@@ -1406,6 +1406,11 @@ msgstr "Selecione Ficheiros ou Pastas"
 msgid "&1st:"
 msgstr ""
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
