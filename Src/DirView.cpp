@@ -1251,6 +1251,32 @@ void CDirView::OpenSpecialItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3)
 }
 
 /**
+ * @brief Creates a pairing folder for unique folder item.
+ * This function creates a pairing folder for unique folder item in
+ * folder compare. This way user can browse into unique folder's
+ * contents and don't necessarily need to copy whole folder structure.
+ * @return true if user agreed and folder was created.
+ */
+static bool CreateFoldersPair(PathContext paths)
+{
+	bool created = false;
+	for (const auto& path : paths)
+	{
+		if (!paths::DoesPathExist(path))
+		{
+			String message =
+				strutils::format_string1( 
+					_("The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"),
+					path);
+			int res = AfxMessageBox(message.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN);
+			if (res == IDYES)
+				created = paths::CreateIfNeeded(path);
+		}
+	}
+	return created;
+}
+
+/**
  * @brief Open selected files or directories.
  *
  * Opens selected files to file compare. If comparing
@@ -1308,10 +1334,13 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		success = GetOpenThreeItems(ctxt, pos1, pos2, pos3, pdi,
 				paths, sel1, sel2, sel3, isdir, nPane, errmsg);
 	else
+	{
 		// Only one item selected, so perform diff on its sides
 		success = GetOpenOneItem(ctxt, pos1, pdi, 
 				paths, sel1, isdir, nPane, errmsg);
-		if (!success)
+		if (isdir)
+			CreateFoldersPair(paths);
+	}
 	if (!success)
 	{
 		if (!errmsg.empty())
@@ -1429,9 +1458,11 @@ void CDirView::OpenSelectionHex()
 		success = GetOpenTwoItems(ctxt, SELECTIONTYPE_NORMAL, pos1, pos2, pdi,
 				paths, sel1, sel2, isdir, nPane, errmsg);
 	else
+	{
 		// Only one item selected, so perform diff on its sides
 		success = GetOpenOneItem(ctxt, pos1, pdi,
 				paths, sel1, isdir, nPane, errmsg);
+	}
 	if (!success)
 	{
 		if (!errmsg.empty())
