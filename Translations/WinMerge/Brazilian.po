@@ -1383,19 +1383,29 @@ msgstr "Contribuidores"
 msgid "Select Files or Folders"
 msgstr "Selecionar Arquivos ou Pastas"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Procurar..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "P&rocurar..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1818,7 +1828,7 @@ msgstr "&Enviar os arquivos apagados para o Recycle Bin"
 msgid "&External editor:"
 msgstr "&Editor externo:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Filtrar a pasta:"
@@ -1853,7 +1863,7 @@ msgstr "Arquivo&1:"
 msgid "File&2:"
 msgstr "Arquivo&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "&Trocar"
@@ -2158,7 +2168,7 @@ msgstr "Salvar os arquivos modificados?"
 msgid "Left side file"
 msgstr "Arquivo do lado esquerdo"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Salvar mudanças"
@@ -2552,7 +2562,7 @@ msgstr "&Nome da Pasta"
 msgid "Result:"
 msgstr "Resultado:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Teste"
@@ -2637,7 +2647,7 @@ msgstr "Arquivos de Backup"
 msgid "Create backup files in:"
 msgstr "Criar arquivos de backup em:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "&Comparar as pastas"
@@ -2712,7 +2722,7 @@ msgstr "Não"
 msgid "Plugins"
 msgstr "Plugins"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Ativar plugins"
@@ -2807,7 +2817,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3009,7 +3019,7 @@ msgstr "Não para t&odos"
 msgid "&Continue"
 msgstr "&Continuar"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Pular"

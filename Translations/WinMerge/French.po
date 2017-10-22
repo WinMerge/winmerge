@@ -1385,19 +1385,29 @@ msgstr "Contributeurs"
 msgid "Select Files or Folders"
 msgstr "Sélection des fichiers ou des répertoires..."
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "P&arcourir..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "Parc&ourir..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1820,7 +1830,7 @@ msgstr "&Envoyer les fichiers supprimés à la corbeille"
 msgid "&External editor:"
 msgstr "E&diteur externe:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Répertoire de filtre:"
@@ -1855,7 +1865,7 @@ msgstr "Fichier&1:"
 msgid "File&2:"
 msgstr "Fichier&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "&Intervertir"
@@ -2160,7 +2170,7 @@ msgstr "Enregister les fichiers modifiés ?"
 msgid "Left side file"
 msgstr "Fichier du côté gauche"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Enregister les changements"
@@ -2554,7 +2564,7 @@ msgstr "&Nom de répertoire"
 msgid "Result:"
 msgstr "Resultat:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Tester"
@@ -2639,7 +2649,7 @@ msgstr "Fichiers d'archive"
 msgid "Create backup files in:"
 msgstr "Créer les fichiers d'archive sous:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "comparaison de Répert&oires"
@@ -2714,7 +2724,7 @@ msgstr "Non"
 msgid "Plugins"
 msgstr "Plugiciels"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Activer les plugiciels"
@@ -2809,7 +2819,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3011,7 +3021,7 @@ msgstr "Non pour t&out"
 msgid "&Continue"
 msgstr "&Continuer"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Ignorer"

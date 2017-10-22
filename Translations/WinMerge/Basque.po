@@ -1384,19 +1384,29 @@ msgstr "&Laguntzaileak"
 msgid "Select Files or Folders"
 msgstr "Hautatu Agiriak edo Agiritegiak"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "Bil&atu..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "Bi&latu..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1819,7 +1829,7 @@ msgstr "&Bidali ezabatutako agiriak Birziklatze Ontzira"
 msgid "&External editor:"
 msgstr "&Kanpoko editatzailea:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Iragazki agiritegia:"
@@ -1854,7 +1864,7 @@ msgstr "&1 Agiria:"
 msgid "File&2:"
 msgstr "&2 Agiria:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "A&ldaketa"
@@ -2159,7 +2169,7 @@ msgstr "Gorde amaitutako agiriak?"
 msgid "Left side file"
 msgstr "Ezkerralde agiria"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "Gor&de aldaketak"
@@ -2553,7 +2563,7 @@ msgstr "&Agiritegi Izena"
 msgid "Result:"
 msgstr "Emaitza:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Azterketa"
@@ -2638,7 +2648,7 @@ msgstr "Babeskopia Agiriak"
 msgid "Create backup files in:"
 msgstr "Sortu babeskopia agiriak hemen:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "&Agiritegi alderaketa"
@@ -2713,7 +2723,7 @@ msgstr "Ez"
 msgid "Plugins"
 msgstr "Pluginak"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "Gaitu &pluginak"
@@ -2808,7 +2818,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3010,7 +3020,7 @@ msgstr "Ez gu&ztiari"
 msgid "&Continue"
 msgstr "&Jarraitu"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Jauzi"

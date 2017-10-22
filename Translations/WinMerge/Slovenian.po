@@ -1382,19 +1382,29 @@ msgstr "Donatorji"
 msgid "Select Files or Folders"
 msgstr "Izberite datoteke ali mape"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Brskaj ..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "B&rskaj ..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1819,7 +1829,7 @@ msgstr "&Premakni izbrisane datoteke v koš"
 msgid "&External editor:"
 msgstr "&Zunanji urejevalnik:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Mapa filtrov:"
@@ -1854,7 +1864,7 @@ msgstr "Datoteka&1"
 msgid "File&2:"
 msgstr "Datoteka&2"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "&Zamenjaj"
@@ -2159,7 +2169,7 @@ msgstr "Shrani spremenjene datoteke?"
 msgid "Left side file"
 msgstr "Leva stran datoteke"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Shrani spremembe"
@@ -2553,7 +2563,7 @@ msgstr "&Ime mape"
 msgid "Result:"
 msgstr "Rezultat:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Test"
@@ -2638,7 +2648,7 @@ msgstr "Arhivske datoteke"
 msgid "Create backup files in:"
 msgstr "Ustvari arhivske datoteke v:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "primerjava &map"
@@ -2713,7 +2723,7 @@ msgstr "Ne"
 msgid "Plugins"
 msgstr "Razširitve"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Omogoèi razširitve"
@@ -2808,7 +2818,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3010,7 +3020,7 @@ msgstr "Ne za &vse"
 msgid "&Continue"
 msgstr "&Nadaljuj"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Preskoèi"

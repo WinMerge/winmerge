@@ -1385,20 +1385,30 @@ msgstr "공헌자"
 msgid "Select Files or Folders"
 msgstr "폴더/파일 선택"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "찾아보기(&B)"
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "찾아보기(&R)"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
-msgstr "&3(선택 사항):"
+msgid "&3rd(Optional):"
+msgstr "&3rd(선택 사항):"
 
 #: Merge.rc:78E0CE0F
 #, c-format
@@ -1820,7 +1830,7 @@ msgstr "삭제한 파일은 휴지통으로 보내기(&P)"
 msgid "&External editor:"
 msgstr "외부 편집기(&E):"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "필터 폴더(&F):"
@@ -1855,7 +1865,7 @@ msgstr "파일&1:"
 msgid "File&2:"
 msgstr "파일&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "맞바꾸기(&S)"
@@ -2160,7 +2170,7 @@ msgstr "변경된 파일을 저장할까요?"
 msgid "Left side file"
 msgstr "왼쪽 파일"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "변경사항 저장(&S)"
@@ -2558,7 +2568,7 @@ msgstr "폴더 이름(&F)"
 msgid "Result:"
 msgstr "결과:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "테스트(&T)"
@@ -2643,7 +2653,7 @@ msgstr "파일 백업"
 msgid "Create backup files in:"
 msgstr "백업 파일 만들기:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "폴더 비교에서(&F)"
@@ -2718,7 +2728,7 @@ msgstr "아니오"
 msgid "Plugins"
 msgstr "플러그인"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "플러그인 사용"
@@ -2813,7 +2823,7 @@ msgstr "Frhed 설정"
 msgid "View &Settings..."
 msgstr "보기 설정(&S)..."
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr "바이너리 모드(&B)..."
@@ -3035,7 +3045,7 @@ msgstr "모두 아니오(&L)"
 msgid "&Continue"
 msgstr "계속(&C)"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "건너뛰기(&S)"

@@ -1381,19 +1381,29 @@ msgstr "Colaboradores"
 msgid "Select Files or Folders"
 msgstr "Seleccionar arquivos ou cartafoles"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Explorar..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "Explo&rar..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1816,7 +1826,7 @@ msgstr "&Enviar os arquivos eliminados para o lixo"
 msgid "&External editor:"
 msgstr "&Editor externo:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Cartafol de filtros:"
@@ -1851,7 +1861,7 @@ msgstr "Arquivo&1:"
 msgid "File&2:"
 msgstr "Arquivo&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "&Cambiar"
@@ -2156,7 +2166,7 @@ msgstr "Queres gardar os arquivos modificados?"
 msgid "Left side file"
 msgstr "Arquivo da esquerda"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Gardar trocos"
@@ -2551,7 +2561,7 @@ msgstr "&Nome do cartafol"
 msgid "Result:"
 msgstr "Resultado:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Probar"
@@ -2636,7 +2646,7 @@ msgstr "Copias de seguridade(backups)"
 msgid "Create backup files in:"
 msgstr "Crear copias de seguridade na:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "Comparación de carta&foles"
@@ -2711,7 +2721,7 @@ msgstr "Non"
 msgid "Plugins"
 msgstr "Plugins"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Activar plugins"
@@ -2806,7 +2816,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3008,7 +3018,7 @@ msgstr "&Non a todo"
 msgid "&Continue"
 msgstr "&Continuar"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Saltar"

@@ -1382,19 +1382,29 @@ msgstr "Deltagere"
 msgid "Select Files or Folders"
 msgstr "Vælg filer eller mapper..."
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Gennemse..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "G&ennemse..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1821,7 +1831,7 @@ msgstr "&Send slettede filer til skraldespanden"
 msgid "&External editor:"
 msgstr "&Ekstern editor:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Filter mappe:"
@@ -1856,7 +1866,7 @@ msgstr "Fil&1:"
 msgid "File&2:"
 msgstr "Fil&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "&Byt"
@@ -2161,7 +2171,7 @@ msgstr "Gem ændrede filer?"
 msgid "Left side file"
 msgstr "Fil på venstre side"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Gem ændringer"
@@ -2557,7 +2567,7 @@ msgstr "&Mappenavn"
 msgid "Result:"
 msgstr "Resultater:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Test"
@@ -2642,7 +2652,7 @@ msgstr "Backup filer"
 msgid "Create backup files in:"
 msgstr "Opret backup filer som:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "&Mappe sammenligning"
@@ -2717,7 +2727,7 @@ msgstr "Nej"
 msgid "Plugins"
 msgstr "Plugins"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Aktiver plugins"
@@ -2812,7 +2822,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3022,7 +3032,7 @@ msgstr "Nej til a&lle"
 msgid "&Continue"
 msgstr "&Fortsæt"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Spring over"

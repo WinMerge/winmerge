@@ -1381,19 +1381,29 @@ msgstr "Közremûködõk"
 msgid "Select Files or Folders"
 msgstr "Válaszd ki a fájlokat vagy könyvtárakat..."
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Tallózás..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "Tallóz..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1816,7 +1826,7 @@ msgstr "A törölt fájlok a &Lomtárba kerüljenek"
 msgid "&External editor:"
 msgstr "&Belsõ szerkesztõ:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr ""
@@ -1851,7 +1861,7 @@ msgstr "Fájl&1:"
 msgid "File&2:"
 msgstr "Fájl&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "&Megfordítás"
@@ -2156,7 +2166,7 @@ msgstr "Módosított fájlok mentése?"
 msgid "Left side file"
 msgstr "Bal oldali fájl"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Változtatások mentése"
@@ -2546,7 +2556,7 @@ msgstr "Könyvtár neve"
 msgid "Result:"
 msgstr "Eredmény:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr ""
@@ -2631,7 +2641,7 @@ msgstr "Visszaállítási fájlok"
 msgid "Create backup files in:"
 msgstr "Visszaállítási fájlok készítése itt:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "&Mappa összehasonlításkor"
@@ -2706,7 +2716,7 @@ msgstr "Nem"
 msgid "Plugins"
 msgstr "Bõvítmények"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "Bõvítmény&ek bekapcsolása"
@@ -2801,7 +2811,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -2971,7 +2981,7 @@ msgstr "Nem m&indenre"
 msgid "&Continue"
 msgstr "&Folytatás"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Kihagy"

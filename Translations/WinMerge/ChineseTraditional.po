@@ -1388,20 +1388,30 @@ msgstr "貢獻者"
 msgid "Select Files or Folders"
 msgstr "選取檔案或資料夾"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "瀏覽(&B)..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "瀏覽(&R)..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
-msgstr "3(非必要)(&3)"
+msgid "&3rd(Optional):"
+msgstr "3rd(非必要)(&3)"
 
 #: Merge.rc:78E0CE0F
 #, c-format
@@ -1825,7 +1835,7 @@ msgstr "刪除檔送到資源回收筒(&S)"
 msgid "&External editor:"
 msgstr "外部編輯器(&E)："
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "資料夾篩選器(&F)："
@@ -1860,7 +1870,7 @@ msgstr "檔案1(&1)："
 msgid "File&2:"
 msgstr "檔案2(&2)："
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "對調(&S)"
@@ -2165,7 +2175,7 @@ msgstr "儲存修改的檔案？"
 msgid "Left side file"
 msgstr "左邊檔案"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "儲存變更(&S)"
@@ -2560,7 +2570,7 @@ msgstr "資料夾名稱(&F)"
 msgid "Result:"
 msgstr "結果："
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "測試(&T)"
@@ -2645,7 +2655,7 @@ msgstr "備份檔案"
 msgid "Create backup files in:"
 msgstr "產生備份檔於："
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "比較資料夾時(&F)"
@@ -2720,7 +2730,7 @@ msgstr "否"
 msgid "Plugins"
 msgstr "外掛"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "啟用外掛(&E)"
@@ -2815,7 +2825,7 @@ msgstr "Frhed 設定"
 msgid "View &Settings..."
 msgstr "顯示設定(&S)..."
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr "二進制模式(&B)..."
@@ -3017,7 +3027,7 @@ msgstr "全部皆否(&L)"
 msgid "&Continue"
 msgstr "繼續(&C)"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "略過(&S)"

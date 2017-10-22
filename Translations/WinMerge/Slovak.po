@@ -1381,19 +1381,29 @@ msgstr "Prispievatelia"
 msgid "Select Files or Folders"
 msgstr "Vıber súborov a adresárov..."
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Prechádza..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr ""
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1816,7 +1826,7 @@ msgstr "&Posiela zmazané súbory do koša"
 msgid "&External editor:"
 msgstr "&Externı editor:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "Adresár s &filtrami:"
@@ -1851,7 +1861,7 @@ msgstr "Súbor&1:"
 msgid "File&2:"
 msgstr "Súbor&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "&Vymeni navzájom"
@@ -2156,7 +2166,7 @@ msgstr "Uloi zmenené súbory?"
 msgid "Left side file"
 msgstr "Súbor na ¾avej strane"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Uloi zmeny"
@@ -2546,7 +2556,7 @@ msgstr "&Názov adresára"
 msgid "Result:"
 msgstr "Vısledok:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Testova"
@@ -2631,7 +2641,7 @@ msgstr "Záloné súbory"
 msgid "Create backup files in:"
 msgstr "Vytvára záloné súbory v:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "Porovnávanie &adresárov"
@@ -2706,7 +2716,7 @@ msgstr "Nie"
 msgid "Plugins"
 msgstr ""
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr ""
@@ -2801,7 +2811,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -2985,7 +2995,7 @@ msgstr "Nie pre &všetky"
 msgid "&Continue"
 msgstr "Po&kraèova"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "Pre&skoèi"
