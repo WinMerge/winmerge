@@ -1380,19 +1380,29 @@ msgstr "Συντελεστές"
 msgid "Select Files or Folders"
 msgstr "Επιλογή Αρχείων ή Φακέλων"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "Ανα&ζήτηση..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "Ανα&ζήτηση..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1815,7 +1825,7 @@ msgstr "Αποστολή διαγραφέντων αρχείων στον &Κάδο Ανακυκλώσεως"
 msgid "&External editor:"
 msgstr "Επεξεργασία με &άλλη εφαρμογή:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "Φάκελος &Φίλτρων:"
@@ -1850,7 +1860,7 @@ msgstr "Αρχείο&1:"
 msgid "File&2:"
 msgstr "Αρχείο&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "Αντιμετά&θεση"
@@ -2155,7 +2165,7 @@ msgstr "Αποθήκευση τροποποιημένων αρχείων;"
 msgid "Left side file"
 msgstr "Αρχείο αριστερής πλευράς"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "Απο&θήκευση αλλαγών"
@@ -2545,7 +2555,7 @@ msgstr "Όνομα &Φακέλου"
 msgid "Result:"
 msgstr "Αποτέλεσμα:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Δοκιμή"
@@ -2630,7 +2640,7 @@ msgstr "Εφεδρικά Αρχεία"
 msgid "Create backup files in:"
 msgstr "Δημιουργία εφεδρικών αρχείων ενώ γίνεται:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "Σύγκριση &Φακέλων"
@@ -2705,7 +2715,7 @@ msgstr "Όχι"
 msgid "Plugins"
 msgstr "Αρθρώματα"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "Ενεργοποίηση Αρθρωμάτων"
@@ -2800,7 +2810,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3002,7 +3012,7 @@ msgstr "Όχι σε ό&λα"
 msgid "&Continue"
 msgstr "&Συνέχεια"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Παράλειψη"

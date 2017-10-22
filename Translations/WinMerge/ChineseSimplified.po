@@ -1381,19 +1381,29 @@ msgstr "贡献者"
 msgid "Select Files or Folders"
 msgstr "选择文件或文件夹..."
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "浏览(&B)..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "浏览(&R)..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1816,7 +1826,7 @@ msgstr "将删除的文件移至回收站(&S)"
 msgid "&External editor:"
 msgstr "外部编辑器(&E)"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "过滤器路径(&F):"
@@ -1851,7 +1861,7 @@ msgstr "文件&1:"
 msgid "File&2:"
 msgstr "文件&2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "上下交换(&S)"
@@ -2156,7 +2166,7 @@ msgstr "保存修改后的文件吗？"
 msgid "Left side file"
 msgstr "左侧文件"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "保存修改(&S)"
@@ -2546,7 +2556,7 @@ msgstr "文件夹名(&F)"
 msgid "Result:"
 msgstr "结果:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "测试(&T)"
@@ -2631,7 +2641,7 @@ msgstr "备份文件"
 msgid "Create backup files in:"
 msgstr "进行以下操作时创建备份文件:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "文件夹对比(&F)"
@@ -2706,7 +2716,7 @@ msgstr "否"
 msgid "Plugins"
 msgstr ""
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr ""
@@ -2801,7 +2811,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -2971,7 +2981,7 @@ msgstr "全部都否(&L)"
 msgid "&Continue"
 msgstr "继续(&C)"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "跳过(&S)"

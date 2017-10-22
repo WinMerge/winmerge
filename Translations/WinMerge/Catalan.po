@@ -1380,19 +1380,29 @@ msgstr "Col·laboradors"
 msgid "Select Files or Folders"
 msgstr "Tria de fitxers o directoris..."
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Navega..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr ""
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1815,7 +1825,7 @@ msgstr "&Desa els fitxers suprimits a la Paperera de reciclatge"
 msgid "&External editor:"
 msgstr "&Editor extern:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Filtre de carpeta:"
@@ -1850,7 +1860,7 @@ msgstr "Fitxer &1:"
 msgid "File&2:"
 msgstr "Fitxer &2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "Inter&canvia"
@@ -2155,7 +2165,7 @@ msgstr "Voleu desar els fitxers modificats?"
 msgid "Left side file"
 msgstr "Fitxer del costat esquerre"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Desa-hi els canvis"
@@ -2545,7 +2555,7 @@ msgstr "&Nom de la carpeta"
 msgid "Result:"
 msgstr "Resultat:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Prova"
@@ -2630,7 +2640,7 @@ msgstr "Fitxers de còpia de seguretat"
 msgid "Create backup files in:"
 msgstr "Crea els fitxers de còpia de seguretat en:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "Comparació de &carpetes"
@@ -2705,7 +2715,7 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr ""
@@ -2800,7 +2810,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -2970,7 +2980,7 @@ msgstr "No a t&ot"
 msgid "&Continue"
 msgstr "&Continua"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Omet"

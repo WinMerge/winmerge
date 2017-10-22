@@ -1381,19 +1381,29 @@ msgstr "Medarbetare"
 msgid "Select Files or Folders"
 msgstr "Välj filer eller kataloger..."
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Bläddra..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "Bläddra..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1816,7 +1826,7 @@ msgstr "&Skicka borttagna filer till Papperskorgen"
 msgid "&External editor:"
 msgstr "Extern Editor:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Filterkatalog:"
@@ -1851,7 +1861,7 @@ msgstr "Fil &1:"
 msgid "File&2:"
 msgstr "Fil &2:"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "Byt"
@@ -2156,7 +2166,7 @@ msgstr "Spara ändrade filer?"
 msgid "Left side file"
 msgstr "Vänster fil"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Spara ändringar"
@@ -2550,7 +2560,7 @@ msgstr "&Katalognamn"
 msgid "Result:"
 msgstr "Resultat:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Testa"
@@ -2635,7 +2645,7 @@ msgstr "Backup på filer"
 msgid "Create backup files in:"
 msgstr "Skapa backupfiler i:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "&Jämför kataloger"
@@ -2710,7 +2720,7 @@ msgstr "Nej"
 msgid "Plugins"
 msgstr "Plugins"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Starta Plugins"
@@ -2805,7 +2815,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3007,7 +3017,7 @@ msgstr "Nej till a&llt"
 msgid "&Continue"
 msgstr "&Fortsätt"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Skippa"

@@ -1381,19 +1381,29 @@ msgstr "Suradnici"
 msgid "Select Files or Folders"
 msgstr "Odabir datoteke ili mape"
 
+#: Merge.rc:43017E4D
+#, c-format
+msgid "&1st:"
+msgstr ""
+
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
 msgstr "&Odabir..."
+
+#: Merge.rc:43017E4E
+#, c-format
+msgid "&2nd:"
+msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
 msgstr "&Odabir..."
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:78B3B626
 #, c-format
-msgid "&3(Optional):"
+msgid "&3rd(Optional):"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
@@ -1816,7 +1826,7 @@ msgstr "&Premjesti obrisano u koš?"
 msgid "&External editor:"
 msgstr "&Vanjski ureðivaè:"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Naziv mape filtara:"
@@ -1851,7 +1861,7 @@ msgstr "&Lijeva dat."
 msgid "File&2:"
 msgstr "&Desna dat."
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
 msgstr "&Obrni D<->L"
@@ -2156,7 +2166,7 @@ msgstr "Pohraniti izmijenjenu datoteku?"
 msgid "Left side file"
 msgstr "Datoteka s lijeva"
 
-#: Merge.rc:6E470BEF
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Pohrani promjene"
@@ -2550,7 +2560,7 @@ msgstr "&Naziv mape"
 msgid "Result:"
 msgstr "Rezultat:"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
 msgstr "&Test"
@@ -2635,7 +2645,7 @@ msgstr "Sigurnost"
 msgid "Create backup files in:"
 msgstr "Pohrani rezervnu datoteku pri:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
 msgstr "Usporedbi &mapa"
@@ -2710,7 +2720,7 @@ msgstr "Ne"
 msgid "Plugins"
 msgstr "Dodaci"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Omoguæi dodatke"
@@ -2805,7 +2815,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B62A
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3007,7 +3017,7 @@ msgstr "Ne za s&ve"
 msgid "&Continue"
 msgstr "&Nastavi"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
 msgstr "&Izostavi"
