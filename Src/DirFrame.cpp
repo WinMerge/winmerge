@@ -48,11 +48,11 @@ enum
 /**
  * @brief Width of compare method name pane in statusbar
  */
-const int COMPMETHOD_PANEL_WIDTH = 105;
+const int COMPMETHOD_PANEL_WIDTH = 100;
 /**
  * @brief Width of filter name pane in statusbar
  */
-const int FILTER_PANEL_WIDTH = 135;
+const int FILTER_PANEL_WIDTH = 100;
 
 /**
  * @brief Bottom statusbar panels and indicators
@@ -70,7 +70,7 @@ static UINT indicators[] =
 /**
  * @brief RO status panel width
  */
-static UINT RO_PANEL_WIDTH = 40;
+static UINT RO_PANEL_WIDTH = 30;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirFrame
@@ -130,6 +130,7 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	String sText = _("RO");
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
 	m_wndStatusBar.SetPaneInfo(PANE_COMPMETHOD, ID_STATUS_FILTER, 0, pointToPixel(COMPMETHOD_PANEL_WIDTH));
 	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, 0, pointToPixel(FILTER_PANEL_WIDTH));
 	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, 0, pointToPixel(RO_PANEL_WIDTH));
