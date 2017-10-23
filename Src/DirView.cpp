@@ -1257,7 +1257,7 @@ void CDirView::OpenSpecialItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3)
  * contents and don't necessarily need to copy whole folder structure.
  * @return true if user agreed and folder was created.
  */
-static bool CreateFoldersPair(PathContext paths)
+static bool CreateFoldersPair(const PathContext& paths)
 {
 	bool created = false;
 	for (const auto& path : paths)
@@ -2206,7 +2206,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 		// If compare took more than TimeToSignalCompare seconds, notify user
 		clock_t elapsed = clock() - m_compareStart;
-		GetParentFrame()->SetMessageText(
+		GetParentFrame()->SetStatus(
 			strutils::format(_("Elapsed time: %ld ms").c_str(), elapsed).c_str()
 		);
 		if (elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
