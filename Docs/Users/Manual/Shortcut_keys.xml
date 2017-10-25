@@ -156,9 +156,21 @@
         </row>
 
         <row>
+          <entry><keycap>Shift</keycap>+<keycap>F7</keycap></entry>
+
+          <entry>Go to previous conflict</entry>
+        </row>
+
+        <row>
           <entry><keycap>F8</keycap></entry>
 
           <entry>Go to next difference</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Shift</keycap>+<keycap>F8</keycap></entry>
+
+          <entry>Go to next conflict</entry>
         </row>
 
         <row>
@@ -195,6 +207,69 @@
             </keycombo></entry>
 
           <entry>Redo previously undone action</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>B</keycap>
+            </keycombo></entry>
+
+          <entry>Begin column selection</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>D</keycap>
+            </keycombo></entry>
+
+          <entry>Toggle diff context mode</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Alt</keycap>
+
+              <keycap>S</keycap>
+            </keycombo></entry>
+
+          <entry>Add synchronization point</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Alt</keycap>
+              <keycap>Ctrl</keycap>
+
+              <keycap>E</keycap>
+            </keycombo></entry>
+
+          <entry>Open with external editor</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Alt</keycap>
+              <keycap>Ctrl</keycap>
+
+              <keycap>M</keycap>
+            </keycombo></entry>
+
+          <entry>Do auto merge</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Shift</keycap>
+              <keycap>Ctrl</keycap>
+
+              <keycap>M</keycap>
+            </keycombo></entry>
+
+          <entry>Add marker</entry>
         </row>
       </tbody>
     </tgroup>
@@ -261,6 +336,28 @@
             </keycombo></entry>
 
           <entry>Go to next difference</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Alt</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>Up Arrow</keycap>
+            </keycombo></entry>
+
+          <entry>Go to previous conflict</entry>
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Alt</keycap>
+              <keycap>Shift</keycap>
+
+              <keycap>Down Arrow</keycap>
+            </keycombo></entry>
+
+          <entry>Go to next conflict</entry>
         </row>
 
         <row>
