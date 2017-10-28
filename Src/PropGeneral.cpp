@@ -51,11 +51,26 @@ PropGeneral::PropGeneral(COptionsMgr *optionsMgr)
 , m_bPreserveFiletime(false)
 , m_bShowSelectFolderOnStartup(false)
 , m_bCloseWithOK(true)
+, m_pLoadLanguagesThread(nullptr)
 {
 }
 
 PropGeneral::~PropGeneral()
 {
+}
+
+static UINT LoadLanguagesThreadProc(void *pParam)
+{
+	CComboBox *pctlLangList = reinterpret_cast<CComboBox *>(pParam);
+	for (auto&& i : theApp.m_pLangDlg->GetAvailableLanguages())
+	{
+		pctlLangList->AddString(i.second.c_str());
+		pctlLangList->SetItemData(pctlLangList->GetCount() - 1, i.first);
+		if (i.first == theApp.m_pLangDlg->GetLangId())
+			pctlLangList->SetCurSel(pctlLangList->GetCount() - 1);
+	}
+	pctlLangList->EnableWindow(TRUE);
+	return 0;
 }
 
 BOOL PropGeneral::OnInitDialog()
@@ -72,16 +87,22 @@ BOOL PropGeneral::OnInitDialog()
 	pWnd->SetCurSel(m_nAutoCompleteSource);
 
 	m_ctlLangList.SetDroppedWidth(600);
-
-	for (auto&& i : theApp.m_pLangDlg->GetAvailableLanguages())
-	{
-		m_ctlLangList.AddString(i.second.c_str());
-		m_ctlLangList.SetItemData(m_ctlLangList.GetCount() - 1, i.first);
-		if (i.first == theApp.m_pLangDlg->GetLangId())
-			m_ctlLangList.SetCurSel(m_ctlLangList.GetCount() - 1);
-	}
+	m_ctlLangList.EnableWindow(FALSE);
+	m_pLoadLanguagesThread = AfxBeginThread(LoadLanguagesThreadProc, &m_ctlLangList, 0, 0, CREATE_SUSPENDED);
+	m_pLoadLanguagesThread->m_bAutoDelete = FALSE;
+	m_pLoadLanguagesThread->ResumeThread();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
+}
+
+void PropGeneral::OnDestroy()
+{
+	if (m_pLoadLanguagesThread)
+	{
+		WaitForSingleObject(m_pLoadLanguagesThread->m_hThread, INFINITE);
+		delete m_pLoadLanguagesThread;
+	}
+	OptionsPanel::OnDestroy();
 }
 
 void PropGeneral::DoDataExchange(CDataExchange* pDX)
@@ -105,6 +126,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(PropGeneral, CPropertyPage)
 	//{{AFX_MSG_MAP(PropGeneral)
 	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
+	ON_WM_DESTROY()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 

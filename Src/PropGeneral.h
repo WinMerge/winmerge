@@ -35,6 +35,7 @@ public:
 	bool  m_bPreserveFiletime;
 	bool  m_bShowSelectFolderOnStartup;
 	bool  m_bCloseWithOK;
+	CWinThread *m_pLoadLanguagesThread;
 	CComboBox	m_ctlLangList;
 	//}}AFX_DATA
 
@@ -53,6 +54,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropGeneral)
 	afx_msg void OnResetAllMessageBoxes();
+	afx_msg void OnDestroy();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
