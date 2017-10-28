@@ -138,27 +138,6 @@
     </section>
 
     <section>
-      <title>Disable splash screen<indexterm>
-          <primary>splash screen, enabling and disabling</primary>
-        </indexterm></title>
-
-      <itemizedlist>
-        <listitem>
-          <para><option>Disabled</option> (default): A splash screen is
-          displayed when you start WinMerge. You can dismiss the screen at any
-          time by clicking it; otherwise it is automatically dismissed after a
-          few seconds.</para>
-        </listitem>
-
-        <listitem>
-          <para><option>Enabled</option>: Completely omits the splash screen
-          when you start WinMerge. Note that this does not make startup
-          faster.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
       <title>Close Windows with <keycap>ESC</keycap><indexterm>
           <primary>closing windows using Esc key</primary>
         </indexterm></title>
@@ -239,9 +218,6 @@
           </itemizedlist>
         </listitem>
       </itemizedlist>
-
-      <para>Also see the related options under <xref
-      linkend="Configuration_multicompwin" />.</para>
     </section>
 
     <section>
@@ -308,6 +284,22 @@
     </section>
 
     <section>
+      <title>Close "Select Files or Folders" Dialog on clicking OK button<indexterm>
+          <primary>Select Files or Folders dialog</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>Open-dialog Auto-Completion<indexterm>
           <primary>MRU list</primary>
         </indexterm></title>
@@ -335,33 +327,13 @@
       </itemizedlist>
     </section>
 
-    <section id="Configuration_multicompwin">
-      <title>Enable multiple compare windows for<indexterm>
-          <primary>Compare window</primary>
-
-          <secondary>opening multiple</secondary>
+    <section>
+      <title>Language<indexterm>
+          <primary>Language</primary>
         </indexterm></title>
 
-      <para>Controls whether WinMerge allows you to open single or multiple
-      Compare windows. Specify the <guilabel>Folder compare</guilabel> and
-      <guilabel>File compare</guilabel> options independently:</para>
+      <para>See <xref linkend="Locales_changing" />.</para>
 
-      <itemizedlist>
-        <listitem>
-          <para><option>Disabled</option> (default): You can only open one
-          Folder compare or File compare window at a time.</para>
-        </listitem>
-
-        <listitem>
-          <para><option>Enabled</option>: You can open multiple Folder or File
-          compare windows simultaneously.<note>
-              <para>File Compare windows are children of Folder Compare windows.
-              Therefore, you can open one File Compare window for every Folder
-              Compare window, even if the <guilabel>File compare</guilabel>
-              option is disabled.</para>
-            </note></para>
-        </listitem>
-      </itemizedlist>
     </section>
 
     <section>
@@ -586,6 +558,24 @@
     </section>
 
     <section>
+      <title>Ignore codepage differences<indexterm>
+          <primary>codepage</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Codepage differences are ignored.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>Enable moved block detection<indexterm>
           <primary>moved differences</primary>
         </indexterm></title>
@@ -703,6 +693,14 @@
         </varlistentry>
 
         <varlistentry>
+          <term>Binary Contents</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
           <term>Modified Date<indexterm>
               <primary>timestamps</primary>
 
@@ -809,6 +807,78 @@
     </section>
 	
     <section>
+      <title>Include unique subfolders contents<indexterm>
+          <primary>unique subfolders</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+	
+    <section>
+      <title>Include unique subfolders contents<indexterm>
+          <primary>unique subfolders</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+	
+    <section>
+      <title>Automatically expand all subfolders<indexterm>
+          <primary>subfolders</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+	
+    <section>
+      <title>Ignore Reparse Points<indexterm>
+          <primary>reparse points</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+	
+    <section>
       <title>Quick compare limit (MB)<indexterm>
           <primary>Quick compare</primary>
 
@@ -840,6 +910,34 @@
       </itemizedlist>
     </section>
 
+    <section>
+      <title>Number of compare threads<indexterm>
+          <primary>compare threads</primary>
+        </indexterm></title>
+
+      <para>TBD</para>
+    </section>
+
+  </section>
+
+  <section id="Configuration_compare_binary">
+    <title>Compare Binary page</title>
+    <section>
+      <title>Binary File Patterns<indexterm>
+          <primary>binary files</primary>
+        </indexterm></title>
+      <para>TBD</para>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_image">
+    <title>Compare Image page</title>
+    <section>
+      <title>Binary Image Patterns<indexterm>
+          <primary>image files</primary>
+        </indexterm></title>
+      <para>TBD</para>
+    </section>
   </section>
 
   <section id="Configuration_editor">
@@ -1114,6 +1212,16 @@
     the installed color scheme.</para>
   </section>
 
+  <section id="Configuration_markercolors">
+    <title>Maker Colors page<indexterm>
+        <primary>marker colors</primary>
+
+        <secondary>options</secondary>
+      </indexterm></title>
+
+    <para>TBD</para>
+  </section>
+
   <section id="Configuration_archive">
     <title>Archive Support page<indexterm>
         <primary>archiving files</primary>
@@ -1121,24 +1229,8 @@
         <secondary>configuring support after installation</secondary>
       </indexterm></title>
 
-    <para>This page contains options for configuring Winzip archive support
+    <para>This page contains options for configuring archive support
     using 7-Zip.</para>
-
-    <section>
-      <title>Download 7-zip Plugin<indexterm>
-          <primary>7-Zip archives</primary>
-
-          <secondary>configuring support after installation</secondary>
-        </indexterm></title>
-
-      <para>If WinZip is already installed on your system, WinMerge
-      automatically detects it, and you don't need to configure anything here.
-      Otherwise, you can click this link to open the WinMerge downloads page in
-      your Web browser. There, you can download the 7-Zip Plugin installer (and
-      other WinMerge files). To install the plugin, see <xref
-      linkend="Installing_archive_support" />. Remember to close WinMerge before
-      running the 7-Zip installer.</para>
-    </section>
 
     <section>
       <title>Enable archive file support<indexterm>
@@ -1154,20 +1246,6 @@
         <listitem>
           <para><option>Enabled</option> (default): WinMerge recognizes 7-Zip
           archives.</para>
-
-          <para>WinMerge can access 7-Zip from two installation sources. If you
-          specified one of these methods earlier (for example, during the
-          WinMerge installation), you can change it here:</para>
-
-          <itemizedlist>
-            <listitem>
-              <para>Use stand-alone 7-Zip if available</para>
-            </listitem>
-
-            <listitem>
-              <para>Use local 7-Zip from WinMerge folder</para>
-            </listitem>
-          </itemizedlist>
         </listitem>
 
         <listitem>
@@ -1439,15 +1517,6 @@
       cases you should not need to change the default settings.This page allows
       you to specify the codepages of certain file formats, should you need to.  </para>
 
-<!--    <important>
-      <para>The ANSI version of WinMerge (<filename>WinMerge.exe</filename>) is
-      normally installed only on Windows 9X and WME. On all other, newer Windows
-      systems, the Unicode version (<filename>WinMergeU.exe</filename>) is
-      installed. The Unicode version of WinMerge handles encoding transparently.
-      You should not need to change any settings in this page unless you are
-      running the ANSI version.</para>
-    </important> -->
-
     <note>
       <para>A full explanation of text encoding and Windows codepages is beyond
         the scope of WinMerge documentation. Fortunately, there is lots of
@@ -1584,30 +1653,6 @@ or is this understood?--></para>
                 shortcuts.</para>
               </listitem>
             </itemizedlist>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>Include subfolders by default</term>
-
-          <listitem>
-            <itemizedlist>
-              <listitem>
-                <para><option>Disabled</option> (default): folder compare
-                operations are non-recursive.</para>
-              </listitem>
-
-              <listitem>
-                <para><option>Enabled</option>: The selection includes
-                subfolders, making the compare operation recursive.</para>
-              </listitem>
-            </itemizedlist>
-
-            <note>
-              <para>This option does not change the <option>Include
-              Subfolders</option> setting for the Select Files or Folders
-              dialog.</para>
-            </note>
           </listitem>
         </varlistentry>
       </variablelist>
