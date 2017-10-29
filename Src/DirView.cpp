@@ -3666,9 +3666,8 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 
 	CSharedFile file(GMEM_DDESHARE | GMEM_MOVEABLE | GMEM_ZEROINIT);
 	file.Write(filesForDroping.data(), static_cast<unsigned>(filesForDroping.length() * sizeof(TCHAR)));
-	file.Write(_T("\0"), sizeof(TCHAR)); // include terminating zero
 	
-	HGLOBAL hMem = file.Detach();
+	HGLOBAL hMem = GlobalReAlloc(file.Detach(), filesForDroping.length() * sizeof(TCHAR), 0);
 	if (hMem) 
 	{
 #ifdef _UNICODE
