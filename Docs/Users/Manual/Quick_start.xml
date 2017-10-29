@@ -94,7 +94,7 @@
       </listitem>
 
       <listitem>
-        <para>In the <guilabel>Left</guilabel> and <guilabel>Right</guilabel>
+        <para>In the <guilabel>1st</guilabel> and <guilabel>2nd</guilabel>
         fields, specify the files and folders to compare. Use any of these
         methods:</para>
 
@@ -127,8 +127,8 @@
               </itemizedlist>
 
               <para>Click <guibutton>Open</guibutton> to dismiss the Open dialog
-              and load your selection in the <guilabel>Left</guilabel> or
-              <guilabel>Right</guilabel> field. If you specified folders, the
+              and load your selection in the <guilabel>1st</guilabel> or
+              <guilabel>2nd</guilabel> field. If you specified folders, the
               field includes a backslash ( \ ) at end of the path.</para>
             </listitem>
 
@@ -147,7 +147,7 @@
 
             <listitem>
               <para>Drag and drop a file or folder into the dialog or the
-              <guilabel>Left</guilabel> or <guilabel>Right</guilabel>
+              <guilabel>1st</guilabel> or <guilabel>2nd</guilabel>
               field.</para>
             </listitem>
           </itemizedlist></para>
@@ -275,11 +275,11 @@
 
             <listitem>
               <para>From the Opening Files and Folders dialog, specify a project
-              file in the <guilabel>Left</guilabel> field.</para>
+              file in the <guilabel>1st</guilabel> field.</para>
 
               <note>
                 <para>If you specify project files in both the
-                <guilabel>Left</guilabel> and <guilabel>Right</guilabel> fields,
+                <guilabel>1st</guilabel> and <guilabel>2nd</guilabel> fields,
                 WinMerge does not open either project file; it simply compares
                 the XML content of the two files.</para>
               </note>
