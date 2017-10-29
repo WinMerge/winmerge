@@ -95,13 +95,13 @@
       </listitem>
 
       <listitem>
-        <simpara>Select <guimenuitem>Language</guimenuitem> from the
-        <guimenu>View</guimenu> menu.</simpara>
+        <simpara>Select <guimenuitem>Options</guimenuitem> from the
+        <guimenu>Edit</guimenu> menu.</simpara>
       </listitem>
 
       <listitem>
         <simpara>Select your language and click
-        <guibutton>OK</guibutton>.</simpara>
+        <guibutton>OK</guibutton> in the Options dialog General page.</simpara>
       </listitem>
     </orderedlist>
 
