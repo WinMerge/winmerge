@@ -7,14 +7,6 @@
   <para>WinMerge can be installed using the installer or by unzipping files from
   an archive. Using the installer is the recommended method.</para>
 
-  <note>
-    <para>Currently the WinMerge installer works natively only for 32-bit
-    Windows. There is no separate version of WinMerge for 64-bit Windows
-    (WinXP/2003/Vista/2008/7/8/2012). 64-bit Windows versions can run the installer and
-    WinMerge as 32-bit applications. For the shell Integration, the installer
-    includes the 64-bit version of the extension.</para>
-  </note>
-
   <section>
     <title>Getting files</title>
 
@@ -32,6 +24,10 @@
 	<title>Compatibility</title>
 	
 	<itemizedlist>
+	  <listitem>
+	    <para><ulink url="http://sourceforge.net/projects/winmerge/files/stable/2.16.0/">WinMerge version 2.16.0</ulink> 
+		supports Windows XP/2003/Vista/2008/7/8/2012/2014/10/2016 and later. It runs on both 32 bit and 64 bit Windows.</para>
+	  </listitem>
 	  <listitem>
 	    <para><ulink url="http://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge version 2.14.0</ulink> 
 		supports Windows XP/2003/Vista/2008/7/8/2012 and later. It runs 32 bit on both 32 bit and 64 bit Windows.</para>
@@ -121,6 +117,38 @@
               <para>WinMerge plugins are custom dlls or scriptlets, written in
               the COM API, that you can use to preprocess data before a
               comparison.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Frhed</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>WinIMerge</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Archive Support</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>GnuWin32 Patch for Windows</term>
+
+            <listitem>
+              <para>TBD</para>
             </listitem>
           </varlistentry>
 
@@ -226,6 +254,16 @@
           </varlistentry>
 
           <varlistentry>
+            <term>Integrate with TortoiseGIT<indexterm>
+                <primary>TortoiseGIT integration</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Sets WinMerge to be the TortoiseGIT diff application.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
             <term>Integrate with Rational ClearCase<indexterm>
                 <primary>ClearCase integration</primary>
 
@@ -281,29 +319,10 @@
   <section id="InstallFromArchive">
     <title>Installing from an archive<indexterm>
         <primary>archive, installing WinMerge from</primary>
-      </indexterm><indexterm>
-        <primary>mfc90u.dll runtime file</primary>
-      </indexterm><indexterm>
-        <primary>msvcr90.dll runtime file</primary>
-      </indexterm><indexterm>
-        <primary>msvcp90.dll runtime file</primary>
       </indexterm></title>
 
     <para>WinMerge is pretty much independent of other system components. It is
     not tightly integrated with Windows, and does not use many DLLs.</para>
-
-    <para><filename>WinMergeU.exe</filename> itself depends on
-    <filename>MFC90U.dll</filename> , <filename>MSVCR90.dll and
-    MSVCP90.dll</filename>, in addition to some system DLLs. So if these DLLs 
-    are already installed on a system, only <filename>WinMergeU.exe</filename>
-    is needed to run WinMerge. The DLL files listed above are also available as
-    a downloadable runtime package.</para>
-
-    <note>
-      <para>WinMerge 2.6.0 and later versions require a new version of runtime
-      libraries. When you update from older WinMerge versions using archive
-      files, you need the new runtime files from the runtime package.</para>
-    </note>
 
     <para>Archive files have the correct folder structure. WinMerge should be
     unzipped preserving this folder structure in the destination folder. For
@@ -363,154 +382,6 @@
       <filename>ShellExtensionX64.dll</filename>. You can register and
       unregister this file by using <filename>register.bat</filename> and
       <filename>unregister.bat</filename>, as with 32-bit versions.</para>
-    </section>
-  </section>
-
-  <section id="Installing_archive_support">
-    <title><indexterm>
-        <primary>installing archive support</primary>
-      </indexterm><indexterm>
-        <primary>7-Zip archives</primary>
-
-        <secondary>configuring support during installation</secondary>
-      </indexterm>7-Zip and archive support</title>
-
-    <para>WinMerge uses <ulink url="http://www.7-zip.org/">7-Zip</ulink> for
-    archive support, but the WinMerge installer does not install 7-Zip or
-    archive support. Installing the 7-Zip application is recommended but not
-    required for archive support. The 7-Zip installer is available for
-    downloading from <ulink
-    url="http://www.7-zip.org/">7-Zip.org</ulink>.</para>
-
-    <important>
-      <para>There are 7-Zip MSI installers that do not install all the files
-      WinMerge needs (specifically, <filename>7zip_pad.xml</filename> in the
-      7-Zip program folder). If there are problems with archive support
-      enabling, try running the EXE version of the 7-Zip installer.</para>
-    </important>
-
-    <para>To install archive support, download and install the7-Zip plugin from
-    <ulink url="http://winmerge.org/">WinMerge.org</ulink>, as described in the
-    <xref linkend="Install_merge7zinstaller" /> section of this topic.</para>
-
-    <para>WinMerge automatically detects an installed 7-zip in the system, so no
-    configuration is needed.</para>
-
-    <para>7-zip integration needs a compatible <filename>Merge7z*.dll</filename>
-    file in the WinMerge program directory, where <filename>*</filename> is the
-    7-Zip version installed. For example, 7-Zip version 4.42 requires
-    <filename>Merge7z442.dll</filename>. And if
-    <filename>WinMergeU.exe</filename> (the Unicode version) is used, then
-    <literal><filename>U</filename></literal> is also added to filename, as in:
-    <filename>Merge7z442U.dll</filename>. If the required DLL file is missing
-    for any reason, you can copy it to the WinMerge directory, for example from
-    the <filename>7z-Plugin</filename> archive that is available from the
-    WinMerge download page.</para>
-
-    <para>If the <filename>Merge7z*.dll</filename> file is missing, WinMerge
-    displays a message that includes the name of the missing file and the
-    recommended version of 7-Zip. You can also display this message by clicking
-    <menuchoice>
-        <guimenu>Help</guimenu>
-
-        <guimenuitem>Archive Support Disabled</guimenuitem>
-      </menuchoice>.</para>
-
-    <section id="Install_merge7zinstaller">
-      <title>Merge7z Installer<indexterm>
-          <primary>Merge7z installer</primary>
-        </indexterm></title>
-
-      <para><filename>Merge7zInstaller</filename> is a stand-alone installer for
-      7-Zip integration.</para>
-
-      <para>Installer file names may seem strange at first, but there is reason
-      for them: they show the supported versions. The file name is formatted
-      as</para>
-
-      <para><synopsis>Merge7zInstaller<replaceable>XXX-YYY-ZZZ</replaceable>.exe</synopsis></para>
-
-      <para>where <replaceable>XXX</replaceable> is the build number,
-      <replaceable>YYY</replaceable> is the earliest 7-Zip version supported,
-      and <replaceable>ZZZ</replaceable> is the latest 7-Zip version
-      supported.</para>
-
-      <para>For example, <filename>Merge7zInstaller0014-311-426.exe</filename>
-      means build version 14, support for 7-Zip versions 3.11 to 4.26.</para>
-
-      <para>This separate installer is much more flexible, because we can update
-      it whenever 7-Zip is updated, and we don't add files to the base installer
-      that users don't need.</para>
-
-      <para>The latest version is always available at <ulink
-      url="https://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957"
-      userlevel="">7-Zip plugin</ulink> in our download page at SourceForge.net,
-      and of course from our home page at <ulink
-      url="http://winmerge.org/">WinMerge.org</ulink>.</para>
-
-      <tip>
-        <para>If you want to know immediately when we release new versions, you
-        can monitor our releases. You are then notified through e-mail of new
-        releases when they happen.</para>
-      </tip>
-
-      <para>Running the <filename>Merge7zInstaller</filename> is simple:</para>
-
-      <para><orderedlist>
-          <listitem>
-            <para>Start the installer executable.</para>
-          </listitem>
-
-          <listitem>
-            <para>Select the installation type and the DLL files (supported
-            7-zip versions) to install:</para>
-
-            <variablelist>
-              <varlistentry>
-                <term>Shared installation</term>
-
-                <listitem>
-                  <para>Copies the 7-Zip plugin files to the system directory so
-                  they can be shared between multiple WinMerge installations and
-                  other programs using the 7-zip plugin. This is the recommended
-                  installation.</para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term>Application specific installation</term>
-
-                <listitem>
-                  <para>Copies the 7-zip plugin files to the program directory.
-                  Files are then usable only by that program.</para>
-
-                  <para>When you choose this option, you must select the
-                  executable in the directory where the plugin files are
-                  installed. Select the WinMerge executable file when installing
-                  to the WinMerge directory.</para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term>Enable standalone operation</term>
-
-                <listitem>
-                  <para>Also installs the required 7-Zip files to the program's
-                  application-specific installation directory. This allows the
-                  minimal usable installation of 7-Zip for archive support. You
-                  can use this option when the 7-Zip application is not wanted
-                  or needed.</para>
-
-                  <para>This installation type contains only the files needed
-                  for WinMerge (or other application) to enable archive support.
-                  It does not install the 7-Zip user interface or other related
-                  tools or files. After this installation it is not possible to
-                  open or create 7-Zip archive files outside of WinMerge.</para>
-                </listitem>
-              </varlistentry>
-            </variablelist>
-          </listitem>
-        </orderedlist></para>
     </section>
   </section>
 </article>
