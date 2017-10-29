@@ -1660,41 +1660,5 @@ or is this understood?--></para>
       <para><xref linkend="OpenPaths_shell-integ" /> describes how to use the
       WinMerge and Compare shortcuts.</para>
     </section>
-
-    <section id="Configuration_foldercompare">
-      <title>Folder compare</title>
-
-      <para>The <option>Add Shell menu to context menu</option> option enables
-      you to launch some Windows shell commands from the WinMerge window:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para><option>Disabled</option> (default). No shell menus are
-          available in the Folder Compare context menu.</para>
-        </listitem>
-
-        <listitem>
-          <para><option>Enabled</option>: Adds a <guimenu>Left shell
-          menu</guimenu> or <guimenu>Right shell menu</guimenu>, or both, to the
-          Folder Compare context menu. The shell menu (if added) is identical to
-          the path's context menu in Windows Explorer, and enables you to launch
-          its commands in the same way.</para>
-
-          <para>If you right-click an item that occurs on both sides, both the
-          left and right shell menus are available; if the item occurs only on
-          one side, only that side's shell menu appears.</para>
-
-          <note>
-            <para>Using the shell menu is just like launching Windows commands
-            outside of WinMerge. Consequently, WinMerge might not respond to
-            some operations in the same way as operations performed inside
-            WinMerge.</para>
-          </note>
-
-          <para><xref linkend="CompareDirs_winshell" /> has more information
-          about using the shell menus.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
   </section>
 </article>
