@@ -51,9 +51,9 @@ Function ExecFilterCommand(Text)
 	End If
 	If cmd = "" Then
 		If IsLangJapanese() Then
-			Err.Raise 30001, "キャンセルされました"
+			Err.Raise 30001, , "キャンセルされました"
 		Else
-			Err.Raise 30001, "Canceled"
+			Err.Raise 30001, , "Canceled"
 		End If
 		Exit Function
 	End If
