@@ -59,20 +59,6 @@ PropGeneral::~PropGeneral()
 {
 }
 
-static UINT LoadLanguagesThreadProc(void *pParam)
-{
-	CComboBox *pctlLangList = reinterpret_cast<CComboBox *>(pParam);
-	for (auto&& i : theApp.m_pLangDlg->GetAvailableLanguages())
-	{
-		pctlLangList->AddString(i.second.c_str());
-		pctlLangList->SetItemData(pctlLangList->GetCount() - 1, i.first);
-		if (i.first == theApp.m_pLangDlg->GetLangId())
-			pctlLangList->SetCurSel(pctlLangList->GetCount() - 1);
-	}
-	pctlLangList->EnableWindow(TRUE);
-	return 0;
-}
-
 BOOL PropGeneral::OnInitDialog()
 {
 	OptionsPanel::OnInitDialog();
@@ -88,7 +74,7 @@ BOOL PropGeneral::OnInitDialog()
 
 	m_ctlLangList.SetDroppedWidth(600);
 	m_ctlLangList.EnableWindow(FALSE);
-	m_pLoadLanguagesThread = AfxBeginThread(LoadLanguagesThreadProc, &m_ctlLangList, 0, 0, CREATE_SUSPENDED);
+	m_pLoadLanguagesThread = AfxBeginThread(LoadLanguagesThreadProc, this, 0, 0, CREATE_SUSPENDED);
 	m_pLoadLanguagesThread->m_bAutoDelete = FALSE;
 	m_pLoadLanguagesThread->ResumeThread();
 
@@ -126,6 +112,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(PropGeneral, CPropertyPage)
 	//{{AFX_MSG_MAP(PropGeneral)
 	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
+	ON_MESSAGE(WM_APP, OnLoadLanguages)
 	ON_WM_DESTROY()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -175,4 +162,25 @@ void PropGeneral::OnResetAllMessageBoxes()
 {
 	CMessageBoxDialog::ResetMessageBoxes();
 	AfxMessageBox(_("All message boxes are now displayed again.").c_str(), MB_ICONINFORMATION);
+}
+
+UINT PropGeneral::LoadLanguagesThreadProc(void *pParam)
+{
+	PropGeneral *pPropGeneral = reinterpret_cast<PropGeneral *>(pParam);
+	pPropGeneral->m_langs = theApp.m_pLangDlg->GetAvailableLanguages();
+	pPropGeneral->PostMessage(WM_APP);
+	return 0;
+}
+
+LRESULT PropGeneral::OnLoadLanguages(WPARAM, LPARAM)
+{
+	for (auto&& i : m_langs)
+	{
+		m_ctlLangList.AddString(i.second.c_str());
+		m_ctlLangList.SetItemData(m_ctlLangList.GetCount() - 1, i.first);
+		if (i.first == theApp.m_pLangDlg->GetLangId())
+			m_ctlLangList.SetCurSel(m_ctlLangList.GetCount() - 1);
+	}
+	m_ctlLangList.EnableWindow(TRUE);
+	return 0;
 }
