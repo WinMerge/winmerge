@@ -107,6 +107,7 @@ public:
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
 	void SetupTempPath();
+	bool IsReallyIdle() const;
 
 // Implementation
 protected:

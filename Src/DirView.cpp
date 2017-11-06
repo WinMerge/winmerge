@@ -2556,6 +2556,7 @@ private:
 void CDirView::OnToolsGenerateReport()
 {
 	CDirDoc *pDoc = GetDocument();
+	pDoc->SetGeneratingReport(true);
 	const CDiffContext& ctxt = GetDiffContext();
 
 	// Make list of registry keys for columns
@@ -2596,6 +2597,7 @@ void CDirView::OnToolsGenerateReport()
 			AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
 		}
 	}
+	pDoc->SetGeneratingReport(false);
 }
 
 /**
