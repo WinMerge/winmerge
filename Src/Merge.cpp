@@ -68,6 +68,7 @@
 #include "TFile.h"
 #include "SourceControl.h"
 #include "paths.h"
+#include "CompareStats.h"
 #include "TestMain.h"
 
 // For shutdown cleanup
@@ -491,11 +492,6 @@ BOOL CMergeApp::InitInstance()
 	if (hMutex)
 		ReleaseMutex(hMutex);
 
-	if (m_bNonInteractive)
-	{
-		bContinue = FALSE;
-	}
-
 	// If user wants to cancel the compare, close WinMerge
 	if (bContinue == FALSE)
 	{
@@ -596,6 +592,22 @@ void CMergeApp::SetNeedIdleTimer()
 	m_bNeedIdleTimer = TRUE; 
 }
 
+bool CMergeApp::IsReallyIdle() const
+{
+	bool idle = true;
+	POSITION pos = m_pDirTemplate->GetFirstDocPosition();
+	while (pos)
+	{
+		CDirDoc *pDirDoc = static_cast<CDirDoc *>(m_pDirTemplate->GetNextDoc(pos));
+		if (const CompareStats *pCompareStats = pDirDoc->GetCompareStats())
+		{
+			if (!pCompareStats->IsCompareDone() || pDirDoc->GetGeneratingReport())
+				idle = false;
+		}
+	}
+    return idle;
+}
+
 BOOL CMergeApp::OnIdle(LONG lCount) 
 {
 	if (CWinApp::OnIdle(lCount))
@@ -607,6 +619,10 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 		m_bNeedIdleTimer = FALSE;
 		m_pMainWnd->SendMessageToDescendants(WM_TIMER, IDLE_TIMER, lCount, TRUE, FALSE);
 	}
+
+	if (m_bNonInteractive && IsReallyIdle())
+		m_pMainWnd->PostMessage(WM_CLOSE, 0, 0);
+
 	return FALSE;
 }
 

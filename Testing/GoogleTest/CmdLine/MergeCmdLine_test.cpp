@@ -1182,6 +1182,16 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
 	}
 
+	// Both descriptions
+	TEST_F(MergeCmdLineInfoTest, SetConfig1)
+	{
+		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe -cfg Settings/TreeMode=1 -cfg Settings/ToolbarSize=0"));
+		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_EQ(_T("1"), cmdInfo.m_Options[_T("Settings/TreeMode")]);
+		EXPECT_EQ(_T("0"), cmdInfo.m_Options[_T("Settings/ToolbarSize")]);
+	}
+
 #if 0 // Disabled for now - should we handle this case?
 	// Missing description
 	TEST_F(MergeCmdLineInfoTest, DescMissing)
