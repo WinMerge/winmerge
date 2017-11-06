@@ -285,13 +285,18 @@ BOOL CMergeApp::InitInstance()
 	// Load registry keys from WinMerge.reg if existing WinMerge.reg
 	env::LoadRegistryFromFile(paths::ConcatPath(env::GetProgPath(), _T("WinMerge.reg")));
 
+	// Parse command-line arguments.
+	MergeCmdLineInfo cmdInfo(GetCommandLine());
+	if (cmdInfo.m_bNoPrefs)
+		m_pOptions->SetSerializing(false); // Turn off serializing to registry.
+
 	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
+
+	for (const auto& it : cmdInfo.m_Options)
+		m_pOptions->Set(it.first, it.second);
 
 	// Initialize temp folder
 	SetupTempPath();
-
-	// Parse command-line arguments.
-	MergeCmdLineInfo cmdInfo(GetCommandLine());
 
 	// If paths were given to commandline we consider this being an invoke from
 	// commandline (from other application, shellextension etc).

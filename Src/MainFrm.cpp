@@ -1837,6 +1837,10 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 		return FALSE;
 	ReplyMessage(TRUE);
 	MergeCmdLineInfo cmdInfo(pchData);
+	if (cmdInfo.m_bNoPrefs)
+		GetOptionsMgr()->SetSerializing(false); // Turn off serializing to registry.
+	for (const auto& it : cmdInfo.m_Options)
+		GetOptionsMgr()->Set(it.first, it.second);
 	theApp.ParseArgsAndDoOpen(cmdInfo, this);
 	return TRUE;
 }
