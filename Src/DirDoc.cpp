@@ -73,6 +73,7 @@ CDirDoc::CDirDoc()
 , m_pCompareStats(nullptr)
 , m_bMarkedRescan(FALSE)
 , m_pTempPathContext(nullptr)
+, m_bGeneratingReport(false)
 {
 	m_nDirs = m_nDirsTemp;
 

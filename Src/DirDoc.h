@@ -87,6 +87,8 @@ public:
 	void SetReadOnly(int nIndex, bool bReadOnly);
 	String GetReportFile() const { return m_sReportFile; }
 	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
+	bool GetGeneratingReport() const { return m_bGeneratingReport; }
+	void SetGeneratingReport(bool bGeneratingReport) { m_bGeneratingReport = bGeneratingReport; }
 	bool HasDirView() const { return m_pDirView != NULL; }
 	void RefreshOptions();
 	void CompareReady();
@@ -140,6 +142,7 @@ private:
 	String m_sReportFile;
 	PluginManager m_pluginman;
 	bool m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
+	bool m_bGeneratingReport;
 };
 
 //{{AFX_INSERT_LOCATION}}
