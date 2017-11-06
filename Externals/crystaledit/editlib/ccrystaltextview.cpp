@@ -2039,7 +2039,7 @@ GetHTMLLine (int nLineIndex, LPCTSTR pszTag)
   int i;
   int nNonbreakChars = 0;
   bool bLastCharSpace = false;
-  const int nScreenChars = GetScreenChars ();
+  const int nScreenChars = 40; //  GetScreenChars();
 
   strHTML += _T("<");
   strHTML += pszTag;
