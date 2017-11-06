@@ -32,6 +32,7 @@
 
 #include "UnicodeString.h"
 #include "PathContext.h"
+#include <map>
 
 /** 
  * @brief WinMerge's command line handler.
@@ -69,6 +70,7 @@ public:
 	bool m_bSingleInstance; /**< Allow only one instance of WinMerge executable. */
 	bool m_bShowUsage; /**< Show a brief reminder to command line arguments. */
 	int  m_nCodepage;  /**< Codepage. */
+	bool m_bNoPrefs; /**< Do not load or remember options (preferences) */   
 
 	unsigned m_dwLeftFlags; /**< Left side file's behavior options. */
 	unsigned m_dwMiddleFlags; /**< Middle side file's behavior options. */
@@ -86,10 +88,13 @@ public:
 
 	PathContext m_Files; /**< Files (or directories) to compare. */
 
+	std::map<String, String> m_Options;
+
 private:
 
 	static const TCHAR *EatParam(const TCHAR *, String &, bool *flag = 0);
-	static const TCHAR *SetOption(const TCHAR *, const String& key, const TCHAR *value = _T("1"));
+	const TCHAR *SetOption(const TCHAR *, const String& key, const TCHAR *value = _T("1"));
+	const TCHAR *SetConfig(const TCHAR *);
 	void ParseClearCaseCmdLine(const TCHAR *, const TCHAR *basedesc);
 	void ParseWinMergeCmdLine(const TCHAR *);
 	void AddPath(const String &path);
