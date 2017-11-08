@@ -11,6 +11,8 @@
 #include "DirReportTypes.h"
 #include "paths.h"
 #include "FileOrFolderSelect.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
 
 IMPLEMENT_DYNAMIC(DirCmpReportDlg, CTrDialog)
 
@@ -84,9 +86,9 @@ static ReportTypeInfo f_types[] = {
 
 void DirCmpReportDlg::LoadSettings()
 {
-	m_nReportType = static_cast<REPORT_TYPE>(AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("ReportType"), 0));
-	m_bCopyToClipboard = !!AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), false);
-	m_bIncludeFileCmpReport = !!AfxGetApp()->GetProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), false);
+	m_nReportType = static_cast<REPORT_TYPE>(GetOptionsMgr()->GetInt(OPT_REPORTFILES_REPORTTYPE));
+	m_bCopyToClipboard = GetOptionsMgr()->GetBool(OPT_REPORTFILES_COPYTOCLIPBOARD);
+	m_bIncludeFileCmpReport = GetOptionsMgr()->GetBool(OPT_REPORTFILES_INCLUDEFILECMPREPORT);
 }
 
 /**
@@ -186,9 +188,9 @@ void DirCmpReportDlg::OnOK()
 	}
 
 	m_ctlReportFile.SaveState(_T("ReportFiles"));
-	AfxGetApp()->WriteProfileInt(_T("ReportFiles"), _T("ReportType"), m_nReportType);
-	AfxGetApp()->WriteProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), m_bCopyToClipboard);
-	AfxGetApp()->WriteProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), m_bIncludeFileCmpReport);
+	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_REPORTTYPE, static_cast<int>(m_nReportType));
+	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_COPYTOCLIPBOARD, m_bCopyToClipboard);
+	GetOptionsMgr()->SaveOption(OPT_REPORTFILES_INCLUDEFILECMPREPORT, m_bIncludeFileCmpReport);
 
 	CTrDialog::OnOK();
 }
