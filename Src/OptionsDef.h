@@ -55,6 +55,11 @@ extern const String OPT_DIRVIEW_SORT_COLUMN3 OP("Settings/DirViewSortCol3");
 extern const String OPT_DIRVIEW_SORT_ASCENDING OP("Settings/DirViewSortAscending");
 extern const String OPT_DIRVIEW_EXPAND_SUBDIRS OP("Settings/DirViewExpandSubdirs");
 
+// Folder Compare Report
+extern const String OPT_REPORTFILES_REPORTTYPE OP("ReportFiles/ReportType");
+extern const String OPT_REPORTFILES_COPYTOCLIPBOARD OP("ReportFiles/CopyToClipboard");
+extern const String OPT_REPORTFILES_INCLUDEFILECMPREPORT OP("ReportFiles/IncludeFileCmpReport");
+
 // File compare
 extern const String OPT_AUTOMATIC_RESCAN OP("Settings/AutomaticRescan");
 extern const String OPT_ALLOW_MIXED_EOL OP("Settings/AllowMixedEOL");
