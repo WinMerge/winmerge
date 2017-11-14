@@ -456,136 +456,6 @@ I get the partial list, but no Abort indicator.--></para>
       contents by copying, moving, or delete one or more files or
       subfolders.</para>
     </section>
-
-    <section>
-      <title>Working with multiple Compare windows</title>
-
-      <indexterm>
-        <primary>Compare window</primary>
-
-        <secondary>using multiple</secondary>
-      </indexterm>
-
-      <para>By default, the WinMerge window displays a single File Compare or
-      Folder Compare window.</para>
-
-      <para>In single compare mode, of you start a file or folder comparison
-      while a Compare window is currently open, the current File Compare window
-      is closed if there are no changes in either side. But if WinMerge detects
-      unsaved changes (for example, if you have merged or edited a
-      file),.WinMerge prompts you to save or discard your changes before opening
-      a new File Compare window.</para>
-
-      <para>For example, in the next screen shot WinMerge gives you a chance to
-      save changes detected in the right side file:</para>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata contentwidth="400" fileref="screenshots/save_mod1.png"
-                     format="PNG" />
-        </imageobject>
-
-        <textobject>
-          <phrase>Save modifed files dialog</phrase>
-        </textobject>
-      </mediaobject>
-
-      <para>If you want to work with multiple compare operations simultaneously,
-      consider setting (checking) the <guilabel>Enable multiple compare windows
-      for Folder compare</guilabel> option, which is disabled by default. With
-      this option enabled, you can open multiple File Compare windows without
-      the intervening Save step.</para>
-
-      <para>When you open multiple Compare windows, they're displayed by default
-      as individually resizeable child windows within the WinMerge window. This
-      example shows a Folder Compare window — the File Compare window has
-      similar child windows:</para>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata contentwidth="569"
-                     fileref="screenshots/multifoldercomp1.png" format="PNG" />
-        </imageobject>
-
-        <textobject>
-          <phrase>Multiple Folder Compare windows: default display</phrase>
-        </textobject>
-      </mediaobject>
-
-      <para>You can control the layering of multiple windows in either of two
-      ways:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>Control the windows directly, for example by clicking a title
-          bar to bring its window to the top, or minimizing a window.</para>
-        </listitem>
-
-        <listitem>
-          <para>Click the <guimenu>Window</guimenu> menu, which lists the
-          windows that are currently open, and choose the window that you want
-          to bring to the top.</para>
-        </listitem>
-      </itemizedlist>
-
-      <section>
-        <title>Using tabs with maximized Compare windows<indexterm>
-            <primary>Compare window</primary>
-
-            <secondary>using tabs when maximizing</secondary>
-          </indexterm></title>
-
-        <para>Often, it's convenient to maximize your Compare window (by
-        clicking its Maximixe button). The window then fills all the available
-        space in the WinMerge window. The screen shot below shows a maximized
-        Compare window.</para>
-
-        <mediaobject>
-          <imageobject>
-            <imagedata contentwidth="569"
-                       fileref="screenshots/multifoldercomp2.png" format="PNG" />
-          </imageobject>
-
-          <textobject>
-            <phrase>Multiple Folder Compare windows: maximized</phrase>
-          </textobject>
-        </mediaobject>
-
-        <para>When you maximize one Compare window, any other Compare windows
-        are hidden, as shown in the preceding screen shot. To access those
-        windows, you could return to the default view by clicking the
-        <inlinemediaobject>
-            <imageobject>
-              <imagedata contentwidth="15" fileref="screenshots/restore_btn.png" />
-            </imageobject>
-
-            <textobject>
-              <phrase>Restore button</phrase>
-            </textobject>
-          </inlinemediaobject> Restore button. A better solution is to enable
-        tabs by setting (checking) <menuchoice>
-            <guimenu>View</guimenu>
-
-            <guimenuitem>Tab Bar</guimenuitem>
-          </menuchoice>.</para>
-
-        <para>When you display the Tab bar, each Compare window has a tab that
-        shows the filenames of the two compared files. Now, you can easily
-        identify and display any available Compare window, and the selected
-        Compare window remains maximized:</para>
-
-        <mediaobject>
-          <imageobject>
-            <imagedata contentwidth="569"
-                       fileref="screenshots/multifoldercomp3.png" format="PNG" />
-          </imageobject>
-
-          <textobject>
-            <phrase>Multiple Folder Compare windows: tabbed</phrase>
-          </textobject>
-        </mediaobject>
-      </section>
-    </section>
   </section>
 
   <section id="Compare_dirs_fileops">
@@ -1436,9 +1306,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
   <section id="CompareDirs_winshell">
     <title>Using Windows shell commands from the Folder Compare window</title>
 
-    <para>If you have <link linkend="Configuration_foldercompare">enabled
-    <option>Add Shell menu to context menu</option></link> in the Shell
-    Integration page of WinMerge options, you can right-click a selection in the
+    <para>You can right-click a selection in the
     Folder Compare window and launch Windows shell commands directly from the
     context menu.</para>
 
