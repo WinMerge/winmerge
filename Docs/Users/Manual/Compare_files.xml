@@ -321,8 +321,8 @@
                   </inlinemediaobject></member>
               </simplelist>
 
-              <para>In the second comparison, the lines <quote>blind</quote> and
-              <quote>blonde</quote> are detected as similar. WinMerge adds blank
+              <para>In the second comparison, the lines <quote>mice</quote> and
+              <quote>mice and a</quote> are detected as similar. WinMerge adds blank
               lines in the display to make these lines appear at the same level
               within the difference block.</para>
             </listitem>
@@ -1103,122 +1103,6 @@
           </listitem>
         </itemizedlist></para>
     </section>
-
-    <section id="Compare_files_multiwin">
-      <title>Working with multiple File Compare windows<indexterm>
-          <primary>File Compare window</primary>
-
-          <secondary>using multiple</secondary>
-        </indexterm></title>
-
-      <para>By default, the WinMerge window displays a single File Compare
-      window. If you start another file comparison (by clicking <menuchoice>
-          <guimenu>File</guimenu>
-
-          <guimenuitem>Open</guimenuitem>
-        </menuchoice> and selecting another pair of files) while a File Compare
-      window is currently open, the current File Compare window is closed,
-      unless WinMerge detects unsaved changes in the left or right file. If you
-      have modified either file, WinMerge prompts you to save or discard your
-      changes before opening a new File Compare window.</para>
-
-      <!--We don't say that the old window is closed, even though most of the time that's what happens. 
-If you click Cancel in the Save dialog, WinMerge does NOT close the current window, and you end up 
-with multiple File Compare windows. The reasons why this behavior has not been fixed is discussed in 
-https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
-
-      <para>For example, in the next screen shot WinMerge gives you a chance to
-      save changes detected in the right side file:</para>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata contentwidth="400" fileref="screenshots/save_mod1.png"
-                     format="PNG" />
-        </imageobject>
-
-        <textobject>
-          <phrase>Save modifed files? dialog</phrase>
-        </textobject>
-      </mediaobject>
-
-      <para>If you plan to work with multiple compare operations simultaneously,
-      consider setting (checking) the <guilabel>Enable multiple compare windows
-      for File compare</guilabel> option, which is disabled by default. With
-      this option enabled, you can open multiple File Compare windows without
-      the intervening Save step.</para>
-    </section>
-
-    <section>
-      <title>Using tabs with maximized Compare windows<indexterm>
-          <primary>File Compare window</primary>
-
-          <secondary>using tabs when maximizing</secondary>
-        </indexterm></title>
-
-      <para>By default, Compare windows are displayed as individually resizeable
-      child windows within the WinMerge window, like this:</para>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata contentwidth="569" fileref="screenshots/multifilecomp1.png"
-                     format="PNG" />
-        </imageobject>
-
-        <textobject>
-          <phrase>Multiple File Compare windows: default display</phrase>
-        </textobject>
-      </mediaobject>
-
-      <para>If you maximize your Compare window (by clicking its Maximixe
-      button), the window fills all the available space in the WinMerge window,
-      giving you the most room possible to work in. However, if you are working
-      with multiple Compare windows, only one one maximized window is visible:
-      any others are hidden. The screen shot below shows the header area of a
-      maximized Compare window:</para>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata contentwidth="569" fileref="screenshots/multifilecomp2.png"
-                     format="PNG" />
-        </imageobject>
-
-        <textobject>
-          <phrase>Multiple File Compare windows: maximized</phrase>
-        </textobject>
-      </mediaobject>
-
-      <para>To access other Compare windows, you could return to the default
-      view by clicking the <inlinemediaobject>
-          <imageobject>
-            <imagedata contentwidth="15" fileref="screenshots/restore_btn.png" />
-          </imageobject>
-
-          <textobject>
-            <phrase>Restore button</phrase>
-          </textobject>
-        </inlinemediaobject> Restore button. But a better solution is to enable
-      tabs by setting (checking) <menuchoice>
-          <guimenu>View</guimenu>
-
-          <guimenuitem>Tab Bar</guimenuitem>
-        </menuchoice>.</para>
-
-      <para>When you display the Tab bar, each Compare window has a tab that
-      shows the filenames of the two compared files. Now, you can easily
-      identify the available Compare windows. To open any of them, just click
-      its tab:</para>
-
-      <mediaobject>
-        <imageobject>
-          <imagedata contentwidth="569" fileref="screenshots/multifilecomp3.png"
-                     format="PNG" />
-        </imageobject>
-
-        <textobject>
-          <phrase>Multiple File Compare windows: tabbed</phrase>
-        </textobject>
-      </mediaobject>
-    </section>
   </section>
 
   <section id="Compare_files_nav">
@@ -1525,6 +1409,13 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
         </varlistentry>
       </variablelist>
     </section>
+  </section>
+
+  <section id="Compare_files_syncpoints">
+    <title>Syncronization points<indexterm>
+        <primary>syncronization points</primary>
+      </indexterm></title>
+    <para>TBD</para>
   </section>
 
   <section id="Compare_files_merge">
