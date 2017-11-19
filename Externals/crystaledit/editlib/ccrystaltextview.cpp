@@ -1445,7 +1445,7 @@ void CCrystalTextView::InvalidateScreenRect(bool bInvalidateView)
 }
 
 void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &rcClip,
-         const std::vector<TEXTBLOCK>& blocks, 
+         const std::vector<TEXTBLOCK>& blocks, int &nActualItem, 
          COLORREF crText, COLORREF crBkgnd, bool bDrawWhitespace,
          LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos )
 {
@@ -1457,15 +1457,11 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
   int nBgColorIndexZeorWidthBlock = COLORINDEX_NONE;
   bool bPrevZeroWidthBlock = false;
   static const int ZEROWIDTHBLOCK_WIDTH = 2;
-  size_t nActualItem = 0;
-
-  for (nActualItem = 0; 
-    nActualItem < blocks.size() - 1 && blocks[nActualItem + 1].m_nCharPos < nOffset;
-    ++nActualItem)
-    ;
 
   frect.top = ptOrigin.y;
   frect.bottom = frect.top + nLineHeight;
+
+  ASSERT( nActualItem < blocks.size() );
 
   if( blocks.size() > 0 && nActualItem < blocks.size() - 1 && 
     blocks[nActualItem + 1].m_nCharPos >= nOffset && 
@@ -1478,22 +1474,23 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
       for (I = nActualItem; I < blocks.size() - 1 &&
         blocks[I + 1].m_nCharPos <= nOffset + nCount; I ++)
         {
-          ASSERT(blocks[I].m_nCharPos >= 0 && blocks[I].m_nCharPos <= nLineLength);
+		  const TEXTBLOCK& blk = blocks[I];
+          ASSERT(blk.m_nCharPos >= 0 && blk.m_nCharPos <= nLineLength);
 
-          int nOffsetToUse = (nOffset > blocks[I].m_nCharPos) ?
-             nOffset : blocks[I].m_nCharPos;
+          int nOffsetToUse = (nOffset > blk.m_nCharPos) ?
+             nOffset : blk.m_nCharPos;
           if (blocks[I + 1].m_nCharPos - nOffsetToUse > 0)
             {
               int nOldActualOffset = nActualOffset;
-              DrawLineHelper(pdc, ptOrigin, rcClip, blocks[I].m_nColorIndex, blocks[I].m_nBgColorIndex, crText, crBkgnd, pszChars,
-                (nOffset > blocks[I].m_nCharPos)? nOffset : blocks[I].m_nCharPos, 
+              DrawLineHelper(pdc, ptOrigin, rcClip, blk.m_nColorIndex, blk.m_nBgColorIndex, crText, crBkgnd, pszChars,
+                (nOffset > blk.m_nCharPos)? nOffset : blk.m_nCharPos, 
                 blocks[I + 1].m_nCharPos - nOffsetToUse,
                 nActualOffset, CPoint( nOffsetToUse, ptTextPos.y ));
               if (bPrevZeroWidthBlock)
                 {
                   CRect rcClipZeroWidthBlock(ptOriginZeroWidthBlock.x, rcClip.top, ptOriginZeroWidthBlock.x + ZEROWIDTHBLOCK_WIDTH, rcClip.bottom);
-                  DrawLineHelper(pdc, ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blocks[I].m_nColorIndex, nBgColorIndexZeorWidthBlock, crText, crBkgnd, pszChars,
-                      (nOffset > blocks[I].m_nCharPos)? nOffset : blocks[I].m_nCharPos, 
+                  DrawLineHelper(pdc, ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blk.m_nColorIndex, nBgColorIndexZeorWidthBlock, crText, crBkgnd, pszChars,
+                      (nOffset > blk.m_nCharPos)? nOffset : blk.m_nCharPos, 
                       blocks[I + 1].m_nCharPos - nOffsetToUse,
                       nOldActualOffset, CPoint( nOffsetToUse, ptTextPos.y ));
                   bPrevZeroWidthBlock = false;
@@ -1503,7 +1500,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
             {
               if (!bPrevZeroWidthBlock)
                 {
-                  int nBgColorIndex = blocks[I].m_nBgColorIndex;
+                  int nBgColorIndex = blk.m_nBgColorIndex;
    	              COLORREF clrBkColor;
                   if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
                     clrBkColor = GetColor(nBgColorIndex);
@@ -1511,7 +1508,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
                     clrBkColor = crBkgnd;
                   pdc->FillSolidRect(ptOrigin.x, ptOrigin.y, ZEROWIDTHBLOCK_WIDTH, GetLineHeight(), clrBkColor);
                   ptOriginZeroWidthBlock = ptOrigin;
-                  nBgColorIndexZeorWidthBlock = blocks[I].m_nBgColorIndex;
+                  nBgColorIndexZeorWidthBlock = blk.m_nBgColorIndex;
                   bPrevZeroWidthBlock = true;
                 }
             }
@@ -1792,7 +1789,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
       // draw start of line to first break
       DrawScreenLine(
         pdc, origin, rc,
-        blocks,
+        blocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, 0, anBreaks[0], nActualOffset, CPoint( 0, nLineIndex ) );
 
@@ -1803,7 +1800,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
           ASSERT( anBreaks[i] >= 0 && anBreaks[i] < nLength );
           DrawScreenLine(
             pdc, origin, rc,
-            blocks,
+            blocks, nActualItem,
             crText, crBkgnd, bDrawWhitespace,
             pszChars, anBreaks[i], anBreaks[i + 1] - anBreaks[i],
             nActualOffset, CPoint( anBreaks[i], nLineIndex ) );
@@ -1812,7 +1809,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
       // draw from last break till end of line
       DrawScreenLine(
         pdc, origin, rc,
-        blocks,
+        blocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, anBreaks[i], nLength - anBreaks[i],
         nActualOffset, CPoint( anBreaks[i], nLineIndex ) );
@@ -1820,7 +1817,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   else
       DrawScreenLine(
         pdc, origin, rc,
-        blocks,
+        blocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, 0, nLength, nActualOffset, CPoint(0, nLineIndex));
 

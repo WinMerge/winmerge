@@ -572,7 +572,7 @@ protected:
 	// function to draw a single screen line
 	// (a wrapped line can consist of many screen lines
 	virtual void DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &rcClip,
-		const std::vector<TEXTBLOCK>& blocks,
+		const std::vector<TEXTBLOCK>& blocks, int &nActualItem,
 		COLORREF crText, COLORREF crBkgnd, bool bDrawWhitespace,
 		LPCTSTR pszChars,
 		int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos );
