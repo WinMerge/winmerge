@@ -543,6 +543,7 @@
     <ClCompile Include="..\editlib\tex.cpp" />
     <ClCompile Include="..\editlib\UndoRecord.cpp" />
     <ClCompile Include="..\editlib\verilog.cpp" />
+    <ClCompile Include="..\editlib\vhdl.cpp" />
     <ClCompile Include="..\editlib\ViewableWhitespace.cpp" />
     <ClCompile Include="..\editlib\xml.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
