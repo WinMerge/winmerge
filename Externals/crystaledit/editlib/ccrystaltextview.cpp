@@ -1517,7 +1517,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
             break;
         }
 
-      nActualItem = I;
+      nActualItem = static_cast<int>(I);
 
       ASSERT(blocks[nActualItem].m_nCharPos >= 0 &&
         blocks[nActualItem].m_nCharPos <= nLineLength);
