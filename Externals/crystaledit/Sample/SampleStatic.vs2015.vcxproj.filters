@@ -207,6 +207,9 @@
     <ClCompile Include="..\editlib\verilog.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
+    <ClCompile Include="..\editlib\vhdl.cpp">
+      <Filter>editlib\parsers</Filter>
+    </ClCompile>
     <ClCompile Include="..\editlib\xml.cpp">
       <Filter>editlib\parsers</Filter>
     </ClCompile>
