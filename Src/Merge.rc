@@ -1920,6 +1920,7 @@ BEGIN
     IDS_MESSAGEBOX_HELP     "&Help"
     IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
+    IDS_MESSAGEBOX_CHECKBOX_TOOLTIP "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 END
 
 // Options-dialog page captions
@@ -2658,6 +2659,10 @@ BEGIN
     IDS_CREATE_FOLDER_ERROR  "Failed to create folder."
 END
 
+STRINGTABLE
+BEGIN
+    IDC_EXT_EDITOR_PATH      "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+END
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
