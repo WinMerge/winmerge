@@ -3026,6 +3026,11 @@ msgstr "Non visualizzare questo &messaggio di nuovo."
 msgid "Don't ask this &question again."
 msgstr "Non farmi più &questa domanda."
 
+#: Merge.rc:78ACB5DB
+#, c-format
+msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr ""
+
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
@@ -4889,5 +4894,10 @@ msgstr ""
 #: Merge.rc:3A5D5964
 #, c-format
 msgid "Failed to create folder."
+msgstr ""
+
+#: Merge.rc:64F70DD6
+#, c-format
+msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 msgstr ""
 
