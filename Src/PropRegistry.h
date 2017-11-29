@@ -51,6 +51,7 @@ public:
 	String  m_strUserFilterPath;
 	int     m_tempFolderType;
 	String  m_tempFolder;
+	CToolTipCtrl m_tooltips;
 	//}}AFX_DATA
 
 	// Overrides
@@ -58,6 +59,8 @@ public:
 	//{{AFX_VIRTUAL(PropRegistry)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	virtual BOOL OnInitDialog();
 	//}}AFX_VIRTUAL
 
 // Implementation methods

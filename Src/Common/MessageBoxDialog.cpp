@@ -515,6 +515,7 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 	ParseStyle();
 
 	// Create the elements of the dialog.
+	m_tooltips.Create(this);
 	CreateIconControl();
 	CreateMessageControl();
 	CreateCheckboxControl();
@@ -654,6 +655,13 @@ BOOL CMessageBoxDialog::OnCmdMsg ( UINT nID, int nCode, void* pExtra,
  */
 BOOL CMessageBoxDialog::PreTranslateMessage ( MSG* pMsg )
 {
+	if (pMsg->message == WM_LBUTTONDOWN ||
+		pMsg->message == WM_LBUTTONUP ||
+		pMsg->message == WM_MOUSEMOVE)
+	{
+		m_tooltips.RelayEvent(pMsg);
+	}
+
 	// Check whether it's a key message and whether it's not a disable timeout.
 	if ( pMsg->message == WM_KEYDOWN )
 	{
@@ -1403,6 +1411,9 @@ void CMessageBoxDialog::CreateCheckboxControl ( )
 
 		// Set the font of the control.
 		btnCheckbox.SetFont(pWndFont);
+
+		// Add a tooltip to the checkbox
+		m_tooltips.AddTool(&btnCheckbox, LoadResString(IDS_MESSAGEBOX_CHECKBOX_TOOLTIP).c_str());
 
 		// Remove the subclassing again.
 		btnCheckbox.UnsubclassWindow();

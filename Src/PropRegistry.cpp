@@ -97,6 +97,18 @@ void PropRegistry::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CUSTOM_TEMP_PATH, tempFolder);
 }
 
+BOOL PropRegistry::OnInitDialog()
+{
+	OptionsPanel::OnInitDialog();
+	m_tooltips.Create(this);
+	m_tooltips.SetMaxTipWidth(600);
+	m_tooltips.AddTool(GetDlgItem(IDC_EXT_EDITOR_PATH), 
+		_("You can specify the following parameters to the path:\n"
+		  "$file: Path name of the current file\n"
+		  "$linenum: Line number of the current cursor position").c_str());
+	return TRUE;
+}
+
 /// Open file browse dialog to locate editor
 void PropRegistry::OnBrowseEditor()
 {
@@ -125,4 +137,16 @@ void PropRegistry::OnBrowseTmpFolder()
 	{
 		SetDlgItemText(IDC_TMPFOLDER_NAME, path);
 	}
+}
+
+BOOL PropRegistry::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_LBUTTONDOWN ||
+		pMsg->message == WM_LBUTTONUP ||
+		pMsg->message == WM_MOUSEMOVE)
+	{
+		m_tooltips.RelayEvent(pMsg);
+	}
+
+	return OptionsPanel::PreTranslateMessage(pMsg);
 }

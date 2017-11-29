@@ -241,6 +241,7 @@ private:
 
 	CStatic		m_stcIcon;			// Static control for the icon.
 	CStatic		m_stcMessage;		// Static control for the message.
+	CToolTipCtrl	m_tooltips;
 
 private:
 
