@@ -103,8 +103,8 @@ BOOL CTextMarkerDlg::OnInitDialog ()
 			++i;
 		}
 	}
-	if (keys.size() > 0)
-		m_listMarkers.SetItemState(static_cast<int>(keys.size()) - 1, 
+	if (i > 0)
+		m_listMarkers.SetItemState(static_cast<int>(i - 1), 
 			LVIS_FOCUSED | LVIS_SELECTED, LVIS_FOCUSED | LVIS_SELECTED);
 
 	UpdateData(FALSE);
