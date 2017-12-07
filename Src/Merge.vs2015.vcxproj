@@ -910,6 +910,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Externals\boost\boost\config.hpp" />
+    <ClInclude Include="..\Externals\boost\boost\config\compiler\visualc.hpp" />
+    <ClInclude Include="..\Externals\boost\boost\config\select_compiler_config.hpp" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaleditview.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.h" />
