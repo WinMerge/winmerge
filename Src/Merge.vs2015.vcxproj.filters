@@ -47,6 +47,15 @@
     <Filter Include="MFCGui\Common">
       <UniqueIdentifier>{297182f0-e39d-4ac4-9df3-315882ce9e07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Boost">
+      <UniqueIdentifier>{09e2ca67-f223-4fd6-b380-aca4a63886b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Boost\config">
+      <UniqueIdentifier>{6c139b98-08bf-4639-84f9-3848ad990352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Boost\config\compiler">
+      <UniqueIdentifier>{48b82f25-08b5-43e5-bc19-abd5bf4f0ea7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charsets.c">
@@ -1421,6 +1430,15 @@
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.h">
       <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\boost\boost\config.hpp">
+      <Filter>Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\boost\boost\config\compiler\visualc.hpp">
+      <Filter>Boost\config\compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\boost\boost\config\select_compiler_config.hpp">
+      <Filter>Boost\config</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
