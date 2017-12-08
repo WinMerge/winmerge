@@ -317,7 +317,8 @@
 
 //
 // last known (but un-checked by Boost.org) version is 19.11.25506 (VS 2017 Update 3) - BillGord 15 Aug 2017
-#if (_MSC_VER > 1911)
+// VS2017 Version 15.5.0 (cl compiler version 19.12.25830.2) updated _MSC_VER to 1912 - BillGord 06 Dec 2017
+#if (_MSC_VER > 1912)
 #  if defined(BOOST_ASSERT_CONFIG)
 #     error "Unknown compiler version - please run the configure tests and report the results"
 #  else
