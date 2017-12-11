@@ -57,7 +57,9 @@ CString CCrystalTextMarkers::MakeNewId() const
 
 void CCrystalTextMarkers::AddView(CCrystalTextView *pView)
 {
-	m_views.push_back(pView);
+	auto it = std::find(m_views.begin(), m_views.end(), pView);
+	if (it == m_views.end())
+		m_views.push_back(pView);
 }
 
 void CCrystalTextMarkers::DeleteView(CCrystalTextView *pView)
