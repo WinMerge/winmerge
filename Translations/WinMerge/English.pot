@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2017-09-25 01:24+0000\n"
+"POT-Creation-Date: 2017-12-12 07:50+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -4611,6 +4611,11 @@ msgstr ""
 #: Merge.rc:125AD722
 #, c-format
 msgid "Shell"
+msgstr ""
+
+#: Merge.rc:4E44AD6
+#, c-format
+msgid "VHDL"
 msgstr ""
 
 #: Merge.rc:8AF7E6B

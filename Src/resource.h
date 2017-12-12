@@ -1145,8 +1145,9 @@
 #define IDS_COLORSCHEME_TCL             33183
 #define IDS_COLORSCHEME_TEX             33184
 #define IDS_COLORSCHEME_VERILOG         33185
-#define IDS_COLORSCHEME_XML             33186
-#define ID_COLORSCHEME_LAST             33186 // = IDS_COLORSCHEME_XML
+#define IDS_COLORSCHEME_VHDL            33186
+#define IDS_COLORSCHEME_XML             33187
+#define ID_COLORSCHEME_LAST             33187 // = IDS_COLORSCHEME_XML
 #define ID_TOOLBAR_NONE                 33194
 #define ID_TOOLBAR_SMALL                33195
 #define ID_TOOLBAR_BIG                  33196

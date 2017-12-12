@@ -427,6 +427,9 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\verilog.cpp">
       <Filter>EditLib\parsers</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\vhdl.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\xml.cpp">
       <Filter>EditLib\parsers</Filter>
     </ClCompile>

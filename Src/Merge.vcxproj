@@ -509,6 +509,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\tex.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\UndoRecord.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\verilog.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\vhdl.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ViewableWhitespace.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\xml.cpp" />
     <ClCompile Include="7zCommon.cpp">
