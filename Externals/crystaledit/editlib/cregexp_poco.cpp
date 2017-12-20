@@ -30,7 +30,7 @@ using Poco::RegularExpression;
 using Poco::UnicodeConverter;
 
 struct _RxNode {
-	std::auto_ptr<RegularExpression> regexp;
+	std::unique_ptr<RegularExpression> regexp;
 };
 
 RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
