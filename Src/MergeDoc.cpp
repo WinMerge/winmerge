@@ -2547,7 +2547,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	}
 
 	// Bail out if either side failed
-	if (std::find_if(nSuccess, nSuccess + m_nBuffers, std::not1(std::ptr_fun(FileLoadResult::IsOk))) != nSuccess + m_nBuffers)
+	if (std::find_if(nSuccess, nSuccess + m_nBuffers, [](DWORD d){return !FileLoadResult::IsOk(d);} ) != nSuccess + m_nBuffers)
 	{
 		CChildFrame *pFrame = GetParentFrame();
 		if (pFrame)
