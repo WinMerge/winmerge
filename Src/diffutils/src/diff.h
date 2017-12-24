@@ -311,68 +311,68 @@ EXTERN FILE *outfile;
 
 /* analyze.c */
 /* WinMerge: add last two params */
-struct change * diff_2_files PARAMS((struct file_data[], int, int *, int, int*));
+struct change * diff_2_files (struct file_data[], int, int *, int, int*);
 void moved_block_analysis(struct change ** pscript, struct file_data fd[]);
 
 /* context.c */
-void print_context_header PARAMS((struct file_data[], int));
-void print_context_script PARAMS((struct change *, int));
+void print_context_header (struct file_data[], int);
+void print_context_script (struct change *, int);
 
 /* diff.c */
-int excluded_filename PARAMS((char const *));
+int excluded_filename (char const *);
 
 /* dir.c */
 //int diff_dirs (CDiffContext*);
 
 /* ed.c */
-void print_ed_script PARAMS((struct change *));
-void pr_forward_ed_script PARAMS((struct change *));
+void print_ed_script (struct change *);
+void pr_forward_ed_script (struct change *);
 
 /* ifdef.c */
-void print_ifdef_script PARAMS((struct change *));
+void print_ifdef_script (struct change *);
 
 /* io.c */
 /* WinMerge: add last pointer param */
-int read_files PARAMS((struct file_data[], int, int *));
-int sip PARAMS((struct file_data *, int));
-void slurp PARAMS((struct file_data *));
+int read_files (struct file_data[], int, int *);
+int sip (struct file_data *, int);
+void slurp (struct file_data *);
 
 /* normal.c */
-void print_normal_script PARAMS((struct change *));
+void print_normal_script (struct change *);
 
 /* rcs.c */
-void print_rcs_script PARAMS((struct change *));
+void print_rcs_script (struct change *);
 
 /* side.c */
-void print_sdiff_script PARAMS((struct change *));
+void print_sdiff_script (struct change *);
 
 /* util.c */
-void *xmalloc PARAMS((size_t));
-void *xrealloc PARAMS((void *, size_t));
-char *concat PARAMS((char const *, char const *, char const *));
-char *dir_file_pathname PARAMS((char const *, char const *));
-int change_letter PARAMS((int, int));
-int line_cmp PARAMS((char const HUGE *, size_t, char const HUGE *, size_t));
-int translate_line_number PARAMS((struct file_data const *, int));
-struct change *find_change PARAMS((struct change *));
-struct change *find_reverse_change PARAMS((struct change *));
-void analyze_hunk PARAMS((struct change *, int *, int *, int *, int *, int *, int *, const struct file_data fd[]));
-void begin_output PARAMS((void));
-void debug_script PARAMS((struct change *));
-void error PARAMS((char const *, char const *, char const *));
-void fatal PARAMS((char const *));
-void finish_output PARAMS((void));
-void message PARAMS((char const *, char const *, char const *));
-void message5 PARAMS((char const *, char const *, char const *, char const *, char const *));
-void output_1_line PARAMS((char const HUGE *, char const HUGE *, char const *, char const *));
-void perror_with_name PARAMS((char const *));
-void pfatal_with_name PARAMS((char const *));
-void print_1_line PARAMS((char const *, char const HUGE * const *));
-void print_message_queue PARAMS((void));
-void print_number_range PARAMS((int, struct file_data *, int, int));
-void print_script PARAMS((struct change *, struct change * (*) PARAMS((struct change *)), void (*) PARAMS((struct change *))));
-void setup_output PARAMS((char const *, char const *, int));
-void translate_range PARAMS((struct file_data const *, int, int, int *, int *));
+void *xmalloc (size_t);
+void *xrealloc (void *, size_t);
+char *concat (char const *, char const *, char const *);
+char *dir_file_pathname (char const *, char const *);
+int change_letter (int, int);
+int line_cmp (char const HUGE *, size_t, char const HUGE *, size_t);
+int translate_line_number (struct file_data const *, int);
+struct change *find_change (struct change *);
+struct change *find_reverse_change (struct change *);
+void analyze_hunk (struct change *, int *, int *, int *, int *, int *, int *, const struct file_data fd[]);
+void begin_output (void);
+void debug_script (struct change *);
+void error (char const *, char const *, char const *);
+void fatal (char const *);
+void finish_output (void);
+void message (char const *, char const *, char const *);
+void message5 (char const *, char const *, char const *, char const *, char const *);
+void output_1_line (char const HUGE *, char const HUGE *, char const *, char const *);
+void perror_with_name (char const *);
+void pfatal_with_name (char const *);
+void print_1_line (char const *, char const HUGE * const *);
+void print_message_queue (void);
+void print_number_range (int, struct file_data *, int, int);
+void print_script (struct change *, struct change * (*) (struct change *), void (*) (struct change *));
+void setup_output (char const *, char const *, int);
+void translate_range (struct file_data const *, int, int, int *, int *);
 void cleanup_file_buffers(struct file_data fd[]);
 int FileIsBinary(int fd);
 

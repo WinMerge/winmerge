@@ -19,14 +19,14 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 
-static struct change *find_hunk PARAMS((struct change *));
-static void find_function PARAMS((struct file_data const *, int, char const HUGE **, size_t *));
-static void mark_ignorable PARAMS((struct change *));
-static void pr_context_hunk PARAMS((struct change *));
-static void pr_unidiff_hunk PARAMS((struct change *));
-static void print_context_label PARAMS ((char const *, struct file_data *, char const *));
-static void print_context_number_range PARAMS((struct file_data const *, int, int));
-static void print_unidiff_number_range PARAMS((struct file_data const *, int, int));
+static struct change *find_hunk (struct change *);
+static void find_function (struct file_data const *, int, char const HUGE **, size_t *);
+static void mark_ignorable (struct change *);
+static void pr_context_hunk (struct change *);
+static void pr_unidiff_hunk (struct change *);
+static void print_context_label (char const *, struct file_data *, char const *);
+static void print_context_number_range (struct file_data const *, int, int);
+static void print_unidiff_number_range (struct file_data const *, int, int);
 
 /* Last place find_function started searching from.  */
 static DECL_TLS int find_function_last_search;
@@ -37,10 +37,7 @@ static DECL_TLS int find_function_last_match;
 /* Print a label for a context diff, with a file name and date or a label.  */
 
 static void
-print_context_label (mark, inf, label)
-     char const *mark;
-     struct file_data *inf;
-     char const *label;
+print_context_label(char const *mark, struct file_data *inf, char const *label)
 {
   if (label)
     fprintf (outfile, "%s %s\n", mark, label);
@@ -56,9 +53,7 @@ print_context_label (mark, inf, label)
 /* Print a header for a context diff, with the file names and dates.  */
 
 void
-print_context_header (inf, unidiff_flag)
-     struct file_data inf[];
-     int unidiff_flag;
+print_context_header(struct file_data inf[], int unidiff_flag)
 {
   if (unidiff_flag)
     {
@@ -75,9 +70,7 @@ print_context_header (inf, unidiff_flag)
 /* Print an edit script in context format.  */
 
 void
-print_context_script (script, unidiff_flag)
-     struct change *script;
-     int unidiff_flag;
+print_context_script (struct change *script, int unidiff_flag)
 {
   if (ignore_blank_lines_flag)
     mark_ignorable (script);
@@ -104,9 +97,7 @@ print_context_script (script, unidiff_flag)
    We print the translated (real) line numbers.  */
 
 static void
-print_context_number_range (file, a, b)
-     struct file_data const *file;
-     int a, b;
+print_context_number_range (struct file_data const *file, int a, int b)
 {
   int trans_a, trans_b;
   translate_range (file, a, b, &trans_a, &trans_b);
@@ -128,8 +119,7 @@ print_context_number_range (file, a, b)
    line with the appropriate flag-character.  */
 
 static void
-pr_context_hunk (hunk)
-     struct change *hunk;
+pr_context_hunk (struct change *hunk)
 {
   int first0, last0, first1, last1, show_from, show_to, i;
   struct change *next;
@@ -236,9 +226,7 @@ pr_context_hunk (hunk)
    We print the translated (real) line numbers.  */
 
 static void
-print_unidiff_number_range (file, a, b)
-     struct file_data const *file;
-     int a, b;
+print_unidiff_number_range (struct file_data const *file, int a, int b)
 {
   int trans_a, trans_b;
   translate_range (file, a, b, &trans_a, &trans_b);
@@ -260,8 +248,7 @@ print_unidiff_number_range (file, a, b)
    line with the appropriate flag-character.  */
 
 static void
-pr_unidiff_hunk (hunk)
-     struct change *hunk;
+pr_unidiff_hunk (struct change *hunk)
 {
   int first0, last0, first1, last1, show_from, show_to, i, j, k;
   struct change *next;
@@ -357,8 +344,7 @@ pr_unidiff_hunk (hunk)
    to the `struct change' for the last change before those lines.  */
 
 static struct change *
-find_hunk (start)
-     struct change *start;
+find_hunk (struct change *start)
 {
   struct change *prev;
   int top0, top1;
@@ -393,8 +379,7 @@ find_hunk (start)
    are ignorable lines.  */
 
 static void
-mark_ignorable (script)
-     struct change *script;
+mark_ignorable (struct change *script)
 {
   while (script)
     {
