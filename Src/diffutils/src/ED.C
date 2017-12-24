@@ -19,15 +19,14 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 
-static void print_ed_hunk PARAMS((struct change *));
-static void print_rcs_hunk PARAMS((struct change *));
-static void pr_forward_ed_hunk PARAMS((struct change *));
+static void print_ed_hunk (struct change *);
+static void print_rcs_hunk (struct change *);
+static void pr_forward_ed_hunk (struct change *);
 
 /* Print our script as ed commands.  */
 
 void
-print_ed_script (script)
-    struct change *script;
+print_ed_script (struct change *script)
 {
   print_script (script, find_reverse_change, print_ed_hunk);
 }
@@ -35,8 +34,7 @@ print_ed_script (script)
 /* Print a hunk of an ed diff */
 
 static void
-print_ed_hunk (hunk)
-     struct change *hunk; 
+print_ed_hunk (struct change *hunk)
 {
   int f0, l0, f1, l1;
   int deletes, inserts;
@@ -103,15 +101,13 @@ print_ed_hunk (hunk)
    which means that the commands are not truly useful with ed.  */
 
 void
-pr_forward_ed_script (script)
-     struct change *script;
+pr_forward_ed_script (struct change *script)
 {
   print_script (script, find_change, pr_forward_ed_hunk);
 }
 
 static void
-pr_forward_ed_hunk (hunk)
-     struct change *hunk;
+pr_forward_ed_hunk (struct change *hunk)
 {
   int i;
   int f0, l0, f1, l1;
@@ -147,8 +143,7 @@ pr_forward_ed_hunk (hunk)
    This format is used for RCS.  */
 
 void
-print_rcs_script (script)
-     struct change *script;
+print_rcs_script (struct change *script)
 {
   print_script (script, find_change, print_rcs_hunk);
 }
@@ -156,8 +151,7 @@ print_rcs_script (script)
 /* Print a hunk of an RCS diff */
 
 static void
-print_rcs_hunk (hunk)
-     struct change *hunk;
+print_rcs_hunk (struct change *hunk)
 {
   int i;
   int f0, l0, f1, l1;
