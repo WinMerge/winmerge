@@ -21,11 +21,11 @@ and this notice must be preserved on all copies.  */
 
 #include "diff.h"
 
-static unsigned print_half_line PARAMS((char const HUGE * const *, unsigned, unsigned));
-static unsigned tab_from_to PARAMS((unsigned, unsigned));
-static void print_1sdiff_line PARAMS((char const HUGE * const *, int, char const HUGE * const *));
-static void print_sdiff_common_lines PARAMS((int, int));
-static void print_sdiff_hunk PARAMS((struct change *));
+static unsigned print_half_line (char const * const *, unsigned, unsigned);
+static unsigned tab_from_to (unsigned, unsigned);
+static void print_1sdiff_line (char const * const *, int, char const * const *);
+static void print_sdiff_common_lines (int, int);
+static void print_sdiff_hunk (struct change *);
 
 /* Next line number to be printed in the two input files.  */
 static DECL_TLS int next0, next1;
@@ -33,8 +33,7 @@ static DECL_TLS int next0, next1;
 /* Print the edit-script SCRIPT as a sdiff style output.  */
 
 void
-print_sdiff_script (script)
-     struct change *script;
+print_sdiff_script (struct change *script)
 {
   begin_output ();
 
@@ -47,8 +46,7 @@ print_sdiff_script (script)
 /* Tab from column FROM to column TO, where FROM <= TO.  Yield TO.  */
 
 static unsigned
-tab_from_to (from, to)
-     unsigned from, to;
+tab_from_to (unsigned from, unsigned to)
 {
   FILE *out = outfile;
   unsigned tab;
@@ -70,9 +68,7 @@ tab_from_to (from, to)
  * written (not the number of chars).
  */
 static unsigned
-print_half_line (line, indent, out_bound)
-     char const HUGE * const *line;
-     unsigned indent, out_bound;
+print_half_line (char const * const *line, unsigned indent, unsigned out_bound)
 {
   FILE *out = outfile;
   register unsigned in_position = 0, out_position = 0;
@@ -165,10 +161,7 @@ print_half_line (line, indent, out_bound)
  */
 
 static void
-print_1sdiff_line (left, sep, right)
-     char const HUGE * const *left;
-     int sep;
-     char const HUGE * const *right;
+print_1sdiff_line (char const HUGE * const *left, int sep, char const HUGE * const *right)
 {
   FILE *out = outfile;
   unsigned hw = sdiff_half_width, c2o = sdiff_column2_offset;
@@ -207,8 +200,7 @@ print_1sdiff_line (left, sep, right)
 
 /* Print lines common to both files in side-by-side format.  */
 static void
-print_sdiff_common_lines (limit0, limit1)
-     int limit0, limit1;
+print_sdiff_common_lines (int limit0, int limit1)
 {
   int i0 = next0, i1 = next1;
 
@@ -237,8 +229,7 @@ print_sdiff_common_lines (limit0, limit1)
    describing changes in consecutive lines.  */
 
 static void
-print_sdiff_hunk (hunk)
-     struct change *hunk;
+print_sdiff_hunk (struct change *hunk)
 {
   int first0, last0, first1, last1, deletes, inserts;
   register int i, j;

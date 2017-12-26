@@ -31,13 +31,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#if __STDC__ || defined(__MSDOS__) || defined(__NT__) || defined(WIN32) || defined(WIN64)
-#define PARAMS(args) args
-#else
-#define PARAMS(args) ()
-#define void char
-#endif
-
 #if STAT_MACROS_BROKEN
 #undef S_ISBLK
 #undef S_ISCHR

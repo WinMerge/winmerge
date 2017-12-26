@@ -18,9 +18,7 @@ along with GNU DIFF; see the file COPYING.  If not, write to
 the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
-#ifdef _WIN32
-#  include <io.h>
-#endif
+#include <io.h>
 #include <cassert>
 
 /* Rotate a value n bits to the left. */
@@ -77,9 +75,9 @@ static DECL_TLS int equivs_index;
 /* Number of elements allocated in the array `equivs'.  */
 static DECL_TLS int equivs_alloc;
 
-static void find_and_hash_each_line PARAMS((struct file_data *));
-static void find_identical_ends PARAMS((struct file_data[]));
-static char *prepare_text_end PARAMS((struct file_data *, short));
+static void find_and_hash_each_line (struct file_data *);
+static void find_identical_ends (struct file_data[]);
+static char *prepare_text_end (struct file_data *, short);
 static enum UNICODESET get_unicode_signature(struct file_data *, unsigned *bom);
 
 /* Check for binary files and compare them for exact identity.  */
@@ -139,9 +137,7 @@ static enum UNICODESET get_unicode_signature(struct file_data *current, unsigned
    and if it appears to be a binary file.  */
 
 int
-sip (current, skip_test)
-     struct file_data *current;
-     int skip_test;
+sip (struct file_data *current, int skip_test)
 {
   int isbinary = 0;
   /* If we have a nonexistent file (or NUL: device) at this stage, treat it as empty.  */
@@ -184,8 +180,7 @@ sip (current, skip_test)
 /* Slurp the rest of the current file completely into memory.  */
 
 void
-slurp (current)
-     struct file_data *current;
+slurp (struct file_data *current)
 {
   size_t cc;
 
@@ -262,8 +257,7 @@ ISWSPACE (char ch)
 /* Split the file into lines, simultaneously computing the equivalence class for
    each line. */
 static void
-find_and_hash_each_line (current)
-     struct file_data *current;
+find_and_hash_each_line (struct file_data *current)
 {
   unsigned h;
   unsigned char const HUGE *p = (unsigned char const HUGE *) current->prefix_end;
@@ -479,9 +473,7 @@ hashing_done:;
    Return effective start of text to be compared. */
 
 static char *
-prepare_text_end (current, side)
-     struct file_data *current;
-	 short side;
+prepare_text_end (struct file_data *current, short side)
 {
   FSIZE buffered_chars = current->buffered_chars;
   char *const p = current->buffer;
@@ -710,8 +702,7 @@ prepare_text_end (current, side)
    prefixes and suffixes of each object. */
 
 static void
-find_identical_ends (filevec)
-     struct file_data filevec[];
+find_identical_ends (struct file_data filevec[])
 {
   word HUGE *w0, HUGE *w1;
   char HUGE *p0, HUGE *p1, HUGE *buffer0, HUGE *buffer1;
@@ -991,10 +982,7 @@ static int const primes[] =
    If bin_file is given, then check both files for binary files,
    otherwise check second file only if first wasn't binary */
 int
-read_files (filevec, pretend_binary, bin_file)
-     struct file_data filevec[];
-     int pretend_binary;
-     int * bin_file;
+read_files (struct file_data filevec[], int pretend_binary, int *bin_file)
 {
   int i;
   int skip_test = always_text_flag | pretend_binary;
