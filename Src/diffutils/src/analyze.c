@@ -61,14 +61,14 @@ struct partition
   int hi_minimal;	/* Likewise for high half.  */
 };
 
-static int diag PARAMS((int, int, int, int, int, struct partition *));
-static struct change *add_change PARAMS((int, int, int, int, struct change *));
-static struct change *build_reverse_script PARAMS((struct file_data const[]));
-static struct change *build_script PARAMS((struct file_data const[]));
-static void briefly_report PARAMS((int, struct file_data const[]));
-static void compareseq PARAMS((int, int, int, int, int));
-static void discard_confusing_lines PARAMS((struct file_data[]));
-static void shift_boundaries PARAMS((struct file_data[]));
+static int diag (int, int, int, int, int, struct partition *);
+static struct change *add_change (int, int, int, int, struct change *);
+static struct change *build_reverse_script (struct file_data const[]);
+static struct change *build_script (struct file_data const[]);
+static void briefly_report (int, struct file_data const[]);
+static void compareseq (int, int, int, int, int);
+static void discard_confusing_lines (struct file_data[]);
+static void shift_boundaries (struct file_data[]);
 
 /* Find the midpoint of the shortest edit script for a specified
    portion of the two files.
@@ -102,9 +102,7 @@ static void shift_boundaries PARAMS((struct file_data[]));
    It cannot cause incorrect diff output.  */
 
 static int
-diag (xoff, xlim, yoff, ylim, minimal, part)
-     int xoff, xlim, yoff, ylim, minimal;
-     struct partition *part;
+diag (int xoff, int xlim, int yoff, int ylim, int minimal, struct partition *part)
 {
   int *const fd = fdiag;	/* Give the compiler a chance. */
   int *const bd = bdiag;	/* Additional help for the compiler. */
@@ -342,8 +340,7 @@ diag (xoff, xlim, yoff, ylim, minimal, part)
    expensive it is.  */
 
 static void
-compareseq (xoff, xlim, yoff, ylim, minimal)
-     int xoff, xlim, yoff, ylim, minimal;
+compareseq (int xoff, int xlim, int yoff, int ylim, int minimal)
 {
   int * const xv = xvec; /* Help the compiler.  */
   int * const yv = yvec;
@@ -731,9 +728,7 @@ shift_boundaries (struct file_data filevec[])
    which the insertion was done; vice versa for INSERTED and LINE1.  */
 
 static struct change *
-add_change (line0, line1, deleted, inserted, old)
-     int line0, line1, deleted, inserted;
-     struct change *old;
+add_change (int line0, int line1, int deleted, int inserted, struct change *old)
 {
   struct change *newob = (struct change *) xmalloc (sizeof (struct change));
   memset(newob, 0, sizeof(*newob));
@@ -752,8 +747,7 @@ add_change (line0, line1, deleted, inserted, old)
    producing an edit script in reverse order.  */
 
 static struct change *
-build_reverse_script (filevec)
-     struct file_data const filevec[];
+build_reverse_script (struct file_data const filevec[])
 {
   struct change *script = 0;
   char *changed0 = filevec[0].changed_flag;
@@ -790,8 +784,7 @@ build_reverse_script (filevec)
    producing an edit script in forward order.  */
 
 static struct change *
-build_script (filevec)
-     struct file_data const filevec[];
+build_script (struct file_data const filevec[])
 {
   struct change *script = 0;
   char *changed0 = filevec[0].changed_flag;
@@ -823,9 +816,7 @@ build_script (filevec)
 
 /* If CHANGES, briefly report that two files differed.  */
 static void
-briefly_report (changes, filevec)
-     int changes;
-     struct file_data const filevec[];
+briefly_report (int changes, struct file_data const filevec[])
 {
   if (changes)
     message (no_details_flag ? "Files %s and %s differ\n"
