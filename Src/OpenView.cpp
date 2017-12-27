@@ -744,8 +744,10 @@ void COpenView::OnSelchangeCombo(int index)
 	int sel = m_ctlPath[index].GetCurSel();
 	if (sel != CB_ERR)
 	{
-		m_ctlPath[index].GetLBText(sel, PopString(m_strPath[index]));
-		m_ctlPath[index].SetWindowText(m_strPath[index].c_str());
+		CString cstrPath;
+		m_ctlPath[index].GetLBText(sel, cstrPath);
+		m_strPath[index] = cstrPath;
+		m_ctlPath[index].SetWindowText(cstrPath);
 		UpdateData(TRUE);
 	}
 	UpdateButtonStates();
