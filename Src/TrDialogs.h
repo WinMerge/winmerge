@@ -23,7 +23,10 @@ public:
 
 	unsigned GetDlgItemText(unsigned id, String& text)
 	{
-		return dlg()->GetDlgItemTextW(id, PopString(text));
+		CString cstrText = text.c_str();
+		unsigned uResult = dlg()->GetDlgItemTextW(id, cstrText);
+		text = cstrText;
+		return uResult;
 	}
 
 	void SetDlgItemText(unsigned id, const String& text)
