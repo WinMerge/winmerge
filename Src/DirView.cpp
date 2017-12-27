@@ -1657,7 +1657,8 @@ void CDirView::DoOpen(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
 	if (sel == -1) return;
-	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
+	DirItemIterator dirBegin = SelBegin();
+	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
 	HINSTANCE rtn = ShellExecute(::GetDesktopWindow(), _T("edit"), file.c_str(), 0, 0, SW_SHOWNORMAL);
 	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
@@ -1671,7 +1672,8 @@ void CDirView::DoOpenWith(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
 	if (sel == -1) return;
-	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
+	DirItemIterator dirBegin = SelBegin();
+	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
 	CString sysdir;
 	if (!GetSystemDirectory(sysdir.GetBuffer(MAX_PATH), MAX_PATH)) return;
@@ -1685,7 +1687,8 @@ void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
 	if (sel == -1) return;
-	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
+	DirItemIterator dirBegin = SelBegin();
+	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
 
 	theApp.OpenFileToExternalEditor(file);
@@ -1695,7 +1698,8 @@ void CDirView::DoOpenParentFolder(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
 	if (sel == -1) return;
-	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
+	DirItemIterator dirBegin = SelBegin();
+	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
 	String parentFolder = paths::GetParentPath(file);
 	ShellExecute(::GetDesktopWindow(), _T("open"), parentFolder.c_str(), 0, 0, SW_SHOWNORMAL);
@@ -3060,7 +3064,8 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		if (!sText.IsEmpty())
 		{
 			try {
-				*pResult = DoItemRename(SelBegin(), GetDiffContext(), String(sText));
+				DirItemIterator dirBegin = SelBegin();
+				*pResult = DoItemRename(dirBegin, GetDiffContext(), String(sText));
 			} catch (ContentsChangedException& e) {
 				AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 			}
