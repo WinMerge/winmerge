@@ -302,7 +302,7 @@
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..\Externals\gtest;..\Externals\gtest\include;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -415,7 +415,7 @@
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..\Externals\gtest;..\Externals\gtest\include;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>

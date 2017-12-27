@@ -49,7 +49,7 @@ namespace
 	TEST_F(PluginsTest, Unpack)
 	{
 		String oldModulePath = env::GetProgPath();
-		env::SetProgPath(_T("c:/program files (x86)/winmerge"));
+		env::SetProgPath(_T("c:/Program Files/WinMerge"));
 		CAssureScriptsForThread asft;
 		PackingInfo *iu = NULL;
 		PrediffingInfo *ip = NULL;
