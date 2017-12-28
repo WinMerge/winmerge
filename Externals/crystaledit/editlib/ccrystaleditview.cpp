@@ -1723,7 +1723,7 @@ OnUpdateEditUndo (CCmdUI * pCmdUI)
           //  Format menu item text using the provided item description
           CString desc;
           m_pTextBuffer->GetUndoDescription (desc);
-          menu.Format (IDS_MENU_UNDO_FORMAT, desc);
+          menu.Format (IDS_MENU_UNDO_FORMAT, (LPCTSTR)desc);
         }
       else
         {
@@ -1815,7 +1815,7 @@ OnUpdateEditRedo (CCmdUI * pCmdUI)
           //  Format menu item text using the provided item description
           CString desc;
           m_pTextBuffer->GetRedoDescription (desc);
-          menu.Format (IDS_MENU_REDO_FORMAT, desc);
+          menu.Format (IDS_MENU_REDO_FORMAT, (LPCTSTR)desc);
         }
       else
         {
