@@ -524,9 +524,11 @@ void COpenView::OnOK()
 	if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK))
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
+	PathContext tmpPathContext(pDoc->m_files);
+	PackingInfo tmpPackingInfo(pDoc->m_infoHandler);
 	GetMainFrame()->DoFileOpen(
-		&PathContext(pDoc->m_files), std::array<DWORD, 3>(pDoc->m_dwFlags).data(), 
-		NULL, _T(""), !!pDoc->m_bRecurse, NULL, _T(""), &PackingInfo(pDoc->m_infoHandler));
+		&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(), 
+		NULL, _T(""), !!pDoc->m_bRecurse, NULL, _T(""), &tmpPackingInfo);
 }
 
 /** 

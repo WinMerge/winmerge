@@ -524,8 +524,8 @@ bool DirItemEnumerator::MultiStepCompressArchive(LPCTSTR path)
 		bool bDone = MultiStepCompressArchive(pathIntermediate);
 		if (bDone)
 		{
-			piHandler->CompressArchive(hwndOwner, path,
-				&SingleItemEnumerator(path, pathIntermediate));
+			SingleItemEnumerator tmpEnumerator(path, pathIntermediate);
+			piHandler->CompressArchive(hwndOwner, path, &tmpEnumerator);
 			DeleteFile(pathIntermediate);
 		}
 		else
