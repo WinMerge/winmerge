@@ -624,7 +624,8 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 		USES_CONVERSION;
 		// Handle archives using 7-zip
 		Merge7z::Format *piHandler;
-		if (piHandler = ArchiveGuessFormat(res.files[0]))
+		piHandler = ArchiveGuessFormat(res.files[0]);
+		if (piHandler)
 		{
 			res.pTempPathContext = new CTempPathContext;
 			path = env::GetTempChildPath();
@@ -645,10 +646,13 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				SysFreeString(pTmp);
 				res.files[0].insert(0, _T("\\"));
 				res.files[0].insert(0, path);
-			} while (piHandler = ArchiveGuessFormat(res.files[0]));
+				piHandler = ArchiveGuessFormat(res.files[0]);
+			} while (piHandler);
 			res.files[0] = path;
 		}
-		if (!res.files[1].empty() && (piHandler = ArchiveGuessFormat(res.files[1])))
+		piHandler = res.files[1].empty() ? nullptr
+										 : ArchiveGuessFormat(res.files[1]);
+		if (piHandler)
 		{
 			if (!res.pTempPathContext)
 			{
@@ -670,10 +674,12 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				SysFreeString(pTmp);
 				res.files[1].insert(0, _T("\\"));
 				res.files[1].insert(0, path);
-			} while (piHandler = ArchiveGuessFormat(res.files[1]));
+				piHandler = ArchiveGuessFormat(res.files[1]);
+			} while (piHandler);
 			res.files[1] = path;
 		}
-		if (res.files.GetSize() > 2 && (piHandler = ArchiveGuessFormat(res.files[2])))
+		piHandler = (res.files.GetSize() <= 2) ? nullptr : ArchiveGuessFormat(res.files[2]);
+		if (piHandler)
 		{
 			if (!res.pTempPathContext)
 			{
@@ -695,7 +701,8 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				SysFreeString(pTmp);
 				res.files[2].insert(0, _T("\\"));
 				res.files[2].insert(0, path);
-			} while (piHandler = ArchiveGuessFormat(res.files[2]));
+				piHandler = ArchiveGuessFormat(res.files[2]);
+			} while (piHandler);
 			res.files[2] = path;
 		}
 		if (res.files[1].empty())
