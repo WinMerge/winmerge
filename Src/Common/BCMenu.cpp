@@ -399,7 +399,8 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 			}
 			else{
 				if(state&ODS_CHECKED){
-					pDC->FillRect(rect2,&CBrush(LightenColor(clrBack,0.6)));
+					CBrush cbTemp = LightenColor(clrBack, 0.6);
+					pDC->FillRect(rect2,&cbTemp);
 					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
                         rect.top+m_iconY+4+dy);
 					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
@@ -1668,7 +1669,8 @@ void BCMenu::GetTransparentBitmap(CBitmap &bmp)
 	col=RGB(255,0,255); // Original was RGB(192,192,192)
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
-	ddc2.FillRect(rect,&CBrush(col));
+	CBrush cbTemp = col;
+	ddc2.FillRect(rect, &cbTemp);
 	ddc2.SelectObject(pddcOldBmp2);
 	newcol=GetSysColor(COLOR_3DFACE);
 
@@ -1708,7 +1710,8 @@ void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
-	ddc2.FillRect(rect,&CBrush(GetSysColor(COLOR_3DFACE)));
+	CBrush cbTemp = GetSysColor(COLOR_3DFACE);
+	ddc2.FillRect(rect, &cbTemp);
 	ddc2.SelectObject(pddcOldBmp2);
 	discol=GetSysColor(COLOR_BTNSHADOW);
 
@@ -1793,7 +1796,8 @@ BOOL BCMenu::Draw3DCheckmark(CDC *dc, const CRect& rc,
 	CRect rcDest = rc;
 	COLORREF col=GetSysColor(COLOR_MENU);
 	if(!bSelected)col = LightenColor(col,0.6);
-	dc->FillRect(rcDest,&CBrush(col));
+	CBrush cbTemp = col;
+	dc->FillRect(rcDest, &cbTemp);
 	dc->DrawEdge(&rcDest, BDR_SUNKENOUTER, BF_RECT);
 	if (!hbmCheck)DrawCheckMark(dc,rc.left+4,rc.top+4,GetSysColor(COLOR_MENUTEXT));
 	else DrawRadioDot(dc,rc.left+5,rc.top+4,GetSysColor(COLOR_MENUTEXT));

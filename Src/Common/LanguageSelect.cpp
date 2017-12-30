@@ -1041,10 +1041,9 @@ std::vector<std::pair<LANGID, String> > CLanguageSelect::GetAvailableLanguages()
 	HANDLE h = INVALID_HANDLE_VALUE;
 	do
 	{
-		LangFileInfo &lfi =
-			h == INVALID_HANDLE_VALUE
-		?	LangFileInfo(wSourceLangId)
-		:	LangFileInfo(paths::ConcatPath(path, ff.cFileName).c_str());
+		LangFileInfo lfi(wSourceLangId);
+		if (h != INVALID_HANDLE_VALUE)
+			lfi = LangFileInfo(paths::ConcatPath(path, ff.cFileName).c_str());
 		String str;
 		str += lfi.GetString(LOCALE_SLANGUAGE);
 		str += _T(" - ");

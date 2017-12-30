@@ -5361,7 +5361,7 @@ OnEditRepeat ()
             (m_dwLastSearchFlags & FIND_NO_WRAP) == 0, &ptFoundPos))
         {
           CString prompt;
-          prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), sText);
+          prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), (LPCTSTR)sText);
           AfxMessageBox (prompt, MB_ICONINFORMATION);
           return;
         }
@@ -6372,7 +6372,7 @@ void CCrystalTextView::OnUpdateStatusMessage( CStatusBar *pStatusBar )
     formatid = IDS_FIND_INCREMENTAL_BACKWARD;
   else
     return;
-  strFormat.Format( LoadResString(formatid).c_str(), *m_pstrIncrementalSearchString );
+  strFormat.Format( LoadResString(formatid).c_str(), (LPCTSTR)*m_pstrIncrementalSearchString );
 
   pStatusBar->SetPaneText( 0, strFormat );
   bUpdatedAtLastCall = false;

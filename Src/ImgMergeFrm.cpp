@@ -1114,19 +1114,22 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 	{
 		if (bLModified && dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
 		{
-			if (!(bLSaveSuccess = DoFileSave(0)))
+			bLSaveSuccess = DoFileSave(0);
+			if (!bLSaveSuccess)
 				result = false;
 		}
 
 		if (bMModified && dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
 		{
-			if (!(bMSaveSuccess = DoFileSave(1)))
+			bMSaveSuccess = DoFileSave(1);
+			if (!bMSaveSuccess)
 				result = false;
 		}
 
 		if (bRModified && dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
 		{
-			if (!(bRSaveSuccess = DoFileSave(m_pImgMergeWindow->GetPaneCount() - 1)))
+			bRSaveSuccess = DoFileSave(m_pImgMergeWindow->GetPaneCount() - 1);
+			if (!bRSaveSuccess)
 				result = false;
 		}
 	}
