@@ -3177,8 +3177,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 
 	file.SetCodepage(ucr::CP_UTF_8);
 
-	String header = 
-		strutils::format(
+	CString headerText =
 		_T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n")
 		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
 		_T("<html>\n")
@@ -3200,8 +3199,9 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("<div class=\"border\">")
 		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width: 100%%; margin: 0; border: none;\">\n")
 		_T("<thead>\n")
-		_T("<tr>\n"),
-		nFontSize, m_pView[0]->GetHTMLStyles());
+		_T("<tr>\n");
+	String header = 
+		strutils::format((LPCTSTR)headerText, nFontSize, (LPCTSTR)m_pView[0]->GetHTMLStyles());
 	file.WriteString(header);
 
 	// Get paths

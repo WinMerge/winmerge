@@ -2300,8 +2300,8 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Theirs File"),
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
-			conflictCompared = DoFileOpen(&PathContext(revFile, workFile), 
-						dwFlags, strDesc2);
+			PathContext tmpPathContext(revFile, workFile);
+			conflictCompared = DoFileOpen(&tmpPathContext, dwFlags, strDesc2);
 		}
 		else
 		{
@@ -2309,9 +2309,9 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Base File"),
 				(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("Theirs File"),
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
+			PathContext tmpPathContext(baseFile, revFile, workFile);
 			DWORD dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
-			conflictCompared = DoFileOpen(&PathContext(baseFile, revFile, workFile), 
-						dwFlags, strDesc3);
+			conflictCompared = DoFileOpen(&tmpPathContext, dwFlags, strDesc3);
 		}
 	}
 	else

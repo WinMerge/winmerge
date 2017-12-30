@@ -524,9 +524,11 @@ void COpenView::OnOK()
 	if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK))
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
+	PathContext tmpPathContext(pDoc->m_files);
+	PackingInfo tmpPackingInfo(pDoc->m_infoHandler);
 	GetMainFrame()->DoFileOpen(
-		&PathContext(pDoc->m_files), std::array<DWORD, 3>(pDoc->m_dwFlags).data(), 
-		NULL, _T(""), !!pDoc->m_bRecurse, NULL, _T(""), &PackingInfo(pDoc->m_infoHandler));
+		&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(), 
+		NULL, _T(""), !!pDoc->m_bRecurse, NULL, _T(""), &tmpPackingInfo);
 }
 
 /** 
@@ -744,8 +746,10 @@ void COpenView::OnSelchangeCombo(int index)
 	int sel = m_ctlPath[index].GetCurSel();
 	if (sel != CB_ERR)
 	{
-		m_ctlPath[index].GetLBText(sel, PopString(m_strPath[index]));
-		m_ctlPath[index].SetWindowText(m_strPath[index].c_str());
+		CString cstrPath;
+		m_ctlPath[index].GetLBText(sel, cstrPath);
+		m_strPath[index] = cstrPath;
+		m_ctlPath[index].SetWindowText(cstrPath);
 		UpdateData(TRUE);
 	}
 	UpdateButtonStates();

@@ -3263,7 +3263,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 		CString sSpaces(' ', static_cast<int>(nNumWidth - strutils::to_str(line + 1).length()));
 		
 		strText += sSpaces;
-		strNumLine.Format(_T("%d: %s"), line + 1, strLine);
+		strNumLine.Format(_T("%d: %s"), line + 1, (LPCTSTR)strLine);
 		strText += strNumLine;
  	}
 	PutToClipboard(strText, strText.GetLength(), m_bColumnSelection);

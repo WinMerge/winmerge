@@ -85,7 +85,7 @@ CString CCrystalTextMarkers::Serialize() const
 		if (marker.second.bUserDefined)
 		{
 			text.AppendFormat(_T("%s:%s\t%d\t%d\t%d\t%d\n"),
-				marker.first, marker.second.sFindWhat, 
+				(LPCTSTR)marker.first, (LPCTSTR)marker.second.sFindWhat, 
 				marker.second.dwFlags, marker.second.nBgColorIndex,
 				marker.second.bUserDefined, marker.second.bVisible);
 		}
