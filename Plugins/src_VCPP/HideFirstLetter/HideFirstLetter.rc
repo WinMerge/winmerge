@@ -54,8 +54,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,2,2
- PRODUCTVERSION 1,0,2,2
+ FILEVERSION 1,0,2,3
+ PRODUCTVERSION 1,0,2,3
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -72,12 +72,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "HideFirstLetter Module\0"
-            VALUE "FileVersion", "1, 0, 2, 2\0"
+            VALUE "FileVersion", "1, 0, 2, 3\0"
             VALUE "InternalName", "HideFirstLetter\0"
-            VALUE "LegalCopyright", "Copyright 2003-2015\0"
+            VALUE "LegalCopyright", "Copyright 2003-2018\0"
             VALUE "OriginalFilename", "HideFirstLetter.DLL\0"
             VALUE "ProductName", "HideFirstLetter Module\0"
-            VALUE "ProductVersion", "1, 0, 2, 2\0"
+            VALUE "ProductVersion", "1, 0, 2, 3\0"
             VALUE "OLESelfRegister", "\0"
         END
     END
