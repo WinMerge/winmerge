@@ -79,7 +79,8 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		struct change *script = NULL;
 		struct change *script10 = NULL;
 		struct change *script12 = NULL;
-		FolderCmp diffdata10, diffdata12;
+		struct change *script02 = NULL;
+		FolderCmp diffdata10, diffdata12, diffdata02;
 		String filepathUnpacked[3];
 		String filepathTransformed[3];
 		int codepage = 0;
@@ -156,12 +157,15 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		{
 			diffdata10.m_diffFileData.SetDisplayFilepaths(files[1], files[0]); // store true names for diff utils patch file
 			diffdata12.m_diffFileData.SetDisplayFilepaths(files[1], files[2]); // store true names for diff utils patch file
+			diffdata02.m_diffFileData.SetDisplayFilepaths(files[0], files[2]); // store true names for diff utils patch file
 
 			if (!diffdata10.m_diffFileData.OpenFiles(filepathTransformed[1], filepathTransformed[0]))
 				goto exitPrepAndCompare;
 
-
 			if (!diffdata12.m_diffFileData.OpenFiles(filepathTransformed[1], filepathTransformed[2]))
+				goto exitPrepAndCompare;
+
+			if (!diffdata02.m_diffFileData.OpenFiles(filepathTransformed[0], filepathTransformed[2]))
 				goto exitPrepAndCompare;
 		}
 
@@ -223,7 +227,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					m_pDiffUtilsEngine->SetFilterCommentsManager(pCtxt->m_pFilterCommentsManager);
 
 					bool bRet;
-					int bin_flag10 = 0, bin_flag12 = 0;
+					int bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
 
 					m_pDiffUtilsEngine->SetFileData(2, diffdata10.m_diffFileData.m_inf);
 					bRet = m_pDiffUtilsEngine->Diff2Files(&script10, 0, &bin_flag10, false, NULL);
@@ -233,6 +237,11 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					m_pDiffUtilsEngine->SetFileData(2, diffdata12.m_diffFileData.m_inf);
 					bRet = m_pDiffUtilsEngine->Diff2Files(&script12, 0, &bin_flag12, false, NULL);
 					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
+					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
+
+					m_pDiffUtilsEngine->SetFileData(2, diffdata02.m_diffFileData.m_inf);
+					bRet = m_pDiffUtilsEngine->Diff2Files(&script02, 0, &bin_flag02, false, NULL);
+					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[0]);
 					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
 
 					code = DIFFCODE::FILE;
@@ -258,6 +267,28 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					else
 						code |= DIFFCODE::TEXT;
 
+					if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
+					{
+						if ((code & DIFFCODE::TEXTFLAGS) == DIFFCODE::TEXT)
+						{
+							if (!script12)
+								code |= DIFFCODE::DIFF1STONLY;
+							else if (!script02)
+								code |= DIFFCODE::DIFF2NDONLY;
+							else if (!script10)
+								code |= DIFFCODE::DIFF3RDONLY;
+						}
+						else
+						{
+							if (bin_flag12 > 0)
+								code |= DIFFCODE::DIFF1STONLY;
+							else if (bin_flag02 > 0)
+								code |= DIFFCODE::DIFF2NDONLY;
+							else if (bin_flag10 > 0)
+								code |= DIFFCODE::DIFF3RDONLY;
+						}
+					}
+
 					// If unique item, it was being compared to itself to determine encoding
 					// and the #diffs is invalid
 					if (di.diffcode.isSideFirstOnly() || di.diffcode.isSideSecondOnly() || di.diffcode.isSideThirdOnly())
@@ -266,7 +297,9 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 						m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN;
 					}
 
-					dw.FreeDiffUtilsScript3(script10, script12);
+					dw.FreeDiffUtilsScript(script10);
+					dw.FreeDiffUtilsScript(script12);
+					dw.FreeDiffUtilsScript(script02);
 				}
 				else
 					code = DIFFCODE::FILE | DIFFCODE::CMPERR;
@@ -318,26 +351,35 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 					// 10
 					m_pByteCompare->SetFileData(2, diffdata10.m_diffFileData.m_inf);
-	
+
 					// use our own byte-by-byte compare
 					int code10 = m_pByteCompare->CompareFiles(diffdata10.m_diffFileData.m_FileLocation);
-	
+
 					m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[1]);
 					m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[0]);
 
 					// 12
 					m_pByteCompare->SetFileData(2, diffdata12.m_diffFileData.m_inf);
-	
+
 					// use our own byte-by-byte compare
 					int code12 = m_pByteCompare->CompareFiles(diffdata12.m_diffFileData.m_FileLocation);
-	
+
 					m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[1]);
 					m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[2]);
 
+					// 02
+					m_pByteCompare->SetFileData(2, diffdata02.m_diffFileData.m_inf);
+
+					// use our own byte-by-byte compare
+					int code02 = m_pByteCompare->CompareFiles(diffdata02.m_diffFileData.m_FileLocation);
+
+					m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[0]);
+					m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[2]);
+
 					code = DIFFCODE::FILE;
-					if (DIFFCODE::isResultError(code10) || DIFFCODE::isResultError(code12))
+					if (DIFFCODE::isResultError(code10) || DIFFCODE::isResultError(code12) || DIFFCODE::isResultError(code02))
 						code |= DIFFCODE::CMPERR;
-					if (code10 & DIFFCODE::DIFF || code12 & DIFFCODE::DIFF)
+					if ((code10 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF || (code12 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
 						code |= DIFFCODE::DIFF;
 					else
 						code |= DIFFCODE::SAME;
@@ -345,6 +387,16 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 						code |= DIFFCODE::BIN;
 					else
 						code |= DIFFCODE::TEXT;
+
+					if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
+					{
+						if ((code12 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME)
+							code |= DIFFCODE::DIFF1STONLY;
+						else if ((code02 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME)
+							code |= DIFFCODE::DIFF2NDONLY;
+						else if ((code10 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME)
+							code |= DIFFCODE::DIFF3RDONLY;
+					}
 				}
 				else
 					code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
@@ -359,6 +411,7 @@ exitPrepAndCompare:
 		m_diffFileData.Reset();
 		diffdata10.m_diffFileData.Reset();
 		diffdata12.m_diffFileData.Reset();
+		diffdata02.m_diffFileData.Reset();
 		
 		// delete the temp files after comparison
 		if (filepathTransformed[0] != filepathUnpacked[0])

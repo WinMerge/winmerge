@@ -2319,6 +2319,9 @@ BEGIN
     IDS_DIFFERENT           "Different"
     IDS_CMPRES_ERROR        "Error"
     IDS_TEXT_FILES_SAME     "Text files are identical"
+    IDS_LEFTONLY_DIFF       "(Middle and right are identical)"
+    IDS_MIDDLEONLY_DIFF     "(Left and right are identical)"
+    IDS_RIGHTONLY_DIFF      "(Left and middle are identical)"
 END
 
 STRINGTABLE

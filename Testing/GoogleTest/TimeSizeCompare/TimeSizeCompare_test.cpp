@@ -92,16 +92,21 @@ namespace
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 0;
-		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_SIZE, 3, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY, tsc.CompareFiles(CMP_SIZE, 3, di));
 	
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 0;
 		di.diffFileInfo[2].size = 1;
-		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_SIZE, 3, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY, tsc.CompareFiles(CMP_SIZE, 3, di));
 	
 		di.diffFileInfo[0].size = 0;
-		di.diffFileInfo[1].size = 0;
+		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 1;
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, tsc.CompareFiles(CMP_SIZE, 3, di));
+	
+		di.diffFileInfo[0].size = 0;
+		di.diffFileInfo[1].size = 1;
+		di.diffFileInfo[2].size = 2;
 		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_SIZE, 3, di));
 	}
 
@@ -188,25 +193,25 @@ namespace
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime + 1;
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime;
 		tsc.SetAdditionalOptions(false);
-		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_DATE, 3, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY, tsc.CompareFiles(CMP_DATE, 3, di));
 	
 		di.diffFileInfo[0].mtime = Poco::Timestamp();
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime;
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime + 1;
 		tsc.SetAdditionalOptions(false);
-		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_DATE, 3, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY, tsc.CompareFiles(CMP_DATE, 3, di));
+	
+		di.diffFileInfo[0].mtime = Poco::Timestamp();
+		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime + 1;
+		di.diffFileInfo[2].mtime = di.diffFileInfo[1].mtime;
+		tsc.SetAdditionalOptions(false);
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, tsc.CompareFiles(CMP_DATE, 3, di));
 	
 		di.diffFileInfo[0].mtime = Poco::Timestamp();
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime + (Poco::Timestamp::resolution() * CompareEngines::TimeSizeCompare::SmallTimeDiff + 1);
-		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime;
+		di.diffFileInfo[2].mtime = di.diffFileInfo[1].mtime;
 		tsc.SetAdditionalOptions(true);
-		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_DATE, 3, di));
-	
-		di.diffFileInfo[0].mtime = Poco::Timestamp();
-		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime;
-		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime + (Poco::Timestamp::resolution() * CompareEngines::TimeSizeCompare::SmallTimeDiff + 1);
-		tsc.SetAdditionalOptions(true);
-		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_DATE, 3, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, tsc.CompareFiles(CMP_DATE, 3, di));
 	}
 
 	TEST_F(TimeSizeCompareTest, TimeCompare_TimeError)
@@ -302,7 +307,7 @@ namespace
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime + 1;
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime;
 		tsc.SetAdditionalOptions(false);
-		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY, tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
 
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
@@ -311,7 +316,16 @@ namespace
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime;
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime + 1;
 		tsc.SetAdditionalOptions(false);
-		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY, tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
+
+		di.diffFileInfo[0].size = 1;
+		di.diffFileInfo[1].size = 1;
+		di.diffFileInfo[2].size = 1;
+		di.diffFileInfo[0].mtime = Poco::Timestamp();
+		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime + 1;
+		di.diffFileInfo[2].mtime = di.diffFileInfo[1].mtime;
+		tsc.SetAdditionalOptions(false);
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
 
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 2;
@@ -320,7 +334,7 @@ namespace
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime;
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime;
 		tsc.SetAdditionalOptions(false);
-		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY, tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
 
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
@@ -329,7 +343,16 @@ namespace
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime;
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime;
 		tsc.SetAdditionalOptions(false);
-		EXPECT_EQ(DIFFCODE::DIFF, tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY, tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
+
+		di.diffFileInfo[0].size = 2;
+		di.diffFileInfo[1].size = 1;
+		di.diffFileInfo[2].size = 1;
+		di.diffFileInfo[0].mtime = Poco::Timestamp();
+		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime;
+		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime;
+		tsc.SetAdditionalOptions(false);
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
 	}
 
 }  // namespace
