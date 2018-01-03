@@ -65,8 +65,6 @@ using Poco::Exception;
 
 extern int recursive;
 
-static void FreeDiffUtilsScript(struct change * & script);
-static void FreeDiffUtilsScript3(struct change * & script10, struct change * & script12);
 static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
 static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
 
@@ -869,7 +867,10 @@ bool CDiffWrapper::RunFileDiff()
 	if (files.GetSize() == 2)
 		FreeDiffUtilsScript(script);
 	else
-		FreeDiffUtilsScript3(script10, script12);
+	{
+		FreeDiffUtilsScript(script10);
+		FreeDiffUtilsScript(script12);
+	}
 
 	// Done with diffutils filedata
 	if (files.GetSize() == 2)
@@ -1101,8 +1102,8 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 /**
  * @brief Free script (the diffutils linked list of differences)
  */
-static void
-FreeDiffUtilsScript(struct change * & script)
+void
+CDiffWrapper::FreeDiffUtilsScript(struct change * & script)
 {
 	if (!script) return;
 	struct change *e=0, *p=0;
@@ -1113,31 +1114,6 @@ FreeDiffUtilsScript(struct change * & script)
 		free(e);
 	}
 	script = 0;
-}
-
-/**
- * @brief Free script (the diffutils linked list of differences)
- */
-static void
-FreeDiffUtilsScript3(struct change * & script10, struct change * & script12)
-{
-	struct change *e=0, *p=0;
-	for (e = script10; e; e = p)
-	{
-		p = e->link;
-		free (e);
-	}
-	for (e = script12; e; e = p)
-	{
-		p = e->link;
-		free (e);
-	}
-}
-
-void
-CDiffWrapper::FreeDiffUtilsScript3(struct change * & script10, struct change * & script12)
-{
-	::FreeDiffUtilsScript3(script10, script12);
 }
 
 /**

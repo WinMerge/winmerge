@@ -215,7 +215,7 @@ public:
 	void LoadWinMergeDiffsFromDiffUtilsScript3(
 		struct change * script10, struct change * script12,
 		const file_data * inf10, const file_data * inf12);
-	void FreeDiffUtilsScript3(struct change * & script10, struct change * & script12);
+	static void FreeDiffUtilsScript(struct change * & script);
 	bool RegExpFilter(int StartPos, int EndPos, int FileNo) const;
 
 private:

@@ -42,6 +42,9 @@ void TimeSizeCompare::SetAdditionalOptions(bool ignoreSmallDiff)
 int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di) const
 {
 	unsigned code = DIFFCODE::SAME;
+	int64_t nTimeDiff = 0;
+	int64_t nTimeDiff12 = 0;
+	int64_t nTimeDiff02 = 0;
 	if ((compMethod == CMP_DATE) || (compMethod == CMP_DATE_SIZE))
 	{
 		// Compare by modified date
@@ -49,16 +52,22 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 		if (di.diffFileInfo[0].mtime != 0 && di.diffFileInfo[1].mtime != 0 &&
 		    (nfiles < 3 || di.diffFileInfo[1].mtime != 0 && di.diffFileInfo[2].mtime != 0))
 		{
-			int64_t nTimeDiff   = di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime;
-			int64_t nTimeDiff12 = (nfiles < 3) ? 0 : (di.diffFileInfo[1].mtime - di.diffFileInfo[2].mtime);
+			nTimeDiff   = di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime;
 			if (nTimeDiff   < 0) nTimeDiff   *= -1;
-			if (nTimeDiff12 < 0) nTimeDiff12 *= -1;
+			if (nfiles > 2)
+			{
+				nTimeDiff12 = di.diffFileInfo[1].mtime - di.diffFileInfo[2].mtime;
+				nTimeDiff02 = di.diffFileInfo[0].mtime - di.diffFileInfo[2].mtime;
+				if (nTimeDiff12 < 0) nTimeDiff12 *= -1;
+				if (nTimeDiff02 < 0) nTimeDiff02 *= -1;
+			}
 			if (m_ignoreSmallDiff)
 			{
 				// If option to ignore small timediffs (couple of seconds)
 				// is set, decrease absolute difference by allowed diff
 				nTimeDiff   -= SmallTimeDiff * Timestamp::resolution();
 				nTimeDiff12 -= SmallTimeDiff * Timestamp::resolution();
+				nTimeDiff02 -= SmallTimeDiff * Timestamp::resolution();
 			}
 			if (nTimeDiff <= 0 && nTimeDiff12 <= 0)
 				code = DIFFCODE::SAME;
@@ -84,6 +93,36 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 		    (nfiles > 2 && di.diffFileInfo[1].size != di.diffFileInfo[2].size))
 		{
 			code = DIFFCODE::DIFF;
+		}
+	}
+	if (nfiles > 2 && (code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
+	{
+		if (compMethod == CMP_DATE)
+		{
+			if (nTimeDiff12 <= 0)
+				code |= DIFFCODE::DIFF1STONLY;
+			else if (nTimeDiff02 <= 0)
+				code |= DIFFCODE::DIFF2NDONLY;
+			else if (nTimeDiff <= 0)
+				code |= DIFFCODE::DIFF3RDONLY;
+		}
+		else if (compMethod == CMP_DATE_SIZE)
+		{
+			if (nTimeDiff12 <= 0 && di.diffFileInfo[1].size == di.diffFileInfo[2].size)
+				code |= DIFFCODE::DIFF1STONLY;
+			else if (nTimeDiff02 <= 0 && di.diffFileInfo[0].size == di.diffFileInfo[2].size)
+				code |= DIFFCODE::DIFF2NDONLY;
+			else if (nTimeDiff <= 0 && di.diffFileInfo[0].size == di.diffFileInfo[1].size)
+				code |= DIFFCODE::DIFF3RDONLY;
+		}
+		else if (compMethod == CMP_SIZE)
+		{
+			if (di.diffFileInfo[1].size == di.diffFileInfo[2].size)
+				code |= DIFFCODE::DIFF1STONLY;
+			else if (di.diffFileInfo[0].size == di.diffFileInfo[2].size)
+				code |= DIFFCODE::DIFF2NDONLY;
+			else if (di.diffFileInfo[0].size == di.diffFileInfo[1].size)
+				code |= DIFFCODE::DIFF3RDONLY;
 		}
 	}
 	return code;

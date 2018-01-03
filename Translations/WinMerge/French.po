@@ -4144,6 +4144,21 @@ msgstr "Erreur"
 msgid "Text files are identical"
 msgstr "Les fichiers de texte sont identiques"
 
+#: Merge.rc:1DEEB161
+#, c-format
+msgid "(Middle and right are identical)"
+msgstr ""
+
+#: Merge.rc:1D99B043
+#, c-format
+msgid "(Left and right are identical)"
+msgstr ""
+
+#: Merge.rc:159C584C
+#, c-format
+msgid "(Left and middle are identical)"
+msgstr ""
+
 #: Merge.rc:12D66B45
 #, c-format
 msgid "Text files are different"
