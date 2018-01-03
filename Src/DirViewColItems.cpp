@@ -344,6 +344,15 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 			s = _("Folders are different");
 		else
 			s = _("Files are different");
+		if (nDirs > 2)
+		{
+			switch (di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY)
+			{
+			case DIFFCODE::DIFF1STONLY: s += _("(Middle and right are identical)"); break;
+			case DIFFCODE::DIFF2NDONLY: s += _("(Left and right are identical)"); break;
+			case DIFFCODE::DIFF3RDONLY: s += _("(Left and middle are identical)"); break;
+			}
+		}
 	}
 	return s;
 }

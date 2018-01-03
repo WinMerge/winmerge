@@ -73,20 +73,35 @@ static int compare_files(const String& file1, const String& file2)
  */
 int BinaryCompare::CompareFiles(const PathContext& files, const DIFFITEM &di) const
 {
-	unsigned code = DIFFCODE::DIFF;
-	if (files.GetSize() == 2 && di.diffFileInfo[0].size == di.diffFileInfo[1].size)
+	switch (files.GetSize())
 	{
-		code = compare_files(files[0], files[1]);
+	case 2:
+		return di.diffFileInfo[0].size != di.diffFileInfo[1].size ? 
+			DIFFCODE::DIFF : compare_files(files[0], files[1]);
+	case 3:
+		unsigned code10 = (di.diffFileInfo[1].size != di.diffFileInfo[0].size) ?
+			DIFFCODE::DIFF : compare_files(files[1], files[0]);
+		unsigned code12 = (di.diffFileInfo[1].size != di.diffFileInfo[2].size) ?
+			DIFFCODE::DIFF : compare_files(files[1], files[2]);
+		unsigned code02 = DIFFCODE::SAME;
+		if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::SAME)
+			return DIFFCODE::SAME;
+		else if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::DIFF)
+			return DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY;
+		else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::SAME)
+			return DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY;
+		else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::DIFF)
+		{
+			code02 = di.diffFileInfo[0].size != di.diffFileInfo[2].size ?
+				DIFFCODE::DIFF : compare_files(files[0], files[2]);
+			if (code02 == DIFFCODE::SAME)
+				return DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY;
+		}
+		if (code10 == DIFFCODE::CMPERR || code12 == DIFFCODE::CMPERR || code02 == DIFFCODE::CMPERR)
+			return DIFFCODE::CMPERR;
+		return DIFFCODE::DIFF;
 	}
-	else if (files.GetSize() == 3 && 
-		di.diffFileInfo[0].size == di.diffFileInfo[1].size &&
-		di.diffFileInfo[1].size == di.diffFileInfo[2].size)
-	{
-		code = compare_files(files[0], files[1]);
-		if (code == DIFFCODE::SAME)
-			code = compare_files(files[1], files[2]);
-	}
-	return code;
+	return DIFFCODE::CMPERR;
 }
 
 } // namespace CompareEngines

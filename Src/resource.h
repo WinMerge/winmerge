@@ -822,6 +822,9 @@
 #define IDS_CMPRES_ERROR                17851
 #define IDS_TEXT_FILES_SAME             17852
 #define IDS_TEXT_FILES_DIFF             17861
+#define IDS_LEFTONLY_DIFF               17862
+#define IDS_MIDDLEONLY_DIFF             17863
+#define IDS_RIGHTONLY_DIFF              17864
 #define IDS_ELAPSED_TIME                17881
 #define IDS_STATUS_SELITEM1             17882
 #define IDS_STATUS_SELITEMS             17883

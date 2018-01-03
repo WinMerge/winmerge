@@ -103,13 +103,39 @@ namespace
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+			EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY, bc.CompareFiles(files, di));
+		}
+
+		{
+			TempFile l1("A", "1", 1);
+			TempFile m1("B", "2", 1);
+			TempFile r1("C", "1", 1);
+			files.SetLeft(_T("A"));
+			files.SetMiddle(_T("B"));
+			files.SetRight(_T("C"));
+			di.diffFileInfo[0].size = 1;
+			di.diffFileInfo[1].size = 1;
+			di.diffFileInfo[2].size = 1;
+			EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY, bc.CompareFiles(files, di));
 		}
 
 		{
 			TempFile l1("A", "2", 1);
 			TempFile m1("B", "1", 1);
 			TempFile r1("C", "1", 1);
+			files.SetLeft(_T("A"));
+			files.SetMiddle(_T("B"));
+			files.SetRight(_T("C"));
+			di.diffFileInfo[0].size = 1;
+			di.diffFileInfo[1].size = 1;
+			di.diffFileInfo[2].size = 1;
+			EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, bc.CompareFiles(files, di));
+		}
+
+		{
+			TempFile l1("A", "1", 1);
+			TempFile m1("B", "2", 1);
+			TempFile r1("C", "3", 1);
 			files.SetLeft(_T("A"));
 			files.SetMiddle(_T("B"));
 			files.SetRight(_T("C"));
@@ -125,6 +151,10 @@ namespace
 		CompareEngines::BinaryCompare bc;
 		PathContext files;
 		DIFFITEM di;
+
+		TempFile l1("A", "1", 1);
+		TempFile m1("B", "1", 1);
+		TempFile r1("C", "1", 1);
 
 		files.SetLeft(_T("A"));
 		files.SetRight(_T("B"));
@@ -150,7 +180,7 @@ namespace
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 2;
-		EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY, bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("A"));
 		files.SetMiddle(_T("B"));
@@ -158,7 +188,7 @@ namespace
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 2;
 		di.diffFileInfo[2].size = 1;
-		EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY, bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("A"));
 		files.SetMiddle(_T("B"));
@@ -166,7 +196,7 @@ namespace
 		di.diffFileInfo[0].size = 2;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 1;
-		EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, bc.CompareFiles(files, di));
 	}
 
 	TEST_F(BinaryCompareTest, Error)
