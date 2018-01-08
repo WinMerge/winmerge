@@ -745,36 +745,9 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 			)
 		{
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
-			// 2. Add unique files
-			// We must compare unique files to itself to detect encoding
-			if (di.diffcode.isSideFirstOnly() || di.diffcode.isSideSecondOnly() || (nDirs > 2 && di.diffcode.isSideThirdOnly()))
-			{
-				int nCurrentCompMethod = pCtxt->GetCompareMethod();
-				if (nCurrentCompMethod != CMP_DATE &&
-					nCurrentCompMethod != CMP_DATE_SIZE &&
-					nCurrentCompMethod != CMP_SIZE)
-				{
-					FolderCmp folderCmp;
-					unsigned diffCode = folderCmp.prepAndCompareFiles(pCtxt, di);
-					
-					// Add possible binary flag for unique items
-					if (diffCode & DIFFCODE::BIN)
-						di.diffcode.diffcode |= DIFFCODE::BIN;
-					StoreDiffData(di, pCtxt, &folderCmp);
-				}
-				else
-				{
-					StoreDiffData(di, pCtxt, NULL);
-				}
-			}
-			// 3. Compare two files
-			else
-			{
-				// Really compare
-				FolderCmp folderCmp;
-				di.diffcode.diffcode |= folderCmp.prepAndCompareFiles(pCtxt, di);
-				StoreDiffData(di, pCtxt, &folderCmp);
-			}
+			FolderCmp folderCmp;
+			di.diffcode.diffcode |= folderCmp.prepAndCompareFiles(pCtxt, di);
+			StoreDiffData(di, pCtxt, &folderCmp);
 		}
 		else
 		{
