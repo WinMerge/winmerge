@@ -82,17 +82,10 @@ public:
 	bool isDirectory() const { return Check(diffcode, DIFFCODE::TYPEFLAGS, DIFFCODE::DIR); }
 	// left/right
 	bool isSideFirstOnly() const { return CheckSide(diffcode, DIFFCODE::FIRST); }
-	bool isSideLeftOnlyOrBoth() const { return isSideFirstOnly() || isSideBoth(); }
-	void setSideFirstOnly() { SetSide(DIFFCODE::FIRST); }
 	bool isSideSecondOnly() const { return CheckSide(diffcode, DIFFCODE::SECOND); }
-	bool isSideRightOnlyOrBoth() const { return isSideSecondOnly() || isSideBoth(); }
-	void setSideSecondOnly() { SetSide(DIFFCODE::SECOND); }
 	bool isSideThirdOnly() const { return CheckSide(diffcode, DIFFCODE::THIRD); }
-	void setSideThirdOnly() { SetSide(DIFFCODE::THIRD); }
 	bool isSideBoth() const { return CheckSide(diffcode, DIFFCODE::BOTH); }
-	void setSideBoth() { SetSide(DIFFCODE::BOTH); }
 	bool isSideAll() const { return CheckSide(diffcode, DIFFCODE::ALL); }
-	void setSideAll() { SetSide(DIFFCODE::ALL); }
 	void setSideNone() { SetSide(0); }
 	void setSideFlag(int nIndex)
 	{
@@ -204,8 +197,6 @@ struct DIFFITEM : ListEntry
 
 	bool isEmpty() const { return this == &emptyitem; }
 	String getFilepath(int nIndex, const String &sRoot) const;
-	String getLeftFilepath(const String &sLeftRoot) const;
-	String getRightFilepath(const String &sRightRoot) const;
 	int GetDepth() const;
 	bool IsAncestor(const DIFFITEM *pdi) const;
 	bool HasChildren() const;

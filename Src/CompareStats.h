@@ -89,7 +89,6 @@ public:
 	void Reset();
 	void SetCompareState(CompareStats::CMP_STATE state);
 	CompareStats::CMP_STATE GetCompareState() const;
-	void SetCurrentDiffItem(const DIFFITEM *di);
 	bool IsCompareDone() const { return m_bCompareDone; }
 	CompareStats::RESULT GetResultFromCode(unsigned diffcode) const;
 	void Swap(int idx1, int idx2);
