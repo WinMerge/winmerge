@@ -61,46 +61,18 @@ static int Try(HRESULT hr, UINT type = MB_OKCANCEL|MB_ICONSTOP);
  */
 static void UpdateDiffItem(int nBuffers, DIFFITEM &di, CDiffContext *pCtxt)
 {
-	di.diffcode.diffcode |= DIFFCODE::SIDEFLAGS;
+	di.diffcode.setSideNone();
 	for (int nBuffer = 0; nBuffer < nBuffers; nBuffer++)
 	{
 		di.diffFileInfo[nBuffer].ClearPartial();
-		di.diffFileInfo[nBuffer].ClearPartial();
-		if (!pCtxt->UpdateInfoFromDiskHalf(di, nBuffer))
-		{
-			if (nBuffer == 0)
-				di.diffcode.diffcode &= ~DIFFCODE::FIRST;
-			else if (nBuffer == 1)
-				di.diffcode.diffcode &= ~DIFFCODE::SECOND;
-			else
-				di.diffcode.diffcode &= ~DIFFCODE::THIRD;
-		}
+		if (pCtxt->UpdateInfoFromDiskHalf(di, nBuffer))
+			di.diffcode.diffcode |= DIFFCODE::FIRST << nBuffers;
 	}
-	// 1. Clear flags
-	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::COMPAREFLAGS);
-	// 2. Process unique files
-	// We must compare unique files to itself to detect encoding
-	if (!di.diffcode.existAll())
-	{
-		int compareMethod = pCtxt->GetCompareMethod();
-		if (compareMethod != CMP_DATE && compareMethod != CMP_DATE_SIZE &&
-			compareMethod != CMP_SIZE)
-		{
-			di.diffcode.diffcode |= DIFFCODE::SAME;
-			FolderCmp folderCmp;
-			int diffCode = folderCmp.prepAndCompareFiles(pCtxt, di);
-			// Add possible binary flag for unique items
-			if (diffCode & DIFFCODE::BIN)
-				di.diffcode.diffcode |= DIFFCODE::BIN;
-		}
-	}
-	// 3. Compare two files
-	else
-	{
-		// Really compare
-		FolderCmp folderCmp;
-		di.diffcode.diffcode |= folderCmp.prepAndCompareFiles(pCtxt, di);
-	}
+	// Clear flags
+	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY);
+	// Really compare
+	FolderCmp folderCmp;
+	di.diffcode.diffcode |= folderCmp.prepAndCompareFiles(pCtxt, di);
 }
 
 /**
