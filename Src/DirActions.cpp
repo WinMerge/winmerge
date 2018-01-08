@@ -521,10 +521,7 @@ bool IsItemExistAll(const CDiffContext& ctxt, const DIFFITEM & di)
 	// Not a valid diffitem, one of special items (e.g "..")
 	if (di.diffcode.diffcode == 0)
 		return false;
-	if (ctxt.GetCompareDirs() == 2)
-		return di.diffcode.isSideBoth();
-	else
-		return di.diffcode.isSideAll();
+	return di.diffcode.existAll();
 }
 
 
@@ -946,7 +943,7 @@ PathContext GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM & di)
 /**
  * @brief Return image index appropriate for this row
  */
-int GetColImage(const CDiffContext&ctxt, const DIFFITEM & di)
+int GetColImage(const DIFFITEM & di)
 {
 	// Must return an image index into image list created above in OnInitDialog
 	if (di.diffcode.isResultError())
@@ -958,12 +955,12 @@ int GetColImage(const CDiffContext&ctxt, const DIFFITEM & di)
 	if (di.diffcode.isSideFirstOnly())
 		return (di.diffcode.isDirectory() ? DIFFIMG_LDIRUNIQUE : DIFFIMG_LUNIQUE);
 	if (di.diffcode.isSideSecondOnly())
-		return (ctxt.GetCompareDirs() < 3 ? 
+		return ((di.diffcode.diffcode & DIFFCODE::THREEWAY) == 0 ? 
 			(di.diffcode.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE) :
 			(di.diffcode.isDirectory() ? DIFFIMG_MDIRUNIQUE : DIFFIMG_MUNIQUE));
 	if (di.diffcode.isSideThirdOnly())
 		return (di.diffcode.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE);
-	if (ctxt.GetCompareDirs() == 3)
+	if ((di.diffcode.diffcode & DIFFCODE::THREEWAY) != 0)
 	{
 		if (!di.diffcode.exists(0))
 			return (di.diffcode.isDirectory() ? DIFFIMG_LDIRMISSING : DIFFIMG_LMISSING);
