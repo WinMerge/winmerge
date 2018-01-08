@@ -51,8 +51,8 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const FolderCmp * pCmpData);
 static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir, const DirItem * lent, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
-static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, const String& sRightDir, const DirItem * lent, const DirItem * ment, const DirItem * rent,
-	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
+static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const String& sDir3, const DirItem * ent1, const DirItem * ent2, const DirItem * ent3,
+	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent, int nItems = 3);
 static void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt);
 static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uintptr_t parentdiffpos);
 
@@ -510,7 +510,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 		myStruct->pSemaphore->wait();
 		uintptr_t curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
-		bool existsalldirs = ((pCtxt->GetCompareDirs() == 2 && di.diffcode.isSideBoth()) || (pCtxt->GetCompareDirs() == 3 && di.diffcode.isSideAll()));
+		bool existsalldirs = di.diffcode.existAll();
 		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
 		{
 			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
@@ -544,9 +544,8 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 		WorkCompletedNotification* pWorkCompletedNf = dynamic_cast<WorkCompletedNotification*>(pNf.get());
 		if (pWorkCompletedNf) {
 			DIFFITEM &di = pWorkCompletedNf->data();
-			bool existsalldirs = ((pCtxt->GetCompareDirs() == 2 && di.diffcode.isSideBoth()) || (pCtxt->GetCompareDirs() == 3 && di.diffcode.isSideAll()));
 			if (di.diffcode.isResultDiff() ||
-				(!existsalldirs && !di.diffcode.isResultFiltered()))
+				(!di.diffcode.existAll() && !di.diffcode.isResultFiltered()))
 				res++;
 		}
 		--count;
@@ -578,7 +577,7 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffp
 
 		uintptr_t curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
-		bool existsalldirs = ((pCtxt->GetCompareDirs() == 2 && di.diffcode.isSideBoth()) || (pCtxt->GetCompareDirs() == 3 && di.diffcode.isSideAll()));
+		bool existsalldirs = di.diffcode.existAll();
 		if (di.diffcode.isDirectory())
 		{
 			if (pCtxt->m_bRecursive)
@@ -827,15 +826,15 @@ static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir,
 	const DirItem * lent, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent)
 {
-	return AddToList(sLeftDir, sRightDir, sLeftDir, lent, rent, 0, code, myStruct, parent);
+	return AddToList(sLeftDir, sRightDir, sLeftDir, lent, rent, 0, code, myStruct, parent, 2);
 }
 
 /**
  * @brief Add one compare item to list.
  */
-static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, const String& sRightDir,
-	const DirItem * lent, const DirItem * ment, const DirItem * rent,
-	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent)
+static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const String& sDir3,
+	const DirItem * ent1, const DirItem * ent2, const DirItem * ent3,
+	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent, int nItems)
 {
 	// We must store both paths - we cannot get paths later
 	// and we need unique item paths for example when items
@@ -843,62 +842,65 @@ static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, con
 	DIFFITEM *di = myStruct->context->AddDiff(parent);
 
 	di->parent = parent;
-	di->diffFileInfo[0].path = sLeftDir;
-	di->diffFileInfo[1].path = sMiddleDir;
-	di->diffFileInfo[2].path = sRightDir;
+	di->diffFileInfo[0].path = sDir1;
+	di->diffFileInfo[1].path = sDir2;
+	di->diffFileInfo[2].path = sDir3;
 
-	if (lent)
+	if (ent1)
 	{
-		di->diffFileInfo[0].filename = lent->filename;
-		di->diffFileInfo[0].mtime = lent->mtime;
-		di->diffFileInfo[0].ctime = lent->ctime;
-		di->diffFileInfo[0].size = lent->size;
-		di->diffFileInfo[0].flags.attributes = lent->flags.attributes;
+		di->diffFileInfo[0].filename = ent1->filename;
+		di->diffFileInfo[0].mtime = ent1->mtime;
+		di->diffFileInfo[0].ctime = ent1->ctime;
+		di->diffFileInfo[0].size = ent1->size;
+		di->diffFileInfo[0].flags.attributes = ent1->flags.attributes;
 	}
 	else
 	{
 		// Don't break CDirView::DoCopyRightToLeft()
-		if (rent)
-			di->diffFileInfo[0].filename = rent->filename;
-		else if (ment)
-			di->diffFileInfo[0].filename = ment->filename;
+		if (ent3)
+			di->diffFileInfo[0].filename = ent3->filename;
+		else if (ent2)
+			di->diffFileInfo[0].filename = ent2->filename;
 	}
 
-	if (ment)
+	if (ent2)
 	{
-		di->diffFileInfo[1].filename = ment->filename;
-		di->diffFileInfo[1].mtime = ment->mtime;
-		di->diffFileInfo[1].ctime = ment->ctime;
-		di->diffFileInfo[1].size = ment->size;
-		di->diffFileInfo[1].flags.attributes = ment->flags.attributes;
+		di->diffFileInfo[1].filename = ent2->filename;
+		di->diffFileInfo[1].mtime = ent2->mtime;
+		di->diffFileInfo[1].ctime = ent2->ctime;
+		di->diffFileInfo[1].size = ent2->size;
+		di->diffFileInfo[1].flags.attributes = ent2->flags.attributes;
 	}
 	else
 	{
 		// Don't break CDirView::DoCopyLeftToRight()
-		if (lent)
-			di->diffFileInfo[1].filename = lent->filename;
-		else if (rent)
-			di->diffFileInfo[1].filename = rent->filename;
+		if (ent1)
+			di->diffFileInfo[1].filename = ent1->filename;
+		else if (ent3)
+			di->diffFileInfo[1].filename = ent3->filename;
 	}
 
-	if (rent)
+	if (ent3)
 	{
-		di->diffFileInfo[2].filename = rent->filename;
-		di->diffFileInfo[2].mtime = rent->mtime;
-		di->diffFileInfo[2].ctime = rent->ctime;
-		di->diffFileInfo[2].size = rent->size;
-		di->diffFileInfo[2].flags.attributes = rent->flags.attributes;
+		di->diffFileInfo[2].filename = ent3->filename;
+		di->diffFileInfo[2].mtime = ent3->mtime;
+		di->diffFileInfo[2].ctime = ent3->ctime;
+		di->diffFileInfo[2].size = ent3->size;
+		di->diffFileInfo[2].flags.attributes = ent3->flags.attributes;
 	}
 	else
 	{
 		// Don't break CDirView::DoCopyLeftToRight()
-		if (lent)
-			di->diffFileInfo[2].filename = lent->filename;
-		else if (ment)
-			di->diffFileInfo[2].filename = ment->filename;
+		if (ent1)
+			di->diffFileInfo[2].filename = ent1->filename;
+		else if (ent2)
+			di->diffFileInfo[2].filename = ent2->filename;
 	}
 
-	di->diffcode.diffcode = code;
+	if (nItems == 2)
+		di->diffcode.diffcode = code;
+	else
+		di->diffcode.diffcode = code | DIFFCODE::THREEWAY;
 
 	myStruct->context->m_pCompareStats->IncreaseTotalItems();
 	myStruct->pSemaphore->set();
