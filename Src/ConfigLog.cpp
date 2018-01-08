@@ -61,7 +61,7 @@ String CConfigLog::GetFileName() const
 /** 
  * @brief Write plugin names
  */
-void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent)
+void CConfigLog::WritePluginsInLogFile(const wchar_t *transformationEvent)
 {
 	// get an array with the available scripts
 	PluginArray * piPluginArray; 
@@ -96,7 +96,7 @@ static String GetLocaleString(LCID locid, LCTYPE lctype)
 /**
  * @brief Write string item
  */
-void CConfigLog::WriteItem(int indent, const String& key, LPCTSTR value)
+void CConfigLog::WriteItem(int indent, const String& key, const TCHAR *value)
 {
 	String text = strutils::format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key.c_str(), key.c_str(), value);
 	m_pfile->WriteString(text);
