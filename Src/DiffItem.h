@@ -56,6 +56,7 @@ struct DIFFCODE
 		COMPAREFLAGS3WAY=0x18000, DIFFALL=0x0000, DIFF1STONLY=0x8000, DIFF2NDONLY=0x10000, DIFF3RDONLY=0x18000,
 		FILTERFLAGS=0x20000, INCLUDED=0x00000, SKIPPED=0x20000,
 		SCANFLAGS=0x100000, NEEDSCAN=0x100000,
+		THREEWAYFLAGS=0x200000, THREEWAY=0x200000,
 	};
 
 	unsigned diffcode;
@@ -128,9 +129,9 @@ public:
 		default: return 0;
 		}
 	}
-	bool existAll(int nDirs) const
+	bool existAll() const
 	{
-		if (nDirs == 2)
+		if ((diffcode & DIFFCODE::THREEWAY) == 0)
 			return (existsFirst() && existsSecond());
 		else
 			return (existsFirst() && existsSecond() && existsThird());
@@ -139,7 +140,7 @@ public:
 	// compare result
 	bool isResultSame() const { return CheckCompare(diffcode, DIFFCODE::SAME); }
 	bool isResultDiff() const { return (CheckCompare(diffcode, DIFFCODE::DIFF) && !isResultFiltered() &&
-			existsFirst() && existsSecond()); } /* FIXME: 3-pane */
+			existAll()); }
 	static bool isResultError(unsigned code) { return CheckCompare(code, DIFFCODE::CMPERR); }
 	bool isResultError() const { return isResultError(diffcode); }
 	static bool isResultAbort(unsigned code) { return CheckCompare(code, DIFFCODE::CMPABORT); }

@@ -511,7 +511,7 @@ void CDirView::RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int 
 		uintptr_t curdiffpos = diffpos;
 		const DIFFITEM &di = ctxt.GetNextSiblingDiffPosition(diffpos);
 
-		if (di.diffcode.isResultDiff() || (!di.diffcode.existAll(pDoc->m_nDirs) && !di.diffcode.isResultFiltered()))
+		if (di.diffcode.isResultDiff() || (!di.diffcode.existAll() && !di.diffcode.isResultFiltered()))
 			++alldiffs;
 
 		bool bShowable = IsShowable(ctxt, di, m_dirfilter);
@@ -530,7 +530,7 @@ void CDirView::RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int 
 			}
 			else
 			{
-				if (!ctxt.m_bRecursive || !di.diffcode.isDirectory() || !di.diffcode.existAll(pDoc->m_nDirs))
+				if (!ctxt.m_bRecursive || !di.diffcode.isDirectory() || !di.diffcode.existAll())
 				{
 					AddNewItem(index, curdiffpos, I_IMAGECALLBACK, 0);
 					index++;
@@ -3822,7 +3822,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	}
 	if (pParam->item.mask & LVIF_IMAGE)
 	{
-		pParam->item.iImage = GetColImage(ctxt, di);
+		pParam->item.iImage = GetColImage(di);
 	}
 
 	m_bNeedSearchLastDiffItem = true;

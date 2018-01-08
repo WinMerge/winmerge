@@ -159,7 +159,7 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2,
 void GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM& di, String& strLeft, String& strRight);
 PathContext GetItemFileNames(const CDiffContext& ctxt, const DIFFITEM& di);
 String GetItemFileName(const CDiffContext& ctx, const DIFFITEM & di, int index);
-int GetColImage(const CDiffContext&ctxt, const DIFFITEM & di);
+int GetColImage(const DIFFITEM & di);
 
 void SetDiffStatus(DIFFITEM& di, unsigned  diffcode, unsigned mask);
 void SetDiffCompare(DIFFITEM& di, unsigned diffcode);
