@@ -108,6 +108,9 @@ struct DirViewFilterSettings
 		show_binaries = getoptbool(OPT_SHOW_BINARIES);
 		show_identical = getoptbool(OPT_SHOW_IDENTICAL);
 		show_different = getoptbool(OPT_SHOW_DIFFERENT);
+		show_different_left_only = getoptbool(OPT_SHOW_DIFFERENT_LEFT_ONLY);
+		show_different_middle_only = getoptbool(OPT_SHOW_DIFFERENT_MIDDLE_ONLY);
+		show_different_right_only = getoptbool(OPT_SHOW_DIFFERENT_RIGHT_ONLY);
 		tree_mode = getoptbool(OPT_TREE_MODE);
 	};
 	bool show_skipped;
@@ -117,6 +120,9 @@ struct DirViewFilterSettings
 	bool show_binaries;
 	bool show_identical;
 	bool show_different;
+	bool show_different_left_only;
+	bool show_different_middle_only;
+	bool show_different_right_only;
 	bool tree_mode;
 };
 

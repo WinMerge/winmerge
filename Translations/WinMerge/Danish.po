@@ -476,6 +476,26 @@ msgstr "Vis &oversprungne"
 msgid "S&how Binary Files"
 msgstr "Vis &binære filer"
 
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
+
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
@@ -701,7 +721,7 @@ msgstr "&Klip\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "Ko&pier\tCtrl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Indsæt\tCtrl+V"
@@ -1137,7 +1157,7 @@ msgstr "&Åben venstre"
 msgid "with &External Editor"
 msgstr "med en &ekstern editor"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -2026,7 +2046,7 @@ msgstr "Mellemrum"
 msgid "&Compare"
 msgstr "&Sammenlign"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ignorer ændringer"
@@ -2522,7 +2542,7 @@ msgstr "(Påvirker)"
 msgid "Select Codepage for"
 msgstr "Vælg codepage til"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "&Fil Indlæsning:"

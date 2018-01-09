@@ -478,6 +478,26 @@ msgstr "顯示略過的項目(&K)"
 msgid "S&how Binary Files"
 msgstr "顯示二進制檔案(&H)"
 
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
+
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
@@ -703,7 +723,7 @@ msgstr "剪下(&U)\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "複製(&C)\tCtrl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "貼上(&P)\tCtrl+V"
@@ -1143,7 +1163,7 @@ msgstr "開啟左邊(&O)"
 msgid "with &External Editor"
 msgstr "用外在編輯器(&E)"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -2030,7 +2050,7 @@ msgstr "空白處"
 msgid "&Compare"
 msgstr "比對空白處(&W)"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "忽略空白數量之變動而造成的差異(&H)"
@@ -2525,7 +2545,7 @@ msgstr "(影響)"
 msgid "Select Codepage for"
 msgstr "選定編碼頁給"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "要載入的檔案(&F)："

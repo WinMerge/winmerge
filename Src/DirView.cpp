@@ -311,6 +311,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_OPTIONS_SHOWUNIQUERIGHT, OnOptionsShowUniqueRight)
 	ON_COMMAND(ID_OPTIONS_SHOWBINARIES, OnOptionsShowBinaries)
 	ON_COMMAND(ID_OPTIONS_SHOWSKIPPED, OnOptionsShowSkipped)
+	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENTLEFTONLY, OnOptionsShowDifferentLeftOnly)
+	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY, OnOptionsShowDifferentMiddleOnly)
+	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENTRIGHTONLY, OnOptionsShowDifferentRightOnly)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
@@ -318,6 +321,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUERIGHT, OnUpdateOptionsShowuniqueright)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWBINARIES, OnUpdateOptionsShowBinaries)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWSKIPPED, OnUpdateOptionsShowSkipped)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENTLEFTONLY, OnUpdateOptionsShowDifferentLeftOnly)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY, OnUpdateOptionsShowDifferentMiddleOnly)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENTRIGHTONLY, OnUpdateOptionsShowDifferentRightOnly)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
 	ON_COMMAND(ID_HELP, OnHelp)
@@ -3280,6 +3286,36 @@ void CDirView::OnOptionsShowSkipped()
 	Redisplay();
 }
 
+/**
+ * @brief Show/Hide different files/folders (Middle and right are identical)
+ */
+void CDirView::OnOptionsShowDifferentLeftOnly() 
+{
+	m_dirfilter.show_different_left_only = !m_dirfilter.show_different_left_only;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT_LEFT_ONLY, m_dirfilter.show_different_left_only);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide different files/folders (Left and right are identical)
+ */
+void CDirView::OnOptionsShowDifferentMiddleOnly() 
+{
+	m_dirfilter.show_different_middle_only = !m_dirfilter.show_different_middle_only;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT_MIDDLE_ONLY, m_dirfilter.show_different_middle_only);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide different files/folders (Left and middle are identical)
+ */
+void CDirView::OnOptionsShowDifferentRightOnly() 
+{
+	m_dirfilter.show_different_right_only = !m_dirfilter.show_different_right_only;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT_RIGHT_ONLY, m_dirfilter.show_different_right_only);
+	Redisplay();
+}
+
 void CDirView::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_dirfilter.show_different);
@@ -3314,6 +3350,24 @@ void CDirView::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI)
 void CDirView::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_dirfilter.show_skipped);
+}
+
+void CDirView::OnUpdateOptionsShowDifferentLeftOnly(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->m_nDirs > 2);
+	pCmdUI->SetCheck(m_dirfilter.show_different_left_only);
+}
+
+void CDirView::OnUpdateOptionsShowDifferentMiddleOnly(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->m_nDirs > 2);
+	pCmdUI->SetCheck(m_dirfilter.show_different_middle_only);
+}
+
+void CDirView::OnUpdateOptionsShowDifferentRightOnly(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->m_nDirs > 2);
+	pCmdUI->SetCheck(m_dirfilter.show_different_right_only);
 }
 
 void CDirView::OnMergeCompare()
