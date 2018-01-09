@@ -469,6 +469,26 @@ msgstr "Mostra els elements &omesos"
 msgid "S&how Binary Files"
 msgstr "Mostra els fitxers &binaris"
 
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
+
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
@@ -694,7 +714,7 @@ msgstr "&Retalla\tControl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "C&opia\tControl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Engan&xa\tControl+V"
@@ -1130,7 +1150,7 @@ msgstr "Obre l'&esquerra"
 msgid "with &External Editor"
 msgstr "amb l'&editor extern"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -2005,7 +2025,7 @@ msgstr "Espais en blanc"
 msgid "&Compare"
 msgstr "Compara els &espais"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "Ignora els &canvis en els espais"
@@ -2495,7 +2515,7 @@ msgstr "(Afecta)"
 msgid "Select Codepage for"
 msgstr "Selecciona pàgina de codis per a"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "&Càrrega de fitxers:"

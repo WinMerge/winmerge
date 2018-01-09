@@ -639,6 +639,15 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
 			return false;
 		if (di.diffcode.isResultDiff() && !filter.show_different)
 			return false;
+		if (ctxt.GetCompareDirs() > 2)
+		{
+			if ((di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY) == DIFFCODE::DIFF1STONLY && !filter.show_different_left_only)
+				return false;
+			if ((di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY) == DIFFCODE::DIFF2NDONLY && !filter.show_different_middle_only)
+				return false;
+			if ((di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY) == DIFFCODE::DIFF3RDONLY && !filter.show_different_right_only)
+				return false;
+		}
 	}
 	return true;
 }

@@ -343,6 +343,9 @@ protected:
 	afx_msg void OnOptionsShowUniqueRight();
 	afx_msg void OnOptionsShowBinaries();
 	afx_msg void OnOptionsShowSkipped();
+	afx_msg void OnOptionsShowDifferentLeftOnly();
+	afx_msg void OnOptionsShowDifferentMiddleOnly();
+	afx_msg void OnOptionsShowDifferentRightOnly();
 	afx_msg void OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowidentical(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI);
@@ -350,6 +353,9 @@ protected:
 	afx_msg void OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowDifferentLeftOnly(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowDifferentMiddleOnly(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowDifferentRightOnly(CCmdUI* pCmdUI);
 	afx_msg void OnMergeCompare();
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnMergeCompare2();

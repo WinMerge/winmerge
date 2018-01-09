@@ -62,6 +62,9 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SHOW_IDENTICAL, true);
 	pOptions->InitOption(OPT_SHOW_BINARIES, true);
 	pOptions->InitOption(OPT_SHOW_SKIPPED, false);
+	pOptions->InitOption(OPT_SHOW_DIFFERENT_LEFT_ONLY, true);
+	pOptions->InitOption(OPT_SHOW_DIFFERENT_MIDDLE_ONLY, true);
+	pOptions->InitOption(OPT_SHOW_DIFFERENT_RIGHT_ONLY, true);
 
 	pOptions->InitOption(OPT_SHOW_TOOLBAR, true);
 	pOptions->InitOption(OPT_SHOW_STATUSBAR, true);

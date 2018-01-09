@@ -22,6 +22,9 @@ extern const String OPT_SHOW_DIFFERENT OP("Settings/ShowDifferent");
 extern const String OPT_SHOW_IDENTICAL OP("Settings/ShowIdentical");
 extern const String OPT_SHOW_BINARIES OP("Settings/ShowBinaries");
 extern const String OPT_SHOW_SKIPPED OP("Settings/ShowSkipped");
+extern const String OPT_SHOW_DIFFERENT_LEFT_ONLY OP("Settings/ShowDifferentLeftOnly");
+extern const String OPT_SHOW_DIFFERENT_MIDDLE_ONLY OP("Settings/ShowDifferentMiddleOnly");
+extern const String OPT_SHOW_DIFFERENT_RIGHT_ONLY OP("Settings/ShowDifferentRightOnly");
 extern const String OPT_TREE_MODE OP("Settings/TreeMode");
 
 // Show/hide toolbar/statusbar/tabbar

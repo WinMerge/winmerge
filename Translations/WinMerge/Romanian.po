@@ -470,6 +470,26 @@ msgstr "Aratã elementele omise"
 msgid "S&how Binary Files"
 msgstr "Aratã fiºierele binare"
 
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
+
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
@@ -695,7 +715,7 @@ msgstr "&Taie\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "&Copie\tCtrl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Li&peºte\tCtrl+V"
@@ -1131,7 +1151,7 @@ msgstr "Deschide stâ&nga"
 msgid "with &External Editor"
 msgstr "cu editor &extern"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -2006,7 +2026,7 @@ msgstr "Blanc"
 msgid "&Compare"
 msgstr "&Comparã"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ignorã schimbare"
@@ -2496,7 +2516,7 @@ msgstr "(Afecteazã)"
 msgid "Select Codepage for"
 msgstr "Selecteazã codare caractere pentru"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "Încãrcare &fiºier:"
