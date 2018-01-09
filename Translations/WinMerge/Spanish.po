@@ -477,6 +477,26 @@ msgstr "Mostrar elementos i&gnorados"
 msgid "S&how Binary Files"
 msgstr "Mostrar archivos &binarios"
 
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
+
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
@@ -702,7 +722,7 @@ msgstr "Cor&tar\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "&Copiar\tCtrl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Pegar\tCtrl+V"
@@ -1138,7 +1158,7 @@ msgstr "Abrir archivo &Izquierdo"
 msgid "with &External Editor"
 msgstr "con un Editor &Externo"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -2023,7 +2043,7 @@ msgstr "Espacios en blanco"
 msgid "&Compare"
 msgstr "&Comparar"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ignorar cambios"
@@ -2517,7 +2537,7 @@ msgstr "(Afectar)"
 msgid "Select Codepage for"
 msgstr "Seleccione página de códigos para"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "&Carga de archivos:"

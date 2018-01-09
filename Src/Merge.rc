@@ -270,6 +270,12 @@ BEGIN
         MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
+        POPUP "&3-way Compare"
+        BEGIN
+            MENUITEM "Show &Left Only Different Items", ID_OPTIONS_SHOWDIFFERENTLEFTONLY
+            MENUITEM "Show &Middle Only Different Items", ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY
+            MENUITEM "Show &Right Only Different Items", ID_OPTIONS_SHOWDIFFERENTRIGHTONLY
+        END
         MENUITEM SEPARATOR
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR

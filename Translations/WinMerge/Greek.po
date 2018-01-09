@@ -474,6 +474,26 @@ msgstr "Εμφάνιση Αντι&παρελθέντων Στοιχείων"
 msgid "S&how Binary Files"
 msgstr "Εμφάνιση &Δυαδικών Αρχείων"
 
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
+
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
@@ -699,7 +719,7 @@ msgstr "Απο&κοπή\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "Αντι&γραφή\tCtrl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Προ&σάρτηση\tCtrl+V"
@@ -1135,7 +1155,7 @@ msgstr "’νοιγμα Α&ριστερού"
 msgid "with &External Editor"
 msgstr "μ&ε άλλη Εφαρμογή"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -2020,7 +2040,7 @@ msgstr "Χαρακτήρες Διαστήματος"
 msgid "&Compare"
 msgstr "&Σύγκριση"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "Η μεταβολή να α&γνοείται"
@@ -2510,7 +2530,7 @@ msgstr "(Επηρεάζει)"
 msgid "Select Codepage for"
 msgstr "Επιλογή Κωδικοσελίδας για"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "Ανά&γνωση Αρχείου:"
