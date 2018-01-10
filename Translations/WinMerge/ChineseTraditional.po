@@ -104,7 +104,7 @@ msgstr "用登錄的應用程式(&R)"
 #: Merge.rc:321D741E
 #, c-format
 msgid "with &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "用外部編輯器(&E) \tCtrl+Alt+E"
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -164,12 +164,12 @@ msgstr "透明效果(&A)"
 #: Merge.rc:237A0532
 #, c-format
 msgid "Alpha &Blend Animation"
-msgstr ""
+msgstr "透明動畫(&B)"
 
 #: Merge.rc:5806E58F
 #, c-format
 msgid "Dragging &Mode"
-msgstr ""
+msgstr "拖動模式(&M)"
 
 #: Merge.rc:43017E45
 #, c-format
@@ -179,7 +179,7 @@ msgstr "移動(&M)"
 #: Merge.rc:5A9A713A
 #, c-format
 msgid "&Adjust Offset"
-msgstr ""
+msgstr "調整誤差(&A)"
 
 #: Merge.rc:100AAFAC
 #, c-format
@@ -391,12 +391,12 @@ msgstr "WinMerge 說明(&W)\tF1"
 #: Merge.rc:1B17601E
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "發行說明(&E)"
 
 #: Merge.rc:6E470BE7
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "翻譯(&T)"
 
 #: Merge.rc:1C6125F4
 #, c-format
@@ -746,7 +746,7 @@ msgstr "取代(&C)...\tCtrl+H"
 #: Merge.rc:4B91C2D1
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr ""
+msgstr "標記(&M)...\tCtrl+Shift+M"
 
 #: Merge.rc:669F87F4
 #, c-format
@@ -1166,7 +1166,7 @@ msgstr "用外在編輯器(&E)"
 #: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
-msgstr ""
+msgstr "上層資料夾(&P)"
 
 #: Merge.rc:761E6872
 #, c-format
@@ -1411,7 +1411,7 @@ msgstr "選取檔案或資料夾"
 #: Merge.rc:43017E4D
 #, c-format
 msgid "&1st:"
-msgstr ""
+msgstr "第一(&1)"
 
 #: Merge.rc:68816EE7
 #, c-format
@@ -1421,7 +1421,7 @@ msgstr "瀏覽(&B)..."
 #: Merge.rc:43017E4E
 #, c-format
 msgid "&2nd:"
-msgstr ""
+msgstr "第二(&2)"
 
 #: Merge.rc:78E0CE0E
 #, c-format
@@ -1431,7 +1431,7 @@ msgstr "瀏覽(&R)..."
 #: Merge.rc:78B3B626
 #, c-format
 msgid "&3rd(Optional):"
-msgstr "3rd(非必要)(&3)"
+msgstr "第三(非必要)(&3)"
 
 #: Merge.rc:78E0CE0F
 #, c-format
@@ -1708,12 +1708,12 @@ msgstr "全部取代(&A)"
 #: Merge.rc:2FC0BA7B
 #, c-format
 msgid "Markers"
-msgstr ""
+msgstr "標記"
 
 #: Merge.rc:61E8009D
 #, c-format
 msgid "Enable &Markers"
-msgstr ""
+msgstr "開啟標記(&M)"
 
 #: Merge.rc:24A380
 #, c-format
@@ -1723,7 +1723,7 @@ msgstr "新增"
 #: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
-msgstr ""
+msgstr "背景顏色(&B)"
 
 #: Merge.rc:1D2E49FB
 #, c-format
@@ -2363,27 +2363,27 @@ msgstr "粗體"
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
-msgstr ""
+msgstr 標記顏色
 
 #: Merge.rc:56BD1FBA
 #, c-format
 msgid "Search Marker:"
-msgstr ""
+msgstr "搜尋標記"
 
 #: Merge.rc:7B76381B
 #, c-format
 msgid "User Defined Marker1:"
-msgstr ""
+msgstr "使用定義標記1"
 
 #: Merge.rc:7B76381C
 #, c-format
 msgid "User Defined Marker2:"
-msgstr ""
+msgstr "使用定義標記2"
 
 #: Merge.rc:7B76381D
 #, c-format
 msgid "User Defined Marker3:"
-msgstr ""
+msgstr "使用定義標記3"
 
 #: Merge.rc:387F7980
 #, c-format
@@ -2628,7 +2628,7 @@ msgstr "選取："
 #: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
-msgstr ""
+msgstr "邊距："
 
 #: Merge.rc:D109E01
 #, c-format
@@ -2823,7 +2823,7 @@ msgstr "快速比較之檔案大小上限 (MB)(&Q)："
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr ""
+msgstr "比較進程數(&N)(負數表示附加可用的CPU內核數量)："
 
 #: Merge.rc:17BC2F9E
 #, c-format
@@ -3070,7 +3070,7 @@ msgstr "不要再提示這個問題(&Q)"
 #: Merge.rc:78ACB5DB
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
-msgstr ""
+msgstr "如果要再顯示這個訊息，請在選項對話視窗內的一般頁面點擊重設按鈕"
 
 #: Merge.rc:39000D57
 #, c-format
@@ -4172,17 +4172,17 @@ msgstr "文字檔內容相同"
 #: Merge.rc:1DEEB161
 #, c-format
 msgid "(Middle and right are identical)"
-msgstr ""
+msgstr "(中間和右邊內容相同)"
 
 #: Merge.rc:1D99B043
 #, c-format
 msgid "(Left and right are identical)"
-msgstr ""
+msgstr "(左邊和右邊內容相同)"
 
 #: Merge.rc:159C584C
 #, c-format
 msgid "(Left and middle are identical)"
-msgstr ""
+msgstr "(左邊和中間內容相同)"
 
 #: Merge.rc:12D66B45
 #, c-format
@@ -4476,22 +4476,22 @@ msgstr ""
 #: Merge.rc:36F211E1
 #, c-format
 msgid "Do you want to move to the next file?"
-msgstr ""
+msgstr "你想要移動到下一個檔案嗎？"
 
 #: Merge.rc:6A0A36F1
 #, c-format
 msgid "Do you want to move to the previous file?"
-msgstr ""
+msgstr "你想要移動到上一個檔案嗎？"
 
 #: Merge.rc:36F211E2
 #, c-format
 msgid "Do you want to move to the next page?"
-msgstr ""
+msgstr "你想要移動到下一頁嗎？"
 
 #: Merge.rc:6A0A36F2
 #, c-format
 msgid "Do you want to move to the previous page?"
-msgstr ""
+msgstr "你想要移動到上一頁嗎？"
 
 #: Merge.rc:4A700AB0
 #, c-format
@@ -4941,7 +4941,7 @@ msgstr "Shell"
 #: Merge.rc:4E44AD6
 #, c-format
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: Merge.rc:8AF7E6B
 #, c-format
@@ -4976,15 +4976,15 @@ msgstr "frhed(http://frhed.sourceforge.net/) 未安裝"
 #: Merge.rc:73B321AA
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
-msgstr ""
+msgstr "%1不存在，你想要建立它嗎？"
 
 #: Merge.rc:3A5D5964
 #, c-format
 msgid "Failed to create folder."
-msgstr ""
+msgstr "建立資料夾失敗"
 
 #: Merge.rc:64F70DD6
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
-msgstr ""
+msgstr "你可以指定下列參數到路徑：\n$file: 現在檔案路徑\n$linenum: 現在游標行號"
 
