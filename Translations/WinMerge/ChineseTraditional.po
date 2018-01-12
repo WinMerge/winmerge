@@ -2363,7 +2363,7 @@ msgstr "粗體"
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
-msgstr 標記顏色
+msgstr "標記顏色"
 
 #: Merge.rc:56BD1FBA
 #, c-format
