@@ -262,11 +262,11 @@ int ByteCompare::CompareFiles(FileLocation *location)
 			bool bBin1 = (m_textStats[1].nzeros > 0);
 
 			if (bBin0 && bBin1)
-				diffcode |= DIFFCODE::BIN;
+				diffcode |= DIFFCODE::BIN | DIFFCODE::BINSIDE1 | DIFFCODE::BINSIDE2;
 			else if (bBin0)
-				diffcode |= DIFFCODE::BINSIDE1;
+				diffcode |= DIFFCODE::BIN | DIFFCODE::BINSIDE1;
 			else if (bBin1)
-				diffcode |= DIFFCODE::BINSIDE2;
+				diffcode |= DIFFCODE::BIN | DIFFCODE::BINSIDE2;
 			else
 				diffcode |= DIFFCODE::TEXT;
 

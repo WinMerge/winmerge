@@ -234,13 +234,13 @@ int DiffUtils::diffutils_compare_files()
 		switch (bin_file)
 		{
 		case BINFILE_SIDE1:
-			code |= DIFFCODE::BINSIDE1;
+			code |= DIFFCODE::BIN | DIFFCODE::BINSIDE1;
 			break;
 		case BINFILE_SIDE2:
-			code |= DIFFCODE::BINSIDE2;
+			code |= DIFFCODE::BIN | DIFFCODE::BINSIDE2;
 			break;
 		case BINFILE_SIDE1 | BINFILE_SIDE2:
-			code |= DIFFCODE::BIN;
+			code |= DIFFCODE::BIN | DIFFCODE::BINSIDE1 | DIFFCODE::BINSIDE2;
 			break;
 		default:
 			std::ostringstream ss;
