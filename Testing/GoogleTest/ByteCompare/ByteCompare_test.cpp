@@ -121,7 +121,7 @@ namespace
 		bc.SetFileData(2, pair.filedata);
 
 		bc.SetCompareOptions(option);
-		EXPECT_EQ(DIFFCODE::BIN|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+		EXPECT_EQ(DIFFCODE::BIN|DIFFCODE::BINSIDE1|DIFFCODE::BINSIDE2|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
 		FileTextStats stats[2];
 		bc.GetTextStats(0, &stats[0]);
 		bc.GetTextStats(1, &stats[1]);

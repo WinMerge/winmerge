@@ -49,8 +49,8 @@ struct DIFFCODE
 		// and each set of flags is in a different hex digit
 		// to make debugging easier
 		// These can always be packed down in the future
-		TEXTFLAGS=0x7, TEXT=0x1, BINSIDE1=0x2, BINSIDE2=0x3, BIN=0x4,
-		TYPEFLAGS=0x30, FILE=0x10, DIR=0x20,
+		TEXTFLAGS=0x1F, TEXT=0x1, BIN=0x2, BINSIDE1=0x4, BINSIDE2=0x8, BINSIDE3=0x10,
+		TYPEFLAGS=0x60, FILE=0x20, DIR=0x40,
 		SIDEFLAGS=0x700, FIRST=0x100, SECOND=0x200, THIRD=0x400, BOTH=0x300, ALL=0x700,
 		COMPAREFLAGS=0x7000, NOCMP=0x0000, SAME=0x1000, DIFF=0x2000, CMPERR=0x3000, CMPABORT=0x4000,
 		COMPAREFLAGS3WAY=0x18000, DIFFALL=0x0000, DIFF1STONLY=0x8000, DIFF2NDONLY=0x10000, DIFF3RDONLY=0x18000,
@@ -149,11 +149,7 @@ public:
 	bool isResultFiltered() const { return CheckFilter(diffcode, DIFFCODE::SKIPPED); }
 	// type
 	bool isText() const { return Check(diffcode, DIFFCODE::TEXTFLAGS, DIFFCODE::TEXT); }
-	void setText() { Set(DIFFCODE::TEXTFLAGS, DIFFCODE::TEXT); }
-	bool isBin() const { return Check(diffcode, DIFFCODE::TEXTFLAGS, DIFFCODE::BIN) ||
-			Check(diffcode, DIFFCODE::TEXTFLAGS, DIFFCODE::BINSIDE1) ||
-			Check(diffcode, DIFFCODE::TEXTFLAGS, DIFFCODE::BINSIDE2); }
-	void setBin() { Set(DIFFCODE::TEXTFLAGS, DIFFCODE::BIN); }
+	bool isBin() const { return (diffcode & DIFFCODE::BIN) != 0; }
 	// rescan
 	bool isScanNeeded() const { return ((diffcode & DIFFCODE::SCANFLAGS) == DIFFCODE::NEEDSCAN); }
 
