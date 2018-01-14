@@ -173,7 +173,8 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		// This allows us to (faster) compare big binary files
 		if (nCompMethod == CMP_CONTENT && 
 			(di.diffFileInfo[0].size > pCtxt->m_nQuickCompareLimit ||
-			di.diffFileInfo[1].size > pCtxt->m_nQuickCompareLimit))
+			di.diffFileInfo[1].size > pCtxt->m_nQuickCompareLimit || 
+			(nDirs > 2 && di.diffFileInfo[2].size > pCtxt->m_nQuickCompareLimit)))
 		{
 			nCompMethod = CMP_QUICK_CONTENT;
 		}
@@ -383,11 +384,17 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 						code |= DIFFCODE::DIFF;
 					else
 						code |= DIFFCODE::SAME;
-					if (code10 & DIFFCODE::BIN || code12 & DIFFCODE::BIN)
-						code |= DIFFCODE::BIN;
-					else
+					if ((code10 & DIFFCODE::TEXTFLAGS) == DIFFCODE::TEXT && 
+					    (code12 & DIFFCODE::TEXTFLAGS) == DIFFCODE::TEXT)
 						code |= DIFFCODE::TEXT;
-
+					else
+						code |= DIFFCODE::BIN;
+					if ((code10 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE1))
+						code |= DIFFCODE::BINSIDE2;
+					if ((code10 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE2))
+						code |= DIFFCODE::BINSIDE1;
+					if ((code12 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE2))
+						code |= DIFFCODE::BINSIDE3;
 					if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
 					{
 						if ((code12 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME)
