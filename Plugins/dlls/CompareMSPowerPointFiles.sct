@@ -57,7 +57,7 @@ Function isAccessibleVBAProject(prs)
 	Dim count
 	count = -1
 	On Error Resume Next
-	count = pr.VBProject.VBComponents.Count
+	count = prs.VBProject.VBComponents.Count
 	isAccessibleVBAProject = (count > 0)
 End Function
 
@@ -76,7 +76,10 @@ Function writeObjectProperties(fo, items)
 End Function
 
 Function writeShape(fo, shp)
-	Dim shp2
+	Dim shp2, shpType, r, c
+	On Error Resume Next
+	shpType = -1
+	shpType = shp.Type
 	fo.Write shp.Name & ": "
 	If shp.HasTable Then
 		For r = 1 To shp.Table.Rows.Count
@@ -85,7 +88,7 @@ Function writeShape(fo, shp)
 				writeShape fo, shp.Table.Cell(r, c).Shape
 			Next
 		Next
-	ElseIf shp.Type = 6 Then 'msoGroup = 6
+	ElseIf shpType = 6 Then 'msoGroup = 6
 		For Each shp2 In shp.GroupItems
 		    writeShape fo, shp2
 		Next
