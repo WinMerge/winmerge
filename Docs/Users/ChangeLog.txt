@@ -4,9 +4,163 @@ old format (#XXXXXXX) or new format (patches:#XXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.14.2
-  Translation updates:
-  - Basque (patches:#3024)
+WinMerge 2.15.2
+  Appearance:
+  - Flatten GUI pane edges
+  - Partial support for HiDPI (not Per-Monitor DPI Aware)
+  - Remove splash screen. The splash screen image is now displayed in About
+    dialog
+  Tool bar:
+  - Add "View->Toolbar->Huge" menu item
+  - Add drop down menu to Options icon
+  - Add icons for 3-way merge functions
+  Open dialog:
+  - Change window type of Open dialog from modal window to MDI child window
+  - Add Read-only checkbox to Open dialog
+  - Add buttons to swap items
+  - Add the third path combobox for 3-way comparison
+  - Allow file name patterns like not only *.ext but file*.ext
+  Tab bar:
+  - Make Tabbar reorderable by using drag-and-drop
+  - Add "Close Other Tabs", "Close Right Tabs" and "Close Left Tabs" menu items
+      to system menu
+  - Add "Enable Auto Max Width" menu item to Tab Bar context menu
+  - Show close button when hovering over tabs
+  - Add icons to each tab
+  Options dialog:
+  - Add "Close Select Files or Folders Dialog on clicking OK button" checkbox
+     to "General" page
+  - Add "Language" combobox to "General" page and remove Language dialog
+  - Add "Ignore codepage differences" checkbox to "Compare/General" page
+  - Remove checkboxes in "Enable multiple compare windows for" group from
+      "General" page (Now always enabled multi compare windows)
+  - Add "Include Subfolders" checkbox to "Compare/Folder" page
+  - Add "Automatically expand all subfolders" checkbox to "Compare/Folder" page
+  - Add "Ignore Reparse Points" checkbox to "Compare/Folder" page
+  - Add "Number of compare threads" textbox to "Compare/Folder" page
+  - Add "Compare/Binary" page
+  - Add "Compare/Image" page
+  - Add checkboxes whether to use custom colors for text to 
+      "Colors/Differences" page
+  - Add "GitHub/Bitbucket" button to "Colors/Differences" page
+  - Add "Margin" color button to "Colors/Text" page
+  - Add "Colors/Markers" page
+  - Remove "Use stand-alone 7-Zip if available" and 
+      "Use local 7-Zip from WinMerge folder" radio button from 
+      "Archive Support" page
+      (Now always use local 7-Zip from WinMerge folder)
+  - Make $file and $linenum parameters available in External editor textbox
+      on "System" page
+  - Make Custom codepage on "Codepage" page selectable from dropdown list 
+  - Add "Detect codepage for text files using mlang.dll" checkbox to 
+      "Codepage" page
+  - Remove "Include subfolders by default" checkbox from 
+      "Shell Integration" page
+      (ShellExtension now refers to "Include subfolders" checkbox 
+        on "Compare/Folder" page or on "Select Files or Folders" dialog)
+  - Remove "Add Shell menu to context menu" from "Shell Integration" page
+      (WinMerge now always adds shell menu to context menu in Folder window)
+  - Add "Register shell extension" button to "Shell Integration" page
+  Folder Compare:
+  - Add Multi-thread compare support for Full Contents or Quick Contents
+      method
+  - Color the background of items in list view
+  - Restore collapse/expand state of folder tree after re-comparison 
+  - Make comparing window closeable
+  - Make sub-folder re-comparable
+  - Display folder items in list view during comparison
+  - Display the file name currently being compared in progress window
+  - Add "Parent Folder" menu item in 'Open Left/Middle/Right' menu
+  - Add "Compare Non-horizontally" menu item to context menu
+  - Add "Copy items To Clipboard" menu item to context menu
+  - Add "Swap panes" menu item to View menu
+  - Add "Auto/Manual Prediffer" menu item to Plugin menu
+  - Open selected folders in new tab when clicking "Compare" menu item with
+    pressing Ctrl key
+  - Cleanup Date column alignment (GitHub #25)
+  - Bugfix: Version column not sorted correctly
+  - Bugfix: A unique item that is a binary file was not detected
+      as a binary file
+  - Bugfix: Properly handle 3-way comparison of Binary files (Github #23)
+  - Bugfix: Use proper font for View>Use Default Font menu item (GitHub #24)
+  File Compare:
+  - Add support for 3-way compare/merge
+  - Add "Diff Context" menu to View menu to adjust the number of displayed
+    diff context lines
+  - Add "Split Vertically" menu item to View menu
+  - Add "Add Synchronization Point" to Merge menu
+  - Add "Auto/Manual Prediffer" menu item to Plugin menu
+  - Show the name of the applied plugin in the status bar
+  - Add shortcut(Ctrl+Alt+E) to open with external editor
+  - Add Go and Rust highlighter
+  - Add VHDL syntax highlighter (Bitbucket #2)
+  - Add C++11 keywords
+  - Make merge editor window D&Dable
+  - Highlight the search text and implement Marker
+  - Highlight the EOL pane in status bar if there is a difference 
+      in the EOL of files
+  - Reload files when another application changes files opened by WinMerge
+  - Improve in-line diff algorithm
+  - Bugfix: More on Issue #73 Fixed the -dl -dm and -dr description parameters
+    for conflict files
+    (for both 2 way and 3 way conflict files).(Bitbucket #1)
+  - Bugfix: Fix Memory Leak with Drop Targets (GitHub #26)
+  Binary Compare:
+  - Install binary file editor (frhed) component again by default
+  - Make binary file editor undoable
+  Image Compare:
+  - Add image file compare/merge support
+  Reports:
+  - Add "Include File Compare Report" checkbox to "Folder Compare Report"
+      dialog
+  - Change the encoding of HTML folder compare report from ANSI to UTF-8
+  - Add icons to the HTML folder compare report
+  - Change visual style of HTML report
+  Archive Support:
+  - Install 7-zip plugin by default
+  Drag and Drop:
+  - Accept drag&droped files or folders from various places like:
+    Zip folder, FTP folder, Recycle bin, images in Web browser
+  Plugins:
+  - Introduce new plugin type FILE_FOLDER_PACK_UNPACKER
+    which allows unpacking data in a file to multiple files in a folder
+  - Use FILE_FOLDER_PACK_UNPACKER plugin for decompressing archives
+  - Add support for unpacker plugin written in VBScript/Javascript.
+  - Add WinMerge32BitPluginProxy.exe to make 32-bit plugins usable in 64-bit
+    WinMerge 
+  - Rewrite some plugins in VBScript
+  - Add CompareMSPowerPointFiles.sct plugin
+  - Add ApplyPatch.sct plugin
+  - Add SortAscending, SortDescending and ExecFilterCommand menu item to 
+    Plugin->Script menu
+  - Make plugins configurable with settings dialog of each plugin
+  Filters:
+  - Update *.flt files for Visual Studio 2015 and 2017
+  Shell extension:
+  - Display another WinMerge icon in Explorer's context menu when a folder is
+    selected
+  Installer:
+  - 64-bit version of WinMerge is available
+  - Install plugins by default
+  Translations:
+  - Update Portuguese translation (GitHub #2-17)
+  - Update Korean translation (GitHub #45)
+  - Update Traditional Chinese translation (GitHub #53)
+  - Remove "Language" menu item from View menu
+    (You can specify UI language at Options dialog)
+  Command line:
+  - Incompatible change: The third file path is now treated as a right path
+    for 3-way comparison, not output path
+    Use /o option for ouput path instead
+  - Add /wm, /dm, /fl, /fm, /fr, /al, /am and /ar option for 3-way comparison
+  Other changes:
+  - Add support for jump list introduced in Windows 7
+  Internals:
+  - Use POCO C++ libraries instead of pcre, expat and scew.
+    They use pcre, expat internally
+  - Link statically with MFC and VC runtime libraries
+  - Various compilation/build fixes
+    (GitHub #1,19,21,29,31-33,36-38,42-44,49-52)
 
 WinMerge 2.14.0 - 2013-02-02 (r7596)
   Bugfix: Shell extension uses unquoted program path (patches:#3023)

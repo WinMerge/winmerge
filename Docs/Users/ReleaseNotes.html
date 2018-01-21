@@ -1,8 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
   "http://www.w3.org/TR/html4/loose.dtd">
 
-<!-- $Id: ReleaseNotes.html 7596 2013-02-02 22:26:27Z christianlist $ -->
-
 <html>
 <head>
   <title>Release Notes</title>
@@ -51,155 +49,247 @@
 </head>
 <body>
 
-<h2>WinMerge 2.14.0 Release Notes</h2>
+<h2>WinMerge 2.15.2 Beta Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2140">What Is New in 2.14.0?</a></li>
-  <li><a href="#new21320">What Is New in 2.13.20 beta?</a></li>
+  <li><a href="#new2152">What Is New in 2.15.2 beta?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>June 2011</p>
+<p>January 2018</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge 2.14.0 stable release. This release replaces earlier WinMerge
-stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 </p>
 
 <p>
-Please submit bug reports to our <a href="http://bugs.winmerge.org">bug-tracker</a>.
+Please submit bug reports to our <a href="http://bitbucket.org/winmerge/winmerge/issues">bug-tracker</a>.
 </p>
 
-<h3><a name="#new2140">What Is New in 2.14.0?</a></h3>
+<h3><a name="#new2152">What Is New in 2.15.2 Beta?</a></h3>
 <p>
-WinMerge 2.14 is an important update to WinMerge. There are lots of 
-improvements and bug fixes since 2.12.4 stable release. 
+WinMerge 2.15.2 is a beta release which mainly adds support for experimental 3-way comparison and image comparison.
 </p>
 
-<p>It's important to note that this is the first stable release that no 
-longer ships with the ANSI version of WinMerge, and as a consequence it drops
-support for Windows 9x, ME and NT4.
-</p>
-
-<p>2.14.0 stable release has many changes after beta release. But see also the
-2.13 beta release changes below for other important changes in this release.
-</p>
-
-<h4>Improvements</h4>
+<h4>Appearance</h4>
 <ul>
-  <li>Improve startup time</li>
-  <li>Improve editing of linefilter regular expressions</li>
-  <li>Improve color options organization</li>
+  <li>Flatten GUI pane edges</li>
+  <li>Partial support for HiDPI (not Per-Monitor DPI Aware)</li>
+  <li>Remove splash screen. The splash screen image is now displayed in About dialog</li>
 </ul>
 
-<h4>Other changes</h4>
+<h4>Tool bar</h4>
 <ul>
-  <li>Update PCRE to version 8.10</li>
-  <li>Update SCEW to version 1.1.2</li>
-  <li>Add menuitems for selecting automatic or manual prediffing</li>
-  <li>Add accelerator keys for Shell context menu</li>
-  <li>Allow editing context line count in patch creator</li>
-  <li>Add <code>/xq</code> command line switch for closing WinMerge after identical files and not showing message</li>
-  <li>Allow setting codepage from command line</li>
-  <li>Allow giving encoding name as custom codepage</li>
-  <li>Add new options dialog panel for folder compare options</li>
-  <li>Add options GUI for quick compare limit</li>
-  <li>Write config log as UTF-8 file</li>
+  <li>Add "View-&gt;Toolbar-&gt;Huge" menu item</li>
+  <li>Add drop down menu to Options icon</li>
+  <li>Add icons for 3-way merge functions</li>
 </ul>
 
-<h4>Bugs fixed</h4>
+<h4>Open dialog</h4>
 <ul>
-  <li>Untranslated string ("Merge.rc:nnnn") was displayed in status bar</li>
-  <li>Pane headers not updated after language change</li>
-  <li>Quick contents compare didn't ignore EOL byte differences</li>
-  <li>Compare by size always checked file times too</li>
-  <li>Crash when pasting from clipboard</li>
-  <li>Keeps verifing path even turned off in options</li>
-  <li>Crash after deleting text</li>
-  <li>Added EOL chars between copied file/path names</li>
-  <li>Created new matching folder to wrong folder</li>
-  <li>Strange scrolling effect in location pane</li>
-  <li>Plugin error after interrupting folder compare</li>
-  <li>"+" and "-" from the number block don't work in the editor</li>
-  <li>Date format did not respect Regional Settings</li>
-  <li>Shell extension used unquoted program path</li>
+  <li>Change window type of Open dialog from modal window to MDI child window</li>
+  <li>Add Read-only checkbox to Open dialog</li>
+  <li>Add buttons to swap items</li>
+  <li>Add the third path combobox for 3-way comparison</li>
+  <li>Allow file name patterns like not only *.ext but file*.ext</li>
 </ul>
 
-<h4>New Translation</h4>
+<h4>Tab bar</h4>
 <ul>
-  <li>Basque</li>
+  <li>Make Tabbar reorderable by using drag-and-drop</li>
+  <li>Add "Close Other Tabs", "Close Right Tabs" and "Close Left Tabs" menu items
+      to system menu</li>
+  <li>Add "Enable Auto Max Width" menu item to Tab Bar context menu</li>
+  <li>Show close button when hovering over tabs</li>
+  <li>Add icons to each tab</li>
+</ul>
+<h4>Options dialog</h4>
+<ul>
+  <li>Add "Close Select Files or Folders Dialog on clicking OK button" checkbox
+     to "General" page</li>
+  <li>Add "Language" combobox to "General" page and remove Language dialog</li>
+  <li>Add "Ignore codepage differences" checkbox to "Compare/General" page</li>
+  <li>Remove checkboxes in "Enable multiple compare windows for" group from
+      "General" page (Now always enabled multi compare windows)</li>
+  <li>Add "Include Subfolders" checkbox to "Compare/Folder" page</li>
+  <li>Add "Automatically expand all subfolders" checkbox to "Compare/Folder" page</li>
+  <li>Add "Ignore Reparse Points" checkbox to "Compare/Folder" page</li>
+  <li>Add "Number of compare threads" textbox to "Compare/Folder" page</li>
+  <li>Add "Compare/Binary" page</li>
+  <li>Add "Compare/Image" page</li>
+  <li>Add checkboxes whether to use custom colors for text to
+      "Colors/Differences" page</li>
+  <li>Add "GitHub/Bitbucket" button to "Colors/Differences" page</li>
+  <li>Add "Margin" color button to "Colors/Text" page</li>
+  <li>Add "Colors/Markers" page</li>
+  <li>Remove "Use stand-alone 7-Zip if available" and
+      "Use local 7-Zip from WinMerge folder" radio button from
+      "Archive Support" page
+      (Now always use local 7-Zip from WinMerge folder)</li>
+  <li>Make $file and $linenum parameters available in External editor textbox
+      on "System" page</li>
+  <li>Make Custom codepage on "Codepage" page selectable from dropdown list </li>
+  <li>Add "Detect codepage for text files using mlang.dll" checkbox to
+      "Codepage" page</li>
+  <li>Remove "Include subfolders by default" checkbox from </li>
+      "Shell Integration" page
+      (ShellExtension now refers to "Include subfolders" checkbox
+        on "Compare/Folder" page or on "Select Files or Folders" dialog)</li>
+  <li>Remove "Add Shell menu to context menu" from "Shell Integration" page
+      (WinMerge now always adds shell menu to context menu in Folder window)</li>
+  <li>Add "Register shell extension" button to "Shell Integration" page</li>
 </ul>
 
-<h4>Translation updates</h4>
+<h4>Folder Compare</h4>
 <ul>
-  <li>Hungarian</li>
-  <li>Turkish</li>
-  <li>Russian</li>
-  <li>Norwegian</li>
-  <li>Danish</li>
-  <li>Dutch</li>
-  <li>Slovenian</li>
+  <li>Add Multi-thread compare support for Full Contents or Quick Contents
+      method</li>
+  <li>Color the background of items in list view</li>
+  <li>Restore collapse/expand state of folder tree after re-comparison </li>
+  <li>Make comparing window closeable</li>
+  <li>Make sub-folder re-comparable</li>
+  <li>Display folder items in list view during comparison</li>
+  <li>Display the file name currently being compared in progress window</li>
+  <li>Add "Parent Folder" menu item in 'Open Left/Middle/Right' menu</li>
+  <li>Add "Compare Non-horizontally" menu item to context menu</li>
+  <li>Add "Copy items To Clipboard" menu item to context menu</li>
+  <li>Add "Swap panes" menu item to View menu</li>
+  <li>Add "Auto/Manual Prediffer" menu item to Plugin menu</li>
+  <li>Open selected folders in new tab when clicking "Compare" menu item with
+    pressing Ctrl key</li>
+  <li>Cleanup Date column alignment (GitHub #25)</li>
+  <li>Bugfix: Version column not sorted correctly</li>
+  <li>Bugfix: A unique item that is a binary file was not detected
+      as a binary file</li>
+  <li>Bugfix: Properly handle 3-way comparison of Binary files (Github #23)</li>
+  <li>Bugfix: Use proper font for View&gt;Use Default Font menu item (GitHub #24)</li>
 </ul>
 
-<h3><a name="new21320">What Is New in 2.13.20 beta?</a></h3>
-<p>
-WinMerge before version 2.13.20 was vulnerable to DLL hijacking as described in
-Microsoft Security Advisory (<a href="http://www.microsoft.com/technet/security/advisory/2269637.mspx">2269637</a>).
-To fix this problem, we must also drop support for Windows 9x, ME and NT4.
-</p>
+<h4>File Compare</h4>
+<ul>
+  <li>Add support for 3-way compare/merge</li>
+  <li>Add "Diff Context" menu to View menu to adjust the number of displayed
+    diff context lines</li>
+  <li>Add "Split Vertically" menu item to View menu</li>
+  <li>Add "Add Synchronization Point" to Merge menu</li>
+  <li>Add "Auto/Manual Prediffer" menu item to Plugin menu</li>
+  <li>Show the name of the applied plugin in the status bar</li>
+  <li>Add shortcut(Ctrl+Alt+E) to open with external editor</li>
+  <li>Add Go and Rust highlighter</li>
+  <li>Add VHDL syntax highlighter (Bitbucket #2)</li>
+  <li>Add C++11 keywords</li>
+  <li>Make merge editor window D&amp;Dable</li>
+  <li>Highlight the search text and implement Marker</li>
+  <li>Highlight the EOL pane in status bar if there is a difference
+      in the EOL of files</li>
+  <li>Reload files when another application changes files opened by WinMerge</li>
+  <li>Improve in-line diff algorithm</li>
+  <li>Bugfix: More on Issue #73 Fixed the -dl -dm and -dr description parameters
+    for conflict files
+    (for both 2 way and 3 way conflict files).(Bitbucket #1)</li>
+  <li>Bugfix: Fix Memory Leak with Drop Targets (GitHub #26)</li>
+</ul>
+
+<h4>Binary Compare</h4>
+<ul>
+  <li>Install binary file editor (frhed) component again by default</li>
+  <li>Make binary file editor undoable</li>
+</ul>
+
+<h4>Image Compare</h4>
+<ul>
+  <li>Add image file compare/merge support</li>
+</ul>
+
+<h4>Reports</h4>
+<ul>
+  <li>Add "Include File Compare Report" checkbox to "Folder Compare Report"
+      dialog</li>
+  <li>Change the encoding of HTML folder compare report from ANSI to UTF-8</li>
+  <li>Add icons to the HTML folder compare report</li>
+  <li>Change visual style of HTML report</li>
+</ul>
+
+<h4>Archive Support</h4>
+<ul>
+  <li>Install 7-zip plugin by default</li>
+</ul>
+
+<h4>Drag and Drop</h4>
+</ul>
+<ul>
+  <li>Accept drag&amp;droped files or folders from various places like:
+    Zip folder, FTP folder, Recycle bin, images in Web browser</li>
+</ul>
+
+<h4>Plugins</h4>
+<ul>
+  <li>Introduce new plugin type FILE_FOLDER_PACK_UNPACKER
+    which allows unpacking data in a file to multiple files in a folder</li>
+  <li>Use FILE_FOLDER_PACK_UNPACKER plugin for decompressing archives</li>
+  <li>Add support for unpacker plugin written in VBScript/Javascript.</li>
+  <li>Add WinMerge32BitPluginProxy.exe to make 32-bit plugins usable in 64-bit
+    WinMerge </li>
+  <li>Rewrite some plugins in VBScript</li>
+  <li>Add CompareMSPowerPointFiles.sct plugin</li>
+  <li>Add ApplyPatch.sct plugin</li>
+  <li>Add SortAscending, SortDescending and ExecFilterCommand menu item to
+    Plugin-&gt;Script menu</li>
+  <li>Make plugins configurable with settings dialog of each plugin</li>
+</ul>
+
+<h4>Filters</h4>
+<ul>
+  <li>Update *.flt files for Visual Studio 2015 and 2017</li>
+</ul>
+
+<h4>Shell extension</h4>
+<ul>
+  <li>Display another WinMerge icon in Explorer's context menu 
+    when a folder is selected</li>
+</ul>
 
 <h4>Installer</h4>
 <ul>
-  <li>Drop Windows 9x/ME/NT4 support and use Microsoft runtime libraries installer</li>
-  <li>Remove Uninstall shortcut from start menu folder</li>
-  <li>Don't install quick launch icon for Windows 7</li>
+  <li>64-bit version of WinMerge is available</li>
+  <li>Install plugins by default</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>Update Portuguese translation (GitHub #2-17)</li>
+  <li>Update Korean translation (GitHub #45)</li>
+  <li>Update Traditional Chinese translation (GitHub #53)</li>
+  <li>Remove "Language" menu item from View menu
+    (You can specify UI language at Options dialog)</li>
+</ul>
+
+<h4>Command line</h4>
+<ul>
+  <li>Incompatible change: The third file path is now treated as a right path
+    for 3-way comparison, not output path
+    Use /o option for ouput path instead</li>
+  <li>Add /wm, /dm, /fl, /fm, /fr, /al, /am and /ar option for 3-way comparison</li>
 </ul>
 
 <h4>Other changes</h4>
 <ul>
-  <li>Add missing keywords to Pascal highlighter</li>
-  <li>Recognize .ascx files as ASP files</li>
-  <li>Fix help locations</li>
-  <li>Show only "Copy to other side" item in file compare context menu</li>
-  <li>Expand/collapse folders from keyboard</li>
-  <li>Improve detecting XML files in file compare</li>
-  <li>Initialize folder selection dialog to currently selected folder in options dialog</li>
+  <li>Add support for jump list introduced in Windows 7</li>
 </ul>
 
-<h4>Bugs fixed</h4>
+<h4>Internals</h4>
 <ul>
-  <li>WinMerge was vulnerable to DLL hijacking as described in Microsoft Security
-      Advisory (<a href="http://www.microsoft.com/technet/security/advisory/2269637.mspx">2269637</a>)</li>
-  <li>Location pane focus enabled "Save"</li>
-  <li>"Copy and advance" toolbar icons not automatically enabled</li>
-</ul>
-
-<h4>New Translations</h4>
-<ul>
-  <li>Persian</li>
-  <li>Serbian</li>
-</ul>
-
-<h4>Translation updates</h4>
-<ul>
-  <li>Bulgarian</li>
-  <li>Chinese</li>
-  <li>Dutch</li>
-  <li>French</li>
-  <li>Slovenian</li>
-  <li>Spanish</li>
-  <li>Turkish</li>
-  <li>Ukrainian</li>
+  <li>Use POCO C++ libraries instead of pcre, expat and scew.
+    They use pcre, expat internally</li>
+  <li>Link statically with MFC and VC runtime libraries</li>
+  <li>Various compilation/build fixes
+    (GitHub #1,19,21,29,31-33,36-38,42-44,49-52)</li>
 </ul>
 
 <h3><a name="issues">Known Issues</a></h3>
 <ul>
-  <li>
-    <p><strong>7-zip installed from MSI installer may not work with WinMerge.</strong></p>
-    <p><i>Workaround</i>: Use the EXE installer of 7-Zip. See manual
-    <i>4.5. 7-Zip and Archive Support</i> for more information.</p>
-  </li>
   <li>
     <p><strong>Old IE version can cause crashes when handling archive files.</strong></p>
     <p><i>Workaround</i>: If WinMerge crashes when handling archives, consider
@@ -219,21 +309,10 @@ To fix this problem, we must also drop support for Windows 9x, ME and NT4.
     <p><i>Workaround</i>: Disable the Supercopier when using WinMerge.</p>
   </li>
   <li>
-    <p><strong>There is no way to specify the codepage for a particular file.</strong></p>
-    <p><i>Workaround</i>: Specify the default codepages for all files in Edit-&gt;Options-&gt;Codepage-&gt;Custom codepage.</p>
-  </li>
-  <li><p><strong>There is no 3-way merge.</strong> <small><a href="http://winmerge.org/rfe/990464" title="Feature Request #990464">#990464</a></small></p></li>
-  <li>
     <p><strong>Filters only applied when using full compare.</strong></p>
     <p>Line filtering is only applied in folder compare when using <i>Full Contents</i>-compare method.</p>
     <p>If you are using any other compare method, line filters are not applied. Files marked different
     in folder compare can get status changed to identical when opening them to file compare.</p>
-  </li>
-  <li>
-    <p><strong>Some plugins shipped with WinMerge require Visual Basic runtime library to work</strong></p>
-    <p><i>Workaround</i>: You can download the required file <code><a href="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">msvbvm60.dll</a></code>
-       or use the <a href="http://www.microsoft.com/downloads/details.aspx?familyid=7b9ba261-7a9c-43e7-9117-f673077ffb3c">Run-Time Redistribution Pack</a> from Microsoft.</p>
-    <p><i>Workaround 2</i>: If you don't need the plugin, you can safely remove it.</p>
   </li>
   <li>
     <p><strong>VSS integration cannot add new files to VSS</strong></p>
