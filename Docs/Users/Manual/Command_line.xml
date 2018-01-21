@@ -323,18 +323,18 @@
       optional output folder where you want merged result files to be
       saved.</para>
 
-      <para>The third, output path is rarely needed when you start WinMerge from
+      <para>The output path is rarely needed when you start WinMerge from
       the command line. It is meant to be used with version control tools, where
-      you might need to specify a third path for the
-      <wordasword>result</wordasword> file. If you specify a third path,
-      WinMerge still shows only two files in the File Compare window. However,
-      if you save either of these files, it is written to the third path,
-      leaving the two source files intact.</para>
+      you might need to specify a output path for the
+      <wordasword>result</wordasword> file. If you specify a output path,
+      WinMerge still shows only two or three files in the File Compare window. However,
+      if you save either of these files, it is written to the output path,
+      leaving the two or three source files intact.</para>
 
       <para>Version control systems typically refer to the source and result
       files using terms like <glossterm>theirs</glossterm>,
       <glossterm>mine</glossterm>, and either <glossterm>merged</glossterm> or
-      <glossterm>resolved</glossterm>. If you specify a third path on the
+      <glossterm>resolved</glossterm>. If you specify a output path on the
       WinMerge command line, and are working with a version control system, you
       should list the files in that order.</para>
     </listitem>
