@@ -30,4 +30,5 @@ d: \\cvs$   ## CVS control directory
 d: \\\.git$ ## Git directory
 d: \\\.bzr$ ## Bazaar branch
 d: \\\.hg$ ## Mercurial repository
+d: \\\.vs$ ## A hidden folder that stores .suo and *.db files
 
