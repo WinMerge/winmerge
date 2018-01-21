@@ -36,7 +36,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files"
 		BuildInstaller.cmd = BuildInstaller.cmd
 		BuildManual.cmd = BuildManual.cmd
 		SetVersion.cmd = SetVersion.cmd
-		UploadToGithub.cmd = UploadToGithub.cmd
 		UploadToVirusTotal.cmd = UploadToVirusTotal.cmd
 	EndProjectSection
 EndProject
