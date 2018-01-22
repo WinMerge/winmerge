@@ -1246,7 +1246,7 @@ BEGIN
     LTEXT           "Comparing items...",IDC_STATIC,7,7,150,10
     LTEXT           "Items compared:",IDC_STATIC,7,29,85,10
     LTEXT           "Items total:",IDC_STATIC,7,19,85,10
-    LTEXT           "",IDC_PATH_COMPARING,137,29,242,10
+    LTEXT           "",IDC_PATH_COMPARING,137,29,111,10
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 80
@@ -1777,6 +1777,7 @@ BEGIN
     PUSHBUTTON      "&Hex View",IDC_HEXVIEW,261,29,120,14
 END
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // DESIGNINFO
@@ -1811,7 +1812,7 @@ BEGIN
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
-    0, 0, 0, 0
+    0, 0, 100, 0
 END
 
 IDD_PROPPAGE_COLORS_MARKER AFX_DIALOG_LAYOUT
@@ -2664,13 +2665,13 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_CREATE_FOLDER        "%1 does not exist. Do you want to create it?"
-    IDS_CREATE_FOLDER_ERROR  "Failed to create folder."
+    IDS_CREATE_FOLDER       "%1 does not exist. Do you want to create it?"
+    IDS_CREATE_FOLDER_ERROR "Failed to create folder."
 END
 
 STRINGTABLE
 BEGIN
-    IDC_EXT_EDITOR_PATH      "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+    IDC_EXT_EDITOR_PATH     "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 END
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
