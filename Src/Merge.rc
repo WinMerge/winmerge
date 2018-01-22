@@ -1243,7 +1243,7 @@ BEGIN
     LTEXT           "Comparing items...",IDC_STATIC,7,7,150,10
     LTEXT           "Items compared:",IDC_STATIC,7,29,85,10
     LTEXT           "Items total:",IDC_STATIC,7,19,85,10
-    LTEXT           "",IDC_PATH_COMPARING,137,29,242,10
+    LTEXT           "",IDC_PATH_COMPARING,137,29,111,10
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 80
@@ -1774,6 +1774,7 @@ BEGIN
     PUSHBUTTON      "&Hex View",IDC_HEXVIEW,261,29,120,14
 END
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // DESIGNINFO
@@ -1808,7 +1809,7 @@ BEGIN
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
-    0, 0, 0, 0
+    0, 0, 100, 0
 END
 
 IDD_PROPPAGE_COLORS_MARKER AFX_DIALOG_LAYOUT
