@@ -94,20 +94,22 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
     // compute the caption rectangle
     BOOL bHorz = IsHorzDocked();
     CRect rcGrip = rcClient;
-    CRect rcBtn = m_biHide.GetRect();
+    const int lpx = pDC->GetDeviceCaps(LOGPIXELSX);
+    auto pointToPixel = [lpx](double point) { return static_cast<int>(point * lpx / 72); };
+    CRect rcBtn(m_biHide.ptOrg, CSize(pointToPixel(m_biHide.dblBoxSize), pointToPixel(m_biHide.dblBoxSize)));
     if (bHorz)
     {   // right side gripper
-        rcGrip.left -= m_cyGripper + 1;
-        rcGrip.right = rcGrip.left + 11;
-        rcGrip.top = rcBtn.bottom + 3;
+        rcGrip.left -= pointToPixel(m_dblGripper + 0.75);
+        rcGrip.right = rcGrip.left + pointToPixel(8.25);
+        rcGrip.top = rcBtn.bottom + pointToPixel(2.25)
     }
     else
     {   // gripper at top
-        rcGrip.top -= m_cyGripper + 1;
-        rcGrip.bottom = rcGrip.top + 11;
-        rcGrip.right = rcBtn.left - 3;
+        rcGrip.top -= pointToPixel(m_dblGripper + 0.75);
+        rcGrip.bottom = rcGrip.top + pointToPixel(8.25);
+        rcGrip.right = rcBtn.left - pointToPixel(2.25);
     }
-    rcGrip.InflateRect(bHorz ? 1 : 0, bHorz ? 0 : 1);
+    rcGrip.InflateRect(bHorz ? pointToPixel(0.75) : 0, bHorz ? 0 : pointToPixel(0.75));
 
     // draw the caption background
     //CBrush br;
@@ -170,11 +172,8 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
 
     // draw the caption text - first select a font
     CFont font;
-    int ppi = pDC->GetDeviceCaps(LOGPIXELSX);
-    int pointsize = MulDiv(85, 96, ppi); // 8.5 points at 96 ppi
-
     LOGFONT lf;
-    BOOL bFont = font.CreatePointFont(pointsize, m_sFontFace);
+    BOOL bFont = font.CreatePointFont(85/*8.5 points*/, m_sFontFace);
     if (bFont)
     {
         // get the text color
@@ -199,8 +198,8 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
         GetWindowText(sTitle);
 
         CPoint ptOrg = bHorz ?
-            CPoint(rcGrip.left - 1, rcGrip.bottom - 3) :
-            CPoint(rcGrip.left + 3, rcGrip.top - 1);
+            CPoint(rcGrip.left - pointToPixel(0.75), rcGrip.bottom - pointToPixel(2.25)) :
+            CPoint(rcGrip.left + pointToPixel(2.25), rcGrip.top - pointToPixel(0.75));
 
         pDC->ExtTextOut(ptOrg.x, ptOrg.y,
             ETO_CLIPPED, rcGrip, sTitle, NULL);
