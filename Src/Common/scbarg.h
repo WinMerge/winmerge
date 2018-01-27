@@ -45,13 +45,11 @@ public:
     CSCBButton();
 
     void Move(CPoint ptTo) {ptOrg = ptTo; };
-    CRect GetRect() { return CRect(ptOrg, CSize(11, 11)); };
     void Paint(CDC* pDC);
 
     BOOL    bPushed;
     BOOL    bRaised;
-
-protected:
+    const double  dblBoxSize = 8.25;
     CPoint  ptOrg;
 };
 
@@ -96,7 +94,7 @@ protected:
     virtual void NcCalcClient(LPRECT pRc, UINT nDockBarID);
 
 protected:
-    int     m_cyGripper;
+    const double m_dblGripper = 9.0;
 
     CSCBButton m_biHide;
 
