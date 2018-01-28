@@ -101,7 +101,7 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
     {   // right side gripper
         rcGrip.left -= pointToPixel(m_dblGripper + 0.75);
         rcGrip.right = rcGrip.left + pointToPixel(8.25);
-        rcGrip.top = rcBtn.bottom + pointToPixel(2.25)
+		rcGrip.top = rcBtn.bottom + pointToPixel(2.25);
     }
     else
     {   // gripper at top
