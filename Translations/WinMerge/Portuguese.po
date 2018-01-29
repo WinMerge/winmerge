@@ -58,7 +58,7 @@ msgstr "C&opiar da Direita"
 #: Merge.rc:381D79E4
 #, c-format
 msgid "&Select Line Difference"
-msgstr "&Seleccionar Diferenças de Linha"
+msgstr "&Selecionar Diferenças de Linha"
 
 #: Merge.rc:43017E40
 #, c-format
@@ -218,12 +218,12 @@ msgstr "Abrir Pro&jecto...\Ctrl+J"
 #: Merge.rc:1BF42625
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "&Guardar Projecto..."
+msgstr "&Guardar Projeto..."
 
 #: Merge.rc:47D4A3FA
 #, c-format
 msgid "Recent Projects"
-msgstr "Projectos Recentes"
+msgstr "Projetos Recentes"
 
 #: Merge.rc:73E9B1DA
 #, c-format
@@ -433,7 +433,7 @@ msgstr "A Codificar Ficheiro..."
 #: Merge.rc:E44718
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "Seleccionar &Tudo\tCtrl+A"
+msgstr "Selecionar &Tudo\tCtrl+A"
 
 #: Merge.rc:58EEEB7E
 #, c-format
@@ -513,7 +513,7 @@ msgstr "&Fechar Todas as Subpastas"
 #: Merge.rc:E6D7EE
 #, c-format
 msgid "Select &Font..."
-msgstr "Seleccionar &Fonte..."
+msgstr "Selecionar &Fonte..."
 
 #: Merge.rc:5D3AA8D3
 #, c-format
@@ -723,7 +723,7 @@ msgstr "&Colar\tCtrl+V"
 #: Merge.rc:73FB245
 #, c-format
 msgid "Select Line &Difference\tF4"
-msgstr "Seleccionar Diferenças de Linha\tF4"
+msgstr "Selecionar Diferenças de Linha\tF4"
 
 #: Merge.rc:444C5DDB
 #, c-format
@@ -1394,7 +1394,7 @@ msgstr "Colaboradores"
 #: Merge.rc:58E210FA
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Seleccione Ficheiros ou Pastas"
+msgstr "Selecione Ficheiros ou Pastas"
 
 #: Merge.rc:68816EE7
 #, c-format
@@ -1424,7 +1424,7 @@ msgstr "Fi&ltro:"
 #: Merge.rc:2D1160AF
 #, c-format
 msgid "Select..."
-msgstr "Seleccionar..."
+msgstr "Selecionar..."
 
 #: Merge.rc:68816EE8
 #, c-format
@@ -1434,7 +1434,7 @@ msgstr "E&xtractor:"
 #: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
-msgstr "Seleccionar..."
+msgstr "Selecionar..."
 
 #: Merge.rc:67019DCA
 #, c-format
@@ -1479,7 +1479,7 @@ msgstr "Base de dados:"
 #: Merge.rc:60C4588F
 #, c-format
 msgid "Project:"
-msgstr "Projecto:"
+msgstr "Projeto:"
 
 #: Merge.rc:15E1A7E1
 #, c-format
@@ -1494,7 +1494,7 @@ msgstr "Palavra-passe:"
 #: Merge.rc:F75DAF7
 #, c-format
 msgid "Link to Destination VSS project"
-msgstr "Hiperligação ao Destino do Projecto VSS"
+msgstr "Hiperligação ao Destino do Projeto VSS"
 
 #: Merge.rc:40325727
 #, c-format
@@ -1564,12 +1564,12 @@ msgstr "&Preservar data do ficheiro na comparação de ficheiros"
 #: Merge.rc:17F0E759
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Mostrar caixa de diálogo \"Pastas ou ficheiros seleccionados\" No inicio"
+msgstr "Mostrar caixa de diálogo \"Pastas ou ficheiros selecionados\" No inicio"
 
 #: Merge.rc:1AD99579
 #, c-format
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Fechar caixa de diálogo \"Pastas ou ficheiros seleccionados\" Ao clicar OK"
+msgstr "Fechar caixa de diálogo \"Pastas ou ficheiros selecionados\" Ao clicar OK"
 
 #: Merge.rc:44776ACE
 #, c-format
@@ -1759,7 +1759,7 @@ msgstr "Diferença:"
 #: Merge.rc:1BA49C3B
 #, c-format
 msgid "Selected Difference:"
-msgstr "Diferença Seleccionada:"
+msgstr "Diferença Selecionada:"
 
 #: Merge.rc:78E0CE10
 #, c-format
@@ -1789,7 +1789,7 @@ msgstr "Movida:"
 #: Merge.rc:E6D7EF
 #, c-format
 msgid "Selected Moved:"
-msgstr "Seleccionada Movida:"
+msgstr "Selecionada Movida:"
 
 #: Merge.rc:6B96B328
 #, c-format
@@ -1799,7 +1799,7 @@ msgstr "Como As Seguintes (3 janelas):"
 #: Merge.rc:73FB246
 #, c-format
 msgid "Same As The Next(Selected):"
-msgstr "Como A Seguinte (Seleccionada):"
+msgstr "Como A Seguinte (Selecionada):"
 
 #: Merge.rc:40C55014
 #, c-format
@@ -1809,7 +1809,7 @@ msgstr "Diferença de Palavra:"
 #: Merge.rc:E4471A
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "Diferença de Palavra Seleccionada:"
+msgstr "Diferença de Palavra Selecionada:"
 
 #: Merge.rc:7F0D4B46
 #, c-format
@@ -1934,7 +1934,7 @@ msgstr "Mover para &Baixo"
 #: Merge.rc:E6D7F0
 #, c-format
 msgid "Select Unpacker"
-msgstr "Seleccionar Extractor"
+msgstr "Selecionar Extractor"
 
 #: Merge.rc:4F5264C8
 #, c-format
@@ -2229,7 +2229,7 @@ msgstr "Página de código predefinida"
 #: Merge.rc:132D699F
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Seleccionar a página de código predefinida quando carregar ficheiros non-Unicode:"
+msgstr "Selecionar a página de código predefinida quando carregar ficheiros non-Unicode:"
 
 #: Merge.rc:5CC85DF4
 #, c-format
@@ -2514,7 +2514,7 @@ msgstr "(Afecta)"
 #: Merge.rc:E4471B
 #, c-format
 msgid "Select Codepage for"
-msgstr "Seleccionar página de código para"
+msgstr "Selecionar página de código para"
 
 #: Merge.rc:5A9A713F
 #, c-format
@@ -2889,27 +2889,27 @@ msgstr "\nGuardar (Ctrl+S)"
 #: Merge.rc:524AB109
 #, c-format
 msgid "Unknown error attempting to open project file"
-msgstr "Erro desconhecido ao abrir projecto"
+msgstr "Erro desconhecido ao abrir projeto"
 
 #: Merge.rc:524AB10A
 #, c-format
 msgid "Unknown error attempting to save project file"
-msgstr "Erro desconhecido ao guardar projecto"
+msgstr "Erro desconhecido ao guardar projeto"
 
 #: Merge.rc:3EE7B44D
 #, c-format
 msgid "Project File"
-msgstr "Projecto:"
+msgstr "Projeto:"
 
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
-msgstr "Projecto carregado com sucesso."
+msgstr "Projeto carregado com sucesso."
 
 #: Merge.rc:3BDD62C3
 #, c-format
 msgid "Project file successfully saved."
-msgstr "Projecto guardado com sucesso."
+msgstr "Projeto guardado com sucesso."
 
 #: Merge.rc:28AAB7F
 #, c-format
@@ -3094,7 +3094,7 @@ msgstr "Todos os ficheiros (*.*)|*.*||"
 #: Merge.rc:237E9033
 #, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
-msgstr "Projectos WinMerge (*.WinMerge)|*.WinMerge||"
+msgstr "Projetos WinMerge (*.WinMerge)|*.WinMerge||"
 
 #: Merge.rc:BEDA09D
 #, c-format
@@ -3144,7 +3144,7 @@ msgstr "Descrição"
 #: Merge.rc:D6BB425
 #, c-format
 msgid "Select filename for new filter"
-msgstr "Seleccionar nome de ficheiro para novo filtro"
+msgstr "Selecionar nome de ficheiro para novo filtro"
 
 #: Merge.rc:764E4AD3
 #, c-format
@@ -3194,7 +3194,7 @@ msgstr "Expressão regular"
 #: Merge.rc:34BD4316
 #, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
-msgstr "Os filtros foram actualizados. Deseja actualizar as comparações de todas as pastas abertas?\n\nSe não quiser actualizar todas as comparações agora, pode seleccionar Não e actualizar a comparação mais tarde."
+msgstr "Os filtros foram actualizados. Deseja actualizar as comparações de todas as pastas abertas?\n\nSe não quiser actualizar todas as comparações agora, pode selecionar Não e actualizar a comparação mais tarde."
 
 #: Merge.rc:1DC30E67
 #, c-format
@@ -3290,7 +3290,7 @@ msgstr "Item %1"
 #: Merge.rc:6C6653C7
 #, c-format
 msgid "Select two existing folders or files to compare"
-msgstr "Seleccione duas pastas existentes ou ficheiros para comparar"
+msgstr "Selecione duas pastas existentes ou ficheiros para comparar"
 
 #: Merge.rc:444C5DDC
 #, c-format
@@ -3300,7 +3300,7 @@ msgstr "Selecção de pasta"
 #: Merge.rc:73F34BA1
 #, c-format
 msgid "Select two folders or two files to compare."
-msgstr "Seleccione duas pastas ou dois ficheiros para comparar."
+msgstr "Selecione duas pastas ou dois ficheiros para comparar."
 
 #: Merge.rc:20155F59
 #, c-format
@@ -3345,7 +3345,7 @@ msgstr "Todos as pastas de destino são inválidas"
 #: Merge.rc:39B1AD01
 #, c-format
 msgid "Choose two files to enable unpacker selection."
-msgstr "Seleccione dois ficheiros para activar a selecção de extractor."
+msgstr "Selecione dois ficheiros para activar a selecção de extractor."
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3460,7 +3460,7 @@ msgstr "Impossível combinar diferenças quando os documentos não estão sincroniza
 #: Merge.rc:5C264194
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Tem de especificar o destino de um projecto SourceSafe para continuar (ex: $/OMeuProjecto)"
+msgstr "Tem de especificar o destino de um projeto SourceSafe para continuar (ex: $/OMeuProjeto)"
 
 #: Merge.rc:367690A0
 #, c-format
@@ -3615,7 +3615,7 @@ msgstr "Todos (%1)"
 #: Merge.rc:DD21175
 #, c-format
 msgid "Left side - select destination folder:"
-msgstr "Lado esquerdo - seleccione pasta de destino:"
+msgstr "Lado esquerdo - selecione pasta de destino:"
 
 #: Merge.rc:2B480620
 #, c-format
@@ -3625,7 +3625,7 @@ msgstr ""
 #: Merge.rc:5BBC5591
 #, c-format
 msgid "Right side - select destination folder:"
-msgstr "Lado direito - seleccione pasta de destino:"
+msgstr "Lado direito - selecione pasta de destino:"
 
 #: Merge.rc:66367ECA
 #, c-format
@@ -3965,12 +3965,12 @@ msgstr "Tempo decorrido: %Id ms"
 #: Merge.rc:6C7BF198
 #, c-format
 msgid "1 item selected"
-msgstr "1 item seleccionado"
+msgstr "1 item selecionado"
 
 #: Merge.rc:5D49B8EC
 #, c-format
 msgid "%1 items selected"
-msgstr "%1 itens seleccionados"
+msgstr "%1 itens selecionados"
 
 #: Merge.rc:3A5D5963
 #, c-format
@@ -4185,7 +4185,7 @@ msgstr "O mesmo ficheiro está aberto em ambas as janelas."
 #: Merge.rc:7632E88D
 #, c-format
 msgid "The selected files are identical."
-msgstr "Os ficheiros seleccionados são idênticos."
+msgstr "Os ficheiros selecionados são idênticos."
 
 #: Merge.rc:44565DBD
 #, c-format
@@ -4205,7 +4205,7 @@ msgstr "Estes ficheiros utilizam diferentes tipos de procedimento.\n\nDeseja tra
 #: Merge.rc:46FB8639
 #, c-format
 msgid "The selected folder is invalid."
-msgstr "A pasta seleccionada é inválida."
+msgstr "A pasta selecionada é inválida."
 
 #: Merge.rc:4BC3EDDB
 #, c-format
@@ -4345,7 +4345,7 @@ msgstr "O ficheiro patch já existe. Deseja substituí-lo?"
 #: Merge.rc:62226073
 #, c-format
 msgid "[%1 files selected]"
-msgstr "[%1 itens seleccionados]"
+msgstr "[%1 itens selecionados]"
 
 #: Merge.rc:27AFDB30
 #, c-format
@@ -4405,12 +4405,12 @@ msgstr "O ficheiro de suporte não está activado. \nNão foram encontrados todos o
 #: Merge.rc:44EE84AB
 #, c-format
 msgid "Select file for export"
-msgstr "Seleccione ficheiro a exportar"
+msgstr "Selecione ficheiro a exportar"
 
 #: Merge.rc:44EE84AC
 #, c-format
 msgid "Select file for import"
-msgstr "Seleccione ficheiro a importar"
+msgstr "Selecione ficheiro a importar"
 
 #: Merge.rc:447FB30
 #, c-format

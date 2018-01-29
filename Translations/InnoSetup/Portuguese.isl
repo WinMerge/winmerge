@@ -25,7 +25,7 @@ ErrorTitle=Erro
 ; *** SetupLdr messages
 SetupLdrStartupMessage=Irá ser instalado o %1. Deseja continuar?
 LdrCannotCreateTemp=Não foi possível criar um ficheiro temporário. Instalação cancelada
-LdrCannotExecTemp=Não foi possível executar um ficheiro na directoria temporária. Instalação cancelada
+LdrCannotExecTemp=Não foi possível executar um ficheiro na diretoria temporária. Instalação cancelada
 
 ; *** Startup error messages
 LastErrorMessage=%1.%n%nErro %2: %3
@@ -34,18 +34,18 @@ SetupFileCorrupt=Os ficheiros de instalação estão corrompidos. Obtenha uma nova 
 SetupFileCorruptOrWrongVer=Os ficheiros de instalação estão corrompidos, ou são incompatíveis com esta versão do Assistente de Instalação. Corrija o problema ou obtenha uma nova cópia do programa.
 NotOnThisPlatform=Este programa não pode ser executado no %1.
 OnlyOnThisPlatform=Este programa deve ser executado no %1.
-OnlyOnTheseArchitectures=Este programa só pode ser instalado em versões do Windows preparadas para as seguintes arquitecturas:%n%n%1
+OnlyOnTheseArchitectures=Este programa só pode ser instalado em versões do Windows preparadas para as seguintes arquiteturas:%n%n%1
 MissingWOW64APIs=A versão do Windows que está a utilizar não dispõe das funcionalidades necessárias para o Assistente de Instalação poder realizar uma instalação de 64-bit's. Para corrigir este problema, por favor instale o Service Pack %1.
 WinVersionTooLowError=Este programa necessita do %1 versão %2 ou mais recente.
 WinVersionTooHighError=Este programa não pode ser instalado no %1 versão %2 ou mais recente.
 AdminPrivilegesRequired=Deve iniciar sessão como administrador para instalar este programa.
 PowerUserPrivilegesRequired=Deve iniciar sessão como administrador ou membro do grupo de Super Utilizadores para instalar este programa.
-SetupAppRunningError=O Assistente de Instalação detectou que o %1 está em execução. Feche-o e de seguida clique em OK para continuar, ou clique em Cancelar para cancelar a instalação.
-UninstallAppRunningError=O Assistente de Desinstalação detectou que o %1 está em execução. Feche-o e de seguida clique em OK para continuar, ou clique em Cancelar para cancelar a desinstalação.
+SetupAppRunningError=O Assistente de Instalação detetou que o %1 está em execução. Feche-o e de seguida clique em OK para continuar, ou clique em Cancelar para cancelar a instalação.
+UninstallAppRunningError=O Assistente de Desinstalação detetou que o %1 está em execução. Feche-o e de seguida clique em OK para continuar, ou clique em Cancelar para cancelar a desinstalação.
 
 ; *** Misc. errors
-ErrorCreatingDir=O Assistente de Instalação não consegue criar a directoria "%1"
-ErrorTooManyFilesInDir=Não é possível criar um ficheiro na directoria "%1" porque esta contém demasiados ficheiros
+ErrorCreatingDir=O Assistente de Instalação não consegue criar a diretoria "%1"
+ErrorTooManyFilesInDir=Não é possível criar um ficheiro na diretoria "%1" porque esta contém demasiados ficheiros
 
 ; *** Setup common messages
 ExitSetupTitle=Terminar a instalação
@@ -72,14 +72,14 @@ ButtonWizardBrowse=P&rocurar...
 ButtonNewFolder=&Criar Nova Pasta
 
 ; *** "Select Language" dialog messages
-SelectLanguageTitle=Seleccione o Idioma do Assistente de Instalação
-SelectLanguageLabel=Seleccione o idioma para usar durante a Instalação:
+SelectLanguageTitle=Selecione o Idioma do Assistente de Instalação
+SelectLanguageLabel=Selecione o idioma para usar durante a Instalação:
 
 ; *** Common wizard text
 ClickNext=Clique em Seguinte para continuar ou em Cancelar para cancelar a instalação.
 BeveledLabel=
 BrowseDialogTitle=Procurar Pasta
-BrowseDialogLabel=Seleccione uma pasta na lista abaixo e clique em OK.
+BrowseDialogLabel=Selecione uma pasta na lista abaixo e clique em OK.
 NewFolderName=Nova Pasta
 
 ; *** "Welcome" wizard page
@@ -117,14 +117,14 @@ UserInfoSerial=&Número de série:
 UserInfoNameRequired=Deve introduzir um nome.
 
 ; *** "Select Destination Location" wizard page
-WizardSelectDir=Seleccione a localização de destino
+WizardSelectDir=Selecione a localização de destino
 SelectDirDesc=Onde deverá ser instalado o [name]?
 SelectDirLabel3=O [name] será instalado na seguinte pasta.
 SelectDirBrowseLabel=Para continuar, clique em Seguinte. Se desejar seleccionar uma pasta diferente, clique em Procurar.
 DiskSpaceMBLabel=É necessário pelo menos [mb] MB de espaço livre em disco.
 ToUNCPathname=O Assistente de Instalação não pode instalar num caminho do tipo UNC. Se está a tentar fazer a instalação numa rede, precisa de mapear a unidade de rede.
 InvalidPath=É necessário indicar o caminho completo com a letra de unidade; por exemplo:%n%nC:\APP%n%nou um caminho UNC no formato:%n%n\\servidor\partilha
-InvalidDrive=A unidade ou partilha UNC seleccionada não existe ou não está acessível. Seleccione outra.
+InvalidDrive=A unidade ou partilha UNC seleccionada não existe ou não está acessível. Selecione outra.
 DiskSpaceWarningTitle=Não há espaço suficiente no disco
 DiskSpaceWarning=O Assistente de Instalação necessita de pelo menos %1 KB de espaço livre, mas a unidade seleccionada tem apenas %2 KB disponíveis.%n%nDeseja continuar de qualquer forma?
 DirNameTooLong=O nome ou caminho para a pasta é demasiado longo.
@@ -136,9 +136,9 @@ DirDoesntExistTitle=A pasta não existe
 DirDoesntExist=A pasta:%n%n%1%n%nnão existe. Pretende que esta pasta seja criada?
 
 ; *** "Select Components" wizard page
-WizardSelectComponents=Seleccione os componentes
+WizardSelectComponents=Selecione os componentes
 SelectComponentsDesc=Que componentes deverão ser instalados?
-SelectComponentsLabel2=Seleccione os componentes que quer instalar e desseleccione os componentes que não quer instalar. Clique em Seguinte quando estiver pronto para continuar.
+SelectComponentsLabel2=Selecione os componentes que quer instalar e desselecione os componentes que não quer instalar. Clique em Seguinte quando estiver pronto para continuar.
 FullInstallation=Instalação Completa
 ; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
 CompactInstallation=Instalação Compacta
@@ -150,12 +150,12 @@ ComponentSize2=%1 MB
 ComponentsDiskSpaceMBLabel=A selecção actual necessita de pelo menos [mb] MB de espaço em disco.
 
 ; *** "Select Additional Tasks" wizard page
-WizardSelectTasks=Seleccione tarefas adicionais
+WizardSelectTasks=Selecione tarefas adicionais
 SelectTasksDesc=Que tarefas adicionais deverão ser executadas?
-SelectTasksLabel2=Seleccione as tarefas adicionais que deseja que o Assistente de Instalação execute na instalação do [name] e em seguida clique em Seguinte.
+SelectTasksLabel2=Selecione as tarefas adicionais que deseja que o Assistente de Instalação execute na instalação do [name] e em seguida clique em Seguinte.
 
 ; *** "Select Start Menu Folder" wizard page
-WizardSelectProgramGroup=Seleccione a pasta do Menu Iniciar
+WizardSelectProgramGroup=Selecione a pasta do Menu Iniciar
 SelectStartMenuFolderDesc=Onde deverão ser colocados os ícones de atalho do programa?
 SelectStartMenuFolderLabel3=Os ícones de atalho do programa serão criados na seguinte pasta do Menu Iniciar.
 SelectStartMenuFolderBrowseLabel=Para continuar, clique em Seguinte. Se desejar seleccionar uma pasta diferente, clique em Procurar.
@@ -204,9 +204,9 @@ RunEntryShellExec=Visualizar %1
 
 ; *** "Setup Needs the Next Disk" stuff
 ChangeDiskTitle=O Assistente de Instalação precisa do disco seguinte
-SelectDiskLabel2=Introduza o disco %1 e clique em OK.%n%nSe os ficheiros deste disco estiverem num local diferente do mostrado abaixo, indique o caminho correcto ou clique em Procurar.
+SelectDiskLabel2=Introduza o disco %1 e clique em OK.%n%nSe os ficheiros deste disco estiverem num local diferente do mostrado abaixo, indique o caminho correto ou clique em Procurar.
 PathLabel=&Caminho:
-FileNotInDir2=O ficheiro "%1" não foi encontrado em "%2". Introduza o disco correcto ou seleccione outra pasta.
+FileNotInDir2=O ficheiro "%1" não foi encontrado em "%2". Introduza o disco correto ou selecione outra pasta.
 SelectDirectoryLabel=Indique a localização do disco seguinte.
 
 ; *** Installation phase messages
@@ -279,7 +279,7 @@ UninstallDataCorrupted=O ficheiro "%1" está corrompido. Não é possível desinstal
 
 ; *** Uninstallation phase messages
 ConfirmDeleteSharedFileTitle=Remover ficheiro partilhado?
-ConfirmDeleteSharedFile2=O sistema indica que o seguinte ficheiro partilhado já não está a ser utilizado por nenhum programa. Deseja removê-lo?%n%nSe algum programa ainda necessitar deste ficheiro, poderá não funcionar correctamente depois de o remover. Se não tiver a certeza, seleccione Não. Manter o ficheiro não causará nenhum problema.
+ConfirmDeleteSharedFile2=O sistema indica que o seguinte ficheiro partilhado já não está a ser utilizado por nenhum programa. Deseja removê-lo?%n%nSe algum programa ainda necessitar deste ficheiro, poderá não funcionar corretamente depois de o remover. Se não tiver a certeza, selecione Não. Manter o ficheiro não causará nenhum problema.
 SharedFileNameLabel=Nome do ficheiro:
 SharedFileLocationLabel=Localização:
 WizardUninstalling=Estado da desinstalação
@@ -351,20 +351,20 @@ UkrainianLanguage=Ucraniano menus e diálogos
 
 ;Tasks
 ExplorerContextMenu=&Permitir o menu de contexto no Explorador
-IntegrateTortoiseCVS=Intregar com &TortoiseCVS
-IntegrateTortoiseGIT=Intregar com To&rtoiseGIT
-IntegrateTortoiseSVN=Intregar com T&ortoiseSVN
-IntegrateClearCase=Intregar com Rational &ClearCase
+IntegrateTortoiseCVS=Integrar com &TortoiseCVS
+IntegrateTortoiseGIT=Integrar com To&rtoiseGIT
+IntegrateTortoiseSVN=Integrar com T&ortoiseSVN
+IntegrateClearCase=Integrar com Rational &ClearCase
 AddToPath=&Criar pasta do WinMerge no caminho do sistema
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3-Combinação de modos
-ThreeWayMergeWizardPageDescription=Utiliza o WinMerge como ferramenta de três vias para TortoiseSVN/GIT?
+ThreeWayMergeWizardPageDescription=Utilizar o WinMerge como ferramenta de três vias para TortoiseSVN/GIT?
 RegisterWinMergeAs3WayMergeTool=Registar o WinMerge como ferramenta de combinação de três vias
 MergeAtRightPane=Combinar na janela direita
 MergeAtCenterPane=Combinar na janela do meio
 MergeAtLeftPane=Combinar na janela esquerda
-AutoMergeAtStartup=Combinar automaticamente no arraque
+AutoMergeAtStartup=Combinar automaticamente no arranque
 
 ;Icon Labels
 ReadMe=Ler
@@ -372,7 +372,7 @@ UsersGuide=Guia do utilizador
 ViewStartMenuFolder=&Ver a pasta do WinMerge do Menu Iniciar
 
 ;Code Dialogs
-DeletePreviousStartMenu=O Assistente de Instalação detectou que alterou a localização de "%s" para "%s". Deseja eliminar a pasta anterior do Menu Iniciar?
+DeletePreviousStartMenu=O Assistente de Instalação detetou que alterou a localização de "%s" para "%s". Deseja eliminar a pasta anterior do Menu Iniciar?
 
 ; Project file description
-ProjectFileDesc=Ficheiro do projecto WinMerge
+ProjectFileDesc=Ficheiro do projeto WinMerge
