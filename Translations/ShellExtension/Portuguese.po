@@ -50,12 +50,12 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "Abrr com WinMerge"
+msgstr "Abrir com WinMerge"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Não seleccione mais de 2 itens"
+msgstr "NÃ£o selecione mais de 2 itens"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
@@ -75,15 +75,15 @@ msgstr "Comparar com"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Guardar esta localização. Seleccione outra localização para comparar com esta."
+msgstr "Guardar esta localizaÃ§Ã£o. Selecione outra localizaÃ§Ã£o para comparar com esta."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "Comparar com localização guardada (%1)"
+msgstr "Comparar com localizaÃ§Ã£o guardada (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Seleccione novamente a primeira"
+msgstr "Selecione novamente a primeira"
 
