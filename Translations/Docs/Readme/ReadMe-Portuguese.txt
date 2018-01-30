@@ -41,7 +41,7 @@ Erros e pedidos de novos recursos:
 Erros e pedidos de novos recursos devem ser enviados para lista de erros 
 e solicitações (RFE) em sourceforge.net.
  
-Lista de registos de erros (Bug tracker):
+Lista de registo de erros (Bug tracker):
 http://sourceforge.net/tracker/?group_id=13216&atid=113216 
 Ao ser reportado um erro, por favor indique-nos a versão do WinMerge! 
 As versões do WinMerge 2.2.0 e posteriores podem criar um registo das configurações

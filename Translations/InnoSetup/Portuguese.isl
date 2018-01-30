@@ -91,7 +91,7 @@ WizardPassword=Palavra-passe
 PasswordLabel1=Esta instalação está protegida por palavra-passe.
 PasswordLabel3=Insira a palavra-passe e de seguida clique em Seguinte para continuar. Na palavra-passe existe diferença entre maiúsculas e minúsculas.
 PasswordEditLabel=&Palavra-passe:
-IncorrectPassword=A palavra-passe que introduziu não está correcta. Tente novamente.
+IncorrectPassword=A palavra-passe que introduziu não está correta. Tente novamente.
 
 ; *** "License Agreement" wizard page
 WizardLicense=Contrato de licença
@@ -120,13 +120,13 @@ UserInfoNameRequired=Deve introduzir um nome.
 WizardSelectDir=Selecione a localização de destino
 SelectDirDesc=Onde deverá ser instalado o [name]?
 SelectDirLabel3=O [name] será instalado na seguinte pasta.
-SelectDirBrowseLabel=Para continuar, clique em Seguinte. Se desejar seleccionar uma pasta diferente, clique em Procurar.
+SelectDirBrowseLabel=Para continuar, clique em Seguinte. Se desejar selecionar uma pasta diferente, clique em Procurar.
 DiskSpaceMBLabel=É necessário pelo menos [mb] MB de espaço livre em disco.
 ToUNCPathname=O Assistente de Instalação não pode instalar num caminho do tipo UNC. Se está a tentar fazer a instalação numa rede, precisa de mapear a unidade de rede.
 InvalidPath=É necessário indicar o caminho completo com a letra de unidade; por exemplo:%n%nC:\APP%n%nou um caminho UNC no formato:%n%n\\servidor\partilha
-InvalidDrive=A unidade ou partilha UNC seleccionada não existe ou não está acessível. Selecione outra.
+InvalidDrive=A unidade ou partilha UNC selecionada não existe ou não está acessível. Selecione outra.
 DiskSpaceWarningTitle=Não há espaço suficiente no disco
-DiskSpaceWarning=O Assistente de Instalação necessita de pelo menos %1 KB de espaço livre, mas a unidade seleccionada tem apenas %2 KB disponíveis.%n%nDeseja continuar de qualquer forma?
+DiskSpaceWarning=O Assistente de Instalação necessita de pelo menos %1 KB de espaço livre, mas a unidade selecionada tem apenas %2 KB disponíveis.%n%nDeseja continuar de qualquer forma?
 DirNameTooLong=O nome ou caminho para a pasta é demasiado longo.
 InvalidDirName=O nome da pasta não é válido.
 BadDirName32=O nome da pasta não pode conter nenhum dos seguintes caracteres:%n%n%1
@@ -138,16 +138,16 @@ DirDoesntExist=A pasta:%n%n%1%n%nnão existe. Pretende que esta pasta seja criada
 ; *** "Select Components" wizard page
 WizardSelectComponents=Selecione os componentes
 SelectComponentsDesc=Que componentes deverão ser instalados?
-SelectComponentsLabel2=Selecione os componentes que quer instalar e desselecione os componentes que não quer instalar. Clique em Seguinte quando estiver pronto para continuar.
+SelectComponentsLabel2=Selecione os componentes que quer instalar e desmarque os componentes que não quer instalar. Clique em Seguinte quando estiver pronto para continuar.
 FullInstallation=Instalação Completa
 ; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
 CompactInstallation=Instalação Compacta
 CustomInstallation=Instalação Personalizada
 NoUninstallWarningTitle=Componentes Encontrados
-NoUninstallWarning=O Assistente de Instalação detectou que os seguintes componentes estão instalados no seu computador:%n%n%1%n%nSe desseleccionar estes componentes eles não serão desinstalados.%n%nDeseja continuar?
+NoUninstallWarning=O Assistente de Instalação detetou que os seguintes componentes estão instalados no seu computador:%n%n%1%n%nSe desmarcar estes componentes estes não serão desinstalados.%n%nDeseja continuar?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
-ComponentsDiskSpaceMBLabel=A selecção actual necessita de pelo menos [mb] MB de espaço em disco.
+ComponentsDiskSpaceMBLabel=A seleção actual necessita de pelo menos [mb] MB de espaço em disco.
 
 ; *** "Select Additional Tasks" wizard page
 WizardSelectTasks=Selecione tarefas adicionais
@@ -158,7 +158,7 @@ SelectTasksLabel2=Selecione as tarefas adicionais que deseja que o Assistente de
 WizardSelectProgramGroup=Selecione a pasta do Menu Iniciar
 SelectStartMenuFolderDesc=Onde deverão ser colocados os ícones de atalho do programa?
 SelectStartMenuFolderLabel3=Os ícones de atalho do programa serão criados na seguinte pasta do Menu Iniciar.
-SelectStartMenuFolderBrowseLabel=Para continuar, clique em Seguinte. Se desejar seleccionar uma pasta diferente, clique em Procurar.
+SelectStartMenuFolderBrowseLabel=Para continuar, clique em Seguinte. Se desejar selecionar uma pasta diferente, clique em Procurar.
 MustEnterGroupName=É necessário introduzir um nome para a pasta.
 GroupNameTooLong=O nome ou caminho para a pasta é demasiado longo.
 InvalidGroupName=O nome da pasta não é válido.
@@ -173,14 +173,14 @@ ReadyLabel2b=Clique em Instalar para continuar a instalação.
 ReadyMemoUserInfo=Informações do utilizador:
 ReadyMemoDir=Localização de destino:
 ReadyMemoType=Tipo de instalação:
-ReadyMemoComponents=Componentes seleccionados:
+ReadyMemoComponents=Componentes selecionados:
 ReadyMemoGroup=Pasta do Menu Iniciar:
 ReadyMemoTasks=Tarefas adicionais:
 
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Preparando-se para instalar
 PreparingDesc=Preparando-se para instalar o [name] no seu computador.
-PreviousInstallNotCompleted=A instalação/remoção de um programa anterior não foi completada. Necessitará de reiniciar o computador para completar essa instalação.%n%nDepois de reiniciar o computador, execute novamente este Assistente de Instalação para completar a instalação do [name].
+PreviousInstallNotCompleted=A instalação/desinstalação de uma versão anterior não ficou completa. Necessitará de reiniciar o computador para completar esta instalação.%n%nDepois de reiniciar o computador, execute novamente este Assistente de Instalação para completar a instalação do [name].
 CannotContinue=A Instalação não pode continuar. Clique em Cancelar para sair.
 
 ; *** "Installing" wizard page
