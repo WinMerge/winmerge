@@ -138,7 +138,7 @@ msgstr "&Página Seguinte"
 #: Merge.rc:4DE14271
 #, c-format
 msgid "&Active Pane"
-msgstr "Janela Activa"
+msgstr "Janela Ativa"
 
 #: Merge.rc:43017E43
 #, c-format
@@ -533,12 +533,12 @@ msgstr "Comparar Estatísticas"
 #: Merge.rc:507A4C02
 #, c-format
 msgid "Refre&sh\tF5"
-msgstr "Actuali&zar\tF5"
+msgstr "Atuali&zar\tF5"
 
 #: Merge.rc:2E2C5206
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Actualizar Selecção\tCtrl+F5"
+msgstr "Atualizar Seleção\tCtrl+F5"
 
 #: Merge.rc:1D2E49F9
 #, c-format
@@ -568,7 +568,7 @@ msgstr "Primeira Diferença\tAlt+Home"
 #: Merge.rc:3C1ECDD9
 #, c-format
 msgid "&Current Difference\tAlt+Enter"
-msgstr "Diferença Actual\tAlt+Enter"
+msgstr "Diferença Atual\tAlt+Enter"
 
 #: Merge.rc:26A69749
 #, c-format
@@ -1229,7 +1229,7 @@ msgstr "Diferenças para... (%1 of %2)"
 #: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
-msgstr "Actualizar"
+msgstr "Atualizar"
 
 #: Merge.rc:71676C47
 #, c-format
@@ -1294,7 +1294,7 @@ msgstr "Todos os Blocos Movidos"
 #: Merge.rc:BA50068
 #, c-format
 msgid "Moved Block for &Current Diff"
-msgstr "Bloco Movido para a Diferença &Actual"
+msgstr "Bloco Movido para a Diferença &Atual"
 
 #: Merge.rc:3C68C747
 #, c-format
@@ -1664,7 +1664,7 @@ msgstr "Substituir em"
 #: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
-msgstr "Selecção"
+msgstr "Seleção"
 
 #: Merge.rc:3FE25900
 #, c-format
@@ -2054,7 +2054,7 @@ msgstr "Ignorar &diferenças nas páginas de código"
 #: Merge.rc:285B56CE
 #, c-format
 msgid "E&nable moved block detection"
-msgstr "Activar detecção de bloco movido"
+msgstr "Ativar deteção de bloco movido"
 
 #: Merge.rc:4EF8162F
 #, c-format
@@ -2234,12 +2234,12 @@ msgstr "Selecionar a página de código predefinida quando carregar ficheiros non-
 #: Merge.rc:5CC85DF4
 #, c-format
 msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
-msgstr "Detectar informação da página de código para estes ficheiros: .html, .rc, .xml \nnecessário para reiniciar sessão"
+msgstr "Detetar informação da página de código para estes ficheiros: .html, .rc, .xml \nnecessário para reiniciar sessão"
 
 #: Merge.rc:3BCD5104
 #, c-format
 msgid "Detect codepage for text files using mlang.dll\nneed to restart session"
-msgstr "Detectar página de código para ficheiros de texto que utilizam mlang.dll\nnecessário para reiniciar sessão"
+msgstr "Detetar página de código para ficheiros de texto que utilizam mlang.dll\nnecessário para reiniciar sessão"
 
 #: Merge.rc:E6D7F1
 #, c-format
@@ -2404,7 +2404,7 @@ msgstr "Filtro Partilhado (para todos os utilizadores deste computador)"
 #: Merge.rc:11304E6
 #, c-format
 msgid "Private Filter (only for current user)"
-msgstr "Filtro Privado (apenas para o utilizador actual)"
+msgstr "Filtro Privado (apenas para o utilizador atual)"
 
 #: Merge.rc:7D9F30CF
 #, c-format
@@ -2414,12 +2414,12 @@ msgstr "Suporte de Ficheiros"
 #: Merge.rc:545FEEA5
 #, c-format
 msgid "&Enable archive file support"
-msgstr "Activar suporte de ficheiros"
+msgstr "Ativar suporte de ficheiros"
 
 #: Merge.rc:70C9C72D
 #, c-format
 msgid "&Detect archive type from file signature"
-msgstr "Detectar tipo de ficheiro pela assinatura"
+msgstr "Detetar tipo de ficheiro pela assinatura"
 
 #: Merge.rc:1AC98D0B
 #, c-format
@@ -2594,7 +2594,7 @@ msgstr "Texto normal:"
 #: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
-msgstr "Selecção:"
+msgstr "Seleção:"
 
 #: Merge.rc:2FC0BA7D
 #, c-format
@@ -2724,7 +2724,7 @@ msgstr "Plugins"
 #: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
-msgstr "Activar plugins"
+msgstr "Ativar plugins"
 
 #: Merge.rc:62909ED6
 #, c-format
@@ -2739,7 +2739,7 @@ msgstr "Pesquisar"
 #: Merge.rc:673BD331
 #, c-format
 msgid "E&nable advanced menu"
-msgstr "Activar menu avançado"
+msgstr "Ativar menu avançado"
 
 #: Merge.rc:4EF81631
 #, c-format
@@ -3194,7 +3194,7 @@ msgstr "Expressão regular"
 #: Merge.rc:34BD4316
 #, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
-msgstr "Os filtros foram actualizados. Deseja actualizar as comparações de todas as pastas abertas?\n\nSe não quiser actualizar todas as comparações agora, pode selecionar Não e actualizar a comparação mais tarde."
+msgstr "Os filtros foram atualizados. Deseja atualizar as comparações de todas as pastas abertas?\n\nSe não quiser atualizar todas as comparações agora, pode selecionar Não e atualizar a comparação mais tarde."
 
 #: Merge.rc:1DC30E67
 #, c-format
@@ -3295,7 +3295,7 @@ msgstr "Selecione duas pastas existentes ou ficheiros para comparar"
 #: Merge.rc:444C5DDC
 #, c-format
 msgid "Folder Selection"
-msgstr "Selecção de pasta"
+msgstr "Seleção de pasta"
 
 #: Merge.rc:73F34BA1
 #, c-format
@@ -3345,7 +3345,7 @@ msgstr "Todos as pastas de destino são inválidas"
 #: Merge.rc:39B1AD01
 #, c-format
 msgid "Choose two files to enable unpacker selection."
-msgstr "Selecione dois ficheiros para activar a selecção de extractor."
+msgstr "Selecione dois ficheiros para ativar a seleção de extrator."
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3405,7 +3405,7 @@ msgstr "Não foi possível copiar ficheiro original:\n%1\n\nContinuar na mesma?"
 #: Merge.rc:69020931
 #, c-format
 msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
-msgstr "Erro ao guardar ficheiro.\n%1\n%2\nDeseja:\n\t-usar um nome diferente para o ficheiro (Prima Ok)\n\t-abortar a acção actual (Prima Cancelar)?"
+msgstr "Erro ao guardar ficheiro.\n%1\n%2\nDeseja:\n\t-usar um nome diferente para o ficheiro (Prima Ok)\n\t-abortar a acção atual (Prima Cancelar)?"
 
 #: Merge.rc:3895053E
 #, c-format
@@ -3420,7 +3420,7 @@ msgstr "Plugin '%2' impossível comprimir as suas alterações no ficheiro direito 
 #: Merge.rc:78367A47
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
-msgstr "Outra aplicação actualizou o ficheiro\n%1\ndesde a incialização de WinMerge.\n\nSubstituir ficheiro modificado?"
+msgstr "Outra aplicação atualizou o ficheiro\n%1\ndesde a incialização de WinMerge.\n\nSubstituir ficheiro modificado?"
 
 #: Merge.rc:462FB760
 #, c-format
@@ -3455,7 +3455,7 @@ msgstr ""
 #: Merge.rc:4BFC8F0D
 #, c-format
 msgid "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
-msgstr "Impossível combinar diferenças quando os documentos não estão sincronizados.\n\nActualizar documentos antes de continuar."
+msgstr "Impossível combinar diferenças quando os documentos não estão sincronizados.\n\nAtualizar documentos antes de continuar."
 
 #: Merge.rc:5C264194
 #, c-format
@@ -3480,7 +3480,7 @@ msgstr "Erro ao executar comando do sistema de versões."
 #: Merge.rc:3ECC9EC3
 #, c-format
 msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "O ficheiro de trabalho de VSS e o destino do ficheiro actual não coincidem. Continuar?"
+msgstr "O ficheiro de trabalho de VSS e o destino do ficheiro atual não coincidem. Continuar?"
 
 #: Merge.rc:BF7A253
 #, c-format
@@ -4400,7 +4400,7 @@ msgstr "A pasta não existe."
 #: Merge.rc:3377B7B5
 #, c-format
 msgid "Archive support is not enabled.\nAll needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
-msgstr "O ficheiro de suporte não está activado. \nNão foram encontrados todos os componentes necessários (7-zip and/or Merge7z*.dll) \nPara mais informações verifique o manual acerca do ficheiro de suporte e active-o."
+msgstr "O ficheiro de suporte não está ativado. \nNão foram encontrados todos os componentes necessários (7-zip and/or Merge7z*.dll) \nPara mais informações verifique o manual acerca do ficheiro de suporte e active-o."
 
 #: Merge.rc:44EE84AB
 #, c-format
@@ -4465,7 +4465,7 @@ msgstr "Editor script"
 #: Merge.rc:51A4FE5F
 #, c-format
 msgid "\nDifference in the Current Line"
-msgstr "\nDiferenças na Linha Actual"
+msgstr "\nDiferenças na Linha Atual"
 
 #: Merge.rc:CF15594
 #, c-format
@@ -4475,7 +4475,7 @@ msgstr "nOpções"
 #: Merge.rc:6F90DC3A
 #, c-format
 msgid "\nRefresh (F5)"
-msgstr "\nActualizar (F5)"
+msgstr "\nAtualizar (F5)"
 
 #: Merge.rc:414AF01
 #, c-format
@@ -4505,7 +4505,7 @@ msgstr "nPrimeira Diferença (Alt+Home)"
 #: Merge.rc:51A4FE61
 #, c-format
 msgid "\nCurrent Difference (Alt+Enter)"
-msgstr "\nDiferença Actual (Alt+Enter)"
+msgstr "\nDiferença Atual (Alt+Enter)"
 
 #: Merge.rc:1DA00C8A
 #, c-format
@@ -4575,7 +4575,7 @@ msgstr "Compilação Privada: %1"
 #: Merge.rc:40D543C8
 #, c-format
 msgid "Your software is up to date"
-msgstr "O WinMerge está actualizado com a última versão"
+msgstr "O WinMerge está atualizado com a última versão"
 
 #: Merge.rc:43B4B204
 #, c-format
@@ -4595,7 +4595,7 @@ msgstr "Definições de plugin"
 #: Merge.rc:791F1E67
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH não encontrado - scripts .sct desactivados"
+msgstr "WSH não encontrado - scripts .sct desativados"
 
 #: Merge.rc:4FC259D5
 #, c-format
@@ -4615,7 +4615,7 @@ msgstr "Ir para linha %1"
 #: Merge.rc:7F0D4B47
 #, c-format
 msgid "Disabled"
-msgstr "Desactivado"
+msgstr "Desativado"
 
 #: Merge.rc:444C5DDD
 #, c-format
@@ -4675,7 +4675,7 @@ msgstr "Fechar &Outras Tabulações"
 #: Merge.rc:3E934E
 #, c-format
 msgid "Enable &Auto Max Width"
-msgstr "Activar largura Máxima Automática"
+msgstr "Ativar largura Máxima Automática"
 
 #: Merge.rc:1D2E4A01
 #, c-format
