@@ -356,6 +356,9 @@ class PoStatus(Status):
         self._poeditlanguage = ''
         self._translators = []
         
+        if self._charset == '': #If NO charset found...
+           return
+        
         if os.access(filepath, os.R_OK): #If PO(T) file can read...
           reMsgId = re.compile('^msgid "(.*)"$', re.IGNORECASE)
           reMsgStr = re.compile('^msgstr "(.*)"$', re.IGNORECASE)
@@ -453,7 +456,8 @@ class PoStatus(Status):
             reContentTypeCharset = re.compile('charset=([A-Z0-9\-]+)', re.IGNORECASE)
             rePoeditSourceCharset = re.compile('X-Poedit-SourceCharset: ([A-Z0-9\-]+)', re.IGNORECASE)
             
-            pofile = open(filepath, 'r')
+            pofile = open(filepath, 'r', errors='ignore')
+            
             for line in pofile: #For all lines...
                 line = line.strip()
                 
