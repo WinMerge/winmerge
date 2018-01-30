@@ -45,12 +45,9 @@ Lista de registos de erros (Bug tracker):
 http://sourceforge.net/tracker/?group_id=13216&atid=113216 
 Ao ser reportado um erro, por favor indique-nos a versão do WinMerge! 
 As versões do WinMerge 2.2.0 e posteriores podem criar um registo das configurações
-no menu Ajuda/Configurações. Por favor, anexe o registo de configurações (como anexo de ficheiro) ao relatório de erros. 
-Este anexo contém informações úteis para ajudar os programadores a resolver erros.
-
+no menu Ajuda/Configurações. Por favor, anexe o registo de configurações (como anexo de ficheiro) ao relatório de erros.
 
 Pedidos de novos recursos (RFE tracker):
 http://sourceforge.net/tracker/?group_id=13216&atid=363216
-
 
 - A equipa do WinMerge!
