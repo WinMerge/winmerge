@@ -142,7 +142,7 @@ Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Korean.isl
 Name: Norwegian; MessagesFile: ..\..\Translations\InnoSetup\Norwegian.isl
 Name: Persian; MessagesFile: ..\..\Translations\InnoSetup\Persian.isl
 Name: Polish; MessagesFile: ..\..\Translations\InnoSetup\Polish.isl
-Name: Portuguese; MessagesFile: ..\..\Translations\InnoSetup\Portuguese.isl
+Name: Portuguese; MessagesFile: ..\..\Translations\InnoSetup\Portuguese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Portuguese.txt
 Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt
 Name: Romanian; MessagesFile: ..\..\Translations\InnoSetup\Romanian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Romanian.txt
 Name: Russian; MessagesFile: ..\..\Translations\InnoSetup\Russian.isl
@@ -560,6 +560,7 @@ Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-French.txt; IconFileName:
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Galician.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Galician
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Greek.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Greek
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Japanese.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Japanese
+Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Portuguese.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Portuguese
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Romanian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Romanian
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Serbian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Serbian
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Spanish.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Spanish
