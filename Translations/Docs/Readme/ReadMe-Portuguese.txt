@@ -1,51 +1,51 @@
 WINMERGE
 
-WinMerge √© um utilit√°rio de c√≥digo fonte aberto para a compara√ß√£o e uni√£o 
-de ficheiros, execut√°vel em todas as vers√µes modernas do windows. Algumas 
-fun√ß√µes requerem instala√ß√µes ou componentes adicionais. 
+WinMerge È um utilit·rio de cÛdigo fonte aberto para a comparaÁ„o e uni„o 
+de ficheiros, execut·vel em todas as versıes modernas do windows. Algumas 
+funÁıes requerem instalaÁıes ou componentes adicionais. 
 
-A √∫ltima vers√£o do WinMerge como outras informa√ß√µes adicionais est√£o dispon√≠veis em 
+A ˙ltima vers„o do WinMerge como outras informaÁıes adicionais est„o disponÌveis em 
 http://winmerge.org
 
-Guia de utiliza√ß√£o r√°pida do WinMerge: 
-Leia atentamente o guia de utiliza√ß√£o r√°pida do WinMerge dispon√≠vel online para iniciar o WinMerge:
+Guia de utilizaÁ„o r·pida do WinMerge: 
+Leia atentamente o guia de utilizaÁ„o r·pida do WinMerge disponÌvel online para iniciar o WinMerge:
 http://manual.winmerge.org/QuickStart.html
 
-Manual em HTML: O manual est√° dispon√≠vel online em: 
+Manual em HTML: O manual est· disponÌvel online em: 
 http://manual.winmerge.org/ 
-Possivelmente tamb√©m est√° instalado (se escolhido assim) localmente e 
-transferido separadamente de http://winmerge.org/ (veja a documenta√ß√£o) 
+Possivelmente tambÈm est· instalado (se escolhido assim) localmente e 
+transferido separadamente de http://winmerge.org/ (veja a documentaÁ„o) 
 
 Suporte para ficheiros:
 WinMerge utiliza o 7-Zip para o suporte de ficheiros compactados. 7-Zip (http://www.7-zip.org) 
-√© uma ferramenta de c√≥digo aberto para compress√£o de ficheiros. Para instalar o suporte 
+È uma ferramenta de cÛdigo aberto para compress„o de ficheiros. Para instalar o suporte 
 de ficheiros compactados, transfira o 7-Zip de http://winmerge.org/ 
 
-Instala√ß√£o para suporte de ficheiros: 
-√â recomendado instalar o 7-Zip. Se por alguma raz√£o n√£o puder ser instalado, 
-o configurador do 7-Zip pode instalar apenas os ficheiros necess√°rios 
-para ativar o suporte para ficheiros compactados. Tenha em conta que n√£o √© permitida a utiliza√ß√£o 
-isolada do 7-Zip, apenas √© habilitado o suporte para ficheiros de WinMerge.
+InstalaÁ„o para suporte de ficheiros: 
+… recomendado instalar o 7-Zip. Se por alguma raz„o n„o puder ser instalado, 
+o configurador do 7-Zip pode instalar apenas os ficheiros necess·rios 
+para ativar o suporte para ficheiros compactados. Tenha em conta que n„o È permitida a utilizaÁ„o 
+isolada do 7-Zip, apenas È habilitado o suporte para ficheiros de WinMerge.
 
 Suporte de Scripts:
-Se deseja trabalhar com scripts √© necess√°rio ter o Windows Scripting Host instalado. 
+Se deseja trabalhar com scripts È necess·rio ter o Windows Scripting Host instalado. 
 Se tiver ou receber quaisquer erros relacionados com os seus scripts, por favor visite 
 http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
-para ter a certeza que o Scripting Host est√° atualizado e n√£o corrompido. 
+para ter a certeza que o Scripting Host est· atualizado e n„o corrompido. 
 
 Suporte:
-Os programadores est√£o a responder √†s quest√µes nos f√≥runs do WinMerge em Sourceforge.net:
+Os programadores est„o a responder ‡s questıes nos fÛruns do WinMerge em Sourceforge.net:
 http://sourceforge.net/forum/?group_id=13216
  
 Erros e pedidos de novos recursos: 
 Erros e pedidos de novos recursos devem ser enviados para lista de erros 
-e solicita√ß√µes (RFE) em sourceforge.net.
+e solicitaÁıes (RFE) em sourceforge.net.
  
 Lista de registos de erros (Bug tracker):
 http://sourceforge.net/tracker/?group_id=13216&atid=113216 
-Ao ser reportado um erro, por favor indique-nos a vers√£o do WinMerge! 
-As vers√µes do WinMerge 2.2.0 e posteriores podem criar um registo das configura√ß√µes
-no menu Ajuda/Configura√ß√µes. Por favor, anexe o registo de configura√ß√µes (como anexo de ficheiro) ao relat√≥rio de erros.
+Ao ser reportado um erro, por favor indique-nos a vers„o do WinMerge! 
+As versıes do WinMerge 2.2.0 e posteriores podem criar um registo das configuraÁıes
+no menu Ajuda/ConfiguraÁıes. Por favor, anexe o registo de configuraÁıes (como anexo de ficheiro) ao relatÛrio de erros.
 
 Pedidos de novos recursos (RFE tracker):
 http://sourceforge.net/tracker/?group_id=13216&atid=363216
