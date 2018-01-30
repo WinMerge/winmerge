@@ -80,7 +80,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 	}
 	else
 	{	
-		assert(false);	// this should never fail (???)
+		// in the case of Windows XP
 		InitializeLogFont(fontDir, -::MulDiv(pointsDir, logPixelsY, 72), DEFAULT_CHARSET, FF_DONTCARE, L"Segoe UI");
 	}
 	
