@@ -635,7 +635,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
 		// result filters
 		if (di.diffcode.isResultSame() && !filter.show_identical)
 			return false;
-		if (di.diffcode.isResultError() /* && !GetMainFrame()->m_bShowErrors FIXME:*/)
+		if (di.diffcode.isResultError() && false/* && !GetMainFrame()->m_bShowErrors FIXME:*/)
 			return false;
 		if (di.diffcode.isResultDiff() && !filter.show_different)
 			return false;
