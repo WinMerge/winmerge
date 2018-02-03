@@ -549,8 +549,13 @@ bool DoItemRename(InputIterator& it, const CDiffContext& ctxt, const String& szN
 	if (std::count(bRename, bRename + nDirs, true) == 0)
 		return false;
 	
+	di.diffcode.setSideNone();
 	for (int index = 0; index < nDirs; index++)
-		di.diffFileInfo[index].filename = bRename[index] ? szNewItemName : _T("");
+	{
+		di.diffFileInfo[index].filename = szNewItemName;
+		if (bRename[index] || paths::DoesPathExist(GetItemFileName(ctxt, di, index)))
+			di.diffcode.setSideFlag(index);
+	}
 	return true;
 }
 
