@@ -170,15 +170,7 @@ void CPatchDlg::OnOK()
 	default: m_outputStyle = (enum output_style)OUTPUT_NORMAL; break;
 	}
 
-	int contextSel = m_comboContext.GetCurSel();
-	if (contextSel != CB_ERR)
-	{
-		CString contextText;
-		m_comboContext.GetLBText(contextSel, contextText);
-		m_contextLines = std::stoi((String)contextText);
-	}
-	else
-		m_contextLines = 0;
+	m_contextLines = GetDlgItemInt(IDC_DIFF_CONTEXT);
 
 	SaveSettings();
 
