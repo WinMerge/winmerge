@@ -170,15 +170,7 @@ void CPatchDlg::OnOK()
 	default: m_outputStyle = (enum output_style)OUTPUT_NORMAL; break;
 	}
 
-	int contextSel = m_comboContext.GetCurSel();
-	if (contextSel != CB_ERR)
-	{
-		String contextText;
-		m_comboContext.GetLBText(contextSel, PopString(contextText));
-		m_contextLines = std::stoi(contextText);
-	}
-	else
-		m_contextLines = 0;
+	m_contextLines = GetDlgItemInt(IDC_DIFF_CONTEXT);
 
 	SaveSettings();
 
@@ -349,8 +341,10 @@ void CPatchDlg::OnSelchangeFile1Combo()
 	int sel = m_ctlFile1.GetCurSel();
 	if (sel != CB_ERR)
 	{
-		m_ctlFile1.GetLBText(sel, PopString(m_file1));
-		m_ctlFile1.SetWindowText(m_file1.c_str());
+		CString cstrFile1 = m_file1.c_str();
+		m_ctlFile1.GetLBText(sel, cstrFile1);
+		m_ctlFile1.SetWindowText(cstrFile1);
+		m_file1 = cstrFile1;
 		ChangeFile(m_file1, true);
 	}
 }
@@ -363,8 +357,10 @@ void CPatchDlg::OnSelchangeFile2Combo()
 	int sel = m_ctlFile2.GetCurSel();
 	if (sel != CB_ERR)
 	{
-		m_ctlFile2.GetLBText(sel, PopString(m_file2));
-		m_ctlFile2.SetWindowText(m_file2.c_str());
+		CString cstrFile2 = m_file1.c_str();
+		m_ctlFile1.GetLBText(sel, cstrFile2);
+		m_ctlFile1.SetWindowText(cstrFile2);
+		m_file2 = cstrFile2;
 		ChangeFile(m_file2, false);
 	}
 }
@@ -377,8 +373,10 @@ void CPatchDlg::OnSelchangeResultCombo()
 	int sel = m_ctlResult.GetCurSel();
 	if (sel != CB_ERR)
 	{
-		m_ctlResult.GetLBText(sel, PopString(m_fileResult));
-		m_ctlResult.SetWindowText(m_fileResult.c_str());
+		CString cstrFileResult = m_fileResult.c_str();
+		m_ctlResult.GetLBText(sel, cstrFileResult);
+		m_ctlResult.SetWindowText(cstrFileResult);
+		m_fileResult = cstrFileResult;
 	}
 }
 
@@ -415,11 +413,13 @@ void CPatchDlg::OnDiffSwapFiles()
 {
 	PATCHFILES files;
 
-	m_ctlFile1.GetWindowText(PopString(m_file1));
-	m_ctlFile2.GetWindowText(PopString(m_file2));
+	CString cstrFile1 = m_file1.c_str();
+	CString cstrFile2 = m_file2.c_str();
+	m_ctlFile1.GetWindowText(cstrFile1);
+	m_ctlFile2.GetWindowText(cstrFile2);
 
-	m_ctlFile1.SetWindowText(m_file2.c_str());
-	m_ctlFile2.SetWindowText(m_file1.c_str());
+	m_ctlFile1.SetWindowText(cstrFile2);
+	m_ctlFile2.SetWindowText(cstrFile1);
 
 	//  swapped files
 	Swap();
