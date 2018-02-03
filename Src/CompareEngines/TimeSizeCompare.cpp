@@ -49,39 +49,31 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 	{
 		// Compare by modified date
 		// Check that we have both filetimes
-		if (di.diffFileInfo[0].mtime != 0 && di.diffFileInfo[1].mtime != 0 &&
-		    (nfiles < 3 || di.diffFileInfo[1].mtime != 0 && di.diffFileInfo[2].mtime != 0))
+		nTimeDiff   = di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime;
+		if (nTimeDiff   < 0) nTimeDiff   *= -1;
+		if (nfiles > 2)
 		{
-			nTimeDiff   = di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime;
-			if (nTimeDiff   < 0) nTimeDiff   *= -1;
-			if (nfiles > 2)
-			{
-				nTimeDiff12 = di.diffFileInfo[1].mtime - di.diffFileInfo[2].mtime;
-				nTimeDiff02 = di.diffFileInfo[0].mtime - di.diffFileInfo[2].mtime;
-				if (nTimeDiff12 < 0) nTimeDiff12 *= -1;
-				if (nTimeDiff02 < 0) nTimeDiff02 *= -1;
-			}
-			if (m_ignoreSmallDiff)
-			{
-				// If option to ignore small timediffs (couple of seconds)
-				// is set, decrease absolute difference by allowed diff
-				nTimeDiff   -= SmallTimeDiff * Timestamp::resolution();
-				nTimeDiff12 -= SmallTimeDiff * Timestamp::resolution();
-				nTimeDiff02 -= SmallTimeDiff * Timestamp::resolution();
-			}
-			if (nTimeDiff <= 0 && nTimeDiff12 <= 0)
-				code = DIFFCODE::SAME;
-			else
-				code = DIFFCODE::DIFF;
+			nTimeDiff12 = di.diffFileInfo[1].mtime - di.diffFileInfo[2].mtime;
+			nTimeDiff02 = di.diffFileInfo[0].mtime - di.diffFileInfo[2].mtime;
+			if (nTimeDiff12 < 0) nTimeDiff12 *= -1;
+			if (nTimeDiff02 < 0) nTimeDiff02 *= -1;
 		}
-		else
+		if (m_ignoreSmallDiff)
 		{
-			// Filetimes for item(s) could not be read. So we have to
-			// set error status, unless we have DATE_SIZE -compare
-			// when we have still hope for size compare..
-			if (compMethod == CMP_DATE_SIZE)
-				code = DIFFCODE::SAME;
-			else
+			// If option to ignore small timediffs (couple of seconds)
+			// is set, decrease absolute difference by allowed diff
+			nTimeDiff   -= SmallTimeDiff * Timestamp::resolution();
+			nTimeDiff12 -= SmallTimeDiff * Timestamp::resolution();
+			nTimeDiff02 -= SmallTimeDiff * Timestamp::resolution();
+		}
+		if (nTimeDiff <= 0 && nTimeDiff12 <= 0)
+			code = DIFFCODE::SAME;
+		else
+			code = DIFFCODE::DIFF;
+
+		for (int i = 0; i < nfiles; ++i)
+		{
+			if (di.diffFileInfo[i].mtime == 0 && di.diffcode.exists(i))
 				code = DIFFCODE::CMPERR;
 		}
 	}
@@ -93,6 +85,12 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 		    (nfiles > 2 && di.diffFileInfo[1].size != di.diffFileInfo[2].size))
 		{
 			code = DIFFCODE::DIFF;
+		}
+
+		for (int i = 0; i < nfiles; ++i)
+		{
+			if (di.diffFileInfo[i].size == DirItem::FILE_SIZE_NONE && di.diffcode.exists(i))
+				code = DIFFCODE::CMPERR;
 		}
 	}
 	if (nfiles > 2 && (code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
