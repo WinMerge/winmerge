@@ -2060,12 +2060,12 @@ msgstr "W³¹cz &wykrywanie przeniesionych bloków"
 #: Merge.rc:4EF8162F
 #, c-format
 msgid "&Match similar lines"
-msgstr "Dopasuj takie same linie"
+msgstr "Dopasuje podobne linie"
 
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
-msgstr "Komentarze filtra"
+msgstr "Filtruj komentarze"
 
 #: Merge.rc:3BB91A82
 #, c-format
