@@ -16,6 +16,7 @@
 #include "DirCmpReportDlg.h"
 #include "paths.h"
 #include "unicoder.h"
+#include "markdown.h"
 #include "IListCtrl.h"
 
 UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
@@ -261,6 +262,15 @@ void DirCmpReport::WriteString(const String& sText)
 }
 
 /**
+ * @brief Write text to report file while turning special chars to entities.
+ * @param [in] sText Text to write to report file.
+ */
+void DirCmpReport::WriteStringEntityAware(const String& sText)
+{
+	WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(sText))));
+}
+
+/**
  * @brief Generate header-data for report.
  */
 void DirCmpReport::GenerateHeader()
@@ -318,7 +328,7 @@ void DirCmpReport::GenerateHTMLHeader()
 		_T("<html>\n<head>\n")
 		_T("\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
 		_T("\t<title>"));
-	WriteString(m_sTitle);
+	WriteStringEntityAware(m_sTitle);
 	WriteString(_T("</title>\n"));
 	WriteString(_T("\t<style type=\"text/css\">\n\t<!--\n"));
 	WriteString(_T("\t\tbody {\n"));
@@ -390,7 +400,7 @@ void DirCmpReport::GenerateHTMLHeaderBodyPortion()
 	for (int currCol = 0; currCol < m_nColumns; currCol++)
 	{
 		WriteString(_T("<th>"));
-		WriteString(m_pList->GetColumnName(currCol));
+		WriteStringEntityAware(m_pList->GetColumnName(currCol));
 		WriteString(_T("</th>"));
 	}
 	WriteString(_T("</tr>\n"));
@@ -401,11 +411,17 @@ void DirCmpReport::GenerateHTMLHeaderBodyPortion()
  */
 void DirCmpReport::GenerateXmlHeader()
 {
-	WriteString(_T("")); // @todo xml declaration
-	WriteString(_T("<WinMergeDiffReport version=\"1\">\n"));
-	WriteString(strutils::format(_T("<left>%s</left>\n"), m_rootPaths.GetLeft().c_str()));
-	WriteString(strutils::format(_T("<right>%s</right>\n"), m_rootPaths.GetRight().c_str()));
-	WriteString(strutils::format(_T("<time>%s</time>\n"), GetCurrentTimeString().c_str()));
+	WriteString(_T("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
+				_T("<WinMergeDiffReport version=\"2\">\n")
+				_T("<left>"));
+	WriteStringEntityAware(m_rootPaths.GetLeft().c_str());
+	WriteString(_T("</left>\n")
+				_T("<right>"));
+	WriteStringEntityAware(m_rootPaths.GetRight().c_str());
+	WriteString(_T("</right>\n")
+				_T("<time>"));
+	WriteStringEntityAware(GetCurrentTimeString().c_str());
+	WriteString(_T("</time>\n"));
 
 	// Add column headers
 	const String rowEl = _T("column_name");
@@ -414,7 +430,7 @@ void DirCmpReport::GenerateXmlHeader()
 	{
 		const String colEl = m_colRegKeys[currCol];
 		WriteString(BeginEl(colEl));
-		WriteString(m_pList->GetColumnName(currCol));
+		WriteStringEntityAware(m_pList->GetColumnName(currCol));
 		WriteString(EndEl(colEl));
 	}
 	WriteString(EndEl(rowEl) + _T("\n"));
@@ -481,7 +497,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 			}
 			else
 			{
-				WriteString(m_pList->GetItemText(currRow, currCol));
+				WriteStringEntityAware(m_pList->GetItemText(currRow, currCol));
 			}
 			WriteString(EndEl(colEl));
 		}

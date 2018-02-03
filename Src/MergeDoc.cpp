@@ -64,6 +64,7 @@
 #include "7zCommon.h"
 #include "PatchTool.h"
 #include "charsets.h"
+#include "markdown.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -3233,7 +3234,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		data = strutils::format(_T("<th class=\"title\" style=\"width:%f%%\">"),
 			(double)(100 - nLineNumberColumnWidth * m_nBuffers) / m_nBuffers);
 		file.WriteString(data);
-		file.WriteString(paths[nBuffer].c_str());
+		file.WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(paths[nBuffer]))));
 		file.WriteString(_T("</th>\n"));
 	}
 	file.WriteString(
