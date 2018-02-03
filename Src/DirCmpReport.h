@@ -46,6 +46,7 @@ public:
 protected:
 	void GenerateReport(REPORT_TYPE nReportType);
 	void WriteString(const String&);
+	void WriteStringEntityAware(const String& sText);
 	void GenerateHeader();
 	void GenerateContent();
 	void GenerateHTMLHeader();
