@@ -21,16 +21,13 @@
  */
 #pragma once
 
-#ifdef _MSC_VER
-#pragma warning(disable: 4520)
-#endif
-
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/File.h>
 #include <Poco/Timestamp.h>
 #include <boost/flyweight.hpp>
 #include "UnicodeString.h"
 #include "FileVersion.h"
+#include "stdint.h"
 
 /**
  * @brief Class for fileflags.
@@ -56,13 +53,14 @@ struct DirItem
 {
 	Poco::Timestamp ctime; /**< time of creation */
 	Poco::Timestamp mtime; /**< time of last modify */
-	Poco::File::FileSize size; /**< file size in bytes, -1 means file does not exist*/
+	Poco::File::FileSize size; /**< file size in bytes, FILE_SIZE_NONE (== -1) means file does not exist*/
 	boost::flyweight<String> filename; /**< filename for this item */
 	boost::flyweight<String> path; /**< full path (excluding filename) for the item */
 	FileVersion version; /**< string of fixed file version, eg, 1.2.3.4 */
 	FileFlags flags; /**< file attributes */
-
-	DirItem() : ctime(0), mtime(0), size(-1) { }
+	
+	enum : uint64_t { FILE_SIZE_NONE = UINT64_MAX };
+	DirItem() : ctime(0), mtime(0), size(DirItem::FILE_SIZE_NONE) { }
 	void SetFile(const String &fullPath);
 	String GetFile() const;
 	bool Update(const String &sFilePath);
