@@ -161,6 +161,17 @@ Function writeTextsInShapes(fo, sht)
 	On Error GoTo 0
 End Function
 
+Function writeHeadersAndFooters(fo, sht)
+	On Error Resume Next
+	fo.WriteLine "LeftHeader: " & sht.PageSetup.LeftHeader
+	fo.WriteLine "CenterHeader: " & sht.PageSetup.CenterHeader
+	fo.WriteLine "RightHeader: " & sht.PageSetup.RightHeader
+	fo.WriteLine "LeftFooter: " & sht.PageSetup.LeftFooter
+	fo.WriteLine "CenterFooter: " & sht.PageSetup.CenterFooter
+	fo.WriteLine "RightFooter: " & sht.PageSetup.RightFooter
+	On Error GoTo 0
+End Function
+
 Function getModuleExtension(cmp)
 	Select Case cmp.Type
 	Case 2
@@ -369,6 +380,11 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 			writeTextsInShapes fo, sht
 			fo.WriteLine ""
 		End If
+		If regRead(RegKeyPath & "CompareHeadersAndFooters", True) Then
+			fo.WriteLine "[" & sht.Name & ".HeadersAndFooters]"
+			writeHeadersAndFooters fo, sht
+			fo.WriteLine ""
+		End If
 	Next
 
 	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
@@ -458,6 +474,12 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & "_Shapes.txt"), True, True)
 			ungroupShapes sht
 			writeTextsInShapes fo, sht
+			fo.Close
+		End If
+
+		If regRead(RegKeyPath & "CompareHeadersAndFooters", True) Then
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & "_HeadersAndFooters.txt"), True, True)
+			writeHeadersAndFooters fo, sht
 			fo.Close
 		End If
 
@@ -553,6 +575,7 @@ End Sub
         txtImageHeight.value = regRead(REGKEY_PATH + "ImageHeight", 3000);
         chkCompareFormulas.checked = regRead(REGKEY_PATH + "CompareFormulas", false);
         chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
+        chkCompareHeadersAndFooters.checked = regRead(REGKEY_PATH + "CompareHeadersAndFooters", true);
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
         chkUnpackToFolder_onclick();
         chkCompareWorksheetsAsImage_onclick();
@@ -597,6 +620,7 @@ End Sub
         regWrite(REGKEY_PATH + "ImageHeight", Number(txtImageHeight.value), "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareHeadersAndFooters", chkCompareHeadersAndFooters.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
       }
 
@@ -670,6 +694,11 @@ End Sub
           <input id="chkCompareTextsInShapes" type="checkbox" />
           <label class="en">Compare texts in shapes</label>
           <label class="ja">図形内のテキストを比較する</label>
+        </li>
+        <li>
+          <input id="chkCompareHeadersAndFooters" type="checkbox" />
+          <label class="en">Compare headers and footers</label>
+          <label class="ja">ヘッダーとフッターを比較する</label>
         </li>
         <li>
           <input id="chkCompareVBAMacros" type="checkbox" />
