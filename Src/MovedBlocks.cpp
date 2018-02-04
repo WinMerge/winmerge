@@ -148,8 +148,8 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 			EqGroup * pgroup1 = map.find(fd[1].equivs[j1]);
 			if (pgroup0 != pgroup1)
 				break;
-			pgroup0->m_lines0.Remove(i1);
-			pgroup1->m_lines1.Remove(j1);
+//			pgroup0->m_lines0.Remove(i1); // commented out this line although I'm not sure what this line means because this line causes the bug sf.net#2174
+//			pgroup1->m_lines1.Remove(j1);
 		}
 		++i1;
 		++j1;
@@ -164,8 +164,8 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 			EqGroup * pgroup1 = map.find(fd[1].equivs[j2]);
 			if (pgroup0 != pgroup1)
 				break;
-			pgroup0->m_lines0.Remove(i2);
-			pgroup1->m_lines1.Remove(j2);
+//			pgroup0->m_lines0.Remove(i2); // commented out this line although I'm not sure what this line means because this line causes the bug sf.net#2174
+//			pgroup1->m_lines1.Remove(j2);
 		}
 		--i2;
 		--j2;
@@ -266,8 +266,8 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 			EqGroup * pgroup1 = map.find(fd[1].equivs[j1]);
 			if (pgroup0 != pgroup1)
 				break;
-			pgroup0->m_lines0.Remove(i1);
-			pgroup1->m_lines1.Remove(j1);
+//			pgroup0->m_lines0.Remove(i1); // commented out this line although I'm not sure what this line means because this line causes the bug sf.net#2174
+//			pgroup1->m_lines1.Remove(j1);
 		}
 		++i1;
 		++j1;
@@ -282,8 +282,8 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 			EqGroup * pgroup1 = map.find(fd[1].equivs[j2]);
 			if (pgroup0 != pgroup1)
 				break;
-			pgroup0->m_lines0.Remove(i2);
-			pgroup1->m_lines1.Remove(j2);
+//			pgroup0->m_lines0.Remove(i2); // commented out this line although I'm not sure what this line means because this line causes the bug sf.net#2174
+//			pgroup1->m_lines1.Remove(j2);
 		}
 		--i2;
 		--j2;
