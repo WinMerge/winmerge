@@ -283,7 +283,7 @@ msgstr "Barra de Esta&do"
 #: Merge.rc:2C015CFD
 #, c-format
 msgid "Ta&b Bar"
-msgstr "Barra de Tabulações"
+msgstr "Barra de Colunas"
 
 #: Merge.rc:1D2E49F8
 #, c-format
@@ -323,12 +323,12 @@ msgstr "Divisão Automática"
 #: Merge.rc:1A9EBDEC
 #, c-format
 msgid "&Manual Unpacking"
-msgstr "E&xtracção Manual"
+msgstr "E&xtração Manual"
 
 #: Merge.rc:4EF8162D
 #, c-format
 msgid "&Automatic Unpacking"
-msgstr "E&xtracção Automática"
+msgstr "E&xtração Automática"
 
 #: Merge.rc:714B45FD
 #, c-format
@@ -1209,7 +1209,7 @@ msgstr "Co&piar Localização"
 #: Merge.rc:4BFA4345
 #, c-format
 msgid "Copy Items To Clip&board"
-msgstr "Copiar Itens para Tabulações"
+msgstr "Copiar Itens para a Área de Transferências"
 
 #: Merge.rc:22956A9
 #, c-format
@@ -2104,17 +2104,17 @@ msgstr "Manter caracteres EOL originais"
 #: Merge.rc:4C72B55
 #, c-format
 msgid "Tabs"
-msgstr "Tabulações"
+msgstr "Colunas"
 
 #: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
-msgstr "Tamanho da tabulação:"
+msgstr "Tamanho da coluna:"
 
 #: Merge.rc:4DE14275
 #, c-format
 msgid "&Insert Tabs"
-msgstr "Inserir tabulações"
+msgstr "Inserir colunas"
 
 #: Merge.rc:243A39E
 #, c-format
@@ -2274,7 +2274,7 @@ msgstr "Página de código personalizada"
 #: Merge.rc:6CD65B95
 #, c-format
 msgid "Options"
-msgstr "Opções"
+msgstr "Definições"
 
 #: Merge.rc:D32E2F1
 #, c-format
@@ -2399,7 +2399,7 @@ msgstr "Incluir relatório de comparação de ficheiros"
 #: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr "Copiar para a Área de Transferência"
+msgstr "Copiar para a Área de Transferências"
 
 #: Merge.rc:43600E90
 #, c-format
@@ -3094,7 +3094,7 @@ msgstr "Todas as mensagens estão novamente disponíveis."
 #: Merge.rc:37825D6A
 #, c-format
 msgid "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
-msgstr ""
+msgstr "Valor do tamanho na tabela -O valor não está de acordo com os parâmetros do WinMerge. \n\nPor favor utilize os valores 1 - %1."
 
 #: Merge.rc:47E5C8F
 #, c-format
@@ -3119,22 +3119,22 @@ msgstr "Projetos WinMerge (*.WinMerge)|*.WinMerge||"
 #: Merge.rc:BEDA09D
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Opções de ficheiros"
 
 #: Merge.rc:3FF615A0
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Ficheiros de texto"
 
 #: Merge.rc:59814668
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Ficheiros HTML"
 
 #: Merge.rc:67444ADC
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Ficheiros XML"
 
 #: Merge.rc:46FCCCE
 #, c-format
@@ -3169,12 +3169,12 @@ msgstr "Selecionar nome de ficheiro para novo filtro"
 #: Merge.rc:764E4AD3
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
-msgstr "Ficheiros de filtros (*.ini)|*.ini|Todos os ficheiros (*.*)|*.*||"
+msgstr "Filtros de Ficheiros (*.ini)|*.ini|Todos os ficheiros (*.*)|*.*||"
 
 #: Merge.rc:24B5241A
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
-msgstr ""
+msgstr "Não é possível encontrar o ficheiro modelo de filtro de ficheiros!\n\nPor favor copie o ficheiro %1 para WinMerge/Pasta -Filtros:\n%2."
 
 #: Merge.rc:2A045B49
 #, c-format
@@ -3184,12 +3184,12 @@ msgstr ""
 #: Merge.rc:4EA7BACD
 #, c-format
 msgid "User's filter file folder is not defined!\n\nPlease select filter folder in Options/System."
-msgstr ""
+msgstr "A pasta de filtro de ficheiro de utilizador não está definida!\n\nPor favor selecione a pasta de filtros em Opções/Sistema."
 
 #: Merge.rc:7DDEC9BD
 #, c-format
 msgid "Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"
-msgstr "Erro ao eliminar o filtro do ficheiro:\n%1\n\nTalvez o ficheiro seja só de leitura?"
+msgstr "Erro ao eliminar o filtro de ficheiro:\n%1\n\nTalvez o ficheiro seja só de leitura?"
 
 #: Merge.rc:6F3BCB34
 #, c-format
@@ -4170,7 +4170,7 @@ msgstr "Lista separada por vírgulas"
 #: Merge.rc:5CCED709
 #, c-format
 msgid "Tab-separated list"
-msgstr "Lista separada por tabulações"
+msgstr "Lista separada por colunas"
 
 #: Merge.rc:2E3BFCA3
 #, c-format
@@ -4220,7 +4220,7 @@ msgstr "Impossível criar ficheiros temporários. Verifique as suas definições de 
 #: Merge.rc:11E6F584
 #, c-format
 msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
-msgstr "Estes ficheiros utilizam diferentes tipos de procedimento.\n\nDeseja tratar todos os tipos de procedimentos por igual para comparação?\n\nNota: Se deseja tratar todos os tipos de procedimentos por igual, defina a opção 'Ignorar diferentes tipos de procedimentos..' na tabulação de comparação no diálogo opções (disponível em Editar/Opções)."
+msgstr "Estes ficheiros utilizam diferentes tipos de procedimento.\n\nDeseja tratar todos os tipos de procedimentos por igual para comparação?\n\nNota: Se deseja tratar todos os tipos de procedimentos por igual, defina a opção 'Ignorar diferentes tipos de procedimentos..' na coluna de comparação no diálogo opções (disponível em Editar/Definições)."
 
 #: Merge.rc:46FB8639
 #, c-format
@@ -4680,17 +4680,17 @@ msgstr ""
 #: Merge.rc:8AF7E6B
 #, c-format
 msgid "Close &Left Tabs"
-msgstr "Fechar Tabulação E&squerda"
+msgstr "Fechar Coluna E&squerda"
 
 #: Merge.rc:D404EDF
 #, c-format
 msgid "Close R&ight Tabs"
-msgstr "Fechar Tabulação D&ireita"
+msgstr "Fechar Coluna D&ireita"
 
 #: Merge.rc:D404EE0
 #, c-format
 msgid "Close &Other Tabs"
-msgstr "Fechar &Outras Tabulações"
+msgstr "Fechar &Outras Colunas"
 
 #: Merge.rc:3E934E
 #, c-format
