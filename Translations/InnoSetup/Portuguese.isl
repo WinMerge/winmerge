@@ -147,7 +147,7 @@ NoUninstallWarningTitle=Componentes Encontrados
 NoUninstallWarning=O Assistente de Instalação detetou que os seguintes componentes estão instalados no seu computador:%n%n%1%n%nSe desmarcar estes componentes estes não serão desinstalados.%n%nDeseja continuar?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
-ComponentsDiskSpaceMBLabel=A seleção actual necessita de pelo menos [mb] MB de espaço em disco.
+ComponentsDiskSpaceMBLabel=A seleção atual necessita de pelo menos [mb] MB de espaço em disco.
 
 ; *** "Select Additional Tasks" wizard page
 WizardSelectTasks=Selecione tarefas adicionais
@@ -168,7 +168,7 @@ NoProgramGroupCheck2=&Não criar nenhuma pasta no Menu Iniciar
 ; *** "Ready to Install" wizard page
 WizardReady=Pronto para Instalar
 ReadyLabel1=O Assistente de Instalação está pronto para instalar o [name] no seu computador.
-ReadyLabel2a=Clique em Instalar para continuar a instalação, ou clique em Anterior se desejar rever ou alterar alguma das configurações.
+ReadyLabel2a=Clique em Instalar para continuar a instalação ou clique em Anterior se desejar rever ou alterar alguma das opções.
 ReadyLabel2b=Clique em Instalar para continuar a instalação.
 ReadyMemoUserInfo=Informações do utilizador:
 ReadyMemoDir=Localização de destino:
