@@ -388,7 +388,7 @@ msgstr "&WinMerge Ajuda\tF1"
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
-msgstr ""
+msgstr "Verificar atualizações"
 
 #: Merge.rc:1C6125F4
 #, c-format
