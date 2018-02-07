@@ -385,14 +385,9 @@ msgstr "&Помощ"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Помощ\tF1"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:3938FFC2
 #, c-format
-msgid "R&elease Notes"
-msgstr ""
-
-#: Merge.rc:6E470BE7
-#, c-format
-msgid "&Translations"
+msgid "&Check For Updates"
 msgstr ""
 
 #: Merge.rc:1C6125F4
@@ -405,7 +400,7 @@ msgstr "Конфигурация"
 msgid "&GNU General Public License"
 msgstr "&GNU Публичен лиценз"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr "&За WinMerge..."
@@ -474,6 +469,26 @@ msgstr "Покажи &Пропуснатите неща"
 #, c-format
 msgid "S&how Binary Files"
 msgstr "Покажи Дв&оичните файлове"
+
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -585,7 +600,7 @@ msgstr "&Нагласи колоните..."
 msgid "Generate &Report..."
 msgstr "Създай &Отчет..."
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE7
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Запиши\tCtrl+S"
@@ -680,12 +695,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Отмени\tCtrl+Z"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Въ&рни\tCtrl+Y"
@@ -695,12 +710,12 @@ msgstr "Въ&рни\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Изрежи\tCtrl+X"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Копирай\tCtrl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "По&стави\tCtrl+V"
@@ -745,7 +760,7 @@ msgstr "&Отметки"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Прикрепи отметка\tCtrl+F2"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Следваща отметка\tF2"
@@ -786,7 +801,7 @@ msgstr "Нормален"
 msgid "Syntax Highlight"
 msgstr "Оцветяване на синтаксиса"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1136,7 +1151,7 @@ msgstr "&Отвори в ляво"
 msgid "with &External Editor"
 msgstr "с &Външен Редактор"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -1251,7 +1266,7 @@ msgstr "Копирай &името"
 msgid "Prediffer Settings"
 msgstr "Налични настройки"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&No prediffer"
 msgstr "&Без налични"
@@ -1641,7 +1656,7 @@ msgstr "&ОК"
 msgid "Replace"
 msgstr "Замени"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B17601E
 #, c-format
 msgid "Re&place with:"
 msgstr "&Замени с:"
@@ -1691,7 +1706,7 @@ msgstr ""
 msgid "New"
 msgstr "Нов"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2021,7 +2036,7 @@ msgstr "Празни места"
 msgid "&Compare"
 msgstr "&Сравняване"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "&Игнорирай промените"
@@ -2166,7 +2181,7 @@ msgstr "Запис на променени файлове?"
 msgid "Left side file"
 msgstr "Ляв файл"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&Save changes"
 msgstr "&Запиши промените"
@@ -2376,7 +2391,7 @@ msgstr "&Стил:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Копирай в клипборда"
@@ -2511,7 +2526,7 @@ msgstr "(Промени)"
 msgid "Select Codepage for"
 msgstr "Изберете кодировка за"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "&Зареждане на файл:"
@@ -3962,7 +3977,7 @@ msgstr "Десен EOL"
 msgid "Left Encoding"
 msgstr "Лява кодировка"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
 msgstr "Дясна кодировка"
@@ -4007,7 +4022,7 @@ msgstr "От ляво само: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176021
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right only: %1"
 msgstr "От дясно само: %1"
@@ -4075,6 +4090,21 @@ msgstr "Грешка"
 #: Merge.rc:12D66B44
 #, c-format
 msgid "Text files are identical"
+msgstr ""
+
+#: Merge.rc:1DEEB161
+#, c-format
+msgid "(Middle and right are identical)"
+msgstr ""
+
+#: Merge.rc:1D99B043
+#, c-format
+msgid "(Left and right are identical)"
+msgstr ""
+
+#: Merge.rc:159C584C
+#, c-format
+msgid "(Left and middle are identical)"
 msgstr ""
 
 #: Merge.rc:12D66B45
@@ -4813,6 +4843,11 @@ msgstr "Ресурси"
 #: Merge.rc:125AD722
 #, c-format
 msgid "Shell"
+msgstr ""
+
+#: Merge.rc:4E44AD6
+#, c-format
+msgid "VHDL"
 msgstr ""
 
 #: Merge.rc:8AF7E6B

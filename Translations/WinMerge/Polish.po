@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2010-02-13 10:28 +0100\n"
-"Last-Translator: Skiff <skiffatsf at users.sourceforge.net>\n"
+"PO-Revision-Date: 2013-09-30 01:24+0100\n"
+"Last-Translator: Micha³ Szkutnik <mszkutnik at users.sourceforge.net>\n"
 "Language-Team: Polish <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1250\n"
@@ -386,14 +386,9 @@ msgstr "&Pomoc"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge - pomoc\tF1"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:3938FFC2
 #, c-format
-msgid "R&elease Notes"
-msgstr ""
-
-#: Merge.rc:6E470BE7
-#, c-format
-msgid "&Translations"
+msgid "&Check For Updates"
 msgstr ""
 
 #: Merge.rc:1C6125F4
@@ -406,7 +401,7 @@ msgstr "&Konfiguracja"
 msgid "&GNU General Public License"
 msgstr "&GNU General Public License"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr "WinMerge - inf&ormacje..."
@@ -475,6 +470,26 @@ msgstr "Poka¿ po&miniête elementy"
 #, c-format
 msgid "S&how Binary Files"
 msgstr "Poka¿ pliki &binarne"
+
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -586,7 +601,7 @@ msgstr "&Dostosuj kolumny..."
 msgid "Generate &Report..."
 msgstr "Utwórz &raport..."
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE7
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Zapisz\tCtrl+S"
@@ -679,14 +694,14 @@ msgstr "&XML"
 #: Merge.rc:89AF4F8
 #, c-format
 msgid "&Binary"
-msgstr ""
+msgstr "&Binarne"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Cofnij\tCtrl+Z"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Powtórz\tCtrl+Y"
@@ -696,12 +711,12 @@ msgstr "&Powtórz\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Wytnij\tCtrl+X"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiuj\tCtrl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Wk&lej\tCtrl+V"
@@ -746,7 +761,7 @@ msgstr "Za&k³adki"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Dodaj zak³adkê\tCtrl+F2"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Nastêpna zak³adka\tF2"
@@ -787,7 +802,7 @@ msgstr "&Rozmiar oryginalny\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Kolorowanie sk³adni"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1040,7 +1055,7 @@ msgstr ""
 #: Merge.rc:67A28B28
 #, c-format
 msgid "Co&mpare As"
-msgstr ""
+msgstr "Poró&wnaj jako"
 
 #: Merge.rc:4D4D2E92
 #, c-format
@@ -1137,7 +1152,7 @@ msgstr "O&twórz lew¹"
 msgid "with &External Editor"
 msgstr "w &zewnêtrznym edytorze"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -1252,7 +1267,7 @@ msgstr "Kopiuj nazwê p&liku"
 msgid "Prediffer Settings"
 msgstr "Ustawienia wstêpnego ró¿nicowania"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&No prediffer"
 msgstr "&Bez ró¿nicowania wstêpnego"
@@ -1642,7 +1657,7 @@ msgstr "&Ok"
 msgid "Replace"
 msgstr "Zast¹p"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B17601E
 #, c-format
 msgid "Re&place with:"
 msgstr "Z&ast¹p:"
@@ -1692,7 +1707,7 @@ msgstr ""
 msgid "New"
 msgstr "Nowy"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -1705,7 +1720,7 @@ msgstr "Z&astosuj"
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
-msgstr "SprawdŸ"
+msgstr "Checkout"
 
 #: Merge.rc:4C3E0A2E
 #, c-format
@@ -1715,7 +1730,7 @@ msgstr "Komentarze"
 #: Merge.rc:51DC4C3F
 #, c-format
 msgid "CheckIn after checkout"
-msgstr "CheckIn po CheckOut"
+msgstr "Checkin po checkoucie"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -2022,7 +2037,7 @@ msgstr "Bia³e znaki"
 msgid "&Compare"
 msgstr "&Porównaj"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "Ignoruj &zmiany"
@@ -2167,7 +2182,7 @@ msgstr "Zapisz zmodyfikowane pliki?"
 msgid "Left side file"
 msgstr "Plik z lewej"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&Save changes"
 msgstr "&Zapisz zmiany"
@@ -2381,7 +2396,7 @@ msgstr "&Styl:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopiuj do schowka"
@@ -2516,7 +2531,7 @@ msgstr "(dzia³anie)"
 msgid "Select Codepage for"
 msgstr "Wybierz stronê kodow¹ dla"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "&£adowanie pliku:"
@@ -3324,7 +3339,7 @@ msgstr "Mój plik"
 #: Merge.rc:DD21174
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr ""
+msgstr "Lin: %s  Kol: %d/%d  Zn: %d/%d  EOL: %s"
 
 #: Merge.rc:15875423
 #, c-format
@@ -3334,7 +3349,7 @@ msgstr "Linia: %s"
 #: Merge.rc:6F3BCB35
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr ""
+msgstr "Lin: %s  Kol: %d/%d  Zn: %d/%d"
 
 #: Merge.rc:7C664E1
 #, c-format
@@ -4027,7 +4042,7 @@ msgstr "Prawe ZKL"
 msgid "Left Encoding"
 msgstr "Lewe kodowanie"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
 msgstr "Prawe kodowanie"
@@ -4072,7 +4087,7 @@ msgstr "Tylko po lewej: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176021
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right only: %1"
 msgstr "Tylko po prawej: %1"
@@ -4141,6 +4156,21 @@ msgstr "B³¹d"
 #, c-format
 msgid "Text files are identical"
 msgstr "Pliki tekstowe s¹ identyczne"
+
+#: Merge.rc:1DEEB161
+#, c-format
+msgid "(Middle and right are identical)"
+msgstr ""
+
+#: Merge.rc:1D99B043
+#, c-format
+msgid "(Left and right are identical)"
+msgstr ""
+
+#: Merge.rc:159C584C
+#, c-format
+msgid "(Left and middle are identical)"
+msgstr ""
 
 #: Merge.rc:12D66B45
 #, c-format
@@ -4889,6 +4919,11 @@ msgstr "Zasoby"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
+
+#: Merge.rc:4E44AD6
+#, c-format
+msgid "VHDL"
+msgstr ""
 
 #: Merge.rc:8AF7E6B
 #, c-format

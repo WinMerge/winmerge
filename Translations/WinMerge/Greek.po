@@ -384,14 +384,9 @@ msgstr "&Βοήθεια"
 msgid "&WinMerge Help\tF1"
 msgstr "Βοήθεια WinMerge\tF1"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:3938FFC2
 #, c-format
-msgid "R&elease Notes"
-msgstr ""
-
-#: Merge.rc:6E470BE7
-#, c-format
-msgid "&Translations"
+msgid "&Check For Updates"
 msgstr ""
 
 #: Merge.rc:1C6125F4
@@ -404,7 +399,7 @@ msgstr "&Ρυθμίσεις"
 msgid "&GNU General Public License"
 msgstr "Γενική Δημοσία ’δεια &GNU"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr "&Περί του WinMerge..."
@@ -473,6 +468,26 @@ msgstr "Εμφάνιση Αντι&παρελθέντων Στοιχείων"
 #, c-format
 msgid "S&how Binary Files"
 msgstr "Εμφάνιση &Δυαδικών Αρχείων"
+
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -584,7 +599,7 @@ msgstr "&Προσαρμογή Στηλών..."
 msgid "Generate &Report..."
 msgstr "Δημιουργία Ανα&φοράς..."
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE7
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "Απο&θήκευση\tCtrl+S"
@@ -679,12 +694,12 @@ msgstr ""
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Α&ναίρεση\tCtrl+Z"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Επανάλη&ψη\tCtrl+Y"
@@ -694,12 +709,12 @@ msgstr "Επανάλη&ψη\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Απο&κοπή\tCtrl+X"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Αντι&γραφή\tCtrl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Προ&σάρτηση\tCtrl+V"
@@ -744,7 +759,7 @@ msgstr "Σημάν&σεις"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Μεταβολή Σημάν&σεως\tCtrl+F2"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "Επο&μένη Σήμανση\tF2"
@@ -785,7 +800,7 @@ msgstr "&Κανονικό\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "&Χρωματισμός Κώδικα"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1135,7 +1150,7 @@ msgstr "’νοιγμα Α&ριστερού"
 msgid "with &External Editor"
 msgstr "μ&ε άλλη Εφαρμογή"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -1250,7 +1265,7 @@ msgstr "Αντιγραφή Ο&νόματος"
 msgid "Prediffer Settings"
 msgstr "Ρυθμίσεις Προεπεξεργαστή Διαφορών"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&No prediffer"
 msgstr "Χωρίς προεπεξεργασία διαφορών"
@@ -1640,7 +1655,7 @@ msgstr "&ΟΚ"
 msgid "Replace"
 msgstr "Αντικατάσταση"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B17601E
 #, c-format
 msgid "Re&place with:"
 msgstr "Αντι&κατάσταση με:"
@@ -1690,7 +1705,7 @@ msgstr ""
 msgid "New"
 msgstr "Δημιουργία"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2020,7 +2035,7 @@ msgstr "Χαρακτήρες Διαστήματος"
 msgid "&Compare"
 msgstr "&Σύγκριση"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "Η μεταβολή να α&γνοείται"
@@ -2165,7 +2180,7 @@ msgstr "Αποθήκευση τροποποιημένων αρχείων;"
 msgid "Left side file"
 msgstr "Αρχείο αριστερής πλευράς"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&Save changes"
 msgstr "Απο&θήκευση αλλαγών"
@@ -2375,7 +2390,7 @@ msgstr "&Στυλ:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Αντι&γραφή στο Πρόχειρο"
@@ -2510,7 +2525,7 @@ msgstr "(Επηρεάζει)"
 msgid "Select Codepage for"
 msgstr "Επιλογή Κωδικοσελίδας για"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "Ανά&γνωση Αρχείου:"
@@ -3999,7 +4014,7 @@ msgstr "Χαρακτήρας Τερματισμού Δεξιού"
 msgid "Left Encoding"
 msgstr "Κωδικοσελίδα Αριστερού"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
 msgstr "Κωδικοσελίδα Δεξιού"
@@ -4044,7 +4059,7 @@ msgstr "Αριστερά μόνο: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176021
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right only: %1"
 msgstr "Δεξιά μόνο: %1"
@@ -4112,6 +4127,21 @@ msgstr "Σφάλμα"
 #: Merge.rc:12D66B44
 #, c-format
 msgid "Text files are identical"
+msgstr ""
+
+#: Merge.rc:1DEEB161
+#, c-format
+msgid "(Middle and right are identical)"
+msgstr ""
+
+#: Merge.rc:1D99B043
+#, c-format
+msgid "(Left and right are identical)"
+msgstr ""
+
+#: Merge.rc:159C584C
+#, c-format
+msgid "(Left and middle are identical)"
 msgstr ""
 
 #: Merge.rc:12D66B45
@@ -4860,6 +4890,11 @@ msgstr ""
 #: Merge.rc:125AD722
 #, c-format
 msgid "Shell"
+msgstr ""
+
+#: Merge.rc:4E44AD6
+#, c-format
+msgid "VHDL"
 msgstr ""
 
 #: Merge.rc:8AF7E6B

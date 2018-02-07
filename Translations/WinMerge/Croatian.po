@@ -385,14 +385,9 @@ msgstr "&Pomoæ"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Pomoæ\tF1"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:3938FFC2
 #, c-format
-msgid "R&elease Notes"
-msgstr ""
-
-#: Merge.rc:6E470BE7
-#, c-format
-msgid "&Translations"
+msgid "&Check For Updates"
 msgstr ""
 
 #: Merge.rc:1C6125F4
@@ -405,7 +400,7 @@ msgstr "Po&dešenost"
 msgid "&GNU General Public License"
 msgstr "&GNU javna licenca"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr "&O WinMerge..."
@@ -474,6 +469,26 @@ msgstr "Prikaži &izostavljene stavke"
 #, c-format
 msgid "S&how Binary Files"
 msgstr "Prikaži &binarne datoteke"
+
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -585,7 +600,7 @@ msgstr "&Prilagodba kolona..."
 msgid "Generate &Report..."
 msgstr "Pohrani &izvještaj..."
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE7
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Pohrani\tCtrl+S"
@@ -680,12 +695,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Poništi\tCtrl+Z"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Vrati\tCtrl+Y"
@@ -695,12 +710,12 @@ msgstr "&Vrati\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Od&reži\tCtrl+X"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiraj\tCtrl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Zalijepi\tCtrl+V"
@@ -745,7 +760,7 @@ msgstr "&Oznake"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Zamijeni oznake\tCtrl+F2"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Slijedeæa oznaka\tF2"
@@ -786,7 +801,7 @@ msgstr "&Izvorna velièina\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Oznaèavanje sintakse"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1136,7 +1151,7 @@ msgstr "&Otvori lijevi"
 msgid "with &External Editor"
 msgstr "&vanjskim ureðivaèem"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -1251,7 +1266,7 @@ msgstr "Kopiraj &naziv datoteke"
 msgid "Prediffer Settings"
 msgstr "Dodaci - postavke "
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&No prediffer"
 msgstr "&Nema dodataka"
@@ -1641,7 +1656,7 @@ msgstr "&U redu"
 msgid "Replace"
 msgstr "Zamijeni"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B17601E
 #, c-format
 msgid "Re&place with:"
 msgstr "Zamijeni s:"
@@ -1691,7 +1706,7 @@ msgstr ""
 msgid "New"
 msgstr "Novi"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2021,7 +2036,7 @@ msgstr "Skriveni znaci i razmaci"
 msgid "&Compare"
 msgstr "&Usporedi"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "Zanemari &izmjene"
@@ -2166,7 +2181,7 @@ msgstr "Pohraniti izmijenjenu datoteku?"
 msgid "Left side file"
 msgstr "Datoteka s lijeva"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&Save changes"
 msgstr "&Pohrani promjene"
@@ -2380,7 +2395,7 @@ msgstr "&Stil:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopiraj u meðumemoriju"
@@ -2515,7 +2530,7 @@ msgstr "(Primjeni na)"
 msgid "Select Codepage for"
 msgstr "Odabir kodne stranice za"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "&Uèitavanje datoteke:"
@@ -4026,7 +4041,7 @@ msgstr "Završetak retka desne datoteke."
 msgid "Left Encoding"
 msgstr "Kodiranje lijevo"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
 msgstr "Kodiranje desno"
@@ -4071,7 +4086,7 @@ msgstr "Samo lijevi: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176021
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right only: %1"
 msgstr "Samo desni: %1"
@@ -4140,6 +4155,21 @@ msgstr "Greška"
 #, c-format
 msgid "Text files are identical"
 msgstr "Tekstovi su identièni"
+
+#: Merge.rc:1DEEB161
+#, c-format
+msgid "(Middle and right are identical)"
+msgstr ""
+
+#: Merge.rc:1D99B043
+#, c-format
+msgid "(Left and right are identical)"
+msgstr ""
+
+#: Merge.rc:159C584C
+#, c-format
+msgid "(Left and middle are identical)"
+msgstr ""
 
 #: Merge.rc:12D66B45
 #, c-format
@@ -4888,6 +4918,11 @@ msgstr "Resursi"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
+
+#: Merge.rc:4E44AD6
+#, c-format
+msgid "VHDL"
+msgstr ""
 
 #: Merge.rc:8AF7E6B
 #, c-format

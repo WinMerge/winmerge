@@ -388,14 +388,9 @@ msgstr "&Laguntza"
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge &Laguntza\tF1"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:3938FFC2
 #, c-format
-msgid "R&elease Notes"
-msgstr ""
-
-#: Merge.rc:6E470BE7
-#, c-format
-msgid "&Translations"
+msgid "&Check For Updates"
 msgstr ""
 
 #: Merge.rc:1C6125F4
@@ -408,7 +403,7 @@ msgstr "It&xurapena"
 msgid "&GNU General Public License"
 msgstr "&GNU Baimen Publiko Orokorra "
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr "&WinMergeri buruz..."
@@ -477,6 +472,26 @@ msgstr "Erakutsi &Jauzitako Gaiak"
 #, c-format
 msgid "S&how Binary Files"
 msgstr "&Erakutsi Agiri Binarioak"
+
+#: Merge.rc:5A9A713B
+#, c-format
+msgid "&3-way Compare"
+msgstr ""
+
+#: Merge.rc:200AD0D1
+#, c-format
+msgid "Show &Left Only Different Items"
+msgstr ""
+
+#: Merge.rc:4899EBE1
+#, c-format
+msgid "Show &Middle Only Different Items"
+msgstr ""
+
+#: Merge.rc:614F49A9
+#, c-format
+msgid "Show &Right Only Different Items"
+msgstr ""
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -588,7 +603,7 @@ msgstr "&Antolatu Zutabeak..."
 msgid "Generate &Report..."
 msgstr "Sortu &Jakinarazpena..."
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE7
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Gorde\tCtrl+S"
@@ -683,12 +698,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr "&Binarioa"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Desegin\tCtrl+Z"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Birre&gin\tCtrl+Y"
@@ -698,12 +713,12 @@ msgstr "Birre&gin\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Ebaki\tCtrl+X"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiatu\tCtrl+C"
 
-#: Merge.rc:5A9A713B
+#: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Itsatsi\tCtrl+V"
@@ -748,7 +763,7 @@ msgstr "Laster&markak"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Aldatu Lastermarka\tCtrl+F2"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Hurrengo Lastermarka\tF2"
@@ -789,7 +804,7 @@ msgstr "&Normala\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Joskera Nabar&mentzea"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1139,7 +1154,7 @@ msgstr "&Ireki Ezkerrekoa"
 msgid "with &External Editor"
 msgstr "&Kanpoko Editorearekin"
 
-#: Merge.rc:5A9A713C
+#: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
 msgstr ""
@@ -1254,7 +1269,7 @@ msgstr "Kopiatu &Agirizena"
 msgid "Prediffer Settings"
 msgstr "Aurrezberdintasun Ezarpenak"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&No prediffer"
 msgstr "&Ez aurrezberd"
@@ -1644,7 +1659,7 @@ msgstr "&Ongi"
 msgid "Replace"
 msgstr "Ordeztu"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B17601E
 #, c-format
 msgid "Re&place with:"
 msgstr "Ordez&tu honekin:"
@@ -1694,7 +1709,7 @@ msgstr ""
 msgid "New"
 msgstr "Berria"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2024,7 +2039,7 @@ msgstr "&Zurigunea"
 msgid "&Compare"
 msgstr "Al&deratu"
 
-#: Merge.rc:5A9A713D
+#: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
 msgstr "&Ezikusi aldaketa"
@@ -2169,7 +2184,7 @@ msgstr "Gorde amaitutako agiriak?"
 msgid "Left side file"
 msgstr "Ezkerralde agiria"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&Save changes"
 msgstr "Gor&de aldaketak"
@@ -2383,7 +2398,7 @@ msgstr "&Estiloa"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Kopiatu Gakoan"
@@ -2518,7 +2533,7 @@ msgstr "(Eraginak)"
 msgid "Select Codepage for"
 msgstr "Hautatu Kode-orrialdea"
 
-#: Merge.rc:5A9A713E
+#: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
 msgstr "&Agiria Gertatzen:"
@@ -4029,7 +4044,7 @@ msgstr "Eskuin EOL"
 msgid "Left Encoding"
 msgstr "Ezker Kodeaketa"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
 msgstr "Eskuin Kodeaketa"
@@ -4074,7 +4089,7 @@ msgstr "Ezkerra bakarrik: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176021
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right only: %1"
 msgstr "Eskuina bakarrik: %1"
@@ -4143,6 +4158,21 @@ msgstr "Akatsa"
 #, c-format
 msgid "Text files are identical"
 msgstr "Idazki agiriak berdinak dira"
+
+#: Merge.rc:1DEEB161
+#, c-format
+msgid "(Middle and right are identical)"
+msgstr ""
+
+#: Merge.rc:1D99B043
+#, c-format
+msgid "(Left and right are identical)"
+msgstr ""
+
+#: Merge.rc:159C584C
+#, c-format
+msgid "(Left and middle are identical)"
+msgstr ""
 
 #: Merge.rc:12D66B45
 #, c-format
@@ -4891,6 +4921,11 @@ msgstr "Resources"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
+
+#: Merge.rc:4E44AD6
+#, c-format
+msgid "VHDL"
+msgstr ""
 
 #: Merge.rc:8AF7E6B
 #, c-format
