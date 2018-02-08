@@ -20,16 +20,17 @@ If LCase(oFSO.GetFileName(Wscript.FullName)) = "cscript.exe" Then
 End If
 
 Set oCharsets = CreateObject("Scripting.Dictionary")
-oCharsets.Add "932", "Shift_JIS"
-oCharsets.Add "936", "GB2312"
-oCharsets.Add "949", "EUC-KR"
-oCharsets.Add "950", "BIG5"
-oCharsets.Add "1250", "Windows-1250"
-oCharsets.Add "1251", "Windows-1251"
-oCharsets.Add "1252", "Windows-1252"
-oCharsets.Add "1253", "Windows-1253"
-oCharsets.Add "1254", "Windows-1254"
-oCharsets.Add "1256", "Windows-1256"
+oCharsets.Add "CP932", "Shift_JIS"
+oCharsets.Add "CP936", "GB2312"
+oCharsets.Add "CP949", "EUC-KR"
+oCharsets.Add "CP950", "BIG5"
+oCharsets.Add "CP1250", "Windows-1250"
+oCharsets.Add "CP1251", "Windows-1251"
+oCharsets.Add "CP1252", "Windows-1252"
+oCharsets.Add "CP1253", "Windows-1253"
+oCharsets.Add "CP1254", "Windows-1254"
+oCharsets.Add "CP1256", "Windows-1256"
+oCharsets.Add "UTF-8", "UTF-8"
 
 Call Main
 
@@ -101,7 +102,7 @@ Function GetContentFromPoFile(ByVal sPoPath, sCharset)
   ' 
   sCharset = "_autodetect"
   Set reCharset = New RegExp
-  reCharset.Pattern = "harset.*CP(.*)\\n""$"
+  reCharset.Pattern = "harset[=:] *(.*)\\n""$"
   reCharset.IgnoreCase = True
   Set oTextFile = oFSO.OpenTextFile(sPoPath, ForReading)
   Do Until oTextFile.AtEndOfStream 'For all lines...
