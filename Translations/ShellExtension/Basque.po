@@ -36,7 +36,7 @@ msgstr "LANG_BASQUE, SUBLANG_DEFAULT"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "1250"
+msgstr "1252"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
