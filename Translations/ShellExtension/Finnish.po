@@ -6,16 +6,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge Shell Extension\n"
+"Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
-"Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
+"Language-Team: Finnish <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1252\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Language: French\n"
 "X-Poedit-SourceCharset: CP1252\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
 
@@ -23,13 +23,13 @@ msgstr ""
 #: ShellExtensionTemplate.rc:25
 #, c-format
 msgid "AFX_TARG_ENU"
-msgstr "AFX_TARG_PTG"
+msgstr "AFX_TARG_FIN"
 
 #. LANGUAGE, SUBLANGUAGE
 #: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr "LANG_PORTUGUESE, SUBLANG_PORTUGUESE"
+msgstr "LANG_FINNISH, SUBLANG_DEFAULT"
 
 #. Codepage
 #: ShellExtensionTemplate.rc:28
@@ -40,7 +40,7 @@ msgstr "1252"
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "ShellExtension"
-msgstr "ShellExtension"
+msgstr "Liittymälaajennus"
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -50,40 +50,40 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "Abrir com WinMerge"
+msgstr "Avaa WinMergellä"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Não selecione mais de 2 itens"
+msgstr "Valitse enintään 2 kohdetta"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr "Comparar"
+msgstr "Vertaa"
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "Comparar..."
+msgstr "Vertaa..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr "Comparar com"
+msgstr "Vertaa..."
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Guardar esta localização. Selecione outra localização para comparar com esta."
+msgstr "Tallenna tämä polku. Valitse toinen polku tämän polun vertailuun."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "Comparar com localização guardada (%1)"
+msgstr "Vertaa tallennettuun polkuun (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Selecione novamente a primeira"
+msgstr "Valitse ensimmäinen uudelleen"
 
