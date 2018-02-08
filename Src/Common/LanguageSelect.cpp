@@ -291,6 +291,9 @@ const struct LangFileInfo::rg LangFileInfo::rg[] =
 		LANG_SINDHI,		"SINDHI\0"
 	},
 	{
+		LANG_SINHALESE,		"SINHALESE\0"
+	},
+	{
 		LANG_SLOVAK,		"SLOVAK\0"
 	},
 	{
