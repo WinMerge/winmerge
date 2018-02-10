@@ -332,6 +332,11 @@ CustomInstallation=Norbere Ezarpena
 AppCoreFiles=WinMerge Core Agiriak
 Filters=Iragazkiak
 Plugins=Pluginak
+Frhed=Frhed(Free hex editor)
+WinIMerge=WinIMerge(Image Diff/Merge)
+ArchiveSupport=Archive Support
+ShellExtension32bit=32-bit WinMerge ShellExtension
+Patch=GnuWin32 Patch for Windows
 
 ;Localization Components
 Languages=Hizkuntzak
@@ -344,6 +349,7 @@ CroatianLanguage=Kroaziera menuak eta elkarrizketak
 CzechLanguage=Txekiera menuak eta elkarrizketak
 DanishLanguage=Daniera menuak eta elkarrizketak
 DutchLanguage=Herbeherera menuak eta elkarrizketak
+FinnishLanguage=Finlandiako menuak eta elkarrizketak
 FrenchLanguage=Frantziera menuak eta elkarrizketak
 GalicianLanguage=Galiziera menuak eta elkarrizketak
 GermanLanguage=Alemaniera menuak eta elkarrizketak
@@ -360,6 +366,7 @@ PortugueseLanguage=Portugalera menuak eta elkarrizketak
 RomanianLanguage=Errumaniera menuak eta elkarrizketak
 RussianLanguage=Errusiera menuak eta elkarrizketak
 SerbianLanguage=Serbiera menuak eta elkarrizketak
+SinhalaLanguage=Sinhala menuak eta elkarrizketak
 SlovakLanguage=Eslovakiera menuak eta elkarrizketak
 SlovenianLanguage=Esloveniera menuak eta elkarrizketak
 SpanishLanguage=Espainiera menuak eta elkarrizketak

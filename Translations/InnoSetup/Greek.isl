@@ -333,6 +333,11 @@ CustomInstallation=Προσαρμοσμένη Εγκατάσταση
 AppCoreFiles=Απαιτούμενα Αρχεία του WinMerge
 Filters=Φίλτρα
 Plugins=Αρθρώματα
+Frhed=Frhed(Free hex editor)
+WinIMerge=WinIMerge(Image Diff/Merge)
+ArchiveSupport=Archive Support
+ShellExtension32bit=32-bit WinMerge ShellExtension
+Patch=GnuWin32 Patch for Windows
 
 ;Localization Components
 Languages=Γλώσσες
@@ -345,6 +350,7 @@ CroatianLanguage=Κροατικά επιλογές και διάλογοι
 CzechLanguage=Τσεχικά επιλογές και διάλογοι
 DanishLanguage=Δανέζικα επιλογές και διάλογοι
 DutchLanguage=Ολλανδικά επιλογές και διάλογοι
+FinnishLanguage=Φινλανδικά επιλογές και διάλογοι
 FrenchLanguage=Γαλλικά επιλογές και διάλογοι
 GalicianLanguage=Γαλικιανά επιλογές και διάλογοι
 GermanLanguage=Γερμανικά επιλογές και διάλογοι
@@ -361,6 +367,7 @@ PortugueseLanguage=Πορτογαλικά επιλογές και διάλογοι
 RomanianLanguage=Ρουμανικά επιλογές και διάλογοι
 RussianLanguage=Ρωσσικά επιλογές και διάλογοι
 SerbianLanguage=Serbian menus and dialogs
+SinhalaLanguage=Sinhala menus and dialogs
 SlovakLanguage=Σλοβακικά επιλογές και διάλογοι
 SlovenianLanguage=Σλοβενικά επιλογές και διάλογοι
 SpanishLanguage=Ισπανικά επιλογές και διάλογοι

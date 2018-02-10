@@ -15,8 +15,6 @@ LanguageName=English
 LanguageID=$0409
 LanguageCodePage=0
 
-[Messages]
-
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
 ;DialogFontName=
@@ -350,6 +348,7 @@ CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Czech menus and dialogs
 DanishLanguage=Danish menus and dialogs
 DutchLanguage=Dutch menus and dialogs
+FinnishLanguage=Finnish menus and dialogs
 FrenchLanguage=French menus and dialogs
 GalicianLanguage=Galician menus and dialogs
 GermanLanguage=German menus and dialogs
@@ -366,6 +365,7 @@ PortugueseLanguage=Portuguese menus and dialogs
 RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Russian menus and dialogs
 SerbianLanguage=Serbian menus and dialogs
+SinhalaLanguage=Sinhala menus and dialogs
 SlovakLanguage=Slovak menus and dialogs
 SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Spanish menus and dialogs
