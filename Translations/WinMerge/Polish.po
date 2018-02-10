@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2010-02-13 10:28 +0100\n"
-"Last-Translator: Skiff <skiffatsf at users.sourceforge.net>\n"
+"PO-Revision-Date: 2013-09-30 01:24+0100\n"
+"Last-Translator: Micha³ Szkutnik <mszkutnik at users.sourceforge.net>\n"
 "Language-Team: Polish <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1250\n"
@@ -389,12 +389,12 @@ msgstr "&WinMerge - pomoc\tF1"
 #: Merge.rc:1B17601E
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "Informacje o w&ydaniu"
 
 #: Merge.rc:6E470BE7
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "&T³umaczenia"
 
 #: Merge.rc:1C6125F4
 #, c-format
@@ -699,7 +699,7 @@ msgstr "&XML"
 #: Merge.rc:89AF4F8
 #, c-format
 msgid "&Binary"
-msgstr ""
+msgstr "&Binarne"
 
 #: Merge.rc:6E470BE9
 #, c-format
@@ -1060,7 +1060,7 @@ msgstr ""
 #: Merge.rc:67A28B28
 #, c-format
 msgid "Co&mpare As"
-msgstr ""
+msgstr "Poró&wnaj jako"
 
 #: Merge.rc:4D4D2E92
 #, c-format
@@ -1725,7 +1725,7 @@ msgstr "Z&astosuj"
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
-msgstr "SprawdŸ"
+msgstr "Checkout"
 
 #: Merge.rc:4C3E0A2E
 #, c-format
@@ -1735,7 +1735,7 @@ msgstr "Komentarze"
 #: Merge.rc:51DC4C3F
 #, c-format
 msgid "CheckIn after checkout"
-msgstr "CheckIn po CheckOut"
+msgstr "Checkin po checkoucie"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -2075,12 +2075,12 @@ msgstr "W³¹cz &wykrywanie przeniesionych bloków"
 #: Merge.rc:4EF8162F
 #, c-format
 msgid "&Match similar lines"
-msgstr "Dopasuje podobne linie"
+msgstr "Dopasuj takie same linie"
 
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
-msgstr "Filtruj komentarze"
+msgstr "Komentarze filtra"
 
 #: Merge.rc:3BB91A82
 #, c-format
@@ -3344,7 +3344,7 @@ msgstr "Mój plik"
 #: Merge.rc:DD21174
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr ""
+msgstr "Lin: %s  Kol: %d/%d  Zn: %d/%d  EOL: %s"
 
 #: Merge.rc:15875423
 #, c-format
@@ -3354,7 +3354,7 @@ msgstr "Linia: %s"
 #: Merge.rc:6F3BCB35
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr ""
+msgstr "Lin: %s  Kol: %d/%d  Zn: %d/%d"
 
 #: Merge.rc:7C664E1
 #, c-format
