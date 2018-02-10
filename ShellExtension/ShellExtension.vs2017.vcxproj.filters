@@ -92,6 +92,9 @@
     <ResourceCompile Include="Languages\ShellExtensionDutch.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+    <ResourceCompile Include="Languages\ShellExtensionFinnish.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
     <ResourceCompile Include="Languages\ShellExtensionFrench.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>

@@ -370,6 +370,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|x64'">true</ExcludedFromBuild>
     </ResourceCompile>
+    <ResourceCompile Include="Languages\ShellExtensionFinnish.rc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|x64'">true</ExcludedFromBuild>
+    </ResourceCompile>
     <ResourceCompile Include="Languages\ShellExtensionFrench.rc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|x64'">true</ExcludedFromBuild>
