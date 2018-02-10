@@ -329,6 +329,11 @@
    AppCoreFiles=Файли ядра WinMerge
    Filters=Фільтри
    Plugins=Плагіни
+   Frhed=Frhed(Free hex editor)
+   WinIMerge=WinIMerge(Image Diff/Merge)
+   ArchiveSupport=Archive Support
+   ShellExtension32bit=32-bit WinMerge ShellExtension
+   Patch=GnuWin32 Patch for Windows
 
    ;Localization Components
    Languages=Languages
@@ -341,6 +346,7 @@
    CzechLanguage=Меню і діалогові вікна чеською мовою
    DanishLanguage=Меню і діалогові вікна датською мовою
    DutchLanguage=Меню і діалогові вікна голландською мовою
+   FinnishLanguage=Finnish menus and dialogs
    FrenchLanguage=Меню і діалогові вікна французькою мовою
    GalicianLanguage=Galician menus and dialogs
    GermanLanguage=Меню і діалогові вікна німецькою мовою
@@ -357,6 +363,7 @@
    RomanianLanguage=Меню і діалогові вікна румунською мовою
    RussianLanguage=Меню і діалогові вікна російською мовою
    SerbianLanguage=Serbian menus and dialogs
+   SinhalaLanguage=Sinhala menus and dialogs
    SlovakLanguage=Меню і діалогові вікна словацькою мовою
    SlovenianLanguage=Slovenian menus and dialogs
    SpanishLanguage=Меню і діалогові вікна іспанською мовою

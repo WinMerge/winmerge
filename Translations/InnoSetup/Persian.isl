@@ -334,6 +334,11 @@ CustomInstallation= äÕÈ ÓİÇÑÔí
 AppCoreFiles= ÑæäÏå åÇí åÓÊå æíäãÑÌ 
 Filters= ÕÇİíåÇ 
 Plugins= æÕá ÔÏäíåÇ 
+Frhed=Frhed(Free hex editor)
+WinIMerge=WinIMerge(Image Diff/Merge)
+ArchiveSupport=Archive Support
+ShellExtension32bit=32-bit WinMerge ShellExtension
+Patch=GnuWin32 Patch for Windows
 
 ;Localization Components
 Languages= ÒÈÇäåÇ 
@@ -346,6 +351,7 @@ CroatianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜ÑæÇÊíä
 CzechLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜æÓáæÇ˜í   
 DanishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÏÇäãÇÑ˜í  
 DutchLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå åáäÏí  
+FinnishLanguage=Finnish menus and dialogs
 FrenchLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå İÑÇäÓæí  
 GalicianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇáíÓíä  
 GermanLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÂáãÇäí  
@@ -362,6 +368,7 @@ PortugueseLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÑÊŞÇáí
 RomanianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÑæãÇäí  
 RussianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÑæÓí  
 SerbianLanguage=Serbian menus and dialogs
+SinhalaLanguage=Sinhala menus and dialogs
 SlovakLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇÓáæÇ˜í  
 SlovenianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇÓáÇæí  
 SpanishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇÓÇäíÇíí  

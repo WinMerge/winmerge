@@ -316,6 +316,11 @@ CustomInstallation=Instal·lació personalitzada
 AppCoreFiles=Fitxers centrals del WinMerge
 Filters=Filtres
 Plugins=Connectors
+Frhed=Frhed(Free hex editor)
+WinIMerge=WinIMerge(Image Diff/Merge)
+ArchiveSupport=Archive Support
+ShellExtension32bit=32-bit WinMerge ShellExtension
+Patch=GnuWin32 Patch for Windows
 
 ;Localization Components
 Languages=Idiomes
@@ -328,6 +333,7 @@ CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Menús i diàlegs en Txec
 DanishLanguage=Menús i diàlegs en Danès
 DutchLanguage=Menús i diàlegs en Neerlandès
+FinnishLanguage=Finnish menus and dialogs
 FrenchLanguage=Menús i diàlegs en Francès
 GalicianLanguage=Galician menus and dialogs
 GermanLanguage=Menús i diàlegs en Alemany
@@ -344,6 +350,7 @@ PortugueseLanguage=Menús i diàlegs en Portuguès
 RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Menús i diàlegs en Rus
 SerbianLanguage=Serbian menus and dialogs
+SinhalaLanguage=Sinhala menus and dialogs
 SlovakLanguage=Menús i diàlegs en Eslovac
 SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Menús i diàlegs en Castellà
