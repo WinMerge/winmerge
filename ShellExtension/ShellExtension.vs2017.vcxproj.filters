@@ -134,6 +134,9 @@
     <ResourceCompile Include="Languages\ShellExtensionRussian.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+    <ResourceCompile Include="Languages\ShellExtensionSinhala.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
     <ResourceCompile Include="Languages\ShellExtensionSlovak.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
