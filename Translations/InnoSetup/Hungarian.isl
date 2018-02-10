@@ -352,6 +352,11 @@ CustomInstallation=Egyedi Telepítés
 AppCoreFiles=A WinMerge kéreg fájljai
 Filters=Szûrõk
 Plugins=Bõvítmények
+Frhed=Frhed(Free hex editor)
+WinIMerge=WinIMerge(Image Diff/Merge)
+ArchiveSupport=Archive Support
+ShellExtension32bit=32-bit WinMerge ShellExtension
+Patch=GnuWin32 Patch for Windows
 
 ;Localization Components
 Languages=Nyelvek
@@ -364,6 +369,7 @@ CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Cseh menük és párbeszédablakok
 DanishLanguage=Dán menük és párbeszédablakok
 DutchLanguage=Holland menük és párbeszédablakok
+FinnishLanguage=Finnish menus and dialogs
 FrenchLanguage=Francia menük és párbeszédablakok
 GalicianLanguage=Galician menus and dialogs
 GermanLanguage=Német menük és párbeszédablakok
@@ -380,6 +386,7 @@ PortugueseLanguage=Portugál menük és párbeszédablakok
 RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Orosz menük és párbeszédablakok
 SerbianLanguage=Serbian menus and dialogs
+SinhalaLanguage=Sinhala menus and dialogs
 SlovakLanguage=Szlovák menük és párbeszédablakok
 SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Spanyol menük és párbeszédablakok
