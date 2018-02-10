@@ -197,6 +197,9 @@ Other Contributors (code, ideas, testing..):
 * Gilbert Wellisch
 * Paul Welter
 * Lars Wittenburg
+* Etienne Faisant
+* Bill Gord
+* H.Saido
 
 
 WinMerge includes code from:
