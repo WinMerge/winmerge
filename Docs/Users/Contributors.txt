@@ -59,6 +59,9 @@ Localization:
   Thomas De Rocker <thomasderocker@yahoo.com>
   Ronald Schaap <ronald@schaap.demon.nl>
 
+* Finnish:
+  Veikko Muurikainen <veikko.muurikainen at kolumbus.fi>
+
 * French:
   Jean-F Jolin <jean-f-j@users.sourceforge.net>
   Gil Andre <gil_andre@compuserve.com>
