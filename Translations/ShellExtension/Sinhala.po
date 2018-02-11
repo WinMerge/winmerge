@@ -29,7 +29,7 @@ msgstr "AFX_TARG_LKA"
 #: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr "LANG_SINHALA, SUBLANG_DEFAULT"
+msgstr "LANG_SINHALESE, SUBLANG_DEFAULT"
 
 #. Codepage
 #: ShellExtensionTemplate.rc:28
