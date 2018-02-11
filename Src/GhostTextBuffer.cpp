@@ -384,10 +384,36 @@ bool CGhostTextBuffer::
 DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, int nAction, bool bHistory /*=true*/)
 {
-	if (!CCrystalTextBuffer::DeleteText2 (pSource, nStartLine, nStartChar,
-		nEndLine, nEndChar, nAction, bHistory))
+	if ((GetLineFlags(nEndLine) & LF_GHOST) == 0)
 	{
-		return false;
+		if (!CCrystalTextBuffer::DeleteText2(pSource, nStartLine, nStartChar,
+			nEndLine, nEndChar, nAction, bHistory))
+		{
+			return false;
+		}
+	}
+	else
+	{
+		// if the last line in selection to be deleted is a ghost line, 
+		// the EOL of last real line in selection should not be deleted.
+		// Otherwise, a line with no EOL will appear.
+		int nEndLine2 = nEndLine;
+		int nEndChar2 = nEndChar;
+		for (; nEndLine2 >= nStartLine; --nEndLine2)
+		{
+			nEndChar2 = GetLineLength(nEndLine2);
+			if ((GetLineFlags(nEndLine2) & LF_GHOST) == 0)
+				break;
+		}
+		if (nStartLine <= nEndLine2)
+		{
+			if (!CCrystalTextBuffer::DeleteText2(pSource, nStartLine, nStartChar,
+				nEndLine2, nEndChar2, nAction, bHistory))
+			{
+				return false;
+			}
+		}
+		InternalDeleteGhostLine(pSource, nEndLine2 + 1, nEndLine - (nEndLine2 + 1) + 1);
 	}
 
 	if (nStartChar != 0 || nEndChar != 0)
