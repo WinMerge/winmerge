@@ -384,8 +384,6 @@ bool CGhostTextBuffer::
 DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, int nAction, bool bHistory /*=true*/)
 {
-	CString sTextToDelete;
-	GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
 	if (!CCrystalTextBuffer::DeleteText2 (pSource, nStartLine, nStartChar,
 		nEndLine, nEndChar, nAction, bHistory))
 	{
