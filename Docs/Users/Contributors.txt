@@ -146,6 +146,7 @@ Localization:
 * Turkish:
   Afyonlu <afyonlu@users.sourceforge.net>
   Ozkan UNVER <turquaz37915@users.sourceforge.net>
+  Kaya Zeren <kaya.zeren at zeron.net>
 
 * Ukranian
   Vitaliy Stopchans'kyy <stopcha@gmail.com>
