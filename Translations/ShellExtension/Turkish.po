@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-02-11 14:59+0300\n"
+"PO-Revision-Date: 2018-02-12 12:27+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -79,15 +79,15 @@ msgstr "Þununla Karþýlaþtýr"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Bu klasörü kaydet. Ardýndan bu klasör ile karþýlaþtýrýlacak baþka bir klasör seçin."
+msgstr "Bu yolu kaydet. Ardýndan bu yol ile karþýlaþtýrýlacak baþka bir yol seçebilirsiniz."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "Kaydedilen klasör ile karþýlaþtýr (%1)"
+msgstr "Kaydedilen yol ile karþýlaþtýr (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Birinci klasörü yeniden seçin"
+msgstr "Birinciyi yeniden seçin"
 
