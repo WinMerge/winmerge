@@ -45,9 +45,9 @@ BEGIN
     IDS_COMPARE             "Karþýlaþtýr"
     IDS_COMPARE_ELLIPSIS    "Karþýlaþtýr..."
     IDS_COMPARE_TO          "Þununla Karþýlaþtýr"
-    IDS_HELP_SAVETHIS       "Bu klasörü kaydet. Ardýndan bu klasör ile karþýlaþtýrýlacak baþka bir klasör seçin."
-    IDS_HELP_COMPARESAVED   "Kaydedilen klasör ile karþýlaþtýr (%1)"
-    IDS_RESELECT_FIRST      "Birinci klasörü yeniden seçin"
+    IDS_HELP_SAVETHIS       "Bu yolu kaydet. Ardýndan bu yol ile karþýlaþtýrýlacak baþka bir yol seçebilirsiniz."
+    IDS_HELP_COMPARESAVED   "Kaydedilen yol ile karþýlaþtýr (%1)"
+    IDS_RESELECT_FIRST      "Birinciyi yeniden seçin"
 END
 
 #endif    // Resources
