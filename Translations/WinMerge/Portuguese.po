@@ -3490,7 +3490,7 @@ msgstr "Desproteger ficheiros de VSS..."
 #: Merge.rc:5CF52976
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Sistema de versões apresentou erro ao tentar desproteger ficheiro. Impossível contiuar..."
+msgstr "Sistema de versões apresentou erro ao tentar desproteger o ficheiro. Impossível continuar..."
 
 #: Merge.rc:5B2409A
 #, c-format
@@ -3515,12 +3515,12 @@ msgstr "Erro no VSS:"
 #: Merge.rc:268A7727
 #, c-format
 msgid "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
-msgstr "O sistema de versões apresentou um erro ao tentar desproteger o ficheiro.\n Verifique a configuração da visualização utilizada.\n Anular a operação de desprotecção?"
+msgstr "O sistema de versões apresentou um erro ao tentar desproteger o ficheiro.\n Verifique a configuração da visualização utilizada.\n Anular a operação de desproteção?"
 
 #: Merge.rc:1929D7D3
 #, c-format
 msgid "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
-msgstr "O sistema de versões apresentou um erro ao tentar anular a desprotecção do ficheiro.\n Verifique a configuração da visualização utilizada."
+msgstr "O sistema de versões apresentou um erro ao tentar anular a desproteção do ficheiro.\n Verifique a configuração da visualização utilizada."
 
 #: Merge.rc:46FCCCF
 #, c-format
@@ -3555,17 +3555,17 @@ msgstr "Da direita para a esquerda (%1)"
 #: Merge.rc:52D3F9F6
 #, c-format
 msgid "Right to Middle (%1)"
-msgstr ""
+msgstr "Da direita para o meio"
 
 #: Merge.rc:17F5B413
 #, c-format
 msgid "Middle to Left (%1)"
-msgstr ""
+msgstr "Do meio para a esquerda"
 
 #: Merge.rc:66C0CE9F
 #, c-format
 msgid "Middle to Right (%1)"
-msgstr ""
+msgstr "Do meio para a direita"
 
 #: Merge.rc:7271FF80
 #, c-format
@@ -3575,7 +3575,7 @@ msgstr "Da esquerda para a direita (%1)"
 #: Merge.rc:5BCDF0E7
 #, c-format
 msgid "Left to Middle (%1)"
-msgstr ""
+msgstr "Da esquerda para o meio"
 
 #: Merge.rc:71676C48
 #, c-format
@@ -3585,7 +3585,7 @@ msgstr "Da esquerda para... (%1)"
 #: Merge.rc:729280DB
 #, c-format
 msgid "Middle to... (%1)"
-msgstr ""
+msgstr "Do meio para..."
 
 #: Merge.rc:32BFDBAD
 #, c-format
@@ -3595,7 +3595,7 @@ msgstr "Da direita para... (%1)"
 #: Merge.rc:36B164C5
 #, c-format
 msgid "Both to... (%1)"
-msgstr ""
+msgstr "Ambos para... (%1)"
 
 #: Merge.rc:2515A6BD
 #, c-format
@@ -3640,7 +3640,7 @@ msgstr "Lado esquerdo - selecione pasta de destino:"
 #: Merge.rc:2B480620
 #, c-format
 msgid "Middle side - select destination folder:"
-msgstr ""
+msgstr "Meio - selecione pasta de destino:"
 
 #: Merge.rc:5BBC5591
 #, c-format
@@ -3650,12 +3650,12 @@ msgstr "Lado direito - selecione pasta de destino:"
 #: Merge.rc:66367ECA
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr "(%1 ficheiros afectados)"
+msgstr "(%1 ficheiros afetados)"
 
 #: Merge.rc:65510B09
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(%1 de %2 ficheiros afectados)"
+msgstr "(%1 de %2 ficheiros afetados)"
 
 #: Merge.rc:2B0F0BA2
 #, c-format
