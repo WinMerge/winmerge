@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2018-02-15 14:17+0100\n"
 "Last-Translator: Lippe35\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,7 @@ msgstr "com a Aplicação &Registada"
 #: Merge.rc:321D741E
 #, c-format
 msgid "with &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "com editor externo\tCtrl+Alt+E"
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -163,12 +163,12 @@ msgstr "Alpha combinado"
 #: Merge.rc:237A0532
 #, c-format
 msgid "Alpha &Blend Animation"
-msgstr ""
+msgstr "Animação Alpha"
 
 #: Merge.rc:5806E58F
 #, c-format
 msgid "Dragging &Mode"
-msgstr ""
+msgstr "Modo de arrastar"
 
 #: Merge.rc:43017E45
 #, c-format
@@ -178,7 +178,7 @@ msgstr "Mover"
 #: Merge.rc:5A9A713A
 #, c-format
 msgid "&Adjust Offset"
-msgstr ""
+msgstr "Ajustar deslocamento"
 
 #: Merge.rc:100AAFAC
 #, c-format
@@ -473,22 +473,22 @@ msgstr "Mostrar Ficheiros &Binários"
 #: Merge.rc:5A9A713B
 #, c-format
 msgid "&3-way Compare"
-msgstr ""
+msgstr "Comparação de 3 vias"
 
 #: Merge.rc:200AD0D1
 #, c-format
 msgid "Show &Left Only Different Items"
-msgstr ""
+msgstr "Mostrar apenas itens diferentes"
 
 #: Merge.rc:4899EBE1
 #, c-format
 msgid "Show &Middle Only Different Items"
-msgstr ""
+msgstr "Mostrar apenas itens diferentes do meio"
 
 #: Merge.rc:614F49A9
 #, c-format
 msgid "Show &Right Only Different Items"
-msgstr ""
+msgstr "Mostrar apenas itens diferentes da direita"
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -728,7 +728,7 @@ msgstr "Selecionar Diferenças de Linha\tF4"
 #: Merge.rc:444C5DDB
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "Procurar...\tCtrl+F"
+msgstr "Pesquisar...\tCtrl+F"
 
 #: Merge.rc:44BC83EC
 #, c-format
@@ -738,7 +738,7 @@ msgstr "Substituir...\tCtrl+H"
 #: Merge.rc:4B91C2D1
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr ""
+msgstr "&Marcador...\tCtrl+Shift+M"
 
 #: Merge.rc:669F87F4
 #, c-format
@@ -809,42 +809,42 @@ msgstr "Contexto de Divisão"
 #: Merge.rc:68816EE4
 #, c-format
 msgid "&All Lines"
-msgstr ""
+msgstr "Todas as linhas"
 
 #: Merge.rc:AC3AA17
 #, c-format
 msgid "&0 Lines"
-msgstr ""
+msgstr "&0 Linhas"
 
 #: Merge.rc:89AF4F9
 #, c-format
 msgid "&1 Line"
-msgstr ""
+msgstr "&1 Linhas"
 
 #: Merge.rc:AC3AA18
 #, c-format
 msgid "&3 Lines"
-msgstr ""
+msgstr "&3 Linhas"
 
 #: Merge.rc:AC3AA19
 #, c-format
 msgid "&5 Lines"
-msgstr ""
+msgstr "&5 Linhas"
 
 #: Merge.rc:AC3AA1A
 #, c-format
 msgid "&7 Lines"
-msgstr ""
+msgstr "&7 Linhas"
 
 #: Merge.rc:AC3AA1B
 #, c-format
 msgid "&9 Lines"
-msgstr ""
+msgstr "&9 Linhas"
 
 #: Merge.rc:44B58195
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
-msgstr ""
+msgstr "Alternar tudo e linhas 0-9\tCtrl+D"
 
 #: Merge.rc:27AC6D81
 #, c-format
@@ -1154,7 +1154,7 @@ msgstr "com Editor &Externo"
 #: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
-msgstr ""
+msgstr "Pasta parental"
 
 #: Merge.rc:761E6872
 #, c-format
@@ -1694,12 +1694,12 @@ msgstr "Substituir Todos"
 #: Merge.rc:2FC0BA7B
 #, c-format
 msgid "Markers"
-msgstr ""
+msgstr "Marcadores"
 
 #: Merge.rc:61E8009D
 #, c-format
 msgid "Enable &Markers"
-msgstr ""
+msgstr "Ativar marcadores"
 
 #: Merge.rc:24A380
 #, c-format
@@ -1709,7 +1709,7 @@ msgstr "Novo"
 #: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
-msgstr ""
+msgstr "&Cor de fundo:"
 
 #: Merge.rc:1D2E49FB
 #, c-format
@@ -2344,27 +2344,27 @@ msgstr "Negrito"
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
-msgstr ""
+msgstr "Cor do marcador"
 
 #: Merge.rc:56BD1FBA
 #, c-format
 msgid "Search Marker:"
-msgstr ""
+msgstr "Pesquisar marcador:"
 
 #: Merge.rc:7B76381B
 #, c-format
 msgid "User Defined Marker1:"
-msgstr ""
+msgstr "Marcadorl definido pelo utilizador:"
 
 #: Merge.rc:7B76381C
 #, c-format
 msgid "User Defined Marker2:"
-msgstr ""
+msgstr "Marcador2 definido pelo utilizador:"
 
 #: Merge.rc:7B76381D
 #, c-format
 msgid "User Defined Marker3:"
-msgstr ""
+msgstr "Marcador3 definido pelo utilizador:"
 
 #: Merge.rc:387F7980
 #, c-format
@@ -2609,7 +2609,7 @@ msgstr "Seleção:"
 #: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
-msgstr ""
+msgstr "Margem"
 
 #: Merge.rc:D109E01
 #, c-format
@@ -2784,12 +2784,12 @@ msgstr "Ignorar diferenças de tempo inferiores a 3 segundos"
 #: Merge.rc:6D5B7719
 #, c-format
 msgid "&Include unique subfolders contents"
-msgstr "&Incluir conteúdos exclusivos da sub-pastas"
+msgstr "&Incluir conteúdos exclusivos da subpastas"
 
 #: Merge.rc:3E136C28
 #, c-format
 msgid "&Automatically expand all subfolders"
-msgstr "Expandir &automaticamente todas as sub-pastas"
+msgstr "Expandir &automaticamente todas as subpastas"
 
 #: Merge.rc:5D032167
 #, c-format
@@ -2804,7 +2804,7 @@ msgstr "&Limite da comparação rápida (MB):"
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr ""
+msgstr "&Número de tópicos de comparação (um valor negativo implica a adição do número de núcleos de CPU disponíveis)"
 
 #: Merge.rc:17BC2F9E
 #, c-format
@@ -3485,12 +3485,12 @@ msgstr "Desproteger ficheiros de VSS..."
 #: Merge.rc:5CF52976
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Sistema de versões apresentou erro ao tentar desproteger o ficheiro. Impossível continuar..."
+msgstr "O sistema de versões apresentou um erro ao tentar desproteger o ficheiro. Impossível continuar..."
 
 #: Merge.rc:5B2409A
 #, c-format
 msgid "Error executing versioning system command."
-msgstr "Erro ao executar comando do sistema de versões."
+msgstr "Erro ao executar o comando do sistema de versões."
 
 #: Merge.rc:3ECC9EC3
 #, c-format
@@ -3955,17 +3955,17 @@ msgstr "Os ficheiros de texto são idênticos"
 #: Merge.rc:1DEEB161
 #, c-format
 msgid "(Middle and right are identical)"
-msgstr ""
+msgstr "(Meio e direita são idênticos)"
 
 #: Merge.rc:1D99B043
 #, c-format
 msgid "(Left and right are identical)"
-msgstr ""
+msgstr "(Esquerda e direita são idênticos)"
 
 #: Merge.rc:159C584C
 #, c-format
 msgid "(Left and middle are identical)"
-msgstr ""
+msgstr "(Esquerda e meio são idênticos)"
 
 #: Merge.rc:12D66B45
 #, c-format
@@ -4705,15 +4705,15 @@ msgstr "frhed(http://frhed.sourceforge.net/) não instalado"
 #: Merge.rc:73B321AA
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
-msgstr ""
+msgstr "%1 não existe. Deseja criar?"
 
 #: Merge.rc:3A5D5964
 #, c-format
 msgid "Failed to create folder."
-msgstr ""
+msgstr "Erro ao criar pasta."
 
 #: Merge.rc:64F70DD6
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
-msgstr ""
+msgstr "Pode especificar os seguintes parâmetros no caminho:\n$file: Nome do caminho do ficheiro atual\n$linenum: Número da linha da posição atual do cursor"
 
