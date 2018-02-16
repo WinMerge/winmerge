@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-02-15 14:17+0100\n"
+"PO-Revision-Date: 2018-02-16 12:39+0100\n"
 "Last-Translator: Lippe35\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1589,7 +1589,7 @@ msgstr "Auto-completar Janela de Abertura:"
 #: Merge.rc:1B63306F
 #, c-format
 msgid "Language:"
-msgstr "Idioma"
+msgstr "Idioma:"
 
 #: Merge.rc:516450B
 #, c-format
@@ -1804,12 +1804,12 @@ msgstr "Selecionada Movida:"
 #: Merge.rc:6B96B328
 #, c-format
 msgid "Same As The Next(3 panes):"
-msgstr "Como As Seguintes (3 janelas):"
+msgstr "Como as seguintes (3 janelas):"
 
 #: Merge.rc:73FB246
 #, c-format
 msgid "Same As The Next(Selected):"
-msgstr "Como A Seguinte (Selecionada):"
+msgstr "Como a seguinte (Selecionada):"
 
 #: Merge.rc:40C55014
 #, c-format
@@ -2354,17 +2354,17 @@ msgstr "Pesquisar marcador:"
 #: Merge.rc:7B76381B
 #, c-format
 msgid "User Defined Marker1:"
-msgstr "Marcadorl definido pelo utilizador:"
+msgstr "Marcador l definido pelo utilizador:"
 
 #: Merge.rc:7B76381C
 #, c-format
 msgid "User Defined Marker2:"
-msgstr "Marcador2 definido pelo utilizador:"
+msgstr "Marcador 2 definido pelo utilizador:"
 
 #: Merge.rc:7B76381D
 #, c-format
 msgid "User Defined Marker3:"
-msgstr "Marcador3 definido pelo utilizador:"
+msgstr "Marcador 3 definido pelo utilizador:"
 
 #: Merge.rc:387F7980
 #, c-format
@@ -2374,7 +2374,7 @@ msgstr "Relatório de comparação de ficheiros"
 #: Merge.rc:3ECF34A3
 #, c-format
 msgid "Report &File:"
-msgstr "Ficheiro do relatório:"
+msgstr "Ficheiro de relatório:"
 
 #: Merge.rc:146A5938
 #, c-format
@@ -2394,7 +2394,7 @@ msgstr "Incluir relatório de comparação de ficheiros"
 #: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr "Copiar para a Área de Transferências"
+msgstr "Copiar para a Área de Transferência"
 
 #: Merge.rc:43600E90
 #, c-format
@@ -2649,7 +2649,7 @@ msgstr "Guardar..."
 #: Merge.rc:43E58E59
 #, c-format
 msgid "Backup Files"
-msgstr "Fazer cópia de Ficheiros"
+msgstr "Fazer cópia de ficheiros"
 
 #: Merge.rc:69AD3BF9
 #, c-format
@@ -3019,7 +3019,7 @@ msgstr "Não voltar a perguntar."
 #: Merge.rc:78ACB5DB
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
-msgstr ""
+msgstr "Para tornar esta caixa de mensagem visível novamente, pressione o botão Redefinir na página Geral da caixa de diálogo Opções."
 
 #: Merge.rc:39000D57
 #, c-format
@@ -3039,27 +3039,27 @@ msgstr "Diferenças"
 #: Merge.rc:277500
 #, c-format
 msgid "To:"
-msgstr "Para"
+msgstr "Para:"
 
 #: Merge.rc:68EE6DF1
 #, c-format
 msgid "From left:"
-msgstr "Da esquerda"
+msgstr "Da esquerda:"
 
 #: Merge.rc:2C015CFF
 #, c-format
 msgid "To left:"
-msgstr "Para a esquerda"
+msgstr "Para a esquerda:"
 
 #: Merge.rc:34DF5071
 #, c-format
 msgid "From right:"
-msgstr "Da direita"
+msgstr "Da direita:"
 
 #: Merge.rc:542A4301
 #, c-format
 msgid "To right:"
-msgstr "Para a direita"
+msgstr "Para a direita:"
 
 #: Merge.rc:2924ED78
 #, c-format
@@ -3174,7 +3174,7 @@ msgstr "Não é possível encontrar o ficheiro modelo de filtro de ficheiros!\n\nPo
 #: Merge.rc:2A045B49
 #, c-format
 msgid "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
-msgstr ""
+msgstr "Não é possível copiar o ficheiro de modelo de filtro para a pasta de filtro:\n%1\n\nPor favor certifique-se de que a pasta existe e é gravável."
 
 #: Merge.rc:4EA7BACD
 #, c-format
@@ -3244,12 +3244,12 @@ msgstr "Sem título direita"
 #: Merge.rc:72A593B9
 #, c-format
 msgid "Theirs File"
-msgstr ""
+msgstr "O ficheiro deles"
 
 #: Merge.rc:427C12C1
 #, c-format
 msgid "Mine File"
-msgstr ""
+msgstr "O meu ficheiro"
 
 #: Merge.rc:DD21174
 #, c-format
@@ -3445,7 +3445,7 @@ msgstr "%1\né apenas de leitura. Deseja substituir o item apenas de leitura?"
 #: Merge.rc:B9192B
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
-msgstr ""
+msgstr "Outra aplicação atualizou o ficheiro\n%1\ndesde que o WinMerge pesquisou pela última vez.\n\nDeseja recarregar o ficheiro?"
 
 #: Merge.rc:62909ED7
 #, c-format
@@ -3465,7 +3465,7 @@ msgstr "Guardar ficheiro direito como..."
 #: Merge.rc:3C4620F
 #, c-format
 msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
-msgstr ""
+msgstr "O ficheiro\n%1\nhas desapareceu. Guarde uma cópia do ficheiro para continuar."
 
 #: Merge.rc:4BFC8F0D
 #, c-format
@@ -3490,7 +3490,7 @@ msgstr "O sistema de versões apresentou um erro ao tentar desproteger o ficheiro
 #: Merge.rc:5B2409A
 #, c-format
 msgid "Error executing versioning system command."
-msgstr "Erro ao executar o comando do sistema de versões."
+msgstr "Erro ao executar comando do sistema de versões."
 
 #: Merge.rc:3ECC9EC3
 #, c-format
@@ -3670,7 +3670,7 @@ msgstr "Tem a certeza que deseja copiar %d itens:"
 #: Merge.rc:59B96CF
 #, c-format
 msgid "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
-msgstr ""
+msgstr "Tarefa cancelada!\n\nO conteúdo da pasta no disco mudou, caminho\n%1\nnão foi encontrado.\n\Por favor atualize para comparar."
 
 #: Merge.rc:2019BE6E
 #, c-format
@@ -4235,22 +4235,22 @@ msgstr "A pasta existe apenas no outro lado e não pode ser aberta. \n\nPretende 
 #: Merge.rc:36F211E1
 #, c-format
 msgid "Do you want to move to the next file?"
-msgstr ""
+msgstr "Deseja seguir para o próximo ficheiro?"
 
 #: Merge.rc:6A0A36F1
 #, c-format
 msgid "Do you want to move to the previous file?"
-msgstr ""
+msgstr "Deseja retroceder para o ficheiro anterior?"
 
 #: Merge.rc:36F211E2
 #, c-format
 msgid "Do you want to move to the next page?"
-msgstr ""
+msgstr "Deseja seguir para a próxima página?"
 
 #: Merge.rc:6A0A36F2
 #, c-format
 msgid "Do you want to move to the previous page?"
-msgstr ""
+msgstr "Deseja retroceder para a página anterior?"
 
 #: Merge.rc:4A700AB0
 #, c-format
