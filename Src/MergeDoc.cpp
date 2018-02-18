@@ -1100,7 +1100,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 			int nActiveViewIndexType = GetActiveMergeViewIndexType();
 			if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
 				ptCursor = m_pView[nActiveViewIndexType]->GetCursorPos();
-			else if (nActiveViewIndexType >= MERGEVIEW_PANE0_DETAIL ||
+			else if (nActiveViewIndexType >= MERGEVIEW_PANE0_DETAIL &&
 					nActiveViewIndexType <= MERGEVIEW_PANE2_DETAIL)
 			{
 				ptCursor = m_pView[nActiveViewIndexType - MERGEVIEW_PANE0_DETAIL]->GetCursorPos();
