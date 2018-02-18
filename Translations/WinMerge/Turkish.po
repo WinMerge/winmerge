@@ -386,15 +386,10 @@ msgstr "Ya&rdým"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Yardýmý\tF1"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:3938FFC2
 #, c-format
-msgid "R&elease Notes"
-msgstr "Sürüm &Notlarý"
-
-#: Merge.rc:6E470BE7
-#, c-format
-msgid "&Translations"
-msgstr "Çe&viriler"
+msgid "&Check For Updates"
+msgstr ""
 
 #: Merge.rc:1C6125F4
 #, c-format
@@ -406,7 +401,7 @@ msgstr "&Yapýlandýrma"
 msgid "&GNU General Public License"
 msgstr "&GNU Genel Kamu Lisansý"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr "WinMerge &Hakkýnda..."
@@ -606,7 +601,7 @@ msgstr "&Sütunlarý Ayarla..."
 msgid "Generate &Report..."
 msgstr "&Rapor Hazýrla..."
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE7
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Kaydet\tCtrl+S"
@@ -701,12 +696,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr "&Binary"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Geri A&l\tCtrl+Z"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Yi&nele\tCtrl+Y"
@@ -716,7 +711,7 @@ msgstr "Yi&nele\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "K&es\tCtrl+X"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopyala\tCtrl+C"
@@ -766,7 +761,7 @@ msgstr "&Yer Ýmleri"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Yer Ými Ekle/Sil\tCtrl+F2"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "So&nraki Yer Ými\tF2"
@@ -807,7 +802,7 @@ msgstr "&Normal\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Söz Dizimi &Vurgulamasý"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Diff Context"
 msgstr "Fark &Baðlamý"
@@ -1272,7 +1267,7 @@ msgstr "&Dosya Adýný Kopyala"
 msgid "Prediffer Settings"
 msgstr "Ön Farklýlaþtýrýcý Ayarlarý"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&No prediffer"
 msgstr "Ö&n Farklýlaþtýrýcý Yok"
@@ -1667,7 +1662,7 @@ msgstr "&Tamam"
 msgid "Replace"
 msgstr "Deðiþtir"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B17601E
 #, c-format
 msgid "Re&place with:"
 msgstr "Þununla &Deðiþtir:"
@@ -1717,7 +1712,7 @@ msgstr "Ýþaretleyiciler &Kullanýlsýn"
 msgid "New"
 msgstr "Yeni"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
 msgstr "A&rt Alan Rengi:"
@@ -2192,7 +2187,7 @@ msgstr "Dosya deðiþiklikleri kaydedilsin mi?"
 msgid "Left side file"
 msgstr "Sol panodaki dosya"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&Save changes"
 msgstr "Deðiþiklikler &Kaydedilsin"
@@ -2410,7 +2405,7 @@ msgstr "&Biçem:"
 msgid "&Include File Compare Report"
 msgstr "K&lasör Karþýlaþtýrma Raporu Katýlsýn"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Panoya &Kopyala"
@@ -4122,7 +4117,7 @@ msgstr "Sað Dosya Satýr Sonu"
 msgid "Left Encoding"
 msgstr "Sol Dosya Kodlamasý"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
 msgstr "Sað Dosya Kodlamasý"
@@ -4167,7 +4162,7 @@ msgstr "Yalnýz solda: %1"
 msgid "Middle only: %1"
 msgstr "Yalnýz ortada: %1"
 
-#: Merge.rc:1B176021
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right only: %1"
 msgstr "Yalnýz saðda: %1"

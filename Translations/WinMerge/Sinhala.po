@@ -382,15 +382,10 @@ msgstr "උදව්"
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge උදව්\tF1"
 
-#: Merge.rc:1B17601E
-#, fuzzy, c-format
-msgid "R&elease Notes"
-msgstr "R&elease Notes"
-
-#: Merge.rc:6E470BE7
+#: Merge.rc:3938FFC2
 #, c-format
-msgid "&Translations"
-msgstr "&පරිවර්තන"
+msgid "&Check For Updates"
+msgstr ""
 
 #: Merge.rc:1C6125F4
 #, fuzzy, c-format
@@ -402,7 +397,7 @@ msgstr "C&onfiguration"
 msgid "&GNU General Public License"
 msgstr "&GNU General Public License"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr "WinMerge ගැන ..."
@@ -602,7 +597,7 @@ msgstr "&Customize Columns..."
 msgid "Generate &Report..."
 msgstr "වාර්තා ජනනය..."
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE7
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "සුරක්ෂිත කරන්න\tCtrl+S"
@@ -697,12 +692,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "නිශ්ප්‍රභා කිරීම\tCtrl+Z"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "නැවත කිරීම\tCtrl+Y"
@@ -712,7 +707,7 @@ msgstr "නැවත කිරීම\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "වෙන් කීරීම\tCtrl+X"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "පිටපත් කිරීම\tCtrl+C"
@@ -762,7 +757,7 @@ msgstr "පොත් යොමු"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Toggle Bookmark\tCtrl+F2"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "ඊළඟ පොත් යොමුව\tF2"
@@ -803,7 +798,7 @@ msgstr "සමාන්‍ය\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "වාක්‍ය වින්‍යාසය ඉස්මතු කිරීම"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1268,7 +1263,7 @@ msgstr "ගොනුවෙ නම  පිටපත් කිරීම"
 msgid "Prediffer Settings"
 msgstr "Prediffer Settings"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEC
 #, fuzzy, c-format
 msgid "&No prediffer"
 msgstr "&No prediffer"
@@ -1658,7 +1653,7 @@ msgstr "&හරි"
 msgid "Replace"
 msgstr "ප්‍රතිස්ථාපනය කරන්න"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B17601E
 #, c-format
 msgid "Re&place with:"
 msgstr "මෙමඟින් ප්‍රතිස්ථාපනය කරන්න:"
@@ -1708,7 +1703,7 @@ msgstr ""
 msgid "New"
 msgstr "නව"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2183,7 +2178,7 @@ msgstr "වෙනස්කම්  කල ගොනු සුරකින්න�
 msgid "Left side file"
 msgstr "වම් පසෙහි ඇති ගොනුව"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&Save changes"
 msgstr "වෙනස්කම් සුරකින්න"
@@ -2395,7 +2390,7 @@ msgstr "විලාසය"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, fuzzy, c-format
 msgid "&Copy to Clipboard"
 msgstr "&Copy to Clipboard"
@@ -4041,7 +4036,7 @@ msgstr "දකුණු EOL"
 msgid "Left Encoding"
 msgstr "වම් කේතනය"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
 msgstr "දකුණු කේතනය"
@@ -4086,7 +4081,7 @@ msgstr "වම පමණක්: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176021
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right only: %1"
 msgstr "දකුණ පමණක්: %1"

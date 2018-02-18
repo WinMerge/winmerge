@@ -382,15 +382,10 @@ msgstr "Ohje"
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge Ohje\tF1"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:3938FFC2
 #, c-format
-msgid "R&elease Notes"
-msgstr "Versiotiedot"
-
-#: Merge.rc:6E470BE7
-#, c-format
-msgid "&Translations"
-msgstr "Käännökset"
+msgid "&Check For Updates"
+msgstr ""
 
 #: Merge.rc:1C6125F4
 #, c-format
@@ -402,7 +397,7 @@ msgstr "Asetukset"
 msgid "&GNU General Public License"
 msgstr "&GNU General Public License"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr "Tietoj&a WinMergestä..."
@@ -602,7 +597,7 @@ msgstr "Muokkaa sarakkeita..."
 msgid "Generate &Report..."
 msgstr "Luo &raportti..."
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE7
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "Tallenna\tCtrl+S"
@@ -697,12 +692,12 @@ msgstr "XML"
 msgid "&Binary"
 msgstr "Binääri"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Kumoa\tCtrl+Z"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Tee uudestaan\tCtrl+Y"
@@ -712,7 +707,7 @@ msgstr "Tee uudestaan\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Leikkaa\tCtrl+X"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Kopioi\tCtrl+C"
@@ -761,7 +756,7 @@ msgstr "Kirjanmerkit"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Kirjanmerkki on/ei\tCtrl+F2"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "Seuraava kirjanmerkki\tF2"
@@ -802,7 +797,7 @@ msgstr "&Normaali\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Syntaksin korostus"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1267,7 +1262,7 @@ msgstr "Kopioi tiedostonimi"
 msgid "Prediffer Settings"
 msgstr "Esivertailun asetukset"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&No prediffer"
 msgstr "Ei esivertailua"
@@ -1658,7 +1653,7 @@ msgstr "OK"
 msgid "Replace"
 msgstr "Korvaa"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B17601E
 #, c-format
 msgid "Re&place with:"
 msgstr "Korvaava:"
@@ -1708,7 +1703,7 @@ msgstr ""
 msgid "New"
 msgstr "Uusi"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2183,7 +2178,7 @@ msgstr "Tallennetaanko muokatut tiedostot?"
 msgid "Left side file"
 msgstr "Vasen tiedosto"
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&Save changes"
 msgstr "Tallenna muutokset"
@@ -2393,7 +2388,7 @@ msgstr "Tyyli:"
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Kopioi leikepöydälle"
@@ -3839,7 +3834,7 @@ msgstr "Oikea EOL"
 msgid "Left Encoding"
 msgstr "Vasen koodaus"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
 msgstr "Oikea koodaus"
@@ -3884,7 +3879,7 @@ msgstr "Vain vasen: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176021
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right only: %1"
 msgstr "Vain oikea: %1"

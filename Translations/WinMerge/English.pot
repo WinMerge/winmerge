@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-02-08 22:40+0000\n"
+"POT-Creation-Date: 2018-02-19 06:23+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -381,14 +381,9 @@ msgstr ""
 msgid "&WinMerge Help\tF1"
 msgstr ""
 
-#: Merge.rc:1B17601E
+#: Merge.rc:3938FFC2
 #, c-format
-msgid "R&elease Notes"
-msgstr ""
-
-#: Merge.rc:6E470BE7
-#, c-format
-msgid "&Translations"
+msgid "&Check For Updates"
 msgstr ""
 
 #: Merge.rc:1C6125F4
@@ -401,7 +396,7 @@ msgstr ""
 msgid "&GNU General Public License"
 msgstr ""
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
 msgstr ""
@@ -601,7 +596,7 @@ msgstr ""
 msgid "Generate &Report..."
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE7
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr ""
@@ -696,12 +691,12 @@ msgstr ""
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr ""
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr ""
@@ -711,7 +706,7 @@ msgstr ""
 msgid "Cu&t\tCtrl+X"
 msgstr ""
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr ""
@@ -761,7 +756,7 @@ msgstr ""
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr ""
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr ""
@@ -802,7 +797,7 @@ msgstr ""
 msgid "Syntax Highlight"
 msgstr ""
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1267,7 +1262,7 @@ msgstr ""
 msgid "Prediffer Settings"
 msgstr ""
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&No prediffer"
 msgstr ""
@@ -1657,7 +1652,7 @@ msgstr ""
 msgid "Replace"
 msgstr ""
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B17601E
 #, c-format
 msgid "Re&place with:"
 msgstr ""
@@ -1707,7 +1702,7 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
 msgstr ""
@@ -2182,7 +2177,7 @@ msgstr ""
 msgid "Left side file"
 msgstr ""
 
-#: Merge.rc:6E470BEE
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&Save changes"
 msgstr ""
@@ -2392,7 +2387,7 @@ msgstr ""
 msgid "&Include File Compare Report"
 msgstr ""
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr ""
@@ -3838,7 +3833,7 @@ msgstr ""
 msgid "Left Encoding"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
 msgstr ""
@@ -3883,7 +3878,7 @@ msgstr ""
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176021
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right only: %1"
 msgstr ""
