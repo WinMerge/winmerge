@@ -157,7 +157,7 @@ IMPLEMENT_DYNCREATE (CCrystalTextView, CView)
 
 HINSTANCE CCrystalTextView::s_hResourceInst = NULL;
 
-static int FindStringHelper(LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
+static int FindStringHelper(LPCTSTR pszLineBegin, LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
 
 BEGIN_MESSAGE_MAP (CCrystalTextView, CView)
 //{{AFX_MSG_MAP(CCrystalTextView)
@@ -1694,17 +1694,21 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
       blocks[0].m_nBgColorIndex = COLORINDEX_NONE;
       ++nBlocks;
       const TCHAR *pszChars = GetLineChars(nLineIndex);
+      int nLineLength = GetLineLength(nLineIndex);
       if (pszChars)
         {
-          for (const TCHAR *p = pszChars; ; )
+          for (const TCHAR *p = pszChars; p < pszChars + nLineLength; )
             {
               RxNode *node = nullptr;
               RxMatchRes matches;
               int nMatchLen = 0;
-              int nPos = ::FindStringHelper(p, marker.second.sFindWhat, marker.second.dwFlags | FIND_NO_WRAP, nMatchLen, node, &matches);
+              int nPos = ::FindStringHelper(pszChars, p, marker.second.sFindWhat, marker.second.dwFlags | FIND_NO_WRAP, nMatchLen, node, &matches);
               if (nPos == -1)
                   break;
-              blocks[nBlocks].m_nCharPos = static_cast<int>(p - pszChars) + nPos;
+              if (nLineLength < (p - pszChars) + nPos + nMatchLen)
+                  nMatchLen = static_cast<int>(nLineLength - (p - pszChars));
+              ASSERT(((p - pszChars) + nPos) < INT_MAX);
+              blocks[nBlocks].m_nCharPos = static_cast<int>((p - pszChars) + nPos);
               blocks[nBlocks].m_nBgColorIndex = marker.second.nBgColorIndex | COLORINDEX_APPLYFORCE;
               blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
               ++nBlocks;
@@ -1712,7 +1716,7 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
               blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
               blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
               ++nBlocks;
-              p += nPos + nMatchLen;
+              p += nPos + (nMatchLen == 0 ? 1 : nMatchLen);
             }
           blocks.resize(nBlocks);
           allblocks = MergeTextBlocks(allblocks, blocks);
@@ -4806,23 +4810,23 @@ PrepareDragData ()
 }
 
 static int
-FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch)
+FindStringHelper (LPCTSTR pszLineBegin, LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch)
 {
   if (dwFlags & FIND_REGEXP)
     {
-      int pos;
+      int pos = -1;
 
       if (rxnode)
         RxFree (rxnode);
+      rxnode = nullptr;
+      if (pszFindWhat[0] == '^' && pszLineBegin != pszFindWhere)
+        return pos;
       rxnode = RxCompile (pszFindWhat, (dwFlags & FIND_MATCH_CASE) != 0 ? RX_CASE : 0);
       if (rxnode && RxExec (rxnode, pszFindWhere, _tcslen (pszFindWhere), pszFindWhere, rxmatch))
         {
           pos = rxmatch->Open[0];
-          nLen = rxmatch->Close[0] - rxmatch->Open[0];
-        }
-      else
-        {
-        pos = -1;
+          ASSERT((rxmatch->Close[0] - rxmatch->Open[0]) < INT_MAX);
+          nLen = static_cast<int>(rxmatch->Close[0] - rxmatch->Open[0]);
         }
       return pos;
     }
@@ -5049,20 +5053,20 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
               int nPos;
               do
                 {
-                  nPos = ::FindStringHelper(line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
-                  if( nPos >= 0 )
+                  nPos = ::FindStringHelper(line, line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
+                  if( nPos != -1)
                     {
                       nFoundPos = (nFoundPos == -1)? nPos : nFoundPos + nPos;
-                      nFoundPos+= nMatchLen;
-                      line = line.Right( nLineLen - (nMatchLen + nPos) );
+                      nMatchLen = m_nLastFindWhatLen;
+                      line = line.Right( static_cast<LONG>(nLineLen - ((nMatchLen == 0 ? 1 : nMatchLen) + nPos)) );
                       nLineLen = line.GetLength();
                     }
                 }
-              while( nPos >= 0 );
+              while( nPos != -1 && nLineLen != 0);
 
               if( nFoundPos >= 0 )	// Found text!
                 {
-                  ptCurrentPos.x = nFoundPos - nMatchLen;
+                  ptCurrentPos.x = static_cast<int>(nFoundPos);
                   *pptFoundPos = ptCurrentPos;
                   return true;
                 }
@@ -5101,11 +5105,6 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                         {
                           line += _T ('\n');
                         }
-                      else
-                        {
-                          pszChars += ptCurrentPos.x;
-                          nLineLength -= ptCurrentPos.x;
-                        }
                       if (nLineLength > 0)
                         {
                           LPTSTR pszBuf = item.GetBuffer (nLineLength + 1);
@@ -5127,7 +5126,6 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                     }
 
                   LPCTSTR pszChars = GetLineChars (ptCurrentPos.y);
-                  pszChars += ptCurrentPos.x;
 
                   //  Prepare necessary part of line
                   LPTSTR pszBuf = line.GetBuffer (nLineLength + 1);
@@ -5136,8 +5134,8 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                 }
 
               //  Perform search in the line
-              int nPos =::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
-              if (nPos >= 0)
+              int nPos = ::FindStringHelper (line, static_cast<LPCTSTR>(line) + ptCurrentPos.x, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
+              if (nPos != -1)
                 {
                   if (m_pszMatched)
                     free(m_pszMatched);
@@ -6555,7 +6553,7 @@ SetTextTypeByContent (LPCTSTR pszContent)
   RxNode *rxnode = NULL;
   RxMatchRes rxmatch;
   int nLen;
-  if (::FindStringHelper(pszContent, _T("^\\s*\\<\\?xml\\s+.+?\\?\\>\\s*$"),
+  if (::FindStringHelper(pszContent, pszContent, _T("^\\s*\\<\\?xml\\s+.+?\\?\\>\\s*$"),
       FIND_REGEXP, nLen, rxnode, &rxmatch) == 0)
     {
       if (rxnode)
