@@ -210,8 +210,9 @@ DoHighlightText ( bool bNotifyIfNotFound )
     {
       if ( bNotifyIfNotFound ) 
       {
-        CString prompt;
-        prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), m_sText);
+        CString prompt, text(m_sText);
+        text.Replace(_T("&"), _T("&&"));
+        prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), (LPCTSTR)text);
         AfxMessageBox (prompt, MB_ICONINFORMATION);
       }
       if (m_nScope == 0)
@@ -250,8 +251,9 @@ DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
 
   if (!bFound)
     {
-      CString prompt;
-      prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), m_sText);
+      CString prompt, text(m_sText);
+      text.Replace(_T("&"), _T("&&"));
+      prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), (LPCTSTR)text);
       AfxMessageBox (prompt, MB_ICONINFORMATION);
       if (m_nScope == 0)
         m_ptCurrentPos = m_ptBlockBegin;
