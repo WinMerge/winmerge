@@ -5078,7 +5078,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
 
           //  Start again from the end of text
           bWrapSearch = false;
-          ptCurrentPos = CPoint (0, GetLineCount () - 1);
+          ptCurrentPos = CPoint (GetLineLength (GetLineCount () - 1), GetLineCount () - 1);
         }
     }
   else
