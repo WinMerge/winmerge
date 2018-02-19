@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-02-16 12:39+0100\n"
+"PO-Revision-Date: 2018-02-19 14:18+0100\n"
 "Last-Translator: Lippe35\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -728,7 +728,7 @@ msgstr "Selecionar Diferenças de Linha\tF4"
 #: Merge.rc:444C5DDB
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "Pesquisar...\tCtrl+F"
+msgstr "Procurar...\tCtrl+F"
 
 #: Merge.rc:44BC83EC
 #, c-format
@@ -1399,17 +1399,17 @@ msgstr "Selecione Ficheiros ou Pastas"
 #: Merge.rc:43017E4D
 #, c-format
 msgid "&1st:"
-msgstr ""
+msgstr "1º"
 
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
-msgstr "Pesquisar..."
+msgstr "Procurar..."
 
 #: Merge.rc:43017E4E
 #, c-format
 msgid "&2nd:"
-msgstr ""
+msgstr "2º"
 
 #: Merge.rc:78E0CE0E
 #, c-format
@@ -1419,12 +1419,12 @@ msgstr "P&esquisar..."
 #: Merge.rc:78B3B626
 #, c-format
 msgid "&3rd(Optional):"
-msgstr "&3rd(Opcional):"
+msgstr "&3º(Opcional):"
 
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Br&owse..."
-msgstr "Pesquisar..."
+msgstr "Procurar..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1894,7 +1894,7 @@ msgstr "Resultado:"
 #: Merge.rc:78E0CE11
 #, c-format
 msgid "Bro&wse..."
-msgstr "Pesquisar..."
+msgstr "Procurar..."
 
 #: Merge.rc:89AF4FC
 #, c-format
@@ -2349,7 +2349,7 @@ msgstr "Cor do marcador"
 #: Merge.rc:56BD1FBA
 #, c-format
 msgid "Search Marker:"
-msgstr "Pesquisar marcador:"
+msgstr "Procurar marcador:"
 
 #: Merge.rc:7B76381B
 #, c-format
@@ -2379,7 +2379,7 @@ msgstr "Ficheiro de relatório:"
 #: Merge.rc:146A5938
 #, c-format
 msgid "Browse..."
-msgstr "Pesquisar..."
+msgstr "Procurar..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2744,7 +2744,7 @@ msgstr "Integração Shell"
 #: Merge.rc:31DC8C62
 #, c-format
 msgid "Explorer"
-msgstr "Pesquisar"
+msgstr "Procurar"
 
 #: Merge.rc:673BD331
 #, c-format
