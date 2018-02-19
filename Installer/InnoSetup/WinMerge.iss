@@ -514,16 +514,16 @@ Source: ..\..\Plugins\dlls\CompareMSExcelFiles.sct; DestDir: {app}\MergePlugins;
 Source: ..\..\Plugins\dlls\CompareMSWordFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSPowerPointFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\ApplyPatch.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
-Source: ..\..\Plugins\dlls\IgnoreColumns.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion comparetimestamp; Components: Plugins
-Source: ..\..\Plugins\dlls\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion comparetimestamp; Components: Plugins
-Source: ..\..\Plugins\dlls\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion comparetimestamp; Components: Plugins
-Source: ..\..\Plugins\dlls\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion comparetimestamp; Components: Plugins
-Source: ..\..\Plugins\dlls\IgnoreLeadingLineNumbers.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion comparetimestamp; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreColumns.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreLeadingLineNumbers.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 
 ;Frhed
 Source: ..\..\Build\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Frhed
 ;Source: ..\..\Build\Frhed\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
-Source: ..\..\Build\Frhed\hekseditU.dll; DestDir: {app}\Frhed; Flags: ignoreversion comparetimestamp; Components: Frhed
+Source: ..\..\Build\Frhed\hekseditU.dll; DestDir: {app}\Frhed; Flags: ignoreversion replacesameversion; Components: Frhed
 Source: ..\..\Build\Frhed\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
 Source: ..\..\Build\Frhed\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
 Source: ..\..\Build\Frhed\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
@@ -539,7 +539,7 @@ Source: ..\..\Build\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages
 Source: ..\..\Build\WinIMerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
 Source: ..\..\Build\WinIMerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
 ;Source: ..\..\Build\WinIMerge\bin\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: ..\..\Build\WinIMerge\bin\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion comparetimestamp; Components: WinIMerge
+Source: ..\..\Build\WinIMerge\bin\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion replacesameversion; Components: WinIMerge
 Source: ..\..\Build\WinIMerge\bin\vcomp140.dll; DestDir: {app}; Components: WinIMerge
 
 ;GnuWin32 Patch for Windows
