@@ -2354,7 +2354,7 @@ msgstr "Procurar marcador:"
 #: Merge.rc:7B76381B
 #, c-format
 msgid "User Defined Marker1:"
-msgstr "Marcador l definido pelo utilizador:"
+msgstr "Marcador 1 definido pelo utilizador:"
 
 #: Merge.rc:7B76381C
 #, c-format
