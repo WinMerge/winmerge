@@ -58,7 +58,7 @@ msgstr "C&opiar da Direita"
 #: Merge.rc:381D79E4
 #, c-format
 msgid "&Select Line Difference"
-msgstr "&Selecionar Diferenças de Linha"
+msgstr "&Selecionar Diferença de Linha"
 
 #: Merge.rc:43017E40
 #, c-format
@@ -88,7 +88,7 @@ msgstr "Co&lar"
 #: Merge.rc:AC3AA11
 #, c-format
 msgid "&Goto..."
-msgstr "&Ir Para..."
+msgstr "&Ir para..."
 
 #: Merge.rc:B4D35A1
 #, c-format
@@ -213,7 +213,7 @@ msgstr "Ab&rir Ficheiro de Conflito..."
 #: Merge.rc:5869BBD
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "Abrir Pro&jecto...\Ctrl+J"
+msgstr "Abrir Pro&jeto...\Ctrl+J"
 
 #: Merge.rc:1BF42625
 #, c-format
@@ -258,7 +258,7 @@ msgstr "&Ver"
 #: Merge.rc:AC3AA14
 #, c-format
 msgid "&Toolbar"
-msgstr "&Barra de Ferramentas"
+msgstr "&Barra de ferramentas"
 
 #: Merge.rc:1D2E49F7
 #, c-format
@@ -4450,12 +4450,12 @@ msgstr "Opções exportadas para o ficheiro."
 #: Merge.rc:7D23E524
 #, c-format
 msgid "Failed to import options from the file."
-msgstr "Importação de opções do ficheiro falhou."
+msgstr "Falha ao importar opções do ficheiro."
 
 #: Merge.rc:68F9158
 #, c-format
 msgid "Failed to write options to the file."
-msgstr "Escrita de opções para o ficheiro falhou."
+msgstr "Falha ao gravar as opções no ficheiro."
 
 #: Merge.rc:404DAD7D
 #, c-format
@@ -4615,7 +4615,7 @@ msgstr "Falha ao transferir informações mais recentes sobre a versão"
 #: Merge.rc:55B03C14
 #, c-format
 msgid "Plugin Settings"
-msgstr "Definições de plugin"
+msgstr "Configurações dos Plugins"
 
 #: Merge.rc:791F1E67
 #, c-format
@@ -4635,7 +4635,7 @@ msgstr "<Automático>"
 #: Merge.rc:4AAD2A74
 #, c-format
 msgid "G&oto Line %1"
-msgstr "Ir para linha %1"
+msgstr "I&r para a Linha %1"
 
 #: Merge.rc:7F0D4B47
 #, c-format
@@ -4665,7 +4665,7 @@ msgstr "Quantidade"
 #: Merge.rc:55B03C15
 #, c-format
 msgid "Portable Object"
-msgstr "Objecto Portátil"
+msgstr "Objeto Portátil"
 
 #: Merge.rc:5F87E5E
 #, c-format
