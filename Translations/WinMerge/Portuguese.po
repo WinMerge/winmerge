@@ -388,7 +388,7 @@ msgstr "&WinMerge Ajuda\tF1"
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
-msgstr "Verificar Actualizações"
+msgstr "Verificar atualizações"
 
 #: Merge.rc:1C6125F4
 #, c-format
@@ -403,7 +403,7 @@ msgstr "Licença Pública Geral GNU"
 #: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
-msgstr "Acerca de &WinMerge..."
+msgstr "Acerca de..."
 
 #: Merge.rc:68816EE2
 #, c-format
