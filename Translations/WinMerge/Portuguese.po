@@ -333,7 +333,7 @@ msgstr "E&xtração Automática"
 #: Merge.rc:714B45FD
 #, c-format
 msgid "&Edit with Unpacker..."
-msgstr "&Editar com Descompactador..."
+msgstr "&Editar com Extrator..."
 
 #: Merge.rc:78B3B622
 #, c-format
@@ -388,7 +388,7 @@ msgstr "&WinMerge Ajuda\tF1"
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&Check For Updates"
-msgstr "Verificar atualizações"
+msgstr "Verificar Atualizações"
 
 #: Merge.rc:1C6125F4
 #, c-format
@@ -403,7 +403,7 @@ msgstr "Licença Pública Geral GNU"
 #: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
-msgstr "Acerca de..."
+msgstr "Acerca de"
 
 #: Merge.rc:68816EE2
 #, c-format
@@ -1439,7 +1439,7 @@ msgstr "Selecionar..."
 #: Merge.rc:68816EE8
 #, c-format
 msgid "&Unpacker:"
-msgstr "E&xtractor:"
+msgstr "E&xtrator:"
 
 #: Merge.rc:68816EE9
 #, c-format
@@ -1569,17 +1569,17 @@ msgstr "Pe&rguntar ao fechar múltiplas janelas"
 #: Merge.rc:6D5B7718
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "&Preservar data do ficheiro na comparação de ficheiros"
+msgstr "&Preservar data do ficheiro na comparação de ficheiro"
 
 #: Merge.rc:17F0E759
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Mostrar caixa de diálogo \"Pastas ou ficheiros selecionados\" No inicio"
+msgstr "Mostrar caixa de diálogo \"Pastas ou Ficheiros selecionados\" No inicio"
 
 #: Merge.rc:1AD99579
 #, c-format
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Fechar caixa de diálogo \"Pastas ou ficheiros selecionados\" Ao clicar OK"
+msgstr "Fechar caixa de diálogo \"Pastas ou Ficheiros selecionados\" Ao clicar OK"
 
 #: Merge.rc:44776ACE
 #, c-format
@@ -1594,7 +1594,7 @@ msgstr "Idioma:"
 #: Merge.rc:516450B
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
-msgstr "WinMerge permite ocultar mensagens comuns. Prima o botão Repor para visualizar novamente todas as mensagens."
+msgstr "WinMerge permite ocultar mensagens predefinidas. Prima o botão Repor para visualizar novamente todas as mensagens."
 
 #: Merge.rc:10976EC1
 #, c-format
@@ -1944,17 +1944,17 @@ msgstr "Mover para &Baixo"
 #: Merge.rc:E6D7F0
 #, c-format
 msgid "Select Unpacker"
-msgstr "Selecionar Extractor"
+msgstr "Selecionar Extrator"
 
 #: Merge.rc:4F5264C8
 #, c-format
 msgid "File unpacker:"
-msgstr "E&xtractor de Ficheiros:"
+msgstr "E&xtrator de Ficheiros:"
 
 #: Merge.rc:34C1157D
 #, c-format
 msgid "Display all unpackers, don't check the extension"
-msgstr "Mostrar todos os extractores, não verificar extensões"
+msgstr "Mostrar todos os extratores, não verificar extensões"
 
 #: Merge.rc:5B18135F
 #, c-format
@@ -2099,17 +2099,17 @@ msgstr "Manter caracteres EOL originais"
 #: Merge.rc:4C72B55
 #, c-format
 msgid "Tabs"
-msgstr "Colunas"
+msgstr "Separadores"
 
 #: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
-msgstr "Tamanho da coluna:"
+msgstr "Tamanho do Separador:"
 
 #: Merge.rc:4DE14275
 #, c-format
 msgid "&Insert Tabs"
-msgstr "Inserir colunas"
+msgstr "Inserir Separadores"
 
 #: Merge.rc:243A39E
 #, c-format
@@ -3089,7 +3089,7 @@ msgstr "Todas as mensagens estão novamente disponíveis."
 #: Merge.rc:37825D6A
 #, c-format
 msgid "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
-msgstr "Valor do tamanho na tabela -O valor não está de acordo com os parâmetros do WinMerge. \n\nPor favor utilize os valores 1 - %1."
+msgstr "Valor do tamanho no separador -O valor não está de acordo com os parâmetros do WinMerge. \n\nPor favor utilize os valores 1 - %1."
 
 #: Merge.rc:47E5C8F
 #, c-format
@@ -3174,7 +3174,7 @@ msgstr "Não é possível encontrar o ficheiro modelo de filtro de ficheiros!\n\nPo
 #: Merge.rc:2A045B49
 #, c-format
 msgid "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
-msgstr "Não é possível copiar o ficheiro de modelo de filtro para a pasta de filtro:\n%1\n\nPor favor certifique-se de que a pasta existe e é gravável."
+msgstr "Não é possível copiar o ficheiro de modelo de filtro para a pasta de filtro:\n%1\n\nPor favor, certifique-se de que a pasta existe e é gravável."
 
 #: Merge.rc:4EA7BACD
 #, c-format
@@ -3340,17 +3340,17 @@ msgstr "Ambas as pastas de destino são inválidas!"
 #: Merge.rc:5F458439
 #, c-format
 msgid "Left and middle path is invalid!"
-msgstr "A pasta de destino da esquerda e do meio é inválida"
+msgstr "A pasta de destino da esquerda e do meio são inválidas"
 
 #: Merge.rc:F75DAF8
 #, c-format
 msgid "Left and right path is invalid!"
-msgstr "A pasta de destino da esquerda e da direita é inválida"
+msgstr "A pasta de destino da esquerda e da direita são inválidas"
 
 #: Merge.rc:3703FFD7
 #, c-format
 msgid "Middle and right path is invalid!"
-msgstr "A pasta de destino do meio e da direita é inválida"
+msgstr "A pasta de destino do meio e da direita são inválidas"
 
 #: Merge.rc:237A0533
 #, c-format
@@ -3365,7 +3365,7 @@ msgstr "Selecione dois ficheiros para ativar a seleção de extrator."
 #: Merge.rc:30FF7A4E
 #, c-format
 msgid "Cannot compare file and folder!"
-msgstr "Impossível comparar ficheiro ou pasta!"
+msgstr "Não é possível comparar ficheiro ou pasta!"
 
 #: Merge.rc:62AC5DDB
 #, c-format
@@ -3380,7 +3380,7 @@ msgstr "Ficheiro não extraído: %1"
 #: Merge.rc:3676909F
 #, c-format
 msgid "Cannot open file\n%1\n\n%2"
-msgstr "Impossível abrir ficheiro\n%1\n\n%2"
+msgstr "Não é possível abrir ficheiro\n%1\n\n%2"
 
 #: Merge.rc:53CCF475
 #, c-format
@@ -3425,12 +3425,12 @@ msgstr "Erro ao guardar ficheiro.\n%1\n%2\nDeseja:\n\t-usar um nome diferente pa
 #: Merge.rc:3895053E
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Plugin '%2' impossível comprimir as suas alterações no ficheiro esquerdo em '%1'.\n\nO ficheiro original não será alterado.\n\nDeseja guardar a versão não comprimida em outro ficheiro?"
+msgstr "Plugin '%2' Não é possível comprimir as suas alterações no ficheiro esquerdo em '%1'.\n\nO ficheiro original não será alterado.\n\nDeseja guardar a versão não comprimida em outro ficheiro?"
 
 #: Merge.rc:5A0BA2DF
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Plugin '%2' impossível comprimir as suas alterações no ficheiro direito em '%1'.\n\nO ficheiro original não será alterado.\n\nDeseja guardar a versão não comprimida em outro ficheiro?"
+msgstr "Plugin '%2' Não é possível comprimir as suas alterações no ficheiro direito em '%1'.\n\nO ficheiro original não será alterado.\n\nDeseja guardar a versão não comprimida em outro ficheiro?"
 
 #: Merge.rc:78367A47
 #, c-format
@@ -3450,17 +3450,17 @@ msgstr "Outra aplicação atualizou o ficheiro\n%1\ndesde que o WinMerge pesquisou
 #: Merge.rc:62909ED7
 #, c-format
 msgid "Save Left File As"
-msgstr "Guardar ficheiro esquerdo como..."
+msgstr "Guardar ficheiro Esquerdo como..."
 
 #: Merge.rc:E4471D
 #, c-format
 msgid "Save Middle File As"
-msgstr "Guardar ficheiro do meio como"
+msgstr "Guardar ficheiro do Meio como"
 
 #: Merge.rc:6F833C19
 #, c-format
 msgid "Save Right File As"
-msgstr "Guardar ficheiro direito como..."
+msgstr "Guardar ficheiro Direito como..."
 
 #: Merge.rc:3C4620F
 #, c-format
@@ -3470,7 +3470,7 @@ msgstr "O ficheiro\n%1\nhas desapareceu. Guarde uma cópia do ficheiro para conti
 #: Merge.rc:4BFC8F0D
 #, c-format
 msgid "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
-msgstr "Impossível combinar diferenças quando os documentos não estão sincronizados.\n\nAtualizar documentos antes de continuar."
+msgstr "Não é possível combinar diferenças quando os documentos não estão sincronizados.\n\nAtualizar documentos antes de continuar."
 
 #: Merge.rc:5C264194
 #, c-format
@@ -3485,7 +3485,7 @@ msgstr "Desproteger ficheiros de VSS..."
 #: Merge.rc:5CF52976
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "O sistema de versões apresentou um erro ao tentar desproteger o ficheiro. Impossível continuar..."
+msgstr "O sistema de versões apresentou um erro ao tentar desproteger o ficheiro. Não é possível continuar..."
 
 #: Merge.rc:5B2409A
 #, c-format
@@ -4165,7 +4165,7 @@ msgstr "Lista separada por vírgulas"
 #: Merge.rc:5CCED709
 #, c-format
 msgid "Tab-separated list"
-msgstr "Lista separada por colunas"
+msgstr "Lista de separadores"
 
 #: Merge.rc:2E3BFCA3
 #, c-format
@@ -4210,12 +4210,12 @@ msgstr "Ocorreu um erro ao comparar os ficheiros."
 #: Merge.rc:5F16D9DC
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "Impossível criar ficheiros temporários. Verifique as suas definições de ficheiros temporários."
+msgstr "Não é possível criar ficheiros temporários. Verifique as suas definições de ficheiros temporários."
 
 #: Merge.rc:11E6F584
 #, c-format
 msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
-msgstr "Estes ficheiros utilizam diferentes tipos de procedimento.\n\nDeseja tratar todos os tipos de procedimentos por igual para comparação?\n\nNota: Se deseja tratar todos os tipos de procedimentos por igual, defina a opção 'Ignorar diferentes tipos de procedimentos..' na coluna de comparação no diálogo opções (disponível em Editar/Definições)."
+msgstr "Estes ficheiros utilizam diferentes tipos de procedimento.\n\nDeseja tratar todos os tipos de procedimentos por igual para comparação?\n\nNota: Se deseja tratar todos os tipos de procedimentos por igual, defina a opção 'Ignorar diferentes tipos de procedimentos..' no separador de comparação no diálogo opções (disponível em Editar/Definições)."
 
 #: Merge.rc:46FB8639
 #, c-format
@@ -4225,7 +4225,7 @@ msgstr "A pasta selecionada é inválida."
 #: Merge.rc:4BC3EDDB
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "Impossível abrir ficheiro binário no editor."
+msgstr "Não é possível abrir ficheiro binário no editor."
 
 #: Merge.rc:279EB840
 #, c-format
@@ -4295,7 +4295,7 @@ msgstr "Substituída(s) %1 string(s)."
 #: Merge.rc:334E25B3
 #, c-format
 msgid "Cannot find string \"%s\""
-msgstr "Impossível localizar string \"%s\""
+msgstr "Não é possível localizar string \"%s\""
 
 #: Merge.rc:34855CF1
 #, c-format
@@ -4380,7 +4380,7 @@ msgstr "Unificado"
 #: Merge.rc:185B8391
 #, c-format
 msgid "Could not write to file %1."
-msgstr "Impossível escrever no ficheiro %1."
+msgstr "Não é possível gravar para o ficheiro %1."
 
 #: Merge.rc:64D049AA
 #, c-format
@@ -4395,12 +4395,12 @@ msgstr "Especifique o ficheiro de destino"
 #: Merge.rc:54711616
 #, c-format
 msgid "Cannot create a patch file from binary files."
-msgstr "Impossível criar ficheiro patch a partir de ficheiros binários."
+msgstr "Não é possível criar um ficheiro patch a partir de ficheiros binários."
 
 #: Merge.rc:133D7451
 #, c-format
 msgid "Cannot create a patch file from directories."
-msgstr "Impossível criar ficheiro patch a partir de directorias."
+msgstr "Não é possível criar um ficheiro patch a partir de diretorias."
 
 #: Merge.rc:34FF26C7
 #, c-format
@@ -4445,7 +4445,7 @@ msgstr "Falha ao importar opções do ficheiro."
 #: Merge.rc:68F9158
 #, c-format
 msgid "Failed to write options to the file."
-msgstr "Falha ao gravar as opções no ficheiro."
+msgstr "Falha ao gravar opções para o ficheiro."
 
 #: Merge.rc:404DAD7D
 #, c-format
@@ -4465,7 +4465,7 @@ msgstr "Tipo"
 #: Merge.rc:5ED09E18
 #, c-format
 msgid "Unpacker"
-msgstr "Descompactador"
+msgstr "Extrator"
 
 #: Merge.rc:37C6B9B9
 #, c-format
@@ -4565,7 +4565,7 @@ msgstr "nCombinar automaticamente (Ctrl+Alt+M)"
 #: Merge.rc:6107F02B
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "O extractor adoptado aplica-se em ambos os ficheiros (apenas um ficheiro necessita de extensão)"
+msgstr "O extrator adoptado aplica-se a ambos os ficheiros (apenas um ficheiro necessita de extensão)"
 
 #: Merge.rc:429CABF5
 #, c-format
@@ -4605,7 +4605,7 @@ msgstr "Falha ao transferir informações mais recentes sobre a versão"
 #: Merge.rc:55B03C14
 #, c-format
 msgid "Plugin Settings"
-msgstr "Configurações dos Plugins"
+msgstr "Definições de Plugins"
 
 #: Merge.rc:791F1E67
 #, c-format
@@ -4675,17 +4675,17 @@ msgstr ""
 #: Merge.rc:8AF7E6B
 #, c-format
 msgid "Close &Left Tabs"
-msgstr "Fechar Coluna E&squerda"
+msgstr "Fechar Separador E&squerdo"
 
 #: Merge.rc:D404EDF
 #, c-format
 msgid "Close R&ight Tabs"
-msgstr "Fechar Coluna D&ireita"
+msgstr "Fechar Separador D&ireito"
 
 #: Merge.rc:D404EE0
 #, c-format
 msgid "Close &Other Tabs"
-msgstr "Fechar &Outras Colunas"
+msgstr "Fechar &Outros Separadores"
 
 #: Merge.rc:3E934E
 #, c-format
