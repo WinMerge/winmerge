@@ -99,7 +99,6 @@ FindText (int nDirection)
       if (!m_pBuddy->FindText(GetLastSearchInfos()))
         {
           CString prompt, text(m_sText);
-          text.Replace(_T("&"), _T("&&"));
           prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), (LPCTSTR)text);
           AfxMessageBox (prompt, MB_ICONINFORMATION);
         }
