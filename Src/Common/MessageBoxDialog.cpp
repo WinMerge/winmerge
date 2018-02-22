@@ -1328,7 +1328,9 @@ void CMessageBoxDialog::CreateMessageControl ( )
 	}
 
 	// Create the static control for the message.
-	m_stcMessage.Create(m_strMessage.c_str(), dwStyle, rcDummy, this,
+	String strMessage = m_strMessage;
+	strutils::replace(strMessage, _T("&"), _T("&&"));
+	m_stcMessage.Create(strMessage.c_str(), dwStyle, rcDummy, this,
 		(UINT)IDC_STATIC);
 
 	// Check whether the text will be read from right to left.
