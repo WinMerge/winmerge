@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-02-19 14:18+0100\n"
+"PO-Revision-Date: 2018-02-23 02:42+0100\n"
 "Last-Translator: Lippe35\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1569,7 +1569,7 @@ msgstr "Pe&rguntar ao fechar múltiplas janelas"
 #: Merge.rc:6D5B7718
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "&Preservar data do ficheiro na comparação de ficheiro"
+msgstr "&Preservar data do ficheiro na comparação de ficheiros"
 
 #: Merge.rc:17F0E759
 #, c-format
@@ -4565,7 +4565,7 @@ msgstr "nCombinar automaticamente (Ctrl+Alt+M)"
 #: Merge.rc:6107F02B
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "O extrator adoptado aplica-se a ambos os ficheiros (apenas um ficheiro necessita de extensão)"
+msgstr "O extrator adoptado aplica-se em ambos os ficheiros (apenas um ficheiro necessita de extensão)"
 
 #: Merge.rc:429CABF5
 #, c-format
@@ -4605,7 +4605,7 @@ msgstr "Falha ao transferir informações mais recentes sobre a versão"
 #: Merge.rc:55B03C14
 #, c-format
 msgid "Plugin Settings"
-msgstr "Definições de Plugins"
+msgstr "Definições de Plugin"
 
 #: Merge.rc:791F1E67
 #, c-format
