@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-02-23 02:42+0100\n"
+"PO-Revision-Date: 2018-02-24 07:31+0100\n"
 "Last-Translator: Lippe35\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -283,7 +283,7 @@ msgstr "Barra de Esta&do"
 #: Merge.rc:2C015CFD
 #, c-format
 msgid "Ta&b Bar"
-msgstr "Barra de Colunas"
+msgstr "Barra de Separadores"
 
 #: Merge.rc:1D2E49F8
 #, c-format
@@ -403,7 +403,7 @@ msgstr "Licença Pública Geral GNU"
 #: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
-msgstr "Acerca de"
+msgstr "Acerca de WinMerge"
 
 #: Merge.rc:68816EE2
 #, c-format
@@ -478,17 +478,17 @@ msgstr "Comparação de 3 vias"
 #: Merge.rc:200AD0D1
 #, c-format
 msgid "Show &Left Only Different Items"
-msgstr "Mostrar apenas itens diferentes"
+msgstr "Mostrar Apenas Itens Diferentes"
 
 #: Merge.rc:4899EBE1
 #, c-format
 msgid "Show &Middle Only Different Items"
-msgstr "Mostrar apenas itens diferentes do meio"
+msgstr "Mostrar Apenas Itens Diferentes do Meio"
 
 #: Merge.rc:614F49A9
 #, c-format
 msgid "Show &Right Only Different Items"
-msgstr "Mostrar apenas itens diferentes da direita"
+msgstr "Mostrar Apenas Itens Diferentes da Direita"
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -598,7 +598,7 @@ msgstr "Personalizar Colunas..."
 #: Merge.rc:2F07210E
 #, c-format
 msgid "Generate &Report..."
-msgstr "A &Gerar Relatório..."
+msgstr "&Gerar Relatório..."
 
 #: Merge.rc:6E470BE7
 #, c-format
@@ -1414,7 +1414,7 @@ msgstr "2º"
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
-msgstr "P&esquisar..."
+msgstr "Procurar..."
 
 #: Merge.rc:78B3B626
 #, c-format
@@ -4605,7 +4605,7 @@ msgstr "Falha ao transferir informações mais recentes sobre a versão"
 #: Merge.rc:55B03C14
 #, c-format
 msgid "Plugin Settings"
-msgstr "Definições de Plugin"
+msgstr "Definições de Plugins"
 
 #: Merge.rc:791F1E67
 #, c-format
