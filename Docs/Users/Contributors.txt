@@ -44,7 +44,7 @@ Localization:
   Calvin Lin <ylin77 at gmail.com>
 
 * Croatian:
-  Hasan Osmanagiæ <hasan.osmanagic@public.carnet.hr>
+  Hasan OsmanagiÃ¦ <hasan.osmanagic@public.carnet.hr>
 
 * Czech:
   Jiri Tax <jt@taxoft.cz>
@@ -81,8 +81,8 @@ Localization:
   Polyvios J. Simopoulos <polyvios.j.simopoulos@gmail.com>
 
 * Hungarian:
-  Márton Balázs <documan@users.sourceforge.net>
-  Mihalicza József <jmihalicza@gmail.com>
+  MÃ¡rton BalÃ¡zs <documan@users.sourceforge.net>
+  Mihalicza JÃ³zsef <jmihalicza@gmail.com>
 
 * Italian:
   Andrea Decorte <deco1985@hotmail.com>
@@ -111,7 +111,7 @@ Localization:
   Felipe Periard Lopes <felipefpl@ig.com.br>
 
 * Portuguese (Portugal):
-  Nelson Simão
+  Nelson SimÃ£o
   Lippe35
 
 * Romanian:
@@ -128,7 +128,7 @@ Localization:
 
 * Slovak:
   Majvan <vancojur@decef.elf.stuba.sk>
-  Ivan Masár <helix84@centrum.sk>
+  Ivan MasÃ¡r <helix84@centrum.sk>
 
 * Slovenian:
   Iztok Osredkar <iztok.osredkar@institut-oko.si>
@@ -136,12 +136,12 @@ Localization:
 
 * Spanish:
   Mario Angel <marioangel70@gmail.com>
-  Jesús M. Delgado 'MacK' <nncsoft@yahoo.com>
+  JesÃºs M. Delgado 'MacK' <nncsoft@yahoo.com>
   Dean Grimm <grimmdp@yahoo.com>
 
 * Swedish:
   Hans Eriksson <hans.ericson@bredband.net>
-  Göran Håkansson <goran.x.hakansson@telia.com>
+  GÃ¶ran HÃ¥kansson <goran.x.hakansson@telia.com>
 
 * Turkish:
   Afyonlu <afyonlu@users.sourceforge.net>
@@ -172,7 +172,7 @@ Other Contributors (code, ideas, testing..):
 * Joe Kidd <cassiusdrow@sourceforge.net>
 * Robert Knienider
 * Ferenc Kubatovics
-* René Leonhardt
+* RenÃ© Leonhardt
 * Vladimir Lukianov
 * LynX <devlynx@users.sourceforge.net>
 * David Maisonave
