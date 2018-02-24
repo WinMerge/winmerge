@@ -1,4 +1,4 @@
-# This file is part from WinMerge <http://winmerge.org/>
+ï»¿# This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -19,9 +19,9 @@ msgstr ""
 "Language-Team: Dutch <winmerge-translate@lists.sourceforge.net>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1252\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
 "X-Generator: Poedit 1.5.4\n"
 
@@ -35,17 +35,17 @@ msgstr "LANG_DUTCH, SUBLANG_DUTCH"
 #: Merge.rc:2C983F1
 #, c-format
 msgid "1252"
-msgstr "1252"
+msgstr "65001"
 
 #: Merge.rc:1C6125F3
 #, c-format
 msgid "C&opy to Right"
-msgstr "Naar &rechts kopiëren"
+msgstr "Naar &rechts kopiÃ«ren"
 
 #: Merge.rc:92C6C92
 #, c-format
 msgid "Cop&y to Left"
-msgstr "Naar &links kopiëren"
+msgstr "Naar &links kopiÃ«ren"
 
 #: Merge.rc:6FC398B6
 #, c-format
@@ -80,7 +80,7 @@ msgstr "&Knippen"
 #: Merge.rc:43017E42
 #, c-format
 msgid "&Copy"
-msgstr "Ko&piëren"
+msgstr "Ko&piÃ«ren"
 
 #: Merge.rc:1D2E49F6
 #, c-format
@@ -580,12 +580,12 @@ msgstr "&Laatste verschil\tAlt+End"
 #: Merge.rc:334E25B0
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Naar &rechts kopiëren\tAlt+Right"
+msgstr "Naar &rechts kopiÃ«ren\tAlt+Right"
 
 #: Merge.rc:69AD3BF7
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Naar &links kopiëren\tAlt+left"
+msgstr "Naar &links kopiÃ«ren\tAlt+left"
 
 #: Merge.rc:4DE14274
 #, c-format
@@ -715,7 +715,7 @@ msgstr "&Knippen\tCtrl+X"
 #: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
-msgstr "Ko&piëren\tCtrl+C"
+msgstr "Ko&piÃ«ren\tCtrl+C"
 
 #: Merge.rc:5A9A713C
 #, c-format
@@ -750,7 +750,7 @@ msgstr "Geavanceerd"
 #: Merge.rc:45A190D
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "Met regelnummers &kopiëren\tCtrl+Shift+C"
+msgstr "Met regelnummers &kopiÃ«ren\tCtrl+Shift+C"
 
 #: Merge.rc:68816EE3
 #, c-format
@@ -981,22 +981,22 @@ msgstr ""
 #: Merge.rc:28C70E7F
 #, c-format
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Naar rechts k&opiëren en verder gaan\tAlt+Ctrl+Right"
+msgstr "Naar rechts k&opiÃ«ren en verder gaan\tAlt+Ctrl+Right"
 
 #: Merge.rc:4A3B5872
 #, c-format
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Naar links ko&piëren en verder gaan\tAlt+Ctrl+Left"
+msgstr "Naar links ko&piÃ«ren en verder gaan\tAlt+Ctrl+Left"
 
 #: Merge.rc:1AC98D09
 #, c-format
 msgid "Copy &All to Right"
-msgstr "Alles naar rechts kopiëren"
+msgstr "Alles naar rechts kopiÃ«ren"
 
 #: Merge.rc:D404EDD
 #, c-format
 msgid "Cop&y All to Left"
-msgstr "Alles naar links kopiëren"
+msgstr "Alles naar links kopiÃ«ren"
 
 #: Merge.rc:4BC6A157
 #, c-format
@@ -1171,7 +1171,7 @@ msgstr "Rechts o&penen"
 #: Merge.rc:6FC398B8
 #, c-format
 msgid "Cop&y Pathnames"
-msgstr "Padnamen ko&piëren"
+msgstr "Padnamen ko&piÃ«ren"
 
 #: Merge.rc:71676C46
 #, c-format
@@ -1201,7 +1201,7 @@ msgstr ""
 #: Merge.rc:6FC398B9
 #, c-format
 msgid "Copy &Filenames"
-msgstr "&Bestandsnamen kopiëren"
+msgstr "&Bestandsnamen kopiÃ«ren"
 
 #: Merge.rc:4BFA4345
 #, c-format
@@ -1256,12 +1256,12 @@ msgstr ""
 #: Merge.rc:78B3B625
 #, c-format
 msgid "&Copy Full Path"
-msgstr "&Volledig pad kopiëren"
+msgstr "&Volledig pad kopiÃ«ren"
 
 #: Merge.rc:1C6125F5
 #, c-format
 msgid "Copy &Filename"
-msgstr "&Bestandsnaam kopiëren"
+msgstr "&Bestandsnaam kopiÃ«ren"
 
 #: Merge.rc:27A06B44
 #, c-format
@@ -1561,7 +1561,7 @@ msgstr "Paden automatisch controleren in het venster Openen"
 #: Merge.rc:631E0F7B
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "Slechts één draaiende toepassing toestaan"
+msgstr "Slechts Ã©Ã©n draaiende toepassing toestaan"
 
 #: Merge.rc:672CD0E2
 #, c-format
@@ -1750,7 +1750,7 @@ msgstr "Regelfilters inschakelen"
 #: Merge.rc:5E8200FF
 #, c-format
 msgid "Regular Expressions (one per line):"
-msgstr "Reguliere expressies (één per regel):"
+msgstr "Reguliere expressies (Ã©Ã©n per regel):"
 
 #: Merge.rc:3ECBF05
 #, c-format
@@ -2286,7 +2286,7 @@ msgstr "Opties"
 #: Merge.rc:D32E2F1
 #, c-format
 msgid " Categories"
-msgstr " Categorieën"
+msgstr " CategorieÃ«n"
 
 #: Merge.rc:26188978
 #, c-format
@@ -2406,7 +2406,7 @@ msgstr ""
 #: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr "Naar klembord kopiëren"
+msgstr "Naar klembord kopiÃ«ren"
 
 #: Merge.rc:43600E90
 #, c-format
@@ -2711,12 +2711,12 @@ msgstr "Voeg tijdstem&pel toe"
 #: Merge.rc:CAEDA36
 #, c-format
 msgid "Confirm Copy"
-msgstr "Kopiëren bevestigen"
+msgstr "KopiÃ«ren bevestigen"
 
 #: Merge.rc:36D268E9
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr "Bent u zeker dat u XXX items wilt kopiëren?"
+msgstr "Bent u zeker dat u XXX items wilt kopiÃ«ren?"
 
 #: Merge.rc:30CDE281
 #, c-format
@@ -3249,7 +3249,7 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"Kan filtersjabloonbestand niet kopiëren naar filtermap:\n"
+"Kan filtersjabloonbestand niet kopiÃ«ren naar filtermap:\n"
 "%1\n"
 "\n"
 "Ga na of de map bestaat en schrijfbaar is."
@@ -3292,7 +3292,7 @@ msgid ""
 msgstr ""
 "Installeren filterbestand mislukt.\n"
 "\n"
-"Kon nieuwe filter niet kopiëren naar filtermap."
+"Kon nieuwe filter niet kopiÃ«ren naar filtermap."
 
 #: Merge.rc:5704C4AC
 #, c-format
@@ -3312,7 +3312,7 @@ msgid ""
 "If you do not want to refresh all compares now you can select No and refresh "
 "compares later."
 msgstr ""
-"Filters werden geüpdatet. Wilt u alle geopende mapvergelijkingen "
+"Filters werden geÃ¼pdatet. Wilt u alle geopende mapvergelijkingen "
 "vernieuwen?\n"
 "\n"
 "Indien u dit nu niet wilt doen, kan u Nee selecteren en de vergelijkingen "
@@ -3391,7 +3391,7 @@ msgstr "%1 verschillen gevonden"
 #: Merge.rc:6B78A819
 #, c-format
 msgid "1 Difference Found"
-msgstr "Eén verschil gevonden"
+msgstr "EÃ©n verschil gevonden"
 
 #. Abbreviation from "Read Only"
 #: Merge.rc:13E12
@@ -3629,7 +3629,7 @@ msgid ""
 "Do you want to reload the file?"
 msgstr ""
 "Een andere toepassing heeft bestand\n"
-"%1 geüpdated\n"
+"%1 geÃ¼pdated\n"
 "sinds WinMerge het de laatste keer scande.\n"
 "\n"
 "Wilt u het bestand opnieuw laden?"
@@ -3890,12 +3890,12 @@ msgstr ""
 #: Merge.rc:2019BE6D
 #, c-format
 msgid "Are you sure you want to copy:"
-msgstr "Bent u zeker dat u het volgende wilt kopiëren:"
+msgstr "Bent u zeker dat u het volgende wilt kopiÃ«ren:"
 
 #: Merge.rc:2B0F0BA3
 #, c-format
 msgid "Are you sure you want to copy %d items:"
-msgstr "Bent u zeker dat u %d items wilt kopiëren:"
+msgstr "Bent u zeker dat u %d items wilt kopiÃ«ren:"
 
 #: Merge.rc:59B96CF
 #, c-format
@@ -4549,7 +4549,7 @@ msgstr ""
 "Verschillende codetabellen gevonden in linker (cp%d) en rechter (cp%d) "
 "bestanden. \n"
 "Elk bestand in zijn eigen codetabel weergeven zal resulteren in een betere "
-"weergave, maar samenvoegen/kopiëren zal gevaarlijk zijn.\n"
+"weergave, maar samenvoegen/kopiÃ«ren zal gevaarlijk zijn.\n"
 "Wilt u beide bestanden behandelen alsof ze in de standaard Windows-codetabel "
 "zijn (aangeraden)?"
 
@@ -4742,12 +4742,12 @@ msgstr "Selecteer te importeren bestand"
 #: Merge.rc:447FB30
 #, c-format
 msgid "Options imported from the file."
-msgstr "Opties geïmporteerd van bestand"
+msgstr "Opties geÃ¯mporteerd van bestand"
 
 #: Merge.rc:44776ACF
 #, c-format
 msgid "Options exported to the file."
-msgstr "Opties geëxporteerd naar bestand."
+msgstr "Opties geÃ«xporteerd naar bestand."
 
 #: Merge.rc:7D23E524
 #, c-format

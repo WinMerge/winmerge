@@ -1,4 +1,4 @@
-# This file is part from WinMerge <http://winmerge.org/>
+п»ї# This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -18,10 +18,10 @@ msgstr ""
 "Last-Translator: Valerij Romanovskij <valerik-roma at mail.ru>\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1251\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Russian\n"
-"X-Poedit-SourceCharset: CP1251\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 
@@ -35,17 +35,17 @@ msgstr "LANG_RUSSIAN, SUBLANG_DEFAULT"
 #: Merge.rc:2C983F1
 #, c-format
 msgid "1252"
-msgstr "1251"
+msgstr "65001"
 
 #: Merge.rc:1C6125F3
 #, c-format
 msgid "C&opy to Right"
-msgstr "Скопировать на &правую панель"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РЅР° &РїСЂР°РІСѓСЋ РїР°РЅРµР»СЊ"
 
 #: Merge.rc:92C6C92
 #, c-format
 msgid "Cop&y to Left"
-msgstr "Скопировать на &левую панель"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РЅР° &Р»РµРІСѓСЋ РїР°РЅРµР»СЊ"
 
 #: Merge.rc:6FC398B6
 #, c-format
@@ -60,47 +60,47 @@ msgstr ""
 #: Merge.rc:381D79E4
 #, c-format
 msgid "&Select Line Difference"
-msgstr "&Выбрать отличие"
+msgstr "&Р’С‹Р±СЂР°С‚СЊ РѕС‚Р»РёС‡РёРµ"
 
 #: Merge.rc:43017E40
 #, c-format
 msgid "&Undo"
-msgstr "&Отмена"
+msgstr "&РћС‚РјРµРЅР°"
 
 #: Merge.rc:43017E41
 #, c-format
 msgid "&Redo"
-msgstr "В&ернуть"
+msgstr "Р’&РµСЂРЅСѓС‚СЊ"
 
 #: Merge.rc:3CF9F83
 #, c-format
 msgid "Cu&t"
-msgstr "Вы&резать"
+msgstr "Р’С‹&СЂРµР·Р°С‚СЊ"
 
 #: Merge.rc:43017E42
 #, c-format
 msgid "&Copy"
-msgstr "&Копировать"
+msgstr "&РљРѕРїРёСЂРѕРІР°С‚СЊ"
 
 #: Merge.rc:1D2E49F6
 #, c-format
 msgid "&Paste"
-msgstr "&Вставить"
+msgstr "&Р’СЃС‚Р°РІРёС‚СЊ"
 
 #: Merge.rc:AC3AA11
 #, c-format
 msgid "&Goto..."
-msgstr "Перейти к строке..."
+msgstr "РџРµСЂРµР№С‚Рё Рє СЃС‚СЂРѕРєРµ..."
 
 #: Merge.rc:B4D35A1
 #, c-format
 msgid "Op&en"
-msgstr "От&крыть"
+msgstr "РћС‚&РєСЂС‹С‚СЊ"
 
 #: Merge.rc:37625055
 #, c-format
 msgid "with &Registered Application"
-msgstr "зарегистрированным приложением"
+msgstr "Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹Рј РїСЂРёР»РѕР¶РµРЅРёРµРј"
 
 #: Merge.rc:321D741E
 #, c-format
@@ -110,7 +110,7 @@ msgstr ""
 #: Merge.rc:AC3AA12
 #, c-format
 msgid "&with..."
-msgstr "с помощью..."
+msgstr "СЃ РїРѕРјРѕС‰СЊСЋ..."
 
 #: Merge.rc:1A8FADD3
 #, c-format
@@ -145,7 +145,7 @@ msgstr ""
 #: Merge.rc:43017E43
 #, c-format
 msgid "&Zoom"
-msgstr "&Масштаб"
+msgstr "&РњР°СЃС€С‚Р°Р±"
 
 #: Merge.rc:AC3AA13
 #, c-format
@@ -155,7 +155,7 @@ msgstr ""
 #: Merge.rc:43017E44
 #, c-format
 msgid "&None"
-msgstr "&Нет"
+msgstr "&РќРµС‚"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -175,7 +175,7 @@ msgstr ""
 #: Merge.rc:43017E45
 #, c-format
 msgid "&Move"
-msgstr "&Переместить"
+msgstr "&РџРµСЂРµРјРµСЃС‚РёС‚СЊ"
 
 #: Merge.rc:5A9A713A
 #, c-format
@@ -190,12 +190,12 @@ msgstr ""
 #: Merge.rc:43017E46
 #, c-format
 msgid "&File"
-msgstr "&Файл"
+msgstr "&Р¤Р°Р№Р»"
 
 #: Merge.rc:4DE14273
 #, c-format
 msgid "&New\tCtrl+N"
-msgstr "Новый\tCtrl+N"
+msgstr "РќРѕРІС‹Р№\tCtrl+N"
 
 #: Merge.rc:2C8061AC
 #, c-format
@@ -205,27 +205,27 @@ msgstr ""
 #: Merge.rc:1DC30E61
 #, c-format
 msgid "&Open...\tCtrl+O"
-msgstr "&Открыть...\tCtrl+O"
+msgstr "&РћС‚РєСЂС‹С‚СЊ...\tCtrl+O"
 
 #: Merge.rc:6829F68F
 #, c-format
 msgid "Op&en Conflict File..."
-msgstr "Открыть файл с конфликтами..."
+msgstr "РћС‚РєСЂС‹С‚СЊ С„Р°Р№Р» СЃ РєРѕРЅС„Р»РёРєС‚Р°РјРё..."
 
 #: Merge.rc:5869BBD
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "Открыть проект...\tCtrl+J"
+msgstr "РћС‚РєСЂС‹С‚СЊ РїСЂРѕРµРєС‚...\tCtrl+J"
 
 #: Merge.rc:1BF42625
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "Сохранить проект..."
+msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ РїСЂРѕРµРєС‚..."
 
 #: Merge.rc:47D4A3FA
 #, c-format
 msgid "Recent Projects"
-msgstr "Недавние проекты"
+msgstr "РќРµРґР°РІРЅРёРµ РїСЂРѕРµРєС‚С‹"
 
 #: Merge.rc:73E9B1DA
 #, c-format
@@ -235,42 +235,42 @@ msgstr ""
 #: Merge.rc:29D50B4A
 #, c-format
 msgid "< Empty >"
-msgstr "< Нет >"
+msgstr "< РќРµС‚ >"
 
 #: Merge.rc:79AB21E0
 #, c-format
 msgid "E&xit"
-msgstr "В&ыход"
+msgstr "Р’&С‹С…РѕРґ"
 
 #: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
-msgstr "&Правка"
+msgstr "&РџСЂР°РІРєР°"
 
 #: Merge.rc:27AC6D7E
 #, c-format
 msgid "&Options..."
-msgstr "&Настройки..."
+msgstr "&РќР°СЃС‚СЂРѕР№РєРё..."
 
 #: Merge.rc:43017E48
 #, c-format
 msgid "&View"
-msgstr "&Вид"
+msgstr "&Р’РёРґ"
 
 #: Merge.rc:AC3AA14
 #, c-format
 msgid "&Toolbar"
-msgstr "Па&нель инструментов"
+msgstr "РџР°&РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ"
 
 #: Merge.rc:1D2E49F7
 #, c-format
 msgid "&Small"
-msgstr "&Маленькие значки"
+msgstr "&РњР°Р»РµРЅСЊРєРёРµ Р·РЅР°С‡РєРё"
 
 #: Merge.rc:22956A6
 #, c-format
 msgid "&Big"
-msgstr "&Большие значки"
+msgstr "&Р‘РѕР»СЊС€РёРµ Р·РЅР°С‡РєРё"
 
 #: Merge.rc:43017E49
 #, c-format
@@ -280,32 +280,32 @@ msgstr ""
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
-msgstr "&Строка состояния"
+msgstr "&РЎС‚СЂРѕРєР° СЃРѕСЃС‚РѕСЏРЅРёСЏ"
 
 #: Merge.rc:2C015CFD
 #, c-format
 msgid "Ta&b Bar"
-msgstr "Панель табов"
+msgstr "РџР°РЅРµР»СЊ С‚Р°Р±РѕРІ"
 
 #: Merge.rc:1D2E49F8
 #, c-format
 msgid "&Tools"
-msgstr "&Инструменты"
+msgstr "&РРЅСЃС‚СЂСѓРјРµРЅС‚С‹"
 
 #: Merge.rc:27AC6D80
 #, c-format
 msgid "&Filters..."
-msgstr "&Фильтры..."
+msgstr "&Р¤РёР»СЊС‚СЂС‹..."
 
 #: Merge.rc:3938FFC0
 #, c-format
 msgid "&Generate Patch..."
-msgstr "&Создать патч..."
+msgstr "&РЎРѕР·РґР°С‚СЊ РїР°С‚С‡..."
 
 #: Merge.rc:AC3AA15
 #, c-format
 msgid "&Plugins"
-msgstr "&Дополнения"
+msgstr "&Р”РѕРїРѕР»РЅРµРЅРёСЏ"
 
 #: Merge.rc:4C6CFD95
 #, c-format
@@ -325,12 +325,12 @@ msgstr ""
 #: Merge.rc:1A9EBDEC
 #, c-format
 msgid "&Manual Unpacking"
-msgstr "Распаковка вручную"
+msgstr "Р Р°СЃРїР°РєРѕРІРєР° РІСЂСѓС‡РЅСѓСЋ"
 
 #: Merge.rc:4EF8162D
 #, c-format
 msgid "&Automatic Unpacking"
-msgstr "Распаковка автоматически"
+msgstr "Р Р°СЃРїР°РєРѕРІРєР° Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё"
 
 #: Merge.rc:714B45FD
 #, c-format
@@ -340,52 +340,52 @@ msgstr ""
 #: Merge.rc:78B3B622
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Перегрузить все дополнения"
+msgstr "&РџРµСЂРµРіСЂСѓР·РёС‚СЊ РІСЃРµ РґРѕРїРѕР»РЅРµРЅРёСЏ"
 
 #: Merge.rc:89AF4F7
 #, c-format
 msgid "&Window"
-msgstr "&Окно"
+msgstr "&РћРєРЅРѕ"
 
 #: Merge.rc:4E65D33F
 #, c-format
 msgid "Cl&ose"
-msgstr "Закрыть"
+msgstr "Р—Р°РєСЂС‹С‚СЊ"
 
 #: Merge.rc:34E43607
 #, c-format
 msgid "Clo&se All"
-msgstr "Закрыть все"
+msgstr "Р—Р°РєСЂС‹С‚СЊ РІСЃРµ"
 
 #: Merge.rc:8AF7E69
 #, c-format
 msgid "Change &Pane\tF6"
-msgstr "Переключить &Окно\tF6"
+msgstr "РџРµСЂРµРєР»СЋС‡РёС‚СЊ &РћРєРЅРѕ\tF6"
 
 #: Merge.rc:5CCED707
 #, c-format
 msgid "Tile &Horizontally"
-msgstr "Разместить &Горизонтально"
+msgstr "Р Р°Р·РјРµСЃС‚РёС‚СЊ &Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕ"
 
 #: Merge.rc:52870A1
 #, c-format
 msgid "Tile &Vertically"
-msgstr "Разместить &Вертикально"
+msgstr "Р Р°Р·РјРµСЃС‚РёС‚СЊ &Р’РµСЂС‚РёРєР°Р»СЊРЅРѕ"
 
 #: Merge.rc:AC3AA16
 #, c-format
 msgid "&Cascade"
-msgstr "&Каскад"
+msgstr "&РљР°СЃРєР°Рґ"
 
 #: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
-msgstr "&Помощь"
+msgstr "&РџРѕРјРѕС‰СЊ"
 
 #: Merge.rc:3938FFC1
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr "Справка &WinMerge\tF1"
+msgstr "РЎРїСЂР°РІРєР° &WinMerge\tF1"
 
 #: Merge.rc:3938FFC2
 #, c-format
@@ -395,7 +395,7 @@ msgstr ""
 #: Merge.rc:1C6125F4
 #, c-format
 msgid "C&onfiguration"
-msgstr "&Конфигурация"
+msgstr "&РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ"
 
 #: Merge.rc:175DEEEB
 #, c-format
@@ -405,7 +405,7 @@ msgstr "&GNU General Public License"
 #: Merge.rc:3938FFC3
 #, c-format
 msgid "&About WinMerge..."
-msgstr "&О программе WinMerge..."
+msgstr "&Рћ РїСЂРѕРіСЂР°РјРјРµ WinMerge..."
 
 #: Merge.rc:68816EE2
 #, c-format
@@ -415,7 +415,7 @@ msgstr ""
 #: Merge.rc:71676C45
 #, c-format
 msgid "L&eft Read-only"
-msgstr "Файл с&лева только для чтения"
+msgstr "Р¤Р°Р№Р» СЃ&Р»РµРІР° С‚РѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ"
 
 #: Merge.rc:729280D8
 #, c-format
@@ -425,7 +425,7 @@ msgstr ""
 #: Merge.rc:32BFDBA9
 #, c-format
 msgid "Ri&ght Read-only"
-msgstr "Файл с&права только для чтения"
+msgstr "Р¤Р°Р№Р» СЃ&РїСЂР°РІР° С‚РѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ"
 
 #: Merge.rc:453F5DDB
 #, c-format
@@ -435,22 +435,22 @@ msgstr ""
 #: Merge.rc:E44718
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "В&ыбрать Все\tCtrl+A"
+msgstr "Р’&С‹Р±СЂР°С‚СЊ Р’СЃРµ\tCtrl+A"
 
 #: Merge.rc:58EEEB7E
 #, c-format
 msgid "Show &Identical Items"
-msgstr "Одинаковые"
+msgstr "РћРґРёРЅР°РєРѕРІС‹Рµ"
 
 #: Merge.rc:58EEEB7F
 #, c-format
 msgid "Show &Different Items"
-msgstr "Различные"
+msgstr "Р Р°Р·Р»РёС‡РЅС‹Рµ"
 
 #: Merge.rc:58E210F9
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "Уникальные слева"
+msgstr "РЈРЅРёРєР°Р»СЊРЅС‹Рµ СЃР»РµРІР°"
 
 #: Merge.rc:28A1C3B4
 #, c-format
@@ -460,17 +460,17 @@ msgstr ""
 #: Merge.rc:43600E8F
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "Уникальные справа"
+msgstr "РЈРЅРёРєР°Р»СЊРЅС‹Рµ СЃРїСЂР°РІР°"
 
 #: Merge.rc:E44719
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "Пропущенные"
+msgstr "РџСЂРѕРїСѓС‰РµРЅРЅС‹Рµ"
 
 #: Merge.rc:6F833C16
 #, c-format
 msgid "S&how Binary Files"
-msgstr "Бинарные файлы"
+msgstr "Р‘РёРЅР°СЂРЅС‹Рµ С„Р°Р№Р»С‹"
 
 #: Merge.rc:5A9A713B
 #, c-format
@@ -495,117 +495,117 @@ msgstr ""
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "Скрытые"
+msgstr "РЎРєСЂС‹С‚С‹Рµ"
 
 #: Merge.rc:311E1D87
 #, c-format
 msgid "Tree &Mode"
-msgstr "Режим &дерева"
+msgstr "Р РµР¶РёРј &РґРµСЂРµРІР°"
 
 #: Merge.rc:3E934D
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr "Р&азвернуть все подпапки"
+msgstr "Р &Р°Р·РІРµСЂРЅСѓС‚СЊ РІСЃРµ РїРѕРґРїР°РїРєРё"
 
 #: Merge.rc:4B91C2CF
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr "С&вернуть все подпапки"
+msgstr "РЎ&РІРµСЂРЅСѓС‚СЊ РІСЃРµ РїРѕРґРїР°РїРєРё"
 
 #: Merge.rc:E6D7EE
 #, c-format
 msgid "Select &Font..."
-msgstr "Выбрать &Шрифт..."
+msgstr "Р’С‹Р±СЂР°С‚СЊ &РЁСЂРёС„С‚..."
 
 #: Merge.rc:5D3AA8D3
 #, c-format
 msgid "Use Default F&ont"
-msgstr "Использовать шрифт по &умолчанию"
+msgstr "РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С€СЂРёС„С‚ РїРѕ &СѓРјРѕР»С‡Р°РЅРёСЋ"
 
 #: Merge.rc:2E3BFCA1
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "Поменять панели местами"
+msgstr "РџРѕРјРµРЅСЏС‚СЊ РїР°РЅРµР»Рё РјРµСЃС‚Р°РјРё"
 
 #: Merge.rc:3E681460
 #, c-format
 msgid "Compa&re Statistics"
-msgstr "Сравнить статистики"
+msgstr "РЎСЂР°РІРЅРёС‚СЊ СЃС‚Р°С‚РёСЃС‚РёРєРё"
 
 #: Merge.rc:507A4C02
 #, c-format
 msgid "Refre&sh\tF5"
-msgstr "&Обновить\tF5"
+msgstr "&РћР±РЅРѕРІРёС‚СЊ\tF5"
 
 #: Merge.rc:2E2C5206
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Обновить &выделенные\tCtrl+F5"
+msgstr "РћР±РЅРѕРІРёС‚СЊ &РІС‹РґРµР»РµРЅРЅС‹Рµ\tCtrl+F5"
 
 #: Merge.rc:1D2E49F9
 #, c-format
 msgid "&Merge"
-msgstr "&Объединение"
+msgstr "&РћР±СЉРµРґРёРЅРµРЅРёРµ"
 
 #: Merge.rc:6FC398B7
 #, c-format
 msgid "Co&mpare\tEnter"
-msgstr "Сравнить\tEnter"
+msgstr "РЎСЂР°РІРЅРёС‚СЊ\tEnter"
 
 #: Merge.rc:2E2C5207
 #, c-format
 msgid "&Next Difference\tAlt+Down"
-msgstr "&Следующее отличие\tAlt+Down"
+msgstr "&РЎР»РµРґСѓСЋС‰РµРµ РѕС‚Р»РёС‡РёРµ\tAlt+Down"
 
 #: Merge.rc:545FEEA0
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
-msgstr "П&редыдущее отличие\tAlt+Up"
+msgstr "Рџ&СЂРµРґС‹РґСѓС‰РµРµ РѕС‚Р»РёС‡РёРµ\tAlt+Up"
 
 #: Merge.rc:175DEEEC
 #, c-format
 msgid "&First Difference\tAlt+Home"
-msgstr "Пер&вое отличие\tAlt+Home"
+msgstr "РџРµСЂ&РІРѕРµ РѕС‚Р»РёС‡РёРµ\tAlt+Home"
 
 #: Merge.rc:3C1ECDD9
 #, c-format
 msgid "&Current Difference\tAlt+Enter"
-msgstr "&Текущее отличие\tAlt+Enter"
+msgstr "&РўРµРєСѓС‰РµРµ РѕС‚Р»РёС‡РёРµ\tAlt+Enter"
 
 #: Merge.rc:26A69749
 #, c-format
 msgid "&Last Difference\tAlt+End"
-msgstr "Посл&еднее отличие\tAlt+End"
+msgstr "РџРѕСЃР»&РµРґРЅРµРµ РѕС‚Р»РёС‡РёРµ\tAlt+End"
 
 #: Merge.rc:334E25B0
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Скопировать на &правую панель\tAlt+Right"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РЅР° &РїСЂР°РІСѓСЋ РїР°РЅРµР»СЊ\tAlt+Right"
 
 #: Merge.rc:69AD3BF7
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Скопировать на &левую панель\tAlt+Left"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РЅР° &Р»РµРІСѓСЋ РїР°РЅРµР»СЊ\tAlt+Left"
 
 #: Merge.rc:4DE14274
 #, c-format
 msgid "&Delete\tDel"
-msgstr "&Удалить\tDel"
+msgstr "&РЈРґР°Р»РёС‚СЊ\tDel"
 
 #: Merge.rc:100AAFAD
 #, c-format
 msgid "&Customize Columns..."
-msgstr "&Настроить колонки..."
+msgstr "&РќР°СЃС‚СЂРѕРёС‚СЊ РєРѕР»РѕРЅРєРё..."
 
 #: Merge.rc:2F07210E
 #, c-format
 msgid "Generate &Report..."
-msgstr "Создать &отчет..."
+msgstr "РЎРѕР·РґР°С‚СЊ &РѕС‚С‡РµС‚..."
 
 #: Merge.rc:6E470BE7
 #, c-format
 msgid "&Save\tCtrl+S"
-msgstr "&Сохранить\tCtrl+S"
+msgstr "&РЎРѕС…СЂР°РЅРёС‚СЊ\tCtrl+S"
 
 #: Merge.rc:125AD721
 #, c-format
@@ -615,7 +615,7 @@ msgstr ""
 #: Merge.rc:751AB58E
 #, c-format
 msgid "Save &Left"
-msgstr "Сохранить файл с&лева"
+msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ С„Р°Р№Р» СЃ&Р»РµРІР°"
 
 #: Merge.rc:194397DD
 #, c-format
@@ -625,7 +625,7 @@ msgstr ""
 #: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Save &Right"
-msgstr "Сохранить файл с&права"
+msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ С„Р°Р№Р» СЃ&РїСЂР°РІР°"
 
 #: Merge.rc:79321BE1
 #, c-format
@@ -650,27 +650,27 @@ msgstr ""
 #: Merge.rc:4DB19837
 #, c-format
 msgid "&Print..."
-msgstr "&Печать..."
+msgstr "&РџРµС‡Р°С‚СЊ..."
 
 #: Merge.rc:60FF375A
 #, c-format
 msgid "Page Se&tup"
-msgstr "Параметры страницы..."
+msgstr "РџР°СЂР°РјРµС‚СЂС‹ СЃС‚СЂР°РЅРёС†С‹..."
 
 #: Merge.rc:23CBE0E5
 #, c-format
 msgid "Print Previe&w"
-msgstr "Предварительный просмотр"
+msgstr "РџСЂРµРґРІР°СЂРёС‚РµР»СЊРЅС‹Р№ РїСЂРѕСЃРјРѕС‚СЂ"
 
 #: Merge.rc:4B91C2D0
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "&Заменить переносы строк на"
+msgstr "&Р—Р°РјРµРЅРёС‚СЊ РїРµСЂРµРЅРѕСЃС‹ СЃС‚СЂРѕРє РЅР°"
 
 #: Merge.rc:78B3B623
 #, c-format
 msgid "&Merge Mode\tF9"
-msgstr "Режим слияния\tF9"
+msgstr "Р РµР¶РёРј СЃР»РёСЏРЅРёСЏ\tF9"
 
 #: Merge.rc:32BFDBAA
 #, c-format
@@ -680,7 +680,7 @@ msgstr ""
 #: Merge.rc:1A9EBDED
 #, c-format
 msgid "&File Encoding..."
-msgstr "Кодирование файла..."
+msgstr "РљРѕРґРёСЂРѕРІР°РЅРёРµ С„Р°Р№Р»Р°..."
 
 #: Merge.rc:507A4C03
 #, c-format
@@ -700,42 +700,42 @@ msgstr ""
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Undo\tCtrl+Z"
-msgstr "&Отмена\tCtrl+Z"
+msgstr "&РћС‚РјРµРЅР°\tCtrl+Z"
 
 #: Merge.rc:6E470BE9
 #, c-format
 msgid "&Redo\tCtrl+Y"
-msgstr "В&ернуть\tCtrl+Y"
+msgstr "Р’&РµСЂРЅСѓС‚СЊ\tCtrl+Y"
 
 #: Merge.rc:CAEDA34
 #, c-format
 msgid "Cu&t\tCtrl+X"
-msgstr "Вы&резать\tCtrl+X"
+msgstr "Р’С‹&СЂРµР·Р°С‚СЊ\tCtrl+X"
 
 #: Merge.rc:6E470BEA
 #, c-format
 msgid "&Copy\tCtrl+C"
-msgstr "&Копировать\tCtrl+C"
+msgstr "&РљРѕРїРёСЂРѕРІР°С‚СЊ\tCtrl+C"
 
 #: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
-msgstr "&Вставить\tCtrl+V"
+msgstr "&Р’СЃС‚Р°РІРёС‚СЊ\tCtrl+V"
 
 #: Merge.rc:73FB245
 #, c-format
 msgid "Select Line &Difference\tF4"
-msgstr "Выбрать отличие\tF4"
+msgstr "Р’С‹Р±СЂР°С‚СЊ РѕС‚Р»РёС‡РёРµ\tF4"
 
 #: Merge.rc:444C5DDB
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "&Найти...\tCtrl+F"
+msgstr "&РќР°Р№С‚Рё...\tCtrl+F"
 
 #: Merge.rc:44BC83EC
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
-msgstr "&Заменить...\tCtrl+H"
+msgstr "&Р—Р°РјРµРЅРёС‚СЊ...\tCtrl+H"
 
 #: Merge.rc:4B91C2D1
 #, c-format
@@ -745,63 +745,63 @@ msgstr ""
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
-msgstr "&Дополнительно"
+msgstr "&Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕ"
 
 #: Merge.rc:45A190D
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "&Копировать с нумерацией строк\tCtrl+Shift+C"
+msgstr "&РљРѕРїРёСЂРѕРІР°С‚СЊ СЃ РЅСѓРјРµСЂР°С†РёРµР№ СЃС‚СЂРѕРє\tCtrl+Shift+C"
 
 #: Merge.rc:68816EE3
 #, c-format
 msgid "&Bookmarks"
-msgstr "&Закладки"
+msgstr "&Р—Р°РєР»Р°РґРєРё"
 
 #: Merge.rc:26A6974A
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "&Закладка\tCtrl+F2"
+msgstr "&Р—Р°РєР»Р°РґРєР°\tCtrl+F2"
 
 #: Merge.rc:3938FFC4
 #, c-format
 msgid "&Next Bookmark\tF2"
-msgstr "&Следующая закладка\tF2"
+msgstr "&РЎР»РµРґСѓСЋС‰Р°СЏ Р·Р°РєР»Р°РґРєР°\tF2"
 
 #: Merge.rc:545FEEA1
 #, c-format
 msgid "&Previous bookmark\tShift+F2"
-msgstr "&Предыдущая закладка\tShift+F2"
+msgstr "&РџСЂРµРґС‹РґСѓС‰Р°СЏ Р·Р°РєР»Р°РґРєР°\tShift+F2"
 
 #: Merge.rc:4EF8162E
 #, c-format
 msgid "&Clear All Bookmarks"
-msgstr "&Удалить все закладки"
+msgstr "&РЈРґР°Р»РёС‚СЊ РІСЃРµ Р·Р°РєР»Р°РґРєРё"
 
 #: Merge.rc:1A9EBDEE
 #, c-format
 msgid "&Go To...\tCtrl+G"
-msgstr "Перейти к строке...\tCtrl+G"
+msgstr "РџРµСЂРµР№С‚Рё Рє СЃС‚СЂРѕРєРµ...\tCtrl+G"
 
 #: Merge.rc:7C622F87
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr "Приблизить\tCtrl++"
+msgstr "РџСЂРёР±Р»РёР·РёС‚СЊ\tCtrl++"
 
 #: Merge.rc:FE3C1D1
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Отдалить\tCtrl+-"
+msgstr "РћС‚РґР°Р»РёС‚СЊ\tCtrl+-"
 
 #. Zoom to normal
 #: Merge.rc:78B3B624
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr "Обычный\tCtrl+*"
+msgstr "РћР±С‹С‡РЅС‹Р№\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format
 msgid "Syntax Highlight"
-msgstr "Подсветка синтаксиса"
+msgstr "РџРѕРґСЃРІРµС‚РєР° СЃРёРЅС‚Р°РєСЃРёСЃР°"
 
 #: Merge.rc:6E470BEB
 #, c-format
@@ -851,32 +851,32 @@ msgstr ""
 #: Merge.rc:27AC6D81
 #, c-format
 msgid "&Lock Panes"
-msgstr "Заблокировать панели"
+msgstr "Р—Р°Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ РїР°РЅРµР»Рё"
 
 #: Merge.rc:1DC30E62
 #, c-format
 msgid "&View Whitespace"
-msgstr "Показы&вать невидимые"
+msgstr "РџРѕРєР°Р·С‹&РІР°С‚СЊ РЅРµРІРёРґРёРјС‹Рµ"
 
 #: Merge.rc:4A81EF3E
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Показывать отличия в строках"
+msgstr "РџРѕРєР°Р·С‹РІР°С‚СЊ РѕС‚Р»РёС‡РёСЏ РІ СЃС‚СЂРѕРєР°С…"
 
 #: Merge.rc:37660CE9
 #, c-format
 msgid "View Line &Numbers"
-msgstr "Показывать номера строк"
+msgstr "РџРѕРєР°Р·С‹РІР°С‚СЊ РЅРѕРјРµСЂР° СЃС‚СЂРѕРє"
 
 #: Merge.rc:4FF286
 #, c-format
 msgid "View &Margins"
-msgstr "Показывать поля"
+msgstr "РџРѕРєР°Р·С‹РІР°С‚СЊ РїРѕР»СЏ"
 
 #: Merge.rc:3FE258FF
 #, c-format
 msgid "W&rap Lines"
-msgstr "Перенос по словам"
+msgstr "РџРµСЂРµРЅРѕСЃ РїРѕ СЃР»РѕРІР°Рј"
 
 #: Merge.rc:62909ED5
 #, c-format
@@ -886,12 +886,12 @@ msgstr ""
 #: Merge.rc:70E79DFF
 #, c-format
 msgid "Diff &Pane"
-msgstr "Пане&ль сравнения"
+msgstr "РџР°РЅРµ&Р»СЊ СЃСЂР°РІРЅРµРЅРёСЏ"
 
 #: Merge.rc:3534E273
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "Панель местоположений"
+msgstr "РџР°РЅРµР»СЊ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёР№"
 
 #: Merge.rc:59B87E1C
 #, c-format
@@ -981,22 +981,22 @@ msgstr ""
 #: Merge.rc:28C70E7F
 #, c-format
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Скопировать на правую панель и перейти к следующему\tAlt+Ctrl+Right"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РЅР° РїСЂР°РІСѓСЋ РїР°РЅРµР»СЊ Рё РїРµСЂРµР№С‚Рё Рє СЃР»РµРґСѓСЋС‰РµРјСѓ\tAlt+Ctrl+Right"
 
 #: Merge.rc:4A3B5872
 #, c-format
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Скопировать на левую панель и перейти к следующему\tAlt+Ctrl+Left"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РЅР° Р»РµРІСѓСЋ РїР°РЅРµР»СЊ Рё РїРµСЂРµР№С‚Рё Рє СЃР»РµРґСѓСЋС‰РµРјСѓ\tAlt+Ctrl+Left"
 
 #: Merge.rc:1AC98D09
 #, c-format
 msgid "Copy &All to Right"
-msgstr "Ск&опировать все на правую панель"
+msgstr "РЎРє&РѕРїРёСЂРѕРІР°С‚СЊ РІСЃРµ РЅР° РїСЂР°РІСѓСЋ РїР°РЅРµР»СЊ"
 
 #: Merge.rc:D404EDD
 #, c-format
 msgid "Cop&y All to Left"
-msgstr "Скоп&ировать все на левую панель"
+msgstr "РЎРєРѕРї&РёСЂРѕРІР°С‚СЊ РІСЃРµ РЅР° Р»РµРІСѓСЋ РїР°РЅРµР»СЊ"
 
 #: Merge.rc:4BC6A157
 #, c-format
@@ -1016,17 +1016,17 @@ msgstr ""
 #: Merge.rc:68816EE5
 #, c-format
 msgid "&Prediffer"
-msgstr "&Предсравнение"
+msgstr "&РџСЂРµРґСЃСЂР°РІРЅРµРЅРёРµ"
 
 #: Merge.rc:AC3AA1C
 #, c-format
 msgid "&Scripts"
-msgstr "&Скрипты"
+msgstr "&РЎРєСЂРёРїС‚С‹"
 
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
-msgstr "С&равнить"
+msgstr "РЎ&СЂР°РІРЅРёС‚СЊ"
 
 #: Merge.rc:334E25B1
 #, c-format
@@ -1066,12 +1066,12 @@ msgstr ""
 #: Merge.rc:1723859F
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "Слева направо (%1 из %2)"
+msgstr "РЎР»РµРІР° РЅР°РїСЂР°РІРѕ (%1 РёР· %2)"
 
 #: Merge.rc:20155F58
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "Слева на... (%1 из %2)"
+msgstr "РЎР»РµРІР° РЅР°... (%1 РёР· %2)"
 
 #: Merge.rc:6CA26872
 #, c-format
@@ -1096,22 +1096,22 @@ msgstr ""
 #: Merge.rc:73E9B1DB
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "Справа налево (%1 из %2)"
+msgstr "РЎРїСЂР°РІР° РЅР°Р»РµРІРѕ (%1 РёР· %2)"
 
 #: Merge.rc:6DBD6123
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "Справа на... (%1 из %2)"
+msgstr "РЎРїСЂР°РІР° РЅР°... (%1 РёР· %2)"
 
 #: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
-msgstr "Удалить"
+msgstr "РЈРґР°Р»РёС‚СЊ"
 
 #: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
-msgstr "Слева"
+msgstr "РЎР»РµРІР°"
 
 #: Merge.rc:89AF4FB
 #, c-format
@@ -1121,12 +1121,12 @@ msgstr ""
 #: Merge.rc:1D2E49FA
 #, c-format
 msgid "&Right"
-msgstr "Справа"
+msgstr "РЎРїСЂР°РІР°"
 
 #: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
-msgstr "Оба"
+msgstr "РћР±Р°"
 
 #: Merge.rc:22956A8
 #, c-format
@@ -1136,22 +1136,22 @@ msgstr ""
 #: Merge.rc:4876CD3D
 #, c-format
 msgid "Re&name"
-msgstr "&Переименовать"
+msgstr "&РџРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ"
 
 #: Merge.rc:27AC6D82
 #, c-format
 msgid "&Hide Items"
-msgstr "&Скрыть"
+msgstr "&РЎРєСЂС‹С‚СЊ"
 
 #: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
-msgstr "Открыть левый файл"
+msgstr "РћС‚РєСЂС‹С‚СЊ Р»РµРІС‹Р№ С„Р°Р№Р»"
 
 #: Merge.rc:46724E8D
 #, c-format
 msgid "with &External Editor"
-msgstr "внешним редактором"
+msgstr "РІРЅРµС€РЅРёРј СЂРµРґР°РєС‚РѕСЂРѕРј"
 
 #: Merge.rc:5A9A713D
 #, c-format
@@ -1166,17 +1166,17 @@ msgstr ""
 #: Merge.rc:1C95A043
 #, c-format
 msgid "O&pen Right"
-msgstr "Открыть правый файл"
+msgstr "РћС‚РєСЂС‹С‚СЊ РїСЂР°РІС‹Р№ С„Р°Р№Р»"
 
 #: Merge.rc:6FC398B8
 #, c-format
 msgid "Cop&y Pathnames"
-msgstr "Скопировать пути"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РїСѓС‚Рё"
 
 #: Merge.rc:71676C46
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "Слева (%1 из %2)"
+msgstr "РЎР»РµРІР° (%1 РёР· %2)"
 
 #: Merge.rc:729280D9
 #, c-format
@@ -1186,12 +1186,12 @@ msgstr ""
 #: Merge.rc:32BFDBAB
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "Справа (%1 из %2)"
+msgstr "РЎРїСЂР°РІР° (%1 РёР· %2)"
 
 #: Merge.rc:36B164C3
 #, c-format
 msgid "Both (%1 of %2)"
-msgstr "Вместе (%1 из %2)"
+msgstr "Р’РјРµСЃС‚Рµ (%1 РёР· %2)"
 
 #: Merge.rc:2515A6BA
 #, c-format
@@ -1201,7 +1201,7 @@ msgstr ""
 #: Merge.rc:6FC398B9
 #, c-format
 msgid "Copy &Filenames"
-msgstr "Скопировать &имена файлов"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ &РёРјРµРЅР° С„Р°Р№Р»РѕРІ"
 
 #: Merge.rc:4BFA4345
 #, c-format
@@ -1211,7 +1211,7 @@ msgstr ""
 #: Merge.rc:22956A9
 #, c-format
 msgid "&Zip"
-msgstr "&Заархивировать"
+msgstr "&Р—Р°Р°СЂС…РёРІРёСЂРѕРІР°С‚СЊ"
 
 #: Merge.rc:7370E045
 #, c-format
@@ -1231,12 +1231,12 @@ msgstr ""
 #: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
-msgstr "&Обновить"
+msgstr "&РћР±РЅРѕРІРёС‚СЊ"
 
 #: Merge.rc:71676C47
 #, c-format
 msgid "Left Shell menu"
-msgstr "Левое меню оболочки"
+msgstr "Р›РµРІРѕРµ РјРµРЅСЋ РѕР±РѕР»РѕС‡РєРё"
 
 #: Merge.rc:729280DA
 #, c-format
@@ -1246,7 +1246,7 @@ msgstr ""
 #: Merge.rc:32BFDBAC
 #, c-format
 msgid "Right Shell menu"
-msgstr "Правое меню оболочки"
+msgstr "РџСЂР°РІРѕРµ РјРµРЅСЋ РѕР±РѕР»РѕС‡РєРё"
 
 #: Merge.rc:3CF9F84
 #, c-format
@@ -1256,82 +1256,82 @@ msgstr ""
 #: Merge.rc:78B3B625
 #, c-format
 msgid "&Copy Full Path"
-msgstr "Скопировать полный путь"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РїРѕР»РЅС‹Р№ РїСѓС‚СЊ"
 
 #: Merge.rc:1C6125F5
 #, c-format
 msgid "Copy &Filename"
-msgstr "Скопировать имя файла"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РёРјСЏ С„Р°Р№Р»Р°"
 
 #: Merge.rc:27A06B44
 #, c-format
 msgid "Prediffer Settings"
-msgstr "Параметры предсравнения"
+msgstr "РџР°СЂР°РјРµС‚СЂС‹ РїСЂРµРґСЃСЂР°РІРЅРµРЅРёСЏ"
 
 #: Merge.rc:6E470BEC
 #, c-format
 msgid "&No prediffer"
-msgstr "&Нет предсравнения"
+msgstr "&РќРµС‚ РїСЂРµРґСЃСЂР°РІРЅРµРЅРёСЏ"
 
 #: Merge.rc:2515A6BB
 #, c-format
 msgid "Auto prediffer"
-msgstr "&Автопредсравнение"
+msgstr "&РђРІС‚РѕРїСЂРµРґСЃСЂР°РІРЅРµРЅРёРµ"
 
 #: Merge.rc:24F1D5E9
 #, c-format
 msgid "G&oto Diff"
-msgstr "Перейти к &отличию"
+msgstr "РџРµСЂРµР№С‚Рё Рє &РѕС‚Р»РёС‡РёСЋ"
 
 #: Merge.rc:1DC30E63
 #, c-format
 msgid "&No Moved Blocks"
-msgstr "&Без перемещенных блоков"
+msgstr "&Р‘РµР· РїРµСЂРµРјРµС‰РµРЅРЅС‹С… Р±Р»РѕРєРѕРІ"
 
 #: Merge.rc:1A9EBDEF
 #, c-format
 msgid "&All Moved Blocks"
-msgstr "&Все перемещенные блоки"
+msgstr "&Р’СЃРµ РїРµСЂРµРјРµС‰РµРЅРЅС‹Рµ Р±Р»РѕРєРё"
 
 #: Merge.rc:BA50068
 #, c-format
 msgid "Moved Block for &Current Diff"
-msgstr "Перемещ. блок для &данного отличия"
+msgstr "РџРµСЂРµРјРµС‰. Р±Р»РѕРє РґР»СЏ &РґР°РЅРЅРѕРіРѕ РѕС‚Р»РёС‡РёСЏ"
 
 #: Merge.rc:3C68C747
 #, c-format
 msgid "W&hitespaces"
-msgstr "Невидимые"
+msgstr "РќРµРІРёРґРёРјС‹Рµ"
 
 #: Merge.rc:4C3E0A2C
 #, c-format
 msgid "Com&pare"
-msgstr "Сравнить"
+msgstr "РЎСЂР°РІРЅРёС‚СЊ"
 
 #: Merge.rc:4630D06B
 #, c-format
 msgid "I&gnore changes"
-msgstr "Игнорировать изменения"
+msgstr "РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ РёР·РјРµРЅРµРЅРёСЏ"
 
 #: Merge.rc:21C15B6
 #, c-format
 msgid "Ig&nore all"
-msgstr "Игнорировать все"
+msgstr "РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ РІСЃРµ"
 
 #: Merge.rc:6FC398BA
 #, c-format
 msgid "Case sensi&tive"
-msgstr "Чувствительность регистра"
+msgstr "Р§СѓРІСЃС‚РІРёС‚РµР»СЊРЅРѕСЃС‚СЊ СЂРµРіРёСЃС‚СЂР°"
 
 #: Merge.rc:620FF1AC
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Игнорировать разницу в возвратах каретки (Win/Unix/Mac)"
+msgstr "РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ СЂР°Р·РЅРёС†Сѓ РІ РІРѕР·РІСЂР°С‚Р°С… РєР°СЂРµС‚РєРё (Win/Unix/Mac)"
 
 #: Merge.rc:6DE6F873
 #, c-format
 msgid "&Include Subfolders"
-msgstr "&Включая подпапки"
+msgstr "&Р’РєР»СЋС‡Р°СЏ РїРѕРґРїР°РїРєРё"
 
 #: Merge.rc:1DC30E64
 #, c-format
@@ -1341,12 +1341,12 @@ msgstr ""
 #: Merge.rc:7A4CFAFB
 #, c-format
 msgid "Full Contents"
-msgstr "Полный поиск по содержимому"
+msgstr "РџРѕР»РЅС‹Р№ РїРѕРёСЃРє РїРѕ СЃРѕРґРµСЂР¶РёРјРѕРјСѓ"
 
 #: Merge.rc:5F71A081
 #, c-format
 msgid "Quick Contents"
-msgstr "Быстрый поиск по содержимому"
+msgstr "Р‘С‹СЃС‚СЂС‹Р№ РїРѕРёСЃРє РїРѕ СЃРѕРґРµСЂР¶РёРјРѕРјСѓ"
 
 #: Merge.rc:36B164C4
 #, c-format
@@ -1356,47 +1356,47 @@ msgstr ""
 #: Merge.rc:2CEE4748
 #, c-format
 msgid "Modified Date"
-msgstr "По различиям в дате"
+msgstr "РџРѕ СЂР°Р·Р»РёС‡РёСЏРј РІ РґР°С‚Рµ"
 
 #: Merge.rc:39C7AF82
 #, c-format
 msgid "Modified Date and Size"
-msgstr "По дате изменения и размеру"
+msgstr "РџРѕ РґР°С‚Рµ РёР·РјРµРЅРµРЅРёСЏ Рё СЂР°Р·РјРµСЂСѓ"
 
 #: Merge.rc:4B89B93
 #, c-format
 msgid "Size"
-msgstr "По размеру"
+msgstr "РџРѕ СЂР°Р·РјРµСЂСѓ"
 
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
-msgstr "О программе WinMerge"
+msgstr "Рћ РїСЂРѕРіСЂР°РјРјРµ WinMerge"
 
 #: Merge.rc:6AD81E09
 #, c-format
 msgid "(Private Build)"
-msgstr "(Частный билд)"
+msgstr "(Р§Р°СЃС‚РЅС‹Р№ Р±РёР»Рґ)"
 
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
-msgstr "Посетите домашнюю страницу WinMerge !"
+msgstr "РџРѕСЃРµС‚РёС‚Рµ РґРѕРјР°С€РЅСЋСЋ СЃС‚СЂР°РЅРёС†Сѓ WinMerge !"
 
 #: Merge.rc:1326F
 #, c-format
 msgid "OK"
-msgstr "ОК"
+msgstr "РћРљ"
 
 #: Merge.rc:CAEDA35
 #, c-format
 msgid "Contributors"
-msgstr "Участники"
+msgstr "РЈС‡Р°СЃС‚РЅРёРєРё"
 
 #: Merge.rc:58E210FA
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Выберите файлы или папки..."
+msgstr "Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р»С‹ РёР»Рё РїР°РїРєРё..."
 
 #: Merge.rc:43017E4D
 #, c-format
@@ -1406,7 +1406,7 @@ msgstr ""
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
-msgstr "&Обзор..."
+msgstr "&РћР±Р·РѕСЂ..."
 
 #: Merge.rc:43017E4E
 #, c-format
@@ -1416,7 +1416,7 @@ msgstr ""
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
-msgstr "Обзор"
+msgstr "РћР±Р·РѕСЂ"
 
 #: Merge.rc:78B3B626
 #, c-format
@@ -1426,7 +1426,7 @@ msgstr ""
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Br&owse..."
-msgstr "Обзор..."
+msgstr "РћР±Р·РѕСЂ..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1436,42 +1436,42 @@ msgstr ""
 #: Merge.rc:2D1160AF
 #, c-format
 msgid "Select..."
-msgstr "Выбрать..."
+msgstr "Р’С‹Р±СЂР°С‚СЊ..."
 
 #: Merge.rc:68816EE8
 #, c-format
 msgid "&Unpacker:"
-msgstr "&Распаковщик:"
+msgstr "&Р Р°СЃРїР°РєРѕРІС‰РёРє:"
 
 #: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
-msgstr "Выбрать..."
+msgstr "Р’С‹Р±СЂР°С‚СЊ..."
 
 #: Merge.rc:67019DCA
 #, c-format
 msgid "Status:"
-msgstr "Статус:"
+msgstr "РЎС‚Р°С‚СѓСЃ:"
 
 #: Merge.rc:4E65D340
 #, c-format
 msgid "Cancel"
-msgstr "Отмена"
+msgstr "РћС‚РјРµРЅР°"
 
 #: Merge.rc:4186E48
 #, c-format
 msgid "Help"
-msgstr "Помощь"
+msgstr "РџРѕРјРѕС‰СЊ"
 
 #: Merge.rc:75264C52
 #, c-format
 msgid "Files or Folders to Compare"
-msgstr "Файлы или папки для сравнения"
+msgstr "Р¤Р°Р№Р»С‹ РёР»Рё РїР°РїРєРё РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ"
 
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
-msgstr "Только чтение"
+msgstr "РўРѕР»СЊРєРѕ С‡С‚РµРЅРёРµ"
 
 #: Merge.rc:39174D97
 #, c-format
@@ -1486,97 +1486,97 @@ msgstr ""
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
-msgstr "База данных:"
+msgstr "Р‘Р°Р·Р° РґР°РЅРЅС‹С…:"
 
 #: Merge.rc:60C4588F
 #, c-format
 msgid "Project:"
-msgstr "Проект:"
+msgstr "РџСЂРѕРµРєС‚:"
 
 #: Merge.rc:15E1A7E1
 #, c-format
 msgid "User:"
-msgstr "Пользователь:"
+msgstr "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ:"
 
 #: Merge.rc:37C6B9B8
 #, c-format
 msgid "Password:"
-msgstr "Пароль:"
+msgstr "РџР°СЂРѕР»СЊ:"
 
 #: Merge.rc:F75DAF7
 #, c-format
 msgid "Link to Destination VSS project"
-msgstr "Путь к проекту VSS"
+msgstr "РџСѓС‚СЊ Рє РїСЂРѕРµРєС‚Сѓ VSS"
 
 #: Merge.rc:40325727
 #, c-format
 msgid "Apply to all items"
-msgstr "Применить ко всем элементам"
+msgstr "РџСЂРёРјРµРЅРёС‚СЊ РєРѕ РІСЃРµРј СЌР»РµРјРµРЅС‚Р°Рј"
 
 #: Merge.rc:3B833B8A
 #, c-format
 msgid "Check Out"
-msgstr "Взять под контроль"
+msgstr "Р’Р·СЏС‚СЊ РїРѕРґ РєРѕРЅС‚СЂРѕР»СЊ"
 
 #: Merge.rc:751AB58F
 #, c-format
 msgid "Save As..."
-msgstr "Сохранить как..."
+msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ РєР°Рє..."
 
 #: Merge.rc:1A8FADD4
 #, c-format
 msgid "Versioning System"
-msgstr "Система контроля версий"
+msgstr "РЎРёСЃС‚РµРјР° РєРѕРЅС‚СЂРѕР»СЏ РІРµСЂСЃРёР№"
 
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&Versioning System:"
-msgstr "&Система контроля версий:"
+msgstr "&РЎРёСЃС‚РµРјР° РєРѕРЅС‚СЂРѕР»СЏ РІРµСЂСЃРёР№:"
 
 #: Merge.rc:381D79E5
 #, c-format
 msgid "&Path to cleartool.exe:"
-msgstr "&Путь к cleartool.exe:"
+msgstr "&РџСѓС‚СЊ Рє cleartool.exe:"
 
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
-msgstr "Основные"
+msgstr "РћСЃРЅРѕРІРЅС‹Рµ"
 
 #: Merge.rc:237AB485
 #, c-format
 msgid "Automatically &scroll to first difference"
-msgstr "Автоматически &установить на первое отличие"
+msgstr "РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё &СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РЅР° РїРµСЂРІРѕРµ РѕС‚Р»РёС‡РёРµ"
 
 #: Merge.rc:69AD3BF8
 #, c-format
 msgid "Cl&ose windows with ESC"
-msgstr "За&крывать окна клавишей ESC"
+msgstr "Р—Р°&РєСЂС‹РІР°С‚СЊ РѕРєРЅР° РєР»Р°РІРёС€РµР№ ESC"
 
 #: Merge.rc:6574B7FB
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
-msgstr "Автоматически проверять пути в диалоге отрытия файлов"
+msgstr "РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРѕРІРµСЂСЏС‚СЊ РїСѓС‚Рё РІ РґРёР°Р»РѕРіРµ РѕС‚СЂС‹С‚РёСЏ С„Р°Р№Р»РѕРІ"
 
 #: Merge.rc:631E0F7B
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "&Разрешить запуск только одной копии"
+msgstr "&Р Р°Р·СЂРµС€РёС‚СЊ Р·Р°РїСѓСЃРє С‚РѕР»СЊРєРѕ РѕРґРЅРѕР№ РєРѕРїРёРё"
 
 #: Merge.rc:672CD0E2
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr "Спросить перед закрытием нескольких окон"
+msgstr "РЎРїСЂРѕСЃРёС‚СЊ РїРµСЂРµРґ Р·Р°РєСЂС‹С‚РёРµРј РЅРµСЃРєРѕР»СЊРєРёС… РѕРєРѕРЅ"
 
 #: Merge.rc:6D5B7718
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "Сохранять время файла при сравнении"
+msgstr "РЎРѕС…СЂР°РЅСЏС‚СЊ РІСЂРµРјСЏ С„Р°Р№Р»Р° РїСЂРё СЃСЂР°РІРЅРµРЅРёРё"
 
 #: Merge.rc:17F0E759
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
+msgstr "РџРѕРєР°Р·С‹РІР°С‚СЊ РґРёР°Р»РѕРі \"Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р»С‹ РёР»Рё РїР°РїРєРё\" РїСЂРё Р·Р°РїСѓСЃРєРµ"
 
 #: Merge.rc:1AD99579
 #, c-format
@@ -1586,7 +1586,7 @@ msgstr ""
 #: Merge.rc:44776ACE
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
-msgstr "О&ткрыть диалог Автодополнения:"
+msgstr "Рћ&С‚РєСЂС‹С‚СЊ РґРёР°Р»РѕРі РђРІС‚РѕРґРѕРїРѕР»РЅРµРЅРёСЏ:"
 
 #: Merge.rc:1B63306F
 #, c-format
@@ -1596,42 +1596,42 @@ msgstr ""
 #: Merge.rc:516450B
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
-msgstr "WinMerge не показывает некоторые сообщения. Нажмите Сброс, чтобы показывались все сообщения."
+msgstr "WinMerge РЅРµ РїРѕРєР°Р·С‹РІР°РµС‚ РЅРµРєРѕС‚РѕСЂС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ. РќР°Р¶РјРёС‚Рµ РЎР±СЂРѕСЃ, С‡С‚РѕР±С‹ РїРѕРєР°Р·С‹РІР°Р»РёСЃСЊ РІСЃРµ СЃРѕРѕР±С‰РµРЅРёСЏ."
 
 #: Merge.rc:10976EC1
 #, c-format
 msgid "Reset"
-msgstr "Сброс"
+msgstr "РЎР±СЂРѕСЃ"
 
 #: Merge.rc:3FB4EC6
 #, c-format
 msgid "Find"
-msgstr "Найти"
+msgstr "РќР°Р№С‚Рё"
 
 #: Merge.rc:34DF506F
 #, c-format
 msgid "Fi&nd what:"
-msgstr "&Поиск:"
+msgstr "&РџРѕРёСЃРє:"
 
 #: Merge.rc:39C7AF83
 #, c-format
 msgid "Match &whole word only"
-msgstr "Искать слова &целиком"
+msgstr "РСЃРєР°С‚СЊ СЃР»РѕРІР° &С†РµР»РёРєРѕРј"
 
 #: Merge.rc:13C27214
 #, c-format
 msgid "Match &case"
-msgstr "Учитывать &регистр"
+msgstr "РЈС‡РёС‚С‹РІР°С‚СЊ &СЂРµРіРёСЃС‚СЂ"
 
 #: Merge.rc:44BC83ED
 #, c-format
 msgid "Regular &expression"
-msgstr "Ре&гулярные выражения"
+msgstr "Р Рµ&РіСѓР»СЏСЂРЅС‹Рµ РІС‹СЂР°Р¶РµРЅРёСЏ"
 
 #: Merge.rc:78A08947
 #, c-format
 msgid "D&on't wrap end of file"
-msgstr "Н&е переносить в конце файла"
+msgstr "Рќ&Рµ РїРµСЂРµРЅРѕСЃРёС‚СЊ РІ РєРѕРЅС†Рµ С„Р°Р№Р»Р°"
 
 #: Merge.rc:545FEEA2
 #, c-format
@@ -1646,7 +1646,7 @@ msgstr ""
 #: Merge.rc:68816EEA
 #, c-format
 msgid "&Find Next"
-msgstr "&Далее"
+msgstr "&Р”Р°Р»РµРµ"
 
 #: Merge.rc:11D980
 #, c-format
@@ -1656,42 +1656,42 @@ msgstr "&Ok"
 #: Merge.rc:4876CD3E
 #, c-format
 msgid "Replace"
-msgstr "Замена"
+msgstr "Р—Р°РјРµРЅР°"
 
 #: Merge.rc:1B17601E
 #, c-format
 msgid "Re&place with:"
-msgstr "За&мена: "
+msgstr "Р—Р°&РјРµРЅР°: "
 
 #: Merge.rc:381D79E6
 #, c-format
 msgid "&Don't wrap end of file"
-msgstr "Не останавливаться при достижении конца файла"
+msgstr "РќРµ РѕСЃС‚Р°РЅР°РІР»РёРІР°С‚СЊСЃСЏ РїСЂРё РґРѕСЃС‚РёР¶РµРЅРёРё РєРѕРЅС†Р° С„Р°Р№Р»Р°"
 
 #: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
-msgstr "Заменить"
+msgstr "Р—Р°РјРµРЅРёС‚СЊ"
 
 #: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
-msgstr "В вы&деленном"
+msgstr "Р’ РІС‹&РґРµР»РµРЅРЅРѕРј"
 
 #: Merge.rc:3FE25900
 #, c-format
 msgid "Wh&ole file"
-msgstr "Во всем &файле"
+msgstr "Р’Рѕ РІСЃРµРј &С„Р°Р№Р»Рµ"
 
 #: Merge.rc:AC3AA1E
 #, c-format
 msgid "&Replace"
-msgstr "&Заменить"
+msgstr "&Р—Р°РјРµРЅРёС‚СЊ"
 
 #: Merge.rc:507A4C04
 #, c-format
 msgid "Replace &All"
-msgstr "З&аменить все"
+msgstr "Р—&Р°РјРµРЅРёС‚СЊ РІСЃРµ"
 
 #: Merge.rc:2FC0BA7B
 #, c-format
@@ -1706,7 +1706,7 @@ msgstr ""
 #: Merge.rc:24A380
 #, c-format
 msgid "New"
-msgstr "Новый"
+msgstr "РќРѕРІС‹Р№"
 
 #: Merge.rc:3938FFC5
 #, c-format
@@ -1716,92 +1716,92 @@ msgstr ""
 #: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Apply"
-msgstr "&Применить"
+msgstr "&РџСЂРёРјРµРЅРёС‚СЊ"
 
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
-msgstr "Проверить"
+msgstr "РџСЂРѕРІРµСЂРёС‚СЊ"
 
 #: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Comments"
-msgstr "Комментарии"
+msgstr "РљРѕРјРјРµРЅС‚Р°СЂРёРё"
 
 #: Merge.rc:51DC4C3F
 #, c-format
 msgid "CheckIn after checkout"
-msgstr "CheckIn после checkout"
+msgstr "CheckIn РїРѕСЃР»Рµ checkout"
 
 #: Merge.rc:4F58DAFC
 #, c-format
 msgid "Linefilters"
-msgstr "Строковые фильтры"
+msgstr "РЎС‚СЂРѕРєРѕРІС‹Рµ С„РёР»СЊС‚СЂС‹"
 
 #: Merge.rc:36B79AB7
 #, c-format
 msgid "Enable Line Filters"
-msgstr "Разрешить строковые фильтры"
+msgstr "Р Р°Р·СЂРµС€РёС‚СЊ СЃС‚СЂРѕРєРѕРІС‹Рµ С„РёР»СЊС‚СЂС‹"
 
 #: Merge.rc:5E8200FF
 #, c-format
 msgid "Regular Expressions (one per line):"
-msgstr "Регулярные выражения (одно на строку):"
+msgstr "Р РµРіСѓР»СЏСЂРЅС‹Рµ РІС‹СЂР°Р¶РµРЅРёСЏ (РѕРґРЅРѕ РЅР° СЃС‚СЂРѕРєСѓ):"
 
 #: Merge.rc:3ECBF05
 #, c-format
 msgid "Edit"
-msgstr "Редактировать"
+msgstr "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"
 
 #: Merge.rc:25669B5
 #, c-format
 msgid "Remove"
-msgstr "Удалить"
+msgstr "РЈРґР°Р»РёС‚СЊ"
 
 #: Merge.rc:4E65D341
 #, c-format
 msgid "Colors"
-msgstr "Цвета"
+msgstr "Р¦РІРµС‚Р°"
 
 #: Merge.rc:2C0C2240
 #, c-format
 msgid "Difference:"
-msgstr "Отличие:"
+msgstr "РћС‚Р»РёС‡РёРµ:"
 
 #: Merge.rc:1BA49C3B
 #, c-format
 msgid "Selected Difference:"
-msgstr "Выделенное отличие:"
+msgstr "Р’С‹РґРµР»РµРЅРЅРѕРµ РѕС‚Р»РёС‡РёРµ:"
 
 #: Merge.rc:78E0CE10
 #, c-format
 msgid "Background"
-msgstr "Фон"
+msgstr "Р¤РѕРЅ"
 
 #: Merge.rc:1CDF6584
 #, c-format
 msgid "Deleted"
-msgstr "Удаленное"
+msgstr "РЈРґР°Р»РµРЅРЅРѕРµ"
 
 #: Merge.rc:4C72B54
 #, c-format
 msgid "Text"
-msgstr "Текст"
+msgstr "РўРµРєСЃС‚"
 
 #: Merge.rc:2756A765
 #, c-format
 msgid "Ignored Difference:"
-msgstr "Игнорируемые отличия:"
+msgstr "РРіРЅРѕСЂРёСЂСѓРµРјС‹Рµ РѕС‚Р»РёС‡РёСЏ:"
 
 #: Merge.rc:7106378D
 #, c-format
 msgid "Moved:"
-msgstr "Перемещенные:"
+msgstr "РџРµСЂРµРјРµС‰РµРЅРЅС‹Рµ:"
 
 #: Merge.rc:E6D7EF
 #, c-format
 msgid "Selected Moved:"
-msgstr "Выбранные перемещенные:"
+msgstr "Р’С‹Р±СЂР°РЅРЅС‹Рµ РїРµСЂРµРјРµС‰РµРЅРЅС‹Рµ:"
 
 #: Merge.rc:6B96B328
 #, c-format
@@ -1816,247 +1816,247 @@ msgstr ""
 #: Merge.rc:40C55014
 #, c-format
 msgid "Word Difference:"
-msgstr "Словарное отличие:"
+msgstr "РЎР»РѕРІР°СЂРЅРѕРµ РѕС‚Р»РёС‡РёРµ:"
 
 #: Merge.rc:E4471A
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "Выделенное словарное отличие:"
+msgstr "Р’С‹РґРµР»РµРЅРЅРѕРµ СЃР»РѕРІР°СЂРЅРѕРµ РѕС‚Р»РёС‡РёРµ:"
 
 #: Merge.rc:7F0D4B46
 #, c-format
 msgid "Defaults"
-msgstr "По умолчанию"
+msgstr "РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ"
 
 #: Merge.rc:39000D56
 #, c-format
 msgid "System"
-msgstr "Система"
+msgstr "РЎРёСЃС‚РµРјР°"
 
 #: Merge.rc:51FAB141
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
-msgstr "Помещать удаленные файлы в корзину"
+msgstr "РџРѕРјРµС‰Р°С‚СЊ СѓРґР°Р»РµРЅРЅС‹Рµ С„Р°Р№Р»С‹ РІ РєРѕСЂР·РёРЅСѓ"
 
 #: Merge.rc:1A9EBDF0
 #, c-format
 msgid "&External editor:"
-msgstr "Внешний редактор:"
+msgstr "Р’РЅРµС€РЅРёР№ СЂРµРґР°РєС‚РѕСЂ:"
 
 #: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
-msgstr "&Фильтры:"
+msgstr "&Р¤РёР»СЊС‚СЂС‹:"
 
 #: Merge.rc:1C1FA831
 #, c-format
 msgid "Temporary files folder"
-msgstr "Папка для временных файлов"
+msgstr "РџР°РїРєР° РґР»СЏ РІСЂРµРјРµРЅРЅС‹С… С„Р°Р№Р»РѕРІ"
 
 #: Merge.rc:58EEEB80
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr "Системная папка Temp"
+msgstr "РЎРёСЃС‚РµРјРЅР°СЏ РїР°РїРєР° Temp"
 
 #: Merge.rc:6FC398BB
 #, c-format
 msgid "C&ustom folder:"
-msgstr "Собственная папка:"
+msgstr "РЎРѕР±СЃС‚РІРµРЅРЅР°СЏ РїР°РїРєР°:"
 
 #: Merge.rc:55B03C13
 #, c-format
 msgid "Patch Generator"
-msgstr "Генератор патчей"
+msgstr "Р“РµРЅРµСЂР°С‚РѕСЂ РїР°С‚С‡РµР№"
 
 #: Merge.rc:59F5069E
 #, c-format
 msgid "File&1:"
-msgstr "Файл 1:"
+msgstr "Р¤Р°Р№Р» 1:"
 
 #: Merge.rc:59F5069F
 #, c-format
 msgid "File&2:"
-msgstr "Файл 2:"
+msgstr "Р¤Р°Р№Р» 2:"
 
 #: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
-msgstr "Поменять"
+msgstr "РџРѕРјРµРЅСЏС‚СЊ"
 
 #: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
-msgstr "Добавить в существующий файл"
+msgstr "Р”РѕР±Р°РІРёС‚СЊ РІ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С„Р°Р№Р»"
 
 #: Merge.rc:AC3AA1F
 #, c-format
 msgid "&Result:"
-msgstr "Результат:"
+msgstr "Р РµР·СѓР»СЊС‚Р°С‚:"
 
 #: Merge.rc:78E0CE11
 #, c-format
 msgid "Bro&wse..."
-msgstr "Об&зор..."
+msgstr "РћР±&Р·РѕСЂ..."
 
 #: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
-msgstr "Формат"
+msgstr "Р¤РѕСЂРјР°С‚"
 
 #: Merge.rc:67019DCB
 #, c-format
 msgid "St&yle:"
-msgstr "Стиль:"
+msgstr "РЎС‚РёР»СЊ:"
 
 #: Merge.rc:4DB19838
 #, c-format
 msgid "&Context:"
-msgstr "Контекст:"
+msgstr "РљРѕРЅС‚РµРєСЃС‚:"
 
 #: Merge.rc:2756A766
 #, c-format
 msgid "Ignor&e blank lines"
-msgstr "Пропускать пустые строки"
+msgstr "РџСЂРѕРїСѓСЃРєР°С‚СЊ РїСѓСЃС‚С‹Рµ СЃС‚СЂРѕРєРё"
 
 #: Merge.rc:2C4A6C6C
 #, c-format
 msgid "Inclu&de command line"
-msgstr "Вкл&ючая коммандную строку"
+msgstr "Р’РєР»&СЋС‡Р°СЏ РєРѕРјРјР°РЅРґРЅСѓСЋ СЃС‚СЂРѕРєСѓ"
 
 #: Merge.rc:5869BBE
 #, c-format
 msgid "Open to e&xternal editor"
-msgstr "Открыть во внешем редакторе"
+msgstr "РћС‚РєСЂС‹С‚СЊ РІРѕ РІРЅРµС€РµРј СЂРµРґР°РєС‚РѕСЂРµ"
 
 #: Merge.rc:28D5CCAA
 #, c-format
 msgid "Display Columns"
-msgstr "Отображать колонки"
+msgstr "РћС‚РѕР±СЂР°Р¶Р°С‚СЊ РєРѕР»РѕРЅРєРё"
 
 #: Merge.rc:4856953D
 #, fuzzy, c-format
 msgid "Move &Up"
-msgstr "&Вверх"
+msgstr "&Р’РІРµСЂС…"
 
 #: Merge.rc:D0645BC
 #, fuzzy, c-format
 msgid "Move &Down"
-msgstr "В&низ"
+msgstr "Р’&РЅРёР·"
 
 #: Merge.rc:E6D7F0
 #, c-format
 msgid "Select Unpacker"
-msgstr "Выбор распаковщика"
+msgstr "Р’С‹Р±РѕСЂ СЂР°СЃРїР°РєРѕРІС‰РёРєР°"
 
 #: Merge.rc:4F5264C8
 #, c-format
 msgid "File unpacker:"
-msgstr "Файл распаковщика:"
+msgstr "Р¤Р°Р№Р» СЂР°СЃРїР°РєРѕРІС‰РёРєР°:"
 
 #: Merge.rc:34C1157D
 #, c-format
 msgid "Display all unpackers, don't check the extension"
-msgstr "Показывать все распаковщики, не проверяя расширения"
+msgstr "РџРѕРєР°Р·С‹РІР°С‚СЊ РІСЃРµ СЂР°СЃРїР°РєРѕРІС‰РёРєРё, РЅРµ РїСЂРѕРІРµСЂСЏСЏ СЂР°СЃС€РёСЂРµРЅРёСЏ"
 
 #: Merge.rc:5B18135F
 #, c-format
 msgid "Extensions list:"
-msgstr "Список расширений:"
+msgstr "РЎРїРёСЃРѕРє СЂР°СЃС€РёСЂРµРЅРёР№:"
 
 #: Merge.rc:5578260E
 #, c-format
 msgid "Description:"
-msgstr "Описание:"
+msgstr "РћРїРёСЃР°РЅРёРµ:"
 
 #: Merge.rc:4B89B94
 #, c-format
 msgid "Stop"
-msgstr "Остановить"
+msgstr "РћСЃС‚Р°РЅРѕРІРёС‚СЊ"
 
 #: Merge.rc:1AC98D0A
 #, c-format
 msgid "Comparing items..."
-msgstr "Идет сравнение..."
+msgstr "РРґРµС‚ СЃСЂР°РІРЅРµРЅРёРµ..."
 
 #: Merge.rc:4630D06C
 #, c-format
 msgid "Items compared:"
-msgstr "Обработано:"
+msgstr "РћР±СЂР°Р±РѕС‚Р°РЅРѕ:"
 
 #: Merge.rc:4166A153
 #, c-format
 msgid "Items total:"
-msgstr "Всего:"
+msgstr "Р’СЃРµРіРѕ:"
 
 #: Merge.rc:7D31F2A0
 #, c-format
 msgid "Go To"
-msgstr "Перейти"
+msgstr "РџРµСЂРµР№С‚Рё"
 
 #: Merge.rc:290C61C5
 #, c-format
 msgid "G&oto:"
-msgstr "&На:"
+msgstr "&РќР°:"
 
 #: Merge.rc:3FB4EC7
 #, c-format
 msgid "File"
-msgstr "Файл"
+msgstr "Р¤Р°Р№Р»"
 
 #: Merge.rc:57E6C4D3
 #, c-format
 msgid "Goto what"
-msgstr "На что"
+msgstr "РќР° С‡С‚Рѕ"
 
 #: Merge.rc:602FC81
 #, c-format
 msgid "Li&ne"
-msgstr "&Строку"
+msgstr "&РЎС‚СЂРѕРєСѓ"
 
 #: Merge.rc:27AC6D83
 #, c-format
 msgid "&Difference"
-msgstr "&Отличие"
+msgstr "&РћС‚Р»РёС‡РёРµ"
 
 #: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
-msgstr "Перейт&и"
+msgstr "РџРµСЂРµР№С‚&Рё"
 
 #: Merge.rc:7E5494F6
 #, c-format
 msgid "Compare"
-msgstr "Сравнение"
+msgstr "РЎСЂР°РІРЅРµРЅРёРµ"
 
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
-msgstr "Невидимые"
+msgstr "РќРµРІРёРґРёРјС‹Рµ"
 
 #: Merge.rc:AC3AA20
 #, c-format
 msgid "&Compare"
-msgstr "Учитывать &невидимые"
+msgstr "РЈС‡РёС‚С‹РІР°С‚СЊ &РЅРµРІРёРґРёРјС‹Рµ"
 
 #: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
-msgstr "Игнорировать измененные невидимые"
+msgstr "РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ РёР·РјРµРЅРµРЅРЅС‹Рµ РЅРµРІРёРґРёРјС‹Рµ"
 
 #: Merge.rc:21C15B7
 #, c-format
 msgid "I&gnore all"
-msgstr "Игнорировать &все невидимые"
+msgstr "РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ &РІСЃРµ РЅРµРІРёРґРёРјС‹Рµ"
 
 #: Merge.rc:2756A767
 #, c-format
 msgid "Ignore blan&k lines"
-msgstr "Игнорировать пуст&ые линии"
+msgstr "РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ РїСѓСЃС‚&С‹Рµ Р»РёРЅРёРё"
 
 #: Merge.rc:4166A154
 #, c-format
 msgid "Ignore &case"
-msgstr "Игнорировать р&егистр"
+msgstr "РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ СЂ&РµРіРёСЃС‚СЂ"
 
 #: Merge.rc:6C318DC8
 #, c-format
@@ -2066,77 +2066,77 @@ msgstr ""
 #: Merge.rc:285B56CE
 #, c-format
 msgid "E&nable moved block detection"
-msgstr "Обнаружение переме&щенных блоков"
+msgstr "РћР±РЅР°СЂСѓР¶РµРЅРёРµ РїРµСЂРµРјРµ&С‰РµРЅРЅС‹С… Р±Р»РѕРєРѕРІ"
 
 #: Merge.rc:4EF8162F
 #, c-format
 msgid "&Match similar lines"
-msgstr "Искать похожие строки"
+msgstr "РСЃРєР°С‚СЊ РїРѕС…РѕР¶РёРµ СЃС‚СЂРѕРєРё"
 
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
-msgstr "Фильтр комментариев"
+msgstr "Р¤РёР»СЊС‚СЂ РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ"
 
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
-msgstr "Редактор"
+msgstr "Р РµРґР°РєС‚РѕСЂ"
 
 #: Merge.rc:1A9EBDF1
 #, c-format
 msgid "&Highlight syntax"
-msgstr "Подсвечивать синтаксис"
+msgstr "РџРѕРґСЃРІРµС‡РёРІР°С‚СЊ СЃРёРЅС‚Р°РєСЃРёСЃ"
 
 #: Merge.rc:1A9EBDF2
 #, c-format
 msgid "&Automatic rescan"
-msgstr "Авто&пересканирование"
+msgstr "РђРІС‚Рѕ&РїРµСЂРµСЃРєР°РЅРёСЂРѕРІР°РЅРёРµ"
 
 #: Merge.rc:545FEEA3
 #, c-format
 msgid "&Preserve original EOL chars"
-msgstr "Оригинальные символы EOL"
+msgstr "РћСЂРёРіРёРЅР°Р»СЊРЅС‹Рµ СЃРёРјРІРѕР»С‹ EOL"
 
 #: Merge.rc:4C72B55
 #, c-format
 msgid "Tabs"
-msgstr "Отступы"
+msgstr "РћС‚СЃС‚СѓРїС‹"
 
 #: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
-msgstr "Размер &отступа:"
+msgstr "Р Р°Р·РјРµСЂ &РѕС‚СЃС‚СѓРїР°:"
 
 #: Merge.rc:4DE14275
 #, c-format
 msgid "&Insert Tabs"
-msgstr "&Табуляции"
+msgstr "&РўР°Р±СѓР»СЏС†РёРё"
 
 #: Merge.rc:243A39E
 #, c-format
 msgid "Insert &Spaces"
-msgstr "&Пробелы"
+msgstr "&РџСЂРѕР±РµР»С‹"
 
 #: Merge.rc:172385A0
 #, c-format
 msgid "Line Difference Coloring"
-msgstr "Подсветка отличий в строке"
+msgstr "РџРѕРґСЃРІРµС‚РєР° РѕС‚Р»РёС‡РёР№ РІ СЃС‚СЂРѕРєРµ"
 
 #: Merge.rc:4CB9DE6A
 #, c-format
 msgid "View line differences"
-msgstr "Показывать отличия в строке"
+msgstr "РџРѕРєР°Р·С‹РІР°С‚СЊ РѕС‚Р»РёС‡РёСЏ РІ СЃС‚СЂРѕРєРµ"
 
 #: Merge.rc:1DC30E65
 #, c-format
 msgid "&Character level"
-msgstr "Посимвольно"
+msgstr "РџРѕСЃРёРјРІРѕР»СЊРЅРѕ"
 
 #: Merge.rc:4DE14276
 #, c-format
 msgid "&Word-level:"
-msgstr "По словам:"
+msgstr "РџРѕ СЃР»РѕРІР°Рј:"
 
 #: Merge.rc:14AF463A
 #, c-format
@@ -2146,52 +2146,52 @@ msgstr ""
 #: Merge.rc:34DF5070
 #, c-format
 msgid "Filefilters"
-msgstr "Фильтры файлов"
+msgstr "Р¤РёР»СЊС‚СЂС‹ С„Р°Р№Р»РѕРІ"
 
 #: Merge.rc:4C72B56
 #, c-format
 msgid "Test"
-msgstr "Тест"
+msgstr "РўРµСЃС‚"
 
 #: Merge.rc:1CF8A5DA
 #, c-format
 msgid "Install..."
-msgstr "Установить..."
+msgstr "РЈСЃС‚Р°РЅРѕРІРёС‚СЊ..."
 
 #: Merge.rc:27AFDB2F
 #, c-format
 msgid "New..."
-msgstr "Новый..."
+msgstr "РќРѕРІС‹Р№..."
 
 #: Merge.rc:3B6A3611
 #, c-format
 msgid "Edit..."
-msgstr "Изменить..."
+msgstr "РР·РјРµРЅРёС‚СЊ..."
 
 #: Merge.rc:629C1DDD
 #, c-format
 msgid "Delete..."
-msgstr "Удалить..."
+msgstr "РЈРґР°Р»РёС‚СЊ..."
 
 #: Merge.rc:1BA49C3C
 #, c-format
 msgid "Save modified files?"
-msgstr "Сохранить изменения в файлах"
+msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ РІ С„Р°Р№Р»Р°С…"
 
 #: Merge.rc:3534E274
 #, c-format
 msgid "Left side file"
-msgstr "Файл с левой стороны"
+msgstr "Р¤Р°Р№Р» СЃ Р»РµРІРѕР№ СЃС‚РѕСЂРѕРЅС‹"
 
 #: Merge.rc:6E470BED
 #, c-format
 msgid "&Save changes"
-msgstr "&Сохранить изменения"
+msgstr "&РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ"
 
 #: Merge.rc:1DC30E66
 #, c-format
 msgid "&Discard changes"
-msgstr "&Отклонить изменения"
+msgstr "&РћС‚РєР»РѕРЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ"
 
 #: Merge.rc:24BA673E
 #, c-format
@@ -2211,17 +2211,17 @@ msgstr ""
 #: Merge.rc:47D4A3FB
 #, c-format
 msgid "Right side file"
-msgstr "Файл с правой стороны"
+msgstr "Р¤Р°Р№Р» СЃ РїСЂР°РІРѕР№ СЃС‚РѕСЂРѕРЅС‹"
 
 #: Merge.rc:F2F641D
 #, c-format
 msgid "S&ave changes"
-msgstr "Со&хранить изменения"
+msgstr "РЎРѕ&С…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ"
 
 #: Merge.rc:71E3C8E5
 #, c-format
 msgid "Dis&card changes"
-msgstr "О&тклонить изменения"
+msgstr "Рћ&С‚РєР»РѕРЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ"
 
 #: Merge.rc:5578260F
 #, c-format
@@ -2231,17 +2231,17 @@ msgstr ""
 #: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
-msgstr "Кодовая страница"
+msgstr "РљРѕРґРѕРІР°СЏ СЃС‚СЂР°РЅРёС†Р°"
 
 #: Merge.rc:71E3C8E6
 #, c-format
 msgid "Default Codepage"
-msgstr "Кодовая страница по умолчанию"
+msgstr "РљРѕРґРѕРІР°СЏ СЃС‚СЂР°РЅРёС†Р° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ"
 
 #: Merge.rc:132D699F
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Выберите кодовую страницу по умолчанию, для не Юникод-файлов:"
+msgstr "Р’С‹Р±РµСЂРёС‚Рµ РєРѕРґРѕРІСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ, РґР»СЏ РЅРµ Р®РЅРёРєРѕРґ-С„Р°Р№Р»РѕРІ:"
 
 #: Merge.rc:5CC85DF4
 #, c-format
@@ -2249,8 +2249,8 @@ msgid ""
 "Detect codepage info for these files: .html, .rc, .xml \n"
 "need to restart session"
 msgstr ""
-"Определять кодировку для этих файлов: .html, .rc, .xml \n"
-"Необходим перезапуск сессии"
+"РћРїСЂРµРґРµР»СЏС‚СЊ РєРѕРґРёСЂРѕРІРєСѓ РґР»СЏ СЌС‚РёС… С„Р°Р№Р»РѕРІ: .html, .rc, .xml \n"
+"РќРµРѕР±С…РѕРґРёРј РїРµСЂРµР·Р°РїСѓСЃРє СЃРµСЃСЃРёРё"
 
 #: Merge.rc:3BCD5104
 #, c-format
@@ -2260,92 +2260,92 @@ msgstr ""
 #: Merge.rc:E6D7F1
 #, c-format
 msgid "System codepage"
-msgstr "Системная кодовая страница"
+msgstr "РЎРёСЃС‚РµРјРЅР°СЏ РєРѕРґРѕРІР°СЏ СЃС‚СЂР°РЅРёС†Р°"
 
 #: Merge.rc:4F3C2B88
 #, c-format
 msgid "According to WinMerge User Interface"
-msgstr "В зависимости от интерфейса пользователя WinMerge"
+msgstr "Р’ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РёРЅС‚РµСЂС„РµР№СЃР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ WinMerge"
 
 #: Merge.rc:8AF7E6A
 #, c-format
 msgid "Custom codepage:"
-msgstr "Кодировка пользователя:"
+msgstr "РљРѕРґРёСЂРѕРІРєР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ:"
 
 #: Merge.rc:6CD65B95
 #, c-format
 msgid "Options"
-msgstr "Настройка"
+msgstr "РќР°СЃС‚СЂРѕР№РєР°"
 
 #: Merge.rc:D32E2F1
 #, c-format
 msgid " Categories"
-msgstr " Категории"
+msgstr " РљР°С‚РµРіРѕСЂРёРё"
 
 #: Merge.rc:26188978
 #, c-format
 msgid "Import..."
-msgstr "Импорт..."
+msgstr "РРјРїРѕСЂС‚..."
 
 #: Merge.rc:9B5002F
 #, c-format
 msgid "Export..."
-msgstr "Экспорт..."
+msgstr "Р­РєСЃРїРѕСЂС‚..."
 
 #: Merge.rc:50F76E1
 #, c-format
 msgid "Dialog"
-msgstr "Диалог"
+msgstr "Р”РёР°Р»РѕРі"
 
 #: Merge.rc:744A4E1C
 #, c-format
 msgid "Keywords:"
-msgstr "Ключевые слова:"
+msgstr "РљР»СЋС‡РµРІС‹Рµ СЃР»РѕРІР°:"
 
 #: Merge.rc:1AFA3492
 #, c-format
 msgid "Function names:"
-msgstr "Имена функций:"
+msgstr "РРјРµРЅР° С„СѓРЅРєС†РёР№:"
 
 #: Merge.rc:3B833B8B
 #, c-format
 msgid "Comments:"
-msgstr "Комментарии:"
+msgstr "РљРѕРјРјРµРЅС‚Р°СЂРёРё:"
 
 #: Merge.rc:7B25D658
 #, c-format
 msgid "Numbers:"
-msgstr "Числа:"
+msgstr "Р§РёСЃР»Р°:"
 
 #: Merge.rc:50D15AD
 #, c-format
 msgid "Operators:"
-msgstr "Операторы:"
+msgstr "РћРїРµСЂР°С‚РѕСЂС‹:"
 
 #: Merge.rc:79321BE2
 #, c-format
 msgid "Strings:"
-msgstr "Строки:"
+msgstr "РЎС‚СЂРѕРєРё:"
 
 #: Merge.rc:1E0ED5B2
 #, c-format
 msgid "Preprocessor:"
-msgstr "Препроцессор:"
+msgstr "РџСЂРµРїСЂРѕС†РµСЃСЃРѕСЂ:"
 
 #: Merge.rc:24173EE5
 #, c-format
 msgid "User 1:"
-msgstr "Пользователь 1:"
+msgstr "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ 1:"
 
 #: Merge.rc:24173EE6
 #, c-format
 msgid "User 2:"
-msgstr "Пользователь 2:"
+msgstr "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ 2:"
 
 #: Merge.rc:3C10FC2
 #, c-format
 msgid "Bold"
-msgstr "Жирный"
+msgstr "Р–РёСЂРЅС‹Р№"
 
 #: Merge.rc:2CEE4749
 #, c-format
@@ -2375,22 +2375,22 @@ msgstr ""
 #: Merge.rc:387F7980
 #, c-format
 msgid "Folder Compare Report"
-msgstr "Отчет сравнения каталогов"
+msgstr "РћС‚С‡РµС‚ СЃСЂР°РІРЅРµРЅРёСЏ РєР°С‚Р°Р»РѕРіРѕРІ"
 
 #: Merge.rc:3ECF34A3
 #, c-format
 msgid "Report &File:"
-msgstr "&Файл отчета:"
+msgstr "&Р¤Р°Р№Р» РѕС‚С‡РµС‚Р°:"
 
 #: Merge.rc:146A5938
 #, c-format
 msgid "Browse..."
-msgstr "Обзор..."
+msgstr "РћР±Р·РѕСЂ..."
 
 #: Merge.rc:89AF4FD
 #, c-format
 msgid "&Style:"
-msgstr "&Стиль:"
+msgstr "&РЎС‚РёР»СЊ:"
 
 #: Merge.rc:545FEEA4
 #, c-format
@@ -2400,102 +2400,102 @@ msgstr ""
 #: Merge.rc:3938FFC6
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr "Копировать в буфер обмена"
+msgstr "РљРѕРїРёСЂРѕРІР°С‚СЊ РІ Р±СѓС„РµСЂ РѕР±РјРµРЅР°"
 
 #: Merge.rc:43600E90
 #, c-format
 msgid "Shared or Private Filter"
-msgstr "Общие и личные фильтры"
+msgstr "РћР±С‰РёРµ Рё Р»РёС‡РЅС‹Рµ С„РёР»СЊС‚СЂС‹"
 
 #: Merge.rc:74E96E1E
 #, c-format
 msgid "Which type of filter do you want to create?"
-msgstr "Какой тип фильтра вы хотите создать?"
+msgstr "РљР°РєРѕР№ С‚РёРї С„РёР»СЊС‚СЂР° РІС‹ С…РѕС‚РёС‚Рµ СЃРѕР·РґР°С‚СЊ?"
 
 #: Merge.rc:444EF527
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "Общий фильтр (для всех пользователей этой машины)"
+msgstr "РћР±С‰РёР№ С„РёР»СЊС‚СЂ (РґР»СЏ РІСЃРµС… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ СЌС‚РѕР№ РјР°С€РёРЅС‹)"
 
 #: Merge.rc:11304E6
 #, c-format
 msgid "Private Filter (only for current user)"
-msgstr "Личный фильтр (только для текущего пользователя)"
+msgstr "Р›РёС‡РЅС‹Р№ С„РёР»СЊС‚СЂ (С‚РѕР»СЊРєРѕ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ)"
 
 #: Merge.rc:7D9F30CF
 #, c-format
 msgid "Archive Support"
-msgstr "Поддержка архивов"
+msgstr "РџРѕРґРґРµСЂР¶РєР° Р°СЂС…РёРІРѕРІ"
 
 #: Merge.rc:545FEEA5
 #, c-format
 msgid "&Enable archive file support"
-msgstr "&Включить поддержку архивов"
+msgstr "&Р’РєР»СЋС‡РёС‚СЊ РїРѕРґРґРµСЂР¶РєСѓ Р°СЂС…РёРІРѕРІ"
 
 #: Merge.rc:70C9C72D
 #, c-format
 msgid "&Detect archive type from file signature"
-msgstr "&Определять тип архива по сигнатуре/заголовку файла"
+msgstr "&РћРїСЂРµРґРµР»СЏС‚СЊ С‚РёРї Р°СЂС…РёРІР° РїРѕ СЃРёРіРЅР°С‚СѓСЂРµ/Р·Р°РіРѕР»РѕРІРєСѓ С„Р°Р№Р»Р°"
 
 #: Merge.rc:1AC98D0B
 #, c-format
 msgid "Compare Statistics"
-msgstr "Сравнение статистики"
+msgstr "РЎСЂР°РІРЅРµРЅРёРµ СЃС‚Р°С‚РёСЃС‚РёРєРё"
 
 #: Merge.rc:64ABCD7E
 #, c-format
 msgid "Folders:"
-msgstr "Папки:"
+msgstr "РџР°РїРєРё:"
 
 #: Merge.rc:7262BE23
 #, c-format
 msgid "Files:"
-msgstr "Файлы:"
+msgstr "Р¤Р°Р№Р»С‹:"
 
 #: Merge.rc:629C1DDE
 #, c-format
 msgid "Different"
-msgstr "Отличаются"
+msgstr "РћС‚Р»РёС‡Р°СЋС‚СЃСЏ"
 
 #: Merge.rc:141E3F81
 #, c-format
 msgid "Text:"
-msgstr "Текст:"
+msgstr "РўРµРєСЃС‚:"
 
 #: Merge.rc:5FC9C469
 #, c-format
 msgid "Binary:"
-msgstr "Бинарные:"
+msgstr "Р‘РёРЅР°СЂРЅС‹Рµ:"
 
 #: Merge.rc:26535499
 #, c-format
 msgid "Unique"
-msgstr "Уникальные"
+msgstr "РЈРЅРёРєР°Р»СЊРЅС‹Рµ"
 
 #: Merge.rc:602FC82
 #, c-format
 msgid "Left:"
-msgstr "Слева:"
+msgstr "РЎР»РµРІР°:"
 
 #: Merge.rc:25669B6
 #, c-format
 msgid "Right:"
-msgstr "Справа:"
+msgstr "РЎРїСЂР°РІР°:"
 
 #: Merge.rc:26188979
 #, c-format
 msgid "Identical"
-msgstr "Одинаковые"
+msgstr "РћРґРёРЅР°РєРѕРІС‹Рµ"
 
 #: Merge.rc:6FA9B0F7
 #, c-format
 msgid "Total:"
-msgstr "Всего:"
+msgstr "Р’СЃРµРіРѕ:"
 
 #: Merge.rc:76245120
 #, c-format
 msgid "Close"
-msgstr "Закрыть"
+msgstr "Р—Р°РєСЂС‹С‚СЊ"
 
 #: Merge.rc:2FC0BA7C
 #, c-format
@@ -2520,97 +2520,97 @@ msgstr ""
 #: Merge.rc:413EF3DC
 #, c-format
 msgid "Affects"
-msgstr "Применить к:"
+msgstr "РџСЂРёРјРµРЅРёС‚СЊ Рє:"
 
 #: Merge.rc:1BE35CDC
 #, c-format
 msgid "(Affects)"
-msgstr "(применить)"
+msgstr "(РїСЂРёРјРµРЅРёС‚СЊ)"
 
 #: Merge.rc:E4471B
 #, c-format
 msgid "Select Codepage for"
-msgstr "Выбрать кодовую страницу для"
+msgstr "Р’С‹Р±СЂР°С‚СЊ РєРѕРґРѕРІСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ РґР»СЏ"
 
 #: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
-msgstr "Загрузка файла:"
+msgstr "Р—Р°РіСЂСѓР·РєР° С„Р°Р№Р»Р°:"
 
 #: Merge.rc:7A4CFAFC
 #, c-format
 msgid "File &Saving:"
-msgstr "Сохранение файла:"
+msgstr "РЎРѕС…СЂР°РЅРµРЅРёРµ С„Р°Р№Р»Р°:"
 
 #: Merge.rc:175DEEED
 #, c-format
 msgid "&Use same codepage for both"
-msgstr "Использовать одну и ту же кодовую страницу"
+msgstr "РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РѕРґРЅСѓ Рё С‚Сѓ Р¶Рµ РєРѕРґРѕРІСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ"
 
 #: Merge.rc:89AF4FE
 #, c-format
 msgid "&Cancel"
-msgstr "&Отмена"
+msgstr "&РћС‚РјРµРЅР°"
 
 #: Merge.rc:72A593B8
 #, c-format
 msgid "Test Filter"
-msgstr "Тест фильтра"
+msgstr "РўРµСЃС‚ С„РёР»СЊС‚СЂР°"
 
 #: Merge.rc:5CCED708
 #, c-format
 msgid "Testing filter ..."
-msgstr "Тестировать фильтр ..."
+msgstr "РўРµСЃС‚РёСЂРѕРІР°С‚СЊ С„РёР»СЊС‚СЂ ..."
 
 #: Merge.rc:4EF81630
 #, c-format
 msgid "&Enter text to test:"
-msgstr "Введите тестовый текст:"
+msgstr "Р’РІРµРґРёС‚Рµ С‚РµСЃС‚РѕРІС‹Р№ С‚РµРєСЃС‚:"
 
 #: Merge.rc:4DE14277
 #, c-format
 msgid "&Folder Name"
-msgstr "Папка"
+msgstr "РџР°РїРєР°"
 
 #: Merge.rc:4876CD3F
 #, c-format
 msgid "Result:"
-msgstr "Результат:"
+msgstr "Р РµР·СѓР»СЊС‚Р°С‚:"
 
 #: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
-msgstr "&Тестировать"
+msgstr "&РўРµСЃС‚РёСЂРѕРІР°С‚СЊ"
 
 #: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Close"
-msgstr "&Закрыть"
+msgstr "&Р—Р°РєСЂС‹С‚СЊ"
 
 #: Merge.rc:175DEEEE
 #, c-format
 msgid "&Use customized text colors"
-msgstr "Использовать особые цвета"
+msgstr "РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РѕСЃРѕР±С‹Рµ С†РІРµС‚Р°"
 
 #: Merge.rc:1AC98D0C
 #, c-format
 msgid "Custom text colors"
-msgstr "Настроить цвета"
+msgstr "РќР°СЃС‚СЂРѕРёС‚СЊ С†РІРµС‚Р°"
 
 #: Merge.rc:3FE25901
 #, c-format
 msgid "Whitespace:"
-msgstr "Невидимые:"
+msgstr "РќРµРІРёРґРёРјС‹Рµ:"
 
 #: Merge.rc:3ECF34A4
 #, c-format
 msgid "Regular text:"
-msgstr "Обычный текст:"
+msgstr "РћР±С‹С‡РЅС‹Р№ С‚РµРєСЃС‚:"
 
 #: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
-msgstr "Выделенный текст:"
+msgstr "Р’С‹РґРµР»РµРЅРЅС‹Р№ С‚РµРєСЃС‚:"
 
 #: Merge.rc:2FC0BA7D
 #, c-format
@@ -2620,147 +2620,147 @@ msgstr ""
 #: Merge.rc:D109E01
 #, c-format
 msgid "Paths"
-msgstr "Пути"
+msgstr "РџСѓС‚Рё"
 
 #: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Left:"
-msgstr "&Левый:"
+msgstr "&Р›РµРІС‹Р№:"
 
 #: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
-msgstr "Только чтение"
+msgstr "РўРѕР»СЊРєРѕ С‡С‚РµРЅРёРµ"
 
 #: Merge.rc:89AF4FF
 #, c-format
 msgid "&Right:"
-msgstr "&Правый:"
+msgstr "&РџСЂР°РІС‹Р№:"
 
 #: Merge.rc:AC3AA21
 #, c-format
 msgid "&Filter:"
-msgstr "&Фильтр:"
+msgstr "&Р¤РёР»СЊС‚СЂ:"
 
 #: Merge.rc:6CD65B96
 #, c-format
 msgid "Open..."
-msgstr "Открыть..."
+msgstr "РћС‚РєСЂС‹С‚СЊ..."
 
 #: Merge.rc:67019DCC
 #, c-format
 msgid "Save..."
-msgstr "Сохранить..."
+msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ..."
 
 #: Merge.rc:43E58E59
 #, c-format
 msgid "Backup Files"
-msgstr "Резервные копии"
+msgstr "Р РµР·РµСЂРІРЅС‹Рµ РєРѕРїРёРё"
 
 #: Merge.rc:69AD3BF9
 #, c-format
 msgid "Create backup files in:"
-msgstr "Создать резервные файлы в:"
+msgstr "РЎРѕР·РґР°С‚СЊ СЂРµР·РµСЂРІРЅС‹Рµ С„Р°Р№Р»С‹ РІ:"
 
 #: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
-msgstr "Сравнения &папок"
+msgstr "РЎСЂР°РІРЅРµРЅРёСЏ &РїР°РїРѕРє"
 
 #: Merge.rc:7A4CFAFD
 #, c-format
 msgid "Fil&e compare"
-msgstr "Сравнения &файлов"
+msgstr "РЎСЂР°РІРЅРµРЅРёСЏ &С„Р°Р№Р»РѕРІ"
 
 #: Merge.rc:334E25B2
 #, c-format
 msgid "Create backup files into:"
-msgstr "Создать резервные файлы:"
+msgstr "РЎРѕР·РґР°С‚СЊ СЂРµР·РµСЂРІРЅС‹Рµ С„Р°Р№Р»С‹:"
 
 #: Merge.rc:381D79E7
 #, c-format
 msgid "&Original file's folder"
-msgstr "в папке с оригинальным файлом"
+msgstr "РІ РїР°РїРєРµ СЃ РѕСЂРёРіРёРЅР°Р»СЊРЅС‹Рј С„Р°Р№Р»РѕРј"
 
 #: Merge.rc:714B45FE
 #, c-format
 msgid "&Global backup folder:"
-msgstr "в общей папке:"
+msgstr "РІ РѕР±С‰РµР№ РїР°РїРєРµ:"
 
 #: Merge.rc:1F7B33EC
 #, c-format
 msgid "Backup filename:"
-msgstr "Имя резервного файла:"
+msgstr "РРјСЏ СЂРµР·РµСЂРІРЅРѕРіРѕ С„Р°Р№Р»Р°:"
 
 #: Merge.rc:381D79E8
 #, c-format
 msgid "&Append .bak -extension"
-msgstr "&Добавить расширение .bak"
+msgstr "&Р”РѕР±Р°РІРёС‚СЊ СЂР°СЃС€РёСЂРµРЅРёРµ .bak"
 
 #: Merge.rc:129644DE
 #, c-format
 msgid "A&ppend timestamp"
-msgstr "Добавить дату"
+msgstr "Р”РѕР±Р°РІРёС‚СЊ РґР°С‚Сѓ"
 
 #: Merge.rc:CAEDA36
 #, c-format
 msgid "Confirm Copy"
-msgstr "Подтверждения"
+msgstr "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ"
 
 #: Merge.rc:36D268E9
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr "Вы действительно хотите скопировать XXX элементов?"
+msgstr "Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ XXX СЌР»РµРјРµРЅС‚РѕРІ?"
 
 #: Merge.rc:30CDE281
 #, c-format
 msgid "From left"
-msgstr "Слева"
+msgstr "РЎР»РµРІР°"
 
 #: Merge.rc:2C015CFE
 #, c-format
 msgid "To right"
-msgstr "Направо"
+msgstr "РќР°РїСЂР°РІРѕ"
 
 #: Merge.rc:29CE40
 #, c-format
 msgid "Yes"
-msgstr "Да"
+msgstr "Р”Р°"
 
 #: Merge.rc:12E8E
 #, c-format
 msgid "No"
-msgstr "Нет"
+msgstr "РќРµС‚"
 
 #: Merge.rc:B612C23
 #, c-format
 msgid "Plugins"
-msgstr "Дополнения"
+msgstr "Р”РѕРїРѕР»РЅРµРЅРёСЏ"
 
 #: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
-msgstr "&Включить дополнения"
+msgstr "&Р’РєР»СЋС‡РёС‚СЊ РґРѕРїРѕР»РЅРµРЅРёСЏ"
 
 #: Merge.rc:62909ED6
 #, c-format
 msgid "Shell Integration"
-msgstr "Интеграция в оболочку"
+msgstr "РРЅС‚РµРіСЂР°С†РёСЏ РІ РѕР±РѕР»РѕС‡РєСѓ"
 
 #: Merge.rc:31DC8C62
 #, c-format
 msgid "Explorer"
-msgstr "Проводник"
+msgstr "РџСЂРѕРІРѕРґРЅРёРє"
 
 #: Merge.rc:673BD331
 #, c-format
 msgid "E&nable advanced menu"
-msgstr "В&ключить расширенное меню"
+msgstr "Р’&РєР»СЋС‡РёС‚СЊ СЂР°СЃС€РёСЂРµРЅРЅРѕРµ РјРµРЅСЋ"
 
 #: Merge.rc:4EF81631
 #, c-format
 msgid "&Add to context menu"
-msgstr "&Добавить в контекстное меню"
+msgstr "&Р”РѕР±Р°РІРёС‚СЊ РІ РєРѕРЅС‚РµРєСЃС‚РЅРѕРµ РјРµРЅСЋ"
 
 #: Merge.rc:26A6974B
 #, c-format
@@ -2775,17 +2775,17 @@ msgstr ""
 #: Merge.rc:7262BE24
 #, c-format
 msgid "Folder"
-msgstr "Каталог"
+msgstr "РљР°С‚Р°Р»РѕРі"
 
 #: Merge.rc:60B696AF
 #, c-format
 msgid "S&top after first difference"
-msgstr "&Останавливаться после первого отличия"
+msgstr "&РћСЃС‚Р°РЅР°РІР»РёРІР°С‚СЊСЃСЏ РїРѕСЃР»Рµ РїРµСЂРІРѕРіРѕ РѕС‚Р»РёС‡РёСЏ"
 
 #: Merge.rc:7FF2B80B
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
-msgstr "Игнорировать разницу времени менее 3 секунд"
+msgstr "РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ СЂР°Р·РЅРёС†Сѓ РІСЂРµРјРµРЅРё РјРµРЅРµРµ 3 СЃРµРєСѓРЅРґ"
 
 #: Merge.rc:6D5B7719
 #, c-format
@@ -2815,7 +2815,7 @@ msgstr ""
 #: Merge.rc:17BC2F9E
 #, c-format
 msgid "Binary"
-msgstr "Двоичный"
+msgstr "Р”РІРѕРёС‡РЅС‹Р№"
 
 #: Merge.rc:7AAB28B8
 #, c-format
@@ -2905,27 +2905,27 @@ msgstr ""
 #: Merge.rc:524AB109
 #, c-format
 msgid "Unknown error attempting to open project file"
-msgstr "Неизвестная ошибка при открытии файла проекта"
+msgstr "РќРµРёР·РІРµСЃС‚РЅР°СЏ РѕС€РёР±РєР° РїСЂРё РѕС‚РєСЂС‹С‚РёРё С„Р°Р№Р»Р° РїСЂРѕРµРєС‚Р°"
 
 #: Merge.rc:524AB10A
 #, c-format
 msgid "Unknown error attempting to save project file"
-msgstr "Неизвестная ошибка при сохранении файла проекта"
+msgstr "РќРµРёР·РІРµСЃС‚РЅР°СЏ РѕС€РёР±РєР° РїСЂРё СЃРѕС…СЂР°РЅРµРЅРёРё С„Р°Р№Р»Р° РїСЂРѕРµРєС‚Р°"
 
 #: Merge.rc:3EE7B44D
 #, c-format
 msgid "Project File"
-msgstr "Файл проекта"
+msgstr "Р¤Р°Р№Р» РїСЂРѕРµРєС‚Р°"
 
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
-msgstr "Файл проекта успешно загружен."
+msgstr "Р¤Р°Р№Р» РїСЂРѕРµРєС‚Р° СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅ."
 
 #: Merge.rc:3BDD62C3
 #, c-format
 msgid "Project file successfully saved."
-msgstr "Файл проекта успешно сохранен."
+msgstr "Р¤Р°Р№Р» РїСЂРѕРµРєС‚Р° СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅ."
 
 #: Merge.rc:28AAB7F
 #, c-format
@@ -2954,7 +2954,7 @@ msgstr ""
 "\n"
 "\n"
 "WinMerge.FileCompare\n"
-"WinMerge Сравнение Файлов"
+"WinMerge РЎСЂР°РІРЅРµРЅРёРµ Р¤Р°Р№Р»РѕРІ"
 
 #: Merge.rc:293A824F
 #, c-format
@@ -2973,7 +2973,7 @@ msgstr ""
 "\n"
 "\n"
 "WinMerge.FolderCompare\n"
-"WinMerge Сравнение Папок"
+"WinMerge РЎСЂР°РІРЅРµРЅРёРµ РџР°РїРѕРє"
 
 #: Merge.rc:74BA5C8C
 #, c-format
@@ -2981,78 +2981,78 @@ msgid ""
 "Developers:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 msgstr ""
-"Разработчики:\n"
-"Дин Гримм (Dean Grimm), Кристиан Лист (Christian List), Киммо Варис (Kimmo Varis), Йохен Тухт (Jochen Tucht), Тим Герундт (Tim Gerundt), Такаши Саванаки (Takashi Sawanaki), Гэл Хаммер (Gal Hammer), Александр Скиннер (Alexander Skinner)"
+"Р Р°Р·СЂР°Р±РѕС‚С‡РёРєРё:\n"
+"Р”РёРЅ Р“СЂРёРјРј (Dean Grimm), РљСЂРёСЃС‚РёР°РЅ Р›РёСЃС‚ (Christian List), РљРёРјРјРѕ Р’Р°СЂРёСЃ (Kimmo Varis), Р™РѕС…РµРЅ РўСѓС…С‚ (Jochen Tucht), РўРёРј Р“РµСЂСѓРЅРґС‚ (Tim Gerundt), РўР°РєР°С€Рё РЎР°РІР°РЅР°РєРё (Takashi Sawanaki), Р“СЌР» РҐР°РјРјРµСЂ (Gal Hammer), РђР»РµРєСЃР°РЅРґСЂ РЎРєРёРЅРЅРµСЂ (Alexander Skinner)"
 
 #: Merge.rc:3EF068BF
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge поставляется БЕЗ КАКОЙ-ЛИБО ГАРАНТИИ. Это свободное ПО и мы приветствуем его распространение согласно некоторых условий; ознакомьтесь с GNU General Public License в меню Помощь для более подробной информации."
+msgstr "WinMerge РїРѕСЃС‚Р°РІР»СЏРµС‚СЃСЏ Р‘Р•Р— РљРђРљРћР™-Р›РР‘Рћ Р“РђР РђРќРўРР. Р­С‚Рѕ СЃРІРѕР±РѕРґРЅРѕРµ РџРћ Рё РјС‹ РїСЂРёРІРµС‚СЃС‚РІСѓРµРј РµРіРѕ СЂР°СЃРїСЂРѕСЃС‚СЂР°РЅРµРЅРёРµ СЃРѕРіР»Р°СЃРЅРѕ РЅРµРєРѕС‚РѕСЂС‹С… СѓСЃР»РѕРІРёР№; РѕР·РЅР°РєРѕРјСЊС‚РµСЃСЊ СЃ GNU General Public License РІ РјРµРЅСЋ РџРѕРјРѕС‰СЊ РґР»СЏ Р±РѕР»РµРµ РїРѕРґСЂРѕР±РЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё."
 
 #: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
-msgstr "&Прервать"
+msgstr "&РџСЂРµСЂРІР°С‚СЊ"
 
 #: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
-msgstr "Пов&торить"
+msgstr "РџРѕРІ&С‚РѕСЂРёС‚СЊ"
 
 #: Merge.rc:89AF500
 #, c-format
 msgid "&Ignore"
-msgstr "&Игнорировать"
+msgstr "&РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ"
 
 #: Merge.rc:21C15B8
 #, c-format
 msgid "Ignore &all"
-msgstr "Игнорировать &все"
+msgstr "РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ &РІСЃРµ"
 
 #: Merge.rc:22956AA
 #, c-format
 msgid "&Yes"
-msgstr "&Да"
+msgstr "&Р”Р°"
 
 #: Merge.rc:48B5872E
 #, c-format
 msgid "Yes to &all"
-msgstr "Д&а для всех"
+msgstr "Р”&Р° РґР»СЏ РІСЃРµС…"
 
 #: Merge.rc:11D981
 #, c-format
 msgid "&No"
-msgstr "&Нет"
+msgstr "&РќРµС‚"
 
 #: Merge.rc:4909ADB4
 #, c-format
 msgid "No to a&ll"
-msgstr "Нет д&ля всех"
+msgstr "РќРµС‚ Рґ&Р»СЏ РІСЃРµС…"
 
 #: Merge.rc:4DB1983A
 #, c-format
 msgid "&Continue"
-msgstr "Про&должить"
+msgstr "РџСЂРѕ&РґРѕР»Р¶РёС‚СЊ"
 
 #: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
-msgstr "П&ропустить"
+msgstr "Рџ&СЂРѕРїСѓСЃС‚РёС‚СЊ"
 
 #: Merge.rc:2D1160B0
 #, c-format
 msgid "Skip &all"
-msgstr "Проп&устить все"
+msgstr "РџСЂРѕРї&СѓСЃС‚РёС‚СЊ РІСЃРµ"
 
 #: Merge.rc:77C09B82
 #, c-format
 msgid "Don't display this &message again."
-msgstr "Не показывать &больше это сообщение"
+msgstr "РќРµ РїРѕРєР°Р·С‹РІР°С‚СЊ &Р±РѕР»СЊС€Рµ СЌС‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ"
 
 #: Merge.rc:57F02FB4
 #, c-format
 msgid "Don't ask this &question again."
-msgstr "Не задавать &больше этот вопрос"
+msgstr "РќРµ Р·Р°РґР°РІР°С‚СЊ &Р±РѕР»СЊС€Рµ СЌС‚РѕС‚ РІРѕРїСЂРѕСЃ"
 
 #: Merge.rc:78ACB5DB
 #, c-format
@@ -3067,47 +3067,47 @@ msgstr ""
 #: Merge.rc:2C1D73C8
 #, c-format
 msgid "Version Control"
-msgstr "Контроль версий"
+msgstr "РљРѕРЅС‚СЂРѕР»СЊ РІРµСЂСЃРёР№"
 
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
-msgstr "Отличия"
+msgstr "РћС‚Р»РёС‡РёСЏ"
 
 #: Merge.rc:277500
 #, c-format
 msgid "To:"
-msgstr "На:"
+msgstr "РќР°:"
 
 #: Merge.rc:68EE6DF1
 #, c-format
 msgid "From left:"
-msgstr "Слева:"
+msgstr "РЎР»РµРІР°:"
 
 #: Merge.rc:2C015CFF
 #, c-format
 msgid "To left:"
-msgstr "Налево:"
+msgstr "РќР°Р»РµРІРѕ:"
 
 #: Merge.rc:34DF5071
 #, c-format
 msgid "From right:"
-msgstr "Справа:"
+msgstr "РЎРїСЂР°РІР°:"
 
 #: Merge.rc:542A4301
 #, c-format
 msgid "To right:"
-msgstr "Направо:"
+msgstr "РќР°РїСЂР°РІРѕ:"
 
 #: Merge.rc:2924ED78
 #, c-format
 msgid "Version %1"
-msgstr "Версия %1"
+msgstr "Р’РµСЂСЃРёСЏ %1"
 
 #: Merge.rc:24173EE7
 #, c-format
 msgid "Unicode"
-msgstr "Юникод"
+msgstr "Р®РЅРёРєРѕРґ"
 
 #: Merge.rc:295600
 #, c-format
@@ -3117,12 +3117,12 @@ msgstr "X64"
 #: Merge.rc:761E6873
 #, c-format
 msgid "Options (%1)"
-msgstr "Настройки (%1)"
+msgstr "РќР°СЃС‚СЂРѕР№РєРё (%1)"
 
 #: Merge.rc:4BDBDC64
 #, c-format
 msgid "All message boxes are now displayed again."
-msgstr "Теперь все сообщения снова будут отображаться"
+msgstr "РўРµРїРµСЂСЊ РІСЃРµ СЃРѕРѕР±С‰РµРЅРёСЏ СЃРЅРѕРІР° Р±СѓРґСѓС‚ РѕС‚РѕР±СЂР°Р¶Р°С‚СЊСЃСЏ"
 
 #: Merge.rc:37825D6A
 #, c-format
@@ -3131,64 +3131,64 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"Размер таба выходит за границы приемлемых значений.\n"
+"Р Р°Р·РјРµСЂ С‚Р°Р±Р° РІС‹С…РѕРґРёС‚ Р·Р° РіСЂР°РЅРёС†С‹ РїСЂРёРµРјР»РµРјС‹С… Р·РЅР°С‡РµРЅРёР№.\n"
 "\n"
-"Используйте значения 1 - %1."
+"РСЃРїРѕР»СЊР·СѓР№С‚Рµ Р·РЅР°С‡РµРЅРёСЏ 1 - %1."
 
 #: Merge.rc:47E5C8F
 #, c-format
 msgid "Open"
-msgstr "Открыть"
+msgstr "РћС‚РєСЂС‹С‚СЊ"
 
 #: Merge.rc:3E105584
 #, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
-msgstr "Программы|*.exe;*.bat;*.cmd|Все файлы (*.*)|*.*||"
+msgstr "РџСЂРѕРіСЂР°РјРјС‹|*.exe;*.bat;*.cmd|Р’СЃРµ С„Р°Р№Р»С‹ (*.*)|*.*||"
 
 #: Merge.rc:222D39F7
 #, c-format
 msgid "All Files (*.*)|*.*||"
-msgstr "Все файлы (*.*)|*.*||"
+msgstr "Р’СЃРµ С„Р°Р№Р»С‹ (*.*)|*.*||"
 
 #: Merge.rc:237E9033
 #, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
-msgstr "Файлы проектов WinMerge (*.WinMerge)|*.WinMerge||"
+msgstr "Р¤Р°Р№Р»С‹ РїСЂРѕРµРєС‚РѕРІ WinMerge (*.WinMerge)|*.WinMerge||"
 
 #: Merge.rc:BEDA09D
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
-msgstr "Файлы конфигурации (*.ini)|*.ini|Все файлы (*.*)|*.*||"
+msgstr "Р¤Р°Р№Р»С‹ РєРѕРЅС„РёРіСѓСЂР°С†РёРё (*.ini)|*.ini|Р’СЃРµ С„Р°Р№Р»С‹ (*.*)|*.*||"
 
 #: Merge.rc:3FF615A0
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-msgstr "Текстовые файлы (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Все файлы (*.*)|*.*||"
+msgstr "РўРµРєСЃС‚РѕРІС‹Рµ С„Р°Р№Р»С‹ (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Р’СЃРµ С„Р°Р№Р»С‹ (*.*)|*.*||"
 
 #: Merge.rc:59814668
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-msgstr "Файлы HTML (*.htm,*.html)|*.htm;*.html|Все файлы (*.*)|*.*||"
+msgstr "Р¤Р°Р№Р»С‹ HTML (*.htm,*.html)|*.htm;*.html|Р’СЃРµ С„Р°Р№Р»С‹ (*.*)|*.*||"
 
 #: Merge.rc:67444ADC
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
-msgstr "Файлы XML (*.xml)|*.xml|Все файлы (*.*)|*.*||"
+msgstr "Р¤Р°Р№Р»С‹ XML (*.xml)|*.xml|Р’СЃРµ С„Р°Р№Р»С‹ (*.*)|*.*||"
 
 #: Merge.rc:46FCCCE
 #, c-format
 msgid "Name"
-msgstr "Имя"
+msgstr "РРјСЏ"
 
 #: Merge.rc:15875422
 #, c-format
 msgid "Location"
-msgstr "Местоположение"
+msgstr "РњРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРµ"
 
 #: Merge.rc:59F506A0
 #, c-format
 msgid "Filters"
-msgstr "Фильтры"
+msgstr "Р¤РёР»СЊС‚СЂС‹"
 
 #: Merge.rc:52D199B
 #, c-format
@@ -3198,17 +3198,17 @@ msgstr "[F] "
 #: Merge.rc:2C0C2242
 #, c-format
 msgid "Description"
-msgstr "Описание"
+msgstr "РћРїРёСЃР°РЅРёРµ"
 
 #: Merge.rc:D6BB425
 #, c-format
 msgid "Select filename for new filter"
-msgstr "Укажите имя файла для нового фильтра"
+msgstr "РЈРєР°Р¶РёС‚Рµ РёРјСЏ С„Р°Р№Р»Р° РґР»СЏ РЅРѕРІРѕРіРѕ С„РёР»СЊС‚СЂР°"
 
 #: Merge.rc:764E4AD3
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
-msgstr "Файлы фильтров (*.flt)|*.flt|Все файлы (*.*)|*.*||"
+msgstr "Р¤Р°Р№Р»С‹ С„РёР»СЊС‚СЂРѕРІ (*.flt)|*.flt|Р’СЃРµ С„Р°Р№Р»С‹ (*.*)|*.*||"
 
 #: Merge.rc:24B5241A
 #, c-format
@@ -3218,9 +3218,9 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
-"Невозможно найти файл фильтра!\n"
+"РќРµРІРѕР·РјРѕР¶РЅРѕ РЅР°Р№С‚Рё С„Р°Р№Р» С„РёР»СЊС‚СЂР°!\n"
 "\n"
-"Скопируйте файл %1 в папку с фильтрами:\n"
+"РЎРєРѕРїРёСЂСѓР№С‚Рµ С„Р°Р№Р» %1 РІ РїР°РїРєСѓ СЃ С„РёР»СЊС‚СЂР°РјРё:\n"
 "%2."
 
 #: Merge.rc:2A045B49
@@ -3231,10 +3231,10 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"Невозможно скопировать файл фильтра в папку с фильтрами:\n"
+"РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ С„Р°Р№Р» С„РёР»СЊС‚СЂР° РІ РїР°РїРєСѓ СЃ С„РёР»СЊС‚СЂР°РјРё:\n"
 "%1\n"
 "\n"
-"Убедитесь, что папка существует и доступна для записи."
+"РЈР±РµРґРёС‚РµСЃСЊ, С‡С‚Рѕ РїР°РїРєР° СЃСѓС‰РµСЃС‚РІСѓРµС‚ Рё РґРѕСЃС‚СѓРїРЅР° РґР»СЏ Р·Р°РїРёСЃРё."
 
 #: Merge.rc:4EA7BACD
 #, c-format
@@ -3243,9 +3243,9 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"Папка с фильтрами пользователя не определена!\n"
+"РџР°РїРєР° СЃ С„РёР»СЊС‚СЂР°РјРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅРµ РѕРїСЂРµРґРµР»РµРЅР°!\n"
 "\n"
-"Укажите папку с фильтрами на вкладке Система в Настройках."
+"РЈРєР°Р¶РёС‚Рµ РїР°РїРєСѓ СЃ С„РёР»СЊС‚СЂР°РјРё РЅР° РІРєР»Р°РґРєРµ РЎРёСЃС‚РµРјР° РІ РќР°СЃС‚СЂРѕР№РєР°С…."
 
 #: Merge.rc:7DDEC9BD
 #, c-format
@@ -3255,15 +3255,15 @@ msgid ""
 "\n"
 "Maybe the file is read-only?"
 msgstr ""
-"Невозможно удалить файл фильтра:\n"
+"РќРµРІРѕР·РјРѕР¶РЅРѕ СѓРґР°Р»РёС‚СЊ С„Р°Р№Р» С„РёР»СЊС‚СЂР°:\n"
 "%1\n"
 "\n"
-"Возможно файл используется."
+"Р’РѕР·РјРѕР¶РЅРѕ С„Р°Р№Р» РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ."
 
 #: Merge.rc:6F3BCB34
 #, c-format
 msgid "Locate filter file to install"
-msgstr "Указать файл фильтра"
+msgstr "РЈРєР°Р·Р°С‚СЊ С„Р°Р№Р» С„РёР»СЊС‚СЂР°"
 
 #: Merge.rc:6858E820
 #, c-format
@@ -3272,19 +3272,19 @@ msgid ""
 "\n"
 "Could not copy new filter file to filter folder."
 msgstr ""
-"Ошибка установки фильтра.\n"
+"РћС€РёР±РєР° СѓСЃС‚Р°РЅРѕРІРєРё С„РёР»СЊС‚СЂР°.\n"
 "\n"
-"Невозможно скопировать файл фильтра в папку с фильтрами."
+"РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ С„Р°Р№Р» С„РёР»СЊС‚СЂР° РІ РїР°РїРєСѓ СЃ С„РёР»СЊС‚СЂР°РјРё."
 
 #: Merge.rc:5704C4AC
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "Фильтр уже существует. Перезаписать?"
+msgstr "Р¤РёР»СЊС‚СЂ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚. РџРµСЂРµР·Р°РїРёСЃР°С‚СЊ?"
 
 #: Merge.rc:237A126
 #, c-format
 msgid "Regular expression"
-msgstr "Регулярное выражение"
+msgstr "Р РµРіСѓР»СЏСЂРЅРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ"
 
 #: Merge.rc:34BD4316
 #, c-format
@@ -3293,28 +3293,28 @@ msgid ""
 "\n"
 "If you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
-"Фильтры были обновлены. Хотите обновить все открытые сравниваемые папки?\n"
-"Если не хотите обновлять сейчас, то можете нажать \"Нет\" и обновить позже."
+"Р¤РёР»СЊС‚СЂС‹ Р±С‹Р»Рё РѕР±РЅРѕРІР»РµРЅС‹. РҐРѕС‚РёС‚Рµ РѕР±РЅРѕРІРёС‚СЊ РІСЃРµ РѕС‚РєСЂС‹С‚С‹Рµ СЃСЂР°РІРЅРёРІР°РµРјС‹Рµ РїР°РїРєРё?\n"
+"Р•СЃР»Рё РЅРµ С…РѕС‚РёС‚Рµ РѕР±РЅРѕРІР»СЏС‚СЊ СЃРµР№С‡Р°СЃ, С‚Рѕ РјРѕР¶РµС‚Рµ РЅР°Р¶Р°С‚СЊ \"РќРµС‚\" Рё РѕР±РЅРѕРІРёС‚СЊ РїРѕР·Р¶Рµ."
 
 #: Merge.rc:1DC30E67
 #, c-format
 msgid "&Path to SS.EXE:"
-msgstr "&Путь к SS.EXE:"
+msgstr "&РџСѓС‚СЊ Рє SS.EXE:"
 
 #: Merge.rc:114DD351
 #, c-format
 msgid "Folder Comparison Results"
-msgstr "Результаты сравнения каталогов"
+msgstr "Р РµР·СѓР»СЊС‚Р°С‚С‹ СЃСЂР°РІРЅРµРЅРёСЏ РєР°С‚Р°Р»РѕРіРѕРІ"
 
 #: Merge.rc:1AFA3493
 #, c-format
 msgid "File Comparison"
-msgstr "Сравнение файлов"
+msgstr "РЎСЂР°РІРЅРµРЅРёРµ С„Р°Р№Р»РѕРІ"
 
 #: Merge.rc:2FEFC30D
 #, c-format
 msgid "Untitled left"
-msgstr "Безымянный слева"
+msgstr "Р‘РµР·С‹РјСЏРЅРЅС‹Р№ СЃР»РµРІР°"
 
 #: Merge.rc:730B3FD4
 #, c-format
@@ -3324,17 +3324,17 @@ msgstr ""
 #: Merge.rc:4E089EF3
 #, c-format
 msgid "Untitled right"
-msgstr "Безымянный справа"
+msgstr "Р‘РµР·С‹РјСЏРЅРЅС‹Р№ СЃРїСЂР°РІР°"
 
 #: Merge.rc:72A593B9
 #, c-format
 msgid "Theirs File"
-msgstr "Их файл"
+msgstr "РС… С„Р°Р№Р»"
 
 #: Merge.rc:427C12C1
 #, c-format
 msgid "Mine File"
-msgstr "Мой файл"
+msgstr "РњРѕР№ С„Р°Р№Р»"
 
 #: Merge.rc:DD21174
 #, c-format
@@ -3344,7 +3344,7 @@ msgstr ""
 #: Merge.rc:15875423
 #, c-format
 msgid "Line: %s"
-msgstr "Строка: %s"
+msgstr "РЎС‚СЂРѕРєР°: %s"
 
 #: Merge.rc:6F3BCB35
 #, c-format
@@ -3354,22 +3354,22 @@ msgstr ""
 #: Merge.rc:7C664E1
 #, c-format
 msgid "Merge"
-msgstr "Объединение"
+msgstr "РћР±СЉРµРґРёРЅРµРЅРёРµ"
 
 #: Merge.rc:7A8FD78B
 #, c-format
 msgid "Difference %1 of %2"
-msgstr "Отличие %1 из %2"
+msgstr "РћС‚Р»РёС‡РёРµ %1 РёР· %2"
 
 #: Merge.rc:62773E9
 #, c-format
 msgid "%1 Differences Found"
-msgstr "%1 отличий найдено"
+msgstr "%1 РѕС‚Р»РёС‡РёР№ РЅР°Р№РґРµРЅРѕ"
 
 #: Merge.rc:6B78A819
 #, c-format
 msgid "1 Difference Found"
-msgstr "Найдено всего одно отличие"
+msgstr "РќР°Р№РґРµРЅРѕ РІСЃРµРіРѕ РѕРґРЅРѕ РѕС‚Р»РёС‡РёРµ"
 
 #. Abbreviation from "Read Only"
 #: Merge.rc:13E12
@@ -3380,32 +3380,32 @@ msgstr "RO"
 #: Merge.rc:6B6D8965
 #, c-format
 msgid "Item %1 of %2"
-msgstr "Элемент %1 из %2"
+msgstr "Р­Р»РµРјРµРЅС‚ %1 РёР· %2"
 
 #: Merge.rc:2618897A
 #, c-format
 msgid "Items: %1"
-msgstr "Элементов: %1"
+msgstr "Р­Р»РµРјРµРЅС‚РѕРІ: %1"
 
 #: Merge.rc:6C6653C7
 #, c-format
 msgid "Select two existing folders or files to compare"
-msgstr "Выберите два СУЩЕСТВУЮЩИХ каталога или файла для сравнения"
+msgstr "Р’С‹Р±РµСЂРёС‚Рµ РґРІР° РЎРЈР©Р•РЎРўР’РЈР®Р©РРҐ РєР°С‚Р°Р»РѕРіР° РёР»Рё С„Р°Р№Р»Р° РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ"
 
 #: Merge.rc:444C5DDC
 #, c-format
 msgid "Folder Selection"
-msgstr "Выбор каталога"
+msgstr "Р’С‹Р±РѕСЂ РєР°С‚Р°Р»РѕРіР°"
 
 #: Merge.rc:73F34BA1
 #, c-format
 msgid "Select two folders or two files to compare."
-msgstr "Выберите для сравнения два каталога или файла"
+msgstr "Р’С‹Р±РµСЂРёС‚Рµ РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ РґРІР° РєР°С‚Р°Р»РѕРіР° РёР»Рё С„Р°Р№Р»Р°"
 
 #: Merge.rc:20155F59
 #, c-format
 msgid "Left path is invalid!"
-msgstr "Путь слева указан неверно"
+msgstr "РџСѓС‚СЊ СЃР»РµРІР° СѓРєР°Р·Р°РЅ РЅРµРІРµСЂРЅРѕ"
 
 #: Merge.rc:7F2E4119
 #, c-format
@@ -3415,12 +3415,12 @@ msgstr ""
 #: Merge.rc:6DBD6124
 #, c-format
 msgid "Right path is invalid!"
-msgstr "Путь справа указан неверно"
+msgstr "РџСѓС‚СЊ СЃРїСЂР°РІР° СѓРєР°Р·Р°РЅ РЅРµРІРµСЂРЅРѕ"
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
-msgstr "Оба пути указаны неверно"
+msgstr "РћР±Р° РїСѓС‚Рё СѓРєР°Р·Р°РЅС‹ РЅРµРІРµСЂРЅРѕ"
 
 #: Merge.rc:5F458439
 #, c-format
@@ -3445,22 +3445,22 @@ msgstr ""
 #: Merge.rc:39B1AD01
 #, c-format
 msgid "Choose two files to enable unpacker selection."
-msgstr "Выберите два файла, чтобы включить выбор распаковщика"
+msgstr "Р’С‹Р±РµСЂРёС‚Рµ РґРІР° С„Р°Р№Р»Р°, С‡С‚РѕР±С‹ РІРєР»СЋС‡РёС‚СЊ РІС‹Р±РѕСЂ СЂР°СЃРїР°РєРѕРІС‰РёРєР°"
 
 #: Merge.rc:30FF7A4E
 #, c-format
 msgid "Cannot compare file and folder!"
-msgstr "Невозможно сравнение файла и каталога!"
+msgstr "РќРµРІРѕР·РјРѕР¶РЅРѕ СЃСЂР°РІРЅРµРЅРёРµ С„Р°Р№Р»Р° Рё РєР°С‚Р°Р»РѕРіР°!"
 
 #: Merge.rc:62AC5DDB
 #, c-format
 msgid "File not found: %1"
-msgstr "Файл не найден: %1"
+msgstr "Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ: %1"
 
 #: Merge.rc:387F7981
 #, c-format
 msgid "File not unpacked: %1"
-msgstr "Файл не распакован: %1"
+msgstr "Р¤Р°Р№Р» РЅРµ СЂР°СЃРїР°РєРѕРІР°РЅ: %1"
 
 #: Merge.rc:3676909F
 #, c-format
@@ -3470,7 +3470,7 @@ msgid ""
 "\n"
 "%2"
 msgstr ""
-"Невозможно открыть файл\n"
+"РќРµРІРѕР·РјРѕР¶РЅРѕ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»\n"
 "%1\n"
 "\n"
 "%2"
@@ -3478,7 +3478,7 @@ msgstr ""
 #: Merge.rc:53CCF475
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr "Ошибка разбора файла конфликтов"
+msgstr "РћС€РёР±РєР° СЂР°Р·Р±РѕСЂР° С„Р°Р№Р»Р° РєРѕРЅС„Р»РёРєС‚РѕРІ"
 
 #: Merge.rc:5A765252
 #, c-format
@@ -3487,29 +3487,29 @@ msgid ""
 "%1\n"
 "is not a conflict file."
 msgstr ""
-"Файл\n"
+"Р¤Р°Р№Р»\n"
 "%1\n"
-"не является файлом конфликтов"
+"РЅРµ СЏРІР»СЏРµС‚СЃСЏ С„Р°Р№Р»РѕРј РєРѕРЅС„Р»РёРєС‚РѕРІ"
 
 #: Merge.rc:67019DCD
 #, c-format
 msgid "Save As"
-msgstr "Сохранить как..."
+msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ РєР°Рє..."
 
 #: Merge.rc:E4471C
 #, c-format
 msgid "Save changes to %1?"
-msgstr "Сохранить изменения в %1?"
+msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ РІ %1?"
 
 #: Merge.rc:6A1C6855
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 помечен как только для чтения. Согласны ли вы заменить этот файл ? (Нет позволяет задать новое имя файла)"
+msgstr "%1 РїРѕРјРµС‡РµРЅ РєР°Рє С‚РѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ. РЎРѕРіР»Р°СЃРЅС‹ Р»Рё РІС‹ Р·Р°РјРµРЅРёС‚СЊ СЌС‚РѕС‚ С„Р°Р№Р» ? (РќРµС‚ РїРѕР·РІРѕР»СЏРµС‚ Р·Р°РґР°С‚СЊ РЅРѕРІРѕРµ РёРјСЏ С„Р°Р№Р»Р°)"
 
 #: Merge.rc:673BD332
 #, c-format
 msgid "Error backing up file"
-msgstr "Ошибка создания резервной копии"
+msgstr "РћС€РёР±РєР° СЃРѕР·РґР°РЅРёСЏ СЂРµР·РµСЂРІРЅРѕР№ РєРѕРїРёРё"
 
 #: Merge.rc:3958104B
 #, c-format
@@ -3519,10 +3519,10 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"Невозможно создать копию оригинала:\n"
+"РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ РєРѕРїРёСЋ РѕСЂРёРіРёРЅР°Р»Р°:\n"
 "%1\n"
 "\n"
-"Продолжить в любом случае?"
+"РџСЂРѕРґРѕР»Р¶РёС‚СЊ РІ Р»СЋР±РѕРј СЃР»СѓС‡Р°Рµ?"
 
 #: Merge.rc:69020931
 #, c-format
@@ -3534,12 +3534,12 @@ msgid ""
 "\t-use a different filename (Press Ok)\n"
 "\t-abort the current operation (Press Cancel)?"
 msgstr ""
-"Файл не сохранен.\n"
+"Р¤Р°Р№Р» РЅРµ СЃРѕС…СЂР°РЅРµРЅ.\n"
 "%1\n"
 "%2\n"
-"Хотите ли:\n"
-"\t-использовать другое имя файла (Нажмите Ok)\n"
-"\t-отменить текущую операцию (Нажмите Отмена)?"
+"РҐРѕС‚РёС‚Рµ Р»Рё:\n"
+"\t-РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґСЂСѓРіРѕРµ РёРјСЏ С„Р°Р№Р»Р° (РќР°Р¶РјРёС‚Рµ Ok)\n"
+"\t-РѕС‚РјРµРЅРёС‚СЊ С‚РµРєСѓС‰СѓСЋ РѕРїРµСЂР°С†РёСЋ (РќР°Р¶РјРёС‚Рµ РћС‚РјРµРЅР°)?"
 
 #: Merge.rc:3895053E
 #, c-format
@@ -3550,11 +3550,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Дополнение  '%2' не может запаковать ваши изменения обратно в файл слева '%1'.\n"
+"Р”РѕРїРѕР»РЅРµРЅРёРµ  '%2' РЅРµ РјРѕР¶РµС‚ Р·Р°РїР°РєРѕРІР°С‚СЊ РІР°С€Рё РёР·РјРµРЅРµРЅРёСЏ РѕР±СЂР°С‚РЅРѕ РІ С„Р°Р№Р» СЃР»РµРІР° '%1'.\n"
 "\n"
-"Оригинал останется не измененным.\n"
+"РћСЂРёРіРёРЅР°Р» РѕСЃС‚Р°РЅРµС‚СЃСЏ РЅРµ РёР·РјРµРЅРµРЅРЅС‹Рј.\n"
 "\n"
-"Хотите сохранить распакованную версию в другой файл?"
+"РҐРѕС‚РёС‚Рµ СЃРѕС…СЂР°РЅРёС‚СЊ СЂР°СЃРїР°РєРѕРІР°РЅРЅСѓСЋ РІРµСЂСЃРёСЋ РІ РґСЂСѓРіРѕР№ С„Р°Р№Р»?"
 
 #: Merge.rc:5A0BA2DF
 #, c-format
@@ -3565,11 +3565,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Дополнение '%2' не может запаковать ваши изменения обратно в файл справа '%1'.\n"
+"Р”РѕРїРѕР»РЅРµРЅРёРµ '%2' РЅРµ РјРѕР¶РµС‚ Р·Р°РїР°РєРѕРІР°С‚СЊ РІР°С€Рё РёР·РјРµРЅРµРЅРёСЏ РѕР±СЂР°С‚РЅРѕ РІ С„Р°Р№Р» СЃРїСЂР°РІР° '%1'.\n"
 "\n"
-"Оригинал останется не измененным.\n"
+"РћСЂРёРіРёРЅР°Р» РѕСЃС‚Р°РЅРµС‚СЃСЏ РЅРµ РёР·РјРµРЅРµРЅРЅС‹Рј.\n"
 "\n"
-"Хотите сохранить распакованную версию в другой файл?"
+"РҐРѕС‚РёС‚Рµ СЃРѕС…СЂР°РЅРёС‚СЊ СЂР°СЃРїР°РєРѕРІР°РЅРЅСѓСЋ РІРµСЂСЃРёСЋ РІ РґСЂСѓРіРѕР№ С„Р°Р№Р»?"
 
 #: Merge.rc:78367A47
 #, c-format
@@ -3580,18 +3580,18 @@ msgid ""
 "\n"
 "Overwrite changed file?"
 msgstr ""
-"Другое приложение изменило файл\n"
+"Р”СЂСѓРіРѕРµ РїСЂРёР»РѕР¶РµРЅРёРµ РёР·РјРµРЅРёР»Рѕ С„Р°Р№Р»\n"
 "%1\n"
-"уже загруженный в WinMerge .\n"
+"СѓР¶Рµ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ РІ WinMerge .\n"
 "\n"
-"Перезаписать измененный файл?"
+"РџРµСЂРµР·Р°РїРёСЃР°С‚СЊ РёР·РјРµРЅРµРЅРЅС‹Р№ С„Р°Р№Р»?"
 
 #: Merge.rc:462FB760
 #, c-format
 msgid ""
 "%1\n"
 "is marked read-only. Would you like to override the read-only item?"
-msgstr "%1 помечен как только для чтения. Согласны ли вы заменить этот файл?"
+msgstr "%1 РїРѕРјРµС‡РµРЅ РєР°Рє С‚РѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ. РЎРѕРіР»Р°СЃРЅС‹ Р»Рё РІС‹ Р·Р°РјРµРЅРёС‚СЊ СЌС‚РѕС‚ С„Р°Р№Р»?"
 
 #: Merge.rc:B9192B
 #, c-format
@@ -3602,16 +3602,16 @@ msgid ""
 "\n"
 "Do you want to reload the file?"
 msgstr ""
-"Другое приложение обновило файл\n"
+"Р”СЂСѓРіРѕРµ РїСЂРёР»РѕР¶РµРЅРёРµ РѕР±РЅРѕРІРёР»Рѕ С„Р°Р№Р»\n"
 "%1\n"
-"так как WinMerge сканировал его в последний раз.\n"
+"С‚Р°Рє РєР°Рє WinMerge СЃРєР°РЅРёСЂРѕРІР°Р» РµРіРѕ РІ РїРѕСЃР»РµРґРЅРёР№ СЂР°Р·.\n"
 "\n"
-"Вы хотите перезагрузить файл?"
+"Р’С‹ С…РѕС‚РёС‚Рµ РїРµСЂРµР·Р°РіСЂСѓР·РёС‚СЊ С„Р°Р№Р»?"
 
 #: Merge.rc:62909ED7
 #, c-format
 msgid "Save Left File As"
-msgstr "Сохранить файл слева как..."
+msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ С„Р°Р№Р» СЃР»РµРІР° РєР°Рє..."
 
 #: Merge.rc:E4471D
 #, c-format
@@ -3621,7 +3621,7 @@ msgstr ""
 #: Merge.rc:6F833C19
 #, c-format
 msgid "Save Right File As"
-msgstr "Сохранить файл справа как..."
+msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ С„Р°Р№Р» СЃРїСЂР°РІР° РєР°Рє..."
 
 #: Merge.rc:3C4620F
 #, c-format
@@ -3630,9 +3630,9 @@ msgid ""
 "%1\n"
 "has disappeared. Please save a copy of the file to continue."
 msgstr ""
-"Файл\n"
+"Р¤Р°Р№Р»\n"
 "%1\n"
-"утрачен. Пожалуйста, сохраните копию файла, чтобы продолжить."
+"СѓС‚СЂР°С‡РµРЅ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, СЃРѕС…СЂР°РЅРёС‚Рµ РєРѕРїРёСЋ С„Р°Р№Р»Р°, С‡С‚РѕР±С‹ РїСЂРѕРґРѕР»Р¶РёС‚СЊ."
 
 #: Merge.rc:4BFC8F0D
 #, c-format
@@ -3641,44 +3641,44 @@ msgid ""
 "\n"
 "Refresh documents before continuing."
 msgstr ""
-"Невозможно слияние отличий когда когда документы не синхронизированны.\n"
+"РќРµРІРѕР·РјРѕР¶РЅРѕ СЃР»РёСЏРЅРёРµ РѕС‚Р»РёС‡РёР№ РєРѕРіРґР° РєРѕРіРґР° РґРѕРєСѓРјРµРЅС‚С‹ РЅРµ СЃРёРЅС…СЂРѕРЅРёР·РёСЂРѕРІР°РЅРЅС‹.\n"
 "\n"
-"Обновите документы перед продолжением."
+"РћР±РЅРѕРІРёС‚Рµ РґРѕРєСѓРјРµРЅС‚С‹ РїРµСЂРµРґ РїСЂРѕРґРѕР»Р¶РµРЅРёРµРј."
 
 #: Merge.rc:5C264194
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Чтобы продолжить, Вы должны указать путь к проекту SourceSafe (например:  $/MyProject)"
+msgstr "Р§С‚РѕР±С‹ РїСЂРѕРґРѕР»Р¶РёС‚СЊ, Р’С‹ РґРѕР»Р¶РЅС‹ СѓРєР°Р·Р°С‚СЊ РїСѓС‚СЊ Рє РїСЂРѕРµРєС‚Сѓ SourceSafe (РЅР°РїСЂРёРјРµСЂ:  $/MyProject)"
 
 #: Merge.rc:367690A0
 #, c-format
 msgid "Checkout files from VSS..."
-msgstr "Получаем файлы из VSS..."
+msgstr "РџРѕР»СѓС‡Р°РµРј С„Р°Р№Р»С‹ РёР· VSS..."
 
 #: Merge.rc:5CF52976
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Система контроля версий вернула ошибку при попытке взять файл под контроль.  Нет возможности продолжать..."
+msgstr "РЎРёСЃС‚РµРјР° РєРѕРЅС‚СЂРѕР»СЏ РІРµСЂСЃРёР№ РІРµСЂРЅСѓР»Р° РѕС€РёР±РєСѓ РїСЂРё РїРѕРїС‹С‚РєРµ РІР·СЏС‚СЊ С„Р°Р№Р» РїРѕРґ РєРѕРЅС‚СЂРѕР»СЊ.  РќРµС‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РїСЂРѕРґРѕР»Р¶Р°С‚СЊ..."
 
 #: Merge.rc:5B2409A
 #, c-format
 msgid "Error executing versioning system command."
-msgstr "Ошибка выполнения системной команды Системы контроля версий."
+msgstr "РћС€РёР±РєР° РІС‹РїРѕР»РЅРµРЅРёСЏ СЃРёСЃС‚РµРјРЅРѕР№ РєРѕРјР°РЅРґС‹ РЎРёСЃС‚РµРјС‹ РєРѕРЅС‚СЂРѕР»СЏ РІРµСЂСЃРёР№."
 
 #: Merge.rc:3ECC9EC3
 #, c-format
 msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "Рабочая папка VSS и местоположение текущего файла не совпадают. Продолжить ?"
+msgstr "Р Р°Р±РѕС‡Р°СЏ РїР°РїРєР° VSS Рё РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ С„Р°Р№Р»Р° РЅРµ СЃРѕРІРїР°РґР°СЋС‚. РџСЂРѕРґРѕР»Р¶РёС‚СЊ ?"
 
 #: Merge.rc:BF7A253
 #, c-format
 msgid "No VSS database(s) found!"
-msgstr "Не найдена база данных VSS!"
+msgstr "РќРµ РЅР°Р№РґРµРЅР° Р±Р°Р·Р° РґР°РЅРЅС‹С… VSS!"
 
 #: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
-msgstr "Ошибка VSS:"
+msgstr "РћС€РёР±РєР° VSS:"
 
 #: Merge.rc:268A7727
 #, c-format
@@ -3687,9 +3687,9 @@ msgid ""
 " Please, check config spec of used view.\n"
 " Undo checkout operation?"
 msgstr ""
-"VSS вернула ошибку при попытке проверить файл.\n"
-" Проверьте конфигурацию.\n"
-" Сделать откат?"
+"VSS РІРµСЂРЅСѓР»Р° РѕС€РёР±РєСѓ РїСЂРё РїРѕРїС‹С‚РєРµ РїСЂРѕРІРµСЂРёС‚СЊ С„Р°Р№Р».\n"
+" РџСЂРѕРІРµСЂСЊС‚Рµ РєРѕРЅС„РёРіСѓСЂР°С†РёСЋ.\n"
+" РЎРґРµР»Р°С‚СЊ РѕС‚РєР°С‚?"
 
 #: Merge.rc:1929D7D3
 #, c-format
@@ -3697,38 +3697,38 @@ msgid ""
 "Versioning System returned an error while attempting to undo checkout the file.\n"
 " Please, check config spec of used view. "
 msgstr ""
-"VSS вернула ошибку при попытке отката изменений.\n"
-" Проверьте конфигурацию. "
+"VSS РІРµСЂРЅСѓР»Р° РѕС€РёР±РєСѓ РїСЂРё РїРѕРїС‹С‚РєРµ РѕС‚РєР°С‚Р° РёР·РјРµРЅРµРЅРёР№.\n"
+" РџСЂРѕРІРµСЂСЊС‚Рµ РєРѕРЅС„РёРіСѓСЂР°С†РёСЋ. "
 
 #: Merge.rc:46FCCCF
 #, c-format
 msgid "None"
-msgstr "Нет"
+msgstr "РќРµС‚"
 
 #: Merge.rc:5164E1E6
 #, c-format
 msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (младше, чем 5.0)"
+msgstr "Visual SourceSafe (РјР»Р°РґС€Рµ, С‡РµРј 5.0)"
 
 #: Merge.rc:5164E1E7
 #, c-format
 msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 и выше)"
+msgstr "Visual SourceSafe (5.0 Рё РІС‹С€Рµ)"
 
 #: Merge.rc:2405135
 #, c-format
 msgid "Break at whitespace"
-msgstr "Разбивать по невидимым"
+msgstr "Р Р°Р·Р±РёРІР°С‚СЊ РїРѕ РЅРµРІРёРґРёРјС‹Рј"
 
 #: Merge.rc:6CB369C2
 #, c-format
 msgid "Break at whitespace or punctuation"
-msgstr "Разбивать по невидимым и знакам пунктуации"
+msgstr "Р Р°Р·Р±РёРІР°С‚СЊ РїРѕ РЅРµРІРёРґРёРјС‹Рј Рё Р·РЅР°РєР°Рј РїСѓРЅРєС‚СѓР°С†РёРё"
 
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"
-msgstr "Скопировать на левую сторону %1 из %2 выбранных элементов"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РЅР° Р»РµРІСѓСЋ СЃС‚РѕСЂРѕРЅСѓ %1 РёР· %2 РІС‹Р±СЂР°РЅРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ"
 
 #: Merge.rc:52D3F9F6
 #, c-format
@@ -3748,7 +3748,7 @@ msgstr ""
 #: Merge.rc:7271FF80
 #, c-format
 msgid "Left to Right (%1)"
-msgstr "Скопировать на правую сторону %1 из %2 выбранных элементов"
+msgstr "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РЅР° РїСЂР°РІСѓСЋ СЃС‚РѕСЂРѕРЅСѓ %1 РёР· %2 РІС‹Р±СЂР°РЅРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ"
 
 #: Merge.rc:5BCDF0E7
 #, c-format
@@ -3758,7 +3758,7 @@ msgstr ""
 #: Merge.rc:71676C48
 #, c-format
 msgid "Left to... (%1)"
-msgstr "Слева на... (%1)"
+msgstr "РЎР»РµРІР° РЅР°... (%1)"
 
 #: Merge.rc:729280DB
 #, c-format
@@ -3768,7 +3768,7 @@ msgstr ""
 #: Merge.rc:32BFDBAD
 #, c-format
 msgid "Right to... (%1)"
-msgstr "Справа на... (%1)"
+msgstr "РЎРїСЂР°РІР° РЅР°... (%1)"
 
 #: Merge.rc:36B164C5
 #, c-format
@@ -3788,7 +3788,7 @@ msgstr ""
 #: Merge.rc:1B633070
 #, c-format
 msgid "Left (%1)"
-msgstr "Слева (%1)"
+msgstr "РЎР»РµРІР° (%1)"
 
 #: Merge.rc:13C27215
 #, c-format
@@ -3798,12 +3798,12 @@ msgstr ""
 #: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
-msgstr "Удалить %1 из %2 выбранных элементов с правой стороны"
+msgstr "РЈРґР°Р»РёС‚СЊ %1 РёР· %2 РІС‹Р±СЂР°РЅРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ СЃ РїСЂР°РІРѕР№ СЃС‚РѕСЂРѕРЅС‹"
 
 #: Merge.rc:146A5939
 #, c-format
 msgid "Both (%1)"
-msgstr "Удалить с обеих сторон %1 из %2 выбранных элементов"
+msgstr "РЈРґР°Р»РёС‚СЊ СЃ РѕР±РµРёС… СЃС‚РѕСЂРѕРЅ %1 РёР· %2 РІС‹Р±СЂР°РЅРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ"
 
 #: Merge.rc:669F87F5
 #, c-format
@@ -3813,7 +3813,7 @@ msgstr ""
 #: Merge.rc:DD21175
 #, c-format
 msgid "Left side - select destination folder:"
-msgstr "Левая сторона - выбор папки назначения:"
+msgstr "Р›РµРІР°СЏ СЃС‚РѕСЂРѕРЅР° - РІС‹Р±РѕСЂ РїР°РїРєРё РЅР°Р·РЅР°С‡РµРЅРёСЏ:"
 
 #: Merge.rc:2B480620
 #, c-format
@@ -3823,17 +3823,17 @@ msgstr ""
 #: Merge.rc:5BBC5591
 #, c-format
 msgid "Right side - select destination folder:"
-msgstr "Правая сторона - выбор папки назначения:"
+msgstr "РџСЂР°РІР°СЏ СЃС‚РѕСЂРѕРЅР° - РІС‹Р±РѕСЂ РїР°РїРєРё РЅР°Р·РЅР°С‡РµРЅРёСЏ:"
 
 #: Merge.rc:66367ECA
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr "(%1 файлов обработано)"
+msgstr "(%1 С„Р°Р№Р»РѕРІ РѕР±СЂР°Р±РѕС‚Р°РЅРѕ)"
 
 #: Merge.rc:65510B09
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(%1 из %2 файлов обработано)"
+msgstr "(%1 РёР· %2 С„Р°Р№Р»РѕРІ РѕР±СЂР°Р±РѕС‚Р°РЅРѕ)"
 
 #: Merge.rc:2B0F0BA2
 #, c-format
@@ -3842,19 +3842,19 @@ msgid ""
 "\n"
 "%1 ?"
 msgstr ""
-"Вы уверены, что хотите удалить\n"
+"Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ\n"
 "\n"
 "%1 ?"
 
 #: Merge.rc:2019BE6D
 #, c-format
 msgid "Are you sure you want to copy:"
-msgstr "Вы уверены, что хотите скопировать:"
+msgstr "Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ:"
 
 #: Merge.rc:2B0F0BA3
 #, c-format
 msgid "Are you sure you want to copy %d items:"
-msgstr "Вы уверены, что хотите скопировать %d элементов:"
+msgstr "Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ %d СЌР»РµРјРµРЅС‚РѕРІ:"
 
 #: Merge.rc:59B96CF
 #, c-format
@@ -3867,28 +3867,28 @@ msgid ""
 "\n"
 "Please refresh the compare."
 msgstr ""
-"Операция прервана!\n"
+"РћРїРµСЂР°С†РёСЏ РїСЂРµСЂРІР°РЅР°!\n"
 "\n"
-"Содержимое папки изменено, путь\n"
+"РЎРѕРґРµСЂР¶РёРјРѕРµ РїР°РїРєРё РёР·РјРµРЅРµРЅРѕ, РїСѓС‚СЊ\n"
 "%1\n"
-"не был найден.\n"
+"РЅРµ Р±С‹Р» РЅР°Р№РґРµРЅ.\n"
 "\n"
-"Обновите сравнение."
+"РћР±РЅРѕРІРёС‚Рµ СЃСЂР°РІРЅРµРЅРёРµ."
 
 #: Merge.rc:2019BE6E
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr "Уверены, что хотите переместить:"
+msgstr "РЈРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РїРµСЂРµРјРµСЃС‚РёС‚СЊ:"
 
 #: Merge.rc:2B0F0BA4
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr "Уверены, что хотите переместить %d элементов:"
+msgstr "РЈРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РїРµСЂРµРјРµСЃС‚РёС‚СЊ %d СЌР»РµРјРµРЅС‚РѕРІ:"
 
 #: Merge.rc:CAEDA37
 #, c-format
 msgid "Confirm Move"
-msgstr "Подтвердите перемещение"
+msgstr "РџРѕРґС‚РІРµСЂРґРёС‚Рµ РїРµСЂРµРјРµС‰РµРЅРёРµ"
 
 #: Merge.rc:1E9E7AFF
 #, c-format
@@ -3898,32 +3898,32 @@ msgstr ""
 #: Merge.rc:4B6299EF
 #, c-format
 msgid "Failed to execute external editor: %1"
-msgstr "Невозможно выполнить %1"
+msgstr "РќРµРІРѕР·РјРѕР¶РЅРѕ РІС‹РїРѕР»РЅРёС‚СЊ %1"
 
 #: Merge.rc:7350CBB7
 #, c-format
 msgid "Unknown archive format"
-msgstr "Неизвестный формат архива"
+msgstr "РќРµРёР·РІРµСЃС‚РЅС‹Р№ С„РѕСЂРјР°С‚ Р°СЂС…РёРІР°"
 
 #: Merge.rc:64ABCD7F
 #, c-format
 msgid "Filename"
-msgstr "Имя файла"
+msgstr "РРјСЏ С„Р°Р№Р»Р°"
 
 #: Merge.rc:D404EDE
 #, c-format
 msgid "Comparison result"
-msgstr "Результат сравнения"
+msgstr "Р РµР·СѓР»СЊС‚Р°С‚ СЃСЂР°РІРЅРµРЅРёСЏ"
 
 #: Merge.rc:1B633071
 #, c-format
 msgid "Left Date"
-msgstr "Дата Слева"
+msgstr "Р”Р°С‚Р° РЎР»РµРІР°"
 
 #: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
-msgstr "Дата Справа"
+msgstr "Р”Р°С‚Р° РЎРїСЂР°РІР°"
 
 #: Merge.rc:13C27216
 #, c-format
@@ -3933,17 +3933,17 @@ msgstr ""
 #: Merge.rc:9B50030
 #, c-format
 msgid "Extension"
-msgstr "Расширение"
+msgstr "Р Р°СЃС€РёСЂРµРЅРёРµ"
 
 #: Merge.rc:1B633072
 #, c-format
 msgid "Left Size"
-msgstr "Размер слева"
+msgstr "Р Р°Р·РјРµСЂ СЃР»РµРІР°"
 
 #: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
-msgstr "Размер справа"
+msgstr "Р Р°Р·РјРµСЂ СЃРїСЂР°РІР°"
 
 #: Merge.rc:13C27217
 #, c-format
@@ -3953,12 +3953,12 @@ msgstr ""
 #: Merge.rc:237A128
 #, c-format
 msgid "Right Size (Short)"
-msgstr "Размер справа (сокр.)"
+msgstr "Р Р°Р·РјРµСЂ СЃРїСЂР°РІР° (СЃРѕРєСЂ.)"
 
 #: Merge.rc:353D7BD8
 #, c-format
 msgid "Left Size (Short)"
-msgstr "Размер слева (сокр.)"
+msgstr "Р Р°Р·РјРµСЂ СЃР»РµРІР° (СЃРѕРєСЂ.)"
 
 #: Merge.rc:17F5B414
 #, c-format
@@ -3968,12 +3968,12 @@ msgstr ""
 #: Merge.rc:7271FF81
 #, c-format
 msgid "Left Creation Time"
-msgstr "Время создания файла слева"
+msgstr "Р’СЂРµРјСЏ СЃРѕР·РґР°РЅРёСЏ С„Р°Р№Р»Р° СЃР»РµРІР°"
 
 #: Merge.rc:44BC83EE
 #, c-format
 msgid "Right Creation Time"
-msgstr "Время создания файла справа"
+msgstr "Р’СЂРµРјСЏ СЃРѕР·РґР°РЅРёСЏ С„Р°Р№Р»Р° СЃРїСЂР°РІР°"
 
 #: Merge.rc:66C0CEA0
 #, c-format
@@ -3983,17 +3983,17 @@ msgstr ""
 #: Merge.rc:4909ADB5
 #, c-format
 msgid "Newer File"
-msgstr "Более новый файл"
+msgstr "Р‘РѕР»РµРµ РЅРѕРІС‹Р№ С„Р°Р№Р»"
 
 #: Merge.rc:353D7BD9
 #, c-format
 msgid "Left File Version"
-msgstr "Версия файла слева"
+msgstr "Р’РµСЂСЃРёСЏ С„Р°Р№Р»Р° СЃР»РµРІР°"
 
 #: Merge.rc:237A129
 #, c-format
 msgid "Right File Version"
-msgstr "Версия файла справа"
+msgstr "Р’РµСЂСЃРёСЏ С„Р°Р№Р»Р° СЃРїСЂР°РІР°"
 
 #: Merge.rc:17F5B415
 #, c-format
@@ -4003,17 +4003,17 @@ msgstr ""
 #: Merge.rc:194397DE
 #, c-format
 msgid "Short Result"
-msgstr "Упрощенный результат"
+msgstr "РЈРїСЂРѕС‰РµРЅРЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚"
 
 #: Merge.rc:71676C49
 #, c-format
 msgid "Left Attributes"
-msgstr "Атрибуты файла слева"
+msgstr "РђС‚СЂРёР±СѓС‚С‹ С„Р°Р№Р»Р° СЃР»РµРІР°"
 
 #: Merge.rc:32BFDBAE
 #, c-format
 msgid "Right Attributes"
-msgstr "Атрибуты файла справа"
+msgstr "РђС‚СЂРёР±СѓС‚С‹ С„Р°Р№Р»Р° СЃРїСЂР°РІР°"
 
 #: Merge.rc:729280DC
 #, c-format
@@ -4023,7 +4023,7 @@ msgstr ""
 #: Merge.rc:15875424
 #, c-format
 msgid "Left EOL"
-msgstr "Левый EOL"
+msgstr "Р›РµРІС‹Р№ EOL"
 
 #: Merge.rc:D0645BD
 #, c-format
@@ -4033,17 +4033,17 @@ msgstr ""
 #: Merge.rc:5F87E5D
 #, c-format
 msgid "Right EOL"
-msgstr "Правый EOL"
+msgstr "РџСЂР°РІС‹Р№ EOL"
 
 #: Merge.rc:5C8E17CF
 #, c-format
 msgid "Left Encoding"
-msgstr "Кодирование файла слева"
+msgstr "РљРѕРґРёСЂРѕРІР°РЅРёРµ С„Р°Р№Р»Р° СЃР»РµРІР°"
 
 #: Merge.rc:1B17601F
 #, c-format
 msgid "Right Encoding"
-msgstr "Кодирование файла справа"
+msgstr "РљРѕРґРёСЂРѕРІР°РЅРёРµ С„Р°Р№Р»Р° СЃРїСЂР°РІР°"
 
 #: Merge.rc:2A79A03A
 #, c-format
@@ -4053,32 +4053,32 @@ msgstr ""
 #: Merge.rc:6B6D8966
 #, c-format
 msgid "Ignored Diff."
-msgstr "Игнор. отличия"
+msgstr "РРіРЅРѕСЂ. РѕС‚Р»РёС‡РёСЏ"
 
 #: Merge.rc:76C8AB99
 #, c-format
 msgid "Unable to compare files"
-msgstr "Невозможно сравнить файлы"
+msgstr "РќРµРІРѕР·РјРѕР¶РЅРѕ СЃСЂР°РІРЅРёС‚СЊ С„Р°Р№Р»С‹"
 
 #: Merge.rc:4166A155
 #, c-format
 msgid "Item aborted"
-msgstr "Сравнение прервано"
+msgstr "РЎСЂР°РІРЅРµРЅРёРµ РїСЂРµСЂРІР°РЅРѕ"
 
 #: Merge.rc:670ABDC3
 #, c-format
 msgid "File skipped"
-msgstr "Файл пропущен"
+msgstr "Р¤Р°Р№Р» РїСЂРѕРїСѓС‰РµРЅ"
 
 #: Merge.rc:4F5264CA
 #, c-format
 msgid "Folder skipped"
-msgstr "Каталог пропущен"
+msgstr "РљР°С‚Р°Р»РѕРі РїСЂРѕРїСѓС‰РµРЅ"
 
 #: Merge.rc:5C8E17D0
 #, c-format
 msgid "Left only: %1"
-msgstr "Только слева: %1"
+msgstr "РўРѕР»СЊРєРѕ СЃР»РµРІР°: %1"
 
 #: Merge.rc:2A79A03B
 #, c-format
@@ -4088,7 +4088,7 @@ msgstr ""
 #: Merge.rc:1B176020
 #, c-format
 msgid "Right only: %1"
-msgstr "Только справа: %1"
+msgstr "РўРѕР»СЊРєРѕ СЃРїСЂР°РІР°: %1"
 
 #: Merge.rc:576B1A36
 #, c-format
@@ -4098,32 +4098,32 @@ msgstr ""
 #: Merge.rc:6B248E76
 #, c-format
 msgid "Binary files are identical"
-msgstr "Бинарные файлы не имеют отличий"
+msgstr "Р‘РёРЅР°СЂРЅС‹Рµ С„Р°Р№Р»С‹ РЅРµ РёРјРµСЋС‚ РѕС‚Р»РёС‡РёР№"
 
 #: Merge.rc:6B248E77
 #, c-format
 msgid "Binary files are different"
-msgstr "Бинарные файлы отличаются"
+msgstr "Р‘РёРЅР°СЂРЅС‹Рµ С„Р°Р№Р»С‹ РѕС‚Р»РёС‡Р°СЋС‚СЃСЏ"
 
 #: Merge.rc:72DF5DE2
 #, c-format
 msgid "Files are different"
-msgstr "Файлы отличаются"
+msgstr "Р¤Р°Р№Р»С‹ РѕС‚Р»РёС‡Р°СЋС‚СЃСЏ"
 
 #: Merge.rc:387F7982
 #, c-format
 msgid "Folders are different"
-msgstr "Папки различны"
+msgstr "РџР°РїРєРё СЂР°Р·Р»РёС‡РЅС‹"
 
 #: Merge.rc:1B633073
 #, c-format
 msgid "Left Only"
-msgstr "Только слева"
+msgstr "РўРѕР»СЊРєРѕ СЃР»РµРІР°"
 
 #: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
-msgstr "Только справа"
+msgstr "РўРѕР»СЊРєРѕ СЃРїСЂР°РІР°"
 
 #: Merge.rc:13C27218
 #, c-format
@@ -4148,12 +4148,12 @@ msgstr ""
 #: Merge.rc:79AB21E1
 #, c-format
 msgid "Error"
-msgstr "Ошибка"
+msgstr "РћС€РёР±РєР°"
 
 #: Merge.rc:12D66B44
 #, c-format
 msgid "Text files are identical"
-msgstr "Текстовые файлы идентичны"
+msgstr "РўРµРєСЃС‚РѕРІС‹Рµ С„Р°Р№Р»С‹ РёРґРµРЅС‚РёС‡РЅС‹"
 
 #: Merge.rc:1DEEB161
 #, c-format
@@ -4173,47 +4173,47 @@ msgstr ""
 #: Merge.rc:12D66B45
 #, c-format
 msgid "Text files are different"
-msgstr "Текстовые файлы различны"
+msgstr "РўРµРєСЃС‚РѕРІС‹Рµ С„Р°Р№Р»С‹ СЂР°Р·Р»РёС‡РЅС‹"
 
 #: Merge.rc:203BBC7B
 #, c-format
 msgid "Elapsed time: %ld ms"
-msgstr "Прошло времени: %ld мс"
+msgstr "РџСЂРѕС€Р»Рѕ РІСЂРµРјРµРЅРё: %ld РјСЃ"
 
 #: Merge.rc:6C7BF198
 #, c-format
 msgid "1 item selected"
-msgstr "Выбран 1 элемент"
+msgstr "Р’С‹Р±СЂР°РЅ 1 СЌР»РµРјРµРЅС‚"
 
 #: Merge.rc:5D49B8EC
 #, c-format
 msgid "%1 items selected"
-msgstr "Выбрано элементов: %1"
+msgstr "Р’С‹Р±СЂР°РЅРѕ СЌР»РµРјРµРЅС‚РѕРІ: %1"
 
 #: Merge.rc:3A5D5963
 #, c-format
 msgid "Filename or folder name."
-msgstr "Имя файла или каталога"
+msgstr "РРјСЏ С„Р°Р№Р»Р° РёР»Рё РєР°С‚Р°Р»РѕРіР°"
 
 #: Merge.rc:A7628EE
 #, c-format
 msgid "Subfolder name when subfolders are included."
-msgstr "Имена подпапок, если подпапки включены"
+msgstr "РРјРµРЅР° РїРѕРґРїР°РїРѕРє, РµСЃР»Рё РїРѕРґРїР°РїРєРё РІРєР»СЋС‡РµРЅС‹"
 
 #: Merge.rc:6F88EC68
 #, c-format
 msgid "Comparison result, long form."
-msgstr "Результат сравнения, длинная форма."
+msgstr "Р РµР·СѓР»СЊС‚Р°С‚ СЃСЂР°РІРЅРµРЅРёСЏ, РґР»РёРЅРЅР°СЏ С„РѕСЂРјР°."
 
 #: Merge.rc:28BFDD41
 #, c-format
 msgid "Left side modification date."
-msgstr "Время изменения файла слева"
+msgstr "Р’СЂРµРјСЏ РёР·РјРµРЅРµРЅРёСЏ С„Р°Р№Р»Р° СЃР»РµРІР°"
 
 #: Merge.rc:19B30A68
 #, c-format
 msgid "Right side modification date."
-msgstr "Время изменения файла справа"
+msgstr "Р’СЂРµРјСЏ РёР·РјРµРЅРµРЅРёСЏ С„Р°Р№Р»Р° СЃРїСЂР°РІР°"
 
 #: Merge.rc:68FB0CE7
 #, c-format
@@ -4223,17 +4223,17 @@ msgstr ""
 #: Merge.rc:453F5DDC
 #, c-format
 msgid "File's extension."
-msgstr "Расширение файла"
+msgstr "Р Р°СЃС€РёСЂРµРЅРёРµ С„Р°Р№Р»Р°"
 
 #: Merge.rc:172385A1
 #, c-format
 msgid "Left file size in bytes."
-msgstr "Размер файла слева в байтах"
+msgstr "Р Р°Р·РјРµСЂ С„Р°Р№Р»Р° СЃР»РµРІР° РІ Р±Р°Р№С‚Р°С…"
 
 #: Merge.rc:94C89D4
 #, c-format
 msgid "Right file size in bytes."
-msgstr "Размер файла справа в байтах"
+msgstr "Р Р°Р·РјРµСЂ С„Р°Р№Р»Р° СЃРїСЂР°РІР° РІ Р±Р°Р№С‚Р°С…"
 
 #: Merge.rc:27AAA636
 #, c-format
@@ -4243,12 +4243,12 @@ msgstr ""
 #: Merge.rc:2EBBDDD6
 #, c-format
 msgid "Left file size abbreviated."
-msgstr "Размер левого файла (сокр.)"
+msgstr "Р Р°Р·РјРµСЂ Р»РµРІРѕРіРѕ С„Р°Р№Р»Р° (СЃРѕРєСЂ.)"
 
 #: Merge.rc:21DC7C32
 #, c-format
 msgid "Right file size abbreviated."
-msgstr "Размер правого файла (сокр.)"
+msgstr "Р Р°Р·РјРµСЂ РїСЂР°РІРѕРіРѕ С„Р°Р№Р»Р° (СЃРѕРєСЂ.)"
 
 #: Merge.rc:BA50069
 #, c-format
@@ -4258,12 +4258,12 @@ msgstr ""
 #: Merge.rc:172385A2
 #, c-format
 msgid "Left side creation time."
-msgstr "Время создания файла слева"
+msgstr "Р’СЂРµРјСЏ СЃРѕР·РґР°РЅРёСЏ С„Р°Р№Р»Р° СЃР»РµРІР°"
 
 #: Merge.rc:94C89D5
 #, c-format
 msgid "Right side creation time."
-msgstr "Время создания файла справа"
+msgstr "Р’СЂРµРјСЏ СЃРѕР·РґР°РЅРёСЏ С„Р°Р№Р»Р° СЃРїСЂР°РІР°"
 
 #: Merge.rc:27AAA637
 #, c-format
@@ -4273,17 +4273,17 @@ msgstr ""
 #: Merge.rc:4B4CD318
 #, c-format
 msgid "Tells which side has newer modification date."
-msgstr "Показать с какой из сторон дата изменения файла новее"
+msgstr "РџРѕРєР°Р·Р°С‚СЊ СЃ РєР°РєРѕР№ РёР· СЃС‚РѕСЂРѕРЅ РґР°С‚Р° РёР·РјРµРЅРµРЅРёСЏ С„Р°Р№Р»Р° РЅРѕРІРµРµ"
 
 #: Merge.rc:3AF5EAD7
 #, c-format
 msgid "Left side file version, only for some filetypes."
-msgstr "Версия файла слева, только для некоторых типов файлов."
+msgstr "Р’РµСЂСЃРёСЏ С„Р°Р№Р»Р° СЃР»РµРІР°, С‚РѕР»СЊРєРѕ РґР»СЏ РЅРµРєРѕС‚РѕСЂС‹С… С‚РёРїРѕРІ С„Р°Р№Р»РѕРІ."
 
 #: Merge.rc:7413D0D6
 #, c-format
 msgid "Right side file version, only for some filetypes."
-msgstr "Версия файла справа, только для некоторых типов файлов."
+msgstr "Р’РµСЂСЃРёСЏ С„Р°Р№Р»Р° СЃРїСЂР°РІР°, С‚РѕР»СЊРєРѕ РґР»СЏ РЅРµРєРѕС‚РѕСЂС‹С… С‚РёРїРѕРІ С„Р°Р№Р»РѕРІ."
 
 #: Merge.rc:5EB13952
 #, c-format
@@ -4293,17 +4293,17 @@ msgstr ""
 #: Merge.rc:43600E91
 #, c-format
 msgid "Short comparison result."
-msgstr "Результат быстрого сравнения"
+msgstr "Р РµР·СѓР»СЊС‚Р°С‚ Р±С‹СЃС‚СЂРѕРіРѕ СЃСЂР°РІРЅРµРЅРёСЏ"
 
 #: Merge.rc:20155F5A
 #, c-format
 msgid "Left side attributes."
-msgstr "Атрибуты файла слева"
+msgstr "РђС‚СЂРёР±СѓС‚С‹ С„Р°Р№Р»Р° СЃР»РµРІР°"
 
 #: Merge.rc:6DBD6125
 #, c-format
 msgid "Right side attributes."
-msgstr "Атрибуты файла справа"
+msgstr "РђС‚СЂРёР±СѓС‚С‹ С„Р°Р№Р»Р° СЃРїСЂР°РІР°"
 
 #: Merge.rc:7F2E411A
 #, c-format
@@ -4313,12 +4313,12 @@ msgstr ""
 #: Merge.rc:703AF3C8
 #, c-format
 msgid "Left side file EOL type"
-msgstr "Маркер конца строки для левого файла"
+msgstr "РњР°СЂРєРµСЂ РєРѕРЅС†Р° СЃС‚СЂРѕРєРё РґР»СЏ Р»РµРІРѕРіРѕ С„Р°Р№Р»Р°"
 
 #: Merge.rc:73E9B1DC
 #, c-format
 msgid "Right side file EOL type"
-msgstr "Маркер конца строки для правого файла"
+msgstr "РњР°СЂРєРµСЂ РєРѕРЅС†Р° СЃС‚СЂРѕРєРё РґР»СЏ РїСЂР°РІРѕРіРѕ С„Р°Р№Р»Р°"
 
 #: Merge.rc:6CA26873
 #, c-format
@@ -4328,12 +4328,12 @@ msgstr ""
 #: Merge.rc:5BCDF0E8
 #, c-format
 msgid "Left side encoding."
-msgstr "Кодирование файла слева"
+msgstr "РљРѕРґРёСЂРѕРІР°РЅРёРµ С„Р°Р№Р»Р° СЃР»РµРІР°"
 
 #: Merge.rc:52D3F9F7
 #, c-format
 msgid "Right side encoding."
-msgstr "Кодирование файла справа"
+msgstr "РљРѕРґРёСЂРѕРІР°РЅРёРµ С„Р°Р№Р»Р° СЃРїСЂР°РІР°"
 
 #: Merge.rc:715905A6
 #, c-format
@@ -4343,47 +4343,47 @@ msgstr ""
 #: Merge.rc:58398DFF
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-msgstr "Количество игнорированных отличий в файле. Эти отличия были игнорированны WinMerge и не могут быть обработаны."
+msgstr "РљРѕР»РёС‡РµСЃС‚РІРѕ РёРіРЅРѕСЂРёСЂРѕРІР°РЅРЅС‹С… РѕС‚Р»РёС‡РёР№ РІ С„Р°Р№Р»Рµ. Р­С‚Рё РѕС‚Р»РёС‡РёСЏ Р±С‹Р»Рё РёРіРЅРѕСЂРёСЂРѕРІР°РЅРЅС‹ WinMerge Рё РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РѕР±СЂР°Р±РѕС‚Р°РЅС‹."
 
 #: Merge.rc:6A6D5CB6
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
-msgstr "Количество отличий в файле. Это число не включает в себя игнорированные отличия."
+msgstr "РљРѕР»РёС‡РµСЃС‚РІРѕ РѕС‚Р»РёС‡РёР№ РІ С„Р°Р№Р»Рµ. Р­С‚Рѕ С‡РёСЃР»Рѕ РЅРµ РІРєР»СЋС‡Р°РµС‚ РІ СЃРµР±СЏ РёРіРЅРѕСЂРёСЂРѕРІР°РЅРЅС‹Рµ РѕС‚Р»РёС‡РёСЏ."
 
 #: Merge.rc:A7628EF
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "Показать звездочку (*) если файл бинарный."
+msgstr "РџРѕРєР°Р·Р°С‚СЊ Р·РІРµР·РґРѕС‡РєСѓ (*) РµСЃР»Рё С„Р°Р№Р» Р±РёРЅР°СЂРЅС‹Р№."
 
 #: Merge.rc:1AC98D0D
 #, c-format
 msgid "Compare %1 with %2"
-msgstr "Сравнивание %1 с %2"
+msgstr "РЎСЂР°РІРЅРёРІР°РЅРёРµ %1 СЃ %2"
 
 #: Merge.rc:E9A77F2
 #, c-format
 msgid "Comma-separated list"
-msgstr "Список с разделяющими запятыми"
+msgstr "РЎРїРёСЃРѕРє СЃ СЂР°Р·РґРµР»СЏСЋС‰РёРјРё Р·Р°РїСЏС‚С‹РјРё"
 
 #: Merge.rc:5CCED709
 #, c-format
 msgid "Tab-separated list"
-msgstr "Список с разделяющими табуляторами"
+msgstr "РЎРїРёСЃРѕРє СЃ СЂР°Р·РґРµР»СЏСЋС‰РёРјРё С‚Р°Р±СѓР»СЏС‚РѕСЂР°РјРё"
 
 #: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Simple HTML"
-msgstr "Простой HTML"
+msgstr "РџСЂРѕСЃС‚РѕР№ HTML"
 
 #: Merge.rc:751AB591
 #, c-format
 msgid "Simple XML"
-msgstr "Простой XML"
+msgstr "РџСЂРѕСЃС‚РѕР№ XML"
 
 #: Merge.rc:67FDA050
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "Файл отчета уже существует. Перезаписать??"
+msgstr "Р¤Р°Р№Р» РѕС‚С‡РµС‚Р° СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚. РџРµСЂРµР·Р°РїРёСЃР°С‚СЊ??"
 
 #: Merge.rc:630F8340
 #, c-format
@@ -4391,33 +4391,33 @@ msgid ""
 "Error creating the report:\n"
 "%1"
 msgstr ""
-"Ошибка при создании отчета:\n"
+"РћС€РёР±РєР° РїСЂРё СЃРѕР·РґР°РЅРёРё РѕС‚С‡РµС‚Р°:\n"
 "%1"
 
 #: Merge.rc:37B243DF
 #, c-format
 msgid "The report has been created successfully."
-msgstr "Отчет успешно создан"
+msgstr "РћС‚С‡РµС‚ СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅ"
 
 #: Merge.rc:162B12F9
 #, c-format
 msgid "The same file is opened in both panels."
-msgstr "На обоих панелях открыт один и тот же файл"
+msgstr "РќР° РѕР±РѕРёС… РїР°РЅРµР»СЏС… РѕС‚РєСЂС‹С‚ РѕРґРёРЅ Рё С‚РѕС‚ Р¶Рµ С„Р°Р№Р»"
 
 #: Merge.rc:7632E88D
 #, c-format
 msgid "The selected files are identical."
-msgstr "Выбранные файлы не имеют отличий"
+msgstr "Р’С‹Р±СЂР°РЅРЅС‹Рµ С„Р°Р№Р»С‹ РЅРµ РёРјРµСЋС‚ РѕС‚Р»РёС‡РёР№"
 
 #: Merge.rc:44565DBD
 #, c-format
 msgid "An error occurred while comparing the files."
-msgstr "При сравнении файлов произошла ошибка."
+msgstr "РџСЂРё СЃСЂР°РІРЅРµРЅРёРё С„Р°Р№Р»РѕРІ РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°."
 
 #: Merge.rc:5F16D9DC
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "Временные файлы не могут быть созданы. Проверьте настройки путей для временных файлов"
+msgstr "Р’СЂРµРјРµРЅРЅС‹Рµ С„Р°Р№Р»С‹ РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ СЃРѕР·РґР°РЅС‹. РџСЂРѕРІРµСЂСЊС‚Рµ РЅР°СЃС‚СЂРѕР№РєРё РїСѓС‚РµР№ РґР»СЏ РІСЂРµРјРµРЅРЅС‹С… С„Р°Р№Р»РѕРІ"
 
 #: Merge.rc:11E6F584
 #, c-format
@@ -4428,21 +4428,21 @@ msgid ""
 "\n"
 "Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
-"Эти файлы имеют различные типы меток конца строки.\n"
+"Р­С‚Рё С„Р°Р№Р»С‹ РёРјРµСЋС‚ СЂР°Р·Р»РёС‡РЅС‹Рµ С‚РёРїС‹ РјРµС‚РѕРє РєРѕРЅС†Р° СЃС‚СЂРѕРєРё.\n"
 "\n"
-"Хотите, чтобы в этом сравнении они игнорировались (считались равнозначными) ?\n"
+"РҐРѕС‚РёС‚Рµ, С‡С‚РѕР±С‹ РІ СЌС‚РѕРј СЃСЂР°РІРЅРµРЅРёРё РѕРЅРё РёРіРЅРѕСЂРёСЂРѕРІР°Р»РёСЃСЊ (СЃС‡РёС‚Р°Р»РёСЃСЊ СЂР°РІРЅРѕР·РЅР°С‡РЅС‹РјРё) ?\n"
 "\n"
-"Внимание: Если вас не интересуют различия в EOL, установите опцию 'Игнорировать различия в EOL' на вкладке Сравнение в Настройках."
+"Р’РЅРёРјР°РЅРёРµ: Р•СЃР»Рё РІР°СЃ РЅРµ РёРЅС‚РµСЂРµСЃСѓСЋС‚ СЂР°Р·Р»РёС‡РёСЏ РІ EOL, СѓСЃС‚Р°РЅРѕРІРёС‚Рµ РѕРїС†РёСЋ 'РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ СЂР°Р·Р»РёС‡РёСЏ РІ EOL' РЅР° РІРєР»Р°РґРєРµ РЎСЂР°РІРЅРµРЅРёРµ РІ РќР°СЃС‚СЂРѕР№РєР°С…."
 
 #: Merge.rc:46FB8639
 #, c-format
 msgid "The selected folder is invalid."
-msgstr "Невозможно открыть выбранную папку."
+msgstr "РќРµРІРѕР·РјРѕР¶РЅРѕ РѕС‚РєСЂС‹С‚СЊ РІС‹Р±СЂР°РЅРЅСѓСЋ РїР°РїРєСѓ."
 
 #: Merge.rc:4BC3EDDB
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "Невозможно отобразить бинарный файл в редакторе."
+msgstr "РќРµРІРѕР·РјРѕР¶РЅРѕ РѕС‚РѕР±СЂР°Р·РёС‚СЊ Р±РёРЅР°СЂРЅС‹Р№ С„Р°Р№Р» РІ СЂРµРґР°РєС‚РѕСЂРµ."
 
 #: Merge.rc:279EB840
 #, c-format
@@ -4453,11 +4453,11 @@ msgid ""
 "%1\n"
 "to the other side and open these folders?"
 msgstr ""
-"Папка существует только на одной стороне и не может быть открыта.\n"
+"РџР°РїРєР° СЃСѓС‰РµСЃС‚РІСѓРµС‚ С‚РѕР»СЊРєРѕ РЅР° РѕРґРЅРѕР№ СЃС‚РѕСЂРѕРЅРµ Рё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РєСЂС‹С‚Р°.\n"
 "\n"
-"Хотите создать соответствующую папку:\n"
+"РҐРѕС‚РёС‚Рµ СЃРѕР·РґР°С‚СЊ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ РїР°РїРєСѓ:\n"
 "%1\n"
-"на другой стороне и обе открыть их?"
+"РЅР° РґСЂСѓРіРѕР№ СЃС‚РѕСЂРѕРЅРµ Рё РѕР±Рµ РѕС‚РєСЂС‹С‚СЊ РёС…?"
 
 #: Merge.rc:36F211E1
 #, c-format
@@ -4486,14 +4486,14 @@ msgid ""
 "Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
 "Would you like to treat both files as being in the default windows codepage (recommended)?"
 msgstr ""
-"Различные кодировки: левый - (cp%d), правый - (cp%d). \n"
-"Каждый из файлов может быть отображен в своей кодировке, но их слияние или копирование может повредить информацию.\n"
-"Отобразить оба файла в системной кодировке (рекомендуется)?"
+"Р Р°Р·Р»РёС‡РЅС‹Рµ РєРѕРґРёСЂРѕРІРєРё: Р»РµРІС‹Р№ - (cp%d), РїСЂР°РІС‹Р№ - (cp%d). \n"
+"РљР°Р¶РґС‹Р№ РёР· С„Р°Р№Р»РѕРІ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РѕР±СЂР°Р¶РµРЅ РІ СЃРІРѕРµР№ РєРѕРґРёСЂРѕРІРєРµ, РЅРѕ РёС… СЃР»РёСЏРЅРёРµ РёР»Рё РєРѕРїРёСЂРѕРІР°РЅРёРµ РјРѕР¶РµС‚ РїРѕРІСЂРµРґРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ.\n"
+"РћС‚РѕР±СЂР°Р·РёС‚СЊ РѕР±Р° С„Р°Р№Р»Р° РІ СЃРёСЃС‚РµРјРЅРѕР№ РєРѕРґРёСЂРѕРІРєРµ (СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ)?"
 
 #: Merge.rc:5851E4C8
 #, c-format
 msgid "Information lost due to encoding errors: both files"
-msgstr "Информация потеряна из-за ошибочной кодировки: оба файла"
+msgstr "РРЅС„РѕСЂРјР°С†РёСЏ РїРѕС‚РµСЂСЏРЅР° РёР·-Р·Р° РѕС€РёР±РѕС‡РЅРѕР№ РєРѕРґРёСЂРѕРІРєРё: РѕР±Р° С„Р°Р№Р»Р°"
 
 #: Merge.rc:5851E4C9
 #, c-format
@@ -4513,22 +4513,22 @@ msgstr ""
 #: Merge.rc:7D4E76C0
 #, c-format
 msgid "No difference"
-msgstr "Нет отличий"
+msgstr "РќРµС‚ РѕС‚Р»РёС‡РёР№"
 
 #: Merge.rc:71676C4A
 #, c-format
 msgid "Line difference"
-msgstr "Строка отличий"
+msgstr "РЎС‚СЂРѕРєР° РѕС‚Р»РёС‡РёР№"
 
 #: Merge.rc:6DBD6126
 #, c-format
 msgid "Replaced %1 string(s)."
-msgstr "Заменено %1 строк."
+msgstr "Р—Р°РјРµРЅРµРЅРѕ %1 СЃС‚СЂРѕРє."
 
 #: Merge.rc:334E25B3
 #, c-format
 msgid "Cannot find string \"%s\""
-msgstr "Невозможно найти строку \"%s\""
+msgstr "РќРµРІРѕР·РјРѕР¶РЅРѕ РЅР°Р№С‚Рё СЃС‚СЂРѕРєСѓ \"%s\""
 
 #: Merge.rc:34855CF1
 #, c-format
@@ -4563,77 +4563,77 @@ msgstr ""
 #: Merge.rc:5C8E17D1
 #, c-format
 msgid "Location Pane"
-msgstr "Местоположения"
+msgstr "РњРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёСЏ"
 
 #: Merge.rc:629C1DDF
 #, c-format
 msgid "Diff Pane"
-msgstr "Отличия"
+msgstr "РћС‚Р»РёС‡РёСЏ"
 
 #: Merge.rc:3BDD62C4
 #, c-format
 msgid "Patch file successfully written."
-msgstr "Патч успешно записан."
+msgstr "РџР°С‚С‡ СѓСЃРїРµС€РЅРѕ Р·Р°РїРёСЃР°РЅ."
 
 #: Merge.rc:74C5055A
 #, c-format
 msgid "1. item is not found or is directory!"
-msgstr "1. Элемент не найден или это каталог"
+msgstr "1. Р­Р»РµРјРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ РёР»Рё СЌС‚Рѕ РєР°С‚Р°Р»РѕРі"
 
 #: Merge.rc:7EFD4961
 #, c-format
 msgid "2. item is not found or is directory!"
-msgstr "2. Элемент не найден или это каталог"
+msgstr "2. Р­Р»РµРјРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ РёР»Рё СЌС‚Рѕ РєР°С‚Р°Р»РѕРі"
 
 #: Merge.rc:E611488
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "Патч уже существует. Хотите перезаписать его ?"
+msgstr "РџР°С‚С‡ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚. РҐРѕС‚РёС‚Рµ РїРµСЂРµР·Р°РїРёСЃР°С‚СЊ РµРіРѕ ?"
 
 #: Merge.rc:62226073
 #, c-format
 msgid "[%1 files selected]"
-msgstr "[%1 файлов выбрано]"
+msgstr "[%1 С„Р°Р№Р»РѕРІ РІС‹Р±СЂР°РЅРѕ]"
 
 #: Merge.rc:27AFDB30
 #, c-format
 msgid "Normal"
-msgstr "Нормальный"
+msgstr "РќРѕСЂРјР°Р»СЊРЅС‹Р№"
 
 #: Merge.rc:7E5494F7
 #, c-format
 msgid "Context"
-msgstr "Контекст"
+msgstr "РљРѕРЅС‚РµРєСЃС‚"
 
 #: Merge.rc:24173EE8
 #, c-format
 msgid "Unified"
-msgstr "Унифицированный"
+msgstr "РЈРЅРёС„РёС†РёСЂРѕРІР°РЅРЅС‹Р№"
 
 #: Merge.rc:185B8391
 #, c-format
 msgid "Could not write to file %1."
-msgstr "Нет возможности записать в файл %1."
+msgstr "РќРµС‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё Р·Р°РїРёСЃР°С‚СЊ РІ С„Р°Р№Р» %1."
 
 #: Merge.rc:64D049AA
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
-msgstr "Указанный путь для вывода не является абсолютным: %1"
+msgstr "РЈРєР°Р·Р°РЅРЅС‹Р№ РїСѓС‚СЊ РґР»СЏ РІС‹РІРѕРґР° РЅРµ СЏРІР»СЏРµС‚СЃСЏ Р°Р±СЃРѕР»СЋС‚РЅС‹Рј: %1"
 
 #: Merge.rc:44EE84AA
 #, c-format
 msgid "Specify an output file"
-msgstr "Указать выходной файл"
+msgstr "РЈРєР°Р·Р°С‚СЊ РІС‹С…РѕРґРЅРѕР№ С„Р°Р№Р»"
 
 #: Merge.rc:54711616
 #, c-format
 msgid "Cannot create a patch file from binary files."
-msgstr "Невозможно создать патч из бинарных файлов"
+msgstr "РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ РїР°С‚С‡ РёР· Р±РёРЅР°СЂРЅС‹С… С„Р°Р№Р»РѕРІ"
 
 #: Merge.rc:133D7451
 #, c-format
 msgid "Cannot create a patch file from directories."
-msgstr "Невозможно создать патч из каталогов"
+msgstr "РќРµРІРѕР·РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ РїР°С‚С‡ РёР· РєР°С‚Р°Р»РѕРіРѕРІ"
 
 #: Merge.rc:34FF26C7
 #, c-format
@@ -4642,14 +4642,14 @@ msgid ""
 "\n"
 "Creating a patch requires that there are no unsaved changes in files."
 msgstr ""
-"Сначала сохраните все файлы.\n"
+"РЎРЅР°С‡Р°Р»Р° СЃРѕС…СЂР°РЅРёС‚Рµ РІСЃРµ С„Р°Р№Р»С‹.\n"
 "\n"
-"Создание патча требует чтобы в файлах не было несохраненных изменений"
+"РЎРѕР·РґР°РЅРёРµ РїР°С‚С‡Р° С‚СЂРµР±СѓРµС‚ С‡С‚РѕР±С‹ РІ С„Р°Р№Р»Р°С… РЅРµ Р±С‹Р»Рѕ РЅРµСЃРѕС…СЂР°РЅРµРЅРЅС‹С… РёР·РјРµРЅРµРЅРёР№"
 
 #: Merge.rc:576FB6D3
 #, c-format
 msgid "Folder does not exist."
-msgstr "Папка не существует"
+msgstr "РџР°РїРєР° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚"
 
 #: Merge.rc:3377B7B5
 #, c-format
@@ -4658,40 +4658,40 @@ msgid ""
 "All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
 "See manual for more info about archive support and how to enable it."
 msgstr ""
-"Поддержка архивов не включена.\n"
+"РџРѕРґРґРµСЂР¶РєР° Р°СЂС…РёРІРѕРІ РЅРµ РІРєР»СЋС‡РµРЅР°.\n"
 " \n"
-"Не найдены все необходимые компоненты (7-zip и/или Merge7z*.dll) . \n"
-"Посмотрите инструкцию, что бы узнать больше про поддержку архивов и как ее включить."
+"РќРµ РЅР°Р№РґРµРЅС‹ РІСЃРµ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РєРѕРјРїРѕРЅРµРЅС‚С‹ (7-zip Рё/РёР»Рё Merge7z*.dll) . \n"
+"РџРѕСЃРјРѕС‚СЂРёС‚Рµ РёРЅСЃС‚СЂСѓРєС†РёСЋ, С‡С‚Рѕ Р±С‹ СѓР·РЅР°С‚СЊ Р±РѕР»СЊС€Рµ РїСЂРѕ РїРѕРґРґРµСЂР¶РєСѓ Р°СЂС…РёРІРѕРІ Рё РєР°Рє РµРµ РІРєР»СЋС‡РёС‚СЊ."
 
 #: Merge.rc:44EE84AB
 #, c-format
 msgid "Select file for export"
-msgstr "Выбрать файл для экспорта"
+msgstr "Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р» РґР»СЏ СЌРєСЃРїРѕСЂС‚Р°"
 
 #: Merge.rc:44EE84AC
 #, c-format
 msgid "Select file for import"
-msgstr "Выбрать файл для импорта"
+msgstr "Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р» РґР»СЏ РёРјРїРѕСЂС‚Р°"
 
 #: Merge.rc:447FB30
 #, c-format
 msgid "Options imported from the file."
-msgstr "Опции, импортированные из файла."
+msgstr "РћРїС†РёРё, РёРјРїРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Рµ РёР· С„Р°Р№Р»Р°."
 
 #: Merge.rc:44776ACF
 #, c-format
 msgid "Options exported to the file."
-msgstr "Опции, экспортируемые в файл."
+msgstr "РћРїС†РёРё, СЌРєСЃРїРѕСЂС‚РёСЂСѓРµРјС‹Рµ РІ С„Р°Р№Р»."
 
 #: Merge.rc:7D23E524
 #, c-format
 msgid "Failed to import options from the file."
-msgstr "Ошибка импорта опций из файла."
+msgstr "РћС€РёР±РєР° РёРјРїРѕСЂС‚Р° РѕРїС†РёР№ РёР· С„Р°Р№Р»Р°."
 
 #: Merge.rc:68F9158
 #, c-format
 msgid "Failed to write options to the file."
-msgstr "Ошибка экспорта опций в файл."
+msgstr "РћС€РёР±РєР° СЌРєСЃРїРѕСЂС‚Р° РѕРїС†РёР№ РІ С„Р°Р№Р»."
 
 #: Merge.rc:404DAD7D
 #, c-format
@@ -4700,34 +4700,34 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
-"Вы хотите закрыть закрыть сразу несколько окон сравнения.\n"
+"Р’С‹ С…РѕС‚РёС‚Рµ Р·Р°РєСЂС‹С‚СЊ Р·Р°РєСЂС‹С‚СЊ СЃСЂР°Р·Сѓ РЅРµСЃРєРѕР»СЊРєРѕ РѕРєРѕРЅ СЃСЂР°РІРЅРµРЅРёСЏ.\n"
 "\n"
-"Продолжить?"
+"РџСЂРѕРґРѕР»Р¶РёС‚СЊ?"
 
 #: Merge.rc:7C664E2
 #, c-format
 msgid "Mixed"
-msgstr "Смешанный"
+msgstr "РЎРјРµС€Р°РЅРЅС‹Р№"
 
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
-msgstr "Тип"
+msgstr "РўРёРї"
 
 #: Merge.rc:5ED09E18
 #, c-format
 msgid "Unpacker"
-msgstr "Распаковщик"
+msgstr "Р Р°СЃРїР°РєРѕРІС‰РёРє"
 
 #: Merge.rc:37C6B9B9
 #, c-format
 msgid "Prediffer"
-msgstr "Предсравнение"
+msgstr "РџСЂРµРґСЃСЂР°РІРЅРµРЅРёРµ"
 
 #: Merge.rc:29ECCB83
 #, c-format
 msgid "Editor script"
-msgstr "Редактор скриптов"
+msgstr "Р РµРґР°РєС‚РѕСЂ СЃРєСЂРёРїС‚РѕРІ"
 
 #: Merge.rc:51A4FE5F
 #, c-format
@@ -4817,27 +4817,27 @@ msgstr ""
 #: Merge.rc:6107F02B
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "Автоматический подобор распаковщика (укажите расширение хотя бы у одного из файлов)"
+msgstr "РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№ РїРѕРґРѕР±РѕСЂ СЂР°СЃРїР°РєРѕРІС‰РёРєР° (СѓРєР°Р¶РёС‚Рµ СЂР°СЃС€РёСЂРµРЅРёРµ С…РѕС‚СЏ Р±С‹ Сѓ РѕРґРЅРѕРіРѕ РёР· С„Р°Р№Р»РѕРІ)"
 
 #: Merge.rc:429CABF5
 #, c-format
 msgid "No prediffer (normal)"
-msgstr "Без предсравнения (normal)"
+msgstr "Р‘РµР· РїСЂРµРґСЃСЂР°РІРЅРµРЅРёСЏ (normal)"
 
 #: Merge.rc:62909ED8
 #, c-format
 msgid "Suggested plugins"
-msgstr "Советуемые дополнения"
+msgstr "РЎРѕРІРµС‚СѓРµРјС‹Рµ РґРѕРїРѕР»РЅРµРЅРёСЏ"
 
 #: Merge.rc:4DAEA639
 #, c-format
 msgid "Other plugins"
-msgstr "Другие дополнения"
+msgstr "Р”СЂСѓРіРёРµ РґРѕРїРѕР»РЅРµРЅРёСЏ"
 
 #: Merge.rc:2A918FD6
 #, c-format
 msgid "Private Build: %1"
-msgstr "Частный билд: %1"
+msgstr "Р§Р°СЃС‚РЅС‹Р№ Р±РёР»Рґ: %1"
 
 #: Merge.rc:40D543C8
 #, c-format
@@ -4857,47 +4857,47 @@ msgstr ""
 #: Merge.rc:55B03C14
 #, c-format
 msgid "Plugin Settings"
-msgstr "Настройки дополнения"
+msgstr "РќР°СЃС‚СЂРѕР№РєРё РґРѕРїРѕР»РЅРµРЅРёСЏ"
 
 #: Merge.rc:791F1E67
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH не найден - .sct скрипты отключены"
+msgstr "WSH РЅРµ РЅР°Р№РґРµРЅ - .sct СЃРєСЂРёРїС‚С‹ РѕС‚РєР»СЋС‡РµРЅС‹"
 
 #: Merge.rc:4FC259D5
 #, c-format
 msgid "<None>"
-msgstr "<Нет>"
+msgstr "<РќРµС‚>"
 
 #: Merge.rc:8BF6984
 #, c-format
 msgid "<Automatic>"
-msgstr "<Автоматически>"
+msgstr "<РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё>"
 
 #: Merge.rc:4AAD2A74
 #, c-format
 msgid "G&oto Line %1"
-msgstr "Перейти к &строке %1"
+msgstr "РџРµСЂРµР№С‚Рё Рє &СЃС‚СЂРѕРєРµ %1"
 
 #: Merge.rc:7F0D4B47
 #, c-format
 msgid "Disabled"
-msgstr "Отключено"
+msgstr "РћС‚РєР»СЋС‡РµРЅРѕ"
 
 #: Merge.rc:444C5DDD
 #, c-format
 msgid "From file system"
-msgstr "Как на диске"
+msgstr "РљР°Рє РЅР° РґРёСЃРєРµ"
 
 #: Merge.rc:7A4CFAFE
 #, c-format
 msgid "From MRU list"
-msgstr "Как в списке недавних документов"
+msgstr "РљР°Рє РІ СЃРїРёСЃРєРµ РЅРµРґР°РІРЅРёС… РґРѕРєСѓРјРµРЅС‚РѕРІ"
 
 #: Merge.rc:638BD42D
 #, c-format
 msgid "No Highlighting"
-msgstr "Нет выделенного"
+msgstr "РќРµС‚ РІС‹РґРµР»РµРЅРЅРѕРіРѕ"
 
 #: Merge.rc:7460E8C0
 #, c-format
@@ -4912,7 +4912,7 @@ msgstr "Portable Object"
 #: Merge.rc:5F87E5E
 #, c-format
 msgid "Resources"
-msgstr "Ресурсы"
+msgstr "Р РµСЃСѓСЂСЃС‹"
 
 #: Merge.rc:125AD722
 #, c-format

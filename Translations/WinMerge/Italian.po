@@ -558,7 +558,7 @@ msgstr "&Differenza successiva\tAlt+Su"
 #: Merge.rc:545FEEA0
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
-msgstr "Di&fferenza precedente\tAlt+Gi˘"
+msgstr "Di&fferenza precedente\tAlt+Gi√π"
 
 #: Merge.rc:175DEEEC
 #, c-format
@@ -668,7 +668,7 @@ msgstr "&Converti caratteri di fine linea a"
 #: Merge.rc:78B3B623
 #, c-format
 msgid "&Merge Mode\tF9"
-msgstr "&Modalit‡ 'Unione'\tF9"
+msgstr "&Modalit√† 'Unione'\tF9"
 
 #: Merge.rc:32BFDBAA
 #, c-format
@@ -1564,7 +1564,7 @@ msgstr "&Permetti l'esecuzione di un'unica istanza del programma"
 #: Merge.rc:672CD0E2
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr "Domanda alla c&hiusura di pi˘ finestre"
+msgstr "Domanda alla c&hiusura di pi√π finestre"
 
 #: Merge.rc:6D5B7718
 #, c-format
@@ -2719,7 +2719,7 @@ msgstr "A destra"
 #: Merge.rc:29CE40
 #, c-format
 msgid "Yes"
-msgstr "SÏ"
+msgstr "S√¨"
 
 #: Merge.rc:12E8E
 #, c-format
@@ -2974,7 +2974,7 @@ msgstr ""
 #: Merge.rc:3EF068BF
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge viene fornito ASSOLUTAMENTE PRIVO DI GARANZIA. Questo Ë uin software gratuito e ne Ë apprezzata la ridistribuzione a determinate condizioni; per dettagli, vedere la GNU General Public License nel menu Guida."
+msgstr "WinMerge viene fornito ASSOLUTAMENTE PRIVO DI GARANZIA. Questo √® uin software gratuito e ne √® apprezzata la ridistribuzione a determinate condizioni; per dettagli, vedere la GNU General Public License nel menu Guida."
 
 #: Merge.rc:1D2E49FF
 #, c-format
@@ -2999,12 +2999,12 @@ msgstr "Ignora t&utto"
 #: Merge.rc:22956AA
 #, c-format
 msgid "&Yes"
-msgstr "&SÏ"
+msgstr "&S√¨"
 
 #: Merge.rc:48B5872E
 #, c-format
 msgid "Yes to &all"
-msgstr "SÏ a &tutto"
+msgstr "S√¨ a &tutto"
 
 #: Merge.rc:11D981
 #, c-format
@@ -3039,7 +3039,7 @@ msgstr "Non visualizzare questo &messaggio di nuovo."
 #: Merge.rc:57F02FB4
 #, c-format
 msgid "Don't ask this &question again."
-msgstr "Non farmi pi˘ &questa domanda."
+msgstr "Non farmi pi√π &questa domanda."
 
 #: Merge.rc:78ACB5DB
 #, c-format
@@ -3118,7 +3118,7 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"Il valore delle tabulazione inserito non Ë una dimensione valida per WinMerge.\n"
+"Il valore delle tabulazione inserito non √® una dimensione valida per WinMerge.\n"
 "\n"
 "Utilizza per favore un valore compreso tra 1 e %1."
 
@@ -3230,7 +3230,7 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"La cartella dei file di filtro dell'utente non Ë definita!\n"
+"La cartella dei file di filtro dell'utente non √® definita!\n"
 "\n"
 "Scegli per favore una cartella per i filtri in Opzioni->Sistema."
 
@@ -3266,7 +3266,7 @@ msgstr ""
 #: Merge.rc:5704C4AC
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "Il file del filtro esiste gi‡.  Desideri sovrascrivere il file esistente?"
+msgstr "Il file del filtro esiste gi√†.  Desideri sovrascrivere il file esistente?"
 
 #: Merge.rc:237A126
 #, c-format
@@ -3387,7 +3387,7 @@ msgstr "Seleziona due cartelle o due file da confrontare."
 #: Merge.rc:20155F59
 #, c-format
 msgid "Left path is invalid!"
-msgstr "Il percorso di sinistra non Ë valido!"
+msgstr "Il percorso di sinistra non √® valido!"
 
 #: Merge.rc:7F2E4119
 #, c-format
@@ -3397,7 +3397,7 @@ msgstr ""
 #: Merge.rc:6DBD6124
 #, c-format
 msgid "Right path is invalid!"
-msgstr "Il percorso di destra non Ë valido!"
+msgstr "Il percorso di destra non √® valido!"
 
 #: Merge.rc:5AB9EEA7
 #, c-format
@@ -3471,7 +3471,7 @@ msgid ""
 msgstr ""
 "Il file\n"
 "%1\n"
-"non Ë un file di conflitto."
+"non √® un file di conflitto."
 
 #: Merge.rc:67019DCD
 #, c-format
@@ -3486,7 +3486,7 @@ msgstr "Vuoi salvare le modifiche in %1?"
 #: Merge.rc:6A1C6855
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 Ë marcato come di sola lettura. Desideri non tenere conto di questa impostazione? (Premi No per salvare con un nuovo nome.)"
+msgstr "%1 √® marcato come di sola lettura. Desideri non tenere conto di questa impostazione? (Premi No per salvare con un nuovo nome.)"
 
 #: Merge.rc:673BD332
 #, c-format
@@ -3532,9 +3532,9 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Il plugin '%2' non puÚ ricompattare nuovamente le tue modifiche al file di sinistra in '%1'.\n"
+"Il plugin '%2' non pu√≤ ricompattare nuovamente le tue modifiche al file di sinistra in '%1'.\n"
 "\n"
-"Il file originale non verr‡ cambiato.\n"
+"Il file originale non verr√† cambiato.\n"
 "\n"
 "Desideri salvare la versione non compattata in un altro file?"
 
@@ -3547,9 +3547,9 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Il plugin '%2' non puÚ ricompattare nuovamente le tue modifiche al file di destra in '%1'.\n"
+"Il plugin '%2' non pu√≤ ricompattare nuovamente le tue modifiche al file di destra in '%1'.\n"
 "\n"
-"Il file originale non verr‡ cambiato.\n"
+"Il file originale non verr√† cambiato.\n"
 "\n"
 "Desideri salvare la versione non compattata in un altro file?"
 
@@ -3575,7 +3575,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-"Ë marcato come di sola lettura. Desideri non tenere conto della voce di Sola lettura?"
+"√® marcato come di sola lettura. Desideri non tenere conto della voce di Sola lettura?"
 
 #: Merge.rc:B9192B
 #, c-format
@@ -3837,9 +3837,9 @@ msgid ""
 msgstr ""
 "Operazione annullata!\n"
 "\n"
-"Il contenuto della cartella sul disco Ë cambiato, il percorso\n"
+"Il contenuto della cartella sul disco √® cambiato, il percorso\n"
 "%1\n"
-"non Ë stato trovato.\n"
+"non √® stato trovato.\n"
 "\n"
 "Aggiorna per favore il confronto."
 
@@ -3951,7 +3951,7 @@ msgstr ""
 #: Merge.rc:4909ADB5
 #, c-format
 msgid "Newer File"
-msgstr "File pi˘ recente"
+msgstr "File pi√π recente"
 
 #: Merge.rc:353D7BD9
 #, c-format
@@ -4241,7 +4241,7 @@ msgstr ""
 #: Merge.rc:4B4CD318
 #, c-format
 msgid "Tells which side has newer modification date."
-msgstr "Mostra quale file ha la data dell'ultima modifica pi˘ recente."
+msgstr "Mostra quale file ha la data dell'ultima modifica pi√π recente."
 
 #: Merge.rc:3AF5EAD7
 #, c-format
@@ -4321,7 +4321,7 @@ msgstr "Numero di differenze nel file. Questo numero non include le differenze i
 #: Merge.rc:A7628EF
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "Mostra un asterisco (*) se il file Ë binario."
+msgstr "Mostra un asterisco (*) se il file √® binario."
 
 #: Merge.rc:1AC98D0D
 #, c-format
@@ -4351,7 +4351,7 @@ msgstr "XML semplice"
 #: Merge.rc:67FDA050
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "Il file di rapporto esiste gi‡. Vuoi sovrascrivere il file esistente?"
+msgstr "Il file di rapporto esiste gi√†. Vuoi sovrascrivere il file esistente?"
 
 #: Merge.rc:630F8340
 #, c-format
@@ -4365,12 +4365,12 @@ msgstr ""
 #: Merge.rc:37B243DF
 #, c-format
 msgid "The report has been created successfully."
-msgstr "Il rapporto Ë stato creato con successo."
+msgstr "Il rapporto √® stato creato con successo."
 
 #: Merge.rc:162B12F9
 #, c-format
 msgid "The same file is opened in both panels."
-msgstr "Lo stesso file Ë aperto in entrambi i pannelli."
+msgstr "Lo stesso file √® aperto in entrambi i pannelli."
 
 #: Merge.rc:7632E88D
 #, c-format
@@ -4380,7 +4380,7 @@ msgstr "I file selezionati sono identici."
 #: Merge.rc:44565DBD
 #, c-format
 msgid "An error occurred while comparing the files."
-msgstr "Si Ë verificato un errore durante il confronto dei file."
+msgstr "Si √® verificato un errore durante il confronto dei file."
 
 #: Merge.rc:5F16D9DC
 #, c-format
@@ -4405,7 +4405,7 @@ msgstr ""
 #: Merge.rc:46FB8639
 #, c-format
 msgid "The selected folder is invalid."
-msgstr "La cartella selezionata non Ë valida."
+msgstr "La cartella selezionata non √® valida."
 
 #: Merge.rc:4BC3EDDB
 #, c-format
@@ -4421,7 +4421,7 @@ msgid ""
 "%1\n"
 "to the other side and open these folders?"
 msgstr ""
-"La cartella esiste solo dall'altro lato e non puÚ essere aperta.\n"
+"La cartella esiste solo dall'altro lato e non pu√≤ essere aperta.\n"
 "\n"
 "Vuoi creare la cartella corrispondente:\n"
 "%1\n"
@@ -4455,7 +4455,7 @@ msgid ""
 "Would you like to treat both files as being in the default windows codepage (recommended)?"
 msgstr ""
 "Il file sinistro (cp%d) e destro (cp%d) non hanno lo stesso codice di pagina.\n"
-"La visualizzazione di ciascun file con il proprio codice di pagina fornir‡ una migliore visualizzazione ma l'unione/copia sar‡ pericolosa.\n"
+"La visualizzazione di ciascun file con il proprio codice di pagina fornir√† una migliore visualizzazione ma l'unione/copia sar√† pericolosa.\n"
 "Desideri trattare entrambi i file come se avessero il codice di pagina predefinito di Windows (raccomandato)?"
 
 #: Merge.rc:5851E4C8
@@ -4546,17 +4546,17 @@ msgstr "File di patch scritto con successo."
 #: Merge.rc:74C5055A
 #, c-format
 msgid "1. item is not found or is directory!"
-msgstr "Prima voce non trovata o Ë una cartella!"
+msgstr "Prima voce non trovata o √® una cartella!"
 
 #: Merge.rc:7EFD4961
 #, c-format
 msgid "2. item is not found or is directory!"
-msgstr "Seconda voce non trovata o Ë una cartella!"
+msgstr "Seconda voce non trovata o √® una cartella!"
 
 #: Merge.rc:E611488
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "Il file di patch esiste gi‡. Desideri sovrascriverlo?"
+msgstr "Il file di patch esiste gi√†. Desideri sovrascriverlo?"
 
 #: Merge.rc:62226073
 #, c-format
@@ -4586,7 +4586,7 @@ msgstr "Impossibile scrivere nel file %1."
 #: Merge.rc:64D049AA
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
-msgstr "Il percorso di output specificato non Ë un percorso assoluto: %1"
+msgstr "Il percorso di output specificato non √® un percorso assoluto: %1"
 
 #: Merge.rc:44EE84AA
 #, c-format
@@ -4626,7 +4626,7 @@ msgid ""
 "All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
 "See manual for more info about archive support and how to enable it."
 msgstr ""
-"Il supporto per gli archivi non Ë attivo.\n"
+"Il supporto per gli archivi non √® attivo.\n"
 "Nessuno dei componenti necessari (7-zip e/o Merge7z*.dll) per il supporto sono stati trovati.\n"
 "Guarda il manuale per ulteriori informazioni sugli archivi e come attivare il supporto per essi."
 
@@ -4784,7 +4784,7 @@ msgstr ""
 #: Merge.rc:6107F02B
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "Lo scompattatore adatto Ë applicato a entrambi i file (Ë sufficiente che uno dei file abbia l'estensione)"
+msgstr "Lo scompattatore adatto √® applicato a entrambi i file (√® sufficiente che uno dei file abbia l'estensione)"
 
 #: Merge.rc:429CABF5
 #, c-format
