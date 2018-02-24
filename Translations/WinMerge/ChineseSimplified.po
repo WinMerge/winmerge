@@ -1,4 +1,4 @@
-# This file is part from WinMerge <http://winmerge.org/>
+ï»¿# This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -17,11 +17,12 @@ msgstr ""
 "Last-Translator: xmpdhml <xmpdhml@users.sourceforge.net>\n"
 "Language-Team: ChineseSimplified <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP936\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: ChineseSimplified\n"
-"X-Poedit-SourceCharset: CP936\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
+"Language: zh_CN\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:5F458438
@@ -33,17 +34,17 @@ msgstr "LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED"
 #: Merge.rc:2C983F1
 #, c-format
 msgid "1252"
-msgstr "936"
+msgstr "65001"
 
 #: Merge.rc:1C6125F3
 #, c-format
 msgid "C&opy to Right"
-msgstr "¸´ÖÆµ½ÓÒ²à(&O)"
+msgstr "å¤åˆ¶åˆ°å³ä¾§(&O)"
 
 #: Merge.rc:92C6C92
 #, c-format
 msgid "Cop&y to Left"
-msgstr "¸´ÖÆµ½×ó²à(&Y)"
+msgstr "å¤åˆ¶åˆ°å·¦ä¾§(&Y)"
 
 #: Merge.rc:6FC398B6
 #, c-format
@@ -58,47 +59,47 @@ msgstr ""
 #: Merge.rc:381D79E4
 #, c-format
 msgid "&Select Line Difference"
-msgstr "Ñ¡ÖĞĞĞÄÚ²»Í¬(&S)"
+msgstr "é€‰ä¸­è¡Œå†…ä¸åŒ(&S)"
 
 #: Merge.rc:43017E40
 #, c-format
 msgid "&Undo"
-msgstr "³·Ïú(&U)"
+msgstr "æ’¤é”€(&U)"
 
 #: Merge.rc:43017E41
 #, c-format
 msgid "&Redo"
-msgstr "ÖØ¸´(&R)"
+msgstr "é‡å¤(&R)"
 
 #: Merge.rc:3CF9F83
 #, c-format
 msgid "Cu&t"
-msgstr "¼ôÇĞ(&T)"
+msgstr "å‰ªåˆ‡(&T)"
 
 #: Merge.rc:43017E42
 #, c-format
 msgid "&Copy"
-msgstr "¸´ÖÆ(&C)"
+msgstr "å¤åˆ¶(&C)"
 
 #: Merge.rc:1D2E49F6
 #, c-format
 msgid "&Paste"
-msgstr "Õ³Ìù(&P)"
+msgstr "ç²˜è´´(&P)"
 
 #: Merge.rc:AC3AA11
 #, c-format
 msgid "&Goto..."
-msgstr "×ªµ½(&G)..."
+msgstr "è½¬åˆ°(&G)..."
 
 #: Merge.rc:B4D35A1
 #, c-format
 msgid "Op&en"
-msgstr "´ò¿ª(&E)"
+msgstr "æ‰“å¼€(&E)"
 
 #: Merge.rc:37625055
 #, c-format
 msgid "with &Registered Application"
-msgstr "ÓÃÄ¬ÈÏ³ÌĞò(&R)"
+msgstr "ç”¨é»˜è®¤ç¨‹åº(&R)"
 
 #: Merge.rc:321D741E
 #, c-format
@@ -108,7 +109,7 @@ msgstr ""
 #: Merge.rc:AC3AA12
 #, c-format
 msgid "&with..."
-msgstr "Ñ¡Ôñ³ÌĞò(&W)..."
+msgstr "é€‰æ‹©ç¨‹åº(&W)..."
 
 #: Merge.rc:1A8FADD3
 #, c-format
@@ -143,7 +144,7 @@ msgstr ""
 #: Merge.rc:43017E43
 #, c-format
 msgid "&Zoom"
-msgstr "Ëõ·Å(&Z)"
+msgstr "ç¼©æ”¾(&Z)"
 
 #: Merge.rc:AC3AA13
 #, c-format
@@ -153,7 +154,7 @@ msgstr ""
 #: Merge.rc:43017E44
 #, c-format
 msgid "&None"
-msgstr "ÎŞ(&N)"
+msgstr "æ— (&N)"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -173,7 +174,7 @@ msgstr ""
 #: Merge.rc:43017E45
 #, c-format
 msgid "&Move"
-msgstr "ÒÆ¶¯(&M)"
+msgstr "ç§»åŠ¨(&M)"
 
 #: Merge.rc:5A9A713A
 #, c-format
@@ -188,12 +189,12 @@ msgstr ""
 #: Merge.rc:43017E46
 #, c-format
 msgid "&File"
-msgstr "ÎÄ¼ş(&F)"
+msgstr "æ–‡ä»¶(&F)"
 
 #: Merge.rc:4DE14273
 #, c-format
 msgid "&New\tCtrl+N"
-msgstr "ĞÂ½¨(&N)\tCtrl+N"
+msgstr "æ–°å»º(&N)\tCtrl+N"
 
 #: Merge.rc:2C8061AC
 #, c-format
@@ -203,27 +204,27 @@ msgstr ""
 #: Merge.rc:1DC30E61
 #, c-format
 msgid "&Open...\tCtrl+O"
-msgstr "´ò¿ª(&O)...\tCtrl+O"
+msgstr "æ‰“å¼€(&O)...\tCtrl+O"
 
 #: Merge.rc:6829F68F
 #, c-format
 msgid "Op&en Conflict File..."
-msgstr "´ò¿ª³åÍ»ÎÄ¼ş(&E)..."
+msgstr "æ‰“å¼€å†²çªæ–‡ä»¶(&E)..."
 
 #: Merge.rc:5869BBD
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "´ò¿ª¹¤³Ì(J)...\tCtrl+J"
+msgstr "æ‰“å¼€å·¥ç¨‹(J)...\tCtrl+J"
 
 #: Merge.rc:1BF42625
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "±£´æ¹¤³Ì(&V)..."
+msgstr "ä¿å­˜å·¥ç¨‹(&V)..."
 
 #: Merge.rc:47D4A3FA
 #, c-format
 msgid "Recent Projects"
-msgstr "×î½ü´ò¿ªµÄ¹¤³Ì"
+msgstr "æœ€è¿‘æ‰“å¼€çš„å·¥ç¨‹"
 
 #: Merge.rc:73E9B1DA
 #, c-format
@@ -233,42 +234,42 @@ msgstr ""
 #: Merge.rc:29D50B4A
 #, c-format
 msgid "< Empty >"
-msgstr "< ¿Õ >"
+msgstr "< ç©º >"
 
 #: Merge.rc:79AB21E0
 #, c-format
 msgid "E&xit"
-msgstr "ÍË³ö(&X)"
+msgstr "é€€å‡º(&X)"
 
 #: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
-msgstr "±à¼­(&E)"
+msgstr "ç¼–è¾‘(&E)"
 
 #: Merge.rc:27AC6D7E
 #, c-format
 msgid "&Options..."
-msgstr "Ñ¡Ïî(&O)..."
+msgstr "é€‰é¡¹(&O)..."
 
 #: Merge.rc:43017E48
 #, c-format
 msgid "&View"
-msgstr "ÊÓÍ¼(&V)"
+msgstr "è§†å›¾(&V)"
 
 #: Merge.rc:AC3AA14
 #, c-format
 msgid "&Toolbar"
-msgstr "¹¤¾ßÀ¸(&T)"
+msgstr "å·¥å…·æ (&T)"
 
 #: Merge.rc:1D2E49F7
 #, c-format
 msgid "&Small"
-msgstr "Ğ¡(&S)"
+msgstr "å°(&S)"
 
 #: Merge.rc:22956A6
 #, c-format
 msgid "&Big"
-msgstr "´ó(&B)"
+msgstr "å¤§(&B)"
 
 #: Merge.rc:43017E49
 #, c-format
@@ -278,32 +279,32 @@ msgstr ""
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
-msgstr "×´Ì¬À¸(&S)"
+msgstr "çŠ¶æ€æ (&S)"
 
 #: Merge.rc:2C015CFD
 #, c-format
 msgid "Ta&b Bar"
-msgstr "±êÇ©À¸(&B)"
+msgstr "æ ‡ç­¾æ (&B)"
 
 #: Merge.rc:1D2E49F8
 #, c-format
 msgid "&Tools"
-msgstr "¹¤¾ß(&T)"
+msgstr "å·¥å…·(&T)"
 
 #: Merge.rc:27AC6D80
 #, c-format
 msgid "&Filters..."
-msgstr "¹ıÂËÆ÷(&F)..."
+msgstr "è¿‡æ»¤å™¨(&F)..."
 
 #: Merge.rc:3938FFC0
 #, c-format
 msgid "&Generate Patch..."
-msgstr "Éú³É²¹¶¡(&G)..."
+msgstr "ç”Ÿæˆè¡¥ä¸(&G)..."
 
 #: Merge.rc:AC3AA15
 #, c-format
 msgid "&Plugins"
-msgstr "²å¼ş(&P)"
+msgstr "æ’ä»¶(&P)"
 
 #: Merge.rc:4C6CFD95
 #, c-format
@@ -323,12 +324,12 @@ msgstr ""
 #: Merge.rc:1A9EBDEC
 #, c-format
 msgid "&Manual Unpacking"
-msgstr "ÊÖ¶¯½â°ü(&M)"
+msgstr "æ‰‹åŠ¨è§£åŒ…(&M)"
 
 #: Merge.rc:4EF8162D
 #, c-format
 msgid "&Automatic Unpacking"
-msgstr "×Ô¶¯½â°ü(&A)"
+msgstr "è‡ªåŠ¨è§£åŒ…(&A)"
 
 #: Merge.rc:714B45FD
 #, c-format
@@ -338,52 +339,52 @@ msgstr ""
 #: Merge.rc:78B3B622
 #, c-format
 msgid "&Reload plugins"
-msgstr "ÖØĞÂ×°Èë²å¼ş(&R)"
+msgstr "é‡æ–°è£…å…¥æ’ä»¶(&R)"
 
 #: Merge.rc:89AF4F7
 #, c-format
 msgid "&Window"
-msgstr "´°¿Ú(&W)"
+msgstr "çª—å£(&W)"
 
 #: Merge.rc:4E65D33F
 #, c-format
 msgid "Cl&ose"
-msgstr "¹Ø±Õ(&O)"
+msgstr "å…³é—­(&O)"
 
 #: Merge.rc:34E43607
 #, c-format
 msgid "Clo&se All"
-msgstr "È«²¿¹Ø±Õ(&S)"
+msgstr "å…¨éƒ¨å…³é—­(&S)"
 
 #: Merge.rc:8AF7E69
 #, c-format
 msgid "Change &Pane\tF6"
-msgstr "ÇĞ»»´°¸ñ(&P)\tF6"
+msgstr "åˆ‡æ¢çª—æ ¼(&P)\tF6"
 
 #: Merge.rc:5CCED707
 #, c-format
 msgid "Tile &Horizontally"
-msgstr "Ë®Æ½Æ½ÆÌ(&H)"
+msgstr "æ°´å¹³å¹³é“º(&H)"
 
 #: Merge.rc:52870A1
 #, c-format
 msgid "Tile &Vertically"
-msgstr "´¹Ö±Æ½ÆÌ(&V)"
+msgstr "å‚ç›´å¹³é“º(&V)"
 
 #: Merge.rc:AC3AA16
 #, c-format
 msgid "&Cascade"
-msgstr "²ãµş(&C)"
+msgstr "å±‚å (&C)"
 
 #: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
-msgstr "°ïÖú(&H)"
+msgstr "å¸®åŠ©(&H)"
 
 #: Merge.rc:3938FFC1
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr "&WinMerge°ïÖú\tF1"
+msgstr "&WinMergeå¸®åŠ©\tF1"
 
 #: Merge.rc:1B17601E
 #, c-format
@@ -398,7 +399,7 @@ msgstr ""
 #: Merge.rc:1C6125F4
 #, c-format
 msgid "C&onfiguration"
-msgstr "ÅäÖÃ(&O)"
+msgstr "é…ç½®(&O)"
 
 #: Merge.rc:175DEEEB
 #, c-format
@@ -408,7 +409,7 @@ msgstr "&GNU General Public License"
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&About WinMerge..."
-msgstr "¹ØÓÚ WinMerge(&A)..."
+msgstr "å…³äº WinMerge(&A)..."
 
 #: Merge.rc:68816EE2
 #, c-format
@@ -418,7 +419,7 @@ msgstr ""
 #: Merge.rc:71676C45
 #, c-format
 msgid "L&eft Read-only"
-msgstr "×ó²àÖ»¶Á(&E)"
+msgstr "å·¦ä¾§åªè¯»(&E)"
 
 #: Merge.rc:729280D8
 #, c-format
@@ -428,7 +429,7 @@ msgstr ""
 #: Merge.rc:32BFDBA9
 #, c-format
 msgid "Ri&ght Read-only"
-msgstr "ÓÒ²àÖ»¶Á(&G)"
+msgstr "å³ä¾§åªè¯»(&G)"
 
 #: Merge.rc:453F5DDB
 #, c-format
@@ -438,22 +439,22 @@ msgstr ""
 #: Merge.rc:E44718
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "Ñ¡ÔñËùÓĞ(&A)\tCtrl+A"
+msgstr "é€‰æ‹©æ‰€æœ‰(&A)\tCtrl+A"
 
 #: Merge.rc:58EEEB7E
 #, c-format
 msgid "Show &Identical Items"
-msgstr "ÏÔÊ¾ÍêÈ«ÏàÍ¬µÄÏîÄ¿(&I)"
+msgstr "æ˜¾ç¤ºå®Œå…¨ç›¸åŒçš„é¡¹ç›®(&I)"
 
 #: Merge.rc:58EEEB7F
 #, c-format
 msgid "Show &Different Items"
-msgstr "ÏÔÊ¾²»ÏàÍ¬µÄÏîÄ¿(&D)"
+msgstr "æ˜¾ç¤ºä¸ç›¸åŒçš„é¡¹ç›®(&D)"
 
 #: Merge.rc:58E210F9
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "ÏÔÊ¾Ö»ÔÚ×ó²àµÄÏîÄ¿(&E)"
+msgstr "æ˜¾ç¤ºåªåœ¨å·¦ä¾§çš„é¡¹ç›®(&E)"
 
 #: Merge.rc:28A1C3B4
 #, c-format
@@ -463,17 +464,17 @@ msgstr ""
 #: Merge.rc:43600E8F
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "ÏÔÊ¾Ö»ÔÚÓÒ²àµÄÏîÄ¿(&G)"
+msgstr "æ˜¾ç¤ºåªåœ¨å³ä¾§çš„é¡¹ç›®(&G)"
 
 #: Merge.rc:E44719
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "ÏÔÊ¾Ìø¹ıµÄÏîÄ¿(&K)"
+msgstr "æ˜¾ç¤ºè·³è¿‡çš„é¡¹ç›®(&K)"
 
 #: Merge.rc:6F833C16
 #, c-format
 msgid "S&how Binary Files"
-msgstr "ÏÔÊ¾¶ş½øÖÆÎÄ¼ş(&H)"
+msgstr "æ˜¾ç¤ºäºŒè¿›åˆ¶æ–‡ä»¶(&H)"
 
 #: Merge.rc:5A9A713B
 #, c-format
@@ -498,7 +499,7 @@ msgstr ""
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "ÏÔÊ¾Òş²ØµÄÏîÄ¿(&E)"
+msgstr "æ˜¾ç¤ºéšè—çš„é¡¹ç›®(&E)"
 
 #: Merge.rc:311E1D87
 #, c-format
@@ -518,97 +519,97 @@ msgstr ""
 #: Merge.rc:E6D7EE
 #, c-format
 msgid "Select &Font..."
-msgstr "Ñ¡Ôñ×ÖÌå(&F)..."
+msgstr "é€‰æ‹©å­—ä½“(&F)..."
 
 #: Merge.rc:5D3AA8D3
 #, c-format
 msgid "Use Default F&ont"
-msgstr "Ê¹ÓÃÄ¬ÈÏ×ÖÌå(&O)"
+msgstr "ä½¿ç”¨é»˜è®¤å­—ä½“(&O)"
 
 #: Merge.rc:2E3BFCA1
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "½»»»×óÓÒ´°¸ñ(&A)"
+msgstr "äº¤æ¢å·¦å³çª—æ ¼(&A)"
 
 #: Merge.rc:3E681460
 #, c-format
 msgid "Compa&re Statistics"
-msgstr "¶Ô±È½á¹ûÍ³¼Æ(&R)"
+msgstr "å¯¹æ¯”ç»“æœç»Ÿè®¡(&R)"
 
 #: Merge.rc:507A4C02
 #, c-format
 msgid "Refre&sh\tF5"
-msgstr "Ë¢ĞÂ(&S)\tF5"
+msgstr "åˆ·æ–°(&S)\tF5"
 
 #: Merge.rc:2E2C5206
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Ë¢ĞÂÑ¡ÖĞÏî(&R)\tCtrl+F5"
+msgstr "åˆ·æ–°é€‰ä¸­é¡¹(&R)\tCtrl+F5"
 
 #: Merge.rc:1D2E49F9
 #, c-format
 msgid "&Merge"
-msgstr "ºÏ²¢(&M)"
+msgstr "åˆå¹¶(&M)"
 
 #: Merge.rc:6FC398B7
 #, c-format
 msgid "Co&mpare\tEnter"
-msgstr "¶Ô±È(&M)\tEnter"
+msgstr "å¯¹æ¯”(&M)\tEnter"
 
 #: Merge.rc:2E2C5207
 #, c-format
 msgid "&Next Difference\tAlt+Down"
-msgstr "ÏÂÒ»´¦²»Í¬(&N)\tAlt+Down"
+msgstr "ä¸‹ä¸€å¤„ä¸åŒ(&N)\tAlt+Down"
 
 #: Merge.rc:545FEEA0
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
-msgstr "ÉÏÒ»´¦²»Í¬(&P)\tAlt+Up"
+msgstr "ä¸Šä¸€å¤„ä¸åŒ(&P)\tAlt+Up"
 
 #: Merge.rc:175DEEEC
 #, c-format
 msgid "&First Difference\tAlt+Home"
-msgstr "µÚÒ»´¦²»Í¬(&F)\tAlt+Home"
+msgstr "ç¬¬ä¸€å¤„ä¸åŒ(&F)\tAlt+Home"
 
 #: Merge.rc:3C1ECDD9
 #, c-format
 msgid "&Current Difference\tAlt+Enter"
-msgstr "µ±Ç°²»Í¬(&C)\tAlt+Enter"
+msgstr "å½“å‰ä¸åŒ(&C)\tAlt+Enter"
 
 #: Merge.rc:26A69749
 #, c-format
 msgid "&Last Difference\tAlt+End"
-msgstr "×îºóÒ»´¦²»Í¬(&L)\tAlt+End"
+msgstr "æœ€åä¸€å¤„ä¸åŒ(&L)\tAlt+End"
 
 #: Merge.rc:334E25B0
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "¸´ÖÆµ½ÓÒ²à(&R)\tAlt+Right"
+msgstr "å¤åˆ¶åˆ°å³ä¾§(&R)\tAlt+Right"
 
 #: Merge.rc:69AD3BF7
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "¸´ÖÆµ½×ó²à(&E)\tAlt+Left"
+msgstr "å¤åˆ¶åˆ°å·¦ä¾§(&E)\tAlt+Left"
 
 #: Merge.rc:4DE14274
 #, c-format
 msgid "&Delete\tDel"
-msgstr "É¾³ı(&D)\tDel"
+msgstr "åˆ é™¤(&D)\tDel"
 
 #: Merge.rc:100AAFAD
 #, c-format
 msgid "&Customize Columns..."
-msgstr "Ñ¡ÔñÁĞ(&C)..."
+msgstr "é€‰æ‹©åˆ—(&C)..."
 
 #: Merge.rc:2F07210E
 #, c-format
 msgid "Generate &Report..."
-msgstr "Éú³É±¨¸æ(&R)..."
+msgstr "ç”ŸæˆæŠ¥å‘Š(&R)..."
 
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
-msgstr "±£´æ(&S)\tCtrl+S"
+msgstr "ä¿å­˜(&S)\tCtrl+S"
 
 #: Merge.rc:125AD721
 #, c-format
@@ -618,7 +619,7 @@ msgstr ""
 #: Merge.rc:751AB58E
 #, c-format
 msgid "Save &Left"
-msgstr "±£´æ×ó²à(&L)"
+msgstr "ä¿å­˜å·¦ä¾§(&L)"
 
 #: Merge.rc:194397DD
 #, c-format
@@ -628,7 +629,7 @@ msgstr ""
 #: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Save &Right"
-msgstr "±£´æÓÒ²à(&R)"
+msgstr "ä¿å­˜å³ä¾§(&R)"
 
 #: Merge.rc:79321BE1
 #, c-format
@@ -653,27 +654,27 @@ msgstr ""
 #: Merge.rc:4DB19837
 #, c-format
 msgid "&Print..."
-msgstr "´òÓ¡(&P)..."
+msgstr "æ‰“å°(&P)..."
 
 #: Merge.rc:60FF375A
 #, c-format
 msgid "Page Se&tup"
-msgstr "Ò³ÃæÉèÖÃ(&T)"
+msgstr "é¡µé¢è®¾ç½®(&T)"
 
 #: Merge.rc:23CBE0E5
 #, c-format
 msgid "Print Previe&w"
-msgstr "´òÓ¡Ô¤ÀÀ(&W)"
+msgstr "æ‰“å°é¢„è§ˆ(&W)"
 
 #: Merge.rc:4B91C2D0
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "½«ĞĞ·Ö¸ô·û×ª»»Îª(&C)"
+msgstr "å°†è¡Œåˆ†éš”ç¬¦è½¬æ¢ä¸º(&C)"
 
 #: Merge.rc:78B3B623
 #, c-format
 msgid "&Merge Mode\tF9"
-msgstr "ºÏ²¢Ä£Ê½(&M)\tF9"
+msgstr "åˆå¹¶æ¨¡å¼(&M)\tF9"
 
 #: Merge.rc:32BFDBAA
 #, c-format
@@ -683,7 +684,7 @@ msgstr ""
 #: Merge.rc:1A9EBDED
 #, c-format
 msgid "&File Encoding..."
-msgstr "ÎÄ¼ş±àÂë(&F)..."
+msgstr "æ–‡ä»¶ç¼–ç (&F)..."
 
 #: Merge.rc:507A4C03
 #, c-format
@@ -703,42 +704,42 @@ msgstr ""
 #: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
-msgstr "³·Ïú(&U)\tCtrl+Z"
+msgstr "æ’¤é”€(&U)\tCtrl+Z"
 
 #: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
-msgstr "ÖØ¸´(&R)\tCtrl+Y"
+msgstr "é‡å¤(&R)\tCtrl+Y"
 
 #: Merge.rc:CAEDA34
 #, c-format
 msgid "Cu&t\tCtrl+X"
-msgstr "¼ôÇĞ(&T)\tCtrl+X"
+msgstr "å‰ªåˆ‡(&T)\tCtrl+X"
 
 #: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
-msgstr "¸´ÖÆ(&C)\tCtrl+C"
+msgstr "å¤åˆ¶(&C)\tCtrl+C"
 
 #: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
-msgstr "Õ³Ìù(&P)\tCtrl+V"
+msgstr "ç²˜è´´(&P)\tCtrl+V"
 
 #: Merge.rc:73FB245
 #, c-format
 msgid "Select Line &Difference\tF4"
-msgstr "Ñ¡ÖĞĞĞÄÚ²»Í¬(&D)\tF4"
+msgstr "é€‰ä¸­è¡Œå†…ä¸åŒ(&D)\tF4"
 
 #: Merge.rc:444C5DDB
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "²éÕÒ(&I)...\tCtrl+F"
+msgstr "æŸ¥æ‰¾(&I)...\tCtrl+F"
 
 #: Merge.rc:44BC83EC
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
-msgstr "Ìæ»»(&C)...\tCtrl+H"
+msgstr "æ›¿æ¢(&C)...\tCtrl+H"
 
 #: Merge.rc:4B91C2D1
 #, c-format
@@ -748,63 +749,63 @@ msgstr ""
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
-msgstr "¸ß¼¶"
+msgstr "é«˜çº§"
 
 #: Merge.rc:45A190D
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "´øĞĞºÅ¸´ÖÆ(&C)\tCtrl+Shift+C"
+msgstr "å¸¦è¡Œå·å¤åˆ¶(&C)\tCtrl+Shift+C"
 
 #: Merge.rc:68816EE3
 #, c-format
 msgid "&Bookmarks"
-msgstr "ÊéÇ©(&B)"
+msgstr "ä¹¦ç­¾(&B)"
 
 #: Merge.rc:26A6974A
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "ÉèÖÃ/È¡Ïû(&T)\tCtrl+F2"
+msgstr "è®¾ç½®/å–æ¶ˆ(&T)\tCtrl+F2"
 
 #: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
-msgstr "ÏÂÒ»¸ö(&N)\tF2"
+msgstr "ä¸‹ä¸€ä¸ª(&N)\tF2"
 
 #: Merge.rc:545FEEA1
 #, c-format
 msgid "&Previous bookmark\tShift+F2"
-msgstr "ÉÏÒ»¸ö(&P)\tShift+F2"
+msgstr "ä¸Šä¸€ä¸ª(&P)\tShift+F2"
 
 #: Merge.rc:4EF8162E
 #, c-format
 msgid "&Clear All Bookmarks"
-msgstr "Çå³ıËùÓĞ(&C)"
+msgstr "æ¸…é™¤æ‰€æœ‰(&C)"
 
 #: Merge.rc:1A9EBDEE
 #, c-format
 msgid "&Go To...\tCtrl+G"
-msgstr "×ªµ½(&G)...\tCtrl+G"
+msgstr "è½¬åˆ°(&G)...\tCtrl+G"
 
 #: Merge.rc:7C622F87
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr "·Å´ó(&I)\tCtrl++"
+msgstr "æ”¾å¤§(&I)\tCtrl++"
 
 #: Merge.rc:FE3C1D1
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr "ËõĞ¡(&O)\tCtrl+-"
+msgstr "ç¼©å°(&O)\tCtrl+-"
 
 #. Zoom to normal
 #: Merge.rc:78B3B624
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr "Õı³£´óĞ¡(&N)\tCtrl+*"
+msgstr "æ­£å¸¸å¤§å°(&N)\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format
 msgid "Syntax Highlight"
-msgstr "Óï·¨¸ßÁÁ"
+msgstr "è¯­æ³•é«˜äº®"
 
 #: Merge.rc:6E470BEC
 #, c-format
@@ -854,32 +855,32 @@ msgstr ""
 #: Merge.rc:27AC6D81
 #, c-format
 msgid "&Lock Panes"
-msgstr "Ëø¶¨´°¸ñ(&L)"
+msgstr "é”å®šçª—æ ¼(&L)"
 
 #: Merge.rc:1DC30E62
 #, c-format
 msgid "&View Whitespace"
-msgstr "ÏÔÊ¾¿Õ°×ºÍÖÆ±í·û(&V)"
+msgstr "æ˜¾ç¤ºç©ºç™½å’Œåˆ¶è¡¨ç¬¦(&V)"
 
 #: Merge.rc:4A81EF3E
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "ÏÔÊ¾ĞĞÄÚ²»Í¬(&W)"
+msgstr "æ˜¾ç¤ºè¡Œå†…ä¸åŒ(&W)"
 
 #: Merge.rc:37660CE9
 #, c-format
 msgid "View Line &Numbers"
-msgstr "ÏÔÊ¾ĞĞºÅ(&N)"
+msgstr "æ˜¾ç¤ºè¡Œå·(&N)"
 
 #: Merge.rc:4FF286
 #, c-format
 msgid "View &Margins"
-msgstr "ÏÔÊ¾Ò³±ß(&M)"
+msgstr "æ˜¾ç¤ºé¡µè¾¹(&M)"
 
 #: Merge.rc:3FE258FF
 #, c-format
 msgid "W&rap Lines"
-msgstr "×Ô¶¯»»ĞĞ(&R)"
+msgstr "è‡ªåŠ¨æ¢è¡Œ(&R)"
 
 #: Merge.rc:62909ED5
 #, c-format
@@ -889,12 +890,12 @@ msgstr ""
 #: Merge.rc:70E79DFF
 #, c-format
 msgid "Diff &Pane"
-msgstr "¶Ô±È´°¸ñ(&P)"
+msgstr "å¯¹æ¯”çª—æ ¼(&P)"
 
 #: Merge.rc:3534E273
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "Î»ÖÃ´°¸ñ(&C)"
+msgstr "ä½ç½®çª—æ ¼(&C)"
 
 #: Merge.rc:59B87E1C
 #, c-format
@@ -984,22 +985,22 @@ msgstr ""
 #: Merge.rc:28C70E7F
 #, c-format
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "¸´ÖÆµ½ÓÒ²à²¢Ç°½ø\tAlt+Ctrl+Right"
+msgstr "å¤åˆ¶åˆ°å³ä¾§å¹¶å‰è¿›\tAlt+Ctrl+Right"
 
 #: Merge.rc:4A3B5872
 #, c-format
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "¸´ÖÆµ½×ó²à²¢Ç°½ø\tAlt+Ctrl+Left"
+msgstr "å¤åˆ¶åˆ°å·¦ä¾§å¹¶å‰è¿›\tAlt+Ctrl+Left"
 
 #: Merge.rc:1AC98D09
 #, c-format
 msgid "Copy &All to Right"
-msgstr "È«²¿¸´ÖÆµ½ÓÒ²à(&A)"
+msgstr "å…¨éƒ¨å¤åˆ¶åˆ°å³ä¾§(&A)"
 
 #: Merge.rc:D404EDD
 #, c-format
 msgid "Cop&y All to Left"
-msgstr "È«²¿¸´ÖÆµ½×ó²à(&Y)"
+msgstr "å…¨éƒ¨å¤åˆ¶åˆ°å·¦ä¾§(&Y)"
 
 #: Merge.rc:4BC6A157
 #, c-format
@@ -1019,17 +1020,17 @@ msgstr ""
 #: Merge.rc:68816EE5
 #, c-format
 msgid "&Prediffer"
-msgstr "Ô¤¶Ô±È(&P)"
+msgstr "é¢„å¯¹æ¯”(&P)"
 
 #: Merge.rc:AC3AA1C
 #, c-format
 msgid "&Scripts"
-msgstr "½Å±¾(&S)"
+msgstr "è„šæœ¬(&S)"
 
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
-msgstr "¶Ô±È(&A)"
+msgstr "å¯¹æ¯”(&A)"
 
 #: Merge.rc:334E25B1
 #, c-format
@@ -1069,12 +1070,12 @@ msgstr ""
 #: Merge.rc:1723859F
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "×ó²àµ½ÓÒ²à (%1 ¹²%2)"
+msgstr "å·¦ä¾§åˆ°å³ä¾§ (%1 å…±%2)"
 
 #: Merge.rc:20155F58
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "×ó²àµ½... (%1 ¹²%2)"
+msgstr "å·¦ä¾§åˆ°... (%1 å…±%2)"
 
 #: Merge.rc:6CA26872
 #, c-format
@@ -1099,22 +1100,22 @@ msgstr ""
 #: Merge.rc:73E9B1DB
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "ÓÒ²àµ½×ó²à (%1 ¹²%2)"
+msgstr "å³ä¾§åˆ°å·¦ä¾§ (%1 å…±%2)"
 
 #: Merge.rc:6DBD6123
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "ÓÒ²àµ½... (%1 ¹²%2)"
+msgstr "å³ä¾§åˆ°... (%1 å…±%2)"
 
 #: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
-msgstr "É¾³ı(&D)"
+msgstr "åˆ é™¤(&D)"
 
 #: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
-msgstr "×ó²à(&L)"
+msgstr "å·¦ä¾§(&L)"
 
 #: Merge.rc:89AF4FB
 #, c-format
@@ -1124,12 +1125,12 @@ msgstr ""
 #: Merge.rc:1D2E49FA
 #, c-format
 msgid "&Right"
-msgstr "ÓÒ²à(&R)"
+msgstr "å³ä¾§(&R)"
 
 #: Merge.rc:43017E4C
 #, c-format
 msgid "&Both"
-msgstr "Á½²à(&B)"
+msgstr "ä¸¤ä¾§(&B)"
 
 #: Merge.rc:22956A8
 #, c-format
@@ -1139,22 +1140,22 @@ msgstr ""
 #: Merge.rc:4876CD3D
 #, c-format
 msgid "Re&name"
-msgstr "¸ÄÃû(&N)"
+msgstr "æ”¹å(&N)"
 
 #: Merge.rc:27AC6D82
 #, c-format
 msgid "&Hide Items"
-msgstr "Òş²Ø(&H)"
+msgstr "éšè—(&H)"
 
 #: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
-msgstr "´ò¿ª×ó²à(&O)"
+msgstr "æ‰“å¼€å·¦ä¾§(&O)"
 
 #: Merge.rc:46724E8D
 #, c-format
 msgid "with &External Editor"
-msgstr "ÓÃÍâ²¿±à¼­Æ÷(&E)"
+msgstr "ç”¨å¤–éƒ¨ç¼–è¾‘å™¨(&E)"
 
 #: Merge.rc:5A9A713D
 #, c-format
@@ -1169,17 +1170,17 @@ msgstr ""
 #: Merge.rc:1C95A043
 #, c-format
 msgid "O&pen Right"
-msgstr "´ò¿ªÓÒ²à(&P)"
+msgstr "æ‰“å¼€å³ä¾§(&P)"
 
 #: Merge.rc:6FC398B8
 #, c-format
 msgid "Cop&y Pathnames"
-msgstr "¸´ÖÆÈ«Ãû(&Y)"
+msgstr "å¤åˆ¶å…¨å(&Y)"
 
 #: Merge.rc:71676C46
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "×ó²à (%1 ¹²%2)"
+msgstr "å·¦ä¾§ (%1 å…±%2)"
 
 #: Merge.rc:729280D9
 #, c-format
@@ -1189,12 +1190,12 @@ msgstr ""
 #: Merge.rc:32BFDBAB
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "ÓÒ²à (%1 ¹²%2)"
+msgstr "å³ä¾§ (%1 å…±%2)"
 
 #: Merge.rc:36B164C3
 #, c-format
 msgid "Both (%1 of %2)"
-msgstr "Á½²à (%1 ¹²%2)"
+msgstr "ä¸¤ä¾§ (%1 å…±%2)"
 
 #: Merge.rc:2515A6BA
 #, c-format
@@ -1204,7 +1205,7 @@ msgstr ""
 #: Merge.rc:6FC398B9
 #, c-format
 msgid "Copy &Filenames"
-msgstr "¸´ÖÆÎÄ¼şÃû(&F)"
+msgstr "å¤åˆ¶æ–‡ä»¶å(&F)"
 
 #: Merge.rc:4BFA4345
 #, c-format
@@ -1234,7 +1235,7 @@ msgstr ""
 #: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
-msgstr "Ë¢ĞÂ(&R)"
+msgstr "åˆ·æ–°(&R)"
 
 #: Merge.rc:71676C47
 #, c-format
@@ -1259,82 +1260,82 @@ msgstr ""
 #: Merge.rc:78B3B625
 #, c-format
 msgid "&Copy Full Path"
-msgstr "¸´ÖÆÈ«Ãû(&C)"
+msgstr "å¤åˆ¶å…¨å(&C)"
 
 #: Merge.rc:1C6125F5
 #, c-format
 msgid "Copy &Filename"
-msgstr "¸´ÖÆÎÄ¼şÃû(&F)"
+msgstr "å¤åˆ¶æ–‡ä»¶å(&F)"
 
 #: Merge.rc:27A06B44
 #, c-format
 msgid "Prediffer Settings"
-msgstr "Ô¤¶Ô±ÈÉèÖÃ"
+msgstr "é¢„å¯¹æ¯”è®¾ç½®"
 
 #: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
-msgstr "²»Ê¹ÓÃ(&N)"
+msgstr "ä¸ä½¿ç”¨(&N)"
 
 #: Merge.rc:2515A6BB
 #, c-format
 msgid "Auto prediffer"
-msgstr "×Ô¶¯"
+msgstr "è‡ªåŠ¨"
 
 #: Merge.rc:24F1D5E9
 #, c-format
 msgid "G&oto Diff"
-msgstr "×ªµ½²»Í¬(&O)"
+msgstr "è½¬åˆ°ä¸åŒ(&O)"
 
 #: Merge.rc:1DC30E63
 #, c-format
 msgid "&No Moved Blocks"
-msgstr "²»ÏÔÊ¾ÒÆ¶¯Çø¿é(&N)"
+msgstr "ä¸æ˜¾ç¤ºç§»åŠ¨åŒºå—(&N)"
 
 #: Merge.rc:1A9EBDEF
 #, c-format
 msgid "&All Moved Blocks"
-msgstr "ËùÓĞÒÆ¶¯Çø¿é(&A)"
+msgstr "æ‰€æœ‰ç§»åŠ¨åŒºå—(&A)"
 
 #: Merge.rc:BA50068
 #, c-format
 msgid "Moved Block for &Current Diff"
-msgstr "µ±Ç°²»Í¬´¦ÒÆ¶¯Çø¿é(&C)"
+msgstr "å½“å‰ä¸åŒå¤„ç§»åŠ¨åŒºå—(&C)"
 
 #: Merge.rc:3C68C747
 #, c-format
 msgid "W&hitespaces"
-msgstr "¿Õ°×(&H)"
+msgstr "ç©ºç™½(&H)"
 
 #: Merge.rc:4C3E0A2C
 #, c-format
 msgid "Com&pare"
-msgstr "¶Ô±È(&P)"
+msgstr "å¯¹æ¯”(&P)"
 
 #: Merge.rc:4630D06B
 #, c-format
 msgid "I&gnore changes"
-msgstr "ºöÂÔ¿Õ°×ºÍÖÆ±í·û¸ü¸Ä(G)"
+msgstr "å¿½ç•¥ç©ºç™½å’Œåˆ¶è¡¨ç¬¦æ›´æ”¹(G)"
 
 #: Merge.rc:21C15B6
 #, c-format
 msgid "Ig&nore all"
-msgstr "ºöÂÔËùÓĞ¿Õ°×ºÍÖÆ±í·û(&N)"
+msgstr "å¿½ç•¥æ‰€æœ‰ç©ºç™½å’Œåˆ¶è¡¨ç¬¦(&N)"
 
 #: Merge.rc:6FC398BA
 #, c-format
 msgid "Case sensi&tive"
-msgstr "Çø·Ö´óĞ¡Ğ´(&T)"
+msgstr "åŒºåˆ†å¤§å°å†™(&T)"
 
 #: Merge.rc:620FF1AC
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "ºöÂÔ»»ĞĞ·û²îÒì(Windows/Unix/Mac)(&R)"
+msgstr "å¿½ç•¥æ¢è¡Œç¬¦å·®å¼‚(Windows/Unix/Mac)(&R)"
 
 #: Merge.rc:6DE6F873
 #, c-format
 msgid "&Include Subfolders"
-msgstr "°üº¬×ÓÄ¿Â¼(&I)"
+msgstr "åŒ…å«å­ç›®å½•(&I)"
 
 #: Merge.rc:1DC30E64
 #, c-format
@@ -1344,12 +1345,12 @@ msgstr ""
 #: Merge.rc:7A4CFAFB
 #, c-format
 msgid "Full Contents"
-msgstr "È«²¿ÄÚÈİ"
+msgstr "å…¨éƒ¨å†…å®¹"
 
 #: Merge.rc:5F71A081
 #, c-format
 msgid "Quick Contents"
-msgstr "¿ìËÙÄÚÈİ"
+msgstr "å¿«é€Ÿå†…å®¹"
 
 #: Merge.rc:36B164C4
 #, c-format
@@ -1359,22 +1360,22 @@ msgstr ""
 #: Merge.rc:2CEE4748
 #, c-format
 msgid "Modified Date"
-msgstr "ĞŞ¸ÄÈÕÆÚ"
+msgstr "ä¿®æ”¹æ—¥æœŸ"
 
 #: Merge.rc:39C7AF82
 #, c-format
 msgid "Modified Date and Size"
-msgstr "ĞŞ¸ÄÈÕÆÚºÍÎÄ¼ş´óĞ¡"
+msgstr "ä¿®æ”¹æ—¥æœŸå’Œæ–‡ä»¶å¤§å°"
 
 #: Merge.rc:4B89B93
 #, c-format
 msgid "Size"
-msgstr "ÎÄ¼ş´óĞ¡"
+msgstr "æ–‡ä»¶å¤§å°"
 
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
-msgstr "¹ØÓÚ WinMerge"
+msgstr "å…³äº WinMerge"
 
 #: Merge.rc:6AD81E09
 #, c-format
@@ -1384,22 +1385,22 @@ msgstr "(Private Build)"
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
-msgstr "·ÃÎÊ WinMerge Ê×Ò³!"
+msgstr "è®¿é—® WinMerge é¦–é¡µ!"
 
 #: Merge.rc:1326F
 #, c-format
 msgid "OK"
-msgstr "È·¶¨"
+msgstr "ç¡®å®š"
 
 #: Merge.rc:CAEDA35
 #, c-format
 msgid "Contributors"
-msgstr "¹±Ï×Õß"
+msgstr "è´¡çŒ®è€…"
 
 #: Merge.rc:58E210FA
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Ñ¡ÔñÎÄ¼ş»òÎÄ¼ş¼Ğ..."
+msgstr "é€‰æ‹©æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹..."
 
 #: Merge.rc:43017E4D
 #, c-format
@@ -1409,7 +1410,7 @@ msgstr ""
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
-msgstr "ä¯ÀÀ(&B)..."
+msgstr "æµè§ˆ(&B)..."
 
 #: Merge.rc:43017E4E
 #, c-format
@@ -1419,7 +1420,7 @@ msgstr ""
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
-msgstr "ä¯ÀÀ(&R)..."
+msgstr "æµè§ˆ(&R)..."
 
 #: Merge.rc:78B3B626
 #, c-format
@@ -1429,7 +1430,7 @@ msgstr ""
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Br&owse..."
-msgstr "ä¯ÀÀ(&O)..."
+msgstr "æµè§ˆ(&O)..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1439,42 +1440,42 @@ msgstr ""
 #: Merge.rc:2D1160AF
 #, c-format
 msgid "Select..."
-msgstr "Ñ¡Ôñ..."
+msgstr "é€‰æ‹©..."
 
 #: Merge.rc:68816EE8
 #, c-format
 msgid "&Unpacker:"
-msgstr "½â°ü³ÌĞò(&U):"
+msgstr "è§£åŒ…ç¨‹åº(&U):"
 
 #: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
-msgstr "Ñ¡Ôñ(&S)..."
+msgstr "é€‰æ‹©(&S)..."
 
 #: Merge.rc:67019DCA
 #, c-format
 msgid "Status:"
-msgstr "×´Ì¬:"
+msgstr "çŠ¶æ€:"
 
 #: Merge.rc:4E65D340
 #, c-format
 msgid "Cancel"
-msgstr "È¡Ïû"
+msgstr "å–æ¶ˆ"
 
 #: Merge.rc:4186E48
 #, c-format
 msgid "Help"
-msgstr "°ïÖú"
+msgstr "å¸®åŠ©"
 
 #: Merge.rc:75264C52
 #, c-format
 msgid "Files or Folders to Compare"
-msgstr "Òª¶Ô±ÈµÄÎÄ¼ş»òÎÄ¼ş¼Ğ"
+msgstr "è¦å¯¹æ¯”çš„æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹"
 
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
-msgstr "Ö»¶Á(&A)"
+msgstr "åªè¯»(&A)"
 
 #: Merge.rc:39174D97
 #, c-format
@@ -1489,92 +1490,92 @@ msgstr ""
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Database:"
-msgstr "Êı¾İ¿â:"
+msgstr "æ•°æ®åº“:"
 
 #: Merge.rc:60C4588F
 #, c-format
 msgid "Project:"
-msgstr "¹¤³Ì:"
+msgstr "å·¥ç¨‹:"
 
 #: Merge.rc:15E1A7E1
 #, c-format
 msgid "User:"
-msgstr "ÓÃ»§Ãû:"
+msgstr "ç”¨æˆ·å:"
 
 #: Merge.rc:37C6B9B8
 #, c-format
 msgid "Password:"
-msgstr "ÃÜÂë:"
+msgstr "å¯†ç :"
 
 #: Merge.rc:F75DAF7
 #, c-format
 msgid "Link to Destination VSS project"
-msgstr "Á¬½Óµ½Ä¿±ê VSS ¹¤³Ì"
+msgstr "è¿æ¥åˆ°ç›®æ ‡ VSS å·¥ç¨‹"
 
 #: Merge.rc:40325727
 #, c-format
 msgid "Apply to all items"
-msgstr "Ó¦ÓÃÓÚËùÓĞÏîÄ¿"
+msgstr "åº”ç”¨äºæ‰€æœ‰é¡¹ç›®"
 
 #: Merge.rc:3B833B8A
 #, c-format
 msgid "Check Out"
-msgstr "Ç©³ö"
+msgstr "ç­¾å‡º"
 
 #: Merge.rc:751AB58F
 #, c-format
 msgid "Save As..."
-msgstr "Áí´æÎª..."
+msgstr "å¦å­˜ä¸º..."
 
 #: Merge.rc:1A8FADD4
 #, c-format
 msgid "Versioning System"
-msgstr "°æ±¾¿ØÖÆÏµÍ³"
+msgstr "ç‰ˆæœ¬æ§åˆ¶ç³»ç»Ÿ"
 
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&Versioning System:"
-msgstr "°æ±¾¿ØÖÆÏµÍ³(&V)"
+msgstr "ç‰ˆæœ¬æ§åˆ¶ç³»ç»Ÿ(&V)"
 
 #: Merge.rc:381D79E5
 #, c-format
 msgid "&Path to cleartool.exe:"
-msgstr "cleartool.exe Â·¾¶(&P):"
+msgstr "cleartool.exe è·¯å¾„(&P):"
 
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
-msgstr "³£¹æ"
+msgstr "å¸¸è§„"
 
 #: Merge.rc:237AB485
 #, c-format
 msgid "Automatically &scroll to first difference"
-msgstr "×Ô¶¯¹ö¶¯µ½µÚÒ»´¦²»Í¬(&S)"
+msgstr "è‡ªåŠ¨æ»šåŠ¨åˆ°ç¬¬ä¸€å¤„ä¸åŒ(&S)"
 
 #: Merge.rc:69AD3BF8
 #, c-format
 msgid "Cl&ose windows with ESC"
-msgstr "ESC¹Ø±Õ´°¿Ú(&O)"
+msgstr "ESCå…³é—­çª—å£(&O)"
 
 #: Merge.rc:6574B7FB
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
-msgstr "ÔÚ¡°´ò¿ª¡±¶Ô»°¿òÖĞ×Ô¶¯ÑéÖ¤Â·¾¶(&A)"
+msgstr "åœ¨â€œæ‰“å¼€â€å¯¹è¯æ¡†ä¸­è‡ªåŠ¨éªŒè¯è·¯å¾„(&A)"
 
 #: Merge.rc:631E0F7B
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "Ö»ÔÊĞíÔËĞĞÒ»¸öÊµÀı(&O)"
+msgstr "åªå…è®¸è¿è¡Œä¸€ä¸ªå®ä¾‹(&O)"
 
 #: Merge.rc:672CD0E2
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr "µ±¹Ø±Õ¶à¸ö´°¿ÚÊ±Ñ¯ÎÊÎÒ(&K)"
+msgstr "å½“å…³é—­å¤šä¸ªçª—å£æ—¶è¯¢é—®æˆ‘(&K)"
 
 #: Merge.rc:6D5B7718
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "¶Ô±ÈÊ±±£³ÖÎÄ¼şÊ±¼ä²»±ä(&P)"
+msgstr "å¯¹æ¯”æ—¶ä¿æŒæ–‡ä»¶æ—¶é—´ä¸å˜(&P)"
 
 #: Merge.rc:17F0E759
 #, c-format
@@ -1589,7 +1590,7 @@ msgstr ""
 #: Merge.rc:44776ACE
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
-msgstr "¡°´ò¿ª¡±¶Ô»°¿ò×Ô¶¯Íê³É(&P):"
+msgstr "â€œæ‰“å¼€â€å¯¹è¯æ¡†è‡ªåŠ¨å®Œæˆ(&P):"
 
 #: Merge.rc:1B63306F
 #, c-format
@@ -1599,42 +1600,42 @@ msgstr ""
 #: Merge.rc:516450B
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
-msgstr "WinMergeÔÊĞíÒş²ØÒ»Ğ©³£¼ûµÄÌáÊ¾ĞÅÏ¢, µã»÷¡°ÖØÖÃ¡±°´Å¥¿ÉÒÔÊ¹Òş²ØµÄĞÅÏ¢ĞÂÏÔÊ¾."
+msgstr "WinMergeå…è®¸éšè—ä¸€äº›å¸¸è§çš„æç¤ºä¿¡æ¯, ç‚¹å‡»â€œé‡ç½®â€æŒ‰é’®å¯ä»¥ä½¿éšè—çš„ä¿¡æ¯æ–°æ˜¾ç¤º."
 
 #: Merge.rc:10976EC1
 #, c-format
 msgid "Reset"
-msgstr "ÖØÖÃ"
+msgstr "é‡ç½®"
 
 #: Merge.rc:3FB4EC6
 #, c-format
 msgid "Find"
-msgstr "²éÕÒ"
+msgstr "æŸ¥æ‰¾"
 
 #: Merge.rc:34DF506F
 #, c-format
 msgid "Fi&nd what:"
-msgstr "²éÕÒÄÚÈİ(&N):"
+msgstr "æŸ¥æ‰¾å†…å®¹(&N):"
 
 #: Merge.rc:39C7AF83
 #, c-format
 msgid "Match &whole word only"
-msgstr "È«×ÖÆ¥Åä(&W)"
+msgstr "å…¨å­—åŒ¹é…(&W)"
 
 #: Merge.rc:13C27214
 #, c-format
 msgid "Match &case"
-msgstr "Çø·Ö´óĞ¡Ğ´(&C)"
+msgstr "åŒºåˆ†å¤§å°å†™(&C)"
 
 #: Merge.rc:44BC83ED
 #, c-format
 msgid "Regular &expression"
-msgstr "Ê¹ÓÃÕıÔò±í´ïÊ½(&E)"
+msgstr "ä½¿ç”¨æ­£åˆ™è¡¨è¾¾å¼(&E)"
 
 #: Merge.rc:78A08947
 #, c-format
 msgid "D&on't wrap end of file"
-msgstr "ÖÁÎÄ¼şÄ©Î²²»ÔÙ´ÓÍ·ËÑË÷(&O)"
+msgstr "è‡³æ–‡ä»¶æœ«å°¾ä¸å†ä»å¤´æœç´¢(&O)"
 
 #: Merge.rc:545FEEA2
 #, c-format
@@ -1649,52 +1650,52 @@ msgstr ""
 #: Merge.rc:68816EEA
 #, c-format
 msgid "&Find Next"
-msgstr "ÕÒÏÂÒ»¸ö(&F)"
+msgstr "æ‰¾ä¸‹ä¸€ä¸ª(&F)"
 
 #: Merge.rc:11D980
 #, c-format
 msgid "&Ok"
-msgstr "È·¶¨(&O)"
+msgstr "ç¡®å®š(&O)"
 
 #: Merge.rc:4876CD3E
 #, c-format
 msgid "Replace"
-msgstr "Ìæ»»"
+msgstr "æ›¿æ¢"
 
 #: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
-msgstr "Ìæ»»Îª(&P):"
+msgstr "æ›¿æ¢ä¸º(&P):"
 
 #: Merge.rc:381D79E6
 #, c-format
 msgid "&Don't wrap end of file"
-msgstr "ÖÁÎÄ¼şÄ©Î²²»ÔÙ´ÓÍ·ËÑË÷(&D)"
+msgstr "è‡³æ–‡ä»¶æœ«å°¾ä¸å†ä»å¤´æœç´¢(&D)"
 
 #: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
-msgstr "Ìæ»»·¶Î§"
+msgstr "æ›¿æ¢èŒƒå›´"
 
 #: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
-msgstr "Ñ¡ÖĞÄÚÈİ(&S)"
+msgstr "é€‰ä¸­å†…å®¹(&S)"
 
 #: Merge.rc:3FE25900
 #, c-format
 msgid "Wh&ole file"
-msgstr "Õû¸öÎÄ¼ş(&O)"
+msgstr "æ•´ä¸ªæ–‡ä»¶(&O)"
 
 #: Merge.rc:AC3AA1E
 #, c-format
 msgid "&Replace"
-msgstr "Ìæ»»(&R)"
+msgstr "æ›¿æ¢(&R)"
 
 #: Merge.rc:507A4C04
 #, c-format
 msgid "Replace &All"
-msgstr "È«²¿Ìæ»»(&A)"
+msgstr "å…¨éƒ¨æ›¿æ¢(&A)"
 
 #: Merge.rc:2FC0BA7B
 #, c-format
@@ -1709,7 +1710,7 @@ msgstr ""
 #: Merge.rc:24A380
 #, c-format
 msgid "New"
-msgstr "ĞÂ½¨"
+msgstr "æ–°å»º"
 
 #: Merge.rc:3938FFC4
 #, c-format
@@ -1719,92 +1720,92 @@ msgstr ""
 #: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Apply"
-msgstr "Ó¦ÓÃ(&A)"
+msgstr "åº”ç”¨(&A)"
 
 #: Merge.rc:4C3E0A2D
 #, c-format
 msgid "CheckOut"
-msgstr "µ÷ÊÔ"
+msgstr "è°ƒè¯•"
 
 #: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Comments"
-msgstr "±¸×¢"
+msgstr "å¤‡æ³¨"
 
 #: Merge.rc:51DC4C3F
 #, c-format
 msgid "CheckIn after checkout"
-msgstr "Ç©³öºóÁ¢¼´Ç©Èë"
+msgstr "ç­¾å‡ºåç«‹å³ç­¾å…¥"
 
 #: Merge.rc:4F58DAFC
 #, c-format
 msgid "Linefilters"
-msgstr "ĞĞ¹ıÂËÆ÷"
+msgstr "è¡Œè¿‡æ»¤å™¨"
 
 #: Merge.rc:36B79AB7
 #, c-format
 msgid "Enable Line Filters"
-msgstr "ºöÂÔ·ûºÏÏÂÁĞÑùÊ½µÄĞĞ"
+msgstr "å¿½ç•¥ç¬¦åˆä¸‹åˆ—æ ·å¼çš„è¡Œ"
 
 #: Merge.rc:5E8200FF
 #, c-format
 msgid "Regular Expressions (one per line):"
-msgstr "ÕıÔò±í´ïÊ½ (Ã¿ĞĞÒ»¸ö):"
+msgstr "æ­£åˆ™è¡¨è¾¾å¼ (æ¯è¡Œä¸€ä¸ª):"
 
 #: Merge.rc:3ECBF05
 #, c-format
 msgid "Edit"
-msgstr "±à¼­"
+msgstr "ç¼–è¾‘"
 
 #: Merge.rc:25669B5
 #, c-format
 msgid "Remove"
-msgstr "É¾³ı"
+msgstr "åˆ é™¤"
 
 #: Merge.rc:4E65D341
 #, c-format
 msgid "Colors"
-msgstr "ÑÕÉ«"
+msgstr "é¢œè‰²"
 
 #: Merge.rc:2C0C2240
 #, c-format
 msgid "Difference:"
-msgstr "²»Í¬:"
+msgstr "ä¸åŒ:"
 
 #: Merge.rc:1BA49C3B
 #, c-format
 msgid "Selected Difference:"
-msgstr "ÒÑÑ¡Ôñ:"
+msgstr "å·²é€‰æ‹©:"
 
 #: Merge.rc:78E0CE10
 #, c-format
 msgid "Background"
-msgstr "±³¾°"
+msgstr "èƒŒæ™¯"
 
 #: Merge.rc:1CDF6584
 #, c-format
 msgid "Deleted"
-msgstr "ÒÑÉ¾³ı"
+msgstr "å·²åˆ é™¤"
 
 #: Merge.rc:4C72B54
 #, c-format
 msgid "Text"
-msgstr "ÎÄ×Ö"
+msgstr "æ–‡å­—"
 
 #: Merge.rc:2756A765
 #, c-format
 msgid "Ignored Difference:"
-msgstr "ÂÔ¹ıµÄ²»Í¬:"
+msgstr "ç•¥è¿‡çš„ä¸åŒ:"
 
 #: Merge.rc:7106378D
 #, c-format
 msgid "Moved:"
-msgstr "ÒÆ¶¯Çø¿é:"
+msgstr "ç§»åŠ¨åŒºå—:"
 
 #: Merge.rc:E6D7EF
 #, c-format
 msgid "Selected Moved:"
-msgstr "Ñ¡ÖĞµÄÒÆ¶¯Çø¿é:"
+msgstr "é€‰ä¸­çš„ç§»åŠ¨åŒºå—:"
 
 #: Merge.rc:6B96B328
 #, c-format
@@ -1819,247 +1820,247 @@ msgstr ""
 #: Merge.rc:40C55014
 #, c-format
 msgid "Word Difference:"
-msgstr "µ¥´Ê²»Í¬:"
+msgstr "å•è¯ä¸åŒ:"
 
 #: Merge.rc:E4471A
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "Ñ¡ÖĞµÄµ¥´Ê²»Í¬:"
+msgstr "é€‰ä¸­çš„å•è¯ä¸åŒ:"
 
 #: Merge.rc:7F0D4B46
 #, c-format
 msgid "Defaults"
-msgstr "Ä¬ÈÏ"
+msgstr "é»˜è®¤"
 
 #: Merge.rc:39000D56
 #, c-format
 msgid "System"
-msgstr "ÏµÍ³"
+msgstr "ç³»ç»Ÿ"
 
 #: Merge.rc:51FAB141
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
-msgstr "½«É¾³ıµÄÎÄ¼şÒÆÖÁ»ØÊÕÕ¾(&S)"
+msgstr "å°†åˆ é™¤çš„æ–‡ä»¶ç§»è‡³å›æ”¶ç«™(&S)"
 
 #: Merge.rc:1A9EBDF0
 #, c-format
 msgid "&External editor:"
-msgstr "Íâ²¿±à¼­Æ÷(&E)"
+msgstr "å¤–éƒ¨ç¼–è¾‘å™¨(&E)"
 
 #: Merge.rc:78B3B627
 #, c-format
 msgid "&Filter folder:"
-msgstr "¹ıÂËÆ÷Â·¾¶(&F):"
+msgstr "è¿‡æ»¤å™¨è·¯å¾„(&F):"
 
 #: Merge.rc:1C1FA831
 #, c-format
 msgid "Temporary files folder"
-msgstr "ÁÙÊ±ÎÄ¼ş¼Ğ"
+msgstr "ä¸´æ—¶æ–‡ä»¶å¤¹"
 
 #: Merge.rc:58EEEB80
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr "ÏµÍ³ÁÙÊ±ÎÄ¼ş¼Ğ(&Y)"
+msgstr "ç³»ç»Ÿä¸´æ—¶æ–‡ä»¶å¤¹(&Y)"
 
 #: Merge.rc:6FC398BB
 #, c-format
 msgid "C&ustom folder:"
-msgstr "×Ô¶¨ÒåÎÄ¼ş¼Ğ(&U):"
+msgstr "è‡ªå®šä¹‰æ–‡ä»¶å¤¹(&U):"
 
 #: Merge.rc:55B03C13
 #, c-format
 msgid "Patch Generator"
-msgstr "²¹¶¡Éú³ÉÆ÷"
+msgstr "è¡¥ä¸ç”Ÿæˆå™¨"
 
 #: Merge.rc:59F5069E
 #, c-format
 msgid "File&1:"
-msgstr "ÎÄ¼ş&1:"
+msgstr "æ–‡ä»¶&1:"
 
 #: Merge.rc:59F5069F
 #, c-format
 msgid "File&2:"
-msgstr "ÎÄ¼ş&2:"
+msgstr "æ–‡ä»¶&2:"
 
 #: Merge.rc:43017E4F
 #, c-format
 msgid "&Swap"
-msgstr "ÉÏÏÂ½»»»(&S)"
+msgstr "ä¸Šä¸‹äº¤æ¢(&S)"
 
 #: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
-msgstr "Ìí¼Óµ½ÒÑÓĞÎÄ¼şµÄÄ©Î²(&A)"
+msgstr "æ·»åŠ åˆ°å·²æœ‰æ–‡ä»¶çš„æœ«å°¾(&A)"
 
 #: Merge.rc:AC3AA1F
 #, c-format
 msgid "&Result:"
-msgstr "½á¹û(&R):"
+msgstr "ç»“æœ(&R):"
 
 #: Merge.rc:78E0CE11
 #, c-format
 msgid "Bro&wse..."
-msgstr "ä¯ÀÀ(&W)..."
+msgstr "æµè§ˆ(&W)..."
 
 #: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
-msgstr "¸ñÊ½(&F)"
+msgstr "æ ¼å¼(&F)"
 
 #: Merge.rc:67019DCB
 #, c-format
 msgid "St&yle:"
-msgstr "ÑùÊ½(&Y):"
+msgstr "æ ·å¼(&Y):"
 
 #: Merge.rc:4DB19838
 #, c-format
 msgid "&Context:"
-msgstr "ÄÚÈİ(&C):"
+msgstr "å†…å®¹(&C):"
 
 #: Merge.rc:2756A766
 #, c-format
 msgid "Ignor&e blank lines"
-msgstr "ºöÂÔ¿ÕĞĞ(&E)"
+msgstr "å¿½ç•¥ç©ºè¡Œ(&E)"
 
 #: Merge.rc:2C4A6C6C
 #, c-format
 msgid "Inclu&de command line"
-msgstr "°üº¬ÃüÁîĞĞ(&D)"
+msgstr "åŒ…å«å‘½ä»¤è¡Œ(&D)"
 
 #: Merge.rc:5869BBE
 #, c-format
 msgid "Open to e&xternal editor"
-msgstr "ÓÃÍâ²¿±à¼­Æ÷´ò¿ª(&X)"
+msgstr "ç”¨å¤–éƒ¨ç¼–è¾‘å™¨æ‰“å¼€(&X)"
 
 #: Merge.rc:28D5CCAA
 #, c-format
 msgid "Display Columns"
-msgstr "Ñ¡ÔñÏÔÊ¾ÁĞ"
+msgstr "é€‰æ‹©æ˜¾ç¤ºåˆ—"
 
 #: Merge.rc:4856953D
 #, c-format
 msgid "Move &Up"
-msgstr "ÉÏÒÆ(&U)"
+msgstr "ä¸Šç§»(&U)"
 
 #: Merge.rc:D0645BC
 #, c-format
 msgid "Move &Down"
-msgstr "ÏÂÒÆ(&D)"
+msgstr "ä¸‹ç§»(&D)"
 
 #: Merge.rc:E6D7F0
 #, c-format
 msgid "Select Unpacker"
-msgstr "Ñ¡Ôñ½â°ü³ÌĞò"
+msgstr "é€‰æ‹©è§£åŒ…ç¨‹åº"
 
 #: Merge.rc:4F5264C8
 #, c-format
 msgid "File unpacker:"
-msgstr "ÎÄ¼ş½â°ü³ÌĞò:"
+msgstr "æ–‡ä»¶è§£åŒ…ç¨‹åº:"
 
 #: Merge.rc:34C1157D
 #, c-format
 msgid "Display all unpackers, don't check the extension"
-msgstr "²»¼ì²éÀ©Õ¹Ãû£¬ÏÔÊ¾ËùÓĞ½â°ü³ÌĞò¡£"
+msgstr "ä¸æ£€æŸ¥æ‰©å±•åï¼Œæ˜¾ç¤ºæ‰€æœ‰è§£åŒ…ç¨‹åºã€‚"
 
 #: Merge.rc:5B18135F
 #, c-format
 msgid "Extensions list:"
-msgstr "À©Õ¹Ãû:"
+msgstr "æ‰©å±•å:"
 
 #: Merge.rc:5578260E
 #, c-format
 msgid "Description:"
-msgstr "ÃèÊö:"
+msgstr "æè¿°:"
 
 #: Merge.rc:4B89B94
 #, c-format
 msgid "Stop"
-msgstr "Í£Ö¹"
+msgstr "åœæ­¢"
 
 #: Merge.rc:1AC98D0A
 #, c-format
 msgid "Comparing items..."
-msgstr "ÕıÔÚ¶Ô±È..."
+msgstr "æ­£åœ¨å¯¹æ¯”..."
 
 #: Merge.rc:4630D06C
 #, c-format
 msgid "Items compared:"
-msgstr "ÒÑ¶Ô±È:"
+msgstr "å·²å¯¹æ¯”:"
 
 #: Merge.rc:4166A153
 #, c-format
 msgid "Items total:"
-msgstr "×ÜÊı:"
+msgstr "æ€»æ•°:"
 
 #: Merge.rc:7D31F2A0
 #, c-format
 msgid "Go To"
-msgstr "×ªµ½"
+msgstr "è½¬åˆ°"
 
 #: Merge.rc:290C61C5
 #, c-format
 msgid "G&oto:"
-msgstr "×ªµ½(&O):"
+msgstr "è½¬åˆ°(&O):"
 
 #: Merge.rc:3FB4EC7
 #, c-format
 msgid "File"
-msgstr "ÎÄ¼ş"
+msgstr "æ–‡ä»¶"
 
 #: Merge.rc:57E6C4D3
 #, c-format
 msgid "Goto what"
-msgstr "×ªµ½Àà±ğ"
+msgstr "è½¬åˆ°ç±»åˆ«"
 
 #: Merge.rc:602FC81
 #, c-format
 msgid "Li&ne"
-msgstr "ĞĞ(&N)"
+msgstr "è¡Œ(&N)"
 
 #: Merge.rc:27AC6D83
 #, c-format
 msgid "&Difference"
-msgstr "²»Í¬´¦(&D)"
+msgstr "ä¸åŒå¤„(&D)"
 
 #: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
-msgstr "×ªµ½(&G)"
+msgstr "è½¬åˆ°(&G)"
 
 #: Merge.rc:7E5494F6
 #, c-format
 msgid "Compare"
-msgstr "¶Ô±È"
+msgstr "å¯¹æ¯”"
 
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
-msgstr "¿Õ°×"
+msgstr "ç©ºç™½"
 
 #: Merge.rc:AC3AA20
 #, c-format
 msgid "&Compare"
-msgstr "¶Ô±È¿Õ°×ºÍÖÆ±í·û(&C)"
+msgstr "å¯¹æ¯”ç©ºç™½å’Œåˆ¶è¡¨ç¬¦(&C)"
 
 #: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
-msgstr "ºöÂÔ¿Õ°×ºÍÖÆ±í·û¸ü¸Ä(&I)"
+msgstr "å¿½ç•¥ç©ºç™½å’Œåˆ¶è¡¨ç¬¦æ›´æ”¹(&I)"
 
 #: Merge.rc:21C15B7
 #, c-format
 msgid "I&gnore all"
-msgstr "ºöÂÔËùÓĞ¿Õ°×ºÍÖÆ±í·û(&G)"
+msgstr "å¿½ç•¥æ‰€æœ‰ç©ºç™½å’Œåˆ¶è¡¨ç¬¦(&G)"
 
 #: Merge.rc:2756A767
 #, c-format
 msgid "Ignore blan&k lines"
-msgstr "ºöÂÔ¿ÕĞĞ(&K)"
+msgstr "å¿½ç•¥ç©ºè¡Œ(&K)"
 
 #: Merge.rc:4166A154
 #, c-format
 msgid "Ignore &case"
-msgstr "ºöÂÔ´óĞ¡Ğ´(&C)"
+msgstr "å¿½ç•¥å¤§å°å†™(&C)"
 
 #: Merge.rc:6C318DC8
 #, c-format
@@ -2069,77 +2070,77 @@ msgstr ""
 #: Merge.rc:285B56CE
 #, c-format
 msgid "E&nable moved block detection"
-msgstr "ÔÊĞí¼ì²âÒÆ¶¯Çø¿é(&N)"
+msgstr "å…è®¸æ£€æµ‹ç§»åŠ¨åŒºå—(&N)"
 
 #: Merge.rc:4EF8162F
 #, c-format
 msgid "&Match similar lines"
-msgstr "Æ¥ÅäÏàËÆµÄĞĞ(&M)"
+msgstr "åŒ¹é…ç›¸ä¼¼çš„è¡Œ(&M)"
 
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
-msgstr "¹ıÂË×¢ÊÍ"
+msgstr "è¿‡æ»¤æ³¨é‡Š"
 
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
-msgstr "±à¼­Æ÷"
+msgstr "ç¼–è¾‘å™¨"
 
 #: Merge.rc:1A9EBDF1
 #, c-format
 msgid "&Highlight syntax"
-msgstr "Óï·¨¸ßÁÁ(&H)"
+msgstr "è¯­æ³•é«˜äº®(&H)"
 
 #: Merge.rc:1A9EBDF2
 #, c-format
 msgid "&Automatic rescan"
-msgstr "×Ô¶¯ÖØĞÂÉ¨Ãè(&A)"
+msgstr "è‡ªåŠ¨é‡æ–°æ‰«æ(&A)"
 
 #: Merge.rc:545FEEA3
 #, c-format
 msgid "&Preserve original EOL chars"
-msgstr "±£³Ö»»ĞĞ·û²»±ä(&P)"
+msgstr "ä¿æŒæ¢è¡Œç¬¦ä¸å˜(&P)"
 
 #: Merge.rc:4C72B55
 #, c-format
 msgid "Tabs"
-msgstr "ÖÆ±í·û"
+msgstr "åˆ¶è¡¨ç¬¦"
 
 #: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
-msgstr "¿í¶È(&T)"
+msgstr "å®½åº¦(&T)"
 
 #: Merge.rc:4DE14275
 #, c-format
 msgid "&Insert Tabs"
-msgstr "²åÈëÖÆ±í·û(&I)"
+msgstr "æ’å…¥åˆ¶è¡¨ç¬¦(&I)"
 
 #: Merge.rc:243A39E
 #, c-format
 msgid "Insert &Spaces"
-msgstr "²åÈë¿Õ¸ñ(&S)"
+msgstr "æ’å…¥ç©ºæ ¼(&S)"
 
 #: Merge.rc:172385A0
 #, c-format
 msgid "Line Difference Coloring"
-msgstr "ĞĞÄÚ¶Ô±È"
+msgstr "è¡Œå†…å¯¹æ¯”"
 
 #: Merge.rc:4CB9DE6A
 #, c-format
 msgid "View line differences"
-msgstr "ÏÔÊ¾ĞĞÄÚ²»Í¬"
+msgstr "æ˜¾ç¤ºè¡Œå†…ä¸åŒ"
 
 #: Merge.rc:1DC30E65
 #, c-format
 msgid "&Character level"
-msgstr "×Ö·û¼¶±ğ(&C)"
+msgstr "å­—ç¬¦çº§åˆ«(&C)"
 
 #: Merge.rc:4DE14276
 #, c-format
 msgid "&Word-level:"
-msgstr "µ¥´Ê¼¶±ğ(&W):"
+msgstr "å•è¯çº§åˆ«(&W):"
 
 #: Merge.rc:14AF463A
 #, c-format
@@ -2149,52 +2150,52 @@ msgstr ""
 #: Merge.rc:34DF5070
 #, c-format
 msgid "Filefilters"
-msgstr "ÎÄ¼ş¹ıÂËÆ÷"
+msgstr "æ–‡ä»¶è¿‡æ»¤å™¨"
 
 #: Merge.rc:4C72B56
 #, c-format
 msgid "Test"
-msgstr "²âÊÔ"
+msgstr "æµ‹è¯•"
 
 #: Merge.rc:1CF8A5DA
 #, c-format
 msgid "Install..."
-msgstr "°²×°..."
+msgstr "å®‰è£…..."
 
 #: Merge.rc:27AFDB2F
 #, c-format
 msgid "New..."
-msgstr "ĞÂ½¨..."
+msgstr "æ–°å»º..."
 
 #: Merge.rc:3B6A3611
 #, c-format
 msgid "Edit..."
-msgstr "±à¼­..."
+msgstr "ç¼–è¾‘..."
 
 #: Merge.rc:629C1DDD
 #, c-format
 msgid "Delete..."
-msgstr "É¾³ı..."
+msgstr "åˆ é™¤..."
 
 #: Merge.rc:1BA49C3C
 #, c-format
 msgid "Save modified files?"
-msgstr "±£´æĞŞ¸ÄºóµÄÎÄ¼şÂğ£¿"
+msgstr "ä¿å­˜ä¿®æ”¹åçš„æ–‡ä»¶å—ï¼Ÿ"
 
 #: Merge.rc:3534E274
 #, c-format
 msgid "Left side file"
-msgstr "×ó²àÎÄ¼ş"
+msgstr "å·¦ä¾§æ–‡ä»¶"
 
 #: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
-msgstr "±£´æĞŞ¸Ä(&S)"
+msgstr "ä¿å­˜ä¿®æ”¹(&S)"
 
 #: Merge.rc:1DC30E66
 #, c-format
 msgid "&Discard changes"
-msgstr "·ÅÆúĞŞ¸Ä(&D)"
+msgstr "æ”¾å¼ƒä¿®æ”¹(&D)"
 
 #: Merge.rc:24BA673E
 #, c-format
@@ -2214,17 +2215,17 @@ msgstr ""
 #: Merge.rc:47D4A3FB
 #, c-format
 msgid "Right side file"
-msgstr "ÓÒ²àÎÄ¼ş"
+msgstr "å³ä¾§æ–‡ä»¶"
 
 #: Merge.rc:F2F641D
 #, c-format
 msgid "S&ave changes"
-msgstr "±£´æĞŞ¸Ä(&A)"
+msgstr "ä¿å­˜ä¿®æ”¹(&A)"
 
 #: Merge.rc:71E3C8E5
 #, c-format
 msgid "Dis&card changes"
-msgstr "·ÅÆúĞŞ¸Ä(&C)"
+msgstr "æ”¾å¼ƒä¿®æ”¹(&C)"
 
 #: Merge.rc:5578260F
 #, c-format
@@ -2234,17 +2235,17 @@ msgstr ""
 #: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
-msgstr "´úÂëÒ³"
+msgstr "ä»£ç é¡µ"
 
 #: Merge.rc:71E3C8E6
 #, c-format
 msgid "Default Codepage"
-msgstr "Ä¬ÈÏ´úÂëÒ³"
+msgstr "é»˜è®¤ä»£ç é¡µ"
 
 #: Merge.rc:132D699F
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "ÇëÑ¡Ôñ´ò¿ª·ÇUnicodeÎÄ¼şÊ±Ä¬ÈÏµÄ´úÂëÒ³"
+msgstr "è¯·é€‰æ‹©æ‰“å¼€éUnicodeæ–‡ä»¶æ—¶é»˜è®¤çš„ä»£ç é¡µ"
 
 #: Merge.rc:5CC85DF4
 #, c-format
@@ -2259,12 +2260,12 @@ msgstr ""
 #: Merge.rc:E6D7F1
 #, c-format
 msgid "System codepage"
-msgstr "ÏµÍ³´úÂëÒ³"
+msgstr "ç³»ç»Ÿä»£ç é¡µ"
 
 #: Merge.rc:4F3C2B88
 #, c-format
 msgid "According to WinMerge User Interface"
-msgstr "Óë WinMerge ÓÃ»§½çÃæÒ»ÖÂ"
+msgstr "ä¸ WinMerge ç”¨æˆ·ç•Œé¢ä¸€è‡´"
 
 #: Merge.rc:8AF7E6A
 #, c-format
@@ -2274,77 +2275,77 @@ msgstr ""
 #: Merge.rc:6CD65B95
 #, c-format
 msgid "Options"
-msgstr "Ñ¡Ïî"
+msgstr "é€‰é¡¹"
 
 #: Merge.rc:D32E2F1
 #, c-format
 msgid " Categories"
-msgstr " ·ÖÀà"
+msgstr " åˆ†ç±»"
 
 #: Merge.rc:26188978
 #, c-format
 msgid "Import..."
-msgstr "µ¼Èë..."
+msgstr "å¯¼å…¥..."
 
 #: Merge.rc:9B5002F
 #, c-format
 msgid "Export..."
-msgstr "µ¼³ö..."
+msgstr "å¯¼å‡º..."
 
 #: Merge.rc:50F76E1
 #, c-format
 msgid "Dialog"
-msgstr "¶Ô»°¿ò"
+msgstr "å¯¹è¯æ¡†"
 
 #: Merge.rc:744A4E1C
 #, c-format
 msgid "Keywords:"
-msgstr "¹Ø¼ü×Ö:"
+msgstr "å…³é”®å­—:"
 
 #: Merge.rc:1AFA3492
 #, c-format
 msgid "Function names:"
-msgstr "º¯ÊıÃû:"
+msgstr "å‡½æ•°å:"
 
 #: Merge.rc:3B833B8B
 #, c-format
 msgid "Comments:"
-msgstr "×¢ÊÍ:"
+msgstr "æ³¨é‡Š:"
 
 #: Merge.rc:7B25D658
 #, c-format
 msgid "Numbers:"
-msgstr "Êı×Ö:"
+msgstr "æ•°å­—:"
 
 #: Merge.rc:50D15AD
 #, c-format
 msgid "Operators:"
-msgstr "²Ù×÷·û:"
+msgstr "æ“ä½œç¬¦:"
 
 #: Merge.rc:79321BE2
 #, c-format
 msgid "Strings:"
-msgstr "×Ö·û´®:"
+msgstr "å­—ç¬¦ä¸²:"
 
 #: Merge.rc:1E0ED5B2
 #, c-format
 msgid "Preprocessor:"
-msgstr "Ô¤´¦ÀíÖ¸Áî:"
+msgstr "é¢„å¤„ç†æŒ‡ä»¤:"
 
 #: Merge.rc:24173EE5
 #, c-format
 msgid "User 1:"
-msgstr "ÓÃ»§¶¨Òå 1:"
+msgstr "ç”¨æˆ·å®šä¹‰ 1:"
 
 #: Merge.rc:24173EE6
 #, c-format
 msgid "User 2:"
-msgstr "ÓÃ»§¶¨Òå 2:"
+msgstr "ç”¨æˆ·å®šä¹‰ 2:"
 
 #: Merge.rc:3C10FC2
 #, c-format
 msgid "Bold"
-msgstr "¼Ó´Ö"
+msgstr "åŠ ç²—"
 
 #: Merge.rc:2CEE4749
 #, c-format
@@ -2374,22 +2375,22 @@ msgstr ""
 #: Merge.rc:387F7980
 #, c-format
 msgid "Folder Compare Report"
-msgstr "ÎÄ¼ş¼Ğ¶Ô±È±¨¸æ"
+msgstr "æ–‡ä»¶å¤¹å¯¹æ¯”æŠ¥å‘Š"
 
 #: Merge.rc:3ECF34A3
 #, c-format
 msgid "Report &File:"
-msgstr "±¨¸æÎÄ¼ş(&F):"
+msgstr "æŠ¥å‘Šæ–‡ä»¶(&F):"
 
 #: Merge.rc:146A5938
 #, c-format
 msgid "Browse..."
-msgstr "ä¯ÀÀ..."
+msgstr "æµè§ˆ..."
 
 #: Merge.rc:89AF4FD
 #, c-format
 msgid "&Style:"
-msgstr "ÑùÊ½(&S):"
+msgstr "æ ·å¼(&S):"
 
 #: Merge.rc:545FEEA4
 #, c-format
@@ -2399,102 +2400,102 @@ msgstr ""
 #: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr "¸´ÖÆµ½¼ôÌù°å(&C)"
+msgstr "å¤åˆ¶åˆ°å‰ªè´´æ¿(&C)"
 
 #: Merge.rc:43600E90
 #, c-format
 msgid "Shared or Private Filter"
-msgstr "¹²Ïí»òË½ÓĞ¹ıÂËÆ÷"
+msgstr "å…±äº«æˆ–ç§æœ‰è¿‡æ»¤å™¨"
 
 #: Merge.rc:74E96E1E
 #, c-format
 msgid "Which type of filter do you want to create?"
-msgstr "ÄúÒª´´½¨ÄÄÖÖ¹ıÂËÆ÷£¿"
+msgstr "æ‚¨è¦åˆ›å»ºå“ªç§è¿‡æ»¤å™¨ï¼Ÿ"
 
 #: Merge.rc:444EF527
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "¹²Ïí¹ıÂËÆ÷(Îª±¾»úµÄËùÓĞÓÃ»§)"
+msgstr "å…±äº«è¿‡æ»¤å™¨(ä¸ºæœ¬æœºçš„æ‰€æœ‰ç”¨æˆ·)"
 
 #: Merge.rc:11304E6
 #, c-format
 msgid "Private Filter (only for current user)"
-msgstr "Ë½ÓĞ¹ıÂËÆ÷(Ö»Îªµ±Ç°ÓÃ»§)"
+msgstr "ç§æœ‰è¿‡æ»¤å™¨(åªä¸ºå½“å‰ç”¨æˆ·)"
 
 #: Merge.rc:7D9F30CF
 #, c-format
 msgid "Archive Support"
-msgstr "Ñ¹Ëõ°üÖ§³Ö"
+msgstr "å‹ç¼©åŒ…æ”¯æŒ"
 
 #: Merge.rc:545FEEA5
 #, c-format
 msgid "&Enable archive file support"
-msgstr "ÆôÓÃÑ¹ËõÎÄ¼şÖ§³Ö(&E)"
+msgstr "å¯ç”¨å‹ç¼©æ–‡ä»¶æ”¯æŒ(&E)"
 
 #: Merge.rc:70C9C72D
 #, c-format
 msgid "&Detect archive type from file signature"
-msgstr "¸ù¾İÄÚÈİ¼ì²âÎÄ¼şÀàĞÍ(&D)"
+msgstr "æ ¹æ®å†…å®¹æ£€æµ‹æ–‡ä»¶ç±»å‹(&D)"
 
 #: Merge.rc:1AC98D0B
 #, c-format
 msgid "Compare Statistics"
-msgstr "¶Ô±È½á¹ûÍ³¼Æ"
+msgstr "å¯¹æ¯”ç»“æœç»Ÿè®¡"
 
 #: Merge.rc:64ABCD7E
 #, c-format
 msgid "Folders:"
-msgstr "ÎÄ¼ş¼Ğ:"
+msgstr "æ–‡ä»¶å¤¹:"
 
 #: Merge.rc:7262BE23
 #, c-format
 msgid "Files:"
-msgstr "ÎÄ¼ş:"
+msgstr "æ–‡ä»¶:"
 
 #: Merge.rc:629C1DDE
 #, c-format
 msgid "Different"
-msgstr "²»Í¬"
+msgstr "ä¸åŒ"
 
 #: Merge.rc:141E3F81
 #, c-format
 msgid "Text:"
-msgstr "ÎÄ±¾:"
+msgstr "æ–‡æœ¬:"
 
 #: Merge.rc:5FC9C469
 #, c-format
 msgid "Binary:"
-msgstr "¶ş½øÖÆ:"
+msgstr "äºŒè¿›åˆ¶:"
 
 #: Merge.rc:26535499
 #, c-format
 msgid "Unique"
-msgstr "½öÔÚµ¥²à"
+msgstr "ä»…åœ¨å•ä¾§"
 
 #: Merge.rc:602FC82
 #, c-format
 msgid "Left:"
-msgstr "×ó²à:"
+msgstr "å·¦ä¾§:"
 
 #: Merge.rc:25669B6
 #, c-format
 msgid "Right:"
-msgstr "ÓÒ²à:"
+msgstr "å³ä¾§:"
 
 #: Merge.rc:26188979
 #, c-format
 msgid "Identical"
-msgstr "ÍêÈ«ÏàÍ¬"
+msgstr "å®Œå…¨ç›¸åŒ"
 
 #: Merge.rc:6FA9B0F7
 #, c-format
 msgid "Total:"
-msgstr "×Ü¼Æ:"
+msgstr "æ€»è®¡:"
 
 #: Merge.rc:76245120
 #, c-format
 msgid "Close"
-msgstr "¹Ø±Õ"
+msgstr "å…³é—­"
 
 #: Merge.rc:2FC0BA7C
 #, c-format
@@ -2519,97 +2520,97 @@ msgstr ""
 #: Merge.rc:413EF3DC
 #, c-format
 msgid "Affects"
-msgstr "Ó°Ïì·¶Î§"
+msgstr "å½±å“èŒƒå›´"
 
 #: Merge.rc:1BE35CDC
 #, c-format
 msgid "(Affects)"
-msgstr "(Ó°Ïì)"
+msgstr "(å½±å“)"
 
 #: Merge.rc:E4471B
 #, c-format
 msgid "Select Codepage for"
-msgstr "Ñ¡ÔñÒªÊ¹ÓÃµÄ´úÂëÒ³"
+msgstr "é€‰æ‹©è¦ä½¿ç”¨çš„ä»£ç é¡µ"
 
 #: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
-msgstr "´ò¿ªÎÄ¼ş(&F):"
+msgstr "æ‰“å¼€æ–‡ä»¶(&F):"
 
 #: Merge.rc:7A4CFAFC
 #, c-format
 msgid "File &Saving:"
-msgstr "±£´æÎÄ¼ş(&S):"
+msgstr "ä¿å­˜æ–‡ä»¶(&S):"
 
 #: Merge.rc:175DEEED
 #, c-format
 msgid "&Use same codepage for both"
-msgstr "Á½±ßÊ¹ÓÃÏàÍ¬µÄ´úÂëÒ³(&U)"
+msgstr "ä¸¤è¾¹ä½¿ç”¨ç›¸åŒçš„ä»£ç é¡µ(&U)"
 
 #: Merge.rc:89AF4FE
 #, c-format
 msgid "&Cancel"
-msgstr "È¡Ïû(&C)"
+msgstr "å–æ¶ˆ(&C)"
 
 #: Merge.rc:72A593B8
 #, c-format
 msgid "Test Filter"
-msgstr "¹ıÂËÆ÷²âÊÔ"
+msgstr "è¿‡æ»¤å™¨æµ‹è¯•"
 
 #: Merge.rc:5CCED708
 #, c-format
 msgid "Testing filter ..."
-msgstr "ÕıÔÚ²âÊÔ ..."
+msgstr "æ­£åœ¨æµ‹è¯• ..."
 
 #: Merge.rc:4EF81630
 #, c-format
 msgid "&Enter text to test:"
-msgstr "¼üÈëÎÄ×ÖÓÃÒÔ²âÊÔ(&E):"
+msgstr "é”®å…¥æ–‡å­—ç”¨ä»¥æµ‹è¯•(&E):"
 
 #: Merge.rc:4DE14277
 #, c-format
 msgid "&Folder Name"
-msgstr "ÎÄ¼ş¼ĞÃû(&F)"
+msgstr "æ–‡ä»¶å¤¹å(&F)"
 
 #: Merge.rc:4876CD3F
 #, c-format
 msgid "Result:"
-msgstr "½á¹û:"
+msgstr "ç»“æœ:"
 
 #: Merge.rc:43017E50
 #, c-format
 msgid "&Test"
-msgstr "²âÊÔ(&T)"
+msgstr "æµ‹è¯•(&T)"
 
 #: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Close"
-msgstr "¹Ø±Õ(&C)"
+msgstr "å…³é—­(&C)"
 
 #: Merge.rc:175DEEEE
 #, c-format
 msgid "&Use customized text colors"
-msgstr "Ê¹ÓÃ×Ô¶¨ÒåµÄÎÄ×ÖÑÕÉ«(&U)"
+msgstr "ä½¿ç”¨è‡ªå®šä¹‰çš„æ–‡å­—é¢œè‰²(&U)"
 
 #: Merge.rc:1AC98D0C
 #, c-format
 msgid "Custom text colors"
-msgstr "×Ô¶¨ÒåÎÄ×ÖÑÕÉ«"
+msgstr "è‡ªå®šä¹‰æ–‡å­—é¢œè‰²"
 
 #: Merge.rc:3FE25901
 #, c-format
 msgid "Whitespace:"
-msgstr "¿Õ°×:"
+msgstr "ç©ºç™½:"
 
 #: Merge.rc:3ECF34A4
 #, c-format
 msgid "Regular text:"
-msgstr "ÆÕÍ¨ÎÄ×Ö:"
+msgstr "æ™®é€šæ–‡å­—:"
 
 #: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
-msgstr "Ñ¡ÖĞÇøÓò:"
+msgstr "é€‰ä¸­åŒºåŸŸ:"
 
 #: Merge.rc:2FC0BA7D
 #, c-format
@@ -2619,117 +2620,117 @@ msgstr ""
 #: Merge.rc:D109E01
 #, c-format
 msgid "Paths"
-msgstr "Â·¾¶"
+msgstr "è·¯å¾„"
 
 #: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Left:"
-msgstr "×ó²à(&L):"
+msgstr "å·¦ä¾§(&L):"
 
 #: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
-msgstr "Ö»¶Á(&E)"
+msgstr "åªè¯»(&E)"
 
 #: Merge.rc:89AF4FF
 #, c-format
 msgid "&Right:"
-msgstr "ÓÒ²à(&R):"
+msgstr "å³ä¾§(&R):"
 
 #: Merge.rc:AC3AA21
 #, c-format
 msgid "&Filter:"
-msgstr "¹ıÂËÆ÷(&F):"
+msgstr "è¿‡æ»¤å™¨(&F):"
 
 #: Merge.rc:6CD65B96
 #, c-format
 msgid "Open..."
-msgstr "´ò¿ª..."
+msgstr "æ‰“å¼€..."
 
 #: Merge.rc:67019DCC
 #, c-format
 msgid "Save..."
-msgstr "±£´æ..."
+msgstr "ä¿å­˜..."
 
 #: Merge.rc:43E58E59
 #, c-format
 msgid "Backup Files"
-msgstr "±¸·İÎÄ¼ş"
+msgstr "å¤‡ä»½æ–‡ä»¶"
 
 #: Merge.rc:69AD3BF9
 #, c-format
 msgid "Create backup files in:"
-msgstr "½øĞĞÒÔÏÂ²Ù×÷Ê±´´½¨±¸·İÎÄ¼ş:"
+msgstr "è¿›è¡Œä»¥ä¸‹æ“ä½œæ—¶åˆ›å»ºå¤‡ä»½æ–‡ä»¶:"
 
 #: Merge.rc:78B3B628
 #, c-format
 msgid "&Folder compare"
-msgstr "ÎÄ¼ş¼Ğ¶Ô±È(&F)"
+msgstr "æ–‡ä»¶å¤¹å¯¹æ¯”(&F)"
 
 #: Merge.rc:7A4CFAFD
 #, c-format
 msgid "Fil&e compare"
-msgstr "ÎÄ¼ş¶Ô±È(&E)"
+msgstr "æ–‡ä»¶å¯¹æ¯”(&E)"
 
 #: Merge.rc:334E25B2
 #, c-format
 msgid "Create backup files into:"
-msgstr "½«±¸·İÎÄ¼ş´´½¨ÖÁ:"
+msgstr "å°†å¤‡ä»½æ–‡ä»¶åˆ›å»ºè‡³:"
 
 #: Merge.rc:381D79E7
 #, c-format
 msgid "&Original file's folder"
-msgstr "Ô­ÎÄ¼şËùÔÚÎÄ¼ş¼Ğ(&O)"
+msgstr "åŸæ–‡ä»¶æ‰€åœ¨æ–‡ä»¶å¤¹(&O)"
 
 #: Merge.rc:714B45FE
 #, c-format
 msgid "&Global backup folder:"
-msgstr "È«¾Ö±¸·İÎÄ¼ş¼Ğ(&G):"
+msgstr "å…¨å±€å¤‡ä»½æ–‡ä»¶å¤¹(&G):"
 
 #: Merge.rc:1F7B33EC
 #, c-format
 msgid "Backup filename:"
-msgstr "±¸·İÎÄ¼şÃû:"
+msgstr "å¤‡ä»½æ–‡ä»¶å:"
 
 #: Merge.rc:381D79E8
 #, c-format
 msgid "&Append .bak -extension"
-msgstr "Ìí¼Ó .bak À©Õ¹Ãû(&A)"
+msgstr "æ·»åŠ  .bak æ‰©å±•å(&A)"
 
 #: Merge.rc:129644DE
 #, c-format
 msgid "A&ppend timestamp"
-msgstr "Ìí¼ÓÊ±¼ä´Á(&P)"
+msgstr "æ·»åŠ æ—¶é—´æˆ³(&P)"
 
 #: Merge.rc:CAEDA36
 #, c-format
 msgid "Confirm Copy"
-msgstr "È·ÈÏ¸´ÖÆ"
+msgstr "ç¡®è®¤å¤åˆ¶"
 
 #: Merge.rc:36D268E9
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr "ÄúÈ·¶¨Òª¸´ÖÆ XXX ¸öÏîÄ¿Ã´?"
+msgstr "æ‚¨ç¡®å®šè¦å¤åˆ¶ XXX ä¸ªé¡¹ç›®ä¹ˆ?"
 
 #: Merge.rc:30CDE281
 #, c-format
 msgid "From left"
-msgstr "´Ó×ó²à"
+msgstr "ä»å·¦ä¾§"
 
 #: Merge.rc:2C015CFE
 #, c-format
 msgid "To right"
-msgstr "µ½ÓÒ²à"
+msgstr "åˆ°å³ä¾§"
 
 #: Merge.rc:29CE40
 #, c-format
 msgid "Yes"
-msgstr "ÊÇ"
+msgstr "æ˜¯"
 
 #: Merge.rc:12E8E
 #, c-format
 msgid "No"
-msgstr "·ñ"
+msgstr "å¦"
 
 #: Merge.rc:B612C23
 #, c-format
@@ -2754,7 +2755,7 @@ msgstr ""
 #: Merge.rc:673BD331
 #, c-format
 msgid "E&nable advanced menu"
-msgstr "ÔÊĞí¸ß¼¶²Ëµ¥(&N)"
+msgstr "å…è®¸é«˜çº§èœå•(&N)"
 
 #: Merge.rc:4EF81631
 #, c-format
@@ -2774,17 +2775,17 @@ msgstr ""
 #: Merge.rc:7262BE24
 #, c-format
 msgid "Folder"
-msgstr "ÎÄ¼ş¼Ğ"
+msgstr "æ–‡ä»¶å¤¹"
 
 #: Merge.rc:60B696AF
 #, c-format
 msgid "S&top after first difference"
-msgstr "Óöµ½Ê×´¦²»Í¬ºóÍ£Ö¹(&T)"
+msgstr "é‡åˆ°é¦–å¤„ä¸åŒååœæ­¢(&T)"
 
 #: Merge.rc:7FF2B80B
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
-msgstr "ºöÂÔ²»×ã3ÃëµÄÊ±¼ä²î±ğ(&O)"
+msgstr "å¿½ç•¥ä¸è¶³3ç§’çš„æ—¶é—´å·®åˆ«(&O)"
 
 #: Merge.rc:6D5B7719
 #, c-format
@@ -2814,7 +2815,7 @@ msgstr ""
 #: Merge.rc:17BC2F9E
 #, c-format
 msgid "Binary"
-msgstr "¶ş½øÖÆ"
+msgstr "äºŒè¿›åˆ¶"
 
 #: Merge.rc:7AAB28B8
 #, c-format
@@ -2904,27 +2905,27 @@ msgstr ""
 #: Merge.rc:524AB109
 #, c-format
 msgid "Unknown error attempting to open project file"
-msgstr "´ò¿ª¹¤³ÌÎÄ¼şÊ±·¢ÉúÎ´Öª´íÎó"
+msgstr "æ‰“å¼€å·¥ç¨‹æ–‡ä»¶æ—¶å‘ç”ŸæœªçŸ¥é”™è¯¯"
 
 #: Merge.rc:524AB10A
 #, c-format
 msgid "Unknown error attempting to save project file"
-msgstr "±£´æ¹¤³ÌÎÄ¼şÊ±·¢ÉúÎ´Öª´íÎó"
+msgstr "ä¿å­˜å·¥ç¨‹æ–‡ä»¶æ—¶å‘ç”ŸæœªçŸ¥é”™è¯¯"
 
 #: Merge.rc:3EE7B44D
 #, c-format
 msgid "Project File"
-msgstr "¹¤³ÌÎÄ¼ş"
+msgstr "å·¥ç¨‹æ–‡ä»¶"
 
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
-msgstr "³É¹¦´ò¿ª¹¤³ÌÎÄ¼ş."
+msgstr "æˆåŠŸæ‰“å¼€å·¥ç¨‹æ–‡ä»¶."
 
 #: Merge.rc:3BDD62C3
 #, c-format
 msgid "Project file successfully saved."
-msgstr "³É¹¦±£´æ¹¤³ÌÎÄ¼ş."
+msgstr "æˆåŠŸä¿å­˜å·¥ç¨‹æ–‡ä»¶."
 
 #: Merge.rc:28AAB7F
 #, c-format
@@ -2939,7 +2940,7 @@ msgstr ""
 #: Merge.rc:2B78E95D
 #, c-format
 msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
-msgstr "\nnFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge ÎÄ¼ş¶Ô±È"
+msgstr "\nnFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge æ–‡ä»¶å¯¹æ¯”"
 
 #: Merge.rc:293A824F
 #, c-format
@@ -2949,7 +2950,7 @@ msgstr "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 #: Merge.rc:74BA5C8C
 #, c-format
 msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
-msgstr "¿ª·¢ÈËÔ±:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgstr "å¼€å‘äººå‘˜:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
@@ -2959,67 +2960,67 @@ msgstr "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and yo
 #: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
-msgstr "ÖĞÖ¹(&A)"
+msgstr "ä¸­æ­¢(&A)"
 
 #: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
-msgstr "ÖØÊÔ(&R)"
+msgstr "é‡è¯•(&R)"
 
 #: Merge.rc:89AF500
 #, c-format
 msgid "&Ignore"
-msgstr "ºöÂÔ(&I)"
+msgstr "å¿½ç•¥(&I)"
 
 #: Merge.rc:21C15B8
 #, c-format
 msgid "Ignore &all"
-msgstr "ºöÂÔËùÓĞ(&A)"
+msgstr "å¿½ç•¥æ‰€æœ‰(&A)"
 
 #: Merge.rc:22956AA
 #, c-format
 msgid "&Yes"
-msgstr "ÊÇ(&Y)"
+msgstr "æ˜¯(&Y)"
 
 #: Merge.rc:48B5872E
 #, c-format
 msgid "Yes to &all"
-msgstr "È«²¿¶¼ÊÇ(&A)"
+msgstr "å…¨éƒ¨éƒ½æ˜¯(&A)"
 
 #: Merge.rc:11D981
 #, c-format
 msgid "&No"
-msgstr "·ñ(&N)"
+msgstr "å¦(&N)"
 
 #: Merge.rc:4909ADB4
 #, c-format
 msgid "No to a&ll"
-msgstr "È«²¿¶¼·ñ(&L)"
+msgstr "å…¨éƒ¨éƒ½å¦(&L)"
 
 #: Merge.rc:4DB1983A
 #, c-format
 msgid "&Continue"
-msgstr "¼ÌĞø(&C)"
+msgstr "ç»§ç»­(&C)"
 
 #: Merge.rc:43017E51
 #, c-format
 msgid "&Skip"
-msgstr "Ìø¹ı(&S)"
+msgstr "è·³è¿‡(&S)"
 
 #: Merge.rc:2D1160B0
 #, c-format
 msgid "Skip &all"
-msgstr "È«²¿Ìø¹ı(&A)"
+msgstr "å…¨éƒ¨è·³è¿‡(&A)"
 
 #: Merge.rc:77C09B82
 #, c-format
 msgid "Don't display this &message again."
-msgstr "²»ÔÙÌáÊ¾´ËÏûÏ¢(&M)¡£"
+msgstr "ä¸å†æç¤ºæ­¤æ¶ˆæ¯(&M)ã€‚"
 
 #: Merge.rc:57F02FB4
 #, c-format
 msgid "Don't ask this &question again."
-msgstr "²»ÔÙÑ¯ÎÊ´ËÎÊÌâ(&Q)¡£"
+msgstr "ä¸å†è¯¢é—®æ­¤é—®é¢˜(&Q)ã€‚"
 
 #: Merge.rc:78ACB5DB
 #, c-format
@@ -3034,42 +3035,42 @@ msgstr ""
 #: Merge.rc:2C1D73C8
 #, c-format
 msgid "Version Control"
-msgstr "°æ±¾¿ØÖÆ"
+msgstr "ç‰ˆæœ¬æ§åˆ¶"
 
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
-msgstr "²»Í¬´¦"
+msgstr "ä¸åŒå¤„"
 
 #: Merge.rc:277500
 #, c-format
 msgid "To:"
-msgstr "µ½:"
+msgstr "åˆ°:"
 
 #: Merge.rc:68EE6DF1
 #, c-format
 msgid "From left:"
-msgstr "´Ó×ó²à:"
+msgstr "ä»å·¦ä¾§:"
 
 #: Merge.rc:2C015CFF
 #, c-format
 msgid "To left:"
-msgstr "µ½×ó²à:"
+msgstr "åˆ°å·¦ä¾§:"
 
 #: Merge.rc:34DF5071
 #, c-format
 msgid "From right:"
-msgstr "´ÓÓÒ²à:"
+msgstr "ä»å³ä¾§:"
 
 #: Merge.rc:542A4301
 #, c-format
 msgid "To right:"
-msgstr "µ½ÓÒ²à:"
+msgstr "åˆ°å³ä¾§:"
 
 #: Merge.rc:2924ED78
 #, c-format
 msgid "Version %1"
-msgstr "°æ±¾ %1"
+msgstr "ç‰ˆæœ¬ %1"
 
 #: Merge.rc:24173EE7
 #, c-format
@@ -3084,12 +3085,12 @@ msgstr ""
 #: Merge.rc:761E6873
 #, c-format
 msgid "Options (%1)"
-msgstr "Ñ¡Ïî (%1)"
+msgstr "é€‰é¡¹ (%1)"
 
 #: Merge.rc:4BDBDC64
 #, c-format
 msgid "All message boxes are now displayed again."
-msgstr "ËùÓĞÌáÊ¾ĞÅÏ¢ÒÑ¾­ÖØÉèÎªÏÔÊ¾¡£"
+msgstr "æ‰€æœ‰æç¤ºä¿¡æ¯å·²ç»é‡è®¾ä¸ºæ˜¾ç¤ºã€‚"
 
 #: Merge.rc:37825D6A
 #, c-format
@@ -3098,64 +3099,64 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"ÖÆ±í·û¿í¶È³¬³ö WinMerge µÄÔÊĞí·¶Î§.\n"
+"åˆ¶è¡¨ç¬¦å®½åº¦è¶…å‡º WinMerge çš„å…è®¸èŒƒå›´.\n"
 "\n"
-"ÇëÊ¹ÓÃ 1 - %1 Ö®¼äµÄÖµ."
+"è¯·ä½¿ç”¨ 1 - %1 ä¹‹é—´çš„å€¼."
 
 #: Merge.rc:47E5C8F
 #, c-format
 msgid "Open"
-msgstr "´ò¿ª"
+msgstr "æ‰“å¼€"
 
 #: Merge.rc:3E105584
 #, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
-msgstr "³ÌĞò|*.exe;*.bat;*.cmd|ËùÓĞÎÄ¼ş (*.*)|*.*||"
+msgstr "ç¨‹åº|*.exe;*.bat;*.cmd|æ‰€æœ‰æ–‡ä»¶ (*.*)|*.*||"
 
 #: Merge.rc:222D39F7
 #, c-format
 msgid "All Files (*.*)|*.*||"
-msgstr "ËùÓĞÎÄ¼ş (*.*)|*.*||"
+msgstr "æ‰€æœ‰æ–‡ä»¶ (*.*)|*.*||"
 
 #: Merge.rc:237E9033
 #, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
-msgstr "WinMerge ¹¤³ÌÎÄ¼ş (*.WinMerge)|*.WinMerge||"
+msgstr "WinMerge å·¥ç¨‹æ–‡ä»¶ (*.WinMerge)|*.WinMerge||"
 
 #: Merge.rc:BEDA09D
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
-msgstr "ÅäÖÃÎÄ¼ş (*.ini)|*.ini|ËùÓĞÎÄ¼ş (*.*)|*.*||"
+msgstr "é…ç½®æ–‡ä»¶ (*.ini)|*.ini|æ‰€æœ‰æ–‡ä»¶ (*.*)|*.*||"
 
 #: Merge.rc:3FF615A0
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-msgstr "ÎÄ±¾ÎÄ¼ş (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|ËùÓĞÎÄ¼ş (*.*)|*.*||"
+msgstr "æ–‡æœ¬æ–‡ä»¶ (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|æ‰€æœ‰æ–‡ä»¶ (*.*)|*.*||"
 
 #: Merge.rc:59814668
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-msgstr "HTML ÎÄ¼ş (*.htm,*.html)|*.htm;*.html|ËùÓĞÎÄ¼ş (*.*)|*.*||"
+msgstr "HTML æ–‡ä»¶ (*.htm,*.html)|*.htm;*.html|æ‰€æœ‰æ–‡ä»¶ (*.*)|*.*||"
 
 #: Merge.rc:67444ADC
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
-msgstr "XML ÎÄ¼ş (*.xml)|*.xml|ËùÓĞÎÄ¼ş (*.*)|*.*||"
+msgstr "XML æ–‡ä»¶ (*.xml)|*.xml|æ‰€æœ‰æ–‡ä»¶ (*.*)|*.*||"
 
 #: Merge.rc:46FCCCE
 #, c-format
 msgid "Name"
-msgstr "Ãû³Æ"
+msgstr "åç§°"
 
 #: Merge.rc:15875422
 #, c-format
 msgid "Location"
-msgstr "Î»ÖÃ"
+msgstr "ä½ç½®"
 
 #: Merge.rc:59F506A0
 #, c-format
 msgid "Filters"
-msgstr "¹ıÂËÆ÷"
+msgstr "è¿‡æ»¤å™¨"
 
 #: Merge.rc:52D199B
 #, c-format
@@ -3165,17 +3166,17 @@ msgstr "[F] "
 #: Merge.rc:2C0C2242
 #, c-format
 msgid "Description"
-msgstr "ÃèÊö"
+msgstr "æè¿°"
 
 #: Merge.rc:D6BB425
 #, c-format
 msgid "Select filename for new filter"
-msgstr "Ñ¡ÔñĞÂ¹ıÂËÆ÷µÄÎÄ¼şÃû"
+msgstr "é€‰æ‹©æ–°è¿‡æ»¤å™¨çš„æ–‡ä»¶å"
 
 #: Merge.rc:764E4AD3
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
-msgstr "¹ıÂËÆ÷ÎÄ¼ş (*.flt)|*.flt|ËùÓĞÎÄ¼ş (*.*)|*.*||"
+msgstr "è¿‡æ»¤å™¨æ–‡ä»¶ (*.flt)|*.flt|æ‰€æœ‰æ–‡ä»¶ (*.*)|*.*||"
 
 #: Merge.rc:24B5241A
 #, c-format
@@ -3185,9 +3186,9 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
-"ÎÄ¼ş¹ıÂËÆ÷Ä£°åÎ´ÕÒµ½!\n"
+"æ–‡ä»¶è¿‡æ»¤å™¨æ¨¡æ¿æœªæ‰¾åˆ°!\n"
 "\n"
-"Çë°ÑÎÄ¼ş %1 ¸´ÖÆµ½ WinMerge/Filters ÎÄ¼ş¼ĞÏÂ."
+"è¯·æŠŠæ–‡ä»¶ %1 å¤åˆ¶åˆ° WinMerge/Filters æ–‡ä»¶å¤¹ä¸‹."
 
 #: Merge.rc:2A045B49
 #, c-format
@@ -3197,10 +3198,10 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"ÎŞ·¨½«¹ıÂËÆ÷Ä£°å¸´ÖÆµ½ÒÔÏÂÎÄ¼ş¼Ğ:\n"
+"æ— æ³•å°†è¿‡æ»¤å™¨æ¨¡æ¿å¤åˆ¶åˆ°ä»¥ä¸‹æ–‡ä»¶å¤¹:\n"
 "%1\n"
 "\n"
-"ÇëÈ·ÈÏ´ËÎÄ¼ş¼Ğ´æÔÚ²¢¿ÉÒÔĞ´Èë."
+"è¯·ç¡®è®¤æ­¤æ–‡ä»¶å¤¹å­˜åœ¨å¹¶å¯ä»¥å†™å…¥."
 
 #: Merge.rc:4EA7BACD
 #, c-format
@@ -3209,9 +3210,9 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"×Ô¶¨Òå¹ıÂËÆ÷Â·¾¶Î´Éè¶¨!\n"
+"è‡ªå®šä¹‰è¿‡æ»¤å™¨è·¯å¾„æœªè®¾å®š!\n"
 "\n"
-"ÇëÔÚÑ¡Ïî/ÏµÍ³ÖĞÑ¡ÔñÒ»¸öÂ·¾¶."
+"è¯·åœ¨é€‰é¡¹/ç³»ç»Ÿä¸­é€‰æ‹©ä¸€ä¸ªè·¯å¾„."
 
 #: Merge.rc:7DDEC9BD
 #, c-format
@@ -3221,15 +3222,15 @@ msgid ""
 "\n"
 "Maybe the file is read-only?"
 msgstr ""
-"ÒÔÏÂ¹ıÂËÆ÷É¾³ıÊ§°Ü:\n"
+"ä»¥ä¸‹è¿‡æ»¤å™¨åˆ é™¤å¤±è´¥:\n"
 "%1\n"
 "\n"
-"¸ÃÎÄ¼şÊÇ·ñÎªÖ»¶Á?"
+"è¯¥æ–‡ä»¶æ˜¯å¦ä¸ºåªè¯»?"
 
 #: Merge.rc:6F3BCB34
 #, c-format
 msgid "Locate filter file to install"
-msgstr "Ñ¡ÔñÒª°²×°µÄ¹ıÂËÆ÷ÎÄ¼ş"
+msgstr "é€‰æ‹©è¦å®‰è£…çš„è¿‡æ»¤å™¨æ–‡ä»¶"
 
 #: Merge.rc:6858E820
 #, c-format
@@ -3238,19 +3239,19 @@ msgid ""
 "\n"
 "Could not copy new filter file to filter folder."
 msgstr ""
-"¹ıÂËÆ÷ÎÄ¼ş°²×°Ê§°Ü.\n"
+"è¿‡æ»¤å™¨æ–‡ä»¶å®‰è£…å¤±è´¥.\n"
 "\n"
-"»òĞíÊÇÎŞ·¨½«ĞÂÎÄ¼ş¸´ÖÆµ½¹ıÂËÆ÷Â·¾¶?"
+"æˆ–è®¸æ˜¯æ— æ³•å°†æ–°æ–‡ä»¶å¤åˆ¶åˆ°è¿‡æ»¤å™¨è·¯å¾„?"
 
 #: Merge.rc:5704C4AC
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "¹ıÂËÆ÷ÎÄ¼şÒÑ¾­´æÔÚ. ÊÇ·ñ¸²¸ÇÔ­ÓĞ¹ıÂËÆ÷?"
+msgstr "è¿‡æ»¤å™¨æ–‡ä»¶å·²ç»å­˜åœ¨. æ˜¯å¦è¦†ç›–åŸæœ‰è¿‡æ»¤å™¨?"
 
 #: Merge.rc:237A126
 #, c-format
 msgid "Regular expression"
-msgstr "ÕıÔò±í´ïÊ½"
+msgstr "æ­£åˆ™è¡¨è¾¾å¼"
 
 #: Merge.rc:34BD4316
 #, c-format
@@ -3265,17 +3266,17 @@ msgstr ""
 #: Merge.rc:114DD351
 #, c-format
 msgid "Folder Comparison Results"
-msgstr "ÎÄ¼ş¼Ğ¶Ô±È½á¹û"
+msgstr "æ–‡ä»¶å¤¹å¯¹æ¯”ç»“æœ"
 
 #: Merge.rc:1AFA3493
 #, c-format
 msgid "File Comparison"
-msgstr "ÎÄ¼ş¶Ô±È"
+msgstr "æ–‡ä»¶å¯¹æ¯”"
 
 #: Merge.rc:2FEFC30D
 #, c-format
 msgid "Untitled left"
-msgstr "Î´ÃüÃû ×ó"
+msgstr "æœªå‘½å å·¦"
 
 #: Merge.rc:730B3FD4
 #, c-format
@@ -3285,17 +3286,17 @@ msgstr ""
 #: Merge.rc:4E089EF3
 #, c-format
 msgid "Untitled right"
-msgstr "Î´ÃüÃû ÓÒ"
+msgstr "æœªå‘½å å³"
 
 #: Merge.rc:72A593B9
 #, c-format
 msgid "Theirs File"
-msgstr "ËûÃÇµÄÎÄ¼ş"
+msgstr "ä»–ä»¬çš„æ–‡ä»¶"
 
 #: Merge.rc:427C12C1
 #, c-format
 msgid "Mine File"
-msgstr "ÎÒµÄÎÄ¼ş"
+msgstr "æˆ‘çš„æ–‡ä»¶"
 
 #: Merge.rc:DD21174
 #, c-format
@@ -3305,7 +3306,7 @@ msgstr ""
 #: Merge.rc:15875423
 #, c-format
 msgid "Line: %s"
-msgstr "ĞĞ: %s"
+msgstr "è¡Œ: %s"
 
 #: Merge.rc:6F3BCB35
 #, c-format
@@ -3315,58 +3316,58 @@ msgstr ""
 #: Merge.rc:7C664E1
 #, c-format
 msgid "Merge"
-msgstr "ºÏ²¢"
+msgstr "åˆå¹¶"
 
 #: Merge.rc:7A8FD78B
 #, c-format
 msgid "Difference %1 of %2"
-msgstr "µÚ %1 ´¦²»Í¬(¹² %2 ´¦)"
+msgstr "ç¬¬ %1 å¤„ä¸åŒ(å…± %2 å¤„)"
 
 #: Merge.rc:62773E9
 #, c-format
 msgid "%1 Differences Found"
-msgstr "¹²ÕÒµ½ %1 ´¦²»Í¬"
+msgstr "å…±æ‰¾åˆ° %1 å¤„ä¸åŒ"
 
 #: Merge.rc:6B78A819
 #, c-format
 msgid "1 Difference Found"
-msgstr "ÕÒµ½ 1 ´¦²»Í¬"
+msgstr "æ‰¾åˆ° 1 å¤„ä¸åŒ"
 
 #. Abbreviation from "Read Only"
 #: Merge.rc:13E12
 #, c-format
 msgid "RO"
-msgstr "Ö»¶Á"
+msgstr "åªè¯»"
 
 #: Merge.rc:6B6D8965
 #, c-format
 msgid "Item %1 of %2"
-msgstr "µÚ %1 ÏîÄ¿£¬¹² %2"
+msgstr "ç¬¬ %1 é¡¹ç›®ï¼Œå…± %2"
 
 #: Merge.rc:2618897A
 #, c-format
 msgid "Items: %1"
-msgstr "ÏîÄ¿: %1"
+msgstr "é¡¹ç›®: %1"
 
 #: Merge.rc:6C6653C7
 #, c-format
 msgid "Select two existing folders or files to compare"
-msgstr "Ñ¡ÔñÁ½¸öÒÑ´æÔÚµÄÎÄ¼ş¼Ğ»òÎÄ¼ş½øĞĞ¶Ô±È"
+msgstr "é€‰æ‹©ä¸¤ä¸ªå·²å­˜åœ¨çš„æ–‡ä»¶å¤¹æˆ–æ–‡ä»¶è¿›è¡Œå¯¹æ¯”"
 
 #: Merge.rc:444C5DDC
 #, c-format
 msgid "Folder Selection"
-msgstr "Ñ¡ÔñÎÄ¼ş¼Ğ"
+msgstr "é€‰æ‹©æ–‡ä»¶å¤¹"
 
 #: Merge.rc:73F34BA1
 #, c-format
 msgid "Select two folders or two files to compare."
-msgstr "Ñ¡ÔñÒª½øĞĞ¶Ô±ÈµÄÁ½¸öÎÄ¼ş¼Ğ»òÁ½¸öÎÄ¼ş¡£"
+msgstr "é€‰æ‹©è¦è¿›è¡Œå¯¹æ¯”çš„ä¸¤ä¸ªæ–‡ä»¶å¤¹æˆ–ä¸¤ä¸ªæ–‡ä»¶ã€‚"
 
 #: Merge.rc:20155F59
 #, c-format
 msgid "Left path is invalid!"
-msgstr "×ó²àÂ·¾¶²»´æÔÚ!"
+msgstr "å·¦ä¾§è·¯å¾„ä¸å­˜åœ¨!"
 
 #: Merge.rc:7F2E4119
 #, c-format
@@ -3376,12 +3377,12 @@ msgstr ""
 #: Merge.rc:6DBD6124
 #, c-format
 msgid "Right path is invalid!"
-msgstr "ÓÒ²àÂ·¾¶²»´æÔÚ!"
+msgstr "å³ä¾§è·¯å¾„ä¸å­˜åœ¨!"
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
-msgstr "Á½¸öÂ·¾¶¶¼²»´æÔÚ!"
+msgstr "ä¸¤ä¸ªè·¯å¾„éƒ½ä¸å­˜åœ¨!"
 
 #: Merge.rc:5F458439
 #, c-format
@@ -3406,22 +3407,22 @@ msgstr ""
 #: Merge.rc:39B1AD01
 #, c-format
 msgid "Choose two files to enable unpacker selection."
-msgstr "Ñ¡ÔñÁ½¸öÎÄ¼şÒÔÆôÓÃ½â°ü³ÌĞò."
+msgstr "é€‰æ‹©ä¸¤ä¸ªæ–‡ä»¶ä»¥å¯ç”¨è§£åŒ…ç¨‹åº."
 
 #: Merge.rc:30FF7A4E
 #, c-format
 msgid "Cannot compare file and folder!"
-msgstr "²»ÄÜÔÚÎÄ¼şºÍÎÄ¼ş¼ĞÖ®¼ä½øĞĞ¶Ô±È!"
+msgstr "ä¸èƒ½åœ¨æ–‡ä»¶å’Œæ–‡ä»¶å¤¹ä¹‹é—´è¿›è¡Œå¯¹æ¯”!"
 
 #: Merge.rc:62AC5DDB
 #, c-format
 msgid "File not found: %1"
-msgstr "ÕÒ²»µ½ÎÄ¼ş: %1"
+msgstr "æ‰¾ä¸åˆ°æ–‡ä»¶: %1"
 
 #: Merge.rc:387F7981
 #, c-format
 msgid "File not unpacked: %1"
-msgstr "ÎÄ¼şÎ´½â°ü: %1"
+msgstr "æ–‡ä»¶æœªè§£åŒ…: %1"
 
 #: Merge.rc:3676909F
 #, c-format
@@ -3431,7 +3432,7 @@ msgid ""
 "\n"
 "%2"
 msgstr ""
-"ÎŞ·¨´ò¿ªÎÄ¼ş\n"
+"æ— æ³•æ‰“å¼€æ–‡ä»¶\n"
 "%1\n"
 "\n"
 "%2"
@@ -3439,32 +3440,32 @@ msgstr ""
 #: Merge.rc:53CCF475
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr "½âÎö³åÍ»ÎÄ¼şÊ±Ê§°Ü"
+msgstr "è§£æå†²çªæ–‡ä»¶æ—¶å¤±è´¥"
 
 #: Merge.rc:5A765252
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
-msgstr "ÎÄ¼ş\n%1\n²»ÊÇÒ»¸ö³åÍ»ÎÄ¼ş"
+msgstr "æ–‡ä»¶\n%1\nä¸æ˜¯ä¸€ä¸ªå†²çªæ–‡ä»¶"
 
 #: Merge.rc:67019DCD
 #, c-format
 msgid "Save As"
-msgstr "Áí´æÎª"
+msgstr "å¦å­˜ä¸º"
 
 #: Merge.rc:E4471C
 #, c-format
 msgid "Save changes to %1?"
-msgstr "±£´æ¸ü¸Äµ½ %1£¿"
+msgstr "ä¿å­˜æ›´æ”¹åˆ° %1ï¼Ÿ"
 
 #: Merge.rc:6A1C6855
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 ±ê¼ÇÎªÖ»¶Á¡£ÄúÏ£Íû¸²¸ÇÖ»¶ÁÎÄ¼şÂğ£¿Ñ¡¡°·ñ¡±¿ÉÒÔÓÃÆäËüÎÄ¼şÃû±£´æ¡£"
+msgstr "%1 æ ‡è®°ä¸ºåªè¯»ã€‚æ‚¨å¸Œæœ›è¦†ç›–åªè¯»æ–‡ä»¶å—ï¼Ÿé€‰â€œå¦â€å¯ä»¥ç”¨å…¶å®ƒæ–‡ä»¶åä¿å­˜ã€‚"
 
 #: Merge.rc:673BD332
 #, c-format
 msgid "Error backing up file"
-msgstr "±¸·İÎÄ¼şÊ±³ö´í"
+msgstr "å¤‡ä»½æ–‡ä»¶æ—¶å‡ºé”™"
 
 #: Merge.rc:3958104B
 #, c-format
@@ -3474,10 +3475,10 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"ÎŞ·¨±¸·İÔ­ÎÄ¼ş:\n"
+"æ— æ³•å¤‡ä»½åŸæ–‡ä»¶:\n"
 "%1\n"
 "\n"
-"ÈÔÈ»¼ÌĞøÂğ£¿"
+"ä»ç„¶ç»§ç»­å—ï¼Ÿ"
 
 #: Merge.rc:69020931
 #, c-format
@@ -3489,12 +3490,12 @@ msgid ""
 "\t-use a different filename (Press Ok)\n"
 "\t-abort the current operation (Press Cancel)?"
 msgstr ""
-"±£´æÎÄ¼şÊ§°Ü¡£\n"
+"ä¿å­˜æ–‡ä»¶å¤±è´¥ã€‚\n"
 "%1\n"
 "%2\n"
-"ÇëÑ¡Ôñ:\n"
-"\t-ÓÃÆäËüÎÄ¼şÃû±£´æ(µã»÷¡°È·¶¨¡±)\n"
-"\t-ÖĞÖ¹µ±Ç°²Ù×÷(µã»÷¡°È¡Ïû¡±)"
+"è¯·é€‰æ‹©:\n"
+"\t-ç”¨å…¶å®ƒæ–‡ä»¶åä¿å­˜(ç‚¹å‡»â€œç¡®å®šâ€)\n"
+"\t-ä¸­æ­¢å½“å‰æ“ä½œ(ç‚¹å‡»â€œå–æ¶ˆâ€)"
 
 #: Merge.rc:3895053E
 #, c-format
@@ -3505,11 +3506,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"²å¼ş '%2' ÎŞ·¨½«Äú¶Ô×ó²àÎÄ¼şµÄĞŞ¸Ä´ò°üµ½ '%1' ÖĞ¡£\n"
+"æ’ä»¶ '%2' æ— æ³•å°†æ‚¨å¯¹å·¦ä¾§æ–‡ä»¶çš„ä¿®æ”¹æ‰“åŒ…åˆ° '%1' ä¸­ã€‚\n"
 "\n"
-"Ô­ÎÄ¼ş²»»á¸Ä±ä¡£\n"
+"åŸæ–‡ä»¶ä¸ä¼šæ”¹å˜ã€‚\n"
 "\n"
-"ÄúÒª½«Î´´ò°üµÄ°æ±¾±£´æÎªÆäËüÎÄ¼şÂğ£¿"
+"æ‚¨è¦å°†æœªæ‰“åŒ…çš„ç‰ˆæœ¬ä¿å­˜ä¸ºå…¶å®ƒæ–‡ä»¶å—ï¼Ÿ"
 
 #: Merge.rc:5A0BA2DF
 #, c-format
@@ -3520,11 +3521,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"²å¼ş '%2' ÎŞ·¨½«Äú¶ÔÓÒ²àÎÄ¼şµÄĞŞ¸Ä´ò°üµ½ '%1' ÖĞ¡£\n"
+"æ’ä»¶ '%2' æ— æ³•å°†æ‚¨å¯¹å³ä¾§æ–‡ä»¶çš„ä¿®æ”¹æ‰“åŒ…åˆ° '%1' ä¸­ã€‚\n"
 "\n"
-"Ô­ÎÄ¼ş²»»á¸Ä±ä¡£\n"
+"åŸæ–‡ä»¶ä¸ä¼šæ”¹å˜ã€‚\n"
 "\n"
-"ÄúÒª½«Î´´ò°üµÄ°æ±¾±£´æÎªÆäËüÎÄ¼şÂğ£¿"
+"æ‚¨è¦å°†æœªæ‰“åŒ…çš„ç‰ˆæœ¬ä¿å­˜ä¸ºå…¶å®ƒæ–‡ä»¶å—ï¼Ÿ"
 
 #: Merge.rc:78367A47
 #, c-format
@@ -3536,10 +3537,10 @@ msgid ""
 "Overwrite changed file?"
 msgstr ""
 "%1\n"
-"ÔÚ WinMerge ´ò¿ª´ËÎÄ¼şºó£¬\n"
-"ÆäËü³ÌĞòÓÖ¶ÔËü½øĞĞÁËĞŞ¸Ä¡£\n"
+"åœ¨ WinMerge æ‰“å¼€æ­¤æ–‡ä»¶åï¼Œ\n"
+"å…¶å®ƒç¨‹åºåˆå¯¹å®ƒè¿›è¡Œäº†ä¿®æ”¹ã€‚\n"
 "\n"
-"Òª¸²¸ÇÒÑ±»ĞŞ¸ÄµÄÎÄ¼şÂğ£¿"
+"è¦è¦†ç›–å·²è¢«ä¿®æ”¹çš„æ–‡ä»¶å—ï¼Ÿ"
 
 #: Merge.rc:462FB760
 #, c-format
@@ -3548,7 +3549,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-"ÎÄ¼ş±ê¼ÇÎªÖ»¶Á¡£ÄúÒª¸²¸ÇÖ»¶ÁµÄÎÄ¼şÂğ£¿"
+"æ–‡ä»¶æ ‡è®°ä¸ºåªè¯»ã€‚æ‚¨è¦è¦†ç›–åªè¯»çš„æ–‡ä»¶å—ï¼Ÿ"
 
 #: Merge.rc:B9192B
 #, c-format
@@ -3558,7 +3559,7 @@ msgstr ""
 #: Merge.rc:62909ED7
 #, c-format
 msgid "Save Left File As"
-msgstr "×ó²àÎÄ¼şÁí´æÎª"
+msgstr "å·¦ä¾§æ–‡ä»¶å¦å­˜ä¸º"
 
 #: Merge.rc:E4471D
 #, c-format
@@ -3568,7 +3569,7 @@ msgstr ""
 #: Merge.rc:6F833C19
 #, c-format
 msgid "Save Right File As"
-msgstr "ÓÒ²àÎÄ¼şÁí´æÎª"
+msgstr "å³ä¾§æ–‡ä»¶å¦å­˜ä¸º"
 
 #: Merge.rc:3C4620F
 #, c-format
@@ -3582,44 +3583,44 @@ msgid ""
 "\n"
 "Refresh documents before continuing."
 msgstr ""
-"ÎÄµµ²»Í¬²½£¬ÎŞ·¨½øĞĞºÏ²¢¡£\n"
+"æ–‡æ¡£ä¸åŒæ­¥ï¼Œæ— æ³•è¿›è¡Œåˆå¹¶ã€‚\n"
 "\n"
-"ÇëË¢ĞÂÎÄµµºóÔÙ¼ÌĞø¡£"
+"è¯·åˆ·æ–°æ–‡æ¡£åå†ç»§ç»­ã€‚"
 
 #: Merge.rc:5C264194
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Äú±ØĞëÖ¸¶¨Ò»¸ö SourceSafe ÏîÄ¿Â·¾¶ÒÔ±ã¼ÌĞø (ÀıÈç£º $/MyProject)"
+msgstr "æ‚¨å¿…é¡»æŒ‡å®šä¸€ä¸ª SourceSafe é¡¹ç›®è·¯å¾„ä»¥ä¾¿ç»§ç»­ (ä¾‹å¦‚ï¼š $/MyProject)"
 
 #: Merge.rc:367690A0
 #, c-format
 msgid "Checkout files from VSS..."
-msgstr "´ÓVSSÖĞÇ©³öÎÄ¼ş..."
+msgstr "ä»VSSä¸­ç­¾å‡ºæ–‡ä»¶..."
 
 #: Merge.rc:5CF52976
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "ÔÚÇ©³ö(Checkout)ÎÄ¼şÊ±°æ±¾¿ØÖÆÏµÍ³·µ»ØÒ»¸ö´íÎó¡£ÎŞ·¨¼ÌĞø..."
+msgstr "åœ¨ç­¾å‡º(Checkout)æ–‡ä»¶æ—¶ç‰ˆæœ¬æ§åˆ¶ç³»ç»Ÿè¿”å›ä¸€ä¸ªé”™è¯¯ã€‚æ— æ³•ç»§ç»­..."
 
 #: Merge.rc:5B2409A
 #, c-format
 msgid "Error executing versioning system command."
-msgstr "Ö´ĞĞ°æ±¾¿ØÖÆÏµÍ³ÃüÁîÊ±³ö´í¡£"
+msgstr "æ‰§è¡Œç‰ˆæœ¬æ§åˆ¶ç³»ç»Ÿå‘½ä»¤æ—¶å‡ºé”™ã€‚"
 
 #: Merge.rc:3ECC9EC3
 #, c-format
 msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "VSS ¹¤×÷ÎÄ¼ş¼Ğ(Working Folder)Óëµ±Ç°ÎÄ¼şÎ»ÖÃ²»·û¡£ÊÇ·ñ¼ÌĞø£¿"
+msgstr "VSS å·¥ä½œæ–‡ä»¶å¤¹(Working Folder)ä¸å½“å‰æ–‡ä»¶ä½ç½®ä¸ç¬¦ã€‚æ˜¯å¦ç»§ç»­ï¼Ÿ"
 
 #: Merge.rc:BF7A253
 #, c-format
 msgid "No VSS database(s) found!"
-msgstr "Î´ÕÒµ½ VSS Êı¾İ¿â£¡"
+msgstr "æœªæ‰¾åˆ° VSS æ•°æ®åº“ï¼"
 
 #: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
-msgstr "VSS ·µ»Ø´íÎó:"
+msgstr "VSS è¿”å›é”™è¯¯:"
 
 #: Merge.rc:268A7727
 #, c-format
@@ -3628,9 +3629,9 @@ msgid ""
 " Please, check config spec of used view.\n"
 " Undo checkout operation?"
 msgstr ""
-"ÔÚ³¢ÊÔÇ©ÈëÎÄ¼şÊ±°æ±¾¿ØÖÆÏµÍ³·µ»ØÁËÒ»¸ö´íÎó.\n"
-" Çë¼ì²éÒ»ÏÂÊ¹ÓÃÖĞµÄÊÓÍ¼µÄÅäÖÃËµÃ÷.\n"
-" ³·ÏúÇ©³ö²Ù×÷Âğ?"
+"åœ¨å°è¯•ç­¾å…¥æ–‡ä»¶æ—¶ç‰ˆæœ¬æ§åˆ¶ç³»ç»Ÿè¿”å›äº†ä¸€ä¸ªé”™è¯¯.\n"
+" è¯·æ£€æŸ¥ä¸€ä¸‹ä½¿ç”¨ä¸­çš„è§†å›¾çš„é…ç½®è¯´æ˜.\n"
+" æ’¤é”€ç­¾å‡ºæ“ä½œå—?"
 
 #: Merge.rc:1929D7D3
 #, c-format
@@ -3638,38 +3639,38 @@ msgid ""
 "Versioning System returned an error while attempting to undo checkout the file.\n"
 " Please, check config spec of used view. "
 msgstr ""
-"ÔÚ³¢ÊÔ³·ÏúÇ©³öÎÄ¼şÊ±°æ±¾¿ØÖÆÏµÍ³·µ»ØÁËÒ»¸ö´íÎó.\n"
-" Çë¼ì²éÒ»ÏÂÊ¹ÓÃÖĞµÄÊÓÍ¼µÄÅäÖÃËµÃ÷. "
+"åœ¨å°è¯•æ’¤é”€ç­¾å‡ºæ–‡ä»¶æ—¶ç‰ˆæœ¬æ§åˆ¶ç³»ç»Ÿè¿”å›äº†ä¸€ä¸ªé”™è¯¯.\n"
+" è¯·æ£€æŸ¥ä¸€ä¸‹ä½¿ç”¨ä¸­çš„è§†å›¾çš„é…ç½®è¯´æ˜. "
 
 #: Merge.rc:46FCCCF
 #, c-format
 msgid "None"
-msgstr "ÎŞ"
+msgstr "æ— "
 
 #: Merge.rc:5164E1E6
 #, c-format
 msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (5.0 ÒÔÇ°°æ±¾)"
+msgstr "Visual SourceSafe (5.0 ä»¥å‰ç‰ˆæœ¬)"
 
 #: Merge.rc:5164E1E7
 #, c-format
 msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 ¼°ÒÔºó°æ±¾)"
+msgstr "Visual SourceSafe (5.0 åŠä»¥åç‰ˆæœ¬)"
 
 #: Merge.rc:2405135
 #, c-format
 msgid "Break at whitespace"
-msgstr "ÒÔ¿Õ°×·Ö¸ô"
+msgstr "ä»¥ç©ºç™½åˆ†éš”"
 
 #: Merge.rc:6CB369C2
 #, c-format
 msgid "Break at whitespace or punctuation"
-msgstr "ÒÔ¿Õ°×»ò±êµã·Ö¸ô"
+msgstr "ä»¥ç©ºç™½æˆ–æ ‡ç‚¹åˆ†éš”"
 
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"
-msgstr "ÓÒ²àµ½×ó²à (%1)"
+msgstr "å³ä¾§åˆ°å·¦ä¾§ (%1)"
 
 #: Merge.rc:52D3F9F6
 #, c-format
@@ -3689,7 +3690,7 @@ msgstr ""
 #: Merge.rc:7271FF80
 #, c-format
 msgid "Left to Right (%1)"
-msgstr "×ó²àµ½ÓÒ²à (%1)"
+msgstr "å·¦ä¾§åˆ°å³ä¾§ (%1)"
 
 #: Merge.rc:5BCDF0E7
 #, c-format
@@ -3699,7 +3700,7 @@ msgstr ""
 #: Merge.rc:71676C48
 #, c-format
 msgid "Left to... (%1)"
-msgstr "×ó²àµ½... (%1)"
+msgstr "å·¦ä¾§åˆ°... (%1)"
 
 #: Merge.rc:729280DB
 #, c-format
@@ -3709,7 +3710,7 @@ msgstr ""
 #: Merge.rc:32BFDBAD
 #, c-format
 msgid "Right to... (%1)"
-msgstr "ÓÒ²àµ½... (%1)"
+msgstr "å³ä¾§åˆ°... (%1)"
 
 #: Merge.rc:36B164C5
 #, c-format
@@ -3729,7 +3730,7 @@ msgstr ""
 #: Merge.rc:1B633070
 #, c-format
 msgid "Left (%1)"
-msgstr "×ó²à (%1)"
+msgstr "å·¦ä¾§ (%1)"
 
 #: Merge.rc:13C27215
 #, c-format
@@ -3739,12 +3740,12 @@ msgstr ""
 #: Merge.rc:39174D9B
 #, c-format
 msgid "Right (%1)"
-msgstr "ÓÒ²à (%1)"
+msgstr "å³ä¾§ (%1)"
 
 #: Merge.rc:146A5939
 #, c-format
 msgid "Both (%1)"
-msgstr "Á½²à (%1)"
+msgstr "ä¸¤ä¾§ (%1)"
 
 #: Merge.rc:669F87F5
 #, c-format
@@ -3754,7 +3755,7 @@ msgstr ""
 #: Merge.rc:DD21175
 #, c-format
 msgid "Left side - select destination folder:"
-msgstr "×ó²à - ÇëÑ¡ÔñÄ¿±êÎÄ¼ş¼Ğ:"
+msgstr "å·¦ä¾§ - è¯·é€‰æ‹©ç›®æ ‡æ–‡ä»¶å¤¹:"
 
 #: Merge.rc:2B480620
 #, c-format
@@ -3764,17 +3765,17 @@ msgstr ""
 #: Merge.rc:5BBC5591
 #, c-format
 msgid "Right side - select destination folder:"
-msgstr "ÓÒ²à - ÇëÑ¡ÔñÄ¿±êÎÄ¼ş¼Ğ:"
+msgstr "å³ä¾§ - è¯·é€‰æ‹©ç›®æ ‡æ–‡ä»¶å¤¹:"
 
 #: Merge.rc:66367ECA
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr "(Ó°Ïì %1 ¸öÎÄ¼ş)"
+msgstr "(å½±å“ %1 ä¸ªæ–‡ä»¶)"
 
 #: Merge.rc:65510B09
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(Ó°Ïì %2 ÎÄ¼şÖĞµÄ %1 ¸ö)"
+msgstr "(å½±å“ %2 æ–‡ä»¶ä¸­çš„ %1 ä¸ª)"
 
 #: Merge.rc:2B0F0BA2
 #, c-format
@@ -3783,20 +3784,20 @@ msgid ""
 "\n"
 "%1 ?"
 msgstr ""
-"ÄúÈ·¶¨ÒªÉ¾³ı\n"
+"æ‚¨ç¡®å®šè¦åˆ é™¤\n"
 "\n"
 "%1\n"
-"Âğ£¿"
+"å—ï¼Ÿ"
 
 #: Merge.rc:2019BE6D
 #, c-format
 msgid "Are you sure you want to copy:"
-msgstr "ÄúÈ·¶¨Òª¸´ÖÆÂğ:"
+msgstr "æ‚¨ç¡®å®šè¦å¤åˆ¶å—:"
 
 #: Merge.rc:2B0F0BA3
 #, c-format
 msgid "Are you sure you want to copy %d items:"
-msgstr "ÄúÈ·¶¨Òª¸´ÖÆ %d ¸öÏîÄ¿Âğ:"
+msgstr "æ‚¨ç¡®å®šè¦å¤åˆ¶ %d ä¸ªé¡¹ç›®å—:"
 
 #: Merge.rc:59B96CF
 #, c-format
@@ -3809,13 +3810,13 @@ msgid ""
 "\n"
 "Please refresh the compare."
 msgstr ""
-"²Ù×÷ÖĞÖ¹!\n"
+"æ“ä½œä¸­æ­¢!\n"
 "\n"
-"´ÅÅÌÉÏµÄÎÄ¼ş¼ĞÄÚÈİÒÑ¾­¸Ä±ä, Â·¾¶\n"
+"ç£ç›˜ä¸Šçš„æ–‡ä»¶å¤¹å†…å®¹å·²ç»æ”¹å˜, è·¯å¾„\n"
 "%1\n"
-"Î´ÕÒµ½.\n"
+"æœªæ‰¾åˆ°.\n"
 "\n"
-"ÇëË¢ĞÂ±È½Ï´°¿Ú."
+"è¯·åˆ·æ–°æ¯”è¾ƒçª—å£."
 
 #: Merge.rc:2019BE6E
 #, c-format
@@ -3840,32 +3841,32 @@ msgstr ""
 #: Merge.rc:4B6299EF
 #, c-format
 msgid "Failed to execute external editor: %1"
-msgstr "Íâ²¿±à¼­Æ÷ÔËĞĞÊ§°Ü: %1"
+msgstr "å¤–éƒ¨ç¼–è¾‘å™¨è¿è¡Œå¤±è´¥: %1"
 
 #: Merge.rc:7350CBB7
 #, c-format
 msgid "Unknown archive format"
-msgstr "Î´ÖªµÄÑ¹Ëõ°ü¸ñÊ½"
+msgstr "æœªçŸ¥çš„å‹ç¼©åŒ…æ ¼å¼"
 
 #: Merge.rc:64ABCD7F
 #, c-format
 msgid "Filename"
-msgstr "ÎÄ¼şÃû³Æ"
+msgstr "æ–‡ä»¶åç§°"
 
 #: Merge.rc:D404EDE
 #, c-format
 msgid "Comparison result"
-msgstr "¶Ô±È½á¹û"
+msgstr "å¯¹æ¯”ç»“æœ"
 
 #: Merge.rc:1B633071
 #, c-format
 msgid "Left Date"
-msgstr "×ó²àÈÕÆÚ"
+msgstr "å·¦ä¾§æ—¥æœŸ"
 
 #: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
-msgstr "ÓÒ²àÈÕÆÚ"
+msgstr "å³ä¾§æ—¥æœŸ"
 
 #: Merge.rc:13C27216
 #, c-format
@@ -3875,17 +3876,17 @@ msgstr ""
 #: Merge.rc:9B50030
 #, c-format
 msgid "Extension"
-msgstr "À©Õ¹Ãû"
+msgstr "æ‰©å±•å"
 
 #: Merge.rc:1B633072
 #, c-format
 msgid "Left Size"
-msgstr "×ó²àÎÄ¼ş´óĞ¡"
+msgstr "å·¦ä¾§æ–‡ä»¶å¤§å°"
 
 #: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
-msgstr "ÓÒ²àÎÄ¼ş´óĞ¡"
+msgstr "å³ä¾§æ–‡ä»¶å¤§å°"
 
 #: Merge.rc:13C27217
 #, c-format
@@ -3895,12 +3896,12 @@ msgstr ""
 #: Merge.rc:237A128
 #, c-format
 msgid "Right Size (Short)"
-msgstr "ÓÒ²àÎÄ¼ş´óĞ¡ (¼ò¶Ì)"
+msgstr "å³ä¾§æ–‡ä»¶å¤§å° (ç®€çŸ­)"
 
 #: Merge.rc:353D7BD8
 #, c-format
 msgid "Left Size (Short)"
-msgstr "×ó²àÎÄ¼ş´óĞ¡ (¼ò¶Ì)"
+msgstr "å·¦ä¾§æ–‡ä»¶å¤§å° (ç®€çŸ­)"
 
 #: Merge.rc:17F5B414
 #, c-format
@@ -3910,12 +3911,12 @@ msgstr ""
 #: Merge.rc:7271FF81
 #, c-format
 msgid "Left Creation Time"
-msgstr "×ó²à½¨Á¢Ê±¼ä"
+msgstr "å·¦ä¾§å»ºç«‹æ—¶é—´"
 
 #: Merge.rc:44BC83EE
 #, c-format
 msgid "Right Creation Time"
-msgstr "ÓÒ²à½¨Á¢Ê±¼ä"
+msgstr "å³ä¾§å»ºç«‹æ—¶é—´"
 
 #: Merge.rc:66C0CEA0
 #, c-format
@@ -3925,17 +3926,17 @@ msgstr ""
 #: Merge.rc:4909ADB5
 #, c-format
 msgid "Newer File"
-msgstr "½ÏĞÂµÄÎÄ¼ş"
+msgstr "è¾ƒæ–°çš„æ–‡ä»¶"
 
 #: Merge.rc:353D7BD9
 #, c-format
 msgid "Left File Version"
-msgstr "×ó²àÎÄ¼ş°æ±¾"
+msgstr "å·¦ä¾§æ–‡ä»¶ç‰ˆæœ¬"
 
 #: Merge.rc:237A129
 #, c-format
 msgid "Right File Version"
-msgstr "ÓÒ²àÎÄ¼ş°æ±¾"
+msgstr "å³ä¾§æ–‡ä»¶ç‰ˆæœ¬"
 
 #: Merge.rc:17F5B415
 #, c-format
@@ -3945,17 +3946,17 @@ msgstr ""
 #: Merge.rc:194397DE
 #, c-format
 msgid "Short Result"
-msgstr "¼ò¶ÌµÄ½á¹û"
+msgstr "ç®€çŸ­çš„ç»“æœ"
 
 #: Merge.rc:71676C49
 #, c-format
 msgid "Left Attributes"
-msgstr "×ó²àÊôĞÔ"
+msgstr "å·¦ä¾§å±æ€§"
 
 #: Merge.rc:32BFDBAE
 #, c-format
 msgid "Right Attributes"
-msgstr "ÓÒ²àÊôĞÔ"
+msgstr "å³ä¾§å±æ€§"
 
 #: Merge.rc:729280DC
 #, c-format
@@ -3965,7 +3966,7 @@ msgstr ""
 #: Merge.rc:15875424
 #, c-format
 msgid "Left EOL"
-msgstr "×ó²à»»ĞĞ·û"
+msgstr "å·¦ä¾§æ¢è¡Œç¬¦"
 
 #: Merge.rc:D0645BD
 #, c-format
@@ -3975,17 +3976,17 @@ msgstr ""
 #: Merge.rc:5F87E5D
 #, c-format
 msgid "Right EOL"
-msgstr "ÓÒ²à»»ĞĞ·û"
+msgstr "å³ä¾§æ¢è¡Œç¬¦"
 
 #: Merge.rc:5C8E17CF
 #, c-format
 msgid "Left Encoding"
-msgstr "×ó²àÎÄ¼ş±àÂë"
+msgstr "å·¦ä¾§æ–‡ä»¶ç¼–ç "
 
 #: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
-msgstr "ÓÒ²àÎÄ¼ş±àÂë"
+msgstr "å³ä¾§æ–‡ä»¶ç¼–ç "
 
 #: Merge.rc:2A79A03A
 #, c-format
@@ -3995,32 +3996,32 @@ msgstr ""
 #: Merge.rc:6B6D8966
 #, c-format
 msgid "Ignored Diff."
-msgstr "ºöÂÔµÄ²»Í¬´¦"
+msgstr "å¿½ç•¥çš„ä¸åŒå¤„"
 
 #: Merge.rc:76C8AB99
 #, c-format
 msgid "Unable to compare files"
-msgstr "ÎŞ·¨¶Ô±ÈÎÄ¼ş"
+msgstr "æ— æ³•å¯¹æ¯”æ–‡ä»¶"
 
 #: Merge.rc:4166A155
 #, c-format
 msgid "Item aborted"
-msgstr "ÏîÄ¿È¡Ïû"
+msgstr "é¡¹ç›®å–æ¶ˆ"
 
 #: Merge.rc:670ABDC3
 #, c-format
 msgid "File skipped"
-msgstr "ÎÄ¼şÒÑÌø¹ı"
+msgstr "æ–‡ä»¶å·²è·³è¿‡"
 
 #: Merge.rc:4F5264CA
 #, c-format
 msgid "Folder skipped"
-msgstr "ÎÄ¼ş¼ĞÒÑÌø¹ı"
+msgstr "æ–‡ä»¶å¤¹å·²è·³è¿‡"
 
 #: Merge.rc:5C8E17D0
 #, c-format
 msgid "Left only: %1"
-msgstr "½öÔÚ×ó²à: %1"
+msgstr "ä»…åœ¨å·¦ä¾§: %1"
 
 #: Merge.rc:2A79A03B
 #, c-format
@@ -4030,7 +4031,7 @@ msgstr ""
 #: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
-msgstr "½öÔÚÓÒ²à: %1"
+msgstr "ä»…åœ¨å³ä¾§: %1"
 
 #: Merge.rc:576B1A36
 #, c-format
@@ -4040,17 +4041,17 @@ msgstr ""
 #: Merge.rc:6B248E76
 #, c-format
 msgid "Binary files are identical"
-msgstr "¶ş½øÖÆÎÄ¼şÍêÈ«ÏàÍ¬"
+msgstr "äºŒè¿›åˆ¶æ–‡ä»¶å®Œå…¨ç›¸åŒ"
 
 #: Merge.rc:6B248E77
 #, c-format
 msgid "Binary files are different"
-msgstr "¶ş½øÖÆÎÄ¼ş²»Í¬"
+msgstr "äºŒè¿›åˆ¶æ–‡ä»¶ä¸åŒ"
 
 #: Merge.rc:72DF5DE2
 #, c-format
 msgid "Files are different"
-msgstr "ÎÄ¼ş²»Í¬"
+msgstr "æ–‡ä»¶ä¸åŒ"
 
 #: Merge.rc:387F7982
 #, c-format
@@ -4060,12 +4061,12 @@ msgstr ""
 #: Merge.rc:1B633073
 #, c-format
 msgid "Left Only"
-msgstr "Ö»´æÔÚ×ó²à"
+msgstr "åªå­˜åœ¨å·¦ä¾§"
 
 #: Merge.rc:39174D9E
 #, c-format
 msgid "Right Only"
-msgstr "Ö»´æÔÚÓÒ²à"
+msgstr "åªå­˜åœ¨å³ä¾§"
 
 #: Merge.rc:13C27218
 #, c-format
@@ -4090,7 +4091,7 @@ msgstr ""
 #: Merge.rc:79AB21E1
 #, c-format
 msgid "Error"
-msgstr "´íÎó"
+msgstr "é”™è¯¯"
 
 #: Merge.rc:12D66B44
 #, c-format
@@ -4120,42 +4121,42 @@ msgstr ""
 #: Merge.rc:203BBC7B
 #, c-format
 msgid "Elapsed time: %ld ms"
-msgstr "Ö´ĞĞÊ±¼ä: %ld ºÁÃë"
+msgstr "æ‰§è¡Œæ—¶é—´: %ld æ¯«ç§’"
 
 #: Merge.rc:6C7BF198
 #, c-format
 msgid "1 item selected"
-msgstr "Ñ¡ÔñÁË 1 ¸öÏîÄ¿"
+msgstr "é€‰æ‹©äº† 1 ä¸ªé¡¹ç›®"
 
 #: Merge.rc:5D49B8EC
 #, c-format
 msgid "%1 items selected"
-msgstr "Ñ¡ÔñÁË %1 ¸öÏîÄ¿"
+msgstr "é€‰æ‹©äº† %1 ä¸ªé¡¹ç›®"
 
 #: Merge.rc:3A5D5963
 #, c-format
 msgid "Filename or folder name."
-msgstr "ÎÄ¼şÃû»òÎÄ¼ş¼ĞÃû¡£"
+msgstr "æ–‡ä»¶åæˆ–æ–‡ä»¶å¤¹åã€‚"
 
 #: Merge.rc:A7628EE
 #, c-format
 msgid "Subfolder name when subfolders are included."
-msgstr "Ëù´¦µÄ×ÓÎÄ¼ş¼ĞÃû¡£"
+msgstr "æ‰€å¤„çš„å­æ–‡ä»¶å¤¹åã€‚"
 
 #: Merge.rc:6F88EC68
 #, c-format
 msgid "Comparison result, long form."
-msgstr "¶Ô±È½á¹û£¬½Ï³¤µÄ¸ñÊ½¡£"
+msgstr "å¯¹æ¯”ç»“æœï¼Œè¾ƒé•¿çš„æ ¼å¼ã€‚"
 
 #: Merge.rc:28BFDD41
 #, c-format
 msgid "Left side modification date."
-msgstr "×ó²àµÄ×îºóĞŞ¸ÄÈÕÆÚ¡£"
+msgstr "å·¦ä¾§çš„æœ€åä¿®æ”¹æ—¥æœŸã€‚"
 
 #: Merge.rc:19B30A68
 #, c-format
 msgid "Right side modification date."
-msgstr "ÓÒ²àµÄ×îºóĞŞ¸ÄÈÕÆÚ¡£"
+msgstr "å³ä¾§çš„æœ€åä¿®æ”¹æ—¥æœŸã€‚"
 
 #: Merge.rc:68FB0CE7
 #, c-format
@@ -4165,17 +4166,17 @@ msgstr ""
 #: Merge.rc:453F5DDC
 #, c-format
 msgid "File's extension."
-msgstr "ÎÄ¼şµÄÀ©Õ¹Ãû¡£"
+msgstr "æ–‡ä»¶çš„æ‰©å±•åã€‚"
 
 #: Merge.rc:172385A1
 #, c-format
 msgid "Left file size in bytes."
-msgstr "×ó²àÎÄ¼ş³¤¶È×Ö½ÚÊı¡£"
+msgstr "å·¦ä¾§æ–‡ä»¶é•¿åº¦å­—èŠ‚æ•°ã€‚"
 
 #: Merge.rc:94C89D4
 #, c-format
 msgid "Right file size in bytes."
-msgstr "ÓÒ²àÎÄ¼ş³¤¶È×Ö½ÚÊı¡£"
+msgstr "å³ä¾§æ–‡ä»¶é•¿åº¦å­—èŠ‚æ•°ã€‚"
 
 #: Merge.rc:27AAA636
 #, c-format
@@ -4185,12 +4186,12 @@ msgstr ""
 #: Merge.rc:2EBBDDD6
 #, c-format
 msgid "Left file size abbreviated."
-msgstr "×ó²àÎÄ¼ş³¤¶ÈµÄ¼ò¶Ì±íÊ¾."
+msgstr "å·¦ä¾§æ–‡ä»¶é•¿åº¦çš„ç®€çŸ­è¡¨ç¤º."
 
 #: Merge.rc:21DC7C32
 #, c-format
 msgid "Right file size abbreviated."
-msgstr "ÓÒ²àÎÄ¼ş³¤¶ÈµÄ¼ò¶Ì±íÊ¾."
+msgstr "å³ä¾§æ–‡ä»¶é•¿åº¦çš„ç®€çŸ­è¡¨ç¤º."
 
 #: Merge.rc:BA50069
 #, c-format
@@ -4200,12 +4201,12 @@ msgstr ""
 #: Merge.rc:172385A2
 #, c-format
 msgid "Left side creation time."
-msgstr "×ó²àµÄ´´½¨Ê±¼ä¡£"
+msgstr "å·¦ä¾§çš„åˆ›å»ºæ—¶é—´ã€‚"
 
 #: Merge.rc:94C89D5
 #, c-format
 msgid "Right side creation time."
-msgstr "ÓÒ²àµÄ´´½¨Ê±¼ä¡£"
+msgstr "å³ä¾§çš„åˆ›å»ºæ—¶é—´ã€‚"
 
 #: Merge.rc:27AAA637
 #, c-format
@@ -4215,17 +4216,17 @@ msgstr ""
 #: Merge.rc:4B4CD318
 #, c-format
 msgid "Tells which side has newer modification date."
-msgstr "ÏÔÊ¾³öÄÄ±ßÊÇ½ÏÍíĞŞ¸Ä¹ıµÄ¡£"
+msgstr "æ˜¾ç¤ºå‡ºå“ªè¾¹æ˜¯è¾ƒæ™šä¿®æ”¹è¿‡çš„ã€‚"
 
 #: Merge.rc:3AF5EAD7
 #, c-format
 msgid "Left side file version, only for some filetypes."
-msgstr "×ó²àÎÄ¼şµÄ°æ±¾£¬Ö»¶ÔÒ»Ğ©ÎÄ¼şÀàĞÍÓĞĞ§¡£"
+msgstr "å·¦ä¾§æ–‡ä»¶çš„ç‰ˆæœ¬ï¼Œåªå¯¹ä¸€äº›æ–‡ä»¶ç±»å‹æœ‰æ•ˆã€‚"
 
 #: Merge.rc:7413D0D6
 #, c-format
 msgid "Right side file version, only for some filetypes."
-msgstr "ÓÒ²àÎÄ¼şµÄ°æ±¾£¬Ö»¶ÔÒ»Ğ©ÎÄ¼şÀàĞÍÓĞĞ§¡£"
+msgstr "å³ä¾§æ–‡ä»¶çš„ç‰ˆæœ¬ï¼Œåªå¯¹ä¸€äº›æ–‡ä»¶ç±»å‹æœ‰æ•ˆã€‚"
 
 #: Merge.rc:5EB13952
 #, c-format
@@ -4235,17 +4236,17 @@ msgstr ""
 #: Merge.rc:43600E91
 #, c-format
 msgid "Short comparison result."
-msgstr "¶Ì¸ñÊ½µÄ¶Ô±È½á¹û¡£"
+msgstr "çŸ­æ ¼å¼çš„å¯¹æ¯”ç»“æœã€‚"
 
 #: Merge.rc:20155F5A
 #, c-format
 msgid "Left side attributes."
-msgstr "×ó²àµÄÊôĞÔ¡£"
+msgstr "å·¦ä¾§çš„å±æ€§ã€‚"
 
 #: Merge.rc:6DBD6125
 #, c-format
 msgid "Right side attributes."
-msgstr "ÓÒ²àµÄÊôĞÔ¡£"
+msgstr "å³ä¾§çš„å±æ€§ã€‚"
 
 #: Merge.rc:7F2E411A
 #, c-format
@@ -4255,12 +4256,12 @@ msgstr ""
 #: Merge.rc:703AF3C8
 #, c-format
 msgid "Left side file EOL type"
-msgstr "×ó²àÎÄ¼şµÄ»»ĞĞ·ûÀàĞÍ"
+msgstr "å·¦ä¾§æ–‡ä»¶çš„æ¢è¡Œç¬¦ç±»å‹"
 
 #: Merge.rc:73E9B1DC
 #, c-format
 msgid "Right side file EOL type"
-msgstr "ÓÒ²àÎÄ¼şµÄ»»ĞĞ·ûÀàĞÍ"
+msgstr "å³ä¾§æ–‡ä»¶çš„æ¢è¡Œç¬¦ç±»å‹"
 
 #: Merge.rc:6CA26873
 #, c-format
@@ -4270,12 +4271,12 @@ msgstr ""
 #: Merge.rc:5BCDF0E8
 #, c-format
 msgid "Left side encoding."
-msgstr "×ó²àÎÄ¼şµÄ×Ö·û±àÂë¡£"
+msgstr "å·¦ä¾§æ–‡ä»¶çš„å­—ç¬¦ç¼–ç ã€‚"
 
 #: Merge.rc:52D3F9F7
 #, c-format
 msgid "Right side encoding."
-msgstr "ÓÒ²àÎÄ¼şµÄ×Ö·û±àÂë¡£"
+msgstr "å³ä¾§æ–‡ä»¶çš„å­—ç¬¦ç¼–ç ã€‚"
 
 #: Merge.rc:715905A6
 #, c-format
@@ -4285,47 +4286,47 @@ msgstr ""
 #: Merge.rc:58398DFF
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-msgstr "±»ÂÔ¹ıµÄ²»Í¬Êı. ÓÉWinMergeºöÂÔµÄ²»Í¬, ÎŞ·¨¶ÔËüÃÇ½øĞĞºÏ²¢."
+msgstr "è¢«ç•¥è¿‡çš„ä¸åŒæ•°. ç”±WinMergeå¿½ç•¥çš„ä¸åŒ, æ— æ³•å¯¹å®ƒä»¬è¿›è¡Œåˆå¹¶."
 
 #: Merge.rc:6A6D5CB6
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
-msgstr "ÎÄ¼şÖĞµÄ²»Í¬Êı. ²»°üÀ¨ºöÂÔµÄ²»Í¬."
+msgstr "æ–‡ä»¶ä¸­çš„ä¸åŒæ•°. ä¸åŒ…æ‹¬å¿½ç•¥çš„ä¸åŒ."
 
 #: Merge.rc:A7628EF
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "ÔÚ¶ş½øÖÆÎÄ¼ş´¦ÏÔÊ¾ĞÇºÅ(*)¡£"
+msgstr "åœ¨äºŒè¿›åˆ¶æ–‡ä»¶å¤„æ˜¾ç¤ºæ˜Ÿå·(*)ã€‚"
 
 #: Merge.rc:1AC98D0D
 #, c-format
 msgid "Compare %1 with %2"
-msgstr "¶Ô±È %1 ºÍ %2"
+msgstr "å¯¹æ¯” %1 å’Œ %2"
 
 #: Merge.rc:E9A77F2
 #, c-format
 msgid "Comma-separated list"
-msgstr "¶ººÅ·Ö¸ôµÄÁĞ±í"
+msgstr "é€—å·åˆ†éš”çš„åˆ—è¡¨"
 
 #: Merge.rc:5CCED709
 #, c-format
 msgid "Tab-separated list"
-msgstr "ÖÆ±í·û·Ö¸ôµÄÁĞ±í"
+msgstr "åˆ¶è¡¨ç¬¦åˆ†éš”çš„åˆ—è¡¨"
 
 #: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Simple HTML"
-msgstr "¼òµ¥HTML"
+msgstr "ç®€å•HTML"
 
 #: Merge.rc:751AB591
 #, c-format
 msgid "Simple XML"
-msgstr "¼òµ¥XML"
+msgstr "ç®€å•XML"
 
 #: Merge.rc:67FDA050
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "±¨¸æÎÄ¼şÒÑ¾­´æÔÚ£¬Òª¸²¸ÇÂğ£¿"
+msgstr "æŠ¥å‘Šæ–‡ä»¶å·²ç»å­˜åœ¨ï¼Œè¦è¦†ç›–å—ï¼Ÿ"
 
 #: Merge.rc:630F8340
 #, c-format
@@ -4333,33 +4334,33 @@ msgid ""
 "Error creating the report:\n"
 "%1"
 msgstr ""
-"´´½¨±¨¸æÊ±³ö´í:\n"
+"åˆ›å»ºæŠ¥å‘Šæ—¶å‡ºé”™:\n"
 "%1"
 
 #: Merge.rc:37B243DF
 #, c-format
 msgid "The report has been created successfully."
-msgstr "³É¹¦´´½¨±¨¸æ¡£"
+msgstr "æˆåŠŸåˆ›å»ºæŠ¥å‘Šã€‚"
 
 #: Merge.rc:162B12F9
 #, c-format
 msgid "The same file is opened in both panels."
-msgstr "Á½²à´ò¿ªµÄÊÇÍ¬Ò»¸öÎÄ¼ş¡£"
+msgstr "ä¸¤ä¾§æ‰“å¼€çš„æ˜¯åŒä¸€ä¸ªæ–‡ä»¶ã€‚"
 
 #: Merge.rc:7632E88D
 #, c-format
 msgid "The selected files are identical."
-msgstr "Ñ¡ÔñµÄÎÄ¼şÍêÈ«ÏàÍ¬¡£"
+msgstr "é€‰æ‹©çš„æ–‡ä»¶å®Œå…¨ç›¸åŒã€‚"
 
 #: Merge.rc:44565DBD
 #, c-format
 msgid "An error occurred while comparing the files."
-msgstr "Ò»¸ö´íÎó·¢ÉúÓÚ¶Ô±ÈÎÄ¼şÊ±¡£"
+msgstr "ä¸€ä¸ªé”™è¯¯å‘ç”Ÿäºå¯¹æ¯”æ–‡ä»¶æ—¶ã€‚"
 
 #: Merge.rc:5F16D9DC
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "ÎŞ·¨´´½¨ÁÙÊ±ÎÄ¼ş¡£Çë¼ì²éÄúµÄÁÙÊ±Â·¾¶ÉèÖÃ¡£"
+msgstr "æ— æ³•åˆ›å»ºä¸´æ—¶æ–‡ä»¶ã€‚è¯·æ£€æŸ¥æ‚¨çš„ä¸´æ—¶è·¯å¾„è®¾ç½®ã€‚"
 
 #: Merge.rc:11E6F584
 #, c-format
@@ -4370,26 +4371,26 @@ msgid ""
 "\n"
 "Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
-"ÎÄ¼şº¬ÓĞ²»Í¬µÄ»»ĞĞ·û\n"
+"æ–‡ä»¶å«æœ‰ä¸åŒçš„æ¢è¡Œç¬¦\n"
 "\n"
-"ÄúÒªÔÚ´Ë´Î¶Ô±ÈÖĞºöÂÔ»»ĞĞ·ûµÄ²î±ğÂğ£¿\n"
+"æ‚¨è¦åœ¨æ­¤æ¬¡å¯¹æ¯”ä¸­å¿½ç•¥æ¢è¡Œç¬¦çš„å·®åˆ«å—ï¼Ÿ\n"
 "\n"
-"ÌáÊ¾£ºÈç¹ûÄú×ÜÊÇºöÂÔ»»ĞĞ·ûµÄ²»Í¬£¬ÇëÔÚ¡°±à¼­/Ñ¡Ïî¡±µÄ¡°¶Ô±È¡±Ò³ÖĞ¹´Ñ¡¡°ºöÂÔ»»ĞĞ·û²îÒì¡±¡£"
+"æç¤ºï¼šå¦‚æœæ‚¨æ€»æ˜¯å¿½ç•¥æ¢è¡Œç¬¦çš„ä¸åŒï¼Œè¯·åœ¨â€œç¼–è¾‘/é€‰é¡¹â€çš„â€œå¯¹æ¯”â€é¡µä¸­å‹¾é€‰â€œå¿½ç•¥æ¢è¡Œç¬¦å·®å¼‚â€ã€‚"
 
 #: Merge.rc:46FB8639
 #, c-format
 msgid "The selected folder is invalid."
-msgstr "Ñ¡ÖĞµÄÎÄ¼ş¼ĞÎŞĞ§¡£"
+msgstr "é€‰ä¸­çš„æ–‡ä»¶å¤¹æ— æ•ˆã€‚"
 
 #: Merge.rc:4BC3EDDB
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "ÎŞ·¨ÓÃ±à¼­Æ÷´ò¿ª¶ş½øÖÆÎÄ¼ş¡£"
+msgstr "æ— æ³•ç”¨ç¼–è¾‘å™¨æ‰“å¼€äºŒè¿›åˆ¶æ–‡ä»¶ã€‚"
 
 #: Merge.rc:279EB840
 #, c-format
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
-msgstr "Õâ¸öÎÄ¼ş¼ĞÖ»´æÔÚÓÚÒ»²àËùÒÔÎŞ·¨´ò¿ª¡£\n\nÊÇ·ñÒªÔÚÁíÒ»²à´´½¨Ò»¸ö¶ÔÓ¦µÄÎÄ¼ş¼Ğ£º\n%1\n²¢ÇÒ´ò¿ªÕâÁ½¸öÎÄ¼ş¼Ğ£¿"
+msgstr "è¿™ä¸ªæ–‡ä»¶å¤¹åªå­˜åœ¨äºä¸€ä¾§æ‰€ä»¥æ— æ³•æ‰“å¼€ã€‚\n\næ˜¯å¦è¦åœ¨å¦ä¸€ä¾§åˆ›å»ºä¸€ä¸ªå¯¹åº”çš„æ–‡ä»¶å¤¹ï¼š\n%1\nå¹¶ä¸”æ‰“å¼€è¿™ä¸¤ä¸ªæ–‡ä»¶å¤¹ï¼Ÿ"
 
 #: Merge.rc:36F211E1
 #, c-format
@@ -4418,14 +4419,14 @@ msgid ""
 "Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
 "Would you like to treat both files as being in the default windows codepage (recommended)?"
 msgstr ""
-"×óÓÒÁ½²àÎª²»Í¬´úÂëÒ³µÄÎÄ¼ş(×ó²àÎªcp%d£¬ÓÒ²àÎªcp%d)¡£\n"
-"·Ö±ğÒÔ²»Í¬´úÂëÒ³ÏÔÊ¾½«»áÓĞ½ÏºÃµÄĞ§¹û£¬µ«ÊÇºÏ²¢/¸´ÖÆ»áÓĞÎ£ÏÕ¡£\n"
-"ÄúÒªÒÔWindowsÄ¬ÈÏµÄ´úÂëÒ³ÏÔÊ¾Á½¸öÎÄ¼şÂğ(ÍÆ¼ö)£¿"
+"å·¦å³ä¸¤ä¾§ä¸ºä¸åŒä»£ç é¡µçš„æ–‡ä»¶(å·¦ä¾§ä¸ºcp%dï¼Œå³ä¾§ä¸ºcp%d)ã€‚\n"
+"åˆ†åˆ«ä»¥ä¸åŒä»£ç é¡µæ˜¾ç¤ºå°†ä¼šæœ‰è¾ƒå¥½çš„æ•ˆæœï¼Œä½†æ˜¯åˆå¹¶/å¤åˆ¶ä¼šæœ‰å±é™©ã€‚\n"
+"æ‚¨è¦ä»¥Windowsé»˜è®¤çš„ä»£ç é¡µæ˜¾ç¤ºä¸¤ä¸ªæ–‡ä»¶å—(æ¨è)ï¼Ÿ"
 
 #: Merge.rc:5851E4C8
 #, c-format
 msgid "Information lost due to encoding errors: both files"
-msgstr "ÓÉÓÚ×Ö·û±àÂë´íÎóÔì³ÉÁ½¸öÎÄ¼şĞÅÏ¢¶ªÊ§"
+msgstr "ç”±äºå­—ç¬¦ç¼–ç é”™è¯¯é€ æˆä¸¤ä¸ªæ–‡ä»¶ä¿¡æ¯ä¸¢å¤±"
 
 #: Merge.rc:5851E4C9
 #, c-format
@@ -4445,22 +4446,22 @@ msgstr ""
 #: Merge.rc:7D4E76C0
 #, c-format
 msgid "No difference"
-msgstr "Ã»ÓĞ²»Í¬"
+msgstr "æ²¡æœ‰ä¸åŒ"
 
 #: Merge.rc:71676C4A
 #, c-format
 msgid "Line difference"
-msgstr "ĞĞÄÚ²»Í¬"
+msgstr "è¡Œå†…ä¸åŒ"
 
 #: Merge.rc:6DBD6126
 #, c-format
 msgid "Replaced %1 string(s)."
-msgstr "ÒÑÌæ»» %1 ¸ö×Ö·û´®¡£"
+msgstr "å·²æ›¿æ¢ %1 ä¸ªå­—ç¬¦ä¸²ã€‚"
 
 #: Merge.rc:334E25B3
 #, c-format
 msgid "Cannot find string \"%s\""
-msgstr "ÎŞ·¨²éÕÒ×Ö·û´®¡¸%s¡¹"
+msgstr "æ— æ³•æŸ¥æ‰¾å­—ç¬¦ä¸²ã€Œ%sã€"
 
 #: Merge.rc:34855CF1
 #, c-format
@@ -4495,77 +4496,77 @@ msgstr ""
 #: Merge.rc:5C8E17D1
 #, c-format
 msgid "Location Pane"
-msgstr "Î»ÖÃÊ¾Òâ"
+msgstr "ä½ç½®ç¤ºæ„"
 
 #: Merge.rc:629C1DDF
 #, c-format
 msgid "Diff Pane"
-msgstr "²»Í¬´¦ÏÔÊ¾"
+msgstr "ä¸åŒå¤„æ˜¾ç¤º"
 
 #: Merge.rc:3BDD62C4
 #, c-format
 msgid "Patch file successfully written."
-msgstr "³É¹¦Ğ´ÈëpatchÎÄ¼ş¡£"
+msgstr "æˆåŠŸå†™å…¥patchæ–‡ä»¶ã€‚"
 
 #: Merge.rc:74C5055A
 #, c-format
 msgid "1. item is not found or is directory!"
-msgstr "1. ÌõÄ¿Î´ÕÒµ½»òÕßËüÊÇÒ»¸öÎÄ¼ş¼Ğ!"
+msgstr "1. æ¡ç›®æœªæ‰¾åˆ°æˆ–è€…å®ƒæ˜¯ä¸€ä¸ªæ–‡ä»¶å¤¹!"
 
 #: Merge.rc:7EFD4961
 #, c-format
 msgid "2. item is not found or is directory!"
-msgstr "2. ÌõÄ¿Î´ÕÒµ½»òÕßËüÊÇÒ»¸öÎÄ¼ş¼Ğ!"
+msgstr "2. æ¡ç›®æœªæ‰¾åˆ°æˆ–è€…å®ƒæ˜¯ä¸€ä¸ªæ–‡ä»¶å¤¹!"
 
 #: Merge.rc:E611488
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "patchÎÄ¼şÒÑ¾­´æÔÚ£¬ÄúÒª¸²¸ÇËüÂğ£¿"
+msgstr "patchæ–‡ä»¶å·²ç»å­˜åœ¨ï¼Œæ‚¨è¦è¦†ç›–å®ƒå—ï¼Ÿ"
 
 #: Merge.rc:62226073
 #, c-format
 msgid "[%1 files selected]"
-msgstr "[Ñ¡ÖĞ %1 ¸öÎÄ¼ş]"
+msgstr "[é€‰ä¸­ %1 ä¸ªæ–‡ä»¶]"
 
 #: Merge.rc:27AFDB30
 #, c-format
 msgid "Normal"
-msgstr "ÆÕÍ¨"
+msgstr "æ™®é€š"
 
 #: Merge.rc:7E5494F7
 #, c-format
 msgid "Context"
-msgstr "ÉÏÏÂÎÄ"
+msgstr "ä¸Šä¸‹æ–‡"
 
 #: Merge.rc:24173EE8
 #, c-format
 msgid "Unified"
-msgstr "Í³Ò»"
+msgstr "ç»Ÿä¸€"
 
 #: Merge.rc:185B8391
 #, c-format
 msgid "Could not write to file %1."
-msgstr "ÎŞ·¨Ğ´ÈëÎÄ¼ş %1¡£"
+msgstr "æ— æ³•å†™å…¥æ–‡ä»¶ %1ã€‚"
 
 #: Merge.rc:64D049AA
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
-msgstr "Ö¸¶¨µÄÂ·¾¶²»ÊÇ¾ø¶ÔÂ·¾¶: %1"
+msgstr "æŒ‡å®šçš„è·¯å¾„ä¸æ˜¯ç»å¯¹è·¯å¾„: %1"
 
 #: Merge.rc:44EE84AA
 #, c-format
 msgid "Specify an output file"
-msgstr "ÇëÖ¸¶¨Êä³öÎÄ¼ş"
+msgstr "è¯·æŒ‡å®šè¾“å‡ºæ–‡ä»¶"
 
 #: Merge.rc:54711616
 #, c-format
 msgid "Cannot create a patch file from binary files."
-msgstr "ÎŞ·¨Îª¶ş½øÖÆÎÄ¼ş´´½¨ patch¡£"
+msgstr "æ— æ³•ä¸ºäºŒè¿›åˆ¶æ–‡ä»¶åˆ›å»º patchã€‚"
 
 #: Merge.rc:133D7451
 #, c-format
 msgid "Cannot create a patch file from directories."
-msgstr "ÎŞ·¨ÎªÎÄ¼ş¼Ğ´´½¨ patch¡£"
+msgstr "æ— æ³•ä¸ºæ–‡ä»¶å¤¹åˆ›å»º patchã€‚"
 
 #: Merge.rc:34FF26C7
 #, c-format
@@ -4574,14 +4575,14 @@ msgid ""
 "\n"
 "Creating a patch requires that there are no unsaved changes in files."
 msgstr ""
-"Çë±£´æÎÄ¼ş¡£\n"
+"è¯·ä¿å­˜æ–‡ä»¶ã€‚\n"
 "\n"
-"´´½¨ patch ÒªÇóÎÄ¼şÖĞÃ»ÓĞÎ´±£´æµÄ¸Ä¶¯¡£"
+"åˆ›å»º patch è¦æ±‚æ–‡ä»¶ä¸­æ²¡æœ‰æœªä¿å­˜çš„æ”¹åŠ¨ã€‚"
 
 #: Merge.rc:576FB6D3
 #, c-format
 msgid "Folder does not exist."
-msgstr "ÎÄ¼ş¼Ğ²»´æÔÚ¡£"
+msgstr "æ–‡ä»¶å¤¹ä¸å­˜åœ¨ã€‚"
 
 #: Merge.rc:3377B7B5
 #, c-format
@@ -4590,40 +4591,40 @@ msgid ""
 "All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
 "See manual for more info about archive support and how to enable it."
 msgstr ""
-"Ã»ÓĞÆôÓÃÑ¹Ëõ°üÖ§³Ö¡£\n"
+"æ²¡æœ‰å¯ç”¨å‹ç¼©åŒ…æ”¯æŒã€‚\n"
 " \n"
-"Ã»ÕÒµ½Ö§³ÖÑ¹Ëõ°üËùĞèÒªµÄ×é¼ş(7-zip »ò Merge7z*.dll)¡£\n"
-"Çë²é¿´ÊÖ²á»ñµÃÓĞ¹ØÑ¹Ëõ°üÖ§³Ö¼°ÈçºÎÆôÓÃµÄ¸ü¶àĞÅÏ¢¡£"
+"æ²¡æ‰¾åˆ°æ”¯æŒå‹ç¼©åŒ…æ‰€éœ€è¦çš„ç»„ä»¶(7-zip æˆ– Merge7z*.dll)ã€‚\n"
+"è¯·æŸ¥çœ‹æ‰‹å†Œè·å¾—æœ‰å…³å‹ç¼©åŒ…æ”¯æŒåŠå¦‚ä½•å¯ç”¨çš„æ›´å¤šä¿¡æ¯ã€‚"
 
 #: Merge.rc:44EE84AB
 #, c-format
 msgid "Select file for export"
-msgstr "Ñ¡Ôñµ¼³öÎÄ¼ş"
+msgstr "é€‰æ‹©å¯¼å‡ºæ–‡ä»¶"
 
 #: Merge.rc:44EE84AC
 #, c-format
 msgid "Select file for import"
-msgstr "Ñ¡Ôñµ¼ÈëÎÄ¼ş"
+msgstr "é€‰æ‹©å¯¼å…¥æ–‡ä»¶"
 
 #: Merge.rc:447FB30
 #, c-format
 msgid "Options imported from the file."
-msgstr "Ñ¡ÏîÒÑ´ÓÎÄ¼şµ¼Èë."
+msgstr "é€‰é¡¹å·²ä»æ–‡ä»¶å¯¼å…¥."
 
 #: Merge.rc:44776ACF
 #, c-format
 msgid "Options exported to the file."
-msgstr "Ñ¡ÏîÒÑ¾­µ¼³öµ½ÎÄ¼ş."
+msgstr "é€‰é¡¹å·²ç»å¯¼å‡ºåˆ°æ–‡ä»¶."
 
 #: Merge.rc:7D23E524
 #, c-format
 msgid "Failed to import options from the file."
-msgstr "Ñ¡Ïîµ¼ÈëÊ§°Ü."
+msgstr "é€‰é¡¹å¯¼å…¥å¤±è´¥."
 
 #: Merge.rc:68F9158
 #, c-format
 msgid "Failed to write options to the file."
-msgstr "Ñ¡Ïîµ¼³öÊ§°Ü."
+msgstr "é€‰é¡¹å¯¼å‡ºå¤±è´¥."
 
 #: Merge.rc:404DAD7D
 #, c-format
@@ -4631,12 +4632,12 @@ msgid ""
 "You are about to close several compare windows.\n"
 "\n"
 "Do you want to continue?"
-msgstr "ÄúÕıÒª¹Ø±Õ¶à¸ö¶Ô±È´°¿Ú¡£\nÊÇ·ñ¼ÌĞø£¿"
+msgstr "æ‚¨æ­£è¦å…³é—­å¤šä¸ªå¯¹æ¯”çª—å£ã€‚\næ˜¯å¦ç»§ç»­ï¼Ÿ"
 
 #: Merge.rc:7C664E2
 #, c-format
 msgid "Mixed"
-msgstr "»ìºÏ"
+msgstr "æ··åˆ"
 
 #: Merge.rc:4C72B57
 #, c-format
@@ -4746,22 +4747,22 @@ msgstr ""
 #: Merge.rc:6107F02B
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "ÔÚÁ½¸öÎÄ¼şÉÏÓ¦ÓÃÊÊµ±µÄ½â°ü³ÌĞò (ÎÄ¼şÖ»ĞèÒªÓĞÊÊµ±µÄÀ©Õ¹Ãû)"
+msgstr "åœ¨ä¸¤ä¸ªæ–‡ä»¶ä¸Šåº”ç”¨é€‚å½“çš„è§£åŒ…ç¨‹åº (æ–‡ä»¶åªéœ€è¦æœ‰é€‚å½“çš„æ‰©å±•å)"
 
 #: Merge.rc:429CABF5
 #, c-format
 msgid "No prediffer (normal)"
-msgstr "Ã»ÓĞÔ¤¶Ô±È³ÌĞò (ÆÕÍ¨)"
+msgstr "æ²¡æœ‰é¢„å¯¹æ¯”ç¨‹åº (æ™®é€š)"
 
 #: Merge.rc:62909ED8
 #, c-format
 msgid "Suggested plugins"
-msgstr "ÍÆ¼öµÄ²å¼ş"
+msgstr "æ¨èçš„æ’ä»¶"
 
 #: Merge.rc:4DAEA639
 #, c-format
 msgid "Other plugins"
-msgstr "ÆäËü²å¼ş"
+msgstr "å…¶å®ƒæ’ä»¶"
 
 #: Merge.rc:2A918FD6
 #, c-format
@@ -4786,42 +4787,42 @@ msgstr ""
 #: Merge.rc:55B03C14
 #, c-format
 msgid "Plugin Settings"
-msgstr "²å¼şÉèÖÃ"
+msgstr "æ’ä»¶è®¾ç½®"
 
 #: Merge.rc:791F1E67
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH Î´ÕÒµ½ - .sct ½Å±¾ÒÑ½ûÓÃ"
+msgstr "WSH æœªæ‰¾åˆ° - .sct è„šæœ¬å·²ç¦ç”¨"
 
 #: Merge.rc:4FC259D5
 #, c-format
 msgid "<None>"
-msgstr "<ÎŞ>"
+msgstr "<æ— >"
 
 #: Merge.rc:8BF6984
 #, c-format
 msgid "<Automatic>"
-msgstr "<×Ô¶¯>"
+msgstr "<è‡ªåŠ¨>"
 
 #: Merge.rc:4AAD2A74
 #, c-format
 msgid "G&oto Line %1"
-msgstr "×ªµ½µÚ %1 ĞĞ(&O)"
+msgstr "è½¬åˆ°ç¬¬ %1 è¡Œ(&O)"
 
 #: Merge.rc:7F0D4B47
 #, c-format
 msgid "Disabled"
-msgstr "½ûÓÃ"
+msgstr "ç¦ç”¨"
 
 #: Merge.rc:444C5DDD
 #, c-format
 msgid "From file system"
-msgstr "ÓÉÎÄ¼şÏµÍ³Ñ¡Ôñ"
+msgstr "ç”±æ–‡ä»¶ç³»ç»Ÿé€‰æ‹©"
 
 #: Merge.rc:7A4CFAFE
 #, c-format
 msgid "From MRU list"
-msgstr "ÓÉ×î½üÊ¹ÓÃµÄÎÄ¼şÑ¡Ôñ"
+msgstr "ç”±æœ€è¿‘ä½¿ç”¨çš„æ–‡ä»¶é€‰æ‹©"
 
 #: Merge.rc:638BD42D
 #, c-format
@@ -4831,7 +4832,7 @@ msgstr ""
 #: Merge.rc:7460E8C0
 #, c-format
 msgid "Batch"
-msgstr "Åú´¦Àí"
+msgstr "æ‰¹å¤„ç†"
 
 #: Merge.rc:55B03C15
 #, c-format
@@ -4841,7 +4842,7 @@ msgstr "Portable Object"
 #: Merge.rc:5F87E5E
 #, c-format
 msgid "Resources"
-msgstr "×ÊÔ´ÎÄ¼ş"
+msgstr "èµ„æºæ–‡ä»¶"
 
 #: Merge.rc:125AD722
 #, c-format

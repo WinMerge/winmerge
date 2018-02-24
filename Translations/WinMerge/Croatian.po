@@ -1,8 +1,8 @@
-# This file is part from WinMerge <http://winmerge.org/>
+ï»¿# This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
-# * Hasan Osmanagiæ <hasan.osmanagic at public.carnet.hr>
+# * Hasan OsmanagiÄ‡ <hasan.osmanagic at public.carnet.hr>
 #
 # ID line follows -- this is updated by SVN
 # $Id: Croatian.po 7556 2011-08-19 15:07:03Z sdottaka $
@@ -13,13 +13,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2009-02-13 09:15+0100\n"
-"Last-Translator: Hasan Osmanagiæ <hasan.osmanagic@public.carnet.hr>\n"
+"Last-Translator: Hasan OsmanagiÄ‡ <hasan.osmanagic@public.carnet.hr>\n"
 "Language-Team: winmerge-translate <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1250\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Croatian\n"
-"X-Poedit-SourceCharset: CP1250\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
 "X-Poedit-Country: CROATIA\n"
 
@@ -33,7 +33,7 @@ msgstr "LANG_CROATIAN, SUBLANG_DEFAULT"
 #: Merge.rc:2C983F1
 #, c-format
 msgid "1252"
-msgstr "1250"
+msgstr "65001"
 
 #: Merge.rc:1C6125F3
 #, c-format
@@ -58,12 +58,12 @@ msgstr ""
 #: Merge.rc:381D79E4
 #, c-format
 msgid "&Select Line Difference"
-msgstr "&Oznaèi razlièite retke"
+msgstr "&OznaÄi razliÄite retke"
 
 #: Merge.rc:43017E40
 #, c-format
 msgid "&Undo"
-msgstr "&Poništi"
+msgstr "&PoniÅ¡ti"
 
 #: Merge.rc:43017E41
 #, c-format
@@ -73,7 +73,7 @@ msgstr "&Vrati"
 #: Merge.rc:3CF9F83
 #, c-format
 msgid "Cu&t"
-msgstr "Od&rei"
+msgstr "Od&reÅ¾i"
 
 #: Merge.rc:43017E42
 #, c-format
@@ -143,7 +143,7 @@ msgstr ""
 #: Merge.rc:43017E43
 #, c-format
 msgid "&Zoom"
-msgstr "Po&veæaj"
+msgstr "Po&veÄ‡aj"
 
 #: Merge.rc:AC3AA13
 #, c-format
@@ -233,7 +233,7 @@ msgstr ""
 #: Merge.rc:29D50B4A
 #, c-format
 msgid "< Empty >"
-msgstr "< ništa >"
+msgstr "< niÅ¡ta >"
 
 #: Merge.rc:79AB21E0
 #, c-format
@@ -243,7 +243,7 @@ msgstr "I&zlaz"
 #: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
-msgstr "&Ureğivanje"
+msgstr "&UreÄ‘ivanje"
 
 #: Merge.rc:27AC6D7E
 #, c-format
@@ -323,7 +323,7 @@ msgstr ""
 #: Merge.rc:1A9EBDEC
 #, c-format
 msgid "&Manual Unpacking"
-msgstr "&Ruèno raspakiravanje"
+msgstr "&RuÄno raspakiravanje"
 
 #: Merge.rc:4EF8162D
 #, c-format
@@ -338,7 +338,7 @@ msgstr ""
 #: Merge.rc:78B3B622
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Uèitaj dodatke ponovo"
+msgstr "&UÄitaj dodatke ponovo"
 
 #: Merge.rc:89AF4F7
 #, c-format
@@ -378,12 +378,12 @@ msgstr "Okna &kaskadno"
 #: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
-msgstr "&Pomoæ"
+msgstr "&PomoÄ‡"
 
 #: Merge.rc:3938FFC1
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr "&WinMerge Pomoæ\tF1"
+msgstr "&WinMerge PomoÄ‡\tF1"
 
 #: Merge.rc:1B17601E
 #, c-format
@@ -398,7 +398,7 @@ msgstr ""
 #: Merge.rc:1C6125F4
 #, c-format
 msgid "C&onfiguration"
-msgstr "Po&dešenost"
+msgstr "Po&deÅ¡enost"
 
 #: Merge.rc:175DEEEB
 #, c-format
@@ -418,7 +418,7 @@ msgstr ""
 #: Merge.rc:71676C45
 #, c-format
 msgid "L&eft Read-only"
-msgstr "Samo za èitanje - l&ijeva"
+msgstr "Samo za Äitanje - l&ijeva"
 
 #: Merge.rc:729280D8
 #, c-format
@@ -428,7 +428,7 @@ msgstr ""
 #: Merge.rc:32BFDBA9
 #, c-format
 msgid "Ri&ght Read-only"
-msgstr "Samo za èitanje - d&esna"
+msgstr "Samo za Äitanje - d&esna"
 
 #: Merge.rc:453F5DDB
 #, c-format
@@ -438,22 +438,22 @@ msgstr ""
 #: Merge.rc:E44718
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "Oznaèi &sve\tCtrl+A"
+msgstr "OznaÄi &sve\tCtrl+A"
 
 #: Merge.rc:58EEEB7E
 #, c-format
 msgid "Show &Identical Items"
-msgstr "Prikai &identiène stavke"
+msgstr "PrikaÅ¾i &identiÄne stavke"
 
 #: Merge.rc:58EEEB7F
 #, c-format
 msgid "Show &Different Items"
-msgstr "Prikai &razlièite stavke"
+msgstr "PrikaÅ¾i &razliÄite stavke"
 
 #: Merge.rc:58E210F9
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "Prikai l&ijeve unikatne stavke"
+msgstr "PrikaÅ¾i l&ijeve unikatne stavke"
 
 #: Merge.rc:28A1C3B4
 #, c-format
@@ -463,17 +463,17 @@ msgstr ""
 #: Merge.rc:43600E8F
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "Prikai d&esne unikatne stavke"
+msgstr "PrikaÅ¾i d&esne unikatne stavke"
 
 #: Merge.rc:E44719
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "Prikai &izostavljene stavke"
+msgstr "PrikaÅ¾i &izostavljene stavke"
 
 #: Merge.rc:6F833C16
 #, c-format
 msgid "S&how Binary Files"
-msgstr "Prikai &binarne datoteke"
+msgstr "PrikaÅ¾i &binarne datoteke"
 
 #: Merge.rc:5A9A713B
 #, c-format
@@ -498,7 +498,7 @@ msgstr ""
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "Prikai skri&vene stavke"
+msgstr "PrikaÅ¾i skri&vene stavke"
 
 #: Merge.rc:311E1D87
 #, c-format
@@ -538,12 +538,12 @@ msgstr "Usporedbena &statistika"
 #: Merge.rc:507A4C02
 #, c-format
 msgid "Refre&sh\tF5"
-msgstr "Osv&jei\tF5"
+msgstr "Osv&jeÅ¾i\tF5"
 
 #: Merge.rc:2E2C5206
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "&Osvjei odabir\tCtrl+F5"
+msgstr "&OsvjeÅ¾i odabir\tCtrl+F5"
 
 #: Merge.rc:1D2E49F9
 #, c-format
@@ -558,7 +558,7 @@ msgstr "Us&poredi\tEnter"
 #: Merge.rc:2E2C5207
 #, c-format
 msgid "&Next Difference\tAlt+Down"
-msgstr "&Slijedeæa razlika\tAlt+Down"
+msgstr "&SlijedeÄ‡a razlika\tAlt+Down"
 
 #: Merge.rc:545FEEA0
 #, c-format
@@ -593,7 +593,7 @@ msgstr "Kopiraj u &lijevo\tAlt+Left"
 #: Merge.rc:4DE14274
 #, c-format
 msgid "&Delete\tDel"
-msgstr "&Obriši\tDel"
+msgstr "&ObriÅ¡i\tDel"
 
 #: Merge.rc:100AAFAD
 #, c-format
@@ -603,7 +603,7 @@ msgstr "&Prilagodba kolona..."
 #: Merge.rc:2F07210E
 #, c-format
 msgid "Generate &Report..."
-msgstr "Pohrani &izvještaj..."
+msgstr "Pohrani &izvjeÅ¡taj..."
 
 #: Merge.rc:6E470BE8
 #, c-format
@@ -668,12 +668,12 @@ msgstr "&Pregled ispisa"
 #: Merge.rc:4B91C2D0
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "&Završi retke prema"
+msgstr "&ZavrÅ¡i retke prema"
 
 #: Merge.rc:78B3B623
 #, c-format
 msgid "&Merge Mode\tF9"
-msgstr "Usporedni naèin"
+msgstr "Usporedni naÄin"
 
 #: Merge.rc:32BFDBAA
 #, c-format
@@ -703,7 +703,7 @@ msgstr ""
 #: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
-msgstr "&Poništi\tCtrl+Z"
+msgstr "&PoniÅ¡ti\tCtrl+Z"
 
 #: Merge.rc:6E470BEA
 #, c-format
@@ -713,7 +713,7 @@ msgstr "&Vrati\tCtrl+Y"
 #: Merge.rc:CAEDA34
 #, c-format
 msgid "Cu&t\tCtrl+X"
-msgstr "Od&rei\tCtrl+X"
+msgstr "Od&reÅ¾i\tCtrl+X"
 
 #: Merge.rc:6E470BEB
 #, c-format
@@ -733,7 +733,7 @@ msgstr "Istakni &razliku\tF4"
 #: Merge.rc:444C5DDB
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "&Naği...\tCtrl+F"
+msgstr "&NaÄ‘i...\tCtrl+F"
 
 #: Merge.rc:44BC83EC
 #, c-format
@@ -768,7 +768,7 @@ msgstr "Zamijeni oznake\tCtrl+F2"
 #: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
-msgstr "&Slijedeæa oznaka\tF2"
+msgstr "&SlijedeÄ‡a oznaka\tF2"
 
 #: Merge.rc:545FEEA1
 #, c-format
@@ -788,7 +788,7 @@ msgstr "Idi &na...\tCtrl+G"
 #: Merge.rc:7C622F87
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr "Po&veæaj\tCtrl++"
+msgstr "Po&veÄ‡aj\tCtrl++"
 
 #: Merge.rc:FE3C1D1
 #, c-format
@@ -799,12 +799,12 @@ msgstr "&Smanji\tCtrl+-"
 #: Merge.rc:78B3B624
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr "&Izvorna velièina\tCtrl+*"
+msgstr "&Izvorna veliÄina\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format
 msgid "Syntax Highlight"
-msgstr "Oznaèavanje sintakse"
+msgstr "OznaÄavanje sintakse"
 
 #: Merge.rc:6E470BEC
 #, c-format
@@ -854,7 +854,7 @@ msgstr ""
 #: Merge.rc:27AC6D81
 #, c-format
 msgid "&Lock Panes"
-msgstr "Za&kljuèaj panele"
+msgstr "Za&kljuÄaj panele"
 
 #: Merge.rc:1DC30E62
 #, c-format
@@ -864,17 +864,17 @@ msgstr "Skriv&eni znaci i razmaci"
 #: Merge.rc:4A81EF3E
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Prikai razli&èitost redaka"
+msgstr "PrikaÅ¾i razli&Äitost redaka"
 
 #: Merge.rc:37660CE9
 #, c-format
 msgid "View Line &Numbers"
-msgstr "Prikai &brojeve redaka"
+msgstr "PrikaÅ¾i &brojeve redaka"
 
 #: Merge.rc:4FF286
 #, c-format
 msgid "View &Margins"
-msgstr "Prikai &margine"
+msgstr "PrikaÅ¾i &margine"
 
 #: Merge.rc:3FE258FF
 #, c-format
@@ -894,7 +894,7 @@ msgstr "Panel &razlika"
 #: Merge.rc:3534E273
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "Panel &poloaja"
+msgstr "Panel &poloÅ¾aja"
 
 #: Merge.rc:59B87E1C
 #, c-format
@@ -1109,7 +1109,7 @@ msgstr "Desno do... (%1 od %2)"
 #: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
-msgstr "&Obriši"
+msgstr "&ObriÅ¡i"
 
 #: Merge.rc:43017E4B
 #, c-format
@@ -1154,7 +1154,7 @@ msgstr "&Otvori lijevi"
 #: Merge.rc:46724E8D
 #, c-format
 msgid "with &External Editor"
-msgstr "&vanjskim ureğivaèem"
+msgstr "&vanjskim ureÄ‘ivaÄem"
 
 #: Merge.rc:5A9A713D
 #, c-format
@@ -1234,7 +1234,7 @@ msgstr ""
 #: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
-msgstr "&Osvjei"
+msgstr "&OsvjeÅ¾i"
 
 #: Merge.rc:71676C47
 #, c-format
@@ -1289,12 +1289,12 @@ msgstr "Idi &na razliku"
 #: Merge.rc:1DC30E63
 #, c-format
 msgid "&No Moved Blocks"
-msgstr "&Ne premještaj blokove"
+msgstr "&Ne premjeÅ¡taj blokove"
 
 #: Merge.rc:1A9EBDEF
 #, c-format
 msgid "&All Moved Blocks"
-msgstr "Premještaj &svih blokova"
+msgstr "PremjeÅ¡taj &svih blokova"
 
 #: Merge.rc:BA50068
 #, c-format
@@ -1329,12 +1329,12 @@ msgstr "&Razlikuj V/m slova"
 #: Merge.rc:620FF1AC
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "&Zanemari razlièitost oznaka završetka retka (Windows/Unix/Mac)"
+msgstr "&Zanemari razliÄitost oznaka zavrÅ¡etka retka (Windows/Unix/Mac)"
 
 #: Merge.rc:6DE6F873
 #, c-format
 msgid "&Include Subfolders"
-msgstr "Ukljuèi i &podmape"
+msgstr "UkljuÄi i &podmape"
 
 #: Merge.rc:1DC30E64
 #, c-format
@@ -1344,12 +1344,12 @@ msgstr ""
 #: Merge.rc:7A4CFAFB
 #, c-format
 msgid "Full Contents"
-msgstr "Potpun sadraj"
+msgstr "Potpun sadrÅ¾aj"
 
 #: Merge.rc:5F71A081
 #, c-format
 msgid "Quick Contents"
-msgstr "Skraæeni sadraj"
+msgstr "SkraÄ‡eni sadrÅ¾aj"
 
 #: Merge.rc:36B164C4
 #, c-format
@@ -1364,12 +1364,12 @@ msgstr "Datum promjene"
 #: Merge.rc:39C7AF82
 #, c-format
 msgid "Modified Date and Size"
-msgstr "Datum promjene i velièina"
+msgstr "Datum promjene i veliÄina"
 
 #: Merge.rc:4B89B93
 #, c-format
 msgid "Size"
-msgstr "Velièina"
+msgstr "VeliÄina"
 
 #: Merge.rc:2515A6BC
 #, c-format
@@ -1464,7 +1464,7 @@ msgstr "Odustajem"
 #: Merge.rc:4186E48
 #, c-format
 msgid "Help"
-msgstr "Pomoæ"
+msgstr "PomoÄ‡"
 
 #: Merge.rc:75264C52
 #, c-format
@@ -1474,7 +1474,7 @@ msgstr "Datoteke ili mape za usporedbu"
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
-msgstr "Samo za èitanje"
+msgstr "Samo za Äitanje"
 
 #: Merge.rc:39174D97
 #, c-format
@@ -1509,7 +1509,7 @@ msgstr "Lozinka"
 #: Merge.rc:F75DAF7
 #, c-format
 msgid "Link to Destination VSS project"
-msgstr "Povei s odredišnom VSS usporedbom"
+msgstr "PoveÅ¾i s odrediÅ¡nom VSS usporedbom"
 
 #: Merge.rc:40325727
 #, c-format
@@ -1544,7 +1544,7 @@ msgstr "&Staza do cleartool.exe:"
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
-msgstr "Opæe"
+msgstr "OpÄ‡e"
 
 #: Merge.rc:237AB485
 #, c-format
@@ -1569,17 +1569,17 @@ msgstr "Samo &jedna instanca WinMerge-a"
 #: Merge.rc:672CD0E2
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr "&Upitaj prije zatvaranja višestrukih usporedbi"
+msgstr "&Upitaj prije zatvaranja viÅ¡estrukih usporedbi"
 
 #: Merge.rc:6D5B7718
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "&Zadri oznake vremena i datuma u usporedbi"
+msgstr "&ZadrÅ¾i oznake vremena i datuma u usporedbi"
 
 #: Merge.rc:17F0E759
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Pri pokretanju prikai dijalog\"Odabir datoteke ili mape\""
+msgstr "Pri pokretanju prikaÅ¾i dijalog\"Odabir datoteke ili mape\""
 
 #: Merge.rc:1AD99579
 #, c-format
@@ -1589,7 +1589,7 @@ msgstr ""
 #: Merge.rc:44776ACE
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
-msgstr "Otvori dijalog &samodovršenja"
+msgstr "Otvori dijalog &samodovrÅ¡enja"
 
 #: Merge.rc:1B63306F
 #, c-format
@@ -1599,17 +1599,17 @@ msgstr ""
 #: Merge.rc:516450B
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
-msgstr "WinMerge omoguæuje skrivanje uobièajenih poruka. Pritisnite 'Poništi' da poruke opet budu vidljive."
+msgstr "WinMerge omoguÄ‡uje skrivanje uobiÄajenih poruka. Pritisnite 'PoniÅ¡ti' da poruke opet budu vidljive."
 
 #: Merge.rc:10976EC1
 #, c-format
 msgid "Reset"
-msgstr "Poništi"
+msgstr "PoniÅ¡ti"
 
 #: Merge.rc:3FB4EC6
 #, c-format
 msgid "Find"
-msgstr "Naği"
+msgstr "NaÄ‘i"
 
 #: Merge.rc:34DF506F
 #, c-format
@@ -1619,7 +1619,7 @@ msgstr "&Pojam:"
 #: Merge.rc:39C7AF83
 #, c-format
 msgid "Match &whole word only"
-msgstr "Poklapanje &cijele rijeèi"
+msgstr "Poklapanje &cijele rijeÄi"
 
 #: Merge.rc:13C27214
 #, c-format
@@ -1634,7 +1634,7 @@ msgstr "&Algoritam"
 #: Merge.rc:78A08947
 #, c-format
 msgid "D&on't wrap end of file"
-msgstr "Ne pre&lamaj završetak datoteke"
+msgstr "Ne pre&lamaj zavrÅ¡etak datoteke"
 
 #: Merge.rc:545FEEA2
 #, c-format
@@ -1649,7 +1649,7 @@ msgstr ""
 #: Merge.rc:68816EEA
 #, c-format
 msgid "&Find Next"
-msgstr "Trai &slijedeæi"
+msgstr "TraÅ¾i &slijedeÄ‡i"
 
 #: Merge.rc:11D980
 #, c-format
@@ -1679,7 +1679,7 @@ msgstr "Zamijeni u"
 #: Merge.rc:68816EEB
 #, c-format
 msgid "&Selection"
-msgstr "oznaèenom"
+msgstr "oznaÄenom"
 
 #: Merge.rc:3FE25900
 #, c-format
@@ -1744,7 +1744,7 @@ msgstr "Filtar redaka"
 #: Merge.rc:36B79AB7
 #, c-format
 msgid "Enable Line Filters"
-msgstr "Omoguæi filtriranje redaka"
+msgstr "OmoguÄ‡i filtriranje redaka"
 
 #: Merge.rc:5E8200FF
 #, c-format
@@ -1754,7 +1754,7 @@ msgstr "Ispravan algoritam (jedan po retku):"
 #: Merge.rc:3ECBF05
 #, c-format
 msgid "Edit"
-msgstr "Ureğivanje"
+msgstr "UreÄ‘ivanje"
 
 #: Merge.rc:25669B5
 #, c-format
@@ -1774,7 +1774,7 @@ msgstr "Razlike:"
 #: Merge.rc:1BA49C3B
 #, c-format
 msgid "Selected Difference:"
-msgstr "Oznaèena razlika:"
+msgstr "OznaÄena razlika:"
 
 #: Merge.rc:78E0CE10
 #, c-format
@@ -1799,12 +1799,12 @@ msgstr "Zanemarene razlike:"
 #: Merge.rc:7106378D
 #, c-format
 msgid "Moved:"
-msgstr "Premješteno:"
+msgstr "PremjeÅ¡teno:"
 
 #: Merge.rc:E6D7EF
 #, c-format
 msgid "Selected Moved:"
-msgstr "Premještaj oznaèenog:"
+msgstr "PremjeÅ¡taj oznaÄenog:"
 
 #: Merge.rc:6B96B328
 #, c-format
@@ -1819,17 +1819,17 @@ msgstr ""
 #: Merge.rc:40C55014
 #, c-format
 msgid "Word Difference:"
-msgstr "Razlièite rijeèi:"
+msgstr "RazliÄite rijeÄi:"
 
 #: Merge.rc:E4471A
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "Razlike oznaèene rijeèi:"
+msgstr "Razlike oznaÄene rijeÄi:"
 
 #: Merge.rc:7F0D4B46
 #, c-format
 msgid "Defaults"
-msgstr "Predpodešeno"
+msgstr "PredpodeÅ¡eno"
 
 #: Merge.rc:39000D56
 #, c-format
@@ -1839,12 +1839,12 @@ msgstr "Sistem"
 #: Merge.rc:51FAB141
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
-msgstr "&Premjesti obrisano u koš?"
+msgstr "&Premjesti obrisano u koÅ¡?"
 
 #: Merge.rc:1A9EBDF0
 #, c-format
 msgid "&External editor:"
-msgstr "&Vanjski ureğivaè:"
+msgstr "&Vanjski ureÄ‘ivaÄ:"
 
 #: Merge.rc:78B3B627
 #, c-format
@@ -1889,7 +1889,7 @@ msgstr "&Obrni D<->L"
 #: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
-msgstr "&Prikljuèi postojeæoj datoteci"
+msgstr "&PrikljuÄi postojeÄ‡oj datoteci"
 
 #: Merge.rc:AC3AA1F
 #, c-format
@@ -1904,7 +1904,7 @@ msgstr "O&dabir..."
 #: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
-msgstr "&Naèin prikaza"
+msgstr "&NaÄin prikaza"
 
 #: Merge.rc:67019DCB
 #, c-format
@@ -1924,7 +1924,7 @@ msgstr "&Zanemari prazne retke"
 #: Merge.rc:2C4A6C6C
 #, c-format
 msgid "Inclu&de command line"
-msgstr "&Ukljuèi naredbeni redak"
+msgstr "&UkljuÄi naredbeni redak"
 
 #: Merge.rc:5869BBE
 #, c-format
@@ -1934,7 +1934,7 @@ msgstr "Otvori u vanjskom pregledniku."
 #: Merge.rc:28D5CCAA
 #, c-format
 msgid "Display Columns"
-msgstr "Prikai kolone"
+msgstr "PrikaÅ¾i kolone"
 
 #: Merge.rc:4856953D
 #, c-format
@@ -1959,7 +1959,7 @@ msgstr "Arhiver datoteka:"
 #: Merge.rc:34C1157D
 #, c-format
 msgid "Display all unpackers, don't check the extension"
-msgstr "Prikai sve arhivere bez provjere ekstenzije"
+msgstr "PrikaÅ¾i sve arhivere bez provjere ekstenzije"
 
 #: Merge.rc:5B18135F
 #, c-format
@@ -1984,7 +1984,7 @@ msgstr "Usporedba stavki..."
 #: Merge.rc:4630D06C
 #, c-format
 msgid "Items compared:"
-msgstr "Stavki usporeğeno:"
+msgstr "Stavki usporeÄ‘eno:"
 
 #: Merge.rc:4166A153
 #, c-format
@@ -2069,7 +2069,7 @@ msgstr ""
 #: Merge.rc:285B56CE
 #, c-format
 msgid "E&nable moved block detection"
-msgstr "Omoguæi &razlikovanje premještenih blokova"
+msgstr "OmoguÄ‡i &razlikovanje premjeÅ¡tenih blokova"
 
 #: Merge.rc:4EF8162F
 #, c-format
@@ -2084,7 +2084,7 @@ msgstr "Filtriraj komentare"
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
-msgstr "Ureğivanje"
+msgstr "UreÄ‘ivanje"
 
 #: Merge.rc:1A9EBDF1
 #, c-format
@@ -2094,12 +2094,12 @@ msgstr "&Istakni sintaksu"
 #: Merge.rc:1A9EBDF2
 #, c-format
 msgid "&Automatic rescan"
-msgstr "&Automatski ponovo pretrai"
+msgstr "&Automatski ponovo pretraÅ¾i"
 
 #: Merge.rc:545FEEA3
 #, c-format
 msgid "&Preserve original EOL chars"
-msgstr "Zadri izvorni naèin oznaèavanja kraja redaka"
+msgstr "ZadrÅ¾i izvorni naÄin oznaÄavanja kraja redaka"
 
 #: Merge.rc:4C72B55
 #, c-format
@@ -2109,7 +2109,7 @@ msgstr "Tabulatori"
 #: Merge.rc:68816EEC
 #, c-format
 msgid "&Tab size:"
-msgstr "&Velièina tabulatora"
+msgstr "&VeliÄina tabulatora"
 
 #: Merge.rc:4DE14275
 #, c-format
@@ -2124,7 +2124,7 @@ msgstr "&Umetni razmak"
 #: Merge.rc:172385A0
 #, c-format
 msgid "Line Difference Coloring"
-msgstr "Isticanje razlièitosti"
+msgstr "Isticanje razliÄitosti"
 
 #: Merge.rc:4CB9DE6A
 #, c-format
@@ -2139,7 +2139,7 @@ msgstr "Svaki &znak"
 #: Merge.rc:4DE14276
 #, c-format
 msgid "&Word-level:"
-msgstr "&Rijeæ:"
+msgstr "&RijeÄ‡:"
 
 #: Merge.rc:14AF463A
 #, c-format
@@ -2169,7 +2169,7 @@ msgstr "Novi..."
 #: Merge.rc:3B6A3611
 #, c-format
 msgid "Edit..."
-msgstr "Ureğivanje..."
+msgstr "UreÄ‘ivanje..."
 
 #: Merge.rc:629C1DDD
 #, c-format
@@ -2244,7 +2244,7 @@ msgstr "Standardna kodna stranica"
 #: Merge.rc:132D699F
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Odaberite standardnu kodnu stranicu za uèitanje ne-Unicode datoteka:"
+msgstr "Odaberite standardnu kodnu stranicu za uÄitanje ne-Unicode datoteka:"
 
 #: Merge.rc:5CC85DF4
 #, c-format
@@ -2268,12 +2268,12 @@ msgstr "Standardna kodna stranica sistema"
 #: Merge.rc:4F3C2B88
 #, c-format
 msgid "According to WinMerge User Interface"
-msgstr "Prema korisnikovom suèelju WinMerge-a"
+msgstr "Prema korisnikovom suÄelju WinMerge-a"
 
 #: Merge.rc:8AF7E6A
 #, c-format
 msgid "Custom codepage:"
-msgstr "Kodna stranica prema elji:"
+msgstr "Kodna stranica prema Å¾elji:"
 
 #: Merge.rc:6CD65B95
 #, c-format
@@ -2303,7 +2303,7 @@ msgstr "Dijalog"
 #: Merge.rc:744A4E1C
 #, c-format
 msgid "Keywords:"
-msgstr "Kljuène rijeèi:"
+msgstr "KljuÄne rijeÄi:"
 
 #: Merge.rc:1AFA3492
 #, c-format
@@ -2333,7 +2333,7 @@ msgstr "Pojmovi:"
 #: Merge.rc:1E0ED5B2
 #, c-format
 msgid "Preprocessor:"
-msgstr "Predobrağeno:"
+msgstr "PredobraÄ‘eno:"
 
 #: Merge.rc:24173EE5
 #, c-format
@@ -2378,12 +2378,12 @@ msgstr ""
 #: Merge.rc:387F7980
 #, c-format
 msgid "Folder Compare Report"
-msgstr "Izvještaj usporedbe mapa"
+msgstr "IzvjeÅ¡taj usporedbe mapa"
 
 #: Merge.rc:3ECF34A3
 #, c-format
 msgid "Report &File:"
-msgstr "Datoteka izvještaja:"
+msgstr "Datoteka izvjeÅ¡taja:"
 
 #: Merge.rc:146A5938
 #, c-format
@@ -2403,22 +2403,22 @@ msgstr ""
 #: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr "&Kopiraj u meğumemoriju"
+msgstr "&Kopiraj u meÄ‘umemoriju"
 
 #: Merge.rc:43600E90
 #, c-format
 msgid "Shared or Private Filter"
-msgstr "Zajednièki ili osobni filtar"
+msgstr "ZajedniÄki ili osobni filtar"
 
 #: Merge.rc:74E96E1E
 #, c-format
 msgid "Which type of filter do you want to create?"
-msgstr "Koji tip filtra elite stvoriti?"
+msgstr "Koji tip filtra Å¾elite stvoriti?"
 
 #: Merge.rc:444EF527
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "Zajednièki Filtar (za sve korisnike raèunala)"
+msgstr "ZajedniÄki Filtar (za sve korisnike raÄunala)"
 
 #: Merge.rc:11304E6
 #, c-format
@@ -2433,12 +2433,12 @@ msgstr "Rad s arhivima"
 #: Merge.rc:545FEEA5
 #, c-format
 msgid "&Enable archive file support"
-msgstr "Omoguæi rad s &arhivima"
+msgstr "OmoguÄ‡i rad s &arhivima"
 
 #: Merge.rc:70C9C72D
 #, c-format
 msgid "&Detect archive type from file signature"
-msgstr "&Oèitaj tip arhiva iz zaglavlja datoteke"
+msgstr "&OÄitaj tip arhiva iz zaglavlja datoteke"
 
 #: Merge.rc:1AC98D0B
 #, c-format
@@ -2488,7 +2488,7 @@ msgstr "Desno:"
 #: Merge.rc:26188979
 #, c-format
 msgid "Identical"
-msgstr "Identièno"
+msgstr "IdentiÄno"
 
 #: Merge.rc:6FA9B0F7
 #, c-format
@@ -2538,7 +2538,7 @@ msgstr "Odabir kodne stranice za"
 #: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
-msgstr "&Uèitavanje datoteke:"
+msgstr "&UÄitavanje datoteke:"
 
 #: Merge.rc:7A4CFAFC
 #, c-format
@@ -2598,7 +2598,7 @@ msgstr "&Koristi odabrane boje"
 #: Merge.rc:1AC98D0C
 #, c-format
 msgid "Custom text colors"
-msgstr "Korisnièke boje"
+msgstr "KorisniÄke boje"
 
 #: Merge.rc:3FE25901
 #, c-format
@@ -2633,7 +2633,7 @@ msgstr "&Lijevi panel:"
 #: Merge.rc:39174D9A
 #, c-format
 msgid "R&ead-only"
-msgstr "Samo za èitanje"
+msgstr "Samo za Äitanje"
 
 #: Merge.rc:89AF4FF
 #, c-format
@@ -2743,7 +2743,7 @@ msgstr "Dodaci"
 #: Merge.rc:78B3B629
 #, c-format
 msgid "&Enable plugins"
-msgstr "&Omoguæi dodatke"
+msgstr "&OmoguÄ‡i dodatke"
 
 #: Merge.rc:62909ED6
 #, c-format
@@ -2758,7 +2758,7 @@ msgstr "Explorer"
 #: Merge.rc:673BD331
 #, c-format
 msgid "E&nable advanced menu"
-msgstr "Omoguæi &napredni izbornik."
+msgstr "OmoguÄ‡i &napredni izbornik."
 
 #: Merge.rc:4EF81631
 #, c-format
@@ -2908,12 +2908,12 @@ msgstr ""
 #: Merge.rc:524AB109
 #, c-format
 msgid "Unknown error attempting to open project file"
-msgstr "Nepoznata greška pri otvaranju usporedbe"
+msgstr "Nepoznata greÅ¡ka pri otvaranju usporedbe"
 
 #: Merge.rc:524AB10A
 #, c-format
 msgid "Unknown error attempting to save project file"
-msgstr "Nepoznata greška pri pohrani usporedbe"
+msgstr "Nepoznata greÅ¡ka pri pohrani usporedbe"
 
 #: Merge.rc:3EE7B44D
 #, c-format
@@ -2923,7 +2923,7 @@ msgstr "Usporedba"
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
-msgstr "Usporedba je uèitana."
+msgstr "Usporedba je uÄitana."
 
 #: Merge.rc:3BDD62C3
 #, c-format
@@ -2990,7 +2990,7 @@ msgstr ""
 #: Merge.rc:3EF068BF
 #, fuzzy, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge je program BEZ IKAKVE GARANCIJE. To je besplatan softver koji moete dalje distribuirati pod odreğenim okolnostima prema GNU javnoj licenci koju pogledajte u datoteci pomoæi."
+msgstr "WinMerge je program BEZ IKAKVE GARANCIJE. To je besplatan softver koji moÅ¾ete dalje distribuirati pod odreÄ‘enim okolnostima prema GNU javnoj licenci koju pogledajte u datoteci pomoÄ‡i."
 
 #: Merge.rc:1D2E49FF
 #, c-format
@@ -3050,7 +3050,7 @@ msgstr "Izostavi &sve"
 #: Merge.rc:77C09B82
 #, c-format
 msgid "Don't display this &message again."
-msgstr "Ne prikazuj više ovu poruku."
+msgstr "Ne prikazuj viÅ¡e ovu poruku."
 
 #: Merge.rc:57F02FB4
 #, c-format
@@ -3105,7 +3105,7 @@ msgstr "U desno:"
 #: Merge.rc:2924ED78
 #, c-format
 msgid "Version %1"
-msgstr "inaèica %1"
+msgstr "inaÄica %1"
 
 #: Merge.rc:24173EE7
 #, c-format
@@ -3134,7 +3134,7 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"Velièina oznake nije u prihvatljivom rasponu .\n"
+"VeliÄina oznake nije u prihvatljivom rasponu .\n"
 "\n"
 "Molimo koristite vrijednosti 1 - %1."
 
@@ -3186,7 +3186,7 @@ msgstr "Naziv"
 #: Merge.rc:15875422
 #, c-format
 msgid "Location"
-msgstr "Poloaj"
+msgstr "PoloÅ¾aj"
 
 #: Merge.rc:59F506A0
 #, c-format
@@ -3221,7 +3221,7 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
-"Nema predloška filtracije datoteke!\n"
+"Nema predloÅ¡ka filtracije datoteke!\n"
 "\n"
 "Molimo, kopirajte datoteku %1 u WinMerge/Filters -mapu:\n"
 "%2."
@@ -3234,7 +3234,7 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"Ne mogu pohraniti predloak filtranja u mapu filtara:\n"
+"Ne mogu pohraniti predloÅ¾ak filtranja u mapu filtara:\n"
 "%1\n"
 "\n"
 "Provjerite postoji li mapa i njenu dostupnost."
@@ -3246,7 +3246,7 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"Mapa korisnièkih filtara nije odreğena!\n"
+"Mapa korisniÄkih filtara nije odreÄ‘ena!\n"
 "\n"
 "Molimo, odredite ju u 'Postavke/Sistem'."
 
@@ -3258,10 +3258,10 @@ msgid ""
 "\n"
 "Maybe the file is read-only?"
 msgstr ""
-"Greška pri brisanju filtrirane datoteke:\n"
+"GreÅ¡ka pri brisanju filtrirane datoteke:\n"
 "%1\n"
 "\n"
-"Moda je zaštiæena - samo za èitanje?"
+"MoÅ¾da je zaÅ¡tiÄ‡ena - samo za Äitanje?"
 
 #: Merge.rc:6F3BCB34
 #, c-format
@@ -3282,7 +3282,7 @@ msgstr ""
 #: Merge.rc:5704C4AC
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "Filtar veæ postoji. Natpisati ga?"
+msgstr "Filtar veÄ‡ postoji. Natpisati ga?"
 
 #: Merge.rc:237A126
 #, c-format
@@ -3296,9 +3296,9 @@ msgid ""
 "\n"
 "If you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
-"Filtari su dograğeni. elite li osvjeiti sve otvorene usporedbe?\n"
+"Filtari su dograÄ‘eni. Å½elite li osvjeÅ¾iti sve otvorene usporedbe?\n"
 "\n"
-"Ako odaberete 'Ne', to moete uæiniti i kasnije.."
+"Ako odaberete 'Ne', to moÅ¾ete uÄ‡initi i kasnije.."
 
 #: Merge.rc:1DC30E67
 #, c-format
@@ -3333,7 +3333,7 @@ msgstr "Neimenovan"
 #: Merge.rc:72A593B9
 #, c-format
 msgid "Theirs File"
-msgstr "Tuğe datoteke"
+msgstr "TuÄ‘e datoteke"
 
 #: Merge.rc:427C12C1
 #, c-format
@@ -3368,18 +3368,18 @@ msgstr "Razlika:  %1 od %2"
 #: Merge.rc:62773E9
 #, c-format
 msgid "%1 Differences Found"
-msgstr "Nağeno razlika:  %1"
+msgstr "NaÄ‘eno razlika:  %1"
 
 #: Merge.rc:6B78A819
 #, c-format
 msgid "1 Difference Found"
-msgstr "Nağeno razlika: 1"
+msgstr "NaÄ‘eno razlika: 1"
 
 #. Abbreviation from "Read Only"
 #: Merge.rc:13E12
 #, c-format
 msgid "RO"
-msgstr "SÈ"
+msgstr "SÄŒ"
 
 #: Merge.rc:6B6D8965
 #, c-format
@@ -3449,7 +3449,7 @@ msgstr ""
 #: Merge.rc:39B1AD01
 #, c-format
 msgid "Choose two files to enable unpacker selection."
-msgstr "Molim izaberite dvije datoteke koje prihvaæa arhiver."
+msgstr "Molim izaberite dvije datoteke koje prihvaÄ‡a arhiver."
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3508,12 +3508,12 @@ msgstr "Pohraniti izmjene %1?"
 #: Merge.rc:6A1C6855
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 je oznaèena smo za èitanje. Natpisati zaštiæenu datoteku? (Stisnite 'Ne', za pohranu pod novim nazivom.)"
+msgstr "%1 je oznaÄena smo za Äitanje. Natpisati zaÅ¡tiÄ‡enu datoteku? (Stisnite 'Ne', za pohranu pod novim nazivom.)"
 
 #: Merge.rc:673BD332
 #, c-format
 msgid "Error backing up file"
-msgstr "Greška pri stvaranju rezervne datoteke"
+msgstr "GreÅ¡ka pri stvaranju rezervne datoteke"
 
 #: Merge.rc:3958104B
 #, c-format
@@ -3523,7 +3523,7 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"Nije moguæe stvoriti rezervnu datoteku:\n"
+"Nije moguÄ‡e stvoriti rezervnu datoteku:\n"
 "%1\n"
 "\n"
 "Nastaviti?"
@@ -3584,7 +3584,7 @@ msgid ""
 "\n"
 "Overwrite changed file?"
 msgstr ""
-"Drugi program je u meğuvremenu promijenio datoteku\n"
+"Drugi program je u meÄ‘uvremenu promijenio datoteku\n"
 "%1\n"
 "tokom rada u WinMerge-u.\n"
 "\n"
@@ -3597,7 +3597,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-"je oznaèena samo za èitanje. Natpisati zaštiæenu stavku?"
+"je oznaÄena samo za Äitanje. Natpisati zaÅ¡tiÄ‡enu stavku?"
 
 #: Merge.rc:B9192B
 #, c-format
@@ -3612,7 +3612,7 @@ msgstr ""
 "%1\n"
 "od zadnjeg WinMerge pregleda.\n"
 "\n"
-"elite li ponovno uèitanje datoteke?"
+"Å½elite li ponovno uÄitanje datoteke?"
 
 #: Merge.rc:62909ED7
 #, c-format
@@ -3649,12 +3649,12 @@ msgid ""
 msgstr ""
 "Ne mogu se vezati razlike nesinkroniziranih dokumenata.\n"
 "\n"
-"Osvjeite dokumente prije nastavka."
+"OsvjeÅ¾ite dokumente prije nastavka."
 
 #: Merge.rc:5C264194
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Odredite SourceSafe stazu usporedbe, ako elite nastaviti (ie:  $/MyProject)"
+msgstr "Odredite SourceSafe stazu usporedbe, ako Å¾elite nastaviti (ie:  $/MyProject)"
 
 #: Merge.rc:367690A0
 #, c-format
@@ -3664,12 +3664,12 @@ msgstr "Provjera datoteka na VSS..."
 #: Merge.rc:5CF52976
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Sistem pokazuje grešku dok pokušava provjeriti datoteku.  Nastavak nemoguæ..."
+msgstr "Sistem pokazuje greÅ¡ku dok pokuÅ¡ava provjeriti datoteku.  Nastavak nemoguÄ‡..."
 
 #: Merge.rc:5B2409A
 #, c-format
 msgid "Error executing versioning system command."
-msgstr "Greška pri izvršenju sistemske naredbe."
+msgstr "GreÅ¡ka pri izvrÅ¡enju sistemske naredbe."
 
 #: Merge.rc:3ECC9EC3
 #, c-format
@@ -3684,7 +3684,7 @@ msgstr "Nema VSS baze"
 #: Merge.rc:61E8009E
 #, c-format
 msgid "Error from VSS:"
-msgstr "Greška iz VSS:"
+msgstr "GreÅ¡ka iz VSS:"
 
 #: Merge.rc:268A7727
 #, c-format
@@ -3693,8 +3693,8 @@ msgid ""
 " Please, check config spec of used view.\n"
 " Undo checkout operation?"
 msgstr ""
-"Versioning Sistem pokazuje grešku dok pokušava provjeriti datoteku..\n"
-" Molimo pregledajte podešenost korištenog izgleda. .\n"
+"Versioning Sistem pokazuje greÅ¡ku dok pokuÅ¡ava provjeriti datoteku..\n"
+" Molimo pregledajte podeÅ¡enost koriÅ¡tenog izgleda. .\n"
 " Odustati?"
 
 #: Merge.rc:1929D7D3
@@ -3703,23 +3703,23 @@ msgid ""
 "Versioning System returned an error while attempting to undo checkout the file.\n"
 " Please, check config spec of used view. "
 msgstr ""
-"Versioning Sistem pokazuje grešku dok pokušava provjeriti datoteku.\n"
-" Molimo pregledajte podešenost korištenog izgleda. "
+"Versioning Sistem pokazuje greÅ¡ku dok pokuÅ¡ava provjeriti datoteku.\n"
+" Molimo pregledajte podeÅ¡enost koriÅ¡tenog izgleda. "
 
 #: Merge.rc:46FCCCF
 #, c-format
 msgid "None"
-msgstr "Ništa"
+msgstr "NiÅ¡ta"
 
 #: Merge.rc:5164E1E6
 #, c-format
 msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (5.0 i viši)"
+msgstr "Visual SourceSafe (5.0 i viÅ¡i)"
 
 #: Merge.rc:5164E1E7
 #, c-format
 msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 i viši)"
+msgstr "Visual SourceSafe (5.0 i viÅ¡i)"
 
 #: Merge.rc:2405135
 #, c-format
@@ -3819,7 +3819,7 @@ msgstr ""
 #: Merge.rc:DD21175
 #, c-format
 msgid "Left side - select destination folder:"
-msgstr "Lijeva strana - odaberite odredišnu mapu:"
+msgstr "Lijeva strana - odaberite odrediÅ¡nu mapu:"
 
 #: Merge.rc:2B480620
 #, c-format
@@ -3829,17 +3829,17 @@ msgstr ""
 #: Merge.rc:5BBC5591
 #, c-format
 msgid "Right side - select destination folder:"
-msgstr "Desna strana - odaberite odredišnu mapu:"
+msgstr "Desna strana - odaberite odrediÅ¡nu mapu:"
 
 #: Merge.rc:66367ECA
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr "(%1 datoteka dorağeno)"
+msgstr "(%1 datoteka doraÄ‘eno)"
 
 #: Merge.rc:65510B09
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(%1 od %2 datoteka dorağeno)"
+msgstr "(%1 od %2 datoteka doraÄ‘eno)"
 
 #: Merge.rc:2B0F0BA2
 #, c-format
@@ -3879,7 +3879,7 @@ msgstr ""
 "%1\n"
 "do nje.\n"
 "\n"
-"Osvjeite usporedbu."
+"OsvjeÅ¾ite usporedbu."
 
 #: Merge.rc:2019BE6E
 #, c-format
@@ -3894,7 +3894,7 @@ msgstr "Premjestiti %d stavku?"
 #: Merge.rc:CAEDA37
 #, c-format
 msgid "Confirm Move"
-msgstr "Potvrdite premještanje"
+msgstr "Potvrdite premjeÅ¡tanje"
 
 #: Merge.rc:1E9E7AFF
 #, c-format
@@ -3904,7 +3904,7 @@ msgstr ""
 #: Merge.rc:4B6299EF
 #, c-format
 msgid "Failed to execute external editor: %1"
-msgstr "Greška pri pokretanju vanjskog editora: %1"
+msgstr "GreÅ¡ka pri pokretanju vanjskog editora: %1"
 
 #: Merge.rc:7350CBB7
 #, c-format
@@ -3929,7 +3929,7 @@ msgstr "Datum lijevo"
 #: Merge.rc:39174D9C
 #, c-format
 msgid "Right Date"
-msgstr "Datum sadašnji"
+msgstr "Datum sadaÅ¡nji"
 
 #: Merge.rc:13C27216
 #, c-format
@@ -3944,12 +3944,12 @@ msgstr "Tip"
 #: Merge.rc:1B633072
 #, c-format
 msgid "Left Size"
-msgstr "Velièina lijevo"
+msgstr "VeliÄina lijevo"
 
 #: Merge.rc:39174D9D
 #, c-format
 msgid "Right Size"
-msgstr "Velièina desno"
+msgstr "VeliÄina desno"
 
 #: Merge.rc:13C27217
 #, c-format
@@ -3959,12 +3959,12 @@ msgstr ""
 #: Merge.rc:237A128
 #, c-format
 msgid "Right Size (Short)"
-msgstr "Velièina desno (skraæeno)"
+msgstr "VeliÄina desno (skraÄ‡eno)"
 
 #: Merge.rc:353D7BD8
 #, c-format
 msgid "Left Size (Short)"
-msgstr "Velièina lijevo (skraæeno)"
+msgstr "VeliÄina lijevo (skraÄ‡eno)"
 
 #: Merge.rc:17F5B414
 #, c-format
@@ -4009,7 +4009,7 @@ msgstr ""
 #: Merge.rc:194397DE
 #, c-format
 msgid "Short Result"
-msgstr "Rezultat skraæeno"
+msgstr "Rezultat skraÄ‡eno"
 
 #: Merge.rc:71676C49
 #, c-format
@@ -4029,7 +4029,7 @@ msgstr ""
 #: Merge.rc:15875424
 #, c-format
 msgid "Left EOL"
-msgstr "Završetak reda lijevo"
+msgstr "ZavrÅ¡etak reda lijevo"
 
 #: Merge.rc:D0645BD
 #, c-format
@@ -4039,7 +4039,7 @@ msgstr ""
 #: Merge.rc:5F87E5D
 #, c-format
 msgid "Right EOL"
-msgstr "Završetak retka desne datoteke."
+msgstr "ZavrÅ¡etak retka desne datoteke."
 
 #: Merge.rc:5C8E17CF
 #, c-format
@@ -4069,7 +4069,7 @@ msgstr "Ne mogu usporediti datoteke"
 #: Merge.rc:4166A155
 #, c-format
 msgid "Item aborted"
-msgstr "Odbaèena stavka"
+msgstr "OdbaÄena stavka"
 
 #: Merge.rc:670ABDC3
 #, c-format
@@ -4104,22 +4104,22 @@ msgstr ""
 #: Merge.rc:6B248E76
 #, c-format
 msgid "Binary files are identical"
-msgstr "Binarne datoteke su identiène"
+msgstr "Binarne datoteke su identiÄne"
 
 #: Merge.rc:6B248E77
 #, c-format
 msgid "Binary files are different"
-msgstr "Binarne datoteke su razlièite"
+msgstr "Binarne datoteke su razliÄite"
 
 #: Merge.rc:72DF5DE2
 #, c-format
 msgid "Files are different"
-msgstr "Datoteke su razlièite"
+msgstr "Datoteke su razliÄite"
 
 #: Merge.rc:387F7982
 #, c-format
 msgid "Folders are different"
-msgstr "Mape su razlièite"
+msgstr "Mape su razliÄite"
 
 #: Merge.rc:1B633073
 #, c-format
@@ -4154,12 +4154,12 @@ msgstr ""
 #: Merge.rc:79AB21E1
 #, c-format
 msgid "Error"
-msgstr "Greška"
+msgstr "GreÅ¡ka"
 
 #: Merge.rc:12D66B44
 #, c-format
 msgid "Text files are identical"
-msgstr "Tekstovi su identièni"
+msgstr "Tekstovi su identiÄni"
 
 #: Merge.rc:1DEEB161
 #, c-format
@@ -4179,7 +4179,7 @@ msgstr ""
 #: Merge.rc:12D66B45
 #, c-format
 msgid "Text files are different"
-msgstr "Tekstovi su razlièiti"
+msgstr "Tekstovi su razliÄiti"
 
 #: Merge.rc:203BBC7B
 #, c-format
@@ -4189,12 +4189,12 @@ msgstr "Proteklo vrijeme: %ld ms"
 #: Merge.rc:6C7BF198
 #, c-format
 msgid "1 item selected"
-msgstr "1 stavka oznaèena"
+msgstr "1 stavka oznaÄena"
 
 #: Merge.rc:5D49B8EC
 #, c-format
 msgid "%1 items selected"
-msgstr "%1 stavki oznaèeno"
+msgstr "%1 stavki oznaÄeno"
 
 #: Merge.rc:3A5D5963
 #, c-format
@@ -4204,12 +4204,12 @@ msgstr "Naziv datoteke ili mape."
 #: Merge.rc:A7628EE
 #, c-format
 msgid "Subfolder name when subfolders are included."
-msgstr "Nazivi podmapa ako su podmape ukljuèene."
+msgstr "Nazivi podmapa ako su podmape ukljuÄene."
 
 #: Merge.rc:6F88EC68
 #, c-format
 msgid "Comparison result, long form."
-msgstr "Rezultat usporedbe, dui oblik."
+msgstr "Rezultat usporedbe, duÅ¾i oblik."
 
 #: Merge.rc:28BFDD41
 #, c-format
@@ -4234,12 +4234,12 @@ msgstr "Tip (ekstenzija) datoteke"
 #: Merge.rc:172385A1
 #, c-format
 msgid "Left file size in bytes."
-msgstr "Velièina u bajtima, lijeve datoteke."
+msgstr "VeliÄina u bajtima, lijeve datoteke."
 
 #: Merge.rc:94C89D4
 #, c-format
 msgid "Right file size in bytes."
-msgstr "Velièina u bajtima, desne datoteke."
+msgstr "VeliÄina u bajtima, desne datoteke."
 
 #: Merge.rc:27AAA636
 #, c-format
@@ -4249,12 +4249,12 @@ msgstr ""
 #: Merge.rc:2EBBDDD6
 #, c-format
 msgid "Left file size abbreviated."
-msgstr "Skraæenice lijeve datoteke"
+msgstr "SkraÄ‡enice lijeve datoteke"
 
 #: Merge.rc:21DC7C32
 #, c-format
 msgid "Right file size abbreviated."
-msgstr "Skraæenice desne datoteke"
+msgstr "SkraÄ‡enice desne datoteke"
 
 #: Merge.rc:BA50069
 #, c-format
@@ -4299,7 +4299,7 @@ msgstr ""
 #: Merge.rc:43600E91
 #, c-format
 msgid "Short comparison result."
-msgstr "Rezultat usporedbe, kraæi oblik."
+msgstr "Rezultat usporedbe, kraÄ‡i oblik."
 
 #: Merge.rc:20155F5A
 #, c-format
@@ -4319,12 +4319,12 @@ msgstr ""
 #: Merge.rc:703AF3C8
 #, c-format
 msgid "Left side file EOL type"
-msgstr "Naèin završetka retka lijeve datoteke."
+msgstr "NaÄin zavrÅ¡etka retka lijeve datoteke."
 
 #: Merge.rc:73E9B1DC
 #, c-format
 msgid "Right side file EOL type"
-msgstr "Naèin završetka retka desne datoteke."
+msgstr "NaÄin zavrÅ¡etka retka desne datoteke."
 
 #: Merge.rc:6CA26873
 #, c-format
@@ -4354,12 +4354,12 @@ msgstr "Broj zanemarenih razlika u datoteci. Zanemarene razlike ne mogu biti spa
 #: Merge.rc:6A6D5CB6
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
-msgstr "Broj razlika u datoteci. Zanemarene razlike nisu ukljuèene."
+msgstr "Broj razlika u datoteci. Zanemarene razlike nisu ukljuÄene."
 
 #: Merge.rc:A7628EF
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "Prikai zvjezdicu (*) uz binarnu datoteku."
+msgstr "PrikaÅ¾i zvjezdicu (*) uz binarnu datoteku."
 
 #: Merge.rc:1AC98D0D
 #, c-format
@@ -4389,7 +4389,7 @@ msgstr "Jednostavni HTML"
 #: Merge.rc:67FDA050
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "Datoteka izvještaja veæ postoji. Natpisati?"
+msgstr "Datoteka izvjeÅ¡taja veÄ‡ postoji. Natpisati?"
 
 #: Merge.rc:630F8340
 #, c-format
@@ -4397,13 +4397,13 @@ msgid ""
 "Error creating the report:\n"
 "%1"
 msgstr ""
-"Greška pri stvaranju izvještaja:\n"
+"GreÅ¡ka pri stvaranju izvjeÅ¡taja:\n"
 "%1"
 
 #: Merge.rc:37B243DF
 #, c-format
 msgid "The report has been created successfully."
-msgstr "Izvještaj je uspješno stvoren."
+msgstr "IzvjeÅ¡taj je uspjeÅ¡no stvoren."
 
 #: Merge.rc:162B12F9
 #, c-format
@@ -4413,12 +4413,12 @@ msgstr "Ista datoteka je otvorena u oba panela."
 #: Merge.rc:7632E88D
 #, c-format
 msgid "The selected files are identical."
-msgstr "Datoteke su identiène."
+msgstr "Datoteke su identiÄne."
 
 #: Merge.rc:44565DBD
 #, c-format
 msgid "An error occurred while comparing the files."
-msgstr "Greška pri usporedbi datoteka."
+msgstr "GreÅ¡ka pri usporedbi datoteka."
 
 #: Merge.rc:5F16D9DC
 #, c-format
@@ -4436,19 +4436,19 @@ msgid ""
 msgstr ""
 "Datoteke se razlikuju prema prelazu u drugi redak.\n"
 "\n"
-"Zadravate li razlièitost prijelaza u drugi redak?\n"
+"ZadrÅ¾avate li razliÄitost prijelaza u drugi redak?\n"
 "\n"
-"Napomena: elite li uvijek zadrati li razlièitost prijelaza u drugi redak, odaberite 'Zanemari razlièitost prijelaza u drugi redak..' u kartici usporedbi u oknu dijaloga 'Ureğivanje/Postavke."
+"Napomena: Å½elite li uvijek zadrÅ¾ati li razliÄitost prijelaza u drugi redak, odaberite 'Zanemari razliÄitost prijelaza u drugi redak..' u kartici usporedbi u oknu dijaloga 'UreÄ‘ivanje/Postavke."
 
 #: Merge.rc:46FB8639
 #, c-format
 msgid "The selected folder is invalid."
-msgstr "Odabrana mapa je pogrešna."
+msgstr "Odabrana mapa je pogreÅ¡na."
 
 #: Merge.rc:4BC3EDDB
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "Ne mogu otvoriti binarnu datoteku u ureğivaèu"
+msgstr "Ne mogu otvoriti binarnu datoteku u ureÄ‘ivaÄu"
 
 #: Merge.rc:279EB840
 #, c-format
@@ -4459,9 +4459,9 @@ msgid ""
 "%1\n"
 "to the other side and open these folders?"
 msgstr ""
-"Mapa postoji samo na jednoj strani i ne moe se otvoriti.\n"
+"Mapa postoji samo na jednoj strani i ne moÅ¾e se otvoriti.\n"
 "\n"
-"elite li stvoriti mapu:\n"
+"Å½elite li stvoriti mapu:\n"
 "%1\n"
 "na drugoj strani i otvoriti je?"
 
@@ -4492,14 +4492,14 @@ msgid ""
 "Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
 "Would you like to treat both files as being in the default windows codepage (recommended)?"
 msgstr ""
-"Razlièite kodne stranice lijeve (ks%d) i desna (ks%d) datoteke. \n"
-"Prikaz svake datoteke u vlastitoj ks je ljepši, ali dovodi do teškoæa prilikom spajanja ili kopiranja.\n"
-"Preporuèamo obje datoteke prikazati u Windows prednamještenoj kodnoj stranici?"
+"RazliÄite kodne stranice lijeve (ks%d) i desna (ks%d) datoteke. \n"
+"Prikaz svake datoteke u vlastitoj ks je ljepÅ¡i, ali dovodi do teÅ¡koÄ‡a prilikom spajanja ili kopiranja.\n"
+"PreporuÄamo obje datoteke prikazati u Windows prednamjeÅ¡tenoj kodnoj stranici?"
 
 #: Merge.rc:5851E4C8
 #, c-format
 msgid "Information lost due to encoding errors: both files"
-msgstr "Greškom pri kodiranju izgubljena je informacija: obje datoteke"
+msgstr "GreÅ¡kom pri kodiranju izgubljena je informacija: obje datoteke"
 
 #: Merge.rc:5851E4C9
 #, c-format
@@ -4524,7 +4524,7 @@ msgstr "Nema razlike"
 #: Merge.rc:71676C4A
 #, c-format
 msgid "Line difference"
-msgstr "Razlièiti redak"
+msgstr "RazliÄiti redak"
 
 #: Merge.rc:6DBD6126
 #, c-format
@@ -4534,7 +4534,7 @@ msgstr "Zamijenjeno %1 pojam (pojmova)."
 #: Merge.rc:334E25B3
 #, c-format
 msgid "Cannot find string \"%s\""
-msgstr "Ne mogu naæi pojam \"%s\""
+msgstr "Ne mogu naÄ‡i pojam \"%s\""
 
 #: Merge.rc:34855CF1
 #, c-format
@@ -4569,7 +4569,7 @@ msgstr ""
 #: Merge.rc:5C8E17D1
 #, c-format
 msgid "Location Pane"
-msgstr "Poloaj panela"
+msgstr "PoloÅ¾aj panela"
 
 #: Merge.rc:629C1DDF
 #, c-format
@@ -4594,7 +4594,7 @@ msgstr "2. stavka ili mapa ne postoji!"
 #: Merge.rc:E611488
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "Datoteka razlika veæ postoji. Natpisati?"
+msgstr "Datoteka razlika veÄ‡ postoji. Natpisati?"
 
 #: Merge.rc:62226073
 #, c-format
@@ -4604,7 +4604,7 @@ msgstr "[%1 datoteka odabrano]"
 #: Merge.rc:27AFDB30
 #, c-format
 msgid "Normal"
-msgstr "Uobièajeno"
+msgstr "UobiÄajeno"
 
 #: Merge.rc:7E5494F7
 #, c-format
@@ -4614,7 +4614,7 @@ msgstr "Detaljnije"
 #: Merge.rc:24173EE8
 #, c-format
 msgid "Unified"
-msgstr "Zdrueno"
+msgstr "ZdruÅ¾eno"
 
 #: Merge.rc:185B8391
 #, c-format
@@ -4664,9 +4664,9 @@ msgid ""
 "All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
 "See manual for more info about archive support and how to enable it."
 msgstr ""
-"Rad s arhivama nije omoguæen.\n"
-"Nema nunih komponenata (7-zip i/ili Merge7z*.dll) .\n"
-"Pregledajte upute kako omoguæiti rad s arhivama."
+"Rad s arhivama nije omoguÄ‡en.\n"
+"Nema nuÅ¾nih komponenata (7-zip i/ili Merge7z*.dll) .\n"
+"Pregledajte upute kako omoguÄ‡iti rad s arhivama."
 
 #: Merge.rc:44EE84AB
 #, c-format
@@ -4691,12 +4691,12 @@ msgstr "Izvoz postavki u datoteku"
 #: Merge.rc:7D23E524
 #, c-format
 msgid "Failed to import options from the file."
-msgstr "Greška pri uèitanju postavki"
+msgstr "GreÅ¡ka pri uÄitanju postavki"
 
 #: Merge.rc:68F9158
 #, c-format
 msgid "Failed to write options to the file."
-msgstr "Greška pri pohrani odabranih postavki."
+msgstr "GreÅ¡ka pri pohrani odabranih postavki."
 
 #: Merge.rc:404DAD7D
 #, c-format
@@ -4722,7 +4722,7 @@ msgstr "Tip"
 #: Merge.rc:5ED09E18
 #, c-format
 msgid "Unpacker"
-msgstr "Raspakiravaè"
+msgstr "RaspakiravaÄ"
 
 #: Merge.rc:37C6B9B9
 #, c-format
@@ -4732,7 +4732,7 @@ msgstr "Prediffer"
 #: Merge.rc:29ECCB83
 #, c-format
 msgid "Editor script"
-msgstr "Ureğivaè skripti"
+msgstr "UreÄ‘ivaÄ skripti"
 
 #: Merge.rc:51A4FE5F
 #, c-format
@@ -4822,17 +4822,17 @@ msgstr ""
 #: Merge.rc:6107F02B
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "Arhiver æe se koristiti za obje datoteke (jedna treba samo ekstenziju)"
+msgstr "Arhiver Ä‡e se koristiti za obje datoteke (jedna treba samo ekstenziju)"
 
 #: Merge.rc:429CABF5
 #, c-format
 msgid "No prediffer (normal)"
-msgstr "Bez dodataka (uobièajeno)"
+msgstr "Bez dodataka (uobiÄajeno)"
 
 #: Merge.rc:62909ED8
 #, c-format
 msgid "Suggested plugins"
-msgstr "Preporuèljivi dodaci"
+msgstr "PreporuÄljivi dodaci"
 
 #: Merge.rc:4DAEA639
 #, c-format
@@ -4867,12 +4867,12 @@ msgstr "Postavke dodataka"
 #: Merge.rc:791F1E67
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH dodatak nije nağen! - .sct skripte su onemoguæene"
+msgstr "WSH dodatak nije naÄ‘en! - .sct skripte su onemoguÄ‡ene"
 
 #: Merge.rc:4FC259D5
 #, c-format
 msgid "<None>"
-msgstr "Ništa"
+msgstr "NiÅ¡ta"
 
 #: Merge.rc:8BF6984
 #, c-format
@@ -4887,7 +4887,7 @@ msgstr "Idi &na redak"
 #: Merge.rc:7F0D4B47
 #, c-format
 msgid "Disabled"
-msgstr "Onemoguæeno"
+msgstr "OnemoguÄ‡eno"
 
 #: Merge.rc:444C5DDD
 #, c-format
@@ -4897,12 +4897,12 @@ msgstr "Sistem datoteka"
 #: Merge.rc:7A4CFAFE
 #, c-format
 msgid "From MRU list"
-msgstr "Popis zadnje korištenih"
+msgstr "Popis zadnje koriÅ¡tenih"
 
 #: Merge.rc:638BD42D
 #, c-format
 msgid "No Highlighting"
-msgstr "Nije oznaèeno"
+msgstr "Nije oznaÄeno"
 
 #: Merge.rc:7460E8C0
 #, c-format
