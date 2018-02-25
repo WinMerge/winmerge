@@ -693,7 +693,7 @@ Pekka Himanen</screen></para>
 
         <para>Filters lines beginning with <literal>::</literal></para>
 
-        <screen format="linespecific">^/\**.\*/$</screen>
+        <screen format="linespecific">^/\*.*\*/$</screen>
 
         <para>Filters lines beginning with
         <literal><constant>/*</constant></literal> and ending with
