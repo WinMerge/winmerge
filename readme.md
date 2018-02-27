@@ -21,28 +21,28 @@ This is a fork of https://sourceforge.net/projects/winmerge (https://bitbucket.o
 
 ## Folder Compare
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/foldercmp.png)
+![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/foldercmp.png)
 
 ## File Compare
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/filecmp_defaultcolorscheme.png)
+![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/filecmp_defaultcolorscheme.png)
 
 ## File Compare (New Color Scheme)
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/filecmp.png)
+![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/filecmp.png)
 
 ## Displays Only Differences
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/diffcontext0.png)
+![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/diffcontext0.png)
 
 ## Excel Plugin&Image Compare
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/excelimagecmp.png)
+![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/excelimagecmp.png)
 
 ## Excel Plugin Setting
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/excelplugin.png)
+![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/excelplugin.png)
 
 ## Binary Compare
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/default/Docs/Screenshots/binarycmp.png)
+![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/binarycmp.png)
