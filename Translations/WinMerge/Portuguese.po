@@ -2649,7 +2649,7 @@ msgstr "Guardar..."
 #: Merge.rc:43E58E59
 #, c-format
 msgid "Backup Files"
-msgstr "Fazer cópia de ficheiros"
+msgstr "Cópia de ficheiros"
 
 #: Merge.rc:69AD3BF9
 #, c-format
