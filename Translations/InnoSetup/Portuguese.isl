@@ -314,11 +314,11 @@ CustomInstallation=Instalação personalizada
 AppCoreFiles=Ficheiros principais do WinMerge
 Filters=Filtros
 Plugins=Plugins
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-ArchiveSupport=Archive Support
-ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Frhed=Frhed(Editor gratuito hex)
+WinIMerge=WinIMerge (Dividir/Juntar Imagem)
+ArchiveSupport=Suporte de ficheiros
+ShellExtension32bit=Extensão Shell WinMerge 32 bits
+Patch=Pacote GnuWin32 para Windows
 
 ;Localization Components
 Languages=Idiomas
@@ -344,7 +344,7 @@ NorwegianLanguage=Norueguês menus e diálogos
 PersianLanguage=Persa menus e diálogos
 PolishLanguage=Polonês menus e diálogos
 PortugueseBrazilLanguage=Português (Brasil) menus e diálogos
-PortugueseLanguage=Português menus e diálogos
+PortugueseLanguage=Português (Portugal) menus e diálogos
 RomanianLanguage=Romeno menus e diálogos
 RussianLanguage=Russo menus e diálogos
 SerbianLanguage=Sérvio menus e diálogos
