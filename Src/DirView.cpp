@@ -3718,12 +3718,12 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 
 	std::list<String> list;
 	CopyPathnamesForDragAndDrop(SelBegin(), SelEnd(), std::back_inserter(list), GetDiffContext());
-	String filesForDroping = strutils::join(list.begin(), list.end(), _T("\n"));
+	String filesForDroping = strutils::join(list.begin(), list.end(), _T("\n")) + _T("\n");
 
 	CSharedFile file(GMEM_DDESHARE | GMEM_MOVEABLE | GMEM_ZEROINIT);
-	file.Write(filesForDroping.data(), static_cast<unsigned>(filesForDroping.length() * sizeof(TCHAR)));
+	file.Write(filesForDroping.data(), static_cast<unsigned>((filesForDroping.length() + 1) * sizeof(TCHAR)));
 	
-	HGLOBAL hMem = GlobalReAlloc(file.Detach(), filesForDroping.length() * sizeof(TCHAR), 0);
+	HGLOBAL hMem = GlobalReAlloc(file.Detach(), (filesForDroping.length() + 1) * sizeof(TCHAR), 0);
 	if (hMem) 
 	{
 #ifdef _UNICODE
