@@ -79,7 +79,7 @@ SelectLanguageLabel=Selecione o idioma para usar durante a Instalação:
 ClickNext=Clique em Seguinte para continuar ou em Cancelar para cancelar a instalação.
 BeveledLabel=
 BrowseDialogTitle=Procurar Pasta
-BrowseDialogLabel=Selecione uma pasta na lista abaixo e clique em OK.
+BrowseDialogLabel=Selecione uma pasta da lista abaixo e clique OK.
 NewFolderName=Nova Pasta
 
 ; *** "Welcome" wizard page
@@ -314,8 +314,8 @@ CustomInstallation=Instalação personalizada
 AppCoreFiles=Ficheiros principais do WinMerge
 Filters=Filtros
 Plugins=Plugins
-Frhed=Frhed(Editor gratuito hex)
-WinIMerge=WinIMerge (Dividir/Juntar Imagem)
+Frhed=Frhed(Editor hex gratuito)
+WinIMerge=WinIMerge (Dividir/Juntar Imagens)
 ArchiveSupport=Suporte de ficheiros
 ShellExtension32bit=Extensão Shell WinMerge 32 bits
 Patch=Pacote GnuWin32 para Windows
