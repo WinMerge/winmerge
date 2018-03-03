@@ -4,6 +4,42 @@ old format (#XXXXXXX) or new format (patches:#XXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
+WinMerge 2.15.3
+  File compare:
+  - Fix assertion error when started on Windows XP
+  - Fix a problem that moved blocks are sometimes shown as normal diff blocks
+  - Fix a problem that EOL is removed unexpectedly when removing lines
+    included ghost lines
+  - Fix reverse search to search last line correctly
+  - Fix infinite loop when replacing ^ (sf.net#2094)
+  - Fix to show text that contains & on message box, correctly (sf.net#2067)
+  Folder compare:
+  - Fix a problem that unique files are invisible when comparing files using
+    'Date' compare method
+  - Remove trailing garbage from a dragged text (Github#75)
+  Patch generator dialog:
+  - Fix a problem that typed-in Context in Generate Patch is not applied
+    (sf.net#2179)
+  Reports:
+  - Entitify file paths in HTML & XML directory comparison reports (sf.net#2199)
+  Location pane:
+  - Add support for HiDPI screens (Github #54)
+  Plugins:
+  - CompareMSExcelFiles.sct: Add "Compare headers and footers" checkbox to
+    settings dialog (sf.net#2102)
+  Installer:
+  - Remove extra space in installer: " Launch WinMerge" (sf.net#2144)
+  - Add "How to Apply These Terms to Your New Programs" section into GPL.rtf
+    (sf.net#2098)
+  Translations:
+  - Add Finnish translation (sf.net#3031)
+  - Add Sinhala translation (sf.net#3032)
+  - Update Korean translation (Github #61)
+  - Update Portuguese translation (GitHub #56-78)
+  - Update Polish translation (sf.net#2177)
+  - Update Turkish translation (Bitbucket#85, #86)
+  - Change the file encodings of all .po files of WinMerge GUI to UTF-8 
+
 WinMerge 2.15.2
   Appearance:
   - Flatten GUI pane edges
