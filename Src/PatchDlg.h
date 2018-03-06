@@ -83,7 +83,6 @@ protected:
 
 	std::vector<PATCHFILES> m_fileList; /**< Source files to create patch from */
 
-	void ChangeFile(const String &sFile, bool bLeft);
 	void UpdateSettings();
 	void LoadSettings();
 	void SaveSettings();
@@ -96,9 +95,6 @@ protected:
 	afx_msg void OnDiffBrowseFile1();
 	afx_msg void OnDiffBrowseFile2();
 	afx_msg void OnDiffBrowseResult();
-	afx_msg void OnSelchangeFile1Combo();
-	afx_msg void OnSelchangeFile2Combo();
-	afx_msg void OnSelchangeResultCombo();
 	afx_msg void OnSelchangeDiffStyle();
 	afx_msg void OnDiffSwapFiles();
 	afx_msg void OnDefaultSettings();
