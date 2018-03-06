@@ -87,9 +87,6 @@ BEGIN_MESSAGE_MAP(CPatchDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_FILE2, OnDiffBrowseFile2)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_RESULT, OnDiffBrowseResult)
 	ON_BN_CLICKED(IDC_DIFF_DEFAULTS, OnDefaultSettings)
-	ON_CBN_SELCHANGE(IDC_DIFF_FILE1, OnSelchangeFile1Combo)
-	ON_CBN_SELCHANGE(IDC_DIFF_FILE2, OnSelchangeFile2Combo)
-	ON_CBN_SELCHANGE(IDC_DIFF_FILERESULT, OnSelchangeResultCombo)
 	ON_CBN_SELCHANGE(IDC_DIFF_STYLE, OnSelchangeDiffStyle)
 	ON_BN_CLICKED(IDC_DIFF_SWAPFILES, OnDiffSwapFiles)
 	//}}AFX_MSG_MAP
@@ -111,6 +108,14 @@ void CPatchDlg::OnOK()
 	// Only if single files selected, filenames are checked here.
 	// Filenames read from Dirview must be valid ones.
 	size_t selectCount = m_fileList.size();
+	if (selectCount == 0)
+	{
+		PATCHFILES files;
+		files.lfile = m_file1;
+		files.rfile = m_file2;
+		AddItem(files);
+		selectCount = 1;
+	}
 	if (selectCount == 1)
 	{
 		bool file1Ok = (paths::DoesPathExist(m_file1) == paths::IS_EXISTING_FILE);
@@ -125,6 +130,15 @@ void CPatchDlg::OnOK()
 				LangMessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
 			return;
 		}
+
+		PATCHFILES files = m_fileList[0];
+		if (files.lfile != m_file1 && !files.pathLeft.empty())
+			files.pathLeft = _T("");
+		if (files.rfile != m_file2 && !files.pathRight.empty())
+			files.pathRight = _T("");
+		files.lfile = m_file1;
+		files.rfile = m_file2;
+		m_fileList[0] = files;
 	}
 
 	// Check that result (patch) file is absolute path
@@ -257,10 +271,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 
 	folder = m_file1;
 	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), _("Open"), _T(""), TRUE))
-	{
-		ChangeFile(s, true);
 		m_ctlFile1.SetWindowText(s.c_str());
-	}
 }
 
 /** 
@@ -273,48 +284,7 @@ void CPatchDlg::OnDiffBrowseFile2()
 
 	folder = m_file2;
 	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), _("Open"), _T(""), TRUE))
-	{
-		ChangeFile(s, false);
 		m_ctlFile2.SetWindowText(s.c_str());
-	}
-}
-
-/** 
- * @brief Changes original file to patch.
- * This function sets new file for left/right file to create patch from.
- * @param [in] sFile New file for patch creation.
- * @param [in] bLeft If true left file is changed, otherwise right file.
- */
-void CPatchDlg::ChangeFile(const String &sFile, bool bLeft)
-{
-	PATCHFILES pf;
-	size_t count = GetItemCount();
-
-	if (count == 1)
-	{
-		pf = GetItemAt(0);
-	}
-	else if (count > 1)
-	{
-		if (bLeft)
-			m_file1.clear();
-		else
-			m_file2.clear();
-	}
-	ClearItems();
-
-	// Change file
-	if (bLeft)
-	{
-		pf.lfile = sFile;
-		m_file1 = sFile;
-	}
-	else
-	{
-		pf.rfile = sFile;
-		m_file2 = sFile;
-	}
-	AddItem(pf);
 }
 
 /** 
@@ -327,57 +297,7 @@ void CPatchDlg::OnDiffBrowseResult()
 
 	folder = m_fileResult;
 	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), _("Save As"), _T(""), FALSE))
-	{
-		m_fileResult = s;
 		m_ctlResult.SetWindowText(s.c_str());
-	}
-}
-
-/** 
- * @brief Called when File1 combo selection is changed.
- */
-void CPatchDlg::OnSelchangeFile1Combo() 
-{
-	int sel = m_ctlFile1.GetCurSel();
-	if (sel != CB_ERR)
-	{
-		CString cstrFile1 = m_file1.c_str();
-		m_ctlFile1.GetLBText(sel, cstrFile1);
-		m_ctlFile1.SetWindowText(cstrFile1);
-		m_file1 = cstrFile1;
-		ChangeFile(m_file1, true);
-	}
-}
-
-/** 
- * @brief Called when File2 combo selection is changed.
- */
-void CPatchDlg::OnSelchangeFile2Combo() 
-{
-	int sel = m_ctlFile2.GetCurSel();
-	if (sel != CB_ERR)
-	{
-		CString cstrFile2 = m_file1.c_str();
-		m_ctlFile1.GetLBText(sel, cstrFile2);
-		m_ctlFile1.SetWindowText(cstrFile2);
-		m_file2 = cstrFile2;
-		ChangeFile(m_file2, false);
-	}
-}
-
-/** 
- * @brief Called when Result combo selection is changed.
- */
-void CPatchDlg::OnSelchangeResultCombo() 
-{
-	int sel = m_ctlResult.GetCurSel();
-	if (sel != CB_ERR)
-	{
-		CString cstrFileResult = m_fileResult.c_str();
-		m_ctlResult.GetLBText(sel, cstrFileResult);
-		m_ctlResult.SetWindowText(cstrFileResult);
-		m_fileResult = cstrFileResult;
-	}
 }
 
 /** 
