@@ -4,7 +4,7 @@ call SetVersion.cmd
 set DISTDIR=c:\web page\geocities
 
 set GITHUB_USER=sdottaka
-set GITHUB_REPO=winmerge-v2
+set GITHUB_REPO=winmerge-v2-jp
 
 (
 @echo off

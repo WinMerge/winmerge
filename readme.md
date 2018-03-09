@@ -13,9 +13,9 @@ This is a fork of https://sourceforge.net/projects/winmerge (https://bitbucket.o
 
 # Download
 
-[Stable Release](https://github.com/sdottaka/winmerge-v2/releases/latest)
+[Stable Release](https://github.com/sdottaka/winmerge-v2-jp/releases/latest)
 
-[Experimental Releases](https://github.com/sdottaka/winmerge-v2/releases/)
+[Experimental Releases](https://github.com/sdottaka/winmerge-v2-jp/releases/)
 
 # Screenshots
 
