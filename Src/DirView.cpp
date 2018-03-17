@@ -825,7 +825,9 @@ void CDirView::DoDirAction(DirActions::method_type func, const String& status_me
 		FileActionScript actionScript;
 		DirItemWithIndexIterator begin(m_pIList.get(), -1, true);
 		DirItemWithIndexIterator end;
-		std::accumulate(begin, end, &actionScript, MakeDirActions(func));
+		FileActionScript *rsltScript;
+		rsltScript = std::accumulate(begin, end, &actionScript, MakeDirActions(func));
+		ASSERT(rsltScript == &actionScript);
 		// Now we prompt, and execute actions
 		ConfirmAndPerformActions(actionScript);
 	} catch (ContentsChangedException& e) {
@@ -858,7 +860,9 @@ void CDirView::DoDirActionTo(SIDE_TYPE stype, DirActions::method_type func, cons
 		actionScript.m_destBase = destPath;
 		DirItemWithIndexIterator begin(m_pIList.get(), -1, true);
 		DirItemWithIndexIterator end;
-		std::accumulate(begin, end, &actionScript, MakeDirActions(func));
+		FileActionScript *rsltScript;
+		rsltScript = std::accumulate(begin, end, &actionScript, MakeDirActions(func));
+		ASSERT(rsltScript == &actionScript);
 		// Now we prompt, and execute actions
 		ConfirmAndPerformActions(actionScript);
 	} catch (ContentsChangedException& e) {
