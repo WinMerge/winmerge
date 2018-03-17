@@ -546,6 +546,22 @@ void CDirDoc::AbortCurrentScan()
 }
 
 /**
+ * @brief Send signal to thread to pause current scan
+ */
+void CDirDoc::PauseCurrentScan()
+{
+	m_diffThread.Pause();
+}
+
+/**
+ * @brief Send signal to thread to continue current scan
+ */
+void CDirDoc::ContinueCurrentScan()
+{
+	m_diffThread.Continue();
+}
+
+/**
  * @brief Returns true if there is an active scan that hasn't been aborted.
  */
 bool CDirDoc::IsCurrentScanAbortable() const

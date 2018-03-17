@@ -105,6 +105,8 @@ public:
 	CDiffThread m_diffThread;
 	void UpdateHeaderPath(int nIndex);
 	void AbortCurrentScan();
+	void PauseCurrentScan();
+	void ContinueCurrentScan();
 	bool IsCurrentScanAbortable() const;
 	void SetDescriptions(const String strDesc[]);
 	void ApplyDisplayRoot(int nIndex, String &);
