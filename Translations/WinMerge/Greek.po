@@ -1970,6 +1970,16 @@ msgstr "Περιγραφή:"
 msgid "Stop"
 msgstr "Τερματισμός"
 
+#: Merge.rc:D109E01
+#, c-format
+msgid "Pause"
+msgstr ""
+
+#: Merge.rc:4C3E0A2F
+#, c-format
+msgid "Continue"
+msgstr ""
+
 #: Merge.rc:1AC98D0A
 #, c-format
 msgid "Comparing items..."
@@ -2225,7 +2235,7 @@ msgstr "Από&ρριψη αλλαγών"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "Κωδικοσελίδα"
@@ -2610,7 +2620,7 @@ msgstr "Επιλογή:"
 msgid "Margin:"
 msgstr ""
 
-#: Merge.rc:D109E01
+#: Merge.rc:D109E02
 #, c-format
 msgid "Paths"
 msgstr "Διαδρομές"

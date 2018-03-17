@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-02-24 07:04+0000\n"
+"POT-Creation-Date: 2018-03-17 14:33+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1967,6 +1967,16 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
+#: Merge.rc:D109E01
+#, c-format
+msgid "Pause"
+msgstr ""
+
+#: Merge.rc:4C3E0A2F
+#, c-format
+msgid "Continue"
+msgstr ""
+
 #: Merge.rc:1AC98D0A
 #, c-format
 msgid "Comparing items..."
@@ -2222,7 +2232,7 @@ msgstr ""
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr ""
@@ -2607,7 +2617,7 @@ msgstr ""
 msgid "Margin:"
 msgstr ""
 
-#: Merge.rc:D109E01
+#: Merge.rc:D109E02
 #, c-format
 msgid "Paths"
 msgstr ""

@@ -252,7 +252,9 @@
 #define IDC_EXT_EDITOR_PATH             1096
 #define IDC_DIFF_SWAPFILES              1097
 #define IDC_DIFF_OPENTOEDITOR           1098
-#define IDC_COMPARISON_STOP             1106
+#define IDC_COMPARISON_STOP             1105
+#define IDC_COMPARISON_PAUSE            1106
+#define IDC_COMPARISON_CONTINUE         1107
 #define IDC_DIFF_INCLCMDLINE            1108
 #define IDC_WMGOTO_FILELEFT             1109
 #define IDC_WMGOTO_FILEMIDDLE           1110

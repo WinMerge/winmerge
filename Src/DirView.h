@@ -382,6 +382,8 @@ protected:
 	afx_msg void OnCollapseFolder();
 	afx_msg void OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnBnClickedComparisonStop();
+	afx_msg void OnBnClickedComparisonPause();
+	afx_msg void OnBnClickedComparisonContinue();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

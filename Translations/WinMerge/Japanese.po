@@ -1979,6 +1979,16 @@ msgstr "説明:"
 msgid "Stop"
 msgstr "停止"
 
+#: Merge.rc:D109E01
+#, c-format
+msgid "Pause"
+msgstr "一時停止"
+
+#: Merge.rc:4C3E0A2F
+#, c-format
+msgid "Continue"
+msgstr "再開"
+
 #: Merge.rc:1AC98D0A
 #, c-format
 msgid "Comparing items..."
@@ -2234,7 +2244,7 @@ msgstr "変更を破棄する(&C)"
 msgid "Disca&rd All"
 msgstr "すべて破棄する(&R)"
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "コードページ"
@@ -2629,7 +2639,7 @@ msgstr "選択:"
 msgid "Margin:"
 msgstr "マージン:"
 
-#: Merge.rc:D109E01
+#: Merge.rc:D109E02
 #, c-format
 msgid "Paths"
 msgstr "パス"

@@ -59,6 +59,7 @@ public:
 CDiffThread::CDiffThread()
 : m_pDiffContext(NULL)
 , m_bAborting(false)
+, m_bPaused(false)
 , m_pDiffParm(new DiffFuncStruct)
 {
 	m_pAbortgate.reset(new DiffThreadAbortable(this));
@@ -86,6 +87,8 @@ void CDiffThread::SetContext(CDiffContext * pCtx)
  */
 bool CDiffThread::ShouldAbort() const
 {
+	while (m_bPaused && !m_bAborting)
+		Poco::Thread::sleep(100);
 	return m_bAborting;
 }
 
@@ -101,6 +104,7 @@ unsigned CDiffThread::CompareDirectories()
 	m_pDiffParm->m_pAbortgate = m_pAbortgate.get();
 	m_pDiffParm->bOnlyRequested = m_bOnlyRequested;
 	m_bAborting = false;
+	m_bPaused = false;
 
 	m_pDiffParm->nThreadState = THREAD_COMPARING;
 

@@ -41,6 +41,7 @@ public:
 	void SetCompareStat(CompareStats * pCompareStats);
 	void StartUpdating();
 	void EndUpdating();
+	void SetPaused(bool paused);
 
 // Dialog Data
 	//{{AFX_DATA(DirCompProgressBar)

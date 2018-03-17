@@ -183,3 +183,8 @@ void DirCompProgressBar::EndUpdating()
 	KillTimer(IDT_UPDATE);
 }
 
+void DirCompProgressBar::SetPaused(bool paused)
+{
+	GetDlgItem(IDC_COMPARISON_PAUSE)->ShowWindow(paused ? SW_HIDE : SW_SHOW);
+	GetDlgItem(IDC_COMPARISON_CONTINUE)->ShowWindow(paused ? SW_SHOW : SW_HIDE);
+}
