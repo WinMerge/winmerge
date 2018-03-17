@@ -1978,6 +1978,16 @@ msgstr "Описание:"
 msgid "Stop"
 msgstr "Остановить"
 
+#: Merge.rc:D109E01
+#, c-format
+msgid "Pause"
+msgstr ""
+
+#: Merge.rc:4C3E0A2F
+#, c-format
+msgid "Continue"
+msgstr ""
+
 #: Merge.rc:1AC98D0A
 #, c-format
 msgid "Comparing items..."
@@ -2233,7 +2243,7 @@ msgstr "О&тклонить изменения"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "Кодовая страница"
@@ -2622,7 +2632,7 @@ msgstr "Выделенный текст:"
 msgid "Margin:"
 msgstr ""
 
-#: Merge.rc:D109E01
+#: Merge.rc:D109E02
 #, c-format
 msgid "Paths"
 msgstr "Пути"

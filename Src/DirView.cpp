@@ -343,6 +343,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_NOTIFY_REFLECT(LVN_BEGINDRAG, OnBeginDrag)
  	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnCustomDraw)
 	ON_BN_CLICKED(IDC_COMPARISON_STOP, OnBnClickedComparisonStop)
+	ON_BN_CLICKED(IDC_COMPARISON_PAUSE, OnBnClickedComparisonPause)
+	ON_BN_CLICKED(IDC_COMPARISON_CONTINUE, OnBnClickedComparisonContinue)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -3658,6 +3660,20 @@ void CDirView::OnBnClickedComparisonStop()
 	if (m_pCmpProgressBar)
 		m_pCmpProgressBar->EndUpdating();
 	GetDocument()->AbortCurrentScan();
+}
+
+void CDirView::OnBnClickedComparisonPause()
+{
+	if (m_pCmpProgressBar)
+		m_pCmpProgressBar->SetPaused(true);
+	GetDocument()->PauseCurrentScan();
+}
+
+void CDirView::OnBnClickedComparisonContinue()
+{
+	if (m_pCmpProgressBar)
+		m_pCmpProgressBar->SetPaused(false);
+	GetDocument()->ContinueCurrentScan();
 }
 
 /**

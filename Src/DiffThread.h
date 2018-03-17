@@ -101,6 +101,9 @@ public:
 	unsigned GetThreadState() const;
 	void Abort() { m_bAborting = true; }
 	bool IsAborting() const { return m_bAborting; }
+	void Pause() { m_bPaused = true; }
+	void Continue() { m_bPaused = false; }
+	bool IsPaused() const { return m_bPaused; }
 
 // runtime interface for child thread, called on child thread
 	bool ShouldAbort() const;
@@ -111,5 +114,6 @@ private:
 	std::unique_ptr<DiffFuncStruct> m_pDiffParm; /**< Structure for sending data to threads. */
 	std::unique_ptr<DiffThreadAbortable> m_pAbortgate;
 	bool m_bAborting; /**< Is compare aborting? */
+	bool m_bPaused; /**< Is compare paused? */
 	bool m_bOnlyRequested; /**< Are we comparing only requested items (Update?) */
 };

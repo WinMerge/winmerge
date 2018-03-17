@@ -1980,6 +1980,16 @@ msgstr "설명:"
 msgid "Stop"
 msgstr "중지"
 
+#: Merge.rc:D109E01
+#, c-format
+msgid "Pause"
+msgstr ""
+
+#: Merge.rc:4C3E0A2F
+#, c-format
+msgid "Continue"
+msgstr ""
+
 #: Merge.rc:1AC98D0A
 #, c-format
 msgid "Comparing items..."
@@ -2235,7 +2245,7 @@ msgstr "변경사항 취소(&C)"
 msgid "Disca&rd All"
 msgstr "전부 취소(&R)"
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "코드페이지"
@@ -2628,7 +2638,7 @@ msgstr "선택:"
 msgid "Margin:"
 msgstr "여백:"
 
-#: Merge.rc:D109E01
+#: Merge.rc:D109E02
 #, c-format
 msgid "Paths"
 msgstr "경로"
