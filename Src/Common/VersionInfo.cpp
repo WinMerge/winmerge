@@ -4,7 +4,7 @@
  *  @brief Implementation of CVersionInfo class
  */ 
 
-#include "version.h"
+#include "VersionInfo.h"
 #include <windows.h>
 #include <cstdio>
 #include <tchar.h>

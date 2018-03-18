@@ -105,7 +105,7 @@ DATE:		BY:					DESCRIPTION:
 #include "DirDoc.h"
 #include "DirActions.h"
 //#include "ExternalArchiveFormat.h"
-#include "version.h"
+#include "VersionInfo.h"
 #include "paths.h"
 #include "Environment.h"
 #include "Merge7zFormatRegister.h"
