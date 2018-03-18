@@ -858,7 +858,7 @@
     <ClCompile Include="Common\varprop.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Common\version.cpp">
+    <ClCompile Include="Common\VersionInfo.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="VSSHelper.cpp">
@@ -947,6 +947,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\UndoRecord.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ViewableWhitespace.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h" />
+    <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="Common\BCMenu.h" />
@@ -1123,7 +1124,7 @@
     <ClInclude Include="TrDialogs.h" />
     <ClInclude Include="UniMarkdownFile.h" />
     <ClInclude Include="Common\varprop.h" />
-    <ClInclude Include="Common\version.h" />
+    <ClInclude Include="Common\VersionInfo.h" />
     <ClInclude Include="VSSHelper.h" />
     <ClInclude Include="VssPromptDlg.h" />
     <ClInclude Include="WMGotoDlg.h" />
@@ -1173,6 +1174,14 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc" />
+    <ResourceCompile Include="Merge2.rc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">true</ExcludedFromBuild>
+    </ResourceCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

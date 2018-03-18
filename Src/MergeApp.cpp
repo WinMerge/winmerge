@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "MergeApp.h"
 #include "Merge.h"
-#include "version.h"
+#include "VersionInfo.h"
 #include "paths.h"
 #include "Constants.h"
 #include "unicoder.h"
