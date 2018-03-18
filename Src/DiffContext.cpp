@@ -27,7 +27,7 @@
 #include "DiffContext.h"
 #include <Poco/ScopedLock.h>
 #include "CompareOptions.h"
-#include "version.h"
+#include "VersionInfo.h"
 #include "paths.h"
 #include "codepage_detect.h"
 #include "DiffItemList.h"
