@@ -1389,10 +1389,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		}
 
 		for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
-		{
 			fileloc[nIndex].setPath(paths[nIndex]);
-			fileloc[nIndex].encoding = pdi[nIndex]->diffFileInfo[nPane[nIndex]].encoding;
-		}
 		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc,
 			dwFlags, strDesc, _T(""), infoUnpacker);
 	}
