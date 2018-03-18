@@ -26,7 +26,7 @@
 #include <mbctype.h>
 #include <memory>
 #include "Constants.h"
-#include "version.h"
+#include "VersionInfo.h"
 #include "UniFile.h"
 #include "Plugins.h"
 #include "paths.h"

@@ -70,7 +70,7 @@
 #include "JumpList.h"
 #include "DropHandler.h"
 #include "LanguageSelect.h"
-#include "version.h"
+#include "VersionInfo.h"
 #include "Bitmap.h"
 #include "CCrystalTextMarkers.h"
 

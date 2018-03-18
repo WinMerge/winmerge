@@ -217,9 +217,6 @@
     <ClCompile Include="Common\varprop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\version.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="VSSHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -772,6 +769,9 @@
     <ClCompile Include="PropMarkerColors.cpp">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClCompile>
+    <ClCompile Include="Common\VersionInfo.cpp">
+      <Filter>MFCGui\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -967,9 +967,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\varprop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VSSHelper.h">
@@ -1542,6 +1539,9 @@
   <ItemGroup>
     <ResourceCompile Include="Merge.rc">
       <Filter>MFCGui\Source Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="Merge2.rc">
+      <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>
