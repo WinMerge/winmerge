@@ -114,6 +114,25 @@ static ULONG GetLength32(CFile const &f)
 		length = ULONG_MAX;
 	return static_cast<ULONG>(length);
 }
+
+static HGLOBAL ConvertToUTF16ForClipboard(HGLOBAL hMem, int codepage)
+{
+	size_t len = GlobalSize(hMem);
+	HGLOBAL hMemW = GlobalAlloc(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT, (len + 1) * sizeof(wchar_t));
+	LPCSTR pstr = reinterpret_cast<LPCSTR>(GlobalLock(hMem));
+	LPWSTR pwstr = reinterpret_cast<LPWSTR>(GlobalLock(hMemW));
+	int wlen = MultiByteToWideChar(codepage, 0, pstr, static_cast<int>(len), pwstr, static_cast<int>(len + 1));
+	if (len > 0 && pstr[len - 1] != '\0')
+	{
+		pwstr[wlen] = 0;
+		++wlen;
+	}
+	GlobalUnlock(hMemW);
+	hMemW = GlobalReAlloc(hMemW, wlen * sizeof(wchar_t), 0);
+	GlobalUnlock(hMem);
+	return hMemW;
+}
+
 /**
  * @brief Generate report and save it to file.
  * @param [out] errStr Empty if succeeded, otherwise contains error message.
@@ -141,7 +160,9 @@ bool DirCmpReport::GenerateReport(String &errStr)
 			CSharedFile file(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT);
 			m_pFile = &file;
 			GenerateReport(dlg.m_nReportType);
-			SetClipboardData(CF_TEXT, file.Detach());
+			HGLOBAL hMem = file.Detach();
+			SetClipboardData(CF_UNICODETEXT, ConvertToUTF16ForClipboard(hMem, m_bOutputUTF8 ? CP_UTF8 : CP_THREAD_ACP));
+			GlobalFree(hMem);
 			// If report type is HTML, render CF_HTML format as well
 			if (dlg.m_nReportType == REPORT_TYPE_SIMPLEHTML)
 			{
