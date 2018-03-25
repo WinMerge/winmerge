@@ -128,6 +128,23 @@ SharedMemoryImpl::~SharedMemoryImpl()
 	close();
 }
 
+namespace
+{
+	bool canRead(void *p)
+	{
+		__try
+		{
+			char a = *reinterpret_cast<const char *>(p);
+		}
+		__except (EXCEPTION_EXECUTE_HANDLER)
+		{
+			return false;
+		}
+		return true;
+	}
+}
+
+
 void SharedMemoryImpl::map()
 {
 	DWORD access = FILE_MAP_READ;
@@ -136,7 +153,11 @@ void SharedMemoryImpl::map()
 	LPVOID addr = MapViewOfFile(_memHandle, access, 0, 0, static_cast<SIZE_T>(_size));
 	if (!addr)
 		throw SystemException("Cannot map shared memory object", _name);
-
+	if (_size == 1 && !canRead(addr))
+	{
+		UnmapViewOfFile(addr);
+		throw SystemException("Cannot map shared memory object", _name);
+	}
 	_address = static_cast<char*>(addr);
 }
 
