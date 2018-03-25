@@ -285,11 +285,13 @@ bool UniMemFile::DoOpen(const String& filename, AccessMode mode)
 	unsigned sizehi = (unsigned)(m_filesize >> 32);
 	unsigned sizelo = (unsigned)(m_filesize & 0xFFFFFFFF);
 
+#ifndef _WIN64
 	if (sizehi || sizelo > 0x7FFFFFFF)
 	{
 		LastErrorCustom(_T("UniMemFile cannot handle files over 2 gigabytes"));
 		return false;
 	}
+#endif
 
 	if (sizelo == 0)
 	{
@@ -787,6 +789,7 @@ bool UniStdioFile::DoOpen(const String& filename, const String& mode)
 	if (!m_fp)
 		return false;
 
+#ifndef _WIN64
 	unsigned sizehi = (unsigned)(m_filesize >> 32);
 
 	if (sizehi)
@@ -796,6 +799,7 @@ bool UniStdioFile::DoOpen(const String& filename, const String& mode)
 		LastErrorCustom(_T("UniStdioFile cannot handle files over 4 gigabytes"));
 		return false;
 	}
+#endif
 
 	m_lineno = 0;
 	return true;
