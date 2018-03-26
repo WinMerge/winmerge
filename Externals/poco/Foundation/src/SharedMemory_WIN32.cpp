@@ -130,6 +130,7 @@ SharedMemoryImpl::~SharedMemoryImpl()
 
 namespace
 {
+#pragma optimize("", off)
 	bool canRead(void *p)
 	{
 		__try
@@ -142,6 +143,7 @@ namespace
 		}
 		return true;
 	}
+#pragma optimize("", on)
 }
 
 
