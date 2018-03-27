@@ -233,9 +233,12 @@ slurp (current)
               current->buffer = xrealloc (current->buffer, current->bufsize);
 #endif /*__MSDOS__*/
             }
-          cc = read (current->desc,
-          current->buffer + current->buffered_chars,
-          current->bufsize - current->buffered_chars);
+          unsigned int bytes_to_read = min((unsigned int)(current->bufsize - current->buffered_chars), INT_MAX);
+          if (bytes_to_read == 0)
+            break;
+          cc = _read (current->desc,
+                      current->buffer + current->buffered_chars,
+                      bytes_to_read);
           if (cc == 0)
             break;
           if (cc == -1)
