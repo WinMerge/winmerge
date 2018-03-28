@@ -224,10 +224,12 @@ slurp (struct file_data *current)
               current->buffer = xrealloc (current->buffer, current->bufsize);
 #endif /*__MSDOS__*/
             }
-		  assert((current->bufsize - current->buffered_chars) < UINT_MAX);
+          unsigned int bytes_to_read = min((unsigned int)(current->bufsize - current->buffered_chars), INT_MAX);
+          if (bytes_to_read == 0)
+            break;
           cc = _read (current->desc,
-          current->buffer + current->buffered_chars,
-          (unsigned int)(current->bufsize - current->buffered_chars));
+                      current->buffer + current->buffered_chars,
+                      bytes_to_read);
           if (cc == 0)
             break;
           if (cc == -1)
@@ -908,7 +910,6 @@ find_identical_ends (struct file_data filevec[])
 
   /* Allocate line buffer 1.  */
   tem = prefix_count ? filevec[1].suffix_begin - buffer1 : n1;
-  assert((filevec[1].prefix_end - buffer1) < INT_MAX);
   ttt = (int)(filevec[1].prefix_end - buffer1);
   alloc_lines1
     = (buffered_prefix
