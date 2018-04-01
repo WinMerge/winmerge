@@ -1372,6 +1372,11 @@ msgstr "Spremenjen datum in velikost"
 msgid "Size"
 msgstr "Velikost"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1427,10 +1432,10 @@ msgstr "B&rskaj ..."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "Br&skaj"
+msgid "Browse..."
+msgstr "Brskaj ..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1779,7 +1784,7 @@ msgstr "Razlike"
 msgid "Selected Difference:"
 msgstr "Izbrane razlike"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Ozadje"
@@ -1868,6 +1873,11 @@ msgstr "s&istemska mapa"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "mapa po meri"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "Br&skaj"
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2144,7 +2154,7 @@ msgstr "Obarvaj razlike v vrstici"
 msgid "View line differences"
 msgstr "Poglej razlike vrstic na"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "&znakovnem nivoju"
@@ -2204,7 +2214,7 @@ msgstr "Leva stran datoteke"
 msgid "&Save changes"
 msgstr "&Shrani spremembe"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "&Zavrži spremembe"
@@ -2397,11 +2407,6 @@ msgstr "Poročilo primerjanja datotek"
 #, c-format
 msgid "Report &File:"
 msgstr "Poročilna &datoteka:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Brskaj ..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2632,41 +2637,6 @@ msgstr "Izbira:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Poti"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "&Levi okvir:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "Samo za branje"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "&Desni okvir:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Filter:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Odpri.."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Shrani"
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2928,11 +2898,6 @@ msgstr "Neznana napaka pri odpiranju datoteke projekta"
 msgid "Unknown error attempting to save project file"
 msgstr "Neznana napaka pri shranjevanju datoteke projekta"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Datoteka projekta"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -3005,17 +2970,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge prihaja POPOLNOMA BREZ GARANCIJE. To je brezplačna programska oprema, dobrodošli ste za njeno razširjanje pod določenimi pogoji, več v GNU licenci v meniju Pomoč."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Prekini"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Poskusi ponovno"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Prezri"
@@ -3314,7 +3279,7 @@ msgstr ""
 "\n"
 "Če jih ne želite osvežiti sedaj, lahko izberete Ne in osvežite primerjave kasneje."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "&Pot do SS.EXE:"
@@ -3509,7 +3474,7 @@ msgstr ""
 "%1\n"
 "ni konfliktna datoteka."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Shrani kot"
@@ -3815,7 +3780,7 @@ msgstr "Leva (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Desna (%1)"
@@ -3940,7 +3905,7 @@ msgstr "Rezultat primerjave"
 msgid "Left Date"
 msgstr "Levi datum"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Desni datum"
@@ -3960,7 +3925,7 @@ msgstr "Končnica"
 msgid "Left Size"
 msgstr "Leva velikost"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Desna velikost"
@@ -4140,7 +4105,7 @@ msgstr "Mapi sta različni"
 msgid "Left Only"
 msgstr "Samo leva"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Samo desna"
@@ -4963,7 +4928,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

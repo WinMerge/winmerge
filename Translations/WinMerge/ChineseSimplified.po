@@ -1372,6 +1372,11 @@ msgstr "修改日期和文件大小"
 msgid "Size"
 msgstr "文件大小"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1427,10 +1432,10 @@ msgstr "浏览(&R)..."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "浏览(&O)..."
+msgid "Browse..."
+msgstr "浏览..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1777,7 +1782,7 @@ msgstr "不同:"
 msgid "Selected Difference:"
 msgstr "已选择:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "背景"
@@ -1866,6 +1871,11 @@ msgstr "系统临时文件夹(&Y)"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "自定义文件夹(&U):"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "浏览(&O)..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2142,7 +2152,7 @@ msgstr "行内对比"
 msgid "View line differences"
 msgstr "显示行内不同"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "字符级别(&C)"
@@ -2202,7 +2212,7 @@ msgstr "左侧文件"
 msgid "&Save changes"
 msgstr "保存修改(&S)"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "放弃修改(&D)"
@@ -2391,11 +2401,6 @@ msgstr "文件夹对比报告"
 #, c-format
 msgid "Report &File:"
 msgstr "报告文件(&F):"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "浏览..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2626,41 +2631,6 @@ msgstr "选中区域:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "路径"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "左侧(&L):"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "只读(&E)"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "右侧(&R):"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "过滤器(&F):"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "打开..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "保存..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2922,11 +2892,6 @@ msgstr "打开工程文件时发生未知错误"
 msgid "Unknown error attempting to save project file"
 msgstr "保存工程文件时发生未知错误"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "工程文件"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2967,17 +2932,17 @@ msgstr "开发人员:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Ti
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "中止(&A)"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "重试(&R)"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "忽略(&I)"
@@ -3268,7 +3233,7 @@ msgstr "正则表达式"
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr ""
@@ -3457,7 +3422,7 @@ msgstr "解析冲突文件时失败"
 msgid "The file\n%1\nis not a conflict file."
 msgstr "文件\n%1\n不是一个冲突文件"
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "另存为"
@@ -3747,7 +3712,7 @@ msgstr "左侧 (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "右侧 (%1)"
@@ -3873,7 +3838,7 @@ msgstr "对比结果"
 msgid "Left Date"
 msgstr "左侧日期"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "右侧日期"
@@ -3893,7 +3858,7 @@ msgstr "扩展名"
 msgid "Left Size"
 msgstr "左侧文件大小"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "右侧文件大小"
@@ -4073,7 +4038,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "只存在左侧"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "只存在右侧"
@@ -4884,7 +4849,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

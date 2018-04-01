@@ -1375,6 +1375,11 @@ msgstr "Date et taille modifiée"
 msgid "Size"
 msgstr "Taille"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1430,10 +1435,10 @@ msgstr "Parc&ourir..."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "P&arcourir..."
+msgid "Browse..."
+msgstr "Parc&ourir..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1780,7 +1785,7 @@ msgstr "Différence:"
 msgid "Selected Difference:"
 msgstr "Différence sélectionnée :"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Fond"
@@ -1869,6 +1874,11 @@ msgstr "Répertoire temporaire du système"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "Répertoire à identifier:"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "P&arcourir..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2145,7 +2155,7 @@ msgstr "Colorer les différences de ligne"
 msgid "View line differences"
 msgstr "A&fficher les différences"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "Précision au &caractère"
@@ -2205,7 +2215,7 @@ msgstr "Fichier du côté gauche"
 msgid "&Save changes"
 msgstr "&Enregister les changements"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "&Ignorer les changements"
@@ -2398,11 +2408,6 @@ msgstr "Répertoire du rapport de comparaison"
 #, c-format
 msgid "Report &File:"
 msgstr "Fichier du &rapport:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Parc&ourir..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2633,41 +2638,6 @@ msgstr "Sélection:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Chemins"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "&Gauche:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "Lecture seule"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "&Droite:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Filtre:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Ouvrir..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Enregistrer..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2929,11 +2899,6 @@ msgstr "Erreur indéterminée lors de l'ouverture du projet"
 msgid "Unknown error attempting to save project file"
 msgstr "Erreur indéterminée lors de l'enregistrement du projet"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Fichier de projet"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -3006,17 +2971,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge est fourni SANS AUCUNE GARANTIE. C'est un logiciel libre et vous êtes invité à le redistribuer sous certaines conditions; Voir la licence publique générale GNU au menu d'aide pour tous les détails."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Avorter"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Réessayer"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Ignorer"
@@ -3313,7 +3278,7 @@ msgstr ""
 "\n"
 "Si vous ne voulez pas actualiser la comparaison. Sélectionnez Non et l'actualisation se fera plus tard."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "&Chemin vers SS.EXE:"
@@ -3508,7 +3473,7 @@ msgstr ""
 "%1\n"
 "n'est pas un fichier en conflit."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Enregistrer sous"
@@ -3814,7 +3779,7 @@ msgstr "À gauche (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "À droite (%1)"
@@ -3939,7 +3904,7 @@ msgstr "Résultat de la comparaison"
 msgid "Left Date"
 msgstr "Date mod. gauche"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Date mod. droite"
@@ -3959,7 +3924,7 @@ msgstr "Extension"
 msgid "Left Size"
 msgstr "Taille gauche"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Taille droite"
@@ -4139,7 +4104,7 @@ msgstr "Les répertoires sont différents"
 msgid "Left Only"
 msgstr "Juste à gauche"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Juste à droite"
@@ -4962,7 +4927,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

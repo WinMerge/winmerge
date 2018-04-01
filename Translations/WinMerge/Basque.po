@@ -1374,6 +1374,11 @@ msgstr "Eguna eta Neurria Aldatuta"
 msgid "Size"
 msgstr "Neurria"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1429,10 +1434,10 @@ msgstr "Bi&latu..."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "Bilat&u"
+msgid "Browse..."
+msgstr "Bilatu..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1779,7 +1784,7 @@ msgstr "Ezberdintasuna"
 msgid "Selected Difference:"
 msgstr "Hautatutako Ezberdintasuna:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Barrena"
@@ -1868,6 +1873,11 @@ msgstr "&Sistemaren aldibaterako agiritegia"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "&Egile agiritegia:"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "Bilat&u"
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2144,7 +2154,7 @@ msgstr "Lerro Ezberdintasuna Margotzen"
 msgid "View line differences"
 msgstr "&Ikusi lerro ezberdintasunak"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "Hiz&ki maila"
@@ -2204,7 +2214,7 @@ msgstr "Ezkerralde agiria"
 msgid "&Save changes"
 msgstr "Gor&de aldaketak"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "&Baztertu aldaketak"
@@ -2397,11 +2407,6 @@ msgstr "Agiritegi Alderaketa Jakinarazpena"
 #, c-format
 msgid "Report &File:"
 msgstr "Jakinarazi &Agiria:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Bilatu..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2632,41 +2637,6 @@ msgstr "Hautapena:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Helburuak"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "E&zkerra:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "I&rakurri-bakarrik"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "E&skuina:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Iragazkia:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Ireki..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Gorde..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2928,11 +2898,6 @@ msgstr "Akats ezezagun bat egitasmo agiria irekitzen saiatzean"
 msgid "Unknown error attempting to save project file"
 msgstr "Akats ezezagun bat egitasmo agiria gordetzen saiatzean"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Egitasmo Agiria"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -3005,17 +2970,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge BERME BAKAR BAT GABE dator. Hau software askea da eta ongi etorria zara birbanatzeko baldintza jakin batzuenpean ; ikusi GNU Baimen Publiko Orokorra, Laguntza menuan xehetasunetarako."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Utzi"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Birsaiatu"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Baztertu"
@@ -3313,7 +3278,7 @@ msgstr ""
 "\n"
 "Ez badituzu nahi alderaketa guztiak orain berritzea hautatu Ez eta berritu alderaketak gero."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "&Helburutu SS.EXE-ra:"
@@ -3508,7 +3473,7 @@ msgstr ""
 "agiria\n"
 "ez da agiri gatazkatsu bat."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Gorde Honela"
@@ -3814,7 +3779,7 @@ msgstr "Ezkerra (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Eskuina (%1)"
@@ -3939,7 +3904,7 @@ msgstr "Alderaketa emaitza"
 msgid "Left Date"
 msgstr "Ezker Eguna"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Eskuin Eguna"
@@ -3959,7 +3924,7 @@ msgstr "Luzapena"
 msgid "Left Size"
 msgstr "Ezker Neurria"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Eskuin Neurria"
@@ -4139,7 +4104,7 @@ msgstr "Agiritegiak ezberdinak dira"
 msgid "Left Only"
 msgstr "Ezkerra Bakarrik"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Eskuina Bakarrik"
@@ -4962,7 +4927,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

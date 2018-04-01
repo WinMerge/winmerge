@@ -61,7 +61,6 @@
 #include "codepage_detect.h"
 #include "unicoder.h"
 #include "PreferencesDlg.h"
-#include "ProjectFilePathsDlg.h"
 #include "FileOrFolderSelect.h"
 #include "PluginsListDlg.h"
 #include "stringdiffs.h"
@@ -1925,43 +1924,41 @@ CMainFrame * GetMainFrame()
  */
 void CMainFrame::OnSaveProject()
 {
-	String title = _("Project File");
-	CPropertySheet sht(title.c_str());
-	ProjectFilePathsDlg pathsDlg;
-	sht.AddPage(&pathsDlg);
-	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
+	if (!m_pMenus[MENU_OPENVIEW])
+		theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
+	COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
 
-	String left;
-	String right;
+	PathContext paths;
 	CFrameWnd * pFrame = GetActiveFrame();
 	FRAMETYPE frame = GetFrameType(pFrame);
 
 	if (frame == FRAME_FILE)
 	{
 		CMergeDoc * pMergeDoc = static_cast<CMergeDoc *>(pFrame->GetActiveDocument());
-		left = pMergeDoc->m_filePaths.GetLeft();
-		right = pMergeDoc->m_filePaths.GetRight();
-		pathsDlg.SetPaths(left, right);
-		pathsDlg.m_bLeftPathReadOnly = pMergeDoc->m_ptBuf[0]->GetReadOnly();
-		pathsDlg.m_bRightPathReadOnly = pMergeDoc->m_ptBuf[1]->GetReadOnly();
+		pOpenDoc->m_files = pMergeDoc->m_filePaths;
+		for (int pane = 0; pane < pOpenDoc->m_files.size(); ++pane)
+			pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pMergeDoc->m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_PROJECT : 0);
+		pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
+		pOpenDoc->m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 	}
 	else if (frame == FRAME_FOLDER)
 	{
 		// Get paths currently in compare
 		const CDirDoc * pDoc = static_cast<const CDirDoc*>(pFrame->GetActiveDocument());
 		const CDiffContext& ctxt = pDoc->GetDiffContext();
-		left = paths::AddTrailingSlash(ctxt.GetNormalizedLeft());
-		right = paths::AddTrailingSlash(ctxt.GetNormalizedRight());
-		
+
 		// Set-up the dialog
-		pathsDlg.SetPaths(left, right);
-		pathsDlg.m_bIncludeSubfolders = ctxt.m_bRecursive;
-		pathsDlg.m_bLeftPathReadOnly = pDoc->GetReadOnly(0);
-		pathsDlg.m_bRightPathReadOnly = pDoc->GetReadOnly(pDoc->m_nDirs - 1);
+		for (int pane = 0; pane < ctxt.GetCompareDirs(); ++pane)
+		{
+			pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
+			pOpenDoc->m_files.SetPath(pane, paths::AddTrailingSlash(ctxt.GetNormalizedPath(pane)));
+		}
+		pOpenDoc->m_bRecurse = ctxt.m_bRecursive;
+		pOpenDoc->m_strExt = static_cast<FileFilterHelper *>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
 	}
 
-	pathsDlg.m_sFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
-	sht.DoModal();
+	CFrameWnd *pOpenFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, NULL);
+	theApp.m_pOpenTemplate->InitialUpdateFrame(pOpenFrame, pOpenDoc);
 }
 
 /** 

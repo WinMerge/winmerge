@@ -17,6 +17,7 @@
 #define IDR_DIRVIEWMENU                 110 // = IDR_DIRDOCTYPE
 #define IDR_POPUP_DIFF_OPTIONS          113
 #define IDR_POPUP_IMGMERGEVIEW          114
+#define IDR_POPUP_PROJECT               115
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
@@ -432,20 +433,9 @@
 #define IDC_SELECTION_TEXT_COLOR        1285
 #define IDC_REGULAR_TEXT_COLOR          1286
 #define IDC_AUTO_COMPLETE_SOURCE        1287
-#define IDC_PROJ_RFILE_EDIT             1288
-#define IDC_PROJ_FILTER_EDIT            1289
-#define IDC_PROJ_LFILE_BROWSE           1290
-#define IDC_PROJ_RFILE_BROWSE           1291
-#define IDC_PROJ_FILTER_SELECT          1292
-#define IDC_PROJ_INC_SUBFOLDERS         1293
-#define IDC_PROJ_SAVE                   1294
-#define IDC_PROJ_OPEN                   1295
-#define IDC_PROJ_LFILE_EDIT             1296
 #define IDC_FILTER_USER_BROWSE          1297
 #define IDC_FILTER_USER_PATH            1298
 #define IDC_FILTERCOMMENTS_CHECK        1299
-#define IDC_PROJFILE_LREADONLY          1300
-#define IDC_PROJFILE_RREADONLY          1301
 #define IDC_FINDDLG_DONTWRAP            1302
 #define IDC_REPORT_COPYCLIPBOARD        1303
 #define IDC_FILTERFILE_INSTALL          1304
@@ -537,6 +527,7 @@
 #define IDC_EDIT_MARKER_BGCOLORIDX      8821
 #define IDC_EDIT_MARKER_NEW             8822
 #define IDC_EDIT_MARKER_DELETE          8823
+#define IDC_OPTIONS                     8824
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -931,7 +922,6 @@
 #define IDS_BREAK_ON_PUNCTUATION        18492
 #define IDS_UNK_ERROR_READING_PROJECT   18510
 #define IDS_UNK_ERROR_SAVING_PROJECT    18511
-#define IDS_PROJFILEDLG_CAPTION         18512
 #define IDS_PROJFILE_LOAD_SUCCESS       18513
 #define IDS_PROJFILE_SAVE_SUCCESS       18514
 #define IDS_TEXT_REPORT_FILES           18540
@@ -1110,6 +1100,8 @@
 #define ID_FILE_SAVEPROJECT             33119
 #define ID_FILE_ENCODING                33120
 #define ID_FILE_OPENCONFLICT            33121
+#define ID_LOAD_PROJECT                 33122
+#define ID_SAVE_PROJECT                 33123
 #define IDS_AUTOCOMPLETE_DISABLED       33142
 #define IDS_AUTOCOMPLETE_FILE_SYS       33143
 #define IDS_AUTOCOMPLETE_MRU            33144
@@ -1276,7 +1268,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        247
 #define _APS_NEXT_COMMAND_VALUE         33647
-#define _APS_NEXT_CONTROL_VALUE         8817
-#define _APS_NEXT_SYMED_VALUE           115
+#define _APS_NEXT_CONTROL_VALUE         8825
+#define _APS_NEXT_SYMED_VALUE           116
 #endif
 #endif

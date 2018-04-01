@@ -1373,6 +1373,11 @@ msgstr "Datum en grootte gewijzigd"
 msgid "Size"
 msgstr "Grootte"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1428,10 +1433,10 @@ msgstr "Bladeren..."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "Bl&aderen..."
+msgid "Browse..."
+msgstr "Bladeren..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1782,7 +1787,7 @@ msgstr "Verschil:"
 msgid "Selected Difference:"
 msgstr "Geselecteerd verschil:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Achtergrond"
@@ -1871,6 +1876,11 @@ msgstr "Tijdelijke map van het systeem"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "Eigen map:"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "Bl&aderen..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2147,7 +2157,7 @@ msgstr "Kleur van regelverschillen"
 msgid "View line differences"
 msgstr "Bekijk regelverschillen"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "Tekenniveau"
@@ -2207,7 +2217,7 @@ msgstr "Linker bestand"
 msgid "&Save changes"
 msgstr "Wijzigingen op&slaan"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "Wijzigingen ne&geren"
@@ -2402,11 +2412,6 @@ msgstr "Mapvergelijkingsrapport"
 #, c-format
 msgid "Report &File:"
 msgstr "Rapporteer &bestand"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Bladeren..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2637,41 +2642,6 @@ msgstr "Selectie:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Paden"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "&Links:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "All&een-lezen"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "&Rechts:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Filter:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Openen..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Opslaan..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2933,11 +2903,6 @@ msgstr "Onbekende fout bij poging tot openen van projectbestand"
 msgid "Unknown error attempting to save project file"
 msgstr "Onbekende fout bij poging tot opslaan van projectbestand"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Projectbestand"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -3018,17 +2983,17 @@ msgstr ""
 "herverdelen onder bepaalde omstandigheden; zie de GNU General Public License "
 "in het Help-menu voor details."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Afbreken"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Herhalen"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Negeren"
@@ -3333,7 +3298,7 @@ msgstr ""
 "Indien u dit nu niet wilt doen, kan u Nee selecteren en de vergelijkingen "
 "later vernieuwen."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "&Pad naar SS.EXE:"
@@ -3528,7 +3493,7 @@ msgstr ""
 "%1\n"
 "is geen conflictbestand."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Opslaan als"
@@ -3850,7 +3815,7 @@ msgstr "Links (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Rechts (%1)"
@@ -3976,7 +3941,7 @@ msgstr "Vergelijkingsresultaat"
 msgid "Left Date"
 msgstr "Datum links"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Datum rechts"
@@ -3996,7 +3961,7 @@ msgstr "Extensie"
 msgid "Left Size"
 msgstr "Grootte links"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Grootte rechts"
@@ -4176,7 +4141,7 @@ msgstr "Mappen zijn verschillend"
 msgid "Left Only"
 msgstr "Alleen links"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Alleen rechts"
@@ -5030,7 +4995,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

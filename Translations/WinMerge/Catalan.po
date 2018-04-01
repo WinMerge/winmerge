@@ -1370,6 +1370,11 @@ msgstr "Data de modificació i mida"
 msgid "Size"
 msgstr "Mida"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1425,9 +1430,9 @@ msgstr ""
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
+msgid "Browse..."
 msgstr "N&avega..."
 
 #: Merge.rc:64ABCD7D
@@ -1775,7 +1780,7 @@ msgstr "Diferència:"
 msgid "Selected Difference:"
 msgstr "Diferència seleccionada:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Fons"
@@ -1864,6 +1869,11 @@ msgstr ""
 #, c-format
 msgid "C&ustom folder:"
 msgstr ""
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "N&avega..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2140,7 +2150,7 @@ msgstr "Acoloriment de diferència de línia"
 msgid "View line differences"
 msgstr "&Veure les diferències de la línia"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "Nivell de &caràcter"
@@ -2200,7 +2210,7 @@ msgstr "Fitxer del costat esquerre"
 msgid "&Save changes"
 msgstr "&Desa-hi els canvis"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "D&escarta'n els canvis"
@@ -2389,11 +2399,6 @@ msgstr "Informe de comparació de directoris"
 #, c-format
 msgid "Report &File:"
 msgstr "&Fitxer d'informe:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "N&avega..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2624,41 +2629,6 @@ msgstr "Selecció:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Camins"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "&Esquerra:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "Només de &lectura"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "&Dreta:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Filtre:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "&Obre..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "De&sa..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2920,11 +2890,6 @@ msgstr "S'ha produït un error desconegut en intentar obrir un fitxer de project
 msgid "Unknown error attempting to save project file"
 msgstr "S'ha produït un error desconegut en intentar desar un fitxer de projecte"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Fitxer de projecte"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2965,17 +2930,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr ""
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Avorta"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Reintenta"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Ignora"
@@ -3267,7 +3232,7 @@ msgstr "Expressió regular"
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr ""
@@ -3456,7 +3421,7 @@ msgstr ""
 msgid "The file\n%1\nis not a conflict file."
 msgstr ""
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Anomena i desa"
@@ -3746,7 +3711,7 @@ msgstr "Esquerra (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Dreta (%1)"
@@ -3871,7 +3836,7 @@ msgstr "Resultat de la comparació"
 msgid "Left Date"
 msgstr "Data esquerra"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Data dreta"
@@ -3891,7 +3856,7 @@ msgstr "Extensió"
 msgid "Left Size"
 msgstr "Mida esquerra"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Mida dreta"
@@ -4071,7 +4036,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "Només l'esquerre"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Només el dret"
@@ -4881,7 +4846,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""
