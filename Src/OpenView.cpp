@@ -44,6 +44,7 @@
 #include "DropHandler.h"
 #include "FileFilterHelper.h"
 #include "Plugins.h"
+#include "BCMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -647,7 +648,7 @@ void COpenView::OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	CRect rcButton, rcView;
 	GetDlgItem(ID_SAVE_PROJECT)->GetWindowRect(&rcButton);
-	CMenu menu;
+	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_PROJECT));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);

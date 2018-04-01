@@ -2355,7 +2355,7 @@ void CMainFrame::OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMTOOLBAR pToolBar = reinterpret_cast<LPNMTOOLBAR>(pNMHDR);
 	ClientToScreen(&(pToolBar->rcButton));
-	CMenu menu;
+	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIFF_OPTIONS));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
