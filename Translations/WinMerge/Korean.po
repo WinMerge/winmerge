@@ -1375,6 +1375,11 @@ msgstr "변경된 날짜 및 크기"
 msgid "Size"
 msgstr "크기"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1430,10 +1435,10 @@ msgstr "찾아보기(&R)"
 msgid "&3rd(Optional):"
 msgstr "세 번째(&3):"
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "찾아보기(&O)"
+msgid "Browse..."
+msgstr "찾아보기..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1780,7 +1785,7 @@ msgstr "차이점:"
 msgid "Selected Difference:"
 msgstr "선택된 차이점:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "배경색"
@@ -1869,6 +1874,11 @@ msgstr "시스템 임시 폴더(&Y)"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "사용자 폴더(&U):"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "찾아보기(&O)"
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2145,7 +2155,7 @@ msgstr "줄 차이점 채색"
 msgid "View line differences"
 msgstr "줄 차이점 보기"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "문자 단위(&C)"
@@ -2205,7 +2215,7 @@ msgstr "왼쪽 파일"
 msgid "&Save changes"
 msgstr "변경사항 저장(&S)"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "변경사항 취소(&D)"
@@ -2402,11 +2412,6 @@ msgstr "폴더 비교 보고서"
 #, c-format
 msgid "Report &File:"
 msgstr "보고서 파일(&F):"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "찾아보기..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2637,41 +2642,6 @@ msgstr "선택:"
 #, c-format
 msgid "Margin:"
 msgstr "여백:"
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "경로"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "왼쪽(&L):"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "읽기 전용(&E)"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "오른쪽(&R):"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "필터(&F):"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "열기..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "저장..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2945,11 +2915,6 @@ msgstr "프로젝트를 여는 중 알 수 없는 오류가 발생했습니다"
 msgid "Unknown error attempting to save project file"
 msgstr "프로젝트를 저장하는 중 알 수 없는 오류가 발생했습니다"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "프로젝트 파일"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -3030,17 +2995,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge는 절대로 보증 없이 제공됩니다. 이 소프트웨어는 무료이며, 특정 상황에서 재배포는 환영합니다; 자세한 내용은 도움말 메뉴의 GNU 일반 공중 라이선스를 확인하세요."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "취소(&A)"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "재시도(&)"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "무시(&I)"
@@ -3338,7 +3303,7 @@ msgstr ""
 "\n"
 "모든 비교를 갱신하고 싶지 않으면, 이제 아니오를 선택하고 나중에 비교를 갱신할 수 있습니다."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "SS.EXE 경로(&P):"
@@ -3533,7 +3498,7 @@ msgstr ""
 "%1\n"
 "파일은 충돌 파일이 아닙니다."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "다른 이름으로 저장"
@@ -3839,7 +3804,7 @@ msgstr "왼쪽 (%1)"
 msgid "Middle (%1)"
 msgstr "가운데 (%1)"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "오른쪽 (%1)"
@@ -3963,7 +3928,7 @@ msgstr "비교 결과"
 msgid "Left Date"
 msgstr "왼쪽 날짜"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "오른쪽 날짜"
@@ -3983,7 +3948,7 @@ msgstr "확장자"
 msgid "Left Size"
 msgstr "왼쪽 크기"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "오른쪽 크기"
@@ -4163,7 +4128,7 @@ msgstr "폴더가 다릅니다"
 msgid "Left Only"
 msgstr "왼쪽만"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "오른쪽만"
@@ -5063,7 +5028,7 @@ msgstr "다른 탭 닫기(&O)"
 msgid "Enable &Auto Max Width"
 msgstr "자동 최대 너비 사용(&A)"
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr "이미지(&I)"

@@ -116,6 +116,7 @@ protected:
 	void OnSelchangeCombo(int index);
 	void LoadComboboxStates();
 	void SaveComboboxStates();
+	String AskProjectFileName(bool bOpen);
 
 // Generated message map functions
 protected:
@@ -124,6 +125,9 @@ protected:
 	afx_msg void OnPathButton();
 	afx_msg void OnOK();
 	afx_msg void OnCancel();
+	afx_msg void OnLoadProject();
+	afx_msg void OnSaveProject();
+	afx_msg void OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult);
 	template <int N>
 	afx_msg void OnSelchangePathCombo();
 	afx_msg void OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
@@ -133,6 +137,8 @@ protected:
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnSelectUnpacker();
 	afx_msg void OnSelectFilter();
+	afx_msg void OnOptions();
+	afx_msg void OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	template <int MSG, int WPARAM = 0, int LPARAM = 0>
 	afx_msg void OnEditAction();

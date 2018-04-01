@@ -1372,6 +1372,11 @@ msgstr " تاريخ و اندازه اصلاح شده "
 msgid "Size"
 msgstr " اندازه "
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1427,10 +1432,10 @@ msgstr "&r مرور ... "
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "&o مرور ... "
+msgid "Browse..."
+msgstr " مرور ... "
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1783,7 +1788,7 @@ msgstr " تفاوت : "
 msgid "Selected Difference:"
 msgstr " تفاوت انتخاب شده : "
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr " پس زمينه "
@@ -1872,6 +1877,11 @@ msgstr "&y پوشه موقتي سيستم "
 #, c-format
 msgid "C&ustom folder:"
 msgstr "&u  پوشه سفارشي : "
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "&o مرور ... "
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2148,7 +2158,7 @@ msgstr " رنگ آميزي خطوط متفاوت "
 msgid "View line differences"
 msgstr " نمايش تفاوتهاي خط "
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "&C  در سطح دخشه / کارکتر / حرف "
@@ -2208,7 +2218,7 @@ msgstr " پرونده سمت چپي "
 msgid "&Save changes"
 msgstr "&S ذخيره تغييرات "
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "&D دورانداختن تغييرات "
@@ -2403,11 +2413,6 @@ msgstr " گزارش همسنجي پوشه "
 #, c-format
 msgid "Report &File:"
 msgstr " گزارش دادن پرونده : "
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr " مرور ... "
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2638,41 +2643,6 @@ msgstr " انتخاب : "
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr " مسيرها "
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "&L چپ : "
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "&e فقط خواندني "
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "&R راست : "
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&F صافي : "
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr " باز کردن ... "
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr " ذخيره کردن ... "
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2934,11 +2904,6 @@ msgstr " مشاهده خطاي نامشخص هنگام مبادرت به باز�
 msgid "Unknown error attempting to save project file"
 msgstr " مشاهده خطاي نامشخص هنگام مبادرت به ذخيره کردن پرونده پروژه / طرح "
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr " پرونده (پروژه) طرح"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -3019,17 +2984,17 @@ msgstr ""
 "تحت برخي شرايط صاحب اختيار در نشر آن هستيد. براي جزئيات مجوز عمومي کلي   جي "
 "ان يو   را در گزينگان / فهرست راهنما ببينيد "
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&A لغو "
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&R کوشش دوباره "
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&I چشم پوشي "
@@ -3334,7 +3299,7 @@ msgstr ""
 "  اگر نمي خواهيد تمام همسنجيهاي بازسازي شود، مي توانيد خير را انتخاب کرده و "
 "همسنجيها را بعدا بازسازي نماييد "
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "&P مسير SS.EXE : "
@@ -3529,7 +3494,7 @@ msgstr ""
 "%1\n"
 "يک پرونده تعارض، نمي باشد "
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr " ذخيره کردن به صورت "
@@ -3855,7 +3820,7 @@ msgstr " چپ - %1"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr " راست - %1"
@@ -3979,7 +3944,7 @@ msgstr " نتيجه مقايسه "
 msgid "Left Date"
 msgstr " تاريخ چپ "
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr " تاريخ راست "
@@ -3999,7 +3964,7 @@ msgstr " توسعه "
 msgid "Left Size"
 msgstr " اندازه چپ "
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr " اندازه راست "
@@ -4179,7 +4144,7 @@ msgstr " پوشه ها متفاوت هستند "
 msgid "Left Only"
 msgstr " فقط چپ "
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr " فقط راست "
@@ -5030,7 +4995,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

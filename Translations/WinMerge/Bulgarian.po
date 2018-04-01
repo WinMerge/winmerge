@@ -1371,6 +1371,11 @@ msgstr "Променени дата и размер"
 msgid "Size"
 msgstr "Размер"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1426,10 +1431,10 @@ msgstr "Преглед"
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "П&отърси..."
+msgid "Browse..."
+msgstr "Потърси..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1776,7 +1781,7 @@ msgstr "Разлики:"
 msgid "Selected Difference:"
 msgstr "Избрани разлики:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Фон"
@@ -1865,6 +1870,11 @@ msgstr "Временна папка на системата"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "Друга папка"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "П&отърси..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2141,7 +2151,7 @@ msgstr "Оцветявай редовете с разлики"
 msgid "View line differences"
 msgstr "Показвай разликите в реда"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "Ниво &символ"
@@ -2201,7 +2211,7 @@ msgstr "Ляв файл"
 msgid "&Save changes"
 msgstr "&Запиши промените"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "&Отмени промените"
@@ -2390,11 +2400,6 @@ msgstr "Отчет за сравняване на папки"
 #, c-format
 msgid "Report &File:"
 msgstr "Файл:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Потърси..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2625,41 +2630,6 @@ msgstr "Избран:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Пътища"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "От &ляво:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "Само за четене"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "От &дясно:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Филтър:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Отвори..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Запиши..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2921,11 +2891,6 @@ msgstr "Непозната грешка при отварянето на фай�
 msgid "Unknown error attempting to save project file"
 msgstr "Непозната грешка при записването на файла с проекта"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Проектов файл"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2966,17 +2931,17 @@ msgstr "Разработчици:\nDean Grimm, Christian List, Kimmo Varis, Joch
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge идва БЕЗ НИКАКВА ГАРАНЦИЯ. Това е безплатен софтуер и можете да го разпространявате под общите условия; за детайли вижте GNU Публичен лиценз в менюто Помощ."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Прекъсни"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Опитай пак"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Игнорирай"
@@ -3268,7 +3233,7 @@ msgstr "Чести изрази"
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr ""
@@ -3457,7 +3422,7 @@ msgstr "Грешка при разбора на конфликтен файл"
 msgid "The file\n%1\nis not a conflict file."
 msgstr "Файлът\n%1\nне е конфликтен."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Запиши като"
@@ -3747,7 +3712,7 @@ msgstr "Ляво (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Дясно (%1)"
@@ -3872,7 +3837,7 @@ msgstr "Резултати при сравняване"
 msgid "Left Date"
 msgstr "Лява дата"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Дясна дата"
@@ -3892,7 +3857,7 @@ msgstr "Разширение"
 msgid "Left Size"
 msgstr "Размер на лявата част"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Размер на дясната част"
@@ -4072,7 +4037,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "Само левият"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Само десният"
@@ -4885,7 +4850,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

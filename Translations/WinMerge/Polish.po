@@ -1372,6 +1372,11 @@ msgstr "Data modyfikacji i wielkość"
 msgid "Size"
 msgstr "Wielkość"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1427,10 +1432,10 @@ msgstr "P&rzeglądaj"
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "Prz&eglądaj..."
+msgid "Browse..."
+msgstr "Przeglądaj..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1777,7 +1782,7 @@ msgstr "Różnica:"
 msgid "Selected Difference:"
 msgstr "Wybrana różnica:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Tło"
@@ -1866,6 +1871,11 @@ msgstr "systemowy"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "własny folder"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "Prz&eglądaj..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2142,7 +2152,7 @@ msgstr "Kolorowanie różnic linii"
 msgid "View line differences"
 msgstr "Pokaż różnice linii"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "Poziom &znaków"
@@ -2202,7 +2212,7 @@ msgstr "Plik z lewej"
 msgid "&Save changes"
 msgstr "&Zapisz zmiany"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "&Odrzuć zmiany"
@@ -2395,11 +2405,6 @@ msgstr "Raport porównania folderów"
 #, c-format
 msgid "Report &File:"
 msgstr "&Plik raportu:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Przeglądaj..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2630,41 +2635,6 @@ msgstr "Zaznaczenie:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Ścieżki"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "&Lewa:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "Ty&lko do odczytu"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "&Prawa:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Filtr:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Otwórz..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Zapisz..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2926,11 +2896,6 @@ msgstr "Nieznany błąd podczas otwierania projektu"
 msgid "Unknown error attempting to save project file"
 msgstr "Nieznany błąd podczas zapisu projektu"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Plik projektu"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -3003,17 +2968,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge jest rozprowadzany BEZ JAKIEJKOLWIEK GWARANCJI. To jest darmowe oprogramowanie i można je redystrybuować pod szczególnymi warunkami; w celu uzyskania szczegółowych informacji zobacz Licencję GNU General Public License w menu Pomoc."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Przerwij"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "P&onów"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Ignoruj"
@@ -3311,7 +3276,7 @@ msgstr ""
 "\n"
 "Jeżeli nie chcesz odświerzać okien porównań teraz, wybierz Nie i odśwież okna później."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "Ścieżka do SS.EXE"
@@ -3506,7 +3471,7 @@ msgstr ""
 "%1\n"
 "nie jest plikiem konfliktu"
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Zapisz jako"
@@ -3812,7 +3777,7 @@ msgstr "Lewa (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Prawa (%1)"
@@ -3937,7 +3902,7 @@ msgstr "Wynik porównania"
 msgid "Left Date"
 msgstr "Data pliku po lewej"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Data pliku po prawej"
@@ -3957,7 +3922,7 @@ msgstr "Rozszerzenie"
 msgid "Left Size"
 msgstr "Rozmiar w lewym panelu"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Rozmiar w prawym panelu"
@@ -4137,7 +4102,7 @@ msgstr "Foldery different"
 msgid "Left Only"
 msgstr "Tylko po lewej"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Tylko po prawej"
@@ -4960,7 +4925,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

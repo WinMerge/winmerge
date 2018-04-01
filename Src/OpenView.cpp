@@ -49,6 +49,10 @@
 #define new DEBUG_NEW
 #endif
 
+#ifndef BCN_DROPDOWN
+#define BCN_DROPDOWN            (BCN_FIRST + 0x0002)
+#endif
+
 // Timer ID and timeout for delaying path validity check
 const UINT IDT_CHECKFILES = 1;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
@@ -82,7 +86,12 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_NOTIFY_RANGE(CBEN_BEGINEDIT, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnSetfocusPathCombo)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
+	ON_BN_CLICKED(IDC_OPTIONS, OnOptions)
+	ON_NOTIFY(BCN_DROPDOWN, IDC_OPTIONS, OnDropDownOptions)
 	ON_WM_ACTIVATE()
+	ON_COMMAND(ID_LOAD_PROJECT, OnLoadProject)
+	ON_COMMAND(ID_SAVE_PROJECT, OnSaveProject)
+	ON_NOTIFY(BCN_DROPDOWN, ID_SAVE_PROJECT, OnDropDownSaveProject)
 	ON_COMMAND(IDOK, OnOK)
 	ON_COMMAND(IDCANCEL, OnCancel)
 	ON_COMMAND(ID_HELP, OnHelp)
@@ -195,6 +204,8 @@ void COpenView::OnInitialUpdate()
 	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_OPTIONS, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(ID_SAVE_PROJECT, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(ID_HELP, 1, 0, 0, 0); // slides right
@@ -542,6 +553,133 @@ void COpenView::OnCancel()
 {
 	SaveComboboxStates();
 	AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+}
+
+/** 
+ * @brief Callled when Open-button for project file is selected.
+ */
+void COpenView::OnLoadProject()
+{
+	String fileName = AskProjectFileName(true);
+	if (fileName.empty())
+		return;
+
+	ProjectFile project;
+	if (!theApp.LoadProjectFile(fileName, project))
+		return;
+
+	PathContext paths;
+	project.GetPaths(paths, m_bRecurse);
+	project.GetLeftReadOnly();
+	if (paths.size() < 3)
+	{
+		m_strPath[0] = paths[0];
+		m_strPath[1] = paths[1];
+		m_strPath[2] = _T("");
+		m_bReadOnly[0] = project.GetLeftReadOnly();
+		m_bReadOnly[1] = project.GetRightReadOnly();
+		m_bReadOnly[2] = false;
+	}
+	else
+	{
+		m_strPath[0] = paths[0];
+		m_strPath[1] = paths[1];
+		m_strPath[2] = paths[2];
+		m_bReadOnly[0] = project.GetLeftReadOnly();
+		m_bReadOnly[1] = project.GetMiddleReadOnly();
+		m_bReadOnly[2] = project.GetRightReadOnly();
+	}
+	m_strExt = project.GetFilter();
+
+	UpdateData(FALSE);
+	LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
+}
+
+/** 
+ * @brief Called when Save-button for project file is selected.
+ */
+void COpenView::OnSaveProject()
+{
+	UpdateData(TRUE);
+
+	String fileName = AskProjectFileName(false);
+	if (fileName.empty())
+		return;
+
+	ProjectFile project;
+
+	if (!m_strPath[0].empty())
+		project.SetLeft(m_strPath[0], &m_bReadOnly[0]);
+	if (m_strPath[2].empty())
+	{
+		if (!m_strPath[1].empty())
+			project.SetRight(m_strPath[1], &m_bReadOnly[1]);
+	}
+	else
+	{
+		if (!m_strPath[1].empty())
+			project.SetMiddle(m_strPath[1], &m_bReadOnly[1]);
+		if (!m_strPath[2].empty())
+			project.SetRight(m_strPath[2], &m_bReadOnly[2]);
+	}
+	if (!m_strExt.empty())
+	{
+		// Remove possbile prefix from the filter name
+		String prefix = _("[F] ");
+		String strExt = m_strExt;
+		size_t ind = strExt.find(prefix, 0);
+		if (ind == 0)
+		{
+			strExt.erase(0, prefix.length());
+		}
+		strExt = strutils::trim_ws_begin(strExt);
+		project.SetFilter(strExt);
+	}
+	project.SetSubfolders(m_bRecurse);
+
+	if (!theApp.SaveProjectFile(fileName, project))
+		return;
+
+	LangMessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
+}
+
+void COpenView::OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	CRect rcButton, rcView;
+	GetDlgItem(ID_SAVE_PROJECT)->GetWindowRect(&rcButton);
+	CMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_PROJECT));
+	theApp.TranslateMenu(menu.m_hMenu);
+	CMenu* pPopup = menu.GetSubMenu(0);
+	if (NULL != pPopup)
+	{
+		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, 
+			rcButton.left, rcButton.bottom, GetMainFrame());
+	}
+	*pResult = 0;
+}
+
+/** 
+ * @brief Allow user to select a file to open/save.
+ */
+String COpenView::AskProjectFileName(bool bOpen)
+{
+	// get the default projects path
+	String strProjectFileName;
+	String strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
+
+	if (!::SelectFile(GetSafeHwnd(), strProjectFileName, strProjectPath.c_str(),
+			_("Save As"), _("WinMerge Project Files (*.WinMerge)|*.WinMerge||"), bOpen, _T(".WinMerge")))
+		return _T("");
+
+	if (strProjectFileName.empty())
+		return _T("");
+
+	// get the path part from the filename
+	strProjectPath = paths::GetParentPath(strProjectFileName);
+	// store this as the new project path
+	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath);
+	return strProjectFileName;
 }
 
 /** 
@@ -903,6 +1041,22 @@ void COpenView::OnSelectFilter()
 	}
 }
 
+void COpenView::OnOptions()
+{
+	GetMainFrame()->PostMessage(WM_COMMAND, ID_OPTIONS);
+}
+
+void COpenView::OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	NMTOOLBAR dropDown = { 0 };
+	dropDown.hdr.code = TBN_DROPDOWN;
+	dropDown.hdr.hwndFrom = GetMainFrame()->GetDescendantWindow(AFX_IDW_TOOLBAR)->GetSafeHwnd();
+	dropDown.hdr.idFrom = AFX_IDW_TOOLBAR;
+	GetDlgItem(IDC_OPTIONS)->GetWindowRect(&dropDown.rcButton);
+	GetMainFrame()->ScreenToClient(&dropDown.rcButton);
+	GetMainFrame()->SendMessage(WM_NOTIFY, dropDown.hdr.idFrom, reinterpret_cast<LPARAM>(&dropDown));
+	*pResult = 0;
+}
 
 /** 
  * @brief Read paths and filter from project file.

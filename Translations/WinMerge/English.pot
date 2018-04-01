@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-03-17 14:33+0000\n"
+"POT-Creation-Date: 2018-04-01 22:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1367,6 +1367,11 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1422,9 +1427,9 @@ msgstr ""
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
+msgid "Browse..."
 msgstr ""
 
 #: Merge.rc:64ABCD7D
@@ -1772,7 +1777,7 @@ msgstr ""
 msgid "Selected Difference:"
 msgstr ""
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr ""
@@ -1860,6 +1865,11 @@ msgstr ""
 #: Merge.rc:6FC398BB
 #, c-format
 msgid "C&ustom folder:"
+msgstr ""
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
 msgstr ""
 
 #: Merge.rc:55B03C13
@@ -2137,7 +2147,7 @@ msgstr ""
 msgid "View line differences"
 msgstr ""
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr ""
@@ -2197,7 +2207,7 @@ msgstr ""
 msgid "&Save changes"
 msgstr ""
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr ""
@@ -2385,11 +2395,6 @@ msgstr ""
 #: Merge.rc:3ECF34A3
 #, c-format
 msgid "Report &File:"
-msgstr ""
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
 msgstr ""
 
 #: Merge.rc:89AF4FD
@@ -2620,41 +2625,6 @@ msgstr ""
 #: Merge.rc:2FC0BA7D
 #, c-format
 msgid "Margin:"
-msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr ""
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr ""
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr ""
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr ""
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr ""
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr ""
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
 msgstr ""
 
 #: Merge.rc:43E58E59
@@ -2917,11 +2887,6 @@ msgstr ""
 msgid "Unknown error attempting to save project file"
 msgstr ""
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr ""
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2962,17 +2927,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr ""
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr ""
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr ""
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr ""
@@ -3222,7 +3187,7 @@ msgstr ""
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr ""
@@ -3403,7 +3368,7 @@ msgstr ""
 msgid "The file\n%1\nis not a conflict file."
 msgstr ""
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr ""
@@ -3623,7 +3588,7 @@ msgstr ""
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr ""
@@ -3728,7 +3693,7 @@ msgstr ""
 msgid "Left Date"
 msgstr ""
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr ""
@@ -3748,7 +3713,7 @@ msgstr ""
 msgid "Left Size"
 msgstr ""
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr ""
@@ -3928,7 +3893,7 @@ msgstr ""
 msgid "Left Only"
 msgstr ""
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr ""
@@ -4703,7 +4668,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

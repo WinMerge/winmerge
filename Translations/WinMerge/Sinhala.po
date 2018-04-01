@@ -1368,6 +1368,11 @@ msgstr "වෙනස්කල දිනය සහ ප්‍රමාණය"
 msgid "Size"
 msgstr "ප්‍රමාණය"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1423,9 +1428,9 @@ msgstr "සැරි සරන්න..."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
+msgid "Browse..."
 msgstr "සැරි සරන්න..."
 
 #: Merge.rc:64ABCD7D
@@ -1773,7 +1778,7 @@ msgstr " වෙනස:"
 msgid "Selected Difference:"
 msgstr "තෝරාගත් වෙනස :"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "පසුතලය"
@@ -1862,6 +1867,11 @@ msgstr "පද්ධතියේ තාවකාලික ෆෝල්ඩරය"
 #, fuzzy, c-format
 msgid "C&ustom folder:"
 msgstr "C&ustom folder:"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "සැරි සරන්න..."
 
 #: Merge.rc:55B03C13
 #, fuzzy, c-format
@@ -2138,7 +2148,7 @@ msgstr "පේළි අතර වෙනස වර්ණ ගැන්වුම"
 msgid "View line differences"
 msgstr "පේළි අතර වෙනස පෙන්වන්න"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "& සංකේතයේ පිහිටුම"
@@ -2198,7 +2208,7 @@ msgstr "වම් පසෙහි ඇති ගොනුව"
 msgid "&Save changes"
 msgstr "වෙනස්කම් සුරකින්න"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "වෙනස්කම් ඉවතලන්න"
@@ -2389,11 +2399,6 @@ msgstr "පත්‍රිකා සැසඳීමේ වාර්තාව"
 #, fuzzy, c-format
 msgid "Report &File:"
 msgstr "Report &File:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "සැරි සරන්න..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2624,41 +2629,6 @@ msgstr "තෝරා ගැනීම:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "මාර්ගය"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "වම:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "කියවන්න පමණයි"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "දකුණ:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "ෆිල්ටර:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "විවෘත කරන්න..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "සුරකින්න..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2920,11 +2890,6 @@ msgstr "විවෘත කරනලද ව්‍යාපෘති ගොනු
 msgid "Unknown error attempting to save project file"
 msgstr "සුරකින්න කරනලද ව්‍යාපෘති ගොනුවල හඳුනාගත නොහැකි වැරදි හඳුනා ගන්න"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "ව්‍යාපෘති ගොනුව"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2997,17 +2962,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge නිසැකවම පොරොන්දු නැත. මෙය නිදහස් මෘදුකාංගයක් සහ කිසියම් පරිදියක් යටතේ ඔබව සාදරයෙන් පිලිගනිමු.දත්ත සඳහා උදවු ලේඛනය තුල ඇති GNU සාමාන්‍ය පොදු බලපත්‍රය බලන්න."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&අසාර්ථක වෙනවා"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&නැවත උත්සාහ කරන්න"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&නොසලකා හරින්න"
@@ -3305,7 +3270,7 @@ msgstr ""
 "\n"
 "If you do not want to refresh all compares now you can select No and refresh compares later."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "&පෙත දෙසට SS.EXE:"
@@ -3500,7 +3465,7 @@ msgstr ""
 "%1\n"
 "ගැටුම ලිපිගොනුව නොවේ."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "මෙසේ සුරකින්න"
@@ -3806,7 +3771,7 @@ msgstr "වම (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "දකුණ  (%1)"
@@ -3931,7 +3896,7 @@ msgstr "සංසන්දන ප්‍රතිඵල"
 msgid "Left Date"
 msgstr "වම් දිනය"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "දකුණු දිනය"
@@ -3951,7 +3916,7 @@ msgstr "දිගුව"
 msgid "Left Size"
 msgstr "වම් ප්‍රමාණය"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "දකුණු ප්‍රමාණය"
@@ -4131,7 +4096,7 @@ msgstr "ෆෝල්ඩර වෙනස්"
 msgid "Left Only"
 msgstr "වම පමණක්"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "දකුණ පමණක්"
@@ -4957,7 +4922,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

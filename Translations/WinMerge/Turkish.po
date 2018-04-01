@@ -1372,6 +1372,11 @@ msgstr "Değiştirilme Tarihi ve Boyutu"
 msgid "Size"
 msgstr "Boyut"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1427,10 +1432,10 @@ msgstr "Gö&zat..."
 msgid "&3rd(Optional):"
 msgstr "&3. Yol (İsteğe Bağlı):"
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "Göza&t..."
+msgid "Browse..."
+msgstr "Gözat..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1782,7 +1787,7 @@ msgstr "Farklılık:"
 msgid "Selected Difference:"
 msgstr "Seçilmiş Farklılık:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Art Alan"
@@ -1871,6 +1876,11 @@ msgstr "&Sistemin Geçici Klasörü"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "Ö&zel Klasör:"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "Göza&t..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2147,7 +2157,7 @@ msgstr "Satır Farklılıkları Renklendirilsin"
 msgid "View line differences"
 msgstr "Satır Farklılıkları Görüntülensin"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "&Karakter Düzeyinde"
@@ -2207,7 +2217,7 @@ msgstr "Sol panodaki dosya"
 msgid "&Save changes"
 msgstr "Değişiklikler &Kaydedilsin"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "&Değişiklikler Kaydedilmesin"
@@ -2404,11 +2414,6 @@ msgstr "Klasör Karşılaştırma Raporu"
 #, c-format
 msgid "Report &File:"
 msgstr "Rapor &Dosyası:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Gözat..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2639,41 +2644,6 @@ msgstr "Seçim:"
 #, c-format
 msgid "Margin:"
 msgstr "Kenar Boşluğu:"
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Yollar"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "So&l:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "Salt &Okunur"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "&Sağ:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Süzgeç:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Aç..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Kaydet..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2951,11 +2921,6 @@ msgstr "Proje dosyası açılırken bilinmeyen bir sorun çıktı"
 msgid "Unknown error attempting to save project file"
 msgstr "Proje dosyası kaydedilirken bilinmeyen bir sorun çıktı"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Proje Dosyası"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -3044,17 +3009,17 @@ msgstr ""
 "altında serbestçe çoğaltıp dağıtabileceğiniz özgür bir yazılımdır. "
 "Ayrıntılar için yardım menüsündeki GNU Genel Kamu Lisansı'na bakın."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Durdur"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Yeniden Dene"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Yok Say"
@@ -3363,7 +3328,7 @@ msgstr ""
 "Şimdi istemezseniz Hayır seçebilir ve tüm karşılaştırmaları daha sonra "
 "yenileyebilirsiniz."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "'SS.EXE' &yolu:"
@@ -3558,7 +3523,7 @@ msgstr ""
 "dosyası\n"
 "bir çelişki dosyası değil."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Farklı Kaydet"
@@ -3883,7 +3848,7 @@ msgstr "Soldakini (%1)"
 msgid "Middle (%1)"
 msgstr "Ortadakini (%1)"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Sağdakini (%1)"
@@ -4012,7 +3977,7 @@ msgstr "Karşılaştırma sonucu"
 msgid "Left Date"
 msgstr "Sol Dosya Tarihi"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Sağ Dosya Tarihi"
@@ -4032,7 +3997,7 @@ msgstr "Uzantı"
 msgid "Left Size"
 msgstr "Sol Dosya Boyutu"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Sağ Dosya Boyutu"
@@ -4212,7 +4177,7 @@ msgstr "Klasörler farklı"
 msgid "Left Only"
 msgstr "Yalnız Soldaki"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Yalnız Sağdaki"
@@ -5142,7 +5107,7 @@ msgstr "&Diğer Sekmeleri Kapat"
 msgid "Enable &Auto Max Width"
 msgstr "Otom&atik En Fazla Genişlik Kullanılsın"
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr "&Görsel"

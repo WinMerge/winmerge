@@ -1371,6 +1371,11 @@ msgstr "Data ultima modifica e dimens."
 msgid "Size"
 msgstr "Dimensioni"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1426,10 +1431,10 @@ msgstr "&Sfoglia..."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "Sf&oglia..."
+msgid "Browse..."
+msgstr "Sfoglia..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1776,7 +1781,7 @@ msgstr "Differenza:"
 msgid "Selected Difference:"
 msgstr "Differenza selezionata:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Sfondo"
@@ -1865,6 +1870,11 @@ msgstr "Cartella temporanea di s&istema"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "Cartella &utente:"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "Sf&oglia..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2141,7 +2151,7 @@ msgstr "Colorazione delle differenze di linea"
 msgid "View line differences"
 msgstr "Mostra differenze di linea"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "Livello &caratteri"
@@ -2201,7 +2211,7 @@ msgstr "File sul lato sinistro"
 msgid "&Save changes"
 msgstr "&Salva le modifiche"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "S&carta le modifiche"
@@ -2390,11 +2400,6 @@ msgstr "Rapporto sul confronto tra cartelle"
 #, c-format
 msgid "Report &File:"
 msgstr "&File di rapporto:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Sfoglia..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2625,41 +2630,6 @@ msgstr "Selezione:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Percorsi"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "&Sinistra:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "Sola &lettura"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "&Destra:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Filtro:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Apri..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Salva..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2921,11 +2891,6 @@ msgstr "Errore sconosciuto provando a aprire il file di progetto"
 msgid "Unknown error attempting to save project file"
 msgstr "Errore sconosciuto provando a salvare il file di progetto"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "File di progetto"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2991,17 +2956,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge viene fornito ASSOLUTAMENTE PRIVO DI GARANZIA. Questo è uin software gratuito e ne è apprezzata la ridistribuzione a determinate condizioni; per dettagli, vedere la GNU General Public License nel menu Guida."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Termina"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Riprova"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Ignora"
@@ -3293,7 +3258,7 @@ msgstr "Espressione regolare"
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr ""
@@ -3488,7 +3453,7 @@ msgstr ""
 "%1\n"
 "non è un file di conflitto."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Salva con nome"
@@ -3778,7 +3743,7 @@ msgstr "Sinistra (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Destra (%1)"
@@ -3903,7 +3868,7 @@ msgstr "Risultato del confronto"
 msgid "Left Date"
 msgstr "Data file di sinistra"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Data file di destra"
@@ -3923,7 +3888,7 @@ msgstr "Estensione"
 msgid "Left Size"
 msgstr "Dimensioni file di sinistra"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Dimensioni file di destra"
@@ -4103,7 +4068,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "Solo a sinistra"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Solo a destra"
@@ -4926,7 +4891,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""
