@@ -630,7 +630,6 @@
     <ClCompile Include="ProjectFile.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ProjectFilePathsDlg.cpp" />
     <ClCompile Include="PropArchive.cpp" />
     <ClCompile Include="PropBackups.cpp" />
     <ClCompile Include="PropCodepage.cpp" />
@@ -915,7 +914,6 @@
     <ClInclude Include="PluginsListDlg.h" />
     <ClInclude Include="Common\PreferencesDlg.h" />
     <ClInclude Include="ProjectFile.h" />
-    <ClInclude Include="ProjectFilePathsDlg.h" />
     <ClInclude Include="PropArchive.h" />
     <ClInclude Include="PropBackups.h" />
     <ClInclude Include="PropCodepage.h" />

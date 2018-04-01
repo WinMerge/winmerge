@@ -186,7 +186,7 @@ bool ProjectFile::Read(const String& path)
  */
 bool ProjectFile::Save(const String& path) const
 {
-	FileStream out(toUTF8(path));
+	FileStream out(toUTF8(path), FileStream::trunc);
 	XMLWriter writer(out, XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
 	writer.startDocument();
 	writer.startElement("", "", Root_element_name);

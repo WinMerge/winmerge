@@ -1366,6 +1366,11 @@ msgstr "Data de Modificação e Tamanho"
 msgid "Size"
 msgstr "Tamanho"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1421,9 +1426,9 @@ msgstr "Procurar..."
 msgid "&3rd(Optional):"
 msgstr "&3º(Opcional):"
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
+msgid "Browse..."
 msgstr "Procurar..."
 
 #: Merge.rc:64ABCD7D
@@ -1771,7 +1776,7 @@ msgstr "Diferença:"
 msgid "Selected Difference:"
 msgstr "Diferença Selecionada:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Fundo"
@@ -1860,6 +1865,11 @@ msgstr "Pasta de ficheiros de s&istema"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "Pasta p&ersonalizada"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "Procurar..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2136,7 +2146,7 @@ msgstr "Cor da Diferença de Linha"
 msgid "View line differences"
 msgstr "Ver diferenças de linha"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "A nível do caracter"
@@ -2196,7 +2206,7 @@ msgstr "Ficheiro da esquerda"
 msgid "&Save changes"
 msgstr "&Guardar alterações"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "Rejeitar alterações"
@@ -2385,11 +2395,6 @@ msgstr "Relatório de comparação de ficheiros"
 #, c-format
 msgid "Report &File:"
 msgstr "Ficheiro de relatório:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Procurar..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2620,41 +2625,6 @@ msgstr "Seleção:"
 #, c-format
 msgid "Margin:"
 msgstr "Margem"
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Destino"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "Esquerda:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "Apenas de leitura"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "Direita:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "Filtro:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Abrir..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Guardar..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2916,11 +2886,6 @@ msgstr "Erro desconhecido ao abrir projeto"
 msgid "Unknown error attempting to save project file"
 msgstr "Erro desconhecido ao guardar projeto"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Projeto:"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2961,17 +2926,17 @@ msgstr "Programadores:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, T
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "O WinMerge não tem GARANTIA. Este é um software livre e pode ser redistribuído sobre determinadas circunstâncias; Consulte a Licença Pública Geral GNU ou vá ao Menu Ajuda para mais informações."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "Abortar"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "Tentar novamente"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "Ignorar"
@@ -3221,7 +3186,7 @@ msgstr "Expressão regular"
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr "Os filtros foram atualizados. Deseja atualizar as comparações de todas as pastas abertas?\n\nSe não quiser atualizar todas as comparações agora, pode selecionar Não e atualizar a comparação mais tarde."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "Patch para SS.EXE:"
@@ -3402,7 +3367,7 @@ msgstr "Erro ao analisar ficheiro em conflito"
 msgid "The file\n%1\nis not a conflict file."
 msgstr "O ficheiro\n%1\nnão está em conflito."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Guardar como"
@@ -3622,7 +3587,7 @@ msgstr "Esquerda (%1)"
 msgid "Middle (%1)"
 msgstr "Meio (%1)"
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Direita (%1)"
@@ -3727,7 +3692,7 @@ msgstr "Resultado da comparação"
 msgid "Left Date"
 msgstr "Data da Esquerda"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Data da Direita"
@@ -3747,7 +3712,7 @@ msgstr "Extensão"
 msgid "Left Size"
 msgstr "Lado Esquerdo"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Lado Direito"
@@ -3927,7 +3892,7 @@ msgstr "As pastas são diferentes"
 msgid "Left Only"
 msgstr "Apenas Esquerda"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Apenas Direita"
@@ -4702,7 +4667,7 @@ msgstr "Fechar &Outros Separadores"
 msgid "Enable &Auto Max Width"
 msgstr "Ativar largura Máxima Automática"
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr "Imagem"

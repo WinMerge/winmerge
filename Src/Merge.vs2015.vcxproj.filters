@@ -613,9 +613,6 @@
     <ClCompile Include="PluginsListDlg.cpp">
       <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="ProjectFilePathsDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="SaveClosingDlg.cpp">
       <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
@@ -1273,9 +1270,6 @@
       <Filter>MFCGui\Dialogs</Filter>
     </ClInclude>
     <ClInclude Include="WMGotoDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjectFilePathsDlg.h">
       <Filter>MFCGui\Dialogs</Filter>
     </ClInclude>
     <ClInclude Include="DirColsDlg.h">

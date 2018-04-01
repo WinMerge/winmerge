@@ -1366,6 +1366,11 @@ msgstr "Endringsdato og størrelse"
 msgid "Size"
 msgstr "Størrelse"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1421,10 +1426,10 @@ msgstr "B&la gjennom.."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "B&la gjennom.."
+msgid "Browse..."
+msgstr "Bla gjennom.."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1771,7 +1776,7 @@ msgstr "Forskjell:"
 msgid "Selected Difference:"
 msgstr "Valgt forskjell:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Bakgrunn"
@@ -1860,6 +1865,11 @@ msgstr "S&ystemets midlertidige mappe"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "E&gen mappe:"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "B&la gjennom.."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2136,7 +2146,7 @@ msgstr "Linjeforskjells-farger"
 msgid "View line differences"
 msgstr "Vis linjeforskjeller"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "&Tegnnivå"
@@ -2196,7 +2206,7 @@ msgstr "Fil på venstre side"
 msgid "&Save changes"
 msgstr "&Lagre endringer"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "&Forkast endringer"
@@ -2389,11 +2399,6 @@ msgstr "Mappesammenlignings-rapport"
 #, c-format
 msgid "Report &File:"
 msgstr "Rapport&fil:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Bla gjennom.."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2624,41 +2629,6 @@ msgstr "Markering:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Baner"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "&Venstre:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "S&krivebeskyttet"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "&Høyre:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Filter:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Åpne..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Lagre..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2920,11 +2890,6 @@ msgstr "Ukjent feil ved forsøk på å åpne prosjektfil"
 msgid "Unknown error attempting to save project file"
 msgstr "Ukjent feil ved forsøk på å lagre prosjektfil"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Prosjektfil"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2997,17 +2962,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge kommer med ABSOLUTT INGEN GARANTIER. Dette er gratis programvare og du er velkommen til å videredistribuere den under visse omstendigheter; se GNU General Public License i Hjelp-menyen for detaljer."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Avbryt"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Prøv igjen"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Ignorer"
@@ -3305,7 +3270,7 @@ msgstr ""
 "\n"
 "Om du ikke vil gjenoppfriske alle sammenligninger nå kan du velge Nei og gjenoppfriske sammenligninger senere."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "&Bane til SS.EXE:"
@@ -3500,7 +3465,7 @@ msgstr ""
 "%1\n"
 "er ikke en konfliktfil."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Lagre som"
@@ -3806,7 +3771,7 @@ msgstr "Venstre (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Høyre (%1)"
@@ -3931,7 +3896,7 @@ msgstr "Resultat av sammenligningen"
 msgid "Left Date"
 msgstr "Venstre dato"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Høyre dato"
@@ -3951,7 +3916,7 @@ msgstr "Filtype"
 msgid "Left Size"
 msgstr "Venstre størrelse"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Høyre størrelse"
@@ -4131,7 +4096,7 @@ msgstr "Mapper er forskjellige"
 msgid "Left Only"
 msgstr "Bare venstre"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Bare høyre"
@@ -4954,7 +4919,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

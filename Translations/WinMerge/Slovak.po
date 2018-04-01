@@ -1366,6 +1366,11 @@ msgstr "Dátum zmeny a veľkosť"
 msgid "Size"
 msgstr "Veľkosť"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1421,10 +1426,10 @@ msgstr "P&rechádzať..."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
-msgstr "Prehľadávať"
+msgid "Browse..."
+msgstr "Prehľadávať..."
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -1771,7 +1776,7 @@ msgstr "Rozdiel:"
 msgid "Selected Difference:"
 msgstr "Rozdiel vo výbere:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Pozadie"
@@ -1860,6 +1865,11 @@ msgstr "Odkladací priečinok s&ystému"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "&Vlastný priečinok:"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "Prehľadávať"
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2136,7 +2146,7 @@ msgstr "Farebné odlíšenie riadkových rozdielov"
 msgid "View line differences"
 msgstr "Zobrazovať riadkové rozdiely"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "Úroveň &znaku"
@@ -2196,7 +2206,7 @@ msgstr "Súbor na ľavej strane"
 msgid "&Save changes"
 msgstr "&Uložiť zmeny"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "&Zahodiť zmeny"
@@ -2389,11 +2399,6 @@ msgstr "Správa o porovnaní adresárov"
 #, c-format
 msgid "Report &File:"
 msgstr "&Súbor správy:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Prehľadávať..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2624,41 +2629,6 @@ msgstr "Výber:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Cesty"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "&Ľavý:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "&Len na čítanie"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "P&ravý:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "Pr&ípony:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Otvoriť..."
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Uložiť..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2920,11 +2890,6 @@ msgstr "Neznáma chyba pri pokuse otvoriť súbor projektu"
 msgid "Unknown error attempting to save project file"
 msgstr "Neznáma chyba pri pokuse uložiť súbor projektu"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Súbor projektu"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2997,17 +2962,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge sa dodáva BEZ AKEJKOĽVEK ZÁRUKY. Toto je slobodný softvér a môžete ho ďalej šíriť za určitých podmienok; podrobnosti nájdete v menu pomocníka pod GNU General Public License."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Zrušiť"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Znova"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "&Ignorovať"
@@ -3305,7 +3270,7 @@ msgstr ""
 "\n"
 "Ak nechcete obnoviť všetky porovnania priečinkov, môžete vybrať Nie a obnoviť porovnania neskôr."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "&Cesta k SS.EXE:"
@@ -3500,7 +3465,7 @@ msgstr ""
 "%1\n"
 "nie je súbor konfliktov."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Uložiť ako"
@@ -3806,7 +3771,7 @@ msgstr "Ľavý (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Zmaž %1 z %2 vybraných položiek z pravej strany"
@@ -3931,7 +3896,7 @@ msgstr "Výsledok porovnania"
 msgid "Left Date"
 msgstr "Dátum vľavo"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Dátum vpravo"
@@ -3951,7 +3916,7 @@ msgstr "Prípona"
 msgid "Left Size"
 msgstr "Veľkosť vľavo"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Veľkosť vpravo"
@@ -4131,7 +4096,7 @@ msgstr "Priečinky sa líšia"
 msgid "Left Only"
 msgstr "Iba vľavo"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Iba vpravo"
@@ -4954,7 +4919,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

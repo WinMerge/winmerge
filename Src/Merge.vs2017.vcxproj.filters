@@ -613,9 +613,6 @@
     <ClCompile Include="PluginsListDlg.cpp">
       <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="ProjectFilePathsDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="SaveClosingDlg.cpp">
       <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>

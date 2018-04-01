@@ -1365,6 +1365,11 @@ msgstr "Ημερομηνία Τροποποιήσεως και Μέγεθος"
 msgid "Size"
 msgstr "Μέγεθος"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1420,9 +1425,9 @@ msgstr "Ανα&ζήτηση..."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
+msgid "Browse..."
 msgstr "Ανα&ζήτηση..."
 
 #: Merge.rc:64ABCD7D
@@ -1770,7 +1775,7 @@ msgstr "Διαφορά:"
 msgid "Selected Difference:"
 msgstr "Επιλεγμένη Διαφορά:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Φόντο"
@@ -1859,6 +1864,11 @@ msgstr "Φάκελος προσωρινών αρχείων ορίζεται απ
 #, c-format
 msgid "C&ustom folder:"
 msgstr "Προ&τιμώμενος Φάκελος:"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "Ανα&ζήτηση..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2135,7 +2145,7 @@ msgstr "Χρωματισμός Διαφορών Γραμμών"
 msgid "View line differences"
 msgstr "Εμφάνιση διαφορών γραμμών"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "Επίπεδο &Χαρακτήρων"
@@ -2195,7 +2205,7 @@ msgstr "Αρχείο αριστερής πλευράς"
 msgid "&Save changes"
 msgstr "Απο&θήκευση αλλαγών"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "Από&ρριψη αλλαγών"
@@ -2384,11 +2394,6 @@ msgstr "Αναφορά Συγκρίσεως Φακέλων"
 #, c-format
 msgid "Report &File:"
 msgstr "Αρχείο Ανα&φοράς"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Ανα&ζήτηση..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2619,41 +2624,6 @@ msgstr "Επιλογή:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Διαδρομές"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "Α&ριστερό:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "Μόνο για Ανά&γνωση"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "Δε&ξιό:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "&Φίλτρο:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Άν&οιγμα"
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Αποθήκευση..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2915,11 +2885,6 @@ msgstr "Παρουσιάσθηκε κάποιο σφάλμα κατά το άν�
 msgid "Unknown error attempting to save project file"
 msgstr "Παρουσιάσθηκε κάποιο σφάλμα κατά την αποθήκευση του αρχείου έργου."
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Αποθήκευση Έργου Ως"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2992,17 +2957,17 @@ msgstr ""
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "Το WinMerge προσφέρεται χωρίς ΚΑΜΜΙΑ ΑΠΟΛΥΤΩΣ ΕΓΓΥΗΣΗ. Είναι ελεύθερο λογισμικό και είσθε ευπρόσδεκτος να το αναδιανείμετε υπό ορισμένες περιστάσεις· δείτε τη Γενική Δημοσία Άδεια GNU στις επιλογές της Βοηθείας για λεπτομέρειες."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "&Ματαίωση"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "&Επανάληψη"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "Να &αγνοηθεί"
@@ -3294,7 +3259,7 @@ msgstr "Τυποποιημένη Έκφραση"
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr "Τα φίλτρα ενημερώθηκαν. Επιθυμείτε να ανανεωθούν όλες οι ανοικτές συγκρίσεις φακέλων;\n\nΕάν δεν επιθυμείτε να ανανεωθούν όλες οι συγκρίσεις τώρα, μπορείτε να επιλέξετε Όχι και να ανανεώσετε τις συγκρίσεις αργότερα."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr ""
@@ -3489,7 +3454,7 @@ msgstr ""
 "%1\n"
 "δεν είναι αρχείο διενέξεων."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Αποθήκευση Ως"
@@ -3779,7 +3744,7 @@ msgstr "Αριστερό (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Δεξιό (%1)"
@@ -3904,7 +3869,7 @@ msgstr "Αποτέλεσμα Συγκρίσεως"
 msgid "Left Date"
 msgstr "Ημερομηνία Αριστερού"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Ημερομηνία Δεξιού"
@@ -3924,7 +3889,7 @@ msgstr "Επέκταση"
 msgid "Left Size"
 msgstr "Μέγεθος Αριστερού"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Μέγεθος Δεξιού"
@@ -4104,7 +4069,7 @@ msgstr ""
 msgid "Left Only"
 msgstr "Αριστερά μόνο"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Δεξιά μόνο"
@@ -4927,7 +4892,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""

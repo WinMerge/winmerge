@@ -1362,6 +1362,11 @@ msgstr "Muutospäivä ja koko"
 msgid "Size"
 msgstr "Koko"
 
+#: Merge.rc:1DC30E65
+#, c-format
+msgid "&Load Project..."
+msgstr ""
+
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
@@ -1417,9 +1422,9 @@ msgstr "Selaa..."
 msgid "&3rd(Optional):"
 msgstr ""
 
-#: Merge.rc:78E0CE0F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Br&owse..."
+msgid "Browse..."
 msgstr "Selaa..."
 
 #: Merge.rc:64ABCD7D
@@ -1768,7 +1773,7 @@ msgstr "Erilaisuus:"
 msgid "Selected Difference:"
 msgstr "Valittu ero:"
 
-#: Merge.rc:78E0CE10
+#: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
 msgstr "Tausta"
@@ -1857,6 +1862,11 @@ msgstr "Järjestelmän tilapäiskansio:"
 #, c-format
 msgid "C&ustom folder:"
 msgstr "Mukautettu kansio:"
+
+#: Merge.rc:78E0CE10
+#, c-format
+msgid "Br&owse..."
+msgstr "Selaa..."
 
 #: Merge.rc:55B03C13
 #, c-format
@@ -2133,7 +2143,7 @@ msgstr "Rivierojen väritys"
 msgid "View line differences"
 msgstr "Näytä rivin erot"
 
-#: Merge.rc:1DC30E65
+#: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
 msgstr "Merkkitaso"
@@ -2193,7 +2203,7 @@ msgstr "Vasen tiedosto"
 msgid "&Save changes"
 msgstr "Tallenna muutokset"
 
-#: Merge.rc:1DC30E66
+#: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
 msgstr "Hylkää muutokset"
@@ -2382,11 +2392,6 @@ msgstr "Kansiovertailun raportti"
 #, c-format
 msgid "Report &File:"
 msgstr "Raporttitiedosto:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Selaa..."
 
 #: Merge.rc:89AF4FD
 #, c-format
@@ -2617,41 +2622,6 @@ msgstr "Valinta:"
 #, c-format
 msgid "Margin:"
 msgstr ""
-
-#: Merge.rc:D109E02
-#, c-format
-msgid "Paths"
-msgstr "Polut"
-
-#: Merge.rc:1D2E49FE
-#, c-format
-msgid "&Left:"
-msgstr "Vasen:"
-
-#: Merge.rc:39174D9A
-#, c-format
-msgid "R&ead-only"
-msgstr "Vain luku"
-
-#: Merge.rc:89AF4FF
-#, c-format
-msgid "&Right:"
-msgstr "Oikea:"
-
-#: Merge.rc:AC3AA21
-#, c-format
-msgid "&Filter:"
-msgstr "Suodin:"
-
-#: Merge.rc:6CD65B96
-#, c-format
-msgid "Open..."
-msgstr "Avaa"
-
-#: Merge.rc:67019DCC
-#, c-format
-msgid "Save..."
-msgstr "Tallenna..."
 
 #: Merge.rc:43E58E59
 #, c-format
@@ -2913,11 +2883,6 @@ msgstr "Tuntematon virhe avattaessa projektitiedostoa"
 msgid "Unknown error attempting to save project file"
 msgstr "Tuntematon virhe yritettäessä tallentaa projektitiedosto"
 
-#: Merge.rc:3EE7B44D
-#, c-format
-msgid "Project File"
-msgstr "Projektitiedosto"
-
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
@@ -2958,17 +2923,17 @@ msgstr "Kehittäjät:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Ti
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
 msgstr "Poistu"
 
-#: Merge.rc:1D2E4A00
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
 msgstr "Yritä uudelleen"
 
-#: Merge.rc:89AF500
+#: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
 msgstr "Ohita"
@@ -3218,7 +3183,7 @@ msgstr "Säännöllinen lauseke"
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr "Suodattimet päivitettiin. Haluatko päivittää kaikki avoimet kansiovertailut?\n\nJos et halua päivittää kaikkia vertailuja nyt, valitse Ei ja päivitä vertailut myöhemmin."
 
-#: Merge.rc:1DC30E67
+#: Merge.rc:1DC30E68
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "SS.EXE polku:"
@@ -3400,7 +3365,7 @@ msgstr "Ristiriitatiedoston jäsennys epäonnistui."
 msgid "The file\n%1\nis not a conflict file."
 msgstr "Tiedosto\n%1\nei ole ristiriitatiedosto."
 
-#: Merge.rc:67019DCD
+#: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
 msgstr "Tallenna nimellä..."
@@ -3619,7 +3584,7 @@ msgstr "Vasen (%1)"
 msgid "Middle (%1)"
 msgstr ""
 
-#: Merge.rc:39174D9B
+#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "Oikea (%1)"
@@ -3724,7 +3689,7 @@ msgstr "Vertailutulokset"
 msgid "Left Date"
 msgstr "Vasen päiväys"
 
-#: Merge.rc:39174D9C
+#: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
 msgstr "Oikea päiväys"
@@ -3744,7 +3709,7 @@ msgstr "Pääte"
 msgid "Left Size"
 msgstr "Vasen koko"
 
-#: Merge.rc:39174D9D
+#: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
 msgstr "Oikea koko"
@@ -3924,7 +3889,7 @@ msgstr "Kansiot ovat erilaisia"
 msgid "Left Only"
 msgstr "Vain vasen"
 
-#: Merge.rc:39174D9E
+#: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
 msgstr "Vain oikea"
@@ -4698,7 +4663,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#: Merge.rc:1D2E4A01
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Image"
 msgstr ""
