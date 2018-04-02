@@ -464,6 +464,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 	// TCHAR is wchar_t, so convert into String (str)
 	DWORD flags = MB_ERR_INVALID_CHARS;
 	size_t wlen = len * 2 + 6;
+	assert(wlen < INT_MAX);
 
 	try
 	{
