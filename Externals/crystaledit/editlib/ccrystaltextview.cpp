@@ -3250,6 +3250,7 @@ int CCrystalTextView::GetSubLineIndex( int nLineIndex )
       m_panSubLineIndexCache->SetAtGrow( 0, 0 );
     }
 
+// TODO: Rethink this, it is very time consuming
   for( int i = m_nLastLineIndexCalculatedSubLineIndex; i < nLineIndex; i++ )
     {
       m_panSubLineIndexCache->SetAtGrow( i, nSubLineCount);
@@ -3607,7 +3608,7 @@ RecalcVertScrollBar (bool bPositionOnly /*= false*/, bool bRedraw /*= true */)
   else
     {
       const int nScreenLines = GetScreenLines();
-      if( nScreenLines >= GetSubLineCount() && m_nTopSubLine > 0 )
+      if( m_nTopSubLine > 0 && nScreenLines >= GetSubLineCount() )
         {
           m_nTopLine = 0;
           Invalidate ();
