@@ -1,0 +1,279 @@
+<scriptlet>
+<implements type="Automation" id="dispatcher">
+  <property name="PluginEvent">
+    <get/>
+  </property>
+  <property name="PluginDescription">
+    <get/>
+  </property>
+  <property name="PluginFileFilters">
+    <get/>
+  </property>
+  <property name="PluginIsAutomatic">
+    <get/>
+  </property>
+  <method name="PrediffBufferW"/>
+  <method name="ShowSettingsDialog"/>
+</implements>
+
+<script language="VBS">
+
+'/////////////////////////////////////////////////////////////////////////////
+'    This is a plugin for WinMerge.
+'    It will display the text content of MS Excel files.
+'    Copyright (C) 2018 Takashi Sawanaka
+'
+'    This program is free software; you can redistribute it and/or modify
+'    it under the terms of the GNU General Public License as published by
+'    the Free Software Foundation; either version 2 of the License, or
+'    (at your option) any later version.
+'
+'    This program is distributed in the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty of
+'    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'    GNU General Public License for more details.
+'
+'    You should have received a copy of the GNU General Public License
+'    along with this program; if not, write to the Free Software
+'    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+'
+
+Option Explicit
+
+Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\PrediffLineFilter.sct\"
+Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
+Dim wsh: Set wsh = CreateObject("WScript.Shell")
+
+Function regRead(Key, DefaultValue)
+  regRead = DefaultValue
+  On Error Resume Next
+  regRead = wsh.RegRead(Key)
+End Function
+
+Function get_PluginEvent()
+  get_PluginEvent = "BUFFER_PREDIFF"
+End Function
+
+Function get_PluginDescription()
+  get_PluginDescription = "Prediff Line Filter"
+End Function
+
+Function get_PluginFileFilters()
+  get_PluginFileFilters = "\.nomatch(\..*)?$"
+End Function
+
+Function get_PluginIsAutomatic()
+  get_PluginIsAutomatic = True
+End Function
+
+Function SafeUBound(ary)
+  On Error Resume Next
+  SafeUBound = -1
+  SafeUBound = UBound(ary)
+End Function
+
+Function PrediffBufferW(pText, pSize, pbChanged)
+  On Error Resume Next
+  Dim re, pattern, replaceText
+  Dim count, i, j
+  Dim lines
+  Set re = New RegExp
+  If pText = "" Then
+    pbChanged = False
+    PrediffBufferW = True
+    Exit Function
+  End If
+  lines = Split(pText, vbLf)
+  count = regRead(RegKeyPath & "Count", 0)
+  For i = 1 To count
+    If regRead(RegKeyPath & "Enabled" & i, True) Then
+      If regRead(RegKeyPath & "UseRegExp" & i, True) Then
+        re.Global = True
+        re.Pattern = regRead(RegKeyPath & "Pattern" & i, "")
+        replaceText = regRead(RegKeyPath & "ReplaceText" & i, "")
+        For j = 0 To SafeUBound(lines)
+          lines(j) = re.Replace(lines(j), replaceText)
+        Next
+      Else
+        pattern = regRead(RegKeyPath & "Pattern" & i, "")
+        replaceText = regRead(RegKeyPath & "ReplaceText" & i, "")
+        For j = 0 To SafeUBound(lines)
+          lines(j) = Replace(lines(j), pattern, replaceText)
+        Next
+      End If
+    End If
+  Next
+  pText = Join(lines, vbLf)
+  pSize = Len(pText)
+  pbChanged = True
+  PrediffBufferW = True
+End Function
+
+Function ShowSettingsDialog()
+  Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
+  Dim tfile: Set tfile = fso.CreateTextFile(tname)
+  tfile.Write getResource("dialog1")
+  tfile.Close
+  Run wsh, "mshta.exe """ & tname & """"
+  fso.DeleteFile tname 
+End Function
+
+Sub Run(sh, cmd)
+  sh.Run cmd, 1, True
+End Sub
+
+</script>
+
+<resource id="dialog1">
+<![CDATA[
+<html>
+  <head>
+    <title>PrediffLineFilter.sct WinMerge Plugin Options</title>
+    <meta content="text/html" charset="ShiftJIS">
+    <style>
+      body { background-color: lightgray; }
+      ul { list-style:none; }
+      table { border-collapse: collapse; }
+      table, td, th { border: 1px #000000 solid; }
+      td { background-color: #FFFFFF; }
+    </style>
+    <script type="text/javascript">
+      var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\PrediffLineFilter.sct\\";
+
+      function regRead(key, defaultValue) {
+        try {
+          return (new ActiveXObject("WScript.Shell")).RegRead(key);
+        } catch (e) {
+          return defaultValue;
+        }
+      }
+
+      function regWrite(key, value, type) {
+        (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
+      }
+
+      function insertRow(r) {
+        if (r == -1) {
+          r = table1.rows.length;
+        }
+        var newRow = table1.insertRow(r);
+        newRow.insertCell(-1).innerHTML = '<input type="checkbox" name="chkEnabled" ' + (regRead(REGKEY_PATH + "Enabled" + r, true) ? 'checked' : '') + ' />';
+        newRow.insertCell(-1).innerHTML = '<input type="checkbox" name="chkUseRegExp" ' + (regRead(REGKEY_PATH + "UseRegExp" + r, false) ? 'checked' : '') + ' />';
+        newRow.insertCell(-1).innerHTML = '<input type="text" name="txtPattern" value="' + regRead(REGKEY_PATH + "Pattern" + r,  "") + '" />';
+        newRow.insertCell(-1).innerHTML = '<input type="text" name="txtReplaceText" value="' + regRead(REGKEY_PATH + "ReplaceText" + r,  "") + '" />';
+      }
+
+      function deleteRow(r) {
+        if (table1.rows.length > 2) {
+          table1.deleteRow(r);
+        }
+      }
+
+      function onload() {
+
+        var w = 800, h = 600;
+        window.resizeTo(w, h);
+        window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
+
+        cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
+        setLanguage(navigator.browserLanguage);
+        var count = regRead(REGKEY_PATH + "Count", 1);
+        for (var i = 0; i < count; i++) {
+          insertRow(-1);
+        }
+      }
+
+      function setLanguage(lang) {
+        var div = document.getElementById("language") || document.createElement('div')
+        div.id = "language";
+        var html = '&shy;<style>';
+        if (lang.substr(0, 2).toLowerCase() === 'ja') {
+          html += '.en { display: none } .ja { display: inline }';
+        } else {
+          html += '.ja { display: none } .en { display: inline }';
+        }
+        div.innerHTML = html;
+        if (!document.getElementById("language"))
+          document.body.appendChild(div);
+      }
+
+      function cboLanguage_onclick() {
+        setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
+      }
+
+      function btnOk_onclick() {
+        regWrite(REGKEY_PATH + "Count", table1.rows.length - 1, "REG_DWORD");
+        for (var i = 0; i < table1.rows.length - 1; i++) {
+          regWrite(REGKEY_PATH + "Enabled" + (i + 1), document.getElementsByName("chkEnabled")[i].checked, "REG_DWORD");
+          regWrite(REGKEY_PATH + "UseRegExp" + (i + 1), document.getElementsByName("chkUseRegExp")[i].checked, "REG_DWORD");
+          regWrite(REGKEY_PATH + "Pattern" + (i + 1), document.getElementsByName("txtPattern")[i].value, "REG_SZ");
+          regWrite(REGKEY_PATH + "ReplaceText" + (i + 1), document.getElementsByName("txtReplaceText")[i].value, "REG_SZ");
+        }
+        window.close();
+      }
+
+      function btnCancel_onclick() {
+        window.close();
+      }
+
+    </script>
+  </head>
+  <body onload="onload();">
+    <div>
+      <ul>
+        <li>
+          <label class="en">Language: </label>
+          <label class="ja">言語: </label>
+          <select id="cboLanguage" onclick="cboLanguage_onclick();" >
+            <option value="English">English</option>
+            <option value="Japanese">Japanese</option>
+          </select>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <input class="en" type="button" value="Add" onclick="insertRow(-1)" />
+          <input class="ja" type="button" value="追加" onclick="insertRow(-1)" />
+          <input class="en" type="button" value="Delete" onclick="deleteRow(-1)" />
+          <input class="ja" type="button" value="削除" onclick="deleteRow(-1)" />
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <table id="table1">
+            <tr>
+              <th>
+                <label class="en">Enabled</label>
+                <label class="ja">有効</label>
+              </th>
+              <th>
+                <label class="en">Use RegExp</label>
+                <label class="ja">正規表現を使用</label>
+              </th>
+              <th>
+                <label class="en">Find what</label>
+                <label class="ja">検索文字列</label>
+              </th>
+              <th>
+                <label class="en">Replace with</label>
+                <label class="ja">置換後の文字列</label>
+              </th>
+            </tr>
+          </table>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
+          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
+          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
+          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
+]]>
+</resource>
+
+</scriptlet>
