@@ -412,8 +412,12 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 			{
 				return false;
 			}
+			InternalDeleteGhostLine(pSource, nEndLine2 + 1, nEndLine - (nEndLine2 + 1) + 1);
 		}
-		InternalDeleteGhostLine(pSource, nEndLine2 + 1, nEndLine - (nEndLine2 + 1) + 1);
+		else
+		{
+			InternalDeleteGhostLine(pSource, nEndLine2 + 1, nEndLine - (nEndLine2 + 1));
+		}
 	}
 
 	if (nStartChar != 0 || nEndChar != 0)
