@@ -216,7 +216,8 @@ void LineInfo::Delete(size_t nStartChar, size_t nEndChar)
               sizeof (TCHAR) * (FullLength() - nEndChar));
     }
   m_nLength -= (nEndChar - nStartChar);
-  m_pcLine[FullLength()] = '\0';
+  if (m_pcLine)
+    m_pcLine[FullLength()] = '\0';
 }
 
 /**
