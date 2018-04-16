@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-02-24 07:31+0100\n"
+"PO-Revision-Date: 2018-04-16 09:29+0100\n"
 "Last-Translator: Lippe35\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -408,7 +408,7 @@ msgstr "Licença Pública Geral GNU"
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&About WinMerge..."
-msgstr "Acerca de WinMerge"
+msgstr "Acerca do WinMerge"
 
 #: Merge.rc:68816EE2
 #, c-format
@@ -1379,7 +1379,7 @@ msgstr ""
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
-msgstr "Acerca de WinMerge"
+msgstr "Acerca do WinMerge"
 
 #: Merge.rc:6AD81E09
 #, c-format
@@ -1389,7 +1389,7 @@ msgstr "(Versão privada)"
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
-msgstr "Visite o site de WinMerge!"
+msgstr "Visite o site do WinMerge!"
 
 #: Merge.rc:1326F
 #, c-format
@@ -3415,7 +3415,7 @@ msgstr "Plugin '%2' Não é possível comprimir as suas alterações no ficheiro
 #: Merge.rc:78367A47
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
-msgstr "Outra aplicação atualizou o ficheiro\n%1\ndesde a incialização de WinMerge.\n\nSubstituir ficheiro modificado?"
+msgstr "Outra aplicação atualizou o ficheiro\n%1\ndesde a incialização do WinMerge.\n\nSubstituir ficheiro modificado?"
 
 #: Merge.rc:462FB760
 #, c-format
