@@ -693,7 +693,7 @@ msgstr "Voltar a Comparar Como..."
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
-msgstr ""
+msgstr "&XML"
 
 #: Merge.rc:89AF4F8
 #, c-format
@@ -1214,7 +1214,7 @@ msgstr "Copiar Itens para a Área de Transferências"
 #: Merge.rc:22956A9
 #, c-format
 msgid "&Zip"
-msgstr ""
+msgstr "&Zip"
 
 #: Merge.rc:7370E045
 #, c-format
@@ -1374,7 +1374,7 @@ msgstr "Tamanho"
 #: Merge.rc:1DC30E65
 #, c-format
 msgid "&Load Project..."
-msgstr ""
+msgstr "&Carregar Projeto..."
 
 #: Merge.rc:2515A6BC
 #, c-format
@@ -1989,12 +1989,12 @@ msgstr "Parar"
 #: Merge.rc:D109E01
 #, c-format
 msgid "Pause"
-msgstr ""
+msgstr "Pausa"
 
 #: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Continue"
-msgstr ""
+msgstr "Continuar"
 
 #: Merge.rc:1AC98D0A
 #, c-format
@@ -2839,32 +2839,32 @@ msgstr "Vista Hex"
 #: Merge.rc:206940
 #, c-format
 msgid "EXT"
-msgstr ""
+msgstr "EXT"
 
 #: Merge.rc:1F78C0
 #, c-format
 msgid "CAP"
-msgstr ""
+msgstr "CAP"
 
 #: Merge.rc:24A381
 #, c-format
 msgid "NUM"
-msgstr ""
+msgstr "NUM"
 
 #: Merge.rc:4B89B95
 #, c-format
 msgid "SCRL"
-msgstr ""
+msgstr "SCRL"
 
 #: Merge.rc:251BC0
 #, c-format
 msgid "OVR"
-msgstr ""
+msgstr "OVR"
 
 #: Merge.rc:268480
 #, c-format
 msgid "REC"
-msgstr ""
+msgstr "REC"
 
 #: Merge.rc:E8950E9
 #, c-format
@@ -3004,7 +3004,7 @@ msgstr "Para tornar esta caixa de mensagem visível novamente, pressione o botã
 #: Merge.rc:39000D57
 #, c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Syntax"
 
 #: Merge.rc:2C1D73C8
 #, c-format
@@ -3049,12 +3049,12 @@ msgstr "Versão %1"
 #: Merge.rc:24173EE7
 #, c-format
 msgid "Unicode"
-msgstr ""
+msgstr "Unicode"
 
 #: Merge.rc:295600
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:761E6873
 #, c-format
@@ -3234,7 +3234,7 @@ msgstr "O meu ficheiro"
 #: Merge.rc:DD21174
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr ""
+msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 
 #: Merge.rc:15875423
 #, c-format
@@ -3244,7 +3244,7 @@ msgstr "Linha: %s"
 #: Merge.rc:6F3BCB35
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr ""
+msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
 
 #: Merge.rc:7C664E1
 #, c-format
