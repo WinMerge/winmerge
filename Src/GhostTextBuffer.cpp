@@ -416,6 +416,8 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 		}
 		else
 		{
+			if (bHistory && m_nUndoPosition < m_aUndoBuf.size())
+				m_aUndoBuf.resize(m_nUndoPosition);
 			InternalDeleteGhostLine(pSource, nEndLine2 + 1, nEndLine - (nEndLine2 + 1));
 		}
 	}
