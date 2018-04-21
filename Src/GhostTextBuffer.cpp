@@ -258,7 +258,7 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 	bool bGroupFlag = false;
 	int bFirstLineGhost = ((GetLineFlags(nLine) & LF_GHOST) != 0);
 
-	if (bFirstLineGhost && cchText > 0 && !LineInfo::IsEol(pszText[cchText - 1]))
+	if (bFirstLineGhost && cchText > 0)
 	{
 		CString text = GetStringEol(GetCRLFMode());
 		if (bHistory && !m_bUndoGroup)
@@ -266,7 +266,15 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 			BeginUndoGroup();
 			bGroupFlag = true;
 		}
-		CCrystalTextBuffer::InsertText(pSource, nLine, 0, text, text.GetLength(), nEndLine, nEndChar, 0, bHistory);
+		auto reverseFindRealLine = [&](int nLine) {
+			for (; nLine >= 0; --nLine) { if ((GetLineFlags(nLine) & LF_GHOST) == 0) break; }
+			return nLine;
+		};
+		int i = reverseFindRealLine(nLine);
+		if (i >= 0 && !m_aLines[i].HasEol())
+			CCrystalTextBuffer::InsertText(pSource, i, GetLineLength(i), text, text.GetLength(), nEndLine, nEndChar, 0, bHistory);
+		else if (!LineInfo::IsEol(pszText[cchText - 1]))
+			CCrystalTextBuffer::InsertText(pSource, nLine, 0, text, text.GetLength(), nEndLine, nEndChar, 0, bHistory);
 	}
 
 	if (!CCrystalTextBuffer::InsertText (pSource, nLine, nPos, pszText,
