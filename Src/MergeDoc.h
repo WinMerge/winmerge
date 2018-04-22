@@ -359,6 +359,7 @@ private:
 	void AdjustDiffBlocks();
 	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange, int lo0, int hi0, int lo1, int hi1);
 	int GetMatchCost(const String &Line0, const String &Line1);
+	void FlagTrivialLines();
 	void FlagMovedLines();
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;
 	void DoFileSave(int pane);
