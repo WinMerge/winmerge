@@ -65,6 +65,7 @@
 #include "PatchTool.h"
 #include "charsets.h"
 #include "markdown.h"
+#include "stringdiffs.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -549,6 +550,12 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// Hide identical lines if diff-context is not 'All'
 		HideLines();
 
+		// Apply flags to lines that are trivial
+		PrediffingInfo infoPrediffer;
+		GetPrediffer(&infoPrediffer);
+		if (!infoPrediffer.pluginName.empty())
+			FlagTrivialLines();
+		
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
 		if (m_diffWrapper.GetDetectMovedBlocks())
 			FlagMovedLines();
@@ -613,6 +620,42 @@ void CMergeDoc::CheckFileChanged(void)
 	}
 }
 
+/** @brief Apply flags to lines that are trivial */
+void CMergeDoc::FlagTrivialLines(void)
+{
+	for (int i = 0; i < m_ptBuf[0]->GetLineCount(); ++i)
+	{
+		if ((m_ptBuf[0]->GetLineFlags(i) & LF_NONTRIVIAL_DIFF) == 0)
+		{
+			String str[3];
+			for (int file = 0; file < m_nBuffers; ++file)
+			{
+				const TCHAR *p = m_ptBuf[file]->GetLineChars(i);
+				str[file] = p ? p : _T("");
+			}
+
+			if (std::count(str + 1, str + m_nBuffers, str[0]) != m_nBuffers - 1)
+			{
+				DIFFOPTIONS diffOptions = {0};
+				m_diffWrapper.GetOptions(&diffOptions);
+
+				std::vector<strdiff::wdiff> worddiffs;
+				// Make the call to stringdiffs, which does all the hard & tedious computations
+				strdiff::ComputeWordDiffs(m_nBuffers, str,
+					!diffOptions.bIgnoreCase,
+					diffOptions.nIgnoreWhitespace,
+					GetBreakType(), // whitespace only or include punctuation
+					GetByteColoringOption(),
+					&worddiffs);
+				if (!worddiffs.empty())
+				{
+					for (int file = 0; file < m_nBuffers; ++file)
+						m_ptBuf[file]->SetLineFlag(i, LF_TRIVIAL, true, false, false);
+				}
+			}
+		}
+	}
+}
 
 /** @brief Adjust all different lines that were detected as actually matching moved lines */
 void CMergeDoc::FlagMovedLines(void)
