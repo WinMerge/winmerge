@@ -74,7 +74,7 @@ End Function
 
 Function PrediffBufferW(pText, pSize, pbChanged)
   On Error Resume Next
-  Dim re, pattern, replaceText
+  Dim re, pattern, replaceText, ignoreCase
   Dim count, i, j
   Dim lines
   Set re = New RegExp
@@ -90,6 +90,7 @@ Function PrediffBufferW(pText, pSize, pbChanged)
       If regRead(RegKeyPath & "UseRegExp" & i, True) Then
         re.Global = True
         re.Pattern = regRead(RegKeyPath & "Pattern" & i, "")
+        re.IgnoreCase = regRead(RegKeyPath & "IgnoreCase" & i, False)
         replaceText = regRead(RegKeyPath & "ReplaceText" & i, "")
         For j = 0 To SafeUBound(lines)
           lines(j) = re.Replace(lines(j), replaceText)
@@ -97,8 +98,13 @@ Function PrediffBufferW(pText, pSize, pbChanged)
       Else
         pattern = regRead(RegKeyPath & "Pattern" & i, "")
         replaceText = regRead(RegKeyPath & "ReplaceText" & i, "")
+        ignoreCase = regRead(RegKeyPath & "IgnoreCase" & i, False)
         For j = 0 To SafeUBound(lines)
-          lines(j) = Replace(lines(j), pattern, replaceText)
+          If ignoreCase Then
+            lines(j) = Replace(lines(j), pattern, replaceText, 1, -1, vbTextCompare)
+          Else
+            lines(j) = Replace(lines(j), pattern, replaceText, 1, -1, vbBinaryCompare)
+          End If
         Next
       End If
     End If
@@ -158,6 +164,7 @@ End Sub
         }
         var newRow = table1.insertRow(r);
         newRow.insertCell(-1).innerHTML = '<input type="checkbox" name="chkEnabled" ' + (regRead(REGKEY_PATH + "Enabled" + r, true) ? 'checked' : '') + ' />';
+        newRow.insertCell(-1).innerHTML = '<input type="checkbox" name="chkIgnoreCase" ' + (regRead(REGKEY_PATH + "IgnoreCase" + r, false) ? 'checked' : '') + ' />';
         newRow.insertCell(-1).innerHTML = '<input type="checkbox" name="chkUseRegExp" ' + (regRead(REGKEY_PATH + "UseRegExp" + r, false) ? 'checked' : '') + ' />';
         newRow.insertCell(-1).innerHTML = '<input type="text" name="txtPattern" value="' + regRead(REGKEY_PATH + "Pattern" + r,  "") + '" />';
         newRow.insertCell(-1).innerHTML = '<input type="text" name="txtReplaceText" value="' + regRead(REGKEY_PATH + "ReplaceText" + r,  "") + '" />';
@@ -205,6 +212,7 @@ End Sub
         regWrite(REGKEY_PATH + "Count", table1.rows.length - 1, "REG_DWORD");
         for (var i = 0; i < table1.rows.length - 1; i++) {
           regWrite(REGKEY_PATH + "Enabled" + (i + 1), document.getElementsByName("chkEnabled")[i].checked, "REG_DWORD");
+          regWrite(REGKEY_PATH + "IgnoreCase" + (i + 1), document.getElementsByName("chkIgnoreCase")[i].checked, "REG_DWORD");
           regWrite(REGKEY_PATH + "UseRegExp" + (i + 1), document.getElementsByName("chkUseRegExp")[i].checked, "REG_DWORD");
           regWrite(REGKEY_PATH + "Pattern" + (i + 1), document.getElementsByName("txtPattern")[i].value, "REG_SZ");
           regWrite(REGKEY_PATH + "ReplaceText" + (i + 1), document.getElementsByName("txtReplaceText")[i].value, "REG_SZ");
@@ -245,6 +253,10 @@ End Sub
               <th>
                 <label class="en">Enabled</label>
                 <label class="ja">óLå¯</label>
+              </th>
+              <th>
+                <label class="en">Ignore Case</label>
+                <label class="ja">ëÂï∂éöè¨ï∂éöÇÃà·Ç¢Çñ≥éã</label>
               </th>
               <th>
                 <label class="en">Use RegExp</label>
