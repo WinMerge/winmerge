@@ -31,7 +31,6 @@
 #include "PathContext.h"
 
 class BCMenu;
-class CDiffView;
 class CDirView;
 class COpenDoc;
 class CDirDoc;
