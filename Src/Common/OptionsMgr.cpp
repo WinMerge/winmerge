@@ -633,3 +633,17 @@ int COptionsMgr::GetDefault(const String& name, bool & value) const
 	return retVal;
 }
 
+String COptionsMgr::ExpandShortName(const String& shortname) const
+{
+	int nmatched = 0;
+	String matchedkey;
+	for (const auto& it : m_optionsMap)
+	{
+		if (it.first.find(shortname) != String::npos)
+		{
+			matchedkey = it.first;
+			++nmatched;
+		}
+	}
+	return (nmatched == 1) ? matchedkey : _T("");
+}

@@ -206,9 +206,7 @@ BOOL CMergeApp::InitInstance()
 		m_pOptions->SetSerializing(false); // Turn off serializing to registry.
 
 	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
-
-	for (const auto& it : cmdInfo.m_Options)
-		m_pOptions->Set(it.first, it.second);
+	ApplyCommandLineConfigOptions(cmdInfo);
 
 	// Initialize temp folder
 	SetupTempPath();
@@ -561,6 +559,34 @@ void CMergeApp::InitializeFileFilters()
 		m_pGlobalFileFilter->SetUserFilterPath((LPCTSTR)filterPath);
 	}
 	m_pGlobalFileFilter->LoadAllFileFilters();
+}
+
+void CMergeApp::ApplyCommandLineConfigOptions(MergeCmdLineInfo& cmdInfo)
+{
+	if (cmdInfo.m_bNoPrefs)
+		m_pOptions->SetSerializing(false); // Turn off serializing to registry.
+
+	for (const auto& it : cmdInfo.m_Options)
+	{
+		if (m_pOptions->Set(it.first, it.second) == COption::OPT_NOTFOUND)
+		{
+			String longname = m_pOptions->ExpandShortName(it.first);
+			if (!longname.empty())
+			{
+				m_pOptions->Set(longname, it.second);
+			}
+			else
+			{
+				String msg = strutils::format_string1(_T("WinMerge: Invalid key '%1' specified in /config option\n"), it.first);
+				if (AttachConsole(static_cast<DWORD>(-1)))
+				{
+					DWORD dwWritten;
+					WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), msg.c_str(), static_cast<DWORD>(msg.length()), &dwWritten, NULL);
+					FreeConsole();
+				}
+			}
+		}
+	}
 }
 
 /** @brief Read command line arguments and open files for comparison.
@@ -1339,4 +1365,3 @@ void CMergeApp::OnUpdateMergingStatus(CCmdUI *pCmdUI)
 	pCmdUI->SetText(text.c_str());
 	pCmdUI->Enable(GetMergingMode());
 }
-
