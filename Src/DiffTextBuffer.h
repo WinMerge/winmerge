@@ -8,7 +8,7 @@
 #include "GhostTextBuffer.h"
 #include "FileTextEncoding.h"
 
-class CMergedoc;
+class CMergeDoc;
 class PackingInfo;
 
 /**
