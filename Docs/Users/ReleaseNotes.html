@@ -49,13 +49,13 @@
 </head>
 <body>
 
-<h2>WinMerge 2.15.3 Beta Release Notes</h2>
+<h2>WinMerge 2.15.4 Beta Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2153">What Is New in 2.15.3 beta?</a></li>
+  <li><a href="#new2154">What Is New in 2.15.3 beta?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>March 2018</p>
+<p>April 2018</p>
 
 <h3><a name="about">About This Release</a></h3>
 
@@ -67,6 +67,62 @@ WinMerge development. This release is not recommended for the production.
 <p>
 Please submit bug reports to our <a href="http://bitbucket.org/winmerge/winmerge/issues">bug-tracker</a>.
 </p>
+
+<h3><a name="#new2154">What Is New in 2.15.4 Beta?</a></h3>
+
+<h4>Appearance</h4>
+<ul>
+  <li>BugFix: Dot icon in a drop-down menu is not drawn correctly</li>
+</ul>
+
+<h4>File compare</h4>
+<ul>
+  <li>BugFix: Crash when reading a file in Google Drive File Stream (sf.net#2206)</li>
+  <li>BugFix: Crash when removing ghost lines (GitHub #80)</li>
+  <li>BugFix: Lines without EOL appears even though it is not the last line</li>
+  <li>Add Ctrl++/Ctrl+-(not numpad key) shortcut key to zoom in/out (sf.net#1727)</li>
+  <li>Remove 2GB file size limit for 64-bit build (GitHub #81, #82)</li>
+</ul>
+
+<h4>Folder compare</h4>
+<ul>
+  <li>Add Pause button to Folder Compare Progress dialog (sf.net#828,#1222,#1237)</li>
+  <li>Re-detect the file encoding when opening files (sf.net#2131)</li>
+</ul>
+ 
+<h4>Open dialog</h4>
+<ul>
+  <li>Add Options button to Open dialog</li>
+  <li>Add Save Project button to Open dialog</li>
+</ul>
+
+<h4>Patch generator dialog</h4>
+<ul>
+  <li>BugFix: File1/File2 fields don't remember manual input (sf.net#1949)</li>
+</ul>
+
+<h4>Reports</h4>
+<ul>
+  <li>BugFix: Garbled text was copied to the clipboard when generating a report
+  on the clipboard (sf.net#2200)</li>
+</ul>
+
+<h4>Plugins</h4>
+<ul>
+  <li>Add PrediffLineFilter.sct plugin</li>
+  <li>Make ignored lines by Prediffer plugin colored</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>Update Slovak translation (sf.net#2902)</li>
+  <li>Update Portuguese translation (GitHub #84,#85)</li>
+</ul>
+
+<h4>Internals</h4>
+<ul>
+  <li>Adapt to VS2017 version 15.6.1 (GitHub #79)</li>
+</ul>
 
 <h3><a name="#new2153">What Is New in 2.15.3 Beta?</a></h3>
 
