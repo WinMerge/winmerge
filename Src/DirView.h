@@ -378,8 +378,6 @@ protected:
 	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnSearch();
-	afx_msg void OnExpandFolder();
-	afx_msg void OnCollapseFolder();
 	afx_msg void OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnBnClickedComparisonStop();
 	afx_msg void OnBnClickedComparisonPause();

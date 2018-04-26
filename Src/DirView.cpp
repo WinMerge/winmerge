@@ -332,8 +332,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
-	ON_COMMAND(ID_VIEW_EXPAND, OnExpandFolder)
-	ON_COMMAND(ID_VIEW_COLLAPSE, OnCollapseFolder)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
@@ -1104,34 +1102,6 @@ void CDirView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 
 	*pResult = 0;
-}
-
-/**
- * @brief Expand collapsed folder in tree-view mode.
- */
-void CDirView::OnExpandFolder()
-{
-	DirItemIterator it = Begin();
-	if (it == End())
-		return;
-	const DIFFITEM &di = *it;
-	if (di.diffcode.isDirectory() && (di.customFlags1 &
-			ViewCustomFlags::EXPANDED) == 0)
-		ExpandSubdir(it.m_sel);
-}
-
-/**
- * @brief Collapse expanded folder in tree-view mode.
- */
-void CDirView::OnCollapseFolder()
-{
-	DirItemIterator it = Begin();
-	if (it == End())
-		return;
-	const DIFFITEM &di = *it;
-	if (di.diffcode.isDirectory() && (di.customFlags1 &
-			ViewCustomFlags::EXPANDED))
-		CollapseSubdir(it.m_sel);
 }
 
 /**
