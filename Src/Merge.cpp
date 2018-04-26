@@ -102,23 +102,6 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 END_MESSAGE_MAP()
 
-/**
-* @brief Mapping from command line argument name (eg, ignorews) to WinMerge
-* option name (eg, Settings/IgnoreSpace).
-*
-* These arguments take an optional colon and number, like so:
-*
-*  "/ignoreblanklines"  (makes WinMerge ignore blank lines)
-*  "/ignoreblanklines:1"  (makes WinMerge ignore blank lines)
-*  "/ignoreblanklines:0"  (makes WinMerge not ignore blank lines)
-*/
-struct ArgSetting
-{
-	LPCTSTR CmdArgName;
-	LPCTSTR WinMergeOptionName;
-};
-
-
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp construction
 
