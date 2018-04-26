@@ -4,6 +4,35 @@ old format (#XXXXXXX) or new format (patches:#XXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
+WinMerge 2.15.4
+  Appearance:
+  - BugFix: Dot icon in a drop-down menu is not drawn correctly
+  File compare:
+  - BugFix: Crash when reading a file in Google Drive File Stream (sf.net#2206)
+  - BugFix: Crash when removing ghost lines (GitHub #80)
+  - BugFix: Lines without EOL appears even though it is not the last line
+  - Add Ctrl++/Ctrl+-(not numpad key) shortcut key to zoom in/out (sf.net#1727)
+  - Remove 2GB file size limit for 64-bit build (GitHub #81, #82)
+  Folder compare:
+  - Add Pause button to Folder Compare Progress dialog (sf.net#828,#1222,#1237)
+  - Re-detect the file encoding when opening files (sf.net#2131)
+  Open dialog:
+  - Add Options button to Open dialog
+  - Add Save Project button to Open dialog
+  Patch generator dialog:
+  - BugFix: File1/File2 fields don't remember manual input (sf.net#1949)
+  Reports:
+  - BugFix: Garbled text was copied to the clipboard when generating a report
+    on the clipboard (sf.net#2200)
+  Plugins:
+  - Add PrediffLineFilter.sct plugin
+  - Make ignored lines by Prediffer plugin colored
+  Translations:
+  - Update Slovak translation (sf.net#2902)
+  - Update Portuguese translation (GitHub #84,#85)
+  Internals:
+  - Adapt to VS2017 version 15.6.1 (GitHub #79)
+
 WinMerge 2.15.3
   File compare:
   - Fix assertion error when started on Windows XP
