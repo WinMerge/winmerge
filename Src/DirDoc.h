@@ -35,7 +35,6 @@ struct IMergeDoc;
 typedef CTypedPtrList<CPtrList, IMergeDoc *> MergeDocPtrList;
 class DirDocFilterGlobal;
 class DirDocFilterByExtension;
-class CustomStatusCursor;
 class CTempPathContext;
 struct FileActionItem;
 
