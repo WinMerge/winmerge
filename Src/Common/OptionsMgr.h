@@ -110,6 +110,7 @@ public:
 			nameList.push_back(e.first);
 		return nameList;
 	}
+	String ExpandShortName(const String & shortname) const;
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) = 0;
 	virtual int InitOption(const String& name, const String& defaultValue) = 0;

@@ -126,6 +126,7 @@ protected:
 	BOOL ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
 	void UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage);
 	void UpdateCodepageModule();
+	void ApplyCommandLineConfigOptions(MergeCmdLineInfo & cmdInfo);
 
 	// End MergeArgs.cpp
 
