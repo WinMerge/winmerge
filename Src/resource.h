@@ -21,7 +21,6 @@
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
-#define IDD_EDITFILE                    203
 #define IDD_VSS                         204
 #define IDD_PROPPAGE_GENERAL            205
 #define IDD_CLEARCASE                   206
@@ -51,7 +50,6 @@
 #define IDD_LOAD_SAVE_CODEPAGE          231
 #define IDD_TEST_FILTER                 232
 #define IDD_PROPPAGE_COLORS_TEXT        233
-#define IDD_PROJFILES_PATHS             234
 #define IDD_PROPPAGE_BACKUPS            235
 #define IDD_CONFIRM_COPY                236
 #define IDD_PLUGINS_LIST                237
@@ -172,7 +170,6 @@
 #define IDC_BROWSE_BUTTON               1011
 #define IDC_SCROLL_CHECK                1012
 #define IDC_VSS_L1                      1013
-#define IDC_WHITESPACE_CHECK            1014
 #define IDC_RECURS_CHECK                1015
 #define IDC_VERSION                     1016
 #define IDC_IGNBLANKS_CHECK             1017
@@ -239,8 +236,6 @@
 #define IDC_FILES_DIRS_GROUP            1082
 #define IDC_DATABASE_LIST               1083
 #define IDC_MULTI_CHECKOUT              1084
-#define IDC_CHECK2                      1085
-#define IDC_BREAK_ON_WORDS              1086
 #define IDC_CHECKIN                     1087
 #define IDC_VCPROJ_SYNC                 1088
 #define IDC_UNPACKER_NAME               1089
@@ -271,7 +266,6 @@
 #define IDC_DIFF_DEFAULTS               1122
 #define IDC_MOVED_BLOCKS                1123
 #define IDC_RESET_ALL_MESSAGE_BOXES     1124
-#define IDC_COUNT_FOLDER                1125
 #define IDC_COLDLG_DEFAULTS             1126
 #define IDC_OPEN_STATUS                 1128
 #define IDC_FILTERFILE_EDITBTN          1129
@@ -408,7 +402,6 @@
 #define IDC_SAVE_FILES_LABEL            1260
 #define IDC_SAVE_CODEPAGE_TEXTBOX       1261
 #define IDC_LOADING_GROUP               1262
-#define IDC_SAVING_GROUP                1263
 #define IDC_LEFT_FILES_LABEL            1264
 #define IDC_MIDDLE_FILES_LABEL          1265
 #define IDC_RIGHT_FILES_LABEL           1266
@@ -458,7 +451,6 @@
 #define IDC_LFILTER_ADDBTN              1321
 #define IDC_LFILTER_EDITBTN             1322
 #define IDC_LFILTER_REMOVEBTN           1323
-#define IDC_BUTTON2                     1324
 #define IDC_ABOUTBOX_ICON               1325
 #define IDC_ASK_MULTIWINDOW_CLOSE       1326
 #define IDC_COLDLG_LIST                 1327
@@ -512,7 +504,6 @@
 #define IDC_PATH0_READONLY              8806
 #define IDC_PATH1_READONLY              8807
 #define IDC_PATH2_READONLY              8808
-#define IDC_MARKER_ENABLED              8809
 #define IDC_MARKER_COLORS_GROUP         8810
 #define IDC_MARKER0_COLOR_LABEL         8811
 #define IDC_MARKER1_COLOR_LABEL         8812
@@ -937,12 +928,6 @@
 #define IDS_EOL_CR                      30406
 #define IDS_EOL_CRLF                    30407
 #define IDS_EOL_NONE                    30408
-#define IDS_SUFFIX_BYTE                 30416
-#define IDS_SUFFIX_KILO                 30417
-#define IDS_SUFFIX_MEGA                 30418
-#define IDS_SUFFIX_GIGA                 30419
-#define IDS_SUFFIX_TERA                 30420
-#define IDS_SUFFIX_PETA                 30421
 #define IDS_PLUGINSLIST_NAME            30432
 #define IDS_PLUGINSLIST_TYPE            30433
 #define IDS_PLUGINSLIST_DESC            30434
