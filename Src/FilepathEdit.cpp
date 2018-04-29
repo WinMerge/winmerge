@@ -36,7 +36,7 @@
 #define new DEBUG_NEW
 #endif
 
-static int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath);
+static int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFilepath);
 
 BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
 	ON_WM_CONTEXTMENU()
@@ -58,7 +58,7 @@ END_MESSAGE_MAP()
  * - out: formatted string
  * @return Number of lines path is splitted to.
  */
-int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFilepath)
+static int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFilepath)
 {
 	size_t iBegin = 0;
 	int nLines = 1;
