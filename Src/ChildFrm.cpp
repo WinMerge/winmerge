@@ -190,6 +190,12 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_pMergeDoc->SetMergeDetailViews(pDetail);
 
 	m_wndFilePathBar.SetPaneCount(pDoc->m_nBuffers);
+	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
+		if (m_wndSplitter.GetColumnCount() > 1)
+			m_wndSplitter.SetActivePane(0, pane);
+		else
+			m_wndSplitter.SetActivePane(pane, 0);
+	});
 	m_wndStatusBar.SetPaneCount(pDoc->m_nBuffers);
 	
 	// Set frame window handles so we can post stage changes back

@@ -138,6 +138,12 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	}
 
 	m_wndFilePathBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
+	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
+		if (m_wndSplitter.GetColumnCount() > 1)
+			m_wndSplitter.SetActivePane(0, pane);
+		else
+			m_wndSplitter.SetActivePane(pane, 0);
+	});
 
 	// Set filename bars inactive so colors get initialized
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)

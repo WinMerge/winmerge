@@ -26,6 +26,7 @@
 #pragma once
 
 #include "FilepathEdit.h"
+#include <functional>
 
 /**
  * Interface to update the header data.
@@ -38,6 +39,7 @@ public:
 	virtual void SetActive(int pane, bool bActive) = 0;
 	virtual void SetPaneCount(int nPanes) = 0;
 	virtual void Resize() = 0;
+	virtual void SetOnSetFocusCallback(const std::function<void(int)> callbackfunc) = 0;
 };
 
 
@@ -61,6 +63,7 @@ public :
 	
 	void Resize();
 	void Resize(int widths[]);
+	void SetOnSetFocusCallback(const std::function<void(int)> callbackfunc);
 
 	// Implement IFilepathHeaders
 	void SetText(int pane, const String& sString);
@@ -69,7 +72,10 @@ public :
 	void SetPaneCount(int nPanes);
 
 protected:
-	BOOL OnToolTipNotify( UINT id, NMHDR * pTTTStruct, LRESULT * pResult );
+	//{{AFX_MSG(CEditorFilePathBar)
+	afx_msg BOOL OnToolTipNotify( UINT id, NMHDR * pTTTStruct, LRESULT * pResult );
+	afx_msg void OnSetFocusEdit(UINT id);
+	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP();
 
 private:
@@ -77,4 +83,5 @@ private:
 	CFilepathEdit m_Edit[3]; /**< Edit controls. */
 	CFont m_font; /**< Font for editcontrols */
 	int m_nPanes;
+	std::function<void(int)> m_callbackfunc;
 };

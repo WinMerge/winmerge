@@ -2704,7 +2704,7 @@ msgstr "A destra"
 #: Merge.rc:29CE40
 #, c-format
 msgid "Yes"
-msgstr "Sì"
+msgstr "Si"
 
 #: Merge.rc:12E8E
 #, c-format
@@ -2979,12 +2979,12 @@ msgstr "Ignora t&utto"
 #: Merge.rc:22956AA
 #, c-format
 msgid "&Yes"
-msgstr "&Sì"
+msgstr "&Si"
 
 #: Merge.rc:48B5872E
 #, c-format
 msgid "Yes to &all"
-msgstr "Sì a &tutto"
+msgstr "Si a &tutto"
 
 #: Merge.rc:11D981
 #, c-format
