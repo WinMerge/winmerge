@@ -116,6 +116,7 @@ CDirView::CDirView()
 		, m_hCurrentMenu(nullptr)
 		, m_pSavedTreeState(nullptr)
 		, m_pColItems(nullptr)
+		, m_nActivePane(-1)
 {
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
@@ -136,14 +137,12 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_WM_CONTEXTMENU()
 	//{{AFX_MSG_MAP(CDirView)
 	ON_WM_LBUTTONDBLCLK()
-	ON_COMMAND(ID_L2R, (OnDirCopy<SIDE_LEFT, SIDE_RIGHT>))
-	ON_UPDATE_COMMAND_UI(ID_L2R, (OnUpdateDirCopy<SIDE_LEFT, SIDE_RIGHT>))
+	ON_COMMAND_RANGE(ID_L2R, ID_R2L, OnDirCopy)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_L2R, ID_R2L, OnUpdateDirCopy)
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_RIGHT, (OnCtxtDirCopy<SIDE_LEFT, SIDE_RIGHT>))
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_RIGHT, (OnUpdateCtxtDirCopy<SIDE_LEFT, SIDE_RIGHT>))
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_MIDDLE, (OnCtxtDirCopy<SIDE_LEFT, SIDE_MIDDLE>))
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_MIDDLE, (OnUpdateCtxtDirCopy<SIDE_LEFT, SIDE_MIDDLE>))
-	ON_COMMAND(ID_R2L, (OnDirCopy<SIDE_RIGHT, SIDE_LEFT>))
-	ON_UPDATE_COMMAND_UI(ID_R2L, (OnUpdateDirCopy<SIDE_RIGHT, SIDE_LEFT>))
 	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_LEFT, (OnCtxtDirCopy<SIDE_RIGHT, SIDE_LEFT>))
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_LEFT, (OnUpdateCtxtDirCopy<SIDE_RIGHT, SIDE_LEFT>))
 	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_MIDDLE, (OnCtxtDirCopy<SIDE_RIGHT, SIDE_MIDDLE>))
@@ -780,10 +779,45 @@ bool CDirView::ListShellContextMenu(SIDE_TYPE stype)
 /**
  * @brief User chose (main menu) Copy from right to left
  */
-template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
-void CDirView::OnDirCopy()
+void CDirView::OnDirCopy(UINT id)
 {
-	DoDirAction(&DirActions::Copy<srctype, dsttype>, _("Copying files..."));
+	bool to_right = (id == ID_L2R) ? true : false;
+	if (GetDocument()->m_nDirs < 3)
+	{
+		if (to_right)
+			DoDirAction(&DirActions::Copy<SIDE_LEFT, SIDE_RIGHT>, _("Copying files..."));
+		else
+			DoDirAction(&DirActions::Copy<SIDE_RIGHT, SIDE_LEFT>, _("Copying files..."));
+	}
+	else
+	{
+		if (to_right)
+		{
+			switch (m_nActivePane)
+			{
+			case 0:
+				DoDirAction(&DirActions::Copy<SIDE_LEFT, SIDE_MIDDLE>, _("Copying files..."));
+				break;
+			case 1:
+			case 2:
+				DoDirAction(&DirActions::Copy<SIDE_MIDDLE, SIDE_RIGHT>, _("Copying files..."));
+				break;
+			}
+		}
+		else
+		{
+			switch (m_nActivePane)
+			{
+			case 0:
+			case 1:
+				DoDirAction(&DirActions::Copy<SIDE_MIDDLE, SIDE_LEFT>, _("Copying files..."));
+				break;
+			case 2:
+				DoDirAction(&DirActions::Copy<SIDE_RIGHT, SIDE_MIDDLE>, _("Copying files..."));
+				break;
+			}
+		}
+	}
 }
 
 /// User chose (context men) Copy from right to left
@@ -808,10 +842,45 @@ void CDirView::OnUpdateCtxtDirCopy(CCmdUI* pCmdUI)
 }
 
 /// Update main menu Copy Right to Left item
-template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 void CDirView::OnUpdateDirCopy(CCmdUI* pCmdUI)
 {
-	DoUpdateDirCopy<srctype, dsttype>(pCmdUI, eMain);
+	bool to_right = pCmdUI->m_nID == ID_L2R ? true : false;
+	if (GetDocument()->m_nDirs < 3)
+	{
+		if (to_right)
+			DoUpdateDirCopy<SIDE_LEFT, SIDE_RIGHT>(pCmdUI, eContext);
+		else
+			DoUpdateDirCopy<SIDE_RIGHT, SIDE_LEFT>(pCmdUI, eContext);
+	}
+	else
+	{
+		if (to_right)
+		{
+			switch (m_nActivePane)
+			{
+			case 0:
+				DoUpdateDirCopy<SIDE_LEFT, SIDE_MIDDLE>(pCmdUI, eContext);
+				break;
+			case 1:
+			case 2:
+				DoUpdateDirCopy<SIDE_MIDDLE, SIDE_RIGHT>(pCmdUI, eContext);
+				break;
+			}
+		}
+		else
+		{
+			switch (m_nActivePane)
+			{
+			case 0:
+			case 1:
+				DoUpdateDirCopy<SIDE_MIDDLE, SIDE_LEFT>(pCmdUI, eContext);
+				break;
+			case 2:
+				DoUpdateDirCopy<SIDE_RIGHT, SIDE_MIDDLE>(pCmdUI, eContext);
+				break;
+			}
+		}
+	}
 }
 
 void CDirView::DoDirAction(DirActions::method_type func, const String& status_message)
@@ -1914,6 +1983,14 @@ void CDirView::OpenPrevDiff()
 	{
 		GetParentFrame()->ActivateFrame();
 	}
+}
+
+void CDirView::SetActivePane(int pane)
+{
+	if (m_nActivePane >= 0)
+		GetParentFrame()->GetHeaderInterface()->SetActive(m_nActivePane, false);
+	GetParentFrame()->GetHeaderInterface()->SetActive(pane, true);
+	m_nActivePane = pane;
 }
 
 // Go to next diff
