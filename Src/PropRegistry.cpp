@@ -113,7 +113,7 @@ BOOL PropRegistry::OnInitDialog()
 void PropRegistry::OnBrowseEditor()
 {
 	String path;
-	if (SelectFile(GetSafeHwnd(), path, m_strEditorPath.c_str(), _("Open"), _("Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"), TRUE))
+	if (SelectFile(GetSafeHwnd(), path, TRUE, m_strEditorPath.c_str(), _T(""), _("Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||")))
 	{
 		SetDlgItemText(IDC_EXT_EDITOR_PATH, path);
 	}

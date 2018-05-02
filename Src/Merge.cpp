@@ -1062,7 +1062,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		case IDNO:
 			if (!bMultiFile)
 			{
-				if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, strSavePath.c_str(), _("Save As"), _T(""), FALSE))
+				if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, FALSE, strSavePath.c_str()))
 				{
 					strSavePath = s;
 					nRetVal = IDNO;
