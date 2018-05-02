@@ -1323,7 +1323,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 		else
 			title = _("Save Middle File As");
 
-		if (SelectFile(parent, s, strPath.c_str(), title, _T(""), false))
+		if (SelectFile(parent, s, false, strPath.c_str(), title))
 		{
 			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer].get();
 			strSavePath = s;
@@ -3373,7 +3373,7 @@ void CMergeDoc::OnToolsGenerateReport()
 	String s;
 	CString folder;
 
-	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, folder, _("Save As"), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), false, _T("htm")))
+	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, folder, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
 		return;
 
 	GenerateReport(s.c_str());

@@ -661,7 +661,7 @@ bool CImgMergeFrame::DoFileSaveAs(int pane)
 		title = _("Save Right File As");
 	else
 		title = _("Save Middle File As");
-	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, path.c_str(), title, NULL, FALSE))
+	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, FALSE, path.c_str(), title))
 	{
 		std::wstring filename = ucr::toUTF16(strPath).c_str();
 		BOOL bApplyToAll = FALSE;
@@ -2022,7 +2022,7 @@ void CImgMergeFrame::OnToolsGenerateReport()
 	String s;
 	CString folder;
 
-	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, folder, _("Save As"), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), false, _T("htm")))
+	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, folder, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
 		return;
 
 	GenerateReport(s);

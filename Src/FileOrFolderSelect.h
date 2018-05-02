@@ -27,9 +27,9 @@
 
 #include "UnicodeString.h"
 
-BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath = NULL, 
-			 const String& stitle = _T(""), const String& sfilter = _T(""),
-			 BOOL is_open =TRUE, LPCTSTR defaultExtension = NULL);
+BOOL SelectFile(HWND parent, String& path, BOOL is_open =TRUE,
+			LPCTSTR initialPath = NULL, const String& stitle = _T(""),
+			const String& sfilter = _T(""), LPCTSTR defaultExtension = NULL);
 
 BOOL SelectFolder(String& path, LPCTSTR root_path = NULL, 
 			 const String& title = _T(""),

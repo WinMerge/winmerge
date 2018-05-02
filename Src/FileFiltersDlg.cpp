@@ -426,8 +426,8 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		path = paths::AddTrailingSlash(path);
 	
 	String s;
-	if (SelectFile(GetSafeHwnd(), s, path.c_str(), _("Select filename for new filter"), _("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"),
-		FALSE))
+	if (SelectFile(GetSafeHwnd(), s, FALSE, path.c_str(), _("Select filename for new filter"),
+		_("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||")))
 	{
 		// Fix file extension
 		TCHAR file[_MAX_FNAME] = {0};
@@ -557,8 +557,8 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	String path;
 	String userPath = theApp.m_pGlobalFileFilter->GetUserFilterPathWithCreate();
 
-	if (SelectFile(GetSafeHwnd(), s, path.c_str(), _("Locate filter file to install"), _("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"),
-		TRUE))
+	if (SelectFile(GetSafeHwnd(), s, TRUE, path.c_str(),_("Locate filter file to install"),
+		_("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||")))
 	{
 		userPath = paths::ConcatPath(userPath, paths::FindFileName(s));
 		if (!CopyFile(s.c_str(), userPath.c_str(), TRUE))

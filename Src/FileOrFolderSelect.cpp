@@ -60,9 +60,9 @@ static String LastSelectedFolder;
  * modality problems with this. Dialog can be lost behind other windows!
  * @param [in] defaultExtension Extension to append if user doesn't provide one
  */
-BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/,
-		const String& stitle /*=_T("")*/, const String& sfilter /*=_T("")*/,
-		BOOL is_open /*=TRUE*/, LPCTSTR defaultExtension /*=NULL*/)
+BOOL SelectFile(HWND parent, String& path,BOOL is_open /*=TRUE*/,
+		LPCTSTR initialPath /*=NULL*/, const String& stitle /*=_T("")*/,
+		const String& sfilter /*=_T("")*/, LPCTSTR defaultExtension /*=NULL*/)
 {
 	path.clear(); // Clear output param
 
@@ -88,7 +88,9 @@ BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/,
 	if (sfilter.empty())
 		filters = _("All Files (*.*)|*.*||");
 	if (stitle.empty())
-		title = _("Open");
+	{
+		title = is_open ? _("Open") : _("Save As");
+	}
 
 	// Convert extension mask from MFC style separators ('|')
 	//  to Win32 style separators ('\0')

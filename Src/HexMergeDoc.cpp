@@ -355,7 +355,7 @@ void CHexMergeDoc::DoFileSaveAs(int nBuffer)
 		title = _("Save Right File As");
 	else
 		title = _("Save Middle File As");
-	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, path.c_str(), title, _T(""), FALSE))
+	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, FALSE, path.c_str(), title))
 	{
 		if (Try(m_pView[nBuffer]->SaveFile(strPath.c_str())) == IDCANCEL)
 			return;
