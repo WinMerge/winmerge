@@ -270,7 +270,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 	String folder;
 
 	folder = m_file1;
-	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), _("Open"), _T(""), TRUE))
+	if (SelectFile(GetSafeHwnd(), s, TRUE, folder.c_str()))
 		m_ctlFile1.SetWindowText(s.c_str());
 }
 
@@ -283,7 +283,7 @@ void CPatchDlg::OnDiffBrowseFile2()
 	String folder;
 
 	folder = m_file2;
-	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), _("Open"), _T(""), TRUE))
+	if (SelectFile(GetSafeHwnd(), s, TRUE, folder.c_str()))
 		m_ctlFile2.SetWindowText(s.c_str());
 }
 
@@ -296,7 +296,7 @@ void CPatchDlg::OnDiffBrowseResult()
 	String folder;
 
 	folder = m_fileResult;
-	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), _("Save As"), _T(""), FALSE))
+	if (SelectFile(GetSafeHwnd(), s, FALSE, folder.c_str()))
 		m_ctlResult.SetWindowText(s.c_str());
 }
 

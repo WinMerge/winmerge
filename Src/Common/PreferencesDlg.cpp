@@ -325,7 +325,7 @@ void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
 void CPreferencesDlg::OnImportButton()
 {
 	String s;
-	if (SelectFile(GetSafeHwnd(), s, NULL, _("Select file for import"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||"), TRUE))
+	if (SelectFile(GetSafeHwnd(), s, TRUE, NULL, _("Select file for import"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
 	{
 		if (m_pOptionsMgr->ImportOptions(s) == COption::OPT_OK)
 		{
@@ -344,8 +344,8 @@ void CPreferencesDlg::OnImportButton()
 void CPreferencesDlg::OnExportButton()
 {
 	String settingsFile;
-	if (SelectFile(GetSafeHwnd(), settingsFile, NULL, _("Select file for export"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||"),
-		FALSE))
+	if (SelectFile(GetSafeHwnd(), settingsFile, FALSE, NULL, _("Select file for export"),
+		_("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
 	{
 		// Add settings file extension if it is missing
 		// So we allow 'filename.otherext' but add extension for 'filename'
