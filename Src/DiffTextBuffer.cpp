@@ -396,18 +396,6 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			AppendLine(lineno, sline.c_str(), static_cast<int>(sline.length()));
 			++lineno;
 			preveol = eol;
-			
-			// KLUDGE: Check the UI to process messages
-			MSG msg;
-			while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
-			{
-				// pump messages until queue is empty
-				if ( !::AfxGetThread()->PumpMessage() )
-				{
-					// Processed a WM_QUIT message... 
-					_Exit(-1);
-				}
-			}
 
 		} while (!done);
 
