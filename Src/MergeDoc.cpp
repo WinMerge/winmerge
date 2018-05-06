@@ -1269,19 +1269,6 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	String title;
 	bool result = true;
 	int answer = IDOK; // Set default we use for scratchpads
-	int nActiveViewIndexType = GetActiveMergeViewIndexType();
-
-	if (nActiveViewIndexType == -1)
-	{
-		// We don't have valid view active, but still tried to save.
-		// We don't know which file to save, so just cancel.
-		// Possible origin in location pane?
-		_RPTF0(_CRT_ERROR, "Save request from invalid view!");
-		nSaveResult = SAVE_CANCELLED;
-		return true;
-	}
-
-	HWND parent = m_pView[nActiveViewIndexType]->GetSafeHwnd();
 
 	// We shouldn't get here if saving is succeed before
 	ASSERT(nSaveResult != SAVE_DONE);
@@ -1328,7 +1315,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 		else
 			title = _("Save Middle File As");
 
-		if (SelectFile(parent, s, false, strPath.c_str(), title))
+		if (SelectFile(GetActiveMergeView()->GetSafeHwnd(), s, false, strPath.c_str(), title))
 		{
 			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer].get();
 			strSavePath = s;
