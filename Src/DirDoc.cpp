@@ -261,13 +261,19 @@ void CDirDoc::Rescan()
 		m_pCompareStats->IncreaseTotalItems(m_pDirView->GetSelectedCount());
 
 	pf->GetHeaderInterface()->SetPaneCount(m_nDirs);
+	pf->GetHeaderInterface()->SetOnSetFocusCallback([&](int pane) {
+		m_pDirView->SetActivePane(pane);
+		theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), pane);
+	});
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
 	{
 		UpdateHeaderPath(nIndex);
-		// draw the headers as active ones
-		pf->GetHeaderInterface()->SetActive(nIndex, true);
+		// draw the headers as inactive ones
+		pf->GetHeaderInterface()->SetActive(nIndex, false);
 	}
 	pf->GetHeaderInterface()->Resize();
+	int nPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
+	m_pDirView->SetActivePane((nPane >= 0 && nPane < m_nDirs) ? nPane : 0);
 
 	// Make sure filters are up-to-date
 	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
