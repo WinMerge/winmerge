@@ -67,16 +67,6 @@ enum
 	SAVE_CANCELLED, /**< Saving was cancelled */  
 };
 
-enum MERGEVIEW_INDEX_TYPE
-{
-	MERGEVIEW_PANE0 = 0,         /**< Pane0 MergeView */
-	MERGEVIEW_PANE1,             /**< Pane1 MergeView */
-	MERGEVIEW_PANE2,             /**< Pane2 MergeView */
-	MERGEVIEW_PANE0_DETAIL = 10, /**< Pane0 DetailView */
-	MERGEVIEW_PANE1_DETAIL,      /**< Pane1 DetailView */
-	MERGEVIEW_PANE2_DETAIL,      /**< Pane2 DetailView */
-};
-
 /**
  * @brief Types for buffer. Buffer's type defines behavior
  * of buffer when saving etc.
@@ -180,7 +170,6 @@ public:
 	/// String of concatenated filenames as text to apply plugins filter to
 	String m_strBothFilenames;
 
-	int GetActiveMergeViewIndexType() const;
 	CMergeEditView * GetActiveMergeView();
 	void UpdateHeaderPath(int pane);
 	void UpdateHeaderActivity(int pane, bool bActivate);
@@ -297,6 +286,19 @@ private:
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
 	DWORD LoadOneFile(int index, String filename, bool readOnly, const String& strDesc, const FileTextEncoding & encoding);
+	template <typename Function>
+	void ForEachView(int nBuffer, Function func) {
+		func(m_pView[nBuffer]);
+		func(m_pDetailView[nBuffer]);
+	}
+	template <typename Function>
+	void ForEachView(Function func) {
+		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+		{
+			func(m_pView[nBuffer]);
+			func(m_pDetailView[nBuffer]);
+		}
+	}
 
 // Implementation data
 protected:

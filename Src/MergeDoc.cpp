@@ -195,9 +195,10 @@ void CMergeDoc::DeleteContents ()
 {
 	CDocument::DeleteContents ();
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
 		m_ptBuf[nBuffer]->FreeAll ();
-	m_tempFiles[0].Delete();
-	m_tempFiles[1].Delete();
+		m_tempFiles[nBuffer].Delete();
+	}
 }
 
 /**
@@ -215,38 +216,6 @@ BOOL CMergeDoc::OnNewDocument()
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		m_ptBuf[nBuffer]->InitNew ();
 	return true;
-}
-
-/**
- * @brief Determines currently active view.
- * @return one of MERGEVIEW_INDEX_TYPE values or -1 in error.
- * @todo Detect location pane and return != 1 for it.
- */
-int CMergeDoc::GetActiveMergeViewIndexType() const
-{
-	CMergeDoc * pThis = const_cast<CMergeDoc *>(this);
-	// Get active view pointer
-	CView * pActiveView = pThis->GetParentFrame()->GetActiveView();
-	// Cast it to common base of all our views
-	CCrystalTextView* curView = dynamic_cast<CCrystalTextView*> (pActiveView);
-	// Now test it against all our views to see which it is
-	if (curView == GetView(0))
-		return MERGEVIEW_PANE0;
-	else if (curView == GetView(1))
-		return MERGEVIEW_PANE1;
-	else if (m_nBuffers == 3 && curView == GetView(2))
-		return MERGEVIEW_PANE2;
-	else if (curView == GetDetailView(0))
-		return MERGEVIEW_PANE0_DETAIL;
-	else if (curView == GetDetailView(1))
-		return MERGEVIEW_PANE1_DETAIL;
-	else if (m_nBuffers == 3 && curView == GetDetailView(2))
-		return MERGEVIEW_PANE2_DETAIL;
-
-	// This assert fired when location pane caused refresh.
-	// We can't detect location pane activity, so disable the assert.
-	//_RPTF0(_CRT_ERROR, "Invalid view pointer!");
-	return -1;
 }
 
 /**
@@ -533,11 +502,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// BTW, this solves the problem of double asserts
 		// (during the display of an assert message box, a second assert in one of the 
 		//  display functions happens, and hides the first assert)
-		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		{
-			m_pView[nBuffer]->DetachFromBuffer();
-			m_pDetailView[nBuffer]->DetachFromBuffer();
-		}
+		ForEachView([](auto& pView) { pView->DetachFromBuffer(); });
 
 		// Remove blank lines and clear winmerge flags
 		// this operation does not change the modified flag
@@ -572,16 +537,14 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		if (!m_diffList.HasSignificantDiffs())
 			identical = IDENTLEVEL_ALL;
 
+		ForEachView([](auto& pView) {
+			// just apply some options to the views
+			pView->PrimeListWithFile();
+			// Now buffers data are valid
+			pView->ReAttachToBuffer();
+		});
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			// just apply some options to the views
-			m_pView[nBuffer]->PrimeListWithFile();
-			m_pDetailView[nBuffer]->PrimeListWithFile();
-
-			// Now buffers data are valid
-			m_pView[nBuffer]->ReAttachToBuffer();
-			m_pDetailView[nBuffer]->ReAttachToBuffer();
-
 			m_bEditAfterRescan[nBuffer] = false;
 		}
 	}
@@ -926,12 +889,11 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 		}
 	}
 
-	m_pView[dstPane]->SetCursorPos(currentPosDst);
-	m_pView[dstPane]->SetNewSelection(currentPosDst, currentPosDst, false);
-	m_pView[dstPane]->SetNewAnchor(currentPosDst);
-	m_pDetailView[dstPane]->SetCursorPos(currentPosDst);
-	m_pDetailView[dstPane]->SetNewSelection(currentPosDst, currentPosDst, false);
-	m_pDetailView[dstPane]->SetNewAnchor(currentPosDst);
+	ForEachView(dstPane, [currentPosDst](auto& pView) {
+		pView->SetCursorPos(currentPosDst);
+		pView->SetNewSelection(currentPosDst, currentPosDst, false);
+		pView->SetNewAnchor(currentPosDst);
+	});
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
@@ -1043,12 +1005,11 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 			++unresolvedConflictCount;
 	}
 
-	m_pView[dstPane]->SetCursorPos(currentPosDst);
-	m_pView[dstPane]->SetNewSelection(currentPosDst, currentPosDst, false);
-	m_pView[dstPane]->SetNewAnchor(currentPosDst);
-	m_pDetailView[dstPane]->SetCursorPos(currentPosDst);
-	m_pDetailView[dstPane]->SetNewSelection(currentPosDst, currentPosDst, false);
-	m_pDetailView[dstPane]->SetNewAnchor(currentPosDst);
+	ForEachView(dstPane, [currentPosDst](auto& pView) {
+		pView->SetCursorPos(currentPosDst);
+		pView->SetNewSelection(currentPosDst, currentPosDst, false);
+		pView->SetNewAnchor(currentPosDst);
+	});
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
@@ -1139,15 +1100,8 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 			m_pView[dstPane]->IsCursorInDiff()))
 		{
 			// Find out diff under cursor
-			CPoint ptCursor;
-			int nActiveViewIndexType = GetActiveMergeViewIndexType();
-			if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
-				ptCursor = m_pView[nActiveViewIndexType]->GetCursorPos();
-			else if (nActiveViewIndexType >= MERGEVIEW_PANE0_DETAIL &&
-					nActiveViewIndexType <= MERGEVIEW_PANE2_DETAIL)
-			{
-				ptCursor = m_pView[nActiveViewIndexType - MERGEVIEW_PANE0_DETAIL]->GetCursorPos();
-			}
+			int nBuffer = GetActiveMergeView()->m_nThisPane;
+			CPoint ptCursor = m_pView[nBuffer]->GetCursorPos();
 			nDiff = m_diffList.LineToDiff(ptCursor.y);
 		}
 	}
@@ -1184,8 +1138,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 				else if (cd.blank[srcPane] >= 0)
 					currentPos.y -= cd_dend - cd.blank[srcPane] + 1;
 			}
-			m_pView[dstPane]->SetCursorPos(currentPos);
-			m_pDetailView[dstPane]->SetCursorPos(currentPos);
+			ForEachView(dstPane, [currentPos](auto& pView) { pView->SetCursorPos(currentPos); });
 		}
 
 		// if the current diff contains missing lines, remove them from both sides
@@ -1638,49 +1591,28 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
 
 	CWaitCursor waitstatus;
 
-	int nActiveViewIndexType = GetActiveMergeViewIndexType();
+	CMergeEditView *pActiveView = GetActiveMergeView();
 
 	// store cursors and hide caret
-	int nBuffer;
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		m_pView[nBuffer]->PushCursors();
-		m_pDetailView[nBuffer]->PushCursors();
-	}
-	if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
-		m_pView[nActiveViewIndexType]->HideCursor();
+	ForEachView([](auto& pView) { pView->PushCursors(); });
+	pActiveView->HideCursor();
 
 	bool bBinary = false;
 	IDENTLEVEL identical = IDENTLEVEL_NONE;
 	int nRescanResult = Rescan(bBinary, identical, bForced);
 
 	// restore cursors and caret
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		m_pView[nBuffer]->PopCursors();
-		m_pDetailView[nBuffer]->PopCursors();
-	}
-	if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
-		m_pView[nActiveViewIndexType]->ShowCursor();
+	ForEachView([](auto& pView) { pView->PopCursors(); });
+	pActiveView->ShowCursor();
 
-	// because of ghostlines, m_nTopLine may differ just after Rescan
-	// scroll both views to the same top line
-	CMergeEditView * fixedView = m_pView[0];
-	if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
-		// only one view needs to scroll so do not scroll the active view
-		fixedView = m_pView[nActiveViewIndexType];
-	fixedView->UpdateSiblingScrollPos(false);
+	ForEachView(pActiveView->m_nThisPane, [](auto& pView) {
+		// because of ghostlines, m_nTopLine may differ just after Rescan
+		// scroll both views to the same top line
+		pView->UpdateSiblingScrollPos(false);
 
-	// make sure we see the cursor from the curent view
-	if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
-		m_pView[nActiveViewIndexType]->EnsureVisible(m_pView[nActiveViewIndexType]->GetCursorPos());
-
-	// scroll both diff views to the same top line
-	CMergeEditView * fixedDetailView = m_pDetailView[0];
-	if (nActiveViewIndexType >= MERGEVIEW_PANE0_DETAIL && nActiveViewIndexType <= MERGEVIEW_PANE2_DETAIL)
-		// only one view needs to scroll so do not scroll the active view
-		fixedDetailView = m_pDetailView[nActiveViewIndexType - MERGEVIEW_PANE0_DETAIL];
-	fixedDetailView->UpdateSiblingScrollPos(false);
+		// make sure we see the cursor from the curent view
+		pView->EnsureVisible(pView->GetCursorPos());
+	});
 
 	// Refresh display
 	UpdateAllViews(NULL);
@@ -2143,8 +2075,7 @@ void CMergeDoc::HideLines()
 
 	if (m_nDiffContext < 0)
 	{
-		for (file = 0; file < m_nBuffers; file++)
-			m_pView[file]->SetEnableHideLines(false);
+		ForEachView([](auto& pView) { pView->SetEnableHideLines(false); });
 		return;
 	}
 
@@ -2191,8 +2122,7 @@ void CMergeDoc::HideLines()
 		}
 	}
 
-	for (file = 0; file < m_nBuffers; file++)
-		m_pView[file]->SetEnableHideLines(true);
+	ForEachView([](auto& pView) { pView->SetEnableHideLines(true); });
 }
 
 /**
@@ -2544,11 +2474,11 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	// Prevent displaying views during LoadFile
 	// Note : attach buffer again only if both loads succeed
 	m_strBothFilenames.erase();
+
+	ForEachView([](auto& pView) { pView->DetachFromBuffer(); });
+
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		m_pView[nBuffer]->DetachFromBuffer();
-		m_pDetailView[nBuffer]->DetachFromBuffer();
-		
 		// clear undo buffers
 		m_ptBuf[nBuffer]->m_aUndoBuf.clear();
 
@@ -2619,20 +2549,16 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), TRUE, FALSE);
 	}
 
+	ForEachView([](auto& pView) {
+		// Now buffers data are valid
+		pView->AttachToBuffer();
+		// Currently there is only one set of syntax colors, which all documents & views share
+		pView->SetColorContext(theApp.GetMainSyntaxColors());
+		// Currently there is only one set of markers, which all documents & views share
+		pView->SetMarkersContext(theApp.GetMainMarkers());
+	});
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		// Now buffers data are valid
-		m_pView[nBuffer]->AttachToBuffer();
-		m_pDetailView[nBuffer]->AttachToBuffer();
-
-		// Currently there is only one set of syntax colors, which all documents & views share
-		m_pView[nBuffer]->SetColorContext(theApp.GetMainSyntaxColors());
-		m_pDetailView[nBuffer]->SetColorContext(theApp.GetMainSyntaxColors());
-
-		// Currently there is only one set of markers, which all documents & views share
-		m_pView[nBuffer]->SetMarkersContext(theApp.GetMainMarkers());
-		m_pDetailView[nBuffer]->SetMarkersContext(theApp.GetMainMarkers());
-
 		// Set read-only statuses
 		m_ptBuf[nBuffer]->SetReadOnly(bRO[nBuffer]);
 	}
@@ -2682,20 +2608,21 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		// or any function that calls UpdateView, like SelectDiff)
 		// Note: If option enabled, and another side type is not recognized,
 		// we use recognized type for unrecognized side too.
-		String sext;
+		String sext[3];
 		bool bTyped[3];
 		int paneTyped = 0;
 
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			if (bFiltersEnabled && m_pInfoUnpacker->textType.length())
-				sext = m_pInfoUnpacker->textType;
+				sext[nBuffer] = m_pInfoUnpacker->textType;
 			else
-				sext = GetFileExt(fileloc[nBuffer].filepath.c_str(), m_strDesc[nBuffer].c_str());
-			bTyped[nBuffer] = GetView(nBuffer)->SetTextType(sext.c_str());
-			GetDetailView(nBuffer)->SetTextType(sext.c_str());
-			if (bTyped[nBuffer])
-				paneTyped = nBuffer;
+				sext[nBuffer] = GetFileExt(fileloc[nBuffer].filepath.c_str(), m_strDesc[nBuffer].c_str());
+			ForEachView(nBuffer, [&](auto& pView) {
+				bTyped[nBuffer] = pView->SetTextType(sext[nBuffer].c_str());
+				if (bTyped[nBuffer])
+					paneTyped = nBuffer;
+			});
 		}
 
 		for (nBuffer = 1; nBuffer < m_nBuffers; nBuffer++)
@@ -2720,15 +2647,11 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		if (syntaxHLEnabled)
 		{
-			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-			{
-				if (!bTyped[nBuffer])
-				{
-					CCrystalTextView::TextDefinition *enuType = GetView(paneTyped)->GetTextType(sext.c_str());
-					GetView(nBuffer)->SetTextType(enuType);
-					GetDetailView(nBuffer)->SetTextType(enuType);
-				}
-			}
+			CCrystalTextView::TextDefinition *enuType = GetView(paneTyped)->GetTextType(sext[paneTyped].c_str());
+			ForEachView([bTyped, enuType](auto& pView) {
+				if (!bTyped[pView->m_nThisPane])
+					pView->SetTextType(enuType);
+			});
 		}
 
 		int nNormalBuffer = 0;
@@ -2737,8 +2660,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			// set the frame window header
 			UpdateHeaderPath(nBuffer);
 
-			GetView(nBuffer)->DocumentsLoaded();
-			GetDetailView(nBuffer)->DocumentsLoaded();
+			ForEachView(nBuffer, [](auto& pView) { pView->DocumentsLoaded(); });
 			
 			if ((m_nBufferType[nBuffer] == BUFFER_NORMAL) ||
 			    (m_nBufferType[nBuffer] == BUFFER_NORMAL_NAMED))
@@ -2759,7 +2681,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		{
 			nPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
 			if (nPane < 0 || nPane >= m_nBuffers)
-			nPane = 0;
+				nPane = 0;
 		}
 		if (nLineIndex == -1)
 		{
@@ -2842,11 +2764,7 @@ void CMergeDoc::RefreshOptions()
 	m_diffWrapper.SetOptions(&options);
 
 	// Refresh view options
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		m_pView[nBuffer]->RefreshOptions();
-		m_pDetailView[nBuffer]->RefreshOptions();
-	}
+	ForEachView([](auto& pView) { pView->RefreshOptions(); });
 }
 
 /**
@@ -2960,8 +2878,7 @@ void CMergeDoc::UpdateResources()
 		UpdateHeaderPath(nBuffer);
 
 	GetParentFrame()->UpdateResources();
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		GetView(nBuffer)->UpdateResources();
+	ForEachView([](auto& pView) { pView->UpdateResources(); });
 }
 
 // Return current word breaking break type setting (whitespace only or include punctuation)
@@ -3412,8 +3329,7 @@ void CMergeDoc::AddSyncPoint()
 
 	m_bHasSyncPoints = true;
 
-	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-		m_pView[nBuffer]->SetSelectionMargin(true);
+	ForEachView([](auto& pView) { pView->SetSelectionMargin(true); });
 
 	FlushAndRescan(true);
 }
