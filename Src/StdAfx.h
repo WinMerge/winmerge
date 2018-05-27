@@ -83,6 +83,11 @@ int NTAPI LangMessageBox(UINT, UINT nType = MB_OK, UINT nIDHelp = (UINT)-1);
 #endif
 #define MAX_PATH (260 * sizeof(wchar_t) / sizeof(TCHAR))
 
+#ifdef MAX_PATH_FULL
+#  undef MAX_PATH_FULL
+#endif
+#define MAX_PATH_FULL (32767 * sizeof(wchar_t) / sizeof(TCHAR))
+
 #define WMPROFILE(x) CWinMergeProfile __wmtl__(x)
 
 class CWinMergeProfile
