@@ -908,7 +908,7 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 
 		// Append filename and extension (+ optional .bak) to path
 		if ((bakPath.length() + filename.length() + ext.length())
-			< MAX_PATH)
+			< MAX_PATH_FULL)
 		{
 			success = TRUE;
 			bakPath = paths::ConcatPath(bakPath, filename);
