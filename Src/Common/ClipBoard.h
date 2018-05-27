@@ -17,8 +17,8 @@ template<class Container>
 void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 {
 	String strPaths, strPathsSepSpc;
-	strPaths.reserve(list.size() * MAX_PATH);
-	strPathsSepSpc.reserve(list.size() * MAX_PATH);
+	strPaths.reserve(list.size() * MAX_PATH_FULL);
+	strPathsSepSpc.reserve(list.size() * MAX_PATH_FULL);
 
 	for (Container::const_iterator it = list.begin(); it != list.end(); ++it)
 	{

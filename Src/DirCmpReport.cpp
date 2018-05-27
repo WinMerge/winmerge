@@ -178,7 +178,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 					"EndFragment:%09d\n";
 				static const char start[] = "<html><body>\n<!--StartFragment -->";
 				static const char end[] = "\n<!--EndFragment -->\n</body>\n</html>\n";
-				char buffer[_MAX_PATH];
+				char buffer[MAX_PATH_FULL];
 				int cbHeader = wsprintfA(buffer, header, 0, 0, 0, 0);
 				file.Write(buffer, cbHeader);
 				file.Write(start, sizeof start - 1);
