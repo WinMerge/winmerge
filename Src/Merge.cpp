@@ -917,7 +917,7 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 		}
 
 		if (success)
-			success = CopyFile(pszPath.c_str(), bakPath.c_str(), FALSE);
+			success = CopyFileW((L"\\\\?\\" + pszPath).c_str(), (L"\\\\?\\" + bakPath).c_str(), FALSE);
 		
 		if (!success)
 		{
