@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/Environment_WIN32.h"
 #include "Poco/Exception.h"
@@ -240,3 +241,5 @@ unsigned EnvironmentImpl::processorCountImpl()
 
 
 } // namespace Poco
+
+#endif

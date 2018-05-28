@@ -34,6 +34,8 @@
 //
 
 
+#if 0
+
 #include "Poco/LogFile_WIN32.h"
 #include "Poco/File.h"
 #include "Poco/Exception.h"
@@ -128,3 +130,6 @@ void LogFileImpl::createFile()
 }
 
 } // namespace Poco
+
+#endif
+

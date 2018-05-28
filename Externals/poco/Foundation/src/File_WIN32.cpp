@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/File_WIN32.h"
 #include "Poco/Exception.h"
@@ -420,3 +421,6 @@ void FileImpl::handleLastErrorImpl(const std::string& path)
 
 
 } // namespace Poco
+
+#endif
+

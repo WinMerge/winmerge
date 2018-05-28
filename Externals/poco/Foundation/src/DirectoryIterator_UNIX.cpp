@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/DirectoryIterator_UNIX.h"
 #if defined(POCO_VXWORKS)
@@ -84,3 +85,5 @@ const std::string& DirectoryIteratorImpl::next()
 
 
 } // namespace Poco
+
+#endif
