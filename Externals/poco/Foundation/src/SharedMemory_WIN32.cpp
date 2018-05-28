@@ -60,9 +60,10 @@ SharedMemoryImpl::SharedMemoryImpl(const std::string& name, std::size_t size, Sh
 #if defined (POCO_WIN32_UTF8)
 	std::wstring utf16name;
 	UnicodeConverter::toUTF16(_name, utf16name);
-	_memHandle = CreateFileMappingW(INVALID_HANDLE_VALUE, NULL, _mode, 0, _size, utf16name.c_str());
+	poco_assert(wcsncmp(utf16name.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
+	_memHandle = CreateFileMappingW(INVALID_HANDLE_VALUE, NULL, _mode, mySize.HighPart, mySize.LowPart, (L"\\\\?\\" + utf16name).c_str());
 #else
-	_memHandle = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, _mode, 0, _size, _name.c_str());
+	_memHandle = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, _mode, mySize.HighPart, mySize.LowPart, _name.c_str());
 #endif
 
 	if (!_memHandle)
@@ -150,7 +151,7 @@ void SharedMemoryImpl::map()
 	DWORD access = FILE_MAP_READ;
 	if (_mode == PAGE_READWRITE)
 		access = FILE_MAP_WRITE;
-	LPVOID addr = MapViewOfFile(_memHandle, access, 0, 0, _size);
+	LPVOID addr = MapViewOfFile(_memHandle, access, 0, 0, static_cast<SIZE_T>(_size));
 	if (!addr)
 		throw SystemException("Cannot map shared memory object", _name);
 	if (_size == 1 && !canRead(addr))

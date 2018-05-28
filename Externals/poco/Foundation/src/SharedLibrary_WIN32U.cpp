@@ -69,7 +69,9 @@ void SharedLibraryImpl::loadImpl(const std::string& path, int /*flags*/)
 #endif
 	std::wstring upath;
 	UnicodeConverter::toUTF16(path, upath);
-	_handle = LoadLibraryExW(upath.c_str(), 0, flags);
+	
+	poco_assert(wcsncmp(upath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
+	_handle = LoadLibraryExW((L"\\\\?\\" + upath).c_str(), 0, flags);
 	if (!_handle) throw LibraryLoadException(path);
 	_path = path;
 }

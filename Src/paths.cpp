@@ -79,6 +79,7 @@ PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const S
 			lpcszPath = expandedPath;
 	}
 
+	_ASSERT(wcsncmp(lpcszPath, L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
 	DWORD attr = GetFileAttributes((L"\\\\?\\" + String(lpcszPath)).c_str());
 
 	if (attr == ((DWORD) -1))
@@ -159,7 +160,7 @@ static bool GetDirName(const String& sDir, String& sName)
 {
 	// FindFirstFile doesn't work for root:
 	// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/findfirstfile.asp
-	// You cannot use root directories as the lpFileName input string for FindFirstFile—with or without a trailing backslash.
+	// You cannot use root directories as the lpFileName input string for FindFirstFile - with or without a trailing backslash.
 	if (sDir[0] && sDir[1] == ':' && sDir[2] == '\0')
 	{
 		// I don't know if this work for empty root directories
@@ -176,6 +177,8 @@ static bool GetDirName(const String& sDir, String& sName)
 	}
 	// (Couldn't get info for just the directory from CFindFile)
 	WIN32_FIND_DATA ffd;
+	
+	_ASSERT(wcsncmp(sDir.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
 	HANDLE h = FindFirstFile((L"\\\\?\\" + sDir).c_str(), &ffd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
@@ -278,8 +281,8 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 
 		// (Couldn't get info for just the directory from CFindFile)
 		WIN32_FIND_DATA ffd;
-		String tTemp = L"\\\\?\\" + sTemp;
-		HANDLE h = FindFirstFile(tTemp.c_str(), &ffd);
+	    _ASSERT(wcsncmp(sTemp.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
+		HANDLE h = FindFirstFile((L"\\\\?\\" + sTemp).c_str(), &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
 			sLong = sTemp;

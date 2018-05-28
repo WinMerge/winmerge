@@ -920,7 +920,11 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 		}
 
 		if (success)
+		{
+			poco_assert(wcsncmp(pszPath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
+			poco_assert(wcsncmp(bakPath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
 			success = CopyFileW((L"\\\\?\\" + pszPath).c_str(), (L"\\\\?\\" + bakPath).c_str(), FALSE);
+		}
 		
 		if (!success)
 		{

@@ -29,8 +29,12 @@ static int compare_files(const String& file1, const String& file2)
 {
 	const size_t bufsize = 1024 * 256;
 	int code;
-	int fd1 = _topen(file1.c_str(), O_BINARY | O_RDONLY);
-	int fd2 = _topen(file2.c_str(), O_BINARY | O_RDONLY);
+	int fd1 = -1, fd2 = -1;
+	
+	poco_assert(wcsncmp(file1.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
+	poco_assert(wcsncmp(file2.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
+	_tsopen_s(&fd1, (L"\\\\?\\" + file1).c_str(), O_BINARY | O_RDONLY, _SH_DENYWR, _S_IREAD);
+	_tsopen_s(&fd2, (L"\\\\?\\" + file2).c_str(), O_BINARY | O_RDONLY, _SH_DENYWR, _S_IREAD);
 	if (fd1 != -1 && fd2 != -1)
 	{
 		for (;;)
