@@ -137,6 +137,8 @@ bool UniLocalFile::DoGetFileStatus()
 			// if the file is not symbolic link, GetCompressedFileSize() will return zero.
 			// NOTE: GetCompressedFileSize() returns error for pre-W2K windows versions
 			DWORD dwFileSizeLow, dwFileSizeHigh;
+			
+			poco_assert(wcsncmp(m_filepath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
 			dwFileSizeLow = GetCompressedFileSize((L"\\\\?\\" + m_filepath).c_str(), &dwFileSizeHigh);
 			if (GetLastError() == 0)
 				m_filesize = ((int64_t)dwFileSizeHigh << 32) + dwFileSizeLow;

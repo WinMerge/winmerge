@@ -49,6 +49,7 @@ class FileHandle
 public:
 	FileHandle(const std::string& path, const std::wstring& upath, DWORD access, DWORD share, DWORD disp)
 	{
+		poco_assert(wcsncmp(upath.c_str(), L"\\\\?\\", 4) == 0);	// Prefix MUST already be there yet
 		_h = CreateFileW(upath.c_str(), access, share, 0, disp, 0, 0);
 		if (_h == INVALID_HANDLE_VALUE)
 		{
@@ -84,6 +85,7 @@ FileImpl::FileImpl(const std::string& path): _path(path)
 		_path.resize(n - 1);
 	}
 	UnicodeConverter::toUTF16(_path, _upath);
+	poco_assert(wcsncmp(_upath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
 	_upath = L"\\\\?\\" + _upath;
 }
 
@@ -109,6 +111,7 @@ void FileImpl::setPathImpl(const std::string& path)
 		_path.resize(n - 1);
 	}
 	UnicodeConverter::toUTF16(_path, _upath);
+	poco_assert(wcsncmp(_upath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
 	_upath = L"\\\\?\\" + _upath;
 }
 
@@ -314,6 +317,7 @@ void FileImpl::copyToImpl(const std::string& path) const
 
 	std::wstring upath2;
 	UnicodeConverter::toUTF16(path, upath2);
+	poco_assert(wcsncmp(upath2.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
 	if (CopyFileW(_upath.c_str(), (L"\\\\?\\" + upath2).c_str(), FALSE) != 0)
 	{
 		FileImpl copy(path);
@@ -327,9 +331,10 @@ void FileImpl::renameToImpl(const std::string& path)
 {
 	poco_assert (!_path.empty());
 
-	std::wstring upath;
-	UnicodeConverter::toUTF16(path, upath);
-	if (MoveFileW(_upath.c_str(), upath.c_str()) == 0) 
+	std::wstring upath2;
+	UnicodeConverter::toUTF16(path, upath2);
+	poco_assert(wcsncmp(upath2.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
+	if (MoveFileW(_upath.c_str(), (L"\\\\?\\" + upath2).c_str()) == 0) 
 		handleLastErrorImpl(_path);
 }
 
