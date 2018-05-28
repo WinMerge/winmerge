@@ -82,7 +82,7 @@ PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const S
 			lpcszPath = expandedPath;
 	}
 
-	DWORD attr = GetFileAttributes(lpcszPath);
+	DWORD attr = GetFileAttributes((L"\\\\?\\" + String(lpcszPath)).c_str());
 
 	if (attr == ((DWORD) -1))
 	{
@@ -179,7 +179,7 @@ static bool GetDirName(const String& sDir, String& sName)
 	}
 	// (Couldn't get info for just the directory from CFindFile)
 	WIN32_FIND_DATA ffd;
-	HANDLE h = FindFirstFile(sDir.c_str(), &ffd);
+	HANDLE h = FindFirstFile((L"\\\\?\\" + sDir).c_str(), &ffd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
 	sName = ffd.cFileName;
@@ -229,10 +229,12 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 		if (dwLen > 0 && dwLen < MAX_PATH_FULL)
 			lpcszPath = expandedPath;
 	}
-
-	DWORD dwLen = GetFullPathName(lpcszPath, MAX_PATH_FULL, fullPath, &lpPart);
+	
+	String tPath = L"\\\\?\\" + String(lpcszPath);
+	DWORD dwLen = GetFullPathName(tPath.c_str(), MAX_PATH_FULL, pFullPath, &lpPart);
 	if (dwLen == 0 || dwLen >= MAX_PATH_FULL)
-		_tcscpy_safe(fullPath, lpcszPath);
+		_tcscpy_s(pFullPath, MAX_PATH_FULL, tPath.c_str());
+	pFullPath += 4;  dwLen -= 4;	// remove the \\?\
 
 	// We are done if this is not a short name.
 	if (_tcschr(pFullPath, _T('~')) == NULL)
@@ -244,18 +246,18 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	// The file/directory does not exist, use as much long name as we can
 	// and leave the invalid stuff at the end.
 	String sLong;
-	TCHAR *ptr = fullPath;
+	TCHAR *ptr = pFullPath;
 	TCHAR *end = NULL;
 
 	// Skip to \ position     d:\abcd or \\host\share\abcd
 	// indicated by ^           ^                    ^
 	if (_tcslen(ptr) > 2)
-		end = _tcschr(fullPath+2, _T('\\'));
-	if (end && !_tcsncmp(fullPath, _T("\\\\"),2))
+		end = _tcschr(pFullPath+2, _T('\\'));
+	if (end && !_tcsncmp(pFullPath, _T("\\\\"),2))
 		end = _tcschr(end+1, _T('\\'));
 
 	if (!end)
-		return fullPath;
+		return pFullPath;
 
 	*end = 0;
 	sLong += ptr;
@@ -279,7 +281,8 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 
 		// (Couldn't get info for just the directory from CFindFile)
 		WIN32_FIND_DATA ffd;
-		HANDLE h = FindFirstFile(sTemp.c_str(), &ffd);
+		String tTemp = L"\\\\?\\" + sTemp;
+		HANDLE h = FindFirstFile(tTemp.c_str(), &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
 			sLong = sTemp;

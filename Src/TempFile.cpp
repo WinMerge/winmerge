@@ -86,7 +86,7 @@ String TempFile::CreateFromFile(const String& filepath, const String& prefix)
 	{
 		// Scratchpads don't have a file to copy.
 		m_path = temp;
-		if (::CopyFile(filepath.c_str(), temp.c_str(), FALSE))
+		if (::CopyFileW((L"\\\\?\\" + filepath).c_str(), temp.c_str(), FALSE))
 		{
 			::SetFileAttributes(temp.c_str(), FILE_ATTRIBUTE_NORMAL);
 		}
