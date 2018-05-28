@@ -35,6 +35,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #ifndef Foundation_File_WINCE_INCLUDED
 #define Foundation_File_WINCE_INCLUDED
@@ -103,3 +104,5 @@ inline const std::string& FileImpl::getPathImpl() const
 
 
 #endif // Foundation_File_WINCE_INCLUDED
+#endif
+

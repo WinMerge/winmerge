@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/Path_UNIX.h"
 #include "Poco/Exception.h"
@@ -171,3 +172,5 @@ void PathImpl::listRootsImpl(std::vector<std::string>& roots)
 
 
 } // namespace Poco
+
+#endif

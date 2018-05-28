@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/Path_WIN32.h"
 #include "Poco/Environment_WIN32.h"
@@ -120,3 +121,6 @@ void PathImpl::listRootsImpl(std::vector<std::string>& roots)
 
 
 } // namespace Poco
+
+#endif
+

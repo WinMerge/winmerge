@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/File_VMS.h"
 #include "Poco/Exception.h"
@@ -405,3 +406,6 @@ void FileImpl::handleLastErrorImpl(const std::string& path)
 
 
 } // namespace Poco
+
+#endif
+
