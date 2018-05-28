@@ -88,7 +88,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 	if (vi.dwMajorVersion * 10 + vi.dwMinorVersion >= 61)
 		h = FindFirstFileEx(sPattern.c_str(), FindExInfoBasic, &ff, FindExSearchNameMatch, NULL, FIND_FIRST_EX_LARGE_FETCH);
 	else
-		h = FindFirstFile(sPattern.c_str(), &ff);
+		h = FindFirstFile((L"\\\\?\\" + sPattern).c_str(), &ff);
 	if (h != INVALID_HANDLE_VALUE)
 	{
 		do

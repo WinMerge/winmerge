@@ -81,8 +81,8 @@ bool DiffFileData::DoOpenFiles()
 		if (m_inf[i].desc == 0)
 		{
 #ifdef _WIN32
-			m_inf[i].desc = _topen(m_FileLocation[i].filepath.c_str(),
-					O_RDONLY | O_BINARY, _S_IREAD);
+			_tsopen_s(&m_inf[i].desc, (L"\\\\?\\" + m_FileLocation[i].filepath).c_str(),
+					O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
 #else
 			m_inf[i].desc = open(m_FileLocation[i].filepath.c_str(), O_RDONLY);
 #endif
