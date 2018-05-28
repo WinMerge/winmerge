@@ -84,7 +84,7 @@ protected:
 	
 private:
 	std::string  _path;
-	std::wstring _upath;
+	std::wstring _upath;	// this will always have a L"\\?\" prefix
 	
 	friend class FileHandle;
 	friend class DirectoryIteratorImpl;
@@ -99,6 +99,9 @@ inline const std::string& FileImpl::getPathImpl() const
 	return _path;
 }
 
+/**
+ * @return: always returns with the L"\\?\" prefix
+ */
 inline const std::wstring& FileImpl::getPathWImpl() const
 {
 	return _upath;
