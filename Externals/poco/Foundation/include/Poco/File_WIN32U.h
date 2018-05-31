@@ -81,13 +81,16 @@ protected:
 	bool createFileImpl();
 	bool createDirectoryImpl();
 	static void handleLastErrorImpl(const std::string& path);
+	static void convertPath(const std::string& utf8Path, std::wstring& utf16Path);
 	
 private:
 	std::string  _path;
-	std::wstring _upath;	// this will always have a L"\\?\" prefix
+	std::wstring _upath;
 	
 	friend class FileHandle;
 	friend class DirectoryIteratorImpl;
+	friend class FileStreamBuf;
+	friend class LogFileImpl;
 };
 
 

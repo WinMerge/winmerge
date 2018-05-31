@@ -49,7 +49,6 @@ class FileHandle
 public:
 	FileHandle(const std::string& path, const std::wstring& upath, DWORD access, DWORD share, DWORD disp)
 	{
-		poco_assert(wcsncmp(upath.c_str(), L"\\\\?\\", 4) == 0);	// Prefix MUST already be there yet
 		_h = CreateFileW(upath.c_str(), access, share, 0, disp, 0, 0);
 		if (_h == INVALID_HANDLE_VALUE)
 		{
@@ -84,9 +83,7 @@ FileImpl::FileImpl(const std::string& path): _path(path)
 	{
 		_path.resize(n - 1);
 	}
-	UnicodeConverter::toUTF16(_path, _upath);
-	poco_assert(wcsncmp(_upath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	_upath = L"\\\\?\\" + _upath;
+	convertPath(_path, _upath);
 }
 
 
@@ -110,9 +107,7 @@ void FileImpl::setPathImpl(const std::string& path)
 	{
 		_path.resize(n - 1);
 	}
-	UnicodeConverter::toUTF16(_path, _upath);
-	poco_assert(wcsncmp(_upath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	_upath = L"\\\\?\\" + _upath;
+	convertPath(_path, _upath);
 }
 
 
@@ -315,26 +310,20 @@ void FileImpl::copyToImpl(const std::string& path) const
 {
 	poco_assert (!_path.empty());
 
-	std::wstring upath2;
-	UnicodeConverter::toUTF16(path, upath2);
-	poco_assert(wcsncmp(upath2.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	if (CopyFileW(_upath.c_str(), (L"\\\\?\\" + upath2).c_str(), FALSE) != 0)
-	{
-		FileImpl copy(path);
-		copy.setWriteableImpl(true);
-	}
-	else handleLastErrorImpl(_path);
+	std::wstring upath;
+	convertPath(path, upath);
+	if (CopyFileW(_upath.c_str(), upath.c_str(), FALSE) == 0)
+		handleLastErrorImpl(_path);
 }
 
 
 void FileImpl::renameToImpl(const std::string& path)
-{
+	{
 	poco_assert (!_path.empty());
 
-	std::wstring upath2;
-	UnicodeConverter::toUTF16(path, upath2);
-	poco_assert(wcsncmp(upath2.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	if (MoveFileW(_upath.c_str(), (L"\\\\?\\" + upath2).c_str()) == 0) 
+	std::wstring upath;
+	convertPath(path, upath);
+	if (MoveFileExW(_upath.c_str(), upath.c_str(), MOVEFILE_REPLACE_EXISTING) == 0)
 		handleLastErrorImpl(_path);
 }
 
@@ -433,5 +422,23 @@ void FileImpl::handleLastErrorImpl(const std::string& path)
 	}
 }
 
+
+void FileImpl::convertPath(const std::string& utf8Path, std::wstring& utf16Path)
+{
+	UnicodeConverter::toUTF16(utf8Path, utf16Path);
+	if (utf16Path.size() > MAX_PATH - 12) // Note: CreateDirectory has a limit of MAX_PATH - 12 (room for 8.3 file name)
+	{
+		if (utf16Path[0] == '\\' || utf16Path[1] == ':')
+		{
+			if (utf16Path.compare(0, 4, L"\\\\?\\", 4) != 0)
+			{
+				if (utf16Path[1] == '\\')
+					utf16Path.insert(0, L"\\\\?\\UNC\\", 8);
+				else
+					utf16Path.insert(0, L"\\\\?\\", 4);
+			}
+		}
+	}
+}
 
 } // namespace Poco
