@@ -88,9 +88,8 @@ void FileStreamBuf::open(const std::string& path, std::ios::openmode mode)
 	
 #if defined (POCO_WIN32_UTF8)
 	std::wstring utf16Path;
-	UnicodeConverter::toUTF16(path, utf16Path);
-	poco_assert(wcsncmp(utf16Path.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	_handle = CreateFileW((L"\\\\?\\" + utf16Path).c_str(), access, shareMode, NULL, creationDisp, flags, NULL);
+	FileImpl::convertPath(path, utf16Path);
+	_handle = CreateFileW(utf16Path.c_str(), access, shareMode, NULL, creationDisp, flags, NULL);
 #else
 	_handle = CreateFileA(path.c_str(), access, shareMode, NULL, creationDisp, flags, NULL);
 #endif

@@ -55,10 +55,9 @@ DirectoryIteratorImpl::DirectoryIteratorImpl(const std::string& path): _fh(INVAL
 	std::string findPath = p.toString();
 	findPath.append("*");
 	std::wstring uFindPath;
-	UnicodeConverter::toUTF16(findPath, uFindPath);
+	FileImpl::convertPath(findPath, uFindPath);
 	
-	poco_assert(wcsncmp(uFindPath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	_fh = FindFirstFileW((L"\\\\?\\" + uFindPath).c_str(), &_fd);
+	_fh = FindFirstFileW(uFindPath.c_str(), &_fd);
 	if (_fh == INVALID_HANDLE_VALUE)
 	{
 		if (GetLastError() != ERROR_NO_MORE_FILES)

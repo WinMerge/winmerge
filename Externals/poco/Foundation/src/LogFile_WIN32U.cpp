@@ -107,10 +107,9 @@ const std::string& LogFileImpl::pathImpl() const
 void LogFileImpl::createFile()
 {
 	std::wstring upath;
-	UnicodeConverter::toUTF16(_path, upath);
+	FileImpl::convertPath(_path, upath);
 	
-	poco_assert(wcsncmp(upath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	_hFile = CreateFileW((L"\\\\?\\" + upath).c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	_hFile = CreateFileW(upath.c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (_hFile == INVALID_HANDLE_VALUE) throw OpenFileException(_path);
 	SetFilePointer(_hFile, 0, 0, FILE_END);
 	// There seems to be a strange "optimization" in the Windows NTFS
