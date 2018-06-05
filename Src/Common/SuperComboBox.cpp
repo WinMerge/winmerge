@@ -482,7 +482,18 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 		CString sText;
 		GetLBText(static_cast<int>(pDispInfo->ceItem.iItem), sText);
 		CString sDrive = sText.Left(3);
-		if (!(sText.GetLength() > 2 && (sText[1] == '\\' || GetDriveType(sDrive) == DRIVE_REMOTE)))
+		bool isNetworkDrive = false;
+		if (sText.GetLength() >= 2 && (sText[1] == '\\') )
+		{
+			if (sText.GetLength() > 4 && sText.Left(4) == L"\\\\?\\")
+				if (sText.GetLength() > 8 && sText.Left(8) == L"\\\\?\\UNC\\")
+					isNetworkDrive = true;
+				else
+					isNetworkDrive = false;	// Just a Long File Name indicator
+			else
+				isNetworkDrive = true;
+		}
+		if (!(isNetworkDrive || GetDriveType(sDrive) == DRIVE_REMOTE))
 		{
 			// The path is not a network path.
 			if (SHGetFileInfo(sText, 0, &sfi, sizeof(sfi), 

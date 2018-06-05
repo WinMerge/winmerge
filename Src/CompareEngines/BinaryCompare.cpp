@@ -7,6 +7,7 @@
 #include "BinaryCompare.h"
 #include "DiffItem.h"
 #include "PathContext.h"
+#include "TFile.h"
 #ifdef _WIN32
 # include <io.h>
 #else
@@ -31,10 +32,8 @@ static int compare_files(const String& file1, const String& file2)
 	int code;
 	int fd1 = -1, fd2 = -1;
 	
-	poco_assert(wcsncmp(file1.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	poco_assert(wcsncmp(file2.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	_tsopen_s(&fd1, (L"\\\\?\\" + file1).c_str(), O_BINARY | O_RDONLY, _SH_DENYWR, _S_IREAD);
-	_tsopen_s(&fd2, (L"\\\\?\\" + file2).c_str(), O_BINARY | O_RDONLY, _SH_DENYWR, _S_IREAD);
+	_tsopen_s(&fd1, TFile(file1).wpath().c_str(), O_BINARY | O_RDONLY, _SH_DENYWR, _S_IREAD);
+	_tsopen_s(&fd2, TFile(file2).wpath().c_str(), O_BINARY | O_RDONLY, _SH_DENYWR, _S_IREAD);
 	if (fd1 != -1 && fd2 != -1)
 	{
 		for (;;)

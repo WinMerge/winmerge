@@ -60,10 +60,8 @@ SharedMemoryImpl::SharedMemoryImpl(const std::string& name, std::size_t size, Sh
 		_mode = PAGE_READWRITE;
 
 #if defined (POCO_WIN32_UTF8)
-	std::wstring utf16name;
-	UnicodeConverter::toUTF16(_name, utf16name);
-	poco_assert(wcsncmp(utf16name.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	_memHandle = CreateFileMappingW(INVALID_HANDLE_VALUE, NULL, _mode, mySize.HighPart, mySize.LowPart, (L"\\\\?\\" + utf16name).c_str());
+	const Poco::File tmpFile(_name);
+	_memHandle = CreateFileMappingW(INVALID_HANDLE_VALUE, NULL, _mode, mySize.HighPart, mySize.LowPart, tmpFile.wpath().c_str());
 #else
 	_memHandle = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, _mode, mySize.HighPart, mySize.LowPart, _name.c_str());
 #endif
