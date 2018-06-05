@@ -106,8 +106,7 @@ bool DirItem::Update(const String &sFilePath)
 				size = file.getSize();
 
 #ifdef _WIN32
-			poco_assert(wcsncmp(sFilePath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-			flags.attributes = GetFileAttributes((L"\\\\?\\" + sFilePath).c_str());
+			flags.attributes = GetFileAttributes(TFile(sFilePath).wpath().c_str());
 #endif
 
 			retVal = true;

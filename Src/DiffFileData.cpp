@@ -17,6 +17,7 @@
 #include "DiffItem.h"
 #include "FileLocation.h"
 #include "diff.h"
+#include "TFile.h"
 #include "FileTransform.h"
 #include "unicoder.h"
 
@@ -81,8 +82,7 @@ bool DiffFileData::DoOpenFiles()
 		if (m_inf[i].desc == 0)
 		{
 #ifdef _WIN32
-	         poco_assert(wcsncmp(m_FileLocation[i].filepath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-			_tsopen_s(&m_inf[i].desc, (L"\\\\?\\" + m_FileLocation[i].filepath).c_str(),
+			_tsopen_s(&m_inf[i].desc, TFile(m_FileLocation[i].filepath).wpath().c_str(),
 					O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
 #else
 			m_inf[i].desc = open(m_FileLocation[i].filepath.c_str(), O_RDONLY);

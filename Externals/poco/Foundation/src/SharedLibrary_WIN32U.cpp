@@ -36,6 +36,7 @@
 
 #include "Poco/SharedLibrary_WIN32U.h"
 #include "Poco/UnicodeConverter.h"
+#include "Poco/File.h"
 #include "Poco/Path.h"
 #include "Poco/UnWindows.h"
 
@@ -67,11 +68,9 @@ void SharedLibraryImpl::loadImpl(const std::string& path, int /*flags*/)
 	Path p(path);
 	if (p.isAbsolute()) flags |= LOAD_WITH_ALTERED_SEARCH_PATH;
 #endif
-	std::wstring upath;
-	UnicodeConverter::toUTF16(path, upath);
+	const Poco::File tmpFile(path);
 	
-	poco_assert(wcsncmp(upath.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	_handle = LoadLibraryExW((L"\\\\?\\" + upath).c_str(), 0, flags);
+	_handle = LoadLibraryExW(tmpFile.wpath().c_str(), 0, flags);
 	if (!_handle) throw LibraryLoadException(path);
 	_path = path;
 }
