@@ -17,6 +17,7 @@
 #include <shlwapi.h>
 #include "PathContext.h"
 #include "coretools.h"
+#include "TFile.h"
 
 namespace paths
 {
@@ -82,8 +83,7 @@ PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const S
 			lpcszPath = expandedPath;
 	}
 
-	_ASSERT(wcsncmp(lpcszPath, L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	DWORD attr = GetFileAttributes((L"\\\\?\\" + String(lpcszPath)).c_str());
+	DWORD attr = GetFileAttributes(TFile(String(lpcszPath)).wpath().c_str());
 
 	if (attr == ((DWORD) -1))
 	{
@@ -181,8 +181,7 @@ static bool GetDirName(const String& sDir, String& sName)
 	// (Couldn't get info for just the directory from CFindFile)
 	WIN32_FIND_DATA ffd;
 	
-	_ASSERT(wcsncmp(sDir.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-	HANDLE h = FindFirstFile((L"\\\\?\\" + sDir).c_str(), &ffd);
+	HANDLE h = FindFirstFile(TFile(sDir).wpath().c_str(), &ffd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
 	sName = ffd.cFileName;
@@ -233,11 +232,10 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 			lpcszPath = expandedPath;
 	}
 	
-	String tPath = L"\\\\?\\" + String(lpcszPath);
+	String tPath = TFile(String(lpcszPath)).wpath();
 	DWORD dwLen = GetFullPathName(tPath.c_str(), MAX_PATH_FULL, pFullPath, &lpPart);
 	if (dwLen == 0 || dwLen >= MAX_PATH_FULL)
 		_tcscpy_s(pFullPath, MAX_PATH_FULL, tPath.c_str());
-	pFullPath += 4;  dwLen -= 4;	// remove the \\?\
 
 	// We are done if this is not a short name.
 	if (_tcschr(pFullPath, _T('~')) == NULL)
@@ -284,8 +282,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 
 		// (Couldn't get info for just the directory from CFindFile)
 		WIN32_FIND_DATA ffd;
-	    _ASSERT(wcsncmp(sTemp.c_str(), L"\\\\?\\", 4) != 0);	// Prefix better not be there yet
-		HANDLE h = FindFirstFile((L"\\\\?\\" + sTemp).c_str(), &ffd);
+		HANDLE h = FindFirstFile(TFile(sTemp).wpath().c_str(), &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
 			sLong = sTemp;
