@@ -72,9 +72,9 @@ static const TCHAR f_RegSettingsDir[] = REGDIR _T("\\Settings");
 static const TCHAR f_RegValueEnabled[] = _T("ContextMenuEnabled");
 /** 'Saved' path in advanced mode */
 static const TCHAR f_FirstSelection[] = _T("FirstSelection");
-/** Path to WinMerge[U].exe */
+/** Path to WinMergeU.exe */
 static const TCHAR f_RegValuePath[] = _T("Executable");
-/** Path to WinMerge[U].exe, overwrites f_RegValuePath if present. */
+/** Path to WinMergeU.exe, overwrites f_RegValuePath if present. */
 static const TCHAR f_RegValuePriPath[] = _T("PriExecutable");
 /** LanguageId */
 static const TCHAR f_LanguageId[] = _T("LanguageId");
