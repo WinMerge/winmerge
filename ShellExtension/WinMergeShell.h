@@ -68,7 +68,6 @@ protected:
 	DWORD m_dwMenuState; /**< Shown menuitems */
 
 	BOOL GetWinMergeDir(String &strDir);
-	BOOL CheckExecutable(String path);
 	int DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
 	int DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
 	String GetHelpText(UINT_PTR idCmd);
