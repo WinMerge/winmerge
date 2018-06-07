@@ -655,6 +655,8 @@ void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& 
 {
 	// Unlike other group actions, here we don't build an action list
 	// to execute; we just apply this change directly
+	if( !ctxt.m_bPluginsEnabled || ctxt.m_piPluginInfos == nullptr )
+		return;
 	for (InputIterator it = begin; it != end; ++it)
 	{
 		const DIFFITEM& di = *it;
@@ -685,6 +687,8 @@ std::pair<int, int> CountPredifferYesNo(const InputIterator& begin, const InputI
 {
 	int nPredifferYes = 0;
 	int nPredifferNo = 0;
+	if( !ctxt.m_bPluginsEnabled || ctxt.m_piPluginInfos == nullptr ) 
+		return std::make_pair(nPredifferYes, nPredifferNo);
 
 	for (InputIterator it = begin; it != end; ++it)
 	{
