@@ -908,7 +908,7 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 
 		// Append filename and extension (+ optional .bak) to path
 		if ((bakPath.length() + filename.length() + ext.length())
-			< MAX_PATH)
+			< MAX_PATH_FULL)
 		{
 			success = TRUE;
 			bakPath = paths::ConcatPath(bakPath, filename);
@@ -917,7 +917,9 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 		}
 
 		if (success)
-			success = CopyFile(pszPath.c_str(), bakPath.c_str(), FALSE);
+		{
+			success = CopyFileW(TFile(pszPath).wpath().c_str(), TFile(bakPath).wpath().c_str(), FALSE);
+		}
 		
 		if (!success)
 		{

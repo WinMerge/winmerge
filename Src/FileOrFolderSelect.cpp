@@ -68,7 +68,7 @@ BOOL SelectFile(HWND parent, String& path,BOOL is_open /*=TRUE*/,
 
 	// This will tell common file dialog what to show
 	// and also this will hold its return value
-	TCHAR sSelectedFile[MAX_PATH] = {0};
+	TCHAR sSelectedFile[MAX_PATH_FULL] = {0};
 
 	// check if specified path is a file
 	if (initialPath && initialPath[0])
@@ -103,7 +103,7 @@ BOOL SelectFile(HWND parent, String& path,BOOL is_open /*=TRUE*/,
 	ofn.lpstrCustomFilter = NULL;
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFile = sSelectedFile;
-	ofn.nMaxFile = MAX_PATH;
+	ofn.nMaxFile = MAX_PATH_FULL;
 	ofn.lpstrInitialDir = initialPath;
 	ofn.lpstrTitle = title.c_str();
 	ofn.lpstrFileTitle = NULL;
@@ -138,7 +138,7 @@ BOOL SelectFolder(String& path, LPCTSTR root_path /*=NULL*/,
 {
 	BROWSEINFO bi;
 	LPITEMIDLIST pidl;
-	TCHAR szPath[MAX_PATH] = {0};
+	TCHAR szPath[MAX_PATH_FULL] = {0};
 	BOOL bRet = FALSE;
 	String title = stitle;
 	if (root_path == NULL)
@@ -218,7 +218,7 @@ BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 
 	// This will tell common file dialog what to show
 	// and also this will hold its return value
-	TCHAR sSelectedFile[MAX_PATH];
+	TCHAR sSelectedFile[MAX_PATH_FULL];
 
 	// check if specified path is a file
 	if (initialPath && initialPath[0])
@@ -253,7 +253,7 @@ BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 	ofn.lpstrCustomFilter = NULL;
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFile = sSelectedFile;
-	ofn.nMaxFile = MAX_PATH;
+	ofn.nMaxFile = MAX_PATH_FULL;
 	ofn.lpstrInitialDir = initialPath;
 	ofn.lpstrTitle = title.c_str();
 	ofn.lpstrFileTitle = NULL;

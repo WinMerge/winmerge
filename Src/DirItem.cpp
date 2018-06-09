@@ -106,7 +106,7 @@ bool DirItem::Update(const String &sFilePath)
 				size = file.getSize();
 
 #ifdef _WIN32
-			flags.attributes = GetFileAttributes(sFilePath.c_str());
+			flags.attributes = GetFileAttributes(TFile(sFilePath).wpath().c_str());
 #endif
 
 			retVal = true;

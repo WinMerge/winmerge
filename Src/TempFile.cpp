@@ -10,6 +10,7 @@
 #include <tlhelp32.h> 
 #include <shlwapi.h>
 #include "paths.h"
+#include "TFile.h"
 #include "Environment.h"
 #include "Constants.h"
 #include "unicoder.h"
@@ -86,7 +87,8 @@ String TempFile::CreateFromFile(const String& filepath, const String& prefix)
 	{
 		// Scratchpads don't have a file to copy.
 		m_path = temp;
-		if (::CopyFile(filepath.c_str(), temp.c_str(), FALSE))
+
+		if (::CopyFileW(TFile(filepath).wpath().c_str(), temp.c_str(), FALSE))
 		{
 			::SetFileAttributes(temp.c_str(), FILE_ATTRIBUTE_NORMAL);
 		}
@@ -162,7 +164,8 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 	bool res = true;
 	bool bok = true;
 
-	h = FindFirstFile (pattern.c_str(), &ff);
+	
+	h = FindFirstFile (TFile(pattern).wpath().c_str(), &ff);
 	if (h == INVALID_HANDLE_VALUE)
 		bok = FALSE;
 

@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/File_UNIX.h"
 #include "Poco/Buffer.h"
@@ -472,3 +473,6 @@ void FileImpl::handleLastErrorImpl(const std::string& path)
 
 
 } // namespace Poco
+
+#endif
+

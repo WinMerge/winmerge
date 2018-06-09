@@ -12,6 +12,7 @@
 #include "varprop.h"
 #include "OptionsMgr.h"
 
+#define MAX_PATH_FULL 32767
 /**
  * @brief Split option name to path (in registry) and
  * valuename (in registry).
@@ -210,8 +211,8 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	// This just checks if the value exists, LoadValueFromReg() below actually
 	// loads the value.
 	DWORD type = 0;
-	BYTE dataBuf[MAX_PATH] = {0};
-	DWORD size = MAX_PATH;
+	BYTE dataBuf[MAX_PATH_FULL] = {0};
+	DWORD size = MAX_PATH_FULL;
 	retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
 		0, &type, dataBuf, &size);
 
@@ -575,8 +576,8 @@ int CRegOptionsMgr::ImportOptions(const String& filename)
 		}
 		else if (value.GetType() == varprop::VT_STRING)
 		{
-			TCHAR strVal[MAX_PATH] = {0};
-			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH, filename.c_str());
+			TCHAR strVal[MAX_PATH_FULL] = {0};
+			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH_FULL, filename.c_str());
 			value.SetString(strVal);
 			SaveOption(pKey, strVal);
 		}
