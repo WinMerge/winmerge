@@ -1028,6 +1028,11 @@ msgstr "&Предсравнение"
 msgid "&Scripts"
 msgstr "&Скрипты"
 
+#: Merge.rc:39000D56
+#, c-format
+msgid "Sp&lit"
+msgstr ""
+
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
@@ -1838,7 +1843,7 @@ msgstr "Выделенное словарное отличие:"
 msgid "Defaults"
 msgstr "По умолчанию"
 
-#: Merge.rc:39000D56
+#: Merge.rc:39000D57
 #, c-format
 msgid "System"
 msgstr "Система"
@@ -3039,7 +3044,7 @@ msgstr "Не задавать &больше этот вопрос"
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-#: Merge.rc:39000D57
+#: Merge.rc:39000D58
 #, c-format
 msgid "Syntax"
 msgstr ""

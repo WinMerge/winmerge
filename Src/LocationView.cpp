@@ -95,8 +95,7 @@ CLocationView::CLocationView()
 
 	SetConnectMovedBlocks(GetOptionsMgr()->GetInt(OPT_CONNECT_MOVED_BLOCKS));
 
-	std::fill_n(m_view, countof(m_view), static_cast<CMergeEditView *>(NULL));
-	std::fill_n(m_nSubLineCount, countof(m_view), 0);
+	std::fill_n(m_nSubLineCount, countof(m_nSubLineCount), 0);
 }
 
 CLocationView::~CLocationView()
@@ -108,13 +107,13 @@ BEGIN_MESSAGE_MAP(CLocationView, CView)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
+	ON_WM_MOUSEACTIVATE()
 	ON_WM_LBUTTONDBLCLK()
 	ON_WM_CONTEXTMENU()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
 	ON_WM_VSCROLL()
 	ON_WM_ERASEBKGND()
-	ON_WM_SETFOCUS()
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_LEFT, OnUpdateFileSaveLeft)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_MIDDLE, OnUpdateFileSaveMiddle)
@@ -167,14 +166,6 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 {
 	UNREFERENCED_PARAMETER(pSender);
 	UNREFERENCED_PARAMETER(lHint);
-	CMergeDoc* pDoc = GetDocument();
-	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
-	{
-		m_view[pane] = pDoc->GetView(pane);
-
-		// Give pointer to MergeEditView
-		m_view[pane]->SetLocationView(this);
-	}
 
 	m_bRecalculateBlocks = TRUE;
 	Invalidate();
@@ -186,14 +177,6 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 BOOL CLocationView::OnEraseBkgnd(CDC* pDC)
 {
 	return FALSE;
-}
-
-void CLocationView::OnSetFocus(CWnd* pOldWnd)
-{
-	if (pOldWnd && pOldWnd->IsChild(this))
-		m_view[0]->SetFocus();
-	else
-		pOldWnd->SetFocus();
 }
 
 /**
@@ -233,8 +216,9 @@ void CLocationView::CalculateBars()
 		m_bar[pane].right = m_bar[pane].left + w;
 	}	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
 	int nbLines = 0;
-	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-		nbLines = max(nbLines, m_view[pane]->GetSubLineCount());
+	pDoc->ForEachActiveGroupView([&](auto& pView) {
+		nbLines = max(nbLines, pView->GetSubLineCount());
+	});
 
 	m_lineInPix = hTotal / nbLines;
 	m_pixInLines = nbLines / hTotal;
@@ -271,14 +255,15 @@ void CLocationView::CalculateBlocks()
 	if (nDiffs > 0)
 		m_diffBlocks.reserve(nDiffs); // Pre-allocate space for the list.
 
-	int nLineCount = m_view[0]->GetLineCount();
+	int nGroup = pDoc->GetActiveMergeView()->m_nThisGroup;
+	int nLineCount = pDoc->GetView(nGroup, 0)->GetLineCount();
 	int nDiff = pDoc->m_diffList.FirstSignificantDiff();
 	while (nDiff != -1)
 	{
 		DIFFRANGE diff;
 		VERIFY(pDoc->m_diffList.GetDiff(nDiff, diff));
 
-		CMergeEditView *pView = m_view[0];
+		CMergeEditView *pView = pDoc->GetView(nGroup, 0);
 
 		DiffBlock block;
 		int i, nBlocks = 0;
@@ -377,19 +362,16 @@ static COLORREF GetDarkenColor(COLORREF a, double l)
  */
 void CLocationView::OnDraw(CDC* pDC)
 {
-	ASSERT(m_view[0] != NULL);
-	ASSERT(m_view[1] != NULL);
-
 	CMergeDoc *pDoc = GetDocument();
-	int pane;
-	if (std::count(m_view, m_view + pDoc->m_nBuffers, static_cast<CMergeEditView *>(NULL)) > 0)
+	int nGroup = pDoc->GetActiveMergeView()->m_nThisGroup;
+	if (pDoc->GetView(nGroup, 0) == nullptr)
 		return;
 
-	if (!m_view[0]->IsInitialized()) return;
+	if (!pDoc->GetView(nGroup, 0)->IsInitialized()) return;
 
 	BOOL bEditedAfterRescan = FALSE;
 	int nPaneNotModified = -1;
-	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
 		if (!pDoc->IsEditedAfterRescan(pane))
 			nPaneNotModified = pane;
@@ -419,11 +401,11 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	// Draw bar outlines
 	CPen* oldObj = (CPen*)dc.SelectStockObject(NULL_PEN);
-	CBrush brush(m_view[0]->GetColor(COLORINDEX_WHITESPACE));
+	CBrush brush(pDoc->GetView(nGroup, 0)->GetColor(COLORINDEX_WHITESPACE));
 	CBrush* oldBrush = (CBrush*)dc.SelectObject(&brush);
-	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		int nBottom = (int)(m_lineInPix * m_view[pane]->GetSubLineCount() + Y_OFFSET + 1);
+		int nBottom = (int)(m_lineInPix * pDoc->GetView(nGroup, pane)->GetSubLineCount() + Y_OFFSET + 1);
 		CBrush *pOldBrush = NULL;
 		if (pDoc->IsEditedAfterRescan(pane))
 			pOldBrush = (CBrush *)dc.SelectStockObject(HOLLOW_BRUSH);
@@ -456,12 +438,12 @@ void CLocationView::OnDraw(CDC* pDC)
 	{
 		if (nPaneNotModified == -1)
 			continue;
-		CMergeEditView *pView = m_view[nPaneNotModified];
+		CMergeEditView *pView = pDoc->GetView(nGroup, nPaneNotModified);
 		const BOOL bInsideDiff = (nCurDiff == (*iter).diff_index);
 
 		if ((nPrevEndY != (*iter).bottom_coord) || bInsideDiff)
 		{
-			for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+			for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 			{
 				if (pDoc->IsEditedAfterRescan(pane))
 					continue;
@@ -477,7 +459,7 @@ void CLocationView::OnDraw(CDC* pDC)
 						DrawRect(&dc, r, RGB(255, 0, 0), false);
 				}
 				// Draw block
-				m_view[pane]->GetLineColors2((*iter).top_line, 0, cr[pane], crt, bwh);
+				pDoc->GetView(0, pane)->GetLineColors2((*iter).top_line, 0, cr[pane], crt, bwh);
 				CRect r(m_bar[pane].left, (*iter).top_coord, m_bar[pane].right, (*iter).bottom_coord);
 				DrawRect(&dc, r, cr[pane], bInsideDiff);
 			}
@@ -509,7 +491,7 @@ void CLocationView::OnDraw(CDC* pDC)
 		if (bEditedAfterRescan)
 			continue;
 
-		for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+		for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 		{
 			if (bDisplayConnectorFromLeft && pane < 2)
 			{
@@ -647,18 +629,21 @@ void CLocationView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	if (GetCapture() == this)
 	{
+		CMergeDoc *pDoc = GetDocument();
+		int nGroup = pDoc->GetActiveMergeView()->m_nThisGroup;
+
 		// Don't go above bars.
 		point.y = max(point.y, Y_OFFSET);
 
 		// Vertical scroll handlers are range safe, so there is no need to
 		// make sure value is valid and in range.
 		int nSubLine = (int) (m_pixInLines * (point.y - Y_OFFSET));
-		nSubLine -= m_view[0]->GetScreenLines() / 2;
+		nSubLine -= pDoc->GetView(nGroup, 0)->GetScreenLines() / 2;
 		if (nSubLine < 0)
 			nSubLine = 0;
 
 		// Just a random choose as both view share the same scroll bar.
-		CWnd *pView = m_view[0];
+		CWnd *pView = pDoc->GetView(nGroup, 0);
 
 		SCROLLINFO si = { sizeof SCROLLINFO };
 		si.fMask = SIF_POS;
@@ -669,12 +654,17 @@ void CLocationView::OnMouseMove(UINT nFlags, CPoint point)
 		// doesn't accept scroll bar updates not send from scroll bar control.
 		// So we need to update both views.
 		int pane;
-		int nBuffers = GetDocument()->m_nBuffers;
+		int nBuffers = pDoc->m_nBuffers;
 		for (pane = 0; pane < nBuffers; pane++)
-			m_view[pane]->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_THUMBPOSITION, 0), NULL);
+			pDoc->GetView(nGroup, pane)->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_THUMBPOSITION, 0), NULL);
 	}
 
 	CView::OnMouseMove(nFlags, point);
+}
+
+int  CLocationView::OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message)
+{
+	return MA_NOACTIVATE;
 }
 
 /**
@@ -707,7 +697,7 @@ bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine)
 	GetClientRect(rc);
 	CMergeDoc* pDoc = GetDocument();
 
-	if (std::count(m_view, m_view + pDoc->m_nBuffers, static_cast<CMergeEditView *>(NULL)) > 0)
+	if (!pDoc->GetActiveMergeView())
 		return false;
 
 	int line = -1;
@@ -725,9 +715,9 @@ bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine)
 	else
 		return false;
 
-	m_view[0]->GotoLine(line, bRealLine, bar);
+	pDoc->GetActiveMergeGroupView(0)->GotoLine(line, bRealLine, bar);
 	if (bar == BAR_0 || bar == BAR_1 || bar == BAR_2)
-		m_view[bar]->SetFocus();
+		pDoc->GetActiveMergeGroupView(bar)->SetFocus();
 
 	return true;
 }
@@ -743,7 +733,7 @@ void CLocationView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 		// Scroll did not come frome a scroll bar
 		// Send it to the right view instead
  	  CMergeDoc *pDoc = GetDocument();
-		pDoc->GetView(pDoc->m_nBuffers - 1)->SendMessage(WM_VSCROLL,
+		pDoc->GetActiveMergeGroupView(pDoc->m_nBuffers - 1)->SendMessage(WM_VSCROLL,
 			MAKELONG(nSBCode, nPos), (LPARAM)NULL);
 		return;
 	}
@@ -825,12 +815,12 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	switch (command)
 	{
 	case ID_LOCBAR_GOTODIFF:
-		m_view[0]->GotoLine(nLine, true, bar);
+		pDoc->GetActiveMergeGroupView(0)->GotoLine(nLine, true, bar);
 		if (bar == BAR_0 || bar == BAR_1 || bar == BAR_2)
-			m_view[bar]->SetFocus();
+			pDoc->GetActiveMergeGroupView(bar)->SetFocus();
 		break;
 	case ID_EDIT_WMGOTO:
-		m_view[0]->WMGoto();
+		pDoc->GetActiveMergeGroupView(0)->WMGoto();
 		break;
 	case ID_DISPLAY_MOVED_NONE:
 		SetConnectMovedBlocks(DISPLAY_MOVED_NONE);
@@ -856,7 +846,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
  */
 int CLocationView::GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine)
 {
-	CMergeEditView *pView = m_view[bar];
+	CMergeEditView *pView = GetDocument()->GetActiveMergeGroupView(bar);
 
 	int nSubLineIndex = (int) (m_pixInLines * (nYCoord - Y_OFFSET));
 
@@ -922,21 +912,23 @@ int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
 void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBottomLine)
 {
 	CMergeDoc* pDoc = GetDocument();
+	int nGroup = pDoc->GetActiveMergeView()->m_nThisGroup;
 	
 	if (nTopLine == -1)
-		nTopLine = pDoc->GetView(0)->GetTopSubLine();
+		nTopLine = pDoc->GetView(nGroup, 0)->GetTopSubLine();
 	
 	if (nBottomLine == -1)
 	{
-		const int nScreenLines = pDoc->GetView(1)->GetScreenLines();
+		const int nScreenLines = pDoc->GetView(nGroup, 1)->GetScreenLines();
 		nBottomLine = nTopLine + nScreenLines;
 	}
 
 	CRect rc;
 	GetClientRect(rc);
 	int nbLines = INT_MAX;
-	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
-		nbLines = min(nbLines, m_view[pane]->GetSubLineCount());
+	pDoc->ForEachActiveGroupView([&](auto& pView) {
+		nbLines = min(nbLines, pView->GetSubLineCount());
+	});
 
 	int nTopCoord = static_cast<int>(Y_OFFSET +
 			(static_cast<double>(nTopLine * m_lineInPix)));
@@ -989,8 +981,9 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 	if (m_bDrawn)
 	{
 		CMergeDoc *pDoc = GetDocument();
+		int nGroup = pDoc->GetActiveMergeView()->m_nThisGroup;
 		int pane;
-		IF_IS_TRUE_ALL(m_nSubLineCount[pane] == m_view[pane]->GetSubLineCount(), pane, pDoc->m_nBuffers)
+		IF_IS_TRUE_ALL(m_nSubLineCount[pane] == pDoc->GetView(nGroup, pane)->GetSubLineCount(), pane, pDoc->m_nBuffers)
 		{
 			int nTopCoord = static_cast<int>(Y_OFFSET +
 					(static_cast<double>(nTopLine * m_lineInPix)));
@@ -1014,7 +1007,7 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 		{
 			InvalidateRect(NULL);
 			for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-				m_nSubLineCount[pane] = m_view[pane]->GetSubLineCount();
+				m_nSubLineCount[pane] = pDoc->GetView(nGroup, pane)->GetSubLineCount();
 		}
 	}
 }
@@ -1024,10 +1017,6 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
  */
 void CLocationView::OnClose()
 {
-	CMergeDoc* pDoc = GetDocument();
-	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
-		m_view[pane]->SetLocationView(NULL);
-
 	CView::OnClose();
 }
 

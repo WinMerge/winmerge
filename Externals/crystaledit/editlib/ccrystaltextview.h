@@ -711,6 +711,8 @@ public :
 	bool GetWordWrapping() const;
 	virtual void SetWordWrapping( bool bWordWrap );
 
+	virtual void CopyProperties(CCrystalTextView *pSource);
+
 	/**
 	Sets the Parser to use to parse the file.
 

@@ -49,11 +49,11 @@ HighlightDiffRect(CMergeEditView * pView, const CRect & rc)
 void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 {
 	CRect rc[3];
-	int pane;
+	int nBuffer;
 
 	Computelinediff(pView, rc, bReversed);
 
-	IF_IS_TRUE_ALL ((rc[pane].top == -1), pane, m_nBuffers)
+	IF_IS_TRUE_ALL ((rc[nBuffer].top == -1), nBuffer, m_nBuffers)
 	{
 		String caption = _("Line difference");
 		String msg = _("No difference");
@@ -62,8 +62,8 @@ void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 	}
 
 	// Actually display selection areas on screen in both edit panels
-	for (pane = 0; pane < m_nBuffers; pane++)
-		HighlightDiffRect(m_pView[pane], rc[pane]);
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		HighlightDiffRect(m_pView[pView->m_nThisGroup][nBuffer], rc[nBuffer]);
 }
 
 

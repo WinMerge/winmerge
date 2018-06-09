@@ -20,8 +20,7 @@ IMPLEMENT_DYNAMIC(CDiffViewBar, TViewBarBase);
 //////////////////////////////////////////////////////////////////////
 
 CDiffViewBar::CDiffViewBar()
-: m_pwndDetailSplitter(0)
-, m_hwndFrame(NULL)
+: m_hwndFrame(NULL)
 {
 }
 
@@ -34,7 +33,6 @@ CDiffViewBar::~CDiffViewBar()
 BEGIN_MESSAGE_MAP(CDiffViewBar, TViewBarBase)
 	//{{AFX_MSG_MAP(CRegBar)
 	ON_WM_CREATE()
-	ON_WM_SIZE()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_WINDOWPOSCHANGED()
 	//}}AFX_MSG_MAP
@@ -72,25 +70,6 @@ int CDiffViewBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	SetSCBStyle(SCBS_EDGETOP | SCBS_EDGEBOTTOM | SCBS_SIZECHILD);
 	
 	return 0;
-}
-
-/// update height for both panels
-void CDiffViewBar::UpdateBarHeight(int DiffPanelHeight)
-{
-	if (m_pwndDetailSplitter == NULL || ::IsWindow(m_pwndDetailSplitter->m_hWnd) == FALSE)
-		return;
-
-	// first resize the splitter
-	CRect rc;
-	GetClientRect(rc);
-	m_pwndDetailSplitter->MoveWindow(rc);
-	m_pwndDetailSplitter->RecalcLayout();
-}
-
-void CDiffViewBar::OnSize(UINT nType, int cx, int cy) 
-{
-	TViewBarBase::OnSize(nType, cx, cy);
-	UpdateBarHeight(-1);
 }
 
 /**

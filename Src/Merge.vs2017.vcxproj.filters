@@ -778,6 +778,9 @@
     <ClCompile Include="Common\VersionInfo.cpp">
       <Filter>MFCGui\Common</Filter>
     </ClCompile>
+    <ClCompile Include="MergeEditSplitterView.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1436,6 +1439,9 @@
     </ClInclude>
     <ClInclude Include="Common\VersionInfo.h">
       <Filter>MFCGui\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeEditSplitterView.h">
+      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

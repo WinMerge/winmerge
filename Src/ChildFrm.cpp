@@ -88,37 +88,13 @@ CChildFrame::CChildFrame()
  */
 CChildFrame::~CChildFrame()
 {
-	m_wndDetailBar.setSplitter(0);
 }
 
 BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
-	BOOL bSplitVert = !GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY);
-
-	CMergeDoc * pDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
-
-	// create a splitter with 1 row, 2 columns
-	if (!m_wndSplitter.CreateStatic(this, SWAPPARAMS_IF(bSplitVert, 1, pDoc->m_nBuffers),
-		WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
-	{
-		TRACE0("Failed to CreateStaticSplitter\n");
-		return FALSE;
-	}
-
-	int pane;
-	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-	{
-		if (!m_wndSplitter.CreateView(SWAPPARAMS_IF(bSplitVert, 0, pane),
-			RUNTIME_CLASS(CMergeEditView), CSize(-1, 200), pContext))
-		{
-			TRACE1("Failed to create pane%d\n", pane);
-			return FALSE;
-		}
-	}
-	
-	m_wndSplitter.ResizablePanes(TRUE);
-	m_wndSplitter.AutoResizePanes(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));
+	m_wndSplitter.HideBorders(true);
+	m_wndSplitter.Create(this, 2, 1, CSize(1, 1), pContext, WS_CHILD | WS_VISIBLE | 1/*SPLS_DYNAMIC_SPLIT*/);
 
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
@@ -130,9 +106,9 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		return FALSE;
 	}
 
-	CWnd* pWnd = new CLocationView;
+	CLocationView *pLocationView = new CLocationView;
 	DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
-	pWnd->Create(NULL, NULL, dwStyle, CRect(0,0,40,100), &m_wndLocationBar, 152, pContext);
+	pLocationView->Create(NULL, NULL, dwStyle, CRect(0,0,40,100), &m_wndLocationBar, 152, pContext);
 
 	// Merge frame has also a dockable bar at the very bottom
 	// This is not the client area, but we create it now because we want
@@ -144,62 +120,29 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		return FALSE;
 	}
 
-	// create a splitter with 2 rows, 1 column
-	// this is not a vertical scrollable splitter (see MergeDiffDetailView.h)
-	if (!m_wndDetailSplitter.CreateStatic(&m_wndDetailBar, SWAPPARAMS_IF(bSplitVert, pDoc->m_nBuffers, 1),
-		WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL, AFX_IDW_PANE_FIRST+1) )
-	{
-		TRACE0("Failed to CreateStaticSplitter\n");
-		return FALSE;
-	}
-	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-	{
-		// add splitter pane - the default view in column (pane)
-		if (!m_wndDetailSplitter.CreateView(SWAPPARAMS_IF(bSplitVert, pane, 0),
-			RUNTIME_CLASS(CMergeEditView), CSize(-1, 200), pContext))
-		{
-			TRACE1("Failed to create pane %d\n", pane);
-			return FALSE;
-		}
-	}
-	m_wndDetailSplitter.LockBar(TRUE);
-	m_wndDetailSplitter.ResizablePanes(TRUE);
-	m_wndDetailBar.setSplitter(&m_wndDetailSplitter);
+	m_pwndDetailMergeEditSplitterView = new CMergeEditSplitterView();
+	m_pwndDetailMergeEditSplitterView->m_bDetailView = true;
+	m_pwndDetailMergeEditSplitterView->Create(NULL, NULL, dwStyle, CRect(0,0,1,1), &m_wndDetailBar, ID_VIEW_DETAIL_BAR+1, pContext);
 
-	// stash left & right pointers into the mergedoc
-	CMergeEditView * pView[3];
-	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-	{
-		pView[pane] = static_cast<CMergeEditView *>(m_wndSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, 0, pane)));
-		// connect merge views up to display of status info
-		pView[pane]->SetStatusInterface(m_wndStatusBar.GetIMergeEditStatus(pane));
-		pView[pane]->m_nThisPane = pane;
-	}
 	// tell merge doc about these views
 	m_pMergeDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
-	m_pMergeDoc->SetMergeViews(pView);
-
-	// stash left & right detail pointers into the mergedoc
-	CMergeEditView * pDetail[3];
-	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-	{
-		pDetail[pane] = static_cast<CMergeEditView *>(m_wndDetailSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, pane, 0)));
-		pDetail[pane]->m_nThisPane = pane;
-	}
-	// tell merge doc about these views
-	m_pMergeDoc->SetMergeDetailViews(pDetail);
-
-	m_wndFilePathBar.SetPaneCount(pDoc->m_nBuffers);
-	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
-		if (m_wndSplitter.GetColumnCount() > 1)
-			m_wndSplitter.SetActivePane(0, pane);
-		else
-			m_wndSplitter.SetActivePane(pane, 0);
+	m_pMergeDoc->ForEachView([&](auto& pView) {
+		pView->SetStatusInterface(m_wndStatusBar.GetIMergeEditStatus(pView->m_nThisPane));
 	});
-	m_wndStatusBar.SetPaneCount(pDoc->m_nBuffers);
+	m_pMergeDoc->SetLocationView(pLocationView);
+
+	m_wndFilePathBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
+	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
+		auto& wndSplitter = GetMergeEditSplitterWnd(0);
+		if (wndSplitter.GetColumnCount() > 1)
+			wndSplitter.SetActivePane(0, pane);
+		else
+			wndSplitter.SetActivePane(pane, 0);
+	});
+	m_wndStatusBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	
 	// Set frame window handles so we can post stage changes back
-	static_cast<CLocationView *>(pWnd)->SetFrameHwnd(GetSafeHwnd());
+	pLocationView->SetFrameHwnd(GetSafeHwnd());
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
 	m_wndDetailBar.SetFrameHwnd(GetSafeHwnd());
 
@@ -464,14 +407,6 @@ BOOL CChildFrame::DestroyWindow()
  */
 void CChildFrame::SavePosition()
 {
-	CRect rc;
-	CWnd* pLeft = m_wndSplitter.GetPane(0,0);
-	if (pLeft != NULL)
-	{
-		pLeft->GetWindowRect(&rc);
-		theApp.WriteProfileInt(_T("Settings"), _T("WLeft"), rc.Width());
-	}
-
 	// save the bars layout
 	// save docking positions and sizes
 	CDockState m_pDockState;
@@ -481,9 +416,15 @@ void CChildFrame::SavePosition()
 	m_wndLocationBar.SaveState(_T("Settings"));
 	m_wndDetailBar.SaveState(_T("Settings"));
 
-	int iCol;
-	m_wndSplitter.GetActivePane(NULL, &iCol);
-	theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), iCol);
+	int iRow, iCol;
+	m_wndSplitter.GetActivePane(&iRow, NULL);
+	if (iRow >= 0)
+	{
+		auto& splitterWnd = static_cast<CMergeEditSplitterView *>(m_wndSplitter.GetPane(iRow, 0))->m_wndSplitter;
+		splitterWnd.GetActivePane(&iRow, &iCol);
+		if (iRow >= 0 || iCol >= 0)
+			theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), max(iRow, iCol));
+	}
 }
 
 void CChildFrame::OnClose() 
@@ -505,19 +446,20 @@ void CChildFrame::UpdateHeaderSizes()
 		int w[3];
 		int pane;
 		CMergeDoc * pDoc = GetMergeDoc();
-		if (m_wndSplitter.GetColumnCount() > 1)
+		auto& wndSplitter = GetMergeEditSplitterWnd(0);
+		if (wndSplitter.GetColumnCount() > 1)
 		{
-			for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+			for (pane = 0; pane < wndSplitter.GetColumnCount(); pane++)
 			{
 				int wmin;
-				m_wndSplitter.GetColumnInfo(pane, w[pane], wmin);
+				wndSplitter.GetColumnInfo(pane, w[pane], wmin);
 				if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
 			}
 		}
 		else
 		{
 			CRect rect;
-			m_wndSplitter.GetWindowRect(&rect);
+			wndSplitter.GetWindowRect(&rect);
 			for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 			{
 				w[pane] = rect.Width() /  pDoc->m_nBuffers;
@@ -571,13 +513,16 @@ void CChildFrame::SetLastCompareResult(int nResult)
 
 void CChildFrame::UpdateAutoPaneResize()
 {
-	m_wndSplitter.AutoResizePanes(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));
+	auto& wndSplitter = GetMergeEditSplitterWnd(0);
+	wndSplitter.AutoResizePanes(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));
 }
 
 void CChildFrame::UpdateSplitter()
 {
+	for (int iRow = 0; iRow < m_wndSplitter.GetRowCount(); ++iRow)
+		GetMergeEditSplitterWnd(iRow).RecalcLayout();
 	m_wndSplitter.RecalcLayout();
-	m_wndDetailBar.UpdateBarHeight(0);
+	m_pwndDetailMergeEditSplitterView->m_wndSplitter.RecalcLayout();
 }
 
 /**
@@ -629,11 +574,13 @@ void CChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeact
  */
 void CChildFrame::OnViewSplitVertically() 
 {
-	bool bSplitVertically = (m_wndSplitter.GetColumnCount() != 1);
+	auto& wndSplitter = GetMergeEditSplitterWnd(0);
+	bool bSplitVertically = (wndSplitter.GetColumnCount() != 1);
 	bSplitVertically = !bSplitVertically; // toggle
 	GetOptionsMgr()->SaveOption(OPT_SPLIT_HORIZONTALLY, !bSplitVertically);
-	m_wndSplitter.FlipSplit();
-	m_wndDetailSplitter.FlipSplit();
+	for (int iRow = 0; iRow < m_wndSplitter.GetRowCount(); ++iRow)
+		GetMergeEditSplitterWnd(iRow).FlipSplit();
+	m_pwndDetailMergeEditSplitterView->m_wndSplitter.FlipSplit();
 }
 
 /**
@@ -641,8 +588,9 @@ void CChildFrame::OnViewSplitVertically()
  */
 void CChildFrame::OnUpdateViewSplitVertically(CCmdUI* pCmdUI) 
 {
+	auto& wndSplitter = GetMergeEditSplitterWnd(0);
 	pCmdUI->Enable(TRUE);
-	pCmdUI->SetCheck((m_wndSplitter.GetColumnCount() != 1));
+	pCmdUI->SetCheck((wndSplitter.GetColumnCount() != 1));
 }
 
 /// Document commanding us to close
