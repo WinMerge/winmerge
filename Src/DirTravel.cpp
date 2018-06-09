@@ -13,6 +13,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <mbstring.h>
+#include "TFile.h"
 #include "UnicodeString.h"
 #include "DirItem.h"
 #include "unicoder.h"
@@ -85,10 +86,11 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 	OSVERSIONINFO vi;
 	vi.dwOSVersionInfoSize = sizeof(vi);
 	GetVersionEx(&vi);
+
 	if (vi.dwMajorVersion * 10 + vi.dwMinorVersion >= 61)
-		h = FindFirstFileEx(sPattern.c_str(), FindExInfoBasic, &ff, FindExSearchNameMatch, NULL, FIND_FIRST_EX_LARGE_FETCH);
+		h = FindFirstFileEx(TFile(sPattern).wpath().c_str(), FindExInfoBasic, &ff, FindExSearchNameMatch, NULL, FIND_FIRST_EX_LARGE_FETCH);
 	else
-		h = FindFirstFile(sPattern.c_str(), &ff);
+		h = FindFirstFile(TFile(sPattern).wpath().c_str(), &ff);
 	if (h != INVALID_HANDLE_VALUE)
 	{
 		do

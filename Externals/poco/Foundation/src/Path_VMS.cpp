@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/Path_VMS.h"
 #include "Poco/Environment_VMS.h"
@@ -137,3 +138,5 @@ void PathImpl::listRootsImpl(std::vector<std::string>& roots)
 
 
 } // namespace Poco
+
+#endif

@@ -2646,7 +2646,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		if (syntaxHLEnabled)
 		{
 			CCrystalTextView::TextDefinition *enuType = GetView(paneTyped)->GetTextType(sext[paneTyped].c_str());
-			ForEachView([bTyped, enuType](auto& pView) {
+			ForEachView([&bTyped, enuType](auto& pView) {
 				if (!bTyped[pView->m_nThisPane])
 					pView->SetTextType(enuType);
 			});

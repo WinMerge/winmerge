@@ -17,6 +17,7 @@
 #include <shlwapi.h>
 #include "PathContext.h"
 #include "coretools.h"
+#include "TFile.h"
 
 namespace paths
 {
@@ -73,16 +74,16 @@ PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const S
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
 	const TCHAR *lpcszPath = szPath.c_str();
-	TCHAR expandedPath[_MAX_PATH];
+	TCHAR expandedPath[MAX_PATH_FULL];
 
 	if (_tcschr(lpcszPath, '%'))
 	{
-		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, _MAX_PATH);
-		if (dwLen > 0 && dwLen < _MAX_PATH)
+		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, MAX_PATH_FULL);
+		if (dwLen > 0 && dwLen < MAX_PATH_FULL)
 			lpcszPath = expandedPath;
 	}
 
-	DWORD attr = GetFileAttributes(lpcszPath);
+	DWORD attr = GetFileAttributes(TFile(String(lpcszPath)).wpath().c_str());
 
 	if (attr == ((DWORD) -1))
 	{
@@ -162,7 +163,7 @@ static bool GetDirName(const String& sDir, String& sName)
 {
 	// FindFirstFile doesn't work for root:
 	// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/findfirstfile.asp
-	// You cannot use root directories as the lpFileName input string for FindFirstFile—with or without a trailing backslash.
+	// You cannot use root directories as the lpFileName input string for FindFirstFile - with or without a trailing backslash.
 	if (sDir[0] && sDir[1] == ':' && sDir[2] == '\0')
 	{
 		// I don't know if this work for empty root directories
@@ -179,7 +180,8 @@ static bool GetDirName(const String& sDir, String& sName)
 	}
 	// (Couldn't get info for just the directory from CFindFile)
 	WIN32_FIND_DATA ffd;
-	HANDLE h = FindFirstFile(sDir.c_str(), &ffd);
+	
+	HANDLE h = FindFirstFile(TFile(sDir).wpath().c_str(), &ffd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
 	sName = ffd.cFileName;
@@ -205,7 +207,8 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	if (len < 1)
 		return sPath;
 
-	TCHAR fullPath[_MAX_PATH] = {0};
+	TCHAR fullPath[MAX_PATH_FULL] = {0};
+	TCHAR *pFullPath = &fullPath[0];
 	TCHAR *lpPart;
 
 	//                                         GetFullPathName  GetLongPathName
@@ -220,22 +223,23 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
-	TCHAR expandedPath[_MAX_PATH];
+	TCHAR expandedPath[MAX_PATH_FULL];
 	const TCHAR *lpcszPath = sPath.c_str();
 	if (bExpandEnvs && _tcschr(lpcszPath, '%'))
 	{
-		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, _MAX_PATH);
-		if (dwLen > 0 && dwLen < _MAX_PATH)
+		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, MAX_PATH_FULL);
+		if (dwLen > 0 && dwLen < MAX_PATH_FULL)
 			lpcszPath = expandedPath;
 	}
-
-	DWORD dwLen = GetFullPathName(lpcszPath, _MAX_PATH, fullPath, &lpPart);
-	if (dwLen == 0 || dwLen >= _MAX_PATH)
-		_tcscpy_safe(fullPath, lpcszPath);
+	
+	String tPath = TFile(String(lpcszPath)).wpath();
+	DWORD dwLen = GetFullPathName(tPath.c_str(), MAX_PATH_FULL, pFullPath, &lpPart);
+	if (dwLen == 0 || dwLen >= MAX_PATH_FULL)
+		_tcscpy_s(pFullPath, MAX_PATH_FULL, tPath.c_str());
 
 	// We are done if this is not a short name.
-	if (_tcschr(fullPath, _T('~')) == NULL)
-		return fullPath;
+	if (_tcschr(pFullPath, _T('~')) == NULL)
+		return pFullPath;
 
 	// We have to do it the hard way because GetLongPathName is not
 	// available on Win9x and some WinNT 4
@@ -243,18 +247,18 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	// The file/directory does not exist, use as much long name as we can
 	// and leave the invalid stuff at the end.
 	String sLong;
-	TCHAR *ptr = fullPath;
+	TCHAR *ptr = pFullPath;
 	TCHAR *end = NULL;
 
 	// Skip to \ position     d:\abcd or \\host\share\abcd
 	// indicated by ^           ^                    ^
 	if (_tcslen(ptr) > 2)
-		end = _tcschr(fullPath+2, _T('\\'));
-	if (end && !_tcsncmp(fullPath, _T("\\\\"),2))
+		end = _tcschr(pFullPath+2, _T('\\'));
+	if (end && !_tcsncmp(pFullPath, _T("\\\\"),2))
 		end = _tcschr(end+1, _T('\\'));
 
 	if (!end)
-		return fullPath;
+		return pFullPath;
 
 	*end = 0;
 	sLong += ptr;
@@ -278,7 +282,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 
 		// (Couldn't get info for just the directory from CFindFile)
 		WIN32_FIND_DATA ffd;
-		HANDLE h = FindFirstFile(sTemp.c_str(), &ffd);
+		HANDLE h = FindFirstFile(TFile(sTemp).wpath().c_str(), &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
 			sLong = sTemp;
@@ -314,16 +318,16 @@ bool CreateIfNeeded(const String& szPath)
 	if (GetDirName(szPath, sTemp))
 		return true;
 
-	if (szPath.length() >= _MAX_PATH)
+	if (szPath.length() >= MAX_PATH_FULL)
 		return false;
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
-	TCHAR fullPath[_MAX_PATH];
+	TCHAR fullPath[MAX_PATH_FULL];
 	if (_tcschr(szPath.c_str(), '%'))
 	{
-		DWORD dwLen = ExpandEnvironmentStrings(szPath.c_str(), fullPath, _MAX_PATH);
-		if (dwLen == 0 || dwLen >= _MAX_PATH)
+		DWORD dwLen = ExpandEnvironmentStrings(szPath.c_str(), fullPath, MAX_PATH_FULL);
+		if (dwLen == 0 || dwLen >= MAX_PATH_FULL)
 			_tcscpy_safe(fullPath, szPath.c_str());
 	}
 	else
@@ -478,11 +482,11 @@ String ExpandShortcut(const String &inFile)
 		hres = psl->QueryInterface(IID_IPersistFile, (LPVOID*) &ppf);
 		if (SUCCEEDED(hres))
 		{
-			WCHAR wsz[MAX_PATH];
+			WCHAR wsz[MAX_PATH_FULL];
 #ifdef _UNICODE
 			_tcscpy_safe(wsz, inFile.c_str());
 #else
-			::MultiByteToWideChar(CP_ACP, 0, inFile.c_str(), -1, wsz, MAX_PATH);
+			::MultiByteToWideChar(CP_ACP, 0, inFile.c_str(), -1, wsz, MAX_PATH_FULL);
 #endif
 
 			// Load shortcut
@@ -491,8 +495,8 @@ String ExpandShortcut(const String &inFile)
 			if (SUCCEEDED(hres))
 			{
 				// find the path from that
-				TCHAR buf[MAX_PATH] = {0};
-				psl->GetPath(buf, MAX_PATH, NULL, SLGP_UNCPRIORITY);
+				TCHAR buf[MAX_PATH_FULL] = {0};
+				psl->GetPath(buf, MAX_PATH_FULL, NULL, SLGP_UNCPRIORITY);
 				outFile = buf;
 			}
 			ppf->Release();

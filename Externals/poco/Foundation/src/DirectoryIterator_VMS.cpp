@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/DirectoryIterator_VMS.h"
 #include "Poco/Path.h"
@@ -85,3 +86,5 @@ const std::string& DirectoryIteratorImpl::next()
 
 
 } // namespace Poco
+
+#endif

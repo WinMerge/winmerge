@@ -123,6 +123,13 @@ using std::vector;
 #endif
 
 
+// The vcruntime.h version of _countf() gives syntax errors starting with VS 15.7.2,
+// but only with `CCrystalTextView::m_SourceDefs` (which is local to this .cpp file), 
+// and only for X64 compilations (Win32 is ok, probably because no alignment issues
+// are involved).  I think that this could be related to C++17 compliance issues.
+// This patch reverts to a 'traditional' definition of _countf(), a pre-existing 
+// part of the CCrystalTextView package.
+#undef _countof
 #ifndef _countof
 #define _countof(array) (sizeof(array)/sizeof(array[0]))
 #endif

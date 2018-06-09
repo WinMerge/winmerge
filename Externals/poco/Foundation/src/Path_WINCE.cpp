@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/Path_WINCE.h"
 #include "Poco/Environment_WINCE.h"
@@ -143,3 +144,6 @@ void PathImpl::listRootsImpl(std::vector<std::string>& roots)
 
 
 } // namespace Poco
+
+#endif
+

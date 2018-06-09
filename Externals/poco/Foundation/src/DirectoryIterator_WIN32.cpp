@@ -33,6 +33,7 @@
 // DEALINGS IN THE SOFTWARE.
 //
 
+#if 0
 
 #include "Poco/DirectoryIterator_WIN32.h"
 #include "Poco/File_WIN32.h"
@@ -86,3 +87,5 @@ const std::string& DirectoryIteratorImpl::next()
 
 
 } // namespace Poco
+
+#endif

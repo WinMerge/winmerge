@@ -8,6 +8,10 @@
 #include "PathContext.h"
 #include "UnicodeString.h"
 
+#ifndef MAX_PATH_FULL
+#  define MAX_PATH_FULL 32767
+#endif
+
 namespace paths
 {
 
