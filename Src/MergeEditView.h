@@ -79,6 +79,8 @@ public:
 	 * then these indexes are changed.
 	 */
 	int m_nThisPane;
+	int m_nThisGroup;
+	bool m_bDetailView;
 	IMergeEditStatus * m_piMergeEditStatus; /**< interface to status bar */
 
 protected:
@@ -106,7 +108,6 @@ private:
 	int m_CurrentPredifferID;
 
 	bool m_bCurrentLineIsDiff; /**< TRUE if cursor is in diff line */
-	CLocationView * m_pLocationView; /**< Pointer to locationview */
 
 // Operations
 public:
@@ -165,7 +166,6 @@ public:
 	virtual void SetWordWrapping( bool bWordWrap ) override;
 	void UpdateStatusbar();
 	CMergeEditView *GetGroupView(int nPane) const;
-	bool IsDetailViewPane() const;
 
 	virtual void OnDisplayDiff(int nDiff=0);
 
@@ -343,6 +343,8 @@ protected:
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
+	afx_msg void OnWindowSplit();
+	afx_msg void OnUpdateWindowSplit(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

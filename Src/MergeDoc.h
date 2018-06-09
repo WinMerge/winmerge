@@ -133,6 +133,7 @@ class PrediffingInfo;
 class CChildFrame;
 class CDirDoc;
 class CEncodingErrorBar;
+class CLocationView;
 
 /**
  * @brief Document class for merging two files
@@ -155,6 +156,7 @@ public:
 
 	std::unique_ptr<CDiffTextBuffer> m_ptBuf[3]; /**< Left/Middle/Right side text buffer */
 	int m_nBuffers;
+	int m_nGroups;
 
 protected: // create from serialization only
 	CMergeDoc();
@@ -171,6 +173,7 @@ public:
 	String m_strBothFilenames;
 
 	CMergeEditView * GetActiveMergeView();
+	CMergeEditView * GetActiveMergeGroupView(int nBuffer);
 	void UpdateHeaderPath(int pane);
 	void UpdateHeaderActivity(int pane, bool bActivate);
 	void RefreshOptions();
@@ -201,16 +204,53 @@ public:
 	void SetUnpacker(const PackingInfo * infoUnpacker);
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
-	void SetMergeViews(CMergeEditView * pView[]);
-	void SetMergeDetailViews(CMergeEditView * pView[]);
+	void AddMergeViews(CMergeEditView * pView[3]);
+	void RemoveMergeViews(int nGroup);
+	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
+
 	void SetDirDoc(CDirDoc * pDirDoc);
 	CDirDoc * GetDirDoc() const { return m_pDirDoc; }
 	void DirDocClosing(CDirDoc * pDirDoc);
 	bool CloseNow();
 	void SwapFiles();
 
-	CMergeEditView * GetView(int pane) const { return m_pView[pane]; }
-	CMergeEditView * GetDetailView(int pane) const { return m_pDetailView[pane]; }
+	CMergeEditView * GetView(int group, int buffer) const { return m_pView[group][buffer]; }
+	CLocationView * GetLocationView() { return m_pLocationView; }
+	std::vector<CMergeEditView *> GetViewList(int nGroup = -1, int nBuffer = -1) const {
+		std::vector<CMergeEditView *> list;
+		if (nGroup != -1)
+			for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+				list.push_back(m_pView[nGroup][nBuffer]);
+		else if (nBuffer != -1)
+			for (int nGroup = 0; nGroup < m_nGroups; ++nGroup)
+				list.push_back(m_pView[nGroup][nBuffer]);
+		else
+		{
+			for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
+				for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+					list.push_back(m_pView[nGroup][nBuffer]);
+		}
+		return list;
+	}
+	template <typename Function>
+	void ForEachView(int nBuffer, Function func) {
+		for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
+			func(m_pView[nGroup][nBuffer]);
+	}
+	template <typename Function>
+	void ForEachView(Function func) {
+		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+		{
+			for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
+				func(m_pView[nGroup][nBuffer]);
+		}
+	}
+	template <typename Function>
+	void ForEachActiveGroupView(Function func) {
+		int nGroup = GetActiveMergeView()->m_nThisGroup;
+		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+			func(m_pView[nGroup][nBuffer]);
+	}
 	CChildFrame * GetParentFrame();
 
 	void AddSyncPoint();
@@ -252,8 +292,8 @@ public:
 	FileChange IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 		bool bSave, int nBuffer);
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
-	std::vector<CMergeEditView*> undoTgt;
-	std::vector<CMergeEditView*>::iterator curUndo;
+	std::vector<int> undoTgt;
+	std::vector<int>::iterator curUndo;
 	void FlushAndRescan(bool bForced = false);
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() const { return m_nCurDiff; }
@@ -286,25 +326,12 @@ private:
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
 	DWORD LoadOneFile(int index, String filename, bool readOnly, const String& strDesc, const FileTextEncoding & encoding);
-	template <typename Function>
-	void ForEachView(int nBuffer, Function func) {
-		func(m_pView[nBuffer]);
-		func(m_pDetailView[nBuffer]);
-	}
-	template <typename Function>
-	void ForEachView(Function func) {
-		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-		{
-			func(m_pView[nBuffer]);
-			func(m_pDetailView[nBuffer]);
-		}
-	}
 
 // Implementation data
 protected:
 	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */
-	CMergeEditView * m_pView[3]; /**< Pointer to left/middle/right view */
-	CMergeEditView * m_pDetailView[3];
+	CMergeEditView * m_pView[3][3]; /**< Pointer to left/middle/right view */
+	CLocationView * m_pLocationView; /**< Pointer to locationview */
 	CDirDoc * m_pDirDoc;
 	bool m_bEnableRescan; /**< Automatic rescan enabled/disabled */
 	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 

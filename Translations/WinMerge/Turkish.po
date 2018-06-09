@@ -1027,6 +1027,11 @@ msgstr "Ön &Farklılaştırıcı"
 msgid "&Scripts"
 msgstr "&Betikler"
 
+#: Merge.rc:39000D56
+#, c-format
+msgid "Sp&lit"
+msgstr ""
+
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
@@ -1842,7 +1847,7 @@ msgstr "Seçilmiş Sözcük Farklılığı:"
 msgid "Defaults"
 msgstr "Varsayılan Ayarlar"
 
-#: Merge.rc:39000D56
+#: Merge.rc:39000D57
 #, c-format
 msgid "System"
 msgstr "Sistem"
@@ -3083,7 +3088,7 @@ msgstr ""
 "Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümündeki Genel "
 "Grubu altındaki Sıfırla düğmesine tıklayın."
 
-#: Merge.rc:39000D57
+#: Merge.rc:39000D58
 #, c-format
 msgid "Syntax"
 msgstr "Söz Dizimi"

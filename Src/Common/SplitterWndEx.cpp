@@ -40,6 +40,7 @@ CSplitterWndEx::CSplitterWndEx()
 	m_bBarLocked = FALSE;
 	m_bResizePanes = FALSE;
 	m_bAutoResizePanes = FALSE;
+	m_bHideBorders = FALSE;
 }
 
 CSplitterWndEx::~CSplitterWndEx()
@@ -360,7 +361,7 @@ static COLORREF GetIntermediateColor(COLORREF a, COLORREF b)
 void CSplitterWndEx::OnDrawSplitter(CDC* pDC, ESplitType nType, const CRect& rectArg)
 {
 	CRect rect = rectArg;
-	if (nType == splitBorder && pDC)
+	if (nType == splitBorder && pDC && !m_bHideBorders)
 	{
 		COLORREF clrShadow  = GetSysColor(COLOR_BTNSHADOW);
 		COLORREF clrFace    = GetSysColor(COLOR_BTNFACE);
