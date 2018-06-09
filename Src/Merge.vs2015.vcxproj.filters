@@ -769,6 +769,9 @@
     <ClCompile Include="Common\VersionInfo.cpp">
       <Filter>MFCGui\Common</Filter>
     </ClCompile>
+    <ClCompile Include="MergeEditSplitterView.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1412,6 +1415,9 @@
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.h">
       <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeEditSplitterView.h">
+      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

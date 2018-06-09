@@ -142,6 +142,8 @@ CMergeDoc::CMergeDoc()
 , m_pEncodingErrorBar(nullptr)
 , m_bHasSyncPoints(false)
 , m_bAutoMerged(false)
+, m_nGroups(0)
+, m_pView{0}
 {
 	DIFFOPTIONS options = {0};
 
@@ -153,8 +155,6 @@ CMergeDoc::CMergeDoc()
 		m_ptBuf[nBuffer].reset(new CDiffTextBuffer(this, nBuffer));
 		m_pSaveFileInfo[nBuffer].reset(new DiffFileInfo());
 		m_pRescanFileInfo[nBuffer].reset(new DiffFileInfo());
-		m_pView[nBuffer] = NULL;
-		m_pDetailView[nBuffer] = NULL;
 		m_nBufferType[nBuffer] = BUFFER_NORMAL;
 		m_bEditAfterRescan[nBuffer] = false;
 	}
@@ -226,8 +226,13 @@ CMergeEditView * CMergeDoc::GetActiveMergeView()
 	CView * pActiveView = GetParentFrame()->GetActiveView();
 	CMergeEditView * pMergeEditView = dynamic_cast<CMergeEditView *>(pActiveView);
 	if (!pMergeEditView)
-		pMergeEditView = GetView(0); // default to left view (in case some location or detail view active)
+		pMergeEditView = GetView(0, 0); // default to left view (in case some location or detail view active)
 	return pMergeEditView;
+}
+
+CMergeEditView * CMergeDoc::GetActiveMergeGroupView(int nBuffer)
+{
+	return m_pView[GetActiveMergeView()->m_nThisGroup][nBuffer];
 }
 
 void CMergeDoc::SetUnpacker(const PackingInfo * infoNewHandler)
@@ -858,15 +863,18 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 
 	SetEditedAfterRescan(dstPane);
 
-	CPoint currentPosSrc = m_pView[srcPane]->GetCursorPos();
+	int nGroup = GetActiveMergeView()->m_nThisGroup;
+	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
+	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
+	CPoint currentPosSrc = pViewSrc->GetCursorPos();
 	currentPosSrc.x = 0;
-	CPoint currentPosDst = m_pView[dstPane]->GetCursorPos();
+	CPoint currentPosDst = pViewDst->GetCursorPos();
 	currentPosDst.x = 0;
 
 	CPoint pt(0, 0);
-	m_pView[dstPane]->SetCursorPos(pt);
-	m_pView[dstPane]->SetNewSelection(pt, pt, false);
-	m_pView[dstPane]->SetNewAnchor(pt);
+	pViewDst->SetCursorPos(pt);
+	pViewDst->SetNewSelection(pt, pt, false);
+	pViewDst->SetNewAnchor(pt);
 
 	// copy from bottom up is more efficient
 	for (int i = lastDiff - 1; i >= firstDiff; --i)
@@ -971,13 +979,15 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 
 	SetEditedAfterRescan(dstPane);
 
-	CPoint currentPosDst = m_pView[dstPane]->GetCursorPos();
+	int nGroup = GetActiveMergeView()->m_nThisGroup;
+	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
+	CPoint currentPosDst = pViewDst->GetCursorPos();
 	currentPosDst.x = 0;
 
 	CPoint pt(0, 0);
-	m_pView[dstPane]->SetCursorPos(pt);
-	m_pView[dstPane]->SetNewSelection(pt, pt, false);
-	m_pView[dstPane]->SetNewAnchor(pt);
+	pViewDst->SetCursorPos(pt);
+	pViewDst->SetNewSelection(pt, pt, false);
+	pViewDst->SetNewAnchor(pt);
 
 	// copy from bottom up is more efficient
 	for (int i = lastDiff; i >= firstDiff; --i)
@@ -1021,7 +1031,7 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 	// move to first conflict 
 	const int nDiff = m_diffList.FirstSignificant3wayDiff(THREEWAYDIFFTYPE_CONFLICT);
 	if (nDiff != -1)
-		m_pView[dstPane]->SelectDiff(nDiff, true, false);
+		pViewDst->SelectDiff(nDiff, true, false);
 
 	AfxMessageBox(
 		strutils::format_string2(
@@ -1083,7 +1093,10 @@ bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
 bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
 {
-	CCrystalTextView *pSource = bUpdateView ? m_pView[dstPane] : NULL;
+	int nGroup = GetActiveMergeView()->m_nThisGroup;
+	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
+	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
+	CCrystalTextView *pSource = bUpdateView ? pViewDst : NULL;
 
 	// suppress Rescan during this method
 	// (Not only do we not want to rescan a lot of times, but
@@ -1096,12 +1109,11 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		nDiff = GetCurrentDiff();
 
 		// No current diff, but maybe cursor is in diff?
-		if (nDiff == -1 && (m_pView[srcPane]->IsCursorInDiff() ||
-			m_pView[dstPane]->IsCursorInDiff()))
+		if (nDiff == -1 && (pViewSrc->IsCursorInDiff() ||
+			pViewDst->IsCursorInDiff()))
 		{
 			// Find out diff under cursor
-			int nBuffer = GetActiveMergeView()->m_nThisPane;
-			CPoint ptCursor = m_pView[nBuffer]->GetCursorPos();
+			CPoint ptCursor = GetActiveMergeView()->GetCursorPos();
 			nDiff = m_diffList.LineToDiff(ptCursor.y);
 		}
 	}
@@ -1129,7 +1141,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		// but we want to move to begin of that line for usability.
 		if (bUpdateView)
 		{
-			CPoint currentPos = m_pView[dstPane]->GetCursorPos();
+			CPoint currentPos = pViewDst->GetCursorPos();
 			currentPos.x = 0;
 			if (currentPos.y > cd_dend)
 			{
@@ -2257,25 +2269,26 @@ void CMergeDoc::RescanIfNeeded(float timeOutInSecond)
  * @brief We have two child views (left & right), so we keep pointers directly
  * at them (the MFC view list doesn't have them both)
  */
-void CMergeDoc::SetMergeViews(CMergeEditView *pView[])
+void CMergeDoc::AddMergeViews(CMergeEditView *pView[3])
 {
+
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		ASSERT(pView[nBuffer] && !m_pView[nBuffer]);
-		m_pView[nBuffer] = pView[nBuffer];
-	}
+		m_pView[m_nGroups][nBuffer] = pView[nBuffer];
+	++m_nGroups;
 }
 
-/**
- * @brief Someone is giving us pointers to our detail views
- */
-void CMergeDoc::SetMergeDetailViews(CMergeEditView * pDetailView[])
+void CMergeDoc::RemoveMergeViews(int nGroup)
 {
+
+	for (; nGroup < m_nGroups - 1; nGroup++)
+	{
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		ASSERT(pDetailView[nBuffer] && !m_pDetailView[nBuffer]);
-		m_pDetailView[nBuffer] = pDetailView[nBuffer];
+			m_pView[nGroup][nBuffer] = m_pView[nGroup + 1][nBuffer];
+			m_pView[nGroup][nBuffer]->m_nThisGroup = nGroup;
+		}
 	}
+	--m_nGroups;
 }
 
 /**
@@ -2292,7 +2305,7 @@ void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
  */
 CChildFrame * CMergeDoc::GetParentFrame() 
 {
-	return dynamic_cast<CChildFrame *>(m_pView[0]->GetParentFrame()); 
+	return dynamic_cast<CChildFrame *>(m_pView[0][0]->GetParentFrame()); 
 }
 
 /**
@@ -2543,10 +2556,10 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		if (!m_pEncodingErrorBar)
 		{
 			m_pEncodingErrorBar.reset(new CEncodingErrorBar());
-			m_pEncodingErrorBar->Create(this->m_pView[0]->GetParentFrame());
+			m_pEncodingErrorBar->Create(this->m_pView[0][0]->GetParentFrame());
 		}
 		m_pEncodingErrorBar->SetText(LoadResString(idres));
-		m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), TRUE, FALSE);
+		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), TRUE, FALSE);
 	}
 
 	ForEachView([](auto& pView) {
@@ -2640,14 +2653,14 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 				m_ptBuf[0]->GetLine(0, sFirstLine);
 				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				{
-					bTyped[nBuffer] = GetView(nBuffer)->SetTextTypeByContent(sFirstLine);
+					bTyped[nBuffer] = GetView(0, nBuffer)->SetTextTypeByContent(sFirstLine);
 				}
 			}
 		}
 
 		if (syntaxHLEnabled)
 		{
-			CCrystalTextView::TextDefinition *enuType = GetView(paneTyped)->GetTextType(sext[paneTyped].c_str());
+			CCrystalTextView::TextDefinition *enuType = GetView(0, paneTyped)->GetTextType(sext[paneTyped].c_str());
 			ForEachView([&bTyped, enuType](auto& pView) {
 				if (!bTyped[pView->m_nThisPane])
 					pView->SetTextType(enuType);
@@ -2690,15 +2703,15 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 				m_diffList.HasSignificantDiffs())
 			{
 				int nDiff = m_diffList.FirstSignificantDiff();
-				m_pView[nPane]->SelectDiff(nDiff, true, false);
-				nLineIndex = m_pView[nPane]->GetCursorPos().y;
+				m_pView[0][nPane]->SelectDiff(nDiff, true, false);
+				nLineIndex = m_pView[0][nPane]->GetCursorPos().y;
 			}
 			else
 			{
 				nLineIndex = 0;
 			}
 		}
-		m_pView[nPane]->GotoLine(nLineIndex, false, nPane);
+		m_pView[0][nPane]->GotoLine(nLineIndex, false, nPane);
 
 		// Exit if files are identical should only work for the first
 		// comparison and must be disabled afterward.
@@ -2717,8 +2730,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 	// Force repaint of location pane to update it in case we had some warning
 	// dialog visible and it got painted before files were loaded
-	if (m_pView[0])
-		m_pView[0]->RepaintLocationPane();
+	if (m_pView[0][0])
+		m_pView[0][0]->RepaintLocationPane();
 
 	return true;
 }
@@ -2900,45 +2913,43 @@ bool CMergeDoc::GetByteColoringOption() const
 void CMergeDoc::SwapFiles()
 {
 	// Swap views
-	int nLeftViewId = m_pView[0]->GetDlgCtrlID();
-	int nRightViewId = m_pView[m_nBuffers - 1]->GetDlgCtrlID();
-	m_pView[0]->SetDlgCtrlID(nRightViewId);
-	m_pView[m_nBuffers - 1]->SetDlgCtrlID(nLeftViewId);
+	for (int nGroup = 0; nGroup < m_nGroups; ++nGroup)
+	{
+		int nLeftViewId = m_pView[nGroup][0]->GetDlgCtrlID();
+		int nRightViewId = m_pView[nGroup][m_nBuffers - 1]->GetDlgCtrlID();
+		m_pView[nGroup][0]->SetDlgCtrlID(nRightViewId);
+		m_pView[nGroup][m_nBuffers - 1]->SetDlgCtrlID(nLeftViewId);
+	}
 
-	int nLeftDetailViewId = m_pDetailView[0]->GetDlgCtrlID();
-	int nRightDetailViewId = m_pDetailView[m_nBuffers - 1]->GetDlgCtrlID();
-	m_pDetailView[0]->SetDlgCtrlID(nRightDetailViewId);
-	m_pDetailView[m_nBuffers - 1]->SetDlgCtrlID(nLeftDetailViewId);
 
 	// Swap buffers and so on
 	std::swap(m_ptBuf[0], m_ptBuf[m_nBuffers - 1]);
-	std::swap(m_pView[0], m_pView[m_nBuffers - 1]);
-	std::swap(m_pDetailView[0], m_pDetailView[m_nBuffers - 1]);
+	for (int nGroup = 0; nGroup < m_nGroups; ++nGroup)
+		std::swap(m_pView[nGroup][0], m_pView[nGroup][m_nBuffers - 1]);
 	std::swap(m_pSaveFileInfo[0], m_pSaveFileInfo[m_nBuffers - 1]);
 	std::swap(m_pRescanFileInfo[0], m_pRescanFileInfo[m_nBuffers - 1]);
 	std::swap(m_nBufferType[0], m_nBufferType[m_nBuffers - 1]);
 	std::swap(m_bEditAfterRescan[0], m_bEditAfterRescan[m_nBuffers - 1]);
 	std::swap(m_strDesc[0], m_strDesc[m_nBuffers - 1]);
-	m_strDesc[0].swap(m_strDesc[1]);
 
 	m_filePaths.Swap();
 	m_diffList.Swap(0, m_nBuffers - 1);
-	swap(m_pView[0]->m_piMergeEditStatus, m_pView[m_nBuffers - 1]->m_piMergeEditStatus);
+	for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
+		swap(m_pView[nGroup][0]->m_piMergeEditStatus, m_pView[nGroup][m_nBuffers - 1]->m_piMergeEditStatus);
 
 	ClearWordDiffCache();
 
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		m_ptBuf[nBuffer]->m_nThisPane = nBuffer;
-		m_pView[nBuffer]->m_nThisPane = nBuffer;
-		m_pDetailView[nBuffer]->m_nThisPane = nBuffer;
+		for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
+			m_pView[nGroup][nBuffer]->m_nThisPane = nBuffer;
 
 		// Update views
 		UpdateHeaderPath(nBuffer);
 	}
 	GetParentFrame()->UpdateSplitter();
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		m_pView[nBuffer]->UpdateStatusbar();
+	ForEachView([](auto& pView) { pView->UpdateStatusbar(); });
 
 	UpdateAllViews(NULL);
 }
@@ -3003,9 +3014,8 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
-	int nActivePane = GetActiveMergeView()->m_nThisPane;
-	CPoint pt = m_pView[nActivePane]->GetCursorPos();
-	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc, nActivePane, pt.y);
+	CPoint pt = GetActiveMergeView()->GetCursorPos();
+	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc, GetActiveMergeView()->m_nThisPane, pt.y);
 }
 
 /**
@@ -3036,13 +3046,13 @@ void CMergeDoc::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI)
 
 void CMergeDoc::OnBnClickedFileEncoding()
 {
-	m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 	DoFileEncodingDialog();
 }
 
 void CMergeDoc::OnBnClickedPlugin()
 {
-	m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 	OpenWithUnpackerDialog();
 }
 
@@ -3056,7 +3066,7 @@ void CMergeDoc::OnBnClickedHexView()
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
 	}
 	if (m_pEncodingErrorBar && m_pEncodingErrorBar->IsWindowVisible())
-		m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
 	GetParentFrame()->ShowWindow(SW_RESTORE);
 	GetParentFrame()->DestroyWindow();
@@ -3064,7 +3074,7 @@ void CMergeDoc::OnBnClickedHexView()
 
 void CMergeDoc::OnOK()
 {
-	m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 }
 
 void CMergeDoc::OnFileRecompareAsXML()
@@ -3111,7 +3121,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	LOGFONT lf;
 	CDC dc;
 	dc.CreateDC(_T("DISPLAY"), NULL, NULL, NULL);
-	m_pView[0]->GetFont(lf);
+	m_pView[0][0]->GetFont(lf);
 	int nFontSize = -MulDiv (lf.lfHeight, 72, dc.GetDeviceCaps (LOGPIXELSY));
 
 	// create HTML report
@@ -3127,8 +3137,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 
 	file.SetCodepage(ucr::CP_UTF_8);
 
-	String header = 
-		strutils::format(
+	CString headerText =
 		_T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n")
 		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
 		_T("<html>\n")
@@ -3150,8 +3159,9 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("<div class=\"border\">")
 		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width: 100%%; margin: 0; border: none;\">\n")
 		_T("<thead>\n")
-		_T("<tr>\n"),
-		nFontSize, m_pView[0]->GetHTMLStyles());
+		_T("<tr>\n");
+	String header = 
+		strutils::format((LPCTSTR)headerText, nFontSize, (LPCTSTR)m_pView[0][0]->GetHTMLStyles());
 	file.WriteString(header);
 
 	// Get paths
@@ -3205,7 +3215,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		{
 			for (; idx[nBuffer] < nLineCount[nBuffer]; idx[nBuffer]++)
 			{
-				if (m_pView[nBuffer]->GetLineVisible(idx[nBuffer]))
+				if (m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
 					break;
 			}
 				
@@ -3221,13 +3231,13 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 					++nDiff;
 					tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
 				}
-				if (!(dwFlags & LF_GHOST) && m_pView[nBuffer]->GetViewLineNumbers())
+				if (!(dwFlags & LF_GHOST) && m_pView[0][nBuffer]->GetViewLineNumbers())
 					tdtag += strutils::format(_T("%d</td>"), m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1);
 				else
 					tdtag += _T("</td>");
 				file.WriteString(tdtag);
 				// write a line on left/right side
-				file.WriteString((LPCTSTR)m_pView[nBuffer]->GetHTMLLine(idx[nBuffer], _T("td")));
+				file.WriteString((LPCTSTR)m_pView[0][nBuffer]->GetHTMLLine(idx[nBuffer], _T("td")));
 				idx[nBuffer]++;
 			}
 			else
@@ -3239,7 +3249,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		bool bBorderLine = false;
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[nBuffer]->GetLineVisible(idx[nBuffer]))
+			if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
 				bBorderLine = true;
 		}
 
@@ -3248,7 +3258,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			file.WriteString(_T("<tr height=1>"));
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 			{
-				if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[nBuffer]->GetLineVisible(idx[nBuffer]))
+				if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
 					file.WriteString(_T("<td style=\"background-color: black\"></td><td style=\"background-color: black\"></td>"));
 				else
 					file.WriteString(_T("<td></td><td></td>"));
@@ -3317,7 +3327,7 @@ void CMergeDoc::AddSyncPoint()
 	int nLine[3];
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
-		 int tmp = m_pView[nBuffer]->GetCursorPos().y;
+		 int tmp = m_pView[0][nBuffer]->GetCursorPos().y;
 		 nLine[nBuffer] = m_ptBuf[nBuffer]->ComputeApparentLine(m_ptBuf[nBuffer]->ComputeRealLine(tmp));
 
 		if (m_ptBuf[nBuffer]->GetLineFlags(nLine[nBuffer]) & LF_INVALID_BREAKPOINT)

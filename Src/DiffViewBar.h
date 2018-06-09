@@ -24,16 +24,8 @@ public:
 		DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
 		UINT nID = AFX_IDW_PANE_FIRST);
 
-	void setSplitter (CSplitterWndEx * pwndDetailSplitter)
-		{	m_pwndDetailSplitter = pwndDetailSplitter; }
-
-	void UpdateBarHeight(int DiffPanelHeight);
 	void SetFrameHwnd(HWND hwndFrame);
 	void UpdateResources();
-
-protected:
-	CSplitterWndEx * m_pwndDetailSplitter;
-
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -44,7 +36,6 @@ public:
 
 	//{{AFX_MSG(CDiffViewBar)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 	//}}AFX_MSG

@@ -1021,6 +1021,11 @@ msgstr "Pré-diferenciar"
 msgid "&Scripts"
 msgstr "Scripts"
 
+#: Merge.rc:39000D56
+#, c-format
+msgid "Sp&lit"
+msgstr ""
+
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
@@ -1831,7 +1836,7 @@ msgstr "Diferença de Palavra Selecionada:"
 msgid "Defaults"
 msgstr "Predefinição"
 
-#: Merge.rc:39000D56
+#: Merge.rc:39000D57
 #, c-format
 msgid "System"
 msgstr "Sistema"
@@ -2996,7 +3001,7 @@ msgstr "Não voltar a perguntar."
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "Para tornar esta caixa de mensagem visível novamente, pressione o botão Redefinir na página Geral da caixa de diálogo Opções."
 
-#: Merge.rc:39000D57
+#: Merge.rc:39000D58
 #, c-format
 msgid "Syntax"
 msgstr "Syntax"

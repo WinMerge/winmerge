@@ -26,6 +26,7 @@
 #pragma once
 
 #include "SplitterWndEx.h"
+#include "MergeEditSplitterView.h"
 #include "MergeStatusBar.h"
 #include "EditorFilepathBar.h"
 #include "DiffViewBar.h"
@@ -53,14 +54,14 @@ public:
 
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
-
+	CSplitterWndEx& GetSplitter() { return m_wndSplitter; };
 
 // Attributes
 protected:
 	CSplitterWndEx m_wndSplitter;
 	CEditorFilePathBar m_wndFilePathBar;
 	CDiffViewBar m_wndDetailBar;
-	CSplitterWndEx m_wndDetailSplitter;
+	CMergeEditSplitterView *m_pwndDetailMergeEditSplitterView;
 	CMergeStatusBar m_wndStatusBar;
 	CLocationBar m_wndLocationBar;
 
@@ -80,6 +81,8 @@ private:
 	BOOL EnsureValidDockState(CDockState& state);
 	void SavePosition();
 	virtual ~CChildFrame();
+	CSplitterWndEx& GetMergeEditSplitterWnd(int iRow)
+	{ return static_cast<CMergeEditSplitterView *>(m_wndSplitter.GetPane(iRow, 0))->m_wndSplitter; }
 
 // Generated message map functions
 private:

@@ -1025,6 +1025,11 @@ msgstr "&Prediffer"
 msgid "&Scripts"
 msgstr "스크립트(&S)"
 
+#: Merge.rc:39000D56
+#, c-format
+msgid "Sp&lit"
+msgstr ""
+
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
@@ -1835,7 +1840,7 @@ msgstr "선택된 단어 차이점:"
 msgid "Defaults"
 msgstr "기본값"
 
-#: Merge.rc:39000D56
+#: Merge.rc:39000D57
 #, c-format
 msgid "System"
 msgstr "시스템"
@@ -3060,7 +3065,7 @@ msgstr "다시 묻지 않음(&Q)"
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr "이 메시지 상자를 다시 표시하려면, 옵션 대화상자의 일반 페이지에서 초기화 버튼을 누르세요."
 
-#: Merge.rc:39000D57
+#: Merge.rc:39000D58
 #, c-format
 msgid "Syntax"
 msgstr "구문"

@@ -1056,15 +1056,10 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 	{
 		for (auto pDoc : GetAllMergeDocs())
 		{
-			for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
-			{
-				CMergeEditView * pView = pDoc->GetView(pane);
-				CMergeEditView * pDetailView = pDoc->GetDetailView(pane);
-				if (pView)
+			CMergeDoc *pMergeDoc = dynamic_cast<CMergeDoc *>(pDoc);
+			if (pMergeDoc)
+				for (auto& pView: pMergeDoc->GetViewList())
 					pView->SetFont(m_lfDiff);
-				if (pDetailView)
-					pDetailView->SetFont(m_lfDiff);
-			}
 		}
 	}
 }

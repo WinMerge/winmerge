@@ -1020,6 +1020,11 @@ msgstr "&Prediferenciació"
 msgid "&Scripts"
 msgstr "&Seqüències d'ordres"
 
+#: Merge.rc:39000D56
+#, c-format
+msgid "Sp&lit"
+msgstr ""
+
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
@@ -1830,7 +1835,7 @@ msgstr "Paraula diferent seleccionada:"
 msgid "Defaults"
 msgstr "Predeterminats"
 
-#: Merge.rc:39000D56
+#: Merge.rc:39000D57
 #, c-format
 msgid "System"
 msgstr "Sistema"
@@ -2995,7 +3000,7 @@ msgstr "No tornis a preguntar-ho."
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-#: Merge.rc:39000D57
+#: Merge.rc:39000D58
 #, c-format
 msgid "Syntax"
 msgstr ""

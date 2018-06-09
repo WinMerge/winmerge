@@ -1021,6 +1021,11 @@ msgstr "&Налични"
 msgid "&Scripts"
 msgstr "&Скриптове"
 
+#: Merge.rc:39000D56
+#, c-format
+msgid "Sp&lit"
+msgstr ""
+
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
@@ -1831,7 +1836,7 @@ msgstr "В избраните думи:"
 msgid "Defaults"
 msgstr "Възстанови"
 
-#: Merge.rc:39000D56
+#: Merge.rc:39000D57
 #, c-format
 msgid "System"
 msgstr "Системни"
@@ -2996,7 +3001,7 @@ msgstr "Не питай пак този въпрос."
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-#: Merge.rc:39000D57
+#: Merge.rc:39000D58
 #, c-format
 msgid "Syntax"
 msgstr ""

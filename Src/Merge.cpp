@@ -58,7 +58,7 @@
 #include "OptionsSyntaxColors.h"
 #include "Plugins.h"
 #include "ProjectFile.h"
-#include "MergeEditView.h"
+#include "MergeEditSplitterView.h"
 #include "LanguageSelect.h"
 #include "OptionsDef.h"
 #include "MergeCmdLineInfo.h"
@@ -357,7 +357,7 @@ BOOL CMergeApp::InitInstance()
 		IDR_MERGEDOCTYPE,
 		RUNTIME_CLASS(CMergeDoc),
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
-		RUNTIME_CLASS(CMergeEditView));
+		RUNTIME_CLASS(CMergeEditSplitterView));
 	AddDocTemplate(m_pDiffTemplate);
 
 	// Merge Edit view

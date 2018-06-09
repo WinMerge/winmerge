@@ -1,4 +1,4 @@
-# This file is part from WinMerge <http://winmerge.org/>
+﻿# This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -1021,6 +1021,11 @@ msgstr "比較前処理プラグイン(&P)"
 msgid "&Scripts"
 msgstr "スクリプト(&S)"
 
+#: Merge.rc:39000D56
+#, c-format
+msgid "Sp&lit"
+msgstr "分割(&L)"
+
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
@@ -1839,7 +1844,7 @@ msgstr "選択された単語の差異:"
 msgid "Defaults"
 msgstr "デフォルト"
 
-#: Merge.rc:39000D56
+#: Merge.rc:39000D57
 #, c-format
 msgid "System"
 msgstr "システム"
@@ -3082,7 +3087,7 @@ msgstr ""
 "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログの一般"
 "ページで [リセット] ボタンを押してください。"
 
-#: Merge.rc:39000D57
+#: Merge.rc:39000D58
 #, c-format
 msgid "Syntax"
 msgstr "シンタックス"
@@ -5130,3 +5135,4 @@ msgstr ""
 "次のパラメータが指定可能です。\n"
 "$file: 現在のファイルのパス名\n"
 "$linenum: 現在のカーソル位置の行番号"
+

@@ -199,7 +199,7 @@ void CDiffTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 	if (m_aUndoBuf[m_nUndoPosition - 1].m_dwFlags & UNDO_BEGINGROUP)
 	{
 		m_pOwnerDoc->undoTgt.erase(m_pOwnerDoc->curUndo, m_pOwnerDoc->undoTgt.end());
-		m_pOwnerDoc->undoTgt.push_back(m_pOwnerDoc->GetView(m_nThisPane));
+		m_pOwnerDoc->undoTgt.push_back(m_nThisPane);
 		m_pOwnerDoc->curUndo = m_pOwnerDoc->undoTgt.end();
 	}
 }

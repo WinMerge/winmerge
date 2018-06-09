@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-05-02 23:31+0000\n"
+"POT-Creation-Date: 2018-06-03 10:30+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1017,6 +1017,11 @@ msgstr ""
 msgid "&Scripts"
 msgstr ""
 
+#: Merge.rc:39000D56
+#, c-format
+msgid "Sp&lit"
+msgstr ""
+
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
@@ -1827,7 +1832,7 @@ msgstr ""
 msgid "Defaults"
 msgstr ""
 
-#: Merge.rc:39000D56
+#: Merge.rc:39000D57
 #, c-format
 msgid "System"
 msgstr ""
@@ -2992,7 +2997,7 @@ msgstr ""
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
-#: Merge.rc:39000D57
+#: Merge.rc:39000D58
 #, c-format
 msgid "Syntax"
 msgstr ""

@@ -5692,6 +5692,24 @@ void CCrystalTextView::SetDisableDragAndDrop (bool bDDAD)
   m_bDisableDragAndDrop = bDDAD;
 }
 
+void CCrystalTextView::CopyProperties (CCrystalTextView *pSource)
+{
+  m_nTopLine = pSource->m_nTopLine;
+  m_nTopSubLine = pSource->m_nTopSubLine;
+  m_bViewTabs = pSource->m_bViewTabs;
+  m_bViewEols = pSource->m_bViewEols;
+  m_bDistinguishEols = pSource->m_bDistinguishEols;
+  m_bSelMargin = pSource->m_bSelMargin;
+  m_bViewLineNumbers = pSource->m_bViewLineNumbers;
+  m_bSmoothScroll = pSource->m_bSmoothScroll;
+  m_bWordWrap = pSource->m_bWordWrap;
+  m_pColors = pSource->m_pColors;
+  m_pMarkers = pSource->m_pMarkers;
+  m_bDisableDragAndDrop = pSource->m_bDisableDragAndDrop;
+  SetTextType(pSource->m_CurSourceDef);
+  SetFont (pSource->m_lfBaseFont);
+}
+
 //
 // Mouse wheel event.  zDelta is in multiples of 120.
 // Divide by 40 so each click is 3 lines.  I know some
