@@ -7,7 +7,7 @@
 #include "diff.h"
 #include "FolderCmp.h"
 #include <cassert>
-#include "DiffUtils.h"
+#include "Wrap_DiffUtils.h"
 #include "ByteCompare.h"
 #include "paths.h"
 #include "FilterList.h"
@@ -144,7 +144,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		// affects behavior (also, we don't have an icon for unknown type)
 
 		// Actually compare the files
-		// diffutils_compare_files is a fairly thin front-end to diffutils
+		// `diffutils_compare_files()` is a fairly thin front-end to GNU diffutils
 
 		if (files.GetSize() == 2)
 		{
