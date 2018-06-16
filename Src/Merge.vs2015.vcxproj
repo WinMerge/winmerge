@@ -902,7 +902,7 @@
     <ClCompile Include="CompareEngines\ByteCompare.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="CompareEngines\DiffUtils.cpp">
+    <ClCompile Include="CompareEngines\Wrap_DiffUtils.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="CompareEngines\TimeSizeCompare.cpp">
@@ -1128,7 +1128,7 @@
     <ClInclude Include="diffutils\src\system.h" />
     <ClInclude Include="CompareEngines\ByteComparator.h" />
     <ClInclude Include="CompareEngines\ByteCompare.h" />
-    <ClInclude Include="CompareEngines\DiffUtils.h" />
+    <ClInclude Include="CompareEngines\Wrap_DiffUtils.h" />
     <ClInclude Include="CompareEngines\TimeSizeCompare.h" />
   </ItemGroup>
   <ItemGroup>
