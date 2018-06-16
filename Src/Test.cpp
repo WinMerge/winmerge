@@ -79,13 +79,13 @@ TEST(SyntaxHighlight, Verilog)
 	EXPECT_NE(nullptr, pDoc);
 
 	std::vector<CCrystalTextView::TEXTBLOCK> blocks;
-	blocks = pDoc->GetView(0)->GetTextBlocks(0);
+	blocks = pDoc->GetView(0, 0)->GetTextBlocks(0);
 	EXPECT_EQ(COLORINDEX_COMMENT, blocks[0].m_nColorIndex);
-	blocks = pDoc->GetView(0)->GetTextBlocks(2);
+	blocks = pDoc->GetView(0, 0)->GetTextBlocks(2);
 	EXPECT_EQ(COLORINDEX_KEYWORD, blocks[0].m_nColorIndex);
-	blocks = pDoc->GetView(0)->GetTextBlocks(37);
+	blocks = pDoc->GetView(0, 0)->GetTextBlocks(37);
 	EXPECT_EQ(COLORINDEX_PREPROCESSOR, blocks[0].m_nColorIndex);
-	blocks = pDoc->GetView(0)->GetTextBlocks(38);
+	blocks = pDoc->GetView(0, 0)->GetTextBlocks(38);
 	EXPECT_EQ(COLORINDEX_USER1, blocks[1].m_nColorIndex);
 	EXPECT_EQ(COLORINDEX_STRING, blocks[3].m_nColorIndex);
 
