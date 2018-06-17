@@ -894,7 +894,7 @@ void DiffList::Swap(int index1, int index2)
  * @param [out] nLeftLines Number of lines to add to left side.
  * @param [out] nRightLines Number of lines to add to right side.
  */
-void DiffList::GetExtraLinesCounts(int nFiles, int extras[])
+void DiffList::GetExtraLinesCounts(int nFiles, int extras[3])
 {
 	extras[0]=0;
 	extras[1]=0;
@@ -908,7 +908,8 @@ void DiffList::GetExtraLinesCounts(int nFiles, int extras[])
 
 		// this guarantees that all the diffs are synchronized
 		assert(curDiff.begin[0]+extras[0] == curDiff.begin[1]+extras[1]);
-		int nline[3];
+		assert(nFiles<3 || curDiff.begin[0]+extras[0] == curDiff.begin[2]+extras[2]);
+		int nline[3] = { 0,0,0 };
 		int nmaxline = 0;
 		int file;
 		for (file = 0; file < nFiles; file++)

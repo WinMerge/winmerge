@@ -476,13 +476,13 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	// If comparing whitespaces and
 	// other file has EOL before EOF and other not...
-	if (!diffOptions.nIgnoreWhitespace && !diffOptions.bIgnoreBlankLines)
+	if (diffOptions.nIgnoreWhitespace == WHITESPACE_COMPARE_ALL || !diffOptions.bIgnoreBlankLines)
 	{
 		if (std::count(status.bMissingNL, status.bMissingNL + m_nBuffers, status.bMissingNL[0]) < m_nBuffers)
 		{
-			// ..lasf DIFFRANGE of file which has EOL must be
+			// ..last DIFFRANGE of file which has EOL must be
 			// fixed to contain last line too
-			int lineCount[3];
+			int lineCount[3] = { 0,0,0 };
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				lineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
 			m_diffWrapper.FixLastDiffRange(m_nBuffers, lineCount, status.bMissingNL, diffOptions.bIgnoreBlankLines);
@@ -1891,12 +1891,7 @@ void CMergeDoc::OnUpdateDiffContext(CCmdUI* pCmdUI)
 /**
  * @brief Build the diff array and prepare buffers accordingly (insert ghost lines, set WinMerge flags)
  *
- * @note Buffers may have different length after PrimeTextBuffers. Indeed, no
- * synchronization is needed after the last line. So no ghost line will be created
- * to face an ignored difference in the last line (typically : 'ignore blank lines' 
- * + empty last line on one side).
- * If you fell that different length buffers are really strange, CHANGE FIRST
- * the last diff to take into account the empty last line.
+ * @note After PrimeTextBuffers(), all buffers should have the same length.
  */
 void CMergeDoc::PrimeTextBuffers()
 {
@@ -1907,21 +1902,24 @@ void CMergeDoc::PrimeTextBuffers()
 	int file;
 
 	// walk the diff list and calculate numbers of extra lines to add
-	int extras[3]={0};   // extra lines added to each view
+	int extras[3] = {0, 0, 0};   // extra lines added to each view
 	m_diffList.GetExtraLinesCounts(m_nBuffers, extras);
 
 	// resize m_aLines once for each view
-	UINT lcount[3] = {0};
-	UINT lcountnew[3] = {0};
+	UINT lcount[3] = {0, 0, 0};
+	UINT lcountnew[3] = {0, 0, 0};
+	UINT lcountmax = 0;
 	
 	for (file = 0; file < m_nBuffers; file++)
 	{
 		lcount[file] = m_ptBuf[file]->GetLineCount();
 		lcountnew[file] = lcount[file] + extras[file];
-		m_ptBuf[file]->m_aLines.resize(lcountnew[file]);
+		lcountmax = max(lcountmax, lcountnew[file]);
 	}
-// this ASSERT may be false because of empty last line (see function's note)
-//	ASSERT(lcount0new == lcount1new);
+	for (file = 0; file < m_nBuffers; file++)
+	{
+		m_ptBuf[file]->m_aLines.resize(lcountmax);
+	}
 
 	// walk the diff list backward, move existing lines to proper place,
 	// add ghost lines, and set flags
@@ -1931,7 +1929,7 @@ void CMergeDoc::PrimeTextBuffers()
 		VERIFY(m_diffList.GetDiff(nDiff, curDiff));
 
 		// move matched lines after curDiff
-		int nline[3] = { 0 };
+		int nline[3] = { 0, 0, 0 };
 		for (file = 0; file < m_nBuffers; file++)
 			nline[file] = lcount[file] - curDiff.end[file] - 1; // #lines on left/middle/right after current diff
 		// Matched lines should really match...
@@ -1954,14 +1952,14 @@ void CMergeDoc::PrimeTextBuffers()
 
 		for (file = 0; file < m_nBuffers; file++)
 		{
+			DWORD dflag = LF_GHOST;
+			if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
+				dflag |= LF_SNP;
 			m_ptBuf[file]->MoveLine(curDiff.begin[file], curDiff.end[file], lcountnew[file]-nmaxline);
 			int nextra = nmaxline - nline[file];
 			if (nextra > 0)
 			{
 				m_ptBuf[file]->SetEmptyLine(lcountnew[file] - nextra, nextra);
-				DWORD dflag = LF_GHOST;
-				if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
-					dflag |= LF_SNP;
 				for (int i = 1; i <= nextra; i++)
 					m_ptBuf[file]->SetLineFlag(lcountnew[file]-i, dflag, true, false, false);
 			}
@@ -2011,7 +2009,7 @@ void CMergeDoc::PrimeTextBuffers()
 							if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
 								dflag |= LF_SNP;
 							m_ptBuf[file]->SetLineFlag(i, dflag, true, false, false);
-m_ptBuf[file]->SetLineFlag(i, LF_INVISIBLE, false, false, false);
+							m_ptBuf[file]->SetLineFlag(i, LF_INVISIBLE, false, false, false);
 						}
 						else
 						{
@@ -2030,11 +2028,46 @@ m_ptBuf[file]->SetLineFlag(i, LF_INVISIBLE, false, false, false);
 
 	m_diffList.ConstructSignificantChain();
 
-	// Used to strip trivial diffs out of the diff chain
-	// if m_nTrivialDiffs
-	// via copying them all to a new chain, then copying only non-trivials back
-	// but now we keep all diffs, including trivial diffs
+	// Buffers `m_ptBuf[]` may have a final line entry that is <null>.
+	// (a) If ALL buffers have that final <null>, remove them all.
+	// (b) If only SOME have that final <null>, change those <null>
+	//		lines into proper ghost-image lines.
+	// Note too: By this point all buffers must have the same number 
+	//		of line entries; eventual buffer processing typically
+	//		uses the line count from `m_ptBuf[0]` for all buffer processing.
 
+	int nFinalNullLines = 0;	
+	for (file = 0; file < m_nBuffers; file++)
+	{
+		// First, decide how many buffers have a final <null> line.
+		ASSERT(m_ptBuf[0]->GetLineCount() == m_ptBuf[file]->GetLineCount());
+		if (m_ptBuf[file]->GetLineChars(m_ptBuf[file]->GetLineCount()-1) == nullptr)
+			nFinalNullLines++;
+	}
+	if (nFinalNullLines != 0)
+	{
+		// Some (maybe all) of the buffers have a final <null> line.
+		// Handle them (per comment above) in the loop below.
+		for (file = 0; file < m_nBuffers; file++)
+		{
+			UINT LastLineInx = m_ptBuf[file]->GetLineCount() - 1;
+			if (m_ptBuf[file]->GetLineChars(LastLineInx) == nullptr)
+				if (nFinalNullLines == m_nBuffers)
+				{
+					// ALL buffers have a final <null> line; discard them.
+					m_ptBuf[file]->m_aLines.resize(m_ptBuf[file]->GetLineCount() - 1);
+				}
+				else
+				{
+					// Only SOME buffers have final <null> line; set them to a valid GHOST line.
+					// And copy the LF_SNP flag from the previous line (if it exists).
+					DWORD dFlags = (LastLineInx > 0 ? m_ptBuf[file]->GetLineFlags(LastLineInx-1) & LF_SNP : 0) | LF_GHOST;
+					m_ptBuf[file]->SetEmptyLine(LastLineInx, 1);
+					m_ptBuf[file]->SetLineFlag(LastLineInx, dFlags, true, false, false);
+				}
+			ASSERT(m_ptBuf[0]->GetLineCount() == m_ptBuf[file]->GetLineCount());
+		}
+	}
 
 	for (file = 0; file < m_nBuffers; file++)
 		m_ptBuf[file]->FinishLoading();
