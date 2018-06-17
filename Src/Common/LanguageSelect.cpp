@@ -413,7 +413,7 @@ LangFileInfo::LangFileInfo(LPCTSTR path)
 : id(0)
 {
 	FILE *f;
-	if (_tfopen_s(&f, path, _T("r")) == 0)
+	if (_tfopen_s(&f, path, _T("r")) == 0 && f)
 	{
 		char buf[1024 + 1];
 		while (fgets(buf, sizeof buf - 1, f))

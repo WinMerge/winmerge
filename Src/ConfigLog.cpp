@@ -248,7 +248,7 @@ bool CConfigLog::DoFile(String &sError)
 
 	// The command line include a space after the executable file name,
 	// which mean that empty command line will have length of one.
-	if (lstrlen(szCmdLine) < 2)
+	if (!szCmdLine || lstrlen(szCmdLine) < 2)
 	{
 		szCmdLine = _T(" none");
 	}

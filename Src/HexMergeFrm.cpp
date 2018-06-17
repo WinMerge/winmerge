@@ -431,7 +431,8 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 				pView[pane]->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_THUMBTRACK, si.nTrackPos));
 			}
 		}
-		m_wndSplitter.GetScrollBarCtrl(pView[nColumns - 1], SB_VERT)->SetScrollInfo(&si);
+		if (nColumns > 0)
+			m_wndSplitter.GetScrollBarCtrl(pView[nColumns - 1], SB_VERT)->SetScrollInfo(&si);
 	}
 	CMDIChildWnd::OnIdleUpdateCmdUI();
 }
