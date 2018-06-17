@@ -15,6 +15,7 @@
 enum MERGE_LINEFLAGS
 {
 	LF_DIFF = 0x00200000L,
+//	LF_GHOST = 0x00400000L, 
 	LF_TRIVIAL = 0x00800000L,
 	LF_MOVED = 0x01000000L,
 	LF_SNP = 0x02000000L,
@@ -22,7 +23,7 @@ enum MERGE_LINEFLAGS
 
 
 // WINMERGE_FLAGS is MERGE_LINEFLAGS | GHOST_LINEFLAGS | LF_TRIVIAL | LF_MOVED
-#define LF_WINMERGE_FLAGS    0x01E00000
+#define LF_WINMERGE_FLAGS    0x03E00000
 
 // Flags for non-ignored difference
 // Note that we must include ghost flag to include ghost lines
