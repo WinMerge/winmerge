@@ -374,7 +374,6 @@ void print_script (struct change *, struct change * (*) (struct change *), void 
 void setup_output (char const *, char const *, int);
 void translate_range (struct file_data const *, int, int, int *, int *);
 void cleanup_file_buffers(struct file_data fd[]);
-int FileIsBinary(int fd);
 
 /* version.c */
 extern char const version_string[];
