@@ -699,6 +699,7 @@ void CGhostTextBuffer::RecomputeRealityMapping()
 
 	// state 1, i-1 not real line
 passingGhosts:
+	ASSERT( i <= GetLineCount() );
 	if (i == GetLineCount())
 		return;
 	if (GetLineFlags(i) & LF_GHOST)
@@ -715,6 +716,7 @@ passingGhosts:
 
 	// state 2, i - 1 is real line
 inReality:
+	ASSERT( i <= GetLineCount() );
 	if (i == GetLineCount() || (GetLineFlags(i) & LF_GHOST))
 	{
 		// i-1 is the last line of a reality block

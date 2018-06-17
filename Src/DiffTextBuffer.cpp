@@ -471,7 +471,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
  * @brief Saves file from buffer to disk
  *
  * @param bTempFile : false if we are saving user files and
- * true if we are saving workin-temp-files for diff-engine
+ * true if we are saving working-temp-files for diff-engine
  *
  * @return SAVE_DONE or an error code (list in MergeDoc.h)
  */
@@ -544,6 +544,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	// line loop : get each real line and write it in the file
 	String sLine;
 	String sEol = GetStringEol(nCrlfStyle);
+	int lastRealLine = ApparentLastRealLine();
 	for (int line = nStartLine; line < nStartLine + nLines; ++line)
 	{
 		if (GetLineFlags(line) & LF_GHOST)
@@ -562,18 +563,17 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 
 		if (bTempFile)
 			EscapeControlChars(sLine);
+
 		// last real line ?
-		int lastRealLine = ApparentLastRealLine();
 		if (line == lastRealLine || lastRealLine == -1 )
 		{
-			// last real line is never EOL terminated
-			ASSERT (_tcslen(GetLineEol(line)) == 0);
-			// write the line and exit loop
-			file.WriteString(sLine);
-			break;
+			// If original last line had no EOL, then we are done
+			if( !m_aLines[line].HasEol() )				
+				break;
+			// Otherwise, add the appropriate EOL to the last line ...
 		}
 
-		// normal real line : append an EOL
+		// normal line : append an EOL
 		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_MIXED)
 		{
 			// either the EOL of the line (when preserve original EOL chars is on)
@@ -587,6 +587,12 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 
 		// write this line to the file (codeset or unicode conversions are done there
 		file.WriteString(sLine);
+
+		if (line == lastRealLine || lastRealLine == -1)
+		{
+			// Last line, so now done
+			break;
+		}
 	}
 	file.Close();
 

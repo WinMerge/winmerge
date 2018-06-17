@@ -21,14 +21,20 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
    "An O(ND) Difference Algorithm and its Variations", Eugene Myers,
    Algorithmica Vol. 1 No. 2, 1986, pp. 251-266;
    see especially section 4.2, which describes the variation used below.
+
    Unless the --minimal option is specified, this code uses the TOO_EXPENSIVE
    heuristic, by Paul Eggert, to limit the cost to O(N**1.5 log N)
    at the price of producing suboptimal output for large inputs with
-   many differences.
+   many differences.  Related algorithms are surveyed by Alfred V. Aho in
+   section 6.3 of 'Algorithms for Finding Patterns in Strings',
+   Handbook of Theoretical Computer Science (Jan Van Leeuwen,
+   ed.), Vol. A, Algorithms and Complexity, Elsevier/MIT Press,
+   1990, pp. 255--300.
 
    The basic algorithm was independently discovered as described in:
-   "Algorithms for Approximate String Matching", E. Ukkonen,
-   Information and Control Vol. 64, 1985, pp. 100-118.  */
+   "Algorithms for Approximate String Matching", Esko Ukkonen,
+   Information and Control Vol. 64, 1985, pp. 100-118.  
+*/
 
 #include "diff.h"
 #include "cmpbuf.h"
@@ -947,12 +953,13 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 		bdiag += filevec[1].nondiscarded_lines + 1;
 		
       /* Set TOO_EXPENSIVE to be approximate square root of input size,
-	 bounded below by 256.  */
+	     bounded below by 4096.  4096 seems to be good for circa-2016 CPUs 
+	  */
         too_expensive = 1;
         for (i = filevec[0].nondiscarded_lines + filevec[1].nondiscarded_lines;
 	         i != 0; i >>= 2)
 		  too_expensive <<= 1;
-        too_expensive = max (256, too_expensive);
+        too_expensive = max (4096, too_expensive);
 
 		files[0] = filevec[0];
 		files[1] = filevec[1];

@@ -16,9 +16,6 @@
     <Filter Include="EditLib">
       <UniqueIdentifier>{84d4664c-e7ea-4d24-8d55-b1303c40b7f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DiffEngine">
-      <UniqueIdentifier>{16e1af2b-75c9-4deb-b49f-819018df0478}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ChangeLogs">
       <UniqueIdentifier>{aefb7247-d6e5-411d-9cc5-4a12f5efda4a}</UniqueIdentifier>
     </Filter>
@@ -55,6 +52,9 @@
     </Filter>
     <Filter Include="Boost\config\compiler">
       <UniqueIdentifier>{48b82f25-08b5-43e5-bc19-abd5bf4f0ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GNU diffutils">
+      <UniqueIdentifier>{16e1af2b-75c9-4deb-b49f-819018df0478}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -230,45 +230,42 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\analyze.c">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\lib\cmpbuf.c">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\context.c">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\Diff.cpp">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\ed.c">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\GnuVersion.c">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\ifdef.c">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\io.c">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\normal.c">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\side.c">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\util.c">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="CompareEngines\ByteComparator.cpp">
       <Filter>Compare Engines</Filter>
     </ClCompile>
     <ClCompile Include="CompareEngines\ByteCompare.cpp">
-      <Filter>Compare Engines</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\DiffUtils.cpp">
       <Filter>Compare Engines</Filter>
     </ClCompile>
     <ClCompile Include="CompareEngines\TimeSizeCompare.cpp">
@@ -758,7 +755,7 @@
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\mystat.cpp">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\go.cpp">
       <Filter>EditLib\parsers</Filter>
@@ -780,6 +777,9 @@
     </ClCompile>
     <ClCompile Include="MergeEditSplitterView.cpp">
       <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompareEngines\Wrap_DiffUtils.cpp">
+      <Filter>Compare Engines</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -982,24 +982,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="diffutils\lib\cmpbuf.h">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClInclude>
     <ClInclude Include="diffutils\config.h">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClInclude>
     <ClInclude Include="diffutils\src\diff.h">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClInclude>
     <ClInclude Include="diffutils\src\system.h">
-      <Filter>DiffEngine</Filter>
+      <Filter>GNU diffutils</Filter>
     </ClInclude>
     <ClInclude Include="CompareEngines\ByteComparator.h">
       <Filter>Compare Engines</Filter>
     </ClInclude>
     <ClInclude Include="CompareEngines\ByteCompare.h">
-      <Filter>Compare Engines</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\DiffUtils.h">
       <Filter>Compare Engines</Filter>
     </ClInclude>
     <ClInclude Include="CompareEngines\TimeSizeCompare.h">
@@ -1442,6 +1439,9 @@
     </ClInclude>
     <ClInclude Include="MergeEditSplitterView.h">
       <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareEngines\Wrap_DiffUtils.h">
+      <Filter>Compare Engines</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
