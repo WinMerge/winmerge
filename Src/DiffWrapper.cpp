@@ -946,7 +946,7 @@ void CDiffWrapper::AddDiffRange(DiffList *pDiffList, DIFFRANGE &dr)
  * @param [in] leftBufferLines size of array pane left
  * @param [in] rightBufferLines size of array pane right
  * @param [in] left on whitch side we have to insert
- * @param [in] bIgnoreBlankLines, if true we allways add a new diff and make as trivial
+ * @param [in] bIgnoreBlankLines, if true we always add a new diff and mark as trivial
  */
 void CDiffWrapper::FixLastDiffRange(int nFiles, int bufferLines[], bool bMissingNL[], bool bIgnoreBlankLines)
 {
