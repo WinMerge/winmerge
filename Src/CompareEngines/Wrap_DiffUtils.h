@@ -1,7 +1,7 @@
 /**
- * @file  DiffUtils.h
+ * @file  Wrap_DiffUtils.h
  *
- * @brief Declaration of DiffUtils class.
+ * @brief Declaration of Wrap_DiffUtils class.
  */
 #pragma once
 
@@ -19,7 +19,7 @@ namespace CompareEngines
 {
 
 /**
- * @brief A class wrapping diffutils as compare engine.
+ * @brief A class wrapping GNU diffutils as compare engine.
  *
  * This class needs to have all its data as local copies, not as pointers
  * outside. Lifetime can vary certainly be different from unrelated classes.

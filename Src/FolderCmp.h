@@ -7,7 +7,7 @@
 
 #include <memory>
 #include "DiffFileData.h"
-#include "DiffUtils.h"
+#include "Wrap_DiffUtils.h"
 #include "ByteCompare.h"
 #include "BinaryCompare.h"
 #include "TimeSizeCompare.h"

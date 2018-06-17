@@ -1,11 +1,11 @@
 /**
- * @file  DiffUtils.cpp
+ * @file  Wrap_DiffUtils.cpp
  *
- * @brief Implementation file for DiffUtils class.
+ * @brief Implementation file for Wrap_DiffUtils class.
  */
 
 #include "diff.h"
-#include "DiffUtils.h"
+#include "Wrap_DiffUtils.h"
 #include <map>
 #include <algorithm>
 #include <cassert>
