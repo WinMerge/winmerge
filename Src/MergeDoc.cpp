@@ -1784,8 +1784,8 @@ void CMergeDoc::OnFileSaveAsRight()
  */
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	TCHAR sIdx[32];
-	TCHAR sCnt[32];
+	TCHAR sIdx[32] = { 0 };
+	TCHAR sCnt[32] = { 0 };
 	String s;
 	const int nDiffs = m_diffList.GetSignificantDiffs();
 	

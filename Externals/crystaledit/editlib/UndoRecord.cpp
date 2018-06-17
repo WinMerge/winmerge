@@ -37,9 +37,12 @@ SetText (LPCTSTR pszText, int nLength)
   if (nLength != 1)
     {
       m_pszText = (TextBuffer *)malloc(sizeof(TextBuffer) + nLength * sizeof(TCHAR));
-      m_pszText->size = nLength;
-      memcpy(m_pszText->data, pszText, nLength * sizeof(TCHAR));
-      m_pszText->data[nLength] = _T('?'); // debug sentinel
+      if (m_pszText)
+        {
+          m_pszText->size = nLength;
+          memcpy(m_pszText->data, pszText, nLength * sizeof(TCHAR));
+          m_pszText->data[nLength] = _T('?'); // debug sentinel
+        }
     }
   else
     {

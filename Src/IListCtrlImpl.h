@@ -35,6 +35,7 @@ public:
 	String GetItemText(int row, int col) const
 	{
 		TCHAR text[512]; // Assuming max col header will never be > 512
+		text[0] = '\0';
 		ListView_GetItemText(m_hwndListCtrl, row, col, text, sizeof(text)/sizeof(text[0]));
 		return text;
 	}
@@ -116,34 +117,38 @@ public:
 			bmpinfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 			int w = imageInfo.rcImage.right - imageInfo.rcImage.left;
 			int h = imageInfo.rcImage.bottom - imageInfo.rcImage.top;
+			void *pBits;
 			bmpinfo.bmiHeader.biWidth = w;
 			bmpinfo.bmiHeader.biHeight = h;
 			bmpinfo.bmiHeader.biPlanes = 1;
 			bmpinfo.bmiHeader.biBitCount = 32;
 			bmpinfo.bmiHeader.biCompression = BI_RGB;
-			HBITMAP hbmpImage = CreateDIBSection(NULL, &bmpinfo, DIB_RGB_COLORS, NULL, NULL, NULL);
-			HBITMAP hbmpOld = (HBITMAP)SelectObject(hdcMem, hbmpImage);
-			ImageList_Draw(hImageList, iconIndex, hdcMem, 0, 0, ILD_TRANSPARENT);
-			CImage image;
-			image.Attach(hbmpImage);
-			image.SetHasAlphaChannel(true);
-			IStream *pStream = NULL;
-			if (SUCCEEDED(CreateStreamOnHGlobal(NULL, TRUE, &pStream)))
+			HBITMAP hbmpImage = CreateDIBSection(NULL, &bmpinfo, DIB_RGB_COLORS, &pBits, NULL, NULL);
+			if (hbmpImage)
 			{
-				image.Save(pStream, Gdiplus::ImageFormatPNG);
-				STATSTG stat;
-				if (SUCCEEDED(pStream->Stat(&stat, STATFLAG_NONAME)))
+				HBITMAP hbmpOld = (HBITMAP)SelectObject(hdcMem, hbmpImage);
+				ImageList_Draw(hImageList, iconIndex, hdcMem, 0, 0, ILD_TRANSPARENT);
+				CImage image;
+				image.Attach(hbmpImage);
+				image.SetHasAlphaChannel(true);
+				IStream *pStream = NULL;
+				if (SUCCEEDED(CreateStreamOnHGlobal(NULL, TRUE, &pStream)))
 				{
-					LARGE_INTEGER li = {0};
-					ret.resize(stat.cbSize.LowPart, 0);
-					pStream->Seek(li, STREAM_SEEK_SET, NULL);
-					pStream->Read(&ret[0], stat.cbSize.LowPart, NULL);
+					image.Save(pStream, Gdiplus::ImageFormatPNG);
+					STATSTG stat;
+					if (SUCCEEDED(pStream->Stat(&stat, STATFLAG_NONAME)))
+					{
+						LARGE_INTEGER li = { 0 };
+						ret.resize(stat.cbSize.LowPart, 0);
+						pStream->Seek(li, STREAM_SEEK_SET, NULL);
+						pStream->Read(&ret[0], stat.cbSize.LowPart, NULL);
+					}
+					pStream->Release();
 				}
-				pStream->Release();
+				SelectObject(hdcMem, hbmpOld);
+				DeleteObject(hdcMem);
+				DeleteObject(hbmpImage);
 			}
-			SelectObject(hdcMem, hbmpOld);
-			DeleteObject(hdcMem);
-			DeleteObject(hbmpImage);
 		}
 		return ret;
 	}

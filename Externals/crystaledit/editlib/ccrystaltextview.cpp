@@ -4809,6 +4809,9 @@ PrepareDragData ()
     return NULL;
 
   LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
+  if (!pszData)
+    return NULL;
+
   memcpy (pszData, text, cbData);
   ::GlobalUnlock (hData);
 
@@ -5484,12 +5487,12 @@ void CCrystalTextView::ToggleBookmark(int nLine)
       DWORD dwFlags = GetLineFlags (nLine);
       DWORD dwMask = LF_BOOKMARKS;
       m_pTextBuffer->SetLineFlag (nLine, dwMask, (dwFlags & dwMask) == 0, false);
-    }
-  const int nBookmarkLine = m_pTextBuffer->GetLineWithFlag (LF_BOOKMARKS);
-  if (nBookmarkLine >= 0)
-    m_bBookmarkExist = true;
-  else
-    m_bBookmarkExist = false;
+      const int nBookmarkLine = m_pTextBuffer->GetLineWithFlag (LF_BOOKMARKS);
+      if (nBookmarkLine >= 0)
+        m_bBookmarkExist = true;
+      else
+        m_bBookmarkExist = false;
+    }  
 }
 /** 
  * @brief Called when Toggle Bookmark is selected from the GUI.

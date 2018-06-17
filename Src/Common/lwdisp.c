@@ -544,6 +544,7 @@ STDAPI ValidateArgs(VARIANT *argv, UINT argc, LPCCH pvt)
 				// A const string longer than 260 OLECHARs (520 bytes) will
 				// provoke an access violation in B2A().
 				char buffer[520];
+				buffer[0] = '\0';
 				UINT length =  SysStringByteLen V_BSTR(argv);
 				if (length <= sizeof buffer)
 				{
@@ -731,10 +732,13 @@ IDispatch *NTAPI LWDispatch(void *target, const void *disp_map,
 		lpVtbl = &vtbl;
 	if (This == 0)
 		This = (struct LWDispatch *)malloc(sizeof(*This));
-	This->lpVtbl = lpVtbl;
-	This->target = target;
-	This->map = (const struct LWDispMap *)disp_map;
-	This->refc = 0;
+	if (This)
+	{
+		This->lpVtbl = lpVtbl;
+		This->target = target;
+		This->map = (const struct LWDispMap *)disp_map;
+		This->refc = 0;
+	}
 	return (IDispatch *)This;
 }
 

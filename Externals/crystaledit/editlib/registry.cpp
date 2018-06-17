@@ -952,7 +952,7 @@ RegDeleteKey (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName)
             {
               if (hSubKey != hKey)
                 RegClose (hSubKey);
-              return RegDeleteKey (hKey, pszSubKey) == ERROR_SUCCESS;
+              return pszSubKey ? (RegDeleteKey (hKey, pszSubKey) == ERROR_SUCCESS) : true;
             }
         }
       if (hSubKey != hKey)

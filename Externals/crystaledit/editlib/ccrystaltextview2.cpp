@@ -1153,18 +1153,21 @@ PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
         {
           SIZE_T dwSize = GlobalSize(hData);
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
-          memcpy (pszData, pszText, cbData);
-          if (dwSize > cbData)
-              memset(reinterpret_cast<char *>(pszData) + cbData, 0, dwSize - cbData);
-          GlobalUnlock (hData);
-          UINT fmt = GetClipTcharTextFormat();
-          bOK = SetClipboardData (fmt, hData) != NULL;
-          if (bOK)
+          if (pszData)
             {
-              if (bColumnSelection)
-                SetClipboardData (RegisterClipboardFormat (_T("MSDEVColumnSelect")), NULL);
-              if (dwSize == cbData)
-                SetClipboardData (RegisterClipboardFormat (_T("WinMergeClipboard")), NULL);
+              memcpy (pszData, pszText, cbData);
+              if (dwSize > cbData)
+                  memset(reinterpret_cast<char *>(pszData) + cbData, 0, dwSize - cbData);
+              GlobalUnlock (hData);
+              UINT fmt = GetClipTcharTextFormat();
+              bOK = SetClipboardData (fmt, hData) != NULL;
+              if (bOK)
+                {
+                  if (bColumnSelection)
+                    SetClipboardData (RegisterClipboardFormat (_T("MSDEVColumnSelect")), NULL);
+                  if (dwSize == cbData)
+                    SetClipboardData (RegisterClipboardFormat (_T("WinMergeClipboard")), NULL);
+                }
             }
         }
       CloseClipboard ();

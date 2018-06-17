@@ -271,6 +271,7 @@ void CMDITabBar::UpdateTabs()
 		else
 		{
 			TCHAR szText[256];
+			szText[0] = '\0';
 			tci.pszText = szText;
 			tci.cchTextMax = countof(szText);
 			tci.mask = TCIF_TEXT;

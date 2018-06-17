@@ -412,24 +412,27 @@ LANGID LangFileInfo::LangId(const char *lang, const char *sublang)
 LangFileInfo::LangFileInfo(LPCTSTR path)
 : id(0)
 {
-	if (FILE *f = _tfopen(path, _T("r")))
+	FILE *f;
+	if (_tfopen_s(&f, path, _T("r")) == 0 && f)
 	{
 		char buf[1024 + 1];
 		while (fgets(buf, sizeof buf - 1, f))
 		{
 			int i = 0;
-			strcat(buf, "1");
-			sscanf(buf, "msgid \" LANG_ENGLISH , SUBLANG_ENGLISH_US \" %d", &i);
+			strcat_s(buf, "1");
+			sscanf_s(buf, "msgid \" LANG_ENGLISH , SUBLANG_ENGLISH_US \" %d", &i);
 			if (i)
 			{
 				if (fgets(buf, sizeof buf, f))
 				{
 					char *lang = strstr(buf, "LANG_");
 					char *sublang = strstr(buf, "SUBLANG_");
+					char *langNext = nullptr;
+					char *sublangNext = nullptr;
 					if (lang && sublang)
 					{
-						strtok(lang, ",\" \t\r\n");
-						strtok(sublang, ",\" \t\r\n");
+						strtok_s(lang, ",\" \t\r\n", &langNext);
+						strtok_s(sublang, ",\" \t\r\n", &sublangNext);
 						lang += sizeof "LANG";
 						sublang += sizeof "SUBLANG";
 						if (0 != strcmp(sublang, "DEFAULT"))
@@ -663,8 +666,8 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 			}
 		}
 	}
-	FILE *f = _tfopen(strPath.c_str(), _T("r"));
-	if (f == 0)
+	FILE *f;
+	if (_tfopen_s(&f, strPath.c_str(), _T("r")) != 0)
 	{
 		FreeLibrary(m_hCurrentDll);
 		m_hCurrentDll = 0;
@@ -683,24 +686,24 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 	std::string directive;
 	while (fgets(buf, sizeof buf, f))
 	{
-		if (char *p = EatPrefix(buf, "#:"))
+		if (char *p0 = EatPrefix(buf, "#:"))
 		{
-			if (char *q = strchr(p, ':'))
+			if (char *q = strchr(p0, ':'))
 			{
 				uid = strtoul(q + 1, &q, 16);
 				found_uid = true;
 				--unresolved;
 			}
 		}
-		else if (char *p = EatPrefix(buf, "#,"))
+		else if (char *p1 = EatPrefix(buf, "#,"))
 		{
-			format = p;
+			format = p1;
 			format.erase(0, format.find_first_not_of(" \t\r\n"));
 			format.erase(format.find_last_not_of(" \t\r\n") + 1);
 		}
-		else if (char *p = EatPrefix(buf, "#."))
+		else if (char *p2 = EatPrefix(buf, "#."))
 		{
-			directive = p;
+			directive = p2;
 			directive.erase(0, directive.find_first_not_of(" \t\r\n"));
 			directive.erase(directive.find_last_not_of(" \t\r\n") + 1);
 		}
@@ -905,8 +908,8 @@ void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) con
 		if (id >= ID_INDICATOR_EXT)
 		{
 			String text = LoadString(id);
-			int cx = dc.GetTextExtent(text.c_str(), static_cast<int>(text.length())).cx;
-			sb.SetPaneInfo(i, id, style | SBPS_DISABLED, cx);
+			int cx1 = dc.GetTextExtent(text.c_str(), static_cast<int>(text.length())).cx;
+			sb.SetPaneInfo(i, id, style | SBPS_DISABLED, cx1);
 			sb.SetPaneText(i, text.c_str(), FALSE);
 		}
 		else if (rgid)
@@ -947,7 +950,7 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 			if (LPCWSTR text = pItemData->GetWideString())
 			{
 				unsigned uid = 0;
-				swscanf(text, L"Merge.rc:%x", &uid);
+				swscanf_s(text, L"Merge.rc:%x", &uid);
 				std::wstring s;
 				if (TranslateString(uid, s))
 					pItemData->SetWideString(s.c_str());
@@ -957,7 +960,7 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 		if (::GetMenuString(h, i, text, countof(text), MF_BYPOSITION))
 		{
 			unsigned uid = 0;
-			_stscanf(text, _T("Merge.rc:%x"), &uid);
+			_stscanf_s(text, _T("Merge.rc:%x"), &uid);
 			String s;
 			if (TranslateString(uid, s))
 				::ModifyMenu(h, i, mii.fState | MF_BYPOSITION, mii.wID, s.c_str());
@@ -973,7 +976,7 @@ void CLanguageSelect::TranslateDialog(HWND h) const
 		TCHAR text[80];
 		::GetWindowText(h, text, countof(text));
 		unsigned uid = 0;
-		_stscanf(text, _T("Merge.rc:%x"), &uid);
+		_stscanf_s(text, _T("Merge.rc:%x"), &uid);
 		String s;
 		if (TranslateString(uid, s))
 			::SetWindowText(h, s.c_str());
@@ -990,7 +993,7 @@ String CLanguageSelect::LoadString(UINT id) const
 		TCHAR text[1024];
 		AfxLoadString(id, text, countof(text));
 		unsigned uid = 0;
-		_stscanf(text, _T("Merge.rc:%x"), &uid);
+		_stscanf_s(text, _T("Merge.rc:%x"), &uid);
 		if (!TranslateString(uid, s))
 			s = text;
 	}
@@ -1020,7 +1023,7 @@ std::wstring CLanguageSelect::LoadDialogCaption(LPCTSTR lpDialogTemplateID) cons
 					while (*text++);
 				// Caption string is ahead
 				unsigned uid = 0;
-				swscanf(text, L"Merge.rc:%x", &uid);
+				swscanf_s(text, L"Merge.rc:%x", &uid);
 				if (!TranslateString(uid, s))
 					s = text;
 			}
@@ -1041,10 +1044,9 @@ std::vector<std::pair<LANGID, String> > CLanguageSelect::GetAvailableLanguages()
 	HANDLE h = INVALID_HANDLE_VALUE;
 	do
 	{
-		LangFileInfo &lfi =
-			h == INVALID_HANDLE_VALUE
-		?	LangFileInfo(wSourceLangId)
-		:	LangFileInfo(paths::ConcatPath(path, ff.cFileName).c_str());
+		LangFileInfo lfi(wSourceLangId);
+		if (h != INVALID_HANDLE_VALUE)
+			lfi = LangFileInfo(paths::ConcatPath(path, ff.cFileName).c_str());
 		String str;
 		str += lfi.GetString(LOCALE_SLANGUAGE);
 		str += _T(" - ");
@@ -1070,7 +1072,7 @@ static WORD GetLangFromLocale(LCID lcid)
 	TCHAR buff[8] = {0};
 	WORD langID = 0;
 	if (GetLocaleInfo(lcid, LOCALE_IDEFAULTLANGUAGE, buff, countof(buff)))
-		_stscanf(buff, _T("%4hx"), &langID);
+		_stscanf_s(buff, _T("%4hx"), &langID);
 	return langID;
 }
 
