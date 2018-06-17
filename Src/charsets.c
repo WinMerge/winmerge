@@ -1044,17 +1044,19 @@ void charsets_init(void)
 	size_t i;
 	size_t numIndex = charsetInfo[numCharsetInfo - 1].id + 1;
 	index1 = (struct _charsetInfo **)calloc(numCharsetInfo, sizeof(void *));
+	index2 = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
+	index3 = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
+	if (!index1 || !index2 || !index3)
+		return;
 	for (i = numCharsetInfo ; i-- ; )
 	{
 		index1[i] = charsetInfo + i;
 	}
 	qsort((void*)index1, numCharsetInfo, sizeof(void *), CompareByName);
-	index2 = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
 	for (i = numCharsetInfo ; i-- ; )
 	{
 		index2[charsetInfo[i].id] = charsetInfo + i;
 	}
-	index3 = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
 	for (i = numCharsetInfo + 1 ; i-- ; )
 	{
 		index3[charsetInfo[i].id] = charsetInfo + i;

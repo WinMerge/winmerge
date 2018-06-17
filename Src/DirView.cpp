@@ -559,6 +559,7 @@ void CDirView::Redisplay()
 	const CDirDoc *pDoc = GetDocument();
 	const CDiffContext &ctxt = GetDiffContext();
 	PathContext pathsParent;
+	CImageList emptyImageList;
 
 	UINT cnt = 0;
 	// Disable redrawing while adding new items
@@ -566,7 +567,7 @@ void CDirView::Redisplay()
 
 	DeleteAllDisplayItems();
 
-	m_pList->SetImageList((m_bTreeMode && ctxt.m_bRecursive) ? &m_imageState : NULL, LVSIL_STATE);
+	m_pList->SetImageList((m_bTreeMode && ctxt.m_bRecursive) ? &m_imageState : &emptyImageList, LVSIL_STATE);
 
 	// If non-recursive compare, add special item(s)
 	if (!ctxt.m_bRecursive ||

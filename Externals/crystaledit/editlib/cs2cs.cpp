@@ -185,6 +185,8 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
     TCHAR ch;
     LPTSTR s = string;
   
+    if (!string)
+      return -1;
     if (source_coding < 0)
       {
         posit = fget_coding (string, &source_coding);

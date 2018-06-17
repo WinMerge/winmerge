@@ -324,6 +324,7 @@ bool CreateIfNeeded(const String& szPath)
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
 	TCHAR fullPath[MAX_PATH_FULL];
+	fullPath[0] = '\0';
 	if (_tcschr(szPath.c_str(), '%'))
 	{
 		DWORD dwLen = ExpandEnvironmentStrings(szPath.c_str(), fullPath, MAX_PATH_FULL);

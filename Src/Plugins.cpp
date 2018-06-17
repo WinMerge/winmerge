@@ -1381,7 +1381,7 @@ bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int 
 	// BSTR customFunction(BSTR text)
 	HRESULT h = ::safeInvokeA(piScript, &vTransformed, fncId, opFxn[1], pvPszBuf);
 
-	if (! FAILED(h))
+	if (! FAILED(h) && vTransformed.bstrVal)
 	{
 		text = ucr::toTString(vTransformed.bstrVal);
 		changed = true;
