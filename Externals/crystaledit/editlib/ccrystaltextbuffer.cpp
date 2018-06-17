@@ -242,7 +242,7 @@ AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength )
  * Example#1:
  *   MoveLine(5,7,100)
  *    line1=5
- *    line2=7
+ *    line2=10
  *    newline1=100
  *    ldiff=95
  *     l=10  lines[105] = lines[10]
