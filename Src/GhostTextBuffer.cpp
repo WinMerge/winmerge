@@ -36,10 +36,6 @@
 #define new DEBUG_NEW
 #endif
 
-#ifdef _DEBUG
-#define _ADVANCED_BUGCHECK  1
-#endif
-
 using std::vector;
 
 BEGIN_MESSAGE_MAP (CGhostTextBuffer, CCrystalTextBuffer)
@@ -284,8 +280,8 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 	}
 
 	// when inserting an EOL terminated text into a ghost line,
-	// there is a dicrepancy between nInsertedLines and nEndLine-nRealLine
-	int bDiscrepancyInInsertedLines;
+	// there is a discrepancy between nInsertedLines and nEndLine-nRealLine
+	bool bDiscrepancyInInsertedLines;
 	if (bFirstLineGhost && nEndChar == 0 && ApparentLastRealLine() >= nEndLine)
 		bDiscrepancyInInsertedLines = true;
 	else
@@ -304,7 +300,7 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 		m_aLines[i].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 		OnNotifyLineHasBeenEdited(i);
 	}
-	if (bDiscrepancyInInsertedLines == 0)
+	if (!bDiscrepancyInInsertedLines)
 	{
 		m_aLines[i].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 		OnNotifyLineHasBeenEdited(i);
@@ -330,7 +326,7 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 
 	for (i = nLine ; i < nEndLine ; i++)
 		SetLineFlag (i, LF_GHOST, false, false, false);
-	if (bDiscrepancyInInsertedLines == 0)
+	if (!bDiscrepancyInInsertedLines)
 		// if there is no discrepancy, the final cursor line is real
 		// as either some text was inserted in it, or it inherits the real status from the first line
 		SetLineFlag (i, LF_GHOST, false, false, false);
@@ -693,14 +689,15 @@ void CGhostTextBuffer::RecomputeRealityMapping()
 	m_RealityBlocks.clear();
 	int reality = -1; // last encountered real line
 	int i = 0; // current line
+	int nLineCount = GetLineCount();
 	RealityBlock block; // current block being traversed (in state 2)
 
 	// This is a state machine with 2 states
 
 	// state 1, i-1 not real line
 passingGhosts:
-	ASSERT( i <= GetLineCount() );
-	if (i == GetLineCount())
+	ASSERT( i <= nLineCount );
+	if (i == nLineCount)
 		return;
 	if (GetLineFlags(i) & LF_GHOST)
 	{
@@ -710,14 +707,15 @@ passingGhosts:
 	// this is the first line of a reality block
 	block.nStartApparent = i;
 	block.nStartReal = reality + 1;
+	block.nCount = -1;
 	++reality;
 	++i;
 	// fall through to other state
 
 	// state 2, i - 1 is real line
 inReality:
-	ASSERT( i <= GetLineCount() );
-	if (i == GetLineCount() || (GetLineFlags(i) & LF_GHOST))
+	ASSERT( i <= nLineCount );
+	if (i == nLineCount || (GetLineFlags(i) & LF_GHOST))
 	{
 		// i-1 is the last line of a reality block
 		ASSERT(reality >= 0);
@@ -731,10 +729,11 @@ inReality:
 			if (m_RealityBlocks.size() == 0)
 				m_RealityBlocks.reserve(16);
 			else
+				// TODO: grow more slowly with really large RealityBlocks
 				m_RealityBlocks.reserve(m_RealityBlocks.size() * 2);
 		}
 		m_RealityBlocks.push_back(block);
-		if (i == GetLineCount())
+		if (i == nLineCount)
 			return;
 		++i;
 		goto passingGhosts;
