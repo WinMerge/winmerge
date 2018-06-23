@@ -214,7 +214,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			{
 				// Oops, real line lacks EOL
 				// (If this happens, editor probably has bug)
-				ASSERT(0);
+				ASSERT(false);
 				CString sEol = GetStringEol (nCrlfStyle);
 				CopyMemory(pszBuf, sEol, sEol.GetLength());
 				pszBuf += sEol.GetLength();
@@ -252,7 +252,7 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 		int nAction, bool bHistory /*=true*/)
 {
 	bool bGroupFlag = false;
-	int bFirstLineGhost = ((GetLineFlags(nLine) & LF_GHOST) != 0);
+	bool bFirstLineGhost = ((GetLineFlags(nLine) & LF_GHOST) != 0);
 
 	if (bFirstLineGhost && cchText > 0)
 	{
@@ -556,7 +556,7 @@ int CGhostTextBuffer::ComputeApparentLine(int nRealLine) const
 			return (nRealLine - block.nStartReal) + block.nStartApparent;
 	}
 	// Should have found it; all real lines should be in a block
-	ASSERT(0);
+	ASSERT(false);
 	return -1;
 }
 
@@ -661,7 +661,7 @@ int CGhostTextBuffer::ComputeApparentLine(int nRealLine, int decToReal) const
 		}
 	}
 	// Should have found it; all real lines should be in a block
-	ASSERT(0);
+	ASSERT(false);
 	return -1;
 
 limitWithPreviousBlock:
