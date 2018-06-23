@@ -465,25 +465,33 @@ bool CGhostTextBuffer::InsertGhostLine (CCrystalTextView * pSource, int nLine)
 void CGhostTextBuffer::RemoveAllGhostLines()
 {
 	int nlines = GetLineCount();
-	int newnl = 0;
-	int ct;
-	// Free the buffer of ghost lines
-	for(ct = 0; ct < nlines; ct++)
+	int nFirstGhost = -1;
+	// Free the buffer of ghost lines, 
+	// remember where the first ghost line occurs
+	for(int ct = 0; ct < nlines; ct++)
 	{
 		if (GetLineFlags(ct) & LF_GHOST)
+		{
 			m_aLines[ct].FreeBuffer();
+			if (nFirstGhost < 0)
+				nFirstGhost = ct;
+		}
 	}
-	// Compact non-ghost lines
-	// (we copy the buffer address, so the buffer don't move and we don't free it)
-	for(ct = 0; ct < nlines; ct++)
+	if (nFirstGhost >= 0)
 	{
-		if ((GetLineFlags(ct) & LF_GHOST) == 0)
-			m_aLines[newnl++] = m_aLines[ct];
-	}
+		// Compact non-ghost lines, starting at the first ghost.
+		// (we copy the buffer address, so the buffer doesn't move and we don't free it)
+		int newnl = nFirstGhost;
+		for (int ct = nFirstGhost; ct < nlines; ct++)
+		{
+			if ((GetLineFlags(ct) & LF_GHOST) == 0)
+				m_aLines[newnl++] = m_aLines[ct];
+		}
 
-	// Discard unused entries in one shot
-	m_aLines.resize(newnl);
-	RecomputeRealityMapping();
+		// Discard unused entries in one shot
+		m_aLines.resize(newnl);
+		RecomputeRealityMapping();
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////
