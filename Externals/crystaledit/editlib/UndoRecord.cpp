@@ -37,12 +37,13 @@ SetText (LPCTSTR pszText, size_t nLength)
   if (nLength != 1)
     {
 	  ASSERT (nLength < INT_MAX);
-      m_pszText = (TextBuffer *)malloc(sizeof(TextBuffer) + nLength * sizeof(TCHAR));
+      m_pszText = (TextBuffer *)malloc(sizeof(TextBuffer) + (nLength+2) * sizeof(TCHAR));
       if (m_pszText)
         {
           m_pszText->size = nLength;
           memcpy(m_pszText->data, pszText, nLength * sizeof(TCHAR));
           m_pszText->data[nLength] = _T('?'); // debug sentinel
+          m_pszText->data[nLength+1] = _T('\0'); // terminator
         }
     }
   else

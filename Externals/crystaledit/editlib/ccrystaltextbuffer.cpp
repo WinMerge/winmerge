@@ -87,10 +87,6 @@ using std::vector;
 
 const TCHAR crlf[] = _T ("\r\n");
 
-#ifdef _DEBUG
-#define _ADVANCED_BUGCHECK  1
-#endif
-
 int CCrystalTextBuffer::m_nDefaultEncoding = -1;
 
 
@@ -991,7 +987,7 @@ UpdateViews (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwUpda
  * @param [in] nStartChar Starting char position for the deletion.
  * @param [in] nEndLine Ending line for the deletion.
  * @param [in] nEndChar Ending char position for the deletion.
- * @return true if the insertion succeeded, false otherwise.
+ * @return true if the deletion succeeded, false otherwise.
  * @note Line numbers are apparent (screen) line numbers, not real
  * line numbers in the file.
  */
@@ -1202,8 +1198,8 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       cchText -= nTextPos;
     }
 
-  // Compute the context : all positions after context.m_ptBegin are
-  // shifted accordingly to (context.m_ptEnd - context.m_ptBegin)
+  // Compute the context : all positions after context.m_ptStart are
+  // shifted accordingly to (context.m_ptEnd - context.m_ptStart)
   // The begin point is the insertion point.
   // The end point is more tedious : if we insert in a ghost line, we reuse it, 
   // so we insert fewer lines than the number of lines in the text buffer
@@ -1397,10 +1393,8 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
                 {
                   //  Try to ensure that we are undoing correctly...
                   //  Just compare the text as it was before Undo operation
-#ifdef _ADVANCED_BUGCHECK
-                  ASSERT(0);
-#endif
-                   failed = true;
+                  ASSERT(false);
+                  failed = true;
                   break;
                 }
 
@@ -1470,7 +1464,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
         {
           if (apparent_ptStartPos != apparent_ptEndPos)
             {
-#ifdef _ADVANCED_BUGCHECK
+#ifdef _DEBUG
               CString text;
               GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
               ASSERT (text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0);
