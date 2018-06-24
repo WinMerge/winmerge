@@ -20,6 +20,7 @@ and this notice must be preserved on all copies.  */
 
 
 #include "diff.h"
+#include <cassert>
 
 struct group
 {
@@ -27,21 +28,20 @@ struct group
   int from, upto; /* start and limit lines for this group of lines */
 };
 
-static char *format_group PARAMS((FILE *, char *, int, struct group const[]));
-static char *scan_char_literal PARAMS((char *, int *));
-static char *scan_printf_spec PARAMS((char *));
-static int groups_letter_value PARAMS((struct group const[], int));
-static void format_ifdef PARAMS((char *, int, int, int, int));
-static void print_ifdef_hunk PARAMS((struct change *));
-static void print_ifdef_lines PARAMS((FILE *, char *, struct group const *));
+static char *format_group (FILE *, char *, int, struct group const[]);
+static char *scan_char_literal (char *, int *);
+static char *scan_printf_spec (char *);
+static int groups_letter_value (struct group const[], int);
+static void format_ifdef (char *, int, int, int, int);
+static void print_ifdef_hunk (struct change *);
+static void print_ifdef_lines (FILE *, char *, struct group const *);
 
 static DECL_TLS int next_line;
 
 /* Print the edit-script SCRIPT as a merged #ifdef file.  */
 
 void
-print_ifdef_script (script)
-     struct change *script;
+print_ifdef_script (struct change *script)
 {
   next_line = - files[0].prefix_lines;
   print_script (script, find_change, print_ifdef_hunk);
@@ -59,8 +59,7 @@ print_ifdef_script (script)
    describing changes in consecutive lines.  */
 
 static void
-print_ifdef_hunk (hunk)
-     struct change *hunk;
+print_ifdef_hunk (struct change *hunk)
 {
   int first0, last0, first1, last1, deletes, inserts;
   char *format;
@@ -91,9 +90,7 @@ print_ifdef_hunk (hunk)
    lines BEG1 up to END1 are from the second file.  */
 
 static void
-format_ifdef (format, beg0, end0, beg1, end1)
-     char *format;
-     int beg0, end0, beg1, end1;
+format_ifdef (char *format, int beg0, int end0, int beg1, int end1)
 {
   struct group groups[2];
 
@@ -113,11 +110,7 @@ format_ifdef (format, beg0, end0, beg1, end1)
    If OUT is zero, do not actually print anything; just scan the format.  */
 
 static char *
-format_group (out, format, endchar, groups)
-     register FILE *out;
-     char *format;
-     int endchar;
-     struct group const groups[];
+format_group (register FILE *out, char *format, int endchar, struct group const groups[])
 {
   register char c;
   register char *f = format;
@@ -237,9 +230,7 @@ format_group (out, format, endchar, groups)
 /* For the line group pair G, return the number corresponding to LETTER.
    Return -1 if LETTER is not a group format letter.  */
 static int
-groups_letter_value (g, letter)
-     struct group const g[];
-     int letter;
+groups_letter_value (struct group const g[], int letter)
 {
   if (isupper (letter))
     {
@@ -260,10 +251,7 @@ groups_letter_value (g, letter)
 /* Print to file OUT, using FORMAT to print the line group GROUP.
    But do nothing if OUT is zero.  */
 static void
-print_ifdef_lines (out, format, group)
-     register FILE *out;
-     char *format;
-     struct group const *group;
+print_ifdef_lines (register FILE *out, char *format, struct group const *group)
 {
   struct file_data const *file = group->file;
   char const HUGE * const *linbuf = file->linbuf;
@@ -364,9 +352,7 @@ print_ifdef_lines (out, format, group)
    Yield the address of the first character after the closing apostrophe,
    or zero if the literal is ill-formed.  */
 static char *
-scan_char_literal (lit, intptr)
-     char *lit;
-     int *intptr;
+scan_char_literal (char *lit, int *intptr)
 {
   register char *p = lit;
   int value, digits;
@@ -387,7 +373,8 @@ scan_char_literal (lit, intptr)
 	      return 0;
 	    value = 8 * value + digit;
 	  }
-	digits = p - lit - 2;
+	assert((p - lit - 2) < INT_MAX);
+	digits = (int)(p - lit - 2);
 	if (! (1 <= digits && digits <= 3))
 	  return 0;
 	break;
@@ -405,8 +392,7 @@ scan_char_literal (lit, intptr)
 /* Scan optional printf-style SPEC of the form `-*[0-9]*(.[0-9]*)?[cdoxX]'.
    Return the address of the character following SPEC, or zero if failure.  */
 static char *
-scan_printf_spec (spec)
-     register char *spec;
+scan_printf_spec (register char *spec)
 {
   register unsigned char c;
 

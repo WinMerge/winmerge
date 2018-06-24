@@ -55,12 +55,12 @@ class ScopedLock
 	/// The destructor unlocks the mutex.
 {
 public:
-	explicit ScopedLock(M& mutex): _mutex(mutex)
+	explicit ScopedLock(M& rmutex): _mutex(rmutex)
 	{
 		_mutex.lock();
 	}
 	
-	ScopedLock(M& mutex, long milliseconds): _mutex(mutex)
+	ScopedLock(M& rmutex, long milliseconds): _mutex(rmutex)
 	{
 		_mutex.lock(milliseconds);
 	}

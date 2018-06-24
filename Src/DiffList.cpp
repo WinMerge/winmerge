@@ -277,14 +277,14 @@ bool DiffList::LineInDiff(int nLine, int nDiff) const
  */
 int DiffList::LineToDiff(int nLine) const
 {
-	const size_t nDiffCount = m_diffs.size();
+	const int nDiffCount = static_cast<int>(m_diffs.size());
 	if (nDiffCount == 0)
 		return -1;
 
 	// First check line is not before first or after last diff
-	if (static_cast<int>(nLine) < DiffRangeAt(0)->dbegin)
+	if (nLine < DiffRangeAt(0)->dbegin)
 		return -1;
-	if (static_cast<int>(nLine) > DiffRangeAt(nDiffCount-1)->dend)
+	if (nLine > DiffRangeAt(nDiffCount-1)->dend)
 		return -1;
 
 	// Use binary search to search for a diff.
@@ -419,9 +419,9 @@ int DiffList::PrevSignificantDiffFromLine(int nLine) const
 int DiffList::NextSignificantDiffFromLine(int nLine) const
 {
 	int nDiff = -1;
-	const size_t nDiffCount = m_diffs.size();
+	const int nDiffCount = static_cast<int>(m_diffs.size());
 
-	for (size_t i = 0; i < nDiffCount; i++)
+	for (int i = 0; i < nDiffCount; i++)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
 		if (dfi->op != OP_TRIVIAL && dfi->dbegin >= static_cast<int>(nLine))
@@ -448,8 +448,8 @@ void DiffList::ConstructSignificantChain()
 	m_lastSignificantLeftRight = -1;
 	m_lastSignificantMiddleRight = -1;
 	m_lastSignificantConflict = -1;
-	int prev = -1;
-	const int size = (int) m_diffs.size();
+	ptrdiff_t prev = -1;
+	const ptrdiff_t size = (int) m_diffs.size();
 
 	// must be called after diff list is entirely populated
     for (int i = 0; i < size; ++i)
@@ -582,7 +582,7 @@ const DIFFRANGE * DiffList::LastSignificantDiffRange() const
  */
 int DiffList::PrevSignificant3wayDiffFromLine(int nLine, int nDiffType) const
 {
-	for (int i = m_diffs.size() - 1; i >= 0 ; i--)
+	for (int i = static_cast<int>(m_diffs.size()) - 1; i >= 0 ; i--)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
 		switch (nDiffType)
@@ -627,9 +627,9 @@ int DiffList::PrevSignificant3wayDiffFromLine(int nLine, int nDiffType) const
  */
 int DiffList::NextSignificant3wayDiffFromLine(int nLine, int nDiffType) const
 {
-	const size_t nDiffCount = m_diffs.size();
+	const int nDiffCount = static_cast<int>(m_diffs.size());
 
-	for (size_t i = 0; i < nDiffCount; i++)
+	for (int i = 0; i < nDiffCount; i++)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
 		switch (nDiffType)
@@ -702,7 +702,7 @@ int DiffList::NextSignificant3wayDiff(int nDiff, int nDiffType) const
 {
 	while (m_diffs[nDiff].next != -1)
 	{
-		nDiff = m_diffs[nDiff].next;
+		nDiff = static_cast<int>(m_diffs[nDiff].next);
 		switch (nDiffType)
 		{
 		case THREEWAYDIFFTYPE_LEFTMIDDLE:
@@ -747,7 +747,7 @@ int DiffList::PrevSignificant3wayDiff(int nDiff, int nDiffType) const
 {
 	while (m_diffs[nDiff].prev != -1)
 	{
-		nDiff = m_diffs[nDiff].prev;
+		nDiff = static_cast<int>(m_diffs[nDiff].prev);
 		switch (nDiffType)
 		{
 		case THREEWAYDIFFTYPE_LEFTMIDDLE:

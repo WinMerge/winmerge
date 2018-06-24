@@ -7,8 +7,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#ifndef _EDITOR_LINEINFO_H_
-#define _EDITOR_LINEINFO_H_
+#pragma once
 
 //  Line allocation granularity
 #define     CHAR_ALIGN                  16
@@ -27,22 +26,22 @@ public:
     LineInfo();
     void Clear();
     void FreeBuffer();
-    void Create(LPCTSTR pszLine, int nLength);
+    void Create(LPCTSTR pszLine, size_t nLength);
     void CreateEmpty();
-    void Append(LPCTSTR pszChars, int nLength);
-    void Delete(int nStartChar, int nEndChar);
-    void DeleteEnd(int nStartChar);
+    void Append(LPCTSTR pszChars, size_t nLength);
+    void Delete(size_t nStartChar, size_t nEndChar);
+    void DeleteEnd(size_t nStartChar);
     void CopyFrom(const LineInfo &li);
     bool HasEol() const;
     LPCTSTR GetEol() const;
     bool ChangeEol(LPCTSTR lpEOL);
     void RemoveEol();
-    LPCTSTR GetLine(int index = 0) const;
+    LPCTSTR GetLine(size_t index = 0) const;
 
     /** @brief Return full line length (including EOL bytes). */
-    int FullLength() const { return m_nLength + m_nEolChars; }
+    size_t FullLength() const { return m_nLength + m_nEolChars; }
     /** @brief Return line length. */
-    int Length() const { return m_nLength; }
+    size_t Length() const { return m_nLength; }
 
     /** @brief Is the char an EOL char? */
     static bool IsEol(TCHAR ch)
@@ -58,9 +57,7 @@ public:
 
 private:
     TCHAR *m_pcLine; /**< Line data. */
-    int m_nMax; /**< Allocated space for line data. */
-    int m_nLength; /**< Line length (without EOL bytes). */
+    size_t m_nMax; /**< Allocated space for line data. */
+    size_t m_nLength; /**< Line length (without EOL bytes). */
     int m_nEolChars; /**< # of EOL bytes. */
   };
-
-#endif // _EDITOR_LINEINFO_H_

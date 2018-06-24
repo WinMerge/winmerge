@@ -1934,7 +1934,7 @@ void CMergeEditView::OnUpdateClearSyncPoints(CCmdUI* pCmdUI)
  * @sa CCrystalEditView::OnEditOperation()
  * @todo More edit-events for rescan delaying?
  */
-void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, int cchText)
+void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchText)
 {
 	if (IsReadOnly(m_nThisPane))
 	{
@@ -2507,7 +2507,7 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 	FileTransform::GetFreeFunctionsInScripts(functionNamesList, L"EDITOR_SCRIPT");
 
 	// empty the menu
-	int i = GetMenuItemCount(hMenu);
+	size_t i = GetMenuItemCount(hMenu);
 	while (i --)
 		DeleteMenu(hMenu, 0, MF_BYPOSITION);
 
@@ -2570,7 +2570,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
 
 	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-	int iScript;
+	size_t iScript;
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
 	{
 		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
@@ -2652,12 +2652,12 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	// Remove copying item copying from active side
 	if (m_nThisPane == 0) // left?
 	{
-		menu.RemoveMenu(ID_R2L, MF_BYCOMMAND);
+		menu.RemoveMenu(ID_COPY_FROM_RIGHT, MF_BYCOMMAND);
 		menu.RemoveMenu(ID_COPY_FROM_LEFT, MF_BYCOMMAND);
 	}
 	if (m_nThisPane == GetDocument()->m_nBuffers - 1)
 	{
-		menu.RemoveMenu(ID_L2R, MF_BYCOMMAND);
+		menu.RemoveMenu(ID_COPY_FROM_LEFT, MF_BYCOMMAND);
 		menu.RemoveMenu(ID_COPY_FROM_RIGHT, MF_BYCOMMAND);
 	}
 
@@ -2866,7 +2866,7 @@ void CMergeEditView::OnWMGoto()
 
 	if (dlg.DoModal() == IDOK)
 	{
-		CMergeDoc * pDoc = GetDocument();
+		CMergeDoc * pDoc1 = GetDocument();
 		CMergeEditView * pCurrentView = NULL;
 
 		// Get views
@@ -2877,21 +2877,21 @@ void CMergeEditView::OnWMGoto()
 
 		if (dlg.m_nGotoWhat == 0)
 		{
-			int nRealLine = num;
-			if (nRealLine < 0)
-				nRealLine = 0;
-			if (nRealLine > nLastLine)
-				nRealLine = nLastLine;
+			int nRealLine1 = num;
+			if (nRealLine1 < 0)
+				nRealLine1 = 0;
+			if (nRealLine1 > nLastLine)
+				nRealLine1 = nLastLine;
 
-			GotoLine(nRealLine, true, (pDoc->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile);
+			GotoLine(nRealLine1, true, (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile);
 		}
 		else
 		{
 			int diff = num;
 			if (diff < 0)
 				diff = 0;
-			if (diff >= pDoc->m_diffList.GetSize())
-				diff = pDoc->m_diffList.GetSize();
+			if (diff >= pDoc1->m_diffList.GetSize())
+				diff = pDoc1->m_diffList.GetSize();
 
 			pCurrentView->SelectDiff(diff, true, false);
 		}
@@ -2951,7 +2951,7 @@ void CMergeEditView::OnScripts(UINT nID )
 	bool bChanged = FileTransform::Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
 	if (bChanged)
 		// now replace the text
-		ReplaceSelection(text.c_str(), static_cast<int>(text.length()), 0);
+		ReplaceSelection(text.c_str(), text.length(), 0);
 }
 
 /**
@@ -3079,7 +3079,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
  */
 int CMergeEditView::FindPrediffer(LPCTSTR prediffer) const
 {
-	int i;
+	size_t i;
 	int ID = ID_PREDIFFERS_FIRST;
 
 	// Search file prediffers
@@ -3164,9 +3164,9 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 		}
 		else
 		{
-			CPoint ptPos(0, pView->GetLineCount() - 1);
-			pView->SetCursorPos(ptPos);
-			pView->SetAnchor(ptPos);
+			CPoint ptPos1(0, pView->GetLineCount() - 1);
+			pView->SetCursorPos(ptPos1);
+			pView->SetAnchor(ptPos1);
 		}
 	}
 
@@ -3273,7 +3273,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 		CString sSpaces(' ', static_cast<int>(nNumWidth - strutils::to_str(line + 1).length()));
 		
 		strText += sSpaces;
-		strNumLine.Format(_T("%d: %s"), line + 1, strLine);
+		strNumLine.Format(_T("%d: %s"), line + 1, (LPCTSTR)strLine);
 		strText += strNumLine;
  	}
 	PutToClipboard(strText, strText.GetLength(), m_bColumnSelection);

@@ -127,9 +127,6 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc construction/destruction
 
-
-#pragma warning(disable:4355)
-
 /**
  * @brief Constructor.
  */
@@ -171,8 +168,6 @@ CMergeDoc::CMergeDoc()
 	m_diffWrapper.SetOptions(&options);
 	m_diffWrapper.SetPrediffer(NULL);
 }
-
-#pragma warning(default:4355)
 
 /**
  * @brief Destructor.
@@ -325,7 +320,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 {
 	DIFFOPTIONS diffOptions = {0};
 	DiffFileInfo fileInfo;
-	bool diffSuccess;
+	bool diffSuccess = false;
 	int nResult = RESCAN_OK;
 	FileChange FileChanged[3] = {FileNoChange, FileNoChange, FileNoChange};
 	int nBuffer;
@@ -444,7 +439,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		const std::vector<std::vector<int> > syncpoints = GetSyncPointList();	
 		int nStartLine[3] = {0};
 		int nLines[3], nRealLine[3];
-		for (int i = 0; i <= syncpoints.size(); ++i)
+		for (size_t i = 0; i <= syncpoints.size(); ++i)
 		{
 			// Save text buffer to file
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -1699,9 +1694,9 @@ void CMergeDoc::DoFileSave(int nBuffer)
 		// If DirDoc contains compare results
 		if (m_pDirDoc && m_pDirDoc->HasDiffs())
 		{
-			for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			for (int nBuffer1 = 0; nBuffer1 < m_nBuffers; nBuffer1++)
 			{
-				if (m_bEditAfterRescan[nBuffer])
+				if (m_bEditAfterRescan[nBuffer1])
 				{
 					FlushAndRescan(false);
 					break;
@@ -1798,7 +1793,8 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	else if (GetCurrentDiff() < 0)
 	{
 		s = nDiffs == 1 ? _("1 Difference Found") : _("%1 Differences Found");
-		strutils::replace(s, _T("%1"), _itot(nDiffs, sCnt, 10));
+		_itot_s(nDiffs, sCnt, 10);
+		strutils::replace(s, _T("%1"), sCnt);
 	}
 	
 	// There are differences and diff selected
@@ -1807,8 +1803,10 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	{
 		s = _("Difference %1 of %2");
 		const int signInd = m_diffList.GetSignificantIndex(GetCurrentDiff());
-		strutils::replace(s, _T("%1"), _itot(signInd + 1, sIdx, 10));
-		strutils::replace(s, _T("%2"), _itot(nDiffs, sCnt, 10));
+		_itot_s(signInd + 1, sIdx, 10);
+		strutils::replace(s, _T("%1"), sIdx);
+		_itot_s(nDiffs, sCnt, 10);
+		strutils::replace(s, _T("%2"), sCnt);
 	}
 	pCmdUI->SetText(s.c_str());
 }
@@ -2315,8 +2313,8 @@ void CMergeDoc::RemoveMergeViews(int nGroup)
 
 	for (; nGroup < m_nGroups - 1; nGroup++)
 	{
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
+		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
 			m_pView[nGroup][nBuffer] = m_pView[nGroup + 1][nBuffer];
 			m_pView[nGroup][nBuffer]->m_nThisGroup = nGroup;
 		}
@@ -2556,7 +2554,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	}
 
 	// Bail out if either side failed
-	if (std::find_if(nSuccess, nSuccess + m_nBuffers, std::not1(std::ptr_fun(FileLoadResult::IsOk))) != nSuccess + m_nBuffers)
+	if (std::find_if(nSuccess, nSuccess + m_nBuffers, [](DWORD d){return !FileLoadResult::IsOk(d);} ) != nSuccess + m_nBuffers)
 	{
 		CChildFrame *pFrame = GetParentFrame();
 		if (pFrame)
@@ -3448,7 +3446,7 @@ std::vector<std::vector<int> > CMergeDoc::GetSyncPointList()
 			if (m_ptBuf[nBuffer]->GetLineFlags(nLine) & LF_INVALID_BREAKPOINT)
 			{
 				idx[nBuffer]++;
-				if (list.size() <= idx[nBuffer])
+				if (static_cast<int>(list.size()) <= idx[nBuffer])
 					list.push_back(points);
 				list[idx[nBuffer]][nBuffer] = nLine;
 			}

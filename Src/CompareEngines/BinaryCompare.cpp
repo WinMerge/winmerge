@@ -40,8 +40,8 @@ static int compare_files(const String& file1, const String& file2)
 		{
 			char buf1[bufsize];
 			char buf2[bufsize];
-			int size1 = read(fd1, buf1, sizeof(buf1));
-			int size2 = read(fd2, buf2, sizeof(buf2));
+			int size1 = _read(fd1, buf1, sizeof(buf1));
+			int size2 = _read(fd2, buf2, sizeof(buf2));
 			if (size1 <= 0 || size2 <= 0)
 			{
 				if (size1 < 0 || size2 < 0)
@@ -62,9 +62,9 @@ static int compare_files(const String& file1, const String& file2)
 		code = DIFFCODE::CMPERR;
 	}
 	if (fd1 != -1)
-		close(fd1);
+		_close(fd1);
 	if (fd2 != -1)
-		close(fd2);
+		_close(fd2);
 
 	return code;
 }

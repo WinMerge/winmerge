@@ -1768,16 +1768,6 @@ msgstr "Poista"
 msgid "Colors"
 msgstr "Värit"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Erilaisuus:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Valittu ero:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1792,6 +1782,16 @@ msgstr "Poistettu"
 #, c-format
 msgid "Text"
 msgstr "Teksti"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Erilaisuus:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Valittu ero:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1808,14 +1808,14 @@ msgstr "Siirretty:"
 msgid "Selected Moved:"
 msgstr "Valittu siirretty:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -2753,7 +2753,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Kansio"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "Pysäytä ensimmäisen eron jälkeen"

@@ -122,7 +122,7 @@ std::string Environment::nodeId()
 	NodeId id;
 	nodeId(id);
 	char result[18];
-	std::sprintf(result, "%02x:%02x:%02x:%02x:%02x:%02x",
+	::sprintf_s(result, "%02x:%02x:%02x:%02x:%02x:%02x",
 		id[0],
 		id[1],
 		id[2],

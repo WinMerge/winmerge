@@ -116,6 +116,7 @@ CDirView::CDirView()
 		, m_hCurrentMenu(nullptr)
 		, m_pSavedTreeState(nullptr)
 		, m_pColItems(nullptr)
+		, m_nActivePane(-1)
 {
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
@@ -136,14 +137,12 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_WM_CONTEXTMENU()
 	//{{AFX_MSG_MAP(CDirView)
 	ON_WM_LBUTTONDBLCLK()
-	ON_COMMAND(ID_L2R, (OnDirCopy<SIDE_LEFT, SIDE_RIGHT>))
-	ON_UPDATE_COMMAND_UI(ID_L2R, (OnUpdateDirCopy<SIDE_LEFT, SIDE_RIGHT>))
+	ON_COMMAND_RANGE(ID_L2R, ID_R2L, OnDirCopy)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_L2R, ID_R2L, OnUpdateDirCopy)
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_RIGHT, (OnCtxtDirCopy<SIDE_LEFT, SIDE_RIGHT>))
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_RIGHT, (OnUpdateCtxtDirCopy<SIDE_LEFT, SIDE_RIGHT>))
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_MIDDLE, (OnCtxtDirCopy<SIDE_LEFT, SIDE_MIDDLE>))
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_MIDDLE, (OnUpdateCtxtDirCopy<SIDE_LEFT, SIDE_MIDDLE>))
-	ON_COMMAND(ID_R2L, (OnDirCopy<SIDE_RIGHT, SIDE_LEFT>))
-	ON_UPDATE_COMMAND_UI(ID_R2L, (OnUpdateDirCopy<SIDE_RIGHT, SIDE_LEFT>))
 	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_LEFT, (OnCtxtDirCopy<SIDE_RIGHT, SIDE_LEFT>))
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_LEFT, (OnUpdateCtxtDirCopy<SIDE_RIGHT, SIDE_LEFT>))
 	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_MIDDLE, (OnCtxtDirCopy<SIDE_RIGHT, SIDE_MIDDLE>))
@@ -781,10 +780,45 @@ bool CDirView::ListShellContextMenu(SIDE_TYPE stype)
 /**
  * @brief User chose (main menu) Copy from right to left
  */
-template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
-void CDirView::OnDirCopy()
+void CDirView::OnDirCopy(UINT id)
 {
-	DoDirAction(&DirActions::Copy<srctype, dsttype>, _("Copying files..."));
+	bool to_right = (id == ID_L2R) ? true : false;
+	if (GetDocument()->m_nDirs < 3)
+	{
+		if (to_right)
+			DoDirAction(&DirActions::Copy<SIDE_LEFT, SIDE_RIGHT>, _("Copying files..."));
+		else
+			DoDirAction(&DirActions::Copy<SIDE_RIGHT, SIDE_LEFT>, _("Copying files..."));
+	}
+	else
+	{
+		if (to_right)
+		{
+			switch (m_nActivePane)
+			{
+			case 0:
+				DoDirAction(&DirActions::Copy<SIDE_LEFT, SIDE_MIDDLE>, _("Copying files..."));
+				break;
+			case 1:
+			case 2:
+				DoDirAction(&DirActions::Copy<SIDE_MIDDLE, SIDE_RIGHT>, _("Copying files..."));
+				break;
+			}
+		}
+		else
+		{
+			switch (m_nActivePane)
+			{
+			case 0:
+			case 1:
+				DoDirAction(&DirActions::Copy<SIDE_MIDDLE, SIDE_LEFT>, _("Copying files..."));
+				break;
+			case 2:
+				DoDirAction(&DirActions::Copy<SIDE_RIGHT, SIDE_MIDDLE>, _("Copying files..."));
+				break;
+			}
+		}
+	}
 }
 
 /// User chose (context men) Copy from right to left
@@ -809,10 +843,45 @@ void CDirView::OnUpdateCtxtDirCopy(CCmdUI* pCmdUI)
 }
 
 /// Update main menu Copy Right to Left item
-template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 void CDirView::OnUpdateDirCopy(CCmdUI* pCmdUI)
 {
-	DoUpdateDirCopy<srctype, dsttype>(pCmdUI, eMain);
+	bool to_right = pCmdUI->m_nID == ID_L2R ? true : false;
+	if (GetDocument()->m_nDirs < 3)
+	{
+		if (to_right)
+			DoUpdateDirCopy<SIDE_LEFT, SIDE_RIGHT>(pCmdUI, eContext);
+		else
+			DoUpdateDirCopy<SIDE_RIGHT, SIDE_LEFT>(pCmdUI, eContext);
+	}
+	else
+	{
+		if (to_right)
+		{
+			switch (m_nActivePane)
+			{
+			case 0:
+				DoUpdateDirCopy<SIDE_LEFT, SIDE_MIDDLE>(pCmdUI, eContext);
+				break;
+			case 1:
+			case 2:
+				DoUpdateDirCopy<SIDE_MIDDLE, SIDE_RIGHT>(pCmdUI, eContext);
+				break;
+			}
+		}
+		else
+		{
+			switch (m_nActivePane)
+			{
+			case 0:
+			case 1:
+				DoUpdateDirCopy<SIDE_MIDDLE, SIDE_LEFT>(pCmdUI, eContext);
+				break;
+			case 2:
+				DoUpdateDirCopy<SIDE_RIGHT, SIDE_MIDDLE>(pCmdUI, eContext);
+				break;
+			}
+		}
+	}
 }
 
 void CDirView::DoDirAction(DirActions::method_type func, const String& status_message)
@@ -1234,6 +1303,32 @@ void CDirView::OpenSpecialItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3)
 }
 
 /**
+ * @brief Creates a pairing folder for unique folder item.
+ * This function creates a pairing folder for unique folder item in
+ * folder compare. This way user can browse into unique folder's
+ * contents and don't necessarily need to copy whole folder structure.
+ * @return true if user agreed and folder was created.
+ */
+static bool CreateFoldersPair(const PathContext& paths)
+{
+	bool created = false;
+	for (const auto& path : paths)
+	{
+		if (!paths::DoesPathExist(path))
+		{
+			String message =
+				strutils::format_string1( 
+					_("The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"),
+					path);
+			int res = AfxMessageBox(message.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN);
+			if (res == IDYES)
+				created = paths::CreateIfNeeded(path);
+		}
+	}
+	return created;
+}
+
+/**
  * @brief Open selected files or directories.
  *
  * Opens selected files to file compare. If comparing
@@ -1291,10 +1386,13 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		success = GetOpenThreeItems(ctxt, pos1, pos2, pos3, pdi,
 				paths, sel1, sel2, sel3, isdir, nPane, errmsg);
 	else
+	{
 		// Only one item selected, so perform diff on its sides
 		success = GetOpenOneItem(ctxt, pos1, pdi, 
 				paths, sel1, isdir, nPane, errmsg);
-		if (!success)
+		if (isdir)
+			CreateFoldersPair(paths);
+	}
 	if (!success)
 	{
 		if (!errmsg.empty())
@@ -1409,9 +1507,11 @@ void CDirView::OpenSelectionHex()
 		success = GetOpenTwoItems(ctxt, SELECTIONTYPE_NORMAL, pos1, pos2, pdi,
 				paths, sel1, sel2, isdir, nPane, errmsg);
 	else
+	{
 		// Only one item selected, so perform diff on its sides
 		success = GetOpenOneItem(ctxt, pos1, pdi,
 				paths, sel1, isdir, nPane, errmsg);
+	}
 	if (!success)
 	{
 		if (!errmsg.empty())
@@ -1606,7 +1706,8 @@ void CDirView::DoOpen(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
 	if (sel == -1) return;
-	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
+	DirItemIterator dirBegin = SelBegin();
+	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
 	HINSTANCE rtn = ShellExecute(::GetDesktopWindow(), _T("edit"), file.c_str(), 0, 0, SW_SHOWNORMAL);
 	if (reinterpret_cast<uintptr_t>(rtn) == SE_ERR_NOASSOC)
@@ -1620,7 +1721,8 @@ void CDirView::DoOpenWith(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
 	if (sel == -1) return;
-	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
+	DirItemIterator dirBegin = SelBegin();
+	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
 	CString sysdir;
 	if (!GetSystemDirectory(sysdir.GetBuffer(MAX_PATH), MAX_PATH)) return;
@@ -1634,7 +1736,8 @@ void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
 	if (sel == -1) return;
-	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
+	DirItemIterator dirBegin = SelBegin();
+	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
 
 	theApp.OpenFileToExternalEditor(file);
@@ -1644,7 +1747,8 @@ void CDirView::DoOpenParentFolder(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
 	if (sel == -1) return;
-	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
+	DirItemIterator dirBegin = SelBegin();
+	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
 	if (file.empty()) return;
 	String parentFolder = paths::GetParentPath(file);
 	ShellExecute(::GetDesktopWindow(), _T("open"), parentFolder.c_str(), 0, 0, SW_SHOWNORMAL);
@@ -1880,6 +1984,14 @@ void CDirView::OpenPrevDiff()
 	{
 		GetParentFrame()->ActivateFrame();
 	}
+}
+
+void CDirView::SetActivePane(int pane)
+{
+	if (m_nActivePane >= 0)
+		GetParentFrame()->GetHeaderInterface()->SetActive(m_nActivePane, false);
+	GetParentFrame()->GetHeaderInterface()->SetActive(pane, true);
+	m_nActivePane = pane;
 }
 
 // Go to next diff
@@ -2155,7 +2267,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 		// If compare took more than TimeToSignalCompare seconds, notify user
 		clock_t elapsed = clock() - m_compareStart;
-		GetParentFrame()->SetMessageText(
+		GetParentFrame()->SetStatus(
 			strutils::format(_("Elapsed time: %ld ms").c_str(), elapsed).c_str()
 		);
 		if (elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
@@ -3009,7 +3121,8 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		if (!sText.IsEmpty())
 		{
 			try {
-				*pResult = DoItemRename(SelBegin(), GetDiffContext(), String(sText));
+				DirItemIterator dirBegin = SelBegin();
+				*pResult = DoItemRename(dirBegin, GetDiffContext(), String(sText));
 			} catch (ContentsChangedException& e) {
 				AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 			}
@@ -3103,8 +3216,15 @@ void CDirView::OnViewTreeMode()
  */
 void CDirView::OnUpdateViewTreeMode(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(m_bTreeMode);
-	pCmdUI->Enable(GetDiffContext().m_bRecursive);
+	// Don't show Tree Mode as 'checked' if the
+	// menu item is greyed out (disabled).  Its very confusing.
+	if( GetDocument()->GetDiffContext().m_bRecursive ) {
+		pCmdUI->SetCheck(m_bTreeMode);
+		pCmdUI->Enable(TRUE);
+	} else {
+		pCmdUI->SetCheck(FALSE);
+		pCmdUI->Enable(FALSE);
+	}
 }
 
 /**

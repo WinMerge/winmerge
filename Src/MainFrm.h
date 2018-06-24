@@ -280,8 +280,3 @@ private:
 };
 
 CMainFrame * GetMainFrame(); // access to the singleton main frame object
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.

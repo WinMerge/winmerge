@@ -209,7 +209,7 @@ void CSplitterWndEx::EqualizeCols()
 
 	int i;
 	int sum = 0;
-	int hmin;
+	int hmin = 0;
 
 	for (i = 0 ; i < m_nCols ; i++)
 	{

@@ -50,10 +50,12 @@ SharedMemoryImpl::SharedMemoryImpl(const std::string& name, std::size_t size, Sh
 	_name(name),
 	_memHandle(INVALID_HANDLE_VALUE),
 	_fileHandle(INVALID_HANDLE_VALUE),
-	_size(static_cast<DWORD>(size)),
+	_size(size),
 	_mode(PAGE_READONLY),
 	_address(0)
 {
+	LARGE_INTEGER mySize;
+	mySize.QuadPart = _size;
 	if (mode == SharedMemory::AM_WRITE)
 		_mode = PAGE_READWRITE;
 

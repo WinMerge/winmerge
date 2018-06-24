@@ -1781,16 +1781,6 @@ msgstr "移除"
 msgid "Colors"
 msgstr "色彩"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "差異區塊："
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "已選取的差異區塊："
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1805,6 +1795,16 @@ msgstr "已刪除"
 #, c-format
 msgid "Text"
 msgstr "前景文"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "差異區塊："
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "已選取的差異區塊："
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1821,15 +1821,15 @@ msgstr "移位區塊："
 msgid "Selected Moved:"
 msgstr "已選取的移位區塊："
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr "和下一個相同(3方比較):"
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
-msgstr "和下一個相同(已選取):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
+msgstr ""
 
 #: Merge.rc:40C55014
 #, c-format
@@ -2771,7 +2771,7 @@ msgstr "註銷右鍵快顯功能表(&U)"
 msgid "Folder"
 msgstr "資料夾"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "第一個差異就停(&T)"

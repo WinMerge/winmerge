@@ -456,9 +456,9 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 				int TrivLinePos = i+1;
 				for(; TrivLinePos != (StartPos + QtyLinesInBlock);++TrivLinePos)
 				{
-					size_t len = files[FileNo].linbuf[TrivLinePos + 1] - files[FileNo].linbuf[TrivLinePos];
+					size_t len1 = files[FileNo].linbuf[TrivLinePos + 1] - files[FileNo].linbuf[TrivLinePos];
 					const char *LineStrTrvCk = files[FileNo].linbuf[TrivLinePos];
-					std::string LineDataTrvCk(LineStrTrvCk, linelen(LineStrTrvCk, len));
+					std::string LineDataTrvCk(LineStrTrvCk, linelen(LineStrTrvCk, len1));
 					if (LineDataTrvCk.size() &&
 						!IsTrivialBytes(LineDataTrvCk.c_str(), LineDataTrvCk.c_str() + LineDataTrvCk.size(), filtercommentsset))
 					{
@@ -755,12 +755,11 @@ bool CDiffWrapper::RunFileDiff()
 		String sTempPath = env::GetTemporaryPath(); // get path to Temp folder
 		String path = paths::ConcatPath(sTempPath, _T("Diff.txt"));
 
-		outfile = _tfopen(path.c_str(), _T("w+"));
-		if (outfile != NULL)
+		if (_tfopen_s(&outfile, path.c_str(), _T("w+")) == 0)
 		{
 			print_normal_script(script);
 			fclose(outfile);
-			outfile = NULL;
+			outfile = nullptr;
 		}
 #endif
 	}
@@ -1002,36 +1001,38 @@ String CDiffWrapper::FormatSwitchString() const
 	
 	switch (m_options.m_outputStyle)
 	{
-	case OUTPUT_CONTEXT:
-		switches = _T(" C");
-		break;
-	case OUTPUT_UNIFIED:
-		switches = _T(" U");
-		break;
-	case OUTPUT_ED:
-		switches = _T(" e");
-		break;
-	case OUTPUT_FORWARD_ED:
-		switches = _T(" f");
-		break;
-	case OUTPUT_RCS:
-		switches = _T(" n");
-		break;
-	case OUTPUT_NORMAL:
+	case DIFF_OUTPUT_NORMAL:
 		switches = _T(" ");
 		break;
-	case OUTPUT_IFDEF:
+	case DIFF_OUTPUT_CONTEXT:
+		switches = _T(" C");
+		break;
+	case DIFF_OUTPUT_UNIFIED:
+		switches = _T(" U");
+		break;
+#if 0
+	case DIFF_OUTPUT_ED:
+		switches = _T(" e");
+		break;
+	case DIFF_OUTPUT_FORWARD_ED:
+		switches = _T(" f");
+		break;
+	case DIFF_OUTPUT_RCS:
+		switches = _T(" n");
+		break;
+	case DIFF_OUTPUT_IFDEF:
 		switches = _T(" D");
 		break;
-	case OUTPUT_SDIFF:
+	case DIFF_OUTPUT_SDIFF:
 		switches = _T(" y");
 		break;
+#endif
 	}
 
 	if (m_options.m_contextLines > 0)
 	{
 		TCHAR tmpNum[5] = {0};
-		_itot(m_options.m_contextLines, tmpNum, 10);
+		_itot_s(m_options.m_contextLines, tmpNum, 10);
 		switches += tmpNum;
 	}
 
@@ -1308,17 +1309,18 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	const file_data * inf10, 
 	const file_data * inf12)
 {
-	DiffList diff10, diff12, *pdiff;
+	DiffList diff10, diff12;
 	diff10.Clear();
 	diff12.Clear();
 
 	for (int file = 0; file < 2; file++)
 	{
-		struct change *next;
+		struct change *next = nullptr;
 		int trans_a0, trans_b0, trans_a1, trans_b1;
 		int first0, last0, first1, last1, deletes, inserts;
 		OP_TYPE op;
-		const file_data *pinf;
+		const file_data *pinf = nullptr;
+		DiffList *pdiff = nullptr;
 
 		switch (file)
 		{
@@ -1361,18 +1363,11 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					// Store information about these blocks in moved line info
 					if (GetDetectMovedBlocks())
 					{
-						int index1 = -1;
-						int index2 = -1;
-						MovedLines::ML_SIDE side1;
-						MovedLines::ML_SIDE side2;
-						if (file == 0 /* diff10 */)
-						{
-							index1 = 0;
-							index2 = 1;
-							side1 = MovedLines::SIDE_RIGHT;
-							side2 = MovedLines::SIDE_LEFT;
-						}
-						else if (file == 1 /* diff12 */)
+						int index1 = 0;  // defaults for (file == 0 /* diff10 */)
+						int index2 = 1;
+						MovedLines::ML_SIDE side1 = MovedLines::SIDE_RIGHT;
+						MovedLines::ML_SIDE side2 = MovedLines::SIDE_LEFT;
+						if (file == 1 /* diff12 */)
 						{
 							index1 = 2;
 							index2 = 1;
@@ -1419,14 +1414,15 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 
 void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAppendFiles)
 {
-	outfile = NULL;
+	outfile = nullptr;
 	if (!m_sPatchFile.empty())
 	{
 		const TCHAR *mode = (bAppendFiles ? _T("a+") : _T("w+"));
-		outfile = _tfopen(m_sPatchFile.c_str(), mode);
+		if (_tfopen_s(&outfile, m_sPatchFile.c_str(), mode) != 0)
+			outfile = nullptr;
 	}
 
-	if (!outfile)
+	if (outfile == nullptr)
 	{
 		m_status.bPatchFileFailed = true;
 		return;
@@ -1435,14 +1431,16 @@ void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAp
 	// Output patchfile
 	switch (output_style)
 	{
+	case OUTPUT_NORMAL:
 	case OUTPUT_CONTEXT:
 	case OUTPUT_UNIFIED:
+#if 0
 	case OUTPUT_ED:
 	case OUTPUT_FORWARD_ED:
 	case OUTPUT_RCS:
-	case OUTPUT_NORMAL:
 	case OUTPUT_IFDEF:
 	case OUTPUT_SDIFF:
+#endif
 		break;
 	case OUTPUT_HTML:
 		print_html_header();
@@ -1450,18 +1448,19 @@ void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAp
 	}
 	
 	fclose(outfile);
-	outfile = NULL;
+	outfile = nullptr;
 }
 
 void CDiffWrapper::WritePatchFileTerminator(enum output_style output_style)
 {
-	outfile = NULL;
+	outfile = nullptr;
 	if (!m_sPatchFile.empty())
 	{
-		outfile = _tfopen(m_sPatchFile.c_str(), _T("a+"));
+		if (_tfopen_s(&outfile, m_sPatchFile.c_str(), _T("a+")) != 0)
+			outfile = nullptr;
 	}
 
-	if (!outfile)
+	if (outfile == nullptr)
 	{
 		m_status.bPatchFileFailed = true;
 		return;
@@ -1470,14 +1469,16 @@ void CDiffWrapper::WritePatchFileTerminator(enum output_style output_style)
 	// Output patchfile
 	switch (output_style)
 	{
+	case OUTPUT_NORMAL:
 	case OUTPUT_CONTEXT:
 	case OUTPUT_UNIFIED:
+#if 0
 	case OUTPUT_ED:
 	case OUTPUT_FORWARD_ED:
 	case OUTPUT_RCS:
-	case OUTPUT_NORMAL:
 	case OUTPUT_IFDEF:
 	case OUTPUT_SDIFF:
+#endif
 		break;
 	case OUTPUT_HTML:
 		print_html_terminator();
@@ -1485,7 +1486,7 @@ void CDiffWrapper::WritePatchFileTerminator(enum output_style output_style)
 	}
 	
 	fclose(outfile);
-	outfile = NULL;
+	outfile = nullptr;
 }
 
 /**
@@ -1510,8 +1511,8 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path2 = m_files[1];
 	path1 = paths::ToUnixPath(path1);
 	path2 = paths::ToUnixPath(path2);
-	inf_patch[0].name = strdup(ucr::toSystemCP(path1).c_str());
-	inf_patch[1].name = strdup(ucr::toSystemCP(path2).c_str());
+	inf_patch[0].name = _strdup(ucr::toSystemCP(path1).c_str());
+	inf_patch[1].name = _strdup(ucr::toSystemCP(path2).c_str());
 
 	// If paths in m_s1File and m_s2File point to original files, then we can use
 	// them to fix potentially meaningless stats from potentially temporary files,
@@ -1527,14 +1528,15 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		assert(false);
 	}
 
-	outfile = NULL;
+	outfile = nullptr;
 	if (!m_sPatchFile.empty())
 	{
 		const TCHAR *mode = (m_bAppendFiles ? _T("a+") : _T("w+"));
-		outfile = _tfopen(m_sPatchFile.c_str(), mode);
+		if (_tfopen_s(&outfile, m_sPatchFile.c_str(), mode) != 0)
+			outfile = nullptr;
 	}
 
-	if (!outfile)
+	if (outfile == nullptr)
 	{
 		m_status.bPatchFileFailed = true;
 		return;
@@ -1553,17 +1555,20 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	if (strcmp(inf[0].name, "NUL") == 0)
 	{
 		free((void *)inf[0].name);
-		inf[0].name = strdup("/dev/null");
+		inf[0].name = _strdup("/dev/null");
 	}
 	if (strcmp(inf[1].name, "NUL") == 0)
 	{
 		free((void *)inf[1].name);
-		inf[1].name = strdup("/dev/null");
+		inf[1].name = _strdup("/dev/null");
 	}
 
 	// Output patchfile
 	switch (output_style)
 	{
+	case OUTPUT_NORMAL:
+		print_normal_script(script);
+		break;
 	case OUTPUT_CONTEXT:
 		print_context_header(inf_patch, 0);
 		print_context_script(script, 0);
@@ -1572,6 +1577,7 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		print_context_header(inf_patch, 1);
 		print_context_script(script, 1);
 		break;
+#if 0
 	case OUTPUT_ED:
 		print_ed_script(script);
 		break;
@@ -1581,15 +1587,13 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	case OUTPUT_RCS:
 		print_rcs_script(script);
 		break;
-	case OUTPUT_NORMAL:
-		print_normal_script(script);
-		break;
 	case OUTPUT_IFDEF:
 		print_ifdef_script(script);
 		break;
 	case OUTPUT_SDIFF:
 		print_sdiff_script(script);
 		break;
+#endif
 	case OUTPUT_HTML:
 		print_html_diff_header(inf_patch);
 		print_html_script(script);
@@ -1597,7 +1601,7 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	}
 	
 	fclose(outfile);
-	outfile = NULL;
+	outfile = nullptr;
 
 	free((void *)inf_patch[0].name);
 	free((void *)inf_patch[1].name);

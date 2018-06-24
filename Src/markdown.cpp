@@ -149,30 +149,34 @@ std::string CMarkdown::Resolve(const EntityMap &map, const std::string& v)
 		}
 		else
 		{
-			EntityMap::const_iterator p = map.find(key);
-			if (p != map.end())
-				value = p->second;
+			EntityMap::const_iterator p1 = map.find(key);
+			if (p1 != map.end())
+				value = p1->second;
 		}
 		*q = ';';
 		++q;
-		if (int cchValue = value.length())
+		size_t cchValue = value.length();
+		if (cchValue != 0)
 		{
-			int i = p - &ret[0];
-			int j = q - &ret[0];
-			int cchKey = q - p;
-			if (int cchGrow = cchValue - cchKey)
+			size_t i = p - &ret[0];
+			size_t j = q - &ret[0];
+			size_t cchKey = q - p;
+			if (cchValue != cchKey)
 			{
-				int b = ret.length();
+				size_t b = ret.length();
 				size_t cbMove = (b - j) * sizeof(char);
-				if (cchGrow < 0)
+				if (cchKey > cchValue)
 				{
-					memmove(q + cchGrow, q, cbMove);
+					size_t cchGrow = cchKey - cchValue;
+					memmove(q - cchGrow, q, cbMove);
+					ret.resize(b - cchGrow);
 				}
-				ret.resize(b + cchGrow);
 				p = &ret[0] + i;
 				q = &ret[0] + j;
-				if (cchGrow > 0)
+				if (cchValue > cchKey)
 				{
+					size_t cchGrow = cchValue - cchKey;
+					ret.resize(b + cchGrow);
 					memmove(q + cchGrow, q, cbMove);
 				}
 			}
@@ -189,7 +193,7 @@ std::string CMarkdown::Entities(const std::string& v)
 	char *p, *q = &ret[0];
 	while (*(p = q))
 	{
-		char *value = 0;
+		char *value = nullptr;
 		switch (*p)
 		{
 		case '&': value = "&amp;"; break;
@@ -199,26 +203,18 @@ std::string CMarkdown::Entities(const std::string& v)
 		case '>' : value = "&gt;"; break;
 		}
 		++q;
-		if (value)
+		if (value != nullptr)
 		{
-			int i = p - &ret[0];
-			int j = q - &ret[0];
-			int cchValue = strlen(value);
-			if (int cchGrow = cchValue - 1)
+			size_t cchValue = strlen(value);
+			if (cchValue > 1)
 			{
-				int b = v.length();
-				size_t cbMove = (b - j) * sizeof(char);
-				if (cchGrow < 0)
-				{
-					memmove(q + cchGrow, q, cbMove);
-				}
-				ret.resize(b + cchGrow);
+				ptrdiff_t i = p - &ret[0];
+				ptrdiff_t j = q - &ret[0];
+				size_t b = v.length();
+				ret.resize(b + cchValue - 1);
 				p = &ret[0] + i;
 				q = &ret[0] + j;
-				if (cchGrow > 0)
-				{
-					memmove(q + cchGrow, q, cbMove);
-				}
+				memmove(q + cchValue - 1, q, (b - j) * sizeof(char));
 			}
 			memcpy(p, value, cchValue * sizeof(char));
 			q = p + cchValue;
@@ -294,14 +290,14 @@ CMarkdown::operator bool()
 	);
 }
 
-int CMarkdown::FindTag(const char *tags, const char *markup) const
+size_t CMarkdown::FindTag(const char *tags, const char *markup) const
 {
-	while (int len = strlen(tags))
+	while (ptrdiff_t len = strlen(tags))
 	{
 		unsigned char c;
 		if
 		(
-			ahead - markup > len
+			(ahead - markup) > len
 		&&	memcmp(markup, tags, len) == 0
 		&&	(isspace(c = markup[len]) || c == '[' || c == '>' || c == '"' || c == '\'' || c == '=')
 		)
@@ -405,7 +401,8 @@ CMarkdown &CMarkdown::Move()
 		}
 		if (utags && upper < ahead && *upper == '<')
 		{
-			if (int utlen = FindTag(utags, upper + 2))
+			size_t utlen = FindTag(utags, upper + 2);
+			if (utlen != 0)
 			{
 				upper += 2 + utlen;
 				continue;
@@ -428,7 +425,7 @@ CMarkdown &CMarkdown::Move(const char *name)
 		{
 			++q;
 		} while (q <= ahead && !isspace(c = *q) && c != '[' && c != '>' && c != '"' && c != '\'' && c != '=');
-		int length = q - p;
+		size_t length = q - p;
 		if (memcmp(p, name, length) == 0 && name[length] == '\0')
 		{
 			break;
@@ -662,9 +659,9 @@ int CMarkdown::Token::IsSpecial(const char *p, const char *ahead)
 std::string CMarkdown::GetAttribute(const char *key, std::string *pv)
 {
 	const char *name = 0;
-	int cname = 0;
+	size_t cname = 0;
 	const char *value = 0;
-	int cvalue = 0;
+	size_t cvalue = 0;
 	bool equals = false;
 	const char *p = lower;
 	Token token;
@@ -744,12 +741,12 @@ int CMarkdown::FileImage::GuessByteOrder(unsigned dwBOM)
 		}
 		if (wBOM == 0xFEFF || wBOM == 0xFFFE)
 		{
-			nByteOrder += 8 + ((char *)memchr(&dwBOM, 0xFF, 4) - (char *)&dwBOM);
+			nByteOrder += 8 + static_cast<int>((char *)memchr(&dwBOM, 0xFF, 4) - (char *)&dwBOM);
 		}
 		else if (LOBYTE(wBOM) == 0 || HIBYTE(wBOM) == 0)
 		{
 			unsigned char cBOM = LOBYTE(wBOM) | HIBYTE(wBOM);
-			nByteOrder += ((char *)memchr(&dwBOM, cBOM, 4) - (char *)&dwBOM);
+			nByteOrder += static_cast<int>((char *)memchr(&dwBOM, cBOM, 4) - (char *)&dwBOM);
 		}
 		else if ((dwBOM & 0xFFFFFF) == 0xBFBBEF)
 		{
@@ -799,7 +796,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			pCopy = new unsigned char[cbImage];
 			if (pCopy)
 			{
-				for (int i = 0; i < cbImage / 2; ++i)
+				for (size_t i = 0; i < cbImage / 2; ++i)
 					*((uint16_t *)pCopy + i) = Poco::ByteOrder::flipBytes(*((uint16_t *)pImage + i));
 			}
 
@@ -810,7 +807,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			case 2 + 0:
 			case 2 + 0 + 8:
 				// little endian
-				int cchImage = cbImage / 2;
+				size_t cchImage = cbImage / 2;
 				uint16_t *pchImage = (uint16_t *)pImage;
 				if (nByteOrder & 8)
 				{
@@ -840,7 +837,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			pCopy = new unsigned char[cbImage];
 			if (pCopy)
 			{
-				for (int i = 0; i < cbImage / 2; ++i)
+				for (size_t i = 0; i < cbImage / 2; ++i)
 					*((uint16_t *)pCopy + i) = Poco::ByteOrder::flipBytes(*((uint16_t *)pImage + i));
 			}
 			delete m_pSharedMemory;
@@ -852,7 +849,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			case 4 + 0 + 8:
 			case 4 + 3:
 			case 4 + 3 + 8:
-				int cchImage = cbImage;
+				size_t cchImage = cbImage;
 				char *pchImage = (char *)pImage;
 				if (nByteOrder & 8)
 				{
@@ -861,7 +858,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 				}
 				unsigned uch;
 				cbImage = 0;
-				for (int i = 0; i < cchImage; i += 4)
+				for (size_t i = 0; i < cchImage; i += 4)
 				{
 					memcpy(&uch, pchImage + i, 4);
 					if (nByteOrder & 2)
@@ -874,7 +871,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 				if (pCopy2)
 				{
 					cbImage = 0;
-					for (int i = 0; i < cchImage; i += 4)
+					for (size_t i = 0; i < cchImage; i += 4)
 					{
 						memcpy(&uch, pchImage + i, 4);
 						if (nByteOrder & 2)

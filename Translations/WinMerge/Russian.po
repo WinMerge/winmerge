@@ -1773,16 +1773,6 @@ msgstr "Удалить"
 msgid "Colors"
 msgstr "Цвета"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Отличие:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Выделенное отличие:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1797,6 +1787,16 @@ msgstr "Удаленное"
 #, c-format
 msgid "Text"
 msgstr "Текст"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Отличие:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Выделенное отличие:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1813,14 +1813,14 @@ msgstr "Перемещенные:"
 msgid "Selected Moved:"
 msgstr "Выбранные перемещенные:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -2762,7 +2762,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Каталог"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "&Останавливаться после первого отличия"

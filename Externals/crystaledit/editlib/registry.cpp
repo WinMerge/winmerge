@@ -26,7 +26,6 @@
 #define new DEBUG_NEW
 #endif
 
-#pragma warning ( disable : 4711 )
 /*////////////////////////////////////////////////////////////////////////////*/
 
 /* initializes registry value data */
@@ -143,34 +142,34 @@ RegValGetStringArr (const RegVal *pValData, LPTSTR pszStrings[], DWORD dwCount)
   ASSERT (pValData);
   if (pValData->dwType == REG_MULTI_SZ)
     {
-      LPCTSTR pszString;
+      LPCTSTR pszString0;
       DWORD dwRealCount = 0, dwLength;
-      for (pszString = pValData->pszString; *pszString; pszString += dwLength)
+      for (pszString0 = pValData->pszString; *pszString0; pszString0 += dwLength)
         {
-          dwLength = (DWORD) _tcslen (pszString) + 1;
+          dwLength = (DWORD) _tcslen (pszString0) + 1;
           dwRealCount++;
         }
       if (dwCount >= dwRealCount)
         {
           LPTSTR *pszDstString = pszStrings;
-          for (LPCTSTR pszString = pValData->pszString; *pszString; pszString += dwLength, pszDstString++)
+          for (LPCTSTR pszString1 = pValData->pszString; *pszString1; pszString1 += dwLength, pszDstString++)
             {
-              dwLength = (DWORD) _tcslen (pszString) + 1;
+              dwLength = (DWORD) _tcslen (pszString1) + 1;
               LPTSTR pszNewString = (LPTSTR) malloc (dwLength);
               *pszDstString = pszNewString;
               if (pszNewString)
                 {
-                  while ((*pszNewString = (BYTE) *pszString) != _T ('\0'))
+                  while ((*pszNewString = (BYTE) *pszString1) != _T ('\0'))
                     {
                       pszNewString++;
-                      pszString++;
+                      pszString1++;
                     }
                 }
               else
                 {
-                  while (*pszString)
+                  while (*pszString1)
                     {
-                      pszString++;
+                      pszString1++;
                     }
                 }
             }
@@ -1457,4 +1456,3 @@ void CReg::FindClose ()
 #endif /* cplusplus */
 
 /*////////////////////////////////////////////////////////////////////////////*/
-#pragma warning ( default : 4711 )

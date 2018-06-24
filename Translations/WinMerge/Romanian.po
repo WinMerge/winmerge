@@ -1771,16 +1771,6 @@ msgstr "Înlătură"
 msgid "Colors"
 msgstr "Culori"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Diferenţă:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Diferenţă selectată:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1795,6 +1785,16 @@ msgstr "Şters"
 #, c-format
 msgid "Text"
 msgstr "Text"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Diferenţă:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Diferenţă selectată:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1811,14 +1811,14 @@ msgstr "Mutat:"
 msgid "Selected Moved:"
 msgstr "Selecţie mutată:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -2756,7 +2756,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Director"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "Opreş&te după prima diferenţă"

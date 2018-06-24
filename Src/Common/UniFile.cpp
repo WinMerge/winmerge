@@ -652,10 +652,10 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		}
 		// convert from Unicode codepoint to TCHAR string
 		// could be multicharacter if decomposition took place, for example
-		bool lossy = false; // try to avoid lossy conversion
+		bool lossy1 = false; // try to avoid lossy conversion
 		String sch;
-		ucr::maketchar(sch, ch, lossy);
-		if (lossy)
+		ucr::maketchar(sch, ch, lossy1);
+		if (lossy1)
 			++m_txtstats.nlosses;
 		if (sch.length() >= 1)
 			ch = sch[0];
@@ -671,10 +671,10 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 			// check for crlf pair
 			if (m_current - m_base + 2 * m_charsize - 1 < m_filesize)
 			{
-				// For UTF-8, this ch will be wrong if character is non-ASCII
+				// For UTF-8, this ch1 will be wrong if character is non-ASCII
 				// but we only check it against \n here, so it doesn't matter
-				unsigned ch = ucr::get_unicode_char(m_current + m_charsize, (ucr::UNICODESET)m_unicoding);
-				if (ch == '\n')
+				unsigned ch1 = ucr::get_unicode_char(m_current + m_charsize, (ucr::UNICODESET)m_unicoding);
+				if (ch1 == '\n')
 				{
 					crlf = true;
 				}
@@ -817,8 +817,7 @@ bool UniStdioFile::DoOpen(const String& filename, const String& mode)
 	// But we don't care since size is set to 0 anyway.
 	GetFileStatus();
 
-	m_fp = _tfopen(m_filepath.c_str(), mode.c_str());
-	if (!m_fp)
+	if (_tfopen_s(&m_fp, m_filepath.c_str(), mode.c_str()) != 0)
 		return false;
 
 #ifndef _WIN64

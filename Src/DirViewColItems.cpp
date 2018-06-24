@@ -947,6 +947,9 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
 }
 /* @} */
 
+#undef FIELD_OFFSET	// incorrect for Win32 as defined in WinNT.h
+#define FIELD_OFFSET(type, field)    ((size_t)(LONG_PTR)&(((type *)0)->field))
+
 /**
  * @brief All existing folder compare columns.
  *

@@ -469,6 +469,7 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 	m_wndFilePathBar.SetPaneCount(m_pImgMergeWindow->GetPaneCount());
+	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) { m_pImgMergeWindow->SetActivePane(pane); });
 
 	// Merge frame also has a dockable bar at the very left
 	// created in OnCreateClient 
@@ -904,8 +905,8 @@ void CImgMergeFrame::UpdateHeaderSizes()
 		{
 			for (int pane = 0; pane < nPaneCount; pane++)
 			{
-				RECT rc = m_pImgMergeWindow->GetPaneWindowRect(pane);
-				w[pane] = rc.right - rc.left - 4;
+				RECT rc1 = m_pImgMergeWindow->GetPaneWindowRect(pane);
+				w[pane] = rc1.right - rc1.left - 4;
 				if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
 			}
 		}
@@ -1114,19 +1115,22 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 	{
 		if (bLModified && dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
 		{
-			if (!(bLSaveSuccess = DoFileSave(0)))
+			bLSaveSuccess = DoFileSave(0);
+			if (!bLSaveSuccess)
 				result = false;
 		}
 
 		if (bMModified && dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
 		{
-			if (!(bMSaveSuccess = DoFileSave(1)))
+			bMSaveSuccess = DoFileSave(1);
+			if (!bMSaveSuccess)
 				result = false;
 		}
 
 		if (bRModified && dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
 		{
-			if (!(bRSaveSuccess = DoFileSave(m_pImgMergeWindow->GetPaneCount() - 1)))
+			bRSaveSuccess = DoFileSave(m_pImgMergeWindow->GetPaneCount() - 1);
+			if (!bRSaveSuccess)
 				result = false;
 		}
 	}
@@ -1277,8 +1281,8 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 		RGBQUAD color[3];
 		for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 			color[pane] = m_pImgMergeWindow->GetPixelColor(pane, pt.x, pt.y);
-		double colorDistance01, colorDistance12;
-		colorDistance01 = m_pImgMergeWindow->GetColorDistance(0, 1, pt.x, pt.y);
+		double colorDistance01 = m_pImgMergeWindow->GetColorDistance(0, 1, pt.x, pt.y);
+		double colorDistance12 = 0;
 		if (m_pImgMergeWindow->GetPaneCount() == 3)
 			colorDistance12 = m_pImgMergeWindow->GetColorDistance(1, 2, pt.x, pt.y);
 
@@ -1344,7 +1348,8 @@ void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	else if (m_pImgMergeWindow->GetCurrentDiffIndex() < 0)
 	{
 		s = theApp.LoadString(nDiffs == 1 ? IDS_1_DIFF_FOUND : IDS_NO_DIFF_SEL_FMT);
-		strutils::replace(s, _T("%1"), _itot(nDiffs, sCnt, 10));
+		_itot_s(nDiffs, sCnt, 10);
+		strutils::replace(s, _T("%1"), sCnt);
 	}
 	
 	// There are differences and diff selected
@@ -1353,8 +1358,10 @@ void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	{
 		s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
 		const int signInd = m_pImgMergeWindow->GetCurrentDiffIndex();
-		strutils::replace(s, _T("%1"), _itot(signInd + 1, sIdx, 10));
-		strutils::replace(s, _T("%2"), _itot(nDiffs, sCnt, 10));
+		_itot_s(signInd + 1, sIdx, 10);
+		strutils::replace(s, _T("%1"), sIdx);
+		_itot_s(nDiffs, sCnt, 10);
+		strutils::replace(s, _T("%2"), sCnt);
 	}
 	pCmdUI->SetText(s.c_str());
 }
@@ -1925,8 +1932,8 @@ void CImgMergeFrame::OnImgUseBackColor()
 		if (dialog.DoModal() == IDOK)
 		{
 			COLORREF clrBackColor = dialog.GetColor();
-			RGBQUAD backColor = {GetBValue(clrBackColor), GetGValue(clrBackColor), GetRValue(clrBackColor)};
-			m_pImgMergeWindow->SetBackColor(backColor);
+			RGBQUAD backColor1 = {GetBValue(clrBackColor), GetGValue(clrBackColor), GetRValue(clrBackColor)};
+			m_pImgMergeWindow->SetBackColor(backColor1);
 			m_pImgMergeWindow->SetUseBackColor(bUseBackColor);
 		}
 	}

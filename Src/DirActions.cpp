@@ -1348,14 +1348,14 @@ AllowUpwardDirectory::ReturnCode
 CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTempPathContext, PathContext &pathsParent)
 {
 	std::vector<String> path(ctxt.GetCompareDirs());
-	for (int i = 0; i < path.size(); ++i)
+	for (int i = 0; i < static_cast<int>(path.size()); ++i)
 		path[i] = ctxt.GetNormalizedPath(i);
 
 	// If we have temp context it means we are comparing archives
 	if (pTempPathContext)
 	{
 		std::vector<String> name(path.size());
-		for (int i = 0; i < path.size(); ++i)
+		for (int i = 0; i < static_cast<int>(path.size()); ++i)
 			name[i] = paths::FindFileName(path[i]);
 
 		String::size_type cchLeftRoot = pTempPathContext->m_strRoot[0].length();
@@ -1364,13 +1364,13 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 			pathsParent.SetSize(ctxt.GetCompareDirs());
 			if (pTempPathContext->m_pParent)
 			{
-				for (int i = 0; i < path.size(); ++i)
+				for (int i = 0; i < static_cast<int>(path.size()); ++i)
 					pathsParent[i] = pTempPathContext->m_pParent->m_strRoot[i];
 				if (paths::GetPairComparability(pathsParent) != paths::IS_EXISTING_DIR)
 					return AllowUpwardDirectory::Never;
 				return AllowUpwardDirectory::ParentIsTempPath;
 			}
-			for (int i = 0; i < path.size(); ++i)
+			for (int i = 0; i < static_cast<int>(path.size()); ++i)
 				pathsParent[i] = pTempPathContext->m_strDisplayRoot[i];
 			if (pathsParent.size() < 3)
 			{
@@ -1386,9 +1386,9 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 				strutils::compare_nocase(name[0], _T("ORIGINAL")) == 0 && 
 				strutils::compare_nocase(name[1], _T("ALTERED")) == 0)
 			{
-				for (int i = 0; i < path.size(); ++i)
+				for (int i = 0; i < static_cast<int>(path.size()); ++i)
 					pathsParent[i] = paths::GetParentPath(pathsParent[i]);
-				for (int i = 0; i < path.size(); ++i)
+				for (int i = 0; i < static_cast<int>(path.size()); ++i)
 					name[i] = paths::FindFileName(pathsParent[i]);
 				if (strutils::compare_nocase(name[0], name[1]) == 0)
 				{
@@ -1403,7 +1403,7 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 
 	// If regular parent folders exist, allow opening them
 	pathsParent.SetSize(ctxt.GetCompareDirs());
-	for (int i = 0; i < path.size(); ++i)
+	for (int i = 0; i < static_cast<int>(path.size()); ++i)
 		pathsParent[i] = paths::GetParentPath(path[i]);
 	if (paths::GetPairComparability(pathsParent) != paths::IS_EXISTING_DIR)
 		return AllowUpwardDirectory::Never;

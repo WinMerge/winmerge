@@ -43,9 +43,9 @@ public :
 
 	void SetTempPath(const String &path);
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
-		const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
+		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 		int nActionType = CE_ACTION_UNKNOWN,
-		CDWordArray *paSavedRevisionNumbers = NULL);
+		CDWordArray *paSavedRevisionNumbers = NULL) override;
 	bool curUndoGroup();
 	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);
 
@@ -72,11 +72,11 @@ public :
 	// if line has any text (including eol), set strLine to text (including eol)
 	bool GetFullLine(int nLineIndex, CString &strLine) const;
 
-	virtual void SetModified (bool bModified = TRUE);
+	virtual void SetModified (bool bModified = TRUE) override;
 	void prepareForRescan();
-	virtual void OnNotifyLineHasBeenEdited(int nLine);
+	virtual void OnNotifyLineHasBeenEdited(int nLine) override;
 	bool IsInitialized() const;
 	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
-		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
+		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true) override;
 };

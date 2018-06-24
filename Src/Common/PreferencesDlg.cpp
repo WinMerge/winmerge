@@ -241,8 +241,12 @@ CString CPreferencesDlg::GetItemPath(HTREEITEM hti)
 {
 	CString sPath = m_tcPages.GetItemText(hti);
 
-	while (hti = m_tcPages.GetParentItem(hti))
+	hti = m_tcPages.GetParentItem(hti);
+	while (hti)
+	{
 		sPath = m_tcPages.GetItemText(hti) + _T(" > ") + sPath;
+		hti = m_tcPages.GetParentItem(hti);
+	}
 
 	return sPath;
 }

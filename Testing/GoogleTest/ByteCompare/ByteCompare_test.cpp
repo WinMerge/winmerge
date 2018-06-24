@@ -31,8 +31,8 @@ namespace
 	{
 		FilePair(const std::string& left, const std::string& right)
 		{
-			filedata[0].desc = _open(left.c_str(),  O_RDONLY | O_BINARY, _S_IREAD);
-			filedata[1].desc = _open(right.c_str(), O_RDONLY | O_BINARY, _S_IREAD);
+			_sopen_s(&filedata[0].desc, left.c_str(),  O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
+			_sopen_s(&filedata[1].desc, right.c_str(), O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
 		}
 
 		~FilePair()

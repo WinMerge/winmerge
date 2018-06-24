@@ -21,8 +21,7 @@
 /* Least common multiple of two buffer sizes A and B.  */
 
 size_t
-buffer_lcm (a, b)
-     size_t a, b;
+buffer_lcm (size_t a, size_t b)
 {
   size_t m, n, r;
 

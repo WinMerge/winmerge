@@ -138,6 +138,12 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	}
 
 	m_wndFilePathBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
+	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
+		if (m_wndSplitter.GetColumnCount() > 1)
+			m_wndSplitter.SetActivePane(0, pane);
+		else
+			m_wndSplitter.SetActivePane(pane, 0);
+	});
 
 	// Set filename bars inactive so colors get initialized
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
@@ -168,15 +174,16 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	{
 		pif[0]->set_sibling(pif[1]);
 		pif[1]->set_sibling(pif[0]);
-		pif[1]->share_undorecords(pif[0]);
+		pif[1]->share_undorecords(pif[0]->share_undorecords(nullptr));
 	}
 	else if (m_pMergeDoc->m_nBuffers > 2)
 	{
 		pif[0]->set_sibling(pif[1]);
 		pif[1]->set_sibling2(pif[0], pif[2]);
 		pif[2]->set_sibling(pif[1]);
-		pif[1]->share_undorecords(pif[0]);
-		pif[2]->share_undorecords(pif[0]);
+		pif[2]->share_undorecords(
+			pif[1]->share_undorecords(
+				pif[0]->share_undorecords(nullptr)));
 	}
 
 	// tell merge doc about these views

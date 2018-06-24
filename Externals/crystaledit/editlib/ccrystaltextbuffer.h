@@ -31,10 +31,6 @@
 // ID line follows -- this is updated by SVN
 // $Id: ccrystaltextbuffer.h 6879 2009-06-29 10:00:33Z kimmov $
 
-
-#if !defined(AFX_CCRYSTALTEXTBUFFER_H__AD7F2F49_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)
-#define AFX_CCRYSTALTEXTBUFFER_H__AD7F2F49_6CB3_11D2_8C32_0080ADB86836__INCLUDED_
-
 #pragma once
 
 #include <vector>
@@ -171,19 +167,19 @@ public :
     CList < CCrystalTextView *, CCrystalTextView * >m_lpViews;
 
     //  Helper methods
-    void InsertLine (LPCTSTR pszLine, int nLength, int nPosition = -1, int nCount = 1);
-    void AppendLine (int nLineIndex, LPCTSTR pszChars, int nLength);
+    void InsertLine (LPCTSTR pszLine, size_t nLength, int nPosition = -1, int nCount = 1);
+    void AppendLine (int nLineIndex, LPCTSTR pszChars, size_t nLength);
     void MoveLine(int line1, int line2, int newline1);
     void SetEmptyLine(int nPosition, int nCount = 1);
 
     //  Implementation
-    bool InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar);
+    bool InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, size_t cchText, int &nEndLine, int &nEndChar);
     bool InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos);
-    CString StripTail (int i, int bytes);
+    CString StripTail (int i, size_t bytes);
 
     //  [JRT] Support For Descriptions On Undo/Redo Actions
     virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                                LPCTSTR pszText, int cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = NULL);
+                                LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = NULL);
     virtual UndoRecord GetUndoRecord (int nUndoPos) const;
 
     virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const;
@@ -253,7 +249,7 @@ public :
     void SetIgnoreEol(bool IgnoreEol) { m_IgnoreEol = IgnoreEol; }
 
     //  Text modification functions
-    virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
+    virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, size_t cchText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
     virtual bool DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, bool bHistory =true, bool bExcludeInvisibleLines = true);
     virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
 
@@ -317,13 +313,18 @@ public :
     DECLARE_MESSAGE_MAP ()
   };
 
-#if ! (defined(CE_FROM_DLL) || defined(CE_DLL_BUILD))
-#include "ccrystaltextbuffer.inl"
-#endif
 
-/////////////////////////////////////////////////////////////////////////////
+inline bool CCrystalTextBuffer::IsModified () const
+{
+  return m_bModified;
+}
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
+inline bool CCrystalTextBuffer::GetInsertTabs() const          //UPDATE-BEGIN
+{
+    return m_bInsertTabs;
+}
 
-#endif // !defined(AFX_CCRYSTALTEXTBUFFER_H__AD7F2F49_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)
+inline void CCrystalTextBuffer::SetInsertTabs(bool bInsertTabs)
+{
+    m_bInsertTabs = bInsertTabs;
+}

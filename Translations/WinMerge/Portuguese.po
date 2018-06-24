@@ -1771,16 +1771,6 @@ msgstr "Remover"
 msgid "Colors"
 msgstr "Cores"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Diferença:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Diferença Selecionada:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1795,6 +1785,16 @@ msgstr "Eliminado"
 #, c-format
 msgid "Text"
 msgstr "Texto"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Diferença:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Diferença Selecionada:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1811,15 +1811,15 @@ msgstr "Movida:"
 msgid "Selected Moved:"
 msgstr "Selecionada Movida:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr "Como as seguintes (3 janelas):"
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
-msgstr "Como a seguinte (Selecionada):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
+msgstr ""
 
 #: Merge.rc:40C55014
 #, c-format
@@ -2756,7 +2756,7 @@ msgstr "Extensão shell não registada"
 msgid "Folder"
 msgstr "Pasta"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "Parar após primeira diferença"

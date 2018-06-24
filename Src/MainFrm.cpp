@@ -353,6 +353,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	m_wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH | SBPS_NOBORDERS, 0);
 	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, 0, pointToPixel(225));
 	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, pointToPixel(75)); 
 	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112)); 
@@ -1785,11 +1786,11 @@ void CMainFrame::OnResizePanes()
 		if (bResize)
 			pFrame->UpdateSplitter();
 	}
-	else if (CHexMergeFrame *pFrame = DYNAMIC_DOWNCAST(CHexMergeFrame, pActiveFrame))
+	else if (CHexMergeFrame *pFrame1 = DYNAMIC_DOWNCAST(CHexMergeFrame, pActiveFrame))
 	{
-		pFrame->UpdateAutoPaneResize();
+		pFrame1->UpdateAutoPaneResize();
 		if (bResize)
-			pFrame->UpdateSplitter();
+			pFrame1->UpdateSplitter();
 	}
 }
 
@@ -2216,8 +2217,8 @@ void CMainFrame::OnHelpCheckForUpdates()
 		delete file;
 
 		int exe_vers[4] = { 0 }, cur_vers[4] = { 0 };
-		_stscanf(version.GetProductVersion().c_str(), _T("%d.%d.%d.%d"), &exe_vers[0], &exe_vers[1], &exe_vers[2], &exe_vers[3]);
-		_stscanf(current_version.c_str(),             _T("%d.%d.%d.%d"), &cur_vers[0], &cur_vers[1], &cur_vers[2], &cur_vers[3]);
+		_stscanf_s(version.GetProductVersion().c_str(), _T("%d.%d.%d.%d"), &exe_vers[0], &exe_vers[1], &exe_vers[2], &exe_vers[3]);
+		_stscanf_s(current_version.c_str(),             _T("%d.%d.%d.%d"), &cur_vers[0], &cur_vers[1], &cur_vers[2], &cur_vers[3]);
 		String exe_version_hex = strutils::format(_T("%08x%08x%08x%08x"), exe_vers[0], exe_vers[1], exe_vers[2], exe_vers[3]);
 		String cur_version_hex = strutils::format(_T("%08x%08x%08x%08x"), cur_vers[0], cur_vers[1], cur_vers[2], cur_vers[3]);
 
@@ -2329,8 +2330,8 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Theirs File"),
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
-			conflictCompared = DoFileOpen(&PathContext(revFile, workFile), 
-						dwFlags, strDesc2);
+			PathContext tmpPathContext(revFile, workFile);
+			conflictCompared = DoFileOpen(&tmpPathContext, dwFlags, strDesc2);
 		}
 		else
 		{
@@ -2338,9 +2339,9 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Base File"),
 				(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("Theirs File"),
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
+			PathContext tmpPathContext(baseFile, revFile, workFile);
 			DWORD dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
-			conflictCompared = DoFileOpen(&PathContext(baseFile, revFile, workFile), 
-						dwFlags, strDesc3);
+			conflictCompared = DoFileOpen(&tmpPathContext, dwFlags, strDesc3);
 		}
 	}
 	else
@@ -2464,7 +2465,7 @@ void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 void CMainFrame::OnMRUs(UINT nID)
 {
 	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
-	const int idx = nID - ID_MRU_FIRST;
+	const size_t idx = nID - ID_MRU_FIRST;
 	if (idx < mrus.size())
 	{
 		MergeCmdLineInfo cmdInfo((_T("\"") + mrus[idx].path + _T("\" ") + mrus[idx].params).c_str());
@@ -2480,7 +2481,7 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 		return;
 	
 	// empty the menu
-	int i = ::GetMenuItemCount(hMenu);
+	size_t i = ::GetMenuItemCount(hMenu);
 	while (i --)
 		::DeleteMenu(hMenu, 0, MF_BYPOSITION);
 

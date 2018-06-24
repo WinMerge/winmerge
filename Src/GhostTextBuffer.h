@@ -73,24 +73,24 @@ public :
 	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
 			int nEndLine, int nEndChar, CString &text,
 			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC,
-			bool bExcludeInvisibleLines = true);
+			bool bExcludeInvisibleLines = true) const override;
 
 
 	// Text modification functions
 	virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos,
-		LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar,
-		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
+		LPCTSTR pszText, size_t cchText, int &nEndLine, int &nEndChar,
+		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true) override;
 	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
-		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
+		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true) override;
 	bool InsertGhostLine (CCrystalTextView * pSource, int nLine);
 
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-	                            LPCTSTR pszText, int cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = NULL);
-	virtual UndoRecord GetUndoRecord(int nUndoPos) const;
+	                            LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = NULL) override;
+	virtual UndoRecord GetUndoRecord(int nUndoPos) const override;
 
-	virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const;
-	virtual void RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers);
+	virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const override;
+	virtual void RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers) override;
 
 public:
 	//@{
@@ -138,8 +138,3 @@ protected:
 
 	DECLARE_MESSAGE_MAP ()
 };
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.

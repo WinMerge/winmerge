@@ -180,7 +180,7 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len, int defcodepag
 		size_t n = len < sizeof line - 1 ? len : sizeof line - 1;
 		memcpy(line, base, n);
 		line[n] = 0;
-	} while (len && sscanf(line, "#pragma code_page(%5u)", &cp) != 1);
+	} while (len && sscanf_s(line, "#pragma code_page(%5u)", &cp) != 1);
 	return cp;
 }
 
@@ -230,7 +230,7 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
  * @param [in] bGuessEncoding Try to guess codepage (not just unicode encoding).
  * @return Structure getting the encoding info.
  */
-FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType, int mapmaxlen)
+FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType, ptrdiff_t mapmaxlen)
 {
 	FileTextEncoding encoding;
 	CMarkdown::FileImage fi(filepath.c_str(), mapmaxlen);

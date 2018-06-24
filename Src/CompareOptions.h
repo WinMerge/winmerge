@@ -5,6 +5,8 @@
  */
 #pragma once
 
+#include "diff.h"
+
 /**
  * @brief Whether to ignore whitespace (or to ignore changes in whitespace)
  *
@@ -37,27 +39,29 @@ enum WhitespaceIgnoreChoices
  */
 enum DiffOutputType
 {
+	// NOTE: these values are stored in the user's Registry - don't change their value !!
 	/**< Default output style.  */
-	DIFF_OUTPUT_NORMAL,
+	DIFF_OUTPUT_NORMAL = OUTPUT_NORMAL,
 	/**< Output the differences with lines of context before and after (-c).  */
-	DIFF_OUTPUT_CONTEXT,
+	DIFF_OUTPUT_CONTEXT = OUTPUT_CONTEXT,
 	/**< Output the differences in a unified context diff format (-u). */
-	DIFF_OUTPUT_UNIFIED,
-	/** Output html style.  */
-	DIFF_OUTPUT_HTML = 8,
+	DIFF_OUTPUT_UNIFIED = OUTPUT_UNIFIED,
 // These are not used, see the comment above enum.
 #if 0
 	/**< Output the differences as commands suitable for `ed' (-e).  */
-	DIFF_OUTPUT_ED,
+	DIFF_OUTPUT_ED = OUTPUT_ED,
 	/**< Output the diff as a forward ed script (-f).  */
-	DIFF_OUTPUT_FORWARD_ED,
+	DIFF_OUTPUT_FORWARD_ED = OUTPUT_FORWARD_ED,
 	/**< Like -f, but output a count of changed lines in each "command" (-n). */
-	DIFF_OUTPUT_RCS,
+	DIFF_OUTPUT_RCS = OUTPUT_RCS,
 	/**< Output merged #ifdef'd file (-D).  */
-	DIFF_OUTPUT_IFDEF,
+	DIFF_OUTPUT_IFDEF = OUTPUT_IFDEF,
 	/**< Output sdiff style (-y).  */
-	DIFF_OUTPUT_SDIFF,
+	DIFF_OUTPUT_SDIFF = OUTPUT_SDIFF,
 #endif
+//  ... end of unused
+	/** Output html style.  */
+	DIFF_OUTPUT_HTML = OUTPUT_HTML,
 };
 
 /**

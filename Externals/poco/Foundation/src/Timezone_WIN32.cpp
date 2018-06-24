@@ -63,9 +63,10 @@ int Timezone::dst()
 bool Timezone::isDst(const Timestamp& timestamp)
 {
 	std::time_t time = timestamp.epochTime();
-	struct std::tm* tms = std::localtime(&time);
-	if (!tms) throw Poco::SystemException("cannot get local time DST flag");
-	return tms->tm_isdst > 0;
+	struct std::tm tms;
+	if (::localtime_s(&tms, &time) != 0)
+		throw Poco::SystemException("cannot get local time DST flag");
+	return tms.tm_isdst > 0;
 }
 
 	

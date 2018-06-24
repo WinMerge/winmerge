@@ -17,6 +17,8 @@ You should have received a copy of the GNU General Public License
 along with GNU DIFF; see the file COPYING.  If not, write to
 the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
+#pragma once
+
 /* We must define `volatile' and `const' first (the latter inside config.h),
    so that they're used consistently in all system includes.  */
 #if !defined(__STDC__) && !defined(_MSC_VER)
@@ -28,13 +30,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include <sys/types.h>
 #include <sys/stat.h>
-
-#if __STDC__ || defined(__MSDOS__) || defined(__NT__) || defined(WIN32) || defined(WIN64)
-#define PARAMS(args) args
-#else
-#define PARAMS(args) ()
-#define void char
-#endif
 
 #if STAT_MACROS_BROKEN
 #undef S_ISBLK

@@ -61,15 +61,15 @@ str_fill (LPTSTR s, TCHAR ch, long count)
   *s = _T ('\0');
 }
 
-long
+ptrdiff_t
 str_pos (LPCTSTR whole, LPCTSTR piece)
 {
   LPCTSTR s = whole;
-  long l = _tcslen (piece);
+  size_t l = _tcslen (piece);
 
   while (*s)
     if (!_tcsnicmp (s++, piece, l))
-      return s - whole - 1;
+      return (s - whole - 1);
   return -2;
 }
 
@@ -107,12 +107,12 @@ skip_word (LPCTSTR s)
   return skip_spaces (s);
 }
 
-long
+ptrdiff_t
 get_coding (LPCTSTR name, type_codes *codes, int *coding)
 {
-  long i, pos;
+  size_t pos;
 
-  for (i = 0; i < codes_count; i++)
+  for (int i = 0; i < codes_count; i++)
     if ((pos = str_pos (name, codes[i].name)) >= 0)
       {
         *coding = i;
@@ -122,11 +122,12 @@ get_coding (LPCTSTR name, type_codes *codes, int *coding)
   return -2;
 }
 
-long
+
+ptrdiff_t
 fget_coding (LPCTSTR text, int *coding)
 {
-  long posit = 0;
-  long i = 0;
+  ptrdiff_t posit = 0;
+  ptrdiff_t i = 0;
   LPCTSTR s, s1;
 
   while ((i = str_pos (text, FD_ENCODING_LBRACKET)) >= 0)
@@ -179,7 +180,7 @@ TCHAR iconvert_char (TCHAR ch, int source_coding, int destination_coding, bool a
 int
 iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabet_only)
   {
-    long posit = -2, i, j;
+    ptrdiff_t posit = -2;
     LPCTSTR source_chars, destination_chars, cod_pos = NULL;
     TCHAR ch;
     LPTSTR s = string;
@@ -203,6 +204,7 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
     for (;;)
       if (cod_pos == s)
         {
+		  size_t i, j;
           i = _tcslen (source_codes[source_coding].name);
           j = _tcslen (destination_codes[destination_coding].name);
           if (i != j)
@@ -215,7 +217,7 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
           ch = *s;
           if (!ch)
             break;
-          i = chars_count;
+          int i = chars_count;
           if ((unsigned) ch > 127)
             for (i = 0; i < chars_count; i++)
               if (ch == source_chars[i])
@@ -233,11 +235,12 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
 int
 iconvert_new (LPCTSTR source, LPTSTR *destination, int source_coding, int destination_coding, bool alphabet_only)
   {
-    LPTSTR dest = (LPTSTR) malloc (_tcslen (source) + 1 + 10); /* reserved for MYCHARSET= replacement */
+	const size_t destSiz = _tcslen(source) + 1 + 10;
+    LPTSTR dest = static_cast<LPTSTR> (malloc (sizeof(TCHAR) * destSiz)); /* reserved for MYCHARSET= replacement */
     int result = -3;
     if (dest)
       {
-        _tcscpy (dest, source);
+        _tcscpy_s (dest, destSiz, source);
         result = iconvert (dest, source_coding, destination_coding, alphabet_only);
         if (!result)
           {

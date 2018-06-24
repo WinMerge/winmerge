@@ -25,15 +25,6 @@
 
 #define REMEMBER_COUNT  64
 
-#ifdef  _DEBUG
-#include "memcombo.inl"
-#endif // _DEBUG
-
-#ifdef INLINE
-#undef INLINE
-#endif
-#define INLINE
-
 /////////////////////////////////////////////////////////////////////////////
 // CMemComboBox
 
@@ -42,6 +33,17 @@ BEGIN_MESSAGE_MAP (CMemComboBox, CComboBox)
 ON_CONTROL_REFLECT (CBN_SETFOCUS, OnSetfocus)
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP ()
+
+////////////////////////////////////////////////////////////////////////////////
+// Methods
+
+CMemComboBox::CMemComboBox () : m_bFirstFocus (true)
+{
+}
+
+CMemComboBox::~CMemComboBox ()
+{
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CMemComboBox message handlers
@@ -85,7 +87,7 @@ void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = NULL)
   info.lfMenuFont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
   info.lfMenuFont.lfQuality = DEFAULT_QUALITY;
   info.lfMenuFont.lfPitchAndFamily = FF_SWISS;
-  _tcscpy(info.lfMenuFont.lfFaceName, _T("MS Sans Serif"));
+  _tcscpy_s(info.lfMenuFont.lfFaceName, _T("MS Sans Serif"));
   oFont.CreateFontIndirect(&info.lfMenuFont);
   oldFont = dc.SelectObject(&oFont);
   if(lpszText && *lpszText) {

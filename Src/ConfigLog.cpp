@@ -69,8 +69,7 @@ void CConfigLog::WritePluginsInLogFile(const wchar_t *transformationEvent)
 	piPluginArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(transformationEvent);
 
-	int iPlugin;
-	for (iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
+	for (size_t iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
 		m_pfile->WriteString(_T("\r\n  "));

@@ -55,7 +55,7 @@ static unsigned GetLocaleGrouping(int defval)
 String NumToLocaleStr(int n)
 {
 	TCHAR numbuff[34];
-	_ltot(n, numbuff, 10);
+	_ltot_s(n, numbuff, 10);
 	return GetLocaleStr(numbuff);
 }
 
@@ -71,7 +71,7 @@ String NumToLocaleStr(int n)
 String NumToLocaleStr(int64_t n)
 {
 	TCHAR numbuff[34];
-	_i64tot(n, numbuff, 10);
+	_i64tot_s(n, numbuff, sizeof(numbuff)/sizeof(TCHAR), 10);
 	return GetLocaleStr(numbuff);
 }
 

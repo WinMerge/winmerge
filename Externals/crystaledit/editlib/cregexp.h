@@ -14,8 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef __REGEX_H
-#define __REGEX_H
+#pragma once
 
 /*
  * Operator:
@@ -96,13 +95,12 @@ typedef struct _RxNode RxNode;
 struct _RxNode;
 
 typedef struct {
-    int Open[NSEXPS];    // -1 = not matched
-    int Close[NSEXPS];
+    ptrdiff_t Open[NSEXPS];    // -1 = not matched
+    ptrdiff_t Close[NSEXPS];
 } RxMatchRes;
 
 RxNode EDITPADC_CLASS *RxCompile(LPCTSTR Regexp, unsigned int RxOpt = RX_CASE);
-int EDITPADC_CLASS RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Match);
+int EDITPADC_CLASS RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *Match);
 int EDITPADC_CLASS RxReplace(LPCTSTR rep, LPCTSTR Src, int len, RxMatchRes match, LPTSTR *Dest, int *Dlen);
 void EDITPADC_CLASS RxFree(RxNode *Node);
 
-#endif

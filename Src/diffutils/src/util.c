@@ -45,8 +45,7 @@ static struct msg **msg_chain_end = &msg_chain;
    TEXT should normally be the file name.  */
 
 void
-perror_with_name (text)
-     char const *text;
+perror_with_name (char const *text)
 {
   int e = errno;
   fprintf (stderr, "%s: ", program);
@@ -57,8 +56,7 @@ perror_with_name (text)
 /* Use when a system call returns non-zero status and that is fatal.  */
 
 void
-pfatal_with_name (text)
-     char const *text;
+pfatal_with_name (char const *text)
 {
   int e = errno;
   print_message_queue ();
@@ -73,8 +71,7 @@ pfatal_with_name (text)
    with args ARG1 and ARG2.  */
 
 void
-error (format, arg, arg1)
-     char const *format, *arg, *arg1;
+error (char const *format, char const *arg, char const *arg1)
 {
   fprintf (stderr, "%s: ", program);
   fprintf (stderr, format, arg, arg1);
@@ -84,8 +81,7 @@ error (format, arg, arg1)
 /* Print an error message containing the string TEXT, then exit.  */
 
 void
-fatal (m)
-     char const *m;
+fatal (char const *m)
 {
   print_message_queue ();
   error ("%s", m, 0);
@@ -97,15 +93,13 @@ fatal (m)
    This is used for things like "binary files differ" and "Only in ...".  */
 
 void
-message (format, arg1, arg2)
-     char const *format, *arg1, *arg2;
+message (char const *format, char const *arg1, char const *arg2)
 {
   message5 (format, arg1, arg2, 0, 0);
 }
 
 void
-message5 (format, arg1, arg2, arg3, arg4)
-     char const *format, *arg1, *arg2, *arg3, *arg4;
+message5 (char const *format, char const *arg1, char const *arg2, char const *arg3, char const *arg4)
 {
   if (paginate_flag)
     {
@@ -150,9 +144,7 @@ static char const *current_name1;
 static int current_depth;
 
 void
-setup_output (name0, name1, depth)
-     char const *name0, *name1;
-     int depth;
+setup_output (char const *name0, char const *name1, int depth)
 {
   current_name0 = name0;
   current_name1 = name1;
@@ -170,22 +162,25 @@ begin_output ()
   if (outfile != 0)
     return;
 
+  char *mySwitch = (switch_string != NULL ? switch_string : "");
+
   /* Construct the header of this piece of diff.  */
-  name = xmalloc (strlen (current_name0) + strlen (current_name1)
-		  + strlen (switch_string) + 7);
+  const size_t nameSiz = strlen(current_name0) + strlen(current_name1)
+	  + strlen(mySwitch) + 7;
+  name = xmalloc (nameSiz);
   /* Posix.2 section 4.17.6.1.1 specifies this format.  But there are some
      bugs in the first printing (IEEE Std 1003.2-1992 p 251 l 3304):
      it says that we must print only the last component of the pathnames,
      and it requires two spaces after "diff" if there are no options.
      These requirements are silly and do not match historical practice.  */
-  sprintf (name, "diff%s %s %s", switch_string, current_name0, current_name1);
+  sprintf_s (name, nameSiz, "diff%s %s %s", mySwitch, current_name0, current_name1);
 
   if (paginate_flag)
     {
 #if defined(__MSDOS__) || defined(__NT__) || defined(WIN32)
       char command[120];
 
-      sprintf(command, "%s -f -h \"%s\"", PR_FILE_NAME, name);
+      sprintf_s(command, sizeof(command), "%s -f -h \"%s\"", PR_FILE_NAME, name);
       if ((outfile = popen(command, "w")) == NULL)
         pfatal_with_name ("popen");
 #else
@@ -301,9 +296,7 @@ ISWSPACE (char ch)
    Return 1 if the lines differ, like `memcmp'.  */
 
 int
-line_cmp (s1, len1, s2, len2)
-     char const HUGE *s1, HUGE *s2;
-     size_t len1, len2;
+line_cmp (char const *s1, size_t len1, char const *s2, size_t len2)
 {
   register unsigned char const *t1, *t2;
   register unsigned char end_char = line_end_char;
@@ -492,15 +485,13 @@ line_cmp (s1, len1, s2, len2)
    Return the last link before the first gap.  */
 
 struct change *
-find_change (start)
-     struct change *start;
+find_change (struct change *start)
 {
   return start;
 }
 
 struct change *
-find_reverse_change (start)
-     struct change *start;
+find_reverse_change (struct change *start)
 {
   return start;
 }
@@ -517,10 +508,9 @@ find_reverse_change (start)
    link at the end) and prints it.  */
 
 void
-print_script (script, hunkfun, printfun)
-     struct change *script;
-     struct change * (*hunkfun) PARAMS((struct change *));
-     void (*printfun) PARAMS((struct change *));
+print_script (struct change *script, 
+				struct change *(*hunkfun) (struct change *), 
+				void (*printfun) (struct change *) )
 {
   struct change *next = script;
 
@@ -553,9 +543,7 @@ print_script (script, hunkfun, printfun)
    the line is inserted, deleted, changed, etc.).  */
 
 void
-print_1_line (line_flag, line)
-     char const *line_flag;
-     char const HUGE * const *line;
+print_1_line (char const *line_flag, char const * const *line)
 {
   char const HUGE *text = line[0], HUGE *limit = line[1]; /* Help the compiler.  */
   FILE *out = outfile; /* Help the compiler some more.  */
@@ -647,8 +635,7 @@ fwrite_textify( const void *buffer, size_t size, size_t count, FILE *stream )
    internal carriage return, so that tab stops continue to line up.  */
 
 void
-output_1_line (text, limit, flag_format, line_flag)
-     char const HUGE *text, HUGE *limit, *flag_format, *line_flag;
+output_1_line (char const *text, char const *limit, char const *flag_format, char const *line_flag)
 {
   char * pos = NULL;
   if (!tab_expand_flag)
@@ -697,8 +684,7 @@ output_1_line (text, limit, flag_format, line_flag)
 }
 
 int
-change_letter (inserts, deletes)
-     int inserts, deletes;
+change_letter (int inserts, int deletes)
 {
   if (!inserts)
     return 'd';
@@ -716,18 +702,13 @@ change_letter (inserts, deletes)
    Actual line numbers count from 1 within the entire file.  */
 
 int
-translate_line_number (file, lnum)
-     struct file_data const *file;
-     int lnum;
+translate_line_number (struct file_data const *file, int lnum)
 {
   return lnum + file->prefix_lines + 1;
 }
 
 void
-translate_range (file, a, b, aptr, bptr)
-     struct file_data const *file;
-     int a, b;
-     int *aptr, *bptr;
+translate_range (struct file_data const *file, int a, int b, int *aptr, int *bptr)
 {
   *aptr = translate_line_number (file, a - 1) + 1;
   *bptr = translate_line_number (file, b + 1) - 1;
@@ -740,10 +721,7 @@ translate_range (file, a, b, aptr, bptr)
    We print the translated (real) line numbers.  */
 
 void
-print_number_range (sepchar, file, a, b)
-     int sepchar;
-     struct file_data *file;
-     int a, b;
+print_number_range (int sepchar, struct file_data *file, int a, int b)
 {
   int trans_a, trans_b;
   translate_range (file, a, b, &trans_a, &trans_b);
@@ -776,11 +754,7 @@ int iseolch (char ch)
    set to 0.  */
 
 void
-analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts, fd)
-     struct change *hunk;
-     int *first0, *last0, *first1, *last1;
-     int *deletes, *inserts;
-     const struct file_data fd[];
+analyze_hunk (struct change *hunk, int *first0, int *last0, int *first1, int *last1, int *deletes, int *inserts, const struct file_data fd[])
 {
   int l0, l1, show_from, show_to;
   int i;
@@ -838,8 +812,7 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts, fd)
 /* malloc a block of memory, with fatal error message if we can't do it. */
 
 VOID *
-xmalloc (size)
-     size_t size;
+xmalloc (size_t size)
 {
   register VOID *value;
 
@@ -860,9 +833,7 @@ xmalloc (size)
 /* realloc a block of memory, with fatal error message if we can't do it. */
 
 VOID *
-xrealloc (old, size)
-     VOID *old;
-     size_t size;
+xrealloc (VOID *old, size_t size)
 {
   register VOID *value;
 
@@ -883,12 +854,11 @@ xrealloc (old, size)
 /* Concatenate three strings, returning a newly malloc'd string.  */
 
 char *
-concat (s1, s2, s3)
-     char const *s1, *s2, *s3;
+concat (char const *s1, char const *s2, char const *s3)
 {
   size_t len = strlen (s1) + strlen (s2) + strlen (s3);
   char *new = xmalloc (len + 1);
-  sprintf (new, "%s%s%s", s1, s2, s3);
+  sprintf_s (new, len+1, "%s%s%s", s1, s2, s3);
   return new;
 }
 
@@ -896,8 +866,7 @@ concat (s1, s2, s3)
    of the file in DIR whose filename is FILE.  */
 
 char *
-dir_file_pathname (dir, file)
-     char const *dir, *file;
+dir_file_pathname (char const *dir, char const *file)
 {
 #if defined(__MSDOS__) || defined(__NT__) || defined(WIN32)
   char sep = dir[strlen(dir) - 1];
@@ -908,8 +877,7 @@ dir_file_pathname (dir, file)
 }
 
 void
-debug_script (sp)
-     struct change *sp;
+debug_script (struct change *sp)
 {
   fflush (stdout);
   for (; sp; sp = sp->link)

@@ -14,8 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#ifndef __STATBAR_H__INCLUDED__
-#define __STATBAR_H__INCLUDED__
+#pragma once
 
 class EDITPADC_CLASS CEditStatusBar : public CStatusBar
   {
@@ -49,5 +48,3 @@ public :
 
     DECLARE_MESSAGE_MAP ()
   };
-
-#endif // __STATBAR_H__INCLUDED__

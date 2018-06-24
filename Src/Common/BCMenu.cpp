@@ -193,9 +193,10 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
 	
 	if (szWideString)
     {
-		m_szMenuText = new wchar_t[sizeof(wchar_t)*(wcslen(szWideString)+1)];
+		const size_t MenuSiz = wcslen(szWideString) + 1;
+		m_szMenuText = new wchar_t[MenuSiz];
 		if (m_szMenuText)
-			wcscpy(m_szMenuText,szWideString);
+			wcscpy_s(m_szMenuText, MenuSiz, szWideString);
     }
 	else
 		m_szMenuText=NULL;//set to NULL so we need not bother about dangling non-NULL Ptrs
@@ -276,11 +277,11 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 	ASSERT(lpDIS != NULL);
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 	CRect rect;
-	UINT state = reinterpret_cast<BCMenuData*>(lpDIS->itemData)->nFlags;
+	UINT state0 = reinterpret_cast<BCMenuData*>(lpDIS->itemData)->nFlags;
 	COLORREF clrBack=GetSysColor(COLOR_MENU);
 	CBrush brBackground(clrBack);
 
-	if(state & MF_SEPARATOR){
+	if(state0 & MF_SEPARATOR){
 		rect.CopyRect(&lpDIS->rcItem);
 		pDC->FillRect (rect,&brBackground);
 		rect.top += (rect.Height()>>1);
@@ -398,7 +399,8 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 			}
 			else{
 				if(state&ODS_CHECKED){
-					pDC->FillRect(rect2,&CBrush(LightenColor(clrBack,0.6)));
+					CBrush cbTemp = LightenColor(clrBack, 0.6);
+					pDC->FillRect(rect2,&cbTemp);
 					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
                         rect.top+m_iconY+4+dy);
 					pDC->Draw3dRect(rect2,GetSysColor(COLOR_3DSHADOW),
@@ -1367,8 +1369,9 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 		
 		// Obtain Caption (and length)
 		
-		wchar_t *szCaption=new wchar_t[wcslen((wchar_t *)pTp)+1];
-		wcscpy(szCaption,(wchar_t *)pTp);
+		const size_t CaptionSiz = wcslen((wchar_t *)pTp)+1;
+		wchar_t *szCaption=new wchar_t[CaptionSiz];
+		wcscpy_s(szCaption, CaptionSiz, reinterpret_cast<wchar_t *>(pTp));
 		pTp=&pTp[(wcslen((wchar_t *)pTp)+1)*sizeof(wchar_t)];//modified SK
 		
 		// Handle popup menus first....
@@ -1666,7 +1669,8 @@ void BCMenu::GetTransparentBitmap(CBitmap &bmp)
 	col=RGB(255,0,255); // Original was RGB(192,192,192)
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
-	ddc2.FillRect(rect,&CBrush(col));
+	CBrush cbTemp = col;
+	ddc2.FillRect(rect, &cbTemp);
 	ddc2.SelectObject(pddcOldBmp2);
 	newcol=GetSysColor(COLOR_3DFACE);
 
@@ -1706,7 +1710,8 @@ void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
-	ddc2.FillRect(rect,&CBrush(GetSysColor(COLOR_3DFACE)));
+	CBrush cbTemp = GetSysColor(COLOR_3DFACE);
+	ddc2.FillRect(rect, &cbTemp);
 	ddc2.SelectObject(pddcOldBmp2);
 	discol=GetSysColor(COLOR_BTNSHADOW);
 
@@ -1791,7 +1796,8 @@ BOOL BCMenu::Draw3DCheckmark(CDC *dc, const CRect& rc,
 	CRect rcDest = rc;
 	COLORREF col=GetSysColor(COLOR_MENU);
 	if(!bSelected)col = LightenColor(col,0.6);
-	dc->FillRect(rcDest,&CBrush(col));
+	CBrush cbTemp = col;
+	dc->FillRect(rcDest, &cbTemp);
 	dc->DrawEdge(&rcDest, BDR_SUNKENOUTER, BF_RECT);
 	if (!hbmCheck)DrawCheckMark(dc,rc.left+4,rc.top+4,GetSysColor(COLOR_MENUTEXT));
 	else DrawRadioDot(dc,rc.left+5,rc.top+4,GetSysColor(COLOR_MENUTEXT));

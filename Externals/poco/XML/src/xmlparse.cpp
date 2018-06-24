@@ -1646,14 +1646,14 @@ XML_GetBuffer(XML_Parser parser, int len)
       bufferLim = newBuf + bufferSize;
 #ifdef XML_CONTEXT_BYTES
       if (bufferPtr) {
-        int keep = (int)(bufferPtr - buffer);
-        if (keep > XML_CONTEXT_BYTES)
-          keep = XML_CONTEXT_BYTES;
-        memcpy(newBuf, &bufferPtr[-keep], bufferEnd - bufferPtr + keep);
+        int keep1 = (int)(bufferPtr - buffer);
+        if (keep1 > XML_CONTEXT_BYTES)
+          keep1 = XML_CONTEXT_BYTES;
+        memcpy(newBuf, &bufferPtr[-keep1], bufferEnd - bufferPtr + keep1);
         FREE(buffer);
         buffer = newBuf;
-        bufferEnd = buffer + (bufferEnd - bufferPtr) + keep;
-        bufferPtr = buffer + keep;
+        bufferEnd = buffer + (bufferEnd - bufferPtr) + keep1;
+        bufferPtr = buffer + keep1;
       }
       else {
         bufferEnd = newBuf + (bufferEnd - bufferPtr);
@@ -1759,7 +1759,7 @@ XML_Index XMLCALL
 XML_GetCurrentByteIndex(XML_Parser parser)
 {
   if (eventPtr)
-    return parseEndByteIndex - (parseEndPtr - eventPtr);
+    return static_cast<XML_Index>(parseEndByteIndex - (parseEndPtr - eventPtr));
   return -1;
 }
 
@@ -4313,16 +4313,16 @@ doProlog(XML_Parser parser,
     case XML_ROLE_GROUP_OPEN:
       if (prologState.level >= groupSize) {
         if (groupSize) {
-          char *temp = (char *)REALLOC(groupConnector, groupSize *= 2);
-          if (temp == NULL)
+          char *temp1 = (char *)REALLOC(groupConnector, groupSize *= 2);
+          if (temp1 == NULL)
             return XML_ERROR_NO_MEMORY;
-          groupConnector = temp;
+          groupConnector = temp1;
           if (dtd->scaffIndex) {
-            int *temp = (int *)REALLOC(dtd->scaffIndex,
+            int *temp2 = (int *)REALLOC(dtd->scaffIndex,
                           groupSize * sizeof(int));
-            if (temp == NULL)
+            if (temp2 == NULL)
               return XML_ERROR_NO_MEMORY;
-            dtd->scaffIndex = temp;
+            dtd->scaffIndex = temp2;
           }
         }
         else {

@@ -145,6 +145,3 @@ private:
 	bool m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
 	bool m_bGeneratingReport;
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.

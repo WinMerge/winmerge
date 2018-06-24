@@ -27,8 +27,7 @@
 // ID line follows -- this is updated by SVN
 // $Id: MergeCmdLineInfo.h 6940 2009-08-01 17:29:01Z kimmov $
 
-#ifndef _MERGE_CMD_LINE_INFO_INCLUDED_
-#define _MERGE_CMD_LINE_INFO_INCLUDED_
+#pragma once
 
 #include "UnicodeString.h"
 #include "PathContext.h"
@@ -103,4 +102,3 @@ private:
 	MergeCmdLineInfo& operator=(const MergeCmdLineInfo& rhs);
 };
 
-#endif // _MERGE_CMD_LINE_INFO_INCLUDED_

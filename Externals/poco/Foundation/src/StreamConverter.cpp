@@ -133,10 +133,10 @@ int StreamConverterBuf::writeToDevice(char c)
 				++_errors;
 				return -1;
 			}
-			int n = _outEncoding.convert(uc, _buffer, sizeof(_buffer));
-			if (n == 0) n = _outEncoding.convert(_defaultChar, _buffer, sizeof(_buffer));
-			poco_assert_dbg (n <= sizeof(_buffer));
-			_pOstr->write((char*) _buffer, n);
+			int n1 = _outEncoding.convert(uc, _buffer, sizeof(_buffer));
+			if (n1 == 0) n1 = _outEncoding.convert(_defaultChar, _buffer, sizeof(_buffer));
+			poco_assert_dbg (n1 <= sizeof(_buffer));
+			_pOstr->write((char*) _buffer, n1);
 			_sequenceLength = 0;
 			_pos = 0;
 		}

@@ -119,6 +119,7 @@ public:
 	void MoveToPrevDiff();
 	void OpenNextDiff();
 	void OpenPrevDiff();
+	void SetActivePane(int pane);
 
 // Implementation types
 private:
@@ -224,17 +225,16 @@ protected:
 	HMENU m_hCurrentMenu; /**< Current shell context menu (either left or right) */
 	std::unique_ptr<DirViewTreeState> m_pSavedTreeState;
 	std::unique_ptr<DirViewColItems> m_pColItems;
+	int m_nActivePane;
 
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
 	//{{AFX_MSG(CDirView)
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
-	afx_msg void OnDirCopy();
+	afx_msg void OnDirCopy(UINT id);
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	afx_msg void OnCtxtDirCopy();
-	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	afx_msg void OnUpdateDirCopy(CCmdUI* pCmdUI);
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	afx_msg void OnUpdateCtxtDirCopy(CCmdUI* pCmdUI);
@@ -425,9 +425,3 @@ public:
 inline CDirDoc* CDirView::GetDocument()
 { return reinterpret_cast<CDirDoc*>(m_pDocument); }
 #endif
-
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.

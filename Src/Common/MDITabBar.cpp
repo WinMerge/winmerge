@@ -178,17 +178,17 @@ void CMDITabBar::OnContextMenu(CWnd *pWnd, CPoint point)
 	case ID_CLOSE_LEFT_TABS: {
 		int curcel = GetCurSel();
 		int n = GetItemCount();
-		TCITEM tci;
-		tci.mask = TCIF_PARAM;
+		TCITEM tci1;
+		tci1.mask = TCIF_PARAM;
 		for (int i = n - 1; i >= 0; --i)
 		{
 			if ((command == ID_CLOSE_OTHER_TABS && i == curcel) ||
 				(command == ID_CLOSE_RIGHT_TABS && i <= curcel) ||
 				(command == ID_CLOSE_LEFT_TABS  && i >= curcel))
 				continue;
-			GetItem(i, &tci);
-			CWnd* pMDIChild = FromHandle((HWND)tci.lParam);
-			pMDIChild->SendMessage(WM_SYSCOMMAND, SC_CLOSE);
+			GetItem(i, &tci1);
+			CWnd* pMDIChild1 = FromHandle((HWND)tci1.lParam);
+			pMDIChild1->SendMessage(WM_SYSCOMMAND, SC_CLOSE);
 		}
 		break;
 	}
@@ -244,7 +244,7 @@ void CMDITabBar::UpdateTabs()
 	for (POSITION pos = MDIFrameList.GetStartPosition(); pos; )
 	{
 		HWND hFrameWnd;
-		int item;
+//~		int item;
 		MDIFrameList.GetNextAssoc(pos, hFrameWnd, item);
 
 		CString strTitle;
@@ -369,10 +369,10 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		CPoint pt;
 		GetCursorPos(&pt);
 		ScreenToClient(&pt);
-		CRect rc = GetCloseButtonRect(nItem);
-		DrawFrameControl(lpDraw->hDC, &rc, DFC_CAPTION, 
-			DFCS_CAPTIONCLOSE | DFCS_FLAT | (rc.PtInRect(pt) ? DFCS_HOT : 0) |
-			((m_bCloseButtonDown && rc.PtInRect(pt)) ? DFCS_PUSHED : 0));
+		CRect rc1 = GetCloseButtonRect(nItem);
+		DrawFrameControl(lpDraw->hDC, &rc1, DFC_CAPTION, 
+			DFCS_CAPTIONCLOSE | DFCS_FLAT | (rc1.PtInRect(pt) ? DFCS_HOT : 0) |
+			((m_bCloseButtonDown && rc1.PtInRect(pt)) ? DFCS_PUSHED : 0));
 	}
 }
 

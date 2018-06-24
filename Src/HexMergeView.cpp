@@ -351,7 +351,7 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
  */
 BOOL CHexMergeView::GetModified()
 {
-	return m_pif->get_modified();
+	return m_pif->get_status()->iFileChanged;
 }
 
 /**

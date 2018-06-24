@@ -105,8 +105,8 @@ public:
  */
 struct DiffRangeInfo: public DIFFRANGE
 {
-	size_t next; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
-	size_t prev; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
+	ptrdiff_t next; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
+	ptrdiff_t prev; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
 
 	DiffRangeInfo() { InitLinks(); }
 	explicit DiffRangeInfo(const DIFFRANGE & di) : DIFFRANGE(di) { InitLinks(); }

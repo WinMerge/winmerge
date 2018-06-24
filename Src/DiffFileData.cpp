@@ -72,7 +72,7 @@ bool DiffFileData::DoOpenFiles()
 		// Actual paths are m_FileLocation[i].filepath
 		// but these are often temporary files
 		// Displayable (original) paths are m_sDisplayFilepath[i]
-		m_inf[i].name = strdup(ucr::toSystemCP(m_sDisplayFilepath[i]).c_str());
+		m_inf[i].name = _strdup(ucr::toSystemCP(m_sDisplayFilepath[i]).c_str());
 		if (m_inf[i].name == NULL)
 			return false;
 
@@ -135,7 +135,7 @@ void DiffFileData::Reset()
 
 		if (m_inf[i].desc > 0)
 		{
-			close(m_inf[i].desc);
+			_close(m_inf[i].desc);
 		}
 		m_inf[i].desc = 0;
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));
@@ -166,8 +166,8 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 	{
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file
-		bool bMayOverwrite = 0 != strutils::compare_nocase(filepathTransformed, filepath);
-		if (!FileTransform::AnyCodepageToUTF8(encoding.m_codepage, filepathTransformed, bMayOverwrite))
+		bool bMayOverwrite1 = 0 != strutils::compare_nocase(filepathTransformed, filepath);
+		if (!FileTransform::AnyCodepageToUTF8(encoding.m_codepage, filepathTransformed, bMayOverwrite1))
 			return false;
 	}
 	return true;

@@ -34,6 +34,7 @@
 
 BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
 	ON_NOTIFY_EX (TTN_NEEDTEXT, 0, OnToolTipNotify)
+	ON_CONTROL_RANGE (EN_SETFOCUS, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSetFocusEdit)
 END_MESSAGE_MAP()
 
 
@@ -109,6 +110,15 @@ void CEditorFilePathBar::Resize()
 		widths[pane] = (infoBar.rcNormalPosition.right / m_nPanes) - 6;
 	Resize(widths);
 }
+
+/** 
+ * @brief Set callback function on EN_SETFOCUS notification
+ */
+void CEditorFilePathBar::SetOnSetFocusCallback(const std::function<void(int)> callbackfunc)
+{
+	m_callbackfunc = callbackfunc;
+}
+
 /** 
  * @brief Set widths.
  * This function resizes both controls to given size. The width is usually
@@ -186,6 +196,12 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 		}
 	}
 	return(FALSE);
+}
+
+void CEditorFilePathBar::OnSetFocusEdit(UINT id)
+{
+	if (m_callbackfunc)
+		m_callbackfunc(id - IDC_STATIC_TITLE_PANE0);
 }
 
 /** 

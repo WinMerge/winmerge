@@ -30,7 +30,7 @@ using Poco::RegularExpression;
 using Poco::UnicodeConverter;
 
 struct _RxNode {
-	std::auto_ptr<RegularExpression> regexp;
+	std::unique_ptr<RegularExpression> regexp;
 };
 
 RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
@@ -73,7 +73,7 @@ void RxFree(RxNode *n) {
 	}
 }
 
-int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Match) {
+int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *Match) {
     if (Regexp == 0) return 0;
 
 	int i;
@@ -82,7 +82,7 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Mat
 	RegularExpression::MatchVec ovector;
 	std::string compString;
 #ifdef UNICODE
-	int startoffset = ucr::Utf8len_of_string(Data, Start - Data);
+	size_t startoffset = ucr::Utf8len_of_string(Data, Start - Data);
 	UnicodeConverter::toUTF8(Data, Len, compString);
 #else
 	int startoffset = Start - Data;
@@ -117,9 +117,9 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Mat
 #define FLAG_UP_NEXT     4
 #define FLAG_DOWN_NEXT   8
 
-static int add(int *len, LPTSTR *s, LPCTSTR a, int alen, int &flag) {
-    int NewLen = *len + alen;
-    int i;
+static int add(size_t *len, LPTSTR *s, LPCTSTR a, size_t alen, int &flag) {
+    size_t NewLen = *len + alen;
+    size_t i;
 
     NewLen = NewLen * 2;
 
@@ -170,7 +170,7 @@ static int add(int *len, LPTSTR *s, LPCTSTR a, int alen, int &flag) {
 }
 
 int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *Dest, int *Dlen) {
-    int dlen = 0;
+    size_t dlen = 0;
     LPTSTR dest = 0;
     TCHAR Ch;
     int n;
@@ -280,7 +280,8 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
         }
     }
     //    add(&dlen, &dest, Src + match.Close[0], len - match.Close[0]);
-    *Dlen = dlen;
+	ASSERT(dlen < INT_MAX);
+    *Dlen = static_cast<int>(dlen);
     *Dest = dest;
     return 0;
 }

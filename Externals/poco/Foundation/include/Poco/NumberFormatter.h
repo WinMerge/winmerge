@@ -56,7 +56,7 @@ class Foundation_API NumberFormatter
 	///    * append* functions append the formatted value to
 	///      an existing string.
 	///
-	/// Internally, std::sprintf() is used to do the actual
+	/// Internally, ::sprintf_s() is used to do the actual
 	/// formatting.
 {
 public:

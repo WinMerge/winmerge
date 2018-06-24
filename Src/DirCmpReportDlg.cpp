@@ -117,7 +117,9 @@ BOOL DirCmpReportDlg::OnInitDialog()
 
 	// Set selected path to variable so file selection dialog shows
 	// correct filename and path.
-	m_ctlReportFile.GetWindowText(PopString(m_sReportFile));
+	CString cstrReportFile;
+	m_ctlReportFile.GetWindowText(cstrReportFile);
+	m_sReportFile = cstrReportFile;
 
 	UpdateData(FALSE);
 

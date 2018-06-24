@@ -7,8 +7,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#ifndef _EDITOR_UNDO_RECORD_H_
-#define _EDITOR_UNDO_RECORD_H_
+#pragma once
 
 class UndoRecord
 {
@@ -29,7 +28,7 @@ private:
   //
   struct TextBuffer
   {
-    int size;
+    size_t size;
     TCHAR data[1];
   };
 
@@ -72,7 +71,7 @@ private:
     delete m_paSavedRevisionNumbers;
   }
 
-  void SetText (LPCTSTR pszText, int cchText);
+  void SetText (LPCTSTR pszText, size_t cchText);
   void FreeText ();
 
   LPCTSTR GetText () const
@@ -85,7 +84,7 @@ private:
     return m_szText;
   }
 
-  int GetTextLength () const
+  size_t GetTextLength () const
   {
     if (((INT_PTR)m_pszText >> 16) != 0)
       return m_pszText->size;
@@ -93,4 +92,3 @@ private:
   }
 };
 
-#endif // _EDITOR_UNDO_RECORD_H_

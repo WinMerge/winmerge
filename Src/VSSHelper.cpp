@@ -140,7 +140,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 				//find sccprojectname inside this string
 				if (_tcsstr(buffer, _T("SccProjectUniqueName")) == buffer)
 				{
-					if (!GetSLNProjUniqueName(hfile, tfile, buffer))
+					if (!GetSLNProjUniqueName(hfile, tfile, buffer, nBufferSize))
 						succeed = false;
 				}
 				else if (_tcsstr(buffer, _T("SccProjectName")) == buffer)
@@ -370,7 +370,7 @@ bool VSSHelper::GetVCProjName(HANDLE hFile, HANDLE tFile) const
 	return true;
 }
 
-bool VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf) const
+bool VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf, size_t nBufSize) const
 {
 	TCHAR buffer[1024] = {0};
 	DWORD dwNumWritten = 0;
@@ -390,7 +390,7 @@ bool VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf) co
 	while (!_tcsstr(buffer, _T(".")))
 	{						
 		if (buffer[0] != '\\')
-			_tcsncat(buf, buffer, _tcslen(buffer));
+			_tcsncat_s(buf, nBufSize, buffer, _tcslen(buffer));
 
 		if (!WriteFile(tFile, buffer, lstrlen(buffer), &dwNumWritten, NULL))
 			return false;

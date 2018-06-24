@@ -43,7 +43,7 @@ public:
 private:
 	int (*const memcmp)(const void *, const void *, size_t);
 	const char *const utags;
-	int FindTag(const char *, const char *) const;
+	size_t FindTag(const char *, const char *) const;
 	class Token;
 };
 

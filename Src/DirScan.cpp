@@ -470,7 +470,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 	std::vector<DiffWorkerPtr> workers;
 	NotificationQueue queue;
 	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
-	for (unsigned i = 0; i < nworkers; ++i)
+	for (int i = 0; i < nworkers; ++i)
 	{
 		workers.push_back(DiffWorkerPtr(new DiffWorker(queue, myStruct->context, i)));
 		threadPool.start(*workers[i]);
