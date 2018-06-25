@@ -145,6 +145,7 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 		cbitem.mask = CBEIF_TEXT |
 			(m_bHasImageList ? CBEIF_IMAGE|CBEIF_SELECTEDIMAGE : 0);
 		cbitem.pszText = (LPTSTR)lpszItem;
+		cbitem.cchTextMax = (int)_tcslen(lpszItem);
 		cbitem.iItem = nIndex;
 		cbitem.iImage = I_IMAGECALLBACK;
 		cbitem.iSelectedImage = I_IMAGECALLBACK;
@@ -459,7 +460,7 @@ void CSuperComboBox::OnDropFiles(const std::vector<String>& files)
 
 static DWORD WINAPI SHGetFileInfoThread(LPVOID pParam)
 {
-	TCHAR szPath[MAX_PATH];
+	TCHAR szPath[MAX_PATH_FULL];
 	lstrcpy(szPath, (LPCTSTR)pParam);
 
 	SHFILEINFO sfi = {0};
