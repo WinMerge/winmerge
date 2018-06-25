@@ -768,7 +768,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 		try
 		{
 			TFile file(path);
-			m_pSharedMemory = new SharedMemory(file, SharedMemory::AM_READ, 0);
+			m_pSharedMemory = new SharedMemory(file, SharedMemory::AM_READ);
 			pImage = m_pSharedMemory->begin();
 			cbImage = m_pSharedMemory->end() - m_pSharedMemory->begin();
 		}
