@@ -121,13 +121,17 @@ RecalcPoint (CPoint & ptPoint)
   if (ptPoint.y > m_ptEnd.y)
     {
       ptPoint.y -= (m_ptEnd.y - m_ptStart.y);
-      return;
+	  ptPoint.y = min(ptPoint.y, m_ptEnd.y);
+	  if (ptPoint.y < m_ptEnd.y)
+		return;
     }
   if (ptPoint.y == m_ptEnd.y && ptPoint.x >= m_ptEnd.x)
     {
       ptPoint.y = m_ptStart.y;
       ptPoint.x = m_ptStart.x + (ptPoint.x - m_ptEnd.x);
-      return;
+	  ptPoint.x = min(ptPoint.x, m_ptEnd.x);
+	  if( ptPoint.x < m_ptEnd.x)
+		return;
     }
   if (ptPoint.y == m_ptStart.y)
     {
@@ -682,6 +686,11 @@ int CCrystalTextBuffer::
 GetFullLineLength (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
+  if (nLine >= m_aLines.size())
+  {
+	  ASSERT(false);
+	  return 0;
+  }
   ASSERT (m_aLines[nLine].FullLength() < INT_MAX);
   //  You must call InitNew() or LoadFromFile() first!
 
@@ -1373,7 +1382,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
         {
           // WINMERGE -- Check that text in undo buffer matches text in
           // file buffer.  If not, then rescan() has moved lines and undo
-          // is skipped.
+          // fails.
 
           // we need to put the cursor before the deleted section
           CString text;
@@ -1401,6 +1410,8 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
             }
           else
             {
+			  // Fails boundary check at StartPos or EndPos
+              ASSERT(false);
               failed = true;
               break;
             }
