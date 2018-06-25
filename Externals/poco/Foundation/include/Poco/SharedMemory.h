@@ -86,7 +86,7 @@ public:
 		/// by calling shm_unlink() (on POSIX platforms) when the SharedMemory object is destroyed.
 		/// The server parameter is ignored on Windows platforms.
 
-	SharedMemory(const File& file, AccessMode mode, const void* addrHint = 0, std::size_t size = 0);
+	SharedMemory(const File& file, AccessMode mode, const void* addrHint = 0);
 		/// Maps the entire contents of file into a shared memory segment.
 		///
 		/// An address hint can be passed to the system, specifying the desired

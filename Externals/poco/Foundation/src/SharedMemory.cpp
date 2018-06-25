@@ -68,8 +68,8 @@ SharedMemory::SharedMemory(const std::string& name, std::size_t size, AccessMode
 }
 
 
-SharedMemory::SharedMemory(const Poco::File& file, AccessMode mode, const void* addrHint, std::size_t size):
-	_pImpl(new SharedMemoryImpl(file, mode, addrHint, size))
+SharedMemory::SharedMemory(const Poco::File& file, AccessMode mode, const void* addrHint):
+	_pImpl(new SharedMemoryImpl(file, mode, addrHint))
 {
 }
 

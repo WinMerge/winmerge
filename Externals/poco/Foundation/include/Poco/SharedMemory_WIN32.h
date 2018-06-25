@@ -63,7 +63,7 @@ public:
 		/// is actually honored is, however, up to the system. Windows platform
 		/// will generally ignore the hint.
 
-	SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessMode mode, const void* addrHint = NULL, std::size_t size = 0);
+	SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessMode mode, const void* addrHint = NULL);
 		/// Maps the entire contents of file into a shared memory segment.
 		///
 		/// An address hint can be passed to the system, specifying the desired
