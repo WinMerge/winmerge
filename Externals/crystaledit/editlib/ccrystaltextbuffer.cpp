@@ -686,7 +686,7 @@ int CCrystalTextBuffer::
 GetFullLineLength (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
-  if (nLine >= m_aLines.size())
+  if (nLine >= static_cast<int>(m_aLines.size()))
   {
 	  ASSERT(false);
 	  return 0;
