@@ -81,9 +81,10 @@ bool CGhostTextBuffer::InternalInsertGhostLine (CCrystalTextView * pSource,
 
 /** InternalDeleteGhostLine accepts only apparent line numbers */
 /**
- * @brief Delete a ghost line.
- * @param [in] pSource View into which to insert the line.
- * @param [in] nLine Line index where to insert the ghost line.
+ * @brief Delete a group of ghost lines.
+ * @param [in] pSource View from which to delete the lines.
+ * @param [in] nLine Line index where to delete the first ghost line.
+ * @param [in] nCount the number of ghost lines to delete
  * @return true if the deletion succeeded, false otherwise.
  * @note @p nLine must be an apparent line number (ghost lines added).
  */
@@ -405,18 +406,19 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 		int nEndChar2 = nEndChar;
 		for (; nEndLine2 >= nStartLine; --nEndLine2)
 		{
-			nEndChar2 = GetLineLength(nEndLine2);
 			if ((GetLineFlags(nEndLine2) & LF_GHOST) == 0)
 				break;
 		}
 		if (nStartLine <= nEndLine2)
 		{
+			if(nEndLine2 != nEndLine)
+				nEndChar2 = GetLineLength(nEndLine2);
 			if (!CCrystalTextBuffer::DeleteText2(pSource, nStartLine, nStartChar,
 				nEndLine2, nEndChar2, nAction, bHistory))
 			{
 				return false;
 			}
-			InternalDeleteGhostLine(pSource, nEndLine2 + 1, nEndLine - (nEndLine2 + 1) + 1);
+			InternalDeleteGhostLine(pSource, nStartLine + 1, nEndLine - (nEndLine2 + 1) + 1);
 		}
 		else
 		{
@@ -637,7 +639,7 @@ int CGhostTextBuffer::ComputeApparentLine(int nRealLine, int decToReal) const
 	if (nRealLine >= maxblock.nStartReal + maxblock.nCount)
 	{
 		nPreviousBlock = size - 1;
-		nApparent = GetLineCount();
+		nApparent = GetLineCount() - 1;
 		goto limitWithPreviousBlock;
 	}
 
