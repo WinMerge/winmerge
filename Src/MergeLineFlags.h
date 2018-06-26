@@ -10,20 +10,20 @@
  It does not use all of the available bits.
  WinMerge uses some of the high bits to keep WinMerge-specific
  information; here are the list of WinMerge flags.
- So, these constants are used with the SetLineFlags(2) calls.
+ So, these constants are used with the SetLineFlag(2) calls.
 */
 enum MERGE_LINEFLAGS
 {
-	LF_DIFF = 0x00200000L,
-//	LF_GHOST = 0x00400000L, 
-	LF_TRIVIAL = 0x00800000L,
-	LF_MOVED = 0x01000000L,
-	LF_SNP = 0x02000000L,
+	LF_DIFF = 0x00200000UL,
+//	LF_GHOST = 0x00400000UL, 
+	LF_TRIVIAL = 0x00800000UL,
+	LF_MOVED = 0x01000000UL,
+	LF_SNP = 0x02000000UL,
 };
 
 
-// WINMERGE_FLAGS is MERGE_LINEFLAGS | GHOST_LINEFLAGS | LF_TRIVIAL | LF_MOVED
-#define LF_WINMERGE_FLAGS    0x03E00000
+// LF_WINMERGE_FLAGS is LF_DIFF | LF_GHOST | LF_TRIVIAL | LF_MOVED | LF_SNP
+#define LF_WINMERGE_FLAGS    0x03E00000UL
 
 // Flags for non-ignored difference
 // Note that we must include ghost flag to include ghost lines
