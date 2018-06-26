@@ -1469,9 +1469,10 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
   frect.top = ptOrigin.y;
   frect.bottom = frect.top + nLineHeight;
 
-  ASSERT( nActualItem < blocks.size() );
+  int nBlockSize = static_cast<int>(blocks.size());
+  ASSERT( nActualItem < nBlockSize );
 
-  if( blocks.size() > 0 && nActualItem < blocks.size() - 1 && 
+  if( nBlockSize > 0 && nActualItem < nBlockSize - 1 && 
     blocks[nActualItem + 1].m_nCharPos >= nOffset && 
     blocks[nActualItem + 1].m_nCharPos <= nOffset + nCount )
     {
@@ -1708,7 +1709,7 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
               size_t nPos = ::FindStringHelper(pszChars, p, marker.second.sFindWhat, marker.second.dwFlags | FIND_NO_WRAP, nMatchLen, node, &matches);
               if (nPos == -1)
                   break;
-              if (nLineLength < (p - pszChars) + nPos + nMatchLen)
+              if (nLineLength < static_cast<int>((p - pszChars) + nPos) + nMatchLen)
                   nMatchLen = static_cast<int>(nLineLength - (p - pszChars));
               ASSERT(((p - pszChars) + nPos) < INT_MAX);
               blocks[nBlocks].m_nCharPos = static_cast<int>((p - pszChars) + nPos);

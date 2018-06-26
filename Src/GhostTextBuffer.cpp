@@ -422,7 +422,7 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 		}
 		else
 		{
-			if (bHistory && m_nUndoPosition < m_aUndoBuf.size())
+			if (bHistory && m_nUndoPosition < static_cast<int>(m_aUndoBuf.size()))
 				m_aUndoBuf.resize(m_nUndoPosition);
 			InternalDeleteGhostLine(pSource, nEndLine2 + 1, nEndLine - (nEndLine2 + 1));
 		}
@@ -782,7 +782,7 @@ void CGhostTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 static int CountEol(LPCTSTR pszText, size_t cchText)
 {
 	int nEol = 0;
-	for (int nTextPos = 0; nTextPos < cchText; ++nTextPos)
+	for (size_t nTextPos = 0; nTextPos < cchText; ++nTextPos)
 	{
 		if (LineInfo::IsEol(pszText[nTextPos]))
 		{
