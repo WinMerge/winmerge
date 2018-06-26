@@ -49,14 +49,14 @@ struct DIFFCODE
 		// and each set of flags is in a different hex digit
 		// to make debugging easier
 		// These can always be packed down in the future
-		TEXTFLAGS=0x1F, TEXT=0x1, BIN=0x2, BINSIDE1=0x4, BINSIDE2=0x8, BINSIDE3=0x10,
-		TYPEFLAGS=0x60, FILE=0x20, DIR=0x40,
-		SIDEFLAGS=0x700, FIRST=0x100, SECOND=0x200, THIRD=0x400, BOTH=0x300, ALL=0x700,
-		COMPAREFLAGS=0x7000, NOCMP=0x0000, SAME=0x1000, DIFF=0x2000, CMPERR=0x3000, CMPABORT=0x4000,
-		COMPAREFLAGS3WAY=0x18000, DIFFALL=0x0000, DIFF1STONLY=0x8000, DIFF2NDONLY=0x10000, DIFF3RDONLY=0x18000,
-		FILTERFLAGS=0x20000, INCLUDED=0x00000, SKIPPED=0x20000,
-		SCANFLAGS=0x100000, NEEDSCAN=0x100000,
-		THREEWAYFLAGS=0x200000, THREEWAY=0x200000,
+		TEXTFLAGS=0x1FU, TEXT=0x1U, BIN=0x2U, BINSIDE1=0x4U, BINSIDE2=0x8U, BINSIDE3=0x10U,
+		TYPEFLAGS=0x60U, FILE=0x20U, DIR=0x40U,
+		SIDEFLAGS=0x700U, FIRST=0x100U, SECOND=0x200U, THIRD=0x400U, BOTH=0x300U, ALL=0x700U,
+		COMPAREFLAGS=0x7000U, NOCMP=0x0000U, SAME=0x1000U, DIFF=0x2000U, CMPERR=0x3000U, CMPABORT=0x4000U,
+		COMPAREFLAGS3WAY=0x18000U, DIFFALL=0x0000U, DIFF1STONLY=0x8000U, DIFF2NDONLY=0x10000U, DIFF3RDONLY=0x18000U,
+		FILTERFLAGS=0x20000U, INCLUDED=0x00000U, SKIPPED=0x20000U,
+		SCANFLAGS=0x100000U, NEEDSCAN=0x100000U,
+		THREEWAYFLAGS=0x200000U, THREEWAY=0x200000U,
 	};
 
 	unsigned diffcode;
@@ -65,13 +65,13 @@ struct DIFFCODE
 
 protected:
 	/// Worker function, to check one area (mask) of code for a particular value (result)
-	static bool Check(unsigned code, int mask, int result) { return ((code & mask) == result); }
+	static bool Check(unsigned code, unsigned mask, unsigned result) { return ((code & mask) == result); }
 	/// Convenience function to check the part of the code for comparison results
-	static bool CheckCompare(unsigned code, int result) { return Check(code, DIFFCODE::COMPAREFLAGS, result); }
+	static bool CheckCompare(unsigned code, unsigned result) { return Check(code, DIFFCODE::COMPAREFLAGS, result); }
 	/// Convenience function to check the part of the code for filter status
-	static bool CheckFilter(unsigned code, int result) { return Check(code, DIFFCODE::FILTERFLAGS, result); }
+	static bool CheckFilter(unsigned code, unsigned result) { return Check(code, DIFFCODE::FILTERFLAGS, result); }
 	/// Convenience function to check the part of the code for side status (eg, left-only)
-	static bool CheckSide(unsigned code, int result) { return Check(code, DIFFCODE::SIDEFLAGS, result); }
+	static bool CheckSide(unsigned code, unsigned result) { return Check(code, DIFFCODE::SIDEFLAGS, result); }
 
 	/// Worker function to set the area indicated by mask to specified result
 	void Set(int mask, unsigned result) { diffcode &= (~mask); diffcode |= result; }
