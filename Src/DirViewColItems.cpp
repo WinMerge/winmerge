@@ -167,7 +167,7 @@ static String MakeShortSize(int64_t size)
 	if (size < 1024)
 		return strutils::format(_T("%d B"), static_cast<int>(size));
 	else
-		StrFormatByteSize64(size, buffer, _countof(buffer));
+		StrFormatByteSize64(size, buffer, countof(buffer));
 	return buffer;
 }
 
