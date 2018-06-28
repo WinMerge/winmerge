@@ -125,7 +125,7 @@ static int sign64(int64_t val)
  * @brief Function to compare two diffcodes for a sort
  * @todo How shall we order diff statuses?
  */
-static unsigned cmpdiffcode(unsigned diffcode1, unsigned diffcode2)
+static int cmpdiffcode(unsigned diffcode1, unsigned diffcode2)
 {
 	// Lower priority of the same items (FIXME:)
 	if (((diffcode1 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME) && ((diffcode2 & DIFFCODE::COMPAREFLAGS) != DIFFCODE::SAME))
@@ -167,7 +167,7 @@ static String MakeShortSize(int64_t size)
 	if (size < 1024)
 		return strutils::format(_T("%d B"), static_cast<int>(size));
 	else
-		StrFormatByteSize64(size, buffer, _countof(buffer));
+		StrFormatByteSize64(size, buffer, countof(buffer));
 	return buffer;
 }
 

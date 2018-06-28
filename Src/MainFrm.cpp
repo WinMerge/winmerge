@@ -608,7 +608,7 @@ FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 
 bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
-	const DWORD dwFlags[] /*=0*/, const String strDesc[], const String& sReportFile,
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*=_T("")*/,
 	const PackingInfo * infoUnpacker /*= NULL*/)
 {
 	int pane;
@@ -661,7 +661,7 @@ int GetActivePaneFromFlags(int nFiles, const DWORD dwFlags[])
  */
 bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
-	const DWORD dwFlags[], const String strDesc[], const String& sReportFile,
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*=_T("")*/,
 	const PackingInfo * infoUnpacker /*= NULL*/)
 {
 	if (!m_pMenus[MENU_MERGEVIEW])
@@ -747,7 +747,7 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 }
 
 bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-	const DWORD dwFlags[] /*=0*/, const String strDesc[], const String& sReportFile,
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*=_T("")*/,
 	const PackingInfo * infoUnpacker /*= NULL*/)
 {
 	if (!m_pMenus[MENU_HEXMERGEVIEW])
@@ -766,7 +766,7 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 }
 
 bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-	const DWORD dwFlags[], const String strDesc[], const String& sReportFile,
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*=_T("")*/,
 	const PackingInfo * infoUnpacker/* = NULL*/)
 {
 	CImgMergeFrame *pImgMergeFrame = new CImgMergeFrame();
@@ -894,7 +894,7 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
  * @return TRUE if opening files and compare succeeded, FALSE otherwise.
  */
 BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
-	const DWORD dwFlags[] /*=0*/, const String strDesc[], const String& sReportFile, bool bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
+	const DWORD dwFlags[] /*=NULL*/, const String strDesc[] /*=NULL*/, const String& sReportFile /*=T("")*/, bool bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
 	String prediffer /*=_T("")*/, const PackingInfo *infoUnpacker/*=NULL*/)
 {
 	if (pDirDoc && !pDirDoc->CloseMergeDocs())
@@ -974,8 +974,8 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 		}
 	}
 
-	// Determine if we want new a dirview open now that we know if it was
-	// and archive. Don't open new dirview if we are comparing files.
+	// Determine if we want a new dirview open, now that we know if it was
+	// an archive. Don't open a new dirview if we are comparing files.
 	if (!pDirDoc)
 	{
 		if (pathsType == paths::IS_EXISTING_DIR)
@@ -1928,7 +1928,7 @@ void CMainFrame::OnSaveProject()
 	{
 		CMergeDoc * pMergeDoc = static_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 		pOpenDoc->m_files = pMergeDoc->m_filePaths;
-		for (int pane = 0; pane < pOpenDoc->m_files.size(); ++pane)
+		for (size_t pane = 0; pane < pOpenDoc->m_files.size(); ++pane)
 			pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pMergeDoc->m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_PROJECT : 0);
 		pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 		pOpenDoc->m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();

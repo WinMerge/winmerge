@@ -1939,7 +1939,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchTex
 	if (IsReadOnly(m_nThisPane))
 	{
 		// We must not arrive here, and assert helps detect troubles
-		ASSERT(0);
+		ASSERT(false);
 		return;
 	}
 

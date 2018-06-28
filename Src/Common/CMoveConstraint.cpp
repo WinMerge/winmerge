@@ -275,7 +275,7 @@ InitializeChildConstraintData(HWND hwndDlg, Constraint & constraint)
 		// but if you want to do that, you have to call 
 		//  m_constraint.ConstrainNonWindows();
 		// to suppress this debug ASSERT
-		ASSERT(0); // this is not a child of the dialog
+		ASSERT(false); // this is not a child of the dialog
 	}
 	GetWindowRect(hwndChild, constraint.m_rectChildOriginal);
 	CWnd * wndParent = CWnd::FromHandle(constraint.m_hwndParent);
