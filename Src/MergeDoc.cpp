@@ -252,7 +252,7 @@ void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer)
 
 void CMergeDoc::Serialize(CArchive& ar)
 {
-	ASSERT(0); // we do not use CDocument serialization
+	ASSERT(false); // we do not use CDocument serialization
 }
 
 /////////////////////////////////////////////////////////////////////////////

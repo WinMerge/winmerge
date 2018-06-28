@@ -31,17 +31,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include "diffwrapper.h"
 
 
-
-#ifndef DEFAULT_WIDTH
-#define DEFAULT_WIDTH 130
-#endif
-
-#ifndef GUTTER_WIDTH_MINIMUM
-#define GUTTER_WIDTH_MINIMUM 3
-#endif
-
-
-
 /* Nonzero for -r: if comparing two directories,
    compare their common subdirectories recursively.  */
 

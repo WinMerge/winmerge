@@ -54,24 +54,24 @@ class CCrystalTextMarkers;
 //  CCrystalTextView::FindText() flags
 enum
 {
-  FIND_MATCH_CASE = 0x0001,
-  FIND_WHOLE_WORD = 0x0002,
-  FIND_REGEXP = 0x0004,
-  FIND_DIRECTION_UP = 0x0010,
-  REPLACE_SELECTION = 0x0100, 
-  FIND_NO_WRAP = 0x200,
-  FIND_NO_CLOSE = 0x400
+  FIND_MATCH_CASE = 0x0001U,
+  FIND_WHOLE_WORD = 0x0002U,
+  FIND_REGEXP = 0x0004U,
+  FIND_DIRECTION_UP = 0x0010U,
+  REPLACE_SELECTION = 0x0100U, 
+  FIND_NO_WRAP = 0x200U,
+  FIND_NO_CLOSE = 0x400U
 };
 
 //  CCrystalTextView::UpdateView() flags
 enum
 {
-  UPDATE_HORZRANGE = 0x0001,  //  update horz scrollbar
-  UPDATE_VERTRANGE = 0x0002, //  update vert scrollbar
-  UPDATE_SINGLELINE = 0x0100,    //  single line has changed
-  UPDATE_FLAGSONLY = 0x0200, //  only line-flags were changed
+  UPDATE_HORZRANGE = 0x0001U,  //  update horz scrollbar
+  UPDATE_VERTRANGE = 0x0002U, //  update vert scrollbar
+  UPDATE_SINGLELINE = 0x0100U,    //  single line has changed
+  UPDATE_FLAGSONLY = 0x0200U, //  only line-flags were changed
 
-  UPDATE_RESET = 0x1000       //  document was reloaded, update all!
+  UPDATE_RESET = 0x1000U       //  document was reloaded, update all!
 };
 
 /**
