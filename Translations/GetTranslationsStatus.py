@@ -3,7 +3,7 @@
 
 # The MIT License
 # 
-# Copyright (c) 2009 Tim Gerundt <tim@gerundt.de>
+# Copyright (c) 2009-2018 Tim Gerundt <tim@gerundt.de>
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -77,7 +77,8 @@ class TranslationsStatus(object):
         xmlfile.write('  <update>%s</update>\n' % (time.strftime('%Y-%m-%d')))
         for project in self._projects: #For all projects...
             xmlfile.write('  <translations project="%s">\n' % (project.name))
-            for status1 in project.status: #For all status...
+            for language in self.languages: #For all (sorted) languages...
+                status1 = project[language]
                 if status1.template: #If a template file...
                     xmlfile.write('    <translation template="1">\n')
                     xmlfile.write('      <language>%s</language>\n' % (status1.language))
@@ -121,35 +122,32 @@ class TranslationsStatus(object):
     def writeToHtmlFile(self, htmlpath):
         htmlfile = codecs.open(htmlpath, 'w', 'utf-8')
         
-        htmlfile.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"\n')
-        htmlfile.write('  "http://www.w3.org/TR/html4/loose.dtd">\n')
-        htmlfile.write('<html>\n')
+        htmlfile.write('<!DOCTYPE html>\n')
+        htmlfile.write('<html lang="en">\n')
         htmlfile.write('<head>\n')
         htmlfile.write('  <title>Translations Status</title>\n')
         htmlfile.write('  <meta http-equiv="content-type" content="text/html; charset=UTF-8">\n')
-        htmlfile.write('  <style type="text/css">\n')
+        htmlfile.write('  <style>\n')
         htmlfile.write('  <!--\n')
         htmlfile.write('    body {\n')
-        htmlfile.write('      font-family: Verdana,Helvetica,Arial,sans-serif;\n')
-        htmlfile.write('      font-size: small;\n')
+        htmlfile.write('      font-family: Calibri,Helvetica,Arial,sans-serif;\n')
         htmlfile.write('    }\n')
-        htmlfile.write('    code,pre {\n')
-        htmlfile.write('      font-family: "Courier New",Courier,monospace;\n')
-        htmlfile.write('      font-size: 1em;\n')
+        htmlfile.write('    h1, h2, h3, h4, h5, h6 {\n')
+        htmlfile.write('      font-family: Cambria,"Times New Roman",Times,serif;\n')
         htmlfile.write('    }\n')
         htmlfile.write('    .status {\n')
         htmlfile.write('      border-collapse: collapse;\n')
-        htmlfile.write('      border: 1px solid #aaaaaa;\n')
+        htmlfile.write('      border: 1px solid #d2d2d2;\n')
+        htmlfile.write('    }\n')
+        htmlfile.write('    .status th, .status td {\n')
+        htmlfile.write('      padding: .3em;\n')
+        htmlfile.write('      border: 1px solid #d2d2d2;\n')
         htmlfile.write('    }\n')
         htmlfile.write('    .status th {\n')
-        htmlfile.write('      padding: 3px;\n')
         htmlfile.write('      background: #f2f2f2;\n')
-        htmlfile.write('      border: 1px solid #aaaaaa;\n')
         htmlfile.write('    }\n')
-        htmlfile.write('    .status td {\n')
-        htmlfile.write('      padding: 3px;\n')
+        htmlfile.write('    .status tr:nth-child(odd) {\n')
         htmlfile.write('      background: #f9f9f9;\n')
-        htmlfile.write('      border: 1px solid #aaaaaa;\n')
         htmlfile.write('    }\n')
         htmlfile.write('    .left { text-align: left; }\n')
         htmlfile.write('    .center { text-align: center; }\n')
@@ -171,7 +169,8 @@ class TranslationsStatus(object):
             htmlfile.write('    <th class="right">Untranslated</th>\n')
             htmlfile.write('    <th class="center">Last Update</th>\n')
             htmlfile.write('  </tr>\n')
-            for status1 in project.status: #For all status...
+            for language in self.languages: #For all (sorted) languages...
+                status1 = project[language]
                 htmlfile.write('  <tr>\n')
                 htmlfile.write('    <td class="left">%s</td>\n' % (status1.language))
                 if status1.template: #If a template file...
@@ -366,7 +365,7 @@ class PoStatus(Status):
           reTranslator = re.compile('^# \* (.*)$', re.IGNORECASE)
           rePoRevisionDate = re.compile('PO-Revision-Date: ([0-9 :\+\-]+)', re.IGNORECASE)
           rePotCreationDate = re.compile('POT-Creation-Date: ([0-9 :\+\-]+)', re.IGNORECASE)
-          rePoeditLanguage = re.compile('X-Poedit-Language: ([A-Z]+)', re.IGNORECASE)
+          rePoeditLanguage = re.compile('X-Poedit-Language: ([A-Z \(\)\-_]+)', re.IGNORECASE)
           
           iMsgStarted = 0
           sMsgId = ''
