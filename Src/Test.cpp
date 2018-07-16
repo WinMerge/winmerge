@@ -240,6 +240,9 @@ TEST(CommandLineTest, Desc4)
 
 TEST(ImageCompareTest, Open)
 {
+	if (!CImgMergeFrame::IsLoadable())
+		return;
+
 	String projectRoot = getProjectRoot();
 	PathContext files = {
 		paths::ConcatPath(projectRoot, L"Src/res/right_to_middle.bmp"),
@@ -254,7 +257,6 @@ TEST(ImageCompareTest, Open)
 
 	pFrame->PostMessage(WM_CLOSE);
 	dlg.SetFormerResult(nPrevFormerResult);
-
 }
 
 #endif

@@ -44,6 +44,7 @@
 #include "MergeDoc.h"
 #include "MergeEditView.h"
 #include "HexMergeDoc.h"
+#include "HexMergeView.h"
 #include "ImgMergeFrm.h"
 #include "LineFiltersList.h"
 #include "ConflictFileParser.h"
@@ -619,9 +620,9 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	filterBin.SetMask(GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS));
 	for (pane = 0; pane < nFiles; ++pane)
 	{
-		if (filterImg.includeFile(ifileloc[pane].filepath))
+		if (filterImg.includeFile(ifileloc[pane].filepath) && CImgMergeFrame::IsLoadable())
 			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
-		else if (filterBin.includeFile(ifileloc[pane].filepath))
+		else if (filterBin.includeFile(ifileloc[pane].filepath) && CHexMergeView::IsLoadable())
 			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
 	}
 	return ShowMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);

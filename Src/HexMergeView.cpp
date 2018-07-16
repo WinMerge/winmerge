@@ -117,9 +117,9 @@ void CHexMergeView::OnDraw(CDC *)
 }
 
 /**
- * @brief Load heksedit.dll and setup window class name
+ * @brief returns true if heksedit.dll is loadable
  */
-BOOL CHexMergeView::PreCreateWindow(CREATESTRUCT& cs)
+bool CHexMergeView::IsLoadable()
 {
 	static void *pv = NULL;
 	if (pv == NULL)
@@ -129,10 +129,18 @@ BOOL CHexMergeView::PreCreateWindow(CREATESTRUCT& cs)
 		if (FAILED(::CoGetClassObject(clsid, CLSCTX_INPROC_SERVER, NULL, IID_IUnknown, &pv)))
 		{
 			pv = LoadLibrary(_T("Frhed\\hekseditU.dll"));
-			if (!pv)
-				LangMessageBox(IDS_FRHED_NOTINSTALLED, MB_OK);
 		}
 	}
+	return pv != nullptr;
+}
+
+/**
+ * @brief Load heksedit.dll and setup window class name
+ */
+BOOL CHexMergeView::PreCreateWindow(CREATESTRUCT& cs)
+{
+	if (!IsLoadable())
+		LangMessageBox(IDS_FRHED_NOTINSTALLED, MB_OK);
 	cs.lpszClass = _T("heksedit");
 	cs.style |= WS_HSCROLL | WS_VSCROLL;
 	return TRUE;
