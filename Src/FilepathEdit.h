@@ -46,8 +46,10 @@ public :
 	void SetTextColor(COLORREF rgb);
 
 protected:
+	virtual BOOL PreTranslateMessage(MSG *pMsg);
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
 	afx_msg void OnNcPaint();
+	afx_msg void OnEditCopy();
 	HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	DECLARE_MESSAGE_MAP();
 
