@@ -75,6 +75,7 @@ public:
 	bool IsFileChangedOnDisk(int pane) const;
 	void CheckFileChanged(void);
 	String GetDescription(int pane) const { return m_strDesc[pane]; }
+	static bool IsLoadable();
 
 // Attributes
 protected:

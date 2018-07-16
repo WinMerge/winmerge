@@ -175,7 +175,7 @@ CImgMergeFrame::~CImgMergeFrame()
 		m_pDirDoc = NULL;
 	}
 
-	HMODULE hModule = GetModuleHandle(_T("WinIMergeLib.dll"));
+	HMODULE hModule = GetModuleHandleW(L"WinIMergeLib.dll");
 	if (hModule)
 	{
 		bool (*WinIMerge_DestroyWindow)(IImgMergeWindow *) = 
@@ -388,12 +388,30 @@ void CImgMergeFrame::OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 }
 
 /**
+ * @brief returns true if WinIMergeLib.dll is loadable
+ */
+bool CImgMergeFrame::IsLoadable()
+{
+	static HMODULE hModule;
+	if (!hModule)
+	{
+		hModule = LoadLibraryW(L"WinIMerge\\WinIMergeLib.dll");
+		if (!hModule)
+			return false;
+	}
+	return true;
+}
+
+/**
  * @brief Create the splitter, the filename bar, the status bar, and the two views
  */
 BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
-	HMODULE hModule = LoadLibraryW(L"WinIMerge\\WinIMergeLib.dll");
+	if (!IsLoadable())
+		return FALSE;
+
+	HMODULE hModule = GetModuleHandleW(L"WinIMergeLib.dll");
 	if (!hModule)
 		return FALSE;
 

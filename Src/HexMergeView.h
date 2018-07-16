@@ -59,6 +59,7 @@ public:
 	void ZoomText(int amount);
 	static void CopySel(const CHexMergeView *src, CHexMergeView *dst);
 	static void CopyAll(const CHexMergeView *src, CHexMergeView *dst);
+	static bool IsLoadable();
 	// Overrides
 protected:
 	virtual void OnDraw(CDC*);
