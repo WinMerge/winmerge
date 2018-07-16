@@ -324,7 +324,13 @@ void CFilepathEdit::OnNcPaint()
 
 void CFilepathEdit::OnEditCopy()
 {
+	int nStartChar, nEndChar;
+	GetSel(nStartChar, nEndChar);
+	if (nStartChar == nEndChar)
+		SetSel(0, -1);
 	Copy();
+	if (nStartChar == nEndChar)
+		SetSel(nStartChar, nEndChar);
 }
 
 BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
