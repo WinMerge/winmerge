@@ -948,6 +948,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\UndoRecord.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ViewableWhitespace.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h" />
+    <ClInclude Include="..\Externals\gtest\include\gtest\gtest.h" />
     <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />

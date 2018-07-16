@@ -56,6 +56,9 @@
     <Filter Include="GNU diffutils">
       <UniqueIdentifier>{16e1af2b-75c9-4deb-b49f-819018df0478}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MergeTest">
+      <UniqueIdentifier>{63f0497b-0d8f-4660-b727-dac620d74635}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charsets.c">
@@ -748,12 +751,6 @@
     <ClCompile Include="MergeStatusBar.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Test.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestMain.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="diffutils\src\mystat.cpp">
       <Filter>GNU diffutils</Filter>
     </ClCompile>
@@ -780,6 +777,12 @@
     </ClCompile>
     <ClCompile Include="CompareEngines\Wrap_DiffUtils.cpp">
       <Filter>Compare Engines</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>MergeTest</Filter>
+    </ClCompile>
+    <ClCompile Include="TestMain.cpp">
+      <Filter>MergeTest</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1410,9 +1413,6 @@
     <ClInclude Include="MergeStatusBar.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestMain.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.h">
       <Filter>EditLib</Filter>
     </ClInclude>
@@ -1442,6 +1442,12 @@
     </ClInclude>
     <ClInclude Include="CompareEngines\Wrap_DiffUtils.h">
       <Filter>Compare Engines</Filter>
+    </ClInclude>
+    <ClInclude Include="TestMain.h">
+      <Filter>MergeTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\gtest\include\gtest\gtest.h">
+      <Filter>MergeTest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
