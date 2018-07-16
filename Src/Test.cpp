@@ -57,6 +57,8 @@ TEST(CodepageTest, UTF8)
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
+	if (nullptr == pDoc)
+		return;
 	EXPECT_EQ(ucr::UTF8, pDoc->m_ptBuf[0]->getEncoding().m_unicoding);
 	EXPECT_TRUE(pDoc->m_ptBuf[0]->getEncoding().m_bom);
 	EXPECT_EQ(ucr::UTF8, pDoc->m_ptBuf[1]->getEncoding().m_unicoding);
@@ -77,6 +79,8 @@ TEST(SyntaxHighlight, Verilog)
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
+	if (nullptr == pDoc)
+		return;
 
 	std::vector<CCrystalTextView::TEXTBLOCK> blocks;
 	blocks = pDoc->GetView(0, 0)->GetTextBlocks(0);
@@ -119,6 +123,11 @@ TEST(FolderCompare, IgnoreEOL)
 		CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 		CDirDoc *pDoc = dynamic_cast<CDirDoc *>(pFrame->GetActiveDocument());
 		EXPECT_NE(nullptr, pDoc);
+		if (nullptr == pDoc)
+		{
+			pFrame->PostMessage(WM_CLOSE);
+			continue;
+		}
 		CDirView *pView = pDoc->GetMainView();
 		const CDiffContext& ctxt = pDoc->GetDiffContext();
 		const CompareStats *pStats = ctxt.m_pCompareStats;
@@ -240,6 +249,7 @@ TEST(CommandLineTest, Desc4)
 
 TEST(ImageCompareTest, Open)
 {
+	EXPECT_TRUE(CImgMergeFrame::IsLoadable());
 	if (!CImgMergeFrame::IsLoadable())
 		return;
 
