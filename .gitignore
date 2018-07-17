@@ -14,12 +14,19 @@
 **/Debug
 
 *.exe
+*.dll
 *.pdb
 *.bak
 *.VC.db
 *.VC.VC.opendb
+*.vcxproj.user
+*.ilk
+*.aps
+*.tlb
 
 Testing/Data/ShellFileOpTest/File1.txt
 Translations/WinMerge/MergeLang.rc
 /ShellExtension/dlldata.c
 /ShellExtension/ShellExtension.h
+/ShellExtension/ShellExtension_i.c
+/ShellExtension/ShellExtension_p.c
