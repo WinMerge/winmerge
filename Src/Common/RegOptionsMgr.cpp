@@ -501,7 +501,7 @@ int CRegOptionsMgr::SetRegRootKey(const String& key)
  * - COption::OPT_OK when succeeds
  * - COption::OPT_ERR when writing to the file fails
  */
-int CRegOptionsMgr::ExportOptions(const String& filename) const
+int CRegOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= false*/) const
 {
 	int retVal = COption::OPT_OK;
 	OptionsMap::const_iterator optIter = m_optionsMap.begin();
@@ -519,7 +519,10 @@ int CRegOptionsMgr::ExportOptions(const String& filename) const
 		}
 		else if (value.GetType() == varprop::VT_INT)
 		{
-			strVal = strutils::to_str(value.GetInt());
+			if ( bHexColor && (strutils::makelower(name).find(String(_T("color"))) != std::string::npos) )
+				strVal = strutils::format(_T("0x%06x"), value.GetInt());
+			else
+				strVal = strutils::to_str(value.GetInt());
 		}
 		else if (value.GetType() == varprop::VT_STRING)
 		{

@@ -39,7 +39,7 @@ public:
 
 	virtual void SetSerializing(bool serializing=true) { m_serializing = serializing; }
 
-	virtual int ExportOptions(const String& filename) const;
+	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const;
 	virtual int ImportOptions(const String& filename);
 
 protected:
