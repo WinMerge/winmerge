@@ -29,7 +29,9 @@
 #include "VersionInfo.h"
 #include "UniFile.h"
 #include "Plugins.h"
+#include "TFile.h"
 #include "paths.h"
+#include "locality.h"
 #include "unicoder.h"
 #include "Environment.h"
 #include "MergeApp.h"
@@ -58,6 +60,29 @@ String CConfigLog::GetFileName() const
 	return m_sFileName;
 }
 
+
+static String GetLastModified(const String &path) 
+{
+	String sPath2 = path;
+	if (sPath2[0] == '.')
+	{
+		CVersionInfo EXEversion;
+		String sEXEPath = paths::GetPathOnly(paths::GetLongPath(EXEversion.GetFullFileName(), false));
+		sPath2 = sEXEPath + _T("\\") + sPath2;
+	}
+	TFile file(sPath2);
+
+	String sModifiedTime = _T("");
+	if (file.exists())
+	{
+		Poco::Timestamp mtime(file.getLastModified());
+
+		const int64_t r = (mtime.epochTime());
+		sModifiedTime = locality::TimeString(&r);
+	}
+	return sModifiedTime;
+}
+
 /** 
  * @brief Write plugin names
  */
@@ -72,13 +97,12 @@ void CConfigLog::WritePluginsInLogFile(const wchar_t *transformationEvent)
 	for (size_t iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
-		m_pfile->WriteString(_T("\r\n  "));
+		m_pfile->WriteString(_T("\r\n   "));
 		if (plugin->m_disabled)
 			m_pfile->WriteString(_T("!"));
 		m_pfile->WriteString(plugin->m_name);
-		m_pfile->WriteString(_T(" ["));
+		m_pfile->WriteString(_T("  path="));
 		m_pfile->WriteString(plugin->m_filepath);
-		m_pfile->WriteString(_T("]"));
 	}
 }
 
@@ -138,27 +162,44 @@ void CConfigLog::WriteLocaleSettings(unsigned locid, const String& title)
  */
 void CConfigLog::WriteVersionOf1(int indent, const String& path)
 {
-	String name = paths::FindFileName(path);
-	CVersionInfo vi(path.c_str(), TRUE);
+	String path2 = path;
+	if (path2.find(_T(".\\")) == 0)
+	{
+		// Remove "relative path" info for Win API calls.
+		const TCHAR *pf = path2.c_str();
+		path2 = String(pf+2);
+	}
+	String name = paths::FindFileName(path2);
+	CVersionInfo vi(path2.c_str(), TRUE);
+	String sModifiedTime = _T("");
+	if (name != path)
+	{
+		sModifiedTime = GetLastModified(path);
+		if (!sModifiedTime.empty())
+			sModifiedTime = _T("  [") + sModifiedTime + _T("]");
+	}
 	String text = strutils::format
 	(
 		name == path
-	?	_T("%*s%-20s %s=%u.%02u %s=%04u\r\n")
-	:	_T("%*s%-20s %s=%u.%02u %s=%04u path=%s\r\n"),
+			?	_T(" %*s%-19s %s=%u.%02u %s=%04u\r\n")
+			:	_T(" %*s%-19s %s=%u.%02u %s=%04u path=%s%s\r\n"),
 		indent,
 		// Tilde prefix for modules currently mapped into WinMerge
-		GetModuleHandle(path.c_str()) ? _T("~") : _T("")/*name*/,
+		GetModuleHandle(path2.c_str()) 
+			? _T("~") 
+			: _T("")/*name*/,
 		name.c_str(),
 		vi.m_dvi.cbSize > FIELD_OFFSET(DLLVERSIONINFO, dwMajorVersion)
-	?	_T("dllversion")
-	:	_T("version"),
+			?	_T("dllversion")
+			:	_T("version"),
 		vi.m_dvi.dwMajorVersion,
 		vi.m_dvi.dwMinorVersion,
 		vi.m_dvi.cbSize > FIELD_OFFSET(DLLVERSIONINFO, dwBuildNumber)
-	?	_T("dllbuild")
-	:	_T("build"),
+			?	_T("dllbuild")
+			:	_T("build"),
 		vi.m_dvi.dwBuildNumber,
-		path.c_str()
+		path.c_str(),
+		sModifiedTime.c_str()
 	);
 	m_pfile->WriteString(text);
 }
@@ -166,11 +207,11 @@ void CConfigLog::WriteVersionOf1(int indent, const String& path)
 /**
  * @brief Write winmerge configuration
  */
-void CConfigLog::WriteWinMergeConfig(void)
+void CConfigLog::WriteWinMergeConfig()
 {
 	TempFile tmpfile;
 	tmpfile.Create();
-	GetOptionsMgr()->ExportOptions(tmpfile.GetPath());
+	GetOptionsMgr()->ExportOptions(tmpfile.GetPath(), true);
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(tmpfile.GetPath()))
 		return;
@@ -178,8 +219,12 @@ void CConfigLog::WriteWinMergeConfig(void)
 	bool lossy;
 	while (ufile.ReadString(line, &lossy)) 
 	{
-		FileWriteString(line + _T("\r\n"));
+		String prefix = _T("  ");
+		if (line[0] == _T('[') )
+			prefix = _T(" ");
+		FileWriteString(prefix + line + _T("\r\n"));
 	}
+	ufile.Close();
 }
 
 /** 
@@ -204,28 +249,45 @@ bool CConfigLog::DoFile(String &sError)
 	m_pfile->WriteBom();
 
 // Begin log
-	FileWriteString(_T("WinMerge configuration log\r\n"));
+	FileWriteString(_T("WinMerge Configuration Log\r\n"));
 	FileWriteString(_T("--------------------------\r\n"));
 	FileWriteString(_T("Saved to: "));
 	FileWriteString(m_sFileName);
-	FileWriteString(_T("\r\n* Please add this information (or attach this file)\r\n"));
-	FileWriteString(_T("* when reporting bugs.\r\n"));
-	FileWriteString(_T("Module names prefixed with tilda (~) are currently loaded in WinMerge process.\r\n"));
+	FileWriteString(_T("\r\n* Please add this information (or attach this file) when reporting bugs."));
 
 // Platform stuff
-	FileWriteString(_T("\r\n\r\nVersion information:\r\n"));
-	FileWriteString(_T(" WinMerge.exe: "));
-	FileWriteString(version.GetFixedProductVersion());
+	
+	FileWriteString(_T("\r\n\r\nWindows Info:         "));
+	text = GetWindowsVer();
+	FileWriteString(text);
+	text = GetProcessorInfo();
+	if (text != _T(""))
+	{		
+		FileWriteString(_T("\r\n Processor:           "));
+		FileWriteString(text);
+	}
+
+// WinMerge stuff
+
+	FileWriteString(_T("\r\n\r\nWinMerge Info:"));
+	String sEXEFullFileName = paths::GetLongPath(version.GetFullFileName(), false);
+	FileWriteString(_T("\r\n Code File:           "));
+	FileWriteString(sEXEFullFileName);
+	FileWriteString(_T("\r\n Version:             "));
+	FileWriteString(version.GetProductVersion());
 
 	String privBuild = version.GetPrivateBuild();
 	if (!privBuild.empty())
 	{
-		FileWriteString(_T(" - Private build: "));
-		FileWriteString(privBuild);
+		FileWriteString(_T("  (Private Build) "));
 	}
 
+	String sModifiedTime = GetLastModified(sEXEFullFileName);
+	FileWriteString(_T("\r\n DateTime Modified:   "));
+	FileWriteString(sModifiedTime);
+
 	text = GetBuildFlags();
-	FileWriteString(_T("\r\n Build config: "));
+	FileWriteString(_T("\r\n Build config:       "));
 	FileWriteString(text);
 
 	LPCTSTR szCmdLine = ::GetCommandLine();
@@ -253,26 +315,27 @@ bool CConfigLog::DoFile(String &sError)
 		szCmdLine = _T(" none");
 	}
 
-	FileWriteString(_T("\r\n Command Line: "));
+	FileWriteString(_T("\r\n\r\nCommand Line:        "));
 	FileWriteString(szCmdLine);
 
-	FileWriteString(_T("\r\n Windows: "));
-	text = GetWindowsVer();
-	FileWriteString(text);
+	String sEXEPathOnly = paths::GetPathOnly(sEXEFullFileName);
 
-	FileWriteString(_T("\r\n"));
-	WriteVersionOf1(1, _T("COMCTL32.dll"));
+	FileWriteString(_T("\r\n\r\nModule Names:         Tilda (~) prefix indicates currently loaded into the WinMerge process.\r\n"));
+	WriteVersionOf1(1, _T("kernel32.dll"));
+	WriteVersionOf1(1, _T("shell32.dll"));
 	WriteVersionOf1(1, _T("shlwapi.dll"));
-	WriteVersionOf1(1, _T("MergeLang.dll"));
-	WriteVersionOf1(1, _T("ShellExtensionU.dll"));
-	WriteVersionOf1(1, _T("ShellExtensionX64.dll"));
-	WriteVersionOf1(1, _T("Frhed\\hekseditU.dll"));
-	WriteVersionOf1(1, _T("WinIMerge\\WinIMergeLib.dll"));
-	WriteVersionOf1(1, _T("Merge7z\\7z.dll"));
+	WriteVersionOf1(1, _T("COMCTL32.dll"));
+	FileWriteString(_T(        "                      These path names are relative to the Code File's directory.\r\n"));
+	WriteVersionOf1(1, _T(".\\ShellExtensionU.dll"));
+	WriteVersionOf1(1, _T(".\\ShellExtensionX64.dll"));
+	WriteVersionOf1(1, _T(".\\MergeLang.dll"));
+	WriteVersionOf1(1, _T(".\\Frhed\\hekseditU.dll"));
+	WriteVersionOf1(1, _T(".\\WinIMerge\\WinIMergeLib.dll"));
+	WriteVersionOf1(1, _T(".\\Merge7z\\7z.dll"));
 
 // System settings
-	FileWriteString(_T("\r\nSystem settings:\r\n"));
-	FileWriteString(_T(" codepage settings:\r\n"));
+	FileWriteString(_T("\r\nSystem Settings:\r\n"));
+	FileWriteString(_T(" Codepage Settings:\r\n"));
 	WriteItem(2, _T("ANSI codepage"), GetACP());
 	WriteItem(2, _T("OEM codepage"), GetOEMCP());
 #ifndef UNICODE
@@ -319,6 +382,44 @@ String CConfigLog::GetWindowsVer() const
 	return _T("Unknown OS");
 }
 
+
+/** 
+ * @brief Parse Processor Information data to string.
+ * @return String describing Windows version.
+ */
+String CConfigLog::GetProcessorInfo() const
+{
+	CRegKeyEx key;
+	String sProductName = _T("");
+	if (key.QueryRegMachine(_T("Hardware\\Description\\System\\CentralProcessor\\0")))
+		sProductName = key.ReadString(_T("Identifier"), _T(""));
+	if (sProductName != _T(""))
+	{
+		// This is the full identifier of the processor
+		//	(e.g. "Intel64 Family 6 Model 158 Stepping 9")
+		//	but we'll only keep the first word (e.g. "Intel64")
+		int x = (int)sProductName.find_first_of(_T(" "));
+		sProductName = sProductName.substr(0, x);
+	}
+
+
+	// Number of processors, Amount of memory
+	SYSTEM_INFO siSysInfo;
+	::GetSystemInfo(&siSysInfo); 
+
+	MEMORYSTATUSEX GlobalMemoryBuffer;
+	memset(&GlobalMemoryBuffer, 0, sizeof(GlobalMemoryBuffer));
+	GlobalMemoryBuffer.dwLength = sizeof (GlobalMemoryBuffer);
+	::GlobalMemoryStatusEx(&GlobalMemoryBuffer);
+	ULONG lInstalledMemory = (ULONG)(GlobalMemoryBuffer.ullTotalPhys / (1024*1024));
+
+	TCHAR buf[MAX_PATH];
+	swprintf_s(buf, MAX_PATH, _T("%u Logical Processors, %u MB Memory"), 
+			siSysInfo.dwNumberOfProcessors, lInstalledMemory); 
+
+	return sProductName + _T(", ") + String(buf);
+}
+	
 /** 
  * @brief Return string representation of build flags (for reporting in config log)
  */
@@ -338,6 +439,10 @@ String CConfigLog::GetBuildFlags() const
 
 #if defined _DEBUG
 	flags += _T(" _DEBUG ");
+#endif
+
+#if defined TEST_WINMERGE
+	flags += _T(" TEST_WINMERGE ");
 #endif
 
 	return flags;

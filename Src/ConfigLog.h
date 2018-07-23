@@ -52,6 +52,7 @@ private:
 	bool DoFile(String &sError);
 	void WritePluginsInLogFile(const wchar_t *transformationEvent);
 	String GetWindowsVer() const;
+	String GetProcessorInfo() const;
 	String GetBuildFlags() const;
 	void FileWriteString(const String& lpsz);
 	void CloseFile();
