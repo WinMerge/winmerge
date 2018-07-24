@@ -51,6 +51,44 @@ CConfigLog::~CConfigLog()
 }
 
 
+/** 
+ * @brief Get details of the Compiler Version from _MSC_VER, etc.
+ *		Infer the Visual Studio version
+ */
+static String GetCompilerVersion()
+{
+	String sVisualStudio = _T(""); 
+#ifdef _MSC_VER
+#if     _MSC_VER <  1800
+	# error "** Unknown OLD Version of Visual Studio **"
+#elif	_MSC_VER == 1800
+	sVisualStudio = _T("VS.2013 (12.0) - "); 
+#elif	_MSC_VER == 1900
+	sVisualStudio = _T("VS.2015 (14.0) - "); 
+#elif	_MSC_VER == 1910
+	sVisualStudio = _T("VS.2017 (15.0) - "); 
+#elif	_MSC_VER == 1911
+	sVisualStudio = _T("VS.2017 (15.3) - "); 
+#elif	_MSC_VER == 1912
+	sVisualStudio = _T("VS.2017 (15.5) - "); 
+#elif	_MSC_VER == 1913
+	sVisualStudio = _T("VS.2017 (15.6) - ");
+#elif	_MSC_VER == 1914
+	sVisualStudio = _T("VS.2017 (15.7) - ");
+#elif	_MSC_VER <  2000
+	sVisualStudio = _T("VS.2017 (15.7++) - "); 
+	# pragma message ("** ConfigLog.cpp (GetCompilerVersion): Update new Visual Studio version **")
+#elif	_MSC_VER >= 2000
+	# error "** Unknown NEW Version of Visual Studio **"
+#endif
+#endif
+
+	return strutils::format(_T("%sC/C++ Compiler %02i.%02i.%05i"),
+		sVisualStudio.c_str(),
+		(int)(_MSC_VER / 100), (int)(_MSC_VER % 100), (int)(_MSC_FULL_VER % 100000)
+	);
+}
+
 
 /** 
  * @brief Return logfile name and path
@@ -61,6 +99,9 @@ String CConfigLog::GetFileName() const
 }
 
 
+/** 
+ * @brief Get the Modified time of fully qualified file path and name
+ */
 static String GetLastModified(const String &path) 
 {
 	String sPath2 = path;
@@ -181,8 +222,8 @@ void CConfigLog::WriteVersionOf1(int indent, const String& path)
 	String text = strutils::format
 	(
 		name == path
-			?	_T(" %*s%-19s %s=%u.%02u %s=%04u\r\n")
-			:	_T(" %*s%-19s %s=%u.%02u %s=%04u path=%s%s\r\n"),
+			?	_T(" %*s%-18s %s=%u.%02u %s=%04u\r\n")
+			:	_T(" %*s%-18s %s=%u.%02u %s=%04u path=%s%s\r\n"),
 		indent,
 		// Tilde prefix for modules currently mapped into WinMerge
 		GetModuleHandle(path2.c_str()) 
@@ -251,9 +292,9 @@ bool CConfigLog::DoFile(String &sError)
 // Begin log
 	FileWriteString(_T("WinMerge Configuration Log\r\n"));
 	FileWriteString(_T("--------------------------\r\n"));
-	FileWriteString(_T("Saved to: "));
+	FileWriteString(_T("\r\nSaved to:             "));
 	FileWriteString(m_sFileName);
-	FileWriteString(_T("\r\n* Please add this information (or attach this file) when reporting bugs."));
+	FileWriteString(_T("\r\n                >> >> Please add this information (or attach this file) when reporting bugs << <<"));
 
 // Platform stuff
 	
@@ -273,22 +314,23 @@ bool CConfigLog::DoFile(String &sError)
 	String sEXEFullFileName = paths::GetLongPath(version.GetFullFileName(), false);
 	FileWriteString(_T("\r\n Code File:           "));
 	FileWriteString(sEXEFullFileName);
+
 	FileWriteString(_T("\r\n Version:             "));
 	FileWriteString(version.GetProductVersion());
-
 	String privBuild = version.GetPrivateBuild();
 	if (!privBuild.empty())
 	{
 		FileWriteString(_T("  (Private Build) "));
 	}
 
-	String sModifiedTime = GetLastModified(sEXEFullFileName);
-	FileWriteString(_T("\r\n DateTime Modified:   "));
-	FileWriteString(sModifiedTime);
+	FileWriteString(_T("\r\n Code File Modified:  "));
+	FileWriteString(GetLastModified(sEXEFullFileName));
 
-	text = GetBuildFlags();
-	FileWriteString(_T("\r\n Build config:       "));
-	FileWriteString(text);
+	FileWriteString(_T("\r\n Build Config:       "));
+	FileWriteString(GetBuildFlags());
+
+	FileWriteString(_T("\r\n Build Software:      "));
+	FileWriteString(GetCompilerVersion());
 
 	LPCTSTR szCmdLine = ::GetCommandLine();
 	assert(szCmdLine != NULL);
@@ -321,17 +363,18 @@ bool CConfigLog::DoFile(String &sError)
 	String sEXEPathOnly = paths::GetPathOnly(sEXEFullFileName);
 
 	FileWriteString(_T("\r\n\r\nModule Names:         Tilda (~) prefix indicates currently loaded into the WinMerge process.\r\n"));
-	WriteVersionOf1(1, _T("kernel32.dll"));
-	WriteVersionOf1(1, _T("shell32.dll"));
-	WriteVersionOf1(1, _T("shlwapi.dll"));
-	WriteVersionOf1(1, _T("COMCTL32.dll"));
-	FileWriteString(_T(        "                      These path names are relative to the Code File's directory.\r\n"));
-	WriteVersionOf1(1, _T(".\\ShellExtensionU.dll"));
-	WriteVersionOf1(1, _T(".\\ShellExtensionX64.dll"));
-	WriteVersionOf1(1, _T(".\\MergeLang.dll"));
-	WriteVersionOf1(1, _T(".\\Frhed\\hekseditU.dll"));
-	WriteVersionOf1(1, _T(".\\WinIMerge\\WinIMergeLib.dll"));
-	WriteVersionOf1(1, _T(".\\Merge7z\\7z.dll"));
+	FileWriteString(_T(" Windows:\r\n"));
+	WriteVersionOf1(2, _T("kernel32.dll"));
+	WriteVersionOf1(2, _T("shell32.dll"));
+	WriteVersionOf1(2, _T("shlwapi.dll"));
+	WriteVersionOf1(2, _T("COMCTL32.dll"));
+	FileWriteString(_T(        " WinMerge:            These path names are relative to the Code File's directory.\r\n"));
+	WriteVersionOf1(2, _T(".\\ShellExtensionU.dll"));
+	WriteVersionOf1(2, _T(".\\ShellExtensionX64.dll"));
+	WriteVersionOf1(2, _T(".\\MergeLang.dll"));
+	WriteVersionOf1(2, _T(".\\Frhed\\hekseditU.dll"));
+	WriteVersionOf1(2, _T(".\\WinIMerge\\WinIMergeLib.dll"));
+	WriteVersionOf1(2, _T(".\\Merge7z\\7z.dll"));
 
 // System settings
 	FileWriteString(_T("\r\nSystem Settings:\r\n"));
