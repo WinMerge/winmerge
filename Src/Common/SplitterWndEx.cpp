@@ -12,11 +12,6 @@
 #include <vector>
 #include "SplitterWndEx.h"
 
-#ifdef COMPILE_MULTIMON_STUBS
-#undef COMPILE_MULTIMON_STUBS
-#endif
-#include <multimon.h>
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
