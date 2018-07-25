@@ -129,6 +129,9 @@ static String GetLastModified(const String &path)
  */
 void CConfigLog::WritePluginsInLogFile(const wchar_t *transformationEvent)
 {
+	CVersionInfo EXEversion;
+	String sEXEPath = paths::GetPathOnly(paths::GetLongPath(EXEversion.GetFullFileName(), false));
+
 	// get an array with the available scripts
 	PluginArray * piPluginArray; 
 
@@ -138,12 +141,25 @@ void CConfigLog::WritePluginsInLogFile(const wchar_t *transformationEvent)
 	for (size_t iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
-		m_pfile->WriteString(_T("\r\n   "));
-		if (plugin->m_disabled)
-			m_pfile->WriteString(_T("!"));
-		m_pfile->WriteString(plugin->m_name);
-		m_pfile->WriteString(_T("  path="));
-		m_pfile->WriteString(plugin->m_filepath);
+
+		String sFileName = paths::GetLongPath(plugin->m_filepath);
+		if (sFileName.length() > sEXEPath.length())
+			if (sFileName.substr(0, sEXEPath.length()) == sEXEPath)
+				sFileName = _T(".") + sFileName.erase(0, sEXEPath.length());
+		
+		String sModifiedTime = _T("");
+		sModifiedTime = GetLastModified(plugin->m_filepath);
+		if (!sModifiedTime.empty())
+			sModifiedTime = _T("[") + sModifiedTime + _T("]");
+		
+		String sPluginText = strutils::format
+			(_T("\r\n  %s%-36s path=%s  %s"),
+			plugin->m_disabled ? _T("!") : _T(" "),
+			plugin->m_name.c_str(),
+			sFileName.c_str(),
+			sModifiedTime.c_str()
+			);
+		m_pfile->WriteString(sPluginText);
 	}
 }
 
@@ -292,7 +308,7 @@ bool CConfigLog::DoFile(String &sError)
 // Begin log
 	FileWriteString(_T("WinMerge Configuration Log\r\n"));
 	FileWriteString(_T("--------------------------\r\n"));
-	FileWriteString(_T("\r\nSaved to:             "));
+	FileWriteString(_T("\r\nLog Saved to:         "));
 	FileWriteString(m_sFileName);
 	FileWriteString(_T("\r\n                >> >> Please add this information (or attach this file) when reporting bugs << <<"));
 
@@ -362,13 +378,14 @@ bool CConfigLog::DoFile(String &sError)
 
 	String sEXEPathOnly = paths::GetPathOnly(sEXEFullFileName);
 
-	FileWriteString(_T("\r\n\r\nModule Names:         Tilda (~) prefix indicates currently loaded into the WinMerge process.\r\n"));
+	FileWriteString(_T("\r\n\r\nModule Names:         '~' prefix indicates module is loaded into the WinMerge process.\r\n"));
 	FileWriteString(_T(" Windows:\r\n"));
 	WriteVersionOf1(2, _T("kernel32.dll"));
 	WriteVersionOf1(2, _T("shell32.dll"));
 	WriteVersionOf1(2, _T("shlwapi.dll"));
 	WriteVersionOf1(2, _T("COMCTL32.dll"));
-	FileWriteString(_T(        " WinMerge:            These path names are relative to the Code File's directory.\r\n"));
+	WriteVersionOf1(2, _T("msvcrt.dll"));
+	FileWriteString(_T(        " WinMerge:            Path names are relative to the Code File's directory.\r\n"));
 	WriteVersionOf1(2, _T(".\\ShellExtensionU.dll"));
 	WriteVersionOf1(2, _T(".\\ShellExtensionX64.dll"));
 	WriteVersionOf1(2, _T(".\\MergeLang.dll"));
@@ -389,8 +406,8 @@ bool CConfigLog::DoFile(String &sError)
 	WriteLocaleSettings(LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
 
 // Plugins
-	FileWriteString(_T("\r\nPlugins:\r\n"));
-	FileWriteString(_T(" Unpackers: "));
+	FileWriteString(_T("\r\nPlugins:                                '!' Prefix indicates the plugin is Disabled.\r\n"));
+	FileWriteString(    _T(" Unpackers:                             Path names are relative to the Code File's directory."));
 	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
 	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
 	WritePluginsInLogFile(L"FILE_FOLDER_PACK_UNPACK");

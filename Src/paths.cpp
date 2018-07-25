@@ -130,7 +130,7 @@ String FindExtension(const String& path)
 
 /** 
  * @brief Strip trailing slas.
- * This function strips trailing slas from given path. Root paths are special
+ * This function strips trailing slash from given path. Root paths are special
  * case and they are left intact. Since C:\ is a valid path but C: is not.
  * @param [in,out] sPath Path to strip.
  */
