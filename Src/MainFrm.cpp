@@ -78,16 +78,6 @@ using std::vector;
 using boost::begin;
 using boost::end;
 
-/*
- One source file must compile the stubs for multimonitor
- by defining the symbol COMPILE_MULTIMON_STUBS & including <multimon.h>
-*/
-#ifdef COMPILE_MULTIMON_STUBS
-#undef COMPILE_MULTIMON_STUBS
-#endif
-#define COMPILE_MULTIMON_STUBS
-#include <multimon.h>
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
