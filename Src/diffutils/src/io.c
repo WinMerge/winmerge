@@ -78,7 +78,7 @@ static DECL_TLS int equivs_alloc;
 static void find_and_hash_each_line (struct file_data *);
 static void find_identical_ends (struct file_data[]);
 static char *prepare_text_end (struct file_data *, short);
-static enum UNICODESET get_unicode_signature(struct file_data *, unsigned *bom);
+static enum UNICODESET get_unicode_signature(struct file_data *, int *pBomsize);
 
 /* Check for binary files and compare them for exact identity.  */
 
@@ -88,7 +88,7 @@ static enum UNICODESET get_unicode_signature(struct file_data *, unsigned *bom);
 #define binary_file_p(buf, size) (size != 0 && memchr (buf, '\0', size) != 0)
 
 /** @brief Get unicode signature from file_data. */
-static enum UNICODESET get_unicode_signature(struct file_data *current, unsigned *bom)
+static enum UNICODESET get_unicode_signature(struct file_data *current, int *pBomsize)
 {
   // initialize to a pattern that differs everywhere from all possible unicode signatures
   unsigned long sig = 0x3F3F3F3F;
@@ -96,7 +96,7 @@ static enum UNICODESET get_unicode_signature(struct file_data *current, unsigned
   memcpy(&sig, current->buffer, min(current->buffered_chars, 4));
   // check for the two possible 4 bytes signatures
   int tmp;
-  int *bomsize = bom ? bom : &tmp;
+  int *bomsize = pBomsize ? pBomsize : &tmp;
   
   if (sig == 0x0000FEFF)
     {
@@ -481,9 +481,9 @@ prepare_text_end (struct file_data *current, short side)
   char *const p = current->buffer;
   char *r = p; // receives the return value
   char *q0, *t;
-  unsigned bom = 0;
-  enum UNICODESET sig = get_unicode_signature(current, &bom);
-  char *const u0 = p + bom;
+  int bomsize = 0;
+  enum UNICODESET sig = get_unicode_signature(current, &bomsize);
+  char *const u0 = p + bomsize;
 
   if (sig == UCS4LE)
     {

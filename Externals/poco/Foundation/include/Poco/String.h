@@ -228,8 +228,8 @@ int icompare(const S& str1, const S& str2)
 	typename S::const_iterator end2(str2.end());
 	while (it1 != end1 && it2 != end2)
 	{
-        typename S::value_type c1(Ascii::toLower(*it1));
-        typename S::value_type c2(Ascii::toLower(*it2));
+        typename S::value_type c1(static_cast<typename S::value_type>(Ascii::toLower(*it1)));
+        typename S::value_type c2(static_cast<typename S::value_type>(Ascii::toLower(*it2)));
         if (c1 < c2)
             return -1;
         else if (c1 > c2)

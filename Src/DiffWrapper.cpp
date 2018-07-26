@@ -28,6 +28,8 @@
 #include <sys/stat.h>
 #include <algorithm>
 #include <string>
+#include <cctype>
+#include <cwctype>
 #include <map>
 #include <cassert>
 #include <exception>
@@ -286,7 +288,7 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
 		return false;//In no Start and End pair, and no single in-line set, then it's not trivial
 
 	if (StartOfComment == Line.c_str() &&
-		((EndOfComment + filtercommentsset.EndMarker.size()) - StartOfComment) == Line.size())
+		static_cast<size_t>((EndOfComment + filtercommentsset.EndMarker.size()) - StartOfComment) == Line.size())
 	{//If entire line is blocked by End and Start markers, then entire line is trivial
 		return true;
 	}
@@ -622,8 +624,12 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 			if (m_options.m_bIgnoreCase)
 			{
 				//ignore case
-				std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
-				std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
+				// std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
+				for (std::basic_string<char>::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
+					*pb = static_cast<char>(::toupper(*pb)); 
+				// std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
+				for (std::basic_string<char>::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
+					*pb = static_cast<char>(::toupper(*pb)); 
 			}
 
 			if (!LineDataLeft.empty())
