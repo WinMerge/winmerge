@@ -213,7 +213,7 @@ public :
     void SetColorContext(SyntaxColors * pColors) { m_pColors = pColors; }
     CCrystalTextMarkers * GetMarkers() const { return m_pMarkers; }
     void SetMarkersContext(CCrystalTextMarkers * pMarkers);
-    static int GetClipTcharTextFormat() { return sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT; }
+    static CLIPFORMAT GetClipTcharTextFormat() { return sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT; }
 
 protected :
     CPoint WordToRight (CPoint pt);

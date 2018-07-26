@@ -173,7 +173,7 @@ private:
 public:
 	operator CLIPFORMAT() const { return cf; }
 	explicit CMyClipFormat(CLIPFORMAT cf) : cf(cf) { }
-	explicit CMyClipFormat(LPCTSTR cfstr) : cf(RegisterClipboardFormat(cfstr)) { }
+	explicit CMyClipFormat(LPCTSTR cfstr) : cf(static_cast<CLIPFORMAT>(RegisterClipboardFormat(cfstr))) { }
 };
 
 class CMyFormatEtc : public FORMATETC

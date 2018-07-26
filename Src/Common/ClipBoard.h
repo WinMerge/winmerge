@@ -8,7 +8,7 @@
 #include <windows.h>
 #include "UnicodeString.h"
 
-inline UINT GetClipTcharTextFormat() { return (sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT); }
+inline CLIPFORMAT GetClipTcharTextFormat() { return (sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT); }
 
 bool PutToClipboard(const String & text, HWND currentWindowHandle);
 bool GetFromClipboard(String & text, HWND currentWindowHandle);
