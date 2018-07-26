@@ -196,7 +196,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 		}
 		bok = !!FindNextFile(h, &ff) ;
 	}
-	if (h)
+	if (h != INVALID_HANDLE_VALUE)
 		FindClose(h);
 	return res;
 }
