@@ -4873,9 +4873,7 @@ FindStringHelper (LPCTSTR pszLineBegin, LPCTSTR pszFindWhere, LPCTSTR pszFindWha
           return nCur + (int) (pszPos - pszFindWhere);
         }
     }
-  ASSERT (false);               // Unreachable
-
-  return -1;
+//~  ASSERT (false);               // Unreachable
 }
 
 /** 
@@ -5203,9 +5201,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
         }
     }
 
-  ASSERT (false);               // Unreachable
-
-  return false;
+ //~ ASSERT (false);               // Unreachable
 }
 
 static DWORD ConvertSearchInfosToSearchFlags(const LastSearchInfos *lastSearch)

@@ -476,7 +476,7 @@ stringdiffs::Hash(const String & str, int begin, int end, unsigned h) const
 {
 	for (int i = begin; i <= end; ++i)
 	{
-		unsigned ch = static_cast<unsigned>(str[i]);
+		TCHAR ch = static_cast<unsigned>(str[i]);
 		if (m_case_sensitive)
 		{
 			h += HASH(h, ch);

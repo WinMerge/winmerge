@@ -150,7 +150,7 @@ bool IsArchiveFile(const String& pszFile)
 		e->Delete();
 		return FALSE;
 	}
-	return FALSE;
+//~	return FALSE;
 }
 
 /**
