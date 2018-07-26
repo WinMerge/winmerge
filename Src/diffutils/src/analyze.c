@@ -832,11 +832,11 @@ briefly_report (int changes, struct file_data const filevec[])
 
 //  Report the differences of two files.  DEPTH is the current directory
 // depth. 
-// WinMerge: add moved_blocks_flag for detecting moved blocks and
+// WinMerge: add bMoved_blocks_flag for detecting moved blocks and
 // bin_file for getting info which file is binary file (can be NULL)
 // Winmerge: assume S_ISREG() files, not pipes, directories or devices
 struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_status,
-	int moved_blocks_flag, int * bin_file)
+	int bMoved_blocks_flag, int * bin_file)
 {
 	int diags;
 	int i;
@@ -1023,7 +1023,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 		}
 
 		/* WinMerge moved block support */
-		if (moved_blocks_flag)
+		if (bMoved_blocks_flag)
 		{
 			moved_block_analysis(&script, filevec);
 		}

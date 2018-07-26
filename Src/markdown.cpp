@@ -144,7 +144,7 @@ std::string CMarkdown::Resolve(const EntityMap &map, const std::string& v)
 			unsigned ordinal = '?';
 			*key = '0';
 			if (NumberParser::tryParseHex(key, ordinal))
-				value.assign(1, ordinal);
+				value.assign(1, static_cast<std::string::value_type>(ordinal));
 			*key = '#';
 		}
 		else

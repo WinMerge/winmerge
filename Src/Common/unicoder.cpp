@@ -276,13 +276,13 @@ void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
 #ifdef _UNICODE
 	if (unich < 0x10000)
 	{
-		ch = (TCHAR)unich;
+		ch = static_cast<TCHAR>(unich);
 		return;
 	}
 	else if (unich < 0x110000)
 	{
-		ch = ((unich - 0x10000)/0x400 + 0xd800);
-		ch += ((unich % 0x400) + 0xdc00);
+		ch = static_cast<TCHAR>(((unich - 0x10000)/0x400 + 0xd800));
+		ch += static_cast<TCHAR>(((unich % 0x400) + 0xdc00));
 		return;
 	}
 	lossy = TRUE;
