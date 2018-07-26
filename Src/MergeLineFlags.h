@@ -12,7 +12,7 @@
  information; here are the list of WinMerge flags.
  So, these constants are used with the SetLineFlag(2) calls.
 */
-enum MERGE_LINEFLAGS
+enum MERGE_LINEFLAGS : DWORD
 {
 	LF_DIFF = 0x00200000UL,
 //	LF_GHOST = 0x00400000UL, 
