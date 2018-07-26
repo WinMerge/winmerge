@@ -6172,7 +6172,7 @@ BOOL CCrystalTextView::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDL
   return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
 }
 
-void CCrystalTextView::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
+void CCrystalTextView::OnChar( wchar_t nChar, UINT nRepCnt, UINT nFlags )
 {
   CView::OnChar( nChar, nRepCnt, nFlags );
 
@@ -6427,8 +6427,8 @@ int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
   if (!m_bChWidthsCalculated[ch/256])
     {
       int nWidthArray[256];
-      int nStart = ch/256*256;
-      int nEnd = nStart + 255;
+      wchar_t nStart = ch/256*256;
+      wchar_t nEnd = nStart + 255;
       CDC *pdc = GetDC();
       CFont *pOldFont = pdc->SelectObject(GetFont());
       GetCharWidth32(pdc->m_hDC, nStart, nEnd, nWidthArray);
@@ -6439,7 +6439,7 @@ int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
             m_iChDoubleWidthFlags[(nStart+i)/32] |= 1 << (i % 32);
           else
             {
-              wchar_t ch2 = nStart + i;
+              wchar_t ch2 = static_cast<wchar_t>(nStart + i);
               WORD wCharType;
               GetStringTypeW(CT_CTYPE3, &ch2, 1, &wCharType);
               if (!(wCharType & C3_HALFWIDTH) && wCharType & (C3_FULLWIDTH | C3_IDEOGRAPH | C3_HIRAGANA | C3_KATAKANA))
