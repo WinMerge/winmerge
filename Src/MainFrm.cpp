@@ -803,7 +803,7 @@ void CMainFrame::OnOptions()
 
 	if (rv == IDOK)
 	{
-		LANGID lang = GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE);
+		LANGID lang = static_cast<LANGID>(GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 		if (lang != theApp.m_pLangDlg->GetLangId())
 		{
 			theApp.m_pLangDlg->SetLanguage(lang, TRUE);

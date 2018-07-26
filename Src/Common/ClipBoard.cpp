@@ -30,7 +30,7 @@ bool PutToClipboard(const String & text, HWND currentWindowHandle)
 				_tcscpy_s(pszData, dataSiz, text.c_str());
 				GlobalUnlock(hData);
 			}
-			UINT fmt = GetClipTcharTextFormat();
+			CLIPFORMAT fmt = GetClipTcharTextFormat();
 			bOK = SetClipboardData(fmt, hData) != NULL;
 		}
 		CloseClipboard();
@@ -49,7 +49,7 @@ bool GetFromClipboard(String & text, HWND currentWindowHandle)
 	bool bSuccess = false;
 	if (OpenClipboard(currentWindowHandle))
 	{
-		UINT fmt = GetClipTcharTextFormat();
+		CLIPFORMAT fmt = GetClipTcharTextFormat();
 		HGLOBAL hData = GetClipboardData(fmt);
 		if (hData != NULL)
 		{
