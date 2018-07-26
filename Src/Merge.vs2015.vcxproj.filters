@@ -664,9 +664,6 @@
     <ClCompile Include="OptionsCustomColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Merge7zFormatShellImpl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ImgMergeFrm.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -1304,9 +1301,6 @@
     </ClInclude>
     <ClInclude Include="7zCommon.h">
       <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Merge7zFormatShellImpl.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImgMergeFrm.h">
       <Filter>MFCGui\Header Files</Filter>
