@@ -648,7 +648,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
   // check if incremental search is active before call to CCrystalTextView::OnChar()
   bool bIncrementalSearch = m_bIncrementalSearchForward || m_bIncrementalSearchBackward;
   //END Sw
-  CCrystalTextView::OnChar (nChar, nRepCnt, nFlags);
+  CCrystalTextView::OnChar (static_cast<wchar_t>(nChar), nRepCnt, nFlags);
 	//BEGIN SW
 	// if we are in incremental search mode ignore the character
 	if( m_bIncrementalSearchForward || m_bIncrementalSearchBackward )

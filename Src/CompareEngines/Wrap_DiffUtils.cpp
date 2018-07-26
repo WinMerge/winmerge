@@ -130,7 +130,7 @@ int DiffUtils::diffutils_compare_files()
 		if (PosOfDot != String::npos)
 		{
 			LowerCaseExt.erase(0, PosOfDot + 1);
-			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::tolower);
+			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::towlower);
 			asLwrCaseExt = LowerCaseExt;
 		}
 
