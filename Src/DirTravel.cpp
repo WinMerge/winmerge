@@ -12,12 +12,12 @@
 #include <Poco/Timestamp.h>
 #include <windows.h>
 #include <tchar.h>
-#include <mbstring.h>
 #include "TFile.h"
 #include "UnicodeString.h"
 #include "DirItem.h"
 #include "unicoder.h"
 #include "paths.h"
+#include "Win_VersionHelper.h"
 
 using Poco::DirectoryIterator;
 using Poco::Timestamp;
@@ -83,11 +83,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 
 	WIN32_FIND_DATA ff;
 	HANDLE h;
-	OSVERSIONINFO vi;
-	vi.dwOSVersionInfoSize = sizeof(vi);
-	GetVersionEx(&vi);
-
-	if (vi.dwMajorVersion * 10 + vi.dwMinorVersion >= 61)
+	if (IsWin7_OrGreater())	// (also 'Windows Server 2008 R2' and greater) for FIND_FIRST_EX_LARGE_FETCH
 		h = FindFirstFileEx(TFile(sPattern).wpath().c_str(), FindExInfoBasic, &ff, FindExSearchNameMatch, NULL, FIND_FIRST_EX_LARGE_FETCH);
 	else
 		h = FindFirstFile(TFile(sPattern).wpath().c_str(), &ff);
