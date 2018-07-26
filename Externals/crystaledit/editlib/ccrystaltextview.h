@@ -52,7 +52,7 @@ class CCrystalTextMarkers;
 // CCrystalTextView class declaration
 
 //  CCrystalTextView::FindText() flags
-enum
+enum : unsigned
 {
   FIND_MATCH_CASE = 0x0001U,
   FIND_WHOLE_WORD = 0x0002U,
@@ -64,7 +64,7 @@ enum
 };
 
 //  CCrystalTextView::UpdateView() flags
-enum
+enum : unsigned
 {
   UPDATE_HORZRANGE = 0x0001U,  //  update horz scrollbar
   UPDATE_VERTRANGE = 0x0002U, //  update vert scrollbar
