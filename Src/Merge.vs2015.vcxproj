@@ -1122,6 +1122,7 @@
     <ClInclude Include="Common\VersionInfo.h" />
     <ClInclude Include="VSSHelper.h" />
     <ClInclude Include="VssPromptDlg.h" />
+    <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />
     <ClInclude Include="diffutils\lib\cmpbuf.h" />
     <ClInclude Include="diffutils\config.h" />
