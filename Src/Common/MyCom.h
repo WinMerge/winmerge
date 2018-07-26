@@ -260,7 +260,7 @@ public:
 	{
 		VariantClear(this);
 	}
-	HRESULT ChangeType(VARTYPE vt)
+	HRESULT ChangeType(VARTYPE _vt)
 	{
 		return VariantChangeType(this, this, 0, vt);
 	}
@@ -319,10 +319,10 @@ public:
 class CMyDispParamsUnnamed : public DISPPARAMS
 {
 public:
-	void Make(VARIANT *rgvarg)
+	void Make(VARIANT *_rgvarg)
 	{
 		ZeroMemory(this, sizeof *this);
-		DISPPARAMS::rgvarg = rgvarg;
+		DISPPARAMS::rgvarg = _rgvarg;
 	}
 	void Drop()
 	{
