@@ -83,7 +83,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 
 	WIN32_FIND_DATA ff;
 	HANDLE h;
-	if (IsWin7_OrGreater())	// (also 'Windows Server 2008 R2' and greater) for FIND_FIRST_EX_LARGE_FETCH
+	if (IsWin7_OrGreater())	// (also 'Windows Server 2008 R2' and greater) for FindExInfoBasic and FIND_FIRST_EX_LARGE_FETCH
 		h = FindFirstFileEx(TFile(sPattern).wpath().c_str(), FindExInfoBasic, &ff, FindExSearchNameMatch, NULL, FIND_FIRST_EX_LARGE_FETCH);
 	else
 		h = FindFirstFile(TFile(sPattern).wpath().c_str(), &ff);
