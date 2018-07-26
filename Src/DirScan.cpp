@@ -156,9 +156,9 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		}
 	}
 
-	DirItemArray dirs[3], files[3];
+	DirItemArray dirs[3], aFiles[3];
 	for (nIndex = 0; nIndex < nDirs; nIndex++)
-		LoadAndSortFiles(sDir[nIndex], &dirs[nIndex], &files[nIndex], casesensitive);
+		LoadAndSortFiles(sDir[nIndex], &dirs[nIndex], &aFiles[nIndex], casesensitive);
 
 	// Allow user to abort scanning
 	if (pCtxt->ShouldAbort())
@@ -169,7 +169,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 	// j points to current directory in right list (rightDirs)
 
 	for (nIndex = 0; nIndex < nDirs; nIndex++)
-		if (dirs[nIndex].size() != 0 || files[nIndex].size() != 0) break;
+		if (dirs[nIndex].size() != 0 || aFiles[nIndex].size() != 0) break;
 	if (nIndex == nDirs)
 		return 0;
 
@@ -331,8 +331,8 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			k++;
 	}
 	// Handle files
-	// i points to current file in left list (files[0])
-	// j points to current file in right list (files[1])
+	// i points to current file in left list (aFiles[0])
+	// j points to current file in right list (aFiles[1])
 	i=0, j=0, k=0;
 	while (1)
 	{
@@ -340,98 +340,98 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			return -1;
 
 
-		// Comparing file files[0][i].name to files[1][j].name
-		if (i<files[0].size() && (j==files[1].size() ||
-				collstr(files[0][i].filename, files[1][j].filename, casesensitive) < 0)
+		// Comparing file aFiles[0][i].name to aFiles[1][j].name
+		if (i<aFiles[0].size() && (j==aFiles[1].size() ||
+				collstr(aFiles[0][i].filename, aFiles[1][j].filename, casesensitive) < 0)
 			&& (nDirs < 3 || 
-				(k==files[2].size() || collstr(files[0][i].filename, files[2][k].filename, casesensitive)<0) ))
+				(k==aFiles[2].size() || collstr(aFiles[0][i].filename, aFiles[2][k].filename, casesensitive)<0) ))
 		{
 			if (nDirs < 3)
 			{
 				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], &files[0][i], 0, nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], &aFiles[0][i], 0, nDiffCode, myStruct, parent);
 			}
 			else
 			{
 				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], 0, 0, nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], &aFiles[0][i], 0, 0, nDiffCode, myStruct, parent);
 			}
 			// Advance left pointer over left-only entry, and then retest with new pointers
 			++i;
 			continue;
 		}
-		if (j<files[1].size() && (i==files[0].size() ||
-				collstr(files[0][i].filename, files[1][j].filename, casesensitive) > 0)
+		if (j<aFiles[1].size() && (i==aFiles[0].size() ||
+				collstr(aFiles[0][i].filename, aFiles[1][j].filename, casesensitive) > 0)
 			&& (nDirs < 3 ||
-				(k==files[2].size() || collstr(files[1][j].filename, files[2][k].filename, casesensitive)<0) ))
+				(k==aFiles[2].size() || collstr(aFiles[1][j].filename, aFiles[2][k].filename, casesensitive)<0) ))
 		{
 			const unsigned nDiffCode = DIFFCODE::SECOND | DIFFCODE::FILE;
 			if (nDirs < 3)
-				AddToList(subdir[0], subdir[1], 0, &files[1][j], nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], 0, &aFiles[1][j], nDiffCode, myStruct, parent);
 			else
-				AddToList(subdir[0], subdir[1], subdir[2], 0, &files[1][j], 0, nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], 0, &aFiles[1][j], 0, nDiffCode, myStruct, parent);
 			// Advance right pointer over right-only entry, and then retest with new pointers
 			++j;
 			continue;
 		}
 		if (nDirs == 3)
 		{
-			if (k<files[2].size() && (i==files[0].size() ||
-					collstr(files[2][k].filename, files[0][i].filename, casesensitive)<0)
-				&& (j==files[1].size() || collstr(files[2][k].filename, files[1][j].filename, casesensitive)<0) )
+			if (k<aFiles[2].size() && (i==aFiles[0].size() ||
+					collstr(aFiles[2][k].filename, aFiles[0][i].filename, casesensitive)<0)
+				&& (j==aFiles[1].size() || collstr(aFiles[2][k].filename, aFiles[1][j].filename, casesensitive)<0) )
 			{
 				const unsigned nDiffCode = DIFFCODE::THIRD | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], 0, 0, &files[2][k], nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], 0, 0, &aFiles[2][k], nDiffCode, myStruct, parent);
 				++k;
 				// Advance right pointer over right-only entry, and then retest with new pointers
 				continue;
 			}
 
-			if ((i<files[0].size() && j<files[1].size() && collstr(files[0][i].filename, files[1][j].filename, casesensitive) == 0)
-			    && (k==files[2].size() || collstr(files[0][i].filename, files[2][k].filename, casesensitive) != 0))
+			if ((i<aFiles[0].size() && j<aFiles[1].size() && collstr(aFiles[0][i].filename, aFiles[1][j].filename, casesensitive) == 0)
+			    && (k==aFiles[2].size() || collstr(aFiles[0][i].filename, aFiles[2][k].filename, casesensitive) != 0))
 			{
 				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::SECOND | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], &files[1][j], 0, nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], &aFiles[0][i], &aFiles[1][j], 0, nDiffCode, myStruct, parent);
 				++i;
 				++j;
 				continue;
 			}
-			else if ((i<files[0].size() && k<files[2].size() && collstr(files[0][i].filename, files[2][k].filename, casesensitive) == 0)
-			    && (j==files[1].size() || collstr(files[1][j].filename, files[2][k].filename, casesensitive) != 0))
+			else if ((i<aFiles[0].size() && k<aFiles[2].size() && collstr(aFiles[0][i].filename, aFiles[2][k].filename, casesensitive) == 0)
+			    && (j==aFiles[1].size() || collstr(aFiles[1][j].filename, aFiles[2][k].filename, casesensitive) != 0))
 			{
 				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::THIRD | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], 0, &files[2][k], nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], &aFiles[0][i], 0, &aFiles[2][k], nDiffCode, myStruct, parent);
 				++i;
 				++k;
 				continue;
 			}
-			else if ((j<files[1].size() && k<files[2].size() && collstr(files[1][j].filename, files[2][k].filename, casesensitive) == 0)
-			    && (i==files[0].size() || collstr(files[0][i].filename, files[1][j].filename, casesensitive) != 0))
+			else if ((j<aFiles[1].size() && k<aFiles[2].size() && collstr(aFiles[1][j].filename, aFiles[2][k].filename, casesensitive) == 0)
+			    && (i==aFiles[0].size() || collstr(aFiles[0][i].filename, aFiles[1][j].filename, casesensitive) != 0))
 			{
 				const unsigned nDiffCode = DIFFCODE::SECOND | DIFFCODE::THIRD | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], 0, &files[1][j], &files[2][k], nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], 0, &aFiles[1][j], &aFiles[2][k], nDiffCode, myStruct, parent);
 				++j;
 				++k;
 				continue;
 			}
 		}
-		if (i<files[0].size())
+		if (i<aFiles[0].size())
 		{
 			if (nDirs < 3)
 			{
-				assert(j<files[1].size());
+				assert(j<aFiles[1].size());
 				const unsigned nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], &files[0][i], &files[1][j], nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], &aFiles[0][i], &aFiles[1][j], nDiffCode, myStruct, parent);
 				++i;
 				++j;
 				continue;
 			}
 			else
 			{
-				assert(j<files[1].size());
-				assert(k<files[2].size());
+				assert(j<aFiles[1].size());
+				assert(k<aFiles[2].size());
 				const unsigned nDiffCode = DIFFCODE::ALL | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], &files[1][j], &files[2][k], nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], &aFiles[0][i], &aFiles[1][j], &aFiles[2][k], nDiffCode, myStruct, parent);
 				++i;
 				++j;
 				++k;

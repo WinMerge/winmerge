@@ -1072,27 +1072,27 @@ bool CRegVal::GetNumber (DWORD *pdwNumber) const
 }
 
 /* get binary data */
-bool CRegVal::GetBinary (LPBYTE pbyteData, DWORD dwSize) const
+bool CRegVal::GetBinary (LPBYTE _pbyteData, DWORD _dwSize) const
 {
-  return RegValGetBinary (this, pbyteData, dwSize);
+  return RegValGetBinary (this, _pbyteData, _dwSize);
 }
 
 /* get new binary data */
-bool CRegVal::GetNewBinary (LPBYTE *pbyteData, DWORD *pdwSize) const
+bool CRegVal::GetNewBinary (LPBYTE *_pbyteData, DWORD *_pdwSize) const
 {
-  return RegValGetNewBinary (this, pbyteData, pdwSize);
+  return RegValGetNewBinary (this, _pbyteData, _pdwSize);
 }
 
 /* get a string */
-bool CRegVal::GetString (LPTSTR pszString, DWORD dwLength) const
+bool CRegVal::GetString (LPTSTR _pszString, DWORD _dwLength) const
 {
-  return RegValGetString (this, pszString, dwLength);
+  return RegValGetString (this, _pszString, _dwLength);
 }
 
 /* get a new string */
-bool CRegVal::GetNewString (LPTSTR *pszString, DWORD *pdwLength) const
+bool CRegVal::GetNewString (LPTSTR *_pszString, DWORD *_pdwLength) const
 {
-  return RegValGetNewString (this, pszString, pdwLength);
+  return RegValGetNewString (this, _pszString, _pdwLength);
 }
 
 /* get an array of strings */
@@ -1124,21 +1124,21 @@ bool CRegVal::GetStringArr (CStringArray &arrString) const
 #endif /* REG_WITH_MFC */
 
 /* set a number */
-void CRegVal::SetNumber (DWORD dwNumber)
+void CRegVal::SetNumber (DWORD _dwNumber)
 {
-  RegValSetNumber (this, dwNumber);
+  RegValSetNumber (this, _dwNumber);
 }
 
 /* set binary data */
-bool CRegVal::SetBinary (const LPBYTE pbyteData, DWORD dwSize)
+bool CRegVal::SetBinary (const LPBYTE _pbyteData, DWORD _dwSize)
 {
-  return RegValSetBinary (this, pbyteData, dwSize);
+  return RegValSetBinary (this, _pbyteData, _dwSize);
 }
 
 /* set a string */
-bool CRegVal::SetString (LPCTSTR pszString)
+bool CRegVal::SetString (LPCTSTR _pszString)
 {
-  return RegValSetString (this, pszString);
+  return RegValSetString (this, _pszString);
 }
 
 /* set an array of strings */

@@ -1181,12 +1181,12 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	if (!LoadProjectFile(sProject, project))
 		return false;
 	
-	PathContext files;
+	PathContext tFiles;
 	BOOL bLeftReadOnly = FALSE;
 	BOOL bMiddleReadOnly = FALSE;
 	BOOL bRightReadOnly = FALSE;
 	bool bRecursive = FALSE;
-	project.GetPaths(files, bRecursive);
+	project.GetPaths(tFiles, bRecursive);
 	bLeftReadOnly = project.GetLeftReadOnly();
 	bMiddleReadOnly = project.GetMiddleReadOnly();
 	bRightReadOnly = project.GetRightReadOnly();
@@ -1200,13 +1200,13 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		bRecursive = project.GetSubfolders() > 0;
 
 	DWORD dwFlags[3] = {
-		static_cast<DWORD>(files.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-		static_cast<DWORD>(files.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-		static_cast<DWORD>(files.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT)
+		static_cast<DWORD>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
+		static_cast<DWORD>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
+		static_cast<DWORD>(tFiles.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT)
 	};
 	if (bLeftReadOnly)
 		dwFlags[0] |= FFILEOPEN_READONLY;
-	if (files.GetSize() == 2)
+	if (tFiles.GetSize() == 2)
 	{
 		if (bRightReadOnly)
 			dwFlags[1] |= FFILEOPEN_READONLY;
@@ -1221,7 +1221,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 	
-	BOOL rtn = GetMainFrame()->DoFileOpen(&files, dwFlags, NULL, sReportFile, bRecursive);
+	BOOL rtn = GetMainFrame()->DoFileOpen(&tFiles, dwFlags, NULL, sReportFile, bRecursive);
 
 	AddToRecentProjectsMRU(sProject.c_str());
 	return !!rtn;

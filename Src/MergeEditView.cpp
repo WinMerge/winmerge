@@ -3947,15 +3947,15 @@ void CMergeEditView::OnViewZoomNormal()
 	ZoomText(0);
 }
 
-void CMergeEditView::OnDropFiles(const std::vector<String>& files)
+void CMergeEditView::OnDropFiles(const std::vector<String>& tFiles)
 {
-	if (files.size() > 1 || paths::IsDirectory(files[0]))
+	if (tFiles.size() > 1 || paths::IsDirectory(tFiles[0]))
 	{
-		GetMainFrame()->GetDropHandler()->GetCallback()(files);
+		GetMainFrame()->GetDropHandler()->GetCallback()(tFiles);
 		return;
 	}
 
-	GetDocument()->ChangeFile(m_nThisPane, files[0]);
+	GetDocument()->ChangeFile(m_nThisPane, tFiles[0]);
 }
 
 void CMergeEditView::OnWindowSplit()
