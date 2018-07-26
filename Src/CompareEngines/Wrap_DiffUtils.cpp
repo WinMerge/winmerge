@@ -276,7 +276,6 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 	{
 		throw "DiffUtils::RegExpFilter() called when "
 				"filterlist doesn't exist (=NULL)";
-		return false;
 	}
 
 	bool linesMatch = true; // set to false when non-matching line is found.

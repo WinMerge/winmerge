@@ -49,5 +49,5 @@ BOOL CEncodingErrorBar::Create(CWnd *pParentWnd)
 
 void CEncodingErrorBar::SetText(const String& sText)
 {
-	SetDlgItemText(IDC_STATIC, sText);
+	SetDlgItemText((unsigned)IDC_STATIC, sText);
 }

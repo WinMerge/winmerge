@@ -1882,7 +1882,7 @@ FindNextBookmarkLine (int nCurrentLine) const
       bWrapIt = false;
       nCurrentLine = 0;
     }
-  return -1;
+//~  return -1;
 }
 
 int CCrystalTextBuffer::
@@ -1911,7 +1911,7 @@ FindPrevBookmarkLine (int nCurrentLine) const
       bWrapIt = false;
       nCurrentLine = (int) (nSize - 1);
     }
-  return -1;
+//~  return -1;
 }
 
 bool CCrystalTextBuffer::
