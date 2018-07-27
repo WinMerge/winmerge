@@ -72,7 +72,6 @@
 #include "ccrystaltextview.h"
 #include "filesup.h"
 #include "cs2cs.h"
-#include <mbctype.h>
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
