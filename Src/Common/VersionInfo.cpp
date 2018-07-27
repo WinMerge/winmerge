@@ -8,7 +8,7 @@
 #include <windows.h>
 #include <cstdio>
 #include <tchar.h>
-#include <assert.h>
+#include <cassert>
 #include <strsafe.h>
 #include "coretypes.h"
 #include "UnicodeString.h"

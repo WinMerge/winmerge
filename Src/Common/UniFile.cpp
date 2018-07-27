@@ -32,7 +32,6 @@ THE SOFTWARE.
 #include <cstdio>
 #include <cassert>
 #include <memory>
-#include <cstdint>
 #include <Poco/SharedMemory.h>
 #include <Poco/Exception.h>
 #include "UnicodeString.h"

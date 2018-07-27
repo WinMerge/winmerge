@@ -7,7 +7,6 @@
 
 #include "DirTravel.h"
 #include <algorithm>
-#include <cstdint>
 #include <Poco/DirectoryIterator.h>
 #include <Poco/Timestamp.h>
 #include <windows.h>

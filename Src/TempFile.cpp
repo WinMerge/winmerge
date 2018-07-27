@@ -8,7 +8,6 @@
 #include "TempFile.h"
 #include <windows.h>
 #include <tlhelp32.h> 
-#include <shlwapi.h>
 #include "paths.h"
 #include "TFile.h"
 #include "Environment.h"

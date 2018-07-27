@@ -6,7 +6,6 @@
  * @date  Created: 2003-08-19
  */
 #include "DirViewColItems.h"
-#include <cstdint>
 #include <Poco/Timestamp.h>
 #include <Shlwapi.h>
 #include "UnicodeString.h"

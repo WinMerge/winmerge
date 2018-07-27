@@ -6,7 +6,6 @@
 #pragma once
 
 #include "UnicodeString.h"
-#include <cstdint>
 
 class CDiffContext;
 class DiffItemList;
