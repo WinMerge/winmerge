@@ -10,7 +10,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <cassert>
-#include <mbctype.h>
+#include <mbctype.h>	// MBCS (multibyte MBCS character stuff)
 #include "CompareOptions.h"
 #include "stringdiffsi.h"
 #include "Diff3.h"

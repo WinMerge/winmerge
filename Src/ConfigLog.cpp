@@ -23,7 +23,6 @@
 #include "ConfigLog.h"
 #include <cassert>
 #include <windows.h>
-#include <mbctype.h>
 #include <memory>
 #include "Constants.h"
 #include "VersionInfo.h"

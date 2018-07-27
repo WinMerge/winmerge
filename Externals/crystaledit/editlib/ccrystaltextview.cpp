@@ -91,7 +91,6 @@
 #include <vector>
 #include <malloc.h>
 #include <imm.h> /* IME */
-#include <mbctype.h>
 #include "editcmd.h"
 #include "editreg.h"
 #include "ccrystaltextview.h"
