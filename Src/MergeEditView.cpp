@@ -2989,7 +2989,7 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 	if (prediffer.pluginName.empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 
-	pCmdUI->SetRadio(pCmdUI->m_nID == m_CurrentPredifferID);
+	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
 }
 
 /**
@@ -3838,7 +3838,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 */
 void CMergeEditView::OnUpdateChangeScheme(CCmdUI* pCmdUI)
 {
-	const bool bIsCurrentScheme = (m_CurSourceDef->type == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
+	const bool bIsCurrentScheme = (static_cast<UINT>(m_CurSourceDef->type) == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
 	pCmdUI->SetRadio(bIsCurrentScheme);
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT));
 }

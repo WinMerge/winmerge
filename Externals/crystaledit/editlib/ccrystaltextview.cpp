@@ -2321,9 +2321,9 @@ OnDraw (CDC * pdc)
   // if the private arrays (m_ParseCookies and m_pnActualLineLength) 
   // are defined, check they are in phase with the text buffer
   if (m_ParseCookies->size())
-    ASSERT(m_ParseCookies->size() == nLineCount);
+    ASSERT(m_ParseCookies->size() == static_cast<size_t>(nLineCount));
   if (m_pnActualLineLength->size())
-    ASSERT(m_pnActualLineLength->size() == nLineCount);
+    ASSERT(m_pnActualLineLength->size() == static_cast<size_t>(nLineCount));
 
   CDC cacheDC;
   VERIFY (cacheDC.CreateCompatibleDC (pdc));
@@ -4389,7 +4389,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
       //  This line'th actual length must be recalculated
       if (m_pnActualLineLength->size())
         {
-          ASSERT (m_pnActualLineLength->size() == nLineCount);
+          ASSERT (m_pnActualLineLength->size() == static_cast<size_t>(nLineCount));
           // must be initialized to invalid code -1
           (*m_pnActualLineLength)[nLineIndex] = -1;
       //BEGIN SW
@@ -4412,7 +4412,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
       if (m_ParseCookies->size())
         {
           size_t arrSize = m_ParseCookies->size();
-          if (arrSize != nLineCount)
+          if (arrSize != static_cast<size_t>(nLineCount))
             {
               size_t oldsize = arrSize; 
               m_ParseCookies->resize(nLineCount);
@@ -4429,7 +4429,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
       if (m_pnActualLineLength->size())
         {
 			size_t arrsize = m_pnActualLineLength->size();
-			if (arrsize != nLineCount)
+			if (arrsize != static_cast<size_t>(nLineCount))
             {
               //  Reallocate actual length array
               size_t oldsize = arrsize; 
