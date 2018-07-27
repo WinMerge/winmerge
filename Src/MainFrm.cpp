@@ -2112,7 +2112,7 @@ void CMainFrame::OnUpdateToolbarSize(CCmdUI *pCmdUI)
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
 		pCmdUI->SetRadio(pCmdUI->m_nID == ID_TOOLBAR_NONE);
 	else
-		pCmdUI->SetRadio((pCmdUI->m_nID - ID_TOOLBAR_SMALL) == GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE));
+		pCmdUI->SetRadio((pCmdUI->m_nID - ID_TOOLBAR_SMALL) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE)));
 }
 
 /** @brief Lang aware version of CFrameWnd::OnToolTipText() */
@@ -2357,7 +2357,7 @@ void CMainFrame::OnDiffWhitespace(UINT nID)
 
 void CMainFrame::OnUpdateDiffWhitespace(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio((pCmdUI->m_nID - IDC_DIFF_WHITESPACE_COMPARE) == GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE));
+	pCmdUI->SetRadio((pCmdUI->m_nID - IDC_DIFF_WHITESPACE_COMPARE) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE)));
 	pCmdUI->Enable();
 }
 
@@ -2408,7 +2408,7 @@ void CMainFrame::OnCompareMethod(UINT nID)
 
 void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio((pCmdUI->m_nID - ID_COMPMETHOD_FULL_CONTENTS) == GetOptionsMgr()->GetInt(OPT_CMP_METHOD));
+	pCmdUI->SetRadio((pCmdUI->m_nID - ID_COMPMETHOD_FULL_CONTENTS) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_CMP_METHOD)));
 	pCmdUI->Enable();
 }
 

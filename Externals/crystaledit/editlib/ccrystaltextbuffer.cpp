@@ -1393,7 +1393,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
               (apparent_ptEndPos.x <= static_cast<LONG>(m_aLines[apparent_ptEndPos.y].Length())))
             {
               GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
-              if (text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
+              if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
                 {
                   VERIFY (DeleteText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
                   ptCursorPos = apparent_ptStartPos;
@@ -1478,7 +1478,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 #ifdef _DEBUG
               CString text;
               GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
-              ASSERT (text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0);
+              ASSERT (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0);
 #endif
               VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, 
                 apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
@@ -1486,7 +1486,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
           ptCursorPos = apparent_ptStartPos;
         }
       m_nUndoPosition++;
-      if (m_nUndoPosition == m_aUndoBuf.size ())
+      if (static_cast<size_t>(m_nUndoPosition) == m_aUndoBuf.size())
         break;
       if ((m_aUndoBuf[m_nUndoPosition].m_dwFlags & UNDO_BEGINGROUP) != 0)
         break;
@@ -1847,7 +1847,7 @@ FlushUndoGroup (CCrystalTextView * pSource)
   ASSERT (m_bUndoGroup);
   if (pSource != NULL)
     {
-      ASSERT (m_nUndoPosition == m_aUndoBuf.size ());
+      ASSERT (static_cast<size_t>(m_nUndoPosition) == m_aUndoBuf.size());
       if (m_nUndoPosition > 0)
         {
           pSource->OnEditOperation (m_aUndoBuf[m_nUndoPosition - 1].m_nAction, m_aUndoBuf[m_nUndoPosition - 1].GetText (), m_aUndoBuf[m_nUndoPosition - 1].GetTextLength ());
