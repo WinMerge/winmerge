@@ -688,7 +688,7 @@ BOOL CMessageBoxDialog::PreTranslateMessage ( MSG* pMsg )
 				for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
 				{
 					// Check whether the ID is a button.
-					if ( iter->nID == nID )
+					if ( iter->nID == static_cast<UINT>(nID) )
 					{
 						// Save this ID as the default ID.
 						m_nDefaultButton = nID;
@@ -785,7 +785,7 @@ void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 		for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
 		{
 			// Check whether this button is the default button.
-			if ( iter->nID == m_nDefaultButton )
+			if ( iter->nID == static_cast<UINT>(m_nDefaultButton) )
 			{
 				// Try to load the text for the button.
 				String strButtonText = LoadResString(iter->nTitle);
