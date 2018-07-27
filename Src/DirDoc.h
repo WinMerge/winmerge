@@ -26,7 +26,6 @@
 #pragma once
 
 #include <memory>
-#include <cstdint>
 #include "DiffThread.h"
 #include "PluginManager.h"
 

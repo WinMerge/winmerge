@@ -6,7 +6,6 @@
 #pragma once
 
 #include "DiffItem.h"
-#include <cstdint>
 
 /**
  * @brief List of DIFFITEMs in folder compare.

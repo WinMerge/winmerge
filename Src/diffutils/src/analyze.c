@@ -38,7 +38,7 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 #include "cmpbuf.h"
-#include <cassert>
+#include <assert.h>
 #ifdef _WIN32
 #  include <io.h>
 #endif

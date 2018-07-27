@@ -24,9 +24,6 @@
 #pragma once
 
 #include <string>
-#include <cstdarg>
-#include <cstdint>
-
 #ifdef _WIN32
 #  include <tchar.h>
 #else

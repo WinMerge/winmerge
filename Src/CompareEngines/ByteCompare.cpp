@@ -6,7 +6,6 @@
 
 #include "ByteCompare.h"
 #include <cassert>
-#include <cstdint>
 #ifdef _WIN32
 #include <io.h>
 #else

@@ -23,7 +23,6 @@
 #include "ShellFileOperations.h"
 #include <windows.h>
 #include <tchar.h>
-#include <shlwapi.h>
 #include <vector>
 #include <shellapi.h>
 #include "UnicodeString.h"

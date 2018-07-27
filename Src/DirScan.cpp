@@ -7,7 +7,6 @@
 #include "DirScan.h"
 #include <cassert>
 #include <memory>
-#include <cstdint>
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Semaphore.h>
 #include <Poco/Notification.h>

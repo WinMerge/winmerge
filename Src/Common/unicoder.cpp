@@ -19,7 +19,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include <tchar.h>
 #include <cassert>
 #include <memory>
-#include <cstdint>
 #include <Poco/UnicodeConverter.h>
 #include "UnicodeString.h"
 #include "ExConverter.h"
