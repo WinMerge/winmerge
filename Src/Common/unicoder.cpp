@@ -32,6 +32,9 @@ namespace ucr
 // store the default codepage as specified by user in options
 static int f_nDefaultCodepage = GetACP();
 
+
+# pragma warning(push)          // Saves the current warning state.
+# pragma warning(disable:4244)  // Temporarily disables warning 4244: "conversion from 'int' to 'char', possible loss of data"
 /**
  * @brief Convert unicode codepoint to UTF-8 byte string
  *
@@ -94,6 +97,7 @@ int Ucs4_to_Utf8(unsigned unich, unsigned char * utf8)
 		return 1;
 	}
 }
+# pragma warning(pop)           // Restores the warning state.
 
 /**
  * @brief Gets a length of UTF-8 character in bytes.
@@ -198,6 +202,9 @@ unsigned GetUtf8Char(unsigned char * str)
 	}
 }
 
+
+# pragma warning(push)          // Saves the current warning state.
+# pragma warning(disable:4244)  // Temporarily disables warning 4244: "conversion from 'int' to 'char', possible loss of data"
 /**
  * @brief Write unicode codepoint u out as UTF-8 to lpd, and advance lpd
  *
@@ -256,6 +263,7 @@ int to_utf8_advance(unsigned u, unsigned char * &lpd)
 		return 1;
 	}
 }
+# pragma warning(pop)           // Restores the warning state.
 
 /**
  * @brief convert character passed (Unicode codepoint) to a TCHAR (set lossy flag if imperfect conversion)

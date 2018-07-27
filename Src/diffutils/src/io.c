@@ -474,6 +474,8 @@ hashing_done:;
    but remember that we had to add one unless -B is in effect.
    Return effective start of text to be compared. */
 
+# pragma warning(push)          // Saves the current warning state.
+# pragma warning(disable:4244)  // Temporarily disables warning 4244: "conversion from 'int' to 'char', possible loss of data"
 static char *
 prepare_text_end (struct file_data *current, short side)
 {
@@ -699,6 +701,7 @@ prepare_text_end (struct file_data *current, short side)
   bzero (p + buffered_chars, sizeof (word));
   return t;
 }
+# pragma warning(pop)           // Restores the warning state.
 
 /* Given a vector of two file_data objects, find the identical
    prefixes and suffixes of each object. */
