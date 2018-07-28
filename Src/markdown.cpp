@@ -103,11 +103,6 @@ using Poco::NumberParser;
 using Poco::SharedMemory;
 using Poco::File;
 
-#ifndef _WIN32
-#  include <strings.h>
-#  define _memicmp strcasecmp
-#endif
-
 void CMarkdown::Load(EntityMap &entityMap)
 {
 	entityMap["amp"] = "&";
