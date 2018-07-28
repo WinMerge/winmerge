@@ -38,9 +38,7 @@ THE SOFTWARE.
 #include "unicoder.h"
 #include "paths.h" // paths::GetLongbPath()
 #include "TFile.h"
-#ifdef _WIN32
 #include <windows.h>
-#endif
 
 using Poco::SharedMemory;
 using Poco::Exception;
@@ -128,7 +126,6 @@ bool UniLocalFile::DoGetFileStatus()
 	try
 	{
 		m_filesize = TFile(m_filepath).getSize();
-#ifdef _WIN32
 		if (m_filesize == 0)
 		{
 			// if m_filesize equals zero, the file size is really zero or the file is a symbolic link.
@@ -141,7 +138,6 @@ bool UniLocalFile::DoGetFileStatus()
 			if (GetLastError() == 0)
 				m_filesize = ((int64_t)dwFileSizeHigh << 32) + dwFileSizeLow;
 		}
-#endif
 		m_statusFetched = 1;
 
 		return true;

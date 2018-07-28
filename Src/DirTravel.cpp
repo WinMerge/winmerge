@@ -69,11 +69,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 		ent.size = it->getSize();
 		ent.path = dir;
 		ent.filename = ucr::toTString(it.name());
-#ifdef _WIN32
-		ent.flags.attributes = GetFileAttributes(ucr::toTString(it.name()).c_str());;
-#else
-#endif
-		
+		ent.flags.attributes = GetFileAttributes(ucr::toTString(it.name()).c_str());		
 		(bIsDirectory ? dirs : files)->push_back(ent);
 	}
 

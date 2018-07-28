@@ -24,7 +24,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <vector>
-#include <shellapi.h>
+#include <shellAPI.h>
 #include "UnicodeString.h"
 
 using std::vector;

@@ -6,12 +6,7 @@
 
 #include "ByteCompare.h"
 #include <cassert>
-#ifdef _WIN32
 #include <io.h>
-#else
-#include <sys/types.h>
-#include <unistd.h>
-#endif
 #include "FileLocation.h"
 #include "UnicodeString.h"
 #include "IAbortable.h"
