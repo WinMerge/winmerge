@@ -691,6 +691,11 @@ msgstr "De&kodiranje datoteke ..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1117,7 +1122,7 @@ msgstr "Desna do ... (%1 od%2)"
 msgid "&Delete"
 msgstr "&Izbriši"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "&levi okvir"
@@ -1132,7 +1137,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&desni okvir"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "&Oboje"
@@ -1412,7 +1417,7 @@ msgstr "Donatorji"
 msgid "Select Files or Folders"
 msgstr "Izberite datoteke ali mape"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1422,7 +1427,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Brskaj ..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1779,16 +1784,6 @@ msgstr "Odstrani"
 msgid "Colors"
 msgstr "Barve"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Razlike"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Izbrane razlike"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1803,6 +1798,16 @@ msgstr "Izbrisano"
 #, c-format
 msgid "Text"
 msgstr "Besedilo"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Razlike"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Izbrane razlike"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1819,14 +1824,14 @@ msgstr "Premaknjeno:"
 msgid "Selected Moved:"
 msgstr "Izbrano premaknjeno:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -1899,7 +1904,7 @@ msgstr "Datoteka&1"
 msgid "File&2:"
 msgstr "Datoteka&2"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "&Zamenjaj"
@@ -2603,7 +2608,7 @@ msgstr "&Ime mape"
 msgid "Result:"
 msgstr "Rezultat:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&Test"
@@ -2768,7 +2773,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Mapa"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "&Ustavi po prvi razliki"
@@ -3020,7 +3025,7 @@ msgstr "Ne za &vse"
 msgid "&Continue"
 msgstr "&Nadaljuj"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "&Preskoči"

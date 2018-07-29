@@ -689,6 +689,11 @@ msgstr ""
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1115,7 +1120,7 @@ msgstr "Dreta a... (%1 de %2)"
 msgid "&Delete"
 msgstr "&Suprimeix"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "De l'&esquerra"
@@ -1130,7 +1135,7 @@ msgstr ""
 msgid "&Right"
 msgstr "De la &dreta"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "D'&ambdós costats"
@@ -1410,7 +1415,7 @@ msgstr "Col·laboradors"
 msgid "Select Files or Folders"
 msgstr "Tria de fitxers o directoris..."
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1420,7 +1425,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Navega..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1775,16 +1780,6 @@ msgstr "Suprimeix"
 msgid "Colors"
 msgstr ""
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Diferència:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Diferència seleccionada:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1799,6 +1794,16 @@ msgstr "Línia absent"
 #, c-format
 msgid "Text"
 msgstr ""
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Diferència:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Diferència seleccionada:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1815,14 +1820,14 @@ msgstr "Text mogut:"
 msgid "Selected Moved:"
 msgstr "Text mogut seleccionat:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -1895,7 +1900,7 @@ msgstr "Fitxer &1:"
 msgid "File&2:"
 msgstr "Fitxer &2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "Inter&canvia"
@@ -2595,7 +2600,7 @@ msgstr "&Nom de la carpeta"
 msgid "Result:"
 msgstr "Resultat:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&Prova"
@@ -2760,7 +2765,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Directori"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "&Atura després de la primera diferència"
@@ -2980,7 +2985,7 @@ msgstr "No a t&ot"
 msgid "&Continue"
 msgstr "&Continua"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "&Omet"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-06-17 03:35+0000\n"
+"POT-Creation-Date: 2018-07-29 21:58+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -686,6 +686,11 @@ msgstr ""
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1112,7 +1117,7 @@ msgstr ""
 msgid "&Delete"
 msgstr ""
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr ""
@@ -1127,7 +1132,7 @@ msgstr ""
 msgid "&Right"
 msgstr ""
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr ""
@@ -1407,7 +1412,7 @@ msgstr ""
 msgid "Select Files or Folders"
 msgstr ""
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1417,7 +1422,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr ""
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1772,16 +1777,6 @@ msgstr ""
 msgid "Colors"
 msgstr ""
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr ""
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr ""
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1795,6 +1790,16 @@ msgstr ""
 #: Merge.rc:4C72B54
 #, c-format
 msgid "Text"
+msgstr ""
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr ""
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
 msgstr ""
 
 #: Merge.rc:2756A765
@@ -1812,14 +1817,14 @@ msgstr ""
 msgid "Selected Moved:"
 msgstr ""
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -1892,7 +1897,7 @@ msgstr ""
 msgid "File&2:"
 msgstr ""
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr ""
@@ -2592,7 +2597,7 @@ msgstr ""
 msgid "Result:"
 msgstr ""
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr ""
@@ -2757,7 +2762,7 @@ msgstr ""
 msgid "Folder"
 msgstr ""
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr ""
@@ -2977,7 +2982,7 @@ msgstr ""
 msgid "&Continue"
 msgstr ""
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr ""

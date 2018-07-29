@@ -690,6 +690,11 @@ msgstr "Codar&e caractere fişiere..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1116,7 +1121,7 @@ msgstr "Dreapta la... (%1 din %2)"
 msgid "&Delete"
 msgstr "Ş&terge"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "Stâ&nga"
@@ -1131,7 +1136,7 @@ msgstr ""
 msgid "&Right"
 msgstr "D&reapta"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "Am&bele"
@@ -1411,7 +1416,7 @@ msgstr "Contribuitori"
 msgid "Select Files or Folders"
 msgstr "Selectează fişiere sau directoare"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1421,7 +1426,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "Răsf&oieşte..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1776,16 +1781,6 @@ msgstr "Înlătură"
 msgid "Colors"
 msgstr "Culori"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Diferenţă:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Diferenţă selectată:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1800,6 +1795,16 @@ msgstr "Şters"
 #, c-format
 msgid "Text"
 msgstr "Text"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Diferenţă:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Diferenţă selectată:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1816,14 +1821,14 @@ msgstr "Mutat:"
 msgid "Selected Moved:"
 msgstr "Selecţie mutată:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -1896,7 +1901,7 @@ msgstr "&Fişier 1:"
 msgid "File&2:"
 msgstr "F&işier 2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "Interschim&bă"
@@ -2596,7 +2601,7 @@ msgstr "Nu&me director"
 msgid "Result:"
 msgstr "Rezultat:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&Testează"
@@ -2761,7 +2766,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Director"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "Opreş&te după prima diferenţă"
@@ -3013,7 +3018,7 @@ msgstr "Nu la to&ate"
 msgid "&Continue"
 msgstr "&Continuă"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "O&mite"

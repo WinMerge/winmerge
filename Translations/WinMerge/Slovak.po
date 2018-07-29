@@ -690,6 +690,11 @@ msgstr "&Kódovanie súboru..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1116,7 +1121,7 @@ msgstr "Sprava... (%1 z %2)"
 msgid "&Delete"
 msgstr "&Zmazať"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "Ľ&avý"
@@ -1131,7 +1136,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Pravý"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "&Oba"
@@ -1411,7 +1416,7 @@ msgstr "Prispievatelia"
 msgid "Select Files or Folders"
 msgstr "Výber súborov a adresárov..."
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1421,7 +1426,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Prechádzať..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1776,16 +1781,6 @@ msgstr "Odstrániť"
 msgid "Colors"
 msgstr "Farby"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Rozdiel:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Rozdiel vo výbere:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1800,6 +1795,16 @@ msgstr "Zmazané"
 #, c-format
 msgid "Text"
 msgstr "Text"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Rozdiel:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Rozdiel vo výbere:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1816,14 +1821,14 @@ msgstr "Presunutý:"
 msgid "Selected Moved:"
 msgstr "Výber presunutý:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -1896,7 +1901,7 @@ msgstr "Súbor&1:"
 msgid "File&2:"
 msgstr "Súbor&2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "&Vymeniť navzájom"
@@ -2600,7 +2605,7 @@ msgstr "&Názov adresára"
 msgid "Result:"
 msgstr "Výsledok:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&Testovať"
@@ -2765,7 +2770,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Adresár"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "&Stop po prvom rozdiele"
@@ -3017,7 +3022,7 @@ msgstr "Nie pre &všetky"
 msgid "&Continue"
 msgstr "Po&kračovať"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "Pre&skočiť"

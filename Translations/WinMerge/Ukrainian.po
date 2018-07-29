@@ -691,6 +691,11 @@ msgstr "&Кодування файлу..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1117,7 +1122,7 @@ msgstr "Справа... (%1 з %2)"
 msgid "&Delete"
 msgstr "&Вилучити"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "&Ліворуч"
@@ -1132,7 +1137,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Праворуч"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "&Обидва"
@@ -1412,7 +1417,7 @@ msgstr "Автори"
 msgid "Select Files or Folders"
 msgstr "Виберіть файли або теки..."
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1422,7 +1427,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Перегляд..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1777,16 +1782,6 @@ msgstr "Вилучити"
 msgid "Colors"
 msgstr "Кольори"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Відмінність:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Відзначена відмінність:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1801,6 +1796,16 @@ msgstr "Вилучені"
 #, c-format
 msgid "Text"
 msgstr "Текст"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Відмінність:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Відзначена відмінність:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1817,14 +1822,14 @@ msgstr "Переміщені:"
 msgid "Selected Moved:"
 msgstr "Відзначені переміщені:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -1897,7 +1902,7 @@ msgstr "Файл 1:"
 msgid "File&2:"
 msgstr "Файл 2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "Поміняти"
@@ -2601,7 +2606,7 @@ msgstr "Тека"
 msgid "Result:"
 msgstr "Результат:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&Випробувати"
@@ -2766,7 +2771,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Тека"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "&Зупинятися після першої відмінності"
@@ -3018,7 +3023,7 @@ msgstr "Ні д&ля всіх"
 msgid "&Continue"
 msgstr "Про&довжити"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "П&ропустити"

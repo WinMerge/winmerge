@@ -692,6 +692,11 @@ msgstr "Bestandscodering..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1118,7 +1123,7 @@ msgstr "Van rechts naar... (%1 van %2)"
 msgid "&Delete"
 msgstr "Ver&wijderen"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "&Links"
@@ -1133,7 +1138,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Rechts"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "&Beide"
@@ -1413,7 +1418,7 @@ msgstr "Medewerkers"
 msgid "Select Files or Folders"
 msgstr "Bestanden of mappen selecteren"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1423,7 +1428,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Zoeken"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1782,16 +1787,6 @@ msgstr "Verwijderen"
 msgid "Colors"
 msgstr "Kleuren"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Verschil:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Geselecteerd verschil:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1806,6 +1801,16 @@ msgstr "Verwijderd"
 #, c-format
 msgid "Text"
 msgstr "Tekst"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Verschil:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Geselecteerd verschil:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1822,14 +1827,14 @@ msgstr "Verplaatst:"
 msgid "Selected Moved:"
 msgstr "Geselecteerd verplaatst:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -1902,7 +1907,7 @@ msgstr "Bestand&1:"
 msgid "File&2:"
 msgstr "Bestand&2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "&Wisselen"
@@ -2608,7 +2613,7 @@ msgstr "Mapnaam"
 msgid "Result:"
 msgstr "Resultaat:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&Test"
@@ -2773,7 +2778,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Map"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "S&top na eerste verschil"
@@ -3033,7 +3038,7 @@ msgstr "Nee op a&lles"
 msgid "&Continue"
 msgstr "&Doorgaan"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "&Overslaan"
