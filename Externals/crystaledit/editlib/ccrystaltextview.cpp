@@ -1307,7 +1307,7 @@ GetParseCookie (int nLineIndex)
   if (m_ParseCookies->size() == 0)
     {
       // must be initialized to invalid value (DWORD) -1
-      m_ParseCookies->assign(nLineCount, (DWORD)-1);
+      m_ParseCookies->assign(nLineCount, static_cast<DWORD>(-1));
     }
 
   if (nLineIndex < 0)
@@ -4383,7 +4383,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
           ASSERT (cookiesSize == nLineCount);
           // must be reinitialized to invalid value (DWORD) - 1
           for (int i = nLineIndex; i < cookiesSize; ++i)
-            (*m_ParseCookies)[i] = (DWORD)-1;
+            (*m_ParseCookies)[i] = static_cast<DWORD>(-1);
         }
       //  This line'th actual length must be recalculated
       if (m_pnActualLineLength->size())
@@ -4418,10 +4418,10 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
               arrSize = nLineCount;
               // must be initialized to invalid value (DWORD) - 1
               for (size_t i = oldsize; i < arrSize; ++i)
-                (*m_ParseCookies)[i] = (DWORD)-1;
+                (*m_ParseCookies)[i] = static_cast<DWORD>(-1);
             }
           for (size_t i = nLineIndex; i < arrSize; ++i)
-            (*m_ParseCookies)[i] = (DWORD)-1;
+            (*m_ParseCookies)[i] = static_cast<DWORD>(-1);
         }
 
       //  Recalculate actual length for all lines below this
