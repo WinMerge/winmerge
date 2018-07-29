@@ -414,6 +414,7 @@ BEGIN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
         POPUP "Recompare As"
         BEGIN
+            MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
             MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
         END

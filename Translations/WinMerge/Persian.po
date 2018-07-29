@@ -691,6 +691,11 @@ msgstr "&F کدبندي پرونده ... "
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1117,7 +1122,7 @@ msgstr "  راست به ... - %1 از %2 "
 msgid "&Delete"
 msgstr "&D حذف "
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "&L چپ "
@@ -1132,7 +1137,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&R راست "
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "&B هر دو "
@@ -1412,7 +1417,7 @@ msgstr " شرکت کننده ها "
 msgid "Select Files or Folders"
 msgstr " انتخاب پرونده ها يا پوشه ها "
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1422,7 +1427,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&B مرور "
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1783,16 +1788,6 @@ msgstr " برداشتن "
 msgid "Colors"
 msgstr " رنگها "
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr " تفاوت : "
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr " تفاوت انتخاب شده : "
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1807,6 +1802,16 @@ msgstr " حذف شد "
 #, c-format
 msgid "Text"
 msgstr " متن "
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr " تفاوت : "
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr " تفاوت انتخاب شده : "
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1823,14 +1828,14 @@ msgstr " جابجا شده : "
 msgid "Selected Moved:"
 msgstr " جابجايي انتخاب شده : "
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -1903,7 +1908,7 @@ msgstr "&1 پرونده  : "
 msgid "File&2:"
 msgstr "&2 پرونده  : "
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "&S معاوضه "
@@ -2609,7 +2614,7 @@ msgstr "&F نام پوشه "
 msgid "Result:"
 msgstr " نتيجه : "
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&T آزمايش "
@@ -2774,7 +2779,7 @@ msgstr ""
 msgid "Folder"
 msgstr " پوشه "
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "&t توقف پس از نخستين تفاوت"
@@ -3034,7 +3039,7 @@ msgstr "&l همگي خير "
 msgid "&Continue"
 msgstr "&C ادامه "
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "&S پرش "

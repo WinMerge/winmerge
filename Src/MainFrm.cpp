@@ -997,10 +997,6 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	{
 		if (pDirDoc)
 		{
-			if (files.GetSize() == 3)
-			{
-				AfxMessageBox(_T("3-way folder compare feature is in progress"), MB_ICONWARNING | MB_DONT_ASK_AGAIN);
-			}
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
 			pDirDoc->InitCompare(files, bRecurse, pTempPathContext);

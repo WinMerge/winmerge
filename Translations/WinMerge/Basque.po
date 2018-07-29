@@ -693,6 +693,11 @@ msgstr "&Agiria Kodeatzen..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1119,7 +1124,7 @@ msgstr "Eskuina hona... (%1 %2-tik)"
 msgid "&Delete"
 msgstr "&Ezabatu"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "Ezker&ra"
@@ -1134,7 +1139,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&E&skuina"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "&Biak"
@@ -1414,7 +1419,7 @@ msgstr "&Laguntzaileak"
 msgid "Select Files or Folders"
 msgstr "Hautatu Agiriak edo Agiritegiak"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1424,7 +1429,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "Bil&atu..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1779,16 +1784,6 @@ msgstr "Kendu"
 msgid "Colors"
 msgstr "Margoak"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Ezberdintasuna"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Hautatutako Ezberdintasuna:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1803,6 +1798,16 @@ msgstr "Ezabatuta"
 #, c-format
 msgid "Text"
 msgstr "Idazkia"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Ezberdintasuna"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Hautatutako Ezberdintasuna:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1819,14 +1824,14 @@ msgstr "Mugituta:"
 msgid "Selected Moved:"
 msgstr "Hautatutakoa Mugituta:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -1899,7 +1904,7 @@ msgstr "&1 Agiria:"
 msgid "File&2:"
 msgstr "&2 Agiria:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "A&ldaketa"
@@ -2603,7 +2608,7 @@ msgstr "&Agiritegi Izena"
 msgid "Result:"
 msgstr "Emaitza:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&Azterketa"
@@ -2768,7 +2773,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Agiritegia"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "&Gelditu lehen ezberdintasunaren ondoren"
@@ -3020,7 +3025,7 @@ msgstr "Ez gu&ztiari"
 msgid "&Continue"
 msgstr "&Jarraitu"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "&Jauzi"

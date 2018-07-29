@@ -690,6 +690,11 @@ msgstr "ファイル エンコーディング(&F)..."
 msgid "Recompare As"
 msgstr "形式を指定して再比較"
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr "テキスト(&T)"
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1116,7 +1121,7 @@ msgstr "右側を... (%1 / %2)"
 msgid "&Delete"
 msgstr "削除(&D)"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "左側(&L)"
@@ -1131,7 +1136,7 @@ msgstr "中央(&M)"
 msgid "&Right"
 msgstr "右側(&R)"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "両側(&B)"
@@ -1411,7 +1416,7 @@ msgstr "貢献者"
 msgid "Select Files or Folders"
 msgstr "ファイルまたはフォルダーの選択..."
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr "&1 番目:"
@@ -1421,7 +1426,7 @@ msgstr "&1 番目:"
 msgid "&Browse..."
 msgstr "参照(&B)..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr "&2 番目:"
@@ -1780,16 +1785,6 @@ msgstr "削除"
 msgid "Colors"
 msgstr "色"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "差異:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "選択された差異:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1804,6 +1799,16 @@ msgstr "削除"
 #, c-format
 msgid "Text"
 msgstr "テキスト"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "差異:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "選択された差異:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1820,19 +1825,15 @@ msgstr "移動ブロック:"
 msgid "Selected Moved:"
 msgstr "選択された移動ブロック:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-"差異:\n"
-"(ただし隣接ペインと同じ)"
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
-msgstr ""
-"選択された差異:\n"
-"(ただし隣接ペインと同じ)"
+msgid "Same As The Next (3 panes):"
+msgstr "差異:\n(ただし隣接ペインと同じ)"
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
+msgstr "選択された差異:\n(ただし隣接ペインと同じ)"
 
 #: Merge.rc:40C55014
 #, c-format
@@ -1904,7 +1905,7 @@ msgstr "ファイル &1:"
 msgid "File&2:"
 msgstr "ファイル &2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "交換(&S)"
@@ -2613,7 +2614,7 @@ msgstr "フォルダー名(&F)"
 msgid "Result:"
 msgstr "結果:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "テスト(&T)"
@@ -2778,7 +2779,7 @@ msgstr "シェル拡張の登録を解除(&U)"
 msgid "Folder"
 msgstr "フォルダー"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "最初の差異で比較を終了する(&T)"
@@ -3063,7 +3064,7 @@ msgstr "すべていいえ(&L)"
 msgid "&Continue"
 msgstr "続行(&C)"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "スキップ(&S)"

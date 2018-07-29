@@ -691,6 +691,11 @@ msgstr "文件编码(&F)..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1117,7 +1122,7 @@ msgstr "右侧到... (%1 共%2)"
 msgid "&Delete"
 msgstr "删除(&D)"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "左侧(&L)"
@@ -1132,7 +1137,7 @@ msgstr ""
 msgid "&Right"
 msgstr "右侧(&R)"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "两侧(&B)"
@@ -1412,7 +1417,7 @@ msgstr "贡献者"
 msgid "Select Files or Folders"
 msgstr "选择文件或文件夹..."
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1422,7 +1427,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "浏览(&B)..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1777,16 +1782,6 @@ msgstr "删除"
 msgid "Colors"
 msgstr "颜色"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "不同:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "已选择:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1801,6 +1796,16 @@ msgstr "已删除"
 #, c-format
 msgid "Text"
 msgstr "文字"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "不同:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "已选择:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1817,14 +1822,14 @@ msgstr "移动区块:"
 msgid "Selected Moved:"
 msgstr "选中的移动区块:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -1897,7 +1902,7 @@ msgstr "文件&1:"
 msgid "File&2:"
 msgstr "文件&2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "上下交换(&S)"
@@ -2597,7 +2602,7 @@ msgstr "文件夹名(&F)"
 msgid "Result:"
 msgstr "结果:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "测试(&T)"
@@ -2762,7 +2767,7 @@ msgstr ""
 msgid "Folder"
 msgstr "文件夹"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "遇到首处不同后停止(&T)"
@@ -2982,7 +2987,7 @@ msgstr "全部都否(&L)"
 msgid "&Continue"
 msgstr "继续(&C)"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "跳过(&S)"
