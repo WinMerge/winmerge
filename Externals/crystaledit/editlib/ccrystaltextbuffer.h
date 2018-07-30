@@ -43,7 +43,7 @@
 #include <afxtempl.h>
 #endif
 
-enum LINEFLAGS
+enum LINEFLAGS: unsigned long
 {
   LF_BOOKMARK_FIRST = 0x00000001UL,
   LF_EXECUTION = 0x00010000UL,
@@ -129,7 +129,7 @@ protected :
     int FindLineWithFlag (DWORD dwFlag) const;
 
 protected :
-    enum
+    enum : unsigned
     {
       UNDO_INSERT = 0x0001U,
       UNDO_BEGINGROUP = 0x0100U

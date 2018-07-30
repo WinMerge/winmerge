@@ -18,12 +18,6 @@
 #include "paths.h"
 #include "markdown.h"
 
-
-#if defined(_WIN32) && !defined(__MINGW32__)
-#  define strcasecmp(a, b) _stricmp((a), (b))
-#  define strncasecmp(a, b, n) _strnicmp((a), (b), (n))
-#endif
-
 /**
  * @brief Prefixes to handle when searching for codepage names
  * NB: prefixes ending in '-' must go first!
@@ -43,7 +37,7 @@ static const char *EatPrefix(const char *text, const char *prefix)
 {
 	size_t len = strlen(prefix);
 	if (len)
-		if (strncasecmp(text, prefix, len) == 0)
+		if (_strnicmp(text, prefix, len) == 0)
 			return text + len;
 	return 0;
 }
@@ -89,7 +83,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 	while (markdown.Move("meta"))
 	{
 		std::string http_equiv(markdown.GetAttribute("http-equiv"));
-		if (!http_equiv.empty() && strcasecmp(http_equiv.c_str(), "content-type") == 0)
+		if (!http_equiv.empty() && _stricmp(http_equiv.c_str(), "content-type") == 0)
 		{
 			std::string content(markdown.GetAttribute("content"));
 			char *pchKey = &content[0];
@@ -99,7 +93,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 				{
 					char *pchValue = pchKey + cchKey;
 					size_t cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
-					if (cchKey >= 7 && strncasecmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
+					if (cchKey >= 7 && _strnicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
 					{
 						pchValue[cchValue] = '\0';
 						// Is it an encoding name known to charsets module ?
@@ -262,7 +256,7 @@ FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncoding
 		String ext = paths::FindExtension(filepath);
 		const char *src = (char *)fi.pImage;
 		size_t len = fi.cbImage;
-		if (len == mapmaxlen)
+		if (len == static_cast<size_t>(mapmaxlen))
 		{
 			for (size_t i = len; i--; )
 			{

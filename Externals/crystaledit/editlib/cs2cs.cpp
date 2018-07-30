@@ -2,7 +2,7 @@
 
 #include "StdAfx.h"
 #include "cs2cs.h"
-#include <string.h>
+#include <cstring>
 #include <malloc.h>
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage

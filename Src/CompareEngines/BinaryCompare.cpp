@@ -8,11 +8,7 @@
 #include "DiffItem.h"
 #include "PathContext.h"
 #include "TFile.h"
-#ifdef _WIN32
-# include <io.h>
-#else
-# include <unistd.h>
-#endif
+#include <io.h>
 #include <fcntl.h>
 
 namespace CompareEngines

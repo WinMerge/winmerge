@@ -242,7 +242,7 @@ public:
 	BOOL SetMenuText(UINT id,CString string, UINT nFlags = MF_BYPOSITION);
 
 	// Getting a submenu from it's name or position
-	BCMenu* BCMenu::GetSubBCMenu(char* pText)
+	BCMenu* GetSubBCMenu(char* pText)
 	{
 		USES_CONVERSION;
 		return GetSubBCMenu(A2W(pText));

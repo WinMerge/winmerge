@@ -1848,7 +1848,7 @@ void CImgMergeFrame::OnImgOverlayMode(UINT nId)
 
 void CImgMergeFrame::OnUpdateImgOverlayMode(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio((pCmdUI->m_nID - ID_IMG_OVERLAY_NONE) == m_pImgMergeWindow->GetOverlayMode());
+	pCmdUI->SetRadio(static_cast<IImgMergeWindow::OVERLAY_MODE>(pCmdUI->m_nID - ID_IMG_OVERLAY_NONE) == m_pImgMergeWindow->GetOverlayMode());
 }
 
 void CImgMergeFrame::OnImgDraggingMode(UINT nId)
@@ -1859,7 +1859,7 @@ void CImgMergeFrame::OnImgDraggingMode(UINT nId)
 
 void CImgMergeFrame::OnUpdateImgDraggingMode(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio((pCmdUI->m_nID - ID_IMG_DRAGGINGMODE_NONE) == static_cast<int>(m_pImgMergeWindow->GetDraggingMode()));
+	pCmdUI->SetRadio(static_cast<IImgMergeWindow::DRAGGING_MODE>(pCmdUI->m_nID - ID_IMG_DRAGGINGMODE_NONE) == m_pImgMergeWindow->GetDraggingMode());
 }
 
 void CImgMergeFrame::OnImgDiffBlockSize(UINT nId)
