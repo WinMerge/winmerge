@@ -7,12 +7,7 @@
  */
 
 #include "DiffFileData.h"
-#ifdef _WIN32
 #include <io.h>
-#else
-#include <sys/types.h>
-#include <unistd.h>
-#endif
 #include <memory>
 #include "DiffItem.h"
 #include "FileLocation.h"
@@ -81,22 +76,14 @@ bool DiffFileData::DoOpenFiles()
 		// Also, WinMerge-modified diffutils handles all three major eol styles
 		if (m_inf[i].desc == 0)
 		{
-#ifdef _WIN32
 			_tsopen_s(&m_inf[i].desc, TFile(m_FileLocation[i].filepath).wpath().c_str(),
 					O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
-#else
-			m_inf[i].desc = open(m_FileLocation[i].filepath.c_str(), O_RDONLY);
-#endif
 		}
 		if (m_inf[i].desc < 0)
 			return false;
 
 		// Get file stats (diffutils uses these)
-#ifdef _WIN32
 		if (myfstat(m_inf[i].desc, &m_inf[i].stat) != 0)
-#else
-		if (fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
-#endif
 		{
 			return false;
 		}

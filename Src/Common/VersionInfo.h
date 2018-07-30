@@ -55,6 +55,7 @@ public:
 	String GetCompanyName() const;
 	String GetFileDescription() const;
 	String GetInternalName() const;
+	String GetFullFileName() const;
 	String GetLegalCopyright() const;
 	String GetOriginalFilename() const;
 	String GetProductVersion() const;

@@ -20,7 +20,7 @@ and this notice must be preserved on all copies.  */
 
 
 #include "diff.h"
-#include <cassert>
+#include <assert.h>
 
 struct group
 {

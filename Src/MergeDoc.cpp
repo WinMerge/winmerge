@@ -27,7 +27,6 @@
 
 #include "StdAfx.h"
 #include "MergeDoc.h"
-#include <cstdint>
 #include <io.h>
 #include <Poco/Timestamp.h>
 #include "UnicodeString.h"

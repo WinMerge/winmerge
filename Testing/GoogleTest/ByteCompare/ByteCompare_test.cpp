@@ -434,8 +434,8 @@ namespace
 
 		for (int i = 0, c = 'A'; c <= 'Z'; ++c, ++i)
 		{
-			buf_left [i] = c;
-			buf_right[i] = c - 'A' + 'a';
+			buf_left [i] = static_cast<char>(c);
+			buf_right[i] = static_cast<char>(c - 'A' + 'a');
 		}
 
 		{// same

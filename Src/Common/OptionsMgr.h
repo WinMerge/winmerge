@@ -128,7 +128,7 @@ public:
 
 	virtual int RemoveOption(const String& name);
 
-	virtual int ExportOptions(const String& filename) const = 0;
+	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const = 0;
 	virtual int ImportOptions(const String& filename) = 0;
 	
 	virtual void SetSerializing(bool serializing=true) = 0;

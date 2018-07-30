@@ -43,7 +43,7 @@ struct DIFFCODE
 	/**
 	 * @brief values for DIFFITEM.diffcode
 	 */
-	enum
+	enum : unsigned long
 	{
 		// We use extra bits so that no valid values are 0
 		// and each set of flags is in a different hex digit

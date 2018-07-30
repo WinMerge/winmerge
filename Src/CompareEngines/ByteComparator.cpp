@@ -6,7 +6,6 @@
 
 #include "ByteComparator.h"
 #include <cassert>
-#include <cstdint>
 #include "UnicodeString.h"
 #include "FileTextStats.h"
 #include "CompareOptions.h"

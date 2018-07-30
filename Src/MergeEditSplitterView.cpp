@@ -116,10 +116,10 @@ BOOL CMergeEditSplitterView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowNam
 	{
 		for (int nBuffer = 0; nBuffer < pDoc->m_nBuffers; nBuffer++)
 		{
-			CMergeEditView *pView = pDoc->GetView(pDoc->m_nGroups - 1, nBuffer);
-			pView->SendMessage(WM_INITIALUPDATE);
-			pView->CopyProperties(pDoc->GetView(0, nBuffer));
-			pView->SetStatusInterface(pDoc->GetView(0, nBuffer)->m_piMergeEditStatus);
+			CMergeEditView *pView2 = pDoc->GetView(pDoc->m_nGroups - 1, nBuffer);
+			pView2->SendMessage(WM_INITIALUPDATE);
+			pView2->CopyProperties(pDoc->GetView(0, nBuffer));
+			pView2->SetStatusInterface(pDoc->GetView(0, nBuffer)->m_piMergeEditStatus);
 		}
 		m_wndSplitter.RecalcLayout();
 	}

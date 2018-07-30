@@ -132,7 +132,7 @@ void CMergeStatusBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 
 	if (!ptext[pcur].IsEmpty())
 		m_dispFlags[pbase] |= 1 << pcur;
-	const bool displayedAll = m_dispFlags[pbase] == (1 << m_nPanes) - 1;
+	const bool displayedAll = m_dispFlags[pbase] == static_cast<unsigned>((1 << m_nPanes) - 1);
 
 	if (displayedAll && m_bDiff[pbase] != diff)
 	{

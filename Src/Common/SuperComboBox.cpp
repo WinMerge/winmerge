@@ -3,7 +3,6 @@
 
 #include "StdAfx.h"
 #include "SuperComboBox.h"
-#include <shlwapi.h>
 #include <vector>
 #include "DropHandler.h"
 
