@@ -200,8 +200,8 @@ int CGhostTextView::ComputeApparentLine (int nRealLine) const
 
 void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
 		int nEndLine, int nEndChar, CString &text,
-		CRLFSTYLE nCrlfStyle /*=CRLF_STYLE_AUTOMATIC*/,
-		bool bExcludeInvisibleLines/*=false*/)
+		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
+		bool bExcludeInvisibleLines /*= true*/)
 {
   if (m_pGhostTextBuffer != NULL)
     m_pGhostTextBuffer->GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, text, nCrlfStyle, bExcludeInvisibleLines);
@@ -209,7 +209,7 @@ void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
     text = _T ("");
 }
 
-void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, bool bExcludeInvisibleLines/*=true*/)
+void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, bool bExcludeInvisibleLines /*= true*/)
 {
 	if (m_pGhostTextBuffer == NULL)
 	{

@@ -313,7 +313,7 @@ DeleteCurrentSelection ()
 }
 
 bool CCrystalEditView::
-DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup /*=true*/, bool bUpdateCursorPosition /*=true*/)
+DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup /*= true*/, bool bUpdateCursorPosition /*= true*/)
 {
   if (IsSelection ())
     {

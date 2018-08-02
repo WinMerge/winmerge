@@ -59,7 +59,9 @@ private:
 
 	// Operations
 private:
+#if 0
 	bool InternalInsertGhostLine (CCrystalTextView * pSource, int nLine);
+#endif
 	bool InternalDeleteGhostLine (CCrystalTextView * pSource, int nLine, int nCount);
 public :
 	// Construction/destruction code
@@ -83,7 +85,9 @@ public :
 	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
 		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true) override;
+#if 0
 	bool InsertGhostLine (CCrystalTextView * pSource, int nLine);
+#endif
 
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 	                            LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = NULL) override;
