@@ -124,7 +124,7 @@ public:
 private:
 	void RecomputeRealityMapping();
 	/** For debugging purpose */
-	void checkFlagsFromReality(bool bFlag) const;
+	void checkFlagsFromReality() const;
 
 protected:
 	virtual void OnNotifyLineHasBeenEdited(int nLine);
