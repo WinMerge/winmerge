@@ -1012,7 +1012,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   ASSERT (nStartLine >= 0 && nStartLine < (int)m_aLines.size ());
   ASSERT (nStartChar >= 0 && nStartChar <= (int)m_aLines[nStartLine].Length());
   ASSERT (nEndLine >= 0 && nEndLine < (int)m_aLines.size ());
-  ASSERT (nEndChar >= 0 && nEndChar <= (int)m_aLines[nEndLine].Length());
+  ASSERT (nEndChar >= 0 && nEndChar <= (int)m_aLines[nEndLine].FullLength());
   ASSERT (nStartLine < nEndLine || nStartLine == nEndLine && nStartChar <= nEndChar);
   // some edit functions (delete...) should do nothing when there is no selection.
   // assert to be sure to catch these 'do nothing' cases.
@@ -1847,7 +1847,7 @@ FlushUndoGroup (CCrystalTextView * pSource)
   ASSERT (m_bUndoGroup);
   if (pSource != NULL)
     {
-      ASSERT (static_cast<size_t>(m_nUndoPosition) == m_aUndoBuf.size());
+      ASSERT (static_cast<size_t>(m_nUndoPosition) <= m_aUndoBuf.size());
       if (m_nUndoPosition > 0)
         {
           pSource->OnEditOperation (m_aUndoBuf[m_nUndoPosition - 1].m_nAction, m_aUndoBuf[m_nUndoPosition - 1].GetText (), m_aUndoBuf[m_nUndoPosition - 1].GetTextLength ());

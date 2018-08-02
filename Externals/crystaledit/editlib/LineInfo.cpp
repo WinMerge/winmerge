@@ -73,6 +73,7 @@ void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
       return;
     }
 
+  ASSERT (nLength <= INT_MAX);		// assert "positive int"
   m_nLength = nLength;
   m_nMax = ALIGN_BUF_SIZE (m_nLength + 1);
   ASSERT (m_nMax < INT_MAX);
@@ -90,6 +91,7 @@ void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
     nEols = 2;
   else if (nLength && IsEol(pszLine[nLength - 1]))
     nEols = 1;
+  ASSERT (nEols <= m_nLength);
   m_nLength -= nEols;
   m_nEolChars = nEols;
 }
@@ -115,6 +117,7 @@ void LineInfo::CreateEmpty()
  */
 void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
 {
+  ASSERT (nLength <= INT_MAX);		// assert "positive int"
   size_t nBufNeeded = m_nLength + nLength + 1;
   if (nBufNeeded > m_nMax)
     {
@@ -141,6 +144,7 @@ void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
       {
        m_nEolChars = 1;
       }
+   ASSERT (m_nEolChars <= m_nLength);
    m_nLength -= m_nEolChars;
    ASSERT (m_nLength + m_nEolChars <= m_nMax);
 }
@@ -227,6 +231,7 @@ void LineInfo::Delete(size_t nStartChar, size_t nEndChar)
 void LineInfo::DeleteEnd(size_t nStartChar)
 {
   m_nLength = nStartChar;
+  ASSERT (m_nLength <= INT_MAX);		// assert "positive int"
   if (m_pcLine)
     m_pcLine[nStartChar] = 0;
   m_nEolChars = 0;
