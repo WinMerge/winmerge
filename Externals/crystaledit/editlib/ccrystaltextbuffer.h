@@ -249,9 +249,9 @@ public :
     void SetIgnoreEol(bool IgnoreEol) { m_IgnoreEol = IgnoreEol; }
 
     //  Text modification functions
-    virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, size_t cchText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
-    virtual bool DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, bool bHistory =true, bool bExcludeInvisibleLines = true);
-    virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
+    virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, size_t cchText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, bool bHistory = true);
+    virtual bool DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, bool bHistory = true, bool bExcludeInvisibleLines = true);
+    virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, bool bHistory = true);
 
     //  Undo/Redo
     bool CanUndo () const;

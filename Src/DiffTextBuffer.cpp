@@ -706,7 +706,7 @@ bool CDiffTextBuffer::curUndoGroup()
 
 bool CDiffTextBuffer::			/* virtual override */
 DeleteText2(CCrystalTextView * pSource, int nStartLine, int nStartChar,
-	int nEndLine, int nEndChar, int nAction, bool bHistory /*= true*/)
+	int nEndLine, int nEndChar, int nAction /*= CE_ACTION_UNKNOWN*/, bool bHistory /*= true*/)
 {
 	for (auto syncpnt : m_pOwnerDoc->GetSyncPointList())
 	{
