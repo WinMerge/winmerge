@@ -31,6 +31,7 @@
 
 #include "StdAfx.h"
 #include "GhostTextBuffer.h"
+#include "MergeLineFlags.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -101,12 +102,6 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 	if (nCount == 0)
 		return true;
 
-	CDeleteContext context;
-	context.m_ptStart.y = nLine;
-	context.m_ptStart.x = 0;
-	context.m_ptEnd.y = nLine + nCount;
-	context.m_ptEnd.x = 0;
-
 	for (int i = nLine ; i < nLine + nCount; i++)
 	{
 		ASSERT (GetLineFlags(i) & LF_GHOST);
@@ -119,18 +114,18 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 
 	if (pSource != NULL)
 	{
-		// The last parameter is optimization - don't recompute lines preceeding
-		// the removed line.
+		CDeleteContext context;
+		context.m_ptStart.y = nLine;
+		context.m_ptStart.x = 0;
+		context.m_ptEnd.y = nLine + nCount;
+		context.m_ptEnd.x = 0;
+
 		if (nLine == GetLineCount())
-		{
-			UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE,
-					GetLineCount() - 1);
-		}
-		else
-		{
-			UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE,
-					nLine);
-		}
+			nLine--;
+		// The last parameter is optimization  
+		//   - don't recompute lines preceeding the removed line.
+		UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE,
+				nLine);
 	}
 
 	return true;
@@ -260,6 +255,7 @@ InsertText (CCrystalTextView * pSource, int nLine,
 {
 	bool bGroupFlag = false;
 	bool bFirstLineGhost = ((GetLineFlags(nLine) & LF_GHOST) != 0);
+	bool bSpecialLastLineHandling = bFirstLineGhost && (nLine == GetLineCount()-1);
 
 	if (bFirstLineGhost && cchText > 0)
 	{
@@ -293,6 +289,21 @@ InsertText (CCrystalTextView * pSource, int nLine,
 		bDiscrepancyInInsertedLines = true;
 	else
 		bDiscrepancyInInsertedLines = false;
+
+	if (bSpecialLastLineHandling)
+	{
+		// The special case of inserting text into the very last line of a file when
+		//	that last line is marked as LF_GHOST.  Effectively, the new text is 
+		//	supposed to go "before" the Ghost, but mechanically the text is inserted
+		//	into the Ghost itself, with a new Ghost line appearing at the end of the
+		//	file.  Later (below), the Ghost status of both the first and last inserted 
+		//	lines will get straightened out, with the trailing Ghost line becomming  
+		//	a NULL line.
+		if ((GetLineFlags(nLine) & LF_GHOST) == 0)	// first line still marked GHOST
+			bSpecialLastLineHandling = false;
+		else
+			bDiscrepancyInInsertedLines = false;
+	}
 
 	// compute the number of real lines created (for undo)
 	int nRealLinesCreated = nEndLine - nLine;
@@ -340,6 +351,15 @@ InsertText (CCrystalTextView * pSource, int nLine,
 	else
 		// if there is a discrepancy, the final cursor line was not changed during insertion so we do nothing
 		;
+		
+	if (bSpecialLastLineHandling)
+	{
+		// By setting the last line (in this special case, see above) to NULL, 
+		//	the line will eventually be removed or become an actual LF_GHOST line.
+		int nLastLine = GetLineCount()-1;
+		ASSERT(m_aLines[nLastLine].FullLength() == 0);
+		m_aLines[nLastLine].Clear();
+	}
 
 	// now we can recompute
 	if ((nEndLine > nLine) || bFirstLineGhost)
