@@ -1390,20 +1390,53 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
               (apparent_ptEndPos.y < static_cast<LONG>(size)) &&
               (apparent_ptEndPos.x <= static_cast<LONG>(m_aLines[apparent_ptEndPos.y].Length())))
             {
+			  //  Try to ensure that we are undoing correctly...
+			  //  Just compare the text as it was before Undo operation
               GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
               if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
                 {
                   VERIFY (DeleteText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
                   ptCursorPos = apparent_ptStartPos;
                 }
-              else
-                {
-                  //  Try to ensure that we are undoing correctly...
-                  //  Just compare the text as it was before Undo operation
-                  ASSERT(false);
-                  failed = true;
-                  break;
-                }
+			  else
+			    {
+				  // It is possible that the ptEndPos is at the last line of the file and originally pointed
+				  //	at an LF_GHOST line that followed (and has since been discarded).  Lets try to reconstruct
+				  //	that situation before we fail entirely...
+				  if (apparent_ptEndPos.y + 1 == static_cast<LONG>(size) && apparent_ptEndPos.x == 0)
+				    {
+					  apparent_ptEndPos.x = static_cast<LONG>(m_aLines[apparent_ptEndPos.y].FullLength());
+					  text.Empty();
+					  GetTextWithoutEmptys(apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
+					  if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
+					    {
+						  VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
+						  ptCursorPos = apparent_ptStartPos;
+						  						  
+						  const size_t nLastLine = m_aLines.size()-1;
+						  if (m_aLines[nLastLine].Length() == 0)
+						  {
+							  m_aLines[nLastLine].Clear();
+							  if (ptCursorPos.y == nLastLine)
+								  ptCursorPos.y--;
+						  }
+					    }
+					  else
+					    {
+						  //  Text comparison failed
+						  ASSERT(false);
+						  failed = true;
+						  break;
+					    }
+				    }
+				  else
+				    {
+					  //  Text comparison failed
+					  ASSERT(false);
+					  failed = true;
+					  break;
+				    }
+				}
 
             }
           else
