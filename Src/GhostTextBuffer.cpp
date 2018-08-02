@@ -715,7 +715,10 @@ void CGhostTextBuffer::RecomputeRealityMapping()
 passingGhosts:
 	ASSERT( i <= nLineCount );
 	if (i == nLineCount)
+	{
+		checkFlagsFromReality();
 		return;
+	}
 	if (GetLineFlags(i) & LF_GHOST)
 	{
 		++i;
@@ -751,7 +754,10 @@ inReality:
 		}
 		m_RealityBlocks.push_back(block);
 		if (i == nLineCount)
+		{
+			checkFlagsFromReality();
 			return;
+		}
 		++i;
 		goto passingGhosts;
 	}
@@ -764,8 +770,9 @@ inReality:
 Check all lines, and ASSERT if reality blocks differ from flags. 
 This means that this only has effect in DEBUG build
 */
-void CGhostTextBuffer::checkFlagsFromReality(bool bFlag) const
+void CGhostTextBuffer::checkFlagsFromReality() const
 {
+#ifdef _DEBUG
 	const int size = static_cast<int>(m_RealityBlocks.size());
 	int i = 0;
 	for (int b = 0 ; b < size ; b ++)
@@ -779,6 +786,7 @@ void CGhostTextBuffer::checkFlagsFromReality(bool bFlag) const
 
 	for ( ; i < GetLineCount() ; i++)
 		ASSERT ((GetLineFlags(i) & LF_GHOST) != 0);
+#endif 
 }
 
 void CGhostTextBuffer::			/* virtual base */
