@@ -790,7 +790,7 @@ GetLineWithFlag (DWORD dwFlag) const
 }
 
 void CCrystalTextBuffer::
-SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*= true*/ , bool bUpdate /*=true*/)
+SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*= true*/ , bool bUpdate /*= true*/)
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -854,10 +854,11 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
 /**
  * @brief Get text of specified line range (excluding ghost lines)
  */
-void CCrystalTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
+void CCrystalTextBuffer::			/* virtual base */
+GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
-                 CString &text, CRLFSTYLE nCrlfStyle /* CRLF_STYLE_AUTOMATIC */,
-                 bool bExcludeInvisibleLines/*=true*/) const
+                 CString &text, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC */,
+                 bool bExcludeInvisibleLines/*= true*/) const
 {
   GetText(nStartLine, nStartChar, nEndLine, nEndChar, text, (nCrlfStyle == CRLF_STYLE_AUTOMATIC) ? NULL : GetStringEol (nCrlfStyle), bExcludeInvisibleLines);
 }
@@ -865,7 +866,7 @@ void CCrystalTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 
 void CCrystalTextBuffer::
 GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
-		CString & text, LPCTSTR pszCRLF /*= NULL*/, bool bExcludeInvisibleLines/*=true*/) const
+		CString & text, LPCTSTR pszCRLF /*= NULL*/, bool bExcludeInvisibleLines/*= true*/) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -1098,8 +1099,6 @@ StripTail (int i, size_t bytes)
  * @param [out] nEndLine Line number of last added line in the buffer.
  * @param [out] nEndChar Character position of the end of the added text
  *   in the buffer.
- * @param [in] nAction Edit action.
- * @param [in] bHistory Save insertion for undo/redo?
  * @return true if the insertion succeeded, false otherwise.
  * @note Line numbers are apparent (screen) line numbers, not real
  * line numbers in the file.
@@ -1499,7 +1498,8 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 }
 
 // the CPoint parameters are apparent (on screen) line numbers
-void CCrystalTextBuffer::
+
+void CCrystalTextBuffer::			/* virtual base */
 AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
     const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText, int nActionType,
     CDWordArray *paSavedRevisionNumbers)
@@ -1590,7 +1590,7 @@ LPCTSTR CCrystalTextBuffer::GetDefaultEol() const
 bool CCrystalTextBuffer::
 InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
     size_t cchText, int &nEndLine, int &nEndChar, int nAction,
-    bool bHistory /*=true*/)
+    bool bHistory /*= true*/)
 {
   // save line revision numbers for undo
   CDWordArray *paSavedRevisionNumbers = new CDWordArray;
@@ -1640,14 +1640,15 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
  * @param [in] nEndLine Ending line for the deletion.
  * @param [in] nEndChar Ending char position for the deletion.
  * @param [in] nAction Edit action.
- * @param [in] bHistory Save insertion for undo/redo?
- * @return true if the insertion succeeded, false otherwise.
+ * @param [in] bHistory Save deletion for undo/redo?
+ * @param [in] bExcludeInvisibleLines Don't delete LF_INVISIBLE lines 
+ * @return true if the deletion succeeded, false otherwise.
  * @note Line numbers are apparent (screen) line numbers, not real
  * line numbers in the file.
  */
 bool CCrystalTextBuffer::
 DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
-            int nEndLine, int nEndChar, int nAction, bool bHistory /*=true*/, bool bExcludeInvisibleLines /*=true*/)
+            int nEndLine, int nEndChar, int nAction, bool bHistory /*= true*/, bool bExcludeInvisibleLines /*= true*/)
 {
   bool bGroupFlag = false;
   if (bHistory)
@@ -1717,9 +1718,9 @@ RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers)
 	m_aLines[nStartLine + i].m_dwRevisionNumber = (*paSavedRevisionNumbers)[i];
 }
 
-bool CCrystalTextBuffer::
+bool CCrystalTextBuffer::			/* virtual base */
 DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
-            int nEndLine, int nEndChar, int nAction, bool bHistory /*=true*/)
+            int nEndLine, int nEndChar, int nAction, bool bHistory /*= true*/)
 {
   CString sTextToDelete;
   GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
@@ -1826,7 +1827,7 @@ GetActionDescription (int nAction, CString & desc) const
   return bSuccess;
 }
 
-void CCrystalTextBuffer::
+void CCrystalTextBuffer::			/* virtual base */
 SetModified (bool bModified /*= true*/ )
 {
   m_bModified = bModified;

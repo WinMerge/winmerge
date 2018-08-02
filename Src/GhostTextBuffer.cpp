@@ -52,6 +52,7 @@ CGhostTextBuffer::CGhostTextBuffer()
 {
 }
 
+#if 0
 /**
  * @brief Insert a ghost line.
  * @param [in] pSource View into which to insert the line.
@@ -78,6 +79,7 @@ bool CGhostTextBuffer::InternalInsertGhostLine (CCrystalTextView * pSource,
 
 	return true;
 }
+#endif
 
 /** InternalDeleteGhostLine accepts only apparent line numbers */
 /**
@@ -145,10 +147,11 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
  * These two base functions never read the EOL from the line buffer, they
  * use CRLF_STYLE_DOS when nCrlfStyle equals CRLF_STYLE_AUTOMATIC.
  */
-void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
+void CGhostTextBuffer::			/* virtual override */
+GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
-                 CString &text, CRLFSTYLE nCrlfStyle /* CRLF_STYLE_AUTOMATIC */,
-                 bool bExcludeInvisibleLines/*=true*/) const
+                 CString &text, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC */,
+                 bool bExcludeInvisibleLines /*= true*/) const
 {
 	const size_t lines = m_aLines.size();
 	ASSERT(nStartLine >= 0 && nStartLine < static_cast<intptr_t>(lines));
@@ -235,6 +238,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
  * @param [in] nLine Line number (apparent/screen) where the insertion starts.
  * @param [in] nPos Character position where the insertion starts.
  * @param [in] pszText The text to insert.
+ * @param [in] cchText The length of text in pszText.
  * @param [out] nEndLine Line number of last added line in the buffer.
  * @param [out] nEndChar Character position of the end of the added text
  *   in the buffer.
@@ -248,9 +252,10 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
  *   variable which is preserved with real line number during Rescan
  *   (m_ptCursorPos, m_ptLastChange for example).
  */
-bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
+bool CGhostTextBuffer::			/* virtual override */
+InsertText (CCrystalTextView * pSource, int nLine,
 		int nPos, LPCTSTR pszText, size_t cchText, int &nEndLine, int &nEndChar,
-		int nAction, bool bHistory /*=true*/)
+		int nAction /*= CE_ACTION_UNKNOWN*/, bool bHistory /*= true*/)
 {
 	bool bGroupFlag = false;
 	bool bFirstLineGhost = ((GetLineFlags(nLine) & LF_GHOST) != 0);
@@ -351,7 +356,7 @@ bool CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 	return true;
 }
 
-CDWordArray *CGhostTextBuffer::
+CDWordArray *CGhostTextBuffer::			/* virtual override */
 CopyRevisionNumbers(int nStartLine, int nEndLine) const
 {
 	CDWordArray *paSavedRevisionNumbers = CCrystalTextBuffer::CopyRevisionNumbers(nStartLine, nEndLine);
@@ -372,7 +377,7 @@ CopyRevisionNumbers(int nStartLine, int nEndLine) const
 	return paSavedRevisionNumbers;
 }
 
-void CGhostTextBuffer::
+void CGhostTextBuffer::			/* virtual override */
 RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers)
 {
 	for (int i = 0, j = 0; i < paSavedRevisionNumbers->GetSize(); j++)
@@ -385,9 +390,9 @@ RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers)
 	}
 }
 
-bool CGhostTextBuffer::
+bool CGhostTextBuffer::			/* virtual override */
 DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
-            int nEndLine, int nEndChar, int nAction, bool bHistory /*=true*/)
+            int nEndLine, int nEndChar, int nAction /*= CE_ACTION_UNKNOWN*/, bool bHistory /*= true*/)
 {
 	if ((GetLineFlags(nEndLine) & LF_GHOST) == 0)
 	{
@@ -441,6 +446,7 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 	return true;
 }
 
+#if 0
 /**
  * @brief Insert a ghost line to the buffer (and view).
  * @param [in] pSource The view to which to add the ghost line.
@@ -460,6 +466,7 @@ bool CGhostTextBuffer::InsertGhostLine (CCrystalTextView * pSource, int nLine)
 	// Never AddUndoRecord as Rescan clears the ghost lines.
 	return true;
 }
+#endif
 
 /**
  * @brief Remove all the ghost lines from the buffer.
@@ -566,8 +573,8 @@ int CGhostTextBuffer::ComputeApparentLine(int nRealLine) const
  * @brief Get a real line for apparent (screen) line.
  * This function returns the real line for the given apparent (screen) line.
  * For ghost lines we return next real line. For trailing ghost line we return
- * last real line + 1). Ie, lines 0->0, 1->2, 2->4, for argument of 3,
- * return 2. And decToReal would be 1.
+ * last real line + 1; i.e. lines 0->0, 1->2, 2->4, for argument of 3,
+ * return 2 and decToReal would be 1.
  * @param [in] nApparentLine Apparent line for which to get the real line.
  * @param [out] decToReal Difference of the apparent and real line.
  * @return The real line for the apparent line.
@@ -618,7 +625,7 @@ int CGhostTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine,
 /**
  * @brief Get an apparent (screen) line for the real line.
  * @param [in] nRealLine Real line for which to get the apparent line.
- * @param [out] decToReal Difference of the apparent and real line.
+ * @param [in] decToReal Difference of the apparent and real line.
  * @return The apparent line for the real line. If real line is out of bounds
  *   return last valid apparent line + 1.
  */
@@ -774,7 +781,8 @@ void CGhostTextBuffer::checkFlagsFromReality(bool bFlag) const
 		ASSERT ((GetLineFlags(i) & LF_GHOST) != 0);
 }
 
-void CGhostTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
+void CGhostTextBuffer::			/* virtual base */
+OnNotifyLineHasBeenEdited(int nLine)
 {
 	return;
 }
@@ -794,7 +802,9 @@ static int CountEol(LPCTSTR pszText, size_t cchText)
 	return nEol;
 }
 
-void CGhostTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
+
+void CGhostTextBuffer::			/* virtual override */
+AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 	const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 	int nActionType /*= CE_ACTION_UNKNOWN*/,
 	CDWordArray *paSavedRevisionNumbers)
@@ -805,7 +815,8 @@ void CGhostTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 		cchText, nActionType, paSavedRevisionNumbers);
 }
 
-UndoRecord CGhostTextBuffer::GetUndoRecord(int nUndoPos) const
+UndoRecord CGhostTextBuffer::			/* virtual override */
+GetUndoRecord(int nUndoPos) const
 {
 	UndoRecord ur = m_aUndoBuf[nUndoPos];
 	ur.m_ptStartPos.y = ComputeApparentLine(ur.m_ptStartPos.y, 0);

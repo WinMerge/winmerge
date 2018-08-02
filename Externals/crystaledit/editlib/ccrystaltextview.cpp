@@ -4315,7 +4315,7 @@ OnSysColorChange ()
 }
 
 void CCrystalTextView::
-GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExcludeInvisibleLines/*=true*/)
+GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExcludeInvisibleLines /*= true*/)
 {
   if (m_pTextBuffer != NULL)
     m_pTextBuffer->GetText (ptStart.y, ptStart.x, ptEnd.y, ptEnd.x, text);
@@ -4324,7 +4324,7 @@ GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExc
 }
 
 void CCrystalTextView::
-GetTextInColumnSelection (CString & text, bool bExcludeInvisibleLines/*=true*/)
+GetTextInColumnSelection (CString & text, bool bExcludeInvisibleLines /*= true*/)
 {
   if (m_pTextBuffer == NULL)
     {

@@ -163,7 +163,8 @@ bool CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine) const
  * @param [in] bModified New modified status, true if buffer has been
  *   modified since last saving.
  */
-void CDiffTextBuffer::SetModified(bool bModified /*= true*/)
+void CDiffTextBuffer::			/* virtual override */
+SetModified(bool bModified /*= true*/)	
 {
 	CCrystalTextBuffer::SetModified (bModified);
 	m_pOwnerDoc->SetModifiedFlag (bModified);
@@ -190,7 +191,8 @@ bool CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine) const
 	return true;
 }
 
-void CDiffTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
+void CDiffTextBuffer::			/* virtual override */
+AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 		int nActionType /*= CE_ACTION_UNKNOWN*/,
 		CDWordArray *paSavedRevisionNumbers)
@@ -204,6 +206,7 @@ void CDiffTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 		m_pOwnerDoc->curUndo = m_pOwnerDoc->undoTgt.end();
 	}
 }
+
 /**
  * @brief Checks if a flag is set for line.
  * @param [in] line Index (0-based) for line.
@@ -236,12 +239,13 @@ void CDiffTextBuffer::prepareForRescan()
 /** 
  * @brief Called when line has been edited.
  * After editing a line, we don't know if there is a diff or not.
- * So we clear the LF_DIFF flag (and it is more easy to read during edition).
+ * So we clear the LF_DIFF flag (and it is more easy to read during editing).
  * Rescan will set the proper color.
  * @param [in] nLine Line that has been edited.
  */
 
-void CDiffTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
+void CDiffTextBuffer::			/* virtual override */
+OnNotifyLineHasBeenEdited(int nLine)
 {
 	SetLineFlag(nLine, LF_DIFF, false, false, false);
 	SetLineFlag(nLine, LF_TRIVIAL, false, false, false);
@@ -700,9 +704,9 @@ bool CDiffTextBuffer::curUndoGroup()
 	return (m_aUndoBuf.size() != 0 && m_aUndoBuf[0].m_dwFlags&UNDO_BEGINGROUP);
 }
 
-bool CDiffTextBuffer::
+bool CDiffTextBuffer::			/* virtual override */
 DeleteText2(CCrystalTextView * pSource, int nStartLine, int nStartChar,
-	int nEndLine, int nEndChar, int nAction, bool bHistory /*=true*/)
+	int nEndLine, int nEndChar, int nAction, bool bHistory /*= true*/)
 {
 	for (auto syncpnt : m_pOwnerDoc->GetSyncPointList())
 	{
