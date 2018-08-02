@@ -1587,7 +1587,7 @@ LPCTSTR CCrystalTextBuffer::GetDefaultEol() const
  * @note Line numbers are apparent (screen) line numbers, not real
  * line numbers in the file.
  */
-bool CCrystalTextBuffer::
+bool CCrystalTextBuffer::			/* virtual base */
 InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
     size_t cchText, int &nEndLine, int &nEndChar, int nAction,
     bool bHistory /*= true*/)
@@ -1646,7 +1646,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
  * @note Line numbers are apparent (screen) line numbers, not real
  * line numbers in the file.
  */
-bool CCrystalTextBuffer::
+bool CCrystalTextBuffer::			/* virtual base */
 DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, int nAction, bool bHistory /*= true*/, bool bExcludeInvisibleLines /*= true*/)
 {
@@ -1720,7 +1720,7 @@ RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers)
 
 bool CCrystalTextBuffer::			/* virtual base */
 DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
-            int nEndLine, int nEndChar, int nAction, bool bHistory /*= true*/)
+            int nEndLine, int nEndChar, int nAction /* = CE_ACTION_UNKNOWN*/, bool bHistory /*= true*/)
 {
   CString sTextToDelete;
   GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
