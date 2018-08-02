@@ -219,7 +219,19 @@ void LineInfo::Delete(size_t nStartChar, size_t nEndChar)
       memcpy (m_pcLine + nStartChar, m_pcLine + nEndChar,
               sizeof (TCHAR) * (FullLength() - nEndChar));
     }
-  m_nLength -= (nEndChar - nStartChar);
+  size_t nDelete = (nEndChar - nStartChar);
+  if (nDelete <= m_nLength)
+  {
+	  m_nLength -= nDelete;
+  }
+  else
+  {
+	  ASSERT( (m_nLength + m_nEolChars) <= nDelete );
+	  nDelete -= m_nLength;
+	  m_nLength = 0;
+	  m_nEolChars -= static_cast<int>(nDelete);
+  }
+  ASSERT (m_nLength <= INT_MAX);		// assert "positive int"
   if (m_pcLine)
     m_pcLine[FullLength()] = '\0';
 }
