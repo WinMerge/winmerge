@@ -95,7 +95,8 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 {
 	ASSERT (m_bInit);             //  Text buffer not yet initialized.
 	//  You must call InitNew() or LoadFromFile() first!
-	ASSERT (nLine >= 0 && nLine <= static_cast<intptr_t>(m_aLines.size ()));
+	ASSERT (nCount >= 0);
+	ASSERT (nLine >= 0 && (nLine + nCount) <= static_cast<intptr_t>(m_aLines.size ()));
 
 	if (nCount == 0)
 		return true;
