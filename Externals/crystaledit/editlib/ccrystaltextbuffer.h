@@ -257,6 +257,7 @@ public :
     bool CanUndo () const;
     bool CanRedo () const;
     virtual bool Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
+    virtual bool UndoInsert (CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur);
     virtual bool Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
 
     //  Undo grouping
