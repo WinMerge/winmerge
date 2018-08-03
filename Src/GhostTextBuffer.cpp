@@ -853,3 +853,59 @@ GetUndoRecord(int nUndoPos) const
 	return ur;
 }
 
+bool CGhostTextBuffer::		/* virtual override */
+UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur)
+{    
+    // Check that text in the undo buffer matches text in file buffer.  
+	// If not, then rescan() has moved lines and undo fails.
+
+    // we need to put the cursor before the deleted section
+    CString text;
+    const size_t size = m_aLines.size();
+    if ((apparent_ptStartPos.y < static_cast<LONG>(size)) &&
+        (apparent_ptStartPos.x <= static_cast<LONG>(m_aLines[apparent_ptStartPos.y].Length())) &&
+        (apparent_ptEndPos.y < static_cast<LONG>(size)) &&
+        (apparent_ptEndPos.x <= static_cast<LONG>(m_aLines[apparent_ptEndPos.y].Length())))
+    {
+		//  Try to ensure that we are undoing correctly...
+		//  Just compare the text as it was before Undo operation
+        GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
+        if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
+        {
+			if (CCrystalTextBuffer::UndoInsert(pSource, ptCursorPos, apparent_ptStartPos, apparent_ptEndPos, ur))
+			{
+				// ptCursorPos = apparent_ptStartPos;
+				return true;
+			}
+        }
+		else
+		// It is possible that the ptEndPos is at the last line of the file and originally pointed
+		//	at an LF_GHOST line that followed (and has since been discarded).  Lets try to reconstruct
+		//	that situation before we fail entirely...
+		if (apparent_ptEndPos.y + 1 == static_cast<LONG>(size) && apparent_ptEndPos.x == 0)
+		{
+			CPoint apparentEnd2 = apparent_ptEndPos;
+			apparentEnd2.x = static_cast<LONG>(m_aLines[apparentEnd2.y].FullLength());
+			text.Empty();
+			GetTextWithoutEmptys(apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparentEnd2.x, text, CRLF_STYLE_AUTOMATIC, false);
+			if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
+			{
+				if (CCrystalTextBuffer::UndoInsert(pSource, ptCursorPos, apparent_ptStartPos, apparentEnd2, ur))
+				{
+					// ptCursorPos = apparent_ptStartPos;
+					const size_t nLastLine = m_aLines.size() - 1;
+					if (m_aLines[nLastLine].Length() == 0)
+					{
+						m_aLines[nLastLine].Clear();
+						if (ptCursorPos.y == nLastLine)
+							ptCursorPos.y--;
+					}
+					return true;
+				}
+			}
+		}
+    }
+	ASSERT(false);
+	return false;
+}
+

@@ -1359,7 +1359,20 @@ GetRedoDescription (CString & desc, POSITION pos /*= NULL*/ ) const
   return retValue;
 }
 
-bool CCrystalTextBuffer::
+
+bool CCrystalTextBuffer::		/* virtual base */		
+UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur)
+{
+    if (DeleteText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false))
+	{
+		ptCursorPos = apparent_ptStartPos;
+		return true;
+	}
+	ASSERT(false);
+	return false;
+}
+
+bool CCrystalTextBuffer::		/* virtual base */
 Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 {
   ASSERT (CanUndo ());
@@ -1377,84 +1390,26 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
       CPoint apparent_ptEndPos = ur.m_ptEndPos;
 
       if (ur.m_dwFlags & UNDO_INSERT)
-        {
-          // WINMERGE -- Check that text in undo buffer matches text in
-          // file buffer.  If not, then rescan() has moved lines and undo
-          // fails.
-
-          // we need to put the cursor before the deleted section
-          CString text;
-          const size_t size = m_aLines.size();
-          if ((apparent_ptStartPos.y < static_cast<LONG>(size)) &&
-              (apparent_ptStartPos.x <= static_cast<LONG>(m_aLines[apparent_ptStartPos.y].Length())) &&
-              (apparent_ptEndPos.y < static_cast<LONG>(size)) &&
-              (apparent_ptEndPos.x <= static_cast<LONG>(m_aLines[apparent_ptEndPos.y].Length())))
-            {
-			  //  Try to ensure that we are undoing correctly...
-			  //  Just compare the text as it was before Undo operation
-              GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
-              if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
-                {
-                  VERIFY (DeleteText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
-                  ptCursorPos = apparent_ptStartPos;
-                }
-			  else
-			    {
-				  // It is possible that the ptEndPos is at the last line of the file and originally pointed
-				  //	at an LF_GHOST line that followed (and has since been discarded).  Lets try to reconstruct
-				  //	that situation before we fail entirely...
-				  if (apparent_ptEndPos.y + 1 == static_cast<LONG>(size) && apparent_ptEndPos.x == 0)
-				    {
-					  apparent_ptEndPos.x = static_cast<LONG>(m_aLines[apparent_ptEndPos.y].FullLength());
-					  text.Empty();
-					  GetTextWithoutEmptys(apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, false);
-					  if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
-					    {
-						  VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
-						  ptCursorPos = apparent_ptStartPos;
-						  						  
-						  const size_t nLastLine = m_aLines.size()-1;
-						  if (m_aLines[nLastLine].Length() == 0)
-						  {
-							  m_aLines[nLastLine].Clear();
-							  if (ptCursorPos.y == nLastLine)
-								  ptCursorPos.y--;
-						  }
-					    }
-					  else
-					    {
-						  //  Text comparison failed
-						  ASSERT(false);
-						  failed = true;
-						  break;
-					    }
-				    }
-				  else
-				    {
-					  //  Text comparison failed
-					  ASSERT(false);
-					  failed = true;
-					  break;
-				    }
-				}
-
-            }
-          else
-            {
-			  // Fails boundary check at StartPos or EndPos
-              ASSERT(false);
-              failed = true;
-              break;
-            }
-
-        }
+      {
+		  if (!UndoInsert(pSource, ptCursorPos, apparent_ptStartPos, apparent_ptEndPos, ur))
+		  {
+			  failed = true;
+			  break;
+		  }
+		  // ptCursorPos = apparent_ptStartPos;
+      }
       else
-        {
+      {
           int nEndLine, nEndChar;
-          VERIFY (InsertText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, ur.GetText (), ur.GetTextLength (), nEndLine, nEndChar, 0, false));
+		  if (!InsertText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, ur.GetText(), ur.GetTextLength(), nEndLine, nEndChar, 0, false))
+		  {
+			  ASSERT(false);
+			  failed = true;
+			  break;
+		  }
           ptCursorPos = m_ptLastChange;
 
-        }
+      }
 
       // restore line revision numbers
       RestoreRevisionNumbers(ur.m_ptStartPos.y, ur.m_paSavedRevisionNumbers);
@@ -1481,7 +1436,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
   return !failed;
 }
 
-bool CCrystalTextBuffer::
+bool CCrystalTextBuffer::		/* virtual base */
 Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 {
   ASSERT (CanRedo ());
