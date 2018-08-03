@@ -897,7 +897,7 @@ UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint appare
 					if (m_aLines[nLastLine].Length() == 0)
 					{
 						m_aLines[nLastLine].Clear();
-						if (ptCursorPos.y == nLastLine)
+						if (static_cast<size_t>(ptCursorPos.y) == nLastLine)
 							ptCursorPos.y--;
 					}
 					return true;

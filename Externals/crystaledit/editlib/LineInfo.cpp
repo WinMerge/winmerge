@@ -91,7 +91,7 @@ void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
     nEols = 2;
   else if (nLength && IsEol(pszLine[nLength - 1]))
     nEols = 1;
-  ASSERT (nEols <= m_nLength);
+  ASSERT (static_cast<size_t>(nEols) <= m_nLength);
   m_nLength -= nEols;
   m_nEolChars = nEols;
 }
@@ -144,7 +144,7 @@ void LineInfo::Append(LPCTSTR pszChars, size_t nLength)
       {
        m_nEolChars = 1;
       }
-   ASSERT (m_nEolChars <= m_nLength);
+   ASSERT (static_cast<size_t>(m_nEolChars) <= m_nLength);
    m_nLength -= m_nEolChars;
    ASSERT (m_nLength + m_nEolChars <= m_nMax);
 }
