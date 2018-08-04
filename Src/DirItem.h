@@ -27,7 +27,6 @@
 #include <boost/flyweight.hpp>
 #include "UnicodeString.h"
 #include "FileVersion.h"
-#include "stdint.h"
 
 /**
  * @brief Class for fileflags.

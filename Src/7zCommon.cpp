@@ -98,7 +98,6 @@ DATE:		BY:					DESCRIPTION:
 #include "stdafx.h"
 #include "7zCommon.h"
 #include <afxinet.h>
-#include <shlwapi.h>
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "DirView.h"
@@ -150,7 +149,7 @@ bool IsArchiveFile(const String& pszFile)
 		e->Delete();
 		return FALSE;
 	}
-	return FALSE;
+//~	return FALSE;
 }
 
 /**

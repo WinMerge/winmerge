@@ -8,7 +8,6 @@
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Mutex.h>
 #include <memory>
-#include <cstdint>
 #include "PathContext.h"
 #include "DiffFileInfo.h"
 #include "DiffItemList.h"

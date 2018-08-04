@@ -52,7 +52,7 @@ class CCrystalTextMarkers;
 // CCrystalTextView class declaration
 
 //  CCrystalTextView::FindText() flags
-enum
+enum : unsigned
 {
   FIND_MATCH_CASE = 0x0001U,
   FIND_WHOLE_WORD = 0x0002U,
@@ -64,7 +64,7 @@ enum
 };
 
 //  CCrystalTextView::UpdateView() flags
-enum
+enum : unsigned
 {
   UPDATE_HORZRANGE = 0x0001U,  //  update horz scrollbar
   UPDATE_VERTRANGE = 0x0002U, //  update vert scrollbar
@@ -213,7 +213,7 @@ public :
     void SetColorContext(SyntaxColors * pColors) { m_pColors = pColors; }
     CCrystalTextMarkers * GetMarkers() const { return m_pMarkers; }
     void SetMarkersContext(CCrystalTextMarkers * pMarkers);
-    static int GetClipTcharTextFormat() { return sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT; }
+    static CLIPFORMAT GetClipTcharTextFormat() { return sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT; }
 
 protected :
     CPoint WordToRight (CPoint pt);
@@ -915,7 +915,7 @@ protected :
     afx_msg void OnUpdateEditRepeat (CCmdUI * pCmdUI);
     afx_msg void OnEditMark ();
     afx_msg void OnEditDeleteBack();
-    afx_msg void OnChar( UINT nChar, UINT nRepCnt, UINT nFlags );
+    afx_msg void OnChar( wchar_t nChar, UINT nRepCnt, UINT nFlags );
 
     afx_msg BOOL OnMouseWheel (UINT nFlags, short zDelta, CPoint pt);
 	LRESULT OnImeStartComposition(WPARAM wParam, LPARAM lParam);

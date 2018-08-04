@@ -24,28 +24,7 @@
 #pragma once
 
 #include <string>
-#include <cstdarg>
-#include <cstdint>
-
-#ifdef _WIN32
-#  include <tchar.h>
-#else
-#  ifndef _T
-#    ifdef _UNICODE
-#      define _T(x) L ## x
-#    else
-#      define _T(x) x
-#    endif
-#  endif
-#  ifndef _TCHAR_DEFINED
-#    ifdef _UNICODE
-typedef wchar_t TCHAR;
-#    else
-typedef char    TCHAR;
-#    endif
-#  endif
-#  define _TCHAR_DEFINED
-#endif
+#include <tchar.h>
 
 #ifdef _UNICODE
 #define std_tchar(type) std::w##type

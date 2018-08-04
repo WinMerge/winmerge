@@ -26,11 +26,11 @@ void InitializeLogFont(LOGFONT &logfont, int lfHeight, int lfCharSet, int lfPitc
 	logfont.lfItalic = false;
 	logfont.lfUnderline = false;
 	logfont.lfStrikeOut = false;
-	logfont.lfCharSet = lfCharSet;
+	logfont.lfCharSet = static_cast<BYTE>(lfCharSet);
 	logfont.lfOutPrecision = OUT_STRING_PRECIS;
 	logfont.lfClipPrecision = CLIP_STROKE_PRECIS;
 	logfont.lfQuality = DRAFT_QUALITY;
-	logfont.lfPitchAndFamily = lfPitchAndFamily;
+	logfont.lfPitchAndFamily = static_cast<BYTE>(lfPitchAndFamily);
 	lstrcpyn(logfont.lfFaceName, lfFaceName.c_str(), (sizeof(logfont.lfFaceName)/sizeof(logfont.lfFaceName[0])) );
 }
 
@@ -129,11 +129,11 @@ LOGFONT Load(const COptionsMgr *pOptionsMgr, const String& name)
 	lfnew.lfItalic = pOptionsMgr->GetBool(name + OPT_FONT_ITALIC);
 	lfnew.lfUnderline = pOptionsMgr->GetBool(name + OPT_FONT_UNDERLINE);
 	lfnew.lfStrikeOut = pOptionsMgr->GetBool(name + OPT_FONT_STRIKEOUT);
-	lfnew.lfCharSet = pOptionsMgr->GetInt(name + OPT_FONT_CHARSET);
-	lfnew.lfOutPrecision = pOptionsMgr->GetInt(name + OPT_FONT_OUTPRECISION);
-	lfnew.lfClipPrecision = pOptionsMgr->GetInt(name + OPT_FONT_CLIPPRECISION);
-	lfnew.lfQuality = pOptionsMgr->GetInt(name + OPT_FONT_QUALITY);
-	lfnew.lfPitchAndFamily = pOptionsMgr->GetInt(name + OPT_FONT_PITCHANDFAMILY);
+	lfnew.lfCharSet = static_cast<BYTE>(pOptionsMgr->GetInt(name + OPT_FONT_CHARSET));
+	lfnew.lfOutPrecision = static_cast<BYTE>(pOptionsMgr->GetInt(name + OPT_FONT_OUTPRECISION));
+	lfnew.lfClipPrecision = static_cast<BYTE>(pOptionsMgr->GetInt(name + OPT_FONT_CLIPPRECISION));
+	lfnew.lfQuality = static_cast<BYTE>(pOptionsMgr->GetInt(name + OPT_FONT_QUALITY));
+	lfnew.lfPitchAndFamily = static_cast<BYTE>(pOptionsMgr->GetInt(name + OPT_FONT_PITCHANDFAMILY));
 	lstrcpyn(lfnew.lfFaceName,
 		pOptionsMgr->GetString(name + OPT_FONT_FACENAME).c_str(), sizeof(lfnew.lfFaceName)/sizeof(lfnew.lfFaceName[0]));
 	ReleaseDC(NULL, hDC);

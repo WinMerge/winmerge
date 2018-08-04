@@ -130,7 +130,7 @@ int DiffUtils::diffutils_compare_files()
 		if (PosOfDot != String::npos)
 		{
 			LowerCaseExt.erase(0, PosOfDot + 1);
-			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::tolower);
+			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::towlower);
 			asLwrCaseExt = LowerCaseExt;
 		}
 
@@ -276,7 +276,6 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 	{
 		throw "DiffUtils::RegExpFilter() called when "
 				"filterlist doesn't exist (=NULL)";
-		return false;
 	}
 
 	bool linesMatch = true; // set to false when non-matching line is found.

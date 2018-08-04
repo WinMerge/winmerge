@@ -8,7 +8,6 @@
 #include "TempFile.h"
 #include <windows.h>
 #include <tlhelp32.h> 
-#include <shlwapi.h>
 #include "paths.h"
 #include "TFile.h"
 #include "Environment.h"
@@ -196,7 +195,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 		}
 		bok = !!FindNextFile(h, &ff) ;
 	}
-	if (h)
+	if (h != INVALID_HANDLE_VALUE)
 		FindClose(h);
 	return res;
 }

@@ -103,7 +103,7 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 
 	m_font.CreatePointFont(10 * 10, _T("Tahoma"));
 
-	SetDlgItemText(IDC_STATIC, m_p->m_info.developers);
+	SetDlgItemText(static_cast<unsigned>(IDC_STATIC), m_p->m_info.developers);
 	GetDlgItem(IDC_STATIC)->SetFont(&m_font);
 	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
 

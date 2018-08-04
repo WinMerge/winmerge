@@ -78,16 +78,6 @@ using std::vector;
 using boost::begin;
 using boost::end;
 
-/*
- One source file must compile the stubs for multimonitor
- by defining the symbol COMPILE_MULTIMON_STUBS & including <multimon.h>
-*/
-#ifdef COMPILE_MULTIMON_STUBS
-#undef COMPILE_MULTIMON_STUBS
-#endif
-#define COMPILE_MULTIMON_STUBS
-#include <multimon.h>
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -813,7 +803,7 @@ void CMainFrame::OnOptions()
 
 	if (rv == IDOK)
 	{
-		LANGID lang = GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE);
+		LANGID lang = static_cast<LANGID>(GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 		if (lang != theApp.m_pLangDlg->GetLangId())
 		{
 			theApp.m_pLangDlg->SetLanguage(lang, TRUE);
@@ -906,9 +896,9 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
 
-	PathContext files;
+	PathContext tFiles;
 	if (pFiles)
-		files = *pFiles;
+		tFiles = *pFiles;
 	bool bRO[3] = {0};
 	if (dwFlags)
 	{
@@ -918,7 +908,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	};
 
 	// pop up dialog unless arguments exist (and are compatible)
-	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(files, IsArchiveFile);
+	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
 	if (pathsType == paths::DOES_NOT_EXIST)
 	{
 		if (!m_pMenus[MENU_OPENVIEW])
@@ -930,7 +920,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 			pOpenDoc->m_dwFlags[1] = dwFlags[1];
 			pOpenDoc->m_dwFlags[2] = dwFlags[2];
 		}
-		pOpenDoc->m_files = files;
+		pOpenDoc->m_files = tFiles;
 		pOpenDoc->m_bRecurse = bRecurse;
 		if (infoUnpacker)
 			pOpenDoc->m_infoHandler = *infoUnpacker;
@@ -943,34 +933,34 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 		// Add trailing '\' for directories if its missing
 		if (pathsType == paths::IS_EXISTING_DIR)
 		{
-			if (!paths::EndsWithSlash(files[0]) && !IsArchiveFile(files[0]))
-				files[0] = paths::AddTrailingSlash(files[0]);
-			if (!paths::EndsWithSlash(files[1]) && !IsArchiveFile(files[1]))
-				files[1] = paths::AddTrailingSlash(files[1]);
-			if (files.GetSize() == 3 && !paths::EndsWithSlash(files[2]) && !IsArchiveFile(files[1]))
-				files[2] = paths::AddTrailingSlash(files[2]);
+			if (!paths::EndsWithSlash(tFiles[0]) && !IsArchiveFile(tFiles[0]))
+				tFiles[0] = paths::AddTrailingSlash(tFiles[0]);
+			if (!paths::EndsWithSlash(tFiles[1]) && !IsArchiveFile(tFiles[1]))
+				tFiles[1] = paths::AddTrailingSlash(tFiles[1]);
+			if (tFiles.GetSize() == 3 && !paths::EndsWithSlash(tFiles[2]) && !IsArchiveFile(tFiles[1]))
+				tFiles[2] = paths::AddTrailingSlash(tFiles[2]);
 		}
 
 		//save the MRU left and right files.
 		if (dwFlags)
 		{
 			if (!(dwFlags[0] & FFILEOPEN_NOMRU))
-				addToMru(files[0].c_str(), _T("Files\\Left"));
+				addToMru(tFiles[0].c_str(), _T("Files\\Left"));
 			if (!(dwFlags[1] & FFILEOPEN_NOMRU))
-				addToMru(files[1].c_str(), _T("Files\\Right"));
-			if (files.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
-				addToMru(files[2].c_str(), _T("Files\\Option"));
+				addToMru(tFiles[1].c_str(), _T("Files\\Right"));
+			if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
+				addToMru(tFiles[2].c_str(), _T("Files\\Option"));
 		}
 	}
 
 	CTempPathContext *pTempPathContext = NULL;
 	if (pathsType == paths::IS_EXISTING_DIR)
 	{
-		DecompressResult res= DecompressArchive(m_hWnd, files);
+		DecompressResult res= DecompressArchive(m_hWnd, tFiles);
 		if (res.pTempPathContext)
 		{
 			pathsType = res.pathsType;
-			files = res.files;
+			tFiles = res.files;
 			pTempPathContext = res.pTempPathContext;
 		}
 	}
@@ -981,7 +971,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	{
 		if (pathsType == paths::IS_EXISTING_DIR)
 		{
-			CDirDoc::m_nDirsTemp = files.GetSize();
+			CDirDoc::m_nDirsTemp = tFiles.GetSize();
 			if (!m_pMenus[MENU_DIRVIEW])
 				theApp.m_pDirTemplate->m_hMenuShared = NewDirViewMenu();
 			pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->OpenDocumentFile(NULL));
@@ -999,12 +989,12 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 		{
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
-			pDirDoc->InitCompare(files, bRecurse, pTempPathContext);
+			pDirDoc->InitCompare(tFiles, bRecurse, pTempPathContext);
 
 			pDirDoc->SetReportFile(sReportFile);
 			pDirDoc->SetDescriptions(strDesc);
 			pDirDoc->SetTitle(NULL);
-			for (int nIndex = 0; nIndex < files.GetSize(); nIndex++)
+			for (int nIndex = 0; nIndex < tFiles.GetSize(); nIndex++)
 				pDirDoc->SetReadOnly(nIndex, bRO[nIndex]);
 
 			pDirDoc->Rescan();
@@ -1014,16 +1004,16 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 	{		
 		FileLocation fileloc[3];
 
-		for (int nPane = 0; nPane < files.GetSize(); nPane++)
-			fileloc[nPane].setPath(files[nPane]);
+		for (int nPane = 0; nPane < tFiles.GetSize(); nPane++)
+			fileloc[nPane].setPath(tFiles[nPane]);
 
 		if (!prediffer.empty())
 		{
-			String strBothFilenames = strutils::join(files.begin(), files.end(), _T("|"));
+			String strBothFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
 			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, prediffer);
 		}
 
-		ShowAutoMergeDoc(pDirDoc, files.GetSize(), fileloc, dwFlags, strDesc, sReportFile,
+		ShowAutoMergeDoc(pDirDoc, tFiles.GetSize(), fileloc, dwFlags, strDesc, sReportFile,
 				infoUnpacker);
 	}
 
@@ -1369,8 +1359,8 @@ void CMainFrame::OnToolsGeneratePatch()
 
 void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 {
-	PathContext files(dropped_files);
-	const size_t fileCount = files.GetSize();
+	PathContext tFiles(dropped_files);
+	const size_t fileCount = tFiles.GetSize();
 
 	// If Ctrl pressed, do recursive compare
 	bool recurse = !!::GetAsyncKeyState(VK_CONTROL) || GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
@@ -1379,26 +1369,26 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 	// assume it is an archive and set filenames to same
 	if (::GetAsyncKeyState(VK_SHIFT) < 0 && fileCount == 1)
 	{
-		files.SetRight(files[0]);
+		tFiles.SetRight(tFiles[0]);
 	}
 
 	// Check if they dropped a project file
 	DWORD dwFlags[3] = {FFILEOPEN_NONE, FFILEOPEN_NONE, FFILEOPEN_NONE};
 	if (fileCount == 1)
 	{
-		if (theApp.IsProjectFile(files[0]))
+		if (theApp.IsProjectFile(tFiles[0]))
 		{
-			theApp.LoadAndOpenProjectFile(files[0]);
+			theApp.LoadAndOpenProjectFile(tFiles[0]);
 			return;
 		}
-		if (IsConflictFile(files[0]))
+		if (IsConflictFile(tFiles[0]))
 		{
-			DoOpenConflict(files[0], nullptr, true);
+			DoOpenConflict(tFiles[0], nullptr, true);
 			return;
 		}
 	}
 
-	DoFileOpen(&files, dwFlags, NULL, _T(""), recurse);
+	DoFileOpen(&tFiles, dwFlags, NULL, _T(""), recurse);
 }
 
 void CMainFrame::OnPluginUnpackMode(UINT nID )
@@ -2118,7 +2108,7 @@ void CMainFrame::OnUpdateToolbarSize(CCmdUI *pCmdUI)
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
 		pCmdUI->SetRadio(pCmdUI->m_nID == ID_TOOLBAR_NONE);
 	else
-		pCmdUI->SetRadio((pCmdUI->m_nID - ID_TOOLBAR_SMALL) == GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE));
+		pCmdUI->SetRadio((pCmdUI->m_nID - ID_TOOLBAR_SMALL) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE)));
 }
 
 /** @brief Lang aware version of CFrameWnd::OnToolTipText() */
@@ -2363,7 +2353,7 @@ void CMainFrame::OnDiffWhitespace(UINT nID)
 
 void CMainFrame::OnUpdateDiffWhitespace(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio((pCmdUI->m_nID - IDC_DIFF_WHITESPACE_COMPARE) == GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE));
+	pCmdUI->SetRadio((pCmdUI->m_nID - IDC_DIFF_WHITESPACE_COMPARE) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE)));
 	pCmdUI->Enable();
 }
 
@@ -2414,7 +2404,7 @@ void CMainFrame::OnCompareMethod(UINT nID)
 
 void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio((pCmdUI->m_nID - ID_COMPMETHOD_FULL_CONTENTS) == GetOptionsMgr()->GetInt(OPT_CMP_METHOD));
+	pCmdUI->SetRadio((pCmdUI->m_nID - ID_COMPMETHOD_FULL_CONTENTS) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_CMP_METHOD)));
 	pCmdUI->Enable();
 }
 

@@ -21,7 +21,7 @@ public:
 	const char *lower;	// beginning of enclosed text (valid after Move)
 	const char *upper;	// end of enclosed text (initially beginning of file)
 	const char *ahead;	// last char of file
-	enum
+	enum : unsigned
 	{
 		IgnoreCase = 0x10,
 		HtmlUTags = 0x20,			// check for unbalanced tags
@@ -54,7 +54,7 @@ public:
 	size_t cbImage;
 	void *pImage;
 	void *pCopy;
-	enum
+	enum : unsigned
 	{
 		Octets = 0x02 + 0x04,
 		Mapping = 0x40

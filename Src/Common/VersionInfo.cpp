@@ -8,10 +8,11 @@
 #include <windows.h>
 #include <cstdio>
 #include <tchar.h>
-#include <assert.h>
+#include <cassert>
 #include <strsafe.h>
 #include "coretypes.h"
 #include "UnicodeString.h"
+#include "TFile.h"
 
 /** 
  * @brief Structure used to store language and codepage.
@@ -161,6 +162,15 @@ String CVersionInfo::GetInternalName() const
 }
 
 /** 
+ * @brief Return full file name.
+ * @return full file name.
+ */
+String CVersionInfo::GetFullFileName() const
+{
+	return m_strFileName;
+}
+
+/** 
  * @brief Return copyright info.
  * @return Copyright info.
  */
@@ -280,16 +290,19 @@ void CVersionInfo::GetVersionInfo()
 	TCHAR szFileName[MAX_PATH];
 
 	if (m_strFileName.empty())
-		GetModuleFileName(NULL, szFileName, MAX_PATH);
+	{
+		::GetModuleFileName(NULL, szFileName, MAX_PATH);
+		m_strFileName = szFileName;
+	}
 	else
 		StringCchCopy(szFileName, MAX_PATH, m_strFileName.c_str());
 	
-	DWORD dwVerInfoSize = GetFileVersionInfoSize(szFileName, &dwVerHnd);
+	DWORD dwVerInfoSize = ::GetFileVersionInfoSize(szFileName, &dwVerHnd);
 	if (dwVerInfoSize)
 	{
 		m_bVersionFound = TRUE;
 		m_pVffInfo.reset(new BYTE[dwVerInfoSize]);
-		if (GetFileVersionInfo(szFileName, 0, dwVerInfoSize, m_pVffInfo.get()))
+		if (::GetFileVersionInfo(szFileName, 0, dwVerInfoSize, m_pVffInfo.get()))
 		{
 			GetFixedVersionInfo();
 			if (m_bVersionOnly == FALSE)
@@ -299,10 +312,10 @@ void CVersionInfo::GetVersionInfo()
 
 	if (m_bDllVersion)
 	{
-		if (HINSTANCE hinstDll = LoadLibrary(szFileName))
+		if (HINSTANCE hinstDll = ::LoadLibrary(szFileName))
 		{
 			DLLGETVERSIONPROC DllGetVersion = (DLLGETVERSIONPROC) 
-					GetProcAddress(hinstDll, "DllGetVersion");
+					::GetProcAddress(hinstDll, "DllGetVersion");
 			if (DllGetVersion)
 			{
 				m_dvi.cbSize = sizeof(m_dvi);
@@ -311,7 +324,7 @@ void CVersionInfo::GetVersionInfo()
 					m_dvi.cbSize = 0;
 				}
 			}
-			FreeLibrary(hinstDll);
+			::FreeLibrary(hinstDll);
 		}
 	}
 }

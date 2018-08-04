@@ -94,11 +94,12 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -121,11 +122,12 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -144,11 +146,12 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -170,11 +173,12 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>

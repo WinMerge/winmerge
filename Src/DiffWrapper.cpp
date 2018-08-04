@@ -28,6 +28,8 @@
 #include <sys/stat.h>
 #include <algorithm>
 #include <string>
+#include <cctype>
+#include <cwctype>
 #include <map>
 #include <cassert>
 #include <exception>
@@ -286,7 +288,7 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
 		return false;//In no Start and End pair, and no single in-line set, then it's not trivial
 
 	if (StartOfComment == Line.c_str() &&
-		((EndOfComment + filtercommentsset.EndMarker.size()) - StartOfComment) == Line.size())
+		static_cast<size_t>((EndOfComment + filtercommentsset.EndMarker.size()) - StartOfComment) == Line.size())
 	{//If entire line is blocked by End and Start markers, then entire line is trivial
 		return true;
 	}
@@ -622,8 +624,12 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 			if (m_options.m_bIgnoreCase)
 			{
 				//ignore case
-				std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
-				std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
+				// std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
+				for (std::basic_string<char>::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
+					*pb = static_cast<char>(::toupper(*pb)); 
+				// std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
+				for (std::basic_string<char>::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
+					*pb = static_cast<char>(::toupper(*pb)); 
 			}
 
 			if (!LineDataLeft.empty())
@@ -646,10 +652,10 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
  * @param [in] files Files to compare
  * @param [in] tempPaths Are given paths temporary (can be deleted)?.
  */
-void CDiffWrapper::SetPaths(const PathContext &files,
+void CDiffWrapper::SetPaths(const PathContext &tFiles,
 		bool tempPaths)
 {
-	m_files = files;
+	m_files = tFiles;
 	m_bPathsAreTemp = tempPaths;
 }
 
@@ -681,10 +687,10 @@ void CDiffWrapper::SetAlternativePaths(const PathContext &altPaths)
  */
 bool CDiffWrapper::RunFileDiff()
 {
-	PathContext files = m_files;
+	PathContext aFiles = m_files;
 	int file;
 	for (file = 0; file < m_files.GetSize(); file++)
-		files[file] = paths::ToWindowsPath(files[file]);
+		aFiles[file] = paths::ToWindowsPath(aFiles[file]);
 
 	bool bRet = true;
 	String strFileTemp[3];
@@ -695,7 +701,7 @@ bool CDiffWrapper::RunFileDiff()
 	if (m_bUseDiffList)
 		m_nDiffs = m_pDiffList->GetSize();
 
-	for (file = 0; file < files.GetSize(); file++)
+	for (file = 0; file < aFiles.GetSize(); file++)
 	{
 		if (m_bPluginsEnabled)
 		{
@@ -731,9 +737,9 @@ bool CDiffWrapper::RunFileDiff()
 	DiffFileData diffdata, diffdata10, diffdata12;
 	int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0;
 
-	if (files.GetSize() == 2)
+	if (aFiles.GetSize() == 2)
 	{
-		diffdata.SetDisplayFilepaths(files[0], files[1]); // store true names for diff utils patch file
+		diffdata.SetDisplayFilepaths(aFiles[0], aFiles[1]); // store true names for diff utils patch file
 		// This opens & fstats both files (if it succeeds)
 		if (!diffdata.OpenFiles(strFileTemp[0], strFileTemp[1]))
 		{
@@ -765,8 +771,8 @@ bool CDiffWrapper::RunFileDiff()
 	}
 	else
 	{
-		diffdata10.SetDisplayFilepaths(files[1], files[0]); // store true names for diff utils patch file
-		diffdata12.SetDisplayFilepaths(files[1], files[2]); // store true names for diff utils patch file
+		diffdata10.SetDisplayFilepaths(aFiles[1], aFiles[0]); // store true names for diff utils patch file
+		diffdata12.SetDisplayFilepaths(aFiles[1], aFiles[2]); // store true names for diff utils patch file
 
 		if (!diffdata10.OpenFiles(strFileTemp[1], strFileTemp[0]))
 		{
@@ -794,7 +800,7 @@ bool CDiffWrapper::RunFileDiff()
 	file_data * inf10 = diffdata10.m_inf;
 	file_data * inf12 = diffdata12.m_inf;
 
-	if (files.GetSize() == 2)
+	if (aFiles.GetSize() == 2)
 	{
 		if (bin_flag != 0)
 		{
@@ -846,7 +852,7 @@ bool CDiffWrapper::RunFileDiff()
 
 
 	// Create patch file
-	if (!m_status.bBinaries && m_bCreatePatchFile && files.GetSize() == 2)
+	if (!m_status.bBinaries && m_bCreatePatchFile && aFiles.GetSize() == 2)
 	{
 		WritePatchFile(script, &inf[0]);
 	}
@@ -855,7 +861,7 @@ bool CDiffWrapper::RunFileDiff()
 	// This is done on every WinMerge's doc rescan!
 	if (!m_status.bBinaries && m_bUseDiffList)
 	{
-		if (files.GetSize() == 2)
+		if (aFiles.GetSize() == 2)
 			LoadWinMergeDiffsFromDiffUtilsScript(script, diffdata.m_inf);
 		else
 			LoadWinMergeDiffsFromDiffUtilsScript3(
@@ -864,7 +870,7 @@ bool CDiffWrapper::RunFileDiff()
 	}			
 
 	// cleanup the script
-	if (files.GetSize() == 2)
+	if (aFiles.GetSize() == 2)
 		FreeDiffUtilsScript(script);
 	else
 	{
@@ -873,7 +879,7 @@ bool CDiffWrapper::RunFileDiff()
 	}
 
 	// Done with diffutils filedata
-	if (files.GetSize() == 2)
+	if (aFiles.GetSize() == 2)
 	{
 		diffdata.Close();
 	}
@@ -886,9 +892,9 @@ bool CDiffWrapper::RunFileDiff()
 	if (m_bPluginsEnabled)
 	{
 		// Delete temp files transformation functions possibly created
-		for (file = 0; file < files.GetSize(); file++)
+		for (file = 0; file < aFiles.GetSize(); file++)
 		{
-			if (strutils::compare_nocase(files[file], strFileTemp[file]) != 0)
+			if (strutils::compare_nocase(aFiles[file], strFileTemp[file]) != 0)
 			{
 				try
 				{
@@ -1132,7 +1138,6 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 	{	
 		throw "CDiffWrapper::RegExpFilter() called when "
 			"filterlist doesn't exist (=NULL)";
-		return false;
 	}
 
 	bool linesMatch = true; // set to false when non-matching line is found.
@@ -1170,7 +1175,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 		if (PosOfDot != String::npos)
 		{
 			LowerCaseExt.erase(0, PosOfDot + 1);
-			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::tolower);
+			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::towlower);
 			asLwrCaseExt = LowerCaseExt;
 		}
 	}
@@ -1412,7 +1417,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 		Comp02Functor(inf10, inf12), (m_pFilterList && m_pFilterList->HasRegExps()));
 }
 
-void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAppendFiles)
+void CDiffWrapper::WritePatchFileHeader(enum output_style tOutput_style, bool bAppendFiles)
 {
 	outfile = nullptr;
 	if (!m_sPatchFile.empty())
@@ -1429,7 +1434,7 @@ void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAp
 	}
 
 	// Output patchfile
-	switch (output_style)
+	switch (tOutput_style)
 	{
 	case OUTPUT_NORMAL:
 	case OUTPUT_CONTEXT:
@@ -1451,7 +1456,7 @@ void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAp
 	outfile = nullptr;
 }
 
-void CDiffWrapper::WritePatchFileTerminator(enum output_style output_style)
+void CDiffWrapper::WritePatchFileTerminator(enum output_style tOutput_style)
 {
 	outfile = nullptr;
 	if (!m_sPatchFile.empty())
@@ -1467,7 +1472,7 @@ void CDiffWrapper::WritePatchFileTerminator(enum output_style output_style)
 	}
 
 	// Output patchfile
-	switch (output_style)
+	switch (tOutput_style)
 	{
 	case OUTPUT_NORMAL:
 	case OUTPUT_CONTEXT:
