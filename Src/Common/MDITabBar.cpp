@@ -364,7 +364,7 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 
 	int nItem = GetItemIndexFromPoint(m_rcCurrentCloseButtom.CenterPoint());
-	if (nItem == lpDraw->itemID)
+	if (static_cast<UINT>(nItem) == lpDraw->itemID)
 	{
 		CPoint pt;
 		GetCursorPos(&pt);

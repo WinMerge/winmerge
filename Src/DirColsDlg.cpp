@@ -275,7 +275,7 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 		ColumnArray::size_type j;
 		for (j = 0; j < m_cols.size(); j++)
 		{
-			if (m_cols[j].log_col == data)
+			if (static_cast<DWORD_PTR>(m_cols[j].log_col) == data)
 				break;
 		}
 		SetDlgItemText(IDC_COLDLG_DESC, m_cols[j].desc);
@@ -283,7 +283,7 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 		// Disable Up/Down -buttons when first/last items are selected.
 		EnableDlgItem(IDC_UP, ind != 0);
 		EnableDlgItem(IDC_DOWN,
-			ind != m_listColumns.GetItemCount() - m_listColumns.GetSelectedCount());
+			ind != m_listColumns.GetItemCount() - static_cast<int>(m_listColumns.GetSelectedCount()));
 	}
 	*pResult = 0;
 }

@@ -14,14 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#ifndef _WIN32
-#include <strings.h>
-#endif
 #include "charsets.h"
-
-#ifdef _WIN32
-#define strcasecmp(a, b) _stricmp((a), (b))
-#endif
 
 enum { no, yes };
 
@@ -983,7 +976,7 @@ static int CompareByName(const void *elem1, const void *elem2)
 {
 	const struct _charsetInfo *p = *(const struct _charsetInfo **)elem1;
 	const struct _charsetInfo *q = *(const struct _charsetInfo **)elem2;
-	return strcasecmp(p->charset, q->charset);
+	return _stricmp(p->charset, q->charset);
 }
 
 static int CompareByCodePage(const void *elem1, const void *elem2)

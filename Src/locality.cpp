@@ -5,7 +5,6 @@
  */
 
 #include "locality.h"
-#include <cstdint>
 #include <windows.h>
 #include <Poco/Format.h>
 #include <Poco/Debugger.h>

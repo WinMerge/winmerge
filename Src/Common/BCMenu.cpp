@@ -1221,7 +1221,8 @@ BCMenuData *BCMenu::FindMenuItem(UINT_PTR nID)
 BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>&bcsubs,
 									  CArray<UINT,UINT&>&bclocs)
 {
-	int i,j;
+	int i;
+	INT_PTR j;
 	BCMenu *psubmenu,*pgoodmenu;
 	BOOL foundflag;
 	
@@ -1239,18 +1240,18 @@ BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>
 			INT_PTR numsubs=bcsubs.GetSize();
 			foundflag=TRUE;
 			for(j=0;j<numsubs;++j){
-				if(bcsubs[j]==this&&bclocs[j]==i){
+				if(bcsubs[j]==this && bclocs[j]==static_cast<UINT>(i)){
 					foundflag=FALSE;
 					break;
 				}
 			}
 			if(foundflag){
-				nLoc=i;
+				nLoc=static_cast<UINT>(i);
 				return(this);
 			}
 		}
 	}
-	nLoc = -1;
+	nLoc = static_cast<UINT>(-1);
 	return(NULL);
 }
 
@@ -1273,7 +1274,7 @@ BCMenu *BCMenu::FindMenuOption(int nId,UINT& nLoc)
 			return(this);
 		}
 	}
-	nLoc = -1;
+	nLoc = static_cast<UINT>(-1);
 	return(NULL);
 }
 

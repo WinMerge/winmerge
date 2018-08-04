@@ -26,7 +26,6 @@ DATE:		BY:					DESCRIPTION:
 
 #include "stdafx.h"
 #include "dllpstub.h"
-#include <shlwapi.h>
 #include <afxdisp.h>
 #include <afxinet.h>
 

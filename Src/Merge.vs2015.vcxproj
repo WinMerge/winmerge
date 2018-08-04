@@ -135,14 +135,14 @@
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINVER=0x0501;WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINVER=0x0501;WIN32;_WINDOWS;__NT__;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -150,6 +150,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
+
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -195,20 +197,21 @@
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINVER=0x0501;WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINVER=0x0501;WIN64;_WINDOWS;__NT__;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -250,13 +253,13 @@
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINVER=0x0501;_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINVER=0x0501;_DEBUG;WIN32;_WINDOWS;__NT__;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <BrowseInformation>true</BrowseInformation>
-      <WarningLevel>Level3</WarningLevel>
+      <BrowseInformation>false</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
@@ -264,6 +267,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -302,19 +306,20 @@
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..\Externals\gtest;..\Externals\gtest\include;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN32;_WINDOWS;__NT__;POCO_STATIC;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <BrowseInformation>true</BrowseInformation>
-      <WarningLevel>Level3</WarningLevel>
+      <BrowseInformation>false</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -358,19 +363,20 @@
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINVER=0x0501;_DEBUG;WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINVER=0x0501;_DEBUG;WIN64;_WINDOWS;__NT__;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <BrowseInformation>true</BrowseInformation>
-      <WarningLevel>Level3</WarningLevel>
+      <BrowseInformation>false</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -415,18 +421,19 @@
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..\Externals\gtest;..\Externals\gtest\include;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include;..\Externals\poco\Util\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TEST_WINMERGE;WINVER=0x0501;_DEBUG;WIN64;_WINDOWS;__NT__;POCO_STATIC;PR_FILE_NAME="pr";EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <BrowseInformation>true</BrowseInformation>
-      <WarningLevel>Level3</WarningLevel>
+      <BrowseInformation>false</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
+      <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -538,10 +545,6 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">true</BrowseInformation>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">true</BrowseInformation>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">Disabled</Optimization>
@@ -584,9 +587,6 @@
     <ClCompile Include="DropHandler.cpp" />
     <ClCompile Include="ImgMergeFrm.cpp" />
     <ClCompile Include="Merge7zFormatMergePluginImpl.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="Merge7zFormatShellImpl.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="MergeEditSplitterView.cpp" />
@@ -972,7 +972,6 @@
     <ClInclude Include="ImgMergeFrm.h" />
     <ClInclude Include="Merge7zFormatMergePluginImpl.h" />
     <ClInclude Include="Merge7zFormatRegister.h" />
-    <ClInclude Include="Merge7zFormatShellImpl.h" />
     <ClInclude Include="MergeEditSplitterView.h" />
     <ClInclude Include="MergeStatusBar.h" />
     <ClInclude Include="OptionsCustomColors.h" />
@@ -1122,6 +1121,7 @@
     <ClInclude Include="Common\VersionInfo.h" />
     <ClInclude Include="VSSHelper.h" />
     <ClInclude Include="VssPromptDlg.h" />
+    <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />
     <ClInclude Include="diffutils\lib\cmpbuf.h" />
     <ClInclude Include="diffutils\config.h" />

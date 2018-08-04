@@ -10,7 +10,6 @@
 #include <Poco/Process.h>
 #include <Poco/Format.h>
 #include <direct.h>
-#include <Shlwapi.h>
 #include <initguid.h>
 #include "ssauto.h"
 #include "MyCom.h"

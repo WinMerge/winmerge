@@ -21,9 +21,7 @@
  */
 
 #include "DirItem.h"
-#ifdef _WIN32
 #include <windows.h>
-#endif
 #include "UnicodeString.h"
 #include "paths.h"
 #include "TFile.h"
@@ -37,7 +35,6 @@
 String FileFlags::ToString() const
 {
 	String sflags;
-#ifdef _WIN32
 	if (attributes & FILE_ATTRIBUTE_READONLY)
 		sflags += _T("R");
 	if (attributes & FILE_ATTRIBUTE_HIDDEN)
@@ -46,7 +43,6 @@ String FileFlags::ToString() const
 		sflags += _T("S");
 	if (attributes & FILE_ATTRIBUTE_ARCHIVE)
 		sflags += _T("A");
-#endif
 	return sflags;
 }
 
@@ -105,9 +101,7 @@ bool DirItem::Update(const String &sFilePath)
 			if (!file.isDirectory())
 				size = file.getSize();
 
-#ifdef _WIN32
 			flags.attributes = GetFileAttributes(TFile(sFilePath).wpath().c_str());
-#endif
 
 			retVal = true;
 		}

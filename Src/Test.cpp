@@ -31,11 +31,11 @@ String getProjectRoot()
 TEST(CodepageTest, UCS2)
 {
 	String projectRoot = getProjectRoot();
-	PathContext files = {
+	PathContext tFiles = {
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2BE/DiffItem.h"),
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2LE/DiffItem.h")
 	};
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&files));
+	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	ASSERT_NE(nullptr, pDoc);
@@ -49,11 +49,11 @@ TEST(CodepageTest, UCS2)
 TEST(CodepageTest, UTF8)
 {
 	String projectRoot = getProjectRoot();
-	PathContext files = {
+	PathContext tFiles = {
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UTF-8/DiffItem.h"),
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UTF-8-NOBOM/DiffItem.h")
 	};
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&files));
+	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
@@ -69,13 +69,13 @@ TEST(CodepageTest, UTF8)
 TEST(SyntaxHighlight, Verilog)
 {
 	String projectRoot = getProjectRoot();
-	PathContext files = {
+	PathContext tFiles = {
 		paths::ConcatPath(projectRoot, L"Testing/FileFormats/Verilog.v"),
 		paths::ConcatPath(projectRoot, L"Testing/FileFormats/Verilog.v")
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&files));
+	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
@@ -257,13 +257,13 @@ TEST(ImageCompareTest, Open)
 		return;
 
 	String projectRoot = getProjectRoot();
-	PathContext files = {
+	PathContext tFiles = {
 		paths::ConcatPath(projectRoot, L"Src/res/right_to_middle.bmp"),
 		paths::ConcatPath(projectRoot, L"Src/res/right_to_left.bmp")
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&files));
+	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CImgMergeFrame *pDoc = dynamic_cast<CImgMergeFrame *>(pFrame);
 	EXPECT_NE(nullptr, pDoc);

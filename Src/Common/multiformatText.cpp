@@ -33,7 +33,6 @@
 #include <cstring>
 #include <cassert>
 #include <memory>
-#include <cstdint>
 #include <Poco/SharedMemory.h>
 #include <Poco/FileStream.h>
 #include <Poco/ByteOrder.h>

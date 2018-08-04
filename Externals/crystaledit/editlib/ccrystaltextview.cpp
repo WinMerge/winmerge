@@ -91,7 +91,6 @@
 #include <vector>
 #include <malloc.h>
 #include <imm.h> /* IME */
-#include <mbctype.h>
 #include "editcmd.h"
 #include "editreg.h"
 #include "ccrystaltextview.h"
@@ -1308,7 +1307,7 @@ GetParseCookie (int nLineIndex)
   if (m_ParseCookies->size() == 0)
     {
       // must be initialized to invalid value (DWORD) -1
-      m_ParseCookies->assign(nLineCount, -1);
+      m_ParseCookies->assign(nLineCount, static_cast<DWORD>(-1));
     }
 
   if (nLineIndex < 0)
@@ -2321,9 +2320,9 @@ OnDraw (CDC * pdc)
   // if the private arrays (m_ParseCookies and m_pnActualLineLength) 
   // are defined, check they are in phase with the text buffer
   if (m_ParseCookies->size())
-    ASSERT(m_ParseCookies->size() == nLineCount);
+    ASSERT(m_ParseCookies->size() == static_cast<size_t>(nLineCount));
   if (m_pnActualLineLength->size())
-    ASSERT(m_pnActualLineLength->size() == nLineCount);
+    ASSERT(m_pnActualLineLength->size() == static_cast<size_t>(nLineCount));
 
   CDC cacheDC;
   VERIFY (cacheDC.CreateCompatibleDC (pdc));
@@ -4316,7 +4315,7 @@ OnSysColorChange ()
 }
 
 void CCrystalTextView::
-GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExcludeInvisibleLines/*=true*/)
+GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExcludeInvisibleLines /*= true*/)
 {
   if (m_pTextBuffer != NULL)
     m_pTextBuffer->GetText (ptStart.y, ptStart.x, ptEnd.y, ptEnd.x, text);
@@ -4325,7 +4324,7 @@ GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExc
 }
 
 void CCrystalTextView::
-GetTextInColumnSelection (CString & text, bool bExcludeInvisibleLines/*=true*/)
+GetTextInColumnSelection (CString & text, bool bExcludeInvisibleLines /*= true*/)
 {
   if (m_pTextBuffer == NULL)
     {
@@ -4384,12 +4383,12 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
           ASSERT (cookiesSize == nLineCount);
           // must be reinitialized to invalid value (DWORD) - 1
           for (int i = nLineIndex; i < cookiesSize; ++i)
-            (*m_ParseCookies)[i] = -1;
+            (*m_ParseCookies)[i] = static_cast<DWORD>(-1);
         }
       //  This line'th actual length must be recalculated
       if (m_pnActualLineLength->size())
         {
-          ASSERT (m_pnActualLineLength->size() == nLineCount);
+          ASSERT (m_pnActualLineLength->size() == static_cast<size_t>(nLineCount));
           // must be initialized to invalid code -1
           (*m_pnActualLineLength)[nLineIndex] = -1;
       //BEGIN SW
@@ -4412,24 +4411,24 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
       if (m_ParseCookies->size())
         {
           size_t arrSize = m_ParseCookies->size();
-          if (arrSize != nLineCount)
+          if (arrSize != static_cast<size_t>(nLineCount))
             {
               size_t oldsize = arrSize; 
               m_ParseCookies->resize(nLineCount);
               arrSize = nLineCount;
               // must be initialized to invalid value (DWORD) - 1
               for (size_t i = oldsize; i < arrSize; ++i)
-                (*m_ParseCookies)[i] = -1;
+                (*m_ParseCookies)[i] = static_cast<DWORD>(-1);
             }
           for (size_t i = nLineIndex; i < arrSize; ++i)
-            (*m_ParseCookies)[i] = -1;
+            (*m_ParseCookies)[i] = static_cast<DWORD>(-1);
         }
 
       //  Recalculate actual length for all lines below this
       if (m_pnActualLineLength->size())
         {
 			size_t arrsize = m_pnActualLineLength->size();
-			if (arrsize != nLineCount)
+			if (arrsize != static_cast<size_t>(nLineCount))
             {
               //  Reallocate actual length array
               size_t oldsize = arrsize; 
@@ -4873,9 +4872,7 @@ FindStringHelper (LPCTSTR pszLineBegin, LPCTSTR pszFindWhere, LPCTSTR pszFindWha
           return nCur + (int) (pszPos - pszFindWhere);
         }
     }
-  ASSERT (false);               // Unreachable
-
-  return -1;
+//~  ASSERT (false);               // Unreachable
 }
 
 /** 
@@ -5203,9 +5200,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
         }
     }
 
-  ASSERT (false);               // Unreachable
-
-  return false;
+ //~ ASSERT (false);               // Unreachable
 }
 
 static DWORD ConvertSearchInfosToSearchFlags(const LastSearchInfos *lastSearch)
@@ -6172,7 +6167,7 @@ BOOL CCrystalTextView::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDL
   return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
 }
 
-void CCrystalTextView::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
+void CCrystalTextView::OnChar( wchar_t nChar, UINT nRepCnt, UINT nFlags )
 {
   CView::OnChar( nChar, nRepCnt, nFlags );
 
@@ -6427,8 +6422,8 @@ int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
   if (!m_bChWidthsCalculated[ch/256])
     {
       int nWidthArray[256];
-      int nStart = ch/256*256;
-      int nEnd = nStart + 255;
+      wchar_t nStart = ch/256*256;
+      wchar_t nEnd = nStart + 255;
       CDC *pdc = GetDC();
       CFont *pOldFont = pdc->SelectObject(GetFont());
       GetCharWidth32(pdc->m_hDC, nStart, nEnd, nWidthArray);
@@ -6439,7 +6434,7 @@ int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
             m_iChDoubleWidthFlags[(nStart+i)/32] |= 1 << (i % 32);
           else
             {
-              wchar_t ch2 = nStart + i;
+              wchar_t ch2 = static_cast<wchar_t>(nStart + i);
               WORD wCharType;
               GetStringTypeW(CT_CTYPE3, &ch2, 1, &wCharType);
               if (!(wCharType & C3_HALFWIDTH) && wCharType & (C3_FULLWIDTH | C3_IDEOGRAPH | C3_HIRAGANA | C3_KATAKANA))

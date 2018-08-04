@@ -426,8 +426,8 @@ void CLocationView::OnDraw(CDC* pDC)
 	if (m_bRecalculateBlocks)
 		CalculateBlocks();
 
-	int nPrevEndY = -1;
-	const int nCurDiff = pDoc->GetCurrentDiff();
+	unsigned nPrevEndY = static_cast<unsigned>(-1);
+	const unsigned nCurDiff = pDoc->GetCurrentDiff();
 
 	vector<DiffBlock>::const_iterator iter = m_diffBlocks.begin();
 	for (; iter != m_diffBlocks.end(); ++iter)
