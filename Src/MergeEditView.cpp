@@ -806,7 +806,7 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
  * @sa CMergeDoc::SetCurrentDiff()
  * @todo Parameter bSelectText is never used?
  */
-void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*=true*/, bool bSelectText /*=true*/)
+void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelectText /*= true*/)
 {
 	CMergeDoc *pd = GetDocument();
 

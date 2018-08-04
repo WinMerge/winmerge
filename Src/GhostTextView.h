@@ -102,11 +102,11 @@ public:
 	/** real cursor function to preserve cursor during Rescan */
 	void PushCursors ();
 
-	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
+	void GetTextWithoutEmptys (int nStartLine, int nStartChar,
 			int nEndLine, int nEndChar, CString &text,
-			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC,
+			CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
 			bool bExcludeInvisibleLines = true);
-	virtual void GetTextWithoutEmptysInColumnSelection (CString & text,
+	void GetTextWithoutEmptysInColumnSelection (CString & text,
 			bool bExcludeInvisibleLines = true);
 	/** 
 	 * @brief Override this drag-n-drop function to call GetTextWithoutEmptys
