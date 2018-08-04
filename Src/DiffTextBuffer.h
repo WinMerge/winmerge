@@ -78,5 +78,5 @@ public :
 	bool IsInitialized() const;
 	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
-		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true) override;
+		int nAction = CE_ACTION_UNKNOWN, bool bHistory = true) override;
 };
