@@ -357,7 +357,7 @@ void CDirDoc::UpdateResources()
 	if (m_pDirView)
 		m_pDirView->UpdateResources();
 
-	SetTitle(0);
+	SetTitle(NULL);
 
 	Redisplay();
 }

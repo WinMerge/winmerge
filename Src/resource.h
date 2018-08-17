@@ -214,7 +214,6 @@
 #define IDC_SEL_MOVEDBLOCK_DELETED_COLOR 1060
 #define IDC_UP                          1061
 #define IDC_DOWN                        1062
-#define IDC_PRIVATEBUILD                1063
 #define IDC_MIXED_EOL                   1064
 #define IDC_DIFF_FILE1                  1065
 #define IDC_DIFF_FILE2                  1066
