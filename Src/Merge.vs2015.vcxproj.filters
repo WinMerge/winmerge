@@ -59,6 +59,9 @@
     <Filter Include="MergeTest">
       <UniqueIdentifier>{63f0497b-0d8f-4660-b727-dac620d74635}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MergeTest\gtest">
+      <UniqueIdentifier>{67c954df-e54f-4070-9c75-68ef52a00e03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charsets.c">
@@ -781,6 +784,9 @@
     <ClCompile Include="TestMain.cpp">
       <Filter>MergeTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\gtest\src\gtest-all.cc">
+      <Filter>MergeTest\gtest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1440,11 +1446,17 @@
     <ClInclude Include="TestMain.h">
       <Filter>MergeTest</Filter>
     </ClInclude>
-    <ClInclude Include="..\Externals\gtest\include\gtest\gtest.h">
-      <Filter>MergeTest</Filter>
-    </ClInclude>
     <ClInclude Include="Win_VersionHelper.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\gtest\include\gtest\gtest.h">
+      <Filter>MergeTest\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\gtest\include\gtest\gtest-printers.h">
+      <Filter>MergeTest\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\gtest\include\gtest\internal\gtest-port.h">
+      <Filter>MergeTest\gtest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
