@@ -68,15 +68,8 @@ static String GetCompilerVersion()
 	sVisualStudio = _T("VS.2017 (15.0) - "); 
 #elif	_MSC_VER == 1911
 	sVisualStudio = _T("VS.2017 (15.3) - "); 
-#elif	_MSC_VER == 1912
-	sVisualStudio = _T("VS.2017 (15.5) - "); 
-#elif	_MSC_VER == 1913
-	sVisualStudio = _T("VS.2017 (15.6) - ");
-#elif	_MSC_VER == 1914
-	sVisualStudio = _T("VS.2017 (15.7) - ");
-#elif	_MSC_VER <  2000
-	sVisualStudio = _T("VS.2017 (15.7++) - "); 
-	# pragma message ("** ConfigLog.cpp (GetCompilerVersion): Update new Visual Studio version **")
+#elif	_MSC_VER >= 1912 && _MSC_VER <  2000
+	sVisualStudio = strutils::format(_T("VS.2017 (15.%d) - "), 5 + (_MSC_VER - 1912));
 #elif	_MSC_VER >= 2000
 	# error "** Unknown NEW Version of Visual Studio **"
 #endif

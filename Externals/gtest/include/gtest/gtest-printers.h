@@ -480,6 +480,14 @@ inline void PrintTo(const ::std::wstring& s, ::std::ostream* os) {
 }
 #endif  // GTEST_HAS_STD_WSTRING
 
+//! see "Address #1616, add printer for std::nullptr_t" PR#1620 (merged)
+//!		https://github.com/google/googletest/pull/1620
+//! and "Workaround nonportable operator<< assumptions in VS2017 15.8" PR#1617
+//! and "Google Test fails to compile if a standard library implements LWG 2221" PR#1616
+#if GTEST_LANG_CXX11
+inline void PrintTo(std::nullptr_t, ::std::ostream* os) { *os << "(nullptr)"; }
+#endif  // GTEST_LANG_CXX11
+
 #if GTEST_HAS_TR1_TUPLE
 // Overload for ::std::tr1::tuple.  Needed for printing function arguments,
 // which are packed as tuples.
