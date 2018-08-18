@@ -320,7 +320,8 @@
 // VS2017 Version 15.5.0 (cl compiler version 19.12.25830.2) updated _MSC_VER to 1912 - BillGord 06 Dec 2017
 // VS2017 Version 15.6.1 (cl compiler version 19.13.26128) updated _MSC_VER to 1913 - BillGord 06 Mar 2018
 // VS2017 Version 15.7.1 (cl compiler version 19.14.26428.1) updated _MSC_VER to 1914 - BillGord 20 May 2018
-#if (_MSC_VER > 1914)
+// VS2017 Version 15.8.0 (cl compiler version 19.15.26726) updated _MSC_VER to 1915 - BillGord 15 Aug 2018
+#if (_MSC_VER > 1915)
 #  if defined(BOOST_ASSERT_CONFIG)
 #     error "Unknown compiler version - please run the configure tests and report the results"
 #  else
