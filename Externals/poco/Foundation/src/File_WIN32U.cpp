@@ -433,8 +433,12 @@ void FileImpl::convertPath(const std::string& utf8Path, std::wstring& utf16Path)
 			if (utf16Path.compare(0, 4, L"\\\\?\\", 4) != 0)
 			{
 				if (utf16Path[1] == '\\')
-					utf16Path.insert(0, L"\\\\?\\UNC\\", 8);
+					//	Starting with  "\\\\server\\etc\\etc..."
+					//	Form resulting "\\\\?\\UNC\\server\\etc\\etc..."
+					utf16Path.insert(1, L"\\?\\UNC", 6);
 				else
+					//	Starting with  "C:\\etc\\etc..."
+					//	Form resulting "\\\\?\\C:\\etc\\etc..."
 					utf16Path.insert(0, L"\\\\?\\", 4);
 			}
 		}
