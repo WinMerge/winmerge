@@ -480,9 +480,8 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 		SHFILEINFO sfi = {0};
 		CString sText;
 		GetLBText(static_cast<int>(pDispInfo->ceItem.iItem), sText);
-		CString sDrive = sText.Left(3);
 		bool isNetworkDrive = false;
-		if (sText.GetLength() >= 2 && (sText[1] == '\\') )
+		if (sText.GetLength() >= 2 && (sText[1] == L'\\'))
 		{
 			if (sText.GetLength() > 4 && sText.Left(4) == L"\\\\?\\")
 				if (sText.GetLength() > 8 && sText.Left(8) == L"\\\\?\\UNC\\")
@@ -492,11 +491,15 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 			else
 				isNetworkDrive = true;
 		}
-		if (!(isNetworkDrive || GetDriveType(sDrive) == DRIVE_REMOTE))
+		else
+		if (sText.GetLength() >= 3 && GetDriveType(sText.Left(3)) == DRIVE_REMOTE)
+			isNetworkDrive = true;	// Drive letter, but mapped to Remote UNC device.
+
+		if (!isNetworkDrive)
 		{
 			// The path is not a network path.
 			if (SHGetFileInfo(sText, 0, &sfi, sizeof(sfi), 
-			    SHGFI_SYSICONINDEX) != 0)
+								SHGFI_SYSICONINDEX) != NULL)
 			{
 				pDispInfo->ceItem.iImage = sfi.iIcon;
 				pDispInfo->ceItem.iSelectedImage = sfi.iIcon;
@@ -505,11 +508,10 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 		else
 		{
 			// The path is a network path. 
-			// try to get the index of a system image list icon with timeout.
-			DWORD dwThreadId;
+			// Try to get the index of a system image list icon, with 1-sec timeout.
 			HANDLE hThread = CreateThread(NULL, 0, SHGetFileInfoThread, 
-				(VOID *)(LPCTSTR)sText, 0, &dwThreadId);
-			if (hThread)
+											(VOID *)(LPCTSTR)sText, 0, NULL);
+			if (hThread != NULL)
 			{
 				DWORD dwResult = WaitForSingleObject(hThread, 1000);
 				if (dwResult == WAIT_OBJECT_0)
