@@ -55,7 +55,6 @@ public:
 	void SetAutoAdd(BOOL bAdd = TRUE, UINT idstrAddText = 0);
 	void SaveState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
 	void LoadState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
-	BOOL IsComboBoxEx();
 	BOOL AttachSystemImageList();
 	int AddString(LPCTSTR lpszItem);
 	int InsertString(int nIndex, LPCTSTR lpszItem);
@@ -64,12 +63,15 @@ public:
 
 	// Generated message map functions
 protected:
+	BOOL IsComboBoxEx() const;
+
 	CString m_strCurSel;
 	virtual BOOL OnAddTemplate();
 	virtual void PreSubclassWindow();
 	CString m_strAutoAdd;
 	BOOL m_bMustUninitOLE;
 	DropHandler *m_pDropHandler;
+
 	//{{AFX_MSG(CSuperComboBox)
 	afx_msg BOOL OnEditchange();
 	afx_msg BOOL OnSelchange();

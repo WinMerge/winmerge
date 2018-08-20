@@ -77,23 +77,23 @@ void CSuperComboBox::PreSubclassWindow()
 	CComboBoxEx::PreSubclassWindow();
 	m_pDropHandler = new DropHandler(std::bind(&CSuperComboBox::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
-}
-
-/**
- * @brief Returns whether the window associated with this object is ComboBoxEx.
- */
-BOOL CSuperComboBox::IsComboBoxEx()
-{
-	if (m_bRecognizedMyself)
-		return m_bComboBoxEx;
-
+	
 	TCHAR szClassName[256];
 	GetClassName(m_hWnd, szClassName, sizeof(szClassName)/sizeof(szClassName[0]));
 	if (lstrcmpi(_T("ComboBoxEx32"), szClassName) == 0)
 		m_bComboBoxEx = TRUE;
 
 	m_bRecognizedMyself = TRUE;
+}
+
+/**
+ * @brief Returns whether the window associated with this object is ComboBoxEx.
+ */
+BOOL CSuperComboBox::IsComboBoxEx() const
+{
+	ASSERT(m_bRecognizedMyself);
 	return m_bComboBoxEx;
+
 }
 
 /**
