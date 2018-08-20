@@ -1,6 +1,6 @@
 #pragma once
 
-// ComboBoxEx.h : header file
+// SuperComboBox.h : header file
 //
 
 #include <vector>

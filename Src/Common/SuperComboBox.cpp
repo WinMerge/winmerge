@@ -1,4 +1,4 @@
-// ComboBoxEx.cpp : implementation file
+// CSuperComboBox.cpp : implementation file
 //
 
 #include "StdAfx.h"
@@ -11,33 +11,6 @@
 #endif
 
 #define DEF_AUTOADD_STRING   _T(" <<new template>>")
-
-//	To use this in an app, you'll need to :
-//
-//	1) Place a normal edit control on your dialog. 
-//	2) Check the "Accept Files" property.
-//
-//	3) In your dialog class, declare a member variable of type CDropEdit
-//	(be sure to #include "CDropEdit.h")
-//		ex. CDropEdit m_dropEdit;
-//
-//	4) In your dialog's OnInitDialog, call
-//		m_dropEdit.SubclassDlgItem(IDC_YOUR_EDIT_ID, this);
-//
-//	5) if you want the edit control to handle directories, call
-//		m_dropEdit.SetUseDir(TRUE);
-//
-//	6) if you want the edit control to handle files, call
-//		m_dropEdit.SetUseDir(FALSE);
-//
-//      7) In the dialog resource template, any groupboxes must be after any comboboxes which accept files
-//
-//	that's it!
-//
-//	This will behave exactly like a normal edit-control but with the 
-//	ability to accept drag-n-dropped files (or directories).
-//
-//
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -149,7 +122,7 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 		cbitem.iItem = nIndex;
 		cbitem.iImage = I_IMAGECALLBACK;
 		cbitem.iSelectedImage = I_IMAGECALLBACK;
-		return InsertItem(&cbitem);
+		return CComboBoxEx::InsertItem(&cbitem);
 	}
 	else
 	{
@@ -194,20 +167,13 @@ void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, UINT nMaxItems)
 void CSuperComboBox::GetLBText(int nIndex, CString &rString) const
 {
 	ASSERT(::IsWindow(m_hWnd));
-	CComboBox::GetLBText(nIndex, rString.GetBufferSetLength(GetLBTextLen(nIndex)));
+	CComboBoxEx::GetLBText(nIndex, rString.GetBufferSetLength(GetLBTextLen(nIndex)));
 	rString.ReleaseBuffer();
 }
 
 int CSuperComboBox::GetLBTextLen(int nIndex) const
 {
-#ifdef _UNICODE
-	return CComboBox::GetLBTextLen(nIndex);
-#else
-	int nUnicodeLen = CComboBox::GetLBTextLen(nIndex);
-	std::vector<char> buf(nUnicodeLen * 2 + 1);
-	CComboBox::GetLBText(nIndex, &buf[0]);
-	return lstrlen(&buf[0]);
-#endif
+	return CComboBoxEx::GetLBTextLen(nIndex);
 }
 
 /** 
@@ -359,7 +325,7 @@ BOOL CSuperComboBox::PreTranslateMessage(MSG* pMsg)
 		}
     }
 
-    return CComboBox::PreTranslateMessage(pMsg);
+    return CComboBoxEx::PreTranslateMessage(pMsg);
 }
 
 void CSuperComboBox::SetAutoAdd(BOOL bAdd, UINT idstrAddText)
@@ -417,7 +383,7 @@ void CSuperComboBox::SetAutoComplete(INT nSource)
 
 void CSuperComboBox::ResetContent()
 {
-	CComboBox::ResetContent();
+	CComboBoxEx::ResetContent();
 	if (!m_strAutoAdd.IsEmpty())
 	{
 		InsertString(0, m_strAutoAdd);
