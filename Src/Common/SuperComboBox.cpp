@@ -18,15 +18,15 @@
 
 HIMAGELIST CSuperComboBox::m_himlSystem = NULL;
 
-CSuperComboBox::CSuperComboBox(BOOL bAdd /*= TRUE*/, UINT idstrAddText /*= 0*/)
+CSuperComboBox::CSuperComboBox(bool bAdd /*= true*/, UINT idstrAddText /*= 0*/)
 	: m_pDropHandler(NULL)
 {
-	m_bEditChanged=FALSE;
-	m_bDoComplete = FALSE;
-	m_bAutoComplete = FALSE;
-	m_bHasImageList = FALSE;
-	m_bRecognizedMyself = FALSE;
-	m_bComboBoxEx = FALSE;
+	m_bEditChanged = false;
+	m_bDoComplete = false;
+	m_bAutoComplete = false;
+	m_bHasImageList = false;
+	m_bRecognizedMyself = false;
+	m_bComboBoxEx = false;
 
 	m_strCurSel = _T("");
 	if (bAdd)
@@ -40,7 +40,7 @@ CSuperComboBox::CSuperComboBox(BOOL bAdd /*= TRUE*/, UINT idstrAddText /*= 0*/)
 		m_strAutoAdd = _T("");
 
 	// Initialize OLE libraries if not yet initialized
-	m_bMustUninitOLE = FALSE;
+	m_bMustUninitOLE = false;
 	_AFX_THREAD_STATE* pState = AfxGetThreadState();
 	if (!pState->m_bNeedTerm)
 	{
@@ -48,7 +48,7 @@ CSuperComboBox::CSuperComboBox(BOOL bAdd /*= TRUE*/, UINT idstrAddText /*= 0*/)
 		if (FAILED(sc))
 			AfxMessageBox(_T("OLE initialization failed. Make sure that the OLE libraries are the correct version"));
 		else
-			m_bMustUninitOLE = TRUE;
+			m_bMustUninitOLE = true;
 	}
 }
 
@@ -81,15 +81,15 @@ void CSuperComboBox::PreSubclassWindow()
 	TCHAR szClassName[256];
 	GetClassName(m_hWnd, szClassName, sizeof(szClassName)/sizeof(szClassName[0]));
 	if (lstrcmpi(_T("ComboBoxEx32"), szClassName) == 0)
-		m_bComboBoxEx = TRUE;
+		m_bComboBoxEx = true;
 
-	m_bRecognizedMyself = TRUE;
+	m_bRecognizedMyself = true;
 }
 
 /**
  * @brief Returns whether the window associated with this object is ComboBoxEx.
  */
-BOOL CSuperComboBox::IsComboBoxEx() const
+bool CSuperComboBox::IsComboBoxEx() const
 {
 	ASSERT(m_bRecognizedMyself);
 	return m_bComboBoxEx;
@@ -133,35 +133,45 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 /**
  * @brief Gets the system image list and attaches the image list to a combo box control.
  */
-BOOL CSuperComboBox::AttachSystemImageList()
+bool CSuperComboBox::AttachSystemImageList()
 {
+	ASSERT(IsComboBoxEx());
 	if (!m_himlSystem)
 	{
 		SHFILEINFO sfi = {0};
 		m_himlSystem = (HIMAGELIST)SHGetFileInfo(_T(""), 0, 
 			&sfi, sizeof(sfi), SHGFI_SMALLICON | SHGFI_SYSICONINDEX);
 		if (!m_himlSystem)
-			return FALSE;
+			return false;
 	}
 	SetImageList(CImageList::FromHandle(m_himlSystem));
-	m_bHasImageList = TRUE;
-	return TRUE;
+	m_bHasImageList = true;
+	return true;
 }
 
-void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, UINT nMaxItems)
+void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*=false */, int nMaxItems /*=20 */)
 {
 	CString s,s2;
-	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
-	for (UINT i=0; i < cnt && i < nMaxItems; i++)
+	bool bIsEmpty = false;
+	if( bCanBeEmpty )
+		bIsEmpty = (AfxGetApp()->GetProfileInt(szRegSubKey, _T("Empty"), FALSE) == TRUE);
+	int cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
+	for (int i=0; i < cnt && i < nMaxItems; i++)
 	{
 		s2.Format(_T("Item_%u"), i);
 		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
-		if (FindStringExact(-1, s) == -1
-			&& !s.IsEmpty())
+		if (FindStringExact(-1, s) == CB_ERR && !s.IsEmpty())
 			AddString(s);
 	}
 	if (cnt > 0)
-		SetCurSel(0);
+		if( bIsEmpty )
+		{
+			SetCurSel(-1);
+		}
+		else
+		{
+			SetCurSel(0);
+		}
 }
 
 void CSuperComboBox::GetLBText(int nIndex, CString &rString) const
@@ -185,10 +195,10 @@ int CSuperComboBox::GetLBTextLen(int nIndex) const
  * @param [in] szRegSubKey Registry subkey where to save strings.
  * @param [in] nMaxItems Max number of strings to save.
  */
-void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, UINT nMaxItems)
+void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*=false */, int nMaxItems /*=20 */)
 {
 	CString strItem,s,s2;
-	int i,idx,cnt = GetCount();
+	int idx = 0;
 
 	if (IsComboBoxEx())
 		GetEditCtrl()->GetWindowText(strItem);
@@ -199,9 +209,8 @@ void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, UINT nMaxItems)
 		AfxGetApp()->WriteProfileString(szRegSubKey, _T("Item_0"), strItem);
 		idx=1;
 	}
-	else
-		idx=0;
-	for (i=0; i < cnt && idx < (int)nMaxItems; i++)
+	int cnt = GetCount();
+	for (int i=idx; i < cnt && i < nMaxItems; i++)
 	{
 		GetLBText(i, s);
 		s.TrimLeft();
@@ -214,18 +223,24 @@ void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, UINT nMaxItems)
 		}
 	}
 	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), idx);
+	
+	if (bCanBeEmpty)
+		AfxGetApp()->WriteProfileInt(_T("Files\\Option"), _T("Empty"), strItem.IsEmpty());
 }
 
 
 BOOL CSuperComboBox::OnEditchange() 
 {
-	m_bEditChanged=TRUE;
+	m_bEditChanged = true;
+
+	// bail if not auto completing 
+	if (!m_bDoComplete) 
+		return FALSE;
 	
 	int length = GetWindowTextLength();
 
-	// bail if not auto completing or no text
-	if (!m_bDoComplete
-		|| length <= 0) 
+	// bail if no text
+	if (length <= 0) 
 		return FALSE;
 	
 	// Get the text in the edit box
@@ -318,7 +333,7 @@ BOOL CSuperComboBox::PreTranslateMessage(MSG* pMsg)
 		}
 		if (m_bAutoComplete)
 		{
-			m_bDoComplete = TRUE;
+			m_bDoComplete = true;
 
 			if (nVirtKey == VK_DELETE || nVirtKey == VK_BACK)
 					m_bDoComplete = FALSE;
@@ -328,7 +343,7 @@ BOOL CSuperComboBox::PreTranslateMessage(MSG* pMsg)
     return CComboBoxEx::PreTranslateMessage(pMsg);
 }
 
-void CSuperComboBox::SetAutoAdd(BOOL bAdd, UINT idstrAddText)
+void CSuperComboBox::SetAutoAdd(bool bAdd /*= true*/, UINT idstrAddText /*= 0*/)
 {
 	if (bAdd)
 	{
@@ -355,14 +370,14 @@ void CSuperComboBox::SetAutoComplete(INT nSource)
 	switch (nSource)
 	{
 		case AUTO_COMPLETE_DISABLED:
-			m_bAutoComplete = FALSE;
+			m_bAutoComplete = false;
 			break;
 
 		case AUTO_COMPLETE_FILE_SYSTEM:
 		{
 			// Disable the build-in auto-completion and use the Windows
 			// shell functionality.
-			m_bAutoComplete = FALSE;
+			m_bAutoComplete = false;
 
 			// ComboBox's edit control is alway 1001.
 			CWnd *pWnd = IsComboBoxEx() ? this->GetEditCtrl() : GetDlgItem(1001);
@@ -372,12 +387,12 @@ void CSuperComboBox::SetAutoComplete(INT nSource)
 		}
 
 		case AUTO_COMPLETE_RECENTLY_USED:
-			m_bAutoComplete = TRUE;
+			m_bAutoComplete = true;
 			break;
 
 		default:
 			ASSERT(!"Unknown AutoComplete source.");
-			m_bAutoComplete = FALSE;
+			m_bAutoComplete = false;
 	}
 }
 

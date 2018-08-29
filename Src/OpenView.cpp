@@ -695,12 +695,8 @@ void COpenView::LoadComboboxStates()
 
 	m_ctlPath[0].LoadState(_T("Files\\Left"));
 	m_ctlPath[1].LoadState(_T("Files\\Right"));
-	m_ctlPath[2].LoadState(_T("Files\\Option"));
+	m_ctlPath[2].LoadState(_T("Files\\Option"), true);
 	m_ctlExt.LoadState(_T("Files\\Ext"));
-	
-	BOOL bIsEmptyThirdItem = theApp.GetProfileInt(_T("Files\\Option"), _T("Empty"), TRUE);
-	if (bIsEmptyThirdItem)
-		m_ctlPath[2].SetCurSel(-1);
 }
 
 /** 
@@ -710,12 +706,8 @@ void COpenView::SaveComboboxStates()
 {
 	m_ctlPath[0].SaveState(_T("Files\\Left"));
 	m_ctlPath[1].SaveState(_T("Files\\Right"));
-	m_ctlPath[2].SaveState(_T("Files\\Option"));
+	m_ctlPath[2].SaveState(_T("Files\\Option"), true);
 	m_ctlExt.SaveState(_T("Files\\Ext"));
-
-	CString strOption;
-	m_ctlPath[2].GetWindowText(strOption);
-	theApp.WriteProfileInt(_T("Files\\Option"), _T("Empty"), strOption.IsEmpty());
 }
 
 struct UpdateButtonStatesThreadParams
