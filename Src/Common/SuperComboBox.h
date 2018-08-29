@@ -15,18 +15,23 @@ class CSuperComboBox : public CComboBoxEx
 {
 // Construction
 public:
-	CSuperComboBox(BOOL bAdd = TRUE, UINT idstrAddText = 0);
+	CSuperComboBox(bool bAdd = true, UINT idstrAddText = 0);
 	virtual ~CSuperComboBox();
 
 // Attributes
 protected:
-	BOOL m_bEditChanged;
-	BOOL m_bAutoComplete;
-	BOOL m_bDoComplete;
-	BOOL m_bHasImageList;
-	BOOL m_bRecognizedMyself;
-	BOOL m_bComboBoxEx;
+	bool m_bEditChanged;
+	bool m_bAutoComplete;
+	bool m_bDoComplete;
+	bool m_bHasImageList;
+	bool m_bRecognizedMyself;
+	bool m_bComboBoxEx;
+	bool m_bMustUninitOLE;
 	static HIMAGELIST m_himlSystem;
+	CString m_strCurSel;
+	CString m_strAutoAdd;
+
+	DropHandler *m_pDropHandler;
 
 public:
 
@@ -52,10 +57,10 @@ public:
 // Implementation
 public:
 	void ResetContent();
-	void SetAutoAdd(BOOL bAdd = TRUE, UINT idstrAddText = 0);
-	void SaveState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
-	void LoadState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
-	BOOL AttachSystemImageList();
+	void SetAutoAdd(bool bAdd = true, UINT idstrAddText = 0);
+	void SaveState(LPCTSTR szRegSubKey, bool bCanBeEmpty = false, int nMaxItems = 20);
+	void LoadState(LPCTSTR szRegSubKey, bool bCanBeEmpty = false, int nMaxItems = 20);
+	bool AttachSystemImageList();
 	int AddString(LPCTSTR lpszItem);
 	int InsertString(int nIndex, LPCTSTR lpszItem);
 	int GetLBTextLen(int nIndex) const;
@@ -63,14 +68,10 @@ public:
 
 	// Generated message map functions
 protected:
-	BOOL IsComboBoxEx() const;
+	bool IsComboBoxEx() const;
 
-	CString m_strCurSel;
 	virtual BOOL OnAddTemplate();
 	virtual void PreSubclassWindow();
-	CString m_strAutoAdd;
-	BOOL m_bMustUninitOLE;
-	DropHandler *m_pDropHandler;
 
 	//{{AFX_MSG(CSuperComboBox)
 	afx_msg BOOL OnEditchange();
