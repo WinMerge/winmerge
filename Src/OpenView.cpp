@@ -546,12 +546,16 @@ void COpenView::OnOK()
 /** 
  * @brief Called when dialog is closed via Cancel.
  *
- * Open-dialog is closed when 'Cancel' button is selected or
- * Esc-key is pressed.  It is *not* called when the program is 
- * terminated, even if the dialog is visible at the time.
+ * Open-dialog is closed when `Cancel` button is selected or the
+ * `Esc` key is pressed.  Save combobox states, since user may have
+ * removed items from them (with `shift-del`) and doesn't want them 
+ * to re-appear.
+ * This is *not* called when the program is terminated, even if the 
+ * dialog is visible at the time.
  */
 void COpenView::OnCancel()
 {
+	SaveComboboxStates();
 	AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 }
 

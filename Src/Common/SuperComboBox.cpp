@@ -149,21 +149,25 @@ bool CSuperComboBox::AttachSystemImageList()
 	return true;
 }
 
-void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*=false */, int nMaxItems /*=20 */)
+void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*= false*/, int nMaxItems /*= 20*/)
 {
-	CString s,s2;
 	bool bIsEmpty = false;
 	if( bCanBeEmpty )
 		bIsEmpty = (AfxGetApp()->GetProfileInt(szRegSubKey, _T("Empty"), FALSE) == TRUE);
 	int cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
-	for (int i=0; i < cnt && i < nMaxItems; i++)
+	int idx = 0;
+	for (int i=0; i < cnt && idx < nMaxItems; i++)
 	{
-		s2.Format(_T("Item_%u"), i);
+		CString s,s2;
+		s2.Format(_T("Item_%d"), i);
 		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
 		if (FindStringExact(-1, s) == CB_ERR && !s.IsEmpty())
+		{
 			AddString(s);
+			idx++;
+		}
 	}
-	if (cnt > 0)
+	if (idx > 0)
 		if( bIsEmpty )
 		{
 			SetCurSel(-1);
@@ -177,6 +181,13 @@ void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*=false */
 void CSuperComboBox::GetLBText(int nIndex, CString &rString) const
 {
 	ASSERT(::IsWindow(m_hWnd));
+
+	if (nIndex==0 && IsComboBoxEx())
+	{
+		GetEditCtrl()->GetWindowText(rString);
+		if (!rString.IsEmpty())
+			return;
+	}
 	CComboBoxEx::GetLBText(nIndex, rString.GetBufferSetLength(GetLBTextLen(nIndex)));
 	rString.ReleaseBuffer();
 }
@@ -193,30 +204,36 @@ int CSuperComboBox::GetLBTextLen(int nIndex) const
  * before saving. Empty strings are not saved. So strings which have only
  * whitespace characters aren't save either.
  * @param [in] szRegSubKey Registry subkey where to save strings.
+ * @param [in] bCanBeEmpty
  * @param [in] nMaxItems Max number of strings to save.
  */
-void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*=false */, int nMaxItems /*=20 */)
+void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*= false*/, int nMaxItems /*= 20*/)
 {
-	CString strItem,s,s2;
-	int idx = 0;
-
+	CString strItem;
 	if (IsComboBoxEx())
 		GetEditCtrl()->GetWindowText(strItem);
 	else
 		GetWindowText(strItem);
+	strItem.TrimLeft();
+	strItem.TrimRight();
+
+	int idx = 0;
 	if (!strItem.IsEmpty())
 	{
 		AfxGetApp()->WriteProfileString(szRegSubKey, _T("Item_0"), strItem);
 		idx=1;
 	}
+
 	int cnt = GetCount();
-	for (int i=idx; i < cnt && i < nMaxItems; i++)
-	{
+	for (int i=0; i < cnt && idx < nMaxItems; i++)
+	{		
+		CString s;
 		GetLBText(i, s);
 		s.TrimLeft();
 		s.TrimRight();
 		if (s != strItem && !s.IsEmpty())
 		{
+			CString s2;
 			s2.Format(_T("Item_%d"), idx);
 			AfxGetApp()->WriteProfileString(szRegSubKey, s2, s);
 			idx++;
@@ -225,7 +242,7 @@ void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*=false */
 	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), idx);
 	
 	if (bCanBeEmpty)
-		AfxGetApp()->WriteProfileInt(_T("Files\\Option"), _T("Empty"), strItem.IsEmpty());
+		AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Empty"), strItem.IsEmpty());
 }
 
 
@@ -278,7 +295,7 @@ BOOL CSuperComboBox::OnEditchange()
 
 BOOL CSuperComboBox::OnSelchange() 
 {
-	m_bEditChanged=FALSE;
+	m_bEditChanged = false;
 
 	CString strCurSel;
 	GetWindowText(strCurSel);
@@ -336,7 +353,7 @@ BOOL CSuperComboBox::PreTranslateMessage(MSG* pMsg)
 			m_bDoComplete = true;
 
 			if (nVirtKey == VK_DELETE || nVirtKey == VK_BACK)
-					m_bDoComplete = FALSE;
+					m_bDoComplete = false;
 		}
     }
 
