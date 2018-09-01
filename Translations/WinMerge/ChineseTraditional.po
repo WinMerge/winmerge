@@ -1829,12 +1829,12 @@ msgstr "已選取的移位區塊："
 #: Merge.rc:73FB246
 #, c-format
 msgid "Same As The Next (3 panes):"
-msgstr ""
+msgstr "和下一個相同 (3方比較):"
 
 #: Merge.rc:60B696AF
 #, c-format
 msgid "Same As The Next (Selected):"
-msgstr ""
+msgstr "和下一個相同 (已選取):"
 
 #: Merge.rc:40C55014
 #, c-format
@@ -4952,7 +4952,7 @@ msgstr "圖片(&I)"
 #: Merge.rc:3D9427A9
 #, c-format
 msgid "frhed is not installed"
-msgstr ""
+msgstr "frhed 未安裝"
 
 #: Merge.rc:73B321AA
 #, c-format

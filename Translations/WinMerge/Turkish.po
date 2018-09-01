@@ -1825,12 +1825,12 @@ msgstr "Seçilmiş Taşınmış:"
 #: Merge.rc:73FB246
 #, c-format
 msgid "Same As The Next (3 panes):"
-msgstr ""
+msgstr "Sonraki ile Aynı (3 Pano):"
 
 #: Merge.rc:60B696AF
 #, c-format
 msgid "Same As The Next (Selected):"
-msgstr ""
+msgstr "Sonraki ile Aynı (Seçilmiş):"
 
 #: Merge.rc:40C55014
 #, c-format
