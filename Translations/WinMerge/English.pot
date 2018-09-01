@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-06-17 03:35+0000\n"
+"POT-Creation-Date: 2018-09-01 20:41+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1772,16 +1772,6 @@ msgstr ""
 msgid "Colors"
 msgstr ""
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr ""
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr ""
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1795,6 +1785,16 @@ msgstr ""
 #: Merge.rc:4C72B54
 #, c-format
 msgid "Text"
+msgstr ""
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr ""
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
 msgstr ""
 
 #: Merge.rc:2756A765
@@ -1812,14 +1812,14 @@ msgstr ""
 msgid "Selected Moved:"
 msgstr ""
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -2757,7 +2757,7 @@ msgstr ""
 msgid "Folder"
 msgstr ""
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr ""

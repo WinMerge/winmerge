@@ -1776,16 +1776,6 @@ msgstr "Eltávolítás"
 msgid "Colors"
 msgstr "Színek"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "Eltérés:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "Kijelölt Eltérés:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1800,6 +1790,16 @@ msgstr "Törölt"
 #, c-format
 msgid "Text"
 msgstr "Szöveg"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "Eltérés:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "Kijelölt Eltérés:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1816,14 +1816,14 @@ msgstr "Áthelyezett:"
 msgid "Selected Moved:"
 msgstr "Kijelölt áthelyezett:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -2761,7 +2761,7 @@ msgstr ""
 msgid "Folder"
 msgstr "Könyvtár"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "Megállás az &első különbségnél"
