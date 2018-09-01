@@ -1780,16 +1780,6 @@ msgstr "제거"
 msgid "Colors"
 msgstr "색상"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "차이점:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "선택된 차이점:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1804,6 +1794,16 @@ msgstr "삭제됨"
 #, c-format
 msgid "Text"
 msgstr "텍스트"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "차이점:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "선택된 차이점:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1820,15 +1820,15 @@ msgstr "이동된 영역:"
 msgid "Selected Moved:"
 msgstr "선택된 이동된 영역:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr "다음과 같음 (3개 창):"
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
-msgstr "다음과 같음 (선택):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
+msgstr ""
 
 #: Merge.rc:40C55014
 #, c-format
@@ -2773,7 +2773,7 @@ msgstr "쉘 확장자 등록 해제(&U)"
 msgid "Folder"
 msgstr "폴더"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "첫 차이점 이후 중지하기(&T)"

@@ -1777,16 +1777,6 @@ msgstr "删除"
 msgid "Colors"
 msgstr "颜色"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "不同:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "已选择:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1801,6 +1791,16 @@ msgstr "已删除"
 #, c-format
 msgid "Text"
 msgstr "文字"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "不同:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "已选择:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1817,14 +1817,14 @@ msgstr "移动区块:"
 msgid "Selected Moved:"
 msgstr "选中的移动区块:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
+msgstr ""
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
@@ -2762,7 +2762,7 @@ msgstr ""
 msgid "Folder"
 msgstr "文件夹"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "遇到首处不同后停止(&T)"

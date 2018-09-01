@@ -1780,16 +1780,6 @@ msgstr "削除"
 msgid "Colors"
 msgstr "色"
 
-#: Merge.rc:2C0C2240
-#, c-format
-msgid "Difference:"
-msgstr "差異:"
-
-#: Merge.rc:1BA49C3B
-#, c-format
-msgid "Selected Difference:"
-msgstr "選択された差異:"
-
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
@@ -1804,6 +1794,16 @@ msgstr "削除"
 #, c-format
 msgid "Text"
 msgstr "テキスト"
+
+#: Merge.rc:2C0C2240
+#, c-format
+msgid "Difference:"
+msgstr "差異:"
+
+#: Merge.rc:1BA49C3B
+#, c-format
+msgid "Selected Difference:"
+msgstr "選択された差異:"
 
 #: Merge.rc:2756A765
 #, c-format
@@ -1820,19 +1820,15 @@ msgstr "移動ブロック:"
 msgid "Selected Moved:"
 msgstr "選択された移動ブロック:"
 
-#: Merge.rc:6B96B328
-#, c-format
-msgid "Same As The Next(3 panes):"
-msgstr ""
-"差異:\n"
-"(ただし隣接ペインと同じ)"
-
 #: Merge.rc:73FB246
 #, c-format
-msgid "Same As The Next(Selected):"
+msgid "Same As The Next (3 panes):"
 msgstr ""
-"選択された差異:\n"
-"(ただし隣接ペインと同じ)"
+
+#: Merge.rc:60B696AF
+#, c-format
+msgid "Same As The Next (Selected):"
+msgstr ""
 
 #: Merge.rc:40C55014
 #, c-format
@@ -2778,7 +2774,7 @@ msgstr "シェル拡張の登録を解除(&U)"
 msgid "Folder"
 msgstr "フォルダー"
 
-#: Merge.rc:60B696AF
+#: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
 msgstr "最初の差異で比較を終了する(&T)"
