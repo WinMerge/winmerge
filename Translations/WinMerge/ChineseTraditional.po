@@ -4949,10 +4949,10 @@ msgstr "開啟自動最大寬度(&A)"
 msgid "&Image"
 msgstr "圖片(&I)"
 
-#: Merge.rc:4D3A8E6D
+#: Merge.rc:3D9427A9
 #, c-format
-msgid "frhed(http://frhed.sourceforge.net/) not installed"
-msgstr "frhed(http://frhed.sourceforge.net/) 未安裝"
+msgid "frhed is not installed"
+msgstr ""
 
 #: Merge.rc:73B321AA
 #, c-format

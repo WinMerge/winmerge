@@ -5038,10 +5038,10 @@ msgstr "자동 최대 너비 사용(&A)"
 msgid "&Image"
 msgstr "이미지(&I)"
 
-#: Merge.rc:4D3A8E6D
+#: Merge.rc:3D9427A9
 #, c-format
-msgid "frhed(http://frhed.sourceforge.net/) not installed"
-msgstr "Frhed(http://frhed.sourceforge.net/)가 설치되어 있지 않습니다"
+msgid "frhed is not installed"
+msgstr ""
 
 #: Merge.rc:73B321AA
 #, c-format
