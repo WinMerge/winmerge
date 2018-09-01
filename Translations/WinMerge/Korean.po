@@ -1823,12 +1823,12 @@ msgstr "선택된 이동된 영역:"
 #: Merge.rc:73FB246
 #, c-format
 msgid "Same As The Next (3 panes):"
-msgstr ""
+msgstr "다음과 같음 (3개 창):"
 
 #: Merge.rc:60B696AF
 #, c-format
 msgid "Same As The Next (Selected):"
-msgstr ""
+msgstr "다음과 같음 (선택):"
 
 #: Merge.rc:40C55014
 #, c-format
