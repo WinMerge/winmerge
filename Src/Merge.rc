@@ -2655,7 +2655,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FRHED_NOTINSTALLED  "frhed(http://frhed.sourceforge.net/) not installed"
+    IDS_FRHED_NOTINSTALLED  "frhed is not installed"
 END
 
 STRINGTABLE

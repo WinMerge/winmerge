@@ -4682,10 +4682,10 @@ msgstr "Ativar largura Máxima Automática"
 msgid "&Image"
 msgstr "Imagem"
 
-#: Merge.rc:4D3A8E6D
+#: Merge.rc:3D9427A9
 #, c-format
-msgid "frhed(http://frhed.sourceforge.net/) not installed"
-msgstr "frhed(http://frhed.sourceforge.net/) não instalado"
+msgid "frhed is not installed"
+msgstr "frhed não instalado"
 
 #: Merge.rc:73B321AA
 #, c-format
