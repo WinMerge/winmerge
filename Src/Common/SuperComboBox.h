@@ -24,14 +24,20 @@ protected:
 	bool m_bAutoComplete;
 	bool m_bDoComplete;
 	bool m_bHasImageList;
-	bool m_bRecognizedMyself;
+
+	int m_nMaxItems;
 	bool m_bComboBoxEx;
+	bool m_bExtendedFileNames;
+	bool m_bCanBeEmpty;
+
 	bool m_bMustUninitOLE;
 	static HIMAGELIST m_himlSystem;
 	CString m_strCurSel;
 	CString m_strAutoAdd;
 
 	DropHandler *m_pDropHandler;
+
+	std::vector<CString> sFullStateText;
 
 public:
 
@@ -56,10 +62,10 @@ public:
 
 // Implementation
 public:
-	void ResetContent();
 	void SetAutoAdd(bool bAdd = true, UINT idstrAddText = 0);
-	void SaveState(LPCTSTR szRegSubKey, bool bCanBeEmpty = false, int nMaxItems = 20);
-	void LoadState(LPCTSTR szRegSubKey, bool bCanBeEmpty = false, int nMaxItems = 20);
+	void SetFileControlStates(bool bCanBeEmpty = false, int nMaxItems = -1);
+	void SaveState(LPCTSTR szRegSubKey);
+	void LoadState(LPCTSTR szRegSubKey);
 	bool AttachSystemImageList();
 	int AddString(LPCTSTR lpszItem);
 	int InsertString(int nIndex, LPCTSTR lpszItem);
@@ -68,7 +74,7 @@ public:
 
 	// Generated message map functions
 protected:
-	bool IsComboBoxEx() const;
+	void ResetContent();
 
 	virtual BOOL OnAddTemplate();
 	virtual void PreSubclassWindow();

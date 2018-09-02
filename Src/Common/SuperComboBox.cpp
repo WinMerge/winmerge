@@ -11,6 +11,7 @@
 #endif
 
 #define DEF_AUTOADD_STRING   _T(" <<new template>>")
+#define DEF_MAXSIZE		20
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -25,8 +26,12 @@ CSuperComboBox::CSuperComboBox(bool bAdd /*= true*/, UINT idstrAddText /*= 0*/)
 	m_bDoComplete = false;
 	m_bAutoComplete = false;
 	m_bHasImageList = false;
-	m_bRecognizedMyself = false;
+
 	m_bComboBoxEx = false;
+	m_bExtendedFileNames = false;
+	m_bCanBeEmpty = false;
+	m_nMaxItems = DEF_MAXSIZE;
+
 
 	m_strCurSel = _T("");
 	if (bAdd)
@@ -82,18 +87,19 @@ void CSuperComboBox::PreSubclassWindow()
 	GetClassName(m_hWnd, szClassName, sizeof(szClassName)/sizeof(szClassName[0]));
 	if (lstrcmpi(_T("ComboBoxEx32"), szClassName) == 0)
 		m_bComboBoxEx = true;
-
-	m_bRecognizedMyself = true;
 }
 
 /**
- * @brief Returns whether the window associated with this object is ComboBoxEx.
+ * @brief Sets additional state for handling Extended Length file names.
  */
-bool CSuperComboBox::IsComboBoxEx() const
+void CSuperComboBox::SetFileControlStates(bool bCanBeEmpty /*= false*/, int nMaxItems /*= -1*/)
 {
-	ASSERT(m_bRecognizedMyself);
-	return m_bComboBoxEx;
+	ASSERT(m_bComboBoxEx);
 
+	m_bExtendedFileNames = true;
+	m_bCanBeEmpty = bCanBeEmpty;
+	if (nMaxItems > 0)
+		m_nMaxItems = nMaxItems;
 }
 
 /**
@@ -112,8 +118,14 @@ int CSuperComboBox::AddString(LPCTSTR lpszItem)
  */
 int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 {
-	if (IsComboBoxEx())
+	if (m_bComboBoxEx)
 	{
+		if (m_bExtendedFileNames)
+		{
+			if (nIndex >= sFullStateText.size())
+				sFullStateText.resize(nIndex + 10);
+			sFullStateText[nIndex] = lpszItem;
+		}
 		COMBOBOXEXITEM cbitem = {0};
 		cbitem.mask = CBEIF_TEXT |
 			(m_bHasImageList ? CBEIF_IMAGE|CBEIF_SELECTEDIMAGE : 0);
@@ -135,7 +147,7 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
  */
 bool CSuperComboBox::AttachSystemImageList()
 {
-	ASSERT(IsComboBoxEx());
+	ASSERT(m_bComboBoxEx);
 	if (!m_himlSystem)
 	{
 		SHFILEINFO sfi = {0};
@@ -149,14 +161,13 @@ bool CSuperComboBox::AttachSystemImageList()
 	return true;
 }
 
-void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*= false*/, int nMaxItems /*= 20*/)
+void CSuperComboBox::LoadState(LPCTSTR szRegSubKey)
 {
-	bool bIsEmpty = false;
-	if( bCanBeEmpty )
-		bIsEmpty = (AfxGetApp()->GetProfileInt(szRegSubKey, _T("Empty"), FALSE) == TRUE);
+	ResetContent();
+
 	int cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
 	int idx = 0;
-	for (int i=0; i < cnt && idx < nMaxItems; i++)
+	for (int i=0; i < cnt && idx < m_nMaxItems; i++)
 	{
 		CString s,s2;
 		s2.Format(_T("Item_%d"), i);
@@ -168,33 +179,46 @@ void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*= false*/
 		}
 	}
 	if (idx > 0)
-		if( bIsEmpty )
+	{
+		bool bIsEmpty = (m_bCanBeEmpty ? (AfxGetApp()->GetProfileInt(szRegSubKey, _T("Empty"), FALSE) == TRUE) : false);
+		if (bIsEmpty)
 		{
 			SetCurSel(-1);
 		}
 		else
 		{
 			SetCurSel(0);
+			if (m_bExtendedFileNames)
+				GetEditCtrl()->SetWindowText(sFullStateText[0]);
 		}
+	}
 }
 
 void CSuperComboBox::GetLBText(int nIndex, CString &rString) const
 {
 	ASSERT(::IsWindow(m_hWnd));
 
-	if (nIndex==0 && IsComboBoxEx())
+	if (m_bExtendedFileNames)
 	{
-		GetEditCtrl()->GetWindowText(rString);
-		if (!rString.IsEmpty())
-			return;
+		rString = sFullStateText[nIndex];
 	}
-	CComboBoxEx::GetLBText(nIndex, rString.GetBufferSetLength(GetLBTextLen(nIndex)));
-	rString.ReleaseBuffer();
+	else
+	{
+		CComboBoxEx::GetLBText(nIndex, rString.GetBufferSetLength(GetLBTextLen(nIndex)));
+		rString.ReleaseBuffer();
+	}
 }
 
 int CSuperComboBox::GetLBTextLen(int nIndex) const
 {
-	return CComboBoxEx::GetLBTextLen(nIndex);
+	if (m_bExtendedFileNames)
+	{
+		return sFullStateText[nIndex].GetLength();
+	}
+	else
+	{
+		return CComboBoxEx::GetLBTextLen(nIndex);
+	}
 }
 
 /** 
@@ -207,10 +231,10 @@ int CSuperComboBox::GetLBTextLen(int nIndex) const
  * @param [in] bCanBeEmpty
  * @param [in] nMaxItems Max number of strings to save.
  */
-void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*= false*/, int nMaxItems /*= 20*/)
+void CSuperComboBox::SaveState(LPCTSTR szRegSubKey)
 {
 	CString strItem;
-	if (IsComboBoxEx())
+	if (m_bComboBoxEx)
 		GetEditCtrl()->GetWindowText(strItem);
 	else
 		GetWindowText(strItem);
@@ -225,7 +249,7 @@ void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*= false*/
 	}
 
 	int cnt = GetCount();
-	for (int i=0; i < cnt && idx < nMaxItems; i++)
+	for (int i=0; i < cnt && idx < m_nMaxItems; i++)
 	{		
 		CString s;
 		GetLBText(i, s);
@@ -241,7 +265,7 @@ void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, bool bCanBeEmpty /*= false*/
 	}
 	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), idx);
 	
-	if (bCanBeEmpty)
+	if (m_bCanBeEmpty)
 		AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Empty"), strItem.IsEmpty());
 }
 
@@ -302,7 +326,7 @@ BOOL CSuperComboBox::OnSelchange()
 	if (m_strAutoAdd.IsEmpty()
 		|| strCurSel != m_strAutoAdd)
 		m_strCurSel = strCurSel;
-	
+
 	if (!m_strAutoAdd.IsEmpty())
 	{
 		int sel = GetCurSel();
@@ -397,7 +421,7 @@ void CSuperComboBox::SetAutoComplete(INT nSource)
 			m_bAutoComplete = false;
 
 			// ComboBox's edit control is alway 1001.
-			CWnd *pWnd = IsComboBoxEx() ? this->GetEditCtrl() : GetDlgItem(1001);
+			CWnd *pWnd = m_bComboBoxEx ? this->GetEditCtrl() : GetDlgItem(1001);
 			ASSERT(NULL != pWnd);
 			SHAutoComplete(pWnd->m_hWnd, SHACF_FILESYSTEM);
 			break;
@@ -415,8 +439,16 @@ void CSuperComboBox::SetAutoComplete(INT nSource)
 
 void CSuperComboBox::ResetContent()
 {
+	if (m_bExtendedFileNames)
+	{
+		sFullStateText.resize(m_nMaxItems);
+		for (int i = 0; i < m_nMaxItems; i++)
+		{
+			sFullStateText[i] = _T("");
+		}
+	}
 	CComboBoxEx::ResetContent();
-	if (!m_strAutoAdd.IsEmpty())
+	if (!m_bComboBoxEx && !m_strAutoAdd.IsEmpty())
 	{
 		InsertString(0, m_strAutoAdd);
 	}
