@@ -231,6 +231,10 @@ void COpenView::OnInitialUpdate()
 	m_dwFlags[1] = pDoc->m_dwFlags[1];
 	m_dwFlags[2] = pDoc->m_dwFlags[2];
 
+	m_ctlPath[0].SetFileControlStates();
+	m_ctlPath[1].SetFileControlStates();
+	m_ctlPath[2].SetFileControlStates(true);
+
 	for (int file = 0; file < m_files.GetSize(); file++)
 	{
 		m_strPath[file] = m_files[file];
@@ -691,14 +695,9 @@ String COpenView::AskProjectFileName(bool bOpen)
  */
 void COpenView::LoadComboboxStates()
 {
-	m_ctlPath[0].CComboBox::ResetContent();
-	m_ctlPath[1].CComboBox::ResetContent();
-	m_ctlPath[2].CComboBox::ResetContent();
-	m_ctlExt.CComboBox::ResetContent();
-
 	m_ctlPath[0].LoadState(_T("Files\\Left"));
 	m_ctlPath[1].LoadState(_T("Files\\Right"));
-	m_ctlPath[2].LoadState(_T("Files\\Option"), true);
+	m_ctlPath[2].LoadState(_T("Files\\Option"));
 	m_ctlExt.LoadState(_T("Files\\Ext"));
 }
 
@@ -709,7 +708,7 @@ void COpenView::SaveComboboxStates()
 {
 	m_ctlPath[0].SaveState(_T("Files\\Left"));
 	m_ctlPath[1].SaveState(_T("Files\\Right"));
-	m_ctlPath[2].SaveState(_T("Files\\Option"), true);
+	m_ctlPath[2].SaveState(_T("Files\\Option"));
 	m_ctlExt.SaveState(_T("Files\\Ext"));
 }
 
