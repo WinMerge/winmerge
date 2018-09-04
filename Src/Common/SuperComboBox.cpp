@@ -152,6 +152,31 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 	}
 }
 
+int CSuperComboBox::FindString(int nStartAfter, LPCTSTR lpszString) const
+{
+	
+	if (m_bComboBoxEx)
+	{
+		ASSERT(m_bExtendedFileNames);
+		CString sSearchString = lpszString;
+		int nSearchStringLen = sSearchString.GetLength();
+		if (nSearchStringLen <= 0)
+			return CB_ERR;
+		for (int i = nStartAfter+1; i < m_sFullStateText.size(); i++)
+		{
+			CString sListString = m_sFullStateText[i];
+			int nListStringLen = sListString.GetLength();
+			if (nSearchStringLen <= nListStringLen && sSearchString.CompareNoCase(sListString.Left(nSearchStringLen))==0)
+				return i;
+		}
+		return CB_ERR;
+	}
+	else
+	{
+		return CComboBox::FindString(nStartAfter, lpszString);
+	}
+}
+
 /**
  * @brief Gets the system image list and attaches the image list to a combo box control.
  */
@@ -300,7 +325,7 @@ BOOL CSuperComboBox::OnEditchange()
 	
 	// get the current selection
 	DWORD sel = GetEditSel();
-	WORD start=LOWORD(sel), end=HIWORD(sel);
+	int start = (short)LOWORD(sel), end = (short)HIWORD(sel);
 	
 	// look for the string that is prefixed by the typed text
 	int idx = FindString(-1, s);
@@ -309,20 +334,21 @@ BOOL CSuperComboBox::OnEditchange()
 		// set the new string
 		CString strNew;
 		GetLBText(idx, strNew);
-		SetWindowText(strNew);         
-		
-		// get the caret back in the right spot
-		if (sel != CB_ERR)
-			SetEditSel(start, end);  
+		SetWindowText(strNew);
 	}
 	
 	// select the text after our typing
-	if (sel == CB_ERR
-		|| end >= length)
-		SetEditSel(length, -1);
-	// restore the selection
+	if (sel == CB_ERR || end >= length)
+	{
+		start = length;
+		end = -1;
+	}
+
+	// get the caret back in the right spot
+	if (m_bComboBoxEx)
+		GetEditCtrl()->SetSel(start, end);
 	else
-		SetEditSel(start, end);
+		CComboBox::SetEditSel(start, end);  
 
 	return FALSE;
 }

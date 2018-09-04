@@ -67,6 +67,7 @@ public:
 	bool AttachSystemImageList();
 	int AddString(LPCTSTR lpszItem);
 	int InsertString(int nIndex, LPCTSTR lpszItem);
+	int FindString(int nStartAfter, LPCTSTR lpszString) const;
 	int GetLBTextLen(int nIndex) const;
 	void GetLBText(int nIndex, CString &rString) const;
 
