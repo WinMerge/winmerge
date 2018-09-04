@@ -36,7 +36,7 @@ protected:
 
 	DropHandler *m_pDropHandler;
 
-	std::vector<CString> sFullStateText;
+	std::vector<CString> m_sFullStateText;
 
 public:
 
