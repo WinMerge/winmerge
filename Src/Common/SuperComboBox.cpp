@@ -109,12 +109,12 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 {
 	if (m_bComboBoxEx)
 	{
-		CString sShortName;		// scoped to be valid for calling CComboBoxEx::InsertItem()
+		CString sShortName;		// scoped to remain valid for calling CComboBoxEx::InsertItem()
 		if (m_bExtendedFileNames)
 		{
-			if (nIndex >= sFullStateText.size())
-				sFullStateText.resize(nIndex + 10);
-			sShortName = sFullStateText[nIndex] = lpszItem;
+			if (nIndex >= m_sFullStateText.size())
+				m_sFullStateText.resize(nIndex + 10);
+			sShortName = m_sFullStateText[nIndex] = lpszItem;
 
 			const int nPartLen = 72;
 			if (sShortName.GetLength() > (nPartLen*2+8)) 
@@ -199,7 +199,7 @@ void CSuperComboBox::LoadState(LPCTSTR szRegSubKey)
 		{
 			SetCurSel(0);
 			if (m_bExtendedFileNames)
-				GetEditCtrl()->SetWindowText(sFullStateText[0]);
+				GetEditCtrl()->SetWindowText(m_sFullStateText[0]);
 		}
 	}
 }
@@ -210,7 +210,7 @@ void CSuperComboBox::GetLBText(int nIndex, CString &rString) const
 
 	if (m_bExtendedFileNames)
 	{
-		rString = sFullStateText[nIndex];
+		rString = m_sFullStateText[nIndex];
 	}
 	else
 	{
@@ -223,7 +223,7 @@ int CSuperComboBox::GetLBTextLen(int nIndex) const
 {
 	if (m_bExtendedFileNames)
 	{
-		return sFullStateText[nIndex].GetLength();
+		return m_sFullStateText[nIndex].GetLength();
 	}
 	else
 	{
@@ -402,10 +402,10 @@ void CSuperComboBox::ResetContent()
 {
 	if (m_bExtendedFileNames)
 	{
-		sFullStateText.resize(m_nMaxItems);
+		m_sFullStateText.resize(m_nMaxItems);
 		for (int i = 0; i < m_nMaxItems; i++)
 		{
-			sFullStateText[i] = _T("");
+			m_sFullStateText[i] = _T("");
 		}
 	}
 	CComboBoxEx::ResetContent();
