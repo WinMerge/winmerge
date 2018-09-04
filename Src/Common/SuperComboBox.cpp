@@ -11,7 +11,7 @@
 #endif
 
 #define DEF_AUTOADD_STRING   _T(" <<new template>>")
-#define DEF_MAXSIZE		20
+#define DEF_MAXSIZE		20	// default maximum items to retain in each SuperComboBox
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -120,11 +120,32 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 {
 	if (m_bComboBoxEx)
 	{
+		CString sShortName;		// scoped to be valid for calling CComboBoxEx::InsertItem()
 		if (m_bExtendedFileNames)
 		{
 			if (nIndex >= sFullStateText.size())
 				sFullStateText.resize(nIndex + 10);
-			sFullStateText[nIndex] = lpszItem;
+			sShortName = sFullStateText[nIndex] = lpszItem;
+
+			const int nPartLen = 72;
+			if (sShortName.GetLength() > (nPartLen*2+8)) 
+			{
+				if (sShortName.Left(4) == _T("\\\\?\\"))
+					sShortName.Delete(0, 4);
+				else
+				if (sShortName.Left(8) == _T("\\\\?\\UNC\\"))
+					sShortName.Delete(1, 6);
+				CString sL = sShortName.Left(nPartLen);
+				int nL = sL.ReverseFind(_T('\\'));
+				if (nL > 0) sL = sL.Left(nL+1);
+
+				CString sR = sShortName.Right(nPartLen);
+				int nR = sR.Find(_T('\\'));
+				if (nR > 0) sR = sR.Right(sR.GetLength() - nR);
+
+				sShortName = sL + _T(" ... ") + sR;
+				lpszItem = (LPCTSTR)sShortName;
+			}
 		}
 		COMBOBOXEXITEM cbitem = {0};
 		cbitem.mask = CBEIF_TEXT |
