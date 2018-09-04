@@ -15,7 +15,7 @@ class CSuperComboBox : public CComboBoxEx
 {
 // Construction
 public:
-	CSuperComboBox(bool bAdd = true, UINT idstrAddText = 0);
+	CSuperComboBox();
 	virtual ~CSuperComboBox();
 
 // Attributes
@@ -33,7 +33,6 @@ protected:
 	bool m_bMustUninitOLE;
 	static HIMAGELIST m_himlSystem;
 	CString m_strCurSel;
-	CString m_strAutoAdd;
 
 	DropHandler *m_pDropHandler;
 
@@ -62,7 +61,6 @@ public:
 
 // Implementation
 public:
-	void SetAutoAdd(bool bAdd = true, UINT idstrAddText = 0);
 	void SetFileControlStates(bool bCanBeEmpty = false, int nMaxItems = -1);
 	void SaveState(LPCTSTR szRegSubKey);
 	void LoadState(LPCTSTR szRegSubKey);
@@ -76,7 +74,6 @@ public:
 protected:
 	void ResetContent();
 
-	virtual BOOL OnAddTemplate();
 	virtual void PreSubclassWindow();
 
 	//{{AFX_MSG(CSuperComboBox)

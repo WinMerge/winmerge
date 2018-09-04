@@ -10,7 +10,6 @@
 #define new DEBUG_NEW
 #endif
 
-#define DEF_AUTOADD_STRING   _T(" <<new template>>")
 #define DEF_MAXSIZE		20	// default maximum items to retain in each SuperComboBox
 
 
@@ -19,7 +18,7 @@
 
 HIMAGELIST CSuperComboBox::m_himlSystem = NULL;
 
-CSuperComboBox::CSuperComboBox(bool bAdd /*= true*/, UINT idstrAddText /*= 0*/)
+CSuperComboBox::CSuperComboBox()
 	: m_pDropHandler(NULL)
 {
 	m_bEditChanged = false;
@@ -32,17 +31,7 @@ CSuperComboBox::CSuperComboBox(bool bAdd /*= true*/, UINT idstrAddText /*= 0*/)
 	m_bCanBeEmpty = false;
 	m_nMaxItems = DEF_MAXSIZE;
 
-
 	m_strCurSel = _T("");
-	if (bAdd)
-	{
-		if (idstrAddText > 0)
-			VERIFY(m_strAutoAdd.LoadString(idstrAddText));
-		else
-			m_strAutoAdd = DEF_AUTOADD_STRING;
-	}
-	else
-		m_strAutoAdd = _T("");
 
 	// Initialize OLE libraries if not yet initialized
 	m_bMustUninitOLE = false;
@@ -344,35 +333,8 @@ BOOL CSuperComboBox::OnSelchange()
 
 	CString strCurSel;
 	GetWindowText(strCurSel);
-	if (m_strAutoAdd.IsEmpty()
-		|| strCurSel != m_strAutoAdd)
-		m_strCurSel = strCurSel;
+	m_strCurSel = strCurSel;
 
-	if (!m_strAutoAdd.IsEmpty())
-	{
-		int sel = GetCurSel();
-		if (sel != CB_ERR)
-		{
-			CString s;
-			GetLBText(sel, s);
-			if (s == m_strAutoAdd)
-			{
-				if (OnAddTemplate())
-				{
-				}
-				else if (!m_strCurSel.IsEmpty()
-					&& m_strCurSel != m_strAutoAdd)
-				{
-					if (SelectString(0, m_strCurSel) != CB_ERR)
-						return TRUE;
-				}
-				else
-				{
-					SetCurSel(1);
-				}
-			}
-		}
-	}
 	return FALSE;
 }
 
@@ -403,28 +365,6 @@ BOOL CSuperComboBox::PreTranslateMessage(MSG* pMsg)
     }
 
     return CComboBoxEx::PreTranslateMessage(pMsg);
-}
-
-void CSuperComboBox::SetAutoAdd(bool bAdd /*= true*/, UINT idstrAddText /*= 0*/)
-{
-	if (bAdd)
-	{
-		if (idstrAddText > 0)
-			VERIFY(m_strAutoAdd.LoadString(idstrAddText));
-		else if (m_strAutoAdd.IsEmpty())
-			m_strAutoAdd = DEF_AUTOADD_STRING;
-
-		InsertString(0, m_strAutoAdd);
-	}
-	else
-		m_strAutoAdd = _T("");
-}
-
-BOOL CSuperComboBox::OnAddTemplate()
-{
-	// do nothing, this should get overridden
-	// return TRUE if template is added
-	return FALSE;
 }
 
 void CSuperComboBox::SetAutoComplete(INT nSource)
@@ -469,10 +409,6 @@ void CSuperComboBox::ResetContent()
 		}
 	}
 	CComboBoxEx::ResetContent();
-	if (!m_bComboBoxEx && !m_strAutoAdd.IsEmpty())
-	{
-		InsertString(0, m_strAutoAdd);
-	}
 }
 
 int CSuperComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct) 
@@ -480,7 +416,6 @@ int CSuperComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CComboBoxEx::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	
-	SetAutoAdd(!m_strAutoAdd.IsEmpty());
 	m_pDropHandler = new DropHandler(std::bind(&CSuperComboBox::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
 	return 0;
