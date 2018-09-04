@@ -32,6 +32,8 @@ f: \.ncb$ ## VC Intellisense file
 f: \.opt$ ## VC project options file
 f: \.bak$ ## backup
 f: \.sdf$ ## SQL Server Compact Edition Database File
+f: \.VC.db$ ## VS Solution Database File
+f: \.idb$ ## VC Rebuild Dependency Information
 
 d: \\\.svn$ ## Subversion working copy
 d: \\_svn$  ## Subversion working copy ASP.NET Hack
