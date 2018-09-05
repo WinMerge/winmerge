@@ -772,7 +772,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				else if (bInvalid[0])
 					iStatusMsgId = IDS_OPEN_LEFTINVALID;
 				else if (bInvalid[1])
-					iStatusMsgId = IDS_OPEN_RIGHTINVALID;
+					iStatusMsgId = IDS_OPEN_RIGHTINVALID2;
 				else if (!bInvalid[0] && !bInvalid[1])
 				{
 					pathsType = paths::GetPairComparability(paths, IsArchiveFile);
@@ -791,7 +791,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				else if (bInvalid[0] && !bInvalid[1] && bInvalid[2])
 					iStatusMsgId = IDS_OPEN_LEFTRIGHTINVALID;
 				else if (!bInvalid[0] && !bInvalid[1] && bInvalid[2])
-					iStatusMsgId = IDS_OPEN_RIGHTINVALID;
+					iStatusMsgId = IDS_OPEN_RIGHTINVALID3;
 				else if (bInvalid[0] && bInvalid[1] && !bInvalid[2])
 					iStatusMsgId = IDS_OPEN_LEFTMIDDLEINVALID;
 				else if (!bInvalid[0] && bInvalid[1] && !bInvalid[2])
