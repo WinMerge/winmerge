@@ -112,7 +112,7 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 		CString sShortName;		// scoped to remain valid for calling CComboBoxEx::InsertItem()
 		if (m_bExtendedFileNames)
 		{
-			if (nIndex >= m_sFullStateText.size())
+			if (nIndex >= static_cast<int>(m_sFullStateText.size()))
 				m_sFullStateText.resize(nIndex + 10);
 			sShortName = m_sFullStateText[nIndex] = lpszItem;
 
@@ -162,7 +162,8 @@ int CSuperComboBox::FindString(int nStartAfter, LPCTSTR lpszString) const
 		int nSearchStringLen = sSearchString.GetLength();
 		if (nSearchStringLen <= 0)
 			return CB_ERR;
-		for (int i = nStartAfter+1; i < m_sFullStateText.size(); i++)
+		int nLimit = static_cast<int>(m_sFullStateText.size());
+		for (int i = nStartAfter+1; i < nLimit; i++)
 		{
 			CString sListString = m_sFullStateText[i];
 			int nListStringLen = sListString.GetLength();
