@@ -905,7 +905,7 @@ BEGIN
     CONTROL         "",IDC_PATH1_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,81,104,374,95
     PUSHBUTTON      "",IDC_SWAP12_BUTTON,366,120,15,14
     PUSHBUTTON      "B&rowse...",IDC_PATH1_BUTTON,384,120,72,14
-    RTEXT           "&3rd(Optional):",IDC_STATIC,13,138,65,10
+    RTEXT           "(Optional) &3rd:",IDC_STATIC,13,138,65,10
     CONTROL         "",IDC_PATH2_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,81,136,374,95
     PUSHBUTTON      "",IDC_SWAP02_BUTTON,366,152,15,14
     PUSHBUTTON      "Browse...",IDC_PATH2_BUTTON,384,152,72,14
@@ -2087,14 +2087,15 @@ STRINGTABLE
 BEGIN
     IDS_ERROR_INCOMPARABLE  "Select two existing folders or files to compare"
     IDS_DIRSEL_TAG          "Folder Selection"
-    IDS_OPEN_FILESDIRS      "Select two folders or two files to compare."
-    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
-    IDS_OPEN_MIDDLEINVALID  "Middle path is invalid!"
-    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
+    IDS_OPEN_FILESDIRS      "Select two (or three) folders or two (or three) files to compare."
+    IDS_OPEN_LEFTINVALID    "Left (1st) path is invalid!"
+    IDS_OPEN_MIDDLEINVALID  "Middle (2nd) path is invalid!"
+    IDS_OPEN_RIGHTINVALID2   "Right (2nd) path is invalid!"
+    IDS_OPEN_RIGHTINVALID3   "Right (3rd) path is invalid!"
     IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
-    IDS_OPEN_LEFTMIDDLEINVALID "Left and middle path is invalid!"
-    IDS_OPEN_LEFTRIGHTINVALID "Left and right path is invalid!"
-    IDS_OPEN_MIDDLERIGHTINVALID "Middle and right path is invalid!"
+    IDS_OPEN_LEFTMIDDLEINVALID "Left (1st) and Middle (2nd) paths are invalid!"
+    IDS_OPEN_LEFTRIGHTINVALID "Left (1st) and Right (3rd) paths are invalid!"
+    IDS_OPEN_MIDDLERIGHTINVALID "Middle (2nd) and Right (3rd) paths are invalid!"
     IDS_OPEN_ALLINVALID     "All paths are invalid!"
     IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
     IDS_OPEN_MISMATCH       "Cannot compare file and folder!"
