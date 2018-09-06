@@ -66,7 +66,7 @@ public:
 		/// If server is set to false, the shared memory region will be unlinked
 		/// by calling shm_unlink when the SharedMemory object is destroyed.
 
-	SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessMode mode, const void* addrHint = NULL, std::size_t size = 0);
+	SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessMode mode, const void* addrHint);
 		/// Maps the entire contents of file into a shared memory segment.
 		///
 		/// An address hint can be passed to the system, specifying the desired

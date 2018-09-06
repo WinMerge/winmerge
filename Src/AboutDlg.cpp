@@ -88,7 +88,6 @@ void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(CAboutDlg::Impl)
 	DDX_Text(pDX, IDC_COMPANY, m_p->m_info.copyright);
 	DDX_Text(pDX, IDC_VERSION, m_p->m_info.version);
-	DDX_Text(pDX, IDC_PRIVATEBUILD, m_p->m_info.private_build);
 	//}}AFX_DATA_MAP
 }
 
