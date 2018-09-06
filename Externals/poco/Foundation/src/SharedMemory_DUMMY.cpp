@@ -45,7 +45,7 @@ SharedMemoryImpl::SharedMemoryImpl(const std::string&, std::size_t, SharedMemory
 }
 
 
-SharedMemoryImpl::SharedMemoryImpl(const Poco::File&, SharedMemory::AccessMode, const void*, std::size_t size)
+SharedMemoryImpl::SharedMemoryImpl(const Poco::File&, SharedMemory::AccessMode, const void*)
 {
 }
 

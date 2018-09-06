@@ -328,7 +328,7 @@ bool CConfigLog::DoFile(String &sError)
 	String privBuild = version.GetPrivateBuild();
 	if (!privBuild.empty())
 	{
-		FileWriteString(_T("  (Private Build) "));
+		FileWriteString(_T(" + ") + privBuild);
 	}
 
 	FileWriteString(_T("\r\n Code File Modified:  "));

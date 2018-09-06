@@ -231,6 +231,10 @@ void COpenView::OnInitialUpdate()
 	m_dwFlags[1] = pDoc->m_dwFlags[1];
 	m_dwFlags[2] = pDoc->m_dwFlags[2];
 
+	m_ctlPath[0].SetFileControlStates();
+	m_ctlPath[1].SetFileControlStates();
+	m_ctlPath[2].SetFileControlStates(true);
+
 	for (int file = 0; file < m_files.GetSize(); file++)
 	{
 		m_strPath[file] = m_files[file];
@@ -546,9 +550,12 @@ void COpenView::OnOK()
 /** 
  * @brief Called when dialog is closed via Cancel.
  *
- * Open-dialog is canceled when 'Cancel' button is selected or
- * Esc-key is pressed. Save combobox states, since user may have
- * removed items from them and don't want them to re-appear.
+ * Open-dialog is closed when `Cancel` button is selected or the
+ * `Esc` key is pressed.  Save combobox states, since user may have
+ * removed items from them (with `shift-del`) and doesn't want them 
+ * to re-appear.
+ * This is *not* called when the program is terminated, even if the 
+ * dialog is visible at the time.
  */
 void COpenView::OnCancel()
 {
@@ -688,19 +695,10 @@ String COpenView::AskProjectFileName(bool bOpen)
  */
 void COpenView::LoadComboboxStates()
 {
-	m_ctlPath[0].CComboBox::ResetContent();
-	m_ctlPath[1].CComboBox::ResetContent();
-	m_ctlPath[2].CComboBox::ResetContent();
-	m_ctlExt.CComboBox::ResetContent();
-
 	m_ctlPath[0].LoadState(_T("Files\\Left"));
 	m_ctlPath[1].LoadState(_T("Files\\Right"));
 	m_ctlPath[2].LoadState(_T("Files\\Option"));
 	m_ctlExt.LoadState(_T("Files\\Ext"));
-	
-	BOOL bIsEmptyThirdItem = theApp.GetProfileInt(_T("Files\\Option"), _T("Empty"), TRUE);
-	if (bIsEmptyThirdItem)
-		m_ctlPath[2].SetCurSel(-1);
 }
 
 /** 
@@ -712,10 +710,6 @@ void COpenView::SaveComboboxStates()
 	m_ctlPath[1].SaveState(_T("Files\\Right"));
 	m_ctlPath[2].SaveState(_T("Files\\Option"));
 	m_ctlExt.SaveState(_T("Files\\Ext"));
-
-	CString strOption;
-	m_ctlPath[2].GetWindowText(strOption);
-	theApp.WriteProfileInt(_T("Files\\Option"), _T("Empty"), strOption.IsEmpty());
 }
 
 struct UpdateButtonStatesThreadParams
@@ -778,7 +772,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				else if (bInvalid[0])
 					iStatusMsgId = IDS_OPEN_LEFTINVALID;
 				else if (bInvalid[1])
-					iStatusMsgId = IDS_OPEN_RIGHTINVALID;
+					iStatusMsgId = IDS_OPEN_RIGHTINVALID2;
 				else if (!bInvalid[0] && !bInvalid[1])
 				{
 					pathsType = paths::GetPairComparability(paths, IsArchiveFile);
@@ -797,7 +791,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				else if (bInvalid[0] && !bInvalid[1] && bInvalid[2])
 					iStatusMsgId = IDS_OPEN_LEFTRIGHTINVALID;
 				else if (!bInvalid[0] && !bInvalid[1] && bInvalid[2])
-					iStatusMsgId = IDS_OPEN_RIGHTINVALID;
+					iStatusMsgId = IDS_OPEN_RIGHTINVALID3;
 				else if (bInvalid[0] && bInvalid[1] && !bInvalid[2])
 					iStatusMsgId = IDS_OPEN_LEFTMIDDLEINVALID;
 				else if (!bInvalid[0] && bInvalid[1] && !bInvalid[2])

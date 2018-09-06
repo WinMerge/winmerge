@@ -205,8 +205,8 @@ BEGIN
             VALUE "FileVersion", STRFILEVER
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "(c) 1996-2014 Dean P. Grimm / Thingamahoochie Software\0"
-            VALUE "OriginalFilename", "WinMerge.EXE\0"
-            VALUE "PrivateBuild", ""
+            VALUE "OriginalFilename", "WinMergeU.EXE\0"
+            VALUE "PrivateBuild", STRPRIVATEBUILD
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", STRPRODUCTVER
         END

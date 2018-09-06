@@ -117,7 +117,7 @@ String CVersionInfo::GetFileVersion() const
 }
 
 /** 
- * @brief Return private build number.
+ * @brief Return private build value.
  * @return Private build number as string.
  */
 String CVersionInfo::GetPrivateBuild() const
@@ -126,7 +126,7 @@ String CVersionInfo::GetPrivateBuild() const
 }
 
 /** 
- * @brief Return special build number.
+ * @brief Return special build value.
  * @return Special build number as string.
  */
 String CVersionInfo::GetSpecialBuild() const

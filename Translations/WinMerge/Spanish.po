@@ -1121,7 +1121,7 @@ msgstr "&Eliminar"
 #: Merge.rc:43017E4B
 #, c-format
 msgid "&Left"
-msgstr "&Derecha"
+msgstr "&Izquierda"
 
 #: Merge.rc:89AF4FB
 #, c-format
@@ -1131,7 +1131,7 @@ msgstr ""
 #: Merge.rc:1D2E49FA
 #, c-format
 msgid "&Right"
-msgstr "&Izquierda"
+msgstr "&Derecha"
 
 #: Merge.rc:43017E4C
 #, c-format

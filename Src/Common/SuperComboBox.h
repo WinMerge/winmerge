@@ -1,6 +1,6 @@
 #pragma once
 
-// ComboBoxEx.h : header file
+// SuperComboBox.h : header file
 //
 
 #include <vector>
@@ -15,18 +15,28 @@ class CSuperComboBox : public CComboBoxEx
 {
 // Construction
 public:
-	CSuperComboBox(BOOL bAdd = TRUE, UINT idstrAddText = 0);
+	CSuperComboBox();
 	virtual ~CSuperComboBox();
 
 // Attributes
 protected:
-	BOOL m_bEditChanged;
-	BOOL m_bAutoComplete;
-	BOOL m_bDoComplete;
-	BOOL m_bHasImageList;
-	BOOL m_bRecognizedMyself;
-	BOOL m_bComboBoxEx;
+	bool m_bEditChanged;
+	bool m_bAutoComplete;
+	bool m_bDoComplete;
+	bool m_bHasImageList;
+
+	int m_nMaxItems;
+	bool m_bComboBoxEx;
+	bool m_bExtendedFileNames;
+	bool m_bCanBeEmpty;
+
+	bool m_bMustUninitOLE;
 	static HIMAGELIST m_himlSystem;
+	CString m_strCurSel;
+
+	DropHandler *m_pDropHandler;
+
+	std::vector<CString> m_sFullStateText;
 
 public:
 
@@ -51,25 +61,22 @@ public:
 
 // Implementation
 public:
-	void ResetContent();
-	void SetAutoAdd(BOOL bAdd = TRUE, UINT idstrAddText = 0);
-	void SaveState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
-	void LoadState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
-	BOOL IsComboBoxEx();
-	BOOL AttachSystemImageList();
+	void SetFileControlStates(bool bCanBeEmpty = false, int nMaxItems = -1);
+	void SaveState(LPCTSTR szRegSubKey);
+	void LoadState(LPCTSTR szRegSubKey);
+	bool AttachSystemImageList();
 	int AddString(LPCTSTR lpszItem);
 	int InsertString(int nIndex, LPCTSTR lpszItem);
+	int FindString(int nStartAfter, LPCTSTR lpszString) const;
 	int GetLBTextLen(int nIndex) const;
 	void GetLBText(int nIndex, CString &rString) const;
 
 	// Generated message map functions
 protected:
-	CString m_strCurSel;
-	virtual BOOL OnAddTemplate();
+	void ResetContent();
+
 	virtual void PreSubclassWindow();
-	CString m_strAutoAdd;
-	BOOL m_bMustUninitOLE;
-	DropHandler *m_pDropHandler;
+
 	//{{AFX_MSG(CSuperComboBox)
 	afx_msg BOOL OnEditchange();
 	afx_msg BOOL OnSelchange();

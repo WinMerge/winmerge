@@ -214,7 +214,6 @@
 #define IDC_SEL_MOVEDBLOCK_DELETED_COLOR 1060
 #define IDC_UP                          1061
 #define IDC_DOWN                        1062
-#define IDC_PRIVATEBUILD                1063
 #define IDC_MIXED_EOL                   1064
 #define IDC_DIFF_FILE1                  1065
 #define IDC_DIFF_FILE2                  1066
@@ -619,7 +618,7 @@
 #define IDS_OPEN_FILESDIRS              17202
 #define IDS_OPEN_LEFTINVALID            17203
 #define IDS_OPEN_MIDDLEINVALID          17204
-#define IDS_OPEN_RIGHTINVALID           17205
+#define IDS_OPEN_RIGHTINVALID2          17205
 #define IDS_OPEN_BOTHINVALID            17206
 #define IDS_OPEN_LEFTMIDDLEINVALID      17207
 #define IDS_OPEN_LEFTRIGHTINVALID       17208
@@ -627,6 +626,9 @@
 #define IDS_OPEN_ALLINVALID             17210
 #define IDS_OPEN_UNPACKERDISABLED       17211
 #define IDS_OPEN_MISMATCH               17212
+
+#define IDS_OPEN_RIGHTINVALID3          17213
+
 #define IDS_ERROR_FILE_NOT_FOUND        17216
 #define IDS_ERROR_FILE_NOT_UNPACKED     17217
 #define IDS_ERROR_FILEOPEN              17221
