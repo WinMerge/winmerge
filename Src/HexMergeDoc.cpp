@@ -68,7 +68,7 @@ static void UpdateDiffItem(int nBuffers, DIFFITEM &di, CDiffContext *pCtxt)
 	{
 		di.diffFileInfo[nBuffer].ClearPartial();
 		if (pCtxt->UpdateInfoFromDiskHalf(di, nBuffer))
-			di.diffcode.diffcode |= DIFFCODE::FIRST << nBuffers;
+			di.diffcode.diffcode |= DIFFCODE::FIRST << nBuffer;
 	}
 	// Clear flags
 	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY);
@@ -162,10 +162,8 @@ int CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
 	// If directory compare has results
 	if (pDirDoc && pDirDoc->HasDiffs())
 	{
-		const String &pathLeft = m_filePaths.GetLeft();
-		const String &pathRight = m_filePaths.GetRight();
 		CDiffContext &ctxt = pDirDoc->GetDiffContext();
-		if (UINT_PTR pos = FindItemFromPaths(ctxt, pathLeft, pathRight))
+		if (UINT_PTR pos = FindItemFromPaths(ctxt, m_filePaths))
 		{
 			DIFFITEM &di = ctxt.GetDiffRefAt(pos);
 			::UpdateDiffItem(m_nBuffers, di, &ctxt);
