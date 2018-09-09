@@ -1386,11 +1386,6 @@ msgstr "&Carregar Projeto..."
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
 
-#: Merge.rc:6AD81E09
-#, c-format
-msgid "(Private Build)"
-msgstr "(Versão privada)"
-
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
@@ -1431,10 +1426,10 @@ msgstr "2º"
 msgid "B&rowse..."
 msgstr "Procurar..."
 
-#: Merge.rc:78B3B626
+#: Merge.rc:702BA358
 #, c-format
-msgid "&3rd(Optional):"
-msgstr "&3º(Opcional):"
+msgid "(Optional) &3rd:"
+msgstr "(Opcional) &3º:"
 
 #: Merge.rc:146A5938
 #, c-format
@@ -1856,7 +1851,7 @@ msgstr "Enviar ficheiros eliminados para a Reciclagem"
 msgid "&External editor:"
 msgstr "com editor &externo:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "Filtro de pasta:"
@@ -2646,7 +2641,7 @@ msgstr "Cópia de ficheiros"
 msgid "Create backup files in:"
 msgstr "Criar cópia de ficheiros em:"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "Comparação de pastas"
@@ -2721,7 +2716,7 @@ msgstr "Não"
 msgid "Plugins"
 msgstr "Plugins"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "Ativar plugins"
@@ -2816,7 +2811,7 @@ msgstr "Definições"
 msgid "View &Settings..."
 msgstr "Ver &Definições"
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr "Modo Binário"
@@ -3297,45 +3292,50 @@ msgstr "Selecione duas pastas existentes ou ficheiros para comparar"
 msgid "Folder Selection"
 msgstr "Seleção de pasta"
 
-#: Merge.rc:73F34BA1
+#: Merge.rc:3080B693
 #, c-format
-msgid "Select two folders or two files to compare."
-msgstr "Selecione duas pastas ou dois ficheiros para comparar."
+msgid "Select two (or three) folders or two (or three) files to compare."
+msgstr ""
 
-#: Merge.rc:20155F59
+#: Merge.rc:2EBBDDD6
 #, c-format
-msgid "Left path is invalid!"
-msgstr "A pasta de destino da esquerda é inválida!"
+msgid "Left (1st) path is invalid!"
+msgstr ""
 
-#: Merge.rc:7F2E4119
+#: Merge.rc:BA50069
 #, c-format
-msgid "Middle path is invalid!"
-msgstr "A pasta de destino do meio é inválida"
+msgid "Middle (2nd) path is invalid!"
+msgstr ""
 
-#: Merge.rc:6DBD6124
+#: Merge.rc:21DC7C32
 #, c-format
-msgid "Right path is invalid!"
-msgstr "A pasta de destino da direita é inválida!"
+msgid "Right (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C33
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr ""
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "Ambas as pastas de destino são inválidas!"
 
-#: Merge.rc:5F458439
+#: Merge.rc:585E8EC0
 #, c-format
-msgid "Left and middle path is invalid!"
-msgstr "A pasta de destino da esquerda e do meio são inválidas"
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
+msgstr ""
 
-#: Merge.rc:F75DAF8
+#: Merge.rc:135DE390
 #, c-format
-msgid "Left and right path is invalid!"
-msgstr "A pasta de destino da esquerda e da direita são inválidas"
+msgid "Left (1st) and Right (3rd) paths are invalid!"
+msgstr ""
 
-#: Merge.rc:3703FFD7
+#: Merge.rc:72716FA6
 #, c-format
-msgid "Middle and right path is invalid!"
-msgstr "A pasta de destino do meio e da direita são inválidas"
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
+msgstr ""
 
 #: Merge.rc:237A0533
 #, c-format
@@ -4022,17 +4022,17 @@ msgstr "Tamanho do ficheiro direito em bytes."
 msgid "Middle file size in bytes."
 msgstr "Tamanho do ficheiro do meio em bytes."
 
-#: Merge.rc:2EBBDDD6
+#: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Tamanho do ficheiro esquerdo abreviado."
 
-#: Merge.rc:21DC7C32
+#: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Tamanho do ficheiro direito abreviado."
 
-#: Merge.rc:BA50069
+#: Merge.rc:BA5006A
 #, c-format
 msgid "Middle file size abbreviated."
 msgstr "Tamanho do ficheiro do meio abreviado."
@@ -4077,17 +4077,17 @@ msgstr "Versão do ficheiro do meio, apenas para alguns tipos de ficheiros."
 msgid "Short comparison result."
 msgstr "Resultado resumido da comparação."
 
-#: Merge.rc:20155F5A
+#: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
 msgstr "Atributos do lado esquerdo."
 
-#: Merge.rc:6DBD6125
+#: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
 msgstr "Atributos do lado direito."
 
-#: Merge.rc:7F2E411A
+#: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle side attributes."
 msgstr "Atributos do meio."
@@ -4272,7 +4272,7 @@ msgstr "Sem diferenças"
 msgid "Line difference"
 msgstr "Diferença de linha"
 
-#: Merge.rc:6DBD6126
+#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "Substituída(s) %1 string(s)."

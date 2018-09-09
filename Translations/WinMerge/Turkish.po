@@ -1387,11 +1387,6 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "WinMerge Hakkında"
 
-#: Merge.rc:6AD81E09
-#, c-format
-msgid "(Private Build)"
-msgstr "(Özel Yapım)"
-
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
@@ -1432,10 +1427,10 @@ msgstr "&2. Yol:"
 msgid "B&rowse..."
 msgstr "Gö&zat..."
 
-#: Merge.rc:78B3B626
+#: Merge.rc:702BA358
 #, c-format
-msgid "&3rd(Optional):"
-msgstr "&3. Yol (İsteğe Bağlı):"
+msgid "(Optional) &3rd:"
+msgstr "(İsteğe Bağlı) &3. Yol:"
 
 #: Merge.rc:146A5938
 #, c-format
@@ -1862,7 +1857,7 @@ msgstr "&Silinen Dosyalar Geri Dönüşüm Kutusuna Atılsın"
 msgid "&External editor:"
 msgstr "Dış Düz&enleyici:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "Süzgeç &Klasörü:"
@@ -2660,7 +2655,7 @@ msgstr "Yedekleme Dosyaları"
 msgid "Create backup files in:"
 msgstr "Yedekleme Dosyalarının Konumu:"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "&Klasör Karşılaştırma"
@@ -2735,7 +2730,7 @@ msgstr "Hayır"
 msgid "Plugins"
 msgstr "Uygulama Ekleri"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Uygulama Ekleri Kullanılsın"
@@ -2834,7 +2829,7 @@ msgstr "Frhed Ayarları"
 msgid "View &Settings..."
 msgstr "Ayarları &Görüntüle..."
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr "&Binary Kipi..."
@@ -3434,45 +3429,50 @@ msgstr "Karşılaştırmak için var olan iki klasör ya da dosya seçin"
 msgid "Folder Selection"
 msgstr "Klasör Seçimi"
 
-#: Merge.rc:73F34BA1
+#: Merge.rc:3080B693
 #, c-format
-msgid "Select two folders or two files to compare."
-msgstr "Karşılaştırmak için en az iki klasör ya da dosya seçin."
+msgid "Select two (or three) folders or two (or three) files to compare."
+msgstr ""
 
-#: Merge.rc:20155F59
+#: Merge.rc:2EBBDDD6
 #, c-format
-msgid "Left path is invalid!"
-msgstr "Sol yol geçersiz!"
+msgid "Left (1st) path is invalid!"
+msgstr ""
 
-#: Merge.rc:7F2E4119
+#: Merge.rc:BA50069
 #, c-format
-msgid "Middle path is invalid!"
-msgstr "Orta yol geçersiz!"
+msgid "Middle (2nd) path is invalid!"
+msgstr ""
 
-#: Merge.rc:6DBD6124
+#: Merge.rc:21DC7C32
 #, c-format
-msgid "Right path is invalid!"
-msgstr "Sağ yol geçersiz!"
+msgid "Right (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C33
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr ""
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "İki yolda geçersiz!"
 
-#: Merge.rc:5F458439
+#: Merge.rc:585E8EC0
 #, c-format
-msgid "Left and middle path is invalid!"
-msgstr "Sol ve orta yol geçersiz!"
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
+msgstr ""
 
-#: Merge.rc:F75DAF8
+#: Merge.rc:135DE390
 #, c-format
-msgid "Left and right path is invalid!"
-msgstr "Sol ve sağ yol geçersiz!"
+msgid "Left (1st) and Right (3rd) paths are invalid!"
+msgstr ""
 
-#: Merge.rc:3703FFD7
+#: Merge.rc:72716FA6
 #, c-format
-msgid "Middle and right path is invalid!"
-msgstr "Orta ve sağ yol geçersiz!"
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
+msgstr ""
 
 #: Merge.rc:237A0533
 #, c-format
@@ -4302,17 +4302,17 @@ msgstr "Sağdaki dosyanın bayt olarak boyutu."
 msgid "Middle file size in bytes."
 msgstr "Ortadaki dosyanın bayt olarak boyutu."
 
-#: Merge.rc:2EBBDDD6
+#: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Soldaki dosyanın kısaltılmış boyutu."
 
-#: Merge.rc:21DC7C32
+#: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Sağdaki dosyanın kısaltılmış boyutu."
 
-#: Merge.rc:BA50069
+#: Merge.rc:BA5006A
 #, c-format
 msgid "Middle file size abbreviated."
 msgstr "Ortadaki dosyanın kısaltılmış boyutu."
@@ -4357,17 +4357,17 @@ msgstr "Ortadaki dosya sürümü, yalnız bazı dosya türleri için."
 msgid "Short comparison result."
 msgstr "Kısa karşılaştırma sonucu."
 
-#: Merge.rc:20155F5A
+#: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
 msgstr "Soldaki dosyanın öznitelikleri."
 
-#: Merge.rc:6DBD6125
+#: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
 msgstr "Sağdaki dosyanın öznitelikleri."
 
-#: Merge.rc:7F2E411A
+#: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle side attributes."
 msgstr "Ortadaki dosyanın öznitelikleri."
@@ -4601,7 +4601,7 @@ msgstr "Fark yok"
 msgid "Line difference"
 msgstr "Satır farkı"
 
-#: Merge.rc:6DBD6126
+#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "%1 dizge değiştirildi."

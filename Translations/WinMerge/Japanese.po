@@ -1386,11 +1386,6 @@ msgstr "プロジェクトを読み込み(&L)..."
 msgid "About WinMerge"
 msgstr "WinMerge について"
 
-#: Merge.rc:6AD81E09
-#, c-format
-msgid "(Private Build)"
-msgstr "(Private Build)"
-
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
@@ -1431,10 +1426,10 @@ msgstr "&2 番目:"
 msgid "B&rowse..."
 msgstr "参照(&R)"
 
-#: Merge.rc:78B3B626
+#: Merge.rc:702BA358
 #, c-format
-msgid "&3rd(Optional):"
-msgstr "&3 番目 (オプション)"
+msgid "(Optional) &3rd:"
+msgstr "(オプション) &3 番目"
 
 #: Merge.rc:146A5938
 #, c-format
@@ -1864,7 +1859,7 @@ msgstr "削除されたファイルをごみ箱に移動する(&S)"
 msgid "&External editor:"
 msgstr "外部エディタ(&E): (使用可能な置換文字列: $file, $linenum)"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "フィルタ フォルダー(&F):"
@@ -2663,7 +2658,7 @@ msgstr "バックアップ ファイル"
 msgid "Create backup files in:"
 msgstr "バックアップ ファイル作成:"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "フォルダー比較(&F)"
@@ -2738,7 +2733,7 @@ msgstr "いいえ"
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "プラグインを有効にする(&E)"
@@ -2838,7 +2833,7 @@ msgstr "Frhed 設定"
 msgid "View &Settings..."
 msgstr "表示設定(&S)..."
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr "バイナリモード(&B)..."
@@ -3436,45 +3431,50 @@ msgstr "存在するフォルダーまたはファイルを選択してくださ
 msgid "Folder Selection"
 msgstr "Folder Selection"
 
-#: Merge.rc:73F34BA1
+#: Merge.rc:3080B693
 #, c-format
-msgid "Select two folders or two files to compare."
-msgstr "2 つのフォルダーまたは、2 つのファイルを選択してください。"
+msgid "Select two (or three) folders or two (or three) files to compare."
+msgstr "2 つ(または3 つ)のフォルダーまたは、2 つ(または3 つ)のファイルを選択してください。"
 
-#: Merge.rc:20155F59
+#: Merge.rc:2EBBDDD6
 #, c-format
-msgid "Left path is invalid!"
-msgstr "左側のパスは不正なパスです!"
+msgid "Left (1st) path is invalid!"
+msgstr "左側 (1 番目) のパスは不正なパスです!"
 
-#: Merge.rc:7F2E4119
+#: Merge.rc:BA50069
 #, c-format
-msgid "Middle path is invalid!"
-msgstr "中央のパスは不正なパスです!"
+msgid "Middle (2nd) path is invalid!"
+msgstr "中央 (2 番目) のパスは不正なパスです!"
 
-#: Merge.rc:6DBD6124
+#: Merge.rc:21DC7C32
 #, c-format
-msgid "Right path is invalid!"
-msgstr "右側のパスは不正なパスです!"
+msgid "Right (2nd) path is invalid!"
+msgstr "右側 (2番目) のパスは不正なパスです!"
+
+#: Merge.rc:21DC7C33
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr "右側 (3 番目) のパスは不正なパスです!"
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "両側のパスは不正なパスです!"
 
-#: Merge.rc:5F458439
+#: Merge.rc:585E8EC0
 #, c-format
-msgid "Left and middle path is invalid!"
-msgstr "左側と中央のパスは不正なパスです!"
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
+msgstr "左側 (1 番目) と中央 (2 番目) のパスは不正なパスです!"
 
-#: Merge.rc:F75DAF8
+#: Merge.rc:135DE390
 #, c-format
-msgid "Left and right path is invalid!"
-msgstr "左側と右側のパスは不正なパスです!"
+msgid "Left (1st) and Right (3rd) paths are invalid!"
+msgstr "左側 (1 番目) と右側 (3 番目) のパスは不正なパスです!"
 
-#: Merge.rc:3703FFD7
+#: Merge.rc:72716FA6
 #, c-format
-msgid "Middle and right path is invalid!"
-msgstr "中央と右側のパスは不正なパスです!"
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
+msgstr "中央 (2 番目) と右側 (3 番目) のパスは不正なパスです!"
 
 #: Merge.rc:237A0533
 #, c-format
@@ -4304,17 +4304,17 @@ msgstr "右側ファイルのバイト数です。"
 msgid "Middle file size in bytes."
 msgstr "中央ファイルのバイト数"
 
-#: Merge.rc:2EBBDDD6
+#: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "左側ファイルのバイト数(短縮形)です。"
 
-#: Merge.rc:21DC7C32
+#: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "右側ファイルのバイト数(短縮形)です。"
 
-#: Merge.rc:BA50069
+#: Merge.rc:BA5006A
 #, c-format
 msgid "Middle file size abbreviated."
 msgstr "中央ファイルのバイト数(短縮形)です。"
@@ -4359,17 +4359,17 @@ msgstr "中央ファイルのバージョンです。一部のファイル形式
 msgid "Short comparison result."
 msgstr "短い形式の比較結果を表示です。"
 
-#: Merge.rc:20155F5A
+#: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
 msgstr "左側の属性です。"
 
-#: Merge.rc:6DBD6125
+#: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
 msgstr "右側の属性です。"
 
-#: Merge.rc:7F2E411A
+#: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle side attributes."
 msgstr "中央の属性です。"
@@ -4600,7 +4600,7 @@ msgstr "差異はありません"
 msgid "Line difference"
 msgstr "行内差異"
 
-#: Merge.rc:6DBD6126
+#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "%1 個の文字列を置換しました。"
