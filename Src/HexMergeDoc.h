@@ -125,6 +125,7 @@ protected:
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
 	afx_msg void OnRefresh();
+	afx_msg void OnFileRecompareAsText();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

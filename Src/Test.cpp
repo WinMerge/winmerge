@@ -214,6 +214,7 @@ TEST(CommandLineTest, Desc2)
 	ASSERT_NE(nullptr, pDoc);
 	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
 	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
+	pDoc->m_ptBuf[1]->SetModified(false);
 	pFrame->PostMessage(WM_CLOSE);
 }
 
@@ -229,6 +230,7 @@ TEST(CommandLineTest, Desc3)
 	ASSERT_NE(nullptr, pDoc);
 	EXPECT_EQ(L"Theirs File", pDoc->GetDescription(0));
 	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
+	pDoc->m_ptBuf[1]->SetModified(false);
 	pFrame->PostMessage(WM_CLOSE);
 }
 
@@ -244,6 +246,7 @@ TEST(CommandLineTest, Desc4)
 	ASSERT_NE(nullptr, pDoc);
 	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
 	EXPECT_EQ(L"Mine File", pDoc->GetDescription(1));
+	pDoc->m_ptBuf[1]->SetModified(false);
 	pFrame->PostMessage(WM_CLOSE);
 }
 

@@ -690,6 +690,11 @@ msgstr "Codificar Ficheiro..."
 msgid "Recompare As"
 msgstr "Voltar a Comparar Como..."
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1116,7 +1121,7 @@ msgstr "Direita para... (%1 de %2)"
 msgid "&Delete"
 msgstr "Eliminar"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "Esquerda"
@@ -1131,7 +1136,7 @@ msgstr "Meio"
 msgid "&Right"
 msgstr "Direita"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "Ambos"
@@ -1406,7 +1411,7 @@ msgstr "Colaboradores"
 msgid "Select Files or Folders"
 msgstr "Selecione Ficheiros ou Pastas"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr "1º"
@@ -1416,7 +1421,7 @@ msgstr "1º"
 msgid "&Browse..."
 msgstr "Procurar..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr "2º"
@@ -1891,7 +1896,7 @@ msgstr "Ficheiro&1:"
 msgid "File&2:"
 msgstr "Ficheiro&2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "Trocar"
@@ -2591,7 +2596,7 @@ msgstr "Nome da Pasta"
 msgid "Result:"
 msgstr "Resultado:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "Testar"
@@ -2976,7 +2981,7 @@ msgstr "Não para todos"
 msgid "&Continue"
 msgstr "Continuar"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "Avançar"

@@ -691,6 +691,11 @@ msgstr "&Dosya Kodlaması..."
 msgid "Recompare As"
 msgstr "Farklı Karşılaştır"
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1117,7 +1122,7 @@ msgstr "Sağdakini şuraya... (%1 / %2)"
 msgid "&Delete"
 msgstr "&Sil"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "So&l"
@@ -1132,7 +1137,7 @@ msgstr "&Orta"
 msgid "&Right"
 msgstr "&Sağ"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "İ&kisi de"
@@ -1407,7 +1412,7 @@ msgstr "Katkı Yapanlar"
 msgid "Select Files or Folders"
 msgstr "Dosya ya da Klasör Seçin"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr "&1. Yol:"
@@ -1417,7 +1422,7 @@ msgstr "&1. Yol:"
 msgid "&Browse..."
 msgstr "&Gözat..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr "&2. Yol:"
@@ -1897,7 +1902,7 @@ msgstr "&1. Dosya:"
 msgid "File&2:"
 msgstr "&2. Dosya:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "&Değiştir"
@@ -2605,7 +2610,7 @@ msgstr "&Klasör Adı"
 msgid "Result:"
 msgstr "Sonuç:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&Sına"
@@ -3054,7 +3059,7 @@ msgstr "Tü&müne Hayır"
 msgid "&Continue"
 msgstr "&Devam"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "&Atla"
