@@ -1139,6 +1139,8 @@ void CMainFrame::UpdateResources()
 		pDoc->UpdateResources();
 	for (auto pDoc : GetAllMergeDocs())
 		pDoc->UpdateResources();
+	for (auto pDoc : GetAllOpenDocs())
+		pDoc->UpdateResources();
 }
 
 /**
