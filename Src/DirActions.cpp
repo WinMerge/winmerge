@@ -288,47 +288,60 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
  * @return POSITION to item, NULL if not found.
  * @note Filenames must be same, if they differ NULL is returned.
  */
-uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, const String& pathRight)
+uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
 {
-	String file1 = paths::FindFileName(pathLeft);
-	String file2 = paths::FindFileName(pathRight);
+	int nBuffer;
+	String file[3], path[3], base;
+	for (nBuffer = 0; nBuffer < paths.size(); ++nBuffer)
+	{
+		String p = paths[nBuffer];
+		file[nBuffer] = paths::FindFileName(p);
+		if (file[nBuffer].empty())
+			return 0;
+		// Path can contain (because of difftools?) '/' and '\'
+		// so for comparing purposes, convert whole path to use '\\'
+		path[nBuffer] = paths::ToWindowsPath(String(p, 0, p.length() - file[nBuffer].length())); // include trailing backslash
+		base = ctxt.GetPath(nBuffer); // include trailing backslash
+		if (path[nBuffer].compare(0, base.length(), base.c_str()) != 0)
+			return 0;
+		path[nBuffer].erase(0, base.length()); // turn into relative path
+		if (String::size_type length = path[nBuffer].length())
+			path[nBuffer].resize(length - 1); // remove trailing backslash
+	}
 
 	// Filenames must be identical
-	if (strutils::compare_nocase(file1, file2) != 0)
-		return NULL;
-
-	String path1(pathLeft, 0, pathLeft.length() - file1.length()); // include trailing backslash
-	String path2(pathRight, 0, pathRight.length() - file2.length()); // include trailing backslash
-
-	// Path can contain (because of difftools?) '/' and '\'
-	// so for comparing purposes, convert whole path to use '\\'
-	path1 = paths::ToWindowsPath(path1);
-	path2 = paths::ToWindowsPath(path2);
-
-	String base1 = ctxt.GetLeftPath(); // include trailing backslash
-	if (path1.compare(0, base1.length(), base1.c_str()) != 0)
-		return NULL;
-	path1.erase(0, base1.length()); // turn into relative path
-	if (String::size_type length = path1.length())
-		path1.resize(length - 1); // remove trailing backslash
-
-	String base2 = ctxt.GetRightPath(); // include trailing backslash
-	if (path2.compare(0, base2.length(), base2.c_str()) != 0)
-		return NULL;
-	path2.erase(0, base2.length()); // turn into relative path
-	if (String::size_type length = path2.length())
-		path2.resize(length - 1); // remove trailing backslash
+	if (static_cast<size_t>(std::count(file, file + paths.size(), file[0])) < paths.size())
+		return 0;
 
 	uintptr_t pos = ctxt.GetFirstDiffPosition();
-	while (uintptr_t currentPos = pos) // Save our current pos before getting next
+	if (paths.size() == 2)
 	{
-		const DIFFITEM &di = ctxt.GetNextDiffPosition(pos);
-		if (di.diffFileInfo[0].path == path1 &&
-			di.diffFileInfo[1].path == path2 &&
-			di.diffFileInfo[0].filename == file1 &&
-			di.diffFileInfo[1].filename == file2)
+		while (uintptr_t currentPos = pos) // Save our current pos before getting next
 		{
-			return currentPos;
+			const DIFFITEM &di = ctxt.GetNextDiffPosition(pos);
+			if (di.diffFileInfo[0].path == path[0] &&
+				di.diffFileInfo[1].path == path[1] &&
+				di.diffFileInfo[0].filename == file[0] &&
+				di.diffFileInfo[1].filename == file[1])
+			{
+				return currentPos;
+			}
+		}
+	}
+	else
+	{
+		while (uintptr_t currentPos = pos) // Save our current pos before getting next
+		{
+			const DIFFITEM &di = ctxt.GetNextDiffPosition(pos);
+			if (di.diffFileInfo[0].path == path[0] &&
+				di.diffFileInfo[1].path == path[1] &&
+				di.diffFileInfo[2].path == path[2] &&
+				di.diffFileInfo[0].filename == file[0] &&
+				di.diffFileInfo[1].filename == file[1] &&
+				di.diffFileInfo[2].filename == file[2])
+			{
+				return currentPos;
+			}
 		}
 	}
 	return 0;

@@ -432,10 +432,26 @@ BOOL CDirDoc::CloseMergeDocs()
 void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical)
 {
-	uintptr_t pos = FindItemFromPaths(*m_pCtxt, paths.GetLeft(), paths.GetRight());
+	uintptr_t pos = FindItemFromPaths(*m_pCtxt, paths);
 	// If we failed files could have been swapped so lets try again
 	if (!pos)
-		pos = FindItemFromPaths(*m_pCtxt, paths.GetRight(), paths.GetLeft());
+	{
+		PathContext pathsSwapped(paths);
+		std::swap(paths[0], paths[static_cast<int>(paths.size() - 1)]);
+		pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
+		if (!pos && paths.size() > 2)
+		{
+			pathsSwapped = paths;
+			std::swap(paths[0], paths[1]);
+			pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
+			if (!pos && paths.size() > 2)
+			{
+				pathsSwapped = paths;
+				std::swap(paths[1], paths[2]);
+				pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
+			}
+		}
+	}
 	
 	// Update status if paths were found for items.
 	// Fail means we had unique items compared as 'renamed' items

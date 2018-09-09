@@ -141,7 +141,7 @@ String FormatMenuItemStringDifferencesTo(int count, int total);
 void ConfirmActionList(const CDiffContext& ctxt, const FileActionScript & actionList);
 UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContext& ctxt, DIFFITEM &di);
 
-uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, const String& pathRight);
+uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths);
 
 bool IsItemCopyable(const DIFFITEM & di, int index);
 bool IsItemDeletable(const DIFFITEM & di, int index);
