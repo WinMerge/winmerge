@@ -16,6 +16,7 @@ public:
 	COpenDoc();
 	virtual ~COpenDoc();
 	void RefreshOptions();
+	void UpdateResources();
 
 	std::array<DWORD, 3> m_dwFlags;
 	PathContext m_files;
