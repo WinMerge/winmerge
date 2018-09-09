@@ -692,6 +692,11 @@ msgstr "Bestandscodering..."
 msgid "Recompare As"
 msgstr "Opnieuw vergelijken als"
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
