@@ -1394,11 +1394,6 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "關於 WinMerge"
 
-#: Merge.rc:6AD81E09
-#, c-format
-msgid "(Private Build)"
-msgstr "(私人編譯)"
-
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
@@ -1439,10 +1434,10 @@ msgstr "第二(&2)"
 msgid "B&rowse..."
 msgstr "瀏覽(&R)..."
 
-#: Merge.rc:78B3B626
+#: Merge.rc:702BA358
 #, c-format
-msgid "&3rd(Optional):"
-msgstr "第三(非必要)(&3)"
+msgid "(Optional) &3rd:"
+msgstr "(非必要)第三(&3)"
 
 #: Merge.rc:146A5938
 #, c-format
@@ -1866,7 +1861,7 @@ msgstr "刪除檔送到資源回收筒(&S)"
 msgid "&External editor:"
 msgstr "外部編輯器(&E)："
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "資料夾篩選器(&F)："
@@ -2661,7 +2656,7 @@ msgstr "備份檔案"
 msgid "Create backup files in:"
 msgstr "產生備份檔於："
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "比較資料夾時(&F)"
@@ -2736,7 +2731,7 @@ msgstr "否"
 msgid "Plugins"
 msgstr "外掛"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "啟用外掛(&E)"
@@ -2831,7 +2826,7 @@ msgstr "Frhed 設定"
 msgid "View &Settings..."
 msgstr "顯示設定(&S)..."
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr "二進制模式(&B)..."
@@ -3393,45 +3388,50 @@ msgstr "選取兩個現存資料夾或檔案做比對"
 msgid "Folder Selection"
 msgstr "資料夾選取"
 
-#: Merge.rc:73F34BA1
+#: Merge.rc:3080B693
 #, c-format
-msgid "Select two folders or two files to compare."
-msgstr "選取兩個資料夾或檔案做比對。"
+msgid "Select two (or three) folders or two (or three) files to compare."
+msgstr ""
 
-#: Merge.rc:20155F59
+#: Merge.rc:2EBBDDD6
 #, c-format
-msgid "Left path is invalid!"
-msgstr "左邊路徑無效！"
+msgid "Left (1st) path is invalid!"
+msgstr ""
 
-#: Merge.rc:7F2E4119
+#: Merge.rc:BA50069
 #, c-format
-msgid "Middle path is invalid!"
-msgstr "中間路徑無效！"
+msgid "Middle (2nd) path is invalid!"
+msgstr ""
 
-#: Merge.rc:6DBD6124
+#: Merge.rc:21DC7C32
 #, c-format
-msgid "Right path is invalid!"
-msgstr "右邊路徑無效！"
+msgid "Right (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C33
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr ""
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "兩邊路徑無效！"
 
-#: Merge.rc:5F458439
+#: Merge.rc:585E8EC0
 #, c-format
-msgid "Left and middle path is invalid!"
-msgstr "左邊和中間路徑無效！"
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
+msgstr ""
 
-#: Merge.rc:F75DAF8
+#: Merge.rc:135DE390
 #, c-format
-msgid "Left and right path is invalid!"
-msgstr "左邊和右邊路徑無效！"
+msgid "Left (1st) and Right (3rd) paths are invalid!"
+msgstr ""
 
-#: Merge.rc:3703FFD7
+#: Merge.rc:72716FA6
 #, c-format
-msgid "Middle and right path is invalid!"
-msgstr "中間和右邊路徑無效！"
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
+msgstr ""
 
 #: Merge.rc:237A0533
 #, c-format
@@ -4235,17 +4235,17 @@ msgstr "右邊檔案位元組大小。"
 msgid "Middle file size in bytes."
 msgstr "中間檔案位元組大小。"
 
-#: Merge.rc:2EBBDDD6
+#: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "左邊檔案簡式大小。"
 
-#: Merge.rc:21DC7C32
+#: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "右邊檔案簡式大小。"
 
-#: Merge.rc:BA50069
+#: Merge.rc:BA5006A
 #, c-format
 msgid "Middle file size abbreviated."
 msgstr "中間檔案簡式大小。"
@@ -4290,17 +4290,17 @@ msgstr "中間檔案版本，只某些檔案類型。"
 msgid "Short comparison result."
 msgstr "短式比較結果。"
 
-#: Merge.rc:20155F5A
+#: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
 msgstr "左邊屬性。"
 
-#: Merge.rc:6DBD6125
+#: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
 msgstr "右邊屬性。"
 
-#: Merge.rc:7F2E411A
+#: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle side attributes."
 msgstr "中間屬性。"
@@ -4515,7 +4515,7 @@ msgstr "無差異"
 msgid "Line difference"
 msgstr "行內差異"
 
-#: Merge.rc:6DBD6126
+#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "已取代 %1 個字串。"

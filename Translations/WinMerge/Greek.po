@@ -1385,11 +1385,6 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "Περί του WinMerge"
 
-#: Merge.rc:6AD81E09
-#, c-format
-msgid "(Private Build)"
-msgstr "(Ιδιωτική Μεταγλώττιση)"
-
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
@@ -1430,9 +1425,9 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "Ανα&ζήτηση..."
 
-#: Merge.rc:78B3B626
+#: Merge.rc:702BA358
 #, c-format
-msgid "&3rd(Optional):"
+msgid "(Optional) &3rd:"
 msgstr ""
 
 #: Merge.rc:146A5938
@@ -1855,7 +1850,7 @@ msgstr "Αποστολή διαγραφέντων αρχείων στον &Κά�
 msgid "&External editor:"
 msgstr "Επεξεργασία με &άλλη εφαρμογή:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "Φάκελος &Φίλτρων:"
@@ -2645,7 +2640,7 @@ msgstr "Εφεδρικά Αρχεία"
 msgid "Create backup files in:"
 msgstr "Δημιουργία εφεδρικών αρχείων ενώ γίνεται:"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "Σύγκριση &Φακέλων"
@@ -2720,7 +2715,7 @@ msgstr "Όχι"
 msgid "Plugins"
 msgstr "Αρθρώματα"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "Ενεργοποίηση Αρθρωμάτων"
@@ -2815,7 +2810,7 @@ msgstr ""
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3370,44 +3365,49 @@ msgstr "Επιλέξατε δύο υπάρχοντες φακέλους ή αρ�
 msgid "Folder Selection"
 msgstr "Επιλογή Φακέλων"
 
-#: Merge.rc:73F34BA1
+#: Merge.rc:3080B693
 #, c-format
-msgid "Select two folders or two files to compare."
-msgstr "Επιλέξατε δύο φακέλους ή αρχεία προς σύγκριση."
-
-#: Merge.rc:20155F59
-#, c-format
-msgid "Left path is invalid!"
-msgstr "Σφάλμα στη διαδρομή του αριστερού!"
-
-#: Merge.rc:7F2E4119
-#, c-format
-msgid "Middle path is invalid!"
+msgid "Select two (or three) folders or two (or three) files to compare."
 msgstr ""
 
-#: Merge.rc:6DBD6124
+#: Merge.rc:2EBBDDD6
 #, c-format
-msgid "Right path is invalid!"
-msgstr "Σφάλμα στη διαδρομή του δεξιού!"
+msgid "Left (1st) path is invalid!"
+msgstr ""
+
+#: Merge.rc:BA50069
+#, c-format
+msgid "Middle (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C32
+#, c-format
+msgid "Right (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C33
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr ""
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "Σφάλμα σε αμφότερες τις διαδρομές!"
 
-#: Merge.rc:5F458439
+#: Merge.rc:585E8EC0
 #, c-format
-msgid "Left and middle path is invalid!"
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr ""
 
-#: Merge.rc:F75DAF8
+#: Merge.rc:135DE390
 #, c-format
-msgid "Left and right path is invalid!"
+msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr ""
 
-#: Merge.rc:3703FFD7
+#: Merge.rc:72716FA6
 #, c-format
-msgid "Middle and right path is invalid!"
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr ""
 
 #: Merge.rc:237A0533
@@ -4199,17 +4199,17 @@ msgstr "Μέγεθος δεξιού αρχείου σε byte."
 msgid "Middle file size in bytes."
 msgstr ""
 
-#: Merge.rc:2EBBDDD6
+#: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Μέγεθος αριστερού αρχείου συντομευμένο."
 
-#: Merge.rc:21DC7C32
+#: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Μέγεθος δεξιού αρχείου συντομευμένο."
 
-#: Merge.rc:BA50069
+#: Merge.rc:BA5006A
 #, c-format
 msgid "Middle file size abbreviated."
 msgstr ""
@@ -4254,17 +4254,17 @@ msgstr ""
 msgid "Short comparison result."
 msgstr "Βραχύ αποτέλεσμα συγκρίσεως."
 
-#: Merge.rc:20155F5A
+#: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
 msgstr "Ιδιότητες αριστερής πλευράς."
 
-#: Merge.rc:6DBD6125
+#: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
 msgstr "Ιδιότητες δεξιάς πλευράς."
 
-#: Merge.rc:7F2E411A
+#: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle side attributes."
 msgstr ""
@@ -4479,7 +4479,7 @@ msgstr "Χωρίς διαφορά"
 msgid "Line difference"
 msgstr "Διαφορά γραμμής"
 
-#: Merge.rc:6DBD6126
+#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "Αντικαταστάθηκαν %1 ακολουθίες χαρακτήρων."
