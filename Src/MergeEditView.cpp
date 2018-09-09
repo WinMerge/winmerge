@@ -150,7 +150,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_COPY_FROM_RIGHT, OnCopyFromRight)
 	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_RIGHT, OnUpdateCopyFromRight)
 	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
-	ON_UPDATE_COMMAND_UI(ID_ADD_SYNCPOINT, OnUpdateAddSyncPoint)
 	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
 	ON_UPDATE_COMMAND_UI(ID_CLEAR_SYNCPOINTS, OnUpdateClearSyncPoints)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
@@ -187,12 +186,9 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_R2LNEXT, OnR2LNext)
 	ON_UPDATE_COMMAND_UI(ID_R2LNEXT, OnUpdateR2LNext)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
-	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
 	ON_COMMAND(ID_NEXT_PANE, OnChangePane)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_WMGOTO, OnUpdateWMGoto)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnUpdateScripts)
 	ON_COMMAND(ID_NO_PREDIFFER, OnNoPrediffer)
 	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdateNoPrediffer)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
@@ -213,7 +209,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
 	ON_COMMAND(ID_VIEW_SWAPPANES, OnViewSwapPanes)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewSwapPanes)
 	ON_UPDATE_COMMAND_UI(ID_NO_EDIT_SCRIPTS, OnUpdateNoEditScripts)
 	ON_WM_SIZE()
 	ON_WM_MOVE()
@@ -1904,14 +1899,6 @@ void CMergeEditView::OnAddSyncPoint()
 }
 
 /**
- * @brief Called when "Add Synchronization Point" item is updated
- */
-void CMergeEditView::OnUpdateAddSyncPoint(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(TRUE);
-}
-
-/**
  * @brief Clear synchronization points
  */
 void CMergeEditView::OnClearSyncPoints()
@@ -2833,14 +2820,6 @@ void CMergeEditView::OnChangePane()
 }
 
 /**
- * @brief Enable "Change Pane" menuitem when mergeview is active
- */
-void CMergeEditView::OnUpdateChangePane(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
-}
-
-/**
  * @brief Show "Go To" dialog and scroll views to line or diff.
  *
  * Before dialog is opened, current line and file is determined
@@ -2899,14 +2878,6 @@ void CMergeEditView::OnWMGoto()
 }
 
 /**
- * @brief Enable "Go To" menuitem when mergeview is active
- */
-void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
-}
-
-/**
  * @brief Reload options.
  */
 void CMergeEditView::RefreshOptions()
@@ -2932,14 +2903,6 @@ void CMergeEditView::RefreshOptions()
 		GetDocument()->IsMixedEOL(m_nThisPane));
 
 	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
-}
-
-/**
- * @brief Called when an editor script item is updated
- */
-void CMergeEditView::OnUpdateScripts(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
 }
 
 void CMergeEditView::OnScripts(UINT nID )
@@ -2999,7 +2962,7 @@ void CMergeEditView::OnUpdateNoPrediffer(CCmdUI* pCmdUI)
 {
 	// recreate the sub menu (to fill the "selected prediffers")
 	GetMainFrame()->UpdatePrediffersMenu();
-	OnUpdatePrediffer(pCmdUI);
+	pCmdUI->Enable();
 }
 
 void CMergeEditView::OnNoPrediffer()
@@ -3631,14 +3594,6 @@ void CMergeEditView::SetWordWrapping( bool bWordWrap )
 void CMergeEditView::OnViewSwapPanes()
 {
 	GetDocument()->SwapFiles();
-}
-
-/**
- * @brief Enable Swap Panes -gui.
- */
-void CMergeEditView::OnUpdateViewSwapPanes(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
 }
 
 /**

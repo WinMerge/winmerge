@@ -179,11 +179,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_GNULICENSE, OnHelpGnulicense)
 	ON_COMMAND(ID_OPTIONS, OnOptions)
 	ON_COMMAND(ID_VIEW_SELECTFONT, OnViewSelectfont)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_SELECTFONT, OnUpdateViewSelectfont)
 	ON_COMMAND(ID_VIEW_USEDEFAULTFONT, OnViewUsedefaultfont)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_USEDEFAULTFONT, OnUpdateViewUsedefaultfont)
 	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
-	ON_UPDATE_COMMAND_UI(ID_HELP_CONTENTS, OnUpdateHelpContents)
 	ON_WM_CLOSE()
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_WM_DESTROY()
@@ -1087,14 +1084,6 @@ void CMainFrame::OnViewSelectfont()
 }
 
 /**
- * @brief Enable 'Select font'.
- */
-void CMainFrame::OnUpdateViewSelectfont(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(TRUE);
-}
-
-/**
  * @brief Use default font for active view type
  *
  * Disable user-selected font for active view type (Merge/Dir compare).
@@ -1121,14 +1110,6 @@ void CMainFrame::OnViewUsedefaultfont()
 }
 
 /**
- * @brief Enable 'Use Default font'.
- */
-void CMainFrame::OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(TRUE);
-}
-
-/**
  * @brief Update any resources necessary after a GUI language change
  */
 void CMainFrame::UpdateResources()
@@ -1151,14 +1132,6 @@ void CMainFrame::UpdateResources()
 void CMainFrame::OnHelpContents()
 {
 	theApp.ShowHelp();
-}
-
-/**
- * @brief Enable Open WinMerge help -menuitem.
- */
-void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(TRUE);
 }
 
 /**
