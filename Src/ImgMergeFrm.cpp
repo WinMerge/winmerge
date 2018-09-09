@@ -82,7 +82,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
-	ON_COMMAND(ID_MERGE_COMPARE_HEX, OnFileRecompareAsBinary)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_HEX, OnFileRecompare)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_HEX, OnUpdateFileRecompare)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
@@ -862,18 +863,30 @@ void CImgMergeFrame::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_pImgMergeWindow->GetReadOnly(m_pImgMergeWindow->GetPaneCount() - 1));
 }
 
-void CImgMergeFrame::OnFileRecompareAsBinary()
+void CImgMergeFrame::OnFileRecompare(UINT nId)
 {
-	DWORD dwFlags[3] = { 0 };
 	FileLocation fileloc[3];
-	for (int pane = 0; pane < m_filePaths.GetSize(); pane++)
+	DWORD dwFlags[3];
+	String strDesc[3];
+	int nBuffers = m_filePaths.GetSize();
+	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc :
+		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
-		fileloc[pane].setPath(m_filePaths[pane]);
-		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_bRO[pane] ? FFILEOPEN_READONLY : 0);
+		fileloc[nBuffer].setPath(m_filePaths[nBuffer]);
+		dwFlags[nBuffer] = m_bRO[nBuffer] ? FFILEOPEN_READONLY : 0;
+		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
-	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_filePaths.GetSize(), fileloc, dwFlags, m_strDesc);
-	ShowWindow(SW_RESTORE);
-	DestroyWindow();
+	CloseNow();
+	if (nId == ID_MERGE_COMPARE_TEXT)
+		GetMainFrame()->ShowMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	else if (nId == ID_MERGE_COMPARE_HEX)
+		GetMainFrame()->ShowHexMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+}
+
+void CImgMergeFrame::OnUpdateFileRecompare(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_XML);
 }
 
 void  CImgMergeFrame::OnWindowChangePane() 

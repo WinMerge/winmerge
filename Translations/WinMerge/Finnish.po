@@ -687,6 +687,11 @@ msgstr "Tiedoston koodaus..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1112,7 +1117,7 @@ msgstr "Oikealta... (%1 / %2)"
 msgid "&Delete"
 msgstr "Poista"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "Vasen"
@@ -1127,7 +1132,7 @@ msgstr ""
 msgid "&Right"
 msgstr "Oikea"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "Molemmat"
@@ -1402,7 +1407,7 @@ msgstr "Avustajat"
 msgid "Select Files or Folders"
 msgstr "Valitse tiedostoja tai kansioita"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1412,7 +1417,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "Selaa..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1888,7 +1893,7 @@ msgstr "Tiedosto1:"
 msgid "File&2:"
 msgstr "Tiedosto2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "Vaihda"
@@ -2588,7 +2593,7 @@ msgstr "Kansionimi"
 msgid "Result:"
 msgstr "Tulos:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "Testi"
@@ -2973,7 +2978,7 @@ msgstr "Ei kaikkiin"
 msgid "&Continue"
 msgstr "Jatka"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "Ohita"

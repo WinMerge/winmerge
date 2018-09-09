@@ -694,6 +694,11 @@ msgstr "파일 인코딩(&F)..."
 msgid "Recompare As"
 msgstr "다시 비교"
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1120,7 +1125,7 @@ msgstr "오른쪽에서... (%1 / %2)"
 msgid "&Delete"
 msgstr "삭제(&D)"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "왼쪽(&L)"
@@ -1135,7 +1140,7 @@ msgstr "가운데(&M)"
 msgid "&Right"
 msgstr "오른쪽(&R)"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "양쪽(&B)"
@@ -1410,7 +1415,7 @@ msgstr "공헌자"
 msgid "Select Files or Folders"
 msgstr "폴더/파일 선택"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr "첫 번째(&1)"
@@ -1420,7 +1425,7 @@ msgstr "첫 번째(&1)"
 msgid "&Browse..."
 msgstr "찾아보기(&B)"
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr "두 번째(&2)"
@@ -1895,7 +1900,7 @@ msgstr "파일&1:"
 msgid "File&2:"
 msgstr "파일&2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "맞바꾸기(&S)"
@@ -2603,7 +2608,7 @@ msgstr "폴더 이름(&F)"
 msgid "Result:"
 msgstr "결과:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "테스트(&T)"
@@ -3040,7 +3045,7 @@ msgstr "모두 아니오(&L)"
 msgid "&Continue"
 msgstr "계속(&C)"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "건너뛰기(&S)"

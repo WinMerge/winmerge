@@ -46,6 +46,8 @@
 #include "DiffWrapper.h"
 #include "SyntaxColors.h"
 #include "Merge.h"
+#include "Constants.h"
+#include "MainFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -110,6 +112,7 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
+	ON_COMMAND(ID_MERGE_COMPARE_TEXT, OnFileRecompareAsText)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -813,4 +816,22 @@ void CHexMergeDoc::OnRefresh()
 {
 	if (UpdateDiffItem(m_pDirDoc) == 0)
 		LangMessageBox(IDS_FILESSAME, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN);
+}
+
+void CHexMergeDoc::OnFileRecompareAsText()
+{
+	FileLocation fileloc[3];
+	DWORD dwFlags[3];
+	String strDesc[3];
+	int nBuffers = m_nBuffers;
+	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc : 
+		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
+	{
+		fileloc[nBuffer].setPath(m_filePaths[nBuffer]);
+		dwFlags[nBuffer] = m_pView[nBuffer]->GetReadOnly() ? FFILEOPEN_READONLY : 0;
+		strDesc[nBuffer] = m_strDesc[nBuffer];
+	}
+	CloseNow();
+	GetMainFrame()->ShowMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
 }

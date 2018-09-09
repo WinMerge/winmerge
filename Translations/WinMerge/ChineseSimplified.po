@@ -691,6 +691,11 @@ msgstr "文件编码(&F)..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1117,7 +1122,7 @@ msgstr "右侧到... (%1 共%2)"
 msgid "&Delete"
 msgstr "删除(&D)"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "左侧(&L)"
@@ -1132,7 +1137,7 @@ msgstr ""
 msgid "&Right"
 msgstr "右侧(&R)"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "两侧(&B)"
@@ -1407,7 +1412,7 @@ msgstr "贡献者"
 msgid "Select Files or Folders"
 msgstr "选择文件或文件夹..."
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1417,7 +1422,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "浏览(&B)..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1892,7 +1897,7 @@ msgstr "文件&1:"
 msgid "File&2:"
 msgstr "文件&2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "上下交换(&S)"
@@ -2592,7 +2597,7 @@ msgstr "文件夹名(&F)"
 msgid "Result:"
 msgstr "结果:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "测试(&T)"
@@ -2977,7 +2982,7 @@ msgstr "全部都否(&L)"
 msgid "&Continue"
 msgstr "继续(&C)"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "跳过(&S)"

@@ -690,6 +690,11 @@ msgstr "De&kodiranje datoteke..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1116,7 +1121,7 @@ msgstr "Desno do... (%1 od %2)"
 msgid "&Delete"
 msgstr "&Obriši"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "&lijevu datoteku"
@@ -1131,7 +1136,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&desnu datoteku"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "&Obje"
@@ -1406,7 +1411,7 @@ msgstr "Suradnici"
 msgid "Select Files or Folders"
 msgstr "Odabir datoteke ili mape"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1416,7 +1421,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Odabir..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1891,7 +1896,7 @@ msgstr "&Lijeva dat."
 msgid "File&2:"
 msgstr "&Desna dat."
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "&Obrni D<->L"
@@ -2595,7 +2600,7 @@ msgstr "&Naziv mape"
 msgid "Result:"
 msgstr "Rezultat:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&Test"
@@ -3012,7 +3017,7 @@ msgstr "Ne za s&ve"
 msgid "&Continue"
 msgstr "&Nastavi"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "&Izostavi"

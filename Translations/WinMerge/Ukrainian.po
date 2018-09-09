@@ -691,6 +691,11 @@ msgstr "&Кодування файлу..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -1117,7 +1122,7 @@ msgstr "Справа... (%1 з %2)"
 msgid "&Delete"
 msgstr "&Вилучити"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "&Ліворуч"
@@ -1132,7 +1137,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Праворуч"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "&Обидва"
@@ -1407,7 +1412,7 @@ msgstr "Автори"
 msgid "Select Files or Folders"
 msgstr "Виберіть файли або теки..."
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr ""
@@ -1417,7 +1422,7 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Перегляд..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr ""
@@ -1892,7 +1897,7 @@ msgstr "Файл 1:"
 msgid "File&2:"
 msgstr "Файл 2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "Поміняти"
@@ -2596,7 +2601,7 @@ msgstr "Тека"
 msgid "Result:"
 msgstr "Результат:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "&Випробувати"
@@ -3013,7 +3018,7 @@ msgstr "Ні д&ля всіх"
 msgid "&Continue"
 msgstr "Про&довжити"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "П&ропустити"

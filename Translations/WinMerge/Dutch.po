@@ -1118,7 +1118,7 @@ msgstr "Rechts naar... (%1 van %2)"
 msgid "&Delete"
 msgstr "Verwijderen"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "Links"
@@ -1133,7 +1133,7 @@ msgstr "Midden"
 msgid "&Right"
 msgstr "Rechts"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "Beide"
@@ -1408,7 +1408,7 @@ msgstr "Medewerkers"
 msgid "Select Files or Folders"
 msgstr "Bestanden of mappen selecteren"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&1st:"
 msgstr "1ste:"
@@ -1418,7 +1418,7 @@ msgstr "1ste:"
 msgid "&Browse..."
 msgstr "Bladeren..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&2nd:"
 msgstr "2de:"
@@ -1898,7 +1898,7 @@ msgstr "Bestand 1:"
 msgid "File&2:"
 msgstr "Bestand 2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Swap"
 msgstr "Wisselen"
@@ -2608,7 +2608,7 @@ msgstr "Mapnaam"
 msgid "Result:"
 msgstr "Resultaat:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E51
 #, c-format
 msgid "&Test"
 msgstr "Testen"
@@ -3055,7 +3055,7 @@ msgstr "Nee op alles"
 msgid "&Continue"
 msgstr "Doorgaan"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E52
 #, c-format
 msgid "&Skip"
 msgstr "Overslaan"
