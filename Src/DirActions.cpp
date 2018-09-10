@@ -292,7 +292,7 @@ uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
 {
 	int nBuffer;
 	String file[3], path[3], base;
-	for (nBuffer = 0; nBuffer < paths.size(); ++nBuffer)
+	for (nBuffer = 0; nBuffer < static_cast<int>(paths.size()); ++nBuffer)
 	{
 		String p = paths[nBuffer];
 		file[nBuffer] = paths::FindFileName(p);
