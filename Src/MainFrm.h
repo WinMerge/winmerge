@@ -41,7 +41,6 @@ class SyntaxColors;
 class LineFiltersList;
 class TempFile;
 struct FileLocation;
-class SourceControl;
 class DropHandler;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
