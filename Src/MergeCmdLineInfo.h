@@ -61,7 +61,6 @@ public:
 
 	ShowWindowType m_nCmdShow; /**< Initial state of the application's window. */
 
-	bool m_bClearCaseTool; /**< Running as Rational ClearCase external tool. */
 	bool m_bEscShutdown; /**< Pressing ESC will close the application */
 	ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical. */
 	bool m_bRecurse; /**< Include sub folder in directories compare. */
@@ -94,7 +93,6 @@ private:
 	static const TCHAR *EatParam(const TCHAR *, String &, bool *flag = 0);
 	const TCHAR *SetOption(const TCHAR *, const String& key, const TCHAR *value = _T("1"));
 	const TCHAR *SetConfig(const TCHAR *);
-	void ParseClearCaseCmdLine(const TCHAR *, const TCHAR *basedesc);
 	void ParseWinMergeCmdLine(const TCHAR *);
 	void AddPath(const String &path);
 

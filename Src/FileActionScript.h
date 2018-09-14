@@ -133,7 +133,6 @@ public:
 	String m_destBase; /**< Base destination path for some operations */
 
 protected:
-	int VCSCheckOut(const String &path, BOOL &bApplyToAll);
 	int CreateOperationsScripts();
 	bool RunOp(ShellFileOperations *oplist, bool & userCancelled);
 

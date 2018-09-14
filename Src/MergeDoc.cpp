@@ -3095,26 +3095,11 @@ void CMergeDoc::OnFileRecompareAsBinary()
 	OnBnClickedHexView();
 }
 
-// Return file extension either from file name or file description (if WinMerge is used as an
-// external Rational ClearCase tool.
+// Return file extension either from file name 
 String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const
 {
 	String sExt;
 	paths::SplitFilename(sFileName, NULL, NULL, &sExt);
-
-	if (theApp.m_bClearCaseTool)
-	{
-		// If no extension found in real file name.
-		if (sExt.empty())
-		{
-			paths::SplitViewName(sFileName, NULL, NULL, &sExt);
-		}
-		// If no extension found in repository file name.
-		if (true == sExt.empty())
-		{
-			paths::SplitViewName(sDescription, NULL, NULL, &sExt);
-		}
-	}
 	return sExt;
 }
 

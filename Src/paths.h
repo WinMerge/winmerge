@@ -44,7 +44,6 @@ String GetLastSubdir(const String & path);
 bool IsPathAbsolute(const String & path);
 String EnsurePathExist(const String & sPath);
 void SplitFilename(const String& s, String * path, String * name, String * ext);
-void SplitViewName(const TCHAR *s, String * path, String * name, String * ext);
 String GetPathOnly(const String& fullpath);
 bool IsURLorCLSID(const String& path);
 bool IsDecendant(const String& path, const String& ancestor);

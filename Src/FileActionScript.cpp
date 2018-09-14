@@ -29,7 +29,6 @@
 #include "OptionsMgr.h"
 #include "ShellFileOperations.h"
 #include "paths.h"
-#include "SourceControl.h"
 
 using std::vector;
 
@@ -96,39 +95,6 @@ size_t FileActionScript::GetActionItemCount() const
 }
 
 /**
- * @brief Checkout file from VSS before synching (copying) it.
- * @param [in] path Full path to a file.
- * @param [in,out] bApplyToAll Apply user selection to all (selected)files?
- * @return One of CreateScriptReturn values.
- */
-int FileActionScript::VCSCheckOut(const String &path, BOOL &bApplyToAll)
-{
-	String strErr;
-	int retVal = SCRIPT_SUCCESS;
-
-	if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) == SourceControl::VCS_NONE)
-		return retVal;
-
-	// TODO: First param is not used!
-	int nRetVal = theApp.SyncFileToVCS(path.c_str(), bApplyToAll, strErr);
-	if (nRetVal == -1)
-	{
-		retVal = SCRIPT_FAIL; // So we exit without file operations done
-		AfxMessageBox(strErr.c_str(), MB_OK | MB_ICONERROR);
-	}
-	else if (nRetVal == IDCANCEL)
-	{
-		retVal = SCRIPT_USERCANCEL; // User canceled, so we don't continue
-	}
-	else if (nRetVal == IDNO)
-	{
-		retVal = SCRIPT_USERSKIP;  // User wants to skip this item
-	}
-
-	return retVal;
-}
-
-/**
  * @brief Create ShellFileOperations operation lists from our scripts.
  *
  * We use ShellFileOperations internally to do actual file operations.
@@ -156,21 +122,6 @@ int FileActionScript::CreateOperationsScripts()
 		BOOL bSkip = FALSE;
 		if ((*iter).atype == FileAction::ACT_COPY && !(*iter).dirflag)
 		{
-			// Handle VCS checkout
-			// Before we can write over destination file, we must unlock
-			// (checkout) it. This also notifies VCS system that the file
-			// has been modified.
-			if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) != SourceControl::VCS_NONE)
-			{
-				int retVal = VCSCheckOut((*iter).dest, bApplyToAll);
-				if (retVal == SCRIPT_USERCANCEL)
-					bContinue = FALSE;
-				else if (retVal == SCRIPT_USERSKIP)
-					bSkip = TRUE;
-				else if (retVal == SCRIPT_FAIL)
-					bContinue = FALSE;
-			}
-
 			if (bContinue)
 			{
 				if (!theApp.CreateBackup(TRUE, (*iter).dest))
