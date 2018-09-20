@@ -5,7 +5,8 @@
 #include "OpenDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "MergeApp.h"
+#include "LanguageSelect.h"
+#include "Merge.h"
 
 // COpenDoc
 
@@ -40,6 +41,9 @@ void COpenDoc::RefreshOptions()
 void COpenDoc::UpdateResources()
 {
 	SetTitle(_("Select Files or Folders").c_str());
+	POSITION pos = GetFirstViewPosition();
+	CView *pView = GetNextView(pos);
+	theApp.m_pLangDlg->RetranslateDialog(pView->m_hWnd, MAKEINTRESOURCE(IDD_OPEN));
 }
 
 BEGIN_MESSAGE_MAP(COpenDoc, CDocument)

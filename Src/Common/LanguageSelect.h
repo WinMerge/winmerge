@@ -32,6 +32,7 @@ public:
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
+	void RetranslateDialog(HWND, const TCHAR *name) const;
 	String LoadString(UINT) const;
 	std::wstring LoadDialogCaption(LPCTSTR lpDialogTemplateID) const;
 	std::vector<std::pair<LANGID, String> > GetAvailableLanguages() const;
