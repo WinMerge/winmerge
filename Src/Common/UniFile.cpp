@@ -538,18 +538,8 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 	// Handle 8-bit strings in line chunks because of multibyte codings (eg, 936)
 	if (m_unicoding == ucr::NONE)
 	{
-		// A true binary file could have arbitrary long line-chunks, well beyond the `int`
-		// range tolerated by `MultiByteToWideChar()` (which only tolerates INT_MAX/2 (2^30) 
-		// input chars, allowing for INT_MAX output chars).  So we'll impose an arbitrary line 
-		// chunk length of 2^16 input chars; but when we reach that preferred chunk length,
-		// we'll continue to allow additional '\0' and '\xFF' chars up to a maxmax chunk 
-		// length of 2^18.  These lengths were determined empirically, based on performance 
-		// using various 4.5GB binary files.
 		bool eof = true;
 		unsigned char *eolptr = 0;
-		size_t counter = 0;
-		const int prefLineChunk   = 0x0FFFF; // 2^16 =  65,535
-		const int maxmaxLineChunk = 0x3FFFF; // 2^18 = 262,143
 		for (eolptr = m_current; (eolptr - m_base + (m_charsize - 1) < m_filesize); ++eolptr)
 		{
 			if (*eolptr == '\n' || *eolptr == '\r')
@@ -562,26 +552,6 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 			{
 				size_t offset = (eolptr - m_base);
 				RecordZero(m_txtstats, offset);
-			}
-			++counter;
-			if (counter > prefLineChunk)
-			{
-				// preliminary cut-off: but, tolerate additional 00 and FF chars
-				if (*eolptr != '\x00' && *eolptr != '\xff')
-				{
-					eof = false;
-					break;
-				}
-				if (counter > maxmaxLineChunk)
-				{
-					// absolute cut-off
-					// just in case the very next char is actually an '\r' or '\n'
-					if (eolptr - m_base + (m_charsize - 1) < m_filesize &&
-						(eolptr[1] == '\r' || eolptr[1] == '\n'))
-						++eolptr;
-					eof = false;
-					break;
-				}
 			}
 		}
 		bool success = ucr::maketstring(line, (const char *)m_current, eolptr-m_current, m_codepage, lossy);
