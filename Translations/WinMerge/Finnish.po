@@ -4240,7 +4240,7 @@ msgstr ""
 
 #: Merge.rc:4A700AB0
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr "Eri koodisivut vasemman (cp%d) ja oikean (cp%d) puolen tiedostoilla.\nTiedostojen näyttäminen omalla koodivullaan antaa paremman näytön, mutta yhdistäminen/kopiointi on vaarallista.\nHaluatko käsitellä molemmat tiedostot Windowsin oletusmerkistöllä (suositus)?"
 
 #: Merge.rc:5851E4C8
