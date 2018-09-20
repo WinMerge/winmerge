@@ -2423,7 +2423,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE 
-                            "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+                            "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
     IDS_LOSSY_TRANSCODING_BOTH 
                             "Information lost due to encoding errors: both files"
     IDS_LOSSY_TRANSCODING_FIRST 

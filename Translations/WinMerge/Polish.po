@@ -4476,11 +4476,11 @@ msgstr ""
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
 "Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default windows codepage (recommended)?"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Różne strony kodowe w plikach po lewej (cp%d) i po prawej (cp%d). \n"
 "Wyświetlanie każdego pliku w odpowiedniej stronie kodowej da lepsze wyniki, ale scalenie/skopiowanie będzie niebezpieczne.\n"
-"Would you like to treat both files as being in the default windows codepage (recommended)?"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 
 #: Merge.rc:5851E4C8
 #, c-format
