@@ -324,7 +324,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY, OnUpdateOptionsShowDifferentMiddleOnly)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENTRIGHTONLY, OnUpdateOptionsShowDifferentRightOnly)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
-	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
@@ -3529,14 +3528,6 @@ void CDirView::DoFileEncodingDialog()
 void CDirView::OnFileEncoding()
 {
 	DoFileEncodingDialog();
-}
-
-/**
- * @brief Update "File Encoding" item
- */
-void CDirView::OnUpdateFileEncoding(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(TRUE);
 }
 
 /** @brief Open help from mainframe when user presses F1*/

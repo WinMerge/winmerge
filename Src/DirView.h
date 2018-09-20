@@ -366,7 +366,6 @@ protected:
 	afx_msg void OnUpdateMergeCompare2(CCmdUI *pCmdUI);
 	afx_msg void OnViewCompareStatistics();
 	afx_msg void OnFileEncoding();
-	afx_msg void OnUpdateFileEncoding(CCmdUI* pCmdUI);
 	afx_msg void OnHelp();
 	afx_msg void OnEditCopy();
 	afx_msg void OnEditCut();
