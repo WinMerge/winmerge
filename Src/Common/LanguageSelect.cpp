@@ -985,6 +985,143 @@ void CLanguageSelect::TranslateDialog(HWND h) const
 	} while (h);
 }
 
+void CLanguageSelect::RetranslateDialog(HWND h, const TCHAR *name) const
+{
+	typedef struct
+	{
+		WORD dlgVer;
+		WORD signature;
+		DWORD helpID;
+		DWORD exStyle;
+		DWORD style;
+		WORD cDlgItems;
+		short x;
+		short y;
+		short cx;
+		short cy;
+	} DLGTEMPLATEEX;
+
+	typedef struct
+	{
+		DWORD helpID;
+		DWORD exStyle;
+		DWORD style;
+		short x;
+		short y;
+		short cx;
+		short cy;
+		DWORD id;
+	} DLGITEMTEMPLATEEX;
+
+	auto loadDialogResource = [](HMODULE hModule, const TCHAR *name) -> DLGTEMPLATEEX *
+	{
+		if (HRSRC hFindRes = FindResource(hModule, name, RT_DIALOG))
+		{
+			if (HGLOBAL hLoadRes = LoadResource(hModule, hFindRes))
+			{
+				if (LPVOID q = LockResource(hLoadRes))
+				{
+					return reinterpret_cast<DLGTEMPLATEEX *>(q);
+				}
+			}
+		}
+		return nullptr;
+	};
+
+	auto skip = [](const WORD* &pw)
+	{
+		if (*pw == static_cast<WORD>(-1)) pw += 2; else { while (*pw++); };
+	};
+
+	auto findFirstDlgItem = [&skip](const DLGTEMPLATEEX *pTemplate) -> const DLGITEMTEMPLATEEX *
+	{
+		const WORD *pw = reinterpret_cast<const WORD *>(pTemplate) + 13;
+
+		skip(pw); // Skip menu name string or ordinal
+		skip(pw); // Skip class name string or ordinal
+		while (*pw++);          // Skip caption string
+		if (pTemplate->style & DS_SETFONT)
+		{
+			pw += 3;
+			while (*pw++);
+		}
+		return reinterpret_cast<const DLGITEMTEMPLATEEX *>(
+			reinterpret_cast<WORD*>((reinterpret_cast<DWORD_PTR>(pw) + 3) & ~DWORD_PTR(3))); // DWORD align
+	};
+
+	auto findNextDlgItem = [&skip](const DLGITEMTEMPLATEEX *pItem) -> const DLGITEMTEMPLATEEX * {
+		const WORD *pw = reinterpret_cast<const WORD *>(pItem);
+		pw += sizeof(DLGITEMTEMPLATEEX) / sizeof(WORD);
+
+		skip(pw); // Skip class name string or ordinal
+		skip(pw);  // Skip text string or ordinal
+
+		WORD cbExtra = *reinterpret_cast<const WORD*>(pw);      // Skip extra data
+		pw += 1 + cbExtra / sizeof(WORD);
+		return reinterpret_cast<const DLGITEMTEMPLATEEX *>(
+			reinterpret_cast<WORD*>((reinterpret_cast<DWORD_PTR>(pw) + 3) & ~DWORD_PTR(3))); // DWORD align
+	};
+
+	bool english = false;
+	HMODULE hModule = m_hCurrentDll;
+	if (!hModule)
+	{
+		hModule = LoadLibrary(_T("MergeLang.dll"));
+		english = true;
+	}
+	if (hModule)
+	{
+		if (DLGTEMPLATEEX* pTemplate = loadDialogResource(hModule, name))
+		{
+			DLGTEMPLATEEX *pTemplateEng = nullptr;
+			if (!english || (pTemplateEng = loadDialogResource(AfxGetInstanceHandle(), name)) != nullptr)
+			{
+				HWND hWndChlid = ::GetWindow(h, GW_CHILD);
+				const DLGITEMTEMPLATEEX *pItem = findFirstDlgItem(pTemplate);
+				const DLGITEMTEMPLATEEX *pItemEng = pTemplateEng ? findFirstDlgItem(pTemplateEng) : nullptr;
+				for (int nDlgItems = 0; nDlgItems < pTemplate->cDlgItems; ++nDlgItems)
+				{
+					const WORD *pw = reinterpret_cast<const WORD *>(pItem);
+					pw += sizeof(DLGITEMTEMPLATEEX) / sizeof(WORD);
+					skip(pw); // Skip class name string or ordinal
+
+					if (*pw == static_cast<WORD>(-1))     // Skip text string or ordinal
+						pw += 2;
+					else
+					{
+						const wchar_t *p = reinterpret_cast<const wchar_t*>(pw);
+						if (wcsncmp(p, L"Merge.rc:", 9) == 0)
+						{
+							if (pItemEng)
+							{
+								const WORD *pw2 = reinterpret_cast<const WORD *>(pItemEng);
+								pw2 += sizeof(DLGITEMTEMPLATEEX) / sizeof(WORD);
+								skip(pw2); // Skip class name string or ordinal
+								const wchar_t *peng = reinterpret_cast<const wchar_t *>(pw2);
+								::SetWindowText(hWndChlid, peng);
+							}
+							else
+							{
+								::SetWindowText(hWndChlid, p);
+							}
+						}
+						while (*pw++);
+					}
+
+					hWndChlid = ::GetWindow(hWndChlid, GW_HWNDNEXT);
+					pItem = findNextDlgItem(pItem);
+					if (pItemEng)
+						pItemEng = findNextDlgItem(pItemEng);
+				}
+			}
+		}
+		if (english)
+			FreeLibrary(hModule);
+		else
+			TranslateDialog(h);
+	}
+}
+
 String CLanguageSelect::LoadString(UINT id) const
 {
 	String s;
