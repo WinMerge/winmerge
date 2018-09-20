@@ -107,13 +107,10 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
-	ON_UPDATE_COMMAND_UI(ID_RESCAN, OnUpdateFileReload)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
-	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
 	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_TOGGLE, OnDiffContext)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_TOGGLE, OnUpdateDiffContext)
 	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
-	ON_UPDATE_COMMAND_UI(ID_POPUP_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
 	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
 	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
 	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
@@ -3020,14 +3017,6 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 }
 
 /**
- * @brief Update "Reload" item
- */
-void CMergeDoc::OnUpdateFileReload(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(true);
-}
-
-/**
  * @brief Reloads the opened files
  */
 void CMergeDoc::OnFileReload()
@@ -3056,22 +3045,9 @@ void CMergeDoc::OnFileEncoding()
 	DoFileEncodingDialog();
 }
 
-/**
- * @brief Update "File Encoding" item
- */
-void CMergeDoc::OnUpdateFileEncoding(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(true);
-}
-
 void CMergeDoc::OnCtxtOpenWithUnpacker() 
 {
 	OpenWithUnpackerDialog();
-}
-
-void CMergeDoc::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(true);
 }
 
 void CMergeDoc::OnBnClickedFileEncoding()

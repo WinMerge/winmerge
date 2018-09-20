@@ -132,7 +132,7 @@ public:
 	void PrimeListWithFile();
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
-	void GetSelection(CPoint &ptStart, CPoint &ptEnd) { CCrystalTextView::GetSelection(ptStart, ptEnd); }
+	using CGhostTextView::GetSelection;
 	virtual void UpdateSiblingScrollPos (bool bHorz) override;
 	virtual std::vector<TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
 	virtual COLORREF GetColor(int nColorIndex) override;
@@ -143,21 +143,18 @@ public:
 	void WMGoto() { OnWMGoto(); };
 	void GotoLine(UINT nLine, bool bRealLine, int pane);
 	int GetTopLine() const { return m_nTopLine; }
-	int GetScreenLines() { return CCrystalTextView::GetScreenLines(); }
+	using CCrystalTextView::GetScreenLines;
 	int GetTopSubLine() const { return m_nTopSubLine; }
-	int GetSubLines(int nLineIndex) { return CCrystalTextView::GetSubLines(nLineIndex); }
-	virtual int GetSubLineCount() { return CCrystalTextView::GetSubLineCount(); }
-	virtual int GetSubLineIndex(int nLineIndex) override { return CCrystalTextView::GetSubLineIndex(nLineIndex); }
-	virtual void GetLineBySubLine(int nSubLineIndex, int &nLine, int &nSubLine) override {
-		CCrystalTextView::GetLineBySubLine(nSubLineIndex, nLine, nSubLine);
-	}
+	using CCrystalTextView::GetSubLines;
+	using CCrystalTextView::GetSubLineCount;
+	using CCrystalTextView::GetSubLineIndex;
+	using CCrystalTextView::GetLineBySubLine;
 	virtual int GetEmptySubLines( int nLineIndex ) override;
 	virtual void InvalidateSubLineIndexCache( int nLineIndex ) override;
 	void RepaintLocationPane();
 	bool SetPredifferByName(const CString & prediffer);
 	void SetPredifferByMenu(UINT nID);
 	void DocumentsLoaded();
-	void SetLocationView(const CLocationView * pView = NULL);
 	void UpdateLocationViewPosition(int nTopLine = -1, int nBottomLine = -1);
 	virtual void RecalcPageLayouts(CDC * pdc, CPrintInfo * pInfo) override;
 	virtual void GetPrintHeaderText(int nPageNum, CString & text) override;
@@ -273,7 +270,6 @@ protected:
 	afx_msg void OnCopyFromRight();
 	afx_msg void OnUpdateCopyFromRight(CCmdUI* pCmdUI);
 	afx_msg void OnAddSyncPoint();
-	afx_msg void OnUpdateAddSyncPoint(CCmdUI* pCmdUI);
 	afx_msg void OnClearSyncPoints();
 	afx_msg void OnUpdateClearSyncPoints(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
@@ -305,10 +301,7 @@ protected:
 	afx_msg void OnR2LNext();
 	afx_msg void OnUpdateR2LNext(CCmdUI* pCmdUI);
 	afx_msg void OnChangePane();
-	afx_msg void OnUpdateChangePane(CCmdUI* pCmdUI);
 	afx_msg void OnWMGoto();
-	afx_msg void OnUpdateWMGoto(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateScripts(CCmdUI* pCmdUI);
 	afx_msg void OnScripts(UINT nID );
 	afx_msg void OnUpdateNoPrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
@@ -330,7 +323,6 @@ protected:
 	afx_msg void OnOpenFileWith();
 	afx_msg void OnOpenFileWithEditor();
 	afx_msg void OnViewSwapPanes();
-	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateNoEditScripts(CCmdUI* pCmdUI);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnHelp();

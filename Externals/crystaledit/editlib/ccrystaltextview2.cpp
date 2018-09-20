@@ -1084,12 +1084,6 @@ OnEditSelectAll ()
 }
 
 void CCrystalTextView::
-OnUpdateEditSelectAll (CCmdUI * pCmdUI)
-{
-  pCmdUI->Enable (true);
-}
-
-void CCrystalTextView::
 OnRButtonDown (UINT nFlags, CPoint point)
 {
   CPoint pt = point;
