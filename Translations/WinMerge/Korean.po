@@ -1500,61 +1500,6 @@ msgstr "읽기 전용(&D)"
 msgid "Read-o&nly"
 msgstr "읽기 전용(&N)"
 
-#: Merge.rc:629C1DDC
-#, c-format
-msgid "Database:"
-msgstr "데이터베이스:"
-
-#: Merge.rc:60C4588F
-#, c-format
-msgid "Project:"
-msgstr "프로젝트:"
-
-#: Merge.rc:15E1A7E1
-#, c-format
-msgid "User:"
-msgstr "사용자:"
-
-#: Merge.rc:37C6B9B8
-#, c-format
-msgid "Password:"
-msgstr "비밀번호:"
-
-#: Merge.rc:F75DAF7
-#, c-format
-msgid "Link to Destination VSS project"
-msgstr "대상 VSS 프로젝트에 연결"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "전체 항목에 적용"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "체크아웃"
-
-#: Merge.rc:751AB58F
-#, c-format
-msgid "Save As..."
-msgstr "다른 이름으로 저장..."
-
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "버전 관리 시스템"
-
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&Versioning System:"
-msgstr "버전 관리 시스템(&V) :"
-
-#: Merge.rc:381D79E5
-#, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "cleartool.exe 경로(&P):"
-
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
@@ -1680,7 +1625,7 @@ msgstr "바꾸기"
 msgid "Re&place with:"
 msgstr "바꿀 내용(&P):"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "파일 끝의 줄 바꿈하지 않기(&D)"
@@ -1734,21 +1679,6 @@ msgstr "배경 색상(&B):"
 #, c-format
 msgid "&Apply"
 msgstr "적용(&A)"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "체크아웃"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "코멘트"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "체크아웃 후 체크인"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -2000,7 +1930,7 @@ msgstr "중지"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2D
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2105,6 +2035,11 @@ msgstr "이동된 블럭 감지 사용하기"
 msgid "&Match similar lines"
 msgstr "비슷한 줄 일치시키기(&M)"
 
+#: Merge.rc:4C3E0A2E
+#, c-format
+msgid "Comments"
+msgstr "코멘트"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2200,7 +2135,7 @@ msgstr "새로 만들기..."
 msgid "Edit..."
 msgstr "편집..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "삭제..."
@@ -2260,7 +2195,7 @@ msgstr "변경사항 취소(&C)"
 msgid "Disca&rd All"
 msgstr "전부 취소(&R)"
 
-#: Merge.rc:4C3E0A30
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
 msgstr "코드페이지"
@@ -2343,7 +2278,7 @@ msgstr "키워드:"
 msgid "Function names:"
 msgstr "함수 이름:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "코멘트:"
@@ -2483,7 +2418,7 @@ msgstr "폴더:"
 msgid "Files:"
 msgstr "파일:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "다름"
@@ -2638,7 +2573,7 @@ msgstr "공백 문자:"
 msgid "Regular text:"
 msgstr "일반 텍스트:"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB58F
 #, c-format
 msgid "Selection:"
 msgstr "선택:"
@@ -2673,7 +2608,7 @@ msgstr "파일 비교에서(&E)"
 msgid "Create backup files into:"
 msgstr "백업 파일 만들기:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "원본 파일 폴더로(&O)"
@@ -2688,7 +2623,7 @@ msgstr "전역 백업 폴더로(&G):"
 msgid "Backup filename:"
 msgstr "백업 파일 이름:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr ".bak 확장자 덧붙이기(&A)"
@@ -2823,7 +2758,7 @@ msgstr "바이너리 파일 패턴(&P):"
 msgid "Frhed settings"
 msgstr "Frhed 설정"
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr "보기 설정(&S)..."
@@ -3075,11 +3010,6 @@ msgstr "이 메시지 상자를 다시 표시하려면, 옵션 대화상자의 �
 msgid "Syntax"
 msgstr "구문"
 
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "버전 관리"
-
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
@@ -3307,11 +3237,6 @@ msgstr ""
 "필터를 업데이트했습니다. 열려 있는 모든 폴더 비교를 갱신할까요?\n"
 "\n"
 "모든 비교를 갱신하고 싶지 않으면, 이제 아니오를 선택하고 나중에 비교를 갱신할 수 있습니다."
-
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "SS.EXE 경로(&P):"
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3663,86 +3588,6 @@ msgstr ""
 "문서가 동기화되지 않으면 차이점을 병합할 수 없습니다.\n"
 "\n"
 "계속하기 전에 문서를 갱신하세요."
-
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "계속하려면 SourceSafe 프로젝트 경로를 설정해야 합니다 (예:  $/MyProject)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "VSS 체크아웃 파일..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "버전 관리 시스템에서 파일 검사를 시도하는 중 오류가 발생했습니다.  더 이상 계속할 수 없습니다..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "버전 관리 시스템 명령어 실행 오류."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "VSS 작업 폴더와 현재 파일의 위치가 일치하지 않습니다. 계속할까요?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "VSS 데이터베이스가 없습니다!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "VSS 오류:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"버전 관리 시스템에서 파일 검사를 시도하는 중 오류가 발생했습니다.\n"
-" 사용된 보기 설정의 스펙을 확인해 보세요.\n"
-" 확인 작업의 실행을 취소할까요?"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"버전 관리 시스템에서 파일의 확인 작업 실행을 취소하는 중 오류가 발생했습니다.\n"
-" 사용된 보기 설정의 스펙을 확인하세요."
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "없음"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (5.0 이하)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 이상)"
-
-#: Merge.rc:2405135
-#, c-format
-msgid "Break at whitespace"
-msgstr "공백에서 멈춤"
-
-#: Merge.rc:6CB369C2
-#, c-format
-msgid "Break at whitespace or punctuation"
-msgstr "공백 또는 구두점에서 멈춤"
 
 #: Merge.rc:237A127
 #, c-format
@@ -4393,7 +4238,7 @@ msgstr "탭으로 분리된 목록"
 msgid "Simple HTML"
 msgstr "단순한 HTML"
 
-#: Merge.rc:751AB591
+#: Merge.rc:751AB590
 #, c-format
 msgid "Simple XML"
 msgstr "단순한 XML"
@@ -4587,7 +4432,7 @@ msgstr "줄끝 변경사항이 충돌하고 있습니다"
 msgid "Location Pane"
 msgstr "위치 창"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "차이점 창"
@@ -4731,6 +4576,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "혼합됨"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "없음"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4741,7 +4591,7 @@ msgstr "형식"
 msgid "Unpacker"
 msgstr "언패커"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Prediffer"
