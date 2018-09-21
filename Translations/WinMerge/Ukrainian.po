@@ -1497,61 +1497,6 @@ msgstr ""
 msgid "Read-o&nly"
 msgstr ""
 
-#: Merge.rc:629C1DDC
-#, c-format
-msgid "Database:"
-msgstr "База даних:"
-
-#: Merge.rc:60C4588F
-#, c-format
-msgid "Project:"
-msgstr "Проект:"
-
-#: Merge.rc:15E1A7E1
-#, c-format
-msgid "User:"
-msgstr "Користувач:"
-
-#: Merge.rc:37C6B9B8
-#, c-format
-msgid "Password:"
-msgstr "Пароль:"
-
-#: Merge.rc:F75DAF7
-#, c-format
-msgid "Link to Destination VSS project"
-msgstr "Шлях до проекту VSS"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Застосувати до всіх елементів"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Взяти під контроль"
-
-#: Merge.rc:751AB58F
-#, c-format
-msgid "Save As..."
-msgstr "Зберегти як..."
-
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Система контролю версій"
-
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&Versioning System:"
-msgstr "&Система контролю версій:"
-
-#: Merge.rc:381D79E5
-#, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "&Шлях до cleartool.exe:"
-
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
@@ -1677,7 +1622,7 @@ msgstr "Заміна"
 msgid "Re&place with:"
 msgstr "За&міна: "
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "Не зупинятися при досягненні кінця файлу"
@@ -1731,21 +1676,6 @@ msgstr ""
 #, c-format
 msgid "&Apply"
 msgstr "&Застосувати"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Перевірити"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Коментарі"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "CheckIn після checkout"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1997,7 +1927,7 @@ msgstr "Зупинити"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2D
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2102,6 +2032,11 @@ msgstr "Виявлення перемі&щених блоків"
 msgid "&Match similar lines"
 msgstr "Виконати пошук схожих рядків"
 
+#: Merge.rc:4C3E0A2E
+#, c-format
+msgid "Comments"
+msgstr "Коментарі"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2197,7 +2132,7 @@ msgstr "Створити..."
 msgid "Edit..."
 msgstr "Змінити..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Вилучити..."
@@ -2257,7 +2192,7 @@ msgstr "Ві&дхилити зміни"
 msgid "Disca&rd All"
 msgstr "Скасу&вати все"
 
-#: Merge.rc:4C3E0A30
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
 msgstr "Сторінка кодування"
@@ -2336,7 +2271,7 @@ msgstr "Ключові слова:"
 msgid "Function names:"
 msgstr "Імена функцій:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Коментарі:"
@@ -2476,7 +2411,7 @@ msgstr "Теки:"
 msgid "Files:"
 msgstr "Файли:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Відрізняються"
@@ -2631,7 +2566,7 @@ msgstr "Пропуски:"
 msgid "Regular text:"
 msgstr "Звичайний текст:"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB58F
 #, c-format
 msgid "Selection:"
 msgstr "Відзнач. текст:"
@@ -2666,7 +2601,7 @@ msgstr "Порівняння &файлів"
 msgid "Create backup files into:"
 msgstr "Створити резервні файли:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "в теці з &оригінальним файлом"
@@ -2681,7 +2616,7 @@ msgstr "в &загальній теці:"
 msgid "Backup filename:"
 msgstr "Ім'я резервного файлу:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "&Додати розширення .bak"
@@ -2816,7 +2751,7 @@ msgstr ""
 msgid "Frhed settings"
 msgstr ""
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr ""
@@ -3048,11 +2983,6 @@ msgstr ""
 msgid "Syntax"
 msgstr ""
 
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Контроль версій"
-
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
@@ -3280,11 +3210,6 @@ msgstr ""
 "Фільтри були поновлені. Ви хочете поновити всі відкриті порівняння тек?\n"
 "\n"
 "Якщо ви не хочете поновлювати всі порівняння зараз, Ви можете вибрати Ні і поновити їх згодом."
-
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "&Шлях до SS.EXE:"
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3634,86 +3559,6 @@ msgstr ""
 "Неможливе злиття відмінностей , коли документи не синхронізовані.\n"
 "\n"
 "Оновіть документи перед продовженням."
-
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Щоб продовжити, Ви маєте вказати шлях до проекту SourceSafe (наприклад:  $/MyProject)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Отримуємо файли з VSS..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Система контролю версій виявила помилку при спробі взяти файл під контроль.  Нема можливості продовжувати..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Помилка виконання системної команди Системи контролю версій."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "Робоча тека VSS і розташування місце поточного файлу не співпадають. Продовжити ?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "Не знайдена база даних VSS!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "Помилка VSS:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"VSS знайшла помилку при спробі перевірити файл.\n"
-" Перевірте налаштування.\n"
-" Скасувати дію?"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"VSS знайшла помилку при спробі скасування дії.\n"
-"Перевірте налаштування. "
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Нема"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (менше, ніж 5.0)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 і вище)"
-
-#: Merge.rc:2405135
-#, c-format
-msgid "Break at whitespace"
-msgstr "Розбивати за пропусками"
-
-#: Merge.rc:6CB369C2
-#, c-format
-msgid "Break at whitespace or punctuation"
-msgstr "Розбивати за пропусками і символами пунктуації"
 
 #: Merge.rc:237A127
 #, c-format
@@ -4365,7 +4210,7 @@ msgstr "Список, розділений табуляторами"
 msgid "Simple HTML"
 msgstr "Простий HTML"
 
-#: Merge.rc:751AB591
+#: Merge.rc:751AB590
 #, c-format
 msgid "Simple XML"
 msgstr "Простий XML"
@@ -4555,7 +4400,7 @@ msgstr ""
 msgid "Location Pane"
 msgstr "Місця розташування"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Відмінності"
@@ -4699,6 +4544,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Мішаний"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Нема"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4709,7 +4559,7 @@ msgstr "Тип"
 msgid "Unpacker"
 msgstr "Розпакувальник"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Нехтувач"

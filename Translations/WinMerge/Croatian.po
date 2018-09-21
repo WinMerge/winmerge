@@ -1496,61 +1496,6 @@ msgstr ""
 msgid "Read-o&nly"
 msgstr ""
 
-#: Merge.rc:629C1DDC
-#, c-format
-msgid "Database:"
-msgstr "Baza podataka:"
-
-#: Merge.rc:60C4588F
-#, c-format
-msgid "Project:"
-msgstr "Usporedba:"
-
-#: Merge.rc:15E1A7E1
-#, c-format
-msgid "User:"
-msgstr "Korisnik:"
-
-#: Merge.rc:37C6B9B8
-#, c-format
-msgid "Password:"
-msgstr "Lozinka"
-
-#: Merge.rc:F75DAF7
-#, c-format
-msgid "Link to Destination VSS project"
-msgstr "Poveži s odredišnom VSS usporedbom"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Primijeni na sve stavke"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Provjera"
-
-#: Merge.rc:751AB58F
-#, c-format
-msgid "Save As..."
-msgstr "Pohrana kao..."
-
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Izbor programa:"
-
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&Versioning System:"
-msgstr "&Izbor programa:"
-
-#: Merge.rc:381D79E5
-#, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "&Staza do cleartool.exe:"
-
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
@@ -1676,7 +1621,7 @@ msgstr "Zamijeni"
 msgid "Re&place with:"
 msgstr "Zamijeni s:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "&Bez preloma teksta"
@@ -1730,21 +1675,6 @@ msgstr ""
 #, c-format
 msgid "&Apply"
 msgstr "&Primjeni"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Provjeri"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Komentari"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Provjeri ponovo"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1996,7 +1926,7 @@ msgstr "Stani"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2D
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2101,6 +2031,11 @@ msgstr "Omogući &razlikovanje premještenih blokova"
 msgid "&Match similar lines"
 msgstr "&Jednake retke"
 
+#: Merge.rc:4C3E0A2E
+#, c-format
+msgid "Comments"
+msgstr "Komentari"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2196,7 +2131,7 @@ msgstr "Novi..."
 msgid "Edit..."
 msgstr "Uređivanje..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Brisanje..."
@@ -2256,7 +2191,7 @@ msgstr "Odustajem od izmjena"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A30
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
 msgstr "Kodna stranica"
@@ -2335,7 +2270,7 @@ msgstr "Ključne riječi:"
 msgid "Function names:"
 msgstr "Nazivi funkcija:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Komentari:"
@@ -2475,7 +2410,7 @@ msgstr "Mape:"
 msgid "Files:"
 msgstr "Datoteke:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Razlika"
@@ -2630,7 +2565,7 @@ msgstr "Skriveni znaci i razmaci:"
 msgid "Regular text:"
 msgstr "Pravilan tekst"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB58F
 #, c-format
 msgid "Selection:"
 msgstr "Odabir:"
@@ -2665,7 +2600,7 @@ msgstr "Usporedbi &datoteka"
 msgid "Create backup files into:"
 msgstr "Pohrani rezervnu datoteku u:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "&Izvornu mapu datoteke"
@@ -2680,7 +2615,7 @@ msgstr "&Standardnu mapu rezervnih kopija"
 msgid "Backup filename:"
 msgstr "Naziv rezervne datoteke"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "&Dodaj .bak ekstenziju"
@@ -2815,7 +2750,7 @@ msgstr ""
 msgid "Frhed settings"
 msgstr ""
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr ""
@@ -3047,11 +2982,6 @@ msgstr ""
 msgid "Syntax"
 msgstr ""
 
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Programi"
-
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
@@ -3279,11 +3209,6 @@ msgstr ""
 "Filtari su dograđeni. Želite li osvježiti sve otvorene usporedbe?\n"
 "\n"
 "Ako odaberete 'Ne', to možete ućiniti i kasnije.."
-
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "&Staza do SS.EXE:"
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3635,86 +3560,6 @@ msgstr ""
 "Ne mogu se vezati razlike nesinkroniziranih dokumenata.\n"
 "\n"
 "Osvježite dokumente prije nastavka."
-
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Odredite SourceSafe stazu usporedbe, ako želite nastaviti (ie:  $/MyProject)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Provjera datoteka na VSS..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Sistem pokazuje grešku dok pokušava provjeriti datoteku.  Nastavak nemoguć..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Greška pri izvršenju sistemske naredbe."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "VSS radna mapa i lokacija aktivne datoteke se ne poklapaju. Nastaviti?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "Nema VSS baze"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "Greška iz VSS:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"Versioning Sistem pokazuje grešku dok pokušava provjeriti datoteku..\n"
-" Molimo pregledajte podešenost korištenog izgleda. .\n"
-" Odustati?"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"Versioning Sistem pokazuje grešku dok pokušava provjeriti datoteku.\n"
-" Molimo pregledajte podešenost korištenog izgleda. "
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Ništa"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (5.0 i viši)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 i viši)"
-
-#: Merge.rc:2405135
-#, c-format
-msgid "Break at whitespace"
-msgstr "Stani na razmaku"
-
-#: Merge.rc:6CB369C2
-#, c-format
-msgid "Break at whitespace or punctuation"
-msgstr "Stani na razmaku ili interpunkciji"
 
 #: Merge.rc:237A127
 #, c-format
@@ -4366,7 +4211,7 @@ msgstr "Popis odvojen tabulatorom"
 msgid "Simple HTML"
 msgstr "Jednostavni HTML"
 
-#: Merge.rc:751AB591
+#: Merge.rc:751AB590
 #, c-format
 msgid "Simple XML"
 msgstr "Jednostavni HTML"
@@ -4556,7 +4401,7 @@ msgstr ""
 msgid "Location Pane"
 msgstr "Položaj panela"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Panel razlika"
@@ -4699,6 +4544,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Mixed"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Ništa"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4709,7 +4559,7 @@ msgstr "Tip"
 msgid "Unpacker"
 msgstr "Raspakiravač"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Prediffer"
