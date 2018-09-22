@@ -95,6 +95,7 @@ public:
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
+	void FileNew(int nPanes);
 	BOOL DoFileOpen(const PathContext *pFiles = NULL,
 		const DWORD dwFlags[] = NULL, const String strDesc[] = NULL, const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), const PackingInfo * infoUnpacker = NULL);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
@@ -229,7 +230,7 @@ protected:
 	afx_msg void OnViewTabBar();
 	afx_msg void OnUpdateResizePanes(CCmdUI* pCmdUI);
 	afx_msg void OnResizePanes();
-	afx_msg void OnFileOpenproject();
+	afx_msg void OnFileOpenProject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnUser1(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnWindowCloseAll();
@@ -267,7 +268,6 @@ protected:
 
 private:
 	void addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems = 20);
-	void FileNew(int nPanes);
 	OpenDocList &GetAllOpenDocs();
 	MergeDocList &GetAllMergeDocs();
 	DirDocList &GetAllDirDocs();

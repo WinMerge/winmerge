@@ -199,7 +199,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_TAB_BAR, OnViewTabBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_RESIZE_PANES, OnUpdateResizePanes)
 	ON_COMMAND(ID_VIEW_RESIZE_PANES, OnResizePanes)
-	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
+	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenProject)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
 	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
@@ -1759,7 +1759,7 @@ void CMainFrame::OnResizePanes()
 /**
  * @brief Open project-file.
  */
-void CMainFrame::OnFileOpenproject()
+void CMainFrame::OnFileOpenProject()
 {
 	String sFilepath;
 	
