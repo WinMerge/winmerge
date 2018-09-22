@@ -81,6 +81,7 @@ public:
 // Operations
 public:
 	void UpdateButtonStates();
+	void UpdateResources();
 
 // Implementation data
 private:
