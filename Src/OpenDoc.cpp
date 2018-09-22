@@ -3,10 +3,10 @@
 
 #include "stdafx.h"
 #include "OpenDoc.h"
+#include "OpenView.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "LanguageSelect.h"
-#include "Merge.h"
+#include "MergeApp.h"
 
 // COpenDoc
 
@@ -42,8 +42,8 @@ void COpenDoc::UpdateResources()
 {
 	SetTitle(_("Select Files or Folders").c_str());
 	POSITION pos = GetFirstViewPosition();
-	CView *pView = GetNextView(pos);
-	theApp.m_pLangDlg->RetranslateDialog(pView->m_hWnd, MAKEINTRESOURCE(IDD_OPEN));
+	COpenView *pView = static_cast<COpenView *>(GetNextView(pos));
+	pView->UpdateResources();
 }
 
 BEGIN_MESSAGE_MAP(COpenDoc, CDocument)
