@@ -272,4 +272,59 @@ TEST(ImageCompareTest, Open)
 	dlg.SetFormerResult(nPrevFormerResult);
 }
 
+TEST(FileMenu, New)
+{
+	CFrameWnd *pFrame;
+	GetMainFrame()->FileNew(2);
+	pFrame = GetMainFrame()->GetActiveFrame();
+	pFrame->PostMessage(WM_CLOSE);
+	GetMainFrame()->FileNew(3);
+	pFrame = GetMainFrame()->GetActiveFrame();
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(FileMenu, OpenConflictFile)
+{
+	String conflictFile = paths::ConcatPath(getProjectRoot(), L"Testing/Data/big_file.conflict");
+	GetMainFrame()->DoOpenConflict(conflictFile);
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	pDoc->m_ptBuf[1]->SetModified(false);
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(FileMenu, OpenConflictFile3)
+{
+	String conflictFile = paths::ConcatPath(getProjectRoot(), L"Testing/Data/dif3.conflict");
+	GetMainFrame()->DoOpenConflict(conflictFile);
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	pDoc->m_ptBuf[2]->SetModified(false);
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(FileMenu, OpenProject)
+{
+	String projectFile = paths::ConcatPath(getProjectRoot(), L"Testing/Data/Dir2.WinMerge");
+	SetCurrentDirectory(paths::GetParentPath(projectFile).c_str());
+	theApp.LoadAndOpenProjectFile(projectFile);
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_NE(nullptr, pFrame);
+	if (pFrame)
+		pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(FileMenu, OpenProject3)
+{
+	String projectFile = paths::ConcatPath(getProjectRoot(), L"Testing/Data/Dir3.WinMerge");
+	SetCurrentDirectory(paths::GetParentPath(projectFile).c_str());
+	theApp.LoadAndOpenProjectFile(projectFile);
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_NE(nullptr, pFrame);
+	if (pFrame)
+		pFrame->PostMessage(WM_CLOSE);
+}
+
 #endif

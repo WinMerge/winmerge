@@ -478,14 +478,29 @@ protected:
     virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber);
     virtual void DrawBoundaryLine (CDC * pdc, int nLeft, int nRight, int y);
     virtual void DrawLineCursor (CDC * pdc, int nLeft, int nRight, int y, int nHeight);
-    int GetCharWidthFromChar(TCHAR ch);
-    int GetCharWidthFromString(LPCTSTR lpsz);
-    int GetCharWidthFromDisplayableChar(const ViewableWhitespaceChars * lpspc, TCHAR ch);
+
+	inline int GetCharCellCountFromChar(TCHAR ch)
+	{
+		if (ch >= _T('\x00') && ch <= _T('\x7F'))
+		{
+			if (ch <= _T('\x1F') && ch != '\t')
+				return 3;
+			else
+				return 1;
+		} 
+		// This assumes a fixed width font
+		// But the UNICODE case handles double-wide glyphs (primarily Chinese characters)
+#ifdef _UNICODE
+		return GetCharCellCountUnicodeChar(ch);
+#else
+		return 1;
+#endif
+	}
 
 #ifdef _UNICODE
     bool m_bChWidthsCalculated[65536/256];
     int m_iChDoubleWidthFlags[65536/32];
-    int GetCharWidthUnicodeChar(wchar_t ch);
+    int GetCharCellCountUnicodeChar(wchar_t ch);
 #endif
     void ResetCharWidths();
 

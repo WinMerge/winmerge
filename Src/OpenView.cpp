@@ -45,6 +45,7 @@
 #include "FileFilterHelper.h"
 #include "Plugins.h"
 #include "BCMenu.h"
+#include "LanguageSelect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -824,6 +825,16 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 	CoUninitialize();
 
 	return 0;
+}
+
+/**
+ * @brief Update any resources necessary after a GUI language change
+ */
+void COpenView::UpdateResources()
+{
+	theApp.m_pLangDlg->RetranslateDialog(m_hWnd, MAKEINTRESOURCE(IDD_OPEN));
+	if (m_strUnpacker != m_infoHandler.pluginName)
+		m_strUnpacker = theApp.LoadString(IDS_OPEN_UNPACKERDISABLED);
 }
 
 /** 
