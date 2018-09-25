@@ -8,50 +8,50 @@ or otherwise significant changes.
 
 Subfolders include:
 
- - `Docs`
+ - `Docs`  
    Both user and developer documentation, in different subfolders.
    Can be browsed by opening `index.html` in `Docs` folder.
 
- - `Src`
+ - `Src`  
    Source code to the WinMerge program itself.
 
- - `Plugins`
+ - `Plugins`  
    Source code and binaries for WinMerge runtime plugin dlls & scripts
 
- - `Filters`
+ - `Filters`  
    WinMerge file filters which are shipped with the distribution.
 
- - `ArchiveSupport`
+ - `ArchiveSupport`  
    Source code for the Merge7z dlls, which connect WinMerge with 7-Zip
    Also this folder is required to compile `WinMergeU.exe`. There
    is also standalone installer for Merge7z dlls.
 
- - `Externals`
+ - `Externals`  
    This folder contains several libraries whose sources come from
    outside WinMerge project. They are stored here for convenience for
    building and possible needed small changes for WinMerge. Libraries
    include XML parser and regular expression parser.
 
- - `Installer`
+ - `Installer`  
    Installer for WinMerge.
 
- - `Tools`
+ - `Tools`  
    Various utilities used by WinMerge developers; see readme files in each.
 
- - `ShellExtension`
+ - `ShellExtension`  
    Windows Shell (Explorer) integration. Adds menuitems to Explorer context
    menu for comparing files and folders.
 
- - `Testing`
+ - `Testing`  
    A suite of test diff files and a script to run them and report the results.
    This folder also has `Google Test` subfolder containing unit tests made
    with [Google Test Framework](https://github.com/google/googletest).
 
- - `Build`
+ - `Build`  
    This folder gets created by compiler when WinMerge is compiled. It
    contains compiled executables, libraries, user manual etc.
 
- - `BuildTmp`
+ - `BuildTmp`  
    This folder gets created by compiler when WinMerge is compiled. It
    contains temporary files created during the compilation and can be safely
    removed.
