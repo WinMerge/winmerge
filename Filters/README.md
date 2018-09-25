@@ -1,4 +1,4 @@
-WinMerge/Filters/readme.txt
+# WinMerge Filters
 
 Filters holds the WinMerge runtime file filters.
 
