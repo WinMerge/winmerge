@@ -66,7 +66,6 @@
 #include "JumpList.h"
 #include "stringdiffs.h"
 #include "TFile.h"
-#include "SourceControl.h"
 #include "paths.h"
 #include "CompareStats.h"
 #include "TestMain.h"
@@ -119,13 +118,11 @@ CMergeApp::CMergeApp() :
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect())
 , m_bEscShutdown(FALSE)
-, m_bClearCaseTool(FALSE)
 , m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
 , m_pLineFilters(new LineFiltersList())
 , m_pFilterCommentsManager(new FilterCommentsManager())
 , m_pSyntaxColors(new SyntaxColors())
 , m_pMarkers(new CCrystalTextMarkers())
-, m_pSourceControl(new SourceControl())
 , m_bMergingMode(FALSE)
 {
 	// add construction code here,
@@ -271,9 +268,6 @@ BOOL CMergeApp::InitInstance()
 
 	charsets_init();
 	UpdateCodepageModule();
-
-	if (m_pSourceControl)
-		m_pSourceControl->InitializeSourceControlMembers();
 
 	FileTransform::g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	FileTransform::g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
@@ -626,7 +620,6 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	{
 		// Set the required information we need from the command line:
 
-		m_bClearCaseTool = cmdInfo.m_bClearCaseTool;
 		m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;
 		m_bEscShutdown = cmdInfo.m_bEscShutdown;
 
@@ -937,37 +930,6 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 }
 
 /**
- * @brief Sync file to Version Control System
- * @param pszDest [in] Where to copy (incl. filename)
- * @param bApplyToAll [in,out] Apply user selection to all items
- * @param psError [out] Error string that can be shown to user in caller func
- * @return User selection or -1 if error happened
- * @sa CMainFrame::HandleReadonlySave()
- * @sa CDirView::PerformActionList()
- */
-int CMergeApp::SyncFileToVCS(const String& pszDest, BOOL &bApplyToAll,
-	String& sError)
-{
-	String sActionError;
-	String strSavePath(pszDest);
-	int nVerSys = 0;
-
-	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
-	
-	int nRetVal = HandleReadonlySave(strSavePath, TRUE, bApplyToAll);
-	if (nRetVal == IDCANCEL || nRetVal == IDNO)
-		return nRetVal;
-	
-	// If VC project opened from VSS sync and version control used
-	if ((nVerSys == SourceControl::VCS_VSS4 || nVerSys == SourceControl::VCS_VSS5) && m_pSourceControl->m_bVCProjSync)
-	{
-		if (!m_pSourceControl->m_vssHelper.ReLinkVCProj(strSavePath, sError))
-			nRetVal = -1;
-	}
-	return nRetVal;
-}
-
-/**
  * @brief Checks if path (file/folder) is read-only and asks overwriting it.
  *
  * @param strSavePath [in,out] Path where to save (file or folder)
@@ -991,7 +953,6 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 	String s;
 	String str;
 	CString title;
-	int nVerSys = 0;
 
 	if (!strSavePath.empty())
 	{
@@ -1007,22 +968,9 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		}
 	}
 
-	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
-	
 	if (bFileExists && bFileRO)
 	{
 		UINT userChoice = 0;
-		// Version control system used?
-		// Checkout file from VCS and modify, don't ask about overwriting
-		// RO files etc.
-		if (nVerSys != SourceControl::VCS_NONE)
-		{
-			bool bRetVal = m_pSourceControl->SaveToVersionControl(strSavePath);
-			if (bRetVal)
-				return IDYES;
-			else
-				return IDCANCEL;
-		}
 		
 		// Don't ask again if its already asked
 		if (bApplyToAll)
@@ -1083,37 +1031,6 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		}
 	}
 	return nRetVal;
-}
-
-/**
- * @brief Shows VSS error from exception and writes log.
- */
-void CMergeApp::ShowVSSError(CException *e, const String& strItem)
-{
-	TCHAR errStr[1024] = {0};
-	if (e->GetErrorMessage(errStr, 1024))
-	{
-		String errMsg = theApp.LoadString(IDS_VSS_ERRORFROM);
-		String logMsg = errMsg;
-		errMsg += _T("\n");
-		errMsg += errStr;
-		logMsg += _T(" ");
-		logMsg += errStr;
-		if (!strItem.empty())
-		{
-			errMsg += _T("\n\n");
-			errMsg += strItem;
-			logMsg += _T(": ");
-			logMsg += strItem;
-		}
-		LogErrorString(logMsg);
-		AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
-	}
-	else
-	{
-		LogErrorString(_T("VSSError (unable to GetErrorMessage)"));
-		e->ReportError(MB_ICONSTOP, IDS_VSS_RUN_ERROR);
-	}
 }
 
 /**

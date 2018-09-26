@@ -1496,61 +1496,6 @@ msgstr ""
 msgid "Read-o&nly"
 msgstr ""
 
-#: Merge.rc:629C1DDC
-#, c-format
-msgid "Database:"
-msgstr "Database:"
-
-#: Merge.rc:60C4588F
-#, c-format
-msgid "Project:"
-msgstr "Progetto:"
-
-#: Merge.rc:15E1A7E1
-#, c-format
-msgid "User:"
-msgstr "Utente:"
-
-#: Merge.rc:37C6B9B8
-#, c-format
-msgid "Password:"
-msgstr "Password:"
-
-#: Merge.rc:F75DAF7
-#, c-format
-msgid "Link to Destination VSS project"
-msgstr "Collegamento al progetto VSS di destinazione"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Applica a tutte le voci"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Estrai"
-
-#: Merge.rc:751AB58F
-#, c-format
-msgid "Save As..."
-msgstr "Salva con nome..."
-
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Sistema per il versioning"
-
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&Versioning System:"
-msgstr "Sistema per il &versioning"
-
-#: Merge.rc:381D79E5
-#, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "&Percorso di cleartool.exe:"
-
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
@@ -1676,7 +1621,7 @@ msgstr "Sostituisci"
 msgid "Re&place with:"
 msgstr "Sostituisci &con:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "&Fermati alla fine del file"
@@ -1730,21 +1675,6 @@ msgstr ""
 #, c-format
 msgid "&Apply"
 msgstr "&Applica"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Estrai"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Commenti"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Reinserisci dopo l'estrazione"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1996,7 +1926,7 @@ msgstr "Stop"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2D
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2101,6 +2031,11 @@ msgstr "Attiva il rilevamento di blocc&hi spostati"
 msgid "&Match similar lines"
 msgstr "&Metti in corrispondenza linee simili"
 
+#: Merge.rc:4C3E0A2E
+#, c-format
+msgid "Comments"
+msgstr "Commenti"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2196,7 +2131,7 @@ msgstr "Nuovo..."
 msgid "Edit..."
 msgstr "Modifica..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Elimina..."
@@ -2256,7 +2191,7 @@ msgstr "Sca&rta le modifiche"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A30
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
 msgstr "Codice di pagina"
@@ -2331,7 +2266,7 @@ msgstr "Parole chiave:"
 msgid "Function names:"
 msgstr "Nomi funzioni:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Commenti:"
@@ -2471,7 +2406,7 @@ msgstr "Cartelle:"
 msgid "Files:"
 msgstr "File:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Diversi"
@@ -2626,7 +2561,7 @@ msgstr "Spazi bianchi:"
 msgid "Regular text:"
 msgstr "Testo normale:"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB58F
 #, c-format
 msgid "Selection:"
 msgstr "Selezione:"
@@ -2661,7 +2596,7 @@ msgstr "Confronto di &file"
 msgid "Create backup files into:"
 msgstr "Crea le copie dei file in:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "Cartella &originaria del file"
@@ -2676,7 +2611,7 @@ msgstr "Cartella &globale di backup:"
 msgid "Backup filename:"
 msgstr "Nome della copia:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "&Aggiungi l'estensione .bak"
@@ -2811,7 +2746,7 @@ msgstr ""
 msgid "Frhed settings"
 msgstr ""
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr ""
@@ -3036,11 +2971,6 @@ msgstr ""
 msgid "Syntax"
 msgstr ""
 
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Controllo versioni"
-
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
@@ -3261,11 +3191,6 @@ msgstr "Espressione regolare"
 #: Merge.rc:34BD4316
 #, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
-msgstr ""
-
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
 msgstr ""
 
 #: Merge.rc:114DD351
@@ -3602,86 +3527,6 @@ msgstr ""
 "Impossibile unire le differenze se i documenti non sono sincronizzati.\n"
 "\n"
 "Aggiorna i documenti prima di continuare."
-
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "E' necessario specificare il percorso di un progetto SourceSafe per continuare (Es.:  $/MioProgetto)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Estrazione dei file da VSS in corso..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "SourceSafe ha generato un errore tentando di estrarre il file. Impossibile continuare..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Errore nell'esecuzione di un comando del sistema di versioning."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "La cartella di lavoro di VSS e la posizione del file corrente non coincidono. Continuare?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "Nessun database di VSS trovato!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "Errore di VSS:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"Il sistema di versioning ha restituito un errore tentando di reinserire il file.\n"
-" Controlla per favore la configurazione della vista utilizzata.\n"
-" Annullare l'operazione di estrazione?"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"Il sistema di versioning ha restituito un errore tentando di annullare l'estrazione del file.\n"
-" Controlla per favore la configurazione della vista utilizzata."
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Nessuno"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (precedente a 5.0)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 e superiore)"
-
-#: Merge.rc:2405135
-#, c-format
-msgid "Break at whitespace"
-msgstr "Interrompi agli spazi bianchi"
-
-#: Merge.rc:6CB369C2
-#, c-format
-msgid "Break at whitespace or punctuation"
-msgstr "Interrompi agli spazi bianchi o punteggiatura"
 
 #: Merge.rc:237A127
 #, c-format
@@ -4333,7 +4178,7 @@ msgstr "Lista separata da Tab"
 msgid "Simple HTML"
 msgstr "HTML semplice"
 
-#: Merge.rc:751AB591
+#: Merge.rc:751AB590
 #, c-format
 msgid "Simple XML"
 msgstr "XML semplice"
@@ -4523,7 +4368,7 @@ msgstr ""
 msgid "Location Pane"
 msgstr "Pannello della locazione"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Pannello delle differenze"
@@ -4666,6 +4511,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Mescolato"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Nessuno"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4676,7 +4526,7 @@ msgstr ""
 msgid "Unpacker"
 msgstr ""
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr ""

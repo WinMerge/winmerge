@@ -736,18 +736,6 @@ endSplit:
 	}
 }
 
-// Split Rational ClearCase view name (file_name@@file_version).
-void SplitViewName(const TCHAR *s, String * path, String * name, String * ext)
-{
-	String sViewName(s);
-	size_t nOffset = sViewName.find(_T("@@"));
-	if (nOffset != String::npos)
-	{
-		sViewName.erase(nOffset);
-		SplitFilename(sViewName, path, name, ext);
-	}
-}
-
 /**
  * @brief Return path component from full path.
  * @param [in] fullpath Full path to split.

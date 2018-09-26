@@ -30,7 +30,6 @@
 #include "Merge.h"
 #include "ClipBoard.h"
 #include "DirActions.h"
-#include "SourceControl.h"
 #include "DirViewColItems.h"
 #include "DirFrame.h"  // StatePane
 #include "DirDoc.h"
@@ -969,16 +968,9 @@ void CDirView::ConfirmAndPerformActions(FileActionScript & actionList)
 /**
  * @brief Perform an array of actions
  * @note There can be only COPY or DELETE actions, not both!
- * @sa SourceControl::SaveToVersionControl()
- * @sa SourceControl::SyncFilesToVCS()
  */
 void CDirView::PerformActionList(FileActionScript & actionScript)
 {
-	// Reset suppressing VSS dialog for multiple files.
-	// Set in SourceControl::SaveToVersionControl().
-	theApp.m_pSourceControl->m_CheckOutMulti = false;
-	theApp.m_pSourceControl->m_bVssSuppressPathCheck = false;
-
 	// Check option and enable putting deleted items to Recycle Bin
 	if (GetOptionsMgr()->GetBool(OPT_USE_RECYCLE_BIN))
 		actionScript.UseRecycleBin(true);
@@ -1009,13 +1001,6 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		// Start handling from tail of list, so removing items
 		// doesn't invalidate our item indexes.
 		FileActionItem act = actionList.RemoveTailActionItem();
-
-		// Synchronized items may need VCS operations
-		if (act.UIResult == FileActionItem::UI_SYNC)
-		{
-			if (theApp.m_pSourceControl->m_bCheckinVCS)
-				theApp.m_pSourceControl->CheckinToClearCase(act.dest);
-		}
 
 		// Update doc (difflist)
 		UPDATEITEM_TYPE updatetype = UpdateDiffAfterOperation(act, ctxt, GetDiffItem(act.context));

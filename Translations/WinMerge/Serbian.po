@@ -1495,61 +1495,6 @@ msgstr ""
 msgid "Read-o&nly"
 msgstr ""
 
-#: Merge.rc:629C1DDC
-#, c-format
-msgid "Database:"
-msgstr "Áàçà ïîäàòàêà:"
-
-#: Merge.rc:60C4588F
-#, c-format
-msgid "Project:"
-msgstr "Ïîðååœå:"
-
-#: Merge.rc:15E1A7E1
-#, c-format
-msgid "User:"
-msgstr "Êîðèñíèê:"
-
-#: Merge.rc:37C6B9B8
-#, c-format
-msgid "Password:"
-msgstr "Ëîçèíêà:"
-
-#: Merge.rc:F75DAF7
-#, c-format
-msgid "Link to Destination VSS project"
-msgstr "Âåçà äî îäðåäèøòà VSS ïðî¼åêòà"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Ïðèìåíè íà ñâå ñòàâêå"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Ïðîâåðà"
-
-#: Merge.rc:751AB58F
-#, c-format
-msgid "Save As..."
-msgstr "Ñà÷óâà¼ êàî..."
-
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Èçäàœå ïðîãðàìà"
-
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&Versioning System:"
-msgstr "&Èçáîð ïðîãðàìà"
-
-#: Merge.rc:381D79E5
-#, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "&Ïóòàœà äî cleartool.exe"
-
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
@@ -1675,7 +1620,7 @@ msgstr "Çàìåíè"
 msgid "Re&place with:"
 msgstr "Çà&ìåíè ñà:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "&Áåç ïðåëîìà òåêñòà"
@@ -1729,21 +1674,6 @@ msgstr ""
 #, c-format
 msgid "&Apply"
 msgstr "Ï&ðèìåíè"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Ïðîâåðà"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Íàïîìåíå"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Ïðîâåðèòå ïîíîâî"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1995,7 +1925,7 @@ msgstr "Ñòàíè"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2D
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2100,6 +2030,11 @@ msgstr "Îìîãóžè îòêðèâàœå ïðåìåøòåíèõ ãðóïà"
 msgid "&Match similar lines"
 msgstr "Óïîðåäè ñëè÷íå ðåäîâå"
 
+#: Merge.rc:4C3E0A2E
+#, c-format
+msgid "Comments"
+msgstr "Íàïîìåíå"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2195,7 +2130,7 @@ msgstr "Íîâè..."
 msgid "Edit..."
 msgstr "Óðåäè..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Èçáðèøè..."
@@ -2255,7 +2190,7 @@ msgstr "Îäóñ&òàíè îä èçìåíà"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A30
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
 msgstr "Êîäíà ñòðàíèöà"
@@ -2334,7 +2269,7 @@ msgstr "Êšó÷íå ðå÷è:"
 msgid "Function names:"
 msgstr "Èìåíà ôóíêöè¼à:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Íàïîìåíå:"
@@ -2474,7 +2409,7 @@ msgstr "Ôàñöèêëå"
 msgid "Files:"
 msgstr "Äàòîòåêå"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Ðàçëèêà"
@@ -2629,7 +2564,7 @@ msgstr "Ðàçìàê:"
 msgid "Regular text:"
 msgstr "Ïðàâèëàí òåêñò:"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB58F
 #, c-format
 msgid "Selection:"
 msgstr "Èçàáåðè:"
@@ -2664,7 +2599,7 @@ msgstr "Óïîð&åäè äàòîòåêå"
 msgid "Create backup files into:"
 msgstr "Íàïðàâè ðåçåðâíå äàòîòåêå ó:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "Èçâ&îðíà ôàñöèêëà äàòîòåêå"
@@ -2679,7 +2614,7 @@ msgstr "Îïøòà ðåçåðâíà ôàñöèêëà "
 msgid "Backup filename:"
 msgstr "Èìå ðåçåðâíå äàòîòåêå"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "Äîä&à¼ .bak íàñòàâàê"
@@ -2814,7 +2749,7 @@ msgstr ""
 msgid "Frhed settings"
 msgstr ""
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr ""
@@ -3046,11 +2981,6 @@ msgstr ""
 msgid "Syntax"
 msgstr ""
 
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Ïðîãðàìè"
-
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
@@ -3278,11 +3208,6 @@ msgstr ""
 "Ôèòåðè ñó îñâåæåíè. Äà ëè æåëèòå îñâåæèòè ñâà îòâîðåíà ïîðååœà?\n"
 "\n"
 "Àêî èçàáåðåòå /Íå/ òî ìîæåòå è êàñíè¼å óðàäèòè"
-
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "&Ïóòàœà äî SS.EXE:"
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3632,86 +3557,6 @@ msgstr ""
 "Íå ìîãó îá¼åäèíèòè ðàçëèêå êàäà äîêóìåíòè íèñó óñàãëàøåíè.\n"
 "\n"
 "Îñâåæè äîêóìåíòå ïðå íàñòàâêà"
-
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Ìîðàòå îäðåäèòè ñèãóðíó èçâîðíó ïóòàœó àêî æåëèòå íàñòàâèòè (ie:  $/MyProject)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Ïîâåðà äàòîòåêà íà VSS..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Ñèñòåì ¼å ïîêàçàî ãðåøêó äîê ¼å ïîêóøàâàî äà ïðîâåðè äàòîòåêó.Íå ìîæå äà íàñòàâè..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Ãðåøêà ïðè èçâðøåœó ñèñòåìñêå íàðåäáå"
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "VSS ðàäíà ôàñöèêëa è ïîëîæà¼ òðåíóòå äàòîòåêå ñå íå ïîêëàïà¼ó.Íàñòàâèòå?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "Íåìà VSS áàçå ïîäàòàêà"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "Ãðåøêà èç VSS"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"Ñèñòåì ïîêàçó¼å ãðåøêó äîê ïîêóøàâà äà ïðîâåðè äàòîòåêó\n"
-"Ìîëèìî, ïîãëåäà¼òå ïîäåøåíîñò êîðèñíè÷êîã èçãëåäà.\n"
-"Îïîçîâè ïðîâåðó?"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"Ñèñòåì ïðèêàçó¼å ãðåøêó äîê ïîêóøàâà äà îïîçîâå ïðîâåðó äàòîòåêå.\n"
-"Ìîëèìî, ïîãëåäà¼òå ïîäåøåíîñò êîðèñíè÷êîã èçãëåäà"
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Íèøòà"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (ìàœè îä 5.0)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 è âèøè)"
-
-#: Merge.rc:2405135
-#, c-format
-msgid "Break at whitespace"
-msgstr "Ñòàíè íà ðàçìàêó"
-
-#: Merge.rc:6CB369C2
-#, c-format
-msgid "Break at whitespace or punctuation"
-msgstr "Ñòàíè íà ðàçìàêó èëè èíòåðïóêöè¼è"
 
 #: Merge.rc:237A127
 #, c-format
@@ -4363,7 +4208,7 @@ msgstr "Ñïèñàê ¼å îäâî¼åí ¼åçè÷êîì"
 msgid "Simple HTML"
 msgstr "£åäíîñòàâíè HTML"
 
-#: Merge.rc:751AB591
+#: Merge.rc:751AB590
 #, c-format
 msgid "Simple XML"
 msgstr "£åäíîñòàâíè XML"
@@ -4553,7 +4398,7 @@ msgstr ""
 msgid "Location Pane"
 msgstr "Ïîëîæà¼ òàáëè"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Ðàçëè÷èòå òàáëå"
@@ -4696,6 +4541,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Mixed"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Íèøòà"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4706,7 +4556,7 @@ msgstr "Âðñòà"
 msgid "Unpacker"
 msgstr "Ðàñïàêèâàœå"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Äåôèíèñàíî ïîðååœå"

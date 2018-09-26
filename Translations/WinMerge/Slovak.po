@@ -1496,61 +1496,6 @@ msgstr ""
 msgid "Read-o&nly"
 msgstr ""
 
-#: Merge.rc:629C1DDC
-#, c-format
-msgid "Database:"
-msgstr "Databáza:"
-
-#: Merge.rc:60C4588F
-#, c-format
-msgid "Project:"
-msgstr "Projekt:"
-
-#: Merge.rc:15E1A7E1
-#, c-format
-msgid "User:"
-msgstr "Používateľ:"
-
-#: Merge.rc:37C6B9B8
-#, c-format
-msgid "Password:"
-msgstr "Heslo:"
-
-#: Merge.rc:F75DAF7
-#, c-format
-msgid "Link to Destination VSS project"
-msgstr "Odkaz na Cieľový VSS projekt"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Použiť na všetky položky"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Check Out"
-
-#: Merge.rc:751AB58F
-#, c-format
-msgid "Save As..."
-msgstr "Uložiť ako..."
-
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Systém pre spávu verzií"
-
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&Versioning System:"
-msgstr "Systém pre správu &verzií:"
-
-#: Merge.rc:381D79E5
-#, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "&Cesta ku cleartool.exe:"
-
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
@@ -1676,7 +1621,7 @@ msgstr "Nahradiť"
 msgid "Re&place with:"
 msgstr "Nahradiť:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "&Nezalamovať koniec súboru"
@@ -1730,21 +1675,6 @@ msgstr ""
 #, c-format
 msgid "&Apply"
 msgstr "&Použiť"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "CheckOut"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Komentáre"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Check in po checkout-e"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1996,7 +1926,7 @@ msgstr "Zastaviť"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2D
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2101,6 +2031,11 @@ msgstr "Zapnúť &detekciu pohyblivého bloku"
 msgid "&Match similar lines"
 msgstr "&Podobné riadky ako zhodné"
 
+#: Merge.rc:4C3E0A2E
+#, c-format
+msgid "Comments"
+msgstr "Komentáre"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2196,7 +2131,7 @@ msgstr "Nový..."
 msgid "Edit..."
 msgstr "Upravovať..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Zmazať..."
@@ -2256,7 +2191,7 @@ msgstr "Z&ahodiť zmeny"
 msgid "Disca&rd All"
 msgstr "&Zahodiť všetky"
 
-#: Merge.rc:4C3E0A30
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
 msgstr "Kódová stránka"
@@ -2335,7 +2270,7 @@ msgstr "Kľúčové slová:"
 msgid "Function names:"
 msgstr "Názvy funkcií:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Komentáre:"
@@ -2475,7 +2410,7 @@ msgstr "Adresáre:"
 msgid "Files:"
 msgstr "Súbory:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Odlišné"
@@ -2630,7 +2565,7 @@ msgstr "Netlačiteľné znaky:"
 msgid "Regular text:"
 msgstr "Bežný text:"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB58F
 #, c-format
 msgid "Selection:"
 msgstr "Výber:"
@@ -2665,7 +2600,7 @@ msgstr "Porovnávanie &súborov"
 msgid "Create backup files into:"
 msgstr "Vytvárať záložné súbory do:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "Adresár &originálneho súboru"
@@ -2680,7 +2615,7 @@ msgstr "&Globálny adresár pre zálohy:"
 msgid "Backup filename:"
 msgstr "Názov záložného súboru:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "&Pridať rozšírenie .bak"
@@ -2815,7 +2750,7 @@ msgstr ""
 msgid "Frhed settings"
 msgstr ""
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr ""
@@ -3047,11 +2982,6 @@ msgstr ""
 msgid "Syntax"
 msgstr ""
 
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Kontrola verzií"
-
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
@@ -3279,11 +3209,6 @@ msgstr ""
 "Filtre boli aktualizované. Chcete obnoviť všetky otvorené porovnania priečinkov?\n"
 "\n"
 "Ak nechcete obnoviť všetky porovnania priečinkov, môžete vybrať Nie a obnoviť porovnania neskôr."
-
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "&Cesta k SS.EXE:"
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3635,86 +3560,6 @@ msgstr ""
 "Nebolo možné zlúčiť rozdiely, keďže dokumenty nie sú synchronizované.\n"
 "\n"
 "Obnovte dokumenty, než budete pokračovať."
-
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Musíte nastaviť cestu k projektu SourceSafe (napr.: $/MojProjekt)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Checkout súborov z VSS..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "SourceSafe vrátil chybu pri pokuse skontrolovať súbor. Nemožno pokračovať..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Chyba pri spúšťaní príkazu zo Systému Verzií (CVS a pod)."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "pracovný adresár VSS Working Folder a umiestnenie aktuálneho súboru sa nezhodujú. Pokračovať?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "Nebola nájdená databáza VSS!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "Chyba VSS:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"Systém pre správu verzií vrátil chybu pri pokuse zaregistrovať (check in) súbor.\n"
-" Prosím, skontrolujte konfiguráciu zvoleného pohľadu.\n"
-" Vrátiť operáciu checkout?"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"Systém pre správu verzií vrátil chybu pri pokuse vrátiť (checkout) súbor.\n"
-" Prosím, skontrolujte konfiguráciu zvoleného pohľadu. "
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Žiadny"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (menšie ako 5.0)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 a vyššie)"
-
-#: Merge.rc:2405135
-#, c-format
-msgid "Break at whitespace"
-msgstr "Prerušiť na netlačiteľnom znaku"
-
-#: Merge.rc:6CB369C2
-#, c-format
-msgid "Break at whitespace or punctuation"
-msgstr "Prerušiť na netlačiteľnom znaku alebo vetnej diakritike"
 
 #: Merge.rc:237A127
 #, c-format
@@ -4366,7 +4211,7 @@ msgstr "Zoznam oddelený tabulátormi"
 msgid "Simple HTML"
 msgstr "Jednoduché HTML"
 
-#: Merge.rc:751AB591
+#: Merge.rc:751AB590
 #, c-format
 msgid "Simple XML"
 msgstr "Jednoduché XML"
@@ -4556,7 +4401,7 @@ msgstr ""
 msgid "Location Pane"
 msgstr "Lokačný panel"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Panel rozdielu"
@@ -4699,6 +4544,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Zmiešaný"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Žiadny"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4709,7 +4559,7 @@ msgstr "Typ"
 msgid "Unpacker"
 msgstr "Rozbaľovací program"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Prediff"

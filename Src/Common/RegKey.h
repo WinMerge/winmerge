@@ -21,7 +21,6 @@ public:
 
 // Operations
 public:
-	HKEY GetKey()  { return m_hKey; }  // Only used by VssPrompt.cpp - can be removed?
 	void Close();
 	LONG Open(HKEY hKeyRoot, LPCTSTR pszPath);
 	LONG OpenWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam);
