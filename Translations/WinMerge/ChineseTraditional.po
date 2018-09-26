@@ -1504,61 +1504,6 @@ msgstr "唯讀(&D)"
 msgid "Read-o&nly"
 msgstr "唯讀(&N)"
 
-#: Merge.rc:629C1DDC
-#, c-format
-msgid "Database:"
-msgstr "資料庫："
-
-#: Merge.rc:60C4588F
-#, c-format
-msgid "Project:"
-msgstr "專案："
-
-#: Merge.rc:15E1A7E1
-#, c-format
-msgid "User:"
-msgstr "用戶："
-
-#: Merge.rc:37C6B9B8
-#, c-format
-msgid "Password:"
-msgstr "密碼："
-
-#: Merge.rc:F75DAF7
-#, c-format
-msgid "Link to Destination VSS project"
-msgstr "連結到目標 VSS 專案"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "套用到所有項目"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "通過"
-
-#: Merge.rc:751AB58F
-#, c-format
-msgid "Save As..."
-msgstr "另存新檔..."
-
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "版本管理系統"
-
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&Versioning System:"
-msgstr "版本管理系統(&V)："
-
-#: Merge.rc:381D79E5
-#, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "cleartool.exe 路徑(&P)："
-
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
@@ -1686,7 +1631,7 @@ msgstr "取代"
 msgid "Re&place with:"
 msgstr "取代為(&P)："
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "至檔尾不折返(&D)"
@@ -1740,21 +1685,6 @@ msgstr "背景顏色(&B)"
 #, c-format
 msgid "&Apply"
 msgstr "套用(&A)"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "送回改過檔"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "備註"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "送回改過檔後就取出之"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -2006,7 +1936,7 @@ msgstr "停止"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2D
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2111,6 +2041,11 @@ msgstr "偵測移位的區塊(&N)"
 msgid "&Match similar lines"
 msgstr "找出相似行(&M)"
 
+#: Merge.rc:4C3E0A2E
+#, c-format
+msgid "Comments"
+msgstr "備註"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2206,7 +2141,7 @@ msgstr "新增..."
 msgid "Edit..."
 msgstr "編輯..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "刪除..."
@@ -2266,7 +2201,7 @@ msgstr "放棄變更(&C)"
 msgid "Disca&rd All"
 msgstr "放棄全部(&R)"
 
-#: Merge.rc:4C3E0A30
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
 msgstr "編碼頁"
@@ -2345,7 +2280,7 @@ msgstr "關鍵字："
 msgid "Function names:"
 msgstr "函數名："
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "註："
@@ -2486,7 +2421,7 @@ msgstr "資料夾："
 msgid "Files:"
 msgstr "檔案："
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "不同"
@@ -2641,7 +2576,7 @@ msgstr "空白："
 msgid "Regular text:"
 msgstr "類型表式文："
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB58F
 #, c-format
 msgid "Selection:"
 msgstr "選取："
@@ -2676,7 +2611,7 @@ msgstr "比較檔案時(&E)"
 msgid "Create backup files into:"
 msgstr "產生備份檔至："
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "原始檔的資料夾(&O)"
@@ -2691,7 +2626,7 @@ msgstr "總的備份資料夾(&G)："
 msgid "Backup filename:"
 msgstr "備份檔檔名："
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "附上 .bak 副檔名(&A)"
@@ -2826,7 +2761,7 @@ msgstr "二進制檔案副檔名(&P)"
 msgid "Frhed settings"
 msgstr "Frhed 設定"
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr "顯示設定(&S)..."
@@ -3058,11 +2993,6 @@ msgstr "如果要再顯示這個訊息，請在選項對話視窗內的一般頁
 msgid "Syntax"
 msgstr "語法"
 
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "版本控制"
-
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
@@ -3291,11 +3221,6 @@ msgstr ""
 "篩選器更新過。想重整所有進行中的資料夾比較嗎？\n"
 "\n"
 "如果不想現在重整，請選「否」。"
-
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "至 SS.EXE 的路徑(&P)"
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3644,86 +3569,6 @@ msgid ""
 "\n"
 "Refresh documents before continuing."
 msgstr "如未重整檔案，WinMerge 不能併入異動。"
-
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "一定得指定一個 SourceSafe 專案路徑才能繼續 (例如： $/MyProject)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "由 VSS 取出檔案..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "送回改過檔時，版本系統回報一個錯誤。無法繼續..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "執行版本系統指令時發生錯誤。"
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "VSS 作業資料夾和目前檔案位置不符合。要繼續嗎？"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "找不到 VSS 資料庫！"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "VSS 發生錯誤："
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"送回改過檔時，版本系統回報一個錯誤。\n"
-" 請檢查檢視過後的組態。\n"
-" 復原取出？"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"撤回取出檔案時，版本系統回報一個錯誤。\n"
-" 請檢查檢視過後的組態。"
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "無"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (早於 5.0 版)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 版和更晚的版本)"
-
-#: Merge.rc:2405135
-#, c-format
-msgid "Break at whitespace"
-msgstr "空白處中斷"
-
-#: Merge.rc:6CB369C2
-#, c-format
-msgid "Break at whitespace or punctuation"
-msgstr "空白處或標點處中斷"
 
 #: Merge.rc:237A127
 #, c-format
@@ -4375,7 +4220,7 @@ msgstr "跳格號分隔列表"
 msgid "Simple HTML"
 msgstr "單純 HTML"
 
-#: Merge.rc:751AB591
+#: Merge.rc:751AB590
 #, c-format
 msgid "Simple XML"
 msgstr "單純 XML"
@@ -4569,7 +4414,7 @@ msgstr "遠望窗格"
 
 # also refer to line 5578
 # 差異窗格
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "近察窗格"
@@ -4712,6 +4557,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "混合"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "無"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4722,7 +4572,7 @@ msgstr "類型"
 msgid "Unpacker"
 msgstr "解壓縮程式"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "先行處理器"

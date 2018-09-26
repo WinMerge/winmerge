@@ -929,40 +929,6 @@ BEGIN
     CONTROL         "Read-o&nly",IDC_PATH2_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,288,154,72,10
 END
 
-IDD_VSS DIALOGEX 0, 0, 257, 166
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Visual SourceSafe"
-FONT 8, "MS Shell Dlg", 0, 0, 0x1
-BEGIN
-    LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
-    LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    LTEXT           "Database:",IDC_STATIC,7,64,50,10
-    COMBOBOX        IDC_DATABASE_LIST,62,63,188,114,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Project:",IDC_STATIC,7,81,50,10
-    COMBOBOX        IDC_PROJECT_COMBO,62,78,188,114,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "User:",IDC_STATIC,7,99,50,10
-    EDITTEXT        IDC_USER,62,96,63,14,ES_AUTOHSCROLL
-    RTEXT           "Password:",IDC_STATIC,132,99,55,10
-    EDITTEXT        IDC_PASSWORD,190,96,60,14,ES_PASSWORD | ES_AUTOHSCROLL
-    CONTROL         "Link to Destination VSS project",IDC_VCPROJ_SYNC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,10
-    DEFPUSHBUTTON   "Check Out",IDOK,41,145,70,14
-    PUSHBUTTON      "Save As...",IDC_SAVE_AS,115,145,70,14
-    PUSHBUTTON      "Cancel",IDCANCEL,190,145,60,14
-END
-
-IDD_PROP_VSS DIALOGEX 0, 0, 235, 157
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Versioning System"
-FONT 8, "MS Shell Dlg", 0, 0, 0x1
-BEGIN
-    LTEXT           "&Versioning System:",IDC_STATIC,7,6,221,10
-    COMBOBOX        IDC_VER_SYS,7,18,166,98,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "&Path to cleartool.exe:",IDC_VSS_L1,7,36,221,10
-    EDITTEXT        IDC_PATH_EDIT,7,48,166,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Browse...",IDC_BROWSE_BUTTON,178,48,50,14
-END
-
 IDD_PROPPAGE_GENERAL DIALOGEX 0, 0, 235, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "General"
@@ -1065,20 +1031,6 @@ BEGIN
     DEFPUSHBUTTON   "&Ok",IDOK,138,154,50,14,WS_GROUP
     PUSHBUTTON      "&Apply",ID_APPLY_NOW,189,154,50,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,240,154,50,14
-END
-
-IDD_CLEARCASE DIALOGEX 0, 0, 279, 134
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Rational ClearCase"
-FONT 8, "MS Shell Dlg", 0, 0, 0x1
-BEGIN
-    DEFPUSHBUTTON   "CheckOut",IDOK,129,115,70,14
-    PUSHBUTTON      "Cancel",IDCANCEL,203,115,70,14
-    PUSHBUTTON      "Save As...",IDC_SAVE_AS,129,115,70,14,NOT WS_VISIBLE
-    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "Comments",IDC_STATIC,18,7,243,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,83,243,10
-    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,93,243,10
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 365, 188
@@ -1936,7 +1888,6 @@ BEGIN
     IDS_OPTIONSPG_SYNTAXCOLORS "Syntax"
     IDS_OPTIONSPG_MARKERCOLORS "Markers"
     IDS_OPTIONSPG_SYSTEM    "System"
-    IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
     IDS_OPTIONSPG_CODEPAGE  "Codepage"
     IDS_OPTIONSPG_ARCHIVE   "Archive Support"
     IDS_OPTIONSPG_BACKUPS   "Backup Files"
@@ -2043,13 +1994,6 @@ BEGIN
     IDS_FILTERCHANGED       "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 END
 
-// VERSION CONTROL OPTIONS
-STRINGTABLE
-BEGIN
-    IDS_CC_CMD              "&Path to cleartool.exe:"
-    IDS_VSS_CMD             "&Path to SS.EXE:"
-END
-
 // WINDOWS TITLES
 STRINGTABLE
 BEGIN
@@ -2139,32 +2083,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_VIEWS_OUTOFSYNC     "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
-END
-
-// VSS
-STRINGTABLE
-BEGIN
-    IDS_NOPROJECT           "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-    IDS_VSS_RUN_ERROR       "Error executing versioning system command."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH 
-                            "The VSS Working Folder and the location of the current file do not match. Continue?"
-    IDS_VSS_NODATABASES     "No VSS database(s) found!"
-    IDS_VSS_ERRORFROM       "Error from VSS:"
-    IDS_VSS_CHECKINERROR    "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
-    IDS_VSS_UNCOERROR       "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
-END
-
-// VSS system
-STRINGTABLE
-BEGIN
-    IDS_VCS_NONE            "None"
-    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
-    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
-    IDS_VCS_CLEARCASE       "Rational ClearCase"
-    IDS_BREAK_ON_WHITESPACE "Break at whitespace"
-    IDS_BREAK_ON_PUNCTUATION "Break at whitespace or punctuation"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

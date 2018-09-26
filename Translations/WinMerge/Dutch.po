@@ -1498,61 +1498,6 @@ msgstr "Alleen-lezen"
 msgid "Read-o&nly"
 msgstr "Alleen-lezen"
 
-#: Merge.rc:629C1DDC
-#, c-format
-msgid "Database:"
-msgstr "Database:"
-
-#: Merge.rc:60C4588F
-#, c-format
-msgid "Project:"
-msgstr "Project:"
-
-#: Merge.rc:15E1A7E1
-#, c-format
-msgid "User:"
-msgstr "Gebruiker:"
-
-#: Merge.rc:37C6B9B8
-#, c-format
-msgid "Password:"
-msgstr "Wachtwoord:"
-
-#: Merge.rc:F75DAF7
-#, c-format
-msgid "Link to Destination VSS project"
-msgstr "Link naar VSS-doelproject"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Op alle items toepassen"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Uitchecken"
-
-#: Merge.rc:751AB58F
-#, c-format
-msgid "Save As..."
-msgstr "Opslaan als..."
-
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Versiebeheersysteem"
-
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&Versioning System:"
-msgstr "Versiebeheersysteem:"
-
-#: Merge.rc:381D79E5
-#, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "Pad naar cleartool.exe:"
-
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
@@ -1683,7 +1628,7 @@ msgstr "Vervangen"
 msgid "Re&place with:"
 msgstr "Vervangen door:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "Bij einde bestand stoppen"
@@ -1737,21 +1682,6 @@ msgstr "Achtergrondkleur:"
 #, c-format
 msgid "&Apply"
 msgstr "Toepassen"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Uitchecken"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Opmerkingen"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Inchecken na uitchecken"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -2003,7 +1933,7 @@ msgstr "Stoppen"
 msgid "Pause"
 msgstr "Pauzeren"
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2D
 #, c-format
 msgid "Continue"
 msgstr "Doorgaan"
@@ -2108,6 +2038,11 @@ msgstr "Detectie verplaatste blokken inschakelen"
 msgid "&Match similar lines"
 msgstr "Gelijke regels laten overeenkomen"
 
+#: Merge.rc:4C3E0A2E
+#, c-format
+msgid "Comments"
+msgstr "Opmerkingen"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2203,7 +2138,7 @@ msgstr "Nieuw..."
 msgid "Edit..."
 msgstr "Bewerken..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Verwijderen..."
@@ -2263,7 +2198,7 @@ msgstr "Wijzigingen verwerpen"
 msgid "Disca&rd All"
 msgstr "Alles verwerpen"
 
-#: Merge.rc:4C3E0A30
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
 msgstr "Tekenset"
@@ -2348,7 +2283,7 @@ msgstr "Sleutelwoorden:"
 msgid "Function names:"
 msgstr "Functienamen"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Opmerkingen:"
@@ -2488,7 +2423,7 @@ msgstr "Mappen:"
 msgid "Files:"
 msgstr "Bestanden:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Verschillend"
@@ -2643,7 +2578,7 @@ msgstr "Witruimte:"
 msgid "Regular text:"
 msgstr "Gewone tekst:"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB58F
 #, c-format
 msgid "Selection:"
 msgstr "Selectie:"
@@ -2678,7 +2613,7 @@ msgstr "Bestanden vergelijken"
 msgid "Create backup files into:"
 msgstr "Backupbestanden aanmaken in:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "Map van origineel bestand"
@@ -2693,7 +2628,7 @@ msgstr "Globale backupmap:"
 msgid "Backup filename:"
 msgstr "Bestandsnaam backup:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr ".bak-extensie toevoegen"
@@ -2832,7 +2767,7 @@ msgstr "Binaire bestandspatronen:"
 msgid "Frhed settings"
 msgstr "Frhed-instellingen"
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr "Instellingen weergeven..."
@@ -3094,11 +3029,6 @@ msgstr ""
 msgid "Syntax"
 msgstr "Syntax"
 
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Versiebeheer"
-
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
@@ -3330,11 +3260,6 @@ msgstr ""
 "Filters werden bijgewerkt. Wilt u alle geopende mapvergelijkingen vernieuwen?\n"
 "\n"
 "Indien u dit nu niet wilt doen, kunt u nee selecteren en de vergelijkingen later vernieuwen."
-
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "Pad naar SS.EXE:"
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3690,98 +3615,6 @@ msgstr ""
 "Kan geen verschillen samenvoegen wanneer documenten niet gelijklopend zijn.\n"
 "\n"
 "Vernieuw documenten voordat u doorgaat."
-
-#: Merge.rc:5C264194
-#, c-format
-msgid ""
-"You must specify a SourceSafe project path in order to continue (ie:  "
-"$/MyProject)"
-msgstr ""
-"U moet een SourceSafe project pad opgeven om door te gaan  (bv:  "
-"$/MyProject)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Bestanden vanuit VSS uitchecken..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check out the file."
-"  Unable to continue..."
-msgstr ""
-"Versiebeheersysteem gaf een fout bij een poging om het bestand uit te "
-"checken. Kan niet verder gaan..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Fout bij het uitvoeren van versiebeheersysteem-opdracht."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid ""
-"The VSS Working Folder and the location of the current file do not match. "
-"Continue?"
-msgstr ""
-"De VSS werkmap en de lokatie van het huidige bestand komen niet overeen. "
-"Doorgaan?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "Geen VSS database(s) gevonden!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "Fout van VSS:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"Versiebeheersysteem gaf een fout bij een poging om het bestand in te checken.\n"
-" Controleer configuratie-specificaties van de gebruikte weergave.\n"
-" Uitchecken-handeling ongedaan maken?"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"Versiebeheersysteem gaf een fout bij een poging om het uitchecken van het bestand ongedaan te maken.\n"
-" Controleer configuratie-specificaties van de gebruikte weergave."
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Geen"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (5.0 of lager)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 en hoger)"
-
-#: Merge.rc:2405135
-#, c-format
-msgid "Break at whitespace"
-msgstr "Afbreken bij witruimte"
-
-#: Merge.rc:6CB369C2
-#, c-format
-msgid "Break at whitespace or punctuation"
-msgstr "Afbreken bij witruimte of interpunctie"
 
 #: Merge.rc:237A127
 #, c-format
@@ -4441,7 +4274,7 @@ msgstr "Tab-gescheiden lijst"
 msgid "Simple HTML"
 msgstr "Simpele HTML"
 
-#: Merge.rc:751AB591
+#: Merge.rc:751AB590
 #, c-format
 msgid "Simple XML"
 msgstr "Simpele XML"
@@ -4645,7 +4478,7 @@ msgstr "Wijzigingen van regeleinde geven conflicten"
 msgid "Location Pane"
 msgstr "Locatievenster"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Verschilvenster"
@@ -4788,6 +4621,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Gemengd"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Geen"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4798,7 +4636,7 @@ msgstr "Type"
 msgid "Unpacker"
 msgstr "Uitpakker"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Voorvergelijken"

@@ -1495,61 +1495,6 @@ msgstr ""
 msgid "Read-o&nly"
 msgstr ""
 
-#: Merge.rc:629C1DDC
-#, c-format
-msgid "Database:"
-msgstr "Βάση Δεδομένων:"
-
-#: Merge.rc:60C4588F
-#, c-format
-msgid "Project:"
-msgstr "Έργο:"
-
-#: Merge.rc:15E1A7E1
-#, c-format
-msgid "User:"
-msgstr "Χρήστης:"
-
-#: Merge.rc:37C6B9B8
-#, c-format
-msgid "Password:"
-msgstr "Συνθηματικό:"
-
-#: Merge.rc:F75DAF7
-#, c-format
-msgid "Link to Destination VSS project"
-msgstr "Παραπομπή στο έργο VSS Προορισμού"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Εφαρμογή σε όλα τα αντικείμενα"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Έλεγχος κ΄ Έξοδος"
-
-#: Merge.rc:751AB58F
-#, c-format
-msgid "Save As..."
-msgstr "Αποθήκευση Ως..."
-
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Σύστημα Διαχειρίσεως Εκδόσεων"
-
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&Versioning System:"
-msgstr "&Σύστημα Διαχειρίσεως Εκδόσεων:"
-
-#: Merge.rc:381D79E5
-#, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "&Διαδρομή του cleartool.exe:"
-
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
@@ -1675,7 +1620,7 @@ msgstr "Αντικατάσταση"
 msgid "Re&place with:"
 msgstr "Αντι&κατάσταση με:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "Χωρίς ανα&δίπλωση στο τέλος του αρχείου"
@@ -1729,21 +1674,6 @@ msgstr ""
 #, c-format
 msgid "&Apply"
 msgstr "Ε&φαρμογή"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Έλεγχος κ΄ Έξοδος"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Σχόλια"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Διαπίστευση μετά από έλεγχο κ΄ έξοδο"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1995,7 +1925,7 @@ msgstr "Τερματισμός"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2D
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2100,6 +2030,11 @@ msgstr "Ενεργοποίηση ανι&χνεύσεως μετακινηθέν�
 msgid "&Match similar lines"
 msgstr "Αντιστοίχιση παρομοίων γραμμών"
 
+#: Merge.rc:4C3E0A2E
+#, c-format
+msgid "Comments"
+msgstr "Σχόλια"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2195,7 +2130,7 @@ msgstr "Δημιουργία..."
 msgid "Edit..."
 msgstr "Επεξεργασία..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Διαγραφή..."
@@ -2255,7 +2190,7 @@ msgstr "Από&ρριψη αλλαγών"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A30
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
 msgstr "Κωδικοσελίδα"
@@ -2330,7 +2265,7 @@ msgstr "Ειδικές Λέξεις:"
 msgid "Function names:"
 msgstr "Ονόματα Διεργασιών:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Σχόλια:"
@@ -2470,7 +2405,7 @@ msgstr "Φάκελοι:"
 msgid "Files:"
 msgstr "Αρχεία:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Διαφορετικά"
@@ -2625,7 +2560,7 @@ msgstr "Χαρακτήρες Διαστήματος:"
 msgid "Regular text:"
 msgstr "Απλό κείμενο:"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB58F
 #, c-format
 msgid "Selection:"
 msgstr "Επιλογή:"
@@ -2660,7 +2595,7 @@ msgstr "Σύγκριση &Αρχείων"
 msgid "Create backup files into:"
 msgstr "Δημιουργία εφεδρικών αρχείων εντός:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "Αρ&χικού φακέλου αρχείου"
@@ -2675,7 +2610,7 @@ msgstr "&Καθολικού φακέλου εφεδρειών:"
 msgid "Backup filename:"
 msgstr "Όνομα εφεδρικού αρχείου:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "Προσ&θήκη επεκτάσεως .bak"
@@ -2810,7 +2745,7 @@ msgstr ""
 msgid "Frhed settings"
 msgstr ""
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr ""
@@ -3042,11 +2977,6 @@ msgstr ""
 msgid "Syntax"
 msgstr ""
 
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Διαχείριση Εκδόσεων"
-
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
@@ -3268,11 +3198,6 @@ msgstr "Τυποποιημένη Έκφραση"
 #, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr "Τα φίλτρα ενημερώθηκαν. Επιθυμείτε να ανανεωθούν όλες οι ανοικτές συγκρίσεις φακέλων;\n\nΕάν δεν επιθυμείτε να ανανεωθούν όλες οι συγκρίσεις τώρα, μπορείτε να επιλέξετε Όχι και να ανανεώσετε τις συγκρίσεις αργότερα."
-
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr ""
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3608,86 +3533,6 @@ msgstr ""
 "Η συγχώνευση των διαφορών είναι αδύνατη όταν τα αρχεία δεν είναι συγχρονισμένα.\n"
 "\n"
 "Ανανεώστε τα αρχεία πριν συνεχίσετε."
-
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Πρέπει να ορίσετε μία διαδρομή έργου του SourceSafe ώστε να συνεχίσετε (δηλ. $/ΤοΈργομου)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Έλεγχος κ΄ Έξοδος από το VSS..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Το Σύστημα Διαχειρίσεως Εκδόσεων ανέφερε σφάλμα κατά τον έλεγχο κ΄ έξοδο του αρχείου. Η συνέχεια είναι αδύνατη..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Σφάλμα κατά την εκτέλεση εντολής του συστήματος διαχειρίσεως εκδόσεων."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "Ο φάκελος εργασίας του VSS και η θέση του τρέχοντος αρχείου δεν είναι σε συμφωνία. Συνέχεια;"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "Δε βρέθηκαν βάσεις δεδομένων του VSS!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "Σφάλμα του  VSS:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"Το Σύστημα Διαχειρίσεως Εκδόσεων ανέφερε σφάλμα κατά τον έλεγχο ανοίγματος του αρχείου.\n"
-" Παρακαλώ, ελέγξτε προδιαγραφές ρυθμίσεων της χρησιμοποιουμένης επισκοπήσεως.\n"
-" Αναίρεση ενεργείας ελέγχου κ΄ εξόδου;"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"Το Σύστημα Διαχειρίσεως Εκδόσεων ανέφερε σφάλμα κατά την αναίρεση ελέγχου κ΄ εξόδου του αρχείου.\n"
-" Παρακαλώ, ελέγξτε προδιαγραφές ρυθμίσεων της χρησιμοποιουμένης επισκοπήσεως.\n"
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Χωρίς"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (έκδοση προ της 5.0)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (έκδοση 5.0 και μεταγενέστερο)"
-
-#: Merge.rc:2405135
-#, c-format
-msgid "Break at whitespace"
-msgstr "Στάση στα κενά"
-
-#: Merge.rc:6CB369C2
-#, c-format
-msgid "Break at whitespace or punctuation"
-msgstr "Στάση στα κενά ή στα σημεία στίξεως"
 
 #: Merge.rc:237A127
 #, c-format
@@ -4339,7 +4184,7 @@ msgstr "Κατάλογος με στηλοθέτη ως χαρακτήρα δι�
 msgid "Simple HTML"
 msgstr "Απλό HTML"
 
-#: Merge.rc:751AB591
+#: Merge.rc:751AB590
 #, c-format
 msgid "Simple XML"
 msgstr "Απλό XML"
@@ -4529,7 +4374,7 @@ msgstr ""
 msgid "Location Pane"
 msgstr "Πεδίο Εντοπισμού"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Πεδίο Διαφορών"
@@ -4672,6 +4517,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Μικτό"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Χωρίς"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4682,7 +4532,7 @@ msgstr "Τύπος"
 msgid "Unpacker"
 msgstr "Αποσυμπιεστικό"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Προεπεξεργαστής Διαφορών"

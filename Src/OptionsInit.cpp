@@ -12,7 +12,6 @@
 #include "OptionsDiffColors.h"
 #include "OptionsFont.h"
 #include "DiffWrapper.h" // CMP_CONTENT
-#include "SourceControl.h"
 #include "paths.h"
 #include "Environment.h"
 #include "Constants.h"
@@ -172,12 +171,6 @@ void Init(COptionsMgr *pOptions)
 		pOptions->InitOption(OPT_CP_DETECT, (int)(50950 << 16) | 3);
 	else
 		pOptions->InitOption(OPT_CP_DETECT, (int)(50001 << 16) | 1);
-
-	pOptions->InitOption(OPT_VCS_SYSTEM, SourceControl::VCS_NONE);
-	pOptions->InitOption(OPT_VSS_PATH, _T(""));
-	pOptions->InitOption(OPT_VSS_DATABASE, _T(""));
-	pOptions->InitOption(OPT_VSS_PROJECT, _T(""));
-	pOptions->InitOption(OPT_VSS_USER, _T(""));
 
 	pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
 	pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);

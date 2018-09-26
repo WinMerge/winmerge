@@ -1496,61 +1496,6 @@ msgstr ""
 msgid "Read-o&nly"
 msgstr ""
 
-#: Merge.rc:629C1DDC
-#, c-format
-msgid "Database:"
-msgstr "Databas:"
-
-#: Merge.rc:60C4588F
-#, c-format
-msgid "Project:"
-msgstr "Projekt:"
-
-#: Merge.rc:15E1A7E1
-#, c-format
-msgid "User:"
-msgstr "Användare:"
-
-#: Merge.rc:37C6B9B8
-#, c-format
-msgid "Password:"
-msgstr "Lösenord:"
-
-#: Merge.rc:F75DAF7
-#, c-format
-msgid "Link to Destination VSS project"
-msgstr "Länka till valt VSS-projekt"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Tillämpa på alla objekt"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Checka ut"
-
-#: Merge.rc:751AB58F
-#, c-format
-msgid "Save As..."
-msgstr "Spara som..."
-
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Versionsstyrningssystem"
-
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&Versioning System:"
-msgstr "&Versionsstyrningssystem:"
-
-#: Merge.rc:381D79E5
-#, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "&Sökväg till Cleartool.exe:"
-
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
@@ -1676,7 +1621,7 @@ msgstr "Ersätt"
 msgid "Re&place with:"
 msgstr "Ersä&tt med:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "Vänd inte vid slutet av filen"
@@ -1730,21 +1675,6 @@ msgstr ""
 #, c-format
 msgid "&Apply"
 msgstr "&Verkställ"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Checka ut"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Kommentarer"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Checka in efter Checka ut"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1996,7 +1926,7 @@ msgstr "Stopp"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2D
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2101,6 +2031,11 @@ msgstr "M&öjliggör detektion av flyttade textblock"
 msgid "&Match similar lines"
 msgstr "&Matcha liknande rader"
 
+#: Merge.rc:4C3E0A2E
+#, c-format
+msgid "Comments"
+msgstr "Kommentarer"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2196,7 +2131,7 @@ msgstr "Ny..."
 msgid "Edit..."
 msgstr "Redigera..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Ta bort..."
@@ -2256,7 +2191,7 @@ msgstr "Ign&orera ändringar"
 msgid "Disca&rd All"
 msgstr "Ign&orera allt"
 
-#: Merge.rc:4C3E0A30
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Codepage"
 msgstr "Codepage"
@@ -2335,7 +2270,7 @@ msgstr "Nyckelord:"
 msgid "Function names:"
 msgstr "Funktionsnamn:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Kommentarer:"
@@ -2475,7 +2410,7 @@ msgstr "Kataloger:"
 msgid "Files:"
 msgstr "Filer:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Olika"
@@ -2630,7 +2565,7 @@ msgstr "Mellanslag:"
 msgid "Regular text:"
 msgstr "Vanlig text:"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB58F
 #, c-format
 msgid "Selection:"
 msgstr "Markering:"
@@ -2665,7 +2600,7 @@ msgstr "Jäm&för filer"
 msgid "Create backup files into:"
 msgstr "Skapa backupfiler i:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "&Originalfilens katalog"
@@ -2680,7 +2615,7 @@ msgstr "&Global backupkatalog:"
 msgid "Backup filename:"
 msgstr "Backupfilnamn:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "&Lägg till filsuffixet .bak"
@@ -2815,7 +2750,7 @@ msgstr ""
 msgid "Frhed settings"
 msgstr ""
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr ""
@@ -3047,11 +2982,6 @@ msgstr ""
 msgid "Syntax"
 msgstr "Syntax"
 
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Versionskontroll"
-
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
@@ -3279,11 +3209,6 @@ msgstr ""
 "Filtren är uppdaterade Vill du uppdatera alla öppna katalogjämförelser?\n"
 "\n"
 "Om du inte vill uppdatera alla jämförelser nu kan du välja Nej och uppdatera jämförelser senare."
-
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "&Sökväg till SS.EXE"
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3635,86 +3560,6 @@ msgstr ""
 "Kan inte lägga samman skillnader när filerna inte är synkroniserade.\n"
 "\n"
 "Uppdatera filerna innan du fortsätter."
-
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Du måste ange sökvägen till ett SourceSafe-projekt för att fortsätta (t.ex.:  $/MittProjekt)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Hämtar filer från VSS..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Versionshanteringssystemet (VSS) returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Fel vid utförande av kommando för versionshanteringssystem."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "VSS-arbetskatalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "Ingen VSS databas hittad!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "Fel från VSS:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"Versionshanteringssystemet (VSS) returnerade ett fel under försöket att checka in filen.\n"
-" Var god och, kontrollera konfigurationsspecifikation på använd markering.\n"
-" Ångra checka ut åtgärd?"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"Versionshanteringssystemet (VSS) returnerade ett fel under försöket att ångra checka ut av filen.\n"
-" Var god och, kontrollera konfigurationsspecifikation på använd markering. "
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Inget"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (lägre än 5.0)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 eller högre)"
-
-#: Merge.rc:2405135
-#, c-format
-msgid "Break at whitespace"
-msgstr "Radbryt på mellanslag"
-
-#: Merge.rc:6CB369C2
-#, c-format
-msgid "Break at whitespace or punctuation"
-msgstr "Radbryt på mellanslag eller punkt"
 
 #: Merge.rc:237A127
 #, c-format
@@ -4367,7 +4212,7 @@ msgstr "Tabb-separerad lista"
 msgid "Simple HTML"
 msgstr "Enkel HTML"
 
-#: Merge.rc:751AB591
+#: Merge.rc:751AB590
 #, c-format
 msgid "Simple XML"
 msgstr "Enkel XML"
@@ -4557,7 +4402,7 @@ msgstr ""
 msgid "Location Pane"
 msgstr "Skillnadsfält"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Skillnadsbild"
@@ -4700,6 +4545,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Blandad"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Inget"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4710,7 +4560,7 @@ msgstr "Typ"
 msgid "Unpacker"
 msgstr "Uppackare"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Prediffer"

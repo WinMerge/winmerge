@@ -543,8 +543,6 @@
     </ClCompile>
     <ClCompile Include="Common\BCMenu.cpp" />
     <ClCompile Include="Common\Bitmap.cpp" />
-    <ClCompile Include="CCPromptDlg.cpp">
-    </ClCompile>
     <ClCompile Include="charsets.c">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -815,7 +813,6 @@
     <ClCompile Include="PropShell.cpp" />
     <ClCompile Include="PropSyntaxColors.cpp" />
     <ClCompile Include="PropTextColors.cpp" />
-    <ClCompile Include="PropVss.cpp" />
     <ClCompile Include="Common\RegKey.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -833,9 +830,6 @@
     </ClCompile>
     <ClCompile Include="Common\sizecbar.cpp" />
     <ClCompile Include="Common\SortHeaderCtrl.cpp" />
-    <ClCompile Include="SourceControl.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="Common\SplitterWndEx.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -869,10 +863,6 @@
     <ClCompile Include="Common\VersionInfo.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="VSSHelper.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="VssPromptDlg.cpp" />
     <ClCompile Include="WMGotoDlg.cpp" />
     <ClCompile Include="diffutils\src\analyze.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -984,7 +974,6 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
-    <ClInclude Include="CCPromptDlg.h" />
     <ClInclude Include="charsets.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="Common\ClipBoard.h" />
@@ -1126,7 +1115,6 @@
     <ClInclude Include="PropShell.h" />
     <ClInclude Include="PropSyntaxColors.h" />
     <ClInclude Include="PropTextColors.h" />
-    <ClInclude Include="PropVss.h" />
     <ClInclude Include="Common\RegKey.h" />
     <ClInclude Include="Common\RegOptionsMgr.h" />
     <ClInclude Include="Resource.h" />
@@ -1140,7 +1128,6 @@
     <ClInclude Include="Common\sizecbar.h" />
     <ClInclude Include="Common\SortHeaderCtrl.h" />
     <ClInclude Include="Common\SplitterWndEx.h" />
-    <ClInclude Include="SourceControl.h" />
     <ClInclude Include="ssapi.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="stringdiffs.h" />
@@ -1156,8 +1143,6 @@
     <ClInclude Include="UniMarkdownFile.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\VersionInfo.h" />
-    <ClInclude Include="VSSHelper.h" />
-    <ClInclude Include="VssPromptDlg.h" />
     <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />
     <ClInclude Include="diffutils\lib\cmpbuf.h" />

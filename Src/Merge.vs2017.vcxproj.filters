@@ -232,9 +232,6 @@
     <ClCompile Include="Common\varprop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VSSHelper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="diffutils\src\analyze.c">
       <Filter>GNU diffutils</Filter>
     </ClCompile>
@@ -565,9 +562,6 @@
     <ClCompile Include="OptionsDiffOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PropVss.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
     <ClCompile Include="PropArchive.cpp">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClCompile>
@@ -685,9 +679,6 @@
     <ClCompile Include="PropCompareBinary.cpp">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClCompile>
-    <ClCompile Include="SourceControl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DirViewColItems.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -733,17 +724,11 @@
     <ClCompile Include="Common\Picture.cpp">
       <Filter>MFCGui\Common</Filter>
     </ClCompile>
-    <ClCompile Include="VssPromptDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="Common\ShellContextMenu.cpp">
       <Filter>MFCGui\Common</Filter>
     </ClCompile>
     <ClCompile Include="Common\PropertyPageHost.cpp">
       <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="CCPromptDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="TrDialogs.cpp">
       <Filter>MFCGui\Source Files</Filter>
@@ -984,9 +969,6 @@
     <ClInclude Include="Common\varprop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VSSHelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="diffutils\lib\cmpbuf.h">
       <Filter>GNU diffutils</Filter>
     </ClInclude>
@@ -1209,9 +1191,6 @@
     <ClInclude Include="PropArchive.h">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClInclude>
-    <ClInclude Include="PropVss.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
     <ClInclude Include="PropBackups.h">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClInclude>
@@ -1338,12 +1317,6 @@
     <ClInclude Include="PropCompareBinary.h">
       <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClInclude>
-    <ClInclude Include="CCPromptDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="VssPromptDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
     <ClInclude Include="Common\SuperComboBox.h">
       <Filter>MFCGui\Common</Filter>
     </ClInclude>
@@ -1399,9 +1372,6 @@
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SourceControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsInit.h">
