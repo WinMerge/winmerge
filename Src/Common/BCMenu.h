@@ -93,10 +93,10 @@ public:
 	// Functions for loading and applying bitmaps to menus (see example application)
 	virtual BOOL LoadMenu(LPCTSTR lpszResourceName);
 	virtual BOOL LoadMenu(int nResource);
-	BOOL LoadToolbar(UINT nToolBar);
-	BOOL LoadToolbars(const UINT *arID,int n);
-	BOOL LoadFromToolBar(UINT nID,UINT nToolBar,int& xoffset);
-	BOOL AddBitmapToImageList(CImageList *list,UINT nResourceID,BOOL bDisabled=FALSE);
+	bool LoadToolbar(UINT nToolBar);
+	bool LoadToolbars(const UINT *arID,int n);
+	bool LoadFromToolBar(UINT nID,UINT nToolBar,int& xoffset);
+	bool AddBitmapToImageList(CImageList *list,UINT nResourceID,bool bDisabled=false);
 	static HBITMAP LoadSysColorBitmap(int nResourceId);
 	
 	// functions for appending a menu option, use the AppendMenu call (see above define)
@@ -263,8 +263,8 @@ public:
 
 	// Static functions used for handling menu's in the mainframe
 	static void UpdateMenu(CMenu *pmenu);
-	static BOOL IsMenu(CMenu *submenu);
-	static BOOL IsMenu(HMENU submenu);
+	static bool IsMenu(CMenu *submenu);
+	static bool IsMenu(HMENU submenu);
 	static LRESULT FindKeyboardShortcut(UINT nChar,UINT nFlags,CMenu *pMenu);
 
 	// Customizing:
@@ -326,7 +326,7 @@ protected:
 	static int m_iconY;
 	COLORREF m_bitmapBackground;
 	BOOL m_bitmapBackgroundFlag;
-	static BOOL hicolor_bitmaps;
+	static bool hicolor_bitmaps;
 	BOOL m_loadmenu;
 	static MARGINS m_marginCheck;
 	static MARGINS m_marginSeparator;

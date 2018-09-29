@@ -99,7 +99,7 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 	// Do the default initialization.
 	m_hIcon				= NULL;
 	m_nTimeoutSeconds	= 0;
-	m_bTimeoutDisabled	= FALSE;
+	m_bTimeoutDisabled	= false;
 	m_nTimeoutTimer		= 0;
 	m_strRegistryKey	= _T("");
 	m_nDefaultButton	= IDC_STATIC;
@@ -291,7 +291,7 @@ inline HICON CMessageBoxDialog::GetMessageIcon ( )
  *	screen. All buttons will be disabled, until the countdown is finished.
  *	After that, the user can click any button.
  */
-void CMessageBoxDialog::SetTimeout ( UINT nSeconds, BOOL bDisabled )
+void CMessageBoxDialog::SetTimeout ( UINT nSeconds, bool bDisabled /*= false*/)
 {
 	// Save the settings for the timeout.
 	m_nTimeoutSeconds	= nSeconds;
@@ -310,7 +310,7 @@ inline UINT CMessageBoxDialog::GetTimeoutSeconds ( )
 /*
  *	Method for retrieving whether a timeout is disabled.
  */
-inline BOOL CMessageBoxDialog::GetTimeoutDisabled ( )
+inline bool CMessageBoxDialog::GetTimeoutDisabled ( )
 {
 	// Return the flag whether the timeout is disabled.
 	return m_bTimeoutDisabled;
@@ -465,7 +465,7 @@ INT_PTR CMessageBoxDialog::DoModal ( )
 void CMessageBoxDialog::EndDialog ( int nResult )
 {
 	// Create a variable for storing the state of the checkbox.
-	BOOL bDontDisplayAgain = FALSE;
+	bool bDontDisplayAgain = false;
 
 	// Try to access the checkbox control.
 	CWnd* pCheckboxWnd = GetDlgItem(IDCHECKBOX);
@@ -920,8 +920,8 @@ CString CMessageBoxDialog::GenerateRegistryKey ( )
  *	This method adds a button to the list of buttons, which will be created in
  *	the dialog, but it will not create the button control itself.
  */
-void CMessageBoxDialog::AddButton ( UINT nID, UINT nTitle, BOOL bIsDefault,
-	BOOL bIsEscape )
+void CMessageBoxDialog::AddButton ( UINT nID, UINT nTitle, bool bIsDefault /*= false*/,
+	bool bIsEscape /*= false*/ )
 {
 	// Create a new structure to store the button information.
 	MSGBOXBTN bButton = { nID, nTitle };

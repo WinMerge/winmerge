@@ -116,7 +116,7 @@ LRESULT CPropertyPageHost::OnGetCurrentPageHwnd(WPARAM wParam, LPARAM lParam)
 	return pActive ? (LRESULT)pActive->GetSafeHwnd() : NULL;
 }
 
-BOOL CPropertyPageHost::SetActivePage(int nIndex, BOOL bAndFocus)
+bool CPropertyPageHost::SetActivePage(int nIndex, bool bAndFocus /*= true*/)
 {
 	if (nIndex < 0 || nIndex >= m_aPages.GetSize())
 		return FALSE;
@@ -178,15 +178,15 @@ BOOL CPropertyPageHost::SetActivePage(int nIndex, BOOL bAndFocus)
 		pFocus->SetFocus();
 
 	m_nSelIndex = nIndex;
-	return TRUE;
+	return true;
 }
 
-BOOL CPropertyPageHost::SetActivePage(CPropertyPage* pPage, BOOL bAndFocus)
+bool CPropertyPageHost::SetActivePage(CPropertyPage* pPage, bool bAndFocus /*= true*/)
 {
 	return SetActivePage(FindPage(pPage));
 }
 
-BOOL CPropertyPageHost::AddPage(CPropertyPage* pPage, LPCTSTR szTitle, DWORD dwItemData)
+bool CPropertyPageHost::AddPage(CPropertyPage* pPage, LPCTSTR szTitle, DWORD dwItemData)
 {
 	if (!pPage || !pPage->IsKindOf(RUNTIME_CLASS(CPropertyPage)))
 		return FALSE;

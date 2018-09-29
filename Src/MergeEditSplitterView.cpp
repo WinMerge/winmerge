@@ -72,7 +72,7 @@ BOOL CMergeEditSplitterView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowNam
 {
 	CView::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 
-	BOOL bSplitVert = !GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY);
+	bool bSplitVert = !GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY);
 	if (m_bDetailView)
 		bSplitVert = !bSplitVert;
 
@@ -96,7 +96,7 @@ BOOL CMergeEditSplitterView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowNam
 		}
 	}
 
-	m_wndSplitter.ResizablePanes(TRUE);
+	m_wndSplitter.ResizablePanes(true);
 	m_wndSplitter.AutoResizePanes(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));
 
 	m_nThisGroup = pDoc->m_nGroups;

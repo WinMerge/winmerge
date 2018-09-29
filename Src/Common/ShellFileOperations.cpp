@@ -178,10 +178,10 @@ bool ShellFileOperations::Run()
 	if (ret == 0x75) // DE_OPCANCELLED
 		m_isCanceled = true;
 
-	BOOL anyAborted = fileop.fAnyOperationsAborted;
+	bool anyAborted = !!fileop.fAnyOperationsAborted;
 
 	// SHFileOperation returns 0 when succeeds
-	if (ret == 0 && anyAborted == FALSE)
+	if (ret == 0 && !anyAborted)
 		return true;
 	return false;
 }

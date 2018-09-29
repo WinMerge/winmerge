@@ -10,7 +10,7 @@
  * @brief Copies string to clipboard.
  * @param [in] text Text to copy to clipboard.
  * @param [in] currentWindowHandle Handle to current window.
- * @return TRUE if text copying succeeds, FALSE otherwise.
+ * @return `true` if text copying succeeds, `false` otherwise.
  */
 bool PutToClipboard(const String & text, HWND currentWindowHandle)
 {
@@ -42,7 +42,7 @@ bool PutToClipboard(const String & text, HWND currentWindowHandle)
  * @brief Retrieves the string from clipboard.
  * @param [out] text Text copied from clipboard.
  * @param [in] currentWindowHandle Handle to current window.
- * @return TRUE if retrieving the clipboard text succeeds, FALSE otherwise.
+ * @return `true` if retrieving the clipboard text succeeds, `false` otherwise.
  */
 bool GetFromClipboard(String & text, HWND currentWindowHandle)
 {

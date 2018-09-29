@@ -82,7 +82,7 @@ void CSizingControlBarG::NcCalcClient(LPRECT pRc, UINT nDockBarID)
 
     CRect rc(pRc); // the client rect as calculated by the base class
 
-    BOOL bHorz = (nDockBarID == AFX_IDW_DOCKBAR_TOP) ||
+    bool bHorz = (nDockBarID == AFX_IDW_DOCKBAR_TOP) ||
                  (nDockBarID == AFX_IDW_DOCKBAR_BOTTOM);
 
     const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
@@ -116,7 +116,7 @@ void CSizingControlBarG::NcPaintGripper(CDC* pDC, CRect rcClient)
     auto pointToPixel = [lpx](double point) { return static_cast<int>(point * lpx / 72); };
     CRect gripper = rcClient;
     CRect rcbtn(m_biHide.ptOrg, CSize(pointToPixel(m_biHide.dblBoxSize), pointToPixel(m_biHide.dblBoxSize)));
-    BOOL bHorz = IsHorzDocked();
+    bool bHorz = IsHorzDocked();
 
     gripper.DeflateRect(1, 1);
     if (bHorz)
@@ -174,17 +174,17 @@ void CSizingControlBarG::OnUpdateCmdUI(CFrameWnd* pTarget,
     if (!HasGripper())
         return;
 
-    BOOL bNeedPaint = FALSE;
+    bool bNeedPaint = false;
 
     CPoint pt;
     ::GetCursorPos(&pt);
-    BOOL bHit = (OnNcHitTest(pt) == HTCLOSE);
-    BOOL bLButtonDown = (::GetKeyState(VK_LBUTTON) < 0);
+    bool bHit = (OnNcHitTest(pt) == HTCLOSE);
+    bool bLButtonDown = (::GetKeyState(VK_LBUTTON) < 0);
 
-    BOOL bWasPushed = m_biHide.bPushed;
+    bool bWasPushed = m_biHide.bPushed;
     m_biHide.bPushed = bHit && bLButtonDown;
 
-    BOOL bWasRaised = m_biHide.bRaised;
+    bool bWasRaised = m_biHide.bRaised;
     m_biHide.bRaised = bHit && !bLButtonDown;
 
     bNeedPaint |= (m_biHide.bPushed ^ bWasPushed) ||
@@ -199,8 +199,8 @@ void CSizingControlBarG::OnUpdateCmdUI(CFrameWnd* pTarget,
 
 CSCBButton::CSCBButton()
 {
-    bRaised = FALSE;
-    bPushed = FALSE;
+    bRaised = false;
+    bPushed = false;
 }
 
 void CSCBButton::Paint(CDC* pDC)
@@ -231,13 +231,13 @@ void CSCBButton::Paint(CDC* pDC)
     pDC->SetTextColor(clrOldTextColor);
 }
 
-BOOL CSizingControlBarG::HasGripper() const
+bool CSizingControlBarG::HasGripper() const
 {
 #if defined(_SCB_MINIFRAME_CAPTION) || !defined(_SCB_REPLACE_MINIFRAME)
     // if the miniframe has a caption, don't display the gripper
     if (IsFloating())
-        return FALSE;
+        return false;
 #endif //_SCB_MINIFRAME_CAPTION
 
-    return TRUE;
+    return true;
 }

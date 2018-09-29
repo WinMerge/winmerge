@@ -56,11 +56,8 @@ void Load(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
 		pSyntaxColors->SetColor(i, ref);
 	
 		valuename = strutils::format(_T("%s/Bold%02u"), DefColorsPath, i);
-		bool bBold = pSyntaxColors->GetBold(i);
-		pOptionsMgr->InitOption(valuename, bBold);
-		int nBold = pOptionsMgr->GetBool(valuename);
-		bBold = nBold ? true : false;
-		pSyntaxColors->SetBold(i, bBold);
+		pOptionsMgr->InitOption(valuename, pSyntaxColors->GetBold(i));
+		pSyntaxColors->SetBold(i, pOptionsMgr->GetBool(valuename));
 	}
 }
 

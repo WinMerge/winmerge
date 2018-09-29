@@ -82,7 +82,7 @@ void CDiffViewBar::OnLButtonDown(UINT nFlags, CPoint point)
 	TViewBarBase::OnLButtonDown(nFlags, point);
 	if (m_pDockBar != NULL)
 	{
-		if (IsHorzDocked() == FALSE)
+		if (!IsHorzDocked())
 			m_pDockContext->ToggleDocking();
 	}
 }

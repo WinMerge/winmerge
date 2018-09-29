@@ -47,8 +47,8 @@ public:
     void Move(CPoint ptTo) {ptOrg = ptTo; };
     void Paint(CDC* pDC);
 
-    BOOL    bPushed;
-    BOOL    bRaised;
+    bool    bPushed;
+    bool    bRaised;
     const double  dblBoxSize = 8.25;
     CPoint  ptOrg;
 };
@@ -70,7 +70,7 @@ public:
 
 // Attributes
 public:
-    virtual BOOL HasGripper() const;
+    virtual bool HasGripper() const;
 
 // Operations
 public:

@@ -80,7 +80,7 @@ void PropRegistry::ReadOptions()
  */
 void PropRegistry::WriteOptions()
 {
-	GetOptionsMgr()->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin);
 
 	String sExtEditor = strutils::trim_ws(m_strEditorPath);
 	if (sExtEditor.empty())
@@ -113,7 +113,7 @@ BOOL PropRegistry::OnInitDialog()
 void PropRegistry::OnBrowseEditor()
 {
 	String path;
-	if (SelectFile(GetSafeHwnd(), path, TRUE, m_strEditorPath.c_str(), _T(""), _("Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||")))
+	if (SelectFile(GetSafeHwnd(), path, true, m_strEditorPath.c_str(), _T(""), _("Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||")))
 	{
 		SetDlgItemText(IDC_EXT_EDITOR_PATH, path);
 	}

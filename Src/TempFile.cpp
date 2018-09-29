@@ -106,7 +106,7 @@ bool TempFile::Delete()
 		success = !!DeleteFile(m_path.c_str());
 	if (success)
 		m_path = _T("");
-	return !!success;
+	return success;
 }
 /** 
  * @brief Cleanup tempfiles created by WinMerge.

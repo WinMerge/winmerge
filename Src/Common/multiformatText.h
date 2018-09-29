@@ -103,7 +103,7 @@ public:
 	/// return number of valid transformation until now
 	int & GetNChangedValid() { return m_nChangedValid; }
 	/// return format of original data
-	int GetOriginalMode() const { return m_bOriginalIsUnicode; }
+	bool GetOriginalMode() const { return m_bOriginalIsUnicode; }
 
 private:
 	void Initialize();
@@ -112,7 +112,7 @@ private:
 // Implementation data
 private:
 	// original data mode ANSI/UNICODE
-	int m_bOriginalIsUnicode;
+	bool m_bOriginalIsUnicode;
 
 	// current format of data : BUFFER/FILE, ANSI/UNICODE
 	bool m_bCurrentIsUnicode;

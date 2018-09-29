@@ -127,7 +127,7 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		}
 	}
 
-	m_wndSplitter.ResizablePanes(TRUE);
+	m_wndSplitter.ResizablePanes(true);
 	m_wndSplitter.AutoResizePanes(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));
 
 	// Merge frame has a header bar at top
