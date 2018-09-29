@@ -170,7 +170,6 @@ protected:
 	void GrabCurrentDimensionsAsOriginal(HWND hwndParent);
 	bool DoConstrain(CWnd * pWnd, HWND hwndChild, double fLeftX, double fExpandX, double fAboveY, double fExpandY);
 	void InitializeChildConstraintData(HWND hwndParent, Constraint & constraint);
-	BOOL CheckConstraint(HWND hwndChild);
 	// handle WM_SIZE
 	void Resize(HWND hWnd, UINT nType);
 	// handle WM_GETMINMAXINFO
@@ -181,7 +180,6 @@ protected:
 	bool OnTtnNeedText(TOOLTIPTEXT * pTTT, LRESULT * plresult);
 	bool PaintGrip();
 	void ClearMostData();
-	void DeleteAllConstraints();
 	// handle WM_DESTROY
 	void OnDestroy();
 

@@ -529,7 +529,7 @@ int CRegOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /
 			strVal = value.GetString();
 		}
 
-		BOOL bRet = WritePrivateProfileString(_T("WinMerge"), name.c_str(),
+		bool bRet = !!WritePrivateProfileString(_T("WinMerge"), name.c_str(),
 				strVal.c_str(), filename.c_str());
 		if (!bRet)
 			retVal = COption::OPT_ERR;
@@ -567,9 +567,9 @@ int CRegOptionsMgr::ImportOptions(const String& filename)
 		varprop::VariantValue value = Get(pKey);
 		if (value.GetType() == varprop::VT_BOOL)
 		{
-			BOOL boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str());
-			value.SetBool(boolVal == 1);
-			SaveOption(pKey, boolVal == 1);
+			bool boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str()) == 1;
+			value.SetBool(boolVal);
+			SaveOption(pKey, boolVal);
 		}
 		else if (value.GetType() == varprop::VT_INT)
 		{

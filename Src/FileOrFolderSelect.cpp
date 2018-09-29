@@ -60,7 +60,7 @@ static String LastSelectedFolder;
  * modality problems with this. Dialog can be lost behind other windows!
  * @param [in] defaultExtension Extension to append if user doesn't provide one
  */
-BOOL SelectFile(HWND parent, String& path,BOOL is_open /*=TRUE*/,
+bool SelectFile(HWND parent, String& path, bool is_open /*= true*/,
 		LPCTSTR initialPath /*=NULL*/, const String& stitle /*=_T("")*/,
 		const String& sfilter /*=_T("")*/, LPCTSTR defaultExtension /*=NULL*/)
 {
@@ -111,11 +111,11 @@ BOOL SelectFile(HWND parent, String& path,BOOL is_open /*=TRUE*/,
 		ofn.lpstrDefExt = defaultExtension;
 	ofn.Flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOCHANGEDIR;
 
-	BOOL bRetVal = FALSE;
+	bool bRetVal = false;
 	if (is_open)
-		bRetVal = GetOpenFileName((OPENFILENAME *)&ofn);
+		bRetVal = !!GetOpenFileName((OPENFILENAME *)&ofn);
 	else
-		bRetVal = GetSaveFileName((OPENFILENAME *)&ofn);
+		bRetVal = !!GetSaveFileName((OPENFILENAME *)&ofn);
 	// common file dialog populated sSelectedFile variable's buffer
 
 	if (bRetVal)
@@ -130,16 +130,16 @@ BOOL SelectFile(HWND parent, String& path,BOOL is_open /*=TRUE*/,
  * @param [in] root_path Initial path shown when dialog is opened
  * @param [in] titleid Resource string ID for dialog title.
  * @param [in] hwndOwner Handle to owner window or NULL
- * @return TRUE if valid folder selected (not cancelled)
+ * @return `true` if valid folder selected (not cancelled)
  */
-BOOL SelectFolder(String& path, LPCTSTR root_path /*=NULL*/, 
+bool SelectFolder(String& path, LPCTSTR root_path /*=NULL*/, 
 			const String& stitle /*=_T("")*/, 
 			HWND hwndOwner /*=NULL*/) 
 {
 	BROWSEINFO bi;
 	LPITEMIDLIST pidl;
 	TCHAR szPath[MAX_PATH_FULL] = {0};
-	BOOL bRet = FALSE;
+	bool bRet = false;
 	String title = stitle;
 	if (root_path == NULL)
 		LastSelectedFolder.clear();
@@ -160,7 +160,7 @@ BOOL SelectFolder(String& path, LPCTSTR root_path /*=NULL*/,
 		if (SHGetPathFromIDList(pidl, szPath))
 		{
 			path = szPath;
-			bRet = TRUE;
+			bRet = true;
 		}
 		CoTaskMemFree(pidl);
 	}
@@ -210,9 +210,9 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
  *     CMainFrame is used which can cause modality problems.
  * @param [out] path Selected folder/filename
  * @param [in] initialPath Initial file or folder shown/selected.
- * @return TRUE if user choosed a file/folder, FALSE if user canceled dialog.
+ * @return `true` if user choosed a file/folder, `false` if user canceled dialog.
  */
-BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/)
+bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/)
 {
 	String title = _("Open");
 
@@ -259,7 +259,7 @@ BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 	ofn.lpstrFileTitle = NULL;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE | OFN_NOCHANGEDIR;
 
-	BOOL bRetVal = GetOpenFileName((OPENFILENAME *)&ofn);
+	bool bRetVal = !!GetOpenFileName((OPENFILENAME *)&ofn);
 
 	if (bRetVal)
 	{

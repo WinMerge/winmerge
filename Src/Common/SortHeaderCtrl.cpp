@@ -17,7 +17,7 @@ BEGIN_MESSAGE_MAP(CSortHeaderCtrl, CHeaderCtrl)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-CSortHeaderCtrl::CSortHeaderCtrl() : m_bSortAsc(TRUE), m_nSortCol(-1)
+CSortHeaderCtrl::CSortHeaderCtrl() : m_bSortAsc(true), m_nSortCol(-1)
 {
 }
 
@@ -25,7 +25,7 @@ CSortHeaderCtrl::~CSortHeaderCtrl()
 {
 }
 
-int CSortHeaderCtrl::SetSortImage(int nCol, BOOL bAsc)
+int CSortHeaderCtrl::SetSortImage(int nCol, bool bAsc)
 {
 	int nPrevCol = m_nSortCol;
 

@@ -155,7 +155,7 @@ private:
 	std::unique_ptr<FileFilterMgr> m_fileFilterMgr;  /*< Associated FileFilterMgr */
 	String m_sFileFilterPath;        /*< Path to current filter */
 	String m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
-	bool m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */
+	bool m_bUseMask;   /*< If `true` file mask is used, filter otherwise */
 	String m_sGlobalFilterPath;    /*< Path for shared filters */
 	String m_sUserSelFilterPath;     /*< Path for user's private filters */
 };

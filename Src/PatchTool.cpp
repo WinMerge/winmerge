@@ -181,7 +181,7 @@ int CPatchTool::CreatePatch()
 
 /** 
  * @brief Show patch options dialog and check options selected.
- * @return TRUE if user wants to create a patch (didn't cancel dialog).
+ * @return `true` if user wants to create a patch (didn't cancel dialog).
  */
 bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 {
@@ -200,7 +200,7 @@ bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 		patchOptions.nContext = pDlgPatch->m_contextLines;
 
 		// Checkbox - can't be wrong
-		patchOptions.bAddCommandline = !!pDlgPatch->m_includeCmdLine;
+		patchOptions.bAddCommandline = pDlgPatch->m_includeCmdLine;
 		m_diffWrapper.SetPatchOptions(&patchOptions);
 
 		// These are from checkboxes and radiobuttons - can't be wrong

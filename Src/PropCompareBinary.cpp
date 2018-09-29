@@ -28,7 +28,7 @@ public:
 		}
 		wnd.Create(_T("heksedit"), NULL, 0, CRect(), pwndParent, 1);
 		get_interface()->read_ini_data();
-		get_interface()->get_settings()->bSaveIni = TRUE;
+		get_interface()->get_settings()->bSaveIni = true;
 	}
 
 	IHexEditorWindow *get_interface()

@@ -244,9 +244,9 @@ int CHexMergeView::GetLength()
 /**
  * @brief Checks if file has changed since last update
  * @param [in] path File to check
- * @return TRUE if file is changed.
+ * @return `true` if file is changed.
  */
-BOOL CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
+bool CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
 {
 	DiffFileInfo dfi;
 	dfi.Update(path);
@@ -306,12 +306,12 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	}
 	// Ask user what to do about FILE_ATTRIBUTE_READONLY
 	String strPath = path;
-	BOOL bApplyToAll = FALSE;
-	if (theApp.HandleReadonlySave(strPath, FALSE, bApplyToAll) == IDCANCEL)
+	bool bApplyToAll = false;
+	if (theApp.HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
 		return S_OK;
 	path = strPath.c_str();
 	// Take a chance to create a backup
-	if (!theApp.CreateBackup(FALSE, path))
+	if (!theApp.CreateBackup(false, path))
 		return S_OK;
 	// Write data to an intermediate file
 	String tempPath = env::GetTemporaryPath();
@@ -352,9 +352,9 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 /**
  * @brief Get modified flag
  */
-BOOL CHexMergeView::GetModified()
+bool CHexMergeView::GetModified()
 {
-	return m_pif->get_status()->iFileChanged;
+	return m_pif->get_status()->bFileChanged;
 }
 
 /**
@@ -376,7 +376,7 @@ void CHexMergeView::ClearUndoRecords()
 /**
  * @brief Get readonly flag
  */
-BOOL CHexMergeView::GetReadOnly()
+bool CHexMergeView::GetReadOnly()
 {
 	return m_pif->get_settings()->bReadOnly;
 }
@@ -384,7 +384,7 @@ BOOL CHexMergeView::GetReadOnly()
 /**
  * @brief Set readonly flag
  */
-void CHexMergeView::SetReadOnly(BOOL bReadOnly)
+void CHexMergeView::SetReadOnly(bool bReadOnly)
 {
 	m_pif->get_settings()->bReadOnly = bReadOnly;
 }

@@ -377,8 +377,8 @@ void UniMemFile::SetBom(bool bom)
 /**
  * @brief Read one (DOS or UNIX or Mac) line. Do not include eol chars.
  * @param [out] line Line read.
- * @param [out] lossy TRUE if there were lossy encoding.
- * @return TRUE if there is more lines to read, TRUE when last line is read.
+ * @param [out] lossy `true` if there were lossy encoding.
+ * @return `true` if there is more lines to read, `false` when last line is read.
  */
 bool UniMemFile::ReadString(String & line, bool * lossy)
 {

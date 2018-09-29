@@ -78,7 +78,7 @@ public:
 
 // Implementation
 private:
-	BOOL EnsureValidDockState(CDockState& state);
+	bool EnsureValidDockState(CDockState& state);
 	void SavePosition();
 	virtual ~CChildFrame();
 	CSplitterWndEx& GetMergeEditSplitterWnd(int iRow)
@@ -88,7 +88,7 @@ private:
 private:
 	int m_nLastSplitPos[2];
 	void UpdateHeaderSizes();
-	BOOL m_bActivated;
+	bool m_bActivated;
 	CMergeDoc * m_pMergeDoc;
 	HICON m_hIdentical;
 	HICON m_hDifferent;

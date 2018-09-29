@@ -39,7 +39,7 @@
 #error This code does not work on Versions of MFC prior to 4.0
 #endif
 
-BOOL BCMenu::hicolor_bitmaps=FALSE;
+bool BCMenu::hicolor_bitmaps=false;
 
 CImageList BCMenu::m_AllImages;
 CArray<int,int&> BCMenu::m_AllImagesID;
@@ -76,7 +76,7 @@ typedef sBGR *pBGR;
 static pBGR MyGetDibBits(HDC hdcSrc, HBITMAP hBmpSrc, int nx, int ny)
 {
 	BITMAPINFO bi;
-	BOOL bRes;
+	int nRes;
 	pBGR buf;
 
 	bi.bmiHeader.biSize = sizeof(bi.bmiHeader);
@@ -90,10 +90,10 @@ static pBGR MyGetDibBits(HDC hdcSrc, HBITMAP hBmpSrc, int nx, int ny)
 	bi.bmiHeader.biClrImportant = 0;
 	
 	buf = (pBGR) malloc(nx * 4 * ny);
-	bRes = GetDIBits(hdcSrc, hBmpSrc, 0, ny, buf, &bi, DIB_RGB_COLORS);
-	if (!bRes) {
+	nRes = GetDIBits(hdcSrc, hBmpSrc, 0, ny, buf, &bi, DIB_RGB_COLORS);
+	if (nRes == 0) {
 		free(buf);
-		buf = 0;
+		buf = nullptr;
 	}
 	return buf;
 }
@@ -202,12 +202,12 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
 		m_szMenuText=NULL;//set to NULL so we need not bother about dangling non-NULL Ptrs
 }
 
-BOOL BCMenu::IsMenu(CMenu *submenu)
+bool BCMenu::IsMenu(CMenu *submenu)
 {
 	return IsMenu(submenu->m_hMenu);
 }
 
-BOOL BCMenu::IsMenu(HMENU submenu)
+bool BCMenu::IsMenu(HMENU submenu)
 {
 	INT_PTR m;
 	INT_PTR numSubMenus = m_AllSubMenus.GetUpperBound();
@@ -289,8 +289,10 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 	}
 	else{
 		CRect rect2;
-		BOOL standardflag=FALSE,selectedflag=FALSE,disableflag=FALSE;
-		BOOL checkflag=FALSE;
+		bool standardflag = false;
+		bool selectedflag = false;
+		bool disableflag = false;
+		bool checkflag=false;
 		COLORREF crText = GetSysColor(COLOR_MENUTEXT);
 		int x0,y0,dy;
 		int nIconNormal=-1;
@@ -328,9 +330,9 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 			if(state&ODS_CHECKED && nIconNormal<0){
 			}
 			else if(nIconNormal != -1){
-				standardflag=TRUE;
-				if(state&ODS_SELECTED && !(state&ODS_GRAYED))selectedflag=TRUE;
-				else if(state&ODS_GRAYED) disableflag=TRUE;
+				standardflag=true;
+				if(state&ODS_SELECTED && !(state&ODS_GRAYED))selectedflag=true;
+				else if(state&ODS_GRAYED) disableflag=true;
 			}
 		}
 		else{
@@ -1107,19 +1109,19 @@ BCMenuData *BCMenu::NewODMenu(UINT pos,UINT nFlags,UINT_PTR nID,CString string)
 	return(mdata);
 };
 
-BOOL BCMenu::LoadToolbars(const UINT *arID,int n)
+bool BCMenu::LoadToolbars(const UINT *arID,int n)
 {
 	ASSERT(arID);
-	BOOL returnflag=TRUE;
+	bool returnflag=true;
 	for(int i=0;i<n;++i){
-		if(!LoadToolbar(arID[i]))returnflag=FALSE;
+		if(!LoadToolbar(arID[i]))returnflag=false;
 	}
 	return(returnflag);
 }
 
-BOOL BCMenu::LoadToolbar(UINT nToolBar)
+bool BCMenu::LoadToolbar(UINT nToolBar)
 {
-	BOOL returnflag=FALSE;
+	bool returnflag=false;
 	CToolBar bar;
 	
 	CWnd* pWnd = AfxGetMainWnd();
@@ -1129,7 +1131,7 @@ BOOL BCMenu::LoadToolbar(UINT nToolBar)
 		CImageList imglist;
 		imglist.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
 		if(AddBitmapToImageList(&imglist,nToolBar)){
-			returnflag=TRUE;
+			returnflag=true;
 			for(int i=0;i<bar.GetCount();++i){
 				UINT nID = bar.GetItemID(i); 
 				if(nID && GetMenuState(nID, MF_BYCOMMAND)
@@ -1149,15 +1151,15 @@ BOOL BCMenu::LoadToolbar(UINT nToolBar)
 	return(returnflag);
 }
 
-BOOL BCMenu::LoadFromToolBar(UINT nID,UINT nToolBar,int& xoffset)
+bool BCMenu::LoadFromToolBar(UINT nID,UINT nToolBar,int& xoffset)
 {
 	// Optimization: avoid creating toolbar window if not needed
 	HINSTANCE hInst = AfxFindResourceHandle(MAKEINTRESOURCE(nID), RT_TOOLBAR);
 	HRSRC hRsrc = ::FindResource(hInst, MAKEINTRESOURCE(nID), RT_TOOLBAR);
 	if (hRsrc == NULL)
-		return FALSE;
+		return false;
 
-	BOOL returnflag=FALSE;
+	bool returnflag=false;
 	CToolBar bar;
 	
 	CWnd* pWnd = AfxGetMainWnd();
@@ -1170,7 +1172,7 @@ BOOL BCMenu::LoadFromToolBar(UINT nID,UINT nToolBar,int& xoffset)
 			int xset;
 			bar.GetButtonInfo(offset,nID,nStyle,xset);
 			if(xset>0)xoffset=xset;
-			returnflag=TRUE;
+			returnflag=true;
 		}
 	}
 	return(returnflag);
@@ -1726,9 +1728,9 @@ void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 	ddc.SelectObject(pddcOldBmp);
 }
 
-BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, BOOL bDisabled/*=FALSE*/)
+bool BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, bool bDisabled/*= false*/)
 {
-	BOOL bReturn=FALSE;
+	bool bReturn=false;
 
 	HBITMAP hbmp=LoadSysColorBitmap(nResourceID);
 	if(hbmp){
@@ -1737,25 +1739,25 @@ BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, BOOL bDi
 		if (bDisabled)
 			GetDisabledBitmap(bmp);
 		if(m_bitmapBackgroundFlag){
-			if(bmplist->Add(&bmp,m_bitmapBackground)>=0)bReturn=TRUE;
+			if(bmplist->Add(&bmp,m_bitmapBackground)>=0)bReturn=true;
 		}
 		else{
-			if(bmplist->Add(&bmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=TRUE;
+			if(bmplist->Add(&bmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=true;
 		}
 	}
 	else{ // a hicolor bitmap
 		CBitmap mybmp;
 		if(mybmp.LoadBitmap(nResourceID)){
-			hicolor_bitmaps=TRUE;
+			hicolor_bitmaps=true;
 			if (bDisabled)
 				GetDisabledBitmap(mybmp, GetSysColor(COLOR_3DFACE));
 			else
 				GetTransparentBitmap(mybmp);
 			if(m_bitmapBackgroundFlag){
-				if(bmplist->Add(&mybmp,m_bitmapBackground)>=0)bReturn=TRUE;
+				if(bmplist->Add(&mybmp,m_bitmapBackground)>=0)bReturn=true;
 			}
 			else{
-				if(bmplist->Add(&mybmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=TRUE;
+				if(bmplist->Add(&mybmp,GetSysColor(COLOR_3DFACE))>=0)bReturn=true;
 			}
 		}
 	}

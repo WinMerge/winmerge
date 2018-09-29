@@ -142,13 +142,13 @@ public:
 	HICON GetMessageIcon ( );
 
 	// Method for setting a timeout.
-	void SetTimeout ( UINT nSeconds, BOOL bDisabled = FALSE );
+	void SetTimeout ( UINT nSeconds, bool bDisabled = false );
 
 	// Method for retrieving the seconds for the timeout.
 	UINT GetTimeoutSeconds ( );
 
 	// Method for retrieving whether a timeout is disabled.
-	BOOL GetTimeoutDisabled ( );
+	bool GetTimeoutDisabled ( );
 
 	// Method for retrieving the former result of the message box from the registry.
 	int GetFormerResult();
@@ -213,7 +213,7 @@ private:
 	HICON		m_hIcon;			// Icon to be displayed in the dialog.
 
 	UINT		m_nTimeoutSeconds;	// Seconds for a timeout.
-	BOOL		m_bTimeoutDisabled;	// Flag whether the timeout is disabled.
+	bool		m_bTimeoutDisabled;	// Flag whether the timeout is disabled.
 	UINT_PTR	m_nTimeoutTimer;	// Timer for the timeout.
 
 	CString		m_strRegistryKey;	// Entry for storing the result in the
@@ -264,8 +264,8 @@ private:
 	CString	GenerateRegistryKey ( );
 
 	// Method for adding a button to the list of buttons.
-	void AddButton ( UINT nID, UINT nTitle, BOOL bIsDefault = FALSE,
-		BOOL bIsEscape = FALSE );
+	void AddButton ( UINT nID, UINT nTitle, bool bIsDefault = false,
+		bool bIsEscape = false );
 
 	// Methods for converting a dialog units to a pixel values.
 	int XDialogUnitToPixel ( int x );

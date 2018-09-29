@@ -1,4 +1,4 @@
-/* File:	lwdisp.c - light weight dispatch API
+/* File:	lwdisp.h - light weight dispatch API
  * Author:	Jochen Tucht 2003/01/09
  *			Copyright (C) 2003 herbert dahm datensysteme GmbH
  *

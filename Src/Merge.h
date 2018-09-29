@@ -59,7 +59,7 @@ enum { IDLE_TIMER = 9754 };
 class CMergeApp : public CWinApp
 {
 public:
-	BOOL m_bNeedIdleTimer;
+	bool m_bNeedIdleTimer;
 	CMultiDocTemplate* m_pOpenTemplate;
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pHexMergeTemplate;
@@ -69,7 +69,7 @@ public:
 	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
 	std::unique_ptr<CCrystalTextMarkers> m_pMarkers; /**< Marker container */
 	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
-	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
+	bool m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
 	CCrystalTextMarkers * GetMainMarkers() const { return m_pMarkers.get(); }
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
@@ -97,8 +97,8 @@ public:
 	void ShowHelp(LPCTSTR helpLocation = NULL);
 	void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
-	BOOL CreateBackup(BOOL bFolder, const String& pszPath);
-	int HandleReadonlySave(String& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
+	bool CreateBackup(bool bFolder, const String& pszPath);
+	int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
 	void SetupTempPath();
@@ -118,7 +118,7 @@ protected:
 	//}}AFX_VIRTUAL
 
 	void InitializeFileFilters();
-	BOOL ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
+	bool ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
 	void UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage);
 	void UpdateCodepageModule();
 	void ApplyCommandLineConfigOptions(MergeCmdLineInfo & cmdInfo);

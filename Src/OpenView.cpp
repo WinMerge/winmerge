@@ -248,16 +248,16 @@ void COpenView::OnInitialUpdate()
 	m_ctlPath[2].AttachSystemImageList();
 	LoadComboboxStates();
 
-	BOOL bDoUpdateData = TRUE;
+	bool bDoUpdateData = true;
 	for (int index = 0; index < countof(m_strPath); index++)
 	{
 		if (!m_strPath[index].empty())
-			bDoUpdateData = FALSE;
+			bDoUpdateData = false;
 	}
 	UpdateData(bDoUpdateData);
 
 	String filterNameOrMask = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
-	BOOL bMask = theApp.m_pGlobalFileFilter->IsUsingMask();
+	bool bMask = theApp.m_pGlobalFileFilter->IsUsingMask();
 
 	if (!bMask)
 	{
@@ -286,11 +286,11 @@ void COpenView::OnInitialUpdate()
 
 	UpdateButtonStates();
 
-	BOOL bOverwriteRecursive = FALSE;
+	bool bOverwriteRecursive = false;
 	if (m_dwFlags[0] & FFILEOPEN_PROJECT || m_dwFlags[1] & FFILEOPEN_PROJECT)
-		bOverwriteRecursive = TRUE;
+		bOverwriteRecursive = true;
 	if (m_dwFlags[0] & FFILEOPEN_CMDLINE || m_dwFlags[1] & FFILEOPEN_CMDLINE)
-		bOverwriteRecursive = TRUE;
+		bOverwriteRecursive = true;
 	if (!bOverwriteRecursive)
 		m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 
@@ -516,7 +516,7 @@ void COpenView::OnOK()
 	}
 	else
 	{
-		BOOL bFilterSet = theApp.m_pGlobalFileFilter->SetFilter(filter);
+		bool bFilterSet = theApp.m_pGlobalFileFilter->SetFilter(filter);
 		if (!bFilterSet)
 			m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
@@ -545,7 +545,7 @@ void COpenView::OnOK()
 	PackingInfo tmpPackingInfo(pDoc->m_infoHandler);
 	GetMainFrame()->DoFileOpen(
 		&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(), 
-		NULL, _T(""), !!pDoc->m_bRecurse, NULL, _T(""), &tmpPackingInfo);
+		NULL, _T(""), pDoc->m_bRecurse, NULL, _T(""), &tmpPackingInfo);
 }
 
 /** 
@@ -734,8 +734,8 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		if (msg.message != WM_USER + 2)
 			continue;
 
-		BOOL bButtonEnabled = TRUE;
-		BOOL bInvalid[3] = {FALSE, FALSE, FALSE};
+		bool bButtonEnabled = true;
+		bool bInvalid[3] = {false, false, false};
 		int iStatusMsgId = 0;
 		int iUnpackerStatusMsgId = 0;
 
@@ -745,20 +745,20 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		delete pParams;
 
 		// Check if we have project file as left side path
-		BOOL bProject = FALSE;
+		bool bProject = false;
 		String ext;
 		paths::SplitFilename(paths[0], NULL, NULL, &ext);
 		if (paths[1].empty() && strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
-			bProject = TRUE;
+			bProject = true;
 
 		if (!bProject)
 		{
 			if (paths::DoesPathExist(paths[0], IsArchiveFile) == paths::DOES_NOT_EXIST)
-				bInvalid[0] = TRUE;
+				bInvalid[0] = true;
 			if (paths::DoesPathExist(paths[1], IsArchiveFile) == paths::DOES_NOT_EXIST)
-				bInvalid[1] = TRUE;
+				bInvalid[1] = true;
 			if (paths.GetSize() > 2 && paths::DoesPathExist(paths[2], IsArchiveFile) == paths::DOES_NOT_EXIST)
-				bInvalid[2] = TRUE;
+				bInvalid[2] = true;
 		}
 
 		// Enable buttons as appropriate
@@ -814,7 +814,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				iUnpackerStatusMsgId = IDS_OPEN_UNPACKERDISABLED;
 
 			if (bProject)
-				bButtonEnabled = TRUE;
+				bButtonEnabled = true;
 			else
 				bButtonEnabled = (pathsType != paths::DOES_NOT_EXIST);
 		}
@@ -1025,7 +1025,7 @@ void COpenView::OnSelectFilter()
 	String filterPrefix = _("[F] ");
 	String curFilter;
 
-	const BOOL bUseMask = theApp.m_pGlobalFileFilter->IsUsingMask();
+	const bool bUseMask = theApp.m_pGlobalFileFilter->IsUsingMask();
 	GetDlgItemText(IDC_EXT_COMBO, curFilter);
 	curFilter = strutils::trim_ws(curFilter);
 
@@ -1071,9 +1071,9 @@ void COpenView::OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult)
  * project file are kept in memory and used later when loading paths
  * selected.
  * @param [in] path Path to the project file.
- * @return TRUE if the project file was successfully loaded, FALSE otherwise.
+ * @return `true` if the project file was successfully loaded, `false` otherwise.
  */
-BOOL COpenView::LoadProjectFile(const String &path)
+bool COpenView::LoadProjectFile(const String &path)
 {
 	String filterPrefix = _("[F] ");
 	ProjectFile prj;

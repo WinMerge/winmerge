@@ -17,14 +17,14 @@ public:
 	~CPicture();
 
 	// Load frm various sosurces
-	BOOL Load(UINT nIDRes);
-	BOOL Load(LPCTSTR pszPathName);
-	BOOL Load(CFile& file);
-	BOOL Load(CArchive& ar);
-	BOOL Load(IStream* pstm);
+	bool Load(UINT nIDRes);
+	bool Load(LPCTSTR pszPathName);
+	bool Load(CFile& file);
+	bool Load(CArchive& ar);
+	bool Load(IStream* pstm);
 
 	// render to device context
-	BOOL Render(CDC* pDC, CRect rc=CRect(0,0,0,0),
+	bool Render(CDC* pDC, CRect rc=CRect(0,0,0,0),
 		LPCRECT prcMFBounds=NULL) const;
 
 	CSize GetImageSize(CDC* pDC=NULL) const;
