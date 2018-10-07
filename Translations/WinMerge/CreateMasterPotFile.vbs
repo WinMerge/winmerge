@@ -21,13 +21,17 @@ Const PATH_ENGLISH_POT = "English.pot"
 Const PATH_MERGE_RC = "../../Src/Merge.rc"
 Const PATH_MERGELANG_RC = "MergeLang.rc"
 
-Dim oFSO, bRunFromCmd
+Dim oFSO, bRunFromCmd, bInsertLineNumbers
 
 Set oFSO = CreateObject("Scripting.FileSystemObject")
 
 bRunFromCmd = False
 If LCase(oFSO.GetFileName(Wscript.FullName)) = "cscript.exe" Then
   bRunFromCmd = True
+End If
+bInsertLineNumbers = False
+If WScript.Arguments.Named.Exists("InsertLineNumbers") Then
+  bInsertLineNumbers = CBool(WScript.Arguments.Named("InsertLineNumbers"))
 End If
 
 Call Main
@@ -72,7 +76,7 @@ End Sub
 ''
 ' ...
 Class CString
-  Dim Comment, UniqueId, Context, Id, Str
+  Dim Comment, References, UniqueId, Context, Id, Str
 End Class
 
 Function MyMod(ByVal a, ByVal b)
@@ -123,6 +127,7 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
       sLine = Trim(sLcLine)
       iLine = iLine + 1
       
+      sReference = sRcFileName & ":" & iLine
       sString = ""
       sComment = ""
       sContext = ""
@@ -169,7 +174,11 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
                 sTemp = oMatch.SubMatches(0)
                 If (sTemp <> "") And (oBlacklist.Exists(sTemp) = False) Then 'If NOT blacklisted...
                   sString = Replace(sTemp, """""", "\""")
-                  sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sRcFileName & ":" & Hex(GetUniqueId(oUIDs, sString)) & """", 1, 1)
+                  If bInsertLineNumbers Then
+                    sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sReference & """", 1, 1)
+                  Else
+                    sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sRcFileName & ":" & Hex(GetUniqueId(oUIDs, sString)) & """", 1, 1)
+                  End If
                   If (FoundRegExpMatch(sLine, "//#\. (.*?)$", oMatch) = True) Then 'If found a comment for the translators...
                     sComment = Trim(oMatch.SubMatches(0))
                   ElseIf (FoundRegExpMatch(sLine, "//msgctxt (.*?)$", oMatch) = True) Then 'If found a context for the translation...
@@ -205,6 +214,13 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
           oString.Comment = sComment
         End If
         oString.UniqueId = sRcFileName & ":" & Hex(GetUniqueId(oUIDs, sString))
+        If bInsertLineNumbers Then
+          If (oString.References <> "") Then
+            oString.References = oString.References & vbTab & sReference
+          Else
+            oString.References = sReference
+          End If
+	End If
         oString.Context = sContext
         oString.Id = sString
         oString.Str = ""
@@ -251,7 +267,7 @@ End Function
 ''
 ' ...
 Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
-  Dim oPotFile, sKey, oString, i
+  Dim oPotFile, sKey, oString, aReferences, i
   
   Set oPotFile = oFSO.CreateTextFile(sPotPath, True)
   
@@ -281,6 +297,12 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
     Set oString = oStrings(sKey)
     If (oString.Comment <> "") Then 'If comment exists...
       oPotFile.Write "#. " & oString.Comment & vbLf
+    End If
+    If bInsertLineNumbers Then
+      aReferences = SplitByTab(oString.References)
+      For i = LBound(aReferences) To UBound(aReferences) 'For all references...
+        oPotFile.Write "#: " & aReferences(i) & vbLf
+      Next
     End If
     oPotFile.Write "#: " & oString.UniqueId & vbLf
     oPotFile.Write "#, c-format" & vbLf
