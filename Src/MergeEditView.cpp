@@ -1645,15 +1645,6 @@ void CMergeEditView::OnLButtonUp(UINT nFlags, CPoint point)
 	}
 }
 
-/**
- * @brief Finds longest line (needed for scrolling etc).
- * @sa CCrystalTextView::GetMaxLineLength()
- */
-void CMergeEditView::UpdateLineLengths()
-{
-	GetMaxLineLength();
-}
-
 void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 {
 	// Check that right side is not readonly
