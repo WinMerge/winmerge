@@ -1462,50 +1462,6 @@
     </section>
   </section>
 
-  <section id="Configuration_vcs">
-    <title>Version Control page<indexterm>
-        <primary>version control systems</primary>
-
-        <secondary>configuring after installation</secondary>
-      </indexterm><indexterm>
-        <primary>integration</primary>
-
-        <secondary>with version control systems</secondary>
-      </indexterm></title>
-
-    <para>Use this page to enable or disable checkouts through an installed
-    version control system (VCS) that you select here. If you enable this
-    integration with one of the supported systems, WinMerge opens the checkout
-    dialog for that VCS when you save a versioned file in WinMerge.</para>
-
-    <itemizedlist>
-      <listitem>
-        <para><guilabel>None</guilabel> (default): When you save a file in
-        WinMerge, there are no interactions with any version control
-        system.</para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Visual SourceSafe (less than 5.0)</guilabel></para>
-
-        <para>Also enter the path to <filename>SS.EXE</filename>.</para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Visual SourceSafe (5.0 and above)</guilabel></para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Rational ClearCase</guilabel></para>
-
-        <para>Also enter the path to <filename>cleartool.exe</filename>.</para>
-      </listitem>
-    </itemizedlist>
-
-    <para>See <xref linkend="VersionControl_vcs" /> for details about using this
-    feature.</para>
-  </section>
-
   <section id="Configuration_codepage">
     <title>Codepage page<indexterm>
         <primary>codepage</primary>
