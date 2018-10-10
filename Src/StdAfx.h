@@ -93,19 +93,55 @@ int NTAPI LangMessageBox(UINT, UINT nType = MB_OK, UINT nIDHelp = (UINT)-1);
 class CWinMergeProfile
 {
 private:
+	static int level;
+	static CMapStringToPtr map;
+	static LARGE_INTEGER origin;
 	LARGE_INTEGER li[2];
 	LARGE_INTEGER freq;
 	TCHAR funcname[256];
 public:
 	explicit CWinMergeProfile(LPCTSTR pFuncName) {
+		TCHAR buf[256];
+		_stprintf_s(buf, _T("%-*s funcname=%s Start\n"), level, L"", pFuncName);
+		OutputDebugString(buf);
 		lstrcpy(funcname, pFuncName);
 		QueryPerformanceFrequency(&freq);
 		QueryPerformanceCounter(&li[0]);
+		if (origin.QuadPart == 0)
+			origin = li[0];
+		++level;
 	}
 	~CWinMergeProfile() {
 		QueryPerformanceCounter(&li[1]);
 		TCHAR buf[256];
-		wsprintf(buf, _T("funcname=%s t=%d[us]\n"), funcname, (int)((double)(li[1].QuadPart-li[0].QuadPart)/freq.QuadPart*1000.0*1000.0));
+		level--;
+		int elapsed = (int)((double)(li[1].QuadPart - li[0].QuadPart) / freq.QuadPart*1000.0*1000.0);
+		int tim = (int)((double)(li[1].QuadPart - origin.QuadPart) / freq.QuadPart*1000.0*1000.0);
+		struct stat {
+			int sum = 0;
+			int count = 0;
+		} *pstat;
+		void *pstatv = nullptr;
+		if (!map.Lookup(funcname, pstatv))
+		{
+			pstat = new stat();
+			map[funcname] = (void *)pstat;
+		}
+		else
+		{
+			pstat = reinterpret_cast<stat *>(pstatv);
+		}
+		pstat->sum += elapsed;
+		pstat->count++;
+		_stprintf_s(buf, _T("%-*s funcname=%s t=%d[us] count=%d sum=%d[us] time=%g[ms]\n"), level, L"", funcname, elapsed, pstat->count, pstat->sum, tim/1000.0);
 		OutputDebugString(buf);
+	}
+	static void ResetTimer()
+	{
+		QueryPerformanceCounter(&origin);
+	}
+	static void Terminiate()
+	{
+		map.RemoveAll();
 	}
 };
