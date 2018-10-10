@@ -760,17 +760,11 @@ BOOL BCMenu::AppendODMenuW(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,
 	mdata->xoffset = -1;
 	
 	if(nIconNormal>=0){
-		CImageList bitmap;
-		int xoffset=0;
-		LoadFromToolBar(static_cast<UINT>(nID),nIconNormal,xoffset);
 		if(mdata->bitmap){
 			mdata->bitmap->DeleteImageList();
 			mdata->bitmap=NULL;
 		}
-		bitmap.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
-		if(AddBitmapToImageList(&bitmap,nIconNormal)){
-			mdata->global_offset = AddToGlobalImageList(&bitmap,xoffset,static_cast<int>(nID));
-		}
+		mdata->global_offset = AddToGlobalImageList(nIconNormal,static_cast<int>(nID));
 	}
 	else mdata->global_offset = GlobalImageListOffset(static_cast<int>(nID));
 
@@ -852,17 +846,11 @@ BOOL BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PT
 	mdata->menuIconNormal = nIconNormal;
 	mdata->xoffset=-1;
 	if(nIconNormal>=0){
-		CImageList bitmap;
-		int xoffset=0;
-		LoadFromToolBar(static_cast<UINT>(nID),nIconNormal,xoffset);
 		if(mdata->bitmap){
 			mdata->bitmap->DeleteImageList();
 			mdata->bitmap=NULL;
 		}
-		bitmap.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
-		if(AddBitmapToImageList(&bitmap,nIconNormal)){
-			mdata->global_offset = AddToGlobalImageList(&bitmap,xoffset, static_cast<int>(nID));
-		}
+		mdata->global_offset = AddToGlobalImageList(nIconNormal, static_cast<int>(nID));
 	}
 	else mdata->global_offset = GlobalImageListOffset(static_cast<int>(nID));
 	mdata->nFlags = nFlags;
@@ -937,17 +925,11 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,int nIconNormal)
 		mdata->menuIconNormal = -1;
 		mdata->xoffset = -1;
 		if(nIconNormal>=0){
-			CImageList bitmap;
-			int xoffset=0;
-			LoadFromToolBar(static_cast<UINT>(nID),nIconNormal,xoffset);
 			if(mdata->bitmap){
 				mdata->bitmap->DeleteImageList();
 				mdata->bitmap=NULL;
 			}
-			bitmap.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
-			if(AddBitmapToImageList(&bitmap,nIconNormal)){
-				mdata->global_offset = AddToGlobalImageList(&bitmap,xoffset, static_cast<int>(nID));
-			}
+			mdata->global_offset = AddToGlobalImageList(nIconNormal, static_cast<int>(nID));
 		}
 		else mdata->global_offset = GlobalImageListOffset(static_cast<int>(nID));
 		mdata->nFlags &= ~(MF_BYPOSITION);
@@ -2282,6 +2264,29 @@ INT_PTR BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
 			loc=numcurrent;
 		}
 		::DestroyIcon(hIcon);
+	}
+	return loc;
+}
+
+INT_PTR BCMenu::AddToGlobalImageList(int nIconNormal,int nID)
+{
+	INT_PTR loc = -1;
+	HIMAGELIST hImageList = m_AllImages.m_hImageList;
+	if(!hImageList){
+		m_AllImages.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
+	}
+	INT_PTR numcurrent=m_AllImagesID.GetSize();
+	int existsloc = GlobalImageListOffset(nID);
+	if(existsloc>=0){
+		AddBitmapToImageList(&m_AllImages, nIconNormal);
+		m_AllImages.Copy(existsloc,static_cast<int>(numcurrent));
+		m_AllImages.Remove(static_cast<int>(numcurrent));
+		loc = existsloc;
+	}
+	else{
+		AddBitmapToImageList(&m_AllImages, nIconNormal);
+		m_AllImagesID.Add(nID);
+		loc=numcurrent;
 	}
 	return loc;
 }

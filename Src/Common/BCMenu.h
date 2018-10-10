@@ -306,6 +306,7 @@ protected:
 	void GetTransparentBitmap(CBitmap &bmp);
 	void GetDisabledBitmap(CBitmap &bmp,COLORREF background=0);
 	INT_PTR AddToGlobalImageList(CImageList *il,int xoffset,int nID);
+	INT_PTR AddToGlobalImageList(int nIconNormal,int nID);
 	int GlobalImageListOffset(int nID);
 	
 // Member Variables
