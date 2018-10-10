@@ -89,6 +89,7 @@
 
 #include "StdAfx.h"
 #include <vector>
+#include <algorithm>
 #include <malloc.h>
 #include <imm.h> /* IME */
 #include "editcmd.h"
@@ -513,7 +514,6 @@ SaveSettings ()
 
 CCrystalTextView::CCrystalTextView ()
 : m_nScreenChars(-1)
-, m_nMaxLineLength(-1)
 , m_pFindTextDlg(NULL)
 {
   memset(((CView*)this)+1, 0, sizeof(*this) - sizeof(class CView)); // AFX_ZERO_INIT_OBJECT (CView)
@@ -820,7 +820,10 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
           ScrollWindow(0, nScrollLines * GetLineHeight());
           UpdateWindow();
           if (bTrackScrollBar)
-            RecalcVertScrollBar(true);
+            {
+              RecalcVertScrollBar(true);
+              RecalcHorzScrollBar();
+            }
         }
       else
         {
@@ -839,7 +842,10 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
                   ScrollWindow(0, - nLineHeight * nScrollLines);
                   UpdateWindow();
                   if (bTrackScrollBar)
-                    RecalcVertScrollBar(true);
+                    {
+                      RecalcVertScrollBar(true);
+                      RecalcHorzScrollBar();
+                    }
                 }
             }
           else
@@ -855,7 +861,10 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
                   ScrollWindow(0, - nLineHeight * nScrollLines);
                   UpdateWindow();
                   if (bTrackScrollBar)
-                    RecalcVertScrollBar(true);
+                    {
+                      RecalcVertScrollBar(true);
+                      RecalcHorzScrollBar();
+                    }
                 }
             }
         }
@@ -2365,7 +2374,6 @@ ResetView ()
   m_nOffsetChar = 0;
   m_nLineHeight = -1;
   m_nCharWidth = -1;
-  m_nMaxLineLength = -1;
   m_nScreenLines = -1;
   m_nScreenChars = -1;
   m_nIdealCharPos = -1;
@@ -2478,7 +2486,6 @@ SetTabSize (int nTabSize)
       m_pTextBuffer->SetTabSize( nTabSize );
 
       m_pnActualLineLength->clear();
-      m_nMaxLineLength = -1;
       RecalcHorzScrollBar ();
       Invalidate ();
       UpdateCaret ();
@@ -2758,20 +2765,17 @@ GetCharWidth ()
 }
 
 int CCrystalTextView::
-GetMaxLineLength ()
+GetMaxLineLength (int nTopLine, int nLines)
 {
-  if (m_nMaxLineLength == -1)
+  int nMaxLineLength = 0;
+  const int nLineCount = (std::min)(nTopLine + nLines, GetLineCount ());
+  for (int I = nTopLine; I < nLineCount; I++)
     {
-      m_nMaxLineLength = 0;
-      const int nLineCount = GetLineCount ();
-      for (int I = 0; I < nLineCount; I++)
-        {
-          int nActualLength = GetLineActualLength (I);
-          if (m_nMaxLineLength < nActualLength)
-            m_nMaxLineLength = nActualLength;
-        }
+      int nActualLength = GetLineActualLength (I);
+      if (nMaxLineLength < nActualLength)
+        nMaxLineLength = nActualLength;
     }
-  return m_nMaxLineLength;
+  return nMaxLineLength;
 }
 
 CCrystalTextView *CCrystalTextView::
@@ -2850,7 +2854,7 @@ OnInitialUpdate ()
           if (pSiblingView != NULL && pSiblingView != this)
             {
               m_nOffsetChar = pSiblingView->m_nOffsetChar;
-              ASSERT (m_nOffsetChar >= 0 && m_nOffsetChar <= GetMaxLineLength ());
+              ASSERT (m_nOffsetChar >= 0 && m_nOffsetChar <= GetMaxLineLength (m_nTopLine, GetScreenLines()));
             }
         }
 
@@ -3355,7 +3359,7 @@ AttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
                                          ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
   CScrollBar *pHorzScrollBarCtrl = GetScrollBarCtrl (SB_HORZ);
   if (pHorzScrollBarCtrl != NULL)
-    pHorzScrollBarCtrl->EnableScrollBar (GetScreenChars () >= GetMaxLineLength ()?
+    pHorzScrollBarCtrl->EnableScrollBar (GetScreenChars () >= GetMaxLineLength (m_nTopLine, GetScreenLines())?
                                          ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
 
   //  Update scrollbars
@@ -3544,7 +3548,7 @@ OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz)
       else
         {
           ASSERT (pUpdateSource->m_nOffsetChar >= 0);
-          ASSERT (pUpdateSource->m_nOffsetChar < GetMaxLineLength ());
+          ASSERT (pUpdateSource->m_nOffsetChar < GetMaxLineLength (m_nTopLine, GetScreenLines()));
           if (pUpdateSource->m_nOffsetChar != m_nOffsetChar)
             {
               ScrollToChar (pUpdateSource->m_nOffsetChar, true, false);
@@ -3666,7 +3670,7 @@ RecalcHorzScrollBar (bool bPositionOnly /*= false*/, bool bRedraw /*= true */)
       return;
     }
 
-  const int nMaxLineLen = GetMaxLineLength ();
+  const int nMaxLineLen = GetMaxLineLength (m_nTopLine, GetScreenLines());
 
   if (bPositionOnly)
     {
@@ -4223,7 +4227,7 @@ EnsureVisible (CPoint pt)
     }
 
   // Horiz scroll limit to longest line + one screenwidth
-  const int nMaxLineLen = GetMaxLineLength ();
+  const int nMaxLineLen = GetMaxLineLength (m_nTopLine, GetScreenLines());
   if (nNewOffset >= nMaxLineLen + nScreenChars)
     nNewOffset = nMaxLineLen + nScreenChars - 1;
   if (nNewOffset < 0)
@@ -4430,7 +4434,6 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
   //  Recalculate horizontal scrollbar, if needed
   if ((dwFlags & UPDATE_HORZRANGE) != 0)
     {
-      m_nMaxLineLength = -1;
       if (!m_bHorzScrollBarLocked)
         RecalcHorzScrollBar ();
     }
@@ -6500,7 +6503,7 @@ void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)
     }
 
   // Horiz scroll limit to longest line + one screenwidth
-  const int nMaxLineLen = GetMaxLineLength ();
+  const int nMaxLineLen = GetMaxLineLength (m_nTopLine, GetScreenLines());
   if (nNewOffset >= nMaxLineLen + nScreenChars)
     nNewOffset = nMaxLineLen + nScreenChars - 1;
   if (nNewOffset < 0)

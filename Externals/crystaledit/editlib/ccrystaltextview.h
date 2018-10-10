@@ -142,7 +142,6 @@ private :
     int m_nLastLineIndexCalculatedSubLineIndex;
     //END SW
 
-    int m_nMaxLineLength;
     int m_nIdealCharPos;
 
     bool m_bFocused;
@@ -387,7 +386,7 @@ protected :
 	int SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset );
 	//END SW
     int GetCharWidth ();
-    int GetMaxLineLength ();
+    int GetMaxLineLength (int nTopLine, int nLines);
     int GetScreenLines ();
     int GetScreenChars ();
     CFont *GetFont (bool bItalic = false, bool bBold = false);
