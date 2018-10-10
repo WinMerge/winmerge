@@ -4,6 +4,24 @@ old format (#XXXXXXX) or new format (patches:#XXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
+WinMerge 2.15.5
+  General:
+  - Add support for very long path and file names (GitHub #87,95)
+  - Enable Ctrl+C shortcut key on the file path bar
+  - Remove support for old version control system (GitHub #96)
+  File compare:
+  - Add Window/Split menu item
+  - Improve handling of last lines in files (GitHub #89,90,93)
+  - BugFix: Crash when saving a file if the active pane is diff detail pane
+  - BugFix: Crash when pressing Alt+Down key while loading large files
+  Translations:
+  - Update Italian translation (GitHub #86)
+  - Update Japanese translation (Bitbucket #3)
+  - Update Dutch translation
+  Internals:
+  - Various diffengine and compilation/build fixes
+    (GitHub #89,90,91,92,94)
+
 WinMerge 2.15.4
   Appearance:
   - BugFix: Dot icon in a drop-down menu is not drawn correctly
