@@ -521,7 +521,7 @@ ScrollLeft ()
 void CCrystalTextView::
 ScrollRight ()
 {
-  if (m_nOffsetChar < GetMaxLineLength () - 1)
+  if (m_nOffsetChar < GetMaxLineLength (m_nTopLine, GetScreenLines()) - 1)
     {
       ScrollToChar (m_nOffsetChar + 1);
       UpdateCaret ();
@@ -975,7 +975,7 @@ OnTimer (UINT_PTR nIDEvent)
 
       //  Scroll horizontally, if necessary
       int nNewOffsetChar = m_nOffsetChar;
-      int nMaxLineLength = GetMaxLineLength ();
+      int nMaxLineLength = GetMaxLineLength (m_nTopLine, GetScreenLines());
       if (pt.x < rcClient.left)
         nNewOffsetChar--;
       else if (pt.x >= rcClient.right)
