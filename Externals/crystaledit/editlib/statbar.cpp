@@ -70,7 +70,7 @@ SetPaneFormattedText (int nIndex, bool bUpdate, UINT nId,...)
 bool CEditStatusBar::
 SetPaneText (int nIndex, LPCTSTR lpszNewText, bool bUpdate /*= true*/ )
 {
-  return CStatusBar::SetPaneText (nIndex, lpszNewText, bUpdate);
+  return !!CStatusBar::SetPaneText (nIndex, lpszNewText, bUpdate);
 }
 
 bool CEditStatusBar::

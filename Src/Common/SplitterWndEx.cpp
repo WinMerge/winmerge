@@ -295,8 +295,8 @@ void CSplitterWndEx::FlipSplit()
 	std::vector<CWnd *> pColPanes(nCols);
 	std::vector<CWnd *> pRowPanes(nRows);
 
-	bool bHasVScroll = m_bHasHScroll;
-	bool bHasHScroll = m_bHasVScroll;
+	bool bHasVScroll = !!m_bHasHScroll;
+	bool bHasHScroll = !!m_bHasVScroll;
 
 	CScrollBar *pBar;
 	int pane;

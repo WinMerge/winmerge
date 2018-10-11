@@ -935,7 +935,7 @@ bool CSizingControlBar::NegotiateSpace(int nLengthTotal, bool bHorz)
         if (HIWORD(pBar) == 0) continue; // placeholder
         if (!pBar->IsVisible()) continue;
         bool bIsSizingBar = 
-            pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar));
+            !!pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar));
 
         int nLengthBar; // minimum length of the bar
         if (bIsSizingBar)

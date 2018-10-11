@@ -911,7 +911,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 
 		if (success)
 		{
-			success = CopyFileW(TFile(pszPath).wpath().c_str(), TFile(bakPath).wpath().c_str(), FALSE);
+			success = !!CopyFileW(TFile(pszPath).wpath().c_str(), TFile(bakPath).wpath().c_str(), FALSE);
 		}
 		
 		if (!success)
