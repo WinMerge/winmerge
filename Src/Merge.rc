@@ -789,6 +789,7 @@ BEGIN
     END
 END
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
@@ -1845,6 +1846,10 @@ BEGIN
                             "Unknown error attempting to open project file"
     IDS_UNK_ERROR_SAVING_PROJECT 
                             "Unknown error attempting to save project file"
+END
+
+STRINGTABLE
+BEGIN
     IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
     IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
 END
@@ -1893,9 +1898,12 @@ BEGIN
     IDS_MESSAGEBOX_SKIP     "&Skip"
     IDS_MESSAGEBOX_SKIPALL  "Skip &all"
     IDS_MESSAGEBOX_HELP     "&Help"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
-    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
-    IDS_MESSAGEBOX_CHECKBOX_TOOLTIP "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN 
+                            "Don't display this &message again."
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN 
+                            "Don't ask this &question again."
+    IDS_MESSAGEBOX_CHECKBOX_TOOLTIP 
+                            "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 END
 
 // Options-dialog page captions
@@ -1915,13 +1923,16 @@ BEGIN
     IDS_OPTIONSPG_SHELL     "Shell Integration"
     IDS_OPTIONSPG_MERGECOLORS "Differences"
     IDS_OPTIONSPG_GENCOMPARE "General"
+END
+
+STRINGTABLE
+BEGIN
     IDS_OPTIONSPG_FOLDERCOMPARE "Folder"
     IDS_OPTIONSPG_IMAGECOMPARE "Image"
     IDS_OPTIONSPG_BINARYCOMPARE "Binary"
 END
 
 // WINMERGE CUSTOM STRINGS
-
 STRINGTABLE
 BEGIN
     IDS_TO                  "To:"
@@ -2056,12 +2067,14 @@ BEGIN
     IDS_OPEN_FILESDIRS      "Select two (or three) folders or two (or three) files to compare."
     IDS_OPEN_LEFTINVALID    "Left (1st) path is invalid!"
     IDS_OPEN_MIDDLEINVALID  "Middle (2nd) path is invalid!"
-    IDS_OPEN_RIGHTINVALID2   "Right (2nd) path is invalid!"
-    IDS_OPEN_RIGHTINVALID3   "Right (3rd) path is invalid!"
+    IDS_OPEN_RIGHTINVALID2  "Right (2nd) path is invalid!"
+    IDS_OPEN_RIGHTINVALID3  "Right (3rd) path is invalid!"
     IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
-    IDS_OPEN_LEFTMIDDLEINVALID "Left (1st) and Middle (2nd) paths are invalid!"
+    IDS_OPEN_LEFTMIDDLEINVALID 
+                            "Left (1st) and Middle (2nd) paths are invalid!"
     IDS_OPEN_LEFTRIGHTINVALID "Left (1st) and Right (3rd) paths are invalid!"
-    IDS_OPEN_MIDDLERIGHTINVALID "Middle (2nd) and Right (3rd) paths are invalid!"
+    IDS_OPEN_MIDDLERIGHTINVALID 
+                            "Middle (2nd) and Right (3rd) paths are invalid!"
     IDS_OPEN_ALLINVALID     "All paths are invalid!"
     IDS_OPEN_UNPACKERDISABLED 
                             "Only enabled for File comparisons"
@@ -2098,6 +2111,10 @@ BEGIN
     IDS_SAVE_LEFT_AS        "Save Left File As"
     IDS_SAVE_MIDDLE_AS      "Save Middle File As"
     IDS_SAVE_RIGHT_AS       "Save Right File As"
+END
+
+STRINGTABLE
+BEGIN
     IDS_FILE_DISAPPEARED    "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
 END
 
@@ -2122,6 +2139,10 @@ BEGIN
     IDS_COPY_MIDDLE_TO_RIGHT2 "Middle to Right (%1 of %2)"
     IDS_COPY_LEFT_TO_RIGHT2 "Left to Right (%1 of %2)"
     IDS_COPY_LEFT_TO_MIDDLE2 "Left to Middle (%1 of %2)"
+END
+
+STRINGTABLE
+BEGIN
     IDS_COPY_LEFT_TO        "Left to... (%1)"
     IDS_COPY_MIDDLE_TO      "Middle to... (%1)"
     IDS_COPY_RIGHT_TO       "Right to... (%1)"
@@ -2148,6 +2169,10 @@ BEGIN
     IDS_DEL_MIDDLE_FMT2     "Middle (%1 of %2)"
     IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
     IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
+END
+
+STRINGTABLE
+BEGIN
     IDS_DEL_ALL_FMT2        "All (%1 of %2)"
     IDS_MOVE_LEFT_TO        "Left to... (%1)"
     IDS_MOVE_MIDDLE_TO      "Middle to... (%1)"
@@ -2169,6 +2194,10 @@ BEGIN
     IDS_CONFIRM_SINGLE_COPY "Are you sure you want to copy:"
     IDS_CONFIRM_MULTIPLE_COPY "Are you sure you want to copy %d items:"
     IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
+END
+
+STRINGTABLE
+BEGIN
     IDS_CONFIRM_SINGLE_MOVE "Are you sure you want to move:"
     IDS_CONFIRM_MULTIPLE_MOVE "Are you sure you want to move %d items:"
     IDS_CONFIRM_COPY_CAPTION "Confirm Copy"
@@ -2201,6 +2230,10 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extension"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_COLHDR_RSIZE        "Right Size"
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLHDR_MSIZE        "Middle Size"
     IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
     IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
@@ -2221,6 +2254,10 @@ BEGIN
     IDS_COLHDR_LATTRIBUTES  "Left Attributes"
     IDS_COLHDR_RATTRIBUTES  "Right Attributes"
     IDS_COLHDR_MATTRIBUTES  "Middle Attributes"
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LEOL_TYPE    "Left EOL"
     IDS_COLHDR_MEOL_TYPE    "Middle EOL"
     IDS_COLHDR_REOL_TYPE    "Right EOL"
@@ -2249,6 +2286,10 @@ BEGIN
     IDS_RIGHT_ONLY_IN_FMT   "Right only: %1"
     IDS_DOES_NOT_EXIST_IN_FMT "Does not exist in %1"
     IDS_BIN_FILES_SAME      "Binary files are identical"
+END
+
+STRINGTABLE
+BEGIN
     IDS_IDENTICAL           "Identical"
     IDS_BIN_FILES_DIFF      "Binary files are different"
     IDS_FILES_ARE_DIFFERENT "Files are different"
@@ -2265,10 +2306,6 @@ BEGIN
     IDS_LEFTONLY_DIFF       "(Middle and right are identical)"
     IDS_MIDDLEONLY_DIFF     "(Left and right are identical)"
     IDS_RIGHTONLY_DIFF      "(Left and middle are identical)"
-END
-
-STRINGTABLE
-BEGIN
     IDS_TEXT_FILES_DIFF     "Text files are different"
 END
 
@@ -2286,6 +2323,10 @@ BEGIN
     IDS_COLDESC_FILENAME    "Filename or folder name."
     IDS_COLDESC_DIR         "Subfolder name when subfolders are included."
     IDS_COLDESC_RESULT      "Comparison result, long form."
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEM      "Left side modification date."
     IDS_COLDESC_RTIMEM      "Right side modification date."
     IDS_COLDESC_MTIMEM      "Middle side modification date."
@@ -2307,6 +2348,10 @@ BEGIN
     IDS_COLDESC_NEWER       "Tells which side has newer modification date."
     IDS_COLDESC_LVERSION    "Left side file version, only for some filetypes."
     IDS_COLDESC_RVERSION    "Right side file version, only for some filetypes."
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLDESC_MVERSION    "Middle side file version, only for some filetypes."
     IDS_COLDESC_RESULT_ABBR "Short comparison result."
     IDS_COLDESC_LATTRIBUTES "Left side attributes."
@@ -2338,6 +2383,10 @@ BEGIN
     IDS_REPORT_SIMPLEXML    "Simple XML"
     IDS_REPORT_FILEOVERWRITE 
                             "The report file already exists. Do you want to overwrite existing file?"
+END
+
+STRINGTABLE
+BEGIN
     IDS_REPORT_ERROR        "Error creating the report:\n%1"
     IDS_REPORT_SUCCESS      "The report has been created successfully."
 END
@@ -2354,6 +2403,10 @@ BEGIN
     IDS_CANNOT_OPEN_BINARYFILE "Cannot open a binary file to editor."
     IDS_CREATE_PAIR_FOLDER  "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
     IDS_MOVE_TO_NEXTFILE    "Do you want to move to the next file?"
+END
+
+STRINGTABLE
+BEGIN
     IDS_MOVE_TO_PREVFILE    "Do you want to move to the previous file?"
     IDS_MOVE_TO_NEXTPAGE    "Do you want to move to the next page?"
     IDS_MOVE_TO_PREVPAGE    "Do you want to move to the previous page?"
@@ -2393,7 +2446,6 @@ STRINGTABLE
 BEGIN
     IDS_MERGE_MODE          "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
 END
-
 
 // EDITOR : AUTO MERGE
 STRINGTABLE
@@ -2485,6 +2537,10 @@ BEGIN
     ID_NEXTDIFF             "\nNext Difference (Alt+Down)"
     ID_PREVCONFLICT         "\nPrevious Conflict (Alt+Shift+Up)"
     ID_NEXTCONFLICT         "\nNext Conflict (Alt+Shift+Down)"
+END
+
+STRINGTABLE
+BEGIN
     ID_FIRSTDIFF            "\nFirst Difference (Alt+Home)"
     ID_CURDIFF              "\nCurrent Difference (Alt+Enter)"
     ID_LASTDIFF             "\nLast Difference (Alt+End)"
@@ -2513,6 +2569,10 @@ BEGIN
     IDS_CHECKFORUPDATES_UPTODATE "Your software is up to date"
     IDS_CHECKFORUPDATES_NEWVERSION 
                             "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
+END
+
+STRINGTABLE
+BEGIN
     IDS_CHECKFORUPDATES_FAILED "Failed to download latest version information"
 END
 
@@ -2559,6 +2619,10 @@ BEGIN
     IDS_COLORSCHEME_INSTALLSHIELD "InstallShield"
     IDS_COLORSCHEME_JAVA    "Java"
     IDS_COLORSCHEME_LISP    "AutoLISP"
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLORSCHEME_NSIS    "NSIS"
     IDS_COLORSCHEME_PASCAL  "Pascal"
     IDS_COLORSCHEME_PERL    "Perl"
@@ -2575,6 +2639,10 @@ BEGIN
     IDS_COLORSCHEME_SIOD    "SIOD"
     IDS_COLORSCHEME_SQL     "SQL"
     IDS_COLORSCHEME_TCL     "TCL"
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLORSCHEME_TEX     "TEX"
     IDS_COLORSCHEME_VERILOG "Verilog"
     IDS_COLORSCHEME_VHDL    "VHDL"
@@ -2609,6 +2677,7 @@ STRINGTABLE
 BEGIN
     IDC_EXT_EDITOR_PATH     "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
