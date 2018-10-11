@@ -1411,9 +1411,24 @@ msgstr "Přispěvatelé"
 msgid "Select Files or Folders"
 msgstr "Vybrat soubory nebo složky..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:4186E48
 #, c-format
-msgid "&1st:"
+msgid "Help"
+msgstr "Nápověda"
+
+#: Merge.rc:6DE6F874
+#, c-format
+msgid "&1st File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Pouze pro čt&ení"
+
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
 msgstr ""
 
 #: Merge.rc:68816EE7
@@ -1421,9 +1436,19 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Procházet..."
 
-#: Merge.rc:43017E4F
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&2nd:"
+msgid "&2nd File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
 msgstr ""
 
 #: Merge.rc:78E0CE0E
@@ -1431,9 +1456,19 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "Pr&ocházet..."
 
-#: Merge.rc:702BA358
+#: Merge.rc:3C1ECDDA
 #, c-format
-msgid "(Optional) &3rd:"
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
+#: Merge.rc:56BD1FBC
+#, c-format
+msgid "Swap 1st | 3rd"
 msgstr ""
 
 #: Merge.rc:146A5938
@@ -1441,59 +1476,39 @@ msgstr ""
 msgid "Browse..."
 msgstr "Pr&ocházet..."
 
-#: Merge.rc:64ABCD7D
+#: Merge.rc:22467E6E
 #, c-format
-msgid "Fi&lter:"
+msgid " Folder: Filter"
 msgstr ""
 
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "&Vybrat..."
-
 #: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "Př&evaděč:"
-
-#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "Vy&brat..."
 
-#: Merge.rc:67019DCA
+#: Merge.rc:662470D5
 #, c-format
-msgid "Status:"
+msgid " File: Unpacker Plugin"
 msgstr ""
+
+#: Merge.rc:751AB58F
+#, c-format
+msgid "Se&lect..."
+msgstr ""
+
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Porovnávání"
 
 #: Merge.rc:4E65D340
 #, c-format
 msgid "Cancel"
 msgstr "Storno"
 
-#: Merge.rc:4186E48
+#: Merge.rc:67019DCA
 #, c-format
-msgid "Help"
-msgstr "Nápověda"
-
-#: Merge.rc:75264C52
-#, c-format
-msgid "Files or Folders to Compare"
-msgstr "Soubory nebo složky k porovnání"
-
-#: Merge.rc:39174D96
-#, c-format
-msgid "Re&ad-only"
-msgstr "Pouze pro čt&ení"
-
-#: Merge.rc:39174D97
-#, c-format
-msgid "Rea&d-only"
-msgstr ""
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Read-o&nly"
+msgid "Status:"
 msgstr ""
 
 #: Merge.rc:787FD72B
@@ -1603,7 +1618,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "&Najít další"
@@ -1633,7 +1648,7 @@ msgstr "Zastavit na &konci souboru"
 msgid "Replace in"
 msgstr "Nahrazovat"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "ve vý&běru"
@@ -1828,7 +1843,7 @@ msgstr "Soubor &1:"
 msgid "File&2:"
 msgstr "Soubor &2:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "Z&aměnit"
@@ -1983,11 +1998,6 @@ msgstr "Ro&zdíl"
 msgid "&Go To"
 msgstr "&Přejít"
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Porovnávání"
-
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2068,7 +2078,7 @@ msgstr "Zachovat původní znaky na &koncích řádků"
 msgid "Tabs"
 msgstr "Tabelátory"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "&Velikost:"
@@ -2313,7 +2323,7 @@ msgstr "Tučné"
 msgid "Marker colors"
 msgstr ""
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr ""
@@ -2398,7 +2408,7 @@ msgstr "Zjistit &automaticky typ archivu"
 msgid "Compare Statistics"
 msgstr "Statistika porovnání"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "Složky:"
@@ -2533,7 +2543,7 @@ msgstr "&Název složky"
 msgid "Result:"
 msgstr "Výsledek:"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "Z&kusit"
@@ -2563,7 +2573,7 @@ msgstr "Okolí textu:"
 msgid "Regular text:"
 msgstr "Řádný text:"
 
-#: Merge.rc:751AB58F
+#: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
 msgstr "Výběr:"
@@ -2918,12 +2928,12 @@ msgstr "Ne vš&em"
 msgid "&Continue"
 msgstr "Pok&račovat"
 
-#: Merge.rc:43017E52
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "Pře&skočit"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "Přes&kočit vše"
@@ -3316,10 +3326,10 @@ msgstr ""
 msgid "All paths are invalid!"
 msgstr ""
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "Vyberte dva soubory k zpřístupnění volby převaděče"
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3679,7 +3689,7 @@ msgstr "Nelze spustit externí editor: %1"
 msgid "Unknown archive format"
 msgstr "Neznámý formát archivu"
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "Název souboru"
@@ -4149,7 +4159,7 @@ msgstr "Seznam oddělený tabelátory"
 msgid "Simple HTML"
 msgstr "Soubor HTML"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB591
 #, c-format
 msgid "Simple XML"
 msgstr "Soubor XML"
