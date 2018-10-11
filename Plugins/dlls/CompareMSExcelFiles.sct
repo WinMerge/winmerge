@@ -318,6 +318,23 @@ Function saveSheetAsImage(sht, basefilename)
 	Loop While column < rngUsed.column + rngUsed.Columns.Count - 1 
 End Function
 
+Function escape(sheetName)
+    escape = Replace(sheetName, "%", "%25")
+    escape = Replace(escape, "<", "%3C")
+    escape = Replace(escape, ">", "%3E")
+    escape = Replace(escape, "|", "%7C")
+    Select Case Left(UCase(escape), 3)
+    Case "CON", "AUX", "NUL"
+        If Len(escape) = 3 Then
+            escape = "%" & escape
+        End If
+    Case "COM", "LPT"
+        If Len(escape) = 4 And IsNumeric(Mid(escape, 4, 1)) Then
+            escape = "%" & escape
+        End If
+    End Select
+End Function
+
 Function get_PluginEvent()
 	get_PluginEvent = "FILE_FOLDER_PACK_UNPACK"
 End Function
@@ -459,32 +476,32 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	No = 1
 	For Each sht In wbk.Worksheets
 		If regRead(RegKeyPath & "CompareCellValues", True) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & ".txt"), True, True)
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & ".txt"), True, True)
 			writeCellValues fo, sht
 			fo.Close
 		End If
 
 		If regRead(RegKeyPath & "CompareFormulas", False) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & "_Formulas.txt"), True, True)
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & "_Formulas.txt"), True, True)
 			writeFormulas fo, sht
 			fo.Close
 		End If
 
 		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & "_Shapes.txt"), True, True)
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & "_Shapes.txt"), True, True)
 			ungroupShapes sht
 			writeTextsInShapes fo, sht
 			fo.Close
 		End If
 
 		If regRead(RegKeyPath & "CompareHeadersAndFooters", True) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & sht.Name & "_HeadersAndFooters.txt"), True, True)
+			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & "_HeadersAndFooters.txt"), True, True)
 			writeHeadersAndFooters fo, sht
 			fo.Close
 		End If
 
 		If regRead(RegKeyPath & "CompareWorksheetsAsImage", True) Then
-			saveSheetAsImage sht, fso.BuildPath(folderDst, "(" & No & ")" & sht.Name)
+			saveSheetAsImage sht, fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name))
 		End If
 		No = No + 1
 	Next
