@@ -305,7 +305,6 @@ void COpenView::OnInitialUpdate()
 	m_strUnpacker = m_infoHandler.pluginName;
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
-	SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
 	SetUnpackerStatus(IDS_USERCHOICE_NONE); 
 
 	m_pDropHandler = new DropHandler(std::bind(&COpenView::OnDropFiles, this, std::placeholders::_1));
@@ -743,7 +742,8 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		if (msg.message != WM_USER + 2)
 			continue;
 
-		bool bButtonEnabled = true;
+		bool bIsaFolderCompare = true;
+		bool bIsaFileCompare = true;
 		bool bInvalid[3] = {false, false, false};
 		int iStatusMsgId = 0;
 		int iUnpackerStatusMsgId = 0;
@@ -817,18 +817,13 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
 				}
 			}
-			if (pathsType == paths::IS_EXISTING_FILE || bProject)
-				iUnpackerStatusMsgId = 0;	//Empty field
-			else
-				iUnpackerStatusMsgId = IDS_OPEN_UNPACKERDISABLED;
-
-			if (bProject)
-				bButtonEnabled = true;
-			else
-				bButtonEnabled = (pathsType != paths::DOES_NOT_EXIST);
+			bIsaFileCompare = (pathsType == paths::IS_EXISTING_FILE);
+			bIsaFolderCompare = (pathsType == paths::IS_EXISTING_DIR);
+			// Both will be `false` if incompatibilities or something is missing
+			// Both will end up `true` if file validity isn't being checked
 		}
 
-		PostMessage(hWnd, WM_USER + 1, bButtonEnabled, MAKELPARAM(iStatusMsgId, iUnpackerStatusMsgId)); 
+		PostMessage(hWnd, WM_USER + 1, MAKEWPARAM(bIsaFolderCompare, bIsaFileCompare), MAKELPARAM(iStatusMsgId, bProject)); 
 	}
 
 	CoUninitialize();
@@ -990,13 +985,22 @@ void COpenView::OnSelectUnpacker()
 
 LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 {
-	bool bEnabledButtons = wParam != 0;
+	bool bIsaFolderCompare = LOWORD(wParam) != 0;
+	bool bIsaFileCompare = HIWORD(wParam) != 0;
+	bool bProject = HIWORD(lParam);
 
-	EnableDlgItem(IDOK, bEnabledButtons);
-	EnableDlgItem(IDC_UNPACKER_EDIT, bEnabledButtons);
-	EnableDlgItem(IDC_SELECT_UNPACKER, bEnabledButtons);
+	EnableDlgItem(IDOK, bIsaFolderCompare || bIsaFileCompare || bProject);
 
-	SetStatus(HIWORD(lParam));
+	EnableDlgItem(IDC_FILES_DIRS_GROUP4, bIsaFileCompare);
+	EnableDlgItem(IDC_UNPACKER_EDIT, bIsaFileCompare);
+	EnableDlgItem(IDC_SELECT_UNPACKER, bIsaFileCompare);
+
+	
+	EnableDlgItem(IDC_FILES_DIRS_GROUP3,  bIsaFolderCompare);
+	EnableDlgItem(IDC_EXT_COMBO, bIsaFolderCompare);
+	EnableDlgItem(IDC_SELECT_FILTER, bIsaFolderCompare);
+	EnableDlgItem(IDC_RECURS_CHECK, bIsaFolderCompare);
+	
 	SetStatus(LOWORD(lParam));
 
 	return 0;
@@ -1022,7 +1026,7 @@ void COpenView::SetStatus(UINT msgID)
  */
 void COpenView::SetUnpackerStatus(UINT msgID)
 {
-	String msg = theApp.LoadString(msgID);
+	String msg = (msgID == 0 ? m_strUnpacker : theApp.LoadString(msgID));
 	SetDlgItemText(IDC_UNPACKER_EDIT, msg);
 }
 
