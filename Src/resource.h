@@ -108,6 +108,7 @@
 #define IDB_TOOLBAR_ENABLED32           365
 #define IDB_VIEW_ZOOMIN                 366
 #define IDB_VIEW_ZOOMOUT                367
+#define IDB_FILE_NEW3                   368
 #define IDB_FILE_OPENCONFLICT           369
 #define IDB_PLUGINS_LIST                370
 #define IDB_MERGE_COMPARE               371
