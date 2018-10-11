@@ -1412,9 +1412,24 @@ msgstr "贡献者"
 msgid "Select Files or Folders"
 msgstr "选择文件或文件夹..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:4186E48
 #, c-format
-msgid "&1st:"
+msgid "Help"
+msgstr "帮助"
+
+#: Merge.rc:6DE6F874
+#, c-format
+msgid "&1st File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "只读(&A)"
+
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
 msgstr ""
 
 #: Merge.rc:68816EE7
@@ -1422,9 +1437,19 @@ msgstr ""
 msgid "&Browse..."
 msgstr "浏览(&B)..."
 
-#: Merge.rc:43017E4F
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&2nd:"
+msgid "&2nd File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
 msgstr ""
 
 #: Merge.rc:78E0CE0E
@@ -1432,9 +1457,19 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "浏览(&R)..."
 
-#: Merge.rc:702BA358
+#: Merge.rc:3C1ECDDA
 #, c-format
-msgid "(Optional) &3rd:"
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
+#: Merge.rc:56BD1FBC
+#, c-format
+msgid "Swap 1st | 3rd"
 msgstr ""
 
 #: Merge.rc:146A5938
@@ -1442,60 +1477,40 @@ msgstr ""
 msgid "Browse..."
 msgstr "浏览..."
 
-#: Merge.rc:64ABCD7D
+#: Merge.rc:22467E6E
 #, c-format
-msgid "Fi&lter:"
+msgid " Folder: Filter"
 msgstr ""
 
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "选择..."
-
 #: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "解包程序(&U):"
-
-#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "选择(&S)..."
 
-#: Merge.rc:67019DCA
+#: Merge.rc:662470D5
 #, c-format
-msgid "Status:"
-msgstr "状态:"
+msgid " File: Unpacker Plugin"
+msgstr ""
+
+#: Merge.rc:751AB58F
+#, c-format
+msgid "Se&lect..."
+msgstr ""
+
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "对比"
 
 #: Merge.rc:4E65D340
 #, c-format
 msgid "Cancel"
 msgstr "取消"
 
-#: Merge.rc:4186E48
+#: Merge.rc:67019DCA
 #, c-format
-msgid "Help"
-msgstr "帮助"
-
-#: Merge.rc:75264C52
-#, c-format
-msgid "Files or Folders to Compare"
-msgstr "要对比的文件或文件夹"
-
-#: Merge.rc:39174D96
-#, c-format
-msgid "Re&ad-only"
-msgstr "只读(&A)"
-
-#: Merge.rc:39174D97
-#, c-format
-msgid "Rea&d-only"
-msgstr ""
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Read-o&nly"
-msgstr ""
+msgid "Status:"
+msgstr "状态:"
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1602,7 +1617,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "找下一个(&F)"
@@ -1632,7 +1647,7 @@ msgstr "至文件末尾不再从头搜索(&D)"
 msgid "Replace in"
 msgstr "替换范围"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "选中内容(&S)"
@@ -1827,7 +1842,7 @@ msgstr "文件&1:"
 msgid "File&2:"
 msgstr "文件&2:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "上下交换(&S)"
@@ -1982,11 +1997,6 @@ msgstr "不同处(&D)"
 msgid "&Go To"
 msgstr "转到(&G)"
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "对比"
-
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2067,7 +2077,7 @@ msgstr "保持换行符不变(&P)"
 msgid "Tabs"
 msgstr "制表符"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "宽度(&T)"
@@ -2312,7 +2322,7 @@ msgstr "加粗"
 msgid "Marker colors"
 msgstr ""
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr ""
@@ -2397,7 +2407,7 @@ msgstr "根据内容检测文件类型(&D)"
 msgid "Compare Statistics"
 msgstr "对比结果统计"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "文件夹:"
@@ -2532,7 +2542,7 @@ msgstr "文件夹名(&F)"
 msgid "Result:"
 msgstr "结果:"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "测试(&T)"
@@ -2562,7 +2572,7 @@ msgstr "空白:"
 msgid "Regular text:"
 msgstr "普通文字:"
 
-#: Merge.rc:751AB58F
+#: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
 msgstr "选中区域:"
@@ -2917,12 +2927,12 @@ msgstr "全部都否(&L)"
 msgid "&Continue"
 msgstr "继续(&C)"
 
-#: Merge.rc:43017E52
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "跳过(&S)"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "全部跳过(&A)"
@@ -3314,10 +3324,10 @@ msgstr ""
 msgid "All paths are invalid!"
 msgstr ""
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "选择两个文件以启用解包程序."
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3678,7 +3688,7 @@ msgstr "外部编辑器运行失败: %1"
 msgid "Unknown archive format"
 msgstr "未知的压缩包格式"
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "文件名称"
@@ -4148,7 +4158,7 @@ msgstr "制表符分隔的列表"
 msgid "Simple HTML"
 msgstr "简单HTML"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB591
 #, c-format
 msgid "Simple XML"
 msgstr "简单XML"

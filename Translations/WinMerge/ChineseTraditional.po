@@ -1419,90 +1419,105 @@ msgstr "貢獻者"
 msgid "Select Files or Folders"
 msgstr "選取檔案或資料夾"
 
-#: Merge.rc:43017E4E
-#, c-format
-msgid "&1st:"
-msgstr "第一(&1)"
-
-#: Merge.rc:68816EE7
-#, c-format
-msgid "&Browse..."
-msgstr "瀏覽(&B)..."
-
-#: Merge.rc:43017E4F
-#, c-format
-msgid "&2nd:"
-msgstr "第二(&2)"
-
-#: Merge.rc:78E0CE0E
-#, c-format
-msgid "B&rowse..."
-msgstr "瀏覽(&R)..."
-
-#: Merge.rc:702BA358
-#, c-format
-msgid "(Optional) &3rd:"
-msgstr "(非必要)第三(&3)"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "瀏覽..."
-
-#: Merge.rc:64ABCD7D
-#, c-format
-msgid "Fi&lter:"
-msgstr "篩選器(&L):"
-
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "選取..."
-
-#: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "解壓縮程式(&U)："
-
-#: Merge.rc:68816EE9
-#, c-format
-msgid "&Select..."
-msgstr "選取(&S)..."
-
-#: Merge.rc:67019DCA
-#, c-format
-msgid "Status:"
-msgstr "狀態："
-
-#: Merge.rc:4E65D340
-#, c-format
-msgid "Cancel"
-msgstr "取消"
-
 #: Merge.rc:4186E48
 #, c-format
 msgid "Help"
 msgstr "說明"
 
-#: Merge.rc:75264C52
+#: Merge.rc:6DE6F874
 #, c-format
-msgid "Files or Folders to Compare"
-msgstr "要比對的檔案或資料夾"
+msgid "&1st File or Folder"
+msgstr ""
 
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
 msgstr "唯讀(&A)"
 
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
+msgstr ""
+
+#: Merge.rc:68816EE7
+#, c-format
+msgid "&Browse..."
+msgstr "瀏覽(&B)..."
+
+#: Merge.rc:6DE6F875
+#, c-format
+msgid "&2nd File or Folder"
+msgstr ""
+
 #: Merge.rc:39174D97
 #, c-format
 msgid "Rea&d-only"
 msgstr "唯讀(&D)"
 
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
+msgstr ""
+
+#: Merge.rc:78E0CE0E
+#, c-format
+msgid "B&rowse..."
+msgstr "瀏覽(&R)..."
+
+#: Merge.rc:3C1ECDDA
+#, c-format
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
+
 #: Merge.rc:39174D98
 #, c-format
 msgid "Read-o&nly"
 msgstr "唯讀(&N)"
+
+#: Merge.rc:56BD1FBC
+#, c-format
+msgid "Swap 1st | 3rd"
+msgstr ""
+
+#: Merge.rc:146A5938
+#, c-format
+msgid "Browse..."
+msgstr "瀏覽..."
+
+#: Merge.rc:22467E6E
+#, c-format
+msgid " Folder: Filter"
+msgstr ""
+
+#: Merge.rc:68816EE8
+#, c-format
+msgid "&Select..."
+msgstr "選取(&S)..."
+
+#: Merge.rc:662470D5
+#, c-format
+msgid " File: Unpacker Plugin"
+msgstr ""
+
+#: Merge.rc:751AB58F
+#, c-format
+msgid "Se&lect..."
+msgstr ""
+
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "比較"
+
+#: Merge.rc:4E65D340
+#, c-format
+msgid "Cancel"
+msgstr "取消"
+
+#: Merge.rc:67019DCA
+#, c-format
+msgid "Status:"
+msgstr "狀態："
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1611,7 +1626,7 @@ msgstr "不要關閉此對話盒"
 msgid "Find &Prev"
 msgstr "找上一個(&P)"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "找下一個(&F)"
@@ -1641,7 +1656,7 @@ msgstr "至檔尾不折返(&D)"
 msgid "Replace in"
 msgstr "於"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "選取區(&S)"
@@ -1836,7 +1851,7 @@ msgstr "檔案1(&1)："
 msgid "File&2:"
 msgstr "檔案2(&2)："
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "對調(&S)"
@@ -1991,11 +2006,6 @@ msgstr "差異區塊(&D)"
 msgid "&Go To"
 msgstr "移至(&G)"
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "比較"
-
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2076,7 +2086,7 @@ msgstr "保留原始 EOL 字元(&P)"
 msgid "Tabs"
 msgstr "跳格"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "跳格大小(&T)："
@@ -2326,7 +2336,7 @@ msgstr "粗體"
 msgid "Marker colors"
 msgstr "標記顏色"
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr "搜尋標記"
@@ -2411,7 +2421,7 @@ msgstr "偵測檔首資訊以決定壓縮檔類型(&D)"
 msgid "Compare Statistics"
 msgstr "比較後的統計"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "資料夾："
@@ -2546,7 +2556,7 @@ msgstr "資料夾名稱(&F)"
 msgid "Result:"
 msgstr "結果："
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "測試(&T)"
@@ -2576,7 +2586,7 @@ msgstr "空白："
 msgid "Regular text:"
 msgstr "類型表式文："
 
-#: Merge.rc:751AB58F
+#: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
 msgstr "選取："
@@ -2963,12 +2973,12 @@ msgstr "全部皆否(&L)"
 msgid "&Continue"
 msgstr "繼續(&C)"
 
-#: Merge.rc:43017E52
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "略過(&S)"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "全部略過(&A)"
@@ -3368,10 +3378,10 @@ msgstr ""
 msgid "All paths are invalid!"
 msgstr "所有路徑無效！"
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "選擇兩個檔案以啟用解壓縮程式選取。"
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3750,7 +3760,7 @@ msgstr "無法執行外部編輯器 %1"
 msgid "Unknown archive format"
 msgstr "未知壓縮格式"
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "檔案名稱"
@@ -4220,7 +4230,7 @@ msgstr "跳格號分隔列表"
 msgid "Simple HTML"
 msgstr "單純 HTML"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB591
 #, c-format
 msgid "Simple XML"
 msgstr "單純 XML"

@@ -1412,90 +1412,105 @@ msgstr "Katkı Yapanlar"
 msgid "Select Files or Folders"
 msgstr "Dosya ya da Klasör Seçin"
 
-#: Merge.rc:43017E4E
-#, c-format
-msgid "&1st:"
-msgstr "&1. Yol:"
-
-#: Merge.rc:68816EE7
-#, c-format
-msgid "&Browse..."
-msgstr "&Gözat..."
-
-#: Merge.rc:43017E4F
-#, c-format
-msgid "&2nd:"
-msgstr "&2. Yol:"
-
-#: Merge.rc:78E0CE0E
-#, c-format
-msgid "B&rowse..."
-msgstr "Gö&zat..."
-
-#: Merge.rc:702BA358
-#, c-format
-msgid "(Optional) &3rd:"
-msgstr "(İsteğe Bağlı) &3. Yol:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Gözat..."
-
-#: Merge.rc:64ABCD7D
-#, c-format
-msgid "Fi&lter:"
-msgstr "&Süzgeç:"
-
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "S&eçin..."
-
-#: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "&Ayıklayıcı:"
-
-#: Merge.rc:68816EE9
-#, c-format
-msgid "&Select..."
-msgstr "Seçi&n..."
-
-#: Merge.rc:67019DCA
-#, c-format
-msgid "Status:"
-msgstr "Durum:"
-
-#: Merge.rc:4E65D340
-#, c-format
-msgid "Cancel"
-msgstr "İptal"
-
 #: Merge.rc:4186E48
 #, c-format
 msgid "Help"
 msgstr "Yardım"
 
-#: Merge.rc:75264C52
+#: Merge.rc:6DE6F874
 #, c-format
-msgid "Files or Folders to Compare"
-msgstr "Karşılaştırılacak Dosya ya da Klasörler"
+msgid "&1st File or Folder"
+msgstr ""
 
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
 msgstr "S&alt Okunur"
 
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
+msgstr ""
+
+#: Merge.rc:68816EE7
+#, c-format
+msgid "&Browse..."
+msgstr "&Gözat..."
+
+#: Merge.rc:6DE6F875
+#, c-format
+msgid "&2nd File or Folder"
+msgstr ""
+
 #: Merge.rc:39174D97
 #, c-format
 msgid "Rea&d-only"
 msgstr "Salt &Okunur"
 
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
+msgstr ""
+
+#: Merge.rc:78E0CE0E
+#, c-format
+msgid "B&rowse..."
+msgstr "Gö&zat..."
+
+#: Merge.rc:3C1ECDDA
+#, c-format
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
+
 #: Merge.rc:39174D98
 #, c-format
 msgid "Read-o&nly"
 msgstr "Salt Oku&nur"
+
+#: Merge.rc:56BD1FBC
+#, c-format
+msgid "Swap 1st | 3rd"
+msgstr ""
+
+#: Merge.rc:146A5938
+#, c-format
+msgid "Browse..."
+msgstr "Gözat..."
+
+#: Merge.rc:22467E6E
+#, c-format
+msgid " Folder: Filter"
+msgstr ""
+
+#: Merge.rc:68816EE8
+#, c-format
+msgid "&Select..."
+msgstr "Seçi&n..."
+
+#: Merge.rc:662470D5
+#, c-format
+msgid " File: Unpacker Plugin"
+msgstr ""
+
+#: Merge.rc:751AB58F
+#, c-format
+msgid "Se&lect..."
+msgstr ""
+
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Karşılaştırma"
+
+#: Merge.rc:4E65D340
+#, c-format
+msgid "Cancel"
+msgstr "İptal"
+
+#: Merge.rc:67019DCA
+#, c-format
+msgid "Status:"
+msgstr "Durum:"
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1607,7 +1622,7 @@ msgstr "Bu &Pencere Kapatılmasın"
 msgid "Find &Prev"
 msgstr "Ö&ncekini Bul"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "S&onrakini Bul"
@@ -1637,7 +1652,7 @@ msgstr "Dosya &Sonundan Başa Dönülmesin"
 msgid "Replace in"
 msgstr "Şurada Değiştir"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "&Seçilmiş Bölümde"
@@ -1832,7 +1847,7 @@ msgstr "&1. Dosya:"
 msgid "File&2:"
 msgstr "&2. Dosya:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "&Değiştir"
@@ -1987,11 +2002,6 @@ msgstr "&Farklılık"
 msgid "&Go To"
 msgstr "&Git"
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Karşılaştırma"
-
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2072,7 +2082,7 @@ msgstr "Ö&zgün Satır Sonu Karakterleri Korunsun"
 msgid "Tabs"
 msgstr "Sekmeler"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "&Sekme Aralığı:"
@@ -2325,7 +2335,7 @@ msgstr "Koyu"
 msgid "Marker colors"
 msgstr "İşaretleyici Renkleri"
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr "İşaretleyici Arama"
@@ -2410,7 +2420,7 @@ msgstr "&Arşiv Türü Dosya İmzasından Belirlensin"
 msgid "Compare Statistics"
 msgstr "Karşılaştırma İstatistikleri"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "Klasörler:"
@@ -2545,7 +2555,7 @@ msgstr "&Klasör Adı"
 msgid "Result:"
 msgstr "Sonuç:"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "&Sına"
@@ -2575,7 +2585,7 @@ msgstr "Beyaz Boşluk:"
 msgid "Regular text:"
 msgstr "Normal Metin:"
 
-#: Merge.rc:751AB58F
+#: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
 msgstr "Seçim:"
@@ -2994,12 +3004,12 @@ msgstr "Tü&müne Hayır"
 msgid "&Continue"
 msgstr "&Devam"
 
-#: Merge.rc:43017E52
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "&Atla"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "&Tümünü Atla"
@@ -3409,10 +3419,10 @@ msgstr ""
 msgid "All paths are invalid!"
 msgstr "Tüm yollar geçersiz!"
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "Ayıklayıcı seçimi yapabilmek için iki dosya seçin."
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3804,7 +3814,7 @@ msgstr "%1 dış düzenleyicisi çalıştırılamadı"
 msgid "Unknown archive format"
 msgstr "Sıkıştırma biçimi bilinmiyor"
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "Dosya Adı"
@@ -4280,7 +4290,7 @@ msgstr "Sekme ile ayrılmış liste"
 msgid "Simple HTML"
 msgstr "Basit HTML"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB591
 #, c-format
 msgid "Simple XML"
 msgstr "Basit XML"
