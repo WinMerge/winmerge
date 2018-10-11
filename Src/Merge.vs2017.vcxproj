@@ -1128,7 +1128,6 @@
     <ClInclude Include="Common\sizecbar.h" />
     <ClInclude Include="Common\SortHeaderCtrl.h" />
     <ClInclude Include="Common\SplitterWndEx.h" />
-    <ClInclude Include="ssapi.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="stringdiffs.h" />
     <ClInclude Include="stringdiffsi.h" />
