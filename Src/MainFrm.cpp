@@ -92,6 +92,7 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
  */
 const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_FILE_OPENCONFLICT,			IDB_FILE_OPENCONFLICT,			CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW3,                 IDB_FILE_NEW3,                  CMainFrame::MENU_ALL },
 	{ ID_EDIT_COPY,					IDB_EDIT_COPY,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_CUT,					IDB_EDIT_CUT,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_PASTE,				IDB_EDIT_PASTE,					CMainFrame::MENU_ALL },
