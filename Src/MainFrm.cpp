@@ -2280,10 +2280,10 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 */
 CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
 {
-	bool bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
-	bool bHexMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame));
-	bool bImgMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame));
-	bool bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
+	bool bMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	bool bHexMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame));
+	bool bImgMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame));
+	bool bDirFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
 	if (bMergeFrame)
 		return FRAME_FILE;

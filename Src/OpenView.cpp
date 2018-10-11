@@ -987,7 +987,7 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 {
 	bool bIsaFolderCompare = LOWORD(wParam) != 0;
 	bool bIsaFileCompare = HIWORD(wParam) != 0;
-	bool bProject = HIWORD(lParam);
+	bool bProject = HIWORD(lParam) != 0;
 
 	EnableDlgItem(IDOK, bIsaFolderCompare || bIsaFileCompare || bProject);
 

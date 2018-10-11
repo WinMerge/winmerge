@@ -349,7 +349,7 @@ void CVersionInfo::QueryStrings()
 	{
 		LANGUAGEANDCODEPAGE *lpTranslate;
 		DWORD langLen;
-		if (VerQueryValue((LPVOID)m_pVffInfo.get(),
+		if (!!VerQueryValue((LPVOID)m_pVffInfo.get(),
 				_T("\\VarFileInfo\\Translation"),
 				(LPVOID *)&lpTranslate, (UINT *)&langLen))
 		{
@@ -391,7 +391,7 @@ void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 	StringCchPrintf(szSelector, countof(szSelector) - 1,
 			_T("\\StringFileInfo\\%s%s\\%s"),
 			m_strLanguage.c_str(), m_strCodepage.c_str(), szId);
-	bRetCode = VerQueryValue((LPVOID)m_pVffInfo.get(),
+	bRetCode = !!VerQueryValue((LPVOID)m_pVffInfo.get(),
 		szSelector,
 		(LPVOID *)&lpVersion,
 		&uVersionLen);
@@ -413,7 +413,7 @@ void CVersionInfo::GetFixedVersionInfo()
 {
 	VS_FIXEDFILEINFO * pffi;
 	UINT len = sizeof(*pffi);
-	bool bRetCode = VerQueryValue(
+	bool bRetCode = !!VerQueryValue(
 		(LPVOID)m_pVffInfo.get(), _T("\\"), (LPVOID *)&pffi, &len);
 	if (bRetCode)
 		m_FixedFileInfo = *pffi;

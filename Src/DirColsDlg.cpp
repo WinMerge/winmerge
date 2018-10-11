@@ -151,7 +151,7 @@ void CDirColsDlg::MoveItem(int index, int newIndex)
 {
 	// Get current column data
 	String text =  m_listColumns.GetItemText(index, 0);
-	bool checked = m_listColumns.GetCheck(index);
+	bool checked = !!m_listColumns.GetCheck(index);
 	UINT state = m_listColumns.GetItemState(index, LVIS_SELECTED);
 	DWORD_PTR data = m_listColumns.GetItemData(index);
 
@@ -238,7 +238,7 @@ void CDirColsDlg::OnOK()
 
 	for (int i = 0; i < m_listColumns.GetItemCount(); i++)
 	{
-		bool checked = m_listColumns.GetCheck(i);
+		bool checked = !!m_listColumns.GetCheck(i);
 		DWORD_PTR data = m_listColumns.GetItemData(i);
 		column & col1 = m_cols[data];
 		if (checked)
