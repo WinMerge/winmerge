@@ -2315,8 +2315,8 @@ void CMainFrame::OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (NULL != pPopup)
 	{
-		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, 
-			pToolBar->rcButton.left, pToolBar->rcButton.bottom, this);
+		pPopup->TrackPopupMenu(TPM_RIGHTALIGN | TPM_RIGHTBUTTON, 
+			pToolBar->rcButton.right, pToolBar->rcButton.bottom, this);
 	}
 	*pResult = 0;
 }

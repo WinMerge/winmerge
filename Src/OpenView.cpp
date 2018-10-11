@@ -191,23 +191,31 @@ void COpenView::OnInitialUpdate()
 	m_constraint.ConstrainItem(IDC_PATH0_COMBO, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_PATH1_COMBO, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_PATH2_COMBO, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_UNPACKER_EDIT, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP, 0, 1, 0, 0); // grows right
+//	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 1, 0, 0); // grows right
+//	m_constraint.ConstrainItem(IDC_UNPACKER_EDIT, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP0, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP1, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP2, 0, 1, 0, 0); // grows right
+//	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP3, 0, 1, 0, 0); // grows right
+//	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP4, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_PATH0_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_PATH1_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_PATH2_BUTTON, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_PATH0_READONLY, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_PATH1_READONLY, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_PATH2_READONLY, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_SWAP01_BUTTON, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_SWAP12_BUTTON, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_SWAP02_BUTTON, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_PATH0_READONLY, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_PATH1_READONLY, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_PATH2_READONLY, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_SWAP01_BUTTON, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_SWAP12_BUTTON, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_SWAP02_BUTTON, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_SWAP01_STATIC, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_SWAP12_STATIC, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_SWAP02_STATIC, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_OPEN_STATUS_BOX, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_OPTIONS, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(ID_SAVE_PROJECT, 1, 0, 0, 0); // slides right
+//	m_constraint.ConstrainItem(ID_SAVE_PROJECT, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(ID_HELP, 1, 0, 0, 0); // slides right
@@ -298,6 +306,7 @@ void COpenView::OnInitialUpdate()
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
 	SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
+	SetUnpackerStatus(IDS_USERCHOICE_NONE); 
 
 	m_pDropHandler = new DropHandler(std::bind(&COpenView::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);

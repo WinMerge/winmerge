@@ -224,7 +224,11 @@
 #define IDC_DIFF_IGNOREEOL              1079
 #define IDC_TRIVIAL_DIFF_COLOR          1080
 #define IDC_TRIVIAL_DIFF_DELETED_COLOR  1081
-#define IDC_FILES_DIRS_GROUP            1082
+#define IDC_FILES_DIRS_GROUP0           1082
+#define IDC_FILES_DIRS_GROUP1           1083
+#define IDC_FILES_DIRS_GROUP2           1084
+#define IDC_FILES_DIRS_GROUP3           1085
+#define IDC_FILES_DIRS_GROUP4           1086
 #define IDC_UNPACKER_NAME               1089
 #define IDC_UNPACKER_ALLOW_ALL          1090
 #define IDC_UNPACKER_SUPPORTED_EXTENSIONS 1091
@@ -235,6 +239,8 @@
 #define IDC_EXT_EDITOR_PATH             1096
 #define IDC_DIFF_SWAPFILES              1097
 #define IDC_DIFF_OPENTOEDITOR           1098
+#define IDC_FILES_DIRS_GROUP3X          1100
+#define IDC_FILES_DIRS_GROUP4X          1101
 #define IDC_COMPARISON_STOP             1105
 #define IDC_COMPARISON_PAUSE            1106
 #define IDC_COMPARISON_CONTINUE         1107
@@ -254,6 +260,7 @@
 #define IDC_MOVED_BLOCKS                1123
 #define IDC_RESET_ALL_MESSAGE_BOXES     1124
 #define IDC_COLDLG_DEFAULTS             1126
+#define IDC_OPEN_STATUS_BOX             1127
 #define IDC_OPEN_STATUS                 1128
 #define IDC_FILTERFILE_EDITBTN          1129
 #define IDC_FILTERFILE_LIST             1130
@@ -505,6 +512,9 @@
 #define IDC_EDIT_MARKER_NEW             8822
 #define IDC_EDIT_MARKER_DELETE          8823
 #define IDC_OPTIONS                     8824
+#define IDC_SWAP01_STATIC               8825
+#define IDC_SWAP12_STATIC               8826
+#define IDC_SWAP02_STATIC               8827
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -1223,9 +1233,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        247
+#define _APS_NEXT_RESOURCE_VALUE        248
 #define _APS_NEXT_COMMAND_VALUE         33647
-#define _APS_NEXT_CONTROL_VALUE         8825
+#define _APS_NEXT_CONTROL_VALUE         8828
 #define _APS_NEXT_SYMED_VALUE           116
 #endif
 #endif
