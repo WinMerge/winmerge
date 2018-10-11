@@ -107,7 +107,7 @@ void CEditorFilePathBar::Resize()
 
 	int widths[3];
 	for (int pane = 0; pane < m_nPanes; pane++)
-		widths[pane] = (infoBar.rcNormalPosition.right / m_nPanes) - 6;
+		widths[pane] = (infoBar.rcNormalPosition.right / m_nPanes);
 	Resize(widths);
 }
 
@@ -140,8 +140,8 @@ void CEditorFilePathBar::Resize(int widths[])
 		CRect rcOld;
 		m_Edit[pane].GetClientRect(&rcOld);
 		rc.left = x;
-		rc.right = x + widths[pane] + 4;
-		x += widths[pane] + 7;
+		rc.right = x + widths[pane] + (pane == 0 ? 5 : 7);
+		x = rc.right;
 		if (rcOld.Width() != rc.Width())
 		{
 			m_Edit[pane].MoveWindow(&rc);
