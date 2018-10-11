@@ -942,9 +942,6 @@
     <ClInclude Include="Common\ShellFileOperations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ssapi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stringdiffs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
