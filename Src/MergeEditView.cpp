@@ -704,7 +704,7 @@ void CMergeEditView::UpdateSiblingScrollPos (bool bHorz)
 /**
  * @brief Update other panes
  */
-void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz)
+void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz)
 {
 	if (pUpdateSource != this)
 	{

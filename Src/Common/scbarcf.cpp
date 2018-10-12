@@ -49,7 +49,7 @@ int CALLBACK EnumFontFamProc(ENUMLOGFONT FAR *lpelf,
  
 CSizingControlBarCF::CSizingControlBarCF()
 {
-    m_bActive = FALSE;
+    m_bActive = false;
 
     CDC dc;
     dc.CreateCompatibleDC(NULL);
@@ -72,15 +72,15 @@ void CSizingControlBarCF::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHnd
     if (!HasGripper())
         return;
 
-    BOOL bNeedPaint = FALSE;
+    bool bNeedPaint = false;
 
     CWnd* pFocus = GetFocus();
-    BOOL bActiveOld = m_bActive;
+    bool bActiveOld = m_bActive;
 
     m_bActive = (pFocus->GetSafeHwnd() && IsChild(pFocus));
 
     if (m_bActive != bActiveOld)
-        bNeedPaint = TRUE;
+        bNeedPaint = true;
 
     if (bNeedPaint)
         SendMessage(WM_NCPAINT);
@@ -92,7 +92,7 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
         return;
 
     // compute the caption rectangle
-    BOOL bHorz = IsHorzDocked();
+    bool bHorz = IsHorzDocked();
     CRect rcGrip = rcClient;
     const int lpx = pDC->GetDeviceCaps(LOGPIXELSX);
     auto pointToPixel = [lpx](double point) { return static_cast<int>(point * lpx / 72); };
@@ -173,7 +173,7 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
     // draw the caption text - first select a font
     CFont font;
     LOGFONT lf;
-    BOOL bFont = font.CreatePointFont(85/*8.5 points*/, m_sFontFace);
+    bool bFont = !!font.CreatePointFont(85/*8.5 points*/, m_sFontFace);
     if (bFont)
     {
         // get the text color

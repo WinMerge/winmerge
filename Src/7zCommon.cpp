@@ -140,16 +140,15 @@ bool IsArchiveFile(const String& pszFile)
 	try {
 		Merge7z::Format *piHandler = ArchiveGuessFormat(pszFile);
 		if (piHandler)
-			return TRUE;
+			return true;
 		else
-			return FALSE;
+			return false;
 	}
 	catch (CException *e)
 	{
 		e->Delete();
-		return FALSE;
+		return false;
 	}
-//~	return FALSE;
 }
 
 /**
@@ -285,7 +284,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
 	{
 		// Merge7z has not yet been loaded
 
-		if (!GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE))
+		if (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE) == 0)
 			throw new CResourceException();
 		if (DWORD ver = VersionOf7z())
 		{

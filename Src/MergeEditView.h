@@ -107,7 +107,7 @@ private:
 	/// active prediffer ID : helper to check the radio button
 	int m_CurrentPredifferID;
 
-	bool m_bCurrentLineIsDiff; /**< TRUE if cursor is in diff line */
+	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
 
 // Operations
 public:
@@ -127,7 +127,7 @@ public:
 	CMergeDoc* GetDocument();
 	const CMergeDoc *GetDocument() const { return const_cast<CMergeEditView *>(this)->GetDocument(); }
 	void UpdateResources();
-	BOOL IsModified() { return (LocateTextBuffer()->IsModified()); }
+	bool IsModified() { return (LocateTextBuffer()->IsModified()); }
 	void PrimeListWithFile();
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
@@ -191,7 +191,7 @@ public:
 // Implementation
 protected:
 	virtual ~CMergeEditView();
-	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);
+	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz);
 	virtual void OnUpdateCaret();
 	bool MergeModeKeyDown(MSG* pMsg);
 	int FindPrediffer(LPCTSTR prediffer) const;

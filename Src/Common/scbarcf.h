@@ -53,7 +53,7 @@ protected:
     virtual void NcPaintGripper(CDC* pDC, CRect rcClient);
 
 protected:
-    BOOL    m_bActive; // a child has focus
+    bool    m_bActive; // a child has focus
     CString m_sFontFace;
 
 // Generated message map functions

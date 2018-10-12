@@ -28,10 +28,10 @@ protected :
     CString m_strClockFormat;
 
 public :
-    BOOL SetPaneFormattedText (int nIndex, BOOL bUpdate, LPCTSTR lpszFmt,...);
-    BOOL SetPaneFormattedText (int nIndex, BOOL bUpdate, UINT nId,...);
-    BOOL SetPaneText (int nIndex, LPCTSTR lpszNewText, BOOL bUpdate = true);
-    BOOL SetPaneText (int nIndex, UINT nId, BOOL bUpdate = true);
+    bool SetPaneFormattedText (int nIndex, bool bUpdate, LPCTSTR lpszFmt,...);
+    bool SetPaneFormattedText (int nIndex, bool bUpdate, UINT nId,...);
+    bool SetPaneText (int nIndex, LPCTSTR lpszNewText, bool bUpdate = true);
+    bool SetPaneText (int nIndex, UINT nId, bool bUpdate = true);
     void SetClockFormat (LPCTSTR strClockFormat);
 
     // Overrides

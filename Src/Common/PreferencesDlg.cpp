@@ -324,12 +324,12 @@ void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
 void CPreferencesDlg::OnImportButton()
 {
 	String s;
-	if (SelectFile(GetSafeHwnd(), s, TRUE, NULL, _("Select file for import"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
+	if (SelectFile(GetSafeHwnd(), s, true, NULL, _("Select file for import"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
 	{
 		if (m_pOptionsMgr->ImportOptions(s) == COption::OPT_OK)
 		{
 			Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors);
-			ReadOptions(TRUE);
+			ReadOptions(true);
 			LangMessageBox(IDS_OPT_IMPORT_DONE, MB_ICONINFORMATION);
 		}
 		else
@@ -343,7 +343,7 @@ void CPreferencesDlg::OnImportButton()
 void CPreferencesDlg::OnExportButton()
 {
 	String settingsFile;
-	if (SelectFile(GetSafeHwnd(), settingsFile, FALSE, NULL, _("Select file for export"),
+	if (SelectFile(GetSafeHwnd(), settingsFile, false, NULL, _("Select file for export"),
 		_("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
 	{
 		// Add settings file extension if it is missing

@@ -138,7 +138,7 @@ void DirCmpReportDlg::OnBtnClickReportBrowse()
 	String filter = tr(f_types[m_ctlStyle.GetCurSel()].browseFilter);
 
 	String chosenFilepath;
-	if (SelectFile(GetSafeHwnd(), chosenFilepath, FALSE, folder.c_str(), _T(""), filter))
+	if (SelectFile(GetSafeHwnd(), chosenFilepath, false, folder.c_str(), _T(""), filter))
 	{
 		m_sReportFile = chosenFilepath;
 		m_ctlReportFile.SetWindowText(chosenFilepath.c_str());

@@ -95,8 +95,8 @@ void PropEditor::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan);
 	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol);
 	GetOptionsMgr()->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax);
-	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !!m_bViewLineDifferences);
-	GetOptionsMgr()->SaveOption(OPT_BREAK_ON_WORDS, !!m_bBreakOnWords);
+	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, m_bViewLineDifferences);
+	GetOptionsMgr()->SaveOption(OPT_BREAK_ON_WORDS, m_bBreakOnWords);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_SEPARATORS, String(m_breakChars));
 }
@@ -141,10 +141,10 @@ void PropEditor::UpdateLineDiffControls()
 {
 	UpdateDataFromWindow();
 	// Can only choose char/word level if line differences are enabled
-	EnableDlgItem(IDC_EDITOR_CHARLEVEL, !!m_bViewLineDifferences);
-	EnableDlgItem(IDC_EDITOR_WORDLEVEL, !!m_bViewLineDifferences);
+	EnableDlgItem(IDC_EDITOR_CHARLEVEL, m_bViewLineDifferences);
+	EnableDlgItem(IDC_EDITOR_WORDLEVEL, m_bViewLineDifferences);
 	// Can only choose break type if line differences are enabled & we're breaking on words
-	EnableDlgItem(IDC_BREAK_TYPE, !!m_bViewLineDifferences);
+	EnableDlgItem(IDC_BREAK_TYPE, m_bViewLineDifferences);
 }
 
 /** 

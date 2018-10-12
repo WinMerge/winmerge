@@ -13,7 +13,7 @@
  * @brief Class providing access to version information of a file.
  * This class reads version information block from a file. Version information
  * consists of version numbers, copyright, descriptions etc. Since that is
- * many strings to read, there is constructor taking BOOL parameter and
+ * many strings to read, there is constructor taking `bool` parameter and
  * only reading version numbers. That constructor is suggested to be used
  * if string information is not needed.
  */
@@ -22,10 +22,10 @@ class CVersionInfo
 private:
 	VS_FIXEDFILEINFO m_FixedFileInfo; /**< Fixed file information */
 	std::unique_ptr<BYTE[]> m_pVffInfo; /**< Pointer to version information block */
-	BOOL m_bVersionOnly; /**< Ask version numbers only */
-	BOOL m_bDllVersion; /**< Dll file version is being queried */
+	bool m_bVersionOnly; /**< Ask version numbers only */
+	bool m_bDllVersion; /**< Dll file version is being queried */
 	WORD m_wLanguage; /**< Language-ID to use (if given) */
-	BOOL m_bVersionFound; /**< Was version info found from file? */
+	bool m_bVersionFound; /**< Was version info found from file? */
 
 	String m_strFileName;
 	String m_strLanguage;
@@ -43,10 +43,10 @@ private:
 	String m_strPrivateBuild;
 
 public:
-	explicit CVersionInfo(BOOL bVersionOnly);
+	explicit CVersionInfo(bool bVersionOnly);
 	explicit CVersionInfo(WORD wLanguage);
 	CVersionInfo(LPCTSTR szFileToVersion,
-				   BOOL bDllVersion);
+				   bool bDllVersion);
 	CVersionInfo(LPCTSTR szFileToVersion = NULL,
 				   LPCTSTR szLanguage = NULL,
 				   LPCTSTR szCodepage = NULL);
@@ -65,12 +65,12 @@ public:
 	String GetFixedProductVersion();
 	String GetFixedFileVersion();
 	DLLVERSIONINFO m_dvi;
-	BOOL GetFixedFileVersion(unsigned& versionMS, unsigned& versionLS);
+	bool GetFixedFileVersion(unsigned& versionMS, unsigned& versionLS);
 
 protected:
 	void GetVersionInfo();
 	void GetFixedVersionInfo();
 	void QueryStrings();
 	void QueryValue(LPCTSTR szId, String& s);
-	BOOL GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage);
+	bool GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage);
 };

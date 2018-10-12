@@ -133,9 +133,9 @@ BOOL CMDITabBar::OnSelchange(NMHDR* pNMHDR, LRESULT* pResult)
 	TC_ITEM tci;
 	tci.mask = TCIF_PARAM;
 	GetItem(GetCurSel(), &tci);
-	m_bInSelchange = TRUE;
+	m_bInSelchange = true;
 	m_pMainFrame->MDIActivate(FromHandle((HWND)tci.lParam));
-	m_bInSelchange = FALSE;
+	m_bInSelchange = false;
 
 	return TRUE;
 }

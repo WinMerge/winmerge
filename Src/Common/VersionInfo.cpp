@@ -29,10 +29,10 @@ struct LANGUAGEANDCODEPAGE
  * not several strings there are. This saves some time.
  * @param [in] bVersionOnly If TRUE only version numbers are read.
  */
-CVersionInfo::CVersionInfo(BOOL bVersionOnly)
+CVersionInfo::CVersionInfo(bool bVersionOnly)
 : m_wLanguage(0)
 , m_bVersionOnly(bVersionOnly)
-, m_bDllVersion(FALSE)
+, m_bDllVersion(false)
 {
 	GetVersionInfo();
 }
@@ -48,8 +48,8 @@ CVersionInfo::CVersionInfo(BOOL bVersionOnly)
  */
 CVersionInfo::CVersionInfo(WORD wLanguage)
 : m_wLanguage(wLanguage)
-, m_bVersionOnly(FALSE)
-, m_bDllVersion(FALSE)
+, m_bVersionOnly(false)
+, m_bDllVersion(false)
 {
 	GetVersionInfo();
 }
@@ -60,9 +60,9 @@ CVersionInfo::CVersionInfo(WORD wLanguage)
  * @param [in] bDllVersion If TRUE queries DLL version.
  */
 CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion, 
-						   BOOL bDllVersion)
+						   bool bDllVersion)
 : m_wLanguage(0)
-, m_bVersionOnly(FALSE)
+, m_bVersionOnly(false)
 , m_bDllVersion(bDllVersion)
 {
 	if (szFileToVersion != NULL)
@@ -80,8 +80,8 @@ CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion /* = NULL*/,
 						   LPCTSTR szLanguage /* = NULL*/,
 						   LPCTSTR szCodepage /* = NULL*/)
 : m_wLanguage(0)
-, m_bVersionOnly(FALSE)
-, m_bDllVersion(FALSE)
+, m_bVersionOnly(false)
+, m_bDllVersion(false)
 {
 	if (szFileToVersion != NULL)
 		m_strFileName = szFileToVersion;
@@ -98,8 +98,8 @@ CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion /* = NULL*/,
  */
 CVersionInfo::CVersionInfo(HINSTANCE hModule)
 : m_wLanguage(0)
-, m_bVersionOnly(FALSE)
-, m_bDllVersion(FALSE)
+, m_bVersionOnly(false)
+, m_bDllVersion(false)
 {
 	TCHAR szFileName[MAX_PATH];
 	GetModuleFileName(hModule, szFileName, MAX_PATH);
@@ -254,17 +254,17 @@ String CVersionInfo::GetFixedFileVersion()
  * This function returns version number given as two DWORDs.
  * @param [out] versionMS High DWORD for version number.
  * @param [out] versionLS Low DWORD for version number.
- * @return TRUE if version info was found, FALSE otherwise.
+ * @return `true` if version info was found, `false` otherwise.
  */
-BOOL CVersionInfo::GetFixedFileVersion(unsigned& versionMS, unsigned& versionLS)
+bool CVersionInfo::GetFixedFileVersion(unsigned& versionMS, unsigned& versionLS)
 {
 	if (m_bVersionFound)
 	{
 		versionMS = m_FixedFileInfo.dwFileVersionMS;
 		versionLS = m_FixedFileInfo.dwFileVersionLS;
-		return TRUE;
+		return true;
 	}
-	return FALSE;
+	return false;
 }
 
 /** 
@@ -300,12 +300,12 @@ void CVersionInfo::GetVersionInfo()
 	DWORD dwVerInfoSize = ::GetFileVersionInfoSize(szFileName, &dwVerHnd);
 	if (dwVerInfoSize)
 	{
-		m_bVersionFound = TRUE;
+		m_bVersionFound = true;
 		m_pVffInfo.reset(new BYTE[dwVerInfoSize]);
 		if (::GetFileVersionInfo(szFileName, 0, dwVerInfoSize, m_pVffInfo.get()))
 		{
 			GetFixedVersionInfo();
-			if (m_bVersionOnly == FALSE)
+			if (!m_bVersionOnly)
 				QueryStrings();
 		}
 	}
@@ -349,7 +349,7 @@ void CVersionInfo::QueryStrings()
 	{
 		LANGUAGEANDCODEPAGE *lpTranslate;
 		DWORD langLen;
-		if (VerQueryValue((LPVOID)m_pVffInfo.get(),
+		if (!!VerQueryValue((LPVOID)m_pVffInfo.get(),
 				_T("\\VarFileInfo\\Translation"),
 				(LPVOID *)&lpTranslate, (UINT *)&langLen))
 		{
@@ -385,13 +385,13 @@ void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 	assert(m_pVffInfo != NULL);
 	LPTSTR   lpVersion;			// String pointer to 'version' text
 	UINT    uVersionLen;
-	BOOL    bRetCode;
+	bool    bRetCode;
 
 	TCHAR szSelector[256];
 	StringCchPrintf(szSelector, countof(szSelector) - 1,
 			_T("\\StringFileInfo\\%s%s\\%s"),
 			m_strLanguage.c_str(), m_strCodepage.c_str(), szId);
-	bRetCode = VerQueryValue((LPVOID)m_pVffInfo.get(),
+	bRetCode = !!VerQueryValue((LPVOID)m_pVffInfo.get(),
 		szSelector,
 		(LPVOID *)&lpVersion,
 		&uVersionLen);
@@ -413,7 +413,7 @@ void CVersionInfo::GetFixedVersionInfo()
 {
 	VS_FIXEDFILEINFO * pffi;
 	UINT len = sizeof(*pffi);
-	BOOL bRetCode = VerQueryValue(
+	bool bRetCode = !!VerQueryValue(
 		(LPVOID)m_pVffInfo.get(), _T("\\"), (LPVOID *)&pffi, &len);
 	if (bRetCode)
 		m_FixedFileInfo = *pffi;
@@ -432,9 +432,9 @@ void CVersionInfo::GetFixedVersionInfo()
  * find existing version info data.
  * @param [in] wLanguage Language ID for which we need matching codepage.
  * @param [out] wCodePage Found codepage.
- * @return TRUE if language was found from version info block.
+ * @return `true` if language was found from version info block.
  */
-BOOL CVersionInfo::GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage)
+bool CVersionInfo::GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage)
 {
 	LANGUAGEANDCODEPAGE *lpTranslate;
 	UINT cbTranslate;
@@ -449,13 +449,13 @@ BOOL CVersionInfo::GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage)
 
 	const int nLangCount = cbTranslate / sizeof(LANGUAGEANDCODEPAGE);
 	int i = 0;
-	BOOL bFound = FALSE;
-	while (bFound == FALSE && i < nLangCount)
+	bool bFound = false;
+	while (!bFound && i < nLangCount)
 	{
 		if (lpTranslate[i].wLanguage == wLanguage)
 		{
 			wCodePage = lpTranslate[i].wCodePage;
-			bFound = TRUE;
+			bFound = true;
 		}
 		else
 			++i;

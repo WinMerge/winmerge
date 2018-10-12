@@ -55,7 +55,7 @@ void PropArchive::ReadOptions()
 void PropArchive::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, (int)(m_bEnableSupport ? 1 : 0));
-	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_PROBETYPE, m_bProbeType == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_PROBETYPE, m_bProbeType);
 }
 
 /** 

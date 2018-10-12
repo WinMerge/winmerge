@@ -423,7 +423,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		}
 
 		m_diffWrapper.SetCreateDiffList(&m_diffList);
-		diffSuccess = !!m_diffWrapper.RunFileDiff();
+		diffSuccess = m_diffWrapper.RunFileDiff();
 
 		// Read diff-status
 		m_diffWrapper.GetDiffStatus(&status);
@@ -448,7 +448,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 			DiffList templist;
 			templist.Clear();
 			m_diffWrapper.SetCreateDiffList(&templist);
-			diffSuccess = !!m_diffWrapper.RunFileDiff();
+			diffSuccess = m_diffWrapper.RunFileDiff();
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				nRealLine[nBuffer] = m_ptBuf[nBuffer]->ComputeRealLine(nStartLine[nBuffer]);
 			m_diffList.AppendDiffList(templist, nRealLine);
@@ -1330,7 +1330,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	DiffFileInfo fileInfo;
 	String strSavePath(szPath);
 	FileChange fileChanged;
-	BOOL bApplyToAll = false;	
+	bool bApplyToAll = false;	
 	int nRetVal = -1;
 
 	fileChanged = IsFileChangedOnDisk(szPath, fileInfo, true, nBuffer);

@@ -426,7 +426,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		path = paths::AddTrailingSlash(path);
 	
 	String s;
-	if (SelectFile(GetSafeHwnd(), s, FALSE, path.c_str(), _("Select filename for new filter"),
+	if (SelectFile(GetSafeHwnd(), s, false, path.c_str(), _("Select filename for new filter"),
 		_("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||")))
 	{
 		// Fix file extension
@@ -557,7 +557,7 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	String path;
 	String userPath = theApp.m_pGlobalFileFilter->GetUserFilterPathWithCreate();
 
-	if (SelectFile(GetSafeHwnd(), s, TRUE, path.c_str(),_("Locate filter file to install"),
+	if (SelectFile(GetSafeHwnd(), s, true, path.c_str(),_("Locate filter file to install"),
 		_("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||")))
 	{
 		userPath = paths::ConcatPath(userPath, paths::FindFileName(s));

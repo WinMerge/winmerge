@@ -28,7 +28,7 @@ IsWinVer_OrGreater(WORD wVersion, WORD wServicePack = 0)
 	osvi.dwMinorVersion = LOBYTE(wVersion);
 	osvi.wServicePackMajor = wServicePack;
 
-	return VerifyVersionInfoW(&osvi, VER_MAJORVERSION | VER_MINORVERSION | VER_SERVICEPACKMAJOR, dwlConditionMask) != FALSE;
+	return !!VerifyVersionInfoW(&osvi, VER_MAJORVERSION | VER_MINORVERSION | VER_SERVICEPACKMAJOR, dwlConditionMask);
 }
 
 
