@@ -112,7 +112,7 @@ static int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFile
 CFilepathEdit::CFilepathEdit()
  : m_crBackGnd(RGB(255, 255, 255))
  , m_crText(RGB(0,0,0))
- , m_bActive(FALSE)
+ , m_bActive(false)
 {
 }
 
@@ -124,7 +124,7 @@ CFilepathEdit::CFilepathEdit()
  */
 BOOL CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
 {
-	m_bActive = FALSE;
+	m_bActive = false;
 	return SubclassDlgItem(nID, pParent);
 };
 

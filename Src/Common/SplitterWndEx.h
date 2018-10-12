@@ -12,10 +12,10 @@ class CSplitterWndEx : public CSplitterWnd
 public:
 	CSplitterWndEx();
 	virtual ~CSplitterWndEx();
-	void LockBar(BOOL bState=TRUE){m_bBarLocked=bState;};
-	void ResizablePanes(BOOL bState=TRUE){m_bResizePanes=bState;};
-	void AutoResizePanes(BOOL bState=TRUE){m_bAutoResizePanes=bState;};
-	void HideBorders(BOOL bHide)
+	void LockBar(bool bState=true){m_bBarLocked=bState;};
+	void ResizablePanes(bool bState=true){m_bResizePanes=bState;};
+	void AutoResizePanes(bool bState=true){m_bAutoResizePanes=bState;};
+	void HideBorders(bool bHide)
 	{
 		m_cxBorder = m_cyBorder = bHide ? 0 : 2;
 		m_bHideBorders = bHide;
@@ -31,10 +31,10 @@ public:
 	CScrollBar* GetScrollBarCtrl(CWnd* pWnd, int nBar) const;
 
 private:
-	BOOL m_bBarLocked;
-	BOOL m_bResizePanes;
-	BOOL m_bAutoResizePanes;
-	BOOL m_bHideBorders;
+	bool m_bBarLocked;
+	bool m_bResizePanes;
+	bool m_bAutoResizePanes;
+	bool m_bHideBorders;
 
 protected:
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);

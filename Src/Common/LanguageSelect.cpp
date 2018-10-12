@@ -569,13 +569,13 @@ static void unslash(unsigned codepage, std::string &s)
 /**
  * @brief Load language.file
  * @param [in] wLangId 
- * @return TRUE on success, FALSE otherwise.
+ * @return `true` on success, `false` otherwise.
  */
-BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
+bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false*/)
 {
 	String strPath = GetFileName(wLangId);
 	if (strPath.empty())
-		return FALSE;
+		return false;
 
 	m_hCurrentDll = LoadLibrary(_T("MergeLang.dll"));
 	// There is no point in translating error messages about inoperational
@@ -584,7 +584,7 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 	{
 		if (bShowError)
 			AfxMessageBox(_T("Failed to load MergeLang.dll"), MB_ICONSTOP);
-		return FALSE;
+		return false;
 	}
 	CVersionInfo viInstance(AfxGetInstanceHandle());
 	unsigned instanceVerMS = 0;
@@ -600,14 +600,14 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 		m_hCurrentDll = 0;
 		if (bShowError)
 			AfxMessageBox(_T("MergeLang.dll version mismatch"), MB_ICONSTOP);
-		return FALSE;
+		return false;
 	}
 	HRSRC mergepot = FindResource(m_hCurrentDll, _T("MERGEPOT"), RT_RCDATA);
 	if (mergepot == 0)
 	{
 		if (bShowError)
 			AfxMessageBox(_T("MergeLang.dll is invalid"), MB_ICONSTOP);
-		return FALSE;
+		return false;
 	}
 	size_t size = SizeofResource(m_hCurrentDll, mergepot);
 	const char *data = (const char *)LoadResource(m_hCurrentDll, mergepot);
@@ -676,7 +676,7 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 			String str = _T("Failed to load ") + strPath;
 			AfxMessageBox(str.c_str(), MB_ICONSTOP);
 		}
-		return FALSE;
+		return false;
 	}
 	ps = 0;
 	msgid.erase();
@@ -764,22 +764,22 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 				_T("attempting to read translations from\n") + strPath;
 			AfxMessageBox(str.c_str(), MB_ICONSTOP);
 		}
-		return FALSE;
+		return false;
 	}
-	return TRUE;
+	return true;
 }
 
 /**
  * @brief Set UI language.
  * @param [in] wLangId 
- * @return TRUE on success, FALSE otherwise.
+ * @return `true` on success, `false` otherwise.
  */
-BOOL CLanguageSelect::SetLanguage(LANGID wLangId, BOOL bShowError)
+bool CLanguageSelect::SetLanguage(LANGID wLangId, bool bShowError /*= false*/)
 {
 	if (wLangId == 0)
-		return FALSE;
+		return false;
 	if (m_wCurLanguage == wLangId)
-		return TRUE;
+		return true;
 	// reset the resource handle
 	AfxSetResourceHandle(AfxGetInstanceHandle());
 	// free the existing DLL
@@ -800,7 +800,7 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId, BOOL bShowError)
 	}
 	m_wCurLanguage = wLangId;
 	SetThreadLocale(MAKELCID(m_wCurLanguage, SORT_DEFAULT));
-	return TRUE;
+	return true;
 }
 
 /**

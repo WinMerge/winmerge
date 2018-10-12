@@ -1412,9 +1412,24 @@ msgstr "Współtwórcy"
 msgid "Select Files or Folders"
 msgstr "Wybierz pliki lub foldery..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:4186E48
 #, c-format
-msgid "&1st:"
+msgid "Help"
+msgstr "Pomoc"
+
+#: Merge.rc:6DE6F874
+#, c-format
+msgid "&1st File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Ty&lko do odczytu"
+
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
 msgstr ""
 
 #: Merge.rc:68816EE7
@@ -1422,9 +1437,19 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Przeglądaj..."
 
-#: Merge.rc:43017E4F
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&2nd:"
+msgid "&2nd File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
 msgstr ""
 
 #: Merge.rc:78E0CE0E
@@ -1432,9 +1457,19 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "P&rzeglądaj"
 
-#: Merge.rc:702BA358
+#: Merge.rc:3C1ECDDA
 #, c-format
-msgid "(Optional) &3rd:"
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
+#: Merge.rc:56BD1FBC
+#, c-format
+msgid "Swap 1st | 3rd"
 msgstr ""
 
 #: Merge.rc:146A5938
@@ -1442,60 +1477,40 @@ msgstr ""
 msgid "Browse..."
 msgstr "Przeglądaj..."
 
-#: Merge.rc:64ABCD7D
+#: Merge.rc:22467E6E
 #, c-format
-msgid "Fi&lter:"
+msgid " Folder: Filter"
 msgstr ""
 
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "Wybierz..."
-
 #: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "Program &rozpakowujący:"
-
-#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "&Wybierz..."
 
-#: Merge.rc:67019DCA
+#: Merge.rc:662470D5
 #, c-format
-msgid "Status:"
-msgstr "Stan:"
+msgid " File: Unpacker Plugin"
+msgstr ""
+
+#: Merge.rc:751AB58F
+#, c-format
+msgid "Se&lect..."
+msgstr ""
+
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Porównaj"
 
 #: Merge.rc:4E65D340
 #, c-format
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: Merge.rc:4186E48
+#: Merge.rc:67019DCA
 #, c-format
-msgid "Help"
-msgstr "Pomoc"
-
-#: Merge.rc:75264C52
-#, c-format
-msgid "Files or Folders to Compare"
-msgstr "Obiekty do porównania"
-
-#: Merge.rc:39174D96
-#, c-format
-msgid "Re&ad-only"
-msgstr "Ty&lko do odczytu"
-
-#: Merge.rc:39174D97
-#, c-format
-msgid "Rea&d-only"
-msgstr ""
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Read-o&nly"
-msgstr ""
+msgid "Status:"
+msgstr "Stan:"
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1602,7 +1617,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "&Następny"
@@ -1632,7 +1647,7 @@ msgstr "Szukaj tylko do końca pliku"
 msgid "Replace in"
 msgstr "Zastąp w"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "&Zaznaczenie"
@@ -1827,7 +1842,7 @@ msgstr "Plik&1:"
 msgid "File&2:"
 msgstr "Plik&2:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "Za&mień"
@@ -1982,11 +1997,6 @@ msgstr "&Różnica"
 msgid "&Go To"
 msgstr "&Idź do"
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Porównaj"
-
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2067,7 +2077,7 @@ msgstr "Zachowaj &oryginalne znaki końca linii"
 msgid "Tabs"
 msgstr "Tabulatory"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "&Rozmiar tabulatora:"
@@ -2316,7 +2326,7 @@ msgstr "Pogrubienie"
 msgid "Marker colors"
 msgstr ""
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr ""
@@ -2401,7 +2411,7 @@ msgstr "Wy&krywaj typ archiwum z sygnatury pliku"
 msgid "Compare Statistics"
 msgstr "Statystyki porównania"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "Foldery:"
@@ -2536,7 +2546,7 @@ msgstr "Nazwa &folderu"
 msgid "Result:"
 msgstr "Wynik:"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "&Testuj"
@@ -2566,7 +2576,7 @@ msgstr "Odstęp:"
 msgid "Regular text:"
 msgstr "Czcionka regularna:"
 
-#: Merge.rc:751AB58F
+#: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
 msgstr "Zaznaczenie:"
@@ -2953,12 +2963,12 @@ msgstr "Nie na w&szystkie"
 msgid "&Continue"
 msgstr "&Kontynuuj"
 
-#: Merge.rc:43017E52
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "Pom&iń"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "Pomiń ws&zystkie"
@@ -3357,10 +3367,10 @@ msgstr ""
 msgid "All paths are invalid!"
 msgstr ""
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "Wybierz dwa pliki, aby umożliwić wybór programu rozpakowującego."
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3742,7 +3752,7 @@ msgstr "Nie można uruchomić zewnętrznego edytora: %1"
 msgid "Unknown archive format"
 msgstr "Nieznany format archiwum"
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "Plik"
@@ -4212,7 +4222,7 @@ msgstr "Lista z tabulatorami"
 msgid "Simple HTML"
 msgstr "Prosty HTML"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB591
 #, c-format
 msgid "Simple XML"
 msgstr "Prosty XML"

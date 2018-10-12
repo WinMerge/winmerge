@@ -92,6 +92,7 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
  */
 const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_FILE_OPENCONFLICT,			IDB_FILE_OPENCONFLICT,			CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW3,                 IDB_FILE_NEW3,                  CMainFrame::MENU_ALL },
 	{ ID_EDIT_COPY,					IDB_EDIT_COPY,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_CUT,					IDB_EDIT_CUT,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_PASTE,				IDB_EDIT_PASTE,					CMainFrame::MENU_ALL },
@@ -267,7 +268,7 @@ static CPtrList &GetDocList(CMultiDocTemplate *pTemplate)
  * @todo Preference for logging?
  */
 CMainFrame::CMainFrame()
-: m_bFirstTime(TRUE)
+: m_bFirstTime(true)
 , m_pDropHandler(NULL)
 , m_bShowErrors(false)
 {
@@ -328,7 +329,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 	m_wndTabBar.SetAutoMaxWidth(GetOptionsMgr()->GetBool(OPT_TABBAR_AUTO_MAXWIDTH));
 
-	if (GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR) == false)
+	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR))
 		CMDIFrameWnd::ShowControlBar(&m_wndTabBar, false, 0);
 
 	if (!m_wndStatusBar.Create(this))
@@ -346,7 +347,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, pointToPixel(75)); 
 	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112)); 
 
-	if (GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR) == false)
+	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
 		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
 
 	m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
@@ -525,7 +526,7 @@ HMENU CMainFrame::NewOpenViewMenu()
 void CMainFrame::OnMeasureItem(int nIDCtl,
 	LPMEASUREITEMSTRUCT lpMeasureItemStruct)
 {
-	BOOL setflag = FALSE;
+	bool setflag = false;
 	if (lpMeasureItemStruct->CtlType == ODT_MENU)
 	{
 		if (IsMenu(reinterpret_cast<HMENU>(static_cast<uintptr_t>(lpMeasureItemStruct->itemID))))
@@ -536,7 +537,7 @@ void CMainFrame::OnMeasureItem(int nIDCtl,
 			if (m_pMenus[MENU_DEFAULT]->IsMenu(cmenu))
 			{
 				m_pMenus[MENU_DEFAULT]->MeasureItem(lpMeasureItemStruct);
-				setflag = TRUE;
+				setflag = true;
 			}
 		}
 	}
@@ -715,7 +716,7 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	{
 		if (dwFlags)
 		{
-			BOOL bModified = (dwFlags[pane] & FFILEOPEN_MODIFIED) > 0;
+			bool bModified = (dwFlags[pane] & FFILEOPEN_MODIFIED) > 0;
 			if (bModified)
 			{
 				pMergeDoc->m_ptBuf[pane]->SetModified(TRUE);
@@ -879,10 +880,10 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
  * @param [in] bRecurse Do we run recursive (folder) compare?
  * @param [in] pDirDoc Dir compare document to use.
  * @param [in] prediffer Prediffer plugin name.
- * @return TRUE if opening files and compare succeeded, FALSE otherwise.
+ * @return `true` if opening files and compare succeeded, `false` otherwise.
  */
-BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
-	const DWORD dwFlags[] /*=NULL*/, const String strDesc[] /*=NULL*/, const String& sReportFile /*=T("")*/, bool bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
+bool CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
+	const DWORD dwFlags[] /*=NULL*/, const String strDesc[] /*=NULL*/, const String& sReportFile /*=T("")*/, bool bRecurse /*= false*/, CDirDoc *pDirDoc/*=NULL*/,
 	String prediffer /*=_T("")*/, const PackingInfo *infoUnpacker/*=NULL*/)
 {
 	if (pDirDoc && !pDirDoc->CloseMergeDocs())
@@ -1153,7 +1154,7 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 		return;
 	}
 
-	m_bFirstTime = FALSE;
+	m_bFirstTime = false;
 
 	WINDOWPLACEMENT wp;
 	wp.length = sizeof(WINDOWPLACEMENT);
@@ -1200,7 +1201,7 @@ void CMainFrame::OnClose()
 		return;
 
 	// Check if there are multiple windows open and ask for closing them
-	BOOL bAskClosing = GetOptionsMgr()->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
+	bool bAskClosing = GetOptionsMgr()->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
 	if (bAskClosing)
 	{
 		bool quit = AskCloseConfirmation();
@@ -1618,8 +1619,8 @@ void CMainFrame::OnToolsFilters()
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
 
 		// Check if compare documents need rescanning
-		BOOL bFileCompareRescan = FALSE;
-		BOOL bFolderCompareRescan = FALSE;
+		bool bFileCompareRescan = false;
+		bool bFolderCompareRescan = false;
 		CFrameWnd * pFrame = GetActiveFrame();
 		FRAMETYPE frame = GetFrameType(pFrame);
 		if (frame == FRAME_FILE)
@@ -1627,7 +1628,7 @@ void CMainFrame::OnToolsFilters()
 			if (lineFiltersEnabledOrig != linefiltersEnabled ||
 					!theApp.m_pLineFilters->Compare(lineFilters.get()))
 			{
-				bFileCompareRescan = TRUE;
+				bFileCompareRescan = true;
 			}
 		}
 		else if (frame == FRAME_FOLDER)
@@ -1638,7 +1639,7 @@ void CMainFrame::OnToolsFilters()
 			{
 				int res = LangMessageBox(IDS_FILTERCHANGED, MB_ICONWARNING | MB_YESNO);
 				if (res == IDYES)
-					bFolderCompareRescan = TRUE;
+					bFolderCompareRescan = true;
 			}
 		}
 
@@ -1765,7 +1766,7 @@ void CMainFrame::OnFileOpenProject()
 	
 	// get the default projects path
 	String strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
-	if (!SelectFile(GetSafeHwnd(), sFilepath, TRUE, strProjectPath.c_str(), _T(""),
+	if (!SelectFile(GetSafeHwnd(), sFilepath, true, strProjectPath.c_str(), _T(""),
 			_("WinMerge Project Files (*.WinMerge)|*.WinMerge||")))
 		return;
 	
@@ -1979,7 +1980,7 @@ BOOL CMainFrame::CreateToolbar()
 	nStyle |= TBSTYLE_DROPDOWN;
 	m_wndToolBar.SetButtonInfo(index, nID, nStyle, iImage);
 
-	if (GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR) == false)
+	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
 	{
 		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, false, 0);
 	}
@@ -2205,11 +2206,11 @@ void CMainFrame::OnFileOpenConflict()
  * file as resolved file.
  * @param [in] conflictFile Full path to conflict file to open.
  * @param [in] checked If true, do not check if it really is project file.
- * @return TRUE if conflict file was opened for resolving.
+ * @return `true` if conflict file was opened for resolving.
  */
-BOOL CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc[], bool checked)
+bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc[] /*= nullptr*/, bool checked /*= false*/)
 {
-	BOOL conflictCompared = FALSE;
+	bool conflictCompared = false;
 
 	if (!checked)
 	{
@@ -2218,7 +2219,7 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 		{
 			String message = strutils::format_string1(_("The file\n%1\nis not a conflict file."), conflictFile);
 			AfxMessageBox(message.c_str(), MB_ICONSTOP);
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -2279,10 +2280,10 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 */
 CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
 {
-	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
-	BOOL bHexMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame));
-	BOOL bImgMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame));
-	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
+	bool bMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	bool bHexMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame));
+	bool bImgMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame));
+	bool bDirFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
 	if (bMergeFrame)
 		return FRAME_FILE;
@@ -2315,8 +2316,8 @@ void CMainFrame::OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (NULL != pPopup)
 	{
-		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, 
-			pToolBar->rcButton.left, pToolBar->rcButton.bottom, this);
+		pPopup->TrackPopupMenu(TPM_RIGHTALIGN | TPM_RIGHTBUTTON, 
+			pToolBar->rcButton.right, pToolBar->rcButton.bottom, this);
 	}
 	*pResult = 0;
 }

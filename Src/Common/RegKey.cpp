@@ -120,12 +120,12 @@ LONG CRegKeyEx::WriteDword(LPCTSTR pszKey, DWORD dwVal)
 }
 
 /**
- * @brief Write BOOL value to registry.
+ * @brief Write `bool` value to registry.
  * @param [in] pszKey Path to actual registry key to access.
  * @param [in] bVal Value to write.
  * @return ERROR_SUCCESS on success, or error value.
  */
-LONG CRegKeyEx::WriteBool(LPCTSTR pszKey, BOOL bVal)
+LONG CRegKeyEx::WriteBool(LPCTSTR pszKey, bool bVal)
 {
 	assert(m_hKey);
 	assert(pszKey);
@@ -269,12 +269,12 @@ float CRegKeyEx::ReadFloat(LPCTSTR pszKey, float defval)
 }
 
 /**
- * @brief Read BOOL value from registry.
+ * @brief Read `bool` value from registry.
  * @param [in] pszKey Path to actual registry key to access.
  * @param [in] defval Default value to return if reading fails.
- * @return Read BOOL value.
+ * @return Read `bool` value.
  */
-BOOL CRegKeyEx::ReadBool(LPCTSTR pszKey, BOOL defval)
+bool CRegKeyEx::ReadBool(LPCTSTR pszKey, bool defval)
 {
 	assert(m_hKey);
 	assert(pszKey);

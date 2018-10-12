@@ -97,7 +97,7 @@ public:
 
 // Implementation
 private:
-	BOOL EnsureValidDockState(CDockState& state);
+	bool EnsureValidDockState(CDockState& state);
 	void LoadOptions();
 	void SaveOptions();
 	void SavePosition();

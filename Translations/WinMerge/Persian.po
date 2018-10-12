@@ -1412,9 +1412,24 @@ msgstr " شرکت کننده ها "
 msgid "Select Files or Folders"
 msgstr " انتخاب پرونده ها يا پوشه ها "
 
-#: Merge.rc:43017E4E
+#: Merge.rc:4186E48
 #, c-format
-msgid "&1st:"
+msgid "Help"
+msgstr " راهنما "
+
+#: Merge.rc:6DE6F874
+#, c-format
+msgid "&1st File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "&a فقط خواندني "
+
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
 msgstr ""
 
 #: Merge.rc:68816EE7
@@ -1422,9 +1437,19 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&B مرور "
 
-#: Merge.rc:43017E4F
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&2nd:"
+msgid "&2nd File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
 msgstr ""
 
 #: Merge.rc:78E0CE0E
@@ -1432,9 +1457,19 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "&r مرور ... "
 
-#: Merge.rc:702BA358
+#: Merge.rc:3C1ECDDA
 #, c-format
-msgid "(Optional) &3rd:"
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
+
+#: Merge.rc:39174D98
+#, c-format
+msgid "Read-o&nly"
+msgstr ""
+
+#: Merge.rc:56BD1FBC
+#, c-format
+msgid "Swap 1st | 3rd"
 msgstr ""
 
 #: Merge.rc:146A5938
@@ -1442,60 +1477,40 @@ msgstr ""
 msgid "Browse..."
 msgstr " مرور ... "
 
-#: Merge.rc:64ABCD7D
+#: Merge.rc:22467E6E
 #, c-format
-msgid "Fi&lter:"
+msgid " Folder: Filter"
 msgstr ""
 
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr " انتخاب ... "
-
 #: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "&U بازکننده بسته : "
-
-#: Merge.rc:68816EE9
 #, c-format
 msgid "&Select..."
 msgstr "&S انتخاب ... "
 
-#: Merge.rc:67019DCA
+#: Merge.rc:662470D5
 #, c-format
-msgid "Status:"
-msgstr " وضعيت : "
+msgid " File: Unpacker Plugin"
+msgstr ""
+
+#: Merge.rc:751AB58F
+#, c-format
+msgid "Se&lect..."
+msgstr ""
+
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr " مقايسه کردن "
 
 #: Merge.rc:4E65D340
 #, c-format
 msgid "Cancel"
 msgstr " لغو "
 
-#: Merge.rc:4186E48
+#: Merge.rc:67019DCA
 #, c-format
-msgid "Help"
-msgstr " راهنما "
-
-#: Merge.rc:75264C52
-#, c-format
-msgid "Files or Folders to Compare"
-msgstr " پرونده ها يا پوشه هاي مقايسه شونده "
-
-#: Merge.rc:39174D96
-#, c-format
-msgid "Re&ad-only"
-msgstr "&a فقط خواندني "
-
-#: Merge.rc:39174D97
-#, c-format
-msgid "Rea&d-only"
-msgstr ""
-
-#: Merge.rc:39174D98
-#, c-format
-msgid "Read-o&nly"
-msgstr ""
+msgid "Status:"
+msgstr " وضعيت : "
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1608,7 +1623,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "&F يافتن بعدي "
@@ -1638,7 +1653,7 @@ msgstr "&D پايان پرونده را سطربندي نکن "
 msgid "Replace in"
 msgstr " جايگزيني در "
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "&S گزينش "
@@ -1833,7 +1848,7 @@ msgstr "&1 پرونده  : "
 msgid "File&2:"
 msgstr "&2 پرونده  : "
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "&S معاوضه "
@@ -1988,11 +2003,6 @@ msgstr "&D تفاوت "
 msgid "&Go To"
 msgstr "&G برو به "
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr " مقايسه کردن "
-
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2073,7 +2083,7 @@ msgstr "&P اصلي  EOL نگاهداشت حروف "
 msgid "Tabs"
 msgstr " جهشها / تب ها "
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "&T اندازه کليد جهش / تب : "
@@ -2324,7 +2334,7 @@ msgstr " تيره "
 msgid "Marker colors"
 msgstr ""
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr ""
@@ -2409,7 +2419,7 @@ msgstr "&D شناسايي نوع بايگاني از روي امضاء پرون�
 msgid "Compare Statistics"
 msgstr " آمار همسنجي / قياس "
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr " پوشه ها : "
@@ -2544,7 +2554,7 @@ msgstr "&F نام پوشه "
 msgid "Result:"
 msgstr " نتيجه : "
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "&T آزمايش "
@@ -2574,7 +2584,7 @@ msgstr " فاصله سفيد : "
 msgid "Regular text:"
 msgstr " متن منظم : "
 
-#: Merge.rc:751AB58F
+#: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
 msgstr " انتخاب : "
@@ -2969,12 +2979,12 @@ msgstr "&l همگي خير "
 msgid "&Continue"
 msgstr "&C ادامه "
 
-#: Merge.rc:43017E52
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "&S پرش "
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "&a پرش از همگي "
@@ -3380,10 +3390,10 @@ msgstr ""
 msgid "All paths are invalid!"
 msgstr ""
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr " دو پرونده را انتخاب نماييد تا انتخاب   بازکننده بسته    فعال گردد "
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3771,7 +3781,7 @@ msgstr " اجراي ناموفق ويراستار خارجي : %1"
 msgid "Unknown archive format"
 msgstr " بايگاني با قالب بندي ناشناس "
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr " نام پرونده "
@@ -4248,7 +4258,7 @@ msgstr " فهرست جداشده با کليد جهش "
 msgid "Simple HTML"
 msgstr " ساده اچ تي ام ال"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB591
 #, c-format
 msgid "Simple XML"
 msgstr " ساده ايکس ام ال "

@@ -35,7 +35,7 @@ TEST(CodepageTest, UCS2)
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2BE/DiffItem.h"),
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2LE/DiffItem.h")
 	};
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&tFiles));
+	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	ASSERT_NE(nullptr, pDoc);
@@ -53,7 +53,7 @@ TEST(CodepageTest, UTF8)
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UTF-8/DiffItem.h"),
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UTF-8-NOBOM/DiffItem.h")
 	};
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&tFiles));
+	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
@@ -75,7 +75,7 @@ TEST(SyntaxHighlight, Verilog)
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&tFiles));
+	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
@@ -119,7 +119,7 @@ TEST(FolderCompare, IgnoreEOL)
 	{
 		GetOptionsMgr()->Set(OPT_CMP_METHOD, 0/* Full Contents*/);
 		GetOptionsMgr()->Set(OPT_CMP_IGNORE_EOL, true);
-		EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&dirs));
+		EXPECT_TRUE(GetMainFrame()->DoFileOpen(&dirs));
 		CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 		CDirDoc *pDoc = dynamic_cast<CDirDoc *>(pFrame->GetActiveDocument());
 		EXPECT_NE(nullptr, pDoc);
@@ -263,7 +263,7 @@ TEST(ImageCompareTest, Open)
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&tFiles));
+	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CImgMergeFrame *pDoc = dynamic_cast<CImgMergeFrame *>(pFrame);
 	EXPECT_NE(nullptr, pDoc);

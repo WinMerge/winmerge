@@ -453,7 +453,7 @@ exitPrepAndCompare:
 		if (m_pTimeSizeCompare == NULL)
 			m_pTimeSizeCompare.reset(new TimeSizeCompare());
 
-		m_pTimeSizeCompare->SetAdditionalOptions(!!pCtxt->m_bIgnoreSmallTimeDiff);
+		m_pTimeSizeCompare->SetAdditionalOptions(pCtxt->m_bIgnoreSmallTimeDiff);
 		code = m_pTimeSizeCompare->CompareFiles(nCompMethod, pCtxt->GetCompareDirs(), di);
 	}
 	else

@@ -140,7 +140,7 @@ static HGLOBAL ConvertToUTF16ForClipboard(HGLOBAL hMem, int codepage)
 /**
  * @brief Generate report and save it to file.
  * @param [out] errStr Empty if succeeded, otherwise contains error message.
- * @return TRUE if report was created, FALSE if user canceled report.
+ * @return `true` if report was created, `false` if user canceled report.
  */
 bool DirCmpReport::GenerateReport(String &errStr)
 {
@@ -158,9 +158,9 @@ bool DirCmpReport::GenerateReport(String &errStr)
 		if (dlg.m_bCopyToClipboard)
 		{
 			if (!CWnd::GetSafeOwner()->OpenClipboard())
-				return FALSE;
+				return false;
 			if (!EmptyClipboard())
-				return FALSE;
+				return false;
 			CSharedFile file(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT);
 			m_pFile = &file;
 			GenerateReport(dlg.m_nReportType);
@@ -208,15 +208,15 @@ bool DirCmpReport::GenerateReport(String &errStr)
 			if (!paths::CreateIfNeeded(path))
 			{
 				errStr = _("Folder does not exist.");
-				return FALSE;
+				return false;
 			}
 			CFile file(dlg.m_sReportFile.c_str(),
 				CFile::modeWrite|CFile::modeCreate|CFile::shareDenyWrite);
 			m_pFile = &file;
-			m_bIncludeFileCmpReport = !!dlg.m_bIncludeFileCmpReport;
+			m_bIncludeFileCmpReport = dlg.m_bIncludeFileCmpReport;
 			GenerateReport(dlg.m_nReportType);
 		}
-		bRet = TRUE;
+		bRet = true;
 	}
 	catch (CException *e)
 	{

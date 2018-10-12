@@ -1413,90 +1413,105 @@ msgstr "Medewerkers"
 msgid "Select Files or Folders"
 msgstr "Bestanden of mappen selecteren"
 
-#: Merge.rc:43017E4E
-#, c-format
-msgid "&1st:"
-msgstr "1ste:"
-
-#: Merge.rc:68816EE7
-#, c-format
-msgid "&Browse..."
-msgstr "Bladeren..."
-
-#: Merge.rc:43017E4F
-#, c-format
-msgid "&2nd:"
-msgstr "2de:"
-
-#: Merge.rc:78E0CE0E
-#, c-format
-msgid "B&rowse..."
-msgstr "Bladeren..."
-
-#: Merge.rc:702BA358
-#, c-format
-msgid "(Optional) &3rd:"
-msgstr "(Optioneel) 3de:"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Bladeren..."
-
-#: Merge.rc:64ABCD7D
-#, c-format
-msgid "Fi&lter:"
-msgstr "Filteren:"
-
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "Selecteren..."
-
-#: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "Uitpakker:"
-
-#: Merge.rc:68816EE9
-#, c-format
-msgid "&Select..."
-msgstr "Selecteren..."
-
-#: Merge.rc:67019DCA
-#, c-format
-msgid "Status:"
-msgstr "Status:"
-
-#: Merge.rc:4E65D340
-#, c-format
-msgid "Cancel"
-msgstr "Annuleren"
-
 #: Merge.rc:4186E48
 #, c-format
 msgid "Help"
 msgstr "Help"
 
-#: Merge.rc:75264C52
+#: Merge.rc:6DE6F874
 #, c-format
-msgid "Files or Folders to Compare"
-msgstr "Bestanden of mappen om te vergelijken"
+msgid "&1st File or Folder"
+msgstr ""
 
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
 msgstr "Alleen-lezen"
 
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
+msgstr ""
+
+#: Merge.rc:68816EE7
+#, c-format
+msgid "&Browse..."
+msgstr "Bladeren..."
+
+#: Merge.rc:6DE6F875
+#, c-format
+msgid "&2nd File or Folder"
+msgstr ""
+
 #: Merge.rc:39174D97
 #, c-format
 msgid "Rea&d-only"
 msgstr "Alleen-lezen"
 
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
+msgstr ""
+
+#: Merge.rc:78E0CE0E
+#, c-format
+msgid "B&rowse..."
+msgstr "Bladeren..."
+
+#: Merge.rc:3C1ECDDA
+#, c-format
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
+
 #: Merge.rc:39174D98
 #, c-format
 msgid "Read-o&nly"
 msgstr "Alleen-lezen"
+
+#: Merge.rc:56BD1FBC
+#, c-format
+msgid "Swap 1st | 3rd"
+msgstr ""
+
+#: Merge.rc:146A5938
+#, c-format
+msgid "Browse..."
+msgstr "Bladeren..."
+
+#: Merge.rc:22467E6E
+#, c-format
+msgid " Folder: Filter"
+msgstr ""
+
+#: Merge.rc:68816EE8
+#, c-format
+msgid "&Select..."
+msgstr "Selecteren..."
+
+#: Merge.rc:662470D5
+#, c-format
+msgid " File: Unpacker Plugin"
+msgstr ""
+
+#: Merge.rc:751AB58F
+#, c-format
+msgid "Se&lect..."
+msgstr ""
+
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Vergelijken"
+
+#: Merge.rc:4E65D340
+#, c-format
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: Merge.rc:67019DCA
+#, c-format
+msgid "Status:"
+msgstr "Status:"
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1608,7 +1623,7 @@ msgstr "Dit venster niet sluiten"
 msgid "Find &Prev"
 msgstr "Vorige zoeken"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "Volgende zoeken"
@@ -1638,7 +1653,7 @@ msgstr "Bij einde bestand stoppen"
 msgid "Replace in"
 msgstr "Vervangen in"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "Selectie"
@@ -1833,7 +1848,7 @@ msgstr "Bestand 1:"
 msgid "File&2:"
 msgstr "Bestand 2:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "Wisselen"
@@ -1988,11 +2003,6 @@ msgstr "Verschil"
 msgid "&Go To"
 msgstr "Gaan naar"
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Vergelijken"
-
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2073,7 +2083,7 @@ msgstr "Originele regeleinde-tekens bewaren"
 msgid "Tabs"
 msgstr "Tabs"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "Tabgrootte:"
@@ -2328,7 +2338,7 @@ msgstr "Vet"
 msgid "Marker colors"
 msgstr "Markeringskleuren"
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr "Markering zoeken:"
@@ -2413,7 +2423,7 @@ msgstr "Archieftype detecteren via bestandssignatuur"
 msgid "Compare Statistics"
 msgstr "Vergelijkingsstatistieken"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "Mappen:"
@@ -2548,7 +2558,7 @@ msgstr "Mapnaam"
 msgid "Result:"
 msgstr "Resultaat:"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "Testen"
@@ -2578,7 +2588,7 @@ msgstr "Witruimte:"
 msgid "Regular text:"
 msgstr "Gewone tekst:"
 
-#: Merge.rc:751AB58F
+#: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
 msgstr "Selectie:"
@@ -2995,12 +3005,12 @@ msgstr "Nee op alles"
 msgid "&Continue"
 msgstr "Doorgaan"
 
-#: Merge.rc:43017E52
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "Overslaan"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "Alles overslaan"
@@ -3409,10 +3419,10 @@ msgstr "Middelste (2de) en rechter (3de) pad zijn ongeldig!"
 msgid "All paths are invalid!"
 msgstr "Alle paden zijn ongeldig!"
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "Twee bestanden kiezen om uitpakkerselectie in te schakelen."
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3799,7 +3809,7 @@ msgstr "Uitvoeren externe editor mislukt: %1"
 msgid "Unknown archive format"
 msgstr "Onbekend archiefformaat"
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "Bestandsnaam"
@@ -4276,7 +4286,7 @@ msgstr "Tab-gescheiden lijst"
 msgid "Simple HTML"
 msgstr "Simpele HTML"
 
-#: Merge.rc:751AB590
+#: Merge.rc:751AB591
 #, c-format
 msgid "Simple XML"
 msgstr "Simpele XML"

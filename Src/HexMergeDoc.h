@@ -77,7 +77,7 @@ public:
 public:
 	~CHexMergeDoc();
 	int UpdateDiffItem(CDirDoc * pDirDoc);
-	BOOL PromptAndSaveIfNeeded(BOOL bAllowCancel);
+	bool PromptAndSaveIfNeeded(bool bAllowCancel);
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void DirDocClosing(CDirDoc * pDirDoc);
 	bool CloseNow();
@@ -91,7 +91,7 @@ public:
 private:
 	void DoFileSave(int nBuffer);
 	void DoFileSaveAs(int nBuffer);
-	HRESULT LoadOneFile(int index, LPCTSTR filename, BOOL readOnly, const String& strDesc);
+	HRESULT LoadOneFile(int index, LPCTSTR filename, bool readOnly, const String& strDesc);
 // Implementation data
 protected:
 	CHexMergeView * m_pView[3]; /**< Pointer to left/right view */

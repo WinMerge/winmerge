@@ -2658,7 +2658,7 @@ void CDirView::OnToolsGeneratePatch()
 	const CDiffContext& ctxt = GetDiffContext();
 
 	// Get selected items from folder compare
-	BOOL bValidFiles = TRUE;
+	bool bValidFiles = true;
 	for (DirItemIterator it = SelBegin(); bValidFiles && it != SelEnd(); ++it)
 	{
 		const DIFFITEM &item = *it;
@@ -2666,13 +2666,13 @@ void CDirView::OnToolsGeneratePatch()
 		{
 			LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
 				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
-			bValidFiles = FALSE;
+			bValidFiles = false;
 		}
 		else if (item.diffcode.isDirectory())
 		{
 			LangMessageBox(IDS_CANNOT_CREATE_DIRPATCH, MB_ICONWARNING |
 				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_DIRPATCH);
-			bValidFiles = FALSE;
+			bValidFiles = false;
 		}
 
 		if (bValidFiles)
@@ -2949,7 +2949,7 @@ void CDirView::OnItemRename()
  */
 void CDirView::OnUpdateItemRename(CCmdUI* pCmdUI)
 {
-	BOOL bEnabled = (1 == m_pList->GetSelectedCount());
+	bool bEnabled = (1 == m_pList->GetSelectedCount());
 	pCmdUI->Enable(bEnabled && SelBegin() != SelEnd());
 }
 

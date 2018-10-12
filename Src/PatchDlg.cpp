@@ -152,7 +152,7 @@ void CPatchDlg::OnOK()
 			m_ctlResult.SetWindowText(m_fileResult.c_str());
 			DeleteFile(m_fileResult.c_str());
 		}
-		if (paths::IsPathAbsolute(m_fileResult) == FALSE)
+		if (!paths::IsPathAbsolute(m_fileResult))
 		{
 			String msg = strutils::format_string1(_("The specified output path is not an absolute path: %1"),
 				m_fileResult);
@@ -270,7 +270,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 	String folder;
 
 	folder = m_file1;
-	if (SelectFile(GetSafeHwnd(), s, TRUE, folder.c_str()))
+	if (SelectFile(GetSafeHwnd(), s, true, folder.c_str()))
 		m_ctlFile1.SetWindowText(s.c_str());
 }
 
@@ -283,7 +283,7 @@ void CPatchDlg::OnDiffBrowseFile2()
 	String folder;
 
 	folder = m_file2;
-	if (SelectFile(GetSafeHwnd(), s, TRUE, folder.c_str()))
+	if (SelectFile(GetSafeHwnd(), s, true, folder.c_str()))
 		m_ctlFile2.SetWindowText(s.c_str());
 }
 
@@ -296,7 +296,7 @@ void CPatchDlg::OnDiffBrowseResult()
 	String folder;
 
 	folder = m_fileResult;
-	if (SelectFile(GetSafeHwnd(), s, FALSE, folder.c_str()))
+	if (SelectFile(GetSafeHwnd(), s, false, folder.c_str()))
 		m_ctlResult.SetWindowText(s.c_str());
 }
 

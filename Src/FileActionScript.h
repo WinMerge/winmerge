@@ -61,7 +61,7 @@ struct FileAction
 
 	String src; /**< Source for action */
 	String dest; /**< Destination action */
-	bool dirflag; /**< Is it directory? (TRUE means directory) */
+	bool dirflag; /**< Is it directory? (`true` means directory) */
 	ACT_TYPE atype; /**< Action's type */
 };
 
@@ -110,8 +110,8 @@ public:
 	~FileActionScript();
 
 	void SetParentWindow(HWND hWnd);
-	void UseRecycleBin(BOOL bUseRecycleBin);
-	BOOL Run();
+	void UseRecycleBin(bool bUseRecycleBin);
+	bool Run();
 
 	// Manipulate the FileActionList
 	size_t GetActionItemCount() const;
@@ -139,13 +139,13 @@ protected:
 private:
 	std::vector<FileActionItem> m_actions; /**< List of all actions for this script. */
 	std::unique_ptr<ShellFileOperations> m_pCopyOperations; /**< Copy operations. */
-	BOOL m_bHasCopyOperations; /**< flag if we've put anything into m_pCopyOperations */
+	bool m_bHasCopyOperations; /**< flag if we've put anything into m_pCopyOperations */
 	std::unique_ptr<ShellFileOperations> m_pMoveOperations; /**< Move operations. */
-	BOOL m_bHasMoveOperations; /**< flag if we've put anything into m_pMoveOperations */
+	bool m_bHasMoveOperations; /**< flag if we've put anything into m_pMoveOperations */
 	std::unique_ptr<ShellFileOperations> m_pRenameOperations; /**< Rename operations. */
-	BOOL m_bHasRenameOperations; /**< flag if we've put anything into m_pRenameOperations */
+	bool m_bHasRenameOperations; /**< flag if we've put anything into m_pRenameOperations */
 	std::unique_ptr<ShellFileOperations> m_pDelOperations; /**< Delete operations. */
-	BOOL m_bHasDelOperations; /**< flag if we've put anything into m_pDelOperations */
-	BOOL m_bUseRecycleBin; /**< Use recycle bin for script actions? */
+	bool m_bHasDelOperations; /**< flag if we've put anything into m_pDelOperations */
+	bool m_bUseRecycleBin; /**< Use recycle bin for script actions? */
 	HWND m_hParentWindow; /**< Parent window for showing messages */
 };

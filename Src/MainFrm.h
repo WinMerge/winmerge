@@ -78,7 +78,7 @@ public:
 
 // Attributes
 public:	
-	BOOL m_bShowErrors; /**< Show folder compare error items? */
+	bool m_bShowErrors; /**< Show folder compare error items? */
 	LOGFONT m_lfDiff; /**< MergeView user-selected font */
 	LOGFONT m_lfDir; /**< DirView user-selected font */
 	static const TCHAR szClassName[];
@@ -95,7 +95,7 @@ public:
 	void UpdatePrediffersMenu();
 
 	void FileNew(int nPanes);
-	BOOL DoFileOpen(const PathContext *pFiles = NULL,
+	bool DoFileOpen(const PathContext *pFiles = NULL,
 		const DWORD dwFlags[] = NULL, const String strDesc[] = NULL, const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), const PackingInfo * infoUnpacker = NULL);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = NULL);
@@ -112,7 +112,7 @@ public:
 	void SelectFilter();
 	void StartFlashing();
 	bool AskCloseConfirmation();
-	BOOL DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
+	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
 	void UpdateDocTitle();
 	void ReloadMenu();
@@ -136,7 +136,7 @@ protected:
 
 // Public implementation data
 public:
-	BOOL m_bFirstTime; /**< If first time frame activated, get  pos from reg */
+	bool m_bFirstTime; /**< If first time frame activated, get  pos from reg */
 
 // Implementation data
 protected:

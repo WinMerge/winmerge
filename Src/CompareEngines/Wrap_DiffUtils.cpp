@@ -304,12 +304,12 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo) const
  * @param [out] diffs Pointer to list of change structs where diffdata is stored.
  * @param [in] depth Depth in folder compare (we use 0).
  * @param [out] bin_status used to return binary status from compare.
- * @param [in] bMovedBlocks If TRUE moved blocks are analyzed.
+ * @param [in] bMovedBlocks If `true` moved blocks are analyzed.
  * @param [out] bin_file Returns which file was binary file as bitmap.
     So if first file is binary, first bit is set etc. Can be NULL if binary file
     info is not needed (faster compare since diffutils don't bother checking
     second file if first is binary).
- * @return TRUE when compare succeeds, FALSE if error happened during compare.
+ * @return `true` when compare succeeds, `false` if error happened during compare.
  */
 bool DiffUtils::Diff2Files(struct change ** diffs, int depth,
 		int * bin_status, bool bMovedBlocks, int * bin_file) const

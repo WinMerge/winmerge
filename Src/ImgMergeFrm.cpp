@@ -523,21 +523,21 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 * The bars are identified with their ID. This means the missing bar bug is triggered
 * when we run WinMerge after changing the ID of a bar.
 */
-BOOL CImgMergeFrame::EnsureValidDockState(CDockState& state)
+bool CImgMergeFrame::EnsureValidDockState(CDockState& state)
 {
 	for (int i = (int)state.m_arrBarInfo.GetSize() - 1; i >= 0; i--)
 	{
-		BOOL barIsCorrect = TRUE;
+		bool barIsCorrect = true;
 		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
 		if (!pInfo)
-			barIsCorrect = FALSE;
+			barIsCorrect = false;
 		else
 		{
 			if (!pInfo->m_bFloating)
 			{
 				pInfo->m_pBar = GetControlBar(pInfo->m_nBarID);
 				if (!pInfo->m_pBar)
-					barIsCorrect = FALSE; //toolbar id's probably changed	
+					barIsCorrect = false; //toolbar id's probably changed	
 			}
 		}
 
@@ -655,8 +655,8 @@ bool CImgMergeFrame::DoFileSave(int pane)
 		else
 		{
 			String filename = ucr::toTString(m_pImgMergeWindow->GetFileName(pane));
-			BOOL bApplyToAll = FALSE;
-			if (theApp.HandleReadonlySave(filename, FALSE, bApplyToAll) == IDCANCEL)
+			bool bApplyToAll = false;
+			if (theApp.HandleReadonlySave(filename, false, bApplyToAll) == IDCANCEL)
 				return false;
 			theApp.CreateBackup(false, filename);
 			if (!m_pImgMergeWindow->SaveImage(pane))
@@ -680,10 +680,9 @@ bool CImgMergeFrame::DoFileSaveAs(int pane)
 		title = _("Save Right File As");
 	else
 		title = _("Save Middle File As");
-	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, FALSE, path.c_str(), title))
+	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
 		std::wstring filename = ucr::toUTF16(strPath).c_str();
-		BOOL bApplyToAll = FALSE;
 		if (m_pImgMergeWindow->SaveImageAs(pane, filename.c_str()))
 			return false;
 		if (path.empty())
