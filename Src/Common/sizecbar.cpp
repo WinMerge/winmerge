@@ -116,18 +116,6 @@ BEGIN_MESSAGE_MAP(CSizingControlBar, baseCSizingControlBar)
     ON_MESSAGE(WM_SETTEXT, OnSetText)
 END_MESSAGE_MAP()
 
-// old creation method, still here for compatibility reasons
-BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName, CWnd* pParentWnd,
-                               CSize sizeDefault, BOOL bHasGripper,
-                               UINT nID, DWORD dwStyle)
-{
-    UNUSED_ALWAYS(bHasGripper);
-
-    m_szHorz = m_szVert = m_szFloat = sizeDefault;
-    return Create(lpszWindowName, pParentWnd, nID, dwStyle);
-}
-
-// preffered creation method
 BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName,
                                CWnd* pParentWnd, UINT nID,
                                DWORD dwStyle)
