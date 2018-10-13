@@ -118,7 +118,7 @@ END_MESSAGE_MAP()
 
 // old creation method, still here for compatibility reasons
 BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName, CWnd* pParentWnd,
-                               CSize sizeDefault, bool bHasGripper,
+                               CSize sizeDefault, BOOL bHasGripper,
                                UINT nID, DWORD dwStyle)
 {
     UNUSED_ALWAYS(bHasGripper);
@@ -187,9 +187,10 @@ int CSizingControlBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
     // query SPI_GETDRAGFULLWINDOWS system parameter
     // OnSettingChange() will update m_bDragShowContent
-    m_bDragShowContent = false;
+    BOOL bDragShowContent = m_bDragShowContent = false;
     ::SystemParametersInfo(SPI_GETDRAGFULLWINDOWS, 0,
-        &m_bDragShowContent, 0);
+        &bDragShowContent, 0);
+    m_bDragShowContent = !!bDragShowContent;
 
     // uncomment this line if you want raised borders
 //    m_dwSCBStyle |= SCBS_SHOWEDGES;
@@ -589,9 +590,10 @@ void CSizingControlBar::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 {
     baseCSizingControlBar::OnSettingChange(uFlags, lpszSection);
 
-    m_bDragShowContent = false;
+    BOOL bDragShowContent = m_bDragShowContent = false;
     ::SystemParametersInfo(SPI_GETDRAGFULLWINDOWS, 0,
-        &m_bDragShowContent, 0); // update
+        &bDragShowContent, 0); // update
+    m_bDragShowContent = !!bDragShowContent;
 }
 
 void CSizingControlBar::OnSize(UINT nType, int cx, int cy)
