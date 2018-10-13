@@ -81,7 +81,7 @@ public:
     CSizingControlBar();
 
     virtual BOOL Create(LPCTSTR lpszWindowName, CWnd* pParentWnd,
-        CSize sizeDefault, bool bHasGripper,
+        CSize sizeDefault, BOOL bHasGripper,
         UINT nID, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP);
     virtual BOOL Create(LPCTSTR lpszWindowName, CWnd* pParentWnd,
         UINT nID, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP);
