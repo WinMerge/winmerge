@@ -572,8 +572,11 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		if (line == lastRealLine || lastRealLine == -1 )
 		{
 			// If original last line had no EOL, then we are done
-			if( !m_aLines[line].HasEol() )				
+			if( !m_aLines[line].HasEol() )
+			{
+				file.WriteString(sLine);
 				break;
+			}
 			// Otherwise, add the appropriate EOL to the last line ...
 		}
 
