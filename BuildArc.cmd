@@ -56,11 +56,11 @@ copy Plugins\dlls\*.dll "%DISTDIR%\zip-version\WinMerge\MergePlugins\"
 copy Plugins\dlls\X64\*.dll "%DISTDIR%\x64-zip-version\WinMerge\MergePlugins\"
 copy Plugins\dlls\*.sct "%DISTDIR%\zip-version\WinMerge\MergePlugins\"
 copy Plugins\dlls\*.sct "%DISTDIR%\x64-zip-version\WinMerge\MergePlugins\"
-del "%DISTDIR%\zip-version\WinMerge\MergePlugins\CompareMS*.dll"
-del "%DISTDIR%\zip-version\WinMerge\MergePlugins\Watch*OfLog.dll"
-del "%DISTDIR%\zip-version\WinMerge\MergePlugins\DisplayXMLFiles.dll"
-del "%DISTDIR%\x64-zip-version\WinMerge\MergePlugins\Watch*OfLog.dll"
-del "%DISTDIR%\x64-zip-version\WinMerge\MergePlugins\DisplayXMLFiles.dll"
+del "%DISTDIR%\zip-version\WinMerge\MergePlugins\CompareMS*.dll" 2> NUL
+del "%DISTDIR%\zip-version\WinMerge\MergePlugins\Watch*OfLog.dll" 2> NUL
+del "%DISTDIR%\zip-version\WinMerge\MergePlugins\DisplayXMLFiles.dll" 2> NUL
+del "%DISTDIR%\x64-zip-version\WinMerge\MergePlugins\Watch*OfLog.dll" 2> NUL
+del "%DISTDIR%\x64-zip-version\WinMerge\MergePlugins\DisplayXMLFiles.dll" 2> NUL
 
 rem 7zPlugins
 copy Build\Merge7z\Merge7z*.dll "%DISTDIR%\zip-version\WinMerge\Merge7z\"
@@ -73,7 +73,7 @@ copy Build\X64\Merge7z\*.txt "%DISTDIR%\x64-zip-version\WinMerge\Merge7z\"
 copy Build\X64\Merge7z\Lang\*.txt "%DISTDIR%\x64-zip-version\WinMerge\Merge7z\Lang\"
 
 rem Frhed
-copy Externals\Frhed\GPL.txt "%DISTDIR%\zip-version\WinMerge\frhed\"
+copy Build\Frhed\GPL.txt "%DISTDIR%\zip-version\WinMerge\frhed\"
 rem copy Build\Frhed\frhed.exe "%DISTDIR%\zip-version\WinMerge\frhed\"
 copy Build\Frhed\hekseditU.dll "%DISTDIR%\zip-version\WinMerge\frhed\"
 copy Build\Frhed\Docs\*.txt "%DISTDIR%\zip-version\WinMerge\frhed\Docs"
@@ -107,7 +107,7 @@ xcopy /s/y Build\GnuWin32 "%DISTDIR%\x64-zip-version\WinMerge\GnuWin32\"
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip" "%DISTDIR%\zip-version\WinMerge\"
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-x64-exe.zip" "%DISTDIR%\x64-zip-version\WinMerge\"
 
-del "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
+del "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" 2> NUL
 
 7z.exe a -t7z -xr!*.gcno -xr!*.gcda -xr!*.gcov -xr!*.orig -xr!*.o -xr!*.a -xr!.dep -xr!*.out -xr!debug_static* -xr!debug_shared* -xr!release_static* -xr!release_shared* -xr!*.bak -xr!*.lang -xr!*.db -xr!*.ncb  -xr!*.sdf -xr!*.bsc -xr!*.opt -xr!*.plg -xr!*.suo -xr!*.obj -xr!*.ilk -xr!*.pdb -xr!*.pch -xr!*.res -xr!*.exe -xr!*.sbr -xr!.vs -xr!*.VC.db-* -xr!*.zip -xr!WinMergeSplash.psd -xr!*.lib -xr!*.exp -xr!*.idb -xr!*.%COMPUTERNAME%.%USERNAME%.user -xr!BuildLog.htm -xr!ipch -xr!*.tlb -xr!*.tlog -xr!*.*~ -xr!CVS -xr!.svn -xr!.hg -xr!*.log -xr!*.lastbuildstate -xr!FreeImage*.dll -xr!WinIMergeLib.dll -xr!WinIMerge.exe -xr!BuildTmp -xr!Docs\Users\Manual\build\dtd -xr!Docs\Users\Manual\build\hhc -xr!Docs\Users\Manual\build\saxon -xr!Docs\Users\Manual\build\xerces -xr!Docs\Users\Manual\build\xsl "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" ArchiveSupport Docs Externals Filters Installer Plugins ShellExtension Src Testing Tools Translations Web readme.txt Version.h *.cmd *.bat *.inf *.sln *.vbs
 
