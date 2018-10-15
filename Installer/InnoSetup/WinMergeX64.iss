@@ -989,7 +989,6 @@ Var
         strOld: string;
         strNew: string;
         strMessage: string;
-        strShortcut: string;
 Begin
     {Detects the previous start menu group's path, if any}
     strOld := OldGroup();
