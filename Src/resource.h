@@ -261,7 +261,6 @@
 #define IDC_MOVED_BLOCKS                1123
 #define IDC_RESET_ALL_MESSAGE_BOXES     1124
 #define IDC_COLDLG_DEFAULTS             1126
-#define IDC_OPEN_STATUS_BOX             1127
 #define IDC_OPEN_STATUS                 1128
 #define IDC_FILTERFILE_EDITBTN          1129
 #define IDC_FILTERFILE_LIST             1130

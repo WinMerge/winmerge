@@ -211,7 +211,6 @@ void COpenView::OnInitialUpdate()
 //	m_constraint.ConstrainItem(IDC_SWAP12_STATIC, 1, 0, 0, 0); // slides right
 //	m_constraint.ConstrainItem(IDC_SWAP02_STATIC, 1, 0, 0, 0); // slides right
 //	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_OPEN_STATUS_BOX, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
 //	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_OPTIONS, 1, 0, 0, 0); // slides right
@@ -334,16 +333,32 @@ COpenDoc* COpenView::GetDocument() const // non-debug version is inline
 void COpenView::OnPaint()
 {
 	CPaintDC dc(this);
+	CRect rc;
+	GetClientRect(&rc);
+
+	// Draw the logo image
 	CSize size = m_picture.GetImageSize(&dc);
 	CRect rcImage(0, 0, size.cx * GetSystemMetrics(SM_CXSMICON) / 16, size.cy * GetSystemMetrics(SM_CYSMICON) / 16);
-	CRect rc;
 	m_picture.Render(&dc, rcImage);
-	GetClientRect(&rc);
+	// And extend it to the Right boundary
     dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
 
-	rc.left = rc.right - GetSystemMetrics(SM_CXVSCROLL);
-	rc.top = rc.bottom - GetSystemMetrics(SM_CYHSCROLL);
-	dc.DrawFrameControl(&rc, DFC_SCROLL, DFCS_SCROLLSIZEGRIP);
+	// Draw the resize gripper in the Lower Right corner.
+	CRect rcGrip = rc;
+	rcGrip.left = rc.right - GetSystemMetrics(SM_CXVSCROLL);
+	rcGrip.top = rc.bottom - GetSystemMetrics(SM_CYHSCROLL);
+	dc.DrawFrameControl(&rcGrip, DFC_SCROLL, DFCS_SCROLLSIZEGRIP);
+
+	// Draw a line to separate the Status Line
+	CPen newPen(PS_SOLID, 1, RGB(208, 208, 208));	// a very light gray
+	CPen* oldpen = (CPen*)dc.SelectObject(&newPen);
+
+	CRect rcStatus;
+	GetDlgItem(IDC_OPEN_STATUS)->GetWindowRect(&rcStatus);
+	ScreenToClient(&rcStatus);
+	dc.MoveTo(0, rcStatus.top - 3);
+	dc.LineTo(rc.right, rcStatus.top - 3);
+	dc.SelectObject(oldpen);
 
 	CFormView::OnPaint();
 }
