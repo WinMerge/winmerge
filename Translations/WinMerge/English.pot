@@ -1,14 +1,11 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
-# ID line follows -- this is updated by SVN
-# $Id: $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-10-11 16:22+0000\n"
+"POT-Creation-Date: 2018-10-19 05:53+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -21,1049 +18,840 @@ msgstr ""
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:5F458438
-#, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr ""
 
 #. Codepage
 #: Merge.rc:2C983F1
-#, c-format
 msgid "1252"
 msgstr ""
 
 #: Merge.rc:1C6125F3
-#, c-format
 msgid "C&opy to Right"
 msgstr ""
 
 #: Merge.rc:92C6C92
-#, c-format
 msgid "Cop&y to Left"
 msgstr ""
 
 #: Merge.rc:6FC398B6
-#, c-format
 msgid "Copy &from Left"
 msgstr ""
 
 #: Merge.rc:8AF7E68
-#, c-format
 msgid "Copy fro&m Right"
 msgstr ""
 
 #: Merge.rc:381D79E4
-#, c-format
 msgid "&Select Line Difference"
 msgstr ""
 
 #: Merge.rc:43017E40
-#, c-format
 msgid "&Undo"
 msgstr ""
 
 #: Merge.rc:43017E41
-#, c-format
 msgid "&Redo"
 msgstr ""
 
 #: Merge.rc:3CF9F83
-#, c-format
 msgid "Cu&t"
 msgstr ""
 
 #: Merge.rc:43017E42
-#, c-format
 msgid "&Copy"
 msgstr ""
 
 #: Merge.rc:1D2E49F6
-#, c-format
 msgid "&Paste"
 msgstr ""
 
 #: Merge.rc:AC3AA11
-#, c-format
 msgid "&Goto..."
 msgstr ""
 
 #: Merge.rc:B4D35A1
-#, c-format
 msgid "Op&en"
 msgstr ""
 
 #: Merge.rc:37625055
-#, c-format
 msgid "with &Registered Application"
 msgstr ""
 
 #: Merge.rc:321D741E
-#, c-format
 msgid "with &External Editor\tCtrl+Alt+E"
 msgstr ""
 
 #: Merge.rc:AC3AA12
-#, c-format
 msgid "&with..."
 msgstr ""
 
 #: Merge.rc:1A8FADD3
-#, c-format
 msgid "View &Differences"
 msgstr ""
 
 #: Merge.rc:71E3C8E3
-#, c-format
 msgid "Diff &Block Size"
 msgstr ""
 
 #: Merge.rc:67D67717
-#, c-format
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
 
 #: Merge.rc:5A9A7139
-#, c-format
 msgid "&Previous Page"
 msgstr ""
 
 #: Merge.rc:68816EE1
-#, c-format
 msgid "&Next Page"
 msgstr ""
 
 #: Merge.rc:4DE14271
-#, c-format
 msgid "&Active Pane"
 msgstr ""
 
 #: Merge.rc:43017E43
-#, c-format
 msgid "&Zoom"
 msgstr ""
 
 #: Merge.rc:AC3AA13
-#, c-format
 msgid "&Overlay"
 msgstr ""
 
 #: Merge.rc:43017E44
-#, c-format
 msgid "&None"
 msgstr ""
 
 #: Merge.rc:4DE14272
-#, c-format
 msgid "&Alpha Blend"
 msgstr ""
 
 #: Merge.rc:237A0532
-#, c-format
 msgid "Alpha &Blend Animation"
 msgstr ""
 
 #: Merge.rc:5806E58F
-#, c-format
 msgid "Dragging &Mode"
 msgstr ""
 
 #: Merge.rc:43017E45
-#, c-format
 msgid "&Move"
 msgstr ""
 
 #: Merge.rc:5A9A713A
-#, c-format
 msgid "&Adjust Offset"
 msgstr ""
 
 #: Merge.rc:100AAFAC
-#, c-format
 msgid "&Set Background Color"
 msgstr ""
 
 #: Merge.rc:43017E46
-#, c-format
 msgid "&File"
 msgstr ""
 
 #: Merge.rc:4DE14273
-#, c-format
 msgid "&New\tCtrl+N"
 msgstr ""
 
 #: Merge.rc:2C8061AC
-#, c-format
 msgid "New (&3 panes)"
 msgstr ""
 
 #: Merge.rc:1DC30E61
-#, c-format
 msgid "&Open...\tCtrl+O"
 msgstr ""
 
 #: Merge.rc:6829F68F
-#, c-format
 msgid "Op&en Conflict File..."
 msgstr ""
 
 #: Merge.rc:5869BBD
-#, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr ""
 
 #: Merge.rc:1BF42625
-#, c-format
 msgid "Sa&ve Project..."
 msgstr ""
 
 #: Merge.rc:47D4A3FA
-#, c-format
 msgid "Recent Projects"
 msgstr ""
 
 #: Merge.rc:73E9B1DA
-#, c-format
 msgid "Recent F&iles Or Folders"
 msgstr ""
 
 #: Merge.rc:29D50B4A
-#, c-format
 msgid "< Empty >"
 msgstr ""
 
 #: Merge.rc:79AB21E0
-#, c-format
 msgid "E&xit"
 msgstr ""
 
 #: Merge.rc:43017E47
-#, c-format
 msgid "&Edit"
 msgstr ""
 
 #: Merge.rc:27AC6D7E
-#, c-format
 msgid "&Options..."
 msgstr ""
 
 #: Merge.rc:43017E48
-#, c-format
 msgid "&View"
 msgstr ""
 
 #: Merge.rc:AC3AA14
-#, c-format
 msgid "&Toolbar"
 msgstr ""
 
 #: Merge.rc:1D2E49F7
-#, c-format
 msgid "&Small"
 msgstr ""
 
 #: Merge.rc:22956A6
-#, c-format
 msgid "&Big"
 msgstr ""
 
 #: Merge.rc:43017E49
-#, c-format
 msgid "&Huge"
 msgstr ""
 
 #: Merge.rc:27AC6D7F
-#, c-format
 msgid "&Status Bar"
 msgstr ""
 
 #: Merge.rc:2C015CFD
-#, c-format
 msgid "Ta&b Bar"
 msgstr ""
 
 #: Merge.rc:1D2E49F8
-#, c-format
 msgid "&Tools"
 msgstr ""
 
 #: Merge.rc:27AC6D80
-#, c-format
 msgid "&Filters..."
 msgstr ""
 
 #: Merge.rc:3938FFC0
-#, c-format
 msgid "&Generate Patch..."
 msgstr ""
 
 #: Merge.rc:AC3AA15
-#, c-format
 msgid "&Plugins"
 msgstr ""
 
 #: Merge.rc:4C6CFD95
-#, c-format
 msgid "P&lugin Settings..."
 msgstr ""
 
 #: Merge.rc:729280D7
-#, c-format
 msgid "Ma&nual Prediffer"
 msgstr ""
 
 #: Merge.rc:7CF93368
-#, c-format
 msgid "A&utomatic Prediffer"
 msgstr ""
 
 #: Merge.rc:1A9EBDEC
-#, c-format
 msgid "&Manual Unpacking"
 msgstr ""
 
 #: Merge.rc:4EF8162D
-#, c-format
 msgid "&Automatic Unpacking"
 msgstr ""
 
 #: Merge.rc:714B45FD
-#, c-format
 msgid "&Edit with Unpacker..."
 msgstr ""
 
 #: Merge.rc:78B3B622
-#, c-format
 msgid "&Reload plugins"
 msgstr ""
 
 #: Merge.rc:89AF4F7
-#, c-format
 msgid "&Window"
 msgstr ""
 
 #: Merge.rc:4E65D33F
-#, c-format
 msgid "Cl&ose"
 msgstr ""
 
 #: Merge.rc:34E43607
-#, c-format
 msgid "Clo&se All"
 msgstr ""
 
 #: Merge.rc:8AF7E69
-#, c-format
 msgid "Change &Pane\tF6"
 msgstr ""
 
 #: Merge.rc:5CCED707
-#, c-format
 msgid "Tile &Horizontally"
 msgstr ""
 
 #: Merge.rc:52870A1
-#, c-format
 msgid "Tile &Vertically"
 msgstr ""
 
 #: Merge.rc:AC3AA16
-#, c-format
 msgid "&Cascade"
 msgstr ""
 
 #: Merge.rc:43017E4A
-#, c-format
 msgid "&Help"
 msgstr ""
 
 #: Merge.rc:3938FFC1
-#, c-format
 msgid "&WinMerge Help\tF1"
 msgstr ""
 
 #: Merge.rc:1B17601E
-#, c-format
 msgid "R&elease Notes"
 msgstr ""
 
 #: Merge.rc:6E470BE7
-#, c-format
 msgid "&Translations"
 msgstr ""
 
 #: Merge.rc:1C6125F4
-#, c-format
 msgid "C&onfiguration"
 msgstr ""
 
 #: Merge.rc:175DEEEB
-#, c-format
 msgid "&GNU General Public License"
 msgstr ""
 
 #: Merge.rc:3938FFC2
-#, c-format
 msgid "&About WinMerge..."
 msgstr ""
 
 #: Merge.rc:68816EE2
-#, c-format
 msgid "&Read-only"
 msgstr ""
 
 #: Merge.rc:71676C45
-#, c-format
 msgid "L&eft Read-only"
 msgstr ""
 
 #: Merge.rc:729280D8
-#, c-format
 msgid "M&iddle Read-only"
 msgstr ""
 
 #: Merge.rc:32BFDBA9
-#, c-format
 msgid "Ri&ght Read-only"
 msgstr ""
 
 #: Merge.rc:453F5DDB
-#, c-format
 msgid "File En&coding..."
 msgstr ""
 
 #: Merge.rc:E44718
-#, c-format
 msgid "Select &All\tCtrl+A"
 msgstr ""
 
 #: Merge.rc:58EEEB7E
-#, c-format
 msgid "Show &Identical Items"
 msgstr ""
 
 #: Merge.rc:58EEEB7F
-#, c-format
 msgid "Show &Different Items"
 msgstr ""
 
 #: Merge.rc:58E210F9
-#, c-format
 msgid "Show L&eft Unique Items"
 msgstr ""
 
 #: Merge.rc:28A1C3B4
-#, c-format
 msgid "Show Midd&le Unique Items"
 msgstr ""
 
 #: Merge.rc:43600E8F
-#, c-format
 msgid "Show Ri&ght Unique Items"
 msgstr ""
 
 #: Merge.rc:E44719
-#, c-format
 msgid "Show S&kipped Items"
 msgstr ""
 
 #: Merge.rc:6F833C16
-#, c-format
 msgid "S&how Binary Files"
 msgstr ""
 
 #: Merge.rc:5A9A713B
-#, c-format
 msgid "&3-way Compare"
 msgstr ""
 
 #: Merge.rc:200AD0D1
-#, c-format
 msgid "Show &Left Only Different Items"
 msgstr ""
 
 #: Merge.rc:4899EBE1
-#, c-format
 msgid "Show &Middle Only Different Items"
 msgstr ""
 
 #: Merge.rc:614F49A9
-#, c-format
 msgid "Show &Right Only Different Items"
 msgstr ""
 
 #: Merge.rc:6F833C17
-#, c-format
 msgid "Show Hidd&en Items"
 msgstr ""
 
 #: Merge.rc:311E1D87
-#, c-format
 msgid "Tree &Mode"
 msgstr ""
 
 #: Merge.rc:3E934D
-#, c-format
 msgid "E&xpand All Subfolders"
 msgstr ""
 
 #: Merge.rc:4B91C2CF
-#, c-format
 msgid "&Collapse All Subfolders"
 msgstr ""
 
 #: Merge.rc:E6D7EE
-#, c-format
 msgid "Select &Font..."
 msgstr ""
 
 #: Merge.rc:5D3AA8D3
-#, c-format
 msgid "Use Default F&ont"
 msgstr ""
 
 #: Merge.rc:2E3BFCA1
-#, c-format
 msgid "Sw&ap Panes"
 msgstr ""
 
 #: Merge.rc:3E681460
-#, c-format
 msgid "Compa&re Statistics"
 msgstr ""
 
 #: Merge.rc:507A4C02
-#, c-format
 msgid "Refre&sh\tF5"
 msgstr ""
 
 #: Merge.rc:2E2C5206
-#, c-format
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr ""
 
 #: Merge.rc:1D2E49F9
-#, c-format
 msgid "&Merge"
 msgstr ""
 
 #: Merge.rc:6FC398B7
-#, c-format
 msgid "Co&mpare\tEnter"
 msgstr ""
 
 #: Merge.rc:2E2C5207
-#, c-format
 msgid "&Next Difference\tAlt+Down"
 msgstr ""
 
 #: Merge.rc:545FEEA0
-#, c-format
 msgid "&Previous Difference\tAlt+Up"
 msgstr ""
 
 #: Merge.rc:175DEEEC
-#, c-format
 msgid "&First Difference\tAlt+Home"
 msgstr ""
 
 #: Merge.rc:3C1ECDD9
-#, c-format
 msgid "&Current Difference\tAlt+Enter"
 msgstr ""
 
 #: Merge.rc:26A69749
-#, c-format
 msgid "&Last Difference\tAlt+End"
 msgstr ""
 
 #: Merge.rc:334E25B0
-#, c-format
 msgid "Copy to &Right\tAlt+Right"
 msgstr ""
 
 #: Merge.rc:69AD3BF7
-#, c-format
 msgid "Copy to L&eft\tAlt+Left"
 msgstr ""
 
 #: Merge.rc:4DE14274
-#, c-format
 msgid "&Delete\tDel"
 msgstr ""
 
 #: Merge.rc:100AAFAD
-#, c-format
 msgid "&Customize Columns..."
 msgstr ""
 
 #: Merge.rc:2F07210E
-#, c-format
 msgid "Generate &Report..."
 msgstr ""
 
 #: Merge.rc:6E470BE8
-#, c-format
 msgid "&Save\tCtrl+S"
 msgstr ""
 
 #: Merge.rc:125AD721
-#, c-format
 msgid "Sav&e"
 msgstr ""
 
 #: Merge.rc:751AB58E
-#, c-format
 msgid "Save &Left"
 msgstr ""
 
 #: Merge.rc:194397DD
-#, c-format
 msgid "Save &Middle"
 msgstr ""
 
 #: Merge.rc:2E3BFCA2
-#, c-format
 msgid "Save &Right"
 msgstr ""
 
 #: Merge.rc:79321BE1
-#, c-format
 msgid "Save &As"
 msgstr ""
 
 #: Merge.rc:1BF42626
-#, c-format
 msgid "Save &Left As..."
 msgstr ""
 
 #: Merge.rc:6F833C18
-#, c-format
 msgid "Save &Middle As..."
 msgstr ""
 
 #: Merge.rc:62909ED4
-#, c-format
 msgid "Save &Right As..."
 msgstr ""
 
 #: Merge.rc:4DB19837
-#, c-format
 msgid "&Print..."
 msgstr ""
 
 #: Merge.rc:60FF375A
-#, c-format
 msgid "Page Se&tup"
 msgstr ""
 
 #: Merge.rc:23CBE0E5
-#, c-format
 msgid "Print Previe&w"
 msgstr ""
 
 #: Merge.rc:4B91C2D0
-#, c-format
 msgid "&Convert Line Endings to"
 msgstr ""
 
 #: Merge.rc:78B3B623
-#, c-format
 msgid "&Merge Mode\tF9"
 msgstr ""
 
 #: Merge.rc:32BFDBAA
-#, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr ""
 
 #: Merge.rc:1A9EBDED
-#, c-format
 msgid "&File Encoding..."
 msgstr ""
 
 #: Merge.rc:507A4C03
-#, c-format
 msgid "Recompare As"
 msgstr ""
 
 #: Merge.rc:43017E4B
-#, c-format
 msgid "&Text"
 msgstr ""
 
 #: Merge.rc:22956A7
-#, c-format
 msgid "&XML"
 msgstr ""
 
 #: Merge.rc:89AF4F8
-#, c-format
 msgid "&Binary"
 msgstr ""
 
 #: Merge.rc:6E470BE9
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr ""
 
 #: Merge.rc:6E470BEA
-#, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr ""
 
 #: Merge.rc:CAEDA34
-#, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr ""
 
 #: Merge.rc:6E470BEB
-#, c-format
 msgid "&Copy\tCtrl+C"
 msgstr ""
 
 #: Merge.rc:5A9A713C
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr ""
 
 #: Merge.rc:73FB245
-#, c-format
 msgid "Select Line &Difference\tF4"
 msgstr ""
 
 #: Merge.rc:444C5DDB
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr ""
 
 #: Merge.rc:44BC83EC
-#, c-format
 msgid "Repla&ce...\tCtrl+H"
 msgstr ""
 
 #: Merge.rc:4B91C2D1
-#, c-format
 msgid "&Marker...\tCtrl+Shift+M"
 msgstr ""
 
 #: Merge.rc:669F87F4
-#, c-format
 msgid "Advanced"
 msgstr ""
 
 #: Merge.rc:45A190D
-#, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
 msgstr ""
 
 #: Merge.rc:68816EE3
-#, c-format
 msgid "&Bookmarks"
 msgstr ""
 
 #: Merge.rc:26A6974A
-#, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr ""
 
 #: Merge.rc:3938FFC3
-#, c-format
 msgid "&Next Bookmark\tF2"
 msgstr ""
 
 #: Merge.rc:545FEEA1
-#, c-format
 msgid "&Previous bookmark\tShift+F2"
 msgstr ""
 
 #: Merge.rc:4EF8162E
-#, c-format
 msgid "&Clear All Bookmarks"
 msgstr ""
 
 #: Merge.rc:1A9EBDEE
-#, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr ""
 
 #: Merge.rc:7C622F87
-#, c-format
 msgid "Zoom &In\tCtrl++"
 msgstr ""
 
 #: Merge.rc:FE3C1D1
-#, c-format
 msgid "Zoom &Out\tCtrl+-"
 msgstr ""
 
 #. Zoom to normal
 #: Merge.rc:78B3B624
-#, c-format
 msgid "&Normal\tCtrl+*"
 msgstr ""
 
 #: Merge.rc:1BF42627
-#, c-format
 msgid "Syntax Highlight"
 msgstr ""
 
 #: Merge.rc:6E470BEC
-#, c-format
 msgid "&Diff Context"
 msgstr ""
 
 #: Merge.rc:68816EE4
-#, c-format
 msgid "&All Lines"
 msgstr ""
 
 #: Merge.rc:AC3AA17
-#, c-format
 msgid "&0 Lines"
 msgstr ""
 
 #: Merge.rc:89AF4F9
-#, c-format
 msgid "&1 Line"
 msgstr ""
 
 #: Merge.rc:AC3AA18
-#, c-format
 msgid "&3 Lines"
 msgstr ""
 
 #: Merge.rc:AC3AA19
-#, c-format
 msgid "&5 Lines"
 msgstr ""
 
 #: Merge.rc:AC3AA1A
-#, c-format
 msgid "&7 Lines"
 msgstr ""
 
 #: Merge.rc:AC3AA1B
-#, c-format
 msgid "&9 Lines"
 msgstr ""
 
 #: Merge.rc:44B58195
-#, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
 #: Merge.rc:27AC6D81
-#, c-format
 msgid "&Lock Panes"
 msgstr ""
 
 #: Merge.rc:1DC30E62
-#, c-format
 msgid "&View Whitespace"
 msgstr ""
 
 #: Merge.rc:4A81EF3E
-#, c-format
 msgid "Vie&w Line Differences"
 msgstr ""
 
 #: Merge.rc:37660CE9
-#, c-format
 msgid "View Line &Numbers"
 msgstr ""
 
 #: Merge.rc:4FF286
-#, c-format
 msgid "View &Margins"
 msgstr ""
 
 #: Merge.rc:3FE258FF
-#, c-format
 msgid "W&rap Lines"
 msgstr ""
 
 #: Merge.rc:62909ED5
-#, c-format
 msgid "Split V&ertically"
 msgstr ""
 
 #: Merge.rc:70E79DFF
-#, c-format
 msgid "Diff &Pane"
 msgstr ""
 
 #: Merge.rc:3534E273
-#, c-format
 msgid "Lo&cation Pane"
 msgstr ""
 
 #: Merge.rc:59B87E1C
-#, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr ""
 
 #: Merge.rc:3BDD62C2
-#, c-format
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
 msgstr ""
 
 #: Merge.rc:6D5176E5
-#, c-format
 msgid "A&dvanced"
 msgstr ""
 
 #: Merge.rc:9DA4F24
-#, c-format
 msgid "Next Difference Between Left and Middle\tAlt+1"
 msgstr ""
 
 #: Merge.rc:2EBE17F8
-#, c-format
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
 msgstr ""
 
 #: Merge.rc:21599F72
-#, c-format
 msgid "Next Difference Between Left and Right\tAlt+2"
 msgstr ""
 
 #: Merge.rc:5416A5EC
-#, c-format
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
 msgstr ""
 
 #: Merge.rc:316F95AC
-#, c-format
 msgid "Next Difference Between Middle and Right\tAlt+3"
 msgstr ""
 
 #: Merge.rc:2904E763
-#, c-format
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
 msgstr ""
 
 #: Merge.rc:4D91737D
-#, c-format
 msgid "Next Left Only Difference\tAlt+7"
 msgstr ""
 
 #: Merge.rc:4BFD42D
-#, c-format
 msgid "Previous Left Only Difference\tAlt+Shift+7"
 msgstr ""
 
 #: Merge.rc:2F029443
-#, c-format
 msgid "Next Middle Only Difference\tAlt+8"
 msgstr ""
 
 #: Merge.rc:541B8710
-#, c-format
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
 msgstr ""
 
 #: Merge.rc:649CFC83
-#, c-format
 msgid "Next Right Only Difference\tAlt+9"
 msgstr ""
 
 #: Merge.rc:133AB1C4
-#, c-format
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr ""
 
 #: Merge.rc:30FF7A4C
-#, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr ""
 
 #: Merge.rc:30FF7A4D
-#, c-format
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
 #: Merge.rc:28C70E7F
-#, c-format
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
 msgstr ""
 
 #: Merge.rc:4A3B5872
-#, c-format
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
 msgstr ""
 
 #: Merge.rc:1AC98D09
-#, c-format
 msgid "Copy &All to Right"
 msgstr ""
 
 #: Merge.rc:D404EDD
-#, c-format
 msgid "Cop&y All to Left"
 msgstr ""
 
 #: Merge.rc:4BC6A157
-#, c-format
 msgid "A&uto Merge\tAlt+Ctrl+M"
 msgstr ""
 
 #: Merge.rc:13D827C3
-#, c-format
 msgid "Add &Synchronization Point\tAlt+S"
 msgstr ""
 
 #: Merge.rc:6F88EC67
-#, c-format
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
 #: Merge.rc:68816EE5
-#, c-format
 msgid "&Prediffer"
 msgstr ""
 
 #: Merge.rc:AC3AA1C
-#, c-format
 msgid "&Scripts"
 msgstr ""
 
 #: Merge.rc:39000D56
-#, c-format
 msgid "Sp&lit"
 msgstr ""
 
 #: Merge.rc:4C3E0A2B
-#, c-format
 msgid "Comp&are"
 msgstr ""
 
 #: Merge.rc:334E25B1
-#, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
 
 #: Merge.rc:20F0A449
-#, c-format
 msgid "First &left item with second left item"
 msgstr ""
 
 #: Merge.rc:2758BFC0
-#, c-format
 msgid "First &right item with second right item"
 msgstr ""
 
 #: Merge.rc:56380EAD
-#, c-format
 msgid "&First left item with second right item"
 msgstr ""
 
 #: Merge.rc:56380EAE
-#, c-format
 msgid "&Second left item with first right item"
 msgstr ""
 
 #: Merge.rc:67A28B28
-#, c-format
 msgid "Co&mpare As"
 msgstr ""
 
@@ -1113,72 +901,58 @@ msgid "Right to... (%1 of %2)"
 msgstr ""
 
 #: Merge.rc:89AF4FA
-#, c-format
 msgid "&Delete"
 msgstr ""
 
 #: Merge.rc:43017E4C
-#, c-format
 msgid "&Left"
 msgstr ""
 
 #: Merge.rc:89AF4FB
-#, c-format
 msgid "&Middle"
 msgstr ""
 
 #: Merge.rc:1D2E49FA
-#, c-format
 msgid "&Right"
 msgstr ""
 
 #: Merge.rc:43017E4D
-#, c-format
 msgid "&Both"
 msgstr ""
 
 #: Merge.rc:22956A8
-#, c-format
 msgid "&All"
 msgstr ""
 
 #: Merge.rc:4876CD3D
-#, c-format
 msgid "Re&name"
 msgstr ""
 
 #: Merge.rc:27AC6D82
-#, c-format
 msgid "&Hide Items"
 msgstr ""
 
 #: Merge.rc:68816EE6
-#, c-format
 msgid "&Open Left"
 msgstr ""
 
 #: Merge.rc:46724E8D
-#, c-format
 msgid "with &External Editor"
 msgstr ""
 
 #: Merge.rc:5A9A713D
-#, c-format
 msgid "&Parent Folder"
 msgstr ""
 
 #: Merge.rc:761E6872
-#, c-format
 msgid "Open Midd&le"
 msgstr ""
 
 #: Merge.rc:1C95A043
-#, c-format
 msgid "O&pen Right"
 msgstr ""
 
 #: Merge.rc:6FC398B8
-#, c-format
 msgid "Cop&y Pathnames"
 msgstr ""
 
@@ -1208,17 +982,14 @@ msgid "All (%1 of %2)"
 msgstr ""
 
 #: Merge.rc:6FC398B9
-#, c-format
 msgid "Copy &Filenames"
 msgstr ""
 
 #: Merge.rc:4BFA4345
-#, c-format
 msgid "Copy Items To Clip&board"
 msgstr ""
 
 #: Merge.rc:22956A9
-#, c-format
 msgid "&Zip"
 msgstr ""
 
@@ -1238,1747 +1009,1398 @@ msgid "Differences to... (%1 of %2)"
 msgstr ""
 
 #: Merge.rc:AC3AA1D
-#, c-format
 msgid "&Refresh"
 msgstr ""
 
 #: Merge.rc:71676C47
-#, c-format
 msgid "Left Shell menu"
 msgstr ""
 
 #: Merge.rc:729280DA
-#, c-format
 msgid "Middle Shell menu"
 msgstr ""
 
 #: Merge.rc:32BFDBAC
-#, c-format
 msgid "Right Shell menu"
 msgstr ""
 
 #: Merge.rc:3CF9F84
-#, c-format
 msgid "Copy"
 msgstr ""
 
 #: Merge.rc:78B3B625
-#, c-format
 msgid "&Copy Full Path"
 msgstr ""
 
 #: Merge.rc:1C6125F5
-#, c-format
 msgid "Copy &Filename"
 msgstr ""
 
 #: Merge.rc:27A06B44
-#, c-format
 msgid "Prediffer Settings"
 msgstr ""
 
 #: Merge.rc:6E470BED
-#, c-format
 msgid "&No prediffer"
 msgstr ""
 
 #: Merge.rc:2515A6BB
-#, c-format
 msgid "Auto prediffer"
 msgstr ""
 
 #: Merge.rc:24F1D5E9
-#, c-format
 msgid "G&oto Diff"
 msgstr ""
 
 #: Merge.rc:1DC30E63
-#, c-format
 msgid "&No Moved Blocks"
 msgstr ""
 
 #: Merge.rc:1A9EBDEF
-#, c-format
 msgid "&All Moved Blocks"
 msgstr ""
 
 #: Merge.rc:BA50068
-#, c-format
 msgid "Moved Block for &Current Diff"
 msgstr ""
 
 #: Merge.rc:3C68C747
-#, c-format
 msgid "W&hitespaces"
 msgstr ""
 
 #: Merge.rc:4C3E0A2C
-#, c-format
 msgid "Com&pare"
 msgstr ""
 
 #: Merge.rc:4630D06B
-#, c-format
 msgid "I&gnore changes"
 msgstr ""
 
 #: Merge.rc:21C15B6
-#, c-format
 msgid "Ig&nore all"
 msgstr ""
 
 #: Merge.rc:6FC398BA
-#, c-format
 msgid "Case sensi&tive"
 msgstr ""
 
 #: Merge.rc:620FF1AC
-#, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr ""
 
 #: Merge.rc:6DE6F873
-#, c-format
 msgid "&Include Subfolders"
 msgstr ""
 
 #: Merge.rc:1DC30E64
-#, c-format
 msgid "&Compare method:"
 msgstr ""
 
 #: Merge.rc:7A4CFAFB
-#, c-format
 msgid "Full Contents"
 msgstr ""
 
 #: Merge.rc:5F71A081
-#, c-format
 msgid "Quick Contents"
 msgstr ""
 
 #: Merge.rc:36B164C4
-#, c-format
 msgid "Binary Contents"
 msgstr ""
 
 #: Merge.rc:2CEE4748
-#, c-format
 msgid "Modified Date"
 msgstr ""
 
 #: Merge.rc:39C7AF82
-#, c-format
 msgid "Modified Date and Size"
 msgstr ""
 
 #: Merge.rc:4B89B93
-#, c-format
 msgid "Size"
 msgstr ""
 
 #: Merge.rc:1DC30E65
-#, c-format
 msgid "&Load Project..."
 msgstr ""
 
 #: Merge.rc:2515A6BC
-#, c-format
 msgid "About WinMerge"
 msgstr ""
 
 #: Merge.rc:1D44E628
-#, c-format
 msgid "Visit the WinMerge HomePage!"
 msgstr ""
 
 #: Merge.rc:1326F
-#, c-format
 msgid "OK"
 msgstr ""
 
 #: Merge.rc:CAEDA35
-#, c-format
 msgid "Contributors"
 msgstr ""
 
 #: Merge.rc:58E210FA
-#, c-format
 msgid "Select Files or Folders"
 msgstr ""
 
 #: Merge.rc:4186E48
-#, c-format
 msgid "Help"
 msgstr ""
 
 #: Merge.rc:6DE6F874
-#, c-format
 msgid "&1st File or Folder"
 msgstr ""
 
 #: Merge.rc:39174D96
-#, c-format
 msgid "Re&ad-only"
 msgstr ""
 
 #: Merge.rc:56BD1FBA
-#, c-format
 msgid "Swap 1st | 2nd"
 msgstr ""
 
 #: Merge.rc:68816EE7
-#, c-format
 msgid "&Browse..."
 msgstr ""
 
 #: Merge.rc:6DE6F875
-#, c-format
 msgid "&2nd File or Folder"
 msgstr ""
 
 #: Merge.rc:39174D97
-#, c-format
 msgid "Rea&d-only"
 msgstr ""
 
 #: Merge.rc:56BD1FBB
-#, c-format
 msgid "Swap 2nd | 3rd"
 msgstr ""
 
 #: Merge.rc:78E0CE0E
-#, c-format
 msgid "B&rowse..."
 msgstr ""
 
 #: Merge.rc:3C1ECDDA
-#, c-format
 msgid "&3rd File or Folder (Optional)"
 msgstr ""
 
 #: Merge.rc:39174D98
-#, c-format
 msgid "Read-o&nly"
 msgstr ""
 
 #: Merge.rc:56BD1FBC
-#, c-format
 msgid "Swap 1st | 3rd"
 msgstr ""
 
 #: Merge.rc:146A5938
-#, c-format
 msgid "Browse..."
 msgstr ""
 
 #: Merge.rc:22467E6E
-#, c-format
 msgid " Folder: Filter"
 msgstr ""
 
 #: Merge.rc:68816EE8
-#, c-format
 msgid "&Select..."
 msgstr ""
 
 #: Merge.rc:662470D5
-#, c-format
 msgid " File: Unpacker Plugin"
 msgstr ""
 
 #: Merge.rc:751AB58F
-#, c-format
 msgid "Se&lect..."
 msgstr ""
 
 #: Merge.rc:7E5494F6
-#, c-format
 msgid "Compare"
 msgstr ""
 
 #: Merge.rc:4E65D340
-#, c-format
 msgid "Cancel"
 msgstr ""
 
 #: Merge.rc:67019DCA
-#, c-format
 msgid "Status:"
 msgstr ""
 
 #: Merge.rc:787FD72B
-#, c-format
 msgid "General"
 msgstr ""
 
 #: Merge.rc:237AB485
-#, c-format
 msgid "Automatically &scroll to first difference"
 msgstr ""
 
 #: Merge.rc:69AD3BF8
-#, c-format
 msgid "Cl&ose windows with ESC"
 msgstr ""
 
 #: Merge.rc:6574B7FB
-#, c-format
 msgid "&Automatically verify paths in Open-dialog"
 msgstr ""
 
 #: Merge.rc:631E0F7B
-#, c-format
 msgid "All&ow only one instance to run"
 msgstr ""
 
 #: Merge.rc:672CD0E2
-#, c-format
 msgid "As&k when closing multiple windows"
 msgstr ""
 
 #: Merge.rc:6D5B7718
-#, c-format
 msgid "&Preserve file time in file compare"
 msgstr ""
 
 #: Merge.rc:17F0E759
-#, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr ""
 
 #: Merge.rc:1AD99579
-#, c-format
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr ""
 
 #: Merge.rc:44776ACE
-#, c-format
 msgid "O&pen-dialog Auto-Completion:"
 msgstr ""
 
 #: Merge.rc:1B63306F
-#, c-format
 msgid "Language:"
 msgstr ""
 
 #: Merge.rc:516450B
-#, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
 msgstr ""
 
 #: Merge.rc:10976EC1
-#, c-format
 msgid "Reset"
 msgstr ""
 
 #: Merge.rc:3FB4EC6
-#, c-format
 msgid "Find"
 msgstr ""
 
 #: Merge.rc:34DF506F
-#, c-format
 msgid "Fi&nd what:"
 msgstr ""
 
 #: Merge.rc:39C7AF83
-#, c-format
 msgid "Match &whole word only"
 msgstr ""
 
 #: Merge.rc:13C27214
-#, c-format
 msgid "Match &case"
 msgstr ""
 
 #: Merge.rc:44BC83ED
-#, c-format
 msgid "Regular &expression"
 msgstr ""
 
 #: Merge.rc:78A08947
-#, c-format
 msgid "D&on't wrap end of file"
 msgstr ""
 
 #: Merge.rc:545FEEA2
-#, c-format
 msgid "&Don't close this dialog box"
 msgstr ""
 
 #: Merge.rc:68EE6DF0
-#, c-format
 msgid "Find &Prev"
 msgstr ""
 
 #: Merge.rc:68816EE9
-#, c-format
 msgid "&Find Next"
 msgstr ""
 
 #: Merge.rc:11D980
-#, c-format
 msgid "&Ok"
 msgstr ""
 
 #: Merge.rc:4876CD3E
-#, c-format
 msgid "Replace"
 msgstr ""
 
 #: Merge.rc:1B17601F
-#, c-format
 msgid "Re&place with:"
 msgstr ""
 
 #: Merge.rc:381D79E5
-#, c-format
 msgid "&Don't wrap end of file"
 msgstr ""
 
 #: Merge.rc:39174D99
-#, c-format
 msgid "Replace in"
 msgstr ""
 
 #: Merge.rc:68816EEA
-#, c-format
 msgid "&Selection"
 msgstr ""
 
 #: Merge.rc:3FE25900
-#, c-format
 msgid "Wh&ole file"
 msgstr ""
 
 #: Merge.rc:AC3AA1E
-#, c-format
 msgid "&Replace"
 msgstr ""
 
 #: Merge.rc:507A4C04
-#, c-format
 msgid "Replace &All"
 msgstr ""
 
 #: Merge.rc:2FC0BA7B
-#, c-format
 msgid "Markers"
 msgstr ""
 
 #: Merge.rc:61E8009D
-#, c-format
 msgid "Enable &Markers"
 msgstr ""
 
 #: Merge.rc:24A380
-#, c-format
 msgid "New"
 msgstr ""
 
 #: Merge.rc:3938FFC4
-#, c-format
 msgid "&Background color:"
 msgstr ""
 
 #: Merge.rc:1D2E49FB
-#, c-format
 msgid "&Apply"
 msgstr ""
 
 #: Merge.rc:4F58DAFC
-#, c-format
 msgid "Linefilters"
 msgstr ""
 
 #: Merge.rc:36B79AB7
-#, c-format
 msgid "Enable Line Filters"
 msgstr ""
 
 #: Merge.rc:5E8200FF
-#, c-format
 msgid "Regular Expressions (one per line):"
 msgstr ""
 
 #: Merge.rc:3ECBF05
-#, c-format
 msgid "Edit"
 msgstr ""
 
 #: Merge.rc:25669B5
-#, c-format
 msgid "Remove"
 msgstr ""
 
 #: Merge.rc:4E65D341
-#, c-format
 msgid "Colors"
 msgstr ""
 
 #: Merge.rc:78E0CE0F
-#, c-format
 msgid "Background"
 msgstr ""
 
 #: Merge.rc:1CDF6584
-#, c-format
 msgid "Deleted"
 msgstr ""
 
 #: Merge.rc:4C72B54
-#, c-format
 msgid "Text"
 msgstr ""
 
 #: Merge.rc:2C0C2240
-#, c-format
 msgid "Difference:"
 msgstr ""
 
 #: Merge.rc:1BA49C3B
-#, c-format
 msgid "Selected Difference:"
 msgstr ""
 
 #: Merge.rc:2756A765
-#, c-format
 msgid "Ignored Difference:"
 msgstr ""
 
 #: Merge.rc:7106378D
-#, c-format
 msgid "Moved:"
 msgstr ""
 
 #: Merge.rc:E6D7EF
-#, c-format
 msgid "Selected Moved:"
 msgstr ""
 
 #: Merge.rc:73FB246
-#, c-format
 msgid "Same As The Next (3 panes):"
 msgstr ""
 
 #: Merge.rc:60B696AF
-#, c-format
 msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
-#, c-format
 msgid "Word Difference:"
 msgstr ""
 
 #: Merge.rc:E4471A
-#, c-format
 msgid "Selected Word Diff:"
 msgstr ""
 
 #: Merge.rc:7F0D4B46
-#, c-format
 msgid "Defaults"
 msgstr ""
 
 #: Merge.rc:39000D57
-#, c-format
 msgid "System"
 msgstr ""
 
 #: Merge.rc:51FAB141
-#, c-format
 msgid "&Send deleted files to Recycle Bin"
 msgstr ""
 
 #: Merge.rc:1A9EBDF0
-#, c-format
 msgid "&External editor:"
 msgstr ""
 
 #: Merge.rc:78B3B626
-#, c-format
 msgid "&Filter folder:"
 msgstr ""
 
 #: Merge.rc:1C1FA831
-#, c-format
 msgid "Temporary files folder"
 msgstr ""
 
 #: Merge.rc:58EEEB80
-#, c-format
 msgid "S&ystem's temp folder"
 msgstr ""
 
 #: Merge.rc:6FC398BB
-#, c-format
 msgid "C&ustom folder:"
 msgstr ""
 
 #: Merge.rc:78E0CE10
-#, c-format
 msgid "Br&owse..."
 msgstr ""
 
 #: Merge.rc:55B03C13
-#, c-format
 msgid "Patch Generator"
 msgstr ""
 
 #: Merge.rc:59F5069E
-#, c-format
 msgid "File&1:"
 msgstr ""
 
 #: Merge.rc:59F5069F
-#, c-format
 msgid "File&2:"
 msgstr ""
 
 #: Merge.rc:43017E4E
-#, c-format
 msgid "&Swap"
 msgstr ""
 
 #: Merge.rc:4B91C2D2
-#, c-format
 msgid "&Append to existing file"
 msgstr ""
 
 #: Merge.rc:AC3AA1F
-#, c-format
 msgid "&Result:"
 msgstr ""
 
 #: Merge.rc:78E0CE11
-#, c-format
 msgid "Bro&wse..."
 msgstr ""
 
 #: Merge.rc:89AF4FC
-#, c-format
 msgid "&Format"
 msgstr ""
 
 #: Merge.rc:67019DCB
-#, c-format
 msgid "St&yle:"
 msgstr ""
 
 #: Merge.rc:4DB19838
-#, c-format
 msgid "&Context:"
 msgstr ""
 
 #: Merge.rc:2756A766
-#, c-format
 msgid "Ignor&e blank lines"
 msgstr ""
 
 #: Merge.rc:2C4A6C6C
-#, c-format
 msgid "Inclu&de command line"
 msgstr ""
 
 #: Merge.rc:5869BBE
-#, c-format
 msgid "Open to e&xternal editor"
 msgstr ""
 
 #: Merge.rc:28D5CCAA
-#, c-format
 msgid "Display Columns"
 msgstr ""
 
 #: Merge.rc:4856953D
-#, c-format
 msgid "Move &Up"
 msgstr ""
 
 #: Merge.rc:D0645BC
-#, c-format
 msgid "Move &Down"
 msgstr ""
 
 #: Merge.rc:E6D7F0
-#, c-format
 msgid "Select Unpacker"
 msgstr ""
 
 #: Merge.rc:4F5264C8
-#, c-format
 msgid "File unpacker:"
 msgstr ""
 
 #: Merge.rc:34C1157D
-#, c-format
 msgid "Display all unpackers, don't check the extension"
 msgstr ""
 
 #: Merge.rc:5B18135F
-#, c-format
 msgid "Extensions list:"
 msgstr ""
 
 #: Merge.rc:5578260E
-#, c-format
 msgid "Description:"
 msgstr ""
 
 #: Merge.rc:4B89B94
-#, c-format
 msgid "Stop"
 msgstr ""
 
 #: Merge.rc:D109E01
-#, c-format
 msgid "Pause"
 msgstr ""
 
 #: Merge.rc:4C3E0A2D
-#, c-format
 msgid "Continue"
 msgstr ""
 
 #: Merge.rc:1AC98D0A
-#, c-format
 msgid "Comparing items..."
 msgstr ""
 
 #: Merge.rc:4630D06C
-#, c-format
 msgid "Items compared:"
 msgstr ""
 
 #: Merge.rc:4166A153
-#, c-format
 msgid "Items total:"
 msgstr ""
 
 #: Merge.rc:7D31F2A0
-#, c-format
 msgid "Go To"
 msgstr ""
 
 #: Merge.rc:290C61C5
-#, c-format
 msgid "G&oto:"
 msgstr ""
 
 #: Merge.rc:3FB4EC7
-#, c-format
 msgid "File"
 msgstr ""
 
 #: Merge.rc:57E6C4D3
-#, c-format
 msgid "Goto what"
 msgstr ""
 
 #: Merge.rc:602FC81
-#, c-format
 msgid "Li&ne"
 msgstr ""
 
 #: Merge.rc:27AC6D83
-#, c-format
 msgid "&Difference"
 msgstr ""
 
 #: Merge.rc:1D2E49FC
-#, c-format
 msgid "&Go To"
 msgstr ""
 
 #: Merge.rc:65285570
-#, c-format
 msgid "Whitespace"
 msgstr ""
 
 #: Merge.rc:AC3AA20
-#, c-format
 msgid "&Compare"
 msgstr ""
 
 #: Merge.rc:5A9A713E
-#, c-format
 msgid "&Ignore change"
 msgstr ""
 
 #: Merge.rc:21C15B7
-#, c-format
 msgid "I&gnore all"
 msgstr ""
 
 #: Merge.rc:2756A767
-#, c-format
 msgid "Ignore blan&k lines"
 msgstr ""
 
 #: Merge.rc:4166A154
-#, c-format
 msgid "Ignore &case"
 msgstr ""
 
 #: Merge.rc:6C318DC8
-#, c-format
 msgid "Ignore codepage &differences"
 msgstr ""
 
 #: Merge.rc:285B56CE
-#, c-format
 msgid "E&nable moved block detection"
 msgstr ""
 
 #: Merge.rc:4EF8162F
-#, c-format
 msgid "&Match similar lines"
 msgstr ""
 
 #: Merge.rc:4C3E0A2E
-#, c-format
 msgid "Comments"
 msgstr ""
 
 #: Merge.rc:1AFA3491
-#, c-format
 msgid "Filter Comments"
 msgstr ""
 
 #: Merge.rc:3BB91A82
-#, c-format
 msgid "Editor"
 msgstr ""
 
 #: Merge.rc:1A9EBDF1
-#, c-format
 msgid "&Highlight syntax"
 msgstr ""
 
 #: Merge.rc:1A9EBDF2
-#, c-format
 msgid "&Automatic rescan"
 msgstr ""
 
 #: Merge.rc:545FEEA3
-#, c-format
 msgid "&Preserve original EOL chars"
 msgstr ""
 
 #: Merge.rc:4C72B55
-#, c-format
 msgid "Tabs"
 msgstr ""
 
 #: Merge.rc:68816EEB
-#, c-format
 msgid "&Tab size:"
 msgstr ""
 
 #: Merge.rc:4DE14275
-#, c-format
 msgid "&Insert Tabs"
 msgstr ""
 
 #: Merge.rc:243A39E
-#, c-format
 msgid "Insert &Spaces"
 msgstr ""
 
 #: Merge.rc:172385A0
-#, c-format
 msgid "Line Difference Coloring"
 msgstr ""
 
 #: Merge.rc:4CB9DE6A
-#, c-format
 msgid "View line differences"
 msgstr ""
 
 #: Merge.rc:1DC30E66
-#, c-format
 msgid "&Character level"
 msgstr ""
 
 #: Merge.rc:4DE14276
-#, c-format
 msgid "&Word-level:"
 msgstr ""
 
 #: Merge.rc:14AF463A
-#, c-format
 msgid "W&ord break characters:"
 msgstr ""
 
 #: Merge.rc:34DF5070
-#, c-format
 msgid "Filefilters"
 msgstr ""
 
 #: Merge.rc:4C72B56
-#, c-format
 msgid "Test"
 msgstr ""
 
 #: Merge.rc:1CF8A5DA
-#, c-format
 msgid "Install..."
 msgstr ""
 
 #: Merge.rc:27AFDB2F
-#, c-format
 msgid "New..."
 msgstr ""
 
 #: Merge.rc:3B6A3611
-#, c-format
 msgid "Edit..."
 msgstr ""
 
 #: Merge.rc:629C1DDC
-#, c-format
 msgid "Delete..."
 msgstr ""
 
 #: Merge.rc:1BA49C3C
-#, c-format
 msgid "Save modified files?"
 msgstr ""
 
 #: Merge.rc:3534E274
-#, c-format
 msgid "Left side file"
 msgstr ""
 
 #: Merge.rc:6E470BEE
-#, c-format
 msgid "&Save changes"
 msgstr ""
 
 #: Merge.rc:1DC30E67
-#, c-format
 msgid "&Discard changes"
 msgstr ""
 
 #: Merge.rc:24BA673E
-#, c-format
 msgid "Middle side file"
 msgstr ""
 
 #: Merge.rc:F2F641C
-#, c-format
 msgid "Sa&ve changes"
 msgstr ""
 
 #: Merge.rc:71E3C8E4
-#, c-format
 msgid "Disca&rd changes"
 msgstr ""
 
 #: Merge.rc:47D4A3FB
-#, c-format
 msgid "Right side file"
 msgstr ""
 
 #: Merge.rc:F2F641D
-#, c-format
 msgid "S&ave changes"
 msgstr ""
 
 #: Merge.rc:71E3C8E5
-#, c-format
 msgid "Dis&card changes"
 msgstr ""
 
 #: Merge.rc:5578260F
-#, c-format
 msgid "Disca&rd All"
 msgstr ""
 
 #: Merge.rc:4C3E0A2F
-#, c-format
 msgid "Codepage"
 msgstr ""
 
 #: Merge.rc:71E3C8E6
-#, c-format
 msgid "Default Codepage"
 msgstr ""
 
 #: Merge.rc:132D699F
-#, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr ""
 
 #: Merge.rc:5CC85DF4
-#, c-format
 msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
 msgstr ""
 
 #: Merge.rc:3BCD5104
-#, c-format
 msgid "Detect codepage for text files using mlang.dll\nneed to restart session"
 msgstr ""
 
 #: Merge.rc:E6D7F1
-#, c-format
 msgid "System codepage"
 msgstr ""
 
 #: Merge.rc:4F3C2B88
-#, c-format
 msgid "According to WinMerge User Interface"
 msgstr ""
 
 #: Merge.rc:8AF7E6A
-#, c-format
 msgid "Custom codepage:"
 msgstr ""
 
 #: Merge.rc:6CD65B95
-#, c-format
 msgid "Options"
 msgstr ""
 
 #: Merge.rc:D32E2F1
-#, c-format
 msgid " Categories"
 msgstr ""
 
 #: Merge.rc:26188978
-#, c-format
 msgid "Import..."
 msgstr ""
 
 #: Merge.rc:9B5002F
-#, c-format
 msgid "Export..."
 msgstr ""
 
 #: Merge.rc:50F76E1
-#, c-format
 msgid "Dialog"
 msgstr ""
 
 #: Merge.rc:744A4E1C
-#, c-format
 msgid "Keywords:"
 msgstr ""
 
 #: Merge.rc:1AFA3492
-#, c-format
 msgid "Function names:"
 msgstr ""
 
 #: Merge.rc:3B833B8A
-#, c-format
 msgid "Comments:"
 msgstr ""
 
 #: Merge.rc:7B25D658
-#, c-format
 msgid "Numbers:"
 msgstr ""
 
 #: Merge.rc:50D15AD
-#, c-format
 msgid "Operators:"
 msgstr ""
 
 #: Merge.rc:79321BE2
-#, c-format
 msgid "Strings:"
 msgstr ""
 
 #: Merge.rc:1E0ED5B2
-#, c-format
 msgid "Preprocessor:"
 msgstr ""
 
 #: Merge.rc:24173EE5
-#, c-format
 msgid "User 1:"
 msgstr ""
 
 #: Merge.rc:24173EE6
-#, c-format
 msgid "User 2:"
 msgstr ""
 
 #: Merge.rc:3C10FC2
-#, c-format
 msgid "Bold"
 msgstr ""
 
 #: Merge.rc:2CEE4749
-#, c-format
 msgid "Marker colors"
 msgstr ""
 
 #: Merge.rc:56BD1FBD
-#, c-format
 msgid "Search Marker:"
 msgstr ""
 
 #: Merge.rc:7B76381B
-#, c-format
 msgid "User Defined Marker1:"
 msgstr ""
 
 #: Merge.rc:7B76381C
-#, c-format
 msgid "User Defined Marker2:"
 msgstr ""
 
 #: Merge.rc:7B76381D
-#, c-format
 msgid "User Defined Marker3:"
 msgstr ""
 
 #: Merge.rc:387F7980
-#, c-format
 msgid "Folder Compare Report"
 msgstr ""
 
 #: Merge.rc:3ECF34A3
-#, c-format
 msgid "Report &File:"
 msgstr ""
 
 #: Merge.rc:89AF4FD
-#, c-format
 msgid "&Style:"
 msgstr ""
 
 #: Merge.rc:545FEEA4
-#, c-format
 msgid "&Include File Compare Report"
 msgstr ""
 
 #: Merge.rc:3938FFC5
-#, c-format
 msgid "&Copy to Clipboard"
 msgstr ""
 
 #: Merge.rc:43600E90
-#, c-format
 msgid "Shared or Private Filter"
 msgstr ""
 
 #: Merge.rc:74E96E1E
-#, c-format
 msgid "Which type of filter do you want to create?"
 msgstr ""
 
 #: Merge.rc:444EF527
-#, c-format
 msgid "Shared Filter (for all users on this machine)"
 msgstr ""
 
 #: Merge.rc:11304E6
-#, c-format
 msgid "Private Filter (only for current user)"
 msgstr ""
 
 #: Merge.rc:7D9F30CF
-#, c-format
 msgid "Archive Support"
 msgstr ""
 
 #: Merge.rc:545FEEA5
-#, c-format
 msgid "&Enable archive file support"
 msgstr ""
 
 #: Merge.rc:70C9C72D
-#, c-format
 msgid "&Detect archive type from file signature"
 msgstr ""
 
 #: Merge.rc:1AC98D0B
-#, c-format
 msgid "Compare Statistics"
 msgstr ""
 
 #: Merge.rc:64ABCD7D
-#, c-format
 msgid "Folders:"
 msgstr ""
 
 #: Merge.rc:7262BE23
-#, c-format
 msgid "Files:"
 msgstr ""
 
 #: Merge.rc:629C1DDD
-#, c-format
 msgid "Different"
 msgstr ""
 
 #: Merge.rc:141E3F81
-#, c-format
 msgid "Text:"
 msgstr ""
 
 #: Merge.rc:5FC9C469
-#, c-format
 msgid "Binary:"
 msgstr ""
 
 #: Merge.rc:26535499
-#, c-format
 msgid "Unique"
 msgstr ""
 
 #: Merge.rc:602FC82
-#, c-format
 msgid "Left:"
 msgstr ""
 
 #: Merge.rc:25669B6
-#, c-format
 msgid "Right:"
 msgstr ""
 
 #: Merge.rc:26188979
-#, c-format
 msgid "Identical"
 msgstr ""
 
 #: Merge.rc:6FA9B0F7
-#, c-format
 msgid "Total:"
 msgstr ""
 
 #: Merge.rc:76245120
-#, c-format
 msgid "Close"
 msgstr ""
 
 #: Merge.rc:2FC0BA7C
-#, c-format
 msgid "Middle:"
 msgstr ""
 
 #: Merge.rc:2CEE474A
-#, c-format
 msgid "Missing Left:"
 msgstr ""
 
 #: Merge.rc:2A79A039
-#, c-format
 msgid "Missing Middle:"
 msgstr ""
 
 #: Merge.rc:70DAA20F
-#, c-format
 msgid "Missing Right:"
 msgstr ""
 
 #: Merge.rc:413EF3DC
-#, c-format
 msgid "Affects"
 msgstr ""
 
 #: Merge.rc:1BE35CDC
-#, c-format
 msgid "(Affects)"
 msgstr ""
 
 #: Merge.rc:E4471B
-#, c-format
 msgid "Select Codepage for"
 msgstr ""
 
 #: Merge.rc:5A9A713F
-#, c-format
 msgid "&File Loading:"
 msgstr ""
 
 #: Merge.rc:7A4CFAFC
-#, c-format
 msgid "File &Saving:"
 msgstr ""
 
 #: Merge.rc:175DEEED
-#, c-format
 msgid "&Use same codepage for both"
 msgstr ""
 
 #: Merge.rc:89AF4FE
-#, c-format
 msgid "&Cancel"
 msgstr ""
 
 #: Merge.rc:72A593B8
-#, c-format
 msgid "Test Filter"
 msgstr ""
 
 #: Merge.rc:5CCED708
-#, c-format
 msgid "Testing filter ..."
 msgstr ""
 
 #: Merge.rc:4EF81630
-#, c-format
 msgid "&Enter text to test:"
 msgstr ""
 
 #: Merge.rc:4DE14277
-#, c-format
 msgid "&Folder Name"
 msgstr ""
 
 #: Merge.rc:4876CD3F
-#, c-format
 msgid "Result:"
 msgstr ""
 
 #: Merge.rc:43017E4F
-#, c-format
 msgid "&Test"
 msgstr ""
 
 #: Merge.rc:1D2E49FD
-#, c-format
 msgid "&Close"
 msgstr ""
 
 #: Merge.rc:175DEEEE
-#, c-format
 msgid "&Use customized text colors"
 msgstr ""
 
 #: Merge.rc:1AC98D0C
-#, c-format
 msgid "Custom text colors"
 msgstr ""
 
 #: Merge.rc:3FE25901
-#, c-format
 msgid "Whitespace:"
 msgstr ""
 
 #: Merge.rc:3ECF34A4
-#, c-format
 msgid "Regular text:"
 msgstr ""
 
 #: Merge.rc:751AB590
-#, c-format
 msgid "Selection:"
 msgstr ""
 
 #: Merge.rc:2FC0BA7D
-#, c-format
 msgid "Margin:"
 msgstr ""
 
 #: Merge.rc:43E58E59
-#, c-format
 msgid "Backup Files"
 msgstr ""
 
 #: Merge.rc:69AD3BF9
-#, c-format
 msgid "Create backup files in:"
 msgstr ""
 
 #: Merge.rc:78B3B627
-#, c-format
 msgid "&Folder compare"
 msgstr ""
 
 #: Merge.rc:7A4CFAFD
-#, c-format
 msgid "Fil&e compare"
 msgstr ""
 
 #: Merge.rc:334E25B2
-#, c-format
 msgid "Create backup files into:"
 msgstr ""
 
 #: Merge.rc:381D79E6
-#, c-format
 msgid "&Original file's folder"
 msgstr ""
 
 #: Merge.rc:714B45FE
-#, c-format
 msgid "&Global backup folder:"
 msgstr ""
 
 #: Merge.rc:1F7B33EC
-#, c-format
 msgid "Backup filename:"
 msgstr ""
 
 #: Merge.rc:381D79E7
-#, c-format
 msgid "&Append .bak -extension"
 msgstr ""
 
 #: Merge.rc:129644DE
-#, c-format
 msgid "A&ppend timestamp"
 msgstr ""
 
 #: Merge.rc:CAEDA36
-#, c-format
 msgid "Confirm Copy"
 msgstr ""
 
 #: Merge.rc:36D268E9
-#, c-format
 msgid "Are you sure you want to copy XXX items?"
 msgstr ""
 
 #: Merge.rc:30CDE281
-#, c-format
 msgid "From left"
 msgstr ""
 
 #: Merge.rc:2C015CFE
-#, c-format
 msgid "To right"
 msgstr ""
 
 #: Merge.rc:29CE40
-#, c-format
 msgid "Yes"
 msgstr ""
 
 #: Merge.rc:12E8E
-#, c-format
 msgid "No"
 msgstr ""
 
 #: Merge.rc:B612C23
-#, c-format
 msgid "Plugins"
 msgstr ""
 
 #: Merge.rc:78B3B628
-#, c-format
 msgid "&Enable plugins"
 msgstr ""
 
 #: Merge.rc:62909ED6
-#, c-format
 msgid "Shell Integration"
 msgstr ""
 
 #: Merge.rc:31DC8C62
-#, c-format
 msgid "Explorer"
 msgstr ""
 
 #: Merge.rc:673BD331
-#, c-format
 msgid "E&nable advanced menu"
 msgstr ""
 
 #: Merge.rc:4EF81631
-#, c-format
 msgid "&Add to context menu"
 msgstr ""
 
 #: Merge.rc:26A6974B
-#, c-format
 msgid "&Register shell extension"
 msgstr ""
 
 #: Merge.rc:175DEEEF
-#, c-format
 msgid "&Unregister shell extension"
 msgstr ""
 
 #: Merge.rc:7262BE24
-#, c-format
 msgid "Folder"
 msgstr ""
 
 #: Merge.rc:60B696B0
-#, c-format
 msgid "S&top after first difference"
 msgstr ""
 
 #: Merge.rc:7FF2B80B
-#, c-format
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr ""
 
 #: Merge.rc:6D5B7719
-#, c-format
 msgid "&Include unique subfolders contents"
 msgstr ""
 
 #: Merge.rc:3E136C28
-#, c-format
 msgid "&Automatically expand all subfolders"
 msgstr ""
 
 #: Merge.rc:5D032167
-#, c-format
 msgid "Ignore &Reparse Points"
 msgstr ""
 
 #: Merge.rc:2E2C5208
-#, c-format
 msgid "&Quick compare limit (MB):"
 msgstr ""
 
 #: Merge.rc:2188DD49
-#, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 #: Merge.rc:17BC2F9E
-#, c-format
 msgid "Binary"
 msgstr ""
 
 #: Merge.rc:7AAB28B8
-#, c-format
 msgid "Binary File &Patterns:"
 msgstr ""
 
 #: Merge.rc:4F5264C9
-#, c-format
 msgid "Frhed settings"
 msgstr ""
 
 #: Merge.rc:1A8FADD4
-#, c-format
 msgid "View &Settings..."
 msgstr ""
 
 #: Merge.rc:78B3B629
-#, c-format
 msgid "&Binary Mode..."
 msgstr ""
 
 #: Merge.rc:1A9EBDF3
-#, c-format
 msgid "&Character Set..."
 msgstr ""
 
 #: Merge.rc:B8C361
-#, c-format
 msgid "Image"
 msgstr ""
 
 #: Merge.rc:2C4A6C6D
-#, c-format
 msgid "Image File &Patterns:"
 msgstr ""
 
 #: Merge.rc:4DB19839
-#, c-format
 msgid "&Hex View"
 msgstr ""
 
 #: Merge.rc:206940
-#, c-format
 msgid "EXT"
 msgstr ""
 
 #: Merge.rc:1F78C0
-#, c-format
 msgid "CAP"
 msgstr ""
 
 #: Merge.rc:24A381
-#, c-format
 msgid "NUM"
 msgstr ""
 
 #: Merge.rc:4B89B95
-#, c-format
 msgid "SCRL"
 msgstr ""
 
 #: Merge.rc:251BC0
-#, c-format
 msgid "OVR"
 msgstr ""
 
 #: Merge.rc:268480
-#, c-format
 msgid "REC"
 msgstr ""
 
 #: Merge.rc:E8950E9
-#, c-format
 msgid "\nNew Documents (Ctrl+N)"
 msgstr ""
 
 #: Merge.rc:28AAB7D
-#, c-format
 msgid "\nOpen (Ctrl+O)"
 msgstr ""
 
 #: Merge.rc:28AAB7E
-#, c-format
 msgid "\nSave (Ctrl+S)"
 msgstr ""
 
 #: Merge.rc:524AB109
-#, c-format
 msgid "Unknown error attempting to open project file"
 msgstr ""
 
 #: Merge.rc:524AB10A
-#, c-format
 msgid "Unknown error attempting to save project file"
 msgstr ""
 
 #: Merge.rc:3FCEF5DC
-#, c-format
 msgid "Project file successfully loaded."
 msgstr ""
 
 #: Merge.rc:3BDD62C3
-#, c-format
 msgid "Project file successfully saved."
 msgstr ""
 
 #: Merge.rc:28AAB7F
-#, c-format
 msgid "\nUndo (Ctrl+Z)"
 msgstr ""
 
 #: Merge.rc:28AAB80
-#, c-format
 msgid "\nRedo (Ctrl+Y)"
 msgstr ""
 
 #: Merge.rc:2B78E95D
-#, c-format
 msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
 msgstr ""
 
 #: Merge.rc:293A824F
-#, c-format
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr ""
 
 #: Merge.rc:74BA5C8C
-#, c-format
 msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 msgstr ""
 
 #: Merge.rc:3EF068BF
-#, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr ""
 
 #: Merge.rc:1D2E49FE
-#, c-format
 msgid "&Abort"
 msgstr ""
 
 #: Merge.rc:1D2E49FF
-#, c-format
 msgid "&Retry"
 msgstr ""
 
 #: Merge.rc:89AF4FF
-#, c-format
 msgid "&Ignore"
 msgstr ""
 
 #: Merge.rc:21C15B8
-#, c-format
 msgid "Ignore &all"
 msgstr ""
 
 #: Merge.rc:22956AA
-#, c-format
 msgid "&Yes"
 msgstr ""
 
 #: Merge.rc:48B5872E
-#, c-format
 msgid "Yes to &all"
 msgstr ""
 
 #: Merge.rc:11D981
-#, c-format
 msgid "&No"
 msgstr ""
 
 #: Merge.rc:4909ADB4
-#, c-format
 msgid "No to a&ll"
 msgstr ""
 
 #: Merge.rc:4DB1983A
-#, c-format
 msgid "&Continue"
 msgstr ""
 
 #: Merge.rc:43017E50
-#, c-format
 msgid "&Skip"
 msgstr ""
 
 #: Merge.rc:2D1160AF
-#, c-format
 msgid "Skip &all"
 msgstr ""
 
 #: Merge.rc:77C09B82
-#, c-format
 msgid "Don't display this &message again."
 msgstr ""
 
 #: Merge.rc:57F02FB4
-#, c-format
 msgid "Don't ask this &question again."
 msgstr ""
 
 #: Merge.rc:78ACB5DB
-#, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 msgstr ""
 
 #: Merge.rc:39000D58
-#, c-format
 msgid "Syntax"
 msgstr ""
 
 #: Merge.rc:2C0C2241
-#, c-format
 msgid "Differences"
 msgstr ""
 
 #: Merge.rc:277500
-#, c-format
 msgid "To:"
 msgstr ""
 
 #: Merge.rc:68EE6DF1
-#, c-format
 msgid "From left:"
 msgstr ""
 
 #: Merge.rc:2C015CFF
-#, c-format
 msgid "To left:"
 msgstr ""
 
 #: Merge.rc:34DF5071
-#, c-format
 msgid "From right:"
 msgstr ""
 
 #: Merge.rc:542A4301
-#, c-format
 msgid "To right:"
 msgstr ""
 
@@ -2988,12 +2410,10 @@ msgid "Version %1"
 msgstr ""
 
 #: Merge.rc:24173EE7
-#, c-format
 msgid "Unicode"
 msgstr ""
 
 #: Merge.rc:295600
-#, c-format
 msgid "X64"
 msgstr ""
 
@@ -3003,7 +2423,6 @@ msgid "Options (%1)"
 msgstr ""
 
 #: Merge.rc:4BDBDC64
-#, c-format
 msgid "All message boxes are now displayed again."
 msgstr ""
 
@@ -3013,77 +2432,62 @@ msgid "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use 
 msgstr ""
 
 #: Merge.rc:47E5C8F
-#, c-format
 msgid "Open"
 msgstr ""
 
 #: Merge.rc:3E105584
-#, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr ""
 
 #: Merge.rc:222D39F7
-#, c-format
 msgid "All Files (*.*)|*.*||"
 msgstr ""
 
 #: Merge.rc:237E9033
-#, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr ""
 
 #: Merge.rc:BEDA09D
-#, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr ""
 
 #: Merge.rc:3FF615A0
-#, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr ""
 
 #: Merge.rc:59814668
-#, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr ""
 
 #: Merge.rc:67444ADC
-#, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr ""
 
 #: Merge.rc:46FCCCE
-#, c-format
 msgid "Name"
 msgstr ""
 
 #: Merge.rc:15875422
-#, c-format
 msgid "Location"
 msgstr ""
 
 #: Merge.rc:59F506A0
-#, c-format
 msgid "Filters"
 msgstr ""
 
 #: Merge.rc:52D199B
-#, c-format
 msgid "[F] "
 msgstr ""
 
 #: Merge.rc:2C0C2242
-#, c-format
 msgid "Description"
 msgstr ""
 
 #: Merge.rc:D6BB425
-#, c-format
 msgid "Select filename for new filter"
 msgstr ""
 
 #: Merge.rc:764E4AD3
-#, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr ""
 
@@ -3098,7 +2502,6 @@ msgid "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sur
 msgstr ""
 
 #: Merge.rc:4EA7BACD
-#, c-format
 msgid "User's filter file folder is not defined!\n\nPlease select filter folder in Options/System."
 msgstr ""
 
@@ -3108,62 +2511,50 @@ msgid "Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"
 msgstr ""
 
 #: Merge.rc:6F3BCB34
-#, c-format
 msgid "Locate filter file to install"
 msgstr ""
 
 #: Merge.rc:6858E820
-#, c-format
 msgid "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
 msgstr ""
 
 #: Merge.rc:5704C4AC
-#, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
 msgstr ""
 
 #: Merge.rc:237A126
-#, c-format
 msgid "Regular expression"
 msgstr ""
 
 #: Merge.rc:34BD4316
-#, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
 #: Merge.rc:114DD351
-#, c-format
 msgid "Folder Comparison Results"
 msgstr ""
 
 #: Merge.rc:1AFA3493
-#, c-format
 msgid "File Comparison"
 msgstr ""
 
 #: Merge.rc:2FEFC30D
-#, c-format
 msgid "Untitled left"
 msgstr ""
 
 #: Merge.rc:730B3FD4
-#, c-format
 msgid "Untitled middle"
 msgstr ""
 
 #: Merge.rc:4E089EF3
-#, c-format
 msgid "Untitled right"
 msgstr ""
 
 #: Merge.rc:72A593B9
-#, c-format
 msgid "Theirs File"
 msgstr ""
 
 #: Merge.rc:427C12C1
-#, c-format
 msgid "Mine File"
 msgstr ""
 
@@ -3183,7 +2574,6 @@ msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr ""
 
 #: Merge.rc:7C664E1
-#, c-format
 msgid "Merge"
 msgstr ""
 
@@ -3198,13 +2588,11 @@ msgid "%1 Differences Found"
 msgstr ""
 
 #: Merge.rc:6B78A819
-#, c-format
 msgid "1 Difference Found"
 msgstr ""
 
 #. Abbreviation from "Read Only"
 #: Merge.rc:13E12
-#, c-format
 msgid "RO"
 msgstr ""
 
@@ -3219,72 +2607,58 @@ msgid "Items: %1"
 msgstr ""
 
 #: Merge.rc:6C6653C7
-#, c-format
 msgid "Select two existing folders or files to compare"
 msgstr ""
 
 #: Merge.rc:444C5DDC
-#, c-format
 msgid "Folder Selection"
 msgstr ""
 
 #: Merge.rc:3080B693
-#, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
 msgstr ""
 
 #: Merge.rc:2EBBDDD6
-#, c-format
 msgid "Left (1st) path is invalid!"
 msgstr ""
 
 #: Merge.rc:BA50069
-#, c-format
 msgid "Middle (2nd) path is invalid!"
 msgstr ""
 
 #: Merge.rc:21DC7C32
-#, c-format
 msgid "Right (2nd) path is invalid!"
 msgstr ""
 
 #: Merge.rc:21DC7C33
-#, c-format
 msgid "Right (3rd) path is invalid!"
 msgstr ""
 
 #: Merge.rc:5AB9EEA7
-#, c-format
 msgid "Both paths are invalid!"
 msgstr ""
 
 #: Merge.rc:585E8EC0
-#, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr ""
 
 #: Merge.rc:135DE390
-#, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr ""
 
 #: Merge.rc:72716FA6
-#, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr ""
 
 #: Merge.rc:237A0533
-#, c-format
 msgid "All paths are invalid!"
 msgstr ""
 
 #: Merge.rc:1235F930
-#, c-format
 msgid "Only enabled for File comparisons"
 msgstr ""
 
 #: Merge.rc:30FF7A4E
-#, c-format
 msgid "Cannot compare file and folder!"
 msgstr ""
 
@@ -3304,7 +2678,6 @@ msgid "Cannot open file\n%1\n\n%2"
 msgstr ""
 
 #: Merge.rc:53CCF475
-#, c-format
 msgid "Failed to parse conflict file."
 msgstr ""
 
@@ -3314,7 +2687,6 @@ msgid "The file\n%1\nis not a conflict file."
 msgstr ""
 
 #: Merge.rc:67019DCC
-#, c-format
 msgid "Save As"
 msgstr ""
 
@@ -3329,7 +2701,6 @@ msgid "%1 is marked read-only. Would you like to override the read-only file ? (
 msgstr ""
 
 #: Merge.rc:673BD332
-#, c-format
 msgid "Error backing up file"
 msgstr ""
 
@@ -3369,17 +2740,14 @@ msgid "Another application has updated file\n%1\nsince WinMerge scanned it last 
 msgstr ""
 
 #: Merge.rc:62909ED7
-#, c-format
 msgid "Save Left File As"
 msgstr ""
 
 #: Merge.rc:E4471D
-#, c-format
 msgid "Save Middle File As"
 msgstr ""
 
 #: Merge.rc:6F833C19
-#, c-format
 msgid "Save Right File As"
 msgstr ""
 
@@ -3389,7 +2757,6 @@ msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue
 msgstr ""
 
 #: Merge.rc:4BFC8F0D
-#, c-format
 msgid "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
 msgstr ""
 
@@ -3479,17 +2846,14 @@ msgid "All (%1)"
 msgstr ""
 
 #: Merge.rc:DD21175
-#, c-format
 msgid "Left side - select destination folder:"
 msgstr ""
 
 #: Merge.rc:2B480620
-#, c-format
 msgid "Middle side - select destination folder:"
 msgstr ""
 
 #: Merge.rc:5BBC5591
-#, c-format
 msgid "Right side - select destination folder:"
 msgstr ""
 
@@ -3509,7 +2873,6 @@ msgid "Are you sure you want to delete\n\n%1 ?"
 msgstr ""
 
 #: Merge.rc:2019BE6D
-#, c-format
 msgid "Are you sure you want to copy:"
 msgstr ""
 
@@ -3524,7 +2887,6 @@ msgid "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas
 msgstr ""
 
 #: Merge.rc:2019BE6E
-#, c-format
 msgid "Are you sure you want to move:"
 msgstr ""
 
@@ -3534,12 +2896,10 @@ msgid "Are you sure you want to move %d items:"
 msgstr ""
 
 #: Merge.rc:CAEDA37
-#, c-format
 msgid "Confirm Move"
 msgstr ""
 
 #: Merge.rc:1E9E7AFF
-#, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr ""
 
@@ -3549,177 +2909,142 @@ msgid "Failed to execute external editor: %1"
 msgstr ""
 
 #: Merge.rc:7350CBB7
-#, c-format
 msgid "Unknown archive format"
 msgstr ""
 
 #: Merge.rc:64ABCD7E
-#, c-format
 msgid "Filename"
 msgstr ""
 
 #: Merge.rc:D404EDE
-#, c-format
 msgid "Comparison result"
 msgstr ""
 
 #: Merge.rc:1B633071
-#, c-format
 msgid "Left Date"
 msgstr ""
 
 #: Merge.rc:39174D9B
-#, c-format
 msgid "Right Date"
 msgstr ""
 
 #: Merge.rc:13C27216
-#, c-format
 msgid "Middle Date"
 msgstr ""
 
 #: Merge.rc:9B50030
-#, c-format
 msgid "Extension"
 msgstr ""
 
 #: Merge.rc:1B633072
-#, c-format
 msgid "Left Size"
 msgstr ""
 
 #: Merge.rc:39174D9C
-#, c-format
 msgid "Right Size"
 msgstr ""
 
 #: Merge.rc:13C27217
-#, c-format
 msgid "Middle Size"
 msgstr ""
 
 #: Merge.rc:237A128
-#, c-format
 msgid "Right Size (Short)"
 msgstr ""
 
 #: Merge.rc:353D7BD8
-#, c-format
 msgid "Left Size (Short)"
 msgstr ""
 
 #: Merge.rc:17F5B414
-#, c-format
 msgid "Middle Size (Short)"
 msgstr ""
 
 #: Merge.rc:7271FF81
-#, c-format
 msgid "Left Creation Time"
 msgstr ""
 
 #: Merge.rc:44BC83EE
-#, c-format
 msgid "Right Creation Time"
 msgstr ""
 
 #: Merge.rc:66C0CEA0
-#, c-format
 msgid "Middle Creation Time"
 msgstr ""
 
 #: Merge.rc:4909ADB5
-#, c-format
 msgid "Newer File"
 msgstr ""
 
 #: Merge.rc:353D7BD9
-#, c-format
 msgid "Left File Version"
 msgstr ""
 
 #: Merge.rc:237A129
-#, c-format
 msgid "Right File Version"
 msgstr ""
 
 #: Merge.rc:17F5B415
-#, c-format
 msgid "Middle File Version"
 msgstr ""
 
 #: Merge.rc:194397DE
-#, c-format
 msgid "Short Result"
 msgstr ""
 
 #: Merge.rc:71676C49
-#, c-format
 msgid "Left Attributes"
 msgstr ""
 
 #: Merge.rc:32BFDBAE
-#, c-format
 msgid "Right Attributes"
 msgstr ""
 
 #: Merge.rc:729280DC
-#, c-format
 msgid "Middle Attributes"
 msgstr ""
 
 #: Merge.rc:15875424
-#, c-format
 msgid "Left EOL"
 msgstr ""
 
 #: Merge.rc:D0645BD
-#, c-format
 msgid "Middle EOL"
 msgstr ""
 
 #: Merge.rc:5F87E5D
-#, c-format
 msgid "Right EOL"
 msgstr ""
 
 #: Merge.rc:5C8E17CF
-#, c-format
 msgid "Left Encoding"
 msgstr ""
 
 #: Merge.rc:1B176020
-#, c-format
 msgid "Right Encoding"
 msgstr ""
 
 #: Merge.rc:2A79A03A
-#, c-format
 msgid "Middle Encoding"
 msgstr ""
 
 #: Merge.rc:6B6D8966
-#, c-format
 msgid "Ignored Diff."
 msgstr ""
 
 #: Merge.rc:76C8AB99
-#, c-format
 msgid "Unable to compare files"
 msgstr ""
 
 #: Merge.rc:4166A155
-#, c-format
 msgid "Item aborted"
 msgstr ""
 
 #: Merge.rc:670ABDC3
-#, c-format
 msgid "File skipped"
 msgstr ""
 
 #: Merge.rc:4F5264CA
-#, c-format
 msgid "Folder skipped"
 msgstr ""
 
@@ -3744,82 +3069,66 @@ msgid "Does not exist in %1"
 msgstr ""
 
 #: Merge.rc:6B248E76
-#, c-format
 msgid "Binary files are identical"
 msgstr ""
 
 #: Merge.rc:6B248E77
-#, c-format
 msgid "Binary files are different"
 msgstr ""
 
 #: Merge.rc:72DF5DE2
-#, c-format
 msgid "Files are different"
 msgstr ""
 
 #: Merge.rc:387F7982
-#, c-format
 msgid "Folders are different"
 msgstr ""
 
 #: Merge.rc:1B633073
-#, c-format
 msgid "Left Only"
 msgstr ""
 
 #: Merge.rc:39174D9D
-#, c-format
 msgid "Right Only"
 msgstr ""
 
 #: Merge.rc:13C27218
-#, c-format
 msgid "Middle Only"
 msgstr ""
 
 #: Merge.rc:638BD42C
-#, c-format
 msgid "No item in left"
 msgstr ""
 
 #: Merge.rc:DEEB1BA
-#, c-format
 msgid "No item in right"
 msgstr ""
 
 #: Merge.rc:2FE785D7
-#, c-format
 msgid "No item in middle"
 msgstr ""
 
 #: Merge.rc:79AB21E1
-#, c-format
 msgid "Error"
 msgstr ""
 
 #: Merge.rc:12D66B44
-#, c-format
 msgid "Text files are identical"
 msgstr ""
 
 #: Merge.rc:1DEEB161
-#, c-format
 msgid "(Middle and right are identical)"
 msgstr ""
 
 #: Merge.rc:1D99B043
-#, c-format
 msgid "(Left and right are identical)"
 msgstr ""
 
 #: Merge.rc:159C584C
-#, c-format
 msgid "(Left and middle are identical)"
 msgstr ""
 
 #: Merge.rc:12D66B45
-#, c-format
 msgid "Text files are different"
 msgstr ""
 
@@ -3829,7 +3138,6 @@ msgid "Elapsed time: %ld ms"
 msgstr ""
 
 #: Merge.rc:6C7BF198
-#, c-format
 msgid "1 item selected"
 msgstr ""
 
@@ -3839,167 +3147,134 @@ msgid "%1 items selected"
 msgstr ""
 
 #: Merge.rc:3A5D5963
-#, c-format
 msgid "Filename or folder name."
 msgstr ""
 
 #: Merge.rc:A7628EE
-#, c-format
 msgid "Subfolder name when subfolders are included."
 msgstr ""
 
 #: Merge.rc:6F88EC68
-#, c-format
 msgid "Comparison result, long form."
 msgstr ""
 
 #: Merge.rc:28BFDD41
-#, c-format
 msgid "Left side modification date."
 msgstr ""
 
 #: Merge.rc:19B30A68
-#, c-format
 msgid "Right side modification date."
 msgstr ""
 
 #: Merge.rc:68FB0CE7
-#, c-format
 msgid "Middle side modification date."
 msgstr ""
 
 #: Merge.rc:453F5DDC
-#, c-format
 msgid "File's extension."
 msgstr ""
 
 #: Merge.rc:172385A1
-#, c-format
 msgid "Left file size in bytes."
 msgstr ""
 
 #: Merge.rc:94C89D4
-#, c-format
 msgid "Right file size in bytes."
 msgstr ""
 
 #: Merge.rc:27AAA636
-#, c-format
 msgid "Middle file size in bytes."
 msgstr ""
 
 #: Merge.rc:2EBBDDD7
-#, c-format
 msgid "Left file size abbreviated."
 msgstr ""
 
 #: Merge.rc:21DC7C34
-#, c-format
 msgid "Right file size abbreviated."
 msgstr ""
 
 #: Merge.rc:BA5006A
-#, c-format
 msgid "Middle file size abbreviated."
 msgstr ""
 
 #: Merge.rc:172385A2
-#, c-format
 msgid "Left side creation time."
 msgstr ""
 
 #: Merge.rc:94C89D5
-#, c-format
 msgid "Right side creation time."
 msgstr ""
 
 #: Merge.rc:27AAA637
-#, c-format
 msgid "Middle side creation time."
 msgstr ""
 
 #: Merge.rc:4B4CD318
-#, c-format
 msgid "Tells which side has newer modification date."
 msgstr ""
 
 #: Merge.rc:3AF5EAD7
-#, c-format
 msgid "Left side file version, only for some filetypes."
 msgstr ""
 
 #: Merge.rc:7413D0D6
-#, c-format
 msgid "Right side file version, only for some filetypes."
 msgstr ""
 
 #: Merge.rc:5EB13952
-#, c-format
 msgid "Middle side file version, only for some filetypes."
 msgstr ""
 
 #: Merge.rc:43600E91
-#, c-format
 msgid "Short comparison result."
 msgstr ""
 
 #: Merge.rc:20155F59
-#, c-format
 msgid "Left side attributes."
 msgstr ""
 
 #: Merge.rc:6DBD6124
-#, c-format
 msgid "Right side attributes."
 msgstr ""
 
 #: Merge.rc:7F2E4119
-#, c-format
 msgid "Middle side attributes."
 msgstr ""
 
 #: Merge.rc:703AF3C8
-#, c-format
 msgid "Left side file EOL type"
 msgstr ""
 
 #: Merge.rc:73E9B1DC
-#, c-format
 msgid "Right side file EOL type"
 msgstr ""
 
 #: Merge.rc:6CA26873
-#, c-format
 msgid "Middle side file EOL type"
 msgstr ""
 
 #: Merge.rc:5BCDF0E8
-#, c-format
 msgid "Left side encoding."
 msgstr ""
 
 #: Merge.rc:52D3F9F7
-#, c-format
 msgid "Right side encoding."
 msgstr ""
 
 #: Merge.rc:715905A6
-#, c-format
 msgid "Middle side encoding."
 msgstr ""
 
 #: Merge.rc:58398DFF
-#, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
 msgstr ""
 
 #: Merge.rc:6A6D5CB6
-#, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
 msgstr ""
 
 #: Merge.rc:A7628EF
-#, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr ""
 
@@ -4009,27 +3284,22 @@ msgid "Compare %1 with %2"
 msgstr ""
 
 #: Merge.rc:E9A77F2
-#, c-format
 msgid "Comma-separated list"
 msgstr ""
 
 #: Merge.rc:5CCED709
-#, c-format
 msgid "Tab-separated list"
 msgstr ""
 
 #: Merge.rc:2E3BFCA3
-#, c-format
 msgid "Simple HTML"
 msgstr ""
 
 #: Merge.rc:751AB591
-#, c-format
 msgid "Simple XML"
 msgstr ""
 
 #: Merge.rc:67FDA050
-#, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr ""
 
@@ -4039,42 +3309,34 @@ msgid "Error creating the report:\n%1"
 msgstr ""
 
 #: Merge.rc:37B243DF
-#, c-format
 msgid "The report has been created successfully."
 msgstr ""
 
 #: Merge.rc:162B12F9
-#, c-format
 msgid "The same file is opened in both panels."
 msgstr ""
 
 #: Merge.rc:7632E88D
-#, c-format
 msgid "The selected files are identical."
 msgstr ""
 
 #: Merge.rc:44565DBD
-#, c-format
 msgid "An error occurred while comparing the files."
 msgstr ""
 
 #: Merge.rc:5F16D9DC
-#, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr ""
 
 #: Merge.rc:11E6F584
-#, c-format
 msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 
 #: Merge.rc:46FB8639
-#, c-format
 msgid "The selected folder is invalid."
 msgstr ""
 
 #: Merge.rc:4BC3EDDB
-#, c-format
 msgid "Cannot open a binary file to editor."
 msgstr ""
 
@@ -4084,22 +3346,18 @@ msgid "The folder exists only in other side and cannot be opened.\n\nDo you want
 msgstr ""
 
 #: Merge.rc:36F211E1
-#, c-format
 msgid "Do you want to move to the next file?"
 msgstr ""
 
 #: Merge.rc:6A0A36F1
-#, c-format
 msgid "Do you want to move to the previous file?"
 msgstr ""
 
 #: Merge.rc:36F211E2
-#, c-format
 msgid "Do you want to move to the next page?"
 msgstr ""
 
 #: Merge.rc:6A0A36F2
-#, c-format
 msgid "Do you want to move to the previous page?"
 msgstr ""
 
@@ -4109,32 +3367,26 @@ msgid "Different codepages found in left (cp%d) and right (cp%d) files. \nDispla
 msgstr ""
 
 #: Merge.rc:5851E4C8
-#, c-format
 msgid "Information lost due to encoding errors: both files"
 msgstr ""
 
 #: Merge.rc:5851E4C9
-#, c-format
 msgid "Information lost due to encoding errors: first file"
 msgstr ""
 
 #: Merge.rc:31EAB496
-#, c-format
 msgid "Information lost due to encoding errors: second file"
 msgstr ""
 
 #: Merge.rc:5851E4CA
-#, c-format
 msgid "Information lost due to encoding errors: third file"
 msgstr ""
 
 #: Merge.rc:7D4E76C0
-#, c-format
 msgid "No difference"
 msgstr ""
 
 #: Merge.rc:71676C4A
-#, c-format
 msgid "Line difference"
 msgstr ""
 
@@ -4149,7 +3401,6 @@ msgid "Cannot find string \"%s\""
 msgstr ""
 
 #: Merge.rc:34855CF1
-#, c-format
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
 msgstr ""
 
@@ -4159,52 +3410,42 @@ msgid "The number of automatically merged changes: %1\nThe number of unresolved 
 msgstr ""
 
 #: Merge.rc:7453F857
-#, c-format
 msgid "The change of codepage has been merged"
 msgstr ""
 
 #: Merge.rc:162B12FA
-#, c-format
 msgid "The changes of codepage are conflicting"
 msgstr ""
 
 #: Merge.rc:7632E88E
-#, c-format
 msgid "The change of EOL has been merged"
 msgstr ""
 
 #: Merge.rc:502A2983
-#, c-format
 msgid "The changes of EOL are conflicting"
 msgstr ""
 
 #: Merge.rc:5C8E17D1
-#, c-format
 msgid "Location Pane"
 msgstr ""
 
 #: Merge.rc:629C1DDE
-#, c-format
 msgid "Diff Pane"
 msgstr ""
 
 #: Merge.rc:3BDD62C4
-#, c-format
 msgid "Patch file successfully written."
 msgstr ""
 
 #: Merge.rc:74C5055A
-#, c-format
 msgid "1. item is not found or is directory!"
 msgstr ""
 
 #: Merge.rc:7EFD4961
-#, c-format
 msgid "2. item is not found or is directory!"
 msgstr ""
 
 #: Merge.rc:E611488
-#, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr ""
 
@@ -4214,17 +3455,14 @@ msgid "[%1 files selected]"
 msgstr ""
 
 #: Merge.rc:27AFDB30
-#, c-format
 msgid "Normal"
 msgstr ""
 
 #: Merge.rc:7E5494F7
-#, c-format
 msgid "Context"
 msgstr ""
 
 #: Merge.rc:24173EE8
-#, c-format
 msgid "Unified"
 msgstr ""
 
@@ -4239,202 +3477,162 @@ msgid "The specified output path is not an absolute path: %1"
 msgstr ""
 
 #: Merge.rc:44EE84AA
-#, c-format
 msgid "Specify an output file"
 msgstr ""
 
 #: Merge.rc:54711616
-#, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr ""
 
 #: Merge.rc:133D7451
-#, c-format
 msgid "Cannot create a patch file from directories."
 msgstr ""
 
 #: Merge.rc:34FF26C7
-#, c-format
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 msgstr ""
 
 #: Merge.rc:576FB6D3
-#, c-format
 msgid "Folder does not exist."
 msgstr ""
 
 #: Merge.rc:3377B7B5
-#, c-format
 msgid "Archive support is not enabled.\nAll needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
 
 #: Merge.rc:44EE84AB
-#, c-format
 msgid "Select file for export"
 msgstr ""
 
 #: Merge.rc:44EE84AC
-#, c-format
 msgid "Select file for import"
 msgstr ""
 
 #: Merge.rc:447FB30
-#, c-format
 msgid "Options imported from the file."
 msgstr ""
 
 #: Merge.rc:44776ACF
-#, c-format
 msgid "Options exported to the file."
 msgstr ""
 
 #: Merge.rc:7D23E524
-#, c-format
 msgid "Failed to import options from the file."
 msgstr ""
 
 #: Merge.rc:68F9158
-#, c-format
 msgid "Failed to write options to the file."
 msgstr ""
 
 #: Merge.rc:404DAD7D
-#, c-format
 msgid "You are about to close several compare windows.\n\nDo you want to continue?"
 msgstr ""
 
 #: Merge.rc:7C664E2
-#, c-format
 msgid "Mixed"
 msgstr ""
 
 #: Merge.rc:46FCCCF
-#, c-format
 msgid "None"
 msgstr ""
 
 #: Merge.rc:4C72B57
-#, c-format
 msgid "Type"
 msgstr ""
 
 #: Merge.rc:5ED09E18
-#, c-format
 msgid "Unpacker"
 msgstr ""
 
 #: Merge.rc:37C6B9B8
-#, c-format
 msgid "Prediffer"
 msgstr ""
 
 #: Merge.rc:29ECCB83
-#, c-format
 msgid "Editor script"
 msgstr ""
 
 #: Merge.rc:51A4FE5F
-#, c-format
 msgid "\nDifference in the Current Line"
 msgstr ""
 
 #: Merge.rc:CF15594
-#, c-format
 msgid "\nOptions"
 msgstr ""
 
 #: Merge.rc:6F90DC3A
-#, c-format
 msgid "\nRefresh (F5)"
 msgstr ""
 
 #: Merge.rc:414AF01
-#, c-format
 msgid "\nPrevious Difference (Alt+Up)"
 msgstr ""
 
 #: Merge.rc:16618519
-#, c-format
 msgid "\nNext Difference (Alt+Down)"
 msgstr ""
 
 #: Merge.rc:7C5EF083
-#, c-format
 msgid "\nPrevious Conflict (Alt+Shift+Up)"
 msgstr ""
 
 #: Merge.rc:51A4FE60
-#, c-format
 msgid "\nNext Conflict (Alt+Shift+Down)"
 msgstr ""
 
 #: Merge.rc:35CF1E68
-#, c-format
 msgid "\nFirst Difference (Alt+Home)"
 msgstr ""
 
 #: Merge.rc:51A4FE61
-#, c-format
 msgid "\nCurrent Difference (Alt+Enter)"
 msgstr ""
 
 #: Merge.rc:1DA00C8A
-#, c-format
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
 #: Merge.rc:E8950EA
-#, c-format
 msgid "\nCopy Right (Alt+Right)"
 msgstr ""
 
 #: Merge.rc:55A8C466
-#, c-format
 msgid "\nCopy Left (Alt+Left)"
 msgstr ""
 
 #: Merge.rc:1E864A56
-#, c-format
 msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
 #: Merge.rc:7FE60896
-#, c-format
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 #: Merge.rc:15F24C75
-#, c-format
 msgid "\nAll Right"
 msgstr ""
 
 #: Merge.rc:11395D4B
-#, c-format
 msgid "\nAll Left"
 msgstr ""
 
 #: Merge.rc:42A0CC96
-#, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr ""
 
 #: Merge.rc:6107F02B
-#, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
 msgstr ""
 
 #: Merge.rc:429CABF5
-#, c-format
 msgid "No prediffer (normal)"
 msgstr ""
 
 #: Merge.rc:62909ED8
-#, c-format
 msgid "Suggested plugins"
 msgstr ""
 
 #: Merge.rc:4DAEA639
-#, c-format
 msgid "Other plugins"
 msgstr ""
 
@@ -4444,7 +3642,6 @@ msgid "Private Build: %1"
 msgstr ""
 
 #: Merge.rc:40D543C8
-#, c-format
 msgid "Your software is up to date"
 msgstr ""
 
@@ -4454,27 +3651,22 @@ msgid "A new version of WinMerge is available.\n%1 is now available (you have %2
 msgstr ""
 
 #: Merge.rc:696AAFE9
-#, c-format
 msgid "Failed to download latest version information"
 msgstr ""
 
 #: Merge.rc:55B03C14
-#, c-format
 msgid "Plugin Settings"
 msgstr ""
 
 #: Merge.rc:791F1E67
-#, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr ""
 
 #: Merge.rc:4FC259D5
-#, c-format
 msgid "<None>"
 msgstr ""
 
 #: Merge.rc:8BF6984
-#, c-format
 msgid "<Automatic>"
 msgstr ""
 
@@ -4484,77 +3676,62 @@ msgid "G&oto Line %1"
 msgstr ""
 
 #: Merge.rc:7F0D4B47
-#, c-format
 msgid "Disabled"
 msgstr ""
 
 #: Merge.rc:444C5DDD
-#, c-format
 msgid "From file system"
 msgstr ""
 
 #: Merge.rc:7A4CFAFE
-#, c-format
 msgid "From MRU list"
 msgstr ""
 
 #: Merge.rc:638BD42D
-#, c-format
 msgid "No Highlighting"
 msgstr ""
 
 #: Merge.rc:7460E8C0
-#, c-format
 msgid "Batch"
 msgstr ""
 
 #: Merge.rc:55B03C15
-#, c-format
 msgid "Portable Object"
 msgstr ""
 
 #: Merge.rc:5F87E5E
-#, c-format
 msgid "Resources"
 msgstr ""
 
 #: Merge.rc:125AD722
-#, c-format
 msgid "Shell"
 msgstr ""
 
 #: Merge.rc:4E44AD6
-#, c-format
 msgid "VHDL"
 msgstr ""
 
 #: Merge.rc:8AF7E6B
-#, c-format
 msgid "Close &Left Tabs"
 msgstr ""
 
 #: Merge.rc:D404EDF
-#, c-format
 msgid "Close R&ight Tabs"
 msgstr ""
 
 #: Merge.rc:D404EE0
-#, c-format
 msgid "Close &Other Tabs"
 msgstr ""
 
 #: Merge.rc:3E934E
-#, c-format
 msgid "Enable &Auto Max Width"
 msgstr ""
 
 #: Merge.rc:1D2E4A00
-#, c-format
 msgid "&Image"
 msgstr ""
 
 #: Merge.rc:3D9427A9
-#, c-format
 msgid "frhed is not installed"
 msgstr ""
 
@@ -4564,12 +3741,10 @@ msgid "%1 does not exist. Do you want to create it?"
 msgstr ""
 
 #: Merge.rc:3A5D5964
-#, c-format
 msgid "Failed to create folder."
 msgstr ""
 
 #: Merge.rc:64F70DD6
-#, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 msgstr ""
 
