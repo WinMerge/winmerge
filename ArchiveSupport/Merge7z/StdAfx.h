@@ -7,4 +7,4 @@
 
 #define LANG
 
-#define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[1]))
+#include "../../Externals/sevenzip/CPP/Common/Common.h"

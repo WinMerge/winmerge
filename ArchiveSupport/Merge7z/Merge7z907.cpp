@@ -74,8 +74,8 @@ public:
 		indices(indices),
 		numItems(numItems)
 	{
-		ExtractCallbackSpec->ProgressDialog = &ProgressDialog;
-		ProgressDialog.CompressingMode = false;
+		ExtractCallbackSpec->ProgressDialog = this;
+		CompressingMode = false;
 		//result = E_FAIL;
 		if (HRESULT hr = Create(GetUnicodeString(title), hwndParent))
 		{
@@ -156,7 +156,8 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 		(
 			false,
 			NExtract::NPathMode::kFullPaths,
-			NExtract::NOverwriteMode::kOverwrite
+			NExtract::NOverwriteMode::kOverwrite,
+			false
 		);
 
 		CExtractNtOptions ntOptions;
@@ -230,6 +231,7 @@ protected:
 public:
 	HRESULT result;
 	UINT32 numItems;
+
 	CThreadUpdating
 	(
 		CUpdateCallbackGUI *updateCallbackGUI,
@@ -247,7 +249,7 @@ public:
 		file(file)
 	{
 		result = E_FAIL;
-		updateCallbackGUI->ProgressDialog = &ProgressDialog;
+		updateCallbackGUI->ProgressDialog = this;
 		if (HRESULT hr = Create(GetUnicodeString(title), hwndParent))
 		{
 			Complain(hr, NULL);
