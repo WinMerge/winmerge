@@ -486,6 +486,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
     }
   if (hFile != NULL && hFile != INVALID_HANDLE_VALUE)
     ::CloseHandle (hFile);
+  delete [] pcLineBuf;
   //BEGIN SW
   m_ptLastChange.x = m_ptLastChange.y = -1;
   //END SW
