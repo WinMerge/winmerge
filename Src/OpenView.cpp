@@ -191,30 +191,21 @@ void COpenView::OnInitialUpdate()
 	m_constraint.ConstrainItem(IDC_PATH0_COMBO, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_PATH1_COMBO, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_PATH2_COMBO, 0, 1, 0, 0); // grows right
-//	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 1, 0, 0); // grows right
-//	m_constraint.ConstrainItem(IDC_UNPACKER_EDIT, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 0.5, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_UNPACKER_EDIT, 0.5, 0.5, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP0, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP1, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP2, 0, 1, 0, 0); // grows right
-//	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP3, 0, 1, 0, 0); // grows right
-//	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP4, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP3X, 0, 0.5, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP4, 0.5, 0, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP4X, 0.5, 0.5, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_PATH0_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_PATH1_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_PATH2_BUTTON, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(IDC_PATH0_READONLY, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(IDC_PATH1_READONLY, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(IDC_PATH2_READONLY, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(IDC_SWAP01_BUTTON, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(IDC_SWAP12_BUTTON, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(IDC_SWAP02_BUTTON, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(IDC_SWAP01_STATIC, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(IDC_SWAP12_STATIC, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(IDC_SWAP02_STATIC, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
-//	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 0.5, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_OPTIONS, 1, 0, 0, 0); // slides right
-//	m_constraint.ConstrainItem(ID_SAVE_PROJECT, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(ID_HELP, 1, 0, 0, 0); // slides right
