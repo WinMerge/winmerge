@@ -274,9 +274,6 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
   oPotFile.Write "# This file is part from WinMerge <http://winmerge.org/>" & vbLf
   oPotFile.Write "# Released under the ""GNU General Public License""" & vbLf
   oPotFile.Write "#" & vbLf
-  oPotFile.Write "# ID line follows -- this is updated by SVN" & vbLf
-  oPotFile.Write "# $" & "Id: " & "$" & vbLf
-  oPotFile.Write "#" & vbLf
   oPotFile.Write "msgid """"" & vbLf
   oPotFile.Write "msgstr """"" & vbLf
   oPotFile.Write """Project-Id-Version: WinMerge\n""" & vbLf
@@ -305,7 +302,9 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
       Next
     End If
     oPotFile.Write "#: " & oString.UniqueId & vbLf
-    oPotFile.Write "#, c-format" & vbLf
+    If (InStr(oString.Id, "%") > 0) Then 'If c-format...
+      oPotFile.Write "#, c-format" & vbLf
+    End If
     If (oString.Context <> "") Then 'If context exists...
       oPotFile.Write "msgctxt """ & oString.Context & """" & vbLf
     End If
