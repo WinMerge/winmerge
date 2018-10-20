@@ -222,6 +222,9 @@
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\GUI\resource.h">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SortUtils.h">
+      <Filter>7zip Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Merge7z907.cpp">
@@ -415,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Externals\sevenzip\C\Threads.c">
       <Filter>C</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SortUtils.cpp">
+      <Filter>7zip Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

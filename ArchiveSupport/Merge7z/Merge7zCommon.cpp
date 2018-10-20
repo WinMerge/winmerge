@@ -87,7 +87,8 @@ static void EnumerateDirectory(
 	const UString &prefix,
 	CDirItems &dirItems)
 {
-	NFind::CEnumerator enumerator(baseFolderPrefix + directory + L'*');
+	NFind::CEnumerator enumerator;
+	enumerator.SetDirPrefix(baseFolderPrefix + directory);
 	NFind::CFileInfo fileInfo;
 	while (enumerator.Next(fileInfo))
 	{ 
