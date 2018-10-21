@@ -1413,11 +1413,6 @@ msgstr "Участники"
 msgid "Select Files or Folders"
 msgstr "Выберите файлы или папки..."
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Помощь"
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1512,6 +1507,11 @@ msgstr "Отмена"
 #, c-format
 msgid "Status:"
 msgstr "Статус:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Помощь"
 
 #: Merge.rc:787FD72B
 #, c-format

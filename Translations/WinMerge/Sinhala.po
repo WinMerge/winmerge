@@ -1408,11 +1408,6 @@ msgstr "දායක වුවන්"
 msgid "Select Files or Folders"
 msgstr "ගොනු සහ ෆෝල්ඩර තෝරන්න"
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "උදව් "
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1507,6 +1502,11 @@ msgstr "අවලංගු කරන්න"
 #, c-format
 msgid "Status:"
 msgstr "තත්වය:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "උදව් "
 
 #: Merge.rc:787FD72B
 #, c-format

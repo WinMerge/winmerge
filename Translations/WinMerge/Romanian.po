@@ -1411,11 +1411,6 @@ msgstr "Contribuitori"
 msgid "Select Files or Folders"
 msgstr "Selectează fişiere sau directoare"
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Ajutor"
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1510,6 +1505,11 @@ msgstr "Renunţă"
 #, c-format
 msgid "Status:"
 msgstr "Stare:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Ajutor"
 
 #: Merge.rc:787FD72B
 #, c-format

@@ -1407,11 +1407,6 @@ msgstr "Avustajat"
 msgid "Select Files or Folders"
 msgstr "Valitse tiedostoja tai kansioita"
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Ohje"
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1506,6 +1501,11 @@ msgstr "Peruuta"
 #, c-format
 msgid "Status:"
 msgstr "Tila"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Ohje"
 
 #: Merge.rc:787FD72B
 #, c-format

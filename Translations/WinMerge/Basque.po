@@ -1414,11 +1414,6 @@ msgstr "&Laguntzaileak"
 msgid "Select Files or Folders"
 msgstr "Hautatu Agiriak edo Agiritegiak"
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Laguntza"
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1513,6 +1508,11 @@ msgstr "Ezeztatu"
 #, c-format
 msgid "Status:"
 msgstr "Egoera:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Laguntza"
 
 #: Merge.rc:787FD72B
 #, c-format

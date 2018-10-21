@@ -1410,11 +1410,6 @@ msgstr "Col·laboradors"
 msgid "Select Files or Folders"
 msgstr "Tria de fitxers o directoris..."
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Ajuda"
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1509,6 +1504,11 @@ msgstr "Cancel·la"
 #, c-format
 msgid "Status:"
 msgstr "Estat:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Ajuda"
 
 #: Merge.rc:787FD72B
 #, c-format

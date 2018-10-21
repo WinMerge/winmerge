@@ -1412,11 +1412,6 @@ msgstr " شرکت کننده ها "
 msgid "Select Files or Folders"
 msgstr " انتخاب پرونده ها يا پوشه ها "
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr " راهنما "
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1511,6 +1506,11 @@ msgstr " لغو "
 #, c-format
 msgid "Status:"
 msgstr " وضعيت : "
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr " راهنما "
 
 #: Merge.rc:787FD72B
 #, c-format
