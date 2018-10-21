@@ -1415,11 +1415,6 @@ msgstr "공헌자"
 msgid "Select Files or Folders"
 msgstr "폴더/파일 선택"
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "도움말"
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1514,6 +1509,11 @@ msgstr "취소"
 #, c-format
 msgid "Status:"
 msgstr "상태:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "도움말"
 
 #: Merge.rc:787FD72B
 #, c-format

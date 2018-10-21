@@ -1411,11 +1411,6 @@ msgstr "Colaboradores"
 msgid "Select Files or Folders"
 msgstr "Seleccionar arquivos ou cartafoles"
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Axuda"
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1510,6 +1505,11 @@ msgstr "Cancelar"
 #, c-format
 msgid "Status:"
 msgstr "Estado:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Axuda"
 
 #: Merge.rc:787FD72B
 #, c-format

@@ -1415,11 +1415,6 @@ msgstr "Contributeurs"
 msgid "Select Files or Folders"
 msgstr "Sélection des fichiers ou des répertoires..."
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Aide"
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1514,6 +1509,11 @@ msgstr "Ann&uler"
 #, c-format
 msgid "Status:"
 msgstr "Statut:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Aide"
 
 #: Merge.rc:787FD72B
 #, c-format

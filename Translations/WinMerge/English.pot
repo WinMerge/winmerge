@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-10-19 05:53+0000\n"
+"POT-Creation-Date: 2018-10-21 13:44+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1144,10 +1144,6 @@ msgstr ""
 msgid "Select Files or Folders"
 msgstr ""
 
-#: Merge.rc:4186E48
-msgid "Help"
-msgstr ""
-
 #: Merge.rc:6DE6F874
 msgid "&1st File or Folder"
 msgstr ""
@@ -1222,6 +1218,10 @@ msgstr ""
 
 #: Merge.rc:67019DCA
 msgid "Status:"
+msgstr ""
+
+#: Merge.rc:4186E48
+msgid "Help"
 msgstr ""
 
 #: Merge.rc:787FD72B

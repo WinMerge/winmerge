@@ -1412,11 +1412,6 @@ msgstr "贡献者"
 msgid "Select Files or Folders"
 msgstr "选择文件或文件夹..."
 
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "帮助"
-
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
@@ -1511,6 +1506,11 @@ msgstr "取消"
 #, c-format
 msgid "Status:"
 msgstr "状态:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "帮助"
 
 #: Merge.rc:787FD72B
 #, c-format
