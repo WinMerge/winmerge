@@ -383,6 +383,10 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			q = SetConfig(q);
 		}
+		else
+		{
+			m_sErrorMessages.push_back(_T("Unknown option '/") + param + _T("'"));
+		}
 	}
 	// If "compare file dir" make it "compare file dir\file".
 	if (m_Files.GetSize() >= 2)

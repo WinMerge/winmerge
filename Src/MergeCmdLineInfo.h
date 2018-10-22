@@ -88,6 +88,8 @@ public:
 
 	std::map<String, String> m_Options;
 
+	std::vector<String> m_sErrorMessages;
+
 private:
 
 	static const TCHAR *EatParam(const TCHAR *, String &, bool *flag = 0);
