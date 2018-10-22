@@ -204,6 +204,19 @@ BOOL CMergeApp::InitInstance()
 
 	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
 	ApplyCommandLineConfigOptions(cmdInfo);
+	if (cmdInfo.m_sErrorMessages.size() > 0)
+	{
+		if (AttachConsole(static_cast<DWORD>(-1)))
+		{
+			DWORD dwWritten;
+			for (auto& msg : cmdInfo.m_sErrorMessages)
+			{
+				String line = _T("WinMerge: ") + msg + _T("\n");
+				WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), line.c_str(), static_cast<DWORD>(line.length()), &dwWritten, NULL);
+			}
+			FreeConsole();
+		}
+	}
 
 	// Initialize temp folder
 	SetupTempPath();
@@ -571,13 +584,7 @@ void CMergeApp::ApplyCommandLineConfigOptions(MergeCmdLineInfo& cmdInfo)
 			}
 			else
 			{
-				String msg = strutils::format_string1(_T("WinMerge: Invalid key '%1' specified in /config option\n"), it.first);
-				if (AttachConsole(static_cast<DWORD>(-1)))
-				{
-					DWORD dwWritten;
-					WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), msg.c_str(), static_cast<DWORD>(msg.length()), &dwWritten, NULL);
-					FreeConsole();
-				}
+				cmdInfo.m_sErrorMessages.push_back(strutils::format_string1(_T("Invalid key '%1' specified in /config option"), it.first));
 			}
 		}
 	}
