@@ -1,4 +1,9 @@
 set workdir=BuildTmp\Src
+if "%1" == "vs2017" (
+  set vsversion=vs2017
+) else (
+  set vsversion=vs2015
+)
 
 pushd "%~dp0"
 
@@ -16,7 +21,7 @@ for /d %%d in (Externals\*) do (
 
 pushd %workdir%
 call DownloadDeps.cmd
-call BuildAll.vs2017.cmd
+call BuildAll.%vsversion%.cmd
 
 mkdir ..\..\Build\Releases\PDB\%APPVER%\Win32 2> NUL
 mkdir ..\..\Build\Releases\PDB\%APPVER%\x64 2> NUL
