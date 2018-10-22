@@ -443,6 +443,18 @@ void FileImpl::convertPath(const std::string& utf8Path, std::wstring& utf16Path)
 			}
 		}
 	}
+	else
+	{
+		if (utf16Path.compare(0, 8, L"\\\\?\\UNC\\", 8) == 0)
+		{
+			utf16Path.erase(1, 6);	// leave "\\\\" at beginning
+		}
+		else
+		if (utf16Path.compare(0, 4, L"\\\\?\\", 4) == 0)
+		{
+			utf16Path.erase(0, 4);
+		}
+	}
 }
 
 } // namespace Poco
