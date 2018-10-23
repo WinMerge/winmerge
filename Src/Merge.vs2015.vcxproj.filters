@@ -772,6 +772,9 @@
     <ClCompile Include="..\Externals\gtest\src\gtest-all.cc">
       <Filter>MergeTest\gtest</Filter>
     </ClCompile>
+    <ClCompile Include="Merge7zFormatShellImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1424,6 +1427,9 @@
     </ClInclude>
     <ClInclude Include="..\Externals\gtest\include\gtest\internal\gtest-port.h">
       <Filter>MergeTest\gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="Merge7zFormatShellImpl.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

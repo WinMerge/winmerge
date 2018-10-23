@@ -601,6 +601,9 @@
     <ClCompile Include="Merge7zFormatMergePluginImpl.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Merge7zFormatShellImpl.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="MergeEditSplitterView.cpp" />
     <ClCompile Include="MergeStatusBar.cpp" />
     <ClCompile Include="OptionsDef.cpp">
@@ -998,6 +1001,7 @@
     <ClInclude Include="ImgMergeFrm.h" />
     <ClInclude Include="Merge7zFormatMergePluginImpl.h" />
     <ClInclude Include="Merge7zFormatRegister.h" />
+    <ClInclude Include="Merge7zFormatShellImpl.h" />
     <ClInclude Include="MergeEditSplitterView.h" />
     <ClInclude Include="MergeStatusBar.h" />
     <ClInclude Include="OptionsCustomColors.h" />
