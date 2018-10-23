@@ -244,7 +244,7 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 void CDiffContext::FetchPluginInfos(const String& filteredFilenames,
 		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer)
 {
-	assert(m_piPluginInfos);
+	assert(m_piPluginInfos != nullptr);
 	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
 }
 

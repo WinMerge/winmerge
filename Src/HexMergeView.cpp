@@ -103,7 +103,7 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CHexMergeView::CHexMergeView()
-: m_pif(0)
+: m_pif(nullptr)
 , m_nThisPane(0)
 {
 }

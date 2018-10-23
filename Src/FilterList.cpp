@@ -15,7 +15,7 @@ using Poco::RegularExpression;
  * @brief Constructor.
  */
  FilterList::FilterList()
-: m_lastMatchExpression(NULL)
+: m_lastMatchExpression(nullptr)
 {
 }
 

@@ -189,7 +189,7 @@ struct DIFFITEM : ListEntry
 
 	static DIFFITEM emptyitem; /**< singleton to represent a diffitem that doesn't have any data */
 
-	DIFFITEM() : parent(NULL), nidiffs(-1), nsdiffs(-1), customFlags1(0) { }
+	DIFFITEM() : parent(nullptr), nidiffs(-1), nsdiffs(-1), customFlags1(0) { }
 	~DIFFITEM();
 
 	bool isEmpty() const { return this == &emptyitem; }

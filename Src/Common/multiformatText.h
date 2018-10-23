@@ -26,7 +26,7 @@ class storageForPlugins
 {
 public:
 	storageForPlugins()
-	: m_bstr(NULL)
+	: m_bstr(nullptr)
 	, m_bOriginalIsUnicode(false)
 	, m_bCurrentIsUnicode(false)
 	, m_bCurrentIsFile(false)

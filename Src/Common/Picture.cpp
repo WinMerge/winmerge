@@ -131,7 +131,7 @@ CSize CPicture::GetImageSize(CDC* pDC) const
 		return CSize(0, 0);
 	CSize sz(hmWidth,hmHeight);
 	if (pDC==NULL) {
-		CWindowDC dc(NULL);
+		CWindowDC dc(nullptr);
 		dc.HIMETRICtoDP(&sz); // convert to pixels
 	} else {
 		pDC->HIMETRICtoDP(&sz);

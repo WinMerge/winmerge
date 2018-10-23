@@ -40,7 +40,7 @@ IMPLEMENT_DYNCREATE (CGhostTextView, CCrystalEditViewEx)
  * @brief Constructor, initializes members.
  */
 CGhostTextView::CGhostTextView()
-: m_pGhostTextBuffer(NULL)
+: m_pGhostTextBuffer(nullptr)
 , m_nTopSubLinePushed(0)
 {
 }

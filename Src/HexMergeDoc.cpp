@@ -124,11 +124,11 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CHexMergeDoc::CHexMergeDoc()
-: m_pDirDoc(NULL)
+: m_pDirDoc(nullptr)
 {
 	m_nBuffers = m_nBuffersTemp;
 	m_filePaths.SetSize(m_nBuffers);
-	std::fill_n(m_pView, m_nBuffers, static_cast<CHexMergeView *>(NULL));
+	std::fill_n(m_pView, m_nBuffers, static_cast<CHexMergeView *>(nullptr));
 	std::fill_n(m_nBufferType, m_nBuffers, BUFFER_NORMAL);
 }
 
@@ -575,7 +575,7 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 		sText.insert(0, _T("* "));
 	pf->GetHeaderInterface()->SetText(pane, sText);
 
-	SetTitle(NULL);
+	SetTitle(nullptr);
 }
 
 

@@ -52,7 +52,7 @@ CSizingControlBarCF::CSizingControlBarCF()
     m_bActive = false;
 
     CDC dc;
-    dc.CreateCompatibleDC(NULL);
+    dc.CreateCompatibleDC(nullptr);
 
     m_sFontFace = (::EnumFontFamilies(dc.m_hDC,
         _T("Tahoma"), (FONTENUMPROC) EnumFontFamProc, 0) == 0) ?

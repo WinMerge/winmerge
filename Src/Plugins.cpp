@@ -888,7 +888,7 @@ CScriptsOfThread * CAllThreadsScripts::GetActiveSet()
 	for (size_t i = 0 ; i < m_aAvailableThreads.size() ; i++)
 		if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == nThreadId)
 			return m_aAvailableThreads[i];
-	assert(0);
+	assert(false);
 	return NULL;
 }
 CScriptsOfThread * CAllThreadsScripts::GetActiveSetNoAssert()
@@ -946,8 +946,8 @@ CAssureScriptsForThread::~CAssureScriptsForThread()
 static void ShowPluginErrorMessage(IDispatch *piScript, LPTSTR description)
 {
 	PluginInfo * pInfo = CAllThreadsScripts::GetActiveSet()->GetPluginInfo(piScript);
-	assert(pInfo != NULL);
-	assert(description != NULL);	
+	assert(pInfo != nullptr);
+	assert(description != nullptr);	
 	AppErrorMessageBox(strutils::format(_T("%s: %s"), pInfo->m_name.c_str(), description));
 }
 

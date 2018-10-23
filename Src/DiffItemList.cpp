@@ -157,9 +157,9 @@ DIFFITEM &DiffItemList::GetNextSiblingDiffRefPosition(uintptr_t & diffpos)
  */
 void DiffItemList::SetDiffStatusCode(uintptr_t diffpos, unsigned diffcode, unsigned mask)
 {
-	assert(diffpos);
+	assert(diffpos != NULL);
 	DIFFITEM & di = GetDiffRefAt(diffpos);
-	assert(! ((~mask) & diffcode) ); // make sure they only set flags in their mask
+	assert( ((~mask) & diffcode) == 0 ); // make sure they only set flags in their mask
 	di.diffcode.diffcode &= (~mask); // remove current data
 	di.diffcode.diffcode |= diffcode; // add new data
 }
@@ -169,7 +169,7 @@ void DiffItemList::SetDiffStatusCode(uintptr_t diffpos, unsigned diffcode, unsig
  */
 void DiffItemList::SetDiffCounts(uintptr_t diffpos, unsigned diffs, unsigned ignored)
 {
-	assert(diffpos);
+	assert(diffpos != NULL);
 	DIFFITEM & di = GetDiffRefAt(diffpos);
 	di.nidiffs = ignored; // see StoreDiffResult() in DirScan.cpp
 	di.nsdiffs = diffs;
@@ -182,7 +182,7 @@ void DiffItemList::SetDiffCounts(uintptr_t diffpos, unsigned diffs, unsigned ign
  */
 unsigned DiffItemList::GetCustomFlags1(uintptr_t diffpos) const
 {
-	assert(diffpos);
+	assert(diffpos != NULL);
 	const DIFFITEM & di = GetDiffAt(diffpos);
 	return di.customFlags1;
 }
@@ -194,7 +194,7 @@ unsigned DiffItemList::GetCustomFlags1(uintptr_t diffpos) const
  */
 void DiffItemList::SetCustomFlags1(uintptr_t diffpos, unsigned flag)
 {
-	assert(diffpos);
+	assert(diffpos != NULL);
 	DIFFITEM & di = GetDiffRefAt(diffpos);
 	di.customFlags1 = flag;
 }
