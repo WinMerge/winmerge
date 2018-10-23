@@ -78,8 +78,8 @@ static UINT RO_PANEL_WIDTH = 30;
 IMPLEMENT_DYNCREATE(CDirFrame, CMDIChildWnd)
 
 CDirFrame::CDirFrame()
-: m_hIdentical(NULL)
-, m_hDifferent(NULL)
+: m_hIdentical(nullptr)
+, m_hDifferent(nullptr)
 {
 }
 

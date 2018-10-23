@@ -169,7 +169,7 @@ bool CPropertyPageHost::SetActivePage(int nIndex, bool bAndFocus /*= true*/)
 	// move the focus to the first dlg ctrl
 	if (bAndFocus)
 	{
-		CWnd* pCtrl = pPage->GetNextDlgTabItem(NULL);
+		CWnd* pCtrl = pPage->GetNextDlgTabItem(nullptr);
 
 		if (pCtrl)
 			pCtrl->SetFocus();

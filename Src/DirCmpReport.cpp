@@ -61,12 +61,12 @@ static String EndEl(const String& elName)
  * @brief Constructor.
  */
 DirCmpReport::DirCmpReport(const std::vector<String> & colRegKeys)
-: m_pList(NULL)
-, m_pFile(NULL)
+: m_pList(nullptr)
+, m_pFile(nullptr)
 , m_nColumns(0)
 , m_colRegKeys(colRegKeys)
 , m_sSeparator(_T(","))
-, m_pFileCmpReport(NULL)
+, m_pFileCmpReport(nullptr)
 , m_bIncludeFileCmpReport(false)
 , m_bOutputUTF8(false)
 {
@@ -144,8 +144,8 @@ static HGLOBAL ConvertToUTF16ForClipboard(HGLOBAL hMem, int codepage)
  */
 bool DirCmpReport::GenerateReport(String &errStr)
 {
-	assert(m_pList != NULL);
-	assert(m_pFile == NULL);
+	assert(m_pList != nullptr);
+	assert(m_pFile == nullptr);
 	bool bRet = false;
 
 	DirCmpReportDlg dlg;

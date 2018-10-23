@@ -266,7 +266,7 @@ static const char htmlUTags[] =
 );
 
 CMarkdown::CMarkdown(const char *upper, const char *ahead, unsigned flags):
-first(0), lower(0), upper(upper), ahead(ahead),
+first(nullptr), lower(nullptr), upper(upper), ahead(ahead),
 memcmp(flags & IgnoreCase ? ::_memicmp : ::memcmp),
 utags(flags & HtmlUTags ? htmlUTags : NULL)
 {
@@ -756,7 +756,7 @@ int CMarkdown::FileImage::GuessByteOrder(unsigned dwBOM)
 }
 
 CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
-: pImage(NULL), cbImage(0), nByteOrder(0), m_pSharedMemory(NULL), pCopy(NULL)
+: pImage(nullptr), cbImage(0), nByteOrder(0), m_pSharedMemory(nullptr), pCopy(nullptr)
 {
 	if (flags & Mapping)
 	{

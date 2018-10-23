@@ -112,7 +112,7 @@ public:
 		std::string ret;
 		if (ImageList_GetImageInfo(hImageList, iconIndex, &imageInfo))
 		{
-			HDC hdcMem = CreateCompatibleDC(NULL);
+			HDC hdcMem = CreateCompatibleDC(nullptr);
 			BITMAPINFO bmpinfo = { 0 };
 			bmpinfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 			int w = imageInfo.rcImage.right - imageInfo.rcImage.left;

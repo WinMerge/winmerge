@@ -106,11 +106,11 @@ END_MESSAGE_MAP()
 
 CMergeApp::CMergeApp() :
   m_bNeedIdleTimer(false)
-, m_pOpenTemplate(0)
-, m_pDiffTemplate(0)
-, m_pHexMergeTemplate(0)
-, m_pDirTemplate(0)
-, m_mainThreadScripts(NULL)
+, m_pOpenTemplate(nullptr)
+, m_pDiffTemplate(nullptr)
+, m_pHexMergeTemplate(nullptr)
+, m_pDirTemplate(nullptr)
+, m_mainThreadScripts(nullptr)
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
 , m_pOptions(new CRegOptionsMgr())
@@ -715,7 +715,7 @@ void CMergeApp::UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage)
 			break;
 		default:
 			// no other valid option
-			assert (0);
+			assert (false);
 			ucr::setDefaultCodepage(GetACP());
 	}
 }

@@ -26,7 +26,7 @@ IMPLEMENT_DYNAMIC(LineFiltersDlg, CTrPropertyPage)
  */
 LineFiltersDlg::LineFiltersDlg()
 : CTrPropertyPage(LineFiltersDlg::IDD)
-, m_pList(NULL)
+, m_pList(nullptr)
 {
 	//{{AFX_DATA_INIT(LineFiltersDlg)
 	m_bIgnoreRegExp = FALSE;

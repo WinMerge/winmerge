@@ -1055,7 +1055,7 @@ void SetDiffStatus(DIFFITEM& di, unsigned  diffcode, unsigned mask)
 	// Someone could figure out these pieces and probably simplify this.
 
 	// Update DIFFITEM code (comparison result)
-	assert(! ((~mask) & diffcode) ); // make sure they only set flags in their mask
+	assert( ((~mask) & diffcode) == 0 ); // make sure they only set flags in their mask
 	di.diffcode.diffcode &= (~mask); // remove current data
 	di.diffcode.diffcode |= diffcode; // add new data
 

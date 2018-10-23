@@ -17,7 +17,7 @@
  @brief Constructor.
  */
 LineInfo::LineInfo()
-: m_pcLine(NULL)
+: m_pcLine(nullptr)
 , m_nLength(0)
 , m_nMax(0)
 , m_nEolChars(0)
