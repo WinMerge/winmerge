@@ -57,7 +57,7 @@ public:
  * @brief Default constructor.
  */
 CDiffThread::CDiffThread()
-: m_pDiffContext(NULL)
+: m_pDiffContext(nullptr)
 , m_bAborting(false)
 , m_bPaused(false)
 , m_pDiffParm(new DiffFuncStruct)

@@ -341,17 +341,17 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(GetCompilerVersion());
 
 	LPCTSTR szCmdLine = ::GetCommandLine();
-	assert(szCmdLine != NULL);
+	assert(szCmdLine != nullptr);
 
 	// Skip the quoted executable file name.
-	if (szCmdLine != NULL)
+	if (szCmdLine != nullptr)
 	{
 		szCmdLine = _tcschr(szCmdLine, '"');
-		if (szCmdLine != NULL)
+		if (szCmdLine != nullptr)
 		{
 			szCmdLine += 1; // skip the opening quote.
 			szCmdLine = _tcschr(szCmdLine, '"');
-			if (szCmdLine != NULL)
+			if (szCmdLine != nullptr)
 			{
 				szCmdLine += 1; // skip the closing quote.
 			}

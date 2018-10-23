@@ -39,9 +39,9 @@ void DirCompProgressBar::ClearStat()
 DirCompProgressBar::DirCompProgressBar()
 : m_bCompareReady(false)
 , m_prevState(CompareStats::STATE_IDLE)
-, m_pCompareStats(NULL)
+, m_pCompareStats(nullptr)
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
-, m_pTaskbarList(NULL)
+, m_pTaskbarList(nullptr)
 #endif
 {
 }

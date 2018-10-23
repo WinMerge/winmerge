@@ -20,7 +20,7 @@ IMPLEMENT_DYNAMIC(CDiffViewBar, TViewBarBase);
 //////////////////////////////////////////////////////////////////////
 
 CDiffViewBar::CDiffViewBar()
-: m_hwndFrame(NULL)
+: m_hwndFrame(nullptr)
 {
 }
 

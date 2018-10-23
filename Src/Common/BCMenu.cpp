@@ -1218,7 +1218,8 @@ BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>
 #endif
 		if(psubmenu){
 			pgoodmenu=psubmenu->FindAnotherMenuOption(nId,nLoc,bcsubs,bclocs);
-			if(pgoodmenu)return(pgoodmenu);
+			if(pgoodmenu != nullptr)
+				return pgoodmenu;
 		}
 		else if(nId==(int)GetMenuItemID(i)){
 			INT_PTR numsubs=bcsubs.GetSize();
@@ -1231,12 +1232,12 @@ BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>
 			}
 			if(foundflag){
 				nLoc=static_cast<UINT>(i);
-				return(this);
+				return this;
 			}
 		}
 	}
 	nLoc = static_cast<UINT>(-1);
-	return(NULL);
+	return nullptr;
 }
 
 BCMenu *BCMenu::FindMenuOption(int nId,UINT& nLoc)
@@ -1251,15 +1252,16 @@ BCMenu *BCMenu::FindMenuOption(int nId,UINT& nLoc)
 #endif
 		if(psubmenu){
 			pgoodmenu=psubmenu->FindMenuOption(nId,nLoc);
-			if(pgoodmenu)return(pgoodmenu);
+			if(pgoodmenu != nullptr)
+				return pgoodmenu;
 		}
 		else if(nId==(int)GetMenuItemID(i)){
 			nLoc=i;
-			return(this);
+			return this;
 		}
 	}
 	nLoc = static_cast<UINT>(-1);
-	return(NULL);
+	return nullptr;
 }
 
 BCMenuData *BCMenu::FindMenuOption(wchar_t *lpstrText)
@@ -1274,20 +1276,21 @@ BCMenuData *BCMenu::FindMenuOption(wchar_t *lpstrText)
 #else
 		psubmenu=static_cast<BCMenu *>(GetSubMenu(i));
 #endif
-		if(psubmenu){
+		if(psubmenu != nullptr){
 			pmenulist=psubmenu->FindMenuOption(lpstrText);
-			if(pmenulist)return(pmenulist);
+			if(pmenulist != nullptr)
+				return pmenulist;
 		}
 		else{
 			for(j=0;j<=m_MenuList.GetUpperBound();++j){     
 				const wchar_t *szWide;//SK: we use const to prevent misuse of this Ptr
 				szWide = m_MenuList[j]->GetWideString ();
 				if(szWide && !wcscmp(lpstrText,szWide))//SK: modified for dynamic allocation
-					return(m_MenuList[j]);
+					return m_MenuList[j];
 			}
 		}
 	}
-	return(NULL);
+	return nullptr;
 }
 
 
@@ -1299,27 +1302,30 @@ BOOL BCMenu::LoadMenu(int nResource)
 BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 {
 	ASSERT_VALID(this);
-	ASSERT(lpszResourceName != NULL);
+	ASSERT(lpszResourceName != nullptr);
 	
 	// Find the Menu Resource:
 	HINSTANCE hInst = AfxFindResourceHandle(lpszResourceName,RT_MENU);
 	HRSRC hRsrc = ::FindResource(hInst,lpszResourceName,RT_MENU);
-	if (hRsrc == NULL){
-		hInst = NULL;
+	if (hRsrc == nullptr){
+		hInst = nullptr;
 		hRsrc = ::FindResource(hInst,lpszResourceName,RT_MENU);
 	}
-	if(hRsrc == NULL)return FALSE;
+	if(hRsrc == nullptr)
+		return FALSE;
 	
 	// Load the Menu Resource:
 	
 	HGLOBAL hGlobal = LoadResource(hInst, hRsrc);
-	if(hGlobal == NULL)return FALSE;
+	if(hGlobal == nullptr)
+		return FALSE;
 
 	// first destroy the menu if we're trying to loadmenu again
 	DestroyMenu();
 
 	// Attempt to create us as a menu...
-	if(!CMenu::CreateMenu())return FALSE;
+	if(!CMenu::CreateMenu())
+		return FALSE;
 	
 	// Get Item template Header, and calculate offset of MENUITEMTEMPLATES
 	
@@ -1524,10 +1530,10 @@ BCMenuData *BCMenu::FindMenuList(UINT_PTR nID)
 	for(int i=0;i<=m_MenuList.GetUpperBound();++i){
 		if(m_MenuList[i]->nID==nID && !m_MenuList[i]->syncflag){
 			m_MenuList[i]->syncflag=1;
-			return(m_MenuList[i]);
+			return m_MenuList[i];
 		}
 	}
-	return(NULL);
+	return nullptr;
 }
 
 void BCMenu::InitializeMenuList(int value)
@@ -1643,13 +1649,13 @@ void BCMenu::GetTransparentBitmap(CBitmap &bmp)
 	BITMAP BitMap;
 
 	bmp.GetBitmap(&BitMap);
-	ddc.CreateCompatibleDC(NULL);
+	ddc.CreateCompatibleDC(nullptr);
 	CBitmap * pddcOldBmp = ddc.SelectObject(&bmp);
 
 	// use this to get the background color, takes into account color shifting
 	CDC ddc2;
 	CBitmap bmp2;
-	ddc2.CreateCompatibleDC(NULL);
+	ddc2.CreateCompatibleDC(nullptr);
 	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
 	col=RGB(255,0,255); // Original was RGB(192,192,192)
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
@@ -1685,13 +1691,13 @@ void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 	BITMAP BitMap;
 
 	bmp.GetBitmap(&BitMap);
-	ddc.CreateCompatibleDC(NULL);
+	ddc.CreateCompatibleDC(nullptr);
 	CBitmap * pddcOldBmp = ddc.SelectObject(&bmp);
 
 	// use this to get the background color, takes into account color shifting
 	CDC ddc2;
 	CBitmap bmp2;
-	ddc2.CreateCompatibleDC(NULL);
+	ddc2.CreateCompatibleDC(nullptr);
 	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
@@ -1795,13 +1801,13 @@ void BCMenu::DitherBlt2(CDC *drawdc, int nXDest, int nYDest, int nWidth,
 {
 	// create a monochrome memory DC
 	CDC ddc;
-	ddc.CreateCompatibleDC(0);
+	ddc.CreateCompatibleDC(nullptr);
 	CBitmap bwbmp;
 	bwbmp.CreateCompatibleBitmap(&ddc, nWidth, nHeight);
 	CBitmap * pddcOldBmp = ddc.SelectObject(&bwbmp);
 	
 	CDC dc;
-	dc.CreateCompatibleDC(0);
+	dc.CreateCompatibleDC(nullptr);
 	CBitmap * pdcOldBmp = dc.SelectObject(&bmp);
 	
 	// build a mask
@@ -1837,7 +1843,7 @@ void BCMenu::DitherBlt3(CDC *drawdc, int nXDest, int nYDest, int nWidth,
 {
 	GetDisabledBitmap(bmp,bgcolor);
 	CDC dc;
-	dc.CreateCompatibleDC(NULL);
+	dc.CreateCompatibleDC(nullptr);
 	CBitmap * pdcOldBmp = dc.SelectObject(&bmp);
 	drawdc->BitBlt(nXDest,nYDest,nWidth, nHeight, &dc,0,0,SRCCOPY);
 	// reset DCs
@@ -1876,22 +1882,25 @@ HBITMAP BCMenu::LoadSysColorBitmap(int nResourceId)
 		AfxFindResourceHandle(MAKEINTRESOURCE(nResourceId),RT_BITMAP);
 	HRSRC hRsrc = 
 		::FindResource(hInst,MAKEINTRESOURCE(nResourceId),RT_BITMAP);
-	if (hRsrc == NULL){
-		hInst = NULL;
+	if (hRsrc == nullptr){
+		hInst = nullptr;
 		hRsrc = ::FindResource(hInst,MAKEINTRESOURCE(nResourceId),RT_BITMAP);
 	}
-	if (hRsrc == NULL)return NULL;
+	if (hRsrc == nullptr)
+		return nullptr;
 
 	// determine how many colors in the bitmap
 	HGLOBAL hglb;
-	if ((hglb = LoadResource(hInst, hRsrc)) == NULL)
-		return NULL;
+	if ((hglb = LoadResource(hInst, hRsrc)) == nullptr)
+		return nullptr;
 	LPBITMAPINFOHEADER lpBitmap = (LPBITMAPINFOHEADER)LockResource(hglb);
-	if (lpBitmap == NULL)return NULL;
+	if (lpBitmap == nullptr)
+		return nullptr;
 	WORD numcol = NumBitmapColors(lpBitmap);
 	::FreeResource(hglb);
 
-	if(numcol!=16)return(NULL);
+	if(numcol!=16)
+		return nullptr;
 
 	return AfxLoadSysColorBitmap(hInst, hRsrc, FALSE);
 }

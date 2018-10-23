@@ -33,10 +33,10 @@
 #endif
 
 CShellContextMenu::CShellContextMenu(UINT cmdFirst, UINT cmdLast)
-: m_pPreferredMenu(NULL)
-, m_pShellContextMenu2(NULL)
-, m_pShellContextMenu3(NULL)
-, m_hShellContextMenu(NULL)
+: m_pPreferredMenu(nullptr)
+, m_pShellContextMenu2(nullptr)
+, m_pShellContextMenu3(nullptr)
+, m_hShellContextMenu(nullptr)
 , m_cmdFirst(cmdFirst)
 , m_cmdLast(cmdLast)
 {
@@ -94,7 +94,7 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 				//	  (HMENU)hMenu = (HMENU)lpDrawItem->hwndItem;
 				//	  TRACE(_T("  hMenu == 0x%p\n"), hMenu);
 				//}
-				//assert(0);
+				//assert(false);
 			}
 		}
 		else if (m_pShellContextMenu2)
@@ -102,7 +102,7 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 			if (FAILED(/*hr = */m_pShellContextMenu2->HandleMenuMsg(message, wParam, lParam)))
 			{
 				//TRACE(_T("HandleMenuMsg(%x) failed with error: %lx\n"), message, hr);
-				//assert(0);
+				//assert(false);
 			}
 		}
 		// indicate that we've processed the message
@@ -115,7 +115,7 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 			if (FAILED(/*hr = */m_pShellContextMenu3->HandleMenuMsg2(message, wParam, lParam, &retval)))
 			{
 				//TRACE(_T("HandleMenuMsg2(%x) failed with error: %lx\n"), message, hr);
-				//assert(0);
+				//assert(false);
 			}
 			return true;
 		}

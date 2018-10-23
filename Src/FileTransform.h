@@ -101,7 +101,7 @@ public:
 	explicit PackingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)FileTransform::g_bUnpackerMode)
 	: PluginForFile(bMode)
 	, subcode(0)
-	, pufile(0)
+	, pufile(nullptr)
 	, disallowMixedEOL(false)
 	{
 	}

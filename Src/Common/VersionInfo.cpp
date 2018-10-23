@@ -382,7 +382,7 @@ void CVersionInfo::QueryStrings()
  */
 void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 {
-	assert(m_pVffInfo != NULL);
+	assert(m_pVffInfo != nullptr);
 	LPTSTR   lpVersion;			// String pointer to 'version' text
 	UINT    uVersionLen;
 	bool    bRetCode;

@@ -19,7 +19,7 @@
 HIMAGELIST CSuperComboBox::m_himlSystem = NULL;
 
 CSuperComboBox::CSuperComboBox()
-	: m_pDropHandler(NULL)
+	: m_pDropHandler(nullptr)
 {
 	m_bEditChanged = false;
 	m_bDoComplete = false;
@@ -38,7 +38,7 @@ CSuperComboBox::CSuperComboBox()
 	_AFX_THREAD_STATE* pState = AfxGetThreadState();
 	if (!pState->m_bNeedTerm)
 	{
-		SCODE sc = ::OleInitialize(NULL);
+		SCODE sc = ::OleInitialize(nullptr);
 		if (FAILED(sc))
 			AfxMessageBox(_T("OLE initialization failed. Make sure that the OLE libraries are the correct version"));
 		else

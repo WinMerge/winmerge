@@ -156,12 +156,12 @@ CMenu CImgMergeFrame::menu;
 // CImgMergeFrame construction/destruction
 
 CImgMergeFrame::CImgMergeFrame()
-: m_hIdentical(NULL)
-, m_hDifferent(NULL)
-, m_pDirDoc(NULL)
+: m_hIdentical(nullptr)
+, m_hDifferent(nullptr)
+, m_pDirDoc(nullptr)
 , m_bAutoMerged(false)
-, m_pImgMergeWindow(NULL)
-, m_pImgToolWindow(NULL)
+, m_pImgMergeWindow(nullptr)
+, m_pImgToolWindow(nullptr)
 {
 	std::fill_n(m_nLastSplitPos, 2, 0);
 	std::fill_n(m_nBufferType, 3, BUFFER_NORMAL);
@@ -209,7 +209,7 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 		m_strDesc[pane] = strDesc ? strDesc[pane] : _T("");
 		m_nBufferType[pane] = (!strDesc || strDesc[pane].empty()) ? BUFFER_NORMAL : BUFFER_NORMAL_NAMED;
 	}
-	SetTitle(NULL);
+	SetTitle(nullptr);
 
 	LPCTSTR lpszWndClass = AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW,
 			LoadCursor(NULL, IDC_ARROW), (HBRUSH)(COLOR_WINDOW+1), NULL);

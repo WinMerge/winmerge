@@ -75,8 +75,8 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CChildFrame::CChildFrame()
-: m_hIdentical(NULL)
-, m_hDifferent(NULL)
+: m_hIdentical(nullptr)
+, m_hDifferent(nullptr)
 {
 	m_bActivated = false;
 	std::fill_n(m_nLastSplitPos, 2, 0);

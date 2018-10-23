@@ -131,11 +131,11 @@ static int add(size_t *len, LPTSTR *s, LPCTSTR a, size_t alen, int &flag) {
 		if (!p)
 			return 0;
 		*s = p;
-		assert(*s);
+		assert(*s != 0);
 		memcpy(*s + *len, a, alen * sizeof(TCHAR));
     } else {
         *s = (LPTSTR) malloc(NewLen * sizeof(TCHAR));
-        assert(*s);
+        assert(*s != 0);
         memcpy(*s, a, alen * sizeof(TCHAR));
         *len = 0;
     }

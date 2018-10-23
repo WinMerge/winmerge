@@ -215,7 +215,7 @@ const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
 	}
 	else
 	{
-		assert(0);
+		assert(false);
 		return NULL;
 	}
 }

@@ -74,8 +74,8 @@ enum
 // CHexMergeFrame construction/destruction
 
 CHexMergeFrame::CHexMergeFrame()
-: m_hIdentical(NULL)
-, m_hDifferent(NULL)
+: m_hIdentical(nullptr)
+, m_hDifferent(nullptr)
 {
 	std::fill_n(m_nLastSplitPos, 2, 0);
 	m_pMergeDoc = 0;

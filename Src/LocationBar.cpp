@@ -19,7 +19,7 @@ IMPLEMENT_DYNAMIC(CLocationBar, TViewBarBase);
 //////////////////////////////////////////////////////////////////////
 
 CLocationBar::CLocationBar()
-: m_hwndFrame(NULL)
+: m_hwndFrame(nullptr)
 {
 }
 
