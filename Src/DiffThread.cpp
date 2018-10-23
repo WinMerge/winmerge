@@ -113,7 +113,7 @@ unsigned CDiffThread::CompareDirectories()
 
 	m_pDiffParm->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);
 
-	if (m_bOnlyRequested == false)
+	if (!m_bOnlyRequested)
 		m_threads[0].start(DiffThreadCollect, m_pDiffParm.get());
 	else
 	{
@@ -158,7 +158,7 @@ static void DiffThreadCollect(void *pParam)
 	PathContext paths;
 	DiffFuncStruct *myStruct = static_cast<DiffFuncStruct *>(pParam);
 
-	assert(myStruct->bOnlyRequested == false);
+	assert(!myStruct->bOnlyRequested);
 
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);

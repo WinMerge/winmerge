@@ -131,7 +131,7 @@ CMoveConstraint::InitializeSpecificSize(HWND /*hwndDlg*/, int nWidth, int nHeigh
 bool
 CMoveConstraint::InitializeOriginalSize(HWND hwndDlg)
 {
-	ASSERT(hwndDlg && !m_hwndDlg);
+	ASSERT(hwndDlg != nullptr && m_hwndDlg == nullptr);
 	m_hwndDlg = hwndDlg;
 
 	return m_nOrigX != 0; // if 0, we didn't get WM_SIZE so we don't know the original size
@@ -140,7 +140,7 @@ CMoveConstraint::InitializeOriginalSize(HWND hwndDlg)
 bool
 CMoveConstraint::InitializeOriginalSize(CWnd * pParent)
 {
-	ASSERT(pParent);
+	ASSERT(pParent != nullptr);
 	return InitializeOriginalSize(pParent->m_hWnd);
 }
 
@@ -148,14 +148,14 @@ CMoveConstraint::InitializeOriginalSize(CWnd * pParent)
 void
 CMoveConstraint::InitializeSpecificSize(CWnd * pDlg, int nWidth, int nHeight)
 {
-	ASSERT(pDlg);
+	ASSERT(pDlg != nullptr);
 	InitializeSpecificSize(pDlg->m_hWnd, nWidth, nHeight);
 }
 
 bool
 CMoveConstraint::InitializeCurrentSize(CWnd * pDlg)
 {
-	ASSERT(pDlg);
+	ASSERT(pDlg != nullptr);
 	return InitializeCurrentSize(pDlg->m_hWnd);
 }
 
@@ -316,7 +316,7 @@ void
 CMoveConstraint::
 Constrain(CWnd * pWnd, double fLeftX, double fExpandX, double fAboveY, double fExpandY)
 {
-	ASSERT(pWnd);
+	ASSERT(pWnd != nullptr);
 	DoConstrain(pWnd, pWnd->m_hWnd, fLeftX, fExpandX, fAboveY, fExpandY);
 }
 
@@ -385,7 +385,7 @@ CMoveConstraint::CheckDeferredChildren()
 		Constraint & constraint = constraintList.GetAt(pos);
 		if (constraint.m_hwndChild)
 			continue;
-		ASSERT(constraint.m_pWnd);
+		ASSERT(constraint.m_pWnd != nullptr);
 		if (constraint.m_pWnd->m_hWnd)
 		{
 			constraint.m_hwndChild = constraint.m_pWnd->m_hWnd;

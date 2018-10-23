@@ -55,7 +55,7 @@ END_MESSAGE_MAP ()
 void CGotoDlg::OnOK ()
 {
   CDialog::OnOK ();
-  ASSERT (m_pBuddy != NULL);
+  ASSERT (m_pBuddy != nullptr);
   m_pBuddy->GoToLine (_ttoi (m_sNumber), _tcschr (_T ("+-"), *(LPCTSTR)m_sNumber) != NULL);
 }
 

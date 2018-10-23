@@ -43,13 +43,13 @@ using std::swap;
  */
 CPatchDlg::CPatchDlg(CWnd* pParent /*=NULL*/)
 	: CTrDialog(CPatchDlg::IDD, pParent)
-	, m_caseSensitive(FALSE)
-	, m_ignoreBlanks(0)
-	, m_ignoreEOLDifference(FALSE)
+	, m_caseSensitive(false)
+	, m_ignoreBlanks(false)
+	, m_ignoreEOLDifference(false)
 	, m_whitespaceCompare(0)
-	, m_appendFile(FALSE)
-	, m_openToEditor(FALSE)
-	, m_includeCmdLine(FALSE)
+	, m_appendFile(false)
+	, m_openToEditor(false)
+	, m_includeCmdLine(false)
 	, m_outputStyle(OUTPUT_NORMAL)
 	, m_contextLines(0)
 {
@@ -463,12 +463,12 @@ void CPatchDlg::OnDefaultSettings()
 {
 	m_outputStyle = (enum output_style) DIFF_OUTPUT_NORMAL;
 	m_contextLines = 0;
-	m_caseSensitive = TRUE;
-	m_ignoreEOLDifference = FALSE;
-	m_ignoreBlanks = FALSE;
+	m_caseSensitive = true;
+	m_ignoreEOLDifference = false;
+	m_ignoreBlanks = false;
 	m_whitespaceCompare = WHITESPACE_COMPARE_ALL;
-	m_openToEditor = FALSE;
-	m_includeCmdLine = FALSE;
+	m_openToEditor = false;
+	m_includeCmdLine = false;
 
 	UpdateSettings();
 }

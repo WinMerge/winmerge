@@ -705,7 +705,7 @@ std::pair<int, int> CountPredifferYesNo(const InputIterator& begin, const InputI
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);
-			if (prediffer->bToBeScanned == 1 || prediffer->pluginName.empty() == false)
+			if (prediffer->bToBeScanned == 1 || !prediffer->pluginName.empty())
 				nPredifferYes ++;
 			else
 				nPredifferNo ++;

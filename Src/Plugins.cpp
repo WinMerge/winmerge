@@ -814,9 +814,9 @@ PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transfor
 	for (size_t step = 0 ; step < piFileScriptArray->size() ; step ++)
 	{
 		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
-		if (plugin->m_bAutomatic == false || plugin->m_disabled)
+		if (!plugin->m_bAutomatic || plugin->m_disabled)
 			continue;
-		if (plugin->TestAgainstRegList(filteredText) == false)
+		if (!plugin->TestAgainstRegList(filteredText))
 			continue;
 		return plugin.get();
 	}
@@ -926,7 +926,7 @@ CAssureScriptsForThread::~CAssureScriptsForThread()
 	CScriptsOfThread * scripts = CAllThreadsScripts::GetActiveSetNoAssert();
 	if (scripts == NULL)
 		return;
-	if (scripts->Unlock() == true)
+	if (scripts->Unlock())
 	{
 		CAllThreadsScripts::Remove(scripts);
 		delete scripts;

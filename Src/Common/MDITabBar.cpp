@@ -290,7 +290,7 @@ void CMDITabBar::UpdateTabs()
 		int dummy;
 		tci.mask = TCIF_PARAM;
 		GetItem(item, &tci);
-		if (MDIFrameList.Lookup((HWND)tci.lParam, dummy) == FALSE)
+		if (!MDIFrameList.Lookup((HWND)tci.lParam, dummy))
 		{
 			DeleteItem(item);
 			if (GetItemCount() == 0)

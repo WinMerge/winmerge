@@ -186,7 +186,7 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
  */
 void CDirDoc::LoadLineFilterList()
 {
-	ASSERT(m_pCtxt);
+	ASSERT(m_pCtxt != nullptr);
 	
 	bool bFilters = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	String filters = theApp.m_pLineFilters->GetAsString();
@@ -379,7 +379,7 @@ void CDirDoc::SetDirView(CDirView * newView)
  */
 void CDirDoc::AddMergeDoc(IMergeDoc * pMergeDoc)
 {
-	ASSERT(pMergeDoc);
+	ASSERT(pMergeDoc != nullptr);
 	m_MergeDocs.AddTail(pMergeDoc);
 }
 
@@ -388,11 +388,11 @@ void CDirDoc::AddMergeDoc(IMergeDoc * pMergeDoc)
  */
 void CDirDoc::MergeDocClosing(IMergeDoc * pMergeDoc)
 {
-	ASSERT(pMergeDoc);
+	ASSERT(pMergeDoc != nullptr);
 	if (POSITION pos = m_MergeDocs.CPtrList::Find(pMergeDoc))
 		m_MergeDocs.RemoveAt(pos);
 	else
-		ASSERT(FALSE);
+		ASSERT(false);
 
 	// If dir compare is empty (no compare results) and we are not closing
 	// because of reuse close also dir compare
@@ -524,7 +524,7 @@ const bool *CDirDoc::GetReadOnly(void) const
 void CDirDoc::UpdateHeaderPath(int nIndex)
 {
 	CDirFrame *pf = m_pDirView->GetParentFrame();
-	ASSERT(pf);
+	ASSERT(pf != nullptr);
 	String sText;
 
 	if (!m_strDesc[nIndex].empty())

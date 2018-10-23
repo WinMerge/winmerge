@@ -37,5 +37,5 @@ void DiffFileInfo::ClearPartial()
  */
 bool DiffFileInfo::IsEditableEncoding() const
 {
-	return encoding.m_bom == false;
+	return !encoding.m_bom;
 }

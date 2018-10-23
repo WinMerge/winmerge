@@ -250,7 +250,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		theApp.TranslateMenu(menu.m_hMenu);
 
 		BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(0));
-		ASSERT(pPopup != NULL);
+		ASSERT(pPopup != nullptr);
 
 		DWORD sel = GetSel();
 		if (HIWORD(sel) == LOWORD(sel))

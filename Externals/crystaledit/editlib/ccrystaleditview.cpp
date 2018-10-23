@@ -1363,7 +1363,7 @@ DoDragScroll (const CPoint & point)
 void CCrystalEditView::
 SetAlternateDropTarget (IDropTarget *pDropTarget)
 {
-  ASSERT(m_pDropTarget->m_pAlternateDropTarget == NULL);
+  ASSERT(m_pDropTarget->m_pAlternateDropTarget == nullptr);
   m_pDropTarget->m_pAlternateDropTarget = pDropTarget;
   m_pDropTarget->m_pAlternateDropTarget->AddRef();
 }
@@ -1425,13 +1425,13 @@ OnCreate (LPCREATESTRUCT lpCreateStruct)
   if (CCrystalTextView::OnCreate (lpCreateStruct) == -1)
     return -1;
 
-  ASSERT (m_pDropTarget == NULL);
+  ASSERT (m_pDropTarget == nullptr);
   m_pDropTarget = new CEditDropTargetImpl (this);
   if (!m_pDropTarget->Register (this))
     {
       TRACE0 ("Warning: Unable to register drop target for ccrystaleditview.\n");
       delete m_pDropTarget;
-      m_pDropTarget = NULL;
+      m_pDropTarget = nullptr;
     }
 
   return 0;
@@ -1536,7 +1536,7 @@ OnEditReplace ()
     return;
 
   CWinApp *pApp = AfxGetApp ();
-  ASSERT (pApp != NULL);
+  ASSERT (pApp != nullptr);
 
   CEditReplaceDlg dlg (this);
   LastSearchInfos * lastSearch = dlg.GetLastSearchInfos();
@@ -1638,7 +1638,7 @@ ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags)
 {
   if (!cchNewText)
     return DeleteCurrentSelection();
-  ASSERT(pszNewText);
+  ASSERT(pszNewText != nullptr);
 
   m_pTextBuffer->BeginUndoGroup();
 
@@ -2828,7 +2828,7 @@ OnToolsCharCoding ()
       LPTSTR pszNew;
       if (!iconvert_new (sText, &pszNew, dlg.m_nSource, dlg.m_nDest, dlg.m_bAlpha != false))
         {
-          ASSERT (pszNew);
+          ASSERT (pszNew != nullptr);
           m_pTextBuffer->BeginUndoGroup ();
 
           m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_RECODE);

@@ -89,7 +89,7 @@ bool Packing(String & filepath, PackingInfo handler)
 	}
 
 	// if this packer does not work, that is an error
-	if (bHandled == false)
+	if (!bHandled)
 		return false;
 
 	// if the buffer changed, write it before leaving
@@ -149,7 +149,7 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 	}
 
 	// if this unpacker does not work, that is an error
-	if (bHandled == false)
+	if (!bHandled)
 		return false;
 
 	// valid the subcode
@@ -223,7 +223,7 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 		}
 	}
 
-	if (bHandled == false)
+	if (!bHandled)
 	{
 		// we didn't find any unpacker, just hope it is normal Ansi/Unicode
 		handler->pluginName = _T("");
@@ -305,7 +305,7 @@ bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 	}
 
 	// if this unpacker does not work, that is an error
-	if (bHandled == false)
+	if (!bHandled)
 		return false;
 
 	// if the buffer changed, write it before leaving
@@ -364,7 +364,7 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 		}
 	}
 
-	if (bHandled == false)
+	if (!bHandled)
 	{
 		// we didn't find any prediffer, that is OK anyway
 		handler->pluginName = _T("");

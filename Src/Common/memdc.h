@@ -34,17 +34,17 @@ private:
 	bool		m_bMemDC;		// `true` if CDC really is a Memory DC.
 public:
 	
-	CMyMemDC(CDC* pDC, const CRect* pRect = NULL) : CDC()
+	CMyMemDC(CDC* pDC, const CRect* pRect = nullptr) : CDC()
 	{
-		ASSERT(pDC != NULL); 
+		ASSERT(pDC != nullptr); 
 
 		// Some initialization
 		m_pDC = pDC;
-		m_oldBitmap = NULL;
+		m_oldBitmap = nullptr;
 		m_bMemDC = !pDC->IsPrinting();
 
 		// Get the rectangle to draw
-		if (pRect == NULL) {
+		if (pRect == nullptr) {
 			pDC->GetClipBox(&m_rect);
 		} else {
 			m_rect = *pRect;

@@ -814,7 +814,7 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHo
 {
 	if (pUpdateSource != this)
 	{
-		ASSERT (pUpdateSource != NULL);
+		ASSERT (pUpdateSource != nullptr);
 		ASSERT_KINDOF (CCrystalTextView, pUpdateSource);
 		CMergeEditView *pSrcView = static_cast<CMergeEditView*>(pUpdateSource);
 		if (!bHorz)  // changed this so bHorz works right
@@ -2303,7 +2303,7 @@ void CMergeEditView::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
 void CMergeEditView::OnRefresh()
 {
 	CMergeDoc *pd = GetDocument();
-	ASSERT(pd);
+	ASSERT(pd != nullptr);
 	pd->FlushAndRescan(true);
 }
 
@@ -2484,7 +2484,7 @@ void CMergeEditView::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 /// Store interface we use to display status line info
 void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
 {
-	ASSERT(!m_piMergeEditStatus);
+	ASSERT(m_piMergeEditStatus == nullptr);
 	m_piMergeEditStatus = piMergeEditStatus;
 }
 
@@ -2653,7 +2653,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		DeleteMenu(hMenu, 0, MF_BYPOSITION);
 
 	CMergeDoc *pd = GetDocument();
-	ASSERT(pd);
+	ASSERT(pd != nullptr);
 
 	// title
 	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
@@ -2765,7 +2765,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	theApp.TranslateMenu(menu.m_hMenu);
 
 	BCMenu *pSub = static_cast<BCMenu *>(menu.GetSubMenu(0));
-	ASSERT(pSub != NULL);
+	ASSERT(pSub != nullptr);
 
 	// Context menu opened using keyboard has no coordinates
 	if (point.x == -1 && point.y == -1)
@@ -2819,7 +2819,7 @@ void CMergeEditView::OnConvertEolTo(UINT nID )
 	if (m_pTextBuffer->applyEOLMode())
 	{
 		CMergeDoc *pd = GetDocument();
-		ASSERT(pd);
+		ASSERT(pd != nullptr);
 		pd->UpdateHeaderPath(m_nThisPane);
 		pd->FlushAndRescan(true);
 	}
@@ -3055,7 +3055,7 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 	pCmdUI->Enable(true);
 
 	CMergeDoc *pd = GetDocument();
-	ASSERT(pd);
+	ASSERT(pd != nullptr);
 	PrediffingInfo prediffer;
 	pd->GetPrediffer(&prediffer);
 
@@ -3092,7 +3092,7 @@ void CMergeEditView::OnNoPrediffer()
 void CMergeEditView::OnPrediffer(UINT nID )
 {
 	CMergeDoc *pd = GetDocument();
-	ASSERT(pd);
+	ASSERT(pd != nullptr);
 
 	SetPredifferByMenu(nID);
 	pd->FlushAndRescan(true);
@@ -3106,7 +3106,7 @@ void CMergeEditView::OnPrediffer(UINT nID )
 void CMergeEditView::SetPredifferByMenu(UINT nID )
 {
 	CMergeDoc *pd = GetDocument();
-	ASSERT(pd);
+	ASSERT(pd != nullptr);
 
 	if (nID == ID_NO_PREDIFFER)
 	{
@@ -3374,7 +3374,7 @@ void CMergeEditView::OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI)
 void CMergeEditView::OnOpenFile()
 {
 	CMergeDoc * pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
@@ -3394,7 +3394,7 @@ void CMergeEditView::OnOpenFile()
 void CMergeEditView::OnOpenFileWith()
 {
 	CMergeDoc * pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
@@ -3415,7 +3415,7 @@ void CMergeEditView::OnOpenFileWith()
 void CMergeEditView::OnOpenFileWithEditor()
 {
 	CMergeDoc * pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
@@ -3687,7 +3687,7 @@ int CMergeEditView::GetEmptySubLines( int nLineIndex )
 void CMergeEditView::InvalidateSubLineIndexCache( int nLineIndex )
 {
 	CMergeDoc * pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
     // We have to invalidate sub line index cache on both panes.
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
@@ -3887,21 +3887,21 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 void CMergeEditView::OnChangeScheme(UINT nID)
 {
 	CMergeDoc *pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 	{
 		CMergeEditView *pView = GetGroupView(nPane);
-		ASSERT(pView != NULL);
+		ASSERT(pView != nullptr);
 
-		if (pView != NULL)
+		if (pView != nullptr)
 		{
 			pView->SetTextType(CCrystalTextView::TextType(nID - ID_COLORSCHEME_FIRST));
 			pView->SetDisableBSAtSOL(false);
 		}
 	}
 
-	pDoc->UpdateAllViews(NULL);
+	pDoc->UpdateAllViews(nullptr);
 }
 
 /**
@@ -3978,16 +3978,16 @@ void CMergeEditView::ZoomText(short amount)
 	lf.lfHeight = -MulDiv(nPointSize, nLogPixelsY, 72);
 
 	CMergeDoc *pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
-	if (pDoc != NULL )
+	if (pDoc != nullptr)
 	{
 		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
 			CMergeEditView *pView = GetGroupView(nPane);
-			ASSERT(pView != NULL);
+			ASSERT(pView != nullptr);
 			
-			if (pView != NULL)
+			if (pView != nullptr)
 			{
 				pView->SetFont(lf);
 			}

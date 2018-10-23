@@ -436,7 +436,7 @@ void CHexMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
  */
 void CHexMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 {
-	ASSERT(pDirDoc && !m_pDirDoc);
+	ASSERT(pDirDoc != nullptr && m_pDirDoc == nullptr);
 	m_pDirDoc = pDirDoc;
 }
 
@@ -504,7 +504,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, bool readOnly, co
 bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], int nPane)
 {
 	CHexMergeFrame *pf = GetParentFrame();
-	ASSERT(pf);
+	ASSERT(pf != nullptr);
 	bool bSucceeded = true;
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < nFiles; nBuffer++)
@@ -557,7 +557,7 @@ void CHexMergeDoc::CheckFileChanged(void)
 void CHexMergeDoc::UpdateHeaderPath(int pane)
 {
 	CHexMergeFrame *pf = GetParentFrame();
-	ASSERT(pf);
+	ASSERT(pf != nullptr);
 	String sText;
 
 	if (m_nBufferType[pane] == BUFFER_UNNAMED ||
@@ -664,7 +664,7 @@ void CHexMergeDoc::SetMergeViews(CHexMergeView *pView[])
 {
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		ASSERT(pView[nBuffer] && !m_pView[nBuffer]);
+		ASSERT(pView[nBuffer] != nullptr && m_pView[nBuffer] == nullptr);
 		m_pView[nBuffer] = pView[nBuffer];
 		m_pView[nBuffer]->m_nThisPane = nBuffer;
 	}
