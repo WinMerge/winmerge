@@ -541,5 +541,5 @@ inline void ByteComparator::HandleSide1Eol(char **ptr, const char *end, bool eof
 	*ptr = pbuf;
 }
 
-} //namespace namespace CompareEngines
+} //namespace CompareEngines
 
