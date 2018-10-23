@@ -296,7 +296,7 @@ void CImgMergeFrame::DoAutoMerge(int dstPane)
  */
 void CImgMergeFrame::SetDirDoc(CDirDoc * pDirDoc)
 {
-	ASSERT(pDirDoc && !m_pDirDoc);
+	ASSERT(pDirDoc != nullptr && m_pDirDoc == nullptr);
 	m_pDirDoc = pDirDoc;
 }
 

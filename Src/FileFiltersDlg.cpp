@@ -313,7 +313,7 @@ void FileFiltersDlg::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
 {
 	LVHITTESTINFO lvhti = {0};
 	NMLVGETINFOTIP * pInfoTip = reinterpret_cast<NMLVGETINFOTIP*>(pNMHDR);
-	ASSERT(pInfoTip);
+	ASSERT(pInfoTip != nullptr);
 
 	// Get subitem under mouse cursor
 	lvhti.pt = m_ptLastMousePos;

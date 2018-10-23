@@ -606,7 +606,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	{
 		// If we are saving user files
 		// we need an unpacker/packer, at least a "do nothing" one
-		ASSERT(infoUnpacker != NULL);
+		ASSERT(infoUnpacker != nullptr);
 		// repack the file here, overwrite the temporary file we did save in
 		String csTempFileName = sIntermediateFilename;
 		infoUnpacker->subcode = m_unpackerSubcode;

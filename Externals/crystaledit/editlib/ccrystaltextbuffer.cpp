@@ -1600,7 +1600,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
   if (nPos != 0 || nEndChar != 0)
     m_aLines[nEndLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
-  if (bHistory == false)
+  if (!bHistory)
   {
     delete paSavedRevisionNumbers;
     return true;
@@ -1728,7 +1728,7 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   m_dwCurrentRevisionNumber++;
   m_aLines[nStartLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
-  if (bHistory == false)
+  if (!bHistory)
   {
     delete paSavedRevisionNumbers;
     return true;

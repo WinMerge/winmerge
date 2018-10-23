@@ -85,7 +85,7 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 					string.length(), ucr::UTF8, ucr::CP_UTF_8, &buf);
 
 	unsigned i = 0;
-	while (i < count && retval == false)
+	while (i < count && !retval)
 	{
 		const filter_item_ptr& item = m_list[i];
 		int result = 0;

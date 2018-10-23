@@ -214,9 +214,9 @@ bool BCMenu::IsMenu(HMENU submenu)
 	for(m=0;m<=numSubMenus;++m){
 		if(submenu==m_AllSubMenus[m] || 
 		  static_cast<UINT>(reinterpret_cast<uintptr_t>(submenu)) == static_cast<UINT>(reinterpret_cast<uintptr_t>(m_AllSubMenus[m])))
-			return(TRUE);
+			return(true);
 	}
-	return(FALSE);
+	return(false);
 }
 
 BOOL BCMenu::DestroyMenu()
@@ -261,7 +261,7 @@ void BCMenu::DrawItem(LPDRAWITEMSTRUCT)
 
 void BCMenu::DrawItem (LPDRAWITEMSTRUCT lpDIS)
 {
-	ASSERT(lpDIS != NULL);
+	ASSERT(lpDIS != nullptr);
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 	if(pDC->GetDeviceCaps(RASTERCAPS) & RC_PALETTE)DrawItem_Win9xNT2000(lpDIS);
 	else{
@@ -274,7 +274,7 @@ void BCMenu::DrawItem (LPDRAWITEMSTRUCT lpDIS)
 
 void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 {
-	ASSERT(lpDIS != NULL);
+	ASSERT(lpDIS != nullptr);
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 	CRect rect;
 	UINT state0 = reinterpret_cast<BCMenuData*>(lpDIS->itemData)->nFlags;
@@ -510,7 +510,7 @@ inline COLORREF BCMenu::LightenColor(COLORREF col,double factor)
 
 void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 {
-	ASSERT(lpDIS != NULL);
+	ASSERT(lpDIS != nullptr);
 	CDC* pDC = CDC::FromHandle(lpDIS->hDC);
 	HDC hDC = lpDIS->hDC;
 	CRect rect(&lpDIS->rcItem);
@@ -921,7 +921,7 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,int nIconNormal)
 			m_MenuList.Add(mdata);
 		}
 		
-		ASSERT(mdata);
+		ASSERT(mdata != nullptr);
 		if(lpstrText)
 			mdata->SetWideString(lpstrText);  //SK: modified for dynamic allocation
 		mdata->menuIconNormal = -1;
@@ -1470,7 +1470,7 @@ BOOL BCMenu::GetMenuText(UINT id, CString& string, UINT nFlags/*= MF_BYPOSITION*
 	else{
 		UINT uiLoc;
 		BCMenu* pMenu = FindMenuOption(id,uiLoc);
-		if(NULL!=pMenu) returnflag = pMenu->GetMenuText(uiLoc,string);
+		if(pMenu != nullptr) returnflag = pMenu->GetMenuText(uiLoc,string);
 	}
 	return(returnflag);
 }
@@ -1906,7 +1906,7 @@ BOOL BCMenu::RemoveMenu(UINT uiId,UINT nFlags)
 		}
 		else{
 			BCMenu* pSubMenu = static_cast<BCMenu*>(GetSubMenu(uiId));
-			if(NULL==pSubMenu){
+			if(pSubMenu == nullptr){
 				UINT uiCommandId = GetMenuItemID(uiId);
 				for(int i=0;i<m_MenuList.GetSize(); i++){
 					if(m_MenuList[i]->nID==uiCommandId){
@@ -1970,7 +1970,7 @@ BOOL BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 		}
 		else{
 			BCMenu* pSubMenu = static_cast<BCMenu*>(GetSubMenu(uiId));
-			if(NULL==pSubMenu){
+			if(pSubMenu == nullptr){
 				UINT uiCommandId = GetMenuItemID(uiId);
 				for(int i=0;i<m_MenuList.GetSize(); i++){
 					if(m_MenuList[i]->nID==uiCommandId){
@@ -2220,7 +2220,7 @@ BOOL BCMenu::SetMenuText(UINT id, CString string, UINT nFlags/*= MF_BYPOSITION*/
 	else{
 		UINT uiLoc;
 		BCMenu* pMenu = FindMenuOption(id,uiLoc);
-		if(NULL!=pMenu) returnflag = pMenu->SetMenuText(uiLoc,string);
+		if(pMenu != nullptr) returnflag = pMenu->SetMenuText(uiLoc,string);
 	}
 	return(returnflag);
 }

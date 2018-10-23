@@ -624,7 +624,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		size_t len = eol - data;
 		if (len >= sizeof buf)
 		{
-			ASSERT(FALSE);
+			ASSERT(false);
 			break;
 		}
 		memcpy(buf, data, len);

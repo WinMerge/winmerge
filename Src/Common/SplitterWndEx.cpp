@@ -82,7 +82,7 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 		return;
 
 	// enhance with proportional horizontal scroll synchronization
-	ASSERT(pScrollBar != NULL);
+	ASSERT(pScrollBar != nullptr);
 	int curCol = ::GetDlgCtrlID(pScrollBar->m_hWnd) - AFX_IDW_HSCROLL_FIRST;
 	ASSERT(curCol >= 0 && curCol < m_nMaxCols);
 
@@ -133,7 +133,7 @@ void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	CSplitterWnd::OnVScroll(nSBCode, nPos, pScrollBar);
 
 	// enhance with proportional vertical scroll synchronization
-	ASSERT(pScrollBar != NULL);
+	ASSERT(pScrollBar != nullptr);
 	int curRow = ::GetDlgCtrlID(pScrollBar->m_hWnd) - AFX_IDW_VSCROLL_FIRST;
 	ASSERT(curRow >= 0 && curRow < m_nMaxRows);
 

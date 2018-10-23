@@ -761,7 +761,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	theApp.TranslateMenu(menu.m_hMenu);
 
 	BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(0));
-	ASSERT(pPopup != NULL);
+	ASSERT(pPopup != nullptr);
 
 	CCmdUI cmdUI;
 	cmdUI.m_pMenu = pPopup;
@@ -820,15 +820,15 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		break;
 	case ID_DISPLAY_MOVED_NONE:
 		SetConnectMovedBlocks(DISPLAY_MOVED_NONE);
-		pDoc->SetDetectMovedBlocks(FALSE);
+		pDoc->SetDetectMovedBlocks(false);
 		break;
 	case ID_DISPLAY_MOVED_ALL:
 		SetConnectMovedBlocks(DISPLAY_MOVED_ALL);
-		pDoc->SetDetectMovedBlocks(TRUE);
+		pDoc->SetDetectMovedBlocks(true);
 		break;
 	case ID_DISPLAY_MOVED_FOLLOW_DIFF:
 		SetConnectMovedBlocks(DISPLAY_MOVED_FOLLOW_DIFF);
-		pDoc->SetDetectMovedBlocks(TRUE);
+		pDoc->SetDetectMovedBlocks(true);
 		break;
 	}
 }

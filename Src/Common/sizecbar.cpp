@@ -351,10 +351,10 @@ void CSizingControlBar::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 //
 void CSizingControlBar::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    if (m_pDockBar != NULL)
+    if (m_pDockBar != nullptr)
     {
         // start the drag
-        ASSERT(m_pDockContext != NULL);
+        ASSERT(m_pDockContext != nullptr);
         ClientToScreen(&point);
         m_pDockContext->StartDrag(point);
     }
@@ -364,10 +364,10 @@ void CSizingControlBar::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CSizingControlBar::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-    if (m_pDockBar != NULL)
+    if (m_pDockBar != nullptr)
     {
         // toggle docking
-        ASSERT(m_pDockContext != NULL);
+        ASSERT(m_pDockContext != nullptr);
         m_pDockContext->ToggleDocking();
     }
     else
@@ -592,10 +592,10 @@ void CSizingControlBar::OnSize(UINT nType, int cx, int cy)
     {
         // automatic child resizing - only one child is allowed
         CWnd* pWnd = GetWindow(GW_CHILD);
-        if (pWnd != NULL)
+        if (pWnd != nullptr)
         {
             pWnd->MoveWindow(0, 0, cx, cy);
-            ASSERT(pWnd->GetWindow(GW_HWNDNEXT) == NULL);
+            ASSERT(pWnd->GetWindow(GW_HWNDNEXT) == nullptr);
         }
     }
 }
@@ -840,9 +840,9 @@ bool CSizingControlBar::GetEdgeRect(CRect rcWnd, UINT nHitTest,
         rcEdge.DeflateRect(bHorz ? 0 : m_cxEdge, 0);
         break;
     default:
-        ASSERT(FALSE); // invalid hit test code
+        ASSERT(false); // invalid hit test code
     }
-    return TRUE;
+    return true;
 }
 
 UINT CSizingControlBar::GetEdgeHTCode(int nEdge)
@@ -851,7 +851,7 @@ UINT CSizingControlBar::GetEdgeHTCode(int nEdge)
     if (nEdge == 1) return HTTOP;
     if (nEdge == 2) return HTRIGHT;
     if (nEdge == 3) return HTBOTTOM;
-    ASSERT(FALSE); // invalid edge code
+    ASSERT(false); // invalid edge code
     return HTNOWHERE;
 }
 
@@ -1144,7 +1144,7 @@ void CSizingControlBar::SaveState(LPCTSTR lpszProfileName)
     // place your SaveState or GlobalSaveState call in
     // CMainFrame's OnClose() or DestroyWindow(), not in OnDestroy()
     ASSERT_VALID(this);
-    ASSERT(GetSafeHwnd());
+    ASSERT(GetSafeHwnd() != nullptr);
 
     CWinApp* pApp = AfxGetApp();
 
@@ -1166,11 +1166,11 @@ void CSizingControlBar::GlobalLoadState(CFrameWnd* pFrame,
                                         LPCTSTR lpszProfileName)
 {
     POSITION pos = pFrame->m_listControlBars.GetHeadPosition();
-    while (pos != NULL)
+    while (pos != nullptr)
     {
         CSizingControlBar* pBar = 
             static_cast<CSizingControlBar*>(pFrame->m_listControlBars.GetNext(pos));
-        ASSERT(pBar != NULL);
+        ASSERT(pBar != nullptr);
         if (pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
             pBar->LoadState(lpszProfileName);
     }
@@ -1180,11 +1180,11 @@ void CSizingControlBar::GlobalSaveState(CFrameWnd* pFrame,
                                         LPCTSTR lpszProfileName)
 {
     POSITION pos = pFrame->m_listControlBars.GetHeadPosition();
-    while (pos != NULL)
+    while (pos != nullptr)
     {
         CSizingControlBar* pBar =
             static_cast<CSizingControlBar*>(pFrame->m_listControlBars.GetNext(pos));
-        ASSERT(pBar != NULL);
+        ASSERT(pBar != nullptr);
         if (pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
             pBar->SaveState(lpszProfileName);
     }

@@ -104,7 +104,7 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 
 	for (int i = nLine ; i < nLine + nCount; i++)
 	{
-		ASSERT (GetLineFlags(i) & LF_GHOST);
+		ASSERT ( (GetLineFlags(i) & LF_GHOST) != 0 );
 		m_aLines[i].Clear();
 	}
 

@@ -194,7 +194,7 @@ void CDirColsDlg::MoveSelectedItems(bool bUp)
  */
 void CDirColsDlg::OnUp()
 {
-	MoveSelectedItems(TRUE);
+	MoveSelectedItems(true);
 }
 
 /**
@@ -202,7 +202,7 @@ void CDirColsDlg::OnUp()
  */
 void CDirColsDlg::OnDown() 
 {
-	MoveSelectedItems(FALSE);
+	MoveSelectedItems(false);
 }
 
 /**

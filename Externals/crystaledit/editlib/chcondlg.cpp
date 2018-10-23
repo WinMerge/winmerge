@@ -46,7 +46,7 @@ EDITPADC_CLASS int nCodeNames = sizeof (pszCodeNames) / sizeof (pszCodeNames[0])
 EDITPADC_CLASS void FillComboBox (CComboBox &Control, LPCTSTR *pszItems)
 {
   Control.ResetContent();
-  ASSERT (pszItems);
+  ASSERT (pszItems != nullptr);
   while (*pszItems)
     Control.AddString(*pszItems++);
 }
