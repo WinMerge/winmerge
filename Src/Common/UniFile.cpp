@@ -178,10 +178,10 @@ void UniLocalFile::LastErrorCustom(const String& desc)
 /////////////
 
 UniMemFile::UniMemFile()
-		: m_hMapping(NULL)
-		, m_base(NULL)
-		, m_data(NULL)
-		, m_current(NULL)
+		: m_hMapping(nullptr)
+		, m_base(nullptr)
+		, m_data(nullptr)
+		, m_current(nullptr)
 {
 }
 
@@ -192,12 +192,12 @@ void UniMemFile::Close()
 	{
 		m_base = 0;
 	}
-	m_data = NULL;
-	m_current = NULL;
-	if (m_hMapping != NULL)
+	m_data = nullptr;
+	m_current = nullptr;
+	if (m_hMapping != nullptr)
 	{
 		delete m_hMapping;
-		m_hMapping = NULL;
+		m_hMapping = nullptr;
 	}
 }
 
@@ -692,7 +692,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
  */
 bool UniMemFile::WriteString(const String & line)
 {
-	assert(0); // unimplemented -- currently cannot write to a UniMemFile!
+	assert(false); // unimplemented -- currently cannot write to a UniMemFile!
 	return false;
 }
 
@@ -701,7 +701,7 @@ bool UniMemFile::WriteString(const String & line)
 /////////////
 
 UniStdioFile::UniStdioFile()
-		: m_fp(0)
+		: m_fp(nullptr)
 		, m_data(0)
 		, m_ucrbuff(128)
 {
@@ -884,13 +884,13 @@ void UniStdioFile::SetBom(bool bom)
 
 bool UniStdioFile::ReadString(String & line, bool * lossy)
 {
-	assert(0); // unimplemented -- currently cannot read from a UniStdioFile!
+	assert(false); // unimplemented -- currently cannot read from a UniStdioFile!
 	return false;
 }
 
 bool UniStdioFile::ReadString(String & line, String & eol, bool * lossy)
 {
-	assert(0); // unimplemented -- currently cannot read from a UniStdioFile!
+	assert(false); // unimplemented -- currently cannot read from a UniStdioFile!
 	return false;
 }
 

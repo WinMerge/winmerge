@@ -357,7 +357,7 @@ void CDirDoc::UpdateResources()
 	if (m_pDirView)
 		m_pDirView->UpdateResources();
 
-	SetTitle(NULL);
+	SetTitle(nullptr);
 
 	Redisplay();
 }
@@ -683,7 +683,7 @@ void CDirDoc::Swap(int idx1, int idx2)
 	m_pCompareStats->Swap(idx1, idx2);
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
 		UpdateHeaderPath(nIndex);
-	SetTitle(NULL);
+	SetTitle(nullptr);
 }
 
 bool CDirDoc::MoveableToNextDiff()

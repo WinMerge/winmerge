@@ -26,7 +26,7 @@ private:
 	CFont m_font;
 
 public:
-	CMDITabBar() : m_bInSelchange(false), m_pMainFrame(NULL), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true), m_nDraggingTabItemIndex(-1) {}
+	CMDITabBar() : m_bInSelchange(false), m_pMainFrame(nullptr), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true), m_nDraggingTabItemIndex(-1) {}
 	virtual ~CMDITabBar() {}
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();

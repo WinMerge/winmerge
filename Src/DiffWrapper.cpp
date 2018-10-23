@@ -159,7 +159,7 @@ void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
  */
 void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
 {
-	assert(options);
+	assert(options != nullptr);
 	DIFFOPTIONS tmpOptions = {0};
 	m_options.GetAsDiffOptions(tmpOptions);
 	*options = tmpOptions;
@@ -173,7 +173,7 @@ void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
  */
 void CDiffWrapper::SetOptions(const DIFFOPTIONS *options)
 {
-	assert(options);
+	assert(options != nullptr);
 	m_options.SetFromDiffOptions(*options);
 }
 
@@ -204,7 +204,7 @@ void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer) const
  */
 void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
 {
-	assert(options);
+	assert(options != nullptr);
 	m_options.m_contextLines = options->nContext;
 
 	switch (options->outputStyle)
@@ -1222,7 +1222,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				{
 					if (thisob->match0>=0)
 					{
-						assert(thisob->inserted);
+						assert(thisob->inserted > 0);
 						for (int i=0; i<thisob->inserted; ++i)
 						{
 							int line0 = i+thisob->match0 + (trans_a0-first0-1);
@@ -1232,7 +1232,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 					}
 					if (thisob->match1>=0)
 					{
-						assert(thisob->deleted);
+						assert(thisob->deleted > 0);
 						for (int i=0; i<thisob->deleted; ++i)
 						{
 							int line0 = i+thisob->line0 + (trans_a0-first0-1);
@@ -1383,7 +1383,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 						{
 							if (thisob->match0>=0)
 							{
-								assert(thisob->inserted);
+								assert(thisob->inserted > 0);
 								for (int i=0; i<thisob->inserted; ++i)
 								{
 									int line0 = i+thisob->match0 + (trans_a0-first0-1);
@@ -1393,7 +1393,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 							}
 							if (thisob->match1>=0)
 							{
-								assert(thisob->deleted);
+								assert(thisob->deleted > 0);
 								for (int i=0; i<thisob->deleted; ++i)
 								{
 									int line0 = i+thisob->line0 + (trans_a0-first0-1);

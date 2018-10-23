@@ -1081,8 +1081,8 @@ DirViewColItems::GetDirColInfo(int col) const
 	{
 		if (col < 0 || col >= countof(f_cols))
 		{
-			assert(0); // fix caller, should not ask for nonexistent columns
-			return 0;
+			assert(false); // fix caller, should not ask for nonexistent columns
+			return nullptr;
 		}
 		return &f_cols[col];
 	}
@@ -1090,8 +1090,8 @@ DirViewColItems::GetDirColInfo(int col) const
 	{
 		if (col < 0 || col >= countof(f_cols3))
 		{
-			assert(0); // fix caller, should not ask for nonexistent columns
-			return 0;
+			assert(false); // fix caller, should not ask for nonexistent columns
+			return nullptr;
 		}
 		return &f_cols3[col];
 	}
@@ -1108,7 +1108,7 @@ DirViewColItems::IsColById(int col, const char *idname) const
 	{
 		if (col < 0 || col >= countof(f_cols))
 		{
-			assert(0); // fix caller, should not ask for nonexistent columns
+			assert(false); // fix caller, should not ask for nonexistent columns
 			return false;
 		}
 		return f_cols[col].idName == idname;
@@ -1117,7 +1117,7 @@ DirViewColItems::IsColById(int col, const char *idname) const
 	{
 		if (col < 0 || col >= sizeof(f_cols3)/sizeof(f_cols3[0]))
 		{
-			assert(0); // fix caller, should not ask for nonexistent columns
+			assert(false); // fix caller, should not ask for nonexistent columns
 			return false;
 		}
 		return f_cols3[col].idName == idname;
@@ -1182,8 +1182,8 @@ DirViewColItems::IsDefaultSortAscending(int col) const
 	const DirColInfo * pColInfo = GetDirColInfo(col);
 	if (!pColInfo)
 	{
-		assert(0); // fix caller, should not ask for nonexistent columns
-		return 0;
+		assert(false); // fix caller, should not ask for nonexistent columns
+		return false;
 	}
 	return pColInfo->defSortUp;
 }
@@ -1237,7 +1237,7 @@ DirViewColItems::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
 	const DirColInfo * pColInfo = GetDirColInfo(col);
 	if (!pColInfo)
 	{
-		assert(0); // fix caller, should not ask for nonexistent columns
+		assert(false); // fix caller, should not ask for nonexistent columns
 		return _T("???");
 	}
 	ColGetFncPtrType fnc = pColInfo->getfnc;
@@ -1316,7 +1316,7 @@ DirViewColItems::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ld
 	const DirColInfo * pColInfo = GetDirColInfo(col);
 	if (!pColInfo)
 	{
-		assert(0); // fix caller, should not ask for nonexistent columns
+		assert(false); // fix caller, should not ask for nonexistent columns
 		return 0;
 	}
 	size_t offset = pColInfo->offset;

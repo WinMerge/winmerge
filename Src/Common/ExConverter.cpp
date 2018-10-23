@@ -37,8 +37,8 @@ private:
 
 public:
 	CExconverterMLang()
-	: m_pmlang(NULL)
-	, m_hLibMLang(NULL)
+	: m_pmlang(nullptr)
+	, m_hLibMLang(nullptr)
 	, m_mlangcookie(0)
 	{
 	}

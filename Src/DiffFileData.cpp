@@ -102,7 +102,7 @@ bool DiffFileData::DoOpenFiles()
 /** @brief Clear inf structure to pristine */
 void DiffFileData::Reset()
 {
-	assert(m_inf);
+	assert(m_inf != nullptr);
 	// If diffutils put data in, have it cleanup
 	if (m_used)
 	{

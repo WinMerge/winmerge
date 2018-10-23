@@ -484,7 +484,7 @@ static HANDLE NTAPI FindFile(HANDLE h, LPCTSTR path, WIN32_FIND_DATA *fd)
 const WORD wSourceLangId = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
 
 CLanguageSelect::CLanguageSelect()
-: m_hCurrentDll(0)
+: m_hCurrentDll(nullptr)
 , m_wCurLanguage(wSourceLangId)
 , m_codepage(0)
 {
@@ -894,7 +894,7 @@ bool CLanguageSelect::TranslateString(const std::string& str, String &translated
 void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) const
 {
 	HGDIOBJ hf = (HGDIOBJ)sb.SendMessage(WM_GETFONT);
-	CClientDC dc(0);
+	CClientDC dc(nullptr);
 	if (hf)
 		hf = dc.SelectObject(hf);
 	if (n)

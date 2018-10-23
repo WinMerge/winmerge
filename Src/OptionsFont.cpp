@@ -40,7 +40,7 @@ void InitializeLogFont(LOGFONT &logfont, int lfHeight, int lfCharSet, int lfPitc
  */
 void SetDefaults(COptionsMgr *pOptionsMgr)
 {
-	HDC hDC = GetDC(NULL);
+	HDC hDC = GetDC(nullptr);
 	const int logPixelsY = GetDeviceCaps(hDC, LOGPIXELSY);
 
 	// *****
@@ -118,7 +118,7 @@ LOGFONT Load(const COptionsMgr *pOptionsMgr, const String& name)
 	// Build a new LOGFONT with values from the 'actual' values of the in-memory Options::Font table.
 	// The Registry is not accessed.
 	LOGFONT lfnew = { 0 };
-	HDC hDC = GetDC(NULL);
+	HDC hDC = GetDC(nullptr);
 	lfnew.lfHeight = -MulDiv(pOptionsMgr->GetInt(name + OPT_FONT_POINTSIZE), GetDeviceCaps(hDC, LOGPIXELSY), 72);
 	if (lfnew.lfHeight == 0)
 		lfnew.lfHeight = pOptionsMgr->GetInt(name + OPT_FONT_HEIGHT);
@@ -144,7 +144,7 @@ void Save(COptionsMgr *pOptionsMgr, const String& name, const LOGFONT* lf, bool 
 {
 	// Store LOGFONT values into both the 'actual' value of the in-memory Options::Font table, and 
 	// into the appropriate Registry entries.
-	HDC hDC = GetDC(NULL);
+	HDC hDC = GetDC(nullptr);
 	pOptionsMgr->SaveOption(name + OPT_FONT_USECUSTOM, bUseCustom);
 	pOptionsMgr->SaveOption(name + OPT_FONT_POINTSIZE, -MulDiv(lf->lfHeight, 72, GetDeviceCaps(hDC, LOGPIXELSY)));
 	pOptionsMgr->SaveOption(name + OPT_FONT_HEIGHT, lf->lfHeight);
