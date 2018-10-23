@@ -120,6 +120,7 @@ COpenView::COpenView()
 	, m_pDropHandler(NULL)
 	, m_dwFlags()
 	, m_bAutoCompleteReady()
+	, m_bReadOnly {false, false, false}
 {
 }
 
