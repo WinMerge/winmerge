@@ -262,7 +262,7 @@ public:
 	}
 	HRESULT ChangeType(VARTYPE _vt)
 	{
-		return VariantChangeType(this, this, 0, vt);
+		return VariantChangeType(this, this, 0, _vt);
 	}
 };
 
