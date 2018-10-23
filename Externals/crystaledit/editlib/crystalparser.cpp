@@ -50,7 +50,7 @@ static LPTSTR NTAPI EnsureCharNext(LPCTSTR current)
 void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks )
 {
 	// The parser must be attached to a view!
-	ASSERT( m_pTextView );
+	ASSERT( m_pTextView != nullptr );
 
 	int			nLineLength = m_pTextView->GetLineLength( nLineIndex );
 	int			nTabWidth = m_pTextView->GetTabSize();

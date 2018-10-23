@@ -119,9 +119,9 @@ END_MESSAGE_MAP()
 
 COpenView::COpenView()
 	: CFormView(COpenView::IDD)
-	, m_pUpdateButtonStatusThread(NULL)
-	, m_bRecurse(FALSE)
-	, m_pDropHandler(NULL)
+	, m_pUpdateButtonStatusThread(nullptr)
+	, m_bRecurse(false)
+	, m_pDropHandler(nullptr)
 	, m_dwFlags()
 	, m_bAutoCompleteReady()
 	, m_bReadOnly {false, false, false}
@@ -753,7 +753,7 @@ void COpenView::OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult)
 	VERIFY(menu.LoadMenu(IDR_POPUP_PROJECT));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
-	if (NULL != pPopup)
+	if (pPopup != nullptr)
 	{
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, 
 			rcButton.left, rcButton.bottom, GetMainFrame());

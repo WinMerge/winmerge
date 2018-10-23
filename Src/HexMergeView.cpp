@@ -46,7 +46,7 @@ static HRESULT NTAPI SE(BOOL f)
 	if (f)
 		return S_OK;
 	HRESULT hr = (HRESULT)::GetLastError();
-	ASSERT(hr);
+	ASSERT(hr != 0);
 	if (hr == 0)
 		hr = E_UNEXPECTED;
 	return hr;
@@ -113,7 +113,7 @@ CHexMergeView::CHexMergeView()
  */
 void CHexMergeView::OnDraw(CDC *)
 {
-	ASSERT(FALSE);
+	ASSERT(false);
 }
 
 /**

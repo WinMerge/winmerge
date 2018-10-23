@@ -212,7 +212,7 @@ bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 		// patch file EOLs correctly
 		diffOptions.bIgnoreEol = pDlgPatch->m_ignoreEOLDifference;
 		
-		diffOptions.bIgnoreCase = pDlgPatch->m_caseSensitive == false;
+		diffOptions.bIgnoreCase = !pDlgPatch->m_caseSensitive;
 		m_diffWrapper.SetOptions(&diffOptions);
 	}
 	else

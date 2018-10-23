@@ -61,7 +61,7 @@ CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy)
 , m_bFound(false)
 , lastSearch({0})
 {
-  ASSERT (pBuddy != NULL);
+  ASSERT (pBuddy != nullptr);
 }
 
 void CEditReplaceDlg::
@@ -181,7 +181,7 @@ GetLastSearchInfos()
 bool CEditReplaceDlg::
 DoHighlightText ( bool bNotifyIfNotFound )
 {
-  ASSERT (m_pBuddy != NULL);
+  ASSERT (m_pBuddy != nullptr);
   DWORD dwSearchFlags = 0;
   if (m_bMatchCase)
     dwSearchFlags |= FIND_MATCH_CASE;
@@ -229,7 +229,7 @@ DoHighlightText ( bool bNotifyIfNotFound )
 bool CEditReplaceDlg::
 DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
 {
-  ASSERT (m_pBuddy != NULL);
+  ASSERT (m_pBuddy != nullptr);
   // m_pBuddy->m_nLastFindWhatLen
 
   bool bFound;

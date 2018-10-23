@@ -388,9 +388,9 @@ int ProjectFile::GetSubfolders() const
  * @brief set subfolder.
  * @param [in] iSubfolder New value for subfolder inclusion.
  */
-void ProjectFile::SetSubfolders(int iSubfolder)
+void ProjectFile::SetSubfolders(bool bSubfolder)
 {
-	m_subfolders = iSubfolder ? 1 : 0;
+	m_subfolders = bSubfolder ? 1 : 0;
 }
 
 /** 
