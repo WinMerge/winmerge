@@ -94,7 +94,7 @@ bool CPicture::Load(IStream* pstm)
 	Free();
 	HRESULT hr = OleLoadPicture(pstm, 0, FALSE,
 		IID_IPicture, (void**)&m_spIPicture);
-	ASSERT(SUCCEEDED(hr) && m_spIPicture);	
+	ASSERT(SUCCEEDED(hr) && m_spIPicture != nullptr);	
 	return true;
 }
 
@@ -103,7 +103,7 @@ bool CPicture::Load(IStream* pstm)
 //
 bool CPicture::Render(CDC* pDC, CRect rc, LPCRECT prcMFBounds) const
 {
-	ASSERT(pDC);
+	ASSERT(pDC != nullptr);
 
 	if (rc.IsRectNull()) {
 		CSize sz = GetImageSize(pDC);

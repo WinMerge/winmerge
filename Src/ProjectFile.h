@@ -59,7 +59,7 @@ public:
 	void SetMiddle(const String& sMiddle, const bool * pReadOnly = NULL);
 	void SetRight(const String& sRight, const bool * pReadOnly = NULL);
 	void SetFilter(const String& sFilter);
-	void SetSubfolders(int iSubfolder);
+	void SetSubfolders(bool bSubfolder);
 
 	void GetPaths(PathContext& files, bool & bSubFolders) const;
 	void SetPaths(const PathContext& files, bool bSubFolders = false);

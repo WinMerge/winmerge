@@ -443,7 +443,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 
 	if (!m_pMenus[view]->LoadMenu(ID))
 	{
-		ASSERT(FALSE);
+		ASSERT(false);
 		return NULL;
 	}
 
@@ -1611,7 +1611,7 @@ void CMainFrame::OnToolsFilters()
 		else
 		{
 			theApp.m_pGlobalFileFilter->SetFileFilterPath(path);
-			theApp.m_pGlobalFileFilter->UseMask(FALSE);
+			theApp.m_pGlobalFileFilter->UseMask(false);
 			String sFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
@@ -1866,9 +1866,9 @@ void CMainFrame::OnUpdateWindowCloseAll(CCmdUI* pCmdUI)
 CMainFrame * GetMainFrame()
 {
 	CWnd * mainwnd = AfxGetMainWnd();
-	ASSERT(mainwnd);
+	ASSERT(mainwnd != nullptr);
 	CMainFrame *pMainframe = dynamic_cast<CMainFrame*>(mainwnd);
-	ASSERT(pMainframe);
+	ASSERT(pMainframe != nullptr);
 	return pMainframe;
 }
 
@@ -2314,7 +2314,7 @@ void CMainFrame::OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIFF_OPTIONS));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
-	if (NULL != pPopup)
+	if (pPopup != nullptr)
 	{
 		pPopup->TrackPopupMenu(TPM_RIGHTALIGN | TPM_RIGHTBUTTON, 
 			pToolBar->rcButton.right, pToolBar->rcButton.bottom, this);
@@ -2513,17 +2513,17 @@ void CMainFrame::UpdateDocTitle()
 {
 	CDocManager* pDocManager = AfxGetApp()->m_pDocManager;
 	POSITION posTemplate = pDocManager->GetFirstDocTemplatePosition();
-	ASSERT(posTemplate != NULL);
+	ASSERT(posTemplate != nullptr);
 
-	while (posTemplate != NULL)
+	while (posTemplate != nullptr)
 	{
 		CDocTemplate* pTemplate = pDocManager->GetNextDocTemplate(posTemplate);
 
-		ASSERT(pTemplate != NULL);
+		ASSERT(pTemplate != nullptr);
 
 		for (auto pDoc : GetDocList(static_cast<CMultiDocTemplate *>(pTemplate)))
 		{
-			static_cast<CDocument *>(const_cast<void *>(pDoc))->SetTitle(NULL);
+			static_cast<CDocument *>(const_cast<void *>(pDoc))->SetTitle(nullptr);
 			((CFrameWnd*)AfxGetApp()->m_pMainWnd)->OnUpdateFrameTitle(TRUE);
 		}
 	}

@@ -674,7 +674,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 
 	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
 	BCMenu *pPopup = static_cast<BCMenu*>(menu.GetSubMenu(0));
-	ASSERT(pPopup != NULL);
+	ASSERT(pPopup != nullptr);
 
 	if (pDoc->m_nDirs < 3)
 	{
@@ -721,7 +721,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	pPopup->AppendMenu(MF_POPUP, static_cast<int>(reinterpret_cast<uintptr_t>(menuPluginsHolder.m_hMenu)), s.c_str());
 
 	CFrameWnd *pFrame = GetTopLevelFrame();
-	ASSERT(pFrame != NULL);
+	ASSERT(pFrame != nullptr);
 	pFrame->m_bAutoMenuEnable = FALSE;
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
@@ -742,7 +742,7 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 	theApp.TranslateMenu(menu.m_hMenu);
 	// 2nd submenu of IDR_POPUP_DIRVIEW is for header popup
 	BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(1));
-	ASSERT(pPopup != NULL);
+	ASSERT(pPopup != nullptr);
 
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
@@ -1015,7 +1015,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 	
 	// Make sure selection is at sensible place if all selected items
 	// were removed.
-	if (bItemsRemoved == true)
+	if (bItemsRemoved)
 	{
 		UINT selected = GetSelectedCount();
 		if (selected == 0)
@@ -1476,7 +1476,7 @@ void CDirView::OpenSelectionHex()
 
 	if (pos1 == SPECIAL_ITEM_POS)
 	{
-		ASSERT(FALSE);
+		ASSERT(false);
 		return;
 	}
 
@@ -2014,7 +2014,7 @@ void CDirView::OnCurdiff()
 	if (i == -1)
 		i = count;
 
-	while (i < count && found == false)
+	while (i < count && !found)
 	{
 		UINT selected = m_pList->GetItemState(i, LVIS_SELECTED);
 		UINT focused = m_pList->GetItemState(i, LVIS_FOCUSED);
@@ -2110,7 +2110,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 	// Handle special shortcuts here
 	if (pMsg->message == WM_KEYDOWN)
 	{
-		if (false == IsLabelEdit())
+		if (!IsLabelEdit())
 		{
 			// Check if we got 'ESC pressed' -message
 			if (pMsg->wParam == VK_ESCAPE)
@@ -2194,7 +2194,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			// ESC doesn't close window when user is renaming an item.
 			if (pMsg->wParam == VK_ESCAPE)
 			{
-				m_bUserCancelEdit = TRUE;
+				m_bUserCancelEdit = true;
 
 				// The edit control send LVN_ENDLABELEDIT when it loses focus,
 				// so we use it to cancel the rename action.
@@ -2780,7 +2780,7 @@ void CDirView::ShowShellContextMenu(SIDE_TYPE stype)
 		GetCursorPos(&point);
 		HWND hWnd = GetSafeHwnd();
 		CFrameWnd *pFrame = GetTopLevelFrame();
-		ASSERT(pFrame != NULL);
+		ASSERT(pFrame != nullptr);
 		BOOL bAutoMenuEnableOld = pFrame->m_bAutoMenuEnable;
 		pFrame->m_bAutoMenuEnable = FALSE;
 		BOOL nCmd = TrackPopupMenu(pContextMenu->GetHMENU(), TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, 0, hWnd, NULL);
@@ -2804,7 +2804,7 @@ void CDirView::OnSelectAll()
 {
 	// While the user is renaming an item, select all the edited text.
 	CEdit *pEdit = m_pList->GetEditControl();
-	if (NULL != pEdit)
+	if (pEdit != nullptr)
 	{
 		pEdit->SetSel(pEdit->GetWindowTextLength());
 	}
@@ -3051,10 +3051,10 @@ afx_msg void CDirView::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 	*pResult = (SelBegin() == SelEnd());
 
 	// If label edit is allowed.
-	if (FALSE == *pResult)
+	if (*pResult == FALSE)
 	{
 		const NMLVDISPINFO *pdi = (NMLVDISPINFO*)pNMHDR;
-		ASSERT(pdi != NULL);
+		ASSERT(pdi != nullptr);
 
 		// Locate the edit box on the right column in case the user changed the
 		// column order.
@@ -3074,10 +3074,10 @@ afx_msg void CDirView::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 
 		// Set the edit control with the updated text.
 		CEdit *pEdit = m_pList->GetEditControl();
-		ASSERT(NULL != pEdit);
+		ASSERT(pEdit != nullptr);
 		pEdit->SetWindowText(sText);
 
-		m_bUserCancelEdit = FALSE;
+		m_bUserCancelEdit = false;
 	}
 }
 
@@ -3094,10 +3094,10 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 	// "file.txt|FILE.txt"). The edit text was changed to "file.txt" and
 	// if the user accept it as the new file name, pszText is NULL.
 
-	if (TRUE != m_bUserCancelEdit)
+	if (!m_bUserCancelEdit)
 	{
 		CEdit *pEdit = m_pList->GetEditControl();
-		ASSERT(NULL != pEdit);
+		ASSERT(pEdit != nullptr);
 
 		CString sText;
 		pEdit->GetWindowText(sText);
@@ -3526,7 +3526,7 @@ void CDirView::OnHelp()
  */
 bool CDirView::IsLabelEdit() const
 {
-	return (NULL != m_pList->GetEditControl());
+	return (m_pList->GetEditControl() != nullptr);
 }
 
 /**
@@ -3535,7 +3535,7 @@ bool CDirView::IsLabelEdit() const
 void CDirView::OnEditCopy()
 {
 	CEdit *pEdit = m_pList->GetEditControl();
-	if (NULL != pEdit)
+	if (pEdit != nullptr)
 	{
 		pEdit->Copy();
 	}
@@ -3547,7 +3547,7 @@ void CDirView::OnEditCopy()
 void CDirView::OnEditCut()
 {
 	CEdit *pEdit = m_pList->GetEditControl();
-	if (NULL != pEdit)
+	if (pEdit != nullptr)
 	{
 		pEdit->Cut();
 	}
@@ -3559,7 +3559,7 @@ void CDirView::OnEditCut()
 void CDirView::OnEditPaste()
 {
 	CEdit *pEdit = m_pList->GetEditControl();
-	if (NULL != pEdit)
+	if (pEdit != nullptr)
 	{
 		pEdit->Paste();
 	}
@@ -3571,7 +3571,7 @@ void CDirView::OnEditPaste()
 void CDirView::OnEditUndo()
 {
 	CEdit *pEdit = m_pList->GetEditControl();
-	if (NULL != pEdit)
+	if (pEdit != nullptr)
 	{
 		pEdit->Undo();
 	}

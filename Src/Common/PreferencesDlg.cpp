@@ -207,9 +207,9 @@ void CPreferencesDlg::OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult)
 		htiSel = m_tcPages.GetChildItem(htiSel);
 
 	CPropertyPage* pPage = (CPropertyPage*)m_tcPages.GetItemData(htiSel);
-	ASSERT (pPage);
+	ASSERT (pPage != nullptr);
 
-	if (pPage)
+	if (pPage != nullptr)
 	{
 		m_pphost.SetActivePage(pPage, FALSE);
 

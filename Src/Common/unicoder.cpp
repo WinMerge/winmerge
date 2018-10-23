@@ -501,7 +501,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 			// good idea to ASSERT that the assumption holds.
 			if (wbuff[n-1] == 0 && lpd[len-1] != 0)
 			{
-				//assert(FALSE);
+				//assert(false);
 				*lossy = true;
 				--n;
 			}
@@ -530,7 +530,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 					*/
 					if (wbuff[n-1] == 0 && lpd[len-1] != 0)
 					{
-						//assert(FALSE);
+						//assert(false);
 						*lossy = true;
 						--n;
 					}

@@ -250,7 +250,7 @@ inline const String &CMessageBoxDialog::GetTitle ( )
  */
 inline void CMessageBoxDialog::SetMessageIcon ( HICON hIcon )
 {
-	ASSERT(hIcon != NULL);
+	ASSERT(hIcon != nullptr);
 
 	// Save the icon.
 	m_hIcon = hIcon;
@@ -264,7 +264,7 @@ inline void CMessageBoxDialog::SetMessageIcon ( UINT nIconID )
 	// Try to load the given icon.
 	m_hIcon = AfxGetApp()->LoadIcon(nIconID);
 
-	ASSERT(m_hIcon != NULL);
+	ASSERT(m_hIcon != nullptr);
 }
 
 /*
@@ -328,10 +328,10 @@ void CMessageBoxDialog::ResetMessageBoxes ( )
 	// Try to retrieve a handle to the application object.
 	CWinApp* pApplication = AfxGetApp();
 
-	ASSERT(pApplication);
+	ASSERT(pApplication != nullptr);
 
 	// Check whether a handle was retrieved.
-	if ( pApplication != NULL )
+	if ( pApplication != nullptr )
 	{
 		// Create the registry key for this application.
 		CString strKey = _T("Software\\");
@@ -567,10 +567,10 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 				// Try to retrieve a handle for the button.
                 CWnd* pButtonWnd = GetDlgItem(iter->nID);
 
-				ASSERT(pButtonWnd);
+				ASSERT(pButtonWnd != nullptr);
 
 				// Check whether the handle was retrieved.
-				if ( pButtonWnd != NULL )
+				if ( pButtonWnd != nullptr )
 				{
 					// Disable the button.
 					pButtonWnd->EnableWindow(FALSE);
@@ -750,10 +750,10 @@ void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 					// Try to retrieve a handle to access the button.
 					CWnd* pButtonWnd = GetDlgItem(iter->nID);
 
-					ASSERT(pButtonWnd);
+					ASSERT(pButtonWnd != nullptr);
 
 					// Check whether a handle was retrieved.
-					if ( pButtonWnd != NULL )
+					if ( pButtonWnd != nullptr )
 					{
 						// Enable the button again.
 						pButtonWnd->EnableWindow(TRUE);
@@ -1536,10 +1536,10 @@ void CMessageBoxDialog::DefineLayout ( )
 		// Try to determine the control element for the checkbox.
 		CWnd* pCheckboxWnd = GetDlgItem(IDCHECKBOX);
 
-		ASSERT(pCheckboxWnd);
+		ASSERT(pCheckboxWnd != nullptr);
 
 		// Check whether the control was retrieved.
-		if ( pCheckboxWnd != NULL )
+		if ( pCheckboxWnd != nullptr )
 		{
 			// Move the checkbox window.
 			pCheckboxWnd->MoveWindow(nXPosition, nYPosition, m_sCheckbox.cx,
@@ -1582,10 +1582,10 @@ void CMessageBoxDialog::DefineLayout ( )
 		// Try to retrieve the handle to access the button.
 		CWnd* pButton = GetDlgItem(iter->nID);
 
-		ASSERT(pButton);
+		ASSERT(pButton != nullptr);
 
 		// Check whether the handle was retrieved successfully.
-		if ( pButton != NULL )
+		if ( pButton != nullptr )
 		{
 			// Move the button.
 			pButton->MoveWindow(nXButtonPosition, nYButtonPosition, 

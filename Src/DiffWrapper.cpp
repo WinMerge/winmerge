@@ -727,7 +727,7 @@ bool CDiffWrapper::RunFileDiff()
 
 			// We use the same plugin for both files, so it must be defined before
 			// second file
-			assert(m_infoPrediffer->bToBeScanned == false);
+			assert(!m_infoPrediffer->bToBeScanned);
 		}
 	}
 
@@ -1143,7 +1143,7 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 	bool linesMatch = true; // set to false when non-matching line is found.
 	int line = StartPos;
 
-	while (line <= EndPos && linesMatch == true)
+	while (line <= EndPos && linesMatch)
 	{
 		size_t len = files[FileNo].linbuf[line + 1] - files[FileNo].linbuf[line];
 		const char *string = files[FileNo].linbuf[line];

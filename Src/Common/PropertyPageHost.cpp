@@ -154,9 +154,9 @@ bool CPropertyPageHost::SetActivePage(int nIndex, bool bAndFocus /*= true*/)
 	if (m_nSelIndex != -1)
 	{
 		CPropertyPage* pPage1 = GetActivePage();
-		ASSERT (pPage1);
+		ASSERT (pPage1 != nullptr);
 
-		if (pPage1)
+		if (pPage1 != nullptr)
 		{
 			pPage1->ShowWindow(SW_HIDE);
 			pPage1->OnKillActive();
@@ -289,9 +289,9 @@ void CPropertyPageHost::OnSize(UINT nType, int cx, int cy)
 	if (m_nSelIndex != -1)
 	{
 		CPropertyPage* pPage = GetActivePage();
-		ASSERT (pPage);
+		ASSERT (pPage != nullptr);
 
-		if (pPage)
+		if (pPage != nullptr)
 			pPage->MoveWindow(0, 0, cx, cy, TRUE);
 	}
 }

@@ -1618,7 +1618,7 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
 	});
 
 	// Refresh display
-	UpdateAllViews(NULL);
+	UpdateAllViews(nullptr);
 
 	// Show possible error after updating screen
 	if (nRescanResult != RESCAN_SUPPRESSED)
@@ -2323,7 +2323,7 @@ void CMergeDoc::RemoveMergeViews(int nGroup)
  */
 void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 {
-	ASSERT(pDirDoc && !m_pDirDoc);
+	ASSERT(pDirDoc != nullptr && m_pDirDoc == nullptr);
 	m_pDirDoc = pDirDoc;
 }
 
@@ -2814,7 +2814,7 @@ void CMergeDoc::RefreshOptions()
 void CMergeDoc::UpdateHeaderPath(int pane)
 {
 	CChildFrame *pf = GetParentFrame();
-	ASSERT(pf);
+	ASSERT(pf != nullptr);
 	String sText;
 	bool bChanges = false;
 
@@ -2826,7 +2826,7 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 	else
 	{
 		sText = m_filePaths[pane];
-		if (m_pDirDoc)
+		if (m_pDirDoc != nullptr)
 		{
 			m_pDirDoc->ApplyDisplayRoot(pane, sText);
 		}
@@ -2847,7 +2847,7 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 void CMergeDoc::UpdateHeaderActivity(int pane, bool bActivate)
 {
 	CChildFrame *pf = GetParentFrame();
-	ASSERT(pf);
+	ASSERT(pf != nullptr);
 	pf->GetHeaderInterface()->SetActive(pane, bActivate);
 }
 
@@ -2978,7 +2978,7 @@ void CMergeDoc::SwapFiles()
 	GetParentFrame()->UpdateSplitter();
 	ForEachView([](auto& pView) { pView->UpdateStatusbar(); });
 
-	UpdateAllViews(NULL);
+	UpdateAllViews(nullptr);
 }
 
 /**

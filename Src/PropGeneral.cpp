@@ -64,7 +64,7 @@ BOOL PropGeneral::OnInitDialog()
 	OptionsPanel::OnInitDialog();
 
 	CComboBox *pWnd = (CComboBox*)GetDlgItem(IDC_AUTO_COMPLETE_SOURCE);
-	ASSERT(NULL != pWnd);
+	ASSERT(pWnd != nullptr);
 
 	pWnd->AddString(_("Disabled").c_str());
 	pWnd->AddString(_("From file system").c_str());
