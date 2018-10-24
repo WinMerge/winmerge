@@ -479,7 +479,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
  * @return SAVE_DONE or an error code (list in MergeDoc.h)
  */
 int CDiffTextBuffer::SaveToFile (const String& pszFileName,
-		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= NULL*/,
+		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= nullptr*/,
 		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
 		bool bClearModifiedFlag /*= true*/,
 		int nStartLine /*= 0*/, int nLines /*= -1*/)

@@ -1105,7 +1105,7 @@ OnRButtonDown (UINT nFlags, CPoint point)
 bool CCrystalTextView::
 IsSelection ()
 {
-  return !!(m_ptSelStart != m_ptSelEnd);
+  return (m_ptSelStart != m_ptSelEnd);
 }
 
 void CCrystalTextView::

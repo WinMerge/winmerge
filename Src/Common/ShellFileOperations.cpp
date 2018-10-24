@@ -203,7 +203,7 @@ void ShellFileOperations::Reset()
 	m_bOneToOneMapping = false;
 	m_function = 0;
 	m_flags = 0;
-	m_parentWindow = NULL;
+	m_parentWindow = nullptr;
 	m_isCanceled = false;
 
 	m_sources.clear();

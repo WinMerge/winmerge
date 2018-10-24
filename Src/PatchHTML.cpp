@@ -368,7 +368,7 @@ mark_ignorable (struct change *script)
       int first0, last0, first1, last1, deletes, inserts;
 
       /* Turn this change into a hunk: detach it from the others.  */
-      script->link = 0;
+      script->link = NULL;
 
       /* Determine whether this change is ignorable.  */
       analyze_hunk (script, &first0, &last0, &first1, &last1, &deletes, &inserts, files);

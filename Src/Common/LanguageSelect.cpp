@@ -613,7 +613,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	size_t size = SizeofResource(m_hCurrentDll, mergepot);
 	const char *data = (const char *)LoadResource(m_hCurrentDll, mergepot);
 	char buf[1024];
-	std::string *ps = 0;
+	std::string *ps = nullptr;
 	std::string msgid;
 	unsigned uid = 0;
 	bool found_uid = false;
@@ -644,7 +644,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		{
 			ps = &msgid;
 		}
-		if (ps)
+		if (ps != nullptr)
 		{
 			char *p = strchr(buf, '"');
 			char *q = strrchr(buf, '"');
@@ -654,7 +654,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 			}
 			else
 			{
-				ps = 0;
+				ps = nullptr;
 				// avoid dereference of empty vector or last vector
 				if (found_uid)
 				{
@@ -671,7 +671,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	if (_tfopen_s(&f, strPath.c_str(), _T("r")) != 0)
 	{
 		FreeLibrary(m_hCurrentDll);
-		m_hCurrentDll = 0;
+		m_hCurrentDll = nullptr;
 		if (bShowError)
 		{
 			String str = _T("Failed to load ") + strPath;
@@ -679,7 +679,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		}
 		return false;
 	}
-	ps = 0;
+	ps = nullptr;
 	msgid.erase();
 	found_uid = false;
 	std::string format;
@@ -726,7 +726,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 			}
 			else
 			{
-				ps = 0;
+				ps = nullptr;
 				if (!msgid.empty())
 					unslash(0, msgid);
 				if (msgstr.empty())
@@ -755,7 +755,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	if (unresolved != 0 || mismatched != 0)
 	{
 		FreeLibrary(m_hCurrentDll);
-		m_hCurrentDll = 0;
+		m_hCurrentDll = nullptr;
 		m_map_uid_to_msgid.clear();
 		m_map_msgid_to_uid.clear();
 		m_codepage = 0;

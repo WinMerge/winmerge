@@ -188,9 +188,9 @@ UniMemFile::UniMemFile()
 void UniMemFile::Close()
 {
 	Clear();
-	if (m_base)
+	if (m_base != nullptr)
 	{
-		m_base = 0;
+		m_base = nullptr;
 	}
 	m_data = nullptr;
 	m_current = nullptr;
@@ -539,7 +539,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 	if (m_unicoding == ucr::NONE)
 	{
 		bool eof = true;
-		unsigned char *eolptr = 0;
+		unsigned char *eolptr = nullptr;
 		for (eolptr = m_current; (eolptr - m_base + (m_charsize - 1) < m_filesize); ++eolptr)
 		{
 			if (*eolptr == '\n' || *eolptr == '\r')

@@ -1099,7 +1099,7 @@ bool COpenView::LoadProjectFile(const String &path)
 	ProjectFile prj;
 
 	if (!theApp.LoadProjectFile(path, prj))
-		return FALSE;
+		return false;
 
 	bool recurse;
 	prj.GetPaths(m_files, recurse);
@@ -1124,7 +1124,7 @@ bool COpenView::LoadProjectFile(const String &path)
 		if (m_strExt[0] != '*')
 			m_strExt.insert(0, filterPrefix);
 	}
-	return TRUE;
+	return true;
 }
 
 /** 

@@ -51,8 +51,8 @@ namespace
 		String oldModulePath = env::GetProgPath();
 		env::SetProgPath(_T("c:/Program Files/WinMerge"));
 		CAssureScriptsForThread asft;
-		PackingInfo *iu = NULL;
-		PrediffingInfo *ip = NULL;
+		PackingInfo *iu = nullptr;
+		PrediffingInfo *ip = nullptr;
 		PluginManager pm;
 		IPluginInfos *ppi = &pm;
 		ppi->FetchPluginInfos(_T("../../Data/Office/excel.xls|../../Data/Office/excel.xls"), &iu, &ip);

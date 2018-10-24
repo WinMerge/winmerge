@@ -2628,8 +2628,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	}
 
 	// Define the prediffer
-	PackingInfo * infoUnpacker = 0;
-	PrediffingInfo * infoPrediffer = 0;
+	PackingInfo * infoUnpacker = nullptr;
+	PrediffingInfo * infoPrediffer = nullptr;
 	if (bFiltersEnabled && m_pDirDoc)
 	{
 		m_pDirDoc->GetPluginManager().FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);

@@ -53,7 +53,7 @@ FindEncodingIdFromNameOrAlias(const char *encodingName)
 	if (encodingId == 0)
 	{
 		// Handle purely numeric values (codepages)
-		char *ahead = 0;
+		char *ahead = nullptr;
 		unsigned codepage = strtol(encodingName, &ahead, 10);
 		int i = 0;
 		while (*ahead != '\0' && i < sizeof(f_wincp_prefixes)/sizeof(f_wincp_prefixes[0]))

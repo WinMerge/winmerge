@@ -169,7 +169,7 @@ static String GetLocaleString(LCID locid, LCTYPE lctype)
 /**
  * @brief Write string item
  */
-void CConfigLog::WriteItem(int indent, const String& key, const TCHAR *value)
+void CConfigLog::WriteItem(int indent, const String& key, const TCHAR *value /*= nullptr*/)
 {
 	String text = strutils::format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key.c_str(), key.c_str(), value);
 	m_pfile->WriteString(text);

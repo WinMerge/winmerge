@@ -387,7 +387,7 @@ protected:
 	BOOL OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
 
 private:
-	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = NULL);
+	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr);
 	void OpenSelectionHex();
 	bool GetSelectedItems(int * sel1, int * sel2, int * sel3);
 	void OpenParentDirectory();

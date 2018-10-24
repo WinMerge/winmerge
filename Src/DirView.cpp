@@ -1322,7 +1322,7 @@ static bool CreateFoldersPair(const PathContext& paths)
  * This handles the case that one item is selected
  * and the case that two items are selected (one on each side)
  */
-void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= NULL*/)
+void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= nullptr*/)
 {
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
 	CDirDoc * pDoc = GetDocument();
@@ -2351,7 +2351,7 @@ void CDirView::FixReordering()
 	lvcol.mask = LVCF_ORDER;
 	lvcol.fmt = 0;
 	lvcol.cx = 0;
-	lvcol.pszText = 0;
+	lvcol.pszText = nullptr;
 	lvcol.iSubItem = 0;
 	for (int i = 0; i < m_pColItems->GetColCount(); ++i)
 	{
@@ -2855,7 +2855,7 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	BCMenu *pPopup = static_cast<BCMenu*>(pCmdUI->m_pSubMenu);
-	if (pPopup == NULL)
+	if (pPopup == nullptr)
 		return;
 
 	std::pair<int, int> counts = CountPredifferYesNo(SelBegin(), SelEnd(), GetDiffContext());

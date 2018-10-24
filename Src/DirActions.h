@@ -671,8 +671,8 @@ void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& 
 					filteredFilenames += ::GetItemFileName(ctxt, di, i);
 				}
 			}
-			PackingInfo * infoUnpacker = 0;
-			PrediffingInfo * infoPrediffer = 0;
+			PackingInfo * infoUnpacker = nullptr;
+			PrediffingInfo * infoPrediffer = nullptr;
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 			infoPrediffer->Initialize(newsetting);
 		}
