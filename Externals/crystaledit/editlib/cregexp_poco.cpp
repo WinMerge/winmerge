@@ -34,10 +34,10 @@ struct _RxNode {
 };
 
 RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
-    RxNode *n = 0;
-    if (Regexp == 0) return 0;
+    RxNode *n = nullptr;
+    if (Regexp == nullptr) return nullptr;
     n = new RxNode();
-    if (n == 0) return 0;
+    if (n == nullptr) return nullptr;
 
 	const char * errormsg = NULL;
 	int erroroffset = 0;
@@ -60,7 +60,7 @@ RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
 	}
 	catch (...)
 	{
-		return 0;
+		return nullptr;
 	}
 
     return n;

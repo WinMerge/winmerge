@@ -29,6 +29,8 @@
 #include "cfindtextdlg.h"
 #include "ccrystaltextview.h"
 
+#include "DDXHelper.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -218,15 +220,15 @@ SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, in
   lastSearch.m_bRegExp = bRegExp;
   lastSearch.m_nDirection = nDirection;
   lastSearch.m_sText = sText;
-  lastSearch.m_bNoWrap = !!m_bNoWrap;
-  lastSearch.m_bNoClose = !!m_bNoClose;
+  lastSearch.m_bNoWrap = m_bNoWrap;
+  lastSearch.m_bNoClose = m_bNoClose;
 }
 
 
 void CFindTextDlg::
 UpdateLastSearch ()
 {
-  SetLastSearch (m_sText, !!m_bMatchCase, !!m_bWholeWord, !!m_bRegExp, m_nDirection);
+  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp, m_nDirection);
 }
 
 void CFindTextDlg::

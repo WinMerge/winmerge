@@ -253,10 +253,10 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	// indicated by ^           ^                    ^
 	if (_tcslen(ptr) > 2)
 		end = _tcschr(pFullPath+2, _T('\\'));
-	if (end && !_tcsncmp(pFullPath, _T("\\\\"),2))
+	if (end != nullptr && !_tcsncmp(pFullPath, _T("\\\\"),2))
 		end = _tcschr(end+1, _T('\\'));
 
-	if (!end)
+	if (end == nullptr)
 		return pFullPath;
 
 	*end = 0;
@@ -264,20 +264,20 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	ptr = &end[1];
 
 	// now walk down each directory and do short to long name conversion
-	while (ptr)
+	while (ptr != nullptr)
 	{
 		end = _tcschr(ptr, '\\');
 		// zero-terminate current component
 		// (if we're at end, its already zero-terminated)
-		if (end)
+		if (end != nullptr)
 			*end = 0;
 
 		String sTemp(sLong);
 		sTemp += '\\';
 		sTemp += ptr;
 
-		// advance to next component (or set ptr==0 to flag end)
-		ptr = (end ? end+1 : 0);
+		// advance to next component (or set ptr=`nullptr` to flag end)
+		ptr = (end!=nullptr ? end+1 : nullptr);
 
 		// (Couldn't get info for just the directory from CFindFile)
 		WIN32_FIND_DATA ffd;
@@ -285,7 +285,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 		if (h == INVALID_HANDLE_VALUE)
 		{
 			sLong = sTemp;
-			if (ptr)
+			if (ptr != nullptr)
 			{
 				sLong += '\\';
 				sLong += ptr;
@@ -335,16 +335,16 @@ bool CreateIfNeeded(const String& szPath)
 	// Now fullPath holds our desired path
 
 	TCHAR *ptr = fullPath;
-	TCHAR *end = NULL;
+	TCHAR *end = nullptr;
 
 	// Skip to \ position     d:\abcd or \\host\share\abcd
 	// indicated by ^           ^                    ^
 	if (_tcslen(ptr) > 2)
 		end = _tcschr(fullPath+2, _T('\\'));
-	if (end && !_tcsncmp(fullPath, _T("\\\\"),2))
+	if (end != nullptr && !_tcsncmp(fullPath, _T("\\\\"),2))
 		end = _tcschr(end+1, _T('\\'));
 
-	if (!end) return false;
+	if (end == nullptr) return false;
 
 	// check that first component exists
 	*end = 0;
@@ -354,16 +354,16 @@ bool CreateIfNeeded(const String& szPath)
 
 	ptr = end+1;
 
-	while (ptr)
+	while (ptr != nullptr)
 	{
 		end = _tcschr(ptr, '\\');
 		// zero-terminate current component
 		// (if we're at end, its already zero-terminated)
-		if (end)
+		if (end != nullptr)
 			*end = 0;
 
-		// advance to next component (or set ptr==0 to flag end)
-		ptr = (end ? end+1 : 0);
+		// advance to next component (or set ptr=`nullptr` to flag end)
+		ptr = (end != nullptr ? end+1 : nullptr);
 
 		String sNextName;
 		if (!GetDirName(fullPath, sNextName))
@@ -376,7 +376,7 @@ bool CreateIfNeeded(const String& szPath)
 			}
 		}
 		// if not finished, restore directory string we're working in
-		if (ptr)
+		if (ptr != nullptr)
 			*end = '\\';
 	}
 	return true;

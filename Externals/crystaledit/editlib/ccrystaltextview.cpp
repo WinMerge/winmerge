@@ -3105,7 +3105,7 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
   CRect rectClip = m_rcPrintArea;
   rectClip.right = rectClip.left + GetMarginWidth (pdc) + GetScreenChars () * GetCharWidth ();
   rectClip.bottom = rectClip.top + GetScreenLines () * GetLineHeight ();
-  if (pdc->IsKindOf (RUNTIME_CLASS (CPreviewDC)))
+  if (!!pdc->IsKindOf (RUNTIME_CLASS (CPreviewDC)))
     {
       CPreviewDC *pPrevDC = (CPreviewDC *)pdc;
 
@@ -4619,7 +4619,7 @@ OnUpdateIndicatorPosition (CCmdUI * pCmdUI)
   stat.Format (_T ("Ln %d, Col %d"), m_ptCursorPos.y + 1, m_nIdealCharPos + 1);
   pCmdUI->SetText (stat);
   //BEGIN SW
-  if( pCmdUI->m_pOther && pCmdUI->m_pOther->IsKindOf( RUNTIME_CLASS(CStatusBar) ) )
+  if( pCmdUI->m_pOther && !!pCmdUI->m_pOther->IsKindOf( RUNTIME_CLASS(CStatusBar) ) )
     OnUpdateStatusMessage( (CStatusBar*)pCmdUI->m_pOther );
   //END SW
 }

@@ -67,13 +67,13 @@ public :
     CMemComboBox m_ctlFindText;
     CMemComboBox m_ctlReplText;
     CButton m_ctlWholeWord;
-    BOOL m_bMatchCase;
-    BOOL m_bWholeWord;
-    BOOL m_bRegExp;
+    bool m_bMatchCase;
+    bool m_bWholeWord;
+    bool m_bRegExp;
     CString m_sText;
     CString m_sNewText;
     int m_nScope;
-    BOOL m_bDontWrap;
+    bool m_bDontWrap;
     //}}AFX_DATA
 
     // Overrides

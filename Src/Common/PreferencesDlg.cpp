@@ -273,21 +273,21 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 
 	if (bUpdate)
 	{
-		SafeUpdatePage(&m_pageGeneral, FALSE);
-		SafeUpdatePage(&m_pageMergeColors, FALSE);
-		SafeUpdatePage(&m_pageTextColors, FALSE);
-		SafeUpdatePage(&m_pageSyntaxColors, FALSE);
-		SafeUpdatePage(&m_pageMarkerColors, FALSE);
-		SafeUpdatePage(&m_pageSystem, FALSE);
-		SafeUpdatePage(&m_pageCompare, FALSE);
-		SafeUpdatePage(&m_pageCompareFolder, FALSE);
-		SafeUpdatePage(&m_pageCompareBinary, FALSE);
-		SafeUpdatePage(&m_pageCompareImage, FALSE);
-		SafeUpdatePage(&m_pageEditor, FALSE);
-		SafeUpdatePage(&m_pageCodepage, FALSE);
-		SafeUpdatePage(&m_pageArchive, FALSE);
-		SafeUpdatePage(&m_pageBackups, FALSE);
-		SafeUpdatePage(&m_pageShell, FALSE);
+		SafeUpdatePage(&m_pageGeneral, false);
+		SafeUpdatePage(&m_pageMergeColors, false);
+		SafeUpdatePage(&m_pageTextColors, false);
+		SafeUpdatePage(&m_pageSyntaxColors, false);
+		SafeUpdatePage(&m_pageMarkerColors, false);
+		SafeUpdatePage(&m_pageSystem, false);
+		SafeUpdatePage(&m_pageCompare, false);
+		SafeUpdatePage(&m_pageCompareFolder, false);
+		SafeUpdatePage(&m_pageCompareBinary, false);
+		SafeUpdatePage(&m_pageCompareImage, false);
+		SafeUpdatePage(&m_pageEditor, false);
+		SafeUpdatePage(&m_pageCodepage, false);
+		SafeUpdatePage(&m_pageArchive, false);
+		SafeUpdatePage(&m_pageBackups, false);
+		SafeUpdatePage(&m_pageShell, false);
 	}
 }
 

@@ -47,10 +47,10 @@ struct LastSearchInfos
   {
     int m_nDirection;       // only for search
     bool m_bNoWrap;
-    BOOL m_bMatchCase;
+    bool m_bMatchCase;
     CString m_sText;
-    BOOL m_bWholeWord;
-    BOOL m_bRegExp;
+    bool m_bWholeWord;
+    bool m_bRegExp;
     bool m_bNoClose;
   };
 
@@ -79,12 +79,12 @@ public :
     CMemComboBox m_ctlFindText;
     CButton m_ctlWholeWord;
     int m_nDirection;
-    BOOL m_bMatchCase;
+    bool m_bMatchCase;
     CString m_sText;
-    BOOL m_bWholeWord;
-    BOOL m_bRegExp;
-    BOOL m_bNoWrap;
-    BOOL m_bNoClose; 
+    bool m_bWholeWord;
+    bool m_bRegExp;
+    bool m_bNoWrap;
+    bool m_bNoClose; 
     //}}AFX_DATA
 
     // Overrides

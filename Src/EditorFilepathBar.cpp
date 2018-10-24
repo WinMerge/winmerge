@@ -192,10 +192,10 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 			// just to do the first time, but how to access the tooltip during init ?
 			::SendMessage(pTTTStruct->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 5000);
 
-			return(TRUE);
+			return TRUE;
 		}
 	}
-	return(FALSE);
+	return FALSE;
 }
 
 void CEditorFilePathBar::OnSetFocusEdit(UINT id)
@@ -243,14 +243,14 @@ void CEditorFilePathBar::SetText(int pane, const String& sString)
  * @brief Set the active status for one status (change the appearance)
  *
  * @param [in] pane Index (0-based) of pane to update.
- * @param [in] bActive If TRUE activates pane, FALSE deactivates.
+ * @param [in] bActive If `true` activates pane, `false` deactivates.
  */
 void CEditorFilePathBar::SetActive(int pane, bool bActive)
 {
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
 	// Check for NULL since window may be closing..
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return;
 
 	m_Edit[pane].SetActive(bActive);

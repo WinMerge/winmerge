@@ -280,7 +280,7 @@ find_and_hash_each_line (struct file_data *current)
   char const HUGE *bufend = current->buffer + current->buffered_chars;
   char const HUGE *incomplete_tail
     = current->missing_newline && ROBUST_OUTPUT_STYLE (output_style)
-      ? bufend : (char const HUGE *) 0;
+      ? bufend : (char const HUGE *) NULL;
   int varies = length_varies;
 
   /* prepare_text_end put a zero word at the end of the buffer, 
@@ -992,17 +992,17 @@ read_files (struct file_data filevec[], int pretend_binary, int *bin_file)
   int skip_test = always_text_flag | pretend_binary;
   int appears_binary = 0;
 
-  if (bin_file)
+  if (bin_file != NULL)
     *bin_file = 0;
   appears_binary = pretend_binary | sip (&filevec[0], skip_test);
-  if (bin_file && appears_binary)
+  if (bin_file!=NULL && appears_binary)
     {
       *bin_file = 1;
     }
 
   if (filevec[0].desc != filevec[1].desc)
     {
-      if (bin_file)
+      if (bin_file!=NULL)
         {
           appears_binary = pretend_binary | sip (&filevec[1], skip_test);
           if (appears_binary)

@@ -143,7 +143,7 @@ int DiffUtils::diffutils_compare_files()
 			/* Disconnect them from the rest of the changes,
 			making them a hunk, and remember the rest for next iteration.  */
 			next = end->link;
-			end->link = 0;
+			end->link = NULL;
 #ifdef _DEBUG
 			debug_script(thisob);
 #endif

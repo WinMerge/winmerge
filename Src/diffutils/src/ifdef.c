@@ -362,7 +362,7 @@ scan_char_literal (char *lit, int *intptr)
     {
       case 0:
       case '\'':
-	return 0;
+	return NULL;
 
       case '\\':
 	value = 0;
@@ -370,19 +370,19 @@ scan_char_literal (char *lit, int *intptr)
 	  {
 	    unsigned digit = c - '0';
 	    if (8 <= digit)
-	      return 0;
+	      return NULL;
 	    value = 8 * value + digit;
 	  }
 	assert((p - lit - 2) < INT_MAX);
 	digits = (int)(p - lit - 2);
 	if (! (1 <= digits && digits <= 3))
-	  return 0;
+	  return NULL;
 	break;
 
       default:
 	value = c;
 	if (*p++ != '\'')
-	  return 0;
+	  return NULL;
 	break;
     }
   *intptr = value;
@@ -390,7 +390,7 @@ scan_char_literal (char *lit, int *intptr)
 }
 
 /* Scan optional printf-style SPEC of the form `-*[0-9]*(.[0-9]*)?[cdoxX]'.
-   Return the address of the character following SPEC, or zero if failure.  */
+   Return the address of the character following SPEC, or NULL if failure.  */
 static char *
 scan_printf_spec (register char *spec)
 {
@@ -409,6 +409,6 @@ scan_printf_spec (register char *spec)
 	return spec;
 
       default:
-	return 0;
+	return NULL;
     }
 }

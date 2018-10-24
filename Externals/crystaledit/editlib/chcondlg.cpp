@@ -19,6 +19,8 @@
 #include "ccrystaltextview.h"
 #include "cs2cs.h"
 
+#include "DDXHelper.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -114,7 +116,7 @@ void CCharConvDlg::OnPreview()
 {
   UpdateData ();
   LPTSTR pszNew;
-  if (!iconvert_new (m_sOriginal, &pszNew, m_nSource, m_nDest, m_bAlpha != false))
+  if (!iconvert_new (m_sOriginal, &pszNew, m_nSource, m_nDest, m_bAlpha))
     {
       m_sPreview = pszNew;
       UpdateData (false);
