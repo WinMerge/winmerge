@@ -35,10 +35,10 @@ public :
 	CString m_sFindWhat;
 	int m_nBgColorIndex;
 	int m_nCurItemIndex;
-    BOOL m_bMatchCase;
-    BOOL m_bWholeWord;
-    BOOL m_bRegExp;
-	BOOL m_bMarkersEnabled;
+    bool m_bMatchCase;
+    bool m_bWholeWord;
+    bool m_bRegExp;
+	bool m_bMarkersEnabled;
     //}}AFX_DATA
 
     // Overrides

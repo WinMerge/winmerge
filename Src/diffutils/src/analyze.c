@@ -755,7 +755,7 @@ add_change (int line0, int line1, int deleted, int inserted, struct change *old)
 static struct change *
 build_reverse_script (struct file_data const filevec[])
 {
-  struct change *script = 0;
+  struct change *script = NULL;
   char *changed0 = filevec[0].changed_flag;
   char *changed1 = filevec[1].changed_flag;
   int len0 = filevec[0].buffered_lines;
@@ -792,7 +792,7 @@ build_reverse_script (struct file_data const filevec[])
 static struct change *
 build_script (struct file_data const filevec[])
 {
-  struct change *script = 0;
+  struct change *script = NULL;
   char *changed0 = filevec[0].changed_flag;
   char *changed1 = filevec[1].changed_flag;
   int i0 = filevec[0].buffered_lines, i1 = filevec[1].buffered_lines;
@@ -1003,7 +1003,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 				//  Disconnect them from the rest of the changes, making them
 				// a hunk, and remember the rest for next iteration.  
 				next = end->link;
-				end->link = 0;
+				end->link = NULL;
 				
 				//  Determine whether thisob hunk is really a difference.  
 				analyze_hunk (thisob, &first0, &last0, &first1, &last1,
@@ -1019,7 +1019,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 		}
 		else
 		{
-			changes = (script != 0);
+			changes = (script != NULL);
 		}
 
 		/* WinMerge moved block support */

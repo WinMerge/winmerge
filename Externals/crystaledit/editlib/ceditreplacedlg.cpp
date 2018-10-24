@@ -37,6 +37,8 @@
 #include "ceditreplacedlg.h"
 #include "ccrystaleditview.h"
 
+#include "DDXHelper.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -507,14 +509,14 @@ SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, in
   lastSearch.m_bWholeWord = bWholeWord;
   lastSearch.m_bRegExp = bRegExp;
   lastSearch.m_sText = sText;
-  lastSearch.m_bNoWrap = !!m_bDontWrap;
+  lastSearch.m_bNoWrap = m_bDontWrap;
 }
 
 
 void CEditReplaceDlg::
 UpdateLastSearch ()
 {
-  SetLastSearch (m_sText, !!m_bMatchCase, !!m_bWholeWord, !!m_bRegExp, m_nScope);
+  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp, m_nScope);
 }
 
 void CEditReplaceDlg::

@@ -119,7 +119,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 	{
 		// scan down block for a match
 		p = e->link;
-		EqGroup * pgroup = 0;
+		EqGroup * pgroup = nullptr;
 		int i=0;
 		for (i=e->line0; i-(e->line0) < (e->deleted); ++i)
 		{
@@ -132,7 +132,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 		}
 
 		// if no match, go to next diff block
-		if (!pgroup)
+		if (pgroup == nullptr)
 			continue;
 
 		// found a match
@@ -237,7 +237,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 	{
 		// scan down block for a match
 		p = e->link;
-		EqGroup * pgroup = 0;
+		EqGroup * pgroup = nullptr;
 		int j=0;
 		for (j=e->line1; j-(e->line1) < (e->inserted); ++j)
 		{
@@ -250,7 +250,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 		}
 
 		// if no match, go to next diff block
-		if (!pgroup)
+		if (pgroup == nullptr)
 			continue;
 
 		// found a match

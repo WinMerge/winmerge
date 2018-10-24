@@ -93,8 +93,8 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		// text used for automatic mode : plugin filter must match it
 		String filteredFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
 
-		PackingInfo * infoUnpacker=0;
-		PrediffingInfo * infoPrediffer=0;
+		PackingInfo * infoUnpacker = nullptr;
+		PrediffingInfo * infoPrediffer = nullptr;
 
 		// Get existing or new plugin infos
 		if (pCtxt->m_piPluginInfos)
