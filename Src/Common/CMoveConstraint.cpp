@@ -30,7 +30,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 namespace prdlg {
 
 // from windowsx.h
-#define GetWindowStyle(hwnd) ((DWORD)GetWindowLong(hwnd, GWL_STYLE))
+#define GetWindowStyle(hwnd) ((DWORD)::GetWindowLong(hwnd, GWL_STYLE))
 #define MapWindowRect(hwndFrom, hwndTo, lprc) \
                     MapWindowPoints((hwndFrom), (hwndTo), (POINT *)(lprc), 2)
 
@@ -67,10 +67,10 @@ CMoveConstraint::Constraint::Init()
 	m_fExpandX = 0;
 	m_fAboveY = 0;
 	m_fExpandY = 0;
-	m_hwndChild = 0;
-	m_pWnd = 0;
+	m_hwndChild = nullptr;
+	m_pWnd = nullptr;
 	// m_rectChildOriginal
-	m_hwndParent = 0;
+	m_hwndParent = nullptr;
 }
 
 CMoveConstraint::CMoveConstraint()
@@ -248,7 +248,7 @@ CMoveConstraint::ClearMostData()
 	m_nMaxY=0;
 	m_nDelayed=0;
 	// this specifically does NOT touch m_bSubclassed, as a subclass may still be in use
-	m_pFormView=0;
+	m_pFormView=nullptr;
 	m_nOrigScrollX=0;
 	m_nOrigScrollY=0;
 	m_fShrinkWidth=0;
@@ -383,10 +383,10 @@ CMoveConstraint::CheckDeferredChildren()
 	for (POSITION pos=constraintList.GetHeadPosition(); pos; constraintList.GetNext(pos))
 	{
 		Constraint & constraint = constraintList.GetAt(pos);
-		if (constraint.m_hwndChild)
+		if (constraint.m_hwndChild  != nullptr)
 			continue;
 		ASSERT(constraint.m_pWnd != nullptr);
-		if (constraint.m_pWnd->m_hWnd)
+		if (constraint.m_pWnd->m_hWnd != nullptr)
 		{
 			constraint.m_hwndChild = constraint.m_pWnd->m_hWnd;
 			InitializeChildConstraintData(m_hwndDlg, constraint);
@@ -430,7 +430,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 	for (POSITION pos=constraintList.GetHeadPosition(); pos; constraintList.GetNext(pos))
 	{
 		Constraint & constraint = constraintList.GetAt(pos);
-		if (!constraint.m_hwndChild)
+		if (constraint.m_hwndChild == nullptr)
 			continue;
 
 		CRect rectChildCurrent;
@@ -449,7 +449,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 		rectChildCurrent.top = (int)(nDelta * constraint.m_fAboveY) + constraint.m_rectChildOriginal.top;
 		rectChildCurrent.bottom = (int)(nDelta * (constraint.m_fAboveY + constraint.m_fExpandY)) + constraint.m_rectChildOriginal.bottom;
 
-		SetWindowPos(constraint.m_hwndChild, NULL, rectChildCurrent.left, rectChildCurrent.top
+		SetWindowPos(constraint.m_hwndChild, nullptr, rectChildCurrent.left, rectChildCurrent.top
 			, rectChildCurrent.Width(), rectChildCurrent.Height(), SWP_NOZORDER+SWP_NOREDRAW);
 	}
 

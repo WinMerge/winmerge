@@ -415,7 +415,7 @@ DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction)
 bool CCrystalEditView::
 InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction, bool bFlushUndoGroup)
 {
-  if (!pszText || cchText == 0)
+  if (pszText == nullptr || cchText == 0)
     return false;
 
   CTypedPtrArray<CPtrArray, LPTSTR> aLines;
@@ -2826,7 +2826,7 @@ OnToolsCharCoding ()
       if (dlg.DoModal () != IDOK)
         return;
       LPTSTR pszNew;
-      if (!iconvert_new (sText, &pszNew, dlg.m_nSource, dlg.m_nDest, dlg.m_bAlpha != false))
+      if (!iconvert_new (sText, &pszNew, dlg.m_nSource, dlg.m_nDest, dlg.m_bAlpha))
         {
           ASSERT (pszNew != nullptr);
           m_pTextBuffer->BeginUndoGroup ();

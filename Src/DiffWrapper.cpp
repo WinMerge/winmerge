@@ -185,7 +185,7 @@ void CDiffWrapper::SetTextForAutomaticPrediff(const String &text)
 {
 	m_sToFindPrediffer = text;
 }
-void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*=NULL*/)
+void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)
 {
 	// all flags are set correctly during the construction
 	m_infoPrediffer.reset(new PrediffingInfo);
@@ -731,9 +731,9 @@ bool CDiffWrapper::RunFileDiff()
 		}
 	}
 
-	struct change *script = NULL;
-	struct change *script10 = NULL;
-	struct change *script12 = NULL;
+	struct change *script = nullptr;
+	struct change *script10 = nullptr;
+	struct change *script12 = nullptr;
 	DiffFileData diffdata, diffdata10, diffdata12;
 	int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0;
 
@@ -747,9 +747,9 @@ bool CDiffWrapper::RunFileDiff()
 		}
 
 		// Compare the files, if no error was found.
-		// Last param (bin_file) is NULL since we don't
+		// Last param (bin_file) is `nullptr` since we don't
 		// (yet) need info about binary sides.
-		bRet = Diff2Files(&script, &diffdata, &bin_flag, NULL);
+		bRet = Diff2Files(&script, &diffdata, &bin_flag, nullptr);
 
 		// We don't anymore create diff-files for every rescan.
 		// User can create patch-file whenever one wants to.
@@ -779,14 +779,14 @@ bool CDiffWrapper::RunFileDiff()
 			return false;
 		}
 
-		bRet = Diff2Files(&script10, &diffdata10, &bin_flag10, NULL);
+		bRet = Diff2Files(&script10, &diffdata10, &bin_flag10, nullptr);
 
 		if (!diffdata12.OpenFiles(strFileTemp[1], strFileTemp[2]))
 		{
 			return false;
 		}
 
-		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, NULL);
+		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, nullptr);
 	}
 
 	// First determine what happened during comparison
@@ -1111,15 +1111,15 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 void
 CDiffWrapper::FreeDiffUtilsScript(struct change * & script)
 {
-	if (!script) return;
-	struct change *e=0, *p=0;
+	if (script == nullptr) return;
+	struct change *e=nullptr, *p=nullptr;
 	// cleanup the script
-	for (e = script; e; e = p)
+	for (e = script; e != nullptr; e = p)
 	{
 		p = e->link;
 		free(e);
 	}
-	script = 0;
+	script = nullptr;
 }
 
 /**
@@ -1191,7 +1191,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 		/* Disconnect them from the rest of the changes,
 		making them a hunk, and remember the rest for next iteration.  */
 		next = end->link;
-		end->link = 0;
+		end->link = nullptr;
 #ifdef DEBUG
 		debug_script(thisob);
 #endif
@@ -1342,7 +1342,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 			/* Disconnect them from the rest of the changes,
 			making them a hunk, and remember the rest for next iteration.  */
 			next = end->link;
-			end->link = 0;
+			end->link = nullptr;
 #ifdef DEBUG
 			debug_script(thisob);
 #endif

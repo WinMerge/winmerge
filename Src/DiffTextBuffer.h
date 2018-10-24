@@ -53,7 +53,7 @@ public :
 		LPCTSTR filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,
 		const FileTextEncoding & encoding, CString &sError);
 	int SaveToFile (const String& pszFileName, bool bTempFile, String & sError,
-		PackingInfo * infoUnpacker = NULL, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
+		PackingInfo * infoUnpacker = nullptr, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
 		bool bClearModifiedFlag = true, int nStartLine = 0, int nLines = -1);
 	ucr::UNICODESET getUnicoding() const { return m_encoding.m_unicoding; }
 	void setUnicoding(ucr::UNICODESET value) { m_encoding.m_unicoding = value; }

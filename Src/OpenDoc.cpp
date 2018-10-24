@@ -13,7 +13,7 @@
 IMPLEMENT_DYNCREATE(COpenDoc, CDocument)
 
 COpenDoc::COpenDoc() :
-	m_bRecurse(FALSE)
+	m_bRecurse(false)
 ,	m_dwFlags()
 {
 }

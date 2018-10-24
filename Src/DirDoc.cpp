@@ -77,9 +77,9 @@ CDirDoc::CDirDoc()
 {
 	m_nDirs = m_nDirsTemp;
 
-	m_bRO[0] = FALSE;
-	m_bRO[1] = FALSE;
-	m_bRO[2] = FALSE;
+	m_bRO[0] = false;
+	m_bRO[1] = false;
+	m_bRO[2] = false;
 }
 
 /**

@@ -77,7 +77,7 @@ public:
 	// bit manipulations
 	static void SetMain(DWORD & flr, DWORD newmain) { flr = flr & ~FRESULT_MAIN_MASK; flr = flr | newmain; }
 	static DWORD Main(DWORD flr) { return flr & FRESULT_MAIN_MASK; }
-	static bool IsModifier(DWORD flr, DWORD modifier) { return !!(flr & modifier); }
+	static bool IsModifier(DWORD flr, DWORD modifier) { return (flr & modifier) != 0; }
 
 	/** @brief Return values for functions. */
 	enum FILES_RESULT

@@ -32,8 +32,8 @@ class BCMenuData
 {
 	wchar_t *m_szMenuText;
 public:
-	BCMenuData () {menuIconNormal=-1;xoffset=-1;bitmap=NULL;pContext=NULL;
-	nFlags=0;nID=0;syncflag=0;m_szMenuText=NULL;global_offset=-1;};
+	BCMenuData () {menuIconNormal=-1;xoffset=-1;bitmap=nullptr;pContext=nullptr;
+	nFlags=0;nID=0;syncflag=0;m_szMenuText=nullptr;global_offset=-1;};
 	void SetAnsiString(LPCSTR szAnsiString)
 	{
 		USES_CONVERSION;
@@ -100,38 +100,38 @@ public:
 	static HBITMAP LoadSysColorBitmap(int nResourceId);
 	
 	// functions for appending a menu option, use the AppendMenu call (see above define)
-	BOOL AppendMenuA(UINT nFlags,UINT_PTR nIDNewItem=0,const char *lpszNewItem=NULL,int nIconNormal=-1)
+	bool AppendMenuA(UINT nFlags,UINT_PTR nIDNewItem=0,const char *lpszNewItem=nullptr,int nIconNormal=-1)
 	{
 		USES_CONVERSION;
 		return AppendMenuW(nFlags, nIDNewItem, A2W(lpszNewItem), nIconNormal);
 	}
-	BOOL AppendMenuA(UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CImageList *il,int xoffset)
+	bool AppendMenuA(UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CImageList *il,int xoffset)
 	{
 		USES_CONVERSION;
 		return AppendMenuW(nFlags,nIDNewItem,A2W(lpszNewItem),il,xoffset);
 	}
-	BOOL AppendMenuA(UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CBitmap *bmp)
+	bool AppendMenuA(UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CBitmap *bmp)
 	{
 		USES_CONVERSION;
 		return AppendMenuW(nFlags,nIDNewItem,A2W(lpszNewItem),bmp);
 	}
-	BOOL AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem=0,const wchar_t *lpszNewItem=NULL,int nIconNormal=-1);
-	BOOL AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CImageList *il,int xoffset);
-	BOOL AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CBitmap *bmp);
-	BOOL AppendODMenuA(LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
+	bool AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem=0,const wchar_t *lpszNewItem=nullptr,int nIconNormal=-1);
+	bool AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CImageList *il,int xoffset);
+	bool AppendMenuW(UINT nFlags,UINT_PTR nIDNewItem,const wchar_t *lpszNewItem,CBitmap *bmp);
+	bool AppendODMenuA(LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
 							   int nIconNormal)
 	{
 		USES_CONVERSION;
 		return AppendODMenuW(A2W(lpstrText),nFlags,nID,nIconNormal);//SK: See MFC Tech Note 059
 	}
-	BOOL AppendODMenuW(const wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
-	BOOL AppendODMenuA(LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
+	bool AppendODMenuW(const wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
+	bool AppendODMenuA(LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
 							   CImageList *il,int xoffset)
 	{
 		USES_CONVERSION;
 		return AppendODMenuW(A2W(lpstrText),nFlags,nID,il,xoffset);
 	}
-	BOOL AppendODMenuW(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,CImageList *il,int xoffset);
+	bool AppendODMenuW(const wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,CImageList *il,int xoffset);
 	bool AppendMenu (BCMenu* pMenuToAdd, bool add_separator = true, int num_items_to_remove_at_end = 0);
 	
 	// for appending a popup menu (see example application)
@@ -143,76 +143,76 @@ public:
 	BCMenu* AppendODPopupMenuW(const wchar_t *lpstrText);
 
 	// functions for inserting a menu option, use the InsertMenu call (see above define)
-	BOOL InsertMenuA(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CImageList *il,int xoffset)
+	bool InsertMenuA(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CImageList *il,int xoffset)
 	{
 		USES_CONVERSION;
 		return InsertMenuW(nPosition,nFlags,nIDNewItem,A2W(lpszNewItem),il,xoffset);
 	}
-	BOOL InsertMenuA(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CBitmap *bmp)
+	bool InsertMenuA(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,CBitmap *bmp)
 	{
 		USES_CONVERSION;
 		return InsertMenuW(nPosition,nFlags,nIDNewItem,A2W(lpszNewItem),bmp);
 	}
-	BOOL InsertMenuA(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,int nIconNormal)
+	bool InsertMenuA(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,const char *lpszNewItem,int nIconNormal)
 	{
 		USES_CONVERSION;
 		return InsertMenuW(nPosition,nFlags,nIDNewItem,A2W(lpszNewItem),nIconNormal);
 	}
-	BOOL InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem=0,wchar_t *lpszNewItem=NULL,int nIconNormal=-1);
-	BOOL InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CImageList *il,int xoffset);
-	BOOL InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CBitmap *bmp);
-	BOOL InsertODMenuA(UINT nPosition,LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
+	bool InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem=0,wchar_t *lpszNewItem=nullptr,int nIconNormal=-1);
+	bool InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CImageList *il,int xoffset);
+	bool InsertMenuW(UINT nPosition,UINT nFlags,UINT_PTR nIDNewItem,wchar_t *lpszNewItem,CBitmap *bmp);
+	bool InsertODMenuA(UINT nPosition,LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
 							   int nIconNormal)
 	{
 		USES_CONVERSION;
 		return InsertODMenuW(nPosition,A2W(lpstrText),nFlags,nID,nIconNormal);
 	}
-	BOOL InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
-	BOOL InsertODMenuA(UINT nPosition,LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
+	bool InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
+	bool InsertODMenuA(UINT nPosition,LPCSTR lpstrText,UINT nFlags,UINT_PTR nID,
 							   CImageList *il,int xoffset)
 	{
 		USES_CONVERSION;
 		return InsertODMenuW(nPosition,A2W(lpstrText),nFlags,nID,il,xoffset);
 	}
-	BOOL InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,CImageList *il,int xoffset);
+	bool InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT_PTR nID,CImageList *il,int xoffset);
 	
 	// functions for modifying a menu option, use the ModifyODMenu call (see above define)
-	BOOL ModifyODMenuA(const char * lpstrText,UINT_PTR nID,int nIconNormal)
+	bool ModifyODMenuA(const char * lpstrText,UINT_PTR nID,int nIconNormal)
 	{
 		USES_CONVERSION;
 		return ModifyODMenuW(A2W(lpstrText),nID,nIconNormal);//SK: see MFC Tech Note 059
 	}
-	BOOL ModifyODMenuA(const char * lpstrText,UINT_PTR nID,CImageList *il,int xoffset)
+	bool ModifyODMenuA(const char * lpstrText,UINT_PTR nID,CImageList *il,int xoffset)
 	{
 		USES_CONVERSION;
 		return ModifyODMenuW(A2W(lpstrText),nID,il,xoffset);
 	}
-	BOOL ModifyODMenuA(const char *lpstrText,UINT_PTR nID,CBitmap *bmp)
+	bool ModifyODMenuA(const char *lpstrText,UINT_PTR nID,CBitmap *bmp)
 	{
 		USES_CONVERSION;
 		return ModifyODMenuW(A2W(lpstrText),nID,bmp);
 	}
-	BOOL ModifyODMenuA(const char *lpstrText,const char *OptionText,
+	bool ModifyODMenuA(const char *lpstrText,const char *OptionText,
 							   int nIconNormal)
 	{
 		USES_CONVERSION;
 		return ModifyODMenuW(A2W(lpstrText),A2W(OptionText),nIconNormal);//SK: see MFC  Tech Note 059
 	}
-	BOOL ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID=0,int nIconNormal=-1);
-	BOOL ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xoffset);
-	BOOL ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CBitmap *bmp);
-	BOOL ModifyODMenuW(wchar_t *lpstrText,wchar_t *OptionText,int nIconNormal);
+	bool ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID=0,int nIconNormal=-1);
+	bool ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CImageList *il,int xoffset);
+	bool ModifyODMenuW(wchar_t *lpstrText,UINT_PTR nID,CBitmap *bmp);
+	bool ModifyODMenuW(wchar_t *lpstrText,wchar_t *OptionText,int nIconNormal);
 
-	BOOL SetImageForPopupFromToolbarA (const char *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from)
+	bool SetImageForPopupFromToolbarA (const char *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from)
 	{
 		USES_CONVERSION;
 		return SetImageForPopupFromToolbarW(A2W(strPopUpText),toolbarID,command_id_to_extract_icon_from);
 	}
-	BOOL SetImageForPopupFromToolbarW (wchar_t *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from);
+	bool SetImageForPopupFromToolbarW (wchar_t *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from);
 
 	// for deleting and removing menu options
-	BOOL	RemoveMenu(UINT uiId,UINT nFlags);
-	BOOL	DeleteMenu(UINT uiId,UINT nFlags);
+	bool	RemoveMenu(UINT uiId,UINT nFlags);
+	bool	DeleteMenu(UINT uiId,UINT nFlags);
 	// sPos means Seperator's position, since we have no way to find the seperator's position in the menu
 	// we have to specify them when we call the RemoveMenu to make sure the unused seperators are removed;
 	// sPos  = None no seperator removal;
@@ -238,8 +238,8 @@ public:
 
 	// function for retrieving and setting a menu options text (use this function
 	// because it is ownerdrawn)
-	BOOL GetMenuText(UINT id,CString &string,UINT nFlags = MF_BYPOSITION);
-	BOOL SetMenuText(UINT id,CString string, UINT nFlags = MF_BYPOSITION);
+	bool GetMenuText(UINT id,CString &string,UINT nFlags = MF_BYPOSITION);
+	bool SetMenuText(UINT id,CString string, UINT nFlags = MF_BYPOSITION);
 
 	// Getting a submenu from it's name or position
 	BCMenu* GetSubBCMenu(char* pText)
@@ -284,7 +284,7 @@ protected:
 	BCMenu *FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>&bcsubs,
 								  CArray<UINT,UINT&>&bclocs);
 	BCMenuData *FindMenuOption(wchar_t *lpstrText);
-	void DrawCheckMark(CDC* pDC,int x,int y,COLORREF color,BOOL narrowflag=FALSE);
+	void DrawCheckMark(CDC* pDC,int x,int y,COLORREF color,bool narrowflag=false);
 	void DrawRadioDot(CDC *pDC,int x,int y,COLORREF color);
 	BCMenuData *NewODMenu(UINT pos,UINT nFlags,UINT_PTR nID,CString string);
 	void SynchronizeMenu(void);
@@ -292,14 +292,14 @@ protected:
 	void DeleteMenuList(void);
 	BCMenuData *FindMenuList(UINT_PTR nID);
 	void DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS);
-	BOOL Draw3DCheckmark(CDC *dc, const CRect& rc,BOOL bSelected,HBITMAP hbmCheck);
+	bool Draw3DCheckmark(CDC *dc, const CRect& rc,bool bSelected,HBITMAP hbmCheck);
 	void DrawItem_Theme (LPDRAWITEMSTRUCT lpDIS);
 	void DitherBlt2(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
 		int nHeight, CBitmap &bmp, int nXSrc, int nYSrc,COLORREF bgcolor);
 	void DitherBlt3(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
 		int nHeight, CBitmap &bmp,COLORREF bgcolor);
-	BOOL GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBitmap &bmp);
-	BOOL ImageListDuplicate(CImageList *il,int xoffset,CImageList *newlist);
+	bool GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBitmap &bmp);
+	bool ImageListDuplicate(CImageList *il,int xoffset,CImageList *newlist);
 	static WORD NumBitmapColors(LPBITMAPINFOHEADER lpBitmap);
 	void RemoveTopLevelOwnerDraw(void);
 	int GetMenuStart(void);
@@ -325,9 +325,9 @@ protected:
 	static int m_iconX;
 	static int m_iconY;
 	COLORREF m_bitmapBackground;
-	BOOL m_bitmapBackgroundFlag;
+	bool m_bitmapBackgroundFlag;
 	static bool hicolor_bitmaps;
-	BOOL m_loadmenu;
+	bool m_loadmenu;
 	static MARGINS m_marginCheck;
 	static MARGINS m_marginSeparator;
 	static SIZE m_sizeCheck;

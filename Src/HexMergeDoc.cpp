@@ -300,7 +300,7 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	}
 	else
 	{	
-		result = FALSE;
+		result = false;
 	}
 
 	// If file were modified and saving was successfull,
@@ -585,7 +585,7 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 static void Customize(IHexEditorWindow::Settings *settings)
 {
 	settings->bSaveIni = false;
-	//settings->iAutomaticBPL = FALSE;
+	//settings->iAutomaticBPL = false;
 	//settings->iBytesPerLine = 16;
 	//settings->iFontSize = 8;
 }

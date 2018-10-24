@@ -961,7 +961,7 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
  *  - custom function for sorting column data
  *  - parameter for custom functions: DIFFITEM (if NULL) or one of its fields
  *  - default column order number, -1 if not shown by default
- *  - ascending (TRUE) or descending (FALSE) default sort order
+ *  - ascending (`true`) or descending (`false`) default sort order
  *  - alignment of column contents: numbers are usually right-aligned
  */
 static DirColInfo f_cols[] =

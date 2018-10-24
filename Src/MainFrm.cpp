@@ -420,11 +420,11 @@ HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
 HMENU CMainFrame::NewMenu(int view, int ID)
 {
 	int menu_view, index;
-	if (m_pMenus[view] == NULL)
+	if (m_pMenus[view] == nullptr)
 	{
 		m_pMenus[view].reset(new BCMenu());
-		if (m_pMenus[view] == NULL)
-			return NULL;
+		if (m_pMenus[view] == nullptr)
+			return nullptr;
 	}
 
 	switch (view)
@@ -444,7 +444,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	if (!m_pMenus[view]->LoadMenu(ID))
 	{
 		ASSERT(false);
-		return NULL;
+		return nullptr;
 	}
 
 	if (view == MENU_IMGMERGEVIEW)
@@ -557,7 +557,7 @@ LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags,
 		lresult=BCMenu::FindKeyboardShortcut(nChar, nFlags, pMenu);
 	else
 		lresult=CMDIFrameWnd::OnMenuChar(nChar, nFlags, pMenu);
-	return(lresult);
+	return lresult;
 }
 
 /**
@@ -597,8 +597,8 @@ FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 
 bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
-	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*=_T("")*/,
-	const PackingInfo * infoUnpacker /*= NULL*/)
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
+	const PackingInfo * infoUnpacker /*= nullptr*/)
 {
 	int pane;
 	FileFilterHelper filterImg, filterBin;
@@ -650,8 +650,8 @@ int GetActivePaneFromFlags(int nFiles, const DWORD dwFlags[])
  */
 bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
-	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*=_T("")*/,
-	const PackingInfo * infoUnpacker /*= NULL*/)
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
+	const PackingInfo * infoUnpacker /*= nullptr*/)
 {
 	if (!m_pMenus[MENU_MERGEVIEW])
 		theApp.m_pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
@@ -736,8 +736,8 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 }
 
 bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*=_T("")*/,
-	const PackingInfo * infoUnpacker /*= NULL*/)
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
+	const PackingInfo * infoUnpacker /*= nullptr*/)
 {
 	if (!m_pMenus[MENU_HEXMERGEVIEW])
 		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
@@ -755,8 +755,8 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 }
 
 bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*=_T("")*/,
-	const PackingInfo * infoUnpacker/* = NULL*/)
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
+	const PackingInfo * infoUnpacker /*= nullptr*/)
 {
 	CImgMergeFrame *pImgMergeFrame = new CImgMergeFrame();
 	if (!CImgMergeFrame::menu.m_hMenu)
@@ -882,15 +882,15 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
  * @param [in] prediffer Prediffer plugin name.
  * @return `true` if opening files and compare succeeded, `false` otherwise.
  */
-bool CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
-	const DWORD dwFlags[] /*=NULL*/, const String strDesc[] /*=NULL*/, const String& sReportFile /*=T("")*/, bool bRecurse /*= false*/, CDirDoc *pDirDoc/*=NULL*/,
-	String prediffer /*=_T("")*/, const PackingInfo *infoUnpacker/*=NULL*/)
+bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
+	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/, bool bRecurse /*= false*/, CDirDoc *pDirDoc/*= nullptr*/,
+	String prediffer /*= _T("")*/, const PackingInfo *infoUnpacker /*= nullptr*/)
 {
 	if (pDirDoc && !pDirDoc->CloseMergeDocs())
-		return FALSE;
+		return false;
 
-	FileTransform::g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
-	FileTransform::g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
+	FileTransform::g_eUnpackerMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL));
+	FileTransform::g_ePredifferMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL));
 
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
 
@@ -924,7 +924,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 			pOpenDoc->m_infoHandler = *infoUnpacker;
 		CFrameWnd *pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, NULL);
 		theApp.m_pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
-		return TRUE;
+		return true;
 	}
 	else
 	{
@@ -1021,7 +1021,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, bRecurse, filter);
 	}
 
-	return TRUE;
+	return true;
 }
 
 void CMainFrame::UpdateFont(FRAMETYPE frame)
@@ -1452,7 +1452,7 @@ CMergeEditView * CMainFrame::GetActiveMergeEditView()
 	CChildFrame * pFrame = dynamic_cast<CChildFrame *>(GetActiveFrame());
 	if (!pFrame) return 0;
 	// Try to get the active MergeEditView (ie, left or right)
-	if (pFrame->GetActiveView() && pFrame->GetActiveView()->IsKindOf(RUNTIME_CLASS(CMergeEditView)))
+	if (pFrame->GetActiveView() != nullptr && pFrame->GetActiveView()->IsKindOf(RUNTIME_CLASS(CMergeEditView)))
 	{
 		return dynamic_cast<CMergeEditView *>(pFrame->GetActiveView());
 	}

@@ -120,12 +120,12 @@ int GetFunctionsFromScript(IDispatch *piDispatch, vector<String>& namesArray, ve
 	UINT iValidFunc = 0;
 	if (piDispatch)
 	{
-		ITypeInfo *piTypeInfo=0;
+		ITypeInfo *piTypeInfo=nullptr;
 		unsigned  iTInfo = 0; // 0 for type information of IDispatch itself
 		LCID  lcid=0; // locale for localized method names (ignore if no localized names)
 		if (SUCCEEDED(piDispatch->GetTypeInfo(iTInfo, lcid, &piTypeInfo)))
 		{
-			TYPEATTR *pTypeAttr=0;
+			TYPEATTR *pTypeAttr=nullptr;
 			if (SUCCEEDED(piTypeInfo->GetTypeAttr(&pTypeAttr)))
 			{
 				// allocate arrays for the returned structures

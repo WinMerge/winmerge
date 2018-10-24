@@ -776,7 +776,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 		{
 		}
 	}
-	if (pImage == NULL)
+	if (pImage == nullptr)
 	{
 		cbImage = 0;
 	}
@@ -789,7 +789,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			// big endian: swab first
 			cbImage &= ~1UL;
 			pCopy = new unsigned char[cbImage];
-			if (pCopy)
+			if (pCopy != nullptr)
 			{
 				for (size_t i = 0; i < cbImage / 2; ++i)
 					*((uint16_t *)pCopy + i) = Poco::ByteOrder::flipBytes(*((uint16_t *)pImage + i));
@@ -797,7 +797,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 
 			delete m_pSharedMemory;
 			pImage = pCopy;
-			if (pImage)
+			if (pImage != nullptr)
 			{
 			case 2 + 0:
 			case 2 + 0 + 8:
@@ -811,7 +811,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 				}
 				cbImage = ucr::Utf8len_of_string(pchImage, cchImage);
 				pCopy = new unsigned char[cbImage];
-				if (pCopy)
+				if (pCopy != nullptr)
 				{
 					uint16_t *pu16;
 					unsigned char *pu8;
@@ -819,7 +819,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 						pu8 += ucr::Ucs4_to_Utf8(*pu16, pu8);
 				}
 				delete m_pSharedMemory;
-				m_pSharedMemory = NULL;
+				m_pSharedMemory = nullptr;
 				pImage = pCopy;
 			}
 			break;
@@ -838,7 +838,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			delete m_pSharedMemory;
 			m_pSharedMemory = NULL;
 			pImage = pCopy;
-			if (pImage)
+			if (pImage != nullptr)
 			{
 			case 4 + 0:
 			case 4 + 0 + 8:

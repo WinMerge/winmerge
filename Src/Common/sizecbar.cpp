@@ -432,7 +432,7 @@ void CSizingControlBar::OnNcCalcSize(BOOL bCalcValidRects,
     if (IsFloating())
     {
         CFrameWnd* pFrame = GetParentFrame();
-        if (pFrame != NULL &&
+        if (pFrame != nullptr &&
             pFrame->IsKindOf(RUNTIME_CLASS(CMiniFrameWnd)))
         {
             DWORD dwStyle = ::GetWindowLong(pFrame->m_hWnd, GWL_STYLE);
@@ -493,10 +493,10 @@ void CSizingControlBar::NcCalcClient(LPRECT pRc, UINT nDockBarID)
     // make room for edges only if they will be painted
     if (m_dwSCBStyle & SCBS_SHOWEDGES)
         rc.DeflateRect(
-            (m_dwSCBStyle & SCBS_EDGELEFT) ? m_cxEdge : 0,
-            (m_dwSCBStyle & SCBS_EDGETOP) ? m_cxEdge : 0,
-            (m_dwSCBStyle & SCBS_EDGERIGHT) ? m_cxEdge : 0,
-            (m_dwSCBStyle & SCBS_EDGEBOTTOM) ? m_cxEdge : 0);
+            (m_dwSCBStyle & SCBS_EDGELEFT)   != 0 ? m_cxEdge : 0,
+            (m_dwSCBStyle & SCBS_EDGETOP)    != 0 ? m_cxEdge : 0,
+            (m_dwSCBStyle & SCBS_EDGERIGHT)  != 0 ? m_cxEdge : 0,
+            (m_dwSCBStyle & SCBS_EDGEBOTTOM) != 0 ? m_cxEdge : 0);
 
     *pRc = rc;
 }
@@ -528,7 +528,7 @@ void CSizingControlBar::OnNcPaint()
     mdc.FillRect(rcDraw, CBrush::FromHandle(
         (HBRUSH) GetClassLongPtr(m_hWnd, GCLP_HBRBACKGROUND)));
 
-    if (m_dwSCBStyle & SCBS_SHOWEDGES)
+    if ((m_dwSCBStyle & SCBS_SHOWEDGES) != 0)
     {
         CRect rcEdge; // paint the sizing edges
         for (int i = 0; i < 4; i++)
@@ -813,29 +813,33 @@ bool CSizingControlBar::GetEdgeRect(CRect rcWnd, UINT nHitTest,
                                     CRect& rcEdge)
 {
     rcEdge = rcWnd;
-    if (m_dwSCBStyle & SCBS_SHOWEDGES)
+    if ((m_dwSCBStyle & SCBS_SHOWEDGES) != 0)
         rcEdge.DeflateRect(1, 1);
     bool bHorz = IsHorzDocked();
 
     switch (nHitTest)
     {
     case HTLEFT:
-        if (!(m_dwSCBStyle & SCBS_EDGELEFT)) return FALSE;
+        if ((m_dwSCBStyle & SCBS_EDGELEFT) == 0) 
+			return false;
         rcEdge.right = rcEdge.left + m_cxEdge;
         rcEdge.DeflateRect(0, bHorz ? m_cxEdge: 0);
         break;
     case HTTOP:
-        if (!(m_dwSCBStyle & SCBS_EDGETOP)) return FALSE;
+        if ((m_dwSCBStyle & SCBS_EDGETOP) == 0) 
+			return false;
         rcEdge.bottom = rcEdge.top + m_cxEdge;
         rcEdge.DeflateRect(bHorz ? 0 : m_cxEdge, 0);
         break;
     case HTRIGHT:
-        if (!(m_dwSCBStyle & SCBS_EDGERIGHT)) return FALSE;
+        if ((m_dwSCBStyle & SCBS_EDGERIGHT) == 0) 
+			return false;
         rcEdge.left = rcEdge.right - m_cxEdge;
         rcEdge.DeflateRect(0, bHorz ? m_cxEdge: 0);
         break;
     case HTBOTTOM:
-        if (!(m_dwSCBStyle & SCBS_EDGEBOTTOM)) return FALSE;
+        if ((m_dwSCBStyle & SCBS_EDGEBOTTOM) == 0) 
+			return false;
         rcEdge.top = rcEdge.bottom - m_cxEdge;
         rcEdge.DeflateRect(bHorz ? 0 : m_cxEdge, 0);
         break;
