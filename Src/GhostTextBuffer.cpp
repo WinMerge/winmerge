@@ -836,7 +836,7 @@ void CGhostTextBuffer::			/* virtual override */
 AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 	const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 	int nActionType /*= CE_ACTION_UNKNOWN*/,
-	CDWordArray *paSavedRevisionNumbers)
+	CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
 {
 	CPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
 	CPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + CountEol(pszText, cchText));

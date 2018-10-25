@@ -31,7 +31,7 @@
 // ConfirmFolderCopyDlg dialog
 
 IMPLEMENT_DYNAMIC(ConfirmFolderCopyDlg, CTrDialog)
-ConfirmFolderCopyDlg::ConfirmFolderCopyDlg(CWnd* pParent /*=NULL*/)
+ConfirmFolderCopyDlg::ConfirmFolderCopyDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(ConfirmFolderCopyDlg::IDD, pParent)
 {
 }

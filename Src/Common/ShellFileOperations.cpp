@@ -149,7 +149,7 @@ size_t ShellFileOperations::CountStringSize(bool source) const
  * @param [in] parentWindow Window getting notifications.
  */
 void ShellFileOperations::SetOperation(UINT operation, FILEOP_FLAGS flags,
-		HWND parentWindow /*= NULL*/)
+		HWND parentWindow /*= nullptr*/)
 {
 	m_function = operation;
 	m_flags = flags;

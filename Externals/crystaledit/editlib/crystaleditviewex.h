@@ -30,7 +30,7 @@ public:
 
 	@return
 		The syntax parser that was used until the call to this function or
-		NULL if no one was attached to this view.
+		`nullptr` if no one was attached to this view.
 	*/
 	CCrystalParser *SetSyntaxParser( CCrystalParser *pParser );
 
@@ -66,7 +66,7 @@ protected:
 		color. You have to specifie each one of this blocks in this Buffer.
 		You can define a new Block with the macro DEFINE_BLOCK( pos, colorindex ).
 
-		When the function ist called with this parameter set zu NULL, you only
+		When the function is called with this parameter set to `nullptr`, you only
 		have to calculate the cookies.
 	@param nActualItems
 		Used by the macro DEFINE_BLOCK.
@@ -81,7 +81,7 @@ protected:
 protected:
 	/**
 	@description
-		The parser used to parse the Text or NULL if no parser is used.
+		The parser used to parse the Text or `nullptr` if no parser is used.
 	*/
 	CCrystalParser *m_pSyntaxParser;
 };

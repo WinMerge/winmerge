@@ -33,7 +33,7 @@
 
 IMPLEMENT_DYNAMIC(CompareStatisticsDlg, CTrDialog)
 
-CompareStatisticsDlg::CompareStatisticsDlg(const CompareStats* pStats, CWnd* pParent /*=NULL*/) :
+CompareStatisticsDlg::CompareStatisticsDlg(const CompareStats* pStats, CWnd* pParent /*= nullptr*/) :
 	m_pCompareStats(pStats),
 	CTrDialog(pStats->GetCompareDirs() < 3 ? IDD_COMPARE_STATISTICS : IDD_COMPARE_STATISTICS3, pParent)
 {

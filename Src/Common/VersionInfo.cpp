@@ -65,7 +65,7 @@ CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion,
 , m_bVersionOnly(false)
 , m_bDllVersion(bDllVersion)
 {
-	if (szFileToVersion != NULL)
+	if (szFileToVersion != nullptr)
 		m_strFileName = szFileToVersion;
 	GetVersionInfo();
 }
@@ -76,18 +76,18 @@ CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion,
  * @param [in] szLanguage Language for version.
  * @param [in] szCodePage Codepage for version.
  */
-CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion /* = NULL*/, 
-						   LPCTSTR szLanguage /* = NULL*/,
-						   LPCTSTR szCodepage /* = NULL*/)
+CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion /* = nullptr*/, 
+						   LPCTSTR szLanguage /* = nullptr*/,
+						   LPCTSTR szCodepage /* = nullptr*/)
 : m_wLanguage(0)
 , m_bVersionOnly(false)
 , m_bDllVersion(false)
 {
-	if (szFileToVersion != NULL)
+	if (szFileToVersion != nullptr)
 		m_strFileName = szFileToVersion;
-	if (szLanguage != NULL)
+	if (szLanguage != nullptr)
 		m_strLanguage = szLanguage;
-	if (szCodepage != NULL)
+	if (szCodepage != nullptr)
 		m_strCodepage = szCodepage;
 	GetVersionInfo();
 }

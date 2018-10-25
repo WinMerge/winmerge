@@ -16,7 +16,7 @@ IMPLEMENT_DYNCREATE(CCrystalEditViewEx,CCrystalEditView)
 CCrystalEditViewEx::CCrystalEditViewEx()
 : CCrystalEditView()
 {
-	m_pSyntaxParser = NULL;
+	m_pSyntaxParser = nullptr;
 }
 
 
@@ -34,7 +34,7 @@ HINSTANCE CCrystalEditViewEx::GetResourceHandle()
 DWORD CCrystalEditViewEx::ParseLine( DWORD dwCookie, int nLineIndex, 
 																		TEXTBLOCK *pBuf, int &nActualItems )
 {
-	if( m_pSyntaxParser )
+	if( m_pSyntaxParser != nullptr )
 	{
 		CCrystalTextBlock	*pTextBlock = 
 			pBuf? new CCrystalTextBlock( (CCrystalTextBlock::TEXTBLOCK*)pBuf, nActualItems ) : NULL;
@@ -56,7 +56,7 @@ CCrystalParser *CCrystalEditViewEx::SetSyntaxParser( CCrystalParser *pParser )
 
 	m_pSyntaxParser = pParser;
 
-	if( pParser )
+	if( pParser != nullptr )
   //BEGIN FP
     pParser->m_pTextView = this;
 		/*ORIGINAL

@@ -2900,11 +2900,11 @@ OnInitialUpdate ()
 // CCrystalTextView printing
 
 void CCrystalTextView::
-OnPrepareDC (CDC * pDC, CPrintInfo * pInfo)
+OnPrepareDC (CDC * pDC, CPrintInfo * pInfo /*= nullptr*/)
 {
   CView::OnPrepareDC (pDC, pInfo);
 
-  if (pInfo != NULL)
+  if (pInfo != nullptr)
     {
       pInfo->m_bContinuePrinting = true;
       if (m_nPrintPages != 0 && (int) pInfo->m_nCurPage > m_nPrintPages)
@@ -3297,8 +3297,8 @@ GetViewableLineLength (int nLineIndex) const
 LPCTSTR CCrystalTextView::
 GetLineChars (int nLineIndex) const
 {
-  if (m_pTextBuffer == NULL)
-    return NULL;
+  if (m_pTextBuffer == nullptr)
+    return nullptr;
   return m_pTextBuffer->GetLineChars (nLineIndex);
 }
 
@@ -3309,24 +3309,24 @@ GetLineChars (int nLineIndex) const
  * no need to reset the editor options (m_bOvrMode, m_bLastReplace)
  */
 void CCrystalTextView::
-ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
+ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
 {
-  if (m_pTextBuffer != NULL)
+  if (m_pTextBuffer != nullptr)
     m_pTextBuffer->RemoveView (this);
-  if (pBuf == NULL)
+  if (pBuf == nullptr)
     {
       pBuf = LocateTextBuffer ();
       //  ...
     }
   m_pTextBuffer = pBuf;
-  if (m_pTextBuffer != NULL)
+  if (m_pTextBuffer != nullptr)
     m_pTextBuffer->AddView (this);
   // don't reset CCrystalEditView options
   CCrystalTextView::ResetView ();
 
   //  Init scrollbars arrows
   CScrollBar *pVertScrollBarCtrl = GetScrollBarCtrl (SB_VERT);
-  if (pVertScrollBarCtrl != NULL)
+  if (pVertScrollBarCtrl != nullptr)
     pVertScrollBarCtrl->EnableScrollBar (GetScreenLines () >= GetLineCount ()?
                                          ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
   //  Update vertical scrollbar only
@@ -3338,27 +3338,27 @@ ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
  * initialize the view and initialize both scrollbars
  */
 void CCrystalTextView::
-AttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
+AttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
 {
-  if (m_pTextBuffer != NULL)
+  if (m_pTextBuffer != nullptr)
     m_pTextBuffer->RemoveView (this);
-  if (pBuf == NULL)
+  if (pBuf == nullptr)
     {
       pBuf = LocateTextBuffer ();
       //  ...
     }
   m_pTextBuffer = pBuf;
-  if (m_pTextBuffer != NULL)
+  if (m_pTextBuffer != nullptr)
     m_pTextBuffer->AddView (this);
   ResetView ();
 
   //  Init scrollbars
   CScrollBar *pVertScrollBarCtrl = GetScrollBarCtrl (SB_VERT);
-  if (pVertScrollBarCtrl != NULL)
+  if (pVertScrollBarCtrl != nullptr)
     pVertScrollBarCtrl->EnableScrollBar (GetScreenLines () >= GetLineCount ()?
                                          ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
   CScrollBar *pHorzScrollBarCtrl = GetScrollBarCtrl (SB_HORZ);
-  if (pHorzScrollBarCtrl != NULL)
+  if (pHorzScrollBarCtrl != nullptr)
     pHorzScrollBarCtrl->EnableScrollBar (GetScreenChars () >= GetMaxLineLength (m_nTopLine, GetScreenLines())?
                                          ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
 
@@ -5582,7 +5582,7 @@ GetViewLineNumbers () const
  * @return Margin area width in pixels.
  */
 int CCrystalTextView::
-GetMarginWidth (CDC *pdc)
+GetMarginWidth (CDC *pdc /*= nullptr*/)
 {
   int nMarginWidth = 0;
 
@@ -5600,12 +5600,12 @@ GetMarginWidth (CDC *pdc)
 
   if (m_bSelMargin)
     {
-      if (pdc == NULL || !pdc->IsPrinting ())
+      if (pdc == nullptr || !pdc->IsPrinting ())
         nMarginWidth += MARGIN_ICON_WIDTH  + 7;  // Width for icon markers and some margin
     }
   else
     {
-      if (pdc == NULL || !pdc->IsPrinting ())
+      if (pdc == nullptr || !pdc->IsPrinting ())
         nMarginWidth += MARGIN_REV_WIDTH; // Space for revision marks
     }
 
