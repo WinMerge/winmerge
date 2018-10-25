@@ -38,8 +38,8 @@ using Poco::Exception;
 namespace FileTransform
 {
 
-int g_bUnpackerMode = PLUGIN_MANUAL;
-int g_bPredifferMode = PLUGIN_MANUAL;
+PLUGIN_MODE g_UnpackerMode = PLUGIN_MANUAL;
+PLUGIN_MODE g_PredifferMode = PLUGIN_MANUAL;
 
 
 
@@ -52,7 +52,7 @@ int g_bPredifferMode = PLUGIN_MANUAL;
 bool Packing(String & filepath, PackingInfo handler)
 {
 	// no handler : return true
-	if (handler.pluginName.empty())
+	if (handler.m_PluginName.empty())
 		return true;
 
 	storageForPlugins bufferData;
@@ -61,13 +61,13 @@ bool Packing(String & filepath, PackingInfo handler)
 	// control value
 	bool bHandled = false;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName);
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.m_PluginName);
 	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler.pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler.m_PluginName);
 	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.m_PluginName);
 	LPDISPATCH piScript = plugin->m_lpDispatch;
-	if (handler.bWithFile)
+	if (handler.m_bWithFile)
 	{
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
@@ -75,7 +75,7 @@ bool Packing(String & filepath, PackingInfo handler)
 		bHandled = plugin::InvokePackFile(srcFileName,
 			dstFileName,
 			bufferData.GetNChanged(),
-			piScript, handler.subcode);
+			piScript, handler.m_subcode);
 		if (bHandled)
 			bufferData.ValidateNewFile();
 	}
@@ -83,7 +83,7 @@ bool Packing(String & filepath, PackingInfo handler)
 	{
 		bHandled = plugin::InvokePackBuffer(*bufferData.GetDataBufferAnsi(),
 			bufferData.GetNChanged(),
-			piScript, handler.subcode);
+			piScript, handler.m_subcode);
 		if (bHandled)
 			bufferData.ValidateNewBuffer();
 	}
@@ -106,7 +106,7 @@ bool Packing(String & filepath, PackingInfo handler)
 bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode)
 {
 	// no handler : return true
-	if (handler == nullptr || handler->pluginName.empty())
+	if (handler == nullptr || handler->m_PluginName.empty())
 		return true;
 
 	storageForPlugins bufferData;
@@ -118,16 +118,16 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 	// control value
 	bool bHandled = false;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->pluginName);
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->m_PluginName);
 	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler->pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler->m_PluginName);
 	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->m_PluginName);
 	if (plugin == nullptr)
 		return false;
 
 	LPDISPATCH piScript = plugin->m_lpDispatch;
-	if (handler->bWithFile)
+	if (handler->m_bWithFile)
 	{
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
@@ -170,13 +170,13 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode)
 {
 	// PLUGIN_BUILTIN_XML : read source file through custom UniFile
-	if (handler->bToBeScanned == PLUGIN_BUILTIN_XML)
+	if (handler->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML)
 	{
-		handler->pufile = new UniMarkdownFile;
-		handler->textType = _T("xml");
-		handler->disallowMixedEOL = true;
-		handler->pluginName.erase(); // Make FileTransform_Packing() a NOP
-		// Leave bToBeScanned alone so above lines will continue to execute on
+		handler->m_pufile = new UniMarkdownFile;
+		handler->m_textType = _T("xml");
+		handler->m_bDisallowMixedEOL = true;
+		handler->m_PluginName.erase(); // Make FileTransform_Packing() a NOP
+		// Leave eToBeScanned alone so above lines will continue to execute on
 		// subsequent calls to this function
 		return true;
 	}
@@ -192,15 +192,15 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredText);
 	if (plugin != nullptr)
 	{
-		handler->pluginName = plugin->m_name;
-		handler->bWithFile = true;
+		handler->m_PluginName = plugin->m_name;
+		handler->m_bWithFile = true;
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
 		bHandled = plugin::InvokeUnpackFile(srcFileName,
 			dstFileName,
 			bufferData.GetNChanged(),
-			plugin->m_lpDispatch, handler->subcode);
+			plugin->m_lpDispatch, handler->m_subcode);
 		if (bHandled)
 			bufferData.ValidateNewFile();
 	}
@@ -213,11 +213,11 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredText);
 		if (plugin != nullptr)
 		{
-			handler->pluginName = plugin->m_name;
-			handler->bWithFile = false;
+			handler->m_PluginName = plugin->m_name;
+			handler->m_bWithFile = false;
 			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
 				bufferData.GetNChanged(),
-				plugin->m_lpDispatch, handler->subcode);
+				plugin->m_lpDispatch, handler->m_subcode);
 			if (bHandled)
 				bufferData.ValidateNewBuffer();
 		}
@@ -226,16 +226,16 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	if (!bHandled)
 	{
 		// we didn't find any unpacker, just hope it is normal Ansi/Unicode
-		handler->pluginName = _T("");
-		handler->subcode = 0;
+		handler->m_PluginName = _T("");
+		handler->m_subcode = 0;
 		bHandled = true;
 	}
 
 	// the handler is now defined
-	handler->bToBeScanned = false;
+	handler->m_PluginOrPredifferMode = PLUGIN_MANUAL;
 
 	// assign the sucode
-	*handlerSubcode = handler->subcode;
+	*handlerSubcode = handler->m_subcode;
 
 	// if the buffer changed, write it before leaving
 	bool bSuccess = true;
@@ -249,10 +249,10 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 
 bool Unpacking(PackingInfo *handler, String& filepath, const String& filteredText)
 {
-	if (handler->bToBeScanned)
-		return Unpacking(filepath, filteredText, handler, &handler->subcode);
+	if (handler->m_PluginOrPredifferMode != PLUGIN_MANUAL)
+		return Unpacking(filepath, filteredText, handler, &handler->m_subcode);
 	else
-		return Unpacking(filepath, handler, &handler->subcode);
+		return Unpacking(filepath, handler, &handler->m_subcode);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -262,7 +262,7 @@ bool Unpacking(PackingInfo *handler, String& filepath, const String& filteredTex
 bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 {
 	// no handler : return true
-	if (handler.pluginName.empty())
+	if (handler.m_PluginName.empty())
 		return true;
 
 	storageForPlugins bufferData;
@@ -274,15 +274,15 @@ bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 	// control value
 	bool bHandled = false;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.pluginName);
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.m_PluginName);
 	if (plugin == nullptr)
 	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.m_PluginName);
 		if (plugin == nullptr)
 			return false;
 	}
 	LPDISPATCH piScript = plugin->m_lpDispatch;
-	if (handler.bWithFile)
+	if (handler.m_bWithFile)
 	{
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
@@ -335,8 +335,8 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filteredText);
 	if (plugin != nullptr)
 	{
-		handler->pluginName = plugin->m_name;
-		handler->bWithFile = true;
+		handler->m_PluginName = plugin->m_name;
+		handler->m_bWithFile = true;
 		// use a temporary dest name
 		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
 		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
@@ -353,8 +353,8 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filteredText);
 		if (plugin != nullptr)
 		{
-			handler->pluginName = plugin->m_name;
-			handler->bWithFile = false;
+			handler->m_PluginName = plugin->m_name;
+			handler->m_bWithFile = false;
 			// probably it is for VB/VBscript so use a BSTR as argument
 			bHandled = plugin::InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
 				bufferData.GetNChanged(),
@@ -367,12 +367,12 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 	if (!bHandled)
 	{
 		// we didn't find any prediffer, that is OK anyway
-		handler->pluginName = _T("");
+		handler->m_PluginName = _T("");
 		bHandled = true;
 	}
 
 	// the handler is now defined
-	handler->bToBeScanned = false;
+	handler->m_PluginOrPredifferMode = PLUGIN_MANUAL;
 
 	// if the buffer changed, write it before leaving
 	bool bSuccess = true;
@@ -386,7 +386,7 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 
 bool Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite)
 {
-	if (handler->bToBeScanned)
+	if (handler->m_PluginOrPredifferMode != PLUGIN_MANUAL)
 		return Prediffing(filepath, filteredText, handler, bMayOverwrite);
 	else
 		return Prediffing(filepath, *handler, bMayOverwrite);

@@ -519,7 +519,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// Apply flags to lines that are trivial
 		PrediffingInfo infoPrediffer;
 		GetPrediffer(&infoPrediffer);
-		if (!infoPrediffer.pluginName.empty())
+		if (!infoPrediffer.m_PluginName.empty())
 			FlagTrivialLines();
 		
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
@@ -1240,13 +1240,13 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 					: (nBuffer == 1 ? 
 					_("Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"): 
 					_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")),
-				strPath, pInfoTempUnpacker->pluginName);
+				strPath, pInfoTempUnpacker->m_PluginName);
 		}
 		else
 		{
 			str = strutils::format_string2(nBuffer == 0 ? _("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?") : 
 				_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"),
-				strPath, pInfoTempUnpacker->pluginName);
+				strPath, pInfoTempUnpacker->m_PluginName);
 		}
 		// replace the unpacker with a "do nothing" unpacker
 		pInfoTempUnpacker->Initialize(PLUGIN_MANUAL);
@@ -1814,12 +1814,12 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 void CMergeDoc::OnUpdatePluginName(CCmdUI* pCmdUI)
 {
 	String pluginNames;
-	if (m_pInfoUnpacker && !m_pInfoUnpacker->pluginName.empty())
-		pluginNames += m_pInfoUnpacker->pluginName + _T("&");
+	if (m_pInfoUnpacker && !m_pInfoUnpacker->m_PluginName.empty())
+		pluginNames += m_pInfoUnpacker->m_PluginName + _T("&");
 	PrediffingInfo prediffer;
 	GetPrediffer(&prediffer);
-	if (!prediffer.pluginName.empty())
-		pluginNames += prediffer.pluginName + _T("&");
+	if (!prediffer.m_PluginName.empty())
+		pluginNames += prediffer.m_PluginName + _T("&");
 	pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
 }
 
@@ -2654,8 +2654,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			if (bFiltersEnabled && m_pInfoUnpacker->textType.length())
-				sext[nBuffer] = m_pInfoUnpacker->textType;
+			if (bFiltersEnabled && m_pInfoUnpacker->m_textType.length())
+				sext[nBuffer] = m_pInfoUnpacker->m_textType;
 			else
 				sext[nBuffer] = GetFileExt(fileloc[nBuffer].filepath.c_str(), m_strDesc[nBuffer].c_str());
 			ForEachView(nBuffer, [&](auto& pView) {

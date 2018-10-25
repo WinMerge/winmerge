@@ -302,10 +302,10 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
 	}
-	m_unpackerSubcode = infoUnpacker->subcode;
+	m_unpackerSubcode = infoUnpacker->m_subcode;
 
 	// we use the same unpacker for both files, so it must be defined after first file
-	ASSERT(infoUnpacker->bToBeScanned != PLUGIN_AUTO);
+	ASSERT(infoUnpacker->m_PluginOrPredifferMode != PLUGIN_AUTO);
 	// we will load the transformed file
 	LPCTSTR pszFileName = sFileName.c_str();
 
@@ -319,8 +319,8 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	
-	UniFile *pufile = infoUnpacker->pufile;
-	if (pufile == 0)
+	UniFile *pufile = infoUnpacker->m_pufile;
+	if (pufile == nullptr)
 		pufile = new UniMemFile;
 
 	// Now we only use the UniFile interface
@@ -338,7 +338,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		if (infoUnpacker->pluginName.length() > 0)
+		if (infoUnpacker->m_PluginName.length() > 0)
 		{
 			// re-detect codepage
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
@@ -496,7 +496,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 
 	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC &&
 		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-		infoUnpacker && infoUnpacker->disallowMixedEOL)
+		infoUnpacker!=nullptr && infoUnpacker->m_bDisallowMixedEOL)
 	{
 			// get the default nCrlfStyle of the CDiffTextBuffer
 		nCrlfStyle = GetCRLFMode();
@@ -609,7 +609,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		ASSERT(infoUnpacker != nullptr);
 		// repack the file here, overwrite the temporary file we did save in
 		String csTempFileName = sIntermediateFilename;
-		infoUnpacker->subcode = m_unpackerSubcode;
+		infoUnpacker->m_subcode = m_unpackerSubcode;
 		if (!FileTransform::Packing(csTempFileName, *infoUnpacker))
 		{
 			try
