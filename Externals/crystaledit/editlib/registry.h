@@ -261,7 +261,7 @@ struct EDITPADC_CLASS CReg
     HKEY Connect (HKEY hNewKey, LPCTSTR pszRemote);
     
     /* connect to registry key */
-    HKEY Open (HKEY hNewKey = NULL);
+    HKEY Open (HKEY hNewKey = nullptr);
     
     /* open computer registry */
     HKEY Open (HKEY hNewKey, LPCTSTR pszSubKey, DWORD dwRights);

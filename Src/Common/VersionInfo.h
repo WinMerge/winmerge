@@ -47,9 +47,9 @@ public:
 	explicit CVersionInfo(WORD wLanguage);
 	CVersionInfo(LPCTSTR szFileToVersion,
 				   bool bDllVersion);
-	CVersionInfo(LPCTSTR szFileToVersion = NULL,
-				   LPCTSTR szLanguage = NULL,
-				   LPCTSTR szCodepage = NULL);
+	CVersionInfo(LPCTSTR szFileToVersion = nullptr,
+				   LPCTSTR szLanguage = nullptr,
+				   LPCTSTR szCodepage = nullptr);
 	explicit CVersionInfo(HINSTANCE hModule);
 	String GetFileVersion() const;
 	String GetCompanyName() const;

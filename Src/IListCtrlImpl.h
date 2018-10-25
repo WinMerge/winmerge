@@ -123,7 +123,7 @@ public:
 			bmpinfo.bmiHeader.biPlanes = 1;
 			bmpinfo.bmiHeader.biBitCount = 32;
 			bmpinfo.bmiHeader.biCompression = BI_RGB;
-			HBITMAP hbmpImage = CreateDIBSection(NULL, &bmpinfo, DIB_RGB_COLORS, &pBits, NULL, NULL);
+			HBITMAP hbmpImage = CreateDIBSection(nullptr, &bmpinfo, DIB_RGB_COLORS, &pBits, nullptr, 0);
 			if (hbmpImage)
 			{
 				HBITMAP hbmpOld = (HBITMAP)SelectObject(hdcMem, hbmpImage);
@@ -131,8 +131,8 @@ public:
 				CImage image;
 				image.Attach(hbmpImage);
 				image.SetHasAlphaChannel(true);
-				IStream *pStream = NULL;
-				if (SUCCEEDED(CreateStreamOnHGlobal(NULL, TRUE, &pStream)))
+				IStream *pStream = nullptr;
+				if (SUCCEEDED(CreateStreamOnHGlobal(nullptr, TRUE, &pStream)))
 				{
 					image.Save(pStream, Gdiplus::ImageFormatPNG);
 					STATSTG stat;
@@ -140,8 +140,8 @@ public:
 					{
 						LARGE_INTEGER li = { 0 };
 						ret.resize(stat.cbSize.LowPart, 0);
-						pStream->Seek(li, STREAM_SEEK_SET, NULL);
-						pStream->Read(&ret[0], stat.cbSize.LowPart, NULL);
+						pStream->Seek(li, STREAM_SEEK_SET, nullptr);
+						pStream->Read(&ret[0], stat.cbSize.LowPart, nullptr);
 					}
 					pStream->Release();
 				}

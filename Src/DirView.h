@@ -383,8 +383,8 @@ protected:
 	afx_msg void OnBnClickedComparisonContinue();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
-	BOOL OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
+	bool OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
+	bool OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
 
 private:
 	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr);

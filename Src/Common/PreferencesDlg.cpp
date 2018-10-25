@@ -35,7 +35,7 @@ static TCHAR OptionsHelpLocation[] = _T("::/htmlhelp/Configuration.html");
 const TCHAR PATHDELIM = '>';
 
 CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
-		UINT nMenuID, CWnd* pParent)   // standard constructor
+		UINT nMenuID /*= 0*/, CWnd* pParent /*= nullptr*/)   // standard constructor
 : CTrDialog(IDD_PREFERENCES, pParent)
 , m_pOptionsMgr(regOptions)
 , m_pageGeneral(regOptions)

@@ -62,9 +62,9 @@ bool Packing(String & filepath, PackingInfo handler)
 	bool bHandled = false;
 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName);
-	if (plugin == NULL)
+	if (plugin == nullptr)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler.pluginName);
-	if (plugin == NULL)
+	if (plugin == nullptr)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName);
 	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (handler.bWithFile)
@@ -106,7 +106,7 @@ bool Packing(String & filepath, PackingInfo handler)
 bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode)
 {
 	// no handler : return true
-	if (!handler || handler->pluginName.empty())
+	if (handler == nullptr || handler->pluginName.empty())
 		return true;
 
 	storageForPlugins bufferData;
@@ -119,11 +119,11 @@ bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubc
 	bool bHandled = false;
 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->pluginName);
-	if (plugin == NULL)
+	if (plugin == nullptr)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", handler->pluginName);
-	if (plugin == NULL)
+	if (plugin == nullptr)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->pluginName);
-	if (plugin == NULL)
+	if (plugin == nullptr)
 		return false;
 
 	LPDISPATCH piScript = plugin->m_lpDispatch;
@@ -188,9 +188,9 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	bool bHandled = false;
 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredText);
-	if (!plugin)
+	if (plugin == nullptr)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredText);
-	if (plugin)
+	if (plugin != nullptr)
 	{
 		handler->pluginName = plugin->m_name;
 		handler->bWithFile = true;
@@ -211,7 +211,7 @@ bool Unpacking(String & filepath, const String& filteredText, PackingInfo * hand
 	if (!bHandled)
 	{
 		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredText);
-		if (plugin)
+		if (plugin != nullptr)
 		{
 			handler->pluginName = plugin->m_name;
 			handler->bWithFile = false;
@@ -275,10 +275,10 @@ bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 	bool bHandled = false;
 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.pluginName);
-	if (!plugin)
+	if (plugin == nullptr)
 	{
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.pluginName);
-		if (!plugin)
+		if (plugin == nullptr)
 			return false;
 	}
 	LPDISPATCH piScript = plugin->m_lpDispatch;
@@ -333,7 +333,7 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 	bool bHandled = false;
 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filteredText);
-	if (plugin)
+	if (plugin != nullptr)
 	{
 		handler->pluginName = plugin->m_name;
 		handler->bWithFile = true;
@@ -351,7 +351,7 @@ bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * 
 	if (!bHandled)
 	{
 		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filteredText);
-		if (plugin)
+		if (plugin != nullptr)
 		{
 			handler->pluginName = plugin->m_name;
 			handler->bWithFile = false;

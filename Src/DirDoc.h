@@ -87,7 +87,7 @@ public:
 	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
 	bool GetGeneratingReport() const { return m_bGeneratingReport; }
 	void SetGeneratingReport(bool bGeneratingReport) { m_bGeneratingReport = bGeneratingReport; }
-	bool HasDirView() const { return m_pDirView != NULL; }
+	bool HasDirView() const { return m_pDirView != nullptr; }
 	void RefreshOptions();
 	void CompareReady();
 	void UpdateChangedItem(PathContext & paths,
@@ -109,7 +109,7 @@ public:
 	void SetDescriptions(const String strDesc[]);
 	void ApplyDisplayRoot(int nIndex, String &);
 
-	bool HasDiffs() const { return m_pCtxt != NULL; }
+	bool HasDiffs() const { return m_pCtxt != nullptr; }
 	const CDiffContext & GetDiffContext() const { return *m_pCtxt; }
 	CDiffContext& GetDiffContext() { return *m_pCtxt.get(); }
 	void SetMarkedRescan() {m_bMarkedRescan = true; }

@@ -60,7 +60,7 @@ public:
 		this block array, using CTextBlock::Add(). You do not have to care about
 		the sort to add the elements.
 
-		When the function ist called with this parameter set zu NULL, you only
+		When the function is called with this parameter set to `nullptr`, you only
 		have to calculate the cookies which can be (hoply) done much more faster.
 
 	@return The calculated flags for this line (see dwCookie).
@@ -83,7 +83,7 @@ public:
 	not exceed
 
 	@param anBreaks An array of integers. Put the positions where to wrap the line
-	in that array (its allready allocated). If this pointer is NULL, the function
+	in that array (its allready allocated). If this pointer is `nullptr`, the function
 	has only to compute the number of breaks (the parameter nBreaks).
 
 	@param nBreaks The number of breaks this line has (number of sublines - 1). When
