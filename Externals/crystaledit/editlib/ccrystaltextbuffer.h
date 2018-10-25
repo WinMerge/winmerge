@@ -179,7 +179,7 @@ public :
 
     //  [JRT] Support For Descriptions On Undo/Redo Actions
     virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                                LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = NULL);
+                                LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = nullptr);
     virtual UndoRecord GetUndoRecord (int nUndoPos) const;
 
     virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const;
@@ -231,7 +231,7 @@ public :
     void SetLineFlag (int nLine, DWORD dwFlag, bool bSet,
             bool bRemoveFromPreviousLine = true, bool bUpdate=true);
     void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
-            CString & text, LPCTSTR pszCRLF = NULL, bool bExcludeInvisibleLines = true) const;
+            CString & text, LPCTSTR pszCRLF = nullptr, bool bExcludeInvisibleLines = true) const;
     virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, CString &text,
             CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC, bool bExcludeInvisibleLines = true) const;
@@ -275,10 +275,10 @@ public :
 
 
     //  Browse undo sequence
-    POSITION GetUndoActionCode (int & nAction, POSITION pos = NULL) const;
-    POSITION GetRedoActionCode (int & nAction, POSITION pos = NULL) const;
-    POSITION GetUndoDescription (CString & desc, POSITION pos = NULL) const;
-    POSITION GetRedoDescription (CString & desc, POSITION pos = NULL) const;
+    POSITION GetUndoActionCode (int & nAction, POSITION pos = nullptr) const;
+    POSITION GetRedoActionCode (int & nAction, POSITION pos = nullptr) const;
+    POSITION GetUndoDescription (CString & desc, POSITION pos = nullptr) const;
+    POSITION GetRedoDescription (CString & desc, POSITION pos = nullptr) const;
 
     //  Notify all connected views about changes in name of file
     CCrystalTextView::TextDefinition *RetypeViews (LPCTSTR lpszFileName);

@@ -25,9 +25,9 @@ public:
 
 	// render to device context
 	bool Render(CDC* pDC, CRect rc=CRect(0,0,0,0),
-		LPCRECT prcMFBounds=NULL) const;
+		LPCRECT prcMFBounds=nullptr) const;
 
-	CSize GetImageSize(CDC* pDC=NULL) const;
+	CSize GetImageSize(CDC* pDC=nullptr) const;
 
 	operator IPicture*() {
 		return m_spIPicture;

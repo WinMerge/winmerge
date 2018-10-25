@@ -1176,7 +1176,7 @@ HKEY CReg::Connect (HKEY hNewKey, LPCTSTR pszRemote)
 }
 
 /* connect to registry key */
-HKEY CReg::Open (HKEY hNewKey /*= NULL*/)
+HKEY CReg::Open (HKEY hNewKey /*= nullptr*/)
 {
   return hKey = hNewKey;
 }
@@ -1190,12 +1190,12 @@ HKEY CReg::Open (HKEY hNewKey, LPCTSTR pszSubKey, DWORD dwRights)
 /* close computer registry */
 void CReg::Close ()
 {
-  if (hKey != NULL) // MAB 8 Nov 1999 - added NULL test
+  if (hKey != nullptr) // MAB 8 Nov 1999 - added NULL test
     {
       RegClose (hKey);
       //*** MIPO 07-12-1999 - After Closing the Key, hKey must by NULL ****
       // RegClose - dont do that - it must be done manualy
-      hKey = NULL;
+      hKey = nullptr;
     }
 }
 

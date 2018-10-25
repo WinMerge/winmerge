@@ -217,7 +217,7 @@ struct DirActions
 	typedef bool (DirActions::*method_type2)(const DIFFITEM& di) const;
 	typedef FileActionScript *(DirActions::*method_type)(FileActionScript *, const std::pair<int, const DIFFITEM *>& it) const;
 
-	DirActions(const CDiffContext& ctxt, const bool RO[], method_type func = NULL, method_type2 func2 = NULL) : 
+	DirActions(const CDiffContext& ctxt, const bool RO[], method_type func = nullptr, method_type2 func2 = nullptr) : 
 		m_ctxt(ctxt), m_RO(RO), m_cur_method(func), m_cur_method2(func2) {}
 
 	template <SIDE_TYPE src, SIDE_TYPE dst>

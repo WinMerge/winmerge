@@ -39,7 +39,7 @@ public:
 	void AddSourceAndDestination(const String &source, const String &destination);
 	void AddSource(const String &source);
 	void SetDestination(const String &destination);
-	void SetOperation(UINT operation, FILEOP_FLAGS flags, HWND parentWindow = NULL);
+	void SetOperation(UINT operation, FILEOP_FLAGS flags, HWND parentWindow = nullptr);
 	bool Run();
 	bool IsCanceled() const;
 	void Reset();

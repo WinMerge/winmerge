@@ -49,9 +49,9 @@ END_MESSAGE_MAP()
 */
 BOOL CDiffViewBar::Create(
 	CWnd* pParentWnd,
-	LPCTSTR lpszWindowName,
-	DWORD dwStyle,
-	UINT nID)
+	LPCTSTR lpszWindowName /*= nullptr*/,
+	DWORD dwStyle /*= WS_CHILD | WS_VISIBLE | CBRS_TOP*/,
+	UINT nID /*= AFX_IDW_PANE_FIRST*/)
 {
 	return TViewBarBase::Create(
 		lpszWindowName,

@@ -63,7 +63,7 @@ String GetTemporaryPath()
  * @param [out] pnerr Error code if error happened.
  * @return Full path for temporary file or empty string if error happened.
  */
-String GetTemporaryFileName(const String& lpPathName, const String& lpPrefixString, int * pnerr)
+String GetTemporaryFileName(const String& lpPathName, const String& lpPrefixString, int * pnerr /*= nullptr*/)
 {
 	TCHAR buffer[MAX_PATH] = {0};
 	if (lpPathName.length() > MAX_PATH-14)

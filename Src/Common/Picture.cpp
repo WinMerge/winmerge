@@ -101,7 +101,7 @@ bool CPicture::Load(IStream* pstm)
 //////////////////
 // Render to device context. Covert to HIMETRIC for IPicture.
 //
-bool CPicture::Render(CDC* pDC, CRect rc, LPCRECT prcMFBounds) const
+bool CPicture::Render(CDC* pDC, CRect rc /*= CRect(0,0,0,0)*/, LPCRECT prcMFBounds /*= nullptr*/) const
 {
 	ASSERT(pDC != nullptr);
 
@@ -121,16 +121,16 @@ bool CPicture::Render(CDC* pDC, CRect rc, LPCRECT prcMFBounds) const
 //////////////////
 // Get image size in pixels. Converts from HIMETRIC to device coords.
 //
-CSize CPicture::GetImageSize(CDC* pDC) const
+CSize CPicture::GetImageSize(CDC* pDC /*= nullptr*/) const
 {
-	if (!m_spIPicture)
+	if (m_spIPicture == nullptr)
 		return CSize(0,0);
 	
 	LONG hmWidth, hmHeight; // HIMETRIC units
 	if (FAILED(m_spIPicture->get_Width(&hmWidth)) || FAILED(m_spIPicture->get_Height(&hmHeight)))
 		return CSize(0, 0);
 	CSize sz(hmWidth,hmHeight);
-	if (pDC==NULL) {
+	if (pDC==nullptr) {
 		CWindowDC dc(nullptr);
 		dc.HIMETRICtoDP(&sz); // convert to pixels
 	} else {

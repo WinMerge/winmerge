@@ -45,7 +45,7 @@ public :
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 		int nActionType = CE_ACTION_UNKNOWN,
-		CDWordArray *paSavedRevisionNumbers = NULL) override;
+		CDWordArray *paSavedRevisionNumbers = nullptr) override;
 	bool curUndoGroup();
 	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);
 

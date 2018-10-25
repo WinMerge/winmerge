@@ -87,13 +87,13 @@ public:
 		// don't localize this as we do not localize the known exceptions
 		return _T("Unknown structured exception");
 	}
-	virtual bool GetErrorMessage( TCHAR *lpszError, unsigned nMaxError, unsigned *pnHelpContext = NULL )
+	virtual bool GetErrorMessage( TCHAR *lpszError, unsigned nMaxError, unsigned *pnHelpContext = nullptr )
 	{
 		StringCchPrintf(lpszError, nMaxError, _T("Exception %s (0x%.8x)"), getSeMessage(), static_cast<unsigned>(getSeNumber()));
 		return true;
 	}
 #else
-	virtual bool GetErrorMessage( TCHAR *lpszError, unsigned nMaxError, unsigned *pnHelpContext = NULL )
+	virtual bool GetErrorMessage( TCHAR *lpszError, unsigned nMaxError, unsigned *pnHelpContext = nullptr )
 	{
 		return true;
 	}

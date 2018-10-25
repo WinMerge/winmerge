@@ -80,7 +80,7 @@ public:
 			newFilename = GetDataFileUnicode();
 		else
 			newFilename = GetDataFileAnsi();
-		if (newFilename == NULL)
+		if (newFilename == nullptr)
 		{
 			GetLastValidFile(filename);
 			return false;

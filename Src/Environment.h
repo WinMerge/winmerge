@@ -13,7 +13,7 @@ namespace env
 void SetTemporaryPath(const String& path);
 String GetTemporaryPath();
 String GetTemporaryFileName(const String& lpPathName, const String& lpPrefixString,
-		int * pnerr = NULL);
+		int * pnerr = nullptr);
 String GetTempChildPath();
 void SetProgPath(const String& path);
 String GetProgPath();
