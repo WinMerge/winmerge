@@ -29,27 +29,28 @@
 #include "UnicodeString.h"
 #include "MergeApp.h"
 
-namespace FileTransform
-{
-extern int g_bUnpackerMode;
-extern int g_bPredifferMode;
-}
-
-class UniFile;
-
 /**
  * @brief Modes for plugin (Modes for prediffing included)
  */
 enum PLUGIN_MODE
 {
-	// Modes for unpacking
+	// Modes for "unpacking"
 	PLUGIN_MANUAL,
 	PLUGIN_AUTO,
 	PLUGIN_BUILTIN_XML,
-	// Modes for prediffing
+
+	// Modes for "prediffing"
 	PREDIFF_MANUAL = PLUGIN_MANUAL,
 	PREDIFF_AUTO = PLUGIN_AUTO,
 };
+
+namespace FileTransform
+{
+extern PLUGIN_MODE g_UnpackerMode;
+extern PLUGIN_MODE g_PredifferMode;
+}
+
+class UniFile;
 
 /**
  * @brief Plugin information for a given file
@@ -59,34 +60,34 @@ enum PLUGIN_MODE
 class PluginForFile
 {
 public:
-	void Initialize(int bMode)
+	void Initialize(PLUGIN_MODE Mode)
 	{
-		// TODO: Convert bMode to PLUGIN_MODE and fix compile errors
-		// init functions as a valid "do nothing" unpacker
-		bWithFile = false;
-		// and init bAutomatic flag and name according to global variable
-		if (bMode != PLUGIN_AUTO)
+		// initialize functions with a valid "do nothing" unpacker
+		m_bWithFile = false;
+		// and init Plugin/Prediffer mode and Plugin name accordingly
+		m_PluginOrPredifferMode = Mode;
+		if (Mode != PLUGIN_AUTO)
 		{
-			pluginName.erase();
+			m_PluginName.erase();
 		}
 		else
 		{
-			pluginName = _("<Automatic>");
+			m_PluginName = _("<Automatic>");
 		}
-		bToBeScanned = bMode;
 	};
-	explicit PluginForFile(PLUGIN_MODE bMode) 
+	explicit PluginForFile(PLUGIN_MODE Mode) 
 	{
-		Initialize(bMode);
+		Initialize(Mode);
 	};
 public:
-	/// TRUE if the plugin will be defined during the first use (through scan of all available plugins)
-	int bToBeScanned; // TODO: Convert to PLUGIN_MODE and fix compile errors
+	/// PLUGIN_AUTO if the plugin will be defined during the first use (via scan of all available plugins)
+	PLUGIN_MODE	m_PluginOrPredifferMode;
+
 	/// plugin name when it is defined
-	String pluginName;
+	String		m_PluginName;
 
 	/// `true` if the plugins exchange data through a file, `false` is the data is passed as parameter (BSTR/ARRAY)
-	bool    bWithFile;
+	bool		m_bWithFile;
 };
 
 /**
@@ -99,21 +100,21 @@ public:
 class PackingInfo : public PluginForFile
 {
 public:
-	explicit PackingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)FileTransform::g_bUnpackerMode)
-	: PluginForFile(bMode)
-	, subcode(0)
-	, pufile(nullptr)
-	, disallowMixedEOL(false)
+	explicit PackingInfo(PLUGIN_MODE Mode = FileTransform::g_UnpackerMode)
+	: PluginForFile(Mode)
+	, m_subcode(0)
+	, m_pufile(nullptr)
+	, m_bDisallowMixedEOL(false)
 	{
 	}
 public:
 	/// keep some info from unpacking for packing
-	int subcode;
+	int			m_subcode;
 	/// text type to override syntax highlighting
-	String textType;
+	String		m_textType;
 	/// custom UniFile
-	UniFile *pufile;
-	bool disallowMixedEOL;
+	UniFile*	m_pufile;
+	bool		m_bDisallowMixedEOL;
 };
 
 /**
@@ -124,8 +125,8 @@ public:
 class PrediffingInfo : public PluginForFile
 {
 public:
-	explicit PrediffingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)FileTransform::g_bPredifferMode)
-	: PluginForFile(bMode)
+	explicit PrediffingInfo(PLUGIN_MODE Mode = FileTransform::g_PredifferMode)
+	: PluginForFile(Mode)
 	{
 	}
 };

@@ -306,7 +306,7 @@ void COpenView::OnInitialUpdate()
 	if (!bOverwriteRecursive)
 		m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 
-	m_strUnpacker = m_infoHandler.pluginName;
+	m_strUnpacker = m_infoHandler.m_PluginName;
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
 	SetUnpackerStatus(IDS_USERCHOICE_NONE); 
@@ -922,7 +922,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 void COpenView::UpdateResources()
 {
 	theApp.m_pLangDlg->RetranslateDialog(m_hWnd, MAKEINTRESOURCE(IDD_OPEN));
-	if (m_strUnpacker != m_infoHandler.pluginName)
+	if (m_strUnpacker != m_infoHandler.m_PluginName)
 		m_strUnpacker = theApp.LoadString(IDS_OPEN_UNPACKERDISABLED);
 }
 
@@ -1069,7 +1069,7 @@ void COpenView::OnSelectUnpacker()
 	{
 		m_infoHandler = dlg.GetInfoHandler();
 
-		m_strUnpacker = m_infoHandler.pluginName;
+		m_strUnpacker = m_infoHandler.m_PluginName;
 
 		UpdateData(FALSE);
 	}

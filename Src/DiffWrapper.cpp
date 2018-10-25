@@ -718,16 +718,16 @@ bool CDiffWrapper::RunFileDiff()
 				String sError = strutils::format(
 					_T("An error occurred while prediffing the file '%s' with the plugin '%s'. The prediffing is not applied any more."),
 					strFileTemp[file].c_str(),
-					m_infoPrediffer->pluginName.c_str());
+					m_infoPrediffer->m_PluginName.c_str());
 				AppErrorMessageBox(sError);
 				// don't use any more this prediffer
-				m_infoPrediffer->bToBeScanned = false;
-				m_infoPrediffer->pluginName.erase();
+				m_infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+				m_infoPrediffer->m_PluginName.erase();
 			}
 
 			// We use the same plugin for both files, so it must be defined before
 			// second file
-			assert(!m_infoPrediffer->bToBeScanned);
+			assert(m_infoPrediffer->m_PluginOrPredifferMode == PLUGIN_MANUAL);
 		}
 	}
 
