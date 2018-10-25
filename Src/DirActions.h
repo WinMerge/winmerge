@@ -6,6 +6,7 @@
 #include "paths.h"
 #include "IntToIntMap.h"
 #include <algorithm>
+#include "FileTransform.h"
 
 struct DIFFITEM;
 class CDiffContext;
@@ -651,7 +652,7 @@ void ApplyFolderNameAndFileName(const InputIterator& begin, const InputIterator&
  * @brief Apply specified setting for prediffing to all selected items
  */
 template<class InputIterator>
-void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, int newsetting)
+void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, PLUGIN_MODE newsetting)
 {
 	// Unlike other group actions, here we don't build an action list
 	// to execute; we just apply this change directly
@@ -705,7 +706,7 @@ std::pair<int, int> CountPredifferYesNo(const InputIterator& begin, const InputI
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);
-			if (prediffer->bToBeScanned == 1 || !prediffer->pluginName.empty())
+			if (prediffer->m_PluginOrPredifferMode == PLUGIN_AUTO || !prediffer->m_PluginName.empty())
 				nPredifferYes ++;
 			else
 				nPredifferNo ++;

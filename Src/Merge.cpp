@@ -282,8 +282,8 @@ BOOL CMergeApp::InitInstance()
 	charsets_init();
 	UpdateCodepageModule();
 
-	FileTransform::g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
-	FileTransform::g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
+	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL));
+	FileTransform::g_PredifferMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL));
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
