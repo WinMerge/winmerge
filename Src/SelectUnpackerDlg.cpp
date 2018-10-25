@@ -127,7 +127,7 @@ void CSelectUnpackerDlg::SetInitialInfoHandler(PackingInfo * infoHandler)
 	// default value
 	m_pPlugin = noPlugin.get();
 
-	if (infoHandler && infoHandler->bToBeScanned)
+	if (infoHandler != nullptr && infoHandler->m_PluginOrPredifferMode != PLUGIN_MANUAL)
 		// automatic unpacker
 		m_pPlugin = automaticPlugin.get();
 	else if (infoHandler)
@@ -137,7 +137,7 @@ void CSelectUnpackerDlg::SetInitialInfoHandler(PackingInfo * infoHandler)
 		for (i = 0 ; i < m_UnpackerPlugins.GetSize() ; i++)
 		{
 			PluginInfo * pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(i));
-			if (pPlugin->m_name == infoHandler->pluginName)
+			if (pPlugin->m_name == infoHandler->m_PluginName)
 				m_pPlugin = pPlugin;
 		}
 	}
@@ -153,8 +153,8 @@ const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 	{
 		// build a real plugin unpacker
 		PackingInfo infoHandler;
-		infoHandler.bToBeScanned = FALSE;
-		infoHandler.pluginName = m_strPluginName;
+		infoHandler.m_PluginOrPredifferMode = PLUGIN_MANUAL;
+		infoHandler.m_PluginName = m_strPluginName;
 		int i;
 		for (i = 0 ; i < m_UnpackerPlugins.GetSize() ; i++)
 		{
@@ -162,7 +162,7 @@ const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 			if (m_pPlugin == pPlugin)
 				break;
 		}
-		infoHandler.bWithFile = m_bWithFileFlags.at(i);
+		infoHandler.m_bWithFile = m_bWithFileFlags.at(i);
 		return infoHandler;
 	}
 }

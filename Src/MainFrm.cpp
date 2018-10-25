@@ -889,8 +889,8 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	if (pDirDoc && !pDirDoc->CloseMergeDocs())
 		return false;
 
-	FileTransform::g_eUnpackerMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL));
-	FileTransform::g_ePredifferMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL));
+	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL));
+	FileTransform::g_PredifferMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL));
 
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
 
@@ -1372,13 +1372,13 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 	switch (nID)
 	{
 	case ID_UNPACK_MANUAL:
-		FileTransform::g_bUnpackerMode = PLUGIN_MANUAL;
+		FileTransform::g_UnpackerMode = PLUGIN_MANUAL;
 		break;
 	case ID_UNPACK_AUTO:
-		FileTransform::g_bUnpackerMode = PLUGIN_AUTO;
+		FileTransform::g_UnpackerMode = PLUGIN_AUTO;
 		break;
 	}
-	theApp.WriteProfileInt(_T("Settings"), _T("UnpackerMode"), FileTransform::g_bUnpackerMode);
+	theApp.WriteProfileInt(_T("Settings"), _T("UnpackerMode"), FileTransform::g_UnpackerMode);
 }
 
 void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
@@ -1386,27 +1386,27 @@ void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
-		pCmdUI->SetRadio(PLUGIN_MANUAL == FileTransform::g_bUnpackerMode);
+		pCmdUI->SetRadio(PLUGIN_MANUAL == FileTransform::g_UnpackerMode);
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
-		pCmdUI->SetRadio(PLUGIN_AUTO == FileTransform::g_bUnpackerMode);
+		pCmdUI->SetRadio(PLUGIN_AUTO == FileTransform::g_UnpackerMode);
 }
 void CMainFrame::OnPluginPrediffMode(UINT nID )
 {
 	switch (nID)
 	{
 	case ID_PREDIFFER_MANUAL:
-		FileTransform::g_bPredifferMode = PLUGIN_MANUAL;
+		FileTransform::g_PredifferMode = PLUGIN_MANUAL;
 		break;
 	case ID_PREDIFFER_AUTO:
-		FileTransform::g_bPredifferMode = PLUGIN_AUTO;
+		FileTransform::g_PredifferMode = PLUGIN_AUTO;
 		break;
 	}
 	PrediffingInfo infoPrediffer;
 	for (auto pMergeDoc : GetAllMergeDocs())
 		pMergeDoc->SetPrediffer(&infoPrediffer);
 	for (auto pDirDoc : GetAllDirDocs())
-		pDirDoc->GetPluginManager().SetPrediffSettingAll(FileTransform::g_bPredifferMode);
-	theApp.WriteProfileInt(_T("Settings"), _T("PredifferMode"), FileTransform::g_bPredifferMode);
+		pDirDoc->GetPluginManager().SetPrediffSettingAll(FileTransform::g_PredifferMode);
+	theApp.WriteProfileInt(_T("Settings"), _T("PredifferMode"), FileTransform::g_PredifferMode);
 }
 
 void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI) 
@@ -1414,9 +1414,9 @@ void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_PREDIFFER_MANUAL)
-		pCmdUI->SetRadio(PLUGIN_MANUAL == FileTransform::g_bPredifferMode);
+		pCmdUI->SetRadio(PLUGIN_MANUAL == FileTransform::g_PredifferMode);
 	if (pCmdUI->m_nID == ID_PREDIFFER_AUTO)
-		pCmdUI->SetRadio(PLUGIN_AUTO == FileTransform::g_bPredifferMode);
+		pCmdUI->SetRadio(PLUGIN_AUTO == FileTransform::g_PredifferMode);
 }
 /**
  * @brief Called when "Reload Plugins" item is updated
