@@ -22,7 +22,7 @@
  * @brief Default dialog constructor.
  * @param [in] pParent Dialog's parent component (window).
  */
-CDirColsDlg::CDirColsDlg(CWnd* pParent /*=NULL*/)
+CDirColsDlg::CDirColsDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CDirColsDlg::IDD, pParent)
 	, m_bReset(false)
 {

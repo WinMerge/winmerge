@@ -186,7 +186,7 @@ bool CPropertyPageHost::SetActivePage(CPropertyPage* pPage, bool bAndFocus /*= t
 	return SetActivePage(FindPage(pPage));
 }
 
-bool CPropertyPageHost::AddPage(CPropertyPage* pPage, LPCTSTR szTitle, DWORD dwItemData)
+bool CPropertyPageHost::AddPage(CPropertyPage* pPage, LPCTSTR szTitle /*= nullptr*/, DWORD dwItemData /*= 0*/)
 {
 	if (!pPage || !pPage->IsKindOf(RUNTIME_CLASS(CPropertyPage)))
 		return FALSE;

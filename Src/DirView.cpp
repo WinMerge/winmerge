@@ -2318,31 +2318,31 @@ BOOL CDirView::OnChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* p
 /**
  * @brief User is starting to drag a column header
  */
-BOOL CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
+bool CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
 {
 	// save column widths before user reorders them
 	// so we can reload them on the end drag
 	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
 	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
 		m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
-	return TRUE;
+	return true;
 }
 
 /**
  * @brief User just finished dragging a column header
  */
-BOOL CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
+bool CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
 {
 	int src = hdr->iItem;
 	int dest = hdr->pitem->iOrder;
-	bool allowDrop = TRUE;
-	*pResult = !allowDrop;
+	bool allowDrop = true;
+	*pResult = allowDrop ? FALSE : TRUE;
 	if (allowDrop && src != dest && dest != -1)
 	{
 		m_pColItems->MoveColumn(src, dest);
 		InitiateSort();
 	}
-	return TRUE;
+	return true;
 }
 
 /**

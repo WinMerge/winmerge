@@ -868,7 +868,7 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 
 void CCrystalTextBuffer::
 GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
-		CString & text, LPCTSTR pszCRLF /*= NULL*/, bool bExcludeInvisibleLines/*= true*/) const
+		CString & text, LPCTSTR pszCRLF /*= nullptr*/, bool bExcludeInvisibleLines/*= true*/) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -1258,7 +1258,7 @@ CanRedo () const
 }
 
 POSITION CCrystalTextBuffer::
-GetUndoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
+GetUndoActionCode (int & nAction, POSITION pos /*= nullptr*/ ) const
 {
   ASSERT (CanUndo ());          //  Please call CanUndo() first
 
@@ -1295,7 +1295,7 @@ GetUndoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
 }
 
 POSITION CCrystalTextBuffer::
-GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
+GetRedoActionCode (int & nAction, POSITION pos /*= nullptr*/ ) const
 {
   ASSERT (CanRedo ());          //  Please call CanRedo() before!
 
@@ -1303,7 +1303,7 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
   ASSERT ((m_aUndoBuf[m_nUndoPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
 
   intptr_t nPosition;
-  if (pos == NULL)
+  if (pos == nullptr)
     {
       //  Start from beginning
       nPosition = m_nUndoPosition;
@@ -1336,7 +1336,7 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
 }
 
 POSITION CCrystalTextBuffer::
-GetUndoDescription (CString & desc, POSITION pos /*= NULL*/ ) const
+GetUndoDescription (CString & desc, POSITION pos /*= nullptr*/ ) const
 {
   int nAction;
   POSITION retValue = GetUndoActionCode(nAction, pos);
@@ -1349,7 +1349,7 @@ GetUndoDescription (CString & desc, POSITION pos /*= NULL*/ ) const
 }
 
 POSITION CCrystalTextBuffer::
-GetRedoDescription (CString & desc, POSITION pos /*= NULL*/ ) const
+GetRedoDescription (CString & desc, POSITION pos /*= nullptr*/ ) const
 {
   int nAction;
   POSITION retValue = GetRedoActionCode(nAction, pos);
@@ -1491,8 +1491,8 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
 void CCrystalTextBuffer::			/* virtual base */
 AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
-    const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText, int nActionType,
-    CDWordArray *paSavedRevisionNumbers)
+    const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText, int nActionType /*= CE_ACTION_UNKNOWN*/,
+    CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
 {
   //  Forgot to call BeginUndoGroup()?
   ASSERT (m_bUndoGroup);

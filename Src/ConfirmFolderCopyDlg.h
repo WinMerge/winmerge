@@ -33,7 +33,7 @@ class ConfirmFolderCopyDlg : public CTrDialog
 	DECLARE_DYNAMIC(ConfirmFolderCopyDlg)
 
 public:
-	explicit ConfirmFolderCopyDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit ConfirmFolderCopyDlg(CWnd* pParent = nullptr);   // standard constructor
 	virtual ~ConfirmFolderCopyDlg();
 
 // Dialog Data

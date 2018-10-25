@@ -46,9 +46,9 @@ CGhostTextView::CGhostTextView()
 }
 
 void CGhostTextView::
-ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
+ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
 {
-	if (pBuf == NULL)
+	if (pBuf == nullptr)
 	{
 		pBuf = LocateTextBuffer ();
 		// ...
@@ -58,9 +58,9 @@ ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
 }
 
 void CGhostTextView::
-AttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
+AttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
 {
-	if (pBuf == NULL)
+	if (pBuf == nullptr)
 	{
 		pBuf = LocateTextBuffer ();
 		// ...
@@ -72,8 +72,8 @@ AttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
 void CGhostTextView::
 DetachFromBuffer ()
 {
-	if (m_pGhostTextBuffer != NULL)
-		m_pGhostTextBuffer = NULL;
+	if (m_pGhostTextBuffer != nullptr)
+		m_pGhostTextBuffer = nullptr;
 	CCrystalEditViewEx::DetachFromBuffer();
 }
 

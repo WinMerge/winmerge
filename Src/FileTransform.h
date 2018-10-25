@@ -84,7 +84,8 @@ public:
 	int bToBeScanned; // TODO: Convert to PLUGIN_MODE and fix compile errors
 	/// plugin name when it is defined
 	String pluginName;
-	/// `true` is the plugins exchange data through a file, false is the data is passed as parameter (BSTR/ARRAY)
+
+	/// `true` if the plugins exchange data through a file, `false` is the data is passed as parameter (BSTR/ARRAY)
 	bool    bWithFile;
 };
 
