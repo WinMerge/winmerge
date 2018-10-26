@@ -86,31 +86,27 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
  CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, CString strMessage, 
 	CString strTitle, UINT nStyle, UINT nHelp ) 
 	: CDialog ( CMessageBoxDialog::IDD, pParent )
+	, m_strMessage(strMessage)
+	, m_strTitle(strTitle.IsEmpty() ? AfxGetAppName() : strTitle)
+	, m_nStyle(nStyle)
+	, m_nHelp(nHelp)
+	, m_hIcon(NULL)
+	, m_nTimeoutSeconds(0)
+	, m_bTimeoutDisabled(false)
+	, m_nTimeoutTimer(0)
+	, m_strRegistryKey(_T(""))
+	, m_nDefaultButton(IDC_STATIC)
+	, m_nEscapeButton(IDC_STATIC)
+	, m_sDialogUnit(CSize(0, 0))
+	, m_sIcon(CSize(0, 0))
+	, m_sMessage(CSize(0, 0))
+	, m_sCheckbox(CSize(0, 0))
+	, m_sButton(CSize(0, 0))
 {
 	// Enable the active accessibility.
 	ASSERT(!strMessage.IsEmpty());
 
-	// Save the information about the message box.
-	m_strMessage		= strMessage;
-	m_strTitle			= strTitle.IsEmpty() ? AfxGetAppName() : strTitle;
-	m_nStyle			= nStyle;
-	m_nHelp				= nHelp;
-
-	// Do the default initialization.
-	m_hIcon				= NULL;
-	m_nTimeoutSeconds	= 0;
-	m_bTimeoutDisabled	= false;
-	m_nTimeoutTimer		= 0;
-	m_strRegistryKey	= _T("");
-	m_nDefaultButton	= IDC_STATIC;
-	m_nEscapeButton		= IDC_STATIC;
-	m_sDialogUnit		= CSize(0, 0);
-	m_sIcon				= CSize(0, 0);
-	m_sMessage			= CSize(0, 0);
-	m_sCheckbox			= CSize(0, 0);
-	m_sButton			= CSize(0, 0);
-
-    m_aButtons.clear();
+	m_aButtons.clear();
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);

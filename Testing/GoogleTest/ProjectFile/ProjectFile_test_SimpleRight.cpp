@@ -19,7 +19,7 @@ namespace
 class SimpleRightTest : public testing::Test
 {
 protected:
-	SimpleRightTest()
+	SimpleRightTest() : m_pProjectFile(nullptr)
 	{
 		// You can do set-up work for each test	here.
 	}
