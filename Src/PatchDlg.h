@@ -40,7 +40,7 @@ class CPatchDlg : public CTrDialog
 {
 // Construction
 public:
-	explicit CPatchDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit CPatchDlg(CWnd* pParent = nullptr);   // standard constructor
 
 	// Functions to add and get selected files (as PATCHFILEs)
 	void AddItem(const PATCHFILES& pf);

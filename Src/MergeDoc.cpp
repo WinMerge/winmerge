@@ -282,7 +282,7 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, bool 
 	}
 
 	// and we don't repack the file
-	PackingInfo * tempPacker = NULL;
+	PackingInfo * tempPacker = nullptr;
 
 	// write buffer out to temporary file
 	String sError;
@@ -1103,7 +1103,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
 	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
-	CCrystalTextView *pSource = bUpdateView ? pViewDst : NULL;
+	CCrystalTextView *pSource = bUpdateView ? pViewDst : nullptr;
 
 	// suppress Rescan during this method
 	// (Not only do we not want to rescan a lot of times, but
@@ -1446,7 +1446,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
  * Creates backup file if wanted to. And if saving to given path fails,
  * allows user to select new location/name for file.
  * @param [in] szPath Path where to save including filename. Can be
- * empty/NULL if new file is created (scratchpad) without filename.
+ * empty/`nullptr` if new file is created (scratchpad) without filename.
  * @param [out] bSaveSuccess Will contain information about save success with
  * the original name (to determine if file statuses should be changed)
  * @param [in] nBuffer Index (0-based) of buffer to save
@@ -1578,7 +1578,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
  * Safe top-level file saving function. Asks user to select filename
  * and path. Does not create backups.
  * @param [in] szPath Path where to save including filename. Can be
- * empty/NULL if new file is created (scratchpad) without filename.
+ * empty/`nullptr` if new file is created (scratchpad) without filename.
  * @param [out] bSaveSuccess Will contain information about save success with
  * the original name (to determine if file statuses should be changed)
  * @param [in] nBuffer Index (0-based) of buffer to save
@@ -2183,7 +2183,7 @@ void CMergeDoc::PrimeTextBuffers()
 CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 	bool bSave, int nBuffer)
 {
-	DiffFileInfo *fileInfo = NULL;
+	DiffFileInfo *fileInfo = nullptr;
 	bool bFileChanged = false;
 	bool bIgnoreSmallDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
 	int tolerance = 0;
@@ -2526,7 +2526,7 @@ bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
 {
 	if (!cp) // 0 is our signal value for invalid
 		return false;
-	return GetEncodingNameFromCodePage(cp) != NULL;
+	return GetEncodingNameFromCodePage(cp) != nullptr;
 }
 
 /**
@@ -2944,7 +2944,7 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 
 	pf->GetHeaderInterface()->SetText(pane, sText);
 
-	SetTitle(NULL);
+	SetTitle(nullptr);
 }
 
 /**
@@ -3093,7 +3093,7 @@ void CMergeDoc::SwapFiles()
 bool CMergeDoc::OpenWithUnpackerDialog()
 {
 	// let the user choose a handler
-	CSelectUnpackerDlg dlg(m_filePaths[0], NULL);
+	CSelectUnpackerDlg dlg(m_filePaths[0], nullptr);
 	// create now a new infoUnpacker to initialize the manual/automatic flag
 	PackingInfo infoUnpacker(PLUGIN_AUTO);
 	dlg.SetInitialInfoHandler(&infoUnpacker);
@@ -3106,7 +3106,7 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 		{
 			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, _T(""), 
-				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), NULL, _T(""), &infoUnpacker);
+				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, _T(""), &infoUnpacker);
 			CloseNow();
 		}
 		else
@@ -3208,7 +3208,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const
 {
 	String sExt;
-	paths::SplitFilename(sFileName, NULL, NULL, &sExt);
+	paths::SplitFilename(sFileName, nullptr, nullptr, &sExt);
 	return sExt;
 }
 
@@ -3220,7 +3220,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	// calculate HTML font size
 	LOGFONT lf;
 	CDC dc;
-	dc.CreateDC(_T("DISPLAY"), NULL, NULL, NULL);
+	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
 	m_pView[0][0]->GetFont(lf);
 	int nFontSize = -MulDiv (lf.lfHeight, 72, dc.GetDeviceCaps (LOGPIXELSY));
 

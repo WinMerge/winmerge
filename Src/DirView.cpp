@@ -390,7 +390,8 @@ void CDirView::OnInitialUpdate()
 	}
 
 	// Replace standard header with sort header
-	if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
+	HWND hWnd = ListView_GetHeader(m_pList->m_hWnd);
+	if (hWnd != nullptr)
 		m_ctlSortHeader.SubclassWindow(hWnd);
 
 	// Load the icons used for the list view (to reflect diff status)
@@ -442,7 +443,7 @@ void CDirView::OnInitialUpdate()
  */
 void CDirView::StartCompare(CompareStats *pCompareStats)
 {
-	if (m_pCmpProgressBar == NULL)
+	if (m_pCmpProgressBar == nullptr)
 		m_pCmpProgressBar.reset(new DirCompProgressBar());
 
 	if (!::IsWindow(m_pCmpProgressBar->GetSafeHwnd()))
@@ -1231,7 +1232,7 @@ void CDirView::OpenParentDirectory()
 		DWORD dwFlags[3];
 		for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
 			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
-		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, NULL, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
+		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDoc);
 	}
 		// fall through (no break!)
 	case AllowUpwardDirectory::No:
@@ -1394,12 +1395,12 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	{
 		// Open subfolders
 		// Don't add folders to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, NULL, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDoc);
 	}
 	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
 	{
 		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, NULL, _T(""), GetDiffContext().m_bRecursive, NULL, _T(""), infoUnpacker);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, nullptr, _T(""), infoUnpacker);
 	}
 	else
 	{
@@ -2148,7 +2149,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 				else if (m_bTreeMode && sel >= 0)
 				{
 					const DIFFITEM& di = GetDiffItem(sel);
-					if (di.parent != NULL)
+					if (di.parent != nullptr)
 					{
 						int i = GetItemIndex((uintptr_t)di.parent);
 						if (i >= 0)
@@ -2263,7 +2264,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	}
 	else if (wParam == CDiffThread::EVENT_COMPARE_PROGRESSED)
 	{
-		InvalidateRect(NULL, FALSE);
+		InvalidateRect(nullptr, FALSE);
 	}
 	else if (wParam == CDiffThread::EVENT_COLLECT_COMPLETED)
 	{
@@ -2586,7 +2587,7 @@ struct FileCmpReport: public IFileCmpReport
 		}
 
 		MSG msg;
-		while (::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE))
+		while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
 			if (!AfxGetApp()->PumpMessage())
 				break;
 		GetMainFrame()->OnUpdateFrameTitle(FALSE);
@@ -2758,7 +2759,7 @@ void CDirView::OnCtxtDirZip()
 
 void CDirView::ShowShellContextMenu(SIDE_TYPE stype)
 {
-	CShellContextMenu *pContextMenu = NULL;
+	CShellContextMenu *pContextMenu = nullptr;
 	switch (stype)
 	{
 	case SIDE_LEFT:
@@ -2786,7 +2787,7 @@ void CDirView::ShowShellContextMenu(SIDE_TYPE stype)
 		ASSERT(pFrame != nullptr);
 		BOOL bAutoMenuEnableOld = pFrame->m_bAutoMenuEnable;
 		pFrame->m_bAutoMenuEnable = FALSE;
-		BOOL nCmd = TrackPopupMenu(pContextMenu->GetHMENU(), TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, 0, hWnd, NULL);
+		BOOL nCmd = TrackPopupMenu(pContextMenu->GetHMENU(), TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, 0, hWnd, nullptr);
 		if (nCmd)
 			pContextMenu->InvokeCommand(nCmd, hWnd);
 		pContextMenu->ReleaseShellContextMenu();
@@ -3005,7 +3006,7 @@ void CDirView::OnUpdateCtxtDirMoveTo(CCmdUI* pCmdUI)
 void CDirView::OnSize(UINT nType, int cx, int cy)
 {
 	CListView::OnSize(nType, cx, cy);
-	GetDocument()->SetTitle(NULL);
+	GetDocument()->SetTitle(nullptr);
 }
 
 /**
@@ -3092,10 +3093,10 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	*pResult = FALSE;
 
-	// We can't use the normal condition of pszText==NULL to know if the
+	// We can't use the normal condition of pszText==`nullptr` to know if the
 	// user cancels editing when file names had different case (e.g.
 	// "file.txt|FILE.txt"). The edit text was changed to "file.txt" and
-	// if the user accept it as the new file name, pszText is NULL.
+	// if the user accept it as the new file name, pszText is `nullptr`.
 
 	if (!m_bUserCancelEdit)
 	{
@@ -3502,7 +3503,7 @@ void CDirView::DoFileEncodingDialog()
 
 	ApplyCodepage(SelBegin(), SelEnd(), GetDiffContext(), affected, dlg.GetLoadCodepage());
 
-	m_pList->InvalidateRect(NULL);
+	m_pList->InvalidateRect(nullptr);
 	m_pList->UpdateWindow();
 
 	// TODO: We could loop through any active merge windows belonging to us
@@ -3595,11 +3596,11 @@ void CDirView::OnUpdateEditUndo(CCmdUI* pCmdUI)
  *
  * @param [in] hMenu Handle to the menu to check ownership of.
  * @return Either m_pShellContextMenuLeft, m_pShellContextMenuRight
- *   or NULL if hMenu is not owned by these two.
+ *   or `nullptr` if hMenu is not owned by these two.
  */
 CShellContextMenu* CDirView::GetCorrespondingShellContextMenu(HMENU hMenu) const
 {
-	CShellContextMenu* pMenu = NULL;
+	CShellContextMenu* pMenu = nullptr;
 	if (m_pShellContextMenuLeft && hMenu == m_pShellContextMenuLeft->GetHMENU())
 		pMenu = m_pShellContextMenuLeft.get();
 	else if (m_pShellContextMenuMiddle && hMenu == m_pShellContextMenuMiddle->GetHMENU())
@@ -3818,7 +3819,7 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 #else
 		DropData->CacheGlobalData(CF_TEXT, hMem);
 #endif
-		DROPEFFECT de = DropData->DoDragDrop(DROPEFFECT_COPY | DROPEFFECT_MOVE, NULL);
+		DROPEFFECT de = DropData->DoDragDrop(DROPEFFECT_COPY | DROPEFFECT_MOVE, nullptr);
 	}
 
 	*pResult = 0;
@@ -4050,7 +4051,7 @@ DirActions CDirView::MakeDirActions(DirActions::method_type func) const
 DirActions CDirView::MakeDirActions(DirActions::method_type2 func) const
 {
 	const CDirDoc *pDoc = GetDocument();
-	return DirActions(pDoc->GetDiffContext(), pDoc->GetReadOnly(), NULL, func);
+	return DirActions(pDoc->GetDiffContext(), pDoc->GetReadOnly(), nullptr, func);
 }
 
 const CDiffContext& CDirView::GetDiffContext() const

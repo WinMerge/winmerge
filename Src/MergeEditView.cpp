@@ -880,7 +880,7 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 	// tell the others views about this diff (no need to call UpdateSiblingScrollPos)
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
 
-	// pSplitterWnd is NULL if WinMerge started minimized.
+	// pSplitterWnd is `nullptr` if WinMerge started minimized.
 	if (pSplitterWnd != nullptr)
 	{
 		int nRows = pSplitterWnd->GetRowCount ();
@@ -2079,7 +2079,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchTex
 			nAction == CE_ACTION_DELETE ||
 			nAction == CE_ACTION_CUT)
 		{
-			if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, NULL))
+			if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, nullptr))
 				pDoc->FlushAndRescan();
 		}
 		else
@@ -2666,7 +2666,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	// build the menu : first part, suggested plugins
 	// title
-	AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
 	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
 
 	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
@@ -2690,7 +2690,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	// build the menu : second part, others plugins
 	// title
-	AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
 	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
 
 	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
@@ -2963,7 +2963,7 @@ void CMergeEditView::OnWMGoto()
 	if (dlg.DoModal() == IDOK)
 	{
 		CMergeDoc * pDoc1 = GetDocument();
-		CMergeEditView * pCurrentView = NULL;
+		CMergeEditView * pCurrentView = nullptr;
 
 		// Get views
 		pCurrentView = GetGroupView(m_nThisPane);
@@ -3041,7 +3041,7 @@ void CMergeEditView::OnUpdateNoEditScripts(CCmdUI* pCmdUI)
 {
 	// append the scripts submenu
 	HMENU scriptsSubmenu = dynamic_cast<CMainFrame*>(AfxGetMainWnd())->GetScriptsSubmenu(AfxGetMainWnd()->GetMenu()->m_hMenu);
-	if (scriptsSubmenu != NULL)
+	if (scriptsSubmenu != nullptr)
 		createScriptsSubmenu(scriptsSubmenu);
 
 	pCmdUI->Enable(true);
@@ -3669,7 +3669,7 @@ int CMergeEditView::GetEmptySubLines( int nLineIndex )
 		{
 			if (nLineIndex >= pView->GetLineCount())
 				return 0;
-			pView->WrapLineCached( nLineIndex, pView->GetScreenChars(), NULL, nBreaks[nPane] );
+			pView->WrapLineCached( nLineIndex, pView->GetScreenChars(), nullptr, nBreaks[nPane] );
 		}
 		nMaxBreaks = max(nMaxBreaks, nBreaks[nPane]);
 	}
@@ -3869,7 +3869,7 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 
 	String name = theApp.LoadString(ID_COLORSCHEME_FIRST);
 	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
-	AppendMenu(hSubMenu, MF_SEPARATOR, 0, NULL);
+	AppendMenu(hSubMenu, MF_SEPARATOR, 0, nullptr);
 
 	for (int i = ID_COLORSCHEME_FIRST + 1; i <= ID_COLORSCHEME_LAST; ++i)
 	{

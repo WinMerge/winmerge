@@ -633,7 +633,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
           SetSelection (ptStart, ptEnd);
 
           SetCapture ();
-          m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, NULL);
+          m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, nullptr);
           ASSERT (m_nDragSelTimer != 0);
           m_bColumnSelection = false;
           m_bWordSelection = false;
@@ -686,7 +686,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
           SetSelection (ptStart, ptEnd);
 
           SetCapture ();
-          m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, NULL);
+          m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, nullptr);
           ASSERT (m_nDragSelTimer != 0);
           m_bColumnSelection = bAlt;
           m_bWordSelection = bControl;
@@ -767,7 +767,7 @@ OnMouseMove (UINT nFlags, CPoint point)
             }
 
           //  Moving to normal selection mode
-          ::SetCursor (::LoadCursor (NULL, IDC_IBEAM));
+          ::SetCursor (::LoadCursor (nullptr, IDC_IBEAM));
           m_bLineSelection = m_bWordSelection = false;
         }
 
@@ -1061,7 +1061,7 @@ OnLButtonDblClk (UINT nFlags, CPoint point)
       EnsureVisible (m_ptCursorPos);
       SetSelection (ptStart, ptEnd);
       SetCapture ();
-      m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, NULL);
+      m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, nullptr);
       ASSERT (m_nDragSelTimer != 0);
       m_bColumnSelection = false;
       m_bWordSelection = true;
@@ -1144,7 +1144,7 @@ TextInClipboard ()
 bool CCrystalTextView::
 PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
 {
-  if (pszText == NULL || cchText == 0)
+  if (pszText == nullptr || cchText == 0)
     return false;
 
   CWaitCursor wc;
@@ -1158,7 +1158,7 @@ PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
         {
           SIZE_T dwSize = GlobalSize(hData);
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
-          if (pszData)
+          if (pszData != nullptr)
             {
               memcpy (pszData, pszText, cbData);
               if (dwSize > cbData)

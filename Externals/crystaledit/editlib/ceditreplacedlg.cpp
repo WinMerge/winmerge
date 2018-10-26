@@ -52,7 +52,7 @@
 
 
 CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy)
-: CDialog (CEditReplaceDlg::IDD, NULL)
+: CDialog (CEditReplaceDlg::IDD, nullptr)
 , m_pBuddy(pBuddy)
 , m_bMatchCase(false)
 , m_bWholeWord(false)

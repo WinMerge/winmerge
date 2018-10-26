@@ -131,7 +131,7 @@ BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName,
 
     // register and create the window - skip CControlBar::Create()
     CString wndclass = ::AfxRegisterWndClass(CS_DBLCLKS,
-        ::LoadCursor(NULL, IDC_ARROW),
+        ::LoadCursor(nullptr, IDC_ARROW),
         ::GetSysColorBrush(COLOR_BTNFACE), 0);
 
     dwStyle &= ~CBRS_ALL; // keep only the generic window styles
@@ -246,11 +246,11 @@ CSize CSizingControlBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
     GetRowSizingBars(arrSCBars);
     AFX_SIZEPARENTPARAMS layout;
     layout.hDWP = pDockBar->m_bLayoutQuery ?
-        NULL : ::BeginDeferWindowPos(static_cast<int>(arrSCBars.GetSize()));
+        nullptr : ::BeginDeferWindowPos(static_cast<int>(arrSCBars.GetSize()));
     for (int i = 0; i < arrSCBars.GetSize(); i++)
         if (arrSCBars[i]->m_nStateFlags & (delayHide|delayShow))
             arrSCBars[i]->RecalcDelayShow(&layout);
-    if (layout.hDWP != NULL)
+    if (layout.hDWP != nullptr)
         ::EndDeferWindowPos(layout.hDWP);
 
     // get available length
@@ -449,7 +449,7 @@ void CSizingControlBar::OnNcCalcSize(BOOL bCalcValidRects,
     m_dwSCBStyle &= ~SCBS_EDGEALL;
 
     // add resizing edges between bars on the same row
-    if (!IsFloating() && m_pDockBar != NULL)
+    if (!IsFloating() && m_pDockBar != nullptr)
     {
         CSCBArray arrSCBars;
         int nThis;
@@ -615,7 +615,7 @@ void CSizingControlBar::StartTracking(UINT nHitTest, CPoint point)
 
     // make sure no updates are pending
     if (!m_bDragShowContent)
-        RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_UPDATENOW);
+        RedrawWindow(nullptr, nullptr, RDW_ALLCHILDREN | RDW_UPDATENOW);
 
     m_htEdge = nHitTest;
     m_bTracking = true;
@@ -650,7 +650,7 @@ void CSizingControlBar::StartTracking(UINT nHitTest, CPoint point)
         // remaining client area of the mainframe
         CRect rcT;
         m_pDockSite->RepositionBars(0, 0xFFFF, AFX_IDW_PANE_FIRST,
-            reposQuery, &rcT, NULL, TRUE);
+            reposQuery, &rcT, nullptr, TRUE);
         int nMaxWidth = bHorz ? rcT.Height() - 2 : rcT.Width() - 2;
 
         bool bTopOrLeft = m_htEdge == HTTOP || m_htEdge == HTLEFT;
@@ -798,7 +798,7 @@ void CSizingControlBar::OnTrackInvertTracker()
     rc.OffsetRect(bHorzTracking ? nOfs : 0, bHorzTracking ? 0 : nOfs);
     rc.OffsetRect(-rcFrame.TopLeft());
 
-    CDC *pDC = m_pDockSite->GetDCEx(NULL,
+    CDC *pDC = m_pDockSite->GetDCEx(nullptr,
         DCX_WINDOW | DCX_CACHE | DCX_LOCKWINDOWUPDATE);
     CBrush* pBrush = CDC::GetHalftoneBrush();
     CBrush* pBrushOld = pDC->SelectObject(pBrush);
@@ -870,10 +870,10 @@ void CSizingControlBar::GetRowInfo(int& nFirst, int& nLast, int& nThis)
 
     // find the first and the last bar in row
     for (nFirst = -1, i = nThis - 1; i >= 0 && nFirst == -1; i--)
-        if (m_pDockBar->m_arrBars[i] == NULL)
+        if (m_pDockBar->m_arrBars[i] == nullptr)
             nFirst = i + 1;
     for (nLast = -1, i = nThis + 1; i < nBars && nLast == -1; i++)
-        if (m_pDockBar->m_arrBars[i] == NULL)
+        if (m_pDockBar->m_arrBars[i] == nullptr)
             nLast = i - 1;
 
     ASSERT((nLast != -1) && (nFirst != -1));
@@ -949,7 +949,7 @@ bool CSizingControlBar::NegotiateSpace(int nLengthTotal, bool bHorz)
             if (i < nThis)
             {
                 m_pDockBar->m_arrBars.InsertAt(i + 1,
-                    (CControlBar*) NULL);
+                    (CControlBar*) nullptr);
                 return false;
             }
             
@@ -965,7 +965,7 @@ bool CSizingControlBar::NegotiateSpace(int nLengthTotal, bool bHorz)
             }
 
             // we have enough bars - go negotiate with them
-            m_pDockBar->m_arrBars.InsertAt(i, (CControlBar*) NULL);
+            m_pDockBar->m_arrBars.InsertAt(i, (CControlBar*) nullptr);
             nLast = i - 1;
             break;
         }
@@ -1289,7 +1289,7 @@ BOOL CSCBMiniDockFrameWnd::Create(CWnd* pParent, DWORD dwBarStyle)
 #endif
 
     if (!CMiniFrameWnd::CreateEx(dwExStyle,
-        NULL, &afxChNil, dwStyle, rectDefault, pParent))
+        nullptr, &afxChNil, dwStyle, rectDefault, pParent))
     {
         m_bInRecalcLayout = FALSE;
         return FALSE;
@@ -1329,7 +1329,7 @@ void CSCBMiniDockFrameWnd::OnNcLButtonDown(UINT nHitTest, CPoint point)
         return;
     }
 
-    if (GetSizingControlBar() != NULL)
+    if (GetSizingControlBar() != nullptr)
         CMiniFrameWnd::OnNcLButtonDown(nHitTest, point);
     else
         baseCSCBMiniDockFrameWnd::OnNcLButtonDown(nHitTest, point);
@@ -1338,15 +1338,15 @@ void CSCBMiniDockFrameWnd::OnNcLButtonDown(UINT nHitTest, CPoint point)
 CSizingControlBar* CSCBMiniDockFrameWnd::GetSizingControlBar()
 {
     CWnd* pWnd = GetWindow(GW_CHILD); // get the dockbar
-    if (pWnd == NULL)
-        return NULL;
+    if (pWnd == nullptr)
+        return nullptr;
     
     pWnd = pWnd->GetWindow(GW_CHILD); // get the controlbar
-    if (pWnd == NULL)
-        return NULL;
+    if (pWnd == nullptr)
+        return nullptr;
 
     if (!pWnd->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
-        return NULL;
+        return nullptr;
 
     return static_cast<CSizingControlBar*>(pWnd);
 }
@@ -1354,7 +1354,7 @@ CSizingControlBar* CSCBMiniDockFrameWnd::GetSizingControlBar()
 void CSCBMiniDockFrameWnd::OnSize(UINT nType, int cx, int cy) 
 {
     CSizingControlBar* pBar = GetSizingControlBar();
-    if ((pBar != NULL) && (GetStyle() & MFS_4THICKFRAME) == 0
+    if ((pBar != nullptr) && (GetStyle() & MFS_4THICKFRAME) == 0
         && pBar->IsVisible() &&
         cx + 4 >= pBar->m_szMinFloat.cx &&
         cy + 4 >= pBar->m_szMinFloat.cy)
@@ -1368,7 +1368,7 @@ void CSCBMiniDockFrameWnd::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
     baseCSCBMiniDockFrameWnd::OnGetMinMaxInfo(lpMMI);
 
     CSizingControlBar* pBar = GetSizingControlBar();
-    if (pBar != NULL)
+    if (pBar != nullptr)
     {
         CRect r(CPoint(0, 0), pBar->m_szMinFloat - CSize(4, 4));
 #ifndef _SCB_MINIFRAME_CAPTION
@@ -1386,7 +1386,7 @@ void CSCBMiniDockFrameWnd::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
     if ((GetStyle() & MFS_4THICKFRAME) != 0)
     {
         CSizingControlBar* pBar = GetSizingControlBar();
-        if (pBar != NULL)
+        if (pBar != nullptr)
         {
             lpwndpos->flags |= SWP_NOSIZE; // don't size this time
             // prevents flicker

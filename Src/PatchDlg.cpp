@@ -41,7 +41,7 @@ using std::swap;
 /** 
  * @brief Constructor, initializes members.
  */
-CPatchDlg::CPatchDlg(CWnd* pParent /*=NULL*/)
+CPatchDlg::CPatchDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CPatchDlg::IDD, pParent)
 	, m_caseSensitive(false)
 	, m_ignoreBlanks(false)

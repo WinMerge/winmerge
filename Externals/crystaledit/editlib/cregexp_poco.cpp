@@ -39,7 +39,7 @@ RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
     n = new RxNode();
     if (n == nullptr) return nullptr;
 
-	const char * errormsg = NULL;
+	const char * errormsg = nullptr;
 	int erroroffset = 0;
 	int pcre_opts = 0;
 	std::string regexString;
@@ -128,7 +128,7 @@ static int add(size_t *len, LPTSTR *s, LPCTSTR a, size_t alen, int &flag) {
 
     if (*s) {
         LPTSTR p = (LPTSTR) realloc(*s, NewLen * sizeof(TCHAR));
-		if (!p)
+		if (p == nullptr)
 			return 0;
 		*s = p;
 		assert(*s != 0);

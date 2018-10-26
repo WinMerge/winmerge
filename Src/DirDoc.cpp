@@ -142,7 +142,7 @@ void CDirDoc::Serialize(CArchive& ar)
  * Initialises directory compare with paths given and recursive choice.
  * Previous compare context is first free'd.
  * @param [in] paths Paths to compare
- * @param [in] bRecursive If TRUE subdirectories are included to compare.
+ * @param [in] bRecursive If `true` subdirectories are included to compare.
  */
 void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathContext *pTempPathContext)
 {
@@ -427,7 +427,7 @@ bool CDirDoc::CloseMergeDocs()
  * @param [in] paths Paths for files we update
  * @param [in] nDiffs Total amount of differences
  * @param [in] nTrivialDiffs Amount of ignored differences
- * @param [in] bIdentical TRUE if files became identical, FALSE otherwise.
+ * @param [in] bIdentical `true` if files became identical, FALSE otherwise.
  */
 void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, bool bIdentical)

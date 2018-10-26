@@ -94,7 +94,7 @@ BOOL PropShell::OnInitDialog()
 	AdvancedContextMenuCheck();
 	UpdateData(FALSE);
 
-	SetTimer(0, 1000, NULL);
+	SetTimer(0, 1000, nullptr);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }

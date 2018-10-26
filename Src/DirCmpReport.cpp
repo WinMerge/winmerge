@@ -120,11 +120,11 @@ static HGLOBAL ConvertToUTF16ForClipboard(HGLOBAL hMem, int codepage)
 	size_t len = GlobalSize(hMem);
 	HGLOBAL hMemW = GlobalAlloc(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT, (len + 1) * sizeof(wchar_t));
 	if (!hMemW)
-		return NULL;
+		return nullptr;
 	LPCSTR pstr = reinterpret_cast<LPCSTR>(GlobalLock(hMem));
 	LPWSTR pwstr = reinterpret_cast<LPWSTR>(GlobalLock(hMemW));
-	if (!pstr || !pwstr)
-		return NULL;
+	if (pstr == nullptr || pwstr == nullptr)
+		return nullptr;
 	int wlen = MultiByteToWideChar(codepage, 0, pstr, static_cast<int>(len), pwstr, static_cast<int>(len + 1));
 	if (len > 0 && pstr[len - 1] != '\0')
 	{
@@ -204,7 +204,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 		if (!dlg.m_sReportFile.empty())
 		{
 			String path;
-			paths::SplitFilename(dlg.m_sReportFile, &path, NULL, NULL);
+			paths::SplitFilename(dlg.m_sReportFile, &path, nullptr, nullptr);
 			if (!paths::CreateIfNeeded(path))
 			{
 				errStr = _("Folder does not exist.");
@@ -223,7 +223,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 		e->ReportError(MB_ICONSTOP);
 		e->Delete();
 	}
-	m_pFile = NULL;
+	m_pFile = nullptr;
 	return bRet;
 }
 
@@ -467,7 +467,7 @@ void DirCmpReport::GenerateXmlHeader()
 void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 {
 	String sFileName, sParentDir;
-	paths::SplitFilename((const TCHAR *)m_pFile->GetFilePath(), &sParentDir, &sFileName, NULL);
+	paths::SplitFilename((const TCHAR *)m_pFile->GetFilePath(), &sParentDir, &sFileName, nullptr);
 	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T("."))) + _T(".files");
 	String sDestDir = paths::ConcatPath(sParentDir, sRelDestDir);
 	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport)

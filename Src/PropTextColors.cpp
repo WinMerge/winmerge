@@ -211,7 +211,7 @@ void PropTextColors::OnDefaultsStandardColors()
 
 /** 
  * @brief Enable / disable color controls on dialog.
- * @param [in] bEnable If TRUE color controls are enabled.
+ * @param [in] bEnable If `true` color controls are enabled.
  */
 void PropTextColors::EnableColorButtons(bool bEnable)
 {

@@ -370,7 +370,7 @@ void CFilepathEdit::SetActive(bool bActive)
 		SetTextColor(::GetSysColor(COLOR_INACTIVECAPTIONTEXT));
 		SetBackColor(::GetSysColor(COLOR_INACTIVECAPTION));
 	}
-	RedrawWindow(NULL, NULL, RDW_FRAME | RDW_INVALIDATE);
+	RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 }
 
 /**
@@ -384,7 +384,7 @@ void CFilepathEdit::SetActive(bool bActive)
 HBRUSH CFilepathEdit::CtlColor(CDC* pDC, UINT nCtlColor) 
 {
 	UNUSED_ALWAYS(nCtlColor);
-	// Return a non-NULL brush if the parent's 
+	// Return a non-`nullptr` brush if the parent's 
 	//handler should not be called
 
 	//set text color

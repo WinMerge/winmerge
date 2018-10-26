@@ -237,7 +237,7 @@ void CDiffWrapper::SetDetectMovedBlocks(bool bDetectMovedBlocks)
 {
 	if (bDetectMovedBlocks)
 	{
-		if (m_pMovedLines[0] == NULL)
+		if (m_pMovedLines[0] == nullptr)
 		{
 			m_pMovedLines[0].reset(new MovedLines);
 			m_pMovedLines[1].reset(new MovedLines);
@@ -320,7 +320,7 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
  * @brief Find comment marker in string, excluding portions enclosed in quotation marks or apostrophes
  * @param [in] target				- string to search
  * @param [in] marker				- marker to search for
- * @return Returns position of marker, or NULL if none is present
+ * @return Returns position of marker, or `nullptr` if none is present
  */
 static const char *FindCommentMarker(const char *target, const char *marker)
 {
@@ -340,7 +340,7 @@ static const char *FindCommentMarker(const char *target, const char *marker)
 		prev = c;
 		++target;
 	}
-	return NULL;
+	return nullptr;
 }
 
 /**
@@ -1078,7 +1078,7 @@ void CDiffWrapper::SetAppendFiles(bool bAppendFiles)
  * @param [in] diffData files to compare.
  * @param [out] bin_status used to return binary status from compare.
  * @param [out] bin_file Returns which file was binary file as bitmap.
-    So if first file is binary, first bit is set etc. Can be NULL if binary file
+    So if first file is binary, first bit is set etc. Can be `nullptr` if binary file
     info is not needed (faster compare since diffutils don't bother checking
     second file if first is binary).
  * @return true when compare succeeds, false if error happened during compare.
@@ -1094,12 +1094,12 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	{
 		// Diff files. depth is zero because we are not comparing dirs
 		*diffs = diff_2_files (diffData->m_inf, 0, bin_status,
-				(m_pMovedLines[0] != NULL), bin_file);
+				(m_pMovedLines[0] != nullptr), bin_file);
 		CopyDiffutilTextStats(diffData->m_inf, diffData);
 	}
 	catch (SE_Exception&)
 	{
-		*diffs = NULL;
+		*diffs = nullptr;
 		bRet = false;
 	}
 	return bRet;

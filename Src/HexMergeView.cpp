@@ -121,8 +121,8 @@ void CHexMergeView::OnDraw(CDC *)
  */
 bool CHexMergeView::IsLoadable()
 {
-	static void *pv = NULL;
-	if (pv == NULL)
+	static void *pv = nullptr;
+	if (pv == nullptr)
 	{
 		pv = LoadLibrary(_T("Frhed\\hekseditU.dll"));
 	}

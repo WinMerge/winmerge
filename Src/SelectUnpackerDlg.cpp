@@ -48,10 +48,10 @@ void CSelectUnpackerDlg::Initialize()
 
 	// texts for the default unpackers
 	noPlugin.reset(new PluginInfo);
-	noPlugin->m_lpDispatch = NULL;
+	noPlugin->m_lpDispatch = nullptr;
 	noPlugin->m_name = _("<None>");
 	automaticPlugin.reset(new PluginInfo);
-	automaticPlugin->m_lpDispatch = NULL;
+	automaticPlugin->m_lpDispatch = nullptr;
 	automaticPlugin->m_name = _("<Automatic>");
 	automaticPlugin->m_description = _("The adapted unpacker is applied to both files (one file only needs the extension)");
 
@@ -104,13 +104,13 @@ void CSelectUnpackerDlg::Initialize()
 }
 
 
-CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename, CWnd* pParent /*=NULL*/)
+CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename, CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CSelectUnpackerDlg::IDD, pParent), m_filteredFilenames(filename)
 {
 	Initialize();
 }
 
-CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename1, const String& filename2, CWnd* pParent /*=NULL*/)
+CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename1, const String& filename2, CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CSelectUnpackerDlg::IDD, pParent), m_filteredFilenames(filename1 + _T("|") + filename2)
 {
 	Initialize();

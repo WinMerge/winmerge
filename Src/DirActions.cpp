@@ -285,8 +285,8 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 
 /**
  * @brief Find the CDiffContext diffpos of an item from its left & right paths
- * @return POSITION to item, NULL if not found.
- * @note Filenames must be same, if they differ NULL is returned.
+ * @return POSITION to item, `nullptr` if not found.
+ * @note Filenames must be same, if they differ `nullptr` is returned.
  */
 uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
 {

@@ -65,7 +65,7 @@ bool EndsWithSlash(const String& s)
  * - IS_EXISTING_DIR : path points to existing folder
  * - IS_EXISTING_FILE : path points to existing file
  */
-PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&))
+PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&) /*= nullptr*/)
 {
 	if (szPath.empty())
 		return DOES_NOT_EXIST;
@@ -237,7 +237,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 		_tcscpy_s(pFullPath, MAX_PATH_FULL, tPath.c_str());
 
 	// We are done if this is not a short name.
-	if (_tcschr(pFullPath, _T('~')) == NULL)
+	if (_tcschr(pFullPath, _T('~')) == nullptr)
 		return pFullPath;
 
 	// We have to do it the hard way because GetLongPathName is not
@@ -247,7 +247,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	// and leave the invalid stuff at the end.
 	String sLong;
 	TCHAR *ptr = pFullPath;
-	TCHAR *end = NULL;
+	TCHAR *end = nullptr;
 
 	// Skip to \ position     d:\abcd or \\host\share\abcd
 	// indicated by ^           ^                    ^
@@ -392,7 +392,7 @@ bool CreateIfNeeded(const String& szPath)
  *  - IS_EXISTING_FILE : both are files & exist
  *  - DOES_NOT_EXIST : in all other cases
 */
-PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveFile)(const String&))
+PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveFile)(const String&) /*= nullptr*/)
 {
 	// fail if not both specified
 	if (paths.GetSize() < 2 || paths[0].empty() || paths[1].empty())
@@ -434,7 +434,7 @@ bool IsShortcut(const String& inPath)
 {
 	const TCHAR ShortcutExt[] = _T(".lnk");
 	TCHAR ext[_MAX_EXT] = {0};
-	_tsplitpath_s(inPath.c_str(), NULL, 0, NULL, 0, NULL, 0, ext, _MAX_EXT);
+	_tsplitpath_s(inPath.c_str(), nullptr, 0, nullptr, 0, nullptr, 0, ext, _MAX_EXT);
 	if (_tcsicmp(ext, ShortcutExt) == 0)
 		return true;
 	else
@@ -473,7 +473,7 @@ String ExpandShortcut(const String &inFile)
 	HRESULT hres;
 
 	// Create instance for shell link
-	hres = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER,
+	hres = ::CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER,
 		IID_IShellLink, (LPVOID*) &psl);
 	if (SUCCEEDED(hres))
 	{
@@ -496,7 +496,7 @@ String ExpandShortcut(const String &inFile)
 			{
 				// find the path from that
 				TCHAR buf[MAX_PATH_FULL] = {0};
-				psl->GetPath(buf, MAX_PATH_FULL, NULL, SLGP_UNCPRIORITY);
+				psl->GetPath(buf, MAX_PATH_FULL, nullptr, SLGP_UNCPRIORITY);
 				outFile = buf;
 			}
 			ppf->Release();
@@ -687,7 +687,7 @@ void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String*
 		{
 			if (!ext)
 			{
-				if (pExt)
+				if (pExt != nullptr)
 				{
 					(*pExt) = pszChar + 1;
 				}
@@ -700,7 +700,7 @@ void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String*
 			// Ok, found last slash, so we collect any info desired
 			// and we're done
 
-			if (pPath)
+			if (pPath != nullptr)
 			{
 				// Grab directory (omit trailing slash)
 				size_t len = pszChar - pathLeft.c_str();
@@ -710,7 +710,7 @@ void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String*
 				pPath->erase(len); // Cut rest of path
 			}
 
-			if (pFile)
+			if (pFile != nullptr)
 			{
 				// Grab file
 				*pFile = pszChar + 1;
@@ -721,7 +721,7 @@ void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String*
 	}
 
 	// Never found a delimiter
-	if (pFile)
+	if (pFile != nullptr)
 	{
 		*pFile = pathLeft;
 	}
@@ -729,7 +729,7 @@ void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String*
 endSplit:
 	// if both filename & extension requested, remove extension from filename
 
-	if (pFile && pExt && extptr)
+	if (pFile != nullptr && pExt != nullptr && extptr != nullptr)
 	{
 		size_t extlen = pend - extptr;
 		pFile->erase(pFile->length() - extlen);

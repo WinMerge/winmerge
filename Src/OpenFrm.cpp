@@ -76,7 +76,7 @@ void COpenFrame::RecalcLayout(BOOL bNotify)
 			rc.top = rc.Height() - sz.cy;
 
 		// This actually moves the view window
-		pView->SetWindowPos(NULL, rc.left, rc.top, sz.cx, sz.cy,
+		pView->SetWindowPos(nullptr, rc.left, rc.top, sz.cx, sz.cy,
 			SWP_NOACTIVATE|SWP_NOZORDER);
 	}
 }

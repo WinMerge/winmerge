@@ -1217,7 +1217,7 @@ BCMenuData *BCMenu::FindMenuItem(UINT_PTR nID)
 	if (pData == nullptr){
 		UINT loc;
 		BCMenu *pMenu = FindMenuOption(static_cast<int>(nID), loc);
-		ASSERT(pMenu != this);
+		ASSERT (pMenu != this);
 		if (loc != -1){
 			return pMenu->FindMenuItem(nID);
 		}
@@ -2155,7 +2155,7 @@ BCMenu* BCMenu::GetSubBCMenu(wchar_t* lpszSubMenuName)
 	if(mdata != nullptr){
 		HMENU bchmenu=(HMENU)mdata->nID;
 		CMenu *ptr=FromHandle(bchmenu);
-		if(ptr!=nullptr){
+		if(ptr != nullptr){
 			bool flag = !!ptr->IsKindOf(RUNTIME_CLASS( BCMenu ));
 			if(flag)
 				return static_cast<BCMenu *>(ptr);

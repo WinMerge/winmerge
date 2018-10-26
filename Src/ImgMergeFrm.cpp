@@ -212,7 +212,7 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 	SetTitle(nullptr);
 
 	LPCTSTR lpszWndClass = AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW,
-			LoadCursor(NULL, IDC_ARROW), (HBRUSH)(COLOR_WINDOW+1), NULL);
+			::LoadCursor(nullptr, IDC_ARROW), (HBRUSH)(COLOR_WINDOW+1), nullptr);
 
 	if (!CMDIChildWnd::Create(lpszWndClass, GetTitle(), WS_OVERLAPPEDWINDOW | WS_CHILD, rectDefault, pParent))
 		return false;
@@ -911,7 +911,7 @@ void CImgMergeFrame::UpdateHeaderPath(int pane)
 	else
 	{
 		sText = m_filePaths.GetPath(pane);
-		if (m_pDirDoc)
+		if (m_pDirDoc != nullptr)
 			m_pDirDoc->ApplyDisplayRoot(pane, sText);
 	}
 	if (m_pImgMergeWindow->IsModified(pane))
