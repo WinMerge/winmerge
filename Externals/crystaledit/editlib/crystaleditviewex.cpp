@@ -37,7 +37,7 @@ DWORD CCrystalEditViewEx::ParseLine( DWORD dwCookie, int nLineIndex,
 	if( m_pSyntaxParser != nullptr )
 	{
 		CCrystalTextBlock	*pTextBlock = 
-			pBuf? new CCrystalTextBlock( (CCrystalTextBlock::TEXTBLOCK*)pBuf, nActualItems ) : NULL;
+			pBuf? new CCrystalTextBlock( (CCrystalTextBlock::TEXTBLOCK*)pBuf, nActualItems ) : nullptr;
 		dwCookie = m_pSyntaxParser->ParseLine( dwCookie, nLineIndex, pTextBlock );
 		
 		if( pTextBlock )

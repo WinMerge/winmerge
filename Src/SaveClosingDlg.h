@@ -49,7 +49,7 @@ public:
 		SAVECLOSING_DISCARD,  /**< Discard changes */
 	};
 
-	explicit SaveClosingDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit SaveClosingDlg(CWnd* pParent = nullptr);   // standard constructor
 	void DoAskFor(bool bLeft = false, bool bMiddle = false, bool bRight = false);
 
 // Dialog Data

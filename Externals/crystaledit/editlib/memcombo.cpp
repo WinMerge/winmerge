@@ -60,10 +60,10 @@ void SetComboBoxHeight(CComboBox &Control)
   nHeight = rc.Height() * nHeight + 16;
   if(rc.top + nHeight > nMax)
     nHeight = nMax - rc.top;
-  Control.SetWindowPos(NULL, 0, 0, rc.Width(), nHeight, SWP_NOMOVE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
+  Control.SetWindowPos(nullptr, 0, 0, rc.Width(), nHeight, SWP_NOMOVE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
 }
 
-void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = NULL)
+void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = nullptr)
 {
   int          cnt = Control.GetCount();
 

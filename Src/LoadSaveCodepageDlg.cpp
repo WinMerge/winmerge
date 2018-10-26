@@ -17,7 +17,7 @@
 // CLoadSaveCodepageDlg dialog
 
 
-CLoadSaveCodepageDlg::CLoadSaveCodepageDlg(int nFiles, CWnd* pParent /*=NULL*/)
+CLoadSaveCodepageDlg::CLoadSaveCodepageDlg(int nFiles, CWnd* pParent /*= nullptr*/)
 : CTrDialog(CLoadSaveCodepageDlg::IDD, pParent)
 , m_bAffectsLeft(true)
 , m_bAffectsMiddle(true)
@@ -80,7 +80,7 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 	CTrDialog::OnInitDialog();
 
 	IExconverter *pexconv = Exconverter::getInstance();
-	if (pexconv != NULL)
+	if (pexconv != nullptr)
 	{
 		CComboBox combol, combos;
 		combol.Attach(::GetDlgItem(m_hWnd, IDC_LOAD_CODEPAGE_TEXTBOX));

@@ -346,7 +346,7 @@ out:
             bFirstChar = false;
         }
 
-      if (pBuf == NULL)
+      if (pBuf == nullptr)
         continue;               //  We don't need to extract keywords,
       //  for faster parsing skip the rest of loop
 

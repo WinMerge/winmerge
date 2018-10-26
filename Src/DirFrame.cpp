@@ -191,7 +191,7 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 	// get the active child frame, and a flag whether it is maximized
 	BOOL bMaximized;
 	CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
-	if (oldActiveFrame == NULL)
+	if (oldActiveFrame == nullptr)
 		// for the first frame, get the restored/maximized state from the registry
 		bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), TRUE);
 	if (bMaximized)

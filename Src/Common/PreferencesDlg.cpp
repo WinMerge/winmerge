@@ -229,7 +229,7 @@ void CPreferencesDlg::SetActivePage(int nPage)
 
 	// synchronize tree
 	CPropertyPage* pPage = m_pphost.GetActivePage();
-	HTREEITEM hti = NULL;
+	HTREEITEM hti = nullptr;
 
 	if (m_mapPP2HTI.Lookup(pPage, (void*&)hti) && hti)
 		m_tcPages.SelectItem(hti);
@@ -251,7 +251,7 @@ CString CPreferencesDlg::GetItemPath(HTREEITEM hti)
 
 /**
  * @brief Read options from storage to UI controls.
- * @param [in] bUpdate If TRUE UpdateData() is called
+ * @param [in] bUpdate If `true` UpdateData() is called
  */
 void CPreferencesDlg::ReadOptions(bool bUpdate)
 {
@@ -324,7 +324,7 @@ void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
 void CPreferencesDlg::OnImportButton()
 {
 	String s;
-	if (SelectFile(GetSafeHwnd(), s, true, NULL, _("Select file for import"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
+	if (SelectFile(GetSafeHwnd(), s, true, nullptr, _("Select file for import"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
 	{
 		if (m_pOptionsMgr->ImportOptions(s) == COption::OPT_OK)
 		{
@@ -343,7 +343,7 @@ void CPreferencesDlg::OnImportButton()
 void CPreferencesDlg::OnExportButton()
 {
 	String settingsFile;
-	if (SelectFile(GetSafeHwnd(), settingsFile, false, NULL, _("Select file for export"),
+	if (SelectFile(GetSafeHwnd(), settingsFile, false, nullptr, _("Select file for export"),
 		_("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
 	{
 		// Add settings file extension if it is missing
@@ -372,6 +372,6 @@ void CPreferencesDlg::OnExportButton()
  */
 void CPreferencesDlg::SafeUpdatePage(CPropertyPage* pPage, bool bSaveAndValidate)
 {
-	if (pPage->GetSafeHwnd() != NULL)
+	if (pPage->GetSafeHwnd() != nullptr)
 		pPage->UpdateData(bSaveAndValidate);
 }

@@ -32,10 +32,10 @@ LineInfo::LineInfo()
  */
 void LineInfo::Clear()
 {
-  if (m_pcLine != NULL)
+  if (m_pcLine != nullptr)
     {
       delete[] m_pcLine;
-      m_pcLine = NULL;
+      m_pcLine = nullptr;
       m_nLength = 0;
       m_nMax = 0;
       m_nEolChars = 0;
@@ -50,10 +50,10 @@ void LineInfo::Clear()
  */
 void LineInfo::FreeBuffer()
 {
-  if (m_pcLine != NULL)
+  if (m_pcLine != nullptr)
     {
       delete[] m_pcLine;
-      m_pcLine = NULL;
+      m_pcLine = nullptr;
       m_nLength = 0;
       m_nMax = 0;
       m_nEolChars = 0;
@@ -78,7 +78,7 @@ void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
   m_nMax = ALIGN_BUF_SIZE (m_nLength + 1);
   ASSERT (m_nMax < INT_MAX);
   ASSERT (m_nMax >= m_nLength + 1);
-  if (m_pcLine != NULL)
+  if (m_pcLine != nullptr)
     delete[] m_pcLine;
   m_pcLine = new TCHAR[m_nMax];
   ZeroMemory(m_pcLine, m_nMax * sizeof(TCHAR));
@@ -104,7 +104,7 @@ void LineInfo::CreateEmpty()
   m_nLength = 0;
   m_nEolChars = 0;
   m_nMax = ALIGN_BUF_SIZE (m_nLength + 1);
-  if (m_pcLine != NULL)
+  if (m_pcLine != nullptr)
     delete [] m_pcLine;
   m_pcLine = new TCHAR[m_nMax];
   ZeroMemory(m_pcLine, m_nMax * sizeof(TCHAR));
@@ -163,14 +163,14 @@ bool LineInfo::HasEol() const
 
 /**
  * @brief Get line's EOL bytes.
- * @return EOL bytes, or NULL if no EOL bytes.
+ * @return EOL bytes, or `nullptr` if no EOL bytes.
  */
 LPCTSTR LineInfo::GetEol() const
 {
   if (HasEol())
     return &m_pcLine[Length()];
   else
-    return NULL;
+    return nullptr;
 }
 
 /**
@@ -232,7 +232,7 @@ void LineInfo::Delete(size_t nStartChar, size_t nEndChar)
 	  m_nEolChars -= static_cast<int>(nDelete);
   }
   ASSERT (m_nLength <= INT_MAX);		// assert "positive int"
-  if (m_pcLine)
+  if (m_pcLine != nullptr)
     m_pcLine[FullLength()] = '\0';
 }
 
@@ -244,7 +244,7 @@ void LineInfo::DeleteEnd(size_t nStartChar)
 {
   m_nLength = nStartChar;
   ASSERT (m_nLength <= INT_MAX);		// assert "positive int"
-  if (m_pcLine)
+  if (m_pcLine != nullptr)
     m_pcLine[nStartChar] = 0;
   m_nEolChars = 0;
 }
@@ -255,7 +255,7 @@ void LineInfo::DeleteEnd(size_t nStartChar)
  */
 void LineInfo::CopyFrom(const LineInfo &li)
 {
-  if (m_pcLine != NULL)
+  if (m_pcLine != nullptr)
     delete [] m_pcLine;
   m_pcLine = new TCHAR[li.m_nMax];
   memcpy(m_pcLine, li.m_pcLine, li.m_nMax * sizeof(TCHAR));

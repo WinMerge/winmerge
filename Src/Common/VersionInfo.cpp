@@ -27,7 +27,7 @@ struct LANGUAGEANDCODEPAGE
  * @brief Constructor for asking only numeric version info.
  * This constructor creates instance that only reads version numbers,
  * not several strings there are. This saves some time.
- * @param [in] bVersionOnly If TRUE only version numbers are read.
+ * @param [in] bVersionOnly If `true` only version numbers are read.
  */
 CVersionInfo::CVersionInfo(bool bVersionOnly)
 : m_wLanguage(0)
@@ -57,7 +57,7 @@ CVersionInfo::CVersionInfo(WORD wLanguage)
 /** 
  * @brief Constructor.
  * @param [in] szFileToVersion Filename to read version from.
- * @param [in] bDllVersion If TRUE queries DLL version.
+ * @param [in] bDllVersion If `true` queries DLL version.
  */
 CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion, 
 						   bool bDllVersion)
@@ -291,7 +291,7 @@ void CVersionInfo::GetVersionInfo()
 
 	if (m_strFileName.empty())
 	{
-		::GetModuleFileName(NULL, szFileName, MAX_PATH);
+		::GetModuleFileName(nullptr, szFileName, MAX_PATH);
 		m_strFileName = szFileName;
 	}
 	else

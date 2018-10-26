@@ -40,7 +40,7 @@ EDITPADC_CLASS LPCTSTR pszCodeNames[] =
     _T ("Apple Macintosh"),
     _T ("Apple Macintosh for Central Europe"),
     _T ("Corky"),
-    NULL
+    nullptr
   };
 
 EDITPADC_CLASS int nCodeNames = sizeof (pszCodeNames) / sizeof (pszCodeNames[0]) - 1;
@@ -56,7 +56,7 @@ EDITPADC_CLASS void FillComboBox (CComboBox &Control, LPCTSTR *pszItems)
 /////////////////////////////////////////////////////////////////////////////
 // CCharConvDlg dialog
 
-CCharConvDlg::CCharConvDlg () : CDialog (CCharConvDlg::IDD, NULL)
+CCharConvDlg::CCharConvDlg () : CDialog (CCharConvDlg::IDD, nullptr)
 {
     //{{AFX_DATA_INIT(CCharConvDlg)
 	m_nSource = 1;
@@ -121,6 +121,6 @@ void CCharConvDlg::OnPreview()
       m_sPreview = pszNew;
       UpdateData (false);
     }
-  if (pszNew)
+  if (pszNew != nullptr)
     free (pszNew);
 }

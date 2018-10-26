@@ -56,7 +56,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 	void InitList();
-	int AddRow(const String& filter = NULL, bool enabled = false);
+	int AddRow(const String& filter = nullptr, bool enabled = false);
 	void EditSelectedFilter();
 
 private:

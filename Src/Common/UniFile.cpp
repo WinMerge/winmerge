@@ -269,7 +269,7 @@ bool UniMemFile::DoOpen(const String& filename, AccessMode mode)
 	catch (Exception& e)
 	{
 		LastErrorCustom(ucr::toTString(e.displayText()));
-		m_hMapping = NULL;
+		m_hMapping = nullptr;
 		return false;
 	}
 
@@ -427,7 +427,7 @@ static void RecordZero(UniFile::txtstats & txstats, size_t offset)
  * @brief Read one (DOS or UNIX or Mac) line.
  * @param [out] line Line read.
  * @param [out] eol EOL bytes read (if any).
- * @param [out] lossy TRUE if there were lossy encoding.
+ * @param [out] lossy `true` if there were lossy encoding.
  * @return true if there is more lines to read, false when last line is read.
  */
 bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)

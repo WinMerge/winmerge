@@ -213,7 +213,7 @@ String CEditorFilePathBar::GetText(int pane) const
 {
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
-	// Check for NULL since window may be closing..
+	// Check for `nullptr` since window may be closing..
 	if (m_hWnd == nullptr)
 		return _T("");
 
@@ -232,7 +232,7 @@ void CEditorFilePathBar::SetText(int pane, const String& sString)
 {
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
-	// Check for NULL since window may be closing..
+	// Check for `nullptr` since window may be closing..
 	if (m_hWnd == nullptr)
 		return;
 
@@ -249,7 +249,7 @@ void CEditorFilePathBar::SetActive(int pane, bool bActive)
 {
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
-	// Check for NULL since window may be closing..
+	// Check for `nullptr` since window may be closing..
 	if (m_hWnd == nullptr)
 		return;
 

@@ -63,7 +63,7 @@ public:
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void UpdateResources();
 	bool CloseNow();
-	void DirDocClosing(CDirDoc * pDirDoc) { m_pDirDoc = NULL; }
+	void DirDocClosing(CDirDoc * pDirDoc) { m_pDirDoc = nullptr; }
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 	void SetLastCompareResult(int nResult);
 	void UpdateLastCompareResult();
