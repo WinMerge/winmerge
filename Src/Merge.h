@@ -94,7 +94,7 @@ public:
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper * GetGlobalFileFilter() { return m_pGlobalFileFilter.get(); }
-	void ShowHelp(LPCTSTR helpLocation = NULL);
+	void ShowHelp(LPCTSTR helpLocation = nullptr);
 	void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 	bool CreateBackup(bool bFolder, const String& pszPath);

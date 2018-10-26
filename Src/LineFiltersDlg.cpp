@@ -117,7 +117,7 @@ void LineFiltersDlg::OnHelp()
  * @param [in] enabled Is filter enabled?
  * @return Index of added row.
  */
-int LineFiltersDlg::AddRow(const String& filter /*= NULL*/, bool enabled /*=false*/)
+int LineFiltersDlg::AddRow(const String& filter /*= nullptr*/, bool enabled /*= false*/)
 {
 	int items = m_filtersList.GetItemCount();
 	int ind = m_filtersList.InsertItem(items, filter.c_str());

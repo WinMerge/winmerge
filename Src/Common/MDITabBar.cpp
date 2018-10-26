@@ -52,7 +52,7 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 	m_pMainFrame = pMainFrame;
 	m_dwStyle = CBRS_TOP;
 
-	if (!CWnd::Create(WC_TABCONTROL, NULL, WS_CHILD | WS_VISIBLE | TCS_OWNERDRAWFIXED, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_FIRST+30))
+	if (!CWnd::Create(WC_TABCONTROL, nullptr, WS_CHILD | WS_VISIBLE | TCS_OWNERDRAWFIXED, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_FIRST+30))
 		return FALSE;
 
 	TabCtrl_SetPadding(m_hWnd, determineIconSize(), 4);
@@ -156,7 +156,7 @@ void CMDITabBar::OnContextMenu(CWnd *pWnd, CPoint point)
 	CWnd* pMDIChild = FromHandle((HWND)tci.lParam);
 	m_pMainFrame->MDIActivate(pMDIChild);
 	CMenu* pPopup = pMDIChild->GetSystemMenu(FALSE);
-	if (!pPopup) return;
+	if (pPopup == nullptr) return;
 	MENUITEMINFO mii = { sizeof MENUITEMINFO };
 	if (!pPopup->GetMenuItemInfo(ID_CLOSE_OTHER_TABS, &mii, FALSE))
 	{
@@ -359,7 +359,7 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		if (!hIcon)
 			hIcon = (HICON)GetClassLongPtr(hwndFrame, GCLP_HICONSM);
 		if (hIcon)
-			DrawIconEx(lpDraw->hDC, rc.left - iconsize.cx - 2, rc.top + (rc.bottom - rc.top - iconsize.cy) / 2, hIcon, iconsize.cx, iconsize.cy, 0, NULL, DI_NORMAL);
+			DrawIconEx(lpDraw->hDC, rc.left - iconsize.cx - 2, rc.top + (rc.bottom - rc.top - iconsize.cy) / 2, hIcon, iconsize.cx, iconsize.cy, 0, nullptr, DI_NORMAL);
 	}
 	DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 

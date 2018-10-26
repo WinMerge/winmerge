@@ -371,7 +371,7 @@ void COpenView::OnLButtonDown(UINT nFlags, CPoint point)
 		rc.bottom = rc.top + m_sizeOrig.cy;
 		m_rectTracker.m_rect.right = m_rectTracker.m_rect.left + width;
 		m_rectTracker.m_rect.bottom = m_rectTracker.m_rect.top + m_sizeOrig.cy;
-		SetWindowPos(NULL, rc.left, rc.top, rc.Width(), rc.Height(), SWP_NOZORDER);
+		SetWindowPos(nullptr, rc.left, rc.top, rc.Width(), rc.Height(), SWP_NOZORDER);
 		m_constraint.UpdateSizes();
 	}
 }
@@ -481,7 +481,7 @@ void COpenView::OnOK()
 	}
 	// If left path is a project-file, load it
 	String ext;
-	paths::SplitFilename(m_strPath[0], NULL, NULL, &ext);
+	paths::SplitFilename(m_strPath[0], nullptr, nullptr, &ext);
 	if (m_strPath[1].empty() && strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 		LoadProjectFile(m_strPath[0]);
 
@@ -560,7 +560,7 @@ void COpenView::OnOK()
 	PackingInfo tmpPackingInfo(pDoc->m_infoHandler);
 	GetMainFrame()->DoFileOpen(
 		&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(), 
-		NULL, _T(""), pDoc->m_bRecurse, NULL, _T(""), &tmpPackingInfo);
+		nullptr, _T(""), pDoc->m_bRecurse, nullptr, _T(""), &tmpPackingInfo);
 }
 
 /** 
@@ -739,10 +739,10 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 	MSG msg;
 	BOOL bRet;
 
-	CoInitialize(NULL);
+	CoInitialize(nullptr);
 	CAssureScriptsForThread scriptsForRescan;
 
-	while( (bRet = GetMessage( &msg, NULL, 0, 0 )) != 0)
+	while( (bRet = GetMessage( &msg, nullptr, 0, 0 )) != 0)
 	{ 
 		if (bRet == -1)
 			break;
@@ -763,7 +763,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		// Check if we have project file as left side path
 		bool bProject = false;
 		String ext;
-		paths::SplitFilename(paths[0], NULL, NULL, &ext);
+		paths::SplitFilename(paths[0], nullptr, nullptr, &ext);
 		if (paths[1].empty() && strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 			bProject = true;
 
@@ -860,7 +860,7 @@ void COpenView::UpdateButtonStates()
 	if (!m_pUpdateButtonStatusThread)
 	{
 		m_pUpdateButtonStatusThread = AfxBeginThread(
-			UpdateButtonStatesThread, NULL, THREAD_PRIORITY_NORMAL, 0, CREATE_SUSPENDED);
+			UpdateButtonStatesThread, nullptr, THREAD_PRIORITY_NORMAL, 0, CREATE_SUSPENDED);
 		m_pUpdateButtonStatusThread->m_bAutoDelete = FALSE;
 		m_pUpdateButtonStatusThread->ResumeThread();
 		while (PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_NULL, 0, 0) == FALSE)
@@ -890,7 +890,7 @@ void COpenView::TerminateThreadIfRunning()
 		TerminateThread(m_pUpdateButtonStatusThread->m_hThread, 0);
 	}
 	delete m_pUpdateButtonStatusThread;
-	m_pUpdateButtonStatusThread = NULL;
+	m_pUpdateButtonStatusThread = nullptr;
 }
 
 /**
@@ -935,7 +935,7 @@ void COpenView::OnEditEvent()
 {
 	// (Re)start timer to path validity check delay
 	// If timer starting fails, update buttonstates immediately
-	if (!SetTimer(IDT_CHECKFILES, CHECKFILES_TIMEOUT, NULL))
+	if (!SetTimer(IDT_CHECKFILES, CHECKFILES_TIMEOUT, nullptr))
 		UpdateButtonStates();
 }
 

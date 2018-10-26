@@ -20,10 +20,10 @@ struct Merge7zFormatRegister
 		for (size_t i = 0; i < Merge7zFormatRegister::optionalFormats.size(); ++i)
 		{
 			Merge7z::Format* pFormat = Merge7zFormatRegister::optionalFormats[i](path);
-			if (pFormat)
+			if (pFormat != nullptr)
 				return pFormat;
 		}
-		return NULL;
+		return nullptr;
 	}
 
 	static std::vector<Merge7z::Format *(*)(const String& path)> optionalFormats;

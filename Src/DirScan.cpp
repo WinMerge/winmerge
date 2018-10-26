@@ -275,14 +275,14 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		{
 			if (nDirs < 3)
 				AddToList(subdir[0], subdir[1], 
-					(nDiffCode & DIFFCODE::FIRST ) ? &dirs[0][i] : NULL, 
-					(nDiffCode & DIFFCODE::SECOND) ? &dirs[1][j] : NULL,
+					(nDiffCode & DIFFCODE::FIRST ) ? &dirs[0][i] : nullptr, 
+					(nDiffCode & DIFFCODE::SECOND) ? &dirs[1][j] : nullptr,
 					nDiffCode, myStruct, parent);
 			else
 				AddToList(subdir[0], subdir[1], subdir[2], 
-					(nDiffCode & DIFFCODE::FIRST ) ? &dirs[0][i] : NULL,
-					(nDiffCode & DIFFCODE::SECOND) ? &dirs[1][j] : NULL,
-					(nDiffCode & DIFFCODE::THIRD ) ? &dirs[2][k] : NULL,
+					(nDiffCode & DIFFCODE::FIRST ) ? &dirs[0][i] : nullptr,
+					(nDiffCode & DIFFCODE::SECOND) ? &dirs[1][j] : nullptr,
+					(nDiffCode & DIFFCODE::THIRD ) ? &dirs[2][k] : nullptr,
 					nDiffCode, myStruct, parent);
 		}
 		else
@@ -291,8 +291,8 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			if (nDirs < 3)
 			{
 				DIFFITEM *me = AddToList(subdir[0], subdir[1], 
-					(nDiffCode & DIFFCODE::FIRST ) ? &dirs[0][i] : NULL, 
-					(nDiffCode & DIFFCODE::SECOND) ? &dirs[1][j] : NULL,
+					(nDiffCode & DIFFCODE::FIRST ) ? &dirs[0][i] : nullptr, 
+					(nDiffCode & DIFFCODE::SECOND) ? &dirs[1][j] : nullptr,
 					nDiffCode, myStruct, parent);
 				if ((nDiffCode & DIFFCODE::SKIPPED) == 0 && ((nDiffCode & DIFFCODE::SIDEFLAGS) == DIFFCODE::BOTH || bUniques))
 				{
@@ -307,9 +307,9 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			else
 			{
 				DIFFITEM *me = AddToList(subdir[0], subdir[1], subdir[2], 
-					(nDiffCode & DIFFCODE::FIRST ) ? &dirs[0][i] : NULL,
-					(nDiffCode & DIFFCODE::SECOND) ? &dirs[1][j] : NULL,
-					(nDiffCode & DIFFCODE::THIRD ) ? &dirs[2][k] : NULL,
+					(nDiffCode & DIFFCODE::FIRST ) ? &dirs[0][i] : nullptr,
+					(nDiffCode & DIFFCODE::SECOND) ? &dirs[1][j] : nullptr,
+					(nDiffCode & DIFFCODE::THIRD ) ? &dirs[2][k] : nullptr,
 					nDiffCode, myStruct, parent);
 				if ((nDiffCode & DIFFCODE::SKIPPED) == 0 && ((nDiffCode & DIFFCODE::SIDEFLAGS) == DIFFCODE::ALL || bUniques))
 				{
@@ -733,7 +733,7 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 	{
 		// We don't actually 'compare' directories, just add non-ignored
 		// directories to list.
-		StoreDiffData(di, pCtxt, NULL);
+		StoreDiffData(di, pCtxt, nullptr);
 	}
 	else
 	{
@@ -751,7 +751,7 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 		else
 		{
 			di.diffcode.diffcode |= DIFFCODE::SKIPPED;
-			StoreDiffData(di, pCtxt, NULL);
+			StoreDiffData(di, pCtxt, nullptr);
 		}
 	}
 }

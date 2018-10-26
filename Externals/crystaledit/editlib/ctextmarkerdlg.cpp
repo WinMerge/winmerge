@@ -22,7 +22,7 @@
 
 
 CTextMarkerDlg::CTextMarkerDlg (CCrystalTextMarkers & markers, const CString& sText, DWORD dwFlags)
-: CDialog (CTextMarkerDlg::IDD, NULL)
+: CDialog (CTextMarkerDlg::IDD, nullptr)
 , m_markers(markers)
 , m_nCurItemIndex(0)
 , m_tempMarkers(markers)

@@ -22,7 +22,7 @@ class CSharedFilterDlg : public CTrDialog
 // Construction
 public:
 	enum FilterType : int { SHARED = 0, PRIVATE = 1 };
-	CSharedFilterDlg(FilterType type, CWnd* pParent = NULL);
+	CSharedFilterDlg(FilterType type, CWnd* pParent = nullptr);
 	FilterType GetSelectedFilterType() const { return m_selectedType; }
 
 // Implementation

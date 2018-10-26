@@ -219,7 +219,7 @@ void CConfigLog::WriteVersionOf1(int indent, const String& path)
 		path2 = String(pf+2);
 	}
 	String name = paths::FindFileName(path2);
-	CVersionInfo vi(path2.c_str(), TRUE);
+	CVersionInfo vi(path2.c_str(), true);
 	String sModifiedTime = _T("");
 	if (name != path)
 	{

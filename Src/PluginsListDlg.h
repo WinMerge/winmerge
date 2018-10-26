@@ -19,7 +19,7 @@ class PluginsListDlg : public CTrDialog
 	DECLARE_DYNAMIC(PluginsListDlg)
 
 public:
-	explicit PluginsListDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit PluginsListDlg(CWnd* pParent = nullptr);   // standard constructor
 	virtual ~PluginsListDlg();
 
 // Dialog Data

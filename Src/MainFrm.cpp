@@ -374,19 +374,19 @@ static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmen
 	{
 		// look for last submenu
 		for (i = ::GetMenuItemCount(menu) ; i >= 0  ; i--)
-			if (::GetSubMenu(menu, i) != NULL)
+			if (::GetSubMenu(menu, i) != nullptr)
 				return ::GetSubMenu(menu, i);
 	}
 	else
 	{
 		// look for first submenu
 		for (i = 0 ; i < ::GetMenuItemCount(menu) ; i++)
-			if (::GetSubMenu(menu, i) != NULL)
+			if (::GetSubMenu(menu, i) != nullptr)
 				return ::GetSubMenu(menu, i);
 	}
 
 	// error, submenu not found
-	return NULL;
+	return nullptr;
 }
 
 /** 
@@ -459,7 +459,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	{
 		if (menu_view == (m_MenuIcons[index].menusToApply & menu_view))
 		{
-			m_pMenus[view]->ModifyODMenu(NULL, m_MenuIcons[index].menuitemID, m_MenuIcons[index].iconResID);
+			m_pMenus[view]->ModifyODMenu(nullptr, m_MenuIcons[index].menuitemID, m_MenuIcons[index].iconResID);
 		}
 	}
 
@@ -922,7 +922,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 		pOpenDoc->m_bRecurse = bRecurse;
 		if (infoUnpacker)
 			pOpenDoc->m_infoHandler = *infoUnpacker;
-		CFrameWnd *pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, NULL);
+		CFrameWnd *pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
 		theApp.m_pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
 		return true;
 	}
@@ -951,7 +951,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 		}
 	}
 
-	CTempPathContext *pTempPathContext = NULL;
+	CTempPathContext *pTempPathContext = nullptr;
 	if (pathsType == paths::IS_EXISTING_DIR)
 	{
 		DecompressResult res= DecompressArchive(m_hWnd, tFiles);
@@ -972,7 +972,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 			CDirDoc::m_nDirsTemp = tFiles.GetSize();
 			if (m_pMenus[MENU_DIRVIEW] == nullptr)
 				theApp.m_pDirTemplate->m_hMenuShared = NewDirViewMenu();
-			pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->OpenDocumentFile(NULL));
+			pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->OpenDocumentFile(nullptr));
 		}
 		else
 		{
@@ -991,7 +991,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 
 			pDirDoc->SetReportFile(sReportFile);
 			pDirDoc->SetDescriptions(strDesc);
-			pDirDoc->SetTitle(NULL);
+			pDirDoc->SetTitle(nullptr);
 			for (int nIndex = 0; nIndex < tFiles.GetSize(); nIndex++)
 				pDirDoc->SetReadOnly(nIndex, bRO[nIndex]);
 
@@ -1063,7 +1063,7 @@ void CMainFrame::OnViewSelectfont()
 {
 	FRAMETYPE frame = GetFrameType(GetActiveFrame());
 	CHOOSEFONT cf = { sizeof CHOOSEFONT };
-	LOGFONT *lf = NULL;
+	LOGFONT *lf = nullptr;
 	cf.Flags = CF_INITTOLOGFONTSTRUCT|CF_FORCEFONTEXIST|CF_SCREENFONTS;
 	if (frame == FRAME_FILE)
 		cf.Flags |= CF_FIXEDPITCHONLY; // Only fixed-width fonts for merge view
@@ -1268,7 +1268,7 @@ void CMainFrame::ApplyDiffOptions()
 		// Re-read MergeDoc settings (also updates view settings)
 		// and rescan using new options
 		pMergeDoc->RefreshOptions();
-		pMergeDoc->FlushAndRescan(TRUE);
+		pMergeDoc->FlushAndRescan(true);
 	}
 }
 
@@ -1305,7 +1305,7 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
 {
 	// Create a new merge doc
 	DocClass::m_nBuffersTemp = nFiles;
-	DocClass *pMergeDoc = static_cast<DocClass*>(pTemplate->OpenDocumentFile(NULL));
+	DocClass *pMergeDoc = static_cast<DocClass*>(pTemplate->OpenDocumentFile(nullptr));
 	if (pMergeDoc != nullptr)
 	{
 		pDirDoc->AddMergeDoc(pMergeDoc);
@@ -1364,7 +1364,7 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 		}
 	}
 
-	DoFileOpen(&tFiles, dwFlags, NULL, _T(""), recurse);
+	DoFileOpen(&tFiles, dwFlags, nullptr, _T(""), recurse);
 }
 
 void CMainFrame::OnPluginUnpackMode(UINT nID )
@@ -1444,7 +1444,7 @@ CMergeEditView * CMainFrame::GetActiveMergeEditView()
 {
 	// NB: GetActiveDocument does not return the Merge Doc 
 	//     even when the merge edit view is in front
-	// NB: CChildFrame::GetActiveView returns NULL when location view active
+	// NB: CChildFrame::GetActiveView returns `nullptr` when location view active
 	// So we have this rather complicated logic to try to get a merge edit view
 	// We look at the front child window, which should be a frame
 	// and we can get a MergeEditView from it, if it is a CChildFrame
@@ -1480,7 +1480,7 @@ void CMainFrame::UpdatePrediffersMenu()
 			int i = GetMenuItemCount(prediffersSubmenu);
 			while (i --)
 				::DeleteMenu(prediffersSubmenu, 0, MF_BYPOSITION);
-			::AppendMenu(prediffersSubmenu, MF_SEPARATOR, 0, NULL);
+			::AppendMenu(prediffersSubmenu, MF_SEPARATOR, 0, nullptr);
 		}
 	}
 }
@@ -1650,7 +1650,7 @@ void CMainFrame::OnToolsFilters()
 		if (bFileCompareRescan)
 		{
 			for (auto pMergeDoc : GetAllMergeDocs())
-				pMergeDoc->FlushAndRescan(TRUE);
+				pMergeDoc->FlushAndRescan(true);
 		}
 		else if (bFolderCompareRescan)
 		{
@@ -1912,7 +1912,7 @@ void CMainFrame::OnSaveProject()
 		pOpenDoc->m_strExt = static_cast<FileFilterHelper *>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
 	}
 
-	CFrameWnd *pOpenFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, NULL);
+	CFrameWnd *pOpenFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
 	theApp.m_pOpenTemplate->InitialUpdateFrame(pOpenFrame, pOpenDoc);
 }
 
@@ -2170,7 +2170,7 @@ bool CMainFrame::AskCloseConfirmation()
 void CMainFrame::OnHelpReleasenotes()
 {
 	const String sPath = paths::ConcatPath(env::GetProgPath(), RelNotes);
-	ShellExecute(NULL, _T("open"), sPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
+	ShellExecute(nullptr, _T("open"), sPath.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 }
 
 /**
@@ -2179,7 +2179,7 @@ void CMainFrame::OnHelpReleasenotes()
  */
 void CMainFrame::OnHelpTranslations()
 {
-	ShellExecute(NULL, _T("open"), TranslationsUrl, NULL, NULL, SW_SHOWNORMAL);
+	ShellExecute(nullptr, _T("open"), TranslationsUrl, nullptr, nullptr, SW_SHOWNORMAL);
 }
 
 /**
@@ -2474,18 +2474,18 @@ void CMainFrame::ReloadMenu()
 		if (pActiveFrame != nullptr)
 		{
 			if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
-				pMainFrame->MDISetMenu(pNewMergeMenu, NULL);
+				pMainFrame->MDISetMenu(pNewMergeMenu, nullptr);
 			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
-				pMainFrame->MDISetMenu(pNewMergeMenu, NULL);
+				pMainFrame->MDISetMenu(pNewMergeMenu, nullptr);
 			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
-				pMainFrame->MDISetMenu(pNewImgMergeMenu, NULL);
+				pMainFrame->MDISetMenu(pNewImgMergeMenu, nullptr);
 			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
-				pMainFrame->MDISetMenu(pNewDirMenu, NULL);
+				pMainFrame->MDISetMenu(pNewDirMenu, nullptr);
 			else
-				pMainFrame->MDISetMenu(pNewDefaultMenu, NULL);
+				pMainFrame->MDISetMenu(pNewDefaultMenu, nullptr);
 		}
 		else
-			pMainFrame->MDISetMenu(pNewDefaultMenu, NULL);
+			pMainFrame->MDISetMenu(pNewDefaultMenu, nullptr);
 
 		// Don't delete the old menu
 		// There is a bug in BCMenu or in Windows98 : the new menu does not

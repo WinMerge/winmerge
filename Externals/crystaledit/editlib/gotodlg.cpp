@@ -25,7 +25,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // CGotoDlg dialog
 
-CGotoDlg::CGotoDlg (CCrystalTextView * pBuddy):CDialog (CGotoDlg::IDD, NULL)
+CGotoDlg::CGotoDlg (CCrystalTextView * pBuddy):CDialog (CGotoDlg::IDD, nullptr)
 {
   m_pBuddy = pBuddy;
   //{{AFX_DATA_INIT(CGotoDlg)
@@ -56,7 +56,7 @@ void CGotoDlg::OnOK ()
 {
   CDialog::OnOK ();
   ASSERT (m_pBuddy != nullptr);
-  m_pBuddy->GoToLine (_ttoi (m_sNumber), _tcschr (_T ("+-"), *(LPCTSTR)m_sNumber) != NULL);
+  m_pBuddy->GoToLine (_ttoi (m_sNumber), _tcschr (_T ("+-"), *(LPCTSTR)m_sNumber) != nullptr);
 }
 
 void CGotoDlg::

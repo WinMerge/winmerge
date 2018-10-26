@@ -60,7 +60,7 @@ fpattern_isvalid (LPCTSTR pat)
   int len;
 
   /* Check args */
-  if (pat == NULL)
+  if (pat == nullptr)
     return (false);
 
   /* Verify that the pattern is valid */
@@ -334,15 +334,15 @@ fpattern_match (LPCTSTR pat, LPCTSTR fname)
   int rc;
 
   /* Check args */
-  if (fname == NULL)
-    return (false);
+  if (fname == nullptr)
+    return (0);
 
-  if (pat == NULL)
-    return (false);
+  if (pat == nullptr)
+    return (0);
 
   /* Verify that the pattern is valid, and get its length */
   if (!fpattern_isvalid (pat))
-    return (false);
+    return (0);
 
   /* Attempt to match pattern against filename */
   if (fname[0] == _T('\0'))
@@ -387,10 +387,10 @@ fpattern_matchn (LPCTSTR pat, LPCTSTR fname)
   int rc;
 
   /* Check args */
-  if (fname == NULL)
+  if (fname == nullptr)
     return (false);
 
-  if (pat == NULL)
+  if (pat == nullptr)
     return (false);
 
   /* Assume that pattern is well-formed */
