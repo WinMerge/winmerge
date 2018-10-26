@@ -153,10 +153,10 @@ BOOL CMergeApp::InitInstance()
 	// Prevents DLL hijacking
 	HMODULE hLibrary = GetModuleHandle(_T("kernel32.dll"));
 	BOOL (WINAPI *pfnSetSearchPathMode)(DWORD) = (BOOL (WINAPI *)(DWORD))GetProcAddress(hLibrary, "SetSearchPathMode");
-	if (pfnSetSearchPathMode)
+	if (pfnSetSearchPathMode != nullptr)
 		pfnSetSearchPathMode(0x00000001L /*BASE_SEARCH_PATH_ENABLE_SAFE_SEARCHMODE*/ | 0x00008000L /*BASE_SEARCH_PATH_PERMANENT*/);
 	BOOL (WINAPI *pfnSetDllDirectoryA)(LPCSTR) = (BOOL (WINAPI *)(LPCSTR))GetProcAddress(hLibrary, "SetDllDirectoryA");
-	if (pfnSetDllDirectoryA)
+	if (pfnSetDllDirectoryA != nullptr)
 		pfnSetDllDirectoryA("");
 
 	JumpList::SetCurrentProcessExplicitAppUserModelID(L"Thingamahoochie.WinMerge");
@@ -243,13 +243,13 @@ BOOL CMergeApp::InitInstance()
 	// UNICODE build, so will be the mutex name.
 	wsprintf(szMutexName, _T("%s-%s"), CMainFrame::szClassName, szDesktopName);
 	HANDLE hMutex = CreateMutex(NULL, FALSE, szMutexName);
-	if (hMutex)
+	if (hMutex != nullptr)
 		WaitForSingleObject(hMutex, INFINITE);
 	if (bSingleInstance && GetLastError() == ERROR_ALREADY_EXISTS)
 	{
 		// Activate previous instance and send commandline to it
 		HWND hWnd = FindWindow(CMainFrame::szClassName, NULL);
-		if (hWnd)
+		if (hWnd != nullptr)
 		{
 			if (IsIconic(hWnd))
 				ShowWindow(hWnd, SW_RESTORE);
@@ -296,13 +296,13 @@ BOOL CMergeApp::InitInstance()
 		m_fontGUI.CreateFontIndirect(&ncm.lfMenuFont);
 	}
 
-	if (m_pSyntaxColors)
+	if (m_pSyntaxColors != nullptr)
 		Options::SyntaxColors::Load(GetOptionsMgr(), m_pSyntaxColors.get());
 
-	if (m_pMarkers)
+	if (m_pMarkers != nullptr)
 		m_pMarkers->LoadFromRegistry();
 
-	if (m_pLineFilters)
+	if (m_pLineFilters != nullptr)
 		m_pLineFilters->Initialize(GetOptionsMgr());
 
 	// If there are no filters loaded, and there is filter string in previous
@@ -387,7 +387,7 @@ BOOL CMergeApp::InitInstance()
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
 	{
-		if (hMutex)
+		if (hMutex != nullptr)
 		{
 			ReleaseMutex(hMutex);
 			CloseHandle(hMutex);
@@ -402,7 +402,7 @@ BOOL CMergeApp::InitInstance()
 	// Set the menu
 	// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach
 	CMenu * pNewMenu = CMenu::FromHandle(pMainFrame->m_hMenuDefault);
-	pMainFrame->MDISetMenu(pNewMenu, NULL);
+	pMainFrame->MDISetMenu(pNewMenu, nullptr);
 
 	// The main window has been initialized, so activate and update it.
 	pMainFrame->ActivateFrame(cmdInfo.m_nCmdShow);
@@ -414,7 +414,7 @@ BOOL CMergeApp::InitInstance()
 	if (!ParseArgsAndDoOpen(cmdInfo, pMainFrame) && bCommandLineInvoke)
 		bContinue = false;
 
-	if (hMutex)
+	if (hMutex != nullptr)
 		ReleaseMutex(hMutex);
 
 	// If user wants to cancel the compare, close WinMerge
@@ -482,11 +482,11 @@ int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 	CWnd* pParentWnd = CWnd::GetActiveWindow();
 	
 	// Check whether an active window was retrieved successfully.
-	if ( pParentWnd == NULL )
+	if ( pParentWnd == nullptr )
 	{
 		// Try to retrieve a handle to the last active popup.
 		CWnd * mainwnd = GetMainWnd();
-		if (mainwnd)
+		if (mainwnd != nullptr)
 			pParentWnd = mainwnd->GetLastActivePopup();
 	}
 
