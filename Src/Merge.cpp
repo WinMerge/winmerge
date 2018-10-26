@@ -212,7 +212,7 @@ BOOL CMergeApp::InitInstance()
 			for (auto& msg : cmdInfo.m_sErrorMessages)
 			{
 				String line = _T("WinMerge: ") + msg + _T("\n");
-				WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), line.c_str(), static_cast<DWORD>(line.length()), &dwWritten, NULL);
+				WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), line.c_str(), static_cast<DWORD>(line.length()), &dwWritten, nullptr);
 			}
 			FreeConsole();
 		}
@@ -242,13 +242,13 @@ BOOL CMergeApp::InitInstance()
 	// As the window class name is decorated to distinguish between ANSI and
 	// UNICODE build, so will be the mutex name.
 	wsprintf(szMutexName, _T("%s-%s"), CMainFrame::szClassName, szDesktopName);
-	HANDLE hMutex = CreateMutex(NULL, FALSE, szMutexName);
+	HANDLE hMutex = CreateMutex(nullptr, FALSE, szMutexName);
 	if (hMutex != nullptr)
 		WaitForSingleObject(hMutex, INFINITE);
 	if (bSingleInstance && GetLastError() == ERROR_ALREADY_EXISTS)
 	{
 		// Activate previous instance and send commandline to it
-		HWND hWnd = FindWindow(CMainFrame::szClassName, NULL);
+		HWND hWnd = FindWindow(CMainFrame::szClassName, nullptr);
 		if (hWnd != nullptr)
 		{
 			if (IsIconic(hWnd))
@@ -256,7 +256,7 @@ BOOL CMergeApp::InitInstance()
 			SetForegroundWindow(GetLastActivePopup(hWnd));
 			LPTSTR cmdLine = GetCommandLine();
 			COPYDATASTRUCT data = { 0, (lstrlen(cmdLine) + 1) * sizeof(TCHAR), cmdLine};
-			if (SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data))
+			if (::SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data))
 			{
 				ReleaseMutex(hMutex);
 				CloseHandle(hMutex);
@@ -650,14 +650,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, NULL,
+				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
 				cmdInfo.m_sPreDiffer);
 		}
 		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
 			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, NULL,
+				dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr,
 				cmdInfo.m_sPreDiffer);
 		}
 		else if (cmdInfo.m_Files.GetSize() == 1)
@@ -679,7 +679,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			{
 				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
 				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
-					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, NULL, 
+					dwFlags, strDesc, cmdInfo.m_sReportFile, cmdInfo.m_bRecurse, nullptr, 
 					cmdInfo.m_sPreDiffer);
 			}
 		}
@@ -775,8 +775,8 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 	STARTUPINFO stInfo = { sizeof STARTUPINFO };
 	PROCESS_INFORMATION processInfo;
 
-	retVal = !!CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
-		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
+	retVal = !!CreateProcess(nullptr, (LPTSTR)sCmd.c_str(),
+		nullptr, nullptr, FALSE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
 		&stInfo, &processInfo);
 
 	if (!retVal)
@@ -798,16 +798,16 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 void CMergeApp::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
 {
 	if (paths::DoesPathExist(szFile) == paths::IS_EXISTING_FILE)
-		ShellExecute(NULL, _T("open"), _T("notepad.exe"), szFile, NULL, SW_SHOWNORMAL);
+		ShellExecute(nullptr, _T("open"), _T("notepad.exe"), szFile, nullptr, SW_SHOWNORMAL);
 	else
-		ShellExecute(NULL, _T("open"), szUrl, NULL, NULL, SW_SHOWNORMAL);
+		ShellExecute(nullptr, _T("open"), szUrl, nullptr, nullptr, SW_SHOWNORMAL);
 }
 
 /**
  * @brief Show Help - this is for opening help from outside mainframe.
- * @param [in] helpLocation Location inside help, if NULL main help is opened.
+ * @param [in] helpLocation Location inside help, if `nullptr` main help is opened.
  */
-void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
+void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= nullptr*/)
 {
 	String sPath = env::GetProgPath();
 	LANGID LangId = GetLangId();
@@ -815,16 +815,16 @@ void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
 	if (helpLocation == nullptr)
 	{
 		if (paths::DoesPathExist(sPath) == paths::IS_EXISTING_FILE)
-			::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOC, NULL);
+			::HtmlHelp(nullptr, sPath.c_str(), HH_DISPLAY_TOC, NULL);
 		else
-			ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
+			ShellExecute(nullptr, _T("open"), DocsURL, nullptr, nullptr, SW_SHOWNORMAL);
 	}
 	else
 	{
 		if (paths::DoesPathExist(sPath) == paths::IS_EXISTING_FILE)
 		{
 			sPath += helpLocation;
-			::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOPIC, NULL);
+			::HtmlHelp(nullptr, sPath.c_str(), HH_DISPLAY_TOPIC, NULL);
 		}
 	}
 }
@@ -1006,7 +1006,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 		{
 		// Overwrite read-only file
 		case IDYESTOALL:
-			bApplyToAll = TRUE;  // Don't ask again (no break here)
+			bApplyToAll = true;  // Don't ask again (no break here)
 		case IDYES:
 			CFile::GetStatus(strSavePath.c_str(), status);
 			status.m_mtime = 0;		// Avoid unwanted changes
@@ -1048,7 +1048,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 bool CMergeApp::IsProjectFile(const String& filepath) const
 {
 	String ext;
-	paths::SplitFilename(filepath, NULL, NULL, &ext);
+	paths::SplitFilename(filepath, nullptr, nullptr, &ext);
 	if (strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 		return true;
 	else
@@ -1145,7 +1145,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 	
-	bool rtn = GetMainFrame()->DoFileOpen(&tFiles, dwFlags, NULL, sReportFile, bRecursive);
+	bool rtn = GetMainFrame()->DoFileOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive);
 
 	AddToRecentProjectsMRU(sProject.c_str());
 	return rtn;
@@ -1216,7 +1216,7 @@ void CMergeApp::AddToRecentProjectsMRU(LPCTSTR sPathName)
 {
 	// sPathName will be added to the top of the MRU list. 
 	// If sPathName already exists in the MRU list, it will be moved to the top
-	if (m_pRecentFileList != NULL)    {
+	if (m_pRecentFileList != nullptr)    {
 		m_pRecentFileList->Add(sPathName);
 		m_pRecentFileList->WriteList();
 	}

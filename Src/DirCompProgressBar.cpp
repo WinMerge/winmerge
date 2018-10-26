@@ -78,7 +78,7 @@ BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 		return FALSE; 
 
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
-	CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_ALL, IID_ITaskbarList3, (void**)&m_pTaskbarList);
+	CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_ALL, IID_ITaskbarList3, (void**)&m_pTaskbarList);
 	if (m_pTaskbarList)
 		m_pTaskbarList->SetProgressState(AfxGetMainWnd()->m_hWnd, TBPF_INDETERMINATE);
 #endif
@@ -172,7 +172,7 @@ void DirCompProgressBar::OnTimer(UINT_PTR nIDEvent)
 void DirCompProgressBar::StartUpdating()
 {
 	ClearStat();
-	SetTimer(IDT_UPDATE, UPDATE_INTERVAL, NULL);
+	SetTimer(IDT_UPDATE, UPDATE_INTERVAL, nullptr);
 }
 
 /**

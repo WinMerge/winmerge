@@ -44,8 +44,8 @@ private:
 
 public:
 // Construction
-	CSelectUnpackerDlg(const String& filename, CWnd* pParent /*=NULL*/);
-	CSelectUnpackerDlg(const String& filename1, const String& filename2, CWnd* pParent /*=NULL*/);
+	CSelectUnpackerDlg(const String& filename, CWnd* pParent /*= nullptr*/);
+	CSelectUnpackerDlg(const String& filename1, const String& filename2, CWnd* pParent /*= nullptr*/);
 	~CSelectUnpackerDlg();
 
 	void SetInitialInfoHandler(PackingInfo * infoHandler);

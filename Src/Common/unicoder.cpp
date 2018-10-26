@@ -308,7 +308,7 @@ void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
 		char outch[3] = {0};
 		BOOL defaulted = FALSE;
 		DWORD flags = WC_NO_BEST_FIT_CHARS;
-		if (WideCharToMultiByte(codepage, flags, &wch, 1, outch, sizeof(outch), NULL, &defaulted)
+		if (WideCharToMultiByte(codepage, flags, &wch, 1, outch, sizeof(outch), nullptr, &defaulted)
 				&& !defaulted)
 		{
 			ch = outch;
@@ -319,7 +319,7 @@ void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
 	// already lossy, so make our best shot
 	DWORD flags = WC_COMPOSITECHECK + WC_DISCARDNS + WC_SEPCHARS + WC_DEFAULTCHAR;
 	TCHAR outbuff[16];
-	int n = WideCharToMultiByte(codepage, flags, &wch, 1, outbuff, sizeof(outbuff) - 1, NULL, NULL);
+	int n = WideCharToMultiByte(codepage, flags, &wch, 1, outbuff, sizeof(outbuff) - 1, nullptr, nullptr);
 	if (n > 0)
 	{
 		outbuff[n] = 0;
@@ -733,7 +733,7 @@ int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize
 	if (cpout == CP_UTF8)
 	{
 		flags = 0;
-		pdefaulted = NULL;
+		pdefaulted = nullptr;
 	}
 	if (cpout == CP_UCS2LE)
 	{
@@ -751,7 +751,7 @@ int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize
 	}
 	else
 	{
-		n = WideCharToMultiByte(cpout, flags, wbuff.get(), n, dest, destsize - 1, NULL, pdefaulted);
+		n = WideCharToMultiByte(cpout, flags, wbuff.get(), n, dest, destsize - 1, nullptr, pdefaulted);
 		if (!n)
 		{
 			int nsyserr = ::GetLastError();
@@ -997,16 +997,16 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, si
 	{
 		// From UCS-2LE to 8-bit (or UTF-8)
 
-		// WideCharToMultiByte: lpDefaultChar & lpUsedDefaultChar must be NULL when using UTF-8
+		// WideCharToMultiByte: lpDefaultChar & lpUsedDefaultChar must be `nullptr` when using UTF-8
 
 		int destcp = (unicoding2 == UTF8 ? CP_UTF8 : codepage2);
 		if (destcp == CP_ACP || IsValidCodePage(destcp))
 		{
 			DWORD flags = 0;
-			int bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, static_cast<int>(srcbytes/2), 0, 0, NULL, NULL);
+			int bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, static_cast<int>(srcbytes/2), 0, 0, nullptr, nullptr);
 			dest->resize(bytes + 2);
 			int losses = 0;
-			bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, static_cast<int>(srcbytes/2), (char *)dest->ptr, static_cast<int>(dest->capacity), NULL, NULL);
+			bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, static_cast<int>(srcbytes/2), (char *)dest->ptr, static_cast<int>(dest->capacity), nullptr, nullptr);
 			dest->ptr[bytes] = 0;
 			dest->ptr[bytes+1] = 0;
 			dest->size = bytes;
@@ -1077,7 +1077,7 @@ static void convert(const std::wstring& from, unsigned codepage, std::string& to
 	if (len)
 	{
 		to.resize(len);
-		WideCharToMultiByte(codepage, 0, from.c_str(), static_cast<int>(from.length()), &to[0], static_cast<int>(len), NULL, NULL);
+		WideCharToMultiByte(codepage, 0, from.c_str(), static_cast<int>(from.length()), &to[0], static_cast<int>(len), nullptr, nullptr);
 	}
 	else
 	{

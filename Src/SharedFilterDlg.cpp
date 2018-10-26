@@ -18,7 +18,7 @@
 /**
  * @brief A constructor.
  */
-CSharedFilterDlg::CSharedFilterDlg(FilterType type, CWnd* pParent /*=NULL*/)
+CSharedFilterDlg::CSharedFilterDlg(FilterType type, CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CSharedFilterDlg::IDD, pParent), m_selectedType(type)
 {
 }

@@ -263,9 +263,9 @@ bool ProjectFile::HasSubfolders() const
  * @param [out] pReadOnly true if readonly was specified for path.
  * @return Left path.
  */
-String ProjectFile::GetLeft(bool * pReadOnly /*=NULL*/) const
+String ProjectFile::GetLeft(bool * pReadOnly /*= nullptr*/) const
 {
-	if (pReadOnly)
+	if (pReadOnly != nullptr)
 		*pReadOnly = m_bLeftReadOnly;
 	return m_paths.GetLeft();
 }
@@ -284,10 +284,10 @@ bool ProjectFile::GetLeftReadOnly() const
  * @param [in] sLeft Left path.
  * @param [in] bReadOnly Will path be recorded read-only?
  */
-void ProjectFile::SetLeft(const String& sLeft, const bool * pReadOnly /*=NULL*/)
+void ProjectFile::SetLeft(const String& sLeft, const bool * pReadOnly /*= nullptr*/)
 {
 	m_paths.SetLeft(sLeft, false);
-	if (pReadOnly)
+	if (pReadOnly != nullptr)
 		m_bLeftReadOnly = *pReadOnly;
 }
 
@@ -295,9 +295,9 @@ void ProjectFile::SetLeft(const String& sLeft, const bool * pReadOnly /*=NULL*/)
  * @brief Returns middle path.
  * @param [out] pReadOnly true if readonly was specified for path.
  */
-String ProjectFile::GetMiddle(bool * pReadOnly /*=NULL*/) const
+String ProjectFile::GetMiddle(bool * pReadOnly /*= nullptr*/) const
 {
-	if (pReadOnly)
+	if (pReadOnly != nullptr)
 		*pReadOnly = m_bMiddleReadOnly;
 	return m_paths.GetMiddle();
 }
@@ -315,10 +315,10 @@ bool ProjectFile::GetMiddleReadOnly() const
  * @param [in] sMiddle Middle path.
  * @param [in] bReadOnly Will path be recorded read-only?
  */
-void ProjectFile::SetMiddle(const String& sMiddle, const bool * pReadOnly /*=NULL*/)
+void ProjectFile::SetMiddle(const String& sMiddle, const bool * pReadOnly /*= nullptr*/)
 {
 	m_paths.SetMiddle(sMiddle, false);
-	if (pReadOnly)
+	if (pReadOnly != nullptr)
 		m_bMiddleReadOnly = *pReadOnly;
 
 	return;
@@ -329,9 +329,9 @@ void ProjectFile::SetMiddle(const String& sMiddle, const bool * pReadOnly /*=NUL
  * @param [out] pReadOnly true if readonly was specified for path.
  * @return Right path.
  */
-String ProjectFile::GetRight(bool * pReadOnly /*=NULL*/) const
+String ProjectFile::GetRight(bool * pReadOnly /*= nullptr*/) const
 {
-	if (pReadOnly)
+	if (pReadOnly != nullptr)
 		*pReadOnly = m_bRightReadOnly;
 	return m_paths.GetRight();
 }
@@ -350,10 +350,10 @@ bool ProjectFile::GetRightReadOnly() const
  * @param [in] sRight Right path.
  * @param [in] bReadOnly Will path be recorded read-only?
  */
-void ProjectFile::SetRight(const String& sRight, const bool * pReadOnly /*=NULL*/)
+void ProjectFile::SetRight(const String& sRight, const bool * pReadOnly /*= nullptr*/)
 {
 	m_paths.SetRight(sRight, false);
-	if (pReadOnly)
+	if (pReadOnly != nullptr)
 		m_bRightReadOnly = *pReadOnly;
 }
 

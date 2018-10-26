@@ -72,7 +72,7 @@ void CShellContextMenu::AddItem(const String& path,
 
 HMENU CShellContextMenu::GetHMENU() const
 {
-	return ::IsMenu(m_hShellContextMenu) ? m_hShellContextMenu : NULL;
+	return ::IsMenu(m_hShellContextMenu) ? m_hShellContextMenu : nullptr;
 }
 
 bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& retval)
@@ -83,7 +83,7 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 	case WM_DRAWITEM:
 	case WM_INITMENUPOPUP:
 	case WM_MEASUREITEM:
-		if (m_pShellContextMenu3)
+		if (m_pShellContextMenu3 != nullptr)
 		{
 			if (FAILED(/*hr = */m_pShellContextMenu3->HandleMenuMsg(message, wParam, lParam/*, &retval*/)))
 			{
@@ -97,7 +97,7 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 				//assert(false);
 			}
 		}
-		else if (m_pShellContextMenu2)
+		else if (m_pShellContextMenu2 != nullptr)
 		{
 			if (FAILED(/*hr = */m_pShellContextMenu2->HandleMenuMsg(message, wParam, lParam)))
 			{
@@ -109,7 +109,7 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 		retval = (message == WM_INITMENUPOPUP) ? 0 : TRUE;
 		return true;
 	case WM_MENUCHAR:
-		if (m_pShellContextMenu3)
+		if (m_pShellContextMenu3 != nullptr)
 		{
 			retval = 0;
 			if (FAILED(/*hr = */m_pShellContextMenu3->HandleMenuMsg2(message, wParam, lParam, &retval)))
@@ -145,20 +145,20 @@ bool CShellContextMenu::QueryShellContextMenu()
 			parentDir = currentDir;
 
 			LPITEMIDLIST dirPidl;
-			if (FAILED(/*hr = */pDesktop->ParseDisplayName(NULL,					   // hwnd
-													   NULL,					   // pbc
+			if (FAILED(/*hr = */pDesktop->ParseDisplayName(nullptr,				   // hwnd
+													   nullptr,					   // pbc
 													   CT2OLE(currentDir.c_str()), // pszDisplayName
-													   NULL,					   // pchEaten
+													   nullptr,					   // pchEaten
 													   &dirPidl,				   // ppidl
-													   NULL						   // pdwAttributes
+													   nullptr					   // pdwAttributes
 													   )))
 			{
 				return false;
 			}
 
 			if (FAILED(/*hr = */pDesktop->BindToObject(dirPidl,			 // pidl
-												   NULL,			 // pbc
-												   IID_IShellFolder, // riid
+												   nullptr,				 // pbc
+												   IID_IShellFolder,     // riid
 												   reinterpret_cast<void**>(&pCurrFolder))))
 			{
 				return false;
@@ -170,12 +170,12 @@ bool CShellContextMenu::QueryShellContextMenu()
 		}
 
 		LPITEMIDLIST pidl;
-		if (FAILED(/*hr = */pCurrFolder->ParseDisplayName(NULL,
-													  NULL,
+		if (FAILED(/*hr = */pCurrFolder->ParseDisplayName(nullptr,
+													  nullptr,
 													  CT2OLE(file.filename.c_str()), 
-													  NULL,
+													  nullptr,
 													  &pidl,
-													  NULL)))
+													  nullptr)))
 		{
 			return false;
 		}
@@ -189,7 +189,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 	}
 
 	IContextMenuPtr pCMenu1;
-	if (FAILED(/*hr = */pCurrFolder->GetUIObjectOf(NULL,
+	if (FAILED(/*hr = */pCurrFolder->GetUIObjectOf(nullptr,
 											   static_cast<unsigned>(pidls.Size()),
 											   pidls.GetList(),
 											   IID_IContextMenu,
@@ -264,7 +264,7 @@ bool CShellContextMenu::RequeryShellContextMenu()
 
 void CShellContextMenu::ReleaseShellContextMenu()
 {
-	m_pShellContextMenu2 = NULL;
-	m_pShellContextMenu3 = NULL;
-	m_pPreferredMenu = NULL;
+	m_pShellContextMenu2 = nullptr;
+	m_pShellContextMenu3 = nullptr;
+	m_pPreferredMenu = nullptr;
 }

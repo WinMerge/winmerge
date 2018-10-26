@@ -311,7 +311,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			// use our own byte-by-byte compare
 			if (tFiles.GetSize() == 2)
 			{
-				if (m_pByteCompare == NULL)
+				if (m_pByteCompare == nullptr)
 					m_pByteCompare.reset(new ByteCompare());
 				bool success = m_pByteCompare->SetCompareOptions(
 					*pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
@@ -338,7 +338,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			}
 			else
 			{
-				if (m_pByteCompare == NULL)
+				if (m_pByteCompare == nullptr)
 					m_pByteCompare.reset(new ByteCompare());
 				bool success = m_pByteCompare->SetCompareOptions(
 					*pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));

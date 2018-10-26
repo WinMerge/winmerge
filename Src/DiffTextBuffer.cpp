@@ -313,7 +313,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	DWORD nRetVal = FileLoadResult::FRESULT_OK;
 
 	// Set encoding based on extension, if we know one
-	paths::SplitFilename(pszFileName, NULL, NULL, &sExt);
+	paths::SplitFilename(pszFileName, nullptr, nullptr, &sExt);
 	CCrystalTextView::TextDefinition *def = 
 		CCrystalTextView::GetTextType(sExt.c_str());
 	if (def && def->encoding != -1)
@@ -520,7 +520,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	else
 	{
 		sIntermediateFilename = env::GetTemporaryFileName(m_strTempPath,
-			_T("MRG_"), NULL);
+			_T("MRG_"), nullptr);
 		if (sIntermediateFilename.empty())
 			return SAVE_FAILED;  //Nothing to do if even tempfile name fails
 		bOpenSuccess = !!file.OpenCreate(sIntermediateFilename);
@@ -654,7 +654,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 			m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber;
 
 			// redraw line revision marks
-			UpdateViews (NULL, NULL, UPDATE_FLAGSONLY);	
+			UpdateViews (nullptr, nullptr, UPDATE_FLAGSONLY);	
 		}
 		catch (Exception& e)
 		{

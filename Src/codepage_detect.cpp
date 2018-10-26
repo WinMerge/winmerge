@@ -193,7 +193,7 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
 	else if (guessEncodingType & 2)
 	{
 		IExconverter *pexconv = Exconverter::getInstance();
-		if (pexconv && src != NULL)
+		if (pexconv != nullptr && src != nullptr)
 		{
 			int autodetectType = (unsigned)guessEncodingType >> 16;
 			cp = pexconv->detectInputCodepage(autodetectType, cp, src, len);

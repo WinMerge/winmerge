@@ -155,7 +155,7 @@ void CMergeStatusBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		dc.SetBkColor(m_cachedColors.clrWordDiff);
 		dc.ExtTextOut(
 			lpDrawItemStruct->rcItem.left, lpDrawItemStruct->rcItem.top,
-			ETO_OPAQUE, &lpDrawItemStruct->rcItem, _T(""), NULL );
+			ETO_OPAQUE, &lpDrawItemStruct->rcItem, _T(""), nullptr );
 	}
 	else
 	{

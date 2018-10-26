@@ -202,7 +202,7 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
             CPoint(rcGrip.left + pointToPixel(2.25), rcGrip.top - pointToPixel(0.75));
 
         pDC->ExtTextOut(ptOrg.x, ptOrg.y,
-            ETO_CLIPPED, rcGrip, sTitle, NULL);
+            ETO_CLIPPED, rcGrip, sTitle, nullptr);
 
         pDC->SelectObject(pOldFont);
         pDC->SetBkMode(nOldBkMode);

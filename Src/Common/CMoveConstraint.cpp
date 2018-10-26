@@ -76,7 +76,7 @@ CMoveConstraint::Constraint::Init()
 CMoveConstraint::CMoveConstraint()
 {
 	m_bSubclassed = false;
-	m_oldWndProc = NULL;
+	m_oldWndProc = nullptr;
 	m_sRegistryValueName = _T("UnnamedWindow");
 	m_sRegistrySubkey = _T("LastWindowPos");
 	ClearMostData();
@@ -236,7 +236,7 @@ CMoveConstraint::ClearMostData()
 	// clears everything but m_bSubclassed
 	// this is called from constructor, OnDestroy, and destructor
 	// so it can't assume any numerical variables have sane values
-	m_hwndDlg=NULL;
+	m_hwndDlg=nullptr;
 	// m_rectDlgOriginal
 	m_nOrigX=0;
 	m_nOrigY=0;
@@ -301,7 +301,7 @@ DoConstrain(CWnd * pWnd, HWND hwndChild, double fLeftX, double fExpandX, double 
 	}
 	else
 	{
-		if (!pWnd) // only CWnds can be deferred
+		if (pWnd == nullptr) // only CWnds can be deferred
 			return false;
 		m_nDelayed++;
 	}
@@ -364,7 +364,7 @@ CMoveConstraint::UnSubclassWnd()
 		return false;
 	SetWindowLongPtr(m_hwndDlg, GWLP_WNDPROC, (__int3264)(LONG_PTR)(m_oldWndProc));
 	RemoveProp(m_hwndDlg, _T("CMoveConstraintData"));
-	m_oldWndProc = NULL;
+	m_oldWndProc = nullptr;
 	m_bSubclassed = false;
 	return true;
 }
@@ -466,7 +466,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 		m_pFormView->SetScrollSizes(MM_TEXT, size);
 	}
 
-	InvalidateRect(m_hwndDlg, NULL, TRUE);
+	InvalidateRect(m_hwndDlg, nullptr, TRUE);
 	UpdateWindow(m_hwndDlg);
 }
 
@@ -605,7 +605,7 @@ CMoveConstraint::OnTtnNeedText(TOOLTIPTEXT * pTTT, LRESULT * plresult)
 		{
 			pTTT->lpszText = (LPTSTR)(LPCTSTR)ti.m_sText;
 		}
-		*plresult = TRUE; // return TRUE from original window proc
+		*plresult = true; // return `true` from original window proc
 		return true; // stop processing this message
 	}
 	return false;
@@ -714,7 +714,7 @@ CMoveConstraint::Persist(bool saving, bool position)
 			if (m_nMaxY && m_nMaxY < height) height = m_nMaxY;
 			wprc.right = wprc.left + width;
 			wprc.bottom = wprc.top + height;
-			SetWindowPos(m_hwndDlg, NULL, 
+			SetWindowPos(m_hwndDlg, nullptr, 
 				wprc.left, wprc.top, wprc.right - wprc.left, wprc.bottom - wprc.top,
 				SWP_NOZORDER | SWP_NOACTIVATE);
 		}
