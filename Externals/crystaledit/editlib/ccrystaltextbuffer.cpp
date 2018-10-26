@@ -155,7 +155,7 @@ CCrystalTextBuffer::CCrystalTextBuffer ()
   m_nCRLFMode = CRLF_STYLE_DOS;
   m_IgnoreEol = false;
   m_bCreateBackupFile = false;
-  m_nUndoPosition = 0;
+  m_nSyncPosition = m_nUndoPosition = 0;
   m_bInsertTabs = true;
   m_nTabSize = 4;
   //BEGIN SW
@@ -164,6 +164,7 @@ CCrystalTextBuffer::CCrystalTextBuffer ()
   m_nSourceEncoding = m_nDefaultEncoding;
   m_dwCurrentRevisionNumber = 0;
   m_dwRevisionNumberOnSave = 0;
+  m_bUndoGroup = m_bUndoBeginGroup = false;
 }
 
 CCrystalTextBuffer:: ~ CCrystalTextBuffer ()

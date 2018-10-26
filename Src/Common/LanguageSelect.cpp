@@ -486,6 +486,7 @@ const WORD wSourceLangId = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
 CLanguageSelect::CLanguageSelect()
 : m_hCurrentDll(0)
 , m_wCurLanguage(wSourceLangId)
+, m_codepage(0)
 {
 	SetThreadLocale(MAKELCID(m_wCurLanguage, SORT_DEFAULT));
 }

@@ -58,6 +58,8 @@ CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy)
 , m_nScope(-1)
 , m_bDontWrap(false)
 , m_bEnableScopeSelection(true)
+, m_bFound(false)
+, lastSearch({0})
 {
   ASSERT (pBuddy != NULL);
 }
