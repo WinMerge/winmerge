@@ -156,11 +156,11 @@ void CSizingControlBar::EnableDocking(DWORD dwDockStyle)
     ASSERT((m_dwStyle & CBRS_SIZE_DYNAMIC) != 0);
 
     m_dwDockStyle = dwDockStyle;
-    if (m_pDockContext == NULL)
+    if (m_pDockContext == nullptr)
         m_pDockContext = new CSCBDockContext(this);
 
     // permanently wire the bar's owner to its current parent
-    if (m_hWndOwner == NULL)
+    if (m_hWndOwner == nullptr)
         m_hWndOwner = ::GetParent(m_hWnd);
 }
 #endif
@@ -1104,7 +1104,7 @@ void CSizingControlBar::LoadState(LPCTSTR lpszProfileName)
     for (int i = 0; i < state.m_arrBarInfo.GetSize(); i++)
     {
         CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
-        ASSERT(pInfo != NULL);
+        ASSERT(pInfo != nullptr);
         if (!pInfo->m_bFloating)
             continue;
         

@@ -155,16 +155,16 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 
 	m_pDirView->DeleteAllDisplayItems();
 	// Anything that can go wrong here will yield an exception.
-	// Default implementation of operator new() never returns NULL.
+	// Default implementation of operator new() never returns `nullptr`.
 	
-	if (m_pCompareStats == NULL)
+	if (m_pCompareStats == nullptr)
 		m_pCompareStats.reset(new CompareStats(m_nDirs));
 
 	m_pCtxt.reset(new CDiffContext(paths,
 			GetOptionsMgr()->GetInt(OPT_CMP_METHOD)));
 	m_pCtxt->m_bRecursive = bRecursive;
 
-	if (pTempPathContext)
+	if (pTempPathContext != nullptr)
 	{
 		int nIndex;
 		for (nIndex = 0; nIndex < m_nDirs; nIndex++)
@@ -176,7 +176,7 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 	}
 	
 	// All plugin management is done by our plugin manager
-	m_pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : NULL;
+	m_pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 }
 
 
@@ -219,7 +219,7 @@ void CDirDoc::DiffThreadCallback(int& state)
  */
 void CDirDoc::Rescan()
 {
-	if (!m_pCtxt)
+	if (m_pCtxt == nullptr)
 		return;
 
 	CDirFrame *pf = m_pDirView->GetParentFrame();
@@ -300,7 +300,7 @@ void CDirDoc::Rescan()
  */
 void CDirDoc::Redisplay()
 {
-	if (!m_pDirView)
+	if (m_pDirView == nullptr)
 		return;
 
 	// Do not redisplay an empty CDirView
@@ -314,7 +314,7 @@ void CDirDoc::Redisplay()
 
 CDirView * CDirDoc::GetMainView() const
 {
-	CDirView *pView = NULL;
+	CDirView *pView = nullptr;
 	if (POSITION pos = GetFirstViewPosition())
 	{
 		pView = static_cast<CDirView*>(GetNextView(pos));
@@ -354,7 +354,7 @@ void CDirDoc::InitStatusStrings()
  */
 void CDirDoc::UpdateResources()
 {
-	if (m_pDirView)
+	if (m_pDirView != nullptr)
 		m_pDirView->UpdateResources();
 
 	SetTitle(nullptr);
@@ -396,9 +396,9 @@ void CDirDoc::MergeDocClosing(IMergeDoc * pMergeDoc)
 
 	// If dir compare is empty (no compare results) and we are not closing
 	// because of reuse close also dir compare
-	if (m_pDirView)
+	if (m_pDirView != nullptr)
 	{
-		if (m_pCtxt == NULL)
+		if (m_pCtxt == nullptr)
 			m_pDirView->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 	}
 	else if (m_MergeDocs.GetCount() == 0)
@@ -487,9 +487,9 @@ void CDirDoc::CompareReady()
  */
 void CDirDoc::RefreshOptions()
 {
-	if (m_pCtxt)
+	if (m_pCtxt != nullptr)
 		m_pCtxt->m_bRecursive = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
-	if (m_pDirView)
+	if (m_pDirView != nullptr)
 		m_pDirView->RefreshOptions();
 }
 
@@ -597,7 +597,7 @@ bool CDirDoc::IsCurrentScanAbortable() const
  */
 void CDirDoc::SetDescriptions(const String strDesc[])
 {
-	if (strDesc)
+	if (strDesc != nullptr)
 		std::copy_n(strDesc, m_nDirs, m_strDesc);
 }
 
@@ -611,7 +611,7 @@ void CDirDoc::SetDescriptions(const String strDesc[])
  */
 void CDirDoc::ApplyDisplayRoot(int nIndex, String &sText)
 {
-	if (m_pTempPathContext)
+	if (m_pTempPathContext != nullptr)
 	{
 		sText.erase(0, m_pTempPathContext->m_strRoot[nIndex].length());
 		sText.insert(0, m_pTempPathContext->m_strDisplayRoot[nIndex]);
@@ -624,18 +624,18 @@ void CDirDoc::ApplyDisplayRoot(int nIndex, String &sText)
  * Formats and sets caption for directory compare window. Caption
  * has left- and right-side paths separated with '-'.
  *
- * @param [in] lpszTitle New title for window if. If this parameter
- * is not NULL we use this string, otherwise format caption from
+ * @param [in] lpszTitle New title for window. If this parameter
+ * is not `nullptr` we use this string, otherwise format caption from
  * actual paths.
  */
 void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 {
-	if (!m_pDirView)
+	if (m_pDirView == nullptr)
 		return;
 
-	if (lpszTitle)
+	if (lpszTitle != nullptr)
 		CDocument::SetTitle(lpszTitle);
-	else if (!m_pCtxt || m_pCtxt->GetLeftPath().empty() ||
+	else if (m_pCtxt == nullptr || m_pCtxt->GetLeftPath().empty() ||
 		m_pCtxt->GetRightPath().empty() || 
 		(m_nDirs > 2 && m_pCtxt->GetMiddlePath().empty()))
 	{
@@ -667,7 +667,7 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
  */
 bool CDirDoc::IsArchiveFolders() const
 {
-	if (m_pTempPathContext)
+	if (m_pTempPathContext != nullptr)
 		return true;
 	else
 		return false;
@@ -677,7 +677,7 @@ void CDirDoc::Swap(int idx1, int idx2)
 {
 	std::swap(m_bRO[idx1], m_bRO[idx2]);
 	std::swap(m_strDesc[idx1], m_strDesc[idx2]);
-	if (m_pTempPathContext)
+	if (m_pTempPathContext != nullptr)
 		m_pTempPathContext->Swap(idx1, idx2);
 	m_pCtxt->Swap(idx1, idx2);
 	m_pCompareStats->Swap(idx1, idx2);
@@ -688,7 +688,7 @@ void CDirDoc::Swap(int idx1, int idx2)
 
 bool CDirDoc::MoveableToNextDiff()
 {
-	if (!m_pDirView)
+	if (m_pDirView == nullptr)
 		return false;
 	CMessageBoxDialog dlg(nullptr, _("Do you want to move to the next file?").c_str());
 	const int nFormerResult = dlg.GetFormerResult();
@@ -699,7 +699,7 @@ bool CDirDoc::MoveableToNextDiff()
 
 bool CDirDoc::MoveableToPrevDiff()
 {
-	if (!m_pDirView)
+	if (m_pDirView == nullptr)
 		return false;
 	CMessageBoxDialog dlg(nullptr, _("Do you want to move to the previous file?").c_str());
 	const int nFormerResult = dlg.GetFormerResult();
@@ -710,7 +710,7 @@ bool CDirDoc::MoveableToPrevDiff()
 
 void CDirDoc::MoveToNextDiff(IMergeDoc *pMergeDoc)
 {
-	if (!m_pDirView)
+	if (m_pDirView == nullptr)
 		return;
 	if (AfxMessageBox(_("Do you want to move to the next file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN) == IDYES)
 	{
@@ -722,7 +722,7 @@ void CDirDoc::MoveToNextDiff(IMergeDoc *pMergeDoc)
 
 void CDirDoc::MoveToPrevDiff(IMergeDoc *pMergeDoc)
 {
-	if (!m_pDirView)
+	if (m_pDirView == nullptr)
 		return;
 	if (AfxMessageBox(_("Do you want to move to the previous file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN) == IDYES)
 	{

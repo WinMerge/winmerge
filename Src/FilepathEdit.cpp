@@ -354,7 +354,7 @@ void CFilepathEdit::SetActive(bool bActive)
 {
 	m_bActive = bActive;
 
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return;
 
 	CRect rcWnd;

@@ -766,7 +766,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 void CMergeEditView::UpdateSiblingScrollPos (bool bHorz)
 {
 	CSplitterWnd *pSplitterWnd = GetParentSplitter (this, false);
-	if (pSplitterWnd != NULL)
+	if (pSplitterWnd != nullptr)
 	{
 		//  See CSplitterWnd::IdFromRowCol() implementation for details
 		int nCurrentRow = (GetDlgCtrlID () - AFX_IDW_PANE_FIRST) / 16;
@@ -784,7 +784,7 @@ void CMergeEditView::UpdateSiblingScrollPos (bool bHorz)
 //			for (int nCol = 0; nCol < nCols; nCol++)
 //			{
 //				CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
-//				if (pSiblingView != NULL)
+//				if (pSiblingView != nullptr)
 //					if (pSiblingView->GetSubLineCount() <= newTopSubLine)
 //						newTopSubLine = pSiblingView->GetSubLineCount()-1;
 //			}
@@ -799,7 +799,7 @@ void CMergeEditView::UpdateSiblingScrollPos (bool bHorz)
 				if (!(nRow == nCurrentRow && nCol == nCurrentCol))  //  We don't need to update ourselves
 				{
 					CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
-					if (pSiblingView != NULL && pSiblingView->m_nThisGroup == m_nThisGroup)
+					if (pSiblingView != nullptr && pSiblingView->m_nThisGroup == m_nThisGroup)
 						pSiblingView->OnUpdateSibling (this, bHorz);
 				}
 			}
@@ -881,7 +881,7 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
 
 	// pSplitterWnd is NULL if WinMerge started minimized.
-	if (pSplitterWnd != NULL)
+	if (pSplitterWnd != nullptr)
 	{
 		int nRows = pSplitterWnd->GetRowCount ();
 		int nCols = pSplitterWnd->GetColumnCount ();
@@ -890,7 +890,7 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 			for (int nCol = 0; nCol < nCols; nCol++)
 			{
 				CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
-				if (pSiblingView != NULL)
+				if (pSiblingView != nullptr)
 					pSiblingView->OnDisplayDiff(nDiff);
 			}
 		}
@@ -1261,7 +1261,7 @@ void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 	const DIFFRANGE * dfi = pd->m_diffList.LastSignificantDiffRange();
 	bool enabled;
 
-	if (!dfi)
+	if (dfi == nullptr)
 	{
 		// There aren't any significant differences
 		enabled = false;
@@ -1352,7 +1352,7 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 	const DIFFRANGE * dfi = pd->m_diffList.FirstSignificantDiffRange();
 	bool enabled;
 
-	if (!dfi)
+	if (dfi == nullptr)
 	{
 		// There aren't any significant differences
 		enabled = false;
@@ -1463,7 +1463,7 @@ void CMergeEditView::OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 
 	const DIFFRANGE * dfi = pd->m_diffList.LastSignificant3wayDiffRange(nDiffType);
 
-	if (!dfi)
+	if (dfi == nullptr)
 	{
 		// There aren't any significant differences
 		pCmdUI->Enable(false);
@@ -1545,7 +1545,7 @@ void CMergeEditView::OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 
 	const DIFFRANGE * dfi = pd->m_diffList.FirstSignificant3wayDiffRange(nDiffType);
 
-	if (!dfi)
+	if (dfi == nullptr)
 	{
 		// There aren't any significant differences
 		pCmdUI->Enable(false);
@@ -2095,7 +2095,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchTex
 				if (nPane == m_nThisPane)
 					continue;
 				CCrystalEditView *pView = GetGroupView(nPane);
-				if (pView)
+				if (pView != nullptr)
 					pView->Invalidate();
 			}
 		}
@@ -3207,8 +3207,8 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 {
  	CMergeDoc *pDoc = GetDocument();
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
-	CMergeEditView *pCurrentView = NULL;
-	if (pSplitterWnd)
+	CMergeEditView *pCurrentView = nullptr;
+	if (pSplitterWnd != nullptr)
 		pCurrentView = static_cast<CMergeEditView*>
 			(pSplitterWnd->GetActivePane());
 
@@ -3271,7 +3271,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
  */
 void CMergeEditView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
-	if (pScrollBar == NULL)
+	if (pScrollBar == nullptr)
 	{
 		// Scroll did not come frome a scroll bar
 		// Find the appropriate scroll bar
@@ -3292,7 +3292,7 @@ void CMergeEditView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
  */
 void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
-	if (pScrollBar == NULL)
+	if (pScrollBar == nullptr)
 	{
 		// Scroll did not come frome a scroll bar
 		// Find the appropriate scroll bar
@@ -3432,7 +3432,7 @@ void CMergeEditView::RepaintLocationPane()
 {
 	// Must force recalculation due to caching of data in location pane.
 	CLocationView *pLocationView = GetDocument()->GetLocationView();
-	if (pLocationView)
+	if (pLocationView != nullptr)
 		pLocationView->ForceRecalculate();
 }
 
@@ -3522,7 +3522,7 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
 			CMergeEditView *pView = GetGroupView(nPane);
-			if (pView)
+			if (pView != nullptr)
 				pView->InvalidateScreenRect(false);
 		}
 	}
@@ -3531,7 +3531,7 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
 			CMergeEditView *pView = GetGroupView(nPane);
-			if (pView)
+			if (pView != nullptr)
 				pView->Invalidate();
 		}
 	}
@@ -3665,7 +3665,7 @@ int CMergeEditView::GetEmptySubLines( int nLineIndex )
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 	{
 		CMergeEditView *pView = GetGroupView(nPane);
-		if (pView)
+		if (pView != nullptr)
 		{
 			if (nLineIndex >= pView->GetLineCount())
 				return 0;
@@ -3693,7 +3693,7 @@ void CMergeEditView::InvalidateSubLineIndexCache( int nLineIndex )
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 	{
 		CMergeEditView *pView = GetGroupView(nPane);
-		if (pView)
+		if (pView != nullptr)
 			pView->CCrystalTextView::InvalidateSubLineIndexCache( nLineIndex );
 	}
 }
@@ -3818,12 +3818,12 @@ void CMergeEditView::UpdateLocationViewPosition(int nTopLine /*=-1*/,
 		int nBottomLine /*= -1*/)
 {
 	CMergeDoc *pDoc = GetDocument();
-	if (pDoc == NULL)
+	if (pDoc == nullptr)
 		return;
 
 	CLocationView *pLocationView = pDoc->GetLocationView();
 
-	if (pLocationView != NULL && IsWindow(pLocationView->GetSafeHwnd()))
+	if (pLocationView != nullptr && IsWindow(pLocationView->GetSafeHwnd()))
 	{
 		pLocationView->UpdateVisiblePos(nTopLine, nBottomLine);
 	}

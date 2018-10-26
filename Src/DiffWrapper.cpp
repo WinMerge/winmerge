@@ -133,16 +133,16 @@ void CDiffWrapper::SetCreatePatchFile(const String &filename)
 /**
  * @brief Enables/disabled DiffList creation ands sets DiffList.
  * This function enables or disables DiffList creation. When
- * @p diffList is NULL difflist is not created. When valid DiffList
- * pointer is given, compare results are stored into it.
+ * @p diffList is `nullptr`, a difflist was not created. When valid 
+ * DiffList pointer is given, compare results are stored into it.
  * @param [in] diffList Pointer to DiffList getting compare results.
  */
 void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
 {
-	if (diffList == NULL)
+	if (diffList == nullptr)
 	{
 		m_bUseDiffList = false;
-		m_pDiffList = NULL;
+		m_pDiffList = nullptr;
 	}
 	else
 	{
@@ -190,7 +190,7 @@ void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)
 	// all flags are set correctly during the construction
 	m_infoPrediffer.reset(new PrediffingInfo);
 
-	if (prediffer)
+	if (prediffer != nullptr)
 		*m_infoPrediffer = *prediffer;
 }
 void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer) const
@@ -284,7 +284,7 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
 				   const FilterCommentsSet& filtercommentsset) const
 {
 	//Do easy test first
-	if ((!StartOfComment || !EndOfComment) && !InLineComment)
+	if ((StartOfComment == nullptr || EndOfComment == nullptr) && InLineComment == nullptr)
 		return false;//In no Start and End pair, and no single in-line set, then it's not trivial
 
 	if (StartOfComment == Line.c_str() &&
@@ -293,7 +293,7 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
 		return true;
 	}
 
-	if (InLineComment && InLineComment < StartOfComment)
+	if (InLineComment != nullptr && InLineComment < StartOfComment)
 	{
 		if (InLineComment == Line.c_str())
 			return true;//If line starts with InLineComment marker, then entire line is trivial
@@ -303,8 +303,8 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
 	}
 
 	//Done with easy test, so now do more complex test
-	if (StartOfComment && 
-		EndOfComment && 
+	if (StartOfComment != nullptr && 
+		EndOfComment != nullptr && 
 		StartOfComment < EndOfComment &&
 		IsTrivialBytes(Line.c_str(), StartOfComment, filtercommentsset) &&
 		IsTrivialBytes(EndOfComment + filtercommentsset.EndMarker.size(),
@@ -438,9 +438,9 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 				return false;
 			}
 
-			if (EndOfComment && 
-				(!StartOfComment || StartOfComment > EndOfComment) && 
-				(!InLineComment || InLineComment > EndOfComment) )
+			if (EndOfComment != nullptr && 
+				(StartOfComment == nullptr || StartOfComment > EndOfComment) && 
+				(InLineComment == nullptr || InLineComment > EndOfComment) )
 			{
 				if (!IsTrivialBytes(EndOfComment+filtercommentsset.EndMarker.size(), LineData.c_str()+LineData.size(), filtercommentsset))
 				{
@@ -552,7 +552,7 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 			EndLineRight = files[1].linbuf[LineNumberRight + i + 1];
 		}
 			
-		if (EndLineLeft && EndLineRight)
+		if (EndLineLeft != nullptr && EndLineRight != nullptr)
 		{	
 			std::string LineDataLeft(LineStrLeft, EndLineLeft);
 			std::string LineDataRight(LineStrRight, EndLineRight);
@@ -572,28 +572,28 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 					CommentStrRightStart = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.StartMarker.c_str());
 					CommentStrRightEnd = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.EndMarker.c_str());
 					
-					if (CommentStrLeftStart != NULL && CommentStrLeftEnd != NULL && CommentStrLeftStart < CommentStrLeftEnd)
+					if (CommentStrLeftStart != nullptr && CommentStrLeftEnd != nullptr && CommentStrLeftStart < CommentStrLeftEnd)
 						LineDataLeft.erase(CommentStrLeftStart - LineDataLeft.c_str(), CommentStrLeftEnd + filtercommentsset.EndMarker.size() - CommentStrLeftStart);
-					else if (CommentStrLeftEnd != NULL)
+					else if (CommentStrLeftEnd != nullptr)
 						LineDataLeft.erase(0, CommentStrLeftEnd + filtercommentsset.EndMarker.size() - LineDataLeft.c_str());
-					else if (CommentStrLeftStart != NULL)
+					else if (CommentStrLeftStart != nullptr)
 						LineDataLeft.erase(CommentStrLeftStart - LineDataLeft.c_str());
 					else if(LeftOp == OP_TRIVIAL && bFirstLoop)
 						LineDataLeft.erase(0);  //This line is all in block comments
 
-					if (CommentStrRightStart != NULL && CommentStrRightEnd != NULL && CommentStrRightStart < CommentStrRightEnd)
+					if (CommentStrRightStart != nullptr && CommentStrRightEnd != nullptr && CommentStrRightStart < CommentStrRightEnd)
 						LineDataRight.erase(CommentStrRightStart - LineDataRight.c_str(), CommentStrRightEnd + filtercommentsset.EndMarker.size() - CommentStrRightStart);
-					else if (CommentStrRightEnd != NULL)
+					else if (CommentStrRightEnd != nullptr)
 						LineDataRight.erase(0, CommentStrRightEnd + filtercommentsset.EndMarker.size() - LineDataRight.c_str());
-					else if (CommentStrRightStart != NULL)
+					else if (CommentStrRightStart != nullptr)
 						LineDataRight.erase(CommentStrRightStart - LineDataRight.c_str());
 					else if(RightOp == OP_TRIVIAL && bFirstLoop)
 						LineDataRight.erase(0);  //This line is all in block comments
 
 					bFirstLoop = false;
 
-				} while (CommentStrLeftStart != NULL || CommentStrLeftEnd != NULL
-					|| CommentStrRightStart != NULL || CommentStrRightEnd != NULL); //Loops until all blockcomments are lost
+				} while (CommentStrLeftStart != nullptr || CommentStrLeftEnd != nullptr
+					|| CommentStrRightStart != nullptr || CommentStrRightEnd != nullptr); //Loops until all blockcomments are lost
 			}
 
 			if (!filtercommentsset.InlineMarker.empty())
@@ -602,9 +602,9 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 				const char * CommentStrLeft = FindCommentMarker(LineDataLeft.c_str(), filtercommentsset.InlineMarker.c_str());
 				const char * CommentStrRight = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.InlineMarker.c_str());
 
-				if (CommentStrLeft != NULL)
+				if (CommentStrLeft != nullptr)
 					LineDataLeft.erase(CommentStrLeft - LineDataLeft.c_str());
-				if (CommentStrRight != NULL)
+				if (CommentStrRight != nullptr)
 					LineDataRight.erase(CommentStrRight - LineDataRight.c_str());
 			}
 
@@ -1134,10 +1134,10 @@ CDiffWrapper::FreeDiffUtilsScript(struct change * & script)
  */
 bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 {
-	if (m_pFilterList == NULL)
+	if (m_pFilterList == nullptr)
 	{	
 		throw "CDiffWrapper::RegExpFilter() called when "
-			"filterlist doesn't exist (=NULL)";
+			"filterlist doesn't exist (=nullptr)";
 	}
 
 	bool linesMatch = true; // set to false when non-matching line is found.
@@ -1249,7 +1249,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, asLwrCaseExt);
 				}
 
-				if (m_pFilterList && m_pFilterList->HasRegExps())
+				if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
 				{
 					 //Determine quantity of lines in this block for both sides
 					int QtyLinesLeft = (trans_b0 - trans_a0);
@@ -1626,7 +1626,7 @@ void CDiffWrapper::SetFilterList(const String& filterStr)
 	}
 
 	// Adding new filter without previous filter
-	if (m_pFilterList == NULL)
+	if (m_pFilterList == nullptr)
 	{
 		m_pFilterList.reset(new FilterList);
 	}

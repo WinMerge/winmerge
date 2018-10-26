@@ -99,7 +99,7 @@ void CEditorFilePathBar::SetPaneCount(int nPanes)
  */
 void CEditorFilePathBar::Resize()
 {
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return;
 
 	WINDOWPLACEMENT infoBar;
@@ -128,7 +128,7 @@ void CEditorFilePathBar::SetOnSetFocusCallback(const std::function<void(int)> ca
  */
 void CEditorFilePathBar::Resize(int widths[])
 {
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return;
 
 	// resize left filename
@@ -156,7 +156,7 @@ void CEditorFilePathBar::Resize(int widths[])
  */
 BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * pResult)
 {
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return FALSE;
 
 	TOOLTIPTEXT *pTTT = (TOOLTIPTEXT *)pTTTStruct;
@@ -214,7 +214,7 @@ String CEditorFilePathBar::GetText(int pane) const
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
 	// Check for NULL since window may be closing..
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return _T("");
 
 	CString str;
@@ -233,7 +233,7 @@ void CEditorFilePathBar::SetText(int pane, const String& sString)
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
 	// Check for NULL since window may be closing..
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return;
 
 	m_Edit[pane].SetOriginalText(sString);
