@@ -406,7 +406,7 @@ bool AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
 	// TODO : is it better with the BOM or without (just change the last argument)
 	int nFileChanged = 0;
 	bool bSuccess = ::AnyCodepageToUTF8(codepage, filepath, tempFilepath, nFileChanged, false); 
-	if (bSuccess && nFileChanged)
+	if (bSuccess && nFileChanged!=0)
 	{
 		// we do not overwrite so we delete the old file
 		if (bMayOverwrite)

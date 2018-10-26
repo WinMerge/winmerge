@@ -653,7 +653,7 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo * infoUnpacker /*= nullptr*/)
 {
-	if (!m_pMenus[MENU_MERGEVIEW])
+	if (m_pMenus[MENU_MERGEVIEW] == nullptr)
 		theApp.m_pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
 	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(theApp.m_pDiffTemplate, pDirDoc, nFiles);
 
@@ -661,8 +661,8 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	FileLocation fileloc[3];
 	std::copy_n(ifileloc, nFiles, fileloc);
 
-	ASSERT(pMergeDoc);		// must ASSERT to get an answer to the question below ;-)
-	if (!pMergeDoc)
+	ASSERT(pMergeDoc != nullptr);		// must ASSERT to get an answer to the question below ;-)
+	if (pMergeDoc == nullptr)
 		return false; // when does this happen ?
 
 	// if an unpacker is selected, it must be used during LoadFromFile
@@ -739,7 +739,7 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo * infoUnpacker /*= nullptr*/)
 {
-	if (!m_pMenus[MENU_HEXMERGEVIEW])
+	if (m_pMenus[MENU_HEXMERGEVIEW] == nullptr)
 		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
 	CHexMergeDoc *pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(theApp.m_pHexMergeTemplate, pDirDoc, nFiles);
 	if (!pHexMergeDoc)
@@ -886,7 +886,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/, bool bRecurse /*= false*/, CDirDoc *pDirDoc/*= nullptr*/,
 	String prediffer /*= _T("")*/, const PackingInfo *infoUnpacker /*= nullptr*/)
 {
-	if (pDirDoc && !pDirDoc->CloseMergeDocs())
+	if (pDirDoc != nullptr && !pDirDoc->CloseMergeDocs())
 		return false;
 
 	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL));
@@ -895,7 +895,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
 
 	PathContext tFiles;
-	if (pFiles)
+	if (pFiles != nullptr)
 		tFiles = *pFiles;
 	bool bRO[3] = {0};
 	if (dwFlags)
@@ -909,7 +909,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
 	if (pathsType == paths::DOES_NOT_EXIST)
 	{
-		if (!m_pMenus[MENU_OPENVIEW])
+		if (m_pMenus[MENU_OPENVIEW] == nullptr)
 			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
 		COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
 		if (dwFlags)
@@ -965,12 +965,12 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 
 	// Determine if we want a new dirview open, now that we know if it was
 	// an archive. Don't open a new dirview if we are comparing files.
-	if (!pDirDoc)
+	if (pDirDoc == nullptr)
 	{
 		if (pathsType == paths::IS_EXISTING_DIR)
 		{
 			CDirDoc::m_nDirsTemp = tFiles.GetSize();
-			if (!m_pMenus[MENU_DIRVIEW])
+			if (m_pMenus[MENU_DIRVIEW] == nullptr)
 				theApp.m_pDirTemplate->m_hMenuShared = NewDirViewMenu();
 			pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->OpenDocumentFile(NULL));
 		}
@@ -983,7 +983,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	// open the diff
 	if (pathsType == paths::IS_EXISTING_DIR)
 	{
-		if (pDirDoc)
+		if (pDirDoc != nullptr)
 		{
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
@@ -1030,10 +1030,10 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 	{
 		for (auto pDoc : GetAllDirDocs())
 		{
-			if (pDoc)
+			if (pDoc != nullptr)
 			{
 				CDirView *pView = pDoc->GetMainView();
-				if (pView)
+				if (pView != nullptr)
 					pView->SetFont(m_lfDir);
 			}
 		}
@@ -1306,7 +1306,7 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
 	// Create a new merge doc
 	DocClass::m_nBuffersTemp = nFiles;
 	DocClass *pMergeDoc = static_cast<DocClass*>(pTemplate->OpenDocumentFile(NULL));
-	if (pMergeDoc)
+	if (pMergeDoc != nullptr)
 	{
 		pDirDoc->AddMergeDoc(pMergeDoc);
 		pMergeDoc->SetDirDoc(pDirDoc);
@@ -1434,7 +1434,7 @@ void CMainFrame::OnReloadPlugins()
 
 	// update the editor scripts submenu
 	HMENU scriptsSubmenu = GetScriptsSubmenu(m_hMenuDefault);
-	if (scriptsSubmenu != NULL)
+	if (scriptsSubmenu != nullptr)
 		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
 	UpdatePrediffersMenu();
 }
@@ -1450,7 +1450,7 @@ CMergeEditView * CMainFrame::GetActiveMergeEditView()
 	// and we can get a MergeEditView from it, if it is a CChildFrame
 	// (DirViews use a different frame type)
 	CChildFrame * pFrame = dynamic_cast<CChildFrame *>(GetActiveFrame());
-	if (!pFrame) return 0;
+	if (pFrame == nullptr) return nullptr;
 	// Try to get the active MergeEditView (ie, left or right)
 	if (pFrame->GetActiveView() != nullptr && pFrame->GetActiveView()->IsKindOf(RUNTIME_CLASS(CMergeEditView)))
 	{
@@ -1462,17 +1462,17 @@ CMergeEditView * CMainFrame::GetActiveMergeEditView()
 void CMainFrame::UpdatePrediffersMenu()
 {
 	CMenu* menu = GetMenu();
-	if (menu == NULL)
+	if (menu == nullptr)
 	{
 		return;
 	}
 
 	HMENU hMainMenu = menu->m_hMenu;
 	HMENU prediffersSubmenu = GetPrediffersSubmenu(hMainMenu);
-	if (prediffersSubmenu != NULL)
+	if (prediffersSubmenu != nullptr)
 	{
 		CMergeEditView * pEditView = GetActiveMergeEditView();
-		if (pEditView)
+		if (pEditView != nullptr)
 			pEditView->createPrediffersSubmenu(prediffersSubmenu);
 		else
 		{
@@ -1802,12 +1802,12 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 {
 	CFrameWnd * pFrame = GetActiveFrame();
-	if (pFrame)
+	if (pFrame != nullptr)
 	{
 		IMergeDoc *pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-		if (!pMergeDoc)
+		if (pMergeDoc == nullptr)
 			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
-		if (pMergeDoc)
+		if (pMergeDoc != nullptr)
 			pMergeDoc->CheckFileChanged();
 	}
 	return 0;
@@ -1824,7 +1824,7 @@ void CMainFrame::OnWindowCloseAll()
 	while (pChild)
 	{
 		CDocument* pDoc;
-		if ((pDoc = pChild->GetActiveDocument()) != NULL)
+		if ((pDoc = pChild->GetActiveDocument()) != nullptr)
 		{
 			if (!pDoc->SaveModified())
 				return;
@@ -1879,7 +1879,7 @@ CMainFrame * GetMainFrame()
  */
 void CMainFrame::OnSaveProject()
 {
-	if (!m_pMenus[MENU_OPENVIEW])
+	if (m_pMenus[MENU_OPENVIEW] == nullptr)
 		theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
 	COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
 
@@ -1939,12 +1939,12 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 #endif
 
 	CFrameWnd * pFrame = GetActiveFrame();
-	if (pFrame)
+	if (pFrame != nullptr)
 	{
 		IMergeDoc *pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-		if (!pMergeDoc)
+		if (pMergeDoc == nullptr)
 			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
-		if (pMergeDoc)
+		if (pMergeDoc != nullptr)
 			PostMessage(WM_USER+1);
 	}
 }
@@ -2055,7 +2055,7 @@ void CMainFrame::OnUpdateFrameTitle(BOOL bAddToTitle)
 {
 	CFrameWnd::OnUpdateFrameTitle(bAddToTitle);
 	
-	if (m_wndTabBar.m_hWnd)
+	if (m_wndTabBar.m_hWnd != nullptr)
 		m_wndTabBar.UpdateTabs();
 }
 
@@ -2399,7 +2399,7 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 {
 	// append the MRU submenu
 	HMENU hMenu = GetSubmenu(AfxGetMainWnd()->GetMenu()->m_hMenu, ID_FILE_NEW, false);
-	if (hMenu == NULL)
+	if (hMenu == nullptr)
 		return;
 	
 	// empty the menu
@@ -2471,7 +2471,7 @@ void CMainFrame::ReloadMenu()
 		}
 
 		CFrameWnd *pActiveFrame = pMainFrame->GetActiveFrame();
-		if (pActiveFrame)
+		if (pActiveFrame != nullptr)
 		{
 			if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
 				pMainFrame->MDISetMenu(pNewMergeMenu, NULL);
@@ -2490,11 +2490,11 @@ void CMainFrame::ReloadMenu()
 		// Don't delete the old menu
 		// There is a bug in BCMenu or in Windows98 : the new menu does not
 		// appear correctly if we destroy the old one
-		//			if (pOldDefaultMenu)
+		//			if (pOldDefaultMenu != nullptr)
 		//				pOldDefaultMenu->DestroyMenu();
-		//			if (pOldMergeMenu)
+		//			if (pOldMergeMenu != nullptr)
 		//				pOldMergeMenu->DestroyMenu();
-		//			if (pOldDirMenu)
+		//			if (pOldDirMenu = nullptr)
 		//				pOldDirMenu->DestroyMenu();
 
 		// m_hMenuDefault is used to redraw the main menu when we close a child frame

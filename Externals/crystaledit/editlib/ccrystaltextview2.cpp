@@ -798,9 +798,9 @@ OnMouseMove (UINT nFlags, CPoint point)
     {
       m_bPreparingToDrag = false;
       HGLOBAL hData = PrepareDragData ();
-      if (hData != NULL)
+      if (hData != nullptr)
         {
-          if (m_pTextBuffer != NULL)
+          if (m_pTextBuffer != nullptr)
             m_pTextBuffer->BeginUndoGroup ();
 
           COleDataSource ds;
@@ -812,7 +812,7 @@ OnMouseMove (UINT nFlags, CPoint point)
             OnDropSource (de);
           m_bDraggingText = false;
 
-          if (m_pTextBuffer != NULL)
+          if (m_pTextBuffer != nullptr)
             m_pTextBuffer->FlushUndoGroup (this);
         }
     }
@@ -1105,7 +1105,12 @@ OnRButtonDown (UINT nFlags, CPoint point)
 bool CCrystalTextView::
 IsSelection ()
 {
+#if _MSC_VER < 1910		// VS2015 (and earlier?) generates a "performance" warning
+  // NOTE:  Comparing two `CPoint` values yields a BOOL result; therefore this funny code
+  return (m_ptSelStart != m_ptSelEnd) ? true : false;
+#else
   return (m_ptSelStart != m_ptSelEnd);
+#endif
 }
 
 void CCrystalTextView::
@@ -1144,7 +1149,7 @@ PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
       EmptyClipboard ();
       SIZE_T cbData = (cchText + 1) * sizeof(TCHAR);
       HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, cbData);
-      if (hData != NULL)
+      if (hData != nullptr)
         {
           SIZE_T dwSize = GlobalSize(hData);
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
@@ -1155,13 +1160,13 @@ PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
                   memset(reinterpret_cast<char *>(pszData) + cbData, 0, dwSize - cbData);
               GlobalUnlock (hData);
               CLIPFORMAT fmt = GetClipTcharTextFormat();
-              bOK = SetClipboardData (fmt, hData) != NULL;
+              bOK = SetClipboardData (fmt, hData) != nullptr;
               if (bOK)
                 {
                   if (bColumnSelection)
-                    SetClipboardData (RegisterClipboardFormat (_T("MSDEVColumnSelect")), NULL);
+                    SetClipboardData (RegisterClipboardFormat (_T("MSDEVColumnSelect")), nullptr);
                   if (dwSize == cbData)
-                    SetClipboardData (RegisterClipboardFormat (_T("WinMergeClipboard")), NULL);
+                    SetClipboardData (RegisterClipboardFormat (_T("WinMergeClipboard")), nullptr);
                 }
             }
         }
@@ -1179,10 +1184,10 @@ GetFromClipboard (CString & text, bool & bColumnSelection)
     {
       CLIPFORMAT fmt = GetClipTcharTextFormat();
       HGLOBAL hData = GetClipboardData (fmt);
-      if (hData != NULL)
+      if (hData != nullptr)
         {
           LPTSTR pszData = (LPTSTR) GlobalLock (hData);
-          if (pszData != NULL)
+          if (pszData != nullptr)
             {
               UINT cbData = (UINT) GlobalSize (hData);
               // in case we get an odd length for unicodes
