@@ -30,7 +30,7 @@ int DIFFITEM::GetDepth() const
 {
 	const DIFFITEM *cur;
 	int depth;
-	for (depth = 0, cur = parent; cur; depth++, cur = cur->parent)
+	for (depth = 0, cur = parent; cur != nullptr; depth++, cur = cur->parent)
 		;
 	return depth;
 }
@@ -41,7 +41,7 @@ int DIFFITEM::GetDepth() const
 bool DIFFITEM::IsAncestor(const DIFFITEM *pdi) const
 {
 	const DIFFITEM *cur;
-	for (cur = this; cur; cur = cur->parent)
+	for (cur = this; cur != nullptr; cur = cur->parent)
 	{
 		if (cur->parent == pdi)
 			return true;
@@ -53,7 +53,7 @@ bool DIFFITEM::IsAncestor(const DIFFITEM *pdi) const
 bool DIFFITEM::HasChildren() const
 {
 	DIFFITEM *p = static_cast<DIFFITEM *>(children.IsSibling(children.Flink));
-	return p ? true : false;
+	return (p != nullptr) ? true : false;
 }
 
 void DIFFITEM::RemoveChildren()
@@ -72,7 +72,7 @@ void DIFFITEM::Swap(int idx1, int idx2)
 	diffcode.swap(idx1, idx2);
 	if (HasChildren())
 	{
-		for (ListEntry *p = children.IsSibling(children.Flink); p; p = children.IsSibling(p->Flink))
+		for (ListEntry *p = children.IsSibling(children.Flink); p != nullptr; p = children.IsSibling(p->Flink))
 			static_cast<DIFFITEM *>(p)->Swap(idx1, idx2);
 	}
 }

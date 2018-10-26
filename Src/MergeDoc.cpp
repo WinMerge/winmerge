@@ -136,7 +136,7 @@ CMergeDoc::CMergeDoc()
 , m_bHasSyncPoints(false)
 , m_bAutoMerged(false)
 , m_nGroups(0)
-, m_pView{0}
+, m_pView{nullptr}
 {
 	DIFFOPTIONS options = {0};
 
@@ -162,7 +162,7 @@ CMergeDoc::CMergeDoc()
 	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
 	m_diffWrapper.SetOptions(&options);
-	m_diffWrapper.SetPrediffer(NULL);
+	m_diffWrapper.SetPrediffer(nullptr);
 }
 
 /**
@@ -172,10 +172,10 @@ CMergeDoc::CMergeDoc()
  */
 CMergeDoc::~CMergeDoc()
 {	
-	if (m_pDirDoc)
+	if (m_pDirDoc != nullptr)
 	{
 		m_pDirDoc->MergeDocClosing(this);
-		m_pDirDoc = NULL;
+		m_pDirDoc = nullptr;
 	}
 }
 
@@ -1654,7 +1654,7 @@ void CMergeDoc::OnFileSave()
 	if (bChangedOriginal)
 	{
 		// If DirDoc contains diffs
-		if (m_pDirDoc && m_pDirDoc->HasDiffs())
+		if (m_pDirDoc != nullptr && m_pDirDoc->HasDiffs())
 		{
 			for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 			{
@@ -1688,7 +1688,7 @@ void CMergeDoc::DoFileSave(int nBuffer)
 	if (bModified && bSaveSuccess)
 	{
 		// If DirDoc contains compare results
-		if (m_pDirDoc && m_pDirDoc->HasDiffs())
+		if (m_pDirDoc != nullptr && m_pDirDoc->HasDiffs())
 		{
 			for (int nBuffer1 = 0; nBuffer1 < m_nBuffers; nBuffer1++)
 			{
@@ -2267,7 +2267,7 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		 (bRModified && bRSaveSuccess))
 	{
 		// If directory compare has results
-		if (m_pDirDoc && m_pDirDoc->HasDiffs())
+		if (m_pDirDoc != nullptr && m_pDirDoc->HasDiffs())
 		{
 			if (m_bEditAfterRescan[0] || m_bEditAfterRescan[1] || (m_nBuffers == 3 && m_bEditAfterRescan[2]))
 				FlushAndRescan(false);
@@ -2341,7 +2341,7 @@ CChildFrame * CMergeDoc::GetParentFrame()
 void CMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
 {
 	ASSERT(m_pDirDoc == pDirDoc);
-	m_pDirDoc = 0;
+	m_pDirDoc = nullptr;
 	// TODO (Perry 2003-03-30): perhaps merge doc should close now ?
 }
 
@@ -2553,7 +2553,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	if (std::find_if(nSuccess, nSuccess + m_nBuffers, [](DWORD d){return !FileLoadResult::IsOk(d);} ) != nSuccess + m_nBuffers)
 	{
 		CChildFrame *pFrame = GetParentFrame();
-		if (pFrame)
+		if (pFrame != nullptr)
 		{
 			// Use verify macro to trap possible error in debug.
 			VERIFY(pFrame->DestroyWindow());
@@ -2630,7 +2630,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	// Define the prediffer
 	PackingInfo * infoUnpacker = nullptr;
 	PrediffingInfo * infoPrediffer = nullptr;
-	if (bFiltersEnabled && m_pDirDoc)
+	if (bFiltersEnabled && m_pDirDoc != nullptr)
 	{
 		m_pDirDoc->GetPluginManager().FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
 		m_diffWrapper.SetPrediffer(infoPrediffer);
@@ -2757,7 +2757,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 	// Force repaint of location pane to update it in case we had some warning
 	// dialog visible and it got painted before files were loaded
-	if (m_pView[0][0])
+	if (m_pView[0][0] != nullptr)
 		m_pView[0][0]->RepaintLocationPane();
 
 	return true;
@@ -2888,7 +2888,7 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 	String sTitle;
 	String sFileName[3];
 
-	if (lpszTitle)
+	if (lpszTitle != nullptr)
 		sTitle = lpszTitle;
 	else
 	{
@@ -3159,7 +3159,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	// If archive, use archive path + folder + filename inside archive
 	// If desc text given, use it
 	PathContext paths = m_filePaths;
-	if (m_pDirDoc && m_pDirDoc->IsArchiveFolders())
+	if (m_pDirDoc != nullptr && m_pDirDoc->IsArchiveFolders())
 	{
 		for (int i = 0; i < paths.GetSize(); i++)
 			m_pDirDoc->ApplyDisplayRoot(i, paths[i]);
@@ -3216,13 +3216,13 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 				String tdtag = _T("<td class=\"ln\">");
 				DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
 				if (nBuffer == 0 && 
-				     (dwFlags & (LF_DIFF | LF_GHOST)) && (idx[nBuffer] == 0 || 
-				    !(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST))))
+				     (dwFlags & (LF_DIFF | LF_GHOST))!=0 && (idx[nBuffer] == 0 || 
+				    (m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST))==0 ))
 				{
 					++nDiff;
 					tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
 				}
-				if (!(dwFlags & LF_GHOST) && m_pView[0][nBuffer]->GetViewLineNumbers())
+				if ((dwFlags & LF_GHOST)==0 && m_pView[0][nBuffer]->GetViewLineNumbers())
 					tdtag += strutils::format(_T("%d</td>"), m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1);
 				else
 					tdtag += _T("</td>");

@@ -138,7 +138,7 @@ CHexMergeDoc::CHexMergeDoc()
  */
 CHexMergeDoc::~CHexMergeDoc()
 {	
-	if (m_pDirDoc)
+	if (m_pDirDoc != nullptr)
 		m_pDirDoc->MergeDocClosing(this);
 }
 
@@ -160,7 +160,7 @@ CHexMergeView * CHexMergeDoc::GetActiveMergeView() const
 int CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
 {
 	// If directory compare has results
-	if (pDirDoc && pDirDoc->HasDiffs())
+	if (pDirDoc != nullptr && pDirDoc->HasDiffs())
 	{
 		CDiffContext &ctxt = pDirDoc->GetDiffContext();
 		if (UINT_PTR pos = FindItemFromPaths(ctxt, m_filePaths))
@@ -567,7 +567,7 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 	else
 	{
 		sText = m_filePaths.GetPath(pane);
-		if (m_pDirDoc)
+		if (m_pDirDoc != nullptr)
 			m_pDirDoc->ApplyDisplayRoot(pane, sText);
 	}
 	if (m_pView[pane]->GetModified())
@@ -641,7 +641,7 @@ void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 	String sTitle;
 	String sFileName[3];
 
-	if (lpszTitle)
+	if (lpszTitle != nullptr)
 		sTitle = lpszTitle;
 	else
 	{

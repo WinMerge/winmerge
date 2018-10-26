@@ -2225,7 +2225,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	UNREFERENCED_PARAMETER(lParam);
 
 	CDirDoc * pDoc = GetDocument();
-	ASSERT(pDoc);
+	ASSERT(pDoc != nullptr);
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
