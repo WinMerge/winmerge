@@ -3597,6 +3597,14 @@ msgstr ""
 "\n"
 "Aktualisieren Sie die Dokumente, bevor Sie fortfahren."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "An Leerzeichen abbrechen"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "An Leerzeichen oder Interpunktion abbrechen"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

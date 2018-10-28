@@ -3571,6 +3571,14 @@ msgstr ""
 "\n"
 "Obnovte dokumenty, než budete pokračovať."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Prerušiť na netlačiteľnom znaku"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Prerušiť na netlačiteľnom znaku alebo vetnej diakritike"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

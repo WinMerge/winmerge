@@ -3598,6 +3598,14 @@ msgstr ""
 "\n"
 "Opdater dokumenter før du fortsætter."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Bryd ved mellemrum"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Bryd ved mellemrum eller tegnsætning"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

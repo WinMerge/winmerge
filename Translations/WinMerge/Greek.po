@@ -3544,6 +3544,14 @@ msgstr ""
 "\n"
 "Ανανεώστε τα αρχεία πριν συνεχίσετε."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Στάση στα κενά"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Στάση στα κενά ή στα σημεία στίξεως"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

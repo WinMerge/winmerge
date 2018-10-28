@@ -3574,6 +3574,14 @@ msgstr ""
 "\n"
 "Berritu agiriak jarraitu aurretik."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Hautsi zurigunean"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Hautsi zurigunean edo puntuaketan"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

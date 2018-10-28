@@ -3538,6 +3538,14 @@ msgstr ""
 "\n"
 "Aggiorna i documenti prima di continuare."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Interrompi agli spazi bianchi"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Interrompi agli spazi bianchi o punteggiatura"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

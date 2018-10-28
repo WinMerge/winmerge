@@ -3628,6 +3628,14 @@ msgstr ""
 "\n"
 "Vernieuw documenten voordat u doorgaat."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Afbreken bij witruimte"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Afbreken bij witruimte of interpunctie"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

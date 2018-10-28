@@ -3571,6 +3571,14 @@ msgstr ""
 "\n"
 "Uppdatera filerna innan du fortsätter."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Radbryt på mellanslag"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Radbryt på mellanslag eller punkt"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

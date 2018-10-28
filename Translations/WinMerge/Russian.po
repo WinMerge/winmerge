@@ -3570,6 +3570,14 @@ msgstr ""
 "\n"
 "Обновите документы перед продолжением."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Разбивать по невидимым"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Разбивать по невидимым и знакам пунктуации"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

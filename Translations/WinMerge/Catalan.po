@@ -3506,6 +3506,14 @@ msgstr ""
 "\n"
 "Cal que refresqueu els documents abans de continuar."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Separa a l'espai"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Separa a l'espai o puntuació"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

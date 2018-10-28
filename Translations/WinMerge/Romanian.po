@@ -3545,6 +3545,14 @@ msgstr ""
 "\n"
 "Reîmprospătaţi documentele înainte de a continua."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Întrerupe la blanc"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Întrerupe la blanc sau semn de punctuaţie"
+
 #: Merge.rc:237A127
 #, fuzzy, c-format
 msgid "Right to Left (%1)"

@@ -3486,6 +3486,14 @@ msgstr ""
 "\n"
 "Frissítsd a dokumentumokat, mielőtt folytatnád."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Megállás szóközöknél"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Megállás szóközöknél vagy írásjeleknél"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

@@ -3630,6 +3630,14 @@ msgstr ""
 "\n"
 "Devam etmeden önce belgeleri yenileyin."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Beyaz Boşlukta Kesilsin"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Beyaz boşluk ya da noktalamada kesilsin"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

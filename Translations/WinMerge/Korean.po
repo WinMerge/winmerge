@@ -3599,6 +3599,14 @@ msgstr ""
 "\n"
 "계속하기 전에 문서를 갱신하세요."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "공백에서 멈춤"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "공백 또는 구두점에서 멈춤"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

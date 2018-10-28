@@ -3395,6 +3395,14 @@ msgstr "Tiedosto\n%1\non kadonnut. Tallenna kopio tiedostosta jatkaaksesi."
 msgid "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
 msgstr "Eroja ei voi yhdistää, jos asiakirjat eivät ole synkronissa.\n\nPäivitä asiakirjat ennen jatkamista."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Rivinvaihto tyhjätilamerkissä"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Rivinvaihto tyhjätilassa tai pilkutuksessa"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"
