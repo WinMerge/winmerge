@@ -3566,6 +3566,14 @@ msgstr ""
 "\n"
 "Actualizar os documentos antes de seguir."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Parar no espazo en branco"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Parar en espazo en branco ou puntuación"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

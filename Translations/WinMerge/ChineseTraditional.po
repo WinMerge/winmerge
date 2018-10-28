@@ -3580,6 +3580,14 @@ msgid ""
 "Refresh documents before continuing."
 msgstr "如未重整檔案，WinMerge 不能併入異動。"
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "空白處中斷"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "空白處或標點處中斷"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

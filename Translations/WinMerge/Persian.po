@@ -3602,6 +3602,14 @@ msgstr ""
 "\n"
 " اسناد قبل از ادامه کار بازسازي / تازه شوند "
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr " توقف در فاصله سفيد"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "توقف در فاصله سفيد يا نقطه / نشان گذارى   "
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

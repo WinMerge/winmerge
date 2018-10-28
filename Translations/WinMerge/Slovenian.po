@@ -3575,6 +3575,14 @@ msgstr ""
 "\n"
 "Prosim, osvežite dokumente pred nadaljujete."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Prelom na praznem znaku"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Prelom na praznem znaku ali ločilu"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

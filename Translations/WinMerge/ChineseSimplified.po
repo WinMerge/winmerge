@@ -3507,6 +3507,14 @@ msgstr ""
 "\n"
 "请刷新文档后再继续。"
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "以空白分隔"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "以空白或标点分隔"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

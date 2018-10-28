@@ -3507,6 +3507,14 @@ msgstr ""
 "\n"
 "Обновете документите преди да продължите."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Прекъсни на празно пространство"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Прекъсни на празно пространство или пунктуация"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

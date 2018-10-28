@@ -3570,6 +3570,14 @@ msgstr ""
 "\n"
 "Оновіть документи перед продовженням."
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Розбивати за пропусками"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Розбивати за пропусками і символами пунктуації"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"

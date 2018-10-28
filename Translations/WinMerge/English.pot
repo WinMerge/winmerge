@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-10-21 13:44+0000\n"
+"POT-Creation-Date: 2018-10-27 22:00+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2758,6 +2758,14 @@ msgstr ""
 
 #: Merge.rc:4BFC8F0D
 msgid "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
+msgstr ""
+
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr ""
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
 msgstr ""
 
 #: Merge.rc:237A127

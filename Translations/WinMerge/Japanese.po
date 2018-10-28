@@ -2240,7 +2240,7 @@ msgid ""
 "need to restart session"
 msgstr ""
 "mlang.dll を使用してファイルのコードページを検出する\n"
-"この設定を有効にするとフォルダー スキャンがかなり遅くなります。\n"
+"この設定を有効にするとフォルダー スキャンがかなり遅くなります。"
 "また、セッションの再起動が必要です。"
 
 #: Merge.rc:E6D7F1
@@ -3631,6 +3631,14 @@ msgstr ""
 "ドキュメントが同期化していないときはマージできません。\n"
 "\n"
 "続行する前にドキュメントを F5 キーで最新にしてください。"
+
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "空白で区切る"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "空白か句読点で区切る"
 
 #: Merge.rc:237A127
 #, c-format

@@ -3568,6 +3568,14 @@ msgstr ""
 "\n"
 "Îñâåæè äîêóìåíòå ïðå íàñòàâêà"
 
+#: Merge.rc:2405135
+msgid "Break at whitespace"
+msgstr "Ñòàíè íà ðàçìàêó"
+
+#: Merge.rc:6CB369C2
+msgid "Break at whitespace or punctuation"
+msgstr "Ñòàíè íà ðàçìàêó èëè èíòåðïóêöè¼è"
+
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"
