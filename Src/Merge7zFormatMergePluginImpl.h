@@ -21,7 +21,7 @@ class PluginInfo;
 
 struct Merge7zFormatMergePluginImpl : public Merge7z::Format
 {
-	Merge7zFormatMergePluginImpl() : m_plugin(NULL) {}
+	Merge7zFormatMergePluginImpl() : m_plugin(nullptr) {}
 	virtual HRESULT DeCompressArchive(HWND, LPCTSTR path, LPCTSTR folder);
 	virtual HRESULT CompressArchive(HWND, LPCTSTR path, Merge7z::DirItemEnumerator *);
 	virtual Inspector *Open(HWND, LPCTSTR);

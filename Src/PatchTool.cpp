@@ -117,7 +117,7 @@ int CPatchTool::CreatePatch()
 		// Select patch create -mode
 		m_diffWrapper.SetCreatePatchFile(dlgPatch.m_fileResult);
 		m_diffWrapper.SetAppendFiles(dlgPatch.m_appendFile);
-		m_diffWrapper.SetPrediffer(NULL);
+		m_diffWrapper.SetPrediffer(nullptr);
 
 		size_t fileCount = dlgPatch.GetItemCount();
 
@@ -212,7 +212,7 @@ bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 		// patch file EOLs correctly
 		diffOptions.bIgnoreEol = pDlgPatch->m_ignoreEOLDifference;
 		
-		diffOptions.bIgnoreCase = pDlgPatch->m_caseSensitive == false;
+		diffOptions.bIgnoreCase = !pDlgPatch->m_caseSensitive;
 		m_diffWrapper.SetOptions(&diffOptions);
 	}
 	else

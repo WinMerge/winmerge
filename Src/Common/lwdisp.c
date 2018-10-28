@@ -72,7 +72,7 @@ msgbox
 */
 static LPTSTR NTAPI ReportError(HRESULT sc, UINT style)
 {
-	LPTCH pc = 0;
+	LPTCH pc = NULL;
 	FormatMessage
 	(
 		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
@@ -80,7 +80,7 @@ static LPTSTR NTAPI ReportError(HRESULT sc, UINT style)
 		MAKELANGID(LANG_NEUTRAL, SUBLANG_SYS_DEFAULT),
 		(LPTCH)&pc, 0, NULL
 	);
-	if (pc == 0)
+	if (pc == NULL)
 	{
 		FormatMessage
 		(
@@ -95,7 +95,7 @@ static LPTSTR NTAPI ReportError(HRESULT sc, UINT style)
 	{
 		MessageBox(0, pc, 0, style);
 		LocalFree(pc);
-		pc = 0;
+		pc = NULL;
 	}
 	return pc;
 }
@@ -105,7 +105,7 @@ static LPTSTR NTAPI ReportError(HRESULT sc, UINT style)
  */
 static LPTSTR FormatMessageFromString(LPCTSTR format, ...)
 {
-	LPTCH pc = 0;
+	LPTCH pc = NULL;
 	va_list list;
 	va_start(list, format);
 	FormatMessage
@@ -146,7 +146,7 @@ LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
 {
 	CLSID clsid;
 	VARIANT v[2], ret;
-	void *pv = 0;
+	void *pv = NULL;
 	SCODE sc;
 	wchar_t wpath[512];
 
@@ -219,10 +219,10 @@ LPDISPATCH CreateDispatchBySourceAndCLSID(LPCTSTR source, CLSID *pObjectCLSID)
  */
 LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 {
-	void *pv = 0;
+	void *pv = NULL;
 	SCODE sc;
 	WCHAR wc[320];
-	if (source == 0)
+	if (source == NULL)
 	{
 		CLSID clsid;
 		if (SUCCEEDED(sc=CLSIDFromProgID(progid, &clsid)))
@@ -319,12 +319,12 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 			// give it a second try after opening within associated application:
 			SHELLEXECUTEINFO sein;
 			sein.cbSize = sizeof sein;
-			sein.hwnd = 0;
+			sein.hwnd = NULL;
 			// SEE_MASK_FLAG_DDEWAIT: wait until application is ready to listen
 			sein.fMask = SEE_MASK_FLAG_DDEWAIT;
 			sein.lpVerb = _T("open");
 			sein.lpFile = source;
-			sein.lpParameters = 0;
+			sein.lpParameters = NULL;
 			sein.lpDirectory = _T(".");
 			sein.nShow = SW_SHOWNORMAL;
 			if (ShellExecuteEx(&sein))
@@ -352,7 +352,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 		MessageBox(0, errorText, 0, MB_ICONSTOP|MB_TASKMODAL);
 		LocalFree(errorText);
 		// no valid dispatch
-		pv = 0;
+		pv = NULL;
 	}
 	return (LPDISPATCH)pv;
 }
@@ -373,7 +373,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 		dispparams.cNamedArgs = 1;
 		dispparams.rgdispidNamedArgs = &idNamed;
 	}
-	if (pi)
+	if (pi != NULL)
 	{
 		BOOL bParamByRef = FALSE;
 		BOOL bNeedToConv = FALSE;
@@ -498,7 +498,7 @@ HRESULT invokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH op, VARIANT
 {
 	DISPID id = DISPID_UNKNOWN;
 	LPOLESTR  name = (LPOLESTR )((UINT_PTR)silent & ~1);
-	if (pi)
+	if (pi != NULL)
 	{
 		HRESULT sc = pi->lpVtbl->GetIDsOfNames(pi, &IID_NULL, &name, 1, 0, &id);
 		if (FAILED(sc))
@@ -507,7 +507,7 @@ HRESULT invokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH op, VARIANT
 			{
 				ReportError(sc, MB_ICONSTOP);
 			}
-			pi = 0;
+			pi = NULL;
 		}
 	}
 	return invokeV(pi, ret, id, op, argv);
@@ -732,9 +732,9 @@ const struct LWDispVtbl *NTAPI LWDispSubclass(struct LWDispVtbl *lpVtbl)
 IDispatch *NTAPI LWDispatch(void *target, const void *disp_map,
 	const struct LWDispVtbl *lpVtbl, struct LWDispatch *This)
 {
-	if (lpVtbl == 0)
+	if (lpVtbl == NULL)
 		lpVtbl = &vtbl;
-	if (This == 0)
+	if (This == NULL)
 		This = (struct LWDispatch *)malloc(sizeof(*This));
 	if (This)
 	{
@@ -767,7 +767,7 @@ VARIANT NTAPI LWArgA(LPCSTR cVal)
 	UINT len = lstrlenA(cVal);
 	VARIANT v;
 	VariantInit(&v);
-	V_VAR(&v,BSTR) = SysAllocStringLen(0, len);
+	V_VAR(&v,BSTR) = SysAllocStringLen(NULL, len);
 	MultiByteToWideChar(CP_ACP, 0, cVal, -1, V_BSTR(&v), len);
 	return v;
 }

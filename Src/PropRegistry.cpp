@@ -38,7 +38,7 @@ static LPCTSTR f_RegValuePath = _T("Executable");
 
 PropRegistry::PropRegistry(COptionsMgr *optionsMgr)
 : OptionsPanel(optionsMgr, PropRegistry::IDD)
-, m_bUseRecycleBin(TRUE)
+, m_bUseRecycleBin(true)
 , m_tempFolderType(0)
 {
 }

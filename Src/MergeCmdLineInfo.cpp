@@ -42,12 +42,12 @@
  * @param [out] flag Tells whether param is the name of a flag.
  * @return Points to the remaining portion of the command line.
  */
-const TCHAR *MergeCmdLineInfo::EatParam(const TCHAR *p, String &param, bool *flag)
+const TCHAR *MergeCmdLineInfo::EatParam(const TCHAR *p, String &param, bool *flag /*= nullptr*/)
 {
-	if (p && *(p += _tcsspn(p, _T(" \t\r\n"))) == _T('\0'))
-		p = 0;
+	if (p != nullptr && *(p += _tcsspn(p, _T(" \t\r\n"))) == _T('\0'))
+		p = nullptr;
 	const TCHAR *q = p;
-	if (q)
+	if (q != nullptr)
 	{
 		TCHAR c = *q;
 		bool quoted = false;
@@ -75,11 +75,11 @@ const TCHAR *MergeCmdLineInfo::EatParam(const TCHAR *p, String &param, bool *fla
 		else
 		{
 			*flag = false;
-			flag = 0;
+			flag = nullptr;
 		}
 	}
 	param.assign(p ? p : _T(""), q - p);
-	if (q > p && flag)
+	if (q > p && flag != nullptr)
 	{
 		param = strutils::makelower(param);
 	}

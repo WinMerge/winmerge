@@ -484,7 +484,7 @@ static HANDLE NTAPI FindFile(HANDLE h, LPCTSTR path, WIN32_FIND_DATA *fd)
 const WORD wSourceLangId = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
 
 CLanguageSelect::CLanguageSelect()
-: m_hCurrentDll(0)
+: m_hCurrentDll(nullptr)
 , m_wCurLanguage(wSourceLangId)
 , m_codepage(0)
 {
@@ -581,7 +581,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	m_hCurrentDll = LoadLibrary(_T("MergeLang.dll"));
 	// There is no point in translating error messages about inoperational
 	// translation system, so go without string resources here.
-	if (m_hCurrentDll == 0)
+	if (m_hCurrentDll == nullptr)
 	{
 		if (bShowError)
 			AfxMessageBox(_T("Failed to load MergeLang.dll"), MB_ICONSTOP);
@@ -604,7 +604,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		return false;
 	}
 	HRSRC mergepot = FindResource(m_hCurrentDll, _T("MERGEPOT"), RT_RCDATA);
-	if (mergepot == 0)
+	if (mergepot == nullptr)
 	{
 		if (bShowError)
 			AfxMessageBox(_T("MergeLang.dll is invalid"), MB_ICONSTOP);
@@ -613,7 +613,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	size_t size = SizeofResource(m_hCurrentDll, mergepot);
 	const char *data = (const char *)LoadResource(m_hCurrentDll, mergepot);
 	char buf[1024];
-	std::string *ps = 0;
+	std::string *ps = nullptr;
 	std::string msgid;
 	unsigned uid = 0;
 	bool found_uid = false;
@@ -624,7 +624,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		size_t len = eol - data;
 		if (len >= sizeof buf)
 		{
-			ASSERT(FALSE);
+			ASSERT(false);
 			break;
 		}
 		memcpy(buf, data, len);
@@ -644,7 +644,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		{
 			ps = &msgid;
 		}
-		if (ps)
+		if (ps != nullptr)
 		{
 			char *p = strchr(buf, '"');
 			char *q = strrchr(buf, '"');
@@ -654,7 +654,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 			}
 			else
 			{
-				ps = 0;
+				ps = nullptr;
 				// avoid dereference of empty vector or last vector
 				if (found_uid)
 				{
@@ -671,7 +671,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	if (_tfopen_s(&f, strPath.c_str(), _T("r")) != 0)
 	{
 		FreeLibrary(m_hCurrentDll);
-		m_hCurrentDll = 0;
+		m_hCurrentDll = nullptr;
 		if (bShowError)
 		{
 			String str = _T("Failed to load ") + strPath;
@@ -679,7 +679,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		}
 		return false;
 	}
-	ps = 0;
+	ps = nullptr;
 	msgid.erase();
 	found_uid = false;
 	std::string format;
@@ -716,7 +716,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		{
 			ps = &msgstr;
 		}
-		if (ps)
+		if (ps != nullptr)
 		{
 			char *p = strchr(buf, '"');
 			char *q = strrchr(buf, '"');
@@ -726,7 +726,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 			}
 			else
 			{
-				ps = 0;
+				ps = nullptr;
 				if (!msgid.empty())
 					unslash(0, msgid);
 				if (msgstr.empty())
@@ -755,7 +755,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	if (unresolved != 0 || mismatched != 0)
 	{
 		FreeLibrary(m_hCurrentDll);
-		m_hCurrentDll = 0;
+		m_hCurrentDll = nullptr;
 		m_map_uid_to_msgid.clear();
 		m_map_msgid_to_uid.clear();
 		m_codepage = 0;
@@ -784,10 +784,10 @@ bool CLanguageSelect::SetLanguage(LANGID wLangId, bool bShowError /*= false*/)
 	// reset the resource handle
 	AfxSetResourceHandle(AfxGetInstanceHandle());
 	// free the existing DLL
-	if (m_hCurrentDll)
+	if (m_hCurrentDll != nullptr)
 	{
 		FreeLibrary(m_hCurrentDll);
-		m_hCurrentDll = NULL;
+		m_hCurrentDll = nullptr;
 	}
 	m_map_uid_to_msgid.clear();
 	m_map_msgid_to_uid.clear();
@@ -894,8 +894,8 @@ bool CLanguageSelect::TranslateString(const std::string& str, String &translated
 void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) const
 {
 	HGDIOBJ hf = (HGDIOBJ)sb.SendMessage(WM_GETFONT);
-	CClientDC dc(0);
-	if (hf)
+	CClientDC dc(nullptr);
+	if (hf != nullptr)
 		hf = dc.SelectObject(hf);
 	if (n)
 		sb.SetIndicators(0, n);
@@ -919,7 +919,7 @@ void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) con
 		}
 		style = 0;
 	}
-	if (hf)
+	if (hf != nullptr)
 		hf = dc.SelectObject(hf);
 	// Send WM_SIZE to get pane rectangles right
 	RECT rect;
@@ -983,7 +983,7 @@ void CLanguageSelect::TranslateDialog(HWND h) const
 			::SetWindowText(h, s.c_str());
 		h = ::GetWindow(h, gw);
 		gw = GW_HWNDNEXT;
-	} while (h);
+	} while (h != nullptr);
 }
 
 void CLanguageSelect::RetranslateDialog(HWND h, const TCHAR *name) const
@@ -1065,12 +1065,12 @@ void CLanguageSelect::RetranslateDialog(HWND h, const TCHAR *name) const
 
 	bool english = false;
 	HMODULE hModule = m_hCurrentDll;
-	if (!hModule)
+	if (hModule == nullptr)
 	{
 		hModule = LoadLibrary(_T("MergeLang.dll"));
 		english = true;
 	}
-	if (hModule)
+	if (hModule != nullptr)
 	{
 		if (DLGTEMPLATEEX* pTemplate = loadDialogResource(hModule, name))
 		{
@@ -1093,7 +1093,7 @@ void CLanguageSelect::RetranslateDialog(HWND h, const TCHAR *name) const
 						const wchar_t *p = reinterpret_cast<const wchar_t*>(pw);
 						if (wcsncmp(p, L"Merge.rc:", 9) == 0)
 						{
-							if (pItemEng)
+							if (pItemEng != nullptr)
 							{
 								const WORD *pw2 = reinterpret_cast<const WORD *>(pItemEng);
 								pw2 += sizeof(DLGITEMTEMPLATEEX) / sizeof(WORD);
@@ -1111,7 +1111,7 @@ void CLanguageSelect::RetranslateDialog(HWND h, const TCHAR *name) const
 
 					hWndChlid = ::GetWindow(hWndChlid, GW_HWNDNEXT);
 					pItem = findNextDlgItem(pItem);
-					if (pItemEng)
+					if (pItemEng != nullptr)
 						pItemEng = findNextDlgItem(pItemEng);
 				}
 			}

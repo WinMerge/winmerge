@@ -36,7 +36,7 @@ public :
 	CComboBox	m_ctlDest;
 	int		m_nSource;
 	int		m_nDest;
-	BOOL	m_bAlpha;
+	bool	m_bAlpha;
 	CString	m_sPreview;
 	//}}AFX_DATA
 	CString	m_sOriginal;

@@ -22,16 +22,16 @@ wchar_t g_exe_path[260];
 
 IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& params, const std::wstring& title, const std::wstring& desc, int icon_index)
 {
-	IShellLinkW *pShellLink = NULL;
-	if (FAILED(CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER,
+	IShellLinkW *pShellLink = nullptr;
+	if (FAILED(CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER,
 	                            IID_IShellLinkW, (void **)&pShellLink)))
-		return NULL;
+		return nullptr;
 
 	std::wstring app_path2(app_path);
 	if (app_path.empty())
 	{
 		if (g_exe_path[0] == '\0')
-			GetModuleFileNameW(NULL, g_exe_path, sizeof(g_exe_path)/sizeof(g_exe_path[0]));
+			GetModuleFileNameW(nullptr, g_exe_path, sizeof(g_exe_path)/sizeof(g_exe_path[0]));
 		app_path2 = g_exe_path;
 	}
 	pShellLink->SetPath(app_path2.c_str());
@@ -39,7 +39,7 @@ IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& p
 	pShellLink->SetArguments(params.c_str());
 	pShellLink->SetDescription(desc.c_str());
 
-	IPropertyStore *pPS = NULL;
+	IPropertyStore *pPS = nullptr;
 	if (SUCCEEDED(pShellLink->QueryInterface(IID_IPropertyStore, (void **)&pPS)))
 	{
 		PROPVARIANT pv;
@@ -64,11 +64,11 @@ bool SetCurrentProcessExplicitAppUserModelID(const std::wstring& appid)
 {
 	g_appid = appid;
 	HMODULE hLibrary = GetModuleHandle(_T("shell32.dll"));
-	if (!hLibrary)
+	if (hLibrary == nullptr)
 		return false;
 	HRESULT (__stdcall *pfnSetCurrentProcessExplicitAppUserModelID)(PCWSTR AppID) = 
 		(HRESULT (__stdcall *)(PCWSTR))GetProcAddress(hLibrary, "SetCurrentProcessExplicitAppUserModelID");
-	if (!pfnSetCurrentProcessExplicitAppUserModelID)
+	if (pfnSetCurrentProcessExplicitAppUserModelID == nullptr)
 		return false;
 	return pfnSetCurrentProcessExplicitAppUserModelID(appid.c_str()) == S_OK;
 }
@@ -82,7 +82,7 @@ bool AddToRecentDocs(const String& app_path, const String& params, const String&
 #else
 	saiil.psl = (IShellLink *)CreateShellLink(ucr::toUTF16(app_path), ucr::toUTF16(params), ucr::toUTF16(title), ucr::toUTF16(desc), icon_index);
 #endif
-	if (!saiil.psl)
+	if (saiil.psl == nullptr)
 		return false;
 	SHAddToRecentDocs(SHARD_APPIDINFOLINK, &saiil);
 	saiil.psl->Release();
@@ -92,8 +92,8 @@ bool AddToRecentDocs(const String& app_path, const String& params, const String&
 std::vector<Item> GetRecentDocs(size_t nMaxItems)
 {
 	std::vector<Item> list;
-	IApplicationDocumentLists *pDocumentLists = NULL;
-	if (FAILED(CoCreateInstance(CLSID_ApplicationDocumentLists, NULL, CLSCTX_INPROC_SERVER,
+	IApplicationDocumentLists *pDocumentLists = nullptr;
+	if (FAILED(CoCreateInstance(CLSID_ApplicationDocumentLists, nullptr, CLSCTX_INPROC_SERVER,
 	                            IID_IApplicationDocumentLists, (void **)&pDocumentLists)))
 		return list;
 	pDocumentLists->SetAppID(g_appid.c_str());
@@ -112,10 +112,10 @@ std::vector<Item> GetRecentDocs(size_t nMaxItems)
 					wchar_t szPath[MAX_PATH];
 					wchar_t szDescription[MAX_PATH];
 					wchar_t szArguments[MAX_PATH * 6];
-					pShellLink->GetPath(szPath, sizeof(szPath) / sizeof(szPath[0]), NULL, SLGP_RAWPATH);
+					pShellLink->GetPath(szPath, sizeof(szPath) / sizeof(szPath[0]), nullptr, SLGP_RAWPATH);
 					pShellLink->GetDescription(szDescription, sizeof(szDescription) / sizeof(szDescription[0]));
 					pShellLink->GetArguments(szArguments, sizeof(szArguments) / sizeof(szArguments[0]));
-					IPropertyStore *pPS = NULL;
+					IPropertyStore *pPS = nullptr;
 					if (SUCCEEDED(pShellLink->QueryInterface(IID_IPropertyStore, (void **)&pPS)))
 					{
 						PROPVARIANT pv;

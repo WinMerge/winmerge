@@ -92,7 +92,7 @@ public:
 
 private:
 
-	static const TCHAR *EatParam(const TCHAR *, String &, bool *flag = 0);
+	static const TCHAR *EatParam(const TCHAR *, String &, bool *flag = nullptr);
 	const TCHAR *SetOption(const TCHAR *, const String& key, const TCHAR *value = _T("1"));
 	const TCHAR *SetConfig(const TCHAR *);
 	void ParseWinMergeCmdLine(const TCHAR *);

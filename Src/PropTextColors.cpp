@@ -74,7 +74,7 @@ void PropTextColors::ReadOptions()
  */
 void PropTextColors::WriteOptions()
 {
-	GetOptionsMgr()->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, m_bCustomColors == false);
+	GetOptionsMgr()->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, !m_bCustomColors);
 	// User can only change colors via BrowseColorAndSave,
 	// which writes to m_pTempColors
 	// so user's latest choices are in m_pTempColors
@@ -211,7 +211,7 @@ void PropTextColors::OnDefaultsStandardColors()
 
 /** 
  * @brief Enable / disable color controls on dialog.
- * @param [in] bEnable If TRUE color controls are enabled.
+ * @param [in] bEnable If `true` color controls are enabled.
  */
 void PropTextColors::EnableColorButtons(bool bEnable)
 {

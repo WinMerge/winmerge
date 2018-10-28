@@ -319,7 +319,7 @@ InitNew (CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_DOS*/ )
   m_nSyncPosition = m_nUndoPosition = 0;
   m_bUndoGroup = m_bUndoBeginGroup = false;
   ASSERT (m_aUndoBuf.size () == 0);
-  UpdateViews (NULL, NULL, UPDATE_RESET);
+  UpdateViews (nullptr, nullptr, UPDATE_RESET);
   //BEGIN SW
   m_ptLastChange.x = m_ptLastChange.y = -1;
   //END SW
@@ -361,7 +361,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
   ASSERT (!m_bInit);
   ASSERT (m_aLines.size() == 0);
 
-  HANDLE hFile = NULL;
+  HANDLE hFile = nullptr;
   int nCurrentMax = 256;
   TCHAR *pcLineBuf = new TCHAR[nCurrentMax];
 
@@ -380,8 +380,8 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
       if (dwFileAttributes == (DWORD) - 1)
         __leave;
 
-      hFile =::CreateFile (pszFileName, GENERIC_READ, FILE_SHARE_READ + FILE_SHARE_WRITE, NULL,
-        OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
+      hFile =::CreateFile (pszFileName, GENERIC_READ, FILE_SHARE_READ + FILE_SHARE_WRITE, nullptr,
+        OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, nullptr);
       if (hFile == INVALID_HANDLE_VALUE)
         __leave;
 
@@ -390,7 +390,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
       const DWORD dwBufSize = 32768;
       LPSTR pcBuf = (LPSTR) _alloca (dwBufSize);
       DWORD dwCurSize;
-      if (!::ReadFile (hFile, pcBuf, dwBufSize, &dwCurSize, NULL))
+      if (!::ReadFile (hFile, pcBuf, dwBufSize, &dwCurSize, nullptr))
         __leave;
 
       if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
@@ -436,7 +436,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
           dwBufPtr++;
           if (dwBufPtr == dwCurSize && dwCurSize == dwBufSize)
             {
-              if (!::ReadFile (hFile, pcBuf, dwBufSize, &dwCurSize, NULL))
+              if (!::ReadFile (hFile, pcBuf, dwBufSize, &dwCurSize, nullptr))
                 __leave;
               dwBufPtr = 0;
             }
@@ -480,12 +480,12 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
       bSuccess = true;
 
       RetypeViews (pszFileName);
-      UpdateViews (NULL, NULL, UPDATE_RESET);
+      UpdateViews (nullptr, nullptr, UPDATE_RESET);
     }
   __finally
     {
     }
-  if (hFile != NULL && hFile != INVALID_HANDLE_VALUE)
+  if (hFile != nullptr && hFile != INVALID_HANDLE_VALUE)
     ::CloseHandle (hFile);
   delete [] pcLineBuf;
   //BEGIN SW
@@ -526,8 +526,8 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
     if (::GetTempFileName (szTempFileDir, _T ("CRE"), 0, szTempFileName) == 0)
       __leave;
 
-      hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, NULL,
-                               CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+      hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, nullptr,
+                               CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
       if (hTempFile == INVALID_HANDLE_VALUE)
         __leave;
 
@@ -550,7 +550,7 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
                     {
                       LPTSTR pszBuf;
                       iconvert_new (m_aLines[nLine].GetLine(0), &pszBuf, 1, m_nSourceEncoding, m_nSourceEncoding == 15);
-                      if (!::WriteFile (hTempFile, pszBuf, nLength, &dwWrittenBytes, NULL))
+                      if (!::WriteFile (hTempFile, pszBuf, nLength, &dwWrittenBytes, nullptr))
                         {
                           free (pszBuf);
                           __leave;
@@ -558,7 +558,7 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
                       free (pszBuf);
                     }
                   else
-                    if (!::WriteFile (hTempFile, pszLine, nLength, &dwWrittenBytes, NULL))
+                    if (!::WriteFile (hTempFile, pszLine, nLength, &dwWrittenBytes, nullptr))
                       __leave;
                   if (nLength != (int) dwWrittenBytes)
                     __leave;
@@ -566,7 +566,7 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
               if (nLine < nLineCount - 1)     //  Last line must not end with CRLF
 
                 {
-                  if (!::WriteFile (hTempFile, pszCRLF, nCRLFLength, &dwWrittenBytes, NULL))
+                  if (!::WriteFile (hTempFile, pszCRLF, nCRLFLength, &dwWrittenBytes, nullptr))
                     __leave;
                   if (nCRLFLength != (int) dwWrittenBytes)
                     __leave;
@@ -609,7 +609,7 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
     m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber;
     
     // redraw line revision marks
-    UpdateViews (NULL, NULL, UPDATE_FLAGSONLY);	
+    UpdateViews (nullptr, nullptr, UPDATE_FLAGSONLY);	
   }
   __finally
   {
@@ -837,7 +837,7 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
                   ASSERT ((m_aLines[nPrevLine].m_dwFlags & dwFlag) != 0);
                   m_aLines[nPrevLine].m_dwFlags &= ~dwFlag;
           if (bUpdate)
-          UpdateViews (NULL, NULL, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nPrevLine);
+          UpdateViews (nullptr, nullptr, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nPrevLine);
                 }
             }
           else
@@ -848,7 +848,7 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
 
       m_aLines[nLine].m_dwFlags = dwNewFlags;
       if (bUpdate)
-      UpdateViews (NULL, NULL, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nLine);
+      UpdateViews (nullptr, nullptr, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nLine);
     }
 }
 
@@ -862,13 +862,13 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
                  CString &text, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC */,
                  bool bExcludeInvisibleLines/*= true*/) const
 {
-  GetText(nStartLine, nStartChar, nEndLine, nEndChar, text, (nCrlfStyle == CRLF_STYLE_AUTOMATIC) ? NULL : GetStringEol (nCrlfStyle), bExcludeInvisibleLines);
+  GetText(nStartLine, nStartChar, nEndLine, nEndChar, text, (nCrlfStyle == CRLF_STYLE_AUTOMATIC) ? nullptr : GetStringEol (nCrlfStyle), bExcludeInvisibleLines);
 }
 
 
 void CCrystalTextBuffer::
 GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
-		CString & text, LPCTSTR pszCRLF /*= NULL*/, bool bExcludeInvisibleLines/*= true*/) const
+		CString & text, LPCTSTR pszCRLF /*= nullptr*/, bool bExcludeInvisibleLines/*= true*/) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -953,7 +953,7 @@ void CCrystalTextBuffer::
 RemoveView (CCrystalTextView * pView)
 {
   POSITION pos = m_lpViews.GetHeadPosition ();
-  while (pos != NULL)
+  while (pos != nullptr)
     {
       POSITION thispos = pos;
       CCrystalTextView *pvw = m_lpViews.GetNext (pos);
@@ -972,7 +972,7 @@ RetypeViews (LPCTSTR lpszFileName)
   POSITION pos = m_lpViews.GetHeadPosition ();
   CString sNew = GetExt (lpszFileName);
   CCrystalTextView::TextDefinition *def = CCrystalTextView::GetTextType (sNew);
-  while (pos != NULL)
+  while (pos != nullptr)
     {
       CCrystalTextView *pView = m_lpViews.GetNext (pos);
       pView->SetTextType (def);
@@ -984,7 +984,7 @@ void CCrystalTextBuffer::
 UpdateViews (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwUpdateFlags, int nLineIndex /*= -1*/ )
 {
   POSITION pos = m_lpViews.GetHeadPosition ();
-  while (pos != NULL)
+  while (pos != nullptr)
     {
       CCrystalTextView *pView = m_lpViews.GetNext (pos);
       pView->UpdateView (pSource, pContext, dwUpdateFlags, nLineIndex);
@@ -1032,7 +1032,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
       // delete part of one line
       m_aLines[nStartLine].Delete(nStartChar, nEndChar);
 
-      if (pSource!=NULL)
+      if (pSource!=nullptr)
         UpdateViews (pSource, &context, UPDATE_SINGLELINE | UPDATE_HORZRANGE, nStartLine);
     }
   else
@@ -1058,7 +1058,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
       if (nStartChar == 0)
         m_aLines[nStartLine].m_dwFlags = dwFlags;
 
-      if (pSource!=NULL)
+      if (pSource!=nullptr)
         UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nStartLine);
     }
 
@@ -1224,7 +1224,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
     }
 
 
-  if (pSource!=NULL)
+  if (pSource!=nullptr)
     {
       if (nInsertedLines > 0)
         UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nLine);
@@ -1258,14 +1258,14 @@ CanRedo () const
 }
 
 POSITION CCrystalTextBuffer::
-GetUndoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
+GetUndoActionCode (int & nAction, POSITION pos /*= nullptr*/ ) const
 {
   ASSERT (CanUndo ());          //  Please call CanUndo() first
 
   ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
 
   intptr_t nPosition;
-  if (pos == NULL)
+  if (pos == nullptr)
     {
       //  Start from beginning
       nPosition = m_nUndoPosition;
@@ -1295,7 +1295,7 @@ GetUndoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
 }
 
 POSITION CCrystalTextBuffer::
-GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
+GetRedoActionCode (int & nAction, POSITION pos /*= nullptr*/ ) const
 {
   ASSERT (CanRedo ());          //  Please call CanRedo() before!
 
@@ -1303,7 +1303,7 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
   ASSERT ((m_aUndoBuf[m_nUndoPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
 
   intptr_t nPosition;
-  if (pos == NULL)
+  if (pos == nullptr)
     {
       //  Start from beginning
       nPosition = m_nUndoPosition;
@@ -1330,13 +1330,13 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
         }
     }
   if (nPosition >= static_cast<intptr_t>(m_aUndoBuf.size ()))
-    return NULL;                //  No more redo actions!
+    return nullptr;                //  No more redo actions!
 
   return (POSITION) nPosition;
 }
 
 POSITION CCrystalTextBuffer::
-GetUndoDescription (CString & desc, POSITION pos /*= NULL*/ ) const
+GetUndoDescription (CString & desc, POSITION pos /*= nullptr*/ ) const
 {
   int nAction;
   POSITION retValue = GetUndoActionCode(nAction, pos);
@@ -1349,7 +1349,7 @@ GetUndoDescription (CString & desc, POSITION pos /*= NULL*/ ) const
 }
 
 POSITION CCrystalTextBuffer::
-GetRedoDescription (CString & desc, POSITION pos /*= NULL*/ ) const
+GetRedoDescription (CString & desc, POSITION pos /*= nullptr*/ ) const
 {
   int nAction;
   POSITION retValue = GetRedoActionCode(nAction, pos);
@@ -1491,8 +1491,8 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
 void CCrystalTextBuffer::			/* virtual base */
 AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
-    const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText, int nActionType,
-    CDWordArray *paSavedRevisionNumbers)
+    const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText, int nActionType /*= CE_ACTION_UNKNOWN*/,
+    CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
 {
   //  Forgot to call BeginUndoGroup()?
   ASSERT (m_bUndoGroup);
@@ -1600,7 +1600,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
   if (nPos != 0 || nEndChar != 0)
     m_aLines[nEndLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
-  if (bHistory == false)
+  if (!bHistory)
   {
     delete paSavedRevisionNumbers;
     return true;
@@ -1649,7 +1649,7 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
           bGroupFlag = true;
         }
     }
-  if (bExcludeInvisibleLines && pSource && pSource->GetEnableHideLines ())
+  if (bExcludeInvisibleLines && pSource != nullptr && pSource->GetEnableHideLines ())
     {
       for (int nLineIndex = nEndLine; nLineIndex >= nStartLine; nLineIndex--)
         {
@@ -1728,7 +1728,7 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   m_dwCurrentRevisionNumber++;
   m_aLines[nStartLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
-  if (bHistory == false)
+  if (!bHistory)
   {
     delete paSavedRevisionNumbers;
     return true;
@@ -1747,7 +1747,7 @@ GetActionDescription (int nAction, CString & desc) const
 #ifdef CRYSEDIT_RES_HANDLE
   AfxSetResourceHandle (CRYSEDIT_RES_HANDLE);
 #else
-  if (CCrystalTextView::s_hResourceInst != NULL)
+  if (CCrystalTextView::s_hResourceInst != nullptr)
     AfxSetResourceHandle (CCrystalTextView::s_hResourceInst);
 #endif
   bool bSuccess = false;
@@ -1835,7 +1835,7 @@ void CCrystalTextBuffer::
 FlushUndoGroup (CCrystalTextView * pSource)
 {
   ASSERT (m_bUndoGroup);
-  if (pSource != NULL)
+  if (pSource != nullptr)
     {
       ASSERT (static_cast<size_t>(m_nUndoPosition) <= m_aUndoBuf.size());
       if (m_nUndoPosition > 0)

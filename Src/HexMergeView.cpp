@@ -46,8 +46,8 @@ static HRESULT NTAPI SE(BOOL f)
 	if (f)
 		return S_OK;
 	HRESULT hr = (HRESULT)::GetLastError();
-	ASSERT(hr);
-	if (hr == 0)
+	ASSERT(hr != NULL);
+	if (hr == NULL)
 		hr = E_UNEXPECTED;
 	return hr;
 }
@@ -103,7 +103,7 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CHexMergeView::CHexMergeView()
-: m_pif(0)
+: m_pif(nullptr)
 , m_nThisPane(0)
 {
 }
@@ -113,7 +113,7 @@ CHexMergeView::CHexMergeView()
  */
 void CHexMergeView::OnDraw(CDC *)
 {
-	ASSERT(FALSE);
+	ASSERT(false);
 }
 
 /**
@@ -121,8 +121,8 @@ void CHexMergeView::OnDraw(CDC *)
  */
 bool CHexMergeView::IsLoadable()
 {
-	static void *pv = NULL;
-	if (pv == NULL)
+	static void *pv = nullptr;
+	if (pv == nullptr)
 	{
 		pv = LoadLibrary(_T("Frhed\\hekseditU.dll"));
 	}
@@ -149,7 +149,7 @@ int CHexMergeView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CView::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	m_pif = reinterpret_cast<IHexEditorWindow *>(::GetWindowLongPtr(m_hWnd, GWLP_USERDATA));
-	if (m_pif == 0 || m_pif->get_interface_version() < HEKSEDIT_INTERFACE_VERSION)
+	if (m_pif == nullptr || m_pif->get_interface_version() < HEKSEDIT_INTERFACE_VERSION)
 		return -1;
 	return 0;
 }
@@ -174,7 +174,7 @@ void CHexMergeView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 		SetScrollInfo(SB_HORZ, &si);
 	}
 	CView::OnHScroll(nSBCode, nPos, pScrollBar);
-	if (pScrollBar)
+	if (pScrollBar != nullptr)
 	{
 		GetScrollInfo(SB_HORZ, &si, SIF_ALL | SIF_DISABLENOSCROLL);
 		if (nSBCode != SB_THUMBTRACK)

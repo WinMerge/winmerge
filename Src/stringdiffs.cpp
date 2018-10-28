@@ -39,7 +39,7 @@ void Close()
 	if (CustomChars)
 	{
 		free(BreakChars);
-		BreakChars = NULL;
+		BreakChars = nullptr;
 		CustomChars = false;
 	}
 	Initialized = false;
@@ -682,7 +682,7 @@ isWordBreak(int breakType, const TCHAR *str, int index)
 		// breakType==0 means whitespace only
 		if (!breakType)
 			return false;
-		return _tcschr(BreakChars, ch) != 0;
+		return _tcschr(BreakChars, ch) != nullptr;
 	}
 	else 
 	{
@@ -707,7 +707,7 @@ isWordBreak(int breakType, const TCHAR *str, int index)
 	// breakType==0 means whitespace only
 	if (!breakType)
 		return false;
-	return _tcschr(BreakChars, ch) != 0;
+	return _tcschr(BreakChars, ch) != nullptr;
 #endif
 }
 

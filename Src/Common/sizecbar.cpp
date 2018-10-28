@@ -131,7 +131,7 @@ BOOL CSizingControlBar::Create(LPCTSTR lpszWindowName,
 
     // register and create the window - skip CControlBar::Create()
     CString wndclass = ::AfxRegisterWndClass(CS_DBLCLKS,
-        ::LoadCursor(NULL, IDC_ARROW),
+        ::LoadCursor(nullptr, IDC_ARROW),
         ::GetSysColorBrush(COLOR_BTNFACE), 0);
 
     dwStyle &= ~CBRS_ALL; // keep only the generic window styles
@@ -156,11 +156,11 @@ void CSizingControlBar::EnableDocking(DWORD dwDockStyle)
     ASSERT((m_dwStyle & CBRS_SIZE_DYNAMIC) != 0);
 
     m_dwDockStyle = dwDockStyle;
-    if (m_pDockContext == NULL)
+    if (m_pDockContext == nullptr)
         m_pDockContext = new CSCBDockContext(this);
 
     // permanently wire the bar's owner to its current parent
-    if (m_hWndOwner == NULL)
+    if (m_hWndOwner == nullptr)
         m_hWndOwner = ::GetParent(m_hWnd);
 }
 #endif
@@ -246,11 +246,11 @@ CSize CSizingControlBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
     GetRowSizingBars(arrSCBars);
     AFX_SIZEPARENTPARAMS layout;
     layout.hDWP = pDockBar->m_bLayoutQuery ?
-        NULL : ::BeginDeferWindowPos(static_cast<int>(arrSCBars.GetSize()));
+        nullptr : ::BeginDeferWindowPos(static_cast<int>(arrSCBars.GetSize()));
     for (int i = 0; i < arrSCBars.GetSize(); i++)
         if (arrSCBars[i]->m_nStateFlags & (delayHide|delayShow))
             arrSCBars[i]->RecalcDelayShow(&layout);
-    if (layout.hDWP != NULL)
+    if (layout.hDWP != nullptr)
         ::EndDeferWindowPos(layout.hDWP);
 
     // get available length
@@ -351,10 +351,10 @@ void CSizingControlBar::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
 //
 void CSizingControlBar::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    if (m_pDockBar != NULL)
+    if (m_pDockBar != nullptr)
     {
         // start the drag
-        ASSERT(m_pDockContext != NULL);
+        ASSERT(m_pDockContext != nullptr);
         ClientToScreen(&point);
         m_pDockContext->StartDrag(point);
     }
@@ -364,10 +364,10 @@ void CSizingControlBar::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CSizingControlBar::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-    if (m_pDockBar != NULL)
+    if (m_pDockBar != nullptr)
     {
         // toggle docking
-        ASSERT(m_pDockContext != NULL);
+        ASSERT(m_pDockContext != nullptr);
         m_pDockContext->ToggleDocking();
     }
     else
@@ -432,7 +432,7 @@ void CSizingControlBar::OnNcCalcSize(BOOL bCalcValidRects,
     if (IsFloating())
     {
         CFrameWnd* pFrame = GetParentFrame();
-        if (pFrame != NULL &&
+        if (pFrame != nullptr &&
             pFrame->IsKindOf(RUNTIME_CLASS(CMiniFrameWnd)))
         {
             DWORD dwStyle = ::GetWindowLong(pFrame->m_hWnd, GWL_STYLE);
@@ -449,7 +449,7 @@ void CSizingControlBar::OnNcCalcSize(BOOL bCalcValidRects,
     m_dwSCBStyle &= ~SCBS_EDGEALL;
 
     // add resizing edges between bars on the same row
-    if (!IsFloating() && m_pDockBar != NULL)
+    if (!IsFloating() && m_pDockBar != nullptr)
     {
         CSCBArray arrSCBars;
         int nThis;
@@ -493,10 +493,10 @@ void CSizingControlBar::NcCalcClient(LPRECT pRc, UINT nDockBarID)
     // make room for edges only if they will be painted
     if (m_dwSCBStyle & SCBS_SHOWEDGES)
         rc.DeflateRect(
-            (m_dwSCBStyle & SCBS_EDGELEFT) ? m_cxEdge : 0,
-            (m_dwSCBStyle & SCBS_EDGETOP) ? m_cxEdge : 0,
-            (m_dwSCBStyle & SCBS_EDGERIGHT) ? m_cxEdge : 0,
-            (m_dwSCBStyle & SCBS_EDGEBOTTOM) ? m_cxEdge : 0);
+            (m_dwSCBStyle & SCBS_EDGELEFT)   != 0 ? m_cxEdge : 0,
+            (m_dwSCBStyle & SCBS_EDGETOP)    != 0 ? m_cxEdge : 0,
+            (m_dwSCBStyle & SCBS_EDGERIGHT)  != 0 ? m_cxEdge : 0,
+            (m_dwSCBStyle & SCBS_EDGEBOTTOM) != 0 ? m_cxEdge : 0);
 
     *pRc = rc;
 }
@@ -528,7 +528,7 @@ void CSizingControlBar::OnNcPaint()
     mdc.FillRect(rcDraw, CBrush::FromHandle(
         (HBRUSH) GetClassLongPtr(m_hWnd, GCLP_HBRBACKGROUND)));
 
-    if (m_dwSCBStyle & SCBS_SHOWEDGES)
+    if ((m_dwSCBStyle & SCBS_SHOWEDGES) != 0)
     {
         CRect rcEdge; // paint the sizing edges
         for (int i = 0; i < 4; i++)
@@ -592,10 +592,10 @@ void CSizingControlBar::OnSize(UINT nType, int cx, int cy)
     {
         // automatic child resizing - only one child is allowed
         CWnd* pWnd = GetWindow(GW_CHILD);
-        if (pWnd != NULL)
+        if (pWnd != nullptr)
         {
             pWnd->MoveWindow(0, 0, cx, cy);
-            ASSERT(pWnd->GetWindow(GW_HWNDNEXT) == NULL);
+            ASSERT(pWnd->GetWindow(GW_HWNDNEXT) == nullptr);
         }
     }
 }
@@ -615,7 +615,7 @@ void CSizingControlBar::StartTracking(UINT nHitTest, CPoint point)
 
     // make sure no updates are pending
     if (!m_bDragShowContent)
-        RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_UPDATENOW);
+        RedrawWindow(nullptr, nullptr, RDW_ALLCHILDREN | RDW_UPDATENOW);
 
     m_htEdge = nHitTest;
     m_bTracking = true;
@@ -650,7 +650,7 @@ void CSizingControlBar::StartTracking(UINT nHitTest, CPoint point)
         // remaining client area of the mainframe
         CRect rcT;
         m_pDockSite->RepositionBars(0, 0xFFFF, AFX_IDW_PANE_FIRST,
-            reposQuery, &rcT, NULL, TRUE);
+            reposQuery, &rcT, nullptr, TRUE);
         int nMaxWidth = bHorz ? rcT.Height() - 2 : rcT.Width() - 2;
 
         bool bTopOrLeft = m_htEdge == HTTOP || m_htEdge == HTLEFT;
@@ -798,7 +798,7 @@ void CSizingControlBar::OnTrackInvertTracker()
     rc.OffsetRect(bHorzTracking ? nOfs : 0, bHorzTracking ? 0 : nOfs);
     rc.OffsetRect(-rcFrame.TopLeft());
 
-    CDC *pDC = m_pDockSite->GetDCEx(NULL,
+    CDC *pDC = m_pDockSite->GetDCEx(nullptr,
         DCX_WINDOW | DCX_CACHE | DCX_LOCKWINDOWUPDATE);
     CBrush* pBrush = CDC::GetHalftoneBrush();
     CBrush* pBrushOld = pDC->SelectObject(pBrush);
@@ -813,36 +813,40 @@ bool CSizingControlBar::GetEdgeRect(CRect rcWnd, UINT nHitTest,
                                     CRect& rcEdge)
 {
     rcEdge = rcWnd;
-    if (m_dwSCBStyle & SCBS_SHOWEDGES)
+    if ((m_dwSCBStyle & SCBS_SHOWEDGES) != 0)
         rcEdge.DeflateRect(1, 1);
     bool bHorz = IsHorzDocked();
 
     switch (nHitTest)
     {
     case HTLEFT:
-        if (!(m_dwSCBStyle & SCBS_EDGELEFT)) return FALSE;
+        if ((m_dwSCBStyle & SCBS_EDGELEFT) == 0) 
+			return false;
         rcEdge.right = rcEdge.left + m_cxEdge;
         rcEdge.DeflateRect(0, bHorz ? m_cxEdge: 0);
         break;
     case HTTOP:
-        if (!(m_dwSCBStyle & SCBS_EDGETOP)) return FALSE;
+        if ((m_dwSCBStyle & SCBS_EDGETOP) == 0) 
+			return false;
         rcEdge.bottom = rcEdge.top + m_cxEdge;
         rcEdge.DeflateRect(bHorz ? 0 : m_cxEdge, 0);
         break;
     case HTRIGHT:
-        if (!(m_dwSCBStyle & SCBS_EDGERIGHT)) return FALSE;
+        if ((m_dwSCBStyle & SCBS_EDGERIGHT) == 0) 
+			return false;
         rcEdge.left = rcEdge.right - m_cxEdge;
         rcEdge.DeflateRect(0, bHorz ? m_cxEdge: 0);
         break;
     case HTBOTTOM:
-        if (!(m_dwSCBStyle & SCBS_EDGEBOTTOM)) return FALSE;
+        if ((m_dwSCBStyle & SCBS_EDGEBOTTOM) == 0) 
+			return false;
         rcEdge.top = rcEdge.bottom - m_cxEdge;
         rcEdge.DeflateRect(bHorz ? 0 : m_cxEdge, 0);
         break;
     default:
-        ASSERT(FALSE); // invalid hit test code
+        ASSERT(false); // invalid hit test code
     }
-    return TRUE;
+    return true;
 }
 
 UINT CSizingControlBar::GetEdgeHTCode(int nEdge)
@@ -851,7 +855,7 @@ UINT CSizingControlBar::GetEdgeHTCode(int nEdge)
     if (nEdge == 1) return HTTOP;
     if (nEdge == 2) return HTRIGHT;
     if (nEdge == 3) return HTBOTTOM;
-    ASSERT(FALSE); // invalid edge code
+    ASSERT(false); // invalid edge code
     return HTNOWHERE;
 }
 
@@ -866,10 +870,10 @@ void CSizingControlBar::GetRowInfo(int& nFirst, int& nLast, int& nThis)
 
     // find the first and the last bar in row
     for (nFirst = -1, i = nThis - 1; i >= 0 && nFirst == -1; i--)
-        if (m_pDockBar->m_arrBars[i] == NULL)
+        if (m_pDockBar->m_arrBars[i] == nullptr)
             nFirst = i + 1;
     for (nLast = -1, i = nThis + 1; i < nBars && nLast == -1; i++)
-        if (m_pDockBar->m_arrBars[i] == NULL)
+        if (m_pDockBar->m_arrBars[i] == nullptr)
             nLast = i - 1;
 
     ASSERT((nLast != -1) && (nFirst != -1));
@@ -945,7 +949,7 @@ bool CSizingControlBar::NegotiateSpace(int nLengthTotal, bool bHorz)
             if (i < nThis)
             {
                 m_pDockBar->m_arrBars.InsertAt(i + 1,
-                    (CControlBar*) NULL);
+                    (CControlBar*) nullptr);
                 return false;
             }
             
@@ -961,7 +965,7 @@ bool CSizingControlBar::NegotiateSpace(int nLengthTotal, bool bHorz)
             }
 
             // we have enough bars - go negotiate with them
-            m_pDockBar->m_arrBars.InsertAt(i, (CControlBar*) NULL);
+            m_pDockBar->m_arrBars.InsertAt(i, (CControlBar*) nullptr);
             nLast = i - 1;
             break;
         }
@@ -1089,7 +1093,7 @@ void CSizingControlBar::OnUpdateCmdUI(CFrameWnd* pTarget,
 void CSizingControlBar::LoadState(LPCTSTR lpszProfileName)
 {
     ASSERT_VALID(this);
-    ASSERT(GetSafeHwnd()); // must be called after Create()
+    ASSERT(GetSafeHwnd() != nullptr); // must be called after Create()
 
 #if defined(_SCB_REPLACE_MINIFRAME) && !defined(_SCB_MINIFRAME_CAPTION)
     // compensate the caption miscalculation in CFrameWnd::SetDockState()
@@ -1100,7 +1104,7 @@ void CSizingControlBar::LoadState(LPCTSTR lpszProfileName)
     for (int i = 0; i < state.m_arrBarInfo.GetSize(); i++)
     {
         CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
-        ASSERT(pInfo != NULL);
+        ASSERT(pInfo != nullptr);
         if (!pInfo->m_bFloating)
             continue;
         
@@ -1144,7 +1148,7 @@ void CSizingControlBar::SaveState(LPCTSTR lpszProfileName)
     // place your SaveState or GlobalSaveState call in
     // CMainFrame's OnClose() or DestroyWindow(), not in OnDestroy()
     ASSERT_VALID(this);
-    ASSERT(GetSafeHwnd());
+    ASSERT(GetSafeHwnd() != nullptr);
 
     CWinApp* pApp = AfxGetApp();
 
@@ -1166,11 +1170,11 @@ void CSizingControlBar::GlobalLoadState(CFrameWnd* pFrame,
                                         LPCTSTR lpszProfileName)
 {
     POSITION pos = pFrame->m_listControlBars.GetHeadPosition();
-    while (pos != NULL)
+    while (pos != nullptr)
     {
         CSizingControlBar* pBar = 
             static_cast<CSizingControlBar*>(pFrame->m_listControlBars.GetNext(pos));
-        ASSERT(pBar != NULL);
+        ASSERT(pBar != nullptr);
         if (pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
             pBar->LoadState(lpszProfileName);
     }
@@ -1180,11 +1184,11 @@ void CSizingControlBar::GlobalSaveState(CFrameWnd* pFrame,
                                         LPCTSTR lpszProfileName)
 {
     POSITION pos = pFrame->m_listControlBars.GetHeadPosition();
-    while (pos != NULL)
+    while (pos != nullptr)
     {
         CSizingControlBar* pBar =
             static_cast<CSizingControlBar*>(pFrame->m_listControlBars.GetNext(pos));
-        ASSERT(pBar != NULL);
+        ASSERT(pBar != nullptr);
         if (pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
             pBar->SaveState(lpszProfileName);
     }
@@ -1285,7 +1289,7 @@ BOOL CSCBMiniDockFrameWnd::Create(CWnd* pParent, DWORD dwBarStyle)
 #endif
 
     if (!CMiniFrameWnd::CreateEx(dwExStyle,
-        NULL, &afxChNil, dwStyle, rectDefault, pParent))
+        nullptr, &afxChNil, dwStyle, rectDefault, pParent))
     {
         m_bInRecalcLayout = FALSE;
         return FALSE;
@@ -1325,7 +1329,7 @@ void CSCBMiniDockFrameWnd::OnNcLButtonDown(UINT nHitTest, CPoint point)
         return;
     }
 
-    if (GetSizingControlBar() != NULL)
+    if (GetSizingControlBar() != nullptr)
         CMiniFrameWnd::OnNcLButtonDown(nHitTest, point);
     else
         baseCSCBMiniDockFrameWnd::OnNcLButtonDown(nHitTest, point);
@@ -1334,15 +1338,15 @@ void CSCBMiniDockFrameWnd::OnNcLButtonDown(UINT nHitTest, CPoint point)
 CSizingControlBar* CSCBMiniDockFrameWnd::GetSizingControlBar()
 {
     CWnd* pWnd = GetWindow(GW_CHILD); // get the dockbar
-    if (pWnd == NULL)
-        return NULL;
+    if (pWnd == nullptr)
+        return nullptr;
     
     pWnd = pWnd->GetWindow(GW_CHILD); // get the controlbar
-    if (pWnd == NULL)
-        return NULL;
+    if (pWnd == nullptr)
+        return nullptr;
 
     if (!pWnd->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
-        return NULL;
+        return nullptr;
 
     return static_cast<CSizingControlBar*>(pWnd);
 }
@@ -1350,7 +1354,7 @@ CSizingControlBar* CSCBMiniDockFrameWnd::GetSizingControlBar()
 void CSCBMiniDockFrameWnd::OnSize(UINT nType, int cx, int cy) 
 {
     CSizingControlBar* pBar = GetSizingControlBar();
-    if ((pBar != NULL) && (GetStyle() & MFS_4THICKFRAME) == 0
+    if ((pBar != nullptr) && (GetStyle() & MFS_4THICKFRAME) == 0
         && pBar->IsVisible() &&
         cx + 4 >= pBar->m_szMinFloat.cx &&
         cy + 4 >= pBar->m_szMinFloat.cy)
@@ -1364,7 +1368,7 @@ void CSCBMiniDockFrameWnd::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
     baseCSCBMiniDockFrameWnd::OnGetMinMaxInfo(lpMMI);
 
     CSizingControlBar* pBar = GetSizingControlBar();
-    if (pBar != NULL)
+    if (pBar != nullptr)
     {
         CRect r(CPoint(0, 0), pBar->m_szMinFloat - CSize(4, 4));
 #ifndef _SCB_MINIFRAME_CAPTION
@@ -1382,7 +1386,7 @@ void CSCBMiniDockFrameWnd::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
     if ((GetStyle() & MFS_4THICKFRAME) != 0)
     {
         CSizingControlBar* pBar = GetSizingControlBar();
-        if (pBar != NULL)
+        if (pBar != nullptr)
         {
             lpwndpos->flags |= SWP_NOSIZE; // don't size this time
             // prevents flicker

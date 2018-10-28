@@ -21,12 +21,12 @@ public:
 	explicit Heksedit(CWnd *pwndParent)
 	{
 		pv = LoadLibrary(_T("Frhed\\hekseditU.dll"));
-		if (!pv)
+		if (pv == nullptr)
 		{
 			LangMessageBox(IDS_FRHED_NOTINSTALLED, MB_OK);
 			return;
 		}
-		wnd.Create(_T("heksedit"), NULL, 0, CRect(), pwndParent, 1);
+		wnd.Create(_T("heksedit"), nullptr, 0, CRect(), pwndParent, 1);
 		get_interface()->read_ini_data();
 		get_interface()->get_settings()->bSaveIni = true;
 	}

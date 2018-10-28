@@ -19,6 +19,8 @@
 #include "ccrystaltextview.h"
 #include "cs2cs.h"
 
+#include "DDXHelper.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -38,7 +40,7 @@ EDITPADC_CLASS LPCTSTR pszCodeNames[] =
     _T ("Apple Macintosh"),
     _T ("Apple Macintosh for Central Europe"),
     _T ("Corky"),
-    NULL
+    nullptr
   };
 
 EDITPADC_CLASS int nCodeNames = sizeof (pszCodeNames) / sizeof (pszCodeNames[0]) - 1;
@@ -46,7 +48,7 @@ EDITPADC_CLASS int nCodeNames = sizeof (pszCodeNames) / sizeof (pszCodeNames[0])
 EDITPADC_CLASS void FillComboBox (CComboBox &Control, LPCTSTR *pszItems)
 {
   Control.ResetContent();
-  ASSERT (pszItems);
+  ASSERT (pszItems != nullptr);
   while (*pszItems)
     Control.AddString(*pszItems++);
 }
@@ -54,7 +56,7 @@ EDITPADC_CLASS void FillComboBox (CComboBox &Control, LPCTSTR *pszItems)
 /////////////////////////////////////////////////////////////////////////////
 // CCharConvDlg dialog
 
-CCharConvDlg::CCharConvDlg () : CDialog (CCharConvDlg::IDD, NULL)
+CCharConvDlg::CCharConvDlg () : CDialog (CCharConvDlg::IDD, nullptr)
 {
     //{{AFX_DATA_INIT(CCharConvDlg)
 	m_nSource = 1;
@@ -114,11 +116,11 @@ void CCharConvDlg::OnPreview()
 {
   UpdateData ();
   LPTSTR pszNew;
-  if (!iconvert_new (m_sOriginal, &pszNew, m_nSource, m_nDest, m_bAlpha != false))
+  if (!iconvert_new (m_sOriginal, &pszNew, m_nSource, m_nDest, m_bAlpha))
     {
       m_sPreview = pszNew;
       UpdateData (false);
     }
-  if (pszNew)
+  if (pszNew != nullptr)
     free (pszNew);
 }

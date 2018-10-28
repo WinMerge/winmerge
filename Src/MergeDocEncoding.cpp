@@ -41,7 +41,7 @@
  */
 bool CMergeDoc::DoFileEncodingDialog()
 {
-	if (!PromptAndSaveIfNeeded(TRUE))
+	if (!PromptAndSaveIfNeeded(true))
 		return false;
 	
 	CLoadSaveCodepageDlg dlg(m_nBuffers);

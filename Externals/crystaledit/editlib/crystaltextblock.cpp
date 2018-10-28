@@ -23,7 +23,7 @@
 CCrystalTextBlock::CCrystalTextBlock( TEXTBLOCK *pTextBlock, int &rnActualItems )
 : m_rnActualItems( rnActualItems )
 {
-	ASSERT( pTextBlock );
+	ASSERT( pTextBlock != nullptr );
 	m_pTextBlock = pTextBlock;
 }
 

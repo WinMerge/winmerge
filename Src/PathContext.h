@@ -83,7 +83,7 @@ public:
 		m_sel =  (pPathContext->GetSize() == 0) ? -1 : 0;
 	}
 
-	PathContextIterator() : m_pPathContext(NULL), m_sel(-1)
+	PathContextIterator() : m_pPathContext(nullptr), m_sel(-1)
 	{
 	}
 

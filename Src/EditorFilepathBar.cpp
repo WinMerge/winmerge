@@ -99,7 +99,7 @@ void CEditorFilePathBar::SetPaneCount(int nPanes)
  */
 void CEditorFilePathBar::Resize()
 {
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return;
 
 	WINDOWPLACEMENT infoBar;
@@ -128,7 +128,7 @@ void CEditorFilePathBar::SetOnSetFocusCallback(const std::function<void(int)> ca
  */
 void CEditorFilePathBar::Resize(int widths[])
 {
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return;
 
 	// resize left filename
@@ -156,7 +156,7 @@ void CEditorFilePathBar::Resize(int widths[])
  */
 BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * pResult)
 {
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return FALSE;
 
 	TOOLTIPTEXT *pTTT = (TOOLTIPTEXT *)pTTTStruct;
@@ -185,17 +185,17 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 			pTTT->lpszText = const_cast<TCHAR *>(pItem->GetUpdatedTipText(&tempDC, maxWidth).c_str());
 
 			// set old font back
-			if (hOldFont)
+			if (hOldFont != nullptr)
 				::SelectObject(tempDC.GetSafeHdc(),hOldFont);
 
 			// we must set TTM_SETMAXTIPWIDTH to use \n in tooltips
 			// just to do the first time, but how to access the tooltip during init ?
 			::SendMessage(pTTTStruct->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 5000);
 
-			return(TRUE);
+			return TRUE;
 		}
 	}
-	return(FALSE);
+	return FALSE;
 }
 
 void CEditorFilePathBar::OnSetFocusEdit(UINT id)
@@ -213,8 +213,8 @@ String CEditorFilePathBar::GetText(int pane) const
 {
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
-	// Check for NULL since window may be closing..
-	if (m_hWnd == NULL)
+	// Check for `nullptr` since window may be closing..
+	if (m_hWnd == nullptr)
 		return _T("");
 
 	CString str;
@@ -232,8 +232,8 @@ void CEditorFilePathBar::SetText(int pane, const String& sString)
 {
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
-	// Check for NULL since window may be closing..
-	if (m_hWnd == NULL)
+	// Check for `nullptr` since window may be closing..
+	if (m_hWnd == nullptr)
 		return;
 
 	m_Edit[pane].SetOriginalText(sString);
@@ -243,14 +243,14 @@ void CEditorFilePathBar::SetText(int pane, const String& sString)
  * @brief Set the active status for one status (change the appearance)
  *
  * @param [in] pane Index (0-based) of pane to update.
- * @param [in] bActive If TRUE activates pane, FALSE deactivates.
+ * @param [in] bActive If `true` activates pane, `false` deactivates.
  */
 void CEditorFilePathBar::SetActive(int pane, bool bActive)
 {
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
-	// Check for NULL since window may be closing..
-	if (m_hWnd == NULL)
+	// Check for `nullptr` since window may be closing..
+	if (m_hWnd == nullptr)
 		return;
 
 	m_Edit[pane].SetActive(bActive);

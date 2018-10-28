@@ -30,7 +30,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 namespace prdlg {
 
 // from windowsx.h
-#define GetWindowStyle(hwnd) ((DWORD)GetWindowLong(hwnd, GWL_STYLE))
+#define GetWindowStyle(hwnd) ((DWORD)::GetWindowLong(hwnd, GWL_STYLE))
 #define MapWindowRect(hwndFrom, hwndTo, lprc) \
                     MapWindowPoints((hwndFrom), (hwndTo), (POINT *)(lprc), 2)
 
@@ -67,16 +67,16 @@ CMoveConstraint::Constraint::Init()
 	m_fExpandX = 0;
 	m_fAboveY = 0;
 	m_fExpandY = 0;
-	m_hwndChild = 0;
-	m_pWnd = 0;
+	m_hwndChild = nullptr;
+	m_pWnd = nullptr;
 	// m_rectChildOriginal
-	m_hwndParent = 0;
+	m_hwndParent = nullptr;
 }
 
 CMoveConstraint::CMoveConstraint()
 {
 	m_bSubclassed = false;
-	m_oldWndProc = NULL;
+	m_oldWndProc = nullptr;
 	m_sRegistryValueName = _T("UnnamedWindow");
 	m_sRegistrySubkey = _T("LastWindowPos");
 	ClearMostData();
@@ -131,7 +131,7 @@ CMoveConstraint::InitializeSpecificSize(HWND /*hwndDlg*/, int nWidth, int nHeigh
 bool
 CMoveConstraint::InitializeOriginalSize(HWND hwndDlg)
 {
-	ASSERT(hwndDlg && !m_hwndDlg);
+	ASSERT(hwndDlg != nullptr && m_hwndDlg == nullptr);
 	m_hwndDlg = hwndDlg;
 
 	return m_nOrigX != 0; // if 0, we didn't get WM_SIZE so we don't know the original size
@@ -140,7 +140,7 @@ CMoveConstraint::InitializeOriginalSize(HWND hwndDlg)
 bool
 CMoveConstraint::InitializeOriginalSize(CWnd * pParent)
 {
-	ASSERT(pParent);
+	ASSERT(pParent != nullptr);
 	return InitializeOriginalSize(pParent->m_hWnd);
 }
 
@@ -148,14 +148,14 @@ CMoveConstraint::InitializeOriginalSize(CWnd * pParent)
 void
 CMoveConstraint::InitializeSpecificSize(CWnd * pDlg, int nWidth, int nHeight)
 {
-	ASSERT(pDlg);
+	ASSERT(pDlg != nullptr);
 	InitializeSpecificSize(pDlg->m_hWnd, nWidth, nHeight);
 }
 
 bool
 CMoveConstraint::InitializeCurrentSize(CWnd * pDlg)
 {
-	ASSERT(pDlg);
+	ASSERT(pDlg != nullptr);
 	return InitializeCurrentSize(pDlg->m_hWnd);
 }
 
@@ -236,7 +236,7 @@ CMoveConstraint::ClearMostData()
 	// clears everything but m_bSubclassed
 	// this is called from constructor, OnDestroy, and destructor
 	// so it can't assume any numerical variables have sane values
-	m_hwndDlg=NULL;
+	m_hwndDlg=nullptr;
 	// m_rectDlgOriginal
 	m_nOrigX=0;
 	m_nOrigY=0;
@@ -248,7 +248,7 @@ CMoveConstraint::ClearMostData()
 	m_nMaxY=0;
 	m_nDelayed=0;
 	// this specifically does NOT touch m_bSubclassed, as a subclass may still be in use
-	m_pFormView=0;
+	m_pFormView=nullptr;
 	m_nOrigScrollX=0;
 	m_nOrigScrollY=0;
 	m_fShrinkWidth=0;
@@ -295,13 +295,13 @@ DoConstrain(CWnd * pWnd, HWND hwndChild, double fLeftX, double fExpandX, double 
 {
 	Constraint constraint(fLeftX, fExpandX, fAboveY, fExpandY, hwndChild, pWnd);
 
-	if (m_hwndDlg && IsWindow(m_hwndDlg) && hwndChild && IsWindow(hwndChild))
+	if (m_hwndDlg && IsWindow(m_hwndDlg) && hwndChild != nullptr && IsWindow(hwndChild))
 	{
 		InitializeChildConstraintData(m_hwndDlg, constraint);
 	}
 	else
 	{
-		if (!pWnd) // only CWnds can be deferred
+		if (pWnd == nullptr) // only CWnds can be deferred
 			return false;
 		m_nDelayed++;
 	}
@@ -316,7 +316,7 @@ void
 CMoveConstraint::
 Constrain(CWnd * pWnd, double fLeftX, double fExpandX, double fAboveY, double fExpandY)
 {
-	ASSERT(pWnd);
+	ASSERT(pWnd != nullptr);
 	DoConstrain(pWnd, pWnd->m_hWnd, fLeftX, fExpandX, fAboveY, fExpandY);
 }
 
@@ -364,7 +364,7 @@ CMoveConstraint::UnSubclassWnd()
 		return false;
 	SetWindowLongPtr(m_hwndDlg, GWLP_WNDPROC, (__int3264)(LONG_PTR)(m_oldWndProc));
 	RemoveProp(m_hwndDlg, _T("CMoveConstraintData"));
-	m_oldWndProc = NULL;
+	m_oldWndProc = nullptr;
 	m_bSubclassed = false;
 	return true;
 }
@@ -380,13 +380,13 @@ CMoveConstraint::CheckDeferredChildren()
 	if (!m_nDelayed)
 		return;
 	ConstraintList & constraintList = m_ConstraintList;
-	for (POSITION pos=constraintList.GetHeadPosition(); pos; constraintList.GetNext(pos))
+	for (POSITION pos=constraintList.GetHeadPosition(); pos != nullptr; constraintList.GetNext(pos))
 	{
 		Constraint & constraint = constraintList.GetAt(pos);
-		if (constraint.m_hwndChild)
+		if (constraint.m_hwndChild  != nullptr)
 			continue;
-		ASSERT(constraint.m_pWnd);
-		if (constraint.m_pWnd->m_hWnd)
+		ASSERT(constraint.m_pWnd != nullptr);
+		if (constraint.m_pWnd->m_hWnd != nullptr)
 		{
 			constraint.m_hwndChild = constraint.m_pWnd->m_hWnd;
 			InitializeChildConstraintData(m_hwndDlg, constraint);
@@ -408,7 +408,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 
 	if (nType == SIZE_MINIMIZED) return;
 
-	if (!m_hwndDlg && hWnd && !m_bOriginalFetched)
+	if (!m_hwndDlg && hWnd != nullptr && !m_bOriginalFetched)
 	{
 		// if early subclass or wndproc
 		// grab early dimensions, in case we want them later (eg, property sheet)
@@ -427,10 +427,10 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 	int nDeltaHeight = (rectParentCurrent.bottom - m_rectDlgOriginal.bottom);
 
 	ConstraintList & constraintList = m_ConstraintList;
-	for (POSITION pos=constraintList.GetHeadPosition(); pos; constraintList.GetNext(pos))
+	for (POSITION pos=constraintList.GetHeadPosition(); pos != nullptr; constraintList.GetNext(pos))
 	{
 		Constraint & constraint = constraintList.GetAt(pos);
-		if (!constraint.m_hwndChild)
+		if (constraint.m_hwndChild == nullptr)
 			continue;
 
 		CRect rectChildCurrent;
@@ -449,11 +449,11 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 		rectChildCurrent.top = (int)(nDelta * constraint.m_fAboveY) + constraint.m_rectChildOriginal.top;
 		rectChildCurrent.bottom = (int)(nDelta * (constraint.m_fAboveY + constraint.m_fExpandY)) + constraint.m_rectChildOriginal.bottom;
 
-		SetWindowPos(constraint.m_hwndChild, NULL, rectChildCurrent.left, rectChildCurrent.top
+		SetWindowPos(constraint.m_hwndChild, nullptr, rectChildCurrent.left, rectChildCurrent.top
 			, rectChildCurrent.Width(), rectChildCurrent.Height(), SWP_NOZORDER+SWP_NOREDRAW);
 	}
 
-	if (m_pFormView)
+	if (m_pFormView != nullptr)
 	{
 		// ignore growth
 		//if (nDeltaWidth > 0)
@@ -466,7 +466,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 		m_pFormView->SetScrollSizes(MM_TEXT, size);
 	}
 
-	InvalidateRect(m_hwndDlg, NULL, TRUE);
+	InvalidateRect(m_hwndDlg, nullptr, TRUE);
 	UpdateWindow(m_hwndDlg);
 }
 
@@ -605,7 +605,7 @@ CMoveConstraint::OnTtnNeedText(TOOLTIPTEXT * pTTT, LRESULT * plresult)
 		{
 			pTTT->lpszText = (LPTSTR)(LPCTSTR)ti.m_sText;
 		}
-		*plresult = TRUE; // return TRUE from original window proc
+		*plresult = true; // return `true` from original window proc
 		return true; // stop processing this message
 	}
 	return false;
@@ -695,7 +695,7 @@ CMoveConstraint::Persist(bool saving, bool position)
 		RECT wprc;
 		CString str = AfxGetApp()->GetProfileString(szSection, m_sRegistryValueName);
 		GetWindowRect(m_hwndDlg, &wprc);
-		if (m_pFormView)
+		if (m_pFormView != nullptr)
 			CWnd::FromHandle(m_hwndDlg)->GetParent()->ScreenToClient(&wprc);
 		CRect rc;
 		int ct=_stscanf_s(str, _T("%d,%d,%d,%d"), &rc.left, &rc.top, &rc.right, &rc.bottom);
@@ -714,7 +714,7 @@ CMoveConstraint::Persist(bool saving, bool position)
 			if (m_nMaxY && m_nMaxY < height) height = m_nMaxY;
 			wprc.right = wprc.left + width;
 			wprc.bottom = wprc.top + height;
-			SetWindowPos(m_hwndDlg, NULL, 
+			SetWindowPos(m_hwndDlg, nullptr, 
 				wprc.left, wprc.top, wprc.right - wprc.left, wprc.bottom - wprc.top,
 				SWP_NOZORDER | SWP_NOACTIVATE);
 		}
