@@ -110,7 +110,7 @@ BOOL PropCodepage::OnInitDialog()
 	m_comboCustomCodepageValue.SetWindowText(strutils::to_str(m_nCustomCodepageValue).c_str());
 
 	IExconverter *pexconv = Exconverter::getInstance();
-	if (pexconv != NULL)
+	if (pexconv != nullptr)
 	{
 		std::vector<CodePageInfo> cpi = pexconv->enumCodePages();
 		for (size_t i = 0, j = 0; i < cpi.size(); i++)

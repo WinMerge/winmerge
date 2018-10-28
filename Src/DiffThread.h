@@ -49,11 +49,11 @@ struct DiffFuncStruct
 	Poco::Semaphore *pSemaphore; /**< Semaphore for synchronizing threads. */
 
 	DiffFuncStruct()
-		: context(NULL)
+		: context(nullptr)
 		, nThreadState(0/*CDiffThread::THREAD_NOTSTARTED*/)
-		, m_pAbortgate(NULL)
+		, m_pAbortgate(nullptr)
 		, bOnlyRequested(false)
-		, pSemaphore(NULL)
+		, pSemaphore(nullptr)
 		{}
 };
 

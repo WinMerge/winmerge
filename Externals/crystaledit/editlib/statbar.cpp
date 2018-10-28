@@ -105,7 +105,7 @@ int CEditStatusBar::OnCreate (LPCREATESTRUCT lpCreateStruct)
   if (CStatusBar::OnCreate (lpCreateStruct) == -1)
     return -1;
   SetFont (CFont::FromHandle ((HFONT) GetStockObject (DEFAULT_GUI_FONT)));
-  SetTimer (ID_INDICATOR_TIME, 1000, NULL);
+  SetTimer (ID_INDICATOR_TIME, 1000, nullptr);
   return 0;
 }
 

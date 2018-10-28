@@ -45,7 +45,7 @@ public :
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 		int nActionType = CE_ACTION_UNKNOWN,
-		CDWordArray *paSavedRevisionNumbers = NULL) override;
+		CDWordArray *paSavedRevisionNumbers = nullptr) override;
 	bool curUndoGroup();
 	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);
 
@@ -53,7 +53,7 @@ public :
 		LPCTSTR filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,
 		const FileTextEncoding & encoding, CString &sError);
 	int SaveToFile (const String& pszFileName, bool bTempFile, String & sError,
-		PackingInfo * infoUnpacker = NULL, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
+		PackingInfo * infoUnpacker = nullptr, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
 		bool bClearModifiedFlag = true, int nStartLine = 0, int nLines = -1);
 	ucr::UNICODESET getUnicoding() const { return m_encoding.m_unicoding; }
 	void setUnicoding(ucr::UNICODESET value) { m_encoding.m_unicoding = value; }

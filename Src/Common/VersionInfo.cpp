@@ -27,7 +27,7 @@ struct LANGUAGEANDCODEPAGE
  * @brief Constructor for asking only numeric version info.
  * This constructor creates instance that only reads version numbers,
  * not several strings there are. This saves some time.
- * @param [in] bVersionOnly If TRUE only version numbers are read.
+ * @param [in] bVersionOnly If `true` only version numbers are read.
  */
 CVersionInfo::CVersionInfo(bool bVersionOnly)
 : m_wLanguage(0)
@@ -57,7 +57,7 @@ CVersionInfo::CVersionInfo(WORD wLanguage)
 /** 
  * @brief Constructor.
  * @param [in] szFileToVersion Filename to read version from.
- * @param [in] bDllVersion If TRUE queries DLL version.
+ * @param [in] bDllVersion If `true` queries DLL version.
  */
 CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion, 
 						   bool bDllVersion)
@@ -65,7 +65,7 @@ CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion,
 , m_bVersionOnly(false)
 , m_bDllVersion(bDllVersion)
 {
-	if (szFileToVersion != NULL)
+	if (szFileToVersion != nullptr)
 		m_strFileName = szFileToVersion;
 	GetVersionInfo();
 }
@@ -76,18 +76,18 @@ CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion,
  * @param [in] szLanguage Language for version.
  * @param [in] szCodePage Codepage for version.
  */
-CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion /* = NULL*/, 
-						   LPCTSTR szLanguage /* = NULL*/,
-						   LPCTSTR szCodepage /* = NULL*/)
+CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion /* = nullptr*/, 
+						   LPCTSTR szLanguage /* = nullptr*/,
+						   LPCTSTR szCodepage /* = nullptr*/)
 : m_wLanguage(0)
 , m_bVersionOnly(false)
 , m_bDllVersion(false)
 {
-	if (szFileToVersion != NULL)
+	if (szFileToVersion != nullptr)
 		m_strFileName = szFileToVersion;
-	if (szLanguage != NULL)
+	if (szLanguage != nullptr)
 		m_strLanguage = szLanguage;
-	if (szCodepage != NULL)
+	if (szCodepage != nullptr)
 		m_strCodepage = szCodepage;
 	GetVersionInfo();
 }
@@ -291,7 +291,7 @@ void CVersionInfo::GetVersionInfo()
 
 	if (m_strFileName.empty())
 	{
-		::GetModuleFileName(NULL, szFileName, MAX_PATH);
+		::GetModuleFileName(nullptr, szFileName, MAX_PATH);
 		m_strFileName = szFileName;
 	}
 	else
@@ -382,7 +382,7 @@ void CVersionInfo::QueryStrings()
  */
 void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 {
-	assert(m_pVffInfo != NULL);
+	assert(m_pVffInfo != nullptr);
 	LPTSTR   lpVersion;			// String pointer to 'version' text
 	UINT    uVersionLen;
 	bool    bRetCode;

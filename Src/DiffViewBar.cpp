@@ -20,7 +20,7 @@ IMPLEMENT_DYNAMIC(CDiffViewBar, TViewBarBase);
 //////////////////////////////////////////////////////////////////////
 
 CDiffViewBar::CDiffViewBar()
-: m_hwndFrame(NULL)
+: m_hwndFrame(nullptr)
 {
 }
 
@@ -49,9 +49,9 @@ END_MESSAGE_MAP()
 */
 BOOL CDiffViewBar::Create(
 	CWnd* pParentWnd,
-	LPCTSTR lpszWindowName,
-	DWORD dwStyle,
-	UINT nID)
+	LPCTSTR lpszWindowName /*= nullptr*/,
+	DWORD dwStyle /*= WS_CHILD | WS_VISIBLE | CBRS_TOP*/,
+	UINT nID /*= AFX_IDW_PANE_FIRST*/)
 {
 	return TViewBarBase::Create(
 		lpszWindowName,
@@ -80,7 +80,7 @@ int CDiffViewBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CDiffViewBar::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	TViewBarBase::OnLButtonDown(nFlags, point);
-	if (m_pDockBar != NULL)
+	if (m_pDockBar != nullptr)
 	{
 		if (!IsHorzDocked())
 			m_pDockContext->ToggleDocking();
@@ -96,7 +96,7 @@ void CDiffViewBar::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 {
 	TViewBarBase::OnWindowPosChanged(lpwndpos);
 
-	if (m_hwndFrame != NULL)
+	if (m_hwndFrame != nullptr)
 	{
 		// If WINDOWPOS.flags has SWP_HIDEWINDOW flag set
 		if ((lpwndpos->flags & SWP_HIDEWINDOW) != 0)

@@ -181,11 +181,11 @@ int
 iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabet_only)
   {
     ptrdiff_t posit = -2;
-    LPCTSTR source_chars, destination_chars, cod_pos = NULL;
+    LPCTSTR source_chars, destination_chars, cod_pos = nullptr;
     TCHAR ch;
     LPTSTR s = string;
   
-    if (!string)
+    if (string == nullptr)
       return -1;
     if (source_coding < 0)
       {

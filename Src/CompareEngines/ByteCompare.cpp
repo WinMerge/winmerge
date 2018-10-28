@@ -50,7 +50,7 @@ ByteCompare::~ByteCompare()
 bool ByteCompare::SetCompareOptions(const CompareOptions & options)
 {
 	m_pOptions.reset(new QuickCompareOptions(options));
-	if (m_pOptions.get() == NULL)
+	if (m_pOptions.get() == nullptr)
 		return false;
 	return true;
 }
@@ -126,7 +126,7 @@ int ByteCompare::CompareFiles(FileLocation *location)
 	// and continue
 	while (!eof[0] || !eof[1])
 	{
-		if (m_piAbortable && m_piAbortable->ShouldAbort())
+		if (m_piAbortable != nullptr && m_piAbortable->ShouldAbort())
 			return DIFFCODE::CMPABORT;
 
 		// load or update buffers as appropriate

@@ -37,6 +37,8 @@
 #include "ceditreplacedlg.h"
 #include "ccrystaleditview.h"
 
+#include "DDXHelper.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -50,7 +52,7 @@
 
 
 CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy)
-: CDialog (CEditReplaceDlg::IDD, NULL)
+: CDialog (CEditReplaceDlg::IDD, nullptr)
 , m_pBuddy(pBuddy)
 , m_bMatchCase(false)
 , m_bWholeWord(false)
@@ -61,7 +63,7 @@ CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy)
 , m_bFound(false)
 , lastSearch({0})
 {
-  ASSERT (pBuddy != NULL);
+  ASSERT (pBuddy != nullptr);
 }
 
 void CEditReplaceDlg::
@@ -181,7 +183,7 @@ GetLastSearchInfos()
 bool CEditReplaceDlg::
 DoHighlightText ( bool bNotifyIfNotFound )
 {
-  ASSERT (m_pBuddy != NULL);
+  ASSERT (m_pBuddy != nullptr);
   DWORD dwSearchFlags = 0;
   if (m_bMatchCase)
     dwSearchFlags |= FIND_MATCH_CASE;
@@ -229,7 +231,7 @@ DoHighlightText ( bool bNotifyIfNotFound )
 bool CEditReplaceDlg::
 DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
 {
-  ASSERT (m_pBuddy != NULL);
+  ASSERT (m_pBuddy != nullptr);
   // m_pBuddy->m_nLastFindWhatLen
 
   bool bFound;
@@ -507,14 +509,14 @@ SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, in
   lastSearch.m_bWholeWord = bWholeWord;
   lastSearch.m_bRegExp = bRegExp;
   lastSearch.m_sText = sText;
-  lastSearch.m_bNoWrap = !!m_bDontWrap;
+  lastSearch.m_bNoWrap = m_bDontWrap;
 }
 
 
 void CEditReplaceDlg::
 UpdateLastSearch ()
 {
-  SetLastSearch (m_sText, !!m_bMatchCase, !!m_bWholeWord, !!m_bRegExp, m_nScope);
+  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp, m_nScope);
 }
 
 void CEditReplaceDlg::

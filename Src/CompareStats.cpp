@@ -85,7 +85,7 @@ const DIFFITEM *CompareStats::GetCurDiffItem()
 	while (it != m_rgThreadState.end())
 	{
 		const DIFFITEM *di = it->m_pDiffItem;
-		if (di != NULL && (di->diffcode.diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::NOCMP)
+		if (di != nullptr && (di->diffcode.diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::NOCMP)
 		{
 			int nHitCount = it->m_nHitCount++;
 			if (nHitCountMax < nHitCount)

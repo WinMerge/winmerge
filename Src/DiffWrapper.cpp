@@ -133,16 +133,16 @@ void CDiffWrapper::SetCreatePatchFile(const String &filename)
 /**
  * @brief Enables/disabled DiffList creation ands sets DiffList.
  * This function enables or disables DiffList creation. When
- * @p diffList is NULL difflist is not created. When valid DiffList
- * pointer is given, compare results are stored into it.
+ * @p diffList is `nullptr`, a difflist was not created. When valid 
+ * DiffList pointer is given, compare results are stored into it.
  * @param [in] diffList Pointer to DiffList getting compare results.
  */
 void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
 {
-	if (diffList == NULL)
+	if (diffList == nullptr)
 	{
 		m_bUseDiffList = false;
-		m_pDiffList = NULL;
+		m_pDiffList = nullptr;
 	}
 	else
 	{
@@ -159,7 +159,7 @@ void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
  */
 void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
 {
-	assert(options);
+	assert(options != nullptr);
 	DIFFOPTIONS tmpOptions = {0};
 	m_options.GetAsDiffOptions(tmpOptions);
 	*options = tmpOptions;
@@ -173,7 +173,7 @@ void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
  */
 void CDiffWrapper::SetOptions(const DIFFOPTIONS *options)
 {
-	assert(options);
+	assert(options != nullptr);
 	m_options.SetFromDiffOptions(*options);
 }
 
@@ -185,12 +185,12 @@ void CDiffWrapper::SetTextForAutomaticPrediff(const String &text)
 {
 	m_sToFindPrediffer = text;
 }
-void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*=NULL*/)
+void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)
 {
 	// all flags are set correctly during the construction
 	m_infoPrediffer.reset(new PrediffingInfo);
 
-	if (prediffer)
+	if (prediffer != nullptr)
 		*m_infoPrediffer = *prediffer;
 }
 void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer) const
@@ -204,7 +204,7 @@ void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer) const
  */
 void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
 {
-	assert(options);
+	assert(options != nullptr);
 	m_options.m_contextLines = options->nContext;
 
 	switch (options->outputStyle)
@@ -237,7 +237,7 @@ void CDiffWrapper::SetDetectMovedBlocks(bool bDetectMovedBlocks)
 {
 	if (bDetectMovedBlocks)
 	{
-		if (m_pMovedLines[0] == NULL)
+		if (m_pMovedLines[0] == nullptr)
 		{
 			m_pMovedLines[0].reset(new MovedLines);
 			m_pMovedLines[1].reset(new MovedLines);
@@ -284,7 +284,7 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
 				   const FilterCommentsSet& filtercommentsset) const
 {
 	//Do easy test first
-	if ((!StartOfComment || !EndOfComment) && !InLineComment)
+	if ((StartOfComment == nullptr || EndOfComment == nullptr) && InLineComment == nullptr)
 		return false;//In no Start and End pair, and no single in-line set, then it's not trivial
 
 	if (StartOfComment == Line.c_str() &&
@@ -293,7 +293,7 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
 		return true;
 	}
 
-	if (InLineComment && InLineComment < StartOfComment)
+	if (InLineComment != nullptr && InLineComment < StartOfComment)
 	{
 		if (InLineComment == Line.c_str())
 			return true;//If line starts with InLineComment marker, then entire line is trivial
@@ -303,8 +303,8 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
 	}
 
 	//Done with easy test, so now do more complex test
-	if (StartOfComment && 
-		EndOfComment && 
+	if (StartOfComment != nullptr && 
+		EndOfComment != nullptr && 
 		StartOfComment < EndOfComment &&
 		IsTrivialBytes(Line.c_str(), StartOfComment, filtercommentsset) &&
 		IsTrivialBytes(EndOfComment + filtercommentsset.EndMarker.size(),
@@ -320,7 +320,7 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
  * @brief Find comment marker in string, excluding portions enclosed in quotation marks or apostrophes
  * @param [in] target				- string to search
  * @param [in] marker				- marker to search for
- * @return Returns position of marker, or NULL if none is present
+ * @return Returns position of marker, or `nullptr` if none is present
  */
 static const char *FindCommentMarker(const char *target, const char *marker)
 {
@@ -340,7 +340,7 @@ static const char *FindCommentMarker(const char *target, const char *marker)
 		prev = c;
 		++target;
 	}
-	return NULL;
+	return nullptr;
 }
 
 /**
@@ -438,9 +438,9 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 				return false;
 			}
 
-			if (EndOfComment && 
-				(!StartOfComment || StartOfComment > EndOfComment) && 
-				(!InLineComment || InLineComment > EndOfComment) )
+			if (EndOfComment != nullptr && 
+				(StartOfComment == nullptr || StartOfComment > EndOfComment) && 
+				(InLineComment == nullptr || InLineComment > EndOfComment) )
 			{
 				if (!IsTrivialBytes(EndOfComment+filtercommentsset.EndMarker.size(), LineData.c_str()+LineData.size(), filtercommentsset))
 				{
@@ -499,7 +499,7 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
 	int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt) const
 {
-	if (Op == OP_TRIVIAL || !m_pFilterCommentsManager)
+	if (Op == OP_TRIVIAL || m_pFilterCommentsManager == nullptr)
 		return;
 	
 	//First we need to get lowercase file name extension
@@ -552,7 +552,7 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 			EndLineRight = files[1].linbuf[LineNumberRight + i + 1];
 		}
 			
-		if (EndLineLeft && EndLineRight)
+		if (EndLineLeft != nullptr && EndLineRight != nullptr)
 		{	
 			std::string LineDataLeft(LineStrLeft, EndLineLeft);
 			std::string LineDataRight(LineStrRight, EndLineRight);
@@ -572,28 +572,28 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 					CommentStrRightStart = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.StartMarker.c_str());
 					CommentStrRightEnd = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.EndMarker.c_str());
 					
-					if (CommentStrLeftStart != NULL && CommentStrLeftEnd != NULL && CommentStrLeftStart < CommentStrLeftEnd)
+					if (CommentStrLeftStart != nullptr && CommentStrLeftEnd != nullptr && CommentStrLeftStart < CommentStrLeftEnd)
 						LineDataLeft.erase(CommentStrLeftStart - LineDataLeft.c_str(), CommentStrLeftEnd + filtercommentsset.EndMarker.size() - CommentStrLeftStart);
-					else if (CommentStrLeftEnd != NULL)
+					else if (CommentStrLeftEnd != nullptr)
 						LineDataLeft.erase(0, CommentStrLeftEnd + filtercommentsset.EndMarker.size() - LineDataLeft.c_str());
-					else if (CommentStrLeftStart != NULL)
+					else if (CommentStrLeftStart != nullptr)
 						LineDataLeft.erase(CommentStrLeftStart - LineDataLeft.c_str());
 					else if(LeftOp == OP_TRIVIAL && bFirstLoop)
 						LineDataLeft.erase(0);  //This line is all in block comments
 
-					if (CommentStrRightStart != NULL && CommentStrRightEnd != NULL && CommentStrRightStart < CommentStrRightEnd)
+					if (CommentStrRightStart != nullptr && CommentStrRightEnd != nullptr && CommentStrRightStart < CommentStrRightEnd)
 						LineDataRight.erase(CommentStrRightStart - LineDataRight.c_str(), CommentStrRightEnd + filtercommentsset.EndMarker.size() - CommentStrRightStart);
-					else if (CommentStrRightEnd != NULL)
+					else if (CommentStrRightEnd != nullptr)
 						LineDataRight.erase(0, CommentStrRightEnd + filtercommentsset.EndMarker.size() - LineDataRight.c_str());
-					else if (CommentStrRightStart != NULL)
+					else if (CommentStrRightStart != nullptr)
 						LineDataRight.erase(CommentStrRightStart - LineDataRight.c_str());
 					else if(RightOp == OP_TRIVIAL && bFirstLoop)
 						LineDataRight.erase(0);  //This line is all in block comments
 
 					bFirstLoop = false;
 
-				} while (CommentStrLeftStart != NULL || CommentStrLeftEnd != NULL
-					|| CommentStrRightStart != NULL || CommentStrRightEnd != NULL); //Loops until all blockcomments are lost
+				} while (CommentStrLeftStart != nullptr || CommentStrLeftEnd != nullptr
+					|| CommentStrRightStart != nullptr || CommentStrRightEnd != nullptr); //Loops until all blockcomments are lost
 			}
 
 			if (!filtercommentsset.InlineMarker.empty())
@@ -602,9 +602,9 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 				const char * CommentStrLeft = FindCommentMarker(LineDataLeft.c_str(), filtercommentsset.InlineMarker.c_str());
 				const char * CommentStrRight = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.InlineMarker.c_str());
 
-				if (CommentStrLeft != NULL)
+				if (CommentStrLeft != nullptr)
 					LineDataLeft.erase(CommentStrLeft - LineDataLeft.c_str());
-				if (CommentStrRight != NULL)
+				if (CommentStrRight != nullptr)
 					LineDataRight.erase(CommentStrRight - LineDataRight.c_str());
 			}
 
@@ -718,22 +718,22 @@ bool CDiffWrapper::RunFileDiff()
 				String sError = strutils::format(
 					_T("An error occurred while prediffing the file '%s' with the plugin '%s'. The prediffing is not applied any more."),
 					strFileTemp[file].c_str(),
-					m_infoPrediffer->pluginName.c_str());
+					m_infoPrediffer->m_PluginName.c_str());
 				AppErrorMessageBox(sError);
 				// don't use any more this prediffer
-				m_infoPrediffer->bToBeScanned = false;
-				m_infoPrediffer->pluginName.erase();
+				m_infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+				m_infoPrediffer->m_PluginName.erase();
 			}
 
 			// We use the same plugin for both files, so it must be defined before
 			// second file
-			assert(m_infoPrediffer->bToBeScanned == false);
+			assert(m_infoPrediffer->m_PluginOrPredifferMode == PLUGIN_MANUAL);
 		}
 	}
 
-	struct change *script = NULL;
-	struct change *script10 = NULL;
-	struct change *script12 = NULL;
+	struct change *script = nullptr;
+	struct change *script10 = nullptr;
+	struct change *script12 = nullptr;
 	DiffFileData diffdata, diffdata10, diffdata12;
 	int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0;
 
@@ -747,9 +747,9 @@ bool CDiffWrapper::RunFileDiff()
 		}
 
 		// Compare the files, if no error was found.
-		// Last param (bin_file) is NULL since we don't
+		// Last param (bin_file) is `nullptr` since we don't
 		// (yet) need info about binary sides.
-		bRet = Diff2Files(&script, &diffdata, &bin_flag, NULL);
+		bRet = Diff2Files(&script, &diffdata, &bin_flag, nullptr);
 
 		// We don't anymore create diff-files for every rescan.
 		// User can create patch-file whenever one wants to.
@@ -779,14 +779,14 @@ bool CDiffWrapper::RunFileDiff()
 			return false;
 		}
 
-		bRet = Diff2Files(&script10, &diffdata10, &bin_flag10, NULL);
+		bRet = Diff2Files(&script10, &diffdata10, &bin_flag10, nullptr);
 
 		if (!diffdata12.OpenFiles(strFileTemp[1], strFileTemp[2]))
 		{
 			return false;
 		}
 
-		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, NULL);
+		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, nullptr);
 	}
 
 	// First determine what happened during comparison
@@ -836,11 +836,11 @@ bool CDiffWrapper::RunFileDiff()
 		else
 		{ // text files according to diffutils, so change script exists
 			m_status.bBinaries = false;
-			if (script10 == 0 && script12 == 0)
+			if (script10 == nullptr && script12 == nullptr)
 				m_status.Identical = IDENTLEVEL_ALL;
-			else if (script10 == 0)
+			else if (script10 == nullptr)
 				m_status.Identical = IDENTLEVEL_EXCEPTRIGHT;
-			else if (script12 == 0)
+			else if (script12 == nullptr)
 				m_status.Identical = IDENTLEVEL_EXCEPTLEFT;
 			else
 				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
@@ -1078,7 +1078,7 @@ void CDiffWrapper::SetAppendFiles(bool bAppendFiles)
  * @param [in] diffData files to compare.
  * @param [out] bin_status used to return binary status from compare.
  * @param [out] bin_file Returns which file was binary file as bitmap.
-    So if first file is binary, first bit is set etc. Can be NULL if binary file
+    So if first file is binary, first bit is set etc. Can be `nullptr` if binary file
     info is not needed (faster compare since diffutils don't bother checking
     second file if first is binary).
  * @return true when compare succeeds, false if error happened during compare.
@@ -1094,12 +1094,12 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	{
 		// Diff files. depth is zero because we are not comparing dirs
 		*diffs = diff_2_files (diffData->m_inf, 0, bin_status,
-				(m_pMovedLines[0] != NULL), bin_file);
+				(m_pMovedLines[0] != nullptr), bin_file);
 		CopyDiffutilTextStats(diffData->m_inf, diffData);
 	}
 	catch (SE_Exception&)
 	{
-		*diffs = NULL;
+		*diffs = nullptr;
 		bRet = false;
 	}
 	return bRet;
@@ -1111,15 +1111,15 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 void
 CDiffWrapper::FreeDiffUtilsScript(struct change * & script)
 {
-	if (!script) return;
-	struct change *e=0, *p=0;
+	if (script == nullptr) return;
+	struct change *e=nullptr, *p=nullptr;
 	// cleanup the script
-	for (e = script; e; e = p)
+	for (e = script; e != nullptr; e = p)
 	{
 		p = e->link;
 		free(e);
 	}
-	script = 0;
+	script = nullptr;
 }
 
 /**
@@ -1134,16 +1134,16 @@ CDiffWrapper::FreeDiffUtilsScript(struct change * & script)
  */
 bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 {
-	if (m_pFilterList == NULL)
+	if (m_pFilterList == nullptr)
 	{	
 		throw "CDiffWrapper::RegExpFilter() called when "
-			"filterlist doesn't exist (=NULL)";
+			"filterlist doesn't exist (=nullptr)";
 	}
 
 	bool linesMatch = true; // set to false when non-matching line is found.
 	int line = StartPos;
 
-	while (line <= EndPos && linesMatch == true)
+	while (line <= EndPos && linesMatch)
 	{
 		size_t len = files[FileNo].linbuf[line + 1] - files[FileNo].linbuf[line];
 		const char *string = files[FileNo].linbuf[line];
@@ -1191,7 +1191,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 		/* Disconnect them from the rest of the changes,
 		making them a hunk, and remember the rest for next iteration.  */
 		next = end->link;
-		end->link = 0;
+		end->link = nullptr;
 #ifdef DEBUG
 		debug_script(thisob);
 #endif
@@ -1222,7 +1222,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				{
 					if (thisob->match0>=0)
 					{
-						assert(thisob->inserted);
+						assert(thisob->inserted > 0);
 						for (int i=0; i<thisob->inserted; ++i)
 						{
 							int line0 = i+thisob->match0 + (trans_a0-first0-1);
@@ -1232,7 +1232,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 					}
 					if (thisob->match1>=0)
 					{
-						assert(thisob->deleted);
+						assert(thisob->deleted > 0);
 						for (int i=0; i<thisob->deleted; ++i)
 						{
 							int line0 = i+thisob->line0 + (trans_a0-first0-1);
@@ -1249,7 +1249,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, asLwrCaseExt);
 				}
 
-				if (m_pFilterList && m_pFilterList->HasRegExps())
+				if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
 				{
 					 //Determine quantity of lines in this block for both sides
 					int QtyLinesLeft = (trans_b0 - trans_a0);
@@ -1342,7 +1342,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 			/* Disconnect them from the rest of the changes,
 			making them a hunk, and remember the rest for next iteration.  */
 			next = end->link;
-			end->link = 0;
+			end->link = nullptr;
 #ifdef DEBUG
 			debug_script(thisob);
 #endif
@@ -1383,7 +1383,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 						{
 							if (thisob->match0>=0)
 							{
-								assert(thisob->inserted);
+								assert(thisob->inserted > 0);
 								for (int i=0; i<thisob->inserted; ++i)
 								{
 									int line0 = i+thisob->match0 + (trans_a0-first0-1);
@@ -1393,7 +1393,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 							}
 							if (thisob->match1>=0)
 							{
-								assert(thisob->deleted);
+								assert(thisob->deleted > 0);
 								for (int i=0; i<thisob->deleted; ++i)
 								{
 									int line0 = i+thisob->line0 + (trans_a0-first0-1);
@@ -1414,7 +1414,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	}
 
 	Make3wayDiff(m_pDiffList->GetDiffRangeInfoVector(), diff10.GetDiffRangeInfoVector(), diff12.GetDiffRangeInfoVector(), 
-		Comp02Functor(inf10, inf12), (m_pFilterList && m_pFilterList->HasRegExps()));
+		Comp02Functor(inf10, inf12), (m_pFilterList != nullptr && m_pFilterList->HasRegExps()));
 }
 
 void CDiffWrapper::WritePatchFileHeader(enum output_style tOutput_style, bool bAppendFiles)
@@ -1626,7 +1626,7 @@ void CDiffWrapper::SetFilterList(const String& filterStr)
 	}
 
 	// Adding new filter without previous filter
-	if (m_pFilterList == NULL)
+	if (m_pFilterList == nullptr)
 	{
 		m_pFilterList.reset(new FilterList);
 	}

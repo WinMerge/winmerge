@@ -68,7 +68,7 @@ bool DiffFileData::DoOpenFiles()
 		// but these are often temporary files
 		// Displayable (original) paths are m_sDisplayFilepath[i]
 		m_inf[i].name = _strdup(ucr::toSystemCP(m_sDisplayFilepath[i]).c_str());
-		if (m_inf[i].name == NULL)
+		if (m_inf[i].name == nullptr)
 			return false;
 
 		// Open up file descriptors
@@ -102,7 +102,7 @@ bool DiffFileData::DoOpenFiles()
 /** @brief Clear inf structure to pristine */
 void DiffFileData::Reset()
 {
-	assert(m_inf);
+	assert(m_inf != nullptr);
 	// If diffutils put data in, have it cleanup
 	if (m_used)
 	{
@@ -118,7 +118,7 @@ void DiffFileData::Reset()
 			m_inf[1].desc = 0;
 		}
 		free((void *)m_inf[i].name);
-		m_inf[i].name = NULL;
+		m_inf[i].name = nullptr;
 
 		if (m_inf[i].desc > 0)
 		{

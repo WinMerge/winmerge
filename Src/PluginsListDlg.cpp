@@ -22,7 +22,7 @@ END_MESSAGE_MAP()
 /**
  * @brief Constructor.
  */
-PluginsListDlg::PluginsListDlg(CWnd* pParent /*=NULL*/)
+PluginsListDlg::PluginsListDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(PluginsListDlg::IDD, pParent)
 {
 }
@@ -124,7 +124,7 @@ void PluginsListDlg::OnBnClickedOk()
 
 	for (int i = 0; i < m_list.GetItemCount(); ++i)
 	{
-		PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(NULL, String(m_list.GetItemText(i, 0)));
+		PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, String(m_list.GetItemText(i, 0)));
 		plugin->m_disabled = !m_list.GetCheck(i);
 	}
 	CAllThreadsScripts::GetActiveSet()->SaveSettings();
@@ -137,7 +137,7 @@ void PluginsListDlg::OnBnClickedPluginSettings()
 	if (pos)
 	{
 		String pluginName = static_cast<const TCHAR *>(m_list.GetItemText(m_list.GetNextSelectedItem(pos), 0));
-		for (int i = 0; TransformationCategories[i]; ++i)
+		for (int i = 0; TransformationCategories[i] != nullptr; ++i)
 		{
 			PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(TransformationCategories[i], pluginName);
 			if (plugin)

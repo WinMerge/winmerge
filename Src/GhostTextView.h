@@ -93,8 +93,8 @@ private:
 	//   m_ptDropPos : only used inside one function which does not change the buffer
 
 public:
-	virtual void ReAttachToBuffer (CCrystalTextBuffer * pBuf = NULL);
-	virtual void AttachToBuffer (CCrystalTextBuffer * pBuf = NULL);
+	virtual void ReAttachToBuffer (CCrystalTextBuffer * pBuf = nullptr);
+	virtual void AttachToBuffer (CCrystalTextBuffer * pBuf = nullptr);
 	virtual void DetachFromBuffer ();
 
 	/** real cursor function to preserve cursor during Rescan */

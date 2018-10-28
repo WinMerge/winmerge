@@ -169,7 +169,7 @@ static String GetLocaleString(LCID locid, LCTYPE lctype)
 /**
  * @brief Write string item
  */
-void CConfigLog::WriteItem(int indent, const String& key, const TCHAR *value)
+void CConfigLog::WriteItem(int indent, const String& key, const TCHAR *value /*= nullptr*/)
 {
 	String text = strutils::format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key.c_str(), key.c_str(), value);
 	m_pfile->WriteString(text);
@@ -219,7 +219,7 @@ void CConfigLog::WriteVersionOf1(int indent, const String& path)
 		path2 = String(pf+2);
 	}
 	String name = paths::FindFileName(path2);
-	CVersionInfo vi(path2.c_str(), TRUE);
+	CVersionInfo vi(path2.c_str(), true);
 	String sModifiedTime = _T("");
 	if (name != path)
 	{
@@ -341,17 +341,17 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(GetCompilerVersion());
 
 	LPCTSTR szCmdLine = ::GetCommandLine();
-	assert(szCmdLine != NULL);
+	assert(szCmdLine != nullptr);
 
 	// Skip the quoted executable file name.
-	if (szCmdLine != NULL)
+	if (szCmdLine != nullptr)
 	{
 		szCmdLine = _tcschr(szCmdLine, '"');
-		if (szCmdLine != NULL)
+		if (szCmdLine != nullptr)
 		{
 			szCmdLine += 1; // skip the opening quote.
 			szCmdLine = _tcschr(szCmdLine, '"');
-			if (szCmdLine != NULL)
+			if (szCmdLine != nullptr)
 			{
 				szCmdLine += 1; // skip the closing quote.
 			}

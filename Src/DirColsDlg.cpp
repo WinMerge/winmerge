@@ -22,7 +22,7 @@
  * @brief Default dialog constructor.
  * @param [in] pParent Dialog's parent component (window).
  */
-CDirColsDlg::CDirColsDlg(CWnd* pParent /*=NULL*/)
+CDirColsDlg::CDirColsDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CDirColsDlg::IDD, pParent)
 	, m_bReset(false)
 {
@@ -168,7 +168,7 @@ void CDirColsDlg::MoveItem(int index, int newIndex)
 
 /**
  * @brief Move selected items one position up or down.
- * @param [in] bUp If TRUE items are moved up,
+ * @param [in] bUp If `true` items are moved up,
  *  if FALSE items are moved down.
  */
 void CDirColsDlg::MoveSelectedItems(bool bUp)
@@ -176,7 +176,7 @@ void CDirColsDlg::MoveSelectedItems(bool bUp)
 	int firstInd = -1;
 	POSITION pos = m_listColumns.GetFirstSelectedItemPosition();
 
-	while (pos)
+	while (pos != nullptr)
 	{
 		int ind = m_listColumns.GetNextSelectedItem(pos);
 		int newInd = bUp ? ind - 1: ind + 1;
@@ -194,7 +194,7 @@ void CDirColsDlg::MoveSelectedItems(bool bUp)
  */
 void CDirColsDlg::OnUp()
 {
-	MoveSelectedItems(TRUE);
+	MoveSelectedItems(true);
 }
 
 /**
@@ -202,7 +202,7 @@ void CDirColsDlg::OnUp()
  */
 void CDirColsDlg::OnDown() 
 {
-	MoveSelectedItems(FALSE);
+	MoveSelectedItems(false);
 }
 
 /**
@@ -267,7 +267,7 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	POSITION pos = m_listColumns.GetFirstSelectedItemPosition();
 
-	if (pos)
+	if (pos != nullptr)
 	{
 		int ind = m_listColumns.GetNextSelectedItem(pos);
 		DWORD_PTR data = m_listColumns.GetItemData(ind);

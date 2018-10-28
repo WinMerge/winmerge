@@ -34,12 +34,12 @@ struct _RxNode {
 };
 
 RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
-    RxNode *n = 0;
-    if (Regexp == 0) return 0;
+    RxNode *n = nullptr;
+    if (Regexp == nullptr) return nullptr;
     n = new RxNode();
-    if (n == 0) return 0;
+    if (n == nullptr) return nullptr;
 
-	const char * errormsg = NULL;
+	const char * errormsg = nullptr;
 	int erroroffset = 0;
 	int pcre_opts = 0;
 	std::string regexString;
@@ -60,7 +60,7 @@ RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
 	}
 	catch (...)
 	{
-		return 0;
+		return nullptr;
 	}
 
     return n;
@@ -74,7 +74,7 @@ void RxFree(RxNode *n) {
 }
 
 int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *Match) {
-    if (Regexp == 0) return 0;
+    if (Regexp == nullptr) return 0;
 
 	int i;
     for (i = 0; i < NSEXPS; i++) Match->Open[i] = Match->Close[i] = -1;
@@ -128,14 +128,14 @@ static int add(size_t *len, LPTSTR *s, LPCTSTR a, size_t alen, int &flag) {
 
     if (*s) {
         LPTSTR p = (LPTSTR) realloc(*s, NewLen * sizeof(TCHAR));
-		if (!p)
+		if (p == nullptr)
 			return 0;
 		*s = p;
-		assert(*s);
+		assert(*s != 0);
 		memcpy(*s + *len, a, alen * sizeof(TCHAR));
     } else {
         *s = (LPTSTR) malloc(NewLen * sizeof(TCHAR));
-        assert(*s);
+        assert(*s != 0);
         memcpy(*s, a, alen * sizeof(TCHAR));
         *len = 0;
     }

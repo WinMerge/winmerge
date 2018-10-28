@@ -69,7 +69,7 @@ CMergeEditView::CMergeEditView()
 , m_nThisPane(0)
 , m_nThisGroup(0)
 , m_bDetailView(false)
-, m_piMergeEditStatus(0)
+, m_piMergeEditStatus(nullptr)
 , m_bAutomaticRescan(false)
 , fTimerWaitingForIdle(0)
 , m_lineBegin(0)
@@ -660,7 +660,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 void CMergeEditView::UpdateSiblingScrollPos (bool bHorz)
 {
 	CSplitterWnd *pSplitterWnd = GetParentSplitter (this, false);
-	if (pSplitterWnd != NULL)
+	if (pSplitterWnd != nullptr)
 	{
 		//  See CSplitterWnd::IdFromRowCol() implementation for details
 		int nCurrentRow = (GetDlgCtrlID () - AFX_IDW_PANE_FIRST) / 16;
@@ -678,7 +678,7 @@ void CMergeEditView::UpdateSiblingScrollPos (bool bHorz)
 //			for (int nCol = 0; nCol < nCols; nCol++)
 //			{
 //				CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
-//				if (pSiblingView != NULL)
+//				if (pSiblingView != nullptr)
 //					if (pSiblingView->GetSubLineCount() <= newTopSubLine)
 //						newTopSubLine = pSiblingView->GetSubLineCount()-1;
 //			}
@@ -693,7 +693,7 @@ void CMergeEditView::UpdateSiblingScrollPos (bool bHorz)
 				if (!(nRow == nCurrentRow && nCol == nCurrentCol))  //  We don't need to update ourselves
 				{
 					CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
-					if (pSiblingView != NULL && pSiblingView->m_nThisGroup == m_nThisGroup)
+					if (pSiblingView != nullptr && pSiblingView->m_nThisGroup == m_nThisGroup)
 						pSiblingView->OnUpdateSibling (this, bHorz);
 				}
 			}
@@ -708,7 +708,7 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHo
 {
 	if (pUpdateSource != this)
 	{
-		ASSERT (pUpdateSource != NULL);
+		ASSERT (pUpdateSource != nullptr);
 		ASSERT_KINDOF (CCrystalTextView, pUpdateSource);
 		CMergeEditView *pSrcView = static_cast<CMergeEditView*>(pUpdateSource);
 		if (!bHorz)  // changed this so bHorz works right
@@ -772,8 +772,8 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 	// tell the others views about this diff (no need to call UpdateSiblingScrollPos)
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
 
-	// pSplitterWnd is NULL if WinMerge started minimized.
-	if (pSplitterWnd != NULL)
+	// pSplitterWnd is `nullptr` if WinMerge started minimized.
+	if (pSplitterWnd != nullptr)
 	{
 		int nRows = pSplitterWnd->GetRowCount ();
 		int nCols = pSplitterWnd->GetColumnCount ();
@@ -782,7 +782,7 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 			for (int nCol = 0; nCol < nCols; nCol++)
 			{
 				CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
-				if (pSiblingView != NULL)
+				if (pSiblingView != nullptr)
 					pSiblingView->OnDisplayDiff(nDiff);
 			}
 		}
@@ -1153,7 +1153,7 @@ void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 	const DIFFRANGE * dfi = pd->m_diffList.LastSignificantDiffRange();
 	bool enabled;
 
-	if (!dfi)
+	if (dfi == nullptr)
 	{
 		// There aren't any significant differences
 		enabled = false;
@@ -1244,7 +1244,7 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 	const DIFFRANGE * dfi = pd->m_diffList.FirstSignificantDiffRange();
 	bool enabled;
 
-	if (!dfi)
+	if (dfi == nullptr)
 	{
 		// There aren't any significant differences
 		enabled = false;
@@ -1355,7 +1355,7 @@ void CMergeEditView::OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 
 	const DIFFRANGE * dfi = pd->m_diffList.LastSignificant3wayDiffRange(nDiffType);
 
-	if (!dfi)
+	if (dfi == nullptr)
 	{
 		// There aren't any significant differences
 		pCmdUI->Enable(false);
@@ -1437,7 +1437,7 @@ void CMergeEditView::OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 
 	const DIFFRANGE * dfi = pd->m_diffList.FirstSignificant3wayDiffRange(nDiffType);
 
-	if (!dfi)
+	if (dfi == nullptr)
 	{
 		// There aren't any significant differences
 		pCmdUI->Enable(false);
@@ -1957,7 +1957,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchTex
 			nAction == CE_ACTION_DELETE ||
 			nAction == CE_ACTION_CUT)
 		{
-			if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, NULL))
+			if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, nullptr))
 				pDoc->FlushAndRescan();
 		}
 		else
@@ -1973,7 +1973,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchTex
 				if (nPane == m_nThisPane)
 					continue;
 				CCrystalEditView *pView = GetGroupView(nPane);
-				if (pView)
+				if (pView != nullptr)
 					pView->Invalidate();
 			}
 		}
@@ -2181,7 +2181,7 @@ void CMergeEditView::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
 void CMergeEditView::OnRefresh()
 {
 	CMergeDoc *pd = GetDocument();
-	ASSERT(pd);
+	ASSERT(pd != nullptr);
 	pd->FlushAndRescan(true);
 }
 
@@ -2362,7 +2362,7 @@ void CMergeEditView::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 /// Store interface we use to display status line info
 void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
 {
-	ASSERT(!m_piMergeEditStatus);
+	ASSERT(m_piMergeEditStatus == nullptr);
 	m_piMergeEditStatus = piMergeEditStatus;
 }
 
@@ -2382,7 +2382,7 @@ void CMergeEditView::UpdateStatusbar()
  */
 void CMergeEditView::OnUpdateCaret()
 {
-	if (!m_piMergeEditStatus || !IsTextBufferInitialized())
+	if (m_piMergeEditStatus == nullptr || !IsTextBufferInitialized())
 		return;
 
 	CPoint cursorPos = GetCursorPos();
@@ -2531,7 +2531,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		DeleteMenu(hMenu, 0, MF_BYPOSITION);
 
 	CMergeDoc *pd = GetDocument();
-	ASSERT(pd);
+	ASSERT(pd != nullptr);
 
 	// title
 	AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
@@ -2544,7 +2544,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	// build the menu : first part, suggested plugins
 	// title
-	AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
 	AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
 
 	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
@@ -2568,7 +2568,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	// build the menu : second part, others plugins
 	// title
-	AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
 	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
 
 	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
@@ -2593,9 +2593,9 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	PrediffingInfo prediffer;
 	pd->GetPrediffer(&prediffer);
 
-	if (prediffer.bToBeScanned)
+	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MANUAL)
 		m_CurrentPredifferID = 0;
-	else if (prediffer.pluginName.empty())
+	else if (prediffer.m_PluginName.empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 	else
 	{
@@ -2603,14 +2603,14 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
 		{
 			const PluginInfoPtr & plugin = piScriptArray->at(iScript);
-			if (prediffer.pluginName == plugin->m_name)
+			if (prediffer.m_PluginName == plugin->m_name)
 				m_CurrentPredifferID = ID;
 
 		}
 		for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
 		{
 			const PluginInfoPtr & plugin = piScriptArray2->at(iScript);
-			if (prediffer.pluginName == plugin->m_name)
+			if (prediffer.m_PluginName == plugin->m_name)
 				m_CurrentPredifferID = ID;
 		}
 	}
@@ -2643,7 +2643,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	theApp.TranslateMenu(menu.m_hMenu);
 
 	BCMenu *pSub = static_cast<BCMenu *>(menu.GetSubMenu(0));
-	ASSERT(pSub != NULL);
+	ASSERT(pSub != nullptr);
 
 	// Context menu opened using keyboard has no coordinates
 	if (point.x == -1 && point.y == -1)
@@ -2697,7 +2697,7 @@ void CMergeEditView::OnConvertEolTo(UINT nID )
 	if (m_pTextBuffer->applyEOLMode())
 	{
 		CMergeDoc *pd = GetDocument();
-		ASSERT(pd);
+		ASSERT(pd != nullptr);
 		pd->UpdateHeaderPath(m_nThisPane);
 		pd->FlushAndRescan(true);
 	}
@@ -2837,7 +2837,7 @@ void CMergeEditView::OnWMGoto()
 	if (dlg.DoModal() == IDOK)
 	{
 		CMergeDoc * pDoc1 = GetDocument();
-		CMergeEditView * pCurrentView = NULL;
+		CMergeEditView * pCurrentView = nullptr;
 
 		// Get views
 		pCurrentView = GetGroupView(m_nThisPane);
@@ -2915,7 +2915,7 @@ void CMergeEditView::OnUpdateNoEditScripts(CCmdUI* pCmdUI)
 {
 	// append the scripts submenu
 	HMENU scriptsSubmenu = dynamic_cast<CMainFrame*>(AfxGetMainWnd())->GetScriptsSubmenu(AfxGetMainWnd()->GetMenu()->m_hMenu);
-	if (scriptsSubmenu != NULL)
+	if (scriptsSubmenu != nullptr)
 		createScriptsSubmenu(scriptsSubmenu);
 
 	pCmdUI->Enable(true);
@@ -2929,18 +2929,18 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 	pCmdUI->Enable(true);
 
 	CMergeDoc *pd = GetDocument();
-	ASSERT(pd);
+	ASSERT(pd != nullptr);
 	PrediffingInfo prediffer;
 	pd->GetPrediffer(&prediffer);
 
-	if (prediffer.bToBeScanned)
+	if (prediffer.m_PluginOrPredifferMode != PLUGIN_MANUAL)
 	{
 		pCmdUI->SetRadio(false);
 		return;
 	}
 
 	// Detect when CDiffWrapper::RunFileDiff has canceled a buggy prediffer
-	if (prediffer.pluginName.empty())
+	if (prediffer.m_PluginName.empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 
 	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
@@ -2966,7 +2966,7 @@ void CMergeEditView::OnNoPrediffer()
 void CMergeEditView::OnPrediffer(UINT nID )
 {
 	CMergeDoc *pd = GetDocument();
-	ASSERT(pd);
+	ASSERT(pd != nullptr);
 
 	SetPredifferByMenu(nID);
 	pd->FlushAndRescan(true);
@@ -2980,15 +2980,15 @@ void CMergeEditView::OnPrediffer(UINT nID )
 void CMergeEditView::SetPredifferByMenu(UINT nID )
 {
 	CMergeDoc *pd = GetDocument();
-	ASSERT(pd);
+	ASSERT(pd != nullptr);
 
 	if (nID == ID_NO_PREDIFFER)
 	{
 		m_CurrentPredifferID = nID;
 		// All flags are set correctly during the construction
 		PrediffingInfo *infoPrediffer = new PrediffingInfo;
-		infoPrediffer->bToBeScanned = 0;
-		infoPrediffer->pluginName.clear();
+		infoPrediffer->m_PluginOrPredifferMode = PLUGIN_MANUAL;
+		infoPrediffer->m_PluginName.clear();
 		pd->SetPrediffer(infoPrediffer);
 		pd->FlushAndRescan(true);
 		return;
@@ -3002,23 +3002,23 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 
 	// build a PrediffingInfo structure fom the ID
 	PrediffingInfo prediffer;
-	prediffer.bToBeScanned = false;
+	prediffer.m_PluginOrPredifferMode = PLUGIN_MANUAL;
 
 	size_t pluginNumber = nID - ID_PREDIFFERS_FIRST;
 	if (pluginNumber < piScriptArray->size())
 	{
-		prediffer.bWithFile = true;
+		prediffer.m_bWithFile = true;
 		const PluginInfoPtr & plugin = piScriptArray->at(pluginNumber);
-		prediffer.pluginName = plugin->m_name;
+		prediffer.m_PluginName = plugin->m_name;
 	}
 	else
 	{
 		pluginNumber -= piScriptArray->size();
 		if (pluginNumber >= piScriptArray2->size())
 			return;
-		prediffer.bWithFile = false;
+		prediffer.m_bWithFile = false;
 		const PluginInfoPtr & plugin = piScriptArray2->at(pluginNumber);
-		prediffer.pluginName = plugin->m_name;
+		prediffer.m_PluginName = plugin->m_name;
 	}
 
 	// update data for the radio button
@@ -3081,8 +3081,8 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 {
  	CMergeDoc *pDoc = GetDocument();
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
-	CMergeEditView *pCurrentView = NULL;
-	if (pSplitterWnd)
+	CMergeEditView *pCurrentView = nullptr;
+	if (pSplitterWnd != nullptr)
 		pCurrentView = static_cast<CMergeEditView*>
 			(pSplitterWnd->GetActivePane());
 
@@ -3129,7 +3129,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 	// work with goto target file.
 	if (GetGroupView(pane) != pCurrentView)
 	{
-		if (pSplitterWnd)
+		if (pSplitterWnd != nullptr)
 		{
 			if (pSplitterWnd->GetColumnCount() > 1)
 				pSplitterWnd->SetActivePane(0, pane);
@@ -3145,7 +3145,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
  */
 void CMergeEditView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
-	if (pScrollBar == NULL)
+	if (pScrollBar == nullptr)
 	{
 		// Scroll did not come frome a scroll bar
 		// Find the appropriate scroll bar
@@ -3166,7 +3166,7 @@ void CMergeEditView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
  */
 void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
-	if (pScrollBar == NULL)
+	if (pScrollBar == nullptr)
 	{
 		// Scroll did not come frome a scroll bar
 		// Find the appropriate scroll bar
@@ -3248,7 +3248,7 @@ void CMergeEditView::OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI)
 void CMergeEditView::OnOpenFile()
 {
 	CMergeDoc * pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
@@ -3268,7 +3268,7 @@ void CMergeEditView::OnOpenFile()
 void CMergeEditView::OnOpenFileWith()
 {
 	CMergeDoc * pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
@@ -3289,7 +3289,7 @@ void CMergeEditView::OnOpenFileWith()
 void CMergeEditView::OnOpenFileWithEditor()
 {
 	CMergeDoc * pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
 	String sFileName = pDoc->m_filePaths[m_nThisPane];
 	if (sFileName.empty())
@@ -3306,7 +3306,7 @@ void CMergeEditView::RepaintLocationPane()
 {
 	// Must force recalculation due to caching of data in location pane.
 	CLocationView *pLocationView = GetDocument()->GetLocationView();
-	if (pLocationView)
+	if (pLocationView != nullptr)
 		pLocationView->ForceRecalculate();
 }
 
@@ -3396,7 +3396,7 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
 			CMergeEditView *pView = GetGroupView(nPane);
-			if (pView)
+			if (pView != nullptr)
 				pView->InvalidateScreenRect(false);
 		}
 	}
@@ -3405,7 +3405,7 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
 			CMergeEditView *pView = GetGroupView(nPane);
-			if (pView)
+			if (pView != nullptr)
 				pView->Invalidate();
 		}
 	}
@@ -3539,11 +3539,11 @@ int CMergeEditView::GetEmptySubLines( int nLineIndex )
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 	{
 		CMergeEditView *pView = GetGroupView(nPane);
-		if (pView)
+		if (pView != nullptr)
 		{
 			if (nLineIndex >= pView->GetLineCount())
 				return 0;
-			pView->WrapLineCached( nLineIndex, pView->GetScreenChars(), NULL, nBreaks[nPane] );
+			pView->WrapLineCached( nLineIndex, pView->GetScreenChars(), nullptr, nBreaks[nPane] );
 		}
 		nMaxBreaks = max(nMaxBreaks, nBreaks[nPane]);
 	}
@@ -3561,13 +3561,13 @@ int CMergeEditView::GetEmptySubLines( int nLineIndex )
 void CMergeEditView::InvalidateSubLineIndexCache( int nLineIndex )
 {
 	CMergeDoc * pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
     // We have to invalidate sub line index cache on both panes.
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 	{
 		CMergeEditView *pView = GetGroupView(nPane);
-		if (pView)
+		if (pView != nullptr)
 			pView->CCrystalTextView::InvalidateSubLineIndexCache( nLineIndex );
 	}
 }
@@ -3692,12 +3692,12 @@ void CMergeEditView::UpdateLocationViewPosition(int nTopLine /*=-1*/,
 		int nBottomLine /*= -1*/)
 {
 	CMergeDoc *pDoc = GetDocument();
-	if (pDoc == NULL)
+	if (pDoc == nullptr)
 		return;
 
 	CLocationView *pLocationView = pDoc->GetLocationView();
 
-	if (pLocationView != NULL && IsWindow(pLocationView->GetSafeHwnd()))
+	if (pLocationView != nullptr && IsWindow(pLocationView->GetSafeHwnd()))
 	{
 		pLocationView->UpdateVisiblePos(nTopLine, nBottomLine);
 	}
@@ -3743,7 +3743,7 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 
 	String name = theApp.LoadString(ID_COLORSCHEME_FIRST);
 	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
-	AppendMenu(hSubMenu, MF_SEPARATOR, 0, NULL);
+	AppendMenu(hSubMenu, MF_SEPARATOR, 0, nullptr);
 
 	for (int i = ID_COLORSCHEME_FIRST + 1; i <= ID_COLORSCHEME_LAST; ++i)
 	{
@@ -3761,21 +3761,21 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 void CMergeEditView::OnChangeScheme(UINT nID)
 {
 	CMergeDoc *pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 	{
 		CMergeEditView *pView = GetGroupView(nPane);
-		ASSERT(pView != NULL);
+		ASSERT(pView != nullptr);
 
-		if (pView != NULL)
+		if (pView != nullptr)
 		{
 			pView->SetTextType(CCrystalTextView::TextType(nID - ID_COLORSCHEME_FIRST));
 			pView->SetDisableBSAtSOL(false);
 		}
 	}
 
-	pDoc->UpdateAllViews(NULL);
+	pDoc->UpdateAllViews(nullptr);
 }
 
 /**
@@ -3852,16 +3852,16 @@ void CMergeEditView::ZoomText(short amount)
 	lf.lfHeight = -MulDiv(nPointSize, nLogPixelsY, 72);
 
 	CMergeDoc *pDoc = GetDocument();
-	ASSERT(pDoc != NULL);
+	ASSERT(pDoc != nullptr);
 
-	if (pDoc != NULL )
+	if (pDoc != nullptr)
 	{
 		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
 			CMergeEditView *pView = GetGroupView(nPane);
-			ASSERT(pView != NULL);
+			ASSERT(pView != nullptr);
 			
-			if (pView != NULL)
+			if (pView != nullptr)
 			{
 				pView->SetFont(lf);
 			}

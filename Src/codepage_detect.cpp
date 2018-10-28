@@ -53,7 +53,7 @@ FindEncodingIdFromNameOrAlias(const char *encodingName)
 	if (encodingId == 0)
 	{
 		// Handle purely numeric values (codepages)
-		char *ahead = 0;
+		char *ahead = nullptr;
 		unsigned codepage = strtol(encodingName, &ahead, 10);
 		int i = 0;
 		while (*ahead != '\0' && i < sizeof(f_wincp_prefixes)/sizeof(f_wincp_prefixes[0]))
@@ -193,7 +193,7 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
 	else if (guessEncodingType & 2)
 	{
 		IExconverter *pexconv = Exconverter::getInstance();
-		if (pexconv && src != NULL)
+		if (pexconv != nullptr && src != nullptr)
 		{
 			int autodetectType = (unsigned)guessEncodingType >> 16;
 			cp = pexconv->detectInputCodepage(autodetectType, cp, src, len);

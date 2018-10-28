@@ -19,7 +19,7 @@ IMPLEMENT_DYNAMIC(CLocationBar, TViewBarBase);
 //////////////////////////////////////////////////////////////////////
 
 CLocationBar::CLocationBar()
-: m_hwndFrame(NULL)
+: m_hwndFrame(nullptr)
 {
 }
 
@@ -79,7 +79,7 @@ int CLocationBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CLocationBar::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	TViewBarBase::OnLButtonDown(nFlags, point);
-	if (m_pDockBar != NULL)
+	if (m_pDockBar != nullptr)
 	{
 		if (!IsVertDocked())
 			m_pDockContext->ToggleDocking();
@@ -100,7 +100,7 @@ void CLocationBar::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 {
 	TViewBarBase::OnWindowPosChanged(lpwndpos);
 
-	if (m_hwndFrame != NULL)
+	if (m_hwndFrame != nullptr)
 	{
 		// If WINDOWPOS.flags has SWP_HIDEWINDOW flag set
 		if ((lpwndpos->flags & SWP_HIDEWINDOW) != 0)

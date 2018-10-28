@@ -16,10 +16,10 @@
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox
 
-HIMAGELIST CSuperComboBox::m_himlSystem = NULL;
+HIMAGELIST CSuperComboBox::m_himlSystem = nullptr;
 
 CSuperComboBox::CSuperComboBox()
-	: m_pDropHandler(NULL)
+	: m_pDropHandler(nullptr)
 {
 	m_bEditChanged = false;
 	m_bDoComplete = false;
@@ -38,7 +38,7 @@ CSuperComboBox::CSuperComboBox()
 	_AFX_THREAD_STATE* pState = AfxGetThreadState();
 	if (!pState->m_bNeedTerm)
 	{
-		SCODE sc = ::OleInitialize(NULL);
+		SCODE sc = ::OleInitialize(nullptr);
 		if (FAILED(sc))
 			AfxMessageBox(_T("OLE initialization failed. Make sure that the OLE libraries are the correct version"));
 		else
@@ -410,7 +410,7 @@ void CSuperComboBox::SetAutoComplete(INT nSource)
 
 			// ComboBox's edit control is alway 1001.
 			CWnd *pWnd = m_bComboBoxEx ? this->GetEditCtrl() : GetDlgItem(1001);
-			ASSERT(NULL != pWnd);
+			ASSERT(pWnd != nullptr);
 			SHAutoComplete(pWnd->m_hWnd, SHACF_FILESYSTEM);
 			break;
 		}
@@ -450,7 +450,7 @@ int CSuperComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 void CSuperComboBox::OnDestroy(void)
 {
-	if (m_pDropHandler)
+	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
 }
 
@@ -523,9 +523,9 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 		{
 			// The path is a network path. 
 			// Try to get the index of a system image list icon, with 1-sec timeout.
-			HANDLE hThread = CreateThread(NULL, 0, SHGetFileInfoThread, 
-											(VOID *)(LPCTSTR)sText, 0, NULL);
-			if (hThread != NULL)
+			HANDLE hThread = CreateThread(nullptr, 0, SHGetFileInfoThread, 
+											(VOID *)(LPCTSTR)sText, 0, nullptr);
+			if (hThread != nullptr)
 			{
 				DWORD dwResult = WaitForSingleObject(hThread, 1000);
 				if (dwResult == WAIT_OBJECT_0)

@@ -75,8 +75,8 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CChildFrame::CChildFrame()
-: m_hIdentical(NULL)
-, m_hDifferent(NULL)
+: m_hIdentical(nullptr)
+, m_hDifferent(nullptr)
 {
 	m_bActivated = false;
 	std::fill_n(m_nLastSplitPos, 2, 0);
@@ -108,7 +108,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	CLocationView *pLocationView = new CLocationView;
 	DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
-	pLocationView->Create(NULL, NULL, dwStyle, CRect(0,0,40,100), &m_wndLocationBar, 152, pContext);
+	pLocationView->Create(nullptr, nullptr, dwStyle, CRect(0,0,40,100), &m_wndLocationBar, 152, pContext);
 
 	// Merge frame has also a dockable bar at the very bottom
 	// This is not the client area, but we create it now because we want
@@ -122,7 +122,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	m_pwndDetailMergeEditSplitterView = new CMergeEditSplitterView();
 	m_pwndDetailMergeEditSplitterView->m_bDetailView = true;
-	m_pwndDetailMergeEditSplitterView->Create(NULL, NULL, dwStyle, CRect(0,0,1,1), &m_wndDetailBar, ID_VIEW_DETAIL_BAR+1, pContext);
+	m_pwndDetailMergeEditSplitterView->Create(nullptr, nullptr, dwStyle, CRect(0,0,1,1), &m_wndDetailBar, ID_VIEW_DETAIL_BAR+1, pContext);
 
 	// tell merge doc about these views
 	m_pMergeDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
@@ -238,14 +238,14 @@ bool CChildFrame::EnsureValidDockState(CDockState& state)
 	{
 		bool barIsCorrect = true;
 		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
-		if (! pInfo) 
+		if (pInfo == nullptr) 
 			barIsCorrect = false;
 		else
 		{
 			if (! pInfo->m_bFloating) 
 			{
 				pInfo->m_pBar = GetControlBar(pInfo->m_nBarID);
-				if (!pInfo->m_pBar) 
+				if (pInfo->m_pBar == nullptr) 
 					barIsCorrect = false; //toolbar id's probably changed	
 			}
 		}
@@ -306,13 +306,13 @@ static bool MyLockWindowUpdate(HWND hwnd)
 }
 
 /**
- * @brief Alternative LockWindowUpdate(NULL) API.
+ * @brief Alternative LockWindowUpdate(nullptr) API.
  * See the comment near the code that calls this function.
  */
 static bool MyUnlockWindowUpdate(HWND hwnd)
 {
 	WNDPROC pfnOldWndProc = (WNDPROC)RemoveProp(hwnd, _T("OldWndProc"));
-	if (pfnOldWndProc)
+	if (pfnOldWndProc != nullptr)
 		SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)pfnOldWndProc);
 
 	EnumChildWindows(hwnd, EnumChildProc, TRUE);
@@ -330,7 +330,7 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 		m_bActivated = true;
 
 		// get the active child frame, and a flag whether it is maximized
-		if (oldActiveFrame == NULL)
+		if (oldActiveFrame == nullptr)
 			// for the first frame, get the restored/maximized state from the registry
 			bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), TRUE);
 		if (bMaximized)
@@ -417,7 +417,7 @@ void CChildFrame::SavePosition()
 	m_wndDetailBar.SaveState(_T("Settings"));
 
 	int iRow, iCol;
-	m_wndSplitter.GetActivePane(&iRow, NULL);
+	m_wndSplitter.GetActivePane(&iRow, nullptr);
 	if (iRow >= 0)
 	{
 		auto& splitterWnd = static_cast<CMergeEditSplitterView *>(m_wndSplitter.GetPane(iRow, 0))->m_wndSplitter;
@@ -564,7 +564,7 @@ void CChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeact
 	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
 	CMergeDoc *pDoc = GetMergeDoc();
-	if (bActivate && pDoc)
+	if (bActivate && pDoc != nullptr)
 		this->GetParentFrame()->PostMessage(WM_USER+1);
 	return;
 }
@@ -617,7 +617,7 @@ void CChildFrame::UpdateResources()
 LRESULT CChildFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 {
 	KillTimer(IDT_SAVEPOSITION);
-	SetTimer(IDT_SAVEPOSITION, 300, NULL);
+	SetTimer(IDT_SAVEPOSITION, 300, nullptr);
 	return 0;
 }
 

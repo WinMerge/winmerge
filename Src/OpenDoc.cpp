@@ -13,7 +13,7 @@
 IMPLEMENT_DYNCREATE(COpenDoc, CDocument)
 
 COpenDoc::COpenDoc() :
-	m_bRecurse(FALSE)
+	m_bRecurse(false)
 ,	m_dwFlags()
 {
 }
@@ -32,7 +32,7 @@ COpenDoc::~COpenDoc()
 void COpenDoc::RefreshOptions()
 {
 	m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
-	UpdateAllViews(NULL);
+	UpdateAllViews(nullptr);
 }
 
 /**

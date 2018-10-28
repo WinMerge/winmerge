@@ -38,9 +38,9 @@ class CPreferencesDlg : public CTrDialog
 {
 // Construction
 public:
-	//CPreferencesDlg(UINT nMenuID = 0, CWnd* pParent = NULL);   // standard constructor
+	//CPreferencesDlg(UINT nMenuID = 0, CWnd* pParent = nullptr);   // standard constructor
 	CPreferencesDlg(COptionsMgr *optionsMgr, SyntaxColors *colors,
-		UINT nMenuID = 0, CWnd* pParent = NULL);   // standard constructor
+		UINT nMenuID = 0, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CPreferencesDlg();
 
 	void SetSyntaxColors(SyntaxColors *pColors);

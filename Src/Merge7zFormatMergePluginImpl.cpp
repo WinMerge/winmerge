@@ -17,7 +17,7 @@ static Poco::FastMutex g_mutex;
 
 static Merge7zFormatMergePluginImpl *GetInstance()
 {
-	if (!g_pluginformat)
+	if (g_pluginformat == nullptr)
 	{
 		g_pluginformat = new Merge7zFormatMergePluginImpl();
 		Poco::FastMutex::ScopedLock lock(g_mutex);
@@ -29,26 +29,26 @@ static Merge7zFormatMergePluginImpl *GetInstance()
 Merge7z::Format *Merge7zFormatMergePluginImpl::GuessFormat(const String& path)
 {
 	Merge7zFormatMergePluginImpl *format = GetInstance();
-	PluginInfo *plugin = NULL;
-	if (format->m_infoUnpacker.bToBeScanned)
+	PluginInfo *plugin = nullptr;
+	if (format->m_infoUnpacker.m_PluginOrPredifferMode != PLUGIN_MANUAL)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", path);
-	else if (!format->m_infoUnpacker.pluginName.empty())
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.pluginName);
-	if (!plugin)
-		return NULL;
+	else if (!format->m_infoUnpacker.m_PluginName.empty())
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.m_PluginName);
+	if (plugin == nullptr)
+		return nullptr;
 	if (!plugin::InvokeIsFolder(path, plugin->m_lpDispatch))
-		return NULL;
+		return nullptr;
 	format->m_plugin = plugin;
 	return format;
 }
 
 HRESULT Merge7zFormatMergePluginImpl::DeCompressArchive(HWND, LPCTSTR path, LPCTSTR folder)
 {
-	if (!m_plugin)
+	if (m_plugin == nullptr)
 		return E_FAIL;
 	paths::CreateIfNeeded(path);
 	int nChanged = 0;
-	return plugin::InvokeUnpackFolder(path, folder, nChanged, m_plugin->m_lpDispatch, m_infoUnpacker.subcode) ? S_OK : E_FAIL;
+	return plugin::InvokeUnpackFolder(path, folder, nChanged, m_plugin->m_lpDispatch, m_infoUnpacker.m_subcode) ? S_OK : E_FAIL;
 }
 
 HRESULT Merge7zFormatMergePluginImpl::CompressArchive(HWND, LPCTSTR path, Merge7z::DirItemEnumerator *)
@@ -56,13 +56,13 @@ HRESULT Merge7zFormatMergePluginImpl::CompressArchive(HWND, LPCTSTR path, Merge7
 	return E_FAIL;
 }
 
-Merge7z::Format::Inspector *Merge7zFormatMergePluginImpl::Open(HWND, LPCTSTR) { return NULL; }
-Merge7z::Format::Updater *Merge7zFormatMergePluginImpl::Update(HWND, LPCTSTR) { return NULL; }
+Merge7z::Format::Inspector *Merge7zFormatMergePluginImpl::Open(HWND, LPCTSTR) { return nullptr; }
+Merge7z::Format::Updater *Merge7zFormatMergePluginImpl::Update(HWND, LPCTSTR) { return nullptr; }
 HRESULT Merge7zFormatMergePluginImpl::GetHandlerProperty(HWND, PROPID, PROPVARIANT *, VARTYPE) { return E_FAIL; }
-BSTR Merge7zFormatMergePluginImpl::GetHandlerName(HWND) { return NULL; }
-BSTR Merge7zFormatMergePluginImpl::GetHandlerClassID(HWND) { return NULL; }
-BSTR Merge7zFormatMergePluginImpl::GetHandlerExtension(HWND) { return NULL; }
-BSTR Merge7zFormatMergePluginImpl::GetHandlerAddExtension(HWND) { return NULL; }
+BSTR Merge7zFormatMergePluginImpl::GetHandlerName(HWND) { return nullptr; }
+BSTR Merge7zFormatMergePluginImpl::GetHandlerClassID(HWND) { return nullptr; }
+BSTR Merge7zFormatMergePluginImpl::GetHandlerExtension(HWND) { return nullptr; }
+BSTR Merge7zFormatMergePluginImpl::GetHandlerAddExtension(HWND) { return nullptr; }
 VARIANT_BOOL Merge7zFormatMergePluginImpl::GetHandlerUpdate(HWND) { return VARIANT_FALSE; }
 VARIANT_BOOL Merge7zFormatMergePluginImpl::GetHandlerKeepName(HWND) { return VARIANT_FALSE; }
 

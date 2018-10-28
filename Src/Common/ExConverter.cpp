@@ -37,35 +37,35 @@ private:
 
 public:
 	CExconverterMLang()
-	: m_pmlang(NULL)
-	, m_hLibMLang(NULL)
+	: m_pmlang(nullptr)
+	, m_hLibMLang(nullptr)
 	, m_mlangcookie(0)
 	{
 	}
 
 	~CExconverterMLang()
 	{
-		if (m_pmlang)
+		if (m_pmlang != nullptr)
 			m_pmlang->Release();
-		if (m_hLibMLang)
+		if (m_hLibMLang != nullptr)
 			FreeLibrary(m_hLibMLang);
 	}
 
 	bool initialize()
 	{
-		DllGetClassObjectFunc pfnDllGetClassObject = NULL;
-		IClassFactory *pClassFactory = NULL;
+		DllGetClassObjectFunc pfnDllGetClassObject = nullptr;
+		IClassFactory *pClassFactory = nullptr;
 
 		m_hLibMLang = LoadLibrary(_T("mlang.dll"));
-		if (m_hLibMLang)
+		if (m_hLibMLang != nullptr)
 		{
 			pfnDllGetClassObject = (DllGetClassObjectFunc)GetProcAddress(m_hLibMLang, "DllGetClassObject");
-			if (pfnDllGetClassObject)
+			if (pfnDllGetClassObject != nullptr)
 			{
 				HRESULT hr = pfnDllGetClassObject(CLSID_CMultiLanguage, IID_IClassFactory, (void**)&pClassFactory);
-				if (pClassFactory)
+				if (pClassFactory != nullptr)
 				{
-					hr = pClassFactory->CreateInstance(NULL, IID_IMultiLanguage2, (void**)&m_pmlang);
+					hr = pClassFactory->CreateInstance(nullptr, IID_IMultiLanguage2, (void**)&m_pmlang);
 					if (SUCCEEDED(hr))
 					{
 						pClassFactory->Release();
@@ -74,12 +74,12 @@ public:
 				}
 			}
 		}
-		if (pClassFactory)
+		if (pClassFactory != nullptr)
 			pClassFactory->Release();
-		if (m_hLibMLang)
+		if (m_hLibMLang != nullptr)
 		{
 			FreeLibrary(m_hLibMLang);
-			m_hLibMLang = NULL;
+			m_hLibMLang = nullptr;
 		}
 		return false;
 	}
@@ -222,7 +222,7 @@ public:
 	std::vector<CodePageInfo> enumCodePages()
 	{
 		std::vector<CodePageInfo> cpinfo;
-		IEnumCodePage *pEnumCodePage = NULL;
+		IEnumCodePage *pEnumCodePage = nullptr;
 		ULONG ccpInfo;
 		HRESULT hr = m_pmlang->EnumCodePages(MIMECONTF_SAVABLE_BROWSER | MIMECONTF_VALID | MIMECONTF_VALID_NLS, 0, &pEnumCodePage);
 		if (FAILED(hr))
@@ -284,16 +284,16 @@ public:
 };
 
 #ifdef _MSC_VER
-__declspec(thread) static IExconverter *m_pexconv = NULL;
+__declspec(thread) static IExconverter *m_pexconv = nullptr;
 #else
-static __thread IExconverter *m_pexconv = NULL;
+static __thread IExconverter *m_pexconv = nullptr;
 #endif
 static std::list<std::unique_ptr<IExconverter> > m_exconv_list;
 static Poco::FastMutex m_mutex;
 
 IExconverter *Exconverter::getInstance()
 {
-	if (m_pexconv)
+	if (m_pexconv != nullptr)
 	{
 		m_pexconv->clearCookie();
 		return m_pexconv;
@@ -302,7 +302,7 @@ IExconverter *Exconverter::getInstance()
 	if (!pexconv->initialize())
 	{
 		delete pexconv;
-		return NULL;
+		return nullptr;
 	}
 	m_pexconv = pexconv;
 	Poco::FastMutex::ScopedLock lock(m_mutex);
