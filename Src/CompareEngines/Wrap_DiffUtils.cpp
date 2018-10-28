@@ -55,7 +55,7 @@ DiffUtils::~DiffUtils()
 bool DiffUtils::SetCompareOptions(const CompareOptions & options)
 {
 	m_pOptions.reset(new DiffutilsOptions((DiffutilsOptions&)options));
-	if (m_pOptions.get() == NULL)
+	if (m_pOptions.get() == nullptr)
 		return false;
 
 	m_pOptions->SetToDiffUtils();
@@ -68,7 +68,7 @@ bool DiffUtils::SetCompareOptions(const CompareOptions & options)
  */
 void DiffUtils::ClearFilterList()
 {
-	m_pFilterList = NULL;
+	m_pFilterList = nullptr;
 }
 
 /**
@@ -107,7 +107,7 @@ int DiffUtils::diffutils_compare_files()
 	int bin_file = 0; // bitmap for binary files
 
 	// Do the actual comparison (generating a change script)
-	struct change *script = NULL;
+	struct change *script = nullptr;
 	bool success = Diff2Files(&script, 0, &bin_flag, false, &bin_file);
 	if (!success)
 	{
@@ -120,7 +120,7 @@ int DiffUtils::diffutils_compare_files()
 	m_ndiffs = 0;
 	m_ntrivialdiffs = 0;
 
-	if (script)
+	if (script != nullptr)
 	{
 		struct change *next = script;
 
@@ -134,7 +134,7 @@ int DiffUtils::diffutils_compare_files()
 			asLwrCaseExt = LowerCaseExt;
 		}
 
-		while (next)
+		while (next != nullptr)
 		{
 			/* Find a set of changes that belong together.  */
 			struct change *thisob = next;
@@ -143,7 +143,7 @@ int DiffUtils::diffutils_compare_files()
 			/* Disconnect them from the rest of the changes,
 			making them a hunk, and remember the rest for next iteration.  */
 			next = end->link;
-			end->link = NULL;
+			end->link = nullptr;
 #ifdef _DEBUG
 			debug_script(thisob);
 #endif
@@ -188,7 +188,7 @@ int DiffUtils::diffutils_compare_files()
 					// Match lines against regular expression filters
 					// Our strategy is that every line in both sides must
 					// match regexp before we mark difference as ignored.
-					if(m_pFilterList && m_pFilterList->HasRegExps())
+					if(m_pFilterList != nullptr && m_pFilterList->HasRegExps())
 					{
 						bool match2 = false;
 						bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft, 0);
@@ -207,7 +207,7 @@ int DiffUtils::diffutils_compare_files()
 
 
 	// Free change script (which we don't want)
-	if (script != NULL)
+	if (script != nullptr)
 	{
 		struct change *p, *e;
 		for (e = script; e; e = p)
@@ -272,10 +272,10 @@ int DiffUtils::diffutils_compare_files()
  */
 bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 {
-	if (m_pFilterList == NULL)
+	if (m_pFilterList == nullptr)
 	{
 		throw "DiffUtils::RegExpFilter() called when "
-				"filterlist doesn't exist (=NULL)";
+				"filterlist doesn't exist (=`nullptr`)";
 	}
 
 	bool linesMatch = true; // set to false when non-matching line is found.
@@ -306,7 +306,7 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo) const
  * @param [out] bin_status used to return binary status from compare.
  * @param [in] bMovedBlocks If `true` moved blocks are analyzed.
  * @param [out] bin_file Returns which file was binary file as bitmap.
-    So if first file is binary, first bit is set etc. Can be NULL if binary file
+    So if first file is binary, first bit is set etc. Can be `nullptr` if binary file
     info is not needed (faster compare since diffutils don't bother checking
     second file if first is binary).
  * @return `true` when compare succeeds, `false` if error happened during compare.
@@ -322,7 +322,7 @@ bool DiffUtils::Diff2Files(struct change ** diffs, int depth,
 	}
 	catch (SE_Exception&)
 	{
-		*diffs = NULL;
+		*diffs = nullptr;
 		bRet = false;
 	}
 	return bRet;

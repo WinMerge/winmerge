@@ -191,7 +191,7 @@ int DiffList::GetSignificantIndex(int nDiff) const
 bool DiffList::GetDiff(int nDiff, DIFFRANGE & di) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
-	if (!dfi)
+	if (dfi == nullptr)
 	{
 		DIFFRANGE empty;
 		di = empty;
@@ -216,7 +216,7 @@ const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
 	else
 	{
 		assert(false);
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -559,7 +559,7 @@ int DiffList::LastSignificantDiff() const
 const DIFFRANGE * DiffList::FirstSignificantDiffRange() const
 {
 	if (m_firstSignificant == -1)
-		return NULL;
+		return nullptr;
 	return DiffRangeAt(m_firstSignificant);
 }
 
@@ -570,7 +570,7 @@ const DIFFRANGE * DiffList::FirstSignificantDiffRange() const
 const DIFFRANGE * DiffList::LastSignificantDiffRange() const
 {
 	if (m_lastSignificant == -1)
-		return NULL;
+		return nullptr;
 	return DiffRangeAt(m_lastSignificant);
 }
 
@@ -818,28 +818,28 @@ const DIFFRANGE * DiffList::FirstSignificant3wayDiffRange(int nDiffType) const
 	switch (nDiffType)
 	{
 	case THREEWAYDIFFTYPE_LEFTMIDDLE:
-		if (m_firstSignificantLeftMiddle == -1) return NULL;
+		if (m_firstSignificantLeftMiddle == -1) return nullptr;
 		return DiffRangeAt(m_firstSignificantLeftMiddle);
 	case THREEWAYDIFFTYPE_LEFTRIGHT:
-		if (m_firstSignificantLeftRight == -1) return NULL;
+		if (m_firstSignificantLeftRight == -1) return nullptr;
 		return DiffRangeAt(m_firstSignificantLeftRight);
 	case THREEWAYDIFFTYPE_MIDDLERIGHT:
-		if (m_firstSignificantMiddleRight == -1) return NULL;
+		if (m_firstSignificantMiddleRight == -1) return nullptr;
 		return DiffRangeAt(m_firstSignificantMiddleRight);
 	case THREEWAYDIFFTYPE_LEFTONLY:
-		if (m_firstSignificantLeftOnly == -1) return NULL;
+		if (m_firstSignificantLeftOnly == -1) return nullptr;
 		return DiffRangeAt(m_firstSignificantLeftOnly);
 	case THREEWAYDIFFTYPE_MIDDLEONLY:
-		if (m_firstSignificantMiddleOnly == -1) return NULL;
+		if (m_firstSignificantMiddleOnly == -1) return nullptr;
 		return DiffRangeAt(m_firstSignificantMiddleOnly);
 	case THREEWAYDIFFTYPE_RIGHTONLY:
-		if (m_firstSignificantRightOnly == -1) return NULL;
+		if (m_firstSignificantRightOnly == -1) return nullptr;
 		return DiffRangeAt(m_firstSignificantRightOnly);
 	case THREEWAYDIFFTYPE_CONFLICT:
-		if (m_firstSignificantConflict == -1) return NULL;
+		if (m_firstSignificantConflict == -1) return nullptr;
 		return DiffRangeAt(m_firstSignificantConflict);
 	}
-	return NULL;
+	return nullptr;
 }
 
 /**
@@ -851,28 +851,28 @@ const DIFFRANGE * DiffList::LastSignificant3wayDiffRange(int nDiffType) const
 	switch (nDiffType)
 	{
 	case THREEWAYDIFFTYPE_LEFTMIDDLE:
-		if (m_lastSignificantLeftMiddle == -1) return NULL;
+		if (m_lastSignificantLeftMiddle == -1) return nullptr;
 		return DiffRangeAt(m_lastSignificantLeftMiddle);
 	case THREEWAYDIFFTYPE_LEFTRIGHT:
-		if (m_lastSignificantLeftRight == -1) return NULL;
+		if (m_lastSignificantLeftRight == -1) return nullptr;
 		return DiffRangeAt(m_lastSignificantLeftRight);
 	case THREEWAYDIFFTYPE_MIDDLERIGHT:
-		if (m_lastSignificantMiddleRight == -1) return NULL;
+		if (m_lastSignificantMiddleRight == -1) return nullptr;
 		return DiffRangeAt(m_lastSignificantMiddleRight);
 	case THREEWAYDIFFTYPE_LEFTONLY:
-		if (m_lastSignificantLeftOnly == -1) return NULL;
+		if (m_lastSignificantLeftOnly == -1) return nullptr;
 		return DiffRangeAt(m_lastSignificantLeftOnly);
 	case THREEWAYDIFFTYPE_MIDDLEONLY:
-		if (m_lastSignificantMiddleOnly == -1) return NULL;
+		if (m_lastSignificantMiddleOnly == -1) return nullptr;
 		return DiffRangeAt(m_lastSignificantMiddleOnly);
 	case THREEWAYDIFFTYPE_RIGHTONLY:
-		if (m_lastSignificantRightOnly == -1) return NULL;
+		if (m_lastSignificantRightOnly == -1) return nullptr;
 		return DiffRangeAt(m_lastSignificantRightOnly);
 	case THREEWAYDIFFTYPE_CONFLICT:
-		if (m_lastSignificantConflict == -1) return NULL;
+		if (m_lastSignificantConflict == -1) return nullptr;
 		return DiffRangeAt(m_lastSignificantConflict);
 	}
-	return NULL;
+	return nullptr;
 }
 
 /**

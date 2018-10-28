@@ -14,7 +14,7 @@ namespace
 {
 	struct HandleDeleter {
 		typedef HANDLE pointer;
-		void operator()(HANDLE h) { if (h && h != INVALID_HANDLE_VALUE) ::CloseHandle(h); }
+		void operator()(HANDLE h) { if (h != nullptr && h != INVALID_HANDLE_VALUE) ::CloseHandle(h); }
 	};
 
 	typedef std::unique_ptr<HANDLE, HandleDeleter> unique_handle;
@@ -43,13 +43,13 @@ namespace
 	{
 		std::vector<String> files;
 		// Get the number of pathnames that have been dropped
-		UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
+		UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, nullptr, 0);
 
 		// get all file names. but we'll only need the first one.
 		for (WORD x = 0; x < wNumFilesDropped; x++)
 		{
 			// Get the number of bytes required by the file's full pathname
-			UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
+			UINT wPathnameSize = DragQueryFile(dropInfo, x, nullptr, 0);
 
 			// Allocate memory to contain full pathname & zero byte
 			wPathnameSize += 1;
@@ -94,7 +94,7 @@ namespace
 
 	HRESULT IStream_WriteToFile(IStream *pStream, const String& filename)
 	{
-		unique_handle hFile(CreateFile(filename.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL));
+		unique_handle hFile(CreateFile(filename.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr));
 		if (hFile.get() == INVALID_HANDLE_VALUE)
 			return E_FAIL;
 		for (;;)
@@ -107,24 +107,24 @@ namespace
 				return hr;
 			if (size == 0)
 				break;
-			WriteFile(hFile.get(), buf, size, &dwWritten, NULL);
+			WriteFile(hFile.get(), buf, size, &dwWritten, nullptr);
 		}
 		return S_OK;
 	}
 
 	HRESULT HGLOBAL_WriteToFile(HGLOBAL hGlobal, const String& filename)
 	{
-		unique_handle hFile(CreateFile(filename.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL));
+		unique_handle hFile(CreateFile(filename.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr));
 		if (hFile.get() == INVALID_HANDLE_VALUE)
 			return E_FAIL;
 		char *p = static_cast<char *>(GlobalLock(hGlobal));
-		if (!p)
+		if (p == nullptr)
 			return E_FAIL;
 		SIZE_T size = GlobalSize(hGlobal);
 		while (size > 0)
 		{
 			DWORD dwWritten;
-			if (WriteFile(hFile.get(), p, (size > INT_MAX) ? INT_MAX : static_cast<DWORD>(size), &dwWritten, NULL) == FALSE)
+			if (WriteFile(hFile.get(), p, (size > INT_MAX) ? INT_MAX : static_cast<DWORD>(size), &dwWritten, nullptr) == FALSE)
 			{
 				GlobalUnlock(hGlobal);
 				return E_FAIL;
@@ -138,21 +138,21 @@ namespace
 
 	HRESULT SetFileWriteTime(const String& filename, const FILETIME& writetime)
 	{
-		unique_handle hFile(CreateFile(filename.c_str(), GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL));
+		unique_handle hFile(CreateFile(filename.c_str(), GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr));
 		if (hFile.get() == INVALID_HANDLE_VALUE)
 			return E_FAIL;
-		return SetFileTime(hFile.get(), NULL, NULL, &writetime) ? S_OK : E_FAIL;
+		return SetFileTime(hFile.get(), nullptr, nullptr, &writetime) ? S_OK : E_FAIL;
 	}
 
 	HRESULT GetFileItemsFromIDataObject_CF_HDROP(IDataObject *pDataObj, std::vector<String>& files)
 	{
-		FORMATETC fmtetc_cf_hdrop = { CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+		FORMATETC fmtetc_cf_hdrop = { CF_HDROP, nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 		STGMEDIUM medium = { 0 };
 		HRESULT hr;
 		if ((hr = pDataObj->GetData(&fmtetc_cf_hdrop, &medium)) == S_OK)
 		{
 			HDROP hDrop = (HDROP)GlobalLock(medium.hGlobal);
-			if (hDrop)
+			if (hDrop != nullptr)
 			{
 				files = FilterFiles(GetDroppedFiles(hDrop));
 				GlobalUnlock(medium.hGlobal);
@@ -168,25 +168,25 @@ namespace
 	HRESULT GetFileItemsFromIDataObject_ShellIDList(IDataObject *pDataObj, std::vector<String>& root_files)
 	{
 		String tmpdir;
-		FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_SHELLIDLIST)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+		FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_SHELLIDLIST)), nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 		STGMEDIUM medium = { 0 };
 		HRESULT hr;
 		if ((hr = pDataObj->GetData(&fmtetc_filedescriptor, &medium)) == S_OK)
 		{
 			CIDA *pcida = (CIDA *)GlobalLock(medium.hGlobal);
-			if (pcida)
+			if (pcida  != nullptr)
 			{
 				LPCITEMIDLIST pidlParent = HIDA_GetPIDLFolder(pcida);
 				for (unsigned i = 0; i < pcida->cidl; ++i)
 				{
 					IShellItemPtr pShellItem;
-					if (SUCCEEDED(hr = SHCreateShellItem(pidlParent, NULL, HIDA_GetPIDLItem(pcida, i), &pShellItem)))
+					if (SUCCEEDED(hr = SHCreateShellItem(pidlParent, nullptr, HIDA_GetPIDLItem(pcida, i), &pShellItem)))
 					{
 						SFGAOF sfgaof = 0;
 						if (SUCCEEDED(hr = pShellItem->GetAttributes(SFGAO_FOLDER, &sfgaof)) && (sfgaof & SFGAO_FOLDER))
 						{
 							// Folder item
-							wchar_t *pPath = NULL;
+							wchar_t *pPath = nullptr;
 							if (SUCCEEDED(hr = pShellItem->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING, &pPath)))
 							{
 								root_files.push_back(ucr::toTString(pPath));
@@ -197,17 +197,17 @@ namespace
 						{
 							// File item
 							IFileOperationPtr pFileOperation;
-							if (SUCCEEDED(hr = pFileOperation.CreateInstance(CLSID_FileOperation, NULL, CLSCTX_ALL)))
+							if (SUCCEEDED(hr = pFileOperation.CreateInstance(CLSID_FileOperation, nullptr, CLSCTX_ALL)))
 							{
 								if (tmpdir.empty())
 									tmpdir = env::GetTempChildPath();
 								pFileOperation->SetOperationFlags(0);
 								PIDLIST_ABSOLUTE pidlDest;
-								if (SUCCEEDED(hr = SHParseDisplayName(ucr::toUTF16(tmpdir).c_str(), NULL, &pidlDest, 0, NULL)))
+								if (SUCCEEDED(hr = SHParseDisplayName(ucr::toUTF16(tmpdir).c_str(), nullptr, &pidlDest, 0, nullptr)))
 								{
 									IShellItemPtr pShellItemDest;
-									SHCreateShellItem(NULL, NULL, pidlDest, &pShellItemDest);
-									pFileOperation->CopyItem(pShellItem, pShellItemDest, NULL, NULL);
+									SHCreateShellItem(nullptr, nullptr, pidlDest, &pShellItemDest);
+									pFileOperation->CopyItem(pShellItem, pShellItemDest, nullptr, nullptr);
 									if (SUCCEEDED(hr = pFileOperation->PerformOperations()))
 									{
 										wchar_t *pName;
@@ -231,7 +231,7 @@ namespace
 
 	HRESULT ExtractFileItemFromIDataObject_FileContents(IDataObject *pDataObj, int lindex, const String& filepath)
 	{
-		FORMATETC fmtetc_filecontents = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILECONTENTS)), NULL, DVASPECT_CONTENT, lindex, TYMED_HGLOBAL | TYMED_ISTREAM };
+		FORMATETC fmtetc_filecontents = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILECONTENTS)), nullptr, DVASPECT_CONTENT, lindex, TYMED_HGLOBAL | TYMED_ISTREAM };
 		STGMEDIUM medium = { 0 };
 		HRESULT hr;
 		if ((hr = pDataObj->GetData(&fmtetc_filecontents, &medium)) == S_OK)
@@ -249,7 +249,7 @@ namespace
 	HRESULT GetFileItemsFromIDataObject_FileDescriptor(IDataObject *pDataObj, std::vector<String>& root_files)
 	{
 		String tmpdir = env::GetTempChildPath();
-		FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+		FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR)), nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 		STGMEDIUM medium = { 0 };
 		HRESULT hr;
 		if ((hr = pDataObj->GetData(&fmtetc_filedescriptor, &medium)) == S_OK)
@@ -294,7 +294,7 @@ HRESULT STDMETHODCALLTYPE DropHandler::QueryInterface(REFIID riid, void **ppvObj
 {
 	if (!IsEqualIID(riid, IID_IUnknown) && !IsEqualIID(riid, IID_IDropTarget))
 	{
-		*ppvObject = NULL;
+		*ppvObject = nullptr;
 		return E_NOINTERFACE;
 	}
 	*ppvObject = static_cast<IDropTarget *>(this);
@@ -319,9 +319,9 @@ ULONG STDMETHODCALLTYPE DropHandler::Release(void)
 
 HRESULT STDMETHODCALLTYPE DropHandler::DragEnter(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
 {
-	FORMATETC fmtetc_cf_hdrop = { CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
-	FORMATETC fmtetc_shellidlist = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_SHELLIDLIST)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
-	FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+	FORMATETC fmtetc_cf_hdrop = { CF_HDROP, nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+	FORMATETC fmtetc_shellidlist = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_SHELLIDLIST)), nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+	FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR)), nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 	if (pDataObj->QueryGetData(&fmtetc_cf_hdrop) == S_OK ||
 	    pDataObj->QueryGetData(&fmtetc_shellidlist) == S_OK ||
 	    pDataObj->QueryGetData(&fmtetc_filedescriptor) == S_OK)
@@ -348,9 +348,9 @@ HRESULT DropHandler::Drop(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, D
 	bool ok = false;
 	CWaitCursor waitstatus;
 	std::vector<String> files;
-	FORMATETC fmtetc_cf_hdrop = { CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
-	FORMATETC fmtetc_shellidlist = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_SHELLIDLIST)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
-	FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR)), NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+	FORMATETC fmtetc_cf_hdrop = { CF_HDROP, nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+	FORMATETC fmtetc_shellidlist = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_SHELLIDLIST)), nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
+	FORMATETC fmtetc_filedescriptor = { static_cast<WORD>(RegisterClipboardFormat(CFSTR_FILEDESCRIPTOR)), nullptr, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 	if (pDataObj->QueryGetData(&fmtetc_cf_hdrop) == S_OK &&
 		GetFileItemsFromIDataObject_CF_HDROP(pDataObj, files) == S_OK && files.size() > 0)
 		ok = true;

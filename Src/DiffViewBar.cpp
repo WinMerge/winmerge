@@ -80,7 +80,7 @@ int CDiffViewBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CDiffViewBar::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	TViewBarBase::OnLButtonDown(nFlags, point);
-	if (m_pDockBar != NULL)
+	if (m_pDockBar != nullptr)
 	{
 		if (!IsHorzDocked())
 			m_pDockContext->ToggleDocking();
@@ -96,7 +96,7 @@ void CDiffViewBar::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 {
 	TViewBarBase::OnWindowPosChanged(lpwndpos);
 
-	if (m_hwndFrame != NULL)
+	if (m_hwndFrame != nullptr)
 	{
 		// If WINDOWPOS.flags has SWP_HIDEWINDOW flag set
 		if ((lpwndpos->flags & SWP_HIDEWINDOW) != 0)

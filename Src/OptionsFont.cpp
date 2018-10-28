@@ -53,7 +53,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 
 	CodePageInfo cpi = {0};
 	IExconverter *pexconv = Exconverter::getInstance();
-	if (pexconv==NULL || !pexconv->getCodePageInfo(GetACP(), &cpi))
+	if (pexconv==nullptr || !pexconv->getCodePageInfo(GetACP(), &cpi))
 	{
 		assert(false);	// this should never fail (???)
 		cpi.bGDICharset = ANSI_CHARSET;
@@ -110,7 +110,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 		pOptionsMgr->InitOption(name + OPT_FONT_PITCHANDFAMILY, thisFont.lfPitchAndFamily);
 		pOptionsMgr->InitOption(name + OPT_FONT_FACENAME, ucr::toTString(thisFont.lfFaceName));
 	}
-	ReleaseDC(NULL, hDC);
+	ReleaseDC(nullptr, hDC);
 }
 
 LOGFONT Load(const COptionsMgr *pOptionsMgr, const String& name)
@@ -136,7 +136,7 @@ LOGFONT Load(const COptionsMgr *pOptionsMgr, const String& name)
 	lfnew.lfPitchAndFamily = static_cast<BYTE>(pOptionsMgr->GetInt(name + OPT_FONT_PITCHANDFAMILY));
 	lstrcpyn(lfnew.lfFaceName,
 		pOptionsMgr->GetString(name + OPT_FONT_FACENAME).c_str(), sizeof(lfnew.lfFaceName)/sizeof(lfnew.lfFaceName[0]));
-	ReleaseDC(NULL, hDC);
+	ReleaseDC(nullptr, hDC);
 	return lfnew;
 }
 
@@ -160,7 +160,7 @@ void Save(COptionsMgr *pOptionsMgr, const String& name, const LOGFONT* lf, bool 
 	pOptionsMgr->SaveOption(name + OPT_FONT_QUALITY, lf->lfQuality);
 	pOptionsMgr->SaveOption(name + OPT_FONT_PITCHANDFAMILY, (int)lf->lfPitchAndFamily);
 	pOptionsMgr->SaveOption(name + OPT_FONT_FACENAME, lf->lfFaceName);
-	ReleaseDC(NULL, hDC);
+	ReleaseDC(nullptr, hDC);
 }
 
 void Reset(COptionsMgr *pOptionsMgr, const String& name)

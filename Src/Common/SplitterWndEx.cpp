@@ -55,7 +55,7 @@ CScrollBar* CSplitterWndEx::GetScrollBarCtrl(CWnd* pWnd, int nBar) const
 	UINT nID = pWnd->GetDlgCtrlID();
 	//IdFromRowCol(row, col);
 	if (nID < AFX_IDW_PANE_FIRST || nID > AFX_IDW_PANE_LAST)
-		return NULL;            // not a standard pane ID
+		return nullptr;            // not a standard pane ID
 
 	// appropriate PANE id - look for sibling (splitter, or just frame)
 	UINT nIDScroll;
@@ -72,7 +72,7 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
   // Ignore scroll events sent directly to the splitter (i.e. not from a
   // scroll bar)
-  if (pScrollBar == NULL)
+  if (pScrollBar == nullptr)
     return;
 	// maintain original synchronization functionality (all panes above the scrollbar)
 	CSplitterWnd::OnHScroll(nSBCode, nPos, pScrollBar);
@@ -122,7 +122,7 @@ void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
   // Ignore scroll events sent directly to the splitter (i.e. not from a
   // scroll bar)
-  if (pScrollBar == NULL)
+  if (pScrollBar == nullptr)
     return;
 
 	// only sync if shared vertical bars
@@ -304,20 +304,20 @@ void CSplitterWndEx::FlipSplit()
 	{
 		pRowPanes[pane] = GetDlgItem(IdFromRowCol( 0, pane ));
 		pBar = pRowPanes[pane]->GetScrollBarCtrl(SB_HORZ);
-		if (pBar)
+		if (pBar != nullptr)
 			pBar->ShowWindow(SW_HIDE);
 		pBar = pRowPanes[pane]->GetScrollBarCtrl(SB_VERT);
-		if (pBar)
+		if (pBar != nullptr)
 			pBar->ShowWindow(SW_HIDE);
 	}
 	for (pane = 1; pane < nCols; pane++)
 	{
 		pColPanes[pane] = GetDlgItem(IdFromRowCol( pane, 0 ));
 		pBar = pColPanes[pane]->GetScrollBarCtrl(SB_HORZ);
-		if (pBar)
+		if (pBar != nullptr)
 			pBar->ShowWindow(SW_HIDE);
 		pBar = pColPanes[pane]->GetScrollBarCtrl(SB_VERT);
-		if (pBar)
+		if (pBar != nullptr)
 			pBar->ShowWindow(SW_HIDE);
 	}
 
@@ -356,7 +356,7 @@ static COLORREF GetIntermediateColor(COLORREF a, COLORREF b)
 void CSplitterWndEx::OnDrawSplitter(CDC* pDC, ESplitType nType, const CRect& rectArg)
 {
 	CRect rect = rectArg;
-	if (nType == splitBorder && pDC && !m_bHideBorders)
+	if (nType == splitBorder && pDC != nullptr && !m_bHideBorders)
 	{
 		COLORREF clrShadow  = GetSysColor(COLOR_BTNSHADOW);
 		COLORREF clrFace    = GetSysColor(COLOR_BTNFACE);

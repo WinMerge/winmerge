@@ -117,7 +117,7 @@ int CPatchTool::CreatePatch()
 		// Select patch create -mode
 		m_diffWrapper.SetCreatePatchFile(dlgPatch.m_fileResult);
 		m_diffWrapper.SetAppendFiles(dlgPatch.m_appendFile);
-		m_diffWrapper.SetPrediffer(NULL);
+		m_diffWrapper.SetPrediffer(nullptr);
 
 		size_t fileCount = dlgPatch.GetItemCount();
 

@@ -35,7 +35,7 @@ DATE:		BY:					DESCRIPTION:
 void DLLPSTUB::Throw(LPCSTR name, HMODULE handle, DWORD dwError, bool bFreeLibrary)
 {
 	CString strError = name;
-	if (handle)
+	if (handle != nullptr)
 	{
 		TCHAR module[4096];
 		module[0] = '@';
@@ -52,7 +52,7 @@ void DLLPSTUB::Throw(LPCSTR name, HMODULE handle, DWORD dwError, bool bFreeLibra
 		szError[1] = '\n';
 		strError += szError;
 	}
-	if (bFreeLibrary && handle)
+	if (bFreeLibrary && handle != nullptr)
 	{
 		FreeLibrary(handle);
 	}
@@ -68,13 +68,13 @@ HMODULE DLLPSTUB::Load()
 	// followed by a char array of the DLL name to load
 	// so it access the char array via *(this + 1)
 	LPCSTR *proxy = (LPCSTR *) (this + 1);
-	HMODULE handle = NULL;
+	HMODULE handle = nullptr;
 	if (LPCSTR name = *proxy)
 	{
-		if (proxy[1] && proxy[1] != name)
+		if (proxy[1] != nullptr && proxy[1] != name)
 		{
 			handle = LoadLibraryA(name);
-			if (handle)
+			if (handle != nullptr)
 			{
 				// If any of the version members are non-zero
 				// then we require that DLL export "DllGetVersion"
@@ -91,7 +91,7 @@ HMODULE DLLPSTUB::Load()
 					DLLGETVERSIONPROC DllGetVersion = (DLLGETVERSIONPROC)GetProcAddress(handle, "DllGetVersion");
 					if
 					(
-						DllGetVersion == NULL
+						DllGetVersion == nullptr
 					||	FAILED(DllGetVersion(&dvi))
 					||	(
 							dwMajorVersion && dvi.dwMajorVersion != dwMajorVersion
@@ -109,11 +109,11 @@ HMODULE DLLPSTUB::Load()
 					}
 				}
 				LPCSTR *pszExport = proxy;
-				*proxy = NULL;
-				while ((name = *++pszExport) != NULL)
+				*proxy = nullptr;
+				while ((name = *++pszExport) != nullptr)
 				{
 					*pszExport = (LPCSTR)GetProcAddress(handle, name);
-					if (*pszExport == NULL)
+					if (*pszExport == nullptr)
 					{
 						*proxy = proxy[1] = name;
 						pszExport = proxy + 2;
@@ -123,7 +123,7 @@ HMODULE DLLPSTUB::Load()
 				*pszExport = (LPCSTR)handle;
 			}
 		}
-		if ((name = *proxy) != NULL)
+		if ((name = *proxy) != nullptr)
 		{
 			DWORD dwError = ERROR_MOD_NOT_FOUND;
 			HMODULE handle1 = 0;

@@ -75,7 +75,7 @@ PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const S
 	const TCHAR *lpcszPath = szPath.c_str();
 	TCHAR expandedPath[MAX_PATH_FULL];
 
-	if (_tcschr(lpcszPath, '%'))
+	if (_tcschr(lpcszPath, '%') != nullptr)
 	{
 		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, MAX_PATH_FULL);
 		if (dwLen > 0 && dwLen < MAX_PATH_FULL)
@@ -324,7 +324,7 @@ bool CreateIfNeeded(const String& szPath)
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
 	TCHAR fullPath[MAX_PATH_FULL];
 	fullPath[0] = '\0';
-	if (_tcschr(szPath.c_str(), '%'))
+	if (_tcschr(szPath.c_str(), '%') != nullptr)
 	{
 		DWORD dwLen = ExpandEnvironmentStrings(szPath.c_str(), fullPath, MAX_PATH_FULL);
 		if (dwLen == 0 || dwLen >= MAX_PATH_FULL)

@@ -124,7 +124,7 @@ public:
 			bmpinfo.bmiHeader.biBitCount = 32;
 			bmpinfo.bmiHeader.biCompression = BI_RGB;
 			HBITMAP hbmpImage = CreateDIBSection(nullptr, &bmpinfo, DIB_RGB_COLORS, &pBits, nullptr, 0);
-			if (hbmpImage)
+			if (hbmpImage != nullptr)
 			{
 				HBITMAP hbmpOld = (HBITMAP)SelectObject(hdcMem, hbmpImage);
 				ImageList_Draw(hImageList, iconIndex, hdcMem, 0, 0, ILD_TRANSPARENT);

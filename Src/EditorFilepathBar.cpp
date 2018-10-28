@@ -185,7 +185,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 			pTTT->lpszText = const_cast<TCHAR *>(pItem->GetUpdatedTipText(&tempDC, maxWidth).c_str());
 
 			// set old font back
-			if (hOldFont)
+			if (hOldFont != nullptr)
 				::SelectObject(tempDC.GetSafeHdc(),hOldFont);
 
 			// we must set TTM_SETMAXTIPWIDTH to use \n in tooltips

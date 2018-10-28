@@ -386,7 +386,7 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 
 void COpenView::OnDestroy()
 {
-	if (m_pDropHandler)
+	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
 
 	m_constraint.Persist(true, false);
@@ -857,7 +857,7 @@ void COpenView::UpdateButtonStates()
 	KillTimer(IDT_CHECKFILES);
 	TrimPaths();
 	
-	if (!m_pUpdateButtonStatusThread)
+	if (m_pUpdateButtonStatusThread == nullptr)
 	{
 		m_pUpdateButtonStatusThread = AfxBeginThread(
 			UpdateButtonStatesThread, nullptr, THREAD_PRIORITY_NORMAL, 0, CREATE_SUSPENDED);
@@ -879,7 +879,7 @@ void COpenView::UpdateButtonStates()
 
 void COpenView::TerminateThreadIfRunning()
 {
-	if (!m_pUpdateButtonStatusThread)
+	if (m_pUpdateButtonStatusThread == nullptr)
 		return;
 
 	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_QUIT, 0, 0);
@@ -1157,7 +1157,7 @@ template <int MSG, int WPARAM, int LPARAM>
 void COpenView::OnEditAction()
 {
 	CWnd *pCtl = GetFocus();
-	if (pCtl)
+	if (pCtl != nullptr)
 		pCtl->PostMessage(MSG, WPARAM, LPARAM);
 }
 

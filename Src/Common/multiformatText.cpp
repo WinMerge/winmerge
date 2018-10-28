@@ -69,7 +69,7 @@ static void *GetVariantArrayData(VARIANT& array, unsigned& size)
 void storageForPlugins::Initialize()
 {
 	SysFreeString(m_bstr);
-	m_bstr = NULL;
+	m_bstr = nullptr;
 	VariantClear(&m_array);
 	m_tempFilenameDst.clear();
 }
@@ -201,7 +201,7 @@ void storageForPlugins::ValidateInternal(bool bNewIsFile, bool bNewIsUnicode)
 			if (m_bCurrentIsUnicode)
 			{
 				SysFreeString(m_bstr);
-				m_bstr = NULL;
+				m_bstr = nullptr;
 			}
 			else
 				VariantClear(&m_array);
@@ -227,7 +227,7 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 		return m_filename.c_str();
 
 	unsigned nchars;
-	char * pchar = NULL;
+	char * pchar = nullptr;
 
 	try
 	{
@@ -247,7 +247,7 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 				catch (...)
 				{
 					if (!fileIn.isDevice() && fileIn.getSize() > 0)
-						return NULL;
+						return nullptr;
 					pchar = "";
 					nchars = 0;
 				}			
@@ -293,7 +293,7 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 			{
 				// conversion error
 				try { TFile(m_tempFilenameDst).remove(); } catch (...) {}
-				return NULL;
+				return nullptr;
 			}
 		}
 		ValidateInternal(true, true);
@@ -301,7 +301,7 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 	}
 	catch (...)
 	{
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -333,7 +333,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 				catch (...)
 				{
 					if (!fileIn.isDevice() && fileIn.getSize() > 0)
-						return NULL;
+						return nullptr;
 					pchar = "";
 					nchars = 0;
 				}			
@@ -352,7 +352,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 
 			// fill in the data
 			wchar_t * pbstrBuffer = tempBSTR.get();
-			bool bAllocSuccess = (pbstrBuffer != NULL);
+			bool bAllocSuccess = (pbstrBuffer != nullptr);
 			if (bAllocSuccess)
 			{
 				// to UCS-2 conversion, from unicoder.cpp maketstring
@@ -360,7 +360,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)pbstrBuffer, textForeseenSize-1, m_codepage, ucr::CP_UCS2LE, &lossy);
 				SysFreeString(m_bstr);
 				m_bstr = SysAllocStringLen(tempBSTR.get(), textRealSize / sizeof(wchar_t));
-				if (!m_bstr)
+				if (m_bstr == nullptr)
 					bAllocSuccess = false;
 			}
 
@@ -369,14 +369,14 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 				SafeArrayUnaccessData(m_array.parray);
 
 			if (!bAllocSuccess)
-				return NULL;
+				return nullptr;
 		}
 		ValidateInternal(false, true);
 		return &m_bstr;
 	}
 	catch (...)
 	{
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -386,7 +386,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 		return m_filename.c_str();
 
 	unsigned nchars;
-	char * pchar = NULL;
+	char * pchar = nullptr;
 
 	try
 	{
@@ -407,7 +407,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 				catch (...)
 				{
 					if (!fileIn.isDevice() && fileIn.getSize() > 0)
-						return NULL;
+						return nullptr;
 					pchar = "";
 					nchars = 0;
 				}
@@ -460,7 +460,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 			{
 				// conversion error
 				try { TFile(m_tempFilenameDst).remove(); } catch (...) {}
-				return NULL;
+				return nullptr;
 			}
 		}
 		ValidateInternal(true, false);
@@ -468,7 +468,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 	}
 	catch (...)
 	{
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -535,7 +535,7 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 	}
 	catch (...)
 	{
-		return NULL;
+		return nullptr;
 	}
 }
 
@@ -626,7 +626,7 @@ bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filep
 			if (srcbytes * 3 > obuf.size())
 				obuf.resize(srcbytes * 3 * 2, false);
 			size_t destbytes = obuf.size();
-			if (pexconv)
+			if (pexconv != nullptr)
 			{
 				size_t srcbytes2 = srcbytes;
 				if (!pexconv->convert(codepage, ucr::CP_UTF_8, (const unsigned char *)pszBuf+pos, &srcbytes2, (unsigned char *)obuf.begin(), &destbytes))

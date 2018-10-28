@@ -536,7 +536,7 @@ bool CImgMergeFrame::EnsureValidDockState(CDockState& state)
 			if (!pInfo->m_bFloating)
 			{
 				pInfo->m_pBar = GetControlBar(pInfo->m_nBarID);
-				if (!pInfo->m_pBar)
+				if (pInfo->m_pBar == nullptr)
 					barIsCorrect = false; //toolbar id's probably changed	
 			}
 		}

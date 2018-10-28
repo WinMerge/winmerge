@@ -246,7 +246,7 @@ void CHexMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDe
 	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
 	CHexMergeDoc *pDoc = GetMergeDoc();
-	if (bActivate && pDoc)
+	if (bActivate && pDoc != nullptr)
 		this->GetParentFrame()->PostMessage(WM_USER+1);
 	return;
 }

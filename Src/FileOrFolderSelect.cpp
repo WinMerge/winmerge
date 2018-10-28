@@ -129,7 +129,7 @@ bool SelectFile(HWND parent, String& path, bool is_open /*= true*/,
  * @param [out] path Selected path is returned in this string
  * @param [in] root_path Initial path shown when dialog is opened
  * @param [in] titleid Resource string ID for dialog title.
- * @param [in] hwndOwner Handle to owner window or NULL
+ * @param [in] hwndOwner Handle to owner window or `nullptr`
  * @return `true` if valid folder selected (not cancelled)
  */
 bool SelectFolder(String& path, LPCTSTR root_path /*= nullptr*/, 
@@ -185,12 +185,12 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 	{
 		String strMessage = 
 			strutils::format_string1(_("%1 does not exist. Do you want to create it?"), (TCHAR *)lParam);
-		int answer = MessageBox(hwnd, strMessage.c_str(), NULL, MB_YESNO);
+		int answer = MessageBox(hwnd, strMessage.c_str(), nullptr, MB_YESNO);
 		if (answer == IDYES)
 		{
 			if (!paths::CreateIfNeeded((TCHAR*)lParam))
 			{
-				MessageBox(hwnd, _("Failed to create folder.").c_str(), NULL, MB_OK | MB_ICONWARNING);
+				MessageBox(hwnd, _("Failed to create folder.").c_str(), nullptr, MB_OK | MB_ICONWARNING);
 			}
 		}
 		return 1;
@@ -250,13 +250,13 @@ bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*= nullp
 	OPENFILENAME_NT4 ofn = { sizeof OPENFILENAME_NT4 };
 	ofn.hwndOwner = parent;
 	ofn.lpstrFilter = filtersStr;
-	ofn.lpstrCustomFilter = NULL;
+	ofn.lpstrCustomFilter = nullptr;
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFile = sSelectedFile;
 	ofn.nMaxFile = MAX_PATH_FULL;
 	ofn.lpstrInitialDir = initialPath;
 	ofn.lpstrTitle = title.c_str();
-	ofn.lpstrFileTitle = NULL;
+	ofn.lpstrFileTitle = nullptr;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE | OFN_NOCHANGEDIR;
 
 	bool bRetVal = !!GetOpenFileName((OPENFILENAME *)&ofn);
@@ -289,7 +289,8 @@ bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*= nullp
  */
 static void ConvertFilter(LPTSTR filterStr)
 {
-	while (TCHAR *ch = _tcschr(filterStr, '|'))
+	TCHAR *ch;
+	while ( (ch = _tcschr(filterStr, '|')) != nullptr)
 	{
 		filterStr = ch + 1;
 		*ch = '\0';

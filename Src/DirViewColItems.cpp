@@ -237,8 +237,8 @@ static String ColPathGet(const CDiffContext *, const void *p)
 	{
 		const TCHAR *pi = _tcschr(s.c_str() + i, '\\');
 		const TCHAR *pj = _tcschr(t.c_str() + j, '\\');
-		size_t i_ahead = (pi ? pi - s.c_str() : std::string::npos);
-		size_t j_ahead = (pj ? pj - t.c_str() : std::string::npos);
+		size_t i_ahead = (pi != nullptr ? pi - s.c_str() : std::string::npos);
+		size_t j_ahead = (pj != nullptr ? pj - t.c_str() : std::string::npos);
 		size_t length_s = ((i_ahead != std::string::npos ? i_ahead : s.length()) - i);
 		size_t length_t = ((j_ahead != std::string::npos ? j_ahead : t.length()) - j);
 		if (length_s != length_t ||
@@ -959,7 +959,7 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
  *  - description resource ID: columns description text
  *  - custom function for getting column data
  *  - custom function for sorting column data
- *  - parameter for custom functions: DIFFITEM (if NULL) or one of its fields
+ *  - parameter for custom functions: DIFFITEM (if `nullptr`) or one of its fields
  *  - default column order number, -1 if not shown by default
  *  - ascending (`true`) or descending (`false`) default sort order
  *  - alignment of column contents: numbers are usually right-aligned
@@ -1180,7 +1180,7 @@ bool
 DirViewColItems::IsDefaultSortAscending(int col) const
 {
 	const DirColInfo * pColInfo = GetDirColInfo(col);
-	if (!pColInfo)
+	if (pColInfo == nullptr)
 	{
 		assert(false); // fix caller, should not ask for nonexistent columns
 		return false;
@@ -1235,7 +1235,7 @@ DirViewColItems::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
 {
 	// Custom properties have custom get functions
 	const DirColInfo * pColInfo = GetDirColInfo(col);
-	if (!pColInfo)
+	if (pColInfo == nullptr)
 	{
 		assert(false); // fix caller, should not ask for nonexistent columns
 		return _T("???");
@@ -1314,7 +1314,7 @@ DirViewColItems::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ld
 {
 	// Custom properties have custom sort functions
 	const DirColInfo * pColInfo = GetDirColInfo(col);
-	if (!pColInfo)
+	if (pColInfo == nullptr)
 	{
 		assert(false); // fix caller, should not ask for nonexistent columns
 		return 0;

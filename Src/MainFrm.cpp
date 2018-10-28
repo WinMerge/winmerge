@@ -358,7 +358,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 void CMainFrame::OnDestroy(void)
 {
-	if (m_pDropHandler)
+	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
 }
 
@@ -719,7 +719,7 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 			bool bModified = (dwFlags[pane] & FFILEOPEN_MODIFIED) > 0;
 			if (bModified)
 			{
-				pMergeDoc->m_ptBuf[pane]->SetModified(TRUE);
+				pMergeDoc->m_ptBuf[pane]->SetModified(true);
 				pMergeDoc->UpdateHeaderPath(pane);
 			}
 			if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
@@ -804,7 +804,7 @@ void CMainFrame::OnOptions()
 		LANGID lang = static_cast<LANGID>(GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 		if (lang != theApp.m_pLangDlg->GetLangId())
 		{
-			theApp.m_pLangDlg->SetLanguage(lang, TRUE);
+			theApp.m_pLangDlg->SetLanguage(lang, true);
 	
 			// Update status bar inicator texts
 			theApp.SetIndicators(m_wndStatusBar, 0, 0);
@@ -1015,7 +1015,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 				infoUnpacker);
 	}
 
-	if (pFiles && (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU)))
+	if (pFiles != nullptr && (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU)))
 	{
 		String filter = GetOptionsMgr()->GetString(OPT_FILEFILTER_CURRENT);
 		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, bRecurse, filter);
@@ -1043,7 +1043,7 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 		for (auto pDoc : GetAllMergeDocs())
 		{
 			CMergeDoc *pMergeDoc = dynamic_cast<CMergeDoc *>(pDoc);
-			if (pMergeDoc)
+			if (pMergeDoc != nullptr)
 				for (auto& pView: pMergeDoc->GetViewList())
 					pView->SetFont(m_lfDiff);
 		}
@@ -1225,7 +1225,7 @@ void CMainFrame::OnClose()
 
 	// Close Non-Document/View frame with confirmation
 	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
-	while (pChild)
+	while (pChild != nullptr)
 	{
 		CMDIChildWnd *pNextChild = static_cast<CMDIChildWnd *>(pChild->GetWindow(GW_HWNDNEXT));
 		if (GetFrameType(pChild) == FRAME_IMGFILE)
@@ -1821,7 +1821,7 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 void CMainFrame::OnWindowCloseAll()
 {
 	CMDIChildWnd *pChild = MDIGetActive();
-	while (pChild)
+	while (pChild != nullptr)
 	{
 		CDocument* pDoc;
 		if ((pDoc = pChild->GetActiveDocument()) != nullptr)
@@ -2446,7 +2446,7 @@ void CMainFrame::ReloadMenu()
 	HMENU hNewMergeMenu = pMainFrame->NewMergeViewMenu();
 	HMENU hNewImgMergeMenu = pMainFrame->NewImgMergeViewMenu();
 	HMENU hNewDirMenu = pMainFrame->NewDirViewMenu();
-	if (hNewDefaultMenu && hNewMergeMenu && hNewDirMenu)
+	if (hNewDefaultMenu != nullptr && hNewMergeMenu != nullptr && hNewDirMenu != nullptr)
 	{
 		// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach
 		CMenu * pNewDefaultMenu = CMenu::FromHandle(hNewDefaultMenu);
@@ -2455,7 +2455,7 @@ void CMainFrame::ReloadMenu()
 		CMenu * pNewDirMenu = CMenu::FromHandle(hNewDirMenu);
 
 		CWnd *pFrame = CWnd::FromHandle(::GetWindow(pMainFrame->m_hWndMDIClient, GW_CHILD));
-		while (pFrame)
+		while (pFrame != nullptr)
 		{
 			if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
 				static_cast<CChildFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
