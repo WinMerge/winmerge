@@ -156,7 +156,7 @@
             <para>You can select only one pair of files or one pair of folders
             to compare. If you select a file and a folder or if one of the files
             or folders is not found, WinMerge disables the
-            <guibutton>OK</guibutton> button in the dialog.</para>
+            <guibutton>Compare</guibutton> button in the dialog.</para>
 
             <para>The status message at the bottom of the dialog also informs
             you if one of the paths is invalid.</para>
