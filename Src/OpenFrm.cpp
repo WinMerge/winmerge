@@ -57,7 +57,7 @@ void COpenFrame::RecalcLayout(BOOL bNotify)
 	CFrameWnd::RecalcLayout(bNotify);   
 
 	CScrollView* pView = (CScrollView*)GetActiveView();
-	if (pView) {
+	if (pView != nullptr) {
 		// Move form view to center of main 
 		// window if it's smaller.
 		//
@@ -91,7 +91,7 @@ void COpenFrame::RecalcLayout(BOOL bNotify)
 void COpenFrame::OnPaint() 
 {
    CView* pView = GetActiveView();
-   if (pView) {
+   if (pView != nullptr) {
       CPaintDC dc(this);
 
       // Easier to use HBRUSH than create CBrush here.

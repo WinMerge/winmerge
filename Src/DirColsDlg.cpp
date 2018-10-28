@@ -176,7 +176,7 @@ void CDirColsDlg::MoveSelectedItems(bool bUp)
 	int firstInd = -1;
 	POSITION pos = m_listColumns.GetFirstSelectedItemPosition();
 
-	while (pos)
+	while (pos != nullptr)
 	{
 		int ind = m_listColumns.GetNextSelectedItem(pos);
 		int newInd = bUp ? ind - 1: ind + 1;
@@ -267,7 +267,7 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	POSITION pos = m_listColumns.GetFirstSelectedItemPosition();
 
-	if (pos)
+	if (pos != nullptr)
 	{
 		int ind = m_listColumns.GetNextSelectedItem(pos);
 		DWORD_PTR data = m_listColumns.GetItemData(ind);

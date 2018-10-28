@@ -1001,7 +1001,7 @@ static struct _charsetInfo const *FindByName(const char *name)
 		struct _charsetInfo const key = {0, name, 0, no};
 		struct _charsetInfo const *pkey = &key;
 		struct _charsetInfo const **pinfo = (struct _charsetInfo **)bsearch(&pkey, index1, numCharsetInfo, sizeof *index1, CompareByName);
-		if (pinfo)
+		if (pinfo != NULL)
 		{
 			info = *pinfo;
 		}
@@ -1024,7 +1024,7 @@ static struct _charsetInfo const *FindByCodePage(unsigned codepage)
 		struct _charsetInfo const key = {0, 0, codepage, no};
 		struct _charsetInfo const *pkey = &key;
 		struct _charsetInfo const **pinfo = (struct _charsetInfo **)bsearch(&pkey, index3, numIndex, sizeof(void *), CompareByCodePage);
-		if (pinfo) do
+		if (pinfo != NULL) do
 		{
 			info = *pinfo;
 		} while (pinfo > index3 && CompareByCodePage(--pinfo, &pkey) == 0);

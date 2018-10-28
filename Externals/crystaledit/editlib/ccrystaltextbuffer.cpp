@@ -1649,7 +1649,7 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
           bGroupFlag = true;
         }
     }
-  if (bExcludeInvisibleLines && pSource && pSource->GetEnableHideLines ())
+  if (bExcludeInvisibleLines && pSource != nullptr && pSource->GetEnableHideLines ())
     {
       for (int nLineIndex = nEndLine; nLineIndex >= nStartLine; nLineIndex--)
         {

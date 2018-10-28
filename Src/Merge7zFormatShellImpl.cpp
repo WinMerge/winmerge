@@ -24,10 +24,10 @@ static Merge7zFormatShellImpl g_shellformat;
 static HRESULT MySHCreateShellItemFromPath(PCWSTR pszPath, IShellItem **ppShellItem)
 {
 	PIDLIST_ABSOLUTE pidl;
-	HRESULT hr = SHParseDisplayName(pszPath, NULL, &pidl, 0, NULL);
+	HRESULT hr = SHParseDisplayName(pszPath, nullptr, &pidl, 0, nullptr);
 	if (FAILED(hr))
 		return hr;
-	hr = SHCreateShellItem(NULL, NULL, pidl, ppShellItem);
+	hr = SHCreateShellItem(nullptr, nullptr, pidl, ppShellItem);
 	ILFree(pidl);
 	return hr;
 }
@@ -40,7 +40,7 @@ static HRESULT MySHCreateEnumShellItemsFromPath(PCWSTR pszPath, IEnumShellItems 
 	HRESULT hr = MySHCreateShellItemFromPath(pszPath, &pShellItem);
 	if (FAILED(hr))
 		return hr;
-	return pShellItem->BindToHandler(NULL, BHID_EnumItems, IID_PPV_ARGS(ppEnumShellItems));
+	return pShellItem->BindToHandler(nullptr, BHID_EnumItems, IID_PPV_ARGS(ppEnumShellItems));
 }
 
 Merge7z::Format *Merge7zFormatShellImpl::GuessFormat(const String& path)
@@ -53,17 +53,17 @@ Merge7z::Format *Merge7zFormatShellImpl::GuessFormat(const String& path)
 			break;
 	}
 	if (i == sizeof(exts)/sizeof(exts[0]))
-		return NULL;
+		return nullptr;
 	IEnumShellItemsPtr pEnumShellItems;
 	if (FAILED(MySHCreateEnumShellItemsFromPath(ucr::toUTF16(path).c_str(), &pEnumShellItems)))
-		return NULL;
+		return nullptr;
 	return &g_shellformat;
 }
 
 HRESULT Merge7zFormatShellImpl::DeCompressArchive(HWND, LPCTSTR path, LPCTSTR folder)
 {
 	IFileOperationPtr pFileOperation;
-	HRESULT hr = pFileOperation.CreateInstance(CLSID_FileOperation, NULL, CLSCTX_ALL);
+	HRESULT hr = pFileOperation.CreateInstance(CLSID_FileOperation, nullptr, CLSCTX_ALL);
 	if (FAILED(hr))
 		return hr;
 
@@ -82,7 +82,7 @@ HRESULT Merge7zFormatShellImpl::DeCompressArchive(HWND, LPCTSTR path, LPCTSTR fo
 
 	while ((hr = pEnumShellItems->Next(1, &pShellItem, &ulRetNo)) == NOERROR)
 	{
-		pFileOperation->CopyItem(pShellItem, pShellItemDest, NULL, NULL);
+		pFileOperation->CopyItem(pShellItem, pShellItemDest, nullptr, nullptr);
 		pShellItem.Release();
 	}
 	if (FAILED(hr))
@@ -96,13 +96,13 @@ HRESULT Merge7zFormatShellImpl::CompressArchive(HWND, LPCTSTR path, Merge7z::Dir
 	return E_FAIL;
 }
 
-Merge7z::Format::Inspector *Merge7zFormatShellImpl::Open(HWND, LPCTSTR) { return NULL; }
-Merge7z::Format::Updater *Merge7zFormatShellImpl::Update(HWND, LPCTSTR) { return NULL; }
+Merge7z::Format::Inspector *Merge7zFormatShellImpl::Open(HWND, LPCTSTR) { return nullptr; }
+Merge7z::Format::Updater *Merge7zFormatShellImpl::Update(HWND, LPCTSTR) { return nullptr; }
 HRESULT Merge7zFormatShellImpl::GetHandlerProperty(HWND, PROPID, PROPVARIANT *, VARTYPE) { return E_FAIL; }
-BSTR Merge7zFormatShellImpl::GetHandlerName(HWND) { return NULL; }
-BSTR Merge7zFormatShellImpl::GetHandlerClassID(HWND) { return NULL; }
-BSTR Merge7zFormatShellImpl::GetHandlerExtension(HWND) { return NULL; }
-BSTR Merge7zFormatShellImpl::GetHandlerAddExtension(HWND) { return NULL; }
+BSTR Merge7zFormatShellImpl::GetHandlerName(HWND) { return nullptr; }
+BSTR Merge7zFormatShellImpl::GetHandlerClassID(HWND) { return nullptr; }
+BSTR Merge7zFormatShellImpl::GetHandlerExtension(HWND) { return nullptr; }
+BSTR Merge7zFormatShellImpl::GetHandlerAddExtension(HWND) { return nullptr; }
 VARIANT_BOOL Merge7zFormatShellImpl::GetHandlerUpdate(HWND) { return VARIANT_FALSE; }
 VARIANT_BOOL Merge7zFormatShellImpl::GetHandlerKeepName(HWND) { return VARIANT_FALSE; }
 

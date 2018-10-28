@@ -46,7 +46,7 @@ bool UniMarkdownFile::DoOpen(const String& filename, AccessMode mode)
 		m_data = m_current = m_base = reinterpret_cast<unsigned char *>(f.pImage);
 		m_filesize = f.cbImage;
 		// Prevent the CMarkdown::File destructor from unmapping the view.
-		f.pImage = NULL;
+		f.pImage = nullptr;
 		m_pMarkdown.reset(new CMarkdown(f));
 		Move();
 	}
@@ -99,7 +99,7 @@ void UniMarkdownFile::Move()
 	m_bMove = m_pMarkdown->Move();
 	const char *first = m_pMarkdown->first;
 	const char *ahead = m_pMarkdown->ahead;
-	m_transparent = NULL;
+	m_transparent = nullptr;
 	if (first < ahead)
 	{
 		switch (*++first)

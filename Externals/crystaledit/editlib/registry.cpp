@@ -441,7 +441,7 @@ RegCreate (HKEY hKey, LPCTSTR pszSubKey, DWORD dwRights)
 void
 RegClose (HKEY hKey)
 {
-  if (hKey)
+  if (hKey != nullptr)
     RegCloseKey (hKey);
 }
 
@@ -694,7 +694,7 @@ bool
 RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, CString &sString)
 {
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       DWORD dwType, dwRealLength;
       if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, nullptr, &dwRealLength) == ERROR_SUCCESS)
@@ -778,7 +778,7 @@ bool
 RegSaveNumber (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD dwNumber)
 {
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       if (RegSetValueEx (hSubKey, pszValName, 0, REG_DWORD, (LPBYTE) &dwNumber, sizeof (DWORD)) == ERROR_SUCCESS)
         {
@@ -797,7 +797,7 @@ bool
 RegSaveBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const LPBYTE pbyteData, DWORD dwSize)
 {
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       if (RegSetValueEx (hSubKey, pszValName, 0, REG_BINARY, pbyteData, dwSize) == ERROR_SUCCESS)
         {
@@ -886,7 +886,7 @@ RegDeleteSubKeys (HKEY hKey)
                   if (RegEnumKey (hKey, --dwSubKeyCnt, pszKeyName, dwMaxSubKey) == ERROR_SUCCESS)
                     {
                       HKEY hSubKey = RegOpen (hKey, pszKeyName, KEY_READ | KEY_WRITE);
-                      if (hSubKey)
+                      if (hSubKey != nullptr)
                         {
                           if (RegDeleteSubKeys (hSubKey))
                             {
@@ -934,7 +934,7 @@ bool
 RegDeleteKey (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName)
 {
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ | KEY_WRITE) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       if (pszValName != nullptr)
         {
@@ -965,7 +965,7 @@ bool
 RegHasEntries (HKEY hKey, LPCTSTR pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwValueCount)
 {
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       if (RegQueryInfoKey (hSubKey, nullptr, nullptr, 0, pdwSubKeyCount, nullptr, nullptr, pdwValueCount, nullptr, nullptr, nullptr, nullptr) == ERROR_SUCCESS)
         {

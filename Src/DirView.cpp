@@ -2119,7 +2119,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			// Check if we got 'ESC pressed' -message
 			if (pMsg->wParam == VK_ESCAPE)
 			{
-				if (m_pCmpProgressBar)
+				if (m_pCmpProgressBar != nullptr)
 				{
 					OnBnClickedComparisonStop();
 					return TRUE;
@@ -2268,7 +2268,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	}
 	else if (wParam == CDiffThread::EVENT_COLLECT_COMPLETED)
 	{
-		if (m_pSavedTreeState)
+		if (m_pSavedTreeState != nullptr)
 		{
 			RestoreTreeState(GetDiffContext(), m_pSavedTreeState.get());
 			m_pSavedTreeState.reset();
@@ -2577,10 +2577,10 @@ struct FileCmpReport: public IFileCmpReport
 		m_pDirView->OpenSelection();
 		CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
 		IMergeDoc * pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-		if (!pMergeDoc)
+		if (pMergeDoc == nullptr)
 			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
 
-		if (pMergeDoc)
+		if (pMergeDoc != nullptr)
 		{
 			pMergeDoc->GenerateReport(paths::ConcatPath(sDestDir, sLinkPath));
 			pMergeDoc->CloseNow();
@@ -2763,17 +2763,17 @@ void CDirView::ShowShellContextMenu(SIDE_TYPE stype)
 	switch (stype)
 	{
 	case SIDE_LEFT:
-		if (!m_pShellContextMenuLeft)
+		if (m_pShellContextMenuLeft == nullptr)
 			m_pShellContextMenuLeft.reset(new CShellContextMenu(LeftCmdFirst, LeftCmdLast));
 		pContextMenu = m_pShellContextMenuLeft.get();
 		break;
 	case SIDE_MIDDLE:
-		if (!m_pShellContextMenuMiddle)
+		if (m_pShellContextMenuMiddle == nullptr)
 			m_pShellContextMenuMiddle.reset(new CShellContextMenu(MiddleCmdFirst, MiddleCmdLast));
 		pContextMenu = m_pShellContextMenuMiddle.get();
 		break;
 	case SIDE_RIGHT:
-		if (!m_pShellContextMenuRight)
+		if (m_pShellContextMenuRight == nullptr)
 			m_pShellContextMenuRight.reset(new CShellContextMenu(RightCmdFirst, RightCmdLast));
 		pContextMenu = m_pShellContextMenuRight.get();
 		break;
@@ -3686,21 +3686,21 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CDirView::OnBnClickedComparisonStop()
 {
-	if (m_pCmpProgressBar)
+	if (m_pCmpProgressBar != nullptr)
 		m_pCmpProgressBar->EndUpdating();
 	GetDocument()->AbortCurrentScan();
 }
 
 void CDirView::OnBnClickedComparisonPause()
 {
-	if (m_pCmpProgressBar)
+	if (m_pCmpProgressBar != nullptr)
 		m_pCmpProgressBar->SetPaused(true);
 	GetDocument()->PauseCurrentScan();
 }
 
 void CDirView::OnBnClickedComparisonContinue()
 {
-	if (m_pCmpProgressBar)
+	if (m_pCmpProgressBar != nullptr)
 		m_pCmpProgressBar->SetPaused(false);
 	GetDocument()->ContinueCurrentScan();
 }
@@ -3812,7 +3812,7 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 	file.Write(filesForDroping.data(), static_cast<unsigned>((filesForDroping.length() + 1) * sizeof(TCHAR)));
 	
 	HGLOBAL hMem = GlobalReAlloc(file.Detach(), (filesForDroping.length() + 1) * sizeof(TCHAR), 0);
-	if (hMem) 
+	if (hMem != nullptr) 
 	{
 #ifdef _UNICODE
 		DropData->CacheGlobalData(CF_UNICODETEXT, hMem);

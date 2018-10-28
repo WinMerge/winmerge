@@ -129,7 +129,7 @@ std::string CMarkdown::Resolve(const EntityMap &map, const std::string& v)
 {
 	std::string ret(v);
 	char *p, *q = &ret[0];
-	while ((p = strchr(q, '&')) != NULL && (q = strchr(p, ';')) != NULL)
+	while ((p = strchr(q, '&')) != nullptr && (q = strchr(p, ';')) != nullptr)
 	{
 		*q = '\0';
 		char *key = p + 1;
@@ -268,7 +268,7 @@ static const char htmlUTags[] =
 CMarkdown::CMarkdown(const char *upper, const char *ahead, unsigned flags):
 first(nullptr), lower(nullptr), upper(upper), ahead(ahead),
 memcmp(flags & IgnoreCase ? ::_memicmp : ::memcmp),
-utags(flags & HtmlUTags ? htmlUTags : NULL)
+utags(flags & HtmlUTags ? htmlUTags : nullptr)
 {
 	if (CMarkdown::ahead > CMarkdown::upper)
 	{
@@ -394,7 +394,7 @@ CMarkdown &CMarkdown::Move()
 		{
 			++upper;
 		}
-		if (utags && upper < ahead && *upper == '<')
+		if (utags != nullptr && upper < ahead && *upper == '<')
 		{
 			size_t utlen = FindTag(utags, upper + 2);
 			if (utlen != 0)
@@ -700,7 +700,7 @@ std::string CMarkdown::GetAttribute(const char *key, std::string *pv)
 		p = token.upper;
 		if (name && value)
 		{
-			if (key == 0)
+			if (key == nullptr)
 			{
 				lower = p;
 				*pv = std::string(value, cvalue);
@@ -713,7 +713,7 @@ std::string CMarkdown::GetAttribute(const char *key, std::string *pv)
 			name = value = 0;
 		}
 	} while (token.upper != token.lower);
-	if (key == 0)
+	if (key == nullptr)
 	{
 		lower = p;
 		return "";
@@ -830,13 +830,13 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			// odd word endianness: swab first
 			cbImage &= ~3UL;
 			pCopy = new unsigned char[cbImage];
-			if (pCopy)
+			if (pCopy != nullptr)
 			{
 				for (size_t i = 0; i < cbImage / 2; ++i)
 					*((uint16_t *)pCopy + i) = Poco::ByteOrder::flipBytes(*((uint16_t *)pImage + i));
 			}
 			delete m_pSharedMemory;
-			m_pSharedMemory = NULL;
+			m_pSharedMemory = nullptr;
 			pImage = pCopy;
 			if (pImage != nullptr)
 			{
@@ -863,7 +863,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 					cbImage += ucr::Utf8len_fromCodepoint(uch);
 				}
 				void *pCopy2 = new unsigned char[cbImage];
-				if (pCopy2)
+				if (pCopy2 != nullptr)
 				{
 					cbImage = 0;
 					for (size_t i = 0; i < cchImage; i += 4)
@@ -877,7 +877,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 					}
 				}
 				delete m_pSharedMemory;
-				m_pSharedMemory = NULL;
+				m_pSharedMemory = nullptr;
 				pImage = pCopy2;
 				delete [] pCopy;
 				pCopy = pCopy2;

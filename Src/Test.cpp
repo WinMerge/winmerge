@@ -283,7 +283,7 @@ TEST(FolderCompare, IgnoreEOL)
 		CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 		CDirDoc *pDoc = dynamic_cast<CDirDoc *>(pFrame->GetActiveDocument());
 		EXPECT_NE(nullptr, pDoc);
-		if (pDoc != nullptr)
+		if (pDoc == nullptr)
 		{
 			pFrame->PostMessage(WM_CLOSE);
 			continue;

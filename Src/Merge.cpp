@@ -521,7 +521,7 @@ bool CMergeApp::IsReallyIdle() const
 {
 	bool idle = true;
 	POSITION pos = m_pDirTemplate->GetFirstDocPosition();
-	while (pos)
+	while (pos != nullptr)
 	{
 		CDirDoc *pDirDoc = static_cast<CDirDoc *>(m_pDirTemplate->GetNextDoc(pos));
 		if (const CompareStats *pCompareStats = pDirDoc->GetCompareStats())
