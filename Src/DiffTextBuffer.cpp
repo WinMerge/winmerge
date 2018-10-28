@@ -84,9 +84,8 @@ static void EscapeControlChars(String &s)
 		// Is it a control character in the range 0..31 except TAB?
 		if (!(c & ~_T('\x1F')) && c != _T('\t'))
 		{
-			// TODO: speed this up via table lookup
-			// Bitwise OR with 0x100 so _itot_s() will output 3 hex digits
-			_itot_s(0x100 | c, p + n - 4, 4, 16);
+			p[n - 4 + 1] = _T("0123456789ABCDEF")[(c >> 4) & 0xf];
+			p[n - 4 + 2] = _T("0123456789ABCDEF")[c & 0xf];
 			// Replace terminating zero with leadout character
 			p[n - 1] = _T('\\');
 			// Prepare to replace 1st hex digit with leadin character
