@@ -172,7 +172,7 @@ static void DiffThreadCollect(void *pParam)
 
 	// Build results list (except delaying file comparisons until below)
 	DirScan_GetItems(paths, subdir, myStruct,
-			casesensitive, depth, NULL, myStruct->context->m_bWalkUniques);
+			casesensitive, depth, nullptr, myStruct->context->m_bWalkUniques);
 
 	// ReleaseSemaphore() once again to signal that collect phase is ready
 	myStruct->pSemaphore->set();

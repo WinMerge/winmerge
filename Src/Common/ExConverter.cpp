@@ -47,7 +47,7 @@ public:
 	{
 		if (m_pmlang != nullptr)
 			m_pmlang->Release();
-		if (m_hLibMLang)
+		if (m_hLibMLang != nullptr)
 			FreeLibrary(m_hLibMLang);
 	}
 
@@ -293,7 +293,7 @@ static Poco::FastMutex m_mutex;
 
 IExconverter *Exconverter::getInstance()
 {
-	if (m_pexconv)
+	if (m_pexconv != nullptr)
 	{
 		m_pexconv->clearCookie();
 		return m_pexconv;

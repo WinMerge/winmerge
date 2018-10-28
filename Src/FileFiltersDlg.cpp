@@ -368,7 +368,7 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
 
 	FileFilterMgr *pMgr = theApp.m_pGlobalFileFilter->GetManager();
 	FileFilter * pFileFilter = pMgr->GetFilterByPath(m_sFileFilterPath);
-	if (!pFileFilter)
+	if (pFileFilter == nullptr)
 		return;
 
 	CTestFilterDlg dlg(this, pFileFilter, pMgr);

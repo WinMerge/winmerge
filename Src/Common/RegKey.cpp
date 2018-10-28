@@ -32,10 +32,10 @@ CRegKeyEx::~CRegKeyEx()
  */
 void CRegKeyEx::Close()
 {
-	if (m_hKey) 
+	if (m_hKey != nullptr) 
 	{
 		RegCloseKey(m_hKey);
-		m_hKey = NULL;
+		m_hKey = nullptr;
 	}
 }
 
@@ -64,8 +64,8 @@ LONG CRegKeyEx::OpenWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam)
 	Close();
 	m_sPath = pszPath;
 
-	return RegCreateKeyEx(hKeyRoot, pszPath, 0L, NULL,
-		REG_OPTION_NON_VOLATILE, regsam, NULL, 
+	return RegCreateKeyEx(hKeyRoot, pszPath, 0L, nullptr,
+		REG_OPTION_NON_VOLATILE, regsam, nullptr, 
 		&m_hKey, &dw);
 }
 
@@ -180,7 +180,7 @@ DWORD CRegKeyEx::ReadDword(LPCTSTR pszKey, DWORD defval)
 	DWORD dwSize = sizeof (DWORD);
 	DWORD dwDest;
 
-	LONG lRet = RegQueryValueEx (m_hKey, (LPTSTR) pszKey, NULL, 
+	LONG lRet = RegQueryValueEx (m_hKey, (LPTSTR) pszKey, nullptr, 
 		&dwType, (LPBYTE) &dwDest, &dwSize);
 
 	if (lRet == ERROR_SUCCESS)
@@ -259,11 +259,11 @@ float CRegKeyEx::ReadFloat(LPCTSTR pszKey, float defval)
 	DWORD dwSize = 100;
 	TCHAR  string[100];
 
-	LONG lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, NULL,
+	LONG lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, nullptr,
 		&dwType, (LPBYTE) string, &dwSize);
 
 	if (lReturn == ERROR_SUCCESS)
-		return (float)_tcstod(string, NULL);
+		return (float)_tcstod(string, nullptr);
 	else
 		return defval;
 }
@@ -283,7 +283,7 @@ bool CRegKeyEx::ReadBool(LPCTSTR pszKey, bool defval)
 	DWORD dwSize = sizeof(DWORD);
 	DWORD dwDest;
 
-	LONG lRet = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, NULL, 
+	LONG lRet = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, nullptr, 
 		&dwType, (LPBYTE) &dwDest, &dwSize);
 
 	if (lRet == ERROR_SUCCESS)
@@ -308,13 +308,13 @@ String CRegKeyEx::ReadString (LPCTSTR pszKey, LPCTSTR defval)
 	String retString;
 
 	// Get size of the string
-	LONG lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, NULL,
-		&dwType, NULL, &dwSize);
+	LONG lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, nullptr,
+		&dwType, nullptr, &dwSize);
 
 	if (lReturn == ERROR_SUCCESS)
 	{
 		retString.resize(dwSize/sizeof(TCHAR));
-		lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, NULL,
+		lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, nullptr,
 			&dwType, (LPBYTE) retString.data(), &dwSize);
 		retString.resize(dwSize/sizeof(TCHAR)-1);
 	}
@@ -339,7 +339,7 @@ void CRegKeyEx::ReadChars (LPCTSTR pszKey, LPTSTR pData, DWORD dwLen, LPCTSTR de
 	DWORD dwType;
 	DWORD len = dwLen;
 
-	LONG ret = RegQueryValueEx (m_hKey, (LPTSTR) pszKey, NULL,
+	LONG ret = RegQueryValueEx (m_hKey, (LPTSTR) pszKey, nullptr,
 		&dwType, (LPBYTE)pData, &len);
 	if (ret != ERROR_SUCCESS)
 		StringCchCopy(pData, dwLen, defval);

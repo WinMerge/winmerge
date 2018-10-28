@@ -74,7 +74,7 @@ void RxFree(RxNode *n) {
 }
 
 int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *Match) {
-    if (Regexp == 0) return 0;
+    if (Regexp == nullptr) return 0;
 
 	int i;
     for (i = 0; i < NSEXPS; i++) Match->Open[i] = Match->Close[i] = -1;

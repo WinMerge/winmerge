@@ -244,7 +244,7 @@ pr_unidiff_hunk (struct change *hunk)
 
       /* If the line isn't a difference, output the context from file 0. */
 
-      if (!next || i < next->line0)
+      if (next == nullptr || i < next->line0)
 	{
 	  fprintf (out, "  <tr>\n");
 	  fprintf (out, "    <td class=\"vc_diff_nochange\">&nbsp;");
@@ -362,13 +362,13 @@ find_hunk (struct change *start)
 static void
 mark_ignorable (struct change *script)
 {
-  while (script)
+  while (script != nullptr)
     {
       struct change *next = script->link;
       int first0, last0, first1, last1, deletes, inserts;
 
       /* Turn this change into a hunk: detach it from the others.  */
-      script->link = NULL;
+      script->link = nullptr;
 
       /* Determine whether this change is ignorable.  */
       analyze_hunk (script, &first0, &last0, &first1, &last1, &deletes, &inserts, files);

@@ -46,7 +46,7 @@ String TempFile::Create(const String& prefix, const String& ext)
 	if (pref.empty())
 		pref = _T("wmtmp");
 
-	temp = env::GetTemporaryFileName(temp, pref, NULL);
+	temp = env::GetTemporaryFileName(temp, pref, nullptr);
 	if (!temp.empty())
 	{
 		if (!ext.empty())
@@ -81,7 +81,7 @@ String TempFile::CreateFromFile(const String& filepath, const String& prefix)
 	if (pref.empty())
 		pref = _T("wmtmp");
 
-	temp = env::GetTemporaryFileName(temp, pref, NULL);
+	temp = env::GetTemporaryFileName(temp, pref, nullptr);
 	if (!temp.empty())
 	{
 		// Scratchpads don't have a file to copy.

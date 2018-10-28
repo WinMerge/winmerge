@@ -16,7 +16,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox
 
-HIMAGELIST CSuperComboBox::m_himlSystem = NULL;
+HIMAGELIST CSuperComboBox::m_himlSystem = nullptr;
 
 CSuperComboBox::CSuperComboBox()
 	: m_pDropHandler(nullptr)
@@ -450,7 +450,7 @@ int CSuperComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 void CSuperComboBox::OnDestroy(void)
 {
-	if (m_pDropHandler)
+	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
 }
 
@@ -523,9 +523,9 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 		{
 			// The path is a network path. 
 			// Try to get the index of a system image list icon, with 1-sec timeout.
-			HANDLE hThread = CreateThread(NULL, 0, SHGetFileInfoThread, 
-											(VOID *)(LPCTSTR)sText, 0, NULL);
-			if (hThread != NULL)
+			HANDLE hThread = CreateThread(nullptr, 0, SHGetFileInfoThread, 
+											(VOID *)(LPCTSTR)sText, 0, nullptr);
+			if (hThread != nullptr)
 			{
 				DWORD dwResult = WaitForSingleObject(hThread, 1000);
 				if (dwResult == WAIT_OBJECT_0)

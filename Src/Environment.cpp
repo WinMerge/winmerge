@@ -41,7 +41,7 @@ void SetTemporaryPath(const String& path)
  * This function returns system temp folder.
  * @return Temp path, or empty string if error happened.
  * @note Temp path is cached after first call.
- * @todo Should we return NULL for error case?
+ * @todo Should we return `nullptr` for error case?
  */
 String GetTemporaryPath()
 {
@@ -72,7 +72,7 @@ String GetTemporaryFileName(const String& lpPathName, const String& lpPrefixStri
 	if (!rtn)
 	{
 		int err = GetLastError();
-		if (pnerr)
+		if (pnerr != nullptr)
 			*pnerr = err;
 		return _T("");
 	}
@@ -99,7 +99,7 @@ String GetProgPath()
 	if (strProgPath.empty())
 	{
 		TCHAR temp[MAX_PATH] = {0};
-		GetModuleFileName(NULL, temp, MAX_PATH);
+		GetModuleFileName(nullptr, temp, MAX_PATH);
 		strProgPath = paths::GetPathOnly(temp);
 	}
 	return strProgPath;
@@ -126,7 +126,7 @@ String GetMyDocuments()
 {
 	TCHAR path[MAX_PATH];
 	path[0] = _T('\0');
-	SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, 0, path);
+	SHGetFolderPath(nullptr, CSIDL_PERSONAL, nullptr, 0, path);
 	return path;
 }
 
@@ -166,8 +166,8 @@ static bool launchProgram(const String& sCmd, WORD wShowWindow)
 	stInfo.dwFlags = STARTF_USESHOWWINDOW;
 	stInfo.wShowWindow = wShowWindow;
 	PROCESS_INFORMATION processInfo;
-	bool retVal = !!CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
-		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
+	bool retVal = !!CreateProcess(nullptr, (LPTSTR)sCmd.c_str(),
+		nullptr, nullptr, FALSE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
 		&stInfo, &processInfo);
 	if (!retVal)
 		return false;

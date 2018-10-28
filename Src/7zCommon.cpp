@@ -253,7 +253,7 @@ void CTempPathContext::Swap(int idx1, int idx2)
 {
 	std::swap(m_strDisplayRoot[idx1], m_strDisplayRoot[idx2]);
 	std::swap(m_strRoot[idx1], m_strRoot[idx2]);
-	if (m_pParent)
+	if (m_pParent != nullptr)
 		m_pParent->Swap(idx1, idx2);
 }
 
@@ -473,7 +473,7 @@ Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
 		{
 			// Item is missing on right side
 			PVOID &implied = m_rgImpliedFolders[m_index][di.diffFileInfo[1-m_index].path.get()];
-			if (!implied)
+			if (implied == nullptr)
 			{
 				// Folder is not implied by some other file, and has
 				// not been enumerated so far, so enumerate it now!
@@ -652,7 +652,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 										 : ArchiveGuessFormat(res.files[1]);
 		if (piHandler != nullptr)
 		{
-			if (!res.pTempPathContext)
+			if (res.pTempPathContext == nullptr)
 			{
 				res.pTempPathContext = new CTempPathContext;
 				for (int index = 0; index < res.files.GetSize(); index++)
@@ -679,7 +679,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 		piHandler = (res.files.GetSize() <= 2) ? nullptr : ArchiveGuessFormat(res.files[2]);
 		if (piHandler != nullptr)
 		{
-			if (!res.pTempPathContext)
+			if (res.pTempPathContext == nullptr)
 			{
 				res.pTempPathContext = new CTempPathContext;
 				for (int index = 0; index < res.files.GetSize(); index++)

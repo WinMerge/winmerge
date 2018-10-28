@@ -175,7 +175,7 @@ void CPreferencesDlg::AddPage(CPropertyPage* pPage, LPCTSTR szPath)
 			HTREEITEM htiParentParent = htiParent;
 			htiParent = m_tcPages.GetChildItem(htiParentParent);
 
-			while (htiParent)
+			while (htiParent != nullptr)
 			{
 				if (sParent.CompareNoCase(m_tcPages.GetItemText(htiParent)) == 0)
 					break;
@@ -183,7 +183,7 @@ void CPreferencesDlg::AddPage(CPropertyPage* pPage, LPCTSTR szPath)
 				htiParent = m_tcPages.GetNextItem(htiParent, TVGN_NEXT);
 			}
 
-			if (!htiParent)
+			if (htiParent == nullptr)
 				htiParent = m_tcPages.InsertItem(sParent, htiParentParent);
 
 			nFind = sPath.Find(PATHDELIM);
@@ -231,7 +231,7 @@ void CPreferencesDlg::SetActivePage(int nPage)
 	CPropertyPage* pPage = m_pphost.GetActivePage();
 	HTREEITEM hti = nullptr;
 
-	if (m_mapPP2HTI.Lookup(pPage, (void*&)hti) && hti)
+	if (m_mapPP2HTI.Lookup(pPage, (void*&)hti) && hti != nullptr)
 		m_tcPages.SelectItem(hti);
 }
 
@@ -240,7 +240,7 @@ CString CPreferencesDlg::GetItemPath(HTREEITEM hti)
 	CString sPath = m_tcPages.GetItemText(hti);
 
 	hti = m_tcPages.GetParentItem(hti);
-	while (hti)
+	while (hti != nullptr)
 	{
 		sPath = m_tcPages.GetItemText(hti) + _T(" > ") + sPath;
 		hti = m_tcPages.GetParentItem(hti);

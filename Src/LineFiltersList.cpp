@@ -235,7 +235,7 @@ void LineFiltersList::Import(const String& filters)
 		while (token)
 		{
 			AddFilter(token, true);
-			token = _tcstok_s(NULL, sep, &pfilterNext);
+			token = _tcstok_s(nullptr, sep, &pfilterNext);
 		}
 		SaveFilters();
 	}

@@ -90,7 +90,7 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 	, m_strTitle(strTitle.IsEmpty() ? AfxGetAppName() : strTitle)
 	, m_nStyle(nStyle)
 	, m_nHelp(nHelp)
-	, m_hIcon(NULL)
+	, m_hIcon(nullptr)
 	, m_nTimeoutSeconds(0)
 	, m_bTimeoutDisabled(false)
 	, m_nTimeoutTimer(0)
@@ -114,7 +114,7 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 
 	LOGFONT lf = { 0 };
 	HTHEME hTheme = OpenThemeData(nullptr, _T("TEXTSTYLE"));
-	if (hTheme && SUCCEEDED(GetThemeFont(hTheme, nullptr, TEXT_MAININSTRUCTION, 0, TMT_FONT, &lf)))
+	if (hTheme != nullptr && SUCCEEDED(GetThemeFont(hTheme, nullptr, TEXT_MAININSTRUCTION, 0, TMT_FONT, &lf)))
 	{
 		m_fontMainInstruction.CreateFontIndirect(&lf);
 		GetThemeColor(hTheme, TEXT_MAININSTRUCTION, 0, TMT_TEXTCOLOR, &m_clrMainInstructionFont);

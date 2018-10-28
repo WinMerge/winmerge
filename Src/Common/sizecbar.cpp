@@ -1093,7 +1093,7 @@ void CSizingControlBar::OnUpdateCmdUI(CFrameWnd* pTarget,
 void CSizingControlBar::LoadState(LPCTSTR lpszProfileName)
 {
     ASSERT_VALID(this);
-    ASSERT(GetSafeHwnd()); // must be called after Create()
+    ASSERT(GetSafeHwnd() != nullptr); // must be called after Create()
 
 #if defined(_SCB_REPLACE_MINIFRAME) && !defined(_SCB_MINIFRAME_CAPTION)
     // compensate the caption miscalculation in CFrameWnd::SetDockState()

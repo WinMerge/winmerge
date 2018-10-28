@@ -71,7 +71,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 
 	// Get type and size of value in registry
 	retValReg = RegQueryValueEx(hKey, strValueName.c_str(), 0, &type,
-		NULL, &size);
+		nullptr, &size);
 	
 	if (retValReg == ERROR_SUCCESS)
 	{
@@ -198,10 +198,10 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	strRegPath += strPath;
 
 	// Open key. Create new key if it does not exist.
-	HKEY hKey = NULL;
+	HKEY hKey = nullptr;
 	DWORD action = 0;
 	LONG retValReg = RegCreateKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-		0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL,
+		0, nullptr, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, nullptr,
 		&hKey, &action);
 
 	if (retValReg != ERROR_SUCCESS)
@@ -300,7 +300,7 @@ int CRegOptionsMgr::LoadOption(const String& name)
 	String strPath;
 	String strValueName;
 	String strRegPath(m_registryRoot);
-	HKEY hKey = NULL;
+	HKEY hKey = nullptr;
 	int retVal = COption::OPT_OK;
 
 	SplitName(name, strPath, strValueName);
@@ -339,7 +339,7 @@ int CRegOptionsMgr::SaveOption(const String& name)
 	String strPath;
 	String strValueName;
 	String strRegPath(m_registryRoot);
-	HKEY hKey = NULL;
+	HKEY hKey = nullptr;
 	int retVal = COption::OPT_OK;
 
 	SplitName(name, strPath, strValueName);
@@ -426,7 +426,7 @@ int CRegOptionsMgr::SaveOption(const String& name, bool value)
 
 int CRegOptionsMgr::RemoveOption(const String& name)
 {
-	HKEY hKey = NULL;
+	HKEY hKey = nullptr;
 	int retVal = COption::OPT_OK;
 	String strRegPath(m_registryRoot);
 	String strPath;
@@ -461,7 +461,7 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 int CRegOptionsMgr::SetRegRootKey(const String& key)
 {
 	String keyname(key);
-	HKEY hKey = NULL;
+	HKEY hKey = nullptr;
 	DWORD action = 0;
 	int retVal = COption::OPT_OK;
 
@@ -471,8 +471,8 @@ int CRegOptionsMgr::SetRegRootKey(const String& key)
 	
 	m_registryRoot = keyname;
 
-	LONG retValReg =  RegCreateKeyEx(HKEY_CURRENT_USER, m_registryRoot.c_str(), 0, NULL,
-		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &action);
+	LONG retValReg =  RegCreateKeyEx(HKEY_CURRENT_USER, m_registryRoot.c_str(), 0, nullptr,
+		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, nullptr, &hKey, &action);
 
 	if (retValReg == ERROR_SUCCESS)
 	{
@@ -556,8 +556,8 @@ int CRegOptionsMgr::ImportOptions(const String& filename)
 	const int BufSize = 10240; // This should be enough for a long time..
 	TCHAR buf[BufSize] = {0};
 
-	// Query keys - returns NULL separated strings
-	DWORD len = GetPrivateProfileString(_T("WinMerge"), NULL, _T(""),buf, BufSize, filename.c_str());
+	// Query keys - returns NUL separated strings
+	DWORD len = GetPrivateProfileString(_T("WinMerge"), nullptr, _T(""),buf, BufSize, filename.c_str());
 	if (len == 0)
 		return COption::OPT_NOTFOUND;
 
@@ -589,7 +589,7 @@ int CRegOptionsMgr::ImportOptions(const String& filename)
 		pKey += _tcslen(pKey);
 
 		// Check: pointer is not past string end, and next char is not null
-		// double NULL char ends the keynames string
+		// double NUL char ends the keynames string
 		if ((pKey < buf + len) && (*(pKey + 1) != '\0'))
 			pKey++;
 	}

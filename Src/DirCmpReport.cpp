@@ -470,7 +470,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 	paths::SplitFilename((const TCHAR *)m_pFile->GetFilePath(), &sParentDir, &sFileName, nullptr);
 	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T("."))) + _T(".files");
 	String sDestDir = paths::ConcatPath(sParentDir, sRelDestDir);
-	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport)
+	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)
 		paths::CreateIfNeeded(sDestDir);
 
 	int nRows = m_pList->GetRowCount();
@@ -479,7 +479,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 	for (int currRow = 0; currRow < nRows; currRow++)
 	{
 		String sLinkPath;
-		if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport)
+		if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)
 			(*m_pFileCmpReport)(REPORT_TYPE_SIMPLEHTML, m_pList, currRow, sDestDir, sLinkPath);
 
 		String rowEl = _T("tr");

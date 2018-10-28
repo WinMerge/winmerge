@@ -295,7 +295,7 @@ DoConstrain(CWnd * pWnd, HWND hwndChild, double fLeftX, double fExpandX, double 
 {
 	Constraint constraint(fLeftX, fExpandX, fAboveY, fExpandY, hwndChild, pWnd);
 
-	if (m_hwndDlg && IsWindow(m_hwndDlg) && hwndChild && IsWindow(hwndChild))
+	if (m_hwndDlg && IsWindow(m_hwndDlg) && hwndChild != nullptr && IsWindow(hwndChild))
 	{
 		InitializeChildConstraintData(m_hwndDlg, constraint);
 	}
@@ -380,7 +380,7 @@ CMoveConstraint::CheckDeferredChildren()
 	if (!m_nDelayed)
 		return;
 	ConstraintList & constraintList = m_ConstraintList;
-	for (POSITION pos=constraintList.GetHeadPosition(); pos; constraintList.GetNext(pos))
+	for (POSITION pos=constraintList.GetHeadPosition(); pos != nullptr; constraintList.GetNext(pos))
 	{
 		Constraint & constraint = constraintList.GetAt(pos);
 		if (constraint.m_hwndChild  != nullptr)
@@ -408,7 +408,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 
 	if (nType == SIZE_MINIMIZED) return;
 
-	if (!m_hwndDlg && hWnd && !m_bOriginalFetched)
+	if (!m_hwndDlg && hWnd != nullptr && !m_bOriginalFetched)
 	{
 		// if early subclass or wndproc
 		// grab early dimensions, in case we want them later (eg, property sheet)
@@ -427,7 +427,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 	int nDeltaHeight = (rectParentCurrent.bottom - m_rectDlgOriginal.bottom);
 
 	ConstraintList & constraintList = m_ConstraintList;
-	for (POSITION pos=constraintList.GetHeadPosition(); pos; constraintList.GetNext(pos))
+	for (POSITION pos=constraintList.GetHeadPosition(); pos != nullptr; constraintList.GetNext(pos))
 	{
 		Constraint & constraint = constraintList.GetAt(pos);
 		if (constraint.m_hwndChild == nullptr)
@@ -453,7 +453,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 			, rectChildCurrent.Width(), rectChildCurrent.Height(), SWP_NOZORDER+SWP_NOREDRAW);
 	}
 
-	if (m_pFormView)
+	if (m_pFormView != nullptr)
 	{
 		// ignore growth
 		//if (nDeltaWidth > 0)
@@ -695,7 +695,7 @@ CMoveConstraint::Persist(bool saving, bool position)
 		RECT wprc;
 		CString str = AfxGetApp()->GetProfileString(szSection, m_sRegistryValueName);
 		GetWindowRect(m_hwndDlg, &wprc);
-		if (m_pFormView)
+		if (m_pFormView != nullptr)
 			CWnd::FromHandle(m_hwndDlg)->GetParent()->ScreenToClient(&wprc);
 		CRect rc;
 		int ct=_stscanf_s(str, _T("%d,%d,%d,%d"), &rc.left, &rc.top, &rc.right, &rc.bottom);
