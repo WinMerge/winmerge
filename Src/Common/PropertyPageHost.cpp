@@ -103,7 +103,7 @@ CPropertyPage* CPropertyPageHost::GetActivePage()
 
 	CPropertyPage* pPage = m_aPages[m_nSelIndex].pPage;
 
-	if (pPage == nullptr || !pPage->GetSafeHwnd())
+	if (pPage == nullptr || pPage->GetSafeHwnd() == nullptr)
 		return nullptr;
 
 	return pPage;
@@ -128,7 +128,7 @@ bool CPropertyPageHost::SetActivePage(int nIndex, bool bAndFocus /*= true*/)
 
 	CWnd* pFocus = GetFocus();
 
-	if (!pPage->GetSafeHwnd() && !pPage->Create(pPage->m_psp.pszTemplate, this))
+	if (pPage->GetSafeHwnd() == nullptr && !pPage->Create(pPage->m_psp.pszTemplate, this))
 		return false;
 
 	// make sure we can into/out of the page
@@ -171,7 +171,7 @@ bool CPropertyPageHost::SetActivePage(int nIndex, bool bAndFocus /*= true*/)
 	{
 		CWnd* pCtrl = pPage->GetNextDlgTabItem(nullptr);
 
-		if (pCtrl)
+		if (pCtrl != nullptr)
 			pCtrl->SetFocus();
 	}
 	else
@@ -223,7 +223,7 @@ BOOL CPropertyPageHost::PreTranslateMessage(MSG* pMsg)
 {
 	CWnd* pActive = GetActivePage();
 
-	if (pActive)
+	if (pActive != nullptr)
 	{
 		if (pActive->PreTranslateMessage(pMsg))
 			return TRUE;
@@ -309,7 +309,7 @@ void CPropertyPageHost::OnOK()
 	{
 		CPropertyPage* pPage = m_aPages[nPage].pPage;
 
-		if (pPage && pPage->GetSafeHwnd())
+		if (pPage!= nullptr && pPage->GetSafeHwnd() != nullptr)
 		{
 			pPage->UpdateData();
 			pPage->OnOK();
@@ -328,7 +328,7 @@ void CPropertyPageHost::UpdatePagesData()
 	{
 		CPropertyPage* pPage = m_aPages[nPage].pPage;
 
-		if (pPage && pPage->GetSafeHwnd())
+		if (pPage!= nullptr && pPage->GetSafeHwnd()!= nullptr)
 		{
 			pPage->UpdateData();
 		}

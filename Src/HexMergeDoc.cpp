@@ -150,7 +150,7 @@ CHexMergeView * CHexMergeDoc::GetActiveMergeView() const
 {
 	CView * pActiveView = GetParentFrame()->GetActiveView();
 	CHexMergeView * pHexMergeView = dynamic_cast<CHexMergeView *>(pActiveView);
-	if (!pHexMergeView)
+	if (pHexMergeView == nullptr)
 		pHexMergeView = m_pView[0]; // default to left view (in case some location or detail view active)
 	return pHexMergeView;
 }

@@ -573,7 +573,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 	else
 	{
 		IExconverter *pexconv = Exconverter::getInstance();
-		if (pexconv)
+		if (pexconv != nullptr)
 		{
 			size_t n = wlen;
 			if (pexconv->convertToUnicode(codepage, lpd, &len, wbuff, &n))
@@ -625,7 +625,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 	else
 	{
 		IExconverter *pexconv = Exconverter::getInstance();
-		if (pexconv)
+		if (pexconv != nullptr)
 		{		
 			size_t n = len * 6 + 6;
 			try
@@ -1018,7 +1018,7 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, si
 			size_t dstsize = srcbytes * 6; 
 			dest->resize(dstsize + 2);
 			IExconverter *pexconv = Exconverter::getInstance();
-			if (pexconv)
+			if (pexconv != nullptr)
 			{
 				bool result = pexconv->convertFromUnicode(destcp, (LPWSTR)src, &srcsize, (char *)dest->ptr, &dstsize);
 				dest->ptr[dstsize] = 0;
@@ -1051,7 +1051,7 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, si
 			size_t dstsize = srcbytes; 
 			dest->resize((srcbytes + 1) * sizeof(wchar_t));
 			IExconverter *pexconv = Exconverter::getInstance();
-			if (pexconv)
+			if (pexconv != nullptr)
 			{
 				bool result = pexconv->convertToUnicode(srccp, (LPCSTR)src, &srcsize, (LPWSTR)dest->ptr, &dstsize);
 				dest->ptr[dstsize * sizeof(wchar_t)] = 0;

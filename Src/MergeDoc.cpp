@@ -2686,7 +2686,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	
 	if (nLossyBuffers > 0)
 	{
-		if (!m_pEncodingErrorBar)
+		if (m_pEncodingErrorBar == nullptr)
 		{
 			m_pEncodingErrorBar.reset(new CEncodingErrorBar());
 			m_pEncodingErrorBar->Create(this->m_pView[0][0]->GetParentFrame());

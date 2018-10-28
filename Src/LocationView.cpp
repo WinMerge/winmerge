@@ -125,7 +125,7 @@ void CLocationView::SetConnectMovedBlocks(int displayMovedBlocks)
 
 	GetOptionsMgr()->SaveOption(OPT_CONNECT_MOVED_BLOCKS, displayMovedBlocks);
 	m_displayMovedBlocks = displayMovedBlocks;
-	if (this->GetSafeHwnd() != NULL)
+	if (this->GetSafeHwnd() != nullptr)
 		if (IsWindowVisible())
 			Invalidate();
 }
@@ -402,11 +402,11 @@ void CLocationView::OnDraw(CDC* pDC)
 	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
 		int nBottom = (int)(m_lineInPix * pDoc->GetView(nGroup, pane)->GetSubLineCount() + Y_OFFSET + 1);
-		CBrush *pOldBrush = NULL;
+		CBrush *pOldBrush = nullptr;
 		if (pDoc->IsEditedAfterRescan(pane))
 			pOldBrush = (CBrush *)dc.SelectStockObject(HOLLOW_BRUSH);
 		dc.Rectangle(m_bar[pane]);
-		if (pOldBrush)
+		if (pOldBrush != nullptr)
 			dc.SelectObject(pOldBrush);
 
 		CRect rect = m_bar[pane];
@@ -724,7 +724,7 @@ bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine /*= true*/)
  */
 void CLocationView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
-	if (pScrollBar == NULL)
+	if (pScrollBar == nullptr)
 	{
 		// Scroll did not come frome a scroll bar
 		// Send it to the right view instead
@@ -988,7 +988,7 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 			if (m_visibleTop != nTopCoord || m_visibleBottom != nBottomCoord)
 			{
 				// Visible area was changed
-				if (m_pSavedBackgroundBitmap)
+				if (m_pSavedBackgroundBitmap != nullptr)
 				{
 					CClientDC dc(this);
 					CMyMemDC dcMem(&dc);
@@ -1001,7 +1001,7 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 		}
 		else
 		{
-			InvalidateRect(NULL);
+			InvalidateRect(nullptr);
 			for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 				m_nSubLineCount[pane] = pDoc->GetView(nGroup, pane)->GetSubLineCount();
 		}
@@ -1024,7 +1024,7 @@ void CLocationView::DrawConnectLines(CDC *pClientDC)
 	CPen* oldObj = (CPen*)pClientDC->SelectStockObject(BLACK_PEN);
 
 	POSITION pos = m_movedLines.GetHeadPosition();
-	while (pos != NULL)
+	while (pos != nullptr)
 	{
 		MovedLine line = m_movedLines.GetNext(pos);
 		pClientDC->MoveTo(line.ptLeft.x, line.ptLeft.y);
@@ -1063,7 +1063,7 @@ void CLocationView::OnSize(UINT nType, int cx, int cy)
 
 	if (cx != m_currentSize.cx)
 	{
-		if (m_hwndFrame != NULL)
+		if (m_hwndFrame != nullptr)
 			::PostMessage(m_hwndFrame, MSG_STORE_PANESIZES, 0, 0);
 	}
 

@@ -238,14 +238,14 @@ bool CChildFrame::EnsureValidDockState(CDockState& state)
 	{
 		bool barIsCorrect = true;
 		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
-		if (! pInfo) 
+		if (pInfo == nullptr) 
 			barIsCorrect = false;
 		else
 		{
 			if (! pInfo->m_bFloating) 
 			{
 				pInfo->m_pBar = GetControlBar(pInfo->m_nBarID);
-				if (!pInfo->m_pBar) 
+				if (pInfo->m_pBar == nullptr) 
 					barIsCorrect = false; //toolbar id's probably changed	
 			}
 		}
@@ -312,7 +312,7 @@ static bool MyLockWindowUpdate(HWND hwnd)
 static bool MyUnlockWindowUpdate(HWND hwnd)
 {
 	WNDPROC pfnOldWndProc = (WNDPROC)RemoveProp(hwnd, _T("OldWndProc"));
-	if (pfnOldWndProc)
+	if (pfnOldWndProc != nullptr)
 		SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)pfnOldWndProc);
 
 	EnumChildWindows(hwnd, EnumChildProc, TRUE);
@@ -564,7 +564,7 @@ void CChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeact
 	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
 	CMergeDoc *pDoc = GetMergeDoc();
-	if (bActivate && pDoc)
+	if (bActivate && pDoc != nullptr)
 		this->GetParentFrame()->PostMessage(WM_USER+1);
 	return;
 }

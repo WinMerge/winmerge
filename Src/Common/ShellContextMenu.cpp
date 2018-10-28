@@ -202,13 +202,13 @@ bool CShellContextMenu::QueryShellContextMenu()
 	m_pPreferredMenu = pCMenu1;
 
 	IContextMenu2Ptr pCMenu2(pCMenu1);
-	if (pCMenu2)
+	if (pCMenu2 != nullptr)
 	{
 		m_pPreferredMenu = pCMenu2;
 	}
 
 	IContextMenu3Ptr pCMenu3(pCMenu1);
-	if (pCMenu3)
+	if (pCMenu3 != nullptr)
 	{
 		m_pPreferredMenu = pCMenu3;
 	}

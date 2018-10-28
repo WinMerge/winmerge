@@ -1181,7 +1181,7 @@ OnDragEnter (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint
   CLIPFORMAT fmt = CCrystalTextView::GetClipTcharTextFormat();
   if (!pDataObject->IsDataAvailable (fmt))
     {
-      if (m_pAlternateDropTarget)
+      if (m_pAlternateDropTarget != nullptr)
         {
           DROPEFFECT dwEffect = DROPEFFECT_NONE;
           m_pAlternateDropTarget->DragEnter(pDataObject->m_lpDataObject, dwKeyState, { point.x, point.y }, &dwEffect);
@@ -1210,12 +1210,12 @@ OnDragOver (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint 
   //
   bool bDataSupported = false;
 
-  if ((!m_pOwner) ||            // If No Owner
+  if ((m_pOwner == nullptr) ||            // If No Owner
         (!(m_pOwner->QueryEditable ())) ||   // Or Not Editable
         (m_pOwner->GetDisableDragAndDrop ()))    // Or Drag And Drop Disabled
 
     {
-      if (m_pAlternateDropTarget)
+      if (m_pAlternateDropTarget != nullptr)
         {
           DROPEFFECT dwEffect = DROPEFFECT_COPY | DROPEFFECT_MOVE | DROPEFFECT_LINK;
           m_pAlternateDropTarget->DragOver(dwKeyState, { point.x, point.y }, &dwEffect);
@@ -1239,7 +1239,7 @@ OnDragOver (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint 
   if (!bDataSupported)          // If No Supported Formats Available
 
     {
-      if (m_pAlternateDropTarget)
+      if (m_pAlternateDropTarget != nullptr)
         {
           DROPEFFECT dwEffect = DROPEFFECT_COPY | DROPEFFECT_MOVE | DROPEFFECT_LINK;
           m_pAlternateDropTarget->DragOver(dwKeyState, { point.x, point.y }, &dwEffect);
@@ -1266,12 +1266,12 @@ OnDrop (CWnd * pWnd, COleDataObject * pDataObject, DROPEFFECT dropEffect, CPoint
 
   m_pOwner->HideDropIndicator ();   // Hide Drop Caret
 
-  if ((!m_pOwner) ||            // If No Owner
+  if ((m_pOwner == nullptr) ||            // If No Owner
         (!(m_pOwner->QueryEditable ())) ||   // Or Not Editable
         (m_pOwner->GetDisableDragAndDrop ()))    // Or Drag And Drop Disabled
 
     {
-      if (m_pAlternateDropTarget)
+      if (m_pAlternateDropTarget != nullptr)
         {
           DROPEFFECT dwEffect = DROPEFFECT_NONE;
           m_pAlternateDropTarget->Drop(pDataObject->m_lpDataObject, 0, { point.x, point.y }, &dwEffect);
@@ -1293,7 +1293,7 @@ OnDrop (CWnd * pWnd, COleDataObject * pDataObject, DROPEFFECT dropEffect, CPoint
   if (!bDataSupported)          // If No Supported Formats Available
 
     {
-      if (m_pAlternateDropTarget)
+      if (m_pAlternateDropTarget != nullptr)
         {
           DROPEFFECT dwEffect = DROPEFFECT_NONE;
           m_pAlternateDropTarget->Drop(pDataObject->m_lpDataObject, 0, { point.x, point.y }, &dwEffect);

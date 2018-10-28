@@ -24,13 +24,13 @@ DiffItemList::~DiffItemList()
 
 /**
  * @brief Add new diffitem to structured DIFFITEM tree.
- * @param [in] parent Parent item, or NULL if no parent.
+ * @param [in] parent Parent item, or `nullptr` if no parent.
  * @return Pointer to the added item.
  */
 DIFFITEM* DiffItemList::AddDiff(DIFFITEM *parent)
 {
 	DIFFITEM *p = new DIFFITEM;
-	if (parent)
+	if (parent != nullptr)
 		parent->children.Append(p);
 	else
 		m_root.Append(p);
@@ -74,7 +74,7 @@ uintptr_t DiffItemList::GetFirstDiffPosition() const
 uintptr_t DiffItemList::GetFirstChildDiffPosition(uintptr_t parentdiffpos) const
 {
 	DIFFITEM *parent = reinterpret_cast<DIFFITEM *>(parentdiffpos);
-	if (parent)
+	if (parent != nullptr)
 		return (uintptr_t)parent->children.IsSibling(parent->children.Flink);
 	else
 		return (uintptr_t)m_root.IsSibling(m_root.Flink);
@@ -102,7 +102,7 @@ const DIFFITEM &DiffItemList::GetNextDiffPosition(uintptr_t & diffpos) const
 			else
 				diffpos = (uintptr_t)m_root.IsSibling(cur->Flink);
 			cur = cur->parent;
-		} while (!diffpos && cur);
+		} while (!diffpos && cur != nullptr);
 	}
 	return *p;
 }
@@ -125,7 +125,7 @@ DIFFITEM &DiffItemList::GetNextDiffRefPosition(uintptr_t & diffpos)
 const DIFFITEM &DiffItemList::GetNextSiblingDiffPosition(uintptr_t & diffpos) const
 {
 	DIFFITEM *p = reinterpret_cast<DIFFITEM *>(diffpos);
-	if (p->parent)
+	if (p->parent != nullptr)
 		diffpos = (uintptr_t)p->parent->children.IsSibling(p->Flink);
 	else
 		diffpos = (uintptr_t)m_root.IsSibling(p->Flink);
@@ -201,6 +201,6 @@ void DiffItemList::SetCustomFlags1(uintptr_t diffpos, unsigned flag)
 
 void DiffItemList::Swap(int idx1, int idx2)
 {
-	for (ListEntry *p = m_root.IsSibling(m_root.Flink); p; p = m_root.IsSibling(p->Flink))
+	for (ListEntry *p = m_root.IsSibling(m_root.Flink); p != nullptr; p = m_root.IsSibling(p->Flink))
 		static_cast<DIFFITEM *>(p)->Swap(idx1, idx2);
 }

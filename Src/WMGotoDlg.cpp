@@ -39,7 +39,7 @@ class WMGotoDlg::Impl : public CTrDialog
 {
 // Construction
 public:
-	Impl(WMGotoDlg *p, CWnd* pParent = NULL);   // standard constructor
+	Impl(WMGotoDlg *p, CWnd* pParent = nullptr);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(WMGotoDlg)
@@ -72,7 +72,7 @@ private:
 /**
  * @brief Constructor.
  */
-WMGotoDlg::Impl::Impl(WMGotoDlg *p, CWnd* pParent /*=NULL*/)
+WMGotoDlg::Impl::Impl(WMGotoDlg *p, CWnd* pParent /*= nullptr*/)
 	: CTrDialog(WMGotoDlg::Impl::IDD, pParent), m_p(p)
 {
 }

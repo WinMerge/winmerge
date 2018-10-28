@@ -69,14 +69,14 @@ void FileFilterHelper::SetFileFilterPath(const String& szFileFilterPath)
 	// Use none as default path
 	m_sFileFilterPath.clear();
 
-	if (!m_fileFilterMgr)
+	if (m_fileFilterMgr == nullptr)
 		return;
 
 	// Don't bother to lookup empty path
 	if (!szFileFilterPath.empty())
 	{
 		m_currentFilter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
-		if (m_currentFilter)
+		if (m_currentFilter != nullptr)
 			m_sFileFilterPath = szFileFilterPath;
 	}
 }
@@ -89,7 +89,7 @@ void FileFilterHelper::SetFileFilterPath(const String& szFileFilterPath)
  */
 void FileFilterHelper::GetFileFilters(std::vector<FileFilterInfo> * filters, String & selected) const
 {
-	if (m_fileFilterMgr)
+	if (m_fileFilterMgr != nullptr)
 	{
 		const int count = m_fileFilterMgr->GetFilterCount();
 		filters->reserve(count);
@@ -175,7 +175,7 @@ void FileFilterHelper::UseMask(bool bUseMask)
 	m_bUseMask = bUseMask;
 	if (m_bUseMask)
 	{
-		if (m_pMaskFilter == NULL)
+		if (m_pMaskFilter == nullptr)
 		{
 			m_pMaskFilter.reset(new FilterList);
 		}
@@ -215,7 +215,7 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 {
 	if (m_bUseMask)
 	{
-		if (m_pMaskFilter == NULL)
+		if (m_pMaskFilter == nullptr)
 		{
 			throw "Use mask set, but no filter rules for mask!";
 		}
@@ -232,7 +232,7 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 	}
 	else
 	{
-		if (!m_fileFilterMgr || !m_currentFilter)
+		if (m_fileFilterMgr == nullptr || m_currentFilter ==nullptr)
 			return true;
 		return m_fileFilterMgr->TestFileNameAgainstFilter(m_currentFilter, szFileName);
 	}
@@ -253,7 +253,7 @@ bool FileFilterHelper::includeDir(const String& szDirName) const
 	}
 	else
 	{
-		if (!m_fileFilterMgr || !m_currentFilter)
+		if (m_fileFilterMgr == nullptr || m_currentFilter == nullptr)
 			return true;
 
 		// Add a backslash

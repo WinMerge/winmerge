@@ -189,7 +189,7 @@ void CGhostTextView::PushCursors ()
 
 int CGhostTextView::ComputeRealLine (int nApparentLine) const
 {
-	if (!m_pGhostTextBuffer)
+	if (m_pGhostTextBuffer == nullptr)
 		return 0;
 	return m_pGhostTextBuffer->ComputeRealLine(nApparentLine);
 }
@@ -204,7 +204,7 @@ void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
 		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
 		bool bExcludeInvisibleLines /*= true*/)
 {
-  if (m_pGhostTextBuffer != NULL)
+  if (m_pGhostTextBuffer != nullptr)
     m_pGhostTextBuffer->GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, text, nCrlfStyle, bExcludeInvisibleLines);
   else
     text = _T ("");
@@ -212,7 +212,7 @@ void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
 
 void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, bool bExcludeInvisibleLines /*= true*/)
 {
-	if (m_pGhostTextBuffer == NULL)
+	if (m_pGhostTextBuffer == nullptr)
 	{
 		text = _T ("");
 		return;
@@ -249,18 +249,18 @@ HGLOBAL CGhostTextView::PrepareDragData ()
 {
 	PrepareSelBounds ();
 	if (m_ptDrawSelStart == m_ptDrawSelEnd)
-		return NULL;
+		return nullptr;
 
 	CString text;
 	GetTextWithoutEmptys (m_ptDrawSelStart.y, m_ptDrawSelStart.x, m_ptDrawSelEnd.y, m_ptDrawSelEnd.x, text);
 	int cchText = text.GetLength();
 	SIZE_T cbData = (cchText + 1) * sizeof(TCHAR);
 	HGLOBAL hData =::GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, cbData);
-	if (hData == NULL)
-		return NULL;
+	if (hData == nullptr)
+		return nullptr;
 
 	LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
-	if (pszData)
+	if (pszData != nullptr)
 		memcpy (pszData, text, cbData);
 	::GlobalUnlock (hData);
 

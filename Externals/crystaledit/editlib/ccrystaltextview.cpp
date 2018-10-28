@@ -1308,7 +1308,7 @@ GetAdditionalTextBlocks (int nLineIndex)
 void CCrystalTextView::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks )
 {
   // There must be a parser attached to this view
-  if( !m_pParser )
+  if( m_pParser == nullptr )
     return;
 
   m_pParser->WrapLine( nLineIndex, nMaxLineWidth, anBreaks, nBreaks );
@@ -2102,7 +2102,7 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
 
   // Draw line revision mark (or background) whenever we have valid lineindex
   COLORREF clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
-  if (nLineIndex >= 0 && m_pTextBuffer)
+  if (nLineIndex >= 0 && m_pTextBuffer != nullptr)
     {
       // get line revision marks color
       DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
@@ -3889,7 +3889,7 @@ ClientToText (const CPoint & point)
       nIndex ++;
     }
 
-  if (pszLine && m_pTextBuffer->IsMBSTrail(pt.y, nIndex))
+  if (pszLine != nullptr && m_pTextBuffer->IsMBSTrail(pt.y, nIndex))
     nIndex--;
 
   ASSERT(nIndex >= 0 && nIndex <= nLength);
@@ -4619,7 +4619,7 @@ OnUpdateIndicatorPosition (CCmdUI * pCmdUI)
   stat.Format (_T ("Ln %d, Col %d"), m_ptCursorPos.y + 1, m_nIdealCharPos + 1);
   pCmdUI->SetText (stat);
   //BEGIN SW
-  if( pCmdUI->m_pOther && !!pCmdUI->m_pOther->IsKindOf( RUNTIME_CLASS(CStatusBar) ) )
+  if( pCmdUI->m_pOther != nullptr && !!pCmdUI->m_pOther->IsKindOf( RUNTIME_CLASS(CStatusBar) ) )
     OnUpdateStatusMessage( (CStatusBar*)pCmdUI->m_pOther );
   //END SW
 }
@@ -6065,7 +6065,7 @@ CCrystalParser *CCrystalTextView::SetParser( CCrystalParser *pParser )
 
   m_pParser = pParser;
 
-  if( pParser )
+  if( pParser != nullptr )
     pParser->m_pTextView = this;
 
   return pOldParser;
@@ -6095,7 +6095,7 @@ bool CCrystalTextView::GetLineVisible (int nLineIndex) const
 BOOL CCrystalTextView::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO *pHandlerInfo )
 {
   // just look for commands
-  if( nCode != CN_COMMAND || pExtra )
+  if( nCode != CN_COMMAND || pExtra != nullptr )
     return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
 
   // handle code:
@@ -6315,7 +6315,7 @@ void CCrystalTextView::OnUpdateStatusMessage( CStatusBar *pStatusBar )
   static bool	bUpdatedAtLastCall = false;
 
   ASSERT( pStatusBar != nullptr && IsWindow( pStatusBar->m_hWnd ) );
-  if( !pStatusBar || !IsWindow( pStatusBar->m_hWnd ) )
+  if( pStatusBar == nullptr || !IsWindow( pStatusBar->m_hWnd ) )
     return;
 
   if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )

@@ -137,7 +137,7 @@ void PluginsListDlg::OnBnClickedPluginSettings()
 	if (pos)
 	{
 		String pluginName = static_cast<const TCHAR *>(m_list.GetItemText(m_list.GetNextSelectedItem(pos), 0));
-		for (int i = 0; TransformationCategories[i]; ++i)
+		for (int i = 0; TransformationCategories[i] != nullptr; ++i)
 		{
 			PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(TransformationCategories[i], pluginName);
 			if (plugin)

@@ -93,7 +93,7 @@ CDirDoc::~CDirDoc()
 	for (auto pMergeDoc : m_MergeDocs)
 		pMergeDoc->DirDocClosing(this);
 	// Delete all temporary folders belonging to this document
-	while (m_pTempPathContext)
+	while (m_pTempPathContext != nullptr)
 	{
 		m_pTempPathContext = m_pTempPathContext->DeleteHead();
 	}

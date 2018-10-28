@@ -116,7 +116,7 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 /** 
  * @brief Returns the last matched expression (if any).
  * This function returns the regular expression string that matched last.
- * @return Last matched expression, or NULL in case no matches yet.
+ * @return Last matched expression, or `nullptr` in case no matches yet.
  */
 const char * FilterList::GetLastMatchExpression() const
 {

@@ -58,7 +58,7 @@ public:
 	void Add(int lineno, int eqcode, int nside)
 	{
 		EqGroup *pgroup = find(eqcode);
-		if (pgroup == NULL)
+		if (pgroup == nullptr)
 		{
 			pgroup = new EqGroup;
 			m_map[eqcode] = pgroup;
@@ -73,7 +73,7 @@ public:
 	EqGroup * find(int eqcode)
 	{
 		std::map<int, EqGroup *>::const_iterator it = m_map.find(eqcode);
-		return it != m_map.end() ? it->second : NULL;
+		return it != m_map.end() ? it->second : nullptr;
 	}
 
 	~CodeToGroupMap()

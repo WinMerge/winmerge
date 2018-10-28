@@ -44,7 +44,7 @@ public:
 	{
 		if (!m_tempFilenameDst.empty()) // "!m_tempFilenameDst" means "never"
 			::DeleteFile(m_tempFilenameDst.c_str());
-		if (m_bstr)
+		if (m_bstr != nullptr)
 			SysFreeString(m_bstr);
 		VariantClear(&m_array);
 	}

@@ -211,7 +211,7 @@ void CMDITabBar::UpdateTabs()
 	HWND hWndMDIActive = m_pMainFrame->MDIGetActive()->GetSafeHwnd();
 
 	CMap<HWND, HWND, int, int> MDIFrameList;
-	if (hWndMDIActive) {
+	if (hWndMDIActive != nullptr) {
 		for (CWnd *pFrame = m_pMainFrame->MDIGetActive()->GetParent()->GetTopWindow(); pFrame; pFrame = pFrame->GetNextWindow())
 			MDIFrameList[pFrame->m_hWnd] = -1;
 	}
@@ -241,7 +241,7 @@ void CMDITabBar::UpdateTabs()
 		nMaxTitleLength = MDITABBAR_MINTITLELENGTH;
 
 	// Update or insert tabs
-	for (POSITION pos = MDIFrameList.GetStartPosition(); pos; )
+	for (POSITION pos = MDIFrameList.GetStartPosition(); pos != nullptr; )
 	{
 		HWND hFrameWnd;
 //~		int item;
@@ -249,7 +249,7 @@ void CMDITabBar::UpdateTabs()
 
 		CString strTitle;
 		CDocument *pDoc = ((CFrameWnd *)FromHandle(hFrameWnd))->GetActiveDocument();
-		if (pDoc)
+		if (pDoc != nullptr)
 			strTitle = pDoc->GetTitle();
 		else
 			FromHandle(hFrameWnd)->GetWindowText(strTitle);

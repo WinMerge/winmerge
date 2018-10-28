@@ -499,7 +499,7 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
 	int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt) const
 {
-	if (Op == OP_TRIVIAL || !m_pFilterCommentsManager)
+	if (Op == OP_TRIVIAL || m_pFilterCommentsManager == nullptr)
 		return;
 	
 	//First we need to get lowercase file name extension
@@ -836,11 +836,11 @@ bool CDiffWrapper::RunFileDiff()
 		else
 		{ // text files according to diffutils, so change script exists
 			m_status.bBinaries = false;
-			if (script10 == 0 && script12 == 0)
+			if (script10 == nullptr && script12 == nullptr)
 				m_status.Identical = IDENTLEVEL_ALL;
-			else if (script10 == 0)
+			else if (script10 == nullptr)
 				m_status.Identical = IDENTLEVEL_EXCEPTRIGHT;
-			else if (script12 == 0)
+			else if (script12 == nullptr)
 				m_status.Identical = IDENTLEVEL_EXCEPTLEFT;
 			else
 				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
@@ -1414,7 +1414,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	}
 
 	Make3wayDiff(m_pDiffList->GetDiffRangeInfoVector(), diff10.GetDiffRangeInfoVector(), diff12.GetDiffRangeInfoVector(), 
-		Comp02Functor(inf10, inf12), (m_pFilterList && m_pFilterList->HasRegExps()));
+		Comp02Functor(inf10, inf12), (m_pFilterList != nullptr && m_pFilterList->HasRegExps()));
 }
 
 void CDiffWrapper::WritePatchFileHeader(enum output_style tOutput_style, bool bAppendFiles)

@@ -49,7 +49,7 @@ DirCompProgressBar::DirCompProgressBar()
 DirCompProgressBar::~DirCompProgressBar()
 {
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
-	if (m_pTaskbarList)
+	if (m_pTaskbarList != nullptr)
 	{
 		m_pTaskbarList->SetProgressState(AfxGetMainWnd()->m_hWnd, TBPF_NOPROGRESS);
 		m_pTaskbarList->Release();
@@ -79,7 +79,7 @@ BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_ALL, IID_ITaskbarList3, (void**)&m_pTaskbarList);
-	if (m_pTaskbarList)
+	if (m_pTaskbarList != nullptr)
 		m_pTaskbarList->SetProgressState(AfxGetMainWnd()->m_hWnd, TBPF_INDETERMINATE);
 #endif
 
@@ -105,7 +105,7 @@ void DirCompProgressBar::SetProgressState(int comparedItems, int totalItems)
 	pProg->SetRange32(0, totalItems);
 
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
-	if (m_pTaskbarList)
+	if (m_pTaskbarList != nullptr)
 		m_pTaskbarList->SetProgressValue(AfxGetMainWnd()->m_hWnd, comparedItems, totalItems);
 #endif
 }
@@ -147,7 +147,8 @@ void DirCompProgressBar::OnTimer(UINT_PTR nIDEvent)
 				state == CompareStats::STATE_COMPARE)
 		{
 			SetProgressState(m_pCompareStats->GetComparedItems(), m_pCompareStats->GetTotalItems());
-			if (const DIFFITEM *pdi = m_pCompareStats->GetCurDiffItem())
+			const DIFFITEM *pdi = m_pCompareStats->GetCurDiffItem();
+			if (pdi != nullptr)
 				SetDlgItemText(IDC_PATH_COMPARING, pdi->diffFileInfo[0].GetFile());
 		}
 		// Compare is ready

@@ -2504,7 +2504,7 @@ void CMergeEditView::UpdateStatusbar()
  */
 void CMergeEditView::OnUpdateCaret()
 {
-	if (!m_piMergeEditStatus || !IsTextBufferInitialized())
+	if (m_piMergeEditStatus == nullptr || !IsTextBufferInitialized())
 		return;
 
 	CPoint cursorPos = GetCursorPos();
@@ -3255,7 +3255,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 	// work with goto target file.
 	if (GetGroupView(pane) != pCurrentView)
 	{
-		if (pSplitterWnd)
+		if (pSplitterWnd != nullptr)
 		{
 			if (pSplitterWnd->GetColumnCount() > 1)
 				pSplitterWnd->SetActivePane(0, pane);
