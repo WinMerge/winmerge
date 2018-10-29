@@ -1491,10 +1491,9 @@ msgstr " Ficheiro: Unpacker Plugin"
 msgid "Se&lect..."
 msgstr "Se&lecionar..."
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Comparar"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1941,7 +1940,7 @@ msgstr "Parar"
 msgid "Pause"
 msgstr "Pausa"
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr "Continuar"
@@ -1996,6 +1995,11 @@ msgstr "Diferença"
 msgid "&Go To"
 msgstr "Ir Para"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Comparar"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2041,7 +2045,7 @@ msgstr "Ativar deteção de bloco movido"
 msgid "&Match similar lines"
 msgstr "Comparar linhas semelhantes"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "Comentários"
@@ -2201,7 +2205,7 @@ msgstr "Rejeitar alterações"
 msgid "Disca&rd All"
 msgstr "Rejei&tar Tudo"
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "Página de código"

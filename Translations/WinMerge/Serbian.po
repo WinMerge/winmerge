@@ -1490,10 +1490,9 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Óïîðåèâàœå"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1940,7 +1939,7 @@ msgstr "Ñòàíè"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -1995,6 +1994,11 @@ msgstr "Ðàç&ëèêà"
 msgid "&Go To"
 msgstr "&Èäè íà"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Óïîðåèâàœå"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2040,7 +2044,7 @@ msgstr "Îìîãóžè îòêðèâàœå ïðåìåøòåíèõ ãðóïà"
 msgid "&Match similar lines"
 msgstr "Óïîðåäè ñëè÷íå ðåäîâå"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "Íàïîìåíå"
@@ -2200,7 +2204,7 @@ msgstr "Îäóñ&òàíè îä èçìåíà"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "Êîäíà ñòðàíèöà"

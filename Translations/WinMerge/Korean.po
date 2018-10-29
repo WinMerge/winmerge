@@ -1495,10 +1495,9 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "비교"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1945,7 +1944,7 @@ msgstr "중지"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2000,6 +1999,11 @@ msgstr "차이점(&D)"
 msgid "&Go To"
 msgstr "이동(&G)"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "비교"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2045,7 +2049,7 @@ msgstr "이동된 블럭 감지 사용하기"
 msgid "&Match similar lines"
 msgstr "비슷한 줄 일치시키기(&M)"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "코멘트"
@@ -2205,7 +2209,7 @@ msgstr "변경사항 취소(&C)"
 msgid "Disca&rd All"
 msgstr "전부 취소(&R)"
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "코드페이지"

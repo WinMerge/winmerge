@@ -1492,10 +1492,9 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "对比"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1942,7 +1941,7 @@ msgstr "停止"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -1997,6 +1996,11 @@ msgstr "不同处(&D)"
 msgid "&Go To"
 msgstr "转到(&G)"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "对比"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2042,7 +2046,7 @@ msgstr "允许检测移动区块(&N)"
 msgid "&Match similar lines"
 msgstr "匹配相似的行(&M)"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "备注"
@@ -2202,7 +2206,7 @@ msgstr "放弃修改(&C)"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "代码页"

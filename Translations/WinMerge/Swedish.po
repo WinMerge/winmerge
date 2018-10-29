@@ -1491,10 +1491,9 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Jämför"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1941,7 +1940,7 @@ msgstr "Stopp"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -1996,6 +1995,11 @@ msgstr "&Skillnad"
 msgid "&Go To"
 msgstr "&Gå till"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Jämför"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2041,7 +2045,7 @@ msgstr "M&öjliggör detektion av flyttade textblock"
 msgid "&Match similar lines"
 msgstr "&Matcha liknande rader"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "Kommentarer"
@@ -2201,7 +2205,7 @@ msgstr "Ign&orera ändringar"
 msgid "Disca&rd All"
 msgstr "Ign&orera allt"
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "Codepage"
