@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-04-16 09:29+0100\n"
+"PO-Revision-Date: 2018-10-29 09:29+0100\n"
 "Last-Translator: Lippe35\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -693,7 +693,7 @@ msgstr "Voltar a Comparar Como..."
 #: Merge.rc:43017E4B
 #, c-format
 msgid "&Text"
-msgstr ""
+msgstr "&Texto"
 
 #: Merge.rc:22956A7
 #, c-format
@@ -1034,7 +1034,7 @@ msgstr "Scripts"
 #: Merge.rc:39000D56
 #, c-format
 msgid "Sp&lit"
-msgstr ""
+msgstr "Di&vidir"
 
 #: Merge.rc:4C3E0A2B
 #, c-format
@@ -1414,7 +1414,7 @@ msgstr "Selecione Ficheiros ou Pastas"
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
-msgstr ""
+msgstr "&1º Ficheiro ou Pasta"
 
 #: Merge.rc:39174D96
 #, c-format
@@ -1424,7 +1424,7 @@ msgstr "Apenas de leitura"
 #: Merge.rc:56BD1FBA
 #, c-format
 msgid "Swap 1st | 2nd"
-msgstr ""
+msgstr "Trocar 1º | 2º"
 
 #: Merge.rc:68816EE7
 #, c-format
@@ -1434,7 +1434,7 @@ msgstr "Procurar..."
 #: Merge.rc:6DE6F875
 #, c-format
 msgid "&2nd File or Folder"
-msgstr ""
+msgstr "&2º Ficheiro ou Pasta"
 
 #: Merge.rc:39174D97
 #, c-format
@@ -1444,7 +1444,7 @@ msgstr "Apenas de leitura"
 #: Merge.rc:56BD1FBB
 #, c-format
 msgid "Swap 2nd | 3rd"
-msgstr ""
+msgstr "Trocar 2º | 3º"
 
 #: Merge.rc:78E0CE0E
 #, c-format
@@ -1454,7 +1454,7 @@ msgstr "Procurar..."
 #: Merge.rc:3C1ECDDA
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr ""
+msgstr "&3º Ficheiro ou Pasta (Opcional)"
 
 #: Merge.rc:39174D98
 #, c-format
@@ -1464,7 +1464,7 @@ msgstr "Apenas de leitura"
 #: Merge.rc:56BD1FBC
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr ""
+msgstr "Trocar 1º | 3º"
 
 #: Merge.rc:146A5938
 #, c-format
@@ -1474,7 +1474,7 @@ msgstr "Procurar..."
 #: Merge.rc:22467E6E
 #, c-format
 msgid " Folder: Filter"
-msgstr ""
+msgstr " Pasta: Filtro"
 
 #: Merge.rc:68816EE8
 #, c-format
@@ -1484,12 +1484,12 @@ msgstr "Selecionar..."
 #: Merge.rc:662470D5
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr ""
+msgstr " Ficheiro: Unpacker Plugin"
 
 #: Merge.rc:751AB58F
 #, c-format
 msgid "Se&lect..."
-msgstr ""
+msgstr "Se&lecionar..."
 
 #: Merge.rc:7E5494F6
 #, c-format
@@ -3235,27 +3235,27 @@ msgstr "Seleção de pasta"
 #: Merge.rc:3080B693
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr ""
+msgstr "Selecione duas (ou três) pastas ou dois (ou três) ficheiros para comparar."
 
 #: Merge.rc:2EBBDDD6
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr ""
+msgstr "Pasta Esquerda (1º) não é válida!"
 
 #: Merge.rc:BA50069
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr ""
+msgstr "Pasta do Meio (2º) não é válida!"
 
 #: Merge.rc:21DC7C32
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr ""
+msgstr "Pasta Direita (2º) não é válida!"
 
 #: Merge.rc:21DC7C33
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr ""
+msgstr "Pasta Direita (3º) não é válida!"
 
 #: Merge.rc:5AB9EEA7
 #, c-format
@@ -3265,17 +3265,17 @@ msgstr "Ambas as pastas de destino são inválidas!"
 #: Merge.rc:585E8EC0
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr ""
+msgstr "Pasta Esquerda (1º) e do Meio (2º) não são válidas!"
 
 #: Merge.rc:135DE390
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "Pasta Esquerda (1º) e Direita (3º) não são válidas!"
 
 #: Merge.rc:72716FA6
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "Pasta Meio (2º) e Direita (3º) não são válidas!"
 
 #: Merge.rc:237A0533
 #, c-format
@@ -3285,7 +3285,7 @@ msgstr "Todos as pastas de destino são inválidas"
 #: Merge.rc:1235F930
 #, c-format
 msgid "Only enabled for File comparisons"
-msgstr ""
+msgstr "Apenas ativado para comparações de ficheiros"
 
 #: Merge.rc:30FF7A4E
 #, c-format
