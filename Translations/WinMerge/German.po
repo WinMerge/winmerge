@@ -1491,10 +1491,9 @@ msgstr " Datei: Entpacker-Plugin"
 msgid "Se&lect..."
 msgstr "Auswählen..."
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Vergleichen"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1943,7 +1942,7 @@ msgstr "Stop"
 msgid "Pause"
 msgstr "Pause"
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr "Fortsetzen"
@@ -1998,6 +1997,11 @@ msgstr "&Unterschied"
 msgid "&Go To"
 msgstr "&Gehe"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Vergleichen"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2043,7 +2047,7 @@ msgstr "Verschobene &Blöcke erkennen"
 msgid "&Match similar lines"
 msgstr "Ä&hnliche Zeilen angleichen"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "Kommentare"
@@ -2203,7 +2207,7 @@ msgstr "Änderungen ver&werfen"
 msgid "Disca&rd All"
 msgstr "&Alle verwerfen"
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "Zeichensatz"

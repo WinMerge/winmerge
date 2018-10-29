@@ -1491,10 +1491,9 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Usporedba"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1941,7 +1940,7 @@ msgstr "Stani"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -1996,6 +1995,11 @@ msgstr "&razliku"
 msgid "&Go To"
 msgstr "Idi &na"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Usporedba"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2041,7 +2045,7 @@ msgstr "Omogući &razlikovanje premještenih blokova"
 msgid "&Match similar lines"
 msgstr "&Jednake retke"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "Komentari"
@@ -2201,7 +2205,7 @@ msgstr "Odustajem od izmjena"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "Kodna stranica"

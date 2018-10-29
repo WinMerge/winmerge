@@ -1493,10 +1493,9 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Vergelijken"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1948,7 +1947,7 @@ msgstr "Stoppen"
 msgid "Pause"
 msgstr "Pauzeren"
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr "Doorgaan"
@@ -2003,6 +2002,11 @@ msgstr "Verschil"
 msgid "&Go To"
 msgstr "Gaan naar"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Vergelijken"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2048,7 +2052,7 @@ msgstr "Detectie verplaatste blokken inschakelen"
 msgid "&Match similar lines"
 msgstr "Gelijke regels laten overeenkomen"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "Opmerkingen"
@@ -2208,7 +2212,7 @@ msgstr "Wijzigingen verwerpen"
 msgid "Disca&rd All"
 msgstr "Alles verwerpen"
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "Tekenset"
