@@ -1488,10 +1488,9 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "සසඳන්න"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1938,7 +1937,7 @@ msgstr "නවත්වන්න"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -1993,6 +1992,11 @@ msgstr "වෙනස"
 msgid "&Go To"
 msgstr "වෙත යන්න"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "සසඳන්න"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2038,7 +2042,7 @@ msgstr "E&nable moved block detection"
 msgid "&Match similar lines"
 msgstr "සමාන පේළි ගලපන්න"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "විවේචන"
@@ -2198,7 +2202,7 @@ msgstr "වෙනස්කම් ඉවතලන්න"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "ගුප්ත සංඥා "

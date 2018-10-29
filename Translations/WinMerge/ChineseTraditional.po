@@ -1499,10 +1499,9 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "比較"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1951,7 +1950,7 @@ msgstr "停止"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2006,6 +2005,11 @@ msgstr "差異區塊(&D)"
 msgid "&Go To"
 msgstr "移至(&G)"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "比較"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2051,7 +2055,7 @@ msgstr "偵測移位的區塊(&N)"
 msgid "&Match similar lines"
 msgstr "找出相似行(&M)"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "備註"
@@ -2211,7 +2215,7 @@ msgstr "放棄變更(&C)"
 msgid "Disca&rd All"
 msgstr "放棄全部(&R)"
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "編碼頁"

@@ -1490,10 +1490,9 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "Comparació"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1940,7 +1939,7 @@ msgstr "&Atura"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -1995,6 +1994,11 @@ msgstr "&Diferència"
 msgid "&Go To"
 msgstr "&Vés-hi"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "Comparació"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2040,7 +2044,7 @@ msgstr "&Habilita detecció de blocs desplaçats"
 msgid "&Match similar lines"
 msgstr "Em&parella les línies similars"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "Comentaris"
@@ -2200,7 +2204,7 @@ msgstr "Des&carta'n els canvis"
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "Pàgina de codis"
