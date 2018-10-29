@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-10-27 22:00+0000\n"
+"POT-Creation-Date: 2018-10-30 06:26+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1208,8 +1208,8 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-msgid "Compare"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
 msgstr ""
 
 #: Merge.rc:4E65D340
@@ -1568,7 +1568,7 @@ msgstr ""
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 msgid "Continue"
 msgstr ""
 
@@ -1612,6 +1612,10 @@ msgstr ""
 msgid "&Go To"
 msgstr ""
 
+#: Merge.rc:7E5494F6
+msgid "Compare"
+msgstr ""
+
 #: Merge.rc:65285570
 msgid "Whitespace"
 msgstr ""
@@ -1648,7 +1652,7 @@ msgstr ""
 msgid "&Match similar lines"
 msgstr ""
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 msgid "Comments"
 msgstr ""
 
@@ -1776,7 +1780,7 @@ msgstr ""
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 msgid "Codepage"
 msgstr ""
 

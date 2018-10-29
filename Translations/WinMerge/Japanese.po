@@ -1491,10 +1491,9 @@ msgstr " ファイル: 展開プラグイン"
 msgid "Se&lect..."
 msgstr "選択(&L)..."
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr "比較"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr "比較(&M)"
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1949,7 +1948,7 @@ msgstr "停止"
 msgid "Pause"
 msgstr "一時停止"
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr "再開"
@@ -2004,6 +2003,11 @@ msgstr "差異(&D)"
 msgid "&Go To"
 msgstr "移動(&G)"
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr "比較"
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2049,7 +2053,7 @@ msgstr "移動ブロック検出を有効にする(&N)"
 msgid "&Match similar lines"
 msgstr "類似行をマッチさせる(&M)"
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr "コメント"
@@ -2209,7 +2213,7 @@ msgstr "変更を破棄する(&C)"
 msgid "Disca&rd All"
 msgstr "すべて破棄する(&R)"
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr "コードページ"

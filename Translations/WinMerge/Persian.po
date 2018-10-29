@@ -1492,10 +1492,9 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-#: Merge.rc:7E5494F6
-#, c-format
-msgid "Compare"
-msgstr " مقايسه کردن "
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1948,7 +1947,7 @@ msgstr " ايست "
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2D
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2003,6 +2002,11 @@ msgstr "&D تفاوت "
 msgid "&Go To"
 msgstr "&G برو به "
 
+#: Merge.rc:7E5494F6
+#, c-format
+msgid "Compare"
+msgstr " مقايسه کردن "
+
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
@@ -2048,7 +2052,7 @@ msgstr "&n فعال کردن تشخيص قطعه جابجا شده "
 msgid "&Match similar lines"
 msgstr "&M مطابقت کردن خطوط مشابه "
 
-#: Merge.rc:4C3E0A2E
+#: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
 msgstr " يادداشتها "
@@ -2208,7 +2212,7 @@ msgstr "&c دورانداختن تغييرات "
 msgid "Disca&rd All"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
 msgstr " صفحه کد "
