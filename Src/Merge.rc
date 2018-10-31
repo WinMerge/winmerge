@@ -463,6 +463,7 @@ BEGIN
         BEGIN
             MENUITEM "Zoom &In\tCtrl++",            ID_VIEW_ZOOMIN
             MENUITEM "Zoom &Out\tCtrl+-",           ID_VIEW_ZOOMOUT
+            MENUITEM SEPARATOR
             MENUITEM "&Normal\tCtrl+*",             ID_VIEW_ZOOMNORMAL //#. Zoom to normal
         END
         POPUP "Syntax Highlight"
@@ -473,12 +474,14 @@ BEGIN
         POPUP "&Diff Context"
         BEGIN
             MENUITEM "&All Lines",                  ID_VIEW_DIFFCONTEXT_ALL
+            MENUITEM SEPARATOR
             MENUITEM "&0 Lines",                    ID_VIEW_DIFFCONTEXT_0
             MENUITEM "&1 Line",                     ID_VIEW_DIFFCONTEXT_1
             MENUITEM "&3 Lines",                    ID_VIEW_DIFFCONTEXT_3
             MENUITEM "&5 Lines",                    ID_VIEW_DIFFCONTEXT_5
             MENUITEM "&7 Lines",                    ID_VIEW_DIFFCONTEXT_7
             MENUITEM "&9 Lines",                    ID_VIEW_DIFFCONTEXT_9
+            MENUITEM SEPARATOR
             MENUITEM "&Toggle All and 0-9 Lines\tCtrl+D", ID_VIEW_DIFFCONTEXT_TOGGLE
         END
         MENUITEM SEPARATOR
