@@ -106,7 +106,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 #else
 			if (ch & 0xff80)
 			{
-				int n = m_pTextView->GetCharWidthFromChar(ch) / nCharWidth;
+				int n = m_pTextView->GetCharCellCountFromChar(ch);
 				nLineCharCount += n;
 				nCharCount += n;
 				GetStringTypeW(CT_CTYPE3, &ch, 1, &wCharType);

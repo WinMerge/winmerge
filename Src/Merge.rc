@@ -42,10 +42,8 @@ BEGIN
     "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
     "\r\n"
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
-    "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US\r\n"
     "#pragma code_page(1252)\r\n"
-    "#endif\r\n"
     "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
     "#include ""afxres.rc""         // Standard components\r\n"
     "#include ""afxprint.rc""       // printing/print preview resources\r\n"
@@ -218,6 +216,8 @@ BEGIN
     BEGIN
         MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
+        MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
+        MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "&Check For Updates",          ID_HELP_CHECKFORUPDATES
         MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
@@ -226,7 +226,7 @@ BEGIN
     END
 END
 
-IDR_DIRVIEWMENU MENU
+IDR_DIRDOCTYPE MENU
 BEGIN
     POPUP "&File"
     BEGIN
@@ -354,6 +354,8 @@ BEGIN
     BEGIN
         MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
+        MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
+        MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "&Check For Updates",          ID_HELP_CHECKFORUPDATES
         MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
@@ -362,7 +364,7 @@ BEGIN
     END
 END
 
-IDR_MERGEVIEWMENU MENU
+IDR_MERGEDOCTYPE MENU
 BEGIN
     POPUP "&File"
     BEGIN
@@ -412,6 +414,7 @@ BEGIN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
         POPUP "Recompare As"
         BEGIN
+            MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
             MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
         END
@@ -462,6 +465,7 @@ BEGIN
         BEGIN
             MENUITEM "Zoom &In\tCtrl++",            ID_VIEW_ZOOMIN
             MENUITEM "Zoom &Out\tCtrl+-",           ID_VIEW_ZOOMOUT
+            MENUITEM SEPARATOR
             MENUITEM "&Normal\tCtrl+*",             ID_VIEW_ZOOMNORMAL //#. Zoom to normal
         END
         POPUP "Syntax Highlight"
@@ -472,12 +476,14 @@ BEGIN
         POPUP "&Diff Context"
         BEGIN
             MENUITEM "&All Lines",                  ID_VIEW_DIFFCONTEXT_ALL
+            MENUITEM SEPARATOR
             MENUITEM "&0 Lines",                    ID_VIEW_DIFFCONTEXT_0
             MENUITEM "&1 Line",                     ID_VIEW_DIFFCONTEXT_1
             MENUITEM "&3 Lines",                    ID_VIEW_DIFFCONTEXT_3
             MENUITEM "&5 Lines",                    ID_VIEW_DIFFCONTEXT_5
             MENUITEM "&7 Lines",                    ID_VIEW_DIFFCONTEXT_7
             MENUITEM "&9 Lines",                    ID_VIEW_DIFFCONTEXT_9
+            MENUITEM SEPARATOR
             MENUITEM "&Toggle All and 0-9 Lines\tCtrl+D", ID_VIEW_DIFFCONTEXT_TOGGLE
         END
         MENUITEM SEPARATOR
@@ -602,6 +608,8 @@ BEGIN
     BEGIN
         MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
+        MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
+        MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "&Check For Updates",          ID_HELP_CHECKFORUPDATES
         MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
@@ -787,6 +795,7 @@ BEGIN
     END
 END
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
@@ -885,81 +894,57 @@ BEGIN
     CONTROL         "",IDC_ABOUTBOX_ICON,"Static",SS_OWNERDRAW,0,0,366,215
     LTEXT           "",IDC_STATIC,7,60,200,120
     LTEXT           "Version 1.0",IDC_VERSION,240,153,133,20,SS_NOPREFIX
-    LTEXT           "(Private Build)",IDC_PRIVATEBUILD,240,173,133,10
     CONTROL         "Visit the WinMerge HomePage!",IDC_WWW,"SysLink",LWS_IGNORERETURN | 0x1,120,220,167,10
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,172,350,42
     DEFPUSHBUTTON   "OK",IDOK,295,218,65,14
     PUSHBUTTON      "Contributors",IDC_OPEN_CONTRIBUTORS,7,218,65,14
 END
 
-IDD_OPEN DIALOGEX 0, 0, 462, 249
+IDD_OPEN DIALOGEX 0, 0, 461, 266
 STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_CHILD | WS_CAPTION
 CAPTION "Select Files or Folders"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "&1st:",IDC_STATIC,13,74,65,10
-    CONTROL         "",IDC_PATH0_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,81,72,374,94
-    PUSHBUTTON      "",IDC_SWAP01_BUTTON,384,88,15,14
-    PUSHBUTTON      "&Browse...",IDC_PATH0_BUTTON,402,88,54,14
-    RTEXT           "&2nd:",IDC_STATIC,13,106,65,10
-    CONTROL         "",IDC_PATH1_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,81,104,374,95
-    PUSHBUTTON      "",IDC_SWAP12_BUTTON,384,120,15,14
-    PUSHBUTTON      "B&rowse...",IDC_PATH1_BUTTON,402,120,54,14
-    RTEXT           "&3rd(Optional):",IDC_STATIC,13,138,65,10
-    CONTROL         "",IDC_PATH2_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,81,136,374,95
-    PUSHBUTTON      "",IDC_SWAP02_BUTTON,384,152,15,14
-    PUSHBUTTON      "Browse...",IDC_PATH2_BUTTON,402,152,54,14
-    RTEXT           "Fi&lter:",IDC_STATIC,13,168,65,10
-    COMBOBOX        IDC_EXT_COMBO,81,168,317,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Select...",IDC_SELECT_FILTER,402,168,54,14
-    RTEXT           "&Unpacker:",IDC_STATIC,13,186,65,10
-    EDITTEXT        IDC_UNPACKER_EDIT,81,184,317,12,ES_AUTOHSCROLL | ES_READONLY
-    PUSHBUTTON      "&Select...",IDC_SELECT_UNPACKER,402,184,54,14
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,81,200,181,10
-    PUSHBUTTON      "&Options...",IDC_OPTIONS,402,200,54,14,BS_SPLITBUTTON
-    LTEXT           "Status:",IDC_OPEN_STATUS,15,218,284,10
-    PUSHBUTTON      "Sa&ve Project...",ID_SAVE_PROJECT,182,232,90,14,BS_SPLITBUTTON
-    DEFPUSHBUTTON   "OK",IDOK,282,232,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,342,232,50,14
-    PUSHBUTTON      "Help",ID_HELP,402,232,50,14
-    GROUPBOX        "Files or Folders to Compare",IDC_FILES_DIRS_GROUP,7,57,452,161
-    CONTROL         "Re&ad-only",IDC_PATH0_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,306,90,72,10
-    CONTROL         "Rea&d-only",IDC_PATH1_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,306,122,72,10
-    CONTROL         "Read-o&nly",IDC_PATH2_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,306,154,72,10
-END
+//	LOGO			res\\logo.jpg :: Height = 80px, Width=336px (extended fully to Right)
+    GROUPBOX        "&1st File or Folder",IDC_FILES_DIRS_GROUP0,6,54,454,46
+    CONTROL         "",IDC_PATH0_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,66,446,95
+    CONTROL         "Re&ad-only",IDC_PATH0_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,84,100,10
+    PUSHBUTTON      "",IDC_SWAP01_BUTTON,120,82,15,14
+    LTEXT           "Swap 1st | 2nd",IDC_SWAP01_STATIC,138,84,88,12
+    PUSHBUTTON      "&Browse...",IDC_PATH0_BUTTON,383,82,73,14
 
-IDD_VSS DIALOGEX 0, 0, 257, 166
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Visual SourceSafe"
-FONT 8, "MS Shell Dlg", 0, 0, 0x1
-BEGIN
-    LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
-    LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    LTEXT           "Database:",IDC_STATIC,7,64,50,10
-    COMBOBOX        IDC_DATABASE_LIST,62,63,188,114,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Project:",IDC_STATIC,7,81,50,10
-    COMBOBOX        IDC_PROJECT_COMBO,62,78,188,114,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "User:",IDC_STATIC,7,99,50,10
-    EDITTEXT        IDC_USER,62,96,63,14,ES_AUTOHSCROLL
-    RTEXT           "Password:",IDC_STATIC,132,99,55,10
-    EDITTEXT        IDC_PASSWORD,190,96,60,14,ES_PASSWORD | ES_AUTOHSCROLL
-    CONTROL         "Link to Destination VSS project",IDC_VCPROJ_SYNC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,10
-    DEFPUSHBUTTON   "Check Out",IDOK,41,145,70,14
-    PUSHBUTTON      "Save As...",IDC_SAVE_AS,115,145,70,14
-    PUSHBUTTON      "Cancel",IDCANCEL,190,145,60,14
-END
+    GROUPBOX        "&2nd File or Folder",IDC_FILES_DIRS_GROUP1,6,102,454,46
+    CONTROL         "",IDC_PATH1_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,114,446,95
+    CONTROL         "Rea&d-only",IDC_PATH1_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,132,100,10
+    PUSHBUTTON      "",IDC_SWAP12_BUTTON,120,130,15,14
+    LTEXT           "Swap 2nd | 3rd",IDC_SWAP12_STATIC,138,132,88,12
+    PUSHBUTTON      "B&rowse...",IDC_PATH1_BUTTON,383,130,73,14
 
-IDD_PROP_VSS DIALOGEX 0, 0, 235, 157
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Versioning System"
-FONT 8, "MS Shell Dlg", 0, 0, 0x1
-BEGIN
-    LTEXT           "&Versioning System:",IDC_STATIC,7,6,221,10
-    COMBOBOX        IDC_VER_SYS,7,18,166,98,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "&Path to cleartool.exe:",IDC_VSS_L1,7,36,221,10
-    EDITTEXT        IDC_PATH_EDIT,7,48,166,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Browse...",IDC_BROWSE_BUTTON,178,48,50,14
+    GROUPBOX        "&3rd File or Folder (Optional)",IDC_FILES_DIRS_GROUP2,6,150,454,46
+    CONTROL         "",IDC_PATH2_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,162,446,95
+    CONTROL         "Read-o&nly",IDC_PATH2_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,180,100,10
+    PUSHBUTTON      "",IDC_SWAP02_BUTTON,120,178,15,14
+    LTEXT           "Swap 1st | 3rd",IDC_SWAP02_STATIC,138,180,88,12
+    PUSHBUTTON      "Browse...",IDC_PATH2_BUTTON,383,178,73,14
+
+    GROUPBOX        "",IDC_FILES_DIRS_GROUP3X,6,197,224,42
+    LTEXT           " Folder: Filter",IDC_FILES_DIRS_GROUP3,10,198,86,11
+    COMBOBOX        IDC_EXT_COMBO,10,209,140,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Select...",IDC_SELECT_FILTER,153,209,73,14
+    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,227,143,10
+
+    GROUPBOX        "",IDC_FILES_DIRS_GROUP4X,236,197,224,42
+    LTEXT           " File: Unpacker Plugin",IDC_FILES_DIRS_GROUP4,240,198,86,11
+    EDITTEXT        IDC_UNPACKER_EDIT,240,209,140,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Se&lect...",IDC_SELECT_UNPACKER,383,209,73,14
+
+    CONTROL         "Sa&ve Project...",ID_SAVE_PROJECT,"Button",BS_SPLITBUTTON | WS_TABSTOP,10,245,90,14
+    DEFPUSHBUTTON   "Co&mpare",IDOK,316,245,70,20
+    PUSHBUTTON      "Cancel",IDCANCEL,390,245,70,20
+    LTEXT           "Status:",IDC_OPEN_STATUS,6,272,440,12
+
+    PUSHBUTTON      "Help",ID_HELP,383,10,72,14
+    CONTROL         "&Options...",IDC_OPTIONS,"Button",BS_SPLITBUTTON | WS_TABSTOP,383,29,72,14
 END
 
 IDD_PROPPAGE_GENERAL DIALOGEX 0, 0, 235, 222
@@ -1064,20 +1049,6 @@ BEGIN
     DEFPUSHBUTTON   "&Ok",IDOK,138,154,50,14,WS_GROUP
     PUSHBUTTON      "&Apply",ID_APPLY_NOW,189,154,50,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,240,154,50,14
-END
-
-IDD_CLEARCASE DIALOGEX 0, 0, 279, 134
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Rational ClearCase"
-FONT 8, "MS Shell Dlg", 0, 0, 0x1
-BEGIN
-    DEFPUSHBUTTON   "CheckOut",IDOK,129,115,70,14
-    PUSHBUTTON      "Cancel",IDCANCEL,203,115,70,14
-    PUSHBUTTON      "Save As...",IDC_SAVE_AS,129,115,70,14,NOT WS_VISIBLE
-    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "Comments",IDC_STATIC,18,7,243,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,83,243,10
-    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,93,243,10
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 365, 188
@@ -1779,6 +1750,11 @@ END
 #ifdef APSTUDIO_INVOKED
 GUIDELINES DESIGNINFO
 BEGIN
+    IDD_OPEN, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 264
+    END
+
     IDD_DIRCOMP_PROGRESS, DIALOG
     BEGIN
     END
@@ -1834,6 +1810,11 @@ BEGIN
     100, 0, 0, 0
 END
 
+IDD_OPEN AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1871,6 +1852,10 @@ BEGIN
                             "Unknown error attempting to open project file"
     IDS_UNK_ERROR_SAVING_PROJECT 
                             "Unknown error attempting to save project file"
+END
+
+STRINGTABLE
+BEGIN
     IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
     IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
 END
@@ -1919,9 +1904,12 @@ BEGIN
     IDS_MESSAGEBOX_SKIP     "&Skip"
     IDS_MESSAGEBOX_SKIPALL  "Skip &all"
     IDS_MESSAGEBOX_HELP     "&Help"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
-    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
-    IDS_MESSAGEBOX_CHECKBOX_TOOLTIP "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN 
+                            "Don't display this &message again."
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN 
+                            "Don't ask this &question again."
+    IDS_MESSAGEBOX_CHECKBOX_TOOLTIP 
+                            "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
 END
 
 // Options-dialog page captions
@@ -1935,20 +1923,22 @@ BEGIN
     IDS_OPTIONSPG_SYNTAXCOLORS "Syntax"
     IDS_OPTIONSPG_MARKERCOLORS "Markers"
     IDS_OPTIONSPG_SYSTEM    "System"
-    IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
     IDS_OPTIONSPG_CODEPAGE  "Codepage"
     IDS_OPTIONSPG_ARCHIVE   "Archive Support"
     IDS_OPTIONSPG_BACKUPS   "Backup Files"
     IDS_OPTIONSPG_SHELL     "Shell Integration"
     IDS_OPTIONSPG_MERGECOLORS "Differences"
     IDS_OPTIONSPG_GENCOMPARE "General"
+END
+
+STRINGTABLE
+BEGIN
     IDS_OPTIONSPG_FOLDERCOMPARE "Folder"
     IDS_OPTIONSPG_IMAGECOMPARE "Image"
     IDS_OPTIONSPG_BINARYCOMPARE "Binary"
 END
 
 // WINMERGE CUSTOM STRINGS
-
 STRINGTABLE
 BEGIN
     IDS_TO                  "To:"
@@ -2042,13 +2032,6 @@ BEGIN
     IDS_FILTERCHANGED       "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 END
 
-// VERSION CONTROL OPTIONS
-STRINGTABLE
-BEGIN
-    IDS_CC_CMD              "&Path to cleartool.exe:"
-    IDS_VSS_CMD             "&Path to SS.EXE:"
-END
-
 // WINDOWS TITLES
 STRINGTABLE
 BEGIN
@@ -2087,16 +2070,20 @@ STRINGTABLE
 BEGIN
     IDS_ERROR_INCOMPARABLE  "Select two existing folders or files to compare"
     IDS_DIRSEL_TAG          "Folder Selection"
-    IDS_OPEN_FILESDIRS      "Select two folders or two files to compare."
-    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
-    IDS_OPEN_MIDDLEINVALID  "Middle path is invalid!"
-    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
+    IDS_OPEN_FILESDIRS      "Select two (or three) folders or two (or three) files to compare."
+    IDS_OPEN_LEFTINVALID    "Left (1st) path is invalid!"
+    IDS_OPEN_MIDDLEINVALID  "Middle (2nd) path is invalid!"
+    IDS_OPEN_RIGHTINVALID2  "Right (2nd) path is invalid!"
+    IDS_OPEN_RIGHTINVALID3  "Right (3rd) path is invalid!"
     IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
-    IDS_OPEN_LEFTMIDDLEINVALID "Left and middle path is invalid!"
-    IDS_OPEN_LEFTRIGHTINVALID "Left and right path is invalid!"
-    IDS_OPEN_MIDDLERIGHTINVALID "Middle and right path is invalid!"
+    IDS_OPEN_LEFTMIDDLEINVALID 
+                            "Left (1st) and Middle (2nd) paths are invalid!"
+    IDS_OPEN_LEFTRIGHTINVALID "Left (1st) and Right (3rd) paths are invalid!"
+    IDS_OPEN_MIDDLERIGHTINVALID 
+                            "Middle (2nd) and Right (3rd) paths are invalid!"
     IDS_OPEN_ALLINVALID     "All paths are invalid!"
-    IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
+    IDS_OPEN_UNPACKERDISABLED 
+                            "Only enabled for File comparisons"
     IDS_OPEN_MISMATCH       "Cannot compare file and folder!"
 END
 
@@ -2130,6 +2117,10 @@ BEGIN
     IDS_SAVE_LEFT_AS        "Save Left File As"
     IDS_SAVE_MIDDLE_AS      "Save Middle File As"
     IDS_SAVE_RIGHT_AS       "Save Right File As"
+END
+
+STRINGTABLE
+BEGIN
     IDS_FILE_DISAPPEARED    "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
 END
 
@@ -2139,28 +2130,8 @@ BEGIN
     IDS_VIEWS_OUTOFSYNC     "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
 END
 
-// VSS
 STRINGTABLE
 BEGIN
-    IDS_NOPROJECT           "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-    IDS_VSS_RUN_ERROR       "Error executing versioning system command."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH 
-                            "The VSS Working Folder and the location of the current file do not match. Continue?"
-    IDS_VSS_NODATABASES     "No VSS database(s) found!"
-    IDS_VSS_ERRORFROM       "Error from VSS:"
-    IDS_VSS_CHECKINERROR    "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
-    IDS_VSS_UNCOERROR       "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
-END
-
-// VSS system
-STRINGTABLE
-BEGIN
-    IDS_VCS_NONE            "None"
-    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
-    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
-    IDS_VCS_CLEARCASE       "Rational ClearCase"
     IDS_BREAK_ON_WHITESPACE "Break at whitespace"
     IDS_BREAK_ON_PUNCTUATION "Break at whitespace or punctuation"
 END
@@ -2180,6 +2151,10 @@ BEGIN
     IDS_COPY_MIDDLE_TO_RIGHT2 "Middle to Right (%1 of %2)"
     IDS_COPY_LEFT_TO_RIGHT2 "Left to Right (%1 of %2)"
     IDS_COPY_LEFT_TO_MIDDLE2 "Left to Middle (%1 of %2)"
+END
+
+STRINGTABLE
+BEGIN
     IDS_COPY_LEFT_TO        "Left to... (%1)"
     IDS_COPY_MIDDLE_TO      "Middle to... (%1)"
     IDS_COPY_RIGHT_TO       "Right to... (%1)"
@@ -2206,6 +2181,10 @@ BEGIN
     IDS_DEL_MIDDLE_FMT2     "Middle (%1 of %2)"
     IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
     IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
+END
+
+STRINGTABLE
+BEGIN
     IDS_DEL_ALL_FMT2        "All (%1 of %2)"
     IDS_MOVE_LEFT_TO        "Left to... (%1)"
     IDS_MOVE_MIDDLE_TO      "Middle to... (%1)"
@@ -2227,6 +2206,10 @@ BEGIN
     IDS_CONFIRM_SINGLE_COPY "Are you sure you want to copy:"
     IDS_CONFIRM_MULTIPLE_COPY "Are you sure you want to copy %d items:"
     IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
+END
+
+STRINGTABLE
+BEGIN
     IDS_CONFIRM_SINGLE_MOVE "Are you sure you want to move:"
     IDS_CONFIRM_MULTIPLE_MOVE "Are you sure you want to move %d items:"
     IDS_CONFIRM_COPY_CAPTION "Confirm Copy"
@@ -2259,6 +2242,10 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extension"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_COLHDR_RSIZE        "Right Size"
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLHDR_MSIZE        "Middle Size"
     IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
     IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
@@ -2279,6 +2266,10 @@ BEGIN
     IDS_COLHDR_LATTRIBUTES  "Left Attributes"
     IDS_COLHDR_RATTRIBUTES  "Right Attributes"
     IDS_COLHDR_MATTRIBUTES  "Middle Attributes"
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LEOL_TYPE    "Left EOL"
     IDS_COLHDR_MEOL_TYPE    "Middle EOL"
     IDS_COLHDR_REOL_TYPE    "Right EOL"
@@ -2307,6 +2298,10 @@ BEGIN
     IDS_RIGHT_ONLY_IN_FMT   "Right only: %1"
     IDS_DOES_NOT_EXIST_IN_FMT "Does not exist in %1"
     IDS_BIN_FILES_SAME      "Binary files are identical"
+END
+
+STRINGTABLE
+BEGIN
     IDS_IDENTICAL           "Identical"
     IDS_BIN_FILES_DIFF      "Binary files are different"
     IDS_FILES_ARE_DIFFERENT "Files are different"
@@ -2323,10 +2318,6 @@ BEGIN
     IDS_LEFTONLY_DIFF       "(Middle and right are identical)"
     IDS_MIDDLEONLY_DIFF     "(Left and right are identical)"
     IDS_RIGHTONLY_DIFF      "(Left and middle are identical)"
-END
-
-STRINGTABLE
-BEGIN
     IDS_TEXT_FILES_DIFF     "Text files are different"
 END
 
@@ -2344,6 +2335,10 @@ BEGIN
     IDS_COLDESC_FILENAME    "Filename or folder name."
     IDS_COLDESC_DIR         "Subfolder name when subfolders are included."
     IDS_COLDESC_RESULT      "Comparison result, long form."
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEM      "Left side modification date."
     IDS_COLDESC_RTIMEM      "Right side modification date."
     IDS_COLDESC_MTIMEM      "Middle side modification date."
@@ -2365,6 +2360,10 @@ BEGIN
     IDS_COLDESC_NEWER       "Tells which side has newer modification date."
     IDS_COLDESC_LVERSION    "Left side file version, only for some filetypes."
     IDS_COLDESC_RVERSION    "Right side file version, only for some filetypes."
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLDESC_MVERSION    "Middle side file version, only for some filetypes."
     IDS_COLDESC_RESULT_ABBR "Short comparison result."
     IDS_COLDESC_LATTRIBUTES "Left side attributes."
@@ -2396,6 +2395,10 @@ BEGIN
     IDS_REPORT_SIMPLEXML    "Simple XML"
     IDS_REPORT_FILEOVERWRITE 
                             "The report file already exists. Do you want to overwrite existing file?"
+END
+
+STRINGTABLE
+BEGIN
     IDS_REPORT_ERROR        "Error creating the report:\n%1"
     IDS_REPORT_SUCCESS      "The report has been created successfully."
 END
@@ -2412,6 +2415,10 @@ BEGIN
     IDS_CANNOT_OPEN_BINARYFILE "Cannot open a binary file to editor."
     IDS_CREATE_PAIR_FOLDER  "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
     IDS_MOVE_TO_NEXTFILE    "Do you want to move to the next file?"
+END
+
+STRINGTABLE
+BEGIN
     IDS_MOVE_TO_PREVFILE    "Do you want to move to the previous file?"
     IDS_MOVE_TO_NEXTPAGE    "Do you want to move to the next page?"
     IDS_MOVE_TO_PREVPAGE    "Do you want to move to the previous page?"
@@ -2421,7 +2428,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE 
-                            "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+                            "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
     IDS_LOSSY_TRANSCODING_BOTH 
                             "Information lost due to encoding errors: both files"
     IDS_LOSSY_TRANSCODING_FIRST 
@@ -2451,7 +2458,6 @@ STRINGTABLE
 BEGIN
     IDS_MERGE_MODE          "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
 END
-
 
 // EDITOR : AUTO MERGE
 STRINGTABLE
@@ -2543,6 +2549,10 @@ BEGIN
     ID_NEXTDIFF             "\nNext Difference (Alt+Down)"
     ID_PREVCONFLICT         "\nPrevious Conflict (Alt+Shift+Up)"
     ID_NEXTCONFLICT         "\nNext Conflict (Alt+Shift+Down)"
+END
+
+STRINGTABLE
+BEGIN
     ID_FIRSTDIFF            "\nFirst Difference (Alt+Home)"
     ID_CURDIFF              "\nCurrent Difference (Alt+Enter)"
     ID_LASTDIFF             "\nLast Difference (Alt+End)"
@@ -2571,6 +2581,10 @@ BEGIN
     IDS_CHECKFORUPDATES_UPTODATE "Your software is up to date"
     IDS_CHECKFORUPDATES_NEWVERSION 
                             "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
+END
+
+STRINGTABLE
+BEGIN
     IDS_CHECKFORUPDATES_FAILED "Failed to download latest version information"
 END
 
@@ -2617,6 +2631,10 @@ BEGIN
     IDS_COLORSCHEME_INSTALLSHIELD "InstallShield"
     IDS_COLORSCHEME_JAVA    "Java"
     IDS_COLORSCHEME_LISP    "AutoLISP"
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLORSCHEME_NSIS    "NSIS"
     IDS_COLORSCHEME_PASCAL  "Pascal"
     IDS_COLORSCHEME_PERL    "Perl"
@@ -2633,6 +2651,10 @@ BEGIN
     IDS_COLORSCHEME_SIOD    "SIOD"
     IDS_COLORSCHEME_SQL     "SQL"
     IDS_COLORSCHEME_TCL     "TCL"
+END
+
+STRINGTABLE
+BEGIN
     IDS_COLORSCHEME_TEX     "TEX"
     IDS_COLORSCHEME_VERILOG "Verilog"
     IDS_COLORSCHEME_VHDL    "VHDL"
@@ -2654,19 +2676,20 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FRHED_NOTINSTALLED  "frhed(http://frhed.sourceforge.net/) not installed"
+    IDS_FRHED_NOTINSTALLED  "frhed is not installed"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_CREATE_FOLDER        "%1 does not exist. Do you want to create it?"
-    IDS_CREATE_FOLDER_ERROR  "Failed to create folder."
+    IDS_CREATE_FOLDER       "%1 does not exist. Do you want to create it?"
+    IDS_CREATE_FOLDER_ERROR "Failed to create folder."
 END
 
 STRINGTABLE
 BEGIN
-    IDC_EXT_EDITOR_PATH      "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+    IDC_EXT_EDITOR_PATH     "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -2681,10 +2704,8 @@ END
 #define _AFX_NO_PROPERTY_RESOURCES
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif
 #include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
 #include "afxres.rc"         // Standard components
 #include "afxprint.rc"       // printing/print preview resources

@@ -86,31 +86,27 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
  CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, CString strMessage, 
 	CString strTitle, UINT nStyle, UINT nHelp ) 
 	: CDialog ( CMessageBoxDialog::IDD, pParent )
+	, m_strMessage(strMessage)
+	, m_strTitle(strTitle.IsEmpty() ? AfxGetAppName() : strTitle)
+	, m_nStyle(nStyle)
+	, m_nHelp(nHelp)
+	, m_hIcon(NULL)
+	, m_nTimeoutSeconds(0)
+	, m_bTimeoutDisabled(false)
+	, m_nTimeoutTimer(0)
+	, m_strRegistryKey(_T(""))
+	, m_nDefaultButton(IDC_STATIC)
+	, m_nEscapeButton(IDC_STATIC)
+	, m_sDialogUnit(CSize(0, 0))
+	, m_sIcon(CSize(0, 0))
+	, m_sMessage(CSize(0, 0))
+	, m_sCheckbox(CSize(0, 0))
+	, m_sButton(CSize(0, 0))
 {
 	// Enable the active accessibility.
 	ASSERT(!strMessage.IsEmpty());
 
-	// Save the information about the message box.
-	m_strMessage		= strMessage;
-	m_strTitle			= strTitle.IsEmpty() ? AfxGetAppName() : strTitle;
-	m_nStyle			= nStyle;
-	m_nHelp				= nHelp;
-
-	// Do the default initialization.
-	m_hIcon				= NULL;
-	m_nTimeoutSeconds	= 0;
-	m_bTimeoutDisabled	= FALSE;
-	m_nTimeoutTimer		= 0;
-	m_strRegistryKey	= _T("");
-	m_nDefaultButton	= IDC_STATIC;
-	m_nEscapeButton		= IDC_STATIC;
-	m_sDialogUnit		= CSize(0, 0);
-	m_sIcon				= CSize(0, 0);
-	m_sMessage			= CSize(0, 0);
-	m_sCheckbox			= CSize(0, 0);
-	m_sButton			= CSize(0, 0);
-
-    m_aButtons.clear();
+	m_aButtons.clear();
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
@@ -291,7 +287,7 @@ inline HICON CMessageBoxDialog::GetMessageIcon ( )
  *	screen. All buttons will be disabled, until the countdown is finished.
  *	After that, the user can click any button.
  */
-void CMessageBoxDialog::SetTimeout ( UINT nSeconds, BOOL bDisabled )
+void CMessageBoxDialog::SetTimeout ( UINT nSeconds, bool bDisabled /*= false*/)
 {
 	// Save the settings for the timeout.
 	m_nTimeoutSeconds	= nSeconds;
@@ -310,7 +306,7 @@ inline UINT CMessageBoxDialog::GetTimeoutSeconds ( )
 /*
  *	Method for retrieving whether a timeout is disabled.
  */
-inline BOOL CMessageBoxDialog::GetTimeoutDisabled ( )
+inline bool CMessageBoxDialog::GetTimeoutDisabled ( )
 {
 	// Return the flag whether the timeout is disabled.
 	return m_bTimeoutDisabled;
@@ -465,7 +461,7 @@ INT_PTR CMessageBoxDialog::DoModal ( )
 void CMessageBoxDialog::EndDialog ( int nResult )
 {
 	// Create a variable for storing the state of the checkbox.
-	BOOL bDontDisplayAgain = FALSE;
+	bool bDontDisplayAgain = false;
 
 	// Try to access the checkbox control.
 	CWnd* pCheckboxWnd = GetDlgItem(IDCHECKBOX);
@@ -688,7 +684,7 @@ BOOL CMessageBoxDialog::PreTranslateMessage ( MSG* pMsg )
 				for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
 				{
 					// Check whether the ID is a button.
-					if ( iter->nID == nID )
+					if ( iter->nID == static_cast<UINT>(nID) )
 					{
 						// Save this ID as the default ID.
 						m_nDefaultButton = nID;
@@ -785,7 +781,7 @@ void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 		for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
 		{
 			// Check whether this button is the default button.
-			if ( iter->nID == m_nDefaultButton )
+			if ( iter->nID == static_cast<UINT>(m_nDefaultButton) )
 			{
 				// Try to load the text for the button.
 				String strButtonText = LoadResString(iter->nTitle);
@@ -920,8 +916,8 @@ CString CMessageBoxDialog::GenerateRegistryKey ( )
  *	This method adds a button to the list of buttons, which will be created in
  *	the dialog, but it will not create the button control itself.
  */
-void CMessageBoxDialog::AddButton ( UINT nID, UINT nTitle, BOOL bIsDefault,
-	BOOL bIsEscape )
+void CMessageBoxDialog::AddButton ( UINT nID, UINT nTitle, bool bIsDefault /*= false*/,
+	bool bIsEscape /*= false*/ )
 {
 	// Create a new structure to store the button information.
 	MSGBOXBTN bButton = { nID, nTitle };

@@ -51,9 +51,9 @@ Function ExecFilterCommand(Text)
 	End If
 	If cmd = "" Then
 		If IsLangJapanese() Then
-			Err.Raise 30001, "キャンセルされました"
+			Err.Raise 30001, , "キャンセルされました"
 		Else
-			Err.Raise 30001, "Canceled"
+			Err.Raise 30001, , "Canceled"
 		End If
 		Exit Function
 	End If
@@ -78,7 +78,11 @@ Function ExecFilterCommand(Text)
 	Dim exe
 	Set exe = wsh.Exec("cmd /c type """ & path & """  | " & cmd & " 2>&1")
 	If exe Is Nothing Then
-		MsgBox "コマンド " & cmd & " の実行に失敗しました:" & Err.Description 
+		If IsLangJapanese() Then
+			MsgBox "コマンド " & cmd & " の実行に失敗しました:" & Err.Description 
+		Else
+			MsgBox "Failed to execute the command '" & cmd & "':" & Err.Description 
+		End If
 		fso.DeleteFile path
 		Exit Function
 	End If

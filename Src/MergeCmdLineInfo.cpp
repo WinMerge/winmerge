@@ -125,12 +125,11 @@ const TCHAR *MergeCmdLineInfo::SetConfig(const TCHAR *q)
 }
 
 /**
- * @brief ClearCaseCmdLineParser's constructor.
+ * @brief MergeCmdLineParser's constructor.
  * @param [in] q Points to the beginning of the command line.
  */
 MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *q):
 	m_nCmdShow(SHOWNORMAL),
-	m_bClearCaseTool(false),
 	m_bEscShutdown(false),
 	m_bExitIfNoDiff(Disabled),
 	m_bRecurse(false),
@@ -143,89 +142,9 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *q):
 	m_dwMiddleFlags(FFILEOPEN_NONE),
 	m_dwRightFlags(FFILEOPEN_NONE)
 {
-	// Rational ClearCase has a weird way of executing external
-	// tools which replace the build-in ones. It also doesn't allow
-	// you to define which parameters to send to the executable.
-	// So, in order to run as an external tool, WinMerge should do:
-	// if argv[0] is "xcompare" then it "knows" that it was
-	// executed from ClearCase. In this case, it should read and
-	// parse ClearCase's command line parameters and not the
-	// "regular" parameters. More information can be found in
-	// C:\Program Files\Rational\ClearCase\lib\mgrs\mgr_info.h file.
 	String exeName;
 	q = EatParam(q, exeName);
-	if (exeName == _T("compare") || exeName == _T("xcompare"))
-	{
-		ParseClearCaseCmdLine(q, _T("<No Base>"));
-	}
-	else if (exeName == _T("merge") || exeName == _T("xmerge"))
-	{
-		ParseClearCaseCmdLine(q, _T(""));
-	}
-	else
-	{
-		ParseWinMergeCmdLine(q);
-	}
-}
-
-/**
- * @brief Parse a command line passed in from ClearCase.
- * @param [in] p Points into the command line.
- */
-void MergeCmdLineInfo::ParseClearCaseCmdLine(const TCHAR *q, const TCHAR *basedesc)
-{
-	String sBaseFile;  /**< Base file path. */
-	String sBaseDesc = basedesc;  /**< Base file description. */
-	String sOutFile;   /**< Out file path. */
-	m_bClearCaseTool = true;
-	String param;
-	bool flag;
-	while ((q = EatParam(q, param, &flag)) != 0)
-	{
-		if (!flag)
-		{
-			// Not a flag
-			param = paths::GetLongPath(param);
-			m_Files.SetPath(m_Files.GetSize(), param);
-			if (param == m_sLeftDesc)
-				m_dwLeftFlags &= ~FFILEOPEN_READONLY;
-			if (param == m_sRightDesc)
-				m_dwRightFlags &= ~FFILEOPEN_READONLY;
-		}
-		else if (param == _T("base"))
-		{
-			// -base is followed by common ancestor file description.
-			q = EatParam(q, sBaseFile);
-		}
-		else if (param == _T("out"))
-		{
-			// -out is followed by merge's output file name.
-			q = EatParam(q, sOutFile);
-		}
-		else if (param == _T("fname"))
-		{
-			// -fname is followed by file description.
-			if (sBaseDesc.empty())
-				q = EatParam(q, sBaseDesc);
-			else if (m_sLeftDesc.empty())
-			{
-				q = EatParam(q, m_sLeftDesc);
-				m_dwLeftFlags |= FFILEOPEN_READONLY;
-			}
-			else if (m_sRightDesc.empty())
-			{
-				q = EatParam(q, m_sRightDesc);
-				m_dwRightFlags |= FFILEOPEN_READONLY;
-			}
-			else
-				q = EatParam(q, param); // ignore excess arguments
-		}
-	}
-	if (!sOutFile.empty())
-	{
-		String path = paths::GetLongPath(sOutFile);
-		m_sOutputpath = path;
-	}
+	ParseWinMergeCmdLine(q);
 }
 
 /**
@@ -463,6 +382,10 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		else if (param == _T("cfg") || param == _T("config"))
 		{
 			q = SetConfig(q);
+		}
+		else
+		{
+			m_sErrorMessages.push_back(_T("Unknown option '/") + param + _T("'"));
 		}
 	}
 	// If "compare file dir" make it "compare file dir\file".

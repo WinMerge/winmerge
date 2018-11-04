@@ -657,7 +657,7 @@ Pekka Himanen</screen>
         <screen format="linespecific">^::</screen>
         <para>
           <literal>::</literal>で始まる行をフィルタします</para>
-        <screen format="linespecific">^/\**.\*/$</screen>
+        <screen format="linespecific">^/\*.*\*/$</screen>
         <para>
           <literal><constant>/*</constant></literal>で始まり、
           <literal>*/</literal>で終わる行をフィルタします</para>

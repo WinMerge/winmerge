@@ -385,8 +385,17 @@ msgstr "&Hjälp"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Hjälp\tF1"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:1B17601E
 #, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
+#: Merge.rc:3938FFC2
 msgid "&Check For Updates"
 msgstr ""
 
@@ -600,7 +609,7 @@ msgstr "&Anpassa kolumner..."
 msgid "Generate &Report..."
 msgstr "Generera &rapport..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Spara\tCtrl+S"
@@ -685,6 +694,11 @@ msgstr "&Filkodning..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -695,12 +709,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Ångra\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Gör om\tCtrl+Y"
@@ -710,7 +724,7 @@ msgstr "&Gör om\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Klipp ut\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "K&opiera\tCtrl+C"
@@ -801,7 +815,7 @@ msgstr "&Normal\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Syntaxmarkering"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1111,7 +1125,7 @@ msgstr "Höger till... (%1 av %2)"
 msgid "&Delete"
 msgstr "&Ta bort"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "&Vänster"
@@ -1126,7 +1140,7 @@ msgstr ""
 msgid "&Right"
 msgstr "&Höger"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "&Båda"
@@ -1271,7 +1285,7 @@ msgstr "Kopiera Filnamn"
 msgid "Prediffer Settings"
 msgstr "Prediffer-inställningar"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "&Ingen Prediffer"
@@ -1381,11 +1395,6 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "Om WinMerge"
 
-#: Merge.rc:6AD81E09
-#, c-format
-msgid "(Private Build)"
-msgstr "(Privat kompilering)"
-
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
@@ -1406,9 +1415,19 @@ msgstr "Medarbetare"
 msgid "Select Files or Folders"
 msgstr "Välj filer eller kataloger..."
 
-#: Merge.rc:43017E4D
+#: Merge.rc:6DE6F874
 #, c-format
-msgid "&1st:"
+msgid "&1st File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Bara& läsbar"
+
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
 msgstr ""
 
 #: Merge.rc:68816EE7
@@ -1416,9 +1435,19 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Bläddra..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&2nd:"
+msgid "&2nd File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
 msgstr ""
 
 #: Merge.rc:78E0CE0E
@@ -1426,64 +1455,9 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "Bläddra..."
 
-#: Merge.rc:78B3B626
+#: Merge.rc:3C1ECDDA
 #, c-format
-msgid "&3rd(Optional):"
-msgstr ""
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Bläddra..."
-
-#: Merge.rc:64ABCD7D
-#, c-format
-msgid "Fi&lter:"
-msgstr ""
-
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "Välj..."
-
-#: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "&Uppackare:"
-
-#: Merge.rc:68816EE9
-#, c-format
-msgid "&Select..."
-msgstr "Välj..."
-
-#: Merge.rc:67019DCA
-#, c-format
-msgid "Status:"
-msgstr "Status:"
-
-#: Merge.rc:4E65D340
-#, c-format
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Hjälp"
-
-#: Merge.rc:75264C52
-#, c-format
-msgid "Files or Folders to Compare"
-msgstr "Filer eller kataloger som skall jämföras"
-
-#: Merge.rc:39174D96
-#, c-format
-msgid "Re&ad-only"
-msgstr "Bara& läsbar"
-
-#: Merge.rc:39174D97
-#, c-format
-msgid "Rea&d-only"
+msgid "&3rd File or Folder (Optional)"
 msgstr ""
 
 #: Merge.rc:39174D98
@@ -1491,60 +1465,54 @@ msgstr ""
 msgid "Read-o&nly"
 msgstr ""
 
-#: Merge.rc:629C1DDC
+#: Merge.rc:56BD1FBC
 #, c-format
-msgid "Database:"
-msgstr "Databas:"
+msgid "Swap 1st | 3rd"
+msgstr ""
 
-#: Merge.rc:60C4588F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Project:"
-msgstr "Projekt:"
+msgid "Browse..."
+msgstr "Bläddra..."
 
-#: Merge.rc:15E1A7E1
+#: Merge.rc:22467E6E
 #, c-format
-msgid "User:"
-msgstr "Användare:"
+msgid " Folder: Filter"
+msgstr ""
 
-#: Merge.rc:37C6B9B8
+#: Merge.rc:68816EE8
 #, c-format
-msgid "Password:"
-msgstr "Lösenord:"
+msgid "&Select..."
+msgstr "Välj..."
 
-#: Merge.rc:F75DAF7
+#: Merge.rc:662470D5
 #, c-format
-msgid "Link to Destination VSS project"
-msgstr "Länka till valt VSS-projekt"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Tillämpa på alla objekt"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Checka ut"
+msgid " File: Unpacker Plugin"
+msgstr ""
 
 #: Merge.rc:751AB58F
 #, c-format
-msgid "Save As..."
-msgstr "Spara som..."
+msgid "Se&lect..."
+msgstr ""
 
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Versionsstyrningssystem"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
-#: Merge.rc:6DE6F874
+#: Merge.rc:4E65D340
 #, c-format
-msgid "&Versioning System:"
-msgstr "&Versionsstyrningssystem:"
+msgid "Cancel"
+msgstr "Avbryt"
 
-#: Merge.rc:381D79E5
+#: Merge.rc:67019DCA
 #, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "&Sökväg till Cleartool.exe:"
+msgid "Status:"
+msgstr "Status:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Hjälp"
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1651,7 +1619,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "&Sök nästa"
@@ -1666,12 +1634,12 @@ msgstr "&OK"
 msgid "Replace"
 msgstr "Ersätt"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Ersä&tt med:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "Vänd inte vid slutet av filen"
@@ -1681,7 +1649,7 @@ msgstr "Vänd inte vid slutet av filen"
 msgid "Replace in"
 msgstr "Ersätt i"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "&Markering"
@@ -1725,21 +1693,6 @@ msgstr ""
 #, c-format
 msgid "&Apply"
 msgstr "&Verkställ"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Checka ut"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Kommentarer"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Checka in efter Checka ut"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1851,7 +1804,7 @@ msgstr "&Skicka borttagna filer till Papperskorgen"
 msgid "&External editor:"
 msgstr "Extern Editor:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Filterkatalog:"
@@ -1891,7 +1844,7 @@ msgstr "Fil &1:"
 msgid "File&2:"
 msgstr "Fil &2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "Byt"
@@ -1991,7 +1944,7 @@ msgstr "Stopp"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2096,6 +2049,11 @@ msgstr "M&öjliggör detektion av flyttade textblock"
 msgid "&Match similar lines"
 msgstr "&Matcha liknande rader"
 
+#: Merge.rc:4C3E0A2F
+#, c-format
+msgid "Comments"
+msgstr "Kommentarer"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2126,7 +2084,7 @@ msgstr "Bevara ursprungliga radslutstecken"
 msgid "Tabs"
 msgstr "Tabbar"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "&Tabbsteg:"
@@ -2191,7 +2149,7 @@ msgstr "Ny..."
 msgid "Edit..."
 msgstr "Redigera..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Ta bort..."
@@ -2206,7 +2164,7 @@ msgstr "Spara ändrade filer?"
 msgid "Left side file"
 msgstr "Vänster fil"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Spara ändringar"
@@ -2330,7 +2288,7 @@ msgstr "Nyckelord:"
 msgid "Function names:"
 msgstr "Funktionsnamn:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Kommentarer:"
@@ -2375,7 +2333,7 @@ msgstr "Fet"
 msgid "Marker colors"
 msgstr ""
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr ""
@@ -2460,7 +2418,7 @@ msgstr "&Detektera arkivtyp från filsignatur"
 msgid "Compare Statistics"
 msgstr "Jämförelsestatistik"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "Kataloger:"
@@ -2470,7 +2428,7 @@ msgstr "Kataloger:"
 msgid "Files:"
 msgstr "Filer:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Olika"
@@ -2595,7 +2553,7 @@ msgstr "&Katalognamn"
 msgid "Result:"
 msgstr "Resultat:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "&Testa"
@@ -2645,7 +2603,7 @@ msgstr "Backup på filer"
 msgid "Create backup files in:"
 msgstr "Skapa backupfiler i:"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "&Jämför kataloger"
@@ -2660,7 +2618,7 @@ msgstr "Jäm&för filer"
 msgid "Create backup files into:"
 msgstr "Skapa backupfiler i:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "&Originalfilens katalog"
@@ -2675,7 +2633,7 @@ msgstr "&Global backupkatalog:"
 msgid "Backup filename:"
 msgstr "Backupfilnamn:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "&Lägg till filsuffixet .bak"
@@ -2720,7 +2678,7 @@ msgstr "Nej"
 msgid "Plugins"
 msgstr "Plugins"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Starta Plugins"
@@ -2810,12 +2768,12 @@ msgstr ""
 msgid "Frhed settings"
 msgstr ""
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3012,12 +2970,12 @@ msgstr "Nej till a&llt"
 msgid "&Continue"
 msgstr "&Fortsätt"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "&Skippa"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "Skippa &allt"
@@ -3041,11 +2999,6 @@ msgstr ""
 #, c-format
 msgid "Syntax"
 msgstr "Syntax"
-
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Versionskontroll"
 
 #: Merge.rc:2C0C2241
 #, c-format
@@ -3275,11 +3228,6 @@ msgstr ""
 "\n"
 "Om du inte vill uppdatera alla jämförelser nu kan du välja Nej och uppdatera jämförelser senare."
 
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "&Sökväg till SS.EXE"
-
 #: Merge.rc:114DD351
 #, c-format
 msgid "Folder Comparison Results"
@@ -3376,44 +3324,49 @@ msgstr "Välj två existerande kataloger eller filer att jämföra"
 msgid "Folder Selection"
 msgstr "Val av katalog"
 
-#: Merge.rc:73F34BA1
+#: Merge.rc:3080B693
 #, c-format
-msgid "Select two folders or two files to compare."
-msgstr "Välj två kataloger eller två filer att jämföra."
-
-#: Merge.rc:20155F59
-#, c-format
-msgid "Left path is invalid!"
-msgstr "Vänster sökväg är felaktig!"
-
-#: Merge.rc:7F2E4119
-#, c-format
-msgid "Middle path is invalid!"
+msgid "Select two (or three) folders or two (or three) files to compare."
 msgstr ""
 
-#: Merge.rc:6DBD6124
+#: Merge.rc:2EBBDDD6
 #, c-format
-msgid "Right path is invalid!"
-msgstr "Höger sökväg är felaktig!"
+msgid "Left (1st) path is invalid!"
+msgstr ""
+
+#: Merge.rc:BA50069
+#, c-format
+msgid "Middle (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C32
+#, c-format
+msgid "Right (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C33
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr ""
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "Båda sökvägarna är felaktiga!"
 
-#: Merge.rc:5F458439
+#: Merge.rc:585E8EC0
 #, c-format
-msgid "Left and middle path is invalid!"
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr ""
 
-#: Merge.rc:F75DAF8
+#: Merge.rc:135DE390
 #, c-format
-msgid "Left and right path is invalid!"
+msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr ""
 
-#: Merge.rc:3703FFD7
+#: Merge.rc:72716FA6
 #, c-format
-msgid "Middle and right path is invalid!"
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr ""
 
 #: Merge.rc:237A0533
@@ -3421,10 +3374,10 @@ msgstr ""
 msgid "All paths are invalid!"
 msgstr ""
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "Välj två filer för att starta valet av uppackare."
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3626,83 +3579,11 @@ msgstr ""
 "\n"
 "Uppdatera filerna innan du fortsätter."
 
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Du måste ange sökvägen till ett SourceSafe-projekt för att fortsätta (t.ex.:  $/MittProjekt)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Hämtar filer från VSS..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Versionshanteringssystemet (VSS) returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Fel vid utförande av kommando för versionshanteringssystem."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "VSS-arbetskatalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "Ingen VSS databas hittad!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "Fel från VSS:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"Versionshanteringssystemet (VSS) returnerade ett fel under försöket att checka in filen.\n"
-" Var god och, kontrollera konfigurationsspecifikation på använd markering.\n"
-" Ångra checka ut åtgärd?"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"Versionshanteringssystemet (VSS) returnerade ett fel under försöket att ångra checka ut av filen.\n"
-" Var god och, kontrollera konfigurationsspecifikation på använd markering. "
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Inget"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (lägre än 5.0)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 eller högre)"
-
 #: Merge.rc:2405135
-#, c-format
 msgid "Break at whitespace"
 msgstr "Radbryt på mellanslag"
 
 #: Merge.rc:6CB369C2
-#, c-format
 msgid "Break at whitespace or punctuation"
 msgstr "Radbryt på mellanslag eller punkt"
 
@@ -3887,7 +3768,7 @@ msgstr "Kunde inte starta den externa editorn %1"
 msgid "Unknown archive format"
 msgstr "Okänt arkivformat"
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "Filnamn"
@@ -4022,7 +3903,7 @@ msgstr "Höger radslutstyp"
 msgid "Left Encoding"
 msgstr "Vänster kodning"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Höger kodning"
@@ -4067,7 +3948,7 @@ msgstr "Bara vänster: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Bara höger: %1"
@@ -4222,17 +4103,17 @@ msgstr "Höger fils storlek i bytes."
 msgid "Middle file size in bytes."
 msgstr ""
 
-#: Merge.rc:2EBBDDD6
+#: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Vänster filstorlek är förkortad."
 
-#: Merge.rc:21DC7C32
+#: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Höger filstorlek är förkortad."
 
-#: Merge.rc:BA50069
+#: Merge.rc:BA5006A
 #, c-format
 msgid "Middle file size abbreviated."
 msgstr ""
@@ -4277,17 +4158,17 @@ msgstr ""
 msgid "Short comparison result."
 msgstr "Kortfattat jämförelseresultat."
 
-#: Merge.rc:20155F5A
+#: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
 msgstr "Vänster sidas attribut."
 
-#: Merge.rc:6DBD6125
+#: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
 msgstr "Höger sidas attribut."
 
-#: Merge.rc:7F2E411A
+#: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle side attributes."
 msgstr ""
@@ -4466,7 +4347,7 @@ msgstr ""
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
 "Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default windows codepage (recommended)?"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Vänster (cp%d) och höger (cp%d) fil har inte samma Codepage. \n"
 "Att visa varje fil i dess egen Codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\n"
@@ -4502,7 +4383,7 @@ msgstr "Ingen skillnad"
 msgid "Line difference"
 msgstr "Radskillnad"
 
-#: Merge.rc:6DBD6126
+#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "Ersatt %1 sträng(ar)."
@@ -4547,7 +4428,7 @@ msgstr ""
 msgid "Location Pane"
 msgstr "Skillnadsfält"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Skillnadsbild"
@@ -4690,6 +4571,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Blandad"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Inget"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4700,7 +4586,7 @@ msgstr "Typ"
 msgid "Unpacker"
 msgstr "Uppackare"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Prediffer"
@@ -4930,9 +4816,9 @@ msgstr ""
 msgid "&Image"
 msgstr ""
 
-#: Merge.rc:4D3A8E6D
+#: Merge.rc:3D9427A9
 #, c-format
-msgid "frhed(http://frhed.sourceforge.net/) not installed"
+msgid "frhed is not installed"
 msgstr ""
 
 #: Merge.rc:73B321AA

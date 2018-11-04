@@ -382,8 +382,17 @@ msgstr "Ohje"
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge Ohje\tF1"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:1B17601E
 #, c-format
+msgid "R&elease Notes"
+msgstr "Versiotiedot"
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr "Käännökset"
+
+#: Merge.rc:3938FFC2
 msgid "&Check For Updates"
 msgstr ""
 
@@ -597,7 +606,7 @@ msgstr "Muokkaa sarakkeita..."
 msgid "Generate &Report..."
 msgstr "Luo &raportti..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "Tallenna\tCtrl+S"
@@ -682,6 +691,11 @@ msgstr "Tiedoston koodaus..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -692,12 +706,12 @@ msgstr "XML"
 msgid "&Binary"
 msgstr "Binääri"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Kumoa\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Tee uudestaan\tCtrl+Y"
@@ -707,7 +721,7 @@ msgstr "Tee uudestaan\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Leikkaa\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Kopioi\tCtrl+C"
@@ -797,7 +811,7 @@ msgstr "&Normaali\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Syntaksin korostus"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1107,7 +1121,7 @@ msgstr "Oikealta... (%1 / %2)"
 msgid "&Delete"
 msgstr "Poista"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "Vasen"
@@ -1122,7 +1136,7 @@ msgstr ""
 msgid "&Right"
 msgstr "Oikea"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "Molemmat"
@@ -1267,7 +1281,7 @@ msgstr "Kopioi tiedostonimi"
 msgid "Prediffer Settings"
 msgstr "Esivertailun asetukset"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "Ei esivertailua"
@@ -1377,11 +1391,6 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "Tietoja WinMergestä"
 
-#: Merge.rc:6AD81E09
-#, c-format
-msgid "(Private Build)"
-msgstr "(Yksityinen)"
-
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
@@ -1402,9 +1411,19 @@ msgstr "Avustajat"
 msgid "Select Files or Folders"
 msgstr "Valitse tiedostoja tai kansioita"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:6DE6F874
 #, c-format
-msgid "&1st:"
+msgid "&1st File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Vain luku"
+
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
 msgstr ""
 
 #: Merge.rc:68816EE7
@@ -1412,9 +1431,19 @@ msgstr ""
 msgid "&Browse..."
 msgstr "Selaa..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&2nd:"
+msgid "&2nd File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
 msgstr ""
 
 #: Merge.rc:78E0CE0E
@@ -1422,64 +1451,9 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "Selaa..."
 
-#: Merge.rc:78B3B626
+#: Merge.rc:3C1ECDDA
 #, c-format
-msgid "&3rd(Optional):"
-msgstr ""
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Selaa..."
-
-#: Merge.rc:64ABCD7D
-#, c-format
-msgid "Fi&lter:"
-msgstr ""
-
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "Valitse..."
-
-#: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "Purkaja:"
-
-#: Merge.rc:68816EE9
-#, c-format
-msgid "&Select..."
-msgstr "Valitse..."
-
-#: Merge.rc:67019DCA
-#, c-format
-msgid "Status:"
-msgstr "Tila"
-
-#: Merge.rc:4E65D340
-#, c-format
-msgid "Cancel"
-msgstr "Peruuta"
-
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Ohje"
-
-#: Merge.rc:75264C52
-#, c-format
-msgid "Files or Folders to Compare"
-msgstr "Verrattavat tiedostot tai kansiot"
-
-#: Merge.rc:39174D96
-#, c-format
-msgid "Re&ad-only"
-msgstr "Vain luku"
-
-#: Merge.rc:39174D97
-#, c-format
-msgid "Rea&d-only"
+msgid "&3rd File or Folder (Optional)"
 msgstr ""
 
 #: Merge.rc:39174D98
@@ -1487,60 +1461,54 @@ msgstr ""
 msgid "Read-o&nly"
 msgstr ""
 
-#: Merge.rc:629C1DDC
+#: Merge.rc:56BD1FBC
 #, c-format
-msgid "Database:"
-msgstr "Tietokanta:"
+msgid "Swap 1st | 3rd"
+msgstr ""
 
-#: Merge.rc:60C4588F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Project:"
-msgstr "Projekti:"
+msgid "Browse..."
+msgstr "Selaa..."
 
-#: Merge.rc:15E1A7E1
+#: Merge.rc:22467E6E
 #, c-format
-msgid "User:"
-msgstr "Käyttäjä:"
+msgid " Folder: Filter"
+msgstr ""
 
-#: Merge.rc:37C6B9B8
+#: Merge.rc:68816EE8
 #, c-format
-msgid "Password:"
-msgstr "Salasana:"
+msgid "&Select..."
+msgstr "Valitse..."
 
-#: Merge.rc:F75DAF7
+#: Merge.rc:662470D5
 #, c-format
-msgid "Link to Destination VSS project"
-msgstr "Linkitä Destination VSS projektiin"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Käytä kaikkiin kohteisiin"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Uloskuittaus"
+msgid " File: Unpacker Plugin"
+msgstr ""
 
 #: Merge.rc:751AB58F
 #, c-format
-msgid "Save As..."
-msgstr "Tallenna nimellä..."
+msgid "Se&lect..."
+msgstr ""
 
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Järjestelmän versiotiedot"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
-#: Merge.rc:6DE6F874
+#: Merge.rc:4E65D340
 #, c-format
-msgid "&Versioning System:"
-msgstr "Järjestelmäversiointi"
+msgid "Cancel"
+msgstr "Peruuta"
 
-#: Merge.rc:381D79E5
+#: Merge.rc:67019DCA
 #, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "Cleartool.exe polku:"
+msgid "Status:"
+msgstr "Tila"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Ohje"
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1648,7 +1616,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "Etsi seuraava"
@@ -1663,12 +1631,12 @@ msgstr "OK"
 msgid "Replace"
 msgstr "Korvaa"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Korvaava:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "Älä rivitä tiedoston loppua"
@@ -1678,7 +1646,7 @@ msgstr "Älä rivitä tiedoston loppua"
 msgid "Replace in"
 msgstr "Korvaa kohteessa:"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "Valinta"
@@ -1722,21 +1690,6 @@ msgstr ""
 #, c-format
 msgid "&Apply"
 msgstr "Käytä"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Uloskuittaus"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Kommentit"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Sisäänkuittaus uloskuittauksen jälkeen"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1848,7 +1801,7 @@ msgstr "Siirrä poistetut tiedostot roskakoriin"
 msgid "&External editor:"
 msgstr "Ulkoinen editori:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "Suodatinkansio:"
@@ -1888,7 +1841,7 @@ msgstr "Tiedosto1:"
 msgid "File&2:"
 msgstr "Tiedosto2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "Vaihda"
@@ -1988,7 +1941,7 @@ msgstr "Pysäytä"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2093,6 +2046,11 @@ msgstr "Ota siirretyn lohkon tunnistus käyttöön"
 msgid "&Match similar lines"
 msgstr "Täsmää samanlaiset rivit"
 
+#: Merge.rc:4C3E0A2F
+#, c-format
+msgid "Comments"
+msgstr "Kommentit"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2123,7 +2081,7 @@ msgstr "Säilytä alkuperäiset EOL merkit"
 msgid "Tabs"
 msgstr "Välilehdet"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "Välilehden koko:"
@@ -2188,7 +2146,7 @@ msgstr "Uusi..."
 msgid "Edit..."
 msgstr "Muokkaa..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Poista..."
@@ -2203,7 +2161,7 @@ msgstr "Tallennetaanko muokatut tiedostot?"
 msgid "Left side file"
 msgstr "Vasen tiedosto"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "Tallenna muutokset"
@@ -2323,7 +2281,7 @@ msgstr "Avainsanat:"
 msgid "Function names:"
 msgstr "Funktionimet:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Kommentit:"
@@ -2368,7 +2326,7 @@ msgstr "Lihavoitu"
 msgid "Marker colors"
 msgstr ""
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr ""
@@ -2453,7 +2411,7 @@ msgstr "Tunnista arkistotyyppi tiedoston allekirjoituksesta"
 msgid "Compare Statistics"
 msgstr "Vertaa tilastoja"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "Kansiot:"
@@ -2463,7 +2421,7 @@ msgstr "Kansiot:"
 msgid "Files:"
 msgstr "Tiedostot:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Poikkeava"
@@ -2588,7 +2546,7 @@ msgstr "Kansionimi"
 msgid "Result:"
 msgstr "Tulos:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "Testi"
@@ -2638,7 +2596,7 @@ msgstr "Varmuuskopiot"
 msgid "Create backup files in:"
 msgstr "Luo varmuuskopiot:"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "Kansiovertailu"
@@ -2653,7 +2611,7 @@ msgstr "Tiedostovertailu"
 msgid "Create backup files into:"
 msgstr "Luo varmuuskopiotiedostot:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "Alkuperäiseen tiedostokansioon"
@@ -2668,7 +2626,7 @@ msgstr "Yleiseen varmuuskopiokansioon:"
 msgid "Backup filename:"
 msgstr "Varmuuskopion nimi:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "Liitä .bak tarkennin"
@@ -2713,7 +2671,7 @@ msgstr "Ei"
 msgid "Plugins"
 msgstr "Lisäosat"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "Ota laajennukset käyttöön"
@@ -2803,12 +2761,12 @@ msgstr ""
 msgid "Frhed settings"
 msgstr ""
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -2973,12 +2931,12 @@ msgstr "Ei kaikkiin"
 msgid "&Continue"
 msgstr "Jatka"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "Ohita"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "Ohita kaikki"
@@ -3002,11 +2960,6 @@ msgstr ""
 #, c-format
 msgid "Syntax"
 msgstr "Syntaksi"
-
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Version hallinta"
 
 #: Merge.rc:2C0C2241
 #, c-format
@@ -3188,11 +3141,6 @@ msgstr "Säännöllinen lauseke"
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr "Suodattimet päivitettiin. Haluatko päivittää kaikki avoimet kansiovertailut?\n\nJos et halua päivittää kaikkia vertailuja nyt, valitse Ei ja päivitä vertailut myöhemmin."
 
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "SS.EXE polku:"
-
 #: Merge.rc:114DD351
 #, c-format
 msgid "Folder Comparison Results"
@@ -3289,44 +3237,49 @@ msgstr "Valitse vertailuun kaksi olemassa olevaa kansioita tai tiedostoa"
 msgid "Folder Selection"
 msgstr "Kansion valinta"
 
-#: Merge.rc:73F34BA1
+#: Merge.rc:3080B693
 #, c-format
-msgid "Select two folders or two files to compare."
-msgstr "Valitse vertailuun kaksi kansioita tai tiedostoa."
-
-#: Merge.rc:20155F59
-#, c-format
-msgid "Left path is invalid!"
-msgstr "Vasen polku on virheellinen!"
-
-#: Merge.rc:7F2E4119
-#, c-format
-msgid "Middle path is invalid!"
+msgid "Select two (or three) folders or two (or three) files to compare."
 msgstr ""
 
-#: Merge.rc:6DBD6124
+#: Merge.rc:2EBBDDD6
 #, c-format
-msgid "Right path is invalid!"
-msgstr "Oikea polku on virheellinen!"
+msgid "Left (1st) path is invalid!"
+msgstr ""
+
+#: Merge.rc:BA50069
+#, c-format
+msgid "Middle (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C32
+#, c-format
+msgid "Right (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C33
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr ""
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "Kummatkin polut ovat virheellisiä!"
 
-#: Merge.rc:5F458439
+#: Merge.rc:585E8EC0
 #, c-format
-msgid "Left and middle path is invalid!"
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr ""
 
-#: Merge.rc:F75DAF8
+#: Merge.rc:135DE390
 #, c-format
-msgid "Left and right path is invalid!"
+msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr ""
 
-#: Merge.rc:3703FFD7
+#: Merge.rc:72716FA6
 #, c-format
-msgid "Middle and right path is invalid!"
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr ""
 
 #: Merge.rc:237A0533
@@ -3334,10 +3287,10 @@ msgstr ""
 msgid "All paths are invalid!"
 msgstr ""
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "Valitse kaksi tiedostoa käyttääksesi purkuvalintaa."
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3450,72 +3403,11 @@ msgstr "Tiedosto\n%1\non kadonnut. Tallenna kopio tiedostosta jatkaaksesi."
 msgid "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
 msgstr "Eroja ei voi yhdistää, jos asiakirjat eivät ole synkronissa.\n\nPäivitä asiakirjat ennen jatkamista."
 
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Sinun täytyy määritellä SourceSafe projektipolku jatkaaksesi (ts:  $/MyProject)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Tarkista VSS tiedostot..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Järjestelmäversiointi palautti virheen yritettäessä tarkistaa tiedostoa. Ei voi jatkaa..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Virhe järjestelmäversiointikomennon aikana."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "VSS-työkansio ja nykyisen tiedoston sijainti eivät vastaa toisiaan. Jatketaanko?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "VSS virhe:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
-msgstr "Järjestelmäversiointi palautti virheen, kun yritettiin kirjoittautua tiedostoon.\nTarkista käytetyn näkymän asetukset.\nKumotaanko tarkistus? "
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
-msgstr "Järjestelmäversiointi palautti virheen, kun yritettiin kumota kirjoittautuminen tiedostoon.\nTarkista käytetyn näkymän asetukset"
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Ei mitään"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (pienempi kuin 5.0)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 ja isompi)"
-
 #: Merge.rc:2405135
-#, c-format
 msgid "Break at whitespace"
 msgstr "Rivinvaihto tyhjätilamerkissä"
 
 #: Merge.rc:6CB369C2
-#, c-format
 msgid "Break at whitespace or punctuation"
 msgstr "Rivinvaihto tyhjätilassa tai pilkutuksessa"
 
@@ -3679,7 +3571,7 @@ msgstr "Ulkoisen editorin ajo epäonnistui: %1"
 msgid "Unknown archive format"
 msgstr "Tuntematon arkistomuoto."
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "Tiedostonimi"
@@ -3814,7 +3706,7 @@ msgstr "Oikea EOL"
 msgid "Left Encoding"
 msgstr "Vasen koodaus"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Oikea koodaus"
@@ -3859,7 +3751,7 @@ msgstr "Vain vasen: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Vain oikea: %1"
@@ -4014,17 +3906,17 @@ msgstr "Oikean tiedoston koko tavuina"
 msgid "Middle file size in bytes."
 msgstr ""
 
-#: Merge.rc:2EBBDDD6
+#: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Vasen tiedostokoko lyhennettynä."
 
-#: Merge.rc:21DC7C32
+#: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Oikea tiedostokoko lyhennettynä."
 
-#: Merge.rc:BA50069
+#: Merge.rc:BA5006A
 #, c-format
 msgid "Middle file size abbreviated."
 msgstr ""
@@ -4069,17 +3961,17 @@ msgstr ""
 msgid "Short comparison result."
 msgstr "Lyhyt vertailutulos."
 
-#: Merge.rc:20155F5A
+#: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
 msgstr "Vasemman puolen määritteet."
 
-#: Merge.rc:6DBD6125
+#: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
 msgstr "Oikean puolen määritteet."
 
-#: Merge.rc:7F2E411A
+#: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle side attributes."
 msgstr ""
@@ -4230,7 +4122,7 @@ msgstr ""
 
 #: Merge.rc:4A700AB0
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr "Eri koodisivut vasemman (cp%d) ja oikean (cp%d) puolen tiedostoilla.\nTiedostojen näyttäminen omalla koodivullaan antaa paremman näytön, mutta yhdistäminen/kopiointi on vaarallista.\nHaluatko käsitellä molemmat tiedostot Windowsin oletusmerkistöllä (suositus)?"
 
 #: Merge.rc:5851E4C8
@@ -4263,7 +4155,7 @@ msgstr "Ei eroja"
 msgid "Line difference"
 msgstr "Rivien välinen ero"
 
-#: Merge.rc:6DBD6126
+#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "Korvattu %1 merkkijono(a)."
@@ -4308,7 +4200,7 @@ msgstr ""
 msgid "Location Pane"
 msgstr "Sijaintiruutu"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Eroavuusruutu"
@@ -4433,6 +4325,11 @@ msgstr "Olet sulkemassa useita vertailuikkunoita.\n\nHaluatko jatkaa?"
 msgid "Mixed"
 msgstr "Mixed"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Ei mitään"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4443,7 +4340,7 @@ msgstr "Tyyppi"
 msgid "Unpacker"
 msgstr "Purkaja"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Esivertailu"
@@ -4673,9 +4570,9 @@ msgstr ""
 msgid "&Image"
 msgstr ""
 
-#: Merge.rc:4D3A8E6D
+#: Merge.rc:3D9427A9
 #, c-format
-msgid "frhed(http://frhed.sourceforge.net/) not installed"
+msgid "frhed is not installed"
 msgstr ""
 
 #: Merge.rc:73B321AA

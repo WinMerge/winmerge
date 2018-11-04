@@ -81,7 +81,7 @@ void CLocationBar::OnLButtonDown(UINT nFlags, CPoint point)
 	TViewBarBase::OnLButtonDown(nFlags, point);
 	if (m_pDockBar != NULL)
 	{
-		if (IsVertDocked() == FALSE)
+		if (!IsVertDocked())
 			m_pDockContext->ToggleDocking();
 	}
 }

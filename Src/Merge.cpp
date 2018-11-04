@@ -66,7 +66,6 @@
 #include "JumpList.h"
 #include "stringdiffs.h"
 #include "TFile.h"
-#include "SourceControl.h"
 #include "paths.h"
 #include "CompareStats.h"
 #include "TestMain.h"
@@ -106,7 +105,7 @@ END_MESSAGE_MAP()
 // CMergeApp construction
 
 CMergeApp::CMergeApp() :
-  m_bNeedIdleTimer(FALSE)
+  m_bNeedIdleTimer(false)
 , m_pOpenTemplate(0)
 , m_pDiffTemplate(0)
 , m_pHexMergeTemplate(0)
@@ -118,15 +117,13 @@ CMergeApp::CMergeApp() :
 , m_pGlobalFileFilter(new FileFilterHelper())
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect())
-, m_bEscShutdown(FALSE)
-, m_bClearCaseTool(FALSE)
+, m_bEscShutdown(false)
 , m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
 , m_pLineFilters(new LineFiltersList())
 , m_pFilterCommentsManager(new FilterCommentsManager())
 , m_pSyntaxColors(new SyntaxColors())
 , m_pMarkers(new CCrystalTextMarkers())
-, m_pSourceControl(new SourceControl())
-, m_bMergingMode(FALSE)
+, m_bMergingMode(false)
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
@@ -207,19 +204,32 @@ BOOL CMergeApp::InitInstance()
 
 	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
 	ApplyCommandLineConfigOptions(cmdInfo);
+	if (cmdInfo.m_sErrorMessages.size() > 0)
+	{
+		if (AttachConsole(static_cast<DWORD>(-1)))
+		{
+			DWORD dwWritten;
+			for (auto& msg : cmdInfo.m_sErrorMessages)
+			{
+				String line = _T("WinMerge: ") + msg + _T("\n");
+				WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), line.c_str(), static_cast<DWORD>(line.length()), &dwWritten, NULL);
+			}
+			FreeConsole();
+		}
+	}
 
 	// Initialize temp folder
 	SetupTempPath();
 
 	// If paths were given to commandline we consider this being an invoke from
 	// commandline (from other application, shellextension etc).
-	BOOL bCommandLineInvoke = cmdInfo.m_Files.GetSize() > 0;
+	bool bCommandLineInvoke = cmdInfo.m_Files.GetSize() > 0;
 
 	// WinMerge registry settings are stored under HKEY_CURRENT_USER/Software/Thingamahoochie
 	// This is the name of the company of the original author (Dean Grimm)
 	SetRegistryKey(_T("Thingamahoochie"));
 
-	BOOL bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE) ||
+	bool bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE) ||
 		(true == cmdInfo.m_bSingleInstance);
 
 	// Create exclusion mutex name
@@ -262,7 +272,7 @@ BOOL CMergeApp::InitInstance()
 	// Read last used filter from registry
 	// If filter fails to set, reset to default
 	const String filterString = m_pOptions->GetString(OPT_FILEFILTER_CURRENT);
-	BOOL bFilterSet = m_pGlobalFileFilter->SetFilter(filterString);
+	bool bFilterSet = m_pGlobalFileFilter->SetFilter(filterString);
 	if (!bFilterSet)
 	{
 		String filter = m_pGlobalFileFilter->GetFilterNameOrMask();
@@ -271,9 +281,6 @@ BOOL CMergeApp::InitInstance()
 
 	charsets_init();
 	UpdateCodepageModule();
-
-	if (m_pSourceControl)
-		m_pSourceControl->InitializeSourceControlMembers();
 
 	FileTransform::g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	FileTransform::g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
@@ -403,15 +410,15 @@ BOOL CMergeApp::InitInstance()
 
 	// Since this function actually opens paths for compare it must be
 	// called after initializing CMainFrame!
-	BOOL bContinue = TRUE;
-	if (ParseArgsAndDoOpen(cmdInfo, pMainFrame) == FALSE && bCommandLineInvoke)
-		bContinue = FALSE;
+	bool bContinue = true;
+	if (!ParseArgsAndDoOpen(cmdInfo, pMainFrame) && bCommandLineInvoke)
+		bContinue = false;
 
 	if (hMutex)
 		ReleaseMutex(hMutex);
 
 	// If user wants to cancel the compare, close WinMerge
-	if (bContinue == FALSE)
+	if (!bContinue)
 	{
 		pMainFrame->PostMessage(WM_CLOSE, 0, 0);
 	}
@@ -507,7 +514,7 @@ int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
  */
 void CMergeApp::SetNeedIdleTimer()
 {
-	m_bNeedIdleTimer = TRUE; 
+	m_bNeedIdleTimer = true; 
 }
 
 bool CMergeApp::IsReallyIdle() const
@@ -534,7 +541,7 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 	// If anyone has requested notification when next idle occurs, send it
 	if (m_bNeedIdleTimer)
 	{
-		m_bNeedIdleTimer = FALSE;
+		m_bNeedIdleTimer = false;
 		m_pMainWnd->SendMessageToDescendants(WM_TIMER, IDLE_TIMER, lCount, TRUE, FALSE);
 	}
 
@@ -577,13 +584,7 @@ void CMergeApp::ApplyCommandLineConfigOptions(MergeCmdLineInfo& cmdInfo)
 			}
 			else
 			{
-				String msg = strutils::format_string1(_T("WinMerge: Invalid key '%1' specified in /config option\n"), it.first);
-				if (AttachConsole(static_cast<DWORD>(-1)))
-				{
-					DWORD dwWritten;
-					WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), msg.c_str(), static_cast<DWORD>(msg.length()), &dwWritten, NULL);
-					FreeConsole();
-				}
+				cmdInfo.m_sErrorMessages.push_back(strutils::format_string1(_T("Invalid key '%1' specified in /config option"), it.first));
 			}
 		}
 	}
@@ -596,11 +597,11 @@ void CMergeApp::ApplyCommandLineConfigOptions(MergeCmdLineInfo& cmdInfo)
  * MergeCmdLineInfo class.
  * @param [in] cmdInfo Commandline parameters info.
  * @param [in] pMainFrame Pointer to application main frame.
- * @return TRUE if we opened the compare, FALSE if the compare was canceled.
+ * @return `true` if we opened the compare, `false` if the compare was canceled.
  */
-BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame)
+bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame)
 {
-	BOOL bCompared = FALSE;
+	bool bCompared = false;
 	String strDesc[3];
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
@@ -626,7 +627,6 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	{
 		// Set the required information we need from the command line:
 
-		m_bClearCaseTool = cmdInfo.m_bClearCaseTool;
 		m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;
 		m_bEscShutdown = cmdInfo.m_bEscShutdown;
 
@@ -685,7 +685,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
 		{
-			BOOL showFiles = m_pOptions->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
+			bool showFiles = m_pOptions->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
 			if (showFiles)
 				pMainFrame->DoFileOpen();
 		}
@@ -771,11 +771,11 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 		sCmd += _T("\"");
 	}
 
-	BOOL retVal = FALSE;
+	bool retVal = false;
 	STARTUPINFO stInfo = { sizeof STARTUPINFO };
 	PROCESS_INFORMATION processInfo;
 
-	retVal = CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
+	retVal = !!CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
 		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
 		&stInfo, &processInfo);
 
@@ -841,17 +841,17 @@ void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
  * succeeded or failed.
  * @param [in] bFolder Are we creating backup in folder compare?
  * @param [in] pszPath Full path to file to backup.
- * @return TRUE if backup succeeds, or isn't just done.
+ * @return `true` if backup succeeds, or isn't just done.
  */
-BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
+bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 {
 	// If user doesn't want to backups in folder compare, return
 	// success so operations don't abort.
 	if (bFolder && !(GetOptionsMgr()->GetBool(OPT_BACKUP_FOLDERCMP)))
-		return TRUE;
+		return true;
 	// Likewise if user doesn't want backups in file compare
 	else if (!bFolder && !(GetOptionsMgr()->GetBool(OPT_BACKUP_FILECMP)))
-		return TRUE;
+		return true;
 
 	// create backup copy of file if destination file exists
 	if (paths::DoesPathExist(pszPath) == paths::IS_EXISTING_FILE)
@@ -885,7 +885,7 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 			_RPTF0(_CRT_ERROR, "Unknown backup location!");
 		}
 
-		BOOL success = FALSE;
+		bool success = false;
 		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK))
 		{
 			// Don't add dot if there is no existing extension
@@ -913,7 +913,7 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 		if ((bakPath.length() + filename.length() + ext.length())
 			< MAX_PATH_FULL)
 		{
-			success = TRUE;
+			success = true;
 			bakPath = paths::ConcatPath(bakPath, filename);
 			bakPath += _T(".");
 			bakPath += ext;
@@ -921,7 +921,7 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 
 		if (success)
 		{
-			success = CopyFileW(TFile(pszPath).wpath().c_str(), TFile(bakPath).wpath().c_str(), FALSE);
+			success = !!CopyFileW(TFile(pszPath).wpath().c_str(), TFile(bakPath).wpath().c_str(), FALSE);
 		}
 		
 		if (!success)
@@ -930,44 +930,13 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 				_("Unable to backup original file:\n%1\n\nContinue anyway?"),
 				pszPath);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN) != IDYES)
-				return FALSE;
+				return false;
 		}
-		return TRUE;
+		return true;
 	}
 
 	// we got here because we're either not backing up of there was nothing to backup
-	return TRUE;
-}
-
-/**
- * @brief Sync file to Version Control System
- * @param pszDest [in] Where to copy (incl. filename)
- * @param bApplyToAll [in,out] Apply user selection to all items
- * @param psError [out] Error string that can be shown to user in caller func
- * @return User selection or -1 if error happened
- * @sa CMainFrame::HandleReadonlySave()
- * @sa CDirView::PerformActionList()
- */
-int CMergeApp::SyncFileToVCS(const String& pszDest, BOOL &bApplyToAll,
-	String& sError)
-{
-	String sActionError;
-	String strSavePath(pszDest);
-	int nVerSys = 0;
-
-	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
-	
-	int nRetVal = HandleReadonlySave(strSavePath, TRUE, bApplyToAll);
-	if (nRetVal == IDCANCEL || nRetVal == IDNO)
-		return nRetVal;
-	
-	// If VC project opened from VSS sync and version control used
-	if ((nVerSys == SourceControl::VCS_VSS4 || nVerSys == SourceControl::VCS_VSS5) && m_pSourceControl->m_bVCProjSync)
-	{
-		if (!m_pSourceControl->m_vssHelper.ReLinkVCProj(strSavePath, sError))
-			nRetVal = -1;
-	}
-	return nRetVal;
+	return true;
 }
 
 /**
@@ -984,17 +953,16 @@ int CMergeApp::SyncFileToVCS(const String& pszDest, BOOL &bApplyToAll,
  * @sa CMainFrame::SyncFileToVCS()
  * @sa CMergeDoc::DoSave()
  */
-int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
-		BOOL &bApplyToAll)
+int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
+		bool &bApplyToAll)
 {
 	CFileStatus status;
 	int nRetVal = IDOK;
-	BOOL bFileRO = FALSE;
-	BOOL bFileExists = FALSE;
+	bool bFileRO = false;
+	bool bFileExists = false;
 	String s;
 	String str;
 	CString title;
-	int nVerSys = 0;
 
 	if (!strSavePath.empty())
 	{
@@ -1010,22 +978,9 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		}
 	}
 
-	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
-	
 	if (bFileExists && bFileRO)
 	{
 		UINT userChoice = 0;
-		// Version control system used?
-		// Checkout file from VCS and modify, don't ask about overwriting
-		// RO files etc.
-		if (nVerSys != SourceControl::VCS_NONE)
-		{
-			bool bRetVal = m_pSourceControl->SaveToVersionControl(strSavePath);
-			if (bRetVal)
-				return IDYES;
-			else
-				return IDCANCEL;
-		}
 		
 		// Don't ask again if its already asked
 		if (bApplyToAll)
@@ -1067,7 +1022,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		case IDNO:
 			if (!bMultiFile)
 			{
-				if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, FALSE, strSavePath.c_str()))
+				if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, strSavePath.c_str()))
 				{
 					strSavePath = s;
 					nRetVal = IDNO;
@@ -1086,37 +1041,6 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		}
 	}
 	return nRetVal;
-}
-
-/**
- * @brief Shows VSS error from exception and writes log.
- */
-void CMergeApp::ShowVSSError(CException *e, const String& strItem)
-{
-	TCHAR errStr[1024] = {0};
-	if (e->GetErrorMessage(errStr, 1024))
-	{
-		String errMsg = theApp.LoadString(IDS_VSS_ERRORFROM);
-		String logMsg = errMsg;
-		errMsg += _T("\n");
-		errMsg += errStr;
-		logMsg += _T(" ");
-		logMsg += errStr;
-		if (!strItem.empty())
-		{
-			errMsg += _T("\n\n");
-			errMsg += strItem;
-			logMsg += _T(": ");
-			logMsg += strItem;
-		}
-		LogErrorString(logMsg);
-		AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
-	}
-	else
-	{
-		LogErrorString(_T("VSSError (unable to GetErrorMessage)"));
-		e->ReportError(MB_ICONSTOP, IDS_VSS_RUN_ERROR);
-	}
 }
 
 /**
@@ -1176,7 +1100,7 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
 /** 
  * @brief Read project and perform comparison specified
  * @param [in] sProject Full path to project file.
- * @return TRUE if loading project file and starting compare succeeded.
+ * @return `true` if loading project file and starting compare succeeded.
  */
 bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sReportFile)
 {
@@ -1184,12 +1108,12 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	if (!LoadProjectFile(sProject, project))
 		return false;
 	
-	PathContext files;
-	BOOL bLeftReadOnly = FALSE;
-	BOOL bMiddleReadOnly = FALSE;
-	BOOL bRightReadOnly = FALSE;
-	bool bRecursive = FALSE;
-	project.GetPaths(files, bRecursive);
+	PathContext tFiles;
+	bool bLeftReadOnly = false;
+	bool bMiddleReadOnly = false;
+	bool bRightReadOnly = false;
+	bool bRecursive = false;
+	project.GetPaths(tFiles, bRecursive);
 	bLeftReadOnly = project.GetLeftReadOnly();
 	bMiddleReadOnly = project.GetMiddleReadOnly();
 	bRightReadOnly = project.GetRightReadOnly();
@@ -1203,13 +1127,13 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		bRecursive = project.GetSubfolders() > 0;
 
 	DWORD dwFlags[3] = {
-		static_cast<DWORD>(files.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-		static_cast<DWORD>(files.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-		static_cast<DWORD>(files.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT)
+		static_cast<DWORD>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
+		static_cast<DWORD>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
+		static_cast<DWORD>(tFiles.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT)
 	};
 	if (bLeftReadOnly)
 		dwFlags[0] |= FFILEOPEN_READONLY;
-	if (files.GetSize() == 2)
+	if (tFiles.GetSize() == 2)
 	{
 		if (bRightReadOnly)
 			dwFlags[1] |= FFILEOPEN_READONLY;
@@ -1224,10 +1148,10 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
 	
-	BOOL rtn = GetMainFrame()->DoFileOpen(&files, dwFlags, NULL, sReportFile, bRecursive);
+	bool rtn = GetMainFrame()->DoFileOpen(&tFiles, dwFlags, NULL, sReportFile, bRecursive);
 
 	AddToRecentProjectsMRU(sProject.c_str());
-	return !!rtn;
+	return rtn;
 }
 
 /**

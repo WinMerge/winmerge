@@ -88,7 +88,7 @@ CLocationView::CLocationView()
 	, m_hwndFrame(nullptr)
 	, m_pSavedBackgroundBitmap(nullptr)
 	, m_bDrawn(false)
-	, m_bRecalculateBlocks(TRUE) // calculate for the first time
+	, m_bRecalculateBlocks(true) // calculate for the first time
 {
 	// NB: set m_bIgnoreTrivials to false to see trivial diffs in the LocationView
 	// There is no GUI to do this
@@ -114,10 +114,6 @@ BEGIN_MESSAGE_MAP(CLocationView, CView)
 	ON_WM_SIZE()
 	ON_WM_VSCROLL()
 	ON_WM_ERASEBKGND()
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_LEFT, OnUpdateFileSaveLeft)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_MIDDLE, OnUpdateFileSaveMiddle)
-	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -155,7 +151,7 @@ CMergeDoc* CLocationView::GetDocument() // non-debug version is inline
  */
 void CLocationView::ForceRecalculate()
 {
-	m_bRecalculateBlocks = TRUE;
+	m_bRecalculateBlocks = true;
 	Invalidate();
 }
 
@@ -167,7 +163,7 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 	UNREFERENCED_PARAMETER(pSender);
 	UNREFERENCED_PARAMETER(lHint);
 
-	m_bRecalculateBlocks = TRUE;
+	m_bRecalculateBlocks = true;
 	Invalidate();
 }
 
@@ -312,7 +308,7 @@ void CLocationView::CalculateBlocks()
 
 		nDiff = pDoc->m_diffList.NextSignificantDiff(nDiff);
 	}
-	m_bRecalculateBlocks = FALSE;
+	m_bRecalculateBlocks = false;
 }
 
 /**
@@ -369,14 +365,14 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	if (!pDoc->GetView(nGroup, 0)->IsInitialized()) return;
 
-	BOOL bEditedAfterRescan = FALSE;
+	bool bEditedAfterRescan = false;
 	int nPaneNotModified = -1;
 	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
 		if (!pDoc->IsEditedAfterRescan(pane))
 			nPaneNotModified = pane;
 		else
-			bEditedAfterRescan = TRUE;
+			bEditedAfterRescan = true;
 	}
 
 	CRect rc;
@@ -430,8 +426,8 @@ void CLocationView::OnDraw(CDC* pDC)
 	if (m_bRecalculateBlocks)
 		CalculateBlocks();
 
-	int nPrevEndY = -1;
-	const int nCurDiff = pDoc->GetCurrentDiff();
+	unsigned nPrevEndY = static_cast<unsigned>(-1);
+	const unsigned nCurDiff = pDoc->GetCurrentDiff();
 
 	vector<DiffBlock>::const_iterator iter = m_diffBlocks.begin();
 	for (; iter != m_diffBlocks.end(); ++iter)
@@ -439,7 +435,7 @@ void CLocationView::OnDraw(CDC* pDC)
 		if (nPaneNotModified == -1)
 			continue;
 		CMergeEditView *pView = pDoc->GetView(nGroup, nPaneNotModified);
-		const BOOL bInsideDiff = (nCurDiff == (*iter).diff_index);
+		const bool bInsideDiff = (nCurDiff == (*iter).diff_index);
 
 		if ((nPrevEndY != (*iter).bottom_coord) || bInsideDiff)
 		{
@@ -467,8 +463,8 @@ void CLocationView::OnDraw(CDC* pDC)
 		nPrevEndY = (*iter).bottom_coord;
 
 		// Test if we draw a connector
-		BOOL bDisplayConnectorFromLeft = FALSE;
-		BOOL bDisplayConnectorFromRight = FALSE;
+		bool bDisplayConnectorFromLeft = false;
+		bool bDisplayConnectorFromRight = false;
 
 		switch (m_displayMovedBlocks)
 		{
@@ -477,12 +473,12 @@ void CLocationView::OnDraw(CDC* pDC)
 			if (!bInsideDiff)
 				break;
 			// two sides may be linked to a block somewhere else
-			bDisplayConnectorFromLeft = TRUE;
-			bDisplayConnectorFromRight = TRUE;
+			bDisplayConnectorFromLeft = true;
+			bDisplayConnectorFromRight = true;
 			break;
 		case DISPLAY_MOVED_ALL:
 			// we display all moved blocks, so once direction is enough
-			bDisplayConnectorFromLeft = TRUE;
+			bDisplayConnectorFromLeft = true;
 			break;
 		default:
 			break;
@@ -572,7 +568,7 @@ void CLocationView::OnDraw(CDC* pDC)
  * @param [in] cr Color for rectangle.
  * @param [in] bSelected Is rectangle for selected difference?
  */
-void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL bSelected)
+void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, bool bSelected /*= false*/)
 {
 	// Draw only colored blocks
 	if (cr != CLR_NONE && cr != GetSysColor(COLOR_WINDOW))
@@ -687,11 +683,11 @@ void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point)
  * cannot be used to scroll to ghost lines.
  *
  * @param [in] point Point to move to
- * @param [in] bRealLine TRUE if we want to scroll using real line num,
+ * @param [in] bRealLine `true` if we want to scroll using real line num,
  * FALSE if view linenumbers are OK.
- * @return TRUE if succeeds, FALSE if point not inside bars.
+ * @return `true` if succeeds, `false` if point not inside bars.
  */
-bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine)
+bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine /*= true*/)
 {
 	CRect rc;
 	GetClientRect(rc);
@@ -710,7 +706,7 @@ bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine)
 	{
 		// Outside bars, use left bar
 		bar = BAR_0;
-		line = GetLineFromYPos(point.y, bar, FALSE);
+		line = GetLineFromYPos(point.y, bar, false);
 	}
 	else
 		return false;
@@ -844,7 +840,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
  * @param [in] bRealLine TRUE if real line is returned, FALSE for view line
  * @return 0-based index of view/real line in file [0...lines-1]
  */
-int CLocationView::GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine)
+int CLocationView::GetLineFromYPos(int nYCoord, int bar, bool bRealLine /*= true*/)
 {
 	CMergeEditView *pView = GetDocument()->GetActiveMergeGroupView(bar);
 
@@ -872,7 +868,7 @@ int CLocationView::GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine)
 	}
 
 	// We've got a view line now
-	if (bRealLine == FALSE)
+	if (!bRealLine)
 		return nLine;
 
 	// Get real line (exclude ghost lines)
@@ -1063,7 +1059,7 @@ void CLocationView::OnSize(UINT nType, int cx, int cy)
 	// TODO: Perhaps this should be determined from need to change bar size?
 	// And we could change bar sizes more lazily, not from every one pixel change in size?
 	if (cy != m_currentSize.cy)
-		m_bRecalculateBlocks = TRUE;
+		m_bRecalculateBlocks = true;
 
 	if (cx != m_currentSize.cx)
 	{
@@ -1112,40 +1108,4 @@ void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 
 	pDC->SelectObject(pOldBrush);
 	pDC->SelectObject(oldObj);
-}
-
-/**
- * @brief Called when "Save" item is updated
- */
-void CLocationView::OnUpdateFileSave(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(pd->m_ptBuf[0]->IsModified() || pd->m_ptBuf[1]->IsModified());
-}
-
-/**
- * @brief Called when "Save left (as...)" item is updated
- */
-void CLocationView::OnUpdateFileSaveLeft(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(!pd->m_ptBuf[0]->GetReadOnly() && pd->m_ptBuf[0]->IsModified());
-}
-
-/**
- * @brief Called when "Save Middle (as...)" item is updated
- */
-void CLocationView::OnUpdateFileSaveMiddle(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(pd->m_nBuffers > 2 && !pd->m_ptBuf[1]->GetReadOnly() && pd->m_ptBuf[1]->IsModified());
-}
-
-/**
- * @brief Called when "Save right (as...)" item is updated
- */
-void CLocationView::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(!pd->m_ptBuf[pd->m_nBuffers - 1]->GetReadOnly() && pd->m_ptBuf[pd->m_nBuffers - 1]->IsModified());
 }

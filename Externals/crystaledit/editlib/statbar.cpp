@@ -38,28 +38,28 @@ Create (CWnd * pParentWnd, DWORD dwStyle, UINT nID)
   return bCreatedOK;
 }
 
-BOOL CEditStatusBar::
-SetPaneFormattedText (int nIndex, BOOL bUpdate, LPCTSTR lpszFmt,...)
+bool CEditStatusBar::
+SetPaneFormattedText (int nIndex, bool bUpdate, LPCTSTR lpszFmt,...)
 {
   TCHAR buffer[256];
   va_list argptr;
   va_start (argptr, lpszFmt);
   _vsntprintf_s (buffer, _TRUNCATE, lpszFmt, argptr);
   va_end (argptr);
-  BOOL bResult = SetPaneText (nIndex, buffer, bUpdate);
+  bool bResult = SetPaneText (nIndex, buffer, bUpdate);
   UpdateWindow ();
   return bResult;
 }
 
-BOOL CEditStatusBar::
-SetPaneFormattedText (int nIndex, BOOL bUpdate, UINT nId,...)
+bool CEditStatusBar::
+SetPaneFormattedText (int nIndex, bool bUpdate, UINT nId,...)
 {
   CString str;
   if (str.LoadString (nId))
     {
       va_list argptr;
       va_start (argptr, nId);
-      BOOL bResult = SetPaneFormattedText (nIndex, bUpdate, str, argptr);
+      bool bResult = SetPaneFormattedText (nIndex, bUpdate, str, argptr);
       va_end (argptr);
       return bResult;
     }
@@ -67,14 +67,14 @@ SetPaneFormattedText (int nIndex, BOOL bUpdate, UINT nId,...)
   return false;
 }
 
-BOOL CEditStatusBar::
-SetPaneText (int nIndex, LPCTSTR lpszNewText, BOOL bUpdate /*= true*/ )
+bool CEditStatusBar::
+SetPaneText (int nIndex, LPCTSTR lpszNewText, bool bUpdate /*= true*/ )
 {
-  return CStatusBar::SetPaneText (nIndex, lpszNewText, bUpdate);
+  return !!CStatusBar::SetPaneText (nIndex, lpszNewText, bUpdate);
 }
 
-BOOL CEditStatusBar::
-SetPaneText (int nIndex, UINT nId, BOOL bUpdate /*= true*/ )
+bool CEditStatusBar::
+SetPaneText (int nIndex, UINT nId, bool bUpdate /*= true*/ )
 {
   CString str;
   if (str.LoadString (nId))

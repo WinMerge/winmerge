@@ -71,7 +71,7 @@ CDirDoc::CDirDoc()
 : m_pCtxt(nullptr)
 , m_pDirView(nullptr)
 , m_pCompareStats(nullptr)
-, m_bMarkedRescan(FALSE)
+, m_bMarkedRescan(false)
 , m_pTempPathContext(nullptr)
 , m_bGeneratingReport(false)
 {
@@ -188,7 +188,7 @@ void CDirDoc::LoadLineFilterList()
 {
 	ASSERT(m_pCtxt);
 	
-	BOOL bFilters = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
+	bool bFilters = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	String filters = theApp.m_pLineFilters->GetAsString();
 	if (!bFilters || filters.empty())
 	{
@@ -289,9 +289,9 @@ void CDirDoc::Rescan()
 	m_diffThread.SetContext(m_pCtxt.get());
 	m_diffThread.RemoveListener(this, &CDirDoc::DiffThreadCallback);
 	m_diffThread.AddListener(this, &CDirDoc::DiffThreadCallback);
-	m_diffThread.SetCompareSelected(!!m_bMarkedRescan);
+	m_diffThread.SetCompareSelected(m_bMarkedRescan);
 	m_diffThread.CompareDirectories();
-	m_bMarkedRescan = FALSE;
+	m_bMarkedRescan = false;
 }
 
 /**
@@ -357,7 +357,7 @@ void CDirDoc::UpdateResources()
 	if (m_pDirView)
 		m_pDirView->UpdateResources();
 
-	SetTitle(0);
+	SetTitle(NULL);
 
 	Redisplay();
 }
@@ -412,14 +412,14 @@ void CDirDoc::MergeDocClosing(IMergeDoc * pMergeDoc)
  *
  * Asks confirmation for docs containing unsaved data and then
  * closes MergeDocs.
- * @return TRUE if success, FALSE if user canceled or closing failed
+ * @return `true` if success, `false` if user canceled or closing failed
  */
-BOOL CDirDoc::CloseMergeDocs()
+bool CDirDoc::CloseMergeDocs()
 {
 	while (!m_MergeDocs.IsEmpty())
 		if (!m_MergeDocs.GetTail()->CloseNow())
-			return FALSE;
-	return TRUE;
+			return false;
+	return true;
 }
 
 /**
@@ -430,12 +430,28 @@ BOOL CDirDoc::CloseMergeDocs()
  * @param [in] bIdentical TRUE if files became identical, FALSE otherwise.
  */
 void CDirDoc::UpdateChangedItem(PathContext &paths,
-	UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical)
+	UINT nDiffs, UINT nTrivialDiffs, bool bIdentical)
 {
-	uintptr_t pos = FindItemFromPaths(*m_pCtxt, paths.GetLeft(), paths.GetRight());
+	uintptr_t pos = FindItemFromPaths(*m_pCtxt, paths);
 	// If we failed files could have been swapped so lets try again
 	if (!pos)
-		pos = FindItemFromPaths(*m_pCtxt, paths.GetRight(), paths.GetLeft());
+	{
+		PathContext pathsSwapped(paths);
+		std::swap(paths[0], paths[static_cast<int>(paths.size() - 1)]);
+		pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
+		if (!pos && paths.size() > 2)
+		{
+			pathsSwapped = paths;
+			std::swap(paths[0], paths[1]);
+			pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
+			if (!pos && paths.size() > 2)
+			{
+				pathsSwapped = paths;
+				std::swap(paths[1], paths[2]);
+				pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
+			}
+		}
+	}
 	
 	// Update status if paths were found for items.
 	// Fail means we had unique items compared as 'renamed' items

@@ -20,7 +20,8 @@
               <primary>ANSI</primary>
               <secondary>WinMerge support</secondary>
             </indexterm>Beginning with Version 2.14, WinMerge ended support for
-            older 32-bit Windows systems, including Windows 9x, ME, and NT4. </para>
+	    older 32-bit Windows systems, including Windows 9x, ME, and NT4.
+	    In addition, WinMerge version 2.16 does not support Windows 2000.</para>
           <para>Previously, WinMerge provided an ANSI (8-bit) executable,
               <filename>WinMerge.exe</filename>, that was designed around the
             old Windows codepages. <filename>WinMerge.exe</filename> internally
@@ -50,22 +51,6 @@
 
       <qandaentry>
         <question>
-          <para>That splash screen is annoying, how do I turn it off?</para>
-        </question>
-
-        <answer>
-          <para>In the WinMerge menu, click <menuchoice>
-              <guimenu>Edit</guimenu>
-
-              <guisubmenu>Options</guisubmenu>
-            </menuchoice>. In the Options window General page, deselect
-          (uncheck) the option, <guilabel>Disable Splash
-          Screen</guilabel>.</para>
-        </answer>
-      </qandaentry>
-
-      <qandaentry>
-        <question>
           <para>I want to compare folders, but I cannot select a folder in the
           Browse dialog.<indexterm>
               <primary>folders</primary>
@@ -83,22 +68,6 @@
           the <guilabel>File name</guilabel> field and click
           <guibutton>Open</guibutton>. If the file name you enter is not found,
           WinMerge opens the folder.</para>
-        </answer>
-      </qandaentry>
-
-      <qandaentry>
-        <question>
-          <para>Does WinMerge support merging three files (sometimes called
-          <wordasword>3-way merge</wordasword>), where one file is the ancestor?
-          This would be useful for version control!</para>
-        </question>
-
-        <answer>
-          <para>Unfortunately not. We recognize that it would be a good feature,
-          but have no plans to implement it in near future. You can work around
-          this limitation somewhat by using two WinMerge instances, or by using
-          a third path parameter on the command line. See <xref
-          linkend="Command_line" /> for more information.</para>
         </answer>
       </qandaentry>
 
@@ -166,11 +135,6 @@
 
           <itemizedlist>
             <listitem>
-              <para>Install archive support, as described in <xref
-              linkend="Installing_archive_support" />.</para>
-            </listitem>
-
-            <listitem>
               <para>In WinMerge, click the <guibutton>Options</guibutton> button
               (or click <menuchoice>
                   <guimenu>Edit</guimenu>
@@ -201,69 +165,6 @@
         </answer>
       </qandaentry>
 
-      <qandaentry>
-        <question>
-          <para>WinMerge shows an error (or even crashes!) complaining it cannot
-          load <filename>CompareMSWordFiles.dll</filename> or
-          <filename>CompareMSExcelFiles.dll</filename>!<indexterm>
-              <primary>Visual Basic dlls for plugins</primary>
-            </indexterm><indexterm>
-              <primary>plugins</primary>
-
-              <secondary>Visual Basic dlls</secondary>
-            </indexterm><indexterm>
-              <primary>CompareMSWordFiles.dll plugin file</primary>
-            </indexterm><indexterm>
-              <primary>CompareMSExcelFiles.dll plugin file</primary>
-            </indexterm></para>
-        </question>
-
-        <answer>
-          <para>These files are plugins written with Visual Basic (6.0). The
-          WinMerge installer does not contain Visual Basic runtime files, so
-          those plugins cannot be loaded. You can address the problem using one
-          of these options:</para>
-
-          <itemizedlist>
-            <listitem>
-              <para>Remove these files from the <filename
-              class="directory">WinMerge/Plugins</filename> folder.</para>
-            </listitem>
-
-            <listitem>
-              <para>Download the Visual Basic 6.0 runtime distribution from
-              <trademark class="registered">Microsoft</trademark>:<ulink
-              url="http://support.microsoft.com/kb/290887">http://support.microsoft.com/kb/290887</ulink>
-              and install it. Or, download just the files you need from: <ulink
-              url="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60</ulink>
-              and copy them to the <filename
-              class="directory">WinMerge</filename> folder.</para>
-            </listitem>
-          </itemizedlist>
-        </answer>
-      </qandaentry>
-    </qandaset>
-  </section>
-
-  <section>
-    <title>Installing</title>
-
-    <qandaset>
-      <qandaentry>
-        <question>
-          <para>WinMerge does not start and complains about missing DLL files
-          (<filename>mfc90.dll</filename>, <filename>mfc90u.dll</filename>,
-          <filename>msvcr90.dll</filename>, and
-          <filename>msvcp90.dll</filename>)</para>
-        </question>
-
-        <answer>
-          <para>When installing WinMerge from an archive (zip or 7z) file, you
-          also need the runtime package containing those files. See the <xref
-          linkend="InstallFromArchive" /> in the installation Help topic for
-          details.</para>
-        </answer>
-      </qandaentry>
     </qandaset>
   </section>
 
@@ -295,20 +196,6 @@
     <title>Questions about editor</title>
 
     <qandaset>
-      <qandaentry>
-        <question>
-          <para>Why are some characters cut in half?</para>
-        </question>
-
-        <answer>
-          <para>Try clicking <menuchoice>
-              <guimenu>View</guimenu>
-
-              <guimenuitem>Select Font</guimenuitem>
-            </menuchoice> and selecting a different font.</para>
-        </answer>
-      </qandaentry>
-
       <qandaentry>
         <question>
           <para>I see question marks instead of letters in files.</para>
@@ -381,9 +268,10 @@
         </question>
 
         <answer>
-          <para>No, you can't. Many users have requested this feature but we
-          don't have any plans to implement it. We don't believe it would really
-          improve usability.</para>
+          <para>Yes, you can show only different lines by clicking <menuchoice>
+              <guimenu>View</guimenu><guimenuitem>Diff Context</guimenuitem>
+              <guimenuitem>0 lines</guimenuitem>
+            </menuchoice>.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -462,35 +350,6 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>I installed 7-Zip but archive support does not work.</para>
-        </question>
-
-        <answer>
-          <para>You might have one of these problems:</para>
-
-          <itemizedlist>
-            <listitem>
-              <para>Do you have the plugin installed, and does the plugin
-              version match the 7-Zip version? If not, see the instructions for
-              <xref linkend="Installing_archive_support" /> in the installation
-              topic.</para>
-            </listitem>
-
-            <listitem>
-              <para>If the error is something like: <emphasis><errortext>7-zip
-              x.xx missing / Plugin present</errortext></emphasis>, then you
-              probably installed 7-Zip using the MSI installer. Some 7-Zip MSI
-              installers do not install all the files that WinMerge needs
-              (specifically, <filename>7zip_pad.xml</filename> in the 7-Zip
-              program folder). Download and run the <filename>EXE</filename>
-              version of the 7-Zip installer.</para>
-            </listitem>
-          </itemizedlist>
-        </answer>
-      </qandaentry>
-
-      <qandaentry>
-        <question>
           <para>How can I open the Perry-style patch files that WinMerge
           developers use when submitting patches?<indexterm>
               <primary>patch files, Perry-style</primary>
@@ -504,17 +363,6 @@
           selecting the zip file for both the left and right sides. WinMerge
           opens the contents of the zip file in a Folder Compare window,
           comparing the original and changed files.</para>
-        </answer>
-      </qandaentry>
-
-      <qandaentry>
-        <question>
-          <para>I do not want to install 7-zip. Can archive support use other
-          archive tools (like WinZip or WinRar)?</para>
-        </question>
-
-        <answer>
-          <para>Unfortunately WinMerge can only use 7-zip.</para>
         </answer>
       </qandaentry>
 
@@ -630,10 +478,9 @@
         </question>
 
         <answer>
-          <para>No. However, you can apply patches using the patch tool from the
-          GnuWin32 project, because WinMerge produces patch files that are
-          compatible with GNU/diffutils. Also, see the preceding
-          question.</para>
+          <para>You can apply patches using the experimental plugin ApplyPatch.sct.
+          The extensions of patches supported by the plugin are .diff or .patch.
+          </para>
         </answer>
       </qandaentry>
     </qandaset>

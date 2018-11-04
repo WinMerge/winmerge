@@ -30,7 +30,6 @@
 #include "Merge.h"
 #include "ClipBoard.h"
 #include "DirActions.h"
-#include "SourceControl.h"
 #include "DirViewColItems.h"
 #include "DirFrame.h"  // StatePane
 #include "DirDoc.h"
@@ -324,7 +323,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY, OnUpdateOptionsShowDifferentMiddleOnly)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENTRIGHTONLY, OnUpdateOptionsShowDifferentRightOnly)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
-	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
@@ -970,16 +968,9 @@ void CDirView::ConfirmAndPerformActions(FileActionScript & actionList)
 /**
  * @brief Perform an array of actions
  * @note There can be only COPY or DELETE actions, not both!
- * @sa SourceControl::SaveToVersionControl()
- * @sa SourceControl::SyncFilesToVCS()
  */
 void CDirView::PerformActionList(FileActionScript & actionScript)
 {
-	// Reset suppressing VSS dialog for multiple files.
-	// Set in SourceControl::SaveToVersionControl().
-	theApp.m_pSourceControl->m_CheckOutMulti = false;
-	theApp.m_pSourceControl->m_bVssSuppressPathCheck = false;
-
 	// Check option and enable putting deleted items to Recycle Bin
 	if (GetOptionsMgr()->GetBool(OPT_USE_RECYCLE_BIN))
 		actionScript.UseRecycleBin(true);
@@ -1010,13 +1001,6 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		// Start handling from tail of list, so removing items
 		// doesn't invalidate our item indexes.
 		FileActionItem act = actionList.RemoveTailActionItem();
-
-		// Synchronized items may need VCS operations
-		if (act.UIResult == FileActionItem::UI_SYNC)
-		{
-			if (theApp.m_pSourceControl->m_bCheckinVCS)
-				theApp.m_pSourceControl->CheckinToClearCase(act.dest);
-		}
 
 		// Update doc (difflist)
 		UPDATEITEM_TYPE updatetype = UpdateDiffAfterOperation(act, ctxt, GetDiffItem(act.context));
@@ -2674,7 +2658,7 @@ void CDirView::OnToolsGeneratePatch()
 	const CDiffContext& ctxt = GetDiffContext();
 
 	// Get selected items from folder compare
-	BOOL bValidFiles = TRUE;
+	bool bValidFiles = true;
 	for (DirItemIterator it = SelBegin(); bValidFiles && it != SelEnd(); ++it)
 	{
 		const DIFFITEM &item = *it;
@@ -2682,13 +2666,13 @@ void CDirView::OnToolsGeneratePatch()
 		{
 			LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
 				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
-			bValidFiles = FALSE;
+			bValidFiles = false;
 		}
 		else if (item.diffcode.isDirectory())
 		{
 			LangMessageBox(IDS_CANNOT_CREATE_DIRPATCH, MB_ICONWARNING |
 				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_DIRPATCH);
-			bValidFiles = FALSE;
+			bValidFiles = false;
 		}
 
 		if (bValidFiles)
@@ -2965,7 +2949,7 @@ void CDirView::OnItemRename()
  */
 void CDirView::OnUpdateItemRename(CCmdUI* pCmdUI)
 {
-	BOOL bEnabled = (1 == m_pList->GetSelectedCount());
+	bool bEnabled = (1 == m_pList->GetSelectedCount());
 	pCmdUI->Enable(bEnabled && SelBegin() != SelEnd());
 }
 
@@ -3529,14 +3513,6 @@ void CDirView::DoFileEncodingDialog()
 void CDirView::OnFileEncoding()
 {
 	DoFileEncodingDialog();
-}
-
-/**
- * @brief Update "File Encoding" item
- */
-void CDirView::OnUpdateFileEncoding(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(TRUE);
 }
 
 /** @brief Open help from mainframe when user presses F1*/

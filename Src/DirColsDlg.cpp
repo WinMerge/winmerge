@@ -151,7 +151,7 @@ void CDirColsDlg::MoveItem(int index, int newIndex)
 {
 	// Get current column data
 	String text =  m_listColumns.GetItemText(index, 0);
-	BOOL checked = m_listColumns.GetCheck(index);
+	bool checked = !!m_listColumns.GetCheck(index);
 	UINT state = m_listColumns.GetItemState(index, LVIS_SELECTED);
 	DWORD_PTR data = m_listColumns.GetItemData(index);
 
@@ -238,7 +238,7 @@ void CDirColsDlg::OnOK()
 
 	for (int i = 0; i < m_listColumns.GetItemCount(); i++)
 	{
-		BOOL checked = m_listColumns.GetCheck(i);
+		bool checked = !!m_listColumns.GetCheck(i);
 		DWORD_PTR data = m_listColumns.GetItemData(i);
 		column & col1 = m_cols[data];
 		if (checked)
@@ -275,7 +275,7 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 		ColumnArray::size_type j;
 		for (j = 0; j < m_cols.size(); j++)
 		{
-			if (m_cols[j].log_col == data)
+			if (static_cast<DWORD_PTR>(m_cols[j].log_col) == data)
 				break;
 		}
 		SetDlgItemText(IDC_COLDLG_DESC, m_cols[j].desc);
@@ -283,7 +283,7 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 		// Disable Up/Down -buttons when first/last items are selected.
 		EnableDlgItem(IDC_UP, ind != 0);
 		EnableDlgItem(IDC_DOWN,
-			ind != m_listColumns.GetItemCount() - m_listColumns.GetSelectedCount());
+			ind != m_listColumns.GetItemCount() - static_cast<int>(m_listColumns.GetSelectedCount()));
 	}
 	*pResult = 0;
 }

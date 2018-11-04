@@ -50,7 +50,6 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pageEditor(regOptions)
 , m_pageSystem(regOptions)
 , m_pageBackups(regOptions)
-, m_pageVss(regOptions)
 , m_pageShell(regOptions)
 , m_pageCompareFolder(regOptions)
 , m_pageCompareBinary(regOptions)
@@ -108,7 +107,6 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageArchive, IDS_OPTIONSPG_ARCHIVE);
 	AddPage(&m_pageSystem, IDS_OPTIONSPG_SYSTEM);
 	AddPage(&m_pageBackups, IDS_OPTIONSPG_BACKUPS);
-	AddPage(&m_pageVss, IDS_OPTIONSPG_VERSIONCONTROL);
 	AddPage(&m_pageCodepage, IDS_OPTIONSPG_CODEPAGE);
 	AddPage(&m_pageShell, IDS_OPTIONSPG_SHELL);
 
@@ -269,7 +267,6 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 	m_pageCompareImage.ReadOptions();
 	m_pageEditor.ReadOptions();
 	m_pageCodepage.ReadOptions();
-	m_pageVss.ReadOptions();
 	m_pageArchive.ReadOptions();
 	m_pageBackups.ReadOptions();
 	m_pageShell.ReadOptions();
@@ -288,7 +285,6 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 		SafeUpdatePage(&m_pageCompareImage, FALSE);
 		SafeUpdatePage(&m_pageEditor, FALSE);
 		SafeUpdatePage(&m_pageCodepage, FALSE);
-		SafeUpdatePage(&m_pageVss, FALSE);
 		SafeUpdatePage(&m_pageArchive, FALSE);
 		SafeUpdatePage(&m_pageBackups, FALSE);
 		SafeUpdatePage(&m_pageShell, FALSE);
@@ -312,7 +308,6 @@ void CPreferencesDlg::SaveOptions()
 	m_pageSyntaxColors.WriteOptions();
 	m_pageMarkerColors.WriteOptions();
 	m_pageCodepage.WriteOptions();
-	m_pageVss.WriteOptions();	
 	m_pageArchive.WriteOptions();
 	m_pageBackups.WriteOptions();
 	m_pageShell.WriteOptions();
@@ -329,12 +324,12 @@ void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
 void CPreferencesDlg::OnImportButton()
 {
 	String s;
-	if (SelectFile(GetSafeHwnd(), s, TRUE, NULL, _("Select file for import"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
+	if (SelectFile(GetSafeHwnd(), s, true, NULL, _("Select file for import"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
 	{
 		if (m_pOptionsMgr->ImportOptions(s) == COption::OPT_OK)
 		{
 			Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors);
-			ReadOptions(TRUE);
+			ReadOptions(true);
 			LangMessageBox(IDS_OPT_IMPORT_DONE, MB_ICONINFORMATION);
 		}
 		else
@@ -348,7 +343,7 @@ void CPreferencesDlg::OnImportButton()
 void CPreferencesDlg::OnExportButton()
 {
 	String settingsFile;
-	if (SelectFile(GetSafeHwnd(), settingsFile, FALSE, NULL, _("Select file for export"),
+	if (SelectFile(GetSafeHwnd(), settingsFile, false, NULL, _("Select file for export"),
 		_("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
 	{
 		// Add settings file extension if it is missing

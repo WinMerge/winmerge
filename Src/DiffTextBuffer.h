@@ -54,7 +54,7 @@ public :
 		const FileTextEncoding & encoding, CString &sError);
 	int SaveToFile (const String& pszFileName, bool bTempFile, String & sError,
 		PackingInfo * infoUnpacker = NULL, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
-		bool bClearModifiedFlag = TRUE, int nStartLine = 0, int nLines = -1);
+		bool bClearModifiedFlag = true, int nStartLine = 0, int nLines = -1);
 	ucr::UNICODESET getUnicoding() const { return m_encoding.m_unicoding; }
 	void setUnicoding(ucr::UNICODESET value) { m_encoding.m_unicoding = value; }
 	int getCodepage() const { return m_encoding.m_codepage; }
@@ -72,11 +72,11 @@ public :
 	// if line has any text (including eol), set strLine to text (including eol)
 	bool GetFullLine(int nLineIndex, CString &strLine) const;
 
-	virtual void SetModified (bool bModified = TRUE) override;
+	virtual void SetModified (bool bModified = true) override;
 	void prepareForRescan();
 	virtual void OnNotifyLineHasBeenEdited(int nLine) override;
 	bool IsInitialized() const;
 	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
-		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true) override;
+		int nAction = CE_ACTION_UNKNOWN, bool bHistory = true) override;
 };

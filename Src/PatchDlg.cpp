@@ -110,10 +110,10 @@ void CPatchDlg::OnOK()
 	size_t selectCount = m_fileList.size();
 	if (selectCount == 0)
 	{
-		PATCHFILES files;
-		files.lfile = m_file1;
-		files.rfile = m_file2;
-		AddItem(files);
+		PATCHFILES tFiles;
+		tFiles.lfile = m_file1;
+		tFiles.rfile = m_file2;
+		AddItem(tFiles);
 		selectCount = 1;
 	}
 	if (selectCount == 1)
@@ -131,14 +131,14 @@ void CPatchDlg::OnOK()
 			return;
 		}
 
-		PATCHFILES files = m_fileList[0];
-		if (files.lfile != m_file1 && !files.pathLeft.empty())
-			files.pathLeft = _T("");
-		if (files.rfile != m_file2 && !files.pathRight.empty())
-			files.pathRight = _T("");
-		files.lfile = m_file1;
-		files.rfile = m_file2;
-		m_fileList[0] = files;
+		PATCHFILES tFiles = m_fileList[0];
+		if (tFiles.lfile != m_file1 && !tFiles.pathLeft.empty())
+			tFiles.pathLeft = _T("");
+		if (tFiles.rfile != m_file2 && !tFiles.pathRight.empty())
+			tFiles.pathRight = _T("");
+		tFiles.lfile = m_file1;
+		tFiles.rfile = m_file2;
+		m_fileList[0] = tFiles;
 	}
 
 	// Check that result (patch) file is absolute path
@@ -152,7 +152,7 @@ void CPatchDlg::OnOK()
 			m_ctlResult.SetWindowText(m_fileResult.c_str());
 			DeleteFile(m_fileResult.c_str());
 		}
-		if (paths::IsPathAbsolute(m_fileResult) == FALSE)
+		if (!paths::IsPathAbsolute(m_fileResult))
 		{
 			String msg = strutils::format_string1(_("The specified output path is not an absolute path: %1"),
 				m_fileResult);
@@ -224,11 +224,11 @@ BOOL CPatchDlg::OnInitDialog()
 	// If one file added, show filenames on dialog
 	if (count == 1)
 	{
-        const PATCHFILES& files = m_fileList.front();
-		m_file1 = files.lfile;
-		m_ctlFile1.SetWindowText(files.lfile.c_str());
-		m_file2 = files.rfile;
-		m_ctlFile2.SetWindowText(files.rfile.c_str());
+        const PATCHFILES& tFiles = m_fileList.front();
+		m_file1 = tFiles.lfile;
+		m_ctlFile1.SetWindowText(tFiles.lfile.c_str());
+		m_file2 = tFiles.rfile;
+		m_ctlFile2.SetWindowText(tFiles.rfile.c_str());
 	}
 	else if (count > 1)	// Multiple files added, show number of files
 	{
@@ -270,7 +270,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 	String folder;
 
 	folder = m_file1;
-	if (SelectFile(GetSafeHwnd(), s, TRUE, folder.c_str()))
+	if (SelectFile(GetSafeHwnd(), s, true, folder.c_str()))
 		m_ctlFile1.SetWindowText(s.c_str());
 }
 
@@ -283,7 +283,7 @@ void CPatchDlg::OnDiffBrowseFile2()
 	String folder;
 
 	folder = m_file2;
-	if (SelectFile(GetSafeHwnd(), s, TRUE, folder.c_str()))
+	if (SelectFile(GetSafeHwnd(), s, true, folder.c_str()))
 		m_ctlFile2.SetWindowText(s.c_str());
 }
 
@@ -296,7 +296,7 @@ void CPatchDlg::OnDiffBrowseResult()
 	String folder;
 
 	folder = m_fileResult;
-	if (SelectFile(GetSafeHwnd(), s, FALSE, folder.c_str()))
+	if (SelectFile(GetSafeHwnd(), s, false, folder.c_str()))
 		m_ctlResult.SetWindowText(s.c_str());
 }
 
@@ -331,8 +331,6 @@ void CPatchDlg::OnSelchangeDiffStyle()
  */
 void CPatchDlg::OnDiffSwapFiles()
 {
-	PATCHFILES files;
-
 	CString cstrFile1 = m_file1.c_str();
 	CString cstrFile2 = m_file2.c_str();
 	m_ctlFile1.GetWindowText(cstrFile1);

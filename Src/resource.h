@@ -12,18 +12,13 @@
 #define IDR_POPUP_LOCATIONBAR           106
 #define IDD_SAVECLOSING                 107
 #define IDR_MERGEDOCTYPE                109
-#define IDR_MERGEVIEWMENU               109 // = IDR_MERGEDOCTYPE
 #define IDR_DIRDOCTYPE                  110
-#define IDR_DIRVIEWMENU                 110 // = IDR_DIRDOCTYPE
 #define IDR_POPUP_DIFF_OPTIONS          113
 #define IDR_POPUP_IMGMERGEVIEW          114
 #define IDR_POPUP_PROJECT               115
 #define IDD_ABOUTBOX                    200
-#define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
-#define IDD_VSS                         204
 #define IDD_PROPPAGE_GENERAL            205
-#define IDD_CLEARCASE                   206
 #define IDD_PROPPAGE_FILTER             207
 #define IDD_PROPPAGE_SYSTEM             209
 #define IDD_EDITOR_HEADERBAR            210
@@ -111,6 +106,7 @@
 #define IDB_TOOLBAR_ENABLED32           365
 #define IDB_VIEW_ZOOMIN                 366
 #define IDB_VIEW_ZOOMOUT                367
+#define IDB_FILE_NEW3                   368
 #define IDB_FILE_OPENCONFLICT           369
 #define IDB_PLUGINS_LIST                370
 #define IDB_MERGE_COMPARE               371
@@ -163,13 +159,11 @@
 #define IDC_PATH0_COMBO                 1004
 #define IDC_PATH1_COMBO                 1005
 #define IDC_PATH2_COMBO                 1006
-#define IDC_PROJECT_COMBO               1007
 #define IDC_MESSAGE                     1008
 #define IDC_EXT_COMBO                   1009
 #define IDC_PATH_EDIT                   1010
 #define IDC_BROWSE_BUTTON               1011
 #define IDC_SCROLL_CHECK                1012
-#define IDC_VSS_L1                      1013
 #define IDC_RECURS_CHECK                1015
 #define IDC_VERSION                     1016
 #define IDC_IGNBLANKS_CHECK             1017
@@ -177,17 +171,14 @@
 #define IDC_WWW                         1019
 #define IDC_IGNCASE_CHECK               1020
 #define IDC_COMPANY                     1021
-#define IDC_COMMENTS                    1022
 #define IDC_VER_SYS                     1024
 #define IDC_HILITE_CHECK                1025
 #define IDC_IGNOREREGEXP                1026
 #define IDC_ALL_WHITE                   1027
 #define IDC_WHITE_CHANGE                1028
 #define IDC_WHITESPACE                  1029
-#define IDC_USER                        1031
 #define IDC_EOL_SENSITIVE               1032
 #define IDC_CP_SENSITIVE                1033
-#define IDC_PASSWORD                    1034
 #define IDC_DIFFERENCE_COLOR            1035
 #define IDC_SEL_DIFFERENCE_COLOR        1037
 #define IDC_PROP_INSERT_TABS            1038
@@ -214,7 +205,6 @@
 #define IDC_SEL_MOVEDBLOCK_DELETED_COLOR 1060
 #define IDC_UP                          1061
 #define IDC_DOWN                        1062
-#define IDC_PRIVATEBUILD                1063
 #define IDC_MIXED_EOL                   1064
 #define IDC_DIFF_FILE1                  1065
 #define IDC_DIFF_FILE2                  1066
@@ -233,11 +223,11 @@
 #define IDC_DIFF_IGNOREEOL              1079
 #define IDC_TRIVIAL_DIFF_COLOR          1080
 #define IDC_TRIVIAL_DIFF_DELETED_COLOR  1081
-#define IDC_FILES_DIRS_GROUP            1082
-#define IDC_DATABASE_LIST               1083
-#define IDC_MULTI_CHECKOUT              1084
-#define IDC_CHECKIN                     1087
-#define IDC_VCPROJ_SYNC                 1088
+#define IDC_FILES_DIRS_GROUP0           1082
+#define IDC_FILES_DIRS_GROUP1           1083
+#define IDC_FILES_DIRS_GROUP2           1084
+#define IDC_FILES_DIRS_GROUP3           1085
+#define IDC_FILES_DIRS_GROUP4           1086
 #define IDC_UNPACKER_NAME               1089
 #define IDC_UNPACKER_ALLOW_ALL          1090
 #define IDC_UNPACKER_SUPPORTED_EXTENSIONS 1091
@@ -248,6 +238,8 @@
 #define IDC_EXT_EDITOR_PATH             1096
 #define IDC_DIFF_SWAPFILES              1097
 #define IDC_DIFF_OPENTOEDITOR           1098
+#define IDC_FILES_DIRS_GROUP3X          1100
+#define IDC_FILES_DIRS_GROUP4X          1101
 #define IDC_COMPARISON_STOP             1105
 #define IDC_COMPARISON_PAUSE            1106
 #define IDC_COMPARISON_CONTINUE         1107
@@ -271,7 +263,6 @@
 #define IDC_FILTERFILE_EDITBTN          1129
 #define IDC_FILTERFILE_LIST             1130
 #define IDC_ESC_CLOSES_WINDOW           1131
-#define IDC_SAVE_AS                     1132
 #define IDC_STATIC_TITLE_PANE0          1133
 #define IDC_STATIC_TITLE_PANE1          1134
 #define IDC_STATIC_TITLE_PANE2          1135
@@ -519,6 +510,9 @@
 #define IDC_EDIT_MARKER_NEW             8822
 #define IDC_EDIT_MARKER_DELETE          8823
 #define IDC_OPTIONS                     8824
+#define IDC_SWAP01_STATIC               8825
+#define IDC_SWAP12_STATIC               8826
+#define IDC_SWAP02_STATIC               8827
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -546,7 +540,6 @@
 #define IDS_OPTIONSPG_SYNTAXCOLORS      9046
 #define IDS_OPTIONSPG_MARKERCOLORS      9047
 #define IDS_OPTIONSPG_SYSTEM            9048
-#define IDS_OPTIONSPG_VERSIONCONTROL    9049
 #define IDS_OPTIONSPG_CODEPAGE          9050
 #define IDS_OPTIONSPG_ARCHIVE           9051
 #define IDS_OPTIONSPG_BACKUPS           9052
@@ -595,8 +588,6 @@
 #define IDS_FILEFILTER_OVERWRITE        16461
 #define IDS_FILTERLINE_REGEXP           16480
 #define IDS_FILTERCHANGED               16496
-#define IDS_CC_CMD                      16720
-#define IDS_VSS_CMD                     16721
 #define IDS_DIRECTORY_WINDOW_TITLE      16800
 #define IDS_FILE_COMPARISON_TITLE       16801
 #define IDS_EMPTY_LEFT_FILE             16802
@@ -619,7 +610,7 @@
 #define IDS_OPEN_FILESDIRS              17202
 #define IDS_OPEN_LEFTINVALID            17203
 #define IDS_OPEN_MIDDLEINVALID          17204
-#define IDS_OPEN_RIGHTINVALID           17205
+#define IDS_OPEN_RIGHTINVALID2          17205
 #define IDS_OPEN_BOTHINVALID            17206
 #define IDS_OPEN_LEFTMIDDLEINVALID      17207
 #define IDS_OPEN_LEFTRIGHTINVALID       17208
@@ -627,6 +618,9 @@
 #define IDS_OPEN_ALLINVALID             17210
 #define IDS_OPEN_UNPACKERDISABLED       17211
 #define IDS_OPEN_MISMATCH               17212
+
+#define IDS_OPEN_RIGHTINVALID3          17213
+
 #define IDS_ERROR_FILE_NOT_FOUND        17216
 #define IDS_ERROR_FILE_NOT_UNPACKED     17217
 #define IDS_ERROR_FILEOPEN              17221
@@ -648,15 +642,6 @@
 #define IDS_SAVE_MIDDLE_AS              17246
 #define IDS_SAVE_RIGHT_AS               17247
 #define IDS_FILE_DISAPPEARED            17248
-#define IDS_NOPROJECT                   17264
-#define IDS_VSS_CHECKOUT_STATUS         17265
-#define IDS_VSSERROR                    17266
-#define IDS_VSS_RUN_ERROR               17267
-#define IDS_VSSFOLDER_AND_FILE_NOMATCH  17268
-#define IDS_VSS_NODATABASES             17269
-#define IDS_VSS_ERRORFROM               17270
-#define IDS_VSS_CHECKINERROR            17271
-#define IDS_VSS_UNCOERROR               17272
 #define IDS_VIEWS_OUTOFSYNC             17300
 #define ID_DIR_COPY_LEFT_TO_RIGHT       17600
 #define ID_DIR_COPY_LEFT_TO_MIDDLE      17601
@@ -905,10 +890,6 @@
 #define IDS_OPT_IMPORT_ERR              18456
 #define IDS_OPT_EXPORT_ERR              18457
 #define IDS_CLOSEALL_WINDOWS            18458
-#define IDS_VCS_NONE                    18471
-#define IDS_VCS_VSS4                    18472
-#define IDS_VCS_VSS5                    18473
-#define IDS_VCS_CLEARCASE               18474
 #define IDS_BREAK_ON_WHITESPACE         18491
 #define IDS_BREAK_ON_PUNCTUATION        18492
 #define IDS_UNK_ERROR_READING_PROJECT   18510
@@ -1011,12 +992,13 @@
 #define ID_TOOLS_FILTERS                32866
 #define ID_TOOLS_GENERATEREPORT         32868
 #define ID_MERGE_COMPARE                32869
-#define ID_MERGE_COMPARE_XML            32870
-#define ID_MERGE_COMPARE_HEX            32871
-#define ID_MERGE_COMPARE_LEFT1_LEFT2    32872
-#define ID_MERGE_COMPARE_RIGHT1_RIGHT2  32873
-#define ID_MERGE_COMPARE_LEFT1_RIGHT2   32874
-#define ID_MERGE_COMPARE_LEFT2_RIGHT1   32875
+#define ID_MERGE_COMPARE_TEXT           32870
+#define ID_MERGE_COMPARE_XML            32871
+#define ID_MERGE_COMPARE_HEX            32872
+#define ID_MERGE_COMPARE_LEFT1_LEFT2    32873
+#define ID_MERGE_COMPARE_RIGHT1_RIGHT2  32874
+#define ID_MERGE_COMPARE_LEFT1_RIGHT2   32875
+#define ID_MERGE_COMPARE_LEFT2_RIGHT1   32876
 #define ID_UNPACK_MANUAL                32880
 #define ID_UNPACK_AUTO                  32881
 #define ID_POPUP_OPEN_WITH_UNPACKER     32882
@@ -1217,6 +1199,8 @@
 #define IDC_COMPAREBINARY_CHARACTERSET  33391
 #define IDC_COMPAREBINARY_DEFAULTS      33392
 #define ID_HELP_CHECKFORUPDATES         33393
+#define ID_HELP_RELEASENOTES            33394
+#define ID_HELP_TRANSLATIONS            33395
 #define IDS_COMPMETHOD_FULL_CONTENTS    33398
 #define IDS_COMPMETHOD_QUICK_CONTENTS   33399
 #define IDS_COMPMETHOD_BINARY_CONTENTS  33400
@@ -1250,9 +1234,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        247
+#define _APS_NEXT_RESOURCE_VALUE        248
 #define _APS_NEXT_COMMAND_VALUE         33647
-#define _APS_NEXT_CONTROL_VALUE         8825
+#define _APS_NEXT_CONTROL_VALUE         8828
 #define _APS_NEXT_SYMED_VALUE           116
 #endif
 #endif

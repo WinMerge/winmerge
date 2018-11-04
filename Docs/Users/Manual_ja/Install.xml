@@ -7,13 +7,6 @@
   <para>WinMergeは、インストーラ、または、アーカイブから展開したファイルにより、インストールすることができます。
   インストーラを使用するのが、オススメの方法です。</para>
 
-  <note>
-  <para>現在、WinMergeインストーラは、32ビット Windowsのためだけに動作します。
-    64ビット Windows(WinXP/2003/Vista/2008/7/8/2012)用の個別のバージョンはありません。
-    64ビット Windowsバージョンは、インストーラとWinMergeを、32ビットアプリケーションとして動作させる
-    ことができます。
-    シェル統合のため、インストーラは、64ビット版の拡張を含んでいます。</para>
-  </note>
 
   <section>
     <title>ファイルのダウンロード</title>
@@ -118,6 +111,38 @@
           </varlistentry>
 
           <varlistentry>
+            <term>Frhed</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>WinIMerge</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Archive Support</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>GnuWin32 Patch for Windows</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
             <term>言語</term>
 
             <listitem>
@@ -210,6 +235,16 @@
           </varlistentry>
 
           <varlistentry>
+            <term>Integrate with TortoiseGIT<indexterm>
+                <primary>TortoiseGIT integration</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Sets WinMerge to be the TortoiseGIT diff application.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
             <term>Integrate with Rational ClearCase<indexterm>
                 <primary>ClearCase integration</primary>
 
@@ -261,12 +296,6 @@
   <section id="InstallFromArchive">
     <title>圧縮ファイルからのインストール<indexterm>
         <primary>archive, installing WinMerge from</primary>
-      </indexterm><indexterm>
-        <primary>mfc90[u].dll runtime file</primary>
-      </indexterm><indexterm>
-        <primary>msvcr90.dll runtime file</primary>
-      </indexterm><indexterm>
-        <primary>msvcp90.dll runtime file</primary>
       </indexterm></title>
 
       <para>WinMergeは、他のシステムコンポーネントから、ほとんど独立しています。

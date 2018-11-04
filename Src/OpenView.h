@@ -44,7 +44,7 @@ class DropHandler;
  * @brief The Open-View class.
  * The Open-View allows user to select paths to compare. In addition to
  * the two paths, there are controls for selecting filter and unpacker plugin.
- * If one of the paths is a project file, that projec file is loaded,
+ * If one of the paths is a project file, that project file is loaded,
  * overwriting possible other values in other dialog controls.
  * The dialog shows also a status of the selected paths (found/not found),
  * if enabled in the options (enabled by default).
@@ -81,6 +81,7 @@ public:
 // Operations
 public:
 	void UpdateButtonStates();
+	void UpdateResources();
 
 // Implementation data
 private:
@@ -109,7 +110,7 @@ public:
 protected:
 	void SetStatus(UINT msgID);
 	void SetUnpackerStatus(UINT msgID);
-	BOOL LoadProjectFile(const String &path);
+	bool LoadProjectFile(const String &path);
 	void TerminateThreadIfRunning();
 	void TrimPaths();
 	void OnButton(int index);

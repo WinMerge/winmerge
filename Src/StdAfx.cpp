@@ -25,6 +25,10 @@
 #include "stdafx.h"
 #include "Merge.h"
 
+int CWinMergeProfile::level = 0;
+CMapStringToPtr CWinMergeProfile::map;
+LARGE_INTEGER CWinMergeProfile::origin;
+
 /**
  * @brief Wrapper around CMergeApp::TranslateDialog()
  */

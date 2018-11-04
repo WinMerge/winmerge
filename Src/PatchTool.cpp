@@ -54,12 +54,12 @@ CPatchTool::~CPatchTool()
  */
 void CPatchTool::AddFiles(const String &file1, const String &file2)
 {
-	PATCHFILES files;
-	files.lfile = file1;
-	files.rfile = file2;
+	PATCHFILES tFiles;
+	tFiles.lfile = file1;
+	tFiles.rfile = file2;
 
 	// TODO: Read and add file's timestamps
-	m_fileList.push_back(files);
+	m_fileList.push_back(tFiles);
 }
 
 /**
@@ -76,14 +76,14 @@ void CPatchTool::AddFiles(const String &file1, const String &file2)
 void CPatchTool::AddFiles(const String &file1, const String &altPath1,
 		const String &file2, const String &altPath2)
 {
-	PATCHFILES files;
-	files.lfile = file1;
-	files.rfile = file2;
-	files.pathLeft = altPath1;
-	files.pathRight = altPath2;
+	PATCHFILES tFiles;
+	tFiles.lfile = file1;
+	tFiles.rfile = file2;
+	tFiles.pathLeft = altPath1;
+	tFiles.pathRight = altPath2;
 
 	// TODO: Read and add file's timestamps
-	m_fileList.push_back(files);
+	m_fileList.push_back(tFiles);
 }
 
 /** 
@@ -126,14 +126,14 @@ int CPatchTool::CreatePatch()
 
 		for (size_t index = 0; index < fileCount; index++)
 		{
-			const PATCHFILES& files = dlgPatch.GetItemAt(index);
-			String filename1 = files.lfile.length() == 0 ? _T("NUL") : files.lfile;
-			String filename2 = files.rfile.length() == 0 ? _T("NUL") : files.rfile;
+			const PATCHFILES& tFiles = dlgPatch.GetItemAt(index);
+			String filename1 = tFiles.lfile.length() == 0 ? _T("NUL") : tFiles.lfile;
+			String filename2 = tFiles.rfile.length() == 0 ? _T("NUL") : tFiles.rfile;
 			
 			// Set up DiffWrapper
 			m_diffWrapper.SetPaths(PathContext(filename1, filename2), false);
-			m_diffWrapper.SetAlternativePaths(PathContext(files.pathLeft, files.pathRight));
-			m_diffWrapper.SetCompareFiles(PathContext(files.lfile, files.rfile));
+			m_diffWrapper.SetAlternativePaths(PathContext(tFiles.pathLeft, tFiles.pathRight));
+			m_diffWrapper.SetCompareFiles(PathContext(tFiles.lfile, tFiles.rfile));
 			bool bDiffSuccess = m_diffWrapper.RunFileDiff();
 			m_diffWrapper.GetDiffStatus(&status);
 
@@ -181,7 +181,7 @@ int CPatchTool::CreatePatch()
 
 /** 
  * @brief Show patch options dialog and check options selected.
- * @return TRUE if user wants to create a patch (didn't cancel dialog).
+ * @return `true` if user wants to create a patch (didn't cancel dialog).
  */
 bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 {
@@ -200,7 +200,7 @@ bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 		patchOptions.nContext = pDlgPatch->m_contextLines;
 
 		// Checkbox - can't be wrong
-		patchOptions.bAddCommandline = !!pDlgPatch->m_includeCmdLine;
+		patchOptions.bAddCommandline = pDlgPatch->m_includeCmdLine;
 		m_diffWrapper.SetPatchOptions(&patchOptions);
 
 		// These are from checkboxes and radiobuttons - can't be wrong

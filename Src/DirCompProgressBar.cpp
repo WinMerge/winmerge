@@ -37,7 +37,7 @@ void DirCompProgressBar::ClearStat()
  * @param [in] pParent Parent window for progress dialog.
  */
 DirCompProgressBar::DirCompProgressBar()
-: m_bCompareReady(FALSE)
+: m_bCompareReady(false)
 , m_prevState(CompareStats::STATE_IDLE)
 , m_pCompareStats(NULL)
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
@@ -154,12 +154,12 @@ void DirCompProgressBar::OnTimer(UINT_PTR nIDEvent)
 		// Update total items too since we might get only this one state
 		// when compare is fast.
 		else if (state == CompareStats::STATE_IDLE &&
-			m_bCompareReady == FALSE && m_pCompareStats->IsCompareDone() )
+			!m_bCompareReady && m_pCompareStats->IsCompareDone() )
 		{
 			SetProgressState(m_pCompareStats->GetComparedItems(), m_pCompareStats->GetTotalItems());
 			EndUpdating();
 			m_prevState = CompareStats::STATE_COMPARE;
-			m_bCompareReady = TRUE;
+			m_bCompareReady = true;
 		}
 	}
 	else

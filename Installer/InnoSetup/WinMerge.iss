@@ -59,12 +59,12 @@ AppName=WinMerge
 AppVersion={#AppVersion}
 AppVerName=WinMerge {#AppVersion}
 AppPublisher=Thingamahoochie Software
-AppPublisherURL=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
-AppSupportURL=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
-AppUpdatesURL=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
+AppPublisherURL=http://WinMerge.org/
+AppSupportURL=http://WinMerge.org/
+AppUpdatesURL=http://WinMerge.org/
 
 ; Installer executable's version resource info
-VersionInfoCompany=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
+VersionInfoCompany=http://winmerge.org
 VersionInfoDescription=WinMerge Installer
 VersionInfoVersion={#AppVersion}
 
@@ -114,8 +114,8 @@ ChangesEnvironment=true
 OutputDir=..\..\Build
 AlwaysShowComponentsList=true
 
-SignTool=signbat $f
-SignedUninstaller=yes
+;SignTool=signbat $f
+;SignedUninstaller=yes
 
 [Languages]
 ;Inno Setup's Native Language
@@ -432,7 +432,7 @@ Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: r
 Source: ..\..\Build\ShellExtension\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\..\Build\Merge7z\Merge7z1604U.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\Merge7z\Merge7z1805U.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 Source: ..\..\Build\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 Source: ..\..\Build\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 Source: ..\..\Build\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
@@ -472,7 +472,6 @@ Source: ..\..\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Comp
 Source: ..\..\Translations\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
-Source: ..\..\Build\Manual\htmlhelp\WinMerge_ja.chm; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Persian.po; DestDir: {app}\Languages; Components: Languages\Persian; Flags: ignoreversion comparetimestamp
@@ -556,7 +555,7 @@ Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; AppUserModelID: "Thingam
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
-Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: http://www.geocities.co.jp/SiliconValley-SanJose/8165/
+Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: http://winmerge.org
 
 ;Link to translated ReadMe in Start Menu
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Basque.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Basque
@@ -1007,7 +1006,6 @@ Var
         strOld: string;
         strNew: string;
         strMessage: string;
-        strShortcut: string;
 Begin
     {Detects the previous start menu group's path, if any}
     strOld := OldGroup();

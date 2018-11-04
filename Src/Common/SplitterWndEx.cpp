@@ -12,11 +12,6 @@
 #include <vector>
 #include "SplitterWndEx.h"
 
-#ifdef COMPILE_MULTIMON_STUBS
-#undef COMPILE_MULTIMON_STUBS
-#endif
-#include <multimon.h>
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -37,10 +32,10 @@ IMPLEMENT_DYNCREATE(CSplitterWndEx, CSplitterWnd)
 
 CSplitterWndEx::CSplitterWndEx()
 {
-	m_bBarLocked = FALSE;
-	m_bResizePanes = FALSE;
-	m_bAutoResizePanes = FALSE;
-	m_bHideBorders = FALSE;
+	m_bBarLocked = false;
+	m_bResizePanes = false;
+	m_bAutoResizePanes = false;
+	m_bHideBorders = false;
 }
 
 CSplitterWndEx::~CSplitterWndEx()
@@ -300,8 +295,8 @@ void CSplitterWndEx::FlipSplit()
 	std::vector<CWnd *> pColPanes(nCols);
 	std::vector<CWnd *> pRowPanes(nRows);
 
-	BOOL bHasVScroll = m_bHasHScroll;
-	BOOL bHasHScroll = m_bHasVScroll;
+	bool bHasVScroll = !!m_bHasHScroll;
+	bool bHasHScroll = !!m_bHasVScroll;
 
 	CScrollBar *pBar;
 	int pane;

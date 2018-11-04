@@ -78,7 +78,7 @@ CChildFrame::CChildFrame()
 : m_hIdentical(NULL)
 , m_hDifferent(NULL)
 {
-	m_bActivated = FALSE;
+	m_bActivated = false;
 	std::fill_n(m_nLastSplitPos, 2, 0);
 	m_pMergeDoc = 0;
 }
@@ -232,28 +232,28 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
  * The bars are identified with their ID. This means the missing bar bug is triggered
  * when we run WinMerge after changing the ID of a bar. 
  */
-BOOL CChildFrame::EnsureValidDockState(CDockState& state) 
+bool CChildFrame::EnsureValidDockState(CDockState& state) 
 {
 	for (int i = (int) state.m_arrBarInfo.GetSize()-1 ; i >= 0; i--) 
 	{
-		BOOL barIsCorrect = TRUE;
+		bool barIsCorrect = true;
 		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
 		if (! pInfo) 
-			barIsCorrect = FALSE;
+			barIsCorrect = false;
 		else
 		{
 			if (! pInfo->m_bFloating) 
 			{
 				pInfo->m_pBar = GetControlBar(pInfo->m_nBarID);
 				if (!pInfo->m_pBar) 
-					barIsCorrect = FALSE; //toolbar id's probably changed	
+					barIsCorrect = false; //toolbar id's probably changed	
 			}
 		}
 
 		if (! barIsCorrect)
 			state.m_arrBarInfo.RemoveAt(i);
 	}
-	return TRUE;
+	return true;
 }
 
 static LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -283,7 +283,7 @@ static BOOL CALLBACK EnumChildProc(HWND hwnd, LPARAM lParam)
 	}
 	else
 	{
-		BOOL bHidden = static_cast<BOOL>(reinterpret_cast<uintptr_t>(RemoveProp(hwnd, _T("Hidden"))));
+		bool bHidden = RemoveProp(hwnd, _T("Hidden")) != nullptr;
 		if (!bHidden)
 			::SendMessage(hwnd, WM_SETREDRAW, (WPARAM)lParam, 0);
 	}
@@ -294,7 +294,7 @@ static BOOL CALLBACK EnumChildProc(HWND hwnd, LPARAM lParam)
  * @brief Alternative LockWindowUpdate(hWnd) API.
  * See the comment near the code that calls this function.
  */
-static BOOL MyLockWindowUpdate(HWND hwnd)
+static bool MyLockWindowUpdate(HWND hwnd)
 {
 	WNDPROC pfnOldWndProc;
 
@@ -302,14 +302,14 @@ static BOOL MyLockWindowUpdate(HWND hwnd)
 
 	pfnOldWndProc = (WNDPROC)SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)WndProc);
 	SetProp(hwnd, _T("OldWndProc"), (HANDLE)pfnOldWndProc);
-	return TRUE;
+	return true;
 }
 
 /**
  * @brief Alternative LockWindowUpdate(NULL) API.
  * See the comment near the code that calls this function.
  */
-static BOOL MyUnlockWindowUpdate(HWND hwnd)
+static bool MyUnlockWindowUpdate(HWND hwnd)
 {
 	WNDPROC pfnOldWndProc = (WNDPROC)RemoveProp(hwnd, _T("OldWndProc"));
 	if (pfnOldWndProc)
@@ -317,7 +317,7 @@ static BOOL MyUnlockWindowUpdate(HWND hwnd)
 
 	EnumChildWindows(hwnd, EnumChildProc, TRUE);
 
-	return TRUE;
+	return true;
 }
 
 void CChildFrame::ActivateFrame(int nCmdShow) 
@@ -327,7 +327,7 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 
 	if (!m_bActivated) 
 	{
-		m_bActivated = TRUE;
+		m_bActivated = true;
 
 		// get the active child frame, and a flag whether it is maximized
 		if (oldActiveFrame == NULL)

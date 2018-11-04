@@ -150,7 +150,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_COPY_FROM_RIGHT, OnCopyFromRight)
 	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_RIGHT, OnUpdateCopyFromRight)
 	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
-	ON_UPDATE_COMMAND_UI(ID_ADD_SYNCPOINT, OnUpdateAddSyncPoint)
 	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
 	ON_UPDATE_COMMAND_UI(ID_CLEAR_SYNCPOINTS, OnUpdateClearSyncPoints)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
@@ -187,12 +186,9 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_R2LNEXT, OnR2LNext)
 	ON_UPDATE_COMMAND_UI(ID_R2LNEXT, OnUpdateR2LNext)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
-	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
 	ON_COMMAND(ID_NEXT_PANE, OnChangePane)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_WMGOTO, OnUpdateWMGoto)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnUpdateScripts)
 	ON_COMMAND(ID_NO_PREDIFFER, OnNoPrediffer)
 	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdateNoPrediffer)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
@@ -213,7 +209,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
 	ON_COMMAND(ID_VIEW_SWAPPANES, OnViewSwapPanes)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewSwapPanes)
 	ON_UPDATE_COMMAND_UI(ID_NO_EDIT_SCRIPTS, OnUpdateNoEditScripts)
 	ON_WM_SIZE()
 	ON_WM_MOVE()
@@ -709,7 +704,7 @@ void CMergeEditView::UpdateSiblingScrollPos (bool bHorz)
 /**
  * @brief Update other panes
  */
-void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz)
+void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz)
 {
 	if (pUpdateSource != this)
 	{
@@ -806,7 +801,7 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
  * @sa CMergeDoc::SetCurrentDiff()
  * @todo Parameter bSelectText is never used?
  */
-void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*=true*/, bool bSelectText /*=true*/)
+void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelectText /*= true*/)
 {
 	CMergeDoc *pd = GetDocument();
 
@@ -1650,15 +1645,6 @@ void CMergeEditView::OnLButtonUp(UINT nFlags, CPoint point)
 	}
 }
 
-/**
- * @brief Finds longest line (needed for scrolling etc).
- * @sa CCrystalTextView::GetMaxLineLength()
- */
-void CMergeEditView::UpdateLineLengths()
-{
-	GetMaxLineLength();
-}
-
 void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 {
 	// Check that right side is not readonly
@@ -1904,14 +1890,6 @@ void CMergeEditView::OnAddSyncPoint()
 }
 
 /**
- * @brief Called when "Add Synchronization Point" item is updated
- */
-void CMergeEditView::OnUpdateAddSyncPoint(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(TRUE);
-}
-
-/**
  * @brief Clear synchronization points
  */
 void CMergeEditView::OnClearSyncPoints()
@@ -1939,7 +1917,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchTex
 	if (IsReadOnly(m_nThisPane))
 	{
 		// We must not arrive here, and assert helps detect troubles
-		ASSERT(0);
+		ASSERT(false);
 		return;
 	}
 
@@ -2833,14 +2811,6 @@ void CMergeEditView::OnChangePane()
 }
 
 /**
- * @brief Enable "Change Pane" menuitem when mergeview is active
- */
-void CMergeEditView::OnUpdateChangePane(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
-}
-
-/**
  * @brief Show "Go To" dialog and scroll views to line or diff.
  *
  * Before dialog is opened, current line and file is determined
@@ -2899,14 +2869,6 @@ void CMergeEditView::OnWMGoto()
 }
 
 /**
- * @brief Enable "Go To" menuitem when mergeview is active
- */
-void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
-}
-
-/**
  * @brief Reload options.
  */
 void CMergeEditView::RefreshOptions()
@@ -2932,14 +2894,6 @@ void CMergeEditView::RefreshOptions()
 		GetDocument()->IsMixedEOL(m_nThisPane));
 
 	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
-}
-
-/**
- * @brief Called when an editor script item is updated
- */
-void CMergeEditView::OnUpdateScripts(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
 }
 
 void CMergeEditView::OnScripts(UINT nID )
@@ -2989,7 +2943,7 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 	if (prediffer.pluginName.empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 
-	pCmdUI->SetRadio(pCmdUI->m_nID == m_CurrentPredifferID);
+	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentPredifferID));
 }
 
 /**
@@ -2999,7 +2953,7 @@ void CMergeEditView::OnUpdateNoPrediffer(CCmdUI* pCmdUI)
 {
 	// recreate the sub menu (to fill the "selected prediffers")
 	GetMainFrame()->UpdatePrediffersMenu();
-	OnUpdatePrediffer(pCmdUI);
+	pCmdUI->Enable();
 }
 
 void CMergeEditView::OnNoPrediffer()
@@ -3634,14 +3588,6 @@ void CMergeEditView::OnViewSwapPanes()
 }
 
 /**
- * @brief Enable Swap Panes -gui.
- */
-void CMergeEditView::OnUpdateViewSwapPanes(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(true);
-}
-
-/**
  * @brief Check if cursor is inside difference.
  * @return true if cursor is inside difference.
  */
@@ -3838,7 +3784,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 */
 void CMergeEditView::OnUpdateChangeScheme(CCmdUI* pCmdUI)
 {
-	const bool bIsCurrentScheme = (m_CurSourceDef->type == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
+	const bool bIsCurrentScheme = (static_cast<UINT>(m_CurSourceDef->type) == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
 	pCmdUI->SetRadio(bIsCurrentScheme);
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT));
 }
@@ -3947,15 +3893,15 @@ void CMergeEditView::OnViewZoomNormal()
 	ZoomText(0);
 }
 
-void CMergeEditView::OnDropFiles(const std::vector<String>& files)
+void CMergeEditView::OnDropFiles(const std::vector<String>& tFiles)
 {
-	if (files.size() > 1 || paths::IsDirectory(files[0]))
+	if (tFiles.size() > 1 || paths::IsDirectory(tFiles[0]))
 	{
-		GetMainFrame()->GetDropHandler()->GetCallback()(files);
+		GetMainFrame()->GetDropHandler()->GetCallback()(tFiles);
 		return;
 	}
 
-	GetDocument()->ChangeFile(m_nThisPane, files[0]);
+	GetDocument()->ChangeFile(m_nThisPane, tFiles[0]);
 }
 
 void CMergeEditView::OnWindowSplit()

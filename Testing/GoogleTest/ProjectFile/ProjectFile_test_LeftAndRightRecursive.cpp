@@ -21,7 +21,7 @@ namespace
 class LeftAndRightRecursiveTest : public testing::Test
 {
 protected:
-	LeftAndRightRecursiveTest()
+	LeftAndRightRecursiveTest() : m_pProjectFile(nullptr)
 	{
 		// You can do set-up work for each test	here.
 	}

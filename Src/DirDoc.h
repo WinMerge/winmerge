@@ -26,7 +26,6 @@
 #pragma once
 
 #include <memory>
-#include <cstdint>
 #include "DiffThread.h"
 #include "PluginManager.h"
 
@@ -62,7 +61,7 @@ public:
 
 // Operations
 public:
-	BOOL CloseMergeDocs();
+	bool CloseMergeDocs();
 	CDirView * GetMainView() const;
 
 // Overrides
@@ -92,7 +91,7 @@ public:
 	void RefreshOptions();
 	void CompareReady();
 	void UpdateChangedItem(PathContext & paths,
-		UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical);
+		UINT nDiffs, UINT nTrivialDiffs, bool bIdentical);
 	void UpdateResources();
 	void InitStatusStrings();
 	void ReloadItemStatus(uintptr_t diffPos, int idx);
@@ -113,7 +112,7 @@ public:
 	bool HasDiffs() const { return m_pCtxt != NULL; }
 	const CDiffContext & GetDiffContext() const { return *m_pCtxt; }
 	CDiffContext& GetDiffContext() { return *m_pCtxt.get(); }
-	void SetMarkedRescan() {m_bMarkedRescan = TRUE; }
+	void SetMarkedRescan() {m_bMarkedRescan = true; }
 	const CompareStats * GetCompareStats() const { return m_pCompareStats.get(); };
 	bool IsArchiveFolders() const;
 	PluginManager& GetPluginManager() { return m_pluginman; };
@@ -142,6 +141,6 @@ private:
 	String m_strDesc[3]; /**< Left/middle/right side desription text */
 	String m_sReportFile;
 	PluginManager m_pluginman;
-	bool m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
+	bool m_bMarkedRescan; /**< If `true` next rescan scans only marked items */
 	bool m_bGeneratingReport;
 };

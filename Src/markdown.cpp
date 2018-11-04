@@ -103,11 +103,6 @@ using Poco::NumberParser;
 using Poco::SharedMemory;
 using Poco::File;
 
-#ifndef _WIN32
-#  include <strings.h>
-#  define _memicmp strcasecmp
-#endif
-
 void CMarkdown::Load(EntityMap &entityMap)
 {
 	entityMap["amp"] = "&";
@@ -144,7 +139,7 @@ std::string CMarkdown::Resolve(const EntityMap &map, const std::string& v)
 			unsigned ordinal = '?';
 			*key = '0';
 			if (NumberParser::tryParseHex(key, ordinal))
-				value.assign(1, ordinal);
+				value.assign(1, static_cast<std::string::value_type>(ordinal));
 			*key = '#';
 		}
 		else
@@ -773,7 +768,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 		try
 		{
 			TFile file(path);
-			m_pSharedMemory = new SharedMemory(file, SharedMemory::AM_READ, 0, trunc);
+			m_pSharedMemory = new SharedMemory(file, SharedMemory::AM_READ);
 			pImage = m_pSharedMemory->begin();
 			cbImage = m_pSharedMemory->end() - m_pSharedMemory->begin();
 		}

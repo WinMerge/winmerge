@@ -19,7 +19,7 @@ public:
 // Attributes
 protected:
 	int 	m_nSortCol;
-	BOOL	m_bSortAsc;
+	bool	m_bSortAsc;
 
 // Operations
 public:
@@ -29,7 +29,7 @@ public:
 	//{{AFX_VIRTUAL(CSortHeaderCtrl)
 	//}}AFX_VIRTUAL
 
-	virtual int 	SetSortImage(int nCol, BOOL bAsc);
+	virtual int 	SetSortImage(int nCol, bool bAsc);
 
 // Implementation
 public:

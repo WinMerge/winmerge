@@ -42,6 +42,7 @@ BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
 	ON_WM_CONTEXTMENU()
 	ON_WM_CTLCOLOR_REFLECT()
 	ON_WM_NCPAINT()
+	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 END_MESSAGE_MAP()
 
 
@@ -111,7 +112,7 @@ static int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFile
 CFilepathEdit::CFilepathEdit()
  : m_crBackGnd(RGB(255, 255, 255))
  , m_crText(RGB(0,0,0))
- , m_bActive(FALSE)
+ , m_bActive(false)
 {
 }
 
@@ -123,7 +124,7 @@ CFilepathEdit::CFilepathEdit()
  */
 BOOL CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
 {
-	m_bActive = FALSE;
+	m_bActive = false;
 	return SubclassDlgItem(nID, pParent);
 };
 
@@ -319,6 +320,27 @@ void CFilepathEdit::OnNcPaint()
 	dc.FillSolidRect(CRect(rect.left + 1, rect.top, rect.right, rect.top + margin), GetDarkenColor(m_crBackGnd, 0.98));
 	dc.FillSolidRect(CRect(rect.left, rect.top, rect.right, rect.top + 1), GetDarkenColor(m_crBackGnd, 0.90));
 	dc.FillSolidRect(CRect(rect.left + margin, rect.bottom - margin, rect.right, rect.bottom), m_crBackGnd);
+}
+
+void CFilepathEdit::OnEditCopy()
+{
+	int nStartChar, nEndChar;
+	GetSel(nStartChar, nEndChar);
+	if (nStartChar == nEndChar)
+		SetSel(0, -1);
+	Copy();
+	if (nStartChar == nEndChar)
+		SetSel(nStartChar, nEndChar);
+}
+
+BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
+{
+	if (pMsg->message >= WM_KEYFIRST && pMsg->message <= WM_KEYLAST)
+	{
+		if (::TranslateAccelerator (m_hWnd, static_cast<CFrameWnd *>(AfxGetMainWnd())->GetDefaultAccelerator(), pMsg))
+			return TRUE;
+	}
+	return CEdit::PreTranslateMessage(pMsg);
 }
 
 /**

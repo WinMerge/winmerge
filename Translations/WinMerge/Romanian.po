@@ -385,8 +385,17 @@ msgstr "A&jutor"
 msgid "&WinMerge Help\tF1"
 msgstr "Ajutor &WinMerge\tF1"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:1B17601E
 #, c-format
+msgid "R&elease Notes"
+msgstr ""
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr ""
+
+#: Merge.rc:3938FFC2
 msgid "&Check For Updates"
 msgstr ""
 
@@ -600,7 +609,7 @@ msgstr "Personalizare &coloane..."
 msgid "Generate &Report..."
 msgstr "Generare &raport..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Salvare\tCtrl+S"
@@ -685,6 +694,11 @@ msgstr "Codar&e caractere fişiere..."
 msgid "Recompare As"
 msgstr ""
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -695,12 +709,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr ""
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "An&ulează\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "&Refă\tCtrl+Y"
@@ -710,7 +724,7 @@ msgstr "&Refă\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "&Taie\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Copie\tCtrl+C"
@@ -801,7 +815,7 @@ msgstr "&Normal\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Evidenţiere sintaxă"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr ""
@@ -1111,7 +1125,7 @@ msgstr "Dreapta la... (%1 din %2)"
 msgid "&Delete"
 msgstr "Ş&terge"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "Stâ&nga"
@@ -1126,7 +1140,7 @@ msgstr ""
 msgid "&Right"
 msgstr "D&reapta"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "Am&bele"
@@ -1271,7 +1285,7 @@ msgstr "Copie numele de &fişier"
 msgid "Prediffer Settings"
 msgstr "Setări prediferenţiator"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "Fără predifere&nţiator"
@@ -1381,11 +1395,6 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "Despre WinMerge"
 
-#: Merge.rc:6AD81E09
-#, c-format
-msgid "(Private Build)"
-msgstr "(Build privat)"
-
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
@@ -1406,9 +1415,19 @@ msgstr "Contribuitori"
 msgid "Select Files or Folders"
 msgstr "Selectează fişiere sau directoare"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:6DE6F874
 #, c-format
-msgid "&1st:"
+msgid "&1st File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D96
+#, c-format
+msgid "Re&ad-only"
+msgstr "Num&ai-citire"
+
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
 msgstr ""
 
 #: Merge.rc:68816EE7
@@ -1416,9 +1435,19 @@ msgstr ""
 msgid "&Browse..."
 msgstr "Răsf&oieşte..."
 
-#: Merge.rc:43017E4E
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&2nd:"
+msgid "&2nd File or Folder"
+msgstr ""
+
+#: Merge.rc:39174D97
+#, c-format
+msgid "Rea&d-only"
+msgstr ""
+
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
 msgstr ""
 
 #: Merge.rc:78E0CE0E
@@ -1426,64 +1455,9 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "&Răsfoieşte..."
 
-#: Merge.rc:78B3B626
+#: Merge.rc:3C1ECDDA
 #, c-format
-msgid "&3rd(Optional):"
-msgstr ""
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Răsfoieşte:"
-
-#: Merge.rc:64ABCD7D
-#, c-format
-msgid "Fi&lter:"
-msgstr ""
-
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "Selectează..."
-
-#: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "Dezarhiva&tor:"
-
-#: Merge.rc:68816EE9
-#, c-format
-msgid "&Select..."
-msgstr "&Selectează..."
-
-#: Merge.rc:67019DCA
-#, c-format
-msgid "Status:"
-msgstr "Stare:"
-
-#: Merge.rc:4E65D340
-#, c-format
-msgid "Cancel"
-msgstr "Renunţă"
-
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Ajutor"
-
-#: Merge.rc:75264C52
-#, c-format
-msgid "Files or Folders to Compare"
-msgstr "Fişiere sau directoare pentru comparare"
-
-#: Merge.rc:39174D96
-#, c-format
-msgid "Re&ad-only"
-msgstr "Num&ai-citire"
-
-#: Merge.rc:39174D97
-#, c-format
-msgid "Rea&d-only"
+msgid "&3rd File or Folder (Optional)"
 msgstr ""
 
 #: Merge.rc:39174D98
@@ -1491,60 +1465,54 @@ msgstr ""
 msgid "Read-o&nly"
 msgstr ""
 
-#: Merge.rc:629C1DDC
+#: Merge.rc:56BD1FBC
 #, c-format
-msgid "Database:"
-msgstr "Baza de date:"
+msgid "Swap 1st | 3rd"
+msgstr ""
 
-#: Merge.rc:60C4588F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Project:"
-msgstr "Proiect:"
+msgid "Browse..."
+msgstr "Răsfoieşte:"
 
-#: Merge.rc:15E1A7E1
+#: Merge.rc:22467E6E
 #, c-format
-msgid "User:"
-msgstr "Utilizator:"
+msgid " Folder: Filter"
+msgstr ""
 
-#: Merge.rc:37C6B9B8
+#: Merge.rc:68816EE8
 #, c-format
-msgid "Password:"
-msgstr "Parolă:"
+msgid "&Select..."
+msgstr "&Selectează..."
 
-#: Merge.rc:F75DAF7
+#: Merge.rc:662470D5
 #, c-format
-msgid "Link to Destination VSS project"
-msgstr "Legătura către proiectul VSS destinaţie"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Aplică la toate elementele"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Extrage"
+msgid " File: Unpacker Plugin"
+msgstr ""
 
 #: Merge.rc:751AB58F
 #, c-format
-msgid "Save As..."
-msgstr "Salvează ca..."
+msgid "Se&lect..."
+msgstr ""
 
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Sistem de versionare"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
-#: Merge.rc:6DE6F874
+#: Merge.rc:4E65D340
 #, c-format
-msgid "&Versioning System:"
-msgstr "Sistem de &versionare:"
+msgid "Cancel"
+msgstr "Renunţă"
 
-#: Merge.rc:381D79E5
+#: Merge.rc:67019DCA
 #, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "Ca&lea către cleartool.exe"
+msgid "Status:"
+msgstr "Stare:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Ajutor"
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1651,7 +1619,7 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "&Găseşte"
@@ -1666,12 +1634,12 @@ msgstr "&Ok"
 msgid "Replace"
 msgstr "Înlocuieşte"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "C&u ce:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "Nu relua de la începutul &fişierului"
@@ -1681,7 +1649,7 @@ msgstr "Nu relua de la începutul &fişierului"
 msgid "Replace in"
 msgstr "Înlocuieşte în"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "&Selecţie"
@@ -1725,21 +1693,6 @@ msgstr ""
 #, c-format
 msgid "&Apply"
 msgstr "&Aplică"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Extrage"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Comentarii"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Repune după extragere"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1851,7 +1804,7 @@ msgstr "Trimite fişierele şterse către Recycle Bin"
 msgid "&External editor:"
 msgstr "Editor &extern:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "Directorul cu &filtre:"
@@ -1891,7 +1844,7 @@ msgstr "&Fişier 1:"
 msgid "File&2:"
 msgstr "F&işier 2:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "Interschim&bă"
@@ -1991,7 +1944,7 @@ msgstr "Stop"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2096,6 +2049,11 @@ msgstr "Activea&ză detecţie blocuri mutate"
 msgid "&Match similar lines"
 msgstr "Potriveşte linii si&milare"
 
+#: Merge.rc:4C3E0A2F
+#, c-format
+msgid "Comments"
+msgstr "Comentarii"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2126,7 +2084,7 @@ msgstr "&Păstrează caracterele de SDL originale"
 msgid "Tabs"
 msgstr "Tab-uri"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, fuzzy, c-format
 msgid "&Tab size:"
 msgstr "Mărime &tab:"
@@ -2191,7 +2149,7 @@ msgstr "Nou..."
 msgid "Edit..."
 msgstr "Editează..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Şterge..."
@@ -2206,7 +2164,7 @@ msgstr "Salvare fişiere modificate?"
 msgid "Left side file"
 msgstr "Fişier stânga"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "&Salvează modificările"
@@ -2326,7 +2284,7 @@ msgstr "Cuvinte cheie:"
 msgid "Function names:"
 msgstr "Nume de funcţii:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Comentarii:"
@@ -2371,7 +2329,7 @@ msgstr "Aldine"
 msgid "Marker colors"
 msgstr ""
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr ""
@@ -2456,7 +2414,7 @@ msgstr "&Detectează tipul arhivei după semnătura fişierului"
 msgid "Compare Statistics"
 msgstr "Statistici ale comparării"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "Directoare:"
@@ -2466,7 +2424,7 @@ msgstr "Directoare:"
 msgid "Files:"
 msgstr "Fişiere:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Diferite"
@@ -2591,7 +2549,7 @@ msgstr "Nu&me director"
 msgid "Result:"
 msgstr "Rezultat:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "&Testează"
@@ -2641,7 +2599,7 @@ msgstr "Copii de siguranţă"
 msgid "Create backup files in:"
 msgstr "Crează copii de siguranţă pentru:"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "Comparare &directoare"
@@ -2656,7 +2614,7 @@ msgstr "Comparare fişi&ere"
 msgid "Create backup files into:"
 msgstr "Crează copii de siguranţă în:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "Directorul &original al fişierului"
@@ -2671,7 +2629,7 @@ msgstr "Directorul de siguranţă &global:"
 msgid "Backup filename:"
 msgstr "Numele fişierului de siguranţă:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "&Adaugă extensia .bak"
@@ -2716,7 +2674,7 @@ msgstr "Nu"
 msgid "Plugins"
 msgstr ""
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr ""
@@ -2806,12 +2764,12 @@ msgstr ""
 msgid "Frhed settings"
 msgstr ""
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr ""
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr ""
@@ -3008,12 +2966,12 @@ msgstr "Nu la to&ate"
 msgid "&Continue"
 msgstr "&Continuă"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "O&mite"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "Omite to&ate"
@@ -3037,11 +2995,6 @@ msgstr ""
 #, c-format
 msgid "Syntax"
 msgstr ""
-
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Control versiuni"
 
 #: Merge.rc:2C0C2241
 #, c-format
@@ -3265,11 +3218,6 @@ msgstr "Expresie regulată"
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr ""
-
 #: Merge.rc:114DD351
 #, c-format
 msgid "Folder Comparison Results"
@@ -3366,44 +3314,49 @@ msgstr "Selectaţi două directoare sau fişiere existente pentru comparare"
 msgid "Folder Selection"
 msgstr "Selectare directoare"
 
-#: Merge.rc:73F34BA1
+#: Merge.rc:3080B693
 #, c-format
-msgid "Select two folders or two files to compare."
-msgstr "Selectaţi două directoare sau două fişiere pentru comparare."
-
-#: Merge.rc:20155F59
-#, c-format
-msgid "Left path is invalid!"
-msgstr "Calea din stânga este nevalidă!"
-
-#: Merge.rc:7F2E4119
-#, c-format
-msgid "Middle path is invalid!"
+msgid "Select two (or three) folders or two (or three) files to compare."
 msgstr ""
 
-#: Merge.rc:6DBD6124
+#: Merge.rc:2EBBDDD6
 #, c-format
-msgid "Right path is invalid!"
-msgstr "Calea din dreapta este nevalidă!"
+msgid "Left (1st) path is invalid!"
+msgstr ""
+
+#: Merge.rc:BA50069
+#, c-format
+msgid "Middle (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C32
+#, c-format
+msgid "Right (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C33
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr ""
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "Ambele căi sunt nevalide!"
 
-#: Merge.rc:5F458439
+#: Merge.rc:585E8EC0
 #, c-format
-msgid "Left and middle path is invalid!"
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr ""
 
-#: Merge.rc:F75DAF8
+#: Merge.rc:135DE390
 #, c-format
-msgid "Left and right path is invalid!"
+msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr ""
 
-#: Merge.rc:3703FFD7
+#: Merge.rc:72716FA6
 #, c-format
-msgid "Middle and right path is invalid!"
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr ""
 
 #: Merge.rc:237A0533
@@ -3411,10 +3364,10 @@ msgstr ""
 msgid "All paths are invalid!"
 msgstr ""
 
-#: Merge.rc:39B1AD01
-#, fuzzy, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "Alegeţi două fişiere pentru a activa selecţia cu dezarhivatorul."
+#: Merge.rc:1235F930
+#, c-format
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3600,83 +3553,11 @@ msgstr ""
 "\n"
 "Reîmprospătaţi documentele înainte de a continua."
 
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Trebuie să specificaţi calea unui proiect SourceSafe pentru a continua (ex.:  $/MyProject)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "Extrage fişierele din VSS.."
-
-#: Merge.rc:5CF52976
-#, fuzzy, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "Sistemul de versionare a returnat o eroare încercând să extragă fişierul. Imposibil de continuat..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Eroare la execuţia comenzii sistemului de versionare."
-
-#: Merge.rc:3ECC9EC3
-#, fuzzy, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "Directorul de lucru VSS şi locaţia fişierului curent nu se potrivesc. Continuaţi?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "Nu s-a găsit nicio bază de date VSS!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "Eroare de la VSS:"
-
-#: Merge.rc:268A7727
-#, fuzzy, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"Sistemul de versionare a returnat o eroare încercând să introducă fişierul.\n"
-" Vă rugăm, verificaţi specificaţiile scopului folosit.\n"
-" Anulează operaţia de extragere?"
-
-#: Merge.rc:1929D7D3
-#, fuzzy, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"Sistemul de versionare a returnat o eroare încercând să anuleze extragerea fişierului.\n"
-" Vă rugăm, verificaţi specificaţiile scopului folosit."
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Nici unul"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (mai vechi de 5.0)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 sau mai nou)"
-
 #: Merge.rc:2405135
-#, fuzzy, c-format
 msgid "Break at whitespace"
 msgstr "Întrerupe la blanc"
 
 #: Merge.rc:6CB369C2
-#, fuzzy, c-format
 msgid "Break at whitespace or punctuation"
 msgstr "Întrerupe la blanc sau semn de punctuaţie"
 
@@ -3860,7 +3741,7 @@ msgstr "Execuţia editorului extern a eşuat: %1"
 msgid "Unknown archive format"
 msgstr "Format arhivă necunoscut"
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "Nume fişier"
@@ -3995,7 +3876,7 @@ msgstr "SDL dreapta"
 msgid "Left Encoding"
 msgstr "Set de caractere stânga"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Set de caractere dreapta"
@@ -4040,7 +3921,7 @@ msgstr "Numai stânga: %1"
 msgid "Middle only: %1"
 msgstr ""
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Numai dreapta: %1"
@@ -4195,17 +4076,17 @@ msgstr "Dimensiune fişier dreapta în octeţi."
 msgid "Middle file size in bytes."
 msgstr ""
 
-#: Merge.rc:2EBBDDD6
+#: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Dimensiune fişier stânga prescurtată."
 
-#: Merge.rc:21DC7C32
+#: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Dimensiune fişier dreapta prescurtată."
 
-#: Merge.rc:BA50069
+#: Merge.rc:BA5006A
 #, c-format
 msgid "Middle file size abbreviated."
 msgstr ""
@@ -4250,17 +4131,17 @@ msgstr ""
 msgid "Short comparison result."
 msgstr "Rezultat comparare pe scurt."
 
-#: Merge.rc:20155F5A
+#: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
 msgstr "Atribute partea stângă."
 
-#: Merge.rc:6DBD6125
+#: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
 msgstr "Atribute partea dreaptă."
 
-#: Merge.rc:7F2E411A
+#: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle side attributes."
 msgstr ""
@@ -4439,7 +4320,7 @@ msgstr ""
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
 "Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default windows codepage (recommended)?"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Seturi de caractere diferite s-au găsit în fişierul din partea stângă (cp%d) faţă de partea dreaptă (cp%d). \n"
 "Afişarea în setul de caractere propriu este mai potrivită dar fuziunea/copierea este periculoasă.\n"
@@ -4475,7 +4356,7 @@ msgstr "Nicio diferenţă"
 msgid "Line difference"
 msgstr "Diferenţă pe linie"
 
-#: Merge.rc:6DBD6126
+#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "S-a(u) înlocuit %1 şir(uri)."
@@ -4520,7 +4401,7 @@ msgstr ""
 msgid "Location Pane"
 msgstr "Panou locaţie"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Panou diferenţe"
@@ -4663,6 +4544,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Amestecat"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Nici unul"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4673,7 +4559,7 @@ msgstr ""
 msgid "Unpacker"
 msgstr ""
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr ""
@@ -4903,9 +4789,9 @@ msgstr ""
 msgid "&Image"
 msgstr ""
 
-#: Merge.rc:4D3A8E6D
+#: Merge.rc:3D9427A9
 #, c-format
-msgid "frhed(http://frhed.sourceforge.net/) not installed"
+msgid "frhed is not installed"
 msgstr ""
 
 #: Merge.rc:73B321AA

@@ -50,7 +50,7 @@ class PluginInfo
 {
 public:
 	PluginInfo()
-		: m_lpDispatch(NULL), m_filters(NULL), m_bAutomatic(FALSE), m_nFreeFunctions(0), m_disabled(false)
+		: m_lpDispatch(NULL), m_filters(NULL), m_bAutomatic(false), m_nFreeFunctions(0), m_disabled(false)
 	{	
 	}
 

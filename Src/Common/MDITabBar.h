@@ -16,7 +16,7 @@ class CMDITabBar : public CControlBar
 private:
 	enum {MDITABBAR_MINTITLELENGTH = 8, MDITABBAR_MAXTITLELENGTH = 64};
 
-	BOOL m_bInSelchange;
+	bool m_bInSelchange;
 	CMDIFrameWnd *m_pMainFrame;
 	bool m_bMouseTracking;
 	bool m_bCloseButtonDown;
@@ -26,7 +26,7 @@ private:
 	CFont m_font;
 
 public:
-	CMDITabBar() : m_bInSelchange(FALSE), m_pMainFrame(NULL), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true), m_nDraggingTabItemIndex(-1) {}
+	CMDITabBar() : m_bInSelchange(false), m_pMainFrame(NULL), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true), m_nDraggingTabItemIndex(-1) {}
 	virtual ~CMDITabBar() {}
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();

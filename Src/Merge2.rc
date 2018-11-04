@@ -162,6 +162,7 @@ IDB_MOVE_RIGHT_TO_BROWSE BITMAP                 "res\\move_right_to_browse.bmp"
 IDB_VIEW_ZOOMIN         BITMAP                  "res\\zoom_in.bmp"
 IDB_VIEW_ZOOMOUT        BITMAP                  "res\\zoom_out.bmp"
 IDB_FILE_OPENCONFLICT   BITMAP                  "res\\open_conflict.bmp"
+IDB_FILE_NEW3           BITMAP                  "res\\New3_16.bmp"
 IDB_PLUGINS_LIST        BITMAP                  "res\\plugins.bmp"
 IDB_MERGE_COMPARE       BITMAP                  "res\\compare.bmp"
 IDB_MERGE_COMPARE_LEFT1_LEFT2 BITMAP            "res\\compare_left1_left2.bmp"
@@ -205,8 +206,8 @@ BEGIN
             VALUE "FileVersion", STRFILEVER
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "(c) 1996-2014 Dean P. Grimm / Thingamahoochie Software\0"
-            VALUE "OriginalFilename", "WinMerge.EXE\0"
-            VALUE "PrivateBuild", ""
+            VALUE "OriginalFilename", "WinMergeU.EXE\0"
+            VALUE "PrivateBuild", STRPRIVATEBUILD
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", STRPRODUCTVER
         END

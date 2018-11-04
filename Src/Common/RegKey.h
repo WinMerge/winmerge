@@ -21,7 +21,6 @@ public:
 
 // Operations
 public:
-	HKEY GetKey()  { return m_hKey; }  // Only used by VssPrompt.cpp - can be removed?
 	void Close();
 	LONG Open(HKEY hKeyRoot, LPCTSTR pszPath);
 	LONG OpenWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam);
@@ -31,12 +30,12 @@ public:
 
 	LONG WriteDword (LPCTSTR pszKey, DWORD dwVal);
 	LONG WriteString (LPCTSTR pszKey, LPCTSTR pszVal);
-	LONG WriteBool (LPCTSTR pszKey, BOOL bVal);
+	LONG WriteBool (LPCTSTR pszKey, bool bVal);
 	LONG WriteFloat (LPCTSTR pszKey, float fVal);
 
 	DWORD ReadDword (LPCTSTR pszKey, DWORD defval);
 	float ReadFloat (LPCTSTR pszKey, float defval);
-	BOOL ReadBool(LPCTSTR pszKey, BOOL defval);
+	bool ReadBool(LPCTSTR pszKey, bool defval);
 	LONG ReadLong (LPCTSTR pszKey, LONG defval);
 	UINT ReadUint (LPCTSTR pszKey, UINT defval);
 	UINT ReadInt (LPCTSTR pszKey, int defval);

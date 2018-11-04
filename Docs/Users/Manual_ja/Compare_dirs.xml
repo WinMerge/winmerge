@@ -1362,9 +1362,7 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
   <section id="CompareDirs_winshell">
     <title>フォルダ比較ウィンドウから、Windowsのシェルコマンドを使う</title>
 
-    <para>WinMergeオプションのシェル統合ページ内の<link linkend="Configuration_foldercompare">
-    <option>シェルメニューをコンテキストメニューに追加</option>を有効にしている場合</link>、
-フォルダ比較ウィンドウ内で選択項目を右クリックし、コンテキストメニューから
+    <para>フォルダ比較ウィンドウ内で選択項目を右クリックし、コンテキストメニューから
 直接Windowsのシェルコマンドを起動することができます。</para>
 
     <para>両側を選択した場合、<guimenu>左側シェルメニュー</guimenu>か<guimenu>右側シェルメニュー</guimenu>

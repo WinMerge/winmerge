@@ -9,7 +9,6 @@
 #pragma once
 
 #include "UnicodeString.h"
-#include <cstdint>
 
 namespace ucr
 {

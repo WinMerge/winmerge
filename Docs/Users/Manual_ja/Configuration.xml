@@ -108,23 +108,6 @@
       </itemizedlist>
     </section>
     <section>
-      <title>スプラッシュ画面を非表示
-      <indexterm>
-        <primary>スプラッシュ画面の有効化と無効化</primary>
-      </indexterm></title>
-      <itemizedlist>
-        <listitem>
-          <para>
-          <option>無効</option>(デフォルト):
-          WinMergeを起動した時に、スプラッシュスクリーンが表示されます。クリックすることで、いつでも、それを消すことができます。そうしなかった場合、数秒すると自動的に消えます。</para>
-        </listitem>
-        <listitem>
-          <para>
-          <option>有効</option>: WinMergeを起動した時に、スプラッシュすクリーンを表示しません。注) これは、起動を速くするわけではありません。</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-    <section>
       <title>
       <keycap>ESC</keycap>でウインドウを閉じる
       <indexterm>
@@ -193,8 +176,6 @@
           </itemizedlist>
         </listitem>
       </itemizedlist>
-      <para>下記の関連するオプションも参照してください
-      <xref linkend="Configuration_multicompwin" />。</para>
     </section>
     <section>
       <title>複数のウインドウを閉じるときに尋ねる</title>
@@ -249,6 +230,23 @@
         </listitem>
       </itemizedlist>
     </section>
+
+    <section>
+      <title>Close "Select Files or Folders" Dialog on clicking OK button<indexterm>
+          <primary>Select Files or Folders dialog</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
     <section>
       <title>開くダイアログのオートコンプリート
       <indexterm>
@@ -269,30 +267,6 @@
           <para>
           <guilabel>最近使ったリスト</guilabel>: パスを、最近使ったリスト(MRU)の中から調べます。
           <!-- TODO: かなり意訳 -->これは、比較用のパスが限定されている場合に便利です。</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-    <section id="Configuration_multicompwin">
-      <title>複数の比較ウインドウを有効
-      <indexterm>
-        <primary>Compare window</primary>
-        <secondary>opening multiple</secondary>
-      </indexterm></title>
-      <para>WinMergeが、単一か複数の比較ウィンドウを開くことを許可するかどうかを制御します。
-      <guilabel>フォルダ比較</guilabel>と
-      <guilabel>ファイル比較</guilabel>オプションを別々に指定します。</para>
-      <itemizedlist>
-        <listitem>
-          <para>
-          <option>無効</option>(デフォルト): 同時に、一つのフォルダ比較、または、ファイル比較ウィンドウしか開けません。</para>
-        </listitem>
-        <listitem>
-          <para>
-          <option>有効</option>: 同時に、複数のフォルダ比較、または、ファイル比較ウィンドウを開くことができます。
-          <note>
-            <para>ファイル比較ウィンドウは、フォルダ比較ウィンドウの子どもです。したがって、
-            <guilabel>ファイル比較</guilabel>オプションが無効に設定されていても、フォルダ比較ウィンドウ毎に一つのファイル比較ウィンドウを開けます。</para>
-          </note></para>
         </listitem>
       </itemizedlist>
     </section>
@@ -438,6 +412,7 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
       <title>改行文字の違いを無視する (Windows/Unix/Mac)
       <indexterm>
@@ -456,6 +431,25 @@
         </listitem>
       </itemizedlist>
     </section>
+
+    <section>
+      <title>Ignore codepage differences<indexterm>
+          <primary>codepage</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Codepage differences are ignored.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
     <section>
       <title>移動ブロックの検出を有効にする
       <indexterm>
@@ -500,6 +494,7 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
       <title>3秒以下の時間差を無視する
       <indexterm>
@@ -668,6 +663,34 @@
       </itemizedlist>
     </section>
 
+    <section>
+      <title>Number of compare threads<indexterm>
+          <primary>compare threads</primary>
+        </indexterm></title>
+
+      <para>TBD</para>
+    </section>
+
+  </section>
+
+  <section id="Configuration_compare_binary">
+    <title>Compare Binary page</title>
+    <section>
+      <title>Binary File Patterns<indexterm>
+          <primary>binary files</primary>
+        </indexterm></title>
+      <para>TBD</para>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_image">
+    <title>Compare Image page</title>
+    <section>
+      <title>Image File Patterns<indexterm>
+          <primary>image files</primary>
+        </indexterm></title>
+      <para>TBD</para>
+    </section>
   </section>
 
   <section id="Configuration_editor">
@@ -691,6 +714,7 @@
           <guimenu>表示</guimenu>
           <guimenuitem>シンタックスハイライト</guimenuitem>をクリックしてください</menuchoice>。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>無効</option>: シンタックスハイライトは、多少のCPUパワーを消費するため、WinMerge
@@ -879,26 +903,26 @@
     <para>いつでも、
     <guibutton>デフォルト</guibutton>をクリックして、元々の色を再読み込みすることができます。</para>
   </section>
+
+  <section id="Configuration_markercolors">
+    <title>Maker Colors page<indexterm>
+        <primary>marker colors</primary>
+
+        <secondary>options</secondary>
+      </indexterm></title>
+
+    <para>TBD</para>
+  </section>
+
   <section id="Configuration_archive">
     <title>アーカイブサポートページ
     <indexterm>
       <primary>archiving files</primary>
       <secondary>configuring support after installation</secondary>
     </indexterm></title>
+
     <para>このページは、7-Zip を使用した Winzipアーカイブサポートの設定のためのオプションを含んでいます。</para>
-    <section>
-      <title>7-Zip プラグインのダウンロード
-      <indexterm>
-        <primary>7-Zip archives</primary>
-        <secondary>configuring support after installation</secondary>
-      </indexterm></title>
-      <para>システムに WinZip が既にインストールされている場合、WinMerge
-      は自動的にそれを検出します。あなたが、ここで何か設定する必要はりません。そうでない場合、このページのリンクをクリックして、ブラウザで
-      WinMergeダウンロードページを開きます。そこで、7-Zipプラグインのインストーラ(と、その他の
-      WinMergeファイル)をダウンロードすることができます。プラグインのインストールについては、
-      <xref linkend="Installing_archive_support" />を参照してください。7-Zipインストーラを起動する前に、WinMerge
-      を閉じることをお忘れなく。</para>
-    </section>
+
     <section>
       <title>アーカイブファイルサポートを有効にする
       <indexterm>
@@ -1092,47 +1116,7 @@
       </itemizedlist>
     </section>
   </section>
-  <section id="Configuration_vcs">
-    <title>バージョン管理オプションページ
-    <indexterm>
-      <primary>version control systems</primary>
-      <secondary>configuring after installation</secondary>
-    </indexterm>
-    <indexterm>
-      <primary>integration</primary>
-      <secondary>with version control systems</secondary>
-    </indexterm></title>
-    <para>
-    ここで選択したバージョン管理システム(VCS)経由でのチェックアウトを有効、または、無効にするには、このページを使用してください。サポートされているシステムのうちの1つとの統合を有効にした場合、WinMerge
-    内で、バージョン管理されているファイルを保存した時、WinMerge は、VCSのチェックアウトダイアログを開きます。</para>
-    <itemizedlist>
-      <listitem>
-        <para>
-        <guilabel>なし</guilabel>(デオフォルト): WinMerge 内でファイルを保存した時、バージョン管理システムとの連携はありません。</para>
-      </listitem>
-      <listitem>
-        <para>
-          <guilabel>Visual SourceSafe (5.0 未満)</guilabel>
-        </para>
-        <para>
-        <filename>SS.EXE</filename>のパスも入力してください。</para>
-      </listitem>
-      <listitem>
-        <para>
-          <guilabel>Visual SourceSafe (5.0 以上)</guilabel>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <guilabel>Rational ClearCase</guilabel>
-        </para>
-        <para>
-        <filename>cleartool.exe</filename>のパスも入力してください。</para>
-      </listitem>
-    </itemizedlist>
-    <para>この機能を使用することについての詳細は、
-    <xref linkend="VersionControl_vcs" />を参照してください。</para>
-  </section>
+
   <section id="Configuration_codepage">
     <title>コードページページ
     <indexterm>
@@ -1141,13 +1125,7 @@
     </indexterm></title>
     <para>このページは、ANSI版 WinMerge
     が、ANSIファイルに対して使うコードページを指定します。また、あるファイル形式のコードページは、ファイルの内容から検出されるべきかどうかを指定します。</para>
-    <important>
-      <para>ANSI版 WinMerge(
-      <filename>WinMerge.exe</filename>)は、通常、Windows 9X と 
-      <!-- NOTE: WME はちょっとわかりにくかろう -->Windows Me にインストールされます。その他すべての新しい Windows システムでは、Unicode版(
-      <filename>WinMergeU.exe</filename>)がインストールされます。Unicode版 WinMerge
-      は、エンコーディングをありのままに扱います。ANSI版を実行していない限り、このページのいくつかの設定は変更する必要がありません。</para>
-    </important>
+
     <note>
       <para>完全なテキストエンコーディングと Windows コードページの説明は、WinMerge
       ドキュメントの範囲を超えています。幸いにも、インターネット上には、それらについての情報がたくさんあります。
@@ -1260,56 +1238,10 @@ or is this understood?--></para>
             </itemizedlist>
           </listitem>
         </varlistentry>
-        <varlistentry>
-          <term>「サブフォルダを含む」をデフォルトとする</term>
-          <listitem>
-            <itemizedlist>
-              <listitem>
-                <para>
-                <option>無効</option>(デフォルト): フォルダ比較は、非再帰的に行われます。</para>
-              </listitem>
-              <listitem>
-                <para>
-                <option>有効</option>: 
-                <!-- TODO: 選択 というのがイマイチ -->選択はサブフォルダを含み、比較操作を再帰的にします。</para>
-              </listitem>
-            </itemizedlist>
-            <note>
-              <para>このオプションは、ファイルまたはフォルダの選択ダイアログの、 
-              <option>サブフォルダを含む</option>の設定は変更しません。</para>
-            </note>
-          </listitem>
-        </varlistentry>
       </variablelist>
       <para>
       <xref linkend="OpenPaths_shell-integ" />では、WinMerge と 比較ショートカットの使用方法について説明しています。</para>
     </section>
-    <section id="Configuration_foldercompare">
-      <title>フォルダ比較</title>
-      <para>The 
-      <option>シェルメニューをコンテキストメニューに追加</option>オプションは、WinMerge ウィンドウから、Windows
-      シェルコマンドの起動を可能にします:</para>
-      <itemizedlist>
-        <listitem>
-          <para>
-          <option>無効</option>(デフォルト). フォルダ比較のコンテキストメニューで、シェルメニューは無効です。</para>
-        </listitem>
-        <listitem>
-          <para>
-          <option>有効</option>: フォルダ比較のコンテキストメニューに、
-          <guimenu>左側シェルメニュー</guimenu>か
-          <guimenu>右側シェルメニュー</guimenu>、または、その両方を追加します。シェルメニューは、Windows
-          エクスプローラのパスのコンテキストメニューと同様で、かつ同じ方法でコマンドを起動することができます。</para>
-          <para>両側にあるファイルを右クリックした場合、左右両方のシェルメニューが有効です。片側だけに存在するアイテムの場合、片側のみシェルメニューが現れます。</para>
-          <note>
-            <para>シェルメニューを使用することは、WinMerge の外側で Windows コマンドを起動する事とほぼ同じです。
-            <!-- FIXME: イマイチ -->その結果として、WinMerge は、WinMerge
-            内部で実行した操作と同じ方法で、いくつかの操作に応答しないかもしれません。</para>
-          </note>
-          <para>
-          <xref linkend="CompareDirs_winshell" />には、シェルメニューの使用についての、より多くの情報があります。</para>
-        </listitem>
-      </itemizedlist>
-    </section>
+
   </section>
 </article>

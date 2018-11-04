@@ -88,7 +88,6 @@ void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(CAboutDlg::Impl)
 	DDX_Text(pDX, IDC_COMPANY, m_p->m_info.copyright);
 	DDX_Text(pDX, IDC_VERSION, m_p->m_info.version);
-	DDX_Text(pDX, IDC_PRIVATEBUILD, m_p->m_info.private_build);
 	//}}AFX_DATA_MAP
 }
 
@@ -103,7 +102,7 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 
 	m_font.CreatePointFont(10 * 10, _T("Tahoma"));
 
-	SetDlgItemText(IDC_STATIC, m_p->m_info.developers);
+	SetDlgItemText(static_cast<unsigned>(IDC_STATIC), m_p->m_info.developers);
 	GetDlgItem(IDC_STATIC)->SetFont(&m_font);
 	GetDlgItem(IDC_VERSION)->SetFont(&m_font);
 

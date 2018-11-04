@@ -28,7 +28,7 @@ public:
 		}
 		wnd.Create(_T("heksedit"), NULL, 0, CRect(), pwndParent, 1);
 		get_interface()->read_ini_data();
-		get_interface()->get_settings()->bSaveIni = TRUE;
+		get_interface()->get_settings()->bSaveIni = true;
 	}
 
 	IHexEditorWindow *get_interface()
@@ -93,7 +93,9 @@ void PropCompareBinary::WriteOptions()
  */
 void PropCompareBinary::OnViewSettings()
 {
-	Heksedit(this).get_interface()->CMD_view_settings();
+	Heksedit heksedit(this);
+	if (heksedit.get_interface())
+		heksedit.get_interface()->CMD_view_settings();
 }
 
 /** 
@@ -101,7 +103,9 @@ void PropCompareBinary::OnViewSettings()
  */
 void PropCompareBinary::OnBinaryMode()
 {
-	Heksedit(this).get_interface()->CMD_binarymode();
+	Heksedit heksedit(this);
+	if (heksedit.get_interface())
+		heksedit.get_interface()->CMD_binarymode();
 }
 
 /** 
@@ -109,7 +113,9 @@ void PropCompareBinary::OnBinaryMode()
  */
 void PropCompareBinary::OnCharacterSet()
 {
-	Heksedit(this).get_interface()->CMD_character_set();
+	Heksedit heksedit(this);
+	if (heksedit.get_interface())
+		heksedit.get_interface()->CMD_character_set();
 }
 
 /** 

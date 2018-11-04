@@ -26,14 +26,13 @@ DATE:		BY:					DESCRIPTION:
 
 #include "stdafx.h"
 #include "dllpstub.h"
-#include <shlwapi.h>
 #include <afxdisp.h>
 #include <afxinet.h>
 
 /**
  * @brief Throw DLLPSTUB related exception.
  */
-void DLLPSTUB::Throw(LPCSTR name, HMODULE handle, DWORD dwError, BOOL bFreeLibrary)
+void DLLPSTUB::Throw(LPCSTR name, HMODULE handle, DWORD dwError, bool bFreeLibrary)
 {
 	CString strError = name;
 	if (handle)
@@ -106,7 +105,7 @@ HMODULE DLLPSTUB::Load()
 						// Well, that's the most appropriate canned system
 						// message I came across: If DLL is outdated, it may
 						// actually lack some interface we need...
-						Throw(0, handle, CO_S_NOTALLINTERFACES, TRUE);
+						Throw(0, handle, CO_S_NOTALLINTERFACES, true);
 					}
 				}
 				LPCSTR *pszExport = proxy;
@@ -133,7 +132,7 @@ HMODULE DLLPSTUB::Load()
 				dwError = ERROR_PROC_NOT_FOUND;
 				handle1 = (HMODULE)proxy[2];
 			}
-			Throw(name, handle1, dwError, FALSE);
+			Throw(name, handle1, dwError, false);
 		}
 	}
 	return handle;

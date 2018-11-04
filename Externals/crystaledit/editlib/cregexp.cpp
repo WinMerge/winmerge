@@ -851,7 +851,7 @@ int RxTry(RxNode *rx, LPCTSTR s) {
     return 0;
 }
 
-int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Match) {
+int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *Match) {
     TCHAR Ch;
     if (Regexp == 0) return 0;
 

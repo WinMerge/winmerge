@@ -74,8 +74,8 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		for (nIndex = 0; nIndex < nDirs; nIndex++)
 			m_diffFileData.m_textStats[nIndex].clear();
 
-		PathContext files;
-		GetComparePaths(pCtxt, di, files);
+		PathContext tFiles;
+		GetComparePaths(pCtxt, di, tFiles);
 		struct change *script = NULL;
 		struct change *script10 = NULL;
 		struct change *script12 = NULL;
@@ -91,7 +91,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 		// Transformation happens here
 		// text used for automatic mode : plugin filter must match it
-		String filteredFilenames = strutils::join(files.begin(), files.end(), _T("|"));
+		String filteredFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
 
 		PackingInfo * infoUnpacker=0;
 		PrediffingInfo * infoPrediffer=0;
@@ -107,7 +107,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		for (nIndex = 0; nIndex < nDirs; nIndex++)
 		{
 		// plugin may alter filepaths to temp copies (which we delete before returning in all cases)
-			filepathUnpacked[nIndex] = files[nIndex];
+			filepathUnpacked[nIndex] = tFiles[nIndex];
 
 			//DiffFileData diffdata; //(filepathTransformed1, filepathTransformed2);
 			// Invoke unpacking plugins
@@ -146,18 +146,18 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		// Actually compare the files
 		// `diffutils_compare_files()` is a fairly thin front-end to GNU diffutils
 
-		if (files.GetSize() == 2)
+		if (tFiles.GetSize() == 2)
 		{
-			m_diffFileData.SetDisplayFilepaths(files[0], files[1]); // store true names for diff utils patch file
+			m_diffFileData.SetDisplayFilepaths(tFiles[0], tFiles[1]); // store true names for diff utils patch file
 			// This opens & fstats both files (if it succeeds)
 			if (!m_diffFileData.OpenFiles(filepathTransformed[0], filepathTransformed[1]))
 				goto exitPrepAndCompare;
 		}
 		else
 		{
-			diffdata10.m_diffFileData.SetDisplayFilepaths(files[1], files[0]); // store true names for diff utils patch file
-			diffdata12.m_diffFileData.SetDisplayFilepaths(files[1], files[2]); // store true names for diff utils patch file
-			diffdata02.m_diffFileData.SetDisplayFilepaths(files[0], files[2]); // store true names for diff utils patch file
+			diffdata10.m_diffFileData.SetDisplayFilepaths(tFiles[1], tFiles[0]); // store true names for diff utils patch file
+			diffdata12.m_diffFileData.SetDisplayFilepaths(tFiles[1], tFiles[2]); // store true names for diff utils patch file
+			diffdata02.m_diffFileData.SetDisplayFilepaths(tFiles[0], tFiles[2]); // store true names for diff utils patch file
 
 			if (!diffdata10.m_diffFileData.OpenFiles(filepathTransformed[1], filepathTransformed[0]))
 				goto exitPrepAndCompare;
@@ -181,7 +181,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 		if (nCompMethod == CMP_CONTENT)
 		{
-			if (files.GetSize() == 2)
+			if (tFiles.GetSize() == 2)
 			{
 				if (m_pDiffUtilsEngine == NULL)
 					m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
@@ -310,7 +310,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		else if (nCompMethod == CMP_QUICK_CONTENT)
 		{
 			// use our own byte-by-byte compare
-			if (files.GetSize() == 2)
+			if (tFiles.GetSize() == 2)
 			{
 				if (m_pByteCompare == NULL)
 					m_pByteCompare.reset(new ByteCompare());
@@ -427,11 +427,11 @@ exitPrepAndCompare:
 			try { TFile(filepathTransformed[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[1].c_str())); }
 		if (nDirs > 2 && filepathTransformed[2] != filepathUnpacked[2])
 			try { TFile(filepathTransformed[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[2].c_str())); }
-		if (filepathUnpacked[0] != files[0])
+		if (filepathUnpacked[0] != tFiles[0])
 			try { TFile(filepathUnpacked[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[0].c_str())); }
-		if (filepathUnpacked[1] != files[1])
+		if (filepathUnpacked[1] != tFiles[1])
 			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[1].c_str())); }
-		if (nDirs > 2 && filepathUnpacked[2] != files[2])
+		if (nDirs > 2 && filepathUnpacked[2] != tFiles[2])
 			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[2].c_str())); }
 
 		if (!pCtxt->m_bIgnoreCodepage && 
@@ -444,16 +444,16 @@ exitPrepAndCompare:
 		if (m_pBinaryCompare == NULL)
 			m_pBinaryCompare.reset(new BinaryCompare());
 
-		PathContext files;
-		GetComparePaths(pCtxt, di, files);
-		code = m_pBinaryCompare->CompareFiles(files, di);
+		PathContext tFiles;
+		GetComparePaths(pCtxt, di, tFiles);
+		code = m_pBinaryCompare->CompareFiles(tFiles, di);
 	}
 	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
 	{
 		if (m_pTimeSizeCompare == NULL)
 			m_pTimeSizeCompare.reset(new TimeSizeCompare());
 
-		m_pTimeSizeCompare->SetAdditionalOptions(!!pCtxt->m_bIgnoreSmallTimeDiff);
+		m_pTimeSizeCompare->SetAdditionalOptions(pCtxt->m_bIgnoreSmallTimeDiff);
 		code = m_pTimeSizeCompare->CompareFiles(nCompMethod, pCtxt->GetCompareDirs(), di);
 	}
 	else
@@ -473,22 +473,22 @@ exitPrepAndCompare:
  * @param [out] right Gets the right compare path.
  * @note If item is unique, same path is returned for both.
  */
-void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & files)
+void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & tFiles)
 {
 	int nDirs = pCtxt->GetCompareDirs();
 
-	files.SetSize(nDirs);
+	tFiles.SetSize(nDirs);
 
 	for (int nIndex = 0; nIndex < nDirs; nIndex++)
 	{
 		if (di.diffcode.exists(nIndex))
 		{
-			files.SetPath(nIndex,
+			tFiles.SetPath(nIndex,
 				paths::ConcatPath(pCtxt->GetPath(nIndex), di.diffFileInfo[nIndex].GetFile()), false);
 		}
 		else
 		{
-			files.SetPath(nIndex, _T("NUL"), false);
+			tFiles.SetPath(nIndex, _T("NUL"), false);
 		}
 	}
 }

@@ -8,11 +8,6 @@
   that preprocess data before a comparison. For example, you can use a plugin to
   extract text data from MS Word files for WinMerge to compare.</para>
   
-  <para>Plugins are not included by default when you install WinMerge, you have to
-  select them during installation to get them installed. This is because some plugins
-  can give unexpected behaviour if you forget that you have the plugins turned on.
-  These few plugins may only be of interest to a few users.</para>
-
   <para>Each plugin is:<indexterm>
       <primary>installing plugins</primary>
     </indexterm></para>
@@ -85,8 +80,10 @@
             when you merge two versions of a file.</para>
           </note>
 
-          <para>Example plugin: <xref linkend="DisplayXMLFiles" /> reformats XML
-          files for readability.</para>
+          <para>Example plugin: <xref linkend="CompareMSExcelFiles" />
+          Displays the text contents of a 
+          <trademark class="registered">Microsoft</trademark>
+          <application>Excel</application> file.</para>
         </listitem>
       </varlistentry>
 
@@ -145,7 +142,7 @@
 
       <para>With your cursor in either File pane of the File Compare window,
       click <menuchoice>
-          <guimenu>Edit</guimenu>
+          <guimenu>Plugins</guimenu>
 
           <guisubmenu>Scripts</guisubmenu>
         </menuchoice> and choose one of these functions:</para>
@@ -157,6 +154,18 @@
 
         <listitem>
           <para><function>MakeLower</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>SortAscending</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>SortDescending</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>ExecFilterCommand</function></para>
         </listitem>
 
         <listitem>
@@ -335,9 +344,9 @@
         <secondary>Visual Basic dlls</secondary>
       </indexterm></title>
 
-    <section>
-      <title><filename>CompareMSExcelFiles.dll<indexterm>
-          <primary>CompareMSExcelFiles.dll plugin file</primary>
+    <section id="CompareMSExcelFiles">
+      <title><filename>CompareMSExcelFiles.sct<indexterm>
+          <primary>CompareMSExcelFiles.sct plugin file</primary>
         </indexterm></filename></title>
 
       <para>Displays the text contents of a <trademark
@@ -351,24 +360,33 @@
 
           <segtitle>Packing</segtitle>
 
-          <segtitle>Requirement</segtitle>
+          <segtitle>Settings dialog support</segtitle>
 
           <seglistitem>
             <seg>Unpacker</seg>
 
-            <seg><filename class="extension">*.xls</filename></seg>
+            <seg><filename class="extension">*.xls</filename><filename
+            class="extension">*.xlsx</filename><filename
+            class="extension">*.xlsm</filename><filename
+            class="extension">*.xlsb</filename><filename
+            class="extension">*.xla</filename><filename
+            class="extension">*.xlax</filename><filename
+            class="extension">*.xltx</filename><filename
+            class="extension">*.xltm</filename></seg>
 
             <seg>No</seg>
 
+            <seg>Yes</seg>
+
             <seg><trademark class="registered">Microsoft</trademark>
-            <application>Excel</application>, <xref linkend="MSVBVM60" /></seg>
+            <application>Excel</application></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section id="Plugins_msword">
-      <title><filename>CompareMSWordFiles.dll<indexterm>
-          <primary>CompareMSWordFiles.dll plugin file</primary>
+      <title><filename>CompareMSWordFiles.sct<indexterm>
+          <primary>CompareMSWordFiles.sct plugin file</primary>
         </indexterm></filename></title>
 
       <para>Displays the text content of a <trademark
@@ -382,31 +400,34 @@
 
           <segtitle>Packing</segtitle>
 
-          <segtitle>Requirement</segtitle>
+          <segtitle>Settings dialog support</segtitle>
 
           <seglistitem>
             <seg>Unpacker</seg>
 
-            <seg><filename class="extension">*.doc</filename>, <filename
-            class="extension">*.dot</filename></seg>
+	    <seg><filename class="extension">*.doc</filename>, <filename
+            class="extension">*.docx</filename>, <filename
+            class="extension">*.docm</filename>, <filename
+            class="extension">*.dot</filename>, <filename
+            class="extension">*.dotx</filename>, <filename
+            class="extension">*.dotm</filename></seg>
 
             <seg>No</seg>
 
-            <seg><trademark
-            class="registered">Microsoft</trademark><application>Word</application>,
-            <xref linkend="MSVBVM60" /></seg>
+            <seg>Yes</seg>
+
           </seglistitem>
         </segmentedlist></para>
     </section>
 
-    <section id="DisplayXMLFiles">
-      <title><filename>DisplayXMLFiles.dll<indexterm>
-          <primary>DisplayXMLFiles.dll plugin file</primary>
+    <section id="Plugins_powerpnt">
+      <title><filename>CompareMSPowerPointFiles.sct<indexterm>
+          <primary>CompareMSPowerPointFiles.sct plugin file</primary>
         </indexterm></filename></title>
 
-      <para>This plugin pretty-prints XML files nicely by inserting tabs and
-      line breaks. This is useful for XML files that do not have line returns in
-      convenient locations.</para>
+      <para>Displays the text content of a <trademark
+      class="registered">Microsoft</trademark> <application>PowerPoint</application>
+      file, stripping away all formatting and embedded objects.</para>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -415,12 +436,24 @@
 
           <segtitle>Packing</segtitle>
 
+          <segtitle>Settings dialog support</segtitle>
+
           <seglistitem>
             <seg>Unpacker</seg>
 
-            <seg><filename class="extension">*.xml</filename></seg>
+            <seg><filename class="extension">*.ppt</filename>, <filename
+            class="extension">*.pptx</filename>, <filename
+            class="extension">*.pptm</filename>, <filename
+            class="extension">*.ppa</filename>, <filename
+            class="extension">*.ppam</filename>, <filename
+            class="extension">*.pot</filename>, <filename
+            class="extension">*.potx</filename>, <filename
+            class="extension">*.potm</filename></seg>
 
             <seg>No</seg>
+
+            <seg>Yes</seg>
+
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -430,8 +463,8 @@
           <primary>editor addin.sct plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Adds two functions to the <menuchoice>
-          <guimenu>Edit</guimenu>
+      <para>Adds five functions to the <menuchoice>
+          <guimenu>Plugins</guimenu>
 
           <guisubmenu>Scripts</guisubmenu>
         </menuchoice> menu:</para>
@@ -446,13 +479,30 @@
           <simpara><guimenuitem>MakeLower</guimenuitem> convert the selection to
           lower case.</simpara>
         </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>SortAscending</guimenuitem> sort the selection 
+          in ascending order.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>SortDescending</guimenuitem> sort the selection 
+          in descending order.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>ExecFilterCommand</guimenuitem> replace the selection 
+          with the output of the specified filter command.</simpara>
+        </listitem>
       </itemizedlist>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
+          <segtitle>Settings dialog support</segtitle>
 
           <seglistitem>
             <seg>Editor complement</seg>
+            <seg>No</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -468,7 +518,7 @@
       <para>Note that this plugin does not support files with tabs: the plugin
       does not fail, but all tabs are be treated as normal characters.</para>
 
-      <para>To specify columns, rename the <filename>dll</filename> using
+      <para>To specify columns, use plugin settings dialog or rename the <filename>dll</filename> using
       following fields as parameters:</para>
 
       <itemizedlist>
@@ -520,10 +570,14 @@
 
           <segtitle>File filter</segtitle>
 
+          <segtitle>Settings dialog support</segtitle>
+
           <seglistitem>
             <seg>Prediffer</seg>
 
             <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>Yes</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -542,6 +596,8 @@
 
           <segtitle>File filter</segtitle>
 
+          <segtitle>Settings dialog support</segtitle>
+
           <seglistitem>
             <seg>Prediffer</seg>
 
@@ -552,6 +608,8 @@
             class="extension">*.c</filename>, <filename
             class="extension">*.php</filename>, <filename
             class="extension">*.js</filename>,</seg>
+
+            <seg>No</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -565,7 +623,7 @@
       files, for example). It ignores the delimiter characters. The first field
       is number 1.</para>
 
-      <para>To specify the delimiters, rename the <filename>dll</filename> using
+      <para>To specify the delimiters, use plugin settings dialog or rename the <filename>dll</filename> using
       the same parameter fields used for <xref
       linkend="IgnoreColumns" />.</para>
 
@@ -574,10 +632,14 @@
 
           <segtitle>File filter</segtitle>
 
+          <segtitle>Settings dialog support</segtitle>
+
           <seglistitem>
             <seg>Prediffer</seg>
 
             <seg><filename class="extension">*.csv</filename></seg>
+
+            <seg>Yes</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -592,7 +654,7 @@
       class="extension">*.txt</filename> format). It ignores the delimiter
       characters. The first field is number 1.</para>
 
-      <para>To specify the delimiters, rename the <filename>dll</filename> using
+      <para>To specify the delimiters, use plugin settings dialog or rename the <filename>dll</filename> using
       the same parameter fields used for <xref
       linkend="IgnoreColumns" />.</para>
 
@@ -601,10 +663,14 @@
 
           <segtitle>File filter</segtitle>
 
+          <segtitle>Settings dialog support</segtitle>
+
           <seglistitem>
             <seg>Prediffer</seg>
 
             <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>Yes</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -622,12 +688,16 @@
 
           <segtitle>File filter</segtitle>
 
+          <segtitle>Settings dialog support</segtitle>
+
           <segtitle>Requirement</segtitle>
 
           <seglistitem>
             <seg>Prediffer</seg>
 
             <seg><filename class="extension">*.nc</filename></seg>
+
+            <seg>No</seg>
 
             <seg><xref linkend="MSVBVM60" /></seg>
           </seglistitem>
@@ -640,7 +710,7 @@
         </indexterm></filename></title>
 
       <para>Adds two functions to the <menuchoice>
-          <guimenu>Edit</guimenu>
+          <guimenu>Plugins</guimenu>
 
           <guisubmenu>Scripts</guisubmenu>
         </menuchoice> menu:</para>
@@ -660,80 +730,14 @@
       <para><segmentedlist>
           <segtitle>Category</segtitle>
 
+          <segtitle>Settings dialog support</segtitle>
+
           <seglistitem>
             <seg>Editor complement</seg>
-          </seglistitem>
-        </segmentedlist></para>
-    </section>
-
-    <section>
-      <title><filename>RCLocalizationHelper.dll</filename>,
-      <filename>RCLocalizationHelperU.dll<indexterm>
-          <primary>RCLocalizationHelper.dll, RCLocalizationHelperU.dll plugin
-          files</primary>
-        </indexterm></filename></title>
-
-      <para>This plugin preprocesses RC files by stripping out localized
-      strings, to enable comparing different language versions of the same RC
-      file and ignoring the translations.</para>
-
-      <para><filename>RCLocalizationHelperU.dll</filename> is the Unicode
-      version.</para>
-
-      <para><segmentedlist>
-          <segtitle>Category</segtitle>
-
-          <segtitle>File filter</segtitle>
-
-          <seglistitem>
-            <seg>Prediffer</seg>
-
-            <seg><filename class="extension">*.rc</filename></seg>
-          </seglistitem>
-        </segmentedlist></para>
-    </section>
-
-    <section>
-      <title><filename>WatchBeginningOfLog.dll</filename>,
-      <filename>WatchEndOfLog.dll<indexterm>
-          <primary>WatchBeginningOfLog.dll, WatchEndOfLog.dll plugin
-          files</primary>
-        </indexterm></filename></title>
-
-      <para>For long LOG files, often only in the first lines or in the last
-      lines are significant.</para>
-
-      <itemizedlist>
-        <listitem>
-          <simpara><filename>WatchBeginningOfLog.dll</filename> truncates the
-          files to the first 1/10th.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><filename>WatchEndOfLog.dll</filename> truncates the files to
-          the first 1/10th.</simpara>
-        </listitem>
-      </itemizedlist>
-
-      <para><segmentedlist>
-          <segtitle>Category</segtitle>
-
-          <segtitle>File filter</segtitle>
-
-          <segtitle>Packing</segtitle>
-
-          <seglistitem>
-            <seg>Unpacker</seg>
-
-            <seg><filename class="extension">*.log</filename></seg>
 
             <seg>No</seg>
           </seglistitem>
         </segmentedlist></para>
-
-      <para>Developers can find information and code examples in the source
-      package, under the <filename class="directory">Plugins</filename>
-      folder.</para>
     </section>
   </section>
 

@@ -206,11 +206,11 @@ protected:
 	bool m_bExpandSubdirs;
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
-	bool m_bTreeMode; /**< TRUE if tree mode is on*/
+	bool m_bTreeMode; /**< `true` if tree mode is on*/
 	DirViewFilterSettings m_dirfilter;
 	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
 	clock_t m_compareStart; /**< Starting process time of the compare */
-	bool m_bUserCancelEdit; /**< TRUE if the user cancels rename */
+	bool m_bUserCancelEdit; /**< `true` if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
 
 	int m_firstDiffItem;
@@ -366,7 +366,6 @@ protected:
 	afx_msg void OnUpdateMergeCompare2(CCmdUI *pCmdUI);
 	afx_msg void OnViewCompareStatistics();
 	afx_msg void OnFileEncoding();
-	afx_msg void OnUpdateFileEncoding(CCmdUI* pCmdUI);
 	afx_msg void OnHelp();
 	afx_msg void OnEditCopy();
 	afx_msg void OnEditCut();

@@ -81,18 +81,15 @@ public:
     CSizingControlBar();
 
     virtual BOOL Create(LPCTSTR lpszWindowName, CWnd* pParentWnd,
-        CSize sizeDefault, BOOL bHasGripper,
-        UINT nID, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP);
-    virtual BOOL Create(LPCTSTR lpszWindowName, CWnd* pParentWnd,
         UINT nID, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP);
 
 // Attributes
 public:
-    const BOOL IsFloating() const;
-    const BOOL IsHorzDocked() const;
-    const BOOL IsVertDocked() const;
-    const BOOL IsSideTracking() const;
-    const BOOL GetSCBStyle() const {return m_dwSCBStyle;}
+    const bool IsFloating() const;
+    const bool IsHorzDocked() const;
+    const bool IsVertDocked() const;
+    const bool IsSideTracking() const;
+    const bool GetSCBStyle() const {return (m_dwSCBStyle != 0);}
 
 // Operations
 public:
@@ -125,7 +122,7 @@ public:
 protected:
     // implementation helpers
     UINT GetEdgeHTCode(int nEdge);
-    BOOL GetEdgeRect(CRect rcWnd, UINT nHitTest, CRect& rcEdge);
+    bool GetEdgeRect(CRect rcWnd, UINT nHitTest, CRect& rcEdge);
     virtual void StartTracking(UINT nHitTest, CPoint point);
     virtual void StopTracking();
     virtual void OnTrackUpdateSize(CPoint& point);
@@ -137,7 +134,7 @@ protected:
     void GetRowInfo(int& nFirst, int& nLast, int& nThis);
     void GetRowSizingBars(CSCBArray& arrSCBars);
     void GetRowSizingBars(CSCBArray& arrSCBars, int& nThis);
-    BOOL NegotiateSpace(int nLengthTotal, BOOL bHorz);
+    bool NegotiateSpace(int nLengthTotal, bool bHorz);
 
 protected:
     DWORD   m_dwSCBStyle;
@@ -153,10 +150,10 @@ protected:
     int     m_nTrackPosMax;
     int     m_nTrackPosOld;
     int     m_nTrackEdgeOfs;
-    BOOL    m_bTracking;
-    BOOL    m_bKeepSize;
-    BOOL    m_bParentSizing;
-    BOOL    m_bDragShowContent;
+    bool    m_bTracking;
+    bool    m_bKeepSize;
+    bool    m_bParentSizing;
+    bool    m_bDragShowContent;
     UINT    m_nDockBarID;
     int     m_cxEdge;
 

@@ -6,7 +6,6 @@
  * @date  Created: 2003-08-19
  */
 #include "DirViewColItems.h"
-#include <cstdint>
 #include <Poco/Timestamp.h>
 #include <Shlwapi.h>
 #include "UnicodeString.h"
@@ -125,7 +124,7 @@ static int sign64(int64_t val)
  * @brief Function to compare two diffcodes for a sort
  * @todo How shall we order diff statuses?
  */
-static unsigned cmpdiffcode(unsigned diffcode1, unsigned diffcode2)
+static int cmpdiffcode(unsigned diffcode1, unsigned diffcode2)
 {
 	// Lower priority of the same items (FIXME:)
 	if (((diffcode1 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME) && ((diffcode2 & DIFFCODE::COMPAREFLAGS) != DIFFCODE::SAME))
@@ -167,7 +166,7 @@ static String MakeShortSize(int64_t size)
 	if (size < 1024)
 		return strutils::format(_T("%d B"), static_cast<int>(size));
 	else
-		StrFormatByteSize64(size, buffer, _countof(buffer));
+		StrFormatByteSize64(size, buffer, countof(buffer));
 	return buffer;
 }
 
@@ -233,22 +232,22 @@ static String ColPathGet(const CDiffContext *, const void *p)
 			return s;
 	}
 
-	int i = 0, j = 0;
+	size_t i = 0, j = 0;
 	do
 	{
 		const TCHAR *pi = _tcschr(s.c_str() + i, '\\');
 		const TCHAR *pj = _tcschr(t.c_str() + j, '\\');
-		int i_ahead = static_cast<int>(pi ? pi - s.c_str() : std::string::npos);
-		int j_ahead = static_cast<int>(pj ? pj - t.c_str() : std::string::npos);
-		int length_s = static_cast<int>((i_ahead != std::string::npos ? i_ahead : s.length()) - i);
-		int length_t = static_cast<int>((j_ahead != std::string::npos ? j_ahead : t.length()) - j);
+		size_t i_ahead = (pi ? pi - s.c_str() : std::string::npos);
+		size_t j_ahead = (pj ? pj - t.c_str() : std::string::npos);
+		size_t length_s = ((i_ahead != std::string::npos ? i_ahead : s.length()) - i);
+		size_t length_t = ((j_ahead != std::string::npos ? j_ahead : t.length()) - j);
 		if (length_s != length_t ||
 			memcmp(s.c_str() + i, t.c_str() + j, length_s) != 0)
 		{
 			String u(t.c_str() + j, length_t + 1);
 			u[length_t] = '|';
 			s.insert(i, u);
-			i_ahead += static_cast<int>(u.length());
+			i_ahead += u.length();
 		}
 		i = i_ahead + 1;
 		j = j_ahead + 1;
@@ -1500,7 +1499,7 @@ void DirViewColItems::LoadColumnOrders(String colorders)
 /// store current column orders into registry
 String DirViewColItems::SaveColumnOrders()
 {
-	assert(m_colorder.size() == m_numcols);
-	assert(m_invcolorder.size() == m_numcols);
+	assert(static_cast<int>(m_colorder.size()) == m_numcols);
+	assert(static_cast<int>(m_invcolorder.size()) == m_numcols);
 	return strutils::join<String (*)(int)>(m_colorder.begin(), m_colorder.end(), _T(" "), strutils::to_str);
 }

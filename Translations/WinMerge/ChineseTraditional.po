@@ -389,8 +389,17 @@ msgstr "說明(&H)"
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge 說明(&W)\tF1"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:1B17601E
 #, c-format
+msgid "R&elease Notes"
+msgstr "發行說明(&E)"
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr "翻譯(&T)"
+
+#: Merge.rc:3938FFC2
 msgid "&Check For Updates"
 msgstr ""
 
@@ -604,7 +613,7 @@ msgstr "自訂欄位(&C)..."
 msgid "Generate &Report..."
 msgstr "產生報告(&R)..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "儲存(&S)\tCtrl+S"
@@ -689,6 +698,11 @@ msgstr "檔案編碼(&F)..."
 msgid "Recompare As"
 msgstr "重新比較"
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -699,12 +713,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr "二進制(&B)"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "復原(&U)\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "再做(&R)\tCtrl+Y"
@@ -714,7 +728,7 @@ msgstr "再做(&R)\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "剪下(&U)\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "複製(&C)\tCtrl+C"
@@ -805,7 +819,7 @@ msgstr "恢復原始(&N)\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "語法高亮度顯示"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr "差異上下文(&D)"
@@ -1119,7 +1133,7 @@ msgstr "右邊到... (%2 之 %1)"
 msgid "&Delete"
 msgstr "刪除(&D)"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "左邊(&L)"
@@ -1134,7 +1148,7 @@ msgstr "中間(&M)"
 msgid "&Right"
 msgstr "右邊(&R)"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "兩邊(&B)"
@@ -1279,7 +1293,7 @@ msgstr "複製檔名(&F)"
 msgid "Prediffer Settings"
 msgstr "先行處理器設定"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "不要先行處理器(&N)"
@@ -1389,11 +1403,6 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "關於 WinMerge"
 
-#: Merge.rc:6AD81E09
-#, c-format
-msgid "(Private Build)"
-msgstr "(私人編譯)"
-
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
@@ -1414,145 +1423,104 @@ msgstr "貢獻者"
 msgid "Select Files or Folders"
 msgstr "選取檔案或資料夾"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:6DE6F874
 #, c-format
-msgid "&1st:"
-msgstr "第一(&1)"
-
-#: Merge.rc:68816EE7
-#, c-format
-msgid "&Browse..."
-msgstr "瀏覽(&B)..."
-
-#: Merge.rc:43017E4E
-#, c-format
-msgid "&2nd:"
-msgstr "第二(&2)"
-
-#: Merge.rc:78E0CE0E
-#, c-format
-msgid "B&rowse..."
-msgstr "瀏覽(&R)..."
-
-#: Merge.rc:78B3B626
-#, c-format
-msgid "&3rd(Optional):"
-msgstr "第三(非必要)(&3)"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "瀏覽..."
-
-#: Merge.rc:64ABCD7D
-#, c-format
-msgid "Fi&lter:"
-msgstr "篩選器(&L):"
-
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "選取..."
-
-#: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "解壓縮程式(&U)："
-
-#: Merge.rc:68816EE9
-#, c-format
-msgid "&Select..."
-msgstr "選取(&S)..."
-
-#: Merge.rc:67019DCA
-#, c-format
-msgid "Status:"
-msgstr "狀態："
-
-#: Merge.rc:4E65D340
-#, c-format
-msgid "Cancel"
-msgstr "取消"
-
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "說明"
-
-#: Merge.rc:75264C52
-#, c-format
-msgid "Files or Folders to Compare"
-msgstr "要比對的檔案或資料夾"
+msgid "&1st File or Folder"
+msgstr ""
 
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
 msgstr "唯讀(&A)"
 
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
+msgstr ""
+
+#: Merge.rc:68816EE7
+#, c-format
+msgid "&Browse..."
+msgstr "瀏覽(&B)..."
+
+#: Merge.rc:6DE6F875
+#, c-format
+msgid "&2nd File or Folder"
+msgstr ""
+
 #: Merge.rc:39174D97
 #, c-format
 msgid "Rea&d-only"
 msgstr "唯讀(&D)"
+
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
+msgstr ""
+
+#: Merge.rc:78E0CE0E
+#, c-format
+msgid "B&rowse..."
+msgstr "瀏覽(&R)..."
+
+#: Merge.rc:3C1ECDDA
+#, c-format
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
 
 #: Merge.rc:39174D98
 #, c-format
 msgid "Read-o&nly"
 msgstr "唯讀(&N)"
 
-#: Merge.rc:629C1DDC
+#: Merge.rc:56BD1FBC
 #, c-format
-msgid "Database:"
-msgstr "資料庫："
+msgid "Swap 1st | 3rd"
+msgstr ""
 
-#: Merge.rc:60C4588F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Project:"
-msgstr "專案："
+msgid "Browse..."
+msgstr "瀏覽..."
 
-#: Merge.rc:15E1A7E1
+#: Merge.rc:22467E6E
 #, c-format
-msgid "User:"
-msgstr "用戶："
+msgid " Folder: Filter"
+msgstr ""
 
-#: Merge.rc:37C6B9B8
+#: Merge.rc:68816EE8
 #, c-format
-msgid "Password:"
-msgstr "密碼："
+msgid "&Select..."
+msgstr "選取(&S)..."
 
-#: Merge.rc:F75DAF7
+#: Merge.rc:662470D5
 #, c-format
-msgid "Link to Destination VSS project"
-msgstr "連結到目標 VSS 專案"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "套用到所有項目"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "通過"
+msgid " File: Unpacker Plugin"
+msgstr ""
 
 #: Merge.rc:751AB58F
 #, c-format
-msgid "Save As..."
-msgstr "另存新檔..."
+msgid "Se&lect..."
+msgstr ""
 
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "版本管理系統"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
-#: Merge.rc:6DE6F874
+#: Merge.rc:4E65D340
 #, c-format
-msgid "&Versioning System:"
-msgstr "版本管理系統(&V)："
+msgid "Cancel"
+msgstr "取消"
 
-#: Merge.rc:381D79E5
+#: Merge.rc:67019DCA
 #, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "cleartool.exe 路徑(&P)："
+msgid "Status:"
+msgstr "狀態："
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "說明"
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1661,7 +1629,7 @@ msgstr "不要關閉此對話盒"
 msgid "Find &Prev"
 msgstr "找上一個(&P)"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "找下一個(&F)"
@@ -1676,12 +1644,12 @@ msgstr "確定(&O)"
 msgid "Replace"
 msgstr "取代"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "取代為(&P)："
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "至檔尾不折返(&D)"
@@ -1691,7 +1659,7 @@ msgstr "至檔尾不折返(&D)"
 msgid "Replace in"
 msgstr "於"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "選取區(&S)"
@@ -1735,21 +1703,6 @@ msgstr "背景顏色(&B)"
 #, c-format
 msgid "&Apply"
 msgstr "套用(&A)"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "送回改過檔"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "備註"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "送回改過檔後就取出之"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1824,12 +1777,12 @@ msgstr "已選取的移位區塊："
 #: Merge.rc:73FB246
 #, c-format
 msgid "Same As The Next (3 panes):"
-msgstr ""
+msgstr "和下一個相同 (3方比較):"
 
 #: Merge.rc:60B696AF
 #, c-format
 msgid "Same As The Next (Selected):"
-msgstr ""
+msgstr "和下一個相同 (已選取):"
 
 #: Merge.rc:40C55014
 #, c-format
@@ -1861,7 +1814,7 @@ msgstr "刪除檔送到資源回收筒(&S)"
 msgid "&External editor:"
 msgstr "外部編輯器(&E)："
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "資料夾篩選器(&F)："
@@ -1901,7 +1854,7 @@ msgstr "檔案1(&1)："
 msgid "File&2:"
 msgstr "檔案2(&2)："
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "對調(&S)"
@@ -2001,7 +1954,7 @@ msgstr "停止"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2106,6 +2059,11 @@ msgstr "偵測移位的區塊(&N)"
 msgid "&Match similar lines"
 msgstr "找出相似行(&M)"
 
+#: Merge.rc:4C3E0A2F
+#, c-format
+msgid "Comments"
+msgstr "備註"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2136,7 +2094,7 @@ msgstr "保留原始 EOL 字元(&P)"
 msgid "Tabs"
 msgstr "跳格"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "跳格大小(&T)："
@@ -2201,7 +2159,7 @@ msgstr "新增..."
 msgid "Edit..."
 msgstr "編輯..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "刪除..."
@@ -2216,7 +2174,7 @@ msgstr "儲存修改的檔案？"
 msgid "Left side file"
 msgstr "左邊檔案"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "儲存變更(&S)"
@@ -2340,7 +2298,7 @@ msgstr "關鍵字："
 msgid "Function names:"
 msgstr "函數名："
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "註："
@@ -2386,7 +2344,7 @@ msgstr "粗體"
 msgid "Marker colors"
 msgstr "標記顏色"
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr "搜尋標記"
@@ -2471,7 +2429,7 @@ msgstr "偵測檔首資訊以決定壓縮檔類型(&D)"
 msgid "Compare Statistics"
 msgstr "比較後的統計"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "資料夾："
@@ -2481,7 +2439,7 @@ msgstr "資料夾："
 msgid "Files:"
 msgstr "檔案："
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "不同"
@@ -2606,7 +2564,7 @@ msgstr "資料夾名稱(&F)"
 msgid "Result:"
 msgstr "結果："
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "測試(&T)"
@@ -2656,7 +2614,7 @@ msgstr "備份檔案"
 msgid "Create backup files in:"
 msgstr "產生備份檔於："
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "比較資料夾時(&F)"
@@ -2671,7 +2629,7 @@ msgstr "比較檔案時(&E)"
 msgid "Create backup files into:"
 msgstr "產生備份檔至："
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "原始檔的資料夾(&O)"
@@ -2686,7 +2644,7 @@ msgstr "總的備份資料夾(&G)："
 msgid "Backup filename:"
 msgstr "備份檔檔名："
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "附上 .bak 副檔名(&A)"
@@ -2731,7 +2689,7 @@ msgstr "否"
 msgid "Plugins"
 msgstr "外掛"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "啟用外掛(&E)"
@@ -2821,12 +2779,12 @@ msgstr "二進制檔案副檔名(&P)"
 msgid "Frhed settings"
 msgstr "Frhed 設定"
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr "顯示設定(&S)..."
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr "二進制模式(&B)..."
@@ -3023,12 +2981,12 @@ msgstr "全部皆否(&L)"
 msgid "&Continue"
 msgstr "繼續(&C)"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "略過(&S)"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "全部略過(&A)"
@@ -3052,11 +3010,6 @@ msgstr "如果要再顯示這個訊息，請在選項對話視窗內的一般頁
 #, c-format
 msgid "Syntax"
 msgstr "語法"
-
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "版本控制"
 
 #: Merge.rc:2C0C2241
 #, c-format
@@ -3287,11 +3240,6 @@ msgstr ""
 "\n"
 "如果不想現在重整，請選「否」。"
 
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "至 SS.EXE 的路徑(&P)"
-
 #: Merge.rc:114DD351
 #, c-format
 msgid "Folder Comparison Results"
@@ -3388,55 +3336,60 @@ msgstr "選取兩個現存資料夾或檔案做比對"
 msgid "Folder Selection"
 msgstr "資料夾選取"
 
-#: Merge.rc:73F34BA1
+#: Merge.rc:3080B693
 #, c-format
-msgid "Select two folders or two files to compare."
-msgstr "選取兩個資料夾或檔案做比對。"
+msgid "Select two (or three) folders or two (or three) files to compare."
+msgstr ""
 
-#: Merge.rc:20155F59
+#: Merge.rc:2EBBDDD6
 #, c-format
-msgid "Left path is invalid!"
-msgstr "左邊路徑無效！"
+msgid "Left (1st) path is invalid!"
+msgstr ""
 
-#: Merge.rc:7F2E4119
+#: Merge.rc:BA50069
 #, c-format
-msgid "Middle path is invalid!"
-msgstr "中間路徑無效！"
+msgid "Middle (2nd) path is invalid!"
+msgstr ""
 
-#: Merge.rc:6DBD6124
+#: Merge.rc:21DC7C32
 #, c-format
-msgid "Right path is invalid!"
-msgstr "右邊路徑無效！"
+msgid "Right (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C33
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr ""
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "兩邊路徑無效！"
 
-#: Merge.rc:5F458439
+#: Merge.rc:585E8EC0
 #, c-format
-msgid "Left and middle path is invalid!"
-msgstr "左邊和中間路徑無效！"
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
+msgstr ""
 
-#: Merge.rc:F75DAF8
+#: Merge.rc:135DE390
 #, c-format
-msgid "Left and right path is invalid!"
-msgstr "左邊和右邊路徑無效！"
+msgid "Left (1st) and Right (3rd) paths are invalid!"
+msgstr ""
 
-#: Merge.rc:3703FFD7
+#: Merge.rc:72716FA6
 #, c-format
-msgid "Middle and right path is invalid!"
-msgstr "中間和右邊路徑無效！"
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
+msgstr ""
 
 #: Merge.rc:237A0533
 #, c-format
 msgid "All paths are invalid!"
 msgstr "所有路徑無效！"
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "選擇兩個檔案以啟用解壓縮程式選取。"
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3635,83 +3588,11 @@ msgid ""
 "Refresh documents before continuing."
 msgstr "如未重整檔案，WinMerge 不能併入異動。"
 
-#: Merge.rc:5C264194
-#, c-format
-msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "一定得指定一個 SourceSafe 專案路徑才能繼續 (例如： $/MyProject)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "由 VSS 取出檔案..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
-msgstr "送回改過檔時，版本系統回報一個錯誤。無法繼續..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "執行版本系統指令時發生錯誤。"
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
-msgstr "VSS 作業資料夾和目前檔案位置不符合。要繼續嗎？"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "找不到 VSS 資料庫！"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "VSS 發生錯誤："
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"送回改過檔時，版本系統回報一個錯誤。\n"
-" 請檢查檢視過後的組態。\n"
-" 復原取出？"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"撤回取出檔案時，版本系統回報一個錯誤。\n"
-" 請檢查檢視過後的組態。"
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "無"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (早於 5.0 版)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 版和更晚的版本)"
-
 #: Merge.rc:2405135
-#, c-format
 msgid "Break at whitespace"
 msgstr "空白處中斷"
 
 #: Merge.rc:6CB369C2
-#, c-format
 msgid "Break at whitespace or punctuation"
 msgstr "空白處或標點處中斷"
 
@@ -3895,7 +3776,7 @@ msgstr "無法執行外部編輯器 %1"
 msgid "Unknown archive format"
 msgstr "未知壓縮格式"
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "檔案名稱"
@@ -4030,7 +3911,7 @@ msgstr "右邊 EOL"
 msgid "Left Encoding"
 msgstr "左邊編碼"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "右邊編碼"
@@ -4075,7 +3956,7 @@ msgstr "僅左邊：%1"
 msgid "Middle only: %1"
 msgstr "僅中間：%1"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "僅右邊：%1"
@@ -4230,17 +4111,17 @@ msgstr "右邊檔案位元組大小。"
 msgid "Middle file size in bytes."
 msgstr "中間檔案位元組大小。"
 
-#: Merge.rc:2EBBDDD6
+#: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "左邊檔案簡式大小。"
 
-#: Merge.rc:21DC7C32
+#: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "右邊檔案簡式大小。"
 
-#: Merge.rc:BA50069
+#: Merge.rc:BA5006A
 #, c-format
 msgid "Middle file size abbreviated."
 msgstr "中間檔案簡式大小。"
@@ -4285,17 +4166,17 @@ msgstr "中間檔案版本，只某些檔案類型。"
 msgid "Short comparison result."
 msgstr "短式比較結果。"
 
-#: Merge.rc:20155F5A
+#: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
 msgstr "左邊屬性。"
 
-#: Merge.rc:6DBD6125
+#: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
 msgstr "右邊屬性。"
 
-#: Merge.rc:7F2E411A
+#: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle side attributes."
 msgstr "中間屬性。"
@@ -4474,7 +4355,7 @@ msgstr "你想要移動到上一頁嗎？"
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
 "Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default windows codepage (recommended)?"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "左邊 (cp%d) 和右邊 (cp%d) 檔案所用的編碼頁不同。\n"
 "即使維持各別碼頁會分別看到文字，但合併/複製會有危險。\n"
@@ -4510,7 +4391,7 @@ msgstr "無差異"
 msgid "Line difference"
 msgstr "行內差異"
 
-#: Merge.rc:6DBD6126
+#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "已取代 %1 個字串。"
@@ -4559,7 +4440,7 @@ msgstr "遠望窗格"
 
 # also refer to line 5578
 # 差異窗格
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "近察窗格"
@@ -4702,6 +4583,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "混合"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "無"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4712,7 +4598,7 @@ msgstr "類型"
 msgid "Unpacker"
 msgstr "解壓縮程式"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "先行處理器"
@@ -4944,10 +4830,10 @@ msgstr "開啟自動最大寬度(&A)"
 msgid "&Image"
 msgstr "圖片(&I)"
 
-#: Merge.rc:4D3A8E6D
+#: Merge.rc:3D9427A9
 #, c-format
-msgid "frhed(http://frhed.sourceforge.net/) not installed"
-msgstr "frhed(http://frhed.sourceforge.net/) 未安裝"
+msgid "frhed is not installed"
+msgstr "frhed 未安裝"
 
 #: Merge.rc:73B321AA
 #, c-format

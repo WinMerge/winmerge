@@ -219,16 +219,16 @@ public:
 	std::vector<CMergeEditView *> GetViewList(int nGroup = -1, int nBuffer = -1) const {
 		std::vector<CMergeEditView *> list;
 		if (nGroup != -1)
-			for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-				list.push_back(m_pView[nGroup][nBuffer]);
+			for (int nBuffer2 = 0; nBuffer2 < m_nBuffers; ++nBuffer2)
+				list.push_back(m_pView[nGroup][nBuffer2]);
 		else if (nBuffer != -1)
-			for (int nGroup = 0; nGroup < m_nGroups; ++nGroup)
-				list.push_back(m_pView[nGroup][nBuffer]);
+			for (int nGroup2 = 0; nGroup2 < m_nGroups; ++nGroup2)
+				list.push_back(m_pView[nGroup2][nBuffer]);
 		else
 		{
-			for (int nGroup = 0; nGroup < m_nGroups; nGroup++)
-				for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
-					list.push_back(m_pView[nGroup][nBuffer]);
+			for (int nGroup3 = 0; nGroup3 < m_nGroups; nGroup3++)
+				for (int nBuffer3 = 0; nBuffer3 < m_nBuffers; ++nBuffer3)
+					list.push_back(m_pView[nGroup3][nBuffer3]);
 		}
 		return list;
 	}
@@ -365,15 +365,12 @@ protected:
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
 	afx_msg void OnFileReload();
-	afx_msg void OnUpdateFileReload(CCmdUI* pCmdUI);
 	afx_msg void OnFileEncoding();
-	afx_msg void OnUpdateFileEncoding(CCmdUI* pCmdUI);
 	afx_msg void OnDiffContext(UINT nID);
 	afx_msg void OnUpdateDiffContext(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnToolsGeneratePatch();
 	afx_msg void OnCtxtOpenWithUnpacker();
-	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnBnClickedFileEncoding();
 	afx_msg void OnBnClickedPlugin();
 	afx_msg void OnBnClickedHexView();

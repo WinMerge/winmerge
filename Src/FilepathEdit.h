@@ -46,8 +46,10 @@ public :
 	void SetTextColor(COLORREF rgb);
 
 protected:
+	virtual BOOL PreTranslateMessage(MSG *pMsg);
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
 	afx_msg void OnNcPaint();
+	afx_msg void OnEditCopy();
 	HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	DECLARE_MESSAGE_MAP();
 
@@ -58,7 +60,7 @@ private:
 
 	String m_sToolTipString; /**< buffer for return data from GetUpdatedTipText */
 	String m_sOriginalText; /**< Full path that was given to control */
-	BOOL m_bActive; /**< Is the control active-looking? */
+	bool m_bActive; /**< Is the control active-looking? */
 	COLORREF m_crText; /**< Control's text color. */
 	COLORREF m_crBackGnd; /**< Control's background color. */
 	CBrush m_brBackGnd; /**< Background brush for the control. */

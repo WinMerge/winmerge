@@ -117,22 +117,25 @@ void CHexMergeView::OnDraw(CDC *)
 }
 
 /**
- * @brief Load heksedit.dll and setup window class name
+ * @brief returns true if heksedit.dll is loadable
  */
-BOOL CHexMergeView::PreCreateWindow(CREATESTRUCT& cs)
+bool CHexMergeView::IsLoadable()
 {
 	static void *pv = NULL;
 	if (pv == NULL)
 	{
-		static const CLSID clsid = { 0xBCA3CA6B, 0xCC6B, 0x4F79,
-			{ 0xA2, 0xC2, 0xDD, 0xBE, 0x86, 0x4B, 0x1C, 0x90 } };
-		if (FAILED(::CoGetClassObject(clsid, CLSCTX_INPROC_SERVER, NULL, IID_IUnknown, &pv)))
-		{
-			pv = LoadLibrary(_T("Frhed\\hekseditU.dll"));
-			if (!pv)
-				LangMessageBox(IDS_FRHED_NOTINSTALLED, MB_OK);
-		}
+		pv = LoadLibrary(_T("Frhed\\hekseditU.dll"));
 	}
+	return pv != nullptr;
+}
+
+/**
+ * @brief Load heksedit.dll and setup window class name
+ */
+BOOL CHexMergeView::PreCreateWindow(CREATESTRUCT& cs)
+{
+	if (!IsLoadable())
+		LangMessageBox(IDS_FRHED_NOTINSTALLED, MB_OK);
 	cs.lpszClass = _T("heksedit");
 	cs.style |= WS_HSCROLL | WS_VSCROLL;
 	return TRUE;
@@ -241,9 +244,9 @@ int CHexMergeView::GetLength()
 /**
  * @brief Checks if file has changed since last update
  * @param [in] path File to check
- * @return TRUE if file is changed.
+ * @return `true` if file is changed.
  */
-BOOL CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
+bool CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
 {
 	DiffFileInfo dfi;
 	dfi.Update(path);
@@ -303,12 +306,12 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	}
 	// Ask user what to do about FILE_ATTRIBUTE_READONLY
 	String strPath = path;
-	BOOL bApplyToAll = FALSE;
-	if (theApp.HandleReadonlySave(strPath, FALSE, bApplyToAll) == IDCANCEL)
+	bool bApplyToAll = false;
+	if (theApp.HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
 		return S_OK;
 	path = strPath.c_str();
 	// Take a chance to create a backup
-	if (!theApp.CreateBackup(FALSE, path))
+	if (!theApp.CreateBackup(false, path))
 		return S_OK;
 	// Write data to an intermediate file
 	String tempPath = env::GetTemporaryPath();
@@ -349,9 +352,9 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 /**
  * @brief Get modified flag
  */
-BOOL CHexMergeView::GetModified()
+bool CHexMergeView::GetModified()
 {
-	return m_pif->get_status()->iFileChanged;
+	return m_pif->get_status()->bFileChanged;
 }
 
 /**
@@ -373,7 +376,7 @@ void CHexMergeView::ClearUndoRecords()
 /**
  * @brief Get readonly flag
  */
-BOOL CHexMergeView::GetReadOnly()
+bool CHexMergeView::GetReadOnly()
 {
 	return m_pif->get_settings()->bReadOnly;
 }
@@ -381,7 +384,7 @@ BOOL CHexMergeView::GetReadOnly()
 /**
  * @brief Set readonly flag
  */
-void CHexMergeView::SetReadOnly(BOOL bReadOnly)
+void CHexMergeView::SetReadOnly(bool bReadOnly)
 {
 	m_pif->get_settings()->bReadOnly = bReadOnly;
 }

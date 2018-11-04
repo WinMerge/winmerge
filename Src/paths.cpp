@@ -9,7 +9,6 @@
 #include <cassert>
 #include <cstring>
 #include <direct.h>
-#include <mbctype.h> // MBCS (multibyte codepage stuff)
 #pragma warning (push)			// prevent "warning C4091: 'typedef ': ignored on left of 'tagGPFIDL_FLAGS' when no variable is declared"
 #pragma warning (disable:4091)	// VC bug when using XP enabled toolsets.
 #include <shlobj.h>
@@ -130,7 +129,7 @@ String FindExtension(const String& path)
 
 /** 
  * @brief Strip trailing slas.
- * This function strips trailing slas from given path. Root paths are special
+ * This function strips trailing slash from given path. Root paths are special
  * case and they are left intact. Since C:\ is a valid path but C: is not.
  * @param [in,out] sPath Path to strip.
  */
@@ -734,18 +733,6 @@ endSplit:
 	{
 		size_t extlen = pend - extptr;
 		pFile->erase(pFile->length() - extlen);
-	}
-}
-
-// Split Rational ClearCase view name (file_name@@file_version).
-void SplitViewName(const TCHAR *s, String * path, String * name, String * ext)
-{
-	String sViewName(s);
-	size_t nOffset = sViewName.find(_T("@@"));
-	if (nOffset != String::npos)
-	{
-		sViewName.erase(nOffset);
-		SplitFilename(sViewName, path, name, ext);
 	}
 }
 

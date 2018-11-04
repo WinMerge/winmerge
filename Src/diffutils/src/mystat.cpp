@@ -1,19 +1,18 @@
 // my own _fstat() and _wstat() implementation for the bug https://connect.microsoft.com/VisualStudio/feedback/details/1600505/stat-not-working-on-windows-xp-using-v14-xp-platform-toolset-vs2015
 #include <sys/stat.h>
 #include <io.h>
-#include <cstdint>
 #include <cerrno>
 #include <Windows.h>
 
 inline time_t filetime_to_time_t(const FILETIME& ft)
 {
-	return ((static_cast<int64_t>(ft.dwHighDateTime) << 32) + ft.dwLowDateTime) / 10000000ULL - 11644473600ULL;
+	return ((static_cast<time_t>(ft.dwHighDateTime) << 32) + ft.dwLowDateTime) / 10000000ULL - 11644473600ULL;
 }
 
 template<typename FileInfo>
 inline void set_statbuf(const FileInfo& hfi, struct _stat64& buf)
 {
-	buf.st_size = (static_cast<int64_t>(hfi.nFileSizeHigh) << 32) | hfi.nFileSizeLow;
+	buf.st_size = (static_cast<__int64>(hfi.nFileSizeHigh) << 32) | hfi.nFileSizeLow;
 	buf.st_atime = filetime_to_time_t(hfi.ftLastAccessTime);
 	buf.st_mtime = filetime_to_time_t(hfi.ftLastWriteTime);
 	buf.st_ctime = filetime_to_time_t(hfi.ftCreationTime);

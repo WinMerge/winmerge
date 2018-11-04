@@ -521,7 +521,7 @@ ScrollLeft ()
 void CCrystalTextView::
 ScrollRight ()
 {
-  if (m_nOffsetChar < GetMaxLineLength () - 1)
+  if (m_nOffsetChar < GetMaxLineLength (m_nTopLine, GetScreenLines()) - 1)
     {
       ScrollToChar (m_nOffsetChar + 1);
       UpdateCaret ();
@@ -804,7 +804,7 @@ OnMouseMove (UINT nFlags, CPoint point)
             m_pTextBuffer->BeginUndoGroup ();
 
           COleDataSource ds;
-          UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
+          CLIPFORMAT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
           ds.CacheGlobalData (fmt, hData);
           m_bDraggingText = true;
           DROPEFFECT de = ds.DoDragDrop (GetDropEffect ());
@@ -975,7 +975,7 @@ OnTimer (UINT_PTR nIDEvent)
 
       //  Scroll horizontally, if necessary
       int nNewOffsetChar = m_nOffsetChar;
-      int nMaxLineLength = GetMaxLineLength ();
+      int nMaxLineLength = GetMaxLineLength (m_nTopLine, GetScreenLines());
       if (pt.x < rcClient.left)
         nNewOffsetChar--;
       else if (pt.x >= rcClient.right)
@@ -1084,12 +1084,6 @@ OnEditSelectAll ()
 }
 
 void CCrystalTextView::
-OnUpdateEditSelectAll (CCmdUI * pCmdUI)
-{
-  pCmdUI->Enable (true);
-}
-
-void CCrystalTextView::
 OnRButtonDown (UINT nFlags, CPoint point)
 {
   CPoint pt = point;
@@ -1133,7 +1127,7 @@ Copy ()
 bool CCrystalTextView::
 TextInClipboard ()
 {
-  UINT fmt = GetClipTcharTextFormat();
+  CLIPFORMAT fmt = GetClipTcharTextFormat();
   return !!IsClipboardFormatAvailable (fmt);
 }
 
@@ -1160,7 +1154,7 @@ PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
               if (dwSize > cbData)
                   memset(reinterpret_cast<char *>(pszData) + cbData, 0, dwSize - cbData);
               GlobalUnlock (hData);
-              UINT fmt = GetClipTcharTextFormat();
+              CLIPFORMAT fmt = GetClipTcharTextFormat();
               bOK = SetClipboardData (fmt, hData) != NULL;
               if (bOK)
                 {
@@ -1183,7 +1177,7 @@ GetFromClipboard (CString & text, bool & bColumnSelection)
   bool bSuccess = false;
   if (OpenClipboard ())
     {
-      UINT fmt = GetClipTcharTextFormat();
+      CLIPFORMAT fmt = GetClipTcharTextFormat();
       HGLOBAL hData = GetClipboardData (fmt);
       if (hData != NULL)
         {

@@ -82,7 +82,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
-	ON_COMMAND(ID_MERGE_COMPARE_HEX, OnFileRecompareAsBinary)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_HEX, OnFileRecompare)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_HEX, OnUpdateFileRecompare)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
@@ -175,7 +176,7 @@ CImgMergeFrame::~CImgMergeFrame()
 		m_pDirDoc = NULL;
 	}
 
-	HMODULE hModule = GetModuleHandle(_T("WinIMergeLib.dll"));
+	HMODULE hModule = GetModuleHandleW(L"WinIMergeLib.dll");
 	if (hModule)
 	{
 		bool (*WinIMerge_DestroyWindow)(IImgMergeWindow *) = 
@@ -388,12 +389,30 @@ void CImgMergeFrame::OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 }
 
 /**
+ * @brief returns true if WinIMergeLib.dll is loadable
+ */
+bool CImgMergeFrame::IsLoadable()
+{
+	static HMODULE hModule;
+	if (!hModule)
+	{
+		hModule = LoadLibraryW(L"WinIMerge\\WinIMergeLib.dll");
+		if (!hModule)
+			return false;
+	}
+	return true;
+}
+
+/**
  * @brief Create the splitter, the filename bar, the status bar, and the two views
  */
 BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
-	HMODULE hModule = LoadLibraryW(L"WinIMerge\\WinIMergeLib.dll");
+	if (!IsLoadable())
+		return FALSE;
+
+	HMODULE hModule = GetModuleHandleW(L"WinIMergeLib.dll");
 	if (!hModule)
 		return FALSE;
 
@@ -504,21 +523,21 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 * The bars are identified with their ID. This means the missing bar bug is triggered
 * when we run WinMerge after changing the ID of a bar.
 */
-BOOL CImgMergeFrame::EnsureValidDockState(CDockState& state)
+bool CImgMergeFrame::EnsureValidDockState(CDockState& state)
 {
 	for (int i = (int)state.m_arrBarInfo.GetSize() - 1; i >= 0; i--)
 	{
-		BOOL barIsCorrect = TRUE;
+		bool barIsCorrect = true;
 		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
 		if (!pInfo)
-			barIsCorrect = FALSE;
+			barIsCorrect = false;
 		else
 		{
 			if (!pInfo->m_bFloating)
 			{
 				pInfo->m_pBar = GetControlBar(pInfo->m_nBarID);
 				if (!pInfo->m_pBar)
-					barIsCorrect = FALSE; //toolbar id's probably changed	
+					barIsCorrect = false; //toolbar id's probably changed	
 			}
 		}
 
@@ -636,8 +655,8 @@ bool CImgMergeFrame::DoFileSave(int pane)
 		else
 		{
 			String filename = ucr::toTString(m_pImgMergeWindow->GetFileName(pane));
-			BOOL bApplyToAll = FALSE;
-			if (theApp.HandleReadonlySave(filename, FALSE, bApplyToAll) == IDCANCEL)
+			bool bApplyToAll = false;
+			if (theApp.HandleReadonlySave(filename, false, bApplyToAll) == IDCANCEL)
 				return false;
 			theApp.CreateBackup(false, filename);
 			if (!m_pImgMergeWindow->SaveImage(pane))
@@ -661,10 +680,9 @@ bool CImgMergeFrame::DoFileSaveAs(int pane)
 		title = _("Save Right File As");
 	else
 		title = _("Save Middle File As");
-	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, FALSE, path.c_str(), title))
+	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
 		std::wstring filename = ucr::toUTF16(strPath).c_str();
-		BOOL bApplyToAll = FALSE;
 		if (m_pImgMergeWindow->SaveImageAs(pane, filename.c_str()))
 			return false;
 		if (path.empty())
@@ -844,18 +862,30 @@ void CImgMergeFrame::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_pImgMergeWindow->GetReadOnly(m_pImgMergeWindow->GetPaneCount() - 1));
 }
 
-void CImgMergeFrame::OnFileRecompareAsBinary()
+void CImgMergeFrame::OnFileRecompare(UINT nId)
 {
-	DWORD dwFlags[3] = { 0 };
 	FileLocation fileloc[3];
-	for (int pane = 0; pane < m_filePaths.GetSize(); pane++)
+	DWORD dwFlags[3];
+	String strDesc[3];
+	int nBuffers = m_filePaths.GetSize();
+	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc :
+		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
-		fileloc[pane].setPath(m_filePaths[pane]);
-		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_bRO[pane] ? FFILEOPEN_READONLY : 0);
+		fileloc[nBuffer].setPath(m_filePaths[nBuffer]);
+		dwFlags[nBuffer] = m_bRO[nBuffer] ? FFILEOPEN_READONLY : 0;
+		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
-	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_filePaths.GetSize(), fileloc, dwFlags, m_strDesc);
-	ShowWindow(SW_RESTORE);
-	DestroyWindow();
+	CloseNow();
+	if (nId == ID_MERGE_COMPARE_TEXT)
+		GetMainFrame()->ShowMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	else if (nId == ID_MERGE_COMPARE_HEX)
+		GetMainFrame()->ShowHexMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+}
+
+void CImgMergeFrame::OnUpdateFileRecompare(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_XML);
 }
 
 void  CImgMergeFrame::OnWindowChangePane() 
@@ -1830,7 +1860,7 @@ void CImgMergeFrame::OnImgOverlayMode(UINT nId)
 
 void CImgMergeFrame::OnUpdateImgOverlayMode(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio((pCmdUI->m_nID - ID_IMG_OVERLAY_NONE) == m_pImgMergeWindow->GetOverlayMode());
+	pCmdUI->SetRadio(static_cast<IImgMergeWindow::OVERLAY_MODE>(pCmdUI->m_nID - ID_IMG_OVERLAY_NONE) == m_pImgMergeWindow->GetOverlayMode());
 }
 
 void CImgMergeFrame::OnImgDraggingMode(UINT nId)
@@ -1841,7 +1871,7 @@ void CImgMergeFrame::OnImgDraggingMode(UINT nId)
 
 void CImgMergeFrame::OnUpdateImgDraggingMode(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio((pCmdUI->m_nID - ID_IMG_DRAGGINGMODE_NONE) == static_cast<int>(m_pImgMergeWindow->GetDraggingMode()));
+	pCmdUI->SetRadio(static_cast<IImgMergeWindow::DRAGGING_MODE>(pCmdUI->m_nID - ID_IMG_DRAGGINGMODE_NONE) == m_pImgMergeWindow->GetDraggingMode());
 }
 
 void CImgMergeFrame::OnImgDiffBlockSize(UINT nId)

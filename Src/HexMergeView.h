@@ -49,16 +49,17 @@ public:
 	IHexEditorWindow *GetInterface() const { return m_pif; }
 	BYTE *GetBuffer(int);
 	int GetLength();
-	BOOL GetModified();
+	bool GetModified();
 	void SetSavePoint();
 	void ClearUndoRecords();
-	BOOL GetReadOnly();
-	void SetReadOnly(BOOL);
+	bool GetReadOnly();
+	void SetReadOnly(bool);
 	void ResizeWindow();
-	BOOL IsFileChangedOnDisk(LPCTSTR);
+	bool IsFileChangedOnDisk(LPCTSTR);
 	void ZoomText(int amount);
 	static void CopySel(const CHexMergeView *src, CHexMergeView *dst);
 	static void CopyAll(const CHexMergeView *src, CHexMergeView *dst);
+	static bool IsLoadable();
 	// Overrides
 protected:
 	virtual void OnDraw(CDC*);

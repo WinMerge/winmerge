@@ -27,7 +27,6 @@
 
 #include "StdAfx.h"
 #include "MergeDoc.h"
-#include <cstdint>
 #include <io.h>
 #include <Poco/Timestamp.h>
 #include "UnicodeString.h"
@@ -108,13 +107,10 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
-	ON_UPDATE_COMMAND_UI(ID_RESCAN, OnUpdateFileReload)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
-	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
 	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_TOGGLE, OnDiffContext)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_TOGGLE, OnUpdateDiffContext)
 	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
-	ON_UPDATE_COMMAND_UI(ID_POPUP_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
 	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
 	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
 	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
@@ -252,7 +248,7 @@ void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer)
 
 void CMergeDoc::Serialize(CArchive& ar)
 {
-	ASSERT(0); // we do not use CDocument serialization
+	ASSERT(false); // we do not use CDocument serialization
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -427,7 +423,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		}
 
 		m_diffWrapper.SetCreateDiffList(&m_diffList);
-		diffSuccess = !!m_diffWrapper.RunFileDiff();
+		diffSuccess = m_diffWrapper.RunFileDiff();
 
 		// Read diff-status
 		m_diffWrapper.GetDiffStatus(&status);
@@ -452,7 +448,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 			DiffList templist;
 			templist.Clear();
 			m_diffWrapper.SetCreateDiffList(&templist);
-			diffSuccess = !!m_diffWrapper.RunFileDiff();
+			diffSuccess = m_diffWrapper.RunFileDiff();
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				nRealLine[nBuffer] = m_ptBuf[nBuffer]->ComputeRealLine(nStartLine[nBuffer]);
 			m_diffList.AppendDiffList(templist, nRealLine);
@@ -1334,7 +1330,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	DiffFileInfo fileInfo;
 	String strSavePath(szPath);
 	FileChange fileChanged;
-	BOOL bApplyToAll = false;	
+	bool bApplyToAll = false;	
 	int nRetVal = -1;
 
 	fileChanged = IsFileChangedOnDisk(szPath, fileInfo, true, nBuffer);
@@ -3021,14 +3017,6 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 }
 
 /**
- * @brief Update "Reload" item
- */
-void CMergeDoc::OnUpdateFileReload(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(true);
-}
-
-/**
  * @brief Reloads the opened files
  */
 void CMergeDoc::OnFileReload()
@@ -3057,22 +3045,9 @@ void CMergeDoc::OnFileEncoding()
 	DoFileEncodingDialog();
 }
 
-/**
- * @brief Update "File Encoding" item
- */
-void CMergeDoc::OnUpdateFileEncoding(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(true);
-}
-
 void CMergeDoc::OnCtxtOpenWithUnpacker() 
 {
 	OpenWithUnpackerDialog();
-}
-
-void CMergeDoc::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(true);
 }
 
 void CMergeDoc::OnBnClickedFileEncoding()
@@ -3120,26 +3095,11 @@ void CMergeDoc::OnFileRecompareAsBinary()
 	OnBnClickedHexView();
 }
 
-// Return file extension either from file name or file description (if WinMerge is used as an
-// external Rational ClearCase tool.
+// Return file extension either from file name 
 String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const
 {
 	String sExt;
 	paths::SplitFilename(sFileName, NULL, NULL, &sExt);
-
-	if (theApp.m_bClearCaseTool)
-	{
-		// If no extension found in real file name.
-		if (sExt.empty())
-		{
-			paths::SplitViewName(sFileName, NULL, NULL, &sExt);
-		}
-		// If no extension found in repository file name.
-		if (true == sExt.empty())
-		{
-			paths::SplitViewName(sDescription, NULL, NULL, &sExt);
-		}
-	}
 	return sExt;
 }
 

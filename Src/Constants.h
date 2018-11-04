@@ -15,6 +15,9 @@ const TCHAR WinMergeURL[] = _T("http://www.geocities.co.jp/SiliconValley-SanJose
  */
 const TCHAR DocsURL[] = _T("http://manual.winmerge.org/index.html");
 
+/** @brief URL to translations page in internet. */
+const TCHAR TranslationsUrl[] = _T("http://winmerge.org/translations/");
+
 /** @brief URL of the GPL license. */
 const TCHAR LicenceUrl[] = _T("http://www.gnu.org/licenses/gpl-2.0.html");
 
@@ -29,6 +32,9 @@ const TCHAR DocsPath_ja[] = _T("Docs/WinMerge_ja.chm");
 
 /** @brief Contributors list. */
 const TCHAR ContributorsPath[] = _T("contributors.txt");
+
+/** @brief Release notes in HTML format. */
+const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes.html");
 
 /** @brief GPL Licence local file name. */
 const TCHAR LicenseFile[] = _T("Copying");

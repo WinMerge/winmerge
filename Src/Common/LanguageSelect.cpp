@@ -486,6 +486,7 @@ const WORD wSourceLangId = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
 CLanguageSelect::CLanguageSelect()
 : m_hCurrentDll(0)
 , m_wCurLanguage(wSourceLangId)
+, m_codepage(0)
 {
 	SetThreadLocale(MAKELCID(m_wCurLanguage, SORT_DEFAULT));
 }
@@ -569,13 +570,13 @@ static void unslash(unsigned codepage, std::string &s)
 /**
  * @brief Load language.file
  * @param [in] wLangId 
- * @return TRUE on success, FALSE otherwise.
+ * @return `true` on success, `false` otherwise.
  */
-BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
+bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false*/)
 {
 	String strPath = GetFileName(wLangId);
 	if (strPath.empty())
-		return FALSE;
+		return false;
 
 	m_hCurrentDll = LoadLibrary(_T("MergeLang.dll"));
 	// There is no point in translating error messages about inoperational
@@ -584,7 +585,7 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 	{
 		if (bShowError)
 			AfxMessageBox(_T("Failed to load MergeLang.dll"), MB_ICONSTOP);
-		return FALSE;
+		return false;
 	}
 	CVersionInfo viInstance(AfxGetInstanceHandle());
 	unsigned instanceVerMS = 0;
@@ -600,14 +601,14 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 		m_hCurrentDll = 0;
 		if (bShowError)
 			AfxMessageBox(_T("MergeLang.dll version mismatch"), MB_ICONSTOP);
-		return FALSE;
+		return false;
 	}
 	HRSRC mergepot = FindResource(m_hCurrentDll, _T("MERGEPOT"), RT_RCDATA);
 	if (mergepot == 0)
 	{
 		if (bShowError)
 			AfxMessageBox(_T("MergeLang.dll is invalid"), MB_ICONSTOP);
-		return FALSE;
+		return false;
 	}
 	size_t size = SizeofResource(m_hCurrentDll, mergepot);
 	const char *data = (const char *)LoadResource(m_hCurrentDll, mergepot);
@@ -676,7 +677,7 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 			String str = _T("Failed to load ") + strPath;
 			AfxMessageBox(str.c_str(), MB_ICONSTOP);
 		}
-		return FALSE;
+		return false;
 	}
 	ps = 0;
 	msgid.erase();
@@ -764,22 +765,22 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId, BOOL bShowError)
 				_T("attempting to read translations from\n") + strPath;
 			AfxMessageBox(str.c_str(), MB_ICONSTOP);
 		}
-		return FALSE;
+		return false;
 	}
-	return TRUE;
+	return true;
 }
 
 /**
  * @brief Set UI language.
  * @param [in] wLangId 
- * @return TRUE on success, FALSE otherwise.
+ * @return `true` on success, `false` otherwise.
  */
-BOOL CLanguageSelect::SetLanguage(LANGID wLangId, BOOL bShowError)
+bool CLanguageSelect::SetLanguage(LANGID wLangId, bool bShowError /*= false*/)
 {
 	if (wLangId == 0)
-		return FALSE;
+		return false;
 	if (m_wCurLanguage == wLangId)
-		return TRUE;
+		return true;
 	// reset the resource handle
 	AfxSetResourceHandle(AfxGetInstanceHandle());
 	// free the existing DLL
@@ -800,7 +801,7 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId, BOOL bShowError)
 	}
 	m_wCurLanguage = wLangId;
 	SetThreadLocale(MAKELCID(m_wCurLanguage, SORT_DEFAULT));
-	return TRUE;
+	return true;
 }
 
 /**
@@ -983,6 +984,143 @@ void CLanguageSelect::TranslateDialog(HWND h) const
 		h = ::GetWindow(h, gw);
 		gw = GW_HWNDNEXT;
 	} while (h);
+}
+
+void CLanguageSelect::RetranslateDialog(HWND h, const TCHAR *name) const
+{
+	typedef struct
+	{
+		WORD dlgVer;
+		WORD signature;
+		DWORD helpID;
+		DWORD exStyle;
+		DWORD style;
+		WORD cDlgItems;
+		short x;
+		short y;
+		short cx;
+		short cy;
+	} DLGTEMPLATEEX;
+
+	typedef struct
+	{
+		DWORD helpID;
+		DWORD exStyle;
+		DWORD style;
+		short x;
+		short y;
+		short cx;
+		short cy;
+		DWORD id;
+	} DLGITEMTEMPLATEEX;
+
+	auto loadDialogResource = [](HMODULE hModule, const TCHAR *name) -> DLGTEMPLATEEX *
+	{
+		if (HRSRC hFindRes = FindResource(hModule, name, RT_DIALOG))
+		{
+			if (HGLOBAL hLoadRes = LoadResource(hModule, hFindRes))
+			{
+				if (LPVOID q = LockResource(hLoadRes))
+				{
+					return reinterpret_cast<DLGTEMPLATEEX *>(q);
+				}
+			}
+		}
+		return nullptr;
+	};
+
+	auto skip = [](const WORD* &pw)
+	{
+		if (*pw == static_cast<WORD>(-1)) pw += 2; else { while (*pw++); };
+	};
+
+	auto findFirstDlgItem = [&skip](const DLGTEMPLATEEX *pTemplate) -> const DLGITEMTEMPLATEEX *
+	{
+		const WORD *pw = reinterpret_cast<const WORD *>(pTemplate) + 13;
+
+		skip(pw); // Skip menu name string or ordinal
+		skip(pw); // Skip class name string or ordinal
+		while (*pw++);          // Skip caption string
+		if (pTemplate->style & DS_SETFONT)
+		{
+			pw += 3;
+			while (*pw++);
+		}
+		return reinterpret_cast<const DLGITEMTEMPLATEEX *>(
+			reinterpret_cast<WORD*>((reinterpret_cast<DWORD_PTR>(pw) + 3) & ~DWORD_PTR(3))); // DWORD align
+	};
+
+	auto findNextDlgItem = [&skip](const DLGITEMTEMPLATEEX *pItem) -> const DLGITEMTEMPLATEEX * {
+		const WORD *pw = reinterpret_cast<const WORD *>(pItem);
+		pw += sizeof(DLGITEMTEMPLATEEX) / sizeof(WORD);
+
+		skip(pw); // Skip class name string or ordinal
+		skip(pw);  // Skip text string or ordinal
+
+		WORD cbExtra = *reinterpret_cast<const WORD*>(pw);      // Skip extra data
+		pw += 1 + cbExtra / sizeof(WORD);
+		return reinterpret_cast<const DLGITEMTEMPLATEEX *>(
+			reinterpret_cast<WORD*>((reinterpret_cast<DWORD_PTR>(pw) + 3) & ~DWORD_PTR(3))); // DWORD align
+	};
+
+	bool english = false;
+	HMODULE hModule = m_hCurrentDll;
+	if (!hModule)
+	{
+		hModule = LoadLibrary(_T("MergeLang.dll"));
+		english = true;
+	}
+	if (hModule)
+	{
+		if (DLGTEMPLATEEX* pTemplate = loadDialogResource(hModule, name))
+		{
+			DLGTEMPLATEEX *pTemplateEng = nullptr;
+			if (!english || (pTemplateEng = loadDialogResource(AfxGetInstanceHandle(), name)) != nullptr)
+			{
+				HWND hWndChlid = ::GetWindow(h, GW_CHILD);
+				const DLGITEMTEMPLATEEX *pItem = findFirstDlgItem(pTemplate);
+				const DLGITEMTEMPLATEEX *pItemEng = pTemplateEng ? findFirstDlgItem(pTemplateEng) : nullptr;
+				for (int nDlgItems = 0; nDlgItems < pTemplate->cDlgItems; ++nDlgItems)
+				{
+					const WORD *pw = reinterpret_cast<const WORD *>(pItem);
+					pw += sizeof(DLGITEMTEMPLATEEX) / sizeof(WORD);
+					skip(pw); // Skip class name string or ordinal
+
+					if (*pw == static_cast<WORD>(-1))     // Skip text string or ordinal
+						pw += 2;
+					else
+					{
+						const wchar_t *p = reinterpret_cast<const wchar_t*>(pw);
+						if (wcsncmp(p, L"Merge.rc:", 9) == 0)
+						{
+							if (pItemEng)
+							{
+								const WORD *pw2 = reinterpret_cast<const WORD *>(pItemEng);
+								pw2 += sizeof(DLGITEMTEMPLATEEX) / sizeof(WORD);
+								skip(pw2); // Skip class name string or ordinal
+								const wchar_t *peng = reinterpret_cast<const wchar_t *>(pw2);
+								::SetWindowText(hWndChlid, peng);
+							}
+							else
+							{
+								::SetWindowText(hWndChlid, p);
+							}
+						}
+						while (*pw++);
+					}
+
+					hWndChlid = ::GetWindow(hWndChlid, GW_HWNDNEXT);
+					pItem = findNextDlgItem(pItem);
+					if (pItemEng)
+						pItemEng = findNextDlgItem(pItemEng);
+				}
+			}
+		}
+		if (english)
+			FreeLibrary(hModule);
+		else
+			TranslateDialog(h);
+	}
 }
 
 String CLanguageSelect::LoadString(UINT id) const

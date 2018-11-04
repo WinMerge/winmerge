@@ -166,7 +166,7 @@ static bool launchProgram(const String& sCmd, WORD wShowWindow)
 	stInfo.dwFlags = STARTF_USESHOWWINDOW;
 	stInfo.wShowWindow = wShowWindow;
 	PROCESS_INFORMATION processInfo;
-	BOOL retVal = CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
+	bool retVal = !!CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
 		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
 		&stInfo, &processInfo);
 	if (!retVal)

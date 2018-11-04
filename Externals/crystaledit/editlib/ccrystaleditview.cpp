@@ -313,7 +313,7 @@ DeleteCurrentSelection ()
 }
 
 bool CCrystalEditView::
-DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup /*=true*/, bool bUpdateCursorPosition /*=true*/)
+DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup /*= true*/, bool bUpdateCursorPosition /*= true*/)
 {
   if (IsSelection ())
     {
@@ -648,7 +648,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
   // check if incremental search is active before call to CCrystalTextView::OnChar()
   bool bIncrementalSearch = m_bIncrementalSearchForward || m_bIncrementalSearchBackward;
   //END Sw
-  CCrystalTextView::OnChar (nChar, nRepCnt, nFlags);
+  CCrystalTextView::OnChar (static_cast<wchar_t>(nChar), nRepCnt, nFlags);
 	//BEGIN SW
 	// if we are in incremental search mode ignore the character
 	if( m_bIncrementalSearchForward || m_bIncrementalSearchBackward )
@@ -1178,7 +1178,7 @@ OnUpdateEditSwitchOvrmode (CCmdUI * pCmdUI)
 DROPEFFECT CEditDropTargetImpl::
 OnDragEnter (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint point)
 {
-  UINT fmt = CCrystalTextView::GetClipTcharTextFormat();
+  CLIPFORMAT fmt = CCrystalTextView::GetClipTcharTextFormat();
   if (!pDataObject->IsDataAvailable (fmt))
     {
       if (m_pAlternateDropTarget)
@@ -1229,7 +1229,7 @@ OnDragOver (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint 
   //  if ((pDataObject->IsDataAvailable( CF_TEXT ) ) ||       // If Text Available
   //          ( pDataObject -> IsDataAvailable( xxx ) ) ||    // Or xxx Available
   //          ( pDataObject -> IsDataAvailable( yyy ) ) )     // Or yyy Available
-  UINT fmt = CCrystalTextView::GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
+  CLIPFORMAT fmt = CCrystalTextView::GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
   if (pDataObject->IsDataAvailable (fmt))   // If Text Available
 
     {
@@ -1283,7 +1283,7 @@ OnDrop (CWnd * pWnd, COleDataObject * pDataObject, DROPEFFECT dropEffect, CPoint
   //  if( ( pDataObject -> IsDataAvailable( CF_TEXT ) ) ||    // If Text Available
   //          ( pDataObject -> IsDataAvailable( xxx ) ) ||    // Or xxx Available
   //          ( pDataObject -> IsDataAvailable( yyy ) ) )     // Or yyy Available
-  UINT fmt = CCrystalTextView::GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
+  CLIPFORMAT fmt = CCrystalTextView::GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
   if (pDataObject->IsDataAvailable (fmt))   // If Text Available
 
     {
@@ -1371,7 +1371,7 @@ SetAlternateDropTarget (IDropTarget *pDropTarget)
 bool CCrystalEditView::
 DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
 {
-  UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
+  CLIPFORMAT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
   HGLOBAL hData = pDataObject->GetGlobalData (fmt);
   if (hData == NULL)
     return false;

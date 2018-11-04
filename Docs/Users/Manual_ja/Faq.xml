@@ -63,24 +63,6 @@
 
       <qandaentry>
         <question>
-          <para>あのスプラッシュ画面が邪魔なんだけど消せないの?<indexterm>
-              <primary>スプラッシュ画面をオフにする</primary>
-          </indexterm></para>
-        </question>
-
-        <answer>
-          <para>WinMergeメニューの、
-            <menuchoice>
-              <guimenu>編集(E)</guimenu>
-              <guisubmenu>設定(O)</guisubmenu>
-            </menuchoice>とクリックしてください。
-            設定ウィンドウの一般カテゴリにある、<guilabel>「スプラッシュ画面を非表示(D)」</guilabel>にチェックを付けてください。
-          </para>
-        </answer>
-      </qandaentry>
-
-      <qandaentry>
-        <question>
           <para>フォルダ比較をしたいんだけど、参照ダイアログでフォルダが選択できないよ。
             <indexterm>
               <primary>フォルダ</primary>
@@ -238,69 +220,6 @@
         </answer>
       </qandaentry>
 
-      <qandaentry>
-        <question>
-          <para>WinMergeが
-            <filename>CompareMSWordFiles.dll</filename>や
-            <filename>CompareMSExcelFiles.dll</filename>が読み込めないとエラーを表示するよ!(クラッシュすることも!)<indexterm>
-              <primary>プラグインのためのVisual Basic DLL</primary>
-              </indexterm><indexterm>
-              <primary>プラグイン</primary>
-
-              <secondary>Visual Basic DLL</secondary>
-              </indexterm><indexterm>
-              <primary>プラグインファイル CompareMSWordFiles.dll</primary>
-              </indexterm><indexterm>
-              <primary>プラグインファイル CompareMSExcelFiles.dll</primary>
-          </indexterm></para>
-        </question>
-
-        <answer>
-          <para>
-            これらのプラグインは、Visual Basic (6.0)で書かれています。
-            WinMergeのインストーラには、Visual Basicランタイムが含まれていないため、これらのプラグインが読み込めません。
-            あなたは、幾つかのオプションの中の一つを使用して、この問題に対処することができます。
-          </para>
-
-          <itemizedlist>
-            <listitem>
-              <para><filename class="directory">WinMerge/Plugins</filename>フォルダ内のファイルを削除してください。</para>
-            </listitem>
-
-            <listitem>
-              <para>
-                Visual Basic 6.0ランタイムを、<trademark class="registered">Microsoft</trademark>:
-                <ulink url="http://support.microsoft.com/kb/290887">http://support.microsoft.com/kb/290887</ulink> よりダウンロードし、インストールしてください。
-                または、必要なファイルだけを、<ulink url="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60</ulink>よりダウンロードして、<filename class="directory">WinMerge</filename>フォルダにコピーしてください。
-              </para>
-            </listitem>
-          </itemizedlist>
-        </answer>
-      </qandaentry>
-    </qandaset>
-  </section>
-
-  <section>
-    <title>インストール</title>
-
-    <qandaset>
-      <qandaentry>
-        <question>
-          <para>WinMergeがDLL
-            (<filename>mfc90.dll</filename>, <filename>mfc90u.dll</filename>,
-            <filename>msvcr90.dll</filename>, 
-            <filename>msvcp90.dll</filename>)がないって言って動かないよ</para>
-        </question>
-
-        <answer>
-          <para>
-            WinMerge を書庫(zipまたは7z)ファイルよりインストールする時、
-            幾つかのランタイムパッケージも必要です。
-            詳細は、インストールヘルプの
-            <xref linkend="InstallFromArchive" />をご覧ください。
-          </para>
-        </answer>
-      </qandaentry>
     </qandaset>
   </section>
 
@@ -330,20 +249,6 @@
     <title>エディタについての質問</title>
 
     <qandaset>
-      <qandaentry>
-        <question>
-          <para>文字がちょん切れるんだけど?</para>
-        </question>
-
-        <answer>
-          <para><menuchoice>
-              <guimenu>表示(V)</guimenu>
-
-              <guimenuitem>フォント選択(F)</guimenuitem>
-          </menuchoice>をクリックし、別のフォントを選んでください。</para>
-        </answer>
-      </qandaentry>
-
       <qandaentry>
         <question>
           <para>ファイル内の文字がクエスチョンマークになってみえるよ?</para>
@@ -508,39 +413,6 @@
     <title>アーカイブサポート</title>
 
     <qandaset>
-      <qandaentry>
-        <question>
-          <para>7-Zipをインストールしたけどアーカイブサポート機能が動かないよ?</para>
-        </question>
-
-        <answer>
-          <para>以下のいづれかのうち、一つの問題があるかもしれません。</para>
-
-          <itemizedlist>
-            <listitem>
-              <para>
-                インストールされているプラグインのバージョンと7-Zipのバージョンが合っていますか？
-                合っていないなら、インストールの説明の、<xref linkend="Installing_archive_support" />の手順を参照してください。
-              </para>
-            </listitem>
-
-            <listitem>
-              <para>
-                次の様なエラーの場合: 
-                <emphasis>
-                  <errortext>7-zip x.xx が見つかりません / プラグインは存在</errortext>
-                </emphasis>, 
-                MSIインストーラを使用して7-Zipがインストールされたかもしれません。
-                いくつかの7-ZipのMSIインストーラは、WinMergeが必要とするすべてのファイル
-                (具体的には、7-Zipのプログラムフォルダ中の、<filename>7zip_pad.xml</filename>)
-                をインストールしません。
-                EXE版の7-Zipインストーラをダウンロードし、実行してください。
-              </para>
-            </listitem>
-          </itemizedlist>
-        </answer>
-      </qandaentry>
-
       <qandaentry>
         <question>
           <para>
@@ -711,10 +583,8 @@
         </question>
 
         <answer>
-          <para>
-            いいえ。しかしながら、GnuWin32プロジェクトのパッチツールを使えます。
-            なぜなら、WinMergeのパッチファイル生成機能は、GNU/diffutilsと互換性があるからです。
-            また、この前の質問も見てください。
+          <para>You can apply patches using the experimental plugin ApplyPatch.sct.
+          The extensions of patches supported by the plugin are .diff or .patch.
           </para>
         </answer>
       </qandaentry>

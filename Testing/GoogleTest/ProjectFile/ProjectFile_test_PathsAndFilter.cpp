@@ -23,7 +23,7 @@ namespace
 class PathAndFilterTest : public testing::Test
 {
 protected:
-	PathAndFilterTest()
+	PathAndFilterTest() : m_pProjectFile(nullptr)
 	{
 		// You can do set-up work for each test	here.
 	}

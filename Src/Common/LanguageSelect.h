@@ -32,10 +32,11 @@ public:
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
+	void RetranslateDialog(HWND, const TCHAR *name) const;
 	String LoadString(UINT) const;
 	std::wstring LoadDialogCaption(LPCTSTR lpDialogTemplateID) const;
 	std::vector<std::pair<LANGID, String> > GetAvailableLanguages() const;
-	BOOL SetLanguage(LANGID, BOOL bShowError = FALSE);
+	bool SetLanguage(LANGID, bool bShowError = false);
 
 // Implementation data
 private:
@@ -48,5 +49,5 @@ private:
 // Implementation methods
 private:
 	String GetFileName(LANGID) const;
-	BOOL LoadLanguageFile(LANGID, BOOL bShowError = FALSE);
+	bool LoadLanguageFile(LANGID, bool bShowError = false);
 };

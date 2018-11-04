@@ -9,7 +9,6 @@
 #pragma once
 
 #include "unicoder.h"
-#include <cstdint>
 
 namespace Poco { class SharedMemory; }
 

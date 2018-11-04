@@ -63,3 +63,10 @@ x64Release
 *.mo
 Translations/WinMerge/MergeLang.rc
 *.rej
+*.VC.db-*
+*.*~
+Docs/Users/Manual/build/dtd
+Docs/Users/Manual/build/saxon
+Docs/Users/Manual/build/xsl
+Docs/Users/Manual/build/xerces
+Docs/Users/Manual/build/Version.txt

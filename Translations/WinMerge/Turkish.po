@@ -386,8 +386,17 @@ msgstr "Ya&rdım"
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge Yardımı\tF1"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:1B17601E
 #, c-format
+msgid "R&elease Notes"
+msgstr "Sürüm &Notları"
+
+#: Merge.rc:6E470BE7
+#, c-format
+msgid "&Translations"
+msgstr "Çe&viriler"
+
+#: Merge.rc:3938FFC2
 msgid "&Check For Updates"
 msgstr ""
 
@@ -601,7 +610,7 @@ msgstr "&Sütunları Ayarla..."
 msgid "Generate &Report..."
 msgstr "&Rapor Hazırla..."
 
-#: Merge.rc:6E470BE7
+#: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Kaydet\tCtrl+S"
@@ -686,6 +695,11 @@ msgstr "&Dosya Kodlaması..."
 msgid "Recompare As"
 msgstr "Farklı Karşılaştır"
 
+#: Merge.rc:43017E4B
+#, c-format
+msgid "&Text"
+msgstr ""
+
 #: Merge.rc:22956A7
 #, c-format
 msgid "&XML"
@@ -696,12 +710,12 @@ msgstr "&XML"
 msgid "&Binary"
 msgstr "&Binary"
 
-#: Merge.rc:6E470BE8
+#: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Geri A&l\tCtrl+Z"
 
-#: Merge.rc:6E470BE9
+#: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Yi&nele\tCtrl+Y"
@@ -711,7 +725,7 @@ msgstr "Yi&nele\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "K&es\tCtrl+X"
 
-#: Merge.rc:6E470BEA
+#: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopyala\tCtrl+C"
@@ -802,7 +816,7 @@ msgstr "&Normal\tCtrl+*"
 msgid "Syntax Highlight"
 msgstr "Söz Dizimi &Vurgulaması"
 
-#: Merge.rc:6E470BEB
+#: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
 msgstr "Fark &Bağlamı"
@@ -1112,7 +1126,7 @@ msgstr "Sağdakini şuraya... (%1 / %2)"
 msgid "&Delete"
 msgstr "&Sil"
 
-#: Merge.rc:43017E4B
+#: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
 msgstr "So&l"
@@ -1127,7 +1141,7 @@ msgstr "&Orta"
 msgid "&Right"
 msgstr "&Sağ"
 
-#: Merge.rc:43017E4C
+#: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
 msgstr "İ&kisi de"
@@ -1272,7 +1286,7 @@ msgstr "&Dosya Adını Kopyala"
 msgid "Prediffer Settings"
 msgstr "Ön Farklılaştırıcı Ayarları"
 
-#: Merge.rc:6E470BEC
+#: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
 msgstr "Ö&n Farklılaştırıcı Yok"
@@ -1382,11 +1396,6 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "WinMerge Hakkında"
 
-#: Merge.rc:6AD81E09
-#, c-format
-msgid "(Private Build)"
-msgstr "(Özel Yapım)"
-
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
@@ -1407,145 +1416,104 @@ msgstr "Katkı Yapanlar"
 msgid "Select Files or Folders"
 msgstr "Dosya ya da Klasör Seçin"
 
-#: Merge.rc:43017E4D
+#: Merge.rc:6DE6F874
 #, c-format
-msgid "&1st:"
-msgstr "&1. Yol:"
-
-#: Merge.rc:68816EE7
-#, c-format
-msgid "&Browse..."
-msgstr "&Gözat..."
-
-#: Merge.rc:43017E4E
-#, c-format
-msgid "&2nd:"
-msgstr "&2. Yol:"
-
-#: Merge.rc:78E0CE0E
-#, c-format
-msgid "B&rowse..."
-msgstr "Gö&zat..."
-
-#: Merge.rc:78B3B626
-#, c-format
-msgid "&3rd(Optional):"
-msgstr "&3. Yol (İsteğe Bağlı):"
-
-#: Merge.rc:146A5938
-#, c-format
-msgid "Browse..."
-msgstr "Gözat..."
-
-#: Merge.rc:64ABCD7D
-#, c-format
-msgid "Fi&lter:"
-msgstr "&Süzgeç:"
-
-#: Merge.rc:2D1160AF
-#, c-format
-msgid "Select..."
-msgstr "S&eçin..."
-
-#: Merge.rc:68816EE8
-#, c-format
-msgid "&Unpacker:"
-msgstr "&Ayıklayıcı:"
-
-#: Merge.rc:68816EE9
-#, c-format
-msgid "&Select..."
-msgstr "Seçi&n..."
-
-#: Merge.rc:67019DCA
-#, c-format
-msgid "Status:"
-msgstr "Durum:"
-
-#: Merge.rc:4E65D340
-#, c-format
-msgid "Cancel"
-msgstr "İptal"
-
-#: Merge.rc:4186E48
-#, c-format
-msgid "Help"
-msgstr "Yardım"
-
-#: Merge.rc:75264C52
-#, c-format
-msgid "Files or Folders to Compare"
-msgstr "Karşılaştırılacak Dosya ya da Klasörler"
+msgid "&1st File or Folder"
+msgstr ""
 
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
 msgstr "S&alt Okunur"
 
+#: Merge.rc:56BD1FBA
+#, c-format
+msgid "Swap 1st | 2nd"
+msgstr ""
+
+#: Merge.rc:68816EE7
+#, c-format
+msgid "&Browse..."
+msgstr "&Gözat..."
+
+#: Merge.rc:6DE6F875
+#, c-format
+msgid "&2nd File or Folder"
+msgstr ""
+
 #: Merge.rc:39174D97
 #, c-format
 msgid "Rea&d-only"
 msgstr "Salt &Okunur"
+
+#: Merge.rc:56BD1FBB
+#, c-format
+msgid "Swap 2nd | 3rd"
+msgstr ""
+
+#: Merge.rc:78E0CE0E
+#, c-format
+msgid "B&rowse..."
+msgstr "Gö&zat..."
+
+#: Merge.rc:3C1ECDDA
+#, c-format
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
 
 #: Merge.rc:39174D98
 #, c-format
 msgid "Read-o&nly"
 msgstr "Salt Oku&nur"
 
-#: Merge.rc:629C1DDC
+#: Merge.rc:56BD1FBC
 #, c-format
-msgid "Database:"
-msgstr "Veritabanı:"
+msgid "Swap 1st | 3rd"
+msgstr ""
 
-#: Merge.rc:60C4588F
+#: Merge.rc:146A5938
 #, c-format
-msgid "Project:"
-msgstr "Proje:"
+msgid "Browse..."
+msgstr "Gözat..."
 
-#: Merge.rc:15E1A7E1
+#: Merge.rc:22467E6E
 #, c-format
-msgid "User:"
-msgstr "Kullanıcı Adı:"
+msgid " Folder: Filter"
+msgstr ""
 
-#: Merge.rc:37C6B9B8
+#: Merge.rc:68816EE8
 #, c-format
-msgid "Password:"
-msgstr "Parola:"
+msgid "&Select..."
+msgstr "Seçi&n..."
 
-#: Merge.rc:F75DAF7
+#: Merge.rc:662470D5
 #, c-format
-msgid "Link to Destination VSS project"
-msgstr "Hedef VSS Projesine Bağlantı"
-
-#: Merge.rc:40325727
-#, c-format
-msgid "Apply to all items"
-msgstr "Tüm ögelere uygula"
-
-#: Merge.rc:3B833B8A
-#, c-format
-msgid "Check Out"
-msgstr "Düzenlemeye Aç"
+msgid " File: Unpacker Plugin"
+msgstr ""
 
 #: Merge.rc:751AB58F
 #, c-format
-msgid "Save As..."
-msgstr "Farklı Kaydet..."
+msgid "Se&lect..."
+msgstr ""
 
-#: Merge.rc:1A8FADD4
-#, c-format
-msgid "Versioning System"
-msgstr "Sürüm Sistemi"
+#: Merge.rc:4C3E0A2D
+msgid "Co&mpare"
+msgstr ""
 
-#: Merge.rc:6DE6F874
+#: Merge.rc:4E65D340
 #, c-format
-msgid "&Versioning System:"
-msgstr "&Sürüm Sistemi:"
+msgid "Cancel"
+msgstr "İptal"
 
-#: Merge.rc:381D79E5
+#: Merge.rc:67019DCA
 #, c-format
-msgid "&Path to cleartool.exe:"
-msgstr "Cleartool.exe &yolu:"
+msgid "Status:"
+msgstr "Durum:"
+
+#: Merge.rc:4186E48
+#, c-format
+msgid "Help"
+msgstr "Yardım"
 
 #: Merge.rc:787FD72B
 #, c-format
@@ -1657,7 +1625,7 @@ msgstr "Bu &Pencere Kapatılmasın"
 msgid "Find &Prev"
 msgstr "Ö&ncekini Bul"
 
-#: Merge.rc:68816EEA
+#: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
 msgstr "S&onrakini Bul"
@@ -1672,12 +1640,12 @@ msgstr "&Tamam"
 msgid "Replace"
 msgstr "Değiştir"
 
-#: Merge.rc:1B17601E
+#: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
 msgstr "Şununla &Değiştir:"
 
-#: Merge.rc:381D79E6
+#: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "Dosya &Sonundan Başa Dönülmesin"
@@ -1687,7 +1655,7 @@ msgstr "Dosya &Sonundan Başa Dönülmesin"
 msgid "Replace in"
 msgstr "Şurada Değiştir"
 
-#: Merge.rc:68816EEB
+#: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
 msgstr "&Seçilmiş Bölümde"
@@ -1731,21 +1699,6 @@ msgstr "A&rt Alan Rengi:"
 #, c-format
 msgid "&Apply"
 msgstr "&Uygula"
-
-#: Merge.rc:4C3E0A2D
-#, c-format
-msgid "CheckOut"
-msgstr "Düzenlemeye Aç"
-
-#: Merge.rc:4C3E0A2E
-#, c-format
-msgid "Comments"
-msgstr "Açıklamalar"
-
-#: Merge.rc:51DC4C3F
-#, c-format
-msgid "CheckIn after checkout"
-msgstr "Düzenlemeye açtıktan sonra düzenlemeye kapat"
 
 #: Merge.rc:4F58DAFC
 #, c-format
@@ -1820,12 +1773,12 @@ msgstr "Seçilmiş Taşınmış:"
 #: Merge.rc:73FB246
 #, c-format
 msgid "Same As The Next (3 panes):"
-msgstr ""
+msgstr "Sonraki ile Aynı (3 Pano):"
 
 #: Merge.rc:60B696AF
 #, c-format
 msgid "Same As The Next (Selected):"
-msgstr ""
+msgstr "Sonraki ile Aynı (Seçilmiş):"
 
 #: Merge.rc:40C55014
 #, c-format
@@ -1857,7 +1810,7 @@ msgstr "&Silinen Dosyalar Geri Dönüşüm Kutusuna Atılsın"
 msgid "&External editor:"
 msgstr "Dış Düz&enleyici:"
 
-#: Merge.rc:78B3B627
+#: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
 msgstr "Süzgeç &Klasörü:"
@@ -1897,7 +1850,7 @@ msgstr "&1. Dosya:"
 msgid "File&2:"
 msgstr "&2. Dosya:"
 
-#: Merge.rc:43017E4F
+#: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
 msgstr "&Değiştir"
@@ -1997,7 +1950,7 @@ msgstr "Dur"
 msgid "Pause"
 msgstr ""
 
-#: Merge.rc:4C3E0A2F
+#: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
 msgstr ""
@@ -2102,6 +2055,11 @@ msgstr "Taşı&nan Blok Algılaması Kullanılsın"
 msgid "&Match similar lines"
 msgstr "&Benzer Satırlar Eşleştirilsin"
 
+#: Merge.rc:4C3E0A2F
+#, c-format
+msgid "Comments"
+msgstr "Açıklamalar"
+
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
@@ -2132,7 +2090,7 @@ msgstr "Ö&zgün Satır Sonu Karakterleri Korunsun"
 msgid "Tabs"
 msgstr "Sekmeler"
 
-#: Merge.rc:68816EEC
+#: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
 msgstr "&Sekme Aralığı:"
@@ -2197,7 +2155,7 @@ msgstr "Yeni..."
 msgid "Edit..."
 msgstr "Düzenle..."
 
-#: Merge.rc:629C1DDD
+#: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
 msgstr "Sil..."
@@ -2212,7 +2170,7 @@ msgstr "Dosya değişiklikleri kaydedilsin mi?"
 msgid "Left side file"
 msgstr "Sol panodaki dosya"
 
-#: Merge.rc:6E470BED
+#: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
 msgstr "Değişiklikler &Kaydedilsin"
@@ -2340,7 +2298,7 @@ msgstr "Anahtar Sözcükler:"
 msgid "Function names:"
 msgstr "İşlev Adları:"
 
-#: Merge.rc:3B833B8B
+#: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
 msgstr "Açıklamalar:"
@@ -2385,7 +2343,7 @@ msgstr "Koyu"
 msgid "Marker colors"
 msgstr "İşaretleyici Renkleri"
 
-#: Merge.rc:56BD1FBA
+#: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
 msgstr "İşaretleyici Arama"
@@ -2470,7 +2428,7 @@ msgstr "&Arşiv Türü Dosya İmzasından Belirlensin"
 msgid "Compare Statistics"
 msgstr "Karşılaştırma İstatistikleri"
 
-#: Merge.rc:64ABCD7E
+#: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
 msgstr "Klasörler:"
@@ -2480,7 +2438,7 @@ msgstr "Klasörler:"
 msgid "Files:"
 msgstr "Dosyalar:"
 
-#: Merge.rc:629C1DDE
+#: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
 msgstr "Farklılık"
@@ -2605,7 +2563,7 @@ msgstr "&Klasör Adı"
 msgid "Result:"
 msgstr "Sonuç:"
 
-#: Merge.rc:43017E50
+#: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
 msgstr "&Sına"
@@ -2655,7 +2613,7 @@ msgstr "Yedekleme Dosyaları"
 msgid "Create backup files in:"
 msgstr "Yedekleme Dosyalarının Konumu:"
 
-#: Merge.rc:78B3B628
+#: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
 msgstr "&Klasör Karşılaştırma"
@@ -2670,7 +2628,7 @@ msgstr "Dosya Karşı&laştırma"
 msgid "Create backup files into:"
 msgstr "Yedekleme Dosyalarının Konumu:"
 
-#: Merge.rc:381D79E7
+#: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
 msgstr "Ö&zgün Dosya Konumu"
@@ -2685,7 +2643,7 @@ msgstr "&Genel Yedekleme Klasörü:"
 msgid "Backup filename:"
 msgstr "Yedekleme Dosyası Adının:"
 
-#: Merge.rc:381D79E8
+#: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "Sonun&a '.bak' Uzantısı Eklensin"
@@ -2730,7 +2688,7 @@ msgstr "Hayır"
 msgid "Plugins"
 msgstr "Uygulama Ekleri"
 
-#: Merge.rc:78B3B629
+#: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Uygulama Ekleri Kullanılsın"
@@ -2824,12 +2782,12 @@ msgstr "Binary Dosya &Uzantıları:"
 msgid "Frhed settings"
 msgstr "Frhed Ayarları"
 
-#: Merge.rc:1A8FADD5
+#: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
 msgstr "Ayarları &Görüntüle..."
 
-#: Merge.rc:78B3B62A
+#: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
 msgstr "&Binary Kipi..."
@@ -3054,12 +3012,12 @@ msgstr "Tü&müne Hayır"
 msgid "&Continue"
 msgstr "&Devam"
 
-#: Merge.rc:43017E51
+#: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
 msgstr "&Atla"
 
-#: Merge.rc:2D1160B0
+#: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
 msgstr "&Tümünü Atla"
@@ -3087,11 +3045,6 @@ msgstr ""
 #, c-format
 msgid "Syntax"
 msgstr "Söz Dizimi"
-
-#: Merge.rc:2C1D73C8
-#, c-format
-msgid "Version Control"
-msgstr "Sürüm Denetimi"
 
 #: Merge.rc:2C0C2241
 #, c-format
@@ -3328,11 +3281,6 @@ msgstr ""
 "Şimdi istemezseniz Hayır seçebilir ve tüm karşılaştırmaları daha sonra "
 "yenileyebilirsiniz."
 
-#: Merge.rc:1DC30E68
-#, c-format
-msgid "&Path to SS.EXE:"
-msgstr "'SS.EXE' &yolu:"
-
 #: Merge.rc:114DD351
 #, c-format
 msgid "Folder Comparison Results"
@@ -3429,55 +3377,60 @@ msgstr "Karşılaştırmak için var olan iki klasör ya da dosya seçin"
 msgid "Folder Selection"
 msgstr "Klasör Seçimi"
 
-#: Merge.rc:73F34BA1
+#: Merge.rc:3080B693
 #, c-format
-msgid "Select two folders or two files to compare."
-msgstr "Karşılaştırmak için en az iki klasör ya da dosya seçin."
+msgid "Select two (or three) folders or two (or three) files to compare."
+msgstr ""
 
-#: Merge.rc:20155F59
+#: Merge.rc:2EBBDDD6
 #, c-format
-msgid "Left path is invalid!"
-msgstr "Sol yol geçersiz!"
+msgid "Left (1st) path is invalid!"
+msgstr ""
 
-#: Merge.rc:7F2E4119
+#: Merge.rc:BA50069
 #, c-format
-msgid "Middle path is invalid!"
-msgstr "Orta yol geçersiz!"
+msgid "Middle (2nd) path is invalid!"
+msgstr ""
 
-#: Merge.rc:6DBD6124
+#: Merge.rc:21DC7C32
 #, c-format
-msgid "Right path is invalid!"
-msgstr "Sağ yol geçersiz!"
+msgid "Right (2nd) path is invalid!"
+msgstr ""
+
+#: Merge.rc:21DC7C33
+#, c-format
+msgid "Right (3rd) path is invalid!"
+msgstr ""
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "İki yolda geçersiz!"
 
-#: Merge.rc:5F458439
+#: Merge.rc:585E8EC0
 #, c-format
-msgid "Left and middle path is invalid!"
-msgstr "Sol ve orta yol geçersiz!"
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
+msgstr ""
 
-#: Merge.rc:F75DAF8
+#: Merge.rc:135DE390
 #, c-format
-msgid "Left and right path is invalid!"
-msgstr "Sol ve sağ yol geçersiz!"
+msgid "Left (1st) and Right (3rd) paths are invalid!"
+msgstr ""
 
-#: Merge.rc:3703FFD7
+#: Merge.rc:72716FA6
 #, c-format
-msgid "Middle and right path is invalid!"
-msgstr "Orta ve sağ yol geçersiz!"
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
+msgstr ""
 
 #: Merge.rc:237A0533
 #, c-format
 msgid "All paths are invalid!"
 msgstr "Tüm yollar geçersiz!"
 
-#: Merge.rc:39B1AD01
+#: Merge.rc:1235F930
 #, c-format
-msgid "Choose two files to enable unpacker selection."
-msgstr "Ayıklayıcı seçimi yapabilmek için iki dosya seçin."
+msgid "Only enabled for File comparisons"
+msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3685,96 +3638,11 @@ msgstr ""
 "\n"
 "Devam etmeden önce belgeleri yenileyin."
 
-#: Merge.rc:5C264194
-#, c-format
-msgid ""
-"You must specify a SourceSafe project path in order to continue (ie:  $/"
-"MyProject)"
-msgstr ""
-"Devam etmek için bir SourceSafe projesi yolu belirtmelisiniz (Örnek:  $/"
-"Projem)"
-
-#: Merge.rc:367690A0
-#, c-format
-msgid "Checkout files from VSS..."
-msgstr "VSS Dosyalarını Düzenlemeye Kapat..."
-
-#: Merge.rc:5CF52976
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check out the file.  "
-"Unable to continue..."
-msgstr ""
-"Dosya düzenlemeye kapatılmak istenirken sürüm sisteminde bir sorun çıktı.  "
-"Devam edilemiyor..."
-
-#: Merge.rc:5B2409A
-#, c-format
-msgid "Error executing versioning system command."
-msgstr "Sürüm sistemi komutu çalıştırılırken sorun çıktı."
-
-#: Merge.rc:3ECC9EC3
-#, c-format
-msgid ""
-"The VSS Working Folder and the location of the current file do not match. "
-"Continue?"
-msgstr ""
-"VSS çalışma klasörü ile geçerli dosya konumu eşleşmiyor. Devam edilsin mi?"
-
-#: Merge.rc:BF7A253
-#, c-format
-msgid "No VSS database(s) found!"
-msgstr "VSS veritabanı bulunamadı!"
-
-#: Merge.rc:61E8009E
-#, c-format
-msgid "Error from VSS:"
-msgstr "VSS Kaynaklı Sorun:"
-
-#: Merge.rc:268A7727
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to check in the file.\n"
-" Please, check config spec of used view.\n"
-" Undo checkout operation?"
-msgstr ""
-"Dosya düzenlemeye kapatılmak istenirken sürüm sisteminde bir sorun çıktı.\n"
-" Lütfen kullanılan görünümün yapılandırmasını denetleyin.\n"
-" Düzenlemeye açma işlemi geri alınsın mı?"
-
-#: Merge.rc:1929D7D3
-#, c-format
-msgid ""
-"Versioning System returned an error while attempting to undo checkout the "
-"file.\n"
-" Please, check config spec of used view. "
-msgstr ""
-"Dosya düzenlemeye açma işlemi geri alınmak istenirken sürüm sisteminde bir "
-"sorun çıktı.\n"
-" Lütfen kullanılan görünümün yapılandırmasını denetleyin. "
-
-#: Merge.rc:46FCCCF
-#, c-format
-msgid "None"
-msgstr "Yok"
-
-#: Merge.rc:5164E1E6
-#, c-format
-msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (5.0 öncesi sürümler)"
-
-#: Merge.rc:5164E1E7
-#, c-format
-msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 ve sonrası)"
-
 #: Merge.rc:2405135
-#, c-format
 msgid "Break at whitespace"
 msgstr "Beyaz Boşlukta Kesilsin"
 
 #: Merge.rc:6CB369C2
-#, c-format
 msgid "Break at whitespace or punctuation"
 msgstr "Beyaz boşluk ya da noktalamada kesilsin"
 
@@ -3962,7 +3830,7 @@ msgstr "%1 dış düzenleyicisi çalıştırılamadı"
 msgid "Unknown archive format"
 msgstr "Sıkıştırma biçimi bilinmiyor"
 
-#: Merge.rc:64ABCD7F
+#: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
 msgstr "Dosya Adı"
@@ -4097,7 +3965,7 @@ msgstr "Sağ Dosya Satır Sonu"
 msgid "Left Encoding"
 msgstr "Sol Dosya Kodlaması"
 
-#: Merge.rc:1B17601F
+#: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
 msgstr "Sağ Dosya Kodlaması"
@@ -4142,7 +4010,7 @@ msgstr "Yalnız solda: %1"
 msgid "Middle only: %1"
 msgstr "Yalnız ortada: %1"
 
-#: Merge.rc:1B176020
+#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "Yalnız sağda: %1"
@@ -4297,17 +4165,17 @@ msgstr "Sağdaki dosyanın bayt olarak boyutu."
 msgid "Middle file size in bytes."
 msgstr "Ortadaki dosyanın bayt olarak boyutu."
 
-#: Merge.rc:2EBBDDD6
+#: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Soldaki dosyanın kısaltılmış boyutu."
 
-#: Merge.rc:21DC7C32
+#: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Sağdaki dosyanın kısaltılmış boyutu."
 
-#: Merge.rc:BA50069
+#: Merge.rc:BA5006A
 #, c-format
 msgid "Middle file size abbreviated."
 msgstr "Ortadaki dosyanın kısaltılmış boyutu."
@@ -4352,17 +4220,17 @@ msgstr "Ortadaki dosya sürümü, yalnız bazı dosya türleri için."
 msgid "Short comparison result."
 msgstr "Kısa karşılaştırma sonucu."
 
-#: Merge.rc:20155F5A
+#: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
 msgstr "Soldaki dosyanın öznitelikleri."
 
-#: Merge.rc:6DBD6125
+#: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
 msgstr "Sağdaki dosyanın öznitelikleri."
 
-#: Merge.rc:7F2E411A
+#: Merge.rc:7F2E4119
 #, c-format
 msgid "Middle side attributes."
 msgstr "Ortadaki dosyanın öznitelikleri."
@@ -4556,7 +4424,7 @@ msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
 "Displaying each file in its codepage will give a better display but merging/"
 "copying will be dangerous.\n"
-"Would you like to treat both files as being in the default windows codepage "
+"Would you like to treat both files as being in the default Windows codepage "
 "(recommended)?"
 msgstr ""
 "Sol panodaki (cp%d) ve sağ panodaki (cp%d) dosyaların kod sayfaları "
@@ -4596,7 +4464,7 @@ msgstr "Fark yok"
 msgid "Line difference"
 msgstr "Satır farkı"
 
-#: Merge.rc:6DBD6126
+#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "%1 dizge değiştirildi."
@@ -4649,7 +4517,7 @@ msgstr "Satır sonu değişiklikleri çelişiyor"
 msgid "Location Pane"
 msgstr "Konum Panosu"
 
-#: Merge.rc:629C1DDF
+#: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
 msgstr "Fark Panosu"
@@ -4796,6 +4664,11 @@ msgstr ""
 msgid "Mixed"
 msgstr "Karma"
 
+#: Merge.rc:46FCCCF
+#, c-format
+msgid "None"
+msgstr "Yok"
+
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
@@ -4806,7 +4679,7 @@ msgstr "Tür"
 msgid "Unpacker"
 msgstr "Ayıklayıcı"
 
-#: Merge.rc:37C6B9B9
+#: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
 msgstr "Ön Farklılaştırıcı"
@@ -5112,10 +4985,10 @@ msgstr "Otom&atik En Fazla Genişlik Kullanılsın"
 msgid "&Image"
 msgstr "&Görsel"
 
-#: Merge.rc:4D3A8E6D
+#: Merge.rc:3D9427A9
 #, c-format
-msgid "frhed(http://frhed.sourceforge.net/) not installed"
-msgstr "frhed(http://frhed.sourceforge.net/) kurulmamış"
+msgid "frhed is not installed"
+msgstr "frhed kurulmamış"
 
 #: Merge.rc:73B321AA
 #, c-format

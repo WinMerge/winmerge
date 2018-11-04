@@ -31,11 +31,11 @@ String getProjectRoot()
 TEST(CodepageTest, UCS2)
 {
 	String projectRoot = getProjectRoot();
-	PathContext files = {
+	PathContext tFiles = {
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2BE/DiffItem.h"),
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2LE/DiffItem.h")
 	};
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&files));
+	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	ASSERT_NE(nullptr, pDoc);
@@ -49,14 +49,16 @@ TEST(CodepageTest, UCS2)
 TEST(CodepageTest, UTF8)
 {
 	String projectRoot = getProjectRoot();
-	PathContext files = {
+	PathContext tFiles = {
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UTF-8/DiffItem.h"),
 		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UTF-8-NOBOM/DiffItem.h")
 	};
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&files));
+	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
+	if (nullptr == pDoc)
+		return;
 	EXPECT_EQ(ucr::UTF8, pDoc->m_ptBuf[0]->getEncoding().m_unicoding);
 	EXPECT_TRUE(pDoc->m_ptBuf[0]->getEncoding().m_bom);
 	EXPECT_EQ(ucr::UTF8, pDoc->m_ptBuf[1]->getEncoding().m_unicoding);
@@ -67,16 +69,18 @@ TEST(CodepageTest, UTF8)
 TEST(SyntaxHighlight, Verilog)
 {
 	String projectRoot = getProjectRoot();
-	PathContext files = {
+	PathContext tFiles = {
 		paths::ConcatPath(projectRoot, L"Testing/FileFormats/Verilog.v"),
 		paths::ConcatPath(projectRoot, L"Testing/FileFormats/Verilog.v")
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&files));
+	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
+	if (nullptr == pDoc)
+		return;
 
 	std::vector<CCrystalTextView::TEXTBLOCK> blocks;
 	blocks = pDoc->GetView(0, 0)->GetTextBlocks(0);
@@ -115,10 +119,15 @@ TEST(FolderCompare, IgnoreEOL)
 	{
 		GetOptionsMgr()->Set(OPT_CMP_METHOD, 0/* Full Contents*/);
 		GetOptionsMgr()->Set(OPT_CMP_IGNORE_EOL, true);
-		EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&dirs));
+		EXPECT_TRUE(GetMainFrame()->DoFileOpen(&dirs));
 		CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 		CDirDoc *pDoc = dynamic_cast<CDirDoc *>(pFrame->GetActiveDocument());
 		EXPECT_NE(nullptr, pDoc);
+		if (nullptr == pDoc)
+		{
+			pFrame->PostMessage(WM_CLOSE);
+			continue;
+		}
 		CDirView *pView = pDoc->GetMainView();
 		const CDiffContext& ctxt = pDoc->GetDiffContext();
 		const CompareStats *pStats = ctxt.m_pCompareStats;
@@ -205,6 +214,7 @@ TEST(CommandLineTest, Desc2)
 	ASSERT_NE(nullptr, pDoc);
 	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
 	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
+	pDoc->m_ptBuf[1]->SetModified(false);
 	pFrame->PostMessage(WM_CLOSE);
 }
 
@@ -220,6 +230,7 @@ TEST(CommandLineTest, Desc3)
 	ASSERT_NE(nullptr, pDoc);
 	EXPECT_EQ(L"Theirs File", pDoc->GetDescription(0));
 	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
+	pDoc->m_ptBuf[1]->SetModified(false);
 	pFrame->PostMessage(WM_CLOSE);
 }
 
@@ -235,26 +246,85 @@ TEST(CommandLineTest, Desc4)
 	ASSERT_NE(nullptr, pDoc);
 	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
 	EXPECT_EQ(L"Mine File", pDoc->GetDescription(1));
+	pDoc->m_ptBuf[1]->SetModified(false);
 	pFrame->PostMessage(WM_CLOSE);
 }
 
 TEST(ImageCompareTest, Open)
 {
+	EXPECT_TRUE(CImgMergeFrame::IsLoadable());
+	if (!CImgMergeFrame::IsLoadable())
+		return;
+
 	String projectRoot = getProjectRoot();
-	PathContext files = {
+	PathContext tFiles = {
 		paths::ConcatPath(projectRoot, L"Src/res/right_to_middle.bmp"),
 		paths::ConcatPath(projectRoot, L"Src/res/right_to_left.bmp")
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
-	EXPECT_TRUE(!!GetMainFrame()->DoFileOpen(&files));
+	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CImgMergeFrame *pDoc = dynamic_cast<CImgMergeFrame *>(pFrame);
 	EXPECT_NE(nullptr, pDoc);
 
 	pFrame->PostMessage(WM_CLOSE);
 	dlg.SetFormerResult(nPrevFormerResult);
+}
 
+TEST(FileMenu, New)
+{
+	CFrameWnd *pFrame;
+	GetMainFrame()->FileNew(2);
+	pFrame = GetMainFrame()->GetActiveFrame();
+	pFrame->PostMessage(WM_CLOSE);
+	GetMainFrame()->FileNew(3);
+	pFrame = GetMainFrame()->GetActiveFrame();
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(FileMenu, OpenConflictFile)
+{
+	String conflictFile = paths::ConcatPath(getProjectRoot(), L"Testing/Data/big_file.conflict");
+	GetMainFrame()->DoOpenConflict(conflictFile);
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	pDoc->m_ptBuf[1]->SetModified(false);
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(FileMenu, OpenConflictFile3)
+{
+	String conflictFile = paths::ConcatPath(getProjectRoot(), L"Testing/Data/dif3.conflict");
+	GetMainFrame()->DoOpenConflict(conflictFile);
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	pDoc->m_ptBuf[2]->SetModified(false);
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(FileMenu, OpenProject)
+{
+	String projectFile = paths::ConcatPath(getProjectRoot(), L"Testing/Data/Dir2.WinMerge");
+	SetCurrentDirectory(paths::GetParentPath(projectFile).c_str());
+	theApp.LoadAndOpenProjectFile(projectFile);
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_NE(nullptr, pFrame);
+	if (pFrame)
+		pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(FileMenu, OpenProject3)
+{
+	String projectFile = paths::ConcatPath(getProjectRoot(), L"Testing/Data/Dir3.WinMerge");
+	SetCurrentDirectory(paths::GetParentPath(projectFile).c_str());
+	theApp.LoadAndOpenProjectFile(projectFile);
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_NE(nullptr, pFrame);
+	if (pFrame)
+		pFrame->PostMessage(WM_CLOSE);
 }
 
 #endif

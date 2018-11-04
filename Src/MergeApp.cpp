@@ -142,6 +142,12 @@ AboutInfo::AboutInfo()
 {
 	CVersionInfo verinfo;
 	version = strutils::format_string1(_("Version %1"), verinfo.GetProductVersion());
+	private_build = verinfo.GetPrivateBuild();
+	if (!private_build.empty())
+	{
+		version += _T(" + ") + private_build;
+	}
+
 	if (version.find(_T(" - ")) != String::npos)
 	{
 		strutils::replace(version, _T(" - "), _T("\n"));
@@ -176,12 +182,6 @@ AboutInfo::AboutInfo()
 	copyright += _T("\n");
 	copyright += verinfo.GetLegalCopyright();
 	copyright += _T(" - All rights reserved.");
-
-	private_build = verinfo.GetPrivateBuild();
-	if (!private_build.empty())
-	{
-		private_build = strutils::format_string1(_("Private Build: %1"), private_build);
-	}
 
 	website = WinMergeURL;
 

@@ -141,11 +141,11 @@ fpattern_isvalid (LPCTSTR pat)
 static int
 fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
 {
-  int fch;
-  int pch;
+  TCHAR fch;
+  TCHAR pch;
   int i;
-  int yes, match;
-  int lo, hi;
+  bool yes, match;
+  TCHAR lo, hi;
 
   /* Attempt to match subpattern against subfilename */
   while (*pat != _T('\0'))

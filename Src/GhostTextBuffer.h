@@ -21,7 +21,7 @@
  */
 enum GHOST_LINEFLAGS
 {
-	LF_GHOST = 0x00400000L, /**< Ghost line. */
+	LF_GHOST = 0x00400000UL, /**< Ghost line. */
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,9 @@ private:
 
 	// Operations
 private:
+#if 0
 	bool InternalInsertGhostLine (CCrystalTextView * pSource, int nLine);
+#endif
 	bool InternalDeleteGhostLine (CCrystalTextView * pSource, int nLine, int nCount);
 public :
 	// Construction/destruction code
@@ -83,11 +85,15 @@ public :
 	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
 		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true) override;
+#if 0
 	bool InsertGhostLine (CCrystalTextView * pSource, int nLine);
+#endif
 
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 	                            LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = NULL) override;
 	virtual UndoRecord GetUndoRecord(int nUndoPos) const override;
+	virtual bool UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos,
+							const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur) override;
 
 	virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const override;
 	virtual void RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers) override;
@@ -120,7 +126,7 @@ public:
 private:
 	void RecomputeRealityMapping();
 	/** For debugging purpose */
-	void checkFlagsFromReality(bool bFlag) const;
+	void checkFlagsFromReality() const;
 
 protected:
 	virtual void OnNotifyLineHasBeenEdited(int nLine);

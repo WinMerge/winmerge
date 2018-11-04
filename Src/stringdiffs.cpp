@@ -10,7 +10,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <cassert>
-#include <mbctype.h>
+#include <mbctype.h>	// MBCS (multibyte MBCS character stuff)
 #include "CompareOptions.h"
 #include "stringdiffsi.h"
 #include "Diff3.h"
@@ -476,7 +476,7 @@ stringdiffs::Hash(const String & str, int begin, int end, unsigned h) const
 {
 	for (int i = begin; i <= end; ++i)
 	{
-		unsigned ch = static_cast<unsigned>(str[i]);
+		TCHAR ch = static_cast<unsigned>(str[i]);
 		if (m_case_sensitive)
 		{
 			h += HASH(h, ch);

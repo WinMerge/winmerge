@@ -41,7 +41,6 @@ class SyntaxColors;
 class LineFiltersList;
 class TempFile;
 struct FileLocation;
-class SourceControl;
 class DropHandler;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
@@ -79,7 +78,7 @@ public:
 
 // Attributes
 public:	
-	BOOL m_bShowErrors; /**< Show folder compare error items? */
+	bool m_bShowErrors; /**< Show folder compare error items? */
 	LOGFONT m_lfDiff; /**< MergeView user-selected font */
 	LOGFONT m_lfDir; /**< DirView user-selected font */
 	static const TCHAR szClassName[];
@@ -95,7 +94,8 @@ public:
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
-	BOOL DoFileOpen(const PathContext *pFiles = NULL,
+	void FileNew(int nPanes);
+	bool DoFileOpen(const PathContext *pFiles = NULL,
 		const DWORD dwFlags[] = NULL, const String strDesc[] = NULL, const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), const PackingInfo * infoUnpacker = NULL);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = NULL);
@@ -112,7 +112,7 @@ public:
 	void SelectFilter();
 	void StartFlashing();
 	bool AskCloseConfirmation();
-	BOOL DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
+	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
 	void UpdateDocTitle();
 	void ReloadMenu();
@@ -136,7 +136,7 @@ protected:
 
 // Public implementation data
 public:
-	BOOL m_bFirstTime; /**< If first time frame activated, get  pos from reg */
+	bool m_bFirstTime; /**< If first time frame activated, get  pos from reg */
 
 // Implementation data
 protected:
@@ -229,7 +229,7 @@ protected:
 	afx_msg void OnViewTabBar();
 	afx_msg void OnUpdateResizePanes(CCmdUI* pCmdUI);
 	afx_msg void OnResizePanes();
-	afx_msg void OnFileOpenproject();
+	afx_msg void OnFileOpenProject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnUser1(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnWindowCloseAll();
@@ -243,6 +243,8 @@ protected:
 	afx_msg void OnToolbarSize(UINT id);
 	afx_msg void OnUpdateToolbarSize(CCmdUI* pCmdUI);
 	afx_msg BOOL OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnHelpReleasenotes();
+	afx_msg void OnHelpTranslations();
 	afx_msg void OnHelpCheckForUpdates();
 	afx_msg void OnUpdateHelpCheckForUpdates(CCmdUI* pCmdUI);
 	afx_msg void OnFileOpenConflict();
@@ -267,7 +269,6 @@ protected:
 
 private:
 	void addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems = 20);
-	void FileNew(int nPanes);
 	OpenDocList &GetAllOpenDocs();
 	MergeDocList &GetAllMergeDocs();
 	DirDocList &GetAllDirDocs();

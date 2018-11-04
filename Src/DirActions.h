@@ -141,7 +141,7 @@ String FormatMenuItemStringDifferencesTo(int count, int total);
 void ConfirmActionList(const CDiffContext& ctxt, const FileActionScript & actionList);
 UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContext& ctxt, DIFFITEM &di);
 
-uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, const String& pathRight);
+uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths);
 
 bool IsItemCopyable(const DIFFITEM & di, int index);
 bool IsItemDeletable(const DIFFITEM & di, int index);
@@ -700,8 +700,8 @@ std::pair<int, int> CountPredifferYesNo(const InputIterator& begin, const InputI
 		if (!di.diffcode.isDirectory() && !di.diffcode.isBin() && IsItemExistAll(ctxt, di)
 			&& !di.diffcode.isResultFiltered())
 		{
-			PathContext files = GetItemFileNames(ctxt, di);
-			String filteredFilenames = strutils::join(files.begin(), files.end(), _T("|"));
+			PathContext tFiles = GetItemFileNames(ctxt, di);
+			String filteredFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);

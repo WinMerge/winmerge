@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-"/docbook/dtd/docbookx.dtd" [
+"./build/dtd/docbookx.dtd" [
 <!ENTITY About_Doc SYSTEM "About_Doc.xml">
 <!ENTITY Quick_start SYSTEM "Quick_start.xml">
 <!ENTITY Introduction SYSTEM "Introduction.xml">
@@ -10,6 +10,7 @@
 <!ENTITY Compare_dirs SYSTEM "Compare_dirs.xml">
 <!ENTITY Compare_files SYSTEM "Compare_files.xml">
 <!ENTITY Compare_bin SYSTEM "Compare_bin.xml">
+<!ENTITY Compare_images SYSTEM "Compare_images.xml">
 <!ENTITY Configuration SYSTEM "Configuration.xml">
 <!ENTITY Locales SYSTEM "Locales.xml">
 <!ENTITY Plugins SYSTEM "Plugins.xml">
@@ -115,6 +116,8 @@
   &Compare_files;
 
   &Compare_bin;
+
+  &Compare_images;
 
   &Configuration;
 

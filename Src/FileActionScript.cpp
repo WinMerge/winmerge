@@ -29,7 +29,6 @@
 #include "OptionsMgr.h"
 #include "ShellFileOperations.h"
 #include "paths.h"
-#include "SourceControl.h"
 
 using std::vector;
 
@@ -37,11 +36,11 @@ using std::vector;
  * @brief Standard constructor.
  */
 FileActionScript::FileActionScript()
-: m_bUseRecycleBin(TRUE)
-, m_bHasCopyOperations(FALSE)
-, m_bHasMoveOperations(FALSE)
-, m_bHasRenameOperations(FALSE)
-, m_bHasDelOperations(FALSE)
+: m_bUseRecycleBin(true)
+, m_bHasCopyOperations(false)
+, m_bHasMoveOperations(false)
+, m_bHasRenameOperations(false)
+, m_bHasDelOperations(false)
 , m_hParentWindow(NULL)
 , m_pCopyOperations(new ShellFileOperations())
 , m_pMoveOperations(new ShellFileOperations())
@@ -79,9 +78,9 @@ void FileActionScript::SetParentWindow(HWND hWnd)
 
 /**
  * @brief Does user want to move deleted files to Recycle Bin?
- * @param [in] bUseRecycleBin If TRUE deleted files are moved to Recycle Bin.
+ * @param [in] bUseRecycleBin If `true` deleted files are moved to Recycle Bin.
  */
-void FileActionScript::UseRecycleBin(BOOL bUseRecycleBin)
+void FileActionScript::UseRecycleBin(bool bUseRecycleBin)
 {
 	m_bUseRecycleBin = bUseRecycleBin;
 }
@@ -93,39 +92,6 @@ void FileActionScript::UseRecycleBin(BOOL bUseRecycleBin)
 size_t FileActionScript::GetActionItemCount() const
 {
 	return m_actions.size();
-}
-
-/**
- * @brief Checkout file from VSS before synching (copying) it.
- * @param [in] path Full path to a file.
- * @param [in,out] bApplyToAll Apply user selection to all (selected)files?
- * @return One of CreateScriptReturn values.
- */
-int FileActionScript::VCSCheckOut(const String &path, BOOL &bApplyToAll)
-{
-	String strErr;
-	int retVal = SCRIPT_SUCCESS;
-
-	if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) == SourceControl::VCS_NONE)
-		return retVal;
-
-	// TODO: First param is not used!
-	int nRetVal = theApp.SyncFileToVCS(path.c_str(), bApplyToAll, strErr);
-	if (nRetVal == -1)
-	{
-		retVal = SCRIPT_FAIL; // So we exit without file operations done
-		AfxMessageBox(strErr.c_str(), MB_OK | MB_ICONERROR);
-	}
-	else if (nRetVal == IDCANCEL)
-	{
-		retVal = SCRIPT_USERCANCEL; // User canceled, so we don't continue
-	}
-	else if (nRetVal == IDNO)
-	{
-		retVal = SCRIPT_USERSKIP;  // User wants to skip this item
-	}
-
-	return retVal;
 }
 
 /**
@@ -141,8 +107,7 @@ int FileActionScript::CreateOperationsScripts()
 {
 	UINT operation = 0;
 	FILEOP_FLAGS operFlags = 0;
-	BOOL bApplyToAll = FALSE;
-	BOOL bContinue = TRUE;
+	bool bContinue = true;
 
 	// Copy operations first
 	operation = FO_COPY;
@@ -151,48 +116,33 @@ int FileActionScript::CreateOperationsScripts()
 		operFlags |= FOF_ALLOWUNDO;
 
 	vector<FileActionItem>::const_iterator iter = m_actions.begin();
-	while (iter != m_actions.end() && bContinue == TRUE)
+	while (iter != m_actions.end() && bContinue)
 	{
-		BOOL bSkip = FALSE;
+		bool bSkip = false;
 		if ((*iter).atype == FileAction::ACT_COPY && !(*iter).dirflag)
 		{
-			// Handle VCS checkout
-			// Before we can write over destination file, we must unlock
-			// (checkout) it. This also notifies VCS system that the file
-			// has been modified.
-			if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) != SourceControl::VCS_NONE)
-			{
-				int retVal = VCSCheckOut((*iter).dest, bApplyToAll);
-				if (retVal == SCRIPT_USERCANCEL)
-					bContinue = FALSE;
-				else if (retVal == SCRIPT_USERSKIP)
-					bSkip = TRUE;
-				else if (retVal == SCRIPT_FAIL)
-					bContinue = FALSE;
-			}
-
 			if (bContinue)
 			{
-				if (!theApp.CreateBackup(TRUE, (*iter).dest))
+				if (!theApp.CreateBackup(true, (*iter).dest))
 				{
 					String strErr = _("Error backing up file");
 					AfxMessageBox(strErr.c_str(), MB_OK | MB_ICONERROR);
-					bContinue = FALSE;
+					bContinue = false;
 				}
 			}
 		}
 
 		if ((*iter).atype == FileAction::ACT_COPY &&
-			bSkip == FALSE && bContinue == TRUE)
+			!bSkip && bContinue)
 		{
 			m_pCopyOperations->AddSourceAndDestination((*iter).src, (*iter).dest);
-			m_bHasCopyOperations = TRUE;
+			m_bHasCopyOperations = true;
 		}
 		++iter;
 	}
-	if (bContinue == FALSE)
+	if (!bContinue)
 	{
-		m_bHasCopyOperations = FALSE;
+		m_bHasCopyOperations = false;
 		m_pCopyOperations->Reset();
 		return SCRIPT_USERCANCEL;
 	}
@@ -212,7 +162,7 @@ int FileActionScript::CreateOperationsScripts()
 		if ((*iter).atype == FileAction::ACT_MOVE)
 		{
 			m_pMoveOperations->AddSourceAndDestination((*iter).src, (*iter).dest);
-			m_bHasMoveOperations = TRUE;
+			m_bHasMoveOperations = true;
 		}
 		++iter;
 	}
@@ -231,7 +181,7 @@ int FileActionScript::CreateOperationsScripts()
 		if ((*iter).atype == FileAction::ACT_RENAME)
 		{
 			m_pRenameOperations->AddSourceAndDestination((*iter).src, (*iter).dest);
-			m_bHasRenameOperations = TRUE;
+			m_bHasRenameOperations = true;
 		}
 		++iter;
 	}
@@ -252,7 +202,7 @@ int FileActionScript::CreateOperationsScripts()
 			m_pDelOperations->AddSource((*iter).src);
 			if (!(*iter).dest.empty())
 				m_pDelOperations->AddSource((*iter).dest);
-			m_bHasDelOperations = TRUE;
+			m_bHasDelOperations = true;
 		}
 		++iter;
 	}
@@ -284,14 +234,14 @@ bool FileActionScript::RunOp(ShellFileOperations *oplist, bool & userCancelled)
 
 /**
  * @brief Execute fileoperations.
- * @return TRUE if all actions were done successfully, FALSE otherwise.
+ * @return `true` if all actions were done successfully, `false` otherwise.
  */
-BOOL FileActionScript::Run()
+bool FileActionScript::Run()
 {
 	// Now process files/directories that got added to list
 	bool bFileOpSucceed = true;
 	bool bUserCancelled = false;
-	BOOL bRetVal = TRUE;
+	bool bRetVal = true;
 
 	CreateOperationsScripts();
 
@@ -314,7 +264,7 @@ BOOL FileActionScript::Run()
 			bFileOpSucceed = RunOp(m_pMoveOperations.get(), bUserCancelled);
 		}
 		else
-			bRetVal = FALSE;
+			bRetVal = false;
 	}
 
 	if (m_bHasRenameOperations)
@@ -324,7 +274,7 @@ BOOL FileActionScript::Run()
 			bFileOpSucceed = RunOp(m_pRenameOperations.get(), bUserCancelled);
 		}
 		else
-			bRetVal = FALSE;
+			bRetVal = false;
 	}
 
 	if (m_bHasDelOperations)
@@ -334,11 +284,11 @@ BOOL FileActionScript::Run()
 			bFileOpSucceed = RunOp(m_pDelOperations.get(), bUserCancelled);
 		}
 		else
-			bRetVal = FALSE;
+			bRetVal = false;
 	}
 
 	if (!bFileOpSucceed || bUserCancelled)
-		bRetVal = FALSE;
+		bRetVal = false;
 
 	return bRetVal;
 }

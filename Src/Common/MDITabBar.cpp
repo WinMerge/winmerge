@@ -133,9 +133,9 @@ BOOL CMDITabBar::OnSelchange(NMHDR* pNMHDR, LRESULT* pResult)
 	TC_ITEM tci;
 	tci.mask = TCIF_PARAM;
 	GetItem(GetCurSel(), &tci);
-	m_bInSelchange = TRUE;
+	m_bInSelchange = true;
 	m_pMainFrame->MDIActivate(FromHandle((HWND)tci.lParam));
-	m_bInSelchange = FALSE;
+	m_bInSelchange = false;
 
 	return TRUE;
 }
@@ -364,7 +364,7 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 
 	int nItem = GetItemIndexFromPoint(m_rcCurrentCloseButtom.CenterPoint());
-	if (nItem == lpDraw->itemID)
+	if (static_cast<UINT>(nItem) == lpDraw->itemID)
 	{
 		CPoint pt;
 		GetCursorPos(&pt);

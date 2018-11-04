@@ -1,48 +1,57 @@
-This is a fork of https://sourceforge.net/projects/winmerge (https://bitbucket.org/kimmov/winmerge-v2)
+# WinMerge Source Code
 
-# Differences from orignal
+Source code for the WinMerge program, its plugins, filters, setup program,
+and various utilities are all kept in various subfolders listed below.
 
-- Support for 3-way merge
-- Image compare/merge
-- Improved in-line diff algorithm
-- Displays only the differences when selecting diff context menu 
-- Includes improved plugins
-- Includes frhed and 7-zip plugin
-- Support for jump list since Windows 7
-- Improved drag&drop support
+Changelog file is in `Docs/Users/ChangeLog.txt` and it logs user-visible
+or otherwise significant changes.
 
-# Download
+Subfolders include:
 
-[Stable Release](https://github.com/sdottaka/winmerge-v2-jp/releases/latest)
+ - `Docs`  
+   Both user and developer documentation, in different subfolders.
+   Can be browsed by opening `index.html` in `Docs` folder.
 
-[Experimental Releases](https://github.com/sdottaka/winmerge-v2-jp/releases/)
+ - `Src`  
+   Source code to the WinMerge program itself.
 
-# Screenshots
+ - `Plugins`  
+   Source code and binaries for WinMerge runtime plugin dlls & scripts
 
-## Folder Compare
+ - `Filters`  
+   WinMerge file filters which are shipped with the distribution.
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/foldercmp.png)
+ - `ArchiveSupport`  
+   Source code for the Merge7z dlls, which connect WinMerge with 7-Zip
+   Also this folder is required to compile `WinMergeU.exe`. There
+   is also standalone installer for Merge7z dlls.
 
-## File Compare
+ - `Externals`  
+   This folder contains several libraries whose sources come from
+   outside WinMerge project. They are stored here for convenience for
+   building and possible needed small changes for WinMerge. Libraries
+   include XML parser and regular expression parser.
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/filecmp_defaultcolorscheme.png)
+ - `Installer`  
+   Installer for WinMerge.
 
-## File Compare (New Color Scheme)
+ - `Tools`  
+   Various utilities used by WinMerge developers; see readme files in each.
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/filecmp.png)
+ - `ShellExtension`  
+   Windows Shell (Explorer) integration. Adds menuitems to Explorer context
+   menu for comparing files and folders.
 
-## Displays Only Differences
+ - `Testing`  
+   A suite of test diff files and a script to run them and report the results.
+   This folder also has `Google Test` subfolder containing unit tests made
+   with [Google Test Framework](https://github.com/google/googletest).
 
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/diffcontext0.png)
+ - `Build`  
+   This folder gets created by compiler when WinMerge is compiled. It
+   contains compiled executables, libraries, user manual etc.
 
-## Excel Plugin&Image Compare
-
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/excelimagecmp.png)
-
-## Excel Plugin Setting
-
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/excelplugin.png)
-
-## Binary Compare
-
-![](https://bytebucket.org/sdottaka/winmerge-v2/raw/jp/Docs/Screenshots/binarycmp.png)
+ - `BuildTmp`  
+   This folder gets created by compiler when WinMerge is compiled. It
+   contains temporary files created during the compilation and can be safely
+   removed.

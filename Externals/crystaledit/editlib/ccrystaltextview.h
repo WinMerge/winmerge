@@ -52,26 +52,26 @@ class CCrystalTextMarkers;
 // CCrystalTextView class declaration
 
 //  CCrystalTextView::FindText() flags
-enum
+enum : unsigned
 {
-  FIND_MATCH_CASE = 0x0001,
-  FIND_WHOLE_WORD = 0x0002,
-  FIND_REGEXP = 0x0004,
-  FIND_DIRECTION_UP = 0x0010,
-  REPLACE_SELECTION = 0x0100, 
-  FIND_NO_WRAP = 0x200,
-  FIND_NO_CLOSE = 0x400
+  FIND_MATCH_CASE = 0x0001U,
+  FIND_WHOLE_WORD = 0x0002U,
+  FIND_REGEXP = 0x0004U,
+  FIND_DIRECTION_UP = 0x0010U,
+  REPLACE_SELECTION = 0x0100U, 
+  FIND_NO_WRAP = 0x200U,
+  FIND_NO_CLOSE = 0x400U
 };
 
 //  CCrystalTextView::UpdateView() flags
-enum
+enum : unsigned
 {
-  UPDATE_HORZRANGE = 0x0001,  //  update horz scrollbar
-  UPDATE_VERTRANGE = 0x0002, //  update vert scrollbar
-  UPDATE_SINGLELINE = 0x0100,    //  single line has changed
-  UPDATE_FLAGSONLY = 0x0200, //  only line-flags were changed
+  UPDATE_HORZRANGE = 0x0001U,  //  update horz scrollbar
+  UPDATE_VERTRANGE = 0x0002U, //  update vert scrollbar
+  UPDATE_SINGLELINE = 0x0100U,    //  single line has changed
+  UPDATE_FLAGSONLY = 0x0200U, //  only line-flags were changed
 
-  UPDATE_RESET = 0x1000       //  document was reloaded, update all!
+  UPDATE_RESET = 0x1000U       //  document was reloaded, update all!
 };
 
 /**
@@ -142,7 +142,6 @@ private :
     int m_nLastLineIndexCalculatedSubLineIndex;
     //END SW
 
-    int m_nMaxLineLength;
     int m_nIdealCharPos;
 
     bool m_bFocused;
@@ -213,7 +212,7 @@ public :
     void SetColorContext(SyntaxColors * pColors) { m_pColors = pColors; }
     CCrystalTextMarkers * GetMarkers() const { return m_pMarkers; }
     void SetMarkersContext(CCrystalTextMarkers * pMarkers);
-    static int GetClipTcharTextFormat() { return sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT; }
+    static CLIPFORMAT GetClipTcharTextFormat() { return sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT; }
 
 protected :
     CPoint WordToRight (CPoint pt);
@@ -387,7 +386,7 @@ protected :
 	int SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset );
 	//END SW
     int GetCharWidth ();
-    int GetMaxLineLength ();
+    int GetMaxLineLength (int nTopLine, int nLines);
     int GetScreenLines ();
     int GetScreenChars ();
     CFont *GetFont (bool bItalic = false, bool bBold = false);
@@ -478,14 +477,29 @@ protected:
     virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber);
     virtual void DrawBoundaryLine (CDC * pdc, int nLeft, int nRight, int y);
     virtual void DrawLineCursor (CDC * pdc, int nLeft, int nRight, int y, int nHeight);
-    int GetCharWidthFromChar(TCHAR ch);
-    int GetCharWidthFromString(LPCTSTR lpsz);
-    int GetCharWidthFromDisplayableChar(const ViewableWhitespaceChars * lpspc, TCHAR ch);
+
+	inline int GetCharCellCountFromChar(TCHAR ch)
+	{
+		if (ch >= _T('\x00') && ch <= _T('\x7F'))
+		{
+			if (ch <= _T('\x1F') && ch != '\t')
+				return 3;
+			else
+				return 1;
+		} 
+		// This assumes a fixed width font
+		// But the UNICODE case handles double-wide glyphs (primarily Chinese characters)
+#ifdef _UNICODE
+		return GetCharCellCountUnicodeChar(ch);
+#else
+		return 1;
+#endif
+	}
 
 #ifdef _UNICODE
     bool m_bChWidthsCalculated[65536/256];
     int m_iChDoubleWidthFlags[65536/32];
-    int GetCharWidthUnicodeChar(wchar_t ch);
+    int GetCharCellCountUnicodeChar(wchar_t ch);
 #endif
     void ResetCharWidths();
 
@@ -906,7 +920,6 @@ protected :
     afx_msg void OnEditCopy ();
     afx_msg void OnUpdateEditCopy (CCmdUI * pCmdUI);
     afx_msg void OnEditSelectAll ();
-    afx_msg void OnUpdateEditSelectAll (CCmdUI * pCmdUI);
     afx_msg void OnRButtonDown (UINT nFlags, CPoint point);
     afx_msg void OnSysColorChange ();
     afx_msg int OnCreate (LPCREATESTRUCT lpCreateStruct);
@@ -915,7 +928,7 @@ protected :
     afx_msg void OnUpdateEditRepeat (CCmdUI * pCmdUI);
     afx_msg void OnEditMark ();
     afx_msg void OnEditDeleteBack();
-    afx_msg void OnChar( UINT nChar, UINT nRepCnt, UINT nFlags );
+    afx_msg void OnChar( wchar_t nChar, UINT nRepCnt, UINT nFlags );
 
     afx_msg BOOL OnMouseWheel (UINT nFlags, short zDelta, CPoint pt);
 	LRESULT OnImeStartComposition(WPARAM wParam, LPARAM lParam);

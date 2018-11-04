@@ -501,7 +501,7 @@ int CRegOptionsMgr::SetRegRootKey(const String& key)
  * - COption::OPT_OK when succeeds
  * - COption::OPT_ERR when writing to the file fails
  */
-int CRegOptionsMgr::ExportOptions(const String& filename) const
+int CRegOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= false*/) const
 {
 	int retVal = COption::OPT_OK;
 	OptionsMap::const_iterator optIter = m_optionsMap.begin();
@@ -519,14 +519,17 @@ int CRegOptionsMgr::ExportOptions(const String& filename) const
 		}
 		else if (value.GetType() == varprop::VT_INT)
 		{
-			strVal = strutils::to_str(value.GetInt());
+			if ( bHexColor && (strutils::makelower(name).find(String(_T("color"))) != std::string::npos) )
+				strVal = strutils::format(_T("0x%06x"), value.GetInt());
+			else
+				strVal = strutils::to_str(value.GetInt());
 		}
 		else if (value.GetType() == varprop::VT_STRING)
 		{
 			strVal = value.GetString();
 		}
 
-		BOOL bRet = WritePrivateProfileString(_T("WinMerge"), name.c_str(),
+		bool bRet = !!WritePrivateProfileString(_T("WinMerge"), name.c_str(),
 				strVal.c_str(), filename.c_str());
 		if (!bRet)
 			retVal = COption::OPT_ERR;
@@ -564,9 +567,9 @@ int CRegOptionsMgr::ImportOptions(const String& filename)
 		varprop::VariantValue value = Get(pKey);
 		if (value.GetType() == varprop::VT_BOOL)
 		{
-			BOOL boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str());
-			value.SetBool(boolVal == 1);
-			SaveOption(pKey, boolVal == 1);
+			bool boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str()) == 1;
+			value.SetBool(boolVal);
+			SaveOption(pKey, boolVal);
 		}
 		else if (value.GetType() == varprop::VT_INT)
 		{

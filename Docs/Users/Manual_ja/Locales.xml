@@ -74,11 +74,13 @@
       </listitem>
 
       <listitem>
-        <simpara><guimenu>「表示」</guimenu>メニューより<guimenuitem>「言語」</guimenuitem>を選択します。</simpara>
+        <simpara>Select <guimenuitem>Options</guimenuitem> from the
+        <guimenu>Edit</guimenu> menu.</simpara>
       </listitem>
 
       <listitem>
-        <simpara>使用可能な言語から変更したい言語を選択し、<guibutton>OK</guibutton>ボタンをクリックします。</simpara>
+        <simpara>Select your language and click
+        <guibutton>OK</guibutton> in the Options dialog General page.</simpara>
       </listitem>
     </orderedlist>
 

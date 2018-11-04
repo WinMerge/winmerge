@@ -31,7 +31,7 @@ private:
 	CBitmap*	m_oldBitmap;	// bitmap originally found in CMemDC
 	CDC*		m_pDC;			// Saves CDC passed in constructor
 	CRect		m_rect;			// Rectangle of drawing area.
-	BOOL		m_bMemDC;		// TRUE if CDC really is a Memory DC.
+	bool		m_bMemDC;		// `true` if CDC really is a Memory DC.
 public:
 	
 	CMyMemDC(CDC* pDC, const CRect* pRect = NULL) : CDC()
