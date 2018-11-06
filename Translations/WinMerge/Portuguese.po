@@ -1493,7 +1493,7 @@ msgstr "Se&lecionar..."
 
 #: Merge.rc:4C3E0A2D
 msgid "Co&mpare"
-msgstr ""
+msgstr "Co&mparar"
 
 #: Merge.rc:4E65D340
 #, c-format
