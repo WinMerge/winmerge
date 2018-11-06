@@ -184,6 +184,10 @@ IHeaderBar * CDirFrame::GetHeaderInterface() {
  */
 void CDirFrame::ActivateFrame(int nCmdShow) 
 {
+	// load docking positions and sizes
+	CDockState dockState;
+	dockState.LoadState(_T("Settings-DirFrame"));
+	SetDockState(dockState);
 	// get the active child frame, and a flag whether it is maximized
 	BOOL bMaximized;
 	CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
@@ -251,6 +255,10 @@ BOOL CDirFrame::DestroyWindow()
 		wp.length = sizeof(WINDOWPLACEMENT);
 		GetWindowPlacement(&wp);
 		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
+		// save docking positions and sizes
+		CDockState dockState;
+		GetDockState(dockState);
+		dockState.SaveState(_T("Settings-DirFrame"));
 	}
 
 	return CMDIChildWnd::DestroyWindow();
