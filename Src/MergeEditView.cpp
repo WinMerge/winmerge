@@ -2746,6 +2746,8 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 void CMergeEditView::OnL2RNext()
 {
 	OnL2r();
+	if (IsCursorInDiff()) // for 3-way file compare
+		OnNextdiff();
 	OnNextdiff();
 }
 
@@ -2763,6 +2765,8 @@ void CMergeEditView::OnUpdateL2RNext(CCmdUI* pCmdUI)
 void CMergeEditView::OnR2LNext()
 {
 	OnR2l();
+	if (IsCursorInDiff()) // for 3-way file compare
+		OnNextdiff();
 	OnNextdiff();
 }
 
