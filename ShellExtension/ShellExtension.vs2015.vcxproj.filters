@@ -116,6 +116,9 @@
     <ResourceCompile Include="Languages\ShellExtensionKorean.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+    <ResourceCompile Include="Languages\ShellExtensionLithuanian.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
     <ResourceCompile Include="Languages\ShellExtensionNorwegian.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>

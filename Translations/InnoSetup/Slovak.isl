@@ -287,6 +287,7 @@ HungarianLanguage=Maïarské ponuky a dialógy
 ItalianLanguage=Talianske ponuky a dialógy
 JapaneseLanguage=Japonské ponuky a dialógy
 KoreanLanguage=Kórejské ponuky a dialógy
+LithuanianLanguage=Litovské ponuky a dialógy
 NorwegianLanguage=Nórske ponuky a dialógy
 PersianLanguage=Persian menus and dialogs
 PolishLanguage=Po¾ské ponuky a dialógy

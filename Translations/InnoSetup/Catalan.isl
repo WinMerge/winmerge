@@ -342,6 +342,7 @@ HungarianLanguage=Menús i diàlegs en Hongarès
 ItalianLanguage=Menús i diàlegs en Italià
 JapaneseLanguage=Menús i diàlegs en Japonès
 KoreanLanguage=Menús i diàlegs en Koreà
+LithuanianLanguage=Menús i diàlegs en Lituà
 NorwegianLanguage=Menús i diàlegs en Noruec
 PersianLanguage=Persian menus and dialogs
 PolishLanguage=Menús i diàlegs en Polonès

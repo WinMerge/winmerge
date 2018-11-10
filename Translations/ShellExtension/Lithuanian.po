@@ -1,0 +1,94 @@
+# This file is part from WinMerge <http://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# Translators:
+# * Dalius Guzauskas (aka Tichij) (tichij AT mail DOT com)
+#
+# ID line follows -- this is updated by SVN
+# $Id: Lithuanian.po
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge Shell Extension\n"
+"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
+"POT-Creation-Date: 2011-10-11 01:08+0000\n"
+"PO-Revision-Date: 2018-11-08 16:18+0200\n"
+"Last-Translator: Tichij <tichij@mail.com>\n"
+"Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1257\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-Language: Lithuanian\n"
+"X-Poedit-SourceCharset: CP1257\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+"X-Generator: Poedit 2.2\n"
+
+#. AFX_TARG_*
+#: ShellExtensionTemplate.rc:24
+#, c-format
+msgid "AFX_TARG_ENU"
+msgstr "AFX_TARG_LIT"
+
+#. LANGUAGE, SUBLANGUAGE
+#: ShellExtensionTemplate.rc:26
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_LITHUANIAN, SUBLANG_DEFAULT"
+
+#. Codepage
+#: ShellExtensionTemplate.rc:27
+#, c-format
+msgid "1252"
+msgstr "1257"
+
+#: ShellExtensionTemplate.rc:41
+#, c-format
+msgid "ShellExtension"
+msgstr "ShellExtension"
+
+#: ShellExtensionTemplate.rc:42
+#, c-format
+msgid "WinMerge"
+msgstr "WinMerge"
+
+#: ShellExtensionTemplate.rc:43
+#, c-format
+msgid "Open with WinMerge"
+msgstr "Atverti su WinMerge"
+
+#: ShellExtensionTemplate.rc:44
+#, c-format
+msgid "Please select no more than 2 items"
+msgstr "Pasirinkite ne daugiau kaip 2 elementus"
+
+#: ShellExtensionTemplate.rc:45
+#, c-format
+msgid "Compare"
+msgstr "Lyginti"
+
+#: ShellExtensionTemplate.rc:46
+#, c-format
+msgid "Compare..."
+msgstr "Lyginti..."
+
+#: ShellExtensionTemplate.rc:47
+#, c-format
+msgid "Compare To"
+msgstr "Palyginti su"
+
+#: ShellExtensionTemplate.rc:48
+#, c-format
+msgid "Save this path. Select another path to compare with this path."
+msgstr "Iðsaugoti ðá kelià. Parinkti kità kelià ir palyginti su ðiuo keliu."
+
+#: ShellExtensionTemplate.rc:49
+#, c-format
+msgid "Compare to saved path (%1)"
+msgstr "Palyginti su iðsaugotu keliu (%1)"
+
+#: ShellExtensionTemplate.rc:50
+#, c-format
+msgid "Re-select First"
+msgstr "Ið naujo parinkti pirmà"
