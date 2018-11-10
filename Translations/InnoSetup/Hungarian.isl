@@ -378,6 +378,7 @@ HungarianLanguage=Magyar menük és párbeszédablakok
 ItalianLanguage=Olasz menük és párbeszédablakok
 JapaneseLanguage=Japán menük és párbeszédablakok
 KoreanLanguage=Koreai menük és párbeszédablakok
+LithuanianLanguage=Litván menük és párbeszédablakok
 NorwegianLanguage=Norvég menük és párbeszédablakok
 PersianLanguage=Persian menus and dialogs
 PolishLanguage=Lengyel menük és párbeszédablakok

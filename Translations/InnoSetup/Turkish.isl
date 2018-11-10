@@ -357,6 +357,7 @@ HungarianLanguage=Macarca menü ve pencereler
 ItalianLanguage=Italyanca menü ve pencereler
 JapaneseLanguage=Japonca menü ve pencereler
 KoreanLanguage=Korece menü ve pencereler
+LithuanianLanguage=Litvanca menü ve pencereler
 NorwegianLanguage=Norveçce menü ve pencereler
 PersianLanguage=Farsça menü ve pencereler
 PolishLanguage=Lehçe menü ve pencereler

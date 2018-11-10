@@ -35,6 +35,7 @@ oCharsets.Add "1252", "Windows-1252"
 oCharsets.Add "1253", "Windows-1253"
 oCharsets.Add "1254", "Windows-1254"
 oCharsets.Add "1256", "Windows-1256"
+oCharsets.Add "1257", "Windows-1257"
 
 Call Main
 

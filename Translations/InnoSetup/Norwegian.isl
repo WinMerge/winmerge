@@ -355,6 +355,7 @@ HungarianLanguage=Ungarske menyer og dialoger
 ItalianLanguage=Italienske menyer og dialoger
 JapaneseLanguage=Japanske menyer og dialoger
 KoreanLanguage=Koreanske menyer og dialoger
+LithuanianLanguage=Litauiske menyer og dialoger
 NorwegianLanguage=Norske menyer og dialoger
 PersianLanguage=Persian menus and dialogs
 PolishLanguage=Polske menyer og dialoger

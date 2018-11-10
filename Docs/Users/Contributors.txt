@@ -95,6 +95,9 @@ Localization:
   Sushizang <sushizang@empal.com>
   sheppaul <sheppaul at gmail.com>
 
+* Lithuanian:
+  Dalius Guzauskas (aka Tichij) <tichij AT mail DOT com>
+
 * Norwegian:
   Hans Fredrik Nordhaug <hansfn@users.sourceforge.net>
 

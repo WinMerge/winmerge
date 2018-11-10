@@ -194,6 +194,14 @@ BEGIN
     "#endif //_WIN32\r\n"
     "#endif\r\n"
     "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_LIT)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_LITHUANIAN, SUBLANG_DEFAULT\r\n"
+    "#pragma code_page(1257)\r\n"
+    "#include ""Languages\\ShellExtensionLithuanian.rc""\r\n"
+    "#endif //_WIN32\r\n"
+    "#endif\r\n"
+    "\r\n"
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NOR)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL\r\n"
@@ -317,8 +325,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,17,2,0
- PRODUCTVERSION 1,17,2,0
+ FILEVERSION 1,17,3,0
+ PRODUCTVERSION 1,17,3,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -335,12 +343,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "http://winmerge.org"
             VALUE "FileDescription", "WinMerge Shell Integration library"
-            VALUE "FileVersion", "1.17.2.0"
+            VALUE "FileVersion", "1.17.3.0"
             VALUE "InternalName", "ShellExtension"
             VALUE "LegalCopyright", "Copyright 2003-2018"
             VALUE "OriginalFilename", "ShellExtension.DLL"
             VALUE "ProductName", "WinMerge Shell Integration library"
-            VALUE "ProductVersion", "1.17.2.0"
+            VALUE "ProductVersion", "1.17.3.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -545,6 +553,14 @@ LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #pragma code_page(949)
 #include "Languages\ShellExtensionKorean.rc"
+#endif //_WIN32
+#endif
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_LIT)
+#ifdef _WIN32
+LANGUAGE LANG_LITHUANIAN, SUBLANG_DEFAULT
+#pragma code_page(1257)
+#include "Languages\ShellExtensionLithuanian.rc"
 #endif //_WIN32
 #endif
 
