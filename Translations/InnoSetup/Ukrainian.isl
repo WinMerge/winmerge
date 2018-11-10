@@ -355,6 +355,7 @@
    ItalianLanguage=ћеню ≥ д≥алогов≥ в≥кна ≥тал≥йською мовою
    JapaneseLanguage=ћеню ≥ д≥алогов≥ в≥кна €понською мовою
    KoreanLanguage=ћеню ≥ д≥алогов≥ в≥кна корейською мовою
+   LithuanianLanguage=Lithuanian menus and dialogs
    NorwegianLanguage=ћеню ≥ д≥алогов≥ в≥кна норвежською мовою
    PersianLanguage=Persian menus and dialogs
    PolishLanguage=ћеню ≥ д≥алогов≥ в≥кна полською мовою

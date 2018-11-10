@@ -340,6 +340,7 @@ HungarianLanguage=Húngaro menus e diálogos
 ItalianLanguage=Italiano menus e diálogos
 JapaneseLanguage=Japonês menus e diálogos
 KoreanLanguage=Coreano menus e diálogos
+LithuanianLanguage=Lituano menus e diálogos
 NorwegianLanguage=Norueguês menus e diálogos
 PersianLanguage=Persa menus e diálogos
 PolishLanguage=Polonês menus e diálogos

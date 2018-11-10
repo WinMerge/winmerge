@@ -336,6 +336,7 @@ HungarianLanguage=Hongaarse menu’s en vensters
 ItalianLanguage=Italiaanse menu’s en vensters
 JapaneseLanguage=Japanse menu’s en vensters
 KoreanLanguage=Koreaanse menu’s en vensters
+LithuanianLanguage=Litouwse menu’s en vensters
 NorwegianLanguage=Noorse menu’s en vensters
 PersianLanguage=Persian menus and dialogs
 PolishLanguage=Poolse menu’s en vensters

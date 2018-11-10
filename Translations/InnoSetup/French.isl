@@ -346,6 +346,7 @@ HungarianLanguage=Menus et dialogues Hongrois
 ItalianLanguage=Menus et dialogues Italien
 JapaneseLanguage=Menus et dialogues Japonais
 KoreanLanguage=Menus et dialogues Coréen
+LithuanianLanguage=Menus et dialogues Lituanien
 NorwegianLanguage=Menus et dialogues Norvégien
 PersianLanguage=Menus et dialogues Perse
 PolishLanguage=Menus et dialogues Polonais

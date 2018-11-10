@@ -358,6 +358,7 @@ HungarianLanguage=Hungariera menuak eta elkarrizketak
 ItalianLanguage=Italiera menuak eta elkarrizketak
 JapaneseLanguage=Japoniera menuak eta elkarrizketak
 KoreanLanguage=Koreaera menuak eta elkarrizketak
+LithuanianLanguage=Euskara menuak eta elkarrizketak
 NorwegianLanguage=Norbegiera menuak eta elkarrizketak
 PersianLanguage=Persiera menuak eta elkarrizketak
 PolishLanguage=Poloniera menuak eta elkarrizketak
