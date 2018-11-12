@@ -2478,6 +2478,7 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
 		m_nBufferType[index] = BUFFER_UNNAMED;
 		m_ptBuf[index]->InitNew();
 		m_ptBuf[index]->m_encoding = encoding;
+		m_ptBuf[index]->FinishLoading(); // should clear GGhostTextBuffer::m_RealityBlock when reloading unnamed buffer 
 		loadSuccess = FileLoadResult::FRESULT_OK;
 	}
 	return loadSuccess;
