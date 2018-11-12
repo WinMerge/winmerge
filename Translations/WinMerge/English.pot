@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-10-30 06:26+0000\n"
+"POT-Creation-Date: 2018-11-12 23:16+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1144,10 +1144,6 @@ msgstr ""
 msgid "Select Files or Folders"
 msgstr ""
 
-#: Merge.rc:6DE6F874
-msgid "&1st File or Folder"
-msgstr ""
-
 #: Merge.rc:39174D96
 msgid "Re&ad-only"
 msgstr ""
@@ -1160,8 +1156,8 @@ msgstr ""
 msgid "&Browse..."
 msgstr ""
 
-#: Merge.rc:6DE6F875
-msgid "&2nd File or Folder"
+#: Merge.rc:6DE6F874
+msgid "&1st File or Folder"
 msgstr ""
 
 #: Merge.rc:39174D97
@@ -1176,8 +1172,8 @@ msgstr ""
 msgid "B&rowse..."
 msgstr ""
 
-#: Merge.rc:3C1ECDDA
-msgid "&3rd File or Folder (Optional)"
+#: Merge.rc:6DE6F875
+msgid "&2nd File or Folder"
 msgstr ""
 
 #: Merge.rc:39174D98
@@ -1190,6 +1186,10 @@ msgstr ""
 
 #: Merge.rc:146A5938
 msgid "Browse..."
+msgstr ""
+
+#: Merge.rc:3C1ECDDA
+msgid "&3rd File or Folder (Optional)"
 msgstr ""
 
 #: Merge.rc:22467E6E
