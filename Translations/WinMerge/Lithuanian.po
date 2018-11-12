@@ -1153,10 +1153,6 @@ msgstr "Talkininkai"
 msgid "Select Files or Folders"
 msgstr "Parinkite failus ar katalogus"
 
-#: Merge.rc:6DE6F874
-msgid "&1st File or Folder"
-msgstr "&1-as failas ar katalogas"
-
 #: Merge.rc:39174D96
 msgid "Re&ad-only"
 msgstr "Tik sk&aitymui"
@@ -1169,9 +1165,9 @@ msgstr "Sukeisti 1-ą | 2-ą"
 msgid "&Browse..."
 msgstr "&Rasti..."
 
-#: Merge.rc:6DE6F875
-msgid "&2nd File or Folder"
-msgstr "&2-as failas ar katalogas"
+#: Merge.rc:6DE6F874
+msgid "&1st File or Folder"
+msgstr "&1-as failas ar katalogas"
 
 #: Merge.rc:39174D97
 msgid "Rea&d-only"
@@ -1185,9 +1181,9 @@ msgstr "Sukeisti 2-ą | 3-ią"
 msgid "B&rowse..."
 msgstr "R&asti..."
 
-#: Merge.rc:3C1ECDDA
-msgid "&3rd File or Folder (Optional)"
-msgstr "&3-ias failas ar katalogas (nebūtinas)"
+#: Merge.rc:6DE6F875
+msgid "&2nd File or Folder"
+msgstr "&2-as failas ar katalogas"
 
 #: Merge.rc:39174D98
 msgid "Read-o&nly"
@@ -1200,6 +1196,10 @@ msgstr "Sukeisti 1-ą | 3-ią"
 #: Merge.rc:146A5938
 msgid "Browse..."
 msgstr "Rasti..."
+
+#: Merge.rc:3C1ECDDA
+msgid "&3rd File or Folder (Optional)"
+msgstr "&3-ias failas ar katalogas (nebūtinas)"
 
 #: Merge.rc:22467E6E
 msgid " Folder: Filter"
