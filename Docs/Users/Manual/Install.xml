@@ -264,22 +264,6 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Integrate with Rational ClearCase<indexterm>
-                <primary>ClearCase integration</primary>
-
-                <secondary>configuring during installation</secondary>
-              </indexterm></term>
-
-            <listitem>
-              <para>Sets WinMerge to be the ClearCase diff application.</para>
-
-              <para>For more information about the three integrations in this
-              list and related WinMerge options, see <xref
-              linkend="VersionControl_vcs" />.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
             <term>Create a Desktop shortcut</term>
 
             <listitem>
