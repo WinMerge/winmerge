@@ -297,7 +297,6 @@ Name: modifypath; Description: {cm:AddToPath}; GroupDescription: {cm:OptionalFea
 Name: TortoiseCVS; Description: {cm:IntegrateTortoiseCVS}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseCVSInstalled
 Name: TortoiseGit; Description: {cm:IntegrateTortoiseGit}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseGitInstalled; MinVersion: 0,5.0.2195sp3
 Name: TortoiseSVN; Description: {cm:IntegrateTortoiseSVN}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseSVNInstalled; MinVersion: 0,5.0.2195sp3
-Name: ClearCase; Description: {cm:IntegrateClearCase}; GroupDescription: {cm:OptionalFeatures}; Check: ClearCaseInstalled
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
 Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}; OnlyBelowVersion: 0,6.1
 
@@ -1075,58 +1074,6 @@ Begin
     Result := ExpandConstant('{app}\') + ExeName(Unused);
 End;
 
-{Returns ClearCase external tools configuration file name}
-Function ClearCaseMapFile(): string;
-Begin
-    if not RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Rational Software\', 'RSINSTALLDIR', Result) then
-    begin
-        Result := {pf} + '\Rational\';
-    end;
-    Result := Result + 'ClearCase\lib\mgrs\map';
-End;
-
-{Determines whether or not Rational ClearCase is installed}
-Function ClearCaseInstalled(): boolean;
-Begin
-    Result := FileExists(ClearCaseMapFile());
-End;
-
-{Intergrate WinMerge as ClearCase external diff tool}
-Procedure IntegrateClearCase(OldExe: String; NewExe: String);
-Var
-    MapFile: TStringList;
-    FileName: String;
-    I: Integer;
-    BakFile: String;
-
-Begin
-    FileName := ClearCaseMapFile();
-    {Create a backup file of the original file first time it gets modified}
-    BakFile := FileName + '.original';
-    if not FileExists(BakFile) then
-    begin
-        FileCopy(FileName, BakFile, True);
-    end;
-    MapFile := TStringList.Create();
-    {Read the entire map file to a string list}
-    MapFile.LoadFromFile(FileName);
-    if MapFile.Count > 0 then
-    begin
-        for I := 0 to MapFile.Count do
-        begin
-            {Search for the 'text_file_delta xcompare ...' line}
-			if (MapFile.Strings[I][1] <> ';') and (Pos('text_file_delta', MapFile.Strings[I]) > 0) and (Pos('xcompare', MapFile.Strings[I]) > 0) then
-			begin
-				{Replace old executable name with a new executable name}
-				MapFile.Strings[I] := ReplaceSubString(MapFile.Strings[I], OldExe, NewExe);
-			    break;
-			end;
-		end;
-		{ Save the modified file. }
-		MapFile.SaveToFile(FileName);
-	end;
-End;
-
 // Add WinMerge to system path.
 // This requires certain order of things to work:
 // #1 ModPathDir function must be first (it gets called by others)
@@ -1181,10 +1128,6 @@ Begin
     begin
 		if IsTaskSelected('modifypath') then
 			ModPath();
-        if IsTaskSelected('ClearCase') then
-        begin
-            IntegrateClearCase('..\..\bin\cleardiffmrg.exe', WinMergeExeName());
-        end;
     end;
 End;
 
@@ -1200,12 +1143,6 @@ Begin
 				ModPath();
 		DeleteFile(appdir + '\uninsTasks.txt')
 	end;
-
-    if CurUninstallStep = usPostUninstall then
-    begin
-      if ClearCaseInstalled() then
-        IntegrateClearCase(WinMergeExeName(), '..\..\bin\cleardiffmrg.exe');
-    end;
 End;
 
 function BooleanToString(Value : Boolean) : String; 
