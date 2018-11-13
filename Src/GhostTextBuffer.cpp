@@ -299,7 +299,7 @@ InsertText (CCrystalTextView * pSource, int nLine,
 		//	file.  Later (below), the Ghost status of both the first and last inserted 
 		//	lines will get straightened out, with the trailing Ghost line becomming  
 		//	a NULL line.
-		if ((GetLineFlags(nLine) & LF_GHOST) == 0)	// first line still marked GHOST
+		if ((GetLineFlags(nLine) & LF_GHOST) != 0)	// first line still marked GHOST
 			bSpecialLastLineHandling = false;
 		else
 			bDiscrepancyInInsertedLines = false;
