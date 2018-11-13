@@ -723,6 +723,7 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHo
 				ScrollToSubLine (pSrcView->m_nTopSubLine, true, false);
 				UpdateCaret ();
 				RecalcVertScrollBar(true);
+				RecalcHorzScrollBar();
 			}
 		}
 		else
@@ -737,6 +738,7 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHo
 				ScrollToChar (pSrcView->m_nOffsetChar, true, false);
 				UpdateCaret ();
 				RecalcHorzScrollBar(true);
+				RecalcHorzScrollBar();
 			}
 		}
 	}
