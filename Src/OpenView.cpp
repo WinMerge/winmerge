@@ -46,6 +46,7 @@
 #include "Plugins.h"
 #include "BCMenu.h"
 #include "LanguageSelect.h"
+#include "Win_VersionHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -160,6 +161,13 @@ BOOL COpenView::PreCreateWindow(CREATESTRUCT& cs)
 
 void COpenView::OnInitialUpdate()
 {
+	if (!IsVista_OrGreater())
+	{
+		// fallback for XP 
+		SendDlgItemMessage(IDC_OPTIONS, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
+		SendDlgItemMessage(ID_SAVE_PROJECT, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
+	}
+
 	m_sizeOrig = GetTotalSize();
 
 	theApp.TranslateDialog(m_hWnd);
