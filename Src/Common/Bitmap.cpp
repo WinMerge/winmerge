@@ -129,30 +129,58 @@ bool GrayScale(CBitmap *pBitmap)
 {
 	BITMAP bm;
 	pBitmap->GetBitmap(&bm);
-	if (bm.bmBitsPixel < 24)
-		return false;
 	const int nCount = bm.bmWidthBytes * bm.bmHeight;
 	const int bypp = bm.bmBitsPixel / 8;
 	std::unique_ptr<BYTE[]> pbuf(new BYTE[nCount]);
 	pBitmap->GetBitmapBits(nCount, pbuf.get());
-	for (int i = 0, x = 0, y = 0; i < nCount - bypp; i += bypp, x += bypp)
+	if (bm.bmBitsPixel >= 24)
 	{
-		const BYTE b = pbuf[i];
-		const BYTE g = pbuf[i + 1];
-		const BYTE r = pbuf[i + 2];
-		const BYTE gray = static_cast<BYTE>(
-			 (static_cast<int>(0.114 * 256) * (((255 - b) >> 1) + b)
-			+ static_cast<int>(0.587 * 256) * (((255 - g) >> 1) + g)
-			+ static_cast<int>(0.299 * 256) * (((255 - r) >> 1) + r)) >> 8);
-		pbuf[i] = gray;
-		pbuf[i + 1] = gray;
-		pbuf[i + 2] = gray;
-		if (x >= bm.bmWidthBytes - bypp)
+		for (int i = 0, x = 0, y = 0; i < nCount - bypp; i += bypp, x += bypp)
 		{
-			++y;
-			x = 0;
-			i = y * bm.bmWidthBytes;
+			const BYTE b = pbuf[i];
+			const BYTE g = pbuf[i + 1];
+			const BYTE r = pbuf[i + 2];
+			const BYTE gray = static_cast<BYTE>(
+				 (static_cast<int>(0.114 * 256) * (((255 - b) >> 1) + b)
+				+ static_cast<int>(0.587 * 256) * (((255 - g) >> 1) + g)
+				+ static_cast<int>(0.299 * 256) * (((255 - r) >> 1) + r)) >> 8);
+			pbuf[i] = gray;
+			pbuf[i + 1] = gray;
+			pbuf[i + 2] = gray;
+			if (x >= bm.bmWidthBytes - bypp)
+			{
+				++y;
+				x = 0;
+				i = y * bm.bmWidthBytes;
+			}
 		}
 	}
+	else if (bm.bmBitsPixel == 16)
+	{
+		static const int RGB565Table5[32] = { 0, 8, 16, 25, 33, 41, 49, 58, 66, 74, 82, 90, 99, 107, 115, 123, 132, 140, 148, 156, 165, 173, 181, 189, 197, 206, 214, 222, 230, 239, 247, 255 };
+		static const int RGB565Table6[64] = { 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 45, 49, 53, 57, 61, 65, 69, 73, 77, 81, 85, 89, 93, 97, 101, 105, 109, 113, 117, 121, 125, 130, 134, 138, 142, 146, 150, 154, 158, 162, 166, 170, 174, 178, 182, 186, 190, 194, 198, 202, 206, 210, 215, 219, 223, 227, 231, 235, 239, 243, 247, 251, 255 };
+		for (int i = 0, x = 0, y = 0; i < nCount - bypp; i += bypp, x += bypp)
+		{
+			const WORD w = (pbuf[i + 1] << 8) | pbuf[i];
+			const BYTE b = static_cast<BYTE>(RGB565Table5[(w & 0xf800) >> 11]);
+			const BYTE g = static_cast<BYTE>(RGB565Table6[(w & 0x07e0) >> 5]);
+			const BYTE r = static_cast<BYTE>(RGB565Table5[w & 0x001f]);
+			const BYTE gray = static_cast<BYTE>(
+				 (static_cast<int>(0.114 * 256) * (((255 - b) >> 1) + b)
+				+ static_cast<int>(0.587 * 256) * (((255 - g) >> 1) + g)
+				+ static_cast<int>(0.299 * 256) * (((255 - r) >> 1) + r)) >> 8);
+			const WORD wo = ((gray >> 3) << 11) | ((gray >> 2) << 5) | ((gray >> 3) << 0);
+			pbuf[i] = static_cast<BYTE>(wo & 0xff);
+			pbuf[i + 1] = static_cast<BYTE>((wo >> 8));
+			if (x >= bm.bmWidthBytes - bypp)
+			{
+				++y;
+				x = 0;
+				i = y * bm.bmWidthBytes;
+			}
+		}
+	}
+	else
+		return false;
 	return pBitmap->SetBitmapBits(nCount, pbuf.get()) != 0;
 }
