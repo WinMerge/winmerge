@@ -20,18 +20,18 @@ HIMAGELIST CSuperComboBox::m_himlSystem = nullptr;
 
 CSuperComboBox::CSuperComboBox()
 	: m_pDropHandler(nullptr)
+	, m_bInEditchange(false)
+	, m_bEditChanged(false)
+	, m_bDoComplete(false)
+	, m_bAutoComplete(false)
+	, m_bHasImageList(false)
+	, m_bComboBoxEx(false)
+	, m_bExtendedFileNames(false)
+	, m_bCanBeEmpty(false)
+	, m_nMaxItems(DEF_MAXSIZE)
+	, m_strCurSel(_T(""))
 {
-	m_bEditChanged = false;
-	m_bDoComplete = false;
-	m_bAutoComplete = false;
-	m_bHasImageList = false;
 
-	m_bComboBoxEx = false;
-	m_bExtendedFileNames = false;
-	m_bCanBeEmpty = false;
-	m_nMaxItems = DEF_MAXSIZE;
-
-	m_strCurSel = _T("");
 
 	// Initialize OLE libraries if not yet initialized
 	m_bMustUninitOLE = false;
@@ -320,6 +320,10 @@ BOOL CSuperComboBox::OnEditchange()
 	if (length <= 0) 
 		return FALSE;
 	
+	if (m_bInEditchange)
+		return FALSE;
+	m_bInEditchange = true;
+
 	// Get the text in the edit box
 	CString s;
 	GetWindowText(s);
@@ -350,6 +354,8 @@ BOOL CSuperComboBox::OnEditchange()
 		GetEditCtrl()->SetSel(start, end);
 	else
 		CComboBox::SetEditSel(start, end);  
+
+	m_bInEditchange = false;
 
 	return FALSE;
 }
