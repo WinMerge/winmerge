@@ -21,6 +21,7 @@ public:
 // Attributes
 protected:
 	bool m_bEditChanged;
+	bool m_bInEditchange;
 	bool m_bAutoComplete;
 	bool m_bDoComplete;
 	bool m_bHasImageList;
