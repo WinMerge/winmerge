@@ -1,8 +1,19 @@
-This file summarizes changes in WinMerge releases.
-Numbers in parentheses refer to SourceForge.net tracker item numbers
-old format (#XXXXXXX) or new format (patches:#XXXX) or
-to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
-http://winmerge.org/tracker/[tracker-id]
+WinMerge 2.16.0
+  General:
+  - Bugfix: Disabled icon on toolbar not gray out when running on XP
+  File compare:
+  - Bugfix: Copy to X and Advance" not work in 3way-compare (Bitbucket #123)
+  - Bugfix: File compare always showing different ending (GitHub #106)
+  - Bugfix: Scrolling issue (GitHub #105)
+  - Bugfix: A crash (GitHub #104)
+  - Add separators to "Zoom" and "Diff Context" menus (Bitbucket PR #5)
+  Open dialog:
+  - Bugfix: Drag&Drop in Open Dialog won't work correct (Bitbucket #125)
+  Installer:
+  - Drop ClearCase integration (Bitbucket PR #6)
+  Translations:
+  - Add Lithuanian translation (Bitbucket #124)
+  - Update Portuguese translation (GitHub #102,103)
 
 WinMerge 2.15.5
   General:
