@@ -97,6 +97,72 @@ TEST(SyntaxHighlight, Verilog)
 	dlg.SetFormerResult(nPrevFormerResult);
 }
 
+TEST(FileCompare, LastLineEOL)
+{
+	String projectRoot = getProjectRoot();
+	const static String filelist[] = {
+		_T("0None.txt"),
+		_T("0CRLF.txt"),
+		_T("1None.txt"),
+		_T("1CRLF.txt"),
+		_T("2None.txt"),
+		_T("2CRLF.txt"),
+		_T("3None.txt"),
+		_T("3CRLF.txt")
+	};
+	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
+	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
+	CMergeDoc *pDoc = nullptr;
+	CFrameWnd *pFrame = nullptr;
+	for (size_t l = 0; l < std::size(filelist); ++l)
+	{
+		for (size_t r = 0; r < std::size(filelist); ++r)
+		{
+			PathContext tFiles = {
+				paths::ConcatPath(projectRoot, paths::ConcatPath(_T("Testing/Data/LastLineEOL"), filelist[l])),
+				paths::ConcatPath(projectRoot, paths::ConcatPath(_T("Testing/Data/LastLineEOL"), filelist[r])),
+			};
+			if (l == 0 && r == 0)
+			{
+				EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
+				pFrame = GetMainFrame()->GetActiveFrame();
+				pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+				EXPECT_NE(nullptr, pDoc);
+				if (pDoc == nullptr)
+					return;
+			}
+			else if (r == 0)
+			{
+				pDoc->ChangeFile(0, tFiles[0]);
+			}
+			pDoc->ChangeFile(1, tFiles[1]);
+
+			if (tFiles[0] == tFiles[1])
+			{
+				EXPECT_EQ(0, pDoc->m_diffList.GetSize());
+			}
+			else
+			{
+				CMergeEditView *pView = pDoc->GetView(0, 0);
+				// merge
+				EXPECT_EQ(1, pDoc->m_diffList.GetSize());
+				pDoc->CopyAllList(0, 1);
+				EXPECT_EQ(0, pDoc->m_diffList.GetSize());
+				// undo
+				pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+				EXPECT_EQ(1, pDoc->m_diffList.GetSize());
+				// insert a character at the last line
+				pView->GotoLine(pDoc->m_ptBuf[0]->GetLineCount() - 1, false, 0);
+				pView->SendMessage(WM_CHAR, 'a');
+				// undo
+				pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+			}
+		}
+	}
+	pFrame->PostMessage(WM_CLOSE);
+	dlg.SetFormerResult(nPrevFormerResult);
+}
+
 TEST(FolderCompare, IgnoreEOL)
 {
 	String projectRoot = getProjectRoot();
