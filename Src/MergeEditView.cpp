@@ -723,6 +723,7 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHo
 				ScrollToSubLine (pSrcView->m_nTopSubLine, true, false);
 				UpdateCaret ();
 				RecalcVertScrollBar(true);
+				RecalcHorzScrollBar();
 			}
 		}
 		else
@@ -737,6 +738,7 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHo
 				ScrollToChar (pSrcView->m_nOffsetChar, true, false);
 				UpdateCaret ();
 				RecalcHorzScrollBar(true);
+				RecalcHorzScrollBar();
 			}
 		}
 	}
@@ -2746,6 +2748,8 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 void CMergeEditView::OnL2RNext()
 {
 	OnL2r();
+	if (IsCursorInDiff()) // for 3-way file compare
+		OnNextdiff();
 	OnNextdiff();
 }
 
@@ -2763,6 +2767,8 @@ void CMergeEditView::OnUpdateL2RNext(CCmdUI* pCmdUI)
 void CMergeEditView::OnR2LNext()
 {
 	OnR2l();
+	if (IsCursorInDiff()) // for 3-way file compare
+		OnNextdiff();
 	OnNextdiff();
 }
 

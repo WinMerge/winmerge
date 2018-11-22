@@ -41,7 +41,7 @@
     <tip>
       <para>同様に、組み込みのdiffツールを含む、多くのGUIツール(バージョン管理システムのクライアントやIDE)は、
       それらのデフォルトのdiffツールの代わりにWinMergeを設定することが可能です。
-      次のセクションは、TortoiseSVN、TortoiseCVS、ClearCaseで、
+      次のセクションは、TortoiseSVN、Visual Studio Team Foundation Server で、
       このような方法でWinMergeを使う方法を説明しています。
       EclipseやPerforceなど他のツールは、それらのドキュメントを参照するか、
       インターネットで詳細や例を調べてください。</para>
@@ -66,7 +66,7 @@
         <primary>TortoiseSVNとの統合</primary>
       </indexterm>
 
-      <para>TortoiseSVN、TortoiseCVS、または、Rational ClearCase でファイル比較する際、
+      <para>TortoiseCVS、TortoiseSVN、または、TortoiseGIT でファイル比較する際、
         VCSは、組込みの差分ツールの代わりに、WinMergeを起動することができます。
        この設定は、<link
       linkend="Installing_usinginstaller">WinMergeのインストール</link>の最中のみで可能です。</para>
@@ -75,7 +75,7 @@
         <title>TortoiseSVNとの統合</title>
 
         <para>これは、WinMerge統合を使用した、TortoiseSVNでの比較操作のサンプルです。
-        この統合は、TortoiseCVS と ClearCase
+        この統合は、TortoiseCVS と TortoiseGIT
         も同じです。</para>
 
         <orderedlist>
@@ -210,38 +210,6 @@
 		
 		<para>Every time you tell TFS to compare two files, it will now use WinMerge.</para>
       </example>
-	  
-      <section id="VersionControl_cc">
-        <title>ClearCaseとの統合について</title>
-
-        <para>WinMergeのインストール時に、Rational ClearCase統合を選択した時、
-        インストーラは、</para>
-
-        <orderedlist>
-          <listitem>
-            <para><!-- TODO: 日本語版確認 -->ClearCaseのバックアップコピーを、
-            <filename>map</filename>ファイルは、<filename>map.bak</filename>として、
-            <filename><replaceable>ccase-home-dir</replaceable>\lib\mgrs</filename>
-            ディレクトリに作成します。<!-- FIXME: よくわからない -->The <filename>map</filename> file is a user-configurable
-            file that associates ClearCase methods with the programs that carry
-            them out.</para>
-          </listitem>
-
-          <listitem>
-            <para><filename>map</filename>ファイル中の<guilabel><!-- TODO: 日本語版ではどうなっているのだろう -->text_file_delta</guilabel>フィールドを、
-            <command>cleartool diff</command>コマンドが実行されたとき、
-            デフォルトの<filename>cleardiff.exe</filename>の代わりに、
-            WinMergeを指定するように変更してください。</para>
-          </listitem>
-        </orderedlist>
-
-        <para>あとでWinMergeとClearCaseの連携を止めたい時は、
-        ClearCaseの<filename>map</filename>ファイルを、
-        WinMergeインストーラが作成したバックアップ、<filename>map.bak</filename>で置き換えてください。
-        または、ClearCaseの<filename>map</filename>ファイルを
-        <command>cleartool diff</command>コマンドで、
-        <filename>cleardiff.exe</filename>が実行されるように編集してください。</para>
-      </section>
     </section>
   </section>
 </article>

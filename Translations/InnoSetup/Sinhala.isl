@@ -359,6 +359,7 @@ HungarianLanguage=Hungarian menus and dialogs
 ItalianLanguage=Italian menus and dialogs
 JapaneseLanguage=Japanese menus and dialogs
 KoreanLanguage=Korean menus and dialogs
+LithuanianLanguage=Lithuanian menus and dialogs
 NorwegianLanguage=Norwegian menus and dialogs
 PersianLanguage=Persian menus and dialogs
 PolishLanguage=Polish menus and dialogs

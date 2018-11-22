@@ -166,16 +166,9 @@
   <section>
     <title>Version control systems</title>
 
-    <para>If you run TortoiseSVN, TortoiseCVS, or Rational ClearCase, you can
+    <para>If you run TortoiseCVS, TortoiseSVN, or TortoiseGIT, you can
     configure your version control system to open WinMerge directly. That is, if
     you compare files using one of these VCS tools, WinMerge opens instead of
     the tool's native diff utility.</para>
-
-    <note>
-      <para>Another handy VCS integration automatically launches your version
-      control system's checkout dialog whenever you change a managed file in the
-      WinMerge window. This integration works with version control systems that
-      lock files, specifically ClearCase and Visual Source Safe.</para>
-    </note>
   </section>
 </article>

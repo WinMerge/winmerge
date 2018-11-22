@@ -358,6 +358,7 @@ HungarianLanguage=Ungarske menuer og dialoger
 ItalianLanguage=Italienske menuer og dialoger
 JapaneseLanguage=Japanske menuer og dialoger
 KoreanLanguage=Koreanske menuer og dialoger
+LithuanianLanguage=Litauiske menuer og dialoger
 NorwegianLanguage=Norske menuer og dialoger
 PersianLanguage=Persiske menuer og dialoger
 PolishLanguage=Polske menuer og dialoger

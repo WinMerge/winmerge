@@ -270,7 +270,7 @@ Believe it or not.</screen></para>
     contributor.</para>
 
     <para>Merging can be prompted (or even initiated) by version control systems
-    like Subversion and ClearCase. For example, your version control system
+    like Subversion and Git. For example, your version control system
     might prevent you from submitting changes to its repository because of merge
     conflicts. A conflict can occur if someone else checked in a different
     version of the same file while you were working on your version, and the

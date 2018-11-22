@@ -15,8 +15,6 @@ LanguageName=Greek
 LanguageID=$0408
 LanguageCodePage=0
 
-[Messages]
-
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
 ;DialogFontName=
@@ -359,6 +357,7 @@ HungarianLanguage=Ουγγρικά επιλογές και διάλογοι
 ItalianLanguage=Ιταλικά επιλογές και διάλογοι
 JapaneseLanguage=Ιαπωνικά επιλογές και διάλογοι
 KoreanLanguage=Κορεατικά επιλογές και διάλογοι
+LithuanianLanguage=Λιθουανικά επιλογές και διάλογοι
 NorwegianLanguage=Νορβηγικά επιλογές και διάλογοι
 PersianLanguage=Persian menus and dialogs
 PolishLanguage=Πολωνικά επιλογές και διάλογοι

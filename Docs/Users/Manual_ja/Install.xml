@@ -245,21 +245,6 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Integrate with Rational ClearCase<indexterm>
-                <primary>ClearCase integration</primary>
-
-                <secondary>configuring during installation</secondary>
-              </indexterm></term>
-
-            <listitem>
-              <para>WinMergeを、ClearCaseの差分比較ツールに設定します。</para>
-
-              <para>このリスト中の三つの統合と、関連するWinMergeオプションのさらなる情報は、
-              <xref linkend="VersionControl_vcs" />を参照してください。</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
             <term>デスクトップ上へアイコンを作成</term>
 
             <listitem>

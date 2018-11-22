@@ -4997,10 +4997,12 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                   else
                     if( ptCurrentPos.x >= nLineLength )
                       ptCurrentPos.x = nLineLength - 1;
+                  if (ptCurrentPos.x == -1)
+                    ptCurrentPos.x = 0;
 
                   LPCTSTR pszChars = GetLineChars (ptCurrentPos.y);
-                  _tcsncpy_s (line.GetBuffer(ptCurrentPos.x + 2), ptCurrentPos.x + 2, pszChars, ptCurrentPos.x + 1);
-                  line.ReleaseBuffer (ptCurrentPos.x + 1);
+                  _tcsncpy_s (line.GetBuffer(ptCurrentPos.x + 1), ptCurrentPos.x + 1, pszChars, ptCurrentPos.x);
+                  line.ReleaseBuffer (ptCurrentPos.x);
                 }
 
               ptrdiff_t nFoundPos = -1;

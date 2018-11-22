@@ -1415,11 +1415,6 @@ msgstr "Hanno contribuito"
 msgid "Select Files or Folders"
 msgstr "Seleziona i file o le cartelle"
 
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&1st File or Folder"
-msgstr ""
-
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
@@ -1435,9 +1430,9 @@ msgstr ""
 msgid "&Browse..."
 msgstr "S&foglia..."
 
-#: Merge.rc:6DE6F875
+#: Merge.rc:6DE6F874
 #, c-format
-msgid "&2nd File or Folder"
+msgid "&1st File or Folder"
 msgstr ""
 
 #: Merge.rc:39174D97
@@ -1455,9 +1450,9 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "&Sfoglia..."
 
-#: Merge.rc:3C1ECDDA
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&3rd File or Folder (Optional)"
+msgid "&2nd File or Folder"
 msgstr ""
 
 #: Merge.rc:39174D98
@@ -1474,6 +1469,11 @@ msgstr ""
 #, c-format
 msgid "Browse..."
 msgstr "Sfoglia..."
+
+#: Merge.rc:3C1ECDDA
+#, c-format
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
 
 #: Merge.rc:22467E6E
 #, c-format

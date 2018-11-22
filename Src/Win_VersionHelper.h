@@ -37,3 +37,9 @@ IsWin7_OrGreater()
 {
     return IsWinVer_OrGreater( _WIN32_WINNT_WIN7 );
 }
+
+inline bool
+IsVista_OrGreater()
+{
+    return IsWinVer_OrGreater( _WIN32_WINNT_VISTA );
+}

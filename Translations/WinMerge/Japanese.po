@@ -1416,11 +1416,6 @@ msgstr "貢献者"
 msgid "Select Files or Folders"
 msgstr "ファイルまたはフォルダーの選択..."
 
-#: Merge.rc:6DE6F874
-#, c-format
-msgid "&1st File or Folder"
-msgstr "&1 番目のファイルまたはフォルダ"
-
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
@@ -1436,10 +1431,10 @@ msgstr "1 番目と 2 番目を交換"
 msgid "&Browse..."
 msgstr "参照(&B)..."
 
-#: Merge.rc:6DE6F875
+#: Merge.rc:6DE6F874
 #, c-format
-msgid "&2nd File or Folder"
-msgstr "&2 番目のファイルまたはフォルダ"
+msgid "&1st File or Folder"
+msgstr "&1 番目のファイルまたはフォルダ"
 
 #: Merge.rc:39174D97
 #, c-format
@@ -1456,10 +1451,10 @@ msgstr "2 番目と 3 番目を交換"
 msgid "B&rowse..."
 msgstr "参照(&R)"
 
-#: Merge.rc:3C1ECDDA
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&3rd File or Folder (Optional)"
-msgstr "&3 番目のファイルまたはフォルダ(オプション)"
+msgid "&2nd File or Folder"
+msgstr "&2 番目のファイルまたはフォルダ"
 
 #: Merge.rc:39174D98
 #, c-format
@@ -1475,6 +1470,11 @@ msgstr "1 番目と 3 番目を交換"
 #, c-format
 msgid "Browse..."
 msgstr "参照..."
+
+#: Merge.rc:3C1ECDDA
+#, c-format
+msgid "&3rd File or Folder (Optional)"
+msgstr "&3 番目のファイルまたはフォルダ(オプション)"
 
 #: Merge.rc:22467E6E
 #, c-format

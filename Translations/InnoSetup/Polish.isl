@@ -348,6 +348,7 @@ HungarianLanguage=Wêgierski interfejs
 ItalianLanguage=W³oski interfejs
 JapaneseLanguage=Japoñski interfejs
 KoreanLanguage=Koreañski interfejs
+LithuanianLanguage=Litewski interfejs
 NorwegianLanguage=Norweski interfejs
 PersianLanguage=Persian menus and dialogs
 PolishLanguage=Polski interfejs

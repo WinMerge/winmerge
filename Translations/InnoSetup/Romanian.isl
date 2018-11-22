@@ -359,6 +359,7 @@ HungarianLanguage=Meniuri si dialoguri în Maghiara
 ItalianLanguage=Meniuri si dialoguri în Italiana
 JapaneseLanguage=Meniuri si dialoguri în Japoneza
 KoreanLanguage=Meniuri si dialoguri în Coreana
+LithuanianLanguage=Meniuri si dialoguri în Lituaniana
 NorwegianLanguage=Meniuri si dialoguri în Norvegiana
 PersianLanguage=Persian menus and dialogs
 PolishLanguage=Meniuri si dialoguri în  Poloneza

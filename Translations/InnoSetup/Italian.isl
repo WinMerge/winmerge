@@ -362,6 +362,7 @@ HungarianLanguage=Menu e finestre di dialogo in ungherese
 ItalianLanguage=Menu e finestre di dialogo in italiano
 JapaneseLanguage=Menu e finestre di dialogo in giapponese
 KoreanLanguage=Menu e finestre di dialogo in coreano
+LithuanianLanguage=Menu e finestre di dialogo in lituano
 NorwegianLanguage=Menu e finestre di dialogo in norvegese
 PersianLanguage=Persian menus and dialogs
 PolishLanguage=Menu e finestre di dialogo in polacco

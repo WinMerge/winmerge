@@ -360,6 +360,7 @@ HungarianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ãÌÇÑÓÊÇäí
 ItalianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇíÊÇáíÇíí  
 JapaneseLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå Çäí  
 KoreanLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜Ñå Çí  
+LithuanianLanguage=Lithuanian menus and dialogs
 NorwegianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå äÑæí  
 PersianLanguage=Persian menus and dialogs
 PolishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå áåÓÊÇäí  

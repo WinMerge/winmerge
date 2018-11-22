@@ -1,0 +1,54 @@
+//Microsoft Developer Studio generated resource script.
+//
+// This is an *automatic* generated file for the ShellExtension translation.
+// Please edit the PO file instead of this RC file for translation updates:
+//   ..\..\Translations\ShellExtension\<Languagename>.po
+//
+// $Id$
+
+#include "../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_LIT)
+#ifdef _WIN32
+LANGUAGE LANG_LITHUANIAN, SUBLANG_DEFAULT
+#pragma code_page(1257)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+//
+//  ***  TRANSLATED STRINGS ***
+// Translate strings  below
+// 
+STRINGTABLE 
+BEGIN
+    IDS_PROJNAME            "ShellExtension"
+    IDS_CONTEXT_MENU        "WinMerge"
+    IDS_CONTEXT_HELP        "Atverti su WinMerge"
+    IDS_CONTEXT_HELP_MANYITEMS "Pasirinkite ne daugiau kaip 2 elementus"
+    IDS_COMPARE             "Lyginti"
+    IDS_COMPARE_ELLIPSIS    "Lyginti..."
+    IDS_COMPARE_TO          "Palyginti su"
+    IDS_HELP_SAVETHIS       "Iðsaugoti ðá kelià. Parinkti kità kelià ir palyginti su ðiuo keliu."
+    IDS_HELP_COMPARESAVED   "Palyginti su iðsaugotu keliu (%1)"
+    IDS_RESELECT_FIRST      "Re-select First"
+END
+
+#endif    // Resources
+/////////////////////////////////////////////////////////////////////////////
