@@ -16,7 +16,7 @@ for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
 @echo on
 ) > _tmp_.txt
 
-type _tmp_.txt | c:\tools\github-release release --tag %APPVER% --name "WinMerge %MAJOR%.%MINOR%.%REVISION% + (3-way merge, image compare/merge) +-jp-%PATCHLEVEL%" --description - --pre-release 
+type _tmp_.txt | c:\tools\github-release release --tag %APPVER% --name "WinMerge %MAJOR%.%MINOR%.%REVISION%+-jp-%PATCHLEVEL%" --description - --pre-release 
 
 del _tmp_.txt
 
