@@ -39,7 +39,7 @@ Call Main
 ''
 ' ...
 Sub Main
-  Dim oStrings, sCodePage
+  Dim oStrings
   Dim StartTime, EndTime, Seconds
   Dim bNecessary, oFile
   
@@ -53,8 +53,8 @@ Sub Main
   End If
   
   If (bNecessary = True) Then 'If update necessary...
-    Set oStrings = GetStringsFromRcFile(PATH_MERGE_RC, sCodePage)
-    CreateMasterPotFile PATH_ENGLISH_POT, oStrings, sCodePage
+    Set oStrings = GetStringsFromRcFile(PATH_MERGE_RC)
+    CreateMasterPotFile PATH_ENGLISH_POT, oStrings
     SetArchiveBit PATH_MERGE_RC, False
     SetArchiveBit PATH_ENGLISH_POT, False
     SetArchiveBit PATH_MERGELANG_RC, False
@@ -105,7 +105,7 @@ End Function
 
 ''
 ' ...
-Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
+Function GetStringsFromRcFile(ByVal sRcFilePath)
   Dim oBlacklist, oStrings, oString, oRcFile, sLine, iLine, oUIDs
   Dim sRcFileName, iBlockType, sReference, sString, sComment, sContext, oMatch, sTemp, sKey
   Dim oLcFile, sLcLine, fContinuation
@@ -119,7 +119,6 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
     sRcFileName = oFSO.GetFileName(sRcFilePath)
     iLine = 0
     iBlockType = NO_BLOCK
-    sCodePage = ""
     Set oRcFile = oFSO.OpenTextFile(sRcFilePath, ForReading)
     Set oLcFile = oFSO.CreateTextFile("MergeLang.rc", True)
     Do Until oRcFile.AtEndOfStream = True 'For all lines...
@@ -162,7 +161,6 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
             ElseIf (FoundRegExpMatch(sLine, "code_page\(([\d]+)\)", oMatch) = True) Then 'code_page...
               sString = oMatch.SubMatches(0)
               sComment = "Codepage"
-              sCodePage = oMatch.SubMatches(0)
             End If
             
           Case MENU_BLOCK, DIALOGEX_BLOCK, STRINGTABLE_BLOCK:
@@ -266,7 +264,7 @@ End Function
 
 ''
 ' ...
-Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
+Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings)
   Dim oPotFile, sKey, oString, aReferences, i
   
   Set oPotFile = oFSO.CreateTextFile(sPotPath, True)
@@ -283,10 +281,10 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
   oPotFile.Write """Last-Translator: \n""" & vbLf
   oPotFile.Write """Language-Team: English <winmerge-translate@lists.sourceforge.net>\n""" & vbLf
   oPotFile.Write """MIME-Version: 1.0\n""" & vbLf
-  oPotFile.Write """Content-Type: text/plain; charset=CP" & sCodePage & "\n""" & vbLf
+  oPotFile.Write """Content-Type: text/plain; charset=UTF-8\n""" & vbLf
   oPotFile.Write """Content-Transfer-Encoding: 8bit\n""" & vbLf
   oPotFile.Write """X-Poedit-Language: English\n""" & vbLf
-  oPotFile.Write """X-Poedit-SourceCharset: CP" & sCodePage & "\n""" & vbLf
+  oPotFile.Write """X-Poedit-SourceCharset: UTF-8\n""" & vbLf
   oPotFile.Write """X-Poedit-Basepath: ../../Src/\n""" & vbLf
   'oPotFile.Write """X-Generator: CreateMasterPotFile.vbs\n""" & vbLf
   oPotFile.Write vbLf
