@@ -145,6 +145,7 @@ Localization:
 * Swedish:
   Hans Eriksson <hans.ericson@bredband.net>
   Göran Håkansson <goran.x.hakansson@telia.com>
+  pgert <pgert at yahoo.se>
 
 * Turkish:
   Afyonlu <afyonlu@users.sourceforge.net>
