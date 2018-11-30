@@ -40,7 +40,7 @@ msgstr "1252"
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "ShellExtension"
-msgstr "ShellExtension"
+msgstr "GränssnittsMeny"
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -55,7 +55,7 @@ msgstr "Öppna med WinMerge"
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Var god och välj inte mer än 2 objekt"
+msgstr "Var god välj inte mer än 2 objekt"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
@@ -65,7 +65,7 @@ msgstr "Jämför"
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "Jämför..."
+msgstr "Jämför ..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
@@ -75,7 +75,7 @@ msgstr "Jämför med"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Spara denna sökväg. Välj en annan sökväg att jämföra med denna sökväg."
+msgstr "Spara denna sökväg. Välj en annan för att jämföra med denna."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
@@ -85,5 +85,5 @@ msgstr "Jämför med sparad sökväg (%1)"
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Åter-välj Första"
+msgstr "Re-select First"
 
