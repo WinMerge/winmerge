@@ -193,7 +193,7 @@ void CPreferencesDlg::AddPage(CPropertyPage* pPage, LPCTSTR szPath)
 		m_tcPages.EnsureVisible(hti);
 
 		// map both ways
-		m_tcPages.SetItemData(hti, static_cast<DWORD>(reinterpret_cast<uintptr_t>(pPage)));
+		m_tcPages.SetItemData(hti, static_cast<DWORD_PTR>(reinterpret_cast<uintptr_t>(pPage)));
 		m_mapPP2HTI[(void*)pPage] = (void*)hti;
 	}
 }
