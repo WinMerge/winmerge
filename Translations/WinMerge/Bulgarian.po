@@ -1,4 +1,4 @@
-# This file is part from WinMerge <http://winmerge.org/>
+﻿# This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
