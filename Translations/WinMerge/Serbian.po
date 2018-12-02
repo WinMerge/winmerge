@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2010-06-17 17:00+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Èâàí Ñòàð÷åâèž <ivanstar61@gmail.com> è Ozzii\n"
+"Last-Translator: Иван Старчевић <ivanstar61@gmail.com> и Ozzii\n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,12 +37,12 @@ msgstr "65001"
 #: Merge.rc:1C6125F3
 #, c-format
 msgid "C&opy to Right"
-msgstr "Óìí&îæè ó äåñíó"
+msgstr "Умн&ожи у десну"
 
 #: Merge.rc:92C6C92
 #, c-format
 msgid "Cop&y to Left"
-msgstr "Óì&íîæè ó ëåâó"
+msgstr "Ум&ножи у леву"
 
 #: Merge.rc:6FC398B6
 #, c-format
@@ -57,47 +57,47 @@ msgstr ""
 #: Merge.rc:381D79E4
 #, c-format
 msgid "&Select Line Difference"
-msgstr "&Èçàáåðè ðàçëè÷èòå ðåäîâå"
+msgstr "&Изабери различите редове"
 
 #: Merge.rc:43017E40
 #, c-format
 msgid "&Undo"
-msgstr "&Îïîçîâè"
+msgstr "&Опозови"
 
 #: Merge.rc:43017E41
 #, c-format
 msgid "&Redo"
-msgstr "&Ïîíîâè"
+msgstr "&Понови"
 
 #: Merge.rc:3CF9F83
 #, c-format
 msgid "Cu&t"
-msgstr "Èñ&åöè"
+msgstr "Ис&еци"
 
 #: Merge.rc:43017E42
 #, c-format
 msgid "&Copy"
-msgstr "&Óìíîæè"
+msgstr "&Умножи"
 
 #: Merge.rc:1D2E49F6
 #, c-format
 msgid "&Paste"
-msgstr "&Íàëåïè"
+msgstr "&Налепи"
 
 #: Merge.rc:AC3AA11
 #, c-format
 msgid "&Goto..."
-msgstr "&Èäè íà..."
+msgstr "&Иди на..."
 
 #: Merge.rc:B4D35A1
 #, c-format
 msgid "Op&en"
-msgstr "&Îòâîðè"
+msgstr "&Отвори"
 
 #: Merge.rc:37625055
 #, c-format
 msgid "with &Registered Application"
-msgstr "ñà èíñ&òàëèðàíèì ïðîãðàìîì"
+msgstr "са инс&талираним програмом"
 
 #: Merge.rc:321D741E
 #, c-format
@@ -107,7 +107,7 @@ msgstr ""
 #: Merge.rc:AC3AA12
 #, c-format
 msgid "&with..."
-msgstr "&ñà"
+msgstr "&са"
 
 #: Merge.rc:1A8FADD3
 #, c-format
@@ -142,7 +142,7 @@ msgstr ""
 #: Merge.rc:43017E43
 #, c-format
 msgid "&Zoom"
-msgstr "&Ïîâåžà¼"
+msgstr "&Повећај"
 
 #: Merge.rc:AC3AA13
 #, c-format
@@ -152,7 +152,7 @@ msgstr ""
 #: Merge.rc:43017E44
 #, c-format
 msgid "&None"
-msgstr "&Íèøòà"
+msgstr "&Ништа"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -172,7 +172,7 @@ msgstr ""
 #: Merge.rc:43017E45
 #, c-format
 msgid "&Move"
-msgstr "Ïî&ìåðè"
+msgstr "По&мери"
 
 #: Merge.rc:5A9A713A
 #, c-format
@@ -187,12 +187,12 @@ msgstr ""
 #: Merge.rc:43017E46
 #, c-format
 msgid "&File"
-msgstr "&Äàòîòåêà"
+msgstr "&Датотека"
 
 #: Merge.rc:4DE14273
 #, c-format
 msgid "&New\tCtrl+N"
-msgstr "&Íîâà\tCtrl+N"
+msgstr "&Нова\tCtrl+N"
 
 #: Merge.rc:2C8061AC
 #, c-format
@@ -202,27 +202,27 @@ msgstr ""
 #: Merge.rc:1DC30E61
 #, c-format
 msgid "&Open...\tCtrl+O"
-msgstr "&Óïîðåäè...\tCtrl+O"
+msgstr "&Упореди...\tCtrl+O"
 
 #: Merge.rc:6829F68F
 #, c-format
 msgid "Op&en Conflict File..."
-msgstr "Îòâîðè ïðîáë&åìàòè÷íå..."
+msgstr "Отвори пробл&ематичне..."
 
 #: Merge.rc:5869BBD
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "Îòâîðè ïîðå&åœå...\tCtrl+J"
+msgstr "Отвори поре&ђење...\tCtrl+J"
 
 #: Merge.rc:1BF42625
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "Ñà÷ó&âà¼ ïîðååœå..."
+msgstr "Сачу&вај поређење..."
 
 #: Merge.rc:47D4A3FA
 #, c-format
 msgid "Recent Projects"
-msgstr "Ïîñëåäœå ïîðååœå"
+msgstr "Последње поређење"
 
 #: Merge.rc:73E9B1DA
 #, c-format
@@ -232,42 +232,42 @@ msgstr ""
 #: Merge.rc:29D50B4A
 #, c-format
 msgid "< Empty >"
-msgstr "< Ïðàçàí >"
+msgstr "< Празан >"
 
 #: Merge.rc:79AB21E0
 #, c-format
 msgid "E&xit"
-msgstr "Èçëà&ç"
+msgstr "Изла&з"
 
 #: Merge.rc:43017E47
 #, c-format
 msgid "&Edit"
-msgstr "Óð&åäè"
+msgstr "Ур&еди"
 
 #: Merge.rc:27AC6D7E
 #, c-format
 msgid "&Options..."
-msgstr "Èçá&îð..."
+msgstr "Изб&ор..."
 
 #: Merge.rc:43017E48
 #, c-format
 msgid "&View"
-msgstr "Ïðè&êàç"
+msgstr "При&каз"
 
 #: Merge.rc:AC3AA14
 #, c-format
 msgid "&Toolbar"
-msgstr "&Òðàêà àëàòà"
+msgstr "&Трака алата"
 
 #: Merge.rc:1D2E49F7
 #, c-format
 msgid "&Small"
-msgstr "&Ìàëà"
+msgstr "&Мала"
 
 #: Merge.rc:22956A6
 #, c-format
 msgid "&Big"
-msgstr "&Âåëèêà"
+msgstr "&Велика"
 
 #: Merge.rc:43017E49
 #, c-format
@@ -277,32 +277,32 @@ msgstr ""
 #: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Status Bar"
-msgstr "&Ñòàòóñíà òðàêà"
+msgstr "&Статусна трака"
 
 #: Merge.rc:2C015CFD
 #, c-format
 msgid "Ta&b Bar"
-msgstr "Òðà&êà ¼åçè÷àêà"
+msgstr "Тра&ка језичака"
 
 #: Merge.rc:1D2E49F8
 #, c-format
 msgid "&Tools"
-msgstr "Àëàòêå"
+msgstr "Алатке"
 
 #: Merge.rc:27AC6D80
 #, c-format
 msgid "&Filters..."
-msgstr "&Ôèëòåðè..."
+msgstr "&Филтери..."
 
 #: Merge.rc:3938FFC0
 #, c-format
 msgid "&Generate Patch..."
-msgstr "Ñà÷óâà¼ ðà&çëèêå..."
+msgstr "Сачувај ра&злике..."
 
 #: Merge.rc:AC3AA15
 #, c-format
 msgid "&Plugins"
-msgstr "Äîäà&öè"
+msgstr "Дода&ци"
 
 #: Merge.rc:4C6CFD95
 #, c-format
@@ -322,12 +322,12 @@ msgstr ""
 #: Merge.rc:1A9EBDEC
 #, c-format
 msgid "&Manual Unpacking"
-msgstr "&Ðàñïàêó¼ ðó÷íî"
+msgstr "&Распакуј ручно"
 
 #: Merge.rc:4EF8162D
 #, c-format
 msgid "&Automatic Unpacking"
-msgstr "Ðàñïàêó¼ &àóòîìàòñêè"
+msgstr "Распакуј &аутоматски"
 
 #: Merge.rc:714B45FD
 #, c-format
@@ -337,52 +337,52 @@ msgstr ""
 #: Merge.rc:78B3B622
 #, c-format
 msgid "&Reload plugins"
-msgstr "Ïîíîâî &ó÷èòà¼ äîäàòêå"
+msgstr "Поново &учитај додатке"
 
 #: Merge.rc:89AF4F7
 #, c-format
 msgid "&Window"
-msgstr "Ïð&îçîð"
+msgstr "Пр&озор"
 
 #: Merge.rc:4E65D33F
 #, c-format
 msgid "Cl&ose"
-msgstr "&Çàòâîðè"
+msgstr "&Затвори"
 
 #: Merge.rc:34E43607
 #, c-format
 msgid "Clo&se All"
-msgstr "Çàòâîðè &ñâå"
+msgstr "Затвори &све"
 
 #: Merge.rc:8AF7E69
 #, c-format
 msgid "Change &Pane\tF6"
-msgstr "Çàìåíè &òàáëå\tF6"
+msgstr "Замени &табле\tF6"
 
 #: Merge.rc:5CCED707
 #, c-format
 msgid "Tile &Horizontally"
-msgstr "Ïðîçîðå &âîäîðàâíî"
+msgstr "Прозоре &водоравно"
 
 #: Merge.rc:52870A1
 #, c-format
 msgid "Tile &Vertically"
-msgstr "Ïðîçîðå &óñïðàâíî"
+msgstr "Прозоре &усправно"
 
 #: Merge.rc:AC3AA16
 #, c-format
 msgid "&Cascade"
-msgstr "Ïðîçîðå ïîðå&àíî"
+msgstr "Прозоре поре&ђано"
 
 #: Merge.rc:43017E4A
 #, c-format
 msgid "&Help"
-msgstr "Ïîìî&ž"
+msgstr "Помо&ћ"
 
 #: Merge.rc:3938FFC1
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr "&WinMerge Ïîìîž\tF1"
+msgstr "&WinMerge Помоћ\tF1"
 
 #: Merge.rc:1B17601E
 #, c-format
@@ -397,17 +397,17 @@ msgstr ""
 #: Merge.rc:1C6125F4
 #, c-format
 msgid "C&onfiguration"
-msgstr "&Ïîñòàâêå"
+msgstr "&Поставке"
 
 #: Merge.rc:175DEEEB
 #, c-format
 msgid "&GNU General Public License"
-msgstr "&GNU ¼àâíà ëèöåíöà"
+msgstr "&GNU јавна лиценца"
 
 #: Merge.rc:3938FFC2
 #, c-format
 msgid "&About WinMerge..."
-msgstr "&Î WinMerge..."
+msgstr "&О WinMerge..."
 
 #: Merge.rc:68816EE2
 #, c-format
@@ -417,7 +417,7 @@ msgstr ""
 #: Merge.rc:71676C45
 #, c-format
 msgid "L&eft Read-only"
-msgstr "Ñàìî çà ÷èòàœå - ë&åâà"
+msgstr "Само за читање - л&ева"
 
 #: Merge.rc:729280D8
 #, c-format
@@ -427,7 +427,7 @@ msgstr ""
 #: Merge.rc:32BFDBA9
 #, c-format
 msgid "Ri&ght Read-only"
-msgstr "Ñàìî çà ÷èòàœå - ä&åñíà"
+msgstr "Само за читање - д&есна"
 
 #: Merge.rc:453F5DDB
 #, c-format
@@ -437,22 +437,22 @@ msgstr ""
 #: Merge.rc:E44718
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "Èçàáåðè &ñâå\tCtrl+A"
+msgstr "Изабери &све\tCtrl+A"
 
 #: Merge.rc:58EEEB7E
 #, c-format
 msgid "Show &Identical Items"
-msgstr "Ïðèêàæè &ïîäóäàðíå ñòàâêå"
+msgstr "Прикажи &подударне ставке"
 
 #: Merge.rc:58EEEB7F
 #, c-format
 msgid "Show &Different Items"
-msgstr "Ïðèêàæè ðàçëè&÷èòå ñòàâêå"
+msgstr "Прикажи разли&чите ставке"
 
 #: Merge.rc:58E210F9
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "Ïðèêàæè ë&åâî ¼åäèíñòâåíå ñòàâêå"
+msgstr "Прикажи л&ево јединствене ставке"
 
 #: Merge.rc:28A1C3B4
 #, c-format
@@ -462,17 +462,17 @@ msgstr ""
 #: Merge.rc:43600E8F
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "Ïðèêàæè äå&ñíî ¼åäèíñòâåíå ñòàâêå"
+msgstr "Прикажи де&сно јединствене ставке"
 
 #: Merge.rc:E44719
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "Ïðèêàæè &èçîñòàâšåíå ñòàâêå"
+msgstr "Прикажи &изостављене ставке"
 
 #: Merge.rc:6F833C16
 #, c-format
 msgid "S&how Binary Files"
-msgstr "Ïðèêà&æè áèíàðíå äàòîòåêå"
+msgstr "Прика&жи бинарне датотеке"
 
 #: Merge.rc:5A9A713B
 #, c-format
@@ -497,117 +497,117 @@ msgstr ""
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "Ïðèêàæè ñêðèâ&åíå ñòàâêå"
+msgstr "Прикажи скрив&ене ставке"
 
 #: Merge.rc:311E1D87
 #, c-format
 msgid "Tree &Mode"
-msgstr "&Ìîäåë ñòàáëà"
+msgstr "&Модел стабла"
 
 #: Merge.rc:3E934D
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr "Ïðî&øèðè ñâå ïîòôàñöèêëå"
+msgstr "Про&шири све потфасцикле"
 
 #: Merge.rc:4B91C2CF
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr "Çàòâîðè ñâå ïîòôàñöèêëå"
+msgstr "Затвори све потфасцикле"
 
 #: Merge.rc:E6D7EE
 #, c-format
 msgid "Select &Font..."
-msgstr "Èçàáåðè &ñëîâà..."
+msgstr "Изабери &слова..."
 
 #: Merge.rc:5D3AA8D3
 #, c-format
 msgid "Use Default F&ont"
-msgstr "Êîðèñòè ïîäðàçóìåâàíà ñëîâà"
+msgstr "Користи подразумевана слова"
 
 #: Merge.rc:2E3BFCA1
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "Ç&àìåíè òàáëå"
+msgstr "З&амени табле"
 
 #: Merge.rc:3E681460
 #, c-format
 msgid "Compa&re Statistics"
-msgstr "Óïîðåäè ñòàòèñòèêó"
+msgstr "Упореди статистику"
 
 #: Merge.rc:507A4C02
 #, c-format
 msgid "Refre&sh\tF5"
-msgstr "Î&ñâåæè\tF5"
+msgstr "О&свежи\tF5"
 
 #: Merge.rc:2E2C5206
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Îñâå&æè îäàáðàíî\tCtrl+F5"
+msgstr "Осве&жи одабрано\tCtrl+F5"
 
 #: Merge.rc:1D2E49F9
 #, c-format
 msgid "&Merge"
-msgstr "Ïîðå&åœå"
+msgstr "Поре&ђење"
 
 #: Merge.rc:6FC398B7
 #, c-format
 msgid "Co&mpare\tEnter"
-msgstr "&Óïîðåäèòè\tEnter"
+msgstr "&Упоредити\tEnter"
 
 #: Merge.rc:2E2C5207
 #, c-format
 msgid "&Next Difference\tAlt+Down"
-msgstr "&Ñëåäåžà ðàçëèêà\tAlt+Down"
+msgstr "&Следећа разлика\tAlt+Down"
 
 #: Merge.rc:545FEEA0
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
-msgstr "&Ïðåòõîäíà ðàçëèêà\tAlt+Up"
+msgstr "&Претходна разлика\tAlt+Up"
 
 #: Merge.rc:175DEEEC
 #, c-format
 msgid "&First Difference\tAlt+Home"
-msgstr "Ïð&âà ðàçëèêà\tAlt+Home"
+msgstr "Пр&ва разлика\tAlt+Home"
 
 #: Merge.rc:3C1ECDD9
 #, c-format
 msgid "&Current Difference\tAlt+Enter"
-msgstr "&Òðåíóòíà ðàçëèêà\tAlt+Enter"
+msgstr "&Тренутна разлика\tAlt+Enter"
 
 #: Merge.rc:26A69749
 #, c-format
 msgid "&Last Difference\tAlt+End"
-msgstr "&Çàäœà ðàçëèêà\tAlt+End"
+msgstr "&Задња разлика\tAlt+End"
 
 #: Merge.rc:334E25B0
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Óìíîæè ó &äåñíó\tAlt+Right"
+msgstr "Умножи у &десну\tAlt+Right"
 
 #: Merge.rc:69AD3BF7
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Óìíîæè ó ë&åâó\tAlt+Left"
+msgstr "Умножи у л&еву\tAlt+Left"
 
 #: Merge.rc:4DE14274
 #, c-format
 msgid "&Delete\tDel"
-msgstr "&Èçáðèøè\tDel"
+msgstr "&Избриши\tDel"
 
 #: Merge.rc:100AAFAD
 #, c-format
 msgid "&Customize Columns..."
-msgstr "Ïîäåñè &ñòóáöå..."
+msgstr "Подеси &стубце..."
 
 #: Merge.rc:2F07210E
 #, c-format
 msgid "Generate &Report..."
-msgstr "Íàï&ðàâè èçâåøòà¼..."
+msgstr "Нап&рави извештај..."
 
 #: Merge.rc:6E470BE8
 #, c-format
 msgid "&Save\tCtrl+S"
-msgstr "&Ñà÷óâà¼\tCtrl+S"
+msgstr "&Сачувај\tCtrl+S"
 
 #: Merge.rc:125AD721
 #, c-format
@@ -617,7 +617,7 @@ msgstr ""
 #: Merge.rc:751AB58E
 #, c-format
 msgid "Save &Left"
-msgstr "Ñà÷óâà¼ &ëåâó"
+msgstr "Сачувај &леву"
 
 #: Merge.rc:194397DD
 #, c-format
@@ -627,7 +627,7 @@ msgstr ""
 #: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Save &Right"
-msgstr "Ñà÷óâà¼ &äåñíó"
+msgstr "Сачувај &десну"
 
 #: Merge.rc:79321BE1
 #, c-format
@@ -652,27 +652,27 @@ msgstr ""
 #: Merge.rc:4DB19837
 #, c-format
 msgid "&Print..."
-msgstr "&Îäøòàìïà¼..."
+msgstr "&Одштампај..."
 
 #: Merge.rc:60FF375A
 #, c-format
 msgid "Page Se&tup"
-msgstr "Ïîäåñè ñ&òðàíèöó"
+msgstr "Подеси с&траницу"
 
 #: Merge.rc:23CBE0E5
 #, c-format
 msgid "Print Previe&w"
-msgstr "Ïðåãëåä ïðå øòàìïà&œà"
+msgstr "Преглед пре штампа&ња"
 
 #: Merge.rc:4B91C2D0
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "Çàâðøè ðåä ïðåìà"
+msgstr "Заврши ред према"
 
 #: Merge.rc:78B3B623
 #, c-format
 msgid "&Merge Mode\tF9"
-msgstr "&Íà÷èí ïîðååœà\tF9"
+msgstr "&Начин поређења\tF9"
 
 #: Merge.rc:32BFDBAA
 #, c-format
@@ -682,7 +682,7 @@ msgstr ""
 #: Merge.rc:1A9EBDED
 #, c-format
 msgid "&File Encoding..."
-msgstr "Äå&êîäèðàœå äàòîòåêå..."
+msgstr "Де&кодирање датотеке..."
 
 #: Merge.rc:507A4C03
 #, c-format
@@ -690,7 +690,6 @@ msgid "Recompare As"
 msgstr ""
 
 #: Merge.rc:43017E4B
-#, c-format
 msgid "&Text"
 msgstr ""
 
@@ -707,42 +706,42 @@ msgstr ""
 #: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
-msgstr "Îïî&çîâè\tCtrl+Z"
+msgstr "Опо&зови\tCtrl+Z"
 
 #: Merge.rc:6E470BEA
 #, c-format
 msgid "&Redo\tCtrl+Y"
-msgstr "&Ïîíîâè\tCtrl+Y"
+msgstr "&Понови\tCtrl+Y"
 
 #: Merge.rc:CAEDA34
 #, c-format
 msgid "Cu&t\tCtrl+X"
-msgstr "Èñå&öè\tCtrl+X"
+msgstr "Исе&ци\tCtrl+X"
 
 #: Merge.rc:6E470BEB
 #, c-format
 msgid "&Copy\tCtrl+C"
-msgstr "Óìíî&æè\tCtrl+C"
+msgstr "Умно&жи\tCtrl+C"
 
 #: Merge.rc:5A9A713C
 #, c-format
 msgid "&Paste\tCtrl+V"
-msgstr "&Íàëåïè\tCtrl+V"
+msgstr "&Налепи\tCtrl+V"
 
 #: Merge.rc:73FB245
 #, c-format
 msgid "Select Line &Difference\tF4"
-msgstr "Èñòàêíè &ðàçëèêó ðåäà\tF4"
+msgstr "Истакни &разлику реда\tF4"
 
 #: Merge.rc:444C5DDB
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "Ïðåòðàæ&è...\tCtrl+F"
+msgstr "Претраж&и...\tCtrl+F"
 
 #: Merge.rc:44BC83EC
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
-msgstr "Çàìåíè...\tCtrl+H"
+msgstr "Замени...\tCtrl+H"
 
 #: Merge.rc:4B91C2D1
 #, c-format
@@ -752,63 +751,63 @@ msgstr ""
 #: Merge.rc:669F87F4
 #, c-format
 msgid "Advanced"
-msgstr "Íàïðåäíî"
+msgstr "Напредно"
 
 #: Merge.rc:45A190D
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "&Óìíîæè ðåäîâå ñà áðî¼åâèìà\tCtrl+Shift+C"
+msgstr "&Умножи редове са бројевима\tCtrl+Shift+C"
 
 #: Merge.rc:68816EE3
 #, c-format
 msgid "&Bookmarks"
-msgstr "Ç&àáåëåøêå"
+msgstr "З&абелешке"
 
 #: Merge.rc:26A6974A
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "&Çàìåíè çàáåëåøêå\tCtrl+F2"
+msgstr "&Замени забелешке\tCtrl+F2"
 
 #: Merge.rc:3938FFC3
 #, c-format
 msgid "&Next Bookmark\tF2"
-msgstr "&Ñëåäåžà çàáåëåøêà\tF2"
+msgstr "&Следећа забелешка\tF2"
 
 #: Merge.rc:545FEEA1
 #, c-format
 msgid "&Previous bookmark\tShift+F2"
-msgstr "&Ïðåòõîäíà çàáåëåøêà\tShift+F2"
+msgstr "&Претходна забелешка\tShift+F2"
 
 #: Merge.rc:4EF8162E
 #, c-format
 msgid "&Clear All Bookmarks"
-msgstr "Î÷èñòè ñâå çàáåëåøêå"
+msgstr "Очисти све забелешке"
 
 #: Merge.rc:1A9EBDEE
 #, c-format
 msgid "&Go To...\tCtrl+G"
-msgstr "&Èäè íà...\tCtrl+G"
+msgstr "&Иди на...\tCtrl+G"
 
 #: Merge.rc:7C622F87
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr "Óâå&žà¼\tCtrl++"
+msgstr "Уве&ћај\tCtrl++"
 
 #: Merge.rc:FE3C1D1
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Óìà&œè\tCtrl+-"
+msgstr "Ума&њи\tCtrl+-"
 
 #. Zoom to normal
 #: Merge.rc:78B3B624
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr "Èçâîðíî\tCtrl+*"
+msgstr "Изворно\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format
 msgid "Syntax Highlight"
-msgstr "Íàãëàñèòå ñêëîï ðå÷è"
+msgstr "Нагласите склоп речи"
 
 #: Merge.rc:6E470BEC
 #, c-format
@@ -858,32 +857,32 @@ msgstr ""
 #: Merge.rc:27AC6D81
 #, c-format
 msgid "&Lock Panes"
-msgstr "Çàêšó÷à¼ òàáëå"
+msgstr "Закључај табле"
 
 #: Merge.rc:1DC30E62
 #, c-format
 msgid "&View Whitespace"
-msgstr "Ïðèêà&ç ðàçìàêà"
+msgstr "Прика&з размака"
 
 #: Merge.rc:4A81EF3E
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Ïðèêàç ðàçëè&÷èòèõ ðåäîâà"
+msgstr "Приказ разли&читих редова"
 
 #: Merge.rc:37660CE9
 #, c-format
 msgid "View Line &Numbers"
-msgstr "Ïðèêàç áðî¼à ðå&äîâà"
+msgstr "Приказ броја ре&дова"
 
 #: Merge.rc:4FF286
 #, c-format
 msgid "View &Margins"
-msgstr "Ïðèêàç èâè&öà"
+msgstr "Приказ иви&ца"
 
 #: Merge.rc:3FE258FF
 #, c-format
 msgid "W&rap Lines"
-msgstr "Çàâðøåòàê ðåäîâà"
+msgstr "Завршетак редова"
 
 #: Merge.rc:62909ED5
 #, c-format
@@ -893,12 +892,12 @@ msgstr ""
 #: Merge.rc:70E79DFF
 #, c-format
 msgid "Diff &Pane"
-msgstr "&Ðàçëèêà òàáëè"
+msgstr "&Разлика табли"
 
 #: Merge.rc:3534E273
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "Ïîëî&æà¼ òàáëå"
+msgstr "Поло&жај табле"
 
 #: Merge.rc:59B87E1C
 #, c-format
@@ -988,22 +987,22 @@ msgstr ""
 #: Merge.rc:28C70E7F
 #, c-format
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Óìíîæè ó äåñí&î è íàñòàâè\tAlt+Ctrl+Right"
+msgstr "Умножи у десн&о и настави\tAlt+Ctrl+Right"
 
 #: Merge.rc:4A3B5872
 #, c-format
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Óì&íîæè ó ëåâî è íàñòàâè\tAlt+Ctrl+Left"
+msgstr "Ум&ножи у лево и настави\tAlt+Ctrl+Left"
 
 #: Merge.rc:1AC98D09
 #, c-format
 msgid "Copy &All to Right"
-msgstr "Óìíî&æè ñâå ó äåñíî"
+msgstr "Умно&жи све у десно"
 
 #: Merge.rc:D404EDD
 #, c-format
 msgid "Cop&y All to Left"
-msgstr "Óìíîæ&è ñâå ó ëåâî"
+msgstr "Умнож&и све у лево"
 
 #: Merge.rc:4BC6A157
 #, c-format
@@ -1023,22 +1022,21 @@ msgstr ""
 #: Merge.rc:68816EE5
 #, c-format
 msgid "&Prediffer"
-msgstr "&Äåôèíèñàíî ïîðååœå"
+msgstr "&Дефинисано поређење"
 
 #: Merge.rc:AC3AA1C
 #, c-format
 msgid "&Scripts"
-msgstr "&Ñêðèïòå "
+msgstr "&Скрипте "
 
 #: Merge.rc:39000D56
-#, c-format
 msgid "Sp&lit"
 msgstr ""
 
 #: Merge.rc:4C3E0A2B
 #, c-format
 msgid "Comp&are"
-msgstr "&Óïîðåäè"
+msgstr "&Упореди"
 
 #: Merge.rc:334E25B1
 #, c-format
@@ -1078,12 +1076,12 @@ msgstr ""
 #: Merge.rc:1723859F
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "Ëåâà ó äåñíî (%1 îä %2)"
+msgstr "Лева у десно (%1 од %2)"
 
 #: Merge.rc:20155F58
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "Ëåâà ó... (%1 îä %2)"
+msgstr "Лева у... (%1 од %2)"
 
 #: Merge.rc:6CA26872
 #, c-format
@@ -1108,22 +1106,22 @@ msgstr ""
 #: Merge.rc:73E9B1DB
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "Äåñíà ó ëåâî (%1 îä %2)"
+msgstr "Десна у лево (%1 од %2)"
 
 #: Merge.rc:6DBD6123
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "Äåñíà ó... (%1 îä %2)"
+msgstr "Десна у... (%1 од %2)"
 
 #: Merge.rc:89AF4FA
 #, c-format
 msgid "&Delete"
-msgstr "&Èçáðèøè"
+msgstr "&Избриши"
 
 #: Merge.rc:43017E4C
 #, c-format
 msgid "&Left"
-msgstr "&Ëåâà"
+msgstr "&Лева"
 
 #: Merge.rc:89AF4FB
 #, c-format
@@ -1133,12 +1131,12 @@ msgstr ""
 #: Merge.rc:1D2E49FA
 #, c-format
 msgid "&Right"
-msgstr "&Äåñíà"
+msgstr "&Десна"
 
 #: Merge.rc:43017E4D
 #, c-format
 msgid "&Both"
-msgstr "Îáå "
+msgstr "Обе "
 
 #: Merge.rc:22956A8
 #, c-format
@@ -1148,22 +1146,22 @@ msgstr ""
 #: Merge.rc:4876CD3D
 #, c-format
 msgid "Re&name"
-msgstr "Ïðåèìå&íó¼"
+msgstr "Преиме&нуј"
 
 #: Merge.rc:27AC6D82
 #, c-format
 msgid "&Hide Items"
-msgstr "&Ñàêðè¼ ñòàâêå"
+msgstr "&Сакриј ставке"
 
 #: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
-msgstr "&Îòâîðè ëåâó"
+msgstr "&Отвори леву"
 
 #: Merge.rc:46724E8D
 #, c-format
 msgid "with &External Editor"
-msgstr "ñà äð&óãèì óðåèâà÷åì"
+msgstr "са др&угим уређивачем"
 
 #: Merge.rc:5A9A713D
 #, c-format
@@ -1178,17 +1176,17 @@ msgstr ""
 #: Merge.rc:1C95A043
 #, c-format
 msgid "O&pen Right"
-msgstr "Îòâî&ðè äåñíó"
+msgstr "Отво&ри десну"
 
 #: Merge.rc:6FC398B8
 #, c-format
 msgid "Cop&y Pathnames"
-msgstr "Óìíîæè ïóòà&œó"
+msgstr "Умножи пута&њу"
 
 #: Merge.rc:71676C46
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "Ëåâà (%1 îä %2)"
+msgstr "Лева (%1 од %2)"
 
 #: Merge.rc:729280D9
 #, c-format
@@ -1198,12 +1196,12 @@ msgstr ""
 #: Merge.rc:32BFDBAB
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "Äåñíà (%1 îä %2)"
+msgstr "Десна (%1 од %2)"
 
 #: Merge.rc:36B164C3
 #, c-format
 msgid "Both (%1 of %2)"
-msgstr "Îáå(%1 îä %2)"
+msgstr "Обе(%1 од %2)"
 
 #: Merge.rc:2515A6BA
 #, c-format
@@ -1213,7 +1211,7 @@ msgstr ""
 #: Merge.rc:6FC398B9
 #, c-format
 msgid "Copy &Filenames"
-msgstr "Óìíîæè íàçèâå äàòîòåêà"
+msgstr "Умножи називе датотека"
 
 #: Merge.rc:4BFA4345
 #, c-format
@@ -1223,7 +1221,7 @@ msgstr ""
 #: Merge.rc:22956A9
 #, c-format
 msgid "&Zip"
-msgstr "&Çèï"
+msgstr "&Зип"
 
 #: Merge.rc:7370E045
 #, c-format
@@ -1243,12 +1241,12 @@ msgstr ""
 #: Merge.rc:AC3AA1D
 #, c-format
 msgid "&Refresh"
-msgstr "&Îñâåæè"
+msgstr "&Освежи"
 
 #: Merge.rc:71676C47
 #, c-format
 msgid "Left Shell menu"
-msgstr "Ëåâè èçáîðíèê /šóñêå/"
+msgstr "Леви изборник /љуске/"
 
 #: Merge.rc:729280DA
 #, c-format
@@ -1258,7 +1256,7 @@ msgstr ""
 #: Merge.rc:32BFDBAC
 #, c-format
 msgid "Right Shell menu"
-msgstr "Äåñíè èçáîðíèê /šóñêå/"
+msgstr "Десни изборник /љуске/"
 
 #: Merge.rc:3CF9F84
 #, c-format
@@ -1268,82 +1266,82 @@ msgstr ""
 #: Merge.rc:78B3B625
 #, c-format
 msgid "&Copy Full Path"
-msgstr "&Óìíîæè ïóòàœó"
+msgstr "&Умножи путању"
 
 #: Merge.rc:1C6125F5
 #, c-format
 msgid "Copy &Filename"
-msgstr "Óìíîæè íà&çèâ äàòîòåêå"
+msgstr "Умножи на&зив датотеке"
 
 #: Merge.rc:27A06B44
 #, c-format
 msgid "Prediffer Settings"
-msgstr "Ñâî¼ñòâà äåôèíèñàíîã ïîðååœà"
+msgstr "Својства дефинисаног поређења"
 
 #: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
-msgstr "Íåìà äåôèíèñàíîã ïîðååœà"
+msgstr "Нема дефинисаног поређења"
 
 #: Merge.rc:2515A6BB
 #, c-format
 msgid "Auto prediffer"
-msgstr "Àóòîìàòñêè äåôèíèøè ïîðååœå"
+msgstr "Аутоматски дефиниши поређење"
 
 #: Merge.rc:24F1D5E9
 #, c-format
 msgid "G&oto Diff"
-msgstr "Èäè &íà ðàçëèêó"
+msgstr "Иди &на разлику"
 
 #: Merge.rc:1DC30E63
 #, c-format
 msgid "&No Moved Blocks"
-msgstr "&Íå ïðåìåøòà¼ ãðóïå"
+msgstr "&Не премештај групе"
 
 #: Merge.rc:1A9EBDEF
 #, c-format
 msgid "&All Moved Blocks"
-msgstr "Ïðåìåñòè &ñâå ãðóïå"
+msgstr "Премести &све групе"
 
 #: Merge.rc:BA50068
 #, c-format
 msgid "Moved Block for &Current Diff"
-msgstr "Ïðåìåñòè òðåíóòíå ðàçëèêå &ãðóïå"
+msgstr "Премести тренутне разлике &групе"
 
 #: Merge.rc:3C68C747
 #, c-format
 msgid "W&hitespaces"
-msgstr "Ð&àçìàê"
+msgstr "Р&азмак"
 
 #: Merge.rc:4C3E0A2C
 #, c-format
 msgid "Com&pare"
-msgstr "Ó&ïîðåäè"
+msgstr "У&пореди"
 
 #: Merge.rc:4630D06B
 #, c-format
 msgid "I&gnore changes"
-msgstr "&Çàíåìàðè èçìåíå"
+msgstr "&Занемари измене"
 
 #: Merge.rc:21C15B6
 #, c-format
 msgid "Ig&nore all"
-msgstr "Çà&íåìàðè ñâå"
+msgstr "За&немари све"
 
 #: Merge.rc:6FC398BA
 #, c-format
 msgid "Case sensi&tive"
-msgstr "Ïîäóäàðà&œå ñëîâà"
+msgstr "Подудара&ње слова"
 
 #: Merge.rc:620FF1AC
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Çàíåìàðè &ðàçëèêå îçíàêà çàâðøåòêà ðåäà (Windows/Unix/Mac)"
+msgstr "Занемари &разлике ознака завршетка реда (Windows/Unix/Mac)"
 
 #: Merge.rc:6DE6F873
 #, c-format
 msgid "&Include Subfolders"
-msgstr "Óêšó÷è è ïîòôàñöèêëå"
+msgstr "Укључи и потфасцикле"
 
 #: Merge.rc:1DC30E64
 #, c-format
@@ -1353,12 +1351,12 @@ msgstr ""
 #: Merge.rc:7A4CFAFB
 #, c-format
 msgid "Full Contents"
-msgstr "Öåî ñàäðæà¼"
+msgstr "Цео садржај"
 
 #: Merge.rc:5F71A081
 #, c-format
 msgid "Quick Contents"
-msgstr "Ñêðàžåíè ñàäðæà¼"
+msgstr "Скраћени садржај"
 
 #: Merge.rc:36B164C4
 #, c-format
@@ -1368,65 +1366,62 @@ msgstr ""
 #: Merge.rc:2CEE4748
 #, c-format
 msgid "Modified Date"
-msgstr "Äàòóì ïðîìåíå"
+msgstr "Датум промене"
 
 #: Merge.rc:39C7AF82
 #, c-format
 msgid "Modified Date and Size"
-msgstr "Èçìåœåí äàòóì è âåëè÷èíà"
+msgstr "Измењен датум и величина"
 
 #: Merge.rc:4B89B93
 #, c-format
 msgid "Size"
-msgstr "Âåëè÷èíà"
+msgstr "Величина"
 
 #: Merge.rc:1DC30E65
-#, c-format
 msgid "&Load Project..."
 msgstr ""
 
 #: Merge.rc:2515A6BC
 #, c-format
 msgid "About WinMerge"
-msgstr "Î WinMerge"
+msgstr "О WinMerge"
 
 #: Merge.rc:1D44E628
 #, c-format
 msgid "Visit the WinMerge HomePage!"
-msgstr "Ïîñåòèòå WinMerge-îâ ñà¼ò"
+msgstr "Посетите WinMerge-ов сајт"
 
 #: Merge.rc:1326F
 #, c-format
 msgid "OK"
-msgstr "Ó ðåäó"
+msgstr "У реду"
 
 #: Merge.rc:CAEDA35
 #, c-format
 msgid "Contributors"
-msgstr "Ñàðàäíèöè"
+msgstr "Сарадници"
 
 #: Merge.rc:58E210FA
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Èçàáåðè äàòîòåêå èëè ôàñöèêëå"
+msgstr "Изабери датотеке или фасцикле"
 
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
-msgstr "Ñ&àìî çà ÷èòàœå"
+msgstr "С&амо за читање"
 
 #: Merge.rc:56BD1FBA
-#, c-format
 msgid "Swap 1st | 2nd"
 msgstr ""
 
 #: Merge.rc:68816EE7
 #, c-format
 msgid "&Browse..."
-msgstr "&Ïðåãëåäà¼..."
+msgstr "&Прегледај..."
 
 #: Merge.rc:6DE6F874
-#, c-format
 msgid "&1st File or Folder"
 msgstr ""
 
@@ -1436,17 +1431,15 @@ msgid "Rea&d-only"
 msgstr ""
 
 #: Merge.rc:56BD1FBB
-#, c-format
 msgid "Swap 2nd | 3rd"
 msgstr ""
 
 #: Merge.rc:78E0CE0E
 #, c-format
 msgid "B&rowse..."
-msgstr "Ï&ðåãëåäà¼..."
+msgstr "П&регледај..."
 
 #: Merge.rc:6DE6F875
-#, c-format
 msgid "&2nd File or Folder"
 msgstr ""
 
@@ -1456,37 +1449,32 @@ msgid "Read-o&nly"
 msgstr ""
 
 #: Merge.rc:56BD1FBC
-#, c-format
 msgid "Swap 1st | 3rd"
 msgstr ""
 
 #: Merge.rc:146A5938
 #, c-format
 msgid "Browse..."
-msgstr "Ïðåãëåä..."
+msgstr "Преглед..."
 
 #: Merge.rc:3C1ECDDA
-#, c-format
 msgid "&3rd File or Folder (Optional)"
 msgstr ""
 
 #: Merge.rc:22467E6E
-#, c-format
 msgid " Folder: Filter"
 msgstr ""
 
 #: Merge.rc:68816EE8
 #, c-format
 msgid "&Select..."
-msgstr "&Èçàáåðè..."
+msgstr "&Изабери..."
 
 #: Merge.rc:662470D5
-#, c-format
 msgid " File: Unpacker Plugin"
 msgstr ""
 
 #: Merge.rc:751AB58F
-#, c-format
 msgid "Se&lect..."
 msgstr ""
 
@@ -1497,57 +1485,57 @@ msgstr ""
 #: Merge.rc:4E65D340
 #, c-format
 msgid "Cancel"
-msgstr "Îòêàæè"
+msgstr "Откажи"
 
 #: Merge.rc:67019DCA
 #, c-format
 msgid "Status:"
-msgstr "Ñòàœå"
+msgstr "Стање"
 
 #: Merge.rc:4186E48
 #, c-format
 msgid "Help"
-msgstr "Ïîìîž"
+msgstr "Помоћ"
 
 #: Merge.rc:787FD72B
 #, c-format
 msgid "General"
-msgstr "Îïøòè èçáîð"
+msgstr "Општи избор"
 
 #: Merge.rc:237AB485
 #, c-format
 msgid "Automatically &scroll to first difference"
-msgstr "Óâåê êðåíè îä &ïðâå ðàçëèêå"
+msgstr "Увек крени од &прве разлике"
 
 #: Merge.rc:69AD3BF8
 #, c-format
 msgid "Cl&ose windows with ESC"
-msgstr "Çàòâîðè ïð&îçîð ñà ESC"
+msgstr "Затвори пр&озор са ESC"
 
 #: Merge.rc:6574B7FB
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
-msgstr "Ïðîâåðèòå ïóòàœå ó èçáîðíîì äè¼àëîãó "
+msgstr "Проверите путање у изборном дијалогу "
 
 #: Merge.rc:631E0F7B
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "Äîçâîëè ñàìî ¼åäíó ïîêðåíóòó íàäëåæíîñò"
+msgstr "Дозволи само једну покренуту надлежност"
 
 #: Merge.rc:672CD0E2
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr "Óïèòà¼ &êàä çàòâàðàø âèøå ïðîçîðà"
+msgstr "Упитај &кад затвараш више прозора"
 
 #: Merge.rc:6D5B7718
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "&Çàäðæè îçíàêå âðåìåíà è äàòóìà ó ïîðååœó "
+msgstr "&Задржи ознаке времена и датума у поређењу "
 
 #: Merge.rc:17F0E759
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Ïðèêàæè \"Îäàáðàíå äàòîòåêå èëè ôàñöèêëå\" äè¼àëîã ïðè ïîêðåòàœó."
+msgstr "Прикажи \"Одабране датотеке или фасцикле\" дијалог при покретању."
 
 #: Merge.rc:1AD99579
 #, c-format
@@ -1557,7 +1545,7 @@ msgstr ""
 #: Merge.rc:44776ACE
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
-msgstr "Îòâîðè äè¼àëîã ñàìîäîâðøåœà"
+msgstr "Отвори дијалог самодовршења"
 
 #: Merge.rc:1B63306F
 #, c-format
@@ -1567,42 +1555,42 @@ msgstr ""
 #: Merge.rc:516450B
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
-msgstr "WinMerge îìîãóžàâà ñêðèâàœå íåêèõ óîáè÷à¼åíèõ ïîðóêà.Ïðèòèñíèòå 'Ïî÷åòíè'äà ïîðóêå îïåò áóäó âèäšèâå"
+msgstr "WinMerge омогућава скривање неких уобичајених порука.Притисните 'Почетни'да поруке опет буду видљиве"
 
 #: Merge.rc:10976EC1
 #, c-format
 msgid "Reset"
-msgstr "Ïî÷åòíè"
+msgstr "Почетни"
 
 #: Merge.rc:3FB4EC6
 #, c-format
 msgid "Find"
-msgstr "Íàè"
+msgstr "Нађи"
 
 #: Merge.rc:34DF506F
 #, c-format
 msgid "Fi&nd what:"
-msgstr "Ïðåòðà&æè:"
+msgstr "Претра&жи:"
 
 #: Merge.rc:39C7AF83
 #, c-format
 msgid "Match &whole word only"
-msgstr "Óïîðåäè &öåî èçðàç"
+msgstr "Упореди &цео израз"
 
 #: Merge.rc:13C27214
 #, c-format
 msgid "Match &case"
-msgstr "Óïîðåäè ñòà&œå"
+msgstr "Упореди ста&ње"
 
 #: Merge.rc:44BC83ED
 #, c-format
 msgid "Regular &expression"
-msgstr "Ïðàâèëàí èçðàç"
+msgstr "Правилан израз"
 
 #: Merge.rc:78A08947
 #, c-format
 msgid "D&on't wrap end of file"
-msgstr "Áåç ïðåë&îìà òåêñòà"
+msgstr "Без прел&ома текста"
 
 #: Merge.rc:545FEEA2
 #, c-format
@@ -1617,52 +1605,52 @@ msgstr ""
 #: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
-msgstr "&Íàè ñëåäåžå"
+msgstr "&Нађи следеће"
 
 #: Merge.rc:11D980
 #, c-format
 msgid "&Ok"
-msgstr "&Ó ðåäó"
+msgstr "&У реду"
 
 #: Merge.rc:4876CD3E
 #, c-format
 msgid "Replace"
-msgstr "Çàìåíè"
+msgstr "Замени"
 
 #: Merge.rc:1B17601F
 #, c-format
 msgid "Re&place with:"
-msgstr "Çà&ìåíè ñà:"
+msgstr "За&мени са:"
 
 #: Merge.rc:381D79E5
 #, c-format
 msgid "&Don't wrap end of file"
-msgstr "&Áåç ïðåëîìà òåêñòà"
+msgstr "&Без прелома текста"
 
 #: Merge.rc:39174D99
 #, c-format
 msgid "Replace in"
-msgstr "Çàìåíè ó"
+msgstr "Замени у"
 
 #: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
-msgstr "Èçàáðàíèì"
+msgstr "Изабраним"
 
 #: Merge.rc:3FE25900
 #, c-format
 msgid "Wh&ole file"
-msgstr "Öåëî¼ äàò&îòåöè"
+msgstr "Целој дат&отеци"
 
 #: Merge.rc:AC3AA1E
 #, c-format
 msgid "&Replace"
-msgstr "&Çàìåíè"
+msgstr "&Замени"
 
 #: Merge.rc:507A4C04
 #, c-format
 msgid "Replace &All"
-msgstr "Çàìåíè ñâ&å"
+msgstr "Замени св&е"
 
 #: Merge.rc:2FC0BA7B
 #, c-format
@@ -1677,7 +1665,7 @@ msgstr ""
 #: Merge.rc:24A380
 #, c-format
 msgid "New"
-msgstr "Íîâè"
+msgstr "Нови"
 
 #: Merge.rc:3938FFC4
 #, c-format
@@ -1687,347 +1675,343 @@ msgstr ""
 #: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Apply"
-msgstr "Ï&ðèìåíè"
+msgstr "П&римени"
 
 #: Merge.rc:4F58DAFC
 #, c-format
 msgid "Linefilters"
-msgstr "Ôèëòåð ðåäîâà"
+msgstr "Филтер редова"
 
 #: Merge.rc:36B79AB7
 #, c-format
 msgid "Enable Line Filters"
-msgstr "Îìîãóžè ôèëòðèðàœå ðåäà"
+msgstr "Омогући филтрирање реда"
 
 #: Merge.rc:5E8200FF
 #, c-format
 msgid "Regular Expressions (one per line):"
-msgstr "Èñïðàâàí èçðàç (¼åäàí ïî ðåäó):"
+msgstr "Исправан израз (један по реду):"
 
 #: Merge.rc:3ECBF05
 #, c-format
 msgid "Edit"
-msgstr "Óðåäè"
+msgstr "Уреди"
 
 #: Merge.rc:25669B5
 #, c-format
 msgid "Remove"
-msgstr "Óêëîíè"
+msgstr "Уклони"
 
 #: Merge.rc:4E65D341
 #, c-format
 msgid "Colors"
-msgstr "Áî¼å"
+msgstr "Боје"
 
 #: Merge.rc:78E0CE0F
 #, c-format
 msgid "Background"
-msgstr "Ïîçàäèíà"
+msgstr "Позадина"
 
 #: Merge.rc:1CDF6584
 #, c-format
 msgid "Deleted"
-msgstr "Èçáðèñàíî"
+msgstr "Избрисано"
 
 #: Merge.rc:4C72B54
 #, c-format
 msgid "Text"
-msgstr "Òåêñò"
+msgstr "Текст"
 
 #: Merge.rc:2C0C2240
 #, c-format
 msgid "Difference:"
-msgstr "Ðàçëèêå"
+msgstr "Разлике"
 
 #: Merge.rc:1BA49C3B
 #, c-format
 msgid "Selected Difference:"
-msgstr "Îáåëåæè ðàçëèêå"
+msgstr "Обележи разлике"
 
 #: Merge.rc:2756A765
 #, c-format
 msgid "Ignored Difference:"
-msgstr "Çàíåìàðè ðàçëèêå"
+msgstr "Занемари разлике"
 
 #: Merge.rc:7106378D
 #, c-format
 msgid "Moved:"
-msgstr "Ïðåìåøòåíî:"
+msgstr "Премештено:"
 
 #: Merge.rc:E6D7EF
 #, c-format
 msgid "Selected Moved:"
-msgstr "Ïðåìåøòàœå èçàáðàíîã"
+msgstr "Премештање изабраног"
 
 #: Merge.rc:73FB246
-#, c-format
 msgid "Same As The Next (3 panes):"
 msgstr ""
 
 #: Merge.rc:60B696AF
-#, c-format
 msgid "Same As The Next (Selected):"
 msgstr ""
 
 #: Merge.rc:40C55014
 #, c-format
 msgid "Word Difference:"
-msgstr "Ðàçëè÷èòå ðå÷è:"
+msgstr "Различите речи:"
 
 #: Merge.rc:E4471A
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "Îäàáåðè ðàçëè÷èòå ðå÷è:"
+msgstr "Одабери различите речи:"
 
 #: Merge.rc:7F0D4B46
 #, c-format
 msgid "Defaults"
-msgstr "Ïîäðàçóìåâàíî"
+msgstr "Подразумевано"
 
 #: Merge.rc:39000D57
 #, c-format
 msgid "System"
-msgstr "Ñèñòåì"
+msgstr "Систем"
 
 #: Merge.rc:51FAB141
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
-msgstr "Ïîøàšè èçáðè&ñàíî ó êîðïó"
+msgstr "Пошаљи избри&сано у корпу"
 
 #: Merge.rc:1A9EBDF0
 #, c-format
 msgid "&External editor:"
-msgstr "Ñïîšœè óð&åèâà÷:"
+msgstr "Спољњи ур&еђивач:"
 
 #: Merge.rc:78B3B626
 #, c-format
 msgid "&Filter folder:"
-msgstr "Ôàñöèêëà ôèëòåðà:"
+msgstr "Фасцикла филтера:"
 
 #: Merge.rc:1C1FA831
 #, c-format
 msgid "Temporary files folder"
-msgstr "Ôàñöèêëà ïðèâðåìåíèõ äàòîòåêà"
+msgstr "Фасцикла привремених датотека"
 
 #: Merge.rc:58EEEB80
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr "Ïðèâðåìåíà ñèñòåìñêà ôàñöèêëà"
+msgstr "Привремена системска фасцикла"
 
 #: Merge.rc:6FC398BB
 #, c-format
 msgid "C&ustom folder:"
-msgstr "Ïîäåøåíà ôàñöèêëà"
+msgstr "Подешена фасцикла"
 
 #: Merge.rc:78E0CE10
 #, c-format
 msgid "Br&owse..."
-msgstr "Ïð&åãëåäà¼..."
+msgstr "Пр&егледај..."
 
 #: Merge.rc:55B03C13
 #, c-format
 msgid "Patch Generator"
-msgstr "Ñòâîðåíå ðàçëèêå"
+msgstr "Створене разлике"
 
 #: Merge.rc:59F5069E
 #, c-format
 msgid "File&1:"
-msgstr "Äàòîòåêà&1:"
+msgstr "Датотека&1:"
 
 #: Merge.rc:59F5069F
 #, c-format
 msgid "File&2:"
-msgstr "Äàòîòåêà&2:"
+msgstr "Датотека&2:"
 
 #: Merge.rc:43017E4E
 #, c-format
 msgid "&Swap"
-msgstr "&Çàìåíè"
+msgstr "&Замени"
 
 #: Merge.rc:4B91C2D2
 #, c-format
 msgid "&Append to existing file"
-msgstr "Ïðèêšó÷è ïîñòî¼åžî¼ äàòîòåöè"
+msgstr "Прикључи постојећој датотеци"
 
 #: Merge.rc:AC3AA1F
 #, c-format
 msgid "&Result:"
-msgstr "&Èçõîä:"
+msgstr "&Изход:"
 
 #: Merge.rc:78E0CE11
 #, c-format
 msgid "Bro&wse..."
-msgstr "Ïðå&ãëåäà¼..."
+msgstr "Пре&гледај..."
 
 #: Merge.rc:89AF4FC
 #, c-format
 msgid "&Format"
-msgstr "&Îáëèê"
+msgstr "&Облик"
 
 #: Merge.rc:67019DCB
 #, c-format
 msgid "St&yle:"
-msgstr "Íà&÷èí"
+msgstr "На&чин"
 
 #: Merge.rc:4DB19838
 #, c-format
 msgid "&Context:"
-msgstr "Ó &îêâèðó"
+msgstr "У &оквиру"
 
 #: Merge.rc:2756A766
 #, c-format
 msgid "Ignor&e blank lines"
-msgstr "Çàí&åìàðè ïðàçíå ðåäîâå"
+msgstr "Зан&емари празне редове"
 
 #: Merge.rc:2C4A6C6C
 #, c-format
 msgid "Inclu&de command line"
-msgstr "Óêšó÷è íàðåäáåíè ðåä"
+msgstr "Укључи наредбени ред"
 
 #: Merge.rc:5869BBE
 #, c-format
 msgid "Open to e&xternal editor"
-msgstr "Îòâîðè ó äðóãîì óðå&èâà÷ó"
+msgstr "Отвори у другом уре&ђивачу"
 
 #: Merge.rc:28D5CCAA
 #, c-format
 msgid "Display Columns"
-msgstr "Ïðèêàæè ñòóáöå"
+msgstr "Прикажи стубце"
 
 #: Merge.rc:4856953D
 #, c-format
 msgid "Move &Up"
-msgstr "Ïîìåðè &ãîðå"
+msgstr "Помери &горе"
 
 #: Merge.rc:D0645BC
 #, c-format
 msgid "Move &Down"
-msgstr "Ïîìåðè &äîëå"
+msgstr "Помери &доле"
 
 #: Merge.rc:E6D7F0
 #, c-format
 msgid "Select Unpacker"
-msgstr "Èçáîð àðõèâåðà"
+msgstr "Избор архивера"
 
 #: Merge.rc:4F5264C8
 #, c-format
 msgid "File unpacker:"
-msgstr "Àðõèâåð äàòîòåêà"
+msgstr "Архивер датотека"
 
 #: Merge.rc:34C1157D
 #, c-format
 msgid "Display all unpackers, don't check the extension"
-msgstr "Ïðèêàæè ñâå àðõèâåðå áåç ïðîâåðå íàñòàâêà"
+msgstr "Прикажи све архивере без провере наставка"
 
 #: Merge.rc:5B18135F
 #, c-format
 msgid "Extensions list:"
-msgstr "Ïîïèñ íàñòàâàêà:"
+msgstr "Попис наставака:"
 
 #: Merge.rc:5578260E
 #, c-format
 msgid "Description:"
-msgstr "Îïèñ:"
+msgstr "Опис:"
 
 #: Merge.rc:4B89B94
 #, c-format
 msgid "Stop"
-msgstr "Ñòàíè"
+msgstr "Стани"
 
 #: Merge.rc:D109E01
-#, c-format
 msgid "Pause"
 msgstr ""
 
 #: Merge.rc:4C3E0A2E
-#, c-format
 msgid "Continue"
 msgstr ""
 
 #: Merge.rc:1AC98D0A
 #, c-format
 msgid "Comparing items..."
-msgstr "Óïîðåèâàœå ñòàâêè..."
+msgstr "Упоређивање ставки..."
 
 #: Merge.rc:4630D06C
 #, c-format
 msgid "Items compared:"
-msgstr "Ïîðååœå ñòàâêè:"
+msgstr "Поређење ставки:"
 
 #: Merge.rc:4166A153
 #, c-format
 msgid "Items total:"
-msgstr "Óêóïíî ñòàâêè :"
+msgstr "Укупно ставки :"
 
 #: Merge.rc:7D31F2A0
 #, c-format
 msgid "Go To"
-msgstr "Èäè íà"
+msgstr "Иди на"
 
 #: Merge.rc:290C61C5
 #, c-format
 msgid "G&oto:"
-msgstr "Èäè &íà:"
+msgstr "Иди &на:"
 
 #: Merge.rc:3FB4EC7
 #, c-format
 msgid "File"
-msgstr "Äàòîòåêà"
+msgstr "Датотека"
 
 #: Merge.rc:57E6C4D3
 #, c-format
 msgid "Goto what"
-msgstr "Ó äàòîòåöè"
+msgstr "У датотеци"
 
 #: Merge.rc:602FC81
 #, c-format
 msgid "Li&ne"
-msgstr "Ðå&ä"
+msgstr "Ре&д"
 
 #: Merge.rc:27AC6D83
 #, c-format
 msgid "&Difference"
-msgstr "Ðàç&ëèêà"
+msgstr "Раз&лика"
 
 #: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Go To"
-msgstr "&Èäè íà"
+msgstr "&Иди на"
 
 #: Merge.rc:7E5494F6
 #, c-format
 msgid "Compare"
-msgstr "Óïîðåèâàœå"
+msgstr "Упоређивање"
 
 #: Merge.rc:65285570
 #, c-format
 msgid "Whitespace"
-msgstr "Ðàçìàê"
+msgstr "Размак"
 
 #: Merge.rc:AC3AA20
 #, c-format
 msgid "&Compare"
-msgstr "&Óïîðåäè"
+msgstr "&Упореди"
 
 #: Merge.rc:5A9A713E
 #, c-format
 msgid "&Ignore change"
-msgstr "Çàíåìàð&è ïðîìåíå"
+msgstr "Занемар&и промене"
 
 #: Merge.rc:21C15B7
 #, c-format
 msgid "I&gnore all"
-msgstr "Çàíå&ìàðè ñâå"
+msgstr "Зане&мари све"
 
 #: Merge.rc:2756A767
 #, c-format
 msgid "Ignore blan&k lines"
-msgstr "Çàíåìàðè ïðà&çíå ðåäîâå"
+msgstr "Занемари пра&зне редове"
 
 #: Merge.rc:4166A154
 #, c-format
 msgid "Ignore &case"
-msgstr "Çàíåìàðè ïîä&óäàðíîñò"
+msgstr "Занемари под&ударност"
 
 #: Merge.rc:6C318DC8
 #, c-format
@@ -2037,82 +2021,82 @@ msgstr ""
 #: Merge.rc:285B56CE
 #, c-format
 msgid "E&nable moved block detection"
-msgstr "Îìîãóžè îòêðèâàœå ïðåìåøòåíèõ ãðóïà"
+msgstr "Омогући откривање премештених група"
 
 #: Merge.rc:4EF8162F
 #, c-format
 msgid "&Match similar lines"
-msgstr "Óïîðåäè ñëè÷íå ðåäîâå"
+msgstr "Упореди сличне редове"
 
 #: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
-msgstr "Íàïîìåíå"
+msgstr "Напомене"
 
 #: Merge.rc:1AFA3491
 #, c-format
 msgid "Filter Comments"
-msgstr "Ôèëòðèðà¼ íàïîìåíå"
+msgstr "Филтрирај напомене"
 
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
-msgstr "Óðåèâà÷"
+msgstr "Уређивач"
 
 #: Merge.rc:1A9EBDF1
 #, c-format
 msgid "&Highlight syntax"
-msgstr "Íàãëàñè ñêëîï ðå÷è"
+msgstr "Нагласи склоп речи"
 
 #: Merge.rc:1A9EBDF2
 #, c-format
 msgid "&Automatic rescan"
-msgstr "&Àóòîìàòñêè ïîíîâî ïðåòðàæè"
+msgstr "&Аутоматски поново претражи"
 
 #: Merge.rc:545FEEA3
 #, c-format
 msgid "&Preserve original EOL chars"
-msgstr "Çàäð&æè èçâîðíî îçíà÷àâàœå êðà¼à ðåäà"
+msgstr "Задр&жи изворно означавање краја реда"
 
 #: Merge.rc:4C72B55
 #, c-format
 msgid "Tabs"
-msgstr "£åçè÷öè"
+msgstr "Језичци"
 
 #: Merge.rc:68816EEB
 #, c-format
 msgid "&Tab size:"
-msgstr "Âåëè÷èíà &¼åçè÷àêà"
+msgstr "Величина &језичака"
 
 #: Merge.rc:4DE14275
 #, c-format
 msgid "&Insert Tabs"
-msgstr "Óìåòíè ¼åçè÷êå"
+msgstr "Уметни језичке"
 
 #: Merge.rc:243A39E
 #, c-format
 msgid "Insert &Spaces"
-msgstr "Óìåòíè ðàçìàê"
+msgstr "Уметни размак"
 
 #: Merge.rc:172385A0
 #, c-format
 msgid "Line Difference Coloring"
-msgstr "Îáî¼è ðàçëè÷èòå ðåäîâå "
+msgstr "Обоји различите редове "
 
 #: Merge.rc:4CB9DE6A
 #, c-format
 msgid "View line differences"
-msgstr "Ïðèêàç ðàçëè÷èòèõ ðåäîâà"
+msgstr "Приказ различитих редова"
 
 #: Merge.rc:1DC30E66
 #, c-format
 msgid "&Character level"
-msgstr "Ðàíã &çíàêà"
+msgstr "Ранг &знака"
 
 #: Merge.rc:4DE14276
 #, c-format
 msgid "&Word-level:"
-msgstr "Ðàíã ðå&÷è:"
+msgstr "Ранг ре&чи:"
 
 #: Merge.rc:14AF463A
 #, c-format
@@ -2122,52 +2106,52 @@ msgstr ""
 #: Merge.rc:34DF5070
 #, c-format
 msgid "Filefilters"
-msgstr "Ôèëòåð äàòîòåêà"
+msgstr "Филтер датотека"
 
 #: Merge.rc:4C72B56
 #, c-format
 msgid "Test"
-msgstr "Ïðîâåðà"
+msgstr "Провера"
 
 #: Merge.rc:1CF8A5DA
 #, c-format
 msgid "Install..."
-msgstr "Èíñòàëèðà¼..."
+msgstr "Инсталирај..."
 
 #: Merge.rc:27AFDB2F
 #, c-format
 msgid "New..."
-msgstr "Íîâè..."
+msgstr "Нови..."
 
 #: Merge.rc:3B6A3611
 #, c-format
 msgid "Edit..."
-msgstr "Óðåäè..."
+msgstr "Уреди..."
 
 #: Merge.rc:629C1DDC
 #, c-format
 msgid "Delete..."
-msgstr "Èçáðèøè..."
+msgstr "Избриши..."
 
 #: Merge.rc:1BA49C3C
 #, c-format
 msgid "Save modified files?"
-msgstr "Ñà÷óâà¼ èçìåœåíó äàòîòåêó?"
+msgstr "Сачувај измењену датотеку?"
 
 #: Merge.rc:3534E274
 #, c-format
 msgid "Left side file"
-msgstr "Ëåâà äàòîòåêà"
+msgstr "Лева датотека"
 
 #: Merge.rc:6E470BEE
 #, c-format
 msgid "&Save changes"
-msgstr "&Ñà÷óâà¼ ïðîìåíå"
+msgstr "&Сачувај промене"
 
 #: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
-msgstr "&Îäóñòàíè îä èçìåíà"
+msgstr "&Одустани од измена"
 
 #: Merge.rc:24BA673E
 #, c-format
@@ -2187,17 +2171,17 @@ msgstr ""
 #: Merge.rc:47D4A3FB
 #, c-format
 msgid "Right side file"
-msgstr "Äåñíà äàòîòåêà"
+msgstr "Десна датотека"
 
 #: Merge.rc:F2F641D
 #, c-format
 msgid "S&ave changes"
-msgstr "Ñ&à÷óâà¼ ïðîìåíå"
+msgstr "С&ачувај промене"
 
 #: Merge.rc:71E3C8E5
 #, c-format
 msgid "Dis&card changes"
-msgstr "Îäóñ&òàíè îä èçìåíà"
+msgstr "Одус&тани од измена"
 
 #: Merge.rc:5578260F
 #, c-format
@@ -2207,17 +2191,17 @@ msgstr ""
 #: Merge.rc:4C3E0A30
 #, c-format
 msgid "Codepage"
-msgstr "Êîäíà ñòðàíèöà"
+msgstr "Кодна страница"
 
 #: Merge.rc:71E3C8E6
 #, c-format
 msgid "Default Codepage"
-msgstr "Ïîäðàçóìåâàíà êîäíà ñòðàíèöà"
+msgstr "Подразумевана кодна страница"
 
 #: Merge.rc:132D699F
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Îäàáåðè ïîäðàçóìåâàíó êîäíó ñòðàíèöó êàä ó÷èòàíà Óíèêîä äàòîòåêà íè¼å ïðèõâàžåíà"
+msgstr "Одабери подразумевану кодну страницу кад учитана Уникод датотека није прихваћена"
 
 #: Merge.rc:5CC85DF4
 #, c-format
@@ -2225,8 +2209,8 @@ msgid ""
 "Detect codepage info for these files: .html, .rc, .xml \n"
 "need to restart session"
 msgstr ""
-"Äà¼ îáàâåøòåœà êîäíå ñòðàíå çà îâå äàòîòåêå:.html, .rc, .xml \n"
-" Íè¼å ïîòðåáíî ïîíîâî ïîêðåòàœå ñåñè¼å"
+"Дај обавештења кодне стране за ове датотеке:.html, .rc, .xml \n"
+" Није потребно поново покретање сесије"
 
 #: Merge.rc:3BCD5104
 #, c-format
@@ -2236,92 +2220,92 @@ msgstr ""
 #: Merge.rc:E6D7F1
 #, c-format
 msgid "System codepage"
-msgstr "Êîäíà ñòðàíèöà ñèñòåìà"
+msgstr "Кодна страница система"
 
 #: Merge.rc:4F3C2B88
 #, c-format
 msgid "According to WinMerge User Interface"
-msgstr "Ïðåìà êîðèñíè÷êîì ñó÷åšó WinMerge-à"
+msgstr "Према корисничком сучељу WinMerge-а"
 
 #: Merge.rc:8AF7E6A
 #, c-format
 msgid "Custom codepage:"
-msgstr "Ïîäåøåíà êîäíà ñòðàíèöà"
+msgstr "Подешена кодна страница"
 
 #: Merge.rc:6CD65B95
 #, c-format
 msgid "Options"
-msgstr "Ïîñòàâêå"
+msgstr "Поставке"
 
 #: Merge.rc:D32E2F1
 #, c-format
 msgid " Categories"
-msgstr "Êàòåãîðè¼å"
+msgstr "Категорије"
 
 #: Merge.rc:26188978
 #, c-format
 msgid "Import..."
-msgstr "Óâåçè..."
+msgstr "Увези..."
 
 #: Merge.rc:9B5002F
 #, c-format
 msgid "Export..."
-msgstr "Èçâåçè..."
+msgstr "Извези..."
 
 #: Merge.rc:50F76E1
 #, c-format
 msgid "Dialog"
-msgstr "Ðàçãîâîð"
+msgstr "Разговор"
 
 #: Merge.rc:744A4E1C
 #, c-format
 msgid "Keywords:"
-msgstr "Êšó÷íå ðå÷è:"
+msgstr "Кључне речи:"
 
 #: Merge.rc:1AFA3492
 #, c-format
 msgid "Function names:"
-msgstr "Èìåíà ôóíêöè¼à:"
+msgstr "Имена функција:"
 
 #: Merge.rc:3B833B8A
 #, c-format
 msgid "Comments:"
-msgstr "Íàïîìåíå:"
+msgstr "Напомене:"
 
 #: Merge.rc:7B25D658
 #, c-format
 msgid "Numbers:"
-msgstr "Áðî¼åâè:"
+msgstr "Бројеви:"
 
 #: Merge.rc:50D15AD
 #, c-format
 msgid "Operators:"
-msgstr "Îïåðàòåðè:"
+msgstr "Оператери:"
 
 #: Merge.rc:79321BE2
 #, c-format
 msgid "Strings:"
-msgstr "Ïî¼ìîâè:"
+msgstr "Појмови:"
 
 #: Merge.rc:1E0ED5B2
 #, c-format
 msgid "Preprocessor:"
-msgstr "Ïðåòïðîöåñîð:"
+msgstr "Претпроцесор:"
 
 #: Merge.rc:24173EE5
 #, c-format
 msgid "User 1:"
-msgstr "Êîðèñíèê 1:"
+msgstr "Корисник 1:"
 
 #: Merge.rc:24173EE6
 #, c-format
 msgid "User 2:"
-msgstr "Êîðèñíèê 2:"
+msgstr "Корисник 2:"
 
 #: Merge.rc:3C10FC2
 #, c-format
 msgid "Bold"
-msgstr "Ïîäåášàíî"
+msgstr "Подебљано"
 
 #: Merge.rc:2CEE4749
 #, c-format
@@ -2351,17 +2335,17 @@ msgstr ""
 #: Merge.rc:387F7980
 #, c-format
 msgid "Folder Compare Report"
-msgstr "Èçâåøòà¼ óïîðååíèõ ôàñöèêëè"
+msgstr "Извештај упоређених фасцикли"
 
 #: Merge.rc:3ECF34A3
 #, c-format
 msgid "Report &File:"
-msgstr "Äàòîòåêà èçâå&øòà¼à:"
+msgstr "Датотека изве&штаја:"
 
 #: Merge.rc:89AF4FD
 #, c-format
 msgid "&Style:"
-msgstr "&Íà÷èí"
+msgstr "&Начин"
 
 #: Merge.rc:545FEEA4
 #, c-format
@@ -2371,102 +2355,102 @@ msgstr ""
 #: Merge.rc:3938FFC5
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr "Ñà÷óâà¼ ó îñòàâè"
+msgstr "Сачувај у остави"
 
 #: Merge.rc:43600E90
 #, c-format
 msgid "Shared or Private Filter"
-msgstr "Çà¼åäíè÷êè èëè ëè÷íè ôèëòåð"
+msgstr "Заједнички или лични филтер"
 
 #: Merge.rc:74E96E1E
 #, c-format
 msgid "Which type of filter do you want to create?"
-msgstr "Êî¼ó âðñòó ôèëòåðà æåëèòå äà èìàòå?"
+msgstr "Коју врсту филтера желите да имате?"
 
 #: Merge.rc:444EF527
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "Çà¼åäíè÷êè ôèëòåð (çà ñâå êîðèñíèêå ðà÷óíàðà)"
+msgstr "Заједнички филтер (за све кориснике рачунара)"
 
 #: Merge.rc:11304E6
 #, c-format
 msgid "Private Filter (only for current user)"
-msgstr "Ëè÷íè ôèëòåð (ñàìî çà òðåíóòíîã êîðèñíèêà)"
+msgstr "Лични филтер (само за тренутног корисника)"
 
 #: Merge.rc:7D9F30CF
 #, c-format
 msgid "Archive Support"
-msgstr "Ðàä ñà àðõèâàìà"
+msgstr "Рад са архивама"
 
 #: Merge.rc:545FEEA5
 #, c-format
 msgid "&Enable archive file support"
-msgstr "&Îìîãóžè ïîäðøêó àðõèâè"
+msgstr "&Омогући подршку архиви"
 
 #: Merge.rc:70C9C72D
 #, c-format
 msgid "&Detect archive type from file signature"
-msgstr "Îòêðè¼ âðñòó àðõèâå èç çàãëàâšà äàòîòåêå"
+msgstr "Откриј врсту архиве из заглавља датотеке"
 
 #: Merge.rc:1AC98D0B
 #, c-format
 msgid "Compare Statistics"
-msgstr "Óïîðåäíà ñòàòèñòèêà"
+msgstr "Упоредна статистика"
 
 #: Merge.rc:64ABCD7D
 #, c-format
 msgid "Folders:"
-msgstr "Ôàñöèêëå"
+msgstr "Фасцикле"
 
 #: Merge.rc:7262BE23
 #, c-format
 msgid "Files:"
-msgstr "Äàòîòåêå"
+msgstr "Датотеке"
 
 #: Merge.rc:629C1DDD
 #, c-format
 msgid "Different"
-msgstr "Ðàçëèêà"
+msgstr "Разлика"
 
 #: Merge.rc:141E3F81
 #, c-format
 msgid "Text:"
-msgstr "Òåêñò"
+msgstr "Текст"
 
 #: Merge.rc:5FC9C469
 #, c-format
 msgid "Binary:"
-msgstr "Áèíàðíè"
+msgstr "Бинарни"
 
 #: Merge.rc:26535499
 #, c-format
 msgid "Unique"
-msgstr "£åäèíñòâåí"
+msgstr "Јединствен"
 
 #: Merge.rc:602FC82
 #, c-format
 msgid "Left:"
-msgstr "Ëåâà:"
+msgstr "Лева:"
 
 #: Merge.rc:25669B6
 #, c-format
 msgid "Right:"
-msgstr "Äåñíà:"
+msgstr "Десна:"
 
 #: Merge.rc:26188979
 #, c-format
 msgid "Identical"
-msgstr "Èñòå"
+msgstr "Исте"
 
 #: Merge.rc:6FA9B0F7
 #, c-format
 msgid "Total:"
-msgstr "Óêóïíî:"
+msgstr "Укупно:"
 
 #: Merge.rc:76245120
 #, c-format
 msgid "Close"
-msgstr "Çàòâîðè"
+msgstr "Затвори"
 
 #: Merge.rc:2FC0BA7C
 #, c-format
@@ -2491,97 +2475,97 @@ msgstr ""
 #: Merge.rc:413EF3DC
 #, c-format
 msgid "Affects"
-msgstr "Óñìåðèòå"
+msgstr "Усмерите"
 
 #: Merge.rc:1BE35CDC
 #, c-format
 msgid "(Affects)"
-msgstr "(Óñìåðèòå)"
+msgstr "(Усмерите)"
 
 #: Merge.rc:E4471B
 #, c-format
 msgid "Select Codepage for"
-msgstr "Îäàáåðè êîäíó ñòðàíó çà"
+msgstr "Одабери кодну страну за"
 
 #: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
-msgstr "Ó&÷èòàâàœå äàòîòåêå:"
+msgstr "У&читавање датотеке:"
 
 #: Merge.rc:7A4CFAFC
 #, c-format
 msgid "File &Saving:"
-msgstr "Äàòîòåêà ¼å &ñà÷óâàíà:"
+msgstr "Датотека је &сачувана:"
 
 #: Merge.rc:175DEEED
 #, c-format
 msgid "&Use same codepage for both"
-msgstr "Êîðèñòè èñò&ó êîäíó ñòðàíó çà îáå"
+msgstr "Користи ист&у кодну страну за обе"
 
 #: Merge.rc:89AF4FE
 #, c-format
 msgid "&Cancel"
-msgstr "Îòêàæè"
+msgstr "Откажи"
 
 #: Merge.rc:72A593B8
 #, c-format
 msgid "Test Filter"
-msgstr "Ïðîâåðà ôèëòåðà"
+msgstr "Провера филтера"
 
 #: Merge.rc:5CCED708
 #, c-format
 msgid "Testing filter ..."
-msgstr "Ïðîâåðàâàœå ôèëòåðà..."
+msgstr "Проверавање филтера..."
 
 #: Merge.rc:4EF81630
 #, c-format
 msgid "&Enter text to test:"
-msgstr "Óí&åñè òåêñò çà ïðîâåðó"
+msgstr "Ун&еси текст за проверу"
 
 #: Merge.rc:4DE14277
 #, c-format
 msgid "&Folder Name"
-msgstr "Èìå &ôàñöèêëå"
+msgstr "Име &фасцикле"
 
 #: Merge.rc:4876CD3F
 #, c-format
 msgid "Result:"
-msgstr "Èñõîä:"
+msgstr "Исход:"
 
 #: Merge.rc:43017E4F
 #, c-format
 msgid "&Test"
-msgstr "&Ïðîâåðà"
+msgstr "&Провера"
 
 #: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Close"
-msgstr "&Çàòâîðè"
+msgstr "&Затвори"
 
 #: Merge.rc:175DEEEE
 #, c-format
 msgid "&Use customized text colors"
-msgstr "Êîðèñòè æåšåíå áî¼å òåêñòà"
+msgstr "Користи жељене боје текста"
 
 #: Merge.rc:1AC98D0C
 #, c-format
 msgid "Custom text colors"
-msgstr "Æåšåíå áî¼å òåêñòà"
+msgstr "Жељене боје текста"
 
 #: Merge.rc:3FE25901
 #, c-format
 msgid "Whitespace:"
-msgstr "Ðàçìàê:"
+msgstr "Размак:"
 
 #: Merge.rc:3ECF34A4
 #, c-format
 msgid "Regular text:"
-msgstr "Ïðàâèëàí òåêñò:"
+msgstr "Правилан текст:"
 
 #: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
-msgstr "Èçàáåðè:"
+msgstr "Изабери:"
 
 #: Merge.rc:2FC0BA7D
 #, c-format
@@ -2591,112 +2575,112 @@ msgstr ""
 #: Merge.rc:43E58E59
 #, c-format
 msgid "Backup Files"
-msgstr "Ðåçåðâíå äàòîòåêå"
+msgstr "Резервне датотеке"
 
 #: Merge.rc:69AD3BF9
 #, c-format
 msgid "Create backup files in:"
-msgstr "Íàïðàâè ðåçåðâíå äàòîòåêå ó:"
+msgstr "Направи резервне датотеке у:"
 
 #: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
-msgstr "Óïîðåäè &ôàñöèêëó"
+msgstr "Упореди &фасциклу"
 
 #: Merge.rc:7A4CFAFD
 #, c-format
 msgid "Fil&e compare"
-msgstr "Óïîð&åäè äàòîòåêå"
+msgstr "Упор&еди датотеке"
 
 #: Merge.rc:334E25B2
 #, c-format
 msgid "Create backup files into:"
-msgstr "Íàïðàâè ðåçåðâíå äàòîòåêå ó:"
+msgstr "Направи резервне датотеке у:"
 
 #: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
-msgstr "Èçâ&îðíà ôàñöèêëà äàòîòåêå"
+msgstr "Изв&орна фасцикла датотеке"
 
 #: Merge.rc:714B45FE
 #, c-format
 msgid "&Global backup folder:"
-msgstr "Îïøòà ðåçåðâíà ôàñöèêëà "
+msgstr "Општа резервна фасцикла "
 
 #: Merge.rc:1F7B33EC
 #, c-format
 msgid "Backup filename:"
-msgstr "Èìå ðåçåðâíå äàòîòåêå"
+msgstr "Име резервне датотеке"
 
 #: Merge.rc:381D79E7
 #, c-format
 msgid "&Append .bak -extension"
-msgstr "Äîä&à¼ .bak íàñòàâàê"
+msgstr "Дод&ај .bak наставак"
 
 #: Merge.rc:129644DE
 #, c-format
 msgid "A&ppend timestamp"
-msgstr "Äî&äà¼ äàòóì/âðåìå"
+msgstr "До&дај датум/време"
 
 #: Merge.rc:CAEDA36
 #, c-format
 msgid "Confirm Copy"
-msgstr "Ïîòâðäè êîïèðàœå"
+msgstr "Потврди копирање"
 
 #: Merge.rc:36D268E9
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr "Äà ëè ñòå ñèãóðíè äà æåëèòå êîïèðàòè XXX ñòàâêè"
+msgstr "Да ли сте сигурни да желите копирати XXX ставки"
 
 #: Merge.rc:30CDE281
 #, c-format
 msgid "From left"
-msgstr "Ñ ëåâà"
+msgstr "С лева"
 
 #: Merge.rc:2C015CFE
 #, c-format
 msgid "To right"
-msgstr "Ó äåñíî"
+msgstr "У десно"
 
 #: Merge.rc:29CE40
 #, c-format
 msgid "Yes"
-msgstr "Äà"
+msgstr "Да"
 
 #: Merge.rc:12E8E
 #, c-format
 msgid "No"
-msgstr "Íå"
+msgstr "Не"
 
 #: Merge.rc:B612C23
 #, c-format
 msgid "Plugins"
-msgstr "Äîäàöè"
+msgstr "Додаци"
 
 #: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
-msgstr "Îìîãóžè äîäàòê&å"
+msgstr "Омогући додатк&е"
 
 #: Merge.rc:62909ED6
 #, c-format
 msgid "Shell Integration"
-msgstr "Èíòåãðèøè ó 'šóñêó'"
+msgstr "Интегриши у 'љуску'"
 
 #: Merge.rc:31DC8C62
 #, c-format
 msgid "Explorer"
-msgstr "Èñòðàæèâà÷"
+msgstr "Истраживач"
 
 #: Merge.rc:673BD331
 #, c-format
 msgid "E&nable advanced menu"
-msgstr "Îìîãóžè &íàïðåäíè èçáîð"
+msgstr "Омогући &напредни избор"
 
 #: Merge.rc:4EF81631
 #, c-format
 msgid "&Add to context menu"
-msgstr "Äîäà¼ ó 'èçáîðíè îêâèð'"
+msgstr "Додај у 'изборни оквир'"
 
 #: Merge.rc:26A6974B
 #, c-format
@@ -2711,17 +2695,17 @@ msgstr ""
 #: Merge.rc:7262BE24
 #, c-format
 msgid "Folder"
-msgstr "Ôàñöèêëà"
+msgstr "Фасцикла"
 
 #: Merge.rc:60B696B0
 #, c-format
 msgid "S&top after first difference"
-msgstr "Ñ&òàíè ïîñëå ïðâå ðàçëèêå"
+msgstr "С&тани после прве разлике"
 
 #: Merge.rc:7FF2B80B
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
-msgstr "Çàíåìàðè ðàçëèêå âðåìåíà ìàœå &îä 3 ñåêóíäå"
+msgstr "Занемари разлике времена мање &од 3 секунде"
 
 #: Merge.rc:6D5B7719
 #, c-format
@@ -2751,7 +2735,7 @@ msgstr ""
 #: Merge.rc:17BC2F9E
 #, c-format
 msgid "Binary"
-msgstr "Áèíàðíè"
+msgstr "Бинарни"
 
 #: Merge.rc:7AAB28B8
 #, c-format
@@ -2841,22 +2825,22 @@ msgstr ""
 #: Merge.rc:524AB109
 #, c-format
 msgid "Unknown error attempting to open project file"
-msgstr "Íåïîçíàòà ãðåøêà ïðè îòâàðàœó ïîðååœà"
+msgstr "Непозната грешка при отварању поређења"
 
 #: Merge.rc:524AB10A
 #, c-format
 msgid "Unknown error attempting to save project file"
-msgstr "Íåïîçíàòà ãðåøêà ïðè ïîêóøà¼ó ÷óâàœà ïîðååœà"
+msgstr "Непозната грешка при покушају чувања поређења"
 
 #: Merge.rc:3FCEF5DC
 #, c-format
 msgid "Project file successfully loaded."
-msgstr "Ïîðååœå ¼å óñïåøíî ó÷èòàíî"
+msgstr "Поређење је успешно учитано"
 
 #: Merge.rc:3BDD62C3
 #, c-format
 msgid "Project file successfully saved."
-msgstr "Ïîðååœå ¼å óñïåøíî ñà÷óâàíî"
+msgstr "Поређење је успешно сачувано"
 
 #: Merge.rc:28AAB7F
 #, c-format
@@ -2880,12 +2864,12 @@ msgid ""
 "WinMerge File Compare"
 msgstr ""
 "\n"
-"Óïîðåäè äàòîòåêó\n"
+"Упореди датотеку\n"
 "\n"
 "\n"
 "\n"
-"WinMerge.Óïîðåäè äàòîòåêó\n"
-"WinMerge óïîðåäè äàòîòåêó"
+"WinMerge.Упореди датотеку\n"
+"WinMerge упореди датотеку"
 
 #: Merge.rc:293A824F
 #, c-format
@@ -2899,12 +2883,12 @@ msgid ""
 "WinMerge Folder Compare"
 msgstr ""
 "\n"
-"Óïîðåäè ôàñöèêëó\n"
+"Упореди фасциклу\n"
 "\n"
 "\n"
 "\n"
-"WinMerge.Óïîðåäè ôàñöèêëó\n"
-"WinMerge óïîðåäè ôàñöèêëó"
+"WinMerge.Упореди фасциклу\n"
+"WinMerge упореди фасциклу"
 
 #: Merge.rc:74BA5C8C
 #, c-format
@@ -2912,78 +2896,78 @@ msgid ""
 "Developers:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 msgstr ""
-"Ïðîãðàìåðè:\n"
+"Програмери:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge ¼å ïðîãðàì ÁÅÇ ÃÀÐÀÍÖÈ£Å.Îâî ¼å áåñïëàòàí ïðîãðàì  êî¼è ìîæåòå äàšå äåëèòè ïðåìà GNU ¼àâíî¼ ëèöåíöè êî¼ó ïîãëåäà¼òå ó äàòîòåöè /Ïîìîž/"
+msgstr "WinMerge је програм БЕЗ ГАРАНЦИЈЕ.Ово је бесплатан програм  који можете даље делити према GNU јавној лиценци коју погледајте у датотеци /Помоћ/"
 
 #: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Abort"
-msgstr "&Ïðåêèíè"
+msgstr "&Прекини"
 
 #: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Retry"
-msgstr "Ï&îíîâè"
+msgstr "П&онови"
 
 #: Merge.rc:89AF4FF
 #, c-format
 msgid "&Ignore"
-msgstr "Çàíåìàð&è"
+msgstr "Занемар&и"
 
 #: Merge.rc:21C15B8
 #, c-format
 msgid "Ignore &all"
-msgstr "Ç&àíåìàðè ñâå"
+msgstr "З&анемари све"
 
 #: Merge.rc:22956AA
 #, c-format
 msgid "&Yes"
-msgstr "&Äà"
+msgstr "&Да"
 
 #: Merge.rc:48B5872E
 #, c-format
 msgid "Yes to &all"
-msgstr "Ä&à çà ñâå"
+msgstr "Д&а за све"
 
 #: Merge.rc:11D981
 #, c-format
 msgid "&No"
-msgstr "&Íå"
+msgstr "&Не"
 
 #: Merge.rc:4909ADB4
 #, c-format
 msgid "No to a&ll"
-msgstr "Íå çà ñ&âå"
+msgstr "Не за с&ве"
 
 #: Merge.rc:4DB1983A
 #, c-format
 msgid "&Continue"
-msgstr "Íàñòà&âè"
+msgstr "Наста&ви"
 
 #: Merge.rc:43017E50
 #, c-format
 msgid "&Skip"
-msgstr "Èçî&ñòàâè"
+msgstr "Изо&стави"
 
 #: Merge.rc:2D1160AF
 #, c-format
 msgid "Skip &all"
-msgstr "Èçîñò&àâè ñâå"
+msgstr "Изост&ави све"
 
 #: Merge.rc:77C09B82
 #, c-format
 msgid "Don't display this &message again."
-msgstr "Íå ïðèêàçó¼ îâó ïîðóêó ïîíîâî"
+msgstr "Не приказуј ову поруку поново"
 
 #: Merge.rc:57F02FB4
 #, c-format
 msgid "Don't ask this &question again."
-msgstr "Íå ïèòà¼ ïîíîâî"
+msgstr "Не питај поново"
 
 #: Merge.rc:78ACB5DB
 #, c-format
@@ -2998,42 +2982,42 @@ msgstr ""
 #: Merge.rc:2C0C2241
 #, c-format
 msgid "Differences"
-msgstr "Ðàçëèêå"
+msgstr "Разлике"
 
 #: Merge.rc:277500
 #, c-format
 msgid "To:"
-msgstr "Äî:"
+msgstr "До:"
 
 #: Merge.rc:68EE6DF1
 #, c-format
 msgid "From left:"
-msgstr "Ñ ëåâà:"
+msgstr "С лева:"
 
 #: Merge.rc:2C015CFF
 #, c-format
 msgid "To left:"
-msgstr "Ó ëåâî:"
+msgstr "У лево:"
 
 #: Merge.rc:34DF5071
 #, c-format
 msgid "From right:"
-msgstr "Ñ äåñíà:"
+msgstr "С десна:"
 
 #: Merge.rc:542A4301
 #, c-format
 msgid "To right:"
-msgstr "Ó äåñíî:"
+msgstr "У десно:"
 
 #: Merge.rc:2924ED78
 #, c-format
 msgid "Version %1"
-msgstr "Èçäàœå %1"
+msgstr "Издање %1"
 
 #: Merge.rc:24173EE7
 #, c-format
 msgid "Unicode"
-msgstr "Óíèêîä"
+msgstr "Уникод"
 
 #: Merge.rc:295600
 #, c-format
@@ -3043,12 +3027,12 @@ msgstr "X64"
 #: Merge.rc:761E6873
 #, c-format
 msgid "Options (%1)"
-msgstr "Ïîñòàâêå (%1)"
+msgstr "Поставке (%1)"
 
 #: Merge.rc:4BDBDC64
 #, c-format
 msgid "All message boxes are now displayed again."
-msgstr "Ïîíîâè ïðèêàç ñâèõ ïîðóêà"
+msgstr "Понови приказ свих порука"
 
 #: Merge.rc:37825D6A
 #, c-format
@@ -3057,64 +3041,64 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"Âåëè÷èíà îçíàêå íè¼å ó ïðèõâàòšèâîì ðàñïîíó.\n"
+"Величина ознаке није у прихватљивом распону.\n"
 "\n"
-"Ìîëèìî êîðèñòèòå âðåäíîñòè 1 - %1"
+"Молимо користите вредности 1 - %1"
 
 #: Merge.rc:47E5C8F
 #, c-format
 msgid "Open"
-msgstr "Îòâîðè"
+msgstr "Отвори"
 
 #: Merge.rc:3E105584
 #, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
-msgstr "Ïðîãðàìè |*.exe;*.bat;*.cmd|Ñâå äàòîòåêå (*.*)|*.*||"
+msgstr "Програми |*.exe;*.bat;*.cmd|Све датотеке (*.*)|*.*||"
 
 #: Merge.rc:222D39F7
 #, c-format
 msgid "All Files (*.*)|*.*||"
-msgstr "Ñâå äàòîòåêå(*.*)|*.*||"
+msgstr "Све датотеке(*.*)|*.*||"
 
 #: Merge.rc:237E9033
 #, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
-msgstr "WinMerge äàòîòåêå (*.WinMerge)|*.WinMerge||"
+msgstr "WinMerge датотеке (*.WinMerge)|*.WinMerge||"
 
 #: Merge.rc:BEDA09D
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
-msgstr "Ïîñòàâêå äàòîòåêà (*.ini)|*.ini|All Files (*.*)|*.*||"
+msgstr "Поставке датотека (*.ini)|*.ini|All Files (*.*)|*.*||"
 
 #: Merge.rc:3FF615A0
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-msgstr "Òåêñò äàòîòåêå (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Ñâå äàòîòåêå (*.*)|*.*||"
+msgstr "Текст датотеке (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Све датотеке (*.*)|*.*||"
 
 #: Merge.rc:59814668
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-msgstr "HTML äàòîòåêå (*.htm,*.html)|*.htm;*.html|Ñâå äàòîòåêå (*.*)|*.*||"
+msgstr "HTML датотеке (*.htm,*.html)|*.htm;*.html|Све датотеке (*.*)|*.*||"
 
 #: Merge.rc:67444ADC
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
-msgstr "XML äàòîòåêå (*.xml)|*.xml|Ñâå äàòîòåêå (*.*)|*.*||"
+msgstr "XML датотеке (*.xml)|*.xml|Све датотеке (*.*)|*.*||"
 
 #: Merge.rc:46FCCCE
 #, c-format
 msgid "Name"
-msgstr "Èìå"
+msgstr "Име"
 
 #: Merge.rc:15875422
 #, c-format
 msgid "Location"
-msgstr "Ïîëîæà¼"
+msgstr "Положај"
 
 #: Merge.rc:59F506A0
 #, c-format
 msgid "Filters"
-msgstr "Ôèëòåðè"
+msgstr "Филтери"
 
 #: Merge.rc:52D199B
 #, c-format
@@ -3124,17 +3108,17 @@ msgstr "[F]"
 #: Merge.rc:2C0C2242
 #, c-format
 msgid "Description"
-msgstr "Îïèñ"
+msgstr "Опис"
 
 #: Merge.rc:D6BB425
 #, c-format
 msgid "Select filename for new filter"
-msgstr "Èçàáåðè äàòîòåêó çà íîâè ôèëòåð"
+msgstr "Изабери датотеку за нови филтер"
 
 #: Merge.rc:764E4AD3
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
-msgstr "Äàòîòåêà ôèëòåðà (*.flt)|*.flt|All Files (*.*)|*.*||"
+msgstr "Датотека филтера (*.flt)|*.flt|All Files (*.*)|*.*||"
 
 #: Merge.rc:24B5241A
 #, c-format
@@ -3144,9 +3128,9 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
-"Íåìîãóžå ¼å ïðîíàžè ôèëòðèðàíó äàòîòåêó øàáëîíà!\n"
+"Немогуће је пронаћи филтрирану датотеку шаблона!\n"
 "\n"
-"Ìîëèì óìíîæèòå äàòîòåêó %1 ó WinMerge/Ôèëòåð -ôàñöèêëó:\n"
+"Молим умножите датотеку %1 у WinMerge/Филтер -фасциклу:\n"
 "%2."
 
 #: Merge.rc:2A045B49
@@ -3157,10 +3141,10 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"Íåìîãóžå ¼å ñà÷óâàòè ôèëòðèðàíó äàòîòåêó øàáëîíà ó ôèëòðèðàíî¼ ôàñöèêëè:\n"
+"Немогуће је сачувати филтрирану датотеку шаблона у филтрираној фасцикли:\n"
 "%1\n"
 "\n"
-"Ìîëèì, ïðîâåðèòå äà ëè ïîñòî¼è ôàñöèêëà è œåíó äîñòóïíîñò"
+"Молим, проверите да ли постоји фасцикла и њену доступност"
 
 #: Merge.rc:4EA7BACD
 #, c-format
@@ -3169,9 +3153,9 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"Êîðèñíèêîâà ôàñöèêëà ôèëòåðà íè¼å îäðååíà!\n"
+"Корисникова фасцикла филтера није одређена!\n"
 "\n"
-"Ìîëèì, èçàáåðèòå ôàñöèêëó ôèëòåðà ó /Ïîñòàâêå/Ñèñòåì/"
+"Молим, изаберите фасциклу филтера у /Поставке/Систем/"
 
 #: Merge.rc:7DDEC9BD
 #, c-format
@@ -3181,15 +3165,15 @@ msgid ""
 "\n"
 "Maybe the file is read-only?"
 msgstr ""
-"Ãðåøêà ïðè áðèñàœó ôèëòðèðàíå äàòîòåêå:\n"
+"Грешка при брисању филтриране датотеке:\n"
 "%1\n"
 "\n"
-"Ìîæäà ¼å äàòîòåêà ñàìî çà ÷èòàœå?"
+"Можда је датотека само за читање?"
 
 #: Merge.rc:6F3BCB34
 #, c-format
 msgid "Locate filter file to install"
-msgstr "Ïðîíàè ôàñöèêëó ôèëòåðà çà èíñòàëàöè¼ó"
+msgstr "Пронађи фасциклу филтера за инсталацију"
 
 #: Merge.rc:6858E820
 #, c-format
@@ -3198,19 +3182,19 @@ msgid ""
 "\n"
 "Could not copy new filter file to filter folder."
 msgstr ""
-"Èíñòàëèðàœå ôèëòåðà íè¼å óñïåëî.\n"
+"Инсталирање филтера није успело.\n"
 "\n"
-"Íå ìîãó óìíîæèòè íîâè ôèëòåð ó ôàñöèêëè ôèëòåðà"
+"Не могу умножити нови филтер у фасцикли филтера"
 
 #: Merge.rc:5704C4AC
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "Ôèëòåð âåž ïîñòî¼è.Çàìåíè ïîñòî¼åžè ôèëòåð"
+msgstr "Филтер већ постоји.Замени постојећи филтер"
 
 #: Merge.rc:237A126
 #, c-format
 msgid "Regular expression"
-msgstr "Ïðàâèëàí èçðàç"
+msgstr "Правилан израз"
 
 #: Merge.rc:34BD4316
 #, c-format
@@ -3219,24 +3203,24 @@ msgid ""
 "\n"
 "If you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
-"Ôèòåðè ñó îñâåæåíè. Äà ëè æåëèòå îñâåæèòè ñâà îòâîðåíà ïîðååœà?\n"
+"Фитери су освежени. Да ли желите освежити сва отворена поређења?\n"
 "\n"
-"Àêî èçàáåðåòå /Íå/ òî ìîæåòå è êàñíè¼å óðàäèòè"
+"Ако изаберете /Не/ то можете и касније урадити"
 
 #: Merge.rc:114DD351
 #, c-format
 msgid "Folder Comparison Results"
-msgstr "Èñõîäè ïîðååœà ôàñöèêëè"
+msgstr "Исходи поређења фасцикли"
 
 #: Merge.rc:1AFA3493
 #, c-format
 msgid "File Comparison"
-msgstr "Óïîðåäè äàòîòåêå"
+msgstr "Упореди датотеке"
 
 #: Merge.rc:2FEFC30D
 #, c-format
 msgid "Untitled left"
-msgstr "Íåèìåíîâàíà ëåâà"
+msgstr "Неименована лева"
 
 #: Merge.rc:730B3FD4
 #, c-format
@@ -3246,17 +3230,17 @@ msgstr ""
 #: Merge.rc:4E089EF3
 #, c-format
 msgid "Untitled right"
-msgstr "Íåèìåíîâàíà äåñíà"
+msgstr "Неименована десна"
 
 #: Merge.rc:72A593B9
 #, c-format
 msgid "Theirs File"
-msgstr "Œèõîâå äàòîòåêå"
+msgstr "Њихове датотеке"
 
 #: Merge.rc:427C12C1
 #, c-format
 msgid "Mine File"
-msgstr "Ìî¼å äàòîòåêå"
+msgstr "Моје датотеке"
 
 #: Merge.rc:DD21174
 #, c-format
@@ -3266,7 +3250,7 @@ msgstr ""
 #: Merge.rc:15875423
 #, c-format
 msgid "Line: %s"
-msgstr "Ðåä: %s"
+msgstr "Ред: %s"
 
 #: Merge.rc:6F3BCB35
 #, c-format
@@ -3276,22 +3260,22 @@ msgstr ""
 #: Merge.rc:7C664E1
 #, c-format
 msgid "Merge"
-msgstr "Óïîðåäè"
+msgstr "Упореди"
 
 #: Merge.rc:7A8FD78B
 #, c-format
 msgid "Difference %1 of %2"
-msgstr "Ðàçëèêå %1 îä %2"
+msgstr "Разлике %1 од %2"
 
 #: Merge.rc:62773E9
 #, c-format
 msgid "%1 Differences Found"
-msgstr "Íàåíî ðàçëèêà %1"
+msgstr "Нађено разлика %1"
 
 #: Merge.rc:6B78A819
 #, c-format
 msgid "1 Difference Found"
-msgstr "Íàåíî ðàçëèêà 1"
+msgstr "Нађено разлика 1"
 
 #. Abbreviation from "Read Only"
 #: Merge.rc:13E12
@@ -3302,65 +3286,57 @@ msgstr "RO"
 #: Merge.rc:6B6D8965
 #, c-format
 msgid "Item %1 of %2"
-msgstr "Ñòàâêå %1 îä %2"
+msgstr "Ставке %1 од %2"
 
 #: Merge.rc:2618897A
 #, c-format
 msgid "Items: %1"
-msgstr "Ñòàâêå: %1"
+msgstr "Ставке: %1"
 
 #: Merge.rc:6C6653C7
 #, c-format
 msgid "Select two existing folders or files to compare"
-msgstr "Îäàáåðè äâå ïîñòî¼åžå äàòîòåêå èëè ôàñöèêëå çà ïîðååœå"
+msgstr "Одабери две постојеће датотеке или фасцикле за поређење"
 
 #: Merge.rc:444C5DDC
 #, c-format
 msgid "Folder Selection"
-msgstr "Èçàáåðè ôàñöèêëó"
+msgstr "Изабери фасциклу"
 
 #: Merge.rc:3080B693
-#, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
 msgstr ""
 
 #: Merge.rc:2EBBDDD6
-#, c-format
 msgid "Left (1st) path is invalid!"
 msgstr ""
 
 #: Merge.rc:BA50069
-#, c-format
 msgid "Middle (2nd) path is invalid!"
 msgstr ""
 
 #: Merge.rc:21DC7C32
-#, c-format
 msgid "Right (2nd) path is invalid!"
 msgstr ""
 
 #: Merge.rc:21DC7C33
-#, c-format
 msgid "Right (3rd) path is invalid!"
 msgstr ""
 
 #: Merge.rc:5AB9EEA7
 #, c-format
 msgid "Both paths are invalid!"
-msgstr "Îáå ïóòàœå ñó íåâàæåžå!"
+msgstr "Обе путање су неважеће!"
 
 #: Merge.rc:585E8EC0
-#, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr ""
 
 #: Merge.rc:135DE390
-#, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr ""
 
 #: Merge.rc:72716FA6
-#, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr ""
 
@@ -3370,24 +3346,23 @@ msgid "All paths are invalid!"
 msgstr ""
 
 #: Merge.rc:1235F930
-#, c-format
 msgid "Only enabled for File comparisons"
 msgstr ""
 
 #: Merge.rc:30FF7A4E
 #, c-format
 msgid "Cannot compare file and folder!"
-msgstr "Íå ìîãó óïîðåäèòè äàòîòåêó è ôàñöèêëó!"
+msgstr "Не могу упоредити датотеку и фасциклу!"
 
 #: Merge.rc:62AC5DDB
 #, c-format
 msgid "File not found: %1"
-msgstr "Äàòîòåêà íè¼å ïðîíàåíà"
+msgstr "Датотека није пронађена"
 
 #: Merge.rc:387F7981
 #, c-format
 msgid "File not unpacked: %1"
-msgstr "Äàòîòåêà íè¼å ðàñïàêîâàíà: %1"
+msgstr "Датотека није распакована: %1"
 
 #: Merge.rc:3676909F
 #, c-format
@@ -3397,7 +3372,7 @@ msgid ""
 "\n"
 "%2"
 msgstr ""
-"Íå ìîæå îòâîðèòè äàòîòåêó\n"
+"Не може отворити датотеку\n"
 "%1\n"
 "\n"
 "%2"
@@ -3405,7 +3380,7 @@ msgstr ""
 #: Merge.rc:53CCF475
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr "Íå ìîãó ðàø÷ëàíèòè ïðîáëåìàòè÷íó äàòîòåêó"
+msgstr "Не могу рашчланити проблематичну датотеку"
 
 #: Merge.rc:5A765252
 #, c-format
@@ -3414,29 +3389,29 @@ msgid ""
 "%1\n"
 "is not a conflict file."
 msgstr ""
-"Äàòîòåêà\n"
+"Датотека\n"
 "%1\n"
-"íè¼å ïðîáëåìàòè÷íà"
+"није проблематична"
 
 #: Merge.rc:67019DCC
 #, c-format
 msgid "Save As"
-msgstr "Ñà÷óâà¼ êàî"
+msgstr "Сачувај као"
 
 #: Merge.rc:E4471C
 #, c-format
 msgid "Save changes to %1?"
-msgstr "Ñà÷óâà¼ èçìåíå %1? "
+msgstr "Сачувај измене %1? "
 
 #: Merge.rc:6A1C6855
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 ¼å îçíà÷åíà ñàìî çà ÷èòàœå.Æåëèòå ëè äà ¼å ïîíèøòèòå?(Íå, ñà÷óâàíà ¼å ïîä íîâèì èìåíîì)"
+msgstr "%1 је означена само за читање.Желите ли да је поништите?(Не, сачувана је под новим именом)"
 
 #: Merge.rc:673BD332
 #, c-format
 msgid "Error backing up file"
-msgstr "Ãðåøêà ïðè ïðàâšåœó ðåçåðâíå äàòîòåêå"
+msgstr "Грешка при прављењу резервне датотеке"
 
 #: Merge.rc:3958104B
 #, c-format
@@ -3446,10 +3421,10 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"Íè¼å ìîãóžå íàïðàâèòè ðåçåðâó:\n"
+"Није могуће направити резерву:\n"
 "%1\n"
 "\n"
-"Íàñòàâèòe?"
+"Наставитe?"
 
 #: Merge.rc:69020931
 #, c-format
@@ -3461,12 +3436,12 @@ msgid ""
 "\t-use a different filename (Press Ok)\n"
 "\t-abort the current operation (Press Cancel)?"
 msgstr ""
-"×óâàœå íè¼å óñïåëî.\n"
+"Чување није успело.\n"
 "%1\n"
 "%2\n"
-"Äà ëè æåëèòå äà :\n"
-"\t-je çàïàìòèòå ïîä äðóãèì èìåíîì, ïðèòèñíèòå /Ó ðåäó/\n"
-"\t- èëè ïðèòèñíèòå /Èçàè/çà ïðåêèä ïîñòóïêà?"
+"Да ли желите да :\n"
+"\t-je запамтите под другим именом, притисните /У реду/\n"
+"\t- или притисните /Изађи/за прекид поступка?"
 
 #: Merge.rc:3895053E
 #, c-format
@@ -3477,11 +3452,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Äîäàòàê '%2' íå ìîæå ñïàêîâàòè ïðîìåíå ëåâå äàòîòåêå'%1'.\n"
+"Додатак '%2' не може спаковати промене леве датотеке'%1'.\n"
 "\n"
-"Èçâîðíà äàòîòåêà íåžå áèòè ïðîìåœåíà.\n"
+"Изворна датотека неће бити промењена.\n"
 "\n"
-"Äà ëè æåëèòå äà ñà÷óâàòå íåðàñïàêîâàíî èçäàœå êàî äàòîòåêó?"
+"Да ли желите да сачувате нераспаковано издање као датотеку?"
 
 #: Merge.rc:5A0BA2DF
 #, c-format
@@ -3492,11 +3467,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Äîäàòàê '%2' íå ìîæå ñïàêîâàòè ïðîìåíå äåñíå äàòîòåêå '%1'.\n"
+"Додатак '%2' не може спаковати промене десне датотеке '%1'.\n"
 "\n"
-"Èçâîðíà äàòîòåêà íåžå áèòè ïðîìåœåíà.\n"
+"Изворна датотека неће бити промењена.\n"
 "\n"
-"Äà ëè æåëèòå äà ñà÷óâàòå íåðàñïàêîâàíî èçäàœå êàî äàòîòåêó?"
+"Да ли желите да сачувате нераспаковано издање као датотеку?"
 
 #: Merge.rc:78367A47
 #, c-format
@@ -3507,11 +3482,11 @@ msgid ""
 "\n"
 "Overwrite changed file?"
 msgstr ""
-"Äðóãè ïðîãðàì ¼å îñâåæèî äàòîòåêó\n"
+"Други програм је освежио датотеку\n"
 "%1\n"
-"òîêîì ðàäà ó WinMerge-ó.\n"
+"током рада у WinMerge-у.\n"
 "\n"
-"Çàìåíèòå èçìåœåíó äàòîòåêó?"
+"Замените измењену датотеку?"
 
 #: Merge.rc:462FB760
 #, c-format
@@ -3520,7 +3495,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-"¼å îçíà÷åíà ñàìî çà ÷èòàœå.Æåëèòå ëè äà ¼å çàìåíèòå?"
+"је означена само за читање.Желите ли да је замените?"
 
 #: Merge.rc:B9192B
 #, c-format
@@ -3531,14 +3506,14 @@ msgid ""
 "\n"
 "Do you want to reload the file?"
 msgstr ""
-"Äðóãè ïðîãðàì ¼å îñâåæèî äàòîòåêó\n"
+"Други програм је освежио датотеку\n"
 "%1\n"
-"îä çàäœåã ïðåãëåäà WinMerge-à.Æåëèòå ëè ïîíîâî ó÷èòàòè äàòîòåêó?"
+"од задњег прегледа WinMerge-а.Желите ли поново учитати датотеку?"
 
 #: Merge.rc:62909ED7
 #, c-format
 msgid "Save Left File As"
-msgstr "Ñà÷óâà¼ ëåâó äàòîòåêó êàî"
+msgstr "Сачувај леву датотеку као"
 
 #: Merge.rc:E4471D
 #, c-format
@@ -3548,7 +3523,7 @@ msgstr ""
 #: Merge.rc:6F833C19
 #, c-format
 msgid "Save Right File As"
-msgstr "Ñà÷óâà¼ äåñíó äàòîòåêó êàî"
+msgstr "Сачувај десну датотеку као"
 
 #: Merge.rc:3C4620F
 #, c-format
@@ -3557,9 +3532,9 @@ msgid ""
 "%1\n"
 "has disappeared. Please save a copy of the file to continue."
 msgstr ""
-"Äàòîòåêà\n"
+"Датотека\n"
 "%1\n"
-"¼å íåñòàëà.Ìîëèìî Âàñ äà ñà÷óâàòå óìíîæåíó äàòîòåêó äà áèñòå íàñòàâèëè"
+"је нестала.Молимо Вас да сачувате умножену датотеку да бисте наставили"
 
 #: Merge.rc:4BFC8F0D
 #, c-format
@@ -3568,22 +3543,24 @@ msgid ""
 "\n"
 "Refresh documents before continuing."
 msgstr ""
-"Íå ìîãó îá¼åäèíèòè ðàçëèêå êàäà äîêóìåíòè íèñó óñàãëàøåíè.\n"
+"Не могу објединити разлике када документи нису усаглашени.\n"
 "\n"
-"Îñâåæè äîêóìåíòå ïðå íàñòàâêà"
+"Освежи документе пре наставка"
 
 #: Merge.rc:2405135
+#, c-format
 msgid "Break at whitespace"
-msgstr "Ñòàíè íà ðàçìàêó"
+msgstr "Стани на размаку"
 
 #: Merge.rc:6CB369C2
+#, c-format
 msgid "Break at whitespace or punctuation"
-msgstr "Ñòàíè íà ðàçìàêó èëè èíòåðïóêöè¼è"
+msgstr "Стани на размаку или интерпукцији"
 
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"
-msgstr "Äåñíà ó ëåâî (%1)"
+msgstr "Десна у лево (%1)"
 
 #: Merge.rc:52D3F9F6
 #, c-format
@@ -3603,7 +3580,7 @@ msgstr ""
 #: Merge.rc:7271FF80
 #, c-format
 msgid "Left to Right (%1)"
-msgstr "Ëåâà ó äåñíî (%1)"
+msgstr "Лева у десно (%1)"
 
 #: Merge.rc:5BCDF0E7
 #, c-format
@@ -3613,7 +3590,7 @@ msgstr ""
 #: Merge.rc:71676C48
 #, c-format
 msgid "Left to... (%1)"
-msgstr "Ëåâà ó... (%1)"
+msgstr "Лева у... (%1)"
 
 #: Merge.rc:729280DB
 #, c-format
@@ -3623,7 +3600,7 @@ msgstr ""
 #: Merge.rc:32BFDBAD
 #, c-format
 msgid "Right to... (%1)"
-msgstr "Äåñíà ó... (%1)"
+msgstr "Десна у... (%1)"
 
 #: Merge.rc:36B164C5
 #, c-format
@@ -3643,7 +3620,7 @@ msgstr ""
 #: Merge.rc:1B633070
 #, c-format
 msgid "Left (%1)"
-msgstr "Ëåâà (%1)"
+msgstr "Лева (%1)"
 
 #: Merge.rc:13C27215
 #, c-format
@@ -3653,12 +3630,12 @@ msgstr ""
 #: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
-msgstr "Äåñíà (%1)"
+msgstr "Десна (%1)"
 
 #: Merge.rc:146A5939
 #, c-format
 msgid "Both (%1)"
-msgstr "Îáå (%1)"
+msgstr "Обе (%1)"
 
 #: Merge.rc:669F87F5
 #, c-format
@@ -3668,7 +3645,7 @@ msgstr ""
 #: Merge.rc:DD21175
 #, c-format
 msgid "Left side - select destination folder:"
-msgstr "Ëåâà ñòðàíà - îäàáåðè ôàñöèêëó îäðåäèøòà:"
+msgstr "Лева страна - одабери фасциклу одредишта:"
 
 #: Merge.rc:2B480620
 #, c-format
@@ -3678,17 +3655,17 @@ msgstr ""
 #: Merge.rc:5BBC5591
 #, c-format
 msgid "Right side - select destination folder:"
-msgstr "Äåñíà ñòðàíà - îäàáåðè ôàñöèêëó îäðåäèøòà:"
+msgstr "Десна страна - одабери фасциклу одредишта:"
 
 #: Merge.rc:66367ECA
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr "(%1 óñìåðåíèõ äàòîòåêà)"
+msgstr "(%1 усмерених датотека)"
 
 #: Merge.rc:65510B09
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(%1 îä %2 óñìåðåíèõ äàòîòåêà)"
+msgstr "(%1 од %2 усмерених датотека)"
 
 #: Merge.rc:2B0F0BA2
 #, c-format
@@ -3697,19 +3674,19 @@ msgid ""
 "\n"
 "%1 ?"
 msgstr ""
-"Äà ëè ñòå ñèãóðíè äà æåëèòå äà èçáðèøåòå\n"
+"Да ли сте сигурни да желите да избришете\n"
 "\n"
 "%1 ?"
 
 #: Merge.rc:2019BE6D
 #, c-format
 msgid "Are you sure you want to copy:"
-msgstr "Äà ëè ñòå ñèãóðíè äà æåëèòå äà óìíîæèòå:"
+msgstr "Да ли сте сигурни да желите да умножите:"
 
 #: Merge.rc:2B0F0BA3
 #, c-format
 msgid "Are you sure you want to copy %d items:"
-msgstr "Äà ëè ñòå ñèãóðíè äà æåëèòå äà óìíîæèòå %d ñòàâêè:"
+msgstr "Да ли сте сигурни да желите да умножите %d ставки:"
 
 #: Merge.rc:59B96CF
 #, c-format
@@ -3722,28 +3699,28 @@ msgid ""
 "\n"
 "Please refresh the compare."
 msgstr ""
-"Ïîñòóïàê ¼å çàóñòàâšåí!\n"
+"Поступак је заустављен!\n"
 "\n"
-"Ïðîìåœåíà ¼å ôàñöèêëà èëè ïóòàœa\n"
+"Промењена је фасцикла или путањa\n"
 "%1\n"
-"íè¼å ïðîíàåíà.\n"
+"није пронађена.\n"
 "\n"
-"Ìîëèì, îñâåæèòå ïîðååœå."
+"Молим, освежите поређење."
 
 #: Merge.rc:2019BE6E
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr "Äà ëè ñòå ñèãóðíè äà æåëèòå äà ¼å ïðåìåñòèòå:"
+msgstr "Да ли сте сигурни да желите да је преместите:"
 
 #: Merge.rc:2B0F0BA4
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr "Äà ëè ñòå ñèãóðíè äà æåëèòå äà ïðåìåñòèòå %d ñòàâêè:"
+msgstr "Да ли сте сигурни да желите да преместите %d ставки:"
 
 #: Merge.rc:CAEDA37
 #, c-format
 msgid "Confirm Move"
-msgstr "Ïîòâðäè ïðåìåøòà¼"
+msgstr "Потврди премештај"
 
 #: Merge.rc:1E9E7AFF
 #, c-format
@@ -3753,32 +3730,32 @@ msgstr ""
 #: Merge.rc:4B6299EF
 #, c-format
 msgid "Failed to execute external editor: %1"
-msgstr "Íè¼å óñïåëî ïîêðåòàœå äðóãîã óðåèâà÷à: %1"
+msgstr "Није успело покретање другог уређивача: %1"
 
 #: Merge.rc:7350CBB7
 #, c-format
 msgid "Unknown archive format"
-msgstr "Íåïîçíàò îáëèê àðõèâå"
+msgstr "Непознат облик архиве"
 
 #: Merge.rc:64ABCD7E
 #, c-format
 msgid "Filename"
-msgstr "Èìå äàòîòåêå"
+msgstr "Име датотеке"
 
 #: Merge.rc:D404EDE
 #, c-format
 msgid "Comparison result"
-msgstr "Ðåçóëòàò ïîðååœà"
+msgstr "Резултат поређења"
 
 #: Merge.rc:1B633071
 #, c-format
 msgid "Left Date"
-msgstr "Äàòóì ëåâî"
+msgstr "Датум лево"
 
 #: Merge.rc:39174D9B
 #, c-format
 msgid "Right Date"
-msgstr "Äàòóì äåñíî"
+msgstr "Датум десно"
 
 #: Merge.rc:13C27216
 #, c-format
@@ -3788,17 +3765,17 @@ msgstr ""
 #: Merge.rc:9B50030
 #, c-format
 msgid "Extension"
-msgstr "Íàñòàâàê"
+msgstr "Наставак"
 
 #: Merge.rc:1B633072
 #, c-format
 msgid "Left Size"
-msgstr "Âåëè÷èíà ëåâî"
+msgstr "Величина лево"
 
 #: Merge.rc:39174D9C
 #, c-format
 msgid "Right Size"
-msgstr "Âåëè÷èíà äåñíî"
+msgstr "Величина десно"
 
 #: Merge.rc:13C27217
 #, c-format
@@ -3808,12 +3785,12 @@ msgstr ""
 #: Merge.rc:237A128
 #, c-format
 msgid "Right Size (Short)"
-msgstr "Âåëè÷èíà äåñíî (ñêðàžåíî)"
+msgstr "Величина десно (скраћено)"
 
 #: Merge.rc:353D7BD8
 #, c-format
 msgid "Left Size (Short)"
-msgstr "Âåëè÷èíà ëåâî (ñêðàžåíî)"
+msgstr "Величина лево (скраћено)"
 
 #: Merge.rc:17F5B414
 #, c-format
@@ -3823,12 +3800,12 @@ msgstr ""
 #: Merge.rc:7271FF81
 #, c-format
 msgid "Left Creation Time"
-msgstr "Âðåìå ñòâàðàœà ëåâå"
+msgstr "Време стварања леве"
 
 #: Merge.rc:44BC83EE
 #, c-format
 msgid "Right Creation Time"
-msgstr "Âðåìå ñòâàðàœà äåñíå"
+msgstr "Време стварања десне"
 
 #: Merge.rc:66C0CEA0
 #, c-format
@@ -3838,17 +3815,17 @@ msgstr ""
 #: Merge.rc:4909ADB5
 #, c-format
 msgid "Newer File"
-msgstr "Íîâè¼à äàòîòåêà"
+msgstr "Новија датотека"
 
 #: Merge.rc:353D7BD9
 #, c-format
 msgid "Left File Version"
-msgstr "Èçäàœå ëåâå äàòîòåêå"
+msgstr "Издање леве датотеке"
 
 #: Merge.rc:237A129
 #, c-format
 msgid "Right File Version"
-msgstr "Èçäàœå äåñíå äàòîòåêå"
+msgstr "Издање десне датотеке"
 
 #: Merge.rc:17F5B415
 #, c-format
@@ -3858,17 +3835,17 @@ msgstr ""
 #: Merge.rc:194397DE
 #, c-format
 msgid "Short Result"
-msgstr "Ñêðàžåíè èñõîä"
+msgstr "Скраћени исход"
 
 #: Merge.rc:71676C49
 #, c-format
 msgid "Left Attributes"
-msgstr "Îñîáèíå ëåâå"
+msgstr "Особине леве"
 
 #: Merge.rc:32BFDBAE
 #, c-format
 msgid "Right Attributes"
-msgstr "Îñîáèíå äåñíå"
+msgstr "Особине десне"
 
 #: Merge.rc:729280DC
 #, c-format
@@ -3878,7 +3855,7 @@ msgstr ""
 #: Merge.rc:15875424
 #, c-format
 msgid "Left EOL"
-msgstr "Çàâðøåòàê ðåäà ëåâå äàòîòåêå"
+msgstr "Завршетак реда леве датотеке"
 
 #: Merge.rc:D0645BD
 #, c-format
@@ -3888,17 +3865,17 @@ msgstr ""
 #: Merge.rc:5F87E5D
 #, c-format
 msgid "Right EOL"
-msgstr "Çàâðøåòàê ðåäà äåñíå äàòîòåêå"
+msgstr "Завршетак реда десне датотеке"
 
 #: Merge.rc:5C8E17CF
 #, c-format
 msgid "Left Encoding"
-msgstr "Êîäèðàœå ëåâå"
+msgstr "Кодирање леве"
 
 #: Merge.rc:1B176020
 #, c-format
 msgid "Right Encoding"
-msgstr "Êîäèðàœå äåñíå"
+msgstr "Кодирање десне"
 
 #: Merge.rc:2A79A03A
 #, c-format
@@ -3908,32 +3885,32 @@ msgstr ""
 #: Merge.rc:6B6D8966
 #, c-format
 msgid "Ignored Diff."
-msgstr "Çàíåìàðè ðàçëèêå"
+msgstr "Занемари разлике"
 
 #: Merge.rc:76C8AB99
 #, c-format
 msgid "Unable to compare files"
-msgstr "Íå ìîãó óïîðåäèòè äàòîòåêå"
+msgstr "Не могу упоредити датотеке"
 
 #: Merge.rc:4166A155
 #, c-format
 msgid "Item aborted"
-msgstr "Îäáà÷åíà ñòàâêà"
+msgstr "Одбачена ставка"
 
 #: Merge.rc:670ABDC3
 #, c-format
 msgid "File skipped"
-msgstr "Èçîñòàâšåíà äàòîòåêà"
+msgstr "Изостављена датотека"
 
 #: Merge.rc:4F5264CA
 #, c-format
 msgid "Folder skipped"
-msgstr "Èçîñòàâšåíà ôàñöèêëà"
+msgstr "Изостављена фасцикла"
 
 #: Merge.rc:5C8E17D0
 #, c-format
 msgid "Left only: %1"
-msgstr "Ñàìî ëåâà: %1"
+msgstr "Само лева: %1"
 
 #: Merge.rc:2A79A03B
 #, c-format
@@ -3943,7 +3920,7 @@ msgstr ""
 #: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
-msgstr "Ñàìî äåñíà: %"
+msgstr "Само десна: %"
 
 #: Merge.rc:576B1A36
 #, c-format
@@ -3953,32 +3930,32 @@ msgstr ""
 #: Merge.rc:6B248E76
 #, c-format
 msgid "Binary files are identical"
-msgstr "Áèíàðíå äàòîòåêå ñó èñòå"
+msgstr "Бинарне датотеке су исте"
 
 #: Merge.rc:6B248E77
 #, c-format
 msgid "Binary files are different"
-msgstr "Áèíàðíå äàòîòåêå ñó ðàçëè÷èòå"
+msgstr "Бинарне датотеке су различите"
 
 #: Merge.rc:72DF5DE2
 #, c-format
 msgid "Files are different"
-msgstr "Äàòîòåêå ñó ðàçëè÷èòå"
+msgstr "Датотеке су различите"
 
 #: Merge.rc:387F7982
 #, c-format
 msgid "Folders are different"
-msgstr "Ôàñöèêëå ñó ðàçëè÷èòå"
+msgstr "Фасцикле су различите"
 
 #: Merge.rc:1B633073
 #, c-format
 msgid "Left Only"
-msgstr "Ñàìî ëåâà"
+msgstr "Само лева"
 
 #: Merge.rc:39174D9D
 #, c-format
 msgid "Right Only"
-msgstr "Ñàìî äåñíà"
+msgstr "Само десна"
 
 #: Merge.rc:13C27218
 #, c-format
@@ -4003,12 +3980,12 @@ msgstr ""
 #: Merge.rc:79AB21E1
 #, c-format
 msgid "Error"
-msgstr "Ãðåøêà"
+msgstr "Грешка"
 
 #: Merge.rc:12D66B44
 #, c-format
 msgid "Text files are identical"
-msgstr "Òåêñòîâè äàòîòåêà ñó èñòè"
+msgstr "Текстови датотека су исти"
 
 #: Merge.rc:1DEEB161
 #, c-format
@@ -4028,47 +4005,47 @@ msgstr ""
 #: Merge.rc:12D66B45
 #, c-format
 msgid "Text files are different"
-msgstr "Òåêñòîâè äàòîòåêà ñó ðàçëè÷èòè"
+msgstr "Текстови датотека су различити"
 
 #: Merge.rc:203BBC7B
 #, c-format
 msgid "Elapsed time: %ld ms"
-msgstr "Ïðîòåêëî âðåìå: %ld ms"
+msgstr "Протекло време: %ld ms"
 
 #: Merge.rc:6C7BF198
 #, c-format
 msgid "1 item selected"
-msgstr "1 ñòàâêà ¼å îäàáðàíà"
+msgstr "1 ставка је одабрана"
 
 #: Merge.rc:5D49B8EC
 #, c-format
 msgid "%1 items selected"
-msgstr "%1 ñòàâêà ¼å îäàáðàíà"
+msgstr "%1 ставка је одабрана"
 
 #: Merge.rc:3A5D5963
 #, c-format
 msgid "Filename or folder name."
-msgstr "Èìå äàòîòåêå èëè ôàñöèêëå"
+msgstr "Име датотеке или фасцикле"
 
 #: Merge.rc:A7628EE
 #, c-format
 msgid "Subfolder name when subfolders are included."
-msgstr "Èìå ïîòôàñöèêëå êàä ñó ïîòôàñöèêëå óêšó÷åíå"
+msgstr "Име потфасцикле кад су потфасцикле укључене"
 
 #: Merge.rc:6F88EC68
 #, c-format
 msgid "Comparison result, long form."
-msgstr "Èçõîä ïîðååœà,äóæè îáëèê"
+msgstr "Изход поређења,дужи облик"
 
 #: Merge.rc:28BFDD41
 #, c-format
 msgid "Left side modification date."
-msgstr "Äàòóì ïðîìåíå ëåâå ñòðàíå"
+msgstr "Датум промене леве стране"
 
 #: Merge.rc:19B30A68
 #, c-format
 msgid "Right side modification date."
-msgstr "Äàòóì ïðîìåíå äåñíå ñòðàíå"
+msgstr "Датум промене десне стране"
 
 #: Merge.rc:68FB0CE7
 #, c-format
@@ -4078,17 +4055,17 @@ msgstr ""
 #: Merge.rc:453F5DDC
 #, c-format
 msgid "File's extension."
-msgstr "/Íàñòàâàê/ äàòîòåêå"
+msgstr "/Наставак/ датотеке"
 
 #: Merge.rc:172385A1
 #, c-format
 msgid "Left file size in bytes."
-msgstr "Âåëè÷èíà ëåâå äàòîòåêå ó áà¼òèìà"
+msgstr "Величина леве датотеке у бајтима"
 
 #: Merge.rc:94C89D4
 #, c-format
 msgid "Right file size in bytes."
-msgstr "Âåëè÷èíà äåñíå äàòîòåêå ó áà¼òèìà"
+msgstr "Величина десне датотеке у бајтима"
 
 #: Merge.rc:27AAA636
 #, c-format
@@ -4098,12 +4075,12 @@ msgstr ""
 #: Merge.rc:2EBBDDD7
 #, c-format
 msgid "Left file size abbreviated."
-msgstr "Ñêðàžåíà ëåâà äàòîòåêà"
+msgstr "Скраћена лева датотека"
 
 #: Merge.rc:21DC7C34
 #, c-format
 msgid "Right file size abbreviated."
-msgstr "Ñêðàžåíà äåñíà äàòîòåêà"
+msgstr "Скраћена десна датотека"
 
 #: Merge.rc:BA5006A
 #, c-format
@@ -4113,12 +4090,12 @@ msgstr ""
 #: Merge.rc:172385A2
 #, c-format
 msgid "Left side creation time."
-msgstr "Âðåìå ñòâàðàœà ëåâå ñòðàíå"
+msgstr "Време стварања леве стране"
 
 #: Merge.rc:94C89D5
 #, c-format
 msgid "Right side creation time."
-msgstr "Âðåìå ñòâàðàœà äåñíå ñòðàíå"
+msgstr "Време стварања десне стране"
 
 #: Merge.rc:27AAA637
 #, c-format
@@ -4128,17 +4105,17 @@ msgstr ""
 #: Merge.rc:4B4CD318
 #, c-format
 msgid "Tells which side has newer modification date."
-msgstr "Êî¼à ñòðàíà èìà íîâè¼è äàòóì ïðîìåíå"
+msgstr "Која страна има новији датум промене"
 
 #: Merge.rc:3AF5EAD7
 #, c-format
 msgid "Left side file version, only for some filetypes."
-msgstr "Èçäàœå íà ëåâî¼ ñòðàíè ¼å ñàìî çà íåêå âðñòå äàòîòåêå"
+msgstr "Издање на левој страни је само за неке врсте датотеке"
 
 #: Merge.rc:7413D0D6
 #, c-format
 msgid "Right side file version, only for some filetypes."
-msgstr "Èçäàœå íà äåñíî¼ ñòðàíè ¼å ñàìî çà íåêå âðñòå äàòîòåêå"
+msgstr "Издање на десној страни је само за неке врсте датотеке"
 
 #: Merge.rc:5EB13952
 #, c-format
@@ -4148,17 +4125,17 @@ msgstr ""
 #: Merge.rc:43600E91
 #, c-format
 msgid "Short comparison result."
-msgstr "Êðàžè ðåçóëòàò ïîðååœà"
+msgstr "Краћи резултат поређења"
 
 #: Merge.rc:20155F59
 #, c-format
 msgid "Left side attributes."
-msgstr "Îñîáèíå ëåâå ñòðàíå"
+msgstr "Особине леве стране"
 
 #: Merge.rc:6DBD6124
 #, c-format
 msgid "Right side attributes."
-msgstr "Îñîáèíå äåñíå ñòðàíå"
+msgstr "Особине десне стране"
 
 #: Merge.rc:7F2E4119
 #, c-format
@@ -4168,12 +4145,12 @@ msgstr ""
 #: Merge.rc:703AF3C8
 #, c-format
 msgid "Left side file EOL type"
-msgstr "Íà÷èí çàâðøåòêà ðåäà ëåâå äàòîòåêå"
+msgstr "Начин завршетка реда леве датотеке"
 
 #: Merge.rc:73E9B1DC
 #, c-format
 msgid "Right side file EOL type"
-msgstr "Íà÷èí çàâðøåòêà ðåäà äåñíå äàòîòåêå"
+msgstr "Начин завршетка реда десне датотеке"
 
 #: Merge.rc:6CA26873
 #, c-format
@@ -4183,12 +4160,12 @@ msgstr ""
 #: Merge.rc:5BCDF0E8
 #, c-format
 msgid "Left side encoding."
-msgstr "Êîäèðàœå ëåâå ñòðàíå"
+msgstr "Кодирање леве стране"
 
 #: Merge.rc:52D3F9F7
 #, c-format
 msgid "Right side encoding."
-msgstr "Êîäèðàœå äåñíå ñòðàíå"
+msgstr "Кодирање десне стране"
 
 #: Merge.rc:715905A6
 #, c-format
@@ -4198,47 +4175,47 @@ msgstr ""
 #: Merge.rc:58398DFF
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-msgstr "Áðî¼ çàíåìàðåíèõ ðàçëèêà ó äàòîòåöè.Îâå ðàçëèêå ¼å çàíåìàðèî WinMerge è íå ìîãó áèòè îá¼åäèœåíå"
+msgstr "Број занемарених разлика у датотеци.Ове разлике је занемарио WinMerge и не могу бити обједињене"
 
 #: Merge.rc:6A6D5CB6
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
-msgstr "Áðî¼ ðàçëèêà ó äàòîòåöè.Îâà¼ áðî¼ íå óêšó÷ó¼å çàíåìàðåíå ðàçëèêå"
+msgstr "Број разлика у датотеци.Овај број не укључује занемарене разлике"
 
 #: Merge.rc:A7628EF
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "Ïðèêàçó¼å çâåçäèöó (*), àêî ¼å äàòîòåêà áèíàðíà"
+msgstr "Приказује звездицу (*), ако је датотека бинарна"
 
 #: Merge.rc:1AC98D0D
 #, c-format
 msgid "Compare %1 with %2"
-msgstr "Óïîðåäè %1 ñà %2"
+msgstr "Упореди %1 са %2"
 
 #: Merge.rc:E9A77F2
 #, c-format
 msgid "Comma-separated list"
-msgstr "Ñïèñàê ¼å îäâî¼åí çàðåçîì"
+msgstr "Списак је одвојен зарезом"
 
 #: Merge.rc:5CCED709
 #, c-format
 msgid "Tab-separated list"
-msgstr "Ñïèñàê ¼å îäâî¼åí ¼åçè÷êîì"
+msgstr "Списак је одвојен језичком"
 
 #: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Simple HTML"
-msgstr "£åäíîñòàâíè HTML"
+msgstr "Једноставни HTML"
 
 #: Merge.rc:751AB591
 #, c-format
 msgid "Simple XML"
-msgstr "£åäíîñòàâíè XML"
+msgstr "Једноставни XML"
 
 #: Merge.rc:67FDA050
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "Äàòîòåêà èçâåøòà¼à âåž ïîñòî¼è.Äà ëè æåëèòå çàìåíèòè ïîñòî¼åžó äàòîòåêó"
+msgstr "Датотека извештаја већ постоји.Да ли желите заменити постојећу датотеку"
 
 #: Merge.rc:630F8340
 #, c-format
@@ -4246,33 +4223,33 @@ msgid ""
 "Error creating the report:\n"
 "%1"
 msgstr ""
-"Ãðåøêà ïðè ïðàâšåœó èçâåøòà¼à:\n"
+"Грешка при прављењу извештаја:\n"
 "%1"
 
 #: Merge.rc:37B243DF
 #, c-format
 msgid "The report has been created successfully."
-msgstr "Èçâåøòà¼ ¼å óñïåøíî íàïðàâšåí"
+msgstr "Извештај је успешно направљен"
 
 #: Merge.rc:162B12F9
 #, c-format
 msgid "The same file is opened in both panels."
-msgstr "Èñòà äàòîòåêà ¼å îòâîðåíà ó îáå òàáëå"
+msgstr "Иста датотека је отворена у обе табле"
 
 #: Merge.rc:7632E88D
 #, c-format
 msgid "The selected files are identical."
-msgstr "Èçàáðàíå äàòîòåêå ñó èñòå"
+msgstr "Изабране датотеке су исте"
 
 #: Merge.rc:44565DBD
 #, c-format
 msgid "An error occurred while comparing the files."
-msgstr "Äîøëî ¼å äî ãðåøêå ïðè ïîðååœó"
+msgstr "Дошло је до грешке при поређењу"
 
 #: Merge.rc:5F16D9DC
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "Ïðèâðåìåíà äàòîòåêà íå ìîæå áèòè ñòâîðåíà.Ïðîâåðèòå è ïîäåñèòå ïðèâðåìåíó ïóòàœó"
+msgstr "Привремена датотека не може бити створена.Проверите и подесите привремену путању"
 
 #: Merge.rc:11E6F584
 #, c-format
@@ -4283,21 +4260,21 @@ msgid ""
 "\n"
 "Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
-"Îâå äàòîòåêå ñå ðàçëèêó¼ó ïðåìà ïðåëàñêó ó äðóãè ðåä.\n"
+"Ове датотеке се разликују према преласку у други ред.\n"
 "\n"
-"Äà ëè æåëèòå çàäðæàòè ðàçëè÷èòå ïðåëàñêå ó äðóãè ðåä?\n"
+"Да ли желите задржати различите преласке у други ред?\n"
 "\n"
-"Íàïîìåíà:Æåëèòå ëè óâåê çàäðæàòè ðàçëè÷èòå ïðåëàñêà ó äðóãè ðåä, îäàáåðèòå 'Çàíåìàðè ðàçëè÷èòå ïðåëàñêå ó äðóãè ðåä..' ó äè¼àëîøêî¼ êàðòèöè ïîðååœå ïðîçîðà (Óðåèâàœå/Ïîñòàâêå)"
+"Напомена:Желите ли увек задржати различите преласка у други ред, одаберите 'Занемари различите преласке у други ред..' у дијалошкој картици поређење прозора (Уређивање/Поставке)"
 
 #: Merge.rc:46FB8639
 #, c-format
 msgid "The selected folder is invalid."
-msgstr "Îäàáðàíà ôàñöèêëà ¼å íåóïîòðåášèâà"
+msgstr "Одабрана фасцикла је неупотребљива"
 
 #: Merge.rc:4BC3EDDB
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "Íå ìîãó îòâîðèòè áèíàðíó äàòîòåêó ó óðåèâà÷ó"
+msgstr "Не могу отворити бинарну датотеку у уређивачу"
 
 #: Merge.rc:279EB840
 #, c-format
@@ -4308,11 +4285,11 @@ msgid ""
 "%1\n"
 "to the other side and open these folders?"
 msgstr ""
-"Ôàñöèêëà ïîñòî¼è ñàìî íà äðóãî¼ ñòðàíè è íå ìîæå ñå îòâîðèòè.\n"
+"Фасцикла постоји само на другој страни и не може се отворити.\n"
 "\n"
-"Äà ëè æåëèòå ñòâîðèòè óïîðåäíó ôàñöèêëó:\n"
+"Да ли желите створити упоредну фасциклу:\n"
 "%1\n"
-"íà äðóãî¼ ñòðàíè è îòâîðèòè ¼å?"
+"на другој страни и отворити је?"
 
 #: Merge.rc:36F211E1
 #, c-format
@@ -4336,19 +4313,13 @@ msgstr ""
 
 #: Merge.rc:4A700AB0
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
-"Ðàçëè÷èòå êîäíå ñòðàíå íàåíå ñó ó ëåâî¼ (cp%d) è äåñíî¼ (cp%d) äàòîòåöè. \n"
-"Ïðèêàç ñâàêå äàòîòåêå ó êîäíî¼ ñòðàíèöè ¼å áîšè àëè ñïà¼àœå/óìíîæàâàœå íîñè îïàñíîñò.\n"
-"Æåëèòå ëè äà óçìåòå îáå äàòîòåêå êàî ó ïîäðàçóìåâàíîì ïðîçîðó êîäíå ñòðàíèöå (ïðåïîðó÷åíî)?"
 
 #: Merge.rc:5851E4C8
 #, c-format
 msgid "Information lost due to encoding errors: both files"
-msgstr "Ïîäàöè ñó èçãóášåíè çáîã ãðåøêå ïðè êîäèðàœó: îáå äàòîòåêå"
+msgstr "Подаци су изгубљени због грешке при кодирању: обе датотеке"
 
 #: Merge.rc:5851E4C9
 #, c-format
@@ -4368,22 +4339,22 @@ msgstr ""
 #: Merge.rc:7D4E76C0
 #, c-format
 msgid "No difference"
-msgstr "Íåìà ðàçëèêå"
+msgstr "Нема разлике"
 
 #: Merge.rc:71676C4A
 #, c-format
 msgid "Line difference"
-msgstr "Ðàçëè÷èòè ðåä"
+msgstr "Различити ред"
 
 #: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
-msgstr "Çàìåœåí %1 ïî¼àì(à)"
+msgstr "Замењен %1 појам(а)"
 
 #: Merge.rc:334E25B3
 #, c-format
 msgid "Cannot find string \"%s\""
-msgstr "Íå ìîãó íàžè ïî¼àì \"%s\""
+msgstr "Не могу наћи појам \"%s\""
 
 #: Merge.rc:34855CF1
 #, c-format
@@ -4418,77 +4389,77 @@ msgstr ""
 #: Merge.rc:5C8E17D1
 #, c-format
 msgid "Location Pane"
-msgstr "Ïîëîæà¼ òàáëè"
+msgstr "Положај табли"
 
 #: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
-msgstr "Ðàçëè÷èòå òàáëå"
+msgstr "Различите табле"
 
 #: Merge.rc:3BDD62C4
 #, c-format
 msgid "Patch file successfully written."
-msgstr "Äàòîòåêà ðàçëèêà ¼å óñïåøíî ñà÷óâàíà"
+msgstr "Датотека разлика је успешно сачувана"
 
 #: Merge.rc:74C5055A
 #, c-format
 msgid "1. item is not found or is directory!"
-msgstr "1. ñòàâêà èëè ôàñöèêëà íè¼å ïðîíàåíà!"
+msgstr "1. ставка или фасцикла није пронађена!"
 
 #: Merge.rc:7EFD4961
 #, c-format
 msgid "2. item is not found or is directory!"
-msgstr "2. ñòàâêà èëè ôàñöèêëà íè¼å ïðîíàåíà!"
+msgstr "2. ставка или фасцикла није пронађена!"
 
 #: Merge.rc:E611488
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "Äàòîòåêà ðàçëèêà âåž ïîñòî¼è.Äà ëè æåëèòå äà je çàìåíèòå?"
+msgstr "Датотека разлика већ постоји.Да ли желите да je замените?"
 
 #: Merge.rc:62226073
 #, c-format
 msgid "[%1 files selected]"
-msgstr "[%1 îäàáðàíà äàòîòåêà"
+msgstr "[%1 одабрана датотека"
 
 #: Merge.rc:27AFDB30
 #, c-format
 msgid "Normal"
-msgstr "Óîáè÷à¼åí"
+msgstr "Уобичајен"
 
 #: Merge.rc:7E5494F7
 #, c-format
 msgid "Context"
-msgstr "Ó îêâèðó"
+msgstr "У оквиру"
 
 #: Merge.rc:24173EE8
 #, c-format
 msgid "Unified"
-msgstr "Îá¼åäèœåí"
+msgstr "Обједињен"
 
 #: Merge.rc:185B8391
 #, c-format
 msgid "Could not write to file %1."
-msgstr "Íå ìîãó ñà÷óâàòè ó äàòîòåöè %1"
+msgstr "Не могу сачувати у датотеци %1"
 
 #: Merge.rc:64D049AA
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
-msgstr "Íàâåäåíà èçëàçíà ïóòàœà íè¼å ïîòïóíà ïóòàœà: %1"
+msgstr "Наведена излазна путања није потпуна путања: %1"
 
 #: Merge.rc:44EE84AA
 #, c-format
 msgid "Specify an output file"
-msgstr "Îäðåäèòå èçëàçíó äàòîòåêó"
+msgstr "Одредите излазну датотеку"
 
 #: Merge.rc:54711616
 #, c-format
 msgid "Cannot create a patch file from binary files."
-msgstr "Íå ìîæå ñòâîðèòè äàòîòåêó ðàçëèêà èç áèíàðíèõ äàòîòåêà"
+msgstr "Не може створити датотеку разлика из бинарних датотека"
 
 #: Merge.rc:133D7451
 #, c-format
 msgid "Cannot create a patch file from directories."
-msgstr "Íå ìîæå ïîïðàâèòè äàòîòåêó èç ôàñöèêëè"
+msgstr "Не може поправити датотеку из фасцикли"
 
 #: Merge.rc:34FF26C7
 #, c-format
@@ -4497,14 +4468,14 @@ msgid ""
 "\n"
 "Creating a patch requires that there are no unsaved changes in files."
 msgstr ""
-"Ñà÷óâà¼òå ïðâî ñâå äàòîòåêå.\n"
+"Сачувајте прво све датотеке.\n"
 "\n"
-"Ñòâàðàœå äàòîòåêå ðàçëèêà çàõòåâà äà ïîñòî¼å ïðîìåíå êî¼å íèñó ñà÷óâàíå ó äàòîòåêàìà"
+"Стварање датотеке разлика захтева да постоје промене које нису сачуване у датотекама"
 
 #: Merge.rc:576FB6D3
 #, c-format
 msgid "Folder does not exist."
-msgstr "Ôàñöèêëà íå ïîñòî¼è"
+msgstr "Фасцикла не постоји"
 
 #: Merge.rc:3377B7B5
 #, c-format
@@ -4513,39 +4484,39 @@ msgid ""
 "All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
 "See manual for more info about archive support and how to enable it."
 msgstr ""
-"Ðàä ñà àðõèâàìà ¼å îíåìîãóžåí.\n"
-"Ñâå ïîòðåáíå êîìïîíåíòå (7-zip è/èëè Merge7z*.dll)çà àðõèâó íå ìîãó áèòè íàåíå.\n"
-"Ïîãëåäà¼òå óïóòñòâî êàêî îìîãóžèòè ðàä ñà àðõèâàìà"
+"Рад са архивама је онемогућен.\n"
+"Све потребне компоненте (7-zip и/или Merge7z*.dll)за архиву не могу бити нађене.\n"
+"Погледајте упутство како омогућити рад са архивама"
 
 #: Merge.rc:44EE84AB
 #, c-format
 msgid "Select file for export"
-msgstr "Îäàáåðè äàòîòåêó çà èçâîç"
+msgstr "Одабери датотеку за извоз"
 
 #: Merge.rc:44EE84AC
 #, c-format
 msgid "Select file for import"
-msgstr "Îäàáåðè äàòîòåêó çà óâîç"
+msgstr "Одабери датотеку за увоз"
 
 #: Merge.rc:447FB30
 #, c-format
 msgid "Options imported from the file."
-msgstr "Óâîç ïîñòàâêè ó äàòîòåêó"
+msgstr "Увоз поставки у датотеку"
 
 #: Merge.rc:44776ACF
 #, c-format
 msgid "Options exported to the file."
-msgstr "Èçâîç ïîñòàâêè ó äàòîòåêó"
+msgstr "Извоз поставки у датотеку"
 
 #: Merge.rc:7D23E524
 #, c-format
 msgid "Failed to import options from the file."
-msgstr "Íè¼å óñïåî äà óâåçå ïîñòàâêå èç äàòîòåêå"
+msgstr "Није успео да увезе поставке из датотеке"
 
 #: Merge.rc:68F9158
 #, c-format
 msgid "Failed to write options to the file."
-msgstr "Íè¼å óñïåî äà çàïàìòè ïîñòàâêå ó äàòîòåöè"
+msgstr "Није успео да запамти поставке у датотеци"
 
 #: Merge.rc:404DAD7D
 #, c-format
@@ -4554,9 +4525,9 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
-"Çàòâîðèòå íåêîëèêî ïðîçîðà ïîðååœà.\n"
+"Затворите неколико прозора поређења.\n"
 "\n"
-"Äà ëè æåëèòå íàñòàâèòè?"
+"Да ли желите наставити?"
 
 #: Merge.rc:7C664E2
 #, c-format
@@ -4566,27 +4537,27 @@ msgstr "Mixed"
 #: Merge.rc:46FCCCF
 #, c-format
 msgid "None"
-msgstr "Íèøòà"
+msgstr "Ништа"
 
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
-msgstr "Âðñòà"
+msgstr "Врста"
 
 #: Merge.rc:5ED09E18
 #, c-format
 msgid "Unpacker"
-msgstr "Ðàñïàêèâàœå"
+msgstr "Распакивање"
 
 #: Merge.rc:37C6B9B8
 #, c-format
 msgid "Prediffer"
-msgstr "Äåôèíèñàíî ïîðååœå"
+msgstr "Дефинисано поређење"
 
 #: Merge.rc:29ECCB83
 #, c-format
 msgid "Editor script"
-msgstr "Óðåèâà÷ ðóêîïèñà"
+msgstr "Уређивач рукописа"
 
 #: Merge.rc:51A4FE5F
 #, c-format
@@ -4676,27 +4647,27 @@ msgstr ""
 #: Merge.rc:6107F02B
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "Ïðèëàãîåíî ðàñïàêèâàœå žå ñå êîðèñòèòè çà îáå äàòîòåêå (¼åäíà äàòîòåêà òðåáà íàñòàâàê)"
+msgstr "Прилагођено распакивање ће се користити за обе датотеке (једна датотека треба наставак)"
 
 #: Merge.rc:429CABF5
 #, c-format
 msgid "No prediffer (normal)"
-msgstr "Íåìà äåôèíèñàíîã ïîðååœà (óîáè÷à¼åíî)"
+msgstr "Нема дефинисаног поређења (уобичајено)"
 
 #: Merge.rc:62909ED8
 #, c-format
 msgid "Suggested plugins"
-msgstr "Ïðåïîðó÷åíè äîäàöè"
+msgstr "Препоручени додаци"
 
 #: Merge.rc:4DAEA639
 #, c-format
 msgid "Other plugins"
-msgstr "Îñòàëè äîäàöè"
+msgstr "Остали додаци"
 
 #: Merge.rc:2A918FD6
 #, c-format
 msgid "Private Build: %1"
-msgstr "Ëè÷íà èçðàäà: %1"
+msgstr "Лична израда: %1"
 
 #: Merge.rc:40D543C8
 #, c-format
@@ -4716,47 +4687,47 @@ msgstr ""
 #: Merge.rc:55B03C14
 #, c-format
 msgid "Plugin Settings"
-msgstr "Ïîäåøàâàœà äîäàòàêà"
+msgstr "Подешавања додатака"
 
 #: Merge.rc:791F1E67
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH íè¼å íàåí - .sct ñêðèïòå ñó îíåìîãóžåíå"
+msgstr "WSH није нађен - .sct скрипте су онемогућене"
 
 #: Merge.rc:4FC259D5
 #, c-format
 msgid "<None>"
-msgstr "<Íèøòà>"
+msgstr "<Ништа>"
 
 #: Merge.rc:8BF6984
 #, c-format
 msgid "<Automatic>"
-msgstr "<Àóòîìàòñêè>"
+msgstr "<Аутоматски>"
 
 #: Merge.rc:4AAD2A74
 #, c-format
 msgid "G&oto Line %1"
-msgstr "È&äè íà ðåä %1"
+msgstr "И&ди на ред %1"
 
 #: Merge.rc:7F0D4B47
 #, c-format
 msgid "Disabled"
-msgstr "Îíåìîãóžè"
+msgstr "Онемогући"
 
 #: Merge.rc:444C5DDD
 #, c-format
 msgid "From file system"
-msgstr "Îä ñèñòåìà"
+msgstr "Од система"
 
 #: Merge.rc:7A4CFAFE
 #, c-format
 msgid "From MRU list"
-msgstr "Èç MRU ñïèñêà"
+msgstr "Из MRU списка"
 
 #: Merge.rc:638BD42D
 #, c-format
 msgid "No Highlighting"
-msgstr "Íè¼å îçíà÷åíî"
+msgstr "Није означено"
 
 #: Merge.rc:7460E8C0
 #, c-format
@@ -4766,7 +4737,7 @@ msgstr "Batch"
 #: Merge.rc:55B03C15
 #, c-format
 msgid "Portable Object"
-msgstr "Ïðåíîñíè îá¼åêàò"
+msgstr "Преносни објекат"
 
 #: Merge.rc:5F87E5E
 #, c-format
