@@ -1,4 +1,4 @@
-# This file is part from WinMerge <http://winmerge.org/>
+﻿# This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -4970,3 +4970,4 @@ msgstr ""
 "Ni kan ange följande parametrar för sökvägen:\n"
 "$file: Sökvägsnamnet för nuvarande fil\n"
 "$linenum: Linjenumret för markörens nuvarande position"
+
