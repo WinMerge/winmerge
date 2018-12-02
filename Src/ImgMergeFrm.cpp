@@ -82,8 +82,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
-	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_HEX, OnFileRecompare)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_HEX, OnUpdateFileRecompare)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateFileRecompareAs)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
@@ -862,7 +862,7 @@ void CImgMergeFrame::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_pImgMergeWindow->GetReadOnly(m_pImgMergeWindow->GetPaneCount() - 1));
 }
 
-void CImgMergeFrame::OnFileRecompare(UINT nId)
+void CImgMergeFrame::OnFileRecompareAs(UINT nId)
 {
 	FileLocation fileloc[3];
 	DWORD dwFlags[3];
@@ -881,9 +881,11 @@ void CImgMergeFrame::OnFileRecompare(UINT nId)
 		GetMainFrame()->ShowMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
 	else if (nId == ID_MERGE_COMPARE_HEX)
 		GetMainFrame()->ShowHexMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	else
+		GetMainFrame()->ShowImgMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
 }
 
-void CImgMergeFrame::OnUpdateFileRecompare(CCmdUI* pCmdUI)
+void CImgMergeFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_XML);
 }

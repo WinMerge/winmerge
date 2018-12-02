@@ -92,6 +92,7 @@ private:
 	void DoFileSave(int nBuffer);
 	void DoFileSaveAs(int nBuffer);
 	HRESULT LoadOneFile(int index, LPCTSTR filename, bool readOnly, const String& strDesc);
+	void RecompareAs(UINT id);
 // Implementation data
 protected:
 	CHexMergeView * m_pView[3]; /**< Pointer to left/right view */
@@ -125,7 +126,8 @@ protected:
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
 	afx_msg void OnRefresh();
-	afx_msg void OnFileRecompareAsText();
+	afx_msg void OnFileRecompareAs(UINT nID);
+	afx_msg void OnUpdateFileRecompareAs(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
