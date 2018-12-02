@@ -116,7 +116,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
 	ON_COMMAND(IDOK, OnOK)
 	ON_COMMAND(ID_MERGE_COMPARE_XML, OnFileRecompareAsXML)
-	ON_COMMAND(ID_MERGE_COMPARE_HEX, OnFileRecompareAsBinary)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3067,18 +3067,7 @@ void CMergeDoc::OnBnClickedPlugin()
 
 void CMergeDoc::OnBnClickedHexView()
 {
-	DWORD dwFlags[3] = { 0 };
-	FileLocation fileloc[3];
-	for (int pane = 0; pane < m_nBuffers; pane++)
-	{
-		fileloc[pane].setPath(m_filePaths[pane]);
-		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
-	}
-	if (m_pEncodingErrorBar && m_pEncodingErrorBar->IsWindowVisible())
-		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
-	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
-	GetParentFrame()->ShowWindow(SW_RESTORE);
-	GetParentFrame()->DestroyWindow();
+	OnFileRecompareAs(ID_MERGE_COMPARE_HEX);
 }
 
 void CMergeDoc::OnOK()
@@ -3093,9 +3082,23 @@ void CMergeDoc::OnFileRecompareAsXML()
 	OnFileReload();
 }
 
-void CMergeDoc::OnFileRecompareAsBinary()
+void CMergeDoc::OnFileRecompareAs(UINT nID)
 {
-	OnBnClickedHexView();
+	DWORD dwFlags[3] = { 0 };
+	FileLocation fileloc[3];
+	for (int pane = 0; pane < m_nBuffers; pane++)
+	{
+		fileloc[pane].setPath(m_filePaths[pane]);
+		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
+	}
+	if (m_pEncodingErrorBar && m_pEncodingErrorBar->IsWindowVisible())
+		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+	if (nID == ID_MERGE_COMPARE_HEX)
+		GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
+	else
+		GetMainFrame()->ShowImgMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
+	GetParentFrame()->ShowWindow(SW_RESTORE);
+	GetParentFrame()->DestroyWindow();
 }
 
 // Return file extension either from file name 
