@@ -112,7 +112,8 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
-	ON_COMMAND(ID_MERGE_COMPARE_TEXT, OnFileRecompareAsText)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateFileRecompareAs)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -816,7 +817,7 @@ void CHexMergeDoc::OnRefresh()
 		LangMessageBox(IDS_FILESSAME, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN);
 }
 
-void CHexMergeDoc::OnFileRecompareAsText()
+void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 {
 	FileLocation fileloc[3];
 	DWORD dwFlags[3];
@@ -831,5 +832,14 @@ void CHexMergeDoc::OnFileRecompareAsText()
 		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
 	CloseNow();
-	GetMainFrame()->ShowMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	if (nID == ID_MERGE_COMPARE_TEXT)
+		GetMainFrame()->ShowMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
+	else
+		GetMainFrame()->ShowImgMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc);
 }
+
+void CHexMergeDoc::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(pCmdUI->m_nID != ID_MERGE_COMPARE_XML);
+}
+
