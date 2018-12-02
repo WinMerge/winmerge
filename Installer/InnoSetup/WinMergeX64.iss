@@ -147,7 +147,7 @@ Name: Norwegian; MessagesFile: ..\..\Translations\InnoSetup\Norwegian.isl
 Name: Persian; MessagesFile: ..\..\Translations\InnoSetup\Persian.isl
 Name: Polish; MessagesFile: ..\..\Translations\InnoSetup\Polish.isl
 Name: Portuguese; MessagesFile: ..\..\Translations\InnoSetup\Portuguese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Portuguese.txt
-Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt
+Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt
 Name: Romanian; MessagesFile: ..\..\Translations\InnoSetup\Romanian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Romanian.txt
 Name: Russian; MessagesFile: ..\..\Translations\InnoSetup\Russian.isl
 Name: Serbian; MessagesFile: ..\..\Translations\InnoSetup\Serbian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt
