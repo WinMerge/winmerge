@@ -568,7 +568,8 @@ SelectAll ()
   int nLineCount = GetLineCount ();
   m_ptCursorPos.x = GetLineLength (nLineCount - 1);
   m_ptCursorPos.y = nLineCount - 1;
-  SetSelection (CPoint (0, 0), m_ptCursorPos);
+  m_ptAnchor = CPoint (0, 0);
+  SetSelection (m_ptAnchor, m_ptCursorPos);
   UpdateCaret ();
 }
 
@@ -678,6 +679,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
               ptEnd = m_ptCursorPos;
             }
 
+		  m_ptAnchor = ptStart;
           m_ptCursorPos = ptEnd;
           UpdateCaret ();
           EnsureVisible (m_ptCursorPos);
@@ -789,6 +791,7 @@ OnMouseMove (UINT nFlags, CPoint point)
           ptEnd = ptNewCursorPos;
         }
 
+	  m_ptAnchor = ptStart;
       m_ptCursorPos = ptEnd;
       UpdateCaret ();
       SetSelection (ptStart, ptEnd);
@@ -903,6 +906,7 @@ OnLButtonUp (UINT nFlags, CPoint point)
               ptEnd = m_ptCursorPos;
             }
 
+          m_ptAnchor = ptStart;
           m_ptCursorPos = ptEnd;
           EnsureVisible (m_ptCursorPos);
           UpdateCaret ();
@@ -1051,6 +1055,7 @@ OnLButtonDblClk (UINT nFlags, CPoint point)
           ptEnd = WordToRight (m_ptCursorPos);
         }
 
+	  m_ptAnchor = ptStart;
       m_ptCursorPos = ptEnd;
       UpdateCaret ();
       EnsureVisible (m_ptCursorPos);
