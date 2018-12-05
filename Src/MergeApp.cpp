@@ -185,6 +185,6 @@ AboutInfo::AboutInfo()
 
 	website = WinMergeURL;
 
-	developers = _("Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner");
+	developers = _("Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner");
 	strutils::replace(developers, _T(", "), _T("\n"));
 }
