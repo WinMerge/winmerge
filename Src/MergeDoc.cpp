@@ -2022,46 +2022,14 @@ void CMergeDoc::PrimeTextBuffers()
 
 	m_diffList.ConstructSignificantChain();
 
-#if 0 // comment out to fix the github issue #106
-	// Buffers `m_ptBuf[]` may have a final line entry that is <null>.
-	// (a) If ALL buffers have that final <null>, remove them all.
-	// (b) If only SOME have that final <null>, change those <null>
-	//		lines into proper ghost-image lines.
-	// Note too: By this point all buffers must have the same number 
-	//		of line entries; eventual buffer processing typically
+#ifdef _DEBUG
+	// Note: By this point all `m_ptBuf[]` buffers must have the same  
+	//		number of line entries; eventual buffer processing typically
 	//		uses the line count from `m_ptBuf[0]` for all buffer processing.
 
-	int nFinalNullLines = 0;	
 	for (file = 0; file < m_nBuffers; file++)
 	{
-		// First, decide how many buffers have a final <null> line.
 		ASSERT(m_ptBuf[0]->GetLineCount() == m_ptBuf[file]->GetLineCount());
-		if (m_ptBuf[file]->GetLineChars(m_ptBuf[file]->GetLineCount()-1) == nullptr)
-			nFinalNullLines++;
-	}
-	if (nFinalNullLines != 0)
-	{
-		// Some (maybe all) of the buffers have a final <null> line.
-		// Handle them (per comment above) in the loop below.
-		for (file = 0; file < m_nBuffers; file++)
-		{
-			UINT LastLineInx = m_ptBuf[file]->GetLineCount() - 1;
-			if (m_ptBuf[file]->GetLineChars(LastLineInx) == nullptr)
-				if (nFinalNullLines == m_nBuffers)
-				{
-					// ALL buffers have a final <null> line; discard them.
-					m_ptBuf[file]->m_aLines.resize(m_ptBuf[file]->GetLineCount() - 1);
-				}
-				else
-				{
-					// Only SOME buffers have final <null> line; set them to a valid GHOST line.
-					// And copy the LF_SNP flag from the previous line (if it exists).
-					DWORD dFlags = (LastLineInx > 0 ? m_ptBuf[file]->GetLineFlags(LastLineInx-1) & LF_SNP : 0) | LF_GHOST;
-					m_ptBuf[file]->SetEmptyLine(LastLineInx, 1);
-					m_ptBuf[file]->SetLineFlag(LastLineInx, dFlags, true, false, false);
-				}
-			ASSERT(m_ptBuf[0]->GetLineCount() == m_ptBuf[file]->GetLineCount());
-		}
 	}
 #endif
 
