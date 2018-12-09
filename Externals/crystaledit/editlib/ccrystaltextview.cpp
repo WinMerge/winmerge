@@ -4855,7 +4855,7 @@ HighlightText (const CPoint & ptStartPos, int nLength,
   ASSERT_VALIDTEXTPOS (m_ptCursorPos);  //  Probably 'nLength' is bigger than expected...
 
   m_ptCursorPos = bCursorToLeft ? ptStartPos : ptEndPos;
-  m_ptAnchor = m_ptCursorPos;
+  m_ptAnchor = bCursorToLeft ? ptEndPos : ptStartPos;
   SetSelection (ptStartPos, ptEndPos);
   UpdateCaret ();
   
