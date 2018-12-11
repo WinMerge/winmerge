@@ -849,6 +849,7 @@ public :
     virtual void SetCursorPos (const CPoint & ptCursorPos);
     void ShowCursor ();
     void HideCursor ();
+	CPoint GetAnchor() const { return m_ptAnchor; }
     void SetNewAnchor (const CPoint & ptNewAnchor) { SetAnchor(ptNewAnchor); }
     void SetNewSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView = true) { SetSelection(ptStart, ptEnd, bUpdateView); }
 
