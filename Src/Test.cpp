@@ -6,6 +6,7 @@
 #include "MainFrm.h"
 #include "MergeDoc.h"
 #include "ccrystaltextview.h"
+#include "cfindtextdlg.h"
 #include "MergeEditView.h"
 #include "DirDoc.h"
 #include "DirView.h"
@@ -26,6 +27,18 @@ String getProjectRoot()
 #else
 	return paths::ConcatPath(env::GetProgPath(), L"../../");
 #endif
+}
+
+void Wait(unsigned ms)
+{
+	unsigned start = GetTickCount();
+	while (GetTickCount() - start < ms)
+	{
+		MSG msg;
+		if (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
+			AfxGetApp()->PumpMessage();
+		Sleep(1);
+	}
 }
 
 TEST(CodepageTest, UCS2)
@@ -92,6 +105,87 @@ TEST(SyntaxHighlight, Verilog)
 	blocks = pDoc->GetView(0, 0)->GetTextBlocks(38);
 	EXPECT_EQ(COLORINDEX_USER1, blocks[1].m_nColorIndex);
 	EXPECT_EQ(COLORINDEX_STRING, blocks[3].m_nColorIndex);
+
+	pFrame->PostMessage(WM_CLOSE);
+	dlg.SetFormerResult(nPrevFormerResult);
+}
+
+TEST(FileCompare, FindText)
+{
+	String projectRoot = getProjectRoot();
+	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
+	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
+	CMergeDoc *pDoc = nullptr;
+	CFrameWnd *pFrame = nullptr;
+	PathContext tFiles = {
+		paths::ConcatPath(projectRoot, _T("Testing/Data/FindText/test1.txt")),
+		paths::ConcatPath(projectRoot, _T("Testing/Data/FindText/test1.txt")),
+	};
+	EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
+	pFrame = GetMainFrame()->GetActiveFrame();
+	pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	EXPECT_NE(nullptr, pDoc);
+	if (pDoc == nullptr)
+		return;
+
+	CMergeEditView *pView = pDoc->GetView(0, 0);
+
+	CString lines, lineslower;
+	pView->GetTextWithoutEmptys(0, 0, pView->GetLineCount() - 1, pView->GetLineLength(pView->GetLineCount() - 1), lines);
+	lineslower = lines;
+	lineslower.MakeLower();
+
+	CPoint pt, ptFound;
+	DWORD dwFlags = 0;
+	LastSearchInfos lsi = { 0 };
+	CPoint ptstart, ptstart2, ptend;
+
+	for (int direction : { 1, 0 })
+	{
+		for (bool useregex : { false, true })
+		{
+			for (bool matchcase : { true, false })
+			{
+				for (CString text : { _T("a"), _T("abc")})
+				{
+					size_t count = 0;
+					int pos = 0;
+					while (true)
+					{
+						pos = (matchcase ? lines : lineslower).Find(text, pos);
+						if (pos < 0)
+							break;
+						pos += text.GetLength();
+						count++;
+					}
+					pView->SetCursorPos({ 0, 0 });
+					pView->SetNewAnchor({ 0, 0 });
+					pView->SetNewSelection({ 0, 0 }, { 0, 0 });
+					lsi.m_sText = text;
+					lsi.m_bNoWrap = false;
+					lsi.m_bMatchCase = matchcase;
+					lsi.m_nDirection = direction;
+					lsi.m_bRegExp = useregex;
+					for (size_t i = 0; i < count; ++i)
+					{
+						pView->FindText(&lsi);
+						if (i == 0)
+							ptstart = pView->GetAnchor();
+						Wait(1);
+					}
+					ptend = pView->GetAnchor();
+					pView->FindText(&lsi);
+					ptstart2 = pView->GetAnchor();
+					if (direction == 0)
+						EXPECT_LT(ptend.y, ptstart2.y);
+					else
+						EXPECT_GT(ptend.y, ptstart2.y);
+					EXPECT_EQ(ptstart.y, ptstart2.y);
+					EXPECT_EQ(text.MakeLower(), pView->GetSelectedText().MakeLower());
+				}
+			}
+		}
+	}
 
 	pFrame->PostMessage(WM_CLOSE);
 	dlg.SetFormerResult(nPrevFormerResult);

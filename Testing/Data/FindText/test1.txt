@@ -8,5 +8,5 @@ a------
   aaa
  aa
 a
-abcabcabc
-ABCABCABC
+abcABCabc
+ABCabcABC
