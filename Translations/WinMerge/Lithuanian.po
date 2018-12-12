@@ -172,8 +172,8 @@ msgid "&Open...\tCtrl+O"
 msgstr "&Atverti...\tCtrl+O"
 
 #: Merge.rc:6829F68F
-msgid "Op&en Conflict File..."
-msgstr "Atv&erti konfliktų failą..."
+msgid "Open Conflic&t File..."
+msgstr "Atver&ti konfliktų failą..."
 
 #: Merge.rc:5869BBD
 msgid "Open Pro&ject...\tCtrl+J"
@@ -532,8 +532,8 @@ msgid "&Print..."
 msgstr "S&pausdinti..."
 
 #: Merge.rc:60FF375A
-msgid "Page Se&tup"
-msgstr "Puslapio nuos&tatos"
+msgid "Page Set&up"
+msgstr "P&uslapio nuostatos"
 
 #: Merge.rc:23CBE0E5
 msgid "Print Previe&w"
@@ -570,6 +570,10 @@ msgstr "&XML"
 #: Merge.rc:89AF4F8
 msgid "&Binary"
 msgstr "&Binarinis"
+
+#: Merge.rc:1D2E49FA
+msgid "&Image"
+msgstr "Va&izdas"
 
 #: Merge.rc:6E470BE9
 msgid "&Undo\tCtrl+Z"
@@ -921,7 +925,7 @@ msgstr "&Kairį"
 msgid "&Middle"
 msgstr "&Vidurinį"
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 msgid "&Right"
 msgstr "&Dešinį"
 
@@ -1373,7 +1377,7 @@ msgstr "Naujas"
 msgid "&Background color:"
 msgstr "&Fono spalva:"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 msgid "&Apply"
 msgstr "T&aikyti"
 
@@ -1617,7 +1621,7 @@ msgstr "Ei&lutę"
 msgid "&Difference"
 msgstr "&Skirtumą"
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 msgid "&Go To"
 msgstr "&Pereiti į"
 
@@ -2073,7 +2077,7 @@ msgstr "Rezultatas:"
 msgid "&Test"
 msgstr "&Testuoti"
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 msgid "&Close"
 msgstr "&Užverti"
 
@@ -2384,22 +2388,20 @@ msgstr ""
 "WinMerge katalogų lyginimas"
 
 #: Merge.rc:74BA5C8C
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Kūrėjai:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "„WinMerge“ tiekiama VISIŠKAI BE JOKIŲ GARANTIJŲ. Tai nemokama programinė įranga ir jūs galite ją platinti tam tikromis sąlygomis. Daugiau apie tai rasite „Pagalbos“ meniu punkte „GNU Bendroji viešoji licencija“."
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 msgid "&Abort"
 msgstr "Nutr&aukti"
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 msgid "&Retry"
 msgstr "Ka&rtoti"
 
@@ -4089,10 +4091,6 @@ msgstr "Užverti k&itas korteles"
 #: Merge.rc:3E934E
 msgid "Enable &Auto Max Width"
 msgstr "Įjungti &Automatinį maks. plotį"
-
-#: Merge.rc:1D2E4A00
-msgid "&Image"
-msgstr "Va&izdas"
 
 #: Merge.rc:3D9427A9
 msgid "frhed is not installed"

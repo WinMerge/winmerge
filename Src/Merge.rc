@@ -153,7 +153,7 @@ BEGIN
         MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
         MENUITEM "New (&3 panes)",              ID_FILE_NEW3
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
-        MENUITEM "Op&en Conflict File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -232,7 +232,7 @@ BEGIN
         MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
         MENUITEM "New (&3 panes)",              ID_FILE_NEW3
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
-        MENUITEM "Op&en Conflict File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -369,7 +369,7 @@ BEGIN
         MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
         MENUITEM "New (&3 panes)",              ID_FILE_NEW3
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
-        MENUITEM "Op&en Conflict File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -389,7 +389,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Print...",                   ID_FILE_PRINT
-        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
+        MENUITEM "Page Set&up",                 ID_FILE_PAGE_SETUP
         MENUITEM "Print Previe&w",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         POPUP "&Read-only"

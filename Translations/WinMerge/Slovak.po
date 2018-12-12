@@ -206,8 +206,7 @@ msgid "&Open...\tCtrl+O"
 msgstr "&Otvoriť...\tCtrl+O"
 
 #: Merge.rc:6829F68F
-#, c-format
-msgid "Op&en Conflict File..."
+msgid "Open Conflic&t File..."
 msgstr "&Otvoriť konfliktný súbor..."
 
 #: Merge.rc:5869BBD
@@ -656,8 +655,7 @@ msgid "&Print..."
 msgstr "&Tlačiť..."
 
 #: Merge.rc:60FF375A
-#, c-format
-msgid "Page Se&tup"
+msgid "Page Set&up"
 msgstr "Nastavenie s&tránky"
 
 #: Merge.rc:23CBE0E5
@@ -703,6 +701,11 @@ msgstr "&XML"
 #: Merge.rc:89AF4F8
 #, c-format
 msgid "&Binary"
+msgstr ""
+
+#: Merge.rc:1D2E49FA
+#, c-format
+msgid "&Image"
 msgstr ""
 
 #: Merge.rc:6E470BE9
@@ -1131,7 +1134,7 @@ msgstr "Ľ&avý"
 msgid "&Middle"
 msgstr ""
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Right"
 msgstr "&Pravý"
@@ -1685,7 +1688,7 @@ msgstr "Nový"
 msgid "&Background color:"
 msgstr ""
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Apply"
 msgstr "&Použiť"
@@ -1990,7 +1993,7 @@ msgstr "Riad&ok"
 msgid "&Difference"
 msgstr "&Rozdiel"
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Go To"
 msgstr "&Prejsť na"
@@ -2554,7 +2557,7 @@ msgstr "Výsledok:"
 msgid "&Test"
 msgstr "&Testovať"
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Close"
 msgstr "&Zatvoriť"
@@ -2908,25 +2911,22 @@ msgstr ""
 "Porovnanie priečinkov WinMerge"
 
 #: Merge.rc:74BA5C8C
-#, c-format
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Vývojári:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge sa dodáva BEZ AKEJKOĽVEK ZÁRUKY. Toto je slobodný softvér a môžete ho ďalej šíriť za určitých podmienok; podrobnosti nájdete v menu pomocníka pod GNU General Public License."
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
 msgstr "&Zrušiť"
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
 msgstr "&Znova"
@@ -4804,11 +4804,6 @@ msgstr ""
 #: Merge.rc:3E934E
 #, c-format
 msgid "Enable &Auto Max Width"
-msgstr ""
-
-#: Merge.rc:1D2E4A00
-#, c-format
-msgid "&Image"
 msgstr ""
 
 #: Merge.rc:3D9427A9
