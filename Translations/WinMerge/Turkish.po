@@ -207,8 +207,7 @@ msgid "&Open...\tCtrl+O"
 msgstr "&Aç...\tCtrl+O"
 
 #: Merge.rc:6829F68F
-#, c-format
-msgid "Op&en Conflict File..."
+msgid "Open Conflic&t File..."
 msgstr "&Fark Dosyası Aç..."
 
 #: Merge.rc:5869BBD
@@ -657,8 +656,7 @@ msgid "&Print..."
 msgstr "&Yazdır..."
 
 #: Merge.rc:60FF375A
-#, c-format
-msgid "Page Se&tup"
+msgid "Page Set&up"
 msgstr "&Sayfa Ayarları"
 
 #: Merge.rc:23CBE0E5
@@ -705,6 +703,11 @@ msgstr "&XML"
 #, c-format
 msgid "&Binary"
 msgstr "&Binary"
+
+#: Merge.rc:1D2E49FA
+#, c-format
+msgid "&Image"
+msgstr "&Görsel"
 
 #: Merge.rc:6E470BE9
 #, c-format
@@ -1132,7 +1135,7 @@ msgstr "So&l"
 msgid "&Middle"
 msgstr "&Orta"
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Right"
 msgstr "&Sağ"
@@ -1691,7 +1694,7 @@ msgstr "Yeni"
 msgid "&Background color:"
 msgstr "A&rt Alan Rengi:"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Apply"
 msgstr "&Uygula"
@@ -1996,7 +1999,7 @@ msgstr "&Satır"
 msgid "&Difference"
 msgstr "&Farklılık"
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Go To"
 msgstr "&Git"
@@ -2564,7 +2567,7 @@ msgstr "Sonuç:"
 msgid "&Test"
 msgstr "&Sına"
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Close"
 msgstr "&Kapat"
@@ -2942,15 +2945,11 @@ msgstr ""
 "WinMerge Klasör Karşılaştır"
 
 #: Merge.rc:74BA5C8C
-#, c-format
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Geliştiriciler:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaki, Gal Hammer, Alexander Skinner"
+"Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
@@ -2963,12 +2962,12 @@ msgstr ""
 "altında serbestçe çoğaltıp dağıtabileceğiniz özgür bir yazılımdır. "
 "Ayrıntılar için yardım menüsündeki GNU Genel Kamu Lisansı'na bakın."
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
 msgstr "&Durdur"
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
 msgstr "&Yeniden Dene"
@@ -4975,11 +4974,6 @@ msgstr "&Diğer Sekmeleri Kapat"
 #, c-format
 msgid "Enable &Auto Max Width"
 msgstr "Otom&atik En Fazla Genişlik Kullanılsın"
-
-#: Merge.rc:1D2E4A00
-#, c-format
-msgid "&Image"
-msgstr "&Görsel"
 
 #: Merge.rc:3D9427A9
 #, c-format

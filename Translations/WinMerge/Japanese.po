@@ -206,9 +206,8 @@ msgid "&Open...\tCtrl+O"
 msgstr "開く(&O)...\tCtrl+O"
 
 #: Merge.rc:6829F68F
-#, c-format
-msgid "Op&en Conflict File..."
-msgstr "コンフリクト ファイルを開く(&E)..."
+msgid "Open Conflic&t File..."
+msgstr "コンフリクト ファイルを開く(&T)..."
 
 #: Merge.rc:5869BBD
 #, c-format
@@ -656,9 +655,8 @@ msgid "&Print..."
 msgstr "印刷(&P)..."
 
 #: Merge.rc:60FF375A
-#, c-format
-msgid "Page Se&tup"
-msgstr "ページ設定(&T)"
+msgid "Page Set&up"
+msgstr "ページ設定(&U)"
 
 #: Merge.rc:23CBE0E5
 #, c-format
@@ -704,6 +702,11 @@ msgstr "XML(&X)"
 #, c-format
 msgid "&Binary"
 msgstr "バイナリ(&B)"
+
+#: Merge.rc:1D2E49FA
+#, c-format
+msgid "&Image"
+msgstr "画像(&I)"
 
 #: Merge.rc:6E470BE9
 #, c-format
@@ -1131,7 +1134,7 @@ msgstr "左側(&L)"
 msgid "&Middle"
 msgstr "中央(&M)"
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Right"
 msgstr "右側(&R)"
@@ -1689,7 +1692,7 @@ msgstr "新規"
 msgid "&Background color:"
 msgstr "背景色(&B)"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Apply"
 msgstr "適用(&A)"
@@ -1998,7 +2001,7 @@ msgstr "行(&N)"
 msgid "&Difference"
 msgstr "差異(&D)"
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Go To"
 msgstr "移動(&G)"
@@ -2567,7 +2570,7 @@ msgstr "結果:"
 msgid "&Test"
 msgstr "テスト(&T)"
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Close"
 msgstr "閉じる(&C)"
@@ -2946,15 +2949,11 @@ msgstr ""
 "WinMerge Folder Compare"
 
 #: Merge.rc:74BA5C8C
-#, c-format
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Developers:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaki, Gal Hammer, Alexander Skinner"
+"Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
@@ -2967,12 +2966,12 @@ msgstr ""
 "are welcome to redistribute it under certain circumstances; see the GNU "
 "General Public License in the Help menu for details."
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
 msgstr "中止(&A)"
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
 msgstr "再試行(&R)"
@@ -4975,11 +4974,6 @@ msgstr "他のタブをすべて閉じる(&O)"
 #, c-format
 msgid "Enable &Auto Max Width"
 msgstr "タブ幅の自動調整を有効にする(&A)"
-
-#: Merge.rc:1D2E4A00
-#, c-format
-msgid "&Image"
-msgstr "画像(&I)"
 
 #: Merge.rc:3D9427A9
 #, c-format

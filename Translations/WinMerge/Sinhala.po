@@ -203,9 +203,8 @@ msgid "&Open...\tCtrl+O"
 msgstr "&විවෘත කිරීම\tCtrl+O"
 
 #: Merge.rc:6829F68F
-#, c-format
-msgid "Op&en Conflict File..."
-msgstr "Op&en Conflict File..."
+msgid "Open Conflic&t File..."
+msgstr "Open Conflic&t File..."
 
 #: Merge.rc:5869BBD
 #, c-format
@@ -653,8 +652,7 @@ msgid "&Print..."
 msgstr "මුද්‍රණය කරන්න..."
 
 #: Merge.rc:60FF375A
-#, c-format
-msgid "Page Se&tup"
+msgid "Page Set&up"
 msgstr "පිටු සැකසීම"
 
 #: Merge.rc:23CBE0E5
@@ -700,6 +698,11 @@ msgstr "&XML"
 #: Merge.rc:89AF4F8
 #, c-format
 msgid "&Binary"
+msgstr ""
+
+#: Merge.rc:1D2E49FA
+#, c-format
+msgid "&Image"
 msgstr ""
 
 #: Merge.rc:6E470BE9
@@ -1128,7 +1131,7 @@ msgstr "වම් පස"
 msgid "&Middle"
 msgstr ""
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Right"
 msgstr "දකුණු පස "
@@ -1682,7 +1685,7 @@ msgstr "නව"
 msgid "&Background color:"
 msgstr ""
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Apply"
 msgstr "&යොමු කරන්න"
@@ -1987,7 +1990,7 @@ msgstr "පේළිය"
 msgid "&Difference"
 msgstr "වෙනස"
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Go To"
 msgstr "වෙත යන්න"
@@ -2549,7 +2552,7 @@ msgstr "ප්‍රතිඵලය:"
 msgid "&Test"
 msgstr "&අත්හදා බලන්න"
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Close"
 msgstr "වසන්න"
@@ -2903,25 +2906,22 @@ msgstr ""
 "WinMerge ෆෝල්ඩරය සසඳන්න"
 
 #: Merge.rc:74BA5C8C
-#, fuzzy, c-format
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge නිසැකවම පොරොන්දු නැත. මෙය නිදහස් මෘදුකාංගයක් සහ කිසියම් පරිදියක් යටතේ ඔබව සාදරයෙන් පිලිගනිමු.දත්ත සඳහා උදවු ලේඛනය තුල ඇති GNU සාමාන්‍ය පොදු බලපත්‍රය බලන්න."
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
 msgstr "&අසාර්ථක වෙනවා"
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
 msgstr "&නැවත උත්සාහ කරන්න"
@@ -4802,11 +4802,6 @@ msgstr ""
 #: Merge.rc:3E934E
 #, c-format
 msgid "Enable &Auto Max Width"
-msgstr ""
-
-#: Merge.rc:1D2E4A00
-#, c-format
-msgid "&Image"
 msgstr ""
 
 #: Merge.rc:3D9427A9
