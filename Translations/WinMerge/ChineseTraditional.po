@@ -208,9 +208,8 @@ msgid "&Open...\tCtrl+O"
 msgstr "開啟(&O)...\tCtrl+O"
 
 #: Merge.rc:6829F68F
-#, c-format
-msgid "Op&en Conflict File..."
-msgstr "開啟衝突檔(&E)..."
+msgid "Open Conflic&t File..."
+msgstr "開啟衝突檔(&T)..."
 
 #: Merge.rc:5869BBD
 #, c-format
@@ -660,9 +659,8 @@ msgid "&Print..."
 msgstr "列印(&P)..."
 
 #: Merge.rc:60FF375A
-#, c-format
-msgid "Page Se&tup"
-msgstr "設定列印格式(&T)"
+msgid "Page Set&up"
+msgstr "設定列印格式(&U)"
 
 #: Merge.rc:23CBE0E5
 #, c-format
@@ -708,6 +706,11 @@ msgstr "&XML"
 #, c-format
 msgid "&Binary"
 msgstr "二進制(&B)"
+
+#: Merge.rc:1D2E49FA
+#, c-format
+msgid "&Image"
+msgstr "圖片(&I)"
 
 #: Merge.rc:6E470BE9
 #, c-format
@@ -1139,7 +1142,7 @@ msgstr "左邊(&L)"
 msgid "&Middle"
 msgstr "中間(&M)"
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Right"
 msgstr "右邊(&R)"
@@ -1695,7 +1698,7 @@ msgstr "新增"
 msgid "&Background color:"
 msgstr "背景顏色(&B)"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Apply"
 msgstr "套用(&A)"
@@ -2000,7 +2003,7 @@ msgstr "行(&N)"
 msgid "&Difference"
 msgstr "差異區塊(&D)"
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Go To"
 msgstr "移至(&G)"
@@ -2565,7 +2568,7 @@ msgstr "結果："
 msgid "&Test"
 msgstr "測試(&T)"
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Close"
 msgstr "關閉(&C)"
@@ -2919,25 +2922,22 @@ msgstr ""
 "WinMerge 資料夾比較"
 
 #: Merge.rc:74BA5C8C
-#, c-format
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "研發者：\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "絕不保證自由軟體 WinMerge 無瑕疵。歡迎在某些條件下再散發它；細節見說明選單中的 GNU 公共授權證。"
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
 msgstr "放棄(&A)"
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
 msgstr "重試(&R)"
@@ -4820,11 +4820,6 @@ msgstr "關閉其他分頁(&O)"
 #, c-format
 msgid "Enable &Auto Max Width"
 msgstr "開啟自動最大寬度(&A)"
-
-#: Merge.rc:1D2E4A00
-#, c-format
-msgid "&Image"
-msgstr "圖片(&I)"
 
 #: Merge.rc:3D9427A9
 #, c-format
