@@ -176,6 +176,9 @@ Function GetTranslationsFromPoFile(ByVal sPoPath, sCharset)
         sMsgStr = ""
       End If
     Loop
+    If (sMsgId <> "") And (sMsgStr <> "") And (sMsgId <> sMsgStr) Then 'If translated...
+      oTranslations.Add sMsgId, sMsgStr
+    End If
     oTextFile.Close
   End If
   Set GetTranslationsFromPoFile = oTranslations

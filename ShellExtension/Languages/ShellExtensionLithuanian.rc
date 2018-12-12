@@ -47,7 +47,7 @@ BEGIN
     IDS_COMPARE_TO          "Palyginti su"
     IDS_HELP_SAVETHIS       "Iðsaugoti ðá kelià. Parinkti kità kelià ir palyginti su ðiuo keliu."
     IDS_HELP_COMPARESAVED   "Palyginti su iðsaugotu keliu (%1)"
-    IDS_RESELECT_FIRST      "Re-select First"
+    IDS_RESELECT_FIRST      "Ið naujo parinkti pirmà"
 END
 
 #endif    // Resources
