@@ -1,0 +1,6 @@
+version: 1.0.{build}
+configuration: Release Unicode
+platform: x64
+build:
+  project: WinMerge.vs2015.sln
+  verbosity: minimal
