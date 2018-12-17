@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-10-30 06:26+0000\n"
-"PO-Revision-Date: 2018-11-06 09:37+0200\n"
+"POT-Creation-Date: 2018-11-27 05:34+0000\n"
+"PO-Revision-Date: 2018-11-28 14:48+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Language: Lithuanian\n"
-"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
 "X-Generator: Poedit 2.2\n"
 
@@ -2395,7 +2395,7 @@ msgstr ""
 
 #: Merge.rc:3EF068BF
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "„WinMerge“ tiekiama VISIŠKAI BE JOKIŲ GARANTIJŲ. Tai nemokama programinė įranga ir jūs galite ją platinti tam tikromis sąlygomis. Daugiau apie tai rasite „Pagalbos“ meniu punkte „GNU Bendroji viešoji licencija“."
+msgstr "„WinMerge“ tiekiama VISIŠKAI BE JOKIŲ GARANTIJŲ. Tai nemokama programinė įranga ir jūs galite ją platinti tam tikromis sąlygomis. Daugiau apie tai rasite „Žinyno“ meniu punkte „GNU Bendroji viešoji licencija“."
 
 #: Merge.rc:1D2E49FF
 msgid "&Abort"
