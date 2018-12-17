@@ -1,6 +1,9 @@
 version: 1.0.{build}
 configuration: Release Unicode
 platform: x64
+shallow_clone: true
 build:
   project: WinMerge.vs2015.sln
   verbosity: minimal
+artifacts:
+- path: build/x64/MergeUnicodeRelease
