@@ -1,6 +1,6 @@
 setlocal
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
-set downloadsdir=%~dp0\WinMergeDownloadDeps
+set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
 https://bitbucket.org/winmerge/winmerge/downloads/winmerge_manual_build_tools_v1.zip!Docs\Users\Manual\build ^
 https://bitbucket.org/winmerge/winmerge/downloads/ShellExtension-1.17.2.0.zip!Build ^
