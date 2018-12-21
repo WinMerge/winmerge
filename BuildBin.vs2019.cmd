@@ -8,20 +8,33 @@ for /f "usebackq tokens=*" %%i in (`"%programfiles(x86)%\microsoft visual studio
   set InstallDir=%%i
 )
 if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
-  call "%InstallDir%\Common7\Tools\vsdevcmd.bat %*
+  call "%InstallDir%\Common7\Tools\vsdevcmd.bat
 )
-MSBuild WinMerge.vs2019.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="Win32" || pause
-MSBuild WinMerge.vs2019.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="x64" || pause
+
+if "%1" == "" (
+  call :BuildBin
+  call :BuildBin x64
+) else (
+  call :BuildBin %1 
+)
+
+goto :eof
+
+:BuildBin
+set PLATFORM=%1
+if "%1" == "" (
+  set PLATFORM_VS=Win32
+) else (
+  set PLATFORM_VS=%1
+)
+MSBuild WinMerge.vs2019.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="%PLATFORM_VS%" || pause
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
-  call "%SIGNBAT_PATH%" Build\MergeUnicodeRelease\WinMergeU.exe
-  call "%SIGNBAT_PATH%" Build\MergeUnicodeRelease\MergeLang.dll
-  call "%SIGNBAT_PATH%" Build\x64\MergeUnicodeRelease\WinMergeU.exe
-  call "%SIGNBAT_PATH%" Build\x64\MergeUnicodeRelease\MergeLang.dll
+  call "%SIGNBAT_PATH%" Build\%PLATFORM%\MergeUnicodeRelease\WinMergeU.exe
+  call "%SIGNBAT_PATH%" Build\%PLATFORM%\MergeUnicodeRelease\MergeLang.dll
 )
 
-mkdir Build\MergeUnicodeRelease\%APPVER% 2> NUL
-mkdir Build\x64\MergeUnicodeRelease\%APPVER% 2> NUL
-copy Build\MergeUnicodeRelease\*.pdb "Build\MergeUnicodeRelease\%APPVER%\"
-copy Build\x64\MergeUnicodeRelease\*.pdb "Build\x64\MergeUnicodeRelease\%APPVER%\"
+mkdir Build\%PLATFORM%\MergeUnicodeRelease\%APPVER% 2> NUL
+copy Build\%PlATFORM%\MergeUnicodeRelease\*.pdb "Build\%PLATFORM%\MergeUnicodeRelease\%APPVER%\"
+goto :eof
