@@ -1,0 +1,12 @@
+a------
+-aa----
+--aaa--
+----aa-
+------a
+      a
+    aa
+  aaa
+ aa
+a
+abcABCabc
+ABCabcABC

@@ -116,7 +116,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
 	ON_COMMAND(IDOK, OnOK)
 	ON_COMMAND(ID_MERGE_COMPARE_XML, OnFileRecompareAsXML)
-	ON_COMMAND(ID_MERGE_COMPARE_HEX, OnFileRecompareAsBinary)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -575,7 +575,7 @@ void CMergeDoc::CheckFileChanged(void)
 		if (FileChange[nBuffer] == FileChanged)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[nBuffer]);
-			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN) == IDYES)
 			{
 				OnFileReload();
 			}
@@ -2022,46 +2022,14 @@ void CMergeDoc::PrimeTextBuffers()
 
 	m_diffList.ConstructSignificantChain();
 
-#if 0 // comment out to fix the github issue #106
-	// Buffers `m_ptBuf[]` may have a final line entry that is <null>.
-	// (a) If ALL buffers have that final <null>, remove them all.
-	// (b) If only SOME have that final <null>, change those <null>
-	//		lines into proper ghost-image lines.
-	// Note too: By this point all buffers must have the same number 
-	//		of line entries; eventual buffer processing typically
+#ifdef _DEBUG
+	// Note: By this point all `m_ptBuf[]` buffers must have the same  
+	//		number of line entries; eventual buffer processing typically
 	//		uses the line count from `m_ptBuf[0]` for all buffer processing.
 
-	int nFinalNullLines = 0;	
 	for (file = 0; file < m_nBuffers; file++)
 	{
-		// First, decide how many buffers have a final <null> line.
 		ASSERT(m_ptBuf[0]->GetLineCount() == m_ptBuf[file]->GetLineCount());
-		if (m_ptBuf[file]->GetLineChars(m_ptBuf[file]->GetLineCount()-1) == nullptr)
-			nFinalNullLines++;
-	}
-	if (nFinalNullLines != 0)
-	{
-		// Some (maybe all) of the buffers have a final <null> line.
-		// Handle them (per comment above) in the loop below.
-		for (file = 0; file < m_nBuffers; file++)
-		{
-			UINT LastLineInx = m_ptBuf[file]->GetLineCount() - 1;
-			if (m_ptBuf[file]->GetLineChars(LastLineInx) == nullptr)
-				if (nFinalNullLines == m_nBuffers)
-				{
-					// ALL buffers have a final <null> line; discard them.
-					m_ptBuf[file]->m_aLines.resize(m_ptBuf[file]->GetLineCount() - 1);
-				}
-				else
-				{
-					// Only SOME buffers have final <null> line; set them to a valid GHOST line.
-					// And copy the LF_SNP flag from the previous line (if it exists).
-					DWORD dFlags = (LastLineInx > 0 ? m_ptBuf[file]->GetLineFlags(LastLineInx-1) & LF_SNP : 0) | LF_GHOST;
-					m_ptBuf[file]->SetEmptyLine(LastLineInx, 1);
-					m_ptBuf[file]->SetLineFlag(LastLineInx, dFlags, true, false, false);
-				}
-			ASSERT(m_ptBuf[0]->GetLineCount() == m_ptBuf[file]->GetLineCount());
-		}
 	}
 #endif
 
@@ -3067,18 +3035,7 @@ void CMergeDoc::OnBnClickedPlugin()
 
 void CMergeDoc::OnBnClickedHexView()
 {
-	DWORD dwFlags[3] = { 0 };
-	FileLocation fileloc[3];
-	for (int pane = 0; pane < m_nBuffers; pane++)
-	{
-		fileloc[pane].setPath(m_filePaths[pane]);
-		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
-	}
-	if (m_pEncodingErrorBar && m_pEncodingErrorBar->IsWindowVisible())
-		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
-	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
-	GetParentFrame()->ShowWindow(SW_RESTORE);
-	GetParentFrame()->DestroyWindow();
+	OnFileRecompareAs(ID_MERGE_COMPARE_HEX);
 }
 
 void CMergeDoc::OnOK()
@@ -3093,9 +3050,23 @@ void CMergeDoc::OnFileRecompareAsXML()
 	OnFileReload();
 }
 
-void CMergeDoc::OnFileRecompareAsBinary()
+void CMergeDoc::OnFileRecompareAs(UINT nID)
 {
-	OnBnClickedHexView();
+	DWORD dwFlags[3] = { 0 };
+	FileLocation fileloc[3];
+	for (int pane = 0; pane < m_nBuffers; pane++)
+	{
+		fileloc[pane].setPath(m_filePaths[pane]);
+		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
+	}
+	if (m_pEncodingErrorBar && m_pEncodingErrorBar->IsWindowVisible())
+		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+	if (nID == ID_MERGE_COMPARE_HEX)
+		GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
+	else
+		GetMainFrame()->ShowImgMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
+	GetParentFrame()->ShowWindow(SW_RESTORE);
+	GetParentFrame()->DestroyWindow();
 }
 
 // Return file extension either from file name 

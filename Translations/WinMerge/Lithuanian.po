@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-10-30 06:26+0000\n"
-"PO-Revision-Date: 2018-11-06 09:37+0200\n"
+"POT-Creation-Date: 2018-11-27 05:34+0000\n"
+"PO-Revision-Date: 2018-11-28 14:48+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Language: Lithuanian\n"
-"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
 "X-Generator: Poedit 2.2\n"
 
@@ -172,8 +172,8 @@ msgid "&Open...\tCtrl+O"
 msgstr "&Atverti...\tCtrl+O"
 
 #: Merge.rc:6829F68F
-msgid "Op&en Conflict File..."
-msgstr "Atv&erti konfliktų failą..."
+msgid "Open Conflic&t File..."
+msgstr "Atver&ti konfliktų failą..."
 
 #: Merge.rc:5869BBD
 msgid "Open Pro&ject...\tCtrl+J"
@@ -323,6 +323,10 @@ msgstr "L&aidos informacija"
 msgid "&Translations"
 msgstr "Ver&timai"
 
+#: Merge.rc:3938FFC2
+msgid "&Check For Updates"
+msgstr ""
+
 #: Merge.rc:1C6125F4
 msgid "C&onfiguration"
 msgstr "K&onfigūracija"
@@ -331,7 +335,7 @@ msgstr "K&onfigūracija"
 msgid "&GNU General Public License"
 msgstr "&GNU Bendroji viešoji licencija"
 
-#: Merge.rc:3938FFC2
+#: Merge.rc:3938FFC3
 msgid "&About WinMerge..."
 msgstr "&Apie „WinMerge“..."
 
@@ -532,8 +536,8 @@ msgid "&Print..."
 msgstr "S&pausdinti..."
 
 #: Merge.rc:60FF375A
-msgid "Page Se&tup"
-msgstr "Puslapio nuos&tatos"
+msgid "Page Set&up"
+msgstr "P&uslapio nuostatos"
 
 #: Merge.rc:23CBE0E5
 msgid "Print Previe&w"
@@ -570,6 +574,10 @@ msgstr "&XML"
 #: Merge.rc:89AF4F8
 msgid "&Binary"
 msgstr "&Binarinis"
+
+#: Merge.rc:1D2E49FA
+msgid "&Image"
+msgstr "Va&izdas"
 
 #: Merge.rc:6E470BE9
 msgid "&Undo\tCtrl+Z"
@@ -623,7 +631,7 @@ msgstr "&Žymės"
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Uždėti žymę\tCtrl+F2"
 
-#: Merge.rc:3938FFC3
+#: Merge.rc:3938FFC4
 msgid "&Next Bookmark\tF2"
 msgstr "&Kita žymė\tF2"
 
@@ -921,7 +929,7 @@ msgstr "&Kairį"
 msgid "&Middle"
 msgstr "&Vidurinį"
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 msgid "&Right"
 msgstr "&Dešinį"
 
@@ -1369,11 +1377,11 @@ msgstr "Įjungti žy&meklius"
 msgid "New"
 msgstr "Naujas"
 
-#: Merge.rc:3938FFC4
+#: Merge.rc:3938FFC5
 msgid "&Background color:"
 msgstr "&Fono spalva:"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 msgid "&Apply"
 msgstr "T&aikyti"
 
@@ -1617,7 +1625,7 @@ msgstr "Ei&lutę"
 msgid "&Difference"
 msgstr "&Skirtumą"
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 msgid "&Go To"
 msgstr "&Pereiti į"
 
@@ -1925,7 +1933,7 @@ msgstr "&Stilius:"
 msgid "&Include File Compare Report"
 msgstr "Įtraukt&i failų palyginimo ataskaitą"
 
-#: Merge.rc:3938FFC5
+#: Merge.rc:3938FFC6
 msgid "&Copy to Clipboard"
 msgstr "&Kopijuoti į mainų sritį"
 
@@ -2073,7 +2081,7 @@ msgstr "Rezultatas:"
 msgid "&Test"
 msgstr "&Testuoti"
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 msgid "&Close"
 msgstr "&Užverti"
 
@@ -2384,22 +2392,20 @@ msgstr ""
 "WinMerge katalogų lyginimas"
 
 #: Merge.rc:74BA5C8C
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Kūrėjai:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "„WinMerge“ tiekiama VISIŠKAI BE JOKIŲ GARANTIJŲ. Tai nemokama programinė įranga ir jūs galite ją platinti tam tikromis sąlygomis. Daugiau apie tai rasite „Pagalbos“ meniu punkte „GNU Bendroji viešoji licencija“."
+msgstr "„WinMerge“ tiekiama VISIŠKAI BE JOKIŲ GARANTIJŲ. Tai nemokama programinė įranga ir jūs galite ją platinti tam tikromis sąlygomis. Daugiau apie tai rasite „Žinyno“ meniu punkte „GNU Bendroji viešoji licencija“."
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 msgid "&Abort"
 msgstr "Nutr&aukti"
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 msgid "&Retry"
 msgstr "Ka&rtoti"
 
@@ -4089,10 +4095,6 @@ msgstr "Užverti k&itas korteles"
 #: Merge.rc:3E934E
 msgid "Enable &Auto Max Width"
 msgstr "Įjungti &Automatinį maks. plotį"
-
-#: Merge.rc:1D2E4A00
-msgid "&Image"
-msgstr "Va&izdas"
 
 #: Merge.rc:3D9427A9
 msgid "frhed is not installed"

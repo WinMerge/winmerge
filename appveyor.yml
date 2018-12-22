@@ -1,0 +1,14 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Release Unicode
+platform: x64
+shallow_clone: true
+cache: build/WinMergeDownloadDeps
+build_script:
+- cmd: >-
+    DownloadDeps.cmd
+
+    BuildAll.vs2017.cmd x64
+artifacts:
+- path: build/Releases/*.exe
+- path: build/Releases/*.zip

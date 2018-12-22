@@ -376,7 +376,7 @@ protected:
 	afx_msg void OnBnClickedHexView();
 	afx_msg void OnOK();
 	afx_msg void OnFileRecompareAsXML();
-	afx_msg void OnFileRecompareAsBinary();
+	afx_msg void OnFileRecompareAs(UINT nID);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:

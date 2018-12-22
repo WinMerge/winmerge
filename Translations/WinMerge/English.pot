@@ -5,15 +5,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-11-12 23:16+0000\n"
+"POT-Creation-Date: 2018-12-22 07:42+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1252\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: English\n"
-"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -163,7 +163,7 @@ msgid "&Open...\tCtrl+O"
 msgstr ""
 
 #: Merge.rc:6829F68F
-msgid "Op&en Conflict File..."
+msgid "Open Conflic&t File..."
 msgstr ""
 
 #: Merge.rc:5869BBD
@@ -527,7 +527,7 @@ msgid "&Print..."
 msgstr ""
 
 #: Merge.rc:60FF375A
-msgid "Page Se&tup"
+msgid "Page Set&up"
 msgstr ""
 
 #: Merge.rc:23CBE0E5
@@ -564,6 +564,10 @@ msgstr ""
 
 #: Merge.rc:89AF4F8
 msgid "&Binary"
+msgstr ""
+
+#: Merge.rc:1D2E49FA
+msgid "&Image"
 msgstr ""
 
 #: Merge.rc:6E470BE9
@@ -916,7 +920,7 @@ msgstr ""
 msgid "&Middle"
 msgstr ""
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 msgid "&Right"
 msgstr ""
 
@@ -1368,7 +1372,7 @@ msgstr ""
 msgid "&Background color:"
 msgstr ""
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 msgid "&Apply"
 msgstr ""
 
@@ -1612,7 +1616,7 @@ msgstr ""
 msgid "&Difference"
 msgstr ""
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 msgid "&Go To"
 msgstr ""
 
@@ -2060,7 +2064,7 @@ msgstr ""
 msgid "&Test"
 msgstr ""
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 msgid "&Close"
 msgstr ""
 
@@ -2321,18 +2325,18 @@ msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr ""
 
 #: Merge.rc:74BA5C8C
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 
 #: Merge.rc:3EF068BF
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr ""
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 msgid "&Abort"
 msgstr ""
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 msgid "&Retry"
 msgstr ""
 
@@ -3741,10 +3745,6 @@ msgstr ""
 
 #: Merge.rc:3E934E
 msgid "Enable &Auto Max Width"
-msgstr ""
-
-#: Merge.rc:1D2E4A00
-msgid "&Image"
 msgstr ""
 
 #: Merge.rc:3D9427A9

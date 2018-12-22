@@ -326,10 +326,10 @@ ShutdownBlockReasonUninstallingApp=Ðalinama „%1“.
 [CustomMessages]
 
 NameAndVersion=%1 versija %2
-AdditionalIcons=Papildomos piktogramos:
+AdditionalIcons=Papildomos nuorodos:
 OptionalFeatures=Nebûtinos funkcijos:
-CreateDesktopIcon=Rodyti piktogramà &Darbalaukyje
-CreateQuickLaunchIcon=Rodyti Sparèiosios &Paleisties piktogramà
+CreateDesktopIcon=Sukurti nuorodà &Darbalaukyje
+CreateQuickLaunchIcon=Sukurti Sparèiosios &Paleisties nuorodà
 ProgramOnTheWeb=„%1“ þiniatinklyje
 UninstallProgram=Paðalinti „%1“
 LaunchProgram=Paleisti „%1“

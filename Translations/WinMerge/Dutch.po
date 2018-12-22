@@ -22,7 +22,7 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Poedit-Language: English\n"
+"X-Poedit-Language: Dutch\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -208,8 +208,7 @@ msgid "&Open...\tCtrl+O"
 msgstr "Openen...\tCtrl+O"
 
 #: Merge.rc:6829F68F
-#, c-format
-msgid "Op&en Conflict File..."
+msgid "Open Conflic&t File..."
 msgstr "Conflictbestand openen..."
 
 #: Merge.rc:5869BBD
@@ -662,8 +661,7 @@ msgid "&Print..."
 msgstr "Afdrukken..."
 
 #: Merge.rc:60FF375A
-#, c-format
-msgid "Page Se&tup"
+msgid "Page Set&up"
 msgstr "Pagina-instelling"
 
 #: Merge.rc:23CBE0E5
@@ -710,6 +708,11 @@ msgstr "XML"
 #, c-format
 msgid "&Binary"
 msgstr "Binair"
+
+#: Merge.rc:1D2E49FA
+#, c-format
+msgid "&Image"
+msgstr "Afbeelding"
 
 #: Merge.rc:6E470BE9
 #, c-format
@@ -1137,7 +1140,7 @@ msgstr "Links"
 msgid "&Middle"
 msgstr "Midden"
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Right"
 msgstr "Rechts"
@@ -1696,7 +1699,7 @@ msgstr "Nieuw"
 msgid "&Background color:"
 msgstr "Achtergrondkleur:"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Apply"
 msgstr "Toepassen"
@@ -2001,7 +2004,7 @@ msgstr "Regel"
 msgid "&Difference"
 msgstr "Verschil"
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Go To"
 msgstr "Gaan naar"
@@ -2571,7 +2574,7 @@ msgstr "Resultaat:"
 msgid "&Test"
 msgstr "Testen"
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Close"
 msgstr "Sluiten"
@@ -2949,13 +2952,10 @@ msgstr ""
 "WinMerge Mapvergelijking"
 
 #: Merge.rc:74BA5C8C
-#, c-format
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Ontwikkelaars:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
@@ -2968,12 +2968,12 @@ msgstr ""
 "herverdelen onder bepaalde omstandigheden; zie de GNU General Public License"
 " in het Help-menu voor details."
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
 msgstr "Afbreken"
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
 msgstr "Opnieuw proberen"
@@ -4964,11 +4964,6 @@ msgstr "Andere tabs sluiten"
 #, c-format
 msgid "Enable &Auto Max Width"
 msgstr "Automatische maximale breedte inschakelen"
-
-#: Merge.rc:1D2E4A00
-#, c-format
-msgid "&Image"
-msgstr "Afbeelding"
 
 #: Merge.rc:3D9427A9
 #, c-format

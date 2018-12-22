@@ -210,8 +210,7 @@ msgid "&Open...\tCtrl+O"
 msgstr "&Ouvrir...\tCtrl+O"
 
 #: Merge.rc:6829F68F
-#, c-format
-msgid "Op&en Conflict File..."
+msgid "Open Conflic&t File..."
 msgstr "Ouvrir le fichier en conflit..."
 
 #: Merge.rc:5869BBD
@@ -664,8 +663,7 @@ msgid "&Print..."
 msgstr "&Imprimer..."
 
 #: Merge.rc:60FF375A
-#, c-format
-msgid "Page Se&tup"
+msgid "Page Set&up"
 msgstr "&Mise en page"
 
 #: Merge.rc:23CBE0E5
@@ -712,6 +710,11 @@ msgstr "&XML"
 #, c-format
 msgid "&Binary"
 msgstr "&Binaire"
+
+#: Merge.rc:1D2E49FA
+#, c-format
+msgid "&Image"
+msgstr ""
 
 #: Merge.rc:6E470BE9
 #, c-format
@@ -1139,7 +1142,7 @@ msgstr "à &gauche"
 msgid "&Middle"
 msgstr ""
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Right"
 msgstr "à &droite"
@@ -1693,7 +1696,7 @@ msgstr "Nouveau"
 msgid "&Background color:"
 msgstr ""
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Apply"
 msgstr "&Appliquer"
@@ -1998,7 +2001,7 @@ msgstr "&Ligne"
 msgid "&Difference"
 msgstr "Di&fférence"
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Go To"
 msgstr "&Atteindre"
@@ -2562,7 +2565,7 @@ msgstr "Resultat:"
 msgid "&Test"
 msgstr "&Tester"
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Close"
 msgstr "&Fermer"
@@ -2916,25 +2919,22 @@ msgstr ""
 "WinMerge Folder Compare"
 
 #: Merge.rc:74BA5C8C
-#, c-format
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Développeurs:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge est fourni SANS AUCUNE GARANTIE. C'est un logiciel libre et vous êtes invité à le redistribuer sous certaines conditions; Voir la licence publique générale GNU au menu d'aide pour tous les détails."
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
 msgstr "&Avorter"
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
 msgstr "&Réessayer"
@@ -4811,11 +4811,6 @@ msgstr ""
 #: Merge.rc:3E934E
 #, c-format
 msgid "Enable &Auto Max Width"
-msgstr ""
-
-#: Merge.rc:1D2E4A00
-#, c-format
-msgid "&Image"
 msgstr ""
 
 #: Merge.rc:3D9427A9

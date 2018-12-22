@@ -210,9 +210,8 @@ msgid "&Open...\tCtrl+O"
 msgstr "열기(&O)...\tCtrl+O"
 
 #: Merge.rc:6829F68F
-#, c-format
-msgid "Op&en Conflict File..."
-msgstr "충돌 파일 열기(&E)..."
+msgid "Open Conflic&t File..."
+msgstr "충돌 파일 열기(&T)..."
 
 #: Merge.rc:5869BBD
 #, c-format
@@ -664,8 +663,7 @@ msgid "&Print..."
 msgstr "인쇄(&P)..."
 
 #: Merge.rc:60FF375A
-#, c-format
-msgid "Page Se&tup"
+msgid "Page Set&up"
 msgstr "페이지 설정(&T)"
 
 #: Merge.rc:23CBE0E5
@@ -712,6 +710,11 @@ msgstr "&XML"
 #, c-format
 msgid "&Binary"
 msgstr "바이너리(&B)"
+
+#: Merge.rc:1D2E49FA
+#, c-format
+msgid "&Image"
+msgstr "이미지(&I)"
 
 #: Merge.rc:6E470BE9
 #, c-format
@@ -1139,7 +1142,7 @@ msgstr "왼쪽(&L)"
 msgid "&Middle"
 msgstr "가운데(&M)"
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Right"
 msgstr "오른쪽(&R)"
@@ -1693,7 +1696,7 @@ msgstr "새로 만들기"
 msgid "&Background color:"
 msgstr "배경 색상(&B):"
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Apply"
 msgstr "적용(&A)"
@@ -1998,7 +2001,7 @@ msgstr "줄(&N)"
 msgid "&Difference"
 msgstr "차이점(&D)"
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Go To"
 msgstr "이동(&G)"
@@ -2566,7 +2569,7 @@ msgstr "결과:"
 msgid "&Test"
 msgstr "테스트(&T)"
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Close"
 msgstr "닫기(&C)"
@@ -2940,25 +2943,22 @@ msgstr ""
 "WinMerge 폴더 비교"
 
 #: Merge.rc:74BA5C8C
-#, c-format
-msgid ""
-"Developers:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "개발자:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge는 절대로 보증 없이 제공됩니다. 이 소프트웨어는 무료이며, 특정 상황에서 재배포는 환영합니다; 자세한 내용은 도움말 메뉴의 GNU 일반 공중 라이선스를 확인하세요."
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
 msgstr "취소(&A)"
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
 msgstr "재시도(&)"
@@ -4913,11 +4913,6 @@ msgstr "다른 탭 닫기(&O)"
 #, c-format
 msgid "Enable &Auto Max Width"
 msgstr "자동 최대 너비 사용(&A)"
-
-#: Merge.rc:1D2E4A00
-#, c-format
-msgid "&Image"
-msgstr "이미지(&I)"
 
 #: Merge.rc:3D9427A9
 #, c-format

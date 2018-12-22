@@ -360,7 +360,7 @@ protected:
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnMergeCompare2();
 	afx_msg void OnMergeCompareXML();
-	afx_msg void OnMergeCompareHex();
+	afx_msg void OnMergeCompareAs(UINT nID);
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnUpdateMergeCompare2(CCmdUI *pCmdUI);
@@ -388,7 +388,7 @@ protected:
 
 private:
 	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = NULL);
-	void OpenSelectionHex();
+	void OpenSelectionAs(UINT id);
 	bool GetSelectedItems(int * sel1, int * sel2, int * sel3);
 	void OpenParentDirectory();
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>

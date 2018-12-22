@@ -4855,7 +4855,7 @@ HighlightText (const CPoint & ptStartPos, int nLength,
   ASSERT_VALIDTEXTPOS (m_ptCursorPos);  //  Probably 'nLength' is bigger than expected...
 
   m_ptCursorPos = bCursorToLeft ? ptStartPos : ptEndPos;
-  m_ptAnchor = m_ptCursorPos;
+  m_ptAnchor = bCursorToLeft ? ptEndPos : ptStartPos;
   SetSelection (ptStartPos, ptEndPos);
   UpdateCaret ();
   
@@ -4995,8 +4995,8 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                       ptCurrentPos.x = nLineLength;
                     }
                   else
-                    if( ptCurrentPos.x >= nLineLength )
-                      ptCurrentPos.x = nLineLength - 1;
+                    if( ptCurrentPos.x > nLineLength )
+                      ptCurrentPos.x = nLineLength;
                   if (ptCurrentPos.x == -1)
                     ptCurrentPos.x = 0;
 
@@ -5008,19 +5008,16 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
               ptrdiff_t nFoundPos = -1;
               int nMatchLen = what.GetLength();
               int nLineLen = line.GetLength();
-              size_t nPos;
-              do
+              size_t nPos = 0;
+              for (;;)
                 {
-                  nPos = ::FindStringHelper(line, line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
-                  if( nPos != -1)
-                    {
-                      nFoundPos = (nFoundPos == -1)? nPos : nFoundPos + nPos;
-                      nMatchLen = m_nLastFindWhatLen;
-                      line = line.Right( static_cast<LONG>(nLineLen - ((nMatchLen == 0 ? 1 : nMatchLen) + nPos)) );
-                      nLineLen = line.GetLength();
-                    }
+                  size_t nPosRel = ::FindStringHelper(line, static_cast<LPCTSTR>(line) + nPos, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
+				  if (nPosRel == -1)
+					  break;
+                  nFoundPos = nPos + nPosRel;
+                  nMatchLen = m_nLastFindWhatLen;
+				  nPos += nMatchLen == 0 ? 1 : nMatchLen;
                 }
-              while( nPos != -1 && nLineLen != 0);
 
               if( nFoundPos != -1 )	// Found text!
                 {
@@ -5083,12 +5080,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                       continue;
                     }
 
-                  LPCTSTR pszChars = GetLineChars (ptCurrentPos.y);
-
-                  //  Prepare necessary part of line
-                  LPTSTR pszBuf = line.GetBuffer (nLineLength + 1);
-                  _tcsncpy_s (pszBuf, nLineLength + 1, pszChars, nLineLength);
-                  line.ReleaseBuffer (nLineLength);
+                  line = GetLineChars (ptCurrentPos.y);
                 }
 
               //  Perform search in the line

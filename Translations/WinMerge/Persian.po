@@ -207,9 +207,8 @@ msgid "&Open...\tCtrl+O"
 msgstr "&O باز کردن ... \tCtrl+O"
 
 #: Merge.rc:6829F68F
-#, c-format
-msgid "Op&en Conflict File..."
-msgstr "&e باز کردن پرونده تعارض ... "
+msgid "Open Conflic&t File..."
+msgstr "&t باز کردن پرونده تعارض ... "
 
 #: Merge.rc:5869BBD
 #, c-format
@@ -661,9 +660,8 @@ msgid "&Print..."
 msgstr "&P چاپ ... "
 
 #: Merge.rc:60FF375A
-#, c-format
-msgid "Page Se&tup"
-msgstr "&t تنظيم صفحه "
+msgid "Page Set&up"
+msgstr "&u تنظيم صفحه "
 
 #: Merge.rc:23CBE0E5
 #, c-format
@@ -709,6 +707,11 @@ msgstr "&XML"
 #, c-format
 msgid "&Binary"
 msgstr "&B دودويي"
+
+#: Merge.rc:1D2E49FA
+#, c-format
+msgid "&Image"
+msgstr ""
 
 #: Merge.rc:6E470BE9
 #, c-format
@@ -1136,7 +1139,7 @@ msgstr "&L چپ "
 msgid "&Middle"
 msgstr ""
 
-#: Merge.rc:1D2E49FA
+#: Merge.rc:1D2E49FB
 #, c-format
 msgid "&Right"
 msgstr "&R راست "
@@ -1696,7 +1699,7 @@ msgstr " جديد "
 msgid "&Background color:"
 msgstr ""
 
-#: Merge.rc:1D2E49FB
+#: Merge.rc:1D2E49FC
 #, c-format
 msgid "&Apply"
 msgstr "&A به کار بستن "
@@ -2001,7 +2004,7 @@ msgstr "&n خط "
 msgid "&Difference"
 msgstr "&D تفاوت "
 
-#: Merge.rc:1D2E49FC
+#: Merge.rc:1D2E49FD
 #, c-format
 msgid "&Go To"
 msgstr "&G برو به "
@@ -2567,7 +2570,7 @@ msgstr " نتيجه : "
 msgid "&Test"
 msgstr "&T آزمايش "
 
-#: Merge.rc:1D2E49FD
+#: Merge.rc:1D2E49FE
 #, c-format
 msgid "&Close"
 msgstr "&C بستن "
@@ -2921,15 +2924,10 @@ msgstr ""
 " مقايسه پوشه وينمرج"
 
 #: Merge.rc:74BA5C8C
-#, c-format
-msgid ""
-"Developers:\n"
+msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+msgstr " توسعه دهنده گان : \n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaki, Gal Hammer, Alexander Skinner"
-msgstr ""
-" توسعه دهنده گان : \n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaki, Gal Hammer, Alexander Skinner"
+"Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
@@ -2942,12 +2940,12 @@ msgstr ""
 "تحت برخي شرايط صاحب اختيار در نشر آن هستيد. براي جزئيات مجوز عمومي کلي   جي "
 "ان يو   را در گزينگان / فهرست راهنما ببينيد "
 
-#: Merge.rc:1D2E49FE
+#: Merge.rc:1D2E49FF
 #, c-format
 msgid "&Abort"
 msgstr "&A لغو "
 
-#: Merge.rc:1D2E49FF
+#: Merge.rc:1D2E4A00
 #, c-format
 msgid "&Retry"
 msgstr "&R کوشش دوباره "
@@ -4866,11 +4864,6 @@ msgstr ""
 #: Merge.rc:3E934E
 #, c-format
 msgid "Enable &Auto Max Width"
-msgstr ""
-
-#: Merge.rc:1D2E4A00
-#, c-format
-msgid "&Image"
 msgstr ""
 
 #: Merge.rc:3D9427A9
