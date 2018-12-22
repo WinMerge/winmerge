@@ -566,11 +566,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Enabled</option> (default): Codepage differences are ignored.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: Codepage differences are ignored.</para>
+          <para><option>Disabled</option>: TBD</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -808,7 +808,7 @@
 	
     <section>
       <title>Include unique subfolders contents<indexterm>
-          <primary>unique subfolders</primary>
+          <primary>include unique subfolders</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
@@ -825,26 +825,26 @@
     </section>
 	
     <section>
-      <title>Include unique subfolders contents<indexterm>
-          <primary>unique subfolders</primary>
+      <title>Include Subfolders<indexterm>
+          <primary>include subfolders</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Enabled</option> (default): TBD</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Disabled</option>: TBD</para>
         </listitem>
       </itemizedlist>
     </section>
 	
     <section>
       <title>Automatically expand all subfolders<indexterm>
-          <primary>subfolders</primary>
+          <primary>expand subfolders</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
