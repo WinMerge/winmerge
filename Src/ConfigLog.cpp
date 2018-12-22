@@ -68,16 +68,18 @@ static String GetCompilerVersion()
 	sVisualStudio = _T("VS.2017 (15.0) - "); 
 #elif	_MSC_VER == 1911
 	sVisualStudio = _T("VS.2017 (15.3) - "); 
-#elif	_MSC_VER >= 1912 && _MSC_VER <  2000
+#elif	_MSC_VER >= 1912 && _MSC_VER <  1920
 	sVisualStudio = strutils::format(_T("VS.2017 (15.%d) - "), 5 + (_MSC_VER - 1912));
+#elif   _MSC_VER >= 1920 && _MSC_VER <  2000
+	sVisualStudio = strutils::format(_T("VS.2019 (16.%d) - "), (_MSC_VER - 1920));
 #elif	_MSC_VER >= 2000
 	# error "** Unknown NEW Version of Visual Studio **"
 #endif
 #endif
 
-	return strutils::format(_T("%sC/C++ Compiler %02i.%02i.%05i"),
+	return strutils::format(_T("%sC/C++ Compiler %02i.%02i.%05i.%i"),
 		sVisualStudio.c_str(),
-		(int)(_MSC_VER / 100), (int)(_MSC_VER % 100), (int)(_MSC_FULL_VER % 100000)
+		(int)(_MSC_VER / 100), (int)(_MSC_VER % 100), (int)(_MSC_FULL_VER % 100000), _MSC_BUILD
 	);
 }
 

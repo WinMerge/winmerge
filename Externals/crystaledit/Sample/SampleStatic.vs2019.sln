@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleStatic.vs2019", "SampleStatic.vs2019.vcxproj", "{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+		Unicode Debug|Win32 = Unicode Debug|Win32
+		Unicode Debug|x64 = Unicode Debug|x64
+		Unicode Release|Win32 = Unicode Release|Win32
+		Unicode Release|x64 = Unicode Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|Win32.Build.0 = Debug|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|x64.ActiveCfg = Debug|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Debug|x64.Build.0 = Debug|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|Win32.ActiveCfg = Release|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|Win32.Build.0 = Release|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|x64.ActiveCfg = Release|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Release|x64.Build.0 = Release|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Unicode Debug|x64.ActiveCfg = Unicode Debug|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Unicode Debug|x64.Build.0 = Unicode Debug|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Unicode Release|Win32.ActiveCfg = Unicode Release|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Unicode Release|Win32.Build.0 = Unicode Release|Win32
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Unicode Release|x64.ActiveCfg = Unicode Release|x64
+		{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}.Unicode Release|x64.Build.0 = Unicode Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D875F13-7AF3-4BE0-B667-DD8052CBF835}
+	EndGlobalSection
+EndGlobal
