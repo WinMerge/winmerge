@@ -2,6 +2,9 @@ rem Java...
 set docbook_java_exe=java.exe
 set docbook_java_parameters=-Xms8m -Xmx256m
 
+rem xsltproc...
+set docbook_xsltproc=..\..\Manual\build\docbook\bin\xsltproc
+
 rem Saxon...
 set docbook_saxon_jar=.\saxon\saxon.jar
 set docbook_saxon_xsl=.\xsl\extensions\saxon655.jar
@@ -13,7 +16,7 @@ set XINCLUDE=org.apache.xerces.parsers.XIncludeParserConfiguration
 set docbook_xerces_jar=.\xerces\xercesImpl.jar
 
 rem HTML Help Compiler...
-set docbook_hhc_exe=.\hhc\hhc.exe
+set docbook_hhc_exe=..\..\Manual\build\docbook\bin\hhc.exe
 
 rem Build directory...
 rem Use "." for the current directory.
