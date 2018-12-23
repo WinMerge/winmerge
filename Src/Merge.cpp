@@ -809,13 +809,13 @@ void CMergeApp::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
  */
 void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
 {
-	String sPath = env::GetProgPath();
+	String name, ext;
 	LANGID LangId = GetLangId();
-	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
-		sPath = paths::ConcatPath(sPath, DocsPath_ja);
-	else
-		sPath = paths::ConcatPath(sPath, DocsPath);
-	if (helpLocation == NULL)
+	paths::SplitFilename(m_pLangDlg->GetFileName(LangId), nullptr, &name, &ext);
+	String sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, name.c_str()));
+	if (paths::DoesPathExist(sPath) != paths::IS_EXISTING_FILE)
+		sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, _T("")));
+	if (helpLocation == nullptr)
 	{
 		if (paths::DoesPathExist(sPath) == paths::IS_EXISTING_FILE)
 			::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOC, NULL);

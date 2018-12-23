@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{4b87ff85-2ba4-475b-823e-af42e45a3098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gtest">
+      <UniqueIdentifier>{20eb57d2-cf08-44a2-b9e0-c7f267013211}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gtest\include">
+      <UniqueIdentifier>{1a47bdcd-4e19-4980-8ce0-6bca0a1f05c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gtest\include\internal">
+      <UniqueIdentifier>{a16e05ae-b552-4e79-920b-099f70b8e4e9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Src\CompareEngines\ByteComparator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\CompareEngines\ByteCompare.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\charsets.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\codepage_detect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\CompareOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\coretools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\diffutils\src\Diff.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\DirItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Environment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\ExConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FileFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FileFilterHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FileFilterMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FileTextEncoding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FileTransform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FileVersion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FilterList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\lwdisp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\markdown.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\MergeCmdLineInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="misc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\multiformatText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\OptionsMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\PathContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\paths.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\PluginManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Plugins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\ProjectFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\RegKey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\RegOptionsMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\stringdiffs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\unicoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\UnicodeString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\UniFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\UniMarkdownFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\varprop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ByteCompare\ByteCompare_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Encoding\charsets_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Encoding\codepage_detect_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DirItem\DirItem_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Environment\Environemt_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FileFilter\FileFilterHelper_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FileVersion\FileVersion_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\markdown\markdown_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CmdLine\MergeCmdLine_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\multiformatText\multiformatText_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Paths\paths_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Plugins\Plugins_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ProjectFile\ProjectFile_test_LeftAndRight.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ProjectFile\ProjectFile_test_LeftAndRightNonRecursive.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ProjectFile\ProjectFile_test_LeftAndRightRecursive.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ProjectFile\ProjectFile_test_PathsAndFilter.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ProjectFile\ProjectFile_test_SimpleLeft.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ProjectFile\ProjectFile_test_SimpleRight.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OptionsMgr\RegOptionsMgr_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StringDiffs\stringdiffs_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StringDiffs\stringdiffs_test_adds.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StringDiffs\stringdiffs_test_bugs.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\StringDiffs\stringdiffs_test_bytelevel.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test_main.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\unicoder\unicoder_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UnicodeString\UnicodeString_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OptionsMgr\VariantValue_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ShellFileOperations\ShellFileOperations_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Externals\gtest\src\gtest-all.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\CompareEngines\BinaryCompare.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BinaryCompare\BinaryCompare_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\DiffItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TimeSizeCompare\TimeSizeCompare_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\CompareEngines\TimeSizeCompare.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\OptionsDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\DiffFileInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\diffutils\src\mystat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\diffutils\mystat_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Externals\gtest\src\gtest.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Externals\gtest\src\gtest_main.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Externals\gtest\src\gtest-death-test.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Externals\gtest\src\gtest-filepath.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Externals\gtest\src\gtest-port.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Externals\gtest\src\gtest-printers.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Externals\gtest\src\gtest-test-part.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Externals\gtest\src\gtest-typed-test.cc">
+      <Filter>gtest</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\CompareEngines\ByteCompare.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\charsets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\codepage_detect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\CompareOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\coretools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\CompareEngines\DiffUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\DirItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Environment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\ExConverter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\FileFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\FileFilterHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\FileFilterMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\FileTextEncoding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\FileTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\FileVersion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\FilterList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\LogFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\lwdisp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\markdown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\MergeCmdLineInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\multiformatText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\OptionsMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\PathContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\PluginManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Plugins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\ProjectFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\RegKey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\RegOptionsMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\stringdiffs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\stringdiffsi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\unicoder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\UnicodeString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\UniMarkdownFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\varprop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\ShellFileOperations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\CompareEngines\BinaryCompare.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\DiffItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\CompareEngines\TimeSizeCompare.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-string.h">
+      <Filter>gtest\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-internal.h">
+      <Filter>gtest\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-death-test-internal.h">
+      <Filter>gtest\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-filepath.h">
+      <Filter>gtest\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-linked_ptr.h">
+      <Filter>gtest\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-param-util.h">
+      <Filter>gtest\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-param-util-generated.h">
+      <Filter>gtest\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-port.h">
+      <Filter>gtest\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-tuple.h">
+      <Filter>gtest\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\internal\gtest-type-util.h">
+      <Filter>gtest\include\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest.h">
+      <Filter>gtest\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest_pred_impl.h">
+      <Filter>gtest\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest_prod.h">
+      <Filter>gtest\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest-death-test.h">
+      <Filter>gtest\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest-message.h">
+      <Filter>gtest\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest-param-test.h">
+      <Filter>gtest\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest-printers.h">
+      <Filter>gtest\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest-spi.h">
+      <Filter>gtest\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest-test-part.h">
+      <Filter>gtest\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\include\gtest\gtest-typed-test.h">
+      <Filter>gtest\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Externals\gtest\src\gtest-internal-inl.h">
+      <Filter>gtest</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

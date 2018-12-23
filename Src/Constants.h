@@ -27,7 +27,7 @@ const TCHAR DownloadUrl[] = _T("https://winmergejp.bitbucket.io/#downloads");
 const TCHAR CurrentVersionURL[] = _T("https://winmergejp.bitbucket.io/winmerge-jp_current_version.txt");
 
 /** @brief Relative (to WinMerge executable ) path to local help file. */
-const TCHAR DocsPath[] = _T("Docs/WinMerge.chm");
+const TCHAR DocsPath[] = _T("Docs/WinMerge%s.chm");
 const TCHAR DocsPath_ja[] = _T("Docs/WinMerge_ja.chm");
 
 /** @brief Contributors list. */
