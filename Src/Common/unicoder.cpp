@@ -292,7 +292,7 @@ void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
 		ch += static_cast<TCHAR>(((unich % 0x400) + 0xdc00));
 		return;
 	}
-	lossy = TRUE;
+	lossy = true;
 	ch = '?';
 	return;
 #else
@@ -314,7 +314,7 @@ void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
 			ch = outch;
 			return;
 		}
-		lossy = TRUE;
+		lossy = true;
 	}
 	// already lossy, so make our best shot
 	DWORD flags = WC_COMPOSITECHECK + WC_DISCARDNS + WC_SEPCHARS + WC_DEFAULTCHAR;

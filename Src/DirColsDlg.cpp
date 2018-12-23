@@ -169,7 +169,7 @@ void CDirColsDlg::MoveItem(int index, int newIndex)
 /**
  * @brief Move selected items one position up or down.
  * @param [in] bUp If `true` items are moved up,
- *  if FALSE items are moved down.
+ *  if `false` items are moved down.
  */
 void CDirColsDlg::MoveSelectedItems(bool bUp)
 {

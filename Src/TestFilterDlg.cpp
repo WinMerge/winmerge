@@ -79,7 +79,7 @@ void CTestFilterDlg::OnTestBtn()
 /**
  * @brief Test text against filter.
  * @param [in] text Text to test.
- * @return true if text passes the filter, FALSE otherwise.
+ * @return true if text passes the filter, `false` otherwise.
  */
 bool CTestFilterDlg::CheckText(String text) const
 {
