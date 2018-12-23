@@ -2,7 +2,7 @@ pushd "%~dp0"
 
 setlocal
 call SetVersion.cmd
-set DISTDIR=\Web Page\geocities
+set DISTDIR=.\Build\Releases
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 
 if "%1" == "" (

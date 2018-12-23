@@ -1,7 +1,7 @@
 cd /d "%~dp0"
 
 call SetVersion.cmd
-set DISTDIR=c:\web page\geocities
+set DISTDIR=.\build\Releases
 
 set GITHUB_USER=sdottaka
 set GITHUB_REPO=winmerge-v2-jp

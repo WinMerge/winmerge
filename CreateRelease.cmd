@@ -1,4 +1,4 @@
-set DISTDIR=\Web Page\geocities
+set DISTDIR=.\build\Releases
 set workdir=BuildTmp\Src
 if "%1" == "vs2015" (
   set vsversion=vs2015
