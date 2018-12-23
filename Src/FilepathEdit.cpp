@@ -64,7 +64,7 @@ static int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFile
 	size_t iBegin = 0;
 	int nLines = 1;
 	
-	while (1)
+	while (true)
 	{
 		String line;
 
@@ -120,9 +120,9 @@ CFilepathEdit::CFilepathEdit()
  * @brief Subclass the control.
  * @param [in] nID ID of the control to subclass.
  * @param [in] pParent Parent control of the control to subclass.
- * @return TRUE if succeeded, FALSE otherwise.
+ * @return `true` if succeeded, `false` otherwise.
  */
-BOOL CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
+bool CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
 {
 	m_bActive = false;
 	return SubclassDlgItem(nID, pParent);
@@ -348,7 +348,7 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
  * This function sets control to look like an active control. We don't
  * have real focus on this control, but editor pane below it. However
  * for user this active look informs which editor pane is active.
- * @param [in] bActive If TRUE set control look like active control.
+ * @param [in] bActive If `true` set control look like active control.
  */
 void CFilepathEdit::SetActive(bool bActive)
 {
