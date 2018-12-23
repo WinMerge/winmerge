@@ -211,7 +211,7 @@ void CPreferencesDlg::OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult)
 
 	if (pPage != nullptr)
 	{
-		m_pphost.SetActivePage(pPage, FALSE);
+		m_pphost.SetActivePage(pPage, false);
 
 		// update caption
 		String sCaption = strutils::format_string1(_("Options (%1)"), (LPCTSTR)GetItemPath(htiSel));
@@ -225,7 +225,7 @@ void CPreferencesDlg::OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CPreferencesDlg::SetActivePage(int nPage)
 {
-	m_pphost.SetActivePage(nPage, FALSE);
+	m_pphost.SetActivePage(nPage, false);
 
 	// synchronize tree
 	CPropertyPage* pPage = m_pphost.GetActivePage();

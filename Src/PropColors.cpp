@@ -400,7 +400,7 @@ void PropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, const Str
 
 	case READ_OPTIONS:
 		// Set colors for buttons, do NOT invalidate
-		btn.SetColor(GetOptionsMgr()->GetInt(optionName), FALSE);
+		btn.SetColor(GetOptionsMgr()->GetInt(optionName), false);
 		return;
 	}
 }

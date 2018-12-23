@@ -36,7 +36,7 @@ class CFilepathEdit : public CEdit
 public : 
 	CFilepathEdit();
 
-	BOOL SubClassEdit(UINT nID, CWnd* pParent);
+	bool SubClassEdit(UINT nID, CWnd* pParent);
 	void RefreshDisplayText();
 	const String& GetUpdatedTipText(CDC * pDC, int maxWidth);
 

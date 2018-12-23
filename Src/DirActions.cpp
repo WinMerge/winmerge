@@ -584,7 +584,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
 			}
 
 			// result filters
-			if (di.diffcode.isResultError() && FALSE/* !GetMainFrame()->m_bShowErrors FIXME:*/)
+			if (di.diffcode.isResultError() && false/* !GetMainFrame()->m_bShowErrors FIXME:*/)
 				return false;
 		}
 		else // recursive mode (including tree-mode)
@@ -613,7 +613,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
 			if (filter.tree_mode)
 			{
 				// result filters
-				if (di.diffcode.isResultError() && FALSE/* !GetMainFrame()->m_bShowErrors FIXME:*/)
+				if (di.diffcode.isResultError() && false/* !GetMainFrame()->m_bShowErrors FIXME:*/)
 					return false;
 
 				// result filters

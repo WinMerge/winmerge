@@ -684,7 +684,7 @@ void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point)
  *
  * @param [in] point Point to move to
  * @param [in] bRealLine `true` if we want to scroll using real line num,
- * FALSE if view linenumbers are OK.
+ *                       `false` if view linenumbers are OK.
  * @return `true` if succeeds, `false` if point not inside bars.
  */
 bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine /*= true*/)
@@ -837,7 +837,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
  * @brief Calculates view/real line in file from given YCoord in bar.
  * @param [in] nYCoord ycoord in pane
  * @param [in] bar bar/file
- * @param [in] bRealLine TRUE if real line is returned, FALSE for view line
+ * @param [in] bRealLine `true` if real line is returned, `false` for view line
  * @return 0-based index of view/real line in file [0...lines-1]
  */
 int CLocationView::GetLineFromYPos(int nYCoord, int bar, bool bRealLine /*= true*/)

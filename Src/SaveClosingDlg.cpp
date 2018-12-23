@@ -74,7 +74,7 @@ END_MESSAGE_MAP()
 
 /**
  * @brief Initialize dialog.
- * @return Always TRUE.
+ * @return Always FALSE.
  */
 BOOL SaveClosingDlg::OnInitDialog() 
 {
