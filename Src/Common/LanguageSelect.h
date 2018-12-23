@@ -24,6 +24,7 @@ class CLanguageSelect
 public:
 	CLanguageSelect();   // standard constructor
 	WORD GetLangId() const { return m_wCurLanguage; }
+	String GetFileName(LANGID) const;
 	void InitializeLanguage(WORD langID);
 
 	bool TranslateString(unsigned uid, std::string &) const;
@@ -48,6 +49,5 @@ private:
 	unsigned m_codepage;
 // Implementation methods
 private:
-	String GetFileName(LANGID) const;
 	bool LoadLanguageFile(LANGID, bool bShowError = false);
 };
