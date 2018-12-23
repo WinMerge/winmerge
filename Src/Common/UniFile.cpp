@@ -442,7 +442,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 	if (m_unicoding == ucr::UCS2LE)
 	{
 		int cchLine = 0;
-		// If there aren't any wchars left in the file, return FALSE to indicate EOF
+		// If there aren't any wchars left in the file, return `false` to indicate EOF
 		if (m_current - m_base + 1 >= m_filesize)
 			return false;
 		// Loop through wchars, watching for eol chars or zero
@@ -488,7 +488,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 	if (m_unicoding == ucr::NONE && ucr::EqualCodepages(m_codepage, GetACP()))
 	{
 		int cchLine = 0;
-		// If there aren't any bytes left in the file, return FALSE to indicate EOF
+		// If there aren't any bytes left in the file, return `false` to indicate EOF
 		if (m_current - m_base >= m_filesize)
 			return false;
 		// Loop through chars, watching for eol chars or zero

@@ -1182,7 +1182,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 
 	struct change *next = script;
 	
-	while (next)
+	while (next != nullptr)
 	{
 		/* Find a set of changes that belong together.  */
 		struct change *thisob = next;
@@ -1333,7 +1333,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 		case 1: next = script12; pdiff = &diff12; pinf = inf12; break;
 		}
 
-		while (next)
+		while (next != nullptr)
 		{
 			/* Find a set of changes that belong together.  */
 			struct change *thisob = next;
