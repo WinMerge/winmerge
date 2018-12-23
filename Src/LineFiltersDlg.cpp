@@ -29,7 +29,7 @@ LineFiltersDlg::LineFiltersDlg()
 , m_pList(nullptr)
 {
 	//{{AFX_DATA_INIT(LineFiltersDlg)
-	m_bIgnoreRegExp = FALSE;
+	m_bIgnoreRegExp = false;
 	//}}AFX_DATA_INIT
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;

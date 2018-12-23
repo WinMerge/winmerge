@@ -484,7 +484,7 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (!m_wndFilePathBar.Create(this))
 	{
 		TRACE0("Failed to create dialog bar\n");
-		return FALSE;      // fail to create
+		return -1;      // fail to create
 	}
 
 	m_wndFilePathBar.SetPaneCount(m_pImgMergeWindow->GetPaneCount());
@@ -544,7 +544,7 @@ bool CImgMergeFrame::EnsureValidDockState(CDockState& state)
 		if (!barIsCorrect)
 			state.m_arrBarInfo.RemoveAt(i);
 	}
-	return TRUE;
+	return true;
 }
 
 /**

@@ -645,7 +645,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				res.files[0].insert(0, _T("\\"));
 				res.files[0].insert(0, path);
 				piHandler = ArchiveGuessFormat(res.files[0]);
-			} while (piHandler);
+			} while (piHandler != nullptr);
 			res.files[0] = path;
 		}
 		piHandler = res.files[1].empty() ? nullptr
@@ -673,7 +673,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				res.files[1].insert(0, _T("\\"));
 				res.files[1].insert(0, path);
 				piHandler = ArchiveGuessFormat(res.files[1]);
-			} while (piHandler);
+			} while (piHandler != nullptr);
 			res.files[1] = path;
 		}
 		piHandler = (res.files.GetSize() <= 2) ? nullptr : ArchiveGuessFormat(res.files[2]);
@@ -700,7 +700,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				res.files[2].insert(0, _T("\\"));
 				res.files[2].insert(0, path);
 				piHandler = ArchiveGuessFormat(res.files[2]);
-			} while (piHandler);
+			} while (piHandler != nullptr);
 			res.files[2] = path;
 		}
 		if (res.files[1].empty())

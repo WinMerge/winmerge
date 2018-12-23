@@ -173,7 +173,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		return 0;
 
 	DirItemArray::size_type i=0, j=0, k=0;
-	while (1)
+	while (true)
 	{
 		if (pCtxt->ShouldAbort())
 			return -1;
@@ -333,7 +333,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 	// i points to current file in left list (aFiles[0])
 	// j points to current file in right list (aFiles[1])
 	i=0, j=0, k=0;
-	while (1)
+	while (true)
 	{
 		if (pCtxt->ShouldAbort())
 			return -1;

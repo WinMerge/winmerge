@@ -148,7 +148,7 @@ void CleanupWMtemp()
  * This function removes temp folders whose name contains process ID from the
  * given list. These folders must have been earlier detected as unused.
  * @param [in] processIDs List of process IDs.
- * @return true if all temp folders were deleted, FALSE otherwise.
+ * @return `true` if all temp folders were deleted, `false` otherwise.
  */
 static bool CleanupWMtempfolder(const vector <int>& processIDs)
 {
@@ -166,7 +166,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 	
 	h = FindFirstFile (TFile(pattern).wpath().c_str(), &ff);
 	if (h == INVALID_HANDLE_VALUE)
-		bok = FALSE;
+		bok = false;
 
 	while (bok & res)
 	{
@@ -204,7 +204,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
  * @brief Is WinMerge with given processID running?
  * @param [in] processIDs List of WinMerge processes.
  * @param [in] iPI ProcessID to check.
- * @return true if processID was found from the list, FALSE otherwise.
+ * @return true if processID was found from the list, `false` otherwise.
  */
 static bool WMrunning(const vector<int>& processIDs, int iPI)
 {
@@ -214,7 +214,7 @@ static bool WMrunning(const vector<int>& processIDs, int iPI)
 /**
  * @brief Remove the temp folder.
  * @param [in] pathName Folder to remove.
- * @return true if removal succeeds, FALSE if fails.
+ * @return true if removal succeeds, `false` if fails.
  */
 bool ClearTempfolder(const String &pathName)
 {

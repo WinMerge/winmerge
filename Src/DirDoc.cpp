@@ -427,7 +427,7 @@ bool CDirDoc::CloseMergeDocs()
  * @param [in] paths Paths for files we update
  * @param [in] nDiffs Total amount of differences
  * @param [in] nTrivialDiffs Amount of ignored differences
- * @param [in] bIdentical `true` if files became identical, FALSE otherwise.
+ * @param [in] bIdentical `true` if files became identical, `false` otherwise.
  */
 void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, bool bIdentical)
