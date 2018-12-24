@@ -816,7 +816,7 @@ bool
 RegSaveString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPCTSTR pszString)
 {
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       if (RegSetValueEx (hSubKey, pszValName, 0, REG_SZ, (LPBYTE) pszString, (DWORD)(_tcslen (pszString) + 1) * sizeof(TCHAR)) == ERROR_SUCCESS)
         {

@@ -124,11 +124,11 @@ void CleanupWMtemp()
 	pEntry.dwSize = sizeof(pEntry);
 
 	// Get first process
-	bool hRes = !!Process32First (hSnapShot, &pEntry);
+	bool bRes = !!Process32First (hSnapShot, &pEntry);
 
 	// Iterate through all processes to get
 	// the ProcessIDs of all running WM instances
-	while (hRes)
+	while (bRes)
 	{
 		size_t exeFileLen = _tcslen(pEntry.szExeFile);
 		if ((exeFileLen >= sizeof(ExecutableFilenameU)/sizeof(TCHAR)-1 && _tcsicmp(pEntry.szExeFile + exeFileLen - (sizeof(ExecutableFilenameU)/sizeof(TCHAR)-1), ExecutableFilenameU) == 0) ||
@@ -136,7 +136,7 @@ void CleanupWMtemp()
 		{
 			processIDs.push_back(pEntry.th32ProcessID);
 		}
-		hRes = !!Process32Next (hSnapShot, &pEntry);
+		bRes = !!Process32Next (hSnapShot, &pEntry);
 	}
 
 	// Now remove temp folders that are not used.

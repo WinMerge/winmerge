@@ -63,7 +63,7 @@ static void EscapeControlChars(String &s)
 	size_t n = s.length();
 	LPCTSTR q = s.c_str();
 	size_t i = n;
-	while (i)
+	while (i != 0)
 	{
 		TCHAR c = q[--i];
 		// Is it a control character in the range 0..31 except TAB?
@@ -78,7 +78,7 @@ static void EscapeControlChars(String &s)
 	s.resize(n + 1);
 	LPTSTR p = &s[0];
 	// Copy/translate characters starting at end of string
-	while (i)
+	while (i != 0)
 	{
 		TCHAR c = p[--i];
 		// Is it a control character in the range 0..31 except TAB?

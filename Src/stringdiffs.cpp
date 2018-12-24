@@ -680,7 +680,7 @@ isWordBreak(int breakType, const TCHAR *str, int index)
 	{
 //		TCHAR nextCh = str[index + 1];
 		// breakType==0 means whitespace only
-		if (!breakType)
+		if (breakType==0)
 			return false;
 		return _tcschr(BreakChars, ch) != nullptr;
 	}
@@ -705,7 +705,7 @@ isWordBreak(int breakType, const TCHAR *str, int index)
 	}
 #else
 	// breakType==0 means whitespace only
-	if (!breakType)
+	if (breakType==0)
 		return false;
 	return _tcschr(BreakChars, ch) != nullptr;
 #endif
@@ -834,7 +834,7 @@ ComputeByteDiff(String & str1, String & str2,
 	}
 	// Advance over matching beginnings of lines
 	// Advance py1 & py2 from beginning until find difference or end
-	while (1)
+	while (true)
 	{
 		// Potential difference extends from py1 to pen1 and py2 to pen2
 
@@ -914,7 +914,7 @@ ComputeByteDiff(String & str1, String & str2,
 
 	// Retreat over matching ends of lines
 	// Retreat pz1 & pz2 from end until find difference or beginning
-	while (1)
+	while (true)
 	{
 		// Check if either side finished
 		if (pz1 < py1 && pz2 < py2)

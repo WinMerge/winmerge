@@ -88,7 +88,7 @@ public:
 		CAssureScriptsForThread scriptsForRescan;
 
 		AutoPtr<Notification> pNf(m_queue.waitDequeueNotification());
-		while (pNf)
+		while (pNf.get() != nullptr)
 		{
 			WorkNotification* pWorkNf = dynamic_cast<WorkNotification*>(pNf.get());
 			if (pWorkNf) {
@@ -491,11 +491,11 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
 	int count = 0;
-	if (!parentdiffpos)
+	if (parentdiffpos == 0)
 		myStruct->pSemaphore->wait();
 	stopwatch.start();
 	uintptr_t pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
-	while (pos)
+	while (pos != 0)
 	{
 		if (pCtxt->ShouldAbort())
 			break;
@@ -538,10 +538,10 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 	while (count > 0)
 	{
 		AutoPtr<Notification> pNf(queueResult.waitDequeueNotification());
-		if (!pNf)
+		if (pNf.get() == nullptr)
 			break;
 		WorkCompletedNotification* pWorkCompletedNf = dynamic_cast<WorkCompletedNotification*>(pNf.get());
-		if (pWorkCompletedNf) {
+		if (pWorkCompletedNf != nullptr) {
 			DIFFITEM &di = pWorkCompletedNf->data();
 			if (di.diffcode.isResultDiff() ||
 				(!di.diffcode.existAll() && !di.diffcode.isResultFiltered()))
@@ -765,7 +765,7 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const FolderCmp * pCmpData)
 {
-	if (pCmpData)
+	if (pCmpData != nullptr)
 	{
 		di.nsdiffs = pCmpData->m_ndiffs;
 		di.nidiffs = pCmpData->m_ntrivialdiffs;
