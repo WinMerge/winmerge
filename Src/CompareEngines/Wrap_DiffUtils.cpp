@@ -152,7 +152,7 @@ int DiffUtils::diffutils_compare_files()
 				/* Determine range of line numbers involved in each file.  */
 				int first0 = 0, last0 = 0, first1 = 0, last1 = 0, deletes = 0, inserts = 0;
 				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, m_inf);
-				if (deletes || inserts || thisob->trivial)
+				if (deletes!=0 || inserts!=0 || thisob->trivial!=0)
 				{
 					/* Print the lines that the first file has.  */
 					int trans_a0 = 0, trans_b0 = 0, trans_a1 = 0, trans_b1 = 0;
@@ -166,7 +166,7 @@ int DiffUtils::diffutils_compare_files()
 					if(m_pOptions->m_filterCommentsLines)
 					{
 						OP_TYPE op = OP_NONE;
-						if (!deletes && !inserts)
+						if (deletes == 0 && inserts == 0)
 							op = OP_TRIVIAL;
 						else
 							op = OP_DIFF;

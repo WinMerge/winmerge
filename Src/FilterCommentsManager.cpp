@@ -83,7 +83,7 @@ void FilterCommentsManager::Load()
 	catch (...)
 	{
 	}
-	if (!SectionNo)
+	if (SectionNo == 0)
 	{//If no markers were found, then initialize default markers
 		CreateDefaultMarkers();
 	}

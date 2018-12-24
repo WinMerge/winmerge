@@ -2734,14 +2734,14 @@ int (*CCrystalEditView::SpellConfig) (SpellData*);
 
 bool CCrystalEditView::LoadSpellDll (bool bAlert /*= true*/)
 {
-  if (hSpellDll)
+  if (hSpellDll != nullptr)
     return true;
   CString sPath = szWIspellPath;
   if (!sPath.IsEmpty () && sPath[sPath.GetLength () - 1] != _T('\\'))
     sPath += _T ('\\');
   sPath += _T ("wispell.dll");
   hSpellDll = LoadLibrary (sPath);
-  if (hSpellDll)
+  if (hSpellDll != nullptr)
     {
       SpellInit = (int (*) (SpellData*)) GetProcAddress (hSpellDll, "SpellInit");
       SpellCheck = (int (*) (SpellData*)) GetProcAddress (hSpellDll, "SpellCheck");

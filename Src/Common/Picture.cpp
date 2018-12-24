@@ -35,13 +35,13 @@ bool CPicture::Load(UINT nIDRes)
 	HRSRC hRsrc = ::FindResource(hInst,
 		MAKEINTRESOURCE(nIDRes),
 		TEXT("IMAGE")); // type
-	if (!hRsrc)
+	if (hRsrc == nullptr)
 		return false;
 
 	// load resource into memory
 	DWORD len = SizeofResource(hInst, hRsrc);
 	BYTE* lpRsrc = (BYTE*)LoadResource(hInst, hRsrc);
-	if (!lpRsrc)
+	if (lpRsrc == nullptr)
 		return false;
 
 	// create memory file and load it

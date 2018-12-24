@@ -805,7 +805,7 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2,
 	// FIXME:
 	for (int nIndex = 0; nIndex < 3; ++nIndex)
 		nPane[nIndex] = nIndex;
-	if (!pos3)
+	if (pos3 == 0)
 	{
 		// Two items selected, get their info
 		pdi[0] = &ctxt.GetDiffAt(pos1);
