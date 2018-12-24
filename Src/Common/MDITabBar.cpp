@@ -356,9 +356,9 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	if (::IsWindow(hwndFrame))
 	{
 		HICON hIcon = (HICON)::SendMessage(hwndFrame, WM_GETICON, ICON_SMALL2, 0);
-		if (!hIcon)
+		if (hIcon == nullptr)
 			hIcon = (HICON)GetClassLongPtr(hwndFrame, GCLP_HICONSM);
-		if (hIcon)
+		if (hIcon != nullptr)
 			DrawIconEx(lpDraw->hDC, rc.left - iconsize.cx - 2, rc.top + (rc.bottom - rc.top - iconsize.cy) / 2, hIcon, iconsize.cx, iconsize.cy, 0, nullptr, DI_NORMAL);
 	}
 	DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);

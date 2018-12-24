@@ -69,7 +69,7 @@ String GetTemporaryFileName(const String& lpPathName, const String& lpPrefixStri
 	if (lpPathName.length() > MAX_PATH-14)
 		return _T(""); // failure
 	int rtn = ::GetTempFileName(lpPathName.c_str(), lpPrefixString.c_str(), 0, buffer);
-	if (!rtn)
+	if (rtn == 0)
 	{
 		int err = GetLastError();
 		if (pnerr != nullptr)

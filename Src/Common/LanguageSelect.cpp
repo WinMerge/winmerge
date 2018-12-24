@@ -416,14 +416,14 @@ LangFileInfo::LangFileInfo(LPCTSTR path)
 	if (_tfopen_s(&f, path, _T("r")) == 0 && f)
 	{
 		char buf[1024 + 1];
-		while (fgets(buf, sizeof buf - 1, f))
+		while (fgets(buf, sizeof buf - 1, f) != nullptr)
 		{
 			int i = 0;
 			strcat_s(buf, "1");
 			sscanf_s(buf, "msgid \" LANG_ENGLISH , SUBLANG_ENGLISH_US \" %d", &i);
 			if (i)
 			{
-				if (fgets(buf, sizeof buf, f))
+				if (fgets(buf, sizeof buf, f) != nullptr)
 				{
 					char *lang = strstr(buf, "LANG_");
 					char *sublang = strstr(buf, "SUBLANG_");
@@ -685,7 +685,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	std::string format;
 	std::string msgstr;
 	std::string directive;
-	while (fgets(buf, sizeof buf, f))
+	while (fgets(buf, sizeof buf, f) != nullptr)
 	{
 		if (char *p0 = EatPrefix(buf, "#:"))
 		{

@@ -167,7 +167,7 @@ String trim_ws_end(const String & str)
 
 String format_arg_list(const TCHAR *fmt, va_list args)
 {
-	if (!fmt)
+	if (fmt == nullptr)
 		return _T("");
 	int result = -1;
 	int length = 256;
