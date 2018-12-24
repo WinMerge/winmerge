@@ -744,7 +744,7 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	if (m_pMenus[MENU_HEXMERGEVIEW] == nullptr)
 		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
 	CHexMergeDoc *pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(theApp.m_pHexMergeTemplate, pDirDoc, nFiles);
-	if (!pHexMergeDoc)
+	if (pHexMergeDoc == nullptr)
 		return false;
 
 	if (!pHexMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags)))

@@ -119,7 +119,7 @@ static HGLOBAL ConvertToUTF16ForClipboard(HGLOBAL hMem, int codepage)
 {
 	size_t len = GlobalSize(hMem);
 	HGLOBAL hMemW = GlobalAlloc(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT, (len + 1) * sizeof(wchar_t));
-	if (!hMemW)
+	if (hMemW == nullptr)
 		return nullptr;
 	LPCSTR pstr = reinterpret_cast<LPCSTR>(GlobalLock(hMem));
 	LPWSTR pwstr = reinterpret_cast<LPWSTR>(GlobalLock(hMemW));

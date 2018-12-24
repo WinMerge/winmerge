@@ -324,7 +324,7 @@ bool
 CMoveConstraint::
 ConstrainItem(int nId, double fLeftX, double fExpandX, double fAboveY, double fExpandY)
 {
-	if (!m_hwndDlg || !IsWindow(m_hwndDlg))
+	if (m_hwndDlg == nullptr || !IsWindow(m_hwndDlg))
 		return false;
 	HWND hwnd = GetDlgItem(m_hwndDlg, nId);
 	return DoConstrain(0, hwnd, fLeftX, fExpandX, fAboveY, fExpandY);
@@ -377,7 +377,7 @@ CMoveConstraint::UnSubclassWnd()
 void
 CMoveConstraint::CheckDeferredChildren()
 {
-	if (!m_nDelayed)
+	if (m_nDelayed == 0)
 		return;
 	ConstraintList & constraintList = m_ConstraintList;
 	for (POSITION pos=constraintList.GetHeadPosition(); pos != nullptr; constraintList.GetNext(pos))
@@ -408,7 +408,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 
 	if (nType == SIZE_MINIMIZED) return;
 
-	if (!m_hwndDlg && hWnd != nullptr && !m_bOriginalFetched)
+	if (m_hwndDlg == nullptr && hWnd != nullptr && !m_bOriginalFetched)
 	{
 		// if early subclass or wndproc
 		// grab early dimensions, in case we want them later (eg, property sheet)
@@ -416,7 +416,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 		return;
 	}
 
-	if (!m_hwndDlg || !IsWindow(m_hwndDlg))
+	if (m_hwndDlg == nullptr || !IsWindow(m_hwndDlg))
 		return;
 
 	CRect rectParentCurrent;
@@ -478,7 +478,7 @@ void
 CMoveConstraint::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
 {
 	// views don't get WM_GETMINMAXINFO, but dialogs & frames do
-	if (!m_hwndDlg)
+	if (m_hwndDlg == nullptr)
 		return;
 	if (m_nMinX)
 		lpMMI->ptMinTrackSize.x = m_nMinX;
@@ -494,7 +494,7 @@ bool
 CMoveConstraint::PaintGrip()
 {
 	if (m_nGrip == SG_NONE) return false;
-	if (!m_hwndDlg) return false;
+	if (m_hwndDlg == nullptr) return false;
 	HWND hw = (m_nGrip == SG_PARENTSTATE) ? GetParent(m_hwndDlg) : m_hwndDlg;
 	return !IsZoomed(hw) && !IsIconic(hw);
 }
@@ -507,7 +507,7 @@ bool
 CMoveConstraint::OnNcHitTest(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT * plresult)
 {
 	// views don't get WM_NCHITTEST, but dialogs & frames do
-	if (!m_hwndDlg)
+	if (m_hwndDlg == nullptr)
 		return false;
 	if (m_nMinY == m_nMaxY)
 	{

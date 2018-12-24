@@ -76,12 +76,14 @@ int GetNamePosition (LPCTSTR pszString)
   int posit = sString.GetLength ();
   TCHAR test;
   do
+  {
 #ifdef _UNICODE
     if ((test = sString.GetAt (--posit)) == _T ('\\') || test == _T (':'))
 #else
     if (((test = sString.GetAt (--posit)) == _T ('\\') && !_ismbstrail((unsigned char *)pszString, (unsigned char *)pszString + posit)) || test == _T (':'))
 #endif
       return posit + 1;
+  }
   while (posit);
   return posit;
 }

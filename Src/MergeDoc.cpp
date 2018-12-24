@@ -2524,7 +2524,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
  */
 bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
 {
-	if (!cp) // 0 is our signal value for invalid
+	if (cp == 0) // 0 is our signal value for invalid
 		return false;
 	return GetEncodingNameFromCodePage(cp) != nullptr;
 }
