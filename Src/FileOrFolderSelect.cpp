@@ -176,7 +176,7 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 	// Look for BFFM_INITIALIZED
 	if (uMsg == BFFM_INITIALIZED)
 	{
-		if (lpData)
+		if (lpData != NULL)
 			SendMessage(hwnd, BFFM_SETSELECTION, TRUE, lpData);
 		else
 			SendMessage(hwnd, BFFM_SETSELECTION, TRUE, (LPARAM)LastSelectedFolder.c_str());
