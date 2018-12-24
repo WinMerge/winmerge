@@ -26,7 +26,7 @@ public:
 	virtual ~CLocationBar();
 	virtual BOOL Create(
 		CWnd* pParentWnd,			// mandatory
-		LPCTSTR lpszWindowName = NULL,
+		LPCTSTR lpszWindowName = nullptr,
 		DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
 		UINT nID = AFX_IDW_PANE_FIRST);
 

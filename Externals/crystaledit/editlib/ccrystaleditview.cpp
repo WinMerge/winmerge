@@ -1664,7 +1664,7 @@ ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags)
       if (m_pszMatched && !RxReplace(pszNewText, m_pszMatched, m_nLastFindWhatLen, m_rxmatch, &lpszNewStr, &m_nLastReplaceLen))
         {
           CString text;
-          if (lpszNewStr && m_nLastReplaceLen > 0)
+          if (lpszNewStr != nullptr && m_nLastReplaceLen > 0)
             {
               LPTSTR buf = text.GetBuffer (m_nLastReplaceLen + 1);
               _tcsncpy_s (buf, m_nLastReplaceLen+1, lpszNewStr, m_nLastReplaceLen);
