@@ -90,7 +90,7 @@ void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = nullptr)
   _tcscpy_s(info.lfMenuFont.lfFaceName, _T("MS Sans Serif"));
   oFont.CreateFontIndirect(&info.lfMenuFont);
   oldFont = dc.SelectObject(&oFont);
-  if(lpszText && *lpszText) {
+  if(lpszText != nullptr && *lpszText != 0) {
     size = dc.GetTextExtent(lpszText);
     width = size.cx;
   } else {
