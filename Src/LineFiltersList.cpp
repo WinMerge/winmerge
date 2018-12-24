@@ -232,7 +232,7 @@ void LineFiltersList::Import(const String& filters)
 	{
 		// find each regular expression and add to list
 		TCHAR *token = _tcstok_s(p_filters, sep, &pfilterNext);
-		while (token)
+		while (token != nullptr)
 		{
 			AddFilter(token, true);
 			token = _tcstok_s(nullptr, sep, &pfilterNext);
