@@ -201,7 +201,7 @@ LPDISPATCH CreateDispatchBySourceAndCLSID(LPCTSTR source, CLSID *pObjectCLSID)
 				sc = piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
 			}
 		}
-		if (!pv)
+		if (pv == NULL)
 			FreeLibrary(hLibrary);
 	}
 	return pv;
