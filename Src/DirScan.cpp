@@ -91,7 +91,7 @@ public:
 		while (pNf.get() != nullptr)
 		{
 			WorkNotification* pWorkNf = dynamic_cast<WorkNotification*>(pNf.get());
-			if (pWorkNf) {
+			if (pWorkNf != nullptr) {
 				m_pCtxt->m_pCompareStats->BeginCompare(&pWorkNf->data(), m_id);
 				if (!m_pCtxt->ShouldAbort())
 					CompareDiffItem(pWorkNf->data(), m_pCtxt);

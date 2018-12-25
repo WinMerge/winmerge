@@ -224,7 +224,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
 	TCHAR expandedPath[MAX_PATH_FULL];
 	const TCHAR *lpcszPath = sPath.c_str();
-	if (bExpandEnvs && _tcschr(lpcszPath, '%'))
+	if (bExpandEnvs && _tcschr(lpcszPath, '%') != nullptr)
 	{
 		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, MAX_PATH_FULL);
 		if (dwLen > 0 && dwLen < MAX_PATH_FULL)

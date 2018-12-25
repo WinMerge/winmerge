@@ -216,7 +216,7 @@ CMergeEditView * CMergeDoc::GetActiveMergeView()
 {
 	CView * pActiveView = GetParentFrame()->GetActiveView();
 	CMergeEditView * pMergeEditView = dynamic_cast<CMergeEditView *>(pActiveView);
-	if (!pMergeEditView)
+	if (pMergeEditView == nullptr)
 		pMergeEditView = GetView(0, 0); // default to left view (in case some location or detail view active)
 	return pMergeEditView;
 }
@@ -228,7 +228,7 @@ CMergeEditView * CMergeDoc::GetActiveMergeGroupView(int nBuffer)
 
 void CMergeDoc::SetUnpacker(const PackingInfo * infoNewHandler)
 {
-	if (infoNewHandler)
+	if (infoNewHandler != nullptr)
 	{
 		*m_pInfoUnpacker = *infoNewHandler;
 	}
