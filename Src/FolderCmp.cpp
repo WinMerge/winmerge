@@ -96,7 +96,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		PrediffingInfo * infoPrediffer = nullptr;
 
 		// Get existing or new plugin infos
-		if (pCtxt->m_piPluginInfos)
+		if (pCtxt->m_piPluginInfos != nullptr)
 			pCtxt->FetchPluginInfos(filteredFilenames, &infoUnpacker,
 					&infoPrediffer);
 

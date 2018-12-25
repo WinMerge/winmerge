@@ -83,7 +83,7 @@ static FastMutex scriptletsSem;
 template<class T> struct AutoReleaser
 {
 	explicit AutoReleaser(T *ptr) : p(ptr) {}
-	~AutoReleaser() { if (p) p->Release(); }
+	~AutoReleaser() { if (p!=nullptr) p->Release(); }
 	T *p;
 };
 
@@ -118,7 +118,7 @@ bool IsWindowsScriptThere()
 int GetFunctionsFromScript(IDispatch *piDispatch, vector<String>& namesArray, vector<int>& IdArray, INVOKEKIND wantedKind)
 {
 	UINT iValidFunc = 0;
-	if (piDispatch)
+	if (piDispatch != nullptr)
 	{
 		ITypeInfo *piTypeInfo=nullptr;
 		unsigned  iTInfo = 0; // 0 for type information of IDispatch itself

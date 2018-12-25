@@ -5696,7 +5696,7 @@ bracetype (TCHAR c)
 {
   static LPCTSTR braces = _T("{}()[]<>");
   LPCTSTR pos = _tcschr (braces, c);
-  return pos ? (int) (pos - braces) + 1 : 0;
+  return pos != nullptr ? (int) (pos - braces) + 1 : 0;
 }
 
 int
