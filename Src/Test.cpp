@@ -472,7 +472,7 @@ TEST(FileMenu, OpenProject)
 	theApp.LoadAndOpenProjectFile(projectFile);
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	EXPECT_NE(nullptr, pFrame);
-	if (pFrame)
+	if (pFrame != nullptr)
 		pFrame->PostMessage(WM_CLOSE);
 }
 
@@ -483,7 +483,7 @@ TEST(FileMenu, OpenProject3)
 	theApp.LoadAndOpenProjectFile(projectFile);
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	EXPECT_NE(nullptr, pFrame);
-	if (pFrame)
+	if (pFrame != nullptr)
 		pFrame->PostMessage(WM_CLOSE);
 }
 

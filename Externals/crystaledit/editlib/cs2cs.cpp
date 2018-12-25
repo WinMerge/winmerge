@@ -190,7 +190,7 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
     if (source_coding < 0)
       {
         posit = fget_coding (string, &source_coding);
-        if (posit)
+        if (posit != 0)
           cod_pos = string + posit;
       }
     if (source_coding < 0)
