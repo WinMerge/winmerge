@@ -3644,7 +3644,7 @@ LRESULT CDirView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 
 	CShellContextMenu* pMenu = GetCorrespondingShellContextMenu(m_hCurrentMenu);
 
-	if (pMenu)
+	if (pMenu != nullptr)
 	{
 		LRESULT res = 0;
 		pMenu->HandleMenuMessage(message, wParam, lParam, res);

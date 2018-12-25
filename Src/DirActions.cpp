@@ -1365,7 +1365,7 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 		path[i] = ctxt.GetNormalizedPath(i);
 
 	// If we have temp context it means we are comparing archives
-	if (pTempPathContext)
+	if (pTempPathContext != nullptr)
 	{
 		std::vector<String> name(path.size());
 		for (int i = 0; i < static_cast<int>(path.size()); ++i)
