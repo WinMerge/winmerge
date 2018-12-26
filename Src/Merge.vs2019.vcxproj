@@ -534,6 +534,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\verilog.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\vhdl.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ViewableWhitespace.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\wcwidth.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\xml.cpp" />
     <ClCompile Include="..\Externals\gtest\src\gtest-all.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">true</ExcludedFromBuild>
@@ -953,6 +954,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\SyntaxColors.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\UndoRecord.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\ViewableWhitespace.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\wcwidth.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h" />
     <ClInclude Include="..\Externals\gtest\include\gtest\gtest-printers.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</ExcludedFromBuild>
