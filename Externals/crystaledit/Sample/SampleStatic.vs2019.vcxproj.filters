@@ -225,6 +225,9 @@
     <ClCompile Include="..\editlib\ctextmarkerdlg.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
+    <ClCompile Include="..\editlib\wcwidth.cpp">
+      <Filter>editlib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Sample.rc">
@@ -338,6 +341,9 @@
       <Filter>editlib</Filter>
     </ClInclude>
     <ClInclude Include="..\editlib\ctextmarkerdlg.h">
+      <Filter>editlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\wcwidth.h">
       <Filter>editlib</Filter>
     </ClInclude>
   </ItemGroup>
