@@ -106,6 +106,7 @@
 #include "SyntaxColors.h"
 #include "ccrystaltextmarkers.h"
 #include "string_util.h"
+#include "wcwidth.h"
 
 using std::vector;
 
@@ -6379,10 +6380,8 @@ int CCrystalTextView::GetCharCellCountUnicodeChar(wchar_t ch)
           else
             {
               wchar_t ch2 = static_cast<wchar_t>(nStart + i);
-              WORD wCharType;
-              GetStringTypeW(CT_CTYPE3, &ch2, 1, &wCharType);
-              if (!(wCharType & C3_HALFWIDTH) && wCharType & (C3_FULLWIDTH | C3_IDEOGRAPH | C3_HIRAGANA | C3_KATAKANA))
-                m_iChDoubleWidthFlags[(nStart+i)/32] |= 1 << (i % 32);
+              if (mk_wcwidth(ch2) > 1)
+                m_iChDoubleWidthFlags[(nStart + i) / 32] |= 1 << (i % 32);
             }
         }
       m_bChWidthsCalculated[ch / 256] = true;
