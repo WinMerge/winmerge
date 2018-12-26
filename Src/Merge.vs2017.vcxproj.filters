@@ -775,6 +775,9 @@
     <ClCompile Include="Merge7zFormatShellImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\wcwidth.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1430,6 +1433,9 @@
     </ClInclude>
     <ClInclude Include="Merge7zFormatShellImpl.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\wcwidth.h">
+      <Filter>EditLib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

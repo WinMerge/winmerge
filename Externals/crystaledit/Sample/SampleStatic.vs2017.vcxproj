@@ -545,6 +545,7 @@
     <ClCompile Include="..\editlib\verilog.cpp" />
     <ClCompile Include="..\editlib\vhdl.cpp" />
     <ClCompile Include="..\editlib\ViewableWhitespace.cpp" />
+    <ClCompile Include="..\editlib\wcwidth.cpp" />
     <ClCompile Include="..\editlib\xml.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="MainFrm.cpp" />
@@ -594,6 +595,7 @@
     <ClInclude Include="..\editlib\SyntaxColors.h" />
     <ClInclude Include="..\editlib\UndoRecord.h" />
     <ClInclude Include="..\editlib\ViewableWhitespace.h" />
+    <ClInclude Include="..\editlib\wcwidth.h" />
     <ClInclude Include="..\editlib\wispelld.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="MainFrm.h" />
