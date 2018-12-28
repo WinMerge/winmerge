@@ -491,6 +491,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
 	int count = 0;
+	bool bCompareFailure = false;
 	if (parentdiffpos == 0)
 		myStruct->pSemaphore->wait();
 	stopwatch.start();
@@ -512,18 +513,29 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 		bool existsalldirs = di.diffcode.existAll();
 		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
 		{
-			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
+			if ((di.diffcode.diffcode & DIFFCODE::CMPERR) != DIFFCODE::CMPERR)
+			{	// Only clear DIFF|SAME flags if not CMPERR (eg. both flags together)
+				di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
+			}
 			int ndiff = CompareItems(queue, myStruct, curpos);
+			// Propogate sub-directory status to this directory
 			if (ndiff > 0)
-			{
+			{	// There were differences in the sub-directories
 				if (existsalldirs)
 					di.diffcode.diffcode |= DIFFCODE::DIFF;
 				res += ndiff;
 			}
-			else if (ndiff == 0)
-			{
+			else 
+			if (ndiff == 0)
+			{	// Sub-directories were identical
 				if (existsalldirs)
 					di.diffcode.diffcode |= DIFFCODE::SAME;
+			}
+			else
+			if (ndiff == -1)
+			{	// There were file IO-errors during sub-directory comparison.
+				di.diffcode.diffcode |= DIFFCODE::CMPERR;
+				bCompareFailure = true;
 			}
 		}
 		if (existsalldirs)
@@ -543,6 +555,15 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 		WorkCompletedNotification* pWorkCompletedNf = dynamic_cast<WorkCompletedNotification*>(pNf.get());
 		if (pWorkCompletedNf != nullptr) {
 			DIFFITEM &di = pWorkCompletedNf->data();
+			if (di.diffcode.isResultError()) { 
+				DIFFITEM *diParent = di.parent;
+				if (diParent != nullptr)
+				{
+					diParent->diffcode.diffcode |= DIFFCODE::CMPERR;
+					bCompareFailure = true;
+				}
+			}
+				
 			if (di.diffcode.isResultDiff() ||
 				(!di.diffcode.existAll() && !di.diffcode.isResultFiltered()))
 				res++;
@@ -550,7 +571,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 		--count;
 	}
 
-	return pCtxt->ShouldAbort() ? -1 : res;
+	return bCompareFailure || pCtxt->ShouldAbort() ? -1 : res;
 }
 
 /**
