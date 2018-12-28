@@ -395,13 +395,13 @@ void CDirView::OnInitialUpdate()
 		m_ctlSortHeader.SubclassWindow(hWnd);
 
 	// Load the icons used for the list view (to reflect diff status)
-	// NOTE: these must be in the exactly the same order than in enum
-	// definition in begin of this file!
+	// NOTE: these must be in the exactly the same order as in the `enum`
+	// definition in the DirActions.h file (ref: DIFFIMG_LUNIQUE)
 	VERIFY(m_imageList.Create(iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1));
 	int icon_ids[] = {
 		IDI_LFILE, IDI_MFILE, IDI_RFILE,
 		IDI_MRFILE, IDI_LRFILE, IDI_LMFILE,
-		IDI_NOTEQUALFILE, IDI_EQUALFILE,
+		IDI_NOTEQUALFILE, IDI_EQUALFILE, IDI_FILE, 
 		IDI_EQUALBINARY, IDI_BINARYDIFF,
 		IDI_LFOLDER, IDI_MFOLDER, IDI_RFOLDER,
 		IDI_MRFOLDER, IDI_LRFOLDER, IDI_LMFOLDER,

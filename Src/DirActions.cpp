@@ -1020,7 +1020,7 @@ int GetColImage(const DIFFITEM & di)
 				return DIFFIMG_DIFF;
 		}
 	}
-	return (di.diffcode.isDirectory() ? DIFFIMG_DIR : DIFFIMG_ABORT);
+	return (di.diffcode.isDirectory() ? DIFFIMG_DIR : DIFFIMG_FILE );
 }
 
 /**
