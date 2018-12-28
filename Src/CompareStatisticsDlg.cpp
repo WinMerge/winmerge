@@ -72,7 +72,7 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 
 	static const struct { int ctlID; CompareStats::RESULT resultType; bool isDir; } ctlResultTypeMap[] =
 	{
-		{ IDC_STAT_IDENTICFOLDER,  CompareStats::RESULT_DIR,         true },
+		{ IDC_STAT_IDENTICFOLDER,  CompareStats::RESULT_DIRSAME,     true },
 		{ IDC_STAT_IDENTICFILE,    CompareStats::RESULT_SAME,        false },
 		{ IDC_STAT_IDENTICBINARY,  CompareStats::RESULT_BINSAME,     false },
 		{ IDC_STAT_DIFFFILE,       CompareStats::RESULT_DIFF,        false },
@@ -123,6 +123,7 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 		{ IDC_STAT_IRMISSINGFILE,   IDI_LMFILE },
 		{ IDC_STAT_IEQUALFILE,      IDI_EQUALFILE },
 		{ IDC_STAT_IEQUALBINFILE,   IDI_EQUALBINARY },
+		{ IDC_STAT_IIDENTICFOLDER,  IDI_EQUALFOLDER },
 	};
 	
 	for (auto&& map : ctlIconMap)
