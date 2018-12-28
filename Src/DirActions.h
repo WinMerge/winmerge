@@ -17,8 +17,8 @@ class CTempPathContext;
 
 /**
  * @brief Folder compare icon indexes.
- * This enum defines indexes for imagelist used for folder compare icons.
- * Note that this enum must be in synch with code in OnInitialUpdate() and
+ * This `enum` defines indexes for the imagelist used for folder/file compare icons.
+ * Note that this enum must be in synch with code in CDirView::OnInitialUpdate() and
  * GetColImage(). Also remember that icons are in resource file...
  */
 enum
@@ -31,6 +31,7 @@ enum
 	DIFFIMG_RMISSING,
 	DIFFIMG_DIFF,
 	DIFFIMG_SAME,
+	DIFFIMG_FILE,
 	DIFFIMG_BINSAME,
 	DIFFIMG_BINDIFF,
 	DIFFIMG_LDIRUNIQUE,
