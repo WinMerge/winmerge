@@ -246,6 +246,10 @@ int ByteCompare::CompareFiles(FileLocation *location)
 				}
 			}
 		}
+		else
+		{
+			assert(result == ByteComparator::RESULT_SAME);
+		}
 
 		// Did we finish both files?
 		// We set the text/binary status only for fully compared files. Only
