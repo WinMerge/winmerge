@@ -97,7 +97,7 @@ const DIFFITEM &DiffItemList::GetNextDiffPosition(uintptr_t & diffpos) const
 		DIFFITEM *cur = p;
 		do
 		{
-			if (cur->parent)
+			if (cur->parent != nullptr)
 				diffpos = (uintptr_t)cur->parent->children.IsSibling(cur->Flink);
 			else
 				diffpos = (uintptr_t)m_root.IsSibling(cur->Flink);
