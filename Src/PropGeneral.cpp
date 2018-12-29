@@ -83,7 +83,7 @@ BOOL PropGeneral::OnInitDialog()
 
 void PropGeneral::OnDestroy()
 {
-	if (m_pLoadLanguagesThread)
+	if (m_pLoadLanguagesThread!=nullptr)
 	{
 		WaitForSingleObject(m_pLoadLanguagesThread->m_hThread, INFINITE);
 		delete m_pLoadLanguagesThread;

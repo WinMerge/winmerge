@@ -717,7 +717,7 @@ void UniStdioFile::Close()
 	if (IsOpen())
 	{
 		fclose(m_fp);
-		m_fp = 0;
+		m_fp = nullptr;
 	}
 	m_statusFetched = 0;
 	m_filesize = 0;

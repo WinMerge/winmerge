@@ -454,7 +454,7 @@ CHexMergeFrame * CHexMergeDoc::GetParentFrame() const
 void CHexMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
 {
 	ASSERT(m_pDirDoc == pDirDoc);
-	m_pDirDoc = 0;
+	m_pDirDoc = nullptr;
 }
 
 /**
