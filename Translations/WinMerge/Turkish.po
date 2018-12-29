@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2018-02-08 22:40+0000\n"
-"PO-Revision-Date: 2018-02-11 13:44+0300\n"
+"PO-Revision-Date: 2018-12-28 23:00+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:5F458438
@@ -692,7 +692,7 @@ msgstr "Farklı Karşılaştır"
 #: Merge.rc:43017E4B
 #, c-format
 msgid "&Text"
-msgstr ""
+msgstr "Me&tin"
 
 #: Merge.rc:22956A7
 #, c-format
@@ -1038,7 +1038,7 @@ msgstr "&Betikler"
 #: Merge.rc:39000D56
 #, c-format
 msgid "Sp&lit"
-msgstr ""
+msgstr "Bö&l"
 
 #: Merge.rc:4C3E0A2B
 #, c-format
@@ -1388,7 +1388,7 @@ msgstr "Boyut"
 #: Merge.rc:1DC30E65
 #, c-format
 msgid "&Load Project..."
-msgstr ""
+msgstr "Proje Yük&le..."
 
 #: Merge.rc:2515A6BC
 #, c-format
@@ -1423,7 +1423,7 @@ msgstr "S&alt Okunur"
 #: Merge.rc:56BD1FBA
 #, c-format
 msgid "Swap 1st | 2nd"
-msgstr ""
+msgstr "1. ile 2. Ögeyi Değiştir"
 
 #: Merge.rc:68816EE7
 #, c-format
@@ -1433,7 +1433,7 @@ msgstr "&Gözat..."
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
-msgstr ""
+msgstr "&1. Dosya ya da Klasör"
 
 #: Merge.rc:39174D97
 #, c-format
@@ -1443,7 +1443,7 @@ msgstr "Salt &Okunur"
 #: Merge.rc:56BD1FBB
 #, c-format
 msgid "Swap 2nd | 3rd"
-msgstr ""
+msgstr "2. ile 3. Ögeyi Değiştir"
 
 #: Merge.rc:78E0CE0E
 #, c-format
@@ -1453,7 +1453,7 @@ msgstr "Gö&zat..."
 #: Merge.rc:6DE6F875
 #, c-format
 msgid "&2nd File or Folder"
-msgstr ""
+msgstr "&2. Dosya ya da Klasör"
 
 #: Merge.rc:39174D98
 #, c-format
@@ -1463,7 +1463,7 @@ msgstr "Salt Oku&nur"
 #: Merge.rc:56BD1FBC
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr ""
+msgstr "1. ile 3. Ögeyi Değiştir"
 
 #: Merge.rc:146A5938
 #, c-format
@@ -1473,12 +1473,12 @@ msgstr "Gözat..."
 #: Merge.rc:3C1ECDDA
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr ""
+msgstr "&3. Dosya ya da Klasör"
 
 #: Merge.rc:22467E6E
 #, c-format
 msgid " Folder: Filter"
-msgstr ""
+msgstr " Klasör: Süzgeç"
 
 #: Merge.rc:68816EE8
 #, c-format
@@ -1488,16 +1488,16 @@ msgstr "Seçi&n..."
 #: Merge.rc:662470D5
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr ""
+msgstr " Dosya: Ayıklayıcı Uygulama Eki"
 
 #: Merge.rc:751AB58F
 #, c-format
 msgid "Se&lect..."
-msgstr ""
+msgstr "&Seçin..."
 
 #: Merge.rc:4C3E0A2D
 msgid "Co&mpare"
-msgstr ""
+msgstr "&Karşılaştır"
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1571,11 +1571,8 @@ msgstr "Dil:"
 
 #: Merge.rc:516450B
 #, c-format
-msgid ""
-"WinMerge allows hiding some common messageboxes. Press the Reset button to "
-"make all messageboxes visible again."
-msgstr ""
-"Çok karşılaştığınız bazı iletileri gizleyebilirsiniz.\n"
+msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
+msgstr "Çok karşılaştığınız bazı iletileri gizleyebilirsiniz.\n"
 "Tüm iletileri yeniden görünür yapmak için;\n"
 "'Sıfırla' düğmesine tıklayın."
 
@@ -1947,12 +1944,12 @@ msgstr "Dur"
 #: Merge.rc:D109E01
 #, c-format
 msgid "Pause"
-msgstr ""
+msgstr "Duraklat"
 
 #: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
-msgstr ""
+msgstr "Sürdür"
 
 #: Merge.rc:1AC98D0A
 #, c-format
@@ -2231,20 +2228,16 @@ msgstr "Unikod Olmayan Dosyalar İçin Kullanılacak Kod Sayfası:"
 
 #: Merge.rc:5CC85DF4
 #, c-format
-msgid ""
-"Detect codepage info for these files: .html, .rc, .xml \n"
+msgid "Detect codepage info for these files: .html, .rc, .xml \n"
 "need to restart session"
-msgstr ""
-".html, .rc, .xml dosyalarının kod sayfası bilgisi algılansın:  \n"
+msgstr ".html, .rc, .xml dosyalarının kod sayfası bilgisi algılansın:  \n"
 "oturumun yeniden başlatılması gerekir"
 
 #: Merge.rc:3BCD5104
 #, c-format
-msgid ""
-"Detect codepage for text files using mlang.dll\n"
+msgid "Detect codepage for text files using mlang.dll\n"
 "need to restart session"
-msgstr ""
-"Metin dosyalarının kod sayfası mlang.dll kullanılarak algılansın\n"
+msgstr "Metin dosyalarının kod sayfası mlang.dll kullanılarak algılansın\n"
 "oturumun yeniden başlatılması gerekir"
 
 #: Merge.rc:E6D7F1
@@ -2759,12 +2752,8 @@ msgstr "&Hızlı Karşılaştırma Sınırı (MB):"
 
 #: Merge.rc:2188DD49
 #, c-format
-msgid ""
-"&Number of compare threads (a negative value implies addition of the number "
-"of available CPU cores):"
-msgstr ""
-"Karşılaştırma İşlemlerinin Sayısı (eksi değerler kullanılabilecek başka "
-"işlemci çekirdeklerine eklenir):"
+msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "Karşılaştırma İşlemlerinin Sayısı (eksi değerler kullanılabilecek başka işlemci çekirdeklerine eklenir):"
 
 #: Merge.rc:17BC2F9E
 #, c-format
@@ -2843,29 +2832,23 @@ msgstr "REC"
 
 #: Merge.rc:E8950E9
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "New Documents (Ctrl+N)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Yeni Belgeler (Ctrl+N)"
 
 #: Merge.rc:28AAB7D
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Open (Ctrl+O)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Aç (Ctrl+O)"
 
 #: Merge.rc:28AAB7E
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Save (Ctrl+S)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Kaydet (Ctrl+S)"
 
 #: Merge.rc:524AB109
@@ -2890,34 +2873,28 @@ msgstr "Proje dosyası kaydedildi."
 
 #: Merge.rc:28AAB7F
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Undo (Ctrl+Z)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Geri Al (Ctrl+Z)"
 
 #: Merge.rc:28AAB80
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Redo (Ctrl+Y)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Yinele (Ctrl+Y)"
 
 #: Merge.rc:2B78E95D
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "FileCompare\n"
 "\n"
 "\n"
 "\n"
 "WinMerge.FileCompare\n"
 "WinMerge File Compare"
-msgstr ""
-"\n"
+msgstr "\n"
 "DosyaKarşılaştır\n"
 "\n"
 "\n"
@@ -2927,16 +2904,14 @@ msgstr ""
 
 #: Merge.rc:293A824F
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "FolderCompare\n"
 "\n"
 "\n"
 "\n"
 "WinMerge.FolderCompare\n"
 "WinMerge Folder Compare"
-msgstr ""
-"\n"
+msgstr "\n"
 "KlasörKarşılaştır\n"
 "\n"
 "\n"
@@ -2945,22 +2920,16 @@ msgstr ""
 "WinMerge Klasör Karşılaştır"
 
 #: Merge.rc:74BA5C8C
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Geliştiriciler:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
+#, c-format
+msgid "Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+msgstr "Geliştiriciler:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 #, c-format
-msgid ""
-"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
-"are welcome to redistribute it under certain circumstances; see the GNU "
-"General Public License in the Help menu for details."
-msgstr ""
-"WinMerge size kesinlikle BİR GARANTİ VERMEZ. Bu uygulama, belirli şartlar "
-"altında serbestçe çoğaltıp dağıtabileceğiniz özgür bir yazılımdır. "
-"Ayrıntılar için yardım menüsündeki GNU Genel Kamu Lisansı'na bakın."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
+msgstr "WinMerge size kesinlikle BİR GARANTİ VERMEZ. Bu uygulama, belirli şartlar altında serbestçe çoğaltıp dağıtabileceğiniz özgür bir yazılımdır. Ayrıntılar için yardım menüsündeki GNU Genel Kamu Lisansı'na bakın."
 
 #: Merge.rc:1D2E49FF
 #, c-format
@@ -3029,12 +2998,8 @@ msgstr "Bu soru &yeniden sorulmasın."
 
 #: Merge.rc:78ACB5DB
 #, c-format
-msgid ""
-"To make this messagebox visible again, press the Reset button on the General "
-"page of the Options dialog."
-msgstr ""
-"Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümündeki Genel "
-"Grubu altındaki Sıfırla düğmesine tıklayın."
+msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr "Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümündeki Genel Grubu altındaki Sıfırla düğmesine tıklayın."
 
 #: Merge.rc:39000D58
 #, c-format
@@ -3098,12 +3063,10 @@ msgstr "Tüm iletiler yeniden görünür oldu."
 
 #: Merge.rc:37825D6A
 #, c-format
-msgid ""
-"Value in Tab size -field is not in range WinMerge accepts.\n"
+msgid "Value in Tab size -field is not in range WinMerge accepts.\n"
 "\n"
 "Please use values 1 - %1."
-msgstr ""
-"Sekme genişliği WinMerge tarafından kabul edilen aralıkta değil.\n"
+msgstr "Sekme genişliği WinMerge tarafından kabul edilen aralıkta değil.\n"
 "\n"
 "Lütfen 1 - %1 arasında bir değer yazın."
 
@@ -3134,12 +3097,8 @@ msgstr "Ayar Dosyaları (*.ini)|*.ini|Tüm Dosyalar (*.*)|*.*||"
 
 #: Merge.rc:3FF615A0
 #, c-format
-msgid ""
-"Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
-"*.*||"
-msgstr ""
-"Metin Dosyaları (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Tüm "
-"Dosyalar (*.*)|*.*||"
+msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+msgstr "Metin Dosyaları (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Tüm Dosyalar (*.*)|*.*||"
 
 #: Merge.rc:59814668
 #, c-format
@@ -3188,50 +3147,42 @@ msgstr "Dosya Süzgeçleri (*.flt)|*.flt|Tüm Dosyalar (*.*)|*.*||"
 
 #: Merge.rc:24B5241A
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
+msgid "Cannot find file filter template file!\n"
 "\n"
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
-msgstr ""
-"Dosya süzgeci kalıp dosyası bulunamıyor!\n"
+msgstr "Dosya süzgeci kalıp dosyası bulunamıyor!\n"
 "\n"
 "Lütfen %1 dosyasını, WinMerge/Filters klasörüne kopyalayın:\n"
 "%2."
 
 #: Merge.rc:2A045B49
 #, c-format
-msgid ""
-"Cannot copy filter template file to filter folder:\n"
+msgid "Cannot copy filter template file to filter folder:\n"
 "%1\n"
 "\n"
 "Please make sure the folder exists and is writable."
-msgstr ""
-"Süzgeç kalıbı dosyası süzgeç klasörüne kopyalanamıyor:\n"
+msgstr "Süzgeç kalıbı dosyası süzgeç klasörüne kopyalanamıyor:\n"
 "%1\n"
 "\n"
 "Klasörün var ve yazılabilir olduğundan emin olun."
 
 #: Merge.rc:4EA7BACD
 #, c-format
-msgid ""
-"User's filter file folder is not defined!\n"
+msgid "User's filter file folder is not defined!\n"
 "\n"
 "Please select filter folder in Options/System."
-msgstr ""
-"Kullanıcı süzgeç dosyası klasörü belirtilmemiş!\n"
+msgstr "Kullanıcı süzgeç dosyası klasörü belirtilmemiş!\n"
 "\n"
 "Lütfen 'Ayarlar/Sistem' bölümünden süzgeç klasörünü belirtin."
 
 #: Merge.rc:7DDEC9BD
 #, c-format
-msgid ""
-"Failed to delete the filter file:\n"
+msgid "Failed to delete the filter file:\n"
 "%1\n"
 "\n"
 "Maybe the file is read-only?"
-msgstr ""
-"Süzgeç dosyası silinemedi:\n"
+msgstr "Süzgeç dosyası silinemedi:\n"
 "%1\n"
 "\n"
 "Dosya salt okunur olabilir mi?"
@@ -3243,12 +3194,10 @@ msgstr "Kurulacak süzgeç dosyasını seçin"
 
 #: Merge.rc:6858E820
 #, c-format
-msgid ""
-"Installing filter file failed.\n"
+msgid "Installing filter file failed.\n"
 "\n"
 "Could not copy new filter file to filter folder."
-msgstr ""
-"Süzgeç dosyası kurulamadı.\n"
+msgstr "Süzgeç dosyası kurulamadı.\n"
 "\n"
 "Yeni süzgeç dosyası süzgeç klasörüne kopyalanamadı."
 
@@ -3264,17 +3213,12 @@ msgstr "Kurallı ifade"
 
 #: Merge.rc:34BD4316
 #, c-format
-msgid ""
-"Filters were updated. Do you want to refresh all open folder compares?\n"
+msgid "Filters were updated. Do you want to refresh all open folder compares?\n"
 "\n"
-"If you do not want to refresh all compares now you can select No and refresh "
-"compares later."
-msgstr ""
-"Süzgeçler güncellendi. Tüm açık klasör karşılaştırmalarını yenilemek ister "
-"misiniz?\n"
+"If you do not want to refresh all compares now you can select No and refresh compares later."
+msgstr "Süzgeçler güncellendi. Tüm açık klasör karşılaştırmalarını yenilemek ister misiniz?\n"
 "\n"
-"Şimdi istemezseniz Hayır seçebilir ve tüm karşılaştırmaları daha sonra "
-"yenileyebilirsiniz."
+"Şimdi istemezseniz Hayır seçebilir ve tüm karşılaştırmaları daha sonra yenileyebilirsiniz."
 
 #: Merge.rc:114DD351
 #, c-format
@@ -3375,27 +3319,27 @@ msgstr "Klasör Seçimi"
 #: Merge.rc:3080B693
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr ""
+msgstr "Karşılaştırılacak iki (ya da üç) klasör ya da iki (ya da üç) dosya seçin."
 
 #: Merge.rc:2EBBDDD6
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr ""
+msgstr "Sol (1.) yol geçersiz!"
 
 #: Merge.rc:BA50069
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr ""
+msgstr "Orta (2.) yol geçersiz!"
 
 #: Merge.rc:21DC7C32
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr ""
+msgstr "Sağ (2.) yol geçersiz!"
 
 #: Merge.rc:21DC7C33
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr ""
+msgstr "Sağ (3.) yol geçersiz!"
 
 #: Merge.rc:5AB9EEA7
 #, c-format
@@ -3405,17 +3349,17 @@ msgstr "İki yolda geçersiz!"
 #: Merge.rc:585E8EC0
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr ""
+msgstr "Sol (1.) ve Orta (2.) yollar geçersiz!"
 
 #: Merge.rc:135DE390
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "Sol (1.) ve Sağ (3.) yollar geçersiz!"
 
 #: Merge.rc:72716FA6
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "Orta (2.) ve Sağ (3.) yollar geçersiz!"
 
 #: Merge.rc:237A0533
 #, c-format
@@ -3425,7 +3369,7 @@ msgstr "Tüm yollar geçersiz!"
 #: Merge.rc:1235F930
 #, c-format
 msgid "Only enabled for File comparisons"
-msgstr ""
+msgstr "Yalnız Dosya karşılaştırması için kullanılabilir"
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3444,13 +3388,11 @@ msgstr "%1 dosyası ayıklanamadı"
 
 #: Merge.rc:3676909F
 #, c-format
-msgid ""
-"Cannot open file\n"
+msgid "Cannot open file\n"
 "%1\n"
 "\n"
 "%2"
-msgstr ""
-"Dosya açılamadı\n"
+msgstr "Dosya açılamadı\n"
 "%1\n"
 "\n"
 "%2"
@@ -3462,12 +3404,10 @@ msgstr "Çelişki dosyası işlenemedi."
 
 #: Merge.rc:5A765252
 #, c-format
-msgid ""
-"The file\n"
+msgid "The file\n"
 "%1\n"
 "is not a conflict file."
-msgstr ""
-"%1\n"
+msgstr "%1\n"
 "dosyası\n"
 "bir çelişki dosyası değil."
 
@@ -3483,12 +3423,8 @@ msgstr "%1 içindeki değişiklikler kaydedilsin mi?"
 
 #: Merge.rc:6A1C6855
 #, c-format
-msgid ""
-"%1 is marked read-only. Would you like to override the read-only file ? (No "
-"to save as new filename.)"
-msgstr ""
-"%1 salt okunur olarak işaretli. Üzerine yazılmasını ister misiniz ? (Hayır "
-"seçerseniz, yeni bir adla farklı kaydedebilirsiniz.)"
+msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
+msgstr "%1 salt okunur olarak işaretli. Üzerine yazılmasını ister misiniz ? (Hayır seçerseniz, yeni bir adla farklı kaydedebilirsiniz.)"
 
 #: Merge.rc:673BD332
 #, c-format
@@ -3497,28 +3433,24 @@ msgstr "Dosya yedekleme sorunu"
 
 #: Merge.rc:3958104B
 #, c-format
-msgid ""
-"Unable to backup original file:\n"
+msgid "Unable to backup original file:\n"
 "%1\n"
 "\n"
 "Continue anyway?"
-msgstr ""
-"Özgün dosya yedeklenemedi:\n"
+msgstr "Özgün dosya yedeklenemedi:\n"
 "%1\n"
 "\n"
 "Gene de devam edilsin mi?"
 
 #: Merge.rc:69020931
 #, c-format
-msgid ""
-"Saving file failed.\n"
+msgid "Saving file failed.\n"
 "%1\n"
 "%2\n"
 "Do you want to:\n"
 "\t-use a different filename (Press Ok)\n"
 "\t-abort the current operation (Press Cancel)?"
-msgstr ""
-"Dosya kaydedilemedi.\n"
+msgstr "Dosya kaydedilemedi.\n"
 "%1\n"
 "%2\n"
 "Ne yapmak istersiniz:\n"
@@ -3527,15 +3459,12 @@ msgstr ""
 
 #: Merge.rc:3895053E
 #, c-format
-msgid ""
-"Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
+msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
 "\n"
 "The original file will not be changed.\n"
 "\n"
 "Do you want to save the unpacked version to another file?"
-msgstr ""
-"'%2' uygulama eki, sol dosyada yapılmış değişiklikleri yeniden '%1' içine "
-"sıkıştıramadı.\n"
+msgstr "'%2' uygulama eki, sol dosyada yapılmış değişiklikleri yeniden '%1' içine sıkıştıramadı.\n"
 "\n"
 "Özgün dosya değiştirilmeyecek.\n"
 "\n"
@@ -3543,15 +3472,12 @@ msgstr ""
 
 #: Merge.rc:5A0BA2DF
 #, c-format
-msgid ""
-"Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
+msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
 "\n"
 "The original file will not be changed.\n"
 "\n"
 "Do you want to save the unpacked version to another file?"
-msgstr ""
-"'%2' uygulama eki, sağ dosyada yapılmış değişiklikleri yeniden '%1' içine "
-"sıkıştıramadı.\n"
+msgstr "'%2' uygulama eki, sağ dosyada yapılmış değişiklikleri yeniden '%1' içine sıkıştıramadı.\n"
 "\n"
 "Özgün dosya değiştirilmeyecek.\n"
 "\n"
@@ -3559,14 +3485,12 @@ msgstr ""
 
 #: Merge.rc:78367A47
 #, c-format
-msgid ""
-"Another application has updated file\n"
+msgid "Another application has updated file\n"
 "%1\n"
 "since WinMerge loaded it.\n"
 "\n"
 "Overwrite changed file?"
-msgstr ""
-"WinMerge tarafından yüklendikten sonra\n"
+msgstr "WinMerge tarafından yüklendikten sonra\n"
 "%1\n"
 "dosyası başka bir uygulama tarafından değiştirilmiş.\n"
 "\n"
@@ -3574,23 +3498,19 @@ msgstr ""
 
 #: Merge.rc:462FB760
 #, c-format
-msgid ""
-"%1\n"
+msgid "%1\n"
 "is marked read-only. Would you like to override the read-only item?"
-msgstr ""
-"%1\n"
+msgstr "%1\n"
 "salt okunur olarak işaretli. Üzerine yazılmasını istediğinize emin misiniz?"
 
 #: Merge.rc:B9192B
 #, c-format
-msgid ""
-"Another application has updated file\n"
+msgid "Another application has updated file\n"
 "%1\n"
 "since WinMerge scanned it last time.\n"
 "\n"
 "Do you want to reload the file?"
-msgstr ""
-"WinMerge tarafından tarandıktan sonra\n"
+msgstr "WinMerge tarafından tarandıktan sonra\n"
 "%1\n"
 "dosyası başka bir uygulama tarafından değiştirilmiş.\n"
 "\n"
@@ -3613,23 +3533,19 @@ msgstr "Sağ Dosyayı Farklı Kaydet"
 
 #: Merge.rc:3C4620F
 #, c-format
-msgid ""
-"The file\n"
+msgid "The file\n"
 "%1\n"
 "has disappeared. Please save a copy of the file to continue."
-msgstr ""
-"%1\n"
+msgstr "%1\n"
 "dosyası\n"
 "yok oldu. Devam etmek için dosyanın bir kopyasını kaydedin."
 
 #: Merge.rc:4BFC8F0D
 #, c-format
-msgid ""
-"Cannot merge differences when documents are not in synch.\n"
+msgid "Cannot merge differences when documents are not in synch.\n"
 "\n"
 "Refresh documents before continuing."
-msgstr ""
-"Belgeler eşleştirilmeden, farklılıklar birleştirilemez.\n"
+msgstr "Belgeler eşleştirilmeden, farklılıklar birleştirilemez.\n"
 "\n"
 "Devam etmeden önce belgeleri yenileyin."
 
@@ -3753,12 +3669,10 @@ msgstr "(%1 / %2 Dosya Etkilendi)"
 
 #: Merge.rc:2B0F0BA2
 #, c-format
-msgid ""
-"Are you sure you want to delete\n"
+msgid "Are you sure you want to delete\n"
 "\n"
 "%1 ?"
-msgstr ""
-"Bu dosyayı silmek istediğinize emin misiniz\n"
+msgstr "Bu dosyayı silmek istediğinize emin misiniz\n"
 "\n"
 "%1 ?"
 
@@ -3774,16 +3688,14 @@ msgstr "%d ögeyi kopyalamak istediğinize emin misiniz:"
 
 #: Merge.rc:59B96CF
 #, c-format
-msgid ""
-"Operation aborted!\n"
+msgid "Operation aborted!\n"
 "\n"
 "Folder contents at disks has changed, path\n"
 "%1\n"
 "was not found.\n"
 "\n"
 "Please refresh the compare."
-msgstr ""
-"İşlem iptal edildi!\n"
+msgstr "İşlem iptal edildi!\n"
 "\n"
 "Diskteki klasör içerikleri değişmiş\n"
 "%1\n"
@@ -3808,12 +3720,8 @@ msgstr "Taşımayı Onayla"
 
 #: Merge.rc:1E9E7AFF
 #, c-format
-msgid ""
-"You are about to close the window that is comparing folders. Are you sure "
-"you want to close the window?"
-msgstr ""
-"Klasör karşılaştırma penceresini kapatmak üzeresiniz. Bunu yapmak "
-"istediğinize emin misiniz?"
+msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgstr "Klasör karşılaştırma penceresini kapatmak üzeresiniz. Bunu yapmak istediğinize emin misiniz?"
 
 #: Merge.rc:4B6299EF
 #, c-format
@@ -4262,18 +4170,12 @@ msgstr "Ortadaki dosyanın kodlaması."
 
 #: Merge.rc:58398DFF
 #, c-format
-msgid ""
-"Number of ignored differences in file. These differences are ignored by "
-"WinMerge and cannot be merged."
-msgstr ""
-"Dosyada yok sayılan farkların sayısı. WinMerge tarafından yok sayılan "
-"farklar ve birleştirilemez."
+msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+msgstr "Dosyada yok sayılan farkların sayısı. WinMerge tarafından yok sayılan farklar ve birleştirilemez."
 
 #: Merge.rc:6A6D5CB6
 #, c-format
-msgid ""
-"Number of differences in file. This number does not include ignored "
-"differences."
+msgid "Number of differences in file. This number does not include ignored differences."
 msgstr "Dosyadaki fark sayısı. Bu sayıya yok sayılan farklar katılmamıştır."
 
 #: Merge.rc:A7628EF
@@ -4313,11 +4215,9 @@ msgstr "Rapor dosyası zaten var. Üzerine yazılmasını ister misiniz?"
 
 #: Merge.rc:630F8340
 #, c-format
-msgid ""
-"Error creating the report:\n"
+msgid "Error creating the report:\n"
 "%1"
-msgstr ""
-"Rapor hazırlanırken sorun çıktı:\n"
+msgstr "Rapor hazırlanırken sorun çıktı:\n"
 "%1"
 
 #: Merge.rc:37B243DF
@@ -4342,31 +4242,21 @@ msgstr "Dosyalar karşılaştırılırken bir sorun çıktı."
 
 #: Merge.rc:5F16D9DC
 #, c-format
-msgid ""
-"Temporary files could not be created. Check your temporary path settings."
-msgstr ""
-"Geçici klasör oluşturulamadı. Geçici klasör yolu ayarlarınızı denetleyin."
+msgid "Temporary files could not be created. Check your temporary path settings."
+msgstr "Geçici klasör oluşturulamadı. Geçici klasör yolu ayarlarınızı denetleyin."
 
 #: Merge.rc:11E6F584
 #, c-format
-msgid ""
-"These files use different carriage return types.\n"
+msgid "These files use different carriage return types.\n"
 "\n"
-"Do you want to treat all carriage return types as equivalent for this "
-"comparison?\n"
+"Do you want to treat all carriage return types as equivalent for this comparison?\n"
 "\n"
-"Note: If you always want to treat all carriage return types as equivalent, "
-"set the option 'Ignore carriage return differences..' in the Compare tab of "
-"the options dialog (available under Edit/Options)."
-msgstr ""
-"Bu dosyalar farklı satır sonu türleri kullanıyor.\n"
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
+msgstr "Bu dosyalar farklı satır sonu türleri kullanıyor.\n"
 "\n"
-"Bu karşılaştırma için tüm satır sonu türlerinin aynı kabul edilmesini "
-"istiyor musunuz?\n"
+"Bu karşılaştırma için tüm satır sonu türlerinin aynı kabul edilmesini istiyor musunuz?\n"
 "\n"
-"Not: Genel olarak satır sonu türlerinin aynı kabul edilmesini istiyorsanız, "
-"Düzenle/Ayarlar menüsünden Karşılaştırma bölümüne giderek, 'Satır Sonu "
-"Farklılıkları Yok Sayılsın..' seçeneğini işaretleyin."
+"Not: Genel olarak satır sonu türlerinin aynı kabul edilmesini istiyorsanız, Düzenle/Ayarlar menüsünden Karşılaştırma bölümüne giderek, 'Satır Sonu Farklılıkları Yok Sayılsın..' seçeneğini işaretleyin."
 
 #: Merge.rc:46FB8639
 #, c-format
@@ -4380,14 +4270,12 @@ msgstr "Bir Binary dosyası düzenleyicide açılamaz."
 
 #: Merge.rc:279EB840
 #, c-format
-msgid ""
-"The folder exists only in other side and cannot be opened.\n"
+msgid "The folder exists only in other side and cannot be opened.\n"
 "\n"
 "Do you want to create a matching folder:\n"
 "%1\n"
 "to the other side and open these folders?"
-msgstr ""
-"Klasör yalnız karşı tarafta bulunduğundan açılamaz.\n"
+msgstr "Klasör yalnız karşı tarafta bulunduğundan açılamaz.\n"
 "\n"
 "Diğer tarafa aynı klasörü oluşturmak :\n"
 "%1\n"
@@ -4415,19 +4303,12 @@ msgstr "Önceki sayfaya geçmek ister misiniz?"
 
 #: Merge.rc:4A700AB0
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/"
-"copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage "
-"(recommended)?"
-msgstr ""
-"Sol panodaki (cp%d) ve sağ panodaki (cp%d) dosyaların kod sayfaları "
-"farklı. \n"
-"Dosyalar kendi kod sayfalarında daha iyi bir görüntülenir ancak birleştirme/"
-"kopyalama işlemleri tehlikeli olur.\n"
-"Dosyaların varsayılan Windows kod sayfasını kullanıyormuş gibi işlenmesini "
-"ister misiniz (önerilir)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files. \n"
+"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgstr "Sol panodaki (cp%d) ve sağ panodaki (cp%d) dosyaların kod sayfaları farklı. \n"
+"Dosyalar kendi kod sayfalarında daha iyi bir görüntülenir ancak birleştirme/kopyalama işlemleri tehlikeli olur.\n"
+"Dosyaların varsayılan Windows kod sayfasını kullanıyormuş gibi işlenmesini ister misiniz (önerilir)?"
 
 #: Merge.rc:5851E4C8
 #, c-format
@@ -4471,20 +4352,14 @@ msgstr "Aranan \"%s\" ifadesi bulunamadı"
 
 #: Merge.rc:34855CF1
 #, c-format
-msgid ""
-"You are now entering Merge Mode. If you want to turn off Merge Mode, press "
-"F9 key"
-msgstr ""
-"Birleştirme kipine geçiyorsunuz. Birleştirme kipinden çıkmak için F9 tuşuna "
-"basın"
+msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
+msgstr "Birleştirme kipine geçiyorsunuz. Birleştirme kipinden çıkmak için F9 tuşuna basın"
 
 #: Merge.rc:5E0C549
 #, c-format
-msgid ""
-"The number of automatically merged changes: %1\n"
+msgid "The number of automatically merged changes: %1\n"
 "The number of unresolved conflicts: %2"
-msgstr ""
-"Otomatik olarak birleştirilen değişiklik sayısı: %1\n"
+msgstr "Otomatik olarak birleştirilen değişiklik sayısı: %1\n"
 "Çözümlenmemiş çelişki sayısı: %2"
 
 #: Merge.rc:7453F857
@@ -4584,15 +4459,12 @@ msgstr "Klasörlerden yama dosyası hazırlanamaz."
 
 #: Merge.rc:34FF26C7
 #, c-format
-msgid ""
-"Please save all files first.\n"
+msgid "Please save all files first.\n"
 "\n"
 "Creating a patch requires that there are no unsaved changes in files."
-msgstr ""
-"Lütfen önce tüm dosyaları kaydedin.\n"
+msgstr "Lütfen önce tüm dosyaları kaydedin.\n"
 "\n"
-"Bir yama hazırlamak için dosyalardaki değişikliklerin kaydedilmiş olması "
-"gerekir."
+"Bir yama hazırlamak için dosyalardaki değişikliklerin kaydedilmiş olması gerekir."
 
 #: Merge.rc:576FB6D3
 #, c-format
@@ -4601,17 +4473,12 @@ msgstr "Klasör bulunamadı."
 
 #: Merge.rc:3377B7B5
 #, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot "
-"be found.\n"
+msgid "Archive support is not enabled.\n"
+"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
 "See manual for more info about archive support and how to enable it."
-msgstr ""
-"Sıkıştırılmış dosya desteği etkinleştirilmemiş.\n"
-"Sıkıştırılmış dosya desteği için gereken bileşenler bulunamadı (7-zip ya da "
-"Merge7z*.dll).\n"
-"Sıkıştırılmış dosya desteği ve nasıl etkinleştirileceği ile ilgili ayrıntılı "
-"bilgi almak için kullanım kitabına bakın."
+msgstr "Sıkıştırılmış dosya desteği etkinleştirilmemiş.\n"
+"Sıkıştırılmış dosya desteği için gereken bileşenler bulunamadı (7-zip ya da Merge7z*.dll).\n"
+"Sıkıştırılmış dosya desteği ve nasıl etkinleştirileceği ile ilgili ayrıntılı bilgi almak için kullanım kitabına bakın."
 
 #: Merge.rc:44EE84AB
 #, c-format
@@ -4645,12 +4512,10 @@ msgstr "Ayarlar dosyaya dışa aktarılamadı."
 
 #: Merge.rc:404DAD7D
 #, c-format
-msgid ""
-"You are about to close several compare windows.\n"
+msgid "You are about to close several compare windows.\n"
 "\n"
 "Do you want to continue?"
-msgstr ""
-"Birden fazla karşılaştırma penceresini kapatmak üzeresiniz.\n"
+msgstr "Birden fazla karşılaştırma penceresini kapatmak üzeresiniz.\n"
 "\n"
 "Devam etmek istiyor musunuz?"
 
@@ -4686,165 +4551,127 @@ msgstr "Düzenleyici betiği"
 
 #: Merge.rc:51A4FE5F
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Difference in the Current Line"
-msgstr ""
-"\n"
+msgstr "\n"
 "Geçerli Satırdaki Fark"
 
 #: Merge.rc:CF15594
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Options"
-msgstr ""
-"\n"
+msgstr "\n"
 "Ayarlar"
 
 #: Merge.rc:6F90DC3A
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Refresh (F5)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Yenile (F5)"
 
 #: Merge.rc:414AF01
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Previous Difference (Alt+Up)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Önceki Fark (Alt+Yukarı)"
 
 #: Merge.rc:16618519
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Next Difference (Alt+Down)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Sonraki Fark (Alt+Aşağı)"
 
 #: Merge.rc:7C5EF083
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Previous Conflict (Alt+Shift+Up)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Önceki Çelişki (Alt+Shift+Yukarı)"
 
 #: Merge.rc:51A4FE60
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Next Conflict (Alt+Shift+Down)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Sonraki Çelişki (Alt+Shift+Aşağı)"
 
 #: Merge.rc:35CF1E68
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "First Difference (Alt+Home)"
-msgstr ""
-"\n"
+msgstr "\n"
 "İlk Fark (Alt+Home)"
 
 #: Merge.rc:51A4FE61
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Current Difference (Alt+Enter)"
-msgstr ""
-"\n"
+msgstr "\n"
 "İmleçteki Fark (Alt+Enter)"
 
 #: Merge.rc:1DA00C8A
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Last Difference (Alt+End)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Son Fark (Alt+End)"
 
 #: Merge.rc:E8950EA
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Copy Right (Alt+Right)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Sağa Kopyala (Alt+Right)"
 
 #: Merge.rc:55A8C466
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Copy Left (Alt+Left)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Sola Kopyala (Alt+Left)"
 
 #: Merge.rc:1E864A56
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Copy Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Sağa Kopyala ve İlerle (Ctrl+Alt+Sağ)"
 
 #: Merge.rc:7FE60896
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Copy Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Sola Kopyala ve İlerle (Ctrl+Alt+Sol)"
 
 #: Merge.rc:15F24C75
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "All Right"
-msgstr ""
-"\n"
+msgstr "\n"
 "Tümünü Sağa Kopyala"
 
 #: Merge.rc:11395D4B
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "All Left"
-msgstr ""
-"\n"
+msgstr "\n"
 "Tümünü Sola Kopyala"
 
 #: Merge.rc:42A0CC96
 #, c-format
-msgid ""
-"\n"
+msgid "\n"
 "Auto Merge (Ctrl+Alt+M)"
-msgstr ""
-"\n"
+msgstr "\n"
 "Otomatik Karşılaştır (Ctrl+Alt+M)"
 
 #: Merge.rc:6107F02B
 #, c-format
-msgid ""
-"The adapted unpacker is applied to both files (one file only needs the "
-"extension)"
-msgstr ""
-"Uyarlanan ayıklayıcı iki dosyaya da uygulandı (yalnız bir dosya bu eklentiye "
-"gerek duyuyor)"
+msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
+msgstr "Uyarlanan ayıklayıcı iki dosyaya da uygulandı (yalnız bir dosya bu eklentiye gerek duyuyor)"
 
 #: Merge.rc:429CABF5
 #, c-format
@@ -4873,11 +4700,9 @@ msgstr "Uygulamanız güncel"
 
 #: Merge.rc:43B4B204
 #, c-format
-msgid ""
-"A new version of WinMerge is available.\n"
+msgid "A new version of WinMerge is available.\n"
 "%1 is now available (you have %2). Would you like to download it now?"
-msgstr ""
-"Yeni bir WinMerge sürümü yayınlanmış.\n"
+msgstr "Yeni bir WinMerge sürümü yayınlanmış.\n"
 "%1 sürümünü indirmek ister misiniz (%2 sürümünü kullanıyorsunuz)?"
 
 #: Merge.rc:696AAFE9
@@ -4992,12 +4817,10 @@ msgstr "Klasör oluşturulamadı."
 
 #: Merge.rc:64F70DD6
 #, c-format
-msgid ""
-"You can specify the following parameters to the path:\n"
+msgid "You can specify the following parameters to the path:\n"
 "$file: Path name of the current file\n"
 "$linenum: Line number of the current cursor position"
-msgstr ""
-"Yolda şu parametreler kullanılabilir:\n"
+msgstr "Yolda şu parametreler kullanılabilir:\n"
 "$file: Geçerli dosyasının yol adı\n"
 "$linenum: Geçerli imleç konumunun satır numarası"
 
