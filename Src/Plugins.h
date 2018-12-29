@@ -56,7 +56,7 @@ public:
 
 	~PluginInfo()
 	{
-		if (m_lpDispatch)
+		if (m_lpDispatch!=nullptr)
 			m_lpDispatch->Release();
 	}
 

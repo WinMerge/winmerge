@@ -189,7 +189,7 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 	dockState.LoadState(_T("Settings-DirFrame"));
 	SetDockState(dockState);
 	// get the active child frame, and a flag whether it is maximized
-	BOOL bMaximized;
+	BOOL bMaximized = FALSE;
 	CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
 	if (oldActiveFrame == nullptr)
 		// for the first frame, get the restored/maximized state from the registry

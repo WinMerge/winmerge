@@ -184,12 +184,12 @@ int CSuperComboBox::FindString(int nStartAfter, LPCTSTR lpszString) const
 bool CSuperComboBox::AttachSystemImageList()
 {
 	ASSERT(m_bComboBoxEx);
-	if (!m_himlSystem)
+	if (m_himlSystem==nullptr)
 	{
 		SHFILEINFO sfi = {0};
 		m_himlSystem = (HIMAGELIST)SHGetFileInfo(_T(""), 0, 
 			&sfi, sizeof(sfi), SHGFI_SMALLICON | SHGFI_SYSICONINDEX);
-		if (!m_himlSystem)
+		if (m_himlSystem==nullptr)
 			return false;
 	}
 	SetImageList(CImageList::FromHandle(m_himlSystem));

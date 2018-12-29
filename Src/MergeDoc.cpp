@@ -3194,7 +3194,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 		fileloc[pane].setPath(m_filePaths[pane]);
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
 	}
-	if (m_pEncodingErrorBar && m_pEncodingErrorBar->IsWindowVisible())
+	if (m_pEncodingErrorBar!=nullptr && m_pEncodingErrorBar->IsWindowVisible())
 		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 	if (nID == ID_MERGE_COMPARE_HEX)
 		GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);

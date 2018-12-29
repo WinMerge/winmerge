@@ -235,7 +235,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 
 			// Test against filter so we don't include contents of filtered out directories
 			// Also this is only place we can test for both-sides directories in recursive compare
-			if ((pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub)) ||
+			if ((pCtxt->m_piFilterGlobal!=nullptr && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub)) ||
 				(pCtxt->m_bIgnoreReparsePoints && (
 				(nDiffCode & DIFFCODE::FIRST) && (dirs[0][i].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
 					(nDiffCode & DIFFCODE::SECOND) && (dirs[1][j].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
@@ -260,7 +260,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 
 			// Test against filter so we don't include contents of filtered out directories
 			// Also this is only place we can test for both-sides directories in recursive compare
-			if ((pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, middlenewsub, rightnewsub)) ||
+			if ((pCtxt->m_piFilterGlobal!=nullptr && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, middlenewsub, rightnewsub)) ||
 				(pCtxt->m_bIgnoreReparsePoints && (
 				  (nDiffCode & DIFFCODE::FIRST)  && (dirs[0][i].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
 				  (nDiffCode & DIFFCODE::SECOND) && (dirs[1][j].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
@@ -348,12 +348,12 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			if (nDirs < 3)
 			{
 				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], &aFiles[0][i], 0, nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], &aFiles[0][i], nullptr, nDiffCode, myStruct, parent);
 			}
 			else
 			{
 				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], &aFiles[0][i], 0, 0, nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], &aFiles[0][i], nullptr, nullptr, nDiffCode, myStruct, parent);
 			}
 			// Advance left pointer over left-only entry, and then retest with new pointers
 			++i;
@@ -366,9 +366,9 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		{
 			const unsigned nDiffCode = DIFFCODE::SECOND | DIFFCODE::FILE;
 			if (nDirs < 3)
-				AddToList(subdir[0], subdir[1], 0, &aFiles[1][j], nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], nullptr, &aFiles[1][j], nDiffCode, myStruct, parent);
 			else
-				AddToList(subdir[0], subdir[1], subdir[2], 0, &aFiles[1][j], 0, nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], nullptr, &aFiles[1][j], nullptr, nDiffCode, myStruct, parent);
 			// Advance right pointer over right-only entry, and then retest with new pointers
 			++j;
 			continue;
@@ -380,7 +380,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 				&& (j==aFiles[1].size() || collstr(aFiles[2][k].filename, aFiles[1][j].filename, casesensitive)<0) )
 			{
 				const unsigned nDiffCode = DIFFCODE::THIRD | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], 0, 0, &aFiles[2][k], nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], nullptr, nullptr, &aFiles[2][k], nDiffCode, myStruct, parent);
 				++k;
 				// Advance right pointer over right-only entry, and then retest with new pointers
 				continue;
@@ -390,7 +390,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			    && (k==aFiles[2].size() || collstr(aFiles[0][i].filename, aFiles[2][k].filename, casesensitive) != 0))
 			{
 				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::SECOND | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], &aFiles[0][i], &aFiles[1][j], 0, nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], &aFiles[0][i], &aFiles[1][j], nullptr, nDiffCode, myStruct, parent);
 				++i;
 				++j;
 				continue;
@@ -399,7 +399,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			    && (j==aFiles[1].size() || collstr(aFiles[1][j].filename, aFiles[2][k].filename, casesensitive) != 0))
 			{
 				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::THIRD | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], &aFiles[0][i], 0, &aFiles[2][k], nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], &aFiles[0][i], nullptr, &aFiles[2][k], nDiffCode, myStruct, parent);
 				++i;
 				++k;
 				continue;
@@ -408,7 +408,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			    && (i==aFiles[0].size() || collstr(aFiles[0][i].filename, aFiles[1][j].filename, casesensitive) != 0))
 			{
 				const unsigned nDiffCode = DIFFCODE::SECOND | DIFFCODE::THIRD | DIFFCODE::FILE;
-				AddToList(subdir[0], subdir[1], subdir[2], 0, &aFiles[1][j], &aFiles[2][k], nDiffCode, myStruct, parent);
+				AddToList(subdir[0], subdir[1], subdir[2], nullptr, &aFiles[1][j], &aFiles[2][k], nDiffCode, myStruct, parent);
 				++j;
 				++k;
 				continue;
@@ -738,7 +738,7 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 	else
 	{
 		// 1. Test against filters
-		if (!pCtxt->m_piFilterGlobal ||
+		if (pCtxt->m_piFilterGlobal==nullptr ||
 			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename)) ||
 			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename, di.diffFileInfo[2].filename))
 			)
@@ -798,7 +798,7 @@ static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir,
 	const DirItem * lent, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent)
 {
-	return AddToList(sLeftDir, sRightDir, sLeftDir, lent, rent, 0, code, myStruct, parent, 2);
+	return AddToList(sLeftDir, sRightDir, sLeftDir, lent, rent, nullptr, code, myStruct, parent, 2);
 }
 
 /**
@@ -818,7 +818,7 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 	di->diffFileInfo[1].path = sDir2;
 	di->diffFileInfo[2].path = sDir3;
 
-	if (ent1)
+	if (ent1 != nullptr)
 	{
 		di->diffFileInfo[0].filename = ent1->filename;
 		di->diffFileInfo[0].mtime = ent1->mtime;
@@ -829,13 +829,13 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 	else
 	{
 		// Don't break CDirView::DoCopyRightToLeft()
-		if (ent3)
+		if (ent3 != nullptr)
 			di->diffFileInfo[0].filename = ent3->filename;
-		else if (ent2)
+		else if (ent2 != nullptr)
 			di->diffFileInfo[0].filename = ent2->filename;
 	}
 
-	if (ent2)
+	if (ent2 != nullptr)
 	{
 		di->diffFileInfo[1].filename = ent2->filename;
 		di->diffFileInfo[1].mtime = ent2->mtime;
@@ -846,13 +846,13 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 	else
 	{
 		// Don't break CDirView::DoCopyLeftToRight()
-		if (ent1)
+		if (ent1 != nullptr)
 			di->diffFileInfo[1].filename = ent1->filename;
-		else if (ent3)
+		else if (ent3 != nullptr)
 			di->diffFileInfo[1].filename = ent3->filename;
 	}
 
-	if (ent3)
+	if (ent3 != nullptr)
 	{
 		di->diffFileInfo[2].filename = ent3->filename;
 		di->diffFileInfo[2].mtime = ent3->mtime;
@@ -863,9 +863,9 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 	else
 	{
 		// Don't break CDirView::DoCopyLeftToRight()
-		if (ent1)
+		if (ent1 != nullptr)
 			di->diffFileInfo[2].filename = ent1->filename;
-		else if (ent2)
+		else if (ent2 != nullptr)
 			di->diffFileInfo[2].filename = ent2->filename;
 	}
 
