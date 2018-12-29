@@ -2234,7 +2234,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
 		// Close and destroy the dialog after compare
-		if (m_pCmpProgressBar)
+		if (m_pCmpProgressBar != nullptr)
 			GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);
 		m_pCmpProgressBar.reset();
 
@@ -2778,7 +2778,7 @@ void CDirView::ShowShellContextMenu(SIDE_TYPE stype)
 		pContextMenu = m_pShellContextMenuRight.get();
 		break;
 	}
-	if (pContextMenu && ListShellContextMenu(stype))
+	if (pContextMenu!=nullptr && ListShellContextMenu(stype))
 	{
 		CPoint point;
 		GetCursorPos(&point);
@@ -3601,11 +3601,11 @@ void CDirView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 CShellContextMenu* CDirView::GetCorrespondingShellContextMenu(HMENU hMenu) const
 {
 	CShellContextMenu* pMenu = nullptr;
-	if (m_pShellContextMenuLeft && hMenu == m_pShellContextMenuLeft->GetHMENU())
+	if (m_pShellContextMenuLeft!=nullptr && hMenu == m_pShellContextMenuLeft->GetHMENU())
 		pMenu = m_pShellContextMenuLeft.get();
-	else if (m_pShellContextMenuMiddle && hMenu == m_pShellContextMenuMiddle->GetHMENU())
+	else if (m_pShellContextMenuMiddle!=nullptr && hMenu == m_pShellContextMenuMiddle->GetHMENU())
 		pMenu = m_pShellContextMenuMiddle.get();
-	else if (m_pShellContextMenuRight && hMenu == m_pShellContextMenuRight->GetHMENU())
+	else if (m_pShellContextMenuRight!=nullptr && hMenu == m_pShellContextMenuRight->GetHMENU())
 		pMenu = m_pShellContextMenuRight.get();
 
 	return pMenu;

@@ -598,7 +598,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	if (instanceVerMS != resourceVerMS || instanceVerLS != resourceVerLS)
 	{
 		FreeLibrary(m_hCurrentDll);
-		m_hCurrentDll = 0;
+		m_hCurrentDll = nullptr;
 		if (bShowError)
 			AfxMessageBox(_T("MergeLang.dll version mismatch"), MB_ICONSTOP);
 		return false;

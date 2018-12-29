@@ -254,5 +254,5 @@ void CDiffContext::FetchPluginInfos(const String& filteredFilenames,
  */
 bool CDiffContext::ShouldAbort() const
 {
-	return m_piAbortable && m_piAbortable->ShouldAbort();
+	return m_piAbortable!=nullptr && m_piAbortable->ShouldAbort();
 }
