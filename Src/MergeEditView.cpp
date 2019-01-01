@@ -295,14 +295,18 @@ CString CMergeEditView::GetSelectedText()
  * @brief Get diffs inside selection.
  * @param [out] firstDiff First diff inside selection
  * @param [out] lastDiff Last diff inside selection
+ * @param [out] firstWordDiff First word level diff inside selection
+ * @param [out] lastWordDiff Last word level diff inside selection
  * @note -1 is returned in parameters if diffs cannot be determined
  * @todo This shouldn't be called when there is no diffs, so replace
  * first 'if' with ASSERT()?
  */
-void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
+void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff, int & lastWordDiff, const CPoint *pptStart, const CPoint *pptEnd)
 {
 	firstDiff = -1;
 	lastDiff = -1;
+	firstWordDiff = -1;
+	lastWordDiff = -1;
 
 	CMergeDoc *pd = GetDocument();
 	const int nDiffs = pd->m_diffList.GetSignificantDiffs();
@@ -310,39 +314,141 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 		return;
 
 	int firstLine, lastLine;
-	GetFullySelectedLines(firstLine, lastLine);
-	if (lastLine < firstLine)
-		return;
+	CPoint ptStart, ptEnd;
+	GetSelection(ptStart, ptEnd);
+	if (pptStart != nullptr)
+		ptStart = *pptStart;
+	if (pptEnd != nullptr)
+		ptEnd = *pptEnd;
+	firstLine = ptStart.y;
+	lastLine = ptEnd.y;
 
-	firstDiff = pd->m_diffList.NextSignificantDiffFromLine(firstLine);
-	lastDiff = pd->m_diffList.PrevSignificantDiffFromLine(lastLine);
+	firstDiff = pd->m_diffList.LineToDiff(firstLine);
+	if (firstDiff == -1)
+	{
+		firstDiff = pd->m_diffList.NextSignificantDiffFromLine(firstLine);
+		if (firstDiff == -1)
+			return;
+		firstWordDiff = 0;
+	}
+	lastDiff = pd->m_diffList.LineToDiff(lastLine);
+	if (lastDiff == -1)
+		lastDiff = pd->m_diffList.PrevSignificantDiffFromLine(lastLine);
+	if (lastDiff < firstDiff)
+	{
+		firstDiff = -1;
+		firstWordDiff = -1;
+		return;
+	}
+
 	if (firstDiff != -1 && lastDiff != -1)
 	{
 		DIFFRANGE di;
+		vector<WordDiff> worddiffs;
 		
-		// Check that first selected line is first diff's first line or above it
-		VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
-		if ((int)di.dbegin < firstLine)
+		if (ptStart != ptEnd)
 		{
-			if (firstDiff < lastDiff)
-				++firstDiff;
-		}
+			if (firstWordDiff == -1)
+			{
+				VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
+				pd->GetWordDiffArray(firstLine, &worddiffs);
+				for (size_t i = 0; i < worddiffs.size(); ++i)
+				{
+					if (worddiffs[i].endline[m_nThisPane] > firstLine ||
+						(firstLine == worddiffs[i].endline[m_nThisPane] && worddiffs[i].end[m_nThisPane] - 1 >= ptStart.x))
+					{
+						firstWordDiff = static_cast<int>(i);
+						break;
+					}
+				}
 
-		// Check that last selected line is last diff's last line or below it
-		VERIFY(pd->m_diffList.GetDiff(lastDiff, di));
-		if ((int)di.dend > lastLine)
-		{
-			if (firstDiff < lastDiff)
+				if (firstLine >= di.dbegin && firstWordDiff == -1)
+				{
+					++firstDiff;
+					firstWordDiff = 0;
+				}
+			}
+
+			VERIFY(pd->m_diffList.GetDiff(lastDiff, di));
+			pd->GetWordDiffArray(lastLine, &worddiffs);
+			for (size_t i = worddiffs.size() - 1; i != (size_t)-1; --i)
+			{
+				if (worddiffs[i].beginline[m_nThisPane] < lastLine ||
+				    (lastLine == worddiffs[i].beginline[m_nThisPane] && worddiffs[i].begin[m_nThisPane] + 1 <= ptEnd.x))
+				{
+					lastWordDiff = static_cast<int>(i);
+					break;
+				}
+			}
+
+			if (lastLine <= di.dend && lastWordDiff == -1)
 				--lastDiff;
-		}
 
-		// Special case: one-line diff is not selected if cursor is in it
-		if (firstLine == lastLine)
+			if (firstDiff == lastDiff && (lastWordDiff != -1 && lastWordDiff < firstWordDiff))
+			{
+				firstDiff = -1;
+				lastDiff = -1;
+				firstWordDiff = -1;
+				lastWordDiff = -1;
+			}
+			else if (lastDiff < firstDiff || (firstDiff == lastDiff && firstWordDiff == -1 && lastWordDiff == -1))
+			{
+				firstDiff = -1;
+				lastDiff = -1;
+				firstWordDiff = -1;
+				lastWordDiff = -1;
+			}
+		}
+		else
 		{
 			firstDiff = -1;
 			lastDiff = -1;
+			firstWordDiff = -1;
+			lastWordDiff = -1;
 		}
 	}
+
+	ASSERT(firstDiff == -1 ? (lastDiff  == -1 && firstWordDiff == -1 && lastWordDiff == -1) : true);
+	ASSERT(lastDiff  == -1 ? (firstDiff == -1 && firstWordDiff == -1 && lastWordDiff == -1) : true);
+	ASSERT(firstDiff != -1 ? firstWordDiff != -1 : true);
+}
+
+std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice()
+{
+	CMergeDoc *pDoc = GetDocument();
+	std::map<int, std::vector<int>> ret;
+	std::map<int, std::vector<int> *> list;
+	CPoint ptStart, ptEnd;
+	GetSelection(ptStart, ptEnd);
+	for (int nLine = ptStart.y; nLine <= ptEnd.y; ++nLine)
+	{
+		if (pDoc->m_diffList.LineToDiff(nLine) != -1)
+		{
+			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
+			int nLeft, nRight;
+			GetColumnSelection(nLine, nLeft, nRight);
+			CPoint ptStart2, ptEnd2;
+			ptStart2.x = nLeft;
+			ptEnd2.x = nRight;
+			ptStart2.y = ptEnd2.y = nLine;
+			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff, &ptStart2, &ptEnd2);
+			if (firstDiff != -1 && lastDiff != -1)
+			{
+				std::vector<int> *pWordDiffs;
+				if (list.find(firstDiff) == list.end())
+					list.insert(std::pair<int, std::vector<int> *>(firstDiff, new std::vector<int>()));
+				pWordDiffs = list[firstDiff];
+				for (int i = firstWordDiff; i <= lastWordDiff; ++i)
+				{
+					if (pWordDiffs->empty() || i != (*pWordDiffs)[pWordDiffs->size() - 1])
+						pWordDiffs->push_back(i);
+				}
+			}
+		}
+	}
+	for (auto& it : list)
+		ret.insert(std::pair<int, std::vector<int>>(it.first, *it.second));
+	return ret;
 }
 
 void CMergeEditView::OnInitialUpdate()
@@ -1667,16 +1773,28 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 		}
 	}
 
-	int firstDiff, lastDiff;
-	GetFullySelectedDiffs(firstDiff, lastDiff);
-
-	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
+	if (IsSelection())
 	{
-		CWaitCursor waitstatus;
-		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff) && !IsSelection())
-			pDoc->ListCopy(srcPane, dstPane, currentDiff);
+		int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
+		if (!m_bColumnSelection)
+		{
+			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+			if (firstDiff != -1 && lastDiff != -1)
+			{
+				CWaitCursor waitstatus;
+				pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+			}
+		}
 		else
-			pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
+		{
+			CWaitCursor waitstatus;
+			auto wordDiffs = GetColumnSelectedWordDiffIndice();
+			int i = 0;
+			std::for_each(wordDiffs.rbegin(), wordDiffs.rend(), [&](auto& it) {
+				pDoc->WordListCopy(srcPane, dstPane, it.first, it.second[0], it.second[it.second.size() - 1], &it.second, i != 0, i == 0);
+				++i;
+			});
+		}
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
@@ -1690,14 +1808,16 @@ void CMergeEditView::OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI)
 	// Check that right side is not readonly
 	if (!IsReadOnly(dstPane))
 	{
-		int firstDiff, lastDiff;
-		GetFullySelectedDiffs(firstDiff, lastDiff);
-
 		// If one or more diffs inside selection OR
 		// there is an active diff OR
 		// cursor is inside diff
-		if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
-			pCmdUI->Enable(true);
+		if (IsSelection())
+		{
+			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
+			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+
+			pCmdUI->Enable(firstDiff != -1 && lastDiff != -1);
+		}
 		else
 		{
 			const int currDiff = GetDocument()->GetCurrentDiff();
