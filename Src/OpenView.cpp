@@ -87,6 +87,7 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_CBN_SELENDCANCEL(IDC_PATH1_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_PATH2_COMBO, UpdateButtonStates)
 	ON_NOTIFY_RANGE(CBEN_BEGINEDIT, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnSetfocusPathCombo)
+	ON_NOTIFY_RANGE(CBEN_DRAGBEGIN, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnDragBeginPathCombo)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
 	ON_BN_CLICKED(IDC_OPTIONS, OnOptions)
@@ -106,6 +107,8 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
 	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
+	ON_WM_MOUSEMOVE()
 	ON_WM_WINDOWPOSCHANGED()
 	ON_WM_SETCURSOR()
 	ON_WM_DESTROY()
@@ -122,6 +125,8 @@ COpenView::COpenView()
 	, m_dwFlags()
 	, m_bAutoCompleteReady()
 	, m_bReadOnly {false, false, false}
+	, m_hIconRotate(theApp.LoadIcon(IDI_ROTATE2))
+	, m_hCursorNo(LoadCursor(NULL, IDC_NO))
 {
 }
 
@@ -381,6 +386,71 @@ void COpenView::OnLButtonDown(UINT nFlags, CPoint point)
 		m_rectTracker.m_rect.bottom = m_rectTracker.m_rect.top + m_sizeOrig.cy;
 		SetWindowPos(NULL, rc.left, rc.top, rc.Width(), rc.Height(), SWP_NOZORDER);
 		m_constraint.UpdateSizes();
+	}
+}
+
+void COpenView::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	if (::GetCapture() == m_hWnd)
+	{
+		if (CWnd *const pwndHit = ChildWindowFromPoint(point,
+			CWP_SKIPINVISIBLE | CWP_SKIPDISABLED | CWP_SKIPTRANSPARENT))
+		{
+			switch (int const id1 = pwndHit->GetDlgCtrlID())
+			{
+			case IDC_PATH0_COMBO:
+			case IDC_PATH1_COMBO:
+			case IDC_PATH2_COMBO:
+				int id2 = 0;
+				CWnd *pwndChild = GetFocus();
+				if (IsChild(pwndChild) && !pwndHit->IsChild(pwndChild)) do
+				{
+					id2 = pwndChild->GetDlgCtrlID();
+					pwndChild = pwndChild->GetParent();
+				} while (pwndChild != this);
+				switch (id2)
+				{
+				case IDC_PATH0_COMBO:
+				case IDC_PATH1_COMBO:
+				case IDC_PATH2_COMBO:
+					String s1, s2;
+					GetDlgItemText(id1, s1);
+					GetDlgItemText(id2, s2);
+					SetDlgItemText(id1, s2);
+					SetDlgItemText(id2, s1);
+					pwndHit->SetFocus();
+					break;
+				}
+				break;
+			}
+		}
+		ReleaseCapture();
+	}
+}
+
+void COpenView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	if (::GetCapture() == m_hWnd)
+	{
+		if (CWnd *const pwndHit = ChildWindowFromPoint(point,
+			CWP_SKIPINVISIBLE | CWP_SKIPDISABLED | CWP_SKIPTRANSPARENT))
+		{
+			switch (pwndHit->GetDlgCtrlID())
+			{
+			case IDC_PATH0_COMBO:
+			case IDC_PATH1_COMBO:
+			case IDC_PATH2_COMBO:
+				if (!pwndHit->IsChild(GetFocus()))
+				{
+					SetCursor(m_hIconRotate);
+					break;
+				}
+				// fall through
+			default:
+				SetCursor(m_hCursorNo);
+				break;
+			}
+		}
 	}
 }
 
@@ -936,7 +1006,14 @@ void COpenView::OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult)
 	*pResult = 0;
 }
 
-/** 
+void COpenView::OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult)
+{
+	m_ctlPath[id - IDC_PATH0_COMBO].SetFocus();
+	SetCapture();
+	*pResult = 0;
+}
+
+/**
  * @brief Called every time paths are edited.
  */
 void COpenView::OnEditEvent()
@@ -1219,40 +1296,32 @@ void COpenView::OnDropFiles(const std::vector<String>& files)
 	}
 	else if (fileCount == 1)
 	{
-		if (m_strPath[0].empty())
-			m_strPath[0] = files[0];
-		else if (m_strPath[1].empty())
-			m_strPath[1] = files[0];
-		else if (m_strPath[2].empty())
-			m_strPath[2] = files[0];
-		else
-			m_strPath[0] = files[0];
+		CPoint point;
+		GetCursorPos(&point);
+		ScreenToClient(&point);
+		if (CWnd *const pwndHit = ChildWindowFromPoint(point,
+			CWP_SKIPINVISIBLE | CWP_SKIPDISABLED | CWP_SKIPTRANSPARENT))
+		{
+			switch (int const id = pwndHit->GetDlgCtrlID())
+			{
+			case IDC_PATH0_COMBO:
+			case IDC_PATH1_COMBO:
+			case IDC_PATH2_COMBO:
+				m_strPath[id - IDC_PATH0_COMBO] = files[0];
+				break;
+			default:
+				if (m_strPath[0].empty())
+					m_strPath[0] = files[0];
+				else if (m_strPath[1].empty())
+					m_strPath[1] = files[0];
+				else if (m_strPath[2].empty())
+					m_strPath[2] = files[0];
+				else
+					m_strPath[0] = files[0];
+				break;
+			}
+		}
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}
-}
-
-BOOL COpenView::PreTranslateMessage(MSG* pMsg)
-{
-	if (pMsg->message == WM_SYSKEYDOWN)
-	{
-		if (::GetAsyncKeyState(VK_MENU))
-		{
-			UINT id = 0;
-			switch (pMsg->wParam)
-			{
-			case '1': id = IDC_PATH0_COMBO; goto LABEL_NUM_KEY;
-			case '2': id = IDC_PATH1_COMBO; goto LABEL_NUM_KEY;
-			case '3': id = IDC_PATH2_COMBO;
-			LABEL_NUM_KEY:
-				SetDlgItemFocus(id);
-				return TRUE;
-			case 's':
-			case 'S': id = IDC_SELECT_UNPACKER;
-				PostMessage(WM_COMMAND, id, 0);
-				return TRUE;
-			}
-		}
-	}
-	return CFormView::PreTranslateMessage(pMsg);
 }
