@@ -92,6 +92,8 @@ private:
 	CSize m_sizeOrig;
 	prdlg::CMoveConstraint m_constraint;
 	CFont m_fontSwapButton;
+	HICON const m_hIconRotate;
+	HCURSOR const m_hCursorNo;
 	std::array<bool, 3> m_bAutoCompleteReady;
 	DropHandler *m_pDropHandler;
 // Overrides
@@ -101,7 +103,6 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	virtual void OnInitialUpdate(); // called first time after construct
 	virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 // Implementation
 public:
@@ -132,6 +133,7 @@ protected:
 	template <int N>
 	afx_msg void OnSelchangePathCombo();
 	afx_msg void OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
 	template<int id1, int id2>
 	afx_msg void OnSwapButton();
 	afx_msg void OnEditEvent();
@@ -148,6 +150,8 @@ protected:
 	afx_msg LRESULT OnUpdateStatus(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 	afx_msg void OnDestroy();
