@@ -17,6 +17,10 @@ IDR_MAINFRAME           ICON                    "res\\Merge.ico"
 IDR_MERGEPROJECT        ICON                    "res\\MergeProject.ico"
 IDR_MERGEDOCTYPE        ICON                    "res\\MergeDoc.ico"
 IDR_DIRDOCTYPE          ICON                    "res\\MergeDir.ico"
+// Below icon originates from https://github.com/NetEaseGame/ATX,
+// which is subject to the Apache-2.0 License.
+// TODO: Replace with another icon or upgrade to GPL-3.0-or-later.
+IDI_ROTATE2             ICON                    "res\\rotate2.ico"
 IDI_FOLDER              ICON                    "res\\folder.ico"
 IDI_LFOLDER             ICON                    "res\\lfolder.ico"
 IDI_MFOLDER             ICON                    "res\\mfolder.ico"
