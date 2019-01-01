@@ -56,6 +56,7 @@
 #define IDD_PROPPAGE_COMPARE_BINARY     243
 #define IDD_PROPPAGE_COLORS_MARKER      244
 #define IDD_EDIT_MARKER                 245
+#define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
