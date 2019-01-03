@@ -88,7 +88,6 @@ private:
 	String m_strBrowsePath[3]; /**< Left/middle/right path from browse dialog. */
 	CWinThread *m_pUpdateButtonStatusThread;
 	CPicture m_picture; /**< Image loader/viewer for logo image */
-	CRectTracker m_rectTracker;
 	CSize m_sizeOrig;
 	prdlg::CMoveConstraint m_constraint;
 	CFont m_fontSwapButton;
@@ -149,10 +148,10 @@ protected:
 	afx_msg void OnDropFiles(const std::vector<String>& files);
 	afx_msg LRESULT OnUpdateStatus(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnPaint();
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
+	afx_msg LRESULT OnNcHitTest(CPoint point);
+	afx_msg void OnWindowPosChanging(WINDOWPOS* lpwndpos);
 	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 	afx_msg void OnDestroy();
 	//}}AFX_MSG
