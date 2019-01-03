@@ -313,6 +313,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
+	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
+
 	m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
 	m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
 	

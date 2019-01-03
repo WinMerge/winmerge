@@ -148,6 +148,38 @@ protected:
 	CToolBar m_wndToolBar;
 	CMDITabBar m_wndTabBar;
 
+	// Tweak MDI client window behavior
+	class CMDIClient : public CWnd
+	{
+		static UINT_PTR const m_nRedrawTimer = 1612;
+		virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
+		{
+			switch (message)
+			{
+			case WM_MDICREATE:
+			case WM_MDIACTIVATE:
+			case WM_MDINEXT:
+				// To reduce flicker in maximized state, disable drawing while messing with MDI child frames
+				BOOL bMaximized;
+				if (SendMessage(WM_MDIGETACTIVE, 0, reinterpret_cast<LPARAM>(&bMaximized))
+					&& bMaximized && SetTimer(m_nRedrawTimer, USER_TIMER_MINIMUM, nullptr))
+				{
+					SetRedraw(FALSE);
+				}
+				break;
+			case WM_TIMER:
+				if (wParam == m_nRedrawTimer)
+				{
+					KillTimer(m_nRedrawTimer);
+					SetRedraw(TRUE);
+					RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE);
+				}
+				break;
+			}
+			return CWnd::WindowProc(message, wParam, lParam);
+		}
+	} m_wndMDIClient;
+
 	/** @brief Toolbar image table indexes. */
 	enum TOOLBAR_IMAGES
 	{
