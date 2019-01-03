@@ -106,11 +106,11 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, (OnEditAction<EM_SETSEL, 0, -1>))
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
-	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
+	ON_WM_WINDOWPOSCHANGING()
 	ON_WM_WINDOWPOSCHANGED()
-	ON_WM_SETCURSOR()
+	ON_WM_NCHITTEST()
 	ON_WM_DESTROY()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -126,7 +126,7 @@ COpenView::COpenView()
 	, m_bAutoCompleteReady()
 	, m_bReadOnly {false, false, false}
 	, m_hIconRotate(theApp.LoadIcon(IDI_ROTATE2))
-	, m_hCursorNo(LoadCursor(NULL, IDC_NO))
+	, m_hCursorNo(LoadCursor(nullptr, IDC_NO))
 {
 }
 
@@ -181,7 +181,6 @@ void COpenView::OnInitialUpdate()
 		return;
 
 	CFormView::OnInitialUpdate();
-	ResizeParentToFit();
 
 	// set caption to "swap paths" button
 	LOGFONT lf;
@@ -368,27 +367,6 @@ void COpenView::OnPaint()
 	CFormView::OnPaint();
 }
 
-void COpenView::OnLButtonDown(UINT nFlags, CPoint point)
-{
-
-	if (m_rectTracker.Track(this, point, FALSE, GetParentFrame()))
-	{
-		CRect rc = m_rectTracker.m_rect;
-		MapWindowPoints(GetParentFrame(), &rc);
-		CRect rcFrame;
-		GetParentFrame()->GetClientRect(&rcFrame);
-		int width = rc.Width() > rcFrame.Width() ? rcFrame.Width() : rc.Width();
-		if (width < m_sizeOrig.cx)
-			width = m_sizeOrig.cx;
-		rc.right = rc.left + width;
-		rc.bottom = rc.top + m_sizeOrig.cy;
-		m_rectTracker.m_rect.right = m_rectTracker.m_rect.left + width;
-		m_rectTracker.m_rect.bottom = m_rectTracker.m_rect.top + m_sizeOrig.cy;
-		SetWindowPos(nullptr, rc.left, rc.top, rc.Width(), rc.Height(), SWP_NOZORDER);
-		m_constraint.UpdateSizes();
-	}
-}
-
 void COpenView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if (::GetCapture() == m_hWnd)
@@ -454,11 +432,61 @@ void COpenView::OnMouseMove(UINT nFlags, CPoint point)
 	}
 }
 
+void COpenView::OnWindowPosChanging(WINDOWPOS* lpwndpos)
+{
+	if ((lpwndpos->flags & (SWP_NOMOVE | SWP_NOSIZE)) == 0)
+	{
+		CFrameWnd *const pFrameWnd = GetParentFrame();
+		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
+		{
+			RECT rc;
+			pFrameWnd->GetClientRect(&rc);
+			lpwndpos->flags |= SWP_FRAMECHANGED | SWP_SHOWWINDOW;
+			lpwndpos->cy = m_sizeOrig.cy;
+			if (lpwndpos->flags & SWP_NOOWNERZORDER)
+			{
+				lpwndpos->x = rc.right - (lpwndpos->x + lpwndpos->cx);
+				lpwndpos->cx = rc.right - 2 * lpwndpos->x;
+				lpwndpos->y = (rc.bottom - lpwndpos->cy) / 2;
+				if (lpwndpos->y < 0)
+					lpwndpos->y = 0;
+			}
+			else if (pFrameWnd->IsZoomed())
+			{
+				lpwndpos->cx = m_totalLog.cx;
+				lpwndpos->y = (rc.bottom - lpwndpos->cy) / 2;
+				if (lpwndpos->y < 0)
+					lpwndpos->y = 0;
+			}
+			if (lpwndpos->cx < m_sizeOrig.cx)
+				lpwndpos->cx = m_sizeOrig.cx;
+			lpwndpos->x = (rc.right - lpwndpos->cx) / 2;
+			if (lpwndpos->x < 0)
+				lpwndpos->x = 0;
+		}
+	}
+}
+
 void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 {
-	CRect rc;
-	GetClientRect(&rc);
-	m_rectTracker.m_rect = rc;
+	if (lpwndpos->flags & SWP_FRAMECHANGED)
+	{
+		m_constraint.UpdateSizes();
+		CFrameWnd *const pFrameWnd = GetParentFrame();
+		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
+		{
+			m_constraint.Persist(true, false);
+			WINDOWPLACEMENT wp;
+			wp.length = sizeof wp;
+			pFrameWnd->GetWindowPlacement(&wp);
+			CRect rc;
+			GetWindowRect(&rc);
+			pFrameWnd->CalcWindowRect(&rc, CWnd::adjustOutside);
+			wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
+			wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();
+			pFrameWnd->SetWindowPlacement(&wp);
+		}
+	}
 	CFormView::OnWindowPosChanged(lpwndpos);
 }
 
@@ -467,17 +495,21 @@ void COpenView::OnDestroy()
 	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
 
-	m_constraint.Persist(true, false);
-
 	CFormView::OnDestroy();
 }
 
-BOOL COpenView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
+LRESULT COpenView::OnNcHitTest(CPoint point)
 {
-	if (pWnd == this && m_rectTracker.SetCursor(this, nHitTest))
-		return TRUE;
-
-	return CView::OnSetCursor(pWnd, nHitTest, message);
+	if (GetParentFrame()->IsZoomed())
+	{
+		CRect rc;
+		GetWindowRect(&rc);
+		rc.left = rc.right - GetSystemMetrics(SM_CXVSCROLL);
+		rc.top = rc.bottom - GetSystemMetrics(SM_CYHSCROLL);
+		if (PtInRect(&rc, point))
+			return HTRIGHT;
+	}
+	return CFormView::OnNcHitTest(point);
 }
 
 void COpenView::OnButton(int index)
