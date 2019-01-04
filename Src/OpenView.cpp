@@ -439,7 +439,7 @@ void COpenView::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 		CFrameWnd *const pFrameWnd = GetParentFrame();
 		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
 		{
-			RECT rc;
+			CRect rc;
 			pFrameWnd->GetClientRect(&rc);
 			lpwndpos->flags |= SWP_FRAMECHANGED | SWP_SHOWWINDOW;
 			lpwndpos->cy = m_sizeOrig.cy;
@@ -458,6 +458,8 @@ void COpenView::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 				if (lpwndpos->y < 0)
 					lpwndpos->y = 0;
 			}
+			if (lpwndpos->cx > rc.Width())
+				lpwndpos->cx = rc.Width();
 			if (lpwndpos->cx < m_sizeOrig.cx)
 				lpwndpos->cx = m_sizeOrig.cx;
 			lpwndpos->x = (rc.right - lpwndpos->cx) / 2;
