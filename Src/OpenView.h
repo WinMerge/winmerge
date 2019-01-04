@@ -102,7 +102,6 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	virtual void OnInitialUpdate(); // called first time after construct
 	virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 // Implementation
 public:
