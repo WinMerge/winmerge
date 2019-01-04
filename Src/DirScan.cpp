@@ -585,6 +585,7 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffp
 {
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
+	bool bCompareFailure = false;
 	uintptr_t pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	
 	while (pos != NULL)
@@ -610,23 +611,41 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffp
 						di.diffcode.diffcode |= DIFFCODE::DIFF;
 					res += ndiff;
 				}
-				else if (ndiff == 0)
+				else 
+				if (ndiff == 0)
 				{
 					if (existsalldirs)
 						di.diffcode.diffcode |= DIFFCODE::SAME;
+				} 
+				else
+				if (ndiff == -1)
+				{	// There were file IO-errors during sub-directory comparison.
+					di.diffcode.diffcode |= DIFFCODE::CMPERR;
+					bCompareFailure = true;
 				}
 			}
 		}
 		else
 		{
 			if (di.diffcode.isScanNeeded())
-				CompareDiffItem(di, pCtxt);
+			{
+				CompareDiffItem(di, pCtxt); 
+				if (di.diffcode.isResultError()) { 
+					DIFFITEM *diParent = di.parent;
+					if (diParent != nullptr)
+					{
+						diParent->diffcode.diffcode |= DIFFCODE::CMPERR;
+						bCompareFailure = true;
+					}
+			}
+				
+			}
 		}
 		if (di.diffcode.isResultDiff() ||
 			(!existsalldirs && !di.diffcode.isResultFiltered()))
 			res++;
 	}
-	return res;
+	return bCompareFailure ? -1 : res;;
 }
 
 int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
