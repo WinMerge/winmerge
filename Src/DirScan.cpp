@@ -666,16 +666,20 @@ int DirScan_UpdateMarkedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 			break;
 		uintptr_t curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
-		bool bItemsExist = true;
 		if (di.diffcode.isScanNeeded())
 		{
+			bool bItemsExist = true;
 			UpdateDiffItem(di, bItemsExist, pCtxt);
 			if (!bItemsExist)
-				di.RemoveSelf();
-			else if (!di.diffcode.isDirectory())
+			{ 
+				di.RemoveSelf();	// delink from list of Siblings
+				delete &di;			// Will also delete all Children items
+				continue;			// ... because `di` is now invalid
+			}
+			if (!di.diffcode.isDirectory())
 				++ncount;
 		}
-		if (bItemsExist && di.diffcode.isDirectory() && pCtxt->m_bRecursive)
+		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
 		{
 			if (di.diffcode.isScanNeeded() && !di.diffcode.isResultFiltered())
 			{
