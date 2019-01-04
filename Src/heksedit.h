@@ -62,18 +62,20 @@ public:
 		int iBytesPerLine; /**< How many bytes in one line in hex view. */
 		int iAutomaticBPL; /**< Add max amount of bytes that fit to view. */
 		BYTE_ENDIAN iBinaryMode; /**< Binary mode, little/big endian. */
-		bool bReadOnly; /**< Is editor in read-only mode? */
-		bool bSaveIni; /**< Save INI file when required. */
+		int bReadOnly; /**< Is editor in read-only mode? */
+		int bSaveIni; /**< Save INI file when required. */
 		int iFontSize;
 		int iCharacterSet; /**< Use OEM or ANSI character set? */
 		int iMinOffsetLen; /**< Minimum numbers used in offset. */
 		int iMaxOffsetLen; /**< Maximum numbers used in offset. */
+		int bAutoOffsetLen; /**< Determine offset length automatically. */
+		int bCenterCaret;
 		int iFontZoom;
 	};
 
 	struct Status
 	{
-		bool bFileChanged;
+		int iFileChanged;
 		int const(iEnteringMode);
 		int const(iCurByte);
 		int const(iCurNibble);
