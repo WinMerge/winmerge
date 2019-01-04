@@ -1357,3 +1357,28 @@ void COpenView::OnDropFiles(const std::vector<String>& files)
 		UpdateButtonStates();
 	}
 }
+
+BOOL COpenView::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_SYSKEYDOWN)
+	{
+		if (::GetAsyncKeyState(VK_MENU))
+		{
+			UINT id = 0;
+			switch (pMsg->wParam)
+			{
+			case '1': id = IDC_PATH0_COMBO; goto LABEL_NUM_KEY;
+			case '2': id = IDC_PATH1_COMBO; goto LABEL_NUM_KEY;
+			case '3': id = IDC_PATH2_COMBO;
+			LABEL_NUM_KEY:
+				SetDlgItemFocus(id);
+				return TRUE;
+			case 's':
+			case 'S': id = IDC_SELECT_FILTER;
+				PostMessage(WM_COMMAND, MAKEWPARAM(id, BN_CLICKED), (LPARAM)(GetDlgItem(id)->m_hWnd));
+				return TRUE;
+			}
+		}
+	}
+	return CFormView::PreTranslateMessage(pMsg);
+}
