@@ -261,10 +261,10 @@ void CConfigLog::WriteVersionOf1(int indent, const String& path)
 void CConfigLog::WriteWinMergeConfig()
 {
 	TempFile tmpfile;
-	tmpfile.Create();
-	GetOptionsMgr()->ExportOptions(tmpfile.GetPath(), true);
+	String tmppath = tmpfile.Create();
+	GetOptionsMgr()->ExportOptions(tmppath, true);
 	UniMemFile ufile;
-	if (!ufile.OpenReadOnly(tmpfile.GetPath()))
+	if (!ufile.OpenReadOnly(tmppath))
 		return;
 	String line;
 	bool lossy;
