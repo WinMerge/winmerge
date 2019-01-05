@@ -926,7 +926,7 @@ void DiffList::AppendDiffList(const DiffList& list, int offset[] /*= nullptr*/, 
 {
 	for (std::vector<DiffRangeInfo>::const_iterator it = list.m_diffs.begin(); it != list.m_diffs.end(); ++it)
 	{
-		DIFFRANGE dr = *it;
+		DiffRangeInfo dr = *it;
 		for (int file = 0; file < 3; ++file)
 		{
 			if (offset != nullptr)
