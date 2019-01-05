@@ -313,8 +313,8 @@ TEST(FolderCompare, IgnoreEOL)
 		do { Sleep(100); } while (!pStats->IsCompareDone());
 		EXPECT_EQ(10, pStats->GetTotalItems());
 		EXPECT_EQ(10, pStats->GetCount(CompareStats::RESULT::RESULT_SAME));
-		uintptr_t pos = ctxt.GetFirstDiffPosition();
-		while (pos)
+		DIFFITEM *pos = ctxt.GetFirstDiffPosition();
+		while (pos != nullptr)
 		{
 			const DIFFITEM& di = ctxt.GetNextDiffPosition(pos);
 			for (int i = 0; i < 2; ++i)

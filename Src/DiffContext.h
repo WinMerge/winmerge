@@ -16,7 +16,6 @@
 class PackingInfo;
 class PrediffingInfo;
 class IDiffFilter;
-struct DIFFITEM;
 class CompareStats;
 class IAbortable;
 class CDiffWrapper;
@@ -56,7 +55,7 @@ public:
 	CDiffContext(const PathContext & paths, int compareMethod);
 	~CDiffContext();
 
-	void UpdateVersion(DIFFITEM & di, int nIndex) const;
+	void UpdateVersion(DIFFITEM &di, int nIndex) const;
 
 	/**
 	 * Get the main compare method used in this compare.
@@ -107,8 +106,8 @@ public:
 	//@}
 
 	// change an existing difference
-	bool UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex);
-	void UpdateStatusFromDisk(uintptr_t diffpos, int nIndex);
+	bool UpdateInfoFromDiskHalf(DIFFITEM &di, int nIndex);
+	void UpdateStatusFromDisk(DIFFITEM *diffpos, int nIndex);
 
 	bool CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
 	CompareOptions * GetCompareOptions(int compareMethod);

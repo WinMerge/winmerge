@@ -4,6 +4,7 @@
  *  @brief Implementation of DirScan (q.v.) and helper functions
  */ 
 
+#include "stdafx.h"
 #include "DirScan.h"
 #include <cassert>
 #include <memory>
@@ -35,6 +36,10 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
 using Poco::NotificationQueue;
 using Poco::Notification;
 using Poco::AutoPtr;
@@ -45,15 +50,15 @@ using Poco::Environment;
 using Poco::Stopwatch;
 
 // Static functions (ie, functions only used locally)
-void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt);
-static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
-		const FolderCmp * pCmpData);
-static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir, const DirItem * lent, const DirItem * rent,
+void CompareDiffItem(DIFFITEM &di, CDiffContext *pCtxt);
+static void StoreDiffData(DIFFITEM &di, CDiffContext *pCtxt,
+		const FolderCmp *pCmpData);
+static DIFFITEM *AddToList(const String &sLeftDir, const String &sRightDir, const DirItem *lent, const DirItem *rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
-static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const String& sDir3, const DirItem * ent1, const DirItem * ent2, const DirItem * ent3,
+static DIFFITEM *AddToList(const String &sDir1, const String &sDir2, const String &sDir3, const DirItem *ent1, const DirItem *ent2, const DirItem *ent3,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent, int nItems = 3);
-static void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt);
-static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uintptr_t parentdiffpos);
+static void UpdateDiffItem(DIFFITEM &di, bool &bExists, CDiffContext *pCtxt);
+static int CompareItems(NotificationQueue &queue, DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos);
 
 class WorkNotification: public Poco::Notification
 {
@@ -113,7 +118,7 @@ typedef std::shared_ptr<DiffWorker> DiffWorkerPtr;
  * @brief Collect file- and folder-names to list.
  * This function walks given folders and adds found subfolders and files into
  * lists. There are two modes, determined by the @p depth:
- * - in non-recursive mode we walk only given folders, and add files.
+ * - in non-recursive mode we walk only given folders, and add files
  *   contained. Subfolders are added as folder items, not walked into.
  * - in recursive mode we walk all subfolders and add the files they
  *   contain into list.
@@ -126,7 +131,7 @@ typedef std::shared_ptr<DiffWorker> DiffWorkerPtr;
  * @param [in] rightsubdir Right side subdirectory under root path
  * @param [in] bRightUniq Is right-side folder unique folder?
  * @param [in] myStruct Compare-related data, like context etc.
- * @param [in] casesensitive Is filename compare casesensitive?
+ * @param [in] casesensitive Is filename compare case sensitive?
  * @param [in] depth Levels of subdirectories to scan, -1 scans all
  * @param [in] parent Folder diff item to be scanned
  * @param [in] bUniques If true, walk into unique folders.
@@ -449,7 +454,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */
-int DirScan_CompareItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
+int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 {
 	const int compareMethod = myStruct->context->GetCompareMethod();
 	int nworkers = 1;
@@ -484,7 +489,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
 	return res;
 }
 
-static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
+static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 {
 	NotificationQueue queueResult;
 	Stopwatch stopwatch;
@@ -492,11 +497,11 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 	int res = 0;
 	int count = 0;
 	bool bCompareFailure = false;
-	if (parentdiffpos == 0)
+	if (parentdiffpos == nullptr)
 		myStruct->pSemaphore->wait();
 	stopwatch.start();
-	uintptr_t pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
-	while (pos != 0)
+	DIFFITEM *pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	while (pos != nullptr)
 	{
 		if (pCtxt->ShouldAbort())
 			break;
@@ -508,7 +513,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 			stopwatch.restart();
 		}
 		myStruct->pSemaphore->wait();
-		uintptr_t curpos = pos;
+		DIFFITEM *curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		bool existsalldirs = di.diffcode.existAll();
 		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
@@ -557,6 +562,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
 			DIFFITEM &di = pWorkCompletedNf->data();
 			if (di.diffcode.isResultError()) { 
 				DIFFITEM *diParent = di.parent;
+				assert(di.parent != nullptr);
 				if (diParent != nullptr)
 				{
 					diParent->diffcode.diffcode |= DIFFCODE::CMPERR;
@@ -581,14 +587,14 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, uint
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */
-static int CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
+static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 {
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
 	bool bCompareFailure = false;
-	uintptr_t pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	DIFFITEM *pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	
-	while (pos != NULL)
+	while (pos != nullptr)
 	{
 		if (pCtxt->ShouldAbort())
 		{
@@ -596,7 +602,7 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffp
 			break;
 		}
 
-		uintptr_t curpos = pos;
+		DIFFITEM *curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		bool existsalldirs = di.diffcode.existAll();
 		if (di.diffcode.isDirectory())
@@ -632,6 +638,7 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffp
 				CompareDiffItem(di, pCtxt); 
 				if (di.diffcode.isResultError()) { 
 					DIFFITEM *diParent = di.parent;
+					assert(di.parent != nullptr);
 					if (diParent != nullptr)
 					{
 						diParent->diffcode.diffcode |= DIFFCODE::CMPERR;
@@ -648,19 +655,19 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffp
 	return bCompareFailure ? -1 : res;;
 }
 
-int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
+int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 {
 	CAssureScriptsForThread scriptsForRescan;
 	return CompareRequestedItems(myStruct, parentdiffpos);
 }
 
-static int markChildrenForRescan(CDiffContext *pCtxt, uintptr_t parentdiffpos)
+static int markChildrenForRescan(CDiffContext *pCtxt, DIFFITEM *parentdiffpos)
 {
 	int ncount = 0;
-	uintptr_t pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
-	while (pos != NULL)
+	DIFFITEM *pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	while (pos != nullptr)
 	{
-		uintptr_t curpos = pos;
+		DIFFITEM *curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		if (di.diffcode.isDirectory())
 			ncount += markChildrenForRescan(pCtxt, curpos);
@@ -673,17 +680,17 @@ static int markChildrenForRescan(CDiffContext *pCtxt, uintptr_t parentdiffpos)
 	return ncount;
 }
 
-int DirScan_UpdateMarkedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
+int DirScan_UpdateMarkedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 {
 	CDiffContext *pCtxt = myStruct->context;
-	uintptr_t pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	DIFFITEM *pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	int ncount = 0;
 	
-	while (pos != NULL)
+	while (pos != nullptr)
 	{
 		if (pCtxt->ShouldAbort())
 			break;
-		uintptr_t curpos = pos;
+		DIFFITEM *curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		if (di.diffcode.isScanNeeded())
 		{
@@ -737,7 +744,7 @@ int DirScan_UpdateMarkedItems(DiffFuncStruct *myStruct, uintptr_t parentdiffpos)
  *  - false if items were deleted, so diffitem is not valid
  * @param [in] pCtxt Compare context
  */
-static void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt)
+static void UpdateDiffItem(DIFFITEM &di, bool & bExists, CDiffContext *pCtxt)
 {
 	bExists = false;
 	di.diffcode.setSideNone();
@@ -757,9 +764,9 @@ static void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt)
  *
  * This function does the actual compare for previously gathered list of
  * items. Basically we:
- * - ignore items matching filefilters
+ * - ignore items matching file filters
  * - add non-ignored directories (no compare for directory items)
- * - add  unique files
+ * - add unique files
  * - compare files
  *
  * @param [in] di DiffItem to compare
@@ -849,15 +856,14 @@ static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir,
  * @brief Add one compare item to list.
  */
 static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const String& sDir3,
-	const DirItem * ent1, const DirItem * ent2, const DirItem * ent3,
-	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent, int nItems)
+	const DirItem *ent1, const DirItem *ent2, const DirItem *ent3,
+	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent, int nItems /*= 3*/)
 {
 	// We must store both paths - we cannot get paths later
 	// and we need unique item paths for example when items
 	// change to identical
-	DIFFITEM *di = myStruct->context->AddDiff(parent);
+	DIFFITEM *di = myStruct->context->AddNewDiff(parent);
 
-	di->parent = parent;
 	di->diffFileInfo[0].path = sDir1;
 	di->diffFileInfo[1].path = sDir2;
 	di->diffFileInfo[2].path = sDir3;

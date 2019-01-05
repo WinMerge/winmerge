@@ -5,7 +5,6 @@
  */
 #pragma once
 
-#include "ListEntry.h"
 #include "DiffFileInfo.h"
 
 /**
@@ -172,31 +171,58 @@ public:
  * both compare sides (file/folder exists in both sides) or just from one
  * side (file/folder exists only in other side).
  *
- * This class is for backend differences processing, presenting physical
+ * This class is for backend differences processing, representing physical
  * files and folders. This class is not for GUI data like selection or
  * visibility statuses. So do not include any GUI-dependent data here. 
  */
-struct DIFFITEM : ListEntry
+
+class DIFFITEM 
 {
-	DIFFITEM *parent; /**< Parent of current item */
-	ListEntry children; /**< Head of doubly linked list for chldren */
+public:
+	DIFFITEM *parent;				/**< Parent of current item */
+	DIFFITEM *children;				/**< Link to first child of `this` */
 
-	DiffFileInfo diffFileInfo[3]; /**< Fileinfo for left/middle/right file */
-	int	nsdiffs; /**< Amount of non-ignored differences */
-	int nidiffs; /**< Amount of ignored differences */
-	unsigned customFlags1; /**< Custom flags set 1 */
-	DIFFCODE diffcode; /**< Compare result */
+	DiffFileInfo diffFileInfo[3];	/**< Fileinfo for left/middle/right file */
+	int	nsdiffs;					/**< Amount of non-ignored differences */
+	int nidiffs;					/**< Amount of ignored differences */
+	unsigned customFlags1;			/**< Custom flags set 1 */
+	DIFFCODE diffcode;				/**< Compare result */
 
-	static DIFFITEM emptyitem; /**< singleton to represent a diffitem that doesn't have any data */
 
-	DIFFITEM() : parent(nullptr), nidiffs(-1), nsdiffs(-1), customFlags1(0) { }
+	DIFFITEM() : parent(nullptr), children(nullptr), nidiffs(-1), nsdiffs(-1), customFlags1(0), 
+					Flink(nullptr), Blink(nullptr) {}
 	~DIFFITEM();
 
-	bool isEmpty() const { return this == &emptyitem; }
 	String getFilepath(int nIndex, const String &sRoot) const;
 	int GetDepth() const;
 	bool IsAncestor(const DIFFITEM *pdi) const;
-	bool HasChildren() const;
 	void RemoveChildren();
 	void Swap(int idx1, int idx2);
+
+	void Append(DIFFITEM *p);
+	void RemoveSelf();
+
+	inline DIFFITEM *GetFwdSiblingLink() const { return Flink; }
+
+	/** @brief Return whether the current DIFFITEM has children */
+	inline bool DIFFITEM::HasChildren() const
+	{
+		return (children != nullptr);
+	}
+
+	static DIFFITEM *GetEmptyItem();
+	bool isEmpty() const { return this == GetEmptyItem(); /* to invoke "emptiness" checking */ }
+
+
+protected:
+	void RemoveSiblings();
+
+	DIFFITEM *Flink;				/**< Forward "sibling" link.  The forward linkage ends with 
+										a `nullptr` in the final (newest) item. */
+	DIFFITEM *Blink;				/**< Backward "sibling" link.  The backward linkage is circular,
+										with the first (oldest) item (pointed to by `this->parent->children`)
+										pointing to the last (newest) item. */
+
+	static DIFFITEM emptyitem;		/**< singleton to represent a DIFFITEM that doesn't have any data */
 };
+ 
