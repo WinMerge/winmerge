@@ -36,8 +36,6 @@
 
 class FileActionScript;
 
-struct DIFFITEM;
-
 typedef enum { eMain, eContext } eMenuType;
 
 class CDirDoc;
@@ -58,7 +56,7 @@ struct IListCtrl;
 /**
  * @brief Position value for special items (..) in directory compare view.
  */
-const uintptr_t SPECIAL_ITEM_POS = (uintptr_t) - 1L;
+const uintptr_t SPECIAL_ITEM_POS = (uintptr_t)(reinterpret_cast<DIFFITEM *>( - 1L));
 
 /** Default column width in directory compare */
 const UINT DefColumnWidth = 150;
@@ -96,11 +94,11 @@ public:
 
 	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
-	void RedisplayChildren(uintptr_t diffpos, int level, UINT &index, int &alldiffs);
+	void RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int &alldiffs);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
-	uintptr_t GetItemKey(int idx) const;
-	int GetItemIndex(uintptr_t key);
+	DIFFITEM *GetItemKey(int idx) const;
+	int GetItemIndex(DIFFITEM *key);
 	// for populating list
 	void DeleteItem(int sel);
 	void DeleteAllDisplayItems();
@@ -168,7 +166,7 @@ public:
 private:
 	void InitiateSort();
 	void NameColumn(const char* idname, int subitem);
-	int AddNewItem(int i, uintptr_t diffpos, int iImage, int iIndent);
+	int AddNewItem(int i, DIFFITEM *diffpos, int iImage, int iIndent);
 // End DirViewCols.cpp
 
 private:
@@ -193,7 +191,7 @@ protected:
 	int GetLastDifferentItem();
 	int AddSpecialItems();
 	void GetCurrentColRegKeys(std::vector<String>& colKeys);
-	void OpenSpecialItems(uintptr_t pos1, uintptr_t pos2, uintptr_t pos3);
+	void OpenSpecialItems(DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3);
 
 // Implementation data
 protected:
@@ -393,8 +391,8 @@ private:
 	void OpenParentDirectory();
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	void DoUpdateDirCopy(CCmdUI* pCmdUI, eMenuType menuType);
-	const DIFFITEM & GetDiffItem(int sel) const;
-	DIFFITEM & GetDiffItem(int sel);
+	const DIFFITEM &GetDiffItem(int sel) const;
+	DIFFITEM &GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;
 	void MoveFocus(int currentInd, int i, int selCount);
 
