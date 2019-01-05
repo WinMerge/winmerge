@@ -1113,6 +1113,9 @@
     <ClInclude Include="HexMergeFrm.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="heksedit.h">
+      <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="HexMergeDoc.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
