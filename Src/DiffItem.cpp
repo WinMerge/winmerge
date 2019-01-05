@@ -4,8 +4,13 @@
  *  @brief Implementation of DIFFITEM
  */ 
 
+#include "stdafx.h"
 #include "DiffItem.h"
 #include "paths.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
 
 DIFFITEM DIFFITEM::emptyitem;
 
@@ -13,6 +18,10 @@ DIFFITEM DIFFITEM::emptyitem;
 DIFFITEM::~DIFFITEM()
 {
 	RemoveChildren();
+	RemoveSiblings();
+	assert(children == nullptr);
+	assert(Flink == nullptr);
+	assert(Blink == nullptr);
 }
 
 /** @brief Return path to left/right file, including all but file name */
@@ -30,7 +39,7 @@ int DIFFITEM::GetDepth() const
 {
 	const DIFFITEM *cur;
 	int depth;
-	for (depth = 0, cur = parent; cur != nullptr; depth++, cur = cur->parent)
+	for (depth = 0, cur = parent; cur->parent != nullptr; depth++, cur = cur->parent)
 		;
 	return depth;
 }
@@ -41,7 +50,7 @@ int DIFFITEM::GetDepth() const
 bool DIFFITEM::IsAncestor(const DIFFITEM *pdi) const
 {
 	const DIFFITEM *cur;
-	for (cur = this; cur != nullptr; cur = cur->parent)
+	for (cur = this; cur->parent != nullptr; cur = cur->parent)
 	{
 		if (cur->parent == pdi)
 			return true;
@@ -49,21 +58,27 @@ bool DIFFITEM::IsAncestor(const DIFFITEM *pdi) const
 	return false;
 }
 
-/** @brief Return whether the current item has children */
-bool DIFFITEM::HasChildren() const
+/** @brief Remove and delete all sibling DIFFITEM entries, via Flink */
+void DIFFITEM::RemoveSiblings()
 {
-	DIFFITEM *p = static_cast<DIFFITEM *>(children.IsSibling(children.Flink));
-	return (p != nullptr) ? true : false;
+	DIFFITEM *pRem = Flink;
+	while (pRem != nullptr)
+	{
+		assert(pRem->parent == parent);
+		assert(pRem->Blink == this);
+		DIFFITEM *pNext = pRem->Flink;
+		pRem->RemoveSelf();	// destroys Flink (so we use pRem instead)
+		delete pRem;
+		pRem = pNext;
+	}
+	RemoveSelf();
 }
 
+/** @brief Remove and delete all children DIFFITEM entries */
 void DIFFITEM::RemoveChildren()
 {
-	while (HasChildren())
-	{
-		DIFFITEM *p = static_cast<DIFFITEM *>(children.Flink);
-		p->RemoveSelf();
-		delete p;
-	}
+	delete children;
+	children = nullptr;
 }
 
 void DIFFITEM::Swap(int idx1, int idx2)
@@ -72,7 +87,79 @@ void DIFFITEM::Swap(int idx1, int idx2)
 	diffcode.swap(idx1, idx2);
 	if (HasChildren())
 	{
-		for (ListEntry *p = children.IsSibling(children.Flink); p != nullptr; p = children.IsSibling(p->Flink))
-			static_cast<DIFFITEM *>(p)->Swap(idx1, idx2);
+		for (DIFFITEM *p = children; p != nullptr; p = p->Flink)
+			p->Swap(idx1, idx2);
 	}
 }
+
+
+/* static */
+DIFFITEM *DIFFITEM::GetEmptyItem()  
+{ 
+	// TODO: It would be better if there were individual items
+	// (for whatever these special items are?) because here we 
+	// have to *hope* client does not modify this static (shared) item
+
+	assert(emptyitem.parent == nullptr);
+	assert(emptyitem.Flink == nullptr);
+	assert(emptyitem.Blink == nullptr);
+	assert(emptyitem.children == nullptr);
+
+	return &emptyitem; 
+}
+
+ 
+/**
+* @brief Add Sibling item
+* @param [in] p The item to be added
+*/
+void DIFFITEM::Append(DIFFITEM *p)
+{
+	assert(parent->children == this);
+
+	// Two situations
+
+	if (Blink == nullptr)
+	{
+		// Insert first sibling (besides ourself)
+		assert(Flink == nullptr);
+		p->Flink = nullptr;
+		p->Blink = this;
+		Flink = p;
+	}
+	else
+	{
+		// Insert additional siblings
+		assert(Flink != nullptr);
+		p->Flink = nullptr;
+		p->Blink = Blink;
+		Blink->Flink = p;
+	}
+	Blink = p;
+}
+ 
+void DIFFITEM::RemoveSelf()
+{
+	if (parent != nullptr && parent->children != nullptr)
+	{
+		// If `this` is at end of Sibling linkage, fix First Child's end link
+		if (parent->children->Blink == this)
+		{
+			assert(Flink == nullptr);
+			parent->children->Blink = Blink;
+			if (Blink == this)
+				Blink = nullptr;
+		}
+		// If `this` is the First Child, link parent to next Sibling
+		if (parent->children == this)
+		{
+			parent->children = Flink;
+			}
+	}
+	if (Blink != nullptr)
+		Blink->Flink = Flink;
+	if (Flink != nullptr)
+		Flink->Blink = Blink;
+	Flink = Blink = nullptr;
+}
+

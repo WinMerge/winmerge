@@ -24,6 +24,7 @@
  *  @brief Implementation of CDiffContext
  */ 
 
+#include "StdAfx.h"
 #include "DiffContext.h"
 #include <Poco/ScopedLock.h>
 #include "CompareOptions.h"
@@ -33,6 +34,10 @@
 #include "DiffItemList.h"
 #include "IAbortable.h"
 #include "DiffWrapper.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
 
 using Poco::FastMutex;
 
@@ -87,7 +92,7 @@ CDiffContext::~CDiffContext()
  * @param [in] diffpos DIFFITEM to update.
  * @param [in] nIndex index to update 
  */
-void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, int nIndex)
+void CDiffContext::UpdateStatusFromDisk(DIFFITEM *diffpos, int nIndex)
 {
 	DIFFITEM &di = GetDiffRefAt(diffpos);
 	di.diffFileInfo[nIndex].ClearPartial();
@@ -103,7 +108,7 @@ void CDiffContext::UpdateStatusFromDisk(uintptr_t diffpos, int nIndex)
  * @param [in] nIndex index to update
  * @return true if file exists
  */
-bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex)
+bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM &di, int nIndex)
 {
 	String filepath = paths::ConcatPath(paths::ConcatPath(m_paths[nIndex], di.diffFileInfo[nIndex].path), di.diffFileInfo[nIndex].filename);
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
@@ -142,7 +147,7 @@ static bool CheckFileForVersion(const String& ext)
  * @param [in,out] di DIFFITEM to update.
  * @param [in] bLeft If true left-side file is updated, right-side otherwise.
  */
-void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
+void CDiffContext::UpdateVersion(DIFFITEM &di, int nIndex) const
 {
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
 	// Check only binary files

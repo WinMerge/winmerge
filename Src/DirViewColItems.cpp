@@ -5,6 +5,8 @@
  *
  * @date  Created: 2003-08-19
  */
+
+#include "stdafx.h"
 #include "DirViewColItems.h"
 #include <Poco/Timestamp.h>
 #include <Shlwapi.h>
@@ -14,6 +16,10 @@
 #include "locality.h"
 #include "paths.h"
 #include "MergeApp.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
 
 using Poco::Timestamp;
 
@@ -490,9 +496,9 @@ static String ColNewerGet(const CDiffContext *pCtxt, const void *p)
  * @param [in] bLeft Is the item left-size item?
  * @return String proper to show in the GUI.
  */
-static String GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, int nIndex)
+static String GetVersion(const CDiffContext * pCtxt, const DIFFITEM *pdi, int nIndex)
 {
-	DIFFITEM & di = const_cast<DIFFITEM &>(*pdi);
+	DIFFITEM &di = const_cast<DIFFITEM &>(*pdi);
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
 	if (dfi.version.IsCleared())
 	{
@@ -501,9 +507,9 @@ static String GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, int n
 	return dfi.version.GetFileVersionString();
 }
 
-static uint64_t GetVersionQWORD(const CDiffContext * pCtxt, const DIFFITEM * pdi, int nIndex)
+static uint64_t GetVersionQWORD(const CDiffContext * pCtxt, const DIFFITEM *pdi, int nIndex)
 {
-	DIFFITEM & di = const_cast<DIFFITEM &>(*pdi);
+	DIFFITEM &di = const_cast<DIFFITEM &>(*pdi);
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
 	if (dfi.version.IsCleared())
 	{
@@ -1231,7 +1237,7 @@ DirViewColItems::GetColCount() const
  */
 String
 DirViewColItems::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
-		const DIFFITEM & di) const
+		const DIFFITEM &di) const
 {
 	// Custom properties have custom get functions
 	const DirColInfo * pColInfo = GetDirColInfo(col);
@@ -1309,8 +1315,8 @@ DirViewColItems::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
  * @return Order of items.
  */
 int
-DirViewColItems::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi,
-		const DIFFITEM & rdi, bool bTreeMode) const
+DirViewColItems::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM &ldi,
+		const DIFFITEM &rdi, bool bTreeMode) const
 {
 	// Custom properties have custom sort functions
 	const DirColInfo * pColInfo = GetDirColInfo(col);
