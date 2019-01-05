@@ -235,7 +235,10 @@ void CDirDoc::Rescan()
 	m_pDirView->DeleteAllDisplayItems();
 	// Don't clear if only scanning selected items
 	if (!m_bMarkedRescan)
+	{
 		m_pCtxt->RemoveAll();
+		m_pCtxt->InitDiffItemList();
+	}
 
 	LoadLineFilterList();
 
@@ -331,7 +334,7 @@ CDirView * CDirDoc::GetMainView() const
  * calls slow DirView functions to get item position and to update GUI.
  * Use UpdateStatusFromDisk() function instead.
  */
-void CDirDoc::ReloadItemStatus(uintptr_t diffPos, int idx)
+void CDirDoc::ReloadItemStatus(DIFFITEM *diffPos, int idx)
 {
 	// in case just copied (into existence) or modified
 	m_pCtxt->UpdateStatusFromDisk(diffPos, idx);
@@ -432,7 +435,7 @@ bool CDirDoc::CloseMergeDocs()
 void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, bool bIdentical)
 {
-	uintptr_t pos = FindItemFromPaths(*m_pCtxt, paths);
+	DIFFITEM *pos = FindItemFromPaths(*m_pCtxt, paths);
 	// If we failed files could have been swapped so lets try again
 	if (!pos)
 	{

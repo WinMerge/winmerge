@@ -13,7 +13,7 @@
 
 class CDirView;
 class CListCtrl;
-struct DIFFITEM;
+class DIFFITEM;
 
 extern __declspec(thread) Merge7z::Proxy Merge7z;
 
