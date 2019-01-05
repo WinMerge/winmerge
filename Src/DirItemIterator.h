@@ -12,7 +12,7 @@
 #include <utility>
 #include "IListCtrl.h"
 
-struct DIFFITEM;
+class DIFFITEM;
 
 class DirItemWithIndexIterator : public std::iterator<std::forward_iterator_tag, std::pair<int, DIFFITEM *> >
 {

@@ -11,7 +11,7 @@
 #include <vector>
 #include <array>
 
-struct DIFFITEM;
+class DIFFITEM;
 
 /**
  * @brief Class holding directory compare stats.

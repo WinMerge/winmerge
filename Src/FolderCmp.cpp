@@ -4,6 +4,7 @@
  * @brief Implementation file for FolderCmp
  */
 
+#include "stdafx.h"
 #include "diff.h"
 #include "FolderCmp.h"
 #include <cassert>
@@ -20,6 +21,9 @@
 #include "TimeSizeCompare.h"
 #include "TFile.h"
 
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
 using CompareEngines::ByteCompare;
 using CompareEngines::BinaryCompare;
 using CompareEngines::TimeSizeCompare;

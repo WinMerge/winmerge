@@ -11,7 +11,7 @@
 #include <vector>
 #include <sstream>
 
-struct DIFFITEM;
+class DIFFITEM;
 class CDiffContext;
 
 // DirViewColItems typedefs
@@ -65,8 +65,8 @@ public:
 	String GetColDescription(int col) const;
 	int	GetColCount() const;
 	int GetDispColCount() const { return m_dispcols; }
-	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di) const;
-	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi, bool bTreeMode) const;
+	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM &di) const;
+	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM &ldi, const DIFFITEM &rdi, bool bTreeMode) const;
 
 	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
 	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
