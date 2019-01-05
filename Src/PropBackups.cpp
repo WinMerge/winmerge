@@ -65,7 +65,7 @@ void PropBackups::ReadOptions()
  */
 void PropBackups::WriteOptions()
 {
-	strutils::trim_ws(m_sGlobalFolder);
+	m_sGlobalFolder = strutils::trim_ws(m_sGlobalFolder);
 	if (m_sGlobalFolder.length() > 3)
 		m_sGlobalFolder = paths::AddTrailingSlash(m_sGlobalFolder);
 
