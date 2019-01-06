@@ -61,12 +61,12 @@ static String EndEl(const String& elName)
  * @brief Constructor.
  */
 DirCmpReport::DirCmpReport(const std::vector<String> & colRegKeys)
-: m_pList(NULL)
-, m_pFile(NULL)
+: m_pList(nullptr)
+, m_pFile(nullptr)
 , m_nColumns(0)
 , m_colRegKeys(colRegKeys)
 , m_sSeparator(_T(","))
-, m_pFileCmpReport(NULL)
+, m_pFileCmpReport(nullptr)
 , m_bIncludeFileCmpReport(false)
 , m_bOutputUTF8(false)
 {
@@ -119,12 +119,12 @@ static HGLOBAL ConvertToUTF16ForClipboard(HGLOBAL hMem, int codepage)
 {
 	size_t len = GlobalSize(hMem);
 	HGLOBAL hMemW = GlobalAlloc(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT, (len + 1) * sizeof(wchar_t));
-	if (!hMemW)
-		return NULL;
+	if (hMemW == nullptr)
+		return nullptr;
 	LPCSTR pstr = reinterpret_cast<LPCSTR>(GlobalLock(hMem));
 	LPWSTR pwstr = reinterpret_cast<LPWSTR>(GlobalLock(hMemW));
-	if (!pstr || !pwstr)
-		return NULL;
+	if (pstr == nullptr || pwstr == nullptr)
+		return nullptr;
 	int wlen = MultiByteToWideChar(codepage, 0, pstr, static_cast<int>(len), pwstr, static_cast<int>(len + 1));
 	if (len > 0 && pstr[len - 1] != '\0')
 	{
@@ -144,8 +144,8 @@ static HGLOBAL ConvertToUTF16ForClipboard(HGLOBAL hMem, int codepage)
  */
 bool DirCmpReport::GenerateReport(String &errStr)
 {
-	assert(m_pList != NULL);
-	assert(m_pFile == NULL);
+	assert(m_pList != nullptr);
+	assert(m_pFile == nullptr);
 	bool bRet = false;
 
 	DirCmpReportDlg dlg;
@@ -204,7 +204,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 		if (!dlg.m_sReportFile.empty())
 		{
 			String path;
-			paths::SplitFilename(dlg.m_sReportFile, &path, NULL, NULL);
+			paths::SplitFilename(dlg.m_sReportFile, &path, nullptr, nullptr);
 			if (!paths::CreateIfNeeded(path))
 			{
 				errStr = _("Folder does not exist.");
@@ -223,7 +223,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 		e->ReportError(MB_ICONSTOP);
 		e->Delete();
 	}
-	m_pFile = NULL;
+	m_pFile = nullptr;
 	return bRet;
 }
 
@@ -467,10 +467,10 @@ void DirCmpReport::GenerateXmlHeader()
 void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 {
 	String sFileName, sParentDir;
-	paths::SplitFilename((const TCHAR *)m_pFile->GetFilePath(), &sParentDir, &sFileName, NULL);
+	paths::SplitFilename((const TCHAR *)m_pFile->GetFilePath(), &sParentDir, &sFileName, nullptr);
 	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T("."))) + _T(".files");
 	String sDestDir = paths::ConcatPath(sParentDir, sRelDestDir);
-	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport)
+	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)
 		paths::CreateIfNeeded(sDestDir);
 
 	int nRows = m_pList->GetRowCount();
@@ -479,7 +479,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 	for (int currRow = 0; currRow < nRows; currRow++)
 	{
 		String sLinkPath;
-		if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport)
+		if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)
 			(*m_pFileCmpReport)(REPORT_TYPE_SIMPLEHTML, m_pList, currRow, sDestDir, sLinkPath);
 
 		String rowEl = _T("tr");

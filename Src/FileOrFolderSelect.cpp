@@ -48,7 +48,7 @@ static String LastSelectedFolder;
  * file or folder to open or file to save. The last parameter @p is_open selects
  * between open or save modes. Biggest difference is that in save-mode Windows
  * asks if user wants to override existing file.
- * @param [in] parent Handle to parent window. Can be a NULL, but then
+ * @param [in] parent Handle to parent window. Can be `nullptr`, but then
  *     CMainFrame is used which can cause modality problems.
  * @param [out] path Selected path is returned in this string
  * @param [in] initialPath Initial path (and file) shown when dialog is opened
@@ -56,13 +56,13 @@ static String LastSelectedFolder;
  * @param [in] filterid 0 or STRING ID for filter string
  *     - 0 means "All files (*.*)". Note the string formatting!
  * @param [in] is_open Selects Open/Save -dialog (mode).
- * @note Be careful when setting @p parent to NULL as there are potential
+ * @note Be careful when setting @p parent to `nullptr` as there are potential
  * modality problems with this. Dialog can be lost behind other windows!
  * @param [in] defaultExtension Extension to append if user doesn't provide one
  */
 bool SelectFile(HWND parent, String& path, bool is_open /*= true*/,
-		LPCTSTR initialPath /*=NULL*/, const String& stitle /*=_T("")*/,
-		const String& sfilter /*=_T("")*/, LPCTSTR defaultExtension /*=NULL*/)
+		LPCTSTR initialPath /*= nullptr*/, const String& stitle /*=_T("")*/,
+		const String& sfilter /*=_T("")*/, LPCTSTR defaultExtension /*= nullptr*/)
 {
 	path.clear(); // Clear output param
 
@@ -100,13 +100,13 @@ bool SelectFile(HWND parent, String& path, bool is_open /*= true*/,
 	OPENFILENAME_NT4 ofn = { sizeof OPENFILENAME_NT4 };
 	ofn.hwndOwner = parent;
 	ofn.lpstrFilter = filtersStr;
-	ofn.lpstrCustomFilter = NULL;
+	ofn.lpstrCustomFilter = nullptr;
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFile = sSelectedFile;
 	ofn.nMaxFile = MAX_PATH_FULL;
 	ofn.lpstrInitialDir = initialPath;
 	ofn.lpstrTitle = title.c_str();
-	ofn.lpstrFileTitle = NULL;
+	ofn.lpstrFileTitle = nullptr;
 	if (defaultExtension)
 		ofn.lpstrDefExt = defaultExtension;
 	ofn.Flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOCHANGEDIR;
@@ -129,25 +129,25 @@ bool SelectFile(HWND parent, String& path, bool is_open /*= true*/,
  * @param [out] path Selected path is returned in this string
  * @param [in] root_path Initial path shown when dialog is opened
  * @param [in] titleid Resource string ID for dialog title.
- * @param [in] hwndOwner Handle to owner window or NULL
+ * @param [in] hwndOwner Handle to owner window or `nullptr`
  * @return `true` if valid folder selected (not cancelled)
  */
-bool SelectFolder(String& path, LPCTSTR root_path /*=NULL*/, 
+bool SelectFolder(String& path, LPCTSTR root_path /*= nullptr*/, 
 			const String& stitle /*=_T("")*/, 
-			HWND hwndOwner /*=NULL*/) 
+			HWND hwndOwner /*= nullptr*/) 
 {
 	BROWSEINFO bi;
 	LPITEMIDLIST pidl;
 	TCHAR szPath[MAX_PATH_FULL] = {0};
 	bool bRet = false;
 	String title = stitle;
-	if (root_path == NULL)
+	if (root_path == nullptr)
 		LastSelectedFolder.clear();
 	else
 		LastSelectedFolder = root_path;
 
 	bi.hwndOwner = hwndOwner;
-	bi.pidlRoot = NULL;  // Start from desktop folder
+	bi.pidlRoot = nullptr;  // Start from desktop folder
 	bi.pszDisplayName = szPath;
 	bi.lpszTitle = title.c_str();
 	bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_USENEWUI | BIF_VALIDATE;
@@ -155,7 +155,7 @@ bool SelectFolder(String& path, LPCTSTR root_path /*=NULL*/,
 	bi.lParam = (LPARAM)root_path;
 
 	pidl = SHBrowseForFolder(&bi);
-	if (pidl)
+	if (pidl != nullptr)
 	{
 		if (SHGetPathFromIDList(pidl, szPath))
 		{
@@ -176,7 +176,7 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 	// Look for BFFM_INITIALIZED
 	if (uMsg == BFFM_INITIALIZED)
 	{
-		if (lpData)
+		if (lpData != NULL)
 			SendMessage(hwnd, BFFM_SETSELECTION, TRUE, lpData);
 		else
 			SendMessage(hwnd, BFFM_SETSELECTION, TRUE, (LPARAM)LastSelectedFolder.c_str());
@@ -185,12 +185,12 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 	{
 		String strMessage = 
 			strutils::format_string1(_("%1 does not exist. Do you want to create it?"), (TCHAR *)lParam);
-		int answer = MessageBox(hwnd, strMessage.c_str(), NULL, MB_YESNO);
+		int answer = MessageBox(hwnd, strMessage.c_str(), nullptr, MB_YESNO);
 		if (answer == IDYES)
 		{
 			if (!paths::CreateIfNeeded((TCHAR*)lParam))
 			{
-				MessageBox(hwnd, _("Failed to create folder.").c_str(), NULL, MB_OK | MB_ICONWARNING);
+				MessageBox(hwnd, _("Failed to create folder.").c_str(), nullptr, MB_OK | MB_ICONWARNING);
 			}
 		}
 		return 1;
@@ -206,13 +206,13 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
  * - If existing filename is selected return it
  * - If filename in (CFileDialog) editbox and current folder doesn't form
  * a valid path to file, return current folder.
- * @param [in] parent Handle to parent window. Can be a NULL, but then
+ * @param [in] parent Handle to parent window. Can be `nullptr`, but then
  *     CMainFrame is used which can cause modality problems.
  * @param [out] path Selected folder/filename
  * @param [in] initialPath Initial file or folder shown/selected.
  * @return `true` if user choosed a file/folder, `false` if user canceled dialog.
  */
-bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/)
+bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*= nullptr*/)
 {
 	String title = _("Open");
 
@@ -221,7 +221,7 @@ bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 	TCHAR sSelectedFile[MAX_PATH_FULL];
 
 	// check if specified path is a file
-	if (initialPath && initialPath[0])
+	if (initialPath!=nullptr && initialPath[0] != '\0')
 	{
 		// If initial path info includes a file
 		// we put the bare filename into sSelectedFile
@@ -250,13 +250,13 @@ bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 	OPENFILENAME_NT4 ofn = { sizeof OPENFILENAME_NT4 };
 	ofn.hwndOwner = parent;
 	ofn.lpstrFilter = filtersStr;
-	ofn.lpstrCustomFilter = NULL;
+	ofn.lpstrCustomFilter = nullptr;
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFile = sSelectedFile;
 	ofn.nMaxFile = MAX_PATH_FULL;
 	ofn.lpstrInitialDir = initialPath;
 	ofn.lpstrTitle = title.c_str();
-	ofn.lpstrFileTitle = NULL;
+	ofn.lpstrFileTitle = nullptr;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE | OFN_NOCHANGEDIR;
 
 	bool bRetVal = !!GetOpenFileName((OPENFILENAME *)&ofn);
@@ -289,7 +289,8 @@ bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
  */
 static void ConvertFilter(LPTSTR filterStr)
 {
-	while (TCHAR *ch = _tcschr(filterStr, '|'))
+	TCHAR *ch;
+	while ( (ch = _tcschr(filterStr, '|')) != nullptr)
 	{
 		filterStr = ch + 1;
 		*ch = '\0';

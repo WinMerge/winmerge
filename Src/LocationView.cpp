@@ -125,7 +125,7 @@ void CLocationView::SetConnectMovedBlocks(int displayMovedBlocks)
 
 	GetOptionsMgr()->SaveOption(OPT_CONNECT_MOVED_BLOCKS, displayMovedBlocks);
 	m_displayMovedBlocks = displayMovedBlocks;
-	if (this->GetSafeHwnd() != NULL)
+	if (this->GetSafeHwnd() != nullptr)
 		if (IsWindowVisible())
 			Invalidate();
 }
@@ -402,11 +402,11 @@ void CLocationView::OnDraw(CDC* pDC)
 	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
 		int nBottom = (int)(m_lineInPix * pDoc->GetView(nGroup, pane)->GetSubLineCount() + Y_OFFSET + 1);
-		CBrush *pOldBrush = NULL;
+		CBrush *pOldBrush = nullptr;
 		if (pDoc->IsEditedAfterRescan(pane))
 			pOldBrush = (CBrush *)dc.SelectStockObject(HOLLOW_BRUSH);
 		dc.Rectangle(m_bar[pane]);
-		if (pOldBrush)
+		if (pOldBrush != nullptr)
 			dc.SelectObject(pOldBrush);
 
 		CRect rect = m_bar[pane];
@@ -684,7 +684,7 @@ void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point)
  *
  * @param [in] point Point to move to
  * @param [in] bRealLine `true` if we want to scroll using real line num,
- * FALSE if view linenumbers are OK.
+ *                       `false` if view linenumbers are OK.
  * @return `true` if succeeds, `false` if point not inside bars.
  */
 bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine /*= true*/)
@@ -724,7 +724,7 @@ bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine /*= true*/)
  */
 void CLocationView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
-	if (pScrollBar == NULL)
+	if (pScrollBar == nullptr)
 	{
 		// Scroll did not come frome a scroll bar
 		// Send it to the right view instead
@@ -761,7 +761,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	theApp.TranslateMenu(menu.m_hMenu);
 
 	BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(0));
-	ASSERT(pPopup != NULL);
+	ASSERT(pPopup != nullptr);
 
 	CCmdUI cmdUI;
 	cmdUI.m_pMenu = pPopup;
@@ -820,15 +820,15 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		break;
 	case ID_DISPLAY_MOVED_NONE:
 		SetConnectMovedBlocks(DISPLAY_MOVED_NONE);
-		pDoc->SetDetectMovedBlocks(FALSE);
+		pDoc->SetDetectMovedBlocks(false);
 		break;
 	case ID_DISPLAY_MOVED_ALL:
 		SetConnectMovedBlocks(DISPLAY_MOVED_ALL);
-		pDoc->SetDetectMovedBlocks(TRUE);
+		pDoc->SetDetectMovedBlocks(true);
 		break;
 	case ID_DISPLAY_MOVED_FOLLOW_DIFF:
 		SetConnectMovedBlocks(DISPLAY_MOVED_FOLLOW_DIFF);
-		pDoc->SetDetectMovedBlocks(TRUE);
+		pDoc->SetDetectMovedBlocks(true);
 		break;
 	}
 }
@@ -837,7 +837,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
  * @brief Calculates view/real line in file from given YCoord in bar.
  * @param [in] nYCoord ycoord in pane
  * @param [in] bar bar/file
- * @param [in] bRealLine TRUE if real line is returned, FALSE for view line
+ * @param [in] bRealLine `true` if real line is returned, `false` for view line
  * @return 0-based index of view/real line in file [0...lines-1]
  */
 int CLocationView::GetLineFromYPos(int nYCoord, int bar, bool bRealLine /*= true*/)
@@ -988,7 +988,7 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 			if (m_visibleTop != nTopCoord || m_visibleBottom != nBottomCoord)
 			{
 				// Visible area was changed
-				if (m_pSavedBackgroundBitmap)
+				if (m_pSavedBackgroundBitmap != nullptr)
 				{
 					CClientDC dc(this);
 					CMyMemDC dcMem(&dc);
@@ -1001,7 +1001,7 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 		}
 		else
 		{
-			InvalidateRect(NULL);
+			InvalidateRect(nullptr);
 			for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 				m_nSubLineCount[pane] = pDoc->GetView(nGroup, pane)->GetSubLineCount();
 		}
@@ -1024,7 +1024,7 @@ void CLocationView::DrawConnectLines(CDC *pClientDC)
 	CPen* oldObj = (CPen*)pClientDC->SelectStockObject(BLACK_PEN);
 
 	POSITION pos = m_movedLines.GetHeadPosition();
-	while (pos != NULL)
+	while (pos != nullptr)
 	{
 		MovedLine line = m_movedLines.GetNext(pos);
 		pClientDC->MoveTo(line.ptLeft.x, line.ptLeft.y);
@@ -1063,7 +1063,7 @@ void CLocationView::OnSize(UINT nType, int cx, int cy)
 
 	if (cx != m_currentSize.cx)
 	{
-		if (m_hwndFrame != NULL)
+		if (m_hwndFrame != nullptr)
 			::PostMessage(m_hwndFrame, MSG_STORE_PANESIZES, 0, 0);
 	}
 

@@ -85,7 +85,7 @@ public:
 	CMoveConstraint();
 	~CMoveConstraint();
 
-	bool IsInitalized() { return m_hwndDlg!=0; }
+	bool IsInitalized() { return m_hwndDlg!=nullptr; }
 
 	// THIS IS THE USUAL ONE
 	// call from InitDialog (dialogs) or InitialUpdate (views) or OnCreate (frames)

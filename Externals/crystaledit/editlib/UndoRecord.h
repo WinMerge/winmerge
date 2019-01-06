@@ -42,16 +42,16 @@ private:
   UndoRecord () // default constructor
     : m_dwFlags(0)
     , m_nAction(0)
-    , m_paSavedRevisionNumbers(NULL)
-    , m_pszText(NULL)
+    , m_paSavedRevisionNumbers(nullptr)
+    , m_pszText(nullptr)
   {
   }
 
   UndoRecord (const UndoRecord & src) // copy constructor
     : m_dwFlags(0)
     , m_nAction(0)
-    , m_paSavedRevisionNumbers(NULL)
-    , m_pszText(NULL)
+    , m_paSavedRevisionNumbers(nullptr)
+    , m_pszText(nullptr)
   {
     Clone(src);
   }
@@ -67,8 +67,8 @@ private:
   virtual ~UndoRecord () // destructor
   {
     FreeText();
-    if (m_paSavedRevisionNumbers)
-    delete m_paSavedRevisionNumbers;
+    if (m_paSavedRevisionNumbers != nullptr)
+		delete m_paSavedRevisionNumbers;
   }
 
   void SetText (LPCTSTR pszText, size_t cchText);

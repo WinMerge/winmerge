@@ -36,7 +36,7 @@ IMPLEMENT_DYNAMIC(SaveClosingDlg, CTrDialog)
  * @brief Constructor.
  * @param [in] pParent Dialog's parent window.
  */
-SaveClosingDlg::SaveClosingDlg(CWnd* pParent /*=NULL*/)
+SaveClosingDlg::SaveClosingDlg(CWnd* pParent /*= nullptr*/)
  : CTrDialog(SaveClosingDlg::IDD, pParent)
  , m_leftSave(SAVECLOSING_SAVE)
  , m_middleSave(SAVECLOSING_SAVE)
@@ -74,7 +74,7 @@ END_MESSAGE_MAP()
 
 /**
  * @brief Initialize dialog.
- * @return Always TRUE.
+ * @return Always FALSE.
  */
 BOOL SaveClosingDlg::OnInitDialog() 
 {

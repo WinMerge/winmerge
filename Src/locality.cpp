@@ -124,7 +124,7 @@ String GetLocaleStr(const TCHAR *str, int decimalDigits)
  */
 String TimeString(const int64_t * tim)
 {
-	if (!tim) return _T("---");
+	if (tim == nullptr) return _T("---");
 	
 	SYSTEMTIME sysTime;
 	FILETIME ft, ftlocal;
@@ -137,9 +137,9 @@ String TimeString(const int64_t * tim)
 		return _T("---");
 
 	TCHAR buff[128];
-	int len = GetDateFormat(LOCALE_USER_DEFAULT, 0, &sysTime, NULL, buff, sizeof(buff)/sizeof(buff[0]));
+	int len = GetDateFormat(LOCALE_USER_DEFAULT, 0, &sysTime, nullptr, buff, sizeof(buff)/sizeof(buff[0]));
 	buff[len - 1] = ' ';
-	GetTimeFormat(LOCALE_USER_DEFAULT, 0, &sysTime, NULL, buff + len, sizeof(buff)/sizeof(buff[0]) - len - 1);
+	GetTimeFormat(LOCALE_USER_DEFAULT, 0, &sysTime, nullptr, buff + len, sizeof(buff)/sizeof(buff[0]) - len - 1);
 	return buff;
 }
 

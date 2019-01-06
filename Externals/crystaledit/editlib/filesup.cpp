@@ -27,7 +27,7 @@ bool FileExist(LPCTSTR lpszPath)
 
 int GetExtPosition (LPCTSTR pszString)
 {
-  if (!pszString || !*pszString)
+  if (pszString == nullptr || !*pszString)
     return 0;
   const CString sString = pszString;
   int len = sString.GetLength (), posit = len;
@@ -70,18 +70,20 @@ CString GetNameExt (const CString & sString)
 
 int GetNamePosition (LPCTSTR pszString)
 {
-  if (!pszString || !*pszString)
+  if (pszString == nullptr || !*pszString)
     return 0;
   const CString sString = pszString;
   int posit = sString.GetLength ();
   TCHAR test;
   do
+  {
 #ifdef _UNICODE
     if ((test = sString.GetAt (--posit)) == _T ('\\') || test == _T (':'))
 #else
     if (((test = sString.GetAt (--posit)) == _T ('\\') && !_ismbstrail((unsigned char *)pszString, (unsigned char *)pszString + posit)) || test == _T (':'))
 #endif
       return posit + 1;
+  }
   while (posit);
   return posit;
 }

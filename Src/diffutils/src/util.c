@@ -109,7 +109,7 @@ message5 (char const *format, char const *arg1, char const *arg2, char const *ar
       new->arg2 = concat (arg2, "", "");
       new->arg3 = arg3 ? concat (arg3, "", "") : 0;
       new->arg4 = arg4 ? concat (arg4, "", "") : 0;
-      new->next = 0;
+      new->next = NULL;
       *msg_chain_end = new;
       msg_chain_end = &new->next;
     }
@@ -149,7 +149,7 @@ setup_output (char const *name0, char const *name1, int depth)
   current_name0 = name0;
   current_name1 = name1;
   current_depth = depth;
-  outfile = 0;
+  outfile = NULL;
 }
 
 static pid_t pr_pid;
@@ -159,7 +159,7 @@ begin_output ()
 {
   char *name;
 
-  if (outfile != 0)
+  if (outfile != NULL)
     return;
 
   char *mySwitch = (switch_string != NULL ? switch_string : "");
@@ -253,7 +253,7 @@ begin_output ()
 void
 finish_output ()
 {
-  if (outfile != 0 && outfile != stdout)
+  if (outfile != NULL && outfile != stdout)
     {
 #if defined(__MSDOS__) || defined(__NT__) || defined(WIN32)
       if (pclose (outfile))
@@ -281,7 +281,7 @@ finish_output ()
 #endif /*__MSDOS__||__NT__*/
     }
 
-  outfile = 0;
+  outfile = NULL;
 }
 
 
@@ -478,7 +478,7 @@ line_cmp (char const *s1, size_t len1, char const *s2, size_t len2)
 	}
     }
 
-  return (1);
+  return 1;
 }
 
 /* Find the consecutive changes at the start of the script START.
@@ -525,7 +525,7 @@ print_script (struct change *script,
       /* Disconnect them from the rest of the changes,
 	 making them a hunk, and remember the rest for next iteration.  */
       next = end->link;
-      end->link = 0;
+      end->link = NULL;
 #ifdef DEBUG
       debug_script (this);
 #endif
@@ -547,13 +547,13 @@ print_1_line (char const *line_flag, char const * const *line)
 {
   char const HUGE *text = line[0], HUGE *limit = line[1]; /* Help the compiler.  */
   FILE *out = outfile; /* Help the compiler some more.  */
-  char const *flag_format = 0;
+  char const *flag_format = NULL;
 
   /* If -T was specified, use a Tab between the line-flag and the text.
      Otherwise use a Space (as Unix diff does).
      Print neither space nor tab if line-flags are empty.  */
 
-  if (line_flag && *line_flag)
+  if (line_flag != NULL && *line_flag != 0)
     {
       flag_format = tab_align_flag ? "%s\t" : "%s ";
       fprintf (out, flag_format, line_flag);
@@ -561,7 +561,7 @@ print_1_line (char const *line_flag, char const * const *line)
 
   output_1_line (text, limit, flag_format, line_flag);
 
-  if ((!line_flag || line_flag[0]) && limit[-1] != '\n' && limit[-1] != '\r'
+  if ((line_flag == NULL || line_flag[0]) && limit[-1] != '\n' && limit[-1] != '\r'
       && line_end_char == '\n')
     fprintf (out, "\n\\ No newline at end of file\n");
 }
@@ -788,7 +788,7 @@ analyze_hunk (struct change *hunk, int *first0, int *last0, int *first1, int *la
             trivial = 0;
           }
     }
-  while ((next = next->link) != 0);
+  while ((next = next->link) != NULL);
 
   *last0 = l0;
   *last1 = l1;
@@ -880,7 +880,7 @@ void
 debug_script (struct change *sp)
 {
   fflush (stdout);
-  for (; sp; sp = sp->link)
+  for (; sp!=NULL; sp = sp->link)
     fprintf (stderr, "%3d %3d delete %d insert %d\n",
 	     sp->line0, sp->line1, sp->deleted, sp->inserted);
   fflush (stderr);
@@ -897,6 +897,6 @@ memchr (s, c, n)
   for (;  p < lim;  p++)
     if (*p == c)
       return (char *) p;
-  return 0;
+  return NULL;
 }
 #endif

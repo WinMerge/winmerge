@@ -35,13 +35,13 @@ bool CPicture::Load(UINT nIDRes)
 	HRSRC hRsrc = ::FindResource(hInst,
 		MAKEINTRESOURCE(nIDRes),
 		TEXT("IMAGE")); // type
-	if (!hRsrc)
+	if (hRsrc == nullptr)
 		return false;
 
 	// load resource into memory
 	DWORD len = SizeofResource(hInst, hRsrc);
 	BYTE* lpRsrc = (BYTE*)LoadResource(hInst, hRsrc);
-	if (!lpRsrc)
+	if (lpRsrc == nullptr)
 		return false;
 
 	// create memory file and load it
@@ -94,16 +94,16 @@ bool CPicture::Load(IStream* pstm)
 	Free();
 	HRESULT hr = OleLoadPicture(pstm, 0, FALSE,
 		IID_IPicture, (void**)&m_spIPicture);
-	ASSERT(SUCCEEDED(hr) && m_spIPicture);	
+	ASSERT(SUCCEEDED(hr) && m_spIPicture != nullptr);	
 	return true;
 }
 
 //////////////////
 // Render to device context. Covert to HIMETRIC for IPicture.
 //
-bool CPicture::Render(CDC* pDC, CRect rc, LPCRECT prcMFBounds) const
+bool CPicture::Render(CDC* pDC, CRect rc /*= CRect(0,0,0,0)*/, LPCRECT prcMFBounds /*= nullptr*/) const
 {
-	ASSERT(pDC);
+	ASSERT(pDC != nullptr);
 
 	if (rc.IsRectNull()) {
 		CSize sz = GetImageSize(pDC);
@@ -121,17 +121,17 @@ bool CPicture::Render(CDC* pDC, CRect rc, LPCRECT prcMFBounds) const
 //////////////////
 // Get image size in pixels. Converts from HIMETRIC to device coords.
 //
-CSize CPicture::GetImageSize(CDC* pDC) const
+CSize CPicture::GetImageSize(CDC* pDC /*= nullptr*/) const
 {
-	if (!m_spIPicture)
+	if (m_spIPicture == nullptr)
 		return CSize(0,0);
 	
 	LONG hmWidth, hmHeight; // HIMETRIC units
 	if (FAILED(m_spIPicture->get_Width(&hmWidth)) || FAILED(m_spIPicture->get_Height(&hmHeight)))
 		return CSize(0, 0);
 	CSize sz(hmWidth,hmHeight);
-	if (pDC==NULL) {
-		CWindowDC dc(NULL);
+	if (pDC==nullptr) {
+		CWindowDC dc(nullptr);
 		dc.HIMETRICtoDP(&sz); // convert to pixels
 	} else {
 		pDC->HIMETRICtoDP(&sz);

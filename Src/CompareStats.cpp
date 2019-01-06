@@ -85,7 +85,7 @@ const DIFFITEM *CompareStats::GetCurDiffItem()
 	while (it != m_rgThreadState.end())
 	{
 		const DIFFITEM *di = it->m_pDiffItem;
-		if (di != NULL && (di->diffcode.diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::NOCMP)
+		if (di != nullptr && (di->diffcode.diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::NOCMP)
 		{
 			int nHitCount = it->m_nHitCount++;
 			if (nHitCountMax < nHitCount)
@@ -184,19 +184,19 @@ CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode) const
 	else if (di.isResultSame())
 	{
 		// same
-		return di.isBin() ? RESULT_BINSAME : RESULT_SAME;
-	}
-	else
-	{
-		// presumably it is diff
 		if (di.isDirectory())
 		{
-			return RESULT_DIR;
+			return RESULT_DIRSAME;
 		}
 		else
 		{
-			return di.isBin() ? RESULT_BINDIFF : RESULT_DIFF;
+			return di.isBin() ? RESULT_BINSAME : RESULT_SAME;
 		}
+	}
+	else
+	{
+		// presumably it is different
+		return di.isBin() ? RESULT_BINDIFF : RESULT_DIFF;
 	}
 }
 

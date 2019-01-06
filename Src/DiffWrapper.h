@@ -169,15 +169,14 @@ public:
 	~CDiffWrapper();
 	void SetCreatePatchFile(const String &filename);
 	void SetCreateDiffList(DiffList *diffList);
-	void SetDiffList(DiffList *diffList);
 	void GetOptions(DIFFOPTIONS *options) const;
 	void SetOptions(const DIFFOPTIONS *options);
 	void SetTextForAutomaticPrediff(const String &text);
-	void SetPrediffer(const PrediffingInfo * prediffer =NULL);
+	void SetPrediffer(const PrediffingInfo * prediffer = nullptr);
 	void GetPrediffer(PrediffingInfo * prediffer) const;
 	void SetPatchOptions(const PATCHOPTIONS *options);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
-	bool GetDetectMovedBlocks() const { return (m_pMovedLines[0] != NULL); }
+	bool GetDetectMovedBlocks() const { return (m_pMovedLines[0] != nullptr); }
 	void SetAppendFiles(bool bAppendFiles);
 	void SetPaths(const PathContext &files, bool tempPaths);
 	void SetAlternativePaths(const PathContext &altPaths);

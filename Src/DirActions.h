@@ -6,6 +6,7 @@
 #include "paths.h"
 #include "IntToIntMap.h"
 #include <algorithm>
+#include "FileTransform.h"
 
 struct DIFFITEM;
 class CDiffContext;
@@ -16,8 +17,8 @@ class CTempPathContext;
 
 /**
  * @brief Folder compare icon indexes.
- * This enum defines indexes for imagelist used for folder compare icons.
- * Note that this enum must be in synch with code in OnInitialUpdate() and
+ * This `enum` defines indexes for the imagelist used for folder/file compare icons.
+ * Note that this enum must be in synch with code in CDirView::OnInitialUpdate() and
  * GetColImage(). Also remember that icons are in resource file...
  */
 enum
@@ -30,6 +31,7 @@ enum
 	DIFFIMG_RMISSING,
 	DIFFIMG_DIFF,
 	DIFFIMG_SAME,
+	DIFFIMG_FILE,
 	DIFFIMG_BINSAME,
 	DIFFIMG_BINDIFF,
 	DIFFIMG_LDIRUNIQUE,
@@ -217,7 +219,7 @@ struct DirActions
 	typedef bool (DirActions::*method_type2)(const DIFFITEM& di) const;
 	typedef FileActionScript *(DirActions::*method_type)(FileActionScript *, const std::pair<int, const DIFFITEM *>& it) const;
 
-	DirActions(const CDiffContext& ctxt, const bool RO[], method_type func = NULL, method_type2 func2 = NULL) : 
+	DirActions(const CDiffContext& ctxt, const bool RO[], method_type func = nullptr, method_type2 func2 = nullptr) : 
 		m_ctxt(ctxt), m_RO(RO), m_cur_method(func), m_cur_method2(func2) {}
 
 	template <SIDE_TYPE src, SIDE_TYPE dst>
@@ -651,7 +653,7 @@ void ApplyFolderNameAndFileName(const InputIterator& begin, const InputIterator&
  * @brief Apply specified setting for prediffing to all selected items
  */
 template<class InputIterator>
-void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, int newsetting)
+void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& end, const CDiffContext& ctxt, PLUGIN_MODE newsetting)
 {
 	// Unlike other group actions, here we don't build an action list
 	// to execute; we just apply this change directly
@@ -671,8 +673,8 @@ void ApplyPluginPrediffSetting(const InputIterator& begin, const InputIterator& 
 					filteredFilenames += ::GetItemFileName(ctxt, di, i);
 				}
 			}
-			PackingInfo * infoUnpacker = 0;
-			PrediffingInfo * infoPrediffer = 0;
+			PackingInfo * infoUnpacker = nullptr;
+			PrediffingInfo * infoPrediffer = nullptr;
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 			infoPrediffer->Initialize(newsetting);
 		}
@@ -705,7 +707,7 @@ std::pair<int, int> CountPredifferYesNo(const InputIterator& begin, const InputI
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
 			const_cast<CDiffContext&>(ctxt).FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);
-			if (prediffer->bToBeScanned == 1 || prediffer->pluginName.empty() == false)
+			if (prediffer->m_PluginOrPredifferMode == PLUGIN_AUTO || !prediffer->m_PluginName.empty())
 				nPredifferYes ++;
 			else
 				nPredifferNo ++;

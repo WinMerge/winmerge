@@ -19,7 +19,7 @@ IMPLEMENT_DYNAMIC(DirCmpReportDlg, CTrDialog)
 /**
  * @brief Constructor.
  */
-DirCmpReportDlg::DirCmpReportDlg(CWnd* pParent /*=NULL*/)
+DirCmpReportDlg::DirCmpReportDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(DirCmpReportDlg::IDD, pParent)
 	, m_bCopyToClipboard(false)
 	, m_bIncludeFileCmpReport(false)

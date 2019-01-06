@@ -77,7 +77,7 @@ print_context_script (struct change *script, int unidiff_flag)
   else
     {
       struct change *e;
-      for (e = script; e; e = e->link)
+      for (e = script; e != NULL; e = e->link)
 	e->ignore = 0;
     }
 
@@ -144,7 +144,7 @@ pr_context_hunk (struct change *hunk)
   last1 = min (last1 + context, files[1].valid_lines - 1);
 
   /* If desired, find the preceding function definition line in file 0.  */
-  function = 0;
+  function = NULL;
 
   begin_output ();
   out = outfile;
@@ -153,7 +153,7 @@ pr_context_hunk (struct change *hunk)
      include its name in the header of the diff section.  */
   fprintf (out, "***************");
 
-  if (function)
+  if (function != NULL)
     {
       fprintf (out, " ");
       fwrite (function, 1, min (function_length - 1, 40), out);
@@ -272,7 +272,7 @@ pr_unidiff_hunk (struct change *hunk)
   last1 = min (last1 + context, files[1].valid_lines - 1);
 
   /* If desired, find the preceding function definition line in file 0.  */
-  function = 0;
+  function = NULL;
 
   begin_output ();
   out = outfile;
@@ -286,7 +286,7 @@ pr_unidiff_hunk (struct change *hunk)
   /* If we looked for and found a function this is part of,
      include its name in the header of the diff section.  */
 
-  if (function)
+  if (function != NULL)
     {
       putc (' ', out);
       fwrite (function, 1, min (function_length - 1, 40), out);
@@ -387,7 +387,7 @@ mark_ignorable (struct change *script)
       int first0, last0, first1, last1, deletes, inserts;
 
       /* Turn this change into a hunk: detach it from the others.  */
-      script->link = 0;
+      script->link = NULL;
 
       /* Determine whether this change is ignorable.  */
       analyze_hunk (script, &first0, &last0, &first1, &last1, &deletes, &inserts, files);

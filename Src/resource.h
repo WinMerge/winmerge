@@ -154,6 +154,7 @@
 #define IDI_NOTEQUALIMAGE               531
 #define IDI_TREE_STATE_COLLAPSED        532
 #define IDI_TREE_STATE_EXPANDED         533
+#define IDI_FILE                        534
 #define IDC_PATH0_BUTTON                1001
 #define IDC_PATH1_BUTTON                1002
 #define IDC_PATH2_BUTTON                1003

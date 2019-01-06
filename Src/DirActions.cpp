@@ -285,8 +285,8 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 
 /**
  * @brief Find the CDiffContext diffpos of an item from its left & right paths
- * @return POSITION to item, NULL if not found.
- * @note Filenames must be same, if they differ NULL is returned.
+ * @return POSITION to item, `nullptr` if not found.
+ * @note Filenames must be same, if they differ `nullptr` is returned.
  */
 uintptr_t FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
 {
@@ -584,7 +584,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
 			}
 
 			// result filters
-			if (di.diffcode.isResultError() && FALSE/* !GetMainFrame()->m_bShowErrors FIXME:*/)
+			if (di.diffcode.isResultError() && false/* !GetMainFrame()->m_bShowErrors FIXME:*/)
 				return false;
 		}
 		else // recursive mode (including tree-mode)
@@ -613,7 +613,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilt
 			if (filter.tree_mode)
 			{
 				// result filters
-				if (di.diffcode.isResultError() && FALSE/* !GetMainFrame()->m_bShowErrors FIXME:*/)
+				if (di.diffcode.isResultError() && false/* !GetMainFrame()->m_bShowErrors FIXME:*/)
 					return false;
 
 				// result filters
@@ -805,7 +805,7 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, uintptr_t pos1, uintptr_t pos2,
 	// FIXME:
 	for (int nIndex = 0; nIndex < 3; ++nIndex)
 		nPane[nIndex] = nIndex;
-	if (!pos3)
+	if (pos3 == 0)
 	{
 		// Two items selected, get their info
 		pdi[0] = &ctxt.GetDiffAt(pos1);
@@ -1020,7 +1020,7 @@ int GetColImage(const DIFFITEM & di)
 				return DIFFIMG_DIFF;
 		}
 	}
-	return (di.diffcode.isDirectory() ? DIFFIMG_DIR : DIFFIMG_ABORT);
+	return (di.diffcode.isDirectory() ? DIFFIMG_DIR : DIFFIMG_FILE );
 }
 
 /**
@@ -1055,7 +1055,7 @@ void SetDiffStatus(DIFFITEM& di, unsigned  diffcode, unsigned mask)
 	// Someone could figure out these pieces and probably simplify this.
 
 	// Update DIFFITEM code (comparison result)
-	assert(! ((~mask) & diffcode) ); // make sure they only set flags in their mask
+	assert( ((~mask) & diffcode) == 0 ); // make sure they only set flags in their mask
 	di.diffcode.diffcode &= (~mask); // remove current data
 	di.diffcode.diffcode |= diffcode; // add new data
 
@@ -1365,7 +1365,7 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 		path[i] = ctxt.GetNormalizedPath(i);
 
 	// If we have temp context it means we are comparing archives
-	if (pTempPathContext)
+	if (pTempPathContext != nullptr)
 	{
 		std::vector<String> name(path.size());
 		for (int i = 0; i < static_cast<int>(path.size()); ++i)

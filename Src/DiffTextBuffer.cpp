@@ -63,7 +63,7 @@ static void EscapeControlChars(String &s)
 	size_t n = s.length();
 	LPCTSTR q = s.c_str();
 	size_t i = n;
-	while (i)
+	while (i != 0)
 	{
 		TCHAR c = q[--i];
 		// Is it a control character in the range 0..31 except TAB?
@@ -78,7 +78,7 @@ static void EscapeControlChars(String &s)
 	s.resize(n + 1);
 	LPTSTR p = &s[0];
 	// Copy/translate characters starting at end of string
-	while (i)
+	while (i != 0)
 	{
 		TCHAR c = p[--i];
 		// Is it a control character in the range 0..31 except TAB?
@@ -194,7 +194,7 @@ void CDiffTextBuffer::			/* virtual override */
 AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 		int nActionType /*= CE_ACTION_UNKNOWN*/,
-		CDWordArray *paSavedRevisionNumbers)
+		CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
 {
 	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText,
 		cchText, nActionType, paSavedRevisionNumbers);
@@ -302,10 +302,10 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
 	}
-	m_unpackerSubcode = infoUnpacker->subcode;
+	m_unpackerSubcode = infoUnpacker->m_subcode;
 
 	// we use the same unpacker for both files, so it must be defined after first file
-	ASSERT(infoUnpacker->bToBeScanned != PLUGIN_AUTO);
+	ASSERT(infoUnpacker->m_PluginOrPredifferMode != PLUGIN_AUTO);
 	// we will load the transformed file
 	LPCTSTR pszFileName = sFileName.c_str();
 
@@ -313,14 +313,14 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	DWORD nRetVal = FileLoadResult::FRESULT_OK;
 
 	// Set encoding based on extension, if we know one
-	paths::SplitFilename(pszFileName, NULL, NULL, &sExt);
+	paths::SplitFilename(pszFileName, nullptr, nullptr, &sExt);
 	CCrystalTextView::TextDefinition *def = 
 		CCrystalTextView::GetTextType(sExt.c_str());
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	
-	UniFile *pufile = infoUnpacker->pufile;
-	if (pufile == 0)
+	UniFile *pufile = infoUnpacker->m_pufile;
+	if (pufile == nullptr)
 		pufile = new UniMemFile;
 
 	// Now we only use the UniFile interface
@@ -338,7 +338,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		if (infoUnpacker->pluginName.length() > 0)
+		if (infoUnpacker->m_PluginName.length() > 0)
 		{
 			// re-detect codepage
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
@@ -479,7 +479,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
  * @return SAVE_DONE or an error code (list in MergeDoc.h)
  */
 int CDiffTextBuffer::SaveToFile (const String& pszFileName,
-		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= NULL*/,
+		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= nullptr*/,
 		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
 		bool bClearModifiedFlag /*= true*/,
 		int nStartLine /*= 0*/, int nLines /*= -1*/)
@@ -496,7 +496,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 
 	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC &&
 		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-		infoUnpacker && infoUnpacker->disallowMixedEOL)
+		infoUnpacker!=nullptr && infoUnpacker->m_bDisallowMixedEOL)
 	{
 			// get the default nCrlfStyle of the CDiffTextBuffer
 		nCrlfStyle = GetCRLFMode();
@@ -520,7 +520,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	else
 	{
 		sIntermediateFilename = env::GetTemporaryFileName(m_strTempPath,
-			_T("MRG_"), NULL);
+			_T("MRG_"), nullptr);
 		if (sIntermediateFilename.empty())
 			return SAVE_FAILED;  //Nothing to do if even tempfile name fails
 		bOpenSuccess = !!file.OpenCreate(sIntermediateFilename);
@@ -606,10 +606,10 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	{
 		// If we are saving user files
 		// we need an unpacker/packer, at least a "do nothing" one
-		ASSERT(infoUnpacker != NULL);
+		ASSERT(infoUnpacker != nullptr);
 		// repack the file here, overwrite the temporary file we did save in
 		String csTempFileName = sIntermediateFilename;
-		infoUnpacker->subcode = m_unpackerSubcode;
+		infoUnpacker->m_subcode = m_unpackerSubcode;
 		if (!FileTransform::Packing(csTempFileName, *infoUnpacker))
 		{
 			try
@@ -654,7 +654,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 			m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber;
 
 			// redraw line revision marks
-			UpdateViews (NULL, NULL, UPDATE_FLAGSONLY);	
+			UpdateViews (nullptr, nullptr, UPDATE_FLAGSONLY);	
 		}
 		catch (Exception& e)
 		{

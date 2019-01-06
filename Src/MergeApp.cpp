@@ -17,12 +17,12 @@ String GetSysError(int nerr /* =-1 */)
 		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
 		FORMAT_MESSAGE_FROM_SYSTEM | 
 		FORMAT_MESSAGE_IGNORE_INSERTS,
-		NULL,
+		nullptr,
 		nerr,
 		0, // Default language
 		(LPTSTR) &lpMsgBuf,
 		0,
-		NULL 
+		nullptr 
 		))
 	{
 		str = (LPCTSTR)lpMsgBuf;

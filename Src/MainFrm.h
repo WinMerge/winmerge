@@ -95,16 +95,16 @@ public:
 	void UpdatePrediffersMenu();
 
 	void FileNew(int nPanes);
-	bool DoFileOpen(const PathContext *pFiles = NULL,
-		const DWORD dwFlags[] = NULL, const String strDesc[] = NULL, const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), const PackingInfo * infoUnpacker = NULL);
+	bool DoFileOpen(const PathContext *pFiles = nullptr,
+		const DWORD dwFlags[] = nullptr, const String strDesc[] = nullptr, const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr, String prediffer = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowAutoMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = NULL);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = NULL);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = NULL);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 	bool ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
-		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = NULL);
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""), const PackingInfo * infoUnpacker = nullptr);
 
 	void UpdateResources();
 	void ClearStatusbarItemCount();
@@ -147,6 +147,38 @@ protected:
 	CReBar m_wndReBar;
 	CToolBar m_wndToolBar;
 	CMDITabBar m_wndTabBar;
+
+	// Tweak MDI client window behavior
+	class CMDIClient : public CWnd
+	{
+		static UINT_PTR const m_nRedrawTimer = 1612;
+		virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
+		{
+			switch (message)
+			{
+			case WM_MDICREATE:
+			case WM_MDIACTIVATE:
+			case WM_MDINEXT:
+				// To reduce flicker in maximized state, disable drawing while messing with MDI child frames
+				BOOL bMaximized;
+				if (SendMessage(WM_MDIGETACTIVE, 0, reinterpret_cast<LPARAM>(&bMaximized))
+					&& bMaximized && SetTimer(m_nRedrawTimer, USER_TIMER_MINIMUM, nullptr))
+				{
+					SetRedraw(FALSE);
+				}
+				break;
+			case WM_TIMER:
+				if (wParam == m_nRedrawTimer)
+				{
+					KillTimer(m_nRedrawTimer);
+					SetRedraw(TRUE);
+					RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE);
+				}
+				break;
+			}
+			return CWnd::WindowProc(message, wParam, lParam);
+		}
+	} m_wndMDIClient;
 
 	/** @brief Toolbar image table indexes. */
 	enum TOOLBAR_IMAGES

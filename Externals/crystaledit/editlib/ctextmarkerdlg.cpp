@@ -11,6 +11,8 @@
 #include "ccrystaltextview.h"
 #include <algorithm>
 
+#include "DDXHelper.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -20,7 +22,7 @@
 
 
 CTextMarkerDlg::CTextMarkerDlg (CCrystalTextMarkers & markers, const CString& sText, DWORD dwFlags)
-: CDialog (CTextMarkerDlg::IDD, NULL)
+: CDialog (CTextMarkerDlg::IDD, nullptr)
 , m_markers(markers)
 , m_nCurItemIndex(0)
 , m_tempMarkers(markers)
@@ -56,7 +58,7 @@ DoDataExchange (CDataExchange * pDX)
 	if (pDX->m_bSaveAndValidate)
 		UpdateDataListView(true);
 	else
-		m_ctlWholeWord.EnableWindow(!m_bRegExp);
+		m_ctlWholeWord.EnableWindow(m_bRegExp ? FALSE : TRUE);
 	//}}AFX_DATA_MAP
 }
 
@@ -209,7 +211,7 @@ void CTextMarkerDlg::OnBnClickedApplyNow()
 		const TCHAR *pKey = reinterpret_cast<TCHAR *>(m_listMarkers.GetItemData(i));
 		m_tempMarkers.GetMarkers()[pKey].bVisible = !!m_listMarkers.GetCheck(i);
 	}
-	m_tempMarkers.SetEnabled(!!m_bMarkersEnabled);
+	m_tempMarkers.SetEnabled(m_bMarkersEnabled);
 	m_markers = m_tempMarkers;
 	m_markers.UpdateViews();
 }

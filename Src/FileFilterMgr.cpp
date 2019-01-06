@@ -54,7 +54,7 @@ int FileFilterMgr::AddFilter(const String& szFilterFile)
 {
 	int errorcode = FILTER_OK;
 	FileFilter * pFilter = LoadFilterFile(szFilterFile, errorcode);
-	if (pFilter)
+	if (pFilter != nullptr)
 		m_filters.push_back(FileFilterPtr(pFilter));
 	return errorcode;
 }
@@ -174,8 +174,8 @@ static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & 
  * @brief Parse a filter file, and add it to array if valid.
  *
  * @param [in] szFilePath Path (w/ filename) to file to load.
- * @param [out] error Error-code if loading failed (returned NULL).
- * @return Pointer to new filter, or NULL if error (check error code too).
+ * @param [out] error Error-code if loading failed (returned `nullptr`).
+ * @return Pointer to new filter, or `nullptr` if error (check error code too).
  */
 FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error)
 {
@@ -183,13 +183,13 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 	if (!file.OpenReadOnly(szFilepath))
 	{
 		error = FILTER_ERROR_FILEACCESS;
-		return NULL;
+		return nullptr;
 	}
 
 	file.ReadBom(); // in case it is a Unicode file, let UniMemFile handle BOM
 
 	String fileName;
-	paths::SplitFilename(szFilepath, NULL, &fileName, NULL);
+	paths::SplitFilename(szFilepath, nullptr, &fileName, nullptr);
 	FileFilter *pfilter = new FileFilter;
 	pfilter->fullpath = szFilepath;
 	pfilter->name = fileName; // Filename is the default name
@@ -252,7 +252,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
  * @brief Give client back a pointer to the actual filter.
  *
  * @param [in] szFilterPath Full path to filterfile.
- * @return Pointer to found filefilter or NULL;
+ * @return Pointer to found filefilter or `nullptr`;
  * @note We just do a linear search, because this is seldom called
  */
 FileFilter * FileFilterMgr::GetFilterByPath(const String& szFilterPath)
@@ -315,7 +315,7 @@ bool TestAgainstRegList(const vector<FileFilterElementPtr> *filterList, const St
 bool FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
 	const String& szFileName) const
 {
-	if (!pFilter)
+	if (pFilter == nullptr)
 		return true;
 	if (TestAgainstRegList(&pFilter->filefilters, szFileName))
 		return !pFilter->default_include;
@@ -336,7 +336,7 @@ bool FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
 bool FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
 	const String& szDirName) const
 {
-	if (!pFilter)
+	if (pFilter == nullptr)
 		return true;
 	if (TestAgainstRegList(&pFilter->dirfilters, szDirName))
 		return !pFilter->default_include;
@@ -422,7 +422,7 @@ int FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
 	int errorcode = FILTER_OK;
 	FileFilter * newfilter = LoadFilterFile(pfilter->fullpath, errorcode);
 
-	if (newfilter == NULL)
+	if (newfilter == nullptr)
 	{
 		return errorcode;
 	}

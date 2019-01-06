@@ -70,7 +70,7 @@ TEST(CodepageTest, UTF8)
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
-	if (nullptr == pDoc)
+	if (pDoc == nullptr)
 		return;
 	EXPECT_EQ(ucr::UTF8, pDoc->m_ptBuf[0]->getEncoding().m_unicoding);
 	EXPECT_TRUE(pDoc->m_ptBuf[0]->getEncoding().m_bom);
@@ -92,7 +92,7 @@ TEST(SyntaxHighlight, Verilog)
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 	EXPECT_NE(nullptr, pDoc);
-	if (nullptr == pDoc)
+	if (pDoc == nullptr)
 		return;
 
 	std::vector<CCrystalTextView::TEXTBLOCK> blocks;
@@ -283,7 +283,7 @@ TEST(FolderCompare, IgnoreEOL)
 		CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 		CDirDoc *pDoc = dynamic_cast<CDirDoc *>(pFrame->GetActiveDocument());
 		EXPECT_NE(nullptr, pDoc);
-		if (nullptr == pDoc)
+		if (pDoc == nullptr)
 		{
 			pFrame->PostMessage(WM_CLOSE);
 			continue;
@@ -472,7 +472,7 @@ TEST(FileMenu, OpenProject)
 	theApp.LoadAndOpenProjectFile(projectFile);
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	EXPECT_NE(nullptr, pFrame);
-	if (pFrame)
+	if (pFrame != nullptr)
 		pFrame->PostMessage(WM_CLOSE);
 }
 
@@ -483,7 +483,7 @@ TEST(FileMenu, OpenProject3)
 	theApp.LoadAndOpenProjectFile(projectFile);
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	EXPECT_NE(nullptr, pFrame);
-	if (pFrame)
+	if (pFrame != nullptr)
 		pFrame->PostMessage(WM_CLOSE);
 }
 

@@ -64,7 +64,7 @@ static int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, String & sFile
 	size_t iBegin = 0;
 	int nLines = 1;
 	
-	while (1)
+	while (true)
 	{
 		String line;
 
@@ -120,9 +120,9 @@ CFilepathEdit::CFilepathEdit()
  * @brief Subclass the control.
  * @param [in] nID ID of the control to subclass.
  * @param [in] pParent Parent control of the control to subclass.
- * @return TRUE if succeeded, FALSE otherwise.
+ * @return `true` if succeeded, `false` otherwise.
  */
-BOOL CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
+bool CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
 {
 	m_bActive = false;
 	return SubclassDlgItem(nID, pParent);
@@ -250,7 +250,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		theApp.TranslateMenu(menu.m_hMenu);
 
 		BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(0));
-		ASSERT(pPopup != NULL);
+		ASSERT(pPopup != nullptr);
 
 		DWORD sel = GetSel();
 		if (HIWORD(sel) == LOWORD(sel))
@@ -348,13 +348,13 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
  * This function sets control to look like an active control. We don't
  * have real focus on this control, but editor pane below it. However
  * for user this active look informs which editor pane is active.
- * @param [in] bActive If TRUE set control look like active control.
+ * @param [in] bActive If `true` set control look like active control.
  */
 void CFilepathEdit::SetActive(bool bActive)
 {
 	m_bActive = bActive;
 
-	if (m_hWnd == NULL)
+	if (m_hWnd == nullptr)
 		return;
 
 	CRect rcWnd;
@@ -370,7 +370,7 @@ void CFilepathEdit::SetActive(bool bActive)
 		SetTextColor(::GetSysColor(COLOR_INACTIVECAPTIONTEXT));
 		SetBackColor(::GetSysColor(COLOR_INACTIVECAPTION));
 	}
-	RedrawWindow(NULL, NULL, RDW_FRAME | RDW_INVALIDATE);
+	RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 }
 
 /**
@@ -384,7 +384,7 @@ void CFilepathEdit::SetActive(bool bActive)
 HBRUSH CFilepathEdit::CtlColor(CDC* pDC, UINT nCtlColor) 
 {
 	UNUSED_ALWAYS(nCtlColor);
-	// Return a non-NULL brush if the parent's 
+	// Return a non-`nullptr` brush if the parent's 
 	//handler should not be called
 
 	//set text color

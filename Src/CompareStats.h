@@ -63,7 +63,7 @@ public:
 		RESULT_RDIRMISSING,
 		RESULT_SKIP,
 		RESULT_DIRSKIP,
-		RESULT_DIR,
+		RESULT_DIRSAME,
 		RESULT_ERROR,
 		RESULT_COUNT  //THIS MUST BE THE LAST ITEM
 	};
@@ -104,7 +104,7 @@ private:
 	int m_nDirs; /**< number of directories to compare */
 	struct ThreadState
 	{
-		ThreadState() : m_nHitCount(0), m_pDiffItem(NULL) {}
+		ThreadState() : m_nHitCount(0), m_pDiffItem(nullptr) {}
 		Poco::AtomicCounter m_nHitCount;
 		const DIFFITEM *m_pDiffItem;
 	};

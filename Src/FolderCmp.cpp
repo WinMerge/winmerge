@@ -76,10 +76,9 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 		PathContext tFiles;
 		GetComparePaths(pCtxt, di, tFiles);
-		struct change *script = NULL;
-		struct change *script10 = NULL;
-		struct change *script12 = NULL;
-		struct change *script02 = NULL;
+		struct change *script10 = nullptr;
+		struct change *script12 = nullptr;
+		struct change *script02 = nullptr;
 		FolderCmp diffdata10, diffdata12, diffdata02;
 		String filepathUnpacked[3];
 		String filepathTransformed[3];
@@ -93,11 +92,11 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		// text used for automatic mode : plugin filter must match it
 		String filteredFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
 
-		PackingInfo * infoUnpacker=0;
-		PrediffingInfo * infoPrediffer=0;
+		PackingInfo * infoUnpacker = nullptr;
+		PrediffingInfo * infoPrediffer = nullptr;
 
 		// Get existing or new plugin infos
-		if (pCtxt->m_piPluginInfos)
+		if (pCtxt->m_piPluginInfos != nullptr)
 			pCtxt->FetchPluginInfos(filteredFilenames, &infoUnpacker,
 					&infoPrediffer);
 
@@ -117,7 +116,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					goto exitPrepAndCompare;
 
 				// we use the same plugins for both files, so they must be defined before second file
-				assert(infoUnpacker->bToBeScanned == false);
+				assert(!infoUnpacker->m_PluginOrPredifferMode != PLUGIN_MANUAL);
 			}
 
 			// As we keep handles open on unpacked files, Transform() may not delete them.
@@ -183,14 +182,14 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		{
 			if (tFiles.GetSize() == 2)
 			{
-				if (m_pDiffUtilsEngine == NULL)
+				if (m_pDiffUtilsEngine == nullptr)
 					m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
 				m_pDiffUtilsEngine->SetCodepage(codepage);
 				bool success = m_pDiffUtilsEngine->SetCompareOptions(
 						*pCtxt->GetCompareOptions(CMP_CONTENT));
 				if (success)
 				{
-					if (pCtxt->m_pFilterList != NULL)
+					if (pCtxt->m_pFilterList != nullptr)
 						m_pDiffUtilsEngine->SetFilterList(pCtxt->m_pFilterList.get());
 					else
 						m_pDiffUtilsEngine->ClearFilterList();
@@ -214,14 +213,14 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			}
 			else
 			{
-				if (m_pDiffUtilsEngine == NULL)
+				if (m_pDiffUtilsEngine == nullptr)
 					m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
 				m_pDiffUtilsEngine->SetCodepage(codepage);
 				bool success = m_pDiffUtilsEngine->SetCompareOptions(
 						*pCtxt->GetCompareOptions(CMP_CONTENT));
 				if (success)
 				{
-					if (pCtxt->m_pFilterList != NULL)
+					if (pCtxt->m_pFilterList != nullptr)
 						m_pDiffUtilsEngine->SetFilterList(pCtxt->m_pFilterList.get());
 					else
 						m_pDiffUtilsEngine->ClearFilterList();
@@ -231,17 +230,17 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					int bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
 
 					m_pDiffUtilsEngine->SetFileData(2, diffdata10.m_diffFileData.m_inf);
-					bRet = m_pDiffUtilsEngine->Diff2Files(&script10, 0, &bin_flag10, false, NULL);
+					bRet = m_pDiffUtilsEngine->Diff2Files(&script10, 0, &bin_flag10, false, nullptr);
 					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
 					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[0]);
 
 					m_pDiffUtilsEngine->SetFileData(2, diffdata12.m_diffFileData.m_inf);
-					bRet = m_pDiffUtilsEngine->Diff2Files(&script12, 0, &bin_flag12, false, NULL);
+					bRet = m_pDiffUtilsEngine->Diff2Files(&script12, 0, &bin_flag12, false, nullptr);
 					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
 					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
 
 					m_pDiffUtilsEngine->SetFileData(2, diffdata02.m_diffFileData.m_inf);
-					bRet = m_pDiffUtilsEngine->Diff2Files(&script02, 0, &bin_flag02, false, NULL);
+					bRet = m_pDiffUtilsEngine->Diff2Files(&script02, 0, &bin_flag02, false, nullptr);
 					m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[0]);
 					m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
 
@@ -272,11 +271,11 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					{
 						if ((code & DIFFCODE::TEXTFLAGS) == DIFFCODE::TEXT)
 						{
-							if (!script12)
+							if (script12 == nullptr)
 								code |= DIFFCODE::DIFF1STONLY;
-							else if (!script02)
+							else if (script02 == nullptr)
 								code |= DIFFCODE::DIFF2NDONLY;
-							else if (!script10)
+							else if (script10 == nullptr)
 								code |= DIFFCODE::DIFF3RDONLY;
 						}
 						else
@@ -312,7 +311,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			// use our own byte-by-byte compare
 			if (tFiles.GetSize() == 2)
 			{
-				if (m_pByteCompare == NULL)
+				if (m_pByteCompare == nullptr)
 					m_pByteCompare.reset(new ByteCompare());
 				bool success = m_pByteCompare->SetCompareOptions(
 					*pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
@@ -339,7 +338,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			}
 			else
 			{
-				if (m_pByteCompare == NULL)
+				if (m_pByteCompare == nullptr)
 					m_pByteCompare.reset(new ByteCompare());
 				bool success = m_pByteCompare->SetCompareOptions(
 					*pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
@@ -441,7 +440,7 @@ exitPrepAndCompare:
 	}
 	else if (nCompMethod == CMP_BINARY_CONTENT)
 	{
-		if (m_pBinaryCompare == NULL)
+		if (m_pBinaryCompare == nullptr)
 			m_pBinaryCompare.reset(new BinaryCompare());
 
 		PathContext tFiles;
@@ -450,7 +449,7 @@ exitPrepAndCompare:
 	}
 	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
 	{
-		if (m_pTimeSizeCompare == NULL)
+		if (m_pTimeSizeCompare == nullptr)
 			m_pTimeSizeCompare.reset(new TimeSizeCompare());
 
 		m_pTimeSizeCompare->SetAdditionalOptions(pCtxt->m_bIgnoreSmallTimeDiff);

@@ -106,11 +106,11 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, (OnEditAction<EM_SETSEL, 0, -1>))
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
-	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
+	ON_WM_WINDOWPOSCHANGING()
 	ON_WM_WINDOWPOSCHANGED()
-	ON_WM_SETCURSOR()
+	ON_WM_NCHITTEST()
 	ON_WM_DESTROY()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -119,14 +119,14 @@ END_MESSAGE_MAP()
 
 COpenView::COpenView()
 	: CFormView(COpenView::IDD)
-	, m_pUpdateButtonStatusThread(NULL)
-	, m_bRecurse(FALSE)
-	, m_pDropHandler(NULL)
+	, m_pUpdateButtonStatusThread(nullptr)
+	, m_bRecurse(false)
+	, m_pDropHandler(nullptr)
 	, m_dwFlags()
 	, m_bAutoCompleteReady()
 	, m_bReadOnly {false, false, false}
 	, m_hIconRotate(theApp.LoadIcon(IDI_ROTATE2))
-	, m_hCursorNo(LoadCursor(NULL, IDC_NO))
+	, m_hCursorNo(LoadCursor(nullptr, IDC_NO))
 {
 }
 
@@ -181,7 +181,6 @@ void COpenView::OnInitialUpdate()
 		return;
 
 	CFormView::OnInitialUpdate();
-	ResizeParentToFit();
 
 	// set caption to "swap paths" button
 	LOGFONT lf;
@@ -306,7 +305,7 @@ void COpenView::OnInitialUpdate()
 	if (!bOverwriteRecursive)
 		m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 
-	m_strUnpacker = m_infoHandler.pluginName;
+	m_strUnpacker = m_infoHandler.m_PluginName;
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
 	SetUnpackerStatus(IDS_USERCHOICE_NONE); 
@@ -366,27 +365,6 @@ void COpenView::OnPaint()
 	dc.SelectObject(oldpen);
 
 	CFormView::OnPaint();
-}
-
-void COpenView::OnLButtonDown(UINT nFlags, CPoint point)
-{
-
-	if (m_rectTracker.Track(this, point, FALSE, GetParentFrame()))
-	{
-		CRect rc = m_rectTracker.m_rect;
-		MapWindowPoints(GetParentFrame(), &rc);
-		CRect rcFrame;
-		GetParentFrame()->GetClientRect(&rcFrame);
-		int width = rc.Width() > rcFrame.Width() ? rcFrame.Width() : rc.Width();
-		if (width < m_sizeOrig.cx)
-			width = m_sizeOrig.cx;
-		rc.right = rc.left + width;
-		rc.bottom = rc.top + m_sizeOrig.cy;
-		m_rectTracker.m_rect.right = m_rectTracker.m_rect.left + width;
-		m_rectTracker.m_rect.bottom = m_rectTracker.m_rect.top + m_sizeOrig.cy;
-		SetWindowPos(NULL, rc.left, rc.top, rc.Width(), rc.Height(), SWP_NOZORDER);
-		m_constraint.UpdateSizes();
-	}
 }
 
 void COpenView::OnLButtonUp(UINT nFlags, CPoint point)
@@ -454,30 +432,86 @@ void COpenView::OnMouseMove(UINT nFlags, CPoint point)
 	}
 }
 
+void COpenView::OnWindowPosChanging(WINDOWPOS* lpwndpos)
+{
+	if ((lpwndpos->flags & (SWP_NOMOVE | SWP_NOSIZE)) == 0)
+	{
+		CFrameWnd *const pFrameWnd = GetParentFrame();
+		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
+		{
+			CRect rc;
+			pFrameWnd->GetClientRect(&rc);
+			lpwndpos->flags |= SWP_FRAMECHANGED | SWP_SHOWWINDOW;
+			lpwndpos->cy = m_sizeOrig.cy;
+			if (lpwndpos->flags & SWP_NOOWNERZORDER)
+			{
+				lpwndpos->x = rc.right - (lpwndpos->x + lpwndpos->cx);
+				lpwndpos->cx = rc.right - 2 * lpwndpos->x;
+				lpwndpos->y = (rc.bottom - lpwndpos->cy) / 2;
+				if (lpwndpos->y < 0)
+					lpwndpos->y = 0;
+			}
+			else if (pFrameWnd->IsZoomed())
+			{
+				lpwndpos->cx = m_totalLog.cx;
+				lpwndpos->y = (rc.bottom - lpwndpos->cy) / 2;
+				if (lpwndpos->y < 0)
+					lpwndpos->y = 0;
+			}
+			if (lpwndpos->cx > rc.Width())
+				lpwndpos->cx = rc.Width();
+			if (lpwndpos->cx < m_sizeOrig.cx)
+				lpwndpos->cx = m_sizeOrig.cx;
+			lpwndpos->x = (rc.right - lpwndpos->cx) / 2;
+			if (lpwndpos->x < 0)
+				lpwndpos->x = 0;
+		}
+	}
+}
+
 void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 {
-	CRect rc;
-	GetClientRect(&rc);
-	m_rectTracker.m_rect = rc;
+	if (lpwndpos->flags & SWP_FRAMECHANGED)
+	{
+		m_constraint.UpdateSizes();
+		CFrameWnd *const pFrameWnd = GetParentFrame();
+		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
+		{
+			m_constraint.Persist(true, false);
+			WINDOWPLACEMENT wp;
+			wp.length = sizeof wp;
+			pFrameWnd->GetWindowPlacement(&wp);
+			CRect rc;
+			GetWindowRect(&rc);
+			pFrameWnd->CalcWindowRect(&rc, CWnd::adjustOutside);
+			wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
+			wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();
+			pFrameWnd->SetWindowPlacement(&wp);
+		}
+	}
 	CFormView::OnWindowPosChanged(lpwndpos);
 }
 
 void COpenView::OnDestroy()
 {
-	if (m_pDropHandler)
+	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
-
-	m_constraint.Persist(true, false);
 
 	CFormView::OnDestroy();
 }
 
-BOOL COpenView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
+LRESULT COpenView::OnNcHitTest(CPoint point)
 {
-	if (pWnd == this && m_rectTracker.SetCursor(this, nHitTest))
-		return TRUE;
-
-	return CView::OnSetCursor(pWnd, nHitTest, message);
+	if (GetParentFrame()->IsZoomed())
+	{
+		CRect rc;
+		GetWindowRect(&rc);
+		rc.left = rc.right - GetSystemMetrics(SM_CXVSCROLL);
+		rc.top = rc.bottom - GetSystemMetrics(SM_CYHSCROLL);
+		if (PtInRect(&rc, point))
+			return HTRIGHT;
+	}
+	return CFormView::OnNcHitTest(point);
 }
 
 void COpenView::OnButton(int index)
@@ -559,7 +593,7 @@ void COpenView::OnOK()
 	}
 	// If left path is a project-file, load it
 	String ext;
-	paths::SplitFilename(m_strPath[0], NULL, NULL, &ext);
+	paths::SplitFilename(m_strPath[0], nullptr, nullptr, &ext);
 	if (m_strPath[1].empty() && strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 		LoadProjectFile(m_strPath[0]);
 
@@ -638,7 +672,7 @@ void COpenView::OnOK()
 	PackingInfo tmpPackingInfo(pDoc->m_infoHandler);
 	GetMainFrame()->DoFileOpen(
 		&tmpPathContext, std::array<DWORD, 3>(pDoc->m_dwFlags).data(), 
-		NULL, _T(""), pDoc->m_bRecurse, NULL, _T(""), &tmpPackingInfo);
+		nullptr, _T(""), pDoc->m_bRecurse, nullptr, _T(""), &tmpPackingInfo);
 }
 
 /** 
@@ -753,7 +787,7 @@ void COpenView::OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult)
 	VERIFY(menu.LoadMenu(IDR_POPUP_PROJECT));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
-	if (NULL != pPopup)
+	if (pPopup != nullptr)
 	{
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, 
 			rcButton.left, rcButton.bottom, GetMainFrame());
@@ -817,10 +851,10 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 	MSG msg;
 	BOOL bRet;
 
-	CoInitialize(NULL);
+	CoInitialize(nullptr);
 	CAssureScriptsForThread scriptsForRescan;
 
-	while( (bRet = GetMessage( &msg, NULL, 0, 0 )) != 0)
+	while( (bRet = GetMessage( &msg, nullptr, 0, 0 )) != 0)
 	{ 
 		if (bRet == -1)
 			break;
@@ -841,7 +875,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		// Check if we have project file as left side path
 		bool bProject = false;
 		String ext;
-		paths::SplitFilename(paths[0], NULL, NULL, &ext);
+		paths::SplitFilename(paths[0], nullptr, nullptr, &ext);
 		if (paths[1].empty() && strutils::compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 			bProject = true;
 
@@ -922,7 +956,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 void COpenView::UpdateResources()
 {
 	theApp.m_pLangDlg->RetranslateDialog(m_hWnd, MAKEINTRESOURCE(IDD_OPEN));
-	if (m_strUnpacker != m_infoHandler.pluginName)
+	if (m_strUnpacker != m_infoHandler.m_PluginName)
 		m_strUnpacker = theApp.LoadString(IDS_OPEN_UNPACKERDISABLED);
 }
 
@@ -935,10 +969,10 @@ void COpenView::UpdateButtonStates()
 	KillTimer(IDT_CHECKFILES);
 	TrimPaths();
 	
-	if (!m_pUpdateButtonStatusThread)
+	if (m_pUpdateButtonStatusThread == nullptr)
 	{
 		m_pUpdateButtonStatusThread = AfxBeginThread(
-			UpdateButtonStatesThread, NULL, THREAD_PRIORITY_NORMAL, 0, CREATE_SUSPENDED);
+			UpdateButtonStatesThread, nullptr, THREAD_PRIORITY_NORMAL, 0, CREATE_SUSPENDED);
 		m_pUpdateButtonStatusThread->m_bAutoDelete = FALSE;
 		m_pUpdateButtonStatusThread->ResumeThread();
 		while (PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_NULL, 0, 0) == FALSE)
@@ -957,7 +991,7 @@ void COpenView::UpdateButtonStates()
 
 void COpenView::TerminateThreadIfRunning()
 {
-	if (!m_pUpdateButtonStatusThread)
+	if (m_pUpdateButtonStatusThread == nullptr)
 		return;
 
 	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_QUIT, 0, 0);
@@ -968,7 +1002,7 @@ void COpenView::TerminateThreadIfRunning()
 		TerminateThread(m_pUpdateButtonStatusThread->m_hThread, 0);
 	}
 	delete m_pUpdateButtonStatusThread;
-	m_pUpdateButtonStatusThread = NULL;
+	m_pUpdateButtonStatusThread = nullptr;
 }
 
 /**
@@ -1020,7 +1054,7 @@ void COpenView::OnEditEvent()
 {
 	// (Re)start timer to path validity check delay
 	// If timer starting fails, update buttonstates immediately
-	if (!SetTimer(IDT_CHECKFILES, CHECKFILES_TIMEOUT, NULL))
+	if (!SetTimer(IDT_CHECKFILES, CHECKFILES_TIMEOUT, nullptr))
 		UpdateButtonStates();
 }
 
@@ -1069,7 +1103,7 @@ void COpenView::OnSelectUnpacker()
 	{
 		m_infoHandler = dlg.GetInfoHandler();
 
-		m_strUnpacker = m_infoHandler.pluginName;
+		m_strUnpacker = m_infoHandler.m_PluginName;
 
 		UpdateData(FALSE);
 	}
@@ -1184,7 +1218,7 @@ bool COpenView::LoadProjectFile(const String &path)
 	ProjectFile prj;
 
 	if (!theApp.LoadProjectFile(path, prj))
-		return FALSE;
+		return false;
 
 	bool recurse;
 	prj.GetPaths(m_files, recurse);
@@ -1209,7 +1243,7 @@ bool COpenView::LoadProjectFile(const String &path)
 		if (m_strExt[0] != '*')
 			m_strExt.insert(0, filterPrefix);
 	}
-	return TRUE;
+	return true;
 }
 
 /** 
@@ -1242,7 +1276,7 @@ template <int MSG, int WPARAM, int LPARAM>
 void COpenView::OnEditAction()
 {
 	CWnd *pCtl = GetFocus();
-	if (pCtl)
+	if (pCtl != nullptr)
 		pCtl->PostMessage(MSG, WPARAM, LPARAM);
 }
 

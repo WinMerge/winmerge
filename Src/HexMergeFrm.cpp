@@ -74,8 +74,8 @@ enum
 // CHexMergeFrame construction/destruction
 
 CHexMergeFrame::CHexMergeFrame()
-: m_hIdentical(NULL)
-, m_hDifferent(NULL)
+: m_hIdentical(nullptr)
+, m_hDifferent(nullptr)
 {
 	std::fill_n(m_nLastSplitPos, 2, 0);
 	m_pMergeDoc = 0;
@@ -246,7 +246,7 @@ void CHexMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDe
 	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
 	CHexMergeDoc *pDoc = GetMergeDoc();
-	if (bActivate && pDoc)
+	if (bActivate && pDoc != nullptr)
 		this->GetParentFrame()->PostMessage(WM_USER+1);
 	return;
 }

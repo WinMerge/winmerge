@@ -65,7 +65,7 @@ bool EndsWithSlash(const String& s)
  * - IS_EXISTING_DIR : path points to existing folder
  * - IS_EXISTING_FILE : path points to existing file
  */
-PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&))
+PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&) /*= nullptr*/)
 {
 	if (szPath.empty())
 		return DOES_NOT_EXIST;
@@ -75,7 +75,7 @@ PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const S
 	const TCHAR *lpcszPath = szPath.c_str();
 	TCHAR expandedPath[MAX_PATH_FULL];
 
-	if (_tcschr(lpcszPath, '%'))
+	if (_tcschr(lpcszPath, '%') != nullptr)
 	{
 		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, MAX_PATH_FULL);
 		if (dwLen > 0 && dwLen < MAX_PATH_FULL)
@@ -224,7 +224,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
 	TCHAR expandedPath[MAX_PATH_FULL];
 	const TCHAR *lpcszPath = sPath.c_str();
-	if (bExpandEnvs && _tcschr(lpcszPath, '%'))
+	if (bExpandEnvs && _tcschr(lpcszPath, '%') != nullptr)
 	{
 		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, MAX_PATH_FULL);
 		if (dwLen > 0 && dwLen < MAX_PATH_FULL)
@@ -237,7 +237,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 		_tcscpy_s(pFullPath, MAX_PATH_FULL, tPath.c_str());
 
 	// We are done if this is not a short name.
-	if (_tcschr(pFullPath, _T('~')) == NULL)
+	if (_tcschr(pFullPath, _T('~')) == nullptr)
 		return pFullPath;
 
 	// We have to do it the hard way because GetLongPathName is not
@@ -247,16 +247,16 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	// and leave the invalid stuff at the end.
 	String sLong;
 	TCHAR *ptr = pFullPath;
-	TCHAR *end = NULL;
+	TCHAR *end = nullptr;
 
 	// Skip to \ position     d:\abcd or \\host\share\abcd
 	// indicated by ^           ^                    ^
 	if (_tcslen(ptr) > 2)
 		end = _tcschr(pFullPath+2, _T('\\'));
-	if (end && !_tcsncmp(pFullPath, _T("\\\\"),2))
+	if (end != nullptr && !_tcsncmp(pFullPath, _T("\\\\"),2))
 		end = _tcschr(end+1, _T('\\'));
 
-	if (!end)
+	if (end == nullptr)
 		return pFullPath;
 
 	*end = 0;
@@ -264,20 +264,20 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	ptr = &end[1];
 
 	// now walk down each directory and do short to long name conversion
-	while (ptr)
+	while (ptr != nullptr)
 	{
 		end = _tcschr(ptr, '\\');
 		// zero-terminate current component
 		// (if we're at end, its already zero-terminated)
-		if (end)
+		if (end != nullptr)
 			*end = 0;
 
 		String sTemp(sLong);
 		sTemp += '\\';
 		sTemp += ptr;
 
-		// advance to next component (or set ptr==0 to flag end)
-		ptr = (end ? end+1 : 0);
+		// advance to next component (or set ptr=`nullptr` to flag end)
+		ptr = (end!=nullptr ? end+1 : nullptr);
 
 		// (Couldn't get info for just the directory from CFindFile)
 		WIN32_FIND_DATA ffd;
@@ -285,7 +285,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 		if (h == INVALID_HANDLE_VALUE)
 		{
 			sLong = sTemp;
-			if (ptr)
+			if (ptr != nullptr)
 			{
 				sLong += '\\';
 				sLong += ptr;
@@ -324,7 +324,7 @@ bool CreateIfNeeded(const String& szPath)
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
 	TCHAR fullPath[MAX_PATH_FULL];
 	fullPath[0] = '\0';
-	if (_tcschr(szPath.c_str(), '%'))
+	if (_tcschr(szPath.c_str(), '%') != nullptr)
 	{
 		DWORD dwLen = ExpandEnvironmentStrings(szPath.c_str(), fullPath, MAX_PATH_FULL);
 		if (dwLen == 0 || dwLen >= MAX_PATH_FULL)
@@ -335,16 +335,16 @@ bool CreateIfNeeded(const String& szPath)
 	// Now fullPath holds our desired path
 
 	TCHAR *ptr = fullPath;
-	TCHAR *end = NULL;
+	TCHAR *end = nullptr;
 
 	// Skip to \ position     d:\abcd or \\host\share\abcd
 	// indicated by ^           ^                    ^
 	if (_tcslen(ptr) > 2)
 		end = _tcschr(fullPath+2, _T('\\'));
-	if (end && !_tcsncmp(fullPath, _T("\\\\"),2))
+	if (end != nullptr && !_tcsncmp(fullPath, _T("\\\\"),2))
 		end = _tcschr(end+1, _T('\\'));
 
-	if (!end) return false;
+	if (end == nullptr) return false;
 
 	// check that first component exists
 	*end = 0;
@@ -354,16 +354,16 @@ bool CreateIfNeeded(const String& szPath)
 
 	ptr = end+1;
 
-	while (ptr)
+	while (ptr != nullptr)
 	{
 		end = _tcschr(ptr, '\\');
 		// zero-terminate current component
 		// (if we're at end, its already zero-terminated)
-		if (end)
+		if (end != nullptr)
 			*end = 0;
 
-		// advance to next component (or set ptr==0 to flag end)
-		ptr = (end ? end+1 : 0);
+		// advance to next component (or set ptr=`nullptr` to flag end)
+		ptr = (end != nullptr ? end+1 : nullptr);
 
 		String sNextName;
 		if (!GetDirName(fullPath, sNextName))
@@ -376,7 +376,7 @@ bool CreateIfNeeded(const String& szPath)
 			}
 		}
 		// if not finished, restore directory string we're working in
-		if (ptr)
+		if (ptr != nullptr)
 			*end = '\\';
 	}
 	return true;
@@ -392,7 +392,7 @@ bool CreateIfNeeded(const String& szPath)
  *  - IS_EXISTING_FILE : both are files & exist
  *  - DOES_NOT_EXIST : in all other cases
 */
-PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveFile)(const String&))
+PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveFile)(const String&) /*= nullptr*/)
 {
 	// fail if not both specified
 	if (paths.GetSize() < 2 || paths[0].empty() || paths[1].empty())
@@ -434,7 +434,7 @@ bool IsShortcut(const String& inPath)
 {
 	const TCHAR ShortcutExt[] = _T(".lnk");
 	TCHAR ext[_MAX_EXT] = {0};
-	_tsplitpath_s(inPath.c_str(), NULL, 0, NULL, 0, NULL, 0, ext, _MAX_EXT);
+	_tsplitpath_s(inPath.c_str(), nullptr, 0, nullptr, 0, nullptr, 0, ext, _MAX_EXT);
 	if (_tcsicmp(ext, ShortcutExt) == 0)
 		return true;
 	else
@@ -473,7 +473,7 @@ String ExpandShortcut(const String &inFile)
 	HRESULT hres;
 
 	// Create instance for shell link
-	hres = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER,
+	hres = ::CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER,
 		IID_IShellLink, (LPVOID*) &psl);
 	if (SUCCEEDED(hres))
 	{
@@ -496,7 +496,7 @@ String ExpandShortcut(const String &inFile)
 			{
 				// find the path from that
 				TCHAR buf[MAX_PATH_FULL] = {0};
-				psl->GetPath(buf, MAX_PATH_FULL, NULL, SLGP_UNCPRIORITY);
+				psl->GetPath(buf, MAX_PATH_FULL, nullptr, SLGP_UNCPRIORITY);
 				outFile = buf;
 			}
 			ppf->Release();
@@ -687,7 +687,7 @@ void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String*
 		{
 			if (!ext)
 			{
-				if (pExt)
+				if (pExt != nullptr)
 				{
 					(*pExt) = pszChar + 1;
 				}
@@ -700,7 +700,7 @@ void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String*
 			// Ok, found last slash, so we collect any info desired
 			// and we're done
 
-			if (pPath)
+			if (pPath != nullptr)
 			{
 				// Grab directory (omit trailing slash)
 				size_t len = pszChar - pathLeft.c_str();
@@ -710,7 +710,7 @@ void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String*
 				pPath->erase(len); // Cut rest of path
 			}
 
-			if (pFile)
+			if (pFile != nullptr)
 			{
 				// Grab file
 				*pFile = pszChar + 1;
@@ -721,7 +721,7 @@ void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String*
 	}
 
 	// Never found a delimiter
-	if (pFile)
+	if (pFile != nullptr)
 	{
 		*pFile = pathLeft;
 	}
@@ -729,7 +729,7 @@ void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String*
 endSplit:
 	// if both filename & extension requested, remove extension from filename
 
-	if (pFile && pExt && extptr)
+	if (pFile != nullptr && pExt != nullptr && extptr != nullptr)
 	{
 		size_t extlen = pend - extptr;
 		pFile->erase(pFile->length() - extlen);

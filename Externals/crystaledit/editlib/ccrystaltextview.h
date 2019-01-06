@@ -227,7 +227,7 @@ protected :
     CPoint m_ptDraggedTextBegin, m_ptDraggedTextEnd;
     void UpdateCaret ();
     void SetAnchor (const CPoint & ptNewAnchor);
-    int GetMarginWidth (CDC *pdc = NULL);
+    int GetMarginWidth (CDC *pdc = nullptr);
     bool IsValidTextPos (const CPoint &point);
     bool IsValidTextPosX (const CPoint &point);
     bool IsValidTextPosY (const CPoint &point);
@@ -522,7 +522,7 @@ protected:
 	not exceed (except whitespaces)
 
 	@param anBreaks An array of integers. Put the positions where to wrap the line
-	in that array (its allready allocated). If this pointer is NULL, the function
+	in that array (its allready allocated). If this pointer is `nullptr`, the function
 	has only to compute the number of breaks (the parameter nBreaks).
 
 	@param nBreaks The number of breaks this line has (number of sublines - 1). When
@@ -540,7 +540,7 @@ protected:
 	method). This function uses an internal cache which contains the number
 	of sublines for each line, so it has only to call WrapLine(), if the
 	cache for the given line is invalid or if the caller wants to get the
-	wrap postions (anBreaks != NULL).
+	wrap postions (anBreaks != nullptr).
 
 	This functions also tests m_bWordWrap -- you can call it even if
 	word wrapping is disabled and you will retrieve a valid value.
@@ -551,7 +551,7 @@ protected:
 	not exceed (except whitespaces)
 
 	@param anBreaks An array of integers. Put the positions where to wrap the line
-	in that array (its allready allocated). If this pointer is NULL, the function
+	in that array (its allready allocated). If this pointer is `nullptr`, the function
 	has only to compute the number of breaks (the parameter nBreaks).
 
 	@param nBreaks The number of breaks this line has (number of sublines - 1). When
@@ -730,9 +730,9 @@ public :
 	/**
 	Sets the Parser to use to parse the file.
 
-	@param pParser Pointer to parser to use. Set to NULL to use no parser.
+	@param pParser Pointer to parser to use. Set to `nullptr` to use no parser.
 
-	@return Pointer to parser used before or NULL, if no parser has been used before.
+	@return Pointer to parser used before or `nullptr`, if no parser has been used before.
 	*/
 	CCrystalParser *SetParser( CCrystalParser *pParser );
 	//END SW
@@ -836,8 +836,8 @@ public :
 
     // Operations
 public :
-    virtual void ReAttachToBuffer (CCrystalTextBuffer * pBuf = NULL);
-    virtual void AttachToBuffer (CCrystalTextBuffer * pBuf = NULL);
+    virtual void ReAttachToBuffer (CCrystalTextBuffer * pBuf = nullptr);
+    virtual void AttachToBuffer (CCrystalTextBuffer * pBuf = nullptr);
     virtual void DetachFromBuffer ();
 
     //  Buffer-view interaction, multiple views
@@ -880,7 +880,7 @@ public :
 
     virtual BOOL PreCreateWindow (CREATESTRUCT & cs);
     virtual BOOL PreTranslateMessage (MSG * pMsg);
-    virtual void OnPrepareDC (CDC * pDC, CPrintInfo * pInfo = NULL);
+    virtual void OnPrepareDC (CDC * pDC, CPrintInfo * pInfo = nullptr);
     virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO *pHandlerInfo);
 protected :
     virtual void OnInitialUpdate ();  // called first time after construct

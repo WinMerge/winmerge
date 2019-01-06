@@ -21,7 +21,7 @@ class DirCmpReportDlg : public CTrDialog
 	DECLARE_DYNAMIC(DirCmpReportDlg)
 
 public:
-	explicit DirCmpReportDlg(CWnd* pParent = NULL);   // standard constructor
+	explicit DirCmpReportDlg(CWnd* pParent = nullptr);   // standard constructor
 
 // Dialog Data
 	enum { IDD = IDD_DIRCMP_REPORT };

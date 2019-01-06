@@ -178,26 +178,26 @@ void UniLocalFile::LastErrorCustom(const String& desc)
 /////////////
 
 UniMemFile::UniMemFile()
-		: m_hMapping(NULL)
-		, m_base(NULL)
-		, m_data(NULL)
-		, m_current(NULL)
+		: m_hMapping(nullptr)
+		, m_base(nullptr)
+		, m_data(nullptr)
+		, m_current(nullptr)
 {
 }
 
 void UniMemFile::Close()
 {
 	Clear();
-	if (m_base)
+	if (m_base != nullptr)
 	{
-		m_base = 0;
+		m_base = nullptr;
 	}
-	m_data = NULL;
-	m_current = NULL;
-	if (m_hMapping != NULL)
+	m_data = nullptr;
+	m_current = nullptr;
+	if (m_hMapping != nullptr)
 	{
 		delete m_hMapping;
-		m_hMapping = NULL;
+		m_hMapping = nullptr;
 	}
 }
 
@@ -269,7 +269,7 @@ bool UniMemFile::DoOpen(const String& filename, AccessMode mode)
 	catch (Exception& e)
 	{
 		LastErrorCustom(ucr::toTString(e.displayText()));
-		m_hMapping = NULL;
+		m_hMapping = nullptr;
 		return false;
 	}
 
@@ -427,7 +427,7 @@ static void RecordZero(UniFile::txtstats & txstats, size_t offset)
  * @brief Read one (DOS or UNIX or Mac) line.
  * @param [out] line Line read.
  * @param [out] eol EOL bytes read (if any).
- * @param [out] lossy TRUE if there were lossy encoding.
+ * @param [out] lossy `true` if there were lossy encoding.
  * @return true if there is more lines to read, false when last line is read.
  */
 bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
@@ -442,7 +442,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 	if (m_unicoding == ucr::UCS2LE)
 	{
 		int cchLine = 0;
-		// If there aren't any wchars left in the file, return FALSE to indicate EOF
+		// If there aren't any wchars left in the file, return `false` to indicate EOF
 		if (m_current - m_base + 1 >= m_filesize)
 			return false;
 		// Loop through wchars, watching for eol chars or zero
@@ -488,7 +488,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 	if (m_unicoding == ucr::NONE && ucr::EqualCodepages(m_codepage, GetACP()))
 	{
 		int cchLine = 0;
-		// If there aren't any bytes left in the file, return FALSE to indicate EOF
+		// If there aren't any bytes left in the file, return `false` to indicate EOF
 		if (m_current - m_base >= m_filesize)
 			return false;
 		// Loop through chars, watching for eol chars or zero
@@ -539,7 +539,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 	if (m_unicoding == ucr::NONE)
 	{
 		bool eof = true;
-		unsigned char *eolptr = 0;
+		unsigned char *eolptr = nullptr;
 		for (eolptr = m_current; (eolptr - m_base + (m_charsize - 1) < m_filesize); ++eolptr)
 		{
 			if (*eolptr == '\n' || *eolptr == '\r')
@@ -692,7 +692,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
  */
 bool UniMemFile::WriteString(const String & line)
 {
-	assert(0); // unimplemented -- currently cannot write to a UniMemFile!
+	assert(false); // unimplemented -- currently cannot write to a UniMemFile!
 	return false;
 }
 
@@ -701,7 +701,7 @@ bool UniMemFile::WriteString(const String & line)
 /////////////
 
 UniStdioFile::UniStdioFile()
-		: m_fp(0)
+		: m_fp(nullptr)
 		, m_data(0)
 		, m_ucrbuff(128)
 {
@@ -717,7 +717,7 @@ void UniStdioFile::Close()
 	if (IsOpen())
 	{
 		fclose(m_fp);
-		m_fp = 0;
+		m_fp = nullptr;
 	}
 	m_statusFetched = 0;
 	m_filesize = 0;
@@ -884,13 +884,13 @@ void UniStdioFile::SetBom(bool bom)
 
 bool UniStdioFile::ReadString(String & line, bool * lossy)
 {
-	assert(0); // unimplemented -- currently cannot read from a UniStdioFile!
+	assert(false); // unimplemented -- currently cannot read from a UniStdioFile!
 	return false;
 }
 
 bool UniStdioFile::ReadString(String & line, String & eol, bool * lossy)
 {
-	assert(0); // unimplemented -- currently cannot read from a UniStdioFile!
+	assert(false); // unimplemented -- currently cannot read from a UniStdioFile!
 	return false;
 }
 

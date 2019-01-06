@@ -32,7 +32,7 @@
 void
 RegValInit (RegVal *pValData)
 {
-  ASSERT (pValData);
+  ASSERT (pValData != nullptr);
   pValData->dwType = REG_NONE;
 }
 
@@ -40,7 +40,7 @@ RegValInit (RegVal *pValData)
 void
 RegValFree (RegVal *pValData)
 {
-  ASSERT (pValData);
+  ASSERT (pValData != nullptr);
   if (pValData->dwType == REG_SZ || pValData->dwType == REG_EXPAND_SZ
         || pValData->dwType == REG_LINK || pValData->dwType == REG_MULTI_SZ
         || pValData->dwType == REG_BINARY)
@@ -54,7 +54,7 @@ RegValFree (RegVal *pValData)
 bool
 RegValGetNumber (const RegVal *pValData, DWORD *pdwNumber)
 {
-  ASSERT (pValData &&pdwNumber);
+  ASSERT (pValData != nullptr && pdwNumber != nullptr);
   if (pValData->dwType == REG_DWORD)
     {
       *pdwNumber = pValData->dwNumber;
@@ -67,7 +67,7 @@ RegValGetNumber (const RegVal *pValData, DWORD *pdwNumber)
 bool
 RegValGetBinary (const RegVal *pValData, LPBYTE pbyteData, DWORD dwSize)
 {
-  ASSERT (pValData &&pbyteData);
+  ASSERT (pValData != nullptr && pbyteData != nullptr);
   if (pValData->dwType == REG_BINARY &&dwSize >= pValData->dwSize)
     {
       memcpy (pbyteData, pValData->pbyteData, pValData->dwSize);
@@ -80,11 +80,11 @@ RegValGetBinary (const RegVal *pValData, LPBYTE pbyteData, DWORD dwSize)
 bool
 RegValGetNewBinary (const RegVal *pValData, LPBYTE *pbyteData, DWORD *pdwSize)
 {
-  ASSERT (pValData &&pbyteData);
+  ASSERT (pValData != nullptr && pbyteData != nullptr);
   if (pValData->dwType == REG_BINARY)
     {
       LPBYTE pbyteNewData = (LPBYTE) malloc (pValData->dwSize);
-      if (pbyteNewData)
+      if (pbyteNewData != nullptr)
         {
           *pbyteData = pbyteNewData;
           *pdwSize = pValData->dwSize;
@@ -99,15 +99,15 @@ RegValGetNewBinary (const RegVal *pValData, LPBYTE *pbyteData, DWORD *pdwSize)
 bool
 RegValGetNewString (const RegVal *pValData, LPTSTR *pszString, DWORD *pdwLength)
 {
-  ASSERT (pValData &&pszString);
+  ASSERT (pValData != nullptr && pszString != nullptr);
   if (pValData->dwType == REG_SZ || pValData->dwType == REG_EXPAND_SZ
         || pValData->dwType == REG_LINK || pValData->dwType == REG_MULTI_SZ)
     {
       LPTSTR pszNewString = (LPTSTR) malloc (pValData->dwLength + 1);
-      if (pszNewString)
+      if (pszNewString != nullptr)
         {
           *pszString = pszNewString;
-          if (pdwLength)
+          if (pdwLength != nullptr)
             {
               *pdwLength = pValData->dwLength;
             }
@@ -123,7 +123,7 @@ RegValGetNewString (const RegVal *pValData, LPTSTR *pszString, DWORD *pdwLength)
 bool
 RegValGetString (const RegVal *pValData, LPTSTR pszString, DWORD dwLength)
 {
-  ASSERT (pValData &&pszString);
+  ASSERT (pValData != nullptr && pszString != nullptr);
   if ((pValData->dwType == REG_SZ || pValData->dwType == REG_EXPAND_SZ
          || pValData->dwType == REG_LINK || pValData->dwType == REG_MULTI_SZ)
         && dwLength >= pValData->dwLength)
@@ -139,7 +139,7 @@ RegValGetString (const RegVal *pValData, LPTSTR pszString, DWORD dwLength)
 bool
 RegValGetStringArr (const RegVal *pValData, LPTSTR pszStrings[], DWORD dwCount)
 {
-  ASSERT (pValData);
+  ASSERT (pValData != nullptr);
   if (pValData->dwType == REG_MULTI_SZ)
     {
       LPCTSTR pszString0;
@@ -157,7 +157,7 @@ RegValGetStringArr (const RegVal *pValData, LPTSTR pszStrings[], DWORD dwCount)
               dwLength = (DWORD) _tcslen (pszString1) + 1;
               LPTSTR pszNewString = (LPTSTR) malloc (dwLength);
               *pszDstString = pszNewString;
-              if (pszNewString)
+              if (pszNewString != nullptr)
                 {
                   while ((*pszNewString = (BYTE) *pszString1) != _T ('\0'))
                     {
@@ -183,7 +183,7 @@ RegValGetStringArr (const RegVal *pValData, LPTSTR pszStrings[], DWORD dwCount)
 bool
 RegValGetNewStringArr (const RegVal *pValData, LPTSTR **pszStrings, DWORD *pdwCount)
 {
-  ASSERT (pValData);
+  ASSERT (pValData != nullptr);
   if (pValData->dwType == REG_MULTI_SZ)
     {
       LPTSTR pszString;
@@ -194,7 +194,7 @@ RegValGetNewStringArr (const RegVal *pValData, LPTSTR **pszStrings, DWORD *pdwCo
           dwRealCount++;
         }
       LPTSTR *pszNewStrings = (LPTSTR *) malloc (dwRealCount *sizeof (LPTSTR));
-      if (pszNewStrings)
+      if (pszNewStrings != nullptr)
         {
           *pszStrings = pszNewStrings;
           *pdwCount = dwRealCount;
@@ -203,7 +203,7 @@ RegValGetNewStringArr (const RegVal *pValData, LPTSTR **pszStrings, DWORD *pdwCo
               dwLength = (DWORD) _tcslen (pszString) + 1;
               LPTSTR pszNewString = (LPTSTR) malloc (dwLength);
               *pszNewStrings = pszNewString;
-              if (pszNewString)
+              if (pszNewString != nullptr)
                 {
                   while ((*pszNewString = (BYTE) *pszString) != _T ('\0'))
                     {
@@ -231,7 +231,7 @@ RegValGetNewStringArr (const RegVal *pValData, LPTSTR **pszStrings, DWORD *pdwCo
 bool
 RegValGetString (const RegVal *pValData, CString &sString)
 {
-  ASSERT (pValData);
+  ASSERT (pValData != nullptr);
   if (pValData->dwType == REG_SZ || pValData->dwType == REG_EXPAND_SZ
         || pValData->dwType == REG_LINK || pValData->dwType == REG_MULTI_SZ)
     {
@@ -247,7 +247,7 @@ RegValGetString (const RegVal *pValData, CString &sString)
 bool
 RegValGetStringArr (const RegVal *pValData, CStringArray &arrString)
 {
-  ASSERT (pValData);
+  ASSERT (pValData != nullptr);
   if (pValData->dwType == REG_MULTI_SZ)
     {
       arrString.RemoveAll ();
@@ -266,7 +266,7 @@ RegValGetStringArr (const RegVal *pValData, CStringArray &arrString)
 void
 RegValSetNumber (RegVal *pValData, DWORD dwNumber)
 {
-  ASSERT (pValData);
+  ASSERT (pValData != nullptr);
   pValData->dwType = REG_DWORD;
   pValData->dwNumber = dwNumber;
 }
@@ -275,9 +275,9 @@ RegValSetNumber (RegVal *pValData, DWORD dwNumber)
 bool
 RegValSetBinary (RegVal *pValData, const LPBYTE pbyteData, DWORD dwSize)
 {
-  ASSERT (pValData &&pbyteData);
+  ASSERT (pValData != nullptr && pbyteData != nullptr);
   pValData->pbyteData = (LPBYTE) malloc (dwSize);
-  if (pValData->pbyteData)
+  if (pValData->pbyteData != nullptr)
     {
       pValData->dwSize = dwSize;
       pValData->dwType = REG_BINARY;
@@ -292,10 +292,10 @@ RegValSetBinary (RegVal *pValData, const LPBYTE pbyteData, DWORD dwSize)
 bool
 RegValSetString (RegVal *pValData, LPCTSTR pszString)
 {
-  ASSERT (pValData &&pszString);
+  ASSERT (pValData != nullptr && pszString != nullptr);
   DWORD dwLength = (DWORD) _tcslen (pszString) + 1;
   pValData->pszString = (LPTSTR) malloc (dwLength);
-  if (pValData->pszString)
+  if (pValData->pszString != nullptr)
     {
       pValData->dwLength = dwLength;
       pValData->dwType = REG_SZ;
@@ -309,9 +309,9 @@ RegValSetString (RegVal *pValData, LPCTSTR pszString)
 bool
 RegValSetStringArr (RegVal *pValData, const LPCTSTR pszStrings[], DWORD dwCount)
 {
-  ASSERT (pValData &&pszStrings);
+  ASSERT (pValData != nullptr && pszStrings != nullptr);
   DWORD i, dwSize = 1;
-  if (dwCount)
+  if (dwCount != 0)
     {
       for (i = 0; i < dwCount; i++)
         {
@@ -323,12 +323,12 @@ RegValSetStringArr (RegVal *pValData, const LPCTSTR pszStrings[], DWORD dwCount)
       dwSize++;
     }
   pValData->pbyteData = (LPBYTE) malloc (dwSize);
-  if (pValData->pbyteData)
+  if (pValData->pbyteData != nullptr)
     {
       pValData->dwSize = dwSize;
       pValData->dwType = REG_MULTI_SZ;
       LPBYTE pbyteData = pValData->pbyteData;
-      if (dwCount)
+      if (dwCount != 0)
         {
           for (i = 0; i < dwCount; i++)
             {
@@ -356,9 +356,9 @@ RegValSetStringArr (RegVal *pValData, const LPCTSTR pszStrings[], DWORD dwCount)
 bool
 RegValSetStringArr (RegVal *pValData, const CStringArray &arrString)
 {
-  ASSERT (pValData);
+  ASSERT (pValData != nullptr);
   DWORD i, dwSize = 1, dwCount = (DWORD) arrString.GetSize ();
-  if (dwCount)
+  if (dwCount != 0)
     {
       for (i = 0; i < dwCount; i++)
         {
@@ -370,12 +370,12 @@ RegValSetStringArr (RegVal *pValData, const CStringArray &arrString)
       dwSize++;
     }
   pValData->pbyteData = (LPBYTE) malloc (dwSize);
-  if (pValData->pbyteData)
+  if (pValData->pbyteData != nullptr)
     {
       pValData->dwSize = dwSize;
       pValData->dwType = REG_MULTI_SZ;
       LPBYTE pbyteData = pValData->pbyteData;
-      if (dwCount)
+      if (dwCount != 0)
         {
           for (i = 0; i < dwCount; i++)
             {
@@ -408,7 +408,7 @@ RegConnect (HKEY hKey, LPCTSTR pszRemote)
     {
       return hSubKey;
     }
-  return NULL;
+  return nullptr;
 }
 
 /* open computer registry */
@@ -420,7 +420,7 @@ RegOpen (HKEY hKey, LPCTSTR pszSubKey, DWORD dwRights)
     {
       return hSubKey;
     }
-  return NULL;
+  return nullptr;
 }
 
 /* create computer registry */
@@ -429,19 +429,19 @@ RegCreate (HKEY hKey, LPCTSTR pszSubKey, DWORD dwRights)
 {
   HKEY hSubKey;
   DWORD dwDisposition;
-  if (RegCreateKeyEx (hKey, pszSubKey, 0, NULL, REG_OPTION_NON_VOLATILE, dwRights,
-                        NULL, &hSubKey, &dwDisposition) == ERROR_SUCCESS)
+  if (RegCreateKeyEx (hKey, pszSubKey, 0, nullptr, REG_OPTION_NON_VOLATILE, dwRights,
+                        nullptr, &hSubKey, &dwDisposition) == ERROR_SUCCESS)
     {
       return hSubKey;
     }
-  return NULL;
+  return nullptr;
 }
 
 /* close computer registry */
 void
 RegClose (HKEY hKey)
 {
-  if (hKey)
+  if (hKey != nullptr)
     RegCloseKey (hKey);
 }
 
@@ -449,18 +449,18 @@ RegClose (HKEY hKey)
 bool
 RegLoadVal (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, RegVal *pValData)
 {
-  ASSERT (pValData);
+  ASSERT (pValData != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       DWORD dwType, dwSize;
-      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, NULL, &dwSize) == ERROR_SUCCESS)
+      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, nullptr, &dwSize) == ERROR_SUCCESS)
         {
           if (dwType == REG_DWORD)
             {
               ASSERT (dwSize == sizeof (DWORD));
               DWORD dwNumber;
-              if (RegQueryValueEx (hSubKey, pszValName, 0, NULL, (LPBYTE) &dwNumber, &dwSize) == ERROR_SUCCESS)
+              if (RegQueryValueEx (hSubKey, pszValName, 0, nullptr, (LPBYTE) &dwNumber, &dwSize) == ERROR_SUCCESS)
                 {
                   ASSERT (dwSize == sizeof (DWORD));
                   RegValFree (pValData);
@@ -475,9 +475,9 @@ RegLoadVal (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, RegVal *pValData)
                 || dwType == REG_MULTI_SZ || dwType == REG_BINARY)
             {
               LPBYTE pbyteData = (LPBYTE) malloc (dwSize);
-              if (pbyteData)
+              if (pbyteData != nullptr)
                 {
-                  if (RegQueryValueEx (hSubKey, pszValName, 0, NULL, pbyteData, &dwSize) == ERROR_SUCCESS)
+                  if (RegQueryValueEx (hSubKey, pszValName, 0, nullptr, pbyteData, &dwSize) == ERROR_SUCCESS)
                     {
                       RegValFree (pValData);
                       pValData->dwType = dwType;
@@ -501,17 +501,17 @@ RegLoadVal (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, RegVal *pValData)
 bool
 RegLoadNumber (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD *pdwNumber)
 {
-  ASSERT (pdwNumber);
+  ASSERT (pdwNumber != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       DWORD dwType, dwSize;
-      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, NULL, &dwSize) == ERROR_SUCCESS)
+      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, nullptr, &dwSize) == ERROR_SUCCESS)
         {
           if (dwType == REG_DWORD)
             {
               ASSERT (dwSize == sizeof (DWORD));
-              if (RegQueryValueEx (hSubKey, pszValName, 0, NULL, (LPBYTE) pdwNumber, &dwSize) == ERROR_SUCCESS)
+              if (RegQueryValueEx (hSubKey, pszValName, 0, nullptr, (LPBYTE) pdwNumber, &dwSize) == ERROR_SUCCESS)
                 {
                   ASSERT (dwSize == sizeof (DWORD));
                   if (hSubKey != hKey)
@@ -530,16 +530,16 @@ RegLoadNumber (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD *pdwNumbe
 bool
 RegLoadBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE pbyteData, DWORD dwSize)
 {
-  ASSERT (pbyteData);
+  ASSERT (pbyteData != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       DWORD dwType, dwRealSize;
-      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, NULL, &dwRealSize) == ERROR_SUCCESS)
+      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, nullptr, &dwRealSize) == ERROR_SUCCESS)
         {
           if (dwType == REG_BINARY &&dwSize >= dwRealSize)
             {
-              if (RegQueryValueEx (hSubKey, pszValName, 0, NULL, pbyteData, &dwRealSize) == ERROR_SUCCESS)
+              if (RegQueryValueEx (hSubKey, pszValName, 0, nullptr, pbyteData, &dwRealSize) == ERROR_SUCCESS)
                 {
                   if (hSubKey != hKey)
                     RegClose (hSubKey);
@@ -557,19 +557,19 @@ RegLoadBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE pbyteDat
 bool
 RegLoadNewBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE *pbyteData, DWORD *pdwSize)
 {
-  ASSERT (pbyteData);
+  ASSERT (pbyteData != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       DWORD dwType, dwRealSize;
-      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, NULL, &dwRealSize) == ERROR_SUCCESS)
+      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, nullptr, &dwRealSize) == ERROR_SUCCESS)
         {
           if (dwType == REG_BINARY)
             {
               LPBYTE pbyteNewData = (LPBYTE) malloc (dwRealSize);
-              if (pbyteNewData)
+              if (pbyteNewData != nullptr)
                 {
-                  if (RegQueryValueEx (hSubKey, pszValName, 0, NULL, pbyteNewData, &dwRealSize) == ERROR_SUCCESS)
+                  if (RegQueryValueEx (hSubKey, pszValName, 0, nullptr, pbyteNewData, &dwRealSize) == ERROR_SUCCESS)
                     {
                       *pbyteData = pbyteNewData;
                       *pdwSize = dwRealSize;
@@ -591,17 +591,17 @@ RegLoadNewBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE *pbyt
 bool
 RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszString, DWORD dwLength)
 {
-  ASSERT (pszString);
+  ASSERT (pszString != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       DWORD dwType, dwRealLength;
-      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, NULL, &dwRealLength) == ERROR_SUCCESS)
+      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, nullptr, &dwRealLength) == ERROR_SUCCESS)
         {
           if ((dwType == REG_SZ || dwType == REG_EXPAND_SZ || dwType == REG_LINK
                  || dwType == REG_MULTI_SZ) &&dwLength >= dwRealLength)
             {
-              if (RegQueryValueEx (hSubKey, pszValName, 0, NULL, (LPBYTE) pszString, &dwRealLength) == ERROR_SUCCESS)
+              if (RegQueryValueEx (hSubKey, pszValName, 0, nullptr, (LPBYTE) pszString, &dwRealLength) == ERROR_SUCCESS)
                 {
                   if (hSubKey != hKey)
                     RegClose (hSubKey);
@@ -619,23 +619,23 @@ RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszStrin
 bool
 RegLoadNewString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR *pszString, DWORD *pdwLength)
 {
-  ASSERT (pszString);
+  ASSERT (pszString != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       DWORD dwType, dwRealLength;
-      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, NULL, &dwRealLength) == ERROR_SUCCESS)
+      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, nullptr, &dwRealLength) == ERROR_SUCCESS)
         {
           if (dwType == REG_SZ || dwType == REG_EXPAND_SZ || dwType == REG_LINK
                 || dwType == REG_MULTI_SZ)
             {
               LPTSTR pszNewString = (LPTSTR) malloc (dwRealLength);
-              if (pszNewString)
+              if (pszNewString != nullptr)
                 {
-                  if (RegQueryValueEx (hSubKey, pszValName, 0, NULL, (LPBYTE) pszNewString, &dwRealLength) == ERROR_SUCCESS)
+                  if (RegQueryValueEx (hSubKey, pszValName, 0, nullptr, (LPBYTE) pszNewString, &dwRealLength) == ERROR_SUCCESS)
                     {
                       *pszString = pszNewString;
-                      if (pdwLength)
+                      if (pdwLength != nullptr)
                         {
                           *pdwLength = dwRealLength;
                         }
@@ -694,16 +694,16 @@ bool
 RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, CString &sString)
 {
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       DWORD dwType, dwRealLength;
-      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, NULL, &dwRealLength) == ERROR_SUCCESS)
+      if (RegQueryValueEx (hSubKey, pszValName, 0, &dwType, nullptr, &dwRealLength) == ERROR_SUCCESS)
         {
           if (dwType == REG_SZ || dwType == REG_EXPAND_SZ || dwType == REG_LINK
                 || dwType == REG_MULTI_SZ)
             {
               LPTSTR pszString = sString.GetBuffer (dwRealLength);
-              if (RegQueryValueEx (hSubKey, pszValName, 0, NULL, (LPBYTE) pszString, &dwRealLength) == ERROR_SUCCESS)
+              if (RegQueryValueEx (hSubKey, pszValName, 0, nullptr, (LPBYTE) pszString, &dwRealLength) == ERROR_SUCCESS)
                 {
                   sString.ReleaseBuffer (dwRealLength);
                   if (hSubKey != hKey)
@@ -742,9 +742,9 @@ RegLoadStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, CStringArray
 bool
 RegSaveVal (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const RegVal *pValData)
 {
-  ASSERT (pValData);
+  ASSERT (pValData != nullptr);
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       LONG lResult;
       if (pValData->dwType == REG_DWORD)
@@ -778,7 +778,7 @@ bool
 RegSaveNumber (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD dwNumber)
 {
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       if (RegSetValueEx (hSubKey, pszValName, 0, REG_DWORD, (LPBYTE) &dwNumber, sizeof (DWORD)) == ERROR_SUCCESS)
         {
@@ -797,7 +797,7 @@ bool
 RegSaveBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const LPBYTE pbyteData, DWORD dwSize)
 {
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       if (RegSetValueEx (hSubKey, pszValName, 0, REG_BINARY, pbyteData, dwSize) == ERROR_SUCCESS)
         {
@@ -816,7 +816,7 @@ bool
 RegSaveString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPCTSTR pszString)
 {
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
       if (RegSetValueEx (hSubKey, pszValName, 0, REG_SZ, (LPBYTE) pszString, (DWORD)(_tcslen (pszString) + 1) * sizeof(TCHAR)) == ERROR_SUCCESS)
         {
@@ -873,20 +873,20 @@ bool
 RegDeleteSubKeys (HKEY hKey)
 {
   DWORD dwSubKeyCnt, dwMaxSubKey;
-  if (RegQueryInfoKey (hKey, NULL, NULL, 0, &dwSubKeyCnt, &dwMaxSubKey,
-                         NULL, NULL, NULL, NULL, NULL, NULL) == ERROR_SUCCESS)
+  if (RegQueryInfoKey (hKey, nullptr, nullptr, 0, &dwSubKeyCnt, &dwMaxSubKey,
+                         nullptr, nullptr, nullptr, nullptr, nullptr, nullptr) == ERROR_SUCCESS)
     {
       if (dwSubKeyCnt)
         {
           LPTSTR pszKeyName = (LPTSTR) malloc (dwMaxSubKey += 1);
-          if (pszKeyName)
+          if (pszKeyName != nullptr)
             {
               do
                 {
                   if (RegEnumKey (hKey, --dwSubKeyCnt, pszKeyName, dwMaxSubKey) == ERROR_SUCCESS)
                     {
                       HKEY hSubKey = RegOpen (hKey, pszKeyName, KEY_READ | KEY_WRITE);
-                      if (hSubKey)
+                      if (hSubKey != nullptr)
                         {
                           if (RegDeleteSubKeys (hSubKey))
                             {
@@ -934,9 +934,9 @@ bool
 RegDeleteKey (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName)
 {
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ | KEY_WRITE) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
-      if (pszValName)
+      if (pszValName != nullptr)
         {
           if (RegDeleteValue (hSubKey, pszValName) == ERROR_SUCCESS)
             {
@@ -965,9 +965,9 @@ bool
 RegHasEntries (HKEY hKey, LPCTSTR pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwValueCount)
 {
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
-  if (hSubKey)
+  if (hSubKey != nullptr)
     {
-      if (RegQueryInfoKey (hSubKey, NULL, NULL, 0, pdwSubKeyCount, NULL, NULL, pdwValueCount, NULL, NULL, NULL, NULL) == ERROR_SUCCESS)
+      if (RegQueryInfoKey (hSubKey, nullptr, nullptr, 0, pdwSubKeyCount, nullptr, nullptr, pdwValueCount, nullptr, nullptr, nullptr, nullptr) == ERROR_SUCCESS)
         {
           if (hSubKey != hKey)
             RegClose (hSubKey);
@@ -980,7 +980,7 @@ RegHasEntries (HKEY hKey, LPCTSTR pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwVa
   return false;
 }
 
-static LPTSTR g_pszValue = NULL;
+static LPTSTR g_pszValue = nullptr;
 static DWORD g_dwValueCnt, g_dwValue, g_dwValueMax;
 
 bool RegFindFirstValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData);
@@ -989,25 +989,25 @@ bool RegFindFirstValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData);
 bool
 RegFindFirstValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData)
 {
-  if (RegQueryInfoKey (hKey, NULL, NULL, 0, NULL, NULL, NULL,
-    &g_dwValueCnt, &g_dwValueMax, NULL, NULL, NULL) == ERROR_SUCCESS)
+  if (RegQueryInfoKey (hKey, nullptr, nullptr, 0, nullptr, nullptr, nullptr,
+    &g_dwValueCnt, &g_dwValueMax, nullptr, nullptr, nullptr) == ERROR_SUCCESS)
     {
       if (g_dwValueCnt)
         {
-          if (g_pszValue)
+          if (g_pszValue != nullptr)
             {
               free (g_pszValue);
-              g_pszValue = NULL;
+              g_pszValue = nullptr;
             }
           g_pszValue = (LPTSTR) malloc (g_dwValueMax += 1);
           if (g_pszValue)
             {
               DWORD dwMaxValue = g_dwValueMax;
               g_dwValue = 0;
-              if (RegEnumValue (hKey, g_dwValue++, g_pszValue, &dwMaxValue, 0, NULL, NULL, NULL) == ERROR_SUCCESS)
+              if (RegEnumValue (hKey, g_dwValue++, g_pszValue, &dwMaxValue, 0, nullptr, nullptr, nullptr) == ERROR_SUCCESS)
                 {
                   *ppszValue = g_pszValue;
-                  return RegLoadVal (hKey, NULL, g_pszValue, pValData);
+                  return RegLoadVal (hKey, nullptr, g_pszValue, pValData);
                 }
             }
         }
@@ -1019,10 +1019,10 @@ RegFindFirstValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData)
 bool RegFindNextValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData)
 {
   DWORD dwMaxValue = g_dwValueMax;
-  if (g_dwValue < g_dwValueCnt && RegEnumValue (hKey, g_dwValue++, g_pszValue, &dwMaxValue, 0, NULL, NULL, NULL) == ERROR_SUCCESS)
+  if (g_dwValue < g_dwValueCnt && RegEnumValue (hKey, g_dwValue++, g_pszValue, &dwMaxValue, 0, nullptr, nullptr, nullptr) == ERROR_SUCCESS)
     {
       *ppszValue = g_pszValue;
-      return RegLoadVal (hKey, NULL, g_pszValue, pValData);
+      return RegLoadVal (hKey, nullptr, g_pszValue, pValData);
     }
   return false;
 }
@@ -1030,10 +1030,10 @@ bool RegFindNextValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData)
 /* closes registry walking */
 void RegFindClose ()
 {
-  if (g_pszValue)
+  if (g_pszValue != nullptr)
     {
       free (g_pszValue);
-      g_pszValue = NULL;
+      g_pszValue = nullptr;
     }
 }
 
@@ -1176,7 +1176,7 @@ HKEY CReg::Connect (HKEY hNewKey, LPCTSTR pszRemote)
 }
 
 /* connect to registry key */
-HKEY CReg::Open (HKEY hNewKey /*= NULL*/)
+HKEY CReg::Open (HKEY hNewKey /*= nullptr*/)
 {
   return hKey = hNewKey;
 }
@@ -1190,12 +1190,12 @@ HKEY CReg::Open (HKEY hNewKey, LPCTSTR pszSubKey, DWORD dwRights)
 /* close computer registry */
 void CReg::Close ()
 {
-  if (hKey != NULL) // MAB 8 Nov 1999 - added NULL test
+  if (hKey != nullptr) // MAB 8 Nov 1999 - added NULL test
     {
       RegClose (hKey);
       //*** MIPO 07-12-1999 - After Closing the Key, hKey must by NULL ****
       // RegClose - dont do that - it must be done manualy
-      hKey = NULL;
+      hKey = nullptr;
     }
 }
 
@@ -1208,7 +1208,7 @@ HKEY CReg::Create (HKEY hNewKey, LPCTSTR pszSubKey, DWORD dwRights)
 /* load data of any type */
 bool CReg::LoadVal (LPCTSTR pszValName, RegVal *pValData)
 {
-  return RegLoadVal (hKey, NULL, pszValName, pValData);
+  return RegLoadVal (hKey, nullptr, pszValName, pValData);
 }
 
 /* load data of any type from subkey */
@@ -1220,7 +1220,7 @@ bool CReg::LoadVal (LPCTSTR pszSubKey, LPCTSTR pszValName, RegVal *pValData)
 /* load a number */
 bool CReg::LoadNumber (LPCTSTR pszValName, DWORD *pdwNumber)
 {
-  return RegLoadNumber (hKey, NULL, pszValName, pdwNumber);
+  return RegLoadNumber (hKey, nullptr, pszValName, pdwNumber);
 }
 
 /* load a number from subkey */
@@ -1232,7 +1232,7 @@ bool CReg::LoadNumber (LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD *pdwNumber)
 /* load binary data */
 bool CReg::LoadBinary (LPCTSTR pszValName, LPBYTE pbyteData, DWORD dwSize)
 {
-  return RegLoadBinary (hKey, NULL, pszValName, pbyteData, dwSize);
+  return RegLoadBinary (hKey, nullptr, pszValName, pbyteData, dwSize);
 }
 
 /* load binary data from subkey */
@@ -1244,7 +1244,7 @@ bool CReg::LoadBinary (LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE pbyteData, 
 /* load new binary data */
 bool CReg::LoadNewBinary (LPCTSTR pszValName, LPBYTE *pbyteData, DWORD *pdwSize)
 {
-  return RegLoadNewBinary (hKey, NULL, pszValName, pbyteData, pdwSize);
+  return RegLoadNewBinary (hKey, nullptr, pszValName, pbyteData, pdwSize);
 }
 
 /* load new binary data from subkey */
@@ -1256,7 +1256,7 @@ bool CReg::LoadNewBinary (LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE *pbyteDa
 /* load a string */
 bool CReg::LoadString (LPCTSTR pszValName, LPTSTR pszString, DWORD dwLength)
 {
-  return RegLoadString (hKey, NULL, pszValName, pszString, dwLength);
+  return RegLoadString (hKey, nullptr, pszValName, pszString, dwLength);
 }
 
 /* load a string from subkey */
@@ -1268,7 +1268,7 @@ bool CReg::LoadString (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszString, 
 /* load a new string */
 bool CReg::LoadNewString (LPCTSTR pszValName, LPTSTR *pszString, DWORD *pdwLength)
 {
-  return RegLoadNewString (hKey, NULL, pszValName, pszString, pdwLength);
+  return RegLoadNewString (hKey, nullptr, pszValName, pszString, pdwLength);
 }
 
 /* load a new string from subkey */
@@ -1280,7 +1280,7 @@ bool CReg::LoadNewString (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR *pszStri
 /* load an array of strings */
 bool CReg::LoadStringArr (LPCTSTR pszValName, LPTSTR pszStrings[], DWORD dwCount)
 {
-  return RegLoadStringArr (hKey, NULL, pszValName, pszStrings, dwCount);
+  return RegLoadStringArr (hKey, nullptr, pszValName, pszStrings, dwCount);
 }
 
 /* load an array of strings from subkey */
@@ -1292,7 +1292,7 @@ bool CReg::LoadStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszStrin
 /* load a new array of strings */
 bool CReg::LoadNewStringArr (LPCTSTR pszValName, LPTSTR **pszStrings, DWORD *pdwCount)
 {
-  return RegLoadNewStringArr (hKey, NULL, pszValName, pszStrings, pdwCount);
+  return RegLoadNewStringArr (hKey, nullptr, pszValName, pszStrings, pdwCount);
 }
 
 /* load a new array of strings from subkey */
@@ -1306,7 +1306,7 @@ bool CReg::LoadNewStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR **psz
 /* load a string */
 bool CReg::LoadString (LPCTSTR pszValName, CString &sString)
 {
-  return RegLoadString (hKey, NULL, pszValName, sString);
+  return RegLoadString (hKey, nullptr, pszValName, sString);
 }
 
 /* load a string from subkey */
@@ -1318,7 +1318,7 @@ bool CReg::LoadString (LPCTSTR pszSubKey, LPCTSTR pszValName, CString &sString)
 /* load an array of strings */
 bool CReg::LoadStringArr (LPCTSTR pszValName, CStringArray &arrString)
 {
-  return RegLoadStringArr (hKey, NULL, pszValName, arrString);
+  return RegLoadStringArr (hKey, nullptr, pszValName, arrString);
 }
 
 /* load an array of strings from subkey */
@@ -1332,7 +1332,7 @@ bool CReg::LoadStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, CStringArray &a
 /* store data of any type */
 bool CReg::SaveVal (LPCTSTR pszValName, const RegVal *pValData)
 {
-  return RegSaveVal (hKey, NULL, pszValName, pValData);
+  return RegSaveVal (hKey, nullptr, pszValName, pValData);
 }
 
 /* store data of any type to subkey */
@@ -1344,7 +1344,7 @@ bool CReg::SaveVal (LPCTSTR pszSubKey, LPCTSTR pszValName, const RegVal *pValDat
 /* store a number */
 bool CReg::SaveNumber (LPCTSTR pszValName, DWORD dwNumber)
 {
-  return RegSaveNumber (hKey, NULL, pszValName, dwNumber);
+  return RegSaveNumber (hKey, nullptr, pszValName, dwNumber);
 }
 
 /* store a number to subkey */
@@ -1356,7 +1356,7 @@ bool CReg::SaveNumber (LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD dwNumber)
 /* store binary data */
 bool CReg::SaveBinary (LPCTSTR pszValName, const LPBYTE pbyteData, DWORD dwSize)
 {
-  return RegSaveBinary (hKey, NULL, pszValName, pbyteData, dwSize);
+  return RegSaveBinary (hKey, nullptr, pszValName, pbyteData, dwSize);
 }
 
 /* store binary data to subkey */
@@ -1368,7 +1368,7 @@ bool CReg::SaveBinary (LPCTSTR pszSubKey, LPCTSTR pszValName, const LPBYTE pbyte
 /* store a string */
 bool CReg::SaveString (LPCTSTR pszValName, LPCTSTR pszString)
 {
-  return RegSaveString (hKey, NULL, pszValName, pszString);
+  return RegSaveString (hKey, nullptr, pszValName, pszString);
 }
 
 /* store a string to subkey */
@@ -1380,7 +1380,7 @@ bool CReg::SaveString (LPCTSTR pszSubKey, LPCTSTR pszValName, LPCTSTR pszString)
 /* store an array of strings */
 bool CReg::SaveStringArr (LPCTSTR pszValName, const LPCTSTR pszStrings[], DWORD dwCount)
 {
-  return RegSaveStringArr (hKey, NULL, pszValName, pszStrings, dwCount);
+  return RegSaveStringArr (hKey, nullptr, pszValName, pszStrings, dwCount);
 }
 
 /* store an array of strings to subkey */
@@ -1394,7 +1394,7 @@ bool CReg::SaveStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, const LPCTSTR p
 /* store an array of strings */
 bool CReg::SaveStringArr (LPCTSTR pszValName, const CStringArray &arrString)
 {
-  return RegSaveStringArr (hKey, NULL, pszValName, arrString);
+  return RegSaveStringArr (hKey, nullptr, pszValName, arrString);
 }
 
 /* store an array of strings to subkey */
@@ -1408,7 +1408,7 @@ bool CReg::SaveStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, const CStringAr
 /* delete the given value or key in the registry with all of its subkeys */
 bool CReg::DeleteKey (LPCTSTR pszValName)
 {
-  return RegDeleteKey (hKey, NULL, pszValName);
+  return RegDeleteKey (hKey, nullptr, pszValName);
 }
 
 /* delete the given value or key in the registry with all of its subkeys in subkey */
@@ -1426,7 +1426,7 @@ bool CReg::DeleteSubKeys ()
 /* check wether the given key has other subkeys and/or values */
 bool CReg::HasEntries (DWORD *pdwSubKeyCount, DWORD *pdwValueCount)
 {
-  return RegHasEntries (hKey, NULL, pdwSubKeyCount, pdwValueCount);
+  return RegHasEntries (hKey, nullptr, pdwSubKeyCount, pdwValueCount);
 }
 
 /* check wether the given key has other subkeys and/or values in subkey */

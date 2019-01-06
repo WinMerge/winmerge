@@ -45,21 +45,21 @@ public:
 	bool HasFilter() const;
 	bool HasSubfolders() const;
 
-	String GetLeft(bool * pReadOnly = NULL) const;
+	String GetLeft(bool * pReadOnly = nullptr) const;
 	bool GetLeftReadOnly() const;
-	String GetMiddle(bool * pReadOnly = NULL) const;
+	String GetMiddle(bool * pReadOnly = nullptr) const;
 	bool GetMiddleReadOnly() const;
 	String GetMiddle() const;
-	String GetRight(bool * pReadOnly = NULL) const;
+	String GetRight(bool * pReadOnly = nullptr) const;
 	bool GetRightReadOnly() const;
 	String GetFilter() const;
 	int GetSubfolders() const;
 
-	void SetLeft(const String& sLeft, const bool * pReadOnly = NULL);
-	void SetMiddle(const String& sMiddle, const bool * pReadOnly = NULL);
-	void SetRight(const String& sRight, const bool * pReadOnly = NULL);
+	void SetLeft(const String& sLeft, const bool * pReadOnly = nullptr);
+	void SetMiddle(const String& sMiddle, const bool * pReadOnly = nullptr);
+	void SetRight(const String& sRight, const bool * pReadOnly = nullptr);
 	void SetFilter(const String& sFilter);
-	void SetSubfolders(int iSubfolder);
+	void SetSubfolders(bool bSubfolder);
 
 	void GetPaths(PathContext& files, bool & bSubFolders) const;
 	void SetPaths(const PathContext& files, bool bSubFolders = false);

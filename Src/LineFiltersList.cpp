@@ -19,7 +19,7 @@ static const TCHAR FiltersRegPath[] =_T("LineFilters");
  * @brief Default constructor.
  */
 LineFiltersList::LineFiltersList()
-: m_pOptionsMgr(NULL)
+: m_pOptionsMgr(nullptr)
 {
 }
 
@@ -147,7 +147,7 @@ bool LineFiltersList::Compare(const LineFiltersList *list) const
  */
 void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 {
-	assert(pOptionsMgr);
+	assert(pOptionsMgr != nullptr);
 	String valuename(FiltersRegPath);
 
 	m_pOptionsMgr = pOptionsMgr;
@@ -177,7 +177,7 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
  */
 void LineFiltersList::SaveFilters()
 {
-	assert(m_pOptionsMgr);
+	assert(m_pOptionsMgr != nullptr);
 	String valuename(FiltersRegPath);
 
 	size_t count = m_items.size();
@@ -224,18 +224,18 @@ void LineFiltersList::SaveFilters()
  */
 void LineFiltersList::Import(const String& filters)
 {
-	const TCHAR sep[] = _T("\r\n");
-	TCHAR *p_filters = (TCHAR *)&filters[0];
-	TCHAR *pfilterNext = nullptr;
-	
 	if (!filters.empty())
 	{
+		const TCHAR sep[] = _T("\r\n");
+		TCHAR *p_filters = (TCHAR *)&filters[0];
+		TCHAR *pfilterNext = nullptr;
+	
 		// find each regular expression and add to list
 		TCHAR *token = _tcstok_s(p_filters, sep, &pfilterNext);
-		while (token)
+		while (token != nullptr)
 		{
 			AddFilter(token, true);
-			token = _tcstok_s(NULL, sep, &pfilterNext);
+			token = _tcstok_s(nullptr, sep, &pfilterNext);
 		}
 		SaveFilters();
 	}

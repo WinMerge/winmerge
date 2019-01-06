@@ -182,15 +182,15 @@ bool CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 	m_pContentCompareOptions.reset();
 	m_pQuickCompareOptions.reset();
 	m_pOptions.reset(new DIFFOPTIONS);
-	if (m_pOptions != NULL)
+	if (m_pOptions != nullptr)
 		std::memcpy(m_pOptions.get(), &options, sizeof(DIFFOPTIONS));
 	else
 		return false;
 
 	m_nCompMethod = compareMethod;
-	if (GetCompareOptions(m_nCompMethod) == NULL)
+	if (GetCompareOptions(m_nCompMethod) == nullptr)
 	{
-		// For Date and Date+Size compare NULL is ok since they don't have actual
+		// For Date and Date+Size compare `nullptr` is ok since they don't have actual
 		// compare options.
 		if (m_nCompMethod == CMP_DATE || m_nCompMethod == CMP_DATE_SIZE ||
 			m_nCompMethod == CMP_SIZE)
@@ -215,26 +215,26 @@ bool CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 {
 	FastMutex::ScopedLock lock(m_mutex);
-	CompareOptions *pCompareOptions = NULL;
+	CompareOptions *pCompareOptions = nullptr;
 
 	// Otherwise we have to create new options
 	switch (compareMethod)
 	{
 	case CMP_CONTENT:
-		if (m_pContentCompareOptions)
+		if (m_pContentCompareOptions != nullptr)
 			return m_pContentCompareOptions.get();
 		m_pContentCompareOptions.reset(pCompareOptions = new DiffutilsOptions());
 		break;
 
 	case CMP_QUICK_CONTENT:
-		if (m_pQuickCompareOptions)
+		if (m_pQuickCompareOptions != nullptr)
 			return m_pQuickCompareOptions.get();
 		m_pQuickCompareOptions.reset(pCompareOptions = new QuickCompareOptions());
 		break;
 	}
 
 
-	if (pCompareOptions)
+	if (pCompareOptions != nullptr)
 		pCompareOptions->SetFromDiffOptions(*m_pOptions);
 
 	return pCompareOptions;
@@ -244,7 +244,7 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 void CDiffContext::FetchPluginInfos(const String& filteredFilenames,
 		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer)
 {
-	assert(m_piPluginInfos);
+	assert(m_piPluginInfos != nullptr);
 	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
 }
 
@@ -254,5 +254,5 @@ void CDiffContext::FetchPluginInfos(const String& filteredFilenames,
  */
 bool CDiffContext::ShouldAbort() const
 {
-	return m_piAbortable && m_piAbortable->ShouldAbort();
+	return m_piAbortable!=nullptr && m_piAbortable->ShouldAbort();
 }

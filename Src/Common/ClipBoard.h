@@ -37,7 +37,7 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 
 	// CF_HDROP
 	HGLOBAL hDrop = GlobalAlloc(GHND, sizeof(DROPFILES) + sizeof(TCHAR) * strPaths.length());
-	if (!hDrop)
+	if (hDrop == nullptr)
 		return;
 	if (TCHAR *pDrop = static_cast<TCHAR *>(GlobalLock(hDrop)))
 	{
@@ -51,7 +51,7 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 
 	// CF_DROPEFFECT
 	HGLOBAL hDropEffect = GlobalAlloc(GHND, sizeof(DWORD));
-	if (!hDropEffect)
+	if (hDropEffect == nullptr)
 	{
 		GlobalFree(hDrop);
 		return;
@@ -64,7 +64,7 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 
 	// CF_UNICODETEXT
 	HGLOBAL hPathnames = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, sizeof(TCHAR) * (strPathsSepSpc.length() + 1));
-	if (!hPathnames)
+	if (hPathnames == nullptr)
 	{
 		GlobalFree(hDrop);
 		GlobalFree(hDropEffect);

@@ -57,7 +57,7 @@ public:
  * @brief Default constructor.
  */
 CDiffThread::CDiffThread()
-: m_pDiffContext(NULL)
+: m_pDiffContext(nullptr)
 , m_bAborting(false)
 , m_bPaused(false)
 , m_pDiffParm(new DiffFuncStruct)
@@ -113,7 +113,7 @@ unsigned CDiffThread::CompareDirectories()
 
 	m_pDiffParm->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);
 
-	if (m_bOnlyRequested == false)
+	if (!m_bOnlyRequested)
 		m_threads[0].start(DiffThreadCollect, m_pDiffParm.get());
 	else
 	{
@@ -158,7 +158,7 @@ static void DiffThreadCollect(void *pParam)
 	PathContext paths;
 	DiffFuncStruct *myStruct = static_cast<DiffFuncStruct *>(pParam);
 
-	assert(myStruct->bOnlyRequested == false);
+	assert(!myStruct->bOnlyRequested);
 
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
@@ -172,7 +172,7 @@ static void DiffThreadCollect(void *pParam)
 
 	// Build results list (except delaying file comparisons until below)
 	DirScan_GetItems(paths, subdir, myStruct,
-			casesensitive, depth, NULL, myStruct->context->m_bWalkUniques);
+			casesensitive, depth, nullptr, myStruct->context->m_bWalkUniques);
 
 	// ReleaseSemaphore() once again to signal that collect phase is ready
 	myStruct->pSemaphore->set();

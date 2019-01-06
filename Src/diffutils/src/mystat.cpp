@@ -25,7 +25,7 @@ inline void set_statbuf(const FileInfo& hfi, struct _stat64& buf)
 
 extern "C" int myfstat(int fd, struct _stat64 *buf)
 {
-	if (!buf)
+	if (buf == nullptr)
 	{
 		errno = EINVAL;
 		return -1;
@@ -45,7 +45,7 @@ extern "C" int myfstat(int fd, struct _stat64 *buf)
 	case FILE_TYPE_PIPE:
 		buf->st_mode = _S_IFIFO;
 		DWORD nBufferSize;
-		if (PeekNamedPipe(hFile, NULL, 0, NULL, &nBufferSize, NULL))
+		if (PeekNamedPipe(hFile, nullptr, 0, nullptr, &nBufferSize, nullptr))
 			buf->st_size = nBufferSize;
 		return 0;
 	case FILE_TYPE_DISK:
@@ -65,12 +65,12 @@ extern "C" int myfstat(int fd, struct _stat64 *buf)
 
 extern "C" int mywstat(const wchar_t *filename, struct _stat64 *buf)
 {
-	if (!buf)
+	if (buf == nullptr)
 	{
 		errno = EINVAL;
 		return -1;
 	}
-	if (wcspbrk(filename, L"*?"))
+	if (wcspbrk(filename, L"*?") != nullptr)
 	{
 		errno = ENOENT;
 		return -1;

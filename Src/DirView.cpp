@@ -390,17 +390,18 @@ void CDirView::OnInitialUpdate()
 	}
 
 	// Replace standard header with sort header
-	if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
+	HWND hWnd = ListView_GetHeader(m_pList->m_hWnd);
+	if (hWnd != nullptr)
 		m_ctlSortHeader.SubclassWindow(hWnd);
 
 	// Load the icons used for the list view (to reflect diff status)
-	// NOTE: these must be in the exactly the same order than in enum
-	// definition in begin of this file!
+	// NOTE: these must be in the exactly the same order as in the `enum`
+	// definition in the DirActions.h file (ref: DIFFIMG_LUNIQUE)
 	VERIFY(m_imageList.Create(iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1));
 	int icon_ids[] = {
 		IDI_LFILE, IDI_MFILE, IDI_RFILE,
 		IDI_MRFILE, IDI_LRFILE, IDI_LMFILE,
-		IDI_NOTEQUALFILE, IDI_EQUALFILE,
+		IDI_NOTEQUALFILE, IDI_EQUALFILE, IDI_FILE, 
 		IDI_EQUALBINARY, IDI_BINARYDIFF,
 		IDI_LFOLDER, IDI_MFOLDER, IDI_RFOLDER,
 		IDI_MRFOLDER, IDI_LRFOLDER, IDI_LMFOLDER,
@@ -442,7 +443,7 @@ void CDirView::OnInitialUpdate()
  */
 void CDirView::StartCompare(CompareStats *pCompareStats)
 {
-	if (m_pCmpProgressBar == NULL)
+	if (m_pCmpProgressBar == nullptr)
 		m_pCmpProgressBar.reset(new DirCompProgressBar());
 
 	if (!::IsWindow(m_pCmpProgressBar->GetSafeHwnd()))
@@ -674,7 +675,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 
 	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
 	BCMenu *pPopup = static_cast<BCMenu*>(menu.GetSubMenu(0));
-	ASSERT(pPopup != NULL);
+	ASSERT(pPopup != nullptr);
 
 	if (pDoc->m_nDirs < 3)
 	{
@@ -721,7 +722,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	pPopup->AppendMenu(MF_POPUP, static_cast<int>(reinterpret_cast<uintptr_t>(menuPluginsHolder.m_hMenu)), s.c_str());
 
 	CFrameWnd *pFrame = GetTopLevelFrame();
-	ASSERT(pFrame != NULL);
+	ASSERT(pFrame != nullptr);
 	pFrame->m_bAutoMenuEnable = FALSE;
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
@@ -742,7 +743,7 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 	theApp.TranslateMenu(menu.m_hMenu);
 	// 2nd submenu of IDR_POPUP_DIRVIEW is for header popup
 	BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(1));
-	ASSERT(pPopup != NULL);
+	ASSERT(pPopup != nullptr);
 
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
@@ -1015,7 +1016,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 	
 	// Make sure selection is at sensible place if all selected items
 	// were removed.
-	if (bItemsRemoved == true)
+	if (bItemsRemoved)
 	{
 		UINT selected = GetSelectedCount();
 		if (selected == 0)
@@ -1231,7 +1232,7 @@ void CDirView::OpenParentDirectory()
 		DWORD dwFlags[3];
 		for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
 			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
-		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, NULL, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
+		GetMainFrame()->DoFileOpen(&pathsParent, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDoc);
 	}
 		// fall through (no break!)
 	case AllowUpwardDirectory::No:
@@ -1322,7 +1323,7 @@ static bool CreateFoldersPair(const PathContext& paths)
  * This handles the case that one item is selected
  * and the case that two items are selected (one on each side)
  */
-void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= NULL*/)
+void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= nullptr*/)
 {
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
 	CDirDoc * pDoc = GetDocument();
@@ -1394,12 +1395,12 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	{
 		// Open subfolders
 		// Don't add folders to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, NULL, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? NULL : pDoc);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDoc);
 	}
 	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
 	{
 		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, NULL, _T(""), GetDiffContext().m_bRecursive, NULL, _T(""), infoUnpacker);
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, nullptr, _T(""), infoUnpacker);
 	}
 	else
 	{
@@ -1476,7 +1477,7 @@ void CDirView::OpenSelectionAs(UINT id)
 
 	if (pos1 == SPECIAL_ITEM_POS)
 	{
-		ASSERT(FALSE);
+		ASSERT(false);
 		return;
 	}
 
@@ -2017,7 +2018,7 @@ void CDirView::OnCurdiff()
 	if (i == -1)
 		i = count;
 
-	while (i < count && found == false)
+	while (i < count && !found)
 	{
 		UINT selected = m_pList->GetItemState(i, LVIS_SELECTED);
 		UINT focused = m_pList->GetItemState(i, LVIS_FOCUSED);
@@ -2113,12 +2114,12 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 	// Handle special shortcuts here
 	if (pMsg->message == WM_KEYDOWN)
 	{
-		if (false == IsLabelEdit())
+		if (!IsLabelEdit())
 		{
 			// Check if we got 'ESC pressed' -message
 			if (pMsg->wParam == VK_ESCAPE)
 			{
-				if (m_pCmpProgressBar)
+				if (m_pCmpProgressBar != nullptr)
 				{
 					OnBnClickedComparisonStop();
 					return TRUE;
@@ -2148,7 +2149,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 				else if (m_bTreeMode && sel >= 0)
 				{
 					const DIFFITEM& di = GetDiffItem(sel);
-					if (di.parent != NULL)
+					if (di.parent != nullptr)
 					{
 						int i = GetItemIndex((uintptr_t)di.parent);
 						if (i >= 0)
@@ -2197,7 +2198,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			// ESC doesn't close window when user is renaming an item.
 			if (pMsg->wParam == VK_ESCAPE)
 			{
-				m_bUserCancelEdit = TRUE;
+				m_bUserCancelEdit = true;
 
 				// The edit control send LVN_ENDLABELEDIT when it loses focus,
 				// so we use it to cancel the rename action.
@@ -2228,12 +2229,12 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	UNREFERENCED_PARAMETER(lParam);
 
 	CDirDoc * pDoc = GetDocument();
-	ASSERT(pDoc);
+	ASSERT(pDoc != nullptr);
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
 		// Close and destroy the dialog after compare
-		if (m_pCmpProgressBar)
+		if (m_pCmpProgressBar != nullptr)
 			GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);
 		m_pCmpProgressBar.reset();
 
@@ -2263,11 +2264,11 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	}
 	else if (wParam == CDiffThread::EVENT_COMPARE_PROGRESSED)
 	{
-		InvalidateRect(NULL, FALSE);
+		InvalidateRect(nullptr, FALSE);
 	}
 	else if (wParam == CDiffThread::EVENT_COLLECT_COMPLETED)
 	{
-		if (m_pSavedTreeState)
+		if (m_pSavedTreeState != nullptr)
 		{
 			RestoreTreeState(GetDiffContext(), m_pSavedTreeState.get());
 			m_pSavedTreeState.reset();
@@ -2318,31 +2319,31 @@ BOOL CDirView::OnChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* p
 /**
  * @brief User is starting to drag a column header
  */
-BOOL CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
+bool CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
 {
 	// save column widths before user reorders them
 	// so we can reload them on the end drag
 	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
 	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
 		m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
-	return TRUE;
+	return true;
 }
 
 /**
  * @brief User just finished dragging a column header
  */
-BOOL CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
+bool CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
 {
 	int src = hdr->iItem;
 	int dest = hdr->pitem->iOrder;
-	bool allowDrop = TRUE;
-	*pResult = !allowDrop;
+	bool allowDrop = true;
+	*pResult = allowDrop ? FALSE : TRUE;
 	if (allowDrop && src != dest && dest != -1)
 	{
 		m_pColItems->MoveColumn(src, dest);
 		InitiateSort();
 	}
-	return TRUE;
+	return true;
 }
 
 /**
@@ -2354,7 +2355,7 @@ void CDirView::FixReordering()
 	lvcol.mask = LVCF_ORDER;
 	lvcol.fmt = 0;
 	lvcol.cx = 0;
-	lvcol.pszText = 0;
+	lvcol.pszText = nullptr;
 	lvcol.iSubItem = 0;
 	for (int i = 0; i < m_pColItems->GetColCount(); ++i)
 	{
@@ -2576,17 +2577,17 @@ struct FileCmpReport: public IFileCmpReport
 		m_pDirView->OpenSelection();
 		CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
 		IMergeDoc * pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-		if (!pMergeDoc)
+		if (pMergeDoc == nullptr)
 			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
 
-		if (pMergeDoc)
+		if (pMergeDoc != nullptr)
 		{
 			pMergeDoc->GenerateReport(paths::ConcatPath(sDestDir, sLinkPath));
 			pMergeDoc->CloseNow();
 		}
 
 		MSG msg;
-		while (::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE))
+		while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
 			if (!AfxGetApp()->PumpMessage())
 				break;
 		GetMainFrame()->OnUpdateFrameTitle(FALSE);
@@ -2758,35 +2759,35 @@ void CDirView::OnCtxtDirZip()
 
 void CDirView::ShowShellContextMenu(SIDE_TYPE stype)
 {
-	CShellContextMenu *pContextMenu = NULL;
+	CShellContextMenu *pContextMenu = nullptr;
 	switch (stype)
 	{
 	case SIDE_LEFT:
-		if (!m_pShellContextMenuLeft)
+		if (m_pShellContextMenuLeft == nullptr)
 			m_pShellContextMenuLeft.reset(new CShellContextMenu(LeftCmdFirst, LeftCmdLast));
 		pContextMenu = m_pShellContextMenuLeft.get();
 		break;
 	case SIDE_MIDDLE:
-		if (!m_pShellContextMenuMiddle)
+		if (m_pShellContextMenuMiddle == nullptr)
 			m_pShellContextMenuMiddle.reset(new CShellContextMenu(MiddleCmdFirst, MiddleCmdLast));
 		pContextMenu = m_pShellContextMenuMiddle.get();
 		break;
 	case SIDE_RIGHT:
-		if (!m_pShellContextMenuRight)
+		if (m_pShellContextMenuRight == nullptr)
 			m_pShellContextMenuRight.reset(new CShellContextMenu(RightCmdFirst, RightCmdLast));
 		pContextMenu = m_pShellContextMenuRight.get();
 		break;
 	}
-	if (pContextMenu && ListShellContextMenu(stype))
+	if (pContextMenu!=nullptr && ListShellContextMenu(stype))
 	{
 		CPoint point;
 		GetCursorPos(&point);
 		HWND hWnd = GetSafeHwnd();
 		CFrameWnd *pFrame = GetTopLevelFrame();
-		ASSERT(pFrame != NULL);
+		ASSERT(pFrame != nullptr);
 		BOOL bAutoMenuEnableOld = pFrame->m_bAutoMenuEnable;
 		pFrame->m_bAutoMenuEnable = FALSE;
-		BOOL nCmd = TrackPopupMenu(pContextMenu->GetHMENU(), TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, 0, hWnd, NULL);
+		BOOL nCmd = TrackPopupMenu(pContextMenu->GetHMENU(), TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, 0, hWnd, nullptr);
 		if (nCmd)
 			pContextMenu->InvokeCommand(nCmd, hWnd);
 		pContextMenu->ReleaseShellContextMenu();
@@ -2807,7 +2808,7 @@ void CDirView::OnSelectAll()
 {
 	// While the user is renaming an item, select all the edited text.
 	CEdit *pEdit = m_pList->GetEditControl();
-	if (NULL != pEdit)
+	if (pEdit != nullptr)
 	{
 		pEdit->SetSel(pEdit->GetWindowTextLength());
 	}
@@ -2858,7 +2859,7 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	BCMenu *pPopup = static_cast<BCMenu*>(pCmdUI->m_pSubMenu);
-	if (pPopup == NULL)
+	if (pPopup == nullptr)
 		return;
 
 	std::pair<int, int> counts = CountPredifferYesNo(SelBegin(), SelEnd(), GetDiffContext());
@@ -3005,7 +3006,7 @@ void CDirView::OnUpdateCtxtDirMoveTo(CCmdUI* pCmdUI)
 void CDirView::OnSize(UINT nType, int cx, int cy)
 {
 	CListView::OnSize(nType, cx, cy);
-	GetDocument()->SetTitle(NULL);
+	GetDocument()->SetTitle(nullptr);
 }
 
 /**
@@ -3054,10 +3055,10 @@ afx_msg void CDirView::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 	*pResult = (SelBegin() == SelEnd());
 
 	// If label edit is allowed.
-	if (FALSE == *pResult)
+	if (*pResult == FALSE)
 	{
 		const NMLVDISPINFO *pdi = (NMLVDISPINFO*)pNMHDR;
-		ASSERT(pdi != NULL);
+		ASSERT(pdi != nullptr);
 
 		// Locate the edit box on the right column in case the user changed the
 		// column order.
@@ -3077,10 +3078,10 @@ afx_msg void CDirView::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 
 		// Set the edit control with the updated text.
 		CEdit *pEdit = m_pList->GetEditControl();
-		ASSERT(NULL != pEdit);
+		ASSERT(pEdit != nullptr);
 		pEdit->SetWindowText(sText);
 
-		m_bUserCancelEdit = FALSE;
+		m_bUserCancelEdit = false;
 	}
 }
 
@@ -3092,15 +3093,15 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	*pResult = FALSE;
 
-	// We can't use the normal condition of pszText==NULL to know if the
+	// We can't use the normal condition of pszText==`nullptr` to know if the
 	// user cancels editing when file names had different case (e.g.
 	// "file.txt|FILE.txt"). The edit text was changed to "file.txt" and
-	// if the user accept it as the new file name, pszText is NULL.
+	// if the user accept it as the new file name, pszText is `nullptr`.
 
-	if (TRUE != m_bUserCancelEdit)
+	if (!m_bUserCancelEdit)
 	{
 		CEdit *pEdit = m_pList->GetEditControl();
-		ASSERT(NULL != pEdit);
+		ASSERT(pEdit != nullptr);
 
 		CString sText;
 		pEdit->GetWindowText(sText);
@@ -3502,7 +3503,7 @@ void CDirView::DoFileEncodingDialog()
 
 	ApplyCodepage(SelBegin(), SelEnd(), GetDiffContext(), affected, dlg.GetLoadCodepage());
 
-	m_pList->InvalidateRect(NULL);
+	m_pList->InvalidateRect(nullptr);
 	m_pList->UpdateWindow();
 
 	// TODO: We could loop through any active merge windows belonging to us
@@ -3529,7 +3530,7 @@ void CDirView::OnHelp()
  */
 bool CDirView::IsLabelEdit() const
 {
-	return (NULL != m_pList->GetEditControl());
+	return (m_pList->GetEditControl() != nullptr);
 }
 
 /**
@@ -3538,7 +3539,7 @@ bool CDirView::IsLabelEdit() const
 void CDirView::OnEditCopy()
 {
 	CEdit *pEdit = m_pList->GetEditControl();
-	if (NULL != pEdit)
+	if (pEdit != nullptr)
 	{
 		pEdit->Copy();
 	}
@@ -3550,7 +3551,7 @@ void CDirView::OnEditCopy()
 void CDirView::OnEditCut()
 {
 	CEdit *pEdit = m_pList->GetEditControl();
-	if (NULL != pEdit)
+	if (pEdit != nullptr)
 	{
 		pEdit->Cut();
 	}
@@ -3562,7 +3563,7 @@ void CDirView::OnEditCut()
 void CDirView::OnEditPaste()
 {
 	CEdit *pEdit = m_pList->GetEditControl();
-	if (NULL != pEdit)
+	if (pEdit != nullptr)
 	{
 		pEdit->Paste();
 	}
@@ -3574,7 +3575,7 @@ void CDirView::OnEditPaste()
 void CDirView::OnEditUndo()
 {
 	CEdit *pEdit = m_pList->GetEditControl();
-	if (NULL != pEdit)
+	if (pEdit != nullptr)
 	{
 		pEdit->Undo();
 	}
@@ -3595,16 +3596,16 @@ void CDirView::OnUpdateEditUndo(CCmdUI* pCmdUI)
  *
  * @param [in] hMenu Handle to the menu to check ownership of.
  * @return Either m_pShellContextMenuLeft, m_pShellContextMenuRight
- *   or NULL if hMenu is not owned by these two.
+ *   or `nullptr` if hMenu is not owned by these two.
  */
 CShellContextMenu* CDirView::GetCorrespondingShellContextMenu(HMENU hMenu) const
 {
-	CShellContextMenu* pMenu = NULL;
-	if (m_pShellContextMenuLeft && hMenu == m_pShellContextMenuLeft->GetHMENU())
+	CShellContextMenu* pMenu = nullptr;
+	if (m_pShellContextMenuLeft!=nullptr && hMenu == m_pShellContextMenuLeft->GetHMENU())
 		pMenu = m_pShellContextMenuLeft.get();
-	else if (m_pShellContextMenuMiddle && hMenu == m_pShellContextMenuMiddle->GetHMENU())
+	else if (m_pShellContextMenuMiddle!=nullptr && hMenu == m_pShellContextMenuMiddle->GetHMENU())
 		pMenu = m_pShellContextMenuMiddle.get();
-	else if (m_pShellContextMenuRight && hMenu == m_pShellContextMenuRight->GetHMENU())
+	else if (m_pShellContextMenuRight!=nullptr && hMenu == m_pShellContextMenuRight->GetHMENU())
 		pMenu = m_pShellContextMenuRight.get();
 
 	return pMenu;
@@ -3643,7 +3644,7 @@ LRESULT CDirView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 
 	CShellContextMenu* pMenu = GetCorrespondingShellContextMenu(m_hCurrentMenu);
 
-	if (pMenu)
+	if (pMenu != nullptr)
 	{
 		LRESULT res = 0;
 		pMenu->HandleMenuMessage(message, wParam, lParam, res);
@@ -3685,21 +3686,21 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CDirView::OnBnClickedComparisonStop()
 {
-	if (m_pCmpProgressBar)
+	if (m_pCmpProgressBar != nullptr)
 		m_pCmpProgressBar->EndUpdating();
 	GetDocument()->AbortCurrentScan();
 }
 
 void CDirView::OnBnClickedComparisonPause()
 {
-	if (m_pCmpProgressBar)
+	if (m_pCmpProgressBar != nullptr)
 		m_pCmpProgressBar->SetPaused(true);
 	GetDocument()->PauseCurrentScan();
 }
 
 void CDirView::OnBnClickedComparisonContinue()
 {
-	if (m_pCmpProgressBar)
+	if (m_pCmpProgressBar != nullptr)
 		m_pCmpProgressBar->SetPaused(false);
 	GetDocument()->ContinueCurrentScan();
 }
@@ -3811,14 +3812,14 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 	file.Write(filesForDroping.data(), static_cast<unsigned>((filesForDroping.length() + 1) * sizeof(TCHAR)));
 	
 	HGLOBAL hMem = GlobalReAlloc(file.Detach(), (filesForDroping.length() + 1) * sizeof(TCHAR), 0);
-	if (hMem) 
+	if (hMem != nullptr) 
 	{
 #ifdef _UNICODE
 		DropData->CacheGlobalData(CF_UNICODETEXT, hMem);
 #else
 		DropData->CacheGlobalData(CF_TEXT, hMem);
 #endif
-		DROPEFFECT de = DropData->DoDragDrop(DROPEFFECT_COPY | DROPEFFECT_MOVE, NULL);
+		DROPEFFECT de = DropData->DoDragDrop(DROPEFFECT_COPY | DROPEFFECT_MOVE, nullptr);
 	}
 
 	*pResult = 0;
@@ -4050,7 +4051,7 @@ DirActions CDirView::MakeDirActions(DirActions::method_type func) const
 DirActions CDirView::MakeDirActions(DirActions::method_type2 func) const
 {
 	const CDirDoc *pDoc = GetDocument();
-	return DirActions(pDoc->GetDiffContext(), pDoc->GetReadOnly(), NULL, func);
+	return DirActions(pDoc->GetDiffContext(), pDoc->GetReadOnly(), nullptr, func);
 }
 
 const CDiffContext& CDirView::GetDiffContext() const

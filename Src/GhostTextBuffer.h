@@ -90,7 +90,7 @@ public :
 #endif
 
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-	                            LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = NULL) override;
+	                            LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = nullptr) override;
 	virtual UndoRecord GetUndoRecord(int nUndoPos) const override;
 	virtual bool UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos,
 							const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur) override;

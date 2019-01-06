@@ -28,11 +28,11 @@
 #include "UnicodeString.h"
 
 bool SelectFile(HWND parent, String& path, bool is_open = true,
-			LPCTSTR initialPath = NULL, const String& stitle = _T(""),
-			const String& sfilter = _T(""), LPCTSTR defaultExtension = NULL);
+			LPCTSTR initialPath = nullptr, const String& stitle = _T(""),
+			const String& sfilter = _T(""), LPCTSTR defaultExtension = nullptr);
 
-bool SelectFolder(String& path, LPCTSTR root_path = NULL, 
+bool SelectFolder(String& path, LPCTSTR root_path = nullptr, 
 			 const String& title = _T(""),
-			 HWND hwndOwner = NULL);
+			 HWND hwndOwner = nullptr);
 
-bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR root_path = NULL);
+bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR root_path = nullptr);

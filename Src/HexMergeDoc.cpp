@@ -124,11 +124,11 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CHexMergeDoc::CHexMergeDoc()
-: m_pDirDoc(NULL)
+: m_pDirDoc(nullptr)
 {
 	m_nBuffers = m_nBuffersTemp;
 	m_filePaths.SetSize(m_nBuffers);
-	std::fill_n(m_pView, m_nBuffers, static_cast<CHexMergeView *>(NULL));
+	std::fill_n(m_pView, m_nBuffers, static_cast<CHexMergeView *>(nullptr));
 	std::fill_n(m_nBufferType, m_nBuffers, BUFFER_NORMAL);
 }
 
@@ -139,7 +139,7 @@ CHexMergeDoc::CHexMergeDoc()
  */
 CHexMergeDoc::~CHexMergeDoc()
 {	
-	if (m_pDirDoc)
+	if (m_pDirDoc != nullptr)
 		m_pDirDoc->MergeDocClosing(this);
 }
 
@@ -150,7 +150,7 @@ CHexMergeView * CHexMergeDoc::GetActiveMergeView() const
 {
 	CView * pActiveView = GetParentFrame()->GetActiveView();
 	CHexMergeView * pHexMergeView = dynamic_cast<CHexMergeView *>(pActiveView);
-	if (!pHexMergeView)
+	if (pHexMergeView == nullptr)
 		pHexMergeView = m_pView[0]; // default to left view (in case some location or detail view active)
 	return pHexMergeView;
 }
@@ -161,7 +161,7 @@ CHexMergeView * CHexMergeDoc::GetActiveMergeView() const
 int CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
 {
 	// If directory compare has results
-	if (pDirDoc && pDirDoc->HasDiffs())
+	if (pDirDoc != nullptr && pDirDoc->HasDiffs())
 	{
 		CDiffContext &ctxt = pDirDoc->GetDiffContext();
 		if (UINT_PTR pos = FindItemFromPaths(ctxt, m_filePaths))
@@ -300,7 +300,7 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	}
 	else
 	{	
-		result = FALSE;
+		result = false;
 	}
 
 	// If file were modified and saving was successfull,
@@ -436,7 +436,7 @@ void CHexMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
  */
 void CHexMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 {
-	ASSERT(pDirDoc && !m_pDirDoc);
+	ASSERT(pDirDoc != nullptr && m_pDirDoc == nullptr);
 	m_pDirDoc = pDirDoc;
 }
 
@@ -454,7 +454,7 @@ CHexMergeFrame * CHexMergeDoc::GetParentFrame() const
 void CHexMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
 {
 	ASSERT(m_pDirDoc == pDirDoc);
-	m_pDirDoc = 0;
+	m_pDirDoc = nullptr;
 }
 
 /**
@@ -504,7 +504,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, bool readOnly, co
 bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], int nPane)
 {
 	CHexMergeFrame *pf = GetParentFrame();
-	ASSERT(pf);
+	ASSERT(pf != nullptr);
 	bool bSucceeded = true;
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < nFiles; nBuffer++)
@@ -557,7 +557,7 @@ void CHexMergeDoc::CheckFileChanged(void)
 void CHexMergeDoc::UpdateHeaderPath(int pane)
 {
 	CHexMergeFrame *pf = GetParentFrame();
-	ASSERT(pf);
+	ASSERT(pf != nullptr);
 	String sText;
 
 	if (m_nBufferType[pane] == BUFFER_UNNAMED ||
@@ -568,14 +568,14 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 	else
 	{
 		sText = m_filePaths.GetPath(pane);
-		if (m_pDirDoc)
+		if (m_pDirDoc != nullptr)
 			m_pDirDoc->ApplyDisplayRoot(pane, sText);
 	}
 	if (m_pView[pane]->GetModified())
 		sText.insert(0, _T("* "));
 	pf->GetHeaderInterface()->SetText(pane, sText);
 
-	SetTitle(NULL);
+	SetTitle(nullptr);
 }
 
 
@@ -585,7 +585,7 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 static void Customize(IHexEditorWindow::Settings *settings)
 {
 	settings->bSaveIni = false;
-	//settings->iAutomaticBPL = FALSE;
+	//settings->iAutomaticBPL = false;
 	//settings->iBytesPerLine = 16;
 	//settings->iFontSize = 8;
 }
@@ -642,7 +642,7 @@ void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 	String sTitle;
 	String sFileName[3];
 
-	if (lpszTitle)
+	if (lpszTitle != nullptr)
 		sTitle = lpszTitle;
 	else
 	{
@@ -664,7 +664,7 @@ void CHexMergeDoc::SetMergeViews(CHexMergeView *pView[])
 {
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		ASSERT(pView[nBuffer] && !m_pView[nBuffer]);
+		ASSERT(pView[nBuffer] != nullptr && m_pView[nBuffer] == nullptr);
 		m_pView[nBuffer] = pView[nBuffer];
 		m_pView[nBuffer]->m_nThisPane = nBuffer;
 	}

@@ -129,14 +129,14 @@ END_MESSAGE_MAP()
 CMergeDoc::CMergeDoc()
 : m_bEnableRescan(true)
 , m_nCurDiff(-1)
-, m_pDirDoc(NULL)
+, m_pDirDoc(nullptr)
 , m_bMixedEol(false)
 , m_pInfoUnpacker(new PackingInfo)
 , m_pEncodingErrorBar(nullptr)
 , m_bHasSyncPoints(false)
 , m_bAutoMerged(false)
 , m_nGroups(0)
-, m_pView{0}
+, m_pView{nullptr}
 {
 	DIFFOPTIONS options = {0};
 
@@ -162,7 +162,7 @@ CMergeDoc::CMergeDoc()
 	Options::DiffOptions::Load(GetOptionsMgr(), options);
 
 	m_diffWrapper.SetOptions(&options);
-	m_diffWrapper.SetPrediffer(NULL);
+	m_diffWrapper.SetPrediffer(nullptr);
 }
 
 /**
@@ -172,10 +172,10 @@ CMergeDoc::CMergeDoc()
  */
 CMergeDoc::~CMergeDoc()
 {	
-	if (m_pDirDoc)
+	if (m_pDirDoc != nullptr)
 	{
 		m_pDirDoc->MergeDocClosing(this);
-		m_pDirDoc = NULL;
+		m_pDirDoc = nullptr;
 	}
 }
 
@@ -216,7 +216,7 @@ CMergeEditView * CMergeDoc::GetActiveMergeView()
 {
 	CView * pActiveView = GetParentFrame()->GetActiveView();
 	CMergeEditView * pMergeEditView = dynamic_cast<CMergeEditView *>(pActiveView);
-	if (!pMergeEditView)
+	if (pMergeEditView == nullptr)
 		pMergeEditView = GetView(0, 0); // default to left view (in case some location or detail view active)
 	return pMergeEditView;
 }
@@ -228,7 +228,7 @@ CMergeEditView * CMergeDoc::GetActiveMergeGroupView(int nBuffer)
 
 void CMergeDoc::SetUnpacker(const PackingInfo * infoNewHandler)
 {
-	if (infoNewHandler)
+	if (infoNewHandler != nullptr)
 	{
 		*m_pInfoUnpacker = *infoNewHandler;
 	}
@@ -282,7 +282,7 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, bool 
 	}
 
 	// and we don't repack the file
-	PackingInfo * tempPacker = NULL;
+	PackingInfo * tempPacker = nullptr;
 
 	// write buffer out to temporary file
 	String sError;
@@ -519,7 +519,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		// Apply flags to lines that are trivial
 		PrediffingInfo infoPrediffer;
 		GetPrediffer(&infoPrediffer);
-		if (!infoPrediffer.pluginName.empty())
+		if (!infoPrediffer.m_PluginName.empty())
 			FlagTrivialLines();
 		
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
@@ -1103,7 +1103,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
 	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
-	CCrystalTextView *pSource = bUpdateView ? pViewDst : NULL;
+	CCrystalTextView *pSource = bUpdateView ? pViewDst : nullptr;
 
 	// suppress Rescan during this method
 	// (Not only do we not want to rescan a lot of times, but
@@ -1375,13 +1375,13 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 					: (nBuffer == 1 ? 
 					_("Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"): 
 					_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")),
-				strPath, pInfoTempUnpacker->pluginName);
+				strPath, pInfoTempUnpacker->m_PluginName);
 		}
 		else
 		{
 			str = strutils::format_string2(nBuffer == 0 ? _("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?") : 
 				_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"),
-				strPath, pInfoTempUnpacker->pluginName);
+				strPath, pInfoTempUnpacker->m_PluginName);
 		}
 		// replace the unpacker with a "do nothing" unpacker
 		pInfoTempUnpacker->Initialize(PLUGIN_MANUAL);
@@ -1446,7 +1446,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
  * Creates backup file if wanted to. And if saving to given path fails,
  * allows user to select new location/name for file.
  * @param [in] szPath Path where to save including filename. Can be
- * empty/NULL if new file is created (scratchpad) without filename.
+ * empty/`nullptr` if new file is created (scratchpad) without filename.
  * @param [out] bSaveSuccess Will contain information about save success with
  * the original name (to determine if file statuses should be changed)
  * @param [in] nBuffer Index (0-based) of buffer to save
@@ -1578,7 +1578,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
  * Safe top-level file saving function. Asks user to select filename
  * and path. Does not create backups.
  * @param [in] szPath Path where to save including filename. Can be
- * empty/NULL if new file is created (scratchpad) without filename.
+ * empty/`nullptr` if new file is created (scratchpad) without filename.
  * @param [out] bSaveSuccess Will contain information about save success with
  * the original name (to determine if file statuses should be changed)
  * @param [in] nBuffer Index (0-based) of buffer to save
@@ -1753,7 +1753,7 @@ void CMergeDoc::FlushAndRescan(bool bForced /* =false */)
 	});
 
 	// Refresh display
-	UpdateAllViews(NULL);
+	UpdateAllViews(nullptr);
 
 	// Show possible error after updating screen
 	if (nRescanResult != RESCAN_SUPPRESSED)
@@ -1789,7 +1789,7 @@ void CMergeDoc::OnFileSave()
 	if (bChangedOriginal)
 	{
 		// If DirDoc contains diffs
-		if (m_pDirDoc && m_pDirDoc->HasDiffs())
+		if (m_pDirDoc != nullptr && m_pDirDoc->HasDiffs())
 		{
 			for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 			{
@@ -1823,7 +1823,7 @@ void CMergeDoc::DoFileSave(int nBuffer)
 	if (bModified && bSaveSuccess)
 	{
 		// If DirDoc contains compare results
-		if (m_pDirDoc && m_pDirDoc->HasDiffs())
+		if (m_pDirDoc != nullptr && m_pDirDoc->HasDiffs())
 		{
 			for (int nBuffer1 = 0; nBuffer1 < m_nBuffers; nBuffer1++)
 			{
@@ -1949,12 +1949,12 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 void CMergeDoc::OnUpdatePluginName(CCmdUI* pCmdUI)
 {
 	String pluginNames;
-	if (m_pInfoUnpacker && !m_pInfoUnpacker->pluginName.empty())
-		pluginNames += m_pInfoUnpacker->pluginName + _T("&");
+	if (m_pInfoUnpacker && !m_pInfoUnpacker->m_PluginName.empty())
+		pluginNames += m_pInfoUnpacker->m_PluginName + _T("&");
 	PrediffingInfo prediffer;
 	GetPrediffer(&prediffer);
-	if (!prediffer.pluginName.empty())
-		pluginNames += prediffer.pluginName + _T("&");
+	if (!prediffer.m_PluginName.empty())
+		pluginNames += prediffer.m_PluginName + _T("&");
 	pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
 }
 
@@ -2183,7 +2183,7 @@ void CMergeDoc::PrimeTextBuffers()
 CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 	bool bSave, int nBuffer)
 {
-	DiffFileInfo *fileInfo = NULL;
+	DiffFileInfo *fileInfo = nullptr;
 	bool bFileChanged = false;
 	bool bIgnoreSmallDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
 	int tolerance = 0;
@@ -2372,7 +2372,7 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		 (bRModified && bRSaveSuccess))
 	{
 		// If directory compare has results
-		if (m_pDirDoc && m_pDirDoc->HasDiffs())
+		if (m_pDirDoc != nullptr && m_pDirDoc->HasDiffs())
 		{
 			if (m_bEditAfterRescan[0] || m_bEditAfterRescan[1] || (m_nBuffers == 3 && m_bEditAfterRescan[2]))
 				FlushAndRescan(false);
@@ -2428,7 +2428,7 @@ void CMergeDoc::RemoveMergeViews(int nGroup)
  */
 void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 {
-	ASSERT(pDirDoc && !m_pDirDoc);
+	ASSERT(pDirDoc != nullptr && m_pDirDoc == nullptr);
 	m_pDirDoc = pDirDoc;
 }
 
@@ -2446,7 +2446,7 @@ CChildFrame * CMergeDoc::GetParentFrame()
 void CMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
 {
 	ASSERT(m_pDirDoc == pDirDoc);
-	m_pDirDoc = 0;
+	m_pDirDoc = nullptr;
 	// TODO (Perry 2003-03-30): perhaps merge doc should close now ?
 }
 
@@ -2524,9 +2524,9 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
  */
 bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
 {
-	if (!cp) // 0 is our signal value for invalid
+	if (cp == 0) // 0 is our signal value for invalid
 		return false;
-	return GetEncodingNameFromCodePage(cp) != NULL;
+	return GetEncodingNameFromCodePage(cp) != nullptr;
 }
 
 /**
@@ -2659,7 +2659,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	if (std::find_if(nSuccess, nSuccess + m_nBuffers, [](DWORD d){return !FileLoadResult::IsOk(d);} ) != nSuccess + m_nBuffers)
 	{
 		CChildFrame *pFrame = GetParentFrame();
-		if (pFrame)
+		if (pFrame != nullptr)
 		{
 			// Use verify macro to trap possible error in debug.
 			VERIFY(pFrame->DestroyWindow());
@@ -2686,7 +2686,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	
 	if (nLossyBuffers > 0)
 	{
-		if (!m_pEncodingErrorBar)
+		if (m_pEncodingErrorBar == nullptr)
 		{
 			m_pEncodingErrorBar.reset(new CEncodingErrorBar());
 			m_pEncodingErrorBar->Create(this->m_pView[0][0]->GetParentFrame());
@@ -2734,9 +2734,9 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	}
 
 	// Define the prediffer
-	PackingInfo * infoUnpacker = 0;
-	PrediffingInfo * infoPrediffer = 0;
-	if (bFiltersEnabled && m_pDirDoc)
+	PackingInfo * infoUnpacker = nullptr;
+	PrediffingInfo * infoPrediffer = nullptr;
+	if (bFiltersEnabled && m_pDirDoc != nullptr)
 	{
 		m_pDirDoc->GetPluginManager().FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
 		m_diffWrapper.SetPrediffer(infoPrediffer);
@@ -2760,8 +2760,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			if (bFiltersEnabled && m_pInfoUnpacker->textType.length())
-				sext[nBuffer] = m_pInfoUnpacker->textType;
+			if (bFiltersEnabled && m_pInfoUnpacker->m_textType.length())
+				sext[nBuffer] = m_pInfoUnpacker->m_textType;
 			else
 				sext[nBuffer] = GetFileExt(fileloc[nBuffer].filepath.c_str(), m_strDesc[nBuffer].c_str());
 			ForEachView(nBuffer, [&](auto& pView) {
@@ -2863,7 +2863,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 
 	// Force repaint of location pane to update it in case we had some warning
 	// dialog visible and it got painted before files were loaded
-	if (m_pView[0][0])
+	if (m_pView[0][0] != nullptr)
 		m_pView[0][0]->RepaintLocationPane();
 
 	return true;
@@ -2920,7 +2920,7 @@ void CMergeDoc::RefreshOptions()
 void CMergeDoc::UpdateHeaderPath(int pane)
 {
 	CChildFrame *pf = GetParentFrame();
-	ASSERT(pf);
+	ASSERT(pf != nullptr);
 	String sText;
 	bool bChanges = false;
 
@@ -2932,7 +2932,7 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 	else
 	{
 		sText = m_filePaths[pane];
-		if (m_pDirDoc)
+		if (m_pDirDoc != nullptr)
 		{
 			m_pDirDoc->ApplyDisplayRoot(pane, sText);
 		}
@@ -2944,7 +2944,7 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 
 	pf->GetHeaderInterface()->SetText(pane, sText);
 
-	SetTitle(NULL);
+	SetTitle(nullptr);
 }
 
 /**
@@ -2953,7 +2953,7 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 void CMergeDoc::UpdateHeaderActivity(int pane, bool bActivate)
 {
 	CChildFrame *pf = GetParentFrame();
-	ASSERT(pf);
+	ASSERT(pf != nullptr);
 	pf->GetHeaderInterface()->SetActive(pane, bActivate);
 }
 
@@ -2994,7 +2994,7 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 	String sTitle;
 	String sFileName[3];
 
-	if (lpszTitle)
+	if (lpszTitle != nullptr)
 		sTitle = lpszTitle;
 	else
 	{
@@ -3084,7 +3084,7 @@ void CMergeDoc::SwapFiles()
 	GetParentFrame()->UpdateSplitter();
 	ForEachView([](auto& pView) { pView->UpdateStatusbar(); });
 
-	UpdateAllViews(NULL);
+	UpdateAllViews(nullptr);
 }
 
 /**
@@ -3093,7 +3093,7 @@ void CMergeDoc::SwapFiles()
 bool CMergeDoc::OpenWithUnpackerDialog()
 {
 	// let the user choose a handler
-	CSelectUnpackerDlg dlg(m_filePaths[0], NULL);
+	CSelectUnpackerDlg dlg(m_filePaths[0], nullptr);
 	// create now a new infoUnpacker to initialize the manual/automatic flag
 	PackingInfo infoUnpacker(PLUGIN_AUTO);
 	dlg.SetInitialInfoHandler(&infoUnpacker);
@@ -3106,7 +3106,7 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 		{
 			DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 			GetMainFrame()->DoFileOpen(&m_filePaths, dwFlags, m_strDesc, _T(""), 
-				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), NULL, _T(""), &infoUnpacker);
+				GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, _T(""), &infoUnpacker);
 			CloseNow();
 		}
 		else
@@ -3194,7 +3194,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 		fileloc[pane].setPath(m_filePaths[pane]);
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
 	}
-	if (m_pEncodingErrorBar && m_pEncodingErrorBar->IsWindowVisible())
+	if (m_pEncodingErrorBar!=nullptr && m_pEncodingErrorBar->IsWindowVisible())
 		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 	if (nID == ID_MERGE_COMPARE_HEX)
 		GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_nBuffers, fileloc, dwFlags, m_strDesc);
@@ -3208,7 +3208,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const
 {
 	String sExt;
-	paths::SplitFilename(sFileName, NULL, NULL, &sExt);
+	paths::SplitFilename(sFileName, nullptr, nullptr, &sExt);
 	return sExt;
 }
 
@@ -3220,7 +3220,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	// calculate HTML font size
 	LOGFONT lf;
 	CDC dc;
-	dc.CreateDC(_T("DISPLAY"), NULL, NULL, NULL);
+	dc.CreateDC(_T("DISPLAY"), nullptr, nullptr, nullptr);
 	m_pView[0][0]->GetFont(lf);
 	int nFontSize = -MulDiv (lf.lfHeight, 72, dc.GetDeviceCaps (LOGPIXELSY));
 
@@ -3268,7 +3268,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	// If archive, use archive path + folder + filename inside archive
 	// If desc text given, use it
 	PathContext paths = m_filePaths;
-	if (m_pDirDoc && m_pDirDoc->IsArchiveFolders())
+	if (m_pDirDoc != nullptr && m_pDirDoc->IsArchiveFolders())
 	{
 		for (int i = 0; i < paths.GetSize(); i++)
 			m_pDirDoc->ApplyDisplayRoot(i, paths[i]);
@@ -3325,13 +3325,13 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 				String tdtag = _T("<td class=\"ln\">");
 				DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
 				if (nBuffer == 0 && 
-				     (dwFlags & (LF_DIFF | LF_GHOST)) && (idx[nBuffer] == 0 || 
-				    !(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST))))
+				     (dwFlags & (LF_DIFF | LF_GHOST))!=0 && (idx[nBuffer] == 0 || 
+				    (m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST))==0 ))
 				{
 					++nDiff;
 					tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
 				}
-				if (!(dwFlags & LF_GHOST) && m_pView[0][nBuffer]->GetViewLineNumbers())
+				if ((dwFlags & LF_GHOST)==0 && m_pView[0][nBuffer]->GetViewLineNumbers())
 					tdtag += strutils::format(_T("%d</td>"), m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1);
 				else
 					tdtag += _T("</td>");

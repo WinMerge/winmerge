@@ -112,7 +112,7 @@ static LPCTSTR s_apszRubyConstantsList[] =
 static bool
 IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
 {
-  for (int L = 0; apszKeywords[L] != NULL; L++)
+  for (int L = 0; apszKeywords[L] != nullptr; L++)
     {
       if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
             && apszKeywords[L][nLength] == 0)
@@ -171,7 +171,7 @@ IsRubyNumber (LPCTSTR pszChars, int nLength)
 
 #define DEFINE_BLOCK(pos, colorindex)   \
 ASSERT((pos) >= 0 && (pos) <= nLength);\
-if (pBuf != NULL)\
+if (pBuf != nullptr)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
         if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
@@ -332,7 +332,7 @@ out:
             bFirstChar = false;
         }
 
-      if (pBuf == NULL)
+      if (pBuf == nullptr)
         continue;               //  We don't need to extract keywords,
       //  for faster parsing skip the rest of loop
 

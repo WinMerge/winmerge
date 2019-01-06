@@ -52,7 +52,7 @@ CSizingControlBarCF::CSizingControlBarCF()
     m_bActive = false;
 
     CDC dc;
-    dc.CreateCompatibleDC(NULL);
+    dc.CreateCompatibleDC(nullptr);
 
     m_sFontFace = (::EnumFontFamilies(dc.m_hDC,
         _T("Tahoma"), (FONTENUMPROC) EnumFontFamProc, 0) == 0) ?
@@ -202,7 +202,7 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
             CPoint(rcGrip.left + pointToPixel(2.25), rcGrip.top - pointToPixel(0.75));
 
         pDC->ExtTextOut(ptOrg.x, ptOrg.y,
-            ETO_CLIPPED, rcGrip, sTitle, NULL);
+            ETO_CLIPPED, rcGrip, sTitle, nullptr);
 
         pDC->SelectObject(pOldFont);
         pDC->SetBkMode(nOldBkMode);

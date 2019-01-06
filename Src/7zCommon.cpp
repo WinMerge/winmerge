@@ -121,7 +121,7 @@ static __declspec(thread) Merge7z::Proxy m_Merge7z =
 	{ 0, 0, DllBuild_Merge7z, },
 	"Merge7z\\Merge7z%u%02u" DECORATE_U ".dll",
 	"Merge7z",
-	NULL
+	nullptr
 };
 
 std::vector<Merge7z::Format *(*)(const String& path)> Merge7zFormatRegister::optionalFormats;
@@ -139,7 +139,7 @@ bool IsArchiveFile(const String& pszFile)
 {
 	try {
 		Merge7z::Format *piHandler = ArchiveGuessFormat(pszFile);
-		if (piHandler)
+		if (piHandler != nullptr)
 			return true;
 		else
 			return false;
@@ -159,21 +159,21 @@ bool IsArchiveFile(const String& pszFile)
 Merge7z::Format *ArchiveGuessFormat(const String& path)
 {
 	if (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE) == 0)
-		return NULL;
+		return nullptr;
 	if (paths::IsDirectory(path))
-		return NULL;
+		return nullptr;
 	String path2(path);
 	// Map extensions through ExternalArchiveFormat.ini
 	static TCHAR null[] = _T("");
 	static const TCHAR section[] = _T("extensions");
 	String entry = paths::FindExtension(path);
 	TCHAR value[20];
-	static LPCTSTR filename = NULL;
-	if (filename == NULL)
+	static LPCTSTR filename = nullptr;
+	if (filename == nullptr)
 	{
 		TCHAR cPath[INTERNET_MAX_PATH_LENGTH];
-		DWORD cchPath = SearchPath(NULL, _T("ExternalArchiveFormat.ini"), NULL,
-			INTERNET_MAX_PATH_LENGTH, cPath, NULL);
+		DWORD cchPath = SearchPath(nullptr, _T("ExternalArchiveFormat.ini"), nullptr,
+			INTERNET_MAX_PATH_LENGTH, cPath, nullptr);
 		filename = cchPath && cchPath < INTERNET_MAX_PATH_LENGTH ? _tcsdup(cPath) : null;
 	}
 	if (*filename &&
@@ -204,14 +204,14 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 	try
 	{
 		Merge7z::Format *pFormat = m_Merge7z->GuessFormat(path2.c_str());
-		if (!pFormat)
+		if (pFormat == nullptr)
 			pFormat = Merge7zFormatRegister::GuessFormat(path2);
 		return pFormat;
 	}
 	catch (...)
 	{
 		Merge7z::Format *pFormat = Merge7zFormatRegister::GuessFormat(path2);
-		if (pFormat)
+		if (pFormat != nullptr)
 			return pFormat;
 		throw;
 	}
@@ -253,7 +253,7 @@ void CTempPathContext::Swap(int idx1, int idx2)
 {
 	std::swap(m_strDisplayRoot[idx1], m_strDisplayRoot[idx2]);
 	std::swap(m_strRoot[idx1], m_strRoot[idx2]);
-	if (m_pParent)
+	if (m_pParent != nullptr)
 		m_pParent->Swap(idx1, idx2);
 }
 
@@ -277,7 +277,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
 	// As long as the Merge7z*.DLL has not yet been loaded, Merge7z
 	// [0] points to the name of the DLL (with placeholders for 7-
 	// Zip major and minor version numbers). Once the DLL has been
-	// loaded successfully, Merge7z[0] is set to NULL, causing the
+	// loaded successfully, Merge7z[0] is set to nullptr, causing the
 	// if to fail on subsequent calls.
 
 	if (const char *format = Merge7z[0])
@@ -438,7 +438,7 @@ const DIFFITEM &DirItemEnumerator::Next()
  * storage, along with the Envelope itself. The Envelope pointer is passed to
  * Merge7z as the return value of the function. It is not meant to be a success
  * indicator, so if no temporary storage is required, it is perfectly alright
- * to return NULL.
+ * to return `nullptr`.
  */
 Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
 {
@@ -473,7 +473,7 @@ Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
 		{
 			// Item is missing on right side
 			PVOID &implied = m_rgImpliedFolders[m_index][di.diffFileInfo[1-m_index].path.get()];
-			if (!implied)
+			if (implied == nullptr)
 			{
 				// Folder is not implied by some other file, and has
 				// not been enumerated so far, so enumerate it now!
@@ -511,7 +511,7 @@ bool DirItemEnumerator::MultiStepCompressArchive(LPCTSTR path)
 {
 	DeleteFile(path);
 	Merge7z::Format *piHandler = ArchiveGuessFormat(path);
-	if (piHandler)
+	if (piHandler != nullptr)
 	{
 		HWND hwndOwner = CWnd::GetSafeOwner()->GetSafeHwnd();
 		CString pathIntermediate;
@@ -541,7 +541,7 @@ bool DirItemEnumerator::MultiStepCompressArchive(LPCTSTR path)
 void DirItemEnumerator::CompressArchive(LPCTSTR path)
 {
 	String strPath;
-	if (path == 0)
+	if (path == nullptr)
 	{
 		// No path given, so prompt for path!
 		static const TCHAR _T_Merge7z[] = _T("Merge7z");
@@ -615,7 +615,7 @@ void DirItemEnumerator::CompressArchive(LPCTSTR path)
 
 DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 {
-	DecompressResult res(files, NULL, paths::IS_EXISTING_DIR);
+	DecompressResult res(files, nullptr, paths::IS_EXISTING_DIR);
 	try
 	{
 		String path;
@@ -623,7 +623,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 		// Handle archives using 7-zip
 		Merge7z::Format *piHandler;
 		piHandler = ArchiveGuessFormat(res.files[0]);
-		if (piHandler)
+		if (piHandler  != nullptr)
 		{
 			res.pTempPathContext = new CTempPathContext;
 			path = env::GetTempChildPath();
@@ -645,14 +645,14 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				res.files[0].insert(0, _T("\\"));
 				res.files[0].insert(0, path);
 				piHandler = ArchiveGuessFormat(res.files[0]);
-			} while (piHandler);
+			} while (piHandler != nullptr);
 			res.files[0] = path;
 		}
 		piHandler = res.files[1].empty() ? nullptr
 										 : ArchiveGuessFormat(res.files[1]);
-		if (piHandler)
+		if (piHandler != nullptr)
 		{
-			if (!res.pTempPathContext)
+			if (res.pTempPathContext == nullptr)
 			{
 				res.pTempPathContext = new CTempPathContext;
 				for (int index = 0; index < res.files.GetSize(); index++)
@@ -673,13 +673,13 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				res.files[1].insert(0, _T("\\"));
 				res.files[1].insert(0, path);
 				piHandler = ArchiveGuessFormat(res.files[1]);
-			} while (piHandler);
+			} while (piHandler != nullptr);
 			res.files[1] = path;
 		}
 		piHandler = (res.files.GetSize() <= 2) ? nullptr : ArchiveGuessFormat(res.files[2]);
-		if (piHandler)
+		if (piHandler != nullptr)
 		{
-			if (!res.pTempPathContext)
+			if (res.pTempPathContext == nullptr)
 			{
 				res.pTempPathContext = new CTempPathContext;
 				for (int index = 0; index < res.files.GetSize(); index++)
@@ -700,7 +700,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				res.files[2].insert(0, _T("\\"));
 				res.files[2].insert(0, path);
 				piHandler = ArchiveGuessFormat(res.files[2]);
-			} while (piHandler);
+			} while (piHandler != nullptr);
 			res.files[2] = path;
 		}
 		if (res.files[1].empty())

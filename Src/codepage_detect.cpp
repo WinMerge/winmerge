@@ -53,7 +53,7 @@ FindEncodingIdFromNameOrAlias(const char *encodingName)
 	if (encodingId == 0)
 	{
 		// Handle purely numeric values (codepages)
-		char *ahead = 0;
+		char *ahead = nullptr;
 		unsigned codepage = strtol(encodingName, &ahead, 10);
 		int i = 0;
 		while (*ahead != '\0' && i < sizeof(f_wincp_prefixes)/sizeof(f_wincp_prefixes[0]))
@@ -86,9 +86,9 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 		if (!http_equiv.empty() && _stricmp(http_equiv.c_str(), "content-type") == 0)
 		{
 			std::string content(markdown.GetAttribute("content"));
-			char *pchKey = &content[0];
 			if (!content.empty())
 			{
+				char *pchKey = &content[0];
 				while (size_t cchKey = strcspn(pchKey += strspn(pchKey, "; \t\r\n"), ";="))
 				{
 					char *pchValue = pchKey + cchKey;
@@ -193,7 +193,7 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
 	else if (guessEncodingType & 2)
 	{
 		IExconverter *pexconv = Exconverter::getInstance();
-		if (pexconv && src != NULL)
+		if (pexconv != nullptr && src != nullptr)
 		{
 			int autodetectType = (unsigned)guessEncodingType >> 16;
 			cp = pexconv->detectInputCodepage(autodetectType, cp, src, len);

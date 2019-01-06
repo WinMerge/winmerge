@@ -26,7 +26,7 @@ class storageForPlugins
 {
 public:
 	storageForPlugins()
-	: m_bstr(NULL)
+	: m_bstr(nullptr)
 	, m_bOriginalIsUnicode(false)
 	, m_bCurrentIsUnicode(false)
 	, m_bCurrentIsFile(false)
@@ -44,7 +44,7 @@ public:
 	{
 		if (!m_tempFilenameDst.empty()) // "!m_tempFilenameDst" means "never"
 			::DeleteFile(m_tempFilenameDst.c_str());
-		if (m_bstr)
+		if (m_bstr != nullptr)
 			SysFreeString(m_bstr);
 		VariantClear(&m_array);
 	}
@@ -80,7 +80,7 @@ public:
 			newFilename = GetDataFileUnicode();
 		else
 			newFilename = GetDataFileAnsi();
-		if (newFilename == NULL)
+		if (newFilename == nullptr)
 		{
 			GetLastValidFile(filename);
 			return false;

@@ -75,7 +75,7 @@ bool CGhostTextBuffer::InternalInsertGhostLine (CCrystalTextView * pSource,
 	context.m_ptEnd.y = nLine + 1;
 
 	CCrystalTextBuffer::InsertLine (_T(""), 0, nLine);
-	if (pSource != NULL)
+	if (pSource != nullptr)
 		UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nLine);
 
 	return true;
@@ -104,7 +104,7 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 
 	for (int i = nLine ; i < nLine + nCount; i++)
 	{
-		ASSERT (GetLineFlags(i) & LF_GHOST);
+		ASSERT ( (GetLineFlags(i) & LF_GHOST) != 0 );
 		m_aLines[i].Clear();
 	}
 
@@ -112,7 +112,7 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 	vector<LineInfo>::iterator iterEnd = iterBegin + nCount;
 	m_aLines.erase(iterBegin, iterEnd);
 
-	if (pSource != NULL)
+	if (pSource != nullptr)
 	{
 		CDeleteContext context;
 		context.m_ptStart.y = nLine;
@@ -354,7 +354,7 @@ InsertText (CCrystalTextView * pSource, int nLine,
 		
 	if (bSpecialLastLineHandling)
 	{
-		// By setting the last line (in this special case, see above) to NULL, 
+		// By setting the last line (in this special case, see above) to `nullptr`, 
 		//	the line will eventually be removed or become an actual LF_GHOST line.
 		int nLastLine = GetLineCount()-1;
 		ASSERT(m_aLines[nLastLine].FullLength() == 0);
@@ -836,7 +836,7 @@ void CGhostTextBuffer::			/* virtual override */
 AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 	const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
 	int nActionType /*= CE_ACTION_UNKNOWN*/,
-	CDWordArray *paSavedRevisionNumbers)
+	CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
 {
 	CPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
 	CPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + CountEol(pszText, cchText));

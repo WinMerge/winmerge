@@ -49,6 +49,6 @@ CPidlContainer::~CPidlContainer()
 LPCITEMIDLIST* CPidlContainer::GetList() const
 {
 	if (m_container.empty())
-		return NULL;
+		return nullptr;
 	return const_cast<LPCITEMIDLIST*>(&m_container[0]);
 }
