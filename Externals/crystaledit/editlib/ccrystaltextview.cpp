@@ -4758,8 +4758,10 @@ PrepareDragData ()
 
   LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
   if (pszData == nullptr)
-    return nullptr;
-
+    {
+      ::GlobalFree(hData);
+      return nullptr;
+    }
   memcpy (pszData, text, cbData);
   ::GlobalUnlock (hData);
 
