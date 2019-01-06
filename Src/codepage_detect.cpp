@@ -86,9 +86,9 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 		if (!http_equiv.empty() && _stricmp(http_equiv.c_str(), "content-type") == 0)
 		{
 			std::string content(markdown.GetAttribute("content"));
-			char *pchKey = &content[0];
 			if (!content.empty())
 			{
+				char *pchKey = &content[0];
 				while (size_t cchKey = strcspn(pchKey += strspn(pchKey, "; \t\r\n"), ";="))
 				{
 					char *pchValue = pchKey + cchKey;
