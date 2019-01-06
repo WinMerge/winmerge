@@ -74,14 +74,13 @@ CMoveConstraint::Constraint::Init()
 }
 
 CMoveConstraint::CMoveConstraint()
+: m_bSubclassed(false)
+, m_oldWndProc(nullptr)
+, m_sRegistryValueName(_T("UnnamedWindow"))
+, m_sRegistrySubkey(_T("LastWindowPos"))
 {
-	m_bSubclassed = false;
-	m_oldWndProc = nullptr;
-	m_sRegistryValueName = _T("UnnamedWindow");
-	m_sRegistrySubkey = _T("LastWindowPos");
 	ClearMostData();
 }
-
 
 bool
 CMoveConstraint::InitializeCurrentSize(HWND hwndDlg)
