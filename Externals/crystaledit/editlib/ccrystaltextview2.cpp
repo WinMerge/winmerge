@@ -791,7 +791,6 @@ OnMouseMove (UINT nFlags, CPoint point)
           ptEnd = ptNewCursorPos;
         }
 
-	  m_ptAnchor = ptStart;
       m_ptCursorPos = ptEnd;
       UpdateCaret ();
       SetSelection (ptStart, ptEnd);
