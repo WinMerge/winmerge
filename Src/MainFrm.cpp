@@ -1685,7 +1685,7 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	{
 		if (theApp.m_bEscShutdown && m_wndTabBar.GetItemCount() <= 1)
 		{
-			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
+			AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_APP_EXIT);
 			return TRUE;
 		}
 		else if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC) && m_wndTabBar.GetItemCount() == 0)
