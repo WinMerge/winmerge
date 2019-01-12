@@ -1410,6 +1410,10 @@ msgstr "Сарадници"
 msgid "Select Files or Folders"
 msgstr "Изабери датотеке или фасцикле"
 
+#: Merge.rc:6DE6F874
+msgid "&1st File or Folder"
+msgstr ""
+
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
@@ -1424,8 +1428,8 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Прегледај..."
 
-#: Merge.rc:6DE6F874
-msgid "&1st File or Folder"
+#: Merge.rc:6DE6F875
+msgid "&2nd File or Folder"
 msgstr ""
 
 #: Merge.rc:39174D97
@@ -1442,8 +1446,8 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "П&регледај..."
 
-#: Merge.rc:6DE6F875
-msgid "&2nd File or Folder"
+#: Merge.rc:3C1ECDDA
+msgid "&3rd File or Folder (Optional)"
 msgstr ""
 
 #: Merge.rc:39174D98
@@ -1459,10 +1463,6 @@ msgstr ""
 #, c-format
 msgid "Browse..."
 msgstr "Преглед..."
-
-#: Merge.rc:3C1ECDDA
-msgid "&3rd File or Folder (Optional)"
-msgstr ""
 
 #: Merge.rc:22467E6E
 msgid " Folder: Filter"
