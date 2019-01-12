@@ -465,19 +465,15 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		m_diffWrapper.SetCreateDiffList(&m_diffList);
 	}
 
-	// If comparing whitespaces and
-	// other file has EOL before EOF and other not...
-	if (diffOptions.nIgnoreWhitespace == WHITESPACE_COMPARE_ALL || !diffOptions.bIgnoreBlankLines)
+	// If one file has EOL before EOF and other not...
+	if (std::count(status.bMissingNL, status.bMissingNL + m_nBuffers, status.bMissingNL[0]) < m_nBuffers)
 	{
-		if (std::count(status.bMissingNL, status.bMissingNL + m_nBuffers, status.bMissingNL[0]) < m_nBuffers)
-		{
-			// ..last DIFFRANGE of file which has EOL must be
-			// fixed to contain last line too
-			int lineCount[3] = { 0,0,0 };
-			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-				lineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
-			m_diffWrapper.FixLastDiffRange(m_nBuffers, lineCount, status.bMissingNL, diffOptions.bIgnoreBlankLines);
-		}
+		// ..last DIFFRANGE of file which has EOL must be
+		// fixed to contain last line too
+		int lineCount[3] = { 0,0,0 };
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			lineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
+		m_diffWrapper.FixLastDiffRange(m_nBuffers, lineCount, status.bMissingNL, diffOptions.bIgnoreBlankLines);
 	}
 
 	// set identical/diff result as recorded by diffutils
