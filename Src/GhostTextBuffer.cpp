@@ -216,7 +216,7 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 				// (If this happens, editor probably has bug)
 				ASSERT(false);
 				CString sEol = GetStringEol (nCrlfStyle);
-				CopyMemory(pszBuf, sEol, sEol.GetLength());
+				CopyMemory(pszBuf, sEol, sEol.GetLength() * sizeof(TCHAR));
 				pszBuf += sEol.GetLength();
 			}
 		}
