@@ -1419,6 +1419,11 @@ msgstr "Katkı Yapanlar"
 msgid "Select Files or Folders"
 msgstr "Dosya ya da Klasör Seçin"
 
+#: Merge.rc:6DE6F874
+#, c-format
+msgid "&1st File or Folder"
+msgstr "&1. Dosya ya da Klasör"
+
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
@@ -1434,10 +1439,10 @@ msgstr "1. ile 2. Ögeyi Değiştir"
 msgid "&Browse..."
 msgstr "&Gözat..."
 
-#: Merge.rc:6DE6F874
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&1st File or Folder"
-msgstr "&1. Dosya ya da Klasör"
+msgid "&2nd File or Folder"
+msgstr "&2. Dosya ya da Klasör"
 
 #: Merge.rc:39174D97
 #, c-format
@@ -1454,10 +1459,10 @@ msgstr "2. ile 3. Ögeyi Değiştir"
 msgid "B&rowse..."
 msgstr "Gö&zat..."
 
-#: Merge.rc:6DE6F875
+#: Merge.rc:3C1ECDDA
 #, c-format
-msgid "&2nd File or Folder"
-msgstr "&2. Dosya ya da Klasör"
+msgid "&3rd File or Folder (Optional)"
+msgstr "&3. Dosya ya da Klasör"
 
 #: Merge.rc:39174D98
 #, c-format
@@ -1473,11 +1478,6 @@ msgstr "1. ile 3. Ögeyi Değiştir"
 #, c-format
 msgid "Browse..."
 msgstr "Gözat..."
-
-#: Merge.rc:3C1ECDDA
-#, c-format
-msgid "&3rd File or Folder (Optional)"
-msgstr "&3. Dosya ya da Klasör"
 
 #: Merge.rc:22467E6E
 #, c-format

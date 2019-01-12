@@ -1421,6 +1421,11 @@ msgstr "Contribuidores"
 msgid "Select Files or Folders"
 msgstr "Selecionar Arquivos ou Pastas"
 
+#: Merge.rc:6DE6F874
+#, c-format
+msgid "&1st File or Folder"
+msgstr "&1º Arquivo ou Pasta"
+
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
@@ -1436,10 +1441,10 @@ msgstr "Trocar o 1º | 2º"
 msgid "&Browse..."
 msgstr "&Procurar..."
 
-#: Merge.rc:6DE6F874
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&1st File or Folder"
-msgstr "&1º Arquivo ou Pasta"
+msgid "&2nd File or Folder"
+msgstr "&2º Arquivo ou Pasta"
 
 #: Merge.rc:39174D97
 #, c-format
@@ -1456,10 +1461,10 @@ msgstr "Trocar o 2º | 3º"
 msgid "B&rowse..."
 msgstr "P&rocurar..."
 
-#: Merge.rc:6DE6F875
+#: Merge.rc:3C1ECDDA
 #, c-format
-msgid "&2nd File or Folder"
-msgstr "&2º Arquivo ou Pasta"
+msgid "&3rd File or Folder (Optional)"
+msgstr "&3º Arquivo ou Pasta (Opcional)"
 
 #: Merge.rc:39174D98
 #, c-format
@@ -1475,11 +1480,6 @@ msgstr "Trocar o 1º | 3º"
 #, c-format
 msgid "Browse..."
 msgstr "Procurar..."
-
-#: Merge.rc:3C1ECDDA
-#, c-format
-msgid "&3rd File or Folder (Optional)"
-msgstr "&3º Arquivo ou Pasta (Opcional)"
 
 #: Merge.rc:22467E6E
 #, c-format

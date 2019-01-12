@@ -1420,6 +1420,11 @@ msgstr "Участники"
 msgid "Select Files or Folders"
 msgstr "Выберите файлы или папки..."
 
+#: Merge.rc:6DE6F874
+#, c-format
+msgid "&1st File or Folder"
+msgstr ""
+
 #: Merge.rc:39174D96
 #, c-format
 msgid "Re&ad-only"
@@ -1435,9 +1440,9 @@ msgstr ""
 msgid "&Browse..."
 msgstr "&Обзор..."
 
-#: Merge.rc:6DE6F874
+#: Merge.rc:6DE6F875
 #, c-format
-msgid "&1st File or Folder"
+msgid "&2nd File or Folder"
 msgstr ""
 
 #: Merge.rc:39174D97
@@ -1455,9 +1460,9 @@ msgstr ""
 msgid "B&rowse..."
 msgstr "Обзор"
 
-#: Merge.rc:6DE6F875
+#: Merge.rc:3C1ECDDA
 #, c-format
-msgid "&2nd File or Folder"
+msgid "&3rd File or Folder (Optional)"
 msgstr ""
 
 #: Merge.rc:39174D98
@@ -1474,11 +1479,6 @@ msgstr ""
 #, c-format
 msgid "Browse..."
 msgstr "Обзор..."
-
-#: Merge.rc:3C1ECDDA
-#, c-format
-msgid "&3rd File or Folder (Optional)"
-msgstr ""
 
 #: Merge.rc:22467E6E
 #, c-format

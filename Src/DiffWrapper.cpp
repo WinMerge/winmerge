@@ -958,7 +958,7 @@ void CDiffWrapper::FixLastDiffRange(int nFiles, int bufferLines[], bool bMissing
 {
 	DIFFRANGE dr;
 	const int count = m_pDiffList->GetSize();
-	if (count > 0 && !bIgnoreBlankLines)
+	if (count > 0)
 	{
 		m_pDiffList->GetDiff(count - 1, dr);
 

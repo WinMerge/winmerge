@@ -18,6 +18,7 @@
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
 #include "MergeCmdLineInfo.h"
+#include "editcmd.h"
 #include "gtest/gtest.h"
 
 String getProjectRoot()
@@ -199,8 +200,6 @@ TEST(FileCompare, LastLineEOL)
 		_T("0CRLF.txt"),
 		_T("1None.txt"),
 		_T("1CRLF.txt"),
-		_T("2None.txt"),
-		_T("2CRLF.txt"),
 		_T("3None.txt"),
 		_T("3CRLF.txt")
 	};
@@ -208,48 +207,68 @@ TEST(FileCompare, LastLineEOL)
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
 	CMergeDoc *pDoc = nullptr;
 	CFrameWnd *pFrame = nullptr;
-	for (size_t l = 0; l < std::size(filelist); ++l)
+	for (bool bIgnoreBlankLines: { true, false })
 	{
-		for (size_t r = 0; r < std::size(filelist); ++r)
+		GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, bIgnoreBlankLines);
+		for (auto nIgnoreWhitespace: { WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL})
 		{
-			PathContext tFiles = {
-				paths::ConcatPath(projectRoot, paths::ConcatPath(_T("Testing/Data/LastLineEOL"), filelist[l])),
-				paths::ConcatPath(projectRoot, paths::ConcatPath(_T("Testing/Data/LastLineEOL"), filelist[r])),
-			};
-			if (l == 0 && r == 0)
+			GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, nIgnoreWhitespace);
+			for (size_t l = 0; l < std::size(filelist); ++l)
 			{
-				EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
-				pFrame = GetMainFrame()->GetActiveFrame();
-				pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
-				EXPECT_NE(nullptr, pDoc);
-				if (pDoc == nullptr)
-					return;
-			}
-			else if (r == 0)
-			{
-				pDoc->ChangeFile(0, tFiles[0]);
-			}
-			pDoc->ChangeFile(1, tFiles[1]);
+				for (size_t r = 0; r < std::size(filelist); ++r)
+				{
+					PathContext tFiles = {
+						paths::ConcatPath(projectRoot, paths::ConcatPath(_T("Testing/Data/LastLineEOL"), filelist[l])),
+						paths::ConcatPath(projectRoot, paths::ConcatPath(_T("Testing/Data/LastLineEOL"), filelist[r])),
+					};
+					if (!pFrame)
+					{
+						EXPECT_TRUE(GetMainFrame()->DoFileOpen(&tFiles));
+						pFrame = GetMainFrame()->GetActiveFrame();
+						pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+						EXPECT_NE(nullptr, pDoc);
+						if (pDoc == nullptr)
+							return;
+					}
+					if (r == 0)
+					{
+						pDoc->ChangeFile(0, tFiles[0]);
+					}
+					pDoc->ChangeFile(1, tFiles[1]);
 
-			if (tFiles[0] == tFiles[1])
-			{
-				EXPECT_EQ(0, pDoc->m_diffList.GetSize());
-			}
-			else
-			{
-				CMergeEditView *pView = pDoc->GetView(0, 0);
-				// merge
-				EXPECT_EQ(1, pDoc->m_diffList.GetSize());
-				pDoc->CopyAllList(0, 1);
-				EXPECT_EQ(0, pDoc->m_diffList.GetSize());
-				// undo
-				pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
-				EXPECT_EQ(1, pDoc->m_diffList.GetSize());
-				// insert a character at the last line
-				pView->GotoLine(pDoc->m_ptBuf[0]->GetLineCount() - 1, false, 0);
-				pView->SendMessage(WM_CHAR, 'a');
-				// undo
-				pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+					if (tFiles[0] == tFiles[1])
+					{
+						EXPECT_EQ(0, pDoc->m_diffList.GetSize());
+					}
+					else
+					{
+						CMergeEditView *pView = pDoc->GetView(0, 0);
+						// merge
+						EXPECT_EQ(1, pDoc->m_diffList.GetSize());
+						pDoc->CopyAllList(0, 1);
+						EXPECT_EQ(0, pDoc->m_diffList.GetSize());
+						// undo
+						pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+						EXPECT_EQ(1, pDoc->m_diffList.GetSize());
+						// insert a character at the last line
+						pView->GotoLine(pDoc->m_ptBuf[0]->GetLineCount() - 1, false, 0);
+						pView->SendMessage(WM_CHAR, 'a');
+						// undo
+						pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+
+						pView = pDoc->GetView(0, 1);
+						pView->GotoLine(0, false, 1);
+						// Select all & Delete
+						pView->SendMessage(WM_COMMAND, ID_EDIT_SELECT_ALL);
+						pView->SendMessage(WM_COMMAND, ID_EDIT_DELETE);
+						// undo
+						pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+						// redo
+						pView->SendMessage(WM_COMMAND, ID_EDIT_REDO);
+						// undo
+						pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+					}
+				}
 			}
 		}
 	}
