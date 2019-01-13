@@ -19,7 +19,6 @@ Const ACCELERATORS_BLOCK = 5
 
 Const PATH_ENGLISH_POT = "English.pot"
 Const PATH_MERGE_RC = "../../Src/Merge.rc"
-Const PATH_MERGELANG_RC = "MergeLang.rc"
 
 Dim oFSO, bRunFromCmd, bInsertLineNumbers
 
@@ -48,8 +47,8 @@ Sub Main
   InfoBox "Creating POT file from Merge.rc...", 3
   
   bNecessary = True
-  If (oFSO.FileExists(PATH_ENGLISH_POT) = True) And (oFSO.FileExists(PATH_MERGELANG_RC) = True) Then 'If the POT and RC file exists...
-    bNecessary = GetArchiveBit(PATH_MERGE_RC) Or GetArchiveBit(PATH_ENGLISH_POT) Or GetArchiveBit(PATH_MERGELANG_RC) 'RCs or POT file changed?
+  If (oFSO.FileExists(PATH_ENGLISH_POT) = True) Then 'If the POT file exists...
+    bNecessary = GetArchiveBit(PATH_MERGE_RC) Or GetArchiveBit(PATH_ENGLISH_POT) 'RCs or POT file changed?
   End If
   
   If (bNecessary = True) Then 'If update necessary...
@@ -57,7 +56,6 @@ Sub Main
     CreateMasterPotFile PATH_ENGLISH_POT, oStrings
     SetArchiveBit PATH_MERGE_RC, False
     SetArchiveBit PATH_ENGLISH_POT, False
-    SetArchiveBit PATH_MERGELANG_RC, False
     For Each oFile In oFSO.GetFolder(".").Files 'For all files in the current folder...
       If (LCase(oFSO.GetExtensionName(oFile.Name)) = "po") Then 'If a PO file...
         SetArchiveBit oFile.Path, True
@@ -108,7 +106,7 @@ End Function
 Function GetStringsFromRcFile(ByVal sRcFilePath)
   Dim oBlacklist, oStrings, oString, oRcFile, sLine, iLine, oUIDs
   Dim sRcFileName, iBlockType, sReference, sString, sComment, sContext, oMatch, sTemp, sKey
-  Dim oLcFile, sLcLine, fContinuation
+  Dim fContinuation
 
   Set oBlacklist = GetStringBlacklist("StringBlacklist.txt")
   
@@ -120,10 +118,8 @@ Function GetStringsFromRcFile(ByVal sRcFilePath)
     iLine = 0
     iBlockType = NO_BLOCK
     Set oRcFile = oFSO.OpenTextFile(sRcFilePath, ForReading)
-    Set oLcFile = oFSO.CreateTextFile("MergeLang.rc", True)
     Do Until oRcFile.AtEndOfStream = True 'For all lines...
-      sLcLine = oRcFile.ReadLine
-      sLine = Trim(sLcLine)
+      sLine = Trim(oRcFile.ReadLine)
       iLine = iLine + 1
       
       sReference = sRcFileName & ":" & iLine
@@ -172,11 +168,6 @@ Function GetStringsFromRcFile(ByVal sRcFilePath)
                 sTemp = oMatch.SubMatches(0)
                 If (sTemp <> "") And (oBlacklist.Exists(sTemp) = False) Then 'If NOT blacklisted...
                   sString = Replace(sTemp, """""", "\""")
-                  If bInsertLineNumbers Then
-                    sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sReference & """", 1, 1)
-                  Else
-                    sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sRcFileName & ":" & Hex(GetUniqueId(oUIDs, sString)) & """", 1, 1)
-                  End If
                   If (FoundRegExpMatch(sLine, "//#\. (.*?)$", oMatch) = True) Then 'If found a comment for the translators...
                     sComment = Trim(oMatch.SubMatches(0))
                   ElseIf (FoundRegExpMatch(sLine, "//msgctxt (.*?)$", oMatch) = True) Then 'If found a context for the translation...
@@ -218,7 +209,7 @@ Function GetStringsFromRcFile(ByVal sRcFilePath)
           Else
             oString.References = sReference
           End If
-	End If
+        End If
         oString.Context = sContext
         oString.Id = sString
         oString.Str = ""
@@ -229,12 +220,9 @@ Function GetStringsFromRcFile(ByVal sRcFilePath)
           oStrings.Add sContext & sString, oString
         End If
       End If
-      oLcFile.WriteLine sLcLine
       fContinuation = sLine <> "" And InStr(",|", Right(sLine, 1)) <> 0
     Loop
-    oLcFile.WriteLine "MERGEPOT RCDATA ""English.pot"""
     oRcFile.Close
-    oLcFile.Close
   End If
   Set GetStringsFromRcFile = oStrings
 End Function

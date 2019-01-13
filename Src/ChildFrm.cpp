@@ -256,80 +256,15 @@ bool CChildFrame::EnsureValidDockState(CDockState& state)
 	return true;
 }
 
-static LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	switch (uMsg) {
-	case WM_NCPAINT:
-	case WM_PAINT:
-		return 0;
-	case WM_NCACTIVATE:
-		return 1;
-	case WM_SIZE:
-		if (wParam != SIZE_RESTORED)
-			return 0;
-	}
-	WNDPROC pfnOldWndProc = (WNDPROC)GetProp(hwnd, _T("OldWndProc"));
-	return CallWindowProc(pfnOldWndProc, hwnd, uMsg, wParam, lParam);
-}
-
-static BOOL CALLBACK EnumChildProc(HWND hwnd, LPARAM lParam)
-{
-	if (lParam == FALSE)
-	{
-		if (IsWindowVisible(hwnd))
-			::SendMessage(hwnd, WM_SETREDRAW, (WPARAM)lParam, 0);
-		else
-			SetProp(hwnd, _T("Hidden"), (HANDLE)1);
-	}
-	else
-	{
-		bool bHidden = RemoveProp(hwnd, _T("Hidden")) != nullptr;
-		if (!bHidden)
-			::SendMessage(hwnd, WM_SETREDRAW, (WPARAM)lParam, 0);
-	}
-	return TRUE;
-}
-
-/**
- * @brief Alternative LockWindowUpdate(hWnd) API.
- * See the comment near the code that calls this function.
- */
-static bool MyLockWindowUpdate(HWND hwnd)
-{
-	WNDPROC pfnOldWndProc;
-
-	EnumChildWindows(hwnd, EnumChildProc, FALSE);
-
-	pfnOldWndProc = (WNDPROC)SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)WndProc);
-	SetProp(hwnd, _T("OldWndProc"), (HANDLE)pfnOldWndProc);
-	return true;
-}
-
-/**
- * @brief Alternative LockWindowUpdate(nullptr) API.
- * See the comment near the code that calls this function.
- */
-static bool MyUnlockWindowUpdate(HWND hwnd)
-{
-	WNDPROC pfnOldWndProc = (WNDPROC)RemoveProp(hwnd, _T("OldWndProc"));
-	if (pfnOldWndProc != nullptr)
-		SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)pfnOldWndProc);
-
-	EnumChildWindows(hwnd, EnumChildProc, TRUE);
-
-	return true;
-}
-
 void CChildFrame::ActivateFrame(int nCmdShow) 
 {
-	BOOL bMaximized = FALSE;
-	CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
-
 	if (!m_bActivated) 
 	{
 		m_bActivated = true;
 
 		// get the active child frame, and a flag whether it is maximized
+		BOOL bMaximized = FALSE;
+		CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
 		if (oldActiveFrame == nullptr)
 			// for the first frame, get the restored/maximized state from the registry
 			bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), TRUE);
@@ -339,6 +274,8 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 			nCmdShow = SW_SHOWNORMAL;
 	}
 
+	CMDIChildWnd::ActivateFrame(nCmdShow);
+
 	// load docking positions and sizes
 	CDockState pDockState;
 	pDockState.LoadState(_T("Settings"));
@@ -347,40 +284,6 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
 	m_wndLocationBar.LoadState(_T("Settings"));
 	m_wndDetailBar.LoadState(_T("Settings"));
-
-	if (bMaximized)
-	{
-		// If ActivateFrame() is called without tricks, Resizing panes in MergeView window could be visible.
-		// Here, two tricks are used.
-		// [First trick]
-		// To complete resizing panes before displaying MergeView window, 
-		// it needs to send WM_SIZE message with SIZE_MAXIMIZED to MergeView window before calling ActivateFrame().
-		// [Second trick]
-		// But it causes side effect that DirView window becomes restored window from maximized window
-		// and the process could be visible.
-		// To avoid it, it needs to block the redrawing DirView window.
-		// I had tried to use LockWindowUpdate for this purpose. However, it had caused flickering desktop icons.
-		// So instead of using LockWindowUpdate(), 
-		// I wrote My[Lock/Unlock]WindowUpdate() function that uses subclassing window.
-		// 
-		if (oldActiveFrame)
-			MyLockWindowUpdate(oldActiveFrame->m_hWnd);
-		
-		RECT rc;
-		GetClientRect(&rc);
-		SendMessage(WM_SIZE, SIZE_MAXIMIZED, MAKELPARAM(rc.right, rc.bottom));
-
-		CMDIChildWnd::ActivateFrame(nCmdShow);
-
-		if (oldActiveFrame)
-			MyUnlockWindowUpdate(oldActiveFrame->m_hWnd);
-	}
-	else
-	{
-		RecalcLayout();
-
-		CMDIChildWnd::ActivateFrame(nCmdShow);
-	}
 }
 
 BOOL CChildFrame::DestroyWindow() 
