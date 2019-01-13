@@ -67,7 +67,6 @@ copy ShellExtension\*Register.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 
 rem Translation
 copy Build\%PLATFORM%\MergeUnicodeRelease\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\"
-copy Build\%PLATFORM%\MergeUnicodeRelease\MergeLang.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 
 rem Filters
 for %%i in (Filters\*.flt Filters\*.tmpl Filters\*.txt) do (

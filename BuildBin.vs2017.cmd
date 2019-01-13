@@ -32,7 +32,6 @@ endlocal
 
 if exist "%SIGNBAT_PATH%" (
   call "%SIGNBAT_PATH%" Build\%PLATFORM%\MergeUnicodeRelease\WinMergeU.exe
-  call "%SIGNBAT_PATH%" Build\%PLATFORM%\MergeUnicodeRelease\MergeLang.dll
 )
 
 mkdir Build\%PLATFORM%\MergeUnicodeRelease\%APPVER% 2> NUL
