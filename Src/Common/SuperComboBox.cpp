@@ -6,6 +6,13 @@
 #include <vector>
 #include "DropHandler.h"
 
+// Wrap placement new to avoid the need to temporarily #undef new
+template<typename T>
+T &placement_cast(void *p)
+{
+	return *new(p) T;
+}
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -21,7 +28,6 @@ HIMAGELIST CSuperComboBox::m_himlSystem = nullptr;
 CSuperComboBox::CSuperComboBox()
 	: m_pDropHandler(nullptr)
 	, m_bInEditchange(false)
-	, m_bEditChanged(false)
 	, m_bDoComplete(false)
 	, m_bAutoComplete(false)
 	, m_bHasImageList(false)
@@ -29,7 +35,6 @@ CSuperComboBox::CSuperComboBox()
 	, m_bExtendedFileNames(false)
 	, m_bCanBeEmpty(false)
 	, m_nMaxItems(DEF_MAXSIZE)
-	, m_strCurSel(_T(""))
 {
 
 
@@ -56,9 +61,10 @@ CSuperComboBox::~CSuperComboBox()
 BEGIN_MESSAGE_MAP(CSuperComboBox, CComboBoxEx)
 	//{{AFX_MSG_MAP(CSuperComboBox)
 	ON_CONTROL_REFLECT_EX(CBN_EDITCHANGE, OnEditchange)
-	ON_CONTROL_REFLECT_EX(CBN_SELCHANGE, OnSelchange)
+	ON_CONTROL_REFLECT_EX(CBN_SETFOCUS, OnSetfocus)
 	ON_WM_CREATE()
 	ON_WM_DESTROY()
+	ON_WM_DRAWITEM()
 	ON_NOTIFY_REFLECT(CBEN_GETDISPINFO, OnGetDispInfo)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -305,10 +311,13 @@ void CSuperComboBox::SaveState(LPCTSTR szRegSubKey)
 		AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Empty"), strItem.IsEmpty());
 }
 
-
-BOOL CSuperComboBox::OnEditchange() 
+BOOL CSuperComboBox::OnEditchange()
 {
-	m_bEditChanged = true;
+	if (m_bHasImageList)
+	{
+		// Trigger a WM_WINDOWPOSCHANGING to help the client area receive an update trough WM_DRAWITEM
+		SetWindowPos(NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOREDRAW | SWP_NOACTIVATE);
+	}
 
 	// bail if not auto completing 
 	if (!m_bDoComplete) 
@@ -360,13 +369,10 @@ BOOL CSuperComboBox::OnEditchange()
 	return FALSE;
 }
 
-BOOL CSuperComboBox::OnSelchange() 
+BOOL CSuperComboBox::OnSetfocus()
 {
-	m_bEditChanged = false;
-
-	CString strCurSel;
-	GetWindowText(strCurSel);
-	m_strCurSel = strCurSel;
+	if (m_bHasImageList)
+		GetEditCtrl()->SetModify(FALSE);
 
 	return FALSE;
 }
@@ -479,13 +485,78 @@ void CSuperComboBox::OnDropFiles(const std::vector<String>& files)
 
 static DWORD WINAPI SHGetFileInfoThread(LPVOID pParam)
 {
-	TCHAR szPath[MAX_PATH_FULL];
-	lstrcpy(szPath, (LPCTSTR)pParam);
-
+	CString &sPath = reinterpret_cast<CString &>(pParam);
 	SHFILEINFO sfi = {0};
-	sfi.iIcon = -1;
-	SHGetFileInfo(szPath, 0, &sfi, sizeof(sfi), SHGFI_SYSICONINDEX);
+	// If SHGetFileInfo() fails, intentionally leave sfi.iIcon as 0 (indicating
+	// a file of inspecific type) so as to not obstruct CBEIF_DI_SETITEM logic.
+	if (!sPath.IsEmpty())
+		SHGetFileInfo(sPath, 0, &sfi, sizeof(sfi), SHGFI_SYSICONINDEX);
+	sPath.~CString();
 	return sfi.iIcon;
+}
+
+static int GetFileTypeIconIndex(LPVOID pParam)
+{
+	CString &sText = reinterpret_cast<CString &>(pParam);
+	DWORD dwIconIndex = 0;
+	bool isNetworkDrive = false;
+	if (sText.GetLength() >= 2 && (sText[1] == L'\\'))
+	{
+		if (sText.GetLength() > 4 && sText.Left(4) == L"\\\\?\\")
+			if (sText.GetLength() > 8 && sText.Left(8) == L"\\\\?\\UNC\\")
+				isNetworkDrive = true;
+			else
+				isNetworkDrive = false;	// Just a Long File Name indicator
+		else
+			isNetworkDrive = true;
+	}
+	else
+	if (sText.GetLength() >= 3 && GetDriveType(sText.Left(3)) == DRIVE_REMOTE)
+		isNetworkDrive = true;	// Drive letter, but mapped to Remote UNC device.
+
+	// Unless execution drops into the final else block,
+	// SHGetFileInfoThread() takes ownership of, and will eventually trash sText
+	if (!isNetworkDrive)
+	{
+		dwIconIndex = SHGetFileInfoThread(pParam);
+	}
+	else
+	if (HANDLE hThread = CreateThread(nullptr, 0, SHGetFileInfoThread, pParam, 0, nullptr))
+	{
+		// The path is a network path. 
+		// Try to get the index of a system image list icon, with 1-sec timeout.
+
+		DWORD dwResult = WaitForSingleObject(hThread, 1000);
+		if (dwResult == WAIT_OBJECT_0)
+		{
+			GetExitCodeThread(hThread, &dwIconIndex);
+		}
+		CloseHandle(hThread);
+	}
+	else
+	{
+		// Ownership of sText was retained, so trash it here
+		sText.~CString();
+	}
+	return static_cast<int>(dwIconIndex);
+}
+
+void CSuperComboBox::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
+{
+	if ((lpDrawItemStruct->itemState & ODS_COMBOBOXEDIT) != 0 && m_bHasImageList)
+	{
+		LPVOID pvText;
+		CString &sText = placement_cast<CString>(&pvText);
+		CEdit *const pEdit = GetEditCtrl();
+		if (!pEdit->GetModify() || GetFocus() != pEdit)
+			GetWindowText(sText);
+		int iIcon = GetFileTypeIconIndex(pvText);
+		ImageList_DrawEx(m_himlSystem, iIcon, lpDrawItemStruct->hDC,
+			lpDrawItemStruct->rcItem.left, lpDrawItemStruct->rcItem.top,
+			0, 0, GetSysColor(COLOR_WINDOW), CLR_NONE, ILD_NORMAL);
+		return;
+	}
+	CComboBoxEx::OnDrawItem(nIDCtl, lpDrawItemStruct);
 }
 
 /**
@@ -497,52 +568,11 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 	if (pDispInfo && pDispInfo->ceItem.pszText && m_bHasImageList)
 	{
 		pDispInfo->ceItem.mask |= CBEIF_DI_SETITEM;
-		SHFILEINFO sfi = {0};
-		CString sText;
-		GetLBText(static_cast<int>(pDispInfo->ceItem.iItem), sText);
-		bool isNetworkDrive = false;
-		if (sText.GetLength() >= 2 && (sText[1] == L'\\'))
-		{
-			if (sText.GetLength() > 4 && sText.Left(4) == L"\\\\?\\")
-				if (sText.GetLength() > 8 && sText.Left(8) == L"\\\\?\\UNC\\")
-					isNetworkDrive = true;
-				else
-					isNetworkDrive = false;	// Just a Long File Name indicator
-			else
-				isNetworkDrive = true;
-		}
-		else
-		if (sText.GetLength() >= 3 && GetDriveType(sText.Left(3)) == DRIVE_REMOTE)
-			isNetworkDrive = true;	// Drive letter, but mapped to Remote UNC device.
-
-		if (!isNetworkDrive)
-		{
-			// The path is not a network path.
-			if (SHGetFileInfo(sText, 0, &sfi, sizeof(sfi), 
-								SHGFI_SYSICONINDEX) != NULL)
-			{
-				pDispInfo->ceItem.iImage = sfi.iIcon;
-				pDispInfo->ceItem.iSelectedImage = sfi.iIcon;
-			}
-		}
-		else
-		{
-			// The path is a network path. 
-			// Try to get the index of a system image list icon, with 1-sec timeout.
-			HANDLE hThread = CreateThread(nullptr, 0, SHGetFileInfoThread, 
-											(VOID *)(LPCTSTR)sText, 0, nullptr);
-			if (hThread != nullptr)
-			{
-				DWORD dwResult = WaitForSingleObject(hThread, 1000);
-				if (dwResult == WAIT_OBJECT_0)
-				{
-					GetExitCodeThread(hThread, (DWORD*)&sfi.iIcon);
-					pDispInfo->ceItem.iImage = sfi.iIcon;
-					pDispInfo->ceItem.iSelectedImage = sfi.iIcon;
-				}
-				CloseHandle(hThread);
-			}
-		}
+		LPVOID pvText;
+		GetLBText(static_cast<int>(pDispInfo->ceItem.iItem), placement_cast<CString>(&pvText));
+		int iIcon = GetFileTypeIconIndex(pvText);
+		pDispInfo->ceItem.iImage = iIcon;
+		pDispInfo->ceItem.iSelectedImage = iIcon;
 	}
 	*pResult = 0;
 }
