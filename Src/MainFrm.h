@@ -42,6 +42,7 @@ class LineFiltersList;
 class TempFile;
 struct FileLocation;
 class DropHandler;
+class CMainFrame;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
 
@@ -53,6 +54,8 @@ typedef CTypedPtrList<CPtrList, CHexMergeDoc *> HexMergeDocList;
 
 class PackingInfo;
 class CLanguageSelect;
+
+CMainFrame * GetMainFrame(); // access to the singleton main frame object
 
 /**
  * @brief Frame class containing save-routines etc
@@ -173,6 +176,7 @@ protected:
 					KillTimer(m_nRedrawTimer);
 					SetRedraw(TRUE);
 					RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE);
+					GetMainFrame()->GetActiveFrame()->OnUpdateFrameTitle(TRUE);
 				}
 				break;
 			}
@@ -309,5 +313,3 @@ private:
 	void LoadToolbarImages();
 	HMENU NewMenu( int view, int ID );
 };
-
-CMainFrame * GetMainFrame(); // access to the singleton main frame object
