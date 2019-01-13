@@ -17,11 +17,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\Translations\WinMerge\MergeLang.rc">
-      <Filter>Resource FIles</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <CustomBuild Include="Merge.rc">
       <Filter>Resource FIles</Filter>
     </CustomBuild>
