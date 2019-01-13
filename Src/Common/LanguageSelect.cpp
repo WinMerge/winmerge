@@ -23,8 +23,6 @@
 /** @brief Relative path to WinMerge executable for lang files. */
 static const TCHAR szRelativePath[] = _T("Languages");
 
-template<size_t len>
-static wchar_t *EatPrefix(wchar_t *text, const wchar_t (&prefix)[len]);
 static wchar_t *EatPrefix(wchar_t *text, const wchar_t *prefix);
 static void unslash(std::wstring &s);
 static HANDLE NTAPI FindFile(HANDLE h, LPCTSTR path, WIN32_FIND_DATA *fd);
@@ -504,14 +502,6 @@ static wchar_t *EatPrefix(wchar_t *text, const wchar_t *prefix)
 	if (size_t len = wcslen(prefix))
 		if (_memicmp(text, prefix, len * sizeof(wchar_t)) == 0)
 			return text + len;
-	return 0;
-}
-
-template<size_t len>
-static wchar_t *EatPrefix(wchar_t *text, const wchar_t (&prefix)[len])
-{
-	if (_memicmp(text, prefix, len * sizeof(wchar_t)) == 0)
-		return text + len;
 	return 0;
 }
 
