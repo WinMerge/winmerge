@@ -20,7 +20,6 @@ public:
 
 // Attributes
 protected:
-	bool m_bEditChanged;
 	bool m_bInEditchange;
 	bool m_bAutoComplete;
 	bool m_bDoComplete;
@@ -33,7 +32,6 @@ protected:
 
 	bool m_bMustUninitOLE;
 	static HIMAGELIST m_himlSystem;
-	CString m_strCurSel;
 
 	DropHandler *m_pDropHandler;
 
@@ -80,10 +78,11 @@ protected:
 
 	//{{AFX_MSG(CSuperComboBox)
 	afx_msg BOOL OnEditchange();
-	afx_msg BOOL OnSelchange();
+	afx_msg BOOL OnSetfocus();
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnDropFiles(const std::vector<String>& files);
 	afx_msg void OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult);
+	afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
 	afx_msg void OnDestroy();
 	//}}AFX_MSG
 
