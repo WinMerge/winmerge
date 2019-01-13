@@ -382,7 +382,6 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T(        " WinMerge:            Path names are relative to the Code File's directory.\r\n"));
 	WriteVersionOf1(2, _T(".\\ShellExtensionU.dll"));
 	WriteVersionOf1(2, _T(".\\ShellExtensionX64.dll"));
-	WriteVersionOf1(2, _T(".\\MergeLang.dll"));
 	WriteVersionOf1(2, _T(".\\Frhed\\hekseditU.dll"));
 	WriteVersionOf1(2, _T(".\\WinIMerge\\WinIMergeLib.dll"));
 	WriteVersionOf1(2, _T(".\\Merge7z\\7z.dll"));

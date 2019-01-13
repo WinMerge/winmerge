@@ -419,9 +419,6 @@ Source: ..\..\Build\X64\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifo
 Source: ..\..\Build\X64\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 Source: ..\..\Build\X64\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 
-; MergeLang.dll - translation helper dll
-Source: ..\..\Build\X64\MergeUnicodeRelease\MergeLang.dll; DestDir: {app}; Flags: promptifolder ignoreversion; Components: Core
-
 ; Language files
 Source: ..\..\Translations\WinMerge\Basque.po; DestDir: {app}\Languages; Components: Languages\Basque; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Basque.txt; DestDir: {app}\Docs; Components: Languages\Basque
