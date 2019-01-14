@@ -34,20 +34,15 @@ DiffItemList::~DiffItemList()
  */
 DIFFITEM *DiffItemList::AddNewDiff(DIFFITEM *par)
 {
+	DIFFITEM *p = new DIFFITEM;
 	if (par == nullptr)
 	{
-		// if there is no `parent`, this item becomes a child of m_pRoot
+		// if there is no `parent`, this item becomes a child of `m_pRoot`
 		assert(m_pRoot != nullptr);
-		par = m_pRoot;
+		m_pRoot->AddChildToParent(p);
 	}
-
-	DIFFITEM *p = new DIFFITEM;
-	// if there is a `parent`, this item becomes a child of that parent
-	p->parent = par;
-	if (par->children == nullptr)
-		par->children = p;
 	else
-		par->children->Append(p);
+		par->AddChildToParent(p);
 
 	return p;
 }
@@ -72,7 +67,7 @@ void DiffItemList::InitDiffItemList()
  */
 DIFFITEM *DiffItemList::GetFirstDiffPosition() const
 {
-	return m_pRoot->children;
+	return GetFirstChildDiffPosition(m_pRoot);
 }
 
 /**
@@ -82,10 +77,13 @@ DIFFITEM *DiffItemList::GetFirstDiffPosition() const
  */
 DIFFITEM *DiffItemList::GetFirstChildDiffPosition(const DIFFITEM *par) const
 {
-	if (par != nullptr)
-		return par->children;
+	if (par == nullptr)
+	{
+		assert(m_pRoot != nullptr);
+		return m_pRoot->GetFirstChild();
+	}
 	else
-		return m_pRoot->children;
+		return par->GetFirstChild();
 }
 
 /**
@@ -106,9 +104,9 @@ const DIFFITEM &DiffItemList::GetNextDiffPosition(DIFFITEM *&diffpos) const
 		do
 		{
 			diffpos = cur->GetFwdSiblingLink();
-			cur = cur->parent;
+			cur = cur->GetParentLink();
 			assert(cur != nullptr);
-		} while (diffpos == nullptr && cur->parent != nullptr);
+		} while (diffpos == nullptr && cur->HasParent());
 	}
 	return *p;
 }
@@ -132,8 +130,8 @@ const DIFFITEM &DiffItemList::GetNextSiblingDiffPosition(DIFFITEM *&diffpos) con
 {
 	DIFFITEM *p = diffpos;
 	diffpos = p->GetFwdSiblingLink();
-	assert(p==nullptr || diffpos==nullptr || p->parent == diffpos->parent);
-	assert(p->parent != nullptr);
+	assert(p==nullptr || diffpos==nullptr || p->GetParentLink() == diffpos->GetParentLink());
+	assert(p==nullptr || p->HasParent());
 	return *p;
 }
 
@@ -189,7 +187,7 @@ unsigned DiffItemList::GetCustomFlags1(DIFFITEM *diffpos) const
 {
 	assert(diffpos != nullptr);
 	const DIFFITEM &di = GetDiffAt(diffpos);
-	return di.customFlags1;
+	return di.customFlags;
 }
 
 /**
@@ -201,12 +199,12 @@ void DiffItemList::SetCustomFlags1(DIFFITEM *diffpos, unsigned flag)
 {
 	assert(diffpos != nullptr);
 	DIFFITEM &di = GetDiffRefAt(diffpos);
-	di.customFlags1 = flag;
+	di.customFlags = flag;
 }
 
 void DiffItemList::Swap(int idx1, int idx2)
 {
 	assert(m_pRoot != nullptr);
-	for (DIFFITEM *p = m_pRoot->children; p != nullptr; p = p->GetFwdSiblingLink())
+	for (DIFFITEM *p = GetFirstDiffPosition(); p != nullptr; p = p->GetFwdSiblingLink())
 		p->Swap(idx1, idx2);
 }
