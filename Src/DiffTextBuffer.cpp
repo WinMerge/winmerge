@@ -29,7 +29,6 @@ using Poco::Exception;
 #endif
 
 static bool IsTextFileStylePure(const UniMemFile::txtstats & stats);
-static void EscapeControlChars(String &s);
 static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats);
 
 /**
@@ -47,54 +46,6 @@ static bool IsTextFileStylePure(const UniMemFile::txtstats & stats)
 	if (stats.nlfs > 0)
 		nType++;
 	return (nType <= 1);
-}
-
-/**
- * @brief Escape control characters.
- * @param [in,out] s Line of text excluding eol chars.
- *
- * @note Escape sequences follow the pattern
- * (leadin character, high nibble, low nibble, leadout character).
- * The leadin character is '\x0F'. The leadout character is a backslash.
- */
-static void EscapeControlChars(String &s)
-{
-	// Compute buffer length required for escaping
-	size_t n = s.length();
-	LPCTSTR q = s.c_str();
-	size_t i = n;
-	while (i != 0)
-	{
-		TCHAR c = q[--i];
-		// Is it a control character in the range 0..31 except TAB?
-		if (!(c & ~_T('\x1F')) && c != _T('\t'))
-		{
-			n += 3; // Need 3 extra characters to escape
-		}
-	}
-	// Reallocate accordingly
-	i = s.length();
-	s.reserve(n + 1);
-	s.resize(n + 1);
-	LPTSTR p = &s[0];
-	// Copy/translate characters starting at end of string
-	while (i != 0)
-	{
-		TCHAR c = p[--i];
-		// Is it a control character in the range 0..31 except TAB?
-		if (!(c & ~_T('\x1F')) && c != _T('\t'))
-		{
-			p[n - 4 + 1] = _T("0123456789ABCDEF")[(c >> 4) & 0xf];
-			p[n - 4 + 2] = _T("0123456789ABCDEF")[c & 0xf];
-			// Replace terminating zero with leadout character
-			p[n - 1] = _T('\\');
-			// Prepare to replace 1st hex digit with leadin character
-			c = _T('\x0F');
-			n -= 3;
-		}
-		p[--n] = c;
-	}
-	s.resize(s.length() - 1);
 }
 
 /**
@@ -507,18 +458,20 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	bool bSaveSuccess = false;
 
 	UniStdioFile file;
-	file.SetUnicoding(m_encoding.m_unicoding);
-	file.SetBom(m_encoding.m_bom);
-	file.SetCodepage(m_encoding.m_codepage);
 
 	String sIntermediateFilename; // used when !bTempFile
 
 	if (bTempFile)
 	{
+		file.SetUnicoding(ucr::UCS2LE);
+		file.SetBom(true);
 		bOpenSuccess = !!file.OpenCreate(pszFileName);
 	}
 	else
 	{
+		file.SetUnicoding(m_encoding.m_unicoding);
+		file.SetBom(m_encoding.m_bom);
+		file.SetCodepage(m_encoding.m_codepage);
 		sIntermediateFilename = env::GetTemporaryFileName(m_strTempPath,
 			_T("MRG_"), nullptr);
 		if (sIntermediateFilename.empty())
@@ -563,9 +516,6 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		}
 		else
 			sLine = _T("");
-
-		if (bTempFile)
-			EscapeControlChars(sLine);
 
 		// last real line ?
 		if (line == lastRealLine || lastRealLine == -1 )
