@@ -36,7 +36,7 @@ struct DirColInfo
 	const char *idDesc; /**< Description, ID of string resource */
 	ColGetFncPtrType getfnc; /**< Handler giving display string */
 	ColSortFncPtrType sortfnc; /**< Handler for sorting this column */
-	size_t offset;
+	size_t offset;	/**< Offset into DIFFITEM::diffFileInfo[] */
 	int physicalIndex; /**< Current physical index, -1 if not displayed */
 	bool defSortUp; /**< Does column start with ascending sort (most do) */
 	int alignment; /**< Column alignment */
