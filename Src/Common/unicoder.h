@@ -44,7 +44,6 @@ enum UNICODESET : char
 	UCS4LE,    /**< UTF-32 little endian */
 	UCS4BE,    /**< UTF-32 big-endian */
 };
-String GetUnicodesetName(UNICODESET codeset);
 
 int Ucs4_to_Utf8(unsigned unich, unsigned char * utf8);
 int Utf8len_fromLeadByte(unsigned char ch);

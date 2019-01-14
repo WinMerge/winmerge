@@ -20,9 +20,7 @@
 static void CopyHKLMValues();
 static bool OpenHKLM(HKEY *key, LPCTSTR relpath = nullptr);
 static bool OpenHKCU(HKEY *key, LPCTSTR relpath = nullptr);
-static bool IsFirstRun(HKEY key);
 static void CopyFromLMtoCU(HKEY lmKey, HKEY cuKey, LPCTSTR valname);
-static void ResetFirstRun(HKEY key);
 
 namespace Options
 {
