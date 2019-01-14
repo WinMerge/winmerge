@@ -471,7 +471,7 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		const DIFFITEM& di = GetDiffItem(lvhti.iItem);
 		if (m_bTreeMode && GetDiffContext().m_bRecursive && di.diffcode.isDirectory())
 		{
-			if (di.customFlags1 & ViewCustomFlags::EXPANDED)
+			if (di.customFlags & ViewCustomFlags::EXPANDED)
 				CollapseSubdir(lvhti.iItem);
 			else
 				ExpandSubdir(lvhti.iItem);
@@ -527,8 +527,8 @@ void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int 
 				index++;
 				if (di.HasChildren())
 				{
-					m_pList->SetItemState(index - 1, INDEXTOSTATEIMAGEMASK((di.customFlags1 & ViewCustomFlags::EXPANDED) ? 2 : 1), LVIS_STATEIMAGEMASK);
-					if (di.customFlags1 & ViewCustomFlags::EXPANDED)
+					m_pList->SetItemState(index - 1, INDEXTOSTATEIMAGEMASK((di.customFlags & ViewCustomFlags::EXPANDED) ? 2 : 1), LVIS_STATEIMAGEMASK);
+					if (di.customFlags & ViewCustomFlags::EXPANDED)
 						RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
 				}
 			}
@@ -1123,7 +1123,7 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 			const DIFFITEM& di = GetDiffItem(sel);
 			if (m_bTreeMode && GetDiffContext().m_bRecursive && di.diffcode.isDirectory())
 			{
-				if (di.customFlags1 & ViewCustomFlags::EXPANDED)
+				if (di.customFlags & ViewCustomFlags::EXPANDED)
 					CollapseSubdir(sel);
 				else
 					ExpandSubdir(sel);
@@ -1150,7 +1150,7 @@ void CDirView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 	if (lvhti.flags == LVHT_ONITEMSTATEICON)
 	{
 		const DIFFITEM &di = GetDiffItem(pNM->iItem);
-		if (di.customFlags1 & ViewCustomFlags::EXPANDED)
+		if (di.customFlags & ViewCustomFlags::EXPANDED)
 			CollapseSubdir(pNM->iItem);
 		else
 			ExpandSubdir(pNM->iItem);
@@ -1166,12 +1166,12 @@ void CDirView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 void CDirView::CollapseSubdir(int sel)
 {
 	DIFFITEM& dip = this->GetDiffItem(sel);
-	if (!m_bTreeMode || !(dip.customFlags1 & ViewCustomFlags::EXPANDED) || !dip.HasChildren())
+	if (!m_bTreeMode || !(dip.customFlags & ViewCustomFlags::EXPANDED) || !dip.HasChildren())
 		return;
 
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 
-	dip.customFlags1 &= ~ViewCustomFlags::EXPANDED;
+	dip.customFlags &= ~ViewCustomFlags::EXPANDED;
 	m_pList->SetItemState(sel, INDEXTOSTATEIMAGEMASK(1), LVIS_STATEIMAGEMASK);
 
 	int count = m_pList->GetItemCount();
@@ -1194,14 +1194,14 @@ void CDirView::CollapseSubdir(int sel)
 void CDirView::ExpandSubdir(int sel, bool bRecursive)
 {
 	DIFFITEM& dip = GetDiffItem(sel);
-	if (!m_bTreeMode || (dip.customFlags1 & ViewCustomFlags::EXPANDED) || !dip.HasChildren())
+	if (!m_bTreeMode || (dip.customFlags & ViewCustomFlags::EXPANDED) || !dip.HasChildren())
 		return;
 
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 	m_pList->SetItemState(sel, INDEXTOSTATEIMAGEMASK(2), LVIS_STATEIMAGEMASK);
 
 	CDiffContext &ctxt = GetDiffContext();
-	dip.customFlags1 |= ViewCustomFlags::EXPANDED;
+	dip.customFlags |= ViewCustomFlags::EXPANDED;
 	if (bRecursive)
 		ExpandSubdirs(ctxt, dip);
 
@@ -2145,10 +2145,10 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 				else if (m_bTreeMode && sel >= 0)
 				{
 					const DIFFITEM& di = GetDiffItem(sel);
-					assert(di.parent != nullptr);
-					if (di.parent != nullptr)
+					assert(di.HasParent());
+					if (di.HasParent())
 					{
-						int i = GetItemIndex(di.parent);
+						int i = GetItemIndex(di.GetParentLink());
 						if (i >= 0)
 							MoveFocus(sel, i, GetSelectedCount());
 					}
@@ -2159,7 +2159,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 				DIFFITEM& dip = this->GetDiffItem(sel);
 				if (pMsg->wParam == VK_LEFT)
 				{
-					if (m_bTreeMode && GetDiffContext().m_bRecursive && (!(dip.customFlags1 & ViewCustomFlags::EXPANDED) || !dip.HasChildren()))
+					if (m_bTreeMode && GetDiffContext().m_bRecursive && (!(dip.customFlags & ViewCustomFlags::EXPANDED) || !dip.HasChildren()))
 						PostMessage(WM_KEYDOWN, VK_BACK);
 					else
 						CollapseSubdir(sel);
@@ -2172,7 +2172,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 				}
 				if (pMsg->wParam == VK_RIGHT)
 				{
-					if (m_bTreeMode && GetDiffContext().m_bRecursive && dip.customFlags1 & ViewCustomFlags::EXPANDED && dip.HasChildren())
+					if (m_bTreeMode && GetDiffContext().m_bRecursive && dip.customFlags & ViewCustomFlags::EXPANDED && dip.HasChildren())
 						PostMessage(WM_KEYDOWN, VK_DOWN);
 					else
 						ExpandSubdir(sel);

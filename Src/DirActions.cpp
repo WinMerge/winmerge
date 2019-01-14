@@ -557,7 +557,7 @@ bool IsItemExistAll(const CDiffContext& ctxt, const DIFFITEM &di)
  */
 bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilterSettings& filter)
 {
-	if (di.customFlags1 & ViewCustomFlags::HIDDEN)
+	if (di.customFlags & ViewCustomFlags::HIDDEN)
 		return false;
 
 	if (di.diffcode.isResultFiltered())
@@ -1081,10 +1081,10 @@ void SetDiffCounts(DIFFITEM& di, unsigned diffs, unsigned ignored)
  */
 void SetItemViewFlag(DIFFITEM& di, unsigned flag, unsigned mask)
 {
-	unsigned curFlags = di.customFlags1;
+	unsigned curFlags = di.customFlags;
 	curFlags &= ~mask; // Zero bits masked
 	curFlags |= flag;
-	di.customFlags1 = curFlags;
+	di.customFlags = curFlags;
 }
 
 /**
@@ -1280,7 +1280,7 @@ String NumToStr(int n)
 
 void ExpandSubdirs(CDiffContext& ctxt, DIFFITEM& dip)
 {
-	dip.customFlags1 |= ViewCustomFlags::EXPANDED;
+	dip.customFlags |= ViewCustomFlags::EXPANDED;
 	DIFFITEM *diffpos = ctxt.GetFirstChildDiffPosition(&dip);
 	while (diffpos != nullptr)
 	{
@@ -1288,7 +1288,7 @@ void ExpandSubdirs(CDiffContext& ctxt, DIFFITEM& dip)
 		if (!di.IsAncestor(&dip))
 			break;
 		if (di.HasChildren())
-			di.customFlags1 |= ViewCustomFlags::EXPANDED;
+			di.customFlags |= ViewCustomFlags::EXPANDED;
 	}
 }
 
@@ -1298,7 +1298,7 @@ void ExpandAllSubdirs(CDiffContext& ctxt)
 	while (diffpos != nullptr)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
-		di.customFlags1 |= ViewCustomFlags::EXPANDED;
+		di.customFlags |= ViewCustomFlags::EXPANDED;
 	}
 }
 
@@ -1308,7 +1308,7 @@ void CollapseAllSubdirs(CDiffContext& ctxt)
 	while (diffpos != nullptr)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
-		di.customFlags1 &= ~ViewCustomFlags::EXPANDED;
+		di.customFlags &= ~ViewCustomFlags::EXPANDED;
 	}
 }
 
@@ -1322,7 +1322,7 @@ DirViewTreeState *SaveTreeState(const CDiffContext& ctxt)
 		if (di.HasChildren())
 		{
 			String relpath = paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
-			pTreeState->insert(std::pair<String, bool>(relpath, !!(di.customFlags1 & ViewCustomFlags::EXPANDED)));
+			pTreeState->insert(std::pair<String, bool>(relpath, !!(di.customFlags & ViewCustomFlags::EXPANDED)));
 		}
 	}
 	return pTreeState;
@@ -1340,8 +1340,8 @@ void RestoreTreeState(CDiffContext& ctxt, DirViewTreeState *pTreeState)
 			std::map<String, bool>::iterator p = pTreeState->find(relpath);
 			if (p != pTreeState->end())
 			{
-				di.customFlags1 &= ~ViewCustomFlags::EXPANDED;
-				di.customFlags1 |= (p->second ? ViewCustomFlags::EXPANDED : 0);
+				di.customFlags &= ~ViewCustomFlags::EXPANDED;
+				di.customFlags |= (p->second ? ViewCustomFlags::EXPANDED : 0);
 			}
 		}
 	}
