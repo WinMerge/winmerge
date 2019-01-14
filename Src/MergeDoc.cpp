@@ -752,7 +752,6 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 
 			if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
 			{
-				GetMainFrame()->SendMessageToDescendants(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0, TRUE, TRUE);
 				LangMessageBox(IDS_FILESSAME, nFlags);
 			}
 
