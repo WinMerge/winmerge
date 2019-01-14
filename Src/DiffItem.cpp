@@ -67,11 +67,11 @@ void DIFFITEM::RemoveSiblings()
 		assert(pRem->parent == parent);
 		assert(pRem->Blink == this);
 		DIFFITEM *pNext = pRem->Flink;
-		pRem->RemoveSelf();	// destroys Flink (so we use pRem instead)
+		pRem->DelinkFromSiblings();	// destroys Flink (so we use pRem instead)
 		delete pRem;
 		pRem = pNext;
 	}
-	RemoveSelf();
+	DelinkFromSiblings();
 }
 
 /** @brief Remove and delete all children DIFFITEM entries */
@@ -113,7 +113,7 @@ DIFFITEM *DIFFITEM::GetEmptyItem()
 * @brief Add Sibling item
 * @param [in] p The item to be added
 */
-void DIFFITEM::Append(DIFFITEM *p)
+void DIFFITEM::AppendSibling(DIFFITEM *p)
 {
 	assert(parent->children == this);
 
@@ -137,8 +137,19 @@ void DIFFITEM::Append(DIFFITEM *p)
 	}
 	Blink = p;
 }
- 
-void DIFFITEM::RemoveSelf()
+
+void DIFFITEM::AddChildToParent(DIFFITEM *p)
+{
+	p->parent = this;
+	if (children == nullptr)
+		// First child
+		children = p;
+	else
+		// More siblings
+		children->AppendSibling(p);
+}
+
+void DIFFITEM::DelinkFromSiblings()
 {
 	if (parent != nullptr && parent->children != nullptr)
 	{

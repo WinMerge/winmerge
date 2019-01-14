@@ -561,8 +561,8 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, DIFF
 		if (pWorkCompletedNf != nullptr) {
 			DIFFITEM &di = pWorkCompletedNf->data();
 			if (di.diffcode.isResultError()) { 
-				DIFFITEM *diParent = di.parent;
-				assert(di.parent != nullptr);
+				DIFFITEM *diParent = di.GetParentLink();
+				assert(diParent != nullptr);
 				if (diParent != nullptr)
 				{
 					diParent->diffcode.diffcode |= DIFFCODE::CMPERR;
@@ -637,8 +637,8 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 			{
 				CompareDiffItem(di, pCtxt); 
 				if (di.diffcode.isResultError()) { 
-					DIFFITEM *diParent = di.parent;
-					assert(di.parent != nullptr);
+					DIFFITEM *diParent = di.GetParentLink();
+					assert(diParent != nullptr);
 					if (diParent != nullptr)
 					{
 						diParent->diffcode.diffcode |= DIFFCODE::CMPERR;
@@ -698,9 +698,9 @@ int DirScan_UpdateMarkedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 			UpdateDiffItem(di, bItemsExist, pCtxt);
 			if (!bItemsExist)
 			{ 
-				di.RemoveSelf();	// delink from list of Siblings
-				delete &di;			// Will also delete all Children items
-				continue;			// ... because `di` is now invalid
+				di.DelinkFromSiblings();	// delink from list of Siblings
+				delete &di;					// Also delete all Children items
+				continue;					// (... because `di` is now invalid)
 			}
 			if (!di.diffcode.isDirectory())
 				++ncount;

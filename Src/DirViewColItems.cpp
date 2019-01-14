@@ -1336,17 +1336,17 @@ DirViewColItems::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM &ldi
 		if (lLevel < rLevel)
 		{
 			for (; lLevel != rLevel; rLevel--)
-				rcur = rcur->parent;
+				rcur = rcur->GetParentLink();
 		}
 		else if (rLevel < lLevel)
 		{
 			for (; lLevel != rLevel; lLevel--)
-				lcur = lcur->parent;
+				lcur = lcur->GetParentLink();
 		}
-		while (lcur->parent != rcur->parent)
+		while (lcur->GetParentLink() != rcur->GetParentLink())
 		{
-			lcur = lcur->parent;
-			rcur = rcur->parent;
+			lcur = lcur->GetParentLink();
+			rcur = rcur->GetParentLink();
 		}
 		arg1 = reinterpret_cast<const char *>(lcur) + offset;
 		arg2 = reinterpret_cast<const char *>(rcur) + offset;
