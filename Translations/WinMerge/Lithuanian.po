@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-11-27 05:34+0000\n"
-"PO-Revision-Date: 2018-11-28 14:48+0200\n"
+"POT-Creation-Date: 2019-01-14 01:56+0000\n"
+"PO-Revision-Date: 2019-01-14 08:50+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1267,11 +1267,11 @@ msgstr "Lyginant failus ne&pakeisti failo keitimo laiko"
 
 #: Merge.rc:17F0E759
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Rodyti „Pasirinkti failus ar katalogus“ startuojant"
+msgstr "Rodyti „Parinkite failus ar katalogus“ startuojant"
 
 #: Merge.rc:1AD99579
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Užverti „Pasirinkti failus ar katalogus“ po „Gerai“ paspaudimo"
+msgstr "Užverti „Parinkite failus ar katalogus“ po „Gerai“ paspaudimo"
 
 #: Merge.rc:44776ACE
 msgid "O&pen-dialog Auto-Completion:"
@@ -2047,7 +2047,7 @@ msgstr "Failo iš&saugojimui:"
 
 #: Merge.rc:175DEEED
 msgid "&Use same codepage for both"
-msgstr "Na&udoti tą pačią koduotę abiem atvejais"
+msgstr "Na&udoti tą pačią koduotę abiems"
 
 #: Merge.rc:89AF4FE
 msgid "&Cancel"
@@ -2390,8 +2390,7 @@ msgstr ""
 #: Merge.rc:74BA5C8C
 msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
-"Kūrėjai:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+"Kūrėjai:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:3EF068BF
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
