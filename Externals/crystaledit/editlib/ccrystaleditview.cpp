@@ -2825,7 +2825,7 @@ OnToolsCharCoding ()
       dlg.m_sOriginal.ReleaseBuffer ();
       if (dlg.DoModal () != IDOK)
         return;
-      LPTSTR pszNew;
+      LPTSTR pszNew = nullptr;
       if (!iconvert_new (sText, &pszNew, dlg.m_nSource, dlg.m_nDest, dlg.m_bAlpha))
         {
           ASSERT (pszNew != nullptr);
