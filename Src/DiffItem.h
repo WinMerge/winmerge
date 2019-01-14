@@ -164,6 +164,13 @@ public:
 	}
 };
 
+enum ViewCustomFlags
+{
+	// No valid values are 0
+	INVALID_CODE = 0,
+	VISIBILITY = 0x3U, VISIBLE = 0x1U, HIDDEN = 0x2U, EXPANDED = 0x4U
+};
+
 /**
  * @brief information about one file/folder item.
  * This class holds information about one compared item in the folder compare.
@@ -178,51 +185,61 @@ public:
 
 class DIFFITEM 
 {
-public:
-	DIFFITEM *parent;				/**< Parent of current item */
-	DIFFITEM *children;				/**< Link to first child of `this` */
+//**** DIFFITEM data values
 
-	DiffFileInfo diffFileInfo[3];	/**< Fileinfo for left/middle/right file */
+public:
+	DiffFileInfo diffFileInfo[3];	/**< Fileinfo for left/middle/right file. */ 
+									// Note: Keep diffFileInfo[] near front of class for small offsets 
+									// (see `DirColInfo` arrays in `DirViewColItems.cpp`) *>
+	DIFFCODE diffcode;				/**< Compare result */
 	int	nsdiffs;					/**< Amount of non-ignored differences */
 	int nidiffs;					/**< Amount of ignored differences */
-	unsigned customFlags1;			/**< Custom flags set 1 */
-	DIFFCODE diffcode;				/**< Compare result */
-
-
-	DIFFITEM() : parent(nullptr), children(nullptr), nidiffs(-1), nsdiffs(-1), customFlags1(0), 
-					Flink(nullptr), Blink(nullptr) {}
-	~DIFFITEM();
+	unsigned customFlags;			/**< ViewCustomFlags flags */
 
 	String getFilepath(int nIndex, const String &sRoot) const;
-	int GetDepth() const;
-	bool IsAncestor(const DIFFITEM *pdi) const;
-	void RemoveChildren();
 	void Swap(int idx1, int idx2);
 
-	void Append(DIFFITEM *p);
-	void RemoveSelf();
-
-	inline DIFFITEM *GetFwdSiblingLink() const { return Flink; }
-
-	/** @brief Return whether the current DIFFITEM has children */
-	inline bool DIFFITEM::HasChildren() const
-	{
-		return (children != nullptr);
-	}
-
-	static DIFFITEM *GetEmptyItem();
-	bool isEmpty() const { return this == GetEmptyItem(); /* to invoke "emptiness" checking */ }
-
-
-protected:
+//**** Child, Parent, Sibling linkage
+private:							// Don't allow direct external manipulation of link values
+	DIFFITEM *parent;				/**< Parent of current item */
+	DIFFITEM *children;				/**< Link to first child of this item */
+	DIFFITEM *Flink;				/**< Forward "sibling" link.  The forward linkage ends with
+										 a `nullptr` in the final (newest) item. */
+	DIFFITEM *Blink;				/**< Backward "sibling" link.  The backward linkage is circular,
+										 with the first (oldest) item (pointed to by `this->parent->children`)
+										 pointing to the last (newest) item. */
+	void AppendSibling(DIFFITEM *p);
 	void RemoveSiblings();
 
-	DIFFITEM *Flink;				/**< Forward "sibling" link.  The forward linkage ends with 
-										a `nullptr` in the final (newest) item. */
-	DIFFITEM *Blink;				/**< Backward "sibling" link.  The backward linkage is circular,
-										with the first (oldest) item (pointed to by `this->parent->children`)
-										pointing to the last (newest) item. */
+public:
+	void DelinkFromSiblings();
+	void AddChildToParent(DIFFITEM *p);
+	void RemoveChildren();
+	int GetDepth() const;
+	bool IsAncestor(const DIFFITEM *pdi) const;
+	inline DIFFITEM *GetFwdSiblingLink() const { return Flink; }
+	inline DIFFITEM *GetFirstChild() const { return children; }
+	inline DIFFITEM *GetParentLink() const { return parent; }
 
+	/** @brief Return whether the current DIFFITEM has children */
+	inline bool DIFFITEM::HasChildren() const { return (children != nullptr); }
+	/** @brief Return whether the current DIFFITEM has children */
+	inline bool DIFFITEM::HasParent() const { return (parent != nullptr); }
+
+//**** The `emptyitem` and its access procedures
+private:
 	static DIFFITEM emptyitem;		/**< singleton to represent a DIFFITEM that doesn't have any data */
+
+public:
+	static DIFFITEM *GetEmptyItem();
+	inline bool isEmpty() const { return this == GetEmptyItem(); /* to invoke "emptiness" checking */ }
+
+//**** CTOR, DTOR
+public:
+	DIFFITEM() : parent(nullptr), children(nullptr), Flink(nullptr), Blink(nullptr), 
+					nidiffs(-1), nsdiffs(-1), customFlags(ViewCustomFlags::INVALID_CODE) 
+					/* `diffcode` has its own initializer */
+					{}
+	~DIFFITEM();
+
 };
- 
