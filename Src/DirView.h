@@ -301,7 +301,6 @@ protected:
 	afx_msg void OnCtxtDirZip();
 	template<SIDE_TYPE stype>
 	afx_msg void OnCtxtDirShellContextMenu();
-	afx_msg void OnUpdateCtxtDir(CCmdUI* pCmdUI);
 	afx_msg void OnSelectAll();
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
 	afx_msg void OnPluginPredifferMode(UINT nID);
