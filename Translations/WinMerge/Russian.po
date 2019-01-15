@@ -130,17 +130,17 @@ msgstr ""
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
-msgstr ""
+msgstr "Предыдущая страница"
 
 #: Merge.rc:68816EE1
 #, c-format
 msgid "&Next Page"
-msgstr ""
+msgstr "Следующая страница"
 
 #: Merge.rc:4DE14271
 #, c-format
 msgid "&Active Pane"
-msgstr ""
+msgstr "Активная панель"
 
 #: Merge.rc:43017E43
 #, c-format
@@ -185,7 +185,7 @@ msgstr ""
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
-msgstr ""
+msgstr "Установить цвет фона"
 
 #: Merge.rc:43017E46
 #, c-format
@@ -229,7 +229,7 @@ msgstr "Недавние проекты"
 #: Merge.rc:73E9B1DA
 #, c-format
 msgid "Recent F&iles Or Folders"
-msgstr ""
+msgstr "Недавние Файлы или Папки"
 
 #: Merge.rc:29D50B4A
 #, c-format
@@ -264,17 +264,17 @@ msgstr "Па&нель инструментов"
 #: Merge.rc:1D2E49F7
 #, c-format
 msgid "&Small"
-msgstr "&Маленькие значки"
+msgstr "&Мелкие значки"
 
 #: Merge.rc:22956A6
 #, c-format
 msgid "&Big"
-msgstr "&Большие значки"
+msgstr "&Крупные значки"
 
 #: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
-msgstr ""
+msgstr "&Огромные значки"
 
 #: Merge.rc:27AC6D7F
 #, c-format
@@ -1339,12 +1339,12 @@ msgstr "Игнорировать все"
 #: Merge.rc:6FC398BA
 #, c-format
 msgid "Case sensi&tive"
-msgstr "Чувствительность регистра"
+msgstr "Учитывать регистр"
 
 #: Merge.rc:620FF1AC
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Игнорировать разницу в возвратах каретки (Win/Unix/Mac)"
+msgstr "Игнорировать разницу возврата каретки (Win/Unix/Mac)"
 
 #: Merge.rc:6DE6F873
 #, c-format
@@ -1354,7 +1354,7 @@ msgstr "&Включая подпапки"
 #: Merge.rc:1DC30E64
 #, c-format
 msgid "&Compare method:"
-msgstr ""
+msgstr "Метод сравнения:"
 
 #: Merge.rc:7A4CFAFB
 #, c-format
@@ -1369,12 +1369,12 @@ msgstr "Быстрый поиск по содержимому"
 #: Merge.rc:36B164C4
 #, c-format
 msgid "Binary Contents"
-msgstr ""
+msgstr "По двоичному содержимому"
 
 #: Merge.rc:2CEE4748
 #, c-format
 msgid "Modified Date"
-msgstr "По различиям в дате"
+msgstr "По дате изменения"
 
 #: Merge.rc:39C7AF82
 #, c-format
@@ -1494,11 +1494,11 @@ msgstr ""
 #: Merge.rc:751AB58F
 #, c-format
 msgid "Se&lect..."
-msgstr ""
+msgstr "Выбрать"
 
 #: Merge.rc:4C3E0A2D
 msgid "Co&mpare"
-msgstr ""
+msgstr "Сравнить"
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1713,7 +1713,7 @@ msgstr "Регулярные выражения (одно на строку):"
 #: Merge.rc:3ECBF05
 #, c-format
 msgid "Edit"
-msgstr "Редактировать"
+msgstr "Изменить"
 
 #: Merge.rc:25669B5
 #, c-format
@@ -2392,7 +2392,7 @@ msgstr "Какой тип фильтра вы хотите создать?"
 #: Merge.rc:444EF527
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "Общий фильтр (для всех пользователей этой машины)"
+msgstr "Общий фильтр (для всех пользователей)"
 
 #: Merge.rc:11304E6
 #, c-format
