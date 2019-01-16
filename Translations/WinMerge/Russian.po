@@ -130,17 +130,17 @@ msgstr ""
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
-msgstr ""
+msgstr "Предыдущая страница"
 
 #: Merge.rc:68816EE1
 #, c-format
 msgid "&Next Page"
-msgstr ""
+msgstr "Следующая страница"
 
 #: Merge.rc:4DE14271
 #, c-format
 msgid "&Active Pane"
-msgstr ""
+msgstr "Активная панель"
 
 #: Merge.rc:43017E43
 #, c-format
@@ -185,7 +185,7 @@ msgstr ""
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
-msgstr ""
+msgstr "Установить цвет фона"
 
 #: Merge.rc:43017E46
 #, c-format
@@ -229,7 +229,7 @@ msgstr "Недавние проекты"
 #: Merge.rc:73E9B1DA
 #, c-format
 msgid "Recent F&iles Or Folders"
-msgstr ""
+msgstr "Недавние Файлы или Папки"
 
 #: Merge.rc:29D50B4A
 #, c-format
@@ -264,17 +264,17 @@ msgstr "Па&нель инструментов"
 #: Merge.rc:1D2E49F7
 #, c-format
 msgid "&Small"
-msgstr "&Маленькие значки"
+msgstr "&Мелкие значки"
 
 #: Merge.rc:22956A6
 #, c-format
 msgid "&Big"
-msgstr "&Большие значки"
+msgstr "&Крупные значки"
 
 #: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
-msgstr ""
+msgstr "&Огромные значки"
 
 #: Merge.rc:27AC6D7F
 #, c-format
@@ -1339,12 +1339,12 @@ msgstr "Игнорировать все"
 #: Merge.rc:6FC398BA
 #, c-format
 msgid "Case sensi&tive"
-msgstr "Чувствительность регистра"
+msgstr "Учитывать регистр"
 
 #: Merge.rc:620FF1AC
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Игнорировать разницу в возвратах каретки (Win/Unix/Mac)"
+msgstr "Игнорировать разницу возврата каретки (Win/Unix/Mac)"
 
 #: Merge.rc:6DE6F873
 #, c-format
@@ -1354,7 +1354,7 @@ msgstr "&Включая подпапки"
 #: Merge.rc:1DC30E64
 #, c-format
 msgid "&Compare method:"
-msgstr ""
+msgstr "Метод сравнения:"
 
 #: Merge.rc:7A4CFAFB
 #, c-format
@@ -1369,12 +1369,12 @@ msgstr "Быстрый поиск по содержимому"
 #: Merge.rc:36B164C4
 #, c-format
 msgid "Binary Contents"
-msgstr ""
+msgstr "По двоичному содержимому"
 
 #: Merge.rc:2CEE4748
 #, c-format
 msgid "Modified Date"
-msgstr "По различиям в дате"
+msgstr "По дате изменения"
 
 #: Merge.rc:39C7AF82
 #, c-format
@@ -1494,11 +1494,11 @@ msgstr ""
 #: Merge.rc:751AB58F
 #, c-format
 msgid "Se&lect..."
-msgstr ""
+msgstr "Выбрать"
 
 #: Merge.rc:4C3E0A2D
 msgid "Co&mpare"
-msgstr ""
+msgstr "Сравнить"
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1713,7 +1713,7 @@ msgstr "Регулярные выражения (одно на строку):"
 #: Merge.rc:3ECBF05
 #, c-format
 msgid "Edit"
-msgstr "Редактировать"
+msgstr "Изменить"
 
 #: Merge.rc:25669B5
 #, c-format
@@ -2232,12 +2232,12 @@ msgid ""
 "need to restart session"
 msgstr ""
 "Определять кодировку для этих файлов: .html, .rc, .xml \n"
-"Необходим перезапуск сессии"
+"необходим перезапуск сессии"
 
 #: Merge.rc:3BCD5104
 #, c-format
 msgid "Detect codepage for text files using mlang.dll\nneed to restart session"
-msgstr ""
+msgstr "Определять кодовую страницу для текстовых файлов с помощью mlang.dll\nнеобходим перезапуск сессии"
 
 #: Merge.rc:E6D7F1
 #, c-format
@@ -2247,12 +2247,12 @@ msgstr "Системная кодовая страница"
 #: Merge.rc:4F3C2B88
 #, c-format
 msgid "According to WinMerge User Interface"
-msgstr "В зависимости от интерфейса пользователя WinMerge"
+msgstr "Согласно пользовательского интерфейса WinMerge"
 
 #: Merge.rc:8AF7E6A
 #, c-format
 msgid "Custom codepage:"
-msgstr "Кодировка пользователя:"
+msgstr "Пользовательская:"
 
 #: Merge.rc:6CD65B95
 #, c-format
@@ -2392,7 +2392,7 @@ msgstr "Какой тип фильтра вы хотите создать?"
 #: Merge.rc:444EF527
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "Общий фильтр (для всех пользователей этой машины)"
+msgstr "Общий фильтр (для всех пользователей)"
 
 #: Merge.rc:11304E6
 #, c-format
@@ -2602,32 +2602,32 @@ msgstr "Резервные копии"
 #: Merge.rc:69AD3BF9
 #, c-format
 msgid "Create backup files in:"
-msgstr "Создать резервные файлы в:"
+msgstr "Создавать резервные файлы при:"
 
 #: Merge.rc:78B3B627
 #, c-format
 msgid "&Folder compare"
-msgstr "Сравнения &папок"
+msgstr "Сравнении &папок"
 
 #: Merge.rc:7A4CFAFD
 #, c-format
 msgid "Fil&e compare"
-msgstr "Сравнения &файлов"
+msgstr "Сравнении &файлов"
 
 #: Merge.rc:334E25B2
 #, c-format
 msgid "Create backup files into:"
-msgstr "Создать резервные файлы:"
+msgstr "Создавать резервные файлы в:"
 
 #: Merge.rc:381D79E6
 #, c-format
 msgid "&Original file's folder"
-msgstr "в папке с оригинальным файлом"
+msgstr "Папке оригинального файла"
 
 #: Merge.rc:714B45FE
 #, c-format
 msgid "&Global backup folder:"
-msgstr "в общей папке:"
+msgstr "Глобальной резервной папке:"
 
 #: Merge.rc:1F7B33EC
 #, c-format
@@ -4609,37 +4609,37 @@ msgstr ""
 #: Merge.rc:414AF01
 #, c-format
 msgid "\nPrevious Difference (Alt+Up)"
-msgstr ""
+msgstr "\nПредыдущее отличие (Alt+Up)"
 
 #: Merge.rc:16618519
 #, c-format
 msgid "\nNext Difference (Alt+Down)"
-msgstr ""
+msgstr "\nСледующее отличие (Alt+Down)"
 
 #: Merge.rc:7C5EF083
 #, c-format
 msgid "\nPrevious Conflict (Alt+Shift+Up)"
-msgstr ""
+msgstr "\nПредыдущий конфликт (Alt+Shift+Up)"
 
 #: Merge.rc:51A4FE60
 #, c-format
 msgid "\nNext Conflict (Alt+Shift+Down)"
-msgstr ""
+msgstr "\nСледующий конфликт (Alt+Shift+Down)"
 
 #: Merge.rc:35CF1E68
 #, c-format
 msgid "\nFirst Difference (Alt+Home)"
-msgstr ""
+msgstr "\nПервое отличие (Alt+Home)"
 
 #: Merge.rc:51A4FE61
 #, c-format
 msgid "\nCurrent Difference (Alt+Enter)"
-msgstr ""
+msgstr "\nТекущее отличие (Alt+Enter)"
 
 #: Merge.rc:1DA00C8A
 #, c-format
 msgid "\nLast Difference (Alt+End)"
-msgstr ""
+msgstr "\nПоследнее отличие (Alt+End)"
 
 #: Merge.rc:E8950EA
 #, c-format
@@ -4714,7 +4714,7 @@ msgstr ""
 #: Merge.rc:696AAFE9
 #, c-format
 msgid "Failed to download latest version information"
-msgstr ""
+msgstr "Не удалось загрузить сведения о последней версии"
 
 #: Merge.rc:55B03C14
 #, c-format
@@ -4809,17 +4809,17 @@ msgstr ""
 #: Merge.rc:3D9427A9
 #, c-format
 msgid "frhed is not installed"
-msgstr ""
+msgstr "frhed не установлен"
 
 #: Merge.rc:73B321AA
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
-msgstr ""
+msgstr "%1 не существует. Создать?"
 
 #: Merge.rc:3A5D5964
 #, c-format
 msgid "Failed to create folder."
-msgstr ""
+msgstr "Не удалось создать папку."
 
 #: Merge.rc:64F70DD6
 #, c-format
