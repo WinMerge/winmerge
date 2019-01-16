@@ -800,7 +800,7 @@ void buffer::resize(size_t newSize)
 	}
 }
 
-unsigned char *convertTtoUTF8(buffer * buf, LPCTSTR src, int srcbytes/* = -1*/)
+unsigned char *convertTtoUTF8(buffer * buf, const TCHAR *src, int srcbytes/* = -1*/)
 {
 	bool bSucceeded;
 #ifdef _UNICODE
@@ -817,14 +817,14 @@ unsigned char *convertTtoUTF8(buffer * buf, LPCTSTR src, int srcbytes/* = -1*/)
 	return buf->ptr;
 }
 
-unsigned char *convertTtoUTF8(LPCTSTR src, int srcbytes/* = -1*/)
+unsigned char *convertTtoUTF8(const TCHAR *src, int srcbytes/* = -1*/)
 {
 	buffer buf(256);
 	convertTtoUTF8(&buf, src, srcbytes);
 	return (unsigned char *)_strdup((const char *)buf.ptr);
 }
 
-TCHAR *convertUTF8toT(buffer * buf, LPCSTR src, int srcbytes/* = -1*/)
+TCHAR *convertUTF8toT(buffer * buf, const char *src, int srcbytes/* = -1*/)
 {
 	bool bSucceeded;
 #ifdef _UNICODE
@@ -841,7 +841,7 @@ TCHAR *convertUTF8toT(buffer * buf, LPCSTR src, int srcbytes/* = -1*/)
 	return (TCHAR *)buf->ptr;
 }
 
-TCHAR *convertUTF8toT(LPCSTR src, int srcbytes/* = -1*/)
+TCHAR *convertUTF8toT(const char *src, int srcbytes/* = -1*/)
 {
 	buffer buf(256);
 	convertUTF8toT(&buf, src, srcbytes);
