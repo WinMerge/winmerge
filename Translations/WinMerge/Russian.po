@@ -894,7 +894,7 @@ msgstr "Перенос по словам"
 #: Merge.rc:62909ED5
 #, c-format
 msgid "Split V&ertically"
-msgstr ""
+msgstr "Разделить по вертикали"
 
 #: Merge.rc:70E79DFF
 #, c-format
@@ -1254,17 +1254,17 @@ msgstr "&Обновить"
 #: Merge.rc:71676C47
 #, c-format
 msgid "Left Shell menu"
-msgstr "Левое меню оболочки"
+msgstr "Меню оболочки слева"
 
 #: Merge.rc:729280DA
 #, c-format
 msgid "Middle Shell menu"
-msgstr "Среднее меню оболочки"
+msgstr "Меню оболочки посередине"
 
 #: Merge.rc:32BFDBAC
 #, c-format
 msgid "Right Shell menu"
-msgstr "Правое меню оболочки"
+msgstr "Меню оболочки справа"
 
 #: Merge.rc:3CF9F84
 #, c-format
@@ -1479,7 +1479,7 @@ msgstr "Обзор..."
 #: Merge.rc:22467E6E
 #, c-format
 msgid " Folder: Filter"
-msgstr ""
+msgstr " Папка: Фильтр"
 
 #: Merge.rc:68816EE8
 #, c-format
@@ -4689,12 +4689,12 @@ msgstr "Без предсравнения (normal)"
 #: Merge.rc:62909ED8
 #, c-format
 msgid "Suggested plugins"
-msgstr "Советуемые дополнения"
+msgstr "Предлагаемые плагины"
 
 #: Merge.rc:4DAEA639
 #, c-format
 msgid "Other plugins"
-msgstr "Другие дополнения"
+msgstr "Другие плагины"
 
 #: Merge.rc:2A918FD6
 #, c-format
@@ -4704,12 +4704,12 @@ msgstr "Частный билд: %1"
 #: Merge.rc:40D543C8
 #, c-format
 msgid "Your software is up to date"
-msgstr ""
+msgstr "Программное обеспечение актуально"
 
 #: Merge.rc:43B4B204
 #, c-format
 msgid "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
-msgstr ""
+msgstr "Доступна более новая версия WinMerge.\nДоступна версия %1 (у Вас установлена %2). Хотите загрузить сейчас?"
 
 #: Merge.rc:696AAFE9
 #, c-format
@@ -4719,7 +4719,7 @@ msgstr "Не удалось загрузить сведения о послед�
 #: Merge.rc:55B03C14
 #, c-format
 msgid "Plugin Settings"
-msgstr "Настройки дополнения"
+msgstr "Настройки плагина"
 
 #: Merge.rc:791F1E67
 #, c-format
@@ -4784,27 +4784,27 @@ msgstr "Shell"
 #: Merge.rc:4E44AD6
 #, c-format
 msgid "VHDL"
-msgstr ""
+msgstr "VHDL"
 
 #: Merge.rc:8AF7E6B
 #, c-format
 msgid "Close &Left Tabs"
-msgstr ""
+msgstr "Закрыть вкладки слева"
 
 #: Merge.rc:D404EDF
 #, c-format
 msgid "Close R&ight Tabs"
-msgstr ""
+msgstr "Закрыть вкладки справа"
 
 #: Merge.rc:D404EE0
 #, c-format
 msgid "Close &Other Tabs"
-msgstr ""
+msgstr "Закрыть другие вкладки"
 
 #: Merge.rc:3E934E
 #, c-format
 msgid "Enable &Auto Max Width"
-msgstr ""
+msgstr "Включить авто макс. ширину"
 
 #: Merge.rc:3D9427A9
 #, c-format
@@ -4824,5 +4824,5 @@ msgstr "Не удалось создать папку."
 #: Merge.rc:64F70DD6
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
-msgstr ""
+msgstr "Можно указать следующие параметры пути:\n$file: Имя пути текущего файла\n$linenum: Номер строки текущей позиции курсора"
 
