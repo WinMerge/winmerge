@@ -65,7 +65,7 @@ msgstr "&Выбрать отличие"
 #: Merge.rc:43017E40
 #, c-format
 msgid "&Undo"
-msgstr "&Отмена"
+msgstr "&Отменить"
 
 #: Merge.rc:43017E41
 #, c-format
@@ -304,32 +304,32 @@ msgstr "&Создать патч..."
 #: Merge.rc:AC3AA15
 #, c-format
 msgid "&Plugins"
-msgstr "&Дополнения"
+msgstr "Плагины"
 
 #: Merge.rc:4C6CFD95
 #, c-format
 msgid "P&lugin Settings..."
-msgstr ""
+msgstr "Настройки плагинов"
 
 #: Merge.rc:729280D7
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr ""
+msgstr "Ручное предсравнение"
 
 #: Merge.rc:7CF93368
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr ""
+msgstr "Автоматическое предсравнение"
 
 #: Merge.rc:1A9EBDEC
 #, c-format
 msgid "&Manual Unpacking"
-msgstr "Распаковка вручную"
+msgstr "Ручная распаковка"
 
 #: Merge.rc:4EF8162D
 #, c-format
 msgid "&Automatic Unpacking"
-msgstr "Распаковка автоматически"
+msgstr "Автоматическая распаковка"
 
 #: Merge.rc:714B45FD
 #, c-format
@@ -339,7 +339,7 @@ msgstr ""
 #: Merge.rc:78B3B622
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Перегрузить все дополнения"
+msgstr "&Перезагрузить плагины"
 
 #: Merge.rc:89AF4F7
 #, c-format
@@ -394,7 +394,7 @@ msgstr ""
 #: Merge.rc:6E470BE7
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "Переводы"
 
 #: Merge.rc:1C6125F4
 #, c-format
@@ -414,27 +414,27 @@ msgstr "&О программе WinMerge..."
 #: Merge.rc:68816EE2
 #, c-format
 msgid "&Read-only"
-msgstr ""
+msgstr "Только для чтения"
 
 #: Merge.rc:71676C45
 #, c-format
 msgid "L&eft Read-only"
-msgstr "Файл с&лева только для чтения"
+msgstr "С&лева только для чтения"
 
 #: Merge.rc:729280D8
 #, c-format
 msgid "M&iddle Read-only"
-msgstr ""
+msgstr "Посередине только для чтения"
 
 #: Merge.rc:32BFDBA9
 #, c-format
 msgid "Ri&ght Read-only"
-msgstr "Файл с&права только для чтения"
+msgstr "С&права только для чтения"
 
 #: Merge.rc:453F5DDB
 #, c-format
 msgid "File En&coding..."
-msgstr ""
+msgstr "Кодировка файла..."
 
 #: Merge.rc:E44718
 #, c-format
@@ -534,7 +534,7 @@ msgstr "Поменять панели местами"
 #: Merge.rc:3E681460
 #, c-format
 msgid "Compa&re Statistics"
-msgstr "Сравнить статистики"
+msgstr "Статистика сравнения"
 
 #: Merge.rc:507A4C02
 #, c-format
@@ -544,7 +544,7 @@ msgstr "&Обновить\tF5"
 #: Merge.rc:2E2C5206
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Обновить &выделенные\tCtrl+F5"
+msgstr "Обновить &выделенное\tCtrl+F5"
 
 #: Merge.rc:1D2E49F9
 #, c-format
@@ -614,42 +614,42 @@ msgstr "&Сохранить\tCtrl+S"
 #: Merge.rc:125AD721
 #, c-format
 msgid "Sav&e"
-msgstr ""
+msgstr "Сохранить"
 
 #: Merge.rc:751AB58E
 #, c-format
 msgid "Save &Left"
-msgstr "Сохранить файл с&лева"
+msgstr "Сохранить с&лева"
 
 #: Merge.rc:194397DD
 #, c-format
 msgid "Save &Middle"
-msgstr ""
+msgstr "Сохранить посередине"
 
 #: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Save &Right"
-msgstr "Сохранить файл с&права"
+msgstr "Сохранить с&права"
 
 #: Merge.rc:79321BE1
 #, c-format
 msgid "Save &As"
-msgstr ""
+msgstr "Сохранить как"
 
 #: Merge.rc:1BF42626
 #, c-format
 msgid "Save &Left As..."
-msgstr ""
+msgstr "Сохранить слева как..."
 
 #: Merge.rc:6F833C18
 #, c-format
 msgid "Save &Middle As..."
-msgstr ""
+msgstr "Сохранить посередине как..."
 
 #: Merge.rc:62909ED4
 #, c-format
 msgid "Save &Right As..."
-msgstr ""
+msgstr "Сохранить справа как..."
 
 #: Merge.rc:4DB19837
 #, c-format
@@ -683,17 +683,17 @@ msgstr ""
 #: Merge.rc:1A9EBDED
 #, c-format
 msgid "&File Encoding..."
-msgstr "Кодирование файла..."
+msgstr "Кодировка файла..."
 
 #: Merge.rc:507A4C03
 #, c-format
 msgid "Recompare As"
-msgstr ""
+msgstr "Пересравнить как"
 
 #: Merge.rc:43017E4B
 #, c-format
 msgid "&Text"
-msgstr ""
+msgstr "Текст"
 
 #: Merge.rc:22956A7
 #, c-format
@@ -703,7 +703,7 @@ msgstr "&XML"
 #: Merge.rc:89AF4F8
 #, c-format
 msgid "&Binary"
-msgstr ""
+msgstr "Двоичный"
 
 #: Merge.rc:1D2E49FA
 #, c-format
@@ -713,7 +713,7 @@ msgstr ""
 #: Merge.rc:6E470BE9
 #, c-format
 msgid "&Undo\tCtrl+Z"
-msgstr "&Отмена\tCtrl+Z"
+msgstr "&Отменить\tCtrl+Z"
 
 #: Merge.rc:6E470BEA
 #, c-format
@@ -773,7 +773,7 @@ msgstr "&Закладки"
 #: Merge.rc:26A6974A
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "&Закладка\tCtrl+F2"
+msgstr "&Переключить закладку\tCtrl+F2"
 
 #: Merge.rc:3938FFC3
 #, c-format
@@ -793,17 +793,17 @@ msgstr "&Удалить все закладки"
 #: Merge.rc:1A9EBDEE
 #, c-format
 msgid "&Go To...\tCtrl+G"
-msgstr "Перейти к строке...\tCtrl+G"
+msgstr "Перейти к...\tCtrl+G"
 
 #: Merge.rc:7C622F87
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr "Приблизить\tCtrl++"
+msgstr "Увеличить\tCtrl++"
 
 #: Merge.rc:FE3C1D1
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Отдалить\tCtrl+-"
+msgstr "Уменьшить\tCtrl+-"
 
 #. Zoom to normal
 #: Merge.rc:78B3B624
@@ -824,42 +824,42 @@ msgstr ""
 #: Merge.rc:68816EE4
 #, c-format
 msgid "&All Lines"
-msgstr ""
+msgstr "Все строки"
 
 #: Merge.rc:AC3AA17
 #, c-format
 msgid "&0 Lines"
-msgstr ""
+msgstr "&0 строк"
 
 #: Merge.rc:89AF4F9
 #, c-format
 msgid "&1 Line"
-msgstr ""
+msgstr "&1 строка"
 
 #: Merge.rc:AC3AA18
 #, c-format
 msgid "&3 Lines"
-msgstr ""
+msgstr "&3 строки"
 
 #: Merge.rc:AC3AA19
 #, c-format
 msgid "&5 Lines"
-msgstr ""
+msgstr "&5 строк"
 
 #: Merge.rc:AC3AA1A
 #, c-format
 msgid "&7 Lines"
-msgstr ""
+msgstr "&7 строк"
 
 #: Merge.rc:AC3AA1B
 #, c-format
 msgid "&9 Lines"
-msgstr ""
+msgstr "&9 строк"
 
 #: Merge.rc:44B58195
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
-msgstr ""
+msgstr "Переключить все и 0-9 строк\tCtrl+D"
 
 #: Merge.rc:27AC6D81
 #, c-format
@@ -909,12 +909,12 @@ msgstr "Панель местоположений"
 #: Merge.rc:59B87E1C
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
-msgstr ""
+msgstr "Следующий конфликт\tAlt+Shift+Down"
 
 #: Merge.rc:3BDD62C2
 #, c-format
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
-msgstr ""
+msgstr "Предыдущий конфликт\tAlt+Shift+Up"
 
 #: Merge.rc:6D5176E5
 #, c-format
@@ -924,62 +924,62 @@ msgstr ""
 #: Merge.rc:9DA4F24
 #, c-format
 msgid "Next Difference Between Left and Middle\tAlt+1"
-msgstr ""
+msgstr "Следующее отличие между левым и средним\tAlt+1"
 
 #: Merge.rc:2EBE17F8
 #, c-format
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
-msgstr ""
+msgstr "Предыдущее отличие между левым и средним\tAlt+Shift+1"
 
 #: Merge.rc:21599F72
 #, c-format
 msgid "Next Difference Between Left and Right\tAlt+2"
-msgstr ""
+msgstr "Следующее отличие между левым и правым\tAlt+2"
 
 #: Merge.rc:5416A5EC
 #, c-format
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
-msgstr ""
+msgstr "Предыдущее отличие между левым и правым\tAlt+Shift+2"
 
 #: Merge.rc:316F95AC
 #, c-format
 msgid "Next Difference Between Middle and Right\tAlt+3"
-msgstr ""
+msgstr "Следующее отличие между средним и правым\tAlt+3"
 
 #: Merge.rc:2904E763
 #, c-format
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
-msgstr ""
+msgstr "Предыдущее отличие между средним и правым\tAlt+Shift+3"
 
 #: Merge.rc:4D91737D
 #, c-format
 msgid "Next Left Only Difference\tAlt+7"
-msgstr ""
+msgstr "Следующее отличие только слева\tAlt+7"
 
 #: Merge.rc:4BFD42D
 #, c-format
 msgid "Previous Left Only Difference\tAlt+Shift+7"
-msgstr ""
+msgstr "Предыдущее отличие только слева\tAlt+Shift+7"
 
 #: Merge.rc:2F029443
 #, c-format
 msgid "Next Middle Only Difference\tAlt+8"
-msgstr ""
+msgstr "Следующее отличие только посередине\tAlt+8"
 
 #: Merge.rc:541B8710
 #, c-format
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
-msgstr ""
+msgstr "Предыдущее отличие только посередине\tAlt+Shift+8"
 
 #: Merge.rc:649CFC83
 #, c-format
 msgid "Next Right Only Difference\tAlt+9"
-msgstr ""
+msgstr "Следующее отличие только справа\tAlt+9"
 
 #: Merge.rc:133AB1C4
 #, c-format
 msgid "Previous Right Only Difference\tAlt+Shift+9"
-msgstr ""
+msgstr "Предыдущее отличие только справа\tAlt+Shift+9"
 
 #: Merge.rc:30FF7A4C
 #, c-format
@@ -1019,12 +1019,12 @@ msgstr ""
 #: Merge.rc:13D827C3
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
-msgstr ""
+msgstr "Добавить точку синхронизации\tAlt+S"
 
 #: Merge.rc:6F88EC67
 #, c-format
 msgid "Clear Sync&hronization Points"
-msgstr ""
+msgstr Очистить точки синхронизации""
 
 #: Merge.rc:68816EE5
 #, c-format
@@ -1049,32 +1049,32 @@ msgstr "С&равнить"
 #: Merge.rc:334E25B1
 #, c-format
 msgid "Compare Non-hor&izontally"
-msgstr ""
+msgstr "Сравнить не по горизонтали"
 
 #: Merge.rc:20F0A449
 #, c-format
 msgid "First &left item with second left item"
-msgstr ""
+msgstr Первый левый элемент со вторым левым элементом""
 
 #: Merge.rc:2758BFC0
 #, c-format
 msgid "First &right item with second right item"
-msgstr ""
+msgstr "Первый правый элемент со вторым правым элементом"
 
 #: Merge.rc:56380EAD
 #, c-format
 msgid "&First left item with second right item"
-msgstr ""
+msgstr "Первый левый элемент со вторым правым элементом"
 
 #: Merge.rc:56380EAE
 #, c-format
 msgid "&Second left item with first right item"
-msgstr ""
+msgstr "Второй левый элемент со вторым правым элементом"
 
 #: Merge.rc:67A28B28
 #, c-format
 msgid "Co&mpare As"
-msgstr ""
+msgstr "Сравнить как"
 
 #: Merge.rc:4D4D2E92
 #, c-format
@@ -1134,7 +1134,7 @@ msgstr "Слева"
 #: Merge.rc:89AF4FB
 #, c-format
 msgid "&Middle"
-msgstr ""
+msgstr "Посередине"
 
 #: Merge.rc:1D2E49FB
 #, c-format
@@ -1149,7 +1149,7 @@ msgstr "Оба"
 #: Merge.rc:22956A8
 #, c-format
 msgid "&All"
-msgstr ""
+msgstr "Все"
 
 #: Merge.rc:4876CD3D
 #, c-format
@@ -1164,7 +1164,7 @@ msgstr "&Скрыть"
 #: Merge.rc:68816EE6
 #, c-format
 msgid "&Open Left"
-msgstr "Открыть левый файл"
+msgstr "Открыть левый"
 
 #: Merge.rc:46724E8D
 #, c-format
@@ -1179,17 +1179,17 @@ msgstr ""
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
-msgstr ""
+msgstr "Открыть средний"
 
 #: Merge.rc:1C95A043
 #, c-format
 msgid "O&pen Right"
-msgstr "Открыть правый файл"
+msgstr "Открыть правый"
 
 #: Merge.rc:6FC398B8
 #, c-format
 msgid "Cop&y Pathnames"
-msgstr "Скопировать пути"
+msgstr "Копировать пути"
 
 #: Merge.rc:71676C46
 #, c-format
@@ -1199,7 +1199,7 @@ msgstr "Слева (%1 из %2)"
 #: Merge.rc:729280D9
 #, c-format
 msgid "Middle (%1 of %2)"
-msgstr ""
+msgstr "Посередине (%1 of %2)"
 
 #: Merge.rc:32BFDBAB
 #, c-format
@@ -1209,22 +1209,22 @@ msgstr "Справа (%1 из %2)"
 #: Merge.rc:36B164C3
 #, c-format
 msgid "Both (%1 of %2)"
-msgstr "Вместе (%1 из %2)"
+msgstr "Оба (%1 из %2)"
 
 #: Merge.rc:2515A6BA
 #, c-format
 msgid "All (%1 of %2)"
-msgstr ""
+msgstr "Все (%1 of %2)"
 
 #: Merge.rc:6FC398B9
 #, c-format
 msgid "Copy &Filenames"
-msgstr "Скопировать &имена файлов"
+msgstr "Копировать &имена файлов"
 
 #: Merge.rc:4BFA4345
 #, c-format
 msgid "Copy Items To Clip&board"
-msgstr ""
+msgstr "Копировать элементы в буфер обмена"
 
 #: Merge.rc:22956A9
 #, c-format
@@ -1259,7 +1259,7 @@ msgstr "Левое меню оболочки"
 #: Merge.rc:729280DA
 #, c-format
 msgid "Middle Shell menu"
-msgstr ""
+msgstr "Среднее меню оболочки"
 
 #: Merge.rc:32BFDBAC
 #, c-format
@@ -1269,17 +1269,17 @@ msgstr "Правое меню оболочки"
 #: Merge.rc:3CF9F84
 #, c-format
 msgid "Copy"
-msgstr ""
+msgstr "Копировать"
 
 #: Merge.rc:78B3B625
 #, c-format
 msgid "&Copy Full Path"
-msgstr "Скопировать полный путь"
+msgstr "Копировать полный путь"
 
 #: Merge.rc:1C6125F5
 #, c-format
 msgid "Copy &Filename"
-msgstr "Скопировать имя файла"
+msgstr "Копировать имя файла"
 
 #: Merge.rc:27A06B44
 #, c-format
@@ -1314,7 +1314,7 @@ msgstr "&Все перемещенные блоки"
 #: Merge.rc:BA50068
 #, c-format
 msgid "Moved Block for &Current Diff"
-msgstr "Перемещ. блок для &данного отличия"
+msgstr "Перемещ. блок для текущего отличия"
 
 #: Merge.rc:3C68C747
 #, c-format
@@ -1389,7 +1389,7 @@ msgstr "По размеру"
 #: Merge.rc:1DC30E65
 #, c-format
 msgid "&Load Project..."
-msgstr ""
+msgstr "Загрузить проект..."
 
 #: Merge.rc:2515A6BC
 #, c-format
@@ -1419,7 +1419,7 @@ msgstr "Выберите файлы или папки..."
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
-msgstr ""
+msgstr "&1-й файл или папка"
 
 #: Merge.rc:39174D96
 #, c-format
@@ -1429,7 +1429,7 @@ msgstr "Только чтение"
 #: Merge.rc:56BD1FBA
 #, c-format
 msgid "Swap 1st | 2nd"
-msgstr ""
+msgstr "Поменять 1-й | 2-й"
 
 #: Merge.rc:68816EE7
 #, c-format
@@ -1439,17 +1439,17 @@ msgstr "&Обзор..."
 #: Merge.rc:6DE6F875
 #, c-format
 msgid "&2nd File or Folder"
-msgstr ""
+msgstr "&2-й файл или папка"
 
 #: Merge.rc:39174D97
 #, c-format
 msgid "Rea&d-only"
-msgstr ""
+msgstr "Только для чтения"
 
 #: Merge.rc:56BD1FBB
 #, c-format
 msgid "Swap 2nd | 3rd"
-msgstr ""
+msgstr "Поменять 2-й | 3-й"
 
 #: Merge.rc:78E0CE0E
 #, c-format
@@ -1459,17 +1459,17 @@ msgstr "Обзор"
 #: Merge.rc:3C1ECDDA
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr ""
+msgstr "&3-й файл или папка (Необязательно)"
 
 #: Merge.rc:39174D98
 #, c-format
 msgid "Read-o&nly"
-msgstr ""
+msgstr "Только для чтения"
 
 #: Merge.rc:56BD1FBC
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr ""
+msgstr "Поменять 1-й | 3-й"
 
 #: Merge.rc:146A5938
 #, c-format
@@ -1568,12 +1568,12 @@ msgstr "О&ткрыть диалог Автодополнения:"
 #: Merge.rc:1B63306F
 #, c-format
 msgid "Language:"
-msgstr ""
+msgstr "Язык:"
 
 #: Merge.rc:516450B
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
-msgstr "WinMerge не показывает некоторые сообщения. Нажмите Сброс, чтобы показывались все сообщения."
+msgstr "WinMerge позволяет скрывать некоторые сообщения. Нажмите кнопку Сброс, чтобы показывать все сообщения."
 
 #: Merge.rc:10976EC1
 #, c-format
@@ -1588,7 +1588,7 @@ msgstr "Найти"
 #: Merge.rc:34DF506F
 #, c-format
 msgid "Fi&nd what:"
-msgstr "&Поиск:"
+msgstr "Найти:"
 
 #: Merge.rc:39C7AF83
 #, c-format
@@ -1613,17 +1613,17 @@ msgstr "Н&е переносить в конце файла"
 #: Merge.rc:545FEEA2
 #, c-format
 msgid "&Don't close this dialog box"
-msgstr ""
+msgstr "Не закрывать это диалоговое окно"
 
 #: Merge.rc:68EE6DF0
 #, c-format
 msgid "Find &Prev"
-msgstr ""
+msgstr "Предыдущее"
 
 #: Merge.rc:68816EE9
 #, c-format
 msgid "&Find Next"
-msgstr "&Далее"
+msgstr "Соедующее"
 
 #: Merge.rc:11D980
 #, c-format
@@ -1688,7 +1688,7 @@ msgstr "Новый"
 #: Merge.rc:3938FFC4
 #, c-format
 msgid "&Background color:"
-msgstr ""
+msgstr "Цвет фона:"
 
 #: Merge.rc:1D2E49FC
 #, c-format
@@ -1838,12 +1838,12 @@ msgstr "Генератор патчей"
 #: Merge.rc:59F5069E
 #, c-format
 msgid "File&1:"
-msgstr "Файл 1:"
+msgstr "Файл&1:"
 
 #: Merge.rc:59F5069F
 #, c-format
 msgid "File&2:"
-msgstr "Файл 2:"
+msgstr "Файл&2:"
 
 #: Merge.rc:43017E4E
 #, c-format
@@ -1943,12 +1943,12 @@ msgstr "Остановить"
 #: Merge.rc:D109E01
 #, c-format
 msgid "Pause"
-msgstr ""
+msgstr "Пауза"
 
 #: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
-msgstr ""
+msgstr "Продолжить"
 
 #: Merge.rc:1AC98D0A
 #, c-format
@@ -2038,7 +2038,7 @@ msgstr "Игнорировать р&егистр"
 #: Merge.rc:6C318DC8
 #, c-format
 msgid "Ignore codepage &differences"
-msgstr ""
+msgstr "Игнорировать различия кодовых страниц"
 
 #: Merge.rc:285B56CE
 #, c-format
@@ -2078,7 +2078,7 @@ msgstr "Авто&пересканирование"
 #: Merge.rc:545FEEA3
 #, c-format
 msgid "&Preserve original EOL chars"
-msgstr "Оригинальные символы EOL"
+msgstr "Сохранить оригинальные EOL символы"
 
 #: Merge.rc:4C72B55
 #, c-format
@@ -2123,7 +2123,7 @@ msgstr "По словам:"
 #: Merge.rc:14AF463A
 #, c-format
 msgid "W&ord break characters:"
-msgstr ""
+msgstr "Символы разрыва слова:"
 
 #: Merge.rc:34DF5070
 #, c-format
@@ -2158,12 +2158,12 @@ msgstr "Удалить..."
 #: Merge.rc:1BA49C3C
 #, c-format
 msgid "Save modified files?"
-msgstr "Сохранить изменения в файлах"
+msgstr "Сохранить измененные файлы?"
 
 #: Merge.rc:3534E274
 #, c-format
 msgid "Left side file"
-msgstr "Файл с левой стороны"
+msgstr "Файл слева"
 
 #: Merge.rc:6E470BEE
 #, c-format
@@ -2173,27 +2173,27 @@ msgstr "&Сохранить изменения"
 #: Merge.rc:1DC30E67
 #, c-format
 msgid "&Discard changes"
-msgstr "&Отклонить изменения"
+msgstr "&Отменить изменения"
 
 #: Merge.rc:24BA673E
 #, c-format
 msgid "Middle side file"
-msgstr ""
+msgstr "Файл посередине"
 
 #: Merge.rc:F2F641C
 #, c-format
 msgid "Sa&ve changes"
-msgstr ""
+msgstr "Сохранить изменения"
 
 #: Merge.rc:71E3C8E4
 #, c-format
 msgid "Disca&rd changes"
-msgstr ""
+msgstr "Отменить изменения"
 
 #: Merge.rc:47D4A3FB
 #, c-format
 msgid "Right side file"
-msgstr "Файл с правой стороны"
+msgstr "Файл справа"
 
 #: Merge.rc:F2F641D
 #, c-format
@@ -2203,12 +2203,12 @@ msgstr "Со&хранить изменения"
 #: Merge.rc:71E3C8E5
 #, c-format
 msgid "Dis&card changes"
-msgstr "О&тклонить изменения"
+msgstr "О&тменить изменения"
 
 #: Merge.rc:5578260F
 #, c-format
 msgid "Disca&rd All"
-msgstr ""
+msgstr "Отменить все"
 
 #: Merge.rc:4C3E0A30
 #, c-format
@@ -2257,7 +2257,7 @@ msgstr "Пользовательская:"
 #: Merge.rc:6CD65B95
 #, c-format
 msgid "Options"
-msgstr "Настройка"
+msgstr "Настройки"
 
 #: Merge.rc:D32E2F1
 #, c-format
@@ -2357,7 +2357,7 @@ msgstr ""
 #: Merge.rc:387F7980
 #, c-format
 msgid "Folder Compare Report"
-msgstr "Отчет сравнения каталогов"
+msgstr "Отчет сравнения папок"
 
 #: Merge.rc:3ECF34A3
 #, c-format
@@ -2372,7 +2372,7 @@ msgstr "&Стиль:"
 #: Merge.rc:545FEEA4
 #, c-format
 msgid "&Include File Compare Report"
-msgstr ""
+msgstr "Включить отчет сравнения файлов"
 
 #: Merge.rc:3938FFC5
 #, c-format
@@ -2417,7 +2417,7 @@ msgstr "&Определять тип архива по сигнатуре/заг
 #: Merge.rc:1AC98D0B
 #, c-format
 msgid "Compare Statistics"
-msgstr "Сравнение статистики"
+msgstr "Статистика сравнения"
 
 #: Merge.rc:64ABCD7D
 #, c-format
@@ -2442,7 +2442,7 @@ msgstr "Текст:"
 #: Merge.rc:5FC9C469
 #, c-format
 msgid "Binary:"
-msgstr "Бинарные:"
+msgstr "Двоичный:"
 
 #: Merge.rc:26535499
 #, c-format
@@ -2477,22 +2477,22 @@ msgstr "Закрыть"
 #: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
-msgstr ""
+msgstr "Посередине:"
 
 #: Merge.rc:2CEE474A
 #, c-format
 msgid "Missing Left:"
-msgstr ""
+msgstr "Отсутствует слева:"
 
 #: Merge.rc:2A79A039
 #, c-format
 msgid "Missing Middle:"
-msgstr ""
+msgstr "Отсутствует посередине:"
 
 #: Merge.rc:70DAA20F
 #, c-format
 msgid "Missing Right:"
-msgstr ""
+msgstr "Отсутствует справа:"
 
 #: Merge.rc:413EF3DC
 #, c-format
@@ -2677,12 +2677,12 @@ msgstr "Нет"
 #: Merge.rc:B612C23
 #, c-format
 msgid "Plugins"
-msgstr "Дополнения"
+msgstr "Плагины"
 
 #: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
-msgstr "&Включить дополнения"
+msgstr "&Включить плагины"
 
 #: Merge.rc:62909ED6
 #, c-format
@@ -2717,7 +2717,7 @@ msgstr ""
 #: Merge.rc:7262BE24
 #, c-format
 msgid "Folder"
-msgstr "Каталог"
+msgstr "Папка"
 
 #: Merge.rc:60B696B0
 #, c-format
@@ -2737,22 +2737,22 @@ msgstr ""
 #: Merge.rc:3E136C28
 #, c-format
 msgid "&Automatically expand all subfolders"
-msgstr ""
+msgstr "Автоматически развернуть все подпапки"
 
 #: Merge.rc:5D032167
 #, c-format
 msgid "Ignore &Reparse Points"
-msgstr ""
+msgstr "Игнорировать точки повторной обработки"
 
 #: Merge.rc:2E2C5208
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr ""
+msgstr "Ограничение быстрого сравнения (МБ)"
 
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr ""
+msgstr "Количество сравниваемых потоков (отрицательное значение подразумевает добавление количества доступных ядер ЦП):"
 
 #: Merge.rc:17BC2F9E
 #, c-format
@@ -2762,27 +2762,27 @@ msgstr "Двоичный"
 #: Merge.rc:7AAB28B8
 #, c-format
 msgid "Binary File &Patterns:"
-msgstr ""
+msgstr "Шаблоны двоичных файлов:"
 
 #: Merge.rc:4F5264C9
 #, c-format
 msgid "Frhed settings"
-msgstr ""
+msgstr "Настройки Frhed"
 
 #: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
-msgstr ""
+msgstr "Параметры просмотра..."
 
 #: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
-msgstr ""
+msgstr "Двоичный режим..."
 
 #: Merge.rc:1A9EBDF3
 #, c-format
 msgid "&Character Set..."
-msgstr ""
+msgstr "Набор символов..."
 
 #: Merge.rc:B8C361
 #, c-format
@@ -2837,12 +2837,12 @@ msgstr ""
 #: Merge.rc:28AAB7D
 #, c-format
 msgid "\nOpen (Ctrl+O)"
-msgstr ""
+msgstr "\nОткрыть (Ctrl+O)"
 
 #: Merge.rc:28AAB7E
 #, c-format
 msgid "\nSave (Ctrl+S)"
-msgstr ""
+msgstr "\nСохранить (Ctrl+S)"
 
 #: Merge.rc:524AB109
 #, c-format
@@ -2867,12 +2867,12 @@ msgstr "Файл проекта успешно сохранен."
 #: Merge.rc:28AAB7F
 #, c-format
 msgid "\nUndo (Ctrl+Z)"
-msgstr ""
+msgstr "\nОтменить (Ctrl+Z)"
 
 #: Merge.rc:28AAB80
 #, c-format
 msgid "\nRedo (Ctrl+Y)"
-msgstr ""
+msgstr "\nВернуть (Ctrl+Y)"
 
 #: Merge.rc:2B78E95D
 #, c-format
