@@ -49,7 +49,6 @@ public:
 	bool GetLeftReadOnly() const;
 	String GetMiddle(bool * pReadOnly = nullptr) const;
 	bool GetMiddleReadOnly() const;
-	String GetMiddle() const;
 	String GetRight(bool * pReadOnly = nullptr) const;
 	bool GetRightReadOnly() const;
 	String GetFilter() const;
