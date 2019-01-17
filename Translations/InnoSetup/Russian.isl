@@ -79,7 +79,7 @@ ButtonNewFolder=&Создать папку
 
 ; *** "Select Language" dialog messages
 SelectLanguageTitle=Выберите язык установки
-SelectLanguageLabel=Выберите язык, который будет использован в  процессе установки:
+SelectLanguageLabel=Выберите язык, который будет использован в процессе установки:
 
 ; *** Common wizard text
 ClickNext=Нажмите «Далее», чтобы продолжить, или «Отмена», чтобы выйти из программы установки.
@@ -311,23 +311,23 @@ AssocingFileExtension=Связывание %1 с файлами %2...
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Обычная установка
+FullInstallation=Полная установка
+CompactInstallation=Компактная установка
+CustomInstallation=Выборочная установка
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-Filters=Filters
-Plugins=Plugins
-Frhed=Frhed(Free hex editor)
+AppCoreFiles=Основные файлы WinMerge
+Filters=Фильтры
+Plugins=Плагины
+Frhed=Frhed(Бесплатный HEX редактор)
 WinIMerge=WinIMerge(Image Diff/Merge)
-ArchiveSupport=Archive Support
-ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+ArchiveSupport=Поддержка архивов
+ShellExtension32bit=32-битное расширение оболочки WinMerge
+Patch=GnuWin32 патч для Windows
 
 ;Localization Components
-Languages=Languages
+Languages=Языки
 BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Bulgarian menus and dialogs
 CatalanLanguage=Catalan menus and dialogs
@@ -389,4 +389,4 @@ ViewStartMenuFolder=&View the WinMerge Start Menu Folder
 DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=Файл проекта WinMerge
