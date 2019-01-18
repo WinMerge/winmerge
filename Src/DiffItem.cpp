@@ -67,7 +67,7 @@ void DIFFITEM::RemoveSiblings()
 		assert(pRem->parent == parent);
 		assert(pRem->Blink == this);
 		DIFFITEM *pNext = pRem->Flink;
-		pRem->DelinkFromSiblings();	// destroys Flink (so we use pRem instead)
+		pRem->DelinkFromSiblings();	// destroys Flink (so we use pNext instead)
 		delete pRem;
 		pRem = pNext;
 	}
@@ -81,6 +81,7 @@ void DIFFITEM::RemoveChildren()
 	children = nullptr;
 }
 
+/** @brief Swap two items in `diffFileInfo[]`.  Used when swapping GUI panes. */
 void DIFFITEM::Swap(int idx1, int idx2)
 {
 	std::swap(diffFileInfo[idx1], diffFileInfo[idx2]);
@@ -104,6 +105,10 @@ DIFFITEM *DIFFITEM::GetEmptyItem()
 	assert(emptyitem.Flink == nullptr);
 	assert(emptyitem.Blink == nullptr);
 	assert(emptyitem.children == nullptr);
+	assert(emptyitem.nidiffs == -1);
+	assert(emptyitem.nsdiffs == -1);
+	assert(emptyitem.customFlags == ViewCustomFlags::INVALID_CODE);
+	assert(emptyitem.diffcode.diffcode == 0);
 
 	return &emptyitem; 
 }
