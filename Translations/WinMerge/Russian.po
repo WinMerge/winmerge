@@ -1024,7 +1024,7 @@ msgstr "Добавить точку синхронизации\tAlt+S"
 #: Merge.rc:6F88EC67
 #, c-format
 msgid "Clear Sync&hronization Points"
-msgstr Очистить точки синхронизации""
+msgstr "Очистить точки синхронизации"
 
 #: Merge.rc:68816EE5
 #, c-format
@@ -1054,7 +1054,7 @@ msgstr "Сравнить не по горизонтали"
 #: Merge.rc:20F0A449
 #, c-format
 msgid "First &left item with second left item"
-msgstr Первый левый элемент со вторым левым элементом""
+msgstr "Первый левый элемент со вторым левым элементом"
 
 #: Merge.rc:2758BFC0
 #, c-format
