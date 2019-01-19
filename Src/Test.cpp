@@ -213,6 +213,8 @@ TEST(FileCompare, LastLineEOL)
 		for (auto nIgnoreWhitespace: { WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL})
 		{
 			GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, nIgnoreWhitespace);
+			if (pDoc)
+				pDoc->RefreshOptions();
 			for (size_t l = 0; l < std::size(filelist); ++l)
 			{
 				for (size_t r = 0; r < std::size(filelist); ++r)
@@ -242,31 +244,37 @@ TEST(FileCompare, LastLineEOL)
 					}
 					else
 					{
-						CMergeEditView *pView = pDoc->GetView(0, 0);
-						// merge
-						EXPECT_EQ(1, pDoc->m_diffList.GetSize());
-						pDoc->CopyAllList(0, 1);
-						EXPECT_EQ(0, pDoc->m_diffList.GetSize());
-						// undo
-						pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
-						EXPECT_EQ(1, pDoc->m_diffList.GetSize());
-						// insert a character at the last line
-						pView->GotoLine(pDoc->m_ptBuf[0]->GetLineCount() - 1, false, 0);
-						pView->SendMessage(WM_CHAR, 'a');
-						// undo
-						pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+						if (pDoc->m_diffList.DiffRangeAt(0)->op == OP_TRIVIAL)
+						{
+							EXPECT_EQ(true, bIgnoreBlankLines);
+						}
+						else
+						{
+							CMergeEditView *pView = pDoc->GetView(0, 0); // merge
+							EXPECT_EQ(1, pDoc->m_diffList.GetSize());
+							pDoc->CopyAllList(0, 1);
+							EXPECT_EQ(0, pDoc->m_diffList.GetSize());
+							// undo
+							pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+							EXPECT_EQ(1, pDoc->m_diffList.GetSize());
+							// insert a character at the last line
+							pView->GotoLine(pDoc->m_ptBuf[0]->GetLineCount() - 1, false, 0);
+							pView->SendMessage(WM_CHAR, 'a');
+							// undo
+							pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
 
-						pView = pDoc->GetView(0, 1);
-						pView->GotoLine(0, false, 1);
-						// Select all & Delete
-						pView->SendMessage(WM_COMMAND, ID_EDIT_SELECT_ALL);
-						pView->SendMessage(WM_COMMAND, ID_EDIT_DELETE);
-						// undo
-						pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
-						// redo
-						pView->SendMessage(WM_COMMAND, ID_EDIT_REDO);
-						// undo
-						pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+							pView = pDoc->GetView(0, 1);
+							pView->GotoLine(0, false, 1);
+							// Select all & Delete
+							pView->SendMessage(WM_COMMAND, ID_EDIT_SELECT_ALL);
+							pView->SendMessage(WM_COMMAND, ID_EDIT_DELETE);
+							// undo
+							pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+							// redo
+							pView->SendMessage(WM_COMMAND, ID_EDIT_REDO);
+							// undo
+							pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+						}
 					}
 				}
 			}
