@@ -29,7 +29,13 @@ static LPCTSTR f_RegValuePath = _T("Executable");
 static bool IsShellExtensionRegistered()
 {
 	HKEY hKey;
-	if (ERROR_SUCCESS == RegOpenKeyEx(HKEY_CLASSES_ROOT, _T("CLSID\\{4E716236-AA30-4C65-B225-D68BBA81E9C2}"), 0, KEY_QUERY_VALUE, &hKey)) {
+#ifdef _WIN64
+	DWORD ulOptions = KEY_QUERY_VALUE;
+#else
+	auto Is64BitWindows = []() { BOOL f64 = FALSE; return IsWow64Process(GetCurrentProcess(), &f64) && f64; };
+	DWORD ulOptions = KEY_QUERY_VALUE | (Is64BitWindows() ? KEY_WOW64_64KEY : 0);
+#endif
+	if (ERROR_SUCCESS == RegOpenKeyEx(HKEY_CLASSES_ROOT, _T("CLSID\\{4E716236-AA30-4C65-B225-D68BBA81E9C2}"), 0, ulOptions, &hKey)) {
 		RegCloseKey(hKey);
 		return true;
 	}
