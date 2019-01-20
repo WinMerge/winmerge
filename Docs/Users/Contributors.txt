@@ -122,6 +122,7 @@ Localization:
 
 * Russian:
   Dmitriy S. Aleshkowskiy <wwarlock@mail.ru>
+  Timon34
 
 * Serbian:
   Ozzii <ivanstar61@gmail.com>
