@@ -5284,12 +5284,29 @@ OnEditRepeat ()
   bool bControlKey = (::GetAsyncKeyState(VK_CONTROL)& 0x8000) != 0;
   // CTRL-SHIFT-F3 will find selected text, but opposite direction
   bool bShiftKey = (::GetAsyncKeyState(VK_SHIFT)& 0x8000) != 0;
-  if (bControlKey && IsSelection())
+  if (bControlKey)
     {
-      bEnable = true;
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
-      GetText (ptSelStart, ptSelEnd, sText);
+      if (IsSelection())
+        {
+          CPoint ptSelStart, ptSelEnd;
+          GetSelection (ptSelStart, ptSelEnd);
+          GetText (ptSelStart, ptSelEnd, sText);
+        }
+      else
+        {
+          CPoint ptCursorPos = GetCursorPos ();
+          CPoint ptStart = WordToLeft (ptCursorPos);
+          CPoint ptEnd = WordToRight (ptCursorPos);
+          if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
+            GetText (ptStart, ptEnd, sText);
+        }
+      if (!sText.IsEmpty())
+        {
+          bEnable = true;
+          free(m_pszLastFindWhat);
+          m_pszLastFindWhat = _tcsdup (sText);
+          m_bLastSearch = true;
+        }
     }
   if (bShiftKey)
     m_dwLastSearchFlags |= FIND_DIRECTION_UP;
