@@ -11,7 +11,7 @@
 #include <vector>
 #include <sstream>
 
-struct DIFFITEM;
+class DIFFITEM;
 class CDiffContext;
 
 // DirViewColItems typedefs
@@ -36,7 +36,7 @@ struct DirColInfo
 	const char *idDesc; /**< Description, ID of string resource */
 	ColGetFncPtrType getfnc; /**< Handler giving display string */
 	ColSortFncPtrType sortfnc; /**< Handler for sorting this column */
-	size_t offset;
+	size_t offset;	/**< Offset into DIFFITEM::diffFileInfo[] */
 	int physicalIndex; /**< Current physical index, -1 if not displayed */
 	bool defSortUp; /**< Does column start with ascending sort (most do) */
 	int alignment; /**< Column alignment */
@@ -65,8 +65,8 @@ public:
 	String GetColDescription(int col) const;
 	int	GetColCount() const;
 	int GetDispColCount() const { return m_dispcols; }
-	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di) const;
-	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi, bool bTreeMode) const;
+	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM &di) const;
+	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM &ldi, const DIFFITEM &rdi, bool bTreeMode) const;
 
 	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
 	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */

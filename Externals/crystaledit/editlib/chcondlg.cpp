@@ -115,7 +115,7 @@ void CCharConvDlg::OnOK ()
 void CCharConvDlg::OnPreview() 
 {
   UpdateData ();
-  LPTSTR pszNew;
+  LPTSTR pszNew = nullptr;
   if (!iconvert_new (m_sOriginal, &pszNew, m_nSource, m_nDest, m_bAlpha))
     {
       m_sPreview = pszNew;

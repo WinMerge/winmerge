@@ -4,13 +4,18 @@
  *  @brief Implementation of DiffItemList
  */ 
 
+#include "stdafx.h"
 #include "DiffItemList.h"
 #include <cassert>
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
 
 /**
  * @brief Constructor
  */
-DiffItemList::DiffItemList()
+DiffItemList::DiffItemList() : m_pRoot(nullptr)
 {
 }
 
@@ -24,29 +29,22 @@ DiffItemList::~DiffItemList()
 
 /**
  * @brief Add new diffitem to structured DIFFITEM tree.
- * @param [in] parent Parent item, or `nullptr` if no parent.
+ * @param [in] par Parent item, or `nullptr` if no parent.
  * @return Pointer to the added item.
  */
-DIFFITEM* DiffItemList::AddDiff(DIFFITEM *parent)
+DIFFITEM *DiffItemList::AddNewDiff(DIFFITEM *par)
 {
 	DIFFITEM *p = new DIFFITEM;
-	if (parent != nullptr)
-		parent->children.Append(p);
+	if (par == nullptr)
+	{
+		// if there is no `parent`, this item becomes a child of `m_pRoot`
+		assert(m_pRoot != nullptr);
+		m_pRoot->AddChildToParent(p);
+	}
 	else
-		m_root.Append(p);
-	p->parent = parent;
-	return p;
-}
+		par->AddChildToParent(p);
 
-/**
- * @brief Remove diffitem from structured DIFFITEM tree
- * @param diffpos position of item to remove
- */
-void DiffItemList::RemoveDiff(uintptr_t diffpos)
-{
-	DIFFITEM *p = reinterpret_cast<DIFFITEM *>(diffpos);
-	p->RemoveSelf();
-	delete p;
+	return p;
 }
 
 /**
@@ -54,90 +52,95 @@ void DiffItemList::RemoveDiff(uintptr_t diffpos)
  */
 void DiffItemList::RemoveAll()
 {
-	while (m_root.IsSibling(m_root.Flink))
-		RemoveDiff((uintptr_t)m_root.Flink);
+	delete m_pRoot;
+	m_pRoot = nullptr;
+}
+
+void DiffItemList::InitDiffItemList()
+{
+	assert(m_pRoot == nullptr);
+	m_pRoot = new DIFFITEM;
 }
 
 /**
  * @brief Get position of first item in structured DIFFITEM tree
  */
-uintptr_t DiffItemList::GetFirstDiffPosition() const
+DIFFITEM *DiffItemList::GetFirstDiffPosition() const
 {
-	return (uintptr_t)m_root.IsSibling(m_root.Flink);
+	return GetFirstChildDiffPosition(m_pRoot);
 }
 
 /**
  * @brief Get position of first child item in structured DIFFITEM tree
- * @param  parentdiffpos [in] Position of parent diff item 
- * @return Position of first child item
+ * @param  [in] par Position of parent diff item (maybe `nullptr`)
+ * @return Position of first child item (or `nullptr` if no children)
  */
-uintptr_t DiffItemList::GetFirstChildDiffPosition(uintptr_t parentdiffpos) const
+DIFFITEM *DiffItemList::GetFirstChildDiffPosition(const DIFFITEM *par) const
 {
-	DIFFITEM *parent = reinterpret_cast<DIFFITEM *>(parentdiffpos);
-	if (parent != nullptr)
-		return (uintptr_t)parent->children.IsSibling(parent->children.Flink);
+	if (par == nullptr)
+	{
+		assert(m_pRoot != nullptr);
+		return m_pRoot->GetFirstChild();
+	}
 	else
-		return (uintptr_t)m_root.IsSibling(m_root.Flink);
+		return par->GetFirstChild();
 }
 
 /**
  * @brief Get position of next item in structured DIFFITEM tree
- * @param diffpos position of current item, updated to next item position
- * @return Diff Item in current position
+ * @param [in,out] diffpos Position of current item, updated to next item position
+ * @return Diff Item (by reference) in current position
  */
-const DIFFITEM &DiffItemList::GetNextDiffPosition(uintptr_t & diffpos) const
+const DIFFITEM &DiffItemList::GetNextDiffPosition(DIFFITEM *&diffpos) const
 {
-	DIFFITEM *p = reinterpret_cast<DIFFITEM *>(diffpos);
-	if (p->HasChildren())
+	DIFFITEM *p = diffpos;
+	if (diffpos->HasChildren())
 	{
 		diffpos = GetFirstChildDiffPosition(diffpos);
 	}
 	else
 	{
-		DIFFITEM *cur = p;
+		DIFFITEM *cur = diffpos;
 		do
 		{
-			if (cur->parent != nullptr)
-				diffpos = (uintptr_t)cur->parent->children.IsSibling(cur->Flink);
-			else
-				diffpos = (uintptr_t)m_root.IsSibling(cur->Flink);
-			cur = cur->parent;
-		} while (!diffpos && cur != nullptr);
+			diffpos = cur->GetFwdSiblingLink();
+			cur = cur->GetParentLink();
+			assert(cur != nullptr);
+		} while (diffpos == nullptr && cur->HasParent());
 	}
 	return *p;
 }
 
 /**
  * @brief Get position of next item in structured DIFFITEM tree
- * @param diffpos position of current item, updated to next item position
+ * @param [in,out] diffpos Position of current item, updated to next item position
  * @return Diff Item (by reference) in current position
  */
-DIFFITEM &DiffItemList::GetNextDiffRefPosition(uintptr_t & diffpos)
+DIFFITEM &DiffItemList::GetNextDiffRefPosition(DIFFITEM *&diffpos)
 {
 	return (DIFFITEM &)GetNextDiffPosition(diffpos);
 }
 
 /**
  * @brief Get position of next sibling item in structured DIFFITEM tree
- * @param diffpos position of current item, updated to next sibling item position
- * @return Diff Item in current position
+ * @param [in,out] diffpos Position of current item, updated to next sibling item position
+ * @return Diff Item (by reference) in current position
  */
-const DIFFITEM &DiffItemList::GetNextSiblingDiffPosition(uintptr_t & diffpos) const
+const DIFFITEM &DiffItemList::GetNextSiblingDiffPosition(DIFFITEM *&diffpos) const
 {
-	DIFFITEM *p = reinterpret_cast<DIFFITEM *>(diffpos);
-	if (p->parent != nullptr)
-		diffpos = (uintptr_t)p->parent->children.IsSibling(p->Flink);
-	else
-		diffpos = (uintptr_t)m_root.IsSibling(p->Flink);
+	DIFFITEM *p = diffpos;
+	diffpos = p->GetFwdSiblingLink();
+	assert(p==nullptr || diffpos==nullptr || p->GetParentLink() == diffpos->GetParentLink());
+	assert(p==nullptr || p->HasParent());
 	return *p;
 }
 
 /**
  * @brief Get position of next sibling item in structured DIFFITEM tree
- * @param diffpos position of current item, updated to next sibling item position
+ * @param [in,out] diffpos Position of current item, updated to next sibling item position
  * @return Diff Item (by reference) in current position
  */
-DIFFITEM &DiffItemList::GetNextSiblingDiffRefPosition(uintptr_t & diffpos)
+DIFFITEM &DiffItemList::GetNextSiblingDiffRefPosition(DIFFITEM *&diffpos)
 {
 	return (DIFFITEM &)GetNextSiblingDiffPosition(diffpos);
 }
@@ -155,10 +158,10 @@ DIFFITEM &DiffItemList::GetNextSiblingDiffRefPosition(uintptr_t & diffpos)
  * SetDiffStatusCode(pos, DIFFCODE::SAME+DIFFCODE::BOTH, DIFFCODE::COMPAREFLAGS+DIFFCODE::SIDEFLAG);
  *  changes the comparison result to be the same and the side status to be both
  */
-void DiffItemList::SetDiffStatusCode(uintptr_t diffpos, unsigned diffcode, unsigned mask)
+void DiffItemList::SetDiffStatusCode(DIFFITEM *diffpos, unsigned diffcode, unsigned mask)
 {
-	assert(diffpos != NULL);
-	DIFFITEM & di = GetDiffRefAt(diffpos);
+	assert(diffpos != nullptr);
+	DIFFITEM &di = GetDiffRefAt(diffpos);
 	assert( ((~mask) & diffcode) == 0 ); // make sure they only set flags in their mask
 	di.diffcode.diffcode &= (~mask); // remove current data
 	di.diffcode.diffcode |= diffcode; // add new data
@@ -167,10 +170,10 @@ void DiffItemList::SetDiffStatusCode(uintptr_t diffpos, unsigned diffcode, unsig
 /**
  * @brief Update difference counts.
  */
-void DiffItemList::SetDiffCounts(uintptr_t diffpos, unsigned diffs, unsigned ignored)
+void DiffItemList::SetDiffCounts(DIFFITEM *diffpos, unsigned diffs, unsigned ignored)
 {
-	assert(diffpos != NULL);
-	DIFFITEM & di = GetDiffRefAt(diffpos);
+	assert(diffpos != nullptr);
+	DIFFITEM &di = GetDiffRefAt(diffpos);
 	di.nidiffs = ignored; // see StoreDiffResult() in DirScan.cpp
 	di.nsdiffs = diffs;
 }
@@ -180,11 +183,11 @@ void DiffItemList::SetDiffCounts(uintptr_t diffpos, unsigned diffs, unsigned ign
  * @param [in] diffpos Position of item.
  * @return Custom flags from item.
  */
-unsigned DiffItemList::GetCustomFlags1(uintptr_t diffpos) const
+unsigned DiffItemList::GetCustomFlags1(DIFFITEM *diffpos) const
 {
-	assert(diffpos != NULL);
-	const DIFFITEM & di = GetDiffAt(diffpos);
-	return di.customFlags1;
+	assert(diffpos != nullptr);
+	const DIFFITEM &di = GetDiffAt(diffpos);
+	return di.customFlags;
 }
 
 /**
@@ -192,15 +195,16 @@ unsigned DiffItemList::GetCustomFlags1(uintptr_t diffpos) const
  * @param [in] diffpos Position of item.
  * @param [in] flag Value of flag to set.
  */
-void DiffItemList::SetCustomFlags1(uintptr_t diffpos, unsigned flag)
+void DiffItemList::SetCustomFlags1(DIFFITEM *diffpos, unsigned flag)
 {
-	assert(diffpos != NULL);
-	DIFFITEM & di = GetDiffRefAt(diffpos);
-	di.customFlags1 = flag;
+	assert(diffpos != nullptr);
+	DIFFITEM &di = GetDiffRefAt(diffpos);
+	di.customFlags = flag;
 }
 
 void DiffItemList::Swap(int idx1, int idx2)
 {
-	for (ListEntry *p = m_root.IsSibling(m_root.Flink); p != nullptr; p = m_root.IsSibling(p->Flink))
-		static_cast<DIFFITEM *>(p)->Swap(idx1, idx2);
+	assert(m_pRoot != nullptr);
+	for (DIFFITEM *p = GetFirstDiffPosition(); p != nullptr; p = p->GetFwdSiblingLink())
+		p->Swap(idx1, idx2);
 }

@@ -243,11 +243,8 @@ protected:
 	afx_msg void OnHelpGnulicense();
 	afx_msg void OnOptions();
 	afx_msg void OnViewSelectfont();
-	afx_msg void OnUpdateViewSelectfont(CCmdUI* pCmdUI);
 	afx_msg void OnViewUsedefaultfont();
-	afx_msg void OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI);
 	afx_msg void OnHelpContents();
-	afx_msg void OnUpdateHelpContents(CCmdUI* pCmdUI);
 	afx_msg void OnClose();
 	afx_msg void OnToolsGeneratePatch();
 	afx_msg void OnDropFiles(const std::vector<String>& files);

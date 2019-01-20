@@ -85,7 +85,7 @@ using boost::end;
 static void LoadToolbarImageList(int imageWidth, UINT nIDResource, UINT nIDResourceMask, bool bGrayscale, CImageList& ImgList);
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
-DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles);
+DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles, bool bMakeVisible = true);
 
 /**
  * @brief A table associating menuitem id, icon and menus to apply.
@@ -659,7 +659,7 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 {
 	if (m_pMenus[MENU_MERGEVIEW] == nullptr)
 		theApp.m_pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
-	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(theApp.m_pDiffTemplate, pDirDoc, nFiles);
+	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(theApp.m_pDiffTemplate, pDirDoc, nFiles, false);
 
 	// Make local copies, so we can change encoding if we guess it below
 	FileLocation fileloc[3];
@@ -713,7 +713,15 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	}
 
 	// Note that OpenDocs() takes care of closing compare window when needed.
-	if (!pMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags)))
+	bool bResult = pMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags));
+
+	if (CChildFrame *pFrame = pMergeDoc->GetParentFrame())
+	{
+		if (!pFrame->IsActivated())
+			pFrame->InitialUpdateFrame(pMergeDoc, true);
+	}
+
+	if (!bResult)
 		return false;
 
 	for (int pane = 0; pane < nFiles; pane++)
@@ -1305,11 +1313,11 @@ HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
  * @return Pointer to CMergeDoc to use. 
  */
 template<class DocClass>
-DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles)
+DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles, bool bMakeVisible)
 {
 	// Create a new merge doc
 	DocClass::m_nBuffersTemp = nFiles;
-	DocClass *pMergeDoc = static_cast<DocClass*>(pTemplate->OpenDocumentFile(nullptr));
+	DocClass *pMergeDoc = static_cast<DocClass*>(pTemplate->OpenDocumentFile(nullptr, bMakeVisible));
 	if (pMergeDoc != nullptr)
 	{
 		pDirDoc->AddMergeDoc(pMergeDoc);

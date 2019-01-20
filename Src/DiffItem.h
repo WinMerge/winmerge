@@ -5,7 +5,6 @@
  */
 #pragma once
 
-#include "ListEntry.h"
 #include "DiffFileInfo.h"
 
 /**
@@ -165,38 +164,135 @@ public:
 	}
 };
 
+enum ViewCustomFlags
+{
+	// No valid values are 0
+	INVALID_CODE = 0,
+	VISIBILITY = 0x3U, VISIBLE = 0x1U, HIDDEN = 0x2U, EXPANDED = 0x4U
+};
+
 /**
  * @brief information about one file/folder item.
- * This class holds information about one compared item in the folder compare.
- * The item can be a file item or folder item. The item can have data from
- * both compare sides (file/folder exists in both sides) or just from one
- * side (file/folder exists only in other side).
+ * This class holds information about one compared "item" in the folder comparison tree.
+ * The item can be a file item or folder item.  The item can have data from
+ * both (or all three) compare sides (file/folder exists in all sides) or from
+ * fewer sides (file/folder is missing in one/two sides).
  *
- * This class is for backend differences processing, presenting physical
+ * The basic structure consists of linkage to the `parent` folder and possible "sibling"
+ * file/folder items that share the identical `parent` folder item.  Folder items also
+ * have a `children` link indicating the head of another DIFFITEM list of contained 
+ * files/folders.  
+ *
+ * This class is for backend differences processing, representing physical
  * files and folders. This class is not for GUI data like selection or
  * visibility statuses. So do not include any GUI-dependent data here. 
  */
-struct DIFFITEM : ListEntry
+
+// See http://web.eecs.utk.edu/~bvz/teaching/cs140Fa09/notes/Dllists for a discussion of
+// "doubly linked lists".  The "sibling" linkage used here is basically a doubly linked
+// list (similar to what is described in that article), with the notes ...
+//		A. Items may be deleted anywhere within the tree (e.g. via "Refresh Selected (ctrl-F5)").
+//			This justifies the usage of a double link list.
+//		B. Lists are only traversed in the forward direction (using `Flink`).  Using `nullptr`  
+//			to stop this traversal is both obvious and convenient.
+//		C. Items are only inserted at the end, so storing the end's link (for a future insertion) 
+//			into the head's `Blink` serves the function of the "sentinel node" without consuming 
+//			extra space.
+//		D. A "sentinel" structure is not necessary because ...
+//			D1. The head of a sibling list can always be found directly from the parent folder 
+//				item by `this->children`.  From an arbitrary sibling item, the head is at
+//				`this->parent->children` .
+//			D2. Similarily, the end of a sibling list is found (from the parent folder item) at
+//				`this->children->Blink` or (from a sibling item) at `this->parent->children->Blink`.
+//		E. The "root" item for a DIFFITEM tree is `m_pRoot`, declared in and managed by the
+//			DiffItemList class.  There is one "root" for each active folder comparison 
+//			(i.e. each folder comparison window in the GUI).  The "root" item exists to anchor the 
+//			tree, as well as to guarantee that the `parent` and `children` linkage is correct at the 
+//			top folder comparison level.
+//
+//
+// Sometimes a picture is worth many words...
+//
+// |------P1-------| 
+// | "parent item" |  
+// | parent -------|---> P0
+// | Blink & Flink |
+// | children -----|->\
+// |---------------|  |
+//                    |
+//                    |  /--------------------------------------------------------------------------->\
+//                    |  |                                                                            |
+//                    |  |   |---P1.C0-----|           |---P1.S1-----|           |---P1.S2-----|      |
+//                    |  |   | data values |           | data values |           | data values |      | 
+//                    |  |   |-------------|           |-------------|           |-------------|      |    
+//                    |  \<--|--Blink      |<----------|--Blink      |<----------|--Blink      |<-----/
+//                    |      |  Flink -----|---------->|  Flink -----|---------->|  Flink -----|--------> `nullptr`
+//                    \----->|  children---|->\        |  children---|->\        |  children---|->\
+//            P1<------------|--parent     |  |   P1<--|--parent     |  |   P1<--|--parent     |  |
+//                           |-------------|  |        |-------------|  |        |-------------|  | 
+//                                            |                         |                         |  
+//                                            \--> P1.C0.C0             \--> P1.S1.C0             \--> P1.S2.C0
+//                                            \--> `nullptr`            \--> `nullptr`            \--> `nullptr`
+//											
+
+class DIFFITEM 
 {
-	DIFFITEM *parent; /**< Parent of current item */
-	ListEntry children; /**< Head of doubly linked list for chldren */
+//**** DIFFITEM data values
 
-	DiffFileInfo diffFileInfo[3]; /**< Fileinfo for left/middle/right file */
-	int	nsdiffs; /**< Amount of non-ignored differences */
-	int nidiffs; /**< Amount of ignored differences */
-	unsigned customFlags1; /**< Custom flags set 1 */
-	DIFFCODE diffcode; /**< Compare result */
+public:
+	DiffFileInfo diffFileInfo[3];	/**< Fileinfo for left/middle/right file. */
+	int	nsdiffs;					/**< Amount of non-ignored differences */
+	int nidiffs;					/**< Amount of ignored differences */
+									// Note: Keep `diffFileInfo[]`, `nsdiffs` and `nidiffs`
+									//		 near front of class for small offsets.
+									// (see `DirColInfo` arrays in `DirViewColItems.cpp`) *>
+	DIFFCODE diffcode;				/**< Compare result */
+	unsigned customFlags;			/**< ViewCustomFlags flags */
 
-	static DIFFITEM emptyitem; /**< singleton to represent a diffitem that doesn't have any data */
-
-	DIFFITEM() : parent(nullptr), nidiffs(-1), nsdiffs(-1), customFlags1(0) { }
-	~DIFFITEM();
-
-	bool isEmpty() const { return this == &emptyitem; }
 	String getFilepath(int nIndex, const String &sRoot) const;
+	void Swap(int idx1, int idx2);
+
+//**** Child, Parent, Sibling linkage
+private:							// Don't allow direct external manipulation of link values
+	DIFFITEM *parent;				/**< Parent of current item */
+	DIFFITEM *children;				/**< Link to first child of this item */
+	DIFFITEM *Flink;				/**< Forward "sibling" link.  The forward linkage ends with
+										 a `nullptr` in the final (newest) item. */
+	DIFFITEM *Blink;				/**< Backward "sibling" link.  The backward linkage is circular,
+										 with the first (oldest) item (pointed to by `this->parent->children`)
+										 pointing to the last (newest) item. This is for easy insertion. */
+	void AppendSibling(DIFFITEM *p);
+	void RemoveSiblings();
+
+public:
+	void DelinkFromSiblings();
+	void AddChildToParent(DIFFITEM *p);
+	void RemoveChildren();
 	int GetDepth() const;
 	bool IsAncestor(const DIFFITEM *pdi) const;
-	bool HasChildren() const;
-	void RemoveChildren();
-	void Swap(int idx1, int idx2);
+	inline DIFFITEM *GetFwdSiblingLink() const { return Flink; }
+	inline DIFFITEM *GetFirstChild() const { return children; }
+	inline DIFFITEM *GetParentLink() const { return parent; }
+
+	/** @brief Return whether the current DIFFITEM has children */
+	inline bool DIFFITEM::HasChildren() const { return (children != nullptr); }
+	/** @brief Return whether the current DIFFITEM has children */
+	inline bool DIFFITEM::HasParent() const { return (parent != nullptr); }
+
+//**** The `emptyitem` and its access procedures
+private:
+	static DIFFITEM emptyitem;		/**< Singleton to represent a DIFFITEM that doesn't have any data */
+
+public:
+	static DIFFITEM *GetEmptyItem();
+	inline bool isEmpty() const { return this == GetEmptyItem(); /* to invoke "emptiness" checking */ }
+
+//**** CTOR, DTOR
+public:
+	DIFFITEM() : parent(nullptr), children(nullptr), Flink(nullptr), Blink(nullptr), 
+					nidiffs(-1), nsdiffs(-1), customFlags(ViewCustomFlags::INVALID_CODE) 
+					// `DiffFileInfo` and `DIFFCODE` have their own initializers. 
+					{}
+	~DIFFITEM();
+
 };

@@ -94,7 +94,7 @@ public:
 		UINT nDiffs, UINT nTrivialDiffs, bool bIdentical);
 	void UpdateResources();
 	void InitStatusStrings();
-	void ReloadItemStatus(uintptr_t diffPos, int idx);
+	void ReloadItemStatus(DIFFITEM *diffPos, int idx);
 	void Redisplay();
 	virtual ~CDirDoc();
 	void SetDirView( CDirView *newView ); // TODO Perry

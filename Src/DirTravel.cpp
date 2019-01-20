@@ -5,6 +5,7 @@
  *
  */
 
+#include "stdafx.h"
 #include "DirTravel.h"
 #include <algorithm>
 #include <Poco/DirectoryIterator.h>
@@ -17,6 +18,10 @@
 #include "unicoder.h"
 #include "paths.h"
 #include "Win_VersionHelper.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
 
 using Poco::DirectoryIterator;
 using Poco::Timestamp;
@@ -35,16 +40,16 @@ void LoadAndSortFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 }
 
 /**
- * @brief Find files and subfolders from given folder.
- * This function saves all files and subfolders in given folder to arrays.
+ * @brief Find file and sub-folder names from given folder.
+ * This function saves all file and sub-folder names in given folder to arrays.
  * We use 64-bit version of stat() to get times since find doesn't return
  * valid times for very old files (around year 1970). Even stat() seems to
  * give negative time values but we can live with that. Those around 1970
- * times can happen when file is created so that it  doesn't get valid
- * creation or modificatio dates.
+ * times can happen when file is created so that it doesn't get valid
+ * creation or modification dates.
  * @param [in] sDir Base folder for files and subfolders.
- * @param [in, out] dirs Array where subfolders are stored.
- * @param [in, out] files Array where files are stored.
+ * @param [in, out] dirs Array where subfolder names are stored.
+ * @param [in, out] files Array where file names are stored.
  */
 static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files)
 {

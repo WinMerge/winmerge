@@ -516,6 +516,7 @@ SaveSettings ()
 CCrystalTextView::CCrystalTextView ()
 : m_nScreenChars(-1)
 , m_pFindTextDlg(nullptr)
+, m_CurSourceDef(nullptr)
 {
   memset(((CView*)this)+1, 0, sizeof(*this) - sizeof(class CView)); // AFX_ZERO_INIT_OBJECT (CView)
   m_rxnode = nullptr;
@@ -2837,7 +2838,8 @@ OnInitialUpdate ()
 {
   CView::OnInitialUpdate ();
   CString sDoc = GetDocument ()->GetPathName (), sExt = GetExt (sDoc);
-  SetTextType (sExt);
+  if (m_CurSourceDef == nullptr)
+      SetTextType (sExt);
   AttachToBuffer (nullptr);
 
   CSplitterWnd *pSplitter = GetParentSplitter (this, false);
@@ -2869,7 +2871,6 @@ OnInitialUpdate ()
             }
         }
     }
-  SetTextType (sExt);
   SetFont (m_LogFont);
   if (m_bRememberLastPos && !sDoc.IsEmpty ())
     {
@@ -5284,12 +5285,29 @@ OnEditRepeat ()
   bool bControlKey = (::GetAsyncKeyState(VK_CONTROL)& 0x8000) != 0;
   // CTRL-SHIFT-F3 will find selected text, but opposite direction
   bool bShiftKey = (::GetAsyncKeyState(VK_SHIFT)& 0x8000) != 0;
-  if (bControlKey && IsSelection())
+  if (bControlKey)
     {
-      bEnable = true;
-      CPoint ptSelStart, ptSelEnd;
-      GetSelection (ptSelStart, ptSelEnd);
-      GetText (ptSelStart, ptSelEnd, sText);
+      if (IsSelection())
+        {
+          CPoint ptSelStart, ptSelEnd;
+          GetSelection (ptSelStart, ptSelEnd);
+          GetText (ptSelStart, ptSelEnd, sText);
+        }
+      else
+        {
+          CPoint ptCursorPos = GetCursorPos ();
+          CPoint ptStart = WordToLeft (ptCursorPos);
+          CPoint ptEnd = WordToRight (ptCursorPos);
+          if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
+            GetText (ptStart, ptEnd, sText);
+        }
+      if (!sText.IsEmpty())
+        {
+          bEnable = true;
+          free(m_pszLastFindWhat);
+          m_pszLastFindWhat = _tcsdup (sText);
+          m_bLastSearch = true;
+        }
     }
   if (bShiftKey)
     m_dwLastSearchFlags |= FIND_DIRECTION_UP;

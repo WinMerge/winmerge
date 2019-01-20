@@ -5,7 +5,7 @@
  */
 #pragma once
 
-struct DIFFITEM;
+class DIFFITEM;
 
 namespace CompareEngines
 {
