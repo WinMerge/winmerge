@@ -357,7 +357,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		if (FileChanged[nBuffer] == FileRemoved)
 		{
 			String msg = strutils::format_string1(_("The file\n%1\nhas disappeared. Please save a copy of the file to continue."), m_filePaths[nBuffer]);
-			AfxMessageBox(msg.c_str(), MB_ICONWARNING);
+			ShowMessageBox(msg, MB_ICONWARNING);
 			bool bSaveResult = false;
 			bool ok = DoSaveAs(m_filePaths[nBuffer].c_str(), bSaveResult, nBuffer);
 			if (!ok || !bSaveResult)
@@ -571,7 +571,7 @@ void CMergeDoc::CheckFileChanged(void)
 		if (FileChange[nBuffer] == FileChanged)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[nBuffer]);
-			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN) == IDYES)
+			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN) == IDYES)
 			{
 				OnFileReload();
 			}
@@ -697,6 +697,16 @@ void CMergeDoc::FlagMovedLines(void)
 	// todo: Need to record actual moved information
 }
 
+int CMergeDoc::ShowMessageBox(const String& sText, unsigned nType, unsigned nIDHelp)
+{
+	if (!GetParentFrame()->IsActivated())
+	{
+		GetParentFrame()->InitialUpdateFrame(this, true);
+		GetParentFrame()->SendMessage(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);
+	}
+	return AfxMessageBox(sText.c_str(), nType, nIDHelp);
+}
+
 /**
  * @brief Prints (error) message by rescan status.
  *
@@ -716,7 +726,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	{
 		s = _("An error occurred while comparing the files.");
 		LogErrorString(s);
-		AfxMessageBox(s.c_str(), MB_ICONSTOP);
+		ShowMessageBox(s, MB_ICONSTOP);
 		return;
 	}
 
@@ -724,7 +734,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	{
 		s = _("Temporary files could not be created. Check your temporary path settings.");
 		LogErrorString(s);
-		AfxMessageBox(s.c_str(), MB_ICONSTOP);
+		ShowMessageBox(s, MB_ICONSTOP);
 		return;
 	}
 
@@ -736,7 +746,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 		{
 			// compare file to itself, a custom message so user may hide the message in this case only
 			s = _("The same file is opened in both panels.");
-			AfxMessageBox(s.c_str(), MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILE_TO_ITSELF);
+			ShowMessageBox(s, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILE_TO_ITSELF);
 		}
 		else if (identical == IDENTLEVEL_ALL)
 		{
@@ -752,7 +762,8 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 
 			if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
 			{
-				LangMessageBox(IDS_FILESSAME, nFlags);
+				s = _("The selected files are identical.");
+				ShowMessageBox(s, nFlags);
 			}
 
 			// Exit application if files are identical.
@@ -956,21 +967,21 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 		DoMergeValue(m_ptBuf[0]->getEncoding(), m_ptBuf[1]->getEncoding(), m_ptBuf[2]->getEncoding(), dstPane);
 	if (mergedEncoding.first == Merged)
 	{
-		LangMessageBox(IDS_CODEPAGE_MERGED, MB_ICONINFORMATION);
+		ShowMessageBox(_("The change of codepage has been merged"), MB_ICONINFORMATION);
 		m_ptBuf[dstPane]->setEncoding(mergedEncoding.second);
 	}
 	else if (mergedEncoding.first == Conflict)
-		LangMessageBox(IDS_CODEPAGE_CONFLICT, MB_ICONINFORMATION);
+		ShowMessageBox(_("The changes of codepage are conflicting"), MB_ICONINFORMATION);
 
 	std::pair<MergeResult, CRLFSTYLE> mergedEOLStyle = 
 		DoMergeValue(m_ptBuf[0]->GetCRLFMode(), m_ptBuf[1]->GetCRLFMode(), m_ptBuf[2]->GetCRLFMode(), dstPane);
 	if (mergedEOLStyle.first == Merged)
 	{
-		LangMessageBox(IDS_EOL_MERGED, MB_ICONINFORMATION);
+		ShowMessageBox(_("The change of EOL has been merged"), MB_ICONINFORMATION);
 		m_ptBuf[dstPane]->SetCRLFMode(mergedEOLStyle.second);
 	}
 	else if (mergedEOLStyle.first == Conflict)
-		LangMessageBox(IDS_EOL_CONFLICT, MB_ICONINFORMATION);
+		ShowMessageBox(_("The changes of EOL are conflicting"), MB_ICONINFORMATION);
 
 	RescanSuppress suppressRescan(*this);
 
@@ -1035,11 +1046,11 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 	if (nDiff != -1)
 		pViewDst->SelectDiff(nDiff, true, false);
 
-	AfxMessageBox(
+	ShowMessageBox(
 		strutils::format_string2(
 			_T("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
 			strutils::format(_T("%d"), autoMergedCount),
-			strutils::format(_T("%d"), unresolvedConflictCount)).c_str(),
+			strutils::format(_T("%d"), unresolvedConflictCount)),
 		MB_ICONINFORMATION);
 }
 
@@ -1389,7 +1400,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	// SAVE_NO_FILENAME is temporarily used for scratchpad.
 	// So don't ask about saving in that case.
 	if (nSaveResult != SAVE_NO_FILENAME)
-		answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
+		answer = ShowMessageBox(str, MB_OKCANCEL | MB_ICONWARNING);
 
 	switch (answer)
 	{
@@ -1467,7 +1478,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	if (fileChanged == FileChanged)
 	{
 		String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"), szPath);
-		if (AfxMessageBox(msg.c_str(), MB_ICONWARNING | MB_YESNO) == IDNO)
+		if (ShowMessageBox(msg, MB_ICONWARNING | MB_YESNO) == IDNO)
 		{
 			bSaveSuccess = true;
 			return true;
@@ -2502,12 +2513,12 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
 			sError = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), (LPCTSTR)sFileName, (LPCTSTR)sOpenError);
 		else
 			sError = strutils::format_string1(_("File not found: %1"), (LPCTSTR)sFileName);
-		AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
+		ShowMessageBox(sError, MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 	else if (FileLoadResult::IsErrorUnpack(retVal))
 	{
 		sError = strutils::format_string1(_("File not unpacked: %1"), (LPCTSTR)sFileName);
-		AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
+		ShowMessageBox(sError, MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 	return retVal;
 }
@@ -2720,7 +2731,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			// All lines will differ, that is not very interesting and probably not wanted.
 			// Propose to turn off the option 'sensitive to EOL'
 			String s = theApp.LoadString(IDS_SUGGEST_IGNOREEOL);
-			if (AfxMessageBox(s.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN | MB_IGNORE_IF_SILENCED, IDS_SUGGEST_IGNOREEOL) == IDYES)
+			if (ShowMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN | MB_IGNORE_IF_SILENCED, IDS_SUGGEST_IGNOREEOL) == IDYES)
 			{
 				diffOptions.bIgnoreEol = true;
 				m_diffWrapper.SetOptions(&diffOptions);
