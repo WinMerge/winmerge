@@ -185,6 +185,7 @@ public:
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(bool &bBinary, IDENTLEVEL &identical, bool bForced = false);
 	void CheckFileChanged(void);
+	int ShowMessageBox(const String& sText, unsigned nType = MB_OK, unsigned nIDHelp = 0);
 	void ShowRescanError(int nRescanResult, IDENTLEVEL identical);
 	bool Undo();
 	void CopyAllList(int srcPane, int dstPane);
