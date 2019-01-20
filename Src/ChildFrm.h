@@ -55,6 +55,7 @@ public:
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	CSplitterWndEx& GetSplitter() { return m_wndSplitter; };
+	bool IsActivated() const { return m_bActivated; }
 
 // Attributes
 protected:

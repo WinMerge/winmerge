@@ -516,6 +516,7 @@ SaveSettings ()
 CCrystalTextView::CCrystalTextView ()
 : m_nScreenChars(-1)
 , m_pFindTextDlg(nullptr)
+, m_CurSourceDef(nullptr)
 {
   memset(((CView*)this)+1, 0, sizeof(*this) - sizeof(class CView)); // AFX_ZERO_INIT_OBJECT (CView)
   m_rxnode = nullptr;
@@ -2837,7 +2838,8 @@ OnInitialUpdate ()
 {
   CView::OnInitialUpdate ();
   CString sDoc = GetDocument ()->GetPathName (), sExt = GetExt (sDoc);
-  SetTextType (sExt);
+  if (m_CurSourceDef == nullptr)
+      SetTextType (sExt);
   AttachToBuffer (nullptr);
 
   CSplitterWnd *pSplitter = GetParentSplitter (this, false);
@@ -2869,7 +2871,6 @@ OnInitialUpdate ()
             }
         }
     }
-  SetTextType (sExt);
   SetFont (m_LogFont);
   if (m_bRememberLastPos && !sDoc.IsEmpty ())
     {
