@@ -469,7 +469,7 @@
       <para>No special characters or wildcards are used to match file names. To
       match all filenames of a certain type, simply omit the filename.</para>
 
-      <para>Rules are case-insensitive. For example, <code>f: \.bat&amp;</code>
+      <para>Rules are case-insensitive. For example, <code>f: \.bat$</code>
       matches <filename>winmerge.bat</filename> and
       <filename>compare.BAT</filename>.</para>
 
@@ -677,7 +677,7 @@ Pekka Himanen</screen></para>
 
       <tip>
         <para>It's usually good practice to use the beginning of line (
-        <code>^</code> ) and end of line ( <code>&amp;</code> ) markers to
+        <code>^</code> ) and end of line ( <code>$</code> ) markers to
         control your patterns precisely, because the rule is applied if any part
         of a line matches the expression.</para>
       </tip>
