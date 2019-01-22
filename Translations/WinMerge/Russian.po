@@ -40,22 +40,22 @@ msgstr "65001"
 #: Merge.rc:1C6125F3
 #, c-format
 msgid "C&opy to Right"
-msgstr "Скопировать на &правую панель"
+msgstr "Копировать направо"
 
 #: Merge.rc:92C6C92
 #, c-format
 msgid "Cop&y to Left"
-msgstr "Скопировать на &левую панель"
+msgstr "Копировать налево"
 
 #: Merge.rc:6FC398B6
 #, c-format
 msgid "Copy &from Left"
-msgstr ""
+msgstr "Копировать слева"
 
 #: Merge.rc:8AF7E68
 #, c-format
 msgid "Copy fro&m Right"
-msgstr ""
+msgstr "Копировать справа"
 
 #: Merge.rc:381D79E4
 #, c-format
@@ -105,7 +105,7 @@ msgstr "зарегистрированным приложением"
 #: Merge.rc:321D741E
 #, c-format
 msgid "with &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "внешним редактором\tCtrl+Alt+E"
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -115,7 +115,7 @@ msgstr "с помощью..."
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
-msgstr ""
+msgstr "Показывать отличия"
 
 #: Merge.rc:71E3C8E3
 #, c-format
@@ -125,7 +125,7 @@ msgstr ""
 #: Merge.rc:67D67717
 #, c-format
 msgid "&Ignore Color Difference (Color Distance Threshold)"
-msgstr ""
+msgstr "Игнорировать отличие цвета (порог цветоразличения)"
 
 #: Merge.rc:5A9A7139
 #, c-format
@@ -170,7 +170,7 @@ msgstr ""
 #: Merge.rc:5806E58F
 #, c-format
 msgid "Dragging &Mode"
-msgstr ""
+msgstr "Режим перетаскивания"
 
 #: Merge.rc:43017E45
 #, c-format
@@ -180,7 +180,7 @@ msgstr "&Переместить"
 #: Merge.rc:5A9A713A
 #, c-format
 msgid "&Adjust Offset"
-msgstr ""
+msgstr "Настроить смещение"
 
 #: Merge.rc:100AAFAC
 #, c-format
@@ -334,7 +334,7 @@ msgstr "Автоматическая распаковка"
 #: Merge.rc:714B45FD
 #, c-format
 msgid "&Edit with Unpacker..."
-msgstr ""
+msgstr "Редактировать распаковщиком..."
 
 #: Merge.rc:78B3B622
 #, c-format
@@ -389,7 +389,7 @@ msgstr "Справка &WinMerge\tF1"
 #: Merge.rc:1B17601E
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "Примечания к выпуску"
 
 #: Merge.rc:6E470BE7
 #, c-format
@@ -444,37 +444,37 @@ msgstr "В&ыбрать Все\tCtrl+A"
 #: Merge.rc:58EEEB7E
 #, c-format
 msgid "Show &Identical Items"
-msgstr "Одинаковые"
+msgstr "Показать идентичные"
 
 #: Merge.rc:58EEEB7F
 #, c-format
 msgid "Show &Different Items"
-msgstr "Различные"
+msgstr "Показать отличающиеся"
 
 #: Merge.rc:58E210F9
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "Уникальные слева"
+msgstr "Показать уникальные слева"
 
 #: Merge.rc:28A1C3B4
 #, c-format
 msgid "Show Midd&le Unique Items"
-msgstr ""
+msgstr "Показать уникальные посередине"
 
 #: Merge.rc:43600E8F
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "Уникальные справа"
+msgstr "Показать уникальные справа"
 
 #: Merge.rc:E44719
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "Пропущенные"
+msgstr "Показать пропущенные"
 
 #: Merge.rc:6F833C16
 #, c-format
 msgid "S&how Binary Files"
-msgstr "Бинарные файлы"
+msgstr "Показать двоичные файлы"
 
 #: Merge.rc:5A9A713B
 #, c-format
@@ -484,22 +484,22 @@ msgstr ""
 #: Merge.rc:200AD0D1
 #, c-format
 msgid "Show &Left Only Different Items"
-msgstr ""
+msgstr "Показать отличающиеся только слева"
 
 #: Merge.rc:4899EBE1
 #, c-format
 msgid "Show &Middle Only Different Items"
-msgstr ""
+msgstr "Показать отличающиеся только посередине"
 
 #: Merge.rc:614F49A9
 #, c-format
 msgid "Show &Right Only Different Items"
-msgstr ""
+msgstr "Показать отличающиеся только справа"
 
 #: Merge.rc:6F833C17
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "Скрытые"
+msgstr "Показать скрытые"
 
 #: Merge.rc:311E1D87
 #, c-format
@@ -584,12 +584,12 @@ msgstr "Посл&еднее отличие\tAlt+End"
 #: Merge.rc:334E25B0
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Скопировать на &правую панель\tAlt+Right"
+msgstr "Копировать направо\tAlt+Right"
 
 #: Merge.rc:69AD3BF7
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Скопировать на &левую панель\tAlt+Left"
+msgstr "Копировать налево\tAlt+Left"
 
 #: Merge.rc:4DE14274
 #, c-format
@@ -994,22 +994,22 @@ msgstr ""
 #: Merge.rc:28C70E7F
 #, c-format
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Скопировать на правую панель и перейти к следующему\tAlt+Ctrl+Right"
+msgstr "Копировать направо и перейти к следующему\tAlt+Ctrl+Right"
 
 #: Merge.rc:4A3B5872
 #, c-format
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Скопировать на левую панель и перейти к следующему\tAlt+Ctrl+Left"
+msgstr "Копировать налево и перейти к следующему\tAlt+Ctrl+Left"
 
 #: Merge.rc:1AC98D09
 #, c-format
 msgid "Copy &All to Right"
-msgstr "Ск&опировать все на правую панель"
+msgstr "К&опировать все направо"
 
 #: Merge.rc:D404EDD
 #, c-format
 msgid "Cop&y All to Left"
-msgstr "Скоп&ировать все на левую панель"
+msgstr "Коп&ировать все налево"
 
 #: Merge.rc:4BC6A157
 #, c-format
@@ -2462,7 +2462,7 @@ msgstr "Справа:"
 #: Merge.rc:26188979
 #, c-format
 msgid "Identical"
-msgstr "Одинаковые"
+msgstr "Идентичные"
 
 #: Merge.rc:6FA9B0F7
 #, c-format
@@ -3228,7 +3228,7 @@ msgstr ""
 #: Merge.rc:114DD351
 #, c-format
 msgid "Folder Comparison Results"
-msgstr "Результаты сравнения каталогов"
+msgstr "Результаты сравнения папок"
 
 #: Merge.rc:1AFA3493
 #, c-format
@@ -3314,37 +3314,37 @@ msgstr "Элементов: %1"
 #: Merge.rc:6C6653C7
 #, c-format
 msgid "Select two existing folders or files to compare"
-msgstr "Выберите два СУЩЕСТВУЮЩИХ каталога или файла для сравнения"
+msgstr "Выберите две СУЩЕСТВУЮЩИХ папки или файла для сравнения"
 
 #: Merge.rc:444C5DDC
 #, c-format
 msgid "Folder Selection"
-msgstr "Выбор каталога"
+msgstr "Выбор папки"
 
 #: Merge.rc:3080B693
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr ""
+msgstr "Выберите две (или три) папки или два (или три) файла для сравнения."
 
 #: Merge.rc:2EBBDDD6
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr ""
+msgstr "Левый (1-й) путь указан неверно!"
 
 #: Merge.rc:BA50069
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr ""
+msgstr "Средний (2-й) путь указан неверно!"
 
 #: Merge.rc:21DC7C32
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr ""
+msgstr "Правый (2-й) путь указан неверно!"
 
 #: Merge.rc:21DC7C33
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr ""
+msgstr "Правый (3-й) путь указан неверно!"
 
 #: Merge.rc:5AB9EEA7
 #, c-format
@@ -3354,32 +3354,32 @@ msgstr "Оба пути указаны неверно"
 #: Merge.rc:585E8EC0
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr ""
+msgstr "Левый (1-й) и средний (2-й) пути указаны неверно!"
 
 #: Merge.rc:135DE390
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "Левый (1-й) и правый (3-й) пути указаны неверно!"
 
 #: Merge.rc:72716FA6
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "Средний (2-й) и правый (3-й) пути указаны неверно!"
 
 #: Merge.rc:237A0533
 #, c-format
 msgid "All paths are invalid!"
-msgstr ""
+msgstr "Все пути указаны неверно"
 
 #: Merge.rc:1235F930
 #, c-format
 msgid "Only enabled for File comparisons"
-msgstr ""
+msgstr "Включено только для сравнения файлов"
 
 #: Merge.rc:30FF7A4E
 #, c-format
 msgid "Cannot compare file and folder!"
-msgstr "Невозможно сравнение файла и каталога!"
+msgstr "Невозможно сравнение файла и папки!"
 
 #: Merge.rc:62AC5DDB
 #, c-format
@@ -3585,87 +3585,87 @@ msgstr "Разбивать по невидимым и знакам пункту�
 #: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"
-msgstr "Скопировать на левую сторону %1 из %2 выбранных элементов"
+msgstr "Справа налево (%1)"
 
 #: Merge.rc:52D3F9F6
 #, c-format
 msgid "Right to Middle (%1)"
-msgstr ""
+msgstr "Справа в середину (%1)"
 
 #: Merge.rc:17F5B413
 #, c-format
 msgid "Middle to Left (%1)"
-msgstr ""
+msgstr "Из середины налево (%1)"
 
 #: Merge.rc:66C0CE9F
 #, c-format
 msgid "Middle to Right (%1)"
-msgstr ""
+msgstr "Из середины направо (%1)"
 
 #: Merge.rc:7271FF80
 #, c-format
 msgid "Left to Right (%1)"
-msgstr "Скопировать на правую сторону %1 из %2 выбранных элементов"
+msgstr "Слева направо (%1)"
 
 #: Merge.rc:5BCDF0E7
 #, c-format
 msgid "Left to Middle (%1)"
-msgstr ""
+msgstr "Слева в середину (%1)"
 
 #: Merge.rc:71676C48
 #, c-format
 msgid "Left to... (%1)"
-msgstr "Слева на... (%1)"
+msgstr "Слева... (%1)"
 
 #: Merge.rc:729280DB
 #, c-format
 msgid "Middle to... (%1)"
-msgstr ""
+msgstr "Из середины... (%1)"
 
 #: Merge.rc:32BFDBAD
 #, c-format
 msgid "Right to... (%1)"
-msgstr "Справа на... (%1)"
+msgstr "Справа... (%1)"
 
 #: Merge.rc:36B164C5
 #, c-format
 msgid "Both to... (%1)"
-msgstr ""
+msgstr "Обе... (%1)"
 
 #: Merge.rc:2515A6BD
 #, c-format
 msgid "All to... (%1)"
-msgstr ""
+msgstr "Все... (%1)"
 
 #: Merge.rc:290D6FC6
 #, c-format
 msgid "Differences to... (%1)"
-msgstr ""
+msgstr "Отличия ..."
 
 #: Merge.rc:1B633070
 #, c-format
 msgid "Left (%1)"
-msgstr "Слева (%1)"
+msgstr "Налево (%1)"
 
 #: Merge.rc:13C27215
 #, c-format
 msgid "Middle (%1)"
-msgstr ""
+msgstr "В середину (%1)"
 
 #: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
-msgstr "Удалить %1 из %2 выбранных элементов с правой стороны"
+msgstr "Направо (%1)"
 
 #: Merge.rc:146A5939
 #, c-format
 msgid "Both (%1)"
-msgstr "Удалить с обеих сторон %1 из %2 выбранных элементов"
+msgstr "Обе (%1)"
 
 #: Merge.rc:669F87F5
 #, c-format
 msgid "All (%1)"
-msgstr ""
+msgstr "Все (%1)"
 
 #: Merge.rc:DD21175
 #, c-format
@@ -3675,7 +3675,7 @@ msgstr "Левая сторона - выбор папки назначения:"
 #: Merge.rc:2B480620
 #, c-format
 msgid "Middle side - select destination folder:"
-msgstr ""
+msgstr "Середина - выбор папки назначения:"
 
 #: Merge.rc:5BBC5591
 #, c-format
@@ -3930,7 +3930,7 @@ msgstr "Файл пропущен"
 #: Merge.rc:4F5264CA
 #, c-format
 msgid "Folder skipped"
-msgstr "Каталог пропущен"
+msgstr "Папка пропущена"
 
 #: Merge.rc:5C8E17D0
 #, c-format
@@ -3940,7 +3940,7 @@ msgstr "Только слева: %1"
 #: Merge.rc:2A79A03B
 #, c-format
 msgid "Middle only: %1"
-msgstr ""
+msgstr "Только посередине: %1"
 
 #: Merge.rc:1B176021
 #, c-format
@@ -3950,17 +3950,17 @@ msgstr "Только справа: %1"
 #: Merge.rc:576B1A36
 #, c-format
 msgid "Does not exist in %1"
-msgstr ""
+msgstr "Не существует в %1"
 
 #: Merge.rc:6B248E76
 #, c-format
 msgid "Binary files are identical"
-msgstr "Бинарные файлы не имеют отличий"
+msgstr "Двоичные файлы идентичны"
 
 #: Merge.rc:6B248E77
 #, c-format
 msgid "Binary files are different"
-msgstr "Бинарные файлы отличаются"
+msgstr "Двоичные файлы отличаются"
 
 #: Merge.rc:72DF5DE2
 #, c-format
@@ -3970,7 +3970,7 @@ msgstr "Файлы отличаются"
 #: Merge.rc:387F7982
 #, c-format
 msgid "Folders are different"
-msgstr "Папки различны"
+msgstr "Папки отличаются"
 
 #: Merge.rc:1B633073
 #, c-format
@@ -4015,22 +4015,22 @@ msgstr "Текстовые файлы идентичны"
 #: Merge.rc:1DEEB161
 #, c-format
 msgid "(Middle and right are identical)"
-msgstr ""
+msgstr "(Средний и правый идентичны)"
 
 #: Merge.rc:1D99B043
 #, c-format
 msgid "(Left and right are identical)"
-msgstr ""
+msgstr "(Левый и правый идентичны)"
 
 #: Merge.rc:159C584C
 #, c-format
 msgid "(Left and middle are identical)"
-msgstr ""
+msgstr "(Средний и средний идентичны)"
 
 #: Merge.rc:12D66B45
 #, c-format
 msgid "Text files are different"
-msgstr "Текстовые файлы различны"
+msgstr "Текстовые файлы отличаются"
 
 #: Merge.rc:203BBC7B
 #, c-format
@@ -4050,7 +4050,7 @@ msgstr "Выбрано элементов: %1"
 #: Merge.rc:3A5D5963
 #, c-format
 msgid "Filename or folder name."
-msgstr "Имя файла или каталога"
+msgstr "Имя файла или папки"
 
 #: Merge.rc:A7628EE
 #, c-format
@@ -4210,12 +4210,12 @@ msgstr "Количество отличий в файле. Это число н�
 #: Merge.rc:A7628EF
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "Показать звездочку (*) если файл бинарный."
+msgstr "Показать звездочку (*) если файл двоичный."
 
 #: Merge.rc:1AC98D0D
 #, c-format
 msgid "Compare %1 with %2"
-msgstr "Сравнивание %1 с %2"
+msgstr "Сравнение %1 с %2"
 
 #: Merge.rc:E9A77F2
 #, c-format
@@ -4264,7 +4264,7 @@ msgstr "На обоих панелях открыт один и тот же фа
 #: Merge.rc:7632E88D
 #, c-format
 msgid "The selected files are identical."
-msgstr "Выбранные файлы не имеют отличий"
+msgstr "Выбранные файлы идентичны."
 
 #: Merge.rc:44565DBD
 #, c-format
@@ -4274,7 +4274,7 @@ msgstr "При сравнении файлов произошла ошибка."
 #: Merge.rc:5F16D9DC
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "Временные файлы не могут быть созданы. Проверьте настройки путей для временных файлов"
+msgstr "Временные файлы не могут быть созданы. Проверьте настройки путей временных файлов."
 
 #: Merge.rc:11E6F584
 #, c-format
@@ -4299,7 +4299,7 @@ msgstr "Невозможно открыть выбранную папку."
 #: Merge.rc:4BC3EDDB
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "Невозможно отобразить бинарный файл в редакторе."
+msgstr "Невозможно открыть двоичный файл в редакторе."
 
 #: Merge.rc:279EB840
 #, c-format
@@ -4435,17 +4435,17 @@ msgstr "Патч успешно записан."
 #: Merge.rc:74C5055A
 #, c-format
 msgid "1. item is not found or is directory!"
-msgstr "1. Элемент не найден или это каталог"
+msgstr "1. Элемент не найден или это папка!"
 
 #: Merge.rc:7EFD4961
 #, c-format
 msgid "2. item is not found or is directory!"
-msgstr "2. Элемент не найден или это каталог"
+msgstr "2. Элемент не найден или это папка!"
 
 #: Merge.rc:E611488
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "Патч уже существует. Хотите перезаписать его ?"
+msgstr "Патч уже существует. Перезаписать его ?"
 
 #: Merge.rc:62226073
 #, c-format
@@ -4485,12 +4485,12 @@ msgstr "Указать выходной файл"
 #: Merge.rc:54711616
 #, c-format
 msgid "Cannot create a patch file from binary files."
-msgstr "Невозможно создать патч из бинарных файлов"
+msgstr "Невозможно создать патч из двоичных файлов"
 
 #: Merge.rc:133D7451
 #, c-format
 msgid "Cannot create a patch file from directories."
-msgstr "Невозможно создать патч из каталогов"
+msgstr "Невозможно создать патч из папок"
 
 #: Merge.rc:34FF26C7
 #, c-format
@@ -4604,7 +4604,7 @@ msgstr ""
 #: Merge.rc:6F90DC3A
 #, c-format
 msgid "\nRefresh (F5)"
-msgstr ""
+msgstr "\nОбновить (F5)"
 
 #: Merge.rc:414AF01
 #, c-format
@@ -4644,22 +4644,22 @@ msgstr "\nПоследнее отличие (Alt+End)"
 #: Merge.rc:E8950EA
 #, c-format
 msgid "\nCopy Right (Alt+Right)"
-msgstr ""
+msgstr "\nКопировать направо (Alt+Right)"
 
 #: Merge.rc:55A8C466
 #, c-format
 msgid "\nCopy Left (Alt+Left)"
-msgstr ""
+msgstr "\nКопировать налево (Alt+Left)"
 
 #: Merge.rc:1E864A56
 #, c-format
 msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nКопировать направо и перейти к следующему (Ctrl+Alt+Right)"
 
 #: Merge.rc:7FE60896
 #, c-format
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nКопировать налево и перейти к следующему (Ctrl+Alt+Left)"
 
 #: Merge.rc:15F24C75
 #, c-format
@@ -4669,7 +4669,7 @@ msgstr ""
 #: Merge.rc:11395D4B
 #, c-format
 msgid "\nAll Left"
-msgstr ""
+msgstr "\nВсе налево"
 
 #: Merge.rc:42A0CC96
 #, c-format
