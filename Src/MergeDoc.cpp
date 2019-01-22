@@ -702,7 +702,7 @@ int CMergeDoc::ShowMessageBox(const String& sText, unsigned nType, unsigned nIDH
 	if (!GetParentFrame()->IsActivated())
 	{
 		GetParentFrame()->InitialUpdateFrame(this, true);
-		GetParentFrame()->SendMessage(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);
+		GetParentFrame()->SendMessageToDescendants(WM_IDLEUPDATECMDUI, static_cast<WPARAM>(true), 0, true, true);
 	}
 	return AfxMessageBox(sText.c_str(), nType, nIDHelp);
 }
