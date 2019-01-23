@@ -58,6 +58,7 @@ BEGIN_MESSAGE_MAP(CMergeEditSplitterView, CView)
 	//{{AFX_MSG_MAP(CMergeEditSplitterView)
 	ON_WM_SIZE()
 	ON_WM_ERASEBKGND()
+	ON_WM_MOUSEACTIVATE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
