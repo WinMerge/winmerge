@@ -3,6 +3,8 @@ image: Visual Studio 2017
 configuration: Release Unicode
 platform: x64
 shallow_clone: true
+install:
+- ps: Add-Content $ENV:UserProfile\Mercurial.ini "`r`n[extensions]`r`neol = "
 cache: build/WinMergeDownloadDeps
 build_script:
 - cmd: >-
