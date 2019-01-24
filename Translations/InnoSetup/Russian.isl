@@ -50,8 +50,8 @@ SetupAppRunningError=Обнаружен запущенный экземпляр %1.%n%nПожалуйста, закройте 
 UninstallAppRunningError=Деинсталлятор обнаружил запущенный экземпляр %1.%n%nПожалуйста, закройте все экземпляры приложения, затем нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
 
 ; *** Misc. errors
-ErrorCreatingDir=Невозможно создать папку "%1"
-ErrorTooManyFilesInDir=Невозможно создать файл в каталоге "%1", так как в нём слишком много файлов
+ErrorCreatingDir=Не удается создать папку "%1"
+ErrorTooManyFilesInDir=Не удается создать файл в папке "%1", так как в ней слишком много файлов
 
 ; *** Setup common messages
 ExitSetupTitle=Выход из программы установки
@@ -85,7 +85,7 @@ SelectLanguageLabel=Выберите язык, который будет использован в процессе установк
 ClickNext=Нажмите «Далее», чтобы продолжить, или «Отмена», чтобы выйти из программы установки.
 BeveledLabel=
 BrowseDialogTitle=Обзор папок
-BrowseDialogLabel=Выберите папку из списка и нажмите «ОК».
+BrowseDialogLabel=Выберите папку из списка и нажмите «OK».
 NewFolderName=Новая папка
 
 ; *** "Welcome" wizard page
@@ -298,7 +298,7 @@ StatusUninstalling=Деинсталляция %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1, версия %2
 AdditionalIcons=Дополнительные значки:
-OptionalFeatures=Optional Features:
+OptionalFeatures=Дополнительные возможности:
 CreateDesktopIcon=Создать значок на &Рабочем столе
 CreateQuickLaunchIcon=Создать значок в &Панели быстрого запуска
 ProgramOnTheWeb=Сайт %1 в Интернете
@@ -327,41 +327,41 @@ ShellExtension32bit=32-битное расширение оболочки WinMerge
 Patch=GnuWin32 патч для Windows
 
 ;Localization Components
-Languages=Языки
-BasqueLanguage=Basque menus and dialogs
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CroatianLanguage=Croatian menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FinnishLanguage=Finnish menus and dialogs
-FrenchLanguage=French menus and dialogs
-GalicianLanguage=Galician menus and dialogs
-GermanLanguage=German menus and dialogs
-GreekLanguage=Greek menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-LithuanianLanguage=Lithuanian menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PersianLanguage=Persian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseBrazilLanguage=Portuguese (Brazilian) menus and dialogs
-PortugueseLanguage=Portuguese menus and dialogs
-RomanianLanguage=Romanian menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SerbianLanguage=Serbian menus and dialogs
-SinhalaLanguage=Sinhala menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SlovenianLanguage=Slovenian menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
-TurkishLanguage=Turkish menus and dialogs
-UkrainianLanguage=Ukrainian menus and dialogs
+Languages=Языки интерфейса (меню и диалоги)
+BasqueLanguage=Баскский
+BulgarianLanguage=Болгарский
+CatalanLanguage=Каталанский
+ChineseSimplifiedLanguage=Китайский (упрощенный)
+ChineseTraditionalLanguage=Китайский (традиционный)
+CroatianLanguage=Хорватский
+CzechLanguage=Чешский
+DanishLanguage=Датский
+DutchLanguage=Голландский
+FinnishLanguage=Финский
+FrenchLanguage=Французский
+GalicianLanguage=Галисийский
+GermanLanguage=Немецкий
+GreekLanguage=Греческий
+HungarianLanguage=Венгерский
+ItalianLanguage=Итальянский
+JapaneseLanguage=Японский
+KoreanLanguage=Корейский
+LithuanianLanguage=Литовский
+NorwegianLanguage=Норвежский
+PersianLanguage=Персидский
+PolishLanguage=Польский
+PortugueseBrazilLanguage=Португальский (Бразилия)
+PortugueseLanguage=Португальский
+RomanianLanguage=Румынский
+RussianLanguage=Русский
+SerbianLanguage=Сербский
+SinhalaLanguage=Сингальский
+SlovakLanguage=Словацкий
+SlovenianLanguage=Словенский
+SpanishLanguage=Испанский
+SwedishLanguage=Шведский
+TurkishLanguage=Турецкий
+UkrainianLanguage=Украинский
 
 ;Tasks
 ExplorerContextMenu=&Enable Explorer context menu integration
