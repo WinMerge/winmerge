@@ -437,9 +437,9 @@ exitPrepAndCompare:
 		if (nDirs > 2 && filepathUnpacked[2] != tFiles[2])
 			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[2].c_str())); }
 
-		if (!pCtxt->m_bIgnoreCodepage && 
-		    (code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME &&
-		    !std::equal(encoding + 1, encoding + nDirs, encoding))
+		// When comparing empty file and nonexistent file, `DIFFCODE::SAME` flag is set to the variable `code`, so change the flag to `DIFFCODE::DIFF`
+		// Also when disabling ignore codepage option and the encodings of files are not equal, change the flag to `DIFFCODE::DIFF even if  `DIFFCODE::SAME` flag is set to the variable `code`
+		if (!di.diffcode.existAll() || (!pCtxt->m_bIgnoreCodepage && !std::equal(encoding + 1, encoding + nDirs, encoding)))
 			code = (code & ~DIFFCODE::COMPAREFLAGS) | DIFFCODE::DIFF;
 	}
 	else if (nCompMethod == CMP_BINARY_CONTENT)
