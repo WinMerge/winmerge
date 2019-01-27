@@ -446,7 +446,7 @@
       <para>特殊文字やワイルドカードは、ファイル名とマッチさせるためには、使用されません。
         ある型のすべてのファイル名にマッチするためには、単にファイル名を省略します。</para>
       <para>ルールは、大文字・小文字を区別しません。例えば、
-        <code>f: \.bat&amp;</code>は、
+        <code>f: \.bat$</code>は、
         <filename>winmerge.bat</filename>と 
         <filename>compare.BAT</filename>にマッチします。</para>
       <example>
