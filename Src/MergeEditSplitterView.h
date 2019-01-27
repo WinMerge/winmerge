@@ -53,10 +53,9 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMergeEditSplitterView)
 	public:
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = nullptr);
-	virtual void OnDraw(CDC* pDC);
-	virtual void OnInitialUpdate();
-	virtual void OnSize(UINT nType, int cx, int cy);
+	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = nullptr) override;
+	virtual void OnDraw(CDC* pDC) override;
+	virtual void OnInitialUpdate() override;
 	protected:
 	//}}AFX_VIRTUAL
 
@@ -65,7 +64,9 @@ protected:
 
 	// Generated message map functions
 protected:
+	using CWnd::OnMouseActivate;
 	//{{AFX_MSG(CMergeEditSplitterView)
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg BOOL OnEraseBkgnd(CDC * pdc);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

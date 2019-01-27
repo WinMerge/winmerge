@@ -16,7 +16,6 @@ Developers:
 * Takashi Sawanaka <sdottaka@users.sourceforge.net>
 * Alexander Skinner (Graphic Design) <neonapple@users.sourceforge.net>
 * Jochen Tucht <jtuc@users.sourceforge.net>
-* Kimmo Varis <kimmov@winmerge.org>
 
 Inactive/past developers:
 * Laurent Ganier
@@ -24,6 +23,7 @@ Inactive/past developers:
 * Chris Mumford
 * Perry Rapp
 * Christian "Seier" Blackburn (Installer)
+* Kimmo Varis <kimmov@winmerge.org>
 
 Localization:
 * Basque:
@@ -122,6 +122,7 @@ Localization:
 
 * Russian:
   Dmitriy S. Aleshkowskiy <wwarlock@mail.ru>
+  Timon34
 
 * Serbian:
   Ozzii <ivanstar61@gmail.com>

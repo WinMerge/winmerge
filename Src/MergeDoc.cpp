@@ -571,7 +571,7 @@ void CMergeDoc::CheckFileChanged(void)
 		if (FileChange[nBuffer] == FileChanged)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[nBuffer]);
-			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN) == IDYES)
+			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
 			{
 				OnFileReload();
 			}
@@ -702,7 +702,7 @@ int CMergeDoc::ShowMessageBox(const String& sText, unsigned nType, unsigned nIDH
 	if (!GetParentFrame()->IsActivated())
 	{
 		GetParentFrame()->InitialUpdateFrame(this, true);
-		GetParentFrame()->SendMessage(WM_IDLEUPDATECMDUI, (WPARAM)TRUE, 0);
+		GetParentFrame()->SendMessageToDescendants(WM_IDLEUPDATECMDUI, static_cast<WPARAM>(true), 0, true, true);
 	}
 	return AfxMessageBox(sText.c_str(), nType, nIDHelp);
 }
@@ -763,7 +763,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 			if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
 			{
 				s = _("The selected files are identical.");
-				ShowMessageBox(s, nFlags);
+				ShowMessageBox(s, nFlags, IDS_FILESSAME);
 			}
 
 			// Exit application if files are identical.
