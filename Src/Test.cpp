@@ -209,10 +209,10 @@ TEST(FileCompare, LastLineEOL)
 	CFrameWnd *pFrame = nullptr;
 	for (bool bIgnoreBlankLines: { true, false })
 	{
-		GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, bIgnoreBlankLines);
+		GetOptionsMgr()->Set(OPT_CMP_IGNORE_BLANKLINES, bIgnoreBlankLines);
 		for (auto nIgnoreWhitespace: { WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL})
 		{
-			GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, nIgnoreWhitespace);
+			GetOptionsMgr()->Set(OPT_CMP_IGNORE_WHITESPACE, nIgnoreWhitespace);
 			if (pDoc)
 				pDoc->RefreshOptions();
 			for (size_t l = 0; l < std::size(filelist); ++l)
