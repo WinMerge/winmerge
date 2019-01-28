@@ -195,12 +195,12 @@ msgstr "&Файл"
 #: Merge.rc:4DE14273
 #, c-format
 msgid "&New\tCtrl+N"
-msgstr "Новый\tCtrl+N"
+msgstr "Создать\tCtrl+N"
 
 #: Merge.rc:2C8061AC
 #, c-format
 msgid "New (&3 panes)"
-msgstr ""
+msgstr "Создать (&3 панели)"
 
 #: Merge.rc:1DC30E61
 #, c-format
@@ -479,7 +479,7 @@ msgstr "Показать двоичные файлы"
 #: Merge.rc:5A9A713B
 #, c-format
 msgid "&3-way Compare"
-msgstr ""
+msgstr "Трёхэлементное сравнение"
 
 #: Merge.rc:200AD0D1
 #, c-format
@@ -678,7 +678,7 @@ msgstr "Режим слияния\tF9"
 #: Merge.rc:32BFDBAA
 #, c-format
 msgid "Re&load\tCtrl+F5"
-msgstr ""
+msgstr "Перезагрузить\tCtrl+F5"
 
 #: Merge.rc:1A9EBDED
 #, c-format
@@ -753,7 +753,7 @@ msgstr "&Заменить...\tCtrl+H"
 #: Merge.rc:4B91C2D1
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr ""
+msgstr "Маркер...\tCtrl+Shift+M"
 
 #: Merge.rc:669F87F4
 #, c-format
@@ -1673,17 +1673,17 @@ msgstr "З&аменить все"
 #: Merge.rc:2FC0BA7B
 #, c-format
 msgid "Markers"
-msgstr ""
+msgstr "Маркеры"
 
 #: Merge.rc:61E8009D
 #, c-format
 msgid "Enable &Markers"
-msgstr ""
+msgstr "Включить маркеры"
 
 #: Merge.rc:24A380
 #, c-format
 msgid "New"
-msgstr "Новый"
+msgstr "Создать"
 
 #: Merge.rc:3938FFC4
 #, c-format
@@ -2143,7 +2143,7 @@ msgstr "Установить..."
 #: Merge.rc:27AFDB2F
 #, c-format
 msgid "New..."
-msgstr "Новый..."
+msgstr "Создать..."
 
 #: Merge.rc:3B6A3611
 #, c-format
@@ -2332,27 +2332,27 @@ msgstr "Жирный"
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
-msgstr ""
+msgstr "Цвета маркера"
 
 #: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
-msgstr ""
+msgstr "Маркер поиска:"
 
 #: Merge.rc:7B76381B
 #, c-format
 msgid "User Defined Marker1:"
-msgstr ""
+msgstr "Пользовательский Маркер1:"
 
 #: Merge.rc:7B76381C
 #, c-format
 msgid "User Defined Marker2:"
-msgstr ""
+msgstr "Пользовательский Маркер2:"
 
 #: Merge.rc:7B76381D
 #, c-format
 msgid "User Defined Marker3:"
-msgstr ""
+msgstr "Пользовательский Маркер3:"
 
 #: Merge.rc:387F7980
 #, c-format
@@ -2832,7 +2832,7 @@ msgstr "REC"
 #: Merge.rc:E8950E9
 #, c-format
 msgid "\nNew Documents (Ctrl+N)"
-msgstr ""
+msgstr "\nСоздать документы (Ctrl+N)"
 
 #: Merge.rc:28AAB7D
 #, c-format
@@ -2991,7 +2991,7 @@ msgstr "Не задавать &больше этот вопрос"
 #: Merge.rc:78ACB5DB
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
-msgstr ""
+msgstr "Чтобы снова сделать окно сообщений видимым, нажмите кнопку Сброс в Настройках на странице Основные."
 
 #: Merge.rc:39000D58
 #, c-format
@@ -4400,7 +4400,7 @@ msgstr "Количество автоматически объединяемых
 #: Merge.rc:7453F857
 #, c-format
 msgid "The change of codepage has been merged"
-msgstr ""
+msgstr "Изменение кодовой страницы было объединено"
 
 #: Merge.rc:162B12FA
 #, c-format
@@ -4410,7 +4410,7 @@ msgstr "Изменения кодовой страницы противореч�
 #: Merge.rc:7632E88E
 #, c-format
 msgid "The change of EOL has been merged"
-msgstr ""
+msgstr "Изменение EOL было объединено"
 
 #: Merge.rc:502A2983
 #, c-format
