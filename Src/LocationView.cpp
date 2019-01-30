@@ -885,17 +885,15 @@ int CLocationView::GetLineFromYPos(int nYCoord, int bar, bool bRealLine /*= true
  */
 int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
 {
-	int retVal = BAR_NONE;
 	CMergeDoc *pDoc = GetDocument();
 	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
 		if (m_bar[pane].PtInRect(pt))
-		{
-			retVal = BAR_0 + pane;
-			break;
-		}
+			return BAR_0 + pane;
 	}
-	return retVal;
+	if (pt.y > m_bar[0].top && pt.y <= m_bar[0].bottom)
+		return BAR_YAREA;
+	return BAR_NONE;
 }
 
 /** 
