@@ -120,7 +120,7 @@ msgstr "Показывать отличия"
 #: Merge.rc:71E3C8E3
 #, c-format
 msgid "Diff &Block Size"
-msgstr ""
+msgstr "Сравнение размеров блока"
 
 #: Merge.rc:67D67717
 #, c-format
@@ -150,7 +150,7 @@ msgstr "&Масштаб"
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
-msgstr ""
+msgstr "Оверлей (наложение)"
 
 #: Merge.rc:43017E44
 #, c-format
@@ -160,12 +160,12 @@ msgstr "&Нет"
 #: Merge.rc:4DE14272
 #, c-format
 msgid "&Alpha Blend"
-msgstr ""
+msgstr "Альфа-смешение"
 
 #: Merge.rc:237A0532
 #, c-format
 msgid "Alpha &Blend Animation"
-msgstr ""
+msgstr "Управление степенью прозрачности"
 
 #: Merge.rc:5806E58F
 #, c-format
@@ -359,7 +359,7 @@ msgstr "Закрыть все"
 #: Merge.rc:8AF7E69
 #, c-format
 msgid "Change &Pane\tF6"
-msgstr "Переключить &Окно\tF6"
+msgstr "Сменить панель\tF6"
 
 #: Merge.rc:5CCED707
 #, c-format
@@ -544,7 +544,7 @@ msgstr "&Обновить\tF5"
 #: Merge.rc:2E2C5206
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Обновить &выделенное\tCtrl+F5"
+msgstr "Обновить &выбранное\tCtrl+F5"
 
 #: Merge.rc:1D2E49F9
 #, c-format
@@ -673,7 +673,7 @@ msgstr "&Заменить переносы строк на"
 #: Merge.rc:78B3B623
 #, c-format
 msgid "&Merge Mode\tF9"
-msgstr "Режим слияния\tF9"
+msgstr "Режим объединения\tF9"
 
 #: Merge.rc:32BFDBAA
 #, c-format
@@ -708,7 +708,7 @@ msgstr "Двоичный"
 #: Merge.rc:1D2E49FA
 #, c-format
 msgid "&Image"
-msgstr ""
+msgstr "Изображение"
 
 #: Merge.rc:6E470BE9
 #, c-format
@@ -819,7 +819,7 @@ msgstr "Подсветка синтаксиса"
 #: Merge.rc:6E470BEC
 #, c-format
 msgid "&Diff Context"
-msgstr ""
+msgstr "Контекст отличий"
 
 #: Merge.rc:68816EE4
 #, c-format
@@ -874,7 +874,7 @@ msgstr "Показы&вать невидимые"
 #: Merge.rc:4A81EF3E
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Показывать отличия в строках"
+msgstr "Показывать отличия строк"
 
 #: Merge.rc:37660CE9
 #, c-format
@@ -1014,7 +1014,7 @@ msgstr "Коп&ировать все налево"
 #: Merge.rc:4BC6A157
 #, c-format
 msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr ""
+msgstr "Авто объединение\tAlt+Ctrl+M"
 
 #: Merge.rc:13D827C3
 #, c-format
@@ -1039,7 +1039,7 @@ msgstr "&Скрипты"
 #: Merge.rc:39000D56
 #, c-format
 msgid "Sp&lit"
-msgstr ""
+msgstr "Разделить"
 
 #: Merge.rc:4C3E0A2B
 #, c-format
@@ -1289,7 +1289,7 @@ msgstr "Параметры предсравнения"
 #: Merge.rc:6E470BED
 #, c-format
 msgid "&No prediffer"
-msgstr "&Нет предсравнения"
+msgstr "&Без предсравнения"
 
 #: Merge.rc:2515A6BB
 #, c-format
@@ -1563,7 +1563,7 @@ msgstr "Закрывать диалог \"Выбрать файлы или па�
 #: Merge.rc:44776ACE
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
-msgstr "О&ткрыть диалог Автодополнения:"
+msgstr "Диалог автозаполнения:"
 
 #: Merge.rc:1B63306F
 #, c-format
@@ -1653,7 +1653,7 @@ msgstr "Заменить"
 #: Merge.rc:68816EEA
 #, c-format
 msgid "&Selection"
-msgstr "В вы&деленном"
+msgstr "В выбранном"
 
 #: Merge.rc:3FE25900
 #, c-format
@@ -1748,12 +1748,12 @@ msgstr "Отличие:"
 #: Merge.rc:1BA49C3B
 #, c-format
 msgid "Selected Difference:"
-msgstr "Выделенное отличие:"
+msgstr "Выбранное отличие:"
 
 #: Merge.rc:2756A765
 #, c-format
 msgid "Ignored Difference:"
-msgstr "Игнорируемые отличия:"
+msgstr "Игнорируемое отличие:"
 
 #: Merge.rc:7106378D
 #, c-format
@@ -1768,12 +1768,12 @@ msgstr "Выбранные перемещенные:"
 #: Merge.rc:73FB246
 #, c-format
 msgid "Same As The Next (3 panes):"
-msgstr ""
+msgstr "Как следующее (3 панели):"
 
 #: Merge.rc:60B696AF
 #, c-format
 msgid "Same As The Next (Selected):"
-msgstr ""
+msgstr "Как следующее (выбранное):"
 
 #: Merge.rc:40C55014
 #, c-format
@@ -1783,7 +1783,7 @@ msgstr "Словарное отличие:"
 #: Merge.rc:E4471A
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "Выделенное словарное отличие:"
+msgstr "Выбранное словарное отличие:"
 
 #: Merge.rc:7F0D4B46
 #, c-format
@@ -1883,7 +1883,7 @@ msgstr "Контекст:"
 #: Merge.rc:2756A766
 #, c-format
 msgid "Ignor&e blank lines"
-msgstr "Пропускать пустые строки"
+msgstr "Игнорировать пустые строки"
 
 #: Merge.rc:2C4A6C6C
 #, c-format
@@ -2108,7 +2108,7 @@ msgstr "Подсветка отличий в строке"
 #: Merge.rc:4CB9DE6A
 #, c-format
 msgid "View line differences"
-msgstr "Показывать отличия в строке"
+msgstr "Показывать отличия строк"
 
 #: Merge.rc:1DC30E66
 #, c-format
@@ -2387,7 +2387,7 @@ msgstr "Общие и личные фильтры"
 #: Merge.rc:74E96E1E
 #, c-format
 msgid "Which type of filter do you want to create?"
-msgstr "Какой тип фильтра вы хотите создать?"
+msgstr "Какой тип фильтра требуется создать?"
 
 #: Merge.rc:444EF527
 #, c-format
@@ -2587,7 +2587,7 @@ msgstr "Обычный текст:"
 #: Merge.rc:751AB590
 #, c-format
 msgid "Selection:"
-msgstr "Выделенный текст:"
+msgstr "Выбранный текст:"
 
 #: Merge.rc:2FC0BA7D
 #, c-format
@@ -2732,7 +2732,7 @@ msgstr "Игнорировать разницу времени менее 3 се
 #: Merge.rc:6D5B7719
 #, c-format
 msgid "&Include unique subfolders contents"
-msgstr ""
+msgstr "Включая уникальное содержимое подпапок"
 
 #: Merge.rc:3E136C28
 #, c-format
@@ -2787,17 +2787,17 @@ msgstr "Набор символов..."
 #: Merge.rc:B8C361
 #, c-format
 msgid "Image"
-msgstr ""
+msgstr "Изображение"
 
 #: Merge.rc:2C4A6C6D
 #, c-format
 msgid "Image File &Patterns:"
-msgstr ""
+msgstr "Шаблоны файлов изображений:"
 
 #: Merge.rc:4DB19839
 #, c-format
 msgid "&Hex View"
-msgstr ""
+msgstr "Шестнадцатеричный вид"
 
 #: Merge.rc:206940
 #, c-format
@@ -3463,7 +3463,7 @@ msgid ""
 "\t-use a different filename (Press Ok)\n"
 "\t-abort the current operation (Press Cancel)?"
 msgstr ""
-"Сбой при сохранении файла.\n"
+"Сбой сохранения файла.\n"
 "%1\n"
 "%2\n"
 "Хотите:\n"
@@ -3680,7 +3680,7 @@ msgstr "Посередине - выбор папки назначения:"
 #: Merge.rc:5BBC5591
 #, c-format
 msgid "Right side - select destination folder:"
-msgstr "Справа  - выбор папки назначения:"
+msgstr "Справа - выбор папки назначения:"
 
 #: Merge.rc:66367ECA
 #, c-format
@@ -3730,7 +3730,7 @@ msgstr ""
 "%1\n"
 "не был найден.\n"
 "\n"
-"Обновите сравнение."
+"Обновите сравниваемое."
 
 #: Merge.rc:2019BE6E
 #, c-format
@@ -4248,7 +4248,7 @@ msgid ""
 "Error creating the report:\n"
 "%1"
 msgstr ""
-"Ошибка при создании отчета:\n"
+"Ошибка создания отчета:\n"
 "%1"
 
 #: Merge.rc:37B243DF
@@ -4285,16 +4285,16 @@ msgid ""
 "\n"
 "Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
-"Эти файлы имеют различные типы меток конца строки.\n"
+"В файлах используются различные типы меток конца строки.\n"
 "\n"
-"Хотите, чтобы в этом сравнении они игнорировались (считались равнозначными) ?\n"
+"Игнорировать в этом сравнении (считать равнозначными) ?\n"
 "\n"
-"Внимание: Если вас не интересуют отличия в EOL, установите параметр 'Игнорировать отличия в EOL' на вкладке Сравнение в Настройках."
+"Внимание: Если Вас не интересуют отличия EOL, установите параметр 'Игнорировать разницу возврата каретки..' на вкладке Сравнение в Настройках."
 
 #: Merge.rc:46FB8639
 #, c-format
 msgid "The selected folder is invalid."
-msgstr "Невозможно открыть выбранную папку."
+msgstr "Выбранная папка указана неверно."
 
 #: Merge.rc:4BC3EDDB
 #, c-format
@@ -4344,7 +4344,7 @@ msgid ""
 "Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Различные кодировки: слева - (cp%d), справа - (cp%d). \n"
-"Каждый из файлов может быть отображен в своей кодировке, но их слияние или копирование может повредить информацию.\n"
+"Каждый из файлов может быть отображен в своей кодировке, но их объединение или копирование может повредить информацию.\n"
 "Отобразить оба файла в системной кодировке Windows по умолчанию (рекомендуется)?"
 
 #: Merge.rc:5851E4C8
@@ -4390,7 +4390,7 @@ msgstr "Не удается найти строку \"%s\""
 #: Merge.rc:34855CF1
 #, c-format
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
-msgstr "Вы входите в режим слияния. Для отключения режим слияния нажмите клавишу F9"
+msgstr "Вы входите в режим объединения. Для отключения режима объединения нажмите клавишу F9"
 
 #: Merge.rc:5E0C549
 #, c-format
@@ -4425,7 +4425,7 @@ msgstr "Местоположения"
 #: Merge.rc:629C1DDE
 #, c-format
 msgid "Diff Pane"
-msgstr "Отличия"
+msgstr "Панель сравнения"
 
 #: Merge.rc:3BDD62C4
 #, c-format
@@ -4674,7 +4674,7 @@ msgstr "\nВсе налево"
 #: Merge.rc:42A0CC96
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"
-msgstr ""
+msgstr "\nАвто объединение (Ctrl+Alt+M)"
 
 #: Merge.rc:6107F02B
 #, c-format
@@ -4744,12 +4744,12 @@ msgstr "Перейти к &строке %1"
 #: Merge.rc:7F0D4B47
 #, c-format
 msgid "Disabled"
-msgstr "Отключено"
+msgstr "Отключен"
 
 #: Merge.rc:444C5DDD
 #, c-format
 msgid "From file system"
-msgstr "Как на диске"
+msgstr "Как в файловой системе"
 
 #: Merge.rc:7A4CFAFE
 #, c-format
@@ -4759,17 +4759,17 @@ msgstr "Как в списке недавних документов"
 #: Merge.rc:638BD42D
 #, c-format
 msgid "No Highlighting"
-msgstr "Нет выделенного"
+msgstr "Без выделения"
 
 #: Merge.rc:7460E8C0
 #, c-format
 msgid "Batch"
-msgstr "Batch"
+msgstr "Пакет"
 
 #: Merge.rc:55B03C15
 #, c-format
 msgid "Portable Object"
-msgstr "Portable Object"
+msgstr "Портативный объект"
 
 #: Merge.rc:5F87E5E
 #, c-format
@@ -4779,7 +4779,7 @@ msgstr "Ресурсы"
 #: Merge.rc:125AD722
 #, c-format
 msgid "Shell"
-msgstr "Shell"
+msgstr "Оболочка"
 
 #: Merge.rc:4E44AD6
 #, c-format
