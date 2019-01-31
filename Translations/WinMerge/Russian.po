@@ -284,7 +284,7 @@ msgstr "&Строка состояния"
 #: Merge.rc:2C015CFD
 #, c-format
 msgid "Ta&b Bar"
-msgstr "Панель табов"
+msgstr "Панель вкладок"
 
 #: Merge.rc:1D2E49F8
 #, c-format
@@ -309,7 +309,7 @@ msgstr "Плагины"
 #: Merge.rc:4C6CFD95
 #, c-format
 msgid "P&lugin Settings..."
-msgstr "Настройки плагинов"
+msgstr "Настройки плагина"
 
 #: Merge.rc:729280D7
 #, c-format
@@ -364,17 +364,17 @@ msgstr "Сменить панель\tF6"
 #: Merge.rc:5CCED707
 #, c-format
 msgid "Tile &Horizontally"
-msgstr "Разместить &Горизонтально"
+msgstr "Разместить &горизонтально"
 
 #: Merge.rc:52870A1
 #, c-format
 msgid "Tile &Vertically"
-msgstr "Разместить &Вертикально"
+msgstr "Разместить &вертикально"
 
 #: Merge.rc:AC3AA16
 #, c-format
 msgid "&Cascade"
-msgstr "&Каскад"
+msgstr "&Каскадом"
 
 #: Merge.rc:43017E4A
 #, c-format
@@ -439,7 +439,7 @@ msgstr "Кодировка файла..."
 #: Merge.rc:E44718
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "В&ыбрать Все\tCtrl+A"
+msgstr "В&ыбрать все\tCtrl+A"
 
 #: Merge.rc:58EEEB7E
 #, c-format
@@ -889,7 +889,7 @@ msgstr "Показывать поля"
 #: Merge.rc:3FE258FF
 #, c-format
 msgid "W&rap Lines"
-msgstr "Перенос по словам"
+msgstr "Переносить по словам"
 
 #: Merge.rc:62909ED5
 #, c-format
@@ -904,7 +904,7 @@ msgstr "Пане&ль сравнения"
 #: Merge.rc:3534E273
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "Панель местоположений"
+msgstr "Панель положения"
 
 #: Merge.rc:59B87E1C
 #, c-format
@@ -1314,7 +1314,7 @@ msgstr "&Все перемещенные блоки"
 #: Merge.rc:BA50068
 #, c-format
 msgid "Moved Block for &Current Diff"
-msgstr "Перемещ. блок для текущего отличия"
+msgstr "Перемещенный блок текущего отличия"
 
 #: Merge.rc:3C68C747
 #, c-format
@@ -1359,12 +1359,12 @@ msgstr "Метод сравнения:"
 #: Merge.rc:7A4CFAFB
 #, c-format
 msgid "Full Contents"
-msgstr "Полный поиск по содержимому"
+msgstr "Полный по содержимому"
 
 #: Merge.rc:5F71A081
 #, c-format
 msgid "Quick Contents"
-msgstr "Быстрый поиск по содержимому"
+msgstr "Быстрый по содержимому"
 
 #: Merge.rc:36B164C4
 #, c-format
@@ -1459,7 +1459,7 @@ msgstr "Обзор"
 #: Merge.rc:3C1ECDDA
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr "&3-й файл или папка (Необязательно)"
+msgstr "&3-й файл или папка (необязательно)"
 
 #: Merge.rc:39174D98
 #, c-format
@@ -1758,12 +1758,12 @@ msgstr "Игнорируемое отличие:"
 #: Merge.rc:7106378D
 #, c-format
 msgid "Moved:"
-msgstr "Перемещенные:"
+msgstr "Перемещенное:"
 
 #: Merge.rc:E6D7EF
 #, c-format
 msgid "Selected Moved:"
-msgstr "Выбранные перемещенные:"
+msgstr "Выбранное перемещенное:"
 
 #: Merge.rc:73FB246
 #, c-format
@@ -1888,7 +1888,7 @@ msgstr "Игнорировать пустые строки"
 #: Merge.rc:2C4A6C6C
 #, c-format
 msgid "Inclu&de command line"
-msgstr "Вкл&ючая командную строку"
+msgstr "Вкл&ючать командную строку"
 
 #: Merge.rc:5869BBE
 #, c-format
@@ -1973,27 +1973,27 @@ msgstr "Перейти"
 #: Merge.rc:290C61C5
 #, c-format
 msgid "G&oto:"
-msgstr "&На:"
+msgstr "&К:"
 
 #: Merge.rc:3FB4EC7
 #, c-format
 msgid "File"
-msgstr "Файл"
+msgstr "Файлу"
 
 #: Merge.rc:57E6C4D3
 #, c-format
 msgid "Goto what"
-msgstr "На что"
+msgstr "К чему"
 
 #: Merge.rc:602FC81
 #, c-format
 msgid "Li&ne"
-msgstr "&Строку"
+msgstr "&Строке"
 
 #: Merge.rc:27AC6D83
 #, c-format
 msgid "&Difference"
-msgstr "&Отличие"
+msgstr "&Отличию"
 
 #: Merge.rc:1D2E49FD
 #, c-format
@@ -2342,17 +2342,17 @@ msgstr "Маркер поиска:"
 #: Merge.rc:7B76381B
 #, c-format
 msgid "User Defined Marker1:"
-msgstr "Пользовательский Маркер1:"
+msgstr "Пользоват. маркер1:"
 
 #: Merge.rc:7B76381C
 #, c-format
 msgid "User Defined Marker2:"
-msgstr "Пользовательский Маркер2:"
+msgstr "Пользоват. маркер2:"
 
 #: Merge.rc:7B76381D
 #, c-format
 msgid "User Defined Marker3:"
-msgstr "Пользовательский Маркер3:"
+msgstr "Пользоват. маркер3:"
 
 #: Merge.rc:387F7980
 #, c-format
@@ -2497,7 +2497,7 @@ msgstr "Отсутствует справа:"
 #: Merge.rc:413EF3DC
 #, c-format
 msgid "Affects"
-msgstr "Применить к:"
+msgstr "Применить"
 
 #: Merge.rc:1BE35CDC
 #, c-format
@@ -2507,17 +2507,17 @@ msgstr "(применить)"
 #: Merge.rc:E4471B
 #, c-format
 msgid "Select Codepage for"
-msgstr "Выбрать кодовую страницу для"
+msgstr "Кодовая страница для"
 
 #: Merge.rc:5A9A713F
 #, c-format
 msgid "&File Loading:"
-msgstr "Загрузка файла:"
+msgstr "Загрузки:"
 
 #: Merge.rc:7A4CFAFC
 #, c-format
 msgid "File &Saving:"
-msgstr "Сохранение файла:"
+msgstr "Сохранения:"
 
 #: Merge.rc:175DEEED
 #, c-format
@@ -3060,7 +3060,7 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"Размер таба выходит за границы приемлемых значений.\n"
+"Размер отступа выходит за границы приемлемых значений.\n"
 "\n"
 "Используйте значения 1 - %1."
 
@@ -3112,7 +3112,7 @@ msgstr "Имя"
 #: Merge.rc:15875422
 #, c-format
 msgid "Location"
-msgstr "Местоположение"
+msgstr "Положение"
 
 #: Merge.rc:59F506A0
 #, c-format
@@ -3238,17 +3238,17 @@ msgstr "Сравнение файлов"
 #: Merge.rc:2FEFC30D
 #, c-format
 msgid "Untitled left"
-msgstr "Без имени слева"
+msgstr "Безымянный слева"
 
 #: Merge.rc:730B3FD4
 #, c-format
 msgid "Untitled middle"
-msgstr "Без имени посередине"
+msgstr "Безымянный посередине"
 
 #: Merge.rc:4E089EF3
 #, c-format
 msgid "Untitled right"
-msgstr "Без имени справа"
+msgstr "Безымянный справа"
 
 #: Merge.rc:72A593B9
 #, c-format
@@ -3263,7 +3263,7 @@ msgstr "Мой файл"
 #: Merge.rc:DD21174
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr ""
+msgstr "Стр: %s  Стб: %d/%d  Симв: %d/%d  EOL: %s"
 
 #: Merge.rc:15875423
 #, c-format
@@ -3273,7 +3273,7 @@ msgstr "Строка: %s"
 #: Merge.rc:6F3BCB35
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr ""
+msgstr "Стр: %s  Стб: %d/%d  Симв: %d/%d"
 
 #: Merge.rc:7C664E1
 #, c-format
@@ -4420,7 +4420,7 @@ msgstr "Изменения EOL противоречат друг другу"
 #: Merge.rc:5C8E17D1
 #, c-format
 msgid "Location Pane"
-msgstr "Местоположения"
+msgstr "Положение"
 
 #: Merge.rc:629C1DDE
 #, c-format
@@ -4804,7 +4804,7 @@ msgstr "Закрыть другие вкладки"
 #: Merge.rc:3E934E
 #, c-format
 msgid "Enable &Auto Max Width"
-msgstr "Включить авто макс. ширину"
+msgstr "Включить максимальную авто ширину"
 
 #: Merge.rc:3D9427A9
 #, c-format
