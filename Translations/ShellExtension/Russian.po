@@ -76,7 +76,7 @@ msgstr "Сравнить с"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Сохранить этот путь. Выбрать другой путь для сравнения с этим."
+msgstr "Сохранить этот путь и выбрать другой для сравнения с этим."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
@@ -86,5 +86,5 @@ msgstr "Сравнить с сохраненным путем (%1)"
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Перевыбрать Первый"
+msgstr "Выбрать заново"
 
