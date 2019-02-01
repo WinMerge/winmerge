@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+Ôªø//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FIN)
 #ifdef _WIN32
 LANGUAGE LANG_FINNISH, SUBLANG_DEFAULT
-#pragma code_page(1252)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,16 +38,16 @@ LANGUAGE LANG_FINNISH, SUBLANG_DEFAULT
 // 
 STRINGTABLE 
 BEGIN
-    IDS_PROJNAME            "Liittym‰laajennus"
+    IDS_PROJNAME            "Liittym√§laajennus"
     IDS_CONTEXT_MENU        "WinMerge"
-    IDS_CONTEXT_HELP        "Avaa WinMergell‰"
-    IDS_CONTEXT_HELP_MANYITEMS "Valitse enint‰‰n 2 kohdetta"
+    IDS_CONTEXT_HELP        "Avaa WinMergell√§"
+    IDS_CONTEXT_HELP_MANYITEMS "Valitse enint√§√§n 2 kohdetta"
     IDS_COMPARE             "Vertaa"
     IDS_COMPARE_ELLIPSIS    "Vertaa..."
     IDS_COMPARE_TO          "Vertaa..."
-    IDS_HELP_SAVETHIS       "Tallenna t‰m‰ polku. Valitse toinen polku t‰m‰n polun vertailuun."
+    IDS_HELP_SAVETHIS       "Tallenna t√§m√§ polku. Valitse toinen polku t√§m√§n polun vertailuun."
     IDS_HELP_COMPARESAVED   "Vertaa tallennettuun polkuun (%1)"
-    IDS_RESELECT_FIRST      "Valitse ensimm‰inen uudelleen"
+    IDS_RESELECT_FIRST      "Valitse ensimm√§inen uudelleen"
 END
 
 #endif    // Resources

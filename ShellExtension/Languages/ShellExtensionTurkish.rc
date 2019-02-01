@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+ï»¿//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_TRK)
 #ifdef _WIN32
 LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT
-#pragma code_page(1254)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,14 +40,14 @@ STRINGTABLE
 BEGIN
     IDS_PROJNAME            "KabukEklentisi"
     IDS_CONTEXT_MENU        "WinMerge"
-    IDS_CONTEXT_HELP        "WinMerge ile Aç"
-    IDS_CONTEXT_HELP_MANYITEMS "Lütfen 2 ögeden fazlasýný seçmeyin"
-    IDS_COMPARE             "Karþýlaþtýr"
-    IDS_COMPARE_ELLIPSIS    "Karþýlaþtýr..."
-    IDS_COMPARE_TO          "Þununla Karþýlaþtýr"
-    IDS_HELP_SAVETHIS       "Bu yolu kaydet. Ardýndan bu yol ile karþýlaþtýrýlacak baþka bir yol seçebilirsiniz."
-    IDS_HELP_COMPARESAVED   "Kaydedilen yol ile karþýlaþtýr (%1)"
-    IDS_RESELECT_FIRST      "Birinciyi yeniden seçin"
+    IDS_CONTEXT_HELP        "WinMerge ile AÃ§"
+    IDS_CONTEXT_HELP_MANYITEMS "LÃ¼tfen 2 Ã¶geden fazlasÄ±nÄ± seÃ§meyin"
+    IDS_COMPARE             "KarÅŸÄ±laÅŸtÄ±r"
+    IDS_COMPARE_ELLIPSIS    "KarÅŸÄ±laÅŸtÄ±r..."
+    IDS_COMPARE_TO          "Åžununla KarÅŸÄ±laÅŸtÄ±r"
+    IDS_HELP_SAVETHIS       "Bu yolu kaydet. ArdÄ±ndan bu yol ile karÅŸÄ±laÅŸtÄ±rÄ±lacak baÅŸka bir yol seÃ§ebilirsiniz."
+    IDS_HELP_COMPARESAVED   "Kaydedilen yol ile karÅŸÄ±laÅŸtÄ±r (%1)"
+    IDS_RESELECT_FIRST      "Birinciyi yeniden seÃ§in"
 END
 
 #endif    // Resources

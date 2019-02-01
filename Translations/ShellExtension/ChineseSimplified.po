@@ -13,11 +13,13 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: ChineseSimplified <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP936\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: ChineseSimplified\n"
-"X-Poedit-SourceCharset: CP936\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_CN\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -35,7 +37,7 @@ msgstr "LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "936"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
@@ -50,40 +52,39 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "ÓÃ WinMerge ´ò¿ª"
+msgstr "ç”¨ WinMerge æ‰“å¼€"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Çë²»ÒªÑ¡ÖĞ³¬¹ı2¸öÏîÄ¿"
+msgstr "è¯·ä¸è¦é€‰ä¸­è¶…è¿‡2ä¸ªé¡¹ç›®"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr "¶Ô±È"
+msgstr "å¯¹æ¯”"
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "¶Ô±È..."
+msgstr "å¯¹æ¯”..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr "ºÍÁíÍâÒ»¸ö¶Ô±È"
+msgstr "å’Œå¦å¤–ä¸€ä¸ªå¯¹æ¯”"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "±£´æÕâ¸öÂ·¾¶¡£Ñ¡ÔñÁíÍâÒ»¸öÂ·¾¶ÓëÖ®½øĞĞ¶Ô±È¡£ "
+msgstr "ä¿å­˜è¿™ä¸ªè·¯å¾„ã€‚é€‰æ‹©å¦å¤–ä¸€ä¸ªè·¯å¾„ä¸ä¹‹è¿›è¡Œå¯¹æ¯”ã€‚"
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "Óë±£´æµÄÂ·¾¶(%1)½øĞĞ¶Ô±È "
+msgstr "ä¸ä¿å­˜çš„è·¯å¾„(%1)è¿›è¡Œå¯¹æ¯”"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "ÖØĞÂÑ¡ÔñµÚÒ»¸öÂ·¾¶"
-
+msgstr "é‡æ–°é€‰æ‹©ç¬¬ä¸€ä¸ªè·¯å¾„"

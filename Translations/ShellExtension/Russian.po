@@ -13,12 +13,12 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1251\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Russian\n"
-"X-Poedit-SourceCharset: CP1251\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
-"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"Language: ru_RU\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -36,7 +36,7 @@ msgstr "LANG_RUSSIAN, SUBLANG_DEFAULT"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "1251"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
@@ -87,4 +87,3 @@ msgstr "Сравнить с сохраненным путем (%1)"
 #, c-format
 msgid "Re-select First"
 msgstr "Выбрать заново"
-

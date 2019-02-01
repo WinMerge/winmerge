@@ -45,7 +45,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_EUQ)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_BASQUE, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionBasque.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -53,7 +53,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionBrazilian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -61,7 +61,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_BGR)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_BULGARIAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1251)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionBulgarian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -69,7 +69,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CAT)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionCatalan.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -77,7 +77,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED\r\n"
-    "#pragma code_page(936)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionChineseSimplified.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -85,7 +85,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL\r\n"
-    "#pragma code_page(950)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionChineseTraditional.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -93,7 +93,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HRV)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_CROATIAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1250)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionCroatian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -101,7 +101,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CSY)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_CZECH, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1250)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionCzech.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -109,7 +109,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DAN)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_DANISH, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionDanish.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -117,7 +117,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_DUTCH, SUBLANG_DUTCH\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionDutch.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -125,7 +125,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FIN)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_FINNISH, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionFinnish.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -133,7 +133,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_FRENCH, SUBLANG_FRENCH\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionFrench.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -141,7 +141,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_GALICIAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionGalician.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -149,7 +149,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_GERMAN, SUBLANG_GERMAN\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionGerman.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -157,7 +157,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ELL)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_GREEK, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1253)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionGreek.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -165,7 +165,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HUN)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1250)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionHungarian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -173,7 +173,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionItalian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -181,7 +181,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(932)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionJapanese.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -189,7 +189,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(949)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionKorean.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -197,7 +197,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_LIT)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_LITHUANIAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1257)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionLithuanian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -205,7 +205,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NOR)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionNorwegian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -213,7 +213,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FAR)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_FARSI, SUBLANG_NEUTRAL\r\n"
-    "#pragma code_page(1256)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionPersian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -221,7 +221,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_POLISH, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1250)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionPolish.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -229,7 +229,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTG)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionPortuguese.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -237,7 +237,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ROM)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_ROMANIAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1250)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionRomanian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -245,7 +245,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1251)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionRussian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -253,7 +253,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SER)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC\r\n"
-    "#pragma code_page(1251)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionSerbian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -269,7 +269,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SKY)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1250)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionSlovak.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -277,7 +277,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SLV)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_SLOVENIAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1250)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionSlovenian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -285,7 +285,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionSpanish.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -293,7 +293,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SVE)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1252)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionSwedish.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -301,7 +301,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_TRK)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1254)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionTurkish.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -309,7 +309,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT\r\n"
-    "#pragma code_page(1251)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#include ""Languages\\ShellExtensionUkrainian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
@@ -325,8 +325,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,17,4,0
- PRODUCTVERSION 1,17,4,0
+ FILEVERSION 1,17,5,0
+ PRODUCTVERSION 1,17,5,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -343,12 +343,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "http://winmerge.org"
             VALUE "FileDescription", "WinMerge Shell Integration library"
-            VALUE "FileVersion", "1.17.4.0"
+            VALUE "FileVersion", "1.17.5.0"
             VALUE "InternalName", "ShellExtension"
             VALUE "LegalCopyright", "Copyright 2003-2019"
             VALUE "OriginalFilename", "ShellExtension.DLL"
             VALUE "ProductName", "WinMerge Shell Integration library"
-            VALUE "ProductVersion", "1.17.4.0"
+            VALUE "ProductVersion", "1.17.5.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -407,7 +407,7 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_EUQ)
 #ifdef _WIN32
 LANGUAGE LANG_BASQUE, SUBLANG_DEFAULT
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionBasque.rc"
 #endif //_WIN32
 #endif
@@ -415,7 +415,7 @@ LANGUAGE LANG_BASQUE, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
 #ifdef _WIN32
 LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionBrazilian.rc"
 #endif //_WIN32
 #endif
@@ -423,7 +423,7 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_BGR)
 #ifdef _WIN32
 LANGUAGE LANG_BULGARIAN, SUBLANG_DEFAULT
-#pragma code_page(1251)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionBulgarian.rc"
 #endif //_WIN32
 #endif
@@ -431,7 +431,7 @@ LANGUAGE LANG_BULGARIAN, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CAT)
 #ifdef _WIN32
 LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionCatalan.rc"
 #endif //_WIN32
 #endif
@@ -439,7 +439,7 @@ LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 #ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
-#pragma code_page(936)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionChineseSimplified.rc"
 #endif //_WIN32
 #endif
@@ -447,7 +447,7 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
 #ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
-#pragma code_page(950)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionChineseTraditional.rc"
 #endif //_WIN32
 #endif
@@ -455,7 +455,7 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HRV)
 #ifdef _WIN32
 LANGUAGE LANG_CROATIAN, SUBLANG_DEFAULT
-#pragma code_page(1250)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionCroatian.rc"
 #endif //_WIN32
 #endif
@@ -463,7 +463,7 @@ LANGUAGE LANG_CROATIAN, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CSY)
 #ifdef _WIN32
 LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
-#pragma code_page(1250)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionCzech.rc"
 #endif //_WIN32
 #endif
@@ -471,7 +471,7 @@ LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DAN)
 #ifdef _WIN32
 LANGUAGE LANG_DANISH, SUBLANG_DEFAULT
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionDanish.rc"
 #endif //_WIN32
 #endif
@@ -479,7 +479,7 @@ LANGUAGE LANG_DANISH, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
 #ifdef _WIN32
 LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionDutch.rc"
 #endif //_WIN32
 #endif
@@ -487,7 +487,7 @@ LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FIN)
 #ifdef _WIN32
 LANGUAGE LANG_FINNISH, SUBLANG_DEFAULT
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionFinnish.rc"
 #endif //_WIN32
 #endif
@@ -495,7 +495,7 @@ LANGUAGE LANG_FINNISH, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
 #ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionFrench.rc"
 #endif //_WIN32
 #endif
@@ -503,7 +503,7 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
 #ifdef _WIN32
 LANGUAGE LANG_GALICIAN, SUBLANG_DEFAULT
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionGalician.rc"
 #endif //_WIN32
 #endif
@@ -511,7 +511,7 @@ LANGUAGE LANG_GALICIAN, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
 #ifdef _WIN32
 LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionGerman.rc"
 #endif //_WIN32
 #endif
@@ -519,7 +519,7 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ELL)
 #ifdef _WIN32
 LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
-#pragma code_page(1253)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionGreek.rc"
 #endif //_WIN32
 #endif
@@ -527,7 +527,7 @@ LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HUN)
 #ifdef _WIN32
 LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
-#pragma code_page(1250)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionHungarian.rc"
 #endif //_WIN32
 #endif
@@ -535,7 +535,7 @@ LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
 #ifdef _WIN32
 LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionItalian.rc"
 #endif //_WIN32
 #endif
@@ -543,7 +543,7 @@ LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
 #ifdef _WIN32
 LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
-#pragma code_page(932)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionJapanese.rc"
 #endif //_WIN32
 #endif
@@ -551,7 +551,7 @@ LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
-#pragma code_page(949)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionKorean.rc"
 #endif //_WIN32
 #endif
@@ -559,7 +559,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_LIT)
 #ifdef _WIN32
 LANGUAGE LANG_LITHUANIAN, SUBLANG_DEFAULT
-#pragma code_page(1257)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionLithuanian.rc"
 #endif //_WIN32
 #endif
@@ -567,7 +567,7 @@ LANGUAGE LANG_LITHUANIAN, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NOR)
 #ifdef _WIN32
 LANGUAGE LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionNorwegian.rc"
 #endif //_WIN32
 #endif
@@ -575,7 +575,7 @@ LANGUAGE LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FAR)
 #ifdef _WIN32
 LANGUAGE LANG_FARSI, SUBLANG_NEUTRAL
-#pragma code_page(1256)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionPersian.rc"
 #endif //_WIN32
 #endif
@@ -583,7 +583,7 @@ LANGUAGE LANG_FARSI, SUBLANG_NEUTRAL
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)
 #ifdef _WIN32
 LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
-#pragma code_page(1250)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionPolish.rc"
 #endif //_WIN32
 #endif
@@ -591,7 +591,7 @@ LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTG)
 #ifdef _WIN32
 LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionPortuguese.rc"
 #endif //_WIN32
 #endif
@@ -599,7 +599,7 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ROM)
 #ifdef _WIN32
 LANGUAGE LANG_ROMANIAN, SUBLANG_DEFAULT
-#pragma code_page(1250)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionRomanian.rc"
 #endif //_WIN32
 #endif
@@ -607,7 +607,7 @@ LANGUAGE LANG_ROMANIAN, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
 #ifdef _WIN32
 LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
-#pragma code_page(1251)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionRussian.rc"
 #endif //_WIN32
 #endif
@@ -615,7 +615,7 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SER)
 #ifdef _WIN32
 LANGUAGE LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC
-#pragma code_page(1251)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionSerbian.rc"
 #endif //_WIN32
 #endif
@@ -631,7 +631,7 @@ LANGUAGE LANG_SINHALESE, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SKY)
 #ifdef _WIN32
 LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
-#pragma code_page(1250)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionSlovak.rc"
 #endif //_WIN32
 #endif
@@ -639,7 +639,7 @@ LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SLV)
 #ifdef _WIN32
 LANGUAGE LANG_SLOVENIAN, SUBLANG_DEFAULT
-#pragma code_page(1250)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionSlovenian.rc"
 #endif //_WIN32
 #endif
@@ -647,7 +647,7 @@ LANGUAGE LANG_SLOVENIAN, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
 #ifdef _WIN32
 LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionSpanish.rc"
 #endif //_WIN32
 #endif
@@ -655,7 +655,7 @@ LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SVE)
 #ifdef _WIN32
 LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT
-#pragma code_page(1252)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionSwedish.rc"
 #endif //_WIN32
 #endif
@@ -663,7 +663,7 @@ LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_TRK)
 #ifdef _WIN32
 LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT
-#pragma code_page(1254)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionTurkish.rc"
 #endif //_WIN32
 #endif
@@ -671,7 +671,7 @@ LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
 #ifdef _WIN32
 LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
-#pragma code_page(1251)
+#pragma code_page(65001)
 #include "Languages\ShellExtensionUkrainian.rc"
 #endif //_WIN32
 #endif

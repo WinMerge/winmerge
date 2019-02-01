@@ -13,11 +13,12 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP932\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Japanese\n"
-"X-Poedit-SourceCharset: CP932\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"Language: ja\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -35,7 +36,7 @@ msgstr "LANG_JAPANESE, SUBLANG_DEFAULT"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "932"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
@@ -50,41 +51,39 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "WinMerge ‚ÅŠJ‚­"
+msgstr "WinMerge ã§é–‹ã"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "2 €–ÚˆÈã‚Í‘I‘ğ‚µ‚È‚¢‚Å‰º‚³‚¢B"
+msgstr "2 é …ç›®ä»¥ä¸Šã¯é¸æŠã—ãªã„ã§ä¸‹ã•ã„"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr "”äŠr"
+msgstr "æ¯”è¼ƒ"
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "”äŠr..."
+msgstr "æ¯”è¼ƒ..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr "”äŠr‘ÎÛ‚Æ‚µ‚Ä‘I‘ğ"
+msgstr "æ¯”è¼ƒå¯¾è±¡ã¨ã—ã¦é¸æŠ"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr ""
-"‚±‚ÌƒpƒX‚ğ•Û‘¶‚µ‚Ü‚·B‚±‚ÌƒpƒX‚Æ”äŠr‚·‚é‚½‚ß‚É•Ê‚ÌƒpƒX‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B"
+msgstr "ã“ã®ãƒ‘ã‚¹ã‚’ä¿å­˜ã—ã¾ã™ã€‚ã“ã®ãƒ‘ã‚¹ã¨æ¯”è¼ƒã™ã‚‹ãŸã‚ã«åˆ¥ã®ãƒ‘ã‚¹ã‚’é¸æŠã—ã¦ãã ã•ã„ã€‚"
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "•Û‘¶‚³‚ê‚½ƒpƒX (%1) ‚Æ”äŠr‚µ‚Ü‚·B"
+msgstr "ä¿å­˜ã•ã‚ŒãŸãƒ‘ã‚¹ (%1) ã¨æ¯”è¼ƒã—ã¾ã™ã€‚"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "1 ”Ô–Ú‚Ìƒtƒ@ƒCƒ‹‚ğÄ‘I‘ğ"
-
+msgstr "1 ç•ªç›®ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†é¸æŠ"
