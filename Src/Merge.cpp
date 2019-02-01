@@ -202,7 +202,10 @@ BOOL CMergeApp::InitInstance()
 	if (cmdInfo.m_bNoPrefs)
 		m_pOptions->SetSerializing(false); // Turn off serializing to registry.
 
-	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
+	{
+		WMPROFILE(L"Init");
+		Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
+	}
 	ApplyCommandLineConfigOptions(cmdInfo);
 	if (cmdInfo.m_sErrorMessages.size() > 0)
 	{
@@ -547,6 +550,8 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 
 	if (m_bNonInteractive && IsReallyIdle())
 		m_pMainWnd->PostMessage(WM_CLOSE, 0, 0);
+
+	static_cast<CRegOptionsMgr *>(GetOptionsMgr())->CloseHandles();
 
 	return FALSE;
 }
@@ -1290,4 +1295,44 @@ void CMergeApp::OnUpdateMergingStatus(CCmdUI *pCmdUI)
 	String text = theApp.LoadString(IDS_MERGEMODE_MERGING);
 	pCmdUI->SetText(text.c_str());
 	pCmdUI->Enable(GetMergingMode());
+}
+
+UINT CMergeApp::GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefault)
+{
+	COptionsMgr *pOptions = GetOptionsMgr();
+	String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
+	if (!pOptions->Get(name).IsInt())
+		pOptions->InitOption(name, nDefault);
+	return pOptions->GetInt(name);
+}
+
+BOOL CMergeApp::WriteProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nValue)
+{
+	COptionsMgr *pOptions = GetOptionsMgr();
+	String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
+	if (!pOptions->Get(name).IsInt())
+		pOptions->InitOption(name, nValue);
+	return pOptions->SaveOption(name, nValue) == COption::OPT_OK;
+}
+
+CString CMergeApp::GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszDefault)
+{
+	COptionsMgr *pOptions = GetOptionsMgr();
+	String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
+	if (!pOptions->Get(name).IsString())
+		pOptions->InitOption(name, lpszDefault ? lpszDefault : _T(""));
+	return pOptions->GetString(name).c_str();
+}
+
+BOOL CMergeApp::WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszValue)
+{
+	COptionsMgr *pOptions = GetOptionsMgr();
+	if (lpszEntry != nullptr)
+	{
+		String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
+		if (!pOptions->Get(name).IsString())
+			pOptions->InitOption(name, lpszValue ? lpszValue : _T(""));
+		return pOptions->SaveOption(name, lpszValue ? lpszValue : _T("")) == COption::OPT_OK;
+	}
+	return TRUE;
 }
