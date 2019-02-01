@@ -104,6 +104,11 @@ public:
 	void SetupTempPath();
 	bool IsReallyIdle() const;
 
+	virtual UINT GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefault) override;
+	virtual BOOL WriteProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nValue) override;
+	virtual CString GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszDefault = NULL) override;
+	virtual BOOL WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszValue) override;
+
 // Implementation
 protected:
 
@@ -172,6 +177,8 @@ private:
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
 	CFont m_fontGUI;
+	std::map<String, HKEY> m_hKeys;
+	std::map<String, HKEY> m_hWriteKeys;
 };
 
 extern CMergeApp theApp;
