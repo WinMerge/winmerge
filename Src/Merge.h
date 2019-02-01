@@ -177,8 +177,6 @@ private:
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
 	CFont m_fontGUI;
-	std::map<String, HKEY> m_hKeys;
-	std::map<String, HKEY> m_hWriteKeys;
 };
 
 extern CMergeApp theApp;
