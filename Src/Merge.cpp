@@ -202,10 +202,7 @@ BOOL CMergeApp::InitInstance()
 	if (cmdInfo.m_bNoPrefs)
 		m_pOptions->SetSerializing(false); // Turn off serializing to registry.
 
-	{
-		WMPROFILE(L"Init");
-		Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
-	}
+	Options::Init(m_pOptions.get()); // Implementation in OptionsInit.cpp
 	ApplyCommandLineConfigOptions(cmdInfo);
 	if (cmdInfo.m_sErrorMessages.size() > 0)
 	{
