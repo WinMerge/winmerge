@@ -12,18 +12,16 @@ msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2011-10-11 01:08+0000\n"
-"PO-Revision-Date: 2018-11-08 16:18+0200\n"
+"PO-Revision-Date: 2019-02-01 22:48+0900\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1257\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Poedit-Language: Lithuanian\n"
-"X-Poedit-SourceCharset: CP1257\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
-"X-Generator: Poedit 2.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG_*
 #: ShellExtensionTemplate.rc:24
@@ -41,7 +39,7 @@ msgstr "LANG_LITHUANIAN, SUBLANG_DEFAULT"
 #: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "1252"
-msgstr "1257"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:41
 #, c-format
@@ -81,14 +79,14 @@ msgstr "Palyginti su"
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Iðsaugoti ðá kelià. Parinkti kità kelià ir palyginti su ðiuo keliu."
+msgstr "IÅ¡saugoti Å¡Ä¯ keliÄ…. Parinkti kitÄ… keliÄ… ir palyginti su Å¡iuo keliu."
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "Palyginti su iðsaugotu keliu (%1)"
+msgstr "Palyginti su iÅ¡saugotu keliu (%1)"
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Re-select First"
-msgstr "Ið naujo parinkti pirmà"
+msgstr "IÅ¡ naujo parinkti pirmÄ…"

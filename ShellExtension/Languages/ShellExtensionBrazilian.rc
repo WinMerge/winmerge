@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+Ôªø//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
 #ifdef _WIN32
 LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
-#pragma code_page(1252)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,10 +38,10 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
 // 
 STRINGTABLE 
 BEGIN
-    IDS_PROJNAME            "Extens„o do Shell"
+    IDS_PROJNAME            "Extens√£o do Shell"
     IDS_CONTEXT_MENU        "WinMerge"
     IDS_CONTEXT_HELP        "Abrir com o WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "Por favor n„o selecione mais do que 2 itens"
+    IDS_CONTEXT_HELP_MANYITEMS "Por favor n√£o selecione mais do que 2 itens"
     IDS_COMPARE             "Comparar"
     IDS_COMPARE_ELLIPSIS    "Comparar..."
     IDS_COMPARE_TO          "Comparar Com"

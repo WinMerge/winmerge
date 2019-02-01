@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+ï»¿//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SVE)
 #ifdef _WIN32
 LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT
-#pragma code_page(1252)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,16 +38,16 @@ LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT
 // 
 STRINGTABLE 
 BEGIN
-    IDS_PROJNAME            "GränssnittsMeny"
+    IDS_PROJNAME            "GrÃ¤nssnittsMeny"
     IDS_CONTEXT_MENU        "WinMerge"
-    IDS_CONTEXT_HELP        "Öppna med WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "Var god välj inte fler än 2 objekt"
-    IDS_COMPARE             "Jämför"
-    IDS_COMPARE_ELLIPSIS    "Jämför ..."
-    IDS_COMPARE_TO          "Jämför med"
-    IDS_HELP_SAVETHIS       "Spara denna sökväg. Välj en annan för att jämföra med denna."
-    IDS_HELP_COMPARESAVED   "Jämför med sparad sökväg (%1)"
-    IDS_RESELECT_FIRST      "Återvälj Första"
+    IDS_CONTEXT_HELP        "Ã–ppna med WinMerge"
+    IDS_CONTEXT_HELP_MANYITEMS "Var god vÃ¤lj inte fler Ã¤n 2 objekt"
+    IDS_COMPARE             "JÃ¤mfÃ¶r"
+    IDS_COMPARE_ELLIPSIS    "JÃ¤mfÃ¶r ..."
+    IDS_COMPARE_TO          "JÃ¤mfÃ¶r med"
+    IDS_HELP_SAVETHIS       "Spara denna sÃ¶kvÃ¤g. VÃ¤lj en annan fÃ¶r att jÃ¤mfÃ¶ra med denna."
+    IDS_HELP_COMPARESAVED   "JÃ¤mfÃ¶r med sparad sÃ¶kvÃ¤g (%1)"
+    IDS_RESELECT_FIRST      "Ã…tervÃ¤lj FÃ¶rsta"
 END
 
 #endif    // Resources

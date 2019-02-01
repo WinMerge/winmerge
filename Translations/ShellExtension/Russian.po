@@ -13,12 +13,12 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1251\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Russian\n"
-"X-Poedit-SourceCharset: CP1251\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
-"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"Language: ru_RU\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -36,7 +36,7 @@ msgstr "LANG_RUSSIAN, SUBLANG_DEFAULT"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "1251"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
@@ -51,27 +51,27 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "Открыть с помощью WinMerge"
+msgstr "РћС‚РєСЂС‹С‚СЊ СЃ РїРѕРјРѕС‰СЊСЋ WinMerge"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Выберите не более 2 элементов"
+msgstr "Р’С‹Р±РµСЂРёС‚Рµ РЅРµ Р±РѕР»РµРµ 2 СЌР»РµРјРµРЅС‚РѕРІ"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr "Сравнить"
+msgstr "РЎСЂР°РІРЅРёС‚СЊ"
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "Сравнить..."
+msgstr "РЎСЂР°РІРЅРёС‚СЊ..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr "Сравнить с"
+msgstr "РЎСЂР°РІРЅРёС‚СЊ СЃ"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
@@ -81,10 +81,9 @@ msgstr "РЎРѕС…СЂР°РЅРёС‚СЊ СЌС‚РѕС‚ РїСѓС‚СЊ Рё РІС‹Р±СЂР°С‚СЊ РґСЂСѓРіРѕР№ РґР»
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "Сравнить с сохраненным путем (%1)"
+msgstr "РЎСЂР°РІРЅРёС‚СЊ СЃ СЃРѕС…СЂР°РЅРµРЅРЅС‹Рј РїСѓС‚РµРј (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
 msgstr "Р’С‹Р±СЂР°С‚СЊ Р·Р°РЅРѕРІРѕ"
-

@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+ï»¿//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTG)
 #ifdef _WIN32
 LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE
-#pragma code_page(1252)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
@@ -41,12 +41,12 @@ BEGIN
     IDS_PROJNAME            "ShellExtension"
     IDS_CONTEXT_MENU        "WinMerge"
     IDS_CONTEXT_HELP        "Abrir com WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "Não selecione mais de 2 itens"
+    IDS_CONTEXT_HELP_MANYITEMS "NÃ£o selecione mais de 2 itens"
     IDS_COMPARE             "Comparar"
     IDS_COMPARE_ELLIPSIS    "Comparar..."
     IDS_COMPARE_TO          "Comparar com"
-    IDS_HELP_SAVETHIS       "Guardar esta localização. Selecione outra localização para comparar com esta."
-    IDS_HELP_COMPARESAVED   "Comparar com localização guardada (%1)"
+    IDS_HELP_SAVETHIS       "Guardar esta localizaÃ§Ã£o. Selecione outra localizaÃ§Ã£o para comparar com esta."
+    IDS_HELP_COMPARESAVED   "Comparar com localizaÃ§Ã£o guardada (%1)"
     IDS_RESELECT_FIRST      "Selecione novamente a primeira"
 END
 
