@@ -13,11 +13,12 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: Greek <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1253\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Greek\n"
-"X-Poedit-SourceCharset: CP1252\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"Language: el\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -35,12 +36,12 @@ msgstr "LANG_GREEK, SUBLANG_DEFAULT"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "1253"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "ShellExtension"
-msgstr "Επέκταση Περιβάλλοντος"
+msgstr "Ξ•Ο€Ξ­ΞΊΟ„Ξ±ΟƒΞ· Ξ ΞµΟΞΉΞ²Ξ¬Ξ»Ξ»ΞΏΞ½Ο„ΞΏΟ‚"
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -50,40 +51,39 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "Άνοιγμα με το WinMerge"
+msgstr "Ξ†Ξ½ΞΏΞΉΞ³ΞΌΞ± ΞΌΞµ Ο„ΞΏ WinMerge"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Παρακαλώ επιλέξατε όχι περισσότερα από 2 αντικείμενα"
+msgstr "Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΟ€ΞΉΞ»Ξ­ΞΎΞ±Ο„Ξµ ΟΟ‡ΞΉ Ο€ΞµΟΞΉΟƒΟƒΟΟ„ΞµΟΞ± Ξ±Ο€Ο 2 Ξ±Ξ½Ο„ΞΉΞΊΞµΞ―ΞΌΞµΞ½Ξ±"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr "Σύγκριση"
+msgstr "Ξ£ΟΞ³ΞΊΟΞΉΟƒΞ·"
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "Σύγκριση..."
+msgstr "Ξ£ΟΞ³ΞΊΟΞΉΟƒΞ·..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr "Σύγκριση με"
+msgstr "Ξ£ΟΞ³ΞΊΟΞΉΟƒΞ· ΞΌΞµ"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Αποθήκευση αυτής της διαδρομής. Επιλέξατε κάποια άλλη διαδρομή προς σύγκριση με αυτή τη διαδρομή."
+msgstr "Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ· Ξ±Ο…Ο„Ξ®Ο‚ Ο„Ξ·Ο‚ Ξ΄ΞΉΞ±Ξ΄ΟΞΏΞΌΞ®Ο‚. Ξ•Ο€ΞΉΞ»Ξ­ΞΎΞ±Ο„Ξµ ΞΊΞ¬Ο€ΞΏΞΉΞ± Ξ¬Ξ»Ξ»Ξ· Ξ΄ΞΉΞ±Ξ΄ΟΞΏΞΌΞ® Ο€ΟΞΏΟ‚ ΟƒΟΞ³ΞΊΟΞΉΟƒΞ· ΞΌΞµ Ξ±Ο…Ο„Ξ® Ο„Ξ· Ξ΄ΞΉΞ±Ξ΄ΟΞΏΞΌΞ®."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "Σύγκριση με αποθηκευμένη διαδρομή (%1)"
+msgstr "Ξ£ΟΞ³ΞΊΟΞΉΟƒΞ· ΞΌΞµ Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟ…ΞΌΞ­Ξ½Ξ· Ξ΄ΞΉΞ±Ξ΄ΟΞΏΞΌΞ® (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Επανεπιλογή Πρώτου"
-
+msgstr "Ξ•Ο€Ξ±Ξ½ΞµΟ€ΞΉΞ»ΞΏΞ³Ξ® Ξ ΟΟΟ„ΞΏΟ…"

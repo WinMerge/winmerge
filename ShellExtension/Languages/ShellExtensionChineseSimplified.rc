@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+ï»¿//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 #ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
-#pragma code_page(936)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,14 +40,14 @@ STRINGTABLE
 BEGIN
     IDS_PROJNAME            "ShellExtension"
     IDS_CONTEXT_MENU        "WinMerge"
-    IDS_CONTEXT_HELP        "ÓÃ WinMerge ´ò¿ª"
-    IDS_CONTEXT_HELP_MANYITEMS "Çë²»ÒªÑ¡ÖĞ³¬¹ı2¸öÏîÄ¿"
-    IDS_COMPARE             "¶Ô±È"
-    IDS_COMPARE_ELLIPSIS    "¶Ô±È..."
-    IDS_COMPARE_TO          "ºÍÁíÍâÒ»¸ö¶Ô±È"
-    IDS_HELP_SAVETHIS       "±£´æÕâ¸öÂ·¾¶¡£Ñ¡ÔñÁíÍâÒ»¸öÂ·¾¶ÓëÖ®½øĞĞ¶Ô±È¡£ "
-    IDS_HELP_COMPARESAVED   "Óë±£´æµÄÂ·¾¶(%1)½øĞĞ¶Ô±È "
-    IDS_RESELECT_FIRST      "ÖØĞÂÑ¡ÔñµÚÒ»¸öÂ·¾¶"
+    IDS_CONTEXT_HELP        "ç”¨ WinMerge æ‰“å¼€"
+    IDS_CONTEXT_HELP_MANYITEMS "è¯·ä¸è¦é€‰ä¸­è¶…è¿‡2ä¸ªé¡¹ç›®"
+    IDS_COMPARE             "å¯¹æ¯”"
+    IDS_COMPARE_ELLIPSIS    "å¯¹æ¯”..."
+    IDS_COMPARE_TO          "å’Œå¦å¤–ä¸€ä¸ªå¯¹æ¯”"
+    IDS_HELP_SAVETHIS       "ä¿å­˜è¿™ä¸ªè·¯å¾„ã€‚é€‰æ‹©å¦å¤–ä¸€ä¸ªè·¯å¾„ä¸ä¹‹è¿›è¡Œå¯¹æ¯”ã€‚"
+    IDS_HELP_COMPARESAVED   "ä¸ä¿å­˜çš„è·¯å¾„(%1)è¿›è¡Œå¯¹æ¯”"
+    IDS_RESELECT_FIRST      "é‡æ–°é€‰æ‹©ç¬¬ä¸€ä¸ªè·¯å¾„"
 END
 
 #endif    // Resources

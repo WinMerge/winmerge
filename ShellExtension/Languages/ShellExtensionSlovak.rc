@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+Ôªø//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SKY)
 #ifdef _WIN32
 LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
-#pragma code_page(1250)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,14 +40,14 @@ STRINGTABLE
 BEGIN
     IDS_PROJNAME            "ShellExtension"
     IDS_CONTEXT_MENU        "WinMerge"
-    IDS_CONTEXT_HELP        "Otvoriù pomocou WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "ProsÌm, nevyberajte viac ako 2 poloûky"
-    IDS_COMPARE             "Porovnaù"
-    IDS_COMPARE_ELLIPSIS    "Porovnaù..."
-    IDS_COMPARE_TO          "Porovnaù s"
-    IDS_HELP_SAVETHIS       "Uloûiù t˙to cestu. Vybraù in˙ cestu, ktor· sa s Úou porovn·."
-    IDS_HELP_COMPARESAVED   "Porovnaù s uloûenou cestou (%1)"
-    IDS_RESELECT_FIRST      "Najprv znova oznaËte"
+    IDS_CONTEXT_HELP        "Otvori≈• pomocou WinMerge"
+    IDS_CONTEXT_HELP_MANYITEMS "Pros√≠m, nevyberajte viac ako 2 polo≈æky"
+    IDS_COMPARE             "Porovna≈•"
+    IDS_COMPARE_ELLIPSIS    "Porovna≈•..."
+    IDS_COMPARE_TO          "Porovna≈• s"
+    IDS_HELP_SAVETHIS       "Ulo≈æi≈• t√∫to cestu. Vybra≈• in√∫ cestu, ktor√° sa s ≈àou porovn√°."
+    IDS_HELP_COMPARESAVED   "Porovna≈• s ulo≈æenou cestou (%1)"
+    IDS_RESELECT_FIRST      "Najprv znova oznaƒçte"
 END
 
 #endif    // Resources

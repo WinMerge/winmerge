@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+๏ปฟ//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FAR)
 #ifdef _WIN32
 LANGUAGE LANG_FARSI, SUBLANG_NEUTRAL
-#pragma code_page(1256)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,16 +38,16 @@ LANGUAGE LANG_FARSI, SUBLANG_NEUTRAL
 // 
 STRINGTABLE 
 BEGIN
-    IDS_PROJNAME            " ิแ วำสไิไ "
-    IDS_CONTEXT_MENU        " ๆํไใัฬ "
-    IDS_CONTEXT_HELP        " ศวา ัฯไ ศว ๆํไใัฬ "
-    IDS_CONTEXT_HELP_MANYITEMS " แุÝว ศํิสั วา ฯๆ ใๆัฯ ัว วไสฮวศ ไไใวํํฯ "
-    IDS_COMPARE             " ๅใำไฬํ / ใÞวํำๅ "
-    IDS_COMPARE_ELLIPSIS    " ๅใำไฬํ ... "
-    IDS_COMPARE_TO          " ใÞวํำๅ ศว "
-    IDS_HELP_SAVETHIS       " วํไ ใำํั ัว ะฮํัๅ ไ. ใำํั ฯํัํ ัว ศัวํ ใÞวํำๅ ศว วํไ ใำํั วไสฮวศ ไ "
-    IDS_HELP_COMPARESAVED   " ๅใำไฬํ ศว ใำํั ะฮํัๅ ิฯๅ %1 "
-    IDS_RESELECT_FIRST      " ฯั ยÛวา  ฯๆศวัๅ วไสฮวศ ไใวํํฯ "
+    IDS_PROJNAME            " ุดู ุงฺฉุณุชูุดู "
+    IDS_CONTEXT_MENU        " ูููู…ุฑุฌ "
+    IDS_CONTEXT_HELP        " ุจุงุฒ ฺฉุฑุฏู ุจุง ูููู…ุฑุฌ "
+    IDS_CONTEXT_HELP_MANYITEMS " ูุทูุง ุจูุดุชุฑ ุงุฒ ุฏู ู…ูุฑุฏ ุฑุง ุงูุชุฎุงุจ ููู…ุงููุฏ "
+    IDS_COMPARE             " ูู…ุณูุฌู / ู…ูุงูุณู "
+    IDS_COMPARE_ELLIPSIS    " ูู…ุณูุฌู ... "
+    IDS_COMPARE_TO          " ู…ูุงูุณู ุจุง "
+    IDS_HELP_SAVETHIS       " ุงูู ู…ุณูุฑ ุฑุง ุฐุฎูุฑู ฺฉู. ู…ุณูุฑ ุฏูฺฏุฑู ุฑุง ุจุฑุงู ู…ูุงูุณู ุจุง ุงูู ู…ุณูุฑ ุงูุชุฎุงุจ ฺฉู "
+    IDS_HELP_COMPARESAVED   " ูู…ุณูุฌู ุจุง ู…ุณูุฑ ุฐุฎูุฑู ุดุฏู %1 "
+    IDS_RESELECT_FIRST      " ุฏุฑ ุขุบุงุฒ  ุฏูุจุงุฑู ุงูุชุฎุงุจ ูู…ุงููุฏ "
 END
 
 #endif    // Resources
