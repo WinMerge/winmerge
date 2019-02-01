@@ -12,15 +12,16 @@ msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2010-01-18 15:47+0100\n"
+"PO-Revision-Date: 2019-02-01 22:57+0900\n"
 "Last-Translator: Filip Komar <filip.komar@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1250\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Slovenian\n"
-"X-Poedit-SourceCharset: CP1250\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"Language: sl\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -38,12 +39,12 @@ msgstr "LANG_SLOVENIAN, SUBLANG_DEFAULT"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "1250"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "ShellExtension"
-msgstr "Razöiritev integracije v lupino"
+msgstr "Raz≈°iritev integracije v lupino"
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -58,7 +59,7 @@ msgstr "Odpri z WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Prosimo izberite najveË 2 predmeta"
+msgstr "Prosimo izberite najveƒç 2 predmeta"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
@@ -78,7 +79,7 @@ msgstr "Primerjaj z"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Shrani tole pot. Izberite öe drugo pot za primerjavo s tole."
+msgstr "Shrani tole pot. Izberite ≈°e drugo pot za primerjavo s tole."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
@@ -89,4 +90,3 @@ msgstr "Primerjaj s shranjeno potjo (%1)"
 #, c-format
 msgid "Re-select First"
 msgstr "Ponovno izberite prvega"
-

@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+﻿//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NOR)
 #ifdef _WIN32
 LANGUAGE LANG_NORWEGIAN, SUBLANG_DEFAULT
-#pragma code_page(1252)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////

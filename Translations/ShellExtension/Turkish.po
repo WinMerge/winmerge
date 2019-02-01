@@ -12,16 +12,16 @@ msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-02-12 12:27+0300\n"
+"PO-Revision-Date: 2019-02-01 22:59+0900\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1254\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: CP1254\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
 "Language: tr\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -39,7 +39,7 @@ msgstr "LANG_TURKISH, SUBLANG_DEFAULT"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "1254"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
@@ -54,40 +54,39 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "WinMerge ile Aç"
+msgstr "WinMerge ile AÃ§"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Lütfen 2 ögeden fazlasýný seçmeyin"
+msgstr "LÃ¼tfen 2 Ã¶geden fazlasÄ±nÄ± seÃ§meyin"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr "Karþýlaþtýr"
+msgstr "KarÅŸÄ±laÅŸtÄ±r"
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "Karþýlaþtýr..."
+msgstr "KarÅŸÄ±laÅŸtÄ±r..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr "Þununla Karþýlaþtýr"
+msgstr "Åžununla KarÅŸÄ±laÅŸtÄ±r"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Bu yolu kaydet. Ardýndan bu yol ile karþýlaþtýrýlacak baþka bir yol seçebilirsiniz."
+msgstr "Bu yolu kaydet. ArdÄ±ndan bu yol ile karÅŸÄ±laÅŸtÄ±rÄ±lacak baÅŸka bir yol seÃ§ebilirsiniz."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "Kaydedilen yol ile karþýlaþtýr (%1)"
+msgstr "Kaydedilen yol ile karÅŸÄ±laÅŸtÄ±r (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Birinciyi yeniden seçin"
-
+msgstr "Birinciyi yeniden seÃ§in"

@@ -16,11 +16,12 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: Persian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1256\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Persian\n"
-"X-Poedit-SourceCharset: CP1252\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"Language: fa\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG_*
 #: ShellExtensionTemplate.rc:24
@@ -38,55 +39,54 @@ msgstr "LANG_FARSI, SUBLANG_NEUTRAL"
 #: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "1252"
-msgstr "1256"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:41
 #, c-format
 msgid "ShellExtension"
-msgstr " Ôá Ç˜ÓÊäÔä "
+msgstr " Ø´Ù„ Ø§Ú©Ø³ØªÙ†Ø´Ù† "
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "WinMerge"
-msgstr " æíäãÑÌ "
+msgstr " ÙˆÙŠÙ†Ù…Ø±Ø¬ "
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
 msgid "Open with WinMerge"
-msgstr " ÈÇÒ ˜ÑÏä ÈÇ æíäãÑÌ "
+msgstr " Ø¨Ø§Ø² Ú©Ø±Ø¯Ù† Ø¨Ø§ ÙˆÙŠÙ†Ù…Ø±Ø¬ "
 
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr " áØİÇ ÈíÔÊÑ ÇÒ Ïæ ãæÑÏ ÑÇ ÇäÊÎÇÈ ääãÇííÏ "
+msgstr " Ù„Ø·ÙØ§ Ø¨ÙŠØ´ØªØ± Ø§Ø² Ø¯Ùˆ Ù…ÙˆØ±Ø¯ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ù†Ù†Ù…Ø§ÙŠÙŠØ¯ "
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Compare"
-msgstr " åãÓäÌí / ãŞÇíÓå "
+msgstr " Ù‡Ù…Ø³Ù†Ø¬ÙŠ / Ù…Ù‚Ø§ÙŠØ³Ù‡ "
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare..."
-msgstr " åãÓäÌí ... "
+msgstr " Ù‡Ù…Ø³Ù†Ø¬ÙŠ ... "
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare To"
-msgstr " ãŞÇíÓå ÈÇ "
+msgstr " Ù…Ù‚Ø§ÙŠØ³Ù‡ Ø¨Ø§ "
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr " Çíä ãÓíÑ ÑÇ ĞÎíÑå ˜ä. ãÓíÑ ÏíÑí ÑÇ ÈÑÇí ãŞÇíÓå ÈÇ Çíä ãÓíÑ ÇäÊÎÇÈ ˜ä "
+msgstr " Ø§ÙŠÙ† Ù…Ø³ÙŠØ± Ø±Ø§ Ø°Ø®ÙŠØ±Ù‡ Ú©Ù†. Ù…Ø³ÙŠØ± Ø¯ÙŠÚ¯Ø±ÙŠ Ø±Ø§ Ø¨Ø±Ø§ÙŠ Ù…Ù‚Ø§ÙŠØ³Ù‡ Ø¨Ø§ Ø§ÙŠÙ† Ù…Ø³ÙŠØ± Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù† "
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr " åãÓäÌí ÈÇ ãÓíÑ ĞÎíÑå ÔÏå %1 "
+msgstr " Ù‡Ù…Ø³Ù†Ø¬ÙŠ Ø¨Ø§ Ù…Ø³ÙŠØ± Ø°Ø®ÙŠØ±Ù‡ Ø´Ø¯Ù‡ %1 "
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Re-select First"
-msgstr " ÏÑ ÂÛÇÒ  ÏæÈÇÑå ÇäÊÎÇÈ äãÇííÏ "
-
+msgstr " Ø¯Ø± Ø¢ØºØ§Ø²  Ø¯ÙˆØ¨Ø§Ø±Ù‡ Ø§Ù†ØªØ®Ø§Ø¨ Ù†Ù…Ø§ÙŠÙŠØ¯ "
