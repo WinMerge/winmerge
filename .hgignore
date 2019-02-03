@@ -44,8 +44,15 @@ syntax: glob
 dlldata.c
 .git
 *.opensdf
+*.log
+*.bak
+*.bsc
+*.diagsession
+*.vspx
 DebugU
 ShellExtension/ShellExtension.h
+ShellExtension/ShellExtension_i.c
+ShellExtension/ShellExtension_p.c
 Plugins/src_VCPP/DisplayBinaryFiles/DisplayBinaryFiles.h
 Plugins/src_VCPP/DisplayXMLFiles/DisplayXMLFiles.h
 Plugins/src_VCPP/EditBinaryFiles/EditBinaryFiles.h
@@ -70,3 +77,4 @@ Docs/Users/Manual/build/saxon
 Docs/Users/Manual/build/xsl
 Docs/Users/Manual/build/xerces
 Docs/Users/Manual/build/Version.txt
+winmerge-cppcheck-build-dir
