@@ -118,6 +118,14 @@ BOOL CMergeStatusBar::Create(CWnd* pParentWnd)
 	for (auto&& p : { PANE_PANE0_RO, PANE_PANE1_RO, PANE_PANE2_RO })
 		SetPaneText(p, sText.c_str(), TRUE);
 
+	for (int pane = 0; pane < 3; pane++)
+	{
+		SetPaneStyle(PANE_PANE0_INFO     + pane * nColumnsPerPane, SBPS_NORMAL);
+		SetPaneStyle(PANE_PANE0_ENCODING + pane * nColumnsPerPane, SBPS_OWNERDRAW);
+		SetPaneStyle(PANE_PANE0_RO       + pane * nColumnsPerPane, SBPS_NORMAL);
+		SetPaneStyle(PANE_PANE0_EOL      + pane * nColumnsPerPane, SBPS_OWNERDRAW);
+	}
+
 	return TRUE;
 };
 
