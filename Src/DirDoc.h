@@ -90,7 +90,7 @@ public:
 	bool HasDirView() const { return m_pDirView != nullptr; }
 	void RefreshOptions();
 	void CompareReady();
-	void UpdateChangedItem(PathContext & paths,
+	void UpdateChangedItem(const PathContext & paths,
 		UINT nDiffs, UINT nTrivialDiffs, bool bIdentical);
 	void UpdateResources();
 	void InitStatusStrings();
