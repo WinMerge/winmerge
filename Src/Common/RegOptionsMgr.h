@@ -17,7 +17,7 @@ class COptionsMgr;
 class CRegOptionsMgr: public COptionsMgr
 {
 public:
-	CRegOptionsMgr() : m_serializing(true), m_bCloseHandle(true) { }
+	CRegOptionsMgr() : m_serializing(true), m_bCloseHandle(false) { }
 	virtual ~CRegOptionsMgr() { }
 	int LoadOption(const String& name);
 	int SetRegRootKey(const String& path);
