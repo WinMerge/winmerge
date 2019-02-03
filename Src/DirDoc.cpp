@@ -432,7 +432,7 @@ bool CDirDoc::CloseMergeDocs()
  * @param [in] nTrivialDiffs Amount of ignored differences
  * @param [in] bIdentical `true` if files became identical, `false` otherwise.
  */
-void CDirDoc::UpdateChangedItem(PathContext &paths,
+void CDirDoc::UpdateChangedItem(const PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, bool bIdentical)
 {
 	DIFFITEM *pos = FindItemFromPaths(*m_pCtxt, paths);
@@ -440,17 +440,17 @@ void CDirDoc::UpdateChangedItem(PathContext &paths,
 	if (!pos)
 	{
 		PathContext pathsSwapped(paths);
-		std::swap(paths[0], paths[static_cast<int>(paths.size() - 1)]);
+		std::swap(pathsSwapped[0], pathsSwapped[static_cast<int>(pathsSwapped.size() - 1)]);
 		pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
 		if (!pos && paths.size() > 2)
 		{
 			pathsSwapped = paths;
-			std::swap(paths[0], paths[1]);
+			std::swap(pathsSwapped[0], pathsSwapped[1]);
 			pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
 			if (!pos && paths.size() > 2)
 			{
 				pathsSwapped = paths;
-				std::swap(paths[1], paths[2]);
+				std::swap(pathsSwapped[1], pathsSwapped[2]);
 				pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
 			}
 		}
