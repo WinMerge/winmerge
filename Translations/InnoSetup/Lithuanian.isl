@@ -42,7 +42,7 @@ ConfirmTitle=Patvirtinimas
 ErrorTitle=Klaida
 
 ; *** SetupLdr messages
-SetupLdrStartupMessage=%1 diegimas. Ar norite tæsti?
+SetupLdrStartupMessage=%1 diegimas. Norite tæsti?
 LdrCannotCreateTemp=Negaliu sukurti laikinojo failo. Diegimas nutraukiamas.
 LdrCannotExecTemp=Negaliu ávykdyti failo laikinajame kataloge. Diegimas nutraukiamas.
 
@@ -150,14 +150,14 @@ CannotInstallToUNCPath=Diegimo programa negali diegti á UNC tipo katalogà.
 InvalidPath=Jûs privalote áraðyti pilnà kelià su disko raide; pavyzdþiui:%n%nC:\APP%n% ir negalima nurodyti UNC tipo katalogà:%n%n\\Serveris\share
 InvalidDrive=Diskas, kurá nurodëte, neegzistuoja arba yra neprieinamas. Praðome nurodyti kità diskà ir/arba katalogà.
 DiskSpaceWarningTitle=Nepakanka laisvos vietos diske
-DiskSpaceWarning=Diegimui reikia bent %1 KB laisvos vietos, bet nurodytame diske yra tik %2 KB laisvos vietos.%n%nAr Jûs vis tiek norite tæsti?
+DiskSpaceWarning=Diegimui reikia bent %1 KB laisvos vietos, bet nurodytame diske yra tik %2 KB laisvos vietos.%n%nVis tiek norite tæsti?
 DirNameTooLong=Katalogo pavadinimas ar kelias iki jo per ilgas.
 InvalidDirName=Nekorektiðkas katalogo pavadinimas.
 BadDirName32=Katalogo pavadinime neturi bûti simboliø:%n%n%1
 DirExistsTitle=Toks katalogas egzistuoja
-DirExists=Katalogas:%n%n%1%n%n jau egzistuoja. Ar vistiek norite diegti programà tame kataloge?
+DirExists=Katalogas:%n%n%1%n%n jau egzistuoja. Vis tiek norite diegti programà tame kataloge?
 DirDoesntExistTitle=Toks katalogas neegzistuoja.
-DirDoesntExist=Katalogas:%n%n%1%n%n neegzistuoja. Ar norite kad katalogas bûtø sukurtas?
+DirDoesntExist=Katalogas:%n%n%1%n%n neegzistuoja. Norite, kad katalogas bûtø sukurtas?
 
 ; *** "Select Components" wizard page
 WizardSelectComponents=Komponentø pasirinkimas
@@ -168,7 +168,7 @@ FullInstallation=Pilnas visø komponentø diegimas
 CompactInstallation=Glaustas diegimas
 CustomInstallation=Pasirinktinis diegimas
 NoUninstallWarningTitle=Komponentai egzistuoja
-NoUninstallWarning=Diegimo programa aptiko, kad ðie komponentai jau ádiegti Jûsø kompiuteryje:%n%n%1%n%nJei nuimsite þymes nuo ðiø komponentø, jie vis tiek nebus iðtrinti.%n%nAr vis tiek norite tæsti diegimà?
+NoUninstallWarning=Diegimo programa aptiko, kad ðie komponentai jau ádiegti Jûsø kompiuteryje:%n%n%1%n%nJei nuimsite þymes nuo ðiø komponentø, jie vis tiek nebus iðtrinti.%n%nVis tiek norite tæsti diegimà?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
 ComponentsDiskSpaceMBLabel=Dabartinis Jûsø pasirinkimas reikalauja [mb] MB laisvos vietos diske.
@@ -221,8 +221,8 @@ FinishedHeadingLabel=„[name]“ diegimas baigtas
 FinishedLabelNoIcons=Diegimo programa baigë „[name]“ diegimà Jûsø kompiuteryje.
 FinishedLabel=Diegimo programa baigë „[name]“ diegimà Jûsø kompiuteryje. Programa gali bûti paleista pasirinkus atitinkamas nuorodas.
 ClickFinish=Spauskite „Pabaiga“, kad uþdarytumëte diegimo programà.
-FinishedRestartLabel=Sëkmingam „[name]“ diegimui, reikëtø perkrauti kompiuterá. Ar norite perkrauti já dabar?
-FinishedRestartMessage=Sëkmingam „[name]“ diegimui, reikëtø perkrauti kompiuterá.%n%nAr norite perkrauti já dabar?
+FinishedRestartLabel=Sëkmingam „[name]“ diegimui, reikëtø perkrauti kompiuterá. Norite perkrauti já dabar?
+FinishedRestartMessage=Sëkmingam „[name]“ diegimui, reikëtø perkrauti kompiuterá.%n%nNorite perkrauti já dabar?
 ShowReadmeCheck=Taip, að norëèiau perskaityti „README“ failà
 YesRadio=&Taip, að noriu perkrauti kompiuterá dabar
 NoRadio=&Ne, að perkrausiu kompiuterá vëliau
@@ -240,7 +240,7 @@ SelectDirectoryLabel=Praðome nurodyti kito diskelio vietà.
 
 ; *** Installation phase messages
 SetupAborted=Diegimas nebuvo baigtas.%n%nPraðome iðspræsti problemà ir paleisti diegimo programà vëliau.
-EntryAbortRetryIgnore=Spauskite „Retry“, jeigu norite bandyti vël, „Ignore“ - tæsti vistiek arba „Abort“, kad nutrauktumëte diegimà.
+EntryAbortRetryIgnore=Spauskite „Retry“, jeigu norite bandyti vël, „Ignore“ - tæsti vis tiek arba „Abort“, kad nutrauktumëte diegimà.
 
 ; *** Installation status messages
 StatusClosingApplications=Uþdaromos programos...
@@ -272,13 +272,13 @@ ErrorIniEntry=Klaida raðant INI áraðà „%1“ faile.
 
 ; *** File copying errors
 FileAbortRetryIgnore=Spauskite „Retry“, jeigu norite bandyti dar kartà, „Ignore“ - praleisti failà (nerekomenduojama) arba „Abort“ - nutraukti diegimà.
-FileAbortRetryIgnore2=Spauskite „Retry“, jeigu norite bandyti dar kartà, „Ignore“ - tæsti vistiek (nerekomenduojama) arba „Abort“ - nutraukti diegimà.
+FileAbortRetryIgnore2=Spauskite „Retry“, jeigu norite bandyti dar kartà, „Ignore“ - tæsti vis tiek (nerekomenduojama) arba „Abort“ - nutraukti diegimà.
 SourceIsCorrupted=Failas sugadintas
 SourceDoesntExist=Neegzistuoja „%1“ failas
 ExistingFileReadOnly=Egzistuojantis failas turi tik skaitymo atributus.%n%nSpauskite „Retry“ ðio atributo iðtrynimui ir bandyti vël, „Ignore“ - praleisti failà arba „Abort“ - nutraukti diegimà.
 ErrorReadingExistingDest=Skaitant egzistuojantá failà ávyko klaida:
-FileExists=Toks failas jau egzistuoja.%n%nAr norite, kad diegimo programa perraðytø failà?
-ExistingFileNewer=Egzistuojantis failas yra naujesnis uþ tà, kurá diegimo programa bando áraðyti. Rekomenduojama palikti esantá naujesná failà.%n%nAr norite palikti naujesná failà?
+FileExists=Toks failas jau egzistuoja.%n%nNorite, kad diegimo programa perraðytø failà?
+ExistingFileNewer=Egzistuojantis failas yra naujesnis uþ tà, kurá diegimo programa bando áraðyti. Rekomenduojama palikti esantá naujesná failà.%n%nNorite palikti naujesná failà?
 ErrorChangingAttr=Keièiant failo atributus ávyko klaida:
 ErrorCreatingTemp=Kuriant failà pasirinktame kataloge ávyko klaida:
 ErrorReadingSource=Skaitant diegiamàjá failà ávyko klaida:
@@ -299,18 +299,18 @@ UninstallNotFound=„%1“ failas neegzistuoja. Paðalinti neámanoma.
 UninstallOpenError=„%1“ failas negali bûti atidarytas. Paðalinti neámanoma.
 UninstallUnsupportedVer=Paðalinimo þurnalo failas „%1“ yra paðalinimo programai nesuprantamo formato. Paðalinti neámanoma.
 UninstallUnknownEntry=Neþinomas áraðas (%1) rastas paðalinimo þurnalo faile.
-ConfirmUninstall=Ar esate tikri, kad norite paðalinti „%1“ ir visus priklausanèius komponentus?
+ConfirmUninstall=Esate tikri, kad norite paðalinti „%1“ ir visus priklausanèius komponentus?
 UninstallOnlyOnWin64=Ðis diegimas gali bûti paðalintas tik 64 bitø Windows sistemose.
 OnlyAdminCanUninstall=Tik administratoriaus teises turintis vartotojas gali paðalinti programà.
 UninstallStatusLabel=Praðome palaukti, kol „%1“ bus paðalinta ið Jûsø kompiuterio.
 UninstalledAll=„%1“ buvo sëkmingai paðalinta ið Jûsø kompiuterio.
 UninstalledMost=„%1“ paðalinimas sëkmingai baigtas.%n%nKai kurie elementai nebuvo iðtrinti - juos galite paðalinti rankiniu bûdu.
-UninstalledAndNeedsRestart=„%1“ paðalinimui uþbaigti Jûsø kompiuteris turi bûti perkrautas.%n%nAr norite perkrauti já dabar?
+UninstalledAndNeedsRestart=„%1“ paðalinimui uþbaigti Jûsø kompiuteris turi bûti perkrautas.%n%nNorite perkrauti já dabar?
 UninstallDataCorrupted=„%1“ failas yra sugadinta. Programos paðalinti neámanoma.
 
 ; *** Uninstallation phase messages
 ConfirmDeleteSharedFileTitle=Iðtrinti bendruosius failus?
-ConfirmDeleteSharedFile2=Aptikta, kad jokia programa nenaudoja bendrøjø failø. Ar norite iðtrinti bendruosius failus? %n%nJeigu kurios nors programos naudoja ðiuos failus, ir jie bus iðtrinti, tos programos gali veikti neteisingai. Jeigu nesate tikras - spauskite „Ne“. Failo palikimas Jûsø kompiuteryje nesukels jokiø problemø.
+ConfirmDeleteSharedFile2=Aptikta, kad jokia programa nenaudoja bendrøjø failø. Norite iðtrinti bendruosius failus? %n%nJeigu kurios nors programos naudoja ðiuos failus, ir jie bus iðtrinti, tos programos gali veikti neteisingai. Jeigu nesate tikras - spauskite „Ne“. Failo palikimas Jûsø kompiuteryje nesukels jokiø problemø.
 SharedFileNameLabel=Failo pavadinimas:
 SharedFileLocationLabel=Vieta:
 WizardUninstalling=Paðalinimo eiga
@@ -337,7 +337,7 @@ AssocFileExtension=&Susieti „%1“ programà su failo plëtiniu %2
 AssocingFileExtension=„%1“ programa susiejama su failo plëtiniu %2...
 AutoStartProgramGroupDescription=Atomatinë paleistis:
 AutoStartProgram=Atomatiðkai paleisti „%1“
-AddonHostProgramNotFound=„%1“ nerasta Jûsø nurodytame kataloge.%n%nAr Jûs vis tiek norite tæsti?
+AddonHostProgramNotFound=„%1“ nerasta Jûsø nurodytame kataloge.%n%nVis tiek norite tæsti?
 
 
 ;Things we can also localize
