@@ -501,7 +501,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, bool readOnly, co
 /**
  * @brief Load files and initialize frame's compare result icon
  */
-bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], int nPane)
+bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[])
 {
 	CHexMergeFrame *pf = GetParentFrame();
 	ASSERT(pf != nullptr);
@@ -522,9 +522,6 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 		m_pView[0]->ResizeWindow();
 
 		OnRefresh();
-
-		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
-			m_pView[0]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
 	}
 	else
 	{
@@ -532,6 +529,21 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 		VERIFY(pf->DestroyWindow());
 	}
 	return bSucceeded;
+}
+
+void CHexMergeDoc::MoveOnLoad(int nPane, int)
+{
+	if (nPane < 0)
+	{
+		nPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
+		if (nPane < 0 || nPane >= m_nBuffers)
+			nPane = 0;
+	}
+
+	GetParentFrame()->SetActivePane(nPane);
+
+	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
+		m_pView[0]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
 }
 
 void CHexMergeDoc::CheckFileChanged(void)
@@ -720,8 +732,8 @@ void CHexMergeDoc::OnFileReload()
 		fileloc[pane].setPath(m_filePaths[pane]);
 		bRO[pane] = m_pView[pane]->GetReadOnly();
 	}
-	int nActivePane = GetActiveMergeView()->m_nThisPane;
-	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc, nActivePane);
+	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc);
+	MoveOnLoad(GetActiveMergeView()->m_nThisPane);
 }
 
 /**

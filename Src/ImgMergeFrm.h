@@ -58,7 +58,8 @@ public:
 
 // Operations
 public:
-	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], int nPane, CMDIFrameWnd *pParent);
+	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent);
+	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
 	void ChangeFile(int pane, const String& path);
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void UpdateResources();
