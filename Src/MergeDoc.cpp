@@ -2599,14 +2599,12 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const St
  * @brief Loads files and does initial rescan.
  * @param fileloc [in] File to open to left/middle/right side (path & encoding info)
  * @param bRO [in] Is left/middle/right file read-only
- * @param nPane [in] Pane to activate
- * @param nLineIndex [in] Index of line in view to move the cursor to
  * @return Success/Failure/Binary (failure) per typedef enum OpenDocsResult_TYPE
  * @todo Options are still read from CMainFrame, this will change
  * @sa CMainFrame::ShowMergeDoc()
  */
 bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
-		const bool bRO[], const String strDesc[], int nPane/* = -1 */, int nLineIndex/* = -1 */)
+		const bool bRO[], const String strDesc[])
 {
 	IDENTLEVEL identical = IDENTLEVEL_NONE;
 	int nRescanResult = RESCAN_OK;
@@ -2829,29 +2827,6 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			ShowRescanError(nRescanResult, identical);
 		}
 
-		if (nPane < 0)
-		{
-			nPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
-			if (nPane < 0 || nPane >= m_nBuffers)
-				nPane = 0;
-		}
-		if (nLineIndex == -1)
-		{
-			// scroll to first diff
-			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) &&
-				m_diffList.HasSignificantDiffs())
-			{
-				int nDiff = m_diffList.FirstSignificantDiff();
-				m_pView[0][nPane]->SelectDiff(nDiff, true, false);
-				nLineIndex = m_pView[0][nPane]->GetCursorPos().y;
-			}
-			else
-			{
-				nLineIndex = 0;
-			}
-		}
-		m_pView[0][nPane]->GotoLine(nLineIndex, false, nPane);
-
 		// Exit if files are identical should only work for the first
 		// comparison and must be disabled afterward.
 		theApp.m_bExitIfNoDiff = MergeCmdLineInfo::Disabled;
@@ -2875,6 +2850,32 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	return true;
 }
 
+void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
+{
+	if (nPane < 0)
+	{
+		nPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
+		if (nPane < 0 || nPane >= m_nBuffers)
+			nPane = 0;
+	}
+	if (nLineIndex == -1)
+	{
+		// scroll to first diff
+		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) &&
+			m_diffList.HasSignificantDiffs())
+		{
+			int nDiff = m_diffList.FirstSignificantDiff();
+			m_pView[0][nPane]->SelectDiff(nDiff, true, false);
+			nLineIndex = m_pView[0][nPane]->GetCursorPos().y;
+		}
+		else
+		{
+			nLineIndex = 0;
+		}
+	}
+	m_pView[0][nPane]->GotoLine(nLineIndex, false, nPane);
+}
+
 void CMergeDoc::ChangeFile(int nBuffer, const String& path)
 {
 	if (!PromptAndSaveIfNeeded(true))
@@ -2896,7 +2897,8 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path)
 	fileloc[nBuffer].setPath(path);
 	fileloc[nBuffer].encoding = GuessCodepageEncoding(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 	
-	OpenDocs(m_nBuffers, fileloc, bRO, strDesc, nBuffer, 0);
+	OpenDocs(m_nBuffers, fileloc, bRO, strDesc);
+	MoveOnLoad(nBuffer, 0);
 }
 
 /**
@@ -3146,7 +3148,8 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
 	CPoint pt = GetActiveMergeView()->GetCursorPos();
-	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc, GetActiveMergeView()->m_nThisPane, pt.y);
+	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc);
+	MoveOnLoad(GetActiveMergeView()->m_nThisPane, pt.y);
 }
 
 /**

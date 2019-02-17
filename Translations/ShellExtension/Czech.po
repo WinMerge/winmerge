@@ -13,11 +13,12 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: Czech <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1250\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Czech\n"
-"X-Poedit-SourceCharset: CP1250\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"Language: cs\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -35,7 +36,7 @@ msgstr "LANG_CZECH, SUBLANG_DEFAULT"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "1250"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
@@ -50,12 +51,12 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "Otev¯Ìt ve WinMerge"
+msgstr "Otev≈ô√≠t ve WinMerge"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "ProsÌm vyberte ne vÌce neû 2 poloûky."
+msgstr "Pros√≠m vyberte ne v√≠ce ne≈æ 2 polo≈æky."
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
@@ -75,15 +76,14 @@ msgstr "Porovnat s"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "UloûÌ tuto cestu do pamÏti. Potom vyberte jinou cestu k porovn·nÌ s touto cestou."
+msgstr "Ulo≈æ√≠ tuto cestu do pamƒõti. Potom vyberte jinou cestu k porovn√°n√≠ s touto cestou."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "Porovn· s cestou uloûenou do pamÏti (%1)"
+msgstr "Porovn√° s cestou ulo≈æenou do pamƒõti (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
 msgstr "Porovnat znovu"
-

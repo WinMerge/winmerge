@@ -139,10 +139,7 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	m_wndFilePathBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
-		if (m_wndSplitter.GetColumnCount() > 1)
-			m_wndSplitter.SetActivePane(0, pane);
-		else
-			m_wndSplitter.SetActivePane(pane, 0);
+		SetActivePane(pane);
 	});
 
 	// Set filename bars inactive so colors get initialized
@@ -238,6 +235,7 @@ void CHexMergeFrame::SavePosition()
 		CRect rc;
 		pLeft->GetWindowRect(&rc);
 		theApp.WriteProfileInt(_T("Settings"), _T("WLeft"), rc.Width());
+		theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), GetActivePane());
 	}
 }
 
@@ -346,6 +344,24 @@ void CHexMergeFrame::UpdateAutoPaneResize()
 void CHexMergeFrame::UpdateSplitter()
 {
 	m_wndSplitter.RecalcLayout();
+}
+
+int CHexMergeFrame::GetActivePane()
+{
+	int nPane;
+	if (m_wndSplitter.GetColumnCount() > 1)
+		m_wndSplitter.GetActivePane(nullptr, &nPane);
+	else
+		m_wndSplitter.GetActivePane(&nPane, nullptr);
+	return nPane;
+}
+
+void CHexMergeFrame::SetActivePane(int nPane)
+{
+	if (m_wndSplitter.GetColumnCount() > 1)
+		m_wndSplitter.SetActivePane(0, nPane);
+	else
+		m_wndSplitter.SetActivePane(nPane, 0);
 }
 
 /**

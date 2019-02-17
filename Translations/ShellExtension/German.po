@@ -12,15 +12,16 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-02-10 21:49+0100\n"
+"PO-Revision-Date: 2019-02-01 22:43+0900\n"
 "Last-Translator: Tim Gerundt <tim at gerundt.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1252\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-SourceCharset: CP1252\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"Language: de\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -38,7 +39,7 @@ msgstr "LANG_GERMAN, SUBLANG_GERMAN"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "1252"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
@@ -53,12 +54,12 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "÷ffnen mit WinMerge"
+msgstr "√ñffnen mit WinMerge"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Bitte w‰hlen Sie nicht mehr als 2 Objekte aus."
+msgstr "Bitte w√§hlen Sie nicht mehr als 2 Objekte aus."
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
@@ -78,7 +79,7 @@ msgstr "Vergleichen mit"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Speichert diesen Pfad. W‰hlen Sie einen anderen Pfad um ihn mit diesem Pfad zu vergleichen."
+msgstr "Speichert diesen Pfad. W√§hlen Sie einen anderen Pfad um ihn mit diesem Pfad zu vergleichen."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
@@ -88,5 +89,4 @@ msgstr "Vergleichen mit dem gespeicherten Pfad (%1)"
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Ersten erneut w‰hlen"
-
+msgstr "Ersten erneut w√§hlen"

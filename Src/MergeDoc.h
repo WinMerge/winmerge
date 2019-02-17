@@ -179,8 +179,9 @@ public:
 	void RefreshOptions();
 	void UpdateResources();
 	bool OpenDocs(int nFiles, const FileLocation fileloc[],
-		const bool bRO[], const String strDesc[], int nPane = -1, int nLineIndex = -1);
+		const bool bRO[], const String strDesc[]);
 	int LoadFile(CString sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding);
+	void MoveOnLoad(int nPane = -1, int nLinIndex = -1);
 	void ChangeFile(int nBuffer, const String& path);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(bool &bBinary, IDENTLEVEL &identical, bool bForced = false);

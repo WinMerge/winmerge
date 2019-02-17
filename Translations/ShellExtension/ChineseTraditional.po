@@ -13,11 +13,13 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: ChineseTraditional <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP950\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: ChineseTraditional\n"
-"X-Poedit-Country: TAIWAN\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_TW\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
@@ -35,12 +37,12 @@ msgstr "LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL"
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "950"
+msgstr "65001"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "ShellExtension"
-msgstr "¨t²Î¤¶­±©µ¦ù"
+msgstr "ç³»çµ±ä»‹é¢å»¶ä¼¸"
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -50,40 +52,39 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "¥H WinMerge ¶}±Ò"
+msgstr "ä»¥ WinMerge é–‹å•Ÿ"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "½Ğ¤Å¿ï¨â­Ó¥H¤Wªº¶µ¥Ø"
+msgstr "è«‹å‹¿é¸å…©å€‹ä»¥ä¸Šçš„é …ç›®"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr "¤ñ¸û"
+msgstr "æ¯”è¼ƒ"
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "¤ñ¸û..."
+msgstr "æ¯”è¼ƒ..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr "¤ñ¸û¨ì"
+msgstr "æ¯”è¼ƒåˆ°"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Àx¦s¦¹¸ô®|¡C¿ï¥t¤@¸ô®|»P¦¹¸ô®|¤ñ¸û¡C"
+msgstr "å„²å­˜æ­¤è·¯å¾‘ã€‚é¸å¦ä¸€è·¯å¾‘èˆ‡æ­¤è·¯å¾‘æ¯”è¼ƒã€‚"
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "»PÀx¦sªº¸ô®|¤ñ¸û (%1)"
+msgstr "èˆ‡å„²å­˜çš„è·¯å¾‘æ¯”è¼ƒ (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "­«¿ï²Ä¤@­Ó"
-
+msgstr "é‡é¸ç¬¬ä¸€å€‹"

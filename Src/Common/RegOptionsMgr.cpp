@@ -199,13 +199,22 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 
 	// Open key. Create new key if it does not exist.
 	HKEY hKey = nullptr;
-	DWORD action = 0;
-	LONG retValReg = RegCreateKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-		0, nullptr, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, nullptr,
-		&hKey, &action);
+	if (m_hKeys.find(strPath) == m_hKeys.end())
+	{
+		DWORD action = 0;
+		LONG retValReg = RegCreateKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
+			0, nullptr, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, nullptr,
+			&hKey, &action);
 
-	if (retValReg != ERROR_SUCCESS)
-		return COption::OPT_ERR;
+		if (retValReg != ERROR_SUCCESS)
+			return COption::OPT_ERR;
+
+		m_hKeys[strPath] = hKey;
+	}
+	else
+	{
+		hKey = m_hKeys[strPath];
+	}
 
 	// Check previous value
 	// This just checks if the value exists, LoadValueFromReg() below actually
@@ -213,7 +222,7 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 	DWORD type = 0;
 	BYTE dataBuf[MAX_PATH_FULL] = {0};
 	DWORD size = MAX_PATH_FULL;
-	retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
+	LONG retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
 		0, &type, dataBuf, &size);
 
 	// Actually save value into our in-memory options table
@@ -236,7 +245,12 @@ int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& 
 				retVal = Set(name, value);
 		}
 	}
-	RegCloseKey(hKey);
+
+	if (m_bCloseHandle)
+	{
+		RegCloseKey(hKey);
+		m_hKeys.erase(strPath);
+	}
 	return retVal;
 }
 
@@ -313,13 +327,28 @@ int CRegOptionsMgr::LoadOption(const String& name)
 	
 	if (retVal == COption::OPT_OK)
 	{
-		LONG retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-			0, KEY_READ, &hKey);
+		LONG retValReg;
+		if (m_hKeys.find(strPath) == m_hKeys.end())
+		{
+			retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
+				0, KEY_ALL_ACCESS, &hKey);
+			if (retValReg == ERROR_SUCCESS)
+				m_hKeys[strPath] = hKey;
+		}
+		else
+		{
+			hKey = m_hKeys[strPath];
+			retValReg = ERROR_SUCCESS;
+		}
 
 		if (retValReg == ERROR_SUCCESS)
 		{
 			retVal = LoadValueFromReg(hKey, name, value);
-			RegCloseKey(hKey);
+			if (m_bCloseHandle)
+			{
+				RegCloseKey(hKey);
+				m_hKeys.erase(strPath);
+			}
 		}
 		else
 			retVal = COption::OPT_ERR;
@@ -352,13 +381,28 @@ int CRegOptionsMgr::SaveOption(const String& name)
 	
 	if (retVal == COption::OPT_OK)
 	{
-		LONG retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-			0, KEY_WRITE, &hKey);
+		LONG retValReg;
+		if (m_hKeys.find(strPath) == m_hKeys.end())
+		{
+			retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
+				0, KEY_ALL_ACCESS, &hKey);
+			if (retValReg == ERROR_SUCCESS)
+				m_hKeys[strPath] = hKey;
+		}
+		else
+		{
+			retValReg = ERROR_SUCCESS;
+			hKey = m_hKeys[strPath];
+		}
 
 		if (retValReg == ERROR_SUCCESS)
 		{
 			retVal = SaveValueToReg(hKey, strValueName, value);
-			RegCloseKey(hKey);
+			if (m_bCloseHandle)
+			{
+				RegCloseKey(hKey);
+				m_hKeys.erase(strPath);
+			}
 		}
 		else
 			retVal = COption::OPT_ERR;
@@ -431,11 +475,23 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 	String strRegPath(m_registryRoot);
 	String strPath;
 	String strValueName;
+	LONG retValReg;
 
 	SplitName(name, strPath, strValueName);
 	strRegPath += strPath;
 
-	LONG retValReg = RegOpenKey(HKEY_CURRENT_USER, strRegPath.c_str(), &hKey);
+	if (m_hKeys.find(strPath) == m_hKeys.end())
+	{
+		retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
+			0, KEY_ALL_ACCESS, &hKey);
+		if (retValReg == ERROR_SUCCESS)
+			m_hKeys[strPath] = hKey;
+	}
+	else
+	{
+		hKey = m_hKeys[strPath];
+		retValReg = ERROR_SUCCESS;
+	}
 	if (retValReg == ERROR_SUCCESS)
 	{
 		retValReg = RegDeleteValue(hKey, strValueName.c_str());
@@ -443,7 +499,11 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 		{
 			retVal = COption::OPT_ERR;
 		}
-		RegCloseKey(hKey);
+		if (m_bCloseHandle)
+		{
+			RegCloseKey(hKey);
+			m_hKeys.erase(strPath);
+		}
 	}
 	else
 		retVal = COption::OPT_ERR;
@@ -594,4 +654,11 @@ int CRegOptionsMgr::ImportOptions(const String& filename)
 			pKey++;
 	}
 	return retVal;
+}
+
+void CRegOptionsMgr::CloseHandles()
+{
+	for (auto& pair : m_hKeys)
+		RegCloseKey(pair.second);
+	m_hKeys.clear();
 }

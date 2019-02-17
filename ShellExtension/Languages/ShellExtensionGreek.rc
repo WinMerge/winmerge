@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+ο»Ώ//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ELL)
 #ifdef _WIN32
 LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
-#pragma code_page(1253)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,16 +38,16 @@ LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
 // 
 STRINGTABLE 
 BEGIN
-    IDS_PROJNAME            "Επέκταση Περιβάλλοντος"
+    IDS_PROJNAME            "Ξ•Ο€Ξ­ΞΊΟ„Ξ±ΟƒΞ· Ξ ΞµΟΞΉΞ²Ξ¬Ξ»Ξ»ΞΏΞ½Ο„ΞΏΟ‚"
     IDS_CONTEXT_MENU        "WinMerge"
-    IDS_CONTEXT_HELP        "Άνοιγμα με το WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "Παρακαλώ επιλέξατε όχι περισσότερα από 2 αντικείμενα"
-    IDS_COMPARE             "Σύγκριση"
-    IDS_COMPARE_ELLIPSIS    "Σύγκριση..."
-    IDS_COMPARE_TO          "Σύγκριση με"
-    IDS_HELP_SAVETHIS       "Αποθήκευση αυτής της διαδρομής. Επιλέξατε κάποια άλλη διαδρομή προς σύγκριση με αυτή τη διαδρομή."
-    IDS_HELP_COMPARESAVED   "Σύγκριση με αποθηκευμένη διαδρομή (%1)"
-    IDS_RESELECT_FIRST      "Επανεπιλογή Πρώτου"
+    IDS_CONTEXT_HELP        "Ξ†Ξ½ΞΏΞΉΞ³ΞΌΞ± ΞΌΞµ Ο„ΞΏ WinMerge"
+    IDS_CONTEXT_HELP_MANYITEMS "Ξ Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΟ€ΞΉΞ»Ξ­ΞΎΞ±Ο„Ξµ ΟΟ‡ΞΉ Ο€ΞµΟΞΉΟƒΟƒΟΟ„ΞµΟΞ± Ξ±Ο€Ο 2 Ξ±Ξ½Ο„ΞΉΞΊΞµΞ―ΞΌΞµΞ½Ξ±"
+    IDS_COMPARE             "Ξ£ΟΞ³ΞΊΟΞΉΟƒΞ·"
+    IDS_COMPARE_ELLIPSIS    "Ξ£ΟΞ³ΞΊΟΞΉΟƒΞ·..."
+    IDS_COMPARE_TO          "Ξ£ΟΞ³ΞΊΟΞΉΟƒΞ· ΞΌΞµ"
+    IDS_HELP_SAVETHIS       "Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ· Ξ±Ο…Ο„Ξ®Ο‚ Ο„Ξ·Ο‚ Ξ΄ΞΉΞ±Ξ΄ΟΞΏΞΌΞ®Ο‚. Ξ•Ο€ΞΉΞ»Ξ­ΞΎΞ±Ο„Ξµ ΞΊΞ¬Ο€ΞΏΞΉΞ± Ξ¬Ξ»Ξ»Ξ· Ξ΄ΞΉΞ±Ξ΄ΟΞΏΞΌΞ® Ο€ΟΞΏΟ‚ ΟƒΟΞ³ΞΊΟΞΉΟƒΞ· ΞΌΞµ Ξ±Ο…Ο„Ξ® Ο„Ξ· Ξ΄ΞΉΞ±Ξ΄ΟΞΏΞΌΞ®."
+    IDS_HELP_COMPARESAVED   "Ξ£ΟΞ³ΞΊΟΞΉΟƒΞ· ΞΌΞµ Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟ…ΞΌΞ­Ξ½Ξ· Ξ΄ΞΉΞ±Ξ΄ΟΞΏΞΌΞ® (%1)"
+    IDS_RESELECT_FIRST      "Ξ•Ο€Ξ±Ξ½ΞµΟ€ΞΉΞ»ΞΏΞ³Ξ® Ξ ΟΟΟ„ΞΏΟ…"
 END
 
 #endif    // Resources

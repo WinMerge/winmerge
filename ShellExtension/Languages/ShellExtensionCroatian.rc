@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+﻿//Microsoft Developer Studio generated resource script.
 //
 // This is an *automatic* generated file for the ShellExtension translation.
 // Please edit the PO file instead of this RC file for translation updates:
@@ -24,7 +24,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HRV)
 #ifdef _WIN32
 LANGUAGE LANG_CROATIAN, SUBLANG_DEFAULT
-#pragma code_page(1250)
+#pragma code_page(65001)
 #endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@ BEGIN
     IDS_PROJNAME            "ShellExtension"
     IDS_CONTEXT_MENU        "WinMerge"
     IDS_CONTEXT_HELP        "Otvori s WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "Molimo, odaberite vi�e os 2 stavke"
+    IDS_CONTEXT_HELP_MANYITEMS "Molimo, odaberite više os 2 stavke"
     IDS_COMPARE             "Usporedi"
     IDS_COMPARE_ELLIPSIS    "Usporedi..."
     IDS_COMPARE_TO          "Usporedi s"

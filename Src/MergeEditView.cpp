@@ -453,7 +453,9 @@ std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice(
 
 void CMergeEditView::OnInitialUpdate()
 {
+	PushCursors();
 	CCrystalEditViewEx::OnInitialUpdate();
+	PopCursors();
 	SetFont(dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff);
 	SetAlternateDropTarget(new DropHandler(std::bind(&CMergeEditView::OnDropFiles, this, std::placeholders::_1)));
 
