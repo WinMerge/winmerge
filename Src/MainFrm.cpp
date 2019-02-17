@@ -711,7 +711,7 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	}
 
 	// Note that OpenDocs() takes care of closing compare window when needed.
-	bool bResult = pMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags));
+	bool bResult = pMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc);
 
 	if (CChildFrame *pFrame = pMergeDoc->GetParentFrame())
 	{
@@ -739,6 +739,8 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 		}
 	}
 
+	pMergeDoc->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
+
 	if (!sReportFile.empty())
 		pMergeDoc->GenerateReport(sReportFile);
 
@@ -755,8 +757,10 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	if (pHexMergeDoc == nullptr)
 		return false;
 
-	if (!pHexMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags)))
+	if (!pHexMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc))
 		return false;
+
+	pHexMergeDoc->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
 	
 	if (!sReportFile.empty())
 		pHexMergeDoc->GenerateReport(sReportFile);
@@ -776,7 +780,7 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	pImgMergeFrame->SetDirDoc(pDirDoc);
 	pDirDoc->AddMergeDoc(pImgMergeFrame);
 		
-	if (!pImgMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, GetActivePaneFromFlags(nFiles, dwFlags), this))
+	if (!pImgMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this))
 		return ShowMergeDoc(pDirDoc, nFiles, fileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
 
 	for (int pane = 0; pane < nFiles; pane++)
@@ -784,6 +788,8 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 		if (dwFlags && (dwFlags[pane] & FFILEOPEN_AUTOMERGE))
 			pImgMergeFrame->DoAutoMerge(pane);
 	}
+
+	pImgMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
 
 	if (!sReportFile.empty())
 		pImgMergeFrame->GenerateReport(sReportFile);
