@@ -53,7 +53,8 @@ public:
 
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
-
+	int GetActivePane();
+	void SetActivePane(int nPane);
 
 // Attributes
 protected:
