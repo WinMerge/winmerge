@@ -199,7 +199,7 @@ CImgMergeFrame::~CImgMergeFrame()
 	}
 }
 
-bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], int nPane, CMDIFrameWnd *pParent)
+bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent)
 {
 
 	for (int pane = 0; pane < nFiles; ++pane)
@@ -228,6 +228,11 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 		m_pImgMergeWindow->FirstDiff();
 
+	return true;
+}
+
+void CImgMergeFrame::MoveOnLoad(int nPane, int)
+{
 	if (nPane < 0)
 	{
 		nPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
@@ -236,8 +241,6 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 	}
 
 	m_pImgMergeWindow->SetActivePane(nPane);
-
-	return true;
 }
 
 void CImgMergeFrame::ChangeFile(int nBuffer, const String& path)
