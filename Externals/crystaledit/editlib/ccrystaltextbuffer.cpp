@@ -120,17 +120,13 @@ RecalcPoint (CPoint & ptPoint)
   if (ptPoint.y > m_ptEnd.y)
     {
       ptPoint.y -= (m_ptEnd.y - m_ptStart.y);
-	  ptPoint.y = min(ptPoint.y, m_ptEnd.y);
-	  if (ptPoint.y < m_ptEnd.y)
-		return;
+	  return;
     }
   if (ptPoint.y == m_ptEnd.y && ptPoint.x >= m_ptEnd.x)
     {
       ptPoint.y = m_ptStart.y;
       ptPoint.x = m_ptStart.x + (ptPoint.x - m_ptEnd.x);
-	  ptPoint.x = min(ptPoint.x, m_ptEnd.x);
-	  if( ptPoint.x < m_ptEnd.x)
-		return;
+	  return;
     }
   if (ptPoint.y == m_ptStart.y)
     {
