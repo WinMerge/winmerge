@@ -1,3 +1,69 @@
+WinMerge 2.16.1
+  General:
+  - Updated the copyright year to 2019, actually (GitHub #110)
+  - Prevent splitter view from claiming input focus (GitHub #127)
+  - Contributors.txt: Changed EOL from Unix (LF) to Windows (CR LF),
+    because not shows correctly in Windows Notepad. (Bitbucket PR #17)
+  Open dialog:
+  - Alternatively to Swap buttons, allow drag & drop between filetype
+    icons (GitHub #118)
+  - Expose cleaner moving/resizing behavior esp. in non-maximized
+    state (GitHub #119)
+  - Avoid retaining bogus filetype icons from previous selections (GitHub #122)
+  File compare:
+  - Bugfix: Extra blank displayed after left/right single/double
+    quotes (Bitbucket #134)
+  - Bugfix: Click doesn't trigger document to scroll in Location pane under
+    circumstance (Bitbucket #140)
+  - Bugfix: Frustrating text selection bug (GitHub #109)
+  - Bugfix: Left and Right files swap after losing focus
+    v2.16.0.0 (sf.net #2213)
+  - Bugfix: WinMerge 2.16.0.0 Unicoe X64 version displaying
+    Microsoft Visual C++ Runtime Library Asset in DiffWraper.CPP
+    line 984 (sf.net #2214)
+  - Bugfix: Cancelation of selection range with reverse indent (sf.net #2215)
+  - Bugfix: upward and downward search not work correctly
+  - Bugifx: Fix menu accelerator conflict
+  - Add File/Recompare As/Image menu item
+  - Add support for merging word level diffs in selection
+    Demo: https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif
+  Folder compare:
+  - Bugfix: Unique files are not shown (Bitbucket #138)
+  - Bugfix: Improve Hard-IO error handling, other bug fixes, cleanup,
+    tweaks (GitHub #120)
+  Archive Support:
+  - Upgraded to 7-zip 18.06 (Bitbucket #119)
+  Options dialog:
+  - Bugfix: Widen the width of labels in Options dialog (GitHub#108)
+  - Bugfix: view settings make winmerge crash (Bitbucket #109)
+  - Bugfix: 64bit version can't browse between option pages (Bitbucket #128)
+  - Bugfix: Shell Integration "Enable Advanced Menu" disabled on new
+    install (Bitbucket #137)
+  - Bugfix: Binary File options don't change from default (Bitbucket #135)
+  Shell extension:
+  - Bugfix: CreateTranslatedRcFiles needs an update (GitHub #113)
+  Translations:
+  - Update Brazilian Portuguese translation (GitHub #108)
+  - Update Swedish translation (sf.net #3035, GitHub #112, #114)
+  - Update Lithuanian translation (Bitbucket PR #7, #8, #27)
+  - Update Russian translation (Bitbucket PR #9-#26, #139)
+  - Update Bulgarian translation (Bitbucket PR #28)
+  - Update Turkish translation (sf.net #3036)
+  - Update Japanese translation
+  - Remove now unneeded MergeLang.dll
+  Manual:
+  - Bugfix: Some fixes in the manual (GitHub #116)
+  - Bugifx: end of line documentation (sf.net #2211)
+  - Clarification as per
+    https://github.com/WinMerge/winmerge-v2/issues/41 (GitHub #126)
+  Internals:
+  - Remove `nFinalNullLines` checking, disabled by an earlier
+    commit (GitHub #111)
+  - Various minor updates, plus preparation for VS2019 (GitHub #115)
+  - DiffTextBuffer: Create Unicode temp files (makes EscapeControlChars()
+    obsolete) (GitHub #123)
+  - Don't pass `DIFFITEM *` by casting to `uintptr_t` (GitHub #124, #125)
+
 WinMerge 2.16.0
   General:
   - Bugfix: Disabled icon on toolbar not gray out when running on XP
