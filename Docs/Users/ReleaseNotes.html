@@ -49,24 +49,106 @@
 </head>
 <body>
 
-<h2>WinMerge 2.16.0 Release Notes</h2>
+<h2>WinMerge 2.16.1 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2160">What Is New in 2.16.0?</a></li>
+  <li><a href="#new2160">What Is New in 2.16.1?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>November 2018</p>
+<p>February 2019</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge 2.16 stable release. This release replaces earlier WinMerge 
-stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 </p>
 
 <p>
 Please submit bug reports to our <a href="http://bitbucket.org/winmerge/winmerge/issues">bug-tracker</a>.
 </p>
+
+<h3><a name="#new2161">What Is New in 2.16.1 beta?</a></h3>
+
+<h4>General</h4>
+<ul>
+  <li> Updated the copyright year to 2019, actually (GitHub #110)</li>
+  <li> Prevent splitter view from claiming input focus (GitHub #127)</li>
+  <li> Contributors.txt: Changed EOL from Unix (LF) to Windows (CR LF), because not shows correctly in Windows Notepad. (Bitbucket PR #17)</li>
+</ul>
+ 
+<h4>Open dialog</h4>
+<ul>
+  <li> Alternatively to Swap buttons, allow drag &amp; drop between filetype icons (GitHub #118)</li>
+  <li> Expose cleaner moving/resizing behavior esp. in non-maximized state (GitHub #119)</li>
+  <li> Avoid retaining bogus filetype icons from previous selections (GitHub #122)</li>
+</ul>
+
+<h4>File compare</h4>
+<ul>
+  <li> Bugfix: Extra blank displayed after left/right single/double quotes (Bitbucket #134)</li>
+  <li> Bugfix: Click doesn't trigger document to scroll in Location pane under circumstance (Bitbucket #140)</li>
+  <li> Bugfix: Frustrating text selection bug (GitHub #109)</li>
+  <li> Bugfix: Left and Right files swap after losing focus v2.16.0.0 (sf.net #2213)</li>
+  <li> Bugfix: WinMerge 2.16.0.0 Unicoe X64 version displaying Microsoft Visual C++ Runtime Library Asset in DiffWraper.CPP line 984 (sf.net #2214)</li>
+  <li> Bugfix: Cancelation of selection range with reverse indent (sf.net #2215)</li>
+  <li> Bugfix: upward and downward search not work correctly</li>
+  <li> Bugifx: Fix menu accelerator conflict</li>
+  <li> Add File/Recompare As/Image menu item</li>
+  <li> Add support for merging word level diffs in selection <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">Demo</a></li>
+</ul>
+
+<h4>Folder compare</h4>
+<ul>
+  <li> Bugfix: Unique files are not shown (Bitbucket #138)</li>
+  <li> Bugfix: Improve Hard-IO error handling, other bug fixes, cleanup, tweaks (GitHub #120)</li>
+</ul>
+
+<h4>Archive Support</h4>
+<ul>
+  <li> Upgraded to 7-zip 18.06 (Bitbucket #119)</li>
+</ul>
+
+<h4>Options dialog</h4>
+<ul>
+  <li> Bugfix: Widen the width of labels in Options dialog (GitHub#108)</li>
+  <li> Bugfix: view settings make winmerge crash (Bitbucket #109)</li>
+  <li> Bugfix: 64bit version can't browse between option pages (Bitbucket #128)</li>
+  <li> Bugfix: Shell Integration "Enable Advanced Menu" disabled on new install (Bitbucket #137)</li>
+  <li> Bugfix: Binary File options don't change from default (Bitbucket #135)</li>
+</ul>
+
+<h4>Shell extension</h4>
+<ul>
+  <li> Bugfix: CreateTranslatedRcFiles needs an update (GitHub #113)</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li> Update Brazilian Portuguese translation (GitHub #108)</li>
+  <li> Update Swedish translation (sf.net #3035, GitHub #112, #114)</li>
+  <li> Update Lithuanian translation (Bitbucket PR #7, #8, #27)</li>
+  <li> Update Russian translation (Bitbucket PR #9-#26, #139)</li>
+  <li> Update Bulgarian translation (Bitbucket PR #28)</li>
+  <li> Update Turkish translation (sf.net #3036)</li>
+  <li> Update Japanese translation</li>
+  <li> Remove now unneeded MergeLang.dll</li>
+</ul>
+
+<h4>Manual</h4>
+<ul>
+  <li> Bugfix: Some fixes in the manual (GitHub #116)</li>
+  <li> Bugifx: end of line documentation (sf.net #2211)</li>
+  <li> Clarification as per https://github.com/WinMerge/winmerge-v2/issues/41 (GitHub #126)</li>
+</ul>
+
+<h4>Internals</h4>
+<ul>
+  <li> Remove `nFinalNullLines` checking, disabled by an earlier commit (GitHub #111)</li>
+  <li> Various minor updates, plus preparation for VS2019 (GitHub #115)</li>
+  <li> DiffTextBuffer: Create Unicode temp files (makes EscapeControlChars() obsolete) (GitHub #123)</li>
+  <li> Don't pass `DIFFITEM *` by casting to `uintptr_t` (GitHub #124, #125)</li>
+</ul>
 
 <h3><a name="#new2160">What Is New in 2.16.0?</a></h3>
 
