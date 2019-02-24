@@ -613,7 +613,7 @@ int CRegOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /
 int CRegOptionsMgr::ImportOptions(const String& filename)
 {
 	int retVal = COption::OPT_OK;
-	const int BufSize = 10240; // This should be enough for a long time..
+	const int BufSize = 20480; // This should be enough for a long time..
 	TCHAR buf[BufSize] = {0};
 
 	// Query keys - returns NUL separated strings

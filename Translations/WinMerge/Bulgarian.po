@@ -48,12 +48,12 @@ msgstr "Копирай в &ляво"
 #: Merge.rc:6FC398B6
 #, c-format
 msgid "Copy &from Left"
-msgstr ""
+msgstr "Копирай &от ляво"
 
 #: Merge.rc:8AF7E68
 #, c-format
 msgid "Copy fro&m Right"
-msgstr ""
+msgstr "Копирай от д&ясно"
 
 #: Merge.rc:381D79E4
 #, c-format
@@ -103,7 +103,7 @@ msgstr "с &Регистрирано Приложение"
 #: Merge.rc:321D741E
 #, c-format
 msgid "with &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "с &външен редактор\tCtrl+Alt+E"
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -113,12 +113,12 @@ msgstr "&със..."
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
-msgstr ""
+msgstr "Преглед на &разликите"
 
 #: Merge.rc:71E3C8E3
 #, c-format
 msgid "Diff &Block Size"
-msgstr ""
+msgstr "Размер на &блока с разлики"
 
 #: Merge.rc:67D67717
 #, c-format
@@ -128,17 +128,17 @@ msgstr ""
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
-msgstr ""
+msgstr "&Предишна страница"
 
 #: Merge.rc:68816EE1
 #, c-format
 msgid "&Next Page"
-msgstr ""
+msgstr "&Следваща страница"
 
 #: Merge.rc:4DE14271
 #, c-format
 msgid "&Active Pane"
-msgstr ""
+msgstr "&Активен панел"
 
 #: Merge.rc:43017E43
 #, c-format
@@ -158,17 +158,17 @@ msgstr "&Няма"
 #: Merge.rc:4DE14272
 #, c-format
 msgid "&Alpha Blend"
-msgstr ""
+msgstr "&Прозрачност"
 
 #: Merge.rc:237A0532
 #, c-format
 msgid "Alpha &Blend Animation"
-msgstr ""
+msgstr "Прозрачност на &анимацията"
 
 #: Merge.rc:5806E58F
 #, c-format
 msgid "Dragging &Mode"
-msgstr ""
+msgstr "Режим с влачене"
 
 #: Merge.rc:43017E45
 #, c-format
@@ -178,12 +178,12 @@ msgstr "&Премести"
 #: Merge.rc:5A9A713A
 #, c-format
 msgid "&Adjust Offset"
-msgstr ""
+msgstr "&Корекция на отместването"
 
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
-msgstr ""
+msgstr "&Настройка на фоновия цвят"
 
 #: Merge.rc:43017E46
 #, c-format
@@ -198,7 +198,7 @@ msgstr "&Нов\tCtrl+N"
 #: Merge.rc:2C8061AC
 #, c-format
 msgid "New (&3 panes)"
-msgstr ""
+msgstr "Нов (с &3 панела)"
 
 #: Merge.rc:1DC30E61
 #, c-format
@@ -227,7 +227,7 @@ msgstr "Последни проекти"
 #: Merge.rc:73E9B1DA
 #, c-format
 msgid "Recent F&iles Or Folders"
-msgstr ""
+msgstr "Последни &файлове или папки"
 
 #: Merge.rc:29D50B4A
 #, c-format
@@ -272,7 +272,7 @@ msgstr "&Голям"
 #: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
-msgstr ""
+msgstr "&Огромен"
 
 #: Merge.rc:27AC6D7F
 #, c-format
@@ -307,7 +307,7 @@ msgstr "&Добавки"
 #: Merge.rc:4C6CFD95
 #, c-format
 msgid "P&lugin Settings..."
-msgstr ""
+msgstr "Настройка на добавки"
 
 #: Merge.rc:729280D7
 #, c-format
@@ -387,12 +387,12 @@ msgstr "&WinMerge Помощ\tF1"
 #: Merge.rc:1B17601E
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "Б&ележки към версиите"
 
 #: Merge.rc:6E470BE7
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "&Преводи"
 
 #: Merge.rc:3938FFC2
 msgid "&Check For Updates"
@@ -416,7 +416,7 @@ msgstr "&За WinMerge..."
 #: Merge.rc:68816EE2
 #, c-format
 msgid "&Read-only"
-msgstr ""
+msgstr "&Само за четене"
 
 #: Merge.rc:71676C45
 #, c-format
@@ -426,7 +426,7 @@ msgstr "О&т ляво само за четене"
 #: Merge.rc:729280D8
 #, c-format
 msgid "M&iddle Read-only"
-msgstr ""
+msgstr "Среден само за четене"
 
 #: Merge.rc:32BFDBA9
 #, c-format
@@ -436,7 +436,7 @@ msgstr "От дяс&но само за четене"
 #: Merge.rc:453F5DDB
 #, c-format
 msgid "File En&coding..."
-msgstr ""
+msgstr "&Кодироне на файла"
 
 #: Merge.rc:E44718
 #, c-format
@@ -461,7 +461,7 @@ msgstr "Покажи &Левите уникални неща"
 #: Merge.rc:28A1C3B4
 #, c-format
 msgid "Show Midd&le Unique Items"
-msgstr ""
+msgstr "Покажи &Средните уникални елементи"
 
 #: Merge.rc:43600E8F
 #, c-format
@@ -486,17 +486,17 @@ msgstr ""
 #: Merge.rc:200AD0D1
 #, c-format
 msgid "Show &Left Only Different Items"
-msgstr ""
+msgstr "Покажи само &Левите уникални неща"
 
 #: Merge.rc:4899EBE1
 #, c-format
 msgid "Show &Middle Only Different Items"
-msgstr ""
+msgstr "Покажи само &Средните уникални неща"
 
 #: Merge.rc:614F49A9
 #, c-format
 msgid "Show &Right Only Different Items"
-msgstr ""
+msgstr "Покажи само &Десните разлики"
 
 #: Merge.rc:6F833C17
 #, c-format
@@ -506,17 +506,17 @@ msgstr "Покажи &Скритите неща"
 #: Merge.rc:311E1D87
 #, c-format
 msgid "Tree &Mode"
-msgstr ""
+msgstr "&Дървовиден режим"
 
 #: Merge.rc:3E934D
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr ""
+msgstr "Разтвори всички подпапки"
 
 #: Merge.rc:4B91C2CF
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr ""
+msgstr "Свий всички подпапки"
 
 #: Merge.rc:E6D7EE
 #, c-format
@@ -616,7 +616,7 @@ msgstr "&Запиши\tCtrl+S"
 #: Merge.rc:125AD721
 #, c-format
 msgid "Sav&e"
-msgstr ""
+msgstr "Зап&ази"
 
 #: Merge.rc:751AB58E
 #, c-format
@@ -626,7 +626,7 @@ msgstr "Запиши &лявата част"
 #: Merge.rc:194397DD
 #, c-format
 msgid "Save &Middle"
-msgstr ""
+msgstr "Запази С&редната част"
 
 #: Merge.rc:2E3BFCA2
 #, c-format
@@ -636,22 +636,22 @@ msgstr "Запиши &дясната част"
 #: Merge.rc:79321BE1
 #, c-format
 msgid "Save &As"
-msgstr ""
+msgstr "Запази &като"
 
 #: Merge.rc:1BF42626
 #, c-format
 msgid "Save &Left As..."
-msgstr ""
+msgstr "Запази &Левия част като"
 
 #: Merge.rc:6F833C18
 #, c-format
 msgid "Save &Middle As..."
-msgstr ""
+msgstr "Запази &Средната част като..."
 
 #: Merge.rc:62909ED4
 #, c-format
 msgid "Save &Right As..."
-msgstr ""
+msgstr "Запази &Дясната част като..."
 
 #: Merge.rc:4DB19837
 #, c-format
@@ -680,7 +680,7 @@ msgstr "Режим на сливане\tF9"
 #: Merge.rc:32BFDBAA
 #, c-format
 msgid "Re&load\tCtrl+F5"
-msgstr ""
+msgstr "Пре&зареждане\tCtrl+F5"
 
 #: Merge.rc:1A9EBDED
 #, c-format
@@ -695,7 +695,7 @@ msgstr ""
 #: Merge.rc:43017E4B
 #, c-format
 msgid "&Text"
-msgstr ""
+msgstr "&Текст"
 
 #: Merge.rc:22956A7
 #, c-format
@@ -705,12 +705,12 @@ msgstr "&XML"
 #: Merge.rc:89AF4F8
 #, c-format
 msgid "&Binary"
-msgstr ""
+msgstr "&Двоичен"
 
 #: Merge.rc:1D2E49FA
 #, c-format
 msgid "&Image"
-msgstr ""
+msgstr "&Изображения"
 
 #: Merge.rc:6E470BE9
 #, c-format
@@ -755,7 +755,7 @@ msgstr "Замес&ти...\tCtrl+H"
 #: Merge.rc:4B91C2D1
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr ""
+msgstr "&Маркер...\tCtrl+Shift+M"
 
 #: Merge.rc:669F87F4
 #, c-format
@@ -826,37 +826,37 @@ msgstr ""
 #: Merge.rc:68816EE4
 #, c-format
 msgid "&All Lines"
-msgstr ""
+msgstr "Всички линии"
 
 #: Merge.rc:AC3AA17
 #, c-format
 msgid "&0 Lines"
-msgstr ""
+msgstr "&0 линии"
 
 #: Merge.rc:89AF4F9
 #, c-format
 msgid "&1 Line"
-msgstr ""
+msgstr "&1 линия"
 
 #: Merge.rc:AC3AA18
 #, c-format
 msgid "&3 Lines"
-msgstr ""
+msgstr "&3 линии"
 
 #: Merge.rc:AC3AA19
 #, c-format
 msgid "&5 Lines"
-msgstr ""
+msgstr "&5 линии"
 
 #: Merge.rc:AC3AA1A
 #, c-format
 msgid "&7 Lines"
-msgstr ""
+msgstr "&7 линии"
 
 #: Merge.rc:AC3AA1B
 #, c-format
 msgid "&9 Lines"
-msgstr ""
+msgstr "&9 линии"
 
 #: Merge.rc:44B58195
 #, c-format
@@ -896,7 +896,7 @@ msgstr "Отрежи дългите редове"
 #: Merge.rc:62909ED5
 #, c-format
 msgid "Split V&ertically"
-msgstr ""
+msgstr "Раздели вертикално"
 
 #: Merge.rc:70E79DFF
 #, c-format
@@ -911,87 +911,87 @@ msgstr "Навигатор"
 #: Merge.rc:59B87E1C
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
-msgstr ""
+msgstr "Следващо различие\tAlt+Shift+Down"
 
 #: Merge.rc:3BDD62C2
 #, c-format
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
-msgstr ""
+msgstr "Предишено различие\tAlt+Shift+Up"
 
 #: Merge.rc:6D5176E5
 #, c-format
 msgid "A&dvanced"
-msgstr ""
+msgstr "Р&азширено"
 
 #: Merge.rc:9DA4F24
 #, c-format
 msgid "Next Difference Between Left and Middle\tAlt+1"
-msgstr ""
+msgstr "Следващо различие между Левия и Среден панел\tAlt+1"
 
 #: Merge.rc:2EBE17F8
 #, c-format
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
-msgstr ""
+msgstr "Предишено различие между Левия и Среден панел\tAlt+Shift+1"
 
 #: Merge.rc:21599F72
 #, c-format
 msgid "Next Difference Between Left and Right\tAlt+2"
-msgstr ""
+msgstr "Следващо различие между Левия и Десен панел\tAlt+2"
 
 #: Merge.rc:5416A5EC
 #, c-format
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
-msgstr ""
+msgstr "Предишено различие между Левия и Десен панел\tAlt+Shift+2"
 
 #: Merge.rc:316F95AC
 #, c-format
 msgid "Next Difference Between Middle and Right\tAlt+3"
-msgstr ""
+msgstr "Следващо различие между Средния и Десен панел\tAlt+3"
 
 #: Merge.rc:2904E763
 #, c-format
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
-msgstr ""
+msgstr "Предишено различие между Средния и Десен панел\tAlt+Shift+3"
 
 #: Merge.rc:4D91737D
 #, c-format
 msgid "Next Left Only Difference\tAlt+7"
-msgstr ""
+msgstr "Следващо различие само от Ляво\tAlt+7"
 
 #: Merge.rc:4BFD42D
 #, c-format
 msgid "Previous Left Only Difference\tAlt+Shift+7"
-msgstr ""
+msgstr "Предишено различие само от Ляво\tAlt+Shift+7"
 
 #: Merge.rc:2F029443
 #, c-format
 msgid "Next Middle Only Difference\tAlt+8"
-msgstr ""
+msgstr "Следващо различие само в Средата\tAlt+8"
 
 #: Merge.rc:541B8710
 #, c-format
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
-msgstr ""
+msgstr "Предишено различие само в Средата\tAlt+Shift+8"
 
 #: Merge.rc:649CFC83
 #, c-format
 msgid "Next Right Only Difference\tAlt+9"
-msgstr ""
+msgstr "Следващо различие само от Дясно\tAlt+9"
 
 #: Merge.rc:133AB1C4
 #, c-format
 msgid "Previous Right Only Difference\tAlt+Shift+9"
-msgstr ""
+msgstr "Предишено различие само от Дясно\tAlt+Shift+9"
 
 #: Merge.rc:30FF7A4C
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Корирай от ляво\tAlt+Shift+Right"
 
 #: Merge.rc:30FF7A4D
 #, c-format
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Корирай от дясно\tAlt+Shift+Left"
 
 #: Merge.rc:28C70E7F
 #, c-format
@@ -1016,17 +1016,17 @@ msgstr "Копира&й всичко в ляво"
 #: Merge.rc:4BC6A157
 #, c-format
 msgid "A&uto Merge\tAlt+Ctrl+M"
-msgstr ""
+msgstr "А&втоматично сливане\tAlt+Ctrl+M"
 
 #: Merge.rc:13D827C3
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
-msgstr ""
+msgstr "Добавяне точка за синхронизация\tAlt+S"
 
 #: Merge.rc:6F88EC67
 #, c-format
 msgid "Clear Sync&hronization Points"
-msgstr ""
+msgstr "Изтриване точките за синхронизация"
 
 #: Merge.rc:68816EE5
 #, c-format
@@ -1041,7 +1041,7 @@ msgstr "&Скриптове"
 #: Merge.rc:39000D56
 #, c-format
 msgid "Sp&lit"
-msgstr ""
+msgstr "Ра&здели"
 
 #: Merge.rc:4C3E0A2B
 #, c-format
@@ -1056,32 +1056,32 @@ msgstr ""
 #: Merge.rc:20F0A449
 #, c-format
 msgid "First &left item with second left item"
-msgstr ""
+msgstr "Първият &ляв елемент с втория ляв елемент"
 
 #: Merge.rc:2758BFC0
 #, c-format
 msgid "First &right item with second right item"
-msgstr ""
+msgstr "Първи и &десен елемент с втори десен елемент"
 
 #: Merge.rc:56380EAD
 #, c-format
 msgid "&First left item with second right item"
-msgstr ""
+msgstr "&Първият ляв елемент с втория десен елемент"
 
 #: Merge.rc:56380EAE
 #, c-format
 msgid "&Second left item with first right item"
-msgstr ""
+msgstr "&Втори ляв елемент с първи десен елемент"
 
 #: Merge.rc:67A28B28
 #, c-format
 msgid "Co&mpare As"
-msgstr ""
+msgstr "С&равни като"
 
 #: Merge.rc:4D4D2E92
 #, c-format
 msgid "Left to Middle (%1 of %2)"
-msgstr ""
+msgstr "Ляв към Среден (%1 of %2)"
 
 #: Merge.rc:1723859F
 #, c-format
@@ -1096,22 +1096,22 @@ msgstr "Ляв към... (%1 от %2)"
 #: Merge.rc:6CA26872
 #, c-format
 msgid "Middle to Left (%1 of %2)"
-msgstr ""
+msgstr "Среден към Ляв (%1 of %2)"
 
 #: Merge.rc:27AAA635
 #, c-format
 msgid "Middle to Right (%1 of %2)"
-msgstr ""
+msgstr "Среден към Десен (%1 of %2)"
 
 #: Merge.rc:7F2E4118
 #, c-format
 msgid "Middle to... (%1 of %2)"
-msgstr ""
+msgstr "Среден към... (%1 of %2)"
 
 #: Merge.rc:2044B100
 #, c-format
 msgid "Right to Middle (%1 of %2)"
-msgstr ""
+msgstr "Десен към Среден (%1 of %2)"
 
 #: Merge.rc:73E9B1DB
 #, c-format
@@ -1136,7 +1136,7 @@ msgstr "&От ляво"
 #: Merge.rc:89AF4FB
 #, c-format
 msgid "&Middle"
-msgstr ""
+msgstr "&Среден"
 
 #: Merge.rc:1D2E49FB
 #, c-format
@@ -1151,7 +1151,7 @@ msgstr "&Двете"
 #: Merge.rc:22956A8
 #, c-format
 msgid "&All"
-msgstr ""
+msgstr "&Всички"
 
 #: Merge.rc:4876CD3D
 #, c-format
@@ -1176,12 +1176,12 @@ msgstr "с &Външен Редактор"
 #: Merge.rc:5A9A713D
 #, c-format
 msgid "&Parent Folder"
-msgstr ""
+msgstr "&Родителска папка"
 
 #: Merge.rc:761E6872
 #, c-format
 msgid "Open Midd&le"
-msgstr ""
+msgstr "Отвори сре&ден"
 
 #: Merge.rc:1C95A043
 #, c-format
@@ -1201,7 +1201,7 @@ msgstr "Ляв (%1 от %2)"
 #: Merge.rc:729280D9
 #, c-format
 msgid "Middle (%1 of %2)"
-msgstr ""
+msgstr "Среден (%1 of %2)"
 
 #: Merge.rc:32BFDBAB
 #, c-format
@@ -1216,7 +1216,7 @@ msgstr "Двете (%1 от %2)"
 #: Merge.rc:2515A6BA
 #, c-format
 msgid "All (%1 of %2)"
-msgstr ""
+msgstr "Всички (%1 of %2)"
 
 #: Merge.rc:6FC398B9
 #, c-format
@@ -1226,7 +1226,7 @@ msgstr "Копирай &файловите имена"
 #: Merge.rc:4BFA4345
 #, c-format
 msgid "Copy Items To Clip&board"
-msgstr ""
+msgstr "Копиране елементи в клипборда"
 
 #: Merge.rc:22956A9
 #, c-format
@@ -1236,17 +1236,17 @@ msgstr "&Зип"
 #: Merge.rc:7370E045
 #, c-format
 msgid "Both to... (%1 of %2)"
-msgstr ""
+msgstr "И двете... (%1 of %2)"
 
 #: Merge.rc:7CF93369
 #, c-format
 msgid "All to... (%1 of %2)"
-msgstr ""
+msgstr "Всички към... (%1 of %2)"
 
 #: Merge.rc:31EF0955
 #, c-format
 msgid "Differences to... (%1 of %2)"
-msgstr ""
+msgstr "Разликите към... (%1 of %2)"
 
 #: Merge.rc:AC3AA1D
 #, c-format
@@ -1256,22 +1256,22 @@ msgstr "&Обнови"
 #: Merge.rc:71676C47
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Лев Shell меню"
 
 #: Merge.rc:729280DA
 #, c-format
 msgid "Middle Shell menu"
-msgstr ""
+msgstr "Среден Shell меню"
 
 #: Merge.rc:32BFDBAC
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Десен Shell меню"
 
 #: Merge.rc:3CF9F84
 #, c-format
 msgid "Copy"
-msgstr ""
+msgstr "Копирай"
 
 #: Merge.rc:78B3B625
 #, c-format
@@ -1346,7 +1346,7 @@ msgstr "Големи/малки букви"
 #: Merge.rc:620FF1AC
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "Игнорирайте разликите за нов ред (Windows/Unix/Mac)"
 
 #: Merge.rc:6DE6F873
 #, c-format
@@ -1356,7 +1356,7 @@ msgstr "&Включително подпапките"
 #: Merge.rc:1DC30E64
 #, c-format
 msgid "&Compare method:"
-msgstr ""
+msgstr "Метод за &сравняване:"
 
 #: Merge.rc:7A4CFAFB
 #, c-format
@@ -1371,7 +1371,7 @@ msgstr "Бърз достъп"
 #: Merge.rc:36B164C4
 #, c-format
 msgid "Binary Contents"
-msgstr ""
+msgstr "Двоично съдържание"
 
 #: Merge.rc:2CEE4748
 #, c-format
@@ -1391,7 +1391,7 @@ msgstr "Размер"
 #: Merge.rc:1DC30E65
 #, c-format
 msgid "&Load Project..."
-msgstr ""
+msgstr "Зареди проект"
 
 #: Merge.rc:2515A6BC
 #, c-format
@@ -1421,7 +1421,7 @@ msgstr "Избери Файл или директория..."
 #: Merge.rc:6DE6F874
 #, c-format
 msgid "&1st File or Folder"
-msgstr ""
+msgstr "&1-ви файл или папка"
 
 #: Merge.rc:39174D96
 #, c-format
@@ -1431,7 +1431,7 @@ msgstr "Само за четене"
 #: Merge.rc:56BD1FBA
 #, c-format
 msgid "Swap 1st | 2nd"
-msgstr ""
+msgstr "Размени 1-ви | 2-ри"
 
 #: Merge.rc:68816EE7
 #, c-format
@@ -1441,17 +1441,17 @@ msgstr "&Потърси..."
 #: Merge.rc:6DE6F875
 #, c-format
 msgid "&2nd File or Folder"
-msgstr ""
+msgstr "&2-ри файл или папка"
 
 #: Merge.rc:39174D97
 #, c-format
 msgid "Rea&d-only"
-msgstr ""
+msgstr "Само за &четене"
 
 #: Merge.rc:56BD1FBB
 #, c-format
 msgid "Swap 2nd | 3rd"
-msgstr ""
+msgstr "Размени 2-ри | 3-ти"
 
 #: Merge.rc:78E0CE0E
 #, c-format
@@ -1461,17 +1461,17 @@ msgstr "Преглед"
 #: Merge.rc:3C1ECDDA
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr ""
+msgstr "&3-ши файл или папка (незадължителен)"
 
 #: Merge.rc:39174D98
 #, c-format
 msgid "Read-o&nly"
-msgstr ""
+msgstr "Са&мо за четене"
 
 #: Merge.rc:56BD1FBC
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr ""
+msgstr "Размени 1-ви | 3-ти"
 
 #: Merge.rc:146A5938
 #, c-format
@@ -1481,7 +1481,7 @@ msgstr "Потърси..."
 #: Merge.rc:22467E6E
 #, c-format
 msgid " Folder: Filter"
-msgstr ""
+msgstr " Папка: Филтър"
 
 #: Merge.rc:68816EE8
 #, c-format
@@ -1491,16 +1491,16 @@ msgstr "Избери..."
 #: Merge.rc:662470D5
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr ""
+msgstr " Файл: Unpacker добавка"
 
 #: Merge.rc:751AB58F
 #, c-format
 msgid "Se&lect..."
-msgstr ""
+msgstr "Из&бор"
 
 #: Merge.rc:4C3E0A2D
 msgid "Co&mpare"
-msgstr ""
+msgstr "С&равни"
 
 #: Merge.rc:4E65D340
 #, c-format
@@ -1555,12 +1555,12 @@ msgstr "Запази времето на файла при сравняване"
 #: Merge.rc:17F0E759
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "Покажи \"Изберете Файлове или Папки\" диалога при стартиране"
 
 #: Merge.rc:1AD99579
 #, c-format
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr ""
+msgstr "Затвори \"Изберете Файлове или Папки\" диалога при избор на бутон ОК"
 
 #: Merge.rc:44776ACE
 #, c-format
@@ -1570,7 +1570,7 @@ msgstr "Отвори-диалог Авто-завършване:"
 #: Merge.rc:1B63306F
 #, c-format
 msgid "Language:"
-msgstr ""
+msgstr "Език:"
 
 #: Merge.rc:516450B
 #, c-format
@@ -1615,12 +1615,12 @@ msgstr "До края на файла"
 #: Merge.rc:545FEEA2
 #, c-format
 msgid "&Don't close this dialog box"
-msgstr ""
+msgstr "&Не затваряйте този диалог"
 
 #: Merge.rc:68EE6DF0
 #, c-format
 msgid "Find &Prev"
-msgstr ""
+msgstr "Намери преден"
 
 #: Merge.rc:68816EE9
 #, c-format
@@ -1675,12 +1675,12 @@ msgstr "Зам. &всичко"
 #: Merge.rc:2FC0BA7B
 #, c-format
 msgid "Markers"
-msgstr ""
+msgstr "Маркери"
 
 #: Merge.rc:61E8009D
 #, c-format
 msgid "Enable &Markers"
-msgstr ""
+msgstr "Разрешаване на &маркери"
 
 #: Merge.rc:24A380
 #, c-format
@@ -1690,7 +1690,7 @@ msgstr "Нов"
 #: Merge.rc:3938FFC5
 #, c-format
 msgid "&Background color:"
-msgstr ""
+msgstr "Цвят на фона:"
 
 #: Merge.rc:1D2E49FC
 #, c-format
@@ -1770,12 +1770,12 @@ msgstr "Избрани и преместени:"
 #: Merge.rc:73FB246
 #, c-format
 msgid "Same As The Next (3 panes):"
-msgstr ""
+msgstr "Също като следващото (3 панела)"
 
 #: Merge.rc:60B696AF
 #, c-format
 msgid "Same As The Next (Selected):"
-msgstr ""
+msgstr "Също като следващото (избрано)"
 
 #: Merge.rc:40C55014
 #, c-format
@@ -1945,12 +1945,12 @@ msgstr "Спри"
 #: Merge.rc:D109E01
 #, c-format
 msgid "Pause"
-msgstr ""
+msgstr "Пауза"
 
 #: Merge.rc:4C3E0A2E
 #, c-format
 msgid "Continue"
-msgstr ""
+msgstr "Продължи"
 
 #: Merge.rc:1AC98D0A
 #, c-format
@@ -2040,7 +2040,7 @@ msgstr "Игнорирай &Големи/малки букви"
 #: Merge.rc:6C318DC8
 #, c-format
 msgid "Ignore codepage &differences"
-msgstr ""
+msgstr "Игнорирайте &разликите в кодовите страници"
 
 #: Merge.rc:285B56CE
 #, c-format
@@ -2125,7 +2125,7 @@ msgstr "Ниво &дума:"
 #: Merge.rc:14AF463A
 #, c-format
 msgid "W&ord break characters:"
-msgstr ""
+msgstr "Символи за разделяне на думи"
 
 #: Merge.rc:34DF5070
 #, c-format
@@ -2180,17 +2180,17 @@ msgstr "&Отмени промените"
 #: Merge.rc:24BA673E
 #, c-format
 msgid "Middle side file"
-msgstr ""
+msgstr "Файл средна част"
 
 #: Merge.rc:F2F641C
 #, c-format
 msgid "Sa&ve changes"
-msgstr ""
+msgstr "За&пази промените"
 
 #: Merge.rc:71E3C8E4
 #, c-format
 msgid "Disca&rd changes"
-msgstr ""
+msgstr "О&тмени промените"
 
 #: Merge.rc:47D4A3FB
 #, c-format
@@ -2210,7 +2210,7 @@ msgstr "О&тмени промените"
 #: Merge.rc:5578260F
 #, c-format
 msgid "Disca&rd All"
-msgstr ""
+msgstr "От&мени всичко"
 
 #: Merge.rc:4C3E0A30
 #, c-format
@@ -2230,12 +2230,12 @@ msgstr "Изберете стандартна кодировка за не-Unico
 #: Merge.rc:5CC85DF4
 #, c-format
 msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
-msgstr ""
+msgstr "Разпознаване кодовата страница за файлове: .html, .rc, .xml \nизисква се рестартиране"
 
 #: Merge.rc:3BCD5104
 #, c-format
 msgid "Detect codepage for text files using mlang.dll\nneed to restart session"
-msgstr ""
+msgstr "Разпознаване кодовата страница за текстови файлове с използване на mlang.dll\nизисква се рестартиране"
 
 #: Merge.rc:E6D7F1
 #, c-format
@@ -2330,27 +2330,27 @@ msgstr "Удебелен"
 #: Merge.rc:2CEE4749
 #, c-format
 msgid "Marker colors"
-msgstr ""
+msgstr "Цветове за маркерите"
 
 #: Merge.rc:56BD1FBD
 #, c-format
 msgid "Search Marker:"
-msgstr ""
+msgstr "Намери маркер:"
 
 #: Merge.rc:7B76381B
 #, c-format
 msgid "User Defined Marker1:"
-msgstr ""
+msgstr "Потребителски Маркер1:"
 
 #: Merge.rc:7B76381C
 #, c-format
 msgid "User Defined Marker2:"
-msgstr ""
+msgstr "Потребителски Маркер2"
 
 #: Merge.rc:7B76381D
 #, c-format
 msgid "User Defined Marker3:"
-msgstr ""
+msgstr "Потребителски Маркер3"
 
 #: Merge.rc:387F7980
 #, c-format
@@ -2475,22 +2475,22 @@ msgstr "Затвори"
 #: Merge.rc:2FC0BA7C
 #, c-format
 msgid "Middle:"
-msgstr ""
+msgstr "Среден:"
 
 #: Merge.rc:2CEE474A
 #, c-format
 msgid "Missing Left:"
-msgstr ""
+msgstr "Липсва Ляв:"
 
 #: Merge.rc:2A79A039
 #, c-format
 msgid "Missing Middle:"
-msgstr ""
+msgstr "Липсва Среден:"
 
 #: Merge.rc:70DAA20F
 #, c-format
 msgid "Missing Right:"
-msgstr ""
+msgstr "Липсва Десен"
 
 #: Merge.rc:413EF3DC
 #, c-format
@@ -2675,12 +2675,12 @@ msgstr "Не"
 #: Merge.rc:B612C23
 #, c-format
 msgid "Plugins"
-msgstr ""
+msgstr "Добавки"
 
 #: Merge.rc:78B3B628
 #, c-format
 msgid "&Enable plugins"
-msgstr ""
+msgstr "Разрешаване на добавки"
 
 #: Merge.rc:62909ED6
 #, c-format
@@ -2700,7 +2700,7 @@ msgstr "Позволи &допълнително меню"
 #: Merge.rc:4EF81631
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "Добави в контекстното меню"
 
 #: Merge.rc:26A6974B
 #, c-format
@@ -2730,22 +2730,22 @@ msgstr "Игнорирай времевите разлики по-малки о�
 #: Merge.rc:6D5B7719
 #, c-format
 msgid "&Include unique subfolders contents"
-msgstr ""
+msgstr "&Включи съдържанието на уникални подпапки"
 
 #: Merge.rc:3E136C28
 #, c-format
 msgid "&Automatically expand all subfolders"
-msgstr ""
+msgstr "&Автоматично разтвори всички подпапки"
 
 #: Merge.rc:5D032167
 #, c-format
 msgid "Ignore &Reparse Points"
-msgstr ""
+msgstr "Игнориране &точки за възстановяване"
 
 #: Merge.rc:2E2C5208
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr ""
+msgstr "Лимит за бързо сравнение (MB):"
 
 #: Merge.rc:2188DD49
 #, c-format
@@ -2760,32 +2760,32 @@ msgstr "Двоичен"
 #: Merge.rc:7AAB28B8
 #, c-format
 msgid "Binary File &Patterns:"
-msgstr ""
+msgstr "&Шаблони за двоични файлове:"
 
 #: Merge.rc:4F5264C9
 #, c-format
 msgid "Frhed settings"
-msgstr ""
+msgstr "Настройки за Frhed"
 
 #: Merge.rc:1A8FADD4
 #, c-format
 msgid "View &Settings..."
-msgstr ""
+msgstr "&Настройки преглед "
 
 #: Merge.rc:78B3B629
 #, c-format
 msgid "&Binary Mode..."
-msgstr ""
+msgstr "Двоичен режим..."
 
 #: Merge.rc:1A9EBDF3
 #, c-format
 msgid "&Character Set..."
-msgstr ""
+msgstr "Набор от &символи..."
 
 #: Merge.rc:B8C361
 #, c-format
 msgid "Image"
-msgstr ""
+msgstr "Изображения"
 
 #: Merge.rc:2C4A6C6D
 #, c-format
@@ -2830,17 +2830,17 @@ msgstr ""
 #: Merge.rc:E8950E9
 #, c-format
 msgid "\nNew Documents (Ctrl+N)"
-msgstr ""
+msgstr "\nНови документи (Ctrl+N)"
 
 #: Merge.rc:28AAB7D
 #, c-format
 msgid "\nOpen (Ctrl+O)"
-msgstr ""
+msgstr "\nОтвори (Ctrl+O)"
 
 #: Merge.rc:28AAB7E
 #, c-format
 msgid "\nSave (Ctrl+S)"
-msgstr ""
+msgstr "\nЗапази (Ctrl+S)"
 
 #: Merge.rc:524AB109
 #, c-format
@@ -2865,7 +2865,7 @@ msgstr "Проектовия файл е записан успешно."
 #: Merge.rc:28AAB7F
 #, c-format
 msgid "\nUndo (Ctrl+Z)"
-msgstr ""
+msgstr "\nВърни (Ctrl+Z)"
 
 #: Merge.rc:28AAB80
 #, c-format
@@ -2959,12 +2959,12 @@ msgstr "Не питай пак този въпрос."
 #: Merge.rc:78ACB5DB
 #, c-format
 msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
-msgstr ""
+msgstr "За да видите отново това съобщение, натиснете бутона Reset на страницата Общи в диалога Опции."
 
 #: Merge.rc:39000D58
 #, c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Синтаксис"
 
 #: Merge.rc:2C0C2241
 #, c-format
@@ -3009,7 +3009,7 @@ msgstr "Уникод"
 #: Merge.rc:295600
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:761E6873
 #, c-format
@@ -3090,7 +3090,7 @@ msgstr "Филтри"
 #: Merge.rc:52D199B
 #, c-format
 msgid "[F] "
-msgstr ""
+msgstr "[F] "
 
 #: Merge.rc:2C0C2242
 #, c-format
@@ -3181,7 +3181,7 @@ msgstr "Филтърният файл вече съществува. Да се �
 #: Merge.rc:237A126
 #, c-format
 msgid "Regular expression"
-msgstr "Чести изрази"
+msgstr "Регулярни изрази"
 
 #: Merge.rc:34BD4316
 #, c-format
@@ -3206,7 +3206,7 @@ msgstr "Без заглавие ляв"
 #: Merge.rc:730B3FD4
 #, c-format
 msgid "Untitled middle"
-msgstr ""
+msgstr "Без заглавие среда"
 
 #: Merge.rc:4E089EF3
 #, c-format
@@ -3287,27 +3287,27 @@ msgstr "Избор на директория"
 #: Merge.rc:3080B693
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr ""
+msgstr "Изберете две (или три) папки или два (или три) файла за сравнение."
 
 #: Merge.rc:2EBBDDD6
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr ""
+msgstr "Левия (1-ви) път е невалиден!"
 
 #: Merge.rc:BA50069
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr ""
+msgstr "Средния (2-ри) път е невалиден!"
 
 #: Merge.rc:21DC7C32
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr ""
+msgstr "Десния (2-ри) път е невалиден!"
 
 #: Merge.rc:21DC7C33
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr ""
+msgstr "Десния (3-ти) път е невалиден!"
 
 #: Merge.rc:5AB9EEA7
 #, c-format
@@ -3317,27 +3317,27 @@ msgstr "Двата пътя са невалидни!"
 #: Merge.rc:585E8EC0
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr ""
+msgstr "Левия (1-ви) и Средния (2-ри) пътищя са невалидни!"
 
 #: Merge.rc:135DE390
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "Левия (1-ви) и Десния (3-ти) пътищя са невалидни!"
 
 #: Merge.rc:72716FA6
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "Средния (2-ри) и Левия (3-ти) пътищя са невалидни!"
 
 #: Merge.rc:237A0533
 #, c-format
 msgid "All paths are invalid!"
-msgstr ""
+msgstr "Всички пътищя са невалидни!"
 
 #: Merge.rc:1235F930
 #, c-format
 msgid "Only enabled for File comparisons"
-msgstr ""
+msgstr "Разрешено само при сравняване на файлове"
 
 #: Merge.rc:30FF7A4E
 #, c-format
@@ -3494,7 +3494,7 @@ msgstr "Запиши левия файл като"
 #: Merge.rc:E4471D
 #, c-format
 msgid "Save Middle File As"
-msgstr ""
+msgstr "Запиши Средния файл като"
 
 #: Merge.rc:6F833C19
 #, c-format
@@ -3533,17 +3533,17 @@ msgstr "От дясно към ляво (%1)"
 #: Merge.rc:52D3F9F6
 #, c-format
 msgid "Right to Middle (%1)"
-msgstr ""
+msgstr "Десен към Среден (%1)"
 
 #: Merge.rc:17F5B413
 #, c-format
 msgid "Middle to Left (%1)"
-msgstr ""
+msgstr "Среден към Ляв (%1)"
 
 #: Merge.rc:66C0CE9F
 #, c-format
 msgid "Middle to Right (%1)"
-msgstr ""
+msgstr "Среден към Десен (%1)"
 
 #: Merge.rc:7271FF80
 #, c-format
@@ -3553,7 +3553,7 @@ msgstr "От ляво към дясно (%1)"
 #: Merge.rc:5BCDF0E7
 #, c-format
 msgid "Left to Middle (%1)"
-msgstr ""
+msgstr "Ляв към Среден (%1)"
 
 #: Merge.rc:71676C48
 #, c-format
@@ -3563,7 +3563,7 @@ msgstr "Ляв към... (%1)"
 #: Merge.rc:729280DB
 #, c-format
 msgid "Middle to... (%1)"
-msgstr ""
+msgstr "Среден към ... (%1)"
 
 #: Merge.rc:32BFDBAD
 #, c-format
@@ -3573,17 +3573,17 @@ msgstr "Десен към... (%1)"
 #: Merge.rc:36B164C5
 #, c-format
 msgid "Both to... (%1)"
-msgstr ""
+msgstr "И двата към... (%1)"
 
 #: Merge.rc:2515A6BD
 #, c-format
 msgid "All to... (%1)"
-msgstr ""
+msgstr "Всички към... (%1)"
 
 #: Merge.rc:290D6FC6
 #, c-format
 msgid "Differences to... (%1)"
-msgstr ""
+msgstr "Разликите към... (%1)"
 
 #: Merge.rc:1B633070
 #, c-format
@@ -3593,7 +3593,7 @@ msgstr "Ляво (%1)"
 #: Merge.rc:13C27215
 #, c-format
 msgid "Middle (%1)"
-msgstr ""
+msgstr "Среден (%1)"
 
 #: Merge.rc:39174D9A
 #, c-format
@@ -3608,7 +3608,7 @@ msgstr "Двете(%1)"
 #: Merge.rc:669F87F5
 #, c-format
 msgid "All (%1)"
-msgstr ""
+msgstr "Всички (%1)"
 
 #: Merge.rc:DD21175
 #, c-format
@@ -3618,7 +3618,7 @@ msgstr "Лява част - изберете папка:"
 #: Merge.rc:2B480620
 #, c-format
 msgid "Middle side - select destination folder:"
-msgstr ""
+msgstr "Средна страна - изберете папка за местоназначение"
 
 #: Merge.rc:5BBC5591
 #, c-format
@@ -3678,22 +3678,22 @@ msgstr ""
 #: Merge.rc:2019BE6E
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr ""
+msgstr "Наистина ли искате да преместите:"
 
 #: Merge.rc:2B0F0BA4
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr ""
+msgstr "Наистина ли искате да преместите %d елемента:"
 
 #: Merge.rc:CAEDA37
 #, c-format
 msgid "Confirm Move"
-msgstr ""
+msgstr "Потвърдете преместването"
 
 #: Merge.rc:1E9E7AFF
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-msgstr ""
+msgstr "На път сте да затворите прозореца, в който се сравняват папки. Наистина ли искате да затворите прозореца?"
 
 #: Merge.rc:4B6299EF
 #, c-format
@@ -3893,7 +3893,7 @@ msgstr "От дясно само: %1"
 #: Merge.rc:576B1A36
 #, c-format
 msgid "Does not exist in %1"
-msgstr ""
+msgstr "Не съществува в %1"
 
 #: Merge.rc:6B248E76
 #, c-format
@@ -3913,7 +3913,7 @@ msgstr "Различни файлове"
 #: Merge.rc:387F7982
 #, c-format
 msgid "Folders are different"
-msgstr ""
+msgstr "Папките са различни"
 
 #: Merge.rc:1B633073
 #, c-format
@@ -3928,22 +3928,22 @@ msgstr "Само десният"
 #: Merge.rc:13C27218
 #, c-format
 msgid "Middle Only"
-msgstr ""
+msgstr "Само средно"
 
 #: Merge.rc:638BD42C
 #, c-format
 msgid "No item in left"
-msgstr ""
+msgstr "В лявата част няма елемент"
 
 #: Merge.rc:DEEB1BA
 #, c-format
 msgid "No item in right"
-msgstr ""
+msgstr "Няма елемент вдясно"
 
 #: Merge.rc:2FE785D7
 #, c-format
 msgid "No item in middle"
-msgstr ""
+msgstr "Няма елемент в средата"
 
 #: Merge.rc:79AB21E1
 #, c-format
@@ -3953,27 +3953,27 @@ msgstr "Грешка"
 #: Merge.rc:12D66B44
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "Текстовите файлове са идентични"
 
 #: Merge.rc:1DEEB161
 #, c-format
 msgid "(Middle and right are identical)"
-msgstr ""
+msgstr "(Средно и дясно са идентични)"
 
 #: Merge.rc:1D99B043
 #, c-format
 msgid "(Left and right are identical)"
-msgstr ""
+msgstr "(Лявото и дясното са идентични)"
 
 #: Merge.rc:159C584C
 #, c-format
 msgid "(Left and middle are identical)"
-msgstr ""
+msgstr "(Лявата и средната са идентични)"
 
 #: Merge.rc:12D66B45
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "Текстовите файлове са различни"
 
 #: Merge.rc:203BBC7B
 #, c-format
@@ -4018,7 +4018,7 @@ msgstr "Дата на промяна на дясната страна."
 #: Merge.rc:68FB0CE7
 #, c-format
 msgid "Middle side modification date."
-msgstr ""
+msgstr "Дата на промяна на средната част"
 
 #: Merge.rc:453F5DDC
 #, c-format
@@ -4252,22 +4252,22 @@ msgstr "Папката съществува само в другата стра�
 #: Merge.rc:36F211E1
 #, c-format
 msgid "Do you want to move to the next file?"
-msgstr ""
+msgstr "Искате ли да преминете към следващия файл?"
 
 #: Merge.rc:6A0A36F1
 #, c-format
 msgid "Do you want to move to the previous file?"
-msgstr ""
+msgstr "Искате ли да преминете към предишния файл?"
 
 #: Merge.rc:36F211E2
 #, c-format
 msgid "Do you want to move to the next page?"
-msgstr ""
+msgstr "Искате ли да преминете към следващата страница?"
 
 #: Merge.rc:6A0A36F2
 #, c-format
 msgid "Do you want to move to the previous page?"
-msgstr ""
+msgstr "Искате ли да преминете към предишната страница?"
 
 #: Merge.rc:4A700AB0
 #, c-format
@@ -4288,17 +4288,17 @@ msgstr "Загуба на информация, поради грешка в к�
 #: Merge.rc:5851E4C9
 #, c-format
 msgid "Information lost due to encoding errors: first file"
-msgstr ""
+msgstr "Информация, загубена поради грешки при кодиране: първи файл"
 
 #: Merge.rc:31EAB496
 #, c-format
 msgid "Information lost due to encoding errors: second file"
-msgstr ""
+msgstr "Информация, загубена поради грешки при кодиране: втори файл"
 
 #: Merge.rc:5851E4CA
 #, c-format
 msgid "Information lost due to encoding errors: third file"
-msgstr ""
+msgstr "Информация, загубена поради грешки при кодиране: трети файл"
 
 #: Merge.rc:7D4E76C0
 #, c-format
@@ -4323,32 +4323,32 @@ msgstr "Не може да се намери низа \"%s\""
 #: Merge.rc:34855CF1
 #, c-format
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
-msgstr ""
+msgstr "Вече сте в режим на сливане. Ако искате да изключите режим на сливане, натиснете клавиша F9"
 
 #: Merge.rc:5E0C549
 #, c-format
 msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
-msgstr ""
+msgstr "Броят на автоматично обединени промени: %1\nБрой неразрешени конфликти: %2"
 
 #: Merge.rc:7453F857
 #, c-format
 msgid "The change of codepage has been merged"
-msgstr ""
+msgstr "Промяната на кодовата страница е обединена"
 
 #: Merge.rc:162B12FA
 #, c-format
 msgid "The changes of codepage are conflicting"
-msgstr ""
+msgstr "Промените в кодовата страница са противоречиви"
 
 #: Merge.rc:7632E88E
 #, c-format
 msgid "The change of EOL has been merged"
-msgstr ""
+msgstr "Промяната на EOL е обединена"
 
 #: Merge.rc:502A2983
 #, c-format
 msgid "The changes of EOL are conflicting"
-msgstr ""
+msgstr "Промените в EOL са противоречиви"
 
 #: Merge.rc:5C8E17D1
 #, c-format
@@ -4506,7 +4506,7 @@ msgstr "Няма"
 #: Merge.rc:4C72B57
 #, c-format
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: Merge.rc:5ED09E18
 #, c-format
@@ -4526,52 +4526,52 @@ msgstr ""
 #: Merge.rc:51A4FE5F
 #, c-format
 msgid "\nDifference in the Current Line"
-msgstr ""
+msgstr "\nРазлика в текущия ред"
 
 #: Merge.rc:CF15594
 #, c-format
 msgid "\nOptions"
-msgstr ""
+msgstr "\nOptions"
 
 #: Merge.rc:6F90DC3A
 #, c-format
 msgid "\nRefresh (F5)"
-msgstr ""
+msgstr "\nОбновяване (F5)"
 
 #: Merge.rc:414AF01
 #, c-format
 msgid "\nPrevious Difference (Alt+Up)"
-msgstr ""
+msgstr "\nПредишна разлика (Alt+Up)"
 
 #: Merge.rc:16618519
 #, c-format
 msgid "\nNext Difference (Alt+Down)"
-msgstr ""
+msgstr "\nСледваща разлика (Alt+Down)"
 
 #: Merge.rc:7C5EF083
 #, c-format
 msgid "\nPrevious Conflict (Alt+Shift+Up)"
-msgstr ""
+msgstr "\nПредишен конфликт (Alt+Shift+Up)"
 
 #: Merge.rc:51A4FE60
 #, c-format
 msgid "\nNext Conflict (Alt+Shift+Down)"
-msgstr ""
+msgstr "\nСледващ конфликт (Alt+Shift+Down)"
 
 #: Merge.rc:35CF1E68
 #, c-format
 msgid "\nFirst Difference (Alt+Home)"
-msgstr ""
+msgstr "\nПърва разлика  (Alt+Home)"
 
 #: Merge.rc:51A4FE61
 #, c-format
 msgid "\nCurrent Difference (Alt+Enter)"
-msgstr ""
+msgstr "\nТекуща разлика (Alt+Enter)"
 
 #: Merge.rc:1DA00C8A
 #, c-format
 msgid "\nLast Difference (Alt+End)"
-msgstr ""
+msgstr "\nПоследна разлика (Alt+End)"
 
 #: Merge.rc:E8950EA
 #, c-format
@@ -4741,17 +4741,17 @@ msgstr ""
 #: Merge.rc:3D9427A9
 #, c-format
 msgid "frhed is not installed"
-msgstr ""
+msgstr "frhed не е инсталиран"
 
 #: Merge.rc:73B321AA
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
-msgstr ""
+msgstr "%1 не съществува. Искате ли да я създадете?"
 
 #: Merge.rc:3A5D5964
 #, c-format
 msgid "Failed to create folder."
-msgstr ""
+msgstr "Неуспешно създаване на папка."
 
 #: Merge.rc:64F70DD6
 #, c-format

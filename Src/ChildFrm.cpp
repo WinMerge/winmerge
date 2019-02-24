@@ -258,6 +258,15 @@ bool CChildFrame::EnsureValidDockState(CDockState& state)
 
 void CChildFrame::ActivateFrame(int nCmdShow) 
 {
+	// load docking positions and sizes
+	CDockState pDockState;
+	pDockState.LoadState(_T("Settings"));
+	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+		SetDockState(pDockState);
+	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
+	m_wndLocationBar.LoadState(_T("Settings"));
+	m_wndDetailBar.LoadState(_T("Settings"));
+
 	if (!m_bActivated) 
 	{
 		m_bActivated = true;
@@ -267,7 +276,7 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 		CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
 		if (oldActiveFrame == nullptr)
 			// for the first frame, get the restored/maximized state from the registry
-			bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), TRUE);
+			bMaximized = GetOptionsMgr()->GetBool(OPT_ACTIVE_FRAME_MAX);
 		if (bMaximized)
 			nCmdShow = SW_SHOWMAXIMIZED;
 		else
@@ -275,15 +284,6 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 	}
 
 	CMDIChildWnd::ActivateFrame(nCmdShow);
-
-	// load docking positions and sizes
-	CDockState pDockState;
-	pDockState.LoadState(_T("Settings"));
-	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
-		SetDockState(pDockState);
-	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
-	m_wndLocationBar.LoadState(_T("Settings"));
-	m_wndDetailBar.LoadState(_T("Settings"));
 }
 
 BOOL CChildFrame::DestroyWindow() 
@@ -296,7 +296,7 @@ BOOL CChildFrame::DestroyWindow()
 		WINDOWPLACEMENT wp;
 		wp.length = sizeof(WINDOWPLACEMENT);
 		GetWindowPlacement(&wp);
-		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
+		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
 	}
 
 	return CMDIChildWnd::DestroyWindow();
@@ -326,7 +326,7 @@ void CChildFrame::SavePosition()
 		auto& splitterWnd = static_cast<CMergeEditSplitterView *>(m_wndSplitter.GetPane(iRow, 0))->m_wndSplitter;
 		splitterWnd.GetActivePane(&iRow, &iCol);
 		if (iRow >= 0 || iCol >= 0)
-			theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), max(iRow, iCol));
+			GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, max(iRow, iCol));
 	}
 }
 

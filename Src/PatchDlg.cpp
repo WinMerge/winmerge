@@ -28,6 +28,8 @@
 #include "CompareOptions.h"
 #include "FileOrFolderSelect.h"
 #include "Environment.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -415,28 +417,28 @@ void CPatchDlg::UpdateSettings()
  */
 void CPatchDlg::LoadSettings()
 {
-	int patchStyle = AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("PatchStyle"), 0);
+	int patchStyle = GetOptionsMgr()->GetInt(OPT_PATCHCREATOR_PATCH_STYLE);
 	if ((patchStyle < DIFF_OUTPUT_NORMAL || patchStyle > DIFF_OUTPUT_UNIFIED) &&  patchStyle != DIFF_OUTPUT_HTML)
 		patchStyle = DIFF_OUTPUT_NORMAL;
 	m_outputStyle = (enum output_style) patchStyle;
 	
-	m_contextLines = AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("ContextLines"), 0);
+	m_contextLines = GetOptionsMgr()->GetInt(OPT_PATCHCREATOR_CONTEXT_LINES);
 	if (m_contextLines < 0 || m_contextLines > 50)
 		m_contextLines = 0;
 
-	m_caseSensitive = !!AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("CaseSensitive"), true);
-	m_ignoreEOLDifference = !!AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("EOLSensitive"), true);
-	m_ignoreBlanks = !!AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), false);
+	m_caseSensitive = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_CASE_SENSITIVE);
+	m_ignoreEOLDifference = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_EOL_SENSITIVE);
+	m_ignoreBlanks = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_IGNORE_BLANK_LINES);
 	
-	m_whitespaceCompare = AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("Whitespace"), WHITESPACE_COMPARE_ALL);
+	m_whitespaceCompare = GetOptionsMgr()->GetInt(OPT_PATCHCREATOR_WHITESPACE);
 	if (m_whitespaceCompare < WHITESPACE_COMPARE_ALL ||
 		m_whitespaceCompare > WHITESPACE_IGNORE_ALL)
 	{
 		m_whitespaceCompare = WHITESPACE_COMPARE_ALL;
 	}
 	
-	m_openToEditor = !!AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("OpenToEditor"), false);
-	m_includeCmdLine = !!AfxGetApp()->GetProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), false);
+	m_openToEditor = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_OPEN_TO_EDITOR);
+	m_includeCmdLine = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_INCLUDE_CMD_LINE);
 
 	UpdateSettings();
 }
@@ -446,14 +448,15 @@ void CPatchDlg::LoadSettings()
  */
 void CPatchDlg::SaveSettings()
 {
-	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("PatchStyle"), m_outputStyle);
-	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("ContextLines"), m_contextLines);
-	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("CaseSensitive"), m_caseSensitive);
-	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("EOLSensitive"), m_ignoreEOLDifference);
-	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), m_ignoreBlanks);
-	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("Whitespace"), m_whitespaceCompare);
-	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("OpenToEditor"), m_openToEditor);
-	AfxGetApp()->WriteProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), m_includeCmdLine);
+	COptionsMgr *pOptions = GetOptionsMgr();
+	pOptions->SaveOption(OPT_PATCHCREATOR_PATCH_STYLE, m_outputStyle);
+	pOptions->SaveOption(OPT_PATCHCREATOR_CONTEXT_LINES, m_contextLines);
+	pOptions->SaveOption(OPT_PATCHCREATOR_CASE_SENSITIVE, m_caseSensitive);
+	pOptions->SaveOption(OPT_PATCHCREATOR_EOL_SENSITIVE, m_ignoreEOLDifference);
+	pOptions->SaveOption(OPT_PATCHCREATOR_IGNORE_BLANK_LINES, m_ignoreBlanks);
+	pOptions->SaveOption(OPT_PATCHCREATOR_WHITESPACE, m_whitespaceCompare);
+	pOptions->SaveOption(OPT_PATCHCREATOR_OPEN_TO_EDITOR, m_openToEditor);
+	pOptions->SaveOption(OPT_PATCHCREATOR_INCLUDE_CMD_LINE, m_includeCmdLine);
 }
 
 /** 

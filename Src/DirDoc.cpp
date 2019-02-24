@@ -266,7 +266,7 @@ void CDirDoc::Rescan()
 	pf->GetHeaderInterface()->SetPaneCount(m_nDirs);
 	pf->GetHeaderInterface()->SetOnSetFocusCallback([&](int pane) {
 		m_pDirView->SetActivePane(pane);
-		theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), pane);
+		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, pane);
 	});
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
 	{
@@ -275,7 +275,7 @@ void CDirDoc::Rescan()
 		pf->GetHeaderInterface()->SetActive(nIndex, false);
 	}
 	pf->GetHeaderInterface()->Resize();
-	int nPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
+	int nPane = GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE);
 	m_pDirView->SetActivePane((nPane >= 0 && nPane < m_nDirs) ? nPane : 0);
 
 	// Make sure filters are up-to-date
