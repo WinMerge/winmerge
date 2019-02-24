@@ -28,6 +28,8 @@
 #include "stdafx.h"
 #include "DirFrame.h"
 #include "Merge.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -193,7 +195,7 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 	CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
 	if (oldActiveFrame == nullptr)
 		// for the first frame, get the restored/maximized state from the registry
-		bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), TRUE);
+		bMaximized = GetOptionsMgr()->GetBool(OPT_ACTIVE_FRAME_MAX);
 	if (bMaximized)
 		nCmdShow = SW_SHOWMAXIMIZED;
 	else
@@ -254,7 +256,7 @@ BOOL CDirFrame::DestroyWindow()
 		WINDOWPLACEMENT wp;
 		wp.length = sizeof(WINDOWPLACEMENT);
 		GetWindowPlacement(&wp);
-		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
+		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
 		// save docking positions and sizes
 		CDockState dockState;
 		GetDockState(dockState);

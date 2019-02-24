@@ -218,7 +218,7 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 		return false;
 
 	int nCmdShow = SW_SHOW;
-	if (theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE))
+	if (GetOptionsMgr()->GetBool(OPT_ACTIVE_FRAME_MAX))
 		nCmdShow = SW_SHOWMAXIMIZED;
 	ShowWindow(nCmdShow);
 	BringToTop(nCmdShow);
@@ -235,7 +235,7 @@ void CImgMergeFrame::MoveOnLoad(int nPane, int)
 {
 	if (nPane < 0)
 	{
-		nPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
+		nPane = GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE);
 		if (nPane < 0 || nPane >= m_pImgMergeWindow->GetPaneCount())
 			nPane = 0;
 	}
@@ -564,7 +564,7 @@ BOOL CImgMergeFrame::DestroyWindow()
 		WINDOWPLACEMENT wp;
 		wp.length = sizeof(WINDOWPLACEMENT);
 		GetWindowPlacement(&wp);
-		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
+		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
 	}
 
 	return CMDIChildWnd::DestroyWindow();
@@ -610,7 +610,7 @@ void CImgMergeFrame::SavePosition()
 {
 	CRect rc;
 	GetWindowRect(&rc);
-	theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), m_pImgMergeWindow->GetActivePane());
+	GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, m_pImgMergeWindow->GetActivePane());
 
 	// save the bars layout
 	// save docking positions and sizes
