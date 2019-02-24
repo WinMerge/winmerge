@@ -905,8 +905,8 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	if (pDirDoc != nullptr && !pDirDoc->CloseMergeDocs())
 		return false;
 
-	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL));
-	FileTransform::g_PredifferMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL));
+	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_UNPACKER_MODE));
+	FileTransform::g_PredifferMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_PREDIFFER_MODE));
 
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
 
@@ -1394,7 +1394,7 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 		FileTransform::g_UnpackerMode = PLUGIN_AUTO;
 		break;
 	}
-	theApp.WriteProfileInt(_T("Settings"), _T("UnpackerMode"), FileTransform::g_UnpackerMode);
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACKER_MODE, FileTransform::g_UnpackerMode);
 }
 
 void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
@@ -1422,7 +1422,7 @@ void CMainFrame::OnPluginPrediffMode(UINT nID )
 		pMergeDoc->SetPrediffer(&infoPrediffer);
 	for (auto pDirDoc : GetAllDirDocs())
 		pDirDoc->GetPluginManager().SetPrediffSettingAll(FileTransform::g_PredifferMode);
-	theApp.WriteProfileInt(_T("Settings"), _T("PredifferMode"), FileTransform::g_PredifferMode);
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_PREDIFFER_MODE, FileTransform::g_PredifferMode);
 }
 
 void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI) 

@@ -543,9 +543,6 @@ void DirItemEnumerator::CompressArchive(LPCTSTR path)
 	String strPath;
 	if (path == nullptr)
 	{
-		// No path given, so prompt for path!
-		static const TCHAR _T_Merge7z[] = _T("Merge7z");
-		static const TCHAR _T_FilterIndex[] = _T("FilterIndex");
 		// 7z311 can only write 7z, zip, and tar(.gz|.bz2) archives, so don't
 		// offer other formats here!
 		static const TCHAR _T_Filter[]
@@ -584,7 +581,7 @@ void DirItemEnumerator::CompressArchive(LPCTSTR path)
 			OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_NOREADONLYRETURN,
 			strFilter.c_str()
 		);
-		dlg.m_ofn.nFilterIndex = AfxGetApp()->GetProfileInt(_T_Merge7z, _T_FilterIndex, 1);
+		dlg.m_ofn.nFilterIndex = GetOptionsMgr()->GetInt(OPT_ARCHIVE_FILTER_INDEX);
 		// Use extension from current filter as default extension:
 		if (int i = dlg.m_ofn.nFilterIndex)
 		{
@@ -603,7 +600,7 @@ void DirItemEnumerator::CompressArchive(LPCTSTR path)
 		{
 			strPath = dlg.GetPathName();
 			path = strPath.c_str();
-			AfxGetApp()->WriteProfileInt(_T_Merge7z, _T_FilterIndex, dlg.m_ofn.nFilterIndex);
+			GetOptionsMgr()->SaveOption(OPT_ARCHIVE_FILTER_INDEX, static_cast<int>(dlg.m_ofn.nFilterIndex));
 		}
 	}
 	if (path && !MultiStepCompressArchive(path))

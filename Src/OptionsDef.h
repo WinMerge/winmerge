@@ -58,6 +58,10 @@ extern const String OPT_DIRVIEW_SORT_COLUMN3 OP("Settings/DirViewSortCol3");
 extern const String OPT_DIRVIEW_SORT_ASCENDING OP("Settings/DirViewSortAscending");
 extern const String OPT_DIRVIEW_EXPAND_SUBDIRS OP("Settings/DirViewExpandSubdirs");
 
+// Window/Pane
+extern const String OPT_ACTIVE_FRAME_MAX OP("Settings/ActiveFrameMax");
+extern const String OPT_ACTIVE_PANE OP("Settings/ActivePane");
+
 // Folder Compare Report
 extern const String OPT_REPORTFILES_REPORTTYPE OP("ReportFiles/ReportType");
 extern const String OPT_REPORTFILES_COPYTOCLIPBOARD OP("ReportFiles/CopyToClipboard");
@@ -196,10 +200,24 @@ extern const String OPT_FILEFILTER_SHARED OP("Settings/Filters/Shared");
 // Archive support
 extern const String OPT_ARCHIVE_ENABLE OP("Merge7z/Enable");
 extern const String OPT_ARCHIVE_PROBETYPE OP("Merge7z/ProbeSignature");
+extern const String OPT_ARCHIVE_FILTER_INDEX OP("Merge7z/FilterIndex");
+
+// Patch Creator
+extern const String OPT_PATCHCREATOR_PATCH_STYLE OP("PatchCreator/PatchStyle");
+extern const String OPT_PATCHCREATOR_CONTEXT_LINES OP("PatchCreator/ContextLines");
+extern const String OPT_PATCHCREATOR_CASE_SENSITIVE OP("PatchCreator/CaseSensitive");
+extern const String OPT_PATCHCREATOR_EOL_SENSITIVE OP("PatchCreator/EOLSensitive");
+extern const String OPT_PATCHCREATOR_IGNORE_BLANK_LINES OP("PatchCreator/IgnoreBlankLines");
+extern const String OPT_PATCHCREATOR_WHITESPACE OP("PatchCreator/Whitespace");
+extern const String OPT_PATCHCREATOR_OPEN_TO_EDITOR OP("PatchCreator/OpenToEditor");
+extern const String OPT_PATCHCREATOR_INCLUDE_CMD_LINE OP("PatchCreator/IncludeCmdLine");
 
 // Plugins
 extern const String OPT_PLUGINS_ENABLED OP("Settings/PluginsEnabled");
 extern const String OPT_PLUGINS_DISABLED_LIST OP("Settings/PluginsDisabledList");
+extern const String OPT_PLUGINS_UNPACKER_MODE OP("Settings/UnpackerMode");
+extern const String OPT_PLUGINS_PREDIFFER_MODE OP("Settings/PredifferMode");
+extern const String OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION OP("Plugins/UnpackDontCheckExtension");
 
 // Startup options
 extern const String OPT_SHOW_SELECT_FILES_AT_STARTUP OP("Settings/ShowFileDialog");

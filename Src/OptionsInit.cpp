@@ -14,6 +14,7 @@
 #include "DiffWrapper.h" // CMP_CONTENT
 #include "paths.h"
 #include "Environment.h"
+#include "FileTransform.h"
 #include "Constants.h"
 
 // Functions to copy values set by installer from HKLM to HKCU.
@@ -172,11 +173,26 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
 	pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);
+	pOptions->InitOption(OPT_ARCHIVE_FILTER_INDEX, 1);
 
 	pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
 	pOptions->InitOption(OPT_PLUGINS_DISABLED_LIST, _T(""));
+	pOptions->InitOption(OPT_PLUGINS_UNPACKER_MODE, PLUGIN_MANUAL);
+	pOptions->InitOption(OPT_PLUGINS_PREDIFFER_MODE, PLUGIN_MANUAL);
+	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, false);
+
+	pOptions->InitOption(OPT_PATCHCREATOR_PATCH_STYLE, 0);
+	pOptions->InitOption(OPT_PATCHCREATOR_CONTEXT_LINES, 0);
+	pOptions->InitOption(OPT_PATCHCREATOR_CASE_SENSITIVE, true);
+	pOptions->InitOption(OPT_PATCHCREATOR_EOL_SENSITIVE, true);
+	pOptions->InitOption(OPT_PATCHCREATOR_IGNORE_BLANK_LINES, false);
+	pOptions->InitOption(OPT_PATCHCREATOR_WHITESPACE, WHITESPACE_COMPARE_ALL);
+	pOptions->InitOption(OPT_PATCHCREATOR_OPEN_TO_EDITOR, false);
+	pOptions->InitOption(OPT_PATCHCREATOR_INCLUDE_CMD_LINE, false);
 
 	pOptions->InitOption(OPT_TABBAR_AUTO_MAXWIDTH, true);
+	pOptions->InitOption(OPT_ACTIVE_FRAME_MAX, true);
+	pOptions->InitOption(OPT_ACTIVE_PANE, 0);
 
 	pOptions->InitOption(OPT_MRU_MAX, 9);
 
