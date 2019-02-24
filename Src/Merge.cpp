@@ -282,8 +282,8 @@ BOOL CMergeApp::InitInstance()
 	charsets_init();
 	UpdateCodepageModule();
 
-	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL));
-	FileTransform::g_PredifferMode = static_cast<PLUGIN_MODE>(theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL));
+	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_UNPACKER_MODE));
+	FileTransform::g_PredifferMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_PREDIFFER_MODE));
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
@@ -561,11 +561,11 @@ BOOL CMergeApp::OnIdle(LONG lCount)
  */
 void CMergeApp::InitializeFileFilters()
 {
-	CString filterPath = GetProfileString(_T("Settings"), _T("UserFilterPath"), _T(""));
+	String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 
-	if (!filterPath.IsEmpty())
+	if (!filterPath.empty())
 	{
-		m_pGlobalFileFilter->SetUserFilterPath((LPCTSTR)filterPath);
+		m_pGlobalFileFilter->SetUserFilterPath(filterPath);
 	}
 	m_pGlobalFileFilter->LoadAllFileFilters();
 }

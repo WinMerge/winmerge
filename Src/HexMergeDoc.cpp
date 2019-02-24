@@ -535,7 +535,7 @@ void CHexMergeDoc::MoveOnLoad(int nPane, int)
 {
 	if (nPane < 0)
 	{
-		nPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
+		nPane = GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE);
 		if (nPane < 0 || nPane >= m_nBuffers)
 			nPane = 0;
 	}

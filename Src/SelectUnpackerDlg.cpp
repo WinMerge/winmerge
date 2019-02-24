@@ -28,6 +28,8 @@
 #include "SelectUnpackerDlg.h"
 #include "Plugins.h"
 #include "FileTransform.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -194,7 +196,7 @@ END_MESSAGE_MAP()
 
 void CSelectUnpackerDlg::OnOK() 
 {
-	AfxGetApp()->WriteProfileInt(_T("Plugins"), _T("UnpackDontCheckExtension"), m_bNoExtensionCheck);
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, m_bNoExtensionCheck);
 
 	CTrDialog::OnOK();
 }
@@ -203,7 +205,7 @@ BOOL CSelectUnpackerDlg::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
-	m_bNoExtensionCheck = !!AfxGetApp()->GetProfileInt(_T("Plugins"), _T("UnpackDontCheckExtension"), false);
+	m_bNoExtensionCheck = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION);
 
 	prepareListbox();
 

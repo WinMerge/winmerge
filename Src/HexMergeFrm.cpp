@@ -196,7 +196,7 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 void CHexMergeFrame::ActivateFrame(int nCmdShow) 
 {
-	if (!GetMDIFrame()->MDIGetActive() && theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE))
+	if (!GetMDIFrame()->MDIGetActive() && GetOptionsMgr()->GetBool(OPT_ACTIVE_FRAME_MAX))
 	{
 		nCmdShow = SW_SHOWMAXIMIZED;
 	}
@@ -216,7 +216,7 @@ BOOL CHexMergeFrame::DestroyWindow()
 		WINDOWPLACEMENT wp;
 		wp.length = sizeof(WINDOWPLACEMENT);
 		GetWindowPlacement(&wp);
-		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
+		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
 	}
 
 	return CMDIChildWnd::DestroyWindow();
@@ -235,7 +235,7 @@ void CHexMergeFrame::SavePosition()
 		CRect rc;
 		pLeft->GetWindowRect(&rc);
 		theApp.WriteProfileInt(_T("Settings"), _T("WLeft"), rc.Width());
-		theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), GetActivePane());
+		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, GetActivePane());
 	}
 }
 
