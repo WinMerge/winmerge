@@ -258,6 +258,15 @@ bool CChildFrame::EnsureValidDockState(CDockState& state)
 
 void CChildFrame::ActivateFrame(int nCmdShow) 
 {
+	// load docking positions and sizes
+	CDockState pDockState;
+	pDockState.LoadState(_T("Settings"));
+	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+		SetDockState(pDockState);
+	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
+	m_wndLocationBar.LoadState(_T("Settings"));
+	m_wndDetailBar.LoadState(_T("Settings"));
+
 	if (!m_bActivated) 
 	{
 		m_bActivated = true;
@@ -275,15 +284,6 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 	}
 
 	CMDIChildWnd::ActivateFrame(nCmdShow);
-
-	// load docking positions and sizes
-	CDockState pDockState;
-	pDockState.LoadState(_T("Settings"));
-	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
-		SetDockState(pDockState);
-	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
-	m_wndLocationBar.LoadState(_T("Settings"));
-	m_wndDetailBar.LoadState(_T("Settings"));
 }
 
 BOOL CChildFrame::DestroyWindow() 
