@@ -474,15 +474,15 @@ int CMergeApp::ExitInstance()
 	return 0;
 }
 
-int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
+int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
 {
 	// This is a convenient point for breakpointing !!!
 
 	// Create a handle to store the parent window of the message box.
 	CWnd* pParentWnd = CWnd::GetActiveWindow();
-	
+
 	// Check whether an active window was retrieved successfully.
-	if ( pParentWnd == nullptr )
+	if (pParentWnd == nullptr)
 	{
 		// Try to retrieve a handle to the last active popup.
 		CWnd * mainwnd = GetMainWnd();
@@ -495,7 +495,16 @@ int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 	// (if caller set the style)
 
 	if (m_bNonInteractive)
+	{
+		if (AttachConsole(static_cast<DWORD>(-1)))
+		{
+			DWORD dwWritten;
+			String line = _T("WinMerge: ") + String(lpszPrompt) + _T("\n");
+			WriteConsole(GetStdHandle(STD_OUTPUT_HANDLE), line.c_str(), static_cast<DWORD>(line.length()), &dwWritten, nullptr);
+			FreeConsole();
+		}
 		return IDCANCEL;
+	}
 
 	// Create the message box dialog.
 	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType | MB_RIGHT_ALIGN,
