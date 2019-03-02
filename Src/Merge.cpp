@@ -206,7 +206,7 @@ BOOL CMergeApp::InitInstance()
 	ApplyCommandLineConfigOptions(cmdInfo);
 	if (cmdInfo.m_sErrorMessages.size() > 0)
 	{
-		if (AttachConsole(static_cast<DWORD>(-1)))
+		if (AttachConsole(ATTACH_PARENT_PROCESS))
 		{
 			DWORD dwWritten;
 			for (auto& msg : cmdInfo.m_sErrorMessages)
@@ -496,7 +496,7 @@ int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
 
 	if (m_bNonInteractive)
 	{
-		if (AttachConsole(static_cast<DWORD>(-1)))
+		if (AttachConsole(ATTACH_PARENT_PROCESS))
 		{
 			DWORD dwWritten;
 			String line = _T("WinMerge: ") + String(lpszPrompt) + _T("\n");
