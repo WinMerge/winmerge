@@ -106,29 +106,35 @@ div.section h4 {
 
 .screen {
   padding: 5px;
-  background-color: #EEEEEE;
-  border-left: 10px solid #CCCCCC;
+  background-color: #eee;
+  border-left: 10px solid #ccc;
 }
 
+/* Admonitions */
 .caution {
-  background-color: #FFDDAA;
-  border: 1px solid #FF9966;
+  padding: 0 1em;
+  background-color: #fda;
+  border: 1px solid #f96;
 }
 .important {
-  background-color: #FFFFDD;
-  border: 1px solid #FFFF66;
+  padding: 0 1em;
+  background-color: #ffd;
+  border: 1px solid #ff6;
 }
 .note {
-  background-color: #DDDDFF;
-  border: 1px solid #6666FF;
+  padding: 0 1em;
+  background-color: #ddf;
+  border: 1px solid #66f;
 }
 .tip {
-  background-color: #DDFFDD;
-  border: 1px solid #66FF66;
+  padding: 0 1em;
+  background-color: #dfd;
+  border: 1px solid #6f6;
 }
 .warning {
-  background-color: #FFDDDD;
-  border: 1px solid #FF6666;
+  padding: 0 1em;
+  background-color: #fdd;
+  border: 1px solid #f66;
 }
 
 /* Examples */
