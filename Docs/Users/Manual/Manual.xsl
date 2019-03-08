@@ -4,10 +4,11 @@
   <xsl:param name="suppress.navigation" select="0"/>
   <xsl:param name="use.extensions" select="0"/>
   <xsl:param name="tablecolumns.extensions" select="0"/>
-  <xsl:param name="admon.graphics" select="1"/>
+  <xsl:param name="admon.graphics" select="0"/>
+  <xsl:param name="callout.graphics" select="0"/>
+  <xsl:param name="navig.graphics" select="0"/>
   <xsl:param name="section.autolabel" select="1"/>
   <xsl:param name="use.id.as.filename" select="1"/>
-  <xsl:param name="admon.graphics.path">images/</xsl:param>
   <xsl:param name="chunker.output.indent" select="'yes'"></xsl:param>
   <xsl:param name="chunk.first.sections" select="1" />
   <xsl:template name="user.head.content">
