@@ -4,6 +4,7 @@
  * @brief Implementation for FileVersion
  */
 
+#include "pch.h"
 #include "FileVersion.h"
 #include "UnicodeString.h"
 

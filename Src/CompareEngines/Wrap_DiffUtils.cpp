@@ -4,6 +4,7 @@
  * @brief Implementation file for Wrap_DiffUtils class.
  */
 
+#include "pch.h"
 #include "diff.h"
 #include "Wrap_DiffUtils.h"
 #include <map>

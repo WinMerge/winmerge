@@ -20,6 +20,7 @@
  * @brief CConfigLog implementation
  */
 
+#include "pch.h"
 #include "ConfigLog.h"
 #include <cassert>
 #include <windows.h>

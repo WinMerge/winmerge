@@ -1,3 +1,4 @@
+#include "pch.h"
 #include <gtest/gtest.h>
 #include <Poco/Timestamp.h>
 #include "DiffItem.h"

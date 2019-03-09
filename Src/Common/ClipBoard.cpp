@@ -4,6 +4,7 @@
  * @brief ClipBoard helper functions implementations.
  */
 
+#include "pch.h"
 #include "ClipBoard.h"
 
 /**

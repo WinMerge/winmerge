@@ -20,16 +20,13 @@
  * @brief Implementation for DirItem routines
  */
 
-#include "stdafx.h"
+#include "pch.h"
 #include "DirItem.h"
 #include <windows.h>
 #include "UnicodeString.h"
 #include "paths.h"
 #include "TFile.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include "DebugNew.h"
 
 /**
 	* @brief Convert file flags to string presentation.

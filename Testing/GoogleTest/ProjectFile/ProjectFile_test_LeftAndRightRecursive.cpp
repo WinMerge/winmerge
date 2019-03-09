@@ -4,6 +4,7 @@
  * @brief Implementation for LeftAndRightRecursive testcase.
  */
 
+#include "pch.h"
 #include <gtest/gtest.h>
 #include "UnicodeString.h"
 #include "ProjectFile.h"

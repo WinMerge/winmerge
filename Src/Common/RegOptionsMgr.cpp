@@ -5,6 +5,7 @@
  *
  */
 
+#include "pch.h"
 #include "RegOptionsMgr.h"
 #include <windows.h>
 #include <tchar.h>

@@ -24,7 +24,7 @@
  *  @brief Implementation of CDiffContext
  */ 
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "DiffContext.h"
 #include <Poco/ScopedLock.h>
 #include "CompareOptions.h"
@@ -34,10 +34,7 @@
 #include "DiffItemList.h"
 #include "IAbortable.h"
 #include "DiffWrapper.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include "DebugNew.h"
 
 using Poco::FastMutex;
 

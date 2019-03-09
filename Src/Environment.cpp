@@ -4,6 +4,7 @@
  * @brief Environment related routines.
  */
 
+#include "pch.h"
 #define POCO_NO_UNWINDOWS 1
 #include "Environment.h"
 #include <windows.h>

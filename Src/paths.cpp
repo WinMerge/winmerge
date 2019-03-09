@@ -4,6 +4,7 @@
  * @brief Path handling routines
  */
 
+#include "pch.h"
 #include "paths.h"
 #include <windows.h>
 #include <cassert>

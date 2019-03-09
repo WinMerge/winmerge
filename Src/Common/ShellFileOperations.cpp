@@ -20,6 +20,7 @@
  * @brief Implementation of ShellFileOperations class.
  */
 
+#include "pch.h"
 #include "ShellFileOperations.h"
 #include <windows.h>
 #include <tchar.h>

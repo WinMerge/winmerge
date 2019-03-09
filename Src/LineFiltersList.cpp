@@ -4,6 +4,7 @@
  * @brief Implementation for LineFiltersList class.
  */
 
+#include "pch.h"
 #include "LineFiltersList.h"
 #include <vector>
 #include <cassert>

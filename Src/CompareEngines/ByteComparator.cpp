@@ -4,6 +4,7 @@
  * @brief Implements ByteComparator class.
  */
 
+#include "pch.h"
 #include "ByteComparator.h"
 #include <cassert>
 #include "UnicodeString.h"

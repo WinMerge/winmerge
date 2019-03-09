@@ -24,6 +24,7 @@
  *  @brief Implementation of file transformations
  */ 
 
+#include "pch.h"
 #include "FileTransform.h"
 #include <vector>
 #include <Poco/Exception.h>

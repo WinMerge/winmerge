@@ -4,6 +4,7 @@
  * @brief Implementation file for ByteCompare
  */
 
+#include "pch.h"
 #include "ByteCompare.h"
 #include <cassert>
 #include <io.h>

@@ -20,6 +20,7 @@
  * @brief Implementation file for DiffList class
  */
 
+#include "pch.h"
 #include "DiffList.h"
 #include <cassert>
 #include <string>
