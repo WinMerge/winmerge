@@ -4,6 +4,7 @@
  * @brief Implementation of CompareStats class.
  */
 
+#include "pch.h"
 #include "CompareStats.h"
 #include <cassert>
 #include <cstring>

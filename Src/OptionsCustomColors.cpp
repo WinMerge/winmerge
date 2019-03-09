@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "OptionsCustomColors.h"
 #include "OptionsMgr.h"
 

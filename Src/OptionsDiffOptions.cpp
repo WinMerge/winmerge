@@ -3,6 +3,7 @@
  *
  * @brief Implementation for OptionsDiffOptions class.
  */
+#include "pch.h"
 #include "OptionsDiffOptions.h"
 #include "CompareOptions.h"
 #include "OptionsDef.h"

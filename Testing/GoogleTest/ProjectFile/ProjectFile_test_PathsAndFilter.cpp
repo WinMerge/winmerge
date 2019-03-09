@@ -4,6 +4,7 @@
  * @brief Implementation for PathsAndFilter testcase.
  */
 
+#include "pch.h"
 #include <gtest/gtest.h>
 #include "UnicodeString.h"
 #include "ProjectFile.h"

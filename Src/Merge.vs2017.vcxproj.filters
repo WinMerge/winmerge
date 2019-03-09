@@ -691,9 +691,6 @@
     <ClCompile Include="OptionsDef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsPanel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\scbarg.cpp">
       <Filter>MFCGui\Common</Filter>
     </ClCompile>
@@ -777,6 +774,12 @@
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\wcwidth.cpp">
       <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsPanel.cpp">
+      <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1439,6 +1442,9 @@
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\wcwidth.h">
       <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

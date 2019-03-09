@@ -4,6 +4,7 @@
  * @brief Implementation file for JumpList helper functions.
  *
  */
+#include "pch.h"
 #include "JumpList.h"
 #include <vector>
 #pragma warning (push)			// prevent "warning C4091: 'typedef ': ignored on left of 'tagGPFIDL_FLAGS' when no variable is declared"

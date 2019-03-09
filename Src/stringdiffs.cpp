@@ -5,6 +5,7 @@
  *
  */
 
+#include "pch.h"
 #include "stringdiffs.h"
 #define NOMINMAX
 #include <windows.h>

@@ -4,6 +4,7 @@
  *  @brief Implementation of UniMarkdownFile class.
  */ 
 
+#include "pch.h"
 #include "UniMarkdownFile.h"
 #include <cassert>
 #include "markdown.h"

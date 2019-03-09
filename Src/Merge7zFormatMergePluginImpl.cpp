@@ -3,6 +3,7 @@
  *
  * @brief Implementation file for Merge7zFormatMergePluginImpl class
  */
+#include "pch.h"
 #include "Merge7zFormatMergePluginImpl.h"
 #include "paths.h"
 #include "Plugins.h"

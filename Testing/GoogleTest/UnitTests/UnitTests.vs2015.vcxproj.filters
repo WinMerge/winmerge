@@ -276,6 +276,9 @@
     <ClCompile Include="..\..\..\Externals\gtest\src\gtest-typed-test.cc">
       <Filter>gtest</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h">
@@ -460,6 +463,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Externals\gtest\src\gtest-internal-inl.h">
       <Filter>gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\pch.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

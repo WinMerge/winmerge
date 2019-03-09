@@ -20,7 +20,7 @@
  * @brief Code for DiffThread class
  */
 
-#include "stdafx.h"
+#include "pch.h"
 #include "DiffThread.h"
 #include <cassert>
 #include <climits>
@@ -33,10 +33,7 @@
 #include "PathContext.h"
 #include "CompareStats.h"
 #include "IAbortable.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include "DebugNew.h"
 
 using Poco::Thread;
 using Poco::Semaphore;

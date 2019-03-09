@@ -25,6 +25,7 @@
 // Copyright (C) 2000 - Francis Irving
 // <francis@flourish.org> - January 2001
 
+#include "pch.h"
 #include "ConflictFileParser.h"
 #include "UnicodeString.h"
 #include "UniFile.h"

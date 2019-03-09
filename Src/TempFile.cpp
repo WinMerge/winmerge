@@ -5,6 +5,7 @@
  *
  */
 
+#include "pch.h"
 #include "TempFile.h"
 #include <windows.h>
 #include <tlhelp32.h> 

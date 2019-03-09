@@ -25,6 +25,7 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 /* GNU DIFF was written by Mike Haertel, David Hayes,
    Richard Stallman, Len Tower, and Paul Eggert.  */
 
+#include "pch.h"
 #define GDIFF_MAIN
 #include "diff.h" 
 #include "io.h"

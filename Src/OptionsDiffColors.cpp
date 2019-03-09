@@ -3,6 +3,7 @@
  *
  * @brief Implementation for OptionsDiffColors class.
  */
+#include "pch.h"
 #include "OptionsDiffColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
