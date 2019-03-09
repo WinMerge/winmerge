@@ -18,6 +18,7 @@
  *  @brief Implementation of FileFilter.
  */ 
 
+#include "pch.h"
 #include "FileFilter.h"
 #include <vector>
 

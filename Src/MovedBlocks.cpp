@@ -20,6 +20,7 @@
  * @brief Moved block detection code.
  */
 
+#include "pch.h"
 #include <map>
 #include <cassert>
 #include "diff.h"

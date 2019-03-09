@@ -5,6 +5,7 @@
  *
  */
 
+#include "pch.h"
 #include "codepage_detect.h"
 #include <cstdio>
 #include <cstring>

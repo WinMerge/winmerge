@@ -4,6 +4,7 @@
  * @brief Implementation for OptionsSyntaxColors class.
  */
 
+#include "pch.h"
 #include "OptionsSyntaxColors.h"
 #include <vector>
 #include "SyntaxColors.h"

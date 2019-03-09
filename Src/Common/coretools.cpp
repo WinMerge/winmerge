@@ -5,6 +5,7 @@
  *
  */
 
+#include "pch.h"
 #include "coretools.h"
 
 size_t linelen(const char *string, size_t maxlen)

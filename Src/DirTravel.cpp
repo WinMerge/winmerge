@@ -5,7 +5,7 @@
  *
  */
 
-#include "stdafx.h"
+#include "pch.h"
 #include "DirTravel.h"
 #include <algorithm>
 #include <Poco/DirectoryIterator.h>
@@ -18,10 +18,7 @@
 #include "unicoder.h"
 #include "paths.h"
 #include "Win_VersionHelper.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include "DebugNew.h"
 
 using Poco::DirectoryIterator;
 using Poco::Timestamp;

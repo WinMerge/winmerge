@@ -22,6 +22,7 @@
  * @date  Created: 2003-08-22
  */
 
+#include "pch.h"
 #define NOMINMAX
 #include "DiffWrapper.h"
 #include <sys/types.h>

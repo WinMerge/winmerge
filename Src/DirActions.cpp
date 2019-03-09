@@ -13,7 +13,7 @@
 // One idea would be to provide an iterator over them.
 //
 
-#include "stdafx.h"
+#include "pch.h"
 #include "DirActions.h"
 #include "MergeApp.h"
 #include "UnicodeString.h"
@@ -23,10 +23,7 @@
 #include "FileActionScript.h"
 #include "locality.h"
 #include "FileFilterHelper.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include "DebugNew.h"
 
 static void ThrowConfirmCopy(const CDiffContext& ctxt, int origin, int destination, int count,
 		const String& src, const String& dest, bool destIsSide);

@@ -4,13 +4,10 @@
  *  @brief Implementation of DiffItemList
  */ 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "DiffItemList.h"
 #include <cassert>
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include "DebugNew.h"
 
 /**
  * @brief Constructor

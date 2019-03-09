@@ -4,6 +4,7 @@
  * @brief Implementation file for TimeSizeCompare
  */
 
+#include "pch.h"
 #include "TimeSizeCompare.h"
 #include <Poco/Timestamp.h>
 #include "DiffItem.h"

@@ -4,6 +4,7 @@
  * @brief Implementation of CRegKeyEx C++ wrapper class for reading Windows registry
  */
 
+#include "pch.h"
 #define NOMINMAX
 #include "RegKey.h"
 #include <windows.h>

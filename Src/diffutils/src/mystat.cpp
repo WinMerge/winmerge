@@ -1,4 +1,5 @@
 // my own _fstat() and _wstat() implementation for the bug https://connect.microsoft.com/VisualStudio/feedback/details/1600505/stat-not-working-on-windows-xp-using-v14-xp-platform-toolset-vs2015
+#include "pch.h"
 #include <sys/stat.h>
 #include <io.h>
 #include <cerrno>

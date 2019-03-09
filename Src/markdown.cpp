@@ -82,6 +82,7 @@ DATE:		BY:					DESCRIPTION:
 2008-08-27	Jochen Neubeck		Replace MFC CMap by STL std::map
 */
 
+#include "pch.h"
 #include "markdown.h"
 #include <cstring>
 #include <cstdint>

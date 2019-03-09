@@ -1,3 +1,4 @@
+#include "pch.h"
 #include <gtest/gtest.h>
 #include <sys/stat.h>
 #include "Environment.h"

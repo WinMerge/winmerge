@@ -6,7 +6,7 @@
  * @date  Created: 2003-08-22
  */
 
-#include "stdafx.h"
+#include "pch.h"
 #include "DiffFileData.h"
 #include <io.h>
 #include <memory>
@@ -16,11 +16,7 @@
 #include "TFile.h"
 #include "FileTransform.h"
 #include "unicoder.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
-
+#include "DebugNew.h"
 
 /**
  * @brief Simple initialization of DiffFileData

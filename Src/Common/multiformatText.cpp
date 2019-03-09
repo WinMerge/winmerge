@@ -26,6 +26,7 @@
  * @date  Created: 2003-11-24
  */ 
 
+#include "pch.h"
 #define NOMINMAX
 #include "multiformatText.h"
 #include <vector>

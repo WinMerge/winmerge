@@ -4,6 +4,7 @@
  * @brief Implementation of FileTextEncoding structure
  */
 
+#include "pch.h"
 #include "FileTextEncoding.h"
 #include "unicoder.h"
 

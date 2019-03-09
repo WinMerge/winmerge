@@ -20,8 +20,8 @@
  * @brief Implementation file for ProjectFile class.
  */
 
+#include "pch.h"
 #include "ProjectFile.h"
-
 #include <stack>
 #include <string>
 #include <Poco/FileStream.h>
