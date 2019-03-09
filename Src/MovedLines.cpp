@@ -4,6 +4,7 @@
  * @brief Implementation of MovedLines class.
  */
 
+#include "pch.h"
 #include "MovedLines.h"
 
 /**

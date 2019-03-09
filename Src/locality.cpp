@@ -4,6 +4,7 @@
  * @brief Implementation of helper functions involving locale
  */
 
+#include "pch.h"
 #include "locality.h"
 #include <windows.h>
 #include <Poco/Format.h>

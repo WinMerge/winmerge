@@ -1,3 +1,4 @@
+#include "pch.h"
 #include <gtest/gtest.h>
 #include "diff.h"
 #include "CompareEngines/ByteCompare.h"

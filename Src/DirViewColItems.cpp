@@ -6,7 +6,7 @@
  * @date  Created: 2003-08-19
  */
 
-#include "stdafx.h"
+#include "pch.h"
 #include "DirViewColItems.h"
 #include <Poco/Timestamp.h>
 #include <Shlwapi.h>
@@ -16,10 +16,7 @@
 #include "locality.h"
 #include "paths.h"
 #include "MergeApp.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include "DebugNew.h"
 
 using Poco::Timestamp;
 

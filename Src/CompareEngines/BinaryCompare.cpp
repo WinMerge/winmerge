@@ -4,6 +4,7 @@
  * @brief Implementation file for BinaryCompare
  */
 
+#include "pch.h"
 #include "BinaryCompare.h"
 #include "DiffItem.h"
 #include "PathContext.h"

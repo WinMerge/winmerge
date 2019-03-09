@@ -24,6 +24,7 @@
  * @brief Implementation of the file and folder selection routines.
  */
 
+#include "pch.h"
 #include <windows.h>
 #include "FileOrFolderSelect.h"
 #pragma warning (push)			// prevent "warning C4091: 'typedef ': ignored on left of 'tagGPFIDL_FLAGS' when no variable is declared"

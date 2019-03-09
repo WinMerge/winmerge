@@ -1,3 +1,4 @@
+#include "pch.h"
 #include <gtest/gtest.h>
 #include "codepage_detect.h"
 #include "charsets.h"

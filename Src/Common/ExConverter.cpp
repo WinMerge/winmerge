@@ -4,6 +4,7 @@
  * @brief Codepage converter using external libraries.
  */
 
+#include "pch.h"
 #include "ExConverter.h"
 #include <windows.h>
 #include <mlang.h>

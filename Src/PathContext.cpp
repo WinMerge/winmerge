@@ -5,6 +5,7 @@
  *
  */
 
+#include "pch.h"
 #include "PathContext.h"
 #include <cassert>
 #include "paths.h"

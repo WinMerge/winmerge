@@ -4,6 +4,7 @@
  *  @brief Implementation of CVersionInfo class
  */ 
 
+#include "pch.h"
 #include "VersionInfo.h"
 #include <windows.h>
 #include <cstdio>
