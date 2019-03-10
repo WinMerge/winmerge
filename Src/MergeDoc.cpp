@@ -384,10 +384,8 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	m_diffWrapper.GetOptions(&diffOptions);
 
 	bool bForceUTF8 = diffOptions.bIgnoreCase;
-	IF_IS_TRUE_ALL (
-		m_ptBuf[0]->getCodepage() == m_ptBuf[nBuffer]->getCodepage() && m_ptBuf[nBuffer]->getUnicoding() == ucr::NONE,
-		nBuffer, m_nBuffers) {}
-	else
+	if (std::any_of(m_ptBuf, m_ptBuf + m_nBuffers,
+		[&](auto& ptBuf) { return m_ptBuf[0]->getCodepage() != ptBuf->getCodepage() || ptBuf->getUnicoding() != ucr::NONE; }))
 		bForceUTF8 = true;
 
 	// Clear diff list
@@ -408,8 +406,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		m_diffWrapper.SetPaths(PathContext(m_tempFiles[0].GetPath(), m_tempFiles[1].GetPath(), m_tempFiles[2].GetPath()), true);
 	m_diffWrapper.SetCompareFiles(m_filePaths);
 	m_diffWrapper.SetCodepage(bForceUTF8 ? ucr::CP_UTF_8 : (m_ptBuf[0]->m_encoding.m_unicoding ? CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage));
-	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
-			CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage);
 
 	DIFFSTATUS status;
 

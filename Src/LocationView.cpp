@@ -976,8 +976,9 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 	{
 		CMergeDoc *pDoc = GetDocument();
 		int nGroup = pDoc->GetActiveMergeView()->m_nThisGroup;
-		int pane;
-		IF_IS_TRUE_ALL(m_nSubLineCount[pane] == pDoc->GetView(nGroup, pane)->GetSubLineCount(), pane, pDoc->m_nBuffers)
+		int pane = 0;
+		if (std::all_of(m_nSubLineCount, m_nSubLineCount + pDoc->m_nBuffers,
+			[&](int nSubLineCount) { return nSubLineCount == pDoc->GetView(nGroup, pane++)->GetSubLineCount(); }))
 		{
 			int nTopCoord = static_cast<int>(Y_OFFSET +
 					(static_cast<double>(nTopLine * m_lineInPix)));
