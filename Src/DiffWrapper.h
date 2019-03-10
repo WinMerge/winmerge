@@ -180,7 +180,6 @@ public:
 	void SetAppendFiles(bool bAppendFiles);
 	void SetPaths(const PathContext &files, bool tempPaths);
 	void SetAlternativePaths(const PathContext &altPaths);
-	void SetCodepage(int codepage) { m_codepage = codepage; }
 	bool RunFileDiff();
 	void GetDiffStatus(DIFFSTATUS *status) const;
 	void AddDiffRange(DiffList *pDiffList, unsigned begin0, unsigned end0, unsigned begin1, unsigned end1, OP_TYPE op);
@@ -236,7 +235,6 @@ private:
 	bool m_bAddCmdLine; /**< Do we add commandline to patch file? */
 	bool m_bAppendFiles; /**< Do we append to existing patch file? */
 	int m_nDiffs; /**< Difference count */
-	int m_codepage; /**< Codepage used in line filter */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
 	const FilterCommentsManager* m_pFilterCommentsManager; /**< Comments filtering manager */
