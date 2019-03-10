@@ -103,7 +103,7 @@ bool DirItem::Update(const String &sFilePath)
 			if (!file.isDirectory())
 				size = file.getSize();
 
-			flags.attributes = GetFileAttributes(TFile(sFilePath).wpath().c_str());
+			flags.attributes = GetFileAttributes(file.wpath().c_str());
 
 			retVal = true;
 		}
