@@ -1246,6 +1246,9 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
 	if (worddiffs.empty())
 		return false;
 
+	if (cd.end[srcPane] < cd.begin[srcPane])
+		return ListCopy(srcPane, dstPane, nDiff, bGroupWithPrevious, bUpdateView);
+
 	if (firstWordDiff == -1)
 		firstWordDiff = 0;
 	if (lastWordDiff == -1)
