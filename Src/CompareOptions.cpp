@@ -4,6 +4,7 @@
  * @brief Compare options implementation.
  */
 
+#include "pch.h"
 #include "CompareOptions.h"
 #include "diff.h"
 

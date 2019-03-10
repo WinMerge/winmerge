@@ -22,6 +22,7 @@
  * @date  Created: 2003-08-22
  */
 
+#include "pch.h"
 #define NOMINMAX
 #include "DiffWrapper.h"
 #include <sys/types.h>
@@ -81,7 +82,6 @@ CDiffWrapper::CDiffWrapper()
 , m_bAddCmdLine(true)
 , m_bAppendFiles(false)
 , m_nDiffs(0)
-, m_codepage(GetACP())
 , m_infoPrediffer(nullptr)
 , m_pDiffList(nullptr)
 , m_bPathsAreTemp(false)
@@ -1148,7 +1148,7 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo) const
 		size_t len = files[FileNo].linbuf[line + 1] - files[FileNo].linbuf[line];
 		const char *string = files[FileNo].linbuf[line];
 		size_t stringlen = linelen(string, len);
-		if (!m_pFilterList->Match(std::string(string, stringlen), m_codepage))
+		if (!m_pFilterList->Match(std::string(string, stringlen)))
 
 		{
 			linesMatch = false;

@@ -85,7 +85,7 @@ static LPCTSTR crlfs[] =
 	_T ("\x0d")      //  Macintosh style
 };
 
-static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, bool bForceUTF8, int nStartLine = 0, int nLines = -1);
+static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine = 0, int nLines = -1);
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
@@ -265,22 +265,8 @@ void CMergeDoc::Serialize(CArchive& ar)
  * (the plugins are optional, not the conversion)
  * @todo Show SaveToFile() errors?
  */
-static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, bool bForceUTF8, int nStartLine, int nLines)
+static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine, int nLines)
 {
-	ASSERT(buf.m_nSourceEncoding == buf.m_nDefaultEncoding);  
-	int orig_codepage = buf.getCodepage();
-	ucr::UNICODESET orig_unicoding = buf.getUnicoding();
-	bool orig_bHasBOM = buf.getHasBom();
-
-	// If file was in Unicode
-	if (orig_unicoding != ucr::NONE || bForceUTF8)
-	{
-	// we subvert the buffer's memory of the original file encoding
-		buf.setUnicoding(ucr::UTF8);  // write as UTF-8 (for preprocessing)
-		buf.setCodepage(ucr::CP_UTF_8); // should not matter
-		buf.setHasBom(false);
-	}
-
 	// and we don't repack the file
 	PackingInfo * tempPacker = nullptr;
 
@@ -288,11 +274,6 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, bool 
 	String sError;
 	int retVal = buf.SaveToFile(filepath, true, sError, tempPacker,
 		CRLF_STYLE_AUTOMATIC, false, nStartLine, nLines);
-
-	// restore memory of encoding of original file
-	buf.setUnicoding(orig_unicoding);
-	buf.setCodepage(orig_codepage);
-	buf.setHasBom(orig_bHasBOM);
 }
 
 /**
@@ -383,13 +364,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	// Set up DiffWrapper
 	m_diffWrapper.GetOptions(&diffOptions);
 
-	bool bForceUTF8 = diffOptions.bIgnoreCase;
-	IF_IS_TRUE_ALL (
-		m_ptBuf[0]->getCodepage() == m_ptBuf[nBuffer]->getCodepage() && m_ptBuf[nBuffer]->getUnicoding() == ucr::NONE,
-		nBuffer, m_nBuffers) {}
-	else
-		bForceUTF8 = true;
-
 	// Clear diff list
 	m_diffList.Clear();
 	m_nCurDiff = -1;
@@ -407,9 +381,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	else
 		m_diffWrapper.SetPaths(PathContext(m_tempFiles[0].GetPath(), m_tempFiles[1].GetPath(), m_tempFiles[2].GetPath()), true);
 	m_diffWrapper.SetCompareFiles(m_filePaths);
-	m_diffWrapper.SetCodepage(bForceUTF8 ? ucr::CP_UTF_8 : (m_ptBuf[0]->m_encoding.m_unicoding ? CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage));
-	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
-			CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage);
 
 	DIFFSTATUS status;
 
@@ -419,7 +390,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			m_ptBuf[nBuffer]->SetTempPath(tempPath);
-			SaveBuffForDiff(*m_ptBuf[nBuffer], m_tempFiles[nBuffer].GetPath(), bForceUTF8);
+			SaveBuffForDiff(*m_ptBuf[nBuffer], m_tempFiles[nBuffer].GetPath());
 		}
 
 		m_diffWrapper.SetCreateDiffList(&m_diffList);
@@ -442,7 +413,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 			{
 				nLines[nBuffer] = (i >= syncpoints.size()) ? -1 : syncpoints[i][nBuffer] - nStartLine[nBuffer];
 				m_ptBuf[nBuffer]->SetTempPath(tempPath);
-				SaveBuffForDiff(*m_ptBuf[nBuffer], m_tempFiles[nBuffer].GetPath(), bForceUTF8,
+				SaveBuffForDiff(*m_ptBuf[nBuffer], m_tempFiles[nBuffer].GetPath(), 
 					nStartLine[nBuffer], nLines[nBuffer]);
 			}
 			DiffList templist;
@@ -1249,6 +1220,9 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
 
 	if (worddiffs.empty())
 		return false;
+
+	if (cd.end[srcPane] < cd.begin[srcPane])
+		return ListCopy(srcPane, dstPane, nDiff, bGroupWithPrevious, bUpdateView);
 
 	if (firstWordDiff == -1)
 		firstWordDiff = 0;

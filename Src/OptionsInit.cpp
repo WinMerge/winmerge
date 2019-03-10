@@ -4,6 +4,7 @@
  * @brief Options initialisation.
  */
 
+#include "pch.h"
 #include <vector>
 #include "OptionsDef.h"
 #include "OptionsMgr.h"

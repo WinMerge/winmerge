@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "MergeApp.h"
 #include "unicoder.h"
 #include "RegOptionsMgr.h"

@@ -20,6 +20,7 @@
  * @brief Implementation file for FileFilterHelper class
  */
 
+#include "pch.h"
 #include "FileFilterHelper.h"
 #include "UnicodeString.h"
 #include "FilterList.h"

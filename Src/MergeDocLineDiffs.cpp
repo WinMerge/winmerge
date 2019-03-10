@@ -53,7 +53,7 @@ void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 
 	Computelinediff(pView, rc, bReversed);
 
-	IF_IS_TRUE_ALL ((rc[nBuffer].top == -1), nBuffer, m_nBuffers)
+	if (std::all_of(rc, rc + m_nBuffers, [](auto& rc) { return rc.top == -1; }))
 	{
 		String caption = _("Line difference");
 		String msg = _("No difference");

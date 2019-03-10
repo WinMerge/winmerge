@@ -4,6 +4,7 @@
  *  @brief Implementation of generic named property classes
  */ 
 
+#include "pch.h"
 #include "varprop.h"
 #include <cassert>
 

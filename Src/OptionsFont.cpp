@@ -3,6 +3,7 @@
  *
  * @brief Implementation for Options::Font class.
  */
+#include "pch.h"
 #include "OptionsFont.h"
 #include "unicoder.h"
 #include "ExConverter.h"

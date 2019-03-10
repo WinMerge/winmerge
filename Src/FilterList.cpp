@@ -4,6 +4,7 @@
  * @brief Implementation file for FilterList.
  */
 
+#include "pch.h"
 #include "FilterList.h"
 #include <vector>
 #include <Poco/RegularExpression.h>

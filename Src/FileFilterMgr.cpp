@@ -18,6 +18,7 @@
  *  @brief Implementation of FileFilterMgr and supporting routines
  */ 
 
+#include "pch.h"
 #include "FileFilterMgr.h"
 #include <vector>
 #include <Poco/String.h>

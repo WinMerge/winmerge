@@ -20,16 +20,13 @@
  * @brief Implementation for DirItem routines
  */
 
-#include "stdafx.h"
+#include "pch.h"
 #include "DirItem.h"
 #include <windows.h>
 #include "UnicodeString.h"
 #include "paths.h"
 #include "TFile.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include "DebugNew.h"
 
 /**
 	* @brief Convert file flags to string presentation.
@@ -106,7 +103,7 @@ bool DirItem::Update(const String &sFilePath)
 			if (!file.isDirectory())
 				size = file.getSize();
 
-			flags.attributes = GetFileAttributes(TFile(sFilePath).wpath().c_str());
+			flags.attributes = GetFileAttributes(file.wpath().c_str());
 
 			retVal = true;
 		}

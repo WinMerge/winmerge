@@ -4,7 +4,7 @@
  *  @brief Implementation of DirScan (q.v.) and helper functions
  */ 
 
-#include "stdafx.h"
+#include "pch.h"
 #include "DirScan.h"
 #include <cassert>
 #include <memory>
@@ -35,10 +35,7 @@
 #include "MergeApp.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include "DebugNew.h"
 
 using Poco::NotificationQueue;
 using Poco::Notification;

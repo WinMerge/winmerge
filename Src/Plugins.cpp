@@ -24,6 +24,7 @@
  *  @brief Support for VBS Scriptlets, VB ActiveX DLL, VC++ COM DLL
  */ 
 
+#include "pch.h"
 #include "Plugins.h"
 #define POCO_NO_UNWINDOWS 1
 #include <vector>

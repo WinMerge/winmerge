@@ -20,6 +20,7 @@
  * @brief FilterCommentsManager class implementation.
  */
 
+#include "pch.h"
 #include "FilterCommentsManager.h"
 #include <Poco/Util/IniFileConfiguration.h>
 #include <Poco/AutoPtr.h>

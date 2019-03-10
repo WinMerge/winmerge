@@ -27,6 +27,7 @@
  */
 
 
+#include "pch.h"
 #include "MergeCmdLineInfo.h"
 #include "Constants.h"
 #include "Paths.h"
