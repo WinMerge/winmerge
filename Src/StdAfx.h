@@ -56,11 +56,6 @@
 #include <ctime>
 #include <tchar.h>
 
-#define IF_IS_TRUE_ALL(expression, index, count) \
-	for (index = 0; index < count; index++) { if ((expression)) ; else break; } \
-	if (index == count)
-
-
 /**
  * @name User-defined Windows-messages
  */
