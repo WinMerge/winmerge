@@ -100,7 +100,7 @@ public:
 	DIFFITEM *GetItemKey(int idx) const;
 	int GetItemIndex(DIFFITEM *key);
 	// for populating list
-	void DeleteItem(int sel);
+	void DeleteItem(int sel, bool removeDIFFITEM = false);
 	void DeleteAllDisplayItems();
 	void SetFont(const LOGFONT & lf);
 
