@@ -36,6 +36,7 @@ Localization:
 
 * Catalan:
   Jordi Vilar <jvilar@users.sourceforge.net>
+  Domènec <domenec72 at gmail.com>
 
 * Simplified Chinese:
   Liaobin <liaobin@jite. net>
