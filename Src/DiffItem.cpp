@@ -157,7 +157,7 @@ void DIFFITEM::DelinkFromSiblings()
 			parent->children = Flink;
 		}
 	}
-	if (Blink != nullptr)
+	if (Blink != nullptr && Blink->Flink != nullptr)
 		Blink->Flink = Flink;
 	if (Flink != nullptr)
 		Flink->Blink = Blink;
