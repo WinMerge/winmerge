@@ -1007,7 +1007,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		UPDATEITEM_TYPE updatetype = UpdateDiffAfterOperation(act, ctxt, GetDiffItem(act.context));
 		if (updatetype == UPDATEITEM_REMOVE)
 		{
-			DeleteItem(act.context);
+			DeleteItem(act.context, true);
 			bItemsRemoved = true;
 		}
 		else if (updatetype == UPDATEITEM_UPDATE)
@@ -1613,10 +1613,21 @@ DIFFITEM &CDirView::GetDiffItem(int sel)
 	return GetDiffContext().GetDiffRefAt(diffpos);
 }
 
-void CDirView::DeleteItem(int sel)
+void CDirView::DeleteItem(int sel, bool removeDIFFITEM)
 {
 	if (m_bTreeMode)
 		CollapseSubdir(sel);
+	if (removeDIFFITEM)
+	{
+		DIFFITEM *diffpos = GetItemKey(sel);
+		if (diffpos != (DIFFITEM *)SPECIAL_ITEM_POS)
+		{
+			if (diffpos->HasChildren())
+				diffpos->RemoveChildren();
+			diffpos->DelinkFromSiblings();
+			delete diffpos;
+		}
+	}
 	m_pList->DeleteItem(sel);
 }
 
