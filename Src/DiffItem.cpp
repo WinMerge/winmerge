@@ -15,10 +15,7 @@ DIFFITEM DIFFITEM::emptyitem;
 DIFFITEM::~DIFFITEM()
 {
 	RemoveChildren();
-	RemoveSiblings();
 	assert(children == nullptr);
-	assert(Flink == nullptr);
-	assert(Blink == nullptr);
 }
 
 /** @brief Return path to left/right file, including all but file name */
@@ -55,26 +52,17 @@ bool DIFFITEM::IsAncestor(const DIFFITEM *pdi) const
 	return false;
 }
 
-/** @brief Remove and delete all sibling DIFFITEM entries, via Flink */
-void DIFFITEM::RemoveSiblings()
-{
-	DIFFITEM *pRem = Flink;
-	while (pRem != nullptr)
-	{
-		assert(pRem->parent == parent);
-		assert(pRem->Blink == this);
-		DIFFITEM *pNext = pRem->Flink;
-		pRem->DelinkFromSiblings();	// destroys Flink (so we use pNext instead)
-		delete pRem;
-		pRem = pNext;
-	}
-	DelinkFromSiblings();
-}
-
 /** @brief Remove and delete all children DIFFITEM entries */
 void DIFFITEM::RemoveChildren()
 {
-	delete children;
+	DIFFITEM *pRem = children;
+	while (pRem != nullptr)
+	{
+		assert(pRem->parent == this);
+		DIFFITEM *pNext = pRem->Flink;
+		delete pRem;
+		pRem = pNext;
+	}
 	children = nullptr;
 }
 
@@ -167,7 +155,7 @@ void DIFFITEM::DelinkFromSiblings()
 		if (parent->children == this)
 		{
 			parent->children = Flink;
-			}
+		}
 	}
 	if (Blink != nullptr)
 		Blink->Flink = Flink;

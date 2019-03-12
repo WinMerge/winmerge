@@ -262,7 +262,6 @@ private:							// Don't allow direct external manipulation of link values
 										 with the first (oldest) item (pointed to by `this->parent->children`)
 										 pointing to the last (newest) item. This is for easy insertion. */
 	void AppendSibling(DIFFITEM *p);
-	void RemoveSiblings();
 
 public:
 	void DelinkFromSiblings();
