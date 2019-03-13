@@ -670,7 +670,7 @@ void CMergeDoc::FlagMovedLines(void)
 
 int CMergeDoc::ShowMessageBox(const String& sText, unsigned nType, unsigned nIDHelp)
 {
-	if (!GetParentFrame()->IsActivated())
+	if (m_pView[0][0] && m_pView[0][0]->IsTextBufferInitialized() && !GetParentFrame()->IsActivated())
 	{
 		GetParentFrame()->InitialUpdateFrame(this, true);
 		GetParentFrame()->SendMessageToDescendants(WM_IDLEUPDATECMDUI, static_cast<WPARAM>(true), 0, true, true);
