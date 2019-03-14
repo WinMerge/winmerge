@@ -47,12 +47,12 @@ msgstr "Copia a l'&esquerra"
 #: Merge.rc:6FC398B6
 #, c-format
 msgid "Copy &from Left"
-msgstr ""
+msgstr "Copia des de l'esquerra"
 
 #: Merge.rc:8AF7E68
 #, c-format
 msgid "Copy fro&m Right"
-msgstr ""
+msgstr "Copia des de la dreta"
 
 #: Merge.rc:381D79E4
 #, c-format
@@ -102,7 +102,7 @@ msgstr "amb l'&aplicació registrada"
 #: Merge.rc:321D741E
 #, c-format
 msgid "with &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "amb l'&editor extern\tCtrl+Alt+E"
 
 #: Merge.rc:AC3AA12
 #, c-format
@@ -112,12 +112,12 @@ msgstr "a&mb..."
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
-msgstr ""
+msgstr "Mostra &diferències"
 
 #: Merge.rc:71E3C8E3
 #, c-format
 msgid "Diff &Block Size"
-msgstr ""
+msgstr "Mida del &bloc"
 
 #: Merge.rc:67D67717
 #, c-format
@@ -127,22 +127,22 @@ msgstr ""
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
-msgstr ""
+msgstr "&Pàgina anterior"
 
 #: Merge.rc:68816EE1
 #, c-format
 msgid "&Next Page"
-msgstr ""
+msgstr "Pàgina següe&nt"
 
 #: Merge.rc:4DE14271
 #, c-format
 msgid "&Active Pane"
-msgstr ""
+msgstr "Plafó actiu"
 
 #: Merge.rc:43017E43
 #, c-format
 msgid "&Zoom"
-msgstr ""
+msgstr "&Zoom"
 
 #: Merge.rc:AC3AA13
 #, c-format
@@ -182,7 +182,7 @@ msgstr ""
 #: Merge.rc:100AAFAC
 #, c-format
 msgid "&Set Background Color"
-msgstr ""
+msgstr "Tria color de fons"
 
 #: Merge.rc:43017E46
 #, c-format
@@ -216,7 +216,7 @@ msgstr "Obre un &projecte...\tControl+J"
 #: Merge.rc:1BF42625
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "Desa el P&rojecte..."
+msgstr "Desa el p&rojecte..."
 
 #: Merge.rc:47D4A3FA
 #, c-format
@@ -226,7 +226,7 @@ msgstr "Projectes re&cents"
 #: Merge.rc:73E9B1DA
 #, c-format
 msgid "Recent F&iles Or Folders"
-msgstr ""
+msgstr "Fitxers i carpetes recents"
 
 #: Merge.rc:29D50B4A
 #, c-format
@@ -271,7 +271,7 @@ msgstr "&Gran"
 #: Merge.rc:43017E49
 #, c-format
 msgid "&Huge"
-msgstr ""
+msgstr "Immens"
 
 #: Merge.rc:27AC6D7F
 #, c-format
@@ -306,7 +306,7 @@ msgstr "&Connectors"
 #: Merge.rc:4C6CFD95
 #, c-format
 msgid "P&lugin Settings..."
-msgstr ""
+msgstr "Opcions dels connectors"
 
 #: Merge.rc:729280D7
 #, c-format

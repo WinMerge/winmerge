@@ -714,15 +714,16 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 
 	// Note that OpenDocs() takes care of closing compare window when needed.
 	bool bResult = pMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc);
-
-	if (CChildFrame *pFrame = pMergeDoc->GetParentFrame())
+	if (bResult)
 	{
-		if (!pFrame->IsActivated())
-			pFrame->InitialUpdateFrame(pMergeDoc, true);
+		if (CChildFrame *pFrame = pMergeDoc->GetParentFrame())
+			if (!pFrame->IsActivated())
+				pFrame->InitialUpdateFrame(pMergeDoc, true);
 	}
-
-	if (!bResult)
+	else
+	{
 		return false;
+	}
 
 	for (int pane = 0; pane < nFiles; pane++)
 	{
