@@ -1286,9 +1286,9 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
 		int srcEnd   = nSrcOffsets[worddiffs[i].endline[srcPane] - ptSrcStart.y] + worddiffs[i].end[srcPane];
 		int dstBegin = nDstOffsets[worddiffs[i].beginline[dstPane] - ptDstStart.y] + worddiffs[i].begin[dstPane];
 		int dstEnd   = nDstOffsets[worddiffs[i].endline[dstPane] - ptDstStart.y] + worddiffs[i].end[dstPane];
-		CString text = srcText.Mid(srcBegin - ptSrcStart.x, srcEnd - srcBegin);
-		dstText.Delete(dstBegin - ptDstStart.x, dstEnd - dstBegin);
-		dstText.Insert(dstBegin - ptDstStart.x, text);
+		dstText = dstText.Mid(0, dstBegin - ptDstStart.x)
+		        + srcText.Mid(srcBegin - ptSrcStart.x, srcEnd - srcBegin)
+		        + dstText.Mid(dstEnd - ptDstStart.x);
 	}
 
 	dbuf.DeleteText(pSource, ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, CE_ACTION_MERGE);
