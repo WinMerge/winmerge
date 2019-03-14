@@ -201,7 +201,8 @@ TEST(FileCompare, LastLineEOL)
 		_T("1None.txt"),
 		_T("1CRLF.txt"),
 		_T("3None.txt"),
-		_T("3CRLF.txt")
+		_T("3CRLF.txt"),
+		_T("2-3CRLF.txt")
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
@@ -251,12 +252,12 @@ TEST(FileCompare, LastLineEOL)
 						else
 						{
 							CMergeEditView *pView = pDoc->GetView(0, 0); // merge
-							EXPECT_EQ(1, pDoc->m_diffList.GetSize());
+							EXPECT_LE(1, pDoc->m_diffList.GetSize());
 							pDoc->CopyAllList(0, 1);
 							EXPECT_EQ(0, pDoc->m_diffList.GetSize());
 							// undo
 							pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
-							EXPECT_EQ(1, pDoc->m_diffList.GetSize());
+							EXPECT_LE(1, pDoc->m_diffList.GetSize());
 							// insert a character at the last line
 							pView->GotoLine(pDoc->m_ptBuf[0]->GetLineCount() - 1, false, 0);
 							pView->SendMessage(WM_CHAR, 'a');
