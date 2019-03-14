@@ -194,7 +194,7 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 		if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
 			m_ptBuf[file]->GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, m_ptBuf[file]->GetLineLength(nLineEnd), strText);
 		strText += m_ptBuf[file]->GetLineEol(nLineEnd);
-		str[file] = strText;
+		str[file].assign(strText, strText.GetLength());
 
 		nOffsets[file][0] = 0;
 		for (int nLine = nLineBegin; nLine < nLineEnd; nLine++)
