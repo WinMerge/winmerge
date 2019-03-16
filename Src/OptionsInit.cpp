@@ -42,16 +42,7 @@ void Init(COptionsMgr *pOptions)
 	static_cast<CRegOptionsMgr *>(pOptions)->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
 
 	LANGID LangId = GetUserDefaultLangID();
-	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
-	{
-		// Default language to Japanese unless installer set it otherwise
-		pOptions->InitOption(OPT_SELECTED_LANGUAGE, 0x411);
-	}
-	else
-	{
-		// Default language to English unless installer set it otherwise
-		pOptions->InitOption(OPT_SELECTED_LANGUAGE, 0x409);
-	}
+	pOptions->InitOption(OPT_SELECTED_LANGUAGE, static_cast<int>(LangId));
 
 	// Initialise options (name, default value)
 	pOptions->InitOption(OPT_SHOW_UNIQUE_LEFT, true);
