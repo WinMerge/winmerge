@@ -33,14 +33,7 @@ END_MESSAGE_MAP()
 
 static int determineIconSize()
 {
-	const int iconCX = GetSystemMetrics(SM_CXSMICON);
-	if (iconCX < 24)
-		return 16;
-	if (iconCX < 32)
-		return 24;
-	if (iconCX < 48)
-		return 32;
-	return 48;
+	return GetSystemMetrics(SM_CXSMICON);
 }
 
 /** 
