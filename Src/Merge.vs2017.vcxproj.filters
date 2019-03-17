@@ -784,6 +784,9 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\plain.cpp">
       <Filter>EditLib\parsers</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\lua.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
