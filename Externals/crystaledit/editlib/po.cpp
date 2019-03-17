@@ -16,8 +16,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "ccrystaltextview.h"
-#include "ccrystaltextbuffer.h"
+#include "crystallineparser.h"
 #include "SyntaxColors.h"
 #include "string_util.h"
 
@@ -61,32 +60,12 @@ IsPoNumber (LPCTSTR pszChars, int nLength)
   return true;
 }
 
-#define DEFINE_BLOCK(pos, colorindex)   \
-ASSERT((pos) >= 0 && (pos) <= nLength);\
-if (pBuf != nullptr)\
-  {\
-    if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
-        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
-        pBuf[nActualItems].m_nCharPos = (pos);\
-        pBuf[nActualItems].m_nColorIndex = (colorindex);\
-        pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
-        nActualItems ++;}\
-  }
-
-#define COOKIE_COMMENT          0x0001
-#define COOKIE_PREPROCESSOR     0x0002
-#define COOKIE_EXT_COMMENT      0x0004
-#define COOKIE_STRING           0x0008
-#define COOKIE_CHAR             0x0010
-
-DWORD CCrystalTextView::
-ParseLinePo (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
+DWORD
+CrystalLineParser::ParseLinePo (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
-  int nLength = GetLineLength (nLineIndex);
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  LPCTSTR pszChars = GetLineChars (nLineIndex);
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
@@ -279,7 +258,7 @@ out:
         }
     }
 
-  if (pszChars[nLength - 1] != '\\' || m_pTextBuffer->IsMBSTrail(nLineIndex, nLength - 1))
+  if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
     dwCookie &= COOKIE_EXT_COMMENT;
   return dwCookie;
 }

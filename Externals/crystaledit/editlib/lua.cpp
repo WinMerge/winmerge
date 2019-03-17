@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////
-//  File:       go.cpp
+//  File:       lua.cpp
 //  Version:    1.0.0.0
-//  Created:    23-Jul-2017
+//  Created:    17-May-2019
 //
 //  Copyright:  Stcherbatchenko Andrei, portions by Takashi Sawanaka
 //  E-mail:     sdottaka@users.sourceforge.net
 //
-//  Go syntax highlighing definition
+//  Lua syntax highlighing definition
 //
 //  You are free to use or modify this code to the following restrictions:
 //  - Acknowledge me somewhere in your about box, simple "Parts of code by.."
@@ -18,109 +18,80 @@
 #include "crystallineparser.h"
 #include "SyntaxColors.h"
 #include "string_util.h"
+#include <algorithm>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-//  Go keywords
-static LPCTSTR s_apszGoKeywordList[] =
+//  Lua keywords
+static LPCTSTR s_apszLuaKeywordList[] =
   {
-    _T ("break"),
-    _T ("case"),
-    _T ("chan"),
-    _T ("const"),
-    _T ("continue"),
-    _T ("default"),
-    _T ("defer"),
-    _T ("else"),
-    _T ("fallthrough"),
-    _T ("for"),
-    _T ("func"),
-    _T ("go"),
-    _T ("goto"),
-    _T ("if"),
-    _T ("import"),
-    _T ("interface"),
-    _T ("map"),
-    _T ("package"),
-    _T ("range"),
-    _T ("return"),
-    _T ("select"),
-    _T ("struct"),
-    _T ("switch"),
-    _T ("type"),
-    _T ("var"),
-  };
-
-static LPCTSTR s_apszUser1KeywordList[] =
-  {
-    _T ("append"),
-    _T ("bool"),
-    _T ("byte"),
-    _T ("cap"),
-    _T ("close"),
-    _T ("complex"),
-    _T ("complex128"),
-    _T ("complex64"),
-    _T ("copy"),
-    _T ("delete"),
-    _T ("error"),
-    _T ("false"),
-    _T ("float32"),
-    _T ("float64"),
-    _T ("imag"),
-    _T ("int"),
-    _T ("int16"),
-    _T ("int32"),
-    _T ("int64"),
-    _T ("int8"),
-    _T ("iota"),
-    _T ("len"),
-    _T ("make"),
-    _T ("new"),
-    _T ("nil"),
-    _T ("panic"),
-    _T ("print"),
-    _T ("println"),
-    _T ("real"),
-    _T ("recover"),
-    _T ("rune"),
-    _T ("string"),
-    _T ("true"),
-    _T ("uint"),
-    _T ("uint16"),
-    _T ("uint32"),
-    _T ("uint64"),
-    _T ("uint8"),
-    _T ("uintptr"),
+_T ("and"),
+_T ("break"),
+_T ("do"),
+_T ("else"),
+_T ("elseif"),
+_T ("end"),
+_T ("false"),
+_T ("for"),
+_T ("function"),
+_T ("if"),
+_T ("in"),
+_T ("local"),
+_T ("nil"),
+_T ("not"),
+_T ("or"),
+_T ("repeat"),
+_T ("return"),
+_T ("then"),
+_T ("true"),
+_T ("until"),
+_T ("while"),
   };
 
 static bool
-IsGoKeyword (LPCTSTR pszChars, int nLength)
+IsLuaKeyword (LPCTSTR pszChars, int nLength)
 {
-  return ISXKEYWORD (s_apszGoKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszLuaKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsLuaNumber (LPCTSTR pszChars, int nLength)
 {
-  return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
-}
-
-static bool
-IsGoNumber (LPCTSTR pszChars, int nLength)
-{
-  if (nLength > 2 && pszChars[0] == '0' && pszChars[1] == 'x')
+  if (nLength > 2 && pszChars[0] == '0')
     {
-      for (int I = 2; I < nLength; I++)
+      if (pszChars[1] == 'x')
         {
-          if (_istdigit (pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
-                (pszChars[I] >= 'a' && pszChars[I] <= 'f'))
-            continue;
-          return false;
+          for (int I = 2; I < nLength; I++)
+            {
+              if (_istdigit (pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
+                    (pszChars[I] >= 'a' && pszChars[I] <= 'f') || pszChars[I] == '_')
+                continue;
+              return false;
+            }
+          return true;
         }
-      return true;
+      else if (pszChars[1] == 'o')
+        {
+          for (int I = 2; I < nLength; I++)
+            {
+              if ((pszChars[I] >= '0' && pszChars[I] <= '7') || pszChars[I] == '_')
+                continue;
+              return false;
+            }
+          return true;
+        }
+      else if (pszChars[1] == 'b')
+        {
+          for (int I = 2; I < nLength; I++)
+            {
+              if ((pszChars[I] >= '0' && pszChars[I] <= '1') || pszChars[I] == '_')
+                continue;
+              return false;
+            }
+          return true;
+        }
     }
   if (!_istdigit (pszChars[0]) && pszChars[0] != '.')
     return false;
@@ -128,20 +99,18 @@ IsGoNumber (LPCTSTR pszChars, int nLength)
     {
       if (!_istdigit (pszChars[I]) && pszChars[I] != '+' &&
             pszChars[I] != '-' && pszChars[I] != '.' && pszChars[I] != 'e' &&
-            pszChars[I] != 'E')
+            pszChars[I] != 'E' && pszChars[I] != '_')
         return false;
     }
   return true;
 }
 
 DWORD
-CrystalLineParser::ParseLineGo (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineLua (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING);
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | 0xFF000000);
 
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -211,17 +180,6 @@ out:
           continue;
         }
 
-      //  Raw string constant `....`
-      if (dwCookie & COOKIE_RAWSTRING)
-        {
-          if (pszChars[I] == '`')
-            {
-              dwCookie &= ~COOKIE_RAWSTRING;
-              bRedefineBlock = true;
-            }
-          continue;
-        }
-
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
@@ -233,19 +191,33 @@ out:
           continue;
         }
 
-      //  Extended comment /*....*/
-      if (dwCookie & COOKIE_EXT_COMMENT)
+      //  Raw string constant [[ ... ]], [=[ ... ]=], [==[ ... ]==], ...
+      if (dwCookie & COOKIE_RAWSTRING)
         {
-          if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
+          const int nEqualsSignCount = COOKIE_GET_LUA_EQUALS_SIGN_COUNT(dwCookie);
+          if (I >= nEqualsSignCount + 1 && pszChars[I] == ']' && pszChars[I - nEqualsSignCount - 1] == ']' && 
+			  std::all_of(pszChars + I - nEqualsSignCount, pszChars + I, [](const auto c) { return c == '='; }))
             {
-              dwCookie &= ~COOKIE_EXT_COMMENT;
+              dwCookie &= ~COOKIE_RAWSTRING;
               bRedefineBlock = true;
-              pszCommentEnd = pszChars + I + 1;
             }
           continue;
         }
 
-      if (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/')
+      //  Extended comment --[[ ... ]] , --[=[ ... ]=], --[==[ ... ]==], ...
+      if (dwCookie & COOKIE_EXT_COMMENT)
+        {
+          const int nEqualsSignCount = COOKIE_GET_LUA_EQUALS_SIGN_COUNT(dwCookie);
+          if (I >= nEqualsSignCount + 1 && pszChars[I] == ']' && pszChars[I - nEqualsSignCount - 1] == ']' && 
+			  std::all_of(pszChars + I - nEqualsSignCount, pszChars + I, [](const auto c) { return c == '='; }))
+            {
+              dwCookie &= ~COOKIE_EXT_COMMENT;
+              bRedefineBlock = true;
+            }
+          continue;
+        }
+
+      if (I > 0 && pszChars[I] == '-' && pszChars[nPrevI] == '-')
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_COMMENT;
@@ -259,12 +231,6 @@ out:
           dwCookie |= COOKIE_STRING;
           continue;
         }
-      if (pszChars[I] == '`')
-        {
-          DEFINE_BLOCK (I, COLORINDEX_STRING);
-          dwCookie |= COOKIE_RAWSTRING;
-          continue;
-        }
       if (pszChars[I] == '\'')
         {
           // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
@@ -275,12 +241,33 @@ out:
               continue;
             }
         }
-      if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/'))
+      // Raw string [[ ... ]], [=[ ... ]=], [==[ ... ]==], ...
+      if (pszChars[I] == '[' && I + 1 < nLength && (pszChars[I + 1] == '[' || pszChars[I + 1] == '='))
         {
-          DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
-          dwCookie |= COOKIE_EXT_COMMENT;
-          pszCommentBegin = pszChars + I + 1;
-          continue;
+          int nEqualsSignCount = 0;
+          while (I + 1 + nEqualsSignCount < nLength && pszChars[I + 1 + nEqualsSignCount] == '=')
+            ++nEqualsSignCount;
+          if (I + 1 + nEqualsSignCount < nLength && pszChars[I + 1 + nEqualsSignCount] == '[')
+            {
+              DEFINE_BLOCK (I, COLORINDEX_STRING);
+              dwCookie |= COOKIE_RAWSTRING;
+              COOKIE_SET_LUA_EQUALS_SIGN_COUNT(dwCookie, nEqualsSignCount);
+              continue;
+            }
+        }
+	  // Extended comment [[ ... ]], [=[ ... ]=], [==[ ... ]==], ...
+      if (pszChars[I] == '-' && I + 3 < nLength && pszChars[I + 1] == '-' && pszChars[I + 2] == '[' && (pszChars[I + 3] == '[' || pszChars[I + 3] == '='))
+        {
+          int nEqualsSignCount = 0;
+          while (I + 3 + nEqualsSignCount < nLength && pszChars[I + 3 + nEqualsSignCount] == '=')
+            ++nEqualsSignCount;
+          if (I + 3 + nEqualsSignCount < nLength && pszChars[I + 3 + nEqualsSignCount] == '[')
+            {
+              DEFINE_BLOCK (I, COLORINDEX_COMMENT);
+              dwCookie |= COOKIE_EXT_COMMENT;
+              COOKIE_SET_LUA_EQUALS_SIGN_COUNT(dwCookie, nEqualsSignCount);
+              continue;
+            }
         }
 
       if (pBuf == nullptr)
@@ -296,15 +283,11 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (IsGoKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+              if (IsLuaKeyword (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
                 }
-              else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-                }
-              else if (IsGoNumber (pszChars + nIdentBegin, I - nIdentBegin))
+              else if (IsLuaNumber (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
                 }
@@ -337,15 +320,11 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      if (IsGoKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+      if (IsLuaKeyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
         }
-      else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-        }
-      else if (IsGoNumber (pszChars + nIdentBegin, I - nIdentBegin))
+      else if (IsLuaNumber (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
         }
@@ -371,6 +350,6 @@ out:
         }
     }
 
-  dwCookie &= COOKIE_EXT_COMMENT | COOKIE_RAWSTRING;
+  dwCookie &= COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | 0xFF000000;
   return dwCookie;
 }

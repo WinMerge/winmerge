@@ -4743,6 +4743,10 @@ msgstr "Χωρίς Χρωματισμό Κώδικα"
 msgid "Batch"
 msgstr ""
 
+#: Merge.rc:23B300
+msgid "Lua"
+msgstr ""
+
 #: Merge.rc:55B03C15
 #, c-format
 msgid "Portable Object"

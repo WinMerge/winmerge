@@ -501,11 +501,13 @@
     <ClCompile Include="..\editlib\java.cpp" />
     <ClCompile Include="..\editlib\LineInfo.cpp" />
     <ClCompile Include="..\editlib\lisp.cpp" />
+    <ClCompile Include="..\editlib\lua.cpp" />
     <ClCompile Include="..\editlib\memcombo.cpp" />
     <ClCompile Include="..\editlib\nsis.cpp" />
     <ClCompile Include="..\editlib\pascal.cpp" />
     <ClCompile Include="..\editlib\perl.cpp" />
     <ClCompile Include="..\editlib\php.cpp" />
+    <ClCompile Include="..\editlib\plain.cpp" />
     <ClCompile Include="..\editlib\po.cpp" />
     <ClCompile Include="..\editlib\powershell.cpp" />
     <ClCompile Include="..\editlib\python.cpp" />
@@ -587,6 +589,7 @@
     <ClInclude Include="..\editlib\fpattern.h" />
     <ClInclude Include="..\editlib\gotodlg.h" />
     <ClInclude Include="..\editlib\LineInfo.h" />
+    <ClInclude Include="..\editlib\crystallineparser.h" />
     <ClInclude Include="..\editlib\memcombo.h" />
     <ClInclude Include="..\editlib\registry.h" />
     <ClInclude Include="..\editlib\splash.h" />

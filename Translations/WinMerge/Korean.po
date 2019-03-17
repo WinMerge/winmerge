@@ -4874,6 +4874,10 @@ msgstr "강조 표시 없음"
 msgid "Batch"
 msgstr "일괄 처리"
 
+#: Merge.rc:23B300
+msgid "Lua"
+msgstr ""
+
 #: Merge.rc:55B03C15
 #, c-format
 msgid "Portable Object"

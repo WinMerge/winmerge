@@ -14,7 +14,10 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
+#include "crystallineparser.h"
 #include "crystaltextblock.h"
+
+using CrystalLineParser::TEXTBLOCK;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -228,6 +228,12 @@
     <ClCompile Include="..\editlib\wcwidth.cpp">
       <Filter>editlib</Filter>
     </ClCompile>
+    <ClCompile Include="..\editlib\plain.cpp">
+      <Filter>editlib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\lua.cpp">
+      <Filter>editlib\parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Sample.rc">
@@ -345,6 +351,9 @@
     </ClInclude>
     <ClInclude Include="..\editlib\wcwidth.h">
       <Filter>editlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\crystallineparser.h">
+      <Filter>editlib\parsers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
