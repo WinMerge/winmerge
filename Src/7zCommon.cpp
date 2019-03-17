@@ -119,7 +119,7 @@ DATE:		BY:					DESCRIPTION:
 static __declspec(thread) Merge7z::Proxy m_Merge7z =
 {
 	{ 0, 0, DllBuild_Merge7z, },
-	"Merge7z\\Merge7z%u%02u" DECORATE_U ".dll",
+	"Merge7z\\Merge7z.dll",
 	"Merge7z",
 	nullptr
 };
@@ -288,9 +288,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
 			throw new CResourceException();
 		if (DWORD ver = VersionOf7z())
 		{
-			char name[MAX_PATH];
-			wsprintfA(name, format, UINT HIWORD(ver), UINT LOWORD(ver));
-			Merge7z[0] = name;
+			Merge7z[0] = format;
 			stub.Load();
 		}
 		else
