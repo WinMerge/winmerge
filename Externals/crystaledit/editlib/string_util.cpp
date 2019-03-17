@@ -79,3 +79,19 @@ bool IsXKeyword(LPCTSTR pszKey, size_t nKeyLen, LPCTSTR pszKeywordList[], size_t
 	}
 	return false;
 }
+
+bool IsMBSTrail (const TCHAR *pszChars, int nCol)
+{
+#ifdef _UNICODE
+  const wchar_t *current = pszChars + nCol;
+  if (*current >= 0xDC00 && *current <= 0xDFFF) // surrogate pair 
+    return true;
+  return false;
+#else // _UNICODE
+  const unsigned char *string = (const unsigned char *) pszChars;
+  const unsigned char *current = string + nCol;
+  if (_ismbstrail (string, current) < 0)
+    return true;
+  return false;
+#endif // _UNICODE
+}

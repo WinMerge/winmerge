@@ -109,6 +109,7 @@
 #include "wcwidth.h"
 
 using std::vector;
+using CrystalLineParser::TEXTBLOCK;
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -285,42 +286,42 @@ EXPAND_PRIMITIVE (MoveCtrlEnd, TextEnd)
 // See ccrystaltextview.h for table declaration.
 CCrystalTextView::TextDefinition CCrystalTextView::m_SourceDefs[] =
   {
-    CCrystalTextView::SRC_PLAIN, _T ("Plain"), _T ("txt,doc,diz"), &CCrystalTextView::ParseLinePlain, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_ASP, _T ("ASP"), _T ("asp,ascx"), &CCrystalTextView::ParseLineAsp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("'"), (DWORD)-1,
-    CCrystalTextView::SRC_BASIC, _T ("Basic"), _T ("bas,vb,vbs,frm,dsm,cls,ctl,pag,dsr"), &CCrystalTextView::ParseLineBasic, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("\'"), (DWORD)-1,
-    CCrystalTextView::SRC_BATCH, _T ("Batch"), _T ("bat,btm,cmd"), &CCrystalTextView::ParseLineBatch, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("rem "), (DWORD)-1,
-    CCrystalTextView::SRC_C, _T ("C"), _T ("c,cc,cpp,cxx,h,hpp,hxx,hm,inl,rh,tlh,tli,xs"), &CCrystalTextView::ParseLineC, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_CSHARP, _T ("C#"), _T ("cs"), &CCrystalTextView::ParseLineCSharp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_CSS, _T ("CSS"), _T ("css"), &CCrystalTextView::ParseLineCss, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_DCL, _T ("DCL"), _T ("dcl,dcc"), &CCrystalTextView::ParseLineDcl, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_FORTRAN, _T ("Fortran"), _T ("f,f90,f9p,fpp,for,f77"), &CCrystalTextView::ParseLineFortran, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT, /*8,*/ _T (""), _T (""), _T ("!"), (DWORD)-1,
-    CCrystalTextView::SRC_GO, _T ("Go"), _T ("go"), &CCrystalTextView::ParseLineGo, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_HTML, _T ("HTML"), _T ("html,htm,shtml,ihtml,ssi,stm,stml,jsp"), &CCrystalTextView::ParseLineHtml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_INI, _T ("INI"), _T ("ini,reg,vbp,isl"), &CCrystalTextView::ParseLineIni, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU|SRCOPT_EOLNUNIX, /*2,*/ _T (""), _T (""), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_INNOSETUP, _T ("InnoSetup"), _T ("iss"), &CCrystalTextView::ParseLineInnoSetup, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("{"), _T ("}"), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_INSTALLSHIELD, _T ("InstallShield"), _T ("rul"), &CCrystalTextView::ParseLineIS, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_JAVA, _T ("Java"), _T ("java,jav,js"), &CCrystalTextView::ParseLineJava, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_LISP, _T ("AutoLISP"), _T ("lsp,dsl"), &CCrystalTextView::ParseLineLisp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (";|"), _T ("|;"), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_NSIS, _T ("NSIS"), _T ("nsi,nsh"), &CCrystalTextView::ParseLineNsis, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_PASCAL, _T ("Pascal"), _T ("pas"), &CCrystalTextView::ParseLinePascal, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("{"), _T ("}"), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_PERL, _T ("Perl"), _T ("pl,pm,plx"), &CCrystalTextView::ParseLinePerl, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_PHP, _T ("PHP"), _T ("php,php3,php4,php5,phtml"), &CCrystalTextView::ParseLinePhp, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_PO, _T ("PO"), _T ("po,pot"), &CCrystalTextView::ParseLinePo, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_POWERSHELL, _T ("PowerShell"), _T ("ps1"), &CCrystalTextView::ParseLinePowerShell, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_PYTHON, _T ("Python"), _T ("py"), &CCrystalTextView::ParseLinePython, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_REXX, _T ("REXX"), _T ("rex,rexx"), &CCrystalTextView::ParseLineRexx, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_RSRC, _T ("Resources"), _T ("rc,dlg,r16,r32,rc2"), &CCrystalTextView::ParseLineRsrc, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-	CCrystalTextView::SRC_RUBY, _T ("Ruby"), _T ("rb,rbw,rake,gemspec"), &CCrystalTextView::ParseLineRuby, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_RUST, _T ("Rust"), _T ("rs"), &CCrystalTextView::ParseLineRust, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_SGML, _T ("Sgml"), _T ("sgml"), &CCrystalTextView::ParseLineSgml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_SH, _T ("Shell"), _T ("sh,conf"), &CCrystalTextView::ParseLineSh, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_SIOD, _T ("SIOD"), _T ("scm"), &CCrystalTextView::ParseLineSiod, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T (";|"), _T ("|;"), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_SQL, _T ("SQL"), _T ("sql"), &CCrystalTextView::ParseLineSql, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_TCL, _T ("TCL"), _T ("tcl"), &CCrystalTextView::ParseLineTcl, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU|SRCOPT_EOLNUNIX, /*2,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_TEX, _T ("TEX"), _T ("tex,sty,clo,ltx,fd,dtx"), &CCrystalTextView::ParseLineTex, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("%"), (DWORD)-1,
-    CCrystalTextView::SRC_VERILOG, _T ("Verilog"), _T ("v,vh"), &CCrystalTextView::ParseLineVerilog, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-    CCrystalTextView::SRC_VHDL, _T ("VHDL"), _T ("vhd,vhdl,vho"), &CCrystalTextView::ParseLineVhdl, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("--"), (DWORD)-1,
-    CCrystalTextView::SRC_XML, _T ("XML"), _T ("xml"), &CCrystalTextView::ParseLineXml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1
+    CCrystalTextView::SRC_PLAIN, _T ("Plain"), _T ("txt,doc,diz"), &CrystalLineParser::ParseLinePlain, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T (""), (DWORD)-1,
+    CCrystalTextView::SRC_ASP, _T ("ASP"), _T ("asp,ascx"), &CrystalLineParser::ParseLineAsp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("'"), (DWORD)-1,
+    CCrystalTextView::SRC_BASIC, _T ("Basic"), _T ("bas,vb,vbs,frm,dsm,cls,ctl,pag,dsr"), &CrystalLineParser::ParseLineBasic, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("\'"), (DWORD)-1,
+    CCrystalTextView::SRC_BATCH, _T ("Batch"), _T ("bat,btm,cmd"), &CrystalLineParser::ParseLineBatch, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("rem "), (DWORD)-1,
+    CCrystalTextView::SRC_C, _T ("C"), _T ("c,cc,cpp,cxx,h,hpp,hxx,hm,inl,rh,tlh,tli,xs"), &CrystalLineParser::ParseLineC, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_CSHARP, _T ("C#"), _T ("cs"), &CrystalLineParser::ParseLineCSharp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_CSS, _T ("CSS"), _T ("css"), &CrystalLineParser::ParseLineCss, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T (""), (DWORD)-1,
+    CCrystalTextView::SRC_DCL, _T ("DCL"), _T ("dcl,dcc"), &CrystalLineParser::ParseLineDcl, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_FORTRAN, _T ("Fortran"), _T ("f,f90,f9p,fpp,for,f77"), &CrystalLineParser::ParseLineFortran, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT, /*8,*/ _T (""), _T (""), _T ("!"), (DWORD)-1,
+    CCrystalTextView::SRC_GO, _T ("Go"), _T ("go"), &CrystalLineParser::ParseLineGo, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_HTML, _T ("HTML"), _T ("html,htm,shtml,ihtml,ssi,stm,stml,jsp"), &CrystalLineParser::ParseLineHtml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1,
+    CCrystalTextView::SRC_INI, _T ("INI"), _T ("ini,reg,vbp,isl"), &CrystalLineParser::ParseLineIni, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU|SRCOPT_EOLNUNIX, /*2,*/ _T (""), _T (""), _T (";"), (DWORD)-1,
+    CCrystalTextView::SRC_INNOSETUP, _T ("InnoSetup"), _T ("iss"), &CrystalLineParser::ParseLineInnoSetup, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("{"), _T ("}"), _T (";"), (DWORD)-1,
+    CCrystalTextView::SRC_INSTALLSHIELD, _T ("InstallShield"), _T ("rul"), &CrystalLineParser::ParseLineIS, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_JAVA, _T ("Java"), _T ("java,jav,js"), &CrystalLineParser::ParseLineJava, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_LISP, _T ("AutoLISP"), _T ("lsp,dsl"), &CrystalLineParser::ParseLineLisp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (";|"), _T ("|;"), _T (";"), (DWORD)-1,
+    CCrystalTextView::SRC_NSIS, _T ("NSIS"), _T ("nsi,nsh"), &CrystalLineParser::ParseLineNsis, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T (";"), (DWORD)-1,
+    CCrystalTextView::SRC_PASCAL, _T ("Pascal"), _T ("pas"), &CrystalLineParser::ParseLinePascal, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("{"), _T ("}"), _T (""), (DWORD)-1,
+    CCrystalTextView::SRC_PERL, _T ("Perl"), _T ("pl,pm,plx"), &CrystalLineParser::ParseLinePerl, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
+    CCrystalTextView::SRC_PHP, _T ("PHP"), _T ("php,php3,php4,php5,phtml"), &CrystalLineParser::ParseLinePhp, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_PO, _T ("PO"), _T ("po,pot"), &CrystalLineParser::ParseLinePo, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
+    CCrystalTextView::SRC_POWERSHELL, _T ("PowerShell"), _T ("ps1"), &CrystalLineParser::ParseLinePowerShell, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
+    CCrystalTextView::SRC_PYTHON, _T ("Python"), _T ("py"), &CrystalLineParser::ParseLinePython, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_REXX, _T ("REXX"), _T ("rex,rexx"), &CrystalLineParser::ParseLineRexx, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_RSRC, _T ("Resources"), _T ("rc,dlg,r16,r32,rc2"), &CrystalLineParser::ParseLineRsrc, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+	CCrystalTextView::SRC_RUBY, _T ("Ruby"), _T ("rb,rbw,rake,gemspec"), &CrystalLineParser::ParseLineRuby, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
+    CCrystalTextView::SRC_RUST, _T ("Rust"), _T ("rs"), &CrystalLineParser::ParseLineRust, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_SGML, _T ("Sgml"), _T ("sgml"), &CrystalLineParser::ParseLineSgml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1,
+    CCrystalTextView::SRC_SH, _T ("Shell"), _T ("sh,conf"), &CrystalLineParser::ParseLineSh, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
+    CCrystalTextView::SRC_SIOD, _T ("SIOD"), _T ("scm"), &CrystalLineParser::ParseLineSiod, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T (";|"), _T ("|;"), _T (";"), (DWORD)-1,
+    CCrystalTextView::SRC_SQL, _T ("SQL"), _T ("sql"), &CrystalLineParser::ParseLineSql, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_TCL, _T ("TCL"), _T ("tcl"), &CrystalLineParser::ParseLineTcl, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU|SRCOPT_EOLNUNIX, /*2,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
+    CCrystalTextView::SRC_TEX, _T ("TEX"), _T ("tex,sty,clo,ltx,fd,dtx"), &CrystalLineParser::ParseLineTex, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("%"), (DWORD)-1,
+    CCrystalTextView::SRC_VERILOG, _T ("Verilog"), _T ("v,vh"), &CrystalLineParser::ParseLineVerilog, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_VHDL, _T ("VHDL"), _T ("vhd,vhdl,vho"), &CrystalLineParser::ParseLineVhdl, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("--"), (DWORD)-1,
+    CCrystalTextView::SRC_XML, _T ("XML"), _T ("xml"), &CrystalLineParser::ParseLineXml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1
   };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1291,7 +1292,7 @@ GetParseCookie (int nLineIndex)
       if (L > 0)
         dwCookie = (*m_ParseCookies)[L - 1];
       ASSERT (dwCookie != - 1);
-      (*m_ParseCookies)[L] = ParseLine (dwCookie, L, nullptr, nBlocks);
+      (*m_ParseCookies)[L] = ParseLine (dwCookie, GetLineChars(L), GetLineLength(L), nullptr, nBlocks);
       ASSERT ((*m_ParseCookies)[L] != - 1);
       L++;
     }
@@ -1299,7 +1300,7 @@ GetParseCookie (int nLineIndex)
   return (*m_ParseCookies)[nLineIndex];
 }
 
-std::vector<CCrystalTextView::TEXTBLOCK> CCrystalTextView::
+std::vector<TEXTBLOCK> CCrystalTextView::
 GetAdditionalTextBlocks (int nLineIndex)
 {
   return {};
@@ -1568,7 +1569,7 @@ public:
   explicit IntArray(int len) { SetSize(len); }
 };
 
-std::vector<CCrystalTextView::TEXTBLOCK> CCrystalTextView::
+std::vector<TEXTBLOCK> CCrystalTextView::
 MergeTextBlocks (const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBLOCK>& blocks2) const
 {
   size_t i, j, k;
@@ -1641,7 +1642,7 @@ MergeTextBlocks (const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBL
   return mergedBlocks;
 }
 
-std::vector<CCrystalTextView::TEXTBLOCK>
+std::vector<TEXTBLOCK>
 CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
 {
   std::vector<TEXTBLOCK> allblocks;
@@ -1694,7 +1695,7 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
   return allblocks;
 }
 
-std::vector<CCrystalTextView::TEXTBLOCK>
+std::vector<TEXTBLOCK>
 CCrystalTextView::GetTextBlocks(int nLineIndex)
 {
   int nLength = GetViewableLineLength (nLineIndex);
@@ -1708,7 +1709,7 @@ CCrystalTextView::GetTextBlocks(int nLineIndex)
   blocks[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
   blocks[0].m_nBgColorIndex = COLORINDEX_BKGND;
   nBlocks++;
-  (*m_ParseCookies)[nLineIndex] = ParseLine(dwCookie, nLineIndex, blocks.data(), nBlocks);
+  (*m_ParseCookies)[nLineIndex] = ParseLine(dwCookie, GetLineChars(nLineIndex), GetLineLength(nLineIndex), blocks.data(), nBlocks);
   ASSERT((*m_ParseCookies)[nLineIndex] != -1);
   blocks.resize(nBlocks);
   
@@ -2672,7 +2673,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
         bDBCSLeadPrev = IsLeadByte(szLine[nIndex]);
     }
 
-  if (szLine && m_pTextBuffer->IsMBSTrail(nLineIndex, nIndex)) nIndex--;
+  if (szLine && IsMBSTrail(szLine, nIndex)) nIndex--;
 
   return nIndex;	
 }
@@ -4062,15 +4063,9 @@ OnSetFocus (CWnd * pOldWnd)
 }
 
 DWORD CCrystalTextView::
-ParseLinePlain (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
+ParseLine (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
-  return 0;
-}
-
-DWORD CCrystalTextView::
-ParseLine (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
-{
-  return (this->*(m_CurSourceDef->ParseLineX)) (dwCookie, nLineIndex, pBuf, nActualItems);
+  return m_CurSourceDef->ParseLineX (dwCookie, pszChars, nLength, pBuf, nActualItems);
 }
 
 int CCrystalTextView::
