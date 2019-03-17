@@ -501,6 +501,7 @@
     <ClCompile Include="..\editlib\java.cpp" />
     <ClCompile Include="..\editlib\LineInfo.cpp" />
     <ClCompile Include="..\editlib\lisp.cpp" />
+    <ClCompile Include="..\editlib\lua.cpp" />
     <ClCompile Include="..\editlib\memcombo.cpp" />
     <ClCompile Include="..\editlib\nsis.cpp" />
     <ClCompile Include="..\editlib\pascal.cpp" />

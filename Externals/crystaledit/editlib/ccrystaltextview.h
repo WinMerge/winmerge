@@ -724,6 +724,7 @@ public :
       SRC_INSTALLSHIELD,
       SRC_JAVA,
       SRC_LISP,
+      SRC_LUA,
       SRC_NSIS,
       SRC_PASCAL,
       SRC_PERL,
