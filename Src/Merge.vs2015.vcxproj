@@ -494,6 +494,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\java.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\LineInfo.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\lisp.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\lua.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\memcombo.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\nsis.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\pascal.cpp" />
