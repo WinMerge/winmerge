@@ -6,6 +6,7 @@
 #include "crystalparser.h"
 #include "crystaleditviewex.h"
 
+using CrystalLineParser::TEXTBLOCK;
 
 //////////////////////////////////////////////////////////////////////
 // Konstruktion/Destruktion
@@ -37,7 +38,7 @@ DWORD CCrystalEditViewEx::ParseLine( DWORD dwCookie, int nLineIndex,
 	if( m_pSyntaxParser != nullptr )
 	{
 		CCrystalTextBlock	*pTextBlock = 
-			pBuf? new CCrystalTextBlock( (CCrystalTextBlock::TEXTBLOCK*)pBuf, nActualItems ) : nullptr;
+			pBuf? new CCrystalTextBlock( (TEXTBLOCK*)pBuf, nActualItems ) : nullptr;
 		dwCookie = m_pSyntaxParser->ParseLine( dwCookie, nLineIndex, pTextBlock );
 		
 		if( pTextBlock != nullptr )

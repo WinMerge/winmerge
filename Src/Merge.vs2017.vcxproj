@@ -511,6 +511,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\pascal.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\perl.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\php.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\plain.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\po.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\powershell.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\python.cpp" />
@@ -1080,6 +1081,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\fpattern.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\gotodlg.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\crystallineparser.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\memcombo.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\registry.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\statbar.h" />

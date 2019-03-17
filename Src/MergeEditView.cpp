@@ -50,6 +50,7 @@
 #endif
 
 using std::vector;
+using CrystalLineParser::TEXTBLOCK;
 
 /** @brief Timer ID for delayed rescan. */
 const UINT IDT_RESCAN = 2;
@@ -471,7 +472,7 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 	pDoc->UpdateHeaderActivity(m_nThisPane, !!bActivate);
 }
 
-std::vector<CCrystalTextView::TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
+std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 {
 	static const std::vector<TEXTBLOCK> emptyBlocks;
 	if (m_bDetailView)

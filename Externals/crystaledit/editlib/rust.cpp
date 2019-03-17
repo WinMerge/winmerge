@@ -15,8 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "ccrystaltextview.h"
-#include "ccrystaltextbuffer.h"
+#include "crystallineparser.h"
 #include "SyntaxColors.h"
 #include "string_util.h"
 #include <algorithm>
@@ -165,35 +164,12 @@ IsRustNumber (LPCTSTR pszChars, int nLength)
   return true;
 }
 
-#define DEFINE_BLOCK(pos, colorindex)   \
-ASSERT((pos) >= 0 && (pos) <= nLength);\
-if (pBuf != nullptr)\
-  {\
-    if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
-        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
-        pBuf[nActualItems].m_nCharPos = (pos);\
-        pBuf[nActualItems].m_nColorIndex = (colorindex);\
-        pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
-        nActualItems ++;}\
-  }
-
-#define COOKIE_COMMENT          0x0001
-#define COOKIE_EXT_COMMENT      0x0004
-#define COOKIE_STRING           0x0008
-#define COOKIE_RAWSTRING        0x0020
-#define COOKIE_GET_EXT_COMMENT_DEPTH(cookie) (((cookie) & 0x0F00) >> 8)
-#define COOKIE_SET_EXT_COMMENT_DEPTH(cookie, depth) (cookie) = (((cookie) & 0xF0FF) | ((depth) << 8))
-#define COOKIE_GET_RAWSTRING_NUMBER_COUNT(cookie) (((cookie) & 0xF000) >> 12)
-#define COOKIE_SET_RAWSTRING_NUMBER_COUNT(cookie, count) (cookie) = (((cookie) & 0x0FFF) | ((count) << 12))
-
-DWORD CCrystalTextView::
-ParseLineRust (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
+DWORD
+CrystalLineParser::ParseLineRust (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
-  int nLength = GetLineLength (nLineIndex);
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | COOKIE_STRING | 0xFF00);
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | COOKIE_STRING | 0xFF000000);
 
-  LPCTSTR pszChars = GetLineChars (nLineIndex);
   LPCTSTR pszRawStringBegin = nullptr;
   LPCTSTR pszCommentBegin = nullptr;
   LPCTSTR pszCommentEnd = nullptr;
@@ -436,6 +412,6 @@ out:
         }
     }
 
-  dwCookie &= COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | COOKIE_STRING | 0xFF00;
+  dwCookie &= COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | COOKIE_STRING | 0xFF000000;
   return dwCookie;
 }
