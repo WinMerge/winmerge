@@ -15,6 +15,8 @@
 
 #pragma once
 
+namespace CrystalLineParser { struct TEXTBLOCK; }
+
 /**
 Objects of this class are passed to CCrystalParser::ParseLine() to get the
 positions of color changes in a text line.
@@ -29,16 +31,9 @@ class EDITPADC_CLASS CCrystalTextBlock
 	friend class CCrystalTextView;
 	friend class CCrystalEditViewEx;
 
-protected:
-	struct TEXTBLOCK
-	{
-		int m_nCharPos;
-		int m_nColorIndex;
-	};
-
 // construction/destruction
 protected:
-	CCrystalTextBlock( TEXTBLOCK *pTextBlock, int &rnActualItems );
+	CCrystalTextBlock( CrystalLineParser::TEXTBLOCK *pTextBlock, int &rnActualItems );
 
 // operations
 public:
@@ -57,7 +52,7 @@ public:
 // attributes
 protected:
 	/** text block to work on */
-	TEXTBLOCK	*m_pTextBlock;
+	CrystalLineParser::TEXTBLOCK	*m_pTextBlock;
 
 	/** Index */
 	int &m_rnActualItems;

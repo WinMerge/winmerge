@@ -781,6 +781,9 @@
     <ClCompile Include="OptionsPanel.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\plain.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1445,6 +1448,9 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\crystallineparser.h">
+      <Filter>EditLib\parsers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
