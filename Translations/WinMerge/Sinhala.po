@@ -4764,6 +4764,10 @@ msgstr "No Highlighting"
 msgid "Batch"
 msgstr "Batch"
 
+#: Merge.rc:23B300
+msgid "Lua"
+msgstr ""
+
 #: Merge.rc:55B03C15
 #, c-format
 msgid "Portable Object"

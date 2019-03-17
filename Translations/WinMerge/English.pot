@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-03-09 22:42+0000\n"
+"POT-Creation-Date: 2019-03-17 19:29+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3709,6 +3709,10 @@ msgstr ""
 
 #: Merge.rc:7460E8C0
 msgid "Batch"
+msgstr ""
+
+#: Merge.rc:23B300
+msgid "Lua"
 msgstr ""
 
 #: Merge.rc:55B03C15
