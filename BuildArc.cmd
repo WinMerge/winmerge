@@ -81,7 +81,7 @@ del "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\Watch*OfLog.dll" 2> 
 del "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\DisplayXMLFiles.dll" 2> NUL
 
 rem 7zPlugins
-copy Build\%PLATFORM%\Merge7z\Merge7z*.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\"
+copy Build\%PLATFORM%\Merge7z\Merge7z.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\"
 copy Build\%PLATFORM%\Merge7z\7z.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\"
 copy Build\%PLATFORM%\Merge7z\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\"
 copy Build\%PLATFORM%\Merge7z\Lang\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\Lang\"
