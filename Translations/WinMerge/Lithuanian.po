@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-01-14 01:56+0000\n"
-"PO-Revision-Date: 2019-01-14 08:50+0200\n"
+"POT-Creation-Date: 2019-03-17 19:29+0000\n"
+"PO-Revision-Date: 2019-01-18 15:20+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -4061,7 +4061,7 @@ msgstr "Batch"
 
 #: Merge.rc:23B300
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #: Merge.rc:55B03C15
 msgid "Portable Object"
