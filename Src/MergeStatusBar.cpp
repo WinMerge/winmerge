@@ -133,6 +133,8 @@ void CMergeStatusBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
 	const int pbase = PANE_PANE0_INFO + (lpDrawItemStruct->itemID - PANE_PANE0_INFO) % nColumnsPerPane;
 	const int pcur = (lpDrawItemStruct->itemID - PANE_PANE0_INFO) / nColumnsPerPane;
+	if (pcur >= m_nPanes)
+		return;
 	std::vector<CString> ptext(m_nPanes);
 	for (int pane = 0; pane < m_nPanes; ++pane)
 		ptext[pane] = GetPaneText(pbase + pane * nColumnsPerPane);
