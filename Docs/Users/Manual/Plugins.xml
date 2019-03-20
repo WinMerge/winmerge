@@ -775,10 +775,8 @@
       <para>Some plugins require <application>the Visual Basic</application>
       runtime library to work.</para>
 
-      <para>You can download the required file <filename><ulink
-      url="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">msvbvm60.dll</ulink></filename>,
-      or use the <ulink
-      url="http://www.microsoft.com/downloads/details.aspx?familyid=7b9ba261-7a9c-43e7-9117-f673077ffb3c">Run-Time
+      <para>You can use the <ulink
+      url="https://www.microsoft.com/en-us/download/details.aspx?id=24417">Run-Time
       Redistribution Pack</ulink> from <trademark
       class="registered">Microsoft</trademark>. If you don't need the plugin,
       you can safely remove it.</para>
