@@ -362,6 +362,8 @@
 
           <segtitle>Settings dialog support</segtitle>
 
+          <segtitle>Dependency</segtitle>
+
           <seglistitem>
             <seg>Unpacker</seg>
 
@@ -402,6 +404,8 @@
 
           <segtitle>Settings dialog support</segtitle>
 
+          <segtitle>Dependency</segtitle>
+
           <seglistitem>
             <seg>Unpacker</seg>
 
@@ -416,6 +420,8 @@
 
             <seg>Yes</seg>
 
+            <seg><trademark class="registered">Microsoft</trademark>
+            <application>Word</application></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -438,6 +444,8 @@
 
           <segtitle>Settings dialog support</segtitle>
 
+          <segtitle>Dependency</segtitle>
+
           <seglistitem>
             <seg>Unpacker</seg>
 
@@ -454,6 +462,8 @@
 
             <seg>Yes</seg>
 
+            <seg><trademark class="registered">Microsoft</trademark>
+            <application>PowerPoint</application></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
