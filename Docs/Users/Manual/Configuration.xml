@@ -1481,16 +1481,16 @@
 
       <itemizedlist>
         <listitem>
-          <para><ulink url="http://en.wikipedia.org/wiki/Code_pages">Wikipedia:
+          <para><ulink url="https://en.wikipedia.org/wiki/Code_pages">Wikipedia:
           Code pages</ulink>, <ulink
-          url="http://en.wikipedia.org/wiki/Character_encoding">Character
+          url="https://en.wikipedia.org/wiki/Character_encoding">Character
           encoding</ulink></para>
         </listitem>
 
         <listitem>
           <para><ulink
-          url="http://www.microsoft.com/globaldev/reference/wincp.mspx">Microsoft:
-          Code Pages Supported by Windows</ulink></para>
+          url="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43">
+          Microsoft: Code Pages Supported by Windows</ulink></para>
         </listitem>
       </itemizedlist>
     </note>
