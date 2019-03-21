@@ -199,6 +199,7 @@ out:
 			  std::all_of(pszChars + I - nEqualsSignCount, pszChars + I, [](const auto c) { return c == '='; }))
             {
               dwCookie &= ~COOKIE_RAWSTRING;
+              COOKIE_SET_LUA_EQUALS_SIGN_COUNT(dwCookie, 0);
               bRedefineBlock = true;
             }
           continue;
@@ -212,6 +213,7 @@ out:
 			  std::all_of(pszChars + I - nEqualsSignCount, pszChars + I, [](const auto c) { return c == '='; }))
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
+              COOKIE_SET_LUA_EQUALS_SIGN_COUNT(dwCookie, 0);
               bRedefineBlock = true;
             }
           continue;
