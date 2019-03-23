@@ -1923,14 +1923,12 @@ GetHTMLStyles ()
   };
 
   CString strStyles;
-  int nColorIndex, nBgColorIndex;
-  int f, b;
-  for (f = 0; f < sizeof(arColorIndices)/sizeof(int); f++)
+  for (int f = 0; f < sizeof(arColorIndices)/sizeof(int); f++)
     {
-      nColorIndex = arColorIndices[f];
-      for (b = 0; b < sizeof(arBgColorIndices)/sizeof(int); b++)
+      int nColorIndex = arColorIndices[f];
+      for (int b = 0; b < sizeof(arBgColorIndices)/sizeof(int); b++)
         {
-          nBgColorIndex = arBgColorIndices[b];
+          int nBgColorIndex = arBgColorIndices[b];
           COLORREF clr;
 
           strStyles += Fmt (_T(".sf%db%d {"), nColorIndex, nBgColorIndex);
@@ -5046,11 +5044,11 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
         {
           while (ptCurrentPos.y <= ptBlockEnd.y)
             {
-              int nLineLength, nLines;
+              int nLineLength;
               CString line;
               if (dwFlags & FIND_REGEXP)
                 {
-                  nLines = m_pTextBuffer->GetLineCount ();
+                  int nLines = m_pTextBuffer->GetLineCount ();
                   for (int i = 0; i <= nEolns && ptCurrentPos.y + i < nLines; i++)
                     {
                       CString item;

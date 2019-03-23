@@ -654,15 +654,14 @@ IsBatKeyword (LPCTSTR pszChars, int nLength)
 static bool
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  const int bufsiz = 13;
-  TCHAR buffer[bufsiz];
-
   if (nLength < 4 || pszChars[nLength - 4] != '.')
     {
       return ISXKEYWORDI(s_apszUser1KeywordList, pszChars, (size_t)nLength);
     }
   else
     {
+      const int bufsiz = 13;
+      TCHAR buffer[bufsiz];
       for (int L = 0; L < sizeof(s_apszUser1KeywordList)/sizeof(TCHAR *); L++)
         {
           _tcscpy_s (buffer, bufsiz, s_apszUser1KeywordList[L]);

@@ -577,7 +577,6 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	wchar_t buf[1024];
 	std::wstring *ps = nullptr;
 	std::wstring msgid;
-	unsigned uid = 0;
 	bool found_uid = false;
 	FILE *f;
 	if (_tfopen_s(&f, strPath.c_str(), _T("r,ccs=UTF-8")) != 0)
@@ -601,7 +600,6 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		{
 			if (wchar_t *q = wcschr(p0, ':'))
 			{
-				uid = wcstoul(q + 1, &q, 16);
 				found_uid = true;
 			}
 		}
