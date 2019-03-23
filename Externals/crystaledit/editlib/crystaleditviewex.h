@@ -46,7 +46,7 @@ protected:
 	@remark
 		Equivalent to AfxGetInstanceHandle()
 	*/
-	virtual HINSTANCE GetResourceHandle();
+	virtual HINSTANCE GetResourceHandle() override;
 
 	
 	/**

@@ -40,8 +40,8 @@ public:
 	explicit PropRegistry(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
-	virtual void ReadOptions();
-	virtual void WriteOptions();
+	virtual void ReadOptions() override;
+	virtual void WriteOptions() override;
 
 // Dialog Data
 	//{{AFX_DATA(PropRegistry)
@@ -60,7 +60,7 @@ public:
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 	//}}AFX_VIRTUAL
 
 // Implementation methods

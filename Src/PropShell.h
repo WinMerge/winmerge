@@ -18,8 +18,8 @@ public:
 	explicit PropShell(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
-	virtual void ReadOptions();
-	virtual void WriteOptions();
+	virtual void ReadOptions() override;
+	virtual void WriteOptions() override;
 
 // Dialog Data
 	enum { IDD = IDD_PROPPAGE_SHELL };
@@ -32,7 +32,7 @@ public:
 
 // Implementation
 protected:
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 	afx_msg void OnAddToExplorer();
 	afx_msg void OnRegisterShellExtension();
 	afx_msg void OnUnregisterShellExtension();
