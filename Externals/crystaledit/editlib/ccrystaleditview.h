@@ -121,7 +121,7 @@ public :
     virtual bool QueryEditable ();
     virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1) override;
 
-    bool ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags);
+    bool ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags, bool bGroupWithPrevious = false);
 
     virtual void OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText) override;
 

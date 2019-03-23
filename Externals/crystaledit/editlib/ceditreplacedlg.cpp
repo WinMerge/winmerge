@@ -410,6 +410,7 @@ OnEditReplaceAll ()
     }
 
   CPoint m_ptFirstFound = m_ptFoundAt;
+  bool bGroupWithPrevious = false;
 
   while (m_bFound)
     {
@@ -422,7 +423,7 @@ OnEditReplaceAll ()
         dwSearchFlags |= FIND_REGEXP;
     
       //  We have highlighted text
-      VERIFY (m_pBuddy->ReplaceSelection (m_sNewText, m_sNewText.GetLength(), dwSearchFlags));
+      VERIFY (m_pBuddy->ReplaceSelection (m_sNewText, m_sNewText.GetLength(), dwSearchFlags, bGroupWithPrevious));
 
       //  Manually recalculate points
       if (m_bEnableScopeSelection)
@@ -468,6 +469,8 @@ OnEditReplaceAll ()
       if (bWrapped)
         if (m_ptFoundAt.y > m_ptFirstFound.y || (m_ptFoundAt.y == m_ptFirstFound.y && m_ptFoundAt.x >= m_ptFirstFound.x))
           break;
+
+	  bGroupWithPrevious = true;
     }
 
   // Let user know how many strings were replaced
