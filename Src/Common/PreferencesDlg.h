@@ -85,7 +85,7 @@ protected:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(CPreferencesDlg)
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 	afx_msg void OnDestroy();
 	afx_msg void OnHelpButton();
 	afx_msg void OnImportButton();

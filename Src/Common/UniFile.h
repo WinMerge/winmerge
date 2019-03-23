@@ -81,13 +81,13 @@ public:
 	UniLocalFile();
 	void Clear();
 
-	virtual String GetFullyQualifiedPath() const { return m_filepath; }
-	virtual const UniError & GetLastUniError() const { return m_lastError; }
+	virtual String GetFullyQualifiedPath() const override { return m_filepath; }
+	virtual const UniError & GetLastUniError() const override { return m_lastError; }
 
-	virtual ucr::UNICODESET GetUnicoding() const { return m_unicoding; }
-	virtual void SetUnicoding(ucr::UNICODESET unicoding) { m_unicoding = unicoding; }
-	virtual int GetCodepage() const { return m_codepage; }
-	virtual void SetCodepage(int codepage) { 
+	virtual ucr::UNICODESET GetUnicoding() const override { return m_unicoding; }
+	virtual void SetUnicoding(ucr::UNICODESET unicoding) override { m_unicoding = unicoding; }
+	virtual int GetCodepage() const override { return m_codepage; }
+	virtual void SetCodepage(int codepage) override { 
 		m_codepage = codepage;
 		switch (m_codepage)
 		{
@@ -110,10 +110,10 @@ public:
 		}
 	}
 
-	virtual int GetLineNumber() const { return m_lineno; }
-	virtual const txtstats & GetTxtStats() const { return m_txtstats; }
+	virtual int GetLineNumber() const override { return m_lineno; }
+	virtual const txtstats & GetTxtStats() const override { return m_txtstats; }
 
-	bool IsUnicode();
+	bool IsUnicode() override;
 
 protected:
 	virtual bool DoGetFileStatus();
@@ -153,21 +153,21 @@ public:
 
 	virtual bool GetFileStatus();
 
-	virtual bool OpenReadOnly(const String& filename);
+	virtual bool OpenReadOnly(const String& filename) override;
 	virtual bool Open(const String& filename);
 	virtual bool Open(const String& filename, AccessMode mode);
-	void Close();
-	virtual bool IsOpen() const;
+	void Close() override;
+	virtual bool IsOpen() const override;
 
-	virtual bool ReadBom();
-	virtual bool HasBom() const;
-	virtual void SetBom(bool bom);
+	virtual bool ReadBom() override;
+	virtual bool HasBom() const override;
+	virtual void SetBom(bool bom) override;
 
 public:
-	virtual bool ReadString(String & line, bool * lossy);
-	virtual bool ReadString(String & line, String & eol, bool * lossy);
-	virtual int64_t GetPosition() const { return m_current - m_base; }
-	virtual bool WriteString(const String & line);
+	virtual bool ReadString(String & line, bool * lossy) override;
+	virtual bool ReadString(String & line, String & eol, bool * lossy) override;
+	virtual int64_t GetPosition() const override { return m_current - m_base; }
+	virtual bool WriteString(const String & line) override;
 
 // Implementation methods
 protected:
@@ -194,21 +194,21 @@ public:
 
 	virtual bool GetFileStatus();
 
-	virtual bool OpenReadOnly(const String& filename);
+	virtual bool OpenReadOnly(const String& filename) override;
 	virtual bool OpenCreate(const String& filename);
 	virtual bool OpenCreateUtf8(const String& filename);
 	virtual bool Open(const String& filename, const String& mode);
-	void Close();
+	void Close() override;
 
-	virtual bool IsOpen() const;
+	virtual bool IsOpen() const override;
 
-	virtual bool ReadBom();
-	virtual bool HasBom() const;
-	virtual void SetBom(bool bom);
+	virtual bool ReadBom() override;
+	virtual bool HasBom() const override;
+	virtual void SetBom(bool bom) override;
 
 protected:
-	virtual bool ReadString(String & line, bool * lossy);
-	virtual bool ReadString(String & line, String & eol, bool * lossy);
+	virtual bool ReadString(String & line, bool * lossy) override;
+	virtual bool ReadString(String & line, String & eol, bool * lossy) override;
 
 public:
 	virtual int64_t GetPosition() const;
