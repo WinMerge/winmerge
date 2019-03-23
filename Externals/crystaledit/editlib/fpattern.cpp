@@ -141,8 +141,6 @@ fpattern_isvalid (LPCTSTR pat)
 static int
 fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
 {
-  TCHAR fch;
-  TCHAR pch;
   int i;
   bool yes, match;
   TCHAR lo, hi;
@@ -150,8 +148,8 @@ fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
   /* Attempt to match subpattern against subfilename */
   while (*pat != _T('\0'))
     {
-      fch = *fname;
-      pch = *pat;
+      TCHAR fch = *fname;
+      TCHAR pch = *pat;
       pat++;
 
       switch (pch)
