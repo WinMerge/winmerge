@@ -41,7 +41,7 @@ CSampleDoc::CSampleDoc() : m_xTextBuffer(this)
 	m_lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
 	m_lf.lfQuality = DEFAULT_QUALITY;
 	m_lf.lfPitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
-   _tcscpy(m_lf.lfFaceName, _T("Courier New"));
+	_tcscpy_s(m_lf.lfFaceName, _T("Courier New"));
 
 	m_pSyntaxColors = new SyntaxColors();
 	m_pMarkers = new CCrystalTextMarkers();
