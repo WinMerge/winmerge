@@ -38,8 +38,8 @@ public:
 	afx_msg void OnBtnClickReportBrowse();
 	afx_msg void OnBtnDblclickCopyClipboard();
 	afx_msg void OnCbnSelchangeReportStylecombo();
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
+	virtual BOOL OnInitDialog() override;
+	virtual void OnOK() override;
 	//}}AFX_MSG
 
 	//{{AFX_DATA(DirCmpReportDlg)

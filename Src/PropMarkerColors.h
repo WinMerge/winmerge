@@ -23,8 +23,8 @@ public:
 	PropMarkerColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
 
 // Implement IOptionsPanel
-	virtual void ReadOptions();
-	virtual void WriteOptions();
+	virtual void ReadOptions() override;
+	virtual void WriteOptions() override;
 
 // Dialog Data
 private:

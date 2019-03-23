@@ -17,11 +17,11 @@ class UniMarkdownFile : public UniMemFile
 {
 public:
 	UniMarkdownFile();
-	virtual bool ReadString(String & line, String & eol, bool * lossy);
-	virtual void Close();
+	virtual bool ReadString(String & line, String & eol, bool * lossy) override;
+	virtual void Close() override;
 
 protected:
-	virtual bool DoOpen(const String& filename, AccessMode mode);
+	virtual bool DoOpen(const String& filename, AccessMode mode) override;
 
 private:
 	void Move();
