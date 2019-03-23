@@ -1132,11 +1132,10 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
 
   int nInsertedLines = 0;
   int nCurrentLine = nLine;
-  size_t nTextPos;
   for (;;)
     {
       int haseol = 0;
-      nTextPos = 0;
+      size_t nTextPos = 0;
       // advance to end of line
       while (nTextPos < cchText && !LineInfo::IsEol(pszText[nTextPos]))
         nTextPos++;

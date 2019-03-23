@@ -64,12 +64,10 @@ bool IsXKeyword(LPCTSTR pszKey, size_t nKeyLen, LPCTSTR pszKeywordList[], size_t
 {
 	TCHAR **base = (TCHAR **)pszKeywordList;
 	size_t lim;
-	int cmp;
-	TCHAR **p;
 
 	for (lim = nKeywordListCount; lim != 0; lim >>= 1) {
-		p = base + (lim >> 1) ;
-		cmp = (*compare)(pszKey, *p, nKeyLen);
+		TCHAR **p = base + (lim >> 1) ;
+		int cmp = (*compare)(pszKey, *p, nKeyLen);
 		if (cmp == 0 && (*p)[nKeyLen] == 0)
 			return true;
 		if (cmp > 0) {	/* key > p: move right */
