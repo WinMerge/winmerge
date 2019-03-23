@@ -2480,7 +2480,7 @@ msgstr "シンタックス"
 
 #: Merge.rc:2C0C2241
 msgid "Differences"
-msgstr "差異数"
+msgstr "差異"
 
 #: Merge.rc:277500
 msgid "To:"
