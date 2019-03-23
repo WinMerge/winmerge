@@ -2838,7 +2838,7 @@ OnInitialUpdate ()
 {
   CView::OnInitialUpdate ();
   CString sDoc = GetDocument ()->GetPathName (), sExt = GetExt (sDoc);
-  if (m_CurSourceDef == nullptr)
+  if (!sExt.IsEmpty())
       SetTextType (sExt);
   AttachToBuffer (nullptr);
 
