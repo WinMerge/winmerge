@@ -20,8 +20,8 @@ public:
 	~PropGeneral();
 
 // Implement IOptionsPanel
-	virtual void ReadOptions();
-	virtual void WriteOptions();
+	virtual void ReadOptions() override;
+	virtual void WriteOptions() override;
 
 // Dialog Data
 	//{{AFX_DATA(PropGeneral)
@@ -51,7 +51,7 @@ public:
 // Implementation
 protected:
 	static UINT LoadLanguagesThreadProc(void *pParam);
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 
 	// Generated message map functions
 	//{{AFX_MSG(PropGeneral)

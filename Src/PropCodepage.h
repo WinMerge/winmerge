@@ -16,8 +16,8 @@ public:
 	explicit PropCodepage(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
-	virtual void ReadOptions();
-	virtual void WriteOptions();
+	virtual void ReadOptions() override;
+	virtual void WriteOptions() override;
 
 // Dialog Data
 	//{{AFX_DATA(PropCodepage)
@@ -44,7 +44,7 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCodepage)
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 	void GetEncodingCodePageFromNameString();
 	afx_msg void OnCpSystem();
 	afx_msg void OnCpCustom();

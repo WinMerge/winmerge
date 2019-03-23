@@ -85,10 +85,10 @@ private:
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirColsDlg)
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 	afx_msg void OnUp();
 	afx_msg void OnDown();
-	virtual void OnOK();
+	virtual void OnOK() override;
 	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

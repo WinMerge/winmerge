@@ -76,7 +76,7 @@ public:
 public:
 
 // Overridables
-    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
+    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler) override;
 
 // Overrides
 public:
@@ -90,8 +90,8 @@ public:
     
 protected:
     // implementation helpers
-    virtual void NcPaintGripper(CDC* pDC, CRect rcClient);
-    virtual void NcCalcClient(LPRECT pRc, UINT nDockBarID);
+    virtual void NcPaintGripper(CDC* pDC, CRect rcClient) override;
+    virtual void NcCalcClient(LPRECT pRc, UINT nDockBarID) override;
 
 protected:
     const double m_dblGripper = 9.0;

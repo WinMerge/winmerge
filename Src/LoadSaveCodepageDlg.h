@@ -66,7 +66,7 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(CLoadSaveCodepageDlg)
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 	afx_msg void OnAffectsLeftBtnClicked();
 	afx_msg void OnAffectsMiddleBtnClicked();
 	afx_msg void OnAffectsRightBtnClicked();

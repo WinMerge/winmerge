@@ -45,12 +45,12 @@ public:
     CSizingControlBarCF();
 
 // Overridables
-    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
+    virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler) override;
 
 // Implementation
 protected:
     // implementation helpers
-    virtual void NcPaintGripper(CDC* pDC, CRect rcClient);
+    virtual void NcPaintGripper(CDC* pDC, CRect rcClient) override;
 
 protected:
     bool    m_bActive; // a child has focus

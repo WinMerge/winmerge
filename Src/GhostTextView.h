@@ -93,9 +93,9 @@ private:
 	//   m_ptDropPos : only used inside one function which does not change the buffer
 
 public:
-	virtual void ReAttachToBuffer (CCrystalTextBuffer * pBuf = nullptr);
-	virtual void AttachToBuffer (CCrystalTextBuffer * pBuf = nullptr);
-	virtual void DetachFromBuffer ();
+	virtual void ReAttachToBuffer (CCrystalTextBuffer * pBuf = nullptr) override;
+	virtual void AttachToBuffer (CCrystalTextBuffer * pBuf = nullptr) override;
+	virtual void DetachFromBuffer () override;
 
 	/** real cursor function to preserve cursor during Rescan */
 	void PopCursors ();
@@ -111,10 +111,10 @@ public:
 	/** 
 	 * @brief Override this drag-n-drop function to call GetTextWithoutEmptys
 	 */
-	virtual HGLOBAL PrepareDragData ();
+	virtual HGLOBAL PrepareDragData () override;
 
 	int ComputeApparentLine (int nRealLine) const;
 	int ComputeRealLine (int nApparentLine) const;
-	virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber);
+	virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber) override;
 
 };

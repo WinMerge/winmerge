@@ -24,8 +24,8 @@ public:
 	explicit PropEditor(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
-	virtual void ReadOptions();
-	virtual void WriteOptions();
+	virtual void ReadOptions() override;
+	virtual void WriteOptions() override;
 
 // Dialog Data
 	//{{AFX_DATA(PropEditor)
@@ -60,7 +60,7 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(PropEditor)
-	afx_msg BOOL OnInitDialog();
+	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnLineDiffControlClicked();
 	afx_msg void OnEnKillfocusTabEdit();
 	//}}AFX_MSG

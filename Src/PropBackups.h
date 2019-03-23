@@ -20,8 +20,8 @@ public:
 	explicit PropBackups(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
-	virtual void ReadOptions();
-	virtual void WriteOptions();
+	virtual void ReadOptions() override;
+	virtual void WriteOptions() override;
 
 // Dialog Data
 	enum { IDD = IDD_PROPPAGE_BACKUPS };
