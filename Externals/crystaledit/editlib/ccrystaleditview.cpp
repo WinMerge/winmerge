@@ -1634,13 +1634,13 @@ OnEditReplace ()
  * @return true if succeeded.
  */
 bool CCrystalEditView::
-ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags)
+ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags, bool bGroupWithPrevious)
 {
   if (!cchNewText)
     return DeleteCurrentSelection();
   ASSERT (pszNewText != nullptr);
 
-  m_pTextBuffer->BeginUndoGroup();
+  m_pTextBuffer->BeginUndoGroup(bGroupWithPrevious);
 
   CPoint ptCursorPos;
   if (IsSelection ())
