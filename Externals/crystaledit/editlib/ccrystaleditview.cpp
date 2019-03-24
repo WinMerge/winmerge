@@ -125,6 +125,7 @@ public :
 IMPLEMENT_DYNCREATE (CCrystalEditView, CCrystalTextView)
 
 CCrystalEditView::CCrystalEditView ()
+: m_pEditReplaceDlg(nullptr)
 {
   memset(((CCrystalTextView*)this)+1, 0, sizeof(*this) - sizeof(class CCrystalTextView)); // AFX_ZERO_INIT_OBJECT (CCrystalTextView)
   m_bAutoIndent = true;
@@ -136,6 +137,7 @@ CCrystalEditView::CCrystalEditView ()
 CCrystalEditView:: ~CCrystalEditView ()
 {
   delete m_mapExpand;
+  delete m_pEditReplaceDlg;
 }
 
 bool CCrystalEditView::
@@ -1538,8 +1540,10 @@ OnEditReplace ()
   CWinApp *pApp = AfxGetApp ();
   ASSERT (pApp != nullptr);
 
-  CEditReplaceDlg dlg (this);
-  LastSearchInfos * lastSearch = dlg.GetLastSearchInfos();
+  if (m_pEditReplaceDlg != nullptr)
+    delete m_pEditReplaceDlg;
+  m_pEditReplaceDlg = new CEditReplaceDlg(this);
+  LastSearchInfos * lastSearch = m_pEditReplaceDlg->GetLastSearchInfos();
 
   if (m_bLastReplace)
     {
@@ -1561,7 +1565,7 @@ OnEditReplace ()
       lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
       lastSearch->m_bNoWrap = (dwFlags & FIND_NO_WRAP) != 0;
     }
-  dlg.UseLastSearch ();
+  m_pEditReplaceDlg->UseLastSearch ();
 
 
   if (IsSelection ())
@@ -1569,35 +1573,37 @@ OnEditReplace ()
       GetSelection (m_ptSavedSelStart, m_ptSavedSelEnd);
       m_bSelectionPushed = true;
 
-      dlg.SetScope(true);       //  Replace in current selection
-      dlg.m_ptCurrentPos = m_ptSavedSelStart;
-      dlg.m_bEnableScopeSelection = true;
-      dlg.m_ptBlockBegin = m_ptSavedSelStart;
-      dlg.m_ptBlockEnd = m_ptSavedSelEnd;
+      m_pEditReplaceDlg->SetScope(true);       //  Replace in current selection
+      m_pEditReplaceDlg->m_ptCurrentPos = m_ptSavedSelStart;
+      m_pEditReplaceDlg->m_bEnableScopeSelection = true;
+      m_pEditReplaceDlg->m_ptBlockBegin = m_ptSavedSelStart;
+      m_pEditReplaceDlg->m_ptBlockEnd = m_ptSavedSelEnd;
 
       // If the selection is in one line, copy text to dialog
       if (m_ptSavedSelStart.y == m_ptSavedSelEnd.y)
-        GetText(m_ptSavedSelStart, m_ptSavedSelEnd, dlg.m_sText);
+        GetText(m_ptSavedSelStart, m_ptSavedSelEnd, m_pEditReplaceDlg->m_sText);
     }
   else
     {
-      dlg.SetScope(false);      // Set scope when no selection
-      dlg.m_ptCurrentPos = GetCursorPos ();
-      dlg.m_bEnableScopeSelection = false;
+      m_pEditReplaceDlg->SetScope(false);      // Set scope when no selection
+      m_pEditReplaceDlg->m_ptCurrentPos = GetCursorPos ();
+      m_pEditReplaceDlg->m_bEnableScopeSelection = false;
 
       CPoint ptCursorPos = GetCursorPos ();
       CPoint ptStart = WordToLeft (ptCursorPos);
       CPoint ptEnd = WordToRight (ptCursorPos);
       if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
-        GetText (ptStart, ptEnd, dlg.m_sText);
+        GetText (ptStart, ptEnd, m_pEditReplaceDlg->m_sText);
     }
 
   //  Execute Replace dialog
-  dlg.DoModal ();
+  m_pEditReplaceDlg->Create(CEditReplaceDlg::IDD, this);
+  m_pEditReplaceDlg->ShowWindow(SW_SHOW);
+}
 
-  // actually this value doesn't change during doModal, but it may in the future
-  lastSearch = dlg.GetLastSearchInfos();
-
+void CCrystalEditView::
+SaveLastSearch(LastSearchInfos *lastSearch)
+{
   //  Save Replace parameters for 'F3' command
   m_bLastReplace = true;
   if (m_pszLastFindWhat != nullptr)
