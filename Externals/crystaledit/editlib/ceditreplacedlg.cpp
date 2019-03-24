@@ -96,6 +96,7 @@ DoDataExchange (CDataExchange * pDX)
   DDX_Radio (pDX, IDC_EDIT_SCOPE_SELECTION, m_nScope);
   DDX_Check (pDX, IDC_EDIT_SCOPE_DONT_WRAP, m_bDontWrap);
   //}}AFX_DATA_MAP
+  UpdateControls();
 }
 
 BEGIN_MESSAGE_MAP (CEditReplaceDlg, CDialog)
@@ -151,6 +152,7 @@ OnCancel ()
 {
   VERIFY (UpdateData ());
   CDialog::OnCancel ();
+  m_pBuddy->SetFocus();
 }
 
 BOOL CEditReplaceDlg::
@@ -167,7 +169,6 @@ OnInitDialog ()
   m_ctlFindText.m_sGroup = _T ("FindText");
   m_ctlFindText.OnSetfocus ();
 
-  UpdateControls();
   GetDlgItem (IDC_EDIT_SCOPE_SELECTION)->EnableWindow (m_bEnableScopeSelection);
   m_bFound = false;
 
@@ -385,6 +386,8 @@ OnEditReplace ()
     }
   m_ptFoundAt = m_pBuddy->GetCursorPos ();
   m_bFound = DoHighlightText ( true );
+
+  m_pBuddy->SaveLastSearch(&lastSearch);
 }
 
 void CEditReplaceDlg::
@@ -481,6 +484,8 @@ OnEditReplaceAll ()
   AfxFormatStrings (strMessage, LoadResString(IDS_NUM_REPLACED).c_str(), &lpsz, 1);
 
   AfxMessageBox( strMessage, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN, IDS_NUM_REPLACED);
+
+  m_pBuddy->SaveLastSearch(&lastSearch);
 }
 
 void CEditReplaceDlg::
