@@ -654,15 +654,14 @@ IsBatKeyword (LPCTSTR pszChars, int nLength)
 static bool
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  const int bufsiz = 13;
-  TCHAR buffer[bufsiz];
-
   if (nLength < 4 || pszChars[nLength - 4] != '.')
     {
       return ISXKEYWORDI(s_apszUser1KeywordList, pszChars, (size_t)nLength);
     }
   else
     {
+      const int bufsiz = 13;
+      TCHAR buffer[bufsiz];
       for (int L = 0; L < sizeof(s_apszUser1KeywordList)/sizeof(TCHAR *); L++)
         {
           _tcscpy_s (buffer, bufsiz, s_apszUser1KeywordList[L]);
@@ -785,7 +784,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || pszChars[nPrevI] == '\\' && *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = true;
@@ -796,7 +795,7 @@ out:
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
-          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || pszChars[nPrevI] == '\\' && *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = true;

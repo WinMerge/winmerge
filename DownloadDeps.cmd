@@ -3,9 +3,9 @@ set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
 https://bitbucket.org/sdottaka/winmerge-v2/downloads/winmerge_manual_another_build_tools_v1.zip!Docs\Users\Manual\build ^
-https://bitbucket.org/winmerge/winmerge/downloads/ShellExtension-1.17.5.0.zip!Build ^
-https://bitbucket.org/winmerge/winmerge/downloads/Merge7z1806.1-win32.zip!Build ^
-https://bitbucket.org/winmerge/winmerge/downloads/Merge7z1806.1-x64.zip!Build\X64 ^
+https://bitbucket.org/winmerge/winmerge/downloads/ShellExtension-1.17.6.0.zip!Build ^
+https://bitbucket.org/winmerge/winmerge/downloads/Merge7z1900.1-win32.zip!Build ^
+https://bitbucket.org/winmerge/winmerge/downloads/Merge7z1900.1-x64.zip!Build\X64 ^
 https://bitbucket.org/winmerge/frhed/downloads/frhed-0.10904.2017.1-win32.zip!Build ^
 https://bitbucket.org/winmerge/frhed/downloads/frhed-0.10904.2017.1-x64.zip!Build\X64 ^
 https://bitbucket.org/winmerge/winimerge/downloads/winimerge-1-0-7-0-exe.zip!Build ^

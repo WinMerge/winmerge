@@ -22,8 +22,8 @@ public:
 	explicit PropMergeColors(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
-	virtual void ReadOptions();
-	virtual void WriteOptions();
+	virtual void ReadOptions() override;
+	virtual void WriteOptions() override;
 	
 // Dialog Data
 private:

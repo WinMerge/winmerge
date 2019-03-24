@@ -19,8 +19,8 @@ public:
 	explicit PropArchive(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
-	virtual void ReadOptions();
-	virtual void WriteOptions();
+	virtual void ReadOptions() override;
+	virtual void WriteOptions() override;
 
 // Dialog Data
 	enum { IDD = IDD_PROP_ARCHIVE };

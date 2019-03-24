@@ -74,9 +74,9 @@ int GetNamePosition (LPCTSTR pszString)
     return 0;
   const CString sString = pszString;
   int posit = sString.GetLength ();
-  TCHAR test;
   do
   {
+    TCHAR test;
 #ifdef _UNICODE
     if ((test = sString.GetAt (--posit)) == _T ('\\') || test == _T (':'))
 #else

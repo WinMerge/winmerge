@@ -43,9 +43,9 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(LineFiltersDlg)
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 	afx_msg void OnHelp();
-	virtual void OnOK();
+	virtual void OnOK() override;
 	afx_msg void OnBnClickedLfilterAddBtn();
 	afx_msg void OnBnClickedLfilterEditbtn();
 	afx_msg void OnBnClickedLfilterRemovebtn();

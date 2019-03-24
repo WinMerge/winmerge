@@ -510,14 +510,14 @@ bool CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
   {
     TCHAR drive[_MAX_PATH], dir[_MAX_PATH], name[_MAX_PATH], ext[_MAX_PATH];
 #ifdef _UNICODE
-    _wsplitpath (pszFileName, drive, dir, name, ext);
+    _wsplitpath_s (pszFileName, drive, dir, name, ext);
 #else
-    _splitpath (pszFileName, drive, dir, name, ext);
+    _splitpath_s (pszFileName, drive, dir, name, ext);
 #endif
-    _tcscpy (szTempFileDir, drive);
-    _tcscat (szTempFileDir, dir);
-    _tcscpy (szBackupFileName, pszFileName);
-    _tcscat (szBackupFileName, _T (".bak"));
+    _tcscpy_s (szTempFileDir, drive);
+    _tcscat_s (szTempFileDir, dir);
+    _tcscpy_s (szBackupFileName, pszFileName);
+    _tcscat_s (szBackupFileName, _T (".bak"));
 
     if (::GetTempFileName (szTempFileDir, _T ("CRE"), 0, szTempFileName) == 0)
       __leave;
@@ -1132,11 +1132,10 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
 
   int nInsertedLines = 0;
   int nCurrentLine = nLine;
-  size_t nTextPos;
   for (;;)
     {
       int haseol = 0;
-      nTextPos = 0;
+      size_t nTextPos = 0;
       // advance to end of line
       while (nTextPos < cchText && !LineInfo::IsEol(pszText[nTextPos]))
         nTextPos++;

@@ -29,8 +29,8 @@ public:
 	explicit PropCompareFolder(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
-	virtual void ReadOptions();
-	virtual void WriteOptions();
+	virtual void ReadOptions() override;
+	virtual void WriteOptions() override;
 
 // Dialog Data
 	//{{AFX_DATA(PropCompareFolder)
@@ -58,7 +58,7 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(CPropCompare)
-	afx_msg BOOL OnInitDialog();
+	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnDefaults();
 	afx_msg void OnCbnSelchangeComparemethodcombo();
 	afx_msg void OnBnClickedRecursCheck();

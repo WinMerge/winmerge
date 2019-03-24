@@ -23,13 +23,14 @@ VariantValue::VariantValue()
  * @brief Copy constructor.
  * @param [in] value Object to copy.
  */
-VariantValue::VariantValue(const VariantValue &value) : m_svalue(value.m_svalue)
+VariantValue::VariantValue(const VariantValue &value)
+	: m_vtype(value.m_vtype)
+	, m_bvalue(value.m_bvalue)
+	, m_ivalue(value.m_ivalue)
+	, m_fvalue(value.m_fvalue)
+	, m_tvalue(value.m_tvalue)
+	, m_svalue(value.m_svalue)
 {
-	m_vtype = value.m_vtype;
-	m_bvalue = value.m_bvalue;
-	m_ivalue = value.m_ivalue;
-	m_fvalue = value.m_fvalue;
-	m_tvalue = value.m_tvalue;
 }
 
 /**

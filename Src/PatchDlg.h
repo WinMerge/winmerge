@@ -90,8 +90,8 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(CPatchDlg)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
+	virtual void OnOK() override;
+	virtual BOOL OnInitDialog() override;
 	afx_msg void OnDiffBrowseFile1();
 	afx_msg void OnDiffBrowseFile2();
 	afx_msg void OnDiffBrowseResult();

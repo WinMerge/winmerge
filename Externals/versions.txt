@@ -10,4 +10,4 @@ freeimage: 3.16.0
 WinIMerge: 1.0.7.0
 Google C++ Testing Framework: 1.70
 GnuWin32 Patch for Windows: 2.5.9-7
-7-zip: 18.06
+7-zip: 19.00

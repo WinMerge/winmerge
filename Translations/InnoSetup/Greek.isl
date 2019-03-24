@@ -13,7 +13,7 @@
 ; understand the '[LangOptions] section' topic in the help file.
 LanguageName=Greek
 LanguageID=$0408
-LanguageCodePage=0
+LanguageCodePage=1253
 
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.

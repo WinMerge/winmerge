@@ -69,7 +69,7 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(SaveClosingDlg)
-	afx_msg BOOL OnInitDialog();
+	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnDiscardAll();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

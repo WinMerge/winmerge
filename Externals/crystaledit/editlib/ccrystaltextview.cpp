@@ -302,7 +302,7 @@ CCrystalTextView::TextDefinition CCrystalTextView::m_SourceDefs[] =
     CCrystalTextView::SRC_INSTALLSHIELD, _T ("InstallShield"), _T ("rul"), &CrystalLineParser::ParseLineIS, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
     CCrystalTextView::SRC_JAVA, _T ("Java"), _T ("java,jav,js"), &CrystalLineParser::ParseLineJava, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
     CCrystalTextView::SRC_LISP, _T ("AutoLISP"), _T ("lsp,dsl"), &CrystalLineParser::ParseLineLisp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (";|"), _T ("|;"), _T (";"), (DWORD)-1,
-    CCrystalTextView::SRC_LUA, _T ("Lua"), _T ("lua"), &CrystalLineParser::ParseLineLua, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("--[["), _T ("--]]"), _T ("--"), (DWORD)-1,
+    CCrystalTextView::SRC_LUA, _T ("Lua"), _T ("lua"), &CrystalLineParser::ParseLineLua, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("--[["), _T ("]]"), _T ("--"), (DWORD)-1,
     CCrystalTextView::SRC_NSIS, _T ("NSIS"), _T ("nsi,nsh"), &CrystalLineParser::ParseLineNsis, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T (";"), (DWORD)-1,
     CCrystalTextView::SRC_PASCAL, _T ("Pascal"), _T ("pas"), &CrystalLineParser::ParseLinePascal, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("{"), _T ("}"), _T (""), (DWORD)-1,
     CCrystalTextView::SRC_PERL, _T ("Perl"), _T ("pl,pm,plx"), &CrystalLineParser::ParseLinePerl, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
@@ -1923,14 +1923,12 @@ GetHTMLStyles ()
   };
 
   CString strStyles;
-  int nColorIndex, nBgColorIndex;
-  int f, b;
-  for (f = 0; f < sizeof(arColorIndices)/sizeof(int); f++)
+  for (int f = 0; f < sizeof(arColorIndices)/sizeof(int); f++)
     {
-      nColorIndex = arColorIndices[f];
-      for (b = 0; b < sizeof(arBgColorIndices)/sizeof(int); b++)
+      int nColorIndex = arColorIndices[f];
+      for (int b = 0; b < sizeof(arBgColorIndices)/sizeof(int); b++)
         {
-          nBgColorIndex = arBgColorIndices[b];
+          int nBgColorIndex = arBgColorIndices[b];
           COLORREF clr;
 
           strStyles += Fmt (_T(".sf%db%d {"), nColorIndex, nBgColorIndex);
@@ -2840,7 +2838,7 @@ OnInitialUpdate ()
 {
   CView::OnInitialUpdate ();
   CString sDoc = GetDocument ()->GetPathName (), sExt = GetExt (sDoc);
-  if (m_CurSourceDef == nullptr)
+  if (!sExt.IsEmpty())
       SetTextType (sExt);
   AttachToBuffer (nullptr);
 
@@ -5046,11 +5044,11 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
         {
           while (ptCurrentPos.y <= ptBlockEnd.y)
             {
-              int nLineLength, nLines;
+              int nLineLength;
               CString line;
               if (dwFlags & FIND_REGEXP)
                 {
-                  nLines = m_pTextBuffer->GetLineCount ();
+                  int nLines = m_pTextBuffer->GetLineCount ();
                   for (int i = 0; i <= nEolns && ptCurrentPos.y + i < nLines; i++)
                     {
                       CString item;
