@@ -34,6 +34,7 @@
 //  Forward class declarations
 
 class CEditDropTargetImpl;
+class CEditReplaceDlg;
 
 /////////////////////////////////////////////////////////////////////////////
 //  CCrystalEditView view
@@ -59,6 +60,7 @@ public :
 protected:
     bool m_bLastReplace;
     DWORD m_dwLastReplaceFlags;
+    CEditReplaceDlg *m_pEditReplaceDlg;
 
 protected:
     bool m_bDropPosVisible;
@@ -121,6 +123,7 @@ public :
     virtual bool QueryEditable ();
     virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1) override;
 
+	void SaveLastSearch(LastSearchInfos *lastSearch);
     bool ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags, bool bGroupWithPrevious = false);
 
     virtual void OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText) override;
