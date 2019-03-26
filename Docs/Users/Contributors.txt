@@ -40,6 +40,8 @@ Localization:
 
 * Simplified Chinese:
   Liaobin <liaobin@jite. net>
+  xmpdhml <xmpdhml at users.sourceforge.net>
+  MaysWind <i at mayswind.net>
 
 * Traditional Chinese:
   Koko <kokokoko@giga.net.tw>
