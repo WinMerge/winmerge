@@ -13,4 +13,14 @@
   <para>WinMerge can detect whether files are in text or binary format. When you
   launch a file compare operation on two binary files, WinMerge opens each file
   in the binary file editor.</para>
+  
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="screenshots/hexcmp1.png" format="PNG" />
+    </imageobject>
+
+    <textobject>
+      <phrase>HEX Compare Window</phrase>
+    </textobject>
+  </mediaobject>
 </article>
