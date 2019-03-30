@@ -2,16 +2,15 @@ body {
   margin: 0;
   padding: 0;
   min-width: 40em;
-}
-
-body,th,td {
-  font-family: Verdana,Helvetica,Arial,sans-serif;
-  font-size: 80%; 
+  font-family: Calibri,Helvetica,Arial,sans-serif;
 }
 
 pre,code,tt {
-  font-family: "Courier New",Courier,monospace;
-  font-size: 100%;
+  font-family: Consolas,"Courier New",Courier,monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Cambria,"Times New Roman",Times,serif;
 }
 
 /* Default link style */
@@ -48,16 +47,16 @@ div.navheader * * * th {
 
 div.navheader a, div.navheader a:visited, div.navfooter a, div.navfooter a:visited  { 
   display: inline-block; 
-  padding: 2px 4px 2px 4px; 
+  padding: .2em .4em; 
   text-decoration: none;
-  color: #ffdd700;
-  background-color: #F0E68C;
-  border: 1px solid #004080;
+  color: #fc0;
+  background-color: black;
+  border-radius: .3em;
 }
 
 div.navheader a:hover, div.navfooter a:hover {
-  color: #000;
-  background: #fff;
+  color: #fc0;
+  background-color: dimgray;
 }
 
 /* Main topic divs  */
@@ -78,25 +77,22 @@ hr {
 
 /* Manual title */
 h1 {
-  font-size: 200%;
-  letter-spacing: 0.05em;
+  font-size: xx-large;
 }
 
 /* Topic titles */
 h2 {
-  font-size: 180%;
+  font-size: xx-large;
 }
 
 /* Section titles */
 div.section h2 {
-  font-size: 140%;
+  font-size: x-large;
 }
 
-div.section h3 {
-  font-size: 120%;
-}
+div.section h3,
 div.section h4 {
-  font-size: 110%;
+  font-size: medium;
 }
 
 #ads {
@@ -110,29 +106,35 @@ div.section h4 {
 
 .screen {
   padding: 5px;
-  background-color: #EEEEEE;
-  border-left: 10px solid #CCCCCC;
+  background-color: #eee;
+  border-left: 10px solid #ccc;
 }
 
+/* Admonitions */
 .caution {
-  background-color: #FFDDAA;
-  border: 1px solid #FF9966;
+  padding: 0 1em;
+  background-color: #fda;
+  border: 1px solid #f96;
 }
 .important {
-  background-color: #FFFFDD;
-  border: 1px solid #FFFF66;
+  padding: 0 1em;
+  background-color: #ffd;
+  border: 1px solid #ff6;
 }
 .note {
-  background-color: #DDDDFF;
-  border: 1px solid #6666FF;
+  padding: 0 1em;
+  background-color: #ddf;
+  border: 1px solid #66f;
 }
 .tip {
-  background-color: #DDFFDD;
-  border: 1px solid #66FF66;
+  padding: 0 1em;
+  background-color: #dfd;
+  border: 1px solid #6f6;
 }
 .warning {
-  background-color: #FFDDDD;
-  border: 1px solid #FF6666;
+  padding: 0 1em;
+  background-color: #fdd;
+  border: 1px solid #f66;
 }
 
 /* Examples */
@@ -169,20 +171,20 @@ div.section h4 {
 /* tables */
 .table table, .informaltable table {
   border-collapse: collapse;
-  border: 1px solid black;
+  border: 1px solid #d2d2d2;
 }
 
 .table th, .informaltable th {
-  padding: 2px;
+  padding: .25em;
   text-align: left;
-  color: white;
-  background: black;
-  border: 1px solid black;
+  color: black;
+  background: #f2f2f2;
+  border: 1px solid #d2d2d2;
 }
 
 .table td, .informaltable td {
-  padding: 2px;
-  border: 1px solid black;
+  padding: .25em;
+  border: 1px solid #d2d2d2;
 }
 
 /* for Firefox quirks mode: eliminate line break */
@@ -212,7 +214,7 @@ tr.question p {
   margin: 0;
   margin-bottom: 0.25em;
   padding: 0;
-  font-size: 100%;
+  font-size: medium;
 }
 
 /* Table of contents */
@@ -226,8 +228,8 @@ tr.question p {
 }
 
 /* TOC title */
-div.toc p{
-  font-size: 150%;
+div.toc p {
+  font-size: x-large;
 }
 
 div.toc a:visited, div.toc a:link {
