@@ -128,6 +128,11 @@ BEGIN
             MENUITEM "&100%",                       ID_IMG_ZOOM_100
             MENUITEM "&50%",                        ID_IMG_ZOOM_50
             MENUITEM "&25%",                        ID_IMG_ZOOM_25
+            MENUITEM SEPARATOR
+            MENUITEM "Zoom &In\tCtrl++",            ID_VIEW_ZOOMIN
+            MENUITEM "Zoom &Out\tCtrl+-",           ID_VIEW_ZOOMOUT
+            MENUITEM SEPARATOR
+            MENUITEM "&Normal\tCtrl+*",             ID_VIEW_ZOOMNORMAL //#. Zoom to normal
         END
         POPUP "&Overlay"
         BEGIN
