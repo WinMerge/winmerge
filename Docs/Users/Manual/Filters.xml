@@ -1164,7 +1164,7 @@ Pekka Himanen</screen></para>
 
         <listitem>
           <simpara><ulink
-          url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></simpara>
+          url="https://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></simpara>
         </listitem>
       </varlistentry>
 
@@ -1182,7 +1182,8 @@ Pekka Himanen</screen></para>
 
         <listitem>
           <simpara><ulink
-          url="http://www.night-ray.com/regex.pdf">http://www.night-ray.com/regex.pdf</ulink></simpara>
+          url="https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf">
+          https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf</ulink></simpara>
         </listitem>
       </varlistentry>
     </variablelist>
