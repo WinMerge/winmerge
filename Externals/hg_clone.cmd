@@ -1,6 +1,6 @@
 set urls_revs=^
-  https://bitbucket.org/winmerge/freeimage!05e4e65 ^
-  https://bitbucket.org/winmerge/winimerge!1.0.7.0 ^
+  https://bitbucket.org/winmerge/freeimage!bccca82 ^
+  https://bitbucket.org/winmerge/winimerge!1.0.8.0 ^
   https://bitbucket.org/winmerge/sevenzip!e3aff09 ^
   https://bitbucket.org/winmerge/frhed!7f942c2 ^
   https://bitbucket.org/winmerge/patch!b0a7238
