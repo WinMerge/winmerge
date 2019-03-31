@@ -135,6 +135,7 @@ protected:
 	afx_msg void OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
 	template<int id1, int id2>
 	afx_msg void OnSwapButton();
+	template <int N>
 	afx_msg void OnEditEvent();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnSelectUnpacker();
