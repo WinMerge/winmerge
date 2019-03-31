@@ -147,6 +147,22 @@ msgstr "Gällande Ruta"
 msgid "&Zoom"
 msgstr "Zoom"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Zooma in\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Zooma ut\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "Normal\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -336,7 +352,7 @@ msgstr "Automatisk Uppackning"
 msgid "&Edit with Unpacker..."
 msgstr "Redigera med Uppackare ..."
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "Återladda InsticksProgram"
@@ -670,7 +686,7 @@ msgstr "Förhandsgranska Utskrift"
 msgid "&Convert Line Endings to"
 msgstr "Omvandla Radslut till"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "SammanFogningsLäge\tF9"
@@ -794,22 +810,6 @@ msgstr "Rensa Bokmärken"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "Gå till ...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Zooma in\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Zooma ut\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "Normal\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

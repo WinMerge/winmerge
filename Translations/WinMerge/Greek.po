@@ -144,6 +144,22 @@ msgstr ""
 msgid "&Zoom"
 msgstr "&Ζουμ"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Ζουμ &Μεγέθυνση\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Ζουμ &Σμίκρυνση\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Κανονικό\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -333,7 +349,7 @@ msgstr "Α&υτόματη Αποσυμπίεση"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "Επανέ&λεγχος Αρθρωμάτων"
@@ -667,7 +683,7 @@ msgstr "Προε&πισκόπηση Εκτυπώσεως"
 msgid "&Convert Line Endings to"
 msgstr "&Μετατροπή Χαρακτήρων Τερματισμού"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Λειτουργία Συγ&χωνεύσεως\tF9"
@@ -791,22 +807,6 @@ msgstr "Κα&τάργηση όλων των Σημάνσεων"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "Μετά&βαση σε...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Ζουμ &Μεγέθυνση\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Ζουμ &Σμίκρυνση\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "&Κανονικό\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

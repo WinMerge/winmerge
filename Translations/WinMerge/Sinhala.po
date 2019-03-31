@@ -142,6 +142,22 @@ msgstr ""
 msgid "&Zoom"
 msgstr "විශාල කරන්න"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "විශාලනය වැඩි කරන්න  \tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "විශාලනය අඩු   කරන්න  \tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "සමාන්‍ය\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -331,7 +347,7 @@ msgstr "ස්වයංක්‍රීය"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "උපකාරක නැවත යෙදීම"
@@ -665,7 +681,7 @@ msgstr "මුද්‍රණ පිටපත පුර්වදර්ශනය 
 msgid "&Convert Line Endings to"
 msgstr "&Convert Line Endings to"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "ඒකාබද්ධ කිරීමේ ක්‍රමය\tF9"
@@ -789,22 +805,6 @@ msgstr "සියළු පොත් යොමු ඉවත් කරන්න"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "වෙත...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "විශාලනය වැඩි කරන්න  \tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "විශාලනය අඩු   කරන්න  \tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "සමාන්‍ය\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

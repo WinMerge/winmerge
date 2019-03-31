@@ -145,6 +145,22 @@ msgstr ""
 msgid "&Zoom"
 msgstr "&Velikost písma"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Z&většit\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Z&menšit\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Normální\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -334,7 +350,7 @@ msgstr "Převádět &automaticky"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "Znovu &načíst"
@@ -668,7 +684,7 @@ msgstr "Ná&hled..."
 msgid "&Convert Line Endings to"
 msgstr "Převést konce řá&dků"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Režim sl&učování\tF9"
@@ -792,22 +808,6 @@ msgstr "Zrušit &všechny záložky"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "Př&ejít na...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Z&většit\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Z&menšit\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "&Normální\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format
