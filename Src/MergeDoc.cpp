@@ -570,14 +570,12 @@ void CMergeDoc::FlagTrivialLines(void)
 				DIFFOPTIONS diffOptions = {0};
 				m_diffWrapper.GetOptions(&diffOptions);
 
-				std::vector<strdiff::wdiff> worddiffs;
 				// Make the call to stringdiffs, which does all the hard & tedious computations
-				strdiff::ComputeWordDiffs(m_nBuffers, str,
+				std::vector<strdiff::wdiff> worddiffs = strdiff::ComputeWordDiffs(m_nBuffers, str,
 					!diffOptions.bIgnoreCase,
 					diffOptions.nIgnoreWhitespace,
 					GetBreakType(), // whitespace only or include punctuation
-					GetByteColoringOption(),
-					&worddiffs);
+					GetByteColoringOption());
 				if (!worddiffs.empty())
 				{
 					for (int file = 0; file < m_nBuffers; ++file)
@@ -1187,7 +1185,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 }
 
 bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordDiff, int lastWordDiff,
-		std::vector<int> *pWordDiffIndice, bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
+		const std::vector<int> *pWordDiffIndice, bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
 {
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
 	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
@@ -1215,8 +1213,7 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
 		return false; // abort copying
 	}
 
-	std::vector<WordDiff> worddiffs;
-	GetWordDiffArray(cd_dbegin, &worddiffs);
+	std::vector<WordDiff> worddiffs = GetWordDiffArray(cd_dbegin);
 
 	if (worddiffs.empty())
 		return false;
