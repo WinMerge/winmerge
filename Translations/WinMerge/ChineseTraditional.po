@@ -147,6 +147,22 @@ msgstr "啟動框(&A)"
 msgid "&Zoom"
 msgstr "拉近推遠(&Z)"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "拉近(&I)\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "推遠(&O)\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "恢復原始(&N)\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -338,7 +354,7 @@ msgstr "自動解開非純文字檔(&A)"
 msgid "&Edit with Unpacker..."
 msgstr "解壓縮編輯(&E)"
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "重新載入外掛(&R)"
@@ -672,7 +688,7 @@ msgstr "預覽列印(&R)"
 msgid "&Convert Line Endings to"
 msgstr "轉換換行字元(&C)"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "開/關合併模式(&M)\tF9"
@@ -796,22 +812,6 @@ msgstr "清除全部書籤(&C)"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "移至(&G)...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "拉近(&I)\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "推遠(&O)\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "恢復原始(&N)\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format
