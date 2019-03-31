@@ -79,8 +79,7 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[], bool bReverse
 	CPoint ptStart, ptEnd;
 	pView->GetSelection(ptStart, ptEnd);
 
-	vector<WordDiff> worddiffs;
-	GetWordDiffArray(ptStart.y, &worddiffs);
+	vector<WordDiff> worddiffs = GetWordDiffArray(ptStart.y);
 
 	if (worddiffs.empty())
 		return;
@@ -143,26 +142,27 @@ void CMergeDoc::ClearWordDiffCache(int nDiff/* = -1 */)
  * This is used by algorithm for line diff coloring
  * (Line diff coloring is distinct from the selection highlight code)
  */
-void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
+std::vector<WordDiff> CMergeDoc::GetWordDiffArray(int nLineIndex)
 {
 	int file;
 	DIFFRANGE cd;
+	std::vector<WordDiff> worddiffs;
 
 	for (file = 0; file < m_nBuffers; file++)
 	{
 		if (nLineIndex >= m_ptBuf[file]->GetLineCount())
-			return;
+			return worddiffs;
 	}
 
 	int nDiff = m_diffList.LineToDiff(nLineIndex);
 	if (nDiff == -1)
-		return;
+		return worddiffs;
 	std::map<int, std::vector<WordDiff> >::iterator itmap = m_cacheWordDiffs.find(nDiff);
 	if (itmap != m_cacheWordDiffs.end())
 	{
-		pWordDiffs->resize((*itmap).second.size());
-		std::copy((*itmap).second.begin(), (*itmap).second.end(), pWordDiffs->begin());
-		return;
+		worddiffs.resize((*itmap).second.size());
+		std::copy((*itmap).second.begin(), (*itmap).second.end(), worddiffs.begin());
+		return worddiffs;
 	}
 
 	m_diffList.GetDiff(nDiff, cd);
@@ -188,7 +188,7 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 	for (file = 0; file < m_nBuffers; file++)
 	{
 		if (nLineEnd >= m_ptBuf[file]->GetLineCount())
-			return;
+			return worddiffs;
 		nOffsets[file].reset(new int[nLineEnd - nLineBegin + 1]);
 		CString strText;
 		if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
@@ -207,13 +207,12 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 	int breakType = GetBreakType(); // whitespace only or include punctuation
 	bool byteColoring = GetByteColoringOption();
 
-	std::vector<strdiff::wdiff> worddiffs;
 	// Make the call to stringdiffs, which does all the hard & tedious computations
-	strdiff::ComputeWordDiffs(m_nBuffers, str, casitive, xwhite, breakType, byteColoring, &worddiffs);
+	std::vector<strdiff::wdiff> wdiffs = strdiff::ComputeWordDiffs(m_nBuffers, str, casitive, xwhite, breakType, byteColoring);
 
 	int i;
 	std::vector<strdiff::wdiff>::iterator it;
-	for (i = 0, it = worddiffs.begin(); it != worddiffs.end(); ++i, ++it)
+	for (i = 0, it = wdiffs.begin(); it != wdiffs.end(); ++i, ++it)
 	{
 		WordDiff wd;
 		for (file = 0; file < m_nBuffers; file++)
@@ -241,15 +240,15 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 		}
 		wd.op = it->op;
 
-		pWordDiffs->push_back(wd);
+		worddiffs.push_back(wd);
 	}
 
 	if (!diffPerLine)
 	{
-		m_cacheWordDiffs[nDiff].resize(pWordDiffs->size());
-		std::copy(pWordDiffs->begin(), pWordDiffs->end(), m_cacheWordDiffs[nDiff].begin());
+		m_cacheWordDiffs[nDiff].resize(worddiffs.size());
+		std::copy(worddiffs.begin(), worddiffs.end(), m_cacheWordDiffs[nDiff].begin());
 	}
 
-	return;
+	return worddiffs;
 }
 
