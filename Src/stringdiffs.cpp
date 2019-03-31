@@ -57,13 +57,12 @@ void SetBreakChars(const TCHAR *breakChars)
 	BreakChars = _tcsdup(breakChars);
 }
 
-void
+std::vector<wdiff>
 ComputeWordDiffs(const String& str1, const String& str2,
-	bool case_sensitive, int whitespace, int breakType, bool byte_level,
-	std::vector<wdiff> * pDiffs)
+	bool case_sensitive, int whitespace, int breakType, bool byte_level)
 {
 	String strs[3] = {str1, str2, _T("")};
-	ComputeWordDiffs(2, strs, case_sensitive, whitespace, breakType, byte_level, pDiffs);
+	return ComputeWordDiffs(2, strs, case_sensitive, whitespace, breakType, byte_level);
 }
 
 struct Comp02Functor
@@ -97,14 +96,14 @@ struct Comp02Functor
 /**
  * @brief Construct our worker object and tell it to do the work
  */
-void
+std::vector<wdiff>
 ComputeWordDiffs(int nFiles, const String str[3],
-	bool case_sensitive, int whitespace, int breakType, bool byte_level,
-	std::vector<wdiff> * pDiffs)
+	bool case_sensitive, int whitespace, int breakType, bool byte_level)
 {
+	std::vector<wdiff> diffs;
 	if (nFiles == 2)
 	{
-		stringdiffs sdiffs(str[0], str[1], case_sensitive, whitespace, breakType, pDiffs);
+		stringdiffs sdiffs(str[0], str[1], case_sensitive, whitespace, breakType, &diffs);
 		// Hash all words in both lines and then compare them word by word
 		// storing differences into m_wdiffs
 		sdiffs.BuildWordDiffList();
@@ -120,14 +119,14 @@ ComputeWordDiffs(int nFiles, const String str[3],
 	{
 		if (str[0].empty())
 		{
-			stringdiffs sdiffs(str[1], str[2], case_sensitive, whitespace, breakType, pDiffs);
+			stringdiffs sdiffs(str[1], str[2], case_sensitive, whitespace, breakType, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
 			sdiffs.PopulateDiffs();
-			for (size_t i = 0; i < pDiffs->size(); i++)
+			for (size_t i = 0; i < diffs.size(); i++)
 			{
-				wdiff& diff = (*pDiffs)[i];
+				wdiff& diff = diffs[i];
 				diff.begin[2] = diff.begin[1];
 				diff.begin[1] = diff.begin[0];
 				diff.begin[0] = 0;
@@ -138,14 +137,14 @@ ComputeWordDiffs(int nFiles, const String str[3],
 		}
 		else if (str[1].empty())
 		{
-			stringdiffs sdiffs(str[0], str[2], case_sensitive, whitespace, breakType, pDiffs);
+			stringdiffs sdiffs(str[0], str[2], case_sensitive, whitespace, breakType, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
 			sdiffs.PopulateDiffs();
-			for (size_t i = 0; i < pDiffs->size(); i++)
+			for (size_t i = 0; i < diffs.size(); i++)
 			{
-				wdiff& diff = (*pDiffs)[i];
+				wdiff& diff = diffs[i];
 				diff.begin[2] = diff.begin[1];
 				//diff.begin[0] = diff.begin[0];
 				diff.begin[1] = 0;
@@ -156,14 +155,14 @@ ComputeWordDiffs(int nFiles, const String str[3],
 		}
 		else if (str[2].empty())
 		{
-			stringdiffs sdiffs(str[0], str[1], case_sensitive, whitespace, breakType, pDiffs);
+			stringdiffs sdiffs(str[0], str[1], case_sensitive, whitespace, breakType, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
 			sdiffs.PopulateDiffs();
-			for (size_t i = 0; i < pDiffs->size(); i++)
+			for (size_t i = 0; i < diffs.size(); i++)
 			{
-				wdiff& diff = (*pDiffs)[i];
+				wdiff& diff = diffs[i];
 				//diff.begin[1] = diff.begin[1];
 				//diff.begin[0] = diff.begin[0];
 				diff.begin[2] = 0;
@@ -190,10 +189,11 @@ ComputeWordDiffs(int nFiles, const String str[3],
 			sdiffs10.PopulateDiffs();
 			sdiffs12.PopulateDiffs();
 
-			Make3wayDiff(*pDiffs, diffs10, diffs12, 
+			Make3wayDiff(diffs, diffs10, diffs12, 
 				Comp02Functor(str, case_sensitive), false);
 		}
 	}
+	return diffs;
 }
 
 /**
@@ -338,8 +338,8 @@ stringdiffs::BuildWordDiffList_DP()
 void
 stringdiffs::BuildWordDiffList()
 {
-	BuildWordsArray(m_str1, m_words1);
-	BuildWordsArray(m_str2, m_words2);
+	m_words1 = BuildWordsArray(m_str1);
+	m_words2 = BuildWordsArray(m_str2);
 
 #ifdef _WIN64
 	if (m_words1.size() > 20480 || m_words2.size() > 20480)
@@ -361,9 +361,10 @@ stringdiffs::BuildWordDiffList()
 /**
  * @brief Break line into constituent words
  */
-void
-stringdiffs::BuildWordsArray(const String & str, std::vector<word>& words)
+std::vector<stringdiffs::word>
+stringdiffs::BuildWordsArray(const String & str)
 {
+	std::vector<word> words;
 	int i=0, begin=0;
 
 	size_t sLen = str.length();
@@ -389,7 +390,7 @@ inspace:
 		words.push_back(word(begin, e, dlspace, Hash(str, begin, e, 0)));
 	}
 	if (i == iLen)
-		return;
+		return words;
 	begin = i;
 	goto inword;
 
@@ -408,7 +409,7 @@ inword:
 		}
 		if (i == iLen)
 		{
-			return;
+			return words;
 		}
 		else if (atspace)
 		{

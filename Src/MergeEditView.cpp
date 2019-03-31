@@ -345,14 +345,13 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 	if (firstDiff != -1 && lastDiff != -1)
 	{
 		DIFFRANGE di;
-		vector<WordDiff> worddiffs;
 		
 		if (ptStart != ptEnd)
 		{
 			if (firstWordDiff == -1)
 			{
 				VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
-				pd->GetWordDiffArray(firstLine, &worddiffs);
+				vector<WordDiff> worddiffs = pd->GetWordDiffArray(firstLine);
 				for (size_t i = 0; i < worddiffs.size(); ++i)
 				{
 					if (worddiffs[i].endline[m_nThisPane] > firstLine ||
@@ -371,7 +370,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 			}
 
 			VERIFY(pd->m_diffList.GetDiff(lastDiff, di));
-			pd->GetWordDiffArray(lastLine, &worddiffs);
+			vector<WordDiff> worddiffs = pd->GetWordDiffArray(lastLine);
 			for (size_t i = worddiffs.size() - 1; i != (size_t)-1; --i)
 			{
 				if (worddiffs[i].beginline[m_nThisPane] < lastLine ||
@@ -492,7 +491,6 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 	if (pDoc->IsEditedAfterRescan(m_nThisPane))
 		return emptyBlocks;
 	
-	vector<WordDiff> worddiffs;
 	int nDiff = pDoc->m_diffList.LineToDiff(nLineIndex);
 	if (nDiff == -1)
 		return emptyBlocks;
@@ -508,7 +506,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 	if (unemptyLineCount < 2)
 		return emptyBlocks;
 
-	pDoc->GetWordDiffArray(nLineIndex, &worddiffs);
+	vector<WordDiff> worddiffs = pDoc->GetWordDiffArray(nLineIndex);
 	size_t nWordDiffs = worddiffs.size();
 
 	bool lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
