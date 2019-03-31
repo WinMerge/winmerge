@@ -146,6 +146,22 @@ msgstr ""
 msgid "&Zoom"
 msgstr "Ма&сштаб"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "На&близити\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Від&далити\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Звичайний\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -335,7 +351,7 @@ msgstr "&Автоматичне розпакування"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "Перезавантажити всі &доповнення"
@@ -669,7 +685,7 @@ msgstr "&Попередній перегляд"
 msgid "&Convert Line Endings to"
 msgstr "Замінити перенесення &рядків на"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Режим &злиття\tF9"
@@ -793,22 +809,6 @@ msgstr "&Вилучити всі закладки"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "Перейти до рядка...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "На&близити\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Від&далити\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "&Звичайний\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

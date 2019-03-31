@@ -145,6 +145,22 @@ msgstr ""
 msgid "&Zoom"
 msgstr "Nagyítás"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Nagyítás\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Kicsinyítés\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr ""
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -334,7 +350,7 @@ msgstr "&Automatikus kicsomagolás"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "&Bővítmények betöltése"
@@ -668,7 +684,7 @@ msgstr "Nyomtatási kép"
 msgid "&Convert Line Endings to"
 msgstr "Sorvégek átalakítása"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "&Olvasztási mód\tF9"
@@ -792,22 +808,6 @@ msgstr "Összes könyvjelző törlése"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "&Ugrás...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Nagyítás\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Kicsinyítés\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr ""
 
 #: Merge.rc:1BF42627
 #, c-format

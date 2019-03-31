@@ -145,6 +145,22 @@ msgstr ""
 msgid "&Zoom"
 msgstr "Mărime te&xt"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "&Măreşte\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Micş&orează\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Normal\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -334,7 +350,7 @@ msgstr "Dezarhivare &automată"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "&Reîncarcă plug-in-urile"
@@ -668,7 +684,7 @@ msgstr "Pre&vizualizare tipărire"
 msgid "&Convert Line Endings to"
 msgstr "Converteşte sfârşiturile de linie la"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "&Modul fuziune\tF9"
@@ -792,22 +808,6 @@ msgstr "Şterge toate semnele de &carte"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "Mer&gi la...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "&Măreşte\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Micş&orează\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "&Normal\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

@@ -1,4 +1,4 @@
-# This file is part from WinMerge <http://winmerge.org/>
+﻿# This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -146,6 +146,22 @@ msgstr "活动窗格(&A)"
 #, c-format
 msgid "&Zoom"
 msgstr "缩放(&Z)"
+
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "放大(&I)\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "缩小(&O)\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "正常大小(&N)\tCtrl+*"
 
 #: Merge.rc:AC3AA13
 #, c-format
@@ -336,7 +352,7 @@ msgstr "自动解包(&A)"
 msgid "&Edit with Unpacker..."
 msgstr "使用解包器编辑(&E)..."
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "重新加载插件(&R)"
@@ -670,7 +686,7 @@ msgstr "打印预览(&W)"
 msgid "&Convert Line Endings to"
 msgstr "将行分隔符转换为(&C)"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "合并模式(&M)\tF9"
@@ -794,22 +810,6 @@ msgstr "清除所有(&C)"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "转到(&G)...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "放大(&I)\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "缩小(&O)\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "正常大小(&N)\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format
@@ -4756,3 +4756,4 @@ msgstr "创建文件夹失败."
 #, c-format
 msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
 msgstr "您可以在路径中指定下列参数:\n$file: 当前文件的路径名\n$linenum: 当前游标位置的行号"
+

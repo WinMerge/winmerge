@@ -146,6 +146,22 @@ msgstr ""
 msgid "&Zoom"
 msgstr "&Z بزرگنمايي "
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "&I بزرگ نمايي \tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "&O کوچک نمايي \tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&N معمولي \tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -335,7 +351,7 @@ msgstr "&A بازکردن بسته بطور خودکار "
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "&R بارگذاري دوباره افزايه ها "
@@ -669,7 +685,7 @@ msgstr "&w پيش نمايش چاپ "
 msgid "&Convert Line Endings to"
 msgstr "&C تبديل پايان خط به "
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "&M سبک پيوند \tF9"
@@ -793,22 +809,6 @@ msgstr "&C پاک کردن تمام نشانها "
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "&G برو به ... \tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "&I بزرگ نمايي \tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "&O کوچک نمايي \tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "&N معمولي \tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format
