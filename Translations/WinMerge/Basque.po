@@ -148,6 +148,22 @@ msgstr ""
 msgid "&Zoom"
 msgstr "&Zooma"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Zooma &Handitu\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Zooma &Gutxitu\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Normala\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -337,7 +353,7 @@ msgstr "Be&rezgaitasunezko Despaketatzea"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "B&irgertatu pluginak"
@@ -671,7 +687,7 @@ msgstr "Irarkitu Aurreikus&pena"
 msgid "&Convert Line Endings to"
 msgstr "Bihurtu &Lerro Amaierak hona"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Batu &Modua\tF9"
@@ -795,22 +811,6 @@ msgstr "&Garbitu Lastermarka Guztiak"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "&Joan Hona...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Zooma &Handitu\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Zooma &Gutxitu\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "&Normala\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

@@ -123,6 +123,19 @@ msgstr "&Aktyvus polangis"
 msgid "&Zoom"
 msgstr "&Keisti mastelį"
 
+#: Merge.rc:7C622F87
+msgid "Zoom &In\tCtrl++"
+msgstr "Did&inti\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Mažint&i\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+msgid "&Normal\tCtrl+*"
+msgstr "&Normalus\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 msgid "&Overlay"
 msgstr "&Perdengimas"
@@ -275,7 +288,7 @@ msgstr "&Automatinis išpakavimas"
 msgid "&Edit with Unpacker..."
 msgstr "R&edaguoti su išpakavimu..."
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 msgid "&Reload plugins"
 msgstr "&Iš naujo įkelti papildinius"
 
@@ -543,7 +556,7 @@ msgstr "Spaudinio peržiūr&a"
 msgid "&Convert Line Endings to"
 msgstr "Keisti eilučių pabaigos formatą į"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 msgid "&Merge Mode\tF9"
 msgstr "Sulieji&mo režimas\tF9"
 
@@ -642,19 +655,6 @@ msgstr "&Išvalyti visas žymes"
 #: Merge.rc:1A9EBDEE
 msgid "&Go To...\tCtrl+G"
 msgstr "&Pereiti į...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-msgid "Zoom &In\tCtrl++"
-msgstr "Did&inti\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Mažint&i\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-msgid "&Normal\tCtrl+*"
-msgstr "&Normalus\tCtrl+*"
 
 #: Merge.rc:1BF42627
 msgid "Syntax Highlight"

@@ -148,6 +148,22 @@ msgstr "Активная панель"
 msgid "&Zoom"
 msgstr "&Масштаб"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Увеличить\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Уменьшить\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "Обычный\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -337,7 +353,7 @@ msgstr "Автоматическая распаковка"
 msgid "&Edit with Unpacker..."
 msgstr "Редактировать распаковщиком..."
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "&Перезагрузить плагины"
@@ -671,7 +687,7 @@ msgstr "Предварительный просмотр"
 msgid "&Convert Line Endings to"
 msgstr "&Заменить переносы строк на"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Режим объединения\tF9"
@@ -795,22 +811,6 @@ msgstr "&Удалить все закладки"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "Перейти к...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Увеличить\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Уменьшить\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "Обычный\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

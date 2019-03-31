@@ -145,6 +145,22 @@ msgstr ""
 msgid "&Zoom"
 msgstr "Po&većaj"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Po&većaj\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "&Smanji\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Izvorna veličina\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -334,7 +350,7 @@ msgstr "&Automatsko raspakiravanje"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "&Učitaj dodatke ponovo"
@@ -668,7 +684,7 @@ msgstr "&Pregled ispisa"
 msgid "&Convert Line Endings to"
 msgstr "&Završi retke prema"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Usporedni način"
@@ -792,22 +808,6 @@ msgstr "Ukloni sve oznake"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "Idi &na...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Po&većaj\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "&Smanji\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "&Izvorna veličina\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

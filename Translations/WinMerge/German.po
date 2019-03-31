@@ -145,6 +145,22 @@ msgstr "&Aktiver Ausschnitt"
 msgid "&Zoom"
 msgstr "&Zoom"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Ver&größern\tStrg++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Ver&kleinern\tStrg+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Normal\tStrg+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -334,7 +350,7 @@ msgstr "&Automatisch entpacken"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "Plugins &neu laden"
@@ -668,7 +684,7 @@ msgstr "Druck&vorschau"
 msgid "&Convert Line Endings to"
 msgstr "&Zeilenenden konvertieren nach"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "&Merge Modus\tF9"
@@ -792,22 +808,6 @@ msgstr "&Alle Lesezeichen löschen"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "&Gehe nach...\tStrg+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Ver&größern\tStrg++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Ver&kleinern\tStrg+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "&Normal\tStrg+*"
 
 #: Merge.rc:1BF42627
 #, c-format
