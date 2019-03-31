@@ -866,7 +866,7 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 			}			
 			// Group merge with previous (merge undo data to one action)
 			bGroupWithPrevious = true;
-			if (i > firstDiff)
+			if (i > firstDiff || firstWordDiff <= 0)
 			{
 				if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, false))
 					break; // sync failure
