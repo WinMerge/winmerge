@@ -123,8 +123,7 @@ public:
 	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);
 	virtual CCrystalTextBuffer *LocateTextBuffer ();
 	const CCrystalTextBuffer *LocateTextBuffer () const { return const_cast<CMergeEditView *>(this)->LocateTextBuffer(); };
-	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff, int & lastWordDiff, const CPoint *pptStart = nullptr, const CPoint *ppEnd = nullptr);
-	std::map<int, std::vector<int>> GetColumnSelectedWordDiffIndice();
+	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
 	CString GetSelectedText();
 	CString GetLineText(int idx);
 	CMergeDoc* GetDocument();
