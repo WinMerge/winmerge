@@ -49,24 +49,339 @@
 </head>
 <body>
 
-<h2>WinMerge 2.16.1 Release Notes</h2>
+<h2>WinMerge 2.16.2 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2160">What Is New in 2.16.1?</a></li>
+  <li><a href="#new2162">What Is New in 2.16.2?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>February 2019</p>
+<p>April 2019</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.2 stable release. This release replaces earlier WinMerge 
+stable releases as a recommended release.
 </p>
 
 <p>
 Please submit bug reports to our <a href="http://bitbucket.org/winmerge/winmerge/issues">bug-tracker</a>.
 </p>
+
+<h3><a name="#new2162">What Is New in 2.16.2?</a></h3>
+
+<h4>File compare</h4>
+<ul>
+  <li>Bugfix: Edit &gt; Replace &gt; All, Undo: should undo all (sf.net #2113)</li>
+  <li>Bugfix: Save As: default directory should be file's original directory (sf.net #2163)</li>
+  <li>Bugfix: Strings with embedded 0 bytes are handled incorrectly (sf.net #2187)</li>
+  <li>Bugfix: Removed word level merge support due to unstable behavior</li>
+  <li>Bugfix: Menu item "File-&gt;File Encoding" moves main window (Bitbucket #150)</li>
+  <li>Bugfix: Crash when maximizing MDI child window</li>
+  <li>bugfix: Crash when failed to load file</li>
+  <li>Add syntax highlight for Lua (Bitbucket #114)</li>
+</ul>
+
+<h4>Folder compare</h4>
+<ul>
+  <li>Bugfix: Compare results refresh incorrectly after deletions (sf.net #2217)</li>
+</ul>
+
+<h4>Archive Support</h4>
+<ul>
+  <li>Upgraded to 7-zip 19.00</li>
+</ul>
+
+<h4>Tab bar</h4>
+<ul>
+  <li>Improve icon display at 120DPI</li>
+</ul>
+
+<h4>Image compare</h4>
+<ul>
+  <li>Bugfix: Zoom In/Out shortcuts don't update zoom level in location pane (Bitbucket #149)</li>
+  <li>Zoom In/Out menu items for image compare (Bitbucket #148)</li>
+</ul>
+
+<h4>Open dialog</h4>
+<ul>
+  <li>Allow quoted filenames in "Select Files or Folders" (sf.net #1240, GitHub #137)</li>
+</ul>
+
+<h4>Manual</h4>
+<ul>
+  <li>Some tweaks for the manual (Bitbucket PR #35)</li>
+</ul>
+
+<h4>Installer</h4>
+<ul>
+  <li>Bugfix: Gibberish language during installation (Bitbucket #147)</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>Update Catalan translation (Bitbucket PR #29)</li>
+  <li>Update Italian translation (Bitbucket PR #32)</li>
+  <li>Update Lithuanian translation (Bitbucket PR #33)</li>
+  <li>Update Simplified Chinese translation (Bitbucket PR #34)</li>
+</ul>
+
+<h3><a name="#new2161">What Is New in 2.16.1?</a></h3>
+
+<h4>Open dialog</h4>
+<ul>
+  <li> Alternatively to Swap buttons, allow drag &amp; drop between filetype icons (GitHub #118)</li>
+  <li> Expose cleaner moving/resizing behavior esp. in non-maximized state (GitHub #119)</li>
+  <li> Avoid retaining bogus filetype icons from previous selections (GitHub #122)</li>
+</ul>
+
+<h4>File compare</h4>
+<ul>
+  <li> Bugfix: Extra blank displayed after left/right single/double quotes (Bitbucket #134)</li>
+  <li> Bugfix: Click doesn't trigger document to scroll in Location pane under circumstance (Bitbucket #140)</li>
+  <li> Bugfix: Frustrating text selection bug (GitHub #109)</li>
+  <li> Bugfix: Left and Right files swap after losing focus v2.16.0.0 (sf.net #2213)</li>
+  <li> Bugfix: WinMerge 2.16.0.0 Unicoe X64 version displaying Microsoft Visual C++ Runtime Library Asset in DiffWraper.CPP line 984 (sf.net #2214)</li>
+  <li> Bugfix: Cancelation of selection range with reverse indent (sf.net #2215)</li>
+  <li> Bugfix: upward and downward search not work correctly</li>
+  <li> Bugifx: Fix menu accelerator conflict</li>
+  <li> Add File/Recompare As/Image menu item</li>
+  <li> Add support for merging word level diffs in selection <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">Demo</a></li>
+</ul>
+
+<h4>Folder compare</h4>
+<ul>
+  <li> Bugfix: Unique files are not shown (Bitbucket #138)</li>
+  <li> Bugfix: Improve Hard-IO error handling, other bug fixes, cleanup, tweaks (GitHub #120)</li>
+</ul>
+
+<h4>Archive Support</h4>
+<ul>
+  <li> Upgraded to 7-zip 18.06 (Bitbucket #119)</li>
+</ul>
+
+<h4>Options dialog</h4>
+<ul>
+  <li> Bugfix: Widen the width of labels in Options dialog (GitHub#108)</li>
+  <li> Bugfix: view settings make winmerge crash (Bitbucket #109)</li>
+  <li> Bugfix: 64bit version can't browse between option pages (Bitbucket #128)</li>
+  <li> Bugfix: Shell Integration "Enable Advanced Menu" disabled on new install (Bitbucket #137)</li>
+  <li> Bugfix: Binary File options don't change from default (Bitbucket #135)</li>
+</ul>
+
+<h4>Shell extension</h4>
+<ul>
+  <li> Bugfix: CreateTranslatedRcFiles needs an update (GitHub #113)</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li> Update Brazilian Portuguese translation (GitHub #108)</li>
+  <li> Update Swedish translation (sf.net #3035, GitHub #112, #114)</li>
+  <li> Update Lithuanian translation (Bitbucket PR #7, #8, #27)</li>
+  <li> Update Russian translation (Bitbucket PR #9-#26, #139)</li>
+  <li> Update Bulgarian translation (Bitbucket PR #28)</li>
+  <li> Update Turkish translation (sf.net #3036)</li>
+  <li> Update Japanese translation</li>
+  <li> Remove now unneeded MergeLang.dll</li>
+</ul>
+
+<h4>Manual</h4>
+<ul>
+  <li> Bugfix: Some fixes in the manual (GitHub #116)</li>
+  <li> Bugifx: end of line documentation (sf.net #2211)</li>
+  <li> Clarification as per https://github.com/WinMerge/winmerge-v2/issues/41 (GitHub #126)</li>
+</ul>
+
+<h4>Internals</h4>
+<ul>
+  <li> Remove `nFinalNullLines` checking, disabled by an earlier commit (GitHub #111)</li>
+  <li> Various minor updates, plus preparation for VS2019 (GitHub #115)</li>
+  <li> DiffTextBuffer: Create Unicode temp files (makes EscapeControlChars() obsolete) (GitHub #123)</li>
+  <li> Don't pass `DIFFITEM *` by casting to `uintptr_t` (GitHub #124, #125)</li>
+</ul>
+
+<h3><a name="#new2160">What Is New in 2.16.0?</a></h3>
+
+<h4>General</h4>
+<ul>
+  <li>Bugfix: Disabled icon on toolbar not gray out when running on XP</li>
+</ul>
+
+<h4>File compare</h4>
+<ul>
+  <li>Bugfix: Copy to X and Advance" not work in 3way-compare (Bitbucket #123)</li>
+  <li>Bugfix: File compare always showing different ending (GitHub #106)</li>
+  <li>Bugfix: Scrolling issue (GitHub #105)</li>
+  <li>Bugfix: A crash (GitHub #104)</li>
+  <li>Add separators to "Zoom" and "Diff Context" menus (Bitbucket PR #5)</li>
+</ul>
+
+<h4>Open dialog</h4>
+<ul>
+  <li>Bugfix: Drag&amp;Drop in Open Dialog won't work correct (Bitbucket #125)</li>
+</ul>
+
+<h4>Installer</h4>
+<ul>
+  <li>Drop ClearCase integration (Bitbucket PR #6)</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>Add Lithuanian translation (Bitbucket #124)</li>
+  <li>Update Portuguese translation (GitHub #102,103)</li>
+</ul>
+
+<h3><a name="#new2155">What Is New in 2.15.5 Beta?</a></h3>
+
+<h4>General</h4>
+<ul>
+  <li>Add support for very long path and file names (GitHub #87,95,99)</li>
+  <li>Enable Ctrl+C shortcut key on the file path bar</li>
+  <li>Remove support for old version control system (GitHub #96)</li>
+  <li>Improve Options &gt; Color &gt; Differences dialog layout (GitHub #89)</li>
+  <li>Improve information and formatting in Help &gt; Configuration reporting (GitHub #92)</li>
+  <li>Improve visual layout of Open dialog (GitHub #97)</li>
+  <li>Add icon for "New (3 panes)" menu item (GitHub #97)</li>
+</ul>
+
+<h4>File compare</h4>
+<ul>
+  <li>Add Window/Split menu item</li>
+  <li>Improve handling of last lines in files (GitHub #89,90,93)</li>
+  <li>Improve "Visual C++ Loose" filter (GitHub #95)</li>
+  <li>BugFix: Crash when saving a file if the active pane is diff detail pane</li>
+  <li>BugFix: Crash when pressing Alt+Down key while loading large files</li>
+  <li>BugFix: Crash when "mousing over" Plugin Setting context menu if Plugins are disabled</li>
+  <li>BugFix: Various problems reading of files > 2GB (GitHub #81)</li>
+  <li>BugFix: Selecting files "From MRU list" again works correctly</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>Update Italian translation (GitHub #86)</li>
+  <li>Update Japanese translation (Bitbucket #3)</li>
+  <li>Update Dutch translation</li>
+  <li>Update German translation</li>
+  <li>Bugfix Spanish translation error (Bitbucket Issue #108)</li>
+</ul>
+
+<h4>Internals</h4>
+<ul>
+  <li> Various diffengine and compilation/build fixes (GitHub #89,90,91,92,94)</li>
+</ul>
+
+<h3><a name="#new2154">What Is New in 2.15.4 Beta?</a></h3>
+
+<h4>Appearance</h4>
+<ul>
+  <li>BugFix: Dot icon in a drop-down menu is not drawn correctly</li>
+</ul>
+
+<h4>File compare</h4>
+<ul>
+  <li>BugFix: Crash when reading a file in Google Drive File Stream (sf.net#2206)</li>
+  <li>BugFix: Crash when removing ghost lines (GitHub #80)</li>
+  <li>BugFix: Lines without EOL appears even though it is not the last line</li>
+  <li>Add Ctrl++/Ctrl+-(not numpad key) shortcut key to zoom in/out (sf.net#1727)</li>
+  <li>Remove 2GB file size limit for 64-bit build (GitHub #81, #82)</li>
+</ul>
+
+<h4>Folder compare</h4>
+<ul>
+  <li>Add Pause button to Folder Compare Progress dialog (sf.net#828,#1222,#1237)</li>
+  <li>Re-detect the file encoding when opening files (sf.net#2131)</li>
+</ul>
+ 
+<h4>Open dialog</h4>
+<ul>
+  <li>Add Options button to Open dialog</li>
+  <li>Add Save Project button to Open dialog</li>
+</ul>
+
+<h4>Patch generator dialog</h4>
+<ul>
+  <li>BugFix: File1/File2 fields don't remember manual input (sf.net#1949)</li>
+</ul>
+
+<h4>Reports</h4>
+<ul>
+  <li>BugFix: Garbled text was copied to the clipboard when generating a report
+  on the clipboard (sf.net#2200)</li>
+</ul>
+
+<h4>Plugins</h4>
+<ul>
+  <li>Add PrediffLineFilter.sct plugin</li>
+  <li>Make ignored lines by Prediffer plugin colored</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>Update Slovak translation (sf.net#2902)</li>
+  <li>Update Portuguese translation (GitHub #84,#85)</li>
+</ul>
+
+<h4>Internals</h4>
+<ul>
+  <li>Adapt to VS2017 version 15.6.1 (GitHub #79)</li>
+</ul>
+
+<h3><a name="#new2153">What Is New in 2.15.3 Beta?</a></h3>
+
+<h4>File compare</h4>
+<ul>
+  <li>Fix assertion error when started on Windows XP</li>
+  <li>Fix a problem that moved blocks are sometimes shown as normal diff blocks</li>
+  <li>Fix a problem that EOL is removed unexpectedly when removing lines
+    included ghost lines</li>
+  <li>Fix reverse search to search last line correctly</li>
+  <li>Fix infinite loop when replacing ^ (sf.net#2094)</li>
+  <li>Fix to show text that contains &amp; on message box, correctly (sf.net#2067)</li>
+</ul>
+
+<h4>Folder compare</h4>
+<ul>
+  <li>Fix a problem that unique files are invisible when comparing files using
+    'Date' compare method</li>
+  <li>Remove trailing garbage from a dragged text (Github#75)</li>
+</ul>
+
+<h4>Patch generator dialog</h4>
+<ul>
+  <li>Fix a problem that typed-in Context in Generate Patch is not applied
+    (sf.net#2179)</li>
+</ul>
+
+<h4>Location pane</h4>
+<ul>
+  <li>Add support for HiDPI screens (Github #54)</li>
+</ul>
+
+<h4>Plugins</h4>
+<ul>
+  <li>CompareMSExcelFiles.sct: Add "Compare headers and footers" checkbox to
+    settings dialog (sf.net#2102)</li>
+</ul>
+
+<h4>Installer</h4>
+<ul>
+  <li>Remove extra space in installer: " Launch WinMerge" (sf.net#2144)</li>
+  <li>Add "How to Apply These Terms to Your New Programs" section into GPL.rtf
+    (sf.net#2098)</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>Add Finnish translation (sf.net#3031)</li>
+  <li>Add Sinhala translation (sf.net#3032)</li>
+  <li>Update Korean translation (Github #61)</li>
+  <li>Update Portuguese translation (GitHub #56-78)</li>
+  <li>Update Polish translation (sf.net#2177)</li>
+  <li>Update Turkish translation (Bitbucket#85, #86)</li>
+  <li>Change the file encodings of all .po files of WinMerge GUI to UTF-8</li>
+</ul>
 
 <h3><a name="#new2161">What Is New in 2.16.1 beta?</a></h3>
 
@@ -397,7 +712,7 @@ WinMerge 2.15.2 is a beta release which mainly adds support for experimental 3-w
   <li>Make Custom codepage on "Codepage" page selectable from dropdown list </li>
   <li>Add "Detect codepage for text files using mlang.dll" checkbox to
       "Codepage" page</li>
-  <li>Remove "Include subfolders by default" checkbox from </li>
+  <li>Remove "Include subfolders by default" checkbox from
       "Shell Integration" page
       (ShellExtension now refers to "Include subfolders" checkbox
         on "Compare/Folder" page or on "Select Files or Folders" dialog)</li>
@@ -482,7 +797,6 @@ WinMerge 2.15.2 is a beta release which mainly adds support for experimental 3-w
 </ul>
 
 <h4>Drag and Drop</h4>
-</ul>
 <ul>
   <li>Accept drag&amp;droped files or folders from various places like:
     Zip folder, FTP folder, Recycle bin, images in Web browser</li>
