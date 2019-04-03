@@ -93,7 +93,10 @@ void CGhostTextView::popPosition(SCursorPushed Ssrc, CPoint & pt)
 void CGhostTextView::pushPosition(SCursorPushed & Sdest, CPoint pt)
 {
 	Sdest.x = pt.x;
-	Sdest.y = m_pGhostTextBuffer->ComputeRealLineAndGhostAdjustment(pt.y, Sdest.nToFirstReal);
+	if (m_pGhostTextBuffer)
+		Sdest.y = m_pGhostTextBuffer->ComputeRealLineAndGhostAdjustment(pt.y, Sdest.nToFirstReal);
+	else
+		Sdest.y = pt.y;
 }
 
 void CGhostTextView::PopCursors ()
@@ -178,7 +181,7 @@ void CGhostTextView::PushCursors ()
 		pushPosition(m_ptSavedSelEndPushed, m_ptSavedSelEnd);
 	}
 
-	pushPosition(m_ptLastChangePushed, m_pGhostTextBuffer->GetLastChangePos());
+	pushPosition(m_ptLastChangePushed, m_pGhostTextBuffer ? m_pGhostTextBuffer->GetLastChangePos() : CPoint{0, 0});
 
 	// and top line positions
 	m_nTopSubLinePushed = m_nTopSubLine;
