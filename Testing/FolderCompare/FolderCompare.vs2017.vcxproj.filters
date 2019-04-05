@@ -147,16 +147,10 @@
     <ClCompile Include="..\..\Src\Common\varprop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\version.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\CompareEngines\ByteComparator.cpp">
       <Filter>CompareEngines</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\CompareEngines\ByteCompare.cpp">
-      <Filter>CompareEngines</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\CompareEngines\DiffUtils.cpp">
       <Filter>CompareEngines</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\CompareEngines\TimeSizeCompare.cpp">
@@ -215,6 +209,18 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Common\OptionsMgr.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\CompareEngines\Wrap_DiffUtils.cpp">
+      <Filter>CompareEngines</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Common\VersionInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\diffutils\src\mystat.cpp">
+      <Filter>DiffEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -341,16 +347,10 @@
     <ClInclude Include="..\..\Src\Common\varprop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\CompareEngines\ByteComparator.h">
       <Filter>CompareEngines</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\CompareEngines\ByteCompare.h">
-      <Filter>CompareEngines</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\CompareEngines\DiffUtils.h">
       <Filter>CompareEngines</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\CompareEngines\TimeSizeCompare.h">
@@ -374,17 +374,26 @@
     <ClInclude Include="..\..\Src\CompareEngines\BinaryCompare.h">
       <Filter>CompareEngines</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Common\RegOptionsMgr.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\Src\CompareEngines\Wrap_DiffUtils.h">
+      <Filter>CompareEngines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\VersionInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\MergeApp.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\OptionsDef.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Common\OptionsMgr.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Common\RegOptionsMgr.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
