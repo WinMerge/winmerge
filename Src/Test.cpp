@@ -96,7 +96,7 @@ TEST(SyntaxHighlight, Verilog)
 	if (pDoc == nullptr)
 		return;
 
-	std::vector<CCrystalTextView::TEXTBLOCK> blocks;
+	std::vector<CrystalLineParser::TEXTBLOCK> blocks;
 	blocks = pDoc->GetView(0, 0)->GetTextBlocks(0);
 	EXPECT_EQ(COLORINDEX_COMMENT, blocks[0].m_nColorIndex);
 	blocks = pDoc->GetView(0, 0)->GetTextBlocks(2);

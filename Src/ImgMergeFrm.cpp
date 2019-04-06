@@ -522,7 +522,7 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 * @brief We must use this function before a call to SetDockState
 *
 * @note Without this, SetDockState will assert or crash if a bar from the
-* CDockState is missing in the current CChildFrame.
+* CDockState is missing in the current CMergeEditFrame.
 * The bars are identified with their ID. This means the missing bar bug is triggered
 * when we run WinMerge after changing the ID of a bar.
 */

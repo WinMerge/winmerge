@@ -39,7 +39,7 @@
 #include "WMGotoDlg.h"
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
-#include "ChildFrm.h"
+#include "MergeEditFrm.h"
 #include "MergeLineFlags.h"
 #include "paths.h"
 #include "DropHandler.h"
@@ -4034,7 +4034,7 @@ void CMergeEditView::OnDropFiles(const std::vector<String>& tFiles)
 void CMergeEditView::OnWindowSplit()
 {
 
-	auto& wndSplitter = dynamic_cast<CChildFrame *>(GetParentFrame())->GetSplitter();
+	auto& wndSplitter = dynamic_cast<CMergeEditFrame *>(GetParentFrame())->GetSplitter();
 	CMergeDoc *pDoc = GetDocument();
 	CMergeEditView *pView = pDoc->GetView(0, m_nThisPane);
 	auto* pwndSplitterChild = pView->GetParentSplitter(pView, false);

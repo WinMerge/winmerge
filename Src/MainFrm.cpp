@@ -36,7 +36,7 @@
 #include "BCMenu.h"
 #include "OpenFrm.h"
 #include "DirFrame.h"		// Include type information
-#include "ChildFrm.h"
+#include "MergeEditFrm.h"
 #include "HexMergeFrm.h"
 #include "DirView.h"
 #include "DirDoc.h"
@@ -714,7 +714,7 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	bool bResult = pMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc);
 	if (bResult)
 	{
-		if (CChildFrame *pFrame = pMergeDoc->GetParentFrame())
+		if (CMergeEditFrame *pFrame = pMergeDoc->GetParentFrame())
 			if (!pFrame->IsActivated())
 				pFrame->InitialUpdateFrame(pMergeDoc, true);
 	}
@@ -1461,12 +1461,12 @@ CMergeEditView * CMainFrame::GetActiveMergeEditView()
 {
 	// NB: GetActiveDocument does not return the Merge Doc 
 	//     even when the merge edit view is in front
-	// NB: CChildFrame::GetActiveView returns `nullptr` when location view active
+	// NB: CMergeEditFrame::GetActiveView returns `nullptr` when location view active
 	// So we have this rather complicated logic to try to get a merge edit view
 	// We look at the front child window, which should be a frame
-	// and we can get a MergeEditView from it, if it is a CChildFrame
+	// and we can get a MergeEditView from it, if it is a CMergeEditFrame
 	// (DirViews use a different frame type)
-	CChildFrame * pFrame = dynamic_cast<CChildFrame *>(GetActiveFrame());
+	CMergeEditFrame * pFrame = dynamic_cast<CMergeEditFrame *>(GetActiveFrame());
 	if (pFrame == nullptr) return nullptr;
 	// Try to get the active MergeEditView (ie, left or right)
 	if (pFrame->GetActiveView() != nullptr && pFrame->GetActiveView()->IsKindOf(RUNTIME_CLASS(CMergeEditView)))
@@ -1760,7 +1760,7 @@ void CMainFrame::OnResizePanes()
 	GetOptionsMgr()->SaveOption(OPT_RESIZE_PANES, bResize);
 	// TODO: Introduce a common merge frame superclass?
 	CFrameWnd *pActiveFrame = GetActiveFrame();
-	if (CChildFrame *pFrame = DYNAMIC_DOWNCAST(CChildFrame, pActiveFrame))
+	if (CMergeEditFrame *pFrame = DYNAMIC_DOWNCAST(CMergeEditFrame, pActiveFrame))
 	{
 		pFrame->UpdateAutoPaneResize();
 		if (bResize)
@@ -2297,7 +2297,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 */
 CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
 {
-	bool bMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	bool bMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame));
 	bool bHexMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame));
 	bool bImgMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame));
 	bool bDirFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
@@ -2474,8 +2474,8 @@ void CMainFrame::ReloadMenu()
 		CWnd *pFrame = CWnd::FromHandle(::GetWindow(pMainFrame->m_hWndMDIClient, GW_CHILD));
 		while (pFrame != nullptr)
 		{
-			if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
-				static_cast<CChildFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
+			if (pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)))
+				static_cast<CMergeEditFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
 			if (pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
 				static_cast<CHexMergeFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
 			if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
@@ -2490,7 +2490,7 @@ void CMainFrame::ReloadMenu()
 		CFrameWnd *pActiveFrame = pMainFrame->GetActiveFrame();
 		if (pActiveFrame != nullptr)
 		{
-			if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+			if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)))
 				pMainFrame->MDISetMenu(pNewMergeMenu, nullptr);
 			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)))
 				pMainFrame->MDISetMenu(pNewMergeMenu, nullptr);

@@ -130,7 +130,7 @@ struct DiffFileInfo;
 class CMergeEditView;
 class PackingInfo;
 class PrediffingInfo;
-class CChildFrame;
+class CMergeEditFrame;
 class CDirDoc;
 class CEncodingErrorBar;
 class CLocationView;
@@ -254,7 +254,7 @@ public:
 		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 			func(m_pView[nGroup][nBuffer]);
 	}
-	CChildFrame * GetParentFrame();
+	CMergeEditFrame * GetParentFrame();
 
 	void AddSyncPoint();
 	bool DeleteSyncPoint(int pane, int nLine, bool bRescan = true);
