@@ -95,7 +95,7 @@ CLocationView::CLocationView()
 
 	SetConnectMovedBlocks(GetOptionsMgr()->GetInt(OPT_CONNECT_MOVED_BLOCKS));
 
-	std::fill_n(m_nSubLineCount, countof(m_nSubLineCount), 0);
+	std::fill_n(m_nSubLineCount, std::size(m_nSubLineCount), 0);
 }
 
 CLocationView::~CLocationView()

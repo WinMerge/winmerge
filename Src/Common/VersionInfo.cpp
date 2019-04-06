@@ -11,7 +11,6 @@
 #include <tchar.h>
 #include <cassert>
 #include <strsafe.h>
-#include "coretypes.h"
 #include "UnicodeString.h"
 #include "TFile.h"
 
@@ -212,12 +211,12 @@ static String MakeVersionString(DWORD hi, DWORD lo)
 	TCHAR ver[50];
 	if (LOWORD(lo) == 0)
 	{
-		StringCchPrintf(ver, countof(ver) - 1, _T("%d.%d.%d"), HIWORD(hi),
+		StringCchPrintf(ver, std::size(ver) - 1, _T("%d.%d.%d"), HIWORD(hi),
 				LOWORD(hi), HIWORD(lo));
 	}
 	else
 	{
-		StringCchPrintf(ver, countof(ver) - 1, _T("%d.%d.%d.%d"), HIWORD(hi),
+		StringCchPrintf(ver, std::size(ver) - 1, _T("%d.%d.%d.%d"), HIWORD(hi),
 				LOWORD(hi), HIWORD(lo), LOWORD(lo));
 	}
 	String sver(ver);
@@ -340,9 +339,9 @@ void CVersionInfo::QueryStrings()
 		WORD codepage;
 		GetCodepageForLanguage(m_wLanguage, codepage);
 		TCHAR temp[20];
-		StringCchPrintf(temp, countof(temp) - 1, _T("%04x"), m_wLanguage);
+		StringCchPrintf(temp, std::size(temp) - 1, _T("%04x"), m_wLanguage);
 		m_strLanguage = temp;
-		StringCchPrintf(temp, countof(temp) - 1, _T("%04x"), codepage);
+		StringCchPrintf(temp, std::size(temp) - 1, _T("%04x"), codepage);
 		m_strCodepage = temp;
 	}
 	else if (m_strLanguage.empty()
@@ -355,10 +354,10 @@ void CVersionInfo::QueryStrings()
 				(LPVOID *)&lpTranslate, (UINT *)&langLen))
 		{
 			TCHAR temp[20];
-			StringCchPrintf(temp, countof(temp) - 1, _T("%4.4X"),
+			StringCchPrintf(temp, std::size(temp) - 1, _T("%4.4X"),
 					lpTranslate[0].wLanguage);
 			m_strLanguage = temp;
-			StringCchPrintf(temp, countof(temp) - 1, _T("%4.4X"),
+			StringCchPrintf(temp, std::size(temp) - 1, _T("%4.4X"),
 					lpTranslate[0].wCodePage);
 			m_strCodepage = temp;
 		}
@@ -389,7 +388,7 @@ void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 	bool    bRetCode;
 
 	TCHAR szSelector[256];
-	StringCchPrintf(szSelector, countof(szSelector) - 1,
+	StringCchPrintf(szSelector, std::size(szSelector) - 1,
 			_T("\\StringFileInfo\\%s%s\\%s"),
 			m_strLanguage.c_str(), m_strCodepage.c_str(), szId);
 	bRetCode = !!VerQueryValue((LPVOID)m_pVffInfo.get(),
