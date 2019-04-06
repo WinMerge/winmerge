@@ -1136,7 +1136,6 @@
     <ClInclude Include="ConfirmFolderCopyDlg.h" />
     <ClInclude Include="ConflictFileParser.h" />
     <ClInclude Include="Common\coretools.h" />
-    <ClInclude Include="Common\coretypes.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DirActions.h" />
     <ClInclude Include="HexMergeView.h" />

@@ -1167,9 +1167,6 @@
     <ClInclude Include="Common\LanguageSelect.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\coretypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IListCtrlImpl.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>

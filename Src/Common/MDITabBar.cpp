@@ -266,7 +266,7 @@ void CMDITabBar::UpdateTabs()
 			TCHAR szText[256];
 			szText[0] = '\0';
 			tci.pszText = szText;
-			tci.cchTextMax = countof(szText);
+			tci.cchTextMax = std::size(szText);
 			tci.mask = TCIF_TEXT;
 			GetItem(item, &tci);
 			if (tci.pszText && strTitle.Compare(tci.pszText) != 0)

@@ -238,7 +238,7 @@ void COpenView::OnInitialUpdate()
 	LoadComboboxStates();
 
 	bool bDoUpdateData = true;
-	for (int index = 0; index < countof(m_strPath); index++)
+	for (int index = 0; index < std::size(m_strPath); index++)
 	{
 		if (!m_strPath[index].empty())
 			bDoUpdateData = false;
@@ -559,7 +559,7 @@ void COpenView::OnOK()
 
 	int index;
 	int nFiles = 0;
-	for (index = 0; index < countof(m_strPath); index++)
+	for (index = 0; index < std::size(m_strPath); index++)
 	{
 		if (index == 2 && m_strPath[index].empty())
 			break;
@@ -1076,7 +1076,7 @@ void COpenView::OnSelectUnpacker()
 
 	int index;
 	int nFiles = 0;
-	for (index = 0; index < countof(m_strPath); index++)
+	for (index = 0; index < std::size(m_strPath); index++)
 	{
 		if (index == 2 && m_strPath[index].empty())
 			break;
@@ -1247,7 +1247,7 @@ bool COpenView::LoadProjectFile(const String &path)
  */
 void COpenView::TrimPaths()
 {
-	for (int index = 0; index < countof(m_strPath); index++)
+	for (int index = 0; index < std::size(m_strPath); index++)
 		m_strPath[index] = strutils::trim_ws(m_strPath[index]);
 }
 
