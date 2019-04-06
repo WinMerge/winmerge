@@ -351,7 +351,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 			if (firstWordDiff == -1)
 			{
 				VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
-				vector<WordDiff> worddiffs = pd->GetWordDiffArray(firstLine);
+				vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(firstDiff);
 				for (size_t i = 0; i < worddiffs.size(); ++i)
 				{
 					if (worddiffs[i].endline[m_nThisPane] > firstLine ||
@@ -370,7 +370,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 			}
 
 			VERIFY(pd->m_diffList.GetDiff(lastDiff, di));
-			vector<WordDiff> worddiffs = pd->GetWordDiffArray(lastLine);
+			vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(lastDiff);
 			for (size_t i = worddiffs.size() - 1; i != (size_t)-1; --i)
 			{
 				if (worddiffs[i].beginline[m_nThisPane] < lastLine ||

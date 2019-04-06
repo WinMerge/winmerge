@@ -1213,7 +1213,7 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
 		return false; // abort copying
 	}
 
-	std::vector<WordDiff> worddiffs = GetWordDiffArray(cd_dbegin);
+	std::vector<WordDiff> worddiffs = GetWordDiffArrayInDiffBlock(nDiff);
 
 	if (worddiffs.empty())
 		return false;
