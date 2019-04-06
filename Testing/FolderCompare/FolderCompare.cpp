@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "DiffContext.h"
 #include "CompareStats.h"
 #include "DiffThread.h"
@@ -33,6 +34,7 @@ int main()
 	options.bIgnoreCase = false;
 	options.bIgnoreEol = false;
 
+	ctx.InitDiffItemList();
 	//ctx.CreateCompareOptions(CMP_CONTENT, options);
 	ctx.CreateCompareOptions(CMP_DATE, options);
 
@@ -58,7 +60,7 @@ int main()
 		std::cout << cmpstats.GetComparedItems() << std::endl;
 	}
 
-	uintptr_t pos = ctx.GetFirstDiffPosition();
+	DIFFITEM *pos = ctx.GetFirstDiffPosition();
 	while (pos)
 	{
 		DIFFITEM& di = ctx.GetNextDiffRefPosition(pos);
