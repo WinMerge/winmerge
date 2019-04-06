@@ -800,7 +800,7 @@ void CMergeDoc::CopyAllList(int srcPane, int dstPane)
  * @param [in] firstDiff First diff copied (0-based index)
  * @param [in] lastDiff Last diff copied (0-based index)
  */
-void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff)
+void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff, int firstWordDiff, int lastWordDiff)
 {
 #ifdef _DEBUG
 	if (firstDiff > lastDiff)
@@ -824,8 +824,16 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	SetCurrentDiff(lastDiff);
 
 	bool bGroupWithPrevious = false;
-	if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, true))
-		return; // sync failure
+	if (firstWordDiff <= 0 && lastWordDiff == -1)
+	{
+		if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, true))
+			return; // sync failure
+	}
+	else
+	{
+		if (!WordListCopy(srcPane, dstPane, lastDiff, firstWordDiff, lastWordDiff, nullptr, bGroupWithPrevious, true))
+			return; // sync failure
+	}
 
 	SetEditedAfterRescan(dstPane);
 
@@ -858,8 +866,16 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 			}			
 			// Group merge with previous (merge undo data to one action)
 			bGroupWithPrevious = true;
-			if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, false))
-				break; // sync failure
+			if (i > firstDiff || firstWordDiff <= 0)
+			{
+				if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, false))
+					break; // sync failure
+			}
+			else
+			{
+				if (!WordListCopy(srcPane, dstPane, firstDiff, firstWordDiff, -1, nullptr, bGroupWithPrevious, false))
+					break; // sync failure
+			}
 		}
 	}
 
@@ -1165,6 +1181,127 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
+	return true;
+}
+
+bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordDiff, int lastWordDiff,
+		const std::vector<int> *pWordDiffIndice, bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
+{
+	int nGroup = GetActiveMergeView()->m_nThisGroup;
+	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
+	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
+	CCrystalTextView *pSource = bUpdateView ? pViewDst : nullptr;
+
+	// suppress Rescan during this method
+	// (Not only do we not want to rescan a lot of times, but
+	// it will wreck the line status array to rescan as we merge)
+	RescanSuppress suppressRescan(*this);
+
+	DIFFRANGE cd;
+	VERIFY(m_diffList.GetDiff(nDiff, cd));
+	CDiffTextBuffer& sbuf = *m_ptBuf[srcPane];
+	CDiffTextBuffer& dbuf = *m_ptBuf[dstPane];
+	bool bSrcWasMod = sbuf.IsModified();
+	const int cd_dbegin = cd.dbegin;
+	const int cd_dend = cd.dend;
+	const int cd_blank = cd.blank[srcPane];
+	bool bInSync = SanityCheckDiff(cd);
+
+	if (!bInSync)
+	{
+		LangMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
+		return false; // abort copying
+	}
+
+	std::vector<WordDiff> worddiffs = GetWordDiffArrayInDiffBlock(nDiff);
+
+	if (worddiffs.empty())
+		return false;
+
+	if (cd.end[srcPane] < cd.begin[srcPane])
+		return ListCopy(srcPane, dstPane, nDiff, bGroupWithPrevious, bUpdateView);
+
+	if (firstWordDiff == -1)
+		firstWordDiff = 0;
+	if (lastWordDiff == -1)
+		lastWordDiff = static_cast<int>(worddiffs.size() - 1);
+
+	// If we remove whole diff from current view, we must fix cursor
+	// position first. Normally we would move to end of previous line,
+	// but we want to move to begin of that line for usability.
+	if (bUpdateView)
+	{
+		CPoint currentPos = pViewDst->GetCursorPos();
+		currentPos.x = 0;
+		if (currentPos.y > cd_dend)
+		{
+			if (cd.blank[dstPane] >= 0)
+				currentPos.y -= cd_dend - cd.blank[dstPane] + 1;
+			else if (cd.blank[srcPane] >= 0)
+				currentPos.y -= cd_dend - cd.blank[srcPane] + 1;
+		}
+		ForEachView(dstPane, [currentPos](auto& pView) { pView->SetCursorPos(currentPos); });
+	}
+
+	// if the current diff contains missing lines, remove them from both sides
+	int limit = cd_dend;
+
+	// curView is the view which is changed, so the opposite of the source view
+	dbuf.BeginUndoGroup(bGroupWithPrevious);
+
+	CString srcText, dstText;
+	CPoint ptDstStart, ptDstEnd;
+	CPoint ptSrcStart, ptSrcEnd;
+
+	ptDstStart.x = worddiffs[firstWordDiff].begin[dstPane];
+	ptDstStart.y = worddiffs[firstWordDiff].beginline[dstPane];
+	ptDstEnd.x = worddiffs[lastWordDiff].end[dstPane];
+	ptDstEnd.y = worddiffs[lastWordDiff].endline[dstPane];
+	ptSrcStart.x = worddiffs[firstWordDiff].begin[srcPane];
+	ptSrcStart.y = worddiffs[firstWordDiff].beginline[srcPane];
+	ptSrcEnd.x = worddiffs[lastWordDiff].end[srcPane];
+	ptSrcEnd.y = worddiffs[lastWordDiff].endline[srcPane];
+
+	std::vector<int> nDstOffsets(ptDstEnd.y - ptDstStart.y + 2);
+	std::vector<int> nSrcOffsets(ptSrcEnd.y - ptSrcStart.y + 2);
+
+	dbuf.GetTextWithoutEmptys(ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, dstText);
+	sbuf.GetTextWithoutEmptys(ptSrcStart.y, ptSrcStart.x, ptSrcEnd.y, ptSrcEnd.x, srcText);
+
+	nDstOffsets[0] = 0;
+	for (int nLine = ptDstStart.y; nLine <= ptDstEnd.y; nLine++)
+		nDstOffsets[nLine-ptDstStart.y+1] = nDstOffsets[nLine-ptDstStart.y] + dbuf.GetFullLineLength(nLine);
+	nSrcOffsets[0] = 0;
+	for (int nLine = ptSrcStart.y; nLine <= ptSrcEnd.y; nLine++)
+		nSrcOffsets[nLine-ptSrcStart.y+1] = nSrcOffsets[nLine-ptSrcStart.y] + sbuf.GetFullLineLength(nLine);
+
+	for (int i = lastWordDiff; i != firstWordDiff-1; --i)
+	{
+		if (pWordDiffIndice && std::find(pWordDiffIndice->begin(), pWordDiffIndice->end(), i) == pWordDiffIndice->end())
+			continue;
+		int srcBegin = nSrcOffsets[worddiffs[i].beginline[srcPane] - ptSrcStart.y] + worddiffs[i].begin[srcPane];
+		int srcEnd   = nSrcOffsets[worddiffs[i].endline[srcPane] - ptSrcStart.y] + worddiffs[i].end[srcPane];
+		int dstBegin = nDstOffsets[worddiffs[i].beginline[dstPane] - ptDstStart.y] + worddiffs[i].begin[dstPane];
+		int dstEnd   = nDstOffsets[worddiffs[i].endline[dstPane] - ptDstStart.y] + worddiffs[i].end[dstPane];
+		dstText = dstText.Mid(0, dstBegin - ptDstStart.x)
+		        + srcText.Mid(srcBegin - ptSrcStart.x, srcEnd - srcBegin)
+		        + dstText.Mid(dstEnd - ptDstStart.x);
+	}
+
+	dbuf.DeleteText(pSource, ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, CE_ACTION_MERGE);
+
+	int endl,endc;
+	dbuf.InsertText(pSource, ptDstStart.y, ptDstStart.x, dstText, dstText.GetLength(), endl, endc, CE_ACTION_MERGE);
+
+	dbuf.FlushUndoGroup(pSource);
+
+	// reset the mod status of the source view because we do make some
+	// changes, but none that concern the source text
+	sbuf.SetModified(bSrcWasMod);
+
+	suppressRescan.Clear(); // done suppress Rescan
+	FlushAndRescan();
+
 	return true;
 }
 
