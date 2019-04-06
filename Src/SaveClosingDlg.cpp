@@ -119,22 +119,6 @@ BOOL SaveClosingDlg::OnInitDialog()
 
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
-	// configure how individual controls adjust when dialog resizes
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_LEFTFRAME, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_LEFTFILE, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_SAVELEFT, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_DISCARDLEFT, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_MIDDLEFRAME, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_MIDDLEFILE, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_SAVEMIDDLE, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_DISCARDMIDDLE, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_RIGHTFRAME, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_RIGHTFILE, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_SAVERIGHT, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SAVECLOSING_DISCARDRIGHT, 0, 1, 0, 0); // grows right
-	// IDC_SAVECLOSING_DISCARDALL doesn't move
-	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
 	m_constraint.DisallowHeightGrowth();
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("SaveClosingDlg"), false); // persist size via registry
