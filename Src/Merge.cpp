@@ -42,7 +42,7 @@
 #include "HexMergeView.h"
 #include "AboutDlg.h"
 #include "MainFrm.h"
-#include "ChildFrm.h"
+#include "MergeEditFrm.h"
 #include "DirFrame.h"
 #include "MergeDoc.h"
 #include "DirDoc.h"
@@ -363,7 +363,7 @@ BOOL CMergeApp::InitInstance()
 	m_pDiffTemplate = new CMultiDocTemplate(
 		IDR_MERGEDOCTYPE,
 		RUNTIME_CLASS(CMergeDoc),
-		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
+		RUNTIME_CLASS(CMergeEditFrame), // custom MDI child frame
 		RUNTIME_CLASS(CMergeEditSplitterView));
 	AddDocTemplate(m_pDiffTemplate);
 

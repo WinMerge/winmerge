@@ -36,7 +36,7 @@
 #include "Environment.h"
 #include "MovedLines.h"
 #include "MergeEditView.h"
-#include "ChildFrm.h"
+#include "MergeEditFrm.h"
 #include "DirDoc.h"
 #include "files.h"
 #include "FileTransform.h"
@@ -2412,9 +2412,9 @@ void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 /**
  * @brief Return pointer to parent frame
  */
-CChildFrame * CMergeDoc::GetParentFrame() 
+CMergeEditFrame * CMergeDoc::GetParentFrame() 
 {
-	return dynamic_cast<CChildFrame *>(m_pView[0][0]->GetParentFrame()); 
+	return dynamic_cast<CMergeEditFrame *>(m_pView[0][0]->GetParentFrame()); 
 }
 
 /**
@@ -2633,7 +2633,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	// Bail out if either side failed
 	if (std::find_if(nSuccess, nSuccess + m_nBuffers, [](DWORD d){return !FileLoadResult::IsOk(d);} ) != nSuccess + m_nBuffers)
 	{
-		CChildFrame *pFrame = GetParentFrame();
+		CMergeEditFrame *pFrame = GetParentFrame();
 		if (pFrame != nullptr)
 		{
 			// Use verify macro to trap possible error in debug.
@@ -2898,7 +2898,7 @@ void CMergeDoc::RefreshOptions()
  */
 void CMergeDoc::UpdateHeaderPath(int pane)
 {
-	CChildFrame *pf = GetParentFrame();
+	CMergeEditFrame *pf = GetParentFrame();
 	ASSERT(pf != nullptr);
 	String sText;
 	bool bChanges = false;
@@ -2931,7 +2931,7 @@ void CMergeDoc::UpdateHeaderPath(int pane)
  */
 void CMergeDoc::UpdateHeaderActivity(int pane, bool bActivate)
 {
-	CChildFrame *pf = GetParentFrame();
+	CMergeEditFrame *pf = GetParentFrame();
 	ASSERT(pf != nullptr);
 	pf->GetHeaderInterface()->SetActive(pane, bActivate);
 }
