@@ -137,6 +137,25 @@ void CMergeDoc::ClearWordDiffCache(int nDiff/* = -1 */)
 	}
 }
 
+std::vector<WordDiff> CMergeDoc::GetWordDiffArrayInDiffBlock(int nDiff)
+{
+	DIFFRANGE cd;
+	const int LineLimit = 20;
+	m_diffList.GetDiff(nDiff, cd);
+
+	bool diffPerLine = (cd.dend - cd.dbegin > LineLimit) ? true : false;
+	if (!diffPerLine)
+		return GetWordDiffArray(cd.dbegin);
+
+	std::vector<WordDiff> worddiffs;
+	for (int nLine = cd.dbegin; nLine <= cd.dend; ++nLine)
+	{
+		std::vector<WordDiff> worddiffsPerLine = GetWordDiffArray(nLine);
+		worddiffs.insert(worddiffs.end(), worddiffsPerLine.begin(), worddiffsPerLine.end());
+	}
+	return worddiffs;
+}
+
 /**
  * @brief Return array of differences in specified line
  * This is used by algorithm for line diff coloring
