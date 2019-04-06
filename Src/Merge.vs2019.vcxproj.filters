@@ -448,9 +448,6 @@
     <ClCompile Include="7zCommon.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ChildFrm.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\CMoveConstraint.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -786,6 +783,9 @@
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\lua.cpp">
       <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeEditFrm.cpp">
+      <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1137,9 +1137,6 @@
     <ClInclude Include="FileOrFolderSelect.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChildFrm.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DiffViewBar.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
@@ -1454,6 +1451,9 @@
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\crystallineparser.h">
       <Filter>EditLib\parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeEditFrm.h">
+      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-// ChildFrm.cpp : implementation of the COpenFrame class
+// OpenFrm.cpp : implementation of the COpenFrame class
 //
 #include "stdafx.h"
 #include "OpenFrm.h"

@@ -1034,7 +1034,7 @@ void CLocationView::DrawConnectLines(CDC *pClientDC)
 }
 
 /** 
- * @brief Stores HWND of frame window (CChildFrame).
+ * @brief Stores HWND of frame window (CMergeEditFrame).
  */
 void CLocationView::SetFrameHwnd(HWND hwndFrame)
 {

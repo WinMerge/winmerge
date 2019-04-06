@@ -44,7 +44,7 @@ END_MESSAGE_MAP()
 /**
 * @brief Just create ourself
 *
-* @note The control are created in the parent frame CChildFrame
+* @note The control are created in the parent frame CMergeEditFrame
 *
 */
 BOOL CLocationBar::Create(
@@ -92,7 +92,7 @@ void CLocationBar::OnSize(UINT nType, int cx, int cy)
 }
 
 /** 
- * @brief Informs parent frame (CChildFrame) when bar is closed.
+ * @brief Informs parent frame (CMergeEditFrame) when bar is closed.
  *
  * After bar is closed parent frame saves bar states.
  */
@@ -109,7 +109,7 @@ void CLocationBar::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 }
 
 /** 
- * @brief Stores HWND of frame window (CChildFrame).
+ * @brief Stores HWND of frame window (CMergeEditFrame).
  */
 void CLocationBar::SetFrameHwnd(HWND hwndFrame)
 {

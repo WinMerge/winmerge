@@ -555,7 +555,7 @@
     <ClCompile Include="charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="MergeEditFrm.cpp" />
     <ClCompile Include="Common\ClipBoard.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1122,7 +1122,7 @@
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
-    <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="MergeEditFrm.h" />
     <ClInclude Include="Common\ClipBoard.h" />
     <ClInclude Include="Common\CMoveConstraint.h" />
     <ClInclude Include="codepage_detect.h" />
