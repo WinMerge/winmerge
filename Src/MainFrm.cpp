@@ -340,7 +340,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 	theApp.SetIndicators(m_wndStatusBar, StatusbarIndicators,
-			countof(StatusbarIndicators));
+			std::size(StatusbarIndicators));
 
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
@@ -457,7 +457,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	}
 
 	// Load bitmaps to menuitems
-	for (index = 0; index < countof(m_MenuIcons); index ++)
+	for (index = 0; index < std::size(m_MenuIcons); index ++)
 	{
 		if (menu_view == (m_MenuIcons[index].menusToApply & menu_view))
 		{
@@ -2134,14 +2134,14 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 	}
 #ifndef _UNICODE
 	if (pNMHDR->code == TTN_NEEDTEXTA)
-		lstrcpyn(pTTTA->szText, strTipText, countof(pTTTA->szText));
+		lstrcpyn(pTTTA->szText, strTipText, std::size(pTTTA->szText));
 	else
-		_mbstowcsz(pTTTW->szText, strTipText, countof(pTTTW->szText));
+		_mbstowcsz(pTTTW->szText, strTipText, std::size(pTTTW->szText));
 #else
 	if (pNMHDR->code == TTN_NEEDTEXTA)
-		_wcstombsz(pTTTA->szText, strTipText, countof(pTTTA->szText));
+		_wcstombsz(pTTTA->szText, strTipText, std::size(pTTTA->szText));
 	else
-		lstrcpyn(pTTTW->szText, strTipText, countof(pTTTW->szText));
+		lstrcpyn(pTTTW->szText, strTipText, std::size(pTTTW->szText));
 #endif
 	*pResult = 0;
 

@@ -20,10 +20,6 @@
 
 using Poco::Timestamp;
 
-#ifndef countof
-#define countof(x) sizeof(x)/sizeof((x)[0])
-#endif
-
 using std::swap;
 
 namespace
@@ -169,7 +165,7 @@ static String MakeShortSize(int64_t size)
 	if (size < 1024)
 		return strutils::format(_T("%d B"), static_cast<int>(size));
 	else
-		StrFormatByteSize64(size, buffer, countof(buffer));
+		StrFormatByteSize64(size, buffer, std::size(buffer));
 	return buffer;
 }
 
@@ -1035,8 +1031,8 @@ static DirColInfo f_cols3[] =
 /**
  * @brief Count of all known columns
  */
-const int g_ncols = countof(f_cols);
-const int g_ncols3 = countof(f_cols3);
+const int g_ncols = std::size(f_cols);
+const int g_ncols3 = std::size(f_cols3);
 
 /**
  * @brief Registry base value name for saving/loading info for this column
@@ -1046,12 +1042,12 @@ DirViewColItems::GetColRegValueNameBase(int col) const
 {
 	if (m_nDirs < 3)
 	{
-		assert(col>=0 && col<countof(f_cols));
+		assert(col>=0 && col<std::size(f_cols));
 		return strutils::format(_T("WDirHdr_%s"), f_cols[col].regName);
 	}
 	else
 	{
-		assert(col>=0 && col<countof(f_cols3));
+		assert(col>=0 && col<std::size(f_cols3));
 		return strutils::format(_T("WDirHdr_%s"), f_cols3[col].regName);
 	}
 }
@@ -1064,12 +1060,12 @@ DirViewColItems::GetColDefaultOrder(int col) const
 {
 	if (m_nDirs < 3)
 	{
-		assert(col>=0 && col<countof(f_cols));
+		assert(col>=0 && col<std::size(f_cols));
 		return f_cols[col].physicalIndex;
 	}
 	else
 	{
-		assert(col>=0 && col<countof(f_cols3));
+		assert(col>=0 && col<std::size(f_cols3));
 		return f_cols3[col].physicalIndex;
 	}
 }
@@ -1082,7 +1078,7 @@ DirViewColItems::GetDirColInfo(int col) const
 {
 	if (m_nDirs < 3)
 	{
-		if (col < 0 || col >= countof(f_cols))
+		if (col < 0 || col >= std::size(f_cols))
 		{
 			assert(false); // fix caller, should not ask for nonexistent columns
 			return nullptr;
@@ -1091,7 +1087,7 @@ DirViewColItems::GetDirColInfo(int col) const
 	}
 	else
 	{
-		if (col < 0 || col >= countof(f_cols3))
+		if (col < 0 || col >= std::size(f_cols3))
 		{
 			assert(false); // fix caller, should not ask for nonexistent columns
 			return nullptr;
@@ -1109,7 +1105,7 @@ DirViewColItems::IsColById(int col, const char *idname) const
 	int nDirs = m_nDirs;
 	if (nDirs < 3)
 	{
-		if (col < 0 || col >= countof(f_cols))
+		if (col < 0 || col >= std::size(f_cols))
 		{
 			assert(false); // fix caller, should not ask for nonexistent columns
 			return false;

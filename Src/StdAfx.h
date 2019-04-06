@@ -41,8 +41,6 @@
 #include "sizecbar.h"
 #include "scbarg.h"
 
-#include "coretypes.h"
-
 #include <string>
 #include <vector>
 #include <map>
