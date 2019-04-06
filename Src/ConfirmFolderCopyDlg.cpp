@@ -79,12 +79,6 @@ BOOL ConfirmFolderCopyDlg::OnInitDialog()
 
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
-	// configure how individual controls adjust when dialog resizes
-	m_constraint.ConstrainItem(IDC_FLDCONFIRM_FROM_PATH, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_FLDCONFIRM_TO_PATH, 0, 1, 0, 0); // grows right
-	// IDC_SAVECLOSING_DISCARDALL doesn't move
-	m_constraint.ConstrainItem(IDYES, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDNO, 1, 0, 0, 0); // slides right
 	m_constraint.DisallowHeightGrowth();
 	m_constraint.SubclassWnd(); // install subclassing
 	// persist size via registry
