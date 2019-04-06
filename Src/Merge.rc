@@ -910,7 +910,7 @@ BEGIN
     PUSHBUTTON      "Contributors",IDC_OPEN_CONTRIBUTORS,7,218,65,14
 END
 
-IDD_OPEN DIALOGEX 0, 0, 461, 266
+IDD_OPEN DIALOGEX 0, 0, 465, 266
 STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_CHILD | WS_CAPTION
 CAPTION "Select Files or Folders"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1762,6 +1762,7 @@ GUIDELINES DESIGNINFO
 BEGIN
     IDD_OPEN, DIALOG
     BEGIN
+        RIGHTMARGIN, 462
         BOTTOMMARGIN, 264
     END
 
@@ -1769,7 +1770,15 @@ BEGIN
     BEGIN
     END
 
+    IDD_SAVECLOSING, DIALOG
+    BEGIN
+    END
+
     IDD_PROPPAGE_COLORS_MARKER, DIALOG
+    BEGIN
+    END
+
+    IDD_CONFIRM_COPY, DIALOG
     BEGIN
     END
 END
@@ -1822,7 +1831,73 @@ END
 
 IDD_OPEN AFX_DIALOG_LAYOUT
 BEGIN
-    0
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 50, 0,
+    0, 0, 0, 0,
+    0, 0, 50, 0,
+    50, 0, 0, 0,
+    0, 0, 0, 0,
+    50, 0, 50, 0,
+    50, 0, 0, 0,
+    50, 0, 50, 0,
+    100, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0
+END
+
+IDD_SAVECLOSING AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0
+END
+
+IDD_CONFIRM_COPY AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0
 END
 
 
