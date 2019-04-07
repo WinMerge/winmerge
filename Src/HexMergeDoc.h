@@ -25,7 +25,6 @@
 #pragma once
 
 #include "PathContext.h"
-#include "DiffFileInfo.h"
 #include "FileLocation.h"
 #include "IMergeDoc.h"
 
