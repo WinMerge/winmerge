@@ -79,9 +79,9 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_CBN_SELCHANGE(IDC_PATH0_COMBO, OnSelchangePathCombo<0>)
 	ON_CBN_SELCHANGE(IDC_PATH1_COMBO, OnSelchangePathCombo<1>)
 	ON_CBN_SELCHANGE(IDC_PATH2_COMBO, OnSelchangePathCombo<2>)
-	ON_CBN_EDITCHANGE(IDC_PATH0_COMBO, OnEditEvent)
-	ON_CBN_EDITCHANGE(IDC_PATH1_COMBO, OnEditEvent)
-	ON_CBN_EDITCHANGE(IDC_PATH2_COMBO, OnEditEvent)
+	ON_CBN_EDITCHANGE(IDC_PATH0_COMBO, OnEditEvent<0>)
+	ON_CBN_EDITCHANGE(IDC_PATH1_COMBO, OnEditEvent<1>)
+	ON_CBN_EDITCHANGE(IDC_PATH2_COMBO, OnEditEvent<2>)
 	ON_BN_CLICKED(IDC_SELECT_UNPACKER, OnSelectUnpacker)
 	ON_CBN_SELENDCANCEL(IDC_PATH0_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_PATH1_COMBO, UpdateButtonStates)
@@ -1050,8 +1050,25 @@ void COpenView::OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult)
 /**
  * @brief Called every time paths are edited.
  */
+template <int N>
 void COpenView::OnEditEvent()
 {
+	if (CEdit *const edit = m_ctlPath[N].GetEditCtrl())
+	{
+		int const len = edit->GetWindowTextLength();
+		if (edit->GetSel() == MAKEWPARAM(len, len))
+		{
+			CString text;
+			edit->GetWindowText(text);
+			// Remove any double quotes
+			text.Remove('"');
+			if (text.GetLength() != len)
+			{
+				edit->SetSel(0, len);
+				edit->ReplaceSel(text);
+			}
+		}
+	}
 	// (Re)start timer to path validity check delay
 	// If timer starting fails, update buttonstates immediately
 	if (!SetTimer(IDT_CHECKFILES, CHECKFILES_TIMEOUT, nullptr))

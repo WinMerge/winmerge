@@ -145,6 +145,22 @@ msgstr "&Активен панел"
 msgid "&Zoom"
 msgstr "Мащаб"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Увеличи"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Намали"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "Нормален"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -334,7 +350,7 @@ msgstr "&Автоматично разархивиране"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "&Презареди добавките"
@@ -672,7 +688,7 @@ msgstr "П&реглед"
 msgid "&Convert Line Endings to"
 msgstr "&Формат за"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Режим на сливане\tF9"
@@ -796,22 +812,6 @@ msgstr "&Изчисти всички отметки"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "От&иди на...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Увеличи"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Намали"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "Нормален"
 
 #: Merge.rc:1BF42627
 #, c-format

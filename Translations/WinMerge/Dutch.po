@@ -147,6 +147,22 @@ msgstr "Actief venster"
 msgid "&Zoom"
 msgstr "Zoomen"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Inzoomen\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Uitzoomen\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "Normaal\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -336,7 +352,7 @@ msgstr "Automatisch uitpakken"
 msgid "&Edit with Unpacker..."
 msgstr "Bewerken met uitpakker..."
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "Plug-ins opnieuw laden"
@@ -674,7 +690,7 @@ msgstr "Afdrukvoorbeeld"
 msgid "&Convert Line Endings to"
 msgstr "Regeleindes converteren naar"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Samenvoegmodus\tF9"
@@ -798,22 +814,6 @@ msgstr "Alle bladwijzers wissen"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "Gaan naar...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Inzoomen\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Uitzoomen\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "Normaal\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

@@ -146,6 +146,22 @@ msgstr "Etkin S&ayfa"
 msgid "&Zoom"
 msgstr "&Yakınlaştır"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "&Yakınlaştır\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "&Uzaklaştır\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Normal\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -335,7 +351,7 @@ msgstr "Otomatik &Ayıklama"
 msgid "&Edit with Unpacker..."
 msgstr "Ayıklayıcı ile Düz&enle..."
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "Uygulama Ekle&rini Yeniden Yükle"
@@ -673,7 +689,7 @@ msgstr "&Baskı Önizleme"
 msgid "&Convert Line Endings to"
 msgstr "Sa&tır Sonlarını Dönüştür"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Birleştir&me Kipi\tF9"
@@ -797,22 +813,6 @@ msgstr "&Tüm Yer İmlerini Sil"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "&Git...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "&Yakınlaştır\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "&Uzaklaştır\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "&Normal\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

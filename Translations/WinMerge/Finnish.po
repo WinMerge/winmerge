@@ -142,6 +142,22 @@ msgstr ""
 msgid "&Zoom"
 msgstr "Zoomaa"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "Suurenna\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Pienennä\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "&Normaali\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -331,7 +347,7 @@ msgstr "Automaattinen purku"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "Lataa lisäosat uudelleen"
@@ -669,7 +685,7 @@ msgstr "Tulostuksen esikatselu"
 msgid "&Convert Line Endings to"
 msgstr "Muunna rivinloput..."
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Yhdistäminen\tF9"
@@ -792,22 +808,6 @@ msgstr "Poista kaikki kirjanmerkit"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "Siirry...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "Suurenna\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "Pienennä\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "&Normaali\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

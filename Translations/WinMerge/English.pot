@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-03-17 19:29+0000\n"
+"POT-Creation-Date: 2019-03-30 21:22+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -112,6 +112,19 @@ msgstr ""
 
 #: Merge.rc:43017E43
 msgid "&Zoom"
+msgstr ""
+
+#: Merge.rc:7C622F87
+msgid "Zoom &In\tCtrl++"
+msgstr ""
+
+#: Merge.rc:FE3C1D1
+msgid "Zoom &Out\tCtrl+-"
+msgstr ""
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+msgid "&Normal\tCtrl+*"
 msgstr ""
 
 #: Merge.rc:AC3AA13
@@ -266,7 +279,7 @@ msgstr ""
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 msgid "&Reload plugins"
 msgstr ""
 
@@ -538,7 +551,7 @@ msgstr ""
 msgid "&Convert Line Endings to"
 msgstr ""
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 msgid "&Merge Mode\tF9"
 msgstr ""
 
@@ -636,19 +649,6 @@ msgstr ""
 
 #: Merge.rc:1A9EBDEE
 msgid "&Go To...\tCtrl+G"
-msgstr ""
-
-#: Merge.rc:7C622F87
-msgid "Zoom &In\tCtrl++"
-msgstr ""
-
-#: Merge.rc:FE3C1D1
-msgid "Zoom &Out\tCtrl+-"
-msgstr ""
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-msgid "&Normal\tCtrl+*"
 msgstr ""
 
 #: Merge.rc:1BF42627

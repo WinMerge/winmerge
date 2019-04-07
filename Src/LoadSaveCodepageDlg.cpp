@@ -102,7 +102,7 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 		combos.Detach();
 	}
 
-	AfxGetMainWnd()->CenterWindow(this);
+	CenterWindow();
 
 	SetDlgItemText(IDC_LEFT_FILES_LABEL, m_sAffectsLeftString);
 	SetDlgItemText(IDC_MIDDLE_FILES_LABEL, m_sAffectsMiddleString);

@@ -144,6 +144,22 @@ msgstr "Plafó actiu"
 msgid "&Zoom"
 msgstr "&Zoom"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr ""
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr ""
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr ""
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -333,7 +349,7 @@ msgstr "Desempaquetament &automàtic"
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "&Recarrega els connectors"
@@ -671,7 +687,7 @@ msgstr "&Visualització prèvia de la impressió"
 msgid "&Convert Line Endings to"
 msgstr "&Converteix retorns de línia a"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "&Mode de combinació\tF9"
@@ -795,22 +811,6 @@ msgstr "&Esborra tots els punts d'interès"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "&Vés a...\tControl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr ""
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr ""
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr ""
 
 #: Merge.rc:1BF42627
 #, c-format

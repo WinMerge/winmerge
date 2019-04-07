@@ -78,10 +78,10 @@
         </question>
 
         <answer>
-          <para>Cross-platform support is being considered for WinMerge 3.x, 
-          which is being discussed in our <ulink
-          url="http://forums.winmerge.org/viewforum.php?f=9">WinMerge 3</ulink> forum.
-          Please join in, if you are interested.</para>
+          <para>There are currently no plans for cross-platform support but
+          you can try the unofficial version <ulink url="https://bitbucket.org/jtuc/winmerge2011/">
+          WinMerge 2011</ulink> by Jochen Neubeck. This version should work with Wine also
+          under Linux.</para>
         </answer>
       </qandaentry>
 
@@ -467,8 +467,8 @@
           the Win32 port of <filename>diffutils</filename>. The latest version
           of <filename>diffutils</filename> (and patch) can be downloaded from
           <application>the SourceForge GnuWin32</application> project page:
-          <ulink url="http://sourceforge.net/projects/gnuwin32/">
-          http://sourceforge.net/projects/gnuwin32</ulink>.</para>
+          <ulink url="https://sourceforge.net/projects/gnuwin32/">
+          https://sourceforge.net/projects/gnuwin32</ulink>.</para>
         </answer>
       </qandaentry>
 

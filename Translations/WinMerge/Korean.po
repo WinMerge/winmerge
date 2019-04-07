@@ -149,6 +149,22 @@ msgstr "활성 창(&A)"
 msgid "&Zoom"
 msgstr "확대/축소(&Z)"
 
+#: Merge.rc:7C622F87
+#, c-format
+msgid "Zoom &In\tCtrl++"
+msgstr "확대(&I)\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+#, c-format
+msgid "Zoom &Out\tCtrl+-"
+msgstr "축소(&O)\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+#, c-format
+msgid "&Normal\tCtrl+*"
+msgstr "보통(&N)\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 #, c-format
 msgid "&Overlay"
@@ -338,7 +354,7 @@ msgstr "자동 언패킹(&A)"
 msgid "&Edit with Unpacker..."
 msgstr "언패커로 편집(E)..."
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 #, c-format
 msgid "&Reload plugins"
 msgstr "플러그인 다시 불러오기(&R)"
@@ -676,7 +692,7 @@ msgstr "인쇄 미리보기(&R)"
 msgid "&Convert Line Endings to"
 msgstr "줄 끝 변환(&C)"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "병합 모드\tF9"
@@ -800,22 +816,6 @@ msgstr "전체 책갈피 지우기(&C)"
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "이동(&G)...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-#, c-format
-msgid "Zoom &In\tCtrl++"
-msgstr "확대(&I)\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-#, c-format
-msgid "Zoom &Out\tCtrl+-"
-msgstr "축소(&O)\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-#, c-format
-msgid "&Normal\tCtrl+*"
-msgstr "보통(&N)\tCtrl+*"
 
 #: Merge.rc:1BF42627
 #, c-format

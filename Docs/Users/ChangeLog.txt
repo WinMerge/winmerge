@@ -1,3 +1,38 @@
+WinMerge 2.16.2
+  File compare:
+  - Bugfix: Edit > Replace > All, Undo: should undo all (sf.net #2113)
+  - Bugfix: Save As: default directory should be file's original
+    directory (sf.net #2163)
+  - Bugfix: Strings with embedded 0 bytes are handled incorrectly (sf.net
+    #2187)
+  - Bugfix: Removed word level merge support due to unstable behavior
+  - Bugfix: Menu item "File->File Encoding" moves main window (Bitbucket #150)
+  - Bugfix: Crash when maximizing MDI child window
+  - bugfix: Crash when failed to load file
+  - Add syntax highlight for Lua (Bitbucket #114)
+  Folder compare:
+  - Bugfix: Compare results refresh incorrectly after deletions (sf.net #2217)
+  Archive Support:
+  - Upgraded to 7-zip 19.00
+  Tab bar:
+  - Improve icon display at 120DPI
+  Image compare:
+  - Bugfix: Zoom In/Out shortcuts don't update zoom level in location
+    pane (Bitbucket #149)
+  - Zoom In/Out menu items for image compare (Bitbucket #148)
+  Open dialog:
+  - Allow quoted filenames in "Select Files or Folders" (sf.net #1240,
+    GitHub #137)
+  Manual:
+  - Some tweaks for the manual (Bitbucket PR #35)
+  Installer:
+  - Bugfix: Gibberish language during installation (Bitbucket #147)
+  Translations:
+  - Update Catalan translation (Bitbucket PR #29)
+  - Update Italian translation (Bitbucket PR #32)
+  - Update Lithuanian translation (Bitbucket PR #33)
+  - Update Simplified Chinese translation (Bitbucket PR #34)
+
 WinMerge 2.16.1
   General:
   - Updated the copyright year to 2019, actually (GitHub #110)

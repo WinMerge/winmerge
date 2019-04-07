@@ -121,6 +121,19 @@ msgstr "選択ペイン(&A)"
 msgid "&Zoom"
 msgstr "拡大(&Z)"
 
+#: Merge.rc:7C622F87
+msgid "Zoom &In\tCtrl++"
+msgstr "ズームイン(&I)\tCtrl++"
+
+#: Merge.rc:FE3C1D1
+msgid "Zoom &Out\tCtrl+-"
+msgstr "ズームアウト(&O)\tCtrl+-"
+
+#. Zoom to normal
+#: Merge.rc:78B3B622
+msgid "&Normal\tCtrl+*"
+msgstr "元に戻す(&N)\tCtrl+*"
+
 #: Merge.rc:AC3AA13
 msgid "&Overlay"
 msgstr "重ね合わせ(&O)"
@@ -273,7 +286,7 @@ msgstr "自動展開(&A)"
 msgid "&Edit with Unpacker..."
 msgstr "展開プラグインで開く(&E)..."
 
-#: Merge.rc:78B3B622
+#: Merge.rc:78B3B623
 msgid "&Reload plugins"
 msgstr "プラグインの再読み込み(&R)"
 
@@ -545,7 +558,7 @@ msgstr "印刷プレビュー(&W)"
 msgid "&Convert Line Endings to"
 msgstr "改行コードの変換(&C)"
 
-#: Merge.rc:78B3B623
+#: Merge.rc:78B3B624
 msgid "&Merge Mode\tF9"
 msgstr "マージモード(&M)\tF9"
 
@@ -644,19 +657,6 @@ msgstr "すべてのブックマークをクリア(&C)"
 #: Merge.rc:1A9EBDEE
 msgid "&Go To...\tCtrl+G"
 msgstr "移動(&G)...\tCtrl+G"
-
-#: Merge.rc:7C622F87
-msgid "Zoom &In\tCtrl++"
-msgstr "ズームイン(&I)\tCtrl++"
-
-#: Merge.rc:FE3C1D1
-msgid "Zoom &Out\tCtrl+-"
-msgstr "ズームアウト(&O)\tCtrl+-"
-
-#. Zoom to normal
-#: Merge.rc:78B3B624
-msgid "&Normal\tCtrl+*"
-msgstr "元に戻す(&N)\tCtrl+*"
 
 #: Merge.rc:1BF42627
 msgid "Syntax Highlight"
