@@ -47,12 +47,18 @@
 #include <unordered_set>
 #include <stack>
 #include <list>
+#include <array>
 #include <algorithm>
+#include <iostream>
 #include <sstream>
 #include <memory>
+#include <functional>
 #include <cassert>
 #include <ctime>
 #include <tchar.h>
+
+#include "boost/flyweight.hpp"
+#include "boost/range/mfc.hpp"
 
 /**
  * @name User-defined Windows-messages
