@@ -32,7 +32,6 @@
 #include "DiffList.h"
 #include "TempFile.h"
 #include "PathContext.h"
-#include "DiffFileInfo.h"
 #include "IMergeDoc.h"
 
 /**

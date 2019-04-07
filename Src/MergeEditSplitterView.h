@@ -27,7 +27,6 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditSplitterView view
-#include "MergeEditView.h"
 #include "SplitterWndEx.h"
 
 class CMergeEditSplitterView : public CView

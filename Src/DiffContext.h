@@ -9,7 +9,6 @@
 #include <Poco/Mutex.h>
 #include <memory>
 #include "PathContext.h"
-#include "DiffFileInfo.h"
 #include "DiffItemList.h"
 #include "FilterList.h"
 
