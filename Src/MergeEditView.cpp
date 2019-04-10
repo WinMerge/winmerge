@@ -44,6 +44,7 @@
 #include "paths.h"
 #include "DropHandler.h"
 #include "DirDoc.h"
+#include "ShellContextMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -189,6 +190,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_COMMAND(ID_NEXT_PANE, OnChangePane)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_FILE_SHELLMENU, OnShellMenu)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SHELLMENU, OnUpdateShellMenu)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_COMMAND(ID_NO_PREDIFFER, OnNoPrediffer)
 	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdateNoPrediffer)
@@ -2993,6 +2996,34 @@ void CMergeEditView::OnWMGoto()
 			pCurrentView->SelectDiff(diff, true, false);
 		}
 	}
+}
+
+void CMergeEditView::OnShellMenu()
+{
+	CFrameWnd *pFrame = GetTopLevelFrame();
+	ASSERT(pFrame != nullptr);
+	BOOL bAutoMenuEnableOld = pFrame->m_bAutoMenuEnable;
+	pFrame->m_bAutoMenuEnable = FALSE;
+
+	String path = GetDocument()->m_filePaths[m_nThisPane];
+	std::unique_ptr<CShellContextMenu> pContextMenu(new CShellContextMenu(0x9000, 0x9FFF));
+	pContextMenu->Initialize();
+	pContextMenu->AddItem(paths::GetParentPath(path), paths::FindFileName(path));
+	pContextMenu->RequeryShellContextMenu();
+	CPoint point;
+	::GetCursorPos(&point);
+	HWND hWnd = GetSafeHwnd();
+	BOOL nCmd = TrackPopupMenu(pContextMenu->GetHMENU(), TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, 0, hWnd, nullptr);
+	if (nCmd)
+		pContextMenu->InvokeCommand(nCmd, hWnd);
+	pContextMenu->ReleaseShellContextMenu();
+
+	pFrame->m_bAutoMenuEnable = bAutoMenuEnableOld;
+}
+
+void CMergeEditView::OnUpdateShellMenu(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(!GetDocument()->m_filePaths[m_nThisPane].empty());
 }
 
 /**

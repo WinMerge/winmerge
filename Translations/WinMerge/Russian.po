@@ -113,6 +113,10 @@ msgstr "внешним редактором\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "с помощью..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -543,7 +547,7 @@ msgstr "Выбрать &Шрифт..."
 msgid "Use Default F&ont"
 msgstr "Использовать шрифт по &умолчанию"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "Поменять панели местами"
@@ -643,7 +647,7 @@ msgstr "Сохранить с&лева"
 msgid "Save &Middle"
 msgstr "Сохранить посередине"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Сохранить с&права"
@@ -4228,7 +4232,7 @@ msgstr "Список с разделителем Запятая"
 msgid "Tab-separated list"
 msgstr "Список с разделителем Табуляция"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Простой HTML"

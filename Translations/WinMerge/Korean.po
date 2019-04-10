@@ -114,6 +114,10 @@ msgstr "외부 편집기로(&E)\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "프로그램 선택(&W)..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -544,7 +548,7 @@ msgstr "글꼴 선택(&F)..."
 msgid "Use Default F&ont"
 msgstr "기본 글꼴 사용(&O)"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "창 맞바꾸기(&A)"
@@ -644,7 +648,7 @@ msgstr "왼쪽 저장(&L)"
 msgid "Save &Middle"
 msgstr "가운데 저장(&M)"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "오른쪽 저장(&R)"
@@ -4255,7 +4259,7 @@ msgstr "쉼표로 분리된 목록"
 msgid "Tab-separated list"
 msgstr "탭으로 분리된 목록"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "단순한 HTML"

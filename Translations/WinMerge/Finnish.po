@@ -107,6 +107,10 @@ msgstr ""
 msgid "&with..."
 msgstr "ohjelmalla..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -537,7 +541,7 @@ msgstr "Valitse fontti"
 msgid "Use Default F&ont"
 msgstr "Käytä oletusfonttia"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "Vaihda ruudut"
@@ -637,7 +641,7 @@ msgstr "Ta&llenna vasen"
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Tallenna oikea"
@@ -4034,7 +4038,7 @@ msgstr "Pilkuilla erotettu lista"
 msgid "Tab-separated list"
 msgstr "Sarkain erotettu lista"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Yksinkertainen HTML"

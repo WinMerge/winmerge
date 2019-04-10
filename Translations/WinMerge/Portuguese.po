@@ -110,6 +110,10 @@ msgstr "com editor externo\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "com..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -540,7 +544,7 @@ msgstr "Selecionar &Fonte..."
 msgid "Use Default F&ont"
 msgstr "Usar Fonte Pre&definida"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "Trocar Janelas"
@@ -640,7 +644,7 @@ msgstr "Guardar Esquerda"
 msgid "Save &Middle"
 msgstr "Guardar &Meio"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Guardar Direita"
@@ -4036,7 +4040,7 @@ msgstr "Lista separada por vírgulas"
 msgid "Tab-separated list"
 msgstr "Lista de separadores"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "HTML simples"

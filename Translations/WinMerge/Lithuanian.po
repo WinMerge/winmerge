@@ -95,6 +95,10 @@ msgstr "su Išoriniu r&edaktoriumi\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "&su..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 msgid "View &Differences"
 msgstr "Ro&dyti skirtumus"
@@ -440,7 +444,7 @@ msgstr "Parinkti &šriftą..."
 msgid "Use Default F&ont"
 msgstr "Naud&oti numatytąjį šriftą"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 msgid "Sw&ap Panes"
 msgstr "Sukeisti pol&angius"
 
@@ -520,7 +524,7 @@ msgstr "Išsaugoti &kairįjį"
 msgid "Save &Middle"
 msgstr "Išsaugoti &vidurinį"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 msgid "Save &Right"
 msgstr "Išsaugoti &dešinįjį"
 
@@ -3531,7 +3535,7 @@ msgstr "Kableliais sudalintas sąrašas"
 msgid "Tab-separated list"
 msgstr "TAB simboliais sudalintas sąrašas"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 msgid "Simple HTML"
 msgstr "Paprastas HTML"
 

@@ -111,6 +111,10 @@ msgstr ""
 msgid "&with..."
 msgstr "&z ..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -541,7 +545,7 @@ msgstr "Izberite &pisavo ..."
 msgid "Use Default F&ont"
 msgstr "Uporabite privzeto pi&savo"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "Zam&enjaj okvirja"
@@ -641,7 +645,7 @@ msgstr "Shrani &levo datoteko"
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Shrani &desno"
@@ -4232,7 +4236,7 @@ msgstr "Seznam, ločen z vejicami"
 msgid "Tab-separated list"
 msgstr "Seznam, ločen s tabulatorji"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Enostavni HTML"

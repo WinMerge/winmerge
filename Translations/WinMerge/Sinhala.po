@@ -107,6 +107,10 @@ msgstr ""
 msgid "&with..."
 msgstr "&සමග"
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -537,7 +541,7 @@ msgstr " මුද්‍රණ අකුරු &වර්ගය තෝරන්�
 msgid "Use Default F&ont"
 msgstr "Use Default F&ont"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, fuzzy, c-format
 msgid "Sw&ap Panes"
 msgstr "Sw&ap Panes"
@@ -637,7 +641,7 @@ msgstr "වම්පස සුරක්ෂිත කරන්න"
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "දකුණුපස සුරක්ෂිත කරන්න"
@@ -4223,7 +4227,7 @@ msgstr "Comma-separated list"
 msgid "Tab-separated list"
 msgstr "Tab-separated list"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Simple HTML"

@@ -84,6 +84,7 @@ BEGIN
             MENUITEM "with &External Editor\tCtrl+Alt+E", ID_FILE_OPEN_WITHEDITOR
             MENUITEM "&with...",                    ID_FILE_OPEN_WITH
         END
+        MENUITEM "S&hell Menu",                 ID_FILE_SHELLMENU
     END
 END
 
@@ -804,6 +805,7 @@ END
 //
 // Accelerator
 //
+
 IDR_MERGEDOCTYPE ACCELERATORS
 BEGIN
     "1",            ID_NEXTDIFFLM,          VIRTKEY, ALT, NOINVERT

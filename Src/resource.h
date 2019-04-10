@@ -3,7 +3,7 @@
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
-#define IDB_TOOLBAR_ENABLED8BIT         100  // = IDR_MAINFRAME
+#define IDB_TOOLBAR_ENABLED8BIT         100
 #define IDR_MERGEPROJECT                101
 #define IDR_POPUP_EDITOR_HEADERBAR      102
 #define IDR_POPUP_PLUGINS_SETTINGS      103
@@ -620,9 +620,7 @@
 #define IDS_OPEN_ALLINVALID             17210
 #define IDS_OPEN_UNPACKERDISABLED       17211
 #define IDS_OPEN_MISMATCH               17212
-
 #define IDS_OPEN_RIGHTINVALID3          17213
-
 #define IDS_ERROR_FILE_NOT_FOUND        17216
 #define IDS_ERROR_FILE_NOT_UNPACKED     17217
 #define IDS_ERROR_FILEOPEN              17221
@@ -901,7 +899,7 @@
 #define IDS_TEXT_REPORT_FILES           18540
 #define IDS_HTML_REPORT_FILES           18541
 #define IDS_XML_REPORT_FILES            18542
-#define ID_EDIT_MARK                    21406 // editcmd.h
+#define ID_EDIT_MARK                    21406
 #define IDS_EOL_DOS                     30400
 #define IDS_EOL_MAC                     30401
 #define IDS_EOL_UNIX                    30402
@@ -1082,7 +1080,7 @@
 #define ID_VIEW_FILEMARGIN              33150
 #define ID_VIEW_CHANGESCHEME            33151
 #define ID_COLORSCHEME_FIRST            33152
-#define IDS_COLORSCHEME_PLAIN           33152 // = ID_COLORSCHEME_FIRST
+#define IDS_COLORSCHEME_PLAIN           33152
 #define IDS_COLORSCHEME_ASP             33153
 #define IDS_COLORSCHEME_BASIC           33154
 #define IDS_COLORSCHEME_BATCH           33155
@@ -1119,7 +1117,7 @@
 #define IDS_COLORSCHEME_VERILOG         33186
 #define IDS_COLORSCHEME_VHDL            33187
 #define IDS_COLORSCHEME_XML             33188
-#define ID_COLORSCHEME_LAST             33188 // = IDS_COLORSCHEME_XML
+#define ID_COLORSCHEME_LAST             33188
 #define ID_TOOLBAR_NONE                 33194
 #define ID_TOOLBAR_SMALL                33195
 #define ID_TOOLBAR_BIG                  33196
@@ -1231,6 +1229,8 @@
 #define ID_FILE_PROJECT_MRU_LAST        33644
 #define IDS_CREATE_FOLDER               33645
 #define IDS_CREATE_FOLDER_ERROR         33646
+#define ID__SHELLMENU                   33647
+#define ID_FILE_SHELLMENU               33648
 
 // Next default values for new objects
 // 
@@ -1238,7 +1238,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        248
-#define _APS_NEXT_COMMAND_VALUE         33647
+#define _APS_NEXT_COMMAND_VALUE         33649
 #define _APS_NEXT_CONTROL_VALUE         8828
 #define _APS_NEXT_SYMED_VALUE           116
 #endif
