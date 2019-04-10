@@ -111,6 +111,10 @@ msgstr ""
 msgid "&with..."
 msgstr "&w با ..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -541,7 +545,7 @@ msgstr "&F انتخاب قلم  "
 msgid "Use Default F&ont"
 msgstr "&o استفاده از قلم پيش فرض "
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "&a تعويض چهارگوشها "
@@ -641,7 +645,7 @@ msgstr "&L ذخيره سمت چپي "
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "&R ذخيره سمت راستي "
@@ -4263,7 +4267,7 @@ msgstr " فهرستي که با کاما جدا شده باشد "
 msgid "Tab-separated list"
 msgstr " فهرست جداشده با کليد جهش "
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr " ساده اچ تي ام ال"

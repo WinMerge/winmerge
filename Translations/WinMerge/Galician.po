@@ -110,6 +110,10 @@ msgstr ""
 msgid "&with..."
 msgstr "&con..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -540,7 +544,7 @@ msgstr "Escoller &fonte..."
 msgid "Use Default F&ont"
 msgstr "Empregar fonte pr&edefinida"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "In&tercambiar paneis"
@@ -640,7 +644,7 @@ msgstr "Gardar banda esquerda"
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Gardar banda &dereita"
@@ -4223,7 +4227,7 @@ msgstr "Listaxe separada por comas"
 msgid "Tab-separated list"
 msgstr "Listaxe separada por tabulacións"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "HTML simple"

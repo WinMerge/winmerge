@@ -112,6 +112,10 @@ msgstr "用外部編輯器(&E) \tCtrl+Alt+E"
 msgid "&with..."
 msgstr "用(&W)..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -544,7 +548,7 @@ msgstr "選取字型(&F)..."
 msgid "Use Default F&ont"
 msgstr "使用預設字型(&O)"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "窗格交換(&A)"
@@ -644,7 +648,7 @@ msgstr "儲存左邊(&L)"
 msgid "Save &Middle"
 msgstr "儲存中間(&M)"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "儲存右邊(&R)"
@@ -4237,7 +4241,7 @@ msgstr "逗號分隔列表"
 msgid "Tab-separated list"
 msgstr "跳格號分隔列表"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "單純 HTML"

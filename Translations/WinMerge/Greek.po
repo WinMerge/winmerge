@@ -109,6 +109,10 @@ msgstr ""
 msgid "&with..."
 msgstr "με..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -539,7 +543,7 @@ msgstr "Επιλογή &Γραμματοσειράς..."
 msgid "Use Default F&ont"
 msgstr "Χρήση Προκα&θορισμένης Γραμματοσειράς"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "Αντι&μετάθεση Πεδίων"
@@ -639,7 +643,7 @@ msgstr "Αποθήκευση Α&ριστερού"
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Αποθήκευση Δε&ξιού"
@@ -4201,7 +4205,7 @@ msgstr "Κατάλογος με κόμμα ως χαρακτήρα διαχωρ�
 msgid "Tab-separated list"
 msgstr "Κατάλογος με στηλοθέτη ως χαρακτήρα διαχωρισμού"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Απλό HTML"

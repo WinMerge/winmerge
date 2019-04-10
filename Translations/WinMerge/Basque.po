@@ -113,6 +113,10 @@ msgstr ""
 msgid "&with..."
 msgstr "&Honekin..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -543,7 +547,7 @@ msgstr "Hautatu &Hizkia..."
 msgid "Use Default F&ont"
 msgstr "Erabili Berezko H&izkia"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "&Trukatu Panelak"
@@ -643,7 +647,7 @@ msgstr "Gorde E&zkerra"
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Gorde E&skuina"
@@ -4231,7 +4235,7 @@ msgstr "Kakotxaz banandutako zerrenda"
 msgid "Tab-separated list"
 msgstr "Fitxaz banandutako zerrenda"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "HTML Arrunta"
