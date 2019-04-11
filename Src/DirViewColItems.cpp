@@ -165,7 +165,7 @@ static String MakeShortSize(int64_t size)
 	if (size < 1024)
 		return strutils::format(_T("%d B"), static_cast<int>(size));
 	else
-		StrFormatByteSize64(size, buffer, std::size(buffer));
+		StrFormatByteSize64(size, buffer, static_cast<unsigned>(std::size(buffer)));
 	return buffer;
 }
 
@@ -1031,8 +1031,8 @@ static DirColInfo f_cols3[] =
 /**
  * @brief Count of all known columns
  */
-const int g_ncols = std::size(f_cols);
-const int g_ncols3 = std::size(f_cols3);
+const int g_ncols = static_cast<int>(std::size(f_cols));
+const int g_ncols3 = static_cast<int>(std::size(f_cols3));
 
 /**
  * @brief Registry base value name for saving/loading info for this column

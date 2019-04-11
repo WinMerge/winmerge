@@ -70,7 +70,7 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 		m_font.CreateFontIndirect(&ncm.lfStatusFont);
 
 	// subclass the two custom edit boxes
-	for (int pane = 0; pane < std::size(m_Edit); pane++)
+	for (int pane = 0; pane < static_cast<int>(std::size(m_Edit)); pane++)
 	{
 		m_Edit[pane].SubClassEdit(IDC_STATIC_TITLE_PANE0 + pane, this);
 		m_Edit[pane].SetFont(&m_font);
