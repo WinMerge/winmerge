@@ -1340,5 +1340,14 @@ BOOL CMergeApp::WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTS
 			pOptions->InitOption(name, lpszValue ? lpszValue : _T(""));
 		return pOptions->SaveOption(name, lpszValue ? lpszValue : _T("")) == COption::OPT_OK;
 	}
+	else
+	{
+		for (auto& name : pOptions->GetNameList())
+		{
+			if (name.find(lpszSection) == 0)
+				pOptions->RemoveOption(name);
+		}
+
+	}
 	return TRUE;
 }
