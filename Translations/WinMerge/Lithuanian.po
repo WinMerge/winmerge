@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-03-17 19:29+0000\n"
-"PO-Revision-Date: 2019-01-18 15:20+0200\n"
+"POT-Creation-Date: 2019-04-11 07:50+0000\n"
+"PO-Revision-Date: 2019-04-12 12:42+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -97,7 +97,7 @@ msgstr "&su..."
 
 #: Merge.rc:2E3BFCA1
 msgid "S&hell Menu"
-msgstr ""
+msgstr "&Sistemos meniu"
 
 #: Merge.rc:1A8FADD3
 msgid "View &Differences"
