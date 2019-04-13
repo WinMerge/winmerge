@@ -219,7 +219,6 @@
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
-      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -939,7 +938,11 @@
     <ClCompile Include="Common\scbarg.cpp" />
     <ClCompile Include="SelectUnpackerDlg.cpp" />
     <ClCompile Include="SharedFilterDlg.cpp" />
-    <ClCompile Include="Common\ShellContextMenu.cpp" />
+    <ClCompile Include="Common\ShellContextMenu.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="Common\ShellFileOperations.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
