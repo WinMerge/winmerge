@@ -49,6 +49,8 @@
 <body>
 <h2>Creating a WinMerge release</h2>
 
+<p><strong>Maybe outdated!</strong></p>
+
 <p>Creating a release means building installer, executable- and source-packages
 that can be distributed for users. <b>RELEASING IS A TASK WITH BIG
 RESPONSIBILITY!</b> Making errors mean (lots of) users have non-working
@@ -57,8 +59,7 @@ WinMerge installations. And users are not happy about that!</p>
 <h3>Table of Contents</h3>
 <ol>
   <li><a href="#Environment">Environment</a></li>
-  <li><a href="#StepsInReleasing">Steps to do a release (without scripts)</a></li>
-  <li><a href="#UsingScripts">Using the scripts</a></li>
+  <li><a href="#StepsInReleasing">Steps to do a release</a></li>
   <li><a href="#Checksums">Calculating checksums</a></li>
 </ol>
 
@@ -68,21 +69,11 @@ WinMerge installations. And users are not happy about that!</p>
 </p>
 
 <ol>
-  <li>Executable and libraries build tools are documented in <a href="Compiling.html">Compiling.html</a></li>
   <li>Installer building is explained in <a href="readme-InnoSetup.html">readme-InnoSetup.html</a></li>
   <li>Manual building is explained in <a href="readme-manual.html">readme-manual.html</a></li>
 </ol>
 
-<p>If you want to use the Python scripts for making creating release easier
-you'll need <a href="http://www.python.org/">Python</a> version 2.5 or later.
-The scripts also require <a href="http://subversion.tigris.org/">Subversion</a>
-<i>command line</i> binaries.</p> TortoiseSVN binaries don't work.
-
-<h3><a name="StepsInReleasing">Steps to do a release (without scripts)</a></h3>
-
-<p>There are many steps in creating full release. Doing a release without using
-the helper scripts may take <i>hours</i>! If you are doing a release for a first
-time, reserve few hours of time for this...</p>
+<h3><a name="StepsInReleasing">Steps to do a release</a></h3>
 
 <p>The list of steps is:</p>
 <ol>
@@ -98,8 +89,7 @@ time, reserve few hours of time for this...</p>
     <li><code>Docs/Users/Manual/WinMerge_help.xml</code> for the manual</li>
    </ol>
   </li>
-  <li>Build executables and libraries (see <a href="Compiling.html">Compiling
-   instructions</a>)</li>
+  <li>Build executables and libraries</li>
   <li>Build manual (see <a href="readme-manual.html">readme-manual.html</a>)</li>
   <li>Build installer (see <a href="readme-InnoSetup.html">readme-InnoSetup.html</a>)</li>
   <li>Create binary distribution folder:
@@ -116,80 +106,6 @@ time, reserve few hours of time for this...</p>
   <li>Create checksums (MD5 or SHA1) from packages <b>and</b> installer</li>
   <li>Run virus check for all files</li>
 </ol>
-
-<h3><a name="UsingScripts">Using the scripts</a></h3>
-
-<p>Since creating the release is quite a tedious and error-prone task, there
-are couple of scripts helping this task:</p>
-
-<ul>
-  <li><code>Tools/Scripts/SetVersions.py</code> is a script for setting version
-    numbers<li>
-  <li><code>Tools/Scripts/create_release.py</code> does many of the tasks of
-    building the release.</li>
-</ul>
-
-<p>When using the <code>create_release.py</code> -script the tasks for releasing
-are:</p>
-
-<ol>
-  <li>Verify you have sources you want to build</li>
-  <li>Build 64-bit shell extension (script doesn't build it and requires it)
-    </li>
-  <li>Update version numbers into INI file</li>
-  <li>Run the <code>create_release.py</code> -script</li>
-  <li>Copy the installer file to release folder (its now created into <code>
-   /Build</code> -folder</li>
-  <li>Create checksums (MD5 or SHA1) from packages <b>and</b> installer</li>
-  <li>Run virus check for all files</li>
-</ol>
-
-<h4>SetVersions.py</h4>
-
-<p>The <code>SetVersions.py</code> -script is documented in <code>
-SetVersions.txt</code> -file in the same folder. It reads version numbers and
-files to modify from INI file and sets the version numbers.</p>
-
-<p>Running the script is easy, just give the INI file to use as a parameter.</p>
-
-<h4>create_release.py</h4>
-
-<p>The <code>create_release.py</code> -script does much of the releasing work.
-It does:
-
-<ol>
-  <li>cleans previous build files from folders</li>
-  <li>sets version number for resources (using <code>SetVersions.py</code>
-   -script)</li>
-  <li>updates POT and PO files</li>
-  <li>builds libraries (expat, scew, pcre)</li>
-  <li>builds WinMergeU.exe</li>
-  <li>builds 32-bit ShellExtension target</li>
-  <li>builds user manual</li>
-  <li>builds the InnoSetup installer</li>
-  <li>creates per-version distribution folder</li>
-  <li>exports SVN sources to distribution folder</li>
-  <li>creates binary distribution folder</li>
-</ol>
-
-<h5>Configuring the script</h5>
-
-<p>The <code>create_release.py</code> -script is meant to run from command line.
-Before running the script you may need to modify the configuration variables in
-the beginning of the script file. Variables to modify are:
-
-<ul>
-  <li><b>svn_binary</b>: This must be a full path to the SVN <b>command line</b>
-    binaries. TortoiseSVN or other GUI tool binaries DO NOT work.</li>
-  <li><b>vs_path</b>: Points to the root folder of Visual Studio installation.</li>
-  <li><b>innosetup_path</b>: Innosetup installation folder.</li>
-  <li><b>dist_root_folder</b>: Relative path to folder where WinMerge release
-    will be created. The script creates version-specific release folder inside
-	this folder.</li>
-  <li><b>source_location</b>: SVN repository URL from where to export the
-    sources. Can be also 'workspace' if sources are exported from local
-	workspace folder.</li>
-</ul>
 
 <h3><a name="Checksums">Calculating checksums</a></h3>
 
