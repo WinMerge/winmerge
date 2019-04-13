@@ -939,7 +939,11 @@
     <ClCompile Include="Common\scbarg.cpp" />
     <ClCompile Include="SelectUnpackerDlg.cpp" />
     <ClCompile Include="SharedFilterDlg.cpp" />
-    <ClCompile Include="Common\ShellContextMenu.cpp" />
+    <ClCompile Include="Common\ShellContextMenu.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="Common\ShellFileOperations.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
