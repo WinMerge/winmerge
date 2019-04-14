@@ -1,5 +1,5 @@
 /**
- *  @file version.h
+ *  @file VersionInfo.h
  *
  *  @brief Declaration of CVersionInfo class
  */ 
