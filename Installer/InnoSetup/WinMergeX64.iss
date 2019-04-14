@@ -372,6 +372,7 @@ Name: {group}\{cm:UninstallProgram,WinMerge}.lnk; Type: files;
 ;Remove ANSI executable link from start menu for NT-based Windows versions
 ;This was installed earlier, but not anymore.
 Name: {group}\WinMerge (ANSI).lnk; Type: files; MinVersion: 0,4
+
 Name: {app}\Docs; Type: filesandordirs
 
 Name: {app}\MergePlugins\editor addin.sct; Type: Files; Check: not IsComponentSelected('Plugins')
@@ -392,6 +393,8 @@ Name: {app}\Filters\XML_html.flt; Type: Files; Check: not IsComponentSelected('F
 Name: {app}\Filters\FileFilter.tmpl; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters; Type: DirIfEmpty; Check: not IsComponentSelected('Filters')
 
+;Remove old "List of installed files"...
+Name: {app}\Files.txt; Type: files
 
 
 [Dirs]
@@ -404,9 +407,6 @@ Name: {app}; Flags: uninsalwaysuninstall
 Source: ..\..\Build\X64\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 ; 32Bit Plugin Proxy
 Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe; DestDir: {app}; Flags: promptifolder; Components: Core
-
-; List of installed files
-Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; Shell extension
 Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
