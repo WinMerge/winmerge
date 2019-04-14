@@ -1138,5 +1138,4 @@ WinMerge 2.7.1.1 - 2006-11-16 (r3810)
   BugFix: asked sometimes twice about saving modified files (#1596692)
 
 
-WinMerge 2.7.4 and earlier (also 2.6.x stable releases) have more detailed
-changelogs in Changes.txt files in /Src and other folders.
+For older changes look at the VCS (Version Control System).
