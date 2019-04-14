@@ -6,7 +6,6 @@
 
 #include "StdAfx.h"
 #include "LanguageSelect.h"
-#include "VersionInfo.h"
 #include "BCMenu.h"
 #include "Environment.h"
 #include "paths.h"
@@ -442,7 +441,7 @@ LangFileInfo::LangFileInfo(LPCTSTR path)
 								sublang = EatPrefix(sublang, L"_");
 						}
 						if (sublang)
-							id = LangId(std::string(lang, lang + wcslen(lang)).c_str(), std::string(sublang, sublang + wcslen(sublang)).c_str());
+							id = LangId(ucr::toUTF8(lang).c_str(), ucr::toUTF8(sublang).c_str());
 					}
 				}
 				break;
