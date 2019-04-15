@@ -43,7 +43,6 @@
 ;      2.  Read Me
 ;      3.  Users's Guide
 ;      4.  WinMerge on the Web
-;      5.  Uninstall WinMerge
 ; #  Create the ability to install to two start menu groups simultaneously
 ;
 ; Not yet possible (Limited by Inno Setup):
@@ -368,6 +367,7 @@ Name: {commondesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('Desk
 
 ;Removes the Uninstall icon from the start menu...
 Name: {group}\{cm:UninstallProgram,WinMerge}.lnk; Type: files;
+Name: {group}\{cm:UninstallProgram,WinMerge}; Type: files;
 
 ;Remove ANSI executable link from start menu for NT-based Windows versions
 ;This was installed earlier, but not anymore.
@@ -533,7 +533,6 @@ Name: "{app}\MergePlugins"
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; AppUserModelID: "Thingamahoochie.WinMerge"
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
-Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
 Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: http://winmerge.org
 
 ;Link to translated ReadMe in Start Menu
