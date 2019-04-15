@@ -98,7 +98,20 @@ static bool read_mmfile(int fd, mmfile_t& mmfile)
 static unsigned long make_xdl_flags(const DiffutilsOptions& options)
 {
 	unsigned long xdl_flags = 0;
-	xdl_flags |= XDF_PATIENCE_DIFF;
+	switch (options.m_diffAlgorithm)
+	{
+	case DIFF_ALGORITHM_MINIMAL:
+		xdl_flags |= XDF_NEED_MINIMAL;
+		break;
+	case DIFF_ALGORITHM_PATIENCE:
+		xdl_flags |= XDF_PATIENCE_DIFF;
+		break;
+	case DIFF_ALGORITHM_HISTOGRAM:
+		xdl_flags |= XDF_HISTOGRAM_DIFF;
+		break;
+	default:
+		break;
+	}
 	if (options.m_bIgnoreBlankLines)
 		xdl_flags |= XDF_IGNORE_BLANK_LINES;
 	if (options.m_bIgnoreEOLDifference)
@@ -1165,8 +1178,7 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	SE_Handler seh;
 	try
 	{
-		bool use_xdiff = true;
-		if (use_xdiff)
+		if (m_options.m_diffAlgorithm != DIFF_ALGORITHM_DEFAULT)
 		{
 			mmfile_t mmfile1 = { 0 }, mmfile2 = { 0 };
 			if (!read_mmfile(diffData->m_inf[0].desc, mmfile1))

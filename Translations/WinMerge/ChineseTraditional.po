@@ -2072,6 +2072,10 @@ msgstr "備註"
 msgid "Filter Comments"
 msgstr "篩選器註解"
 
+#: Merge.rc:7252120B
+msgid "Diff algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
