@@ -1677,6 +1677,10 @@ msgstr "Komentarai"
 msgid "Filter Comments"
 msgstr "Filtro komentarai"
 
+#: Merge.rc:7252120B
+msgid "Diff algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 msgid "Editor"
 msgstr "Redaktoriaus"

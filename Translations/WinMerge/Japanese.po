@@ -1683,6 +1683,10 @@ msgstr "コメント"
 msgid "Filter Comments"
 msgstr "コメントの差異を無視する"
 
+#: Merge.rc:7252120B
+msgid "Diff algorithm (Experimental):"
+msgstr "Diff アルゴリズム (実験的機能):"
+
 #: Merge.rc:3BB91A82
 msgid "Editor"
 msgstr "エディタ"

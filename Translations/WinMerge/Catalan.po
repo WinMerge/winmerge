@@ -2061,6 +2061,10 @@ msgstr "Comentaris"
 msgid "Filter Comments"
 msgstr "&Filtra els comentaris"
 
+#: Merge.rc:7252120B
+msgid "Diff algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-04-11 07:50+0000\n"
+"POT-Creation-Date: 2019-04-15 23:27+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1666,6 +1666,10 @@ msgstr ""
 
 #: Merge.rc:1AFA3491
 msgid "Filter Comments"
+msgstr ""
+
+#: Merge.rc:7252120B
+msgid "Diff algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82

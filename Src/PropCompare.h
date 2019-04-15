@@ -38,6 +38,7 @@ public:
 	bool    m_bMovedBlocks;
 	bool    m_bMatchSimilarLines;
 	bool    m_bFilterCommentsLines;
+	int     m_nDiffAlgorithm;
 	//}}AFX_DATA
 
 
@@ -52,6 +53,7 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCompare)
+	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
