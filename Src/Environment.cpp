@@ -72,10 +72,15 @@ String GetTemporaryFileName(const String& lpPathName, const String& lpPrefixStri
 	int rtn = ::GetTempFileName(lpPathName.c_str(), lpPrefixString.c_str(), 0, buffer);
 	if (rtn == 0)
 	{
-		int err = GetLastError();
-		if (pnerr != nullptr)
-			*pnerr = err;
-		return _T("");
+		paths::CreateIfNeeded(lpPathName);
+		rtn = ::GetTempFileName(lpPathName.c_str(), lpPrefixString.c_str(), 0, buffer);
+		if (rtn == 0)
+		{
+			int err = GetLastError();
+			if (pnerr != nullptr)
+				*pnerr = err;
+			return _T("");
+		}
 	}
 	return buffer;
 }
