@@ -1117,6 +1117,10 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="xdiff_gnudiff_compat.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Externals\boost\boost\config.hpp" />
@@ -1369,6 +1373,7 @@
     <ClInclude Include="CompareEngines\ByteCompare.h" />
     <ClInclude Include="CompareEngines\Wrap_DiffUtils.h" />
     <ClInclude Include="CompareEngines\TimeSizeCompare.h" />
+    <ClInclude Include="xdiff_gnudiff_compat.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico" />

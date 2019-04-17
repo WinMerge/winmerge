@@ -26,7 +26,9 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-/*#include <unistd.h>*/
+#ifndef _WIN32
+#  include <unistd.h>
+#endif
 #include <string.h>
 #include <limits.h>
 
@@ -38,5 +40,7 @@
 #include "xdiffi.h"
 #include "xemit.h"
 
+int xdl_diff_modified(mmfile_t *mf1, mmfile_t *mf2, xpparam_t const *xpp,
+	     xdemitconf_t const *xecfg, xdemitcb_t *ecb, xdfenv_t *pxe, xdchange_t **pxscr);
 
 #endif /* #if !defined(XINCLUDE_H) */

@@ -862,6 +862,9 @@
     <ClCompile Include="..\Externals\xdiff\xutils.c">
       <Filter>xdiff\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="xdiff_gnudiff_compat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1550,6 +1553,9 @@
     </ClInclude>
     <ClInclude Include="..\Externals\xdiff\xutils.h">
       <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xdiff_gnudiff_compat.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
