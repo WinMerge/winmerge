@@ -40,8 +40,6 @@
 #include <Poco/Debugger.h>
 #include <Poco/StringTokenizer.h>
 #include <Poco/Exception.h>
-#include <io.h>
-#include <sys/stat.h>
 #include "DiffContext.h"
 #include "coretools.h"
 #include "DiffList.h"
@@ -49,7 +47,7 @@
 #include "FilterList.h"
 #include "diff.h"
 #include "Diff3.h"
-#include "../Externals/xdiff/xinclude.h"
+#include "xdiff_gnudiff_compat.h"
 #include "FileTransform.h"
 #include "paths.h"
 #include "CompareOptions.h"
@@ -73,89 +71,6 @@ extern int recursive;
 
 static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
 static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
-
-struct XDEmitCBPrevData {
-	change** diffs;
-	change* current;
-};
-
-static bool read_mmfile(int fd, mmfile_t& mmfile)
-{
-	struct _stat64 st;
-	if (_fstat64(fd, &st) == -1)
-		return false;
-	if (st.st_size < 0 || st.st_size > INT32_MAX)
-		return false;
-	size_t sz = st.st_size;
-	mmfile.ptr = static_cast<char *>(malloc(sz ? sz : 1));
-	if (sz && _read(fd, mmfile.ptr, static_cast<unsigned>(sz)) == -1) {
-		return false;
-	}
-	mmfile.size = static_cast<long>(sz);
-	return true;
-}
-
-static unsigned long make_xdl_flags(const DiffutilsOptions& options)
-{
-	unsigned long xdl_flags = 0;
-	switch (options.m_diffAlgorithm)
-	{
-	case DIFF_ALGORITHM_MINIMAL:
-		xdl_flags |= XDF_NEED_MINIMAL;
-		break;
-	case DIFF_ALGORITHM_PATIENCE:
-		xdl_flags |= XDF_PATIENCE_DIFF;
-		break;
-	case DIFF_ALGORITHM_HISTOGRAM:
-		xdl_flags |= XDF_HISTOGRAM_DIFF;
-		break;
-	default:
-		break;
-	}
-	if (options.m_bIgnoreBlankLines)
-		xdl_flags |= XDF_IGNORE_BLANK_LINES;
-	if (options.m_bIgnoreEOLDifference)
-		xdl_flags |= XDF_IGNORE_CR_AT_EOL;
-	switch (options.m_ignoreWhitespace)
-	{
-	case WHITESPACE_IGNORE_CHANGE:
-		xdl_flags |= XDF_IGNORE_WHITESPACE_CHANGE;
-		break;
-	case WHITESPACE_IGNORE_ALL:
-		xdl_flags |= XDF_IGNORE_WHITESPACE;
-		break;
-	default:
-		break;
-	}
-	return xdl_flags;
-}
-
-static int hunk_func(long start_a, long count_a,
-					    long start_b, long count_b,
-					    void *cb_data)
-{
-	XDEmitCBPrevData *prevData = static_cast<XDEmitCBPrevData *>(cb_data);
-	if (!prevData)
-		return -1;
-	change *e = static_cast<change *>(malloc(sizeof(change)));
-	if (!e)
-		return -1;
-	if (prevData->current)
-		prevData->current->link = e;
-	else
-		*prevData->diffs = e;
-	prevData->current = e;
-	e->line0 = start_a;
-	e->line1 = start_b;
-	e->deleted = count_a;
-	e->inserted = count_b;
-	e->match0 = -1;
-	e->match1 = -1;
-	e->trivial = 0;
-	e->link = nullptr;
-	return 0;
-}
-
 
 /**
  * @brief Default constructor.
@@ -849,7 +764,7 @@ bool CDiffWrapper::RunFileDiff()
 
 		if (_tfopen_s(&outfile, path.c_str(), _T("w+")) == 0)
 		{
-//			print_normal_script(script);
+			print_normal_script(script);
 			fclose(outfile);
 			outfile = nullptr;
 		}
@@ -1180,26 +1095,10 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	{
 		if (m_options.m_diffAlgorithm != DIFF_ALGORITHM_DEFAULT)
 		{
-			mmfile_t mmfile1 = { 0 }, mmfile2 = { 0 };
-			if (!read_mmfile(diffData->m_inf[0].desc, mmfile1))
-				return false;
-			if (!read_mmfile(diffData->m_inf[1].desc, mmfile2))
-			{
-				free(mmfile1.ptr);
-				return false;
-			}
-
-			xpparam_t xpp = { 0 };
-			xdemitconf_t xecfg = { 0 };
-			xdemitcb_t ecb = { 0 };
-			xpp.flags = make_xdl_flags(m_options);
-			XDEmitCBPrevData prevData = { diffs, nullptr };
-			ecb.priv = &prevData;
-			xecfg.hunk_func = hunk_func;
-			xdl_diff(&mmfile1, &mmfile2, &xpp, &xecfg, &ecb);
-
-			free(mmfile1.ptr);
-			free(mmfile2.ptr);
+			unsigned xdl_flags = make_xdl_flags(m_options);
+			*diffs = diff_2_files_xdiff(diffData->m_inf, (m_pMovedLines[0] != nullptr), xdl_flags);
+			files[0] = diffData->m_inf[0];
+			files[1] = diffData->m_inf[1];
 		}
 		else
 		{
