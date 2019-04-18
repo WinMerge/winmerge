@@ -1,16 +1,6 @@
 Some useful scripts:
 
 
-BuildManualChm.bat
-------------------
-Batch file for creating HTML help (.chm) manual.
-
-
-BuildManualWeb.bat
-------------------
-Batch file for creating manual as separate HTML files.
-
-
 CheckMenuResources.vbs
 ----------------------
 Script that checking the menu resources for missing mnemonic chars and description texts.
