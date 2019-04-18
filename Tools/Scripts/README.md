@@ -21,12 +21,6 @@ CheckUnusedResources.vbs
 Script for creating a list of (hopefully) unused resource IDs.
 
 
-SetVersions.py
---------------
- A script for setting version numbers of different components.
- See the file SetVersions.txt for documentation of the script.
-
-
 tsvn_patch.py
 -------------
  Script for cleaning up TortoiseSVN created patch files to use with GNU patch.
