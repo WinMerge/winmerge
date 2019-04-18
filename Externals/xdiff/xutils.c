@@ -173,6 +173,18 @@ static int ends_with_optional_cr(const char *l, long s, long i)
 		return 1;
 	return 0;
 }
+static inline int match_a_byte(char ch1, char ch2, long flags)
+{
+	if (ch1 == ch2)
+		return 1;
+	if (!(flags & XDF_IGNORE_CASE) || ((ch1 | ch2) & 0x80))
+		return 0;
+	if (isupper(ch1))
+		ch1 = tolower(ch1);
+	if (isupper(ch2))
+		ch2 = tolower(ch2);
+	return (ch1 == ch2);
+}
 
 int xdl_recmatch(const char *l1, long s1, const char *l2, long s2, long flags)
 {
@@ -180,7 +192,7 @@ int xdl_recmatch(const char *l1, long s1, const char *l2, long s2, long flags)
 
 	if (s1 == s2 && !memcmp(l1, l2, s1))
 		return 1;
-	if (!(flags & XDF_WHITESPACE_FLAGS))
+	if (!(flags & XDF_INEXACT_MATCH))
 		return 0;
 
 	i1 = 0;
@@ -197,7 +209,7 @@ int xdl_recmatch(const char *l1, long s1, const char *l2, long s2, long flags)
 	if (flags & XDF_IGNORE_WHITESPACE) {
 		goto skip_ws;
 		while (i1 < s1 && i2 < s2) {
-			if (l1[i1++] != l2[i2++])
+			if (!match_a_byte(l1[i1++], l2[i2++], flags))
 				return 0;
 		skip_ws:
 			while (i1 < s1 && XDL_ISSPACE(l1[i1]))
@@ -215,17 +227,17 @@ int xdl_recmatch(const char *l1, long s1, const char *l2, long s2, long flags)
 					i2++;
 				continue;
 			}
-			if (l1[i1++] != l2[i2++])
+			if (!match_a_byte(l1[i1++], l2[i2++], flags))
 				return 0;
 		}
 	} else if (flags & XDF_IGNORE_WHITESPACE_AT_EOL) {
-		while (i1 < s1 && i2 < s2 && l1[i1] == l2[i2]) {
+		while (i1 < s1 && i2 < s2 && match_a_byte(l1[i1], l2[i2], flags)) {
 			i1++;
 			i2++;
 		}
 	} else if (flags & XDF_IGNORE_CR_AT_EOL) {
 		/* Find the first difference and see how the line ends */
-		while (i1 < s1 && i2 < s2 && l1[i1] == l2[i2]) {
+		while (i1 < s1 && i2 < s2 && match_a_byte(l1[i1], l2[i2], flags)) {
 			i1++;
 			i2++;
 		}
@@ -253,6 +265,14 @@ int xdl_recmatch(const char *l1, long s1, const char *l2, long s2, long flags)
 	return 1;
 }
 
+static inline unsigned long hash_a_byte(const char ch_, long flags)
+{
+	unsigned long ch = ch_ & 0xFF;
+	if ((flags & XDF_IGNORE_CASE) && !(ch & 0x80) && isupper(ch))
+		ch = tolower(ch);
+	return ch;
+}
+
 static unsigned long xdl_hash_record_with_whitespace(char const **data,
 		char const *top, long flags) {
 	unsigned long ha = 5381;
@@ -278,20 +298,20 @@ static unsigned long xdl_hash_record_with_whitespace(char const **data,
 			else if (flags & XDF_IGNORE_WHITESPACE_CHANGE
 				 && !at_eol) {
 				ha += (ha << 5);
-				ha ^= (unsigned long) ' ';
+				ha ^= hash_a_byte(' ', flags);
 			}
 			else if (flags & XDF_IGNORE_WHITESPACE_AT_EOL
 				 && !at_eol) {
 				while (ptr2 != ptr + 1) {
 					ha += (ha << 5);
-					ha ^= (unsigned long) *ptr2;
+					ha ^= hash_a_byte(*ptr2, flags);
 					ptr2++;
 				}
 			}
 			continue;
 		}
 		ha += (ha << 5);
-		ha ^= (unsigned long) *ptr;
+		ha ^= hash_a_byte(*ptr, flags);
 	}
 	*data = ptr < top ? ptr + 1: ptr;
 
@@ -302,12 +322,12 @@ unsigned long xdl_hash_record(char const **data, char const *top, long flags) {
 	unsigned long ha = 5381;
 	char const *ptr = *data;
 
-	if (flags & XDF_WHITESPACE_FLAGS)
+	if (flags & XDF_INEXACT_MATCH)
 		return xdl_hash_record_with_whitespace(data, top, flags);
 
 	for (; ptr < top && *ptr != '\n'; ptr++) {
 		ha += (ha << 5);
-		ha ^= (unsigned long) *ptr;
+		ha ^= hash_a_byte(*ptr, flags);
 	}
 	*data = ptr < top ? ptr + 1: ptr;
 

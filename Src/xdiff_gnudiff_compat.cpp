@@ -39,6 +39,8 @@ unsigned long make_xdl_flags(const DiffutilsOptions& options)
 	default:
 		break;
 	}
+	if (options.m_bIgnoreCase)
+		xdl_flags |= XDF_IGNORE_CASE;
 	if (options.m_bIgnoreBlankLines)
 		xdl_flags |= XDF_IGNORE_BLANK_LINES;
 	if (options.m_bIgnoreEOLDifference)
