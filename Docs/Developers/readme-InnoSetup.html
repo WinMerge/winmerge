@@ -36,10 +36,10 @@
 <h3>Needed programs:</h3>
 <ul>
   <li>
-    <a href="http://www.jrsoftware.org/">Inno Setup</a> version 5.2.3.
+    <a href="http://www.jrsoftware.org/">Inno Setup</a>
   </li>
   <li>
-    <a href="http://www.istool.org/">ISTool</a> <strong>recommended</strong>
+    <a href="https://sourceforge.net/projects/istool/">ISTool</a> <strong>recommended</strong>
     - great help managing Inno Setup installer scripts
   </li>
 </ul>
@@ -54,11 +54,7 @@ Installer script is in <code>Installer/InnoSetup</code> folder: <code>WinMerge.i
 <ul>
   <li>
     Installer reads version number from <code>WinMergeU.exe</code>. So make
-    sure you have version resource correctly set.<br>
-    There is Python script <code>Tools/Scripts/SetVersions.py</code> which sets
-    version numbers to all components. The script reads version numbers from
-    <code>/versions.ini</code> file. See more info about the script from
-    <code>Tools/Scripts/SetVersions.txt</code>
+    sure you have version resource correctly set.
   </li>
   <li>
     Installer checks that files listed are present. But some files are
@@ -72,69 +68,67 @@ Installer script is in <code>Installer/InnoSetup</code> folder: <code>WinMerge.i
 <p>First make sure you have all needed files compiled and available:
 <ul>
   <li>WinMerge executable: <code>WinMergeU.exe</code></li>
-  <li>Translation library: <code>MergeLang.dll</code></li>
   <li>Executable translations: <code>/Translations/WinMerge/*.po</code></li>
-  <li>Libraries: <code>libexpat.dll</code> and <code>pcre.dll</code></li>
   <li>Manual: <code>WinMerge.chm</code></li>
   <li>ShellExtension: <code>ShellExtensionU.dll</code>
     and <code>ShellExtensionX64.dll</code></li>
   <li>Documents: <code>/Docs/Users/*</code></li>
   <li>Filters: <code>/Filters/*</code></li>
+  <li>Plugins: <code>/Plugins/dlls/*</code></li>
+  <li>Frhed: <code>/Frhed/*</code></li>
+  <li>WinIMerge: <code>/WinIMerge/*</code></li>
+  <li>Archive Support: <code>/Merge7z/*</code></li>
+  <li>Patch: <code>/GnuWin32/*</code></li>
 </ul>
 
 <p>These files are produced by compiling WinMerge, documentation etc, but
-that's not subject of this document, refer to <a href="Compiling.html">Compiling.html</a>,
-<a href="readme-manual.html">readme-manual.html</a> and
-<a href="Translations.html">Translations.html</a>.</p>
-
-<p>In addition you will need Microsoft C- and MFC-runtime files. Those files are
-not distributes with WinMerge. Older WinMerge installers copied those runtime
-files to WinMerge program folder. But with VS 2005 and later this has caused a
-lot of installing problems for users. So now we are embedding MS's own runtime
-installer executable to our installer. This makes the installer executable
-considerable bigger but seems to be the only reliable way to install those
-runtime files.</p>
-
-<p>You can download the latest VC2008 runtimes installer from MS:
-<a href="http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A8F5-770A549FD78C">
-http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A8F5-770A549FD78C</a><p>
+that's not subject of this document.</p>
 
 <h4>Folder structure</h4>
-<p>Copy or move the WinMerge files into the following layout (not runtimes):</p>
-
 <ul>
  <li>
   <code>Build/</code>
   <ul>
-    <li>
-     <code>expat</code>
-     <ul>
-      <li><code>libexpat.dll</code></li>
-     </ul>
-    </li>
-    <li>
-     <code>Manual/htmlhelp</code>
+   <li>
+    <code>Frhed/</code>
+    <ul>
+     <li><code>*.*</code></li>
+    </ul>
+   </li>
+   <li>
+    <code>GnuWin32/</code>
+    <ul>
+     <li><code>*.*</code></li>
+    </ul>
+   </li>
+   <li>
+     <code>Manual/htmlhelp/</code>
      <ul>
       <li><code>WinMerge.chm</code></li>
      </ul>
-    </li>
+   </li>
+   <li>
+    <code>Merge7z/</code>
+    <ul>
+     <li><code>*.*</code></li>
+    </ul>
+   </li>
    <li>
     <code>MergeUnicodeRelease/</code>
     <ul>
-     <li><code>MergeLang.dll</code></li>
-     <li><code>ShellExtensionU.dll</code></li>
      <li><code>WinMergeU.exe</code></li>
     </ul>
    </li>
    <li>
-    <code>pcre/</code>
+    <code>WinIMerge/</code>
     <ul>
-      <li><code>pcre.dll</code></li>
+     <li><code>*.*</code></li>
     </ul>
    </li>
    <li>
-    <code>ShellExtensionX64/</code>
+    <code>ShellExtension/</code>
     <ul>
+      <li><code>ShellExtensionU.dll</code></li>
       <li><code>ShellExtensionX64.dll</code></li>
     </ul>
    </li>
@@ -144,9 +138,13 @@ http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A
   <code>Docs/</code>
   <ul>
    <li>
-    <code>Users</code>
+    <code>Users/</code>
     <ul>
-     <li><em>Copy the entire <code>Docs/Users</code> folder to here</em></li>
+      <li><code>ChangeLog.txt</code></li>
+      <li><code>Contributors.txt</code></li>
+      <li><code>GPL.rtf</code></li>
+      <li><code>ReadMe.txt</code></li>
+      <li><code>ReleaseNotes.html</code></li>
     </ul>
    </li>
   </ul>
@@ -159,23 +157,13 @@ http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A
   </ul>
  </li>
  <li>
-  <code>Installer/</code>
-  <ul>
-   <li>
-    <code>InnoSetup/</code>
-     <ul>
-      <li><em>Copy the entire <code>Installer/InnoSetup</code> folder to here</em></li>
-     </ul>
-   </li>
-  </ul>
- </li>
- <li>
   <code>Plugins/</code>
   <ul>
    <li>
     <code>dlls/</code>
      <ul>
-      <li><em>Copy the entire <code>Plugins/dlls</code> folder to here</em></li>
+       <li><code>*.dll</code></li>
+       <li><code>*.sct</code></li>
      </ul>
    </li>
   </ul>
@@ -184,13 +172,19 @@ http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A
    <code>Translations/</code>
    <ul>
     <li>
-     <code>Docs</code>
+     <code>Docs/</code>
      <ul>
       <li><code>*.*</code></li>
      </ul>
     </li>
     <li>
-     <code>WinMerge</code>
+     <code>InnoSetup/</code>
+     <ul>
+      <li><code>*.isl</code></li>
+     </ul>
+    </li>
+    <li>
+     <code>WinMerge/</code>
      <ul>
       <li><code>*.po</code></li>
      </ul>
@@ -198,19 +192,6 @@ http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A
    </ul>
  </li>
 </ul>
-
-<p><strong>NOTE</strong><br>
-If you don't need or can't compile <code>ShellExtensionX64.dll</code> component,
-comment or remove line:</p>
-<pre>; 64-bit version of ShellExtension
-Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; [...]
-</pre>
-<p>from <code>WinMerge.iss</code></p>
-
-<h4>Runtime files installer</h4>
-<p>Runtime files installer must be copied to the <code>Runtimes</code>-folder in same level
-than WinMerge source tree folder is. Not <i>inside</i> source tree but
-<i>outside</i> of the source tree.</p>
 
 <h3>Running Inno Setup to create installer</h3>
 
