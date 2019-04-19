@@ -1677,8 +1677,8 @@ msgstr "Komentarai"
 msgid "Filter Comments"
 msgstr "Filtro komentarai"
 
-#: Merge.rc:7252120B
-msgid "Diff algorithm (Experimental):"
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82
@@ -2452,7 +2452,7 @@ msgstr "Praleisti visk&ą"
 msgid "Don't display this &message again."
 msgstr "Daugiau nerodyti šio praneši&mo."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 msgid "Don't ask this &question again."
 msgstr "Daugiau neklausti šio &klausimo."
 

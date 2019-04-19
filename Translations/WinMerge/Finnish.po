@@ -2059,8 +2059,8 @@ msgstr "Kommentit"
 msgid "Filter Comments"
 msgstr "Suodatin kommentit"
 
-#: Merge.rc:7252120B
-msgid "Diff algorithm (Experimental):"
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82
@@ -2952,7 +2952,7 @@ msgstr "Ohita kaikki"
 msgid "Don't display this &message again."
 msgstr "Älä näytä tätä ilmoitusta uudestaan."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Älä tee tätä kysymystä vastaisuudessa."

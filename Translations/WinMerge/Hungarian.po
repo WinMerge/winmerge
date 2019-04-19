@@ -2062,8 +2062,8 @@ msgstr "Megjegyzések"
 msgid "Filter Comments"
 msgstr ""
 
-#: Merge.rc:7252120B
-msgid "Diff algorithm (Experimental):"
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82
@@ -2955,7 +2955,7 @@ msgstr "Kihagy &mindent"
 msgid "Don't display this &message again."
 msgstr "&Ne jelenjen meg többet ez az üzenet."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "&Ne jelenjen meg többet ez a kérdés."

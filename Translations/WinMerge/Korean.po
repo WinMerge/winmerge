@@ -2066,8 +2066,8 @@ msgstr "코멘트"
 msgid "Filter Comments"
 msgstr "코멘트 필터링하기"
 
-#: Merge.rc:7252120B
-msgid "Diff algorithm (Experimental):"
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82
@@ -3017,7 +3017,7 @@ msgstr "전부 건너뛰기(&A)"
 msgid "Don't display this &message again."
 msgstr "이 메시지를 다시 표시하지 않음(&M)"
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "다시 묻지 않음(&Q)"

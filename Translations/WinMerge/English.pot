@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-04-15 23:27+0000\n"
+"POT-Creation-Date: 2019-04-19 22:03+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1668,8 +1668,8 @@ msgstr ""
 msgid "Filter Comments"
 msgstr ""
 
-#: Merge.rc:7252120B
-msgid "Diff algorithm (Experimental):"
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82
@@ -2384,7 +2384,7 @@ msgstr ""
 msgid "Don't display this &message again."
 msgstr ""
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 msgid "Don't ask this &question again."
 msgstr ""
 

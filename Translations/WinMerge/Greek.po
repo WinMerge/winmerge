@@ -2061,8 +2061,8 @@ msgstr "Σχόλια"
 msgid "Filter Comments"
 msgstr "Σχόλια Φίλτρων"
 
-#: Merge.rc:7252120B
-msgid "Diff algorithm (Experimental):"
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82
@@ -2984,7 +2984,7 @@ msgstr "Παράλειψη Ό&λων"
 msgid "Don't display this &message again."
 msgstr "Να μην εμφανισθεί ξανά αυτό το &Μήνυμα."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Να μην ξαναγίνει αυτή η &ερώτηση."
