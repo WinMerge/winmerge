@@ -49,9 +49,6 @@
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
 
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
-#define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
-#define VS120COMNTOOLS GetEnv('VS120COMNTOOLS')
-#define VS140COMNTOOLS GetEnv('VS140COMNTOOLS')
 
 [Setup]
 AppName=WinMerge
