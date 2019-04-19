@@ -2069,8 +2069,8 @@ msgstr " يادداشتها "
 msgid "Filter Comments"
 msgstr " پالايه توضيحات "
 
-#: Merge.rc:7252120B
-msgid "Diff algorithm (Experimental):"
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82
@@ -3004,7 +3004,7 @@ msgstr "&a پرش از همگي "
 msgid "Don't display this &message again."
 msgstr "&m دوباره اين پيام را نمايش نده "
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "&q دوباره اين پرسش را نپرس "

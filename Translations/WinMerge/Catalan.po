@@ -2061,8 +2061,8 @@ msgstr "Comentaris"
 msgid "Filter Comments"
 msgstr "&Filtra els comentaris"
 
-#: Merge.rc:7252120B
-msgid "Diff algorithm (Experimental):"
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82
@@ -2954,7 +2954,7 @@ msgstr "Omet-ho &tot"
 msgid "Don't display this &message again."
 msgstr "No tornis amostrar aquest missatge."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "No tornis a preguntar-ho."

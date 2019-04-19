@@ -1683,9 +1683,9 @@ msgstr "コメント"
 msgid "Filter Comments"
 msgstr "コメントの差異を無視する"
 
-#: Merge.rc:7252120B
-msgid "Diff algorithm (Experimental):"
-msgstr "Diff アルゴリズム (実験的機能):"
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr "Diff アルゴリズム (実験的機能)(&A):"
 
 #: Merge.rc:3BB91A82
 msgid "Editor"
@@ -2470,7 +2470,7 @@ msgstr "すべてスキップ(&A)"
 msgid "Don't display this &message again."
 msgstr "再びこのメッセージを表示しない(&M)"
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 msgid "Don't ask this &question again."
 msgstr "再びこの質問をしない(&Q)"
 

@@ -2062,8 +2062,8 @@ msgstr "Коментари"
 msgid "Filter Comments"
 msgstr "Филтър за коментари"
 
-#: Merge.rc:7252120B
-msgid "Diff algorithm (Experimental):"
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82
@@ -2955,7 +2955,7 @@ msgstr "Прескочи &всички"
 msgid "Don't display this &message again."
 msgstr "Не показвай това съобщение отново."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Не питай пак този въпрос."
