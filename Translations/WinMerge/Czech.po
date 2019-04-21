@@ -2064,6 +2064,10 @@ msgstr "Komentáře"
 msgid "Filter Comments"
 msgstr "Filtrovat kom&entáře"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2953,7 +2957,7 @@ msgstr "Přes&kočit vše"
 msgid "Don't display this &message again."
 msgstr "T&uto zprávu již příště nezobrazovat."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Na t&uto otázku se již příště nedotazovat."

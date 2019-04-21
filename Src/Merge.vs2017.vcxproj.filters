@@ -107,6 +107,15 @@
     <Filter Include="Compare Engines\Header Files">
       <UniqueIdentifier>{e0f6e1ca-9725-4a97-81da-adf12e7a4e42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xdiff">
+      <UniqueIdentifier>{aaf72b76-2f45-4d7e-9d2a-5692d58cdce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xdiff\Source Files">
+      <UniqueIdentifier>{ffdcde37-3059-47f3-b99a-77204a77a641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xdiff\Header Files">
+      <UniqueIdentifier>{41bd2806-5584-4fb1-9fa4-350c8a7fb3d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charsets.c">
@@ -832,6 +841,30 @@
     <ClCompile Include="Common\ShellContextMenu.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xdiffi.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xemit.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xhistogram.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xmerge.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xpatience.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xprepare.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xutils.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xdiff_gnudiff_compat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1496,6 +1529,33 @@
     </ClInclude>
     <ClInclude Include="Common\ShellContextMenu.h">
       <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xdiff.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xdiffi.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xemit.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xinclude.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xmacros.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xprepare.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xtypes.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xutils.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xdiff_gnudiff_compat.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

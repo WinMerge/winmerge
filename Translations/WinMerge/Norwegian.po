@@ -2062,6 +2062,10 @@ msgstr "Kommentarer"
 msgid "Filter Comments"
 msgstr "Filter-kommentarer"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2985,7 +2989,7 @@ msgstr "Hopp over &alle"
 msgid "Don't display this &message again."
 msgstr "Ikke vis denne &meldingen igjen."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Ikke still dette &spørsmålet igjen."

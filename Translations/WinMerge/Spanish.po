@@ -2064,6 +2064,10 @@ msgstr "Comentarios"
 msgid "Filter Comments"
 msgstr "Filtrar comentarios"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2987,7 +2991,7 @@ msgstr "O&mitir todos"
 msgid "Don't display this &message again."
 msgstr "No mostrar este &mensaje de nuevo."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "No &preguntar de nuevo."
