@@ -2065,6 +2065,10 @@ msgstr "Komentarji"
 msgid "Filter Comments"
 msgstr "Komentarji filtrov"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2988,7 +2992,7 @@ msgstr "Preskoči &vse"
 msgid "Don't display this &message again."
 msgstr "Tega sporočila ne kaži več."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Tega vprašanja ne postavi več."
