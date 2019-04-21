@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-04-19 22:03+0000\n"
+"POT-Creation-Date: 2019-04-21 22:56+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2218,6 +2218,10 @@ msgstr ""
 
 #: Merge.rc:2E2C5208
 msgid "&Quick compare limit (MB):"
+msgstr ""
+
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
 msgstr ""
 
 #: Merge.rc:2188DD49

@@ -472,6 +472,7 @@
 #define IDC_UNREGISTER_SHELLEXTENSION   1350
 #define IDC_MARGIN_COLOR_LABEL          1351
 #define IDC_MARGIN_BKGD_COLOR           1352
+#define IDC_COMPARE_BINARYC_LIMIT       1353
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605

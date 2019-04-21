@@ -2242,7 +2242,11 @@ msgstr "再解析ポイントを無視する(&R)"
 
 #: Merge.rc:2E2C5208
 msgid "&Quick compare limit (MB):"
-msgstr "クイック コンテンツ制限 (MB)(&Q):"
+msgstr "クイック比較切替閾値 (MB)(&Q):"
+
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
 #: Merge.rc:2188DD49
 msgid ""

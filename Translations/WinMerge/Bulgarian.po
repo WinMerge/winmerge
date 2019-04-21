@@ -2751,6 +2751,10 @@ msgstr "Игнориране &точки за възстановяване"
 msgid "&Quick compare limit (MB):"
 msgstr "Лимит за бързо сравнение (MB):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
