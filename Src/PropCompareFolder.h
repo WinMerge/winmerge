@@ -43,6 +43,7 @@ public:
 	bool    m_bExpandSubdirs;
 	bool    m_bIgnoreReparsePoints;
 	unsigned m_nQuickCompareLimit;
+	unsigned m_nBinaryCompareLimit;
 	int     m_nCompareThreads;
 	//}}AFX_DATA
 

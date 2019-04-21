@@ -2758,6 +2758,10 @@ msgstr "Игнорировать точки повторной обработк�
 msgid "&Quick compare limit (MB):"
 msgstr "Ограничение быстрого сравнения (МБ)"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"

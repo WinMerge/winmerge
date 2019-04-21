@@ -2768,6 +2768,10 @@ msgstr "Punten voor opnieuw verwerken negeren"
 msgid "&Quick compare limit (MB):"
 msgstr "Limiet snelvergelijking (MB):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid ""

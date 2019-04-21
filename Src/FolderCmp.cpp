@@ -64,13 +64,21 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 {
 	int nIndex;
 	int nCompMethod = pCtxt->GetCompareMethod();
+	int nDirs = pCtxt->GetCompareDirs();
 
 	unsigned code = DIFFCODE::FILE | DIFFCODE::CMPERR;
+
+	if ((nCompMethod == CMP_CONTENT || nCompMethod == CMP_QUICK_CONTENT) &&
+		((di.diffFileInfo[0].size > pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[0].size != DirItem::FILE_SIZE_NONE) ||
+		 (di.diffFileInfo[1].size > pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[1].size != DirItem::FILE_SIZE_NONE) ||
+		 (nDirs > 2 && di.diffFileInfo[2].size > pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[2].size != DirItem::FILE_SIZE_NONE)))
+	{
+		nCompMethod = CMP_BINARY_CONTENT;
+	}
 
 	if (nCompMethod == CMP_CONTENT ||
 		nCompMethod == CMP_QUICK_CONTENT)
 	{
-		int nDirs = pCtxt->GetCompareDirs();
 
 		// Reset text stats
 		for (nIndex = 0; nIndex < nDirs; nIndex++)

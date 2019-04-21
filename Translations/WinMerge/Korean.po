@@ -2763,6 +2763,10 @@ msgstr "재분석 지점 무시하기(&R)"
 msgid "&Quick compare limit (MB):"
 msgstr "빠른 비교 제한 (MB):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
