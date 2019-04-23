@@ -110,6 +110,10 @@ msgstr "с &външен редактор\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "&със..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -544,7 +548,7 @@ msgstr "Избери &шрифт..."
 msgid "Use Default F&ont"
 msgstr "Използвай ш&рифт по подразбиране"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "Размени листовете"
@@ -644,7 +648,7 @@ msgstr "Запиши &лявата част"
 msgid "Save &Middle"
 msgstr "Запази С&редната част"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Запиши &дясната част"
@@ -2062,6 +2066,10 @@ msgstr "Коментари"
 msgid "Filter Comments"
 msgstr "Филтър за коментари"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2747,6 +2755,10 @@ msgstr "Игнориране &точки за възстановяване"
 msgid "&Quick compare limit (MB):"
 msgstr "Лимит за бързо сравнение (MB):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -2951,7 +2963,7 @@ msgstr "Прескочи &всички"
 msgid "Don't display this &message again."
 msgstr "Не показвай това съобщение отново."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Не питай пак този въпрос."
@@ -4170,7 +4182,7 @@ msgstr "Списък, разделен със запетая"
 msgid "Tab-separated list"
 msgstr "Списък, разделен с табулация"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Чист HTML"

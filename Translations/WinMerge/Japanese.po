@@ -93,6 +93,10 @@ msgstr "外部エディタで(&E)\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "プログラムの選択(&W)..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr "シェルメニュー"
+
 #: Merge.rc:1A8FADD3
 msgid "View &Differences"
 msgstr "差異を表示(&D)"
@@ -442,7 +446,7 @@ msgstr "フォントの選択(&F)..."
 msgid "Use Default F&ont"
 msgstr "デフォルト フォントを使用(&O)"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 msgid "Sw&ap Panes"
 msgstr "ペインの交換(&A)"
 
@@ -522,7 +526,7 @@ msgstr "左側のファイルを保存(&L)"
 msgid "Save &Middle"
 msgstr "中央のファイルを保存(&M)"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 msgid "Save &Right"
 msgstr "右側のファイルを保存(&R)"
 
@@ -1683,6 +1687,10 @@ msgstr "コメント"
 msgid "Filter Comments"
 msgstr "コメントの差異を無視する"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr "Diff アルゴリズム (実験的機能)(&A):"
+
 #: Merge.rc:3BB91A82
 msgid "Editor"
 msgstr "エディタ"
@@ -2238,7 +2246,11 @@ msgstr "再解析ポイントを無視する(&R)"
 
 #: Merge.rc:2E2C5208
 msgid "&Quick compare limit (MB):"
-msgstr "クイック コンテンツ制限 (MB)(&Q):"
+msgstr "クイック比較切替閾値 (MB)(&Q):"
+
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
 #: Merge.rc:2188DD49
 msgid ""
@@ -2466,7 +2478,7 @@ msgstr "すべてスキップ(&A)"
 msgid "Don't display this &message again."
 msgstr "再びこのメッセージを表示しない(&M)"
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 msgid "Don't ask this &question again."
 msgstr "再びこの質問をしない(&Q)"
 
@@ -3581,7 +3593,7 @@ msgstr "CSV 形式"
 msgid "Tab-separated list"
 msgstr "TAB 区切り形式"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 msgid "Simple HTML"
 msgstr "シンプルな HTML 形式"
 

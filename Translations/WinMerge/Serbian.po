@@ -109,6 +109,10 @@ msgstr ""
 msgid "&with..."
 msgstr "&са"
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -543,7 +547,7 @@ msgstr "Изабери &слова..."
 msgid "Use Default F&ont"
 msgstr "Користи подразумевана слова"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "З&амени табле"
@@ -643,7 +647,7 @@ msgstr "Сачувај &леву"
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Сачувај &десну"
@@ -2045,6 +2049,10 @@ msgstr "Напомене"
 msgid "Filter Comments"
 msgstr "Филтрирај напомене"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2734,6 +2742,10 @@ msgstr ""
 msgid "&Quick compare limit (MB):"
 msgstr ""
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -2968,7 +2980,7 @@ msgstr "Изост&ави све"
 msgid "Don't display this &message again."
 msgstr "Не приказуј ову поруку поново"
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Не питај поново"
@@ -4206,7 +4218,7 @@ msgstr "Списак је одвојен зарезом"
 msgid "Tab-separated list"
 msgstr "Списак је одвојен језичком"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Једноставни HTML"

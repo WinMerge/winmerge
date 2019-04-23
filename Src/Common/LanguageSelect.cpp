@@ -6,7 +6,6 @@
 
 #include "StdAfx.h"
 #include "LanguageSelect.h"
-#include "VersionInfo.h"
 #include "BCMenu.h"
 #include "Environment.h"
 #include "paths.h"
@@ -416,14 +415,14 @@ LangFileInfo::LangFileInfo(LPCTSTR path)
 	if (_tfopen_s(&f, path, _T("r,ccs=utf-8")) == 0 && f)
 	{
 		wchar_t buf[1024 + 1];
-		while (fgetws(buf, std::size(buf) - 1, f) != nullptr)
+		while (fgetws(buf, static_cast<int>(std::size(buf)) - 1, f) != nullptr)
 		{
 			int i = 0;
 			wcscat_s(buf, L"1");
 			swscanf_s(buf, L"msgid \" LANG_ENGLISH , SUBLANG_ENGLISH_US \" %d", &i);
 			if (i)
 			{
-				if (fgetws(buf, std::size(buf), f) != nullptr)
+				if (fgetws(buf, static_cast<int>(std::size(buf)), f) != nullptr)
 				{
 					wchar_t *lang = wcsstr(buf, L"LANG_");
 					wchar_t *sublang = wcsstr(buf, L"SUBLANG_");
@@ -442,7 +441,7 @@ LangFileInfo::LangFileInfo(LPCTSTR path)
 								sublang = EatPrefix(sublang, L"_");
 						}
 						if (sublang)
-							id = LangId(std::string(lang, lang + wcslen(lang)).c_str(), std::string(sublang, sublang + wcslen(sublang)).c_str());
+							id = LangId(ucr::toUTF8(lang).c_str(), ucr::toUTF8(sublang).c_str());
 					}
 				}
 				break;
@@ -594,7 +593,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	std::wstring format;
 	std::wstring msgstr;
 	std::wstring directive;
-	while (fgetws(buf, std::size(buf), f) != nullptr)
+	while (fgetws(buf, static_cast<int>(std::size(buf)), f) != nullptr)
 	{
 		if (wchar_t *p0 = EatPrefix(buf, L"#:"))
 		{
@@ -789,7 +788,7 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 			}
 		}
 		wchar_t text[80];
-		if (::GetMenuStringW(h, i, text, std::size(text), MF_BYPOSITION))
+		if (::GetMenuStringW(h, i, text, static_cast<int>(std::size(text)), MF_BYPOSITION))
 		{
 			std::wstring s;
 			if (TranslateString(text, s))
@@ -804,7 +803,7 @@ void CLanguageSelect::TranslateDialog(HWND h) const
 	do
 	{
 		wchar_t text[512];
-		::GetWindowTextW(h, text, std::size(text));
+		::GetWindowTextW(h, text, static_cast<int>(std::size(text)));
 		std::wstring s;
 		if (TranslateString(text, s))
 			::SetWindowTextW(h, s.c_str());
@@ -923,7 +922,7 @@ String CLanguageSelect::LoadString(UINT id) const
 	if (id)
 	{
 		wchar_t text[1024];
-		AfxLoadString(id, text, std::size(text));
+		AfxLoadString(id, text, static_cast<unsigned>(std::size(text)));
 		if (!TranslateString(text, s))
 			s = text;
 	}
@@ -999,7 +998,7 @@ static WORD GetLangFromLocale(LCID lcid)
 {
 	TCHAR buff[8] = {0};
 	WORD langID = 0;
-	if (GetLocaleInfo(lcid, LOCALE_IDEFAULTLANGUAGE, buff, std::size(buff)))
+	if (GetLocaleInfo(lcid, LOCALE_IDEFAULTLANGUAGE, buff, static_cast<int>(std::size(buff))))
 		_stscanf_s(buff, _T("%4hx"), &langID);
 	return langID;
 }

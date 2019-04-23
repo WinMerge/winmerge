@@ -478,6 +478,8 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 	String strValueName;
 	LONG retValReg;
 
+	retVal = COptionsMgr::RemoveOption(name);
+
 	SplitName(name, strPath, strValueName);
 	strRegPath += strPath;
 

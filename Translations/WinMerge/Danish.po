@@ -111,6 +111,10 @@ msgstr ""
 msgid "&with..."
 msgstr "&med..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -545,7 +549,7 @@ msgstr "Vælg &skrifttype..."
 msgid "Use Default F&ont"
 msgstr "Brug standard s&krifttype"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "By&t vinduer"
@@ -645,7 +649,7 @@ msgstr "Gem &venstre"
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Gem &højre"
@@ -2067,6 +2071,10 @@ msgstr "Kommentarer"
 msgid "Filter Comments"
 msgstr "Filter Kommentarer"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2758,6 +2766,10 @@ msgstr ""
 msgid "&Quick compare limit (MB):"
 msgstr "&Grænse for hurtig sammenligning (MB):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -2999,7 +3011,7 @@ msgstr "Spring over all&e"
 msgid "Don't display this &message again."
 msgstr "Vis ikke denne &besked igen."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Stil ikke dette sp&ørgsmål igen."
@@ -4264,7 +4276,7 @@ msgstr "Komma opdelt liste"
 msgid "Tab-separated list"
 msgstr "Tab opdelt liste"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Simpel HTML"

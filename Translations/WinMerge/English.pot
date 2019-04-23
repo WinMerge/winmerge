@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-03-30 21:22+0000\n"
+"POT-Creation-Date: 2019-04-24 04:28+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -84,6 +84,10 @@ msgstr ""
 
 #: Merge.rc:AC3AA12
 msgid "&with..."
+msgstr ""
+
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
 msgstr ""
 
 #: Merge.rc:1A8FADD3
@@ -435,7 +439,7 @@ msgstr ""
 msgid "Use Default F&ont"
 msgstr ""
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 msgid "Sw&ap Panes"
 msgstr ""
 
@@ -515,7 +519,7 @@ msgstr ""
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 msgid "Save &Right"
 msgstr ""
 
@@ -1668,6 +1672,10 @@ msgstr ""
 msgid "Filter Comments"
 msgstr ""
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 msgid "Editor"
 msgstr ""
@@ -2216,6 +2224,10 @@ msgstr ""
 msgid "&Quick compare limit (MB):"
 msgstr ""
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
@@ -2380,7 +2392,7 @@ msgstr ""
 msgid "Don't display this &message again."
 msgstr ""
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 msgid "Don't ask this &question again."
 msgstr ""
 
@@ -3311,7 +3323,7 @@ msgstr ""
 msgid "Tab-separated list"
 msgstr ""
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 msgid "Simple HTML"
 msgstr ""
 

@@ -74,6 +74,24 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 	m_bIgnoreBlankLines = options.bIgnoreBlankLines;
 	m_bIgnoreCase = options.bIgnoreCase;
 	m_bIgnoreEOLDifference = options.bIgnoreEol;
+	switch (options.nDiffAlgorithm)
+	{
+	case 0:
+		m_diffAlgorithm = DIFF_ALGORITHM_DEFAULT;
+		break;
+	case 1:
+		m_diffAlgorithm = DIFF_ALGORITHM_MINIMAL;
+		break;
+	case 2:
+		m_diffAlgorithm = DIFF_ALGORITHM_PATIENCE;
+		break;
+	case 3:
+		m_diffAlgorithm = DIFF_ALGORITHM_HISTOGRAM;
+		break;
+	default:
+		throw "Unknown diff algorithm value!";
+		break;
+	}
 }
 
 /**

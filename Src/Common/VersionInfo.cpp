@@ -1,5 +1,5 @@
 /**
- *  @file version.cpp
+ *  @file VersionInfo.cpp
  *
  *  @brief Implementation of CVersionInfo class
  */ 
@@ -8,11 +8,9 @@
 #include "VersionInfo.h"
 #include <windows.h>
 #include <cstdio>
-#include <tchar.h>
 #include <cassert>
 #include <strsafe.h>
 #include "UnicodeString.h"
-#include "TFile.h"
 
 /** 
  * @brief Structure used to store language and codepage.

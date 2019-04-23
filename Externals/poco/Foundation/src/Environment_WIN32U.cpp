@@ -87,6 +87,7 @@ void EnvironmentImpl::setImpl(const std::string& name, const std::string& value)
 
 std::string EnvironmentImpl::osNameImpl()
 {
+#if 0
 	OSVERSIONINFO vi;
 	vi.dwOSVersionInfoSize = sizeof(vi);
 	if (GetVersionEx(&vi) == 0) throw SystemException("Cannot get OS version information");
@@ -101,11 +102,15 @@ std::string EnvironmentImpl::osNameImpl()
 	default:
 		return "Unknown";
 	}
+#else
+	throw SystemException("Cannot get OS version information");
+#endif
 }
 
 
 std::string EnvironmentImpl::osDisplayNameImpl()
 {
+#if 0
 	OSVERSIONINFO vi;
 	vi.dwOSVersionInfoSize = sizeof(vi);
 	if (GetVersionEx(&vi) == 0) throw SystemException("Cannot get OS version information");
@@ -148,11 +153,15 @@ std::string EnvironmentImpl::osDisplayNameImpl()
 	default:
 		return "Unknown";
 	}
+#else
+	throw SystemException("Cannot get OS version information");
+#endif
 }
 
 
 std::string EnvironmentImpl::osVersionImpl()
 {
+#if 0
 	OSVERSIONINFOW vi;
 	vi.dwOSVersionInfoSize = sizeof(vi);
 	if (GetVersionExW(&vi) == 0) throw SystemException("Cannot get OS version information");
@@ -163,6 +172,9 @@ std::string EnvironmentImpl::osVersionImpl()
 	if (!version.empty()) str << ": " << version;
 	str << ")";
 	return str.str();
+#else
+	throw SystemException("Cannot get OS version information");
+#endif
 }
 
 

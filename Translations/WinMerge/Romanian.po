@@ -110,6 +110,10 @@ msgstr ""
 msgid "&with..."
 msgstr "&cu..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -544,7 +548,7 @@ msgstr "Selectează &font..."
 msgid "Use Default F&ont"
 msgstr "Utilizează font im&plicit"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "Interschimbă p&anourile"
@@ -644,7 +648,7 @@ msgstr "Sa&lvare stânga"
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Salvare d&reapta"
@@ -2062,6 +2066,10 @@ msgstr "Comentarii"
 msgid "Filter Comments"
 msgstr "Comentarii filtre"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2747,6 +2755,10 @@ msgstr ""
 msgid "&Quick compare limit (MB):"
 msgstr ""
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -2981,7 +2993,7 @@ msgstr "Omite to&ate"
 msgid "Don't display this &message again."
 msgstr "Nu afişa acest &mesaj din nou."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Nu î&ntreba aceasta din nou."
@@ -4206,7 +4218,7 @@ msgstr "Listă separată-de-virgule"
 msgid "Tab-separated list"
 msgstr "Listă separată-de-tab-uri"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "HTML simplu"

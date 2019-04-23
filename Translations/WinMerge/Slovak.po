@@ -110,6 +110,10 @@ msgstr ""
 msgid "&with..."
 msgstr "Čí&m..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -544,7 +548,7 @@ msgstr "&Zvoliť písmo..."
 msgid "Use Default F&ont"
 msgstr "Použiť základné písm&o"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "&Vymeniť panely"
@@ -644,7 +648,7 @@ msgstr "Uložiť ľ&avý"
 msgid "Save &Middle"
 msgstr ""
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Uložiť &pravý"
@@ -2062,6 +2066,10 @@ msgstr "Komentáre"
 msgid "Filter Comments"
 msgstr "Filtrovať komentáre"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2751,6 +2759,10 @@ msgstr ""
 msgid "&Quick compare limit (MB):"
 msgstr ""
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -2985,7 +2997,7 @@ msgstr "Preskočiť vš&etky"
 msgid "Don't display this &message again."
 msgstr "Už túto správu nezobrazovať."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Už sa túto otázku nepýtať."
@@ -4232,7 +4244,7 @@ msgstr "Zoznam oddelený čiarkami"
 msgid "Tab-separated list"
 msgstr "Zoznam oddelený tabulátormi"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Jednoduché HTML"

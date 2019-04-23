@@ -112,6 +112,10 @@ msgstr "使用外部编辑器(&E)\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "选择程序(&W)..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -546,7 +550,7 @@ msgstr "选择字体(&F)..."
 msgid "Use Default F&ont"
 msgstr "使用默认字体(&O)"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "交换左右窗格(&A)"
@@ -646,7 +650,7 @@ msgstr "保存左侧(&L)"
 msgid "Save &Middle"
 msgstr "保存中间(&M)"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "保存右侧(&R)"
@@ -2064,6 +2068,10 @@ msgstr "备注"
 msgid "Filter Comments"
 msgstr "过滤注释"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2749,6 +2757,10 @@ msgstr "忽略重新解析点(&R)"
 msgid "&Quick compare limit (MB):"
 msgstr "快速比较限制 (MB) (&Q):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -2953,7 +2965,7 @@ msgstr "全部跳过(&A)"
 msgid "Don't display this &message again."
 msgstr "不再提示此消息(&M)."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "不再询问此问题(&Q)."
@@ -4172,7 +4184,7 @@ msgstr "逗号分隔的列表"
 msgid "Tab-separated list"
 msgstr "制表符分隔的列表"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "简单 HTML"

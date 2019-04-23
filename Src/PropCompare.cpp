@@ -28,6 +28,7 @@ PropCompare::PropCompare(COptionsMgr *optionsMgr)
  , m_bMovedBlocks(false)
  , m_bMatchSimilarLines(false)
  , m_bFilterCommentsLines(false)
+ , m_nDiffAlgorithm(0)
 {
 }
 
@@ -35,6 +36,7 @@ void PropCompare::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompare)
+	DDX_CBIndex(pDX, IDC_DIFF_ALGORITHM, m_nDiffAlgorithm);
 	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
 	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
 	DDX_Check(pDX, IDC_FILTERCOMMENTS_CHECK, m_bFilterCommentsLines);
@@ -44,12 +46,14 @@ void PropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
 	DDX_Check(pDX, IDC_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 	//}}AFX_DATA_MAP
+	UpdateControls();
 }
 
 
 BEGIN_MESSAGE_MAP(PropCompare, CPropertyPage)
 	//{{AFX_MSG_MAP(PropCompare)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
+	ON_CBN_SELCHANGE(IDC_DIFF_ALGORITHM, OnCbnSelchangeDiffAlgorithm)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -68,6 +72,7 @@ void PropCompare::ReadOptions()
 	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_bMovedBlocks = GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS);
 	m_bMatchSimilarLines = GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES);
+	m_nDiffAlgorithm = GetOptionsMgr()->GetInt(OPT_CMP_DIFF_ALGORITHM);
 }
 
 /** 
@@ -85,6 +90,28 @@ void PropCompare::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase);
 	GetOptionsMgr()->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks);
 	GetOptionsMgr()->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
+	GetOptionsMgr()->SaveOption(OPT_CMP_DIFF_ALGORITHM, m_nDiffAlgorithm);
+}
+
+/** 
+ * @brief Called before propertysheet is drawn.
+ */
+BOOL PropCompare::OnInitDialog()
+{
+	OptionsPanel::OnInitDialog();
+	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_DIFF_ALGORITHM);
+
+	String item = _("default");
+	combo->AddString(item.c_str());
+	item = _("minimal");
+	combo->AddString(item.c_str());
+	item = _("patience");
+	combo->AddString(item.c_str());
+	item = _("histogram");
+	combo->AddString(item.c_str());
+	combo->SetCurSel(m_nDiffAlgorithm);
+
+	return TRUE;  // return TRUE unless you set the focus to a control
 }
 
 /** 
@@ -100,5 +127,17 @@ void PropCompare::OnDefaults()
 	m_bIgnoreCase = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_CASE);
 	m_bMovedBlocks = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MOVED_BLOCKS);
 	m_bMatchSimilarLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MATCH_SIMILAR_LINES);
+	m_nDiffAlgorithm = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_DIFF_ALGORITHM);
 	UpdateData(FALSE);
+}
+
+void PropCompare::OnCbnSelchangeDiffAlgorithm()
+{
+	UpdateControls();
+}
+
+void PropCompare::UpdateControls()
+{
+	CComboBox * pCombo = (CComboBox*)GetDlgItem(IDC_DIFF_ALGORITHM);
+	EnableDlgItem(IDC_MOVED_BLOCKS, pCombo->GetCurSel() == 0);
 }

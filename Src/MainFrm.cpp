@@ -342,7 +342,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 	theApp.SetIndicators(m_wndStatusBar, StatusbarIndicators,
-			std::size(StatusbarIndicators));
+			static_cast<int>(std::size(StatusbarIndicators)));
 
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
@@ -2141,9 +2141,9 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 		_mbstowcsz(pTTTW->szText, strTipText, std::size(pTTTW->szText));
 #else
 	if (pNMHDR->code == TTN_NEEDTEXTA)
-		_wcstombsz(pTTTA->szText, strTipText, std::size(pTTTA->szText));
+		_wcstombsz(pTTTA->szText, strTipText, static_cast<ULONG>(std::size(pTTTA->szText)));
 	else
-		lstrcpyn(pTTTW->szText, strTipText, std::size(pTTTW->szText));
+		lstrcpyn(pTTTW->szText, strTipText, static_cast<int>(std::size(pTTTW->szText)));
 #endif
 	*pResult = 0;
 

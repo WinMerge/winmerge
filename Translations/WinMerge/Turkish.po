@@ -111,6 +111,10 @@ msgstr "Dış Düz&enleyici ile\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "&Birlikte Aç..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -545,7 +549,7 @@ msgstr "Ya&zı Türünü Seçin..."
 msgid "Use Default F&ont"
 msgstr "Varsayılan Yazı &Türü Kullanılsın"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "&Panoların Yerini Değiştir"
@@ -645,7 +649,7 @@ msgstr "So&lu Kaydet"
 msgid "Save &Middle"
 msgstr "&Ortayı Kaydet"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "&Sağı Kaydet"
@@ -2065,6 +2069,10 @@ msgstr "Açıklamalar"
 msgid "Filter Comments"
 msgstr "Açıklamalar Süzülsün"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2754,6 +2762,10 @@ msgstr "Yeniden İşleme Noktala&rı Yok Sayılsın"
 msgid "&Quick compare limit (MB):"
 msgstr "&Hızlı Karşılaştırma Sınırı (MB):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -2995,7 +3007,7 @@ msgstr "&Tümünü Atla"
 msgid "Don't display this &message again."
 msgstr "Bu ileti &yeniden görüntülenmesin."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Bu soru &yeniden sorulmasın."
@@ -4202,7 +4214,7 @@ msgstr "Virgül ile ayrılmış liste"
 msgid "Tab-separated list"
 msgstr "Sekme ile ayrılmış liste"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Basit HTML"

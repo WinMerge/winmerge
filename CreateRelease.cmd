@@ -3,7 +3,7 @@ set workdir=BuildTmp\Src
 if "%1" == "vs2015" (
   set vsversion=vs2015
 ) else (
-  set vsversion=vs2017
+  set vsversion=vs2015
 )
 
 pushd "%~dp0"

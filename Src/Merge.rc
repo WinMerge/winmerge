@@ -84,6 +84,7 @@ BEGIN
             MENUITEM "with &External Editor\tCtrl+Alt+E", ID_FILE_OPEN_WITHEDITOR
             MENUITEM "&with...",                    ID_FILE_OPEN_WITH
         END
+        MENUITEM "S&hell Menu",                 ID_FILE_SHELLMENU
     END
 END
 
@@ -807,6 +808,7 @@ END
 //
 // Accelerator
 //
+
 IDR_MERGEDOCTYPE ACCELERATORS
 BEGIN
     "1",            ID_NEXTDIFFLM,          VIRTKEY, ALT, NOINVERT
@@ -1262,7 +1264,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,153,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 255, 205
+IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 255, 220
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1281,6 +1283,8 @@ BEGIN
     GROUPBOX        "Comments",IDC_STATIC,7,164,241,32
     CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,177,205,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,7,198,70,14
+    LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,138,140,20
+    COMBOBOX        IDC_DIFF_ALGORITHM,145,138,100,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 255, 215
@@ -1711,9 +1715,11 @@ BEGIN
     CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,202,10
     LTEXT           "&Quick compare limit (MB):",IDC_STATIC,7,96,200,10
     EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,108,30,14,ES_AUTOHSCROLL
+    LTEXT           "&Binary compare limit (MB):",IDC_STATIC,7,126,200,10
+    EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,7,138,30,14,ES_AUTOHSCROLL
+    LTEXT           "&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,7,154,230,30
+    EDITTEXT        IDC_COMPARE_THREAD_COUNT,7,176,30,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,198,70,14
-    LTEXT           "&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,7,124,230,30
-    EDITTEXT        IDC_COMPARE_THREAD_COUNT,7,156,30,14,ES_AUTOHSCROLL
 END
 
 IDD_PROPPAGE_COMPARE_BINARY DIALOGEX 0, 0, 255, 205

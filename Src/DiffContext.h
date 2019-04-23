@@ -172,6 +172,8 @@ public:
 	 */
 	int m_nQuickCompareLimit;
 
+	int m_nBinaryCompareLimit;
+
 	/**
 	 * Walk into unique folders and add contents.
 	 * This enables/disables walking into unique folders. If we don't walk into

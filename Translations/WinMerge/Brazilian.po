@@ -113,6 +113,10 @@ msgstr "com o &Editor Externo\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "&com..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -547,7 +551,7 @@ msgstr "Selecionar a &Fonte..."
 msgid "Use Default F&ont"
 msgstr "Usar a Fonte P&adrão"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "Tr&ocar os Painéis"
@@ -647,7 +651,7 @@ msgstr "Salvar &o da Esquerda"
 msgid "Save &Middle"
 msgstr "Salvar &o do Meio"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Salvar &o da Direita"
@@ -2065,6 +2069,10 @@ msgstr "Comentários"
 msgid "Filter Comments"
 msgstr "Comentários do Filtro"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2758,6 +2766,10 @@ msgstr "Ignorar &Pontos de Re-análise"
 msgid "&Quick compare limit (MB):"
 msgstr "&Limite de comparação rápida (MB):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr "&Limite de comparação rápida (MB):"
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -3012,7 +3024,7 @@ msgstr "Ignorar &tudo"
 msgid "Don't display this &message again."
 msgstr "Não exibir esta &mensagem de novo."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Não perguntar esta &questão de novo."
@@ -4259,7 +4271,7 @@ msgstr "Lista separada por vírgula"
 msgid "Tab-separated list"
 msgstr "Lista separada por aba"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "HTML Simples"

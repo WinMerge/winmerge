@@ -114,6 +114,10 @@ msgstr "외부 편집기로(&E)\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "프로그램 선택(&W)..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -548,7 +552,7 @@ msgstr "글꼴 선택(&F)..."
 msgid "Use Default F&ont"
 msgstr "기본 글꼴 사용(&O)"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "창 맞바꾸기(&A)"
@@ -648,7 +652,7 @@ msgstr "왼쪽 저장(&L)"
 msgid "Save &Middle"
 msgstr "가운데 저장(&M)"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "오른쪽 저장(&R)"
@@ -2066,6 +2070,10 @@ msgstr "코멘트"
 msgid "Filter Comments"
 msgstr "코멘트 필터링하기"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2759,6 +2767,10 @@ msgstr "재분석 지점 무시하기(&R)"
 msgid "&Quick compare limit (MB):"
 msgstr "빠른 비교 제한 (MB):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -3013,7 +3025,7 @@ msgstr "전부 건너뛰기(&A)"
 msgid "Don't display this &message again."
 msgstr "이 메시지를 다시 표시하지 않음(&M)"
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "다시 묻지 않음(&Q)"
@@ -4259,7 +4271,7 @@ msgstr "쉼표로 분리된 목록"
 msgid "Tab-separated list"
 msgstr "탭으로 분리된 목록"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "단순한 HTML"

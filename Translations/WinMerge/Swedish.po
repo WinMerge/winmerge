@@ -112,6 +112,10 @@ msgstr "med Extern Redigerare\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "med ..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -546,7 +550,7 @@ msgstr "Välj Teckensnitt ..."
 msgid "Use Default F&ont"
 msgstr "Använd FörvalsTeckensnitt"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "Växla Rutor"
@@ -646,7 +650,7 @@ msgstr "Spara Vänster fil"
 msgid "Save &Middle"
 msgstr "Spara Mitter fil"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Spara Höger fil"
@@ -2067,6 +2071,10 @@ msgstr "Kommentarer"
 msgid "Filter Comments"
 msgstr "FilterKommentarer"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2759,6 +2767,10 @@ msgstr "Åsidosätt ÅtertolkningsMarkeringar"
 msgid "&Quick compare limit (MB):"
 msgstr "Högsta SnabbJämförelseStorlek (MB):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 msgid ""
 "&Number of compare threads (a negative value implies addition of the number "
@@ -3017,7 +3029,7 @@ msgstr "Hoppa över allt"
 msgid "Don't display this &message again."
 msgstr "Visa inte detta meddelande igen."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Fråga inte denna fråga igen."
@@ -4286,7 +4298,7 @@ msgstr "Komma-skild lista"
 msgid "Tab-separated list"
 msgstr "Tab-skild lista"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "Enkel HTML"

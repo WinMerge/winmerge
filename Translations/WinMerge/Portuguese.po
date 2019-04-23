@@ -110,6 +110,10 @@ msgstr "com editor externo\tCtrl+Alt+E"
 msgid "&with..."
 msgstr "com..."
 
+#: Merge.rc:2E3BFCA1
+msgid "S&hell Menu"
+msgstr ""
+
 #: Merge.rc:1A8FADD3
 #, c-format
 msgid "View &Differences"
@@ -544,7 +548,7 @@ msgstr "Selecionar &Fonte..."
 msgid "Use Default F&ont"
 msgstr "Usar Fonte Pre&definida"
 
-#: Merge.rc:2E3BFCA1
+#: Merge.rc:2E3BFCA2
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "Trocar Janelas"
@@ -644,7 +648,7 @@ msgstr "Guardar Esquerda"
 msgid "Save &Middle"
 msgstr "Guardar &Meio"
 
-#: Merge.rc:2E3BFCA2
+#: Merge.rc:2E3BFCA3
 #, c-format
 msgid "Save &Right"
 msgstr "Guardar Direita"
@@ -2062,6 +2066,10 @@ msgstr "Comentários"
 msgid "Filter Comments"
 msgstr "Filtrar comentários"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
 #: Merge.rc:3BB91A82
 #, c-format
 msgid "Editor"
@@ -2747,6 +2755,10 @@ msgstr "Ignorar pontos de &análise"
 msgid "&Quick compare limit (MB):"
 msgstr "&Limite da comparação rápida (MB):"
 
+#: Merge.rc:175DEEF0
+msgid "&Binary compare limit (MB):"
+msgstr ""
+
 #: Merge.rc:2188DD49
 #, c-format
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
@@ -2951,7 +2963,7 @@ msgstr "Avançar todos"
 msgid "Don't display this &message again."
 msgstr "Não voltar a exibir esta mensagem."
 
-#: Merge.rc:57F02FB4
+#: Merge.rc:57F02FB5
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Não voltar a perguntar."
@@ -4040,7 +4052,7 @@ msgstr "Lista separada por vírgulas"
 msgid "Tab-separated list"
 msgstr "Lista de separadores"
 
-#: Merge.rc:2E3BFCA3
+#: Merge.rc:2E3BFCA4
 #, c-format
 msgid "Simple HTML"
 msgstr "HTML simples"
