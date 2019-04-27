@@ -55,9 +55,6 @@ protected:
 	//{{AFX_MSG(PropCompare)
 	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnDefaults();
-	afx_msg void OnCbnSelchangeDiffAlgorithm();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-	void UpdateControls();
 };
