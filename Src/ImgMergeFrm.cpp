@@ -666,10 +666,15 @@ bool CImgMergeFrame::DoFileSave(int pane)
 			theApp.CreateBackup(false, filename);
 			if (!m_pImgMergeWindow->SaveImage(pane))
 			{
+				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"), filename, GetSysError());
+				int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
+				if (answer == IDOK)
+					return DoFileSaveAs(pane);
 				return false;
 			}
 		}
 		UpdateDiffItem(m_pDirDoc);
+		m_fileInfo[pane].Update(m_filePaths[pane]);
 	}
 	return true;
 }
@@ -685,11 +690,18 @@ bool CImgMergeFrame::DoFileSaveAs(int pane)
 		title = _("Save Right File As");
 	else
 		title = _("Save Middle File As");
+RETRY:
 	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
 	{
 		std::wstring filename = ucr::toUTF16(strPath).c_str();
-		if (m_pImgMergeWindow->SaveImageAs(pane, filename.c_str()))
+		if (!m_pImgMergeWindow->SaveImageAs(pane, filename.c_str()))
+		{
+			String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"), strPath, GetSysError());
+			int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
+			if (answer == IDOK)
+				goto RETRY;
 			return false;
+		}
 		if (path.empty())
 		{
 			// We are saving scratchpad (unnamed file)
@@ -699,6 +711,7 @@ bool CImgMergeFrame::DoFileSaveAs(int pane)
 
 		m_filePaths.SetPath(pane, strPath);
 		UpdateDiffItem(m_pDirDoc);
+		m_fileInfo[pane].Update(m_filePaths[pane]);
 		UpdateHeaderPath(pane);
 	}
 	return true;
