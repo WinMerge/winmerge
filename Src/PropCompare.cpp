@@ -46,14 +46,12 @@ void PropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
 	DDX_Check(pDX, IDC_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 	//}}AFX_DATA_MAP
-	UpdateControls();
 }
 
 
 BEGIN_MESSAGE_MAP(PropCompare, CPropertyPage)
 	//{{AFX_MSG_MAP(PropCompare)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
-	ON_CBN_SELCHANGE(IDC_DIFF_ALGORITHM, OnCbnSelchangeDiffAlgorithm)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -129,15 +127,4 @@ void PropCompare::OnDefaults()
 	m_bMatchSimilarLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MATCH_SIMILAR_LINES);
 	m_nDiffAlgorithm = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_DIFF_ALGORITHM);
 	UpdateData(FALSE);
-}
-
-void PropCompare::OnCbnSelchangeDiffAlgorithm()
-{
-	UpdateControls();
-}
-
-void PropCompare::UpdateControls()
-{
-	CComboBox * pCombo = (CComboBox*)GetDlgItem(IDC_DIFF_ALGORITHM);
-	EnableDlgItem(IDC_MOVED_BLOCKS, pCombo->GetCurSel() == 0);
 }

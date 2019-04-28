@@ -64,6 +64,31 @@ static int hunk_func(long start_a, long count_a, long start_b, long count_b, voi
 	return 0;
 }
 
+static void append_equivs(const xdfile_t& xdf, struct file_data& filevec, std::vector<xrecord_t *>& equivs, unsigned xdl_flags)
+{
+	for (int i = 0; i < xdf.nrec; ++i)
+	{
+		int j;
+		for (j = 0; j < static_cast<int>(equivs.size()); j++)
+		{
+			if (equivs[j]->ha == xdf.recs[i]->ha &&
+				xdl_recmatch(equivs[j]->ptr, equivs[j]->size, xdf.recs[i]->ptr, xdf.recs[i]->size, xdl_flags))
+			{
+				break;
+			}
+		}
+		if (j < static_cast<int>(equivs.size()))
+		{
+			filevec.equivs[i] = j;
+		}
+		else
+		{
+			filevec.equivs[i] = static_cast<int>(equivs.size());
+			equivs.push_back(xdf.recs[i]);
+		}
+	}
+}
+
 struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_blocks_flag, unsigned xdl_flags)
 {
 	mmfile_t mmfile1 = { 0 }, mmfile2 = { 0 };
@@ -137,10 +162,13 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_block
 			prev = e;
 		}
 
-		/* FIXME:
 		if (bMoved_blocks_flag)
+		{
+			std::vector<xrecord_t *> equivs;
+			append_equivs(xe.xdf1, filevec[0], equivs, xdl_flags);
+			append_equivs(xe.xdf2, filevec[1], equivs, xdl_flags);
 			moved_block_analysis(&script, filevec);
-		 */
+		}
 
 		xdl_free_script(xscr);
 		xdl_free_env(&xe);
