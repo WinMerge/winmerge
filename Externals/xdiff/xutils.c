@@ -122,6 +122,11 @@ void *xdl_cha_alloc(chastore_t *cha) {
 	return data;
 }
 
+static inline int is_eol(char const* ptr, char const* top)
+{
+	return (*ptr == '\n' || (*ptr == '\r' && (ptr == top - 1 || *(ptr + 1) != '\n')));
+}
+
 long xdl_guess_lines(mmfile_t *mf, long sample) {
 	long nl = 0, size, tsize = 0;
 	char const *data, *cur, *top;
@@ -154,11 +159,6 @@ int xdl_blankline(const char *line, long size, long flags)
 		;
 
 	return (i == size);
-}
-
-static inline int is_eol(char const* ptr, char const* top)
-{
-	return (*ptr == '\n' || (*ptr == '\r' && (ptr == top - 1 || *(ptr + 1) != '\n')));
 }
 
 /*
