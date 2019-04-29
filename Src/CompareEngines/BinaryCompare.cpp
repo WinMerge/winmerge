@@ -29,8 +29,8 @@ static int compare_files(const String& file1, const String& file2)
 	int code;
 	int fd1 = -1, fd2 = -1;
 	
-	_tsopen_s(&fd1, TFile(file1).wpath().c_str(), O_BINARY | O_RDONLY, _SH_DENYWR, _S_IREAD);
-	_tsopen_s(&fd2, TFile(file2).wpath().c_str(), O_BINARY | O_RDONLY, _SH_DENYWR, _S_IREAD);
+	_tsopen_s(&fd1, TFile(file1).wpath().c_str(), O_BINARY | O_RDONLY, _SH_DENYNO, _S_IREAD);
+	_tsopen_s(&fd2, TFile(file2).wpath().c_str(), O_BINARY | O_RDONLY, _SH_DENYNO, _S_IREAD);
 	if (fd1 != -1 && fd2 != -1)
 	{
 		for (;;)

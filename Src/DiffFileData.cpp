@@ -79,7 +79,7 @@ bool DiffFileData::DoOpenFiles()
 		if (m_inf[i].desc == 0)
 		{
 			_tsopen_s(&m_inf[i].desc, TFile(m_FileLocation[i].filepath).wpath().c_str(),
-					O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
+					O_RDONLY | O_BINARY, _SH_DENYNO, _S_IREAD);
 		}
 		if (m_inf[i].desc < 0)
 			return false;
