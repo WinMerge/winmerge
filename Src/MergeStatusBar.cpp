@@ -34,11 +34,11 @@
 #endif
 
 /** @brief RO status panel width (point) */
-static const UINT RO_PANEL_WIDTH = 30;
+static const UINT RO_PANEL_WIDTH = 20;
 /** @brief Encoding status panel width (point) */
-static const UINT ENCODING_PANEL_WIDTH = 120;
+static const UINT ENCODING_PANEL_WIDTH = 90;
 /** @brief EOL type status panel width (point) */
-static const UINT EOL_PANEL_WIDTH = 45;
+static const UINT EOL_PANEL_WIDTH = 30;
 
 /**
  * @brief Statusbar pane indexes
@@ -122,8 +122,8 @@ BOOL CMergeStatusBar::Create(CWnd* pParentWnd)
 	{
 		SetPaneStyle(PANE_PANE0_INFO     + pane * nColumnsPerPane, SBPS_NORMAL);
 		SetPaneStyle(PANE_PANE0_ENCODING + pane * nColumnsPerPane, SBPS_OWNERDRAW);
-		SetPaneStyle(PANE_PANE0_RO       + pane * nColumnsPerPane, SBPS_NORMAL);
 		SetPaneStyle(PANE_PANE0_EOL      + pane * nColumnsPerPane, SBPS_OWNERDRAW);
+		SetPaneStyle(PANE_PANE0_RO       + pane * nColumnsPerPane, SBPS_NORMAL);
 	}
 
 	return TRUE;
@@ -187,7 +187,7 @@ void CMergeStatusBar::Resize(int widths[])
 	for (int pane = 0; pane < m_nPanes; pane++)
 	{
 		int paneWidth = widths[pane] - (pointToPixel(RO_PANEL_WIDTH + ENCODING_PANEL_WIDTH + EOL_PANEL_WIDTH) +
-			(2 * borderWidth));
+			(3 * borderWidth));
 		if (paneWidth < borderWidth)
 			paneWidth = borderWidth;
 
@@ -247,7 +247,7 @@ void CMergeStatusBar::MergeStatus::Update()
 		}
 
 		if (m_nCodepage > 0)
-			strEncoding.Format(_("%d(%s)").c_str(), m_nCodepage, m_sCodepageName.c_str());
+			strEncoding.Format(_("%s").c_str(), m_sCodepageName.c_str());
 		m_pWndStatusBar->SetPaneText(m_base, strInfo);
 		m_pWndStatusBar->SetPaneText(m_base + 1, strEncoding);
 	}

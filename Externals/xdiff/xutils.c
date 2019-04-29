@@ -49,7 +49,7 @@ int xdl_emit_diffrec(char const *rec, long size, char const *pre, long psize,
 	mb[0].size = psize;
 	mb[1].ptr = (char *) rec;
 	mb[1].size = size;
-	if (size > 0 && rec[size - 1] != '\n') {
+	if (size > 0 && !is_eol(rec + size - 1, rec + size)) {
 		mb[2].ptr = (char *) "\n\\ No newline at end of file\n";
 		mb[2].size = strlen(mb[2].ptr);
 		i++;
@@ -129,9 +129,9 @@ long xdl_guess_lines(mmfile_t *mf, long sample) {
 	if ((cur = data = xdl_mmfile_first(mf, &size)) != NULL) {
 		for (top = data + size; nl < sample && cur < top; ) {
 			nl++;
-			if (!(cur = memchr(cur, '\n', top - cur)))
-				cur = top;
-			else
+			while (cur < top && !is_eol(cur, top))
+				cur++;
+			if (is_eol(cur, top))
 				cur++;
 		}
 		tsize += (long) (cur - data);
@@ -156,13 +156,18 @@ int xdl_blankline(const char *line, long size, long flags)
 	return (i == size);
 }
 
+static inline int is_eol(char const* ptr, char const* top)
+{
+	return (*ptr == '\n' || (*ptr == '\r' && (ptr == top - 1 || *(ptr + 1) != '\n')));
+}
+
 /*
  * Have we eaten everything on the line, except for an optional
  * CR at the very end?
  */
 static int ends_with_optional_cr(const char *l, long s, long i)
 {
-	int complete = s && l[s-1] == '\n';
+	int complete = s && is_eol(l + s - 1, l + s);
 
 	if (complete)
 		s--;
@@ -279,7 +284,7 @@ static unsigned long xdl_hash_record_with_whitespace(char const **data,
 	char const *ptr = *data;
 	int cr_at_eol_only = (flags & XDF_WHITESPACE_FLAGS) == XDF_IGNORE_CR_AT_EOL;
 
-	for (; ptr < top && *ptr != '\n'; ptr++) {
+	for (; ptr < top && !is_eol(ptr, top); ptr++) {
 		if (cr_at_eol_only) {
 			/* do not ignore CR at the end of an incomplete line */
 			if (*ptr == '\r' &&
@@ -290,9 +295,9 @@ static unsigned long xdl_hash_record_with_whitespace(char const **data,
 			const char *ptr2 = ptr;
 			int at_eol;
 			while (ptr + 1 < top && XDL_ISSPACE(ptr[1])
-					&& ptr[1] != '\n')
+					&& !is_eol(ptr + 1, top))
 				ptr++;
-			at_eol = (top <= ptr + 1 || ptr[1] == '\n');
+			at_eol = (top <= ptr + 1 || is_eol(ptr + 1, top));
 			if (flags & XDF_IGNORE_WHITESPACE)
 				; /* already handled */
 			else if (flags & XDF_IGNORE_WHITESPACE_CHANGE
@@ -325,7 +330,7 @@ unsigned long xdl_hash_record(char const **data, char const *top, long flags) {
 	if (flags & XDF_INEXACT_MATCH)
 		return xdl_hash_record_with_whitespace(data, top, flags);
 
-	for (; ptr < top && *ptr != '\n'; ptr++) {
+	for (; ptr < top && !is_eol(ptr, top); ptr++) {
 		ha += (ha << 5);
 		ha ^= hash_a_byte(*ptr, flags);
 	}
