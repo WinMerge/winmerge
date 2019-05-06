@@ -209,6 +209,8 @@ private:
 	afx_msg void OnUpdateImgDiffBlockSize(CCmdUI* pCmdUI);
 	afx_msg void OnImgThreshold(UINT nId);
 	afx_msg void OnUpdateImgThreshold(CCmdUI* pCmdUI);
+	afx_msg void OnImgInsertionDeletionDetectionMode(UINT nId);
+	afx_msg void OnUpdateImgInsertionDeletionDetectionMode(CCmdUI* pCmdUI);
 	afx_msg void OnImgPrevPage();
 	afx_msg void OnUpdateImgPrevPage(CCmdUI* pCmdUI);
 	afx_msg void OnImgNextPage();

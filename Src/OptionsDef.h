@@ -188,6 +188,7 @@ extern const String OPT_CMP_IMG_BACKCOLOR OP("Settings/ImageBackColor");
 extern const String OPT_CMP_IMG_DIFFBLOCKSIZE OP("Settings/ImageDiffBlockSize");
 extern const String OPT_CMP_IMG_DIFFCOLORALPHA OP("Settings/ImageDiffColorAlpha");
 extern const String OPT_CMP_IMG_THRESHOLD OP("Settings/ImageColorDistanceThreshold");
+extern const String OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE OP("Settings/ImageInsertionDeletionDetectionMode");
 
 // Image Binary options
 extern const String OPT_CMP_BIN_FILEPATTERNS OP("Settings/BinaryFilePatterns");

@@ -128,6 +128,23 @@ msgstr ""
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "&Απόκρυψη"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -143,7 +160,7 @@ msgstr ""
 msgid "&Active Pane"
 msgstr ""
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "&Ζουμ"
@@ -168,11 +185,6 @@ msgstr "&Κανονικό\tCtrl+*"
 #, c-format
 msgid "&Overlay"
 msgstr ""
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "&Απόκρυψη"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -263,7 +275,7 @@ msgstr "Έξοδο&ς"
 msgid "&Edit"
 msgstr "&Επεξεργασία"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "Επιλ&ογές..."
@@ -293,7 +305,7 @@ msgstr "Με&γάλη"
 msgid "&Huge"
 msgstr ""
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "Γραμμή &Καταστάσεως"
@@ -308,7 +320,7 @@ msgstr "Γραμμή Σε&λιδοδεικτών"
 msgid "&Tools"
 msgstr "Εργα&λεία"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "&Φίλτρα..."
@@ -672,7 +684,7 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "Εκ&τύπωση..."
@@ -866,7 +878,7 @@ msgstr ""
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr "&Πάγωμα Πεδίων"
@@ -1161,7 +1173,7 @@ msgstr ""
 msgid "Re&name"
 msgstr "Μετο&νομασία"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "Απόκρυ&ψη Αντικειμένων"
@@ -1880,7 +1892,7 @@ msgstr "Μορ&φή"
 msgid "St&yle:"
 msgstr "Στ&υλ:"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr "&Περιβ. Κείμ.:"
@@ -1995,7 +2007,7 @@ msgstr "Μετάβαση σε"
 msgid "Li&ne"
 msgstr "&Γραμμή"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "&Διαφορά"
@@ -2803,7 +2815,7 @@ msgstr ""
 msgid "Image File &Patterns:"
 msgstr ""
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2972,7 +2984,7 @@ msgstr "&Όχι"
 msgid "No to a&ll"
 msgstr "Όχι σε ό&λα"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "&Συνέχεια"

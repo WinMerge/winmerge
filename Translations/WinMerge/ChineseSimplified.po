@@ -131,6 +131,23 @@ msgstr "差异块大小(&B)"
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "忽略颜色差异 (色彩距离阈值) (&I)"
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "无(&N)"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -146,7 +163,7 @@ msgstr "下一页(&N)"
 msgid "&Active Pane"
 msgstr "活动窗格(&A)"
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "缩放(&Z)"
@@ -171,11 +188,6 @@ msgstr "正常大小(&N)\tCtrl+*"
 #, c-format
 msgid "&Overlay"
 msgstr "遮罩(&O)"
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "无(&N)"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -266,7 +278,7 @@ msgstr "退出(&X)"
 msgid "&Edit"
 msgstr "编辑(&E)"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "选项(&O)..."
@@ -296,7 +308,7 @@ msgstr "大(&B)"
 msgid "&Huge"
 msgstr "超大(&H)"
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "状态栏(&S)"
@@ -311,7 +323,7 @@ msgstr "标签栏(&B)"
 msgid "&Tools"
 msgstr "工具(&T)"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "过滤器(&F)..."
@@ -675,7 +687,7 @@ msgstr "另存为中间(&L)"
 msgid "Save &Right As..."
 msgstr "另存为右侧(&R)"
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "打印(&P)..."
@@ -869,7 +881,7 @@ msgstr "9行(&9)"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "切换全部行和 0-9 行\tCtrl+D"
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr "锁定窗格(&L)"
@@ -1164,7 +1176,7 @@ msgstr "全部(&A)"
 msgid "Re&name"
 msgstr "改名(&N)"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "隐藏(&H)"
@@ -1883,7 +1895,7 @@ msgstr "格式(&F)"
 msgid "St&yle:"
 msgstr "样式(&Y):"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr "内容(&C):"
@@ -1998,7 +2010,7 @@ msgstr "转到类别"
 msgid "Li&ne"
 msgstr "行(&N)"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "差异(&D)"
@@ -2806,7 +2818,7 @@ msgstr "图片"
 msgid "Image File &Patterns:"
 msgstr "图片文件扩展名 (&P):"
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr "十六进制查看(&H)"
@@ -2945,7 +2957,7 @@ msgstr "否(&N)"
 msgid "No to a&ll"
 msgstr "全部都否(&L)"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "继续(&C)"

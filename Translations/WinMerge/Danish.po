@@ -130,6 +130,23 @@ msgstr ""
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "&Ingen"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -145,7 +162,7 @@ msgstr ""
 msgid "&Active Pane"
 msgstr ""
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "&Zoom"
@@ -170,11 +187,6 @@ msgstr "&Normal\tCtrl+*"
 #, c-format
 msgid "&Overlay"
 msgstr ""
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "&Ingen"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -265,7 +277,7 @@ msgstr "&Afslut"
 msgid "&Edit"
 msgstr "&Rediger"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "I&ndstillinger..."
@@ -295,7 +307,7 @@ msgstr "&Stor"
 msgid "&Huge"
 msgstr ""
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "S&tatuslinje"
@@ -310,7 +322,7 @@ msgstr "Fa&nelinje"
 msgid "&Tools"
 msgstr "Værk&tøjer"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "&Filtre..."
@@ -674,7 +686,7 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "&Udskriv..."
@@ -868,7 +880,7 @@ msgstr ""
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr "&Lås vinduer"
@@ -1163,7 +1175,7 @@ msgstr ""
 msgid "Re&name"
 msgstr "Om&døb"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "&Skjul emner"
@@ -1886,7 +1898,7 @@ msgstr "&Format"
 msgid "St&yle:"
 msgstr "Sti&l:"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr "&Sammenhæng:"
@@ -2001,7 +2013,7 @@ msgstr "Gå til hvad"
 msgid "Li&ne"
 msgstr "Li&nje"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "&Forskel"
@@ -2815,7 +2827,7 @@ msgstr ""
 msgid "Image File &Patterns:"
 msgstr ""
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2991,7 +3003,7 @@ msgstr "&Nej"
 msgid "No to a&ll"
 msgstr "Nej til a&lle"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "&Fortsæt"

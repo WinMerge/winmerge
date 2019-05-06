@@ -129,6 +129,23 @@ msgstr "Размер на &блока с разлики"
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "&Няма"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -144,7 +161,7 @@ msgstr "&Следваща страница"
 msgid "&Active Pane"
 msgstr "&Активен панел"
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "Мащаб"
@@ -169,11 +186,6 @@ msgstr "Нормален"
 #, c-format
 msgid "&Overlay"
 msgstr ""
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "&Няма"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -264,7 +276,7 @@ msgstr "&Изход"
 msgid "&Edit"
 msgstr "&Редактиране"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "&Настройки..."
@@ -294,7 +306,7 @@ msgstr "&Голям"
 msgid "&Huge"
 msgstr "&Огромен"
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "&Лента на състоянието"
@@ -309,7 +321,7 @@ msgstr "Таб лента"
 msgid "&Tools"
 msgstr "&Инструменти"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "&Филтри..."
@@ -673,7 +685,7 @@ msgstr "Запази &Средната част като..."
 msgid "Save &Right As..."
 msgstr "Запази &Дясната част като..."
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "&Принтиране..."
@@ -867,7 +879,7 @@ msgstr "&9 линии"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr "Заключи прозорците"
@@ -1162,7 +1174,7 @@ msgstr "&Всички"
 msgid "Re&name"
 msgstr "&Преименувай"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "&Скрий"
@@ -1881,7 +1893,7 @@ msgstr "&Формат"
 msgid "St&yle:"
 msgstr "Сти&л:"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr "&Контекст:"
@@ -1996,7 +2008,7 @@ msgstr "Отиди на:"
 msgid "Li&ne"
 msgstr "Ре&д"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "&Разлика"
@@ -2804,7 +2816,7 @@ msgstr "Изображения"
 msgid "Image File &Patterns:"
 msgstr ""
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2943,7 +2955,7 @@ msgstr "&Не"
 msgid "No to a&ll"
 msgstr "Не за В&сички"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "&Продължи"

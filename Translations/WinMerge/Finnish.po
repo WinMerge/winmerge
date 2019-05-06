@@ -126,6 +126,23 @@ msgstr ""
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "Ei mitään"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -141,7 +158,7 @@ msgstr ""
 msgid "&Active Pane"
 msgstr ""
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "Zoomaa"
@@ -166,11 +183,6 @@ msgstr "&Normaali\tCtrl+*"
 #, c-format
 msgid "&Overlay"
 msgstr ""
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "Ei mitään"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -261,7 +273,7 @@ msgstr "Poistu"
 msgid "&Edit"
 msgstr "Muokkaa"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "Asetukset..."
@@ -291,7 +303,7 @@ msgstr "Iso"
 msgid "&Huge"
 msgstr ""
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "Tilarivi"
@@ -306,7 +318,7 @@ msgstr "Välilehdet"
 msgid "&Tools"
 msgstr "Työkalut"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "Suotimet..."
@@ -670,7 +682,7 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "Tulosta..."
@@ -863,7 +875,7 @@ msgstr ""
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr "Lukitse ruudut"
@@ -1158,7 +1170,7 @@ msgstr ""
 msgid "Re&name"
 msgstr "Nimeä uudelleen"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "Piilota kohteet"
@@ -1878,7 +1890,7 @@ msgstr "Formaatti"
 msgid "St&yle:"
 msgstr "Tyyli"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr "Konteksti:"
@@ -1993,7 +2005,7 @@ msgstr "Siirry mihin"
 msgid "Li&ne"
 msgstr "Rivi"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "Erilaisuus"
@@ -2801,7 +2813,7 @@ msgstr ""
 msgid "Image File &Patterns:"
 msgstr ""
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2940,7 +2952,7 @@ msgstr "Ei"
 msgid "No to a&ll"
 msgstr "Ei kaikkiin"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "Jatka"

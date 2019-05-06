@@ -109,6 +109,22 @@ msgstr "Diff ブロック サイズ(&B)"
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "色の違いを無視する (色距離の閾値)(&I)"
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr "挿入/削除検出(&E)"
+
+#: Merge.rc:43017E43
+msgid "&None"
+msgstr "なし(&N)"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr "垂直方向(&V)"
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr "水平方向(&H)"
+
 #: Merge.rc:5A9A7139
 msgid "&Previous Page"
 msgstr "前ページ(&P)"
@@ -121,7 +137,7 @@ msgstr "次ページ(&N)"
 msgid "&Active Pane"
 msgstr "選択ペイン(&A)"
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 msgid "&Zoom"
 msgstr "拡大(&Z)"
 
@@ -141,10 +157,6 @@ msgstr "元に戻す(&N)\tCtrl+*"
 #: Merge.rc:AC3AA13
 msgid "&Overlay"
 msgstr "重ね合わせ(&O)"
-
-#: Merge.rc:43017E44
-msgid "&None"
-msgstr "なし(&N)"
 
 #: Merge.rc:4DE14272
 msgid "&Alpha Blend"
@@ -218,7 +230,7 @@ msgstr "終了(&X)"
 msgid "&Edit"
 msgstr "編集(&E)"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 msgid "&Options..."
 msgstr "設定(&O)..."
 
@@ -242,7 +254,7 @@ msgstr "大(&B)"
 msgid "&Huge"
 msgstr "特大(&H)"
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 msgid "&Status Bar"
 msgstr "ステータス バー(&S)"
 
@@ -254,7 +266,7 @@ msgstr "タブ バー(&B)"
 msgid "&Tools"
 msgstr "ツール(&T)"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 msgid "&Filters..."
 msgstr "フィルタ(&F)..."
 
@@ -546,7 +558,7 @@ msgstr "名前を付けて中央のファイルを保存(&M)..."
 msgid "Save &Right As..."
 msgstr "名前を付けて右側のファイルを保存(&R)..."
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 msgid "&Print..."
 msgstr "印刷(&P)..."
 
@@ -702,7 +714,7 @@ msgstr "&9 行"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "全行/0 ～ 9 行切替(&T)\tCtrl+D"
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 msgid "&Lock Panes"
 msgstr "ペインをロック(&L)"
 
@@ -947,7 +959,7 @@ msgstr "すべて(&A)"
 msgid "Re&name"
 msgstr "名前の変更(&N)"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 msgid "&Hide Items"
 msgstr "選択項目を非表示(&H)"
 
@@ -1539,7 +1551,7 @@ msgstr "出力形式(&F)"
 msgid "St&yle:"
 msgstr "スタイル(&Y):"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 msgid "&Context:"
 msgstr "コンテキスト(&C):"
 
@@ -1631,7 +1643,7 @@ msgstr "移動種別"
 msgid "Li&ne"
 msgstr "行(&N)"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 msgid "&Difference"
 msgstr "差異(&D)"
 
@@ -2293,7 +2305,7 @@ msgstr "画像"
 msgid "Image File &Patterns:"
 msgstr "画像ファイルとして扱うパターン(&P):"
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
 
@@ -2462,7 +2474,7 @@ msgstr "いいえ(&N)"
 msgid "No to a&ll"
 msgstr "すべていいえ(&L)"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 msgid "&Continue"
 msgstr "続行(&C)"
 

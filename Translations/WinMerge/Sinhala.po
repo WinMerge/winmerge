@@ -126,6 +126,23 @@ msgstr ""
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "කිසිත් නැත"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -141,7 +158,7 @@ msgstr ""
 msgid "&Active Pane"
 msgstr ""
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "විශාල කරන්න"
@@ -166,11 +183,6 @@ msgstr "සමාන්‍ය\tCtrl+*"
 #, c-format
 msgid "&Overlay"
 msgstr ""
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "කිසිත් නැත"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -261,7 +273,7 @@ msgstr " නික්මීම"
 msgid "&Edit"
 msgstr "&සංස්කරණය කරන්න"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "&විකල්පයන්..."
@@ -291,7 +303,7 @@ msgstr "විශාල"
 msgid "&Huge"
 msgstr ""
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "&Status Bar"
@@ -306,7 +318,7 @@ msgstr "Ta&b Bar"
 msgid "&Tools"
 msgstr "මෙවලම්"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "&Filters..."
@@ -670,7 +682,7 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "මුද්‍රණය කරන්න..."
@@ -864,7 +876,7 @@ msgstr ""
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr "&Lock Panes"
@@ -1159,7 +1171,7 @@ msgstr ""
 msgid "Re&name"
 msgstr "නැවත නම් කරන්න"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "D&issimuler l'élément(s)"
@@ -1878,7 +1890,7 @@ msgstr "&සැකසීම"
 msgid "St&yle:"
 msgstr "විලාසය:"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr "&පෙළ යෙදුම:"
@@ -1993,7 +2005,7 @@ msgstr "කුමක් වෙත යන්නද"
 msgid "Li&ne"
 msgstr "පේළිය"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "වෙනස"
@@ -2803,7 +2815,7 @@ msgstr ""
 msgid "Image File &Patterns:"
 msgstr ""
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2972,7 +2984,7 @@ msgstr "&නැත"
 msgid "No to a&ll"
 msgstr "සමස්ථයටම නැත"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "&පවත්වාගෙන යන්න"

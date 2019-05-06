@@ -131,6 +131,23 @@ msgstr "SkillnadsBlockStorlek"
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "Åsidosätt FärgSkillnader (FärgSkillnadsTröskel)"
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "Ingen"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -146,7 +163,7 @@ msgstr "Nästa Sida"
 msgid "&Active Pane"
 msgstr "Gällande Ruta"
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "Zoom"
@@ -171,11 +188,6 @@ msgstr "Normal\tCtrl+*"
 #, c-format
 msgid "&Overlay"
 msgstr "Överlägg"
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "Ingen"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -266,7 +278,7 @@ msgstr "Avsluta"
 msgid "&Edit"
 msgstr "Redigera"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "Inställningar ..."
@@ -296,7 +308,7 @@ msgstr "Stor"
 msgid "&Huge"
 msgstr "Enorm"
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "Statusfält"
@@ -311,7 +323,7 @@ msgstr "Filrad"
 msgid "&Tools"
 msgstr "Verktyg"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "Filter ..."
@@ -675,7 +687,7 @@ msgstr "Spara Mitter som ..."
 msgid "Save &Right As..."
 msgstr "Spara Höger som ..."
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "Skriv ut ..."
@@ -869,7 +881,7 @@ msgstr "9 Rader"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Växla Samtliga/0-9 Rader\tCtrl+D"
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr "Lås Placering"
@@ -1164,7 +1176,7 @@ msgstr "Samtliga"
 msgid "Re&name"
 msgstr "Byt namn"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "Dölj objekt"
@@ -1886,7 +1898,7 @@ msgstr "Format"
 msgid "St&yle:"
 msgstr "Typ:"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr "Sammanh.:"
@@ -2001,7 +2013,7 @@ msgstr "Gå till vad"
 msgid "Li&ne"
 msgstr "Rad"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "Skillnad"
@@ -2819,7 +2831,7 @@ msgstr "Avbild"
 msgid "Image File &Patterns:"
 msgstr "AvbildsFilmönster:"
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr "Hex Visning"
@@ -3009,7 +3021,7 @@ msgstr "Nej"
 msgid "No to a&ll"
 msgstr "Nej till allt"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "Fortsätt"
