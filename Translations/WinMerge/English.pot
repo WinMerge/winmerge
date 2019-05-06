@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-04-21 22:56+0000\n"
+"POT-Creation-Date: 2019-05-04 19:20+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -102,6 +102,22 @@ msgstr ""
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+msgid "&None"
+msgstr ""
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 msgid "&Previous Page"
 msgstr ""
@@ -114,7 +130,7 @@ msgstr ""
 msgid "&Active Pane"
 msgstr ""
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 msgid "&Zoom"
 msgstr ""
 
@@ -133,10 +149,6 @@ msgstr ""
 
 #: Merge.rc:AC3AA13
 msgid "&Overlay"
-msgstr ""
-
-#: Merge.rc:43017E44
-msgid "&None"
 msgstr ""
 
 #: Merge.rc:4DE14272
@@ -211,7 +223,7 @@ msgstr ""
 msgid "&Edit"
 msgstr ""
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 msgid "&Options..."
 msgstr ""
 
@@ -235,7 +247,7 @@ msgstr ""
 msgid "&Huge"
 msgstr ""
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 msgid "&Status Bar"
 msgstr ""
 
@@ -247,7 +259,7 @@ msgstr ""
 msgid "&Tools"
 msgstr ""
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 msgid "&Filters..."
 msgstr ""
 
@@ -535,7 +547,7 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 msgid "&Print..."
 msgstr ""
 
@@ -691,7 +703,7 @@ msgstr ""
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 msgid "&Lock Panes"
 msgstr ""
 
@@ -936,7 +948,7 @@ msgstr ""
 msgid "Re&name"
 msgstr ""
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 msgid "&Hide Items"
 msgstr ""
 
@@ -1520,7 +1532,7 @@ msgstr ""
 msgid "St&yle:"
 msgstr ""
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 msgid "&Context:"
 msgstr ""
 
@@ -1612,7 +1624,7 @@ msgstr ""
 msgid "Li&ne"
 msgstr ""
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 msgid "&Difference"
 msgstr ""
 
@@ -2260,7 +2272,7 @@ msgstr ""
 msgid "Image File &Patterns:"
 msgstr ""
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 msgid "&Hex View"
 msgstr ""
 
@@ -2372,7 +2384,7 @@ msgstr ""
 msgid "No to a&ll"
 msgstr ""
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 msgid "&Continue"
 msgstr ""
 

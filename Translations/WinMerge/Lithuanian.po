@@ -111,6 +111,22 @@ msgstr "Skirtumų &bloko dydis"
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "&Ignoruoti spalvos skirtumus (Spalvų atstumo slenkstis)"
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+msgid "&None"
+msgstr "&Nerodoma"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 msgid "&Previous Page"
 msgstr "&Praeitas puslapis"
@@ -123,7 +139,7 @@ msgstr "&Kitas puslapis"
 msgid "&Active Pane"
 msgstr "&Aktyvus polangis"
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 msgid "&Zoom"
 msgstr "&Keisti mastelį"
 
@@ -143,10 +159,6 @@ msgstr "&Normalus\tCtrl+*"
 #: Merge.rc:AC3AA13
 msgid "&Overlay"
 msgstr "&Perdengimas"
-
-#: Merge.rc:43017E44
-msgid "&None"
-msgstr "&Nerodoma"
 
 #: Merge.rc:4DE14272
 msgid "&Alpha Blend"
@@ -220,7 +232,7 @@ msgstr "&Išeiti"
 msgid "&Edit"
 msgstr "R&edaguoti"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 msgid "&Options..."
 msgstr "Nu&ostatos..."
 
@@ -244,7 +256,7 @@ msgstr "&Dideli mygtukai"
 msgid "&Huge"
 msgstr "&Milžiniški mygtukai"
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 msgid "&Status Bar"
 msgstr "Bū&senos juosta"
 
@@ -256,7 +268,7 @@ msgstr "&Kortelių juosta"
 msgid "&Tools"
 msgstr "Į&rankiai"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 msgid "&Filters..."
 msgstr "&Filtrai..."
 
@@ -544,7 +556,7 @@ msgstr "Išsaugoti vidurinįjį &kaip..."
 msgid "Save &Right As..."
 msgstr "Išsaugoti &dešinįjį kaip..."
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 msgid "&Print..."
 msgstr "S&pausdinti..."
 
@@ -700,7 +712,7 @@ msgstr "&9 eilutės"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Įjungti Visas ir 0-9 eilutes\tCtrl+D"
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 msgid "&Lock Panes"
 msgstr "Užrakinti po&langius"
 
@@ -945,7 +957,7 @@ msgstr "V&iską"
 msgid "Re&name"
 msgstr "Pervardi&nti"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 msgid "&Hide Items"
 msgstr "&Slėpti elementus"
 
@@ -1529,7 +1541,7 @@ msgstr "&Formatas"
 msgid "St&yle:"
 msgstr "St&ilius:"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 msgid "&Context:"
 msgstr "&Kontekstas:"
 
@@ -1621,7 +1633,7 @@ msgstr "Pereiti į"
 msgid "Li&ne"
 msgstr "Ei&lutę"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 msgid "&Difference"
 msgstr "&Skirtumą"
 
@@ -2277,7 +2289,7 @@ msgstr "Paveikslėlių"
 msgid "Image File &Patterns:"
 msgstr "&Paveikslėlių failų šablonai:"
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
 
@@ -2440,7 +2452,7 @@ msgstr "&Ne"
 msgid "No to a&ll"
 msgstr "Ne vi&siems"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 msgid "&Continue"
 msgstr "Tę&sti"
 

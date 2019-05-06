@@ -135,6 +135,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_DIFFBLOCKSIZE_1, ID_IMG_DIFFBLOCKSIZE_32, OnUpdateImgDiffBlockSize)
 	ON_COMMAND_RANGE(ID_IMG_THRESHOLD_0, ID_IMG_THRESHOLD_64, OnImgThreshold)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_THRESHOLD_0, ID_IMG_THRESHOLD_64, OnUpdateImgThreshold)
+	ON_COMMAND_RANGE(ID_IMG_INSERTIONDELETIONDETECTION_NONE, ID_IMG_INSERTIONDELETIONDETECTION_HORIZONTAL, OnImgInsertionDeletionDetectionMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_INSERTIONDELETIONDETECTION_NONE, ID_IMG_INSERTIONDELETIONDETECTION_HORIZONTAL, OnUpdateImgInsertionDeletionDetectionMode)
 	ON_COMMAND(ID_IMG_PREVPAGE, OnImgPrevPage)
 	ON_UPDATE_COMMAND_UI(ID_IMG_PREVPAGE, OnUpdateImgPrevPage)
 	ON_COMMAND(ID_IMG_NEXTPAGE, OnImgNextPage)
@@ -431,7 +433,9 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	COLORSETTINGS colors;
 	Options::DiffColors::Load(GetOptionsMgr(), colors);
 	m_pImgMergeWindow->SetDiffColor(colors.clrDiff);
+	m_pImgMergeWindow->SetDiffDeletedColor(colors.clrDiffDeleted);
 	m_pImgMergeWindow->SetSelDiffColor(colors.clrSelDiff);
+	m_pImgMergeWindow->SetSelDiffDeletedColor(colors.clrSelDiffDeleted);
 	m_pImgMergeWindow->AddEventListener(OnChildPaneEvent, this);
 	LoadOptions();
 	
@@ -584,6 +588,7 @@ void CImgMergeFrame::LoadOptions()
 	m_pImgMergeWindow->SetDiffBlockSize(GetOptionsMgr()->GetInt(OPT_CMP_IMG_DIFFBLOCKSIZE));
 	m_pImgMergeWindow->SetDiffColorAlpha(GetOptionsMgr()->GetInt(OPT_CMP_IMG_DIFFCOLORALPHA) / 100.0);
 	m_pImgMergeWindow->SetColorDistanceThreshold(GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0);
+	m_pImgMergeWindow->SetInsertionDeletionDetectionMode(static_cast<IImgMergeWindow::INSERTION_DELETION_DETECTION_MODE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE)));
 }
 
 void CImgMergeFrame::SaveOptions()
@@ -599,6 +604,7 @@ void CImgMergeFrame::SaveOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_DIFFBLOCKSIZE, m_pImgMergeWindow->GetDiffBlockSize());
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_DIFFCOLORALPHA, static_cast<int>(m_pImgMergeWindow->GetDiffColorAlpha() * 100.0));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_THRESHOLD, static_cast<int>(m_pImgMergeWindow->GetColorDistanceThreshold() * 1000));
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE, static_cast<int>(m_pImgMergeWindow->GetInsertionDeletionDetectionMode()));
 }
 /**
  * @brief Save coordinates of the frame, splitters, and bars
@@ -1345,13 +1351,11 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 				UpdateHeaderPath(pane);
 
 			m_wndFilePathBar.SetActive(pane, pane == m_pImgMergeWindow->GetActivePane());
+			POINT ptReal;
 			String text;
-			if (pt.x >= 0 && pt.y >= 0 &&
-				pt.x < m_pImgMergeWindow->GetImageWidth(pane) &&
-				pt.y < m_pImgMergeWindow->GetImageHeight(pane))
+			if (m_pImgMergeWindow->ConvertToRealPos(pane, pt, ptReal))
 			{
-				POINT ptOffset = m_pImgMergeWindow->GetImageOffset(pane);
-				text += strutils::format(_T("Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "), pt.x - ptOffset.x, pt.y - ptOffset.y,
+				text += strutils::format(_T("Pt:(%d,%d) RGBA:(%d,%d,%d,%d) "), ptReal.x, ptReal.y,
 					color[pane].rgbRed, color[pane].rgbGreen, color[pane].rgbBlue, color[pane].rgbReserved);
 				if (pane == 1 && m_pImgMergeWindow->GetPaneCount() == 3)
 					text += strutils::format(_T("Dist:%g,%g "), colorDistance01, colorDistance12);
@@ -1920,6 +1924,17 @@ void CImgMergeFrame::OnUpdateImgThreshold(CCmdUI* pCmdUI)
 		pCmdUI->SetRadio(m_pImgMergeWindow->GetColorDistanceThreshold() == 0.0);
 	else
 		pCmdUI->SetRadio((1 << (pCmdUI->m_nID - ID_IMG_THRESHOLD_2)) * 2 == m_pImgMergeWindow->GetColorDistanceThreshold() );
+}
+
+void CImgMergeFrame::OnImgInsertionDeletionDetectionMode(UINT nId)
+{
+	m_pImgMergeWindow->SetInsertionDeletionDetectionMode(static_cast<IImgMergeWindow::INSERTION_DELETION_DETECTION_MODE>(nId - ID_IMG_INSERTIONDELETIONDETECTION_NONE));
+	SaveOptions();
+}
+
+void CImgMergeFrame::OnUpdateImgInsertionDeletionDetectionMode(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio(static_cast<unsigned>(m_pImgMergeWindow->GetInsertionDeletionDetectionMode() + ID_IMG_INSERTIONDELETIONDETECTION_NONE) == pCmdUI->m_nID);
 }
 
 void CImgMergeFrame::OnImgPrevPage()
