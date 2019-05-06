@@ -129,6 +129,23 @@ msgstr "Dividir Tamanho do &Bloco"
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "&Ignorar Diferença de Cor (Distância Limite da Cor)"
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "&Nenhum"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -144,7 +161,7 @@ msgstr "&Página Seguinte"
 msgid "&Active Pane"
 msgstr "Janela Ativa"
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "&Zoom"
@@ -169,11 +186,6 @@ msgstr "&Normal\tCtrl+*"
 #, c-format
 msgid "&Overlay"
 msgstr "Sobreposição"
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "&Nenhum"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -264,7 +276,7 @@ msgstr "&Sair"
 msgid "&Edit"
 msgstr "&Editar"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "&Opções..."
@@ -294,7 +306,7 @@ msgstr "&Grande"
 msgid "&Huge"
 msgstr "&Enorme"
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "Barra de Esta&do"
@@ -309,7 +321,7 @@ msgstr "Barra de Separadores"
 msgid "&Tools"
 msgstr "&Ferramentas"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "&Filtros..."
@@ -669,7 +681,7 @@ msgstr "Guardar &Meio Como..."
 msgid "Save &Right As..."
 msgstr "Guardar &Direita Como..."
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "&Imprimir..."
@@ -863,7 +875,7 @@ msgstr "&9 Linhas"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Alternar tudo e linhas 0-9\tCtrl+D"
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr "Trancar Janelas"
@@ -1158,7 +1170,7 @@ msgstr "Tudo"
 msgid "Re&name"
 msgstr "Renomear"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "Ocultar itens"
@@ -1877,7 +1889,7 @@ msgstr "Formato"
 msgid "St&yle:"
 msgstr "Estilo:"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr "Contexto:"
@@ -1992,7 +2004,7 @@ msgstr "Ir Para"
 msgid "Li&ne"
 msgstr "Linha"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "Diferença"
@@ -2800,7 +2812,7 @@ msgstr "Imagem"
 msgid "Image File &Patterns:"
 msgstr "&Padrão de Imagem do Ficheiro"
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr "Vista Hex"
@@ -2939,7 +2951,7 @@ msgstr "Não"
 msgid "No to a&ll"
 msgstr "Não para todos"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "Continuar"

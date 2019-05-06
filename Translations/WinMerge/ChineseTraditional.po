@@ -131,6 +131,23 @@ msgstr "差異區塊大小(&B)"
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "忽略顏色差異(Color Distance Threshold)(&I)"
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "關閉(&N)"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -146,7 +163,7 @@ msgstr "後一頁(&N)"
 msgid "&Active Pane"
 msgstr "啟動框(&A)"
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "拉近推遠(&Z)"
@@ -171,11 +188,6 @@ msgstr "恢復原始(&N)\tCtrl+*"
 #, c-format
 msgid "&Overlay"
 msgstr "覆蓋(&O)"
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "關閉(&N)"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -266,7 +278,7 @@ msgstr "結束(&X)"
 msgid "&Edit"
 msgstr "編輯(&E)"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "選項(&O)..."
@@ -296,7 +308,7 @@ msgstr "大圖示(&B)"
 msgid "&Huge"
 msgstr "超大圖示(&H)"
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "狀態列(&S)"
@@ -311,7 +323,7 @@ msgstr "頁籤列(&B)"
 msgid "&Tools"
 msgstr "工具(&T)"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "篩選器(&F)..."
@@ -673,7 +685,7 @@ msgstr "儲存中間為(&M)..."
 msgid "Save &Right As..."
 msgstr "儲存右邊為(&R)..."
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "列印(&P)..."
@@ -867,7 +879,7 @@ msgstr "9行(&9)"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "切換全部行和 0-9 行(&T)\tCtrl+D"
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr "鎖住窗格(&L)"
@@ -1166,7 +1178,7 @@ msgstr "全部(&A)"
 msgid "Re&name"
 msgstr "重新命名(&N)"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "隱藏檔案(&H)"
@@ -1887,7 +1899,7 @@ msgstr "格式(&F)"
 msgid "St&yle:"
 msgstr "樣式(&Y)："
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr "上下文(&C)："
@@ -2002,7 +2014,7 @@ msgstr "移至"
 msgid "Li&ne"
 msgstr "行(&N)"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "差異區塊(&D)"
@@ -2815,7 +2827,7 @@ msgstr "圖片"
 msgid "Image File &Patterns:"
 msgstr "圖片檔案副檔名(&P)"
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr "二進制顯示(&H)"
@@ -2984,7 +2996,7 @@ msgstr "否(&N)"
 msgid "No to a&ll"
 msgstr "全部皆否(&L)"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "繼續(&C)"

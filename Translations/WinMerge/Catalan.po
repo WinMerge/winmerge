@@ -128,6 +128,23 @@ msgstr "Mida del &bloc"
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "&Cap"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -143,7 +160,7 @@ msgstr "Pàgina següe&nt"
 msgid "&Active Pane"
 msgstr "Plafó actiu"
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "&Zoom"
@@ -168,11 +185,6 @@ msgstr ""
 #, c-format
 msgid "&Overlay"
 msgstr ""
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "&Cap"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -263,7 +275,7 @@ msgstr "&Surt"
 msgid "&Edit"
 msgstr "E&dita"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "O&pcions..."
@@ -293,7 +305,7 @@ msgstr "&Gran"
 msgid "&Huge"
 msgstr "Immens"
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "Barra d'est&at"
@@ -308,7 +320,7 @@ msgstr "Barra de ta&bulacions"
 msgid "&Tools"
 msgstr "&Eines"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "&Filtres..."
@@ -668,7 +680,7 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "&Imprimeix..."
@@ -862,7 +874,7 @@ msgstr ""
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr ""
@@ -1157,7 +1169,7 @@ msgstr ""
 msgid "Re&name"
 msgstr "Canvia el &nom"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "&Amaga els elements"
@@ -1876,7 +1888,7 @@ msgstr "Format"
 msgid "St&yle:"
 msgstr "E&stil:"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr ""
@@ -1991,7 +2003,7 @@ msgstr "Anar a on"
 msgid "Li&ne"
 msgstr "&Línia"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "&Diferència"
@@ -2799,7 +2811,7 @@ msgstr ""
 msgid "Image File &Patterns:"
 msgstr ""
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr ""
@@ -2938,7 +2950,7 @@ msgstr ""
 msgid "No to a&ll"
 msgstr "No a t&ot"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "&Continua"

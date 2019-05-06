@@ -133,6 +133,23 @@ msgstr "차이점 블럭 크기(&B)"
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "색 차이(색 거리 임계값) 무시(&I)"
 
+#: Merge.rc:1A002B9B
+msgid "Ins&ertion/Deletion Detection"
+msgstr ""
+
+#: Merge.rc:43017E43
+#, c-format
+msgid "&None"
+msgstr "없음(&N)"
+
+#: Merge.rc:4DB19837
+msgid "&Vertical"
+msgstr ""
+
+#: Merge.rc:27AC6D7E
+msgid "&Horizontal"
+msgstr ""
+
 #: Merge.rc:5A9A7139
 #, c-format
 msgid "&Previous Page"
@@ -148,7 +165,7 @@ msgstr "다음 페이지(&N)"
 msgid "&Active Pane"
 msgstr "활성 창(&A)"
 
-#: Merge.rc:43017E43
+#: Merge.rc:43017E44
 #, c-format
 msgid "&Zoom"
 msgstr "확대/축소(&Z)"
@@ -173,11 +190,6 @@ msgstr "보통(&N)\tCtrl+*"
 #, c-format
 msgid "&Overlay"
 msgstr "오버레이(&O)"
-
-#: Merge.rc:43017E44
-#, c-format
-msgid "&None"
-msgstr "없음(&N)"
 
 #: Merge.rc:4DE14272
 #, c-format
@@ -268,7 +280,7 @@ msgstr "종료(&X)"
 msgid "&Edit"
 msgstr "편집(&E)"
 
-#: Merge.rc:27AC6D7E
+#: Merge.rc:27AC6D7F
 #, c-format
 msgid "&Options..."
 msgstr "옵션(&O)..."
@@ -298,7 +310,7 @@ msgstr "크게(&B)"
 msgid "&Huge"
 msgstr "매우 크게(&H)"
 
-#: Merge.rc:27AC6D7F
+#: Merge.rc:27AC6D80
 #, c-format
 msgid "&Status Bar"
 msgstr "상태 표시줄(&S)"
@@ -313,7 +325,7 @@ msgstr "탭 도구 모음(&B)"
 msgid "&Tools"
 msgstr "도구(&T)"
 
-#: Merge.rc:27AC6D80
+#: Merge.rc:27AC6D81
 #, c-format
 msgid "&Filters..."
 msgstr "필터(&F)"
@@ -673,7 +685,7 @@ msgstr "가운데 저장(&M)..."
 msgid "Save &Right As..."
 msgstr "오른쪽 저장(&R)..."
 
-#: Merge.rc:4DB19837
+#: Merge.rc:4DB19838
 #, c-format
 msgid "&Print..."
 msgstr "인쇄(&P)..."
@@ -867,7 +879,7 @@ msgstr "&9 줄"
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "전체와 0-9 줄 토글\tCtrl+D"
 
-#: Merge.rc:27AC6D81
+#: Merge.rc:27AC6D82
 #, c-format
 msgid "&Lock Panes"
 msgstr "창 잠금(&L)"
@@ -1162,7 +1174,7 @@ msgstr "전체(&A)"
 msgid "Re&name"
 msgstr "이름 바꾸기(&N)"
 
-#: Merge.rc:27AC6D82
+#: Merge.rc:27AC6D83
 #, c-format
 msgid "&Hide Items"
 msgstr "항목 숨기기(&H)"
@@ -1881,7 +1893,7 @@ msgstr "형식(&F)"
 msgid "St&yle:"
 msgstr "스타일(&Y):"
 
-#: Merge.rc:4DB19838
+#: Merge.rc:4DB19839
 #, c-format
 msgid "&Context:"
 msgstr "차이점전후:"
@@ -1996,7 +2008,7 @@ msgstr "이동 위치"
 msgid "Li&ne"
 msgstr "줄(&N)"
 
-#: Merge.rc:27AC6D83
+#: Merge.rc:27AC6D84
 #, c-format
 msgid "&Difference"
 msgstr "차이점(&D)"
@@ -2812,7 +2824,7 @@ msgstr "이미지"
 msgid "Image File &Patterns:"
 msgstr "이미지 파일 패턴(&P):"
 
-#: Merge.rc:4DB19839
+#: Merge.rc:4DB1983A
 #, c-format
 msgid "&Hex View"
 msgstr "16진수 보기(&H)"
@@ -3001,7 +3013,7 @@ msgstr "아니오(&N)"
 msgid "No to a&ll"
 msgstr "모두 아니오(&L)"
 
-#: Merge.rc:4DB1983A
+#: Merge.rc:4DB1983B
 #, c-format
 msgid "&Continue"
 msgstr "계속(&C)"
