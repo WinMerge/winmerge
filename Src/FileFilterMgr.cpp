@@ -23,15 +23,15 @@
 #include <vector>
 #include <Poco/String.h>
 #include <Poco/Glob.h>
-#include <Poco/DirectoryIterator.h>
 #include <Poco/RegularExpression.h>
+#include "DirTravel.h"
+#include "DirItem.h"
 #include "UnicodeString.h"
 #include "FileFilter.h"
 #include "UniFile.h"
 #include "paths.h"
 
 using std::vector;
-using Poco::DirectoryIterator;
 using Poco::Glob;
 using Poco::icompare;
 using Poco::RegularExpression;
@@ -68,33 +68,28 @@ int FileFilterMgr::AddFilter(const String& szFilterFile)
  */
 void FileFilterMgr::LoadFromDirectory(const String& dir, const String& szPattern, const String& szExt)
 {
-	const std::string u8ext = ucr::toUTF8(szExt);
-	const size_t extlen = u8ext.length();
-
 	try
 	{
-		DirectoryIterator it(ucr::toUTF8(dir));
-		DirectoryIterator end;
+		DirItemArray dirs, files;
+		LoadAndSortFiles(dir, &dirs, &files, false);
 		Glob glb(ucr::toUTF8(szPattern));
 	
-		for (; it != end; ++it)
+		for (DirItem& item: files)
 		{
-			if (it->isDirectory())
+			String filename = item.filename;
+			if (!glb.match(ucr::toUTF8(filename)))
 				continue;
-			std::string filename = it.name();
-			if (!glb.match(filename))
-				continue;
-			if (extlen)
+			if (!szExt.empty())
 			{
 				// caller specified a specific extension
 				// (This is really a workaround for brokenness in windows, which
 				//  doesn't screen correctly on extension in pattern)
-				const std::string ext = filename.substr(filename.length() - extlen);
-				if (icompare(u8ext, ext) != 0)
+				const String ext = filename.substr(filename.length() - szExt.length());
+				if (strutils::compare_nocase(szExt, ext) != 0)
 					return;
 			}
 
-			String filterpath = paths::ConcatPath(dir, ucr::toTString(filename));
+			String filterpath = paths::ConcatPath(dir, filename);
 			AddFilter(filterpath);
 		}
 	}
