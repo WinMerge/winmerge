@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-05-04 19:20+0000\n"
+"POT-Creation-Date: 2019-05-11 09:49+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1672,16 +1672,20 @@ msgstr ""
 msgid "&Match similar lines"
 msgstr ""
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
+#: Merge.rc:6AE6FCAE
+msgid "Enable indent &heuristic"
+msgstr ""
+
 #: Merge.rc:4C3E0A2F
 msgid "Comments"
 msgstr ""
 
 #: Merge.rc:1AFA3491
 msgid "Filter Comments"
-msgstr ""
-
-#: Merge.rc:57F02FB4
-msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 #: Merge.rc:3BB91A82

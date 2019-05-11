@@ -2068,6 +2068,14 @@ msgstr "&Activer la détection des blocs déplacés"
 msgid "&Match similar lines"
 msgstr "Assortir les &lignes similaires"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
+#: Merge.rc:6AE6FCAE
+msgid "Enable indent &heuristic"
+msgstr ""
+
 #: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
@@ -2077,10 +2085,6 @@ msgstr "Commentaires"
 #, c-format
 msgid "Filter Comments"
 msgstr "Filtrer les commentaires"
-
-#: Merge.rc:57F02FB4
-msgid "Diff &algorithm (Experimental):"
-msgstr ""
 
 #: Merge.rc:3BB91A82
 #, c-format

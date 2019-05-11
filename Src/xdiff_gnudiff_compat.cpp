@@ -56,6 +56,8 @@ unsigned long make_xdl_flags(const DiffutilsOptions& options)
 	default:
 		break;
 	}
+	if (options.m_bIndentHeuristic)
+		xdl_flags |= XDF_INDENT_HEURISTIC;
 	return xdl_flags;
 }
 

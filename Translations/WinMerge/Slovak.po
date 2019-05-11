@@ -2064,6 +2064,14 @@ msgstr "Zapnúť &detekciu pohyblivého bloku"
 msgid "&Match similar lines"
 msgstr "&Podobné riadky ako zhodné"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
+#: Merge.rc:6AE6FCAE
+msgid "Enable indent &heuristic"
+msgstr ""
+
 #: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
@@ -2073,10 +2081,6 @@ msgstr "Komentáre"
 #, c-format
 msgid "Filter Comments"
 msgstr "Filtrovať komentáre"
-
-#: Merge.rc:57F02FB4
-msgid "Diff &algorithm (Experimental):"
-msgstr ""
 
 #: Merge.rc:3BB91A82
 #, c-format
