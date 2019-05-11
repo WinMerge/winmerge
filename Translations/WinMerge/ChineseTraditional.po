@@ -2074,6 +2074,14 @@ msgstr "偵測移位的區塊(&N)"
 msgid "&Match similar lines"
 msgstr "找出相似行(&M)"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
+#: Merge.rc:6AE6FCAE
+msgid "Enable indent &heuristic"
+msgstr ""
+
 #: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
@@ -2083,10 +2091,6 @@ msgstr "備註"
 #, c-format
 msgid "Filter Comments"
 msgstr "篩選器註解"
-
-#: Merge.rc:57F02FB4
-msgid "Diff &algorithm (Experimental):"
-msgstr ""
 
 #: Merge.rc:3BB91A82
 #, c-format

@@ -2068,6 +2068,14 @@ msgstr "이동된 블럭 감지 사용하기"
 msgid "&Match similar lines"
 msgstr "비슷한 줄 일치시키기(&M)"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
+#: Merge.rc:6AE6FCAE
+msgid "Enable indent &heuristic"
+msgstr ""
+
 #: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
@@ -2077,10 +2085,6 @@ msgstr "코멘트"
 #, c-format
 msgid "Filter Comments"
 msgstr "코멘트 필터링하기"
-
-#: Merge.rc:57F02FB4
-msgid "Diff &algorithm (Experimental):"
-msgstr ""
 
 #: Merge.rc:3BB91A82
 #, c-format

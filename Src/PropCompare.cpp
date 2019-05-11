@@ -29,6 +29,7 @@ PropCompare::PropCompare(COptionsMgr *optionsMgr)
  , m_bMatchSimilarLines(false)
  , m_bFilterCommentsLines(false)
  , m_nDiffAlgorithm(0)
+ , m_bIndentHeuristic(true)
 {
 }
 
@@ -37,6 +38,7 @@ void PropCompare::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompare)
 	DDX_CBIndex(pDX, IDC_DIFF_ALGORITHM, m_nDiffAlgorithm);
+	DDX_Check(pDX, IDC_INDENT_HEURISTIC, m_bIndentHeuristic);
 	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
 	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
 	DDX_Check(pDX, IDC_FILTERCOMMENTS_CHECK, m_bFilterCommentsLines);
@@ -46,12 +48,14 @@ void PropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
 	DDX_Check(pDX, IDC_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 	//}}AFX_DATA_MAP
+	UpdateControls();
 }
 
 
 BEGIN_MESSAGE_MAP(PropCompare, CPropertyPage)
 	//{{AFX_MSG_MAP(PropCompare)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
+	ON_CBN_SELCHANGE(IDC_DIFF_ALGORITHM, OnCbnSelchangeDiffAlgorithm)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -71,6 +75,7 @@ void PropCompare::ReadOptions()
 	m_bMovedBlocks = GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS);
 	m_bMatchSimilarLines = GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES);
 	m_nDiffAlgorithm = GetOptionsMgr()->GetInt(OPT_CMP_DIFF_ALGORITHM);
+	m_bIndentHeuristic = GetOptionsMgr()->GetBool(OPT_CMP_INDENT_HEURISTIC);
 }
 
 /** 
@@ -89,6 +94,7 @@ void PropCompare::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks);
 	GetOptionsMgr()->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 	GetOptionsMgr()->SaveOption(OPT_CMP_DIFF_ALGORITHM, m_nDiffAlgorithm);
+	GetOptionsMgr()->SaveOption(OPT_CMP_INDENT_HEURISTIC, m_bIndentHeuristic);
 }
 
 /** 
@@ -126,5 +132,17 @@ void PropCompare::OnDefaults()
 	m_bMovedBlocks = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MOVED_BLOCKS);
 	m_bMatchSimilarLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MATCH_SIMILAR_LINES);
 	m_nDiffAlgorithm = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_DIFF_ALGORITHM);
+	m_bIndentHeuristic = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_INDENT_HEURISTIC);
 	UpdateData(FALSE);
+}
+
+void PropCompare::OnCbnSelchangeDiffAlgorithm()
+{
+	UpdateControls();
+}
+
+void PropCompare::UpdateControls()
+{
+	CComboBox * pCombo = (CComboBox*)GetDlgItem(IDC_DIFF_ALGORITHM);
+	EnableDlgItem(IDC_INDENT_HEURISTIC, pCombo->GetCurSel() != 0);
 }
