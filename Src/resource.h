@@ -517,6 +517,7 @@
 #define IDC_SWAP12_STATIC               8826
 #define IDC_SWAP02_STATIC               8827
 #define IDC_DIFF_ALGORITHM              8828
+#define IDC_INDENT_HEURISTIC            8829
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -1244,7 +1245,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        250
 #define _APS_NEXT_COMMAND_VALUE         33660
-#define _APS_NEXT_CONTROL_VALUE         8829
+#define _APS_NEXT_CONTROL_VALUE         8830
 #define _APS_NEXT_SYMED_VALUE           116
 #endif
 #endif

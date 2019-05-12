@@ -83,6 +83,7 @@ struct DIFFOPTIONS
 	bool bIgnoreEol; /**< Ignore EOL differences -option. */
 	bool bFilterCommentsLines; /**< Ignore Multiline comments differences -option. */
 	int nDiffAlgorithm; /**< Diff algorithm -option. */
+	bool bIndentHeuristic; /**< Ident heuristic -option */
 };
 
 /**
@@ -102,6 +103,7 @@ public:
 	bool m_bIgnoreCase; /**< Ignore case differences? */
 	bool m_bIgnoreEOLDifference; /**< Ignore EOL style differences? */
 	enum DiffAlgorithm m_diffAlgorithm; /** Diff algorithm */
+	bool m_bIndentHeuristic; /**< Indent heuristic */
 };
 
 /**

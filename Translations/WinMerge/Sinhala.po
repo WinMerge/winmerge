@@ -2065,6 +2065,14 @@ msgstr "E&nable moved block detection"
 msgid "&Match similar lines"
 msgstr "සමාන පේළි ගලපන්න"
 
+#: Merge.rc:57F02FB4
+msgid "Diff &algorithm (Experimental):"
+msgstr ""
+
+#: Merge.rc:6AE6FCAE
+msgid "Enable indent &heuristic"
+msgstr ""
+
 #: Merge.rc:4C3E0A2F
 #, c-format
 msgid "Comments"
@@ -2074,10 +2082,6 @@ msgstr "විවේචන"
 #, fuzzy, c-format
 msgid "Filter Comments"
 msgstr "Filter Comments"
-
-#: Merge.rc:57F02FB4
-msgid "Diff &algorithm (Experimental):"
-msgstr ""
 
 #: Merge.rc:3BB91A82
 #, c-format

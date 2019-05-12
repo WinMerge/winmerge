@@ -19,6 +19,8 @@ CompareOptions::CompareOptions()
 , m_bIgnoreBlankLines(false)
 , m_bIgnoreCase(false)
 , m_bIgnoreEOLDifference(false)
+, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
+, m_bIndentHeuristic(true)
 {
 }
 
@@ -30,6 +32,8 @@ CompareOptions::CompareOptions(const CompareOptions & options)
 , m_bIgnoreBlankLines(options.m_bIgnoreBlankLines)
 , m_bIgnoreCase(options.m_bIgnoreCase)
 , m_bIgnoreEOLDifference(options.m_bIgnoreEOLDifference)
+, m_diffAlgorithm(options.m_diffAlgorithm)
+, m_bIndentHeuristic(options.m_bIndentHeuristic)
 {
 }
 
@@ -39,15 +43,10 @@ CompareOptions::CompareOptions(const CompareOptions & options)
  */
 DiffutilsOptions::DiffutilsOptions(const DiffutilsOptions& options)
 : CompareOptions(options)
+, m_contextLines(options.m_contextLines)
+, m_filterCommentsLines(options.m_filterCommentsLines)
+, m_outputStyle(options.m_outputStyle)
 {
-	m_bIgnoreBlankLines = options.m_bIgnoreBlankLines;
-	m_bIgnoreCase = options.m_bIgnoreCase;
-	m_bIgnoreEOLDifference = options.m_bIgnoreEOLDifference;
-	m_contextLines = options.m_contextLines;
-	m_filterCommentsLines = options.m_filterCommentsLines;
-	m_ignoreWhitespace = options.m_ignoreWhitespace;
-	m_outputStyle = options.m_outputStyle;
-	m_bIgnoreEOLDifference = options.m_bIgnoreEOLDifference;
 }
 
 /**
@@ -74,6 +73,7 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 	m_bIgnoreBlankLines = options.bIgnoreBlankLines;
 	m_bIgnoreCase = options.bIgnoreCase;
 	m_bIgnoreEOLDifference = options.bIgnoreEol;
+	m_bIndentHeuristic = options.bIndentHeuristic;
 	switch (options.nDiffAlgorithm)
 	{
 	case 0:
