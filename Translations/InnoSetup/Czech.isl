@@ -1,6 +1,6 @@
 ; *******************************************************
 ; ***                                                 ***
-; *** Inno Setup version 5.1.11+ Czech messages       ***
+; *** Inno Setup version 6.0.0+ Czech messages        ***
 ; ***                                                 ***
 ; *** Original Author:                                ***
 ; ***                                                 ***
@@ -12,14 +12,6 @@
 ; ***   Vitezslav Svejdar (vitezslav.svejdar@cuni.cz) ***
 ; ***                                                 ***
 ; *******************************************************
-;
-; Copyright (C) 1997-2007 Jordan Russell. All rights reserved.
-; Translations (C) 2002-2007 Original Author and Contributors. All rights reserved.
-;
-; The contents of this file are subject to the Inno Setup License (the "License").
-; You may obtain a copy of the License at http://www.jrsoftware.org/files/is/license.txt
-;
-; $jrsoftware: issrc/Files/Languages/Czech.isl,v 1.18 2007/02/27 18:22:41 jr Exp $
 
 [LangOptions]
 LanguageName=<010C>e<0161>tina
@@ -43,25 +35,39 @@ ErrorTitle=Chyba
 SetupLdrStartupMessage=Vítá Vás prùvodce instalací produktu %1. Chcete pokraèovat?
 LdrCannotCreateTemp=Nelze vytvoøit doèasnı soubor. Prùvodce instalací bude ukonèen
 LdrCannotExecTemp=Nelze spustit soubor v doèasné sloce. Prùvodce instalací bude ukonèen
+HelpTextNote=
 
 ; *** Startup error messages
 LastErrorMessage=%1.%n%nChyba %2: %3
 SetupFileMissing=Instalaèní sloka neobsahuje soubor %1. Opravte prosím tuto chybu nebo si opatøete novou kopii tohoto produktu.
 SetupFileCorrupt=Soubory prùvodce instalací jsou poškozeny. Opatøete si prosím novou kopii tohoto produktu.
 SetupFileCorruptOrWrongVer=Soubory prùvodce instalací jsou poškozeny nebo se nesluèují s touto verzí prùvodce instalací. Opravte prosím tuto chybu nebo si opatøete novou kopii tohoto produktu.
+InvalidParameter=Pøíkazová øádka obsahuje neplatnı parametr:%n%n%1
+SetupAlreadyRunning=Prùvodce instalací je ji spuštìn.
+WindowsVersionNotSupported=Tento produkt nepodporuje verzi MS Windows, která bìí na Vašem poèítaèi.
+WindowsServicePackRequired=Tento produkt vyaduje %1 Service Pack %2 nebo vyšší.
 NotOnThisPlatform=Tento produkt nelze spustit ve %1.
 OnlyOnThisPlatform=Tento produkt musí bıt spuštìn ve %1.
 OnlyOnTheseArchitectures=Tento produkt lze nainstalovat pouze ve verzích MS Windows s podporou architektury procesorù:%n%n%1
-MissingWOW64APIs=Aktuální verze MS Windows postrádá funkce, které vyaduje prùvodce instalací pro 64-bitovou instalaci. Opravte prosím tuto chybu nainstalováním aktualizace Service Pack %1.
 WinVersionTooLowError=Tento produkt vyaduje %1 verzi %2 nebo vyšší.
 WinVersionTooHighError=Tento produkt nelze nainstalovat ve %1 verzi %2 nebo vyšší.
 AdminPrivilegesRequired=K instalaci tohoto produktu musíte bıt pøihlášeni s právy administrátora.
 PowerUserPrivilegesRequired=K instalaci tohoto produktu musíte bıt pøihlášeni s právy administrátora nebo èlena skupiny Power Users.
-SetupAppRunningError=Prùvodce instalací zjistil, e produkt %1 je nyní spuštìn.%n%nUkonèete prosím všechny spuštìné instance tohoto produktu a pokraèujte klepnutím na tlaèítko OK nebo ukonèete instalaci tlaèítkem Storno.
-UninstallAppRunningError=Prùvodce odinstalací zjistil, e produkt %1 je nyní spuštìn.%n%nUkonèete prosím všechny spuštìné instance tohoto produktu a pokraèujte klepnutím na tlaèítko OK nebo ukonèete odinstalaci tlaèítkem Storno.
+SetupAppRunningError=Prùvodce instalací zjistil, e produkt %1 je nyní spuštìn.%n%nZavøete prosím všechny instance tohoto produktu a pak pokraèujte klepnutím na tlaèítko OK, nebo ukonèete instalaci tlaèítkem Storno.
+UninstallAppRunningError=Prùvodce odinstalací zjistil, e produkt %1 je nyní spuštìn.%n%nZavøete prosím všechny instance tohoto produktu a pak pokraèujte klepnutím na tlaèítko OK, nebo ukonèete odinstalaci tlaèítkem Storno.
+
+; *** Startup questions
+PrivilegesRequiredOverrideTitle=Vıbìr reimu prùvodce instalací
+PrivilegesRequiredOverrideInstruction=Zvolte reim instalace
+PrivilegesRequiredOverrideText1=Produkt %1 lze nainstalovat pro všechny uivatele (musíte bıt pøihlášeni s právy administrátora), nebo pouze pro Vás.
+PrivilegesRequiredOverrideText2=Produkt %1 lze nainstalovat pouze pro Vás, nebo pro všechny uivatele (musíte bıt pøihlášeni s právy administrátora).
+PrivilegesRequiredOverrideAllUsers=Nainstalovat pro &všechny uivatele
+PrivilegesRequiredOverrideAllUsersRecommended=Nainstalovat pro &všechny uivatele (doporuèuje se)
+PrivilegesRequiredOverrideCurrentUser=Nainstalovat pouze pro &mì
+PrivilegesRequiredOverrideCurrentUserRecommended=Nainstalovat pouze pro &mì (doporuèuje se)
 
 ; *** Misc. errors
-ErrorCreatingDir=Prùvodce instalací nemohl vytvoøit sloku "%1"
+ErrorCreatingDir=Prùvodci instalací se nepodaøilo vytvoøit sloku "%1"
 ErrorTooManyFilesInDir=Nelze vytvoøit soubor ve sloce "%1", protoe tato sloka ji obsahuje pøíliš mnoho souborù
 
 ; *** Setup common messages
@@ -90,18 +96,18 @@ ButtonNewFolder=&Vytvoøit novou sloku
 
 ; *** "Select Language" dialog messages
 SelectLanguageTitle=Vıbìr jazyka prùvodce instalací
-SelectLanguageLabel=Zvolte jazyk, kterı se má pouít pøi instalaci:
+SelectLanguageLabel=Zvolte jazyk, kterı se má pouít bìhem instalace.
 
 ; *** Common wizard text
-ClickNext=Pokraèujte klepnutím na tlaèítko Další nebo ukonèete prùvodce instalací tlaèítkem Storno.
+ClickNext=Pokraèujte klepnutím na tlaèítko Další, nebo ukonèete prùvodce instalací tlaèítkem Storno.
 BeveledLabel=
 BrowseDialogTitle=Vyhledat sloku
-BrowseDialogLabel=Z níe uvedeného seznamu vyberte sloku a klepnìte na OK.
+BrowseDialogLabel=Z níe uvedeného seznamu vyberte sloku a klepnìte na tlaèítko OK.
 NewFolderName=Nová sloka
 
 ; *** "Welcome" wizard page
 WelcomeLabel1=Vítá Vás prùvodce instalací produktu [name].
-WelcomeLabel2=Produkt [name/ver] bude nainstalován na Váš poèítaè.%n%nDøíve ne budete pokraèovat, doporuèuje se ukonèit veškeré spuštìné aplikace.
+WelcomeLabel2=Produkt [name/ver] bude nainstalován na Váš poèítaè.%n%nDøíve ne budete pokraèovat, doporuèuje se zavøít veškeré spuštìné aplikace.
 
 ; *** "Password" wizard page
 WizardPassword=Heslo
@@ -131,7 +137,7 @@ UserInfoDesc=Zadejte prosím poadované údaje.
 UserInfoName=&Uivatelské jméno:
 UserInfoOrg=&Spoleènost:
 UserInfoSerial=Sé&riové èíslo:
-UserInfoNameRequired=Uivatelské jméno musí bıt zadáno.
+UserInfoNameRequired=Musíte zadat uivatelské jméno.
 
 ; *** "Select Destination Location" wizard page
 WizardSelectDir=Zvolte cílové umístìní
@@ -139,7 +145,8 @@ SelectDirDesc=Kam má bıt produkt [name] nainstalován?
 SelectDirLabel3=Prùvodce nainstaluje produkt [name] do následující sloky.
 SelectDirBrowseLabel=Pokraèujte klepnutím na tlaèítko Další. Chcete-li zvolit jinou sloku, klepnìte na tlaèítko Procházet.
 DiskSpaceMBLabel=Instalace vyaduje nejménì [mb] MB volného místa na disku.
-ToUNCPathname=Prùvodce instalací nemùe instalovat do cesty UNC. Pokud se pokoušíte instalovat v síti, budete muset pouít nìkterou z dostupnıch síovıch jednotek.
+CannotInstallToNetworkDrive=Prùvodce instalací nemùe instalovat do síové jednotky.
+CannotInstallToUNCPath=Prùvodce instalací nemùe instalovat do cesty UNC.
 InvalidPath=Musíte zadat úplnou cestu vèetnì písmene jednotky; napøíklad:%n%nC:\Aplikace%n%nnebo cestu UNC ve tvaru:%n%n\\server\sdílená sloka
 InvalidDrive=Vámi zvolená jednotka nebo cesta UNC neexistuje nebo není dostupná. Zvolte prosím jiné umístìní.
 DiskSpaceWarningTitle=Nedostatek místa na disku
@@ -199,18 +206,23 @@ WizardPreparing=Pøíprava k instalaci
 PreparingDesc=Prùvodce instalací pøipravuje instalaci produktu [name] na Váš poèítaè.
 PreviousInstallNotCompleted=Instalace/odinstalace pøedchozího produktu nebyla zcela dokonèena. Aby mohla bıt dokonèena, musíte restartovat Váš poèítaè.%n%nPo restartování Vašeho poèítaèe spuste znovu prùvodce instalací, aby bylo moné dokonèit instalaci produktu [name].
 CannotContinue=Prùvodce instalací nemùe pokraèovat. Ukonèete prosím prùvodce instalací klepnutím na tlaèítko Storno.
+ApplicationsFound=Následující aplikace pøistupují k souborùm, které je tøeba bìhem instalace aktualizovat. Doporuèuje se povolit prùvodci instalací, aby tyto aplikace automaticky zavøel.
+ApplicationsFound2=Následující aplikace pøistupují k souborùm, které je tøeba bìhem instalace aktualizovat. Doporuèuje se povolit prùvodci instalací, aby tyto aplikace automaticky zavøel. Po dokonèení instalace se prùvodce instalací pokusí aplikace restartovat.
+CloseApplications=&Zavøít aplikace automaticky
+DontCloseApplications=&Nezavírat aplikace
+ErrorCloseApplications=Prùvodci instalací se nepodaøilo automaticky zavøít všechny aplikace. Døíve ne budete pokraèovat, doporuèuje se zavøít veškeré aplikace pøistupující k souborùm, které je tøeba bìhem instalace aktualizovat.
 
 ; *** "Installing" wizard page
 WizardInstalling=Instalování
-InstallingLabel=Èekejte prosím dokud prùvodce instalací nedokonèí instalaci produktu [name] na Váš poèítaè.
+InstallingLabel=Èekejte prosím, dokud prùvodce instalací nedokonèí instalaci produktu [name] na Váš poèítaè.
 
 ; *** "Setup Completed" wizard page
 FinishedHeadingLabel=Dokonèuje se instalace produktu [name]
 FinishedLabelNoIcons=Prùvodce instalací dokonèil instalaci produktu [name] na Váš poèítaè.
 FinishedLabel=Prùvodce instalací dokonèil instalaci produktu [name] na Váš poèítaè. Produkt lze spustit pomocí nainstalovanıch zástupcù.
 ClickFinish=Ukonèete prùvodce instalací klepnutím na tlaèítko Dokonèit.
-FinishedRestartLabel=Pro dokonèení instalace produktu [name] je nezbytné, aby prùvodce instalací restartoval Váš poèítaè. Chcete jej nyní restartovat?
-FinishedRestartMessage=Pro dokonèení instalace produktu [name] je nezbytné, aby prùvodce instalací restartoval Váš poèítaè.%n%nChcete jej nyní restartovat?
+FinishedRestartLabel=K dokonèení instalace produktu [name] je nezbytné, aby prùvodce instalací restartoval Váš poèítaè. Chcete jej nyní restartovat?
+FinishedRestartMessage=K dokonèení instalace produktu [name] je nezbytné, aby prùvodce instalací restartoval Váš poèítaè.%n%nChcete jej nyní restartovat?
 ShowReadmeCheck=Ano, chci zobrazit dokument "ÈTIMNE"
 YesRadio=&Ano, chci nyní restartovat poèítaè
 NoRadio=&Ne, poèítaè restartuji pozdìji
@@ -221,16 +233,20 @@ RunEntryShellExec=Zobrazit %1
 
 ; *** "Setup Needs the Next Disk" stuff
 ChangeDiskTitle=Prùvodce instalací vyaduje další disk
-SelectDiskLabel2=Vlote prosím disk %1 a klepnìte na OK.%n%nPokud se soubory na tomto disku nacházejí v jiné sloce ne v té, která je zobrazena níe, pak zadejte správnou cestu nebo ji zvolte klepnutím na tlaèítko Procházet.
+SelectDiskLabel2=Vlote prosím disk %1 a klepnìte na tlaèítko OK.%n%nPokud se soubory na tomto disku nacházejí v jiné sloce ne v té, která je zobrazena níe, pak zadejte správnou cestu nebo ji zvolte klepnutím na tlaèítko Procházet.
 PathLabel=&Cesta:
 FileNotInDir2=Soubor "%1" nelze najít v "%2". Vlote prosím správnı disk nebo zvolte jinou sloku.
 SelectDirectoryLabel=Specifikujte prosím umístìní dalšího disku.
 
 ; *** Installation phase messages
 SetupAborted=Instalace nebyla zcela dokonèena.%n%nOpravte prosím chybu a spuste prùvodce instalací znovu.
-EntryAbortRetryIgnore=Akci zopakujete klepnutím na tlaèítko Opakovat. Tento krok vynecháte klepnutím na tlaèítko Pøeskoèit. Instalaci stornujete klepnutím na tlaèítko Pøerušit.
+AbortRetryIgnoreSelectAction=Zvolte akci
+AbortRetryIgnoreRetry=&Zopakovat akci
+AbortRetryIgnoreIgnore=&Ignorovat chybu a pokraèovat
+AbortRetryIgnoreCancel=Zrušit instalaci
 
 ; *** Installation status messages
+StatusClosingApplications=Zavírají se aplikace...
 StatusCreateDirs=Vytváøejí se sloky...
 StatusExtractFiles=Extrahují se soubory...
 StatusCreateIcons=Vytváøejí se zástupci...
@@ -239,6 +255,7 @@ StatusCreateRegistryEntries=Vytváøejí se záznamy v systémovém registru...
 StatusRegisterFiles=Registrují se soubory...
 StatusSavingUninstall=Ukládají se informace pro odinstalaci produktu...
 StatusRunProgram=Dokonèuje se instalace...
+StatusRestartingApplications=Restartují se aplikace...
 StatusRollback=Provedené zmìny se vracejí zpìt...
 
 ; *** Misc. errors
@@ -257,11 +274,13 @@ ErrorRegWriteKey=Došlo k chybì pøi zápisu do klíèe systémového registru:%n%1\%2
 ErrorIniEntry=Došlo k chybì pøi vytváøení záznamu v inicializaèním souboru "%1".
 
 ; *** File copying errors
-FileAbortRetryIgnore=Akci zopakujete klepnutím na tlaèítko Opakovat. Tento soubor pøeskoèíte klepnutím na tlaèítko Pøeskoèit (nedoporuèuje se). Instalaci stornujete klepnutím na tlaèítko Pøerušit.
-FileAbortRetryIgnore2=Akci zopakujete klepnutím na tlaèítko Opakovat. Pokraèujete klepnutím na tlaèítko Pøeskoèit (nedoporuèuje se). Instalaci stornujete klepnutím na tlaèítko Pøerušit.
+FileAbortRetryIgnoreSkipNotRecommended=&Pøeskoèit tento soubor (nedoporuèuje se)
+FileAbortRetryIgnoreIgnoreNotRecommended=&Ignorovat chybu a pokraèovat (nedoporuèuje se)
 SourceIsCorrupted=Zdrojovı soubor je poškozen
 SourceDoesntExist=Zdrojovı soubor "%1" neexistuje
-ExistingFileReadOnly=Existující soubor je urèen pouze pro ètení.%n%nAtribut "pouze pro ètení" odstraníte a akci zopakujete klepnutím na tlaèítko Opakovat. Tento soubor pøeskoèíte klepnutím na tlaèítko Pøeskoèit. Instalaci stornujete klepnutím na tlaèítko Pøerušit.
+ExistingFileReadOnly2=Nelze nahradit existující soubor, protoe je urèen pouze pro ètení.
+ExistingFileReadOnlyRetry=&Odstranit atribut "pouze pro ètení" a zopakovat akci
+ExistingFileReadOnlyKeepExisting=&Ponechat existující soubor
 ErrorReadingExistingDest=Došlo k chybì pøi pokusu o ètení existujícího souboru:
 FileExists=Soubor ji existuje.%n%nMá bıt prùvodcem instalace pøepsán?
 ExistingFileNewer=Existující soubor je novìjší ne ten, kterı se prùvodce instalací pokouší nainstalovat. Doporuèuje se ponechat existující soubor.%n%nChcete jej ponechat?
@@ -276,9 +295,19 @@ ErrorRegisterServer=Nelze zaregistrovat DLL/OCX: %1
 ErrorRegSvr32Failed=Volání RegSvr32 selhalo s návratovım kódem %1
 ErrorRegisterTypeLib=Nelze zaregistrovat typovou knihovnu: %1
 
+; *** Uninstall display name markings
+; used for example as 'My Program (32-bit)'
+UninstallDisplayNameMark=%1 (%2)
+; used for example as 'My Program (32-bit, All users)'
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32bitovı
+UninstallDisplayNameMark64Bit=64bitovı
+UninstallDisplayNameMarkAllUsers=Všichni uivatelé
+UninstallDisplayNameMarkCurrentUser=Aktuální uivatel
+
 ; *** Post-installation errors
 ErrorOpeningReadme=Došlo k chybì pøi pokusu o otevøení dokumentu "ÈTIMNE".
-ErrorRestartingComputer=Prùvodci instalace se nepodaøilo restartovat Váš poèítaè. Restartujte jej prosím ruènì.
+ErrorRestartingComputer=Prùvodci instalací se nepodaøilo restartovat Váš poèítaè. Restartujte jej prosím ruènì.
 
 ; *** Uninstaller messages
 UninstallNotFound=Soubor "%1" neexistuje. Produkt nelze odinstalovat.
@@ -288,7 +317,7 @@ UninstallUnknownEntry=V souboru obsahujícím informace k odinstalaci produktu byl
 ConfirmUninstall=Jste si opravdu jisti, e chcete produkt %1 a všechny jeho souèásti odinstalovat?
 UninstallOnlyOnWin64=Tento produkt lze odinstalovat pouze v 64-bitovıch verzích MS Windows.
 OnlyAdminCanUninstall=K odinstalaci tohoto produktu musíte bıt pøihlášeni s právy administrátora.
-UninstallStatusLabel=Èekejte prosím dokud produkt %1 nebude odinstalován z Vašeho poèítaèe.
+UninstallStatusLabel=Èekejte prosím, dokud produkt %1 nebude odinstalován z Vašeho poèítaèe.
 UninstalledAll=Produkt %1 byl z Vašeho poèítaèe úspìšnì odinstalován.
 UninstalledMost=Produkt %1 byl odinstalován.%n%nNìkteré jeho souèásti se odinstalovat nepodaøilo. Mùete je však odstranit ruènì.
 UninstalledAndNeedsRestart=K dokonèení odinstalace produktu %1 je nezbytné, aby prùvodce odinstalací restartoval Váš poèítaè.%n%nChcete jej nyní restartovat?
@@ -302,14 +331,17 @@ SharedFileLocationLabel=Umístìní:
 WizardUninstalling=Stav odinstalace
 StatusUninstalling=Probíhá odinstalace produktu %1...
 
+; *** Shutdown block reasons
+ShutdownBlockReasonInstallingApp=Probíhá instalace produktu %1.
+ShutdownBlockReasonUninstallingApp=Probíhá odinstalace produktu %1.
+
 ; The custom messages below aren't used by Setup itself, but if you make
 ; use of them in your scripts, you'll want to translate them.
 
 [CustomMessages]
-;Inno Setup Built-in Custom Messages
+
 NameAndVersion=%1 verze %2
 AdditionalIcons=Další zástupci:
-OptionalFeatures=Optional Features:
 CreateDesktopIcon=Vytvoøit zástupce na &ploše
 CreateQuickLaunchIcon=Vytvoøit zástupce na panelu &Snadné spuštìní
 ProgramOnTheWeb=Aplikace %1 na internetu
@@ -317,8 +349,12 @@ UninstallProgram=Odinstalovat aplikaci %1
 LaunchProgram=Spustit aplikaci %1
 AssocFileExtension=Vytvoøit &asociaci mezi soubory typu %2 a aplikací %1
 AssocingFileExtension=Vytváøí se asociace mezi soubory typu %2 a aplikací %1...
+AutoStartProgramGroupDescription=Po spuštìní:
+AutoStartProgram=Spouštìt aplikaci %1 automaticky
+AddonHostProgramNotFound=Aplikace %1 nebyla ve Vámi zvolené sloce nalezena.%n%nChcete pøesto pokraèovat?
 
 ;Things we can also localize
+OptionalFeatures=Optional Features:
 CompanyName=Thingamahoochie Software
 
 ;Types
