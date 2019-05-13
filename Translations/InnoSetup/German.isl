@@ -1,24 +1,47 @@
 ; ******************************************************
 ; ***                                                ***
-; *** Inno Setup version 5.1.11+ German messages     ***
+; *** Inno Setup version 6.0.0+ German messages      ***
 ; ***                                                ***
-; *** Original Author:                               ***
+; *** Changes 6.6.0+ Author:                         ***
 ; ***                                                ***
+; ***   Jens Brand (jens.brand@wolf-software.de)     ***
+; ***                                                ***
+; *** Original Authors:                               ***
+; ***                                                ***
+; ***   Peter Stadler(Peter.Stadler@univie.ac.at)    ***
 ; ***   Michael Reitz (innosetup@assimilate.de)      ***
 ; ***                                                ***
 ; *** Contributors:                                  ***
 ; ***                                                ***
 ; ***   Roland Ruder (info@rr4u.de)                  ***
+; ***   Hans Sperber (Hans.Sperber@de.bosch.com)     ***
 ; ***   LaughingMan (puma.d@web.de)                  ***
 ; ***                                                ***
 ; ******************************************************
 ;
 ; Diese Übersetzung hält sich an die neue deutsche Rechtschreibung.
 
+; Note: When translating this text, do not add periods (.) to the end of
+; messages that didn't have them already, because on those messages Inno
+; Setup adds the periods automatically (appending a period would result in
+; two periods being displayed).
+
 [LangOptions]
+; The following three entries are very important. Be sure to read and 
+; understand the '[LangOptions] section' topic in the help file.
 LanguageName=Deutsch
 LanguageID=$0407
 LanguageCodePage=1252
+; If the language you are translating to requires special font faces or
+; sizes, uncomment any of the following entries and change them accordingly.
+;DialogFontName=
+;DialogFontSize=8
+;WelcomeFontName=Verdana
+;WelcomeFontSize=12
+;TitleFontName=Arial
+;TitleFontSize=29
+;CopyrightFontName=Arial
+;CopyrightFontSize=8
 
 [Messages]
 
@@ -37,16 +60,20 @@ ErrorTitle=Fehler
 SetupLdrStartupMessage=%1 wird jetzt installiert. Möchten Sie fortfahren?
 LdrCannotCreateTemp=Es konnte keine temporäre Datei erstellt werden. Das Setup wurde abgebrochen
 LdrCannotExecTemp=Die Datei konnte nicht im temporären Ordner ausgeführt werden. Das Setup wurde abgebrochen
+HelpTextNote=
 
 ; *** Startup error messages
 LastErrorMessage=%1.%n%nFehler %2: %3
 SetupFileMissing=Die Datei %1 fehlt im Installations-Ordner. Bitte beheben Sie das Problem, oder besorgen Sie sich eine neue Kopie des Programms.
 SetupFileCorrupt=Die Setup-Dateien sind beschädigt. Besorgen Sie sich bitte eine neue Kopie des Programms.
 SetupFileCorruptOrWrongVer=Die Setup-Dateien sind beschädigt oder inkompatibel zu dieser Version des Setups. Bitte beheben Sie das Problem, oder besorgen Sie sich eine neue Kopie des Programms.
+InvalidParameter=Ein ungültiger Paramter wurde auf der Kommandozeile übergeben:%n%n%1
+SetupAlreadyRunning=Setup läuft bereits.
+WindowsVersionNotSupported=Dieses Programm unterstützt die auf Ihrem Computer installierte Windows-Version nicht.
+WindowsServicePackRequired=Dieses Programm benötigt %1 Service Pack %2 oder höher.
 NotOnThisPlatform=Dieses Programm kann nicht unter %1 ausgeführt werden.
 OnlyOnThisPlatform=Dieses Programm muss unter %1 ausgeführt werden.
 OnlyOnTheseArchitectures=Dieses Programm kann nur auf Windows-Versionen installiert werden, die folgende Prozessor-Architekturen unterstützen:%n%n%1
-MissingWOW64APIs=Ihre Windows-Version enthält nicht die Funktionen, die vom Setup für eine 64-bit Installation benötigt werden. Installieren Sie bitte Service Pack %1, um dieses Problem zu beheben.
 WinVersionTooLowError=Dieses Programm benötigt %1 Version %2 oder höher.
 WinVersionTooHighError=Dieses Programm kann nicht unter %1 Version %2 oder höher installiert werden.
 AdminPrivilegesRequired=Sie müssen als Administrator angemeldet sein, um dieses Programm installieren zu können.
@@ -54,6 +81,15 @@ PowerUserPrivilegesRequired=Sie müssen als Administrator oder als Mitglied der H
 SetupAppRunningError=Das Setup hat entdeckt, dass %1 zur Zeit ausgeführt wird.%n%nBitte schließen Sie jetzt alle laufenden Instanzen, und klicken Sie auf "OK", um fortzufahren, oder auf "Abbrechen", um zu beenden.
 UninstallAppRunningError=Die Deinstallation hat entdeckt, dass %1 zur Zeit ausgeführt wird.%n%nBitte schließen Sie jetzt alle laufenden Instanzen, und klicken Sie auf "OK", um fortzufahren, oder auf "Abbrechen", um zu beenden.
 
+; *** Startup questions
+PrivilegesRequiredOverrideTitle=Installationsmodus auswählen
+PrivilegesRequiredOverrideInstruction=Bitte wählen Sie den Installationsmodus
+PrivilegesRequiredOverrideText1=%1 kann für alle Benutzer installiert werden (erfordert Administrationsrechte), oder nur für Sie.
+PrivilegesRequiredOverrideText2=%1 kann nur für Sie installiert werden, oder für alle Venutzer (erfordert Administrationsrechte).
+PrivilegesRequiredOverrideAllUsers=Installation für &alle Benutzer
+PrivilegesRequiredOverrideAllUsersRecommended=Installation für &alle Benutzer (empfohlen)
+PrivilegesRequiredOverrideCurrentUser=Installion nur für &Sie
+PrivilegesRequiredOverrideCurrentUserRecommended=Install nur für &Sie (empfohlen)
 ; *** Misc. errors
 ErrorCreatingDir=Das Setup konnte den Ordner "%1" nicht erstellen
 ErrorTooManyFilesInDir=Das Setup konnte eine Datei im Ordner "%1" nicht erstellen, weil er zu viele Dateien enthält
@@ -65,7 +101,7 @@ AboutSetupMenuItem=&Über das Setup ...
 AboutSetupTitle=Über das Setup
 AboutSetupMessage=%1 Version %2%n%3%n%n%1 Internet-Seite:%n%4
 AboutSetupNote=
-TranslatorNote=German translation maintained by Michael Reitz (innosetup@assimilate.de)
+TranslatorNote=German translation maintained by Jens Brand (jens.brand@wolf-software.de)
 
 ; *** Buttons
 ButtonBack=< &Zurück
@@ -133,7 +169,8 @@ SelectDirDesc=Wohin soll [name] installiert werden?
 SelectDirLabel3=Das Setup wird [name] in den folgenden Ordner installieren.
 SelectDirBrowseLabel=Klicken Sie auf "Weiter", um fortzufahren. Klicken Sie auf "Durchsuchen", falls Sie einen anderen Ordner auswählen möchten.
 DiskSpaceMBLabel=Mindestens [mb] MB freier Speicherplatz ist erforderlich.
-ToUNCPathname=Das Setup kann nicht in einen UNC-Pfad installieren. Wenn Sie auf ein Netzlaufwerk installieren möchten, müssen Sie dem Netzwerkpfad einen Laufwerksbuchstaben zuordnen.
+CannotInstallToNetworkDrive=Das Setup kann nicht in einen Netzwerk-Pfad installieren.
+CannotInstallToUNCPath=Das Setup kann nicht in einen UNC-Pfad installieren. Wenn Sie auf ein Netzlaufwerk installieren möchten, müssen Sie dem Netzwerkpfad einen Laufwerksbuchstaben zuordnen.
 InvalidPath=Sie müssen einen vollständigen Pfad mit einem Laufwerksbuchstaben angeben; z.B.:%n%nC:\Beispiel%n%noder einen UNC-Pfad in der Form:%n%n\\Server\Freigabe
 InvalidDrive=Das angegebene Laufwerk bzw. der UNC-Pfad existiert nicht oder es kann nicht darauf zugegriffen werden. Wählen Sie bitte einen anderen Ordner.
 DiskSpaceWarningTitle=Nicht genug freier Speicherplatz
@@ -149,8 +186,9 @@ DirDoesntExist=Der Ordner:%n%n%1%n%nist nicht vorhanden. Soll der Ordner erstell
 ; *** "Select Components" wizard page
 WizardSelectComponents=Komponenten auswählen
 SelectComponentsDesc=Welche Komponenten sollen installiert werden?
-SelectComponentsLabel2=Wählen Sie die Komponenten aus, die Sie installieren möchten. Klicken Sie auf "Weiter", wenn sie bereit sind fortzufahren.
+SelectComponentsLabel2=Wählen Sie die Komponenten aus, die Sie installieren möchten. Klicken Sie auf "Weiter", wenn Sie bereit sind fortzufahren.
 FullInstallation=Vollständige Installation
+; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
 CompactInstallation=Kompakte Installation
 CustomInstallation=Benutzerdefinierte Installation
 NoUninstallWarningTitle=Komponenten vorhanden
@@ -176,7 +214,7 @@ BadGroupName=Der Ordnername darf keine der folgenden Zeichen enthalten:%n%n%1
 NoProgramGroupCheck2=&Keinen Ordner im Startmenü erstellen
 
 ; *** "Ready to Install" wizard page
-WizardReady=Installation durchführen
+WizardReady=Bereit zur Installation.
 ReadyLabel1=Das Setup ist jetzt bereit, [name] auf Ihrem Computer zu installieren.
 ReadyLabel2a=Klicken Sie auf "Installieren", um mit der Installation zu beginnen, oder auf "Zurück", um Ihre Einstellungen zu überprüfen oder zu ändern.
 ReadyLabel2b=Klicken Sie auf "Installieren", um mit der Installation zu beginnen.
@@ -192,10 +230,15 @@ WizardPreparing=Vorbereitung der Installation
 PreparingDesc=Das Setup bereitet die Installation von [name] auf diesen Computer vor.
 PreviousInstallNotCompleted=Eine vorherige Installation/Deinstallation eines Programms wurde nicht abgeschlossen. Der Computer muss neu gestartet werden, um die Installation/Deinstallation zu beenden.%n%nStarten Sie das Setup nach dem Neustart Ihres Computers erneut, um die Installation von [name] durchzuführen.
 CannotContinue=Das Setup kann nicht fortfahren. Bitte klicken Sie auf "Abbrechen" zum Verlassen.
+ApplicationsFound=Die folgenden Anwendungen benutzen Dateien, die aktualisiert werden müssen. Es wird empfohlen, Setup zu erlauben, diese Anwendungen zu schließen.
+ApplicationsFound2=Die folgenden Anwendungen benutzen Dateien, die aktualisiert werden müssen. Es wird empfohlen, Setup zu erlauben, diese Anwendungen zu schließen. Nachdem die Installation fertiggestellt wurde, versucht Setup diese Anwendungen wieder zu starten.
+CloseApplications=&Schließe automatisch die Anwendungen
+DontCloseApplications=&Schließe die Anwendungen nicht
+ErrorCloseApplications=Das Setup konnte nicht alle Anwendungen automatisch schließen. Es wird empfohlen, alle Anwendungen zu schließen, die Dateien benutzen, die vom Setup vor einer Fortsetzung aktualisiert werden müssen.  
 
 ; *** "Installing" wizard page
 WizardInstalling=Installiere ...
-InstallingLabel=Warten Sie bitte während [name] auf Ihrem Computer installiert wird.
+InstallingLabel=Warten Sie bitte, während [name] auf Ihrem Computer installiert wird.
 
 ; *** "Setup Completed" wizard page
 FinishedHeadingLabel=Beenden des [name] Setup-Assistenten
@@ -207,21 +250,27 @@ FinishedRestartMessage=Um die Installation von [name] abzuschließen, muss das Se
 ShowReadmeCheck=Ja, ich möchte die LIESMICH-Datei sehen
 YesRadio=&Ja, Computer jetzt neu starten
 NoRadio=&Nein, ich werde den Computer später neu starten
+; used for example as 'Run MyProg.exe'
 RunEntryExec=%1 starten
+; used for example as 'View Readme.txt'
 RunEntryShellExec=%1 anzeigen
 
 ; *** "Setup Needs the Next Disk" stuff
-ChangeDiskTitle=Nächste Diskette einlegen
-SelectDiskLabel2=Legen Sie bitte Diskette %1 ein, und klicken Sie auf "OK".%n%nWenn sich die Dateien von dieser Diskette in einem anderen als dem angezeigten Ordner befinden, dann geben Sie bitte den korrekten Pfad ein oder klicken auf "Durchsuchen".
+ChangeDiskTitle=Nächsten Datenträger einlegen
+SelectDiskLabel2=Legen Sie bitte Datenträger %1 ein, und klicken Sie auf "OK".%n%nWenn sich die Dateien von diesem Datenträger in einem anderen als dem angezeigten Ordner befinden, dann geben Sie bitte den korrekten Pfad ein oder klicken auf "Durchsuchen".
 PathLabel=&Pfad:
-FileNotInDir2=Die Datei "%1" befindet sich nicht in "%2". Bitte Ordner ändern oder richtige Diskette einlegen.
-SelectDirectoryLabel=Geben Sie bitte an, wo die nächste Diskette eingelegt wird.
+FileNotInDir2=Die Datei "%1" befindet sich nicht in "%2". Bitte Ordner ändern oder richtigen Datenträger einlegen.
+SelectDirectoryLabel=Geben Sie bitte an, wo der nächste Datenträger eingelegt wird.
 
 ; *** Installation phase messages
 SetupAborted=Das Setup konnte nicht abgeschlossen werden.%n%nBeheben Sie bitte das Problem, und starten Sie das Setup erneut.
-EntryAbortRetryIgnore=Klicken Sie auf "Wiederholen" für einen weiteren Versuch, "Ignorieren", um trotzdem fortzufahren, oder "Abbrechen", um die Installation abzubrechen.
+AbortRetryIgnoreSelectAction=Bitte auswählen
+AbortRetryIgnoreRetry=&Nochmals versuchen
+AbortRetryIgnoreIgnore=&Den Fehler ignorieren und fortfahren
+AbortRetryIgnoreCancel=Installation abbrechen
 
 ; *** Installation status messages
+StatusClosingApplications=Anwendungen werden geschlossen...
 StatusCreateDirs=Ordner werden erstellt ...
 StatusExtractFiles=Dateien werden entpackt ...
 StatusCreateIcons=Verknüpfungen werden erstellt ...
@@ -230,6 +279,7 @@ StatusCreateRegistryEntries=Registry-Einträge werden erstellt ...
 StatusRegisterFiles=Dateien werden registriert ...
 StatusSavingUninstall=Deinstallations-Informationen werden gespeichert ...
 StatusRunProgram=Installation wird beendet ...
+StatusRestartingApplications=Neustart der Anwendungen...
 StatusRollback=Änderungen werden rückgängig gemacht ...
 
 ; *** Misc. errors
@@ -248,11 +298,13 @@ ErrorRegWriteKey=Fehler beim Schreiben des Registry-Schlüssels:%n%1\%2
 ErrorIniEntry=Fehler beim Erstellen eines INI-Eintrages in der Datei "%1".
 
 ; *** File copying errors
-FileAbortRetryIgnore=Klicken Sie auf "Wiederholen" für einen weiteren Versuch, "Ignorieren", um diese Datei zu überspringen (nicht empfohlen), oder "Abbrechen", um die Installation abzubrechen.
-FileAbortRetryIgnore2=Klicken Sie auf "Wiederholen" für einen weiteren Versuch, "Ignorieren", um trotzdem fortzufahren (nicht empfohlen), oder "Abbrechen", um die Installation abzubrechen.
+FileAbortRetryIgnoreSkipNotRecommended=Diese Datei &überspringen (nicht empfohlen)
+FileAbortRetryIgnoreIgnoreNotRecommended=Den Fehler &ignorieren und fortfahren (nicht empfohlen)
 SourceIsCorrupted=Die Quelldatei ist beschädigt
 SourceDoesntExist=Die Quelldatei "%1" existiert nicht
-ExistingFileReadOnly=Die vorhandene Datei ist schreibgeschützt.%n%nKlicken Sie auf "Wiederholen", um den Schreibschutz zu entfernen, "Ignorieren", um die Datei zu überspringen, oder "Abbrechen", um die Installation abzubrechen.
+ExistingFileReadOnly2=Die vorhandene Datei kann nicht ersetzt werden, das sie schreibgeschützt ist
+ExistingFileReadOnlyRetry=&Den Schreibschutz entfernen und noch einmal versuchen
+ExistingFileReadOnlyKeepExisting=Die &vorhandene Datei behalten
 ErrorReadingExistingDest=Lesefehler in Datei:
 FileExists=Die Datei ist bereits vorhanden.%n%nSoll sie überschrieben werden?
 ExistingFileNewer=Die vorhandene Datei ist neuer als die Datei, die installiert werden soll. Es wird empfohlen die vorhandene Datei beizubehalten.%n%n Möchten Sie die vorhandene Datei beibehalten?
@@ -267,6 +319,16 @@ ErrorRegisterServer=DLL/OCX konnte nicht registriert werden: %1
 ErrorRegSvr32Failed=RegSvr32-Aufruf scheiterte mit Exit-Code %1
 ErrorRegisterTypeLib=Typen-Bibliothek konnte nicht registriert werden: %1
 
+; *** Uninstall display name markings
+; used for example as 'Mein Programm (32-bit)'
+UninstallDisplayNameMark=%1 (%2)
+; used for example as 'Mein Programm (32-bit, Alle Benutzer)'
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32-bit
+UninstallDisplayNameMark64Bit=64-bit
+UninstallDisplayNameMarkAllUsers=Alle Benutzer
+UninstallDisplayNameMarkCurrentUser=Aktueller Benutzer
+
 ; *** Post-installation errors
 ErrorOpeningReadme=Fehler beim Öffnen der LIESMICH-Datei.
 ErrorRestartingComputer=Das Setup konnte den Computer nicht neu starten. Bitte führen Sie den Neustart manuell durch.
@@ -279,7 +341,7 @@ UninstallUnknownEntry=In der Deinstallations-Datei wurde ein unbekannter Eintrag
 ConfirmUninstall=Sind Sie sicher, dass Sie %1 und alle zugehörigen Komponenten entfernen möchten?
 UninstallOnlyOnWin64=Diese Installation kann nur unter 64-bit Windows-Versionen entfernt werden.
 OnlyAdminCanUninstall=Diese Installation kann nur von einem Benutzer mit Administrator-Rechten entfernt werden.
-UninstallStatusLabel=Warten Sie bitte während %1 von Ihrem Computer entfernt wird.
+UninstallStatusLabel=Warten Sie bitte, während %1 von Ihrem Computer entfernt wird.
 UninstalledAll=%1 wurde erfolgreich von Ihrem Computer entfernt.
 UninstalledMost=Entfernen von %1 beendet.%n%nEinige Komponenten konnten nicht entfernt werden. Diese können von Ihnen manuell gelöscht werden.
 UninstalledAndNeedsRestart=Um die Deinstallation von %1 abzuschließen, muss Ihr Computer neu gestartet werden.%n%nMöchten Sie jetzt neu starten?
@@ -293,14 +355,17 @@ SharedFileLocationLabel=Ordner:
 WizardUninstalling=Entfernen (Status)
 StatusUninstalling=Entferne %1 ...
 
+; *** Shutdown block reasons
+ShutdownBlockReasonInstallingApp=Installation von %1.
+ShutdownBlockReasonUninstallingApp=Deinstallation von %1.
+
 ; The custom messages below aren't used by Setup itself, but if you make
 ; use of them in your scripts, you'll want to translate them.
 
 [CustomMessages]
-;Inno Setup Built-in Custom Messages
+
 NameAndVersion=%1 Version %2
 AdditionalIcons=Zusätzliche Symbole:
-OptionalFeatures=Optionale Funktionen:
 CreateDesktopIcon=&Desktop-Symbol erstellen
 CreateQuickLaunchIcon=Symbol in der Schnellstartleiste erstellen
 ProgramOnTheWeb=%1 im Internet
@@ -308,8 +373,13 @@ UninstallProgram=%1 entfernen
 LaunchProgram=%1 starten
 AssocFileExtension=&Registriere %1 mit der %2-Dateierweiterung
 AssocingFileExtension=%1 wird mit der %2-Dateierweiterung registriert...
+AutoStartProgramGroupDescription=Beginn des Setups:
+AutoStartProgram=Starte automatisch%1
+AddonHostProgramNotFound=%1 konnte im ausgewählten Ordner nicht gefunden werden.%n%nMöchten Sie dennoch fortfahren?
+
 
 ;Things we can also localize
+OptionalFeatures=Optionale Funktionen:
 CompanyName=Thingamahoochie Software
 
 ;Types

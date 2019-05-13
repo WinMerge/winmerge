@@ -309,8 +309,7 @@ StatusUninstalling=Desinstalando %1...
 [CustomMessages]
 
 NameAndVersion=%1 versión %2
-AdditionalIcons=Iconas adicionais
-OptionalFeatures=Optional Features::
+AdditionalIcons=Iconas adicionais:
 CreateDesktopIcon=Crear unha icona no &escritorio
 CreateQuickLaunchIcon=Crear unha icona no Inicio &Rápido
 ProgramOnTheWeb=%1 na Web
@@ -320,6 +319,7 @@ AssocFileExtension=&Asociar %1 coa extensión de arquivo %2
 AssocingFileExtension=Asociando %1 coa extensión de arquivo %2...
 
 ;Things we can also localize
+OptionalFeatures=Optional Features::
 CompanyName=Thingamahoochie Software
 
 ;Types
