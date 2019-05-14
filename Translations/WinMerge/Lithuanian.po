@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-04-11 07:50+0000\n"
-"PO-Revision-Date: 2019-04-12 12:42+0200\n"
+"POT-Creation-Date: 2019-05-11 09:49+0000\n"
+"PO-Revision-Date: 2019-05-13 07:45+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -113,7 +113,7 @@ msgstr "&Ignoruoti spalvos skirtumus (Spalvų atstumo slenkstis)"
 
 #: Merge.rc:1A002B9B
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "Įt&erpimo/Ištrynimo aptikimas"
 
 #: Merge.rc:43017E43
 msgid "&None"
@@ -121,11 +121,11 @@ msgstr "&Nerodoma"
 
 #: Merge.rc:4DB19837
 msgid "&Vertical"
-msgstr ""
+msgstr "&Vertikaliai"
 
 #: Merge.rc:27AC6D7E
 msgid "&Horizontal"
-msgstr ""
+msgstr "&Horizontaliai"
 
 #: Merge.rc:5A9A7139
 msgid "&Previous Page"
@@ -590,7 +590,7 @@ msgstr "Palyginti iš naujo kaip"
 
 #: Merge.rc:43017E4B
 msgid "&Text"
-msgstr "&Tekstų"
+msgstr "&Tekstas"
 
 #: Merge.rc:22956A7
 msgid "&XML"
@@ -602,7 +602,7 @@ msgstr "&Binarinis"
 
 #: Merge.rc:1D2E49FA
 msgid "&Image"
-msgstr "Va&izdas"
+msgstr "Pave&ikslėlis"
 
 #: Merge.rc:6E470BE9
 msgid "&Undo\tCtrl+Z"
@@ -2255,7 +2255,7 @@ msgstr "&Greitojo palyginimo limitas (MB):"
 
 #: Merge.rc:175DEEF0
 msgid "&Binary compare limit (MB):"
-msgstr ""
+msgstr "Binarinio palyginimo limitas (MB):"
 
 #: Merge.rc:2188DD49
 msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
