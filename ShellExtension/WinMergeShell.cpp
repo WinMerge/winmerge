@@ -189,7 +189,7 @@ public:
 static String GetResourceString(UINT resourceID)
 {
 	TCHAR resStr[1024] = {0};
-	int res = LoadString(_Module.GetModuleInstance(), resourceID, resStr, 1024);
+	int res = LoadString(_AtlComModule.m_hInstTypeLib, resourceID, resStr, 1024);
 	ATLASSERT(res != 0);
 	String strResource = resStr;
 	return strResource;
@@ -225,9 +225,9 @@ CWinMergeShell::CWinMergeShell()
 	int cy = GetSystemMetrics(SM_CYMENUCHECK);
 
 	// compress or stretch icon bitmap according to menu item height
-	HICON hMergeIcon = (HICON)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDI_WINMERGE), IMAGE_ICON,
+	HICON hMergeIcon = (HICON)LoadImage(_AtlComModule.m_hInstTypeLib, MAKEINTRESOURCE(IDI_WINMERGE), IMAGE_ICON,
 		cx, cy, LR_DEFAULTCOLOR);
-	HICON hMergeDirIcon = (HICON)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDI_WINMERGEDIR), IMAGE_ICON,
+	HICON hMergeDirIcon = (HICON)LoadImage(_AtlComModule.m_hInstTypeLib, MAKEINTRESOURCE(IDI_WINMERGEDIR), IMAGE_ICON,
 		cx, cy, LR_DEFAULTCOLOR);
 
 	m_MergeBmp = ConvertHICONtoHBITMAP(hMergeIcon, cx, cy);
