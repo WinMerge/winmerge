@@ -1,26 +1,26 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreColumns", "IgnoreColumns\IgnoreColumns.vcxproj", "{A644FBA4-D76E-4500-B4B7-04D7A245359A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreColumns", "IgnoreColumns\IgnoreColumns.vs2017.vcxproj", "{A644FBA4-D76E-4500-B4B7-04D7A245359A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreFieldsComma", "IgnoreFieldsComma\IgnoreFieldsComma.vcxproj", "{098B241D-63AF-4683-BAF8-6DA57FD8FE75}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreFieldsComma", "IgnoreFieldsComma\IgnoreFieldsComma.vs2017.vcxproj", "{098B241D-63AF-4683-BAF8-6DA57FD8FE75}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreCommentsC", "IgnoreCommentsC\IgnoreCommentsC.vcxproj", "{32000226-A923-40A5-B60A-6C4402869C43}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreCommentsC", "IgnoreCommentsC\IgnoreCommentsC.vs2017.vcxproj", "{32000226-A923-40A5-B60A-6C4402869C43}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreFieldsTab", "IgnoreFieldsTab\IgnoreFieldsTab.vcxproj", "{AA88B46E-B2E2-4B03-8CD5-1E9D60DB6AB2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreFieldsTab", "IgnoreFieldsTab\IgnoreFieldsTab.vs2017.vcxproj", "{AA88B46E-B2E2-4B03-8CD5-1E9D60DB6AB2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayXMLFiles", "DisplayXMLFiles\DisplayXMLFiles.vcxproj", "{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayXMLFiles", "DisplayXMLFiles\DisplayXMLFiles.vs2017.vcxproj", "{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HideFirstLetter", "HideFirstLetter\HideFirstLetter.vcxproj", "{78ABD31C-70A2-4608-8A3D-506E1E2C0AFE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HideFirstLetter", "HideFirstLetter\HideFirstLetter.vs2017.vcxproj", "{78ABD31C-70A2-4608-8A3D-506E1E2C0AFE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EditBinaryFiles", "EditBinaryFiles\EditBinaryFiles.vcxproj", "{0EE652FF-27B0-4F91-BAD6-2931BC072762}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EditBinaryFiles", "EditBinaryFiles\EditBinaryFiles.vs2017.vcxproj", "{0EE652FF-27B0-4F91-BAD6-2931BC072762}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayBinaryFiles", "DisplayBinaryFiles\DisplayBinaryFiles.vcxproj", "{6877DE2D-4ABA-49B0-858D-7D9A9F92945C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayBinaryFiles", "DisplayBinaryFiles\DisplayBinaryFiles.vs2017.vcxproj", "{6877DE2D-4ABA-49B0-858D-7D9A9F92945C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WatchBeginningOfLog", "WatchBeginningOfLog\WatchBeginningOfLog.vcxproj", "{A948A08A-3AF4-4860-8D13-8C425E56806F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WatchBeginningOfLog", "WatchBeginningOfLog\WatchBeginningOfLog.vs2017.vcxproj", "{A948A08A-3AF4-4860-8D13-8C425E56806F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WatchEndOfLog", "WatchEndOfLog\WatchEndOfLog.vcxproj", "{4A3F0C35-6B6D-44B3-84FD-7E2168398361}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WatchEndOfLog", "WatchEndOfLog\WatchEndOfLog.vs2017.vcxproj", "{4A3F0C35-6B6D-44B3-84FD-7E2168398361}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
