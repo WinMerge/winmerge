@@ -63,7 +63,7 @@ if not "%1" == "" (
 rem ShellExtension
 copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
-copy ShellExtension\*Register.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
+copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 
 rem Translation
 copy Build\%PLATFORM%\MergeUnicodeRelease\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\"
