@@ -31,10 +31,7 @@
 #include <initguid.h>
 #include "ShellExtension.h"
 #include "ShellExtension_i.c"
-#include "WinMergeShell.h"
 #include "RegKey.h"
-
-OBJECT_ENTRY_AUTO(CLSID_WinMergeShell, CWinMergeShell)
 
 class CWinMergeShellModule : public ATL::CAtlDllModuleT< CWinMergeShellModule >
 {

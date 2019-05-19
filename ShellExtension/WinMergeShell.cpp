@@ -47,6 +47,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+OBJECT_ENTRY_AUTO(CLSID_WinMergeShell, CWinMergeShell)
+
 /**
  * @brief Flags for enabling and other settings of context menu.
  */
@@ -96,8 +98,6 @@ enum
 	MENU_THREESEL
 };
 
-#define USES_WINMERGELOCALE CWinMergeTempLocale __wmtl__
-
 static String GetResourceString(UINT resourceID);
 
 // GreyMerlin (03 Sept 2017) - The following Version Info checking code is a 
@@ -139,47 +139,11 @@ IsWindowsVersionOrGreater(WORD wMajorVersion, WORD wMinorVersion, WORD wServiceP
 
 
 VERSIONHELPERAPI
-IsWindowsVistaOrGreater()
-{
-    return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_VISTA), LOBYTE(_WIN32_WINNT_VISTA), 0);
-}
-
-
-VERSIONHELPERAPI
 IsWindows8OrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WIN8), LOBYTE(_WIN32_WINNT_WIN8), 0);
 }
 #endif // VERSIONHELPERAPI
-
-class CWinMergeTempLocale
-{
-private:
-	LCID m_lcidOld;
-public:
-	CWinMergeTempLocale()
-	{
-		CRegKeyEx reg;
-		if (reg.Open(HKEY_CURRENT_USER, f_RegLocaleDir) != ERROR_SUCCESS)
-			return;
-
-		m_lcidOld = GetThreadLocale();
-
-		int iLangId = reg.ReadDword(f_LanguageId, (DWORD)-1);
-		if (iLangId != -1)
-		{
-			if (!IsWindowsVistaOrGreater())
-				SetThreadUILanguage(iLangId);
-			SetThreadLocale(MAKELCID(iLangId, SORT_DEFAULT));
-		}
-	}
-	~CWinMergeTempLocale()
-	{
-		if (!IsWindowsVistaOrGreater())
-			SetThreadUILanguage(LANGIDFROMLCID(m_lcidOld));
-		SetThreadLocale(m_lcidOld);
-	}
-};
 
 /**
  * @brief Load a string from resource.
@@ -249,7 +213,6 @@ CWinMergeShell::~CWinMergeShell()
 HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 		LPDATAOBJECT pDataObj, HKEY hProgID)
 {
-	USES_WINMERGELOCALE;
 	HRESULT hr = E_INVALIDARG;
 
 	// Files/folders selected normally from the explorer
@@ -338,7 +301,6 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd, UINT uidLastCmd, UINT uFlags)
 {
 	int nItemsAdded = 0;
-	USES_WINMERGELOCALE;
 
 	// If the flags include CMF_DEFAULTONLY then we shouldn't do anything.
 	if (uFlags & CMF_DEFAULTONLY)
@@ -384,7 +346,6 @@ HRESULT CWinMergeShell::GetCommandString(UINT_PTR idCmd, UINT uFlags,
 		UINT* pwReserved, LPSTR pszName, UINT  cchMax)
 {
 	USES_CONVERSION;
-	USES_WINMERGELOCALE;
 
 	// Check idCmd, it must be 0 in simple mode and 0 or 1 in advanced mode.
 	if ((m_dwMenuState & EXT_ADVANCED) == 0)
@@ -426,7 +387,6 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	String strWinMergePath;
 	BOOL bCompare = FALSE;
 	BOOL bAlterSubFolders = FALSE;
-	USES_WINMERGELOCALE;
 
 	// If lpVerb really points to a string, ignore this function call and bail out.
 	if (HIWORD(pCmdInfo->lpVerb) != 0)
