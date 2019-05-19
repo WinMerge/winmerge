@@ -2743,6 +2743,14 @@ msgstr "Kabuk &Uzantısını Kaydet"
 msgid "&Unregister shell extension"
 msgstr "Kab&uk Uzantısı Kaydını Sil"
 
+#: Merge.rc:2D682DC2
+msgid "Register shell extension for current user &only"
+msgstr ""
+
+#: Merge.rc:5C3A0110
+msgid "Unregister shell extension for current user on&ly"
+msgstr ""
+
 #: Merge.rc:7262BE24
 #, c-format
 msgid "Folder"

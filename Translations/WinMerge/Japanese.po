@@ -2236,6 +2236,14 @@ msgstr "シェル拡張を登録(&R)"
 msgid "&Unregister shell extension"
 msgstr "シェル拡張の登録を解除(&U)"
 
+#: Merge.rc:2D682DC2
+msgid "Register shell extension for current user &only"
+msgstr "現在のユーザーのみシェル拡張を登録(&O)"
+
+#: Merge.rc:5C3A0110
+msgid "Unregister shell extension for current user on&ly"
+msgstr "現在のユーザーのみシェル拡張の登録を解除(&L)"
+
 #: Merge.rc:7262BE24
 msgid "Folder"
 msgstr "フォルダー"

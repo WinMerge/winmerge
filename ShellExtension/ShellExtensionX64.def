@@ -1,9 +1,10 @@
 ; ShellExtensionX64.def : Declares the module parameters.
 
-LIBRARY      "ShellExtensionX64.DLL"
+LIBRARY
 
 EXPORTS
 	DllCanUnloadNow     PRIVATE
 	DllGetClassObject   PRIVATE
 	DllRegisterServer   PRIVATE
 	DllUnregisterServer	PRIVATE
+	DllInstall		PRIVATE

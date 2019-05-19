@@ -2738,6 +2738,14 @@ msgstr "注册到外壳扩展(&R)"
 msgid "&Unregister shell extension"
 msgstr "取消注册到外壳扩展(&U)"
 
+#: Merge.rc:2D682DC2
+msgid "Register shell extension for current user &only"
+msgstr ""
+
+#: Merge.rc:5C3A0110
+msgid "Unregister shell extension for current user on&ly"
+msgstr ""
+
 #: Merge.rc:7262BE24
 #, c-format
 msgid "Folder"
