@@ -362,8 +362,7 @@ Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type:
 Name: {commonappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type: files; Check: not IsTaskSelected('QuickLauchIcon')
 
 ;This removes the desktop icon in case the user chooses not to install it after previously having it installed
-Name: {userdesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('DesktopIcon')
-Name: {commondesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('DesktopIcon')
+Name: {autodesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('DesktopIcon')
 
 ;Removes the Uninstall icon from the start menu...
 Name: {group}\{cm:UninstallProgram,WinMerge}.lnk; Type: files;
@@ -560,7 +559,7 @@ Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Turkish.txt; IconFileName
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Ukrainian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Ukrainian
 
 ;Desktop Icon
-Name: {commondesktop}\WinMerge; Filename: {app}\{code:ExeName}; Tasks: desktopicon
+Name: {autodesktop}\WinMerge; Filename: {app}\{code:ExeName}; Tasks: desktopicon
 
 ;Quick Launch Icon
 Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge; Filename: {app}\{code:ExeName}; Tasks: quicklaunchicon
