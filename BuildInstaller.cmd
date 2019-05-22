@@ -10,7 +10,7 @@ goto :eof
 set PLATFORM=%1
 
 if "%PLATFORM%" == "x64" (
-  for %%i in ("%ProgramFiles(x86)%" "%ProgramFiles%") do (
+  for %%i in ("%LOCALAPPDATA%\Programs" "%ProgramFiles(x86)%" "%ProgramFiles%") do (
     if exist "%%~i\Inno Setup 6\iscc.exe" (
       "%%~i\Inno Setup 6\iscc.exe" "Installer\innosetup\WinMerge%PLATFORM%.is6.iss" || pause
     ) else (
