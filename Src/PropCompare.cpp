@@ -102,19 +102,15 @@ void PropCompare::WriteOptions()
  */
 BOOL PropCompare::OnInitDialog()
 {
-	OptionsPanel::OnInitDialog();
 	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_DIFF_ALGORITHM);
 
-	String item = _("default");
-	combo->AddString(item.c_str());
-	item = _("minimal");
-	combo->AddString(item.c_str());
-	item = _("patience");
-	combo->AddString(item.c_str());
-	item = _("histogram");
-	combo->AddString(item.c_str());
+	combo->AddString(_("default").c_str());
+	combo->AddString(_("minimal").c_str());
+	combo->AddString(_("patience").c_str());
+	combo->AddString(_("histogram").c_str());
 	combo->SetCurSel(m_nDiffAlgorithm);
 
+	OptionsPanel::OnInitDialog();
 	return TRUE;  // return TRUE unless you set the focus to a control
 }
 
