@@ -70,6 +70,8 @@ public:
 
 	enum output_style m_outputStyle; /**< Patch style (context, unified etc.) */
 	int m_contextLines; /**< How many context lines are added. */
+	enum DiffAlgorithm m_diffAlgorithm;
+	bool m_indentHeuristic;
 
 // Overrides
 	// ClassWizard generated virtual function overrides
