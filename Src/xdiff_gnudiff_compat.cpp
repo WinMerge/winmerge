@@ -114,6 +114,10 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_block
 		filevec[1].buffer = mmfile2.ptr;
 		filevec[0].bufsize = mmfile1.size;
 		filevec[1].bufsize = mmfile2.size;
+		filevec[0].buffered_chars = mmfile1.size;
+		filevec[1].buffered_chars = mmfile2.size;
+		filevec[0].linbuf_base = 0;
+		filevec[1].linbuf_base = 0;
 		filevec[0].valid_lines = xe.xdf1.nrec;
 		filevec[1].valid_lines = xe.xdf2.nrec;
 		filevec[0].linbuf = static_cast<const char **>(malloc(sizeof(char *) * (xe.xdf1.nrec + 1)));
