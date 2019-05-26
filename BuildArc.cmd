@@ -50,7 +50,7 @@ rem Docs
 for %%i in (Translations\Docs\Readme\ReadMe-*.txt Build\Manual\htmlhelp\WinMerge.chm Build\Manual\htmlhelp\WinMergeJapanese.chm Docs\Users\ReleaseNotes.html Docs\Users\ChangeLog.txt) do (
   copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Docs"
 )
-for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\Files.txt Docs\Users\ReadMe.txt) do (
+for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\ReadMe.txt) do (
   copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge"
 )
 
