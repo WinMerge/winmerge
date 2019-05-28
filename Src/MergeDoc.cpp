@@ -3228,7 +3228,6 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("<!--\n")
 		_T("td,th {word-break: break-all; font-size: %dpt;}\n")
 		_T("tr { vertical-align: top; }\n")
-		_T(".border { border-radius: 6px; border: 1px #a0a0a0 solid; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); overflow: hidden; }\n")
 		_T(".ln {text-align: right; word-break: normal; background-color: lightgrey; box-shadow: inset 1px 0px 0px rgba(0, 0, 0, 0.10);}\n")
 		_T(".title {color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
 		_T("%s")
@@ -3236,7 +3235,6 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("</style>\n")
 		_T("</head>\n")
 		_T("<body>\n")
-		_T("<div class=\"border\">")
 		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width: 100%%; margin: 0; border: none;\">\n")
 		_T("<thead>\n")
 		_T("<tr>\n");
@@ -3352,7 +3350,6 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	file.WriteString(
 		_T("</tbody>\n")
 		_T("</table>\n")
-		_T("</div>")
 		_T("</body>\n")
 		_T("</html>\n"));
 
