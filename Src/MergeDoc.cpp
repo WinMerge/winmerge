@@ -3296,21 +3296,29 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			if (idx[nBuffer] < nLineCount[nBuffer])
 			{
 				// line number
+				int iVisibleLineNumber = 0;
 				String tdtag = _T("<td class=\"ln\">");
 				DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
-				if (nBuffer == 0 && 
-				     (dwFlags & (LF_DIFF | LF_GHOST))!=0 && (idx[nBuffer] == 0 || 
-				    (m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST))==0 ))
+				if ((dwFlags & LF_GHOST) == 0 && m_pView[0][nBuffer]->GetViewLineNumbers())
+				{
+					iVisibleLineNumber = m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1;
+				}
+				if (nBuffer == 0 &&
+					(dwFlags & (LF_DIFF | LF_GHOST)) != 0 && (idx[nBuffer] == 0 ||
+					(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST)) == 0))
 				{
 					++nDiff;
-					tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
+					tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+					iVisibleLineNumber = 0;
 				}
-				if ((dwFlags & LF_GHOST)==0 && m_pView[0][nBuffer]->GetViewLineNumbers())
-					tdtag += strutils::format(_T("%d</td>"), m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1);
+				if (iVisibleLineNumber > 0)
+				{
+					tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
+				}
 				else
 					tdtag += _T("</td>");
 				file.WriteString(tdtag);
-				// write a line on left/right side
+				// line content
 				file.WriteString((LPCTSTR)m_pView[0][nBuffer]->GetHTMLLine(idx[nBuffer], _T("td")));
 				idx[nBuffer]++;
 			}
