@@ -3260,16 +3260,12 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		}
 	}
 
-	// left and right title
+	// titles
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		int nLineNumberColumnWidth = 1;
-		String data = strutils::format(_T("<th class=\"title\" style=\"width:%d%%\"></th>"), 
-			nLineNumberColumnWidth);
-		file.WriteString(data);
-		data = strutils::format(_T("<th class=\"title\" style=\"width:%f%%\">"),
-			(double)(100 - nLineNumberColumnWidth * m_nBuffers) / m_nBuffers);
+		String data = strutils::format(_T("<th colspan=\"2\" class=\"title\" style=\"width:%f%%\">"),
+			(double)100 / m_nBuffers);
 		file.WriteString(data);
 		file.WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(paths[nBuffer]))));
 		file.WriteString(_T("</th>\n"));
