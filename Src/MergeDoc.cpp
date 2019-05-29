@@ -3226,6 +3226,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("<title>WinMerge File Compare Report</title>\n")
 		_T("<style type=\"text/css\">\n")
 		_T("<!--\n")
+		_T("table {margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);}\n")
 		_T("td,th {word-break: break-all; font-size: %dpt;padding: 0 3px;}\n")
 		_T("tr { vertical-align: top; }\n")
 		_T(".ln {text-align: right; word-break: normal; background-color: lightgrey;}\n")
@@ -3235,7 +3236,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("</style>\n")
 		_T("</head>\n")
 		_T("<body>\n")
-		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width: 100%%; margin: 0; border: none;\">\n")
+		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%%;\">\n")
 		_T("<thead>\n")
 		_T("<tr>\n");
 	String header = 
