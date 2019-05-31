@@ -113,6 +113,22 @@
       </varlistentry>
 
       <varlistentry>
+        <term><xref linkend="Compare_images" /></term>
+
+        <listitem>
+          <para>TBD</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_bin" /></term>
+
+        <listitem>
+          <para>TBD</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term><xref linkend="Configuration" /></term>
 
         <listitem>

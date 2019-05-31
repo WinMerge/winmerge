@@ -3309,13 +3309,16 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 					(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST)) == 0))
 				{
 					++nDiff;
-					tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
-					iVisibleLineNumber = 0;
+					if (iVisibleLineNumber > 0)
+					{
+						tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+						iVisibleLineNumber = 0;
+					}
+					else
+						tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
 				}
 				if (iVisibleLineNumber > 0)
-				{
 					tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
-				}
 				else
 					tdtag += _T("</td>");
 				file.WriteString(tdtag);
