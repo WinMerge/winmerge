@@ -10,6 +10,13 @@ Option Explicit
 
 Const ForReading = 1
 
+Const NO_BLOCK = 0
+Const MENU_BLOCK = 1
+Const DIALOGEX_BLOCK = 2
+Const STRINGTABLE_BLOCK = 3
+Const VERSIONINFO_BLOCK = 4
+Const ACCELERATORS_BLOCK = 5
+
 Dim oFSO, bRunFromCmd
 
 Set oFSO = CreateObject("Scripting.FileSystemObject")
@@ -107,7 +114,7 @@ End Function
 ''
 ' ...
 Function GetIdsFromResourceFile(ByVal sRcPath)
-  Dim oIds, oTextFile, sLine, iLine
+  Dim oIds, oTextFile, sLine, iLine, iBlockType
   Dim reId, oMatch, sId
   
   Set oIds = CreateObject("Scripting.Dictionary")
@@ -118,12 +125,39 @@ Function GetIdsFromResourceFile(ByVal sRcPath)
   
   If (oFSO.FileExists(sRcPath) = True) Then 'If the RC file exists...
     iLine = 0
+    iBlockType = NO_BLOCK
     Set oTextFile = oFSO.OpenTextFile(sRcPath, ForReading)
     Do Until oTextFile.AtEndOfStream = True 'For all lines...
       sLine = Trim(oTextFile.ReadLine)
       iLine = iLine + 1
       
+      If (InStr(sLine, " MENU") > 0) Then 'MENU...
+        iBlockType = MENU_BLOCK
+      ElseIf (InStr(sLine, " DIALOGEX") > 0) Then 'DIALOGEX...
+        iBlockType = DIALOGEX_BLOCK
+      ElseIf (sLine = "STRINGTABLE") Then 'STRINGTABLE...
+        iBlockType = STRINGTABLE_BLOCK
+      ElseIf (InStr(sLine, " VERSIONINFO") > 0) Then 'VERSIONINFO...
+        iBlockType = VERSIONINFO_BLOCK
+      ElseIf (InStr(sLine, " ACCELERATORS") > 0) Then 'ACCELERATORS...
+        iBlockType = ACCELERATORS_BLOCK
+      ElseIf (sLine = "BEGIN") Then 'BEGIN...
+        'IGNORE FOR SPEEDUP!
+      ElseIf (sLine = "END") Then 'END...
+        If (iBlockType = STRINGTABLE_BLOCK) Then 'If inside stringtable...
+          iBlockType = NO_BLOCK
+        End If
+      ElseIf (Left(sLine, 2) = "//") Then 'If comment line...
+        sLine = ""
+        'IGNORE FOR SPEEDUP!
+      ElseIf (sLine <> "") Then 'If NOT empty line...
+        If (iBlockType = MENU_BLOCK) Or (iBlockType = DIALOGEX_BLOCK) Then
+          sLine = ""
+        End If
+      End If
+      
       sId = ""
+      
       If reId.Test(sLine) Then 'If ID...
         Set oMatch = reId.Execute(sLine)(0)
         sId = oMatch.SubMatches(0)
@@ -183,7 +217,7 @@ Function GetIdsFromCppFiles(ByVal sFolderPath, ByRef oIds)
     Next
     
     For Each oSubFolder In oFolder.SubFolders 'For all folders...
-      If (oSubFolder.Name <> ".svn") Then 'If NOT a SVN folder...
+      If (oSubFolder.Name <> ".svn") And (oSubFolder.Name <> ".hg") And (oSubFolder.Name <> ".git") Then 'If NOT a SVN folder...
         GetIdsFromCppFiles oSubFolder.Path, oIds
       End If
     Next

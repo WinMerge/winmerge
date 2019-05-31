@@ -547,7 +547,7 @@ def main():
     status.addProject(PoProject('WinMerge', 'WinMerge/English.pot', 'WinMerge'))
     status.addProject(PoProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension'))
     status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.isl', 'InnoSetup'))
-    status.addProject(ReadmeProject('Docs/Readme', 'Docs/Readme.txt', 'Docs/Readme'))
+    status.addProject(ReadmeProject('Docs/Readme', 'Docs/ReadMe.txt', 'Docs/Readme'))
     status.writeToXmlFile('TranslationsStatus.xml')
     status.writeToHtmlFile('TranslationsStatus.html')
 
