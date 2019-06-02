@@ -2743,7 +2743,7 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
 #: Merge.rc:7262BE24
-#, c-format
+msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "文件夹"
 
@@ -2787,7 +2787,7 @@ msgid "&Number of compare threads (a negative value implies addition of the numb
 msgstr "比较使用的线程数 (负数表示使用所有可用的 CPU 核心数) (&N):"
 
 #: Merge.rc:17BC2F9E
-#, c-format
+msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "二进制"
 
@@ -2817,7 +2817,6 @@ msgid "&Character Set..."
 msgstr "字符集(&C)"
 
 #: Merge.rc:B8C361
-#, c-format
 msgid "Image"
 msgstr "图片"
 
@@ -3744,6 +3743,11 @@ msgstr "未知的压缩包格式"
 msgid "Filename"
 msgstr "文件名称"
 
+#: Merge.rc:7262BE24
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "文件夹"
+
 #: Merge.rc:D404EDE
 #, c-format
 msgid "Comparison result"
@@ -3888,6 +3892,11 @@ msgstr "中间文件编码"
 #, c-format
 msgid "Ignored Diff."
 msgstr "忽略的差异."
+
+#: Merge.rc:17BC2F9E
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "二进制"
 
 #: Merge.rc:76C8AB99
 #, c-format
@@ -4528,6 +4537,11 @@ msgstr "您正要关闭多个比较窗口.\n是否继续?"
 #, c-format
 msgid "Mixed"
 msgstr "混合"
+
+#: Merge.rc:17BC2F9E
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "二进制"
 
 #: Merge.rc:46FCCCF
 #, c-format

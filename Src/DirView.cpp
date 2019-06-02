@@ -3834,12 +3834,12 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 }
 
 /// Assign column name, using string resource & current column ordering
-void CDirView::NameColumn(const char *idname, int subitem)
+void CDirView::NameColumn(const DirColInfo *col, int subitem)
 {
 	int phys = m_pColItems->ColLogToPhys(subitem);
 	if (phys>=0)
 	{
-		String s = tr(idname);
+		String s = tr(col->idNameContext, col->idName);
 		LV_COLUMN lvc;
 		lvc.mask = LVCF_TEXT;
 		lvc.pszText = const_cast<LPTSTR>(s.c_str());
@@ -3854,7 +3854,7 @@ void CDirView::UpdateColumnNames()
 	for (int i=0; i<ncols; ++i)
 	{
 		const DirColInfo * col = m_pColItems->GetDirColInfo(i);
-		NameColumn(col->idName, i);
+		NameColumn(col, i);
 	}
 }
 

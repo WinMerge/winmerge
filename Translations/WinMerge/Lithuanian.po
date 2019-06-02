@@ -2234,6 +2234,7 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr "Išregistruoti aplinkos p&lėtinį tik šiam naudotojui"
 
 #: Merge.rc:7262BE24
+msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Katalogų"
 
@@ -2270,6 +2271,7 @@ msgid "&Number of compare threads (a negative value implies addition of the numb
 msgstr "Lygi&nimo srautų skaičius (neigiama reikšmė reiškia turimų procesoriaus branduolių skaičiaus pridėjimą):"
 
 #: Merge.rc:17BC2F9E
+msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binarinių"
 
@@ -3192,6 +3194,11 @@ msgstr "Nežinomo formato archyvas"
 msgid "Filename"
 msgstr "Failo vardas"
 
+#: Merge.rc:7262BE24
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "Katalogų"
+
 #: Merge.rc:D404EDE
 msgid "Comparison result"
 msgstr "Lyginimo rezultatas"
@@ -3307,6 +3314,11 @@ msgstr "Vidurinio koduotė"
 #: Merge.rc:6B6D8966
 msgid "Ignored Diff."
 msgstr "Ignoruoti skirtumai."
+
+#: Merge.rc:17BC2F9E
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "Binarinių"
 
 #: Merge.rc:76C8AB99
 msgid "Unable to compare files"
@@ -3859,6 +3871,11 @@ msgstr ""
 #: Merge.rc:7C664E2
 msgid "Mixed"
 msgstr "Mišrus"
+
+#: Merge.rc:17BC2F9E
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "Binarinių"
 
 #: Merge.rc:46FCCCF
 msgid "None"
