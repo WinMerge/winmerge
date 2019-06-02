@@ -54,6 +54,8 @@ CPatchDlg::CPatchDlg(CWnd* pParent /*= nullptr*/)
 	, m_includeCmdLine(false)
 	, m_outputStyle(OUTPUT_NORMAL)
 	, m_contextLines(0)
+	, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
+	, m_indentHeuristic(true)
 {
 }
 
@@ -187,6 +189,8 @@ void CPatchDlg::OnOK()
 	}
 
 	m_contextLines = GetDlgItemInt(IDC_DIFF_CONTEXT);
+	m_diffAlgorithm = static_cast<DiffAlgorithm>(GetOptionsMgr()->GetInt(OPT_CMP_DIFF_ALGORITHM));
+	m_indentHeuristic = GetOptionsMgr()->GetBool(OPT_CMP_INDENT_HEURISTIC);
 
 	SaveSettings();
 
