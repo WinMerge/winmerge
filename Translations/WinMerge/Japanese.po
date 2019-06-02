@@ -24,1282 +24,967 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:5F458438
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_JAPANESE, SUBLANG_DEFAULT"
 
 #. Codepage
-#: Merge.rc:2C983F1
 msgid "1252"
 msgstr "65001"
 
-#: Merge.rc:1C6125F3
 msgid "C&opy to Right"
 msgstr "右側にコピー(&O)"
 
-#: Merge.rc:92C6C92
 msgid "Cop&y to Left"
 msgstr "左側にコピー(&Y)"
 
-#: Merge.rc:6FC398B6
 msgid "Copy &from Left"
 msgstr "左側からコピー(&F)"
 
-#: Merge.rc:8AF7E68
 msgid "Copy fro&m Right"
 msgstr "右側からコピー(&M)"
 
-#: Merge.rc:381D79E4
 msgid "&Select Line Difference"
 msgstr "行内差異を選択(&S)"
 
-#: Merge.rc:43017E40
 msgid "&Undo"
 msgstr "元に戻す(&U)"
 
-#: Merge.rc:43017E41
 msgid "&Redo"
 msgstr "やり直し(&R)"
 
-#: Merge.rc:3CF9F83
 msgid "Cu&t"
 msgstr "切り取り(&T)"
 
-#: Merge.rc:43017E42
 msgid "&Copy"
 msgstr "コピー(&C)"
 
-#: Merge.rc:1D2E49F6
 msgid "&Paste"
 msgstr "貼り付け(&P)"
 
-#: Merge.rc:AC3AA11
 msgid "&Goto..."
 msgstr "移動(&G)..."
 
-#: Merge.rc:B4D35A1
 msgid "Op&en"
 msgstr "開く(&E)"
 
-#: Merge.rc:37625055
 msgid "with &Registered Application"
 msgstr "登録されたアプリケーションで(&R)"
 
-#: Merge.rc:321D741E
 msgid "with &External Editor\tCtrl+Alt+E"
 msgstr "外部エディタで(&E)\tCtrl+Alt+E"
 
-#: Merge.rc:AC3AA12
 msgid "&with..."
 msgstr "プログラムの選択(&W)..."
 
-#: Merge.rc:2E3BFCA1
 msgid "S&hell Menu"
 msgstr "シェルメニュー"
 
-#: Merge.rc:1A8FADD3
 msgid "View &Differences"
 msgstr "差異を表示(&D)"
 
-#: Merge.rc:71E3C8E3
 msgid "Diff &Block Size"
 msgstr "Diff ブロック サイズ(&B)"
 
-#: Merge.rc:67D67717
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "色の違いを無視する (色距離の閾値)(&I)"
 
-#: Merge.rc:1A002B9B
 msgid "Ins&ertion/Deletion Detection"
 msgstr "挿入/削除検出(&E)"
 
-#: Merge.rc:43017E43
 msgid "&None"
 msgstr "なし(&N)"
 
-#: Merge.rc:4DB19837
 msgid "&Vertical"
 msgstr "垂直方向(&V)"
 
-#: Merge.rc:27AC6D7E
 msgid "&Horizontal"
 msgstr "水平方向(&H)"
 
-#: Merge.rc:5A9A7139
 msgid "&Previous Page"
 msgstr "前ページ(&P)"
 
-#: Merge.rc:68816EE1
 msgid "&Next Page"
 msgstr "次ページ(&N)"
 
-#: Merge.rc:4DE14271
 msgid "&Active Pane"
 msgstr "選択ペイン(&A)"
 
-#: Merge.rc:43017E44
 msgid "&Zoom"
 msgstr "拡大(&Z)"
 
-#: Merge.rc:7C622F87
 msgid "Zoom &In\tCtrl++"
 msgstr "ズームイン(&I)\tCtrl++"
 
-#: Merge.rc:FE3C1D1
 msgid "Zoom &Out\tCtrl+-"
 msgstr "ズームアウト(&O)\tCtrl+-"
 
 #. Zoom to normal
-#: Merge.rc:78B3B622
 msgid "&Normal\tCtrl+*"
 msgstr "元に戻す(&N)\tCtrl+*"
 
-#: Merge.rc:AC3AA13
 msgid "&Overlay"
 msgstr "重ね合わせ(&O)"
 
-#: Merge.rc:4DE14272
 msgid "&Alpha Blend"
 msgstr "アルファブレンド(&A)"
 
-#: Merge.rc:237A0532
 msgid "Alpha &Blend Animation"
 msgstr "アルファブレンド アニメ表示(&B)"
 
-#: Merge.rc:5806E58F
 msgid "Dragging &Mode"
 msgstr "ドラッグモード(&M)"
 
-#: Merge.rc:43017E45
 msgid "&Move"
 msgstr "移動(&M)"
 
-#: Merge.rc:5A9A713A
 msgid "&Adjust Offset"
 msgstr "オフセット調整(&A)"
 
-#: Merge.rc:100AAFAC
 msgid "&Set Background Color"
 msgstr "透明色を設定(&S)"
 
-#: Merge.rc:43017E46
 msgid "&File"
 msgstr "ファイル(&F)"
 
-#: Merge.rc:4DE14273
 msgid "&New\tCtrl+N"
 msgstr "新規(&N)\tCtrl+N"
 
-#: Merge.rc:2C8061AC
 msgid "New (&3 panes)"
 msgstr "新規 (&3 ペイン)"
 
-#: Merge.rc:1DC30E61
 msgid "&Open...\tCtrl+O"
 msgstr "開く(&O)...\tCtrl+O"
 
-#: Merge.rc:6829F68F
 msgid "Open Conflic&t File..."
 msgstr "コンフリクト ファイルを開く(&T)..."
 
-#: Merge.rc:5869BBD
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "プロジェクトを開く(&J)...\tCtrl+J"
 
-#: Merge.rc:1BF42625
 msgid "Sa&ve Project..."
 msgstr "プロジェクトを保存(&V)..."
 
-#: Merge.rc:47D4A3FA
 msgid "Recent Projects"
 msgstr "最近使用したプロジェクト"
 
-#: Merge.rc:73E9B1DA
 msgid "Recent F&iles Or Folders"
 msgstr "最近使用したファイルまたはフォルダー(&I)"
 
-#: Merge.rc:29D50B4A
 msgid "< Empty >"
 msgstr "< なし >"
 
-#: Merge.rc:79AB21E0
 msgid "E&xit"
 msgstr "終了(&X)"
 
-#: Merge.rc:43017E47
 msgid "&Edit"
 msgstr "編集(&E)"
 
-#: Merge.rc:27AC6D7F
 msgid "&Options..."
 msgstr "設定(&O)..."
 
-#: Merge.rc:43017E48
 msgid "&View"
 msgstr "表示(&V)"
 
-#: Merge.rc:AC3AA14
 msgid "&Toolbar"
 msgstr "ツールバー(&T)"
 
-#: Merge.rc:1D2E49F7
 msgid "&Small"
 msgstr "小(&S)"
 
-#: Merge.rc:22956A6
 msgid "&Big"
 msgstr "大(&B)"
 
-#: Merge.rc:43017E49
 msgid "&Huge"
 msgstr "特大(&H)"
 
-#: Merge.rc:27AC6D80
 msgid "&Status Bar"
 msgstr "ステータス バー(&S)"
 
-#: Merge.rc:2C015CFD
 msgid "Ta&b Bar"
 msgstr "タブ バー(&B)"
 
-#: Merge.rc:1D2E49F8
 msgid "&Tools"
 msgstr "ツール(&T)"
 
-#: Merge.rc:27AC6D81
 msgid "&Filters..."
 msgstr "フィルタ(&F)..."
 
-#: Merge.rc:3938FFC0
 msgid "&Generate Patch..."
 msgstr "パッチの生成(&G)..."
 
-#: Merge.rc:AC3AA15
 msgid "&Plugins"
 msgstr "プラグイン(&P)"
 
-#: Merge.rc:4C6CFD95
 msgid "P&lugin Settings..."
 msgstr "プラグインの設定(&L)..."
 
-#: Merge.rc:729280D7
 msgid "Ma&nual Prediffer"
 msgstr "手動比較前処理(&N)"
 
-#: Merge.rc:7CF93368
 msgid "A&utomatic Prediffer"
 msgstr "自動比較前処理(&U)"
 
-#: Merge.rc:1A9EBDEC
 msgid "&Manual Unpacking"
 msgstr "手動展開(&M)"
 
-#: Merge.rc:4EF8162D
 msgid "&Automatic Unpacking"
 msgstr "自動展開(&A)"
 
-#: Merge.rc:714B45FD
 msgid "&Edit with Unpacker..."
 msgstr "展開プラグインで開く(&E)..."
 
-#: Merge.rc:78B3B623
 msgid "&Reload plugins"
 msgstr "プラグインの再読み込み(&R)"
 
-#: Merge.rc:89AF4F7
 msgid "&Window"
 msgstr "ウィンドウ(&W)"
 
-#: Merge.rc:4E65D33F
 msgid "Cl&ose"
 msgstr "閉じる(&O)"
 
-#: Merge.rc:34E43607
 msgid "Clo&se All"
 msgstr "すべて閉じる(&S)"
 
-#: Merge.rc:8AF7E69
 msgid "Change &Pane\tF6"
 msgstr "ペインの変更(&P)\tF6"
 
-#: Merge.rc:5CCED707
 msgid "Tile &Horizontally"
 msgstr "上下に並べて表示(&H)"
 
-#: Merge.rc:52870A1
 msgid "Tile &Vertically"
 msgstr "左右に並べて表示(&V)"
 
-#: Merge.rc:AC3AA16
 msgid "&Cascade"
 msgstr "重ねて表示(&C)"
 
-#: Merge.rc:43017E4A
 msgid "&Help"
 msgstr "ヘルプ(&H)"
 
-#: Merge.rc:3938FFC1
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge ヘルプ\tF1"
 
-#: Merge.rc:1B17601E
 msgid "R&elease Notes"
 msgstr "リリースノート(&E)"
 
-#: Merge.rc:6E470BE7
 msgid "&Translations"
 msgstr "翻訳(&T)"
 
-#: Merge.rc:3938FFC2
 msgid "&Check For Updates"
 msgstr "更新の確認(&C)"
 
-#: Merge.rc:1C6125F4
 msgid "C&onfiguration"
 msgstr "設定(&O)"
 
-#: Merge.rc:175DEEEB
 msgid "&GNU General Public License"
 msgstr "&GNU General Public License"
 
-#: Merge.rc:3938FFC3
 msgid "&About WinMerge..."
 msgstr "WinMerge について(&A)..."
 
-#: Merge.rc:68816EE2
 msgid "&Read-only"
 msgstr "読み取り専用(&R)"
 
-#: Merge.rc:71676C45
 msgid "L&eft Read-only"
 msgstr "左側を読み取り専用(&E)"
 
-#: Merge.rc:729280D8
 msgid "M&iddle Read-only"
 msgstr "中央を読み取り専用(&I)"
 
-#: Merge.rc:32BFDBA9
 msgid "Ri&ght Read-only"
 msgstr "右側を読み取り専用(&G)"
 
-#: Merge.rc:453F5DDB
 msgid "File En&coding..."
 msgstr "ファイル エンコーディング(&C)..."
 
-#: Merge.rc:E44718
 msgid "Select &All\tCtrl+A"
 msgstr "すべて選択(&A)\tCtrl+A"
 
-#: Merge.rc:58EEEB7E
 msgid "Show &Identical Items"
 msgstr "同一項目の表示(&I)"
 
-#: Merge.rc:58EEEB7F
 msgid "Show &Different Items"
 msgstr "差異項目の表示(&D)"
 
-#: Merge.rc:58E210F9
 msgid "Show L&eft Unique Items"
 msgstr "左側のみに存在する項目の表示(&E)"
 
-#: Merge.rc:28A1C3B4
 msgid "Show Midd&le Unique Items"
 msgstr "中央のみに存在する項目の表示(&L)"
 
-#: Merge.rc:43600E8F
 msgid "Show Ri&ght Unique Items"
 msgstr "右側のみに存在する項目の表示(&G)"
 
-#: Merge.rc:E44719
 msgid "Show S&kipped Items"
 msgstr "スキップされた項目の表示(&K)"
 
-#: Merge.rc:6F833C16
 msgid "S&how Binary Files"
 msgstr "バイナリ ファイルの表示(&H)"
 
-#: Merge.rc:5A9A713B
 msgid "&3-way Compare"
 msgstr "3方向比較(&3)"
 
-#: Merge.rc:200AD0D1
 msgid "Show &Left Only Different Items"
 msgstr "左側のみ差異のある項目の表示(&L)"
 
-#: Merge.rc:4899EBE1
 msgid "Show &Middle Only Different Items"
 msgstr "中央のみ差異のある項目の表示(&M)"
 
-#: Merge.rc:614F49A9
 msgid "Show &Right Only Different Items"
 msgstr "右側のみ差異のある項目の表示(&R)"
 
-#: Merge.rc:6F833C17
 msgid "Show Hidd&en Items"
 msgstr "非表示の項目を表示(&E)"
 
-#: Merge.rc:311E1D87
 msgid "Tree &Mode"
 msgstr "ツリー表示(&M)"
 
-#: Merge.rc:3E934D
 msgid "E&xpand All Subfolders"
 msgstr "すべてのサブフォルダーを展開する(&X)"
 
-#: Merge.rc:4B91C2CF
 msgid "&Collapse All Subfolders"
 msgstr "すべてのサブフォルダーを折りたたむ(&C)"
 
-#: Merge.rc:E6D7EE
 msgid "Select &Font..."
 msgstr "フォントの選択(&F)..."
 
-#: Merge.rc:5D3AA8D3
 msgid "Use Default F&ont"
 msgstr "デフォルト フォントを使用(&O)"
 
-#: Merge.rc:2E3BFCA2
 msgid "Sw&ap Panes"
 msgstr "ペインの交換(&A)"
 
-#: Merge.rc:3E681460
 msgid "Compa&re Statistics"
 msgstr "比較統計(&R)"
 
-#: Merge.rc:507A4C02
 msgid "Refre&sh\tF5"
 msgstr "最新の情報に更新(&S)\tF5"
 
-#: Merge.rc:2E2C5206
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "選択項目を最新に更新(&R)\tCtrl+F5"
 
-#: Merge.rc:1D2E49F9
 msgid "&Merge"
 msgstr "マージ(&M)"
 
-#: Merge.rc:6FC398B7
 msgid "Co&mpare\tEnter"
 msgstr "比較(&M)\tEnter"
 
-#: Merge.rc:2E2C5207
 msgid "&Next Difference\tAlt+Down"
 msgstr "次の差異(&N)\tAlt+Down"
 
-#: Merge.rc:545FEEA0
 msgid "&Previous Difference\tAlt+Up"
 msgstr "前の差異(&P)\tAlt+Up"
 
-#: Merge.rc:175DEEEC
 msgid "&First Difference\tAlt+Home"
 msgstr "最初の差異(&F)\tAlt+Home"
 
-#: Merge.rc:3C1ECDD9
 msgid "&Current Difference\tAlt+Enter"
 msgstr "現在の差異(&C)\tAlt+Enter"
 
-#: Merge.rc:26A69749
 msgid "&Last Difference\tAlt+End"
 msgstr "最後の差異(&L)\tAlt+End"
 
-#: Merge.rc:334E25B0
 msgid "Copy to &Right\tAlt+Right"
 msgstr "右側にコピー(&R)\tAlt+Right"
 
-#: Merge.rc:69AD3BF7
 msgid "Copy to L&eft\tAlt+Left"
 msgstr "左側にコピー(&E)\tAlt+Left"
 
-#: Merge.rc:4DE14274
 msgid "&Delete\tDel"
 msgstr "削除(&D)\tDel"
 
-#: Merge.rc:100AAFAD
 msgid "&Customize Columns..."
 msgstr "列の設定(&C)..."
 
-#: Merge.rc:2F07210E
 msgid "Generate &Report..."
 msgstr "レポートの生成(&R)..."
 
-#: Merge.rc:6E470BE8
 msgid "&Save\tCtrl+S"
 msgstr "保存(&S)\tCtrl+S"
 
-#: Merge.rc:125AD721
 msgid "Sav&e"
 msgstr "保存(&E)"
 
-#: Merge.rc:751AB58E
 msgid "Save &Left"
 msgstr "左側のファイルを保存(&L)"
 
-#: Merge.rc:194397DD
 msgid "Save &Middle"
 msgstr "中央のファイルを保存(&M)"
 
-#: Merge.rc:2E3BFCA3
 msgid "Save &Right"
 msgstr "右側のファイルを保存(&R)"
 
-#: Merge.rc:79321BE1
 msgid "Save &As"
 msgstr "名前を付けて保存(&A)"
 
-#: Merge.rc:1BF42626
 msgid "Save &Left As..."
 msgstr "名前を付けて左側のファイルを保存(&L)..."
 
-#: Merge.rc:6F833C18
 msgid "Save &Middle As..."
 msgstr "名前を付けて中央のファイルを保存(&M)..."
 
-#: Merge.rc:62909ED4
 msgid "Save &Right As..."
 msgstr "名前を付けて右側のファイルを保存(&R)..."
 
-#: Merge.rc:4DB19838
 msgid "&Print..."
 msgstr "印刷(&P)..."
 
-#: Merge.rc:60FF375A
 msgid "Page Set&up"
 msgstr "ページ設定(&U)"
 
-#: Merge.rc:23CBE0E5
 msgid "Print Previe&w"
 msgstr "印刷プレビュー(&W)"
 
-#: Merge.rc:4B91C2D0
 msgid "&Convert Line Endings to"
 msgstr "改行コードの変換(&C)"
 
-#: Merge.rc:78B3B624
 msgid "&Merge Mode\tF9"
 msgstr "マージモード(&M)\tF9"
 
-#: Merge.rc:32BFDBAA
 msgid "Re&load\tCtrl+F5"
 msgstr "再読み込み(&L)\tCtrl+F5"
 
-#: Merge.rc:1A9EBDED
 msgid "&File Encoding..."
 msgstr "ファイル エンコーディング(&F)..."
 
-#: Merge.rc:507A4C03
 msgid "Recompare As"
 msgstr "形式を指定して再比較"
 
-#: Merge.rc:43017E4B
 msgid "&Text"
 msgstr "テキスト(&T)"
 
-#: Merge.rc:22956A7
 msgid "&XML"
 msgstr "XML(&X)"
 
-#: Merge.rc:89AF4F8
 msgid "&Binary"
 msgstr "バイナリ(&B)"
 
-#: Merge.rc:1D2E49FA
 msgid "&Image"
 msgstr "画像(&I)"
 
-#: Merge.rc:6E470BE9
 msgid "&Undo\tCtrl+Z"
 msgstr "元に戻す(&U)\tCtrl+Z"
 
-#: Merge.rc:6E470BEA
 msgid "&Redo\tCtrl+Y"
 msgstr "やり直し(&R)\tCtrl+Y"
 
-#: Merge.rc:CAEDA34
 msgid "Cu&t\tCtrl+X"
 msgstr "切り取り(&T)\tCtrl+X"
 
-#: Merge.rc:6E470BEB
 msgid "&Copy\tCtrl+C"
 msgstr "コピー(&C)\tCtrl+C"
 
-#: Merge.rc:5A9A713C
 msgid "&Paste\tCtrl+V"
 msgstr "貼り付け(&P)\tCtrl+V"
 
-#: Merge.rc:73FB245
 msgid "Select Line &Difference\tF4"
 msgstr "行内差異を選択(&D)\tF4"
 
-#: Merge.rc:444C5DDB
 msgid "F&ind...\tCtrl+F"
 msgstr "検索(&I)...\tCtrl+F"
 
-#: Merge.rc:44BC83EC
 msgid "Repla&ce...\tCtrl+H"
 msgstr "置換(&C)...\tCtrl+H"
 
-#: Merge.rc:4B91C2D1
 msgid "&Marker...\tCtrl+Shift+M"
 msgstr "マーカー(&M)...\tCtrl+Shift+M"
 
-#: Merge.rc:669F87F4
 msgid "Advanced"
 msgstr "高度な操作"
 
-#: Merge.rc:45A190D
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
 msgstr "行番号付きでコピー(&C)\tCtrl+Shift+C"
 
-#: Merge.rc:68816EE3
 msgid "&Bookmarks"
 msgstr "ブックマーク(&B)"
 
-#: Merge.rc:26A6974A
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "ブックマークの作成・削除(&T)\tCtrl+F2"
 
-#: Merge.rc:3938FFC4
 msgid "&Next Bookmark\tF2"
 msgstr "次のブックマークへ移動(&N)\tF2"
 
-#: Merge.rc:545FEEA1
 msgid "&Previous bookmark\tShift+F2"
 msgstr "前のブックマークへ移動(&P)\tShift+F2"
 
-#: Merge.rc:4EF8162E
 msgid "&Clear All Bookmarks"
 msgstr "すべてのブックマークをクリア(&C)"
 
-#: Merge.rc:1A9EBDEE
 msgid "&Go To...\tCtrl+G"
 msgstr "移動(&G)...\tCtrl+G"
 
-#: Merge.rc:1BF42627
 msgid "Syntax Highlight"
 msgstr "シンタックス ハイライト"
 
-#: Merge.rc:6E470BEC
 msgid "&Diff Context"
 msgstr "Diff コンテキスト(&D)"
 
-#: Merge.rc:68816EE4
 msgid "&All Lines"
 msgstr "全行(&A)"
 
-#: Merge.rc:AC3AA17
 msgid "&0 Lines"
 msgstr "&0 行"
 
-#: Merge.rc:89AF4F9
 msgid "&1 Line"
 msgstr "&1 行"
 
-#: Merge.rc:AC3AA18
 msgid "&3 Lines"
 msgstr "&3 行"
 
-#: Merge.rc:AC3AA19
 msgid "&5 Lines"
 msgstr "&5 行"
 
-#: Merge.rc:AC3AA1A
 msgid "&7 Lines"
 msgstr "&7 行"
 
-#: Merge.rc:AC3AA1B
 msgid "&9 Lines"
 msgstr "&9 行"
 
-#: Merge.rc:44B58195
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "全行/0 ～ 9 行切替(&T)\tCtrl+D"
 
-#: Merge.rc:27AC6D82
 msgid "&Lock Panes"
 msgstr "ペインをロック(&L)"
 
-#: Merge.rc:1DC30E62
 msgid "&View Whitespace"
 msgstr "空白を表示(&V)"
 
-#: Merge.rc:4A81EF3E
 msgid "Vie&w Line Differences"
 msgstr "行内差異を表示(&W)"
 
-#: Merge.rc:37660CE9
 msgid "View Line &Numbers"
 msgstr "行番号を表示(&N)"
 
-#: Merge.rc:4FF286
 msgid "View &Margins"
 msgstr "マージンを表示(&M)"
 
-#: Merge.rc:3FE258FF
 msgid "W&rap Lines"
 msgstr "行を右端で折返す(&R)"
 
-#: Merge.rc:62909ED5
 msgid "Split V&ertically"
 msgstr "垂直分割(&E)"
 
-#: Merge.rc:70E79DFF
 msgid "Diff &Pane"
 msgstr "Diff ペイン(&P)"
 
-#: Merge.rc:3534E273
 msgid "Lo&cation Pane"
 msgstr "ロケーション ペイン(&C)"
 
-#: Merge.rc:59B87E1C
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "次のコンフリクト(&X)\tAlt+Shift+Down"
 
-#: Merge.rc:3BDD62C2
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
 msgstr "前のコンフリクト(&V)\tAlt+Shift+Up"
 
-#: Merge.rc:6D5176E5
 msgid "A&dvanced"
 msgstr "高度な操作(&D)"
 
-#: Merge.rc:9DA4F24
 msgid "Next Difference Between Left and Middle\tAlt+1"
 msgstr "次の左側と中央の差異\tAlt+1"
 
-#: Merge.rc:2EBE17F8
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
 msgstr "前の左側と中央の差異\tAlt+Shift+1"
 
-#: Merge.rc:21599F72
 msgid "Next Difference Between Left and Right\tAlt+2"
 msgstr "次の左側と右側の差異\tAlt+2"
 
-#: Merge.rc:5416A5EC
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
 msgstr "前の左側と右側の差異\tAlt+Shift+2"
 
-#: Merge.rc:316F95AC
 msgid "Next Difference Between Middle and Right\tAlt+3"
 msgstr "次の中央と右側の差異\tAlt+3"
 
-#: Merge.rc:2904E763
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
 msgstr "前の中央と右側の差異\tAlt+Shift+3"
 
-#: Merge.rc:4D91737D
 msgid "Next Left Only Difference\tAlt+7"
 msgstr "次の左側のみの差異\tAlt+7"
 
-#: Merge.rc:4BFD42D
 msgid "Previous Left Only Difference\tAlt+Shift+7"
 msgstr "前の左側のみの差異\tAlt+Shift+7"
 
-#: Merge.rc:2F029443
 msgid "Next Middle Only Difference\tAlt+8"
 msgstr "次の中央のみの差異\tAlt+8"
 
-#: Merge.rc:541B8710
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
 msgstr "前の中央のみの差異\tAlt+Shift+8"
 
-#: Merge.rc:649CFC83
 msgid "Next Right Only Difference\tAlt+9"
 msgstr "次の右側のみの差異\tAlt+9"
 
-#: Merge.rc:133AB1C4
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "前の右側のみの差異\tAlt+Shift+9"
 
-#: Merge.rc:30FF7A4C
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "左側からコピー\tAlt+Shift+Right"
 
-#: Merge.rc:30FF7A4D
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "右側からコピー\tAlt+Shift+Left"
 
-#: Merge.rc:28C70E7F
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
 msgstr "右側にコピーして次に進む(&O)\tAlt+Ctrl+Right"
 
-#: Merge.rc:4A3B5872
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
 msgstr "左側にコピーして次に進む(&T)\tAlt+Ctrl+Left"
 
-#: Merge.rc:1AC98D09
 msgid "Copy &All to Right"
 msgstr "すべてを右側にコピー(&A)"
 
-#: Merge.rc:D404EDD
 msgid "Cop&y All to Left"
 msgstr "すべてを左側にコピー(&Y)"
 
-#: Merge.rc:4BC6A157
 msgid "A&uto Merge\tAlt+Ctrl+M"
 msgstr "自動マージ(&U)\tAlt+Ctrl+M"
 
-#: Merge.rc:13D827C3
 msgid "Add &Synchronization Point\tAlt+S"
 msgstr "同期ポイントの追加(&S)\tAlt+S"
 
-#: Merge.rc:6F88EC67
 msgid "Clear Sync&hronization Points"
 msgstr "同期ポイントのクリア(&H)"
 
-#: Merge.rc:68816EE5
 msgid "&Prediffer"
 msgstr "比較前処理プラグイン(&P)"
 
-#: Merge.rc:AC3AA1C
 msgid "&Scripts"
 msgstr "スクリプト(&S)"
 
-#: Merge.rc:39000D56
 msgid "Sp&lit"
 msgstr "分割(&L)"
 
-#: Merge.rc:4C3E0A2B
 msgid "Comp&are"
 msgstr "比較(&A)"
 
-#: Merge.rc:334E25B1
 msgid "Compare Non-hor&izontally"
 msgstr "非水平的に比較する(&I)"
 
-#: Merge.rc:20F0A449
 msgid "First &left item with second left item"
 msgstr "1 番目の左側項目と 2 番目の左側項目(&L)"
 
-#: Merge.rc:2758BFC0
 msgid "First &right item with second right item"
 msgstr "1 番目の右側項目と 2 番目の右側項目(&R)"
 
-#: Merge.rc:56380EAD
 msgid "&First left item with second right item"
 msgstr "1 番目の左側項目と 2 番目の右側項目(&F)"
 
-#: Merge.rc:56380EAE
 msgid "&Second left item with first right item"
 msgstr "2 番目の左側項目と 1 番目の右側項目(&S)"
 
-#: Merge.rc:67A28B28
 msgid "Co&mpare As"
 msgstr "形式を指定して比較(&M)"
 
-#: Merge.rc:4D4D2E92
 #, c-format
 msgid "Left to Middle (%1 of %2)"
 msgstr "左側から中央 (%1 / %2)"
 
-#: Merge.rc:1723859F
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "左側を右側に (%1 / %2)"
 
-#: Merge.rc:20155F58
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "左側を... (%1 / %2)"
 
-#: Merge.rc:6CA26872
 #, c-format
 msgid "Middle to Left (%1 of %2)"
 msgstr "中央から左側 (%1 / %2)"
 
-#: Merge.rc:27AAA635
 #, c-format
 msgid "Middle to Right (%1 of %2)"
 msgstr "中央から右側 (%1 / %2)"
 
-#: Merge.rc:7F2E4118
 #, c-format
 msgid "Middle to... (%1 of %2)"
 msgstr "中央を... (%1 / %2)"
 
-#: Merge.rc:2044B100
 #, c-format
 msgid "Right to Middle (%1 of %2)"
 msgstr "右側から中央 (%1 / %2)"
 
-#: Merge.rc:73E9B1DB
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "右側を左側に (%1 / %2)"
 
-#: Merge.rc:6DBD6123
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "右側を... (%1 / %2)"
 
-#: Merge.rc:89AF4FA
 msgid "&Delete"
 msgstr "削除(&D)"
 
-#: Merge.rc:43017E4C
 msgid "&Left"
 msgstr "左側(&L)"
 
-#: Merge.rc:89AF4FB
 msgid "&Middle"
 msgstr "中央(&M)"
 
-#: Merge.rc:1D2E49FB
 msgid "&Right"
 msgstr "右側(&R)"
 
-#: Merge.rc:43017E4D
 msgid "&Both"
 msgstr "両側(&B)"
 
-#: Merge.rc:22956A8
 msgid "&All"
 msgstr "すべて(&A)"
 
-#: Merge.rc:4876CD3D
 msgid "Re&name"
 msgstr "名前の変更(&N)"
 
-#: Merge.rc:27AC6D83
 msgid "&Hide Items"
 msgstr "選択項目を非表示(&H)"
 
-#: Merge.rc:68816EE6
 msgid "&Open Left"
 msgstr "左側を開く(&O)"
 
-#: Merge.rc:46724E8D
 msgid "with &External Editor"
 msgstr "外部エディタで(&E)"
 
-#: Merge.rc:5A9A713D
 msgid "&Parent Folder"
 msgstr "親フォルダー(&P)"
 
-#: Merge.rc:761E6872
 msgid "Open Midd&le"
 msgstr "中央を開く(&L)"
 
-#: Merge.rc:1C95A043
 msgid "O&pen Right"
 msgstr "右側を開く(&P)"
 
-#: Merge.rc:6FC398B8
 msgid "Cop&y Pathnames"
 msgstr "パス名をコピー(&Y)"
 
-#: Merge.rc:71676C46
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "左側 (%1 / %2)"
 
-#: Merge.rc:729280D9
 #, c-format
 msgid "Middle (%1 of %2)"
 msgstr "中央 (%1 / %2)"
 
-#: Merge.rc:32BFDBAB
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "右側 (%1 / %2)"
 
-#: Merge.rc:36B164C3
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "両側 (%1 / %2)"
 
-#: Merge.rc:2515A6BA
 #, c-format
 msgid "All (%1 of %2)"
 msgstr "すべて (%1 / %2)"
 
-#: Merge.rc:6FC398B9
 msgid "Copy &Filenames"
 msgstr "ファイル名をコピー(&F)"
 
-#: Merge.rc:4BFA4345
 msgid "Copy Items To Clip&board"
 msgstr "項目をクリップボードにコピー(&B)"
 
-#: Merge.rc:22956A9
 msgid "&Zip"
 msgstr "圧縮(&Z)"
 
-#: Merge.rc:7370E045
 #, c-format
 msgid "Both to... (%1 of %2)"
 msgstr "両側を... (%1 / %2)"
 
-#: Merge.rc:7CF93369
 #, c-format
 msgid "All to... (%1 of %2)"
 msgstr "すべてを... (%1 / %2)"
 
-#: Merge.rc:31EF0955
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "差異を... (%1 / %2)"
 
-#: Merge.rc:AC3AA1D
 msgid "&Refresh"
 msgstr "選択項目を再比較(&R)"
 
-#: Merge.rc:71676C47
 msgid "Left Shell menu"
 msgstr "左側シェルメニュー"
 
-#: Merge.rc:729280DA
 msgid "Middle Shell menu"
 msgstr "中央シェルメニュー"
 
-#: Merge.rc:32BFDBAC
 msgid "Right Shell menu"
 msgstr "右側シェルメニュー"
 
-#: Merge.rc:3CF9F84
 msgid "Copy"
 msgstr "コピー"
 
-#: Merge.rc:78B3B625
 msgid "&Copy Full Path"
 msgstr "フル パスをコピー(&C)"
 
-#: Merge.rc:1C6125F5
 msgid "Copy &Filename"
 msgstr "ファイル名をコピー(&F)"
 
-#: Merge.rc:27A06B44
 msgid "Prediffer Settings"
 msgstr "比較前処理プラグイン設定"
 
-#: Merge.rc:6E470BED
 msgid "&No prediffer"
 msgstr "使用しない(&N)"
 
-#: Merge.rc:2515A6BB
 msgid "Auto prediffer"
 msgstr "自動"
 
-#: Merge.rc:24F1D5E9
 msgid "G&oto Diff"
 msgstr "差異へ移動(&O)"
 
-#: Merge.rc:1DC30E63
 msgid "&No Moved Blocks"
 msgstr "移動ブロック表示なし(&N)"
 
-#: Merge.rc:1A9EBDEF
 msgid "&All Moved Blocks"
 msgstr "全移動ブロック表示(&A)"
 
-#: Merge.rc:BA50068
 msgid "Moved Block for &Current Diff"
 msgstr "現在差異の移動ブロックのみ表示(&C)"
 
-#: Merge.rc:3C68C747
 msgid "W&hitespaces"
 msgstr "空白(&H)"
 
-#: Merge.rc:4C3E0A2C
 msgid "Com&pare"
 msgstr "比較する(&P)"
 
-#: Merge.rc:4630D06B
 msgid "I&gnore changes"
 msgstr "変更を無視(&G)"
 
-#: Merge.rc:21C15B6
 msgid "Ig&nore all"
 msgstr "すべて無視(&N)"
 
-#: Merge.rc:6FC398BA
 msgid "Case sensi&tive"
 msgstr "大文字と小文字を区別する(&T)"
 
-#: Merge.rc:620FF1AC
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
 
-#: Merge.rc:6DE6F873
 msgid "&Include Subfolders"
 msgstr "サブフォルダーを含める(&I)"
 
-#: Merge.rc:1DC30E64
 msgid "&Compare method:"
 msgstr "比較方法(&C):"
 
-#: Merge.rc:7A4CFAFB
 msgid "Full Contents"
 msgstr "フル コンテンツ"
 
-#: Merge.rc:5F71A081
 msgid "Quick Contents"
 msgstr "クイック コンテンツ"
 
-#: Merge.rc:36B164C4
 msgid "Binary Contents"
 msgstr "バイナリ コンテンツ"
 
-#: Merge.rc:2CEE4748
 msgid "Modified Date"
 msgstr "更新日時のみ"
 
-#: Merge.rc:39C7AF82
 msgid "Modified Date and Size"
 msgstr "更新日時とサイズ"
 
-#: Merge.rc:4B89B93
 msgid "Size"
 msgstr "サイズのみ"
 
-#: Merge.rc:1DC30E65
 msgid "&Load Project..."
 msgstr "プロジェクトを読み込み(&L)..."
 
-#: Merge.rc:2515A6BC
 msgid "About WinMerge"
 msgstr "WinMerge について"
 
-#: Merge.rc:1D44E628
 msgid "Visit the WinMerge HomePage!"
 msgstr "WinMerge のホームページに行く!"
 
-#: Merge.rc:1326F
 msgid "OK"
 msgstr "OK"
 
-#: Merge.rc:CAEDA35
 msgid "Contributors"
 msgstr "貢献者"
 
-#: Merge.rc:58E210FA
 msgid "Select Files or Folders"
 msgstr "ファイルまたはフォルダーの選択..."
 
-#: Merge.rc:6DE6F874
 msgid "&1st File or Folder"
 msgstr "&1 番目のファイルまたはフォルダー"
 
-#: Merge.rc:39174D96
 msgid "Re&ad-only"
 msgstr "読み取り専用(&A)"
 
-#: Merge.rc:56BD1FBA
 msgid "Swap 1st | 2nd"
 msgstr "1 番目と 2 番目を交換"
 
-#: Merge.rc:68816EE7
 msgid "&Browse..."
 msgstr "参照(&B)..."
 
-#: Merge.rc:6DE6F875
 msgid "&2nd File or Folder"
 msgstr "&2 番目のファイルまたはフォルダー"
 
-#: Merge.rc:39174D97
 msgid "Rea&d-only"
 msgstr "読み取り専用(&D)"
 
-#: Merge.rc:56BD1FBB
 msgid "Swap 2nd | 3rd"
 msgstr "2 番目と 3 番目を交換"
 
-#: Merge.rc:78E0CE0E
 msgid "B&rowse..."
 msgstr "参照(&R)..."
 
-#: Merge.rc:3C1ECDDA
 msgid "&3rd File or Folder (Optional)"
 msgstr "&3 番目のファイルまたはフォルダー (オプション)"
 
-#: Merge.rc:39174D98
 msgid "Read-o&nly"
 msgstr "読み取り専用(&N)"
 
-#: Merge.rc:56BD1FBC
 msgid "Swap 1st | 3rd"
 msgstr "1 番目と 3 番目を交換"
 
-#: Merge.rc:146A5938
 msgid "Browse..."
 msgstr "参照..."
 
-#: Merge.rc:22467E6E
 msgid " Folder: Filter"
 msgstr " フォルダー: フィルタ"
 
-#: Merge.rc:68816EE8
 msgid "&Select..."
 msgstr "選択(&S)..."
 
-#: Merge.rc:662470D5
 msgid " File: Unpacker Plugin"
 msgstr " ファイル: 展開プラグイン"
 
-#: Merge.rc:751AB58F
 msgid "Se&lect..."
 msgstr "選択(&L)..."
 
-#: Merge.rc:4C3E0A2D
 msgid "Co&mpare"
 msgstr "比較(&M)"
 
-#: Merge.rc:4E65D340
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: Merge.rc:67019DCA
 msgid "Status:"
 msgstr "ステータス:"
 
-#: Merge.rc:4186E48
 msgid "Help"
 msgstr "ヘルプ"
 
-#: Merge.rc:787FD72B
 msgid "General"
 msgstr "一般"
 
-#: Merge.rc:237AB485
 msgid "Automatically &scroll to first difference"
 msgstr "自動的に最初の差異にスクロールする(&S)"
 
-#: Merge.rc:69AD3BF8
 msgid "Cl&ose windows with ESC"
 msgstr "ESC キーでウィンドウを閉じる(&O)"
 
-#: Merge.rc:6574B7FB
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "[開く] ダイアログで自動的にパスを検査する(&A)"
 
-#: Merge.rc:631E0F7B
 msgid "All&ow only one instance to run"
 msgstr "複数のインスタンスを起動しない(&O)"
 
-#: Merge.rc:672CD0E2
 msgid "As&k when closing multiple windows"
 msgstr "複数のウィンドウを閉じるときに尋ねる(&K)"
 
-#: Merge.rc:6D5B7718
 msgid "&Preserve file time in file compare"
 msgstr "ファイル比較時のファイル時刻を保つ(&P)"
 
-#: Merge.rc:17F0E759
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "起動時に [ファイルまたはフォルダーの選択] ダイアログを表示する"
 
-#: Merge.rc:1AD99579
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "[OK] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
 
-#: Merge.rc:44776ACE
 msgid "O&pen-dialog Auto-Completion:"
 msgstr "[開く] ダイアログのオートコンプリート(&P):"
 
-#: Merge.rc:1B63306F
 msgid "Language:"
 msgstr "言語:"
 
-#: Merge.rc:516450B
 msgid ""
 "WinMerge allows hiding some common messageboxes. Press the Reset button to "
 "make all messageboxes visible again."
@@ -1307,539 +992,406 @@ msgstr ""
 "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッ"
 "セージボックスを再び表示させるには、[リセット] ボタンを押してください。"
 
-#: Merge.rc:10976EC1
 msgid "Reset"
 msgstr "リセット"
 
-#: Merge.rc:3FB4EC6
 msgid "Find"
 msgstr "検索"
 
-#: Merge.rc:34DF506F
 msgid "Fi&nd what:"
 msgstr "検索する文字列(&N):"
 
-#: Merge.rc:39C7AF83
 msgid "Match &whole word only"
 msgstr "単語単位で探す(&W)"
 
-#: Merge.rc:13C27214
 msgid "Match &case"
 msgstr "大文字と小文字を区別する(&C)"
 
-#: Merge.rc:44BC83ED
 msgid "Regular &expression"
 msgstr "正規表現(&E)"
 
-#: Merge.rc:78A08947
 msgid "D&on't wrap end of file"
 msgstr "最後まで検索した後ループしない(&O)"
 
-#: Merge.rc:545FEEA2
 msgid "&Don't close this dialog box"
 msgstr "このダイアログ ボックスを閉じない(&D)"
 
-#: Merge.rc:68EE6DF0
 msgid "Find &Prev"
 msgstr "前を検索(&P)"
 
-#: Merge.rc:68816EE9
 msgid "&Find Next"
 msgstr "次を検索(&F)"
 
-#: Merge.rc:11D980
 msgid "&Ok"
 msgstr "&OK"
 
-#: Merge.rc:4876CD3E
 msgid "Replace"
 msgstr "置換"
 
-#: Merge.rc:1B17601F
 msgid "Re&place with:"
 msgstr "置換後の文字列(&P):"
 
-#: Merge.rc:381D79E5
 msgid "&Don't wrap end of file"
 msgstr "ファイルの終端で折り返さない(&D)"
 
-#: Merge.rc:39174D99
 msgid "Replace in"
 msgstr "範囲"
 
-#: Merge.rc:68816EEA
 msgid "&Selection"
 msgstr "選択範囲(&S)"
 
-#: Merge.rc:3FE25900
 msgid "Wh&ole file"
 msgstr "ファイル全体(&O)"
 
-#: Merge.rc:AC3AA1E
 msgid "&Replace"
 msgstr "置換して次に(&R)"
 
-#: Merge.rc:507A4C04
 msgid "Replace &All"
 msgstr "すべて置換(&A)"
 
-#: Merge.rc:2FC0BA7B
 msgid "Markers"
 msgstr "マーカー"
 
-#: Merge.rc:61E8009D
 msgid "Enable &Markers"
 msgstr "マーカーを有効にする(&M)"
 
-#: Merge.rc:24A380
 msgid "New"
 msgstr "新規"
 
-#: Merge.rc:3938FFC5
 msgid "&Background color:"
 msgstr "背景色(&B)"
 
-#: Merge.rc:1D2E49FC
 msgid "&Apply"
 msgstr "適用(&A)"
 
-#: Merge.rc:4F58DAFC
 msgid "Linefilters"
 msgstr "行フィルタ"
 
-#: Merge.rc:36B79AB7
 msgid "Enable Line Filters"
 msgstr "行フィルタを有効にする"
 
-#: Merge.rc:5E8200FF
 msgid "Regular Expressions (one per line):"
 msgstr "正規表現: (1 行につき 1 ルール)"
 
-#: Merge.rc:3ECBF05
 msgid "Edit"
 msgstr "編集"
 
-#: Merge.rc:25669B5
 msgid "Remove"
 msgstr "削除"
 
-#: Merge.rc:4E65D341
 msgid "Colors"
 msgstr "色"
 
-#: Merge.rc:78E0CE0F
 msgid "Background"
 msgstr "背景"
 
-#: Merge.rc:1CDF6584
 msgid "Deleted"
 msgstr "削除"
 
-#: Merge.rc:4C72B54
 msgid "Text"
 msgstr "テキスト"
 
-#: Merge.rc:2C0C2240
 msgid "Difference:"
 msgstr "差異:"
 
-#: Merge.rc:1BA49C3B
 msgid "Selected Difference:"
 msgstr "選択された差異:"
 
-#: Merge.rc:2756A765
 msgid "Ignored Difference:"
 msgstr "無視された差異:"
 
-#: Merge.rc:7106378D
 msgid "Moved:"
 msgstr "移動ブロック:"
 
-#: Merge.rc:E6D7EF
 msgid "Selected Moved:"
 msgstr "選択された移動ブロック:"
 
-#: Merge.rc:73FB246
 msgid "Same As The Next (3 panes):"
 msgstr ""
 "差異:\n"
 "(ただし隣接ペインと同じ)"
 
-#: Merge.rc:60B696AF
 msgid "Same As The Next (Selected):"
 msgstr ""
 "選択された差異:\n"
 "(ただし隣接ペインと同じ)"
 
-#: Merge.rc:40C55014
 msgid "Word Difference:"
 msgstr "単語の差異:"
 
-#: Merge.rc:E4471A
 msgid "Selected Word Diff:"
 msgstr "選択された単語の差異:"
 
-#: Merge.rc:7F0D4B46
 msgid "Defaults"
 msgstr "デフォルト"
 
-#: Merge.rc:39000D57
 msgid "System"
 msgstr "システム"
 
-#: Merge.rc:51FAB141
 msgid "&Send deleted files to Recycle Bin"
 msgstr "削除されたファイルをごみ箱に移動する(&S)"
 
-#: Merge.rc:1A9EBDF0
 msgid "&External editor:"
 msgstr "外部エディタ(&E): (使用可能な置換文字列: $file, $linenum)"
 
-#: Merge.rc:78B3B626
 msgid "&Filter folder:"
 msgstr "フィルタ用フォルダー(&F):"
 
-#: Merge.rc:1C1FA831
 msgid "Temporary files folder"
 msgstr "テンポラリ ファイル用フォルダー"
 
-#: Merge.rc:58EEEB80
 msgid "S&ystem's temp folder"
 msgstr "システムのテンポラリ フォルダー(&Y)"
 
-#: Merge.rc:6FC398BB
 msgid "C&ustom folder:"
 msgstr "指定したフォルダー(&U):"
 
-#: Merge.rc:78E0CE10
 msgid "Br&owse..."
 msgstr "参照(&O)..."
 
-#: Merge.rc:55B03C13
 msgid "Patch Generator"
 msgstr "パッチ生成"
 
-#: Merge.rc:59F5069E
 msgid "File&1:"
 msgstr "ファイル &1:"
 
-#: Merge.rc:59F5069F
 msgid "File&2:"
 msgstr "ファイル &2:"
 
-#: Merge.rc:43017E4E
 msgid "&Swap"
 msgstr "交換(&S)"
 
-#: Merge.rc:4B91C2D2
 msgid "&Append to existing file"
 msgstr "既存のファイルに追加する(&A)"
 
-#: Merge.rc:AC3AA1F
 msgid "&Result:"
 msgstr "結果(&R):"
 
-#: Merge.rc:78E0CE11
 msgid "Bro&wse..."
 msgstr "参照(&W)..."
 
-#: Merge.rc:89AF4FC
 msgid "&Format"
 msgstr "出力形式(&F)"
 
-#: Merge.rc:67019DCB
 msgid "St&yle:"
 msgstr "スタイル(&Y):"
 
-#: Merge.rc:4DB19839
 msgid "&Context:"
 msgstr "コンテキスト(&C):"
 
-#: Merge.rc:2756A766
 msgid "Ignor&e blank lines"
 msgstr "空白行を無視する(&E)"
 
-#: Merge.rc:2C4A6C6C
 msgid "Inclu&de command line"
 msgstr "コマンド行を含める(&D)"
 
-#: Merge.rc:5869BBE
 msgid "Open to e&xternal editor"
 msgstr "外部エディタで開く(&X)"
 
-#: Merge.rc:28D5CCAA
 msgid "Display Columns"
 msgstr "列の表示"
 
-#: Merge.rc:4856953D
 msgid "Move &Up"
 msgstr "上へ(&U)"
 
-#: Merge.rc:D0645BC
 msgid "Move &Down"
 msgstr "下へ(&D)"
 
-#: Merge.rc:E6D7F0
 msgid "Select Unpacker"
 msgstr "展開プラグインの選択"
 
-#: Merge.rc:4F5264C8
 msgid "File unpacker:"
 msgstr "ファイル展開プラグイン:"
 
-#: Merge.rc:34C1157D
 msgid "Display all unpackers, don't check the extension"
 msgstr "拡張子を無視してすべての展開プラグインを表示する"
 
-#: Merge.rc:5B18135F
 msgid "Extensions list:"
 msgstr "拡張子一覧:"
 
-#: Merge.rc:5578260E
 msgid "Description:"
 msgstr "説明:"
 
-#: Merge.rc:4B89B94
 msgid "Stop"
 msgstr "停止"
 
-#: Merge.rc:D109E01
 msgid "Pause"
 msgstr "一時停止"
 
-#: Merge.rc:4C3E0A2E
 msgid "Continue"
 msgstr "再開"
 
-#: Merge.rc:1AC98D0A
 msgid "Comparing items..."
 msgstr "項目を比較しています..."
 
-#: Merge.rc:4630D06C
 msgid "Items compared:"
 msgstr "比較した項目:"
 
-#: Merge.rc:4166A153
 msgid "Items total:"
 msgstr "全項目数:"
 
-#: Merge.rc:7D31F2A0
 msgid "Go To"
 msgstr "移動"
 
-#: Merge.rc:290C61C5
 msgid "G&oto:"
 msgstr "番号(&O):"
 
-#: Merge.rc:3FB4EC7
 msgid "File"
 msgstr "ファイル"
 
-#: Merge.rc:57E6C4D3
 msgid "Goto what"
 msgstr "移動種別"
 
-#: Merge.rc:602FC81
 msgid "Li&ne"
 msgstr "行(&N)"
 
-#: Merge.rc:27AC6D84
 msgid "&Difference"
 msgstr "差異(&D)"
 
-#: Merge.rc:1D2E49FD
 msgid "&Go To"
 msgstr "移動(&G)"
 
-#: Merge.rc:7E5494F6
 msgid "Compare"
 msgstr "比較"
 
-#: Merge.rc:65285570
 msgid "Whitespace"
 msgstr "空白"
 
-#: Merge.rc:AC3AA20
 msgid "&Compare"
 msgstr "比較する(&C)"
 
-#: Merge.rc:5A9A713E
 msgid "&Ignore change"
 msgstr "変更を無視(&I)"
 
-#: Merge.rc:21C15B7
 msgid "I&gnore all"
 msgstr "すべて無視(&G)"
 
-#: Merge.rc:2756A767
 msgid "Ignore blan&k lines"
 msgstr "空行を無視する(&K)"
 
-#: Merge.rc:4166A154
 msgid "Ignore &case"
 msgstr "大文字と小文字を区別しない(&C)"
 
-#: Merge.rc:6C318DC8
 msgid "Ignore codepage &differences"
 msgstr "コードページの違いを無視する(&D)"
 
-#: Merge.rc:285B56CE
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"
 
-#: Merge.rc:4EF8162F
 msgid "&Match similar lines"
 msgstr "類似行をマッチさせる(&M)"
 
-#: Merge.rc:57F02FB4
 msgid "Diff &algorithm (Experimental):"
 msgstr "Diff アルゴリズム (実験的機能)(&A):"
 
-#: Merge.rc:6AE6FCAE
 msgid "Enable indent &heuristic"
 msgstr "indent heuristic を有効にする(&H)"
 
-#: Merge.rc:4C3E0A2F
 msgid "Comments"
 msgstr "コメント"
 
-#: Merge.rc:1AFA3491
 msgid "Filter Comments"
 msgstr "コメントの差異を無視する"
 
-#: Merge.rc:3BB91A82
 msgid "Editor"
 msgstr "エディタ"
 
-#: Merge.rc:1A9EBDF1
 msgid "&Highlight syntax"
 msgstr "シンタックス ハイライトを有効にする(&H)"
 
-#: Merge.rc:1A9EBDF2
 msgid "&Automatic rescan"
 msgstr "自動的に再スキャンする(&A)"
 
-#: Merge.rc:545FEEA3
 msgid "&Preserve original EOL chars"
 msgstr "元の EOL 文字を保存する(&P)"
 
-#: Merge.rc:4C72B55
 msgid "Tabs"
 msgstr "タブ"
 
-#: Merge.rc:68816EEB
 msgid "&Tab size:"
 msgstr "タブ幅(&T):"
 
-#: Merge.rc:4DE14275
 msgid "&Insert Tabs"
 msgstr "タブを挿入(&I)"
 
-#: Merge.rc:243A39E
 msgid "Insert &Spaces"
 msgstr "スペースを挿入(&S)"
 
-#: Merge.rc:172385A0
 msgid "Line Difference Coloring"
 msgstr "行内差異の色付け"
 
-#: Merge.rc:4CB9DE6A
 msgid "View line differences"
 msgstr "行内差異を表示する"
 
-#: Merge.rc:1DC30E66
 msgid "&Character level"
 msgstr "文字単位(&C)"
 
-#: Merge.rc:4DE14276
 msgid "&Word-level:"
 msgstr "単語単位(&W):"
 
-#: Merge.rc:14AF463A
 msgid "W&ord break characters:"
 msgstr "単語区切り文字(&O)"
 
-#: Merge.rc:34DF5070
 msgid "Filefilters"
 msgstr "ファイル フィルタ"
 
-#: Merge.rc:4C72B56
 msgid "Test"
 msgstr "テスト"
 
-#: Merge.rc:1CF8A5DA
 msgid "Install..."
 msgstr "インストール..."
 
-#: Merge.rc:27AFDB2F
 msgid "New..."
 msgstr "新規..."
 
-#: Merge.rc:3B6A3611
 msgid "Edit..."
 msgstr "編集..."
 
-#: Merge.rc:629C1DDC
 msgid "Delete..."
 msgstr "削除..."
 
-#: Merge.rc:1BA49C3C
 msgid "Save modified files?"
 msgstr "変更されたファイルを保存しますか?"
 
-#: Merge.rc:3534E274
 msgid "Left side file"
 msgstr "左側ファイル"
 
-#: Merge.rc:6E470BEE
 msgid "&Save changes"
 msgstr "変更を保存する(&S)"
 
-#: Merge.rc:1DC30E67
 msgid "&Discard changes"
 msgstr "変更を破棄する(&D)"
 
-#: Merge.rc:24BA673E
 msgid "Middle side file"
 msgstr "中央ファイル"
 
-#: Merge.rc:F2F641C
 msgid "Sa&ve changes"
 msgstr "変更を保存する(&V)"
 
-#: Merge.rc:71E3C8E4
 msgid "Disca&rd changes"
 msgstr "変更を破棄する(&R)"
 
-#: Merge.rc:47D4A3FB
 msgid "Right side file"
 msgstr "右側ファイル"
 
-#: Merge.rc:F2F641D
 msgid "S&ave changes"
 msgstr "変更を保存する(&A)"
 
-#: Merge.rc:71E3C8E5
 msgid "Dis&card changes"
 msgstr "変更を破棄する(&C)"
 
-#: Merge.rc:5578260F
 msgid "Disca&rd All"
 msgstr "すべて破棄する(&R)"
 
-#: Merge.rc:4C3E0A30
 msgid "Codepage"
 msgstr "コードページ"
 
-#: Merge.rc:71E3C8E6
 msgid "Default Codepage"
 msgstr "デフォルト コードページ"
 
-#: Merge.rc:132D699F
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
 
-#: Merge.rc:5CC85DF4
 msgid ""
 "Detect codepage info for these files: .html, .rc, .xml \n"
 "need to restart session"
@@ -1847,7 +1399,6 @@ msgstr ""
 ".html, .rc, .xml ファイルのコードページ情報を検出する\n"
 "セッションの再起動が必要です。"
 
-#: Merge.rc:3BCD5104
 msgid ""
 "Detect codepage for text files using mlang.dll\n"
 "need to restart session"
@@ -1856,427 +1407,322 @@ msgstr ""
 "この設定を有効にするとフォルダー スキャンがかなり遅くなります。また、セッショ"
 "ンの再起動が必要です。"
 
-#: Merge.rc:E6D7F1
 msgid "System codepage"
 msgstr "システム コードページ"
 
-#: Merge.rc:4F3C2B88
 msgid "According to WinMerge User Interface"
 msgstr "WinMerge ユーザー インターフェイス言語"
 
-#: Merge.rc:8AF7E6A
 msgid "Custom codepage:"
 msgstr "指定したコードページ:"
 
-#: Merge.rc:6CD65B95
 msgid "Options"
 msgstr "オプション"
 
-#: Merge.rc:D32E2F1
 msgid " Categories"
 msgstr " カテゴリ"
 
-#: Merge.rc:26188978
 msgid "Import..."
 msgstr "インポート..."
 
-#: Merge.rc:9B5002F
 msgid "Export..."
 msgstr "エクスポート..."
 
-#: Merge.rc:50F76E1
 msgid "Dialog"
 msgstr "ダイアログ"
 
-#: Merge.rc:744A4E1C
 msgid "Keywords:"
 msgstr "キーワード:"
 
-#: Merge.rc:1AFA3492
 msgid "Function names:"
 msgstr "関数名:"
 
-#: Merge.rc:3B833B8A
 msgid "Comments:"
 msgstr "コメント:"
 
-#: Merge.rc:7B25D658
 msgid "Numbers:"
 msgstr "数値:"
 
-#: Merge.rc:50D15AD
 msgid "Operators:"
 msgstr "オペレーター:"
 
-#: Merge.rc:79321BE2
 msgid "Strings:"
 msgstr "文字列:"
 
-#: Merge.rc:1E0ED5B2
 msgid "Preprocessor:"
 msgstr "プリプロセッサ:"
 
-#: Merge.rc:24173EE5
 msgid "User 1:"
 msgstr "ユーザー 1:"
 
-#: Merge.rc:24173EE6
 msgid "User 2:"
 msgstr "ユーザー 2:"
 
-#: Merge.rc:3C10FC2
 msgid "Bold"
 msgstr "太字"
 
-#: Merge.rc:2CEE4749
 msgid "Marker colors"
 msgstr "マーカーの色"
 
-#: Merge.rc:56BD1FBD
 msgid "Search Marker:"
 msgstr "検索マーカー:"
 
-#: Merge.rc:7B76381B
 msgid "User Defined Marker1:"
 msgstr "ユーザー定義マーカー 1:"
 
-#: Merge.rc:7B76381C
 msgid "User Defined Marker2:"
 msgstr "ユーザー定義マーカー 2:"
 
-#: Merge.rc:7B76381D
 msgid "User Defined Marker3:"
 msgstr "ユーザー定義マーカー 3:"
 
-#: Merge.rc:387F7980
 msgid "Folder Compare Report"
 msgstr "フォルダー比較レポート"
 
-#: Merge.rc:3ECF34A3
 msgid "Report &File:"
 msgstr "レポート ファイル(&F):"
 
-#: Merge.rc:89AF4FD
 msgid "&Style:"
 msgstr "スタイル(&S):"
 
-#: Merge.rc:545FEEA4
 msgid "&Include File Compare Report"
 msgstr "ファイル比較レポートを含める(&I)"
 
-#: Merge.rc:3938FFC6
 msgid "&Copy to Clipboard"
 msgstr "クリップボードにコピー(&C)"
 
-#: Merge.rc:43600E90
 msgid "Shared or Private Filter"
 msgstr "共有/プライベート フィルタ"
 
-#: Merge.rc:74E96E1E
 msgid "Which type of filter do you want to create?"
 msgstr "どのタイプのフィルタを作成しますか?"
 
-#: Merge.rc:444EF527
 msgid "Shared Filter (for all users on this machine)"
 msgstr "共有フィルタ (このマシン上のすべてのユーザーに有効)"
 
-#: Merge.rc:11304E6
 msgid "Private Filter (only for current user)"
 msgstr "プライベート フィルタ (現在のユーザーのみ)"
 
-#: Merge.rc:7D9F30CF
 msgid "Archive Support"
 msgstr "アーカイブ サポート"
 
-#: Merge.rc:545FEEA5
 msgid "&Enable archive file support"
 msgstr "アーカイブ ファイル サポートを有効にする(&E)"
 
-#: Merge.rc:70C9C72D
 msgid "&Detect archive type from file signature"
 msgstr "ファイルのシグネチャからアーカイブ形式を検出する(&D)"
 
-#: Merge.rc:1AC98D0B
 msgid "Compare Statistics"
 msgstr "比較統計"
 
-#: Merge.rc:64ABCD7D
 msgid "Folders:"
 msgstr "フォルダー:"
 
-#: Merge.rc:7262BE23
 msgid "Files:"
 msgstr "ファイル:"
 
-#: Merge.rc:629C1DDD
 msgid "Different"
 msgstr "差異あり"
 
-#: Merge.rc:141E3F81
 msgid "Text:"
 msgstr "テキスト:"
 
-#: Merge.rc:5FC9C469
 msgid "Binary:"
 msgstr "バイナリ:"
 
-#: Merge.rc:26535499
 msgid "Unique"
 msgstr "片方のみ"
 
-#: Merge.rc:602FC82
 msgid "Left:"
 msgstr "左側:"
 
-#: Merge.rc:25669B6
 msgid "Right:"
 msgstr "右側:"
 
-#: Merge.rc:26188979
 msgid "Identical"
 msgstr "同一"
 
-#: Merge.rc:6FA9B0F7
 msgid "Total:"
 msgstr "合計:"
 
-#: Merge.rc:76245120
 msgid "Close"
 msgstr "閉じる"
 
-#: Merge.rc:2FC0BA7C
 msgid "Middle:"
 msgstr "中央:"
 
-#: Merge.rc:2CEE474A
 msgid "Missing Left:"
 msgstr "左側のみ無し:"
 
-#: Merge.rc:2A79A039
 msgid "Missing Middle:"
 msgstr "中央のみ無し:"
 
-#: Merge.rc:70DAA20F
 msgid "Missing Right:"
 msgstr "右側のみ無し:"
 
-#: Merge.rc:413EF3DC
 msgid "Affects"
 msgstr "反映先"
 
-#: Merge.rc:1BE35CDC
 msgid "(Affects)"
 msgstr "(反映先)"
 
-#: Merge.rc:E4471B
 msgid "Select Codepage for"
 msgstr "コードページの選択"
 
-#: Merge.rc:5A9A713F
 msgid "&File Loading:"
 msgstr "ファイルの読み込み(&F):"
 
-#: Merge.rc:7A4CFAFC
 msgid "File &Saving:"
 msgstr "ファイルの保存(&S)"
 
-#: Merge.rc:175DEEED
 msgid "&Use same codepage for both"
 msgstr "両側に同じコードページを使用する(&U)"
 
-#: Merge.rc:89AF4FE
 msgid "&Cancel"
 msgstr "キャンセル(&C)"
 
-#: Merge.rc:72A593B8
 msgid "Test Filter"
 msgstr "フィルタのテスト"
 
-#: Merge.rc:5CCED708
 msgid "Testing filter ..."
 msgstr "テストするフィルタ..."
 
-#: Merge.rc:4EF81630
 msgid "&Enter text to test:"
 msgstr "テストするテキストの入力(&E):"
 
-#: Merge.rc:4DE14277
 msgid "&Folder Name"
 msgstr "フォルダー名(&F)"
 
-#: Merge.rc:4876CD3F
 msgid "Result:"
 msgstr "結果:"
 
-#: Merge.rc:43017E4F
 msgid "&Test"
 msgstr "テスト(&T)"
 
-#: Merge.rc:1D2E49FE
 msgid "&Close"
 msgstr "閉じる(&C)"
 
-#: Merge.rc:175DEEEE
 msgid "&Use customized text colors"
 msgstr "テキストの色をカスタマイズする(&U)"
 
-#: Merge.rc:1AC98D0C
 msgid "Custom text colors"
 msgstr "テキストの色"
 
-#: Merge.rc:3FE25901
 msgid "Whitespace:"
 msgstr "空白:"
 
-#: Merge.rc:3ECF34A4
 msgid "Regular text:"
 msgstr "標準テキスト:"
 
-#: Merge.rc:751AB590
 msgid "Selection:"
 msgstr "選択:"
 
-#: Merge.rc:2FC0BA7D
 msgid "Margin:"
 msgstr "マージン:"
 
-#: Merge.rc:43E58E59
 msgid "Backup Files"
 msgstr "バックアップ ファイル"
 
-#: Merge.rc:69AD3BF9
 msgid "Create backup files in:"
 msgstr "バックアップ ファイル作成:"
 
-#: Merge.rc:78B3B627
 msgid "&Folder compare"
 msgstr "フォルダー比較(&F)"
 
-#: Merge.rc:7A4CFAFD
 msgid "Fil&e compare"
 msgstr "ファイル比較(&E)"
 
-#: Merge.rc:334E25B2
 msgid "Create backup files into:"
 msgstr "バックアップ ファイル作成先:"
 
-#: Merge.rc:381D79E6
 msgid "&Original file's folder"
 msgstr "元ファイルのフォルダー(&O)"
 
-#: Merge.rc:714B45FE
 msgid "&Global backup folder:"
 msgstr "共通のバックアップ フォルダー(&G):"
 
-#: Merge.rc:1F7B33EC
 msgid "Backup filename:"
 msgstr "バックアップ ファイル名:"
 
-#: Merge.rc:381D79E7
 msgid "&Append .bak -extension"
 msgstr ".bak 拡張子を追加する(&A)"
 
-#: Merge.rc:129644DE
 msgid "A&ppend timestamp"
 msgstr "タイムスタンプを追加する(&P)"
 
-#: Merge.rc:CAEDA36
 msgid "Confirm Copy"
 msgstr "コピーの確認"
 
-#: Merge.rc:36D268E9
 msgid "Are you sure you want to copy XXX items?"
 msgstr "本当に XXX 項目をコピーしますか?"
 
-#: Merge.rc:30CDE281
 msgid "From left"
 msgstr "左側から"
 
-#: Merge.rc:2C015CFE
 msgid "To right"
 msgstr "右側へ"
 
-#: Merge.rc:29CE40
 msgid "Yes"
 msgstr "はい"
 
-#: Merge.rc:12E8E
 msgid "No"
 msgstr "いいえ"
 
-#: Merge.rc:B612C23
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: Merge.rc:78B3B628
 msgid "&Enable plugins"
 msgstr "プラグインを有効にする(&E)"
 
-#: Merge.rc:62909ED6
 msgid "Shell Integration"
 msgstr "シェル統合"
 
-#: Merge.rc:31DC8C62
 msgid "Explorer"
 msgstr "エクスプローラー"
 
-#: Merge.rc:673BD331
 msgid "E&nable advanced menu"
 msgstr "拡張メニューを有効にする(&N)"
 
-#: Merge.rc:4EF81631
 msgid "&Add to context menu"
 msgstr "コンテキストメニューに追加する(&A)"
 
-#: Merge.rc:26A6974B
 msgid "&Register shell extension"
 msgstr "シェル拡張を登録(&R)"
 
-#: Merge.rc:175DEEEF
 msgid "&Unregister shell extension"
 msgstr "シェル拡張の登録を解除(&U)"
 
-#: Merge.rc:2D682DC2
 msgid "Register shell extension for current user &only"
 msgstr "現在のユーザーのみシェル拡張を登録(&O)"
 
-#: Merge.rc:5C3A0110
 msgid "Unregister shell extension for current user on&ly"
 msgstr "現在のユーザーのみシェル拡張の登録を解除(&L)"
 
-#: Merge.rc:7262BE24
+msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "フォルダー"
 
-#: Merge.rc:60B696B0
 msgid "S&top after first difference"
 msgstr "最初の差異で比較を終了する(&T)"
 
-#: Merge.rc:7FF2B80B
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 秒以下の時間差を無視する(&O)"
 
-#: Merge.rc:6D5B7719
 msgid "&Include unique subfolders contents"
 msgstr "片方にしか存在しないサブフォルダー内も含める(&I)"
 
-#: Merge.rc:3E136C28
 msgid "&Automatically expand all subfolders"
 msgstr "自動的にサブフォルダーを展開する(&A)"
 
-#: Merge.rc:5D032167
 msgid "Ignore &Reparse Points"
 msgstr "再解析ポイントを無視する(&R)"
 
-#: Merge.rc:2E2C5208
 msgid "&Quick compare limit (MB):"
 msgstr "クイック比較切替閾値 (MB)(&Q):"
 
-#: Merge.rc:175DEEF0
 msgid "&Binary compare limit (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
-#: Merge.rc:2188DD49
 msgid ""
 "&Number of compare threads (a negative value implies addition of the number "
 "of available CPU cores):"
@@ -2285,67 +1731,52 @@ msgstr ""
 "負の値を指定した場合、スレッド数は使用可能な CPU コア数を加算した値になりま"
 "す。"
 
-#: Merge.rc:17BC2F9E
+msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "バイナリ"
 
-#: Merge.rc:7AAB28B8
 msgid "Binary File &Patterns:"
 msgstr "バイナリ ファイルとして扱うパターン(&P):"
 
-#: Merge.rc:4F5264C9
 msgid "Frhed settings"
 msgstr "Frhed 設定"
 
-#: Merge.rc:1A8FADD4
 msgid "View &Settings..."
 msgstr "表示設定(&S)..."
 
-#: Merge.rc:78B3B629
 msgid "&Binary Mode..."
 msgstr "バイナリモード(&B)..."
 
-#: Merge.rc:1A9EBDF3
 msgid "&Character Set..."
 msgstr "文字セット(&C)..."
 
-#: Merge.rc:B8C361
 msgid "Image"
 msgstr "画像"
 
-#: Merge.rc:2C4A6C6D
 msgid "Image File &Patterns:"
 msgstr "画像ファイルとして扱うパターン(&P):"
 
-#: Merge.rc:4DB1983A
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
 
-#: Merge.rc:206940
 msgid "EXT"
 msgstr "EXT"
 
-#: Merge.rc:1F78C0
 msgid "CAP"
 msgstr "CAP"
 
-#: Merge.rc:24A381
 msgid "NUM"
 msgstr "NUM"
 
-#: Merge.rc:4B89B95
 msgid "SCRL"
 msgstr "SCRL"
 
-#: Merge.rc:251BC0
 msgid "OVR"
 msgstr "上書"
 
-#: Merge.rc:268480
 msgid "REC"
 msgstr "記録"
 
-#: Merge.rc:E8950E9
 msgid ""
 "\n"
 "New Documents (Ctrl+N)"
@@ -2353,7 +1784,6 @@ msgstr ""
 "\n"
 "新しいドキュメント (Ctrl+N)"
 
-#: Merge.rc:28AAB7D
 msgid ""
 "\n"
 "Open (Ctrl+O)"
@@ -2361,7 +1791,6 @@ msgstr ""
 "\n"
 "開く (Ctrl+O)"
 
-#: Merge.rc:28AAB7E
 msgid ""
 "\n"
 "Save (Ctrl+S)"
@@ -2369,23 +1798,18 @@ msgstr ""
 "\n"
 "保存 (Ctrl+S)"
 
-#: Merge.rc:524AB109
 msgid "Unknown error attempting to open project file"
 msgstr "未知のエラー:プロジェクト ファイルが開けません"
 
-#: Merge.rc:524AB10A
 msgid "Unknown error attempting to save project file"
 msgstr "未知のエラー:プロジェクト ファイルが保存できません"
 
-#: Merge.rc:3FCEF5DC
 msgid "Project file successfully loaded."
 msgstr "プロジェクト ファイルが読み込まれました。"
 
-#: Merge.rc:3BDD62C3
 msgid "Project file successfully saved."
 msgstr "プロジェクト ファイルが保存されました。"
 
-#: Merge.rc:28AAB7F
 msgid ""
 "\n"
 "Undo (Ctrl+Z)"
@@ -2393,7 +1817,6 @@ msgstr ""
 "\n"
 "元に戻す (Ctrl+Z)"
 
-#: Merge.rc:28AAB80
 msgid ""
 "\n"
 "Redo (Ctrl+Y)"
@@ -2401,7 +1824,6 @@ msgstr ""
 "\n"
 "繰り返す (Ctrl+Y)"
 
-#: Merge.rc:2B78E95D
 msgid ""
 "\n"
 "FileCompare\n"
@@ -2419,7 +1841,6 @@ msgstr ""
 "WinMerge.FileCompare\n"
 "WinMerge File Compare"
 
-#: Merge.rc:293A824F
 msgid ""
 "\n"
 "FolderCompare\n"
@@ -2437,14 +1858,12 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "WinMerge Folder Compare"
 
-#: Merge.rc:74BA5C8C
 msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Developers:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
 "Sawanaka, Gal Hammer, Alexander Skinner"
 
-#: Merge.rc:3EF068BF
 msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
 "are welcome to redistribute it under certain circumstances; see the GNU "
@@ -2454,59 +1873,45 @@ msgstr ""
 "are welcome to redistribute it under certain circumstances; see the GNU "
 "General Public License in the Help menu for details."
 
-#: Merge.rc:1D2E49FF
 msgid "&Abort"
 msgstr "中止(&A)"
 
-#: Merge.rc:1D2E4A00
 msgid "&Retry"
 msgstr "再試行(&R)"
 
-#: Merge.rc:89AF4FF
 msgid "&Ignore"
 msgstr "無視(&I)"
 
-#: Merge.rc:21C15B8
 msgid "Ignore &all"
 msgstr "すべて無視(&A)"
 
-#: Merge.rc:22956AA
 msgid "&Yes"
 msgstr "はい(&Y)"
 
-#: Merge.rc:48B5872E
 msgid "Yes to &all"
 msgstr "すべてはい(&A)"
 
-#: Merge.rc:11D981
 msgid "&No"
 msgstr "いいえ(&N)"
 
-#: Merge.rc:4909ADB4
 msgid "No to a&ll"
 msgstr "すべていいえ(&L)"
 
-#: Merge.rc:4DB1983B
 msgid "&Continue"
 msgstr "続行(&C)"
 
-#: Merge.rc:43017E50
 msgid "&Skip"
 msgstr "スキップ(&S)"
 
-#: Merge.rc:2D1160AF
 msgid "Skip &all"
 msgstr "すべてスキップ(&A)"
 
-#: Merge.rc:77C09B82
 msgid "Don't display this &message again."
 msgstr "再びこのメッセージを表示しない(&M)"
 
-#: Merge.rc:57F02FB5
 msgid "Don't ask this &question again."
 msgstr "再びこの質問をしない(&Q)"
 
-#: Merge.rc:78ACB5DB
 msgid ""
 "To make this messagebox visible again, press the Reset button on the General "
 "page of the Options dialog."
@@ -2514,57 +1919,44 @@ msgstr ""
 "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログの一般"
 "ページで [リセット] ボタンを押してください。"
 
-#: Merge.rc:39000D58
 msgid "Syntax"
 msgstr "シンタックス"
 
-#: Merge.rc:2C0C2241
 msgid "Differences"
 msgstr "差異"
 
-#: Merge.rc:277500
 msgid "To:"
 msgstr "To:"
 
-#: Merge.rc:68EE6DF1
 msgid "From left:"
 msgstr "左側から:"
 
-#: Merge.rc:2C015CFF
 msgid "To left:"
 msgstr "左側へ:"
 
-#: Merge.rc:34DF5071
 msgid "From right:"
 msgstr "右側から:"
 
-#: Merge.rc:542A4301
 msgid "To right:"
 msgstr "右側へ:"
 
-#: Merge.rc:2924ED78
 #, c-format
 msgid "Version %1"
 msgstr "Version %1 - Japanese"
 
-#: Merge.rc:24173EE7
 msgid "Unicode"
 msgstr "Unicode"
 
-#: Merge.rc:295600
 msgid "X64"
 msgstr "X64"
 
-#: Merge.rc:761E6873
 #, c-format
 msgid "Options (%1)"
 msgstr "オプション (%1)"
 
-#: Merge.rc:4BDBDC64
 msgid "All message boxes are now displayed again."
 msgstr "すべてのメッセージボックスが、再び表示されます。"
 
-#: Merge.rc:37825D6A
 #, c-format
 msgid ""
 "Value in Tab size -field is not in range WinMerge accepts.\n"
@@ -2575,27 +1967,21 @@ msgstr ""
 "\n"
 "1から%1までの値を指定してください。"
 
-#: Merge.rc:47E5C8F
 msgid "Open"
 msgstr "開く"
 
-#: Merge.rc:3E105584
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "プログラム|*.exe;*.bat;*.cmd|すべてのファイル (*.*)|*.*||"
 
-#: Merge.rc:222D39F7
 msgid "All Files (*.*)|*.*||"
 msgstr "すべてのファイル (*.*)|*.*||"
 
-#: Merge.rc:237E9033
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "WinMerge プロジェクト ファイル (*.WinMerge)|*.WinMerge||"
 
-#: Merge.rc:BEDA09D
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "設定ファイル (*.ini)|*.ini|すべてのファイル (*.*)|*.*||"
 
-#: Merge.rc:3FF615A0
 msgid ""
 "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
 "*.*||"
@@ -2603,43 +1989,33 @@ msgstr ""
 "テキスト ファイル (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|すべての"
 "ファイル (*.*)|*.*||"
 
-#: Merge.rc:59814668
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "HTML ファイル (*.htm,*.html)|*.htm;*.html|すべてのファイル (*.*)|*.*||"
 
-#: Merge.rc:67444ADC
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML ファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*||"
 
-#: Merge.rc:46FCCCE
 msgid "Name"
 msgstr "名前"
 
-#: Merge.rc:15875422
 msgid "Location"
 msgstr "場所"
 
-#: Merge.rc:59F506A0
 msgid "Filters"
 msgstr "フィルタ"
 
-#: Merge.rc:52D199B
 msgid "[F] "
 msgstr "[F] "
 
-#: Merge.rc:2C0C2242
 msgid "Description"
 msgstr "説明"
 
-#: Merge.rc:D6BB425
 msgid "Select filename for new filter"
 msgstr "新しいフィルタのファイル名を指定してください"
 
-#: Merge.rc:764E4AD3
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "ファイル フィルタ (*.flt)|*.flt|すべてのファイル (*.*)|*.*||"
 
-#: Merge.rc:24B5241A
 #, c-format
 msgid ""
 "Cannot find file filter template file!\n"
@@ -2652,7 +2028,6 @@ msgstr ""
 "ファイル %1 を以下の WinMerge/Filters フォルダーにコピーしてください:\n"
 "%2"
 
-#: Merge.rc:2A045B49
 #, c-format
 msgid ""
 "Cannot copy filter template file to filter folder:\n"
@@ -2664,7 +2039,6 @@ msgstr ""
 "\n"
 "フォルダーの存在または書き込み可能であるか確認してください。"
 
-#: Merge.rc:4EA7BACD
 msgid ""
 "User's filter file folder is not defined!\n"
 "\n"
@@ -2674,7 +2048,6 @@ msgstr ""
 "\n"
 "[オプション/システム] でフィルタ用フォルダーを指定してください。"
 
-#: Merge.rc:7DDEC9BD
 #, c-format
 msgid ""
 "Failed to delete the filter file:\n"
@@ -2686,11 +2059,9 @@ msgstr ""
 "\n"
 "そのファイルは読み取り専用ではありませんか?"
 
-#: Merge.rc:6F3BCB34
 msgid "Locate filter file to install"
 msgstr "インストールするフィルタ ファイルを選択"
 
-#: Merge.rc:6858E820
 msgid ""
 "Installing filter file failed.\n"
 "\n"
@@ -2700,15 +2071,12 @@ msgstr ""
 "\n"
 "新しいフィルタ ファイルをフィルタ フォルダーにコピーできませんでした。"
 
-#: Merge.rc:5704C4AC
 msgid "Filter file already exists. Overwrite existing filter?"
 msgstr "フィルタ ファイルは既に存在します。既存のファイルを上書きしますか?"
 
-#: Merge.rc:237A126
 msgid "Regular expression"
 msgstr "正規表現"
 
-#: Merge.rc:34BD4316
 msgid ""
 "Filters were updated. Do you want to refresh all open folder compares?\n"
 "\n"
@@ -2721,150 +2089,116 @@ msgstr ""
 "もし、いまはすべての比較ウィンドウを更新したくない場合、いいえを選択し、後で"
 "比較ウィンドウを更新してください。"
 
-#: Merge.rc:114DD351
 msgid "Folder Comparison Results"
 msgstr "フォルダー比較結果"
 
-#: Merge.rc:1AFA3493
 msgid "File Comparison"
 msgstr "ファイル比較"
 
-#: Merge.rc:2FEFC30D
 msgid "Untitled left"
 msgstr "左無題"
 
-#: Merge.rc:730B3FD4
 msgid "Untitled middle"
 msgstr "中無題"
 
-#: Merge.rc:4E089EF3
 msgid "Untitled right"
 msgstr "右無題"
 
-#: Merge.rc:72A593B9
 msgid "Theirs File"
 msgstr "Theirs File"
 
-#: Merge.rc:427C12C1
 msgid "Mine File"
 msgstr "Mine File"
 
-#: Merge.rc:DD21174
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "行: %s  列: %d/%d  文字: %d/%d  EOL: %s"
 
-#: Merge.rc:15875423
 #, c-format
 msgid "Line: %s"
 msgstr "行: %s"
 
-#: Merge.rc:6F3BCB35
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "行: %s  列: %d/%d  文字: %d/%d"
 
-#: Merge.rc:7C664E1
 msgid "Merge"
 msgstr "マージ"
 
-#: Merge.rc:7A8FD78B
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "差異 %1 / %2"
 
-#: Merge.rc:62773E9
 #, c-format
 msgid "%1 Differences Found"
 msgstr "%1 個の差異が見つかりました"
 
-#: Merge.rc:6B78A819
 msgid "1 Difference Found"
 msgstr "1 個の差異が見つかりました"
 
 #. Abbreviation from "Read Only"
-#: Merge.rc:13E12
 msgid "RO"
 msgstr "RO"
 
-#: Merge.rc:6B6D8965
 #, c-format
 msgid "Item %1 of %2"
 msgstr "項目 %1 / %2"
 
-#: Merge.rc:2618897A
 #, c-format
 msgid "Items: %1"
 msgstr "項目: %1"
 
-#: Merge.rc:6C6653C7
 msgid "Select two existing folders or files to compare"
 msgstr "存在するフォルダーまたはファイルを選択してください"
 
-#: Merge.rc:444C5DDC
 msgid "Folder Selection"
 msgstr "Folder Selection"
 
-#: Merge.rc:3080B693
 msgid "Select two (or three) folders or two (or three) files to compare."
 msgstr ""
 "比較するフォルダーまたはファイルを 2 つ (または 3 つ) 選択してください。"
 
-#: Merge.rc:2EBBDDD6
 msgid "Left (1st) path is invalid!"
 msgstr "左側 (1 番目) のパスは不正なパスです!"
 
-#: Merge.rc:BA50069
 msgid "Middle (2nd) path is invalid!"
 msgstr "中央 (2 番目) のパスは不正なパスです!"
 
-#: Merge.rc:21DC7C32
 msgid "Right (2nd) path is invalid!"
 msgstr "右側 (2番目) のパスは不正なパスです!"
 
-#: Merge.rc:21DC7C33
 msgid "Right (3rd) path is invalid!"
 msgstr "右側 (3 番目) のパスは不正なパスです!"
 
-#: Merge.rc:5AB9EEA7
 msgid "Both paths are invalid!"
 msgstr "両側のパスは不正なパスです!"
 
-#: Merge.rc:585E8EC0
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr "左側 (1 番目) と中央 (2 番目) のパスは不正なパスです!"
 
-#: Merge.rc:135DE390
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr "左側 (1 番目) と右側 (3 番目) のパスは不正なパスです!"
 
-#: Merge.rc:72716FA6
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr "中央 (2 番目) と右側 (3 番目) のパスは不正なパスです!"
 
-#: Merge.rc:237A0533
 msgid "All paths are invalid!"
 msgstr "すべてのパスが不正なパスです!"
 
-#: Merge.rc:1235F930
 msgid "Only enabled for File comparisons"
 msgstr "ファイル比較のみ有効"
 
-#: Merge.rc:30FF7A4E
 msgid "Cannot compare file and folder!"
 msgstr "ファイルとフォルダーは比較できません!"
 
-#: Merge.rc:62AC5DDB
 #, c-format
 msgid "File not found: %1"
 msgstr "ファイルが見つかりません: %1"
 
-#: Merge.rc:387F7981
 #, c-format
 msgid "File not unpacked: %1"
 msgstr "ファイルが展開されていません: %1"
 
-#: Merge.rc:3676909F
 #, c-format
 msgid ""
 "Cannot open file\n"
@@ -2877,11 +2211,9 @@ msgstr ""
 "\n"
 "%2"
 
-#: Merge.rc:53CCF475
 msgid "Failed to parse conflict file."
 msgstr "コンフリクト ファイルの解析に失敗しました。"
 
-#: Merge.rc:5A765252
 #, c-format
 msgid ""
 "The file\n"
@@ -2892,18 +2224,15 @@ msgstr ""
 "%1\n"
 "はコンフリクト ファイルではありません。"
 
-#: Merge.rc:67019DCC
 msgid "Save As"
 msgstr "名前を付けて保存"
 
-#: Merge.rc:E4471C
 #, c-format
 msgid "Save changes to %1?"
 msgstr ""
 "ファイル %1 の内容は変更されています。\n"
 "変更を保存しますか?"
 
-#: Merge.rc:6A1C6855
 #, c-format
 msgid ""
 "%1 is marked read-only. Would you like to override the read-only file ? (No "
@@ -2912,11 +2241,9 @@ msgstr ""
 "%1 は読み取り専用ファイルです。読み取り専用ファイルを上書きしますか? (新しい"
 "ファイル名では保存しません。)"
 
-#: Merge.rc:673BD332
 msgid "Error backing up file"
 msgstr "ファイル バックアップ エラー"
 
-#: Merge.rc:3958104B
 #, c-format
 msgid ""
 "Unable to backup original file:\n"
@@ -2929,7 +2256,6 @@ msgstr ""
 "をバックアップできません。\n"
 "無視して続けますか?"
 
-#: Merge.rc:69020931
 #, c-format
 msgid ""
 "Saving file failed.\n"
@@ -2945,7 +2271,6 @@ msgstr ""
 "別名で保存する場合は [OK] を、\n"
 "中止する場合は、[キャンセル] を押してください"
 
-#: Merge.rc:3895053E
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
@@ -2961,7 +2286,6 @@ msgstr ""
 "\n"
 "展開されたものを別ファイルに保存しますか?"
 
-#: Merge.rc:5A0BA2DF
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
@@ -2977,7 +2301,6 @@ msgstr ""
 "\n"
 "展開されたものを別ファイルに保存しますか?"
 
-#: Merge.rc:78367A47
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -2990,7 +2313,6 @@ msgstr ""
 "このファイルは WinMerge 以外のアプリケーションで修正されています。修正された"
 "ファイルに上書きしますか?"
 
-#: Merge.rc:462FB760
 #, c-format
 msgid ""
 "%1\n"
@@ -2999,7 +2321,6 @@ msgstr ""
 "%1\n"
 "は、読み取り専用です。読み取り専用の項目を上書きしますか?"
 
-#: Merge.rc:B9192B
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3013,19 +2334,15 @@ msgstr ""
 "を更新しました。\n"
 "ファイルを開きなおしますか?"
 
-#: Merge.rc:62909ED7
 msgid "Save Left File As"
 msgstr "左側のファイルを名前を付けて保存"
 
-#: Merge.rc:E4471D
 msgid "Save Middle File As"
 msgstr "中央のファイルを名前を付けて保存"
 
-#: Merge.rc:6F833C19
 msgid "Save Right File As"
 msgstr "右側のファイルを名前を付けて保存"
 
-#: Merge.rc:3C4620F
 #, c-format
 msgid ""
 "The file\n"
@@ -3036,7 +2353,6 @@ msgstr ""
 "%1\n"
 "は消滅しました。続行するためにファイルのコピーを保存してください。"
 
-#: Merge.rc:4BFC8F0D
 msgid ""
 "Cannot merge differences when documents are not in synch.\n"
 "\n"
@@ -3046,122 +2362,97 @@ msgstr ""
 "\n"
 "続行する前にドキュメントを F5 キーで最新にしてください。"
 
-#: Merge.rc:2405135
 msgid "Break at whitespace"
 msgstr "空白で区切る"
 
-#: Merge.rc:6CB369C2
 msgid "Break at whitespace or punctuation"
 msgstr "空白か句読点で区切る"
 
-#: Merge.rc:237A127
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "右側から左側 (%1)"
 
-#: Merge.rc:52D3F9F6
 #, c-format
 msgid "Right to Middle (%1)"
 msgstr "右側から中央 (%1)"
 
-#: Merge.rc:17F5B413
 #, c-format
 msgid "Middle to Left (%1)"
 msgstr "中央から左側 (%1)"
 
-#: Merge.rc:66C0CE9F
 #, c-format
 msgid "Middle to Right (%1)"
 msgstr "中央から右側 (%1)"
 
-#: Merge.rc:7271FF80
 #, c-format
 msgid "Left to Right (%1)"
 msgstr "左側から右側 (%1)"
 
-#: Merge.rc:5BCDF0E7
 #, c-format
 msgid "Left to Middle (%1)"
 msgstr "左側から中央 (%1)"
 
-#: Merge.rc:71676C48
 #, c-format
 msgid "Left to... (%1)"
 msgstr "左側を... (%1)"
 
-#: Merge.rc:729280DB
 #, c-format
 msgid "Middle to... (%1)"
 msgstr "中央を... (%1)"
 
-#: Merge.rc:32BFDBAD
 #, c-format
 msgid "Right to... (%1)"
 msgstr "右側を... (%1)"
 
-#: Merge.rc:36B164C5
 #, c-format
 msgid "Both to... (%1)"
 msgstr "両側を... (%1)"
 
-#: Merge.rc:2515A6BD
 #, c-format
 msgid "All to... (%1)"
 msgstr "すべてを... (%1)"
 
-#: Merge.rc:290D6FC6
 #, c-format
 msgid "Differences to... (%1)"
 msgstr "差異を... (%1)"
 
-#: Merge.rc:1B633070
 #, c-format
 msgid "Left (%1)"
 msgstr "左側 (%1)"
 
-#: Merge.rc:13C27215
 #, c-format
 msgid "Middle (%1)"
 msgstr "中央 (%1)"
 
-#: Merge.rc:39174D9A
 #, c-format
 msgid "Right (%1)"
 msgstr "右側 (%1)"
 
-#: Merge.rc:146A5939
 #, c-format
 msgid "Both (%1)"
 msgstr "両側 (%1)"
 
-#: Merge.rc:669F87F5
 #, c-format
 msgid "All (%1)"
 msgstr "すべて (%1)"
 
-#: Merge.rc:DD21175
 msgid "Left side - select destination folder:"
 msgstr "左側 - コピー/移動先フォルダーの指定:"
 
-#: Merge.rc:2B480620
 msgid "Middle side - select destination folder:"
 msgstr "中央 - コピー/移動先フォルダーの指定:"
 
-#: Merge.rc:5BBC5591
 msgid "Right side - select destination folder:"
 msgstr "右側 - コピー/移動先フォルダーの指定:"
 
-#: Merge.rc:66367ECA
 #, c-format
 msgid "(%1 Files Affected)"
 msgstr "(%1 個のファイルに作用)"
 
-#: Merge.rc:65510B09
 #, c-format
 msgid "(%1 of %2 Files Affected)"
 msgstr "(%1 / %2 個のファイルに作用)"
 
-#: Merge.rc:2B0F0BA2
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -3173,16 +2464,13 @@ msgstr ""
 "%1\n"
 "を削除しますか?"
 
-#: Merge.rc:2019BE6D
 msgid "Are you sure you want to copy:"
 msgstr "本当にコピーしますか?:"
 
-#: Merge.rc:2B0F0BA3
 #, c-format
 msgid "Are you sure you want to copy %d items:"
 msgstr "本当に %d 項目をコピーしますか?:"
 
-#: Merge.rc:59B96CF
 #, c-format
 msgid ""
 "Operation aborted!\n"
@@ -3201,20 +2489,16 @@ msgstr ""
 "\n"
 "再度比較してください。"
 
-#: Merge.rc:2019BE6E
 msgid "Are you sure you want to move:"
 msgstr "項目を移動しますか?: "
 
-#: Merge.rc:2B0F0BA4
 #, c-format
 msgid "Are you sure you want to move %d items:"
 msgstr "%d 個の項目を移動しますか?: "
 
-#: Merge.rc:CAEDA37
 msgid "Confirm Move"
 msgstr "移動の確認"
 
-#: Merge.rc:1E9E7AFF
 msgid ""
 "You are about to close the window that is comparing folders. Are you sure "
 "you want to close the window?"
@@ -3222,371 +2506,289 @@ msgstr ""
 "フォルダー比較中のウィンドウを閉じようとしています。本当にウィンドウを閉じま"
 "すか?"
 
-#: Merge.rc:4B6299EF
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "外部エディタの実行に失敗しました: %1"
 
-#: Merge.rc:7350CBB7
 msgid "Unknown archive format"
 msgstr "未知のアーカイブ形式です"
 
-#: Merge.rc:64ABCD7E
 msgid "Filename"
 msgstr "名前"
 
-#: Merge.rc:D404EDE
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "フォルダー"
+
 msgid "Comparison result"
 msgstr "比較結果"
 
-#: Merge.rc:1B633071
 msgid "Left Date"
 msgstr "左更新日時"
 
-#: Merge.rc:39174D9B
 msgid "Right Date"
 msgstr "右更新日時"
 
-#: Merge.rc:13C27216
 msgid "Middle Date"
 msgstr "中更新日時"
 
-#: Merge.rc:9B50030
 msgid "Extension"
 msgstr "拡張子"
 
-#: Merge.rc:1B633072
 msgid "Left Size"
 msgstr "左サイズ"
 
-#: Merge.rc:39174D9C
 msgid "Right Size"
 msgstr "右サイズ"
 
-#: Merge.rc:13C27217
 msgid "Middle Size"
 msgstr "中サイズ"
 
-#: Merge.rc:237A128
 msgid "Right Size (Short)"
 msgstr "右サイズ(短縮)"
 
-#: Merge.rc:353D7BD8
 msgid "Left Size (Short)"
 msgstr "左サイズ(短縮)"
 
-#: Merge.rc:17F5B414
 msgid "Middle Size (Short)"
 msgstr "中サイズ(短縮)"
 
-#: Merge.rc:7271FF81
 msgid "Left Creation Time"
 msgstr "左作成日時"
 
-#: Merge.rc:44BC83EE
 msgid "Right Creation Time"
 msgstr "右作成日時"
 
-#: Merge.rc:66C0CEA0
 msgid "Middle Creation Time"
 msgstr "中作成日時"
 
-#: Merge.rc:4909ADB5
 msgid "Newer File"
 msgstr "日時比較"
 
-#: Merge.rc:353D7BD9
 msgid "Left File Version"
 msgstr "左バージョン"
 
-#: Merge.rc:237A129
 msgid "Right File Version"
 msgstr "右バージョン"
 
-#: Merge.rc:17F5B415
 msgid "Middle File Version"
 msgstr "中バージョン"
 
-#: Merge.rc:194397DE
 msgid "Short Result"
 msgstr "比較結果(簡易)"
 
-#: Merge.rc:71676C49
 msgid "Left Attributes"
 msgstr "左属性"
 
-#: Merge.rc:32BFDBAE
 msgid "Right Attributes"
 msgstr "右属性"
 
-#: Merge.rc:729280DC
 msgid "Middle Attributes"
 msgstr "中属性"
 
-#: Merge.rc:15875424
 msgid "Left EOL"
 msgstr "左EOL"
 
-#: Merge.rc:D0645BD
 msgid "Middle EOL"
 msgstr "中EOL"
 
-#: Merge.rc:5F87E5D
 msgid "Right EOL"
 msgstr "右EOL"
 
-#: Merge.rc:5C8E17CF
 msgid "Left Encoding"
 msgstr "左文字コード"
 
-#: Merge.rc:1B176020
 msgid "Right Encoding"
 msgstr "右文字コード"
 
-#: Merge.rc:2A79A03A
 msgid "Middle Encoding"
 msgstr "中文字コード"
 
-#: Merge.rc:6B6D8966
 msgid "Ignored Diff."
 msgstr "無視した差異数"
 
-#: Merge.rc:76C8AB99
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "バイナリ"
+
 msgid "Unable to compare files"
 msgstr "ファイルを比較できません"
 
-#: Merge.rc:4166A155
 msgid "Item aborted"
 msgstr "中断された項目"
 
-#: Merge.rc:670ABDC3
 msgid "File skipped"
 msgstr "スキップされたファイル"
 
-#: Merge.rc:4F5264CA
 msgid "Folder skipped"
 msgstr "スキップされたフォルダー"
 
-#: Merge.rc:5C8E17D0
 #, c-format
 msgid "Left only: %1"
 msgstr "左側のみ: %1"
 
-#: Merge.rc:2A79A03B
 #, c-format
 msgid "Middle only: %1"
 msgstr "中央のみ: %1"
 
-#: Merge.rc:1B176021
 #, c-format
 msgid "Right only: %1"
 msgstr "右側のみ: %1"
 
-#: Merge.rc:576B1A36
 #, c-format
 msgid "Does not exist in %1"
 msgstr "%1 内のみ存在しません"
 
-#: Merge.rc:6B248E76
 msgid "Binary files are identical"
 msgstr "バイナリ ファイルは同一です"
 
-#: Merge.rc:6B248E77
 msgid "Binary files are different"
 msgstr "バイナリ ファイルは異なっています"
 
-#: Merge.rc:72DF5DE2
 msgid "Files are different"
 msgstr "ファイルは異なっています"
 
-#: Merge.rc:387F7982
 msgid "Folders are different"
 msgstr "フォルダーは異なっています"
 
-#: Merge.rc:1B633073
 msgid "Left Only"
 msgstr "左側のみ"
 
-#: Merge.rc:39174D9D
 msgid "Right Only"
 msgstr "右側のみ"
 
-#: Merge.rc:13C27218
 msgid "Middle Only"
 msgstr "中央のみ"
 
-#: Merge.rc:638BD42C
 msgid "No item in left"
 msgstr "左側にない"
 
-#: Merge.rc:DEEB1BA
 msgid "No item in right"
 msgstr "右側にない"
 
-#: Merge.rc:2FE785D7
 msgid "No item in middle"
 msgstr "中央にない"
 
-#: Merge.rc:79AB21E1
 msgid "Error"
 msgstr "エラー"
 
-#: Merge.rc:12D66B44
 msgid "Text files are identical"
 msgstr "テキスト ファイルは同一です"
 
-#: Merge.rc:1DEEB161
 msgid "(Middle and right are identical)"
 msgstr "(中央と右側は同一です)"
 
-#: Merge.rc:1D99B043
 msgid "(Left and right are identical)"
 msgstr "(左側と右側は同一です)"
 
-#: Merge.rc:159C584C
 msgid "(Left and middle are identical)"
 msgstr "(左側と中央は同一です)"
 
-#: Merge.rc:12D66B45
 msgid "Text files are different"
 msgstr "テキスト ファイルは異なります"
 
-#: Merge.rc:203BBC7B
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "経過時間: %ld ms"
 
-#: Merge.rc:6C7BF198
 msgid "1 item selected"
 msgstr "1 個の項目を選択"
 
-#: Merge.rc:5D49B8EC
 #, c-format
 msgid "%1 items selected"
 msgstr "%1 個の項目を選択"
 
-#: Merge.rc:3A5D5963
 msgid "Filename or folder name."
 msgstr "ファイル名またはフォルダー名です。"
 
-#: Merge.rc:A7628EE
 msgid "Subfolder name when subfolders are included."
 msgstr ""
 "サブフォルダー名です。[サブフォルダーを含める] が有効な場合に表示されます。"
 
-#: Merge.rc:6F88EC68
 msgid "Comparison result, long form."
 msgstr "長い形式の比較結果を表示します。"
 
-#: Merge.rc:28BFDD41
 msgid "Left side modification date."
 msgstr "左側の更新日時です。"
 
-#: Merge.rc:19B30A68
 msgid "Right side modification date."
 msgstr "右側の更新日時です。"
 
-#: Merge.rc:68FB0CE7
 msgid "Middle side modification date."
 msgstr "中央の更新日時です。"
 
-#: Merge.rc:453F5DDC
 msgid "File's extension."
 msgstr "ファイルの拡張子です。"
 
-#: Merge.rc:172385A1
 msgid "Left file size in bytes."
 msgstr "左側ファイルのバイト数です。"
 
-#: Merge.rc:94C89D4
 msgid "Right file size in bytes."
 msgstr "右側ファイルのバイト数です。"
 
-#: Merge.rc:27AAA636
 msgid "Middle file size in bytes."
 msgstr "中央ファイルのバイト数"
 
-#: Merge.rc:2EBBDDD7
 msgid "Left file size abbreviated."
 msgstr "左側ファイルのバイト数(短縮形)です。"
 
-#: Merge.rc:21DC7C34
 msgid "Right file size abbreviated."
 msgstr "右側ファイルのバイト数(短縮形)です。"
 
-#: Merge.rc:BA5006A
 msgid "Middle file size abbreviated."
 msgstr "中央ファイルのバイト数(短縮形)です。"
 
-#: Merge.rc:172385A2
 msgid "Left side creation time."
 msgstr "左側の作成日時です。"
 
-#: Merge.rc:94C89D5
 msgid "Right side creation time."
 msgstr "右側の作成日時です。"
 
-#: Merge.rc:27AAA637
 msgid "Middle side creation time."
 msgstr "中央の作成日時です。"
 
-#: Merge.rc:4B4CD318
 msgid "Tells which side has newer modification date."
 msgstr "どちらが最新の更新日時かを表示します。"
 
-#: Merge.rc:3AF5EAD7
 msgid "Left side file version, only for some filetypes."
 msgstr "左側ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
-#: Merge.rc:7413D0D6
 msgid "Right side file version, only for some filetypes."
 msgstr "右側ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
-#: Merge.rc:5EB13952
 msgid "Middle side file version, only for some filetypes."
 msgstr "中央ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
-#: Merge.rc:43600E91
 msgid "Short comparison result."
 msgstr "短い形式の比較結果を表示です。"
 
-#: Merge.rc:20155F59
 msgid "Left side attributes."
 msgstr "左側の属性です。"
 
-#: Merge.rc:6DBD6124
 msgid "Right side attributes."
 msgstr "右側の属性です。"
 
-#: Merge.rc:7F2E4119
 msgid "Middle side attributes."
 msgstr "中央の属性です。"
 
-#: Merge.rc:703AF3C8
 msgid "Left side file EOL type"
 msgstr "左側の EOL タイプです。"
 
-#: Merge.rc:73E9B1DC
 msgid "Right side file EOL type"
 msgstr "右側の EOL タイプです。"
 
-#: Merge.rc:6CA26873
 msgid "Middle side file EOL type"
 msgstr "中央の EOL タイプです。"
 
-#: Merge.rc:5BCDF0E8
 msgid "Left side encoding."
 msgstr "左側の文字コードです。"
 
-#: Merge.rc:52D3F9F7
 msgid "Right side encoding."
 msgstr "右側の文字コードです。"
 
-#: Merge.rc:715905A6
 msgid "Middle side encoding."
 msgstr "中央の文字コードです。"
 
-#: Merge.rc:58398DFF
 msgid ""
 "Number of ignored differences in file. These differences are ignored by "
 "WinMerge and cannot be merged."
@@ -3594,42 +2796,33 @@ msgstr ""
 "ファイル内で無視した差異の数です。この差異は WinMerge によって無視され、マー"
 "ジされません。"
 
-#: Merge.rc:6A6D5CB6
 msgid ""
 "Number of differences in file. This number does not include ignored "
 "differences."
 msgstr "ファイル内の差異の数です。この数値は無視した差異数を含みません。"
 
-#: Merge.rc:A7628EF
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "バイナリ ファイルの場合にアスタリスク (*) を表示します。"
 
-#: Merge.rc:1AC98D0D
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "%1 と %2 の比較"
 
-#: Merge.rc:E9A77F2
 msgid "Comma-separated list"
 msgstr "CSV 形式"
 
-#: Merge.rc:5CCED709
 msgid "Tab-separated list"
 msgstr "TAB 区切り形式"
 
-#: Merge.rc:2E3BFCA4
 msgid "Simple HTML"
 msgstr "シンプルな HTML 形式"
 
-#: Merge.rc:751AB591
 msgid "Simple XML"
 msgstr "シンプルな XML 形式"
 
-#: Merge.rc:67FDA050
 msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますが?"
 
-#: Merge.rc:630F8340
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -3638,30 +2831,24 @@ msgstr ""
 "レポート生成エラー:\n"
 "%1"
 
-#: Merge.rc:37B243DF
 msgid "The report has been created successfully."
 msgstr "レポートの生成に成功しました。"
 
-#: Merge.rc:162B12F9
 msgid "The same file is opened in both panels."
 msgstr "同じファイルが両側のパネルで開かれています。"
 
-#: Merge.rc:7632E88D
 msgid "The selected files are identical."
 msgstr "選択されたファイルは同一です。"
 
-#: Merge.rc:44565DBD
 msgid "An error occurred while comparing the files."
 msgstr "ファイルの比較時にエラーが発生しました。"
 
-#: Merge.rc:5F16D9DC
 msgid ""
 "Temporary files could not be created. Check your temporary path settings."
 msgstr ""
 "テンポラリ ファイルが作成できませんでした。テンポラリ パス設定を確認してくだ"
 "さい。"
 
-#: Merge.rc:11E6F584
 msgid ""
 "These files use different carriage return types.\n"
 "\n"
@@ -3680,15 +2867,12 @@ msgstr ""
 "[編集]→[設定]→[比較] の「改行文字の違いを無視する」を\n"
 "有効にしてください。"
 
-#: Merge.rc:46FB8639
 msgid "The selected folder is invalid."
 msgstr "選択されたフォルダーは無効です。"
 
-#: Merge.rc:4BC3EDDB
 msgid "Cannot open a binary file to editor."
 msgstr "バイナリ ファイルをエディタで開くことはできません。"
 
-#: Merge.rc:279EB840
 #, c-format
 msgid ""
 "The folder exists only in other side and cannot be opened.\n"
@@ -3702,23 +2886,18 @@ msgstr ""
 "他方にマッチする以下のフォルダーを作成し、フォルダーを開きますか?:\n"
 "%1"
 
-#: Merge.rc:36F211E1
 msgid "Do you want to move to the next file?"
 msgstr "次のファイルに移動しますか?"
 
-#: Merge.rc:6A0A36F1
 msgid "Do you want to move to the previous file?"
 msgstr "前のファイルに移動しますか?"
 
-#: Merge.rc:36F211E2
 msgid "Do you want to move to the next page?"
 msgstr "次のページに移動しますか?"
 
-#: Merge.rc:6A0A36F2
 msgid "Do you want to move to the previous page?"
 msgstr "前のページに移動しますか?"
 
-#: Merge.rc:4A700AB0
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
@@ -3732,41 +2911,32 @@ msgstr ""
 "コピーが危険になります。\n"
 "コードページをデフォルト コードページとして扱いますが、よろしいですか(推奨)?"
 
-#: Merge.rc:5851E4C8
 msgid "Information lost due to encoding errors: both files"
 msgstr "エンコーディング エラーにより情報が失われています。(両側のファイル)"
 
-#: Merge.rc:5851E4C9
 msgid "Information lost due to encoding errors: first file"
 msgstr "エンコーディング エラーにより情報が失われています。(1 番目のファイル)"
 
-#: Merge.rc:31EAB496
 msgid "Information lost due to encoding errors: second file"
 msgstr "エンコーディング エラーにより情報が失われています。(2 番目のファイル)"
 
-#: Merge.rc:5851E4CA
 msgid "Information lost due to encoding errors: third file"
 msgstr "エンコーディング エラーにより情報が失われています。(3 番目のファイル)"
 
-#: Merge.rc:7D4E76C0
 msgid "No difference"
 msgstr "差異はありません"
 
-#: Merge.rc:71676C4A
 msgid "Line difference"
 msgstr "行内差異"
 
-#: Merge.rc:6DBD6125
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "%1 個の文字列を置換しました。"
 
-#: Merge.rc:334E25B3
 #, c-format
 msgid "Cannot find string \"%s\""
 msgstr "文字列 \"%s\" が検索できません"
 
-#: Merge.rc:34855CF1
 msgid ""
 "You are now entering Merge Mode. If you want to turn off Merge Mode, press "
 "F9 key"
@@ -3775,7 +2945,6 @@ msgstr ""
 "や前の差異に移動できるモードです。\n"
 "マージモードをオフにしたい場合は、F9 キーを押してください。"
 
-#: Merge.rc:5E0C549
 #, c-format
 msgid ""
 "The number of automatically merged changes: %1\n"
@@ -3784,86 +2953,66 @@ msgstr ""
 "自動的にマージされた変更の数: %1\n"
 "解決されていないコンフリクトの数: %2"
 
-#: Merge.rc:7453F857
 msgid "The change of codepage has been merged"
 msgstr "コードページの変更がマージされました"
 
-#: Merge.rc:162B12FA
 msgid "The changes of codepage are conflicting"
 msgstr "コードページの変更がコンフリクトしています"
 
-#: Merge.rc:7632E88E
 msgid "The change of EOL has been merged"
 msgstr "改行コードの変更がマージされました"
 
-#: Merge.rc:502A2983
 msgid "The changes of EOL are conflicting"
 msgstr "改行コードの変更がコンフリクトしています"
 
-#: Merge.rc:5C8E17D1
 msgid "Location Pane"
 msgstr "ロケーション ペイン"
 
-#: Merge.rc:629C1DDE
 msgid "Diff Pane"
 msgstr "Diff ペイン"
 
-#: Merge.rc:3BDD62C4
 msgid "Patch file successfully written."
 msgstr "パッチ ファイルの書き込みに成功しました。"
 
-#: Merge.rc:74C5055A
 msgid "1. item is not found or is directory!"
 msgstr "1. 項目が見つからないか、フォルダーです!"
 
-#: Merge.rc:7EFD4961
 msgid "2. item is not found or is directory!"
 msgstr "2. 項目が見つからないか、フォルダーです!"
 
-#: Merge.rc:E611488
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "出力結果ファイルは既に存在します。上書きしますか?"
 
-#: Merge.rc:62226073
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 個のファイルが選択されています]"
 
-#: Merge.rc:27AFDB30
 msgid "Normal"
 msgstr "ノーマル"
 
-#: Merge.rc:7E5494F7
 msgid "Context"
 msgstr "コンテキスト"
 
-#: Merge.rc:24173EE8
 msgid "Unified"
 msgstr "ユニファイド"
 
-#: Merge.rc:185B8391
 #, c-format
 msgid "Could not write to file %1."
 msgstr "ファイル %1 に書き込めません。"
 
-#: Merge.rc:64D049AA
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
 msgstr "指定した出力パスは、絶対パスではありません: %1"
 
-#: Merge.rc:44EE84AA
 msgid "Specify an output file"
 msgstr "出力パスを指定してください"
 
-#: Merge.rc:54711616
 msgid "Cannot create a patch file from binary files."
 msgstr "バイナリ ファイルからパッチ ファイルは生成できません。"
 
-#: Merge.rc:133D7451
 msgid "Cannot create a patch file from directories."
 msgstr "フォルダーからパッチ ファイルは生成できません。"
 
-#: Merge.rc:34FF26C7
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3873,11 +3022,9 @@ msgstr ""
 "\n"
 "パッチの生成には、変更がすべて保存されている必要があります。"
 
-#: Merge.rc:576FB6D3
 msgid "Folder does not exist."
 msgstr "フォルダーは存在しません。"
 
-#: Merge.rc:3377B7B5
 msgid ""
 "Archive support is not enabled.\n"
 "All needed components (7-zip and/or Merge7z*.dll) for archive support cannot "
@@ -3889,31 +3036,24 @@ msgstr ""
 "かりません。\n"
 "アーカイブ サポートを有効にする方法については、マニュアルを参照してください。"
 
-#: Merge.rc:44EE84AB
 msgid "Select file for export"
 msgstr "エクスポートするファイルを指定してください"
 
-#: Merge.rc:44EE84AC
 msgid "Select file for import"
 msgstr "インポートするファイルを選択してください"
 
-#: Merge.rc:447FB30
 msgid "Options imported from the file."
 msgstr "設定情報をファイルからインポートしました。"
 
-#: Merge.rc:44776ACF
 msgid "Options exported to the file."
 msgstr "設定情報をファイルにエクスポートしました。"
 
-#: Merge.rc:7D23E524
 msgid "Failed to import options from the file."
 msgstr "ファイルから設定情報のインポートに失敗しました。"
 
-#: Merge.rc:68F9158
 msgid "Failed to write options to the file."
 msgstr "ファイルへの設定情報の書き込みに失敗しました。"
 
-#: Merge.rc:404DAD7D
 msgid ""
 "You are about to close several compare windows.\n"
 "\n"
@@ -3923,31 +3063,28 @@ msgstr ""
 "\n"
 "続行しますか?"
 
-#: Merge.rc:7C664E2
 msgid "Mixed"
 msgstr "Mixed"
 
-#: Merge.rc:46FCCCF
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "バイナリ"
+
 msgid "None"
 msgstr "なし"
 
-#: Merge.rc:4C72B57
 msgid "Type"
 msgstr "タイプ"
 
-#: Merge.rc:5ED09E18
 msgid "Unpacker"
 msgstr "展開プラグイン"
 
-#: Merge.rc:37C6B9B8
 msgid "Prediffer"
 msgstr "比較前処理プラグイン"
 
-#: Merge.rc:29ECCB83
 msgid "Editor script"
 msgstr "エディタ スクリプト"
 
-#: Merge.rc:51A4FE5F
 msgid ""
 "\n"
 "Difference in the Current Line"
@@ -3955,7 +3092,6 @@ msgstr ""
 "\n"
 "現在の行内差異"
 
-#: Merge.rc:CF15594
 msgid ""
 "\n"
 "Options"
@@ -3963,7 +3099,6 @@ msgstr ""
 "\n"
 "設定"
 
-#: Merge.rc:6F90DC3A
 msgid ""
 "\n"
 "Refresh (F5)"
@@ -3971,7 +3106,6 @@ msgstr ""
 "\n"
 "表示更新 (F5)"
 
-#: Merge.rc:414AF01
 msgid ""
 "\n"
 "Previous Difference (Alt+Up)"
@@ -3979,7 +3113,6 @@ msgstr ""
 "\n"
 "前の差異 (Alt+Up)"
 
-#: Merge.rc:16618519
 msgid ""
 "\n"
 "Next Difference (Alt+Down)"
@@ -3987,7 +3120,6 @@ msgstr ""
 "\n"
 "次の差異 (Alt+Down)"
 
-#: Merge.rc:7C5EF083
 msgid ""
 "\n"
 "Previous Conflict (Alt+Shift+Up)"
@@ -3995,7 +3127,6 @@ msgstr ""
 "\n"
 "前のコンフリクト (Alt+Shift+Up)"
 
-#: Merge.rc:51A4FE60
 msgid ""
 "\n"
 "Next Conflict (Alt+Shift+Down)"
@@ -4003,7 +3134,6 @@ msgstr ""
 "\n"
 "次のコンフリクト (Alt+Shift+Down)"
 
-#: Merge.rc:35CF1E68
 msgid ""
 "\n"
 "First Difference (Alt+Home)"
@@ -4011,7 +3141,6 @@ msgstr ""
 "\n"
 "最初の差異 (Alt+Home)"
 
-#: Merge.rc:51A4FE61
 msgid ""
 "\n"
 "Current Difference (Alt+Enter)"
@@ -4019,7 +3148,6 @@ msgstr ""
 "\n"
 "現在の差異 (Alt+Enter)"
 
-#: Merge.rc:1DA00C8A
 msgid ""
 "\n"
 "Last Difference (Alt+End)"
@@ -4027,7 +3155,6 @@ msgstr ""
 "\n"
 "最後の差異 (Alt+End)"
 
-#: Merge.rc:E8950EA
 msgid ""
 "\n"
 "Copy Right (Alt+Right)"
@@ -4035,7 +3162,6 @@ msgstr ""
 "\n"
 "右側へコピー (Alt+Right)"
 
-#: Merge.rc:55A8C466
 msgid ""
 "\n"
 "Copy Left (Alt+Left)"
@@ -4043,7 +3169,6 @@ msgstr ""
 "\n"
 "左側へコピー (Alt+Left)"
 
-#: Merge.rc:1E864A56
 msgid ""
 "\n"
 "Copy Right and Advance (Ctrl+Alt+Right)"
@@ -4051,7 +3176,6 @@ msgstr ""
 "\n"
 "右側へコピーし次へ (Ctrl+Alt+Right)"
 
-#: Merge.rc:7FE60896
 msgid ""
 "\n"
 "Copy Left and Advance (Ctrl+Alt+Left)"
@@ -4059,7 +3183,6 @@ msgstr ""
 "\n"
 "左側へコピーし次へ (Ctrl+Alt+Left)"
 
-#: Merge.rc:15F24C75
 msgid ""
 "\n"
 "All Right"
@@ -4067,7 +3190,6 @@ msgstr ""
 "\n"
 "右側すべて"
 
-#: Merge.rc:11395D4B
 msgid ""
 "\n"
 "All Left"
@@ -4075,7 +3197,6 @@ msgstr ""
 "\n"
 "左側すべて"
 
-#: Merge.rc:42A0CC96
 msgid ""
 "\n"
 "Auto Merge (Ctrl+Alt+M)"
@@ -4083,7 +3204,6 @@ msgstr ""
 "\n"
 "自動マージ (Ctrl+Alt+M)"
 
-#: Merge.rc:6107F02B
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
 "extension)"
@@ -4091,28 +3211,22 @@ msgstr ""
 "自動的に展開プラグインを選択し、両側のファイルに適用します (どちらかのファイ"
 "ルに拡張子が必要です)"
 
-#: Merge.rc:429CABF5
 msgid "No prediffer (normal)"
 msgstr "比較前処理プラグインを使用しない (標準)"
 
-#: Merge.rc:62909ED8
 msgid "Suggested plugins"
 msgstr "関連するプラグイン"
 
-#: Merge.rc:4DAEA639
 msgid "Other plugins"
 msgstr "その他のプラグイン"
 
-#: Merge.rc:2A918FD6
 #, c-format
 msgid "Private Build: %1"
 msgstr "Private Build: %1"
 
-#: Merge.rc:40D543C8
 msgid "Your software is up to date"
 msgstr "お使いのソフトウェアは最新版です"
 
-#: Merge.rc:43B4B204
 #, c-format
 msgid ""
 "A new version of WinMerge is available.\n"
@@ -4121,101 +3235,77 @@ msgstr ""
 "最新版の WinMerge が入手可能です。\n"
 "%1 が現在の最新版です (お使いのバージョンは %2)。ダウンロードしますか?"
 
-#: Merge.rc:696AAFE9
 msgid "Failed to download latest version information"
 msgstr "最新版情報のダウンロードに失敗しました"
 
-#: Merge.rc:55B03C14
 msgid "Plugin Settings"
 msgstr "プラグイン設定"
 
-#: Merge.rc:791F1E67
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH が見つかりません - .sct スクリプトは無効化されました"
 
-#: Merge.rc:4FC259D5
 msgid "<None>"
 msgstr "<なし>"
 
-#: Merge.rc:8BF6984
 msgid "<Automatic>"
 msgstr "<自動>"
 
-#: Merge.rc:4AAD2A74
 #, c-format
 msgid "G&oto Line %1"
 msgstr "行 %1 に移動(&O)"
 
-#: Merge.rc:7F0D4B47
 msgid "Disabled"
 msgstr "無効"
 
-#: Merge.rc:444C5DDD
 msgid "From file system"
 msgstr "ファイル システム"
 
-#: Merge.rc:7A4CFAFE
 msgid "From MRU list"
 msgstr "最近使ったリスト"
 
-#: Merge.rc:638BD42D
 msgid "No Highlighting"
 msgstr "ハイライトなし"
 
-#: Merge.rc:7460E8C0
 msgid "Batch"
 msgstr "Batch"
 
-#: Merge.rc:23B300
 msgid "Lua"
 msgstr "Lua"
 
-#: Merge.rc:55B03C15
 msgid "Portable Object"
 msgstr "Portable Object(.po)"
 
-#: Merge.rc:5F87E5E
 msgid "Resources"
 msgstr "Resources"
 
-#: Merge.rc:125AD722
 msgid "Shell"
 msgstr "Shell"
 
-#: Merge.rc:4E44AD6
 msgid "VHDL"
 msgstr "VHDL"
 
-#: Merge.rc:8AF7E6B
 msgid "Close &Left Tabs"
 msgstr "左側のタブをすべて閉じる(&L)"
 
-#: Merge.rc:D404EDF
 msgid "Close R&ight Tabs"
 msgstr "右側のタブをすべて閉じる(&I)"
 
-#: Merge.rc:D404EE0
 msgid "Close &Other Tabs"
 msgstr "他のタブをすべて閉じる(&O)"
 
-#: Merge.rc:3E934E
 msgid "Enable &Auto Max Width"
 msgstr "タブ幅の自動調整を有効にする(&A)"
 
-#: Merge.rc:3D9427A9
 msgid "frhed is not installed"
 msgstr "frhed がインストールされていません"
 
-#: Merge.rc:73B321AA
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
 msgstr "%1 は存在しません。作成しますか?"
 
-#: Merge.rc:3A5D5964
 msgid "Failed to create folder."
 msgstr "フォルダーの作成に失敗しました。"
 
-#: Merge.rc:64F70DD6
 msgid ""
 "You can specify the following parameters to the path:\n"
 "$file: Path name of the current file\n"

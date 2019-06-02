@@ -32,6 +32,7 @@ struct DirColInfo
 	};
 	const TCHAR *regName; /**< Internal name used for registry entries etc */
 	// localized string resources
+	const char *idNameContext; 
 	const char *idName; /**< Displayed name, ID of string resource */
 	const char *idDesc; /**< Description, ID of string resource */
 	ColGetFncPtrType getfnc; /**< Handler giving display string */

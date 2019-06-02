@@ -4,6 +4,7 @@
 
 #define _(x) tr(x)
 #define N_(x) (x)
+#define NC_(c, x) (x)
 
 class COptionsMgr;
 class FileFilterHelper;
@@ -46,3 +47,4 @@ namespace AppMsgBox
 String LoadResString(unsigned id);
 
 String tr(const std::string &str);
+String tr(const char *msgctxt, const std::string &str);

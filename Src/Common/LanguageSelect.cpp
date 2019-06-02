@@ -575,8 +575,8 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 
 	wchar_t buf[1024];
 	std::wstring *ps = nullptr;
+	std::wstring msgctxt;
 	std::wstring msgid;
-	bool found_uid = false;
 	FILE *f;
 	if (_tfopen_s(&f, strPath.c_str(), _T("r,ccs=UTF-8")) != 0)
 	{
@@ -588,21 +588,12 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		return false;
 	}
 	ps = nullptr;
-	msgid.erase();
-	found_uid = false;
 	std::wstring format;
 	std::wstring msgstr;
 	std::wstring directive;
 	while (fgetws(buf, static_cast<int>(std::size(buf)), f) != nullptr)
 	{
-		if (wchar_t *p0 = EatPrefix(buf, L"#:"))
-		{
-			if (wchar_t *q = wcschr(p0, ':'))
-			{
-				found_uid = true;
-			}
-		}
-		else if (wchar_t *p1 = EatPrefix(buf, L"#,"))
+		if (wchar_t *p1 = EatPrefix(buf, L"#,"))
 		{
 			format = p1;
 			format.erase(0, format.find_first_not_of(L" \t\r\n"));
@@ -613,6 +604,10 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 			directive = p2;
 			directive.erase(0, directive.find_first_not_of(L" \t\r\n"));
 			directive.erase(directive.find_last_not_of(L" \t\r\n") + 1);
+		}
+		else if (EatPrefix(buf, L"msgctxt "))
+		{
+			ps = &msgctxt;
 		}
 		else if (EatPrefix(buf, L"msgid "))
 		{
@@ -633,14 +628,21 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 			else
 			{
 				ps = nullptr;
+				if (!msgctxt.empty())
+					unslash(msgctxt);
 				if (!msgid.empty())
 					unslash(msgid);
 				if (msgstr.empty())
 					msgstr = msgid;
 				unslash(msgstr);
-				if (found_uid)
-					m_map_msgid_to_msgstr.insert_or_assign(msgid, msgstr);
-				found_uid = false;
+				if (!msgid.empty())
+				{
+					if (msgctxt.empty())
+						m_map_msgid_to_msgstr.insert_or_assign(msgid, msgstr);
+					else
+						m_map_msgid_to_msgstr.insert_or_assign(L"\x01\"" + msgctxt + L"\"" + msgid, msgstr);
+				}
+				msgctxt.erase();
 				msgid.erase();
 				msgstr.erase();
 			}
@@ -707,6 +709,15 @@ bool CLanguageSelect::TranslateString(const std::wstring& msgid, std::wstring &s
 	{
 		s = m_map_msgid_to_msgstr.at(msgid);
 		return true;
+	}
+	if (msgid.length() > 2 && msgid[0] == '\x01' && msgid[1] == '"')
+	{
+		size_t pos = msgid.find('"', 2);
+		if (pos != std::wstring::npos)
+		{
+			s = msgid.substr(pos + 1);
+			return true;
+		}
 	}
 	s = msgid;
 	return false;

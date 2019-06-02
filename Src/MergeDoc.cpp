@@ -3226,18 +3226,17 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("<title>WinMerge File Compare Report</title>\n")
 		_T("<style type=\"text/css\">\n")
 		_T("<!--\n")
-		_T("td,th {word-break: break-all; font-size: %dpt;}\n")
+		_T("table {margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);}\n")
+		_T("td,th {word-break: break-all; font-size: %dpt;padding: 0 3px;}\n")
 		_T("tr { vertical-align: top; }\n")
-		_T(".border { border-radius: 6px; border: 1px #a0a0a0 solid; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); overflow: hidden; }\n")
-		_T(".ln {text-align: right; word-break: normal; background-color: lightgrey; box-shadow: inset 1px 0px 0px rgba(0, 0, 0, 0.10);}\n")
+		_T(".ln {text-align: right; word-break: normal; background-color: lightgrey;}\n")
 		_T(".title {color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
 		_T("%s")
 		_T("-->\n")
 		_T("</style>\n")
 		_T("</head>\n")
 		_T("<body>\n")
-		_T("<div class=\"border\">")
-		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width: 100%%; margin: 0; border: none;\">\n")
+		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%%;\">\n")
 		_T("<thead>\n")
 		_T("<tr>\n");
 	String header = 
@@ -3262,16 +3261,12 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		}
 	}
 
-	// left and right title
+	// titles
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		int nLineNumberColumnWidth = 1;
-		String data = strutils::format(_T("<th class=\"title\" style=\"width:%d%%\"></th>"), 
-			nLineNumberColumnWidth);
-		file.WriteString(data);
-		data = strutils::format(_T("<th class=\"title\" style=\"width:%f%%\">"),
-			(double)(100 - nLineNumberColumnWidth * m_nBuffers) / m_nBuffers);
+		String data = strutils::format(_T("<th colspan=\"2\" class=\"title\" style=\"width:%f%%\">"),
+			(double)100 / m_nBuffers);
 		file.WriteString(data);
 		file.WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(paths[nBuffer]))));
 		file.WriteString(_T("</th>\n"));
@@ -3302,21 +3297,32 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			if (idx[nBuffer] < nLineCount[nBuffer])
 			{
 				// line number
+				int iVisibleLineNumber = 0;
 				String tdtag = _T("<td class=\"ln\">");
 				DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
-				if (nBuffer == 0 && 
-				     (dwFlags & (LF_DIFF | LF_GHOST))!=0 && (idx[nBuffer] == 0 || 
-				    (m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST))==0 ))
+				if ((dwFlags & LF_GHOST) == 0 && m_pView[0][nBuffer]->GetViewLineNumbers())
+				{
+					iVisibleLineNumber = m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1;
+				}
+				if (nBuffer == 0 &&
+					(dwFlags & (LF_DIFF | LF_GHOST)) != 0 && (idx[nBuffer] == 0 ||
+					(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST)) == 0))
 				{
 					++nDiff;
-					tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
+					if (iVisibleLineNumber > 0)
+					{
+						tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+						iVisibleLineNumber = 0;
+					}
+					else
+						tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
 				}
-				if ((dwFlags & LF_GHOST)==0 && m_pView[0][nBuffer]->GetViewLineNumbers())
-					tdtag += strutils::format(_T("%d</td>"), m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1);
+				if (iVisibleLineNumber > 0)
+					tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
 				else
 					tdtag += _T("</td>");
 				file.WriteString(tdtag);
-				// write a line on left/right side
+				// line content
 				file.WriteString((LPCTSTR)m_pView[0][nBuffer]->GetHTMLLine(idx[nBuffer], _T("td")));
 				idx[nBuffer]++;
 			}
@@ -3352,7 +3358,6 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	file.WriteString(
 		_T("</tbody>\n")
 		_T("</table>\n")
-		_T("</div>")
 		_T("</body>\n")
 		_T("</html>\n"));
 
