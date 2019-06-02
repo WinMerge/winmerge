@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-05-11 09:49+0000\n"
-"PO-Revision-Date: 2019-05-13 07:45+0200\n"
+"POT-Creation-Date: 2019-05-19 10:55+0000\n"
+"PO-Revision-Date: 2019-05-20 10:10+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -2224,6 +2224,14 @@ msgstr "&Registruoti aplinkos plėtinį"
 #: Merge.rc:175DEEEF
 msgid "&Unregister shell extension"
 msgstr "&Išregistruoti aplinkos plėtinį"
+
+#: Merge.rc:2D682DC2
+msgid "Register shell extension for current user &only"
+msgstr "Registruoti aplinkos plėtinį tik šiam naud&otojui"
+
+#: Merge.rc:5C3A0110
+msgid "Unregister shell extension for current user on&ly"
+msgstr "Išregistruoti aplinkos p&lėtinį tik šiam naudotojui"
 
 #: Merge.rc:7262BE24
 msgid "Folder"

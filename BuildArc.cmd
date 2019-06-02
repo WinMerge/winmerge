@@ -50,7 +50,7 @@ rem Docs
 for %%i in (Translations\Docs\Readme\ReadMe-*.txt Build\Manual\htmlhelp\WinMerge.chm Docs\Users\ReleaseNotes.html Docs\Users\ChangeLog.txt) do (
   copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Docs"
 )
-for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\Files.txt Docs\Users\ReadMe.txt) do (
+for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\ReadMe.txt) do (
   copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge"
 )
 
@@ -63,7 +63,7 @@ if not "%1" == "" (
 rem ShellExtension
 copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
-copy ShellExtension\*Register.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
+copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 
 rem Translation
 copy Build\%PLATFORM%\MergeUnicodeRelease\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\"

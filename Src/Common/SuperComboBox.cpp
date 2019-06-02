@@ -158,6 +158,16 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 	}
 }
 
+int CSuperComboBox::DeleteString(int nIndex)
+{
+	if (m_bComboBoxEx && m_bExtendedFileNames &&
+	    nIndex >= 0 && nIndex < static_cast<int>(m_sFullStateText.size()))
+	{
+		m_sFullStateText.erase(m_sFullStateText.begin() + nIndex);
+	}
+	return CComboBoxEx::DeleteString(nIndex);
+}
+
 int CSuperComboBox::FindString(int nStartAfter, LPCTSTR lpszString) const
 {
 	
@@ -390,7 +400,13 @@ BOOL CSuperComboBox::PreTranslateMessage(MSG* pMsg)
 			{
 				int cursel = GetCurSel();
 				if (cursel != CB_ERR)
+				{
 					DeleteString(cursel);
+					if (cursel >= GetCount())
+						cursel = GetCount() - 1;
+					if (cursel >= 0)
+						SetCurSel(cursel);
+				}
 				return FALSE; // No need to further handle this message
 			}
 		}

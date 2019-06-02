@@ -213,6 +213,8 @@ bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 		diffOptions.bIgnoreEol = pDlgPatch->m_ignoreEOLDifference;
 		
 		diffOptions.bIgnoreCase = !pDlgPatch->m_caseSensitive;
+		diffOptions.nDiffAlgorithm = pDlgPatch->m_diffAlgorithm;
+		diffOptions.bIndentHeuristic = pDlgPatch->m_indentHeuristic;
 		m_diffWrapper.SetOptions(&diffOptions);
 	}
 	else

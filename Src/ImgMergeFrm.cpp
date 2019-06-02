@@ -2052,13 +2052,11 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName) const
 		_T("<style type=\"text/css\">\n")
 		_T("table { table-layout: fixed; width: 100%; height: 100%; border-collapse: collapse; }\n")
 		_T("td,th { border: solid 1px black; }\n")
-		_T(".border { border-radius: 6px; border: 1px #a0a0a0 solid; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); overflow: hidden; }\n")
 		_T(".title { color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
 		_T(".img   { overflow: scroll; text-align: center; }\n")
 		_T("</style>\n")
 		_T("</head>\n")
 		_T("<body>\n")
-		_T("<div class=\"border\">\n")
 		_T("<table>\n")
 		_T("<tr>\n"));
 	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
@@ -2073,7 +2071,6 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName) const
 	file.WriteString(
 		_T("</tr>\n")
 		_T("</table>\n")
-		_T("</div>\n")
 		_T("</body>\n")
 		_T("</html>\n"));
 	return true;

@@ -115,7 +115,7 @@ msgstr "с помощью..."
 
 #: Merge.rc:2E3BFCA1
 msgid "S&hell Menu"
-msgstr ""
+msgstr "Меню оболочки"
 
 #: Merge.rc:1A8FADD3
 #, c-format
@@ -134,7 +134,7 @@ msgstr "Игнорировать отличие цвета (порог цвет�
 
 #: Merge.rc:1A002B9B
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "Обнаружение вставки/удаления"
 
 #: Merge.rc:43017E43
 #, c-format
@@ -143,11 +143,11 @@ msgstr "&Нет"
 
 #: Merge.rc:4DB19837
 msgid "&Vertical"
-msgstr ""
+msgstr "Вертикально"
 
 #: Merge.rc:27AC6D7E
 msgid "&Horizontal"
-msgstr ""
+msgstr "Горизонтально"
 
 #: Merge.rc:5A9A7139
 #, c-format
@@ -2069,7 +2069,7 @@ msgstr "Искать похожие строки"
 
 #: Merge.rc:57F02FB4
 msgid "Diff &algorithm (Experimental):"
-msgstr ""
+msgstr "Алгоритм сравнения (экспериментальный):"
 
 #: Merge.rc:6AE6FCAE
 msgid "Enable indent &heuristic"
@@ -2739,6 +2739,14 @@ msgstr ""
 msgid "&Unregister shell extension"
 msgstr ""
 
+#: Merge.rc:2D682DC2
+msgid "Register shell extension for current user &only"
+msgstr ""
+
+#: Merge.rc:5C3A0110
+msgid "Unregister shell extension for current user on&ly"
+msgstr ""
+
 #: Merge.rc:7262BE24
 #, c-format
 msgid "Folder"
@@ -2772,11 +2780,11 @@ msgstr "Игнорировать точки повторной обработк�
 #: Merge.rc:2E2C5208
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr "Ограничение быстрого сравнения (МБ)"
+msgstr "Ограничение быстрого сравнения (МБ):"
 
 #: Merge.rc:175DEEF0
 msgid "&Binary compare limit (MB):"
-msgstr ""
+msgstr "Ограничение двоичного сравнения (МБ):"
 
 #: Merge.rc:2188DD49
 #, c-format
@@ -4797,7 +4805,7 @@ msgstr "Пакет"
 
 #: Merge.rc:23B300
 msgid "Lua"
-msgstr ""
+msgstr "Библиотека Lua"
 
 #: Merge.rc:55B03C15
 #, c-format
