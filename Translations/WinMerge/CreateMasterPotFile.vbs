@@ -74,44 +74,19 @@ End Sub
 ''
 ' ...
 Class CString
-  Dim Comment, References, UniqueId, Context, Id, Str
+  Dim Comment, References, Context, Id, Str
 End Class
-
-Function MyMod(ByVal a, ByVal b)
-    a = Fix(CDbl(a))
-    b = Fix(CDbl(b))
-    MyMod = a - Fix(a / b) * b
-End Function
-
-Function GetUniqueId(ByRef oUIDs, ByVal sString)
-  Dim i, iHash
-  iHash = CDbl(0)
-  For i = 0 To Len(sString)
-    iHash = MyMod(iHash * 31 + Asc(sString), &H7FFFFFFF&)
-  Next
-  Do While True
-    If Not oUIDs.Exists(iHash) Then
-      oUIDs.Add iHash, sString
-      Exit Do
-    ElseIf oUIDs(iHash) = sString Then
-      Exit Do
-    End If
-    iHash = MyMod(iHash + 1, &H7FFFFFFF&)
-  Loop
-  GetUniqueId = iHash
-End Function
 
 ''
 ' ...
 Function GetStringsFromRcFile(ByVal sRcFilePath)
-  Dim oBlacklist, oStrings, oString, oRcFile, sLine, iLine, oUIDs
+  Dim oBlacklist, oStrings, oString, oRcFile, sLine, iLine
   Dim sRcFileName, iBlockType, sReference, sString, sComment, sContext, oMatch, sTemp, sKey
   Dim fContinuation
 
   Set oBlacklist = GetStringBlacklist("StringBlacklist.txt")
   
   Set oStrings = CreateObject("Scripting.Dictionary")
-  Set oUIDs = CreateObject("Scripting.Dictionary")
   
   If (oFSO.FileExists(sRcFilePath) = True) Then 'If the RC file exists...
     sRcFileName = oFSO.GetFileName(sRcFilePath)
@@ -207,7 +182,6 @@ Function GetStringsFromRcFile(ByVal sRcFilePath)
         If (sComment <> "") Then
           oString.Comment = sComment
         End If
-        oString.UniqueId = sRcFileName & ":" & Hex(GetUniqueId(oUIDs, sString))
         If bInsertLineNumbers Then
           If (oString.References <> "") Then
             oString.References = oString.References & vbTab & sReference
@@ -292,7 +266,6 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings)
         oPotFile.Write "#: " & aReferences(i) & vbLf
       Next
     End If
-    oPotFile.Write "#: " & oString.UniqueId & vbLf
     If (InStr(oString.Id, "%") > 0) Then 'If c-format...
       oPotFile.Write "#, c-format" & vbLf
     End If

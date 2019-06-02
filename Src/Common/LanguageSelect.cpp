@@ -577,7 +577,6 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	std::wstring *ps = nullptr;
 	std::wstring msgctxt;
 	std::wstring msgid;
-	bool found_uid = false;
 	FILE *f;
 	if (_tfopen_s(&f, strPath.c_str(), _T("r,ccs=UTF-8")) != 0)
 	{
@@ -589,20 +588,12 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		return false;
 	}
 	ps = nullptr;
-	found_uid = false;
 	std::wstring format;
 	std::wstring msgstr;
 	std::wstring directive;
 	while (fgetws(buf, static_cast<int>(std::size(buf)), f) != nullptr)
 	{
-		if (wchar_t *p0 = EatPrefix(buf, L"#:"))
-		{
-			if (wchar_t *q = wcschr(p0, ':'))
-			{
-				found_uid = true;
-			}
-		}
-		else if (wchar_t *p1 = EatPrefix(buf, L"#,"))
+		if (wchar_t *p1 = EatPrefix(buf, L"#,"))
 		{
 			format = p1;
 			format.erase(0, format.find_first_not_of(L" \t\r\n"));
@@ -644,14 +635,13 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 				if (msgstr.empty())
 					msgstr = msgid;
 				unslash(msgstr);
-				if (found_uid)
+				if (!msgid.empty())
 				{
 					if (msgctxt.empty())
 						m_map_msgid_to_msgstr.insert_or_assign(msgid, msgstr);
 					else
 						m_map_msgid_to_msgstr.insert_or_assign(L"\x01\"" + msgctxt + L"\"" + msgid, msgstr);
 				}
-				found_uid = false;
 				msgctxt.erase();
 				msgid.erase();
 				msgstr.erase();
