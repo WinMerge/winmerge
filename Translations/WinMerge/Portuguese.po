@@ -2741,7 +2741,7 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
 #: Merge.rc:7262BE24
-#, c-format
+msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Pasta"
 
@@ -2785,7 +2785,7 @@ msgid "&Number of compare threads (a negative value implies addition of the numb
 msgstr "&Número de tópicos de comparação (um valor negativo implica a adição do número de núcleos de CPU disponíveis)"
 
 #: Merge.rc:17BC2F9E
-#, c-format
+msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binário"
 
@@ -2815,7 +2815,6 @@ msgid "&Character Set..."
 msgstr "A preparar caractere"
 
 #: Merge.rc:B8C361
-#, c-format
 msgid "Image"
 msgstr "Imagem"
 
@@ -3612,6 +3611,11 @@ msgstr "Formato de ficheiro desconhecido"
 msgid "Filename"
 msgstr "Nome do ficheiro"
 
+#: Merge.rc:7262BE24
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "Pasta"
+
 #: Merge.rc:D404EDE
 #, c-format
 msgid "Comparison result"
@@ -3756,6 +3760,11 @@ msgstr "Codificação Meio"
 #, c-format
 msgid "Ignored Diff."
 msgstr "Diferença ignorada."
+
+#: Merge.rc:17BC2F9E
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "Binário"
 
 #: Merge.rc:76C8AB99
 #, c-format
@@ -4361,6 +4370,11 @@ msgstr "Está prestes a fechar múltiplas janelas de comparação. \n\nDeseja co
 #, c-format
 msgid "Mixed"
 msgstr "Misturado"
+
+#: Merge.rc:17BC2F9E
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "Binário"
 
 #: Merge.rc:46FCCCF
 #, c-format

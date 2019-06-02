@@ -2748,7 +2748,7 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
 #: Merge.rc:7262BE24
-#, c-format
+msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Klasör"
 
@@ -2792,7 +2792,7 @@ msgid "&Number of compare threads (a negative value implies addition of the numb
 msgstr "Karşılaştırma İşlemlerinin Sayısı (eksi değerler kullanılabilecek başka işlemci çekirdeklerine eklenir):"
 
 #: Merge.rc:17BC2F9E
-#, c-format
+msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binary"
 
@@ -2822,7 +2822,6 @@ msgid "&Character Set..."
 msgstr "&Karakter Kümesi..."
 
 #: Merge.rc:B8C361
-#, c-format
 msgid "Image"
 msgstr "Görsel"
 
@@ -3774,6 +3773,11 @@ msgstr "Sıkıştırma biçimi bilinmiyor"
 msgid "Filename"
 msgstr "Dosya Adı"
 
+#: Merge.rc:7262BE24
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "Klasör"
+
 #: Merge.rc:D404EDE
 #, c-format
 msgid "Comparison result"
@@ -3918,6 +3922,11 @@ msgstr "Orta Dosya Kodlaması"
 #, c-format
 msgid "Ignored Diff."
 msgstr "Yok Sayılan Farklılıklar."
+
+#: Merge.rc:17BC2F9E
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "Binary"
 
 #: Merge.rc:76C8AB99
 #, c-format
@@ -4559,6 +4568,11 @@ msgstr "Birden fazla karşılaştırma penceresini kapatmak üzeresiniz.\n"
 #, c-format
 msgid "Mixed"
 msgstr "Karma"
+
+#: Merge.rc:17BC2F9E
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "Binary"
 
 #: Merge.rc:46FCCCF
 #, c-format

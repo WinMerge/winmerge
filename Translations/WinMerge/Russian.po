@@ -2748,7 +2748,7 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
 #: Merge.rc:7262BE24
-#, c-format
+msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Папка"
 
@@ -2792,7 +2792,7 @@ msgid "&Number of compare threads (a negative value implies addition of the numb
 msgstr "Количество сравниваемых потоков (отрицательное значение подразумевает добавление количества доступных ядер ЦП):"
 
 #: Merge.rc:17BC2F9E
-#, c-format
+msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Двоичный"
 
@@ -2822,7 +2822,6 @@ msgid "&Character Set..."
 msgstr "Набор символов..."
 
 #: Merge.rc:B8C361
-#, c-format
 msgid "Image"
 msgstr "Изображение"
 
@@ -3804,6 +3803,11 @@ msgstr "Неизвестный формат архива"
 msgid "Filename"
 msgstr "Имя файла"
 
+#: Merge.rc:7262BE24
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "Папка"
+
 #: Merge.rc:D404EDE
 #, c-format
 msgid "Comparison result"
@@ -3948,6 +3952,11 @@ msgstr "Кодировка посередине"
 #, c-format
 msgid "Ignored Diff."
 msgstr "Игнор. отличия"
+
+#: Merge.rc:17BC2F9E
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "Двоичный"
 
 #: Merge.rc:76C8AB99
 #, c-format
@@ -4602,6 +4611,11 @@ msgstr ""
 #, c-format
 msgid "Mixed"
 msgstr "Смешанный"
+
+#: Merge.rc:17BC2F9E
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "Двоичный"
 
 #: Merge.rc:46FCCCF
 #, c-format

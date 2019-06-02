@@ -165,7 +165,7 @@ public:
 	void UpdateDiffItemStatus(UINT nIdx);
 private:
 	void InitiateSort();
-	void NameColumn(const char* idname, int subitem);
+	void NameColumn(const DirColInfo *col, int subitem);
 	int AddNewItem(int i, DIFFITEM *diffpos, int iImage, int iIndent);
 // End DirViewCols.cpp
 

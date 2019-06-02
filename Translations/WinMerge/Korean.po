@@ -2753,7 +2753,7 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
 #: Merge.rc:7262BE24
-#, c-format
+msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "폴더"
 
@@ -2797,7 +2797,7 @@ msgid "&Number of compare threads (a negative value implies addition of the numb
 msgstr "비교 쓰레드 개수 (음수값은 사용 가능한 CPU 코어 개수의 추가를 뜻합니다):"
 
 #: Merge.rc:17BC2F9E
-#, c-format
+msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "바이너리"
 
@@ -2827,7 +2827,6 @@ msgid "&Character Set..."
 msgstr "문자셋(&C)..."
 
 #: Merge.rc:B8C361
-#, c-format
 msgid "Image"
 msgstr "이미지"
 
@@ -3831,6 +3830,11 @@ msgstr "알 수 없는 압축 형식"
 msgid "Filename"
 msgstr "파일 이름"
 
+#: Merge.rc:7262BE24
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "폴더"
+
 #: Merge.rc:D404EDE
 #, c-format
 msgid "Comparison result"
@@ -3975,6 +3979,11 @@ msgstr "가운데 인코딩"
 #, c-format
 msgid "Ignored Diff."
 msgstr "무시된 차이점"
+
+#: Merge.rc:17BC2F9E
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "바이너리"
 
 #: Merge.rc:76C8AB99
 #, c-format
@@ -4633,6 +4642,11 @@ msgstr ""
 #, c-format
 msgid "Mixed"
 msgstr "혼합됨"
+
+#: Merge.rc:17BC2F9E
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "바이너리"
 
 #: Merge.rc:46FCCCF
 #, c-format

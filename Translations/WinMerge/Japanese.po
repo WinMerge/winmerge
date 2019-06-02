@@ -2241,6 +2241,7 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr "現在のユーザーのみシェル拡張の登録を解除(&L)"
 
 #: Merge.rc:7262BE24
+msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "フォルダー"
 
@@ -2282,6 +2283,7 @@ msgstr ""
 "す。"
 
 #: Merge.rc:17BC2F9E
+msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "バイナリ"
 
@@ -3231,6 +3233,11 @@ msgstr "未知のアーカイブ形式です"
 msgid "Filename"
 msgstr "名前"
 
+#: Merge.rc:7262BE24
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "フォルダー"
+
 #: Merge.rc:D404EDE
 msgid "Comparison result"
 msgstr "比較結果"
@@ -3346,6 +3353,11 @@ msgstr "中文字コード"
 #: Merge.rc:6B6D8966
 msgid "Ignored Diff."
 msgstr "無視した差異数"
+
+#: Merge.rc:17BC2F9E
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "バイナリ"
 
 #: Merge.rc:76C8AB99
 msgid "Unable to compare files"
@@ -3922,6 +3934,11 @@ msgstr ""
 #: Merge.rc:7C664E2
 msgid "Mixed"
 msgstr "Mixed"
+
+#: Merge.rc:17BC2F9E
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "バイナリ"
 
 #: Merge.rc:46FCCCF
 msgid "None"

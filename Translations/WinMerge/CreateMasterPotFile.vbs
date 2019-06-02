@@ -164,16 +164,21 @@ Function GetStringsFromRcFile(ByVal sRcFilePath)
               '--------------------------------------------------------------------------------
               ' Replace 1st string literal only - 2nd string literal specifies control class!
               '--------------------------------------------------------------------------------
-              If FoundRegExpMatch(sLine, """((?:""""|[^""])*)""", oMatch) Then 'String...
+              If FoundRegExpMatch(sLine, "NC_\s*\(""([^""]*)""\s*,\s*""([^""]*)""\s*\)", oMatch) Then 'String...
+                sContext = Trim(oMatch.SubMatches(0))
+                sTemp = oMatch.SubMatches(1)
+              ElseIf FoundRegExpMatch(sLine, """((?:""""|[^""])*)""", oMatch) Then 'String...
                 sTemp = oMatch.SubMatches(0)
-                If (sTemp <> "") And (oBlacklist.Exists(sTemp) = False) Then 'If NOT blacklisted...
-                  sString = Replace(sTemp, """""", "\""")
-                  If (FoundRegExpMatch(sLine, "//#\. (.*?)$", oMatch) = True) Then 'If found a comment for the translators...
-                    sComment = Trim(oMatch.SubMatches(0))
-                  ElseIf (FoundRegExpMatch(sLine, "//msgctxt (.*?)$", oMatch) = True) Then 'If found a context for the translation...
-                    sContext = Trim(oMatch.SubMatches(0))
-                    sComment = sContext
-                  End If
+              Else
+                sTemp = ""
+              End If 
+              If (sTemp <> "") And (oBlacklist.Exists(sTemp) = False) Then 'If NOT blacklisted...
+                sString = Replace(sTemp, """""", "\""")
+                If (FoundRegExpMatch(sLine, "//#\. (.*?)$", oMatch) = True) Then 'If found a comment for the translators...
+                  sComment = Trim(oMatch.SubMatches(0))
+                ElseIf (FoundRegExpMatch(sLine, "//msgctxt (.*?)$", oMatch) = True) Then 'If found a context for the translation...
+                  sContext = Trim(oMatch.SubMatches(0))
+                  sComment = sContext
                 End If
               End If
             End If

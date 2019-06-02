@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-05-19 10:55+0000\n"
+"POT-Creation-Date: 2019-06-01 22:56+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2217,6 +2217,7 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
 #: Merge.rc:7262BE24
+msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr ""
 
@@ -2253,6 +2254,7 @@ msgid "&Number of compare threads (a negative value implies addition of the numb
 msgstr ""
 
 #: Merge.rc:17BC2F9E
+msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr ""
 
@@ -2968,6 +2970,11 @@ msgstr ""
 msgid "Filename"
 msgstr ""
 
+#: Merge.rc:7262BE24
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr ""
+
 #: Merge.rc:D404EDE
 msgid "Comparison result"
 msgstr ""
@@ -3082,6 +3089,11 @@ msgstr ""
 
 #: Merge.rc:6B6D8966
 msgid "Ignored Diff."
+msgstr ""
+
+#: Merge.rc:17BC2F9E
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
 msgstr ""
 
 #: Merge.rc:76C8AB99
@@ -3582,6 +3594,11 @@ msgstr ""
 
 #: Merge.rc:7C664E2
 msgid "Mixed"
+msgstr ""
+
+#: Merge.rc:17BC2F9E
+msgctxt "EOL Type"
+msgid "Binary"
 msgstr ""
 
 #: Merge.rc:46FCCCF
