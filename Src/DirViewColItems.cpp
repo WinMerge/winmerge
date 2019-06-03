@@ -56,7 +56,7 @@ const char *COLHDR_RENCODING    = N_("Right Encoding");
 const char *COLHDR_MENCODING    = N_("Middle Encoding");
 const char *COLHDR_NIDIFFS      = N_("Ignored Diff.");
 const char *COLHDR_NSDIFFS      = N_("Differences");
-const char *COLHDR_BINARY       = N_("Binary");
+const char *COLHDR_BINARY       = NC_("DirView|ColumnHeader", "Binary");
 
 const char *COLDESC_FILENAME    = N_("Filename or folder name.");
 const char *COLDESC_DIR         = N_("Subfolder name when subfolders are included.");
@@ -981,7 +981,7 @@ static DirColInfo f_cols[] =
 	{ _T("Lversion"), nullptr, COLHDR_LVERSION, COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Rversion"), nullptr, COLHDR_RVERSION, COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("StatusAbbr"), nullptr, COLHDR_RESULT_ABBR, COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
-	{ _T("Binary"), nullptr, COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Binary"), "DirView|ColumnHeader", COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Lattr"), nullptr, COLHDR_LATTRIBUTES, COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].flags), -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Rattr"), nullptr, COLHDR_RATTRIBUTES, COLDESC_RATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].flags), -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Lencoding"), nullptr, COLHDR_LENCODING, COLDESC_LENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0]), -1, true, DirColInfo::ALIGN_LEFT },
