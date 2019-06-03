@@ -2210,14 +2210,14 @@ msgstr "En&registrer l'extension du menu de l'explorateur"
 msgid "&Unregister shell extension"
 msgstr "Désinscrire l'extension du menu de l'explorateur"
 
-#, fuzzy
 #| msgid "&Register shell extension"
+#, fuzzy
 #, c-format
 msgid "Register shell extension for current user &only"
 msgstr "En&registrer l'extension du menu de l'explorateur"
 
-#, fuzzy
 #| msgid "&Unregister shell extension"
+#, fuzzy
 #, c-format
 msgid "Unregister shell extension for current user on&ly"
 msgstr "Désinscrire l'extension du menu de l'explorateur"
