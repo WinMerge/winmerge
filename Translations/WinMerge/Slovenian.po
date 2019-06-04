@@ -29,11 +29,6 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_SLOVENIAN, SUBLANG_SLOVENIAN"
 
-#. Codepage
-#, c-format
-msgid "1252"
-msgstr "65001"
-
 #, c-format
 msgid "C&opy to Right"
 msgstr "Kopiraj na &desno"

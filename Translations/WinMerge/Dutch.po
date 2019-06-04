@@ -27,10 +27,6 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_DUTCH, SUBLANG_DUTCH"
 
-#. Codepage
-msgid "1252"
-msgstr "65001"
-
 msgid "C&opy to Right"
 msgstr "Naar rechts kopiëren"
 
