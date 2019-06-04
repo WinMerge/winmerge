@@ -129,9 +129,6 @@ Function GetStringsFromRcFile(ByVal sRcFilePath)
             If (FoundRegExpMatch(sLine, "LANGUAGE (LANG_\w*, SUBLANG_\w*)", oMatch) = True) Then 'LANGUAGE...
               sString = oMatch.SubMatches(0)
               sComment = "LANGUAGE, SUBLANGUAGE"
-            ElseIf (FoundRegExpMatch(sLine, "code_page\(([\d]+)\)", oMatch) = True) Then 'code_page...
-              sString = oMatch.SubMatches(0)
-              sComment = "Codepage"
             End If
             
           Case MENU_BLOCK, DIALOGEX_BLOCK, STRINGTABLE_BLOCK:

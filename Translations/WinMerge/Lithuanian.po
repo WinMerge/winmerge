@@ -29,10 +29,6 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_LITHUANIAN, SUBLANG_DEFAULT"
 
-#. Codepage
-msgid "1252"
-msgstr "65001"
-
 msgid "C&opy to Right"
 msgstr "K&opijuoti į dešinę"
 

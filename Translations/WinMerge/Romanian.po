@@ -28,11 +28,6 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_ROMANIAN, SUBLANG_DEFAULT"
 
-#. Codepage
-#, c-format
-msgid "1252"
-msgstr "65001"
-
 #, c-format
 msgid "C&opy to Right"
 msgstr "Copie la &dreapta"
