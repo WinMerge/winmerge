@@ -4,17 +4,15 @@
 # Translators:
 # * Ronald Schaap <ronald at schaap.demon.nl>
 # * Michel Coene
-# * Thomas De Rocker, 2018
+# * Thomas De Rocker, 2019
 #
-# ID line follows -- this is updated by SVN
-# $Id: $
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2018-09-20 20:38+0000\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Thomas De Rocker, 2018\n"
+"POT-Creation-Date: 2019-06-02 20:02+0000\n"
+"PO-Revision-Date: 2018-09-06 10:18+0000\n"
+"Last-Translator: Thomas De Rocker, 2019\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,855 +24,647 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_DUTCH, SUBLANG_DUTCH"
 
 #. Codepage
-#, c-format
 msgid "1252"
 msgstr "65001"
 
-#, c-format
 msgid "C&opy to Right"
 msgstr "Naar rechts kopiëren"
 
-#, c-format
 msgid "Cop&y to Left"
 msgstr "Naar links kopiëren"
 
-#, c-format
 msgid "Copy &from Left"
 msgstr "Van links kopiëren"
 
-#, c-format
 msgid "Copy fro&m Right"
 msgstr "Van rechts kopiëren"
 
-#, c-format
 msgid "&Select Line Difference"
 msgstr "Regelverschil selecteren"
 
-#, c-format
 msgid "&Undo"
 msgstr "Ongedaan maken"
 
-#, c-format
 msgid "&Redo"
 msgstr "Herhalen"
 
-#, c-format
 msgid "Cu&t"
 msgstr "Knippen"
 
-#, c-format
 msgid "&Copy"
 msgstr "Kopiëren"
 
-#, c-format
 msgid "&Paste"
 msgstr "Plakken"
 
-#, c-format
 msgid "&Goto..."
 msgstr "Ga naar..."
 
-#, c-format
 msgid "Op&en"
 msgstr "Openen"
 
-#, c-format
 msgid "with &Registered Application"
 msgstr "met geregistreerde toepassing"
 
-#, c-format
 msgid "with &External Editor\tCtrl+Alt+E"
 msgstr "met externe editor\tCtrl+Alt+E"
 
-#, c-format
 msgid "&with..."
 msgstr "met..."
 
 msgid "S&hell Menu"
-msgstr ""
+msgstr "Shellmenu"
 
-#, c-format
 msgid "View &Differences"
 msgstr "Verschillen weergeven"
 
-#, c-format
 msgid "Diff &Block Size"
 msgstr "Grootte verschilblok"
 
-#, c-format
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "Kleurverschil negeren (kleurafstand-drempel)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "Detectie van invoeging/verwijdering"
 
-#, c-format
 msgid "&None"
 msgstr "Geen"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "Verticaal"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "Horizontaal"
 
-#, c-format
 msgid "&Previous Page"
 msgstr "Vorige pagina"
 
-#, c-format
 msgid "&Next Page"
 msgstr "Volgende pagina"
 
-#, c-format
 msgid "&Active Pane"
 msgstr "Actief venster"
 
-#, c-format
 msgid "&Zoom"
 msgstr "Zoomen"
 
-#, c-format
 msgid "Zoom &In\tCtrl++"
 msgstr "Inzoomen\tCtrl++"
 
-#, c-format
 msgid "Zoom &Out\tCtrl+-"
 msgstr "Uitzoomen\tCtrl+-"
 
 #. Zoom to normal
-#, c-format
 msgid "&Normal\tCtrl+*"
 msgstr "Normaal\tCtrl+*"
 
-#, c-format
 msgid "&Overlay"
 msgstr "Overlay"
 
-#, c-format
 msgid "&Alpha Blend"
 msgstr "Alfa-blend"
 
-#, c-format
 msgid "Alpha &Blend Animation"
 msgstr "Alfa-blend-animatie"
 
-#, c-format
 msgid "Dragging &Mode"
 msgstr "Sleepmodus"
 
-#, c-format
 msgid "&Move"
 msgstr "Verplaatsen"
 
-#, c-format
 msgid "&Adjust Offset"
 msgstr "Offset aanpassen"
 
-#, c-format
 msgid "&Set Background Color"
 msgstr "Achtergrondkleur instellen"
 
-#, c-format
 msgid "&File"
 msgstr "Bestand"
 
-#, c-format
 msgid "&New\tCtrl+N"
 msgstr "Nieuw\tCtrl+N"
 
-#, c-format
 msgid "New (&3 panes)"
 msgstr "Nieuw (3 vensters)"
 
-#, c-format
 msgid "&Open...\tCtrl+O"
 msgstr "Openen...\tCtrl+O"
 
 msgid "Open Conflic&t File..."
 msgstr "Conflictbestand openen..."
 
-#, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Project openen...\tCtrl+J"
 
-#, c-format
 msgid "Sa&ve Project..."
 msgstr "Project opslaan..."
 
-#, c-format
 msgid "Recent Projects"
 msgstr "Recente Projecten"
 
-#, c-format
 msgid "Recent F&iles Or Folders"
 msgstr "Recente bestanden of mappen"
 
-#, c-format
 msgid "< Empty >"
 msgstr "< Leeg >"
 
-#, c-format
 msgid "E&xit"
 msgstr "Afsluiten"
 
-#, c-format
 msgid "&Edit"
 msgstr "Bewerken"
 
-#, c-format
 msgid "&Options..."
 msgstr "Opties..."
 
-#, c-format
 msgid "&View"
 msgstr "Beeld"
 
-#, c-format
 msgid "&Toolbar"
 msgstr "Werkbalk"
 
-#, c-format
 msgid "&Small"
 msgstr "Klein"
 
-#, c-format
 msgid "&Big"
 msgstr "Groot"
 
-#, c-format
 msgid "&Huge"
 msgstr "Enorm"
 
-#, c-format
 msgid "&Status Bar"
 msgstr "Statusbalk"
 
-#, c-format
 msgid "Ta&b Bar"
 msgstr "Tab-balk"
 
-#, c-format
 msgid "&Tools"
 msgstr "Gereedschap"
 
-#, c-format
 msgid "&Filters..."
 msgstr "Filters..."
 
-#, c-format
 msgid "&Generate Patch..."
 msgstr "Patch genereren..."
 
-#, c-format
 msgid "&Plugins"
 msgstr "Plugins"
 
-#, c-format
 msgid "P&lugin Settings..."
 msgstr "Plugin-instellingen"
 
-#, c-format
 msgid "Ma&nual Prediffer"
 msgstr "Manuele voorvergelijking"
 
-#, c-format
 msgid "A&utomatic Prediffer"
 msgstr "Automatische voorvergelijking"
 
-#, c-format
 msgid "&Manual Unpacking"
 msgstr "Handmatig uitpakken"
 
-#, c-format
 msgid "&Automatic Unpacking"
 msgstr "Automatisch uitpakken"
 
-#, c-format
 msgid "&Edit with Unpacker..."
 msgstr "Bewerken met uitpakker..."
 
-#, c-format
 msgid "&Reload plugins"
 msgstr "Plug-ins opnieuw laden"
 
-#, c-format
 msgid "&Window"
 msgstr "Venster"
 
-#, c-format
 msgid "Cl&ose"
 msgstr "Sluiten"
 
-#, c-format
 msgid "Clo&se All"
 msgstr "Alles sluiten"
 
-#, c-format
 msgid "Change &Pane\tF6"
 msgstr "Venster wijzigen\tF6"
 
-#, c-format
 msgid "Tile &Horizontally"
 msgstr "Horizontaal verdelen"
 
-#, c-format
 msgid "Tile &Vertically"
 msgstr "Verticaal verdelen"
 
-#, c-format
 msgid "&Cascade"
 msgstr "Trapsgewijs"
 
-#, c-format
 msgid "&Help"
 msgstr "Help"
 
-#, c-format
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge Help\tF1"
 
-#, c-format
 msgid "R&elease Notes"
 msgstr "Vrijgave-opmerkingen"
 
-#, c-format
 msgid "&Translations"
 msgstr "Vertalingen"
 
-#, c-format
 msgid "C&onfiguration"
 msgstr "Configuratie"
 
-#, c-format
 msgid "&GNU General Public License"
 msgstr "GNU General Public License"
 
-#, c-format
 msgid "&About WinMerge..."
 msgstr "Over WinMerge..."
 
-#, c-format
 msgid "&Read-only"
 msgstr "Alleen-lezen"
 
-#, c-format
 msgid "L&eft Read-only"
 msgstr "Links alleen-lezen"
 
-#, c-format
 msgid "M&iddle Read-only"
 msgstr "Midden alleen-lezen"
 
-#, c-format
 msgid "Ri&ght Read-only"
 msgstr "Rechts alleen-lezen"
 
-#, c-format
 msgid "File En&coding..."
 msgstr "Bestandscodering..."
 
-#, c-format
 msgid "Select &All\tCtrl+A"
 msgstr "Alles selecteren\tCtrl+A"
 
-#, c-format
 msgid "Show &Identical Items"
 msgstr "Identieke items weergeven"
 
-#, c-format
 msgid "Show &Different Items"
 msgstr "Verschillende items weergeven"
 
-#, c-format
 msgid "Show L&eft Unique Items"
 msgstr "Linkse unieke items weergeven"
 
-#, c-format
 msgid "Show Midd&le Unique Items"
 msgstr "Middelste unieke items weergeven"
 
-#, c-format
 msgid "Show Ri&ght Unique Items"
 msgstr "Rechtse unieke items weergeven"
 
-#, c-format
 msgid "Show S&kipped Items"
 msgstr "Overgeslagen items weergeven"
 
-#, c-format
 msgid "S&how Binary Files"
 msgstr "Binaire bestanden weergeven"
 
-#, c-format
 msgid "&3-way Compare"
 msgstr "3-weg-vergelijking"
 
-#, c-format
 msgid "Show &Left Only Different Items"
 msgstr "Alleen links verschillende items weergeven"
 
-#, c-format
 msgid "Show &Middle Only Different Items"
 msgstr "Alleen midden verschillende items weergeven"
 
-#, c-format
 msgid "Show &Right Only Different Items"
 msgstr "Alleen rechts verschillende items weergeven"
 
-#, c-format
 msgid "Show Hidd&en Items"
 msgstr "Verborgen items weergeven"
 
-#, c-format
 msgid "Tree &Mode"
 msgstr "Boom-modus"
 
-#, c-format
 msgid "E&xpand All Subfolders"
 msgstr "Alle submappen uitklappen"
 
-#, c-format
 msgid "&Collapse All Subfolders"
 msgstr "Alle submappen inklappen"
 
-#, c-format
 msgid "Select &Font..."
 msgstr "Lettertype kiezen..."
 
-#, c-format
 msgid "Use Default F&ont"
 msgstr "Standaard lettertype gebruiken"
 
-#, c-format
 msgid "Sw&ap Panes"
 msgstr "Vensters wisselen"
 
-#, c-format
 msgid "Compa&re Statistics"
 msgstr "Vergelijkingsstatistieken"
 
-#, c-format
 msgid "Refre&sh\tF5"
 msgstr "Verversen\tF5"
 
-#, c-format
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "Selectie verversen\tCtrl+F5"
 
-#, c-format
 msgid "&Merge"
 msgstr "Samenvoegen"
 
-#, c-format
 msgid "Co&mpare\tEnter"
 msgstr "Vergelijken\tEnter"
 
-#, c-format
 msgid "&Next Difference\tAlt+Down"
 msgstr "Volgend verschil\tAlt+Omlaag"
 
-#, c-format
 msgid "&Previous Difference\tAlt+Up"
 msgstr "Vorig verschil\tAlt+Omhoog"
 
-#, c-format
 msgid "&First Difference\tAlt+Home"
 msgstr "Eerste verschil\tAlt+Home"
 
-#, c-format
 msgid "&Current Difference\tAlt+Enter"
 msgstr "Huidig verschil\tAlt+Enter"
 
-#, c-format
 msgid "&Last Difference\tAlt+End"
 msgstr "Laatste verschil\tAlt+End"
 
-#, c-format
 msgid "Copy to &Right\tAlt+Right"
 msgstr "Naar rechts kopiëren\tAlt+Rechts"
 
-#, c-format
 msgid "Copy to L&eft\tAlt+Left"
 msgstr "Naar links kopiëren\tAlt+Links"
 
-#, c-format
 msgid "&Delete\tDel"
 msgstr "Wissen\tDel"
 
-#, c-format
 msgid "&Customize Columns..."
 msgstr "Kolommen aanpassen..."
 
-#, c-format
 msgid "Generate &Report..."
 msgstr "Rapport genereren..."
 
-#, c-format
 msgid "&Save\tCtrl+S"
 msgstr "Opslaan\tCtrl+S"
 
-#, c-format
 msgid "Sav&e"
 msgstr "Opslaan"
 
-#, c-format
 msgid "Save &Left"
 msgstr "Links opslaan"
 
-#, c-format
 msgid "Save &Middle"
 msgstr "Midden opslaan"
 
-#, c-format
 msgid "Save &Right"
 msgstr "Rechts opslaan"
 
-#, c-format
 msgid "Save &As"
 msgstr "Opslaan als"
 
-#, c-format
 msgid "Save &Left As..."
 msgstr "Links opslaan als..."
 
-#, c-format
 msgid "Save &Middle As..."
 msgstr "Midden opslaan als..."
 
-#, c-format
 msgid "Save &Right As..."
 msgstr "Rechts opslaan als..."
 
-#, c-format
 msgid "&Print..."
 msgstr "Afdrukken..."
 
 msgid "Page Set&up"
 msgstr "Pagina-instelling"
 
-#, c-format
 msgid "Print Previe&w"
 msgstr "Afdrukvoorbeeld"
 
-#, c-format
 msgid "&Convert Line Endings to"
 msgstr "Regeleindes converteren naar"
 
-#, c-format
 msgid "&Merge Mode\tF9"
 msgstr "Samenvoegmodus\tF9"
 
-#, c-format
 msgid "Re&load\tCtrl+F5"
 msgstr "Opnieuw laden\tCtrl+F5"
 
-#, c-format
 msgid "&File Encoding..."
 msgstr "Bestandscodering..."
 
-#, c-format
 msgid "Recompare As"
 msgstr "Opnieuw vergelijken als"
 
-#, c-format
 msgid "&Text"
 msgstr "Tekst"
 
-#, c-format
 msgid "&XML"
 msgstr "XML"
 
-#, c-format
 msgid "&Binary"
 msgstr "Binair"
 
-#, c-format
 msgid "&Image"
 msgstr "Afbeelding"
 
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "Ongedaan maken\tCtrl+Z"
 
-#, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Opnieuw\tCtrl+Y"
 
-#, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "Knippen\tCtrl+X"
 
-#, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Kopiëren\tCtrl+C"
 
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Plakken\tCtrl+V"
 
-#, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
 
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "Zoeken...\tCtrl+F"
 
-#, c-format
 msgid "Repla&ce...\tCtrl+H"
 msgstr "Vervangen...\tCtrl+H"
 
-#, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr "&Markering...\tCtrl+Shift+M"
+msgstr "Markering...\tCtrl+Shift+M"
 
-#, c-format
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-#, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
 msgstr "Kopiëren met regelnummers\tCtrl+Shift+C"
 
-#, c-format
 msgid "&Bookmarks"
 msgstr "Bladwijzers"
 
-#, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "Bladwijzer aan/uit\tCtrl+F2"
 
-#, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "Volgende bladwijzer\tF2"
 
-#, c-format
 msgid "&Previous bookmark\tShift+F2"
 msgstr "Vorige bladwijzer\tShift+F2"
 
-#, c-format
 msgid "&Clear All Bookmarks"
 msgstr "Alle bladwijzers wissen"
 
-#, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "Gaan naar...\tCtrl+G"
 
-#, c-format
 msgid "Syntax Highlight"
 msgstr "Syntaxmarkering"
 
-#, c-format
 msgid "&Diff Context"
 msgstr "Verschil-context"
 
-#, c-format
 msgid "&All Lines"
 msgstr "Alle regels"
 
-#, c-format
 msgid "&0 Lines"
 msgstr "0 regels"
 
-#, c-format
 msgid "&1 Line"
 msgstr "1 regel"
 
-#, c-format
 msgid "&3 Lines"
 msgstr "3 regels"
 
-#, c-format
 msgid "&5 Lines"
 msgstr "5 regels"
 
-#, c-format
 msgid "&7 Lines"
 msgstr "7 regels"
 
-#, c-format
 msgid "&9 Lines"
 msgstr "9 regels"
 
-#, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "Alle en 0-9 regels wisselen\tCtrl+D"
 
-#, c-format
 msgid "&Lock Panes"
 msgstr "Vensters vergrendelen"
 
-#, c-format
 msgid "&View Whitespace"
 msgstr "Witruimte weergeven"
 
-#, c-format
 msgid "Vie&w Line Differences"
 msgstr "Regelverschillen weergeven"
 
-#, c-format
 msgid "View Line &Numbers"
 msgstr "Regelnummers weergeven"
 
-#, c-format
 msgid "View &Margins"
 msgstr "Marges weergeven"
 
-#, c-format
 msgid "W&rap Lines"
 msgstr "Automatische terugloop"
 
-#, c-format
 msgid "Split V&ertically"
 msgstr "Verticaal splitsen"
 
-#, c-format
 msgid "Diff &Pane"
 msgstr "Verschilvenster"
 
-#, c-format
 msgid "Lo&cation Pane"
 msgstr "Locatievenster"
 
-#, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Volgend conflict\tAlt+Shift+Omlaag"
 
-#, c-format
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
 msgstr "Vorig conflict\tAlt+Shift+Omhoog"
 
-#, c-format
 msgid "A&dvanced"
 msgstr "Geavanceerd"
 
-#, c-format
 msgid "Next Difference Between Left and Middle\tAlt+1"
 msgstr "Volgend verschil tussen links en midden\tAlt+1"
 
-#, c-format
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
 msgstr "Vorig verschil tussen links en midden\tAlt+Shift+1"
 
-#, c-format
 msgid "Next Difference Between Left and Right\tAlt+2"
 msgstr "Volgend verschil tussen links en rechts\tAlt+2"
 
-#, c-format
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
 msgstr "Vorig verschil tussen links en rechts\tAlt+Shift+2"
 
-#, c-format
 msgid "Next Difference Between Middle and Right\tAlt+3"
 msgstr "Volgend verschil tussen midden en rechts\tAlt+3"
 
-#, c-format
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
 msgstr "Vorig verschil tussen midden en rechts\tAlt+Shift+3"
 
-#, c-format
 msgid "Next Left Only Difference\tAlt+7"
 msgstr "Volgend alleen links verschil\tAlt+7"
 
-#, c-format
 msgid "Previous Left Only Difference\tAlt+Shift+7"
 msgstr "Vorig alleen links verschil\tAlt+Shift+7"
 
-#, c-format
 msgid "Next Middle Only Difference\tAlt+8"
 msgstr "Volgend alleen midden verschil\tAlt+8"
 
-#, c-format
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
 msgstr "Vorig alleen midden verschil\tAlt+Shift+8"
 
-#, c-format
 msgid "Next Right Only Difference\tAlt+9"
 msgstr "Volgend alleen rechts verschil\tAlt+9"
 
-#, c-format
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Vorig alleen rechts verschil\tAlt+Shift+9"
 
-#, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopiëren van links\tAlt+Shift+Rechts"
 
-#, c-format
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Kopiëren van rechts\tAlt+Shift+Links"
 
-#, c-format
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
 msgstr "Naar rechts kopiëren en verder gaan\tAlt+Ctrl+Rechts"
 
-#, c-format
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
 msgstr "Naar links kopiëren en verder gaan\tAlt+Ctrl+Links"
 
-#, c-format
 msgid "Copy &All to Right"
 msgstr "Alles naar rechts kopiëren"
 
-#, c-format
 msgid "Cop&y All to Left"
 msgstr "Alles naar links kopiëren"
 
-#, c-format
 msgid "A&uto Merge\tAlt+Ctrl+M"
 msgstr "Automatisch samenvoegen\tAlt+Ctrl+M"
 
-#, c-format
 msgid "Add &Synchronization Point\tAlt+S"
 msgstr "Synchronisatiepunt toevoegen\tAlt+S"
 
-#, c-format
 msgid "Clear Sync&hronization Points"
 msgstr "Synchronisatiepunten wissen"
 
-#, c-format
 msgid "&Prediffer"
 msgstr "Voorvergelijking"
 
-#, c-format
 msgid "&Scripts"
 msgstr "Scripts"
 
-#, c-format
 msgid "Sp&lit"
 msgstr "Splitsen"
 
-#, c-format
 msgid "Comp&are"
 msgstr "Vergelijken"
 
-#, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "Niet-horizontaal vergelijken"
 
-#, c-format
 msgid "First &left item with second left item"
 msgstr "Eerste linker item met tweede linker item"
 
-#, c-format
 msgid "First &right item with second right item"
 msgstr "Eerste rechter item met tweede rechter item"
 
-#, c-format
 msgid "&First left item with second right item"
 msgstr "Eerste linker item met tweede rechter item"
 
-#, c-format
 msgid "&Second left item with first right item"
 msgstr "Tweede linker item met eerste rechter item"
 
-#, c-format
 msgid "Co&mpare As"
 msgstr "Vergelijken als"
 
@@ -914,59 +704,45 @@ msgstr "Rechts naar links (%1 van %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Rechts naar... (%1 van %2)"
 
-#, c-format
 msgid "&Delete"
 msgstr "Verwijderen"
 
-#, c-format
 msgid "&Left"
 msgstr "Links"
 
-#, c-format
 msgid "&Middle"
 msgstr "Midden"
 
-#, c-format
 msgid "&Right"
 msgstr "Rechts"
 
-#, c-format
 msgid "&Both"
 msgstr "Beide"
 
-#, c-format
 msgid "&All"
 msgstr "Alle"
 
-#, c-format
 msgid "Re&name"
 msgstr "Naam wijzigen"
 
-#, c-format
 msgid "&Hide Items"
 msgstr "Items verbergen"
 
-#, c-format
 msgid "&Open Left"
 msgstr "Links openen"
 
-#, c-format
 msgid "with &External Editor"
 msgstr "met externe editor"
 
-#, c-format
 msgid "&Parent Folder"
 msgstr "Bovenliggende map"
 
-#, c-format
 msgid "Open Midd&le"
 msgstr "Midden openen"
 
-#, c-format
 msgid "O&pen Right"
 msgstr "Rechts openen"
 
-#, c-format
 msgid "Cop&y Pathnames"
 msgstr "Padnamen kopiëren"
 
@@ -990,15 +766,12 @@ msgstr "Beide (%1 van %2)"
 msgid "All (%1 of %2)"
 msgstr "Alle (%1 van %2)"
 
-#, c-format
 msgid "Copy &Filenames"
 msgstr "Bestandsnamen kopiëren"
 
-#, c-format
 msgid "Copy Items To Clip&board"
 msgstr "Items naar klembord kopiëren"
 
-#, c-format
 msgid "&Zip"
 msgstr "Zippen"
 
@@ -1014,266 +787,201 @@ msgstr "Alle naar... (%1 van %2)"
 msgid "Differences to... (%1 of %2)"
 msgstr "Verschillen naar... (%1 van %2)"
 
-#, c-format
 msgid "&Refresh"
 msgstr "Vernieuwen"
 
-#, c-format
 msgid "Left Shell menu"
 msgstr "Linker shellmenu"
 
-#, c-format
 msgid "Middle Shell menu"
 msgstr "Middelste shellmenu"
 
-#, c-format
 msgid "Right Shell menu"
 msgstr "Rechter shellmenu"
 
-#, c-format
 msgid "Copy"
 msgstr "Kopiëren"
 
-#, c-format
 msgid "&Copy Full Path"
 msgstr "Volledig pad kopiëren"
 
-#, c-format
 msgid "Copy &Filename"
 msgstr "Bestandsnaam kopiëren"
 
-#, c-format
 msgid "Prediffer Settings"
 msgstr "Instellingen voorvergelijking"
 
-#, c-format
 msgid "&No prediffer"
 msgstr "Geen voorvergelijking"
 
-#, c-format
 msgid "Auto prediffer"
 msgstr "Automatische voorvergelijking"
 
-#, c-format
 msgid "G&oto Diff"
 msgstr "Gaan naar verschil"
 
-#, c-format
 msgid "&No Moved Blocks"
 msgstr "Geen verplaatste blokken"
 
-#, c-format
 msgid "&All Moved Blocks"
 msgstr "Alle verplaatste blokken"
 
-#, c-format
 msgid "Moved Block for &Current Diff"
 msgstr "Verplaatst blok voor huidig verschil"
 
-#, c-format
 msgid "W&hitespaces"
 msgstr "Witruimtes"
 
-#, c-format
 msgid "Com&pare"
 msgstr "Vergelijken"
 
-#, c-format
 msgid "I&gnore changes"
 msgstr "Wijzigingen negeren"
 
-#, c-format
 msgid "Ig&nore all"
 msgstr "Alles negeren"
 
-#, c-format
 msgid "Case sensi&tive"
 msgstr "Hoofdlettergevoelig"
 
-#, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Regeleinde-verschillen negeren (Windows/Unix/Mac)"
 
-#, c-format
 msgid "&Include Subfolders"
 msgstr "Ook in submappen"
 
-#, c-format
 msgid "&Compare method:"
 msgstr "Vergelijkingsmethode:"
 
-#, c-format
 msgid "Full Contents"
 msgstr "Volledige Inhoud"
 
-#, c-format
 msgid "Quick Contents"
 msgstr "Snelle Inhoud"
 
-#, c-format
 msgid "Binary Contents"
 msgstr "Binaire inhoud"
 
-#, c-format
 msgid "Modified Date"
 msgstr "Datum gewijzigd"
 
-#, c-format
 msgid "Modified Date and Size"
 msgstr "Datum en grootte gewijzigd"
 
-#, c-format
 msgid "Size"
 msgstr "Grootte"
 
-#, c-format
 msgid "&Load Project..."
 msgstr "Project laden..."
 
-#, c-format
 msgid "About WinMerge"
 msgstr "Over WinMerge"
 
-#, c-format
 msgid "Visit the WinMerge HomePage!"
 msgstr "Bezoek de WinMerge-homepage!"
 
-#, c-format
 msgid "OK"
 msgstr "Ok"
 
-#, c-format
 msgid "Contributors"
 msgstr "Medewerkers"
 
-#, c-format
 msgid "Select Files or Folders"
 msgstr "Bestanden of mappen selecteren"
 
-#, c-format
 msgid "&1st File or Folder"
-msgstr ""
+msgstr "1ste bestand of map"
 
-#, c-format
 msgid "Re&ad-only"
 msgstr "Alleen-lezen"
 
-#, c-format
 msgid "Swap 1st | 2nd"
-msgstr ""
+msgstr "1ste en 2de wisselen"
 
-#, c-format
 msgid "&Browse..."
 msgstr "Bladeren..."
 
-#, c-format
 msgid "&2nd File or Folder"
-msgstr ""
+msgstr "2de bestand of map"
 
-#, c-format
 msgid "Rea&d-only"
 msgstr "Alleen-lezen"
 
-#, c-format
 msgid "Swap 2nd | 3rd"
-msgstr ""
+msgstr "2de en 3de wisselen"
 
-#, c-format
 msgid "B&rowse..."
 msgstr "Bladeren..."
 
-#, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr ""
+msgstr "3de bestand of map (optioneel)"
 
-#, c-format
 msgid "Read-o&nly"
 msgstr "Alleen-lezen"
 
-#, c-format
 msgid "Swap 1st | 3rd"
-msgstr ""
+msgstr "1ste en 3de wisselen"
 
-#, c-format
 msgid "Browse..."
 msgstr "Bladeren..."
 
-#, c-format
 msgid " Folder: Filter"
-msgstr ""
+msgstr "Map: filter"
 
-#, c-format
 msgid "&Select..."
 msgstr "Selecteren..."
 
-#, c-format
 msgid " File: Unpacker Plugin"
-msgstr ""
+msgstr "Bestand: uitpak-plugin"
 
-#, c-format
 msgid "Se&lect..."
-msgstr ""
+msgstr "Selecteren..."
 
 msgid "Co&mpare"
-msgstr ""
+msgstr "Vergelijken"
 
-#, c-format
 msgid "Cancel"
 msgstr "Annuleren"
 
-#, c-format
 msgid "Status:"
 msgstr "Status:"
 
-#, c-format
 msgid "Help"
 msgstr "Help"
 
-#, c-format
 msgid "General"
 msgstr "Algemeen"
 
-#, c-format
 msgid "Automatically &scroll to first difference"
 msgstr "Automatisch naar eerste verschil gaan"
 
-#, c-format
 msgid "Cl&ose windows with ESC"
 msgstr "Vensters sluiten met ESC"
 
-#, c-format
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Paden automatisch verifiëren in openen-venster"
 
-#, c-format
 msgid "All&ow only one instance to run"
 msgstr "Slechts één draaiende instantie toestaan"
 
-#, c-format
 msgid "As&k when closing multiple windows"
 msgstr "Vragen bij sluiten van meerdere vensters"
 
-#, c-format
 msgid "&Preserve file time in file compare"
 msgstr "Bestandstijd behouden bij bestandsvergelijking"
 
-#, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "\"Bestanden of mappen selecteren\" weergeven bij opstarten"
 
-#, c-format
 msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
 msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op OK"
 
-#, c-format
 msgid "O&pen-dialog Auto-Completion:"
 msgstr "Auto-aanvullen openen-venster:"
 
-#, c-format
 msgid "Language:"
 msgstr "Language:"
 
-#, c-format
 msgid ""
 "WinMerge allows hiding some common messageboxes. Press the Reset button to "
 "make all messageboxes visible again."
@@ -1282,535 +990,404 @@ msgstr ""
 " Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
 "maken."
 
-#, c-format
 msgid "Reset"
 msgstr "Herstellen"
 
-#, c-format
 msgid "Find"
 msgstr "Zoeken"
 
-#, c-format
 msgid "Fi&nd what:"
 msgstr "Zoeken naar:"
 
-#, c-format
 msgid "Match &whole word only"
 msgstr "Alleen hele woorden"
 
-#, c-format
 msgid "Match &case"
 msgstr "Hoofdlettergevoelig"
 
-#, c-format
 msgid "Regular &expression"
 msgstr "Reguliere expressies"
 
-#, c-format
 msgid "D&on't wrap end of file"
 msgstr "Bij einde bestand stoppen"
 
-#, c-format
 msgid "&Don't close this dialog box"
 msgstr "Dit venster niet sluiten"
 
-#, c-format
 msgid "Find &Prev"
 msgstr "Vorige zoeken"
 
-#, c-format
 msgid "&Find Next"
 msgstr "Volgende zoeken"
 
-#, c-format
 msgid "&Ok"
 msgstr "Ok"
 
-#, c-format
 msgid "Replace"
 msgstr "Vervangen"
 
-#, c-format
 msgid "Re&place with:"
 msgstr "Vervangen door:"
 
-#, c-format
 msgid "&Don't wrap end of file"
 msgstr "Bij einde bestand stoppen"
 
-#, c-format
 msgid "Replace in"
 msgstr "Vervangen in"
 
-#, c-format
 msgid "&Selection"
 msgstr "Selectie"
 
-#, c-format
 msgid "Wh&ole file"
 msgstr "Volledig bestand"
 
-#, c-format
 msgid "&Replace"
 msgstr "Vervangen"
 
-#, c-format
 msgid "Replace &All"
 msgstr "Alles vervangen"
 
-#, c-format
 msgid "Markers"
 msgstr "Markeringen"
 
-#, c-format
 msgid "Enable &Markers"
 msgstr "Markeringen inschakelen"
 
-#, c-format
 msgid "New"
 msgstr "Nieuw"
 
-#, c-format
 msgid "&Background color:"
 msgstr "Achtergrondkleur:"
 
-#, c-format
 msgid "&Apply"
 msgstr "Toepassen"
 
-#, c-format
 msgid "Linefilters"
 msgstr "Regelfilters"
 
-#, c-format
 msgid "Enable Line Filters"
 msgstr "Regelfilters inschakelen"
 
-#, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Reguliere expressies (één per regel):"
 
-#, c-format
 msgid "Edit"
 msgstr "Bewerken"
 
-#, c-format
 msgid "Remove"
 msgstr "Verwijderen"
 
-#, c-format
 msgid "Colors"
 msgstr "Kleuren"
 
-#, c-format
 msgid "Background"
 msgstr "Achtergrond"
 
-#, c-format
 msgid "Deleted"
 msgstr "Verwijderd"
 
-#, c-format
 msgid "Text"
 msgstr "Tekst"
 
-#, c-format
 msgid "Difference:"
 msgstr "Verschil:"
 
-#, c-format
 msgid "Selected Difference:"
 msgstr "Geselecteerd verschil:"
 
-#, c-format
 msgid "Ignored Difference:"
 msgstr "Genegeerd verschil:"
 
-#, c-format
 msgid "Moved:"
 msgstr "Verplaatst:"
 
-#, c-format
 msgid "Selected Moved:"
 msgstr "Geselecteerd verplaatst:"
 
-#, c-format
 msgid "Same As The Next (3 panes):"
 msgstr "Zelfde als de volgende (3 vensters):"
 
-#, c-format
 msgid "Same As The Next (Selected):"
 msgstr "Zelfde als de volgende (geselecteerd):"
 
-#, c-format
 msgid "Word Difference:"
 msgstr "Woordverschil:"
 
-#, c-format
 msgid "Selected Word Diff:"
 msgstr "Geselecteerd woordverschil:"
 
-#, c-format
 msgid "Defaults"
 msgstr "Standaardwaarden"
 
-#, c-format
 msgid "System"
 msgstr "Systeem"
 
-#, c-format
 msgid "&Send deleted files to Recycle Bin"
 msgstr "Verwijderde bestanden naar prullenbak verplaatsen"
 
-#, c-format
 msgid "&External editor:"
 msgstr "Externe editor:"
 
-#, c-format
 msgid "&Filter folder:"
 msgstr "Map filteren:"
 
-#, c-format
 msgid "Temporary files folder"
 msgstr "Map met tijdelijke bestanden"
 
-#, c-format
 msgid "S&ystem's temp folder"
 msgstr "Tijdelijke map van het systeem"
 
-#, c-format
 msgid "C&ustom folder:"
 msgstr "Aangepaste map:"
 
-#, c-format
 msgid "Br&owse..."
 msgstr "Bladeren..."
 
-#, c-format
 msgid "Patch Generator"
 msgstr "Patch-generator"
 
-#, c-format
 msgid "File&1:"
 msgstr "Bestand 1:"
 
-#, c-format
 msgid "File&2:"
 msgstr "Bestand 2:"
 
-#, c-format
 msgid "&Swap"
 msgstr "Wisselen"
 
-#, c-format
 msgid "&Append to existing file"
 msgstr "Toevoegen aan bestaand bestand"
 
-#, c-format
 msgid "&Result:"
 msgstr "Resultaat:"
 
-#, c-format
 msgid "Bro&wse..."
 msgstr "Bladeren..."
 
-#, c-format
 msgid "&Format"
 msgstr "Formaat"
 
-#, c-format
 msgid "St&yle:"
 msgstr "Stijl:"
 
-#, c-format
 msgid "&Context:"
 msgstr "Context:"
 
-#, c-format
 msgid "Ignor&e blank lines"
 msgstr "Lege regels overslaan"
 
-#, c-format
 msgid "Inclu&de command line"
 msgstr "Inclusief opdrachtregel"
 
-#, c-format
 msgid "Open to e&xternal editor"
 msgstr "Openen met externe editor"
 
-#, c-format
 msgid "Display Columns"
 msgstr "Kolommen weergeven"
 
-#, c-format
 msgid "Move &Up"
 msgstr "Omhoog verplaatsen"
 
-#, c-format
 msgid "Move &Down"
 msgstr "Omlaag verplaatsen"
 
-#, c-format
 msgid "Select Unpacker"
 msgstr "Uitpakker kiezen"
 
-#, c-format
 msgid "File unpacker:"
 msgstr "Bestandsuitpakker:"
 
-#, c-format
 msgid "Display all unpackers, don't check the extension"
 msgstr "Alle uitpakkers weergeven zonder extensie te controleren"
 
-#, c-format
 msgid "Extensions list:"
 msgstr "Lijst extensies:"
 
-#, c-format
 msgid "Description:"
 msgstr "Beschrijving:"
 
-#, c-format
 msgid "Stop"
 msgstr "Stoppen"
 
-#, c-format
 msgid "Pause"
 msgstr "Pauzeren"
 
-#, c-format
 msgid "Continue"
 msgstr "Doorgaan"
 
-#, c-format
 msgid "Comparing items..."
 msgstr "Items vergelijken..."
 
-#, c-format
 msgid "Items compared:"
 msgstr "Items vergeleken:"
 
-#, c-format
 msgid "Items total:"
 msgstr "Totaal aantal items:"
 
-#, c-format
 msgid "Go To"
 msgstr "Gaan naar"
 
-#, c-format
 msgid "G&oto:"
 msgstr "Gaan naar:"
 
-#, c-format
 msgid "File"
 msgstr "Bestand"
 
-#, c-format
 msgid "Goto what"
 msgstr "Gaan naar"
 
-#, c-format
 msgid "Li&ne"
 msgstr "Regel"
 
-#, c-format
 msgid "&Difference"
 msgstr "Verschil"
 
-#, c-format
 msgid "&Go To"
 msgstr "Gaan naar"
 
-#, c-format
 msgid "Compare"
 msgstr "Vergelijken"
 
-#, c-format
 msgid "Whitespace"
 msgstr "Witruimte"
 
-#, c-format
 msgid "&Compare"
 msgstr "Vergelijken"
 
-#, c-format
 msgid "&Ignore change"
 msgstr "Wijziging negeren"
 
-#, c-format
 msgid "I&gnore all"
 msgstr "Alles negeren"
 
-#, c-format
 msgid "Ignore blan&k lines"
 msgstr "Lege regels negeren"
 
-#, c-format
 msgid "Ignore &case"
 msgstr "Niet hoofdlettergevoelig"
 
-#, c-format
 msgid "Ignore codepage &differences"
 msgstr "Tekenset-verschillen negeren"
 
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "Detectie verplaatste blokken inschakelen"
 
-#, c-format
 msgid "&Match similar lines"
 msgstr "Gelijke regels laten overeenkomen"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr ""
+msgstr "Vergelijkingsalgoritme (experimenteel):"
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "Inspringing-heuristiek inschakelen"
 
-#, c-format
 msgid "Comments"
 msgstr "Opmerkingen"
 
-#, c-format
 msgid "Filter Comments"
 msgstr "Filter-opmerkingen"
 
-#, c-format
 msgid "Editor"
 msgstr "Editor"
 
-#, c-format
 msgid "&Highlight syntax"
 msgstr "Syntax markeren"
 
-#, c-format
 msgid "&Automatic rescan"
 msgstr "Automatisch opnieuw scannen"
 
-#, c-format
 msgid "&Preserve original EOL chars"
 msgstr "Originele regeleinde-tekens bewaren"
 
-#, c-format
 msgid "Tabs"
 msgstr "Tabs"
 
-#, c-format
 msgid "&Tab size:"
 msgstr "Tabgrootte:"
 
-#, c-format
 msgid "&Insert Tabs"
 msgstr "Tabs invoegen"
 
-#, c-format
 msgid "Insert &Spaces"
 msgstr "Spaties invoegen"
 
-#, c-format
 msgid "Line Difference Coloring"
 msgstr "Kleur van regelverschillen"
 
-#, c-format
 msgid "View line differences"
 msgstr "Regelverschillen weergeven"
 
-#, c-format
 msgid "&Character level"
 msgstr "Tekenniveau"
 
-#, c-format
 msgid "&Word-level:"
 msgstr "Woordniveau:"
 
-#, c-format
 msgid "W&ord break characters:"
 msgstr "Woordsplitsingstekens:"
 
-#, c-format
 msgid "Filefilters"
 msgstr "Bestandsfilters"
 
-#, c-format
 msgid "Test"
 msgstr "Testen"
 
-#, c-format
 msgid "Install..."
 msgstr "Installeren..."
 
-#, c-format
 msgid "New..."
 msgstr "Nieuw..."
 
-#, c-format
 msgid "Edit..."
 msgstr "Bewerken..."
 
-#, c-format
 msgid "Delete..."
 msgstr "Verwijderen..."
 
-#, c-format
 msgid "Save modified files?"
 msgstr "Gewijzigde bestanden opslaan?"
 
-#, c-format
 msgid "Left side file"
 msgstr "Linker bestand"
 
-#, c-format
 msgid "&Save changes"
 msgstr "Wijzigingen opslaan"
 
-#, c-format
 msgid "&Discard changes"
 msgstr "Wijzigingen verwerpen"
 
-#, c-format
 msgid "Middle side file"
 msgstr "Middelste bestand"
 
-#, c-format
 msgid "Sa&ve changes"
 msgstr "Wijzigingen opslaan"
 
-#, c-format
 msgid "Disca&rd changes"
 msgstr "Wijzigingen verwerpen"
 
-#, c-format
 msgid "Right side file"
 msgstr "Rechter bestand"
 
-#, c-format
 msgid "S&ave changes"
 msgstr "Wijzigingen opslaan"
 
-#, c-format
 msgid "Dis&card changes"
 msgstr "Wijzigingen verwerpen"
 
-#, c-format
 msgid "Disca&rd All"
 msgstr "Alles verwerpen"
 
-#, c-format
 msgid "Codepage"
 msgstr "Tekenset"
 
-#, c-format
 msgid "Default Codepage"
 msgstr "Standaard tekenset"
 
-#, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr ""
 "Selecteer de standaard veronderstelde tekenset bij laden van niet-"
 "Unicodebestanden:"
 
-#, c-format
 msgid ""
 "Detect codepage info for these files: .html, .rc, .xml \n"
 "need to restart session"
@@ -1818,7 +1395,6 @@ msgstr ""
 "Tekenset-info detecteren voor deze bestanden: .html, .rc, .xml \n"
 "Herstarten sessie noodzakelijk"
 
-#, c-format
 msgid ""
 "Detect codepage for text files using mlang.dll\n"
 "need to restart session"
@@ -1826,424 +1402,322 @@ msgstr ""
 "Tekenset detecteren voor tekstbestanden via mlang.dll\n"
 "Herstarten sessie noodzakelijk"
 
-#, c-format
 msgid "System codepage"
 msgstr "Tekenset van systeem"
 
-#, c-format
 msgid "According to WinMerge User Interface"
 msgstr "Volgens WinMerge-gebruikersinterface"
 
-#, c-format
 msgid "Custom codepage:"
 msgstr "Aangepaste tekenset:"
 
-#, c-format
 msgid "Options"
 msgstr "Opties"
 
-#, c-format
 msgid " Categories"
 msgstr " Categorieën"
 
-#, c-format
 msgid "Import..."
 msgstr "Importeren..."
 
-#, c-format
 msgid "Export..."
 msgstr "Exporteren..."
 
-#, c-format
 msgid "Dialog"
 msgstr "Venster"
 
-#, c-format
 msgid "Keywords:"
 msgstr "Sleutelwoorden:"
 
-#, c-format
 msgid "Function names:"
 msgstr "Functienamen"
 
-#, c-format
 msgid "Comments:"
 msgstr "Opmerkingen:"
 
-#, c-format
 msgid "Numbers:"
 msgstr "Nummers:"
 
-#, c-format
 msgid "Operators:"
 msgstr "Operators:"
 
-#, c-format
 msgid "Strings:"
 msgstr "Strings:"
 
-#, c-format
 msgid "Preprocessor:"
 msgstr "Voorverwerker:"
 
-#, c-format
 msgid "User 1:"
 msgstr "Gebruiker 1:"
 
-#, c-format
 msgid "User 2:"
 msgstr "Gebruiker 2:"
 
-#, c-format
 msgid "Bold"
 msgstr "Vet"
 
-#, c-format
 msgid "Marker colors"
 msgstr "Markeringskleuren"
 
-#, c-format
 msgid "Search Marker:"
 msgstr "Markering zoeken:"
 
-#, c-format
 msgid "User Defined Marker1:"
 msgstr "Aangepaste markering 1:"
 
-#, c-format
 msgid "User Defined Marker2:"
 msgstr "Aangepaste markering 2:"
 
-#, c-format
 msgid "User Defined Marker3:"
 msgstr "Aangepaste markering 3:"
 
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Mapvergelijkingsrapport"
 
-#, c-format
 msgid "Report &File:"
 msgstr "Rapportbestand:"
 
-#, c-format
 msgid "&Style:"
 msgstr "Stijl:"
 
-#, c-format
 msgid "&Include File Compare Report"
 msgstr "Bestandsvergelijkingsrapport bijvoegen"
 
-#, c-format
 msgid "&Copy to Clipboard"
 msgstr "Naar klembord kopiëren"
 
-#, c-format
 msgid "Shared or Private Filter"
 msgstr "Gedeelde of persoonlijke filter"
 
-#, c-format
 msgid "Which type of filter do you want to create?"
 msgstr "Welk type filter wilt u maken?"
 
-#, c-format
 msgid "Shared Filter (for all users on this machine)"
 msgstr "Gedeelde filter (voor alle gebruikers op deze pc)"
 
-#, c-format
 msgid "Private Filter (only for current user)"
 msgstr "Persoonlijke filter (alleen voor huidige gebruiker)"
 
-#, c-format
 msgid "Archive Support"
 msgstr "Archiefondersteuning"
 
-#, c-format
 msgid "&Enable archive file support"
 msgstr "Archiefbestand-ondersteuning inschakelen"
 
-#, c-format
 msgid "&Detect archive type from file signature"
 msgstr "Archieftype detecteren via bestandssignatuur"
 
-#, c-format
 msgid "Compare Statistics"
 msgstr "Vergelijkingsstatistieken"
 
-#, c-format
 msgid "Folders:"
 msgstr "Mappen:"
 
-#, c-format
 msgid "Files:"
 msgstr "Bestanden:"
 
-#, c-format
 msgid "Different"
 msgstr "Verschillend"
 
-#, c-format
 msgid "Text:"
 msgstr "Tekst:"
 
-#, c-format
 msgid "Binary:"
 msgstr "Binair:"
 
-#, c-format
 msgid "Unique"
 msgstr "Uniek"
 
-#, c-format
 msgid "Left:"
 msgstr "Links:"
 
-#, c-format
 msgid "Right:"
 msgstr "Rechts:"
 
-#, c-format
 msgid "Identical"
 msgstr "Identiek"
 
-#, c-format
 msgid "Total:"
 msgstr "Totaal:"
 
-#, c-format
 msgid "Close"
 msgstr "Sluiten"
 
-#, c-format
 msgid "Middle:"
 msgstr "Midden:"
 
-#, c-format
 msgid "Missing Left:"
 msgstr "Links ontbrekend:"
 
-#, c-format
 msgid "Missing Middle:"
 msgstr "Midden ontbrekend:"
 
-#, c-format
 msgid "Missing Right:"
 msgstr "Rechts ontbrekend:"
 
-#, c-format
 msgid "Affects"
 msgstr "Aanpassingen"
 
-#, c-format
 msgid "(Affects)"
 msgstr "(Aanpassingen)"
 
-#, c-format
 msgid "Select Codepage for"
 msgstr "Tekenset selecteren voor"
 
-#, c-format
 msgid "&File Loading:"
 msgstr "Bestanden laden:"
 
-#, c-format
 msgid "File &Saving:"
 msgstr "Bestanden opslaan:"
 
-#, c-format
 msgid "&Use same codepage for both"
 msgstr "Voor beide dezelfde tekenset gebruiken"
 
-#, c-format
 msgid "&Cancel"
 msgstr "Annuleren"
 
-#, c-format
 msgid "Test Filter"
 msgstr "Filter testen"
 
-#, c-format
 msgid "Testing filter ..."
 msgstr "Filter testen..."
 
-#, c-format
 msgid "&Enter text to test:"
 msgstr "Tekst opgeven om te testen:"
 
-#, c-format
 msgid "&Folder Name"
 msgstr "Mapnaam"
 
-#, c-format
 msgid "Result:"
 msgstr "Resultaat:"
 
-#, c-format
 msgid "&Test"
 msgstr "Testen"
 
-#, c-format
 msgid "&Close"
 msgstr "Sluiten"
 
-#, c-format
 msgid "&Use customized text colors"
 msgstr "Aangepaste tekstkleuren gebruiken"
 
-#, c-format
 msgid "Custom text colors"
 msgstr "Aangepaste tekstkleuren"
 
-#, c-format
 msgid "Whitespace:"
 msgstr "Witruimte:"
 
-#, c-format
 msgid "Regular text:"
 msgstr "Gewone tekst:"
 
-#, c-format
 msgid "Selection:"
 msgstr "Selectie:"
 
-#, c-format
 msgid "Margin:"
 msgstr "Marge:"
 
-#, c-format
 msgid "Backup Files"
 msgstr "Backupbestanden"
 
-#, c-format
 msgid "Create backup files in:"
 msgstr "Backupbestanden aanmaken in:"
 
-#, c-format
 msgid "&Folder compare"
 msgstr "Mappen vergelijken"
 
-#, c-format
 msgid "Fil&e compare"
 msgstr "Bestanden vergelijken"
 
-#, c-format
 msgid "Create backup files into:"
 msgstr "Backupbestanden aanmaken in:"
 
-#, c-format
 msgid "&Original file's folder"
 msgstr "Map van origineel bestand"
 
-#, c-format
 msgid "&Global backup folder:"
 msgstr "Globale backupmap:"
 
-#, c-format
 msgid "Backup filename:"
 msgstr "Bestandsnaam backup:"
 
-#, c-format
 msgid "&Append .bak -extension"
 msgstr ".bak-extensie toevoegen"
 
-#, c-format
 msgid "A&ppend timestamp"
 msgstr "Tijdstempel toevoegen"
 
-#, c-format
 msgid "Confirm Copy"
 msgstr "Kopiëren bevestigen"
 
-#, c-format
 msgid "Are you sure you want to copy XXX items?"
 msgstr "Bent u zeker dat u XXX items wilt kopiëren?"
 
-#, c-format
 msgid "From left"
 msgstr "Van links"
 
-#, c-format
 msgid "To right"
 msgstr "Naar rechts"
 
-#, c-format
 msgid "Yes"
 msgstr "Ja"
 
-#, c-format
 msgid "No"
 msgstr "Nee"
 
-#, c-format
 msgid "Plugins"
 msgstr "Plugins"
 
-#, c-format
 msgid "&Enable plugins"
 msgstr "Plugins inschakelen"
 
-#, c-format
 msgid "Shell Integration"
 msgstr "Shell-integratie"
 
-#, c-format
 msgid "Explorer"
 msgstr "Verkenner"
 
-#, c-format
 msgid "E&nable advanced menu"
 msgstr "Geavanceerd menu inschakelen"
 
-#, c-format
 msgid "&Add to context menu"
 msgstr "Aan contextmenu toevoegen"
 
-#, c-format
 msgid "&Register shell extension"
 msgstr "Shell-extensie registreren"
 
-#, c-format
 msgid "&Unregister shell extension"
 msgstr "Shell-extensie de-registreren"
 
 msgid "Register shell extension for current user &only"
-msgstr ""
+msgstr "Shell-extensie alleen voor huidige gebruiker registreren"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr ""
+msgstr "Shell-extensie alleen voor huidige gebruiker de-registreren"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Map"
 
-#, c-format
 msgid "S&top after first difference"
 msgstr "Stoppen na eerste verschil"
 
-#, c-format
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Tijdsverschillen kleiner dan 3 seconden negeren"
 
-#, c-format
 msgid "&Include unique subfolders contents"
 msgstr "Inhoud van unieke submappen insluiten"
 
-#, c-format
 msgid "&Automatically expand all subfolders"
 msgstr "Alle submappen automatisch uitklappen"
 
-#, c-format
 msgid "Ignore &Reparse Points"
 msgstr "Punten voor opnieuw verwerken negeren"
 
-#, c-format
 msgid "&Quick compare limit (MB):"
 msgstr "Limiet snelvergelijking (MB):"
 
 msgid "&Binary compare limit (MB):"
-msgstr ""
+msgstr "Binaire vergelijkingslimiet (MB):"
 
-#, c-format
 msgid ""
 "&Number of compare threads (a negative value implies addition of the number "
 "of available CPU cores):"
@@ -2255,62 +1729,48 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binair"
 
-#, c-format
 msgid "Binary File &Patterns:"
 msgstr "Binaire bestandspatronen:"
 
-#, c-format
 msgid "Frhed settings"
 msgstr "Frhed-instellingen"
 
-#, c-format
 msgid "View &Settings..."
 msgstr "Instellingen weergeven..."
 
-#, c-format
 msgid "&Binary Mode..."
 msgstr "Binaire modus..."
 
-#, c-format
 msgid "&Character Set..."
 msgstr "Tekenset..."
 
 msgid "Image"
 msgstr "Afbeelding"
 
-#, c-format
 msgid "Image File &Patterns:"
 msgstr "Afbeeldingsbestand-patronen:"
 
-#, c-format
 msgid "&Hex View"
 msgstr "Hex-weergave"
 
-#, c-format
 msgid "EXT"
 msgstr "UIT"
 
-#, c-format
 msgid "CAP"
 msgstr "CAP"
 
-#, c-format
 msgid "NUM"
 msgstr "NUM"
 
-#, c-format
 msgid "SCRL"
 msgstr "SCRL"
 
-#, c-format
 msgid "OVR"
 msgstr "OVR"
 
-#, c-format
 msgid "REC"
 msgstr "OPN"
 
-#, c-format
 msgid ""
 "\n"
 "New Documents (Ctrl+N)"
@@ -2318,7 +1778,6 @@ msgstr ""
 "\n"
 "Nieuwe documenten (Ctrl+N)"
 
-#, c-format
 msgid ""
 "\n"
 "Open (Ctrl+O)"
@@ -2326,7 +1785,6 @@ msgstr ""
 "\n"
 "Openen (Ctrl+O)"
 
-#, c-format
 msgid ""
 "\n"
 "Save (Ctrl+S)"
@@ -2334,23 +1792,18 @@ msgstr ""
 "\n"
 "Opslaan (Ctrl+S)"
 
-#, c-format
 msgid "Unknown error attempting to open project file"
 msgstr "Onbekende fout bij poging tot openen van projectbestand"
 
-#, c-format
 msgid "Unknown error attempting to save project file"
 msgstr "Onbekende fout bij poging tot opslaan van projectbestand"
 
-#, c-format
 msgid "Project file successfully loaded."
 msgstr "Projectbestand met succes geladen."
 
-#, c-format
 msgid "Project file successfully saved."
 msgstr "Projectbestand met succes opgeslagen."
 
-#, c-format
 msgid ""
 "\n"
 "Undo (Ctrl+Z)"
@@ -2358,7 +1811,6 @@ msgstr ""
 "\n"
 "Ongedaan maken (Ctrl+Z)"
 
-#, c-format
 msgid ""
 "\n"
 "Redo (Ctrl+Y)"
@@ -2366,7 +1818,6 @@ msgstr ""
 "\n"
 "Opnieuw (Ctrl+Y)"
 
-#, c-format
 msgid ""
 "\n"
 "FileCompare\n"
@@ -2384,7 +1835,6 @@ msgstr ""
 "WinMerge.BestandsVergelijking\n"
 "WinMerge bestandsVergelijking"
 
-#, c-format
 msgid ""
 "\n"
 "FolderCompare\n"
@@ -2402,12 +1852,13 @@ msgstr ""
 "WinMerge.MapVergelijking\n"
 "WinMerge Mapvergelijking"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Ontwikkelaars:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
-#, c-format
 msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
 "are welcome to redistribute it under certain circumstances; see the GNU "
@@ -2417,59 +1868,45 @@ msgstr ""
 "herverdelen onder bepaalde omstandigheden; zie de GNU General Public License"
 " in het Help-menu voor details."
 
-#, c-format
 msgid "&Abort"
 msgstr "Afbreken"
 
-#, c-format
 msgid "&Retry"
 msgstr "Opnieuw proberen"
 
-#, c-format
 msgid "&Ignore"
 msgstr "Negeren"
 
-#, c-format
 msgid "Ignore &all"
 msgstr "Alles negeren"
 
-#, c-format
 msgid "&Yes"
 msgstr "Ja"
 
-#, c-format
 msgid "Yes to &all"
 msgstr "Ja op alles"
 
-#, c-format
 msgid "&No"
 msgstr "Nee"
 
-#, c-format
 msgid "No to a&ll"
 msgstr "Nee op alles"
 
-#, c-format
 msgid "&Continue"
 msgstr "Doorgaan"
 
-#, c-format
 msgid "&Skip"
 msgstr "Overslaan"
 
-#, c-format
 msgid "Skip &all"
 msgstr "Alles overslaan"
 
-#, c-format
 msgid "Don't display this &message again."
 msgstr "Dit bericht niet meer weergeven."
 
-#, c-format
 msgid "Don't ask this &question again."
 msgstr "Deze vraag niet meer stellen."
 
-#, c-format
 msgid ""
 "To make this messagebox visible again, press the Reset button on the General"
 " page of the Options dialog."
@@ -2477,31 +1914,24 @@ msgstr ""
 "Om dit berichtvenster opnieuw zichtbaar te maken, druk op de herstellen-knop"
 " op de pagina \"algemeen\" van het venster \"opties\"."
 
-#, c-format
 msgid "Syntax"
 msgstr "Syntax"
 
-#, c-format
 msgid "Differences"
 msgstr "Verschillen"
 
-#, c-format
 msgid "To:"
 msgstr "Naar:"
 
-#, c-format
 msgid "From left:"
 msgstr "Van links:"
 
-#, c-format
 msgid "To left:"
 msgstr "Naar links:"
 
-#, c-format
 msgid "From right:"
 msgstr "Van rechts:"
 
-#, c-format
 msgid "To right:"
 msgstr "Naar rechts:"
 
@@ -2509,11 +1939,9 @@ msgstr "Naar rechts:"
 msgid "Version %1"
 msgstr "Versie %1 - Nederlands"
 
-#, c-format
 msgid "Unicode"
 msgstr "Unicode"
 
-#, c-format
 msgid "X64"
 msgstr "X64"
 
@@ -2521,7 +1949,6 @@ msgstr "X64"
 msgid "Options (%1)"
 msgstr "Opties (%1)"
 
-#, c-format
 msgid "All message boxes are now displayed again."
 msgstr "Alle berichtvensters worden terug weergegeven."
 
@@ -2535,27 +1962,21 @@ msgstr ""
 "\n"
 "Gebruik waarden 1 - %1."
 
-#, c-format
 msgid "Open"
 msgstr "Openen"
 
-#, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "Programma's|*.exe;*.bat;*.cmd|Alle bestanden (*.*)|*.*||"
 
-#, c-format
 msgid "All Files (*.*)|*.*||"
 msgstr "Alle bestanden (*.*)|*.*||"
 
-#, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "WinMerge-projectbestanden (*.WinMerge)|*.WinMerge||"
 
-#, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Optie-bestanden (*.ini)|*.ini|Alle bestanden (*.*)|*.*||"
 
-#, c-format
 msgid ""
 "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files "
 "(*.*)|*.*||"
@@ -2563,39 +1984,30 @@ msgstr ""
 "Tekstbestanden (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Alle "
 "bestanden (*.*)|*.*||"
 
-#, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "HTML-bestanden (*.htm,*.html)|*.htm;*.html|Alle bestanden (*.*)|*.*||"
 
-#, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-bestanden (*.xml)|*.xml|Alle bestanden (*.*)|*.*||"
 
-#, c-format
 msgid "Name"
 msgstr "Naam"
 
-#, c-format
 msgid "Location"
 msgstr "Locatie"
 
-#, c-format
 msgid "Filters"
 msgstr "Filters"
 
-#, c-format
 msgid "[F] "
 msgstr "[F] "
 
-#, c-format
 msgid "Description"
 msgstr "Beschrijving"
 
-#, c-format
 msgid "Select filename for new filter"
 msgstr "Bestandsnaam selecteren voor nieuwe filter"
 
-#, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Bestandsfilters (*.flt)|*.flt|Alle bestanden (*.*)|*.*||"
 
@@ -2623,7 +2035,6 @@ msgstr ""
 "\n"
 "Ga na of de map bestaat en schrijfbaar is."
 
-#, c-format
 msgid ""
 "User's filter file folder is not defined!\n"
 "\n"
@@ -2645,11 +2056,9 @@ msgstr ""
 "\n"
 "Misschien is het bestand alleen-lezen?"
 
-#, c-format
 msgid "Locate filter file to install"
 msgstr "Lokaliseer te installeren filterbestand"
 
-#, c-format
 msgid ""
 "Installing filter file failed.\n"
 "\n"
@@ -2659,15 +2068,12 @@ msgstr ""
 "\n"
 "Kon nieuwe filter niet kopiëren naar filtermap."
 
-#, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
 msgstr "Filterbestand bestaat reeds. Bestaande filter overschrijven?"
 
-#, c-format
 msgid "Regular expression"
 msgstr "Reguliere expressie"
 
-#, c-format
 msgid ""
 "Filters were updated. Do you want to refresh all open folder compares?\n"
 "\n"
@@ -2677,31 +2083,24 @@ msgstr ""
 "\n"
 "Indien u dit nu niet wilt doen, kunt u nee selecteren en de vergelijkingen later vernieuwen."
 
-#, c-format
 msgid "Folder Comparison Results"
 msgstr "Resultaten mapvergelijking"
 
-#, c-format
 msgid "File Comparison"
 msgstr "Bestandsvergelijking"
 
-#, c-format
 msgid "Untitled left"
 msgstr "Naamloos links"
 
-#, c-format
 msgid "Untitled middle"
 msgstr "Naamloos midden"
 
-#, c-format
 msgid "Untitled right"
 msgstr "Naamloos rechts"
 
-#, c-format
 msgid "Theirs File"
 msgstr "Hun bestand"
 
-#, c-format
 msgid "Mine File"
 msgstr "Mijn bestand"
 
@@ -2717,7 +2116,6 @@ msgstr "Regel: %s"
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Regel: %s  Kolom: %d/%d  Teken: %d/%d"
 
-#, c-format
 msgid "Merge"
 msgstr "Samenvoegen"
 
@@ -2729,12 +2127,10 @@ msgstr "Verschil %1 van %2"
 msgid "%1 Differences Found"
 msgstr "%1 verschillen gevonden"
 
-#, c-format
 msgid "1 Difference Found"
 msgstr "Eén verschil gevonden"
 
 #. Abbreviation from "Read Only"
-#, c-format
 msgid "RO"
 msgstr "AL"
 
@@ -2746,61 +2142,47 @@ msgstr "Item %1 van %2"
 msgid "Items: %1"
 msgstr "Items: %1"
 
-#, c-format
 msgid "Select two existing folders or files to compare"
 msgstr "Twee bestaande mappen of bestanden selecteren om te vergelijken"
 
-#, c-format
 msgid "Folder Selection"
 msgstr "Mapselectie"
 
-#, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
 msgstr ""
 "Twee (of drie) mappen of twee (of drie) bestanden selecteren om te "
 "vergelijken."
 
-#, c-format
 msgid "Left (1st) path is invalid!"
 msgstr "Linker (1ste) pad is ongeldig!"
 
-#, c-format
 msgid "Middle (2nd) path is invalid!"
 msgstr "Middelste (2de) pad is ongeldig!"
 
-#, c-format
 msgid "Right (2nd) path is invalid!"
 msgstr "Rechter (2de) pad is ongeldig!"
 
-#, c-format
 msgid "Right (3rd) path is invalid!"
 msgstr "Rechter (3de) pad is ongeldig!"
 
-#, c-format
 msgid "Both paths are invalid!"
 msgstr "Beide paden zijn ongeldig!"
 
-#, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr "Linker (1ste) en middelste (2de) pad zijn ongeldig!"
 
-#, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr "Linker (1ste) en rechter (3de) pad zijn ongeldig!"
 
-#, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr "Middelste (2de) en rechter (3de) pad zijn ongeldig!"
+msgstr "MIddelste (2de) en rechter (3de) pad zijn ongeldig!"
 
-#, c-format
 msgid "All paths are invalid!"
 msgstr "Alle paden zijn ongeldig!"
 
-#, c-format
 msgid "Only enabled for File comparisons"
-msgstr ""
+msgstr "Alleen ingeschakeld voor bestandsvergelijkingen"
 
-#, c-format
 msgid "Cannot compare file and folder!"
 msgstr "Kan geen bestand met een map vergelijken!"
 
@@ -2824,7 +2206,6 @@ msgstr ""
 "\n"
 "%2"
 
-#, c-format
 msgid "Failed to parse conflict file."
 msgstr "Verwerken van conflictbestand mislukt."
 
@@ -2838,7 +2219,6 @@ msgstr ""
 "%1\n"
 "is geen conflictbestand."
 
-#, c-format
 msgid "Save As"
 msgstr "Opslaan als"
 
@@ -2854,7 +2234,6 @@ msgstr ""
 "%1 is gemarkeerd als alleen lezen. Wilt u dit alleen-lezen bestand "
 "overschrijven? (Niet opslaan onder nieuwe naam.)"
 
-#, c-format
 msgid "Error backing up file"
 msgstr "Fout bij maken van reservekopie van bestand"
 
@@ -2950,15 +2329,12 @@ msgstr ""
 "\n"
 "Wilt u het bestand opnieuw laden?"
 
-#, c-format
 msgid "Save Left File As"
 msgstr "Linker bestand opslaan als"
 
-#, c-format
 msgid "Save Middle File As"
 msgstr "Middelste bestand opslaan als"
 
-#, c-format
 msgid "Save Right File As"
 msgstr "Rechter bestand opslaan als"
 
@@ -2972,7 +2348,6 @@ msgstr ""
 "%1\n"
 "is verdwenen. Sla een kopie van het bestand op om door te gaan."
 
-#, c-format
 msgid ""
 "Cannot merge differences when documents are not in synch.\n"
 "\n"
@@ -3056,15 +2431,12 @@ msgstr "Beide (%1)"
 msgid "All (%1)"
 msgstr "Alles (%1)"
 
-#, c-format
 msgid "Left side - select destination folder:"
 msgstr "Linkerkant - doelmap selecteren:"
 
-#, c-format
 msgid "Middle side - select destination folder:"
 msgstr "Midden - doelmap selecteren:"
 
-#, c-format
 msgid "Right side - select destination folder:"
 msgstr "Rechterkant - doelmap selecteren:"
 
@@ -3083,7 +2455,6 @@ msgid ""
 "%1 ?"
 msgstr "Weet u zeker dat u %1 wilt verwijderen?"
 
-#, c-format
 msgid "Are you sure you want to copy:"
 msgstr "Weet u zeker dat u dit wilt kopiëren:"
 
@@ -3109,7 +2480,6 @@ msgstr ""
 "\n"
 "Vernieuw de vergelijking."
 
-#, c-format
 msgid "Are you sure you want to move:"
 msgstr "Weet u zeker dat u wilt verplaatsen:"
 
@@ -3117,11 +2487,9 @@ msgstr "Weet u zeker dat u wilt verplaatsen:"
 msgid "Are you sure you want to move %d items:"
 msgstr "Weet u zeker dat u %d items wilt verplaatsen:"
 
-#, c-format
 msgid "Confirm Move"
 msgstr "Verplaatsen bevestigen"
 
-#, c-format
 msgid ""
 "You are about to close the window that is comparing folders. Are you sure "
 "you want to close the window?"
@@ -3133,11 +2501,9 @@ msgstr ""
 msgid "Failed to execute external editor: %1"
 msgstr "Uitvoeren externe editor mislukt: %1"
 
-#, c-format
 msgid "Unknown archive format"
 msgstr "Onbekend archiefformaat"
 
-#, c-format
 msgid "Filename"
 msgstr "Bestandsnaam"
 
@@ -3145,119 +2511,90 @@ msgctxt "DirView|ColumnHeader"
 msgid "Folder"
 msgstr "Map"
 
-#, c-format
 msgid "Comparison result"
 msgstr "Vergelijkingsresultaat"
 
-#, c-format
 msgid "Left Date"
 msgstr "Datum links"
 
-#, c-format
 msgid "Right Date"
 msgstr "Datum rechts"
 
-#, c-format
 msgid "Middle Date"
 msgstr "Datum midden"
 
-#, c-format
 msgid "Extension"
 msgstr "Extensie"
 
-#, c-format
 msgid "Left Size"
 msgstr "Grootte links"
 
-#, c-format
 msgid "Right Size"
 msgstr "Grootte rechts"
 
-#, c-format
 msgid "Middle Size"
 msgstr "Grootte midden"
 
-#, c-format
 msgid "Right Size (Short)"
 msgstr "Grootte rechts (kort)"
 
-#, c-format
 msgid "Left Size (Short)"
 msgstr "Grootte links (kort)"
 
-#, c-format
 msgid "Middle Size (Short)"
 msgstr "Grootte midden (kort)"
 
-#, c-format
 msgid "Left Creation Time"
 msgstr "Aanmaaktijd links"
 
-#, c-format
 msgid "Right Creation Time"
 msgstr "Aanmaaktijd rechts"
 
-#, c-format
 msgid "Middle Creation Time"
 msgstr "Aanmaaktijd midden"
 
-#, c-format
 msgid "Newer File"
 msgstr "Nieuwer bestand"
 
-#, c-format
 msgid "Left File Version"
 msgstr "Bestandsversie links"
 
-#, c-format
 msgid "Right File Version"
 msgstr "Bestandsversie rechts"
 
-#, c-format
 msgid "Middle File Version"
 msgstr "Bestandsversie midden"
 
-#, c-format
 msgid "Short Result"
 msgstr "Kort resultaat"
 
-#, c-format
 msgid "Left Attributes"
 msgstr "Attributen links"
 
-#, c-format
 msgid "Right Attributes"
 msgstr "Attributen rechts"
 
-#, c-format
 msgid "Middle Attributes"
 msgstr "Attributen midden"
 
-#, c-format
 msgid "Left EOL"
 msgstr "Links regeleinde"
 
-#, c-format
 msgid "Middle EOL"
 msgstr "Midden regeleinde"
 
-#, c-format
 msgid "Right EOL"
 msgstr "Rechts regeleinde"
 
-#, c-format
 msgid "Left Encoding"
 msgstr "Tekenset links"
 
-#, c-format
 msgid "Right Encoding"
 msgstr "Tekenset rechts"
 
-#, c-format
 msgid "Middle Encoding"
 msgstr "Tekenset midden"
 
-#, c-format
 msgid "Ignored Diff."
 msgstr "Genegeerde verschillen"
 
@@ -3265,19 +2602,15 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binair"
 
-#, c-format
 msgid "Unable to compare files"
 msgstr "Kan bestanden niet vergelijken"
 
-#, c-format
 msgid "Item aborted"
 msgstr "Item afgebroken"
 
-#, c-format
 msgid "File skipped"
 msgstr "Bestand overgeslagen"
 
-#, c-format
 msgid "Folder skipped"
 msgstr "Map overgeslagen"
 
@@ -3297,67 +2630,51 @@ msgstr "Alleen rechts: %1"
 msgid "Does not exist in %1"
 msgstr "Bestaat niet in %1"
 
-#, c-format
 msgid "Binary files are identical"
 msgstr "Binaire bestanden zijn identiek"
 
-#, c-format
 msgid "Binary files are different"
 msgstr "Binaire bestanden zijn verschillend"
 
-#, c-format
 msgid "Files are different"
 msgstr "Bestanden zijn verschillend"
 
-#, c-format
 msgid "Folders are different"
 msgstr "Mappen zijn verschillend"
 
-#, c-format
 msgid "Left Only"
 msgstr "Alleen links"
 
-#, c-format
 msgid "Right Only"
 msgstr "Alleen rechts"
 
-#, c-format
 msgid "Middle Only"
 msgstr "Alleen midden"
 
-#, c-format
 msgid "No item in left"
 msgstr "Geen item links"
 
-#, c-format
 msgid "No item in right"
 msgstr "Geen item rechts"
 
-#, c-format
 msgid "No item in middle"
 msgstr "Geen item in midden"
 
-#, c-format
 msgid "Error"
 msgstr "Fout"
 
-#, c-format
 msgid "Text files are identical"
 msgstr "Tekstbestanden zijn identiek"
 
-#, c-format
 msgid "(Middle and right are identical)"
 msgstr "(Midden en rechts zijn identiek)"
 
-#, c-format
 msgid "(Left and right are identical)"
 msgstr "(Links en rechts zijn identiek)"
 
-#, c-format
 msgid "(Left and middle are identical)"
 msgstr "(Links en midden zijn identiek)"
 
-#, c-format
 msgid "Text files are different"
 msgstr "Tekstbestanden zijn verschillend"
 
@@ -3365,7 +2682,6 @@ msgstr "Tekstbestanden zijn verschillend"
 msgid "Elapsed time: %ld ms"
 msgstr "Verstreken tijd: %ld ms"
 
-#, c-format
 msgid "1 item selected"
 msgstr "1 item geselecteerd"
 
@@ -3373,127 +2689,96 @@ msgstr "1 item geselecteerd"
 msgid "%1 items selected"
 msgstr "%1 items geselecteerd"
 
-#, c-format
 msgid "Filename or folder name."
 msgstr "Bestandsnaam of mapnaam."
 
-#, c-format
 msgid "Subfolder name when subfolders are included."
 msgstr "Naam van submap als submappen ingesloten zijn."
 
-#, c-format
 msgid "Comparison result, long form."
 msgstr "Vergelijkingsresultaat, lange vorm."
 
-#, c-format
 msgid "Left side modification date."
 msgstr "Wijzigingsdatum linkerzijde."
 
-#, c-format
 msgid "Right side modification date."
 msgstr "Wijzigingsdatum rechterzijde."
 
-#, c-format
 msgid "Middle side modification date."
 msgstr "Wijzigingsdatum midden."
 
-#, c-format
 msgid "File's extension."
 msgstr "Bestandsextensie."
 
-#, c-format
 msgid "Left file size in bytes."
 msgstr "Bestandsgrootte linkerzijde in bytes."
 
-#, c-format
 msgid "Right file size in bytes."
 msgstr "Bestandsgrootte rechterzijde in bytes."
 
-#, c-format
 msgid "Middle file size in bytes."
 msgstr "Bestandsgrootte midden in bytes."
 
-#, c-format
 msgid "Left file size abbreviated."
 msgstr "Bestandsgrootte links ingekort."
 
-#, c-format
 msgid "Right file size abbreviated."
 msgstr "Bestandsgrootte rechts ingekort."
 
-#, c-format
 msgid "Middle file size abbreviated."
 msgstr "Bestandsgrootte midden ingekort."
 
-#, c-format
 msgid "Left side creation time."
 msgstr "Aanmaaktijdstip linkerzijde."
 
-#, c-format
 msgid "Right side creation time."
 msgstr "Aanmaaktijdstip rechterzijde."
 
-#, c-format
 msgid "Middle side creation time."
 msgstr "Aanmaaktijdstip midden."
 
-#, c-format
 msgid "Tells which side has newer modification date."
 msgstr "Geeft aan welke zijde het recentst gewijzigd is."
 
-#, c-format
 msgid "Left side file version, only for some filetypes."
 msgstr "Bestandsversie linkerzijde, alleen voor bepaalde bestandstypes."
 
-#, c-format
 msgid "Right side file version, only for some filetypes."
 msgstr "Bestandsversie rechterzijde, alleen voor bepaalde bestandstypes."
 
-#, c-format
 msgid "Middle side file version, only for some filetypes."
 msgstr "Bestandsversie midden, alleen voor bepaalde bestandstypes."
 
-#, c-format
 msgid "Short comparison result."
 msgstr "Kort vergelijkingsresultaat."
 
-#, c-format
 msgid "Left side attributes."
 msgstr "Attributen linkerzijde."
 
-#, c-format
 msgid "Right side attributes."
 msgstr "Attributen rechterzijde."
 
-#, c-format
 msgid "Middle side attributes."
 msgstr "Attributen midden."
 
-#, c-format
 msgid "Left side file EOL type"
 msgstr "Type regeleinde linker bestand"
 
-#, c-format
 msgid "Right side file EOL type"
 msgstr "Type regeleinde rechter bestand"
 
-#, c-format
 msgid "Middle side file EOL type"
 msgstr "Type regeleinde middelste bestand"
 
-#, c-format
 msgid "Left side encoding."
 msgstr "Codering linkerzijde."
 
-#, c-format
 msgid "Right side encoding."
 msgstr "Codering rechterzijde."
 
-#, c-format
 msgid "Middle side encoding."
 msgstr "Codering midden."
 
-#, c-format
 msgid ""
 "Number of ignored differences in file. These differences are ignored by "
 "WinMerge and cannot be merged."
@@ -3501,14 +2786,12 @@ msgstr ""
 "Aantal genegeerde verschillen in bestand. Deze verschillen worden genegeerd "
 "door WinMerge en kunnen niet samengevoegd worden."
 
-#, c-format
 msgid ""
 "Number of differences in file. This number does not include ignored "
 "differences."
 msgstr ""
 "Aantal verschillen in bestand. Dit aantal bevat geen genegeerde verschillen."
 
-#, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Geeft een asterisk (*) weer als het bestand binair is."
 
@@ -3516,23 +2799,18 @@ msgstr "Geeft een asterisk (*) weer als het bestand binair is."
 msgid "Compare %1 with %2"
 msgstr "%1 met %2 vergelijken"
 
-#, c-format
 msgid "Comma-separated list"
 msgstr "Komma-gescheiden lijst"
 
-#, c-format
 msgid "Tab-separated list"
 msgstr "Tab-gescheiden lijst"
 
-#, c-format
 msgid "Simple HTML"
 msgstr "Simpele HTML"
 
-#, c-format
 msgid "Simple XML"
 msgstr "Simpele XML"
 
-#, c-format
 msgid ""
 "The report file already exists. Do you want to overwrite existing file?"
 msgstr ""
@@ -3547,30 +2825,24 @@ msgstr ""
 "Fout bij maken van rapport:\n"
 "%1"
 
-#, c-format
 msgid "The report has been created successfully."
 msgstr "Het rapport is met succes aangemaakt."
 
-#, c-format
 msgid "The same file is opened in both panels."
 msgstr "Hetzelfde bestand is in beide vensters geopend."
 
-#, c-format
 msgid "The selected files are identical."
 msgstr "De geselecteerde bestanden zijn identiek."
 
-#, c-format
 msgid "An error occurred while comparing the files."
 msgstr "Er trad een fout op bij het vergelijken van de bestanden."
 
-#, c-format
 msgid ""
 "Temporary files could not be created. Check your temporary path settings."
 msgstr ""
 "Tijdelijke bestanden konden niet aangemaakt worden. Controleer de instelling"
 " voor het pad van tijdelijke bestanden."
 
-#, c-format
 msgid ""
 "These files use different carriage return types.\n"
 "\n"
@@ -3584,11 +2856,9 @@ msgstr ""
 "\n"
 "Opmerking: Indien u op elk moment alle regeleinde-types als equivalent wilt behandelen, stel optie \"Negeer regeleindeteken-verschillen...\" dan in in de Vergelijken-tab van het opties-venster (beschikbaar onder Wijzigen/Opties)"
 
-#, c-format
 msgid "The selected folder is invalid."
 msgstr "De geselecteerde map is ongeldig."
 
-#, c-format
 msgid "Cannot open a binary file to editor."
 msgstr "Kan geen binair bestand openen met de editor."
 
@@ -3606,19 +2876,15 @@ msgstr ""
 "%1\n"
 "aanmaken aan de andere kant en deze mappen openen?"
 
-#, c-format
 msgid "Do you want to move to the next file?"
 msgstr "Wilt u naar het volgende bestand gaan?"
 
-#, c-format
 msgid "Do you want to move to the previous file?"
 msgstr "Wilt u naar het vorige bestand gaan?"
 
-#, c-format
 msgid "Do you want to move to the next page?"
 msgstr "Wilt u naar de volgende pagina gaan?"
 
-#, c-format
 msgid "Do you want to move to the previous page?"
 msgstr "Wilt u naar de vorige pagina gaan?"
 
@@ -3632,27 +2898,21 @@ msgstr ""
 "Elk bestand in zijn eigen tekenset weergeven zal resulteren in een betere weergave, maar samenvoegen/kopiëren zal gevaarlijk zijn.\n"
 "Wilt u beide bestanden behandelen alsof ze in de standaard Windows-tekenset zijn (aanbevolen)?"
 
-#, c-format
 msgid "Information lost due to encoding errors: both files"
 msgstr "Informatie verloren gegaan wegens codeerfouten: beide bestanden"
 
-#, c-format
 msgid "Information lost due to encoding errors: first file"
 msgstr "Informatie verloren gegaan wegens codeerfouten: eerste bestand"
 
-#, c-format
 msgid "Information lost due to encoding errors: second file"
 msgstr "Informatie verloren gegaan wegens codeerfouten: tweede bestand"
 
-#, c-format
 msgid "Information lost due to encoding errors: third file"
 msgstr "Informatie verloren gegaan wegens codeerfouten: derde bestand"
 
-#, c-format
 msgid "No difference"
 msgstr "Geen verschil"
 
-#, c-format
 msgid "Line difference"
 msgstr "Regelverschil"
 
@@ -3664,7 +2924,6 @@ msgstr "%1 tekenreeks(en) vervangen."
 msgid "Cannot find string \"%s\""
 msgstr "Kan tekenreeks \"%s\" niet vinden"
 
-#, c-format
 msgid ""
 "You are now entering Merge Mode. If you want to turn off Merge Mode, press "
 "F9 key"
@@ -3680,43 +2939,33 @@ msgstr ""
 "Aantal automatisch samengevoegde wijzigingen: %1\n"
 "Aantal niet-opgeloste conflicten: %2"
 
-#, c-format
 msgid "The change of codepage has been merged"
 msgstr "Wijziging van tekenset werd samengevoegd"
 
-#, c-format
 msgid "The changes of codepage are conflicting"
 msgstr "Wijzigingen van tekenset geven conflicten"
 
-#, c-format
 msgid "The change of EOL has been merged"
 msgstr "Wijziging van regeleinde werd samengevoegd"
 
-#, c-format
 msgid "The changes of EOL are conflicting"
 msgstr "Wijzigingen van regeleinde geven conflicten"
 
-#, c-format
 msgid "Location Pane"
 msgstr "Locatievenster"
 
-#, c-format
 msgid "Diff Pane"
 msgstr "Verschilvenster"
 
-#, c-format
 msgid "Patch file successfully written."
 msgstr "Patch-bestand succesvol geschreven."
 
-#, c-format
 msgid "1. item is not found or is directory!"
 msgstr "1. item is niet teruggevonden of is een map!"
 
-#, c-format
 msgid "2. item is not found or is directory!"
 msgstr "2. item is niet teruggevonden of is een map!"
 
-#, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Het patch-bestand bestaat al. Wilt u het overschrijven?"
 
@@ -3724,15 +2973,12 @@ msgstr "Het patch-bestand bestaat al. Wilt u het overschrijven?"
 msgid "[%1 files selected]"
 msgstr "[%1 bestanden geselecteerd]"
 
-#, c-format
 msgid "Normal"
 msgstr "Normaal"
 
-#, c-format
 msgid "Context"
 msgstr "Context"
 
-#, c-format
 msgid "Unified"
 msgstr "Verenigd"
 
@@ -3744,19 +2990,15 @@ msgstr "Kon niet schrijven naar bestand %1."
 msgid "The specified output path is not an absolute path: %1"
 msgstr "Het opgegeven uitvoerpad is geen absoluut pad: %1"
 
-#, c-format
 msgid "Specify an output file"
 msgstr "Uitvoerbestand opgeven"
 
-#, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Kan geen patch-bestand aanmaken van binaire bestanden."
 
-#, c-format
 msgid "Cannot create a patch file from directories."
 msgstr "Kan geen patch-bestand maken van mappen."
 
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3766,11 +3008,9 @@ msgstr ""
 "\n"
 "Een patch genereren vereist dat er geen niet-opgeslagen wijzigingen in bestanden zijn."
 
-#, c-format
 msgid "Folder does not exist."
 msgstr "Map bestaat niet."
 
-#, c-format
 msgid ""
 "Archive support is not enabled.\n"
 "All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
@@ -3780,31 +3020,24 @@ msgstr ""
 "Er kon geen enkel onderdeel voor archiefondersteuning (7-zip en/of Merge7z*.dll) teruggevonden worden.\n"
 "Zie de handleiding voor meer info over archiefondersteuning en hoe het in te schakelen."
 
-#, c-format
 msgid "Select file for export"
 msgstr "Bestand selecteren voor exporteren"
 
-#, c-format
 msgid "Select file for import"
 msgstr "Bestand selecteren voor importeren"
 
-#, c-format
 msgid "Options imported from the file."
 msgstr "Opties geïmporteerd uit het bestand."
 
-#, c-format
 msgid "Options exported to the file."
 msgstr "Opties geëxporteerd naar het bestand."
 
-#, c-format
 msgid "Failed to import options from the file."
 msgstr "Opties importeren van bestand mislukt."
 
-#, c-format
 msgid "Failed to write options to the file."
 msgstr "Opties schrijven naar bestand mislukt."
 
-#, c-format
 msgid ""
 "You are about to close several compare windows.\n"
 "\n"
@@ -3814,7 +3047,6 @@ msgstr ""
 "\n"
 "Wilt u doorgaan?"
 
-#, c-format
 msgid "Mixed"
 msgstr "Gemengd"
 
@@ -3822,27 +3054,21 @@ msgctxt "EOL Type"
 msgid "Binary"
 msgstr "Binair"
 
-#, c-format
 msgid "None"
 msgstr "Geen"
 
-#, c-format
 msgid "Type"
 msgstr "Type"
 
-#, c-format
 msgid "Unpacker"
 msgstr "Uitpakker"
 
-#, c-format
 msgid "Prediffer"
 msgstr "Voorvergelijken"
 
-#, c-format
 msgid "Editor script"
 msgstr "Editor-script"
 
-#, c-format
 msgid ""
 "\n"
 "Difference in the Current Line"
@@ -3850,7 +3076,6 @@ msgstr ""
 "\n"
 "Verschil in de huidige regel"
 
-#, c-format
 msgid ""
 "\n"
 "Options"
@@ -3858,7 +3083,6 @@ msgstr ""
 "\n"
 "Opties"
 
-#, c-format
 msgid ""
 "\n"
 "Refresh (F5)"
@@ -3866,7 +3090,6 @@ msgstr ""
 "\n"
 "Vernieuwen (F5)"
 
-#, c-format
 msgid ""
 "\n"
 "Previous Difference (Alt+Up)"
@@ -3874,7 +3097,6 @@ msgstr ""
 "\n"
 "Vorig verschil (Alt+Omhoog)"
 
-#, c-format
 msgid ""
 "\n"
 "Next Difference (Alt+Down)"
@@ -3882,7 +3104,6 @@ msgstr ""
 "\n"
 "Volgend verschil (Alt+Omlaag)"
 
-#, c-format
 msgid ""
 "\n"
 "Previous Conflict (Alt+Shift+Up)"
@@ -3890,7 +3111,6 @@ msgstr ""
 "\n"
 "Vorig conflict (Alt+Shift+Omhoog)"
 
-#, c-format
 msgid ""
 "\n"
 "Next Conflict (Alt+Shift+Down)"
@@ -3898,7 +3118,6 @@ msgstr ""
 "\n"
 "Volgend conflict (Alt+Shift+Omlaag)"
 
-#, c-format
 msgid ""
 "\n"
 "First Difference (Alt+Home)"
@@ -3906,7 +3125,6 @@ msgstr ""
 "\n"
 "Eerste verschil (Alt+Home)"
 
-#, c-format
 msgid ""
 "\n"
 "Current Difference (Alt+Enter)"
@@ -3914,7 +3132,6 @@ msgstr ""
 "\n"
 "Huidig verschil (Alt+Enter)"
 
-#, c-format
 msgid ""
 "\n"
 "Last Difference (Alt+End)"
@@ -3922,7 +3139,6 @@ msgstr ""
 "\n"
 "Laatste verschil (Alt+End)"
 
-#, c-format
 msgid ""
 "\n"
 "Copy Right (Alt+Right)"
@@ -3930,7 +3146,6 @@ msgstr ""
 "\n"
 "Rechts kopiëren (Alt+Rechts)"
 
-#, c-format
 msgid ""
 "\n"
 "Copy Left (Alt+Left)"
@@ -3938,7 +3153,6 @@ msgstr ""
 "\n"
 "Links kopiëren (Alt+Links)"
 
-#, c-format
 msgid ""
 "\n"
 "Copy Right and Advance (Ctrl+Alt+Right)"
@@ -3946,7 +3160,6 @@ msgstr ""
 "\n"
 "Rechts kopiëren en verdergaan (Ctrl+Alt+Rechts)"
 
-#, c-format
 msgid ""
 "\n"
 "Copy Left and Advance (Ctrl+Alt+Left)"
@@ -3954,7 +3167,6 @@ msgstr ""
 "\n"
 "Links kopiëren en verdergaan (Ctrl+Alt+Links)"
 
-#, c-format
 msgid ""
 "\n"
 "All Right"
@@ -3962,7 +3174,6 @@ msgstr ""
 "\n"
 "Alles rechts"
 
-#, c-format
 msgid ""
 "\n"
 "All Left"
@@ -3970,7 +3181,6 @@ msgstr ""
 "\n"
 "Alles links"
 
-#, c-format
 msgid ""
 "\n"
 "Auto Merge (Ctrl+Alt+M)"
@@ -3978,7 +3188,6 @@ msgstr ""
 "\n"
 "Automatisch samenvoegen (Ctrl+Alt+M)"
 
-#, c-format
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
 "extension)"
@@ -3986,15 +3195,12 @@ msgstr ""
 "De overgenomen uitpakker wordt toegepast op beide bestanden (één bestand "
 "heeft alleen maar de extensie nodig)"
 
-#, c-format
 msgid "No prediffer (normal)"
 msgstr "Geen voorvergelijking (normaal)"
 
-#, c-format
 msgid "Suggested plugins"
 msgstr "Voorgestelde plugins"
 
-#, c-format
 msgid "Other plugins"
 msgstr "Andere plugins"
 
@@ -4002,7 +3208,6 @@ msgstr "Andere plugins"
 msgid "Private Build: %1"
 msgstr "Privé-buld: %1"
 
-#, c-format
 msgid "Your software is up to date"
 msgstr "Uw software is bijgewerkt"
 
@@ -4014,23 +3219,18 @@ msgstr ""
 "Er is een nieuwe versie van WinMerge beschikbaar.\n"
 "%1 is nu beschikbaar (u heeft %2). Wilt u het nu downloaden?"
 
-#, c-format
 msgid "Failed to download latest version information"
 msgstr "Downloaden van laatste versie-informatie mislukt"
 
-#, c-format
 msgid "Plugin Settings"
 msgstr "Plugin-instellingen"
 
-#, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH niet gevonden - .sct scripts uitgeschakeld"
 
-#, c-format
 msgid "<None>"
 msgstr "<None>"
 
-#, c-format
 msgid "<Automatic>"
 msgstr "<Automatic>"
 
@@ -4038,62 +3238,48 @@ msgstr "<Automatic>"
 msgid "G&oto Line %1"
 msgstr "Naar regel %1 gaan"
 
-#, c-format
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
-#, c-format
 msgid "From file system"
 msgstr "Van bestandssysteem"
 
-#, c-format
 msgid "From MRU list"
 msgstr "Van MRU-lijst"
 
-#, c-format
 msgid "No Highlighting"
 msgstr "Geen markering"
 
-#, c-format
 msgid "Batch"
 msgstr "Batch"
 
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
-#, c-format
 msgid "Portable Object"
 msgstr "Portable object"
 
-#, c-format
 msgid "Resources"
 msgstr "Bronnen"
 
-#, c-format
 msgid "Shell"
 msgstr "Shell"
 
-#, c-format
 msgid "VHDL"
 msgstr "VHDL"
 
-#, c-format
 msgid "Close &Left Tabs"
 msgstr "Linker tabs sluiten"
 
-#, c-format
 msgid "Close R&ight Tabs"
 msgstr "Rechter tabs sluiten"
 
-#, c-format
 msgid "Close &Other Tabs"
 msgstr "Andere tabs sluiten"
 
-#, c-format
 msgid "Enable &Auto Max Width"
 msgstr "Automatische maximale breedte inschakelen"
 
-#, c-format
 msgid "frhed is not installed"
 msgstr "fhred is niet geïnstalleerd"
 
@@ -4101,11 +3287,9 @@ msgstr "fhred is niet geïnstalleerd"
 msgid "%1 does not exist. Do you want to create it?"
 msgstr "%1 bestaat niet. Wilt u het aanmaken?"
 
-#, c-format
 msgid "Failed to create folder."
 msgstr "Map aanmaken mislukt."
 
-#, c-format
 msgid ""
 "You can specify the following parameters to the path:\n"
 "$file: Path name of the current file\n"
