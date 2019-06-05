@@ -40,14 +40,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // CHexMergeFrame
 
-IMPLEMENT_DYNCREATE(CHexMergeFrame, CMDIChildWnd)
+IMPLEMENT_DYNCREATE(CHexMergeFrame, CMergeFrameCommon)
 
-BEGIN_MESSAGE_MAP(CHexMergeFrame, CMDIChildWnd)
+BEGIN_MESSAGE_MAP(CHexMergeFrame, CMergeFrameCommon)
 	//{{AFX_MSG_MAP(CHexMergeFrame)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
-	ON_WM_GETMINMAXINFO()
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
@@ -74,10 +73,8 @@ enum
 // CHexMergeFrame construction/destruction
 
 CHexMergeFrame::CHexMergeFrame()
-: m_hIdentical(nullptr)
-, m_hDifferent(nullptr)
+	: CMergeFrameCommon(IDI_EQUALBINARY, IDI_BINARYDIFF)
 {
-	std::fill_n(m_nLastSplitPos, 2, 0);
 	m_pMergeDoc = 0;
 }
 
@@ -155,9 +152,6 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
 	m_rectBorder.bottom = size.cy;
 
-	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALBINARY);
-	m_hDifferent = AfxGetApp()->LoadIcon(IDI_BINARYDIFF);
-
 	// get the IHexEditorWindow interfaces
 	IHexEditorWindow *pif[3];
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
@@ -196,11 +190,7 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 void CHexMergeFrame::ActivateFrame(int nCmdShow) 
 {
-	if (!GetMDIFrame()->MDIGetActive() && GetOptionsMgr()->GetBool(OPT_ACTIVE_FRAME_MAX))
-	{
-		nCmdShow = SW_SHOWMAXIMIZED;
-	}
-	CMDIChildWnd::ActivateFrame(nCmdShow);
+	CMergeFrameCommon::ActivateFrame(nCmdShow);
 }
 
 /**
@@ -209,16 +199,7 @@ void CHexMergeFrame::ActivateFrame(int nCmdShow)
 BOOL CHexMergeFrame::DestroyWindow() 
 {
 	SavePosition();
-	// If we are active, save the restored/maximized state
-	// If we are not, do nothing and let the active frame do the job.
- 	if (GetParentFrame()->GetActiveFrame() == this)
-	{
-		WINDOWPLACEMENT wp;
-		wp.length = sizeof(WINDOWPLACEMENT);
-		GetWindowPlacement(&wp);
-		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
-	}
-
+	SaveWindowState();
 	return CMDIChildWnd::DestroyWindow();
 }
 
@@ -232,9 +213,6 @@ void CHexMergeFrame::SavePosition()
 {
 	if (CWnd *pLeft = m_wndSplitter.GetPane(0,0))
 	{
-		CRect rc;
-		pLeft->GetWindowRect(&rc);
-		theApp.WriteProfileInt(_T("Settings"), _T("WLeft"), rc.Width());
 		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, GetActivePane());
 	}
 }
@@ -253,17 +231,6 @@ void CHexMergeFrame::OnSize(UINT nType, int cx, int cy)
 {
 	CMDIChildWnd::OnSize(nType, cx, cy);
 	UpdateHeaderSizes();
-}
-
-void CHexMergeFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
-{
-	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
-	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
-	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
-#if _MFC_VER >= 0x0800
-	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
-	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
-#endif
 }
 
 /// update splitting position for panels 1/2 and headerbar and statusbar 
@@ -308,33 +275,6 @@ IHeaderBar *CHexMergeFrame::GetHeaderInterface()
 	return &m_wndFilePathBar;
 }
 
-/**
- * @brief Reflect comparison result in window's icon.
- * @param nResult [in] Last comparison result which the application returns.
- */
-void CHexMergeFrame::SetLastCompareResult(int nResult)
-{
-	HICON hCurrent = GetIcon(FALSE);
-	HICON hReplace = (nResult == 0) ? m_hIdentical : m_hDifferent;
-
-	if (hCurrent != hReplace)
-	{
-		SetIcon(hReplace, TRUE);
-
-		BOOL bMaximized;
-		GetMDIFrame()->MDIGetActive(&bMaximized);
-
-		// When MDI maximized the window icon is drawn on the menu bar, so we
-		// need to notify it that our icon has changed.
-		if (bMaximized)
-		{
-			GetMDIFrame()->DrawMenuBar();
-		}
-		GetMDIFrame()->OnUpdateFrameTitle(FALSE);
-	}
-
-	theApp.SetLastCompareResult(nResult);
-}
 
 void CHexMergeFrame::UpdateAutoPaneResize()
 {

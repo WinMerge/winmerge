@@ -32,13 +32,14 @@
 #include "WinIMergeLib.h"
 #include "LocationBar.h"
 #include "FileLocation.h"
+#include "MergeFrameCommon.h"
 
 class CDirDoc;
 
 /** 
  * @brief Frame class for file compare, handles panes, statusbar etc.
  */
-class CImgMergeFrame : public CMDIChildWnd, public IMergeDoc
+class CImgMergeFrame : public IMergeDoc, public CMergeFrameCommon
 {
 	private:
 	enum BUFFERTYPE
@@ -65,8 +66,6 @@ public:
 	void UpdateResources();
 	bool CloseNow();
 	void DirDocClosing(CDirDoc * pDirDoc) { m_pDirDoc = nullptr; }
-	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
-	void SetLastCompareResult(int nResult);
 	void UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
@@ -116,9 +115,6 @@ private:
 	bool MergeModeKeyDown(MSG* pMsg);
 	static void OnChildPaneEvent(const IImgMergeWindow::Event& evt);
 	void OnDropFiles(int pane, const std::vector<String>& files);
-	int m_nLastSplitPos[2];
-	HICON m_hIdentical;
-	HICON m_hDifferent;
 	CLocationBar m_wndLocationBar;
 	IImgMergeWindow *m_pImgMergeWindow;
 	IImgToolWindow *m_pImgToolWindow;
@@ -133,7 +129,6 @@ private:
 	//{{AFX_MSG(CImgMergeFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
-	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	afx_msg void OnClose();
 	afx_msg void OnFileSave();
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
