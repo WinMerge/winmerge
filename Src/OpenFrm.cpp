@@ -4,6 +4,7 @@
 #include "OpenFrm.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "MergeFrameCommon.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -12,14 +13,13 @@
 
 // COpenFrame
 
-IMPLEMENT_DYNCREATE(COpenFrame, CMDIChildWnd)
+IMPLEMENT_DYNCREATE(COpenFrame, CMergeFrameCommon)
 
-BEGIN_MESSAGE_MAP(COpenFrame, CMDIChildWnd)
+BEGIN_MESSAGE_MAP(COpenFrame, CMergeFrameCommon)
 	//{{AFX_MSG_MAP(COpenFrame)
 	ON_WM_ERASEBKGND()
 	ON_WM_NCHITTEST()
 	ON_WM_WINDOWPOSCHANGING()
-	ON_WM_GETMINMAXINFO()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -87,24 +87,9 @@ void COpenFrame::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 	}
 }
 
-void COpenFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
-{
-	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
-	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
-	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
-#if _MFC_VER >= 0x0800
-	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
-	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
-#endif
-}
-
 void COpenFrame::ActivateFrame(int nCmdShow) 
 {
-	if (!GetMDIFrame()->MDIGetActive() && GetOptionsMgr()->GetBool(OPT_ACTIVE_FRAME_MAX))
-	{
-		nCmdShow = SW_SHOWMAXIMIZED;
-	}
-	CMDIChildWnd::ActivateFrame(nCmdShow);
+	CMergeFrameCommon::ActivateFrame(nCmdShow);
 	if (CView *const pView = GetActiveView())
 	{
 		WINDOWPLACEMENT wp;
@@ -132,16 +117,7 @@ void COpenFrame::UpdateResources()
  */
 BOOL COpenFrame::DestroyWindow() 
 {
-	// If we are active, save the restored/maximized state
-	// If we are not, do nothing and let the active frame do the job.
- 	if (GetParentFrame()->GetActiveFrame() == this)
-	{
-		WINDOWPLACEMENT wp;
-		wp.length = sizeof(WINDOWPLACEMENT);
-		GetWindowPlacement(&wp);
-		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
-	}
-
+	SaveWindowState();
 	return CMDIChildWnd::DestroyWindow();
 }
 

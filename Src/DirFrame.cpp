@@ -77,11 +77,10 @@ static UINT RO_PANEL_WIDTH = 30;
 /////////////////////////////////////////////////////////////////////////////
 // CDirFrame
 
-IMPLEMENT_DYNCREATE(CDirFrame, CMDIChildWnd)
+IMPLEMENT_DYNCREATE(CDirFrame, CMergeFrameCommon)
 
 CDirFrame::CDirFrame()
-: m_hIdentical(nullptr)
-, m_hDifferent(nullptr)
+: CMergeFrameCommon(IDI_EQUALFOLDER, IDI_NOTEQUALFOLDER)
 {
 }
 
@@ -90,13 +89,12 @@ CDirFrame::~CDirFrame()
 }
 
 
-BEGIN_MESSAGE_MAP(CDirFrame, CMDIChildWnd)
+BEGIN_MESSAGE_MAP(CDirFrame, CMergeFrameCommon)
 	//{{AFX_MSG_MAP(CDirFrame)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
 	ON_WM_MDIACTIVATE()
-	ON_WM_GETMINMAXINFO()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -141,9 +139,6 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_MIDDLE_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText.c_str(), TRUE);
-
-	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALFOLDER);
-	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALFOLDER);
 
 	return 0;
 }
@@ -190,18 +185,7 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 	CDockState dockState;
 	dockState.LoadState(_T("Settings-DirFrame"));
 	SetDockState(dockState);
-	// get the active child frame, and a flag whether it is maximized
-	BOOL bMaximized = FALSE;
-	CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
-	if (oldActiveFrame == nullptr)
-		// for the first frame, get the restored/maximized state from the registry
-		bMaximized = GetOptionsMgr()->GetBool(OPT_ACTIVE_FRAME_MAX);
-	if (bMaximized)
-		nCmdShow = SW_SHOWMAXIMIZED;
-	else
-		nCmdShow = SW_SHOWNORMAL;
-
-	CMDIChildWnd::ActivateFrame(nCmdShow);
+	CMergeFrameCommon::ActivateFrame(nCmdShow);
 }
 
 /**
@@ -209,34 +193,6 @@ void CDirFrame::ActivateFrame(int nCmdShow)
  */
 void CDirFrame::UpdateResources()
 {
-}
-
-/**
-* @brief Reflect comparison result in window's icon.
-* @param nResult [in] Last comparison result which the application returns.
-*/
-void CDirFrame::SetLastCompareResult(int nResult)
-{
-	HICON hCurrent = GetIcon(FALSE);
-	HICON hReplace = (nResult == 0) ? m_hIdentical : m_hDifferent;
-
-	if (hCurrent != hReplace)
-	{
-		SetIcon(hReplace, TRUE);
-
-		BOOL bMaximized;
-		GetMDIFrame()->MDIGetActive(&bMaximized);
-
-		// When MDI maximized the window icon is drawn on the menu bar, so we
-		// need to notify it that our icon has changed.
-		if (bMaximized)
-		{
-			GetMDIFrame()->DrawMenuBar();
-		}
-		GetMDIFrame()->OnUpdateFrameTitle(FALSE);
-	}
-
-	theApp.SetLastCompareResult(nResult);
 }
 
 void CDirFrame::OnClose() 
@@ -249,20 +205,11 @@ void CDirFrame::OnClose()
  */
 BOOL CDirFrame::DestroyWindow() 
 {
-	// If we are active, save the restored/maximized state
-	// If we are not, do nothing and let the active frame do the job.
-	if (this->GetParentFrame()->GetActiveFrame() == (CFrameWnd*)this)
-	{
-		WINDOWPLACEMENT wp;
-		wp.length = sizeof(WINDOWPLACEMENT);
-		GetWindowPlacement(&wp);
-		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
-		// save docking positions and sizes
-		CDockState dockState;
-		GetDockState(dockState);
-		dockState.SaveState(_T("Settings-DirFrame"));
-	}
-
+	// save docking positions and sizes
+	CDockState dockState;
+	GetDockState(dockState);
+	dockState.SaveState(_T("Settings-DirFrame"));
+	SaveWindowState();
 	return CMDIChildWnd::DestroyWindow();
 }
 
@@ -273,13 +220,3 @@ void CDirFrame::OnSize(UINT nType, int cx, int cy)
 	m_wndFilePathBar.Resize();
 }
 
-void CDirFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
-{
-	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
-	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
-	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
-#if _MFC_VER >= 0x0800
-	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
-	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
-#endif
-}

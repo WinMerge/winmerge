@@ -53,15 +53,14 @@
 /////////////////////////////////////////////////////////////////////////////
 // CImgMergeFrame
 
-IMPLEMENT_DYNCREATE(CImgMergeFrame, CMDIChildWnd)
+IMPLEMENT_DYNCREATE(CImgMergeFrame, CMergeFrameCommon)
 
-BEGIN_MESSAGE_MAP(CImgMergeFrame, CMDIChildWnd)
+BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	//{{AFX_MSG_MAP(CImgMergeFrame)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_MDIACTIVATE()
 	ON_WM_SIZE()
-	ON_WM_GETMINMAXINFO()
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
@@ -158,14 +157,12 @@ CMenu CImgMergeFrame::menu;
 // CImgMergeFrame construction/destruction
 
 CImgMergeFrame::CImgMergeFrame()
-: m_hIdentical(nullptr)
-, m_hDifferent(nullptr)
+: CMergeFrameCommon(IDI_EQUALIMAGE, IDI_NOTEQUALIMAGE)
 , m_pDirDoc(nullptr)
 , m_bAutoMerged(false)
 , m_pImgMergeWindow(nullptr)
 , m_pImgToolWindow(nullptr)
 {
-	std::fill_n(m_nLastSplitPos, 2, 0);
 	std::fill_n(m_nBufferType, 3, BUFFER_NORMAL);
 	std::fill_n(m_bRO, 3, false);
 }
@@ -516,9 +513,6 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
 	m_rectBorder.bottom = size.cy;
 
-	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALIMAGE);
-	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALIMAGE);
-
 	return 0;
 }
 
@@ -561,16 +555,7 @@ BOOL CImgMergeFrame::DestroyWindow()
 {
 	SavePosition();
 	SaveOptions();
-	// If we are active, save the restored/maximized state
-	// If we are not, do nothing and let the active frame do the job.
- 	if (GetParentFrame()->GetActiveFrame() == this)
-	{
-		WINDOWPLACEMENT wp;
-		wp.length = sizeof(WINDOWPLACEMENT);
-		GetWindowPlacement(&wp);
-		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
-	}
-
+	SaveWindowState();
 	return CMDIChildWnd::DestroyWindow();
 }
 
@@ -1032,34 +1017,6 @@ void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 		SetWindowText(sTitle.c_str());
 }
 
-/**
- * @brief Reflect comparison result in window's icon.
- * @param nResult [in] Last comparison result which the application returns.
- */
-void CImgMergeFrame::SetLastCompareResult(int nResult)
-{
-	HICON hCurrent = GetIcon(FALSE);
-	HICON hReplace = (nResult == 0) ? m_hIdentical : m_hDifferent;
-
-	if (hCurrent != hReplace)
-	{
-		SetIcon(hReplace, TRUE);
-
-		BOOL bMaximized;
-		GetMDIFrame()->MDIGetActive(&bMaximized);
-
-		// When MDI maximized the window icon is drawn on the menu bar, so we
-		// need to notify it that our icon has changed.
-		if (bMaximized)
-		{
-			GetMDIFrame()->DrawMenuBar();
-		}
-		GetMDIFrame()->OnUpdateFrameTitle(FALSE);
-	}
-
-	theApp.SetLastCompareResult(nResult);
-}
-
 void CImgMergeFrame::UpdateLastCompareResult()
 {
 	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount() > 0 ? 1 : 0);
@@ -1303,17 +1260,6 @@ void CImgMergeFrame::OnSize(UINT nType, int cx, int cy)
 {
 	CMDIChildWnd::OnSize(nType, cx, cy);
 	UpdateHeaderSizes();
-}
-
-void CImgMergeFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
-{
-	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
-	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
-	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
-#if _MFC_VER >= 0x0800
-	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
-	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
-#endif
 }
 
 /**
