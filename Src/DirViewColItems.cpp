@@ -1014,7 +1014,7 @@ static DirColInfo f_cols3[] =
 	{ _T("Mversion"), nullptr, COLHDR_MVERSION, COLDESC_MVERSION, &ColMversionGet, &ColMversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Rversion"), nullptr, COLHDR_RVERSION, COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("StatusAbbr"), nullptr, COLHDR_RESULT_ABBR, COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
-	{ _T("Binary"), nullptr, COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Binary"), "DirView|ColumnHeader", COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Lattr"), nullptr, COLHDR_LATTRIBUTES, COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].flags), -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Mattr"), nullptr, COLHDR_MATTRIBUTES, COLDESC_MATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].flags), -1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Rattr"), nullptr, COLHDR_RATTRIBUTES, COLDESC_RATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].flags), -1, true, DirColInfo::ALIGN_LEFT },
