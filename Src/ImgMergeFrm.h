@@ -39,7 +39,7 @@ class CDirDoc;
 /** 
  * @brief Frame class for file compare, handles panes, statusbar etc.
  */
-class CImgMergeFrame : public IMergeDoc, public CMergeFrameCommon
+class CImgMergeFrame : public CMergeFrameCommon,public IMergeDoc
 {
 	private:
 	enum BUFFERTYPE
