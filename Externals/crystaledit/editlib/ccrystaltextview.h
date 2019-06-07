@@ -174,6 +174,7 @@ protected:
     bool m_bDraggingText;
     bool m_bDragSelection, m_bWordSelection, m_bLineSelection, m_bColumnSelection;
     UINT_PTR m_nDragSelTimer;
+	DWORD m_dwLastDblClickTime;
 
     CPoint m_ptDrawSelStart, m_ptDrawSelEnd;
 
@@ -875,6 +876,7 @@ protected :
     afx_msg void OnTimer (UINT_PTR nIDEvent);
     afx_msg void OnKillFocus (CWnd * pNewWnd);
     afx_msg void OnLButtonDblClk (UINT nFlags, CPoint point);
+    afx_msg void OnLButtonTrippleClk (UINT nFlags, CPoint point);
     afx_msg void OnEditCopy ();
     afx_msg void OnUpdateEditCopy (CCmdUI * pCmdUI);
     afx_msg void OnEditSelectAll ();
