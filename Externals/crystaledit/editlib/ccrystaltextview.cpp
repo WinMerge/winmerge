@@ -519,6 +519,7 @@ CCrystalTextView::CCrystalTextView ()
 : m_nScreenChars(-1)
 , m_pFindTextDlg(nullptr)
 , m_CurSourceDef(nullptr)
+, m_dwLastDblClickTime(0)
 {
   memset(((CView*)this)+1, 0, sizeof(*this) - sizeof(class CView)); // AFX_ZERO_INIT_OBJECT (CView)
   m_rxnode = nullptr;
@@ -4496,7 +4497,14 @@ PreTranslateMessage (MSG * pMsg)
             return true;
         }
     }
-
+  else if (pMsg->message == WM_LBUTTONDBLCLK)
+	m_dwLastDblClickTime = GetTickCount();
+  else if (pMsg->message == WM_LBUTTONDOWN && (GetTickCount() - GetDoubleClickTime()) < m_dwLastDblClickTime)
+    {
+      m_dwLastDblClickTime = 0;
+      OnLButtonTrippleClk(static_cast<UINT>(pMsg->wParam), { GET_X_LPARAM(pMsg->lParam), GET_Y_LPARAM(pMsg->lParam) });
+      return true;
+    }
   return CView::PreTranslateMessage (pMsg);
 }
 
