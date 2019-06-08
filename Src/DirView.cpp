@@ -1414,40 +1414,16 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		// Open identical and different files
 		FileLocation fileloc[3];
 		String strDesc[3];
-		if (paths.GetSize() < 3)
+		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("untitled middle"), _("Untitled right") };
+		for (int i = 0; i < paths.size(); ++i)
 		{
-			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.exists(0))
-			{
-				paths[0] = _T("");
-				strDesc[0] = _("Untitled left");
-			}
-			if (pdi[0] == pdi[1] && !pdi[0]->diffcode.exists(1))
-			{
-				paths[1] = _T("");
-				strDesc[1] = _("Untitled right");
-			}
-		}
-		else
-		{
-			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(0))
-			{
-				paths[0] = _T("");
-				strDesc[0] = _("Untitled left");
-			}
-			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(1))
-			{
-				paths[1] = _T("");
-				strDesc[1] = _("Untitled middle");
-			}
-			if (pdi[0] == pdi[1] && pdi[0] == pdi[2] && !pdi[0]->diffcode.exists(2))
-			{
-				paths[2] = _T("");
-				strDesc[2] = _("Untitled right");
-			}
+			if (!pdi[0]->diffcode.exists(i) &&
+				std::count(pdi, pdi + paths.size(), pdi[0]) == static_cast<ptrdiff_t>(paths.size()))
+				strDesc[i] = sUntitled[i];
+			else
+				fileloc[i].setPath(paths[i]);
 		}
 
-		for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
-			fileloc[nIndex].setPath(paths[nIndex]);
 		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc,
 			dwFlags, strDesc, _T(""), infoUnpacker);
 	}
