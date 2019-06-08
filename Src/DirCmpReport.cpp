@@ -13,7 +13,6 @@
 #include <Poco/Base64Encoder.h>
 #include "locality.h"
 #include "DirCmpReport.h"
-#include "DirCmpReportDlg.h"
 #include "paths.h"
 #include "unicoder.h"
 #include "markdown.h"
@@ -148,14 +147,9 @@ bool DirCmpReport::GenerateReport(String &errStr)
 	assert(m_pFile == nullptr);
 	bool bRet = false;
 
-	DirCmpReportDlg dlg;
-	dlg.LoadSettings();
-	dlg.m_sReportFile = m_sReportFile;
-
-	if (!m_sReportFile.empty() || dlg.DoModal() == IDOK) try
+	if (!m_sReportFile.empty()) try
 	{
-		CWaitCursor waitstatus;
-		if (dlg.m_bCopyToClipboard)
+		if (m_bCopyToClipboard)
 		{
 			if (!CWnd::GetSafeOwner()->OpenClipboard())
 				return false;
@@ -163,12 +157,12 @@ bool DirCmpReport::GenerateReport(String &errStr)
 				return false;
 			CSharedFile file(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT);
 			m_pFile = &file;
-			GenerateReport(dlg.m_nReportType);
+			GenerateReport(m_nReportType);
 			HGLOBAL hMem = file.Detach();
 			SetClipboardData(CF_UNICODETEXT, ConvertToUTF16ForClipboard(hMem, m_bOutputUTF8 ? CP_UTF8 : CP_THREAD_ACP));
 			GlobalFree(hMem);
 			// If report type is HTML, render CF_HTML format as well
-			if (dlg.m_nReportType == REPORT_TYPE_SIMPLEHTML)
+			if (m_nReportType == REPORT_TYPE_SIMPLEHTML)
 			{
 				// Reconstruct the CSharedFile object
 				file.~CSharedFile();
@@ -201,20 +195,19 @@ bool DirCmpReport::GenerateReport(String &errStr)
 			}
 			CloseClipboard();
 		}
-		if (!dlg.m_sReportFile.empty())
+		if (!m_sReportFile.empty())
 		{
 			String path;
-			paths::SplitFilename(dlg.m_sReportFile, &path, nullptr, nullptr);
+			paths::SplitFilename(m_sReportFile, &path, nullptr, nullptr);
 			if (!paths::CreateIfNeeded(path))
 			{
 				errStr = _("Folder does not exist.");
 				return false;
 			}
-			CFile file(dlg.m_sReportFile.c_str(),
+			CFile file(m_sReportFile.c_str(),
 				CFile::modeWrite|CFile::modeCreate|CFile::shareDenyWrite);
 			m_pFile = &file;
-			m_bIncludeFileCmpReport = dlg.m_bIncludeFileCmpReport;
-			GenerateReport(dlg.m_nReportType);
+			GenerateReport(m_nReportType);
 		}
 		bRet = true;
 	}

@@ -38,9 +38,12 @@ public:
 	explicit DirCmpReport(const std::vector<String>& colRegKeys);
 	void SetList(IListCtrl *pList);
 	void SetRootPaths(const PathContext &paths);
+	void SetReportType(REPORT_TYPE nReportType) { m_nReportType = nReportType;  }
 	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
 	void SetColumns(int columns);
 	void SetFileCmpReport(IFileCmpReport *pFileCmpReport);
+	void SetCopyToClipboard(bool bCopyToClipbard) { m_bCopyToClipboard = bCopyToClipbard;  }
+	void SetIncludeFileCmpReport(bool bIncludeFileCmpReport) { m_bIncludeFileCmpReport = bIncludeFileCmpReport; }
 	bool GenerateReport(String &errStr);
 
 protected:
@@ -66,6 +69,8 @@ private:
 	CFile *m_pFile; /**< File to write report to */
 	const std::vector<String>& m_colRegKeys; /**< Key names for currently displayed columns */
 	IFileCmpReport *m_pFileCmpReport;
-	bool m_bIncludeFileCmpReport;
+	bool m_bIncludeFileCmpReport; /**< Do we include file compare report in folder compare report? */
 	bool m_bOutputUTF8;
+	REPORT_TYPE m_nReportType; /**< Report type integer */
+	bool m_bCopyToClipboard; /**< Do we copy report to clipboard? */
 };

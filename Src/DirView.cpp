@@ -44,6 +44,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "BCMenu.h"
+#include "DirCmpReportDlg.h"
 #include "DirCmpReport.h"
 #include "DirCompProgressBar.h"
 #include "CompareStatisticsDlg.h"
@@ -2589,6 +2590,13 @@ private:
 void CDirView::OnToolsGenerateReport()
 {
 	CDirDoc *pDoc = GetDocument();
+	DirCmpReportDlg dlg;
+	dlg.LoadSettings();
+	dlg.m_sReportFile = pDoc->GetReportFile();
+	if (dlg.DoModal() != IDOK)
+		return;
+
+	CWaitCursor waitstatus;
 	pDoc->SetGeneratingReport(true);
 	const CDiffContext& ctxt = GetDiffContext();
 
@@ -2613,7 +2621,10 @@ void CDirView::OnToolsGenerateReport()
 	report.SetRootPaths(paths);
 	report.SetColumns(m_pColItems->GetDispColCount());
 	report.SetFileCmpReport(&freport);
-	report.SetReportFile(pDoc->GetReportFile());
+	report.SetReportType(dlg.m_nReportType);
+	report.SetReportFile(dlg.m_sReportFile);
+	report.SetCopyToClipboard(dlg.m_bCopyToClipboard);
+	report.SetIncludeFileCmpReport(dlg.m_bIncludeFileCmpReport);
 	String errStr;
 	if (report.GenerateReport(errStr))
 	{
