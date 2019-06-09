@@ -37,7 +37,7 @@ class FileFiltersDlg : public CTrPropertyPage
 // Construction
 public:
 	FileFiltersDlg();   // standard constructor
-	void SetFilterArray(std::vector<FileFilterInfo> * fileFilters);
+	void SetFilterArray(const std::vector<FileFilterInfo>& fileFilters);
 	String GetSelected();
 	void SetSelected(const String & selected);
 
@@ -45,7 +45,7 @@ public:
 private:
 	String m_sFileFilterPath;
 	CPoint m_ptLastMousePos;
-	std::vector<FileFilterInfo> * m_Filters;
+	std::vector<FileFilterInfo> m_Filters;
 
 // Dialog Data
 	//{{AFX_DATA(FileFiltersDlg)

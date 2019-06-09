@@ -85,25 +85,27 @@ void FileFilterHelper::SetFileFilterPath(const String& szFileFilterPath)
 /**
  * @brief Get list of filters currently available.
  *
- * @param [out] filters Filter list to receive found filters.
  * @param [out] selected Filepath of currently selected filter.
+ * @return Filter list to receive found filters.
  */
-void FileFilterHelper::GetFileFilters(std::vector<FileFilterInfo> * filters, String & selected) const
+std::vector<FileFilterInfo> FileFilterHelper::GetFileFilters(String & selected) const
 {
+	std::vector<FileFilterInfo> filters;
 	if (m_fileFilterMgr != nullptr)
 	{
 		const int count = m_fileFilterMgr->GetFilterCount();
-		filters->reserve(count);
+		filters.reserve(count);
 		for (int i = 0; i < count; ++i)
 		{
 			FileFilterInfo filter;
 			filter.fullpath = m_fileFilterMgr->GetFilterPath(i);
 			filter.name = m_fileFilterMgr->GetFilterName(i);
 			filter.description = m_fileFilterMgr->GetFilterDesc(i);
-			filters->push_back(filter);
+			filters.push_back(filter);
 		}
 	}
 	selected = m_sFileFilterPath;
+	return filters;
 }
 
 /**
@@ -114,11 +116,9 @@ void FileFilterHelper::GetFileFilters(std::vector<FileFilterInfo> * filters, Str
  */
 String FileFilterHelper::GetFileFilterName(const String& filterPath) const
 {
-	vector<FileFilterInfo> filters;
 	String selected;
 	String name;
-
-	GetFileFilters(&filters, selected);
+	vector<FileFilterInfo> filters = GetFileFilters(selected);
 	vector<FileFilterInfo>::const_iterator iter = filters.begin();
 	while (iter != filters.end())
 	{
@@ -139,11 +139,9 @@ String FileFilterHelper::GetFileFilterName(const String& filterPath) const
  */
 String FileFilterHelper::GetFileFilterPath(const String& filterName) const
 {
-	vector<FileFilterInfo> filters;
 	String selected;
 	String path;
-
-	GetFileFilters(&filters, selected);
+	vector<FileFilterInfo> filters = GetFileFilters(selected);
 	vector<FileFilterInfo>::const_iterator iter = filters.begin();
 	while (iter != filters.end())
 	{
@@ -417,11 +415,9 @@ bool FileFilterHelper::SetFilter(const String &filter)
  */
 void FileFilterHelper::ReloadUpdatedFilters()
 {
-	vector<FileFilterInfo> filters;
 	DirItem fileInfo;
 	String selected;
-
-	GetFileFilters(&filters, selected);
+	vector<FileFilterInfo> filters = GetFileFilters(selected);
 	vector<FileFilterInfo>::const_iterator iter = filters.begin();
 	while (iter != filters.end())
 	{

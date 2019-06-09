@@ -2526,14 +2526,16 @@ void CDirView::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI)
 /**
  * @brief Fill string list with current dirview column registry key names
  */
-void CDirView::GetCurrentColRegKeys(std::vector<String>& colKeys)
+std::vector<String> CDirView::GetCurrentColRegKeys()
 {
+	std::vector<String> colKeys;
 	int nphyscols = GetListCtrl().GetHeaderCtrl()->GetItemCount();
 	for (int col = 0; col < nphyscols; ++col)
 	{
 		int logcol = m_pColItems->ColPhysToLog(col);
 		colKeys.push_back(m_pColItems->GetColRegValueNameBase(logcol));
 	}
+	return colKeys;
 }
 
 struct FileCmpReport: public IFileCmpReport
@@ -2600,12 +2602,7 @@ void CDirView::OnToolsGenerateReport()
 	pDoc->SetGeneratingReport(true);
 	const CDiffContext& ctxt = GetDiffContext();
 
-	// Make list of registry keys for columns
-	// (needed for XML reports)
-	std::vector<String> colKeys;
-	GetCurrentColRegKeys(colKeys);
-
-	DirCmpReport report(colKeys);
+	DirCmpReport report(GetCurrentColRegKeys());
 	FileCmpReport freport(this);
 	IListCtrlImpl list(m_pList->m_hWnd);
 	report.SetList(&list);
