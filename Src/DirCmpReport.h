@@ -10,8 +10,9 @@
 #include "UnicodeString.h"
 #include "PathContext.h"
 #include "DirReportTypes.h"
+#include "IListCtrl.h"
 
-struct IListCtrl;
+struct DiffFuncStruct;
 
 /**
  * @brief This class creates directory compare reports.
@@ -44,6 +45,7 @@ public:
 	void SetFileCmpReport(IFileCmpReport *pFileCmpReport);
 	void SetCopyToClipboard(bool bCopyToClipbard) { m_bCopyToClipboard = bCopyToClipbard;  }
 	void SetIncludeFileCmpReport(bool bIncludeFileCmpReport) { m_bIncludeFileCmpReport = bIncludeFileCmpReport; }
+	void SetDiffFuncStruct(DiffFuncStruct* myStruct) { m_myStruct = myStruct; }
 	bool GenerateReport(String &errStr);
 
 protected:
@@ -60,7 +62,7 @@ protected:
 	void GenerateXmlFooter();
 
 private:
-	IListCtrl * m_pList; /**< Pointer to UI-list */
+	std::unique_ptr<IListCtrl> m_pList; /**< Pointer to UI-list */
 	PathContext m_rootPaths; /**< Root paths, printed to report */
 	String m_sTitle; /**< Report title, built from root paths */
 	String m_sReportFile;
@@ -68,9 +70,10 @@ private:
 	String m_sSeparator; /**< Column separator for report */
 	CFile *m_pFile; /**< File to write report to */
 	std::vector<String> m_colRegKeys; /**< Key names for currently displayed columns */
-	IFileCmpReport *m_pFileCmpReport;
+	std::unique_ptr<IFileCmpReport> m_pFileCmpReport;
 	bool m_bIncludeFileCmpReport; /**< Do we include file compare report in folder compare report? */
 	bool m_bOutputUTF8;
 	REPORT_TYPE m_nReportType; /**< Report type integer */
 	bool m_bCopyToClipboard; /**< Do we copy report to clipboard? */
+	DiffFuncStruct* m_myStruct;
 };

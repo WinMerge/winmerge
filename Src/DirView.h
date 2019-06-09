@@ -294,6 +294,7 @@ protected:
 	afx_msg void OnCtxtOpenWithUnpacker();
 	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
+	afx_msg LRESULT OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnToolsGeneratePatch();
 	template<int flag>
 	afx_msg void OnCtxtDirZip();

@@ -223,6 +223,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_TOOLS_CUSTOMIZECOLUMNS, OnCustomizeColumns)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
+	ON_MESSAGE(MSG_GENERATE_FLIE_COMPARE_REPORT, OnGenerateFileCmpReport)
 	ON_COMMAND(ID_DIR_ZIP_LEFT, OnCtxtDirZip<DirItemEnumerator::Left>)
 	ON_COMMAND(ID_DIR_ZIP_MIDDLE, OnCtxtDirZip<DirItemEnumerator::Middle>)
 	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZip<DirItemEnumerator::Right>)
@@ -2225,7 +2226,8 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 		pDoc->CompareReady();
 
-		Redisplay();
+		if (!pDoc->GetGeneratingReport())
+			Redisplay();
 
 		if (!pDoc->GetReportFile().empty())
 		{
@@ -2558,26 +2560,10 @@ struct FileCmpReport: public IFileCmpReport
 
 		strutils::replace(sLinkPath, _T("\\"), _T("_"));
 		sLinkPath += _T(".html");
+		String sReportPath = paths::ConcatPath(sDestDir, sLinkPath);
 
 		m_pDirView->MoveFocus(m_pDirView->GetFirstSelectedInd(), nIndex, m_pDirView->GetSelectedCount());
-		
-		m_pDirView->OpenSelection();
-		CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
-		IMergeDoc * pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-		if (pMergeDoc == nullptr)
-			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
-
-		if (pMergeDoc != nullptr)
-		{
-			pMergeDoc->GenerateReport(paths::ConcatPath(sDestDir, sLinkPath));
-			pMergeDoc->CloseNow();
-		}
-
-		MSG msg;
-		while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
-			if (!AfxGetApp()->PumpMessage())
-				break;
-		GetMainFrame()->OnUpdateFrameTitle(FALSE);
+		m_pDirView->SendMessage(MSG_GENERATE_FLIE_COMPARE_REPORT, reinterpret_cast<WPARAM>(sReportPath.c_str()), 0);
 
 		return true;
 	}
@@ -2585,6 +2571,27 @@ private:
 	FileCmpReport();
 	CDirView *m_pDirView;
 };
+
+LRESULT CDirView::OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam)
+{
+	OpenSelection();
+	CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
+	IMergeDoc * pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
+	if (pMergeDoc == nullptr)
+		pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
+
+	if (pMergeDoc != nullptr)
+	{
+		pMergeDoc->GenerateReport(reinterpret_cast<TCHAR *>(wParam));
+		pMergeDoc->CloseNow();
+	}
+	MSG msg;
+	while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
+		if (!AfxGetApp()->PumpMessage())
+			break;
+	GetMainFrame()->OnUpdateFrameTitle(FALSE);
+	return 0;
+}
 
 /**
  * @brief Generate report from dir compare results.
@@ -2595,17 +2602,12 @@ void CDirView::OnToolsGenerateReport()
 	DirCmpReportDlg dlg;
 	dlg.LoadSettings();
 	dlg.m_sReportFile = pDoc->GetReportFile();
-	if (dlg.DoModal() != IDOK)
+	if (dlg.m_sReportFile.empty() && dlg.DoModal() != IDOK)
 		return;
 
-	CWaitCursor waitstatus;
 	pDoc->SetGeneratingReport(true);
 	const CDiffContext& ctxt = GetDiffContext();
 
-	DirCmpReport report(GetCurrentColRegKeys());
-	FileCmpReport freport(this);
-	IListCtrlImpl list(m_pList->m_hWnd);
-	report.SetList(&list);
 	PathContext paths = ctxt.GetNormalizedPaths();
 
 	// If inside archive, convert paths
@@ -2615,30 +2617,17 @@ void CDirView::OnToolsGenerateReport()
 			pDoc->ApplyDisplayRoot(i, paths[i]);
 	}
 
-	report.SetRootPaths(paths);
-	report.SetColumns(m_pColItems->GetDispColCount());
-	report.SetFileCmpReport(&freport);
-	report.SetReportType(dlg.m_nReportType);
-	report.SetReportFile(dlg.m_sReportFile);
-	report.SetCopyToClipboard(dlg.m_bCopyToClipboard);
-	report.SetIncludeFileCmpReport(dlg.m_bIncludeFileCmpReport);
-	String errStr;
-	if (report.GenerateReport(errStr))
-	{
-		if (errStr.empty())
-		{
-			if (pDoc->GetReportFile().empty())
-				LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
-		}
-		else
-		{
-			String msg = strutils::format_string1(
-				_("Error creating the report:\n%1"),
-				errStr);
-			AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
-		}
-	}
-	pDoc->SetGeneratingReport(false);
+	DirCmpReport *pReport = new DirCmpReport(GetCurrentColRegKeys());
+	pReport->SetRootPaths(paths);
+	pReport->SetColumns(m_pColItems->GetDispColCount());
+	pReport->SetFileCmpReport(new FileCmpReport(this));
+	pReport->SetList(new IListCtrlImpl(m_pList->m_hWnd));
+	pReport->SetReportType(dlg.m_nReportType);
+	pReport->SetReportFile(dlg.m_sReportFile);
+	pReport->SetCopyToClipboard(dlg.m_bCopyToClipboard);
+	pReport->SetIncludeFileCmpReport(dlg.m_bIncludeFileCmpReport);
+	pDoc->SetReport(pReport);
+	pDoc->Rescan();
 }
 
 /**
