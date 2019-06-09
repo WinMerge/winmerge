@@ -226,7 +226,7 @@ bool AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite);
  * last script file, ...
  * last script file, last function name
  */
-void GetFreeFunctionsInScripts(std::vector<String> & sNamesArray, const wchar_t *TransformationEvent);
+std::vector<String> GetFreeFunctionsInScripts(const wchar_t* TransformationEvent);
 
 /** 
  * @brief : Execute one free function from one script

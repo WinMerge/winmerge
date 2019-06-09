@@ -67,7 +67,7 @@ private:
 	int m_nColumns; /**< Columns in UI */
 	String m_sSeparator; /**< Column separator for report */
 	CFile *m_pFile; /**< File to write report to */
-	const std::vector<String>& m_colRegKeys; /**< Key names for currently displayed columns */
+	std::vector<String> m_colRegKeys; /**< Key names for currently displayed columns */
 	IFileCmpReport *m_pFileCmpReport;
 	bool m_bIncludeFileCmpReport; /**< Do we include file compare report in folder compare report? */
 	bool m_bOutputUTF8;

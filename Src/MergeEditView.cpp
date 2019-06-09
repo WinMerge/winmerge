@@ -2615,8 +2615,7 @@ void CMergeEditView::OnUpdateStatusRO(CCmdUI* pCmdUI)
 HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 {
 	// get scripts list
-	std::vector<String> functionNamesList;
-	FileTransform::GetFreeFunctionsInScripts(functionNamesList, L"EDITOR_SCRIPT");
+	std::vector<String> functionNamesList = FileTransform::GetFreeFunctionsInScripts(L"EDITOR_SCRIPT");
 
 	// empty the menu
 	size_t i = GetMenuItemCount(hMenu);

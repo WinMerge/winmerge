@@ -190,7 +190,7 @@ protected:
 	int GetFirstDifferentItem();
 	int GetLastDifferentItem();
 	int AddSpecialItems();
-	void GetCurrentColRegKeys(std::vector<String>& colKeys);
+	std::vector<String>	GetCurrentColRegKeys();
 	void OpenSpecialItems(DIFFITEM *pos1, DIFFITEM *pos2, DIFFITEM *pos3);
 
 // Implementation data

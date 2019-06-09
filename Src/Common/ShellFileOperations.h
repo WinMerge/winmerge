@@ -45,7 +45,7 @@ public:
 	void Reset();
 
 protected:
-	void GetPathList(bool source, std::vector<TCHAR>& paths) const;
+	std::vector<TCHAR> GetPathList(bool source) const;
 	size_t CountStringSize(bool source) const;
 
 private:

@@ -126,7 +126,7 @@ public:
 
 	FileFilterMgr * GetManager() const;
 	void SetFileFilterPath(const String& szFileFilterPath);
-	void GetFileFilters(std::vector<FileFilterInfo> * filters, String & selected) const;
+	std::vector<FileFilterInfo> GetFileFilters(String & selected) const;
 	String GetFileFilterName(const String& filterPath) const;
 	String GetFileFilterPath(const String& filterName) const;
 	void SetUserFilterPath(const String & filterPath);
