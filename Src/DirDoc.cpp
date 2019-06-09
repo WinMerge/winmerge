@@ -47,6 +47,7 @@
 #include "FileFilterHelper.h"
 #include "unicoder.h"
 #include "DirActions.h"
+#include "DirScan.h"
 #include "MessageBoxDialog.h"
 
 #ifdef _DEBUG
@@ -260,10 +261,6 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_pCtxt->m_pCompareStats = m_pCompareStats.get();
 
-	// Set total items count since we don't collect items
-	if (m_bMarkedRescan)
-		m_pCompareStats->IncreaseTotalItems(m_pDirView->GetSelectedCount());
-
 	pf->GetHeaderInterface()->SetPaneCount(m_nDirs);
 	pf->GetHeaderInterface()->SetOnSetFocusCallback([&](int pane) {
 		m_pDirView->SetActivePane(pane);
@@ -293,7 +290,31 @@ void CDirDoc::Rescan()
 	m_diffThread.SetContext(m_pCtxt.get());
 	m_diffThread.RemoveListener(this, &CDirDoc::DiffThreadCallback);
 	m_diffThread.AddListener(this, &CDirDoc::DiffThreadCallback);
-	m_diffThread.SetCompareSelected(m_bMarkedRescan);
+	if (m_bMarkedRescan)
+	{
+		m_diffThread.SetCollectFunction([](DiffFuncStruct* myStruct) {
+			int nItems = DirScan_UpdateMarkedItems(myStruct, nullptr);
+			myStruct->context->m_pCompareStats->IncreaseTotalItems(nItems);
+		});
+		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
+			DirScan_CompareRequestedItems(myStruct, nullptr);
+		});
+	}
+	else
+	{
+		m_diffThread.SetCollectFunction([](DiffFuncStruct* myStruct) {
+			bool casesensitive = false;
+			int depth = myStruct->context->m_bRecursive ? -1 : 0;
+			PathContext paths = myStruct->context->GetNormalizedPaths();
+			String subdir[3] = {_T(""), _T(""), _T("")}; // blank to start at roots specified in diff context
+			// Build results list (except delaying file comparisons until below)
+			DirScan_GetItems(paths, subdir, myStruct,
+					casesensitive, depth, nullptr, myStruct->context->m_bWalkUniques);
+		});
+		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
+			DirScan_CompareItems(myStruct, nullptr);
+		});
+	}
 	m_diffThread.CompareDirectories();
 	m_bMarkedRescan = false;
 }
