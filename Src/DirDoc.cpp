@@ -49,6 +49,8 @@
 #include "DirActions.h"
 #include "DirScan.h"
 #include "MessageBoxDialog.h"
+#include "DirCmpReport.h"
+#include <Poco/Semaphore.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -75,6 +77,7 @@ CDirDoc::CDirDoc()
 , m_bMarkedRescan(false)
 , m_pTempPathContext(nullptr)
 , m_bGeneratingReport(false)
+, m_pReport(nullptr)
 {
 	m_nDirs = m_nDirsTemp;
 
@@ -233,9 +236,10 @@ void CDirDoc::Rescan()
 	m_pCompareStats->Reset();
 	m_pDirView->StartCompare(m_pCompareStats.get());
 
-	m_pDirView->DeleteAllDisplayItems();
+	if (!m_bGeneratingReport)
+		m_pDirView->DeleteAllDisplayItems();
 	// Don't clear if only scanning selected items
-	if (!m_bMarkedRescan)
+	if (!m_bMarkedRescan && !m_bGeneratingReport)
 	{
 		m_pCtxt->RemoveAll();
 		m_pCtxt->InitDiffItemList();
@@ -290,7 +294,35 @@ void CDirDoc::Rescan()
 	m_diffThread.SetContext(m_pCtxt.get());
 	m_diffThread.RemoveListener(this, &CDirDoc::DiffThreadCallback);
 	m_diffThread.AddListener(this, &CDirDoc::DiffThreadCallback);
-	if (m_bMarkedRescan)
+	if (m_bGeneratingReport)
+	{
+		m_diffThread.SetCollectFunction([&](DiffFuncStruct* myStruct) {
+			myStruct->context->m_pCompareStats->IncreaseTotalItems(m_pDirView->GetListCtrl().GetItemCount());
+		});
+		m_diffThread.SetCompareFunction([&](DiffFuncStruct* myStruct) {
+			m_pReport->SetDiffFuncStruct(myStruct);
+			myStruct->pSemaphore->wait();
+			String errStr;
+			if (m_pReport->GenerateReport(errStr))
+			{
+				if (errStr.empty())
+				{
+					if (GetReportFile().empty())
+						LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+				}
+				else
+				{
+					String msg = strutils::format_string1(
+						_("Error creating the report:\n%1"),
+						errStr);
+					AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
+				}
+			}
+			SetGeneratingReport(false);
+			SetReport(nullptr);
+		});
+	}
+	else if (m_bMarkedRescan)
 	{
 		m_diffThread.SetCollectFunction([](DiffFuncStruct* myStruct) {
 			int nItems = DirScan_UpdateMarkedItems(myStruct, nullptr);
@@ -756,3 +788,4 @@ void CDirDoc::MoveToPrevDiff(IMergeDoc *pMergeDoc)
 		GetMainFrame()->OnUpdateFrameTitle(FALSE);
 	}
 }
+

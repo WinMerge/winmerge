@@ -16,7 +16,10 @@
 #include "paths.h"
 #include "unicoder.h"
 #include "markdown.h"
-#include "IListCtrl.h"
+#include "CompareStats.h"
+#include "DiffItem.h"
+#include "DiffThread.h"
+#include "IAbortable.h"
 
 UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
 
@@ -68,6 +71,7 @@ DirCmpReport::DirCmpReport(const std::vector<String> & colRegKeys)
 , m_pFileCmpReport(nullptr)
 , m_bIncludeFileCmpReport(false)
 , m_bOutputUTF8(false)
+, m_myStruct(nullptr)
 {
 }
 
@@ -76,7 +80,7 @@ DirCmpReport::DirCmpReport(const std::vector<String> & colRegKeys)
  */
 void DirCmpReport::SetList(IListCtrl *pList)
 {
-	m_pList = pList;
+	m_pList.reset(pList);
 }
 
 /**
@@ -103,7 +107,7 @@ void DirCmpReport::SetColumns(int columns)
  */
 void DirCmpReport::SetFileCmpReport(IFileCmpReport *pFileCmpReport)
 {
-	m_pFileCmpReport = pFileCmpReport;
+	m_pFileCmpReport.reset(pFileCmpReport);
 }
 
 static ULONG GetLength32(CFile const &f)
@@ -151,7 +155,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 	{
 		if (m_bCopyToClipboard)
 		{
-			if (!CWnd::GetSafeOwner()->OpenClipboard())
+			if (!OpenClipboard(NULL))
 				return false;
 			if (!EmptyClipboard())
 				return false;
@@ -316,7 +320,12 @@ void DirCmpReport::GenerateContent()
 	// Report:Detail. All currently displayed columns will be added
 	for (int currRow = 0; currRow < nRows; currRow++)
 	{
+		if (m_myStruct && m_myStruct->context->GetAbortable()->ShouldAbort())
+			break;
 		WriteString(_T("\n"));
+		DIFFITEM* pdi = reinterpret_cast<DIFFITEM*>(m_pList->GetItemData(currRow));
+		if (m_myStruct)
+			m_myStruct->context->m_pCompareStats->BeginCompare(pdi, 0);
 		for (int currCol = 0; currCol < m_nColumns; currCol++)
 		{
 			String value = m_pList->GetItemText(currRow, currCol);
@@ -332,6 +341,8 @@ void DirCmpReport::GenerateContent()
 			if (currCol < m_nColumns - 1)
 				WriteString(m_sSeparator);
 		}
+		if (m_myStruct)
+			m_myStruct->context->m_pCompareStats->AddItem(pdi->diffcode.diffcode);
 	}
 
 }
@@ -464,9 +475,14 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 	// Report:Detail. All currently displayed columns will be added
 	for (int currRow = 0; currRow < nRows; currRow++)
 	{
+		if (m_myStruct && m_myStruct->context->GetAbortable()->ShouldAbort())
+			break;
+		DIFFITEM* pdi = reinterpret_cast<DIFFITEM*>(m_pList->GetItemData(currRow));
 		String sLinkPath;
+		if (m_myStruct)
+			m_myStruct->context->m_pCompareStats->BeginCompare(pdi, 0);
 		if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)
-			(*m_pFileCmpReport)(REPORT_TYPE_SIMPLEHTML, m_pList, currRow, sDestDir, sLinkPath);
+			(*m_pFileCmpReport.get())(REPORT_TYPE_SIMPLEHTML, m_pList.get(), currRow, sDestDir, sLinkPath);
 
 		String rowEl = _T("tr");
 		if (xml)
@@ -513,9 +529,13 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 			WriteString(EndEl(colEl));
 		}
 		WriteString(EndEl(rowEl) + _T("\n"));
+		if (m_myStruct)
+			m_myStruct->context->m_pCompareStats->AddItem(pdi->diffcode.diffcode);
 	}
 	if (!xml)
 		WriteString(_T("</table>\n"));
+	if (m_myStruct)
+		m_myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 }
 
 /**
