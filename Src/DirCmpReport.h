@@ -40,11 +40,15 @@ public:
 	void SetList(IListCtrl *pList);
 	void SetRootPaths(const PathContext &paths);
 	void SetReportType(REPORT_TYPE nReportType) { m_nReportType = nReportType;  }
+	REPORT_TYPE GetReportType() const { return m_nReportType;  }
 	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
+	String GetReportFile() const { return m_sReportFile; }
 	void SetColumns(int columns);
 	void SetFileCmpReport(IFileCmpReport *pFileCmpReport);
 	void SetCopyToClipboard(bool bCopyToClipbard) { m_bCopyToClipboard = bCopyToClipbard;  }
+	bool GetCopyToClipboard() const { return m_bCopyToClipboard;  }
 	void SetIncludeFileCmpReport(bool bIncludeFileCmpReport) { m_bIncludeFileCmpReport = bIncludeFileCmpReport; }
+	bool GetIncludeFileCmpReport() const { return m_bIncludeFileCmpReport; }
 	void SetDiffFuncStruct(DiffFuncStruct* myStruct) { m_myStruct = myStruct; }
 	bool GenerateReport(String &errStr);
 
