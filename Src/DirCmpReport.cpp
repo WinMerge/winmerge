@@ -346,7 +346,7 @@ void DirCmpReport::GenerateContent()
 				WriteString(m_sSeparator);
 		}
 		if (m_myStruct)
-			m_myStruct->context->m_pCompareStats->AddItem(pdi->diffcode.diffcode);
+			m_myStruct->context->m_pCompareStats->AddItem(-1);
 	}
 
 }
@@ -536,7 +536,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 		}
 		WriteString(EndEl(rowEl) + _T("\n"));
 		if (m_myStruct)
-			m_myStruct->context->m_pCompareStats->AddItem(pdi->diffcode.diffcode);
+			m_myStruct->context->m_pCompareStats->AddItem(-1);
 	}
 	if (!xml)
 		WriteString(_T("</table>\n"));

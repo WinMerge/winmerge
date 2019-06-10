@@ -50,9 +50,12 @@ void CompareStats::IncreaseTotalItems(int count /*= 1*/)
 void CompareStats::AddItem(int code)
 {
 	FastMutex::ScopedLock lock(m_csProtect);
-	RESULT res = GetResultFromCode(code);
-	int index = static_cast<int>(res);
-	m_counts[index] += 1;
+	if (code != -1)
+	{
+		RESULT res = GetResultFromCode(code);
+		int index = static_cast<int>(res);
+		m_counts[index] += 1;
+	}
 	++m_nComparedItems;
 	assert(m_nComparedItems <= m_nTotalItems);
 }
