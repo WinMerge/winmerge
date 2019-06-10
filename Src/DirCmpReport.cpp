@@ -150,8 +150,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 	assert(m_pList != nullptr);
 	assert(m_pFile == nullptr);
 	bool bRet = false;
-
-	if (!m_sReportFile.empty()) try
+	try
 	{
 		if (m_bCopyToClipboard)
 		{
@@ -161,6 +160,8 @@ bool DirCmpReport::GenerateReport(String &errStr)
 				return false;
 			CSharedFile file(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT);
 			m_pFile = &file;
+			bool savedIncludeFileCmpReport = m_bIncludeFileCmpReport;
+			m_bIncludeFileCmpReport = false;
 			GenerateReport(m_nReportType);
 			HGLOBAL hMem = file.Detach();
 			SetClipboardData(CF_UNICODETEXT, ConvertToUTF16ForClipboard(hMem, m_bOutputUTF8 ? CP_UTF8 : CP_THREAD_ACP));
@@ -198,6 +199,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 				SetClipboardData(CF_HTML, GlobalReAlloc(file.Detach(), size, 0));
 			}
 			CloseClipboard();
+			m_bIncludeFileCmpReport = savedIncludeFileCmpReport;
 		}
 		if (!m_sReportFile.empty())
 		{
@@ -538,8 +540,6 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 	}
 	if (!xml)
 		WriteString(_T("</table>\n"));
-	if (m_myStruct)
-		m_myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 }
 
 /**

@@ -297,8 +297,17 @@ void CDirDoc::Rescan()
 	if (m_bGeneratingReport)
 	{
 		m_diffThread.SetCollectFunction([&](DiffFuncStruct* myStruct) {
+			int m = 0;
+			if (m_pReport->GetCopyToClipboard())
+			{
+				++m;
+				if (m_pReport->GetReportType() == REPORT_TYPE_SIMPLEHTML)
+					++m;
+			}
+			if (!m_pReport->GetReportFile().empty())
+				++m;
 			myStruct->context->m_pCompareStats->IncreaseTotalItems(
-				m_pDirView->GetListCtrl().GetItemCount() - (myStruct->context->m_bRecursive ? 0 : 1));
+				(m_pDirView->GetListCtrl().GetItemCount() - (myStruct->context->m_bRecursive ? 0 : 1)) * m);
 		});
 		m_diffThread.SetCompareFunction([&](DiffFuncStruct* myStruct) {
 			m_pReport->SetDiffFuncStruct(myStruct);
