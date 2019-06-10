@@ -324,6 +324,8 @@ void DirCmpReport::GenerateContent()
 			break;
 		WriteString(_T("\n"));
 		DIFFITEM* pdi = reinterpret_cast<DIFFITEM*>(m_pList->GetItemData(currRow));
+		if (reinterpret_cast<uintptr_t>(pdi) == -1)
+			continue;
 		if (m_myStruct)
 			m_myStruct->context->m_pCompareStats->BeginCompare(pdi, 0);
 		for (int currCol = 0; currCol < m_nColumns; currCol++)
@@ -478,6 +480,8 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 		if (m_myStruct && m_myStruct->context->GetAbortable()->ShouldAbort())
 			break;
 		DIFFITEM* pdi = reinterpret_cast<DIFFITEM*>(m_pList->GetItemData(currRow));
+		if (reinterpret_cast<uintptr_t>(pdi) == -1)
+			continue;
 		String sLinkPath;
 		if (m_myStruct)
 			m_myStruct->context->m_pCompareStats->BeginCompare(pdi, 0);

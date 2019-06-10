@@ -297,7 +297,8 @@ void CDirDoc::Rescan()
 	if (m_bGeneratingReport)
 	{
 		m_diffThread.SetCollectFunction([&](DiffFuncStruct* myStruct) {
-			myStruct->context->m_pCompareStats->IncreaseTotalItems(m_pDirView->GetListCtrl().GetItemCount());
+			myStruct->context->m_pCompareStats->IncreaseTotalItems(
+				m_pDirView->GetListCtrl().GetItemCount() - (myStruct->context->m_bRecursive ? 0 : 1));
 		});
 		m_diffThread.SetCompareFunction([&](DiffFuncStruct* myStruct) {
 			m_pReport->SetDiffFuncStruct(myStruct);
