@@ -233,7 +233,8 @@ void CDirDoc::Rescan()
 	if (threadState == CDiffThread::THREAD_COMPARING)
 		return;
 
-	m_pCompareStats->Reset();
+	if (!m_bGeneratingReport)
+		m_pCompareStats->Reset();
 	m_pDirView->StartCompare(m_pCompareStats.get());
 
 	if (!m_bGeneratingReport)
