@@ -10,7 +10,6 @@
 #include <cstdio>
 #include <cstring>
 #include <algorithm>
-#include <windows.h>
 #include <memory>
 #include "unicoder.h"
 #include "ExConverter.h"
