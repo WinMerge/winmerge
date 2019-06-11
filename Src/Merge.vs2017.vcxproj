@@ -1423,6 +1423,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">true</ExcludedFromBuild>
     </ResourceCompile>
   </ItemGroup>
+  <Target Name="CopyVisualElements" AfterTargets="Build">
+    <ItemGroup>
+      <VisualElementsManifest Include="res\WinMergeU.VisualElementsManifest.xml" />
+      <LogoImages Include="res\LogoImages\*.png" />
+    </ItemGroup>
+    <Message Text="Copy visual elements to $(OutDir)" />
+    <Copy SourceFiles="@(VisualElementsManifest)" DestinationFolder="$(OutDir)" ContinueOnError="true" />
+    <Copy SourceFiles="@(LogoImages)" DestinationFolder="$(OutDir)\LogoImages" ContinueOnError="true" />
+  </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
