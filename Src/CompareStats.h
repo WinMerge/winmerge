@@ -5,9 +5,7 @@
  */ 
 #pragma once
 
-#define POCO_NO_UNWINDOWS 1
-#include <Poco/Mutex.h>
-#include <Poco/AtomicCounter.h>
+#include <atomic>
 #include <vector>
 #include <array>
 
@@ -95,17 +93,17 @@ public:
 	int GetCompareDirs() const { return m_nDirs; }
 
 private:
-	std::array<int, RESULT_COUNT> m_counts; /**< Table storing result counts */
-	mutable Poco::FastMutex m_csProtect; /**< For synchronizing read/write of counts */
-	long m_nTotalItems; /**< Total items found to compare */
-	long m_nComparedItems; /**< Compared items so far */
+	std::array<std::atomic_int, RESULT_COUNT> m_counts; /**< Table storing result counts */
+	std::atomic_int m_nTotalItems; /**< Total items found to compare */
+	std::atomic_int m_nComparedItems; /**< Compared items so far */
 	CMP_STATE m_state; /**< State for compare (idle, collect, compare,..) */
 	bool m_bCompareDone; /**< Have we finished last compare? */
 	int m_nDirs; /**< number of directories to compare */
 	struct ThreadState
 	{
 		ThreadState() : m_nHitCount(0), m_pDiffItem(nullptr) {}
-		Poco::AtomicCounter m_nHitCount;
+		ThreadState(const ThreadState& other) : m_nHitCount(other.m_nHitCount.load()), m_pDiffItem(other.m_pDiffItem) {}
+		std::atomic_int m_nHitCount;
 		const DIFFITEM *m_pDiffItem;
 	};
 	std::vector<ThreadState> m_rgThreadState;

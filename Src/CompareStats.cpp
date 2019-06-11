@@ -8,10 +8,8 @@
 #include "CompareStats.h"
 #include <cassert>
 #include <cstring>
-#include <Poco/ScopedLock.h>
+#include <atomic>
 #include "DiffItem.h"
-
-using Poco::FastMutex;
 
 /** 
  * @brief Constructor, initializes critical section.
@@ -39,7 +37,6 @@ CompareStats::~CompareStats()
  */
 void CompareStats::IncreaseTotalItems(int count /*= 1*/)
 {
-	FastMutex::ScopedLock lock(m_csProtect);
 	m_nTotalItems += count;
 }
 
@@ -49,7 +46,6 @@ void CompareStats::IncreaseTotalItems(int count /*= 1*/)
  */
 void CompareStats::AddItem(int code)
 {
-	FastMutex::ScopedLock lock(m_csProtect);
 	if (code != -1)
 	{
 		RESULT res = GetResultFromCode(code);
@@ -207,8 +203,8 @@ CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode) const
 void CompareStats::Swap(int idx1, int idx2)
 {
 	idx2 = m_nDirs < 3 ? idx2 + 1 : idx2;
-	std::swap(m_counts[RESULT_LUNIQUE + idx1], m_counts[RESULT_LUNIQUE + idx2]);
-	std::swap(m_counts[RESULT_LMISSING + idx1], m_counts[RESULT_LMISSING + idx2]);
-	std::swap(m_counts[RESULT_LDIRUNIQUE + idx1], m_counts[RESULT_LDIRUNIQUE + idx2]);
-	std::swap(m_counts[RESULT_LDIRMISSING + idx1], m_counts[RESULT_LDIRMISSING + idx2]);
+	m_counts[RESULT_LUNIQUE     + idx2] = m_counts[RESULT_LUNIQUE     + idx1].exchange(m_counts[RESULT_LUNIQUE     + idx2]);
+	m_counts[RESULT_LMISSING    + idx2] = m_counts[RESULT_LMISSING    + idx1].exchange(m_counts[RESULT_LMISSING    + idx2]);
+	m_counts[RESULT_LDIRUNIQUE  + idx2] = m_counts[RESULT_LDIRUNIQUE  + idx1].exchange(m_counts[RESULT_LDIRUNIQUE  + idx2]);
+	m_counts[RESULT_LDIRMISSING + idx2] = m_counts[RESULT_LDIRMISSING + idx1].exchange(m_counts[RESULT_LDIRMISSING + idx2]);
 }
