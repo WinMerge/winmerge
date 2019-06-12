@@ -23,12 +23,9 @@
  * @note Diffcounts are initialized to invalid values, not zeros.
  */
 DiffFileData::DiffFileData()
-: m_inf(new file_data[2])
+: m_inf(new file_data[2]{})
+, m_used(false)
 {
-	int i = 0;
-	for (i = 0; i < 2; ++i)
-		memset(&m_inf[i], 0, sizeof(m_inf[i]));
-	m_used = false;
 	Reset();
 }
 
