@@ -427,7 +427,7 @@ Name: {app}; Flags: uninsalwaysuninstall
 Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 ; Visual Elements
 Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
-Source: ..\..\Build\MergeUnicodeRelease\LogoImages\*.png; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\MergeUnicodeRelease\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
 
 ; Shell extension
 Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
