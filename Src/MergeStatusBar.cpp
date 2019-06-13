@@ -86,15 +86,13 @@ END_MESSAGE_MAP()
 /**
  * @brief Constructor.
  */
-CMergeStatusBar::CMergeStatusBar() : m_nPanes(2)
+CMergeStatusBar::CMergeStatusBar() : m_nPanes(2), m_bDiff{}, m_dispFlags{}
 {
 	for (int pane = 0; pane < sizeof(m_status) / sizeof(m_status[0]); pane++)
 	{
 		m_status[pane].m_pWndStatusBar = this;
 		m_status[pane].m_base = PANE_PANE0_INFO + pane * nColumnsPerPane;
 	}
-	std::fill_n(m_bDiff, sizeof(m_bDiff)/sizeof(m_bDiff[0]), false);
-	std::fill_n(m_dispFlags, sizeof(m_dispFlags)/sizeof(m_dispFlags[0]), 0);
 	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
 }
 

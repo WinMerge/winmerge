@@ -4451,7 +4451,7 @@ GetResourceHandle ()
 int CCrystalTextView::
 OnCreate (LPCREATESTRUCT lpCreateStruct)
 {
-  memset (&m_lfBaseFont, 0, sizeof (m_lfBaseFont));
+  m_lfBaseFont = {};
   _tcscpy_s (m_lfBaseFont.lfFaceName, _T ("FixedSys"));
   m_lfBaseFont.lfHeight = 0;
   m_lfBaseFont.lfWeight = FW_NORMAL;

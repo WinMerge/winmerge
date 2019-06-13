@@ -162,9 +162,9 @@ CImgMergeFrame::CImgMergeFrame()
 , m_bAutoMerged(false)
 , m_pImgMergeWindow(nullptr)
 , m_pImgToolWindow(nullptr)
+, m_nBufferType{BUFFER_NORMAL, BUFFER_NORMAL, BUFFER_NORMAL}
+, m_bRO{}
 {
-	std::fill_n(m_nBufferType, 3, BUFFER_NORMAL);
-	std::fill_n(m_bRO, 3, false);
 }
 
 CImgMergeFrame::~CImgMergeFrame()
