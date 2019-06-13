@@ -124,7 +124,7 @@ void DiffFileData::Reset()
 			_close(m_inf[i].desc);
 		}
 		m_inf[i].desc = 0;
-		memset(&m_inf[i], 0, sizeof(m_inf[i]));
+		m_inf[i] = {};
 	}
 }
 
