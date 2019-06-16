@@ -76,13 +76,15 @@ void writeElement(XMLWriter& writer, const std::string& tagname, const std::stri
 class ProjectFileHandler: public ContentHandler
 {
 public:
-	explicit ProjectFileHandler(ProjectFile *pProject) : m_pProject(pProject) {}
+	explicit ProjectFileHandler(std::list<ProjectFileItem> *pProject) : m_pProject(pProject) {}
 
 	void setDocumentLocator(const Locator* loc) {}
 	void startDocument() {}
 	void endDocument() {}
 	void startElement(const XMLString& uri, const XMLString& localName, const XMLString& qname, const Attributes& attributes)
 	{
+		if (localName == Paths_element_name)
+			m_pProject->push_back(ProjectFileItem{});
 		m_stack.push(localName);
 	}
 	void endElement(const XMLString& uri, const XMLString& localName, const XMLString& qname)
@@ -91,46 +93,48 @@ public:
 	}
 	void characters(const XMLChar ch[], int start, int length)
 	{
-		if (m_stack.size() != 3)
+		if (m_stack.size() != 3 && m_pProject->size() == 0)
 			return;
+
+		ProjectFileItem& currentItem = m_pProject->back();
 
 		const std::string& nodename = m_stack.top();
 		if (nodename == Left_element_name)
 		{
-			m_pProject->m_paths.SetLeft(m_pProject->m_paths.GetLeft() + xmlch2tstr(ch + start, length), false);
-			m_pProject->m_bHasLeft = true;
+			currentItem.m_paths.SetLeft(currentItem.m_paths.GetLeft() + xmlch2tstr(ch + start, length), false);
+			currentItem.m_bHasLeft = true;
 		}
 		else if (nodename == Middle_element_name)
 		{
-			m_pProject->m_paths.SetMiddle(m_pProject->m_paths.GetMiddle() + xmlch2tstr(ch + start, length), false);
-			m_pProject->m_bHasMiddle = true;
+			currentItem.m_paths.SetMiddle(currentItem.m_paths.GetMiddle() + xmlch2tstr(ch + start, length), false);
+			currentItem.m_bHasMiddle = true;
 		}
 		else if (nodename == Right_element_name)
 		{
-			m_pProject->m_paths.SetRight(m_pProject->m_paths.GetRight() + xmlch2tstr(ch + start, length), false);
-			m_pProject->m_bHasRight = true;
+			currentItem.m_paths.SetRight(currentItem.m_paths.GetRight() + xmlch2tstr(ch + start, length), false);
+			currentItem.m_bHasRight = true;
 		}
 		else if (nodename == Filter_element_name)
 		{
-			m_pProject->m_filter += xmlch2tstr(ch + start, length);
-			m_pProject->m_bHasFilter = true;
+			currentItem.m_filter += xmlch2tstr(ch + start, length);
+			currentItem.m_bHasFilter = true;
 		}
 		else if (nodename == Subfolders_element_name)
 		{
-			m_pProject->m_subfolders = atoi(std::string(ch + start, length).c_str());
-			m_pProject->m_bHasSubfolders = true;
+			currentItem.m_subfolders = atoi(std::string(ch + start, length).c_str());
+			currentItem.m_bHasSubfolders = true;
 		}
 		else if (nodename == Left_ro_element_name)
 		{
-			m_pProject->m_bLeftReadOnly = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bLeftReadOnly = atoi(std::string(ch + start, length).c_str()) != 0;
 		}
 		else if (nodename == Middle_ro_element_name)
 		{
-			m_pProject->m_bMiddleReadOnly = atoi(std::string(ch +  start, length).c_str()) != 0;
+			currentItem.m_bMiddleReadOnly = atoi(std::string(ch +  start, length).c_str()) != 0;
 		}
 		else if (nodename == Right_ro_element_name)
 		{
-			m_pProject->m_bRightReadOnly = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bRightReadOnly = atoi(std::string(ch + start, length).c_str()) != 0;
 		}
 	}
 	void ignorableWhitespace(const XMLChar ch[], int start, int length)	{}
@@ -140,7 +144,7 @@ public:
 	void skippedEntity(const XMLString& name) {}
 
 private:
-	ProjectFile *m_pProject;
+	std::list<ProjectFileItem> *m_pProject = nullptr;
 	std::stack<std::string> m_stack;
 };
 
@@ -150,7 +154,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 /** 
  * @brief Standard constructor.
  */
- ProjectFile::ProjectFile()
+ ProjectFileItem::ProjectFileItem()
 : m_bHasLeft(false)
 , m_bHasMiddle(false)
 , m_bHasRight(false)
@@ -164,6 +168,210 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 }
 
 /** 
+ * @brief Returns if left path is defined in project file.
+ * @return true if project file has left path.
+ */
+bool ProjectFileItem::HasLeft() const
+{
+	return m_bHasLeft;
+}
+
+/** 
+ * @brief Returns if middle path is defined.
+ */
+bool ProjectFileItem::HasMiddle() const
+{
+	return m_bHasMiddle;
+}
+
+/** 
+ * @brief Returns if right path is defined in project file.
+ * @return true if project file has right path.
+ */
+bool ProjectFileItem::HasRight() const
+{
+	return m_bHasRight;
+}
+
+/** 
+ * @brief Returns if filter is defined in project file.
+ * @return true if project file has filter.
+ */
+bool ProjectFileItem::HasFilter() const
+{
+	return m_bHasFilter;
+}
+
+/** 
+ * @brief Returns if subfolder is defined in projectfile.
+ * @return true if project file has subfolder definition.
+ */
+bool ProjectFileItem::HasSubfolders() const
+{
+	return m_bHasSubfolders;
+}
+
+/** 
+ * @brief Returns left path.
+ * @param [out] pReadOnly true if readonly was specified for path.
+ * @return Left path.
+ */
+String ProjectFileItem::GetLeft(bool * pReadOnly /*= nullptr*/) const
+{
+	if (pReadOnly != nullptr)
+		*pReadOnly = m_bLeftReadOnly;
+	return m_paths.GetLeft();
+}
+
+/** 
+ * @brief Returns if left path is specified read-only.
+ * @return true if left path is read-only, false otherwise.
+ */
+bool ProjectFileItem::GetLeftReadOnly() const
+{
+	return m_bLeftReadOnly;
+}
+
+/** 
+ * @brief Set left path, returns old left path.
+ * @param [in] sLeft Left path.
+ * @param [in] bReadOnly Will path be recorded read-only?
+ */
+void ProjectFileItem::SetLeft(const String& sLeft, const bool * pReadOnly /*= nullptr*/)
+{
+	m_paths.SetLeft(sLeft, false);
+	if (pReadOnly != nullptr)
+		m_bLeftReadOnly = *pReadOnly;
+}
+
+/** 
+ * @brief Returns middle path.
+ * @param [out] pReadOnly true if readonly was specified for path.
+ */
+String ProjectFileItem::GetMiddle(bool * pReadOnly /*= nullptr*/) const
+{
+	if (pReadOnly != nullptr)
+		*pReadOnly = m_bMiddleReadOnly;
+	return m_paths.GetMiddle();
+}
+
+/** 
+ * @brief Returns if middle path is specified read-only.
+ */
+bool ProjectFileItem::GetMiddleReadOnly() const
+{
+	return m_bMiddleReadOnly;
+}
+
+/** 
+ * @brief Set middle path, returns old middle path.
+ * @param [in] sMiddle Middle path.
+ * @param [in] bReadOnly Will path be recorded read-only?
+ */
+void ProjectFileItem::SetMiddle(const String& sMiddle, const bool * pReadOnly /*= nullptr*/)
+{
+	m_paths.SetMiddle(sMiddle, false);
+	if (pReadOnly != nullptr)
+		m_bMiddleReadOnly = *pReadOnly;
+
+	return;
+}
+
+/** 
+ * @brief Returns right path.
+ * @param [out] pReadOnly true if readonly was specified for path.
+ * @return Right path.
+ */
+String ProjectFileItem::GetRight(bool * pReadOnly /*= nullptr*/) const
+{
+	if (pReadOnly != nullptr)
+		*pReadOnly = m_bRightReadOnly;
+	return m_paths.GetRight();
+}
+
+/** 
+ * @brief Returns if right path is specified read-only.
+ * @return true if right path is read-only, false otherwise.
+ */
+bool ProjectFileItem::GetRightReadOnly() const
+{
+	return m_bRightReadOnly;
+}
+
+/** 
+ * @brief Set right path, returns old right path.
+ * @param [in] sRight Right path.
+ * @param [in] bReadOnly Will path be recorded read-only?
+ */
+void ProjectFileItem::SetRight(const String& sRight, const bool * pReadOnly /*= nullptr*/)
+{
+	m_paths.SetRight(sRight, false);
+	if (pReadOnly != nullptr)
+		m_bRightReadOnly = *pReadOnly;
+}
+
+/** 
+ * @brief Returns filter.
+ * @return Filter string.
+ */
+String ProjectFileItem::GetFilter() const
+{
+	return m_filter;
+}
+
+/** 
+ * @brief Set filter.
+ * @param [in] sFilter New filter string to set.
+ */
+void ProjectFileItem::SetFilter(const String& sFilter)
+{
+	m_filter = sFilter;
+}
+
+/** 
+ * @brief Returns subfolder included -setting.
+ * @return != 0 if subfolders are included.
+ */
+int ProjectFileItem::GetSubfolders() const
+{
+	return m_subfolders;
+}
+
+/** 
+ * @brief set subfolder.
+ * @param [in] iSubfolder New value for subfolder inclusion.
+ */
+void ProjectFileItem::SetSubfolders(bool bSubfolder)
+{
+	m_subfolders = bSubfolder ? 1 : 0;
+}
+
+/** 
+ * @brief 
+ *
+ * @param [in] files Files in project
+ * @param [in] bSubFolders If true subfolders included (recursive compare)
+ */
+void ProjectFileItem::SetPaths(const PathContext& files, bool bSubfolders)
+{
+	m_paths = files;
+	m_subfolders = bSubfolders;
+}
+
+/** 
+ * @brief Returns left and right paths and recursive from project file
+ * 
+ * @param [out] files Files in project
+ * @param [out] bSubFolders If true subfolders included (recursive compare)
+ */
+void ProjectFileItem::GetPaths(PathContext& files, bool & bSubfolders) const
+{
+	files = m_paths;
+	if (HasSubfolders())
+		bSubfolders = (GetSubfolders() == 1);
+}
+
+/** 
  * @brief Open given path-file and read data from it to member variables.
  * @param [in] path Path to project file.
  * @param [out] sError Error string if error happened.
@@ -171,7 +379,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
  */
 bool ProjectFile::Read(const String& path)
 {
-	ProjectFileHandler handler(this);
+	ProjectFileHandler handler(&m_items);
 	SAXParser parser;
 	parser.setContentHandler(&handler);
 	parser.parse(toUTF8(path));
@@ -191,229 +399,29 @@ bool ProjectFile::Save(const String& path) const
 	writer.startDocument();
 	writer.startElement("", "", Root_element_name);
 	{
-		writer.startElement("", "", Paths_element_name);
+		for (auto& item : m_items)
 		{
-			if (!m_paths.GetLeft().empty())
-				writeElement(writer, Left_element_name, toUTF8(m_paths.GetLeft()));
-			if (!m_paths.GetMiddle().empty())
-				writeElement(writer, Middle_element_name, toUTF8(m_paths.GetMiddle()));
-			if (!m_paths.GetRight().empty())
-				writeElement(writer, Right_element_name, toUTF8(m_paths.GetRight()));
-			if (!m_filter.empty())
-				writeElement(writer, Filter_element_name, toUTF8(m_filter));
-			writeElement(writer, Subfolders_element_name, m_subfolders != 0 ? "1" : "0");
-			writeElement(writer, Left_ro_element_name, m_bLeftReadOnly ? "1" : "0");
-			if (!m_paths.GetMiddle().empty())
-				writeElement(writer, Middle_ro_element_name, m_bMiddleReadOnly ? "1" : "0");
-			writeElement(writer, Right_ro_element_name, m_bRightReadOnly ? "1" : "0");
+			writer.startElement("", "", Paths_element_name);
+			{
+				if (!item.m_paths.GetLeft().empty())
+					writeElement(writer, Left_element_name, toUTF8(item.m_paths.GetLeft()));
+				if (!item.m_paths.GetMiddle().empty())
+					writeElement(writer, Middle_element_name, toUTF8(item.m_paths.GetMiddle()));
+				if (!item.m_paths.GetRight().empty())
+					writeElement(writer, Right_element_name, toUTF8(item.m_paths.GetRight()));
+				if (!item.m_filter.empty())
+					writeElement(writer, Filter_element_name, toUTF8(item.m_filter));
+				writeElement(writer, Subfolders_element_name, item.m_subfolders != 0 ? "1" : "0");
+				writeElement(writer, Left_ro_element_name, item.m_bLeftReadOnly ? "1" : "0");
+				if (!item.m_paths.GetMiddle().empty())
+					writeElement(writer, Middle_ro_element_name, item.m_bMiddleReadOnly ? "1" : "0");
+				writeElement(writer, Right_ro_element_name, item.m_bRightReadOnly ? "1" : "0");
+			}
+			writer.endElement("", "", Paths_element_name);
 		}
-		writer.endElement("", "", Paths_element_name);
 	}
 	writer.endElement("", "", Root_element_name);
 	writer.endDocument();
 	return true;
 }
 
-/** 
- * @brief Returns if left path is defined in project file.
- * @return true if project file has left path.
- */
-bool ProjectFile::HasLeft() const
-{
-	return m_bHasLeft;
-}
-
-/** 
- * @brief Returns if middle path is defined.
- */
-bool ProjectFile::HasMiddle() const
-{
-	return m_bHasMiddle;
-}
-
-/** 
- * @brief Returns if right path is defined in project file.
- * @return true if project file has right path.
- */
-bool ProjectFile::HasRight() const
-{
-	return m_bHasRight;
-}
-
-/** 
- * @brief Returns if filter is defined in project file.
- * @return true if project file has filter.
- */
-bool ProjectFile::HasFilter() const
-{
-	return m_bHasFilter;
-}
-
-/** 
- * @brief Returns if subfolder is defined in projectfile.
- * @return true if project file has subfolder definition.
- */
-bool ProjectFile::HasSubfolders() const
-{
-	return m_bHasSubfolders;
-}
-
-/** 
- * @brief Returns left path.
- * @param [out] pReadOnly true if readonly was specified for path.
- * @return Left path.
- */
-String ProjectFile::GetLeft(bool * pReadOnly /*= nullptr*/) const
-{
-	if (pReadOnly != nullptr)
-		*pReadOnly = m_bLeftReadOnly;
-	return m_paths.GetLeft();
-}
-
-/** 
- * @brief Returns if left path is specified read-only.
- * @return true if left path is read-only, false otherwise.
- */
-bool ProjectFile::GetLeftReadOnly() const
-{
-	return m_bLeftReadOnly;
-}
-
-/** 
- * @brief Set left path, returns old left path.
- * @param [in] sLeft Left path.
- * @param [in] bReadOnly Will path be recorded read-only?
- */
-void ProjectFile::SetLeft(const String& sLeft, const bool * pReadOnly /*= nullptr*/)
-{
-	m_paths.SetLeft(sLeft, false);
-	if (pReadOnly != nullptr)
-		m_bLeftReadOnly = *pReadOnly;
-}
-
-/** 
- * @brief Returns middle path.
- * @param [out] pReadOnly true if readonly was specified for path.
- */
-String ProjectFile::GetMiddle(bool * pReadOnly /*= nullptr*/) const
-{
-	if (pReadOnly != nullptr)
-		*pReadOnly = m_bMiddleReadOnly;
-	return m_paths.GetMiddle();
-}
-
-/** 
- * @brief Returns if middle path is specified read-only.
- */
-bool ProjectFile::GetMiddleReadOnly() const
-{
-	return m_bMiddleReadOnly;
-}
-
-/** 
- * @brief Set middle path, returns old middle path.
- * @param [in] sMiddle Middle path.
- * @param [in] bReadOnly Will path be recorded read-only?
- */
-void ProjectFile::SetMiddle(const String& sMiddle, const bool * pReadOnly /*= nullptr*/)
-{
-	m_paths.SetMiddle(sMiddle, false);
-	if (pReadOnly != nullptr)
-		m_bMiddleReadOnly = *pReadOnly;
-
-	return;
-}
-
-/** 
- * @brief Returns right path.
- * @param [out] pReadOnly true if readonly was specified for path.
- * @return Right path.
- */
-String ProjectFile::GetRight(bool * pReadOnly /*= nullptr*/) const
-{
-	if (pReadOnly != nullptr)
-		*pReadOnly = m_bRightReadOnly;
-	return m_paths.GetRight();
-}
-
-/** 
- * @brief Returns if right path is specified read-only.
- * @return true if right path is read-only, false otherwise.
- */
-bool ProjectFile::GetRightReadOnly() const
-{
-	return m_bRightReadOnly;
-}
-
-/** 
- * @brief Set right path, returns old right path.
- * @param [in] sRight Right path.
- * @param [in] bReadOnly Will path be recorded read-only?
- */
-void ProjectFile::SetRight(const String& sRight, const bool * pReadOnly /*= nullptr*/)
-{
-	m_paths.SetRight(sRight, false);
-	if (pReadOnly != nullptr)
-		m_bRightReadOnly = *pReadOnly;
-}
-
-/** 
- * @brief Returns filter.
- * @return Filter string.
- */
-String ProjectFile::GetFilter() const
-{
-	return m_filter;
-}
-
-/** 
- * @brief Set filter.
- * @param [in] sFilter New filter string to set.
- */
-void ProjectFile::SetFilter(const String& sFilter)
-{
-	m_filter = sFilter;
-}
-
-/** 
- * @brief Returns subfolder included -setting.
- * @return != 0 if subfolders are included.
- */
-int ProjectFile::GetSubfolders() const
-{
-	return m_subfolders;
-}
-
-/** 
- * @brief set subfolder.
- * @param [in] iSubfolder New value for subfolder inclusion.
- */
-void ProjectFile::SetSubfolders(bool bSubfolder)
-{
-	m_subfolders = bSubfolder ? 1 : 0;
-}
-
-/** 
- * @brief 
- *
- * @param [in] files Files in project
- * @param [in] bSubFolders If true subfolders included (recursive compare)
- */
-void ProjectFile::SetPaths(const PathContext& files, bool bSubfolders)
-{
-	m_paths = files;
-	m_subfolders = bSubfolders;
-}
-
-/** 
- * @brief Returns left and right paths and recursive from project file
- * 
- * @param [out] files Files in project
- * @param [out] bSubFolders If true subfolders included (recursive compare)
- */
-void ProjectFile::GetPaths(PathContext& files, bool & bSubfolders) const
-{
-	files = m_paths;
-	if (HasSubfolders())
-		bSubfolders = (GetSubfolders() == 1);
-}

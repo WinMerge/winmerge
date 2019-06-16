@@ -1593,7 +1593,6 @@ void CMainFrame::OnToolsFilters()
 	CPropertySheet sht(title.c_str());
 	LineFiltersDlg lineFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
-	vector<FileFilterInfo> fileFilters;
 	std::unique_ptr<LineFiltersList> lineFilters(new LineFiltersList());
 	String selectedFilter;
 	const String origFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
@@ -1604,8 +1603,7 @@ void CMainFrame::OnToolsFilters()
 	// Make sure all filters are up-to-date
 	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
 
-	theApp.m_pGlobalFileFilter->GetFileFilters(&fileFilters, selectedFilter);
-	fileFiltersDlg.SetFilterArray(&fileFilters);
+	fileFiltersDlg.SetFilterArray(theApp.m_pGlobalFileFilter->GetFileFilters(selectedFilter));
 	fileFiltersDlg.SetSelected(selectedFilter);
 	const bool lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
@@ -1793,7 +1791,7 @@ void CMainFrame::OnFileOpenProject()
 	// store this as the new project path
 	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath);
 
-	theApp.LoadAndOpenProjectFile(sFilepath.c_str());
+	theApp.LoadAndOpenProjectFile(sFilepath);
 }
 
 /**

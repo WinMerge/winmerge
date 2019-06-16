@@ -82,8 +82,9 @@ void ShellFileOperations::SetDestination(const String &destination)
  *   paths.
  * @param [out] string of the paths.
  */
-void ShellFileOperations::GetPathList(bool source, vector<TCHAR>& paths) const
+vector<TCHAR> ShellFileOperations::GetPathList(bool source) const
 {
+	vector<TCHAR> paths;
 	const size_t len = CountStringSize(source);
 	paths.resize(len, 0);
 
@@ -109,6 +110,7 @@ void ShellFileOperations::GetPathList(bool source, vector<TCHAR>& paths) const
 		ind++; // NUL between strings
 		++iter;
 	}
+	return paths;
 }
 
 /**
@@ -167,10 +169,10 @@ bool ShellFileOperations::Run()
 	if (m_function == 0)
 		return false; // Operation not set!
 
-	vector<TCHAR> sourceStr, destStr;
-	GetPathList(true, sourceStr);
+	vector<TCHAR> destStr;
+	vector<TCHAR> sourceStr = GetPathList(true);
 	if (m_function != FO_DELETE)
-		GetPathList(false, destStr);
+		destStr = GetPathList(false);
 
 	SHFILEOPSTRUCT fileop = {m_parentWindow, m_function, &sourceStr[0], 
 		m_function != FO_DELETE ? &destStr[0] : nullptr, m_flags, FALSE, 0, 0};

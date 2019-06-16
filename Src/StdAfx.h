@@ -68,6 +68,8 @@
 const UINT MSG_UI_UPDATE = WM_USER + 1;
 /// Request to save panesizes
 const UINT MSG_STORE_PANESIZES = WM_USER + 2;
+/// Request to generate file compare report
+const UINT MSG_GENERATE_FLIE_COMPARE_REPORT = WM_USER + 3;
 /* @} */
 
 /// Seconds ignored in filetime differences if option enabled

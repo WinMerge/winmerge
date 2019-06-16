@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2019-05-20 10:10+0200\n"
+"POT-Creation-Date: 2019-06-02 20:02+0000\n"
+"PO-Revision-Date: 2019-06-03 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -23,15 +23,11 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_LITHUANIAN, SUBLANG_DEFAULT"
-
-#. Codepage
-msgid "1252"
-msgstr "65001"
 
 msgid "C&opy to Right"
 msgstr "K&opijuoti į dešinę"
@@ -1276,7 +1272,7 @@ msgid "&Match similar lines"
 msgstr "&Sutapdinti panašias eilutes"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr ""
+msgstr "Lyginimo &algoritmas (Bandymai):"
 
 msgid "Enable indent &heuristic"
 msgstr ""
@@ -2085,7 +2081,7 @@ msgstr "Mano failas"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr "Eil.: %s  Stlp.: %d/%d  Sk.: %d/%d  EPS: %s"
+msgstr "Eil.: %s  Stlp.: %d/%d  Sk.: %d/%d  EPF: %s"
 
 #, c-format
 msgid "Line: %s"
@@ -2479,7 +2475,7 @@ msgstr "Failo vardas"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Katalogų"
+msgstr "Katalogas"
 
 msgid "Comparison result"
 msgstr "Lyginimo rezultatas"
@@ -2548,13 +2544,13 @@ msgid "Middle Attributes"
 msgstr "Vidurinio atributai"
 
 msgid "Left EOL"
-msgstr "Kairiojo eilučių pabaigos formatas"
+msgstr "Kairiojo EPF"
 
 msgid "Middle EOL"
-msgstr "Viduriniojo eilučių pabaigos formatas"
+msgstr "Viduriniojo EPF"
 
 msgid "Right EOL"
-msgstr "Dešiniojo eilučių pabaigos formatas"
+msgstr "Dešiniojo EPF"
 
 msgid "Left Encoding"
 msgstr "Kairiojo koduotė"
@@ -2566,11 +2562,11 @@ msgid "Middle Encoding"
 msgstr "Vidurinio koduotė"
 
 msgid "Ignored Diff."
-msgstr "Ignoruoti skirtumai."
+msgstr "Ignoruoti skirtumai"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binarinių"
+msgstr "Binarinis"
 
 msgid "Unable to compare files"
 msgstr "Neįmanoma palyginti failų"
@@ -2732,13 +2728,13 @@ msgid "Middle side attributes."
 msgstr "Vidurinės pusės atributai."
 
 msgid "Left side file EOL type"
-msgstr "Kairiojo failo eilučių pabaigos formatas"
+msgstr "Kairiojo failo eilučių pabaigos formatas."
 
 msgid "Right side file EOL type"
-msgstr "Dešiniojo failo eilučių pabaigos formatas"
+msgstr "Dešiniojo failo eilučių pabaigos formatas."
 
 msgid "Middle side file EOL type"
-msgstr "Vidurinio failo eilučių pabaigos formatas"
+msgstr "Vidurinio failo eilučių pabaigos formatas."
 
 msgid "Left side encoding."
 msgstr "Kairiosios pusės koduotė."

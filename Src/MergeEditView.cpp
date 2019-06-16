@@ -354,7 +354,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 		if (ptStart != ptEnd)
 		{
 			VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
-			if (lastLineIsNotInDiff && (firstLineIsNotInDiff || di.dbegin == firstLine))
+			if (lastLineIsNotInDiff && (firstLineIsNotInDiff || (di.dbegin == firstLine && ptStart.x == 0)))
 			{
 				firstWordDiff = -1;
 				return;
@@ -2615,8 +2615,7 @@ void CMergeEditView::OnUpdateStatusRO(CCmdUI* pCmdUI)
 HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 {
 	// get scripts list
-	std::vector<String> functionNamesList;
-	FileTransform::GetFreeFunctionsInScripts(functionNamesList, L"EDITOR_SCRIPT");
+	std::vector<String> functionNamesList = FileTransform::GetFreeFunctionsInScripts(L"EDITOR_SCRIPT");
 
 	// empty the menu
 	size_t i = GetMenuItemCount(hMenu);
@@ -3462,7 +3461,7 @@ void CMergeEditView::OnOpenFileWithEditor()
 		return;
 
 	int nRealLine = ComputeRealLine(GetCursorPos().y) + 1;
-	theApp.OpenFileToExternalEditor(sFileName.c_str(), nRealLine);
+	theApp.OpenFileToExternalEditor(sFileName, nRealLine);
 }
 
 /**

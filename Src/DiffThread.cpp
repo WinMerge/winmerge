@@ -27,10 +27,6 @@
 #include <Poco/Thread.h>
 #include <Poco/Semaphore.h>
 #include "UnicodeString.h"
-#include "DiffContext.h"
-#include "DirScan.h"
-#include "DiffItemList.h"
-#include "PathContext.h"
 #include "CompareStats.h"
 #include "IAbortable.h"
 #include "DebugNew.h"
@@ -63,8 +59,8 @@ CDiffThread::CDiffThread()
 , m_bAborting(false)
 , m_bPaused(false)
 , m_pDiffParm(new DiffFuncStruct)
+, m_pAbortgate(new DiffThreadAbortable(this))
 {
-	m_pAbortgate.reset(new DiffThreadAbortable(this));
 }
 
 /**
@@ -104,7 +100,6 @@ unsigned CDiffThread::CompareDirectories()
 
 	m_pDiffParm->context = m_pDiffContext;
 	m_pDiffParm->m_pAbortgate = m_pAbortgate.get();
-	m_pDiffParm->bOnlyRequested = m_bOnlyRequested;
 	m_bAborting = false;
 	m_bPaused = false;
 
@@ -115,28 +110,10 @@ unsigned CDiffThread::CompareDirectories()
 
 	m_pDiffParm->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);
 
-	if (!m_bOnlyRequested)
-		m_threads[0].start(DiffThreadCollect, m_pDiffParm.get());
-	else
-	{
-		int nItems = DirScan_UpdateMarkedItems(m_pDiffParm.get(), nullptr);
-		// Send message to UI to update
-		int event = CDiffThread::EVENT_COLLECT_COMPLETED;
-		m_pDiffParm->m_listeners.notify(m_pDiffParm.get(), event);
-		m_pDiffParm->context->m_pCompareStats->IncreaseTotalItems(nItems - m_pDiffParm->context->m_pCompareStats->GetTotalItems());
-	}
+	m_threads[0].start(DiffThreadCollect, m_pDiffParm.get());
 	m_threads[1].start(DiffThreadCompare, m_pDiffParm.get());
 
 	return 1;
-}
-
-/**
- * @brief Selects to compare all or only selected items.
- * @param [in] bSelected If true only selected items are compared.
- */
-void CDiffThread::SetCompareSelected(bool bSelected /*=false*/)
-{
-	m_bOnlyRequested = bSelected;
 }
 
 /**
@@ -157,24 +134,12 @@ unsigned CDiffThread::GetThreadState() const
  */
 static void DiffThreadCollect(void *pParam)
 {
-	PathContext paths;
 	DiffFuncStruct *myStruct = static_cast<DiffFuncStruct *>(pParam);
-
-	assert(!myStruct->bOnlyRequested);
 
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
 
-	bool casesensitive = false;
-	int depth = myStruct->context->m_bRecursive ? -1 : 0;
-
-	paths = myStruct->context->GetNormalizedPaths();
-
-	String subdir[3] = {_T(""), _T(""), _T("")}; // blank to start at roots specified in diff context
-
-	// Build results list (except delaying file comparisons until below)
-	DirScan_GetItems(paths, subdir, myStruct,
-			casesensitive, depth, nullptr, myStruct->context->m_bWalkUniques);
+	myStruct->m_fncCollect(myStruct);
 
 	// Release Semaphore() once again to signal that collect phase is ready
 	myStruct->pSemaphore->set();
@@ -202,10 +167,7 @@ static void DiffThreadCompare(void *pParam)
 	myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 
 	// Now do all pending file comparisons
-	if (myStruct->bOnlyRequested)
-		DirScan_CompareRequestedItems(myStruct, nullptr);
-	else
-		DirScan_CompareItems(myStruct, nullptr);
+	myStruct->m_fncCompare(myStruct);
 
 	myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 

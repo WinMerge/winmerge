@@ -1,11 +1,10 @@
 // OpenFrm.h : interface of the COpenFrame class
 //
-
-
 #pragma once
 
+#include "MergeFrameCommon.h"
 
-class COpenFrame : public CMDIChildWnd
+class COpenFrame : public CMergeFrameCommon
 {
 	DECLARE_DYNCREATE(COpenFrame)
 public:
@@ -17,7 +16,6 @@ public:
 // Operations
 public:
 	void UpdateResources();
-	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -39,7 +37,6 @@ protected:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg LRESULT OnNcHitTest(CPoint point);
 	afx_msg void OnWindowPosChanging(WINDOWPOS* lpwndpos);
-	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

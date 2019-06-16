@@ -31,13 +31,14 @@
 #include "EditorFilepathBar.h"
 #include "DiffViewBar.h"
 #include "LocationBar.h"
+#include "MergeFrameCommon.h"
 
 class CMergeDoc;
 
 /** 
  * @brief Frame class for file compare, handles panes, statusbar etc.
  */
-class CMergeEditFrame : public CMDIChildWnd
+class CMergeEditFrame : public CMergeFrameCommon
 {
 	DECLARE_DYNCREATE(CMergeEditFrame)
 public:
@@ -48,14 +49,11 @@ public:
 	void UpdateResources();
 	void CloseNow();
 	IHeaderBar * GetHeaderInterface();
-	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 	CMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
-	void SetLastCompareResult(int nResult);
 
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	CSplitterWndEx& GetSplitter() { return m_wndSplitter; };
-	bool IsActivated() const { return m_bActivated; }
 
 // Attributes
 protected:
@@ -87,12 +85,8 @@ private:
 
 // Generated message map functions
 private:
-	int m_nLastSplitPos[2];
 	void UpdateHeaderSizes();
-	bool m_bActivated;
 	CMergeDoc * m_pMergeDoc;
-	HICON m_hIdentical;
-	HICON m_hDifferent;
 
 	//{{AFX_MSG(CMergeEditFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -104,7 +98,6 @@ private:
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();
-	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

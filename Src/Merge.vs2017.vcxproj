@@ -611,6 +611,7 @@
     <ClCompile Include="charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="MergeFrameCommon.cpp" />
     <ClCompile Include="MergeEditFrm.cpp" />
     <ClCompile Include="Common\ClipBoard.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -1194,6 +1195,7 @@
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
+    <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
     <ClInclude Include="Common\ClipBoard.h" />
     <ClInclude Include="Common\CMoveConstraint.h" />
@@ -1421,6 +1423,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">true</ExcludedFromBuild>
     </ResourceCompile>
   </ItemGroup>
+  <Target Name="CopyVisualElements" AfterTargets="Build">
+    <ItemGroup>
+      <VisualElementsManifest Include="res\WinMergeU.VisualElementsManifest.xml" />
+      <LogoImages Include="res\LogoImages\*.png" />
+    </ItemGroup>
+    <Message Text="Copy visual elements to $(OutDir)" />
+    <Copy SourceFiles="@(VisualElementsManifest)" DestinationFolder="$(OutDir)" ContinueOnError="true" />
+    <Copy SourceFiles="@(LogoImages)" DestinationFolder="$(OutDir)\LogoImages" ContinueOnError="true" />
+  </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

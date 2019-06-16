@@ -45,15 +45,14 @@
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditFrame
 
-IMPLEMENT_DYNCREATE(CMergeEditFrame, CMDIChildWnd)
+IMPLEMENT_DYNCREATE(CMergeEditFrame, CMergeFrameCommon)
 
-BEGIN_MESSAGE_MAP(CMergeEditFrame, CMDIChildWnd)
+BEGIN_MESSAGE_MAP(CMergeEditFrame, CMergeFrameCommon)
 	//{{AFX_MSG_MAP(CMergeEditFrame)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_MDIACTIVATE()
 	ON_WM_TIMER()
-	ON_WM_GETMINMAXINFO()
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
@@ -75,11 +74,8 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CMergeEditFrame::CMergeEditFrame()
-: m_hIdentical(nullptr)
-, m_hDifferent(nullptr)
+: CMergeFrameCommon(IDI_EQUALTEXTFILE, IDI_NOTEQUALTEXTFILE)
 {
-	m_bActivated = false;
-	std::fill_n(m_nLastSplitPos, 2, 0);
 	m_pMergeDoc = 0;
 }
 
@@ -218,9 +214,6 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}	
 
-	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALTEXTFILE);
-	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALTEXTFILE);
-
 	return 0;
 }
 
@@ -267,38 +260,13 @@ void CMergeEditFrame::ActivateFrame(int nCmdShow)
 	m_wndLocationBar.LoadState(_T("Settings"));
 	m_wndDetailBar.LoadState(_T("Settings"));
 
-	if (!m_bActivated) 
-	{
-		m_bActivated = true;
-
-		// get the active child frame, and a flag whether it is maximized
-		BOOL bMaximized = FALSE;
-		CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
-		if (oldActiveFrame == nullptr)
-			// for the first frame, get the restored/maximized state from the registry
-			bMaximized = GetOptionsMgr()->GetBool(OPT_ACTIVE_FRAME_MAX);
-		if (bMaximized)
-			nCmdShow = SW_SHOWMAXIMIZED;
-		else
-			nCmdShow = SW_SHOWNORMAL;
-	}
-
-	CMDIChildWnd::ActivateFrame(nCmdShow);
+	CMergeFrameCommon::ActivateFrame(nCmdShow);
 }
 
 BOOL CMergeEditFrame::DestroyWindow() 
 {
 	SavePosition();
-	// If we are active, save the restored/maximized state
-	// If we are not, do nothing and let the active frame do the job.
- 	if (this->GetParentFrame()->GetActiveFrame() == (CFrameWnd*)this)
-	{
-		WINDOWPLACEMENT wp;
-		wp.length = sizeof(WINDOWPLACEMENT);
-		GetWindowPlacement(&wp);
-		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
-	}
-
+	SaveWindowState();
 	return CMDIChildWnd::DestroyWindow();
 }
 
@@ -386,34 +354,6 @@ IHeaderBar * CMergeEditFrame::GetHeaderInterface()
 	return &m_wndFilePathBar;
 }
 
-/**
-* @brief Reflect comparison result in window's icon.
-* @param nResult [in] Last comparison result which the application returns.
-*/
-void CMergeEditFrame::SetLastCompareResult(int nResult)
-{
-	HICON hCurrent = GetIcon(FALSE);
-	HICON hReplace = (nResult == 0) ? m_hIdentical : m_hDifferent;
-
-	if (hCurrent != hReplace)
-	{
-		SetIcon(hReplace, TRUE);
-
-		BOOL bMaximized;
-		GetMDIFrame()->MDIGetActive(&bMaximized);
-
-		// When MDI maximized the window icon is drawn on the menu bar, so we
-		// need to notify it that our icon has changed.
-		if (bMaximized)
-		{
-			GetMDIFrame()->DrawMenuBar();
-		}
-		GetMDIFrame()->OnUpdateFrameTitle(FALSE);
-	}
-
-	theApp.SetLastCompareResult(nResult);
-}
-
 void CMergeEditFrame::UpdateAutoPaneResize()
 {
 	auto& wndSplitter = GetMergeEditSplitterWnd(0);
@@ -449,17 +389,6 @@ void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent)
 		UpdateHeaderSizes();
 	}
 	CMDIChildWnd::OnTimer(nIDEvent);
-}
-
-void CMergeEditFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
-{
-	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
-	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
-	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
-#if _MFC_VER >= 0x0800
-	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
-	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
-#endif
 }
 
 void CMergeEditFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)

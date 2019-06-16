@@ -28,11 +28,6 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_BULGARIAN, SUBLANG_DEFAULT"
 
-#. Codepage
-#, c-format
-msgid "1252"
-msgstr "1251"
-
 #, c-format
 msgid "C&opy to Right"
 msgstr "Копирай в &дясно"

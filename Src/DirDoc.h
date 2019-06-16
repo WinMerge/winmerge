@@ -28,6 +28,7 @@
 #include <memory>
 #include "DiffThread.h"
 #include "PluginManager.h"
+#include "DirCmpReport.h"
 
 class CDirView;
 struct IMergeDoc;
@@ -87,6 +88,7 @@ public:
 	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
 	bool GetGeneratingReport() const { return m_bGeneratingReport; }
 	void SetGeneratingReport(bool bGeneratingReport) { m_bGeneratingReport = bGeneratingReport; }
+	void SetReport(DirCmpReport* pReport) { m_pReport.reset(pReport);  }
 	bool HasDirView() const { return m_pDirView != nullptr; }
 	void RefreshOptions();
 	void CompareReady();
@@ -143,4 +145,5 @@ private:
 	PluginManager m_pluginman;
 	bool m_bMarkedRescan; /**< If `true` next rescan scans only marked items */
 	bool m_bGeneratingReport;
+	std::unique_ptr<DirCmpReport> m_pReport;
 };

@@ -34,7 +34,7 @@ END
 2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
-    "#define NC_(msgctxt, msgid) ""\x01""msgctxt##msgid"
+    "#define NC_(msgctxt, msgid) ""\\x01""msgctxt##msgid\r\n"
     "\0"
 END
 

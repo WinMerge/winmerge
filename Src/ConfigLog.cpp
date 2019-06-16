@@ -461,9 +461,7 @@ String CConfigLog::GetProcessorInfo() const
 	SYSTEM_INFO siSysInfo;
 	::GetSystemInfo(&siSysInfo); 
 
-	MEMORYSTATUSEX GlobalMemoryBuffer;
-	memset(&GlobalMemoryBuffer, 0, sizeof(GlobalMemoryBuffer));
-	GlobalMemoryBuffer.dwLength = sizeof (GlobalMemoryBuffer);
+	MEMORYSTATUSEX GlobalMemoryBuffer = {sizeof (GlobalMemoryBuffer)};
 	::GlobalMemoryStatusEx(&GlobalMemoryBuffer);
 	ULONG lInstalledMemory = (ULONG)(GlobalMemoryBuffer.ullTotalPhys / (1024*1024));
 

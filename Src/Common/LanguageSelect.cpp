@@ -506,7 +506,6 @@ static wchar_t *EatPrefix(wchar_t *text, const wchar_t *prefix)
 
 /**
  * @brief Convert C style \\nnn, \\r, \\n, \\t etc into their indicated characters.
- * @param [in] codepage Codepage to use in conversion.
  * @param [in,out] s String to convert.
  */
 static void unslash(std::wstring &s)

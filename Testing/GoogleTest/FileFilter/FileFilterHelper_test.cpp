@@ -76,26 +76,24 @@ namespace
 
 	TEST_F(FileFilterHelperTest, SetFileFilterPath)
 	{
-		std::vector<FileFilterInfo> filters;
 		String selected;
 		m_fileFilterHelper.SetFileFilterPath(_T(""));
-		m_fileFilterHelper.GetFileFilters(&filters, selected);
+		std::vector<FileFilterInfo> filters = m_fileFilterHelper.GetFileFilters(selected);
 		EXPECT_TRUE(selected.compare(_T("")) == 0);
 
 		m_fileFilterHelper.SetFileFilterPath(_T("non-existent file filter path"));
-		m_fileFilterHelper.GetFileFilters(&filters, selected);
+		filters = m_fileFilterHelper.GetFileFilters(selected);
 		EXPECT_TRUE(selected.compare(_T("")) == 0);
 
 		m_fileFilterHelper.SetFileFilterPath(m_fileFilterHelper.GetFileFilterPath(_T("simple include file")).c_str());
-		m_fileFilterHelper.GetFileFilters(&filters, selected);
+		filters = m_fileFilterHelper.GetFileFilters(selected);
 		EXPECT_TRUE(selected.find_first_of(_T("Filters\\simple_include_file.flt")) != String::npos);
 	}
 
 	TEST_F(FileFilterHelperTest, GetFileFilters)
 	{
-		std::vector<FileFilterInfo> filters;
 		String selected;
-		m_fileFilterHelper.GetFileFilters(&filters, selected);
+		std::vector<FileFilterInfo> filters = m_fileFilterHelper.GetFileFilters(selected);
 
 		for (std::vector<FileFilterInfo>::iterator it = filters.begin(); it != filters.end(); it++)
 		{

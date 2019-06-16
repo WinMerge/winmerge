@@ -47,7 +47,10 @@
 #include "FileFilterHelper.h"
 #include "unicoder.h"
 #include "DirActions.h"
+#include "DirScan.h"
 #include "MessageBoxDialog.h"
+#include "DirCmpReport.h"
+#include <Poco/Semaphore.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -74,6 +77,7 @@ CDirDoc::CDirDoc()
 , m_bMarkedRescan(false)
 , m_pTempPathContext(nullptr)
 , m_bGeneratingReport(false)
+, m_pReport(nullptr)
 {
 	m_nDirs = m_nDirsTemp;
 
@@ -229,12 +233,14 @@ void CDirDoc::Rescan()
 	if (threadState == CDiffThread::THREAD_COMPARING)
 		return;
 
-	m_pCompareStats->Reset();
+	if (!m_bGeneratingReport)
+		m_pCompareStats->Reset();
 	m_pDirView->StartCompare(m_pCompareStats.get());
 
-	m_pDirView->DeleteAllDisplayItems();
+	if (!m_bGeneratingReport)
+		m_pDirView->DeleteAllDisplayItems();
 	// Don't clear if only scanning selected items
-	if (!m_bMarkedRescan)
+	if (!m_bMarkedRescan && !m_bGeneratingReport)
 	{
 		m_pCtxt->RemoveAll();
 		m_pCtxt->InitDiffItemList();
@@ -259,10 +265,6 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_pCtxt->m_pCompareStats = m_pCompareStats.get();
-
-	// Set total items count since we don't collect items
-	if (m_bMarkedRescan)
-		m_pCompareStats->IncreaseTotalItems(m_pDirView->GetSelectedCount());
 
 	pf->GetHeaderInterface()->SetPaneCount(m_nDirs);
 	pf->GetHeaderInterface()->SetOnSetFocusCallback([&](int pane) {
@@ -293,7 +295,69 @@ void CDirDoc::Rescan()
 	m_diffThread.SetContext(m_pCtxt.get());
 	m_diffThread.RemoveListener(this, &CDirDoc::DiffThreadCallback);
 	m_diffThread.AddListener(this, &CDirDoc::DiffThreadCallback);
-	m_diffThread.SetCompareSelected(m_bMarkedRescan);
+	if (m_bGeneratingReport)
+	{
+		m_diffThread.SetCollectFunction([&](DiffFuncStruct* myStruct) {
+			int m = 0;
+			if (m_pReport->GetCopyToClipboard())
+			{
+				++m;
+				if (m_pReport->GetReportType() == REPORT_TYPE_SIMPLEHTML)
+					++m;
+			}
+			if (!m_pReport->GetReportFile().empty())
+				++m;
+			myStruct->context->m_pCompareStats->IncreaseTotalItems(
+				(m_pDirView->GetListCtrl().GetItemCount() - (myStruct->context->m_bRecursive ? 0 : 1)) * m);
+		});
+		m_diffThread.SetCompareFunction([&](DiffFuncStruct* myStruct) {
+			m_pReport->SetDiffFuncStruct(myStruct);
+			myStruct->pSemaphore->wait();
+			String errStr;
+			if (m_pReport->GenerateReport(errStr))
+			{
+				if (errStr.empty())
+				{
+					if (GetReportFile().empty())
+						LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+				}
+				else
+				{
+					String msg = strutils::format_string1(
+						_("Error creating the report:\n%1"),
+						errStr);
+					AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
+				}
+			}
+			SetGeneratingReport(false);
+			SetReport(nullptr);
+		});
+	}
+	else if (m_bMarkedRescan)
+	{
+		m_diffThread.SetCollectFunction([](DiffFuncStruct* myStruct) {
+			int nItems = DirScan_UpdateMarkedItems(myStruct, nullptr);
+			myStruct->context->m_pCompareStats->IncreaseTotalItems(nItems);
+		});
+		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
+			DirScan_CompareRequestedItems(myStruct, nullptr);
+		});
+	}
+	else
+	{
+		m_diffThread.SetCollectFunction([](DiffFuncStruct* myStruct) {
+			bool casesensitive = false;
+			int depth = myStruct->context->m_bRecursive ? -1 : 0;
+			PathContext paths = myStruct->context->GetNormalizedPaths();
+			String subdir[3] = {_T(""), _T(""), _T("")}; // blank to start at roots specified in diff context
+			// Build results list (except delaying file comparisons until below)
+			DirScan_GetItems(paths, subdir, myStruct,
+					casesensitive, depth, nullptr, myStruct->context->m_bWalkUniques);
+		});
+		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
+			DirScan_CompareItems(myStruct, nullptr);
+		});
+	}
 	m_diffThread.CompareDirectories();
 	m_bMarkedRescan = false;
 }
@@ -735,3 +799,4 @@ void CDirDoc::MoveToPrevDiff(IMergeDoc *pMergeDoc)
 		GetMainFrame()->OnUpdateFrameTitle(FALSE);
 	}
 }
+

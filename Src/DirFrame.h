@@ -26,6 +26,7 @@
 #pragma once
 
 #include "EditorFilepathBar.h"
+#include "MergeFrameCommon.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirFrame frame
@@ -33,7 +34,7 @@
 /**
  * @brief Frame window for Directory Compare window
  */
-class CDirFrame : public CMDIChildWnd
+class CDirFrame : public CMergeFrameCommon
 {
 	DECLARE_DYNCREATE(CDirFrame)
 protected:
@@ -43,8 +44,6 @@ protected:
 public:
 
 private:
-	HICON m_hIdentical;
-	HICON m_hDifferent;
 
 // Operations
 public:
@@ -54,8 +53,6 @@ public:
 	CStatusBar  m_wndStatusBar;
 	IHeaderBar * GetHeaderInterface();
 	void UpdateResources();
-	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
-	void SetLastCompareResult(int nResult);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -74,7 +71,6 @@ protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -62,16 +62,14 @@ enum
  */
 struct DIFFRANGE
 {
-	int begin[3];	/**< First diff line in original file1,2,3 */
-	int end[3];	/**< Last diff line in original file1,2,3 */
-	int dbegin;	/**< Synchronised (ghost lines added) first diff line in file1,2,3 */
-	int dend;	/**< Synchronised (ghost lines added) last diff line in file1,2,3 */
-	int blank[3];		/**< Number of blank lines in file1,2,3 */
+	int begin[3] = {};           /**< First diff line in original file1,2,3 */
+	int end[3] = {};             /**< Last diff line in original file1,2,3 */
+	int dbegin = 0;              /**< Synchronised (ghost lines added) first diff line in file1,2,3 */
+	int dend = 0;	             /**< Synchronised (ghost lines added) last diff line in file1,2,3 */
+	int blank[3] = {-1, -1, -1}; /**< Number of blank lines in file1,2,3 */
 	OP_TYPE op;		/**< Operation done with this diff */
 	DIFFRANGE()
 	{
-		memset(this, 0, sizeof(*this));
-		blank[0] = blank[1] = blank[2] = -1;
 	}
 	void swap_sides(int index1, int index2);
 };
