@@ -354,7 +354,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 		if (ptStart != ptEnd)
 		{
 			VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
-			if (lastLineIsNotInDiff && (firstLineIsNotInDiff || di.dbegin == firstLine))
+			if (lastLineIsNotInDiff && (firstLineIsNotInDiff || (di.dbegin == firstLine && ptStart.x == 0)))
 			{
 				firstWordDiff = -1;
 				return;
@@ -3461,7 +3461,7 @@ void CMergeEditView::OnOpenFileWithEditor()
 		return;
 
 	int nRealLine = ComputeRealLine(GetCursorPos().y) + 1;
-	theApp.OpenFileToExternalEditor(sFileName.c_str(), nRealLine);
+	theApp.OpenFileToExternalEditor(sFileName, nRealLine);
 }
 
 /**
