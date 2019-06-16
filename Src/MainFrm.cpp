@@ -1789,7 +1789,7 @@ void CMainFrame::OnFileOpenProject()
 	// store this as the new project path
 	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath);
 
-	theApp.LoadAndOpenProjectFile(sFilepath.c_str());
+	theApp.LoadAndOpenProjectFile(sFilepath);
 }
 
 /**
