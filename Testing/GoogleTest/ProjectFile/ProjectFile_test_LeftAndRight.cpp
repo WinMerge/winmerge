@@ -43,6 +43,7 @@ protected:
 		m_pProjectFile = new ProjectFile;
 
 		bool success = m_pProjectFile->Read(FileName);
+		m_pProjectFileItem = &*m_pProjectFile->Items().begin();
 	}
 
 	virtual void TearDown()
