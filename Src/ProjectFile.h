@@ -24,21 +24,12 @@
 #include "UnicodeString.h"
 #include "PathContext.h"
 
-/**
- * @brief Class for handling project files.
- *
- * This class loads and saves project files. Expat parser and SCEW wrapper for
- * expat are used for XML parsing. We use UTF-8 encoding so Unicode paths are
- * supported.
- */
-class ProjectFile
+class ProjectFileItem
 {
+	friend class ProjectFile;
 	friend class ProjectFileHandler;
 public:
-	ProjectFile();
-	bool Read(const String& path);
-	bool Save(const String& path) const;
-	
+	ProjectFileItem();
 	bool HasLeft() const;
 	bool HasMiddle() const;
 	bool HasRight() const;
@@ -63,8 +54,6 @@ public:
 	void GetPaths(PathContext& files, bool & bSubFolders) const;
 	void SetPaths(const PathContext& files, bool bSubFolders = false);
 
-	static const String PROJECTFILE_EXT;
-
 private:
 	PathContext m_paths;
 	bool m_bHasLeft; /**< Has left path? */
@@ -77,4 +66,23 @@ private:
 	bool m_bLeftReadOnly; /**< Is left path opened as read-only */
 	bool m_bMiddleReadOnly; /**< Is middle path opened as read-only */
 	bool m_bRightReadOnly; /**< Is right path opened as read-only */
+};
+
+/**
+ * @brief Class for handling project files.
+ *
+ * This class loads and saves project files. Expat parser and SCEW wrapper for
+ * expat are used for XML parsing. We use UTF-8 encoding so Unicode paths are
+ * supported.
+ */
+class ProjectFile
+{
+public:
+	bool Read(const String& path);
+	bool Save(const String& path) const;
+	const std::list<ProjectFileItem>& Items() const { return m_items; };
+	std::list<ProjectFileItem>& Items() { return m_items; }
+	static const String PROJECTFILE_EXT;
+private:
+	std::list<ProjectFileItem> m_items;
 };
