@@ -440,13 +440,13 @@ void DirCmpReport::GenerateXmlHeader()
 	WriteString(_T("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
 				_T("<WinMergeDiffReport version=\"2\">\n")
 				_T("<left>"));
-	WriteStringEntityAware(m_rootPaths.GetLeft().c_str());
+	WriteStringEntityAware(m_rootPaths.GetLeft());
 	WriteString(_T("</left>\n")
 				_T("<right>"));
-	WriteStringEntityAware(m_rootPaths.GetRight().c_str());
+	WriteStringEntityAware(m_rootPaths.GetRight());
 	WriteString(_T("</right>\n")
 				_T("<time>"));
-	WriteStringEntityAware(GetCurrentTimeString().c_str());
+	WriteStringEntityAware(GetCurrentTimeString());
 	WriteString(_T("</time>\n"));
 
 	// Add column headers
