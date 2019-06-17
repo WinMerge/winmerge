@@ -689,7 +689,7 @@ static String GetEOLType(const CDiffContext *, const void *p, int index)
 	else
 	{
 		return strutils::format(_T("%s:%d/%d/%d"),
-			_("Mixed").c_str(),
+			_("Mixed"),
 			stats.ncrlfs, stats.ncrs, stats.nlfs);
 	}
 	

@@ -238,7 +238,7 @@ BOOL CPatchDlg::OnInitDialog()
 	}
 	else if (count > 1)	// Multiple files added, show number of files
 	{
-		m_file1 = m_file2 = strutils::format_string1(_("[%1 files selected]"), strutils::to_str(count)).c_str();
+		m_file1 = m_file2 = strutils::format_string1(_("[%1 files selected]"), strutils::to_str(count));
 	}
 	UpdateData(FALSE);
 
