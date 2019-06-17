@@ -155,7 +155,7 @@ void PropShell::GetContextRegValues()
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = strutils::format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
-			RegDir, retVal, GetSysError(retVal).c_str());
+			RegDir, retVal, GetSysError(retVal));
 		LogErrorString(msg);
 		return;
 	}
@@ -189,7 +189,7 @@ void PropShell::SaveMergePath()
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = strutils::format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
-			RegDir, retVal, GetSysError(retVal).c_str());
+			RegDir, retVal, GetSysError(retVal));
 		LogErrorString(msg);
 		return;
 	}
@@ -199,7 +199,7 @@ void PropShell::SaveMergePath()
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = strutils::format(_T("Failed to set registry value %s:\n\t%d : %s"),
-			f_RegValuePath, retVal, GetSysError(retVal).c_str());
+			f_RegValuePath, retVal, GetSysError(retVal));
 		LogErrorString(msg);
 	}
 
@@ -219,7 +219,7 @@ void PropShell::SaveMergePath()
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = strutils::format(_T("Failed to set registry value %s to %d:\n\t%d : %s"),
-			f_RegValueEnabled, dwContextEnabled, retVal, GetSysError(retVal).c_str());
+			f_RegValueEnabled, dwContextEnabled, retVal, GetSysError(retVal));
 		LogErrorString(msg);
 	}
 }

@@ -2243,7 +2243,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		// If compare took more than TimeToSignalCompare seconds, notify user
 		clock_t elapsed = clock() - m_compareStart;
 		GetParentFrame()->SetStatus(
-			strutils::format(_("Elapsed time: %ld ms").c_str(), elapsed).c_str()
+			strutils::format(_("Elapsed time: %ld ms"), elapsed).c_str()
 		);
 		if (elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
 			MessageBeep(IDOK);

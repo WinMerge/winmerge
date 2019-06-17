@@ -1973,8 +1973,8 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName) const
 	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
 	{
 		imgfilepath[i] = ucr::toTString(m_pImgMergeWindow->GetFileName(i));
-		diffimg_filename[i] = strutils::format(_T("%s/%d.png"), imgdir.c_str(), i + 1);
-		m_pImgMergeWindow->SaveDiffImageAs(i, ucr::toUTF16(strutils::format(_T("%s\\%d.png"), imgdir_full.c_str(), i + 1)).c_str());
+		diffimg_filename[i] = strutils::format(_T("%s/%d.png"), imgdir, i + 1);
+		m_pImgMergeWindow->SaveDiffImageAs(i, ucr::toUTF16(strutils::format(_T("%s\\%d.png"), imgdir_full, i + 1)).c_str());
 	}
 
 	UniStdioFile file;
@@ -2006,14 +2006,14 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName) const
 		_T("<table>\n")
 		_T("<tr>\n"));
 	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
-		file.WriteString(strutils::format(_T("<th class=\"title\">%s</th>\n"), imgfilepath[i].c_str()));
+		file.WriteString(strutils::format(_T("<th class=\"title\">%s</th>\n"), imgfilepath[i]));
 	file.WriteString(
 		_T("</tr>\n")
 		_T("<tr>\n"));
 	for (int i = 0; i < m_pImgMergeWindow->GetPaneCount(); ++i)
 		file.WriteString(
 			strutils::format(_T("<td><div class=\"img\"><img src=\"%s\" alt=\"%s\"></div></td>\n"),
-			diffimg_filename[i].c_str(), diffimg_filename[i].c_str()));
+			diffimg_filename[i], diffimg_filename[i]));
 	file.WriteString(
 		_T("</tr>\n")
 		_T("</table>\n")

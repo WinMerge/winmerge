@@ -187,7 +187,7 @@ String format_arg_list(const TCHAR *fmt, va_list args)
  * @brief printf()-style formatting for STL string.
  * Use this function to format String:s in printf() style.
  */
-String format(const TCHAR *fmt, ...)
+String format_varg(const TCHAR *fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
