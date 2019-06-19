@@ -388,6 +388,9 @@
     <ClCompile Include="OptionsDiffOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OptionsDirColors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="PatchTool.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -1147,6 +1150,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsDiffOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsDirColors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PatchTool.h">

@@ -160,6 +160,20 @@ extern const String OPT_CLR_SELECTED_WORDDIFF_TEXT OP("Settings/SelectedWordDiff
 // Whether to use default (theme) text colors
 extern const String OPT_CLR_DEFAULT_TEXT_COLORING OP("Settings/DefaultTextColoring");
 
+// DirCompare Color options
+// The item diff background colortem diff text color
+extern const String OPT_DIRCLR_ITEM_DIFF OP("Settings/DirItemDiffColor");
+// The item diff text color color
+extern const String OPT_DIRCLR_ITEM_DIFF_TEXT OP("Settings/DirItemDiffTextColor");
+// The item not-exist-all background color
+extern const String OPT_DIRCLR_ITEM_NOT_EXIST_ALL OP("Settings/DirItemNotExistAllColor");
+// The item not-exist-all text color color
+extern const String OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT OP("Settings/DirItemNotExistAllTextColor");
+// The item filtered background color
+extern const String OPT_DIRCLR_ITEM_FILTERED OP("Settings/DirItemFilteredColor");
+// The item filtered text color
+extern const String OPT_DIRCLR_ITEM_FILTERED_TEXT OP("Settings/DirItemFilteredTextColor");
+
 // Compare options
 extern const String OPT_CMP_IGNORE_WHITESPACE OP("Settings/IgnoreSpace");
 extern const String OPT_CMP_IGNORE_BLANKLINES OP("Settings/IgnoreBlankLines");

@@ -126,7 +126,7 @@ CDirView::CDirView()
 	m_bTreeMode =  GetOptionsMgr()->GetBool(OPT_TREE_MODE);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
-	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
+	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 }
 
 CDirView::~CDirView()
@@ -2862,7 +2862,7 @@ void CDirView::RefreshOptions()
 {
 	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
-	Options::DiffColors::Load(GetOptionsMgr(), m_cachedColors);
+	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 }
 
 /**
@@ -3754,18 +3754,18 @@ void CDirView::GetColors (int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText
 	}
 	else if (di.diffcode.isResultFiltered())
 	{
-		clrText = m_cachedColors.clrTrivialText;
-		clrBk = m_cachedColors.clrTrivial;
+		clrText = m_cachedColors.clrDirItemFilteredText;
+		clrBk = m_cachedColors.clrDirItemFiltered;
 	}
 	else if (!IsItemExistAll(GetDiffContext(), di))
 	{
-		clrText = m_cachedColors.clrDiffText;
-		clrBk = m_cachedColors.clrDiffDeleted;
+		clrText = m_cachedColors.clrDirItemNotExistAllText;
+		clrBk = m_cachedColors.clrDirItemNotExistAll;
 	}
 	else if (di.diffcode.isResultDiff())
 	{
-		clrText = m_cachedColors.clrDiffText;
-		clrBk = m_cachedColors.clrDiff;
+		clrText = m_cachedColors.clrDirItemDiffText;
+		clrBk = m_cachedColors.clrDirItemDiff;
 	}
 	else
 	{
