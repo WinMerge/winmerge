@@ -898,6 +898,11 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="OptionsDirColors.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="OptionsFont.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1306,6 +1311,7 @@
     <ClInclude Include="common\OptionsMgr.h" />
     <ClInclude Include="OptionsDiffColors.h" />
     <ClInclude Include="OptionsDiffOptions.h" />
+    <ClInclude Include="OptionsDirColors.h" />
     <ClInclude Include="OptionsFont.h" />
     <ClInclude Include="OptionsInit.h" />
     <ClInclude Include="OptionsPanel.h" />

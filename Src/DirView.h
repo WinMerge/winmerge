@@ -28,7 +28,7 @@
 // CDirView view
 #include <afxcview.h>
 #include <memory>
-#include "OptionsDiffColors.h"
+#include "OptionsDirColors.h"
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"
 #include "DirItemIterator.h"
@@ -215,7 +215,7 @@ protected:
 	int m_lastDiffItem;
 	bool m_bNeedSearchFirstDiffItem;
 	bool m_bNeedSearchLastDiffItem;
-	COLORSETTINGS m_cachedColors; /**< Cached color settings */
+	DIRCOLORSETTINGS m_cachedColors; /**< Cached color settings */
 
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuMiddle; /**< Shell context menu for group of middle files */
