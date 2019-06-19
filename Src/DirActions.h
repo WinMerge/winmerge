@@ -99,6 +99,9 @@ struct DirViewFilterSettings
 		show_different_left_only = getoptbool(OPT_SHOW_DIFFERENT_LEFT_ONLY);
 		show_different_middle_only = getoptbool(OPT_SHOW_DIFFERENT_MIDDLE_ONLY);
 		show_different_right_only = getoptbool(OPT_SHOW_DIFFERENT_RIGHT_ONLY);
+		show_missing_left_only = getoptbool(OPT_SHOW_MISSING_LEFT_ONLY);
+		show_missing_middle_only = getoptbool(OPT_SHOW_MISSING_MIDDLE_ONLY);
+		show_missing_right_only = getoptbool(OPT_SHOW_MISSING_RIGHT_ONLY);
 		tree_mode = getoptbool(OPT_TREE_MODE);
 	};
 	bool show_skipped;
@@ -111,6 +114,9 @@ struct DirViewFilterSettings
 	bool show_different_left_only;
 	bool show_different_middle_only;
 	bool show_different_right_only;
+	bool show_missing_left_only;
+	bool show_missing_middle_only;
+	bool show_missing_right_only;
 	bool tree_mode;
 };
 

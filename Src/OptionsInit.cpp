@@ -55,6 +55,9 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SHOW_DIFFERENT_LEFT_ONLY, true);
 	pOptions->InitOption(OPT_SHOW_DIFFERENT_MIDDLE_ONLY, true);
 	pOptions->InitOption(OPT_SHOW_DIFFERENT_RIGHT_ONLY, true);
+	pOptions->InitOption(OPT_SHOW_MISSING_LEFT_ONLY, true);
+	pOptions->InitOption(OPT_SHOW_MISSING_MIDDLE_ONLY, true);
+	pOptions->InitOption(OPT_SHOW_MISSING_RIGHT_ONLY, true);
 
 	pOptions->InitOption(OPT_SHOW_TOOLBAR, true);
 	pOptions->InitOption(OPT_SHOW_STATUSBAR, true);

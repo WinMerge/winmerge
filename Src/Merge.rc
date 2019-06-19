@@ -287,6 +287,10 @@ BEGIN
             MENUITEM "Show &Left Only Different Items", ID_OPTIONS_SHOWDIFFERENTLEFTONLY
             MENUITEM "Show &Middle Only Different Items", ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY
             MENUITEM "Show &Right Only Different Items", ID_OPTIONS_SHOWDIFFERENTRIGHTONLY
+            MENUITEM SEPARATOR
+            MENUITEM "Show L&eft Only Missing Items", ID_OPTIONS_SHOWMISSINGLEFTONLY
+            MENUITEM "Show Mi&ddle Only Missing Items", ID_OPTIONS_SHOWMISSINGMIDDLEONLY
+            MENUITEM "Show Rig&ht Only Missing Items", ID_OPTIONS_SHOWMISSINGRIGHTONLY
         END
         MENUITEM SEPARATOR
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
