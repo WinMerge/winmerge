@@ -84,6 +84,9 @@ public:
 	bool isSideFirstOnly() const { return CheckSide(diffcode, DIFFCODE::FIRST); }
 	bool isSideSecondOnly() const { return CheckSide(diffcode, DIFFCODE::SECOND); }
 	bool isSideThirdOnly() const { return CheckSide(diffcode, DIFFCODE::THIRD); }
+	bool isMissingFirstOnly() const { return CheckSide(diffcode, DIFFCODE::SECOND | DIFFCODE::THIRD); }
+	bool isMissingSecondOnly() const { return CheckSide(diffcode, DIFFCODE::FIRST | DIFFCODE::THIRD); }
+	bool isMissingThirdOnly() const { return CheckSide(diffcode, DIFFCODE::FIRST | DIFFCODE::SECOND); }
 	bool isSideBoth() const { return CheckSide(diffcode, DIFFCODE::BOTH); }
 	bool isSideAll() const { return CheckSide(diffcode, DIFFCODE::ALL); }
 	void setSideNone() { SetSide(0); }

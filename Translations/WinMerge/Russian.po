@@ -423,6 +423,15 @@ msgstr "Показать отличающиеся только посереди�
 msgid "Show &Right Only Different Items"
 msgstr "Показать отличающиеся только справа"
 
+msgid "Show L&eft Only Missing Items"
+msgstr ""
+
+msgid "Show Mi&ddle Only Missing Items"
+msgstr ""
+
+msgid "Show Rig&ht Only Missing Items"
+msgstr ""
+
 #, c-format
 msgid "Show Hidd&en Items"
 msgstr "Показать скрытые"

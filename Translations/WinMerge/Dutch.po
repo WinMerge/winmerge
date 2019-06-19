@@ -325,6 +325,15 @@ msgstr "Alleen midden verschillende items weergeven"
 msgid "Show &Right Only Different Items"
 msgstr "Alleen rechts verschillende items weergeven"
 
+msgid "Show L&eft Only Missing Items"
+msgstr ""
+
+msgid "Show Mi&ddle Only Missing Items"
+msgstr ""
+
+msgid "Show Rig&ht Only Missing Items"
+msgstr ""
+
 msgid "Show Hidd&en Items"
 msgstr "Verborgen items weergeven"
 
