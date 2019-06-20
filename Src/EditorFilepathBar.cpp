@@ -211,7 +211,7 @@ void CEditorFilePathBar::OnSetFocusEdit(UINT id)
  */
 String CEditorFilePathBar::GetText(int pane) const
 {
-	ASSERT (pane >= 0 && pane < std::size(m_Edit));
+	ASSERT (pane >= 0 && pane < static_cast<int>(std::size(m_Edit)));
 
 	// Check for `nullptr` since window may be closing..
 	if (m_hWnd == nullptr)
@@ -230,7 +230,7 @@ String CEditorFilePathBar::GetText(int pane) const
  */
 void CEditorFilePathBar::SetText(int pane, const String& sString)
 {
-	ASSERT (pane >= 0 && pane < std::size(m_Edit));
+	ASSERT (pane >= 0 && pane < static_cast<int>(std::size(m_Edit)));
 
 	// Check for `nullptr` since window may be closing..
 	if (m_hWnd == nullptr)
@@ -247,7 +247,7 @@ void CEditorFilePathBar::SetText(int pane, const String& sString)
  */
 void CEditorFilePathBar::SetActive(int pane, bool bActive)
 {
-	ASSERT (pane >= 0 && pane < std::size(m_Edit));
+	ASSERT (pane >= 0 && pane < static_cast<int>(std::size(m_Edit)));
 
 	// Check for `nullptr` since window may be closing..
 	if (m_hWnd == nullptr)

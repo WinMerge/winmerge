@@ -1128,7 +1128,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	for (auto& projItem : project.Items())
 	{
 		projItem.GetPaths(tFiles, bRecursive);
-		for (int i = 0; i < tFiles.size(); ++i)
+		for (size_t i = 0; i < tFiles.size(); ++i)
 		{
 			if (!paths::IsPathAbsolute(tFiles[i]))
 				tFiles[i] = paths::ConcatPath(paths::GetParentPath(sProject), tFiles[i]);

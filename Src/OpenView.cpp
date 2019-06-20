@@ -238,9 +238,9 @@ void COpenView::OnInitialUpdate()
 	LoadComboboxStates();
 
 	bool bDoUpdateData = true;
-	for (int index = 0; index < std::size(m_strPath); index++)
+	for (auto& strPath: m_strPath)
 	{
-		if (!m_strPath[index].empty())
+		if (!strPath.empty())
 			bDoUpdateData = false;
 	}
 	UpdateData(bDoUpdateData);
@@ -557,16 +557,15 @@ void COpenView::OnOK()
 	UpdateData(TRUE);
 	TrimPaths();
 
-	int index;
 	int nFiles = 0;
-	for (index = 0; index < std::size(m_strPath); index++)
+	for (auto& strPath: m_strPath)
 	{
-		if (index == 2 && m_strPath[index].empty())
+		if (nFiles == 2 && strPath.empty())
 			break;
 		m_files.SetSize(nFiles + 1);
-		m_files[nFiles] = m_strPath[index];
+		m_files[nFiles] = strPath;
 		m_dwFlags[nFiles] &= ~FFILEOPEN_READONLY;
-		m_dwFlags[nFiles] |= m_bReadOnly[index] ? FFILEOPEN_READONLY : 0;
+		m_dwFlags[nFiles] |= m_bReadOnly[nFiles] ? FFILEOPEN_READONLY : 0;
 		nFiles++;
 	}
 	// If left path is a project-file, load it
@@ -583,7 +582,7 @@ void COpenView::OnOK()
 		return;
 	}
 
-	for (index = 0; index < nFiles; index++)
+	for (int index = 0; index < nFiles; index++)
 	{
 		// If user has edited path by hand, expand environment variables
 		bool bExpand = false;
@@ -1078,14 +1077,13 @@ void COpenView::OnSelectUnpacker()
 	paths::PATH_EXISTENCE pathsType;
 	UpdateData(TRUE);
 
-	int index;
 	int nFiles = 0;
-	for (index = 0; index < std::size(m_strPath); index++)
+	for (auto& strPath: m_strPath)
 	{
-		if (index == 2 && m_strPath[index].empty())
+		if (nFiles == 2 && strPath.empty())
 			break;
 		m_files.SetSize(nFiles + 1);
-		m_files[nFiles] = m_strPath[index];
+		m_files[nFiles] = strPath;
 		nFiles++;
 	}
 	pathsType = paths::GetPairComparability(m_files);
@@ -1253,8 +1251,8 @@ bool COpenView::LoadProjectFile(const String &path)
  */
 void COpenView::TrimPaths()
 {
-	for (int index = 0; index < std::size(m_strPath); index++)
-		m_strPath[index] = strutils::trim_ws(m_strPath[index]);
+	for (auto& strPath: m_strPath)
+		strPath = strutils::trim_ws(strPath);
 }
 
 /** 

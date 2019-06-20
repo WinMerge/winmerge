@@ -421,7 +421,7 @@ HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
  */
 HMENU CMainFrame::NewMenu(int view, int ID)
 {
-	int menu_view, index;
+	int menu_view;
 	if (m_pMenus[view] == nullptr)
 	{
 		m_pMenus[view].reset(new BCMenu());
@@ -457,11 +457,11 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	}
 
 	// Load bitmaps to menuitems
-	for (index = 0; index < std::size(m_MenuIcons); index ++)
+	for (auto& menu_icon: m_MenuIcons)
 	{
-		if (menu_view == (m_MenuIcons[index].menusToApply & menu_view))
+		if (menu_view == (menu_icon.menusToApply & menu_view))
 		{
-			m_pMenus[view]->ModifyODMenu(nullptr, m_MenuIcons[index].menuitemID, m_MenuIcons[index].iconResID);
+			m_pMenus[view]->ModifyODMenu(nullptr, menu_icon.menuitemID, menu_icon.iconResID);
 		}
 	}
 
