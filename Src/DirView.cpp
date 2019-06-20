@@ -1423,7 +1423,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		FileLocation fileloc[3];
 		String strDesc[3];
 		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("untitled middle"), _("Untitled right") };
-		for (int i = 0; i < paths.size(); ++i)
+		for (size_t i = 0; i < paths.size(); ++i)
 		{
 			if (!pdi[0]->diffcode.exists(i) &&
 				std::count(pdi, pdi + paths.size(), pdi[0]) == static_cast<ptrdiff_t>(paths.size()))
