@@ -9,6 +9,8 @@ if "%2" == "-ci" (
     for /F "delims=" %%i in ('git rev-parse --short head') do set SAFEAPPVER=%SAFEAPPVER%-%DATE%-%%i
   )
 )
+echo %2
+echo SAFEAPPVER=%SAFEAPPVER%
 set DISTDIR=.\Build\Releases
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 
