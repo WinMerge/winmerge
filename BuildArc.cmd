@@ -2,6 +2,13 @@ pushd "%~dp0"
 
 setlocal
 call SetVersion.cmd
+if "%2" == "-ci" (
+  if exist .hg (
+    for /F "delims=" %%i in ('hg id') do set SAFEAPPVER=%SAFEAPPVER%-%DATE%-%%i
+  ) else if exist .git (
+    for /F "delims=" %%i in ('git rev-parse --short head') do set SAFEAPPVER=%SAFEAPPVER%-%DATE%-%%i
+  )
+)
 set DISTDIR=.\Build\Releases
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 
