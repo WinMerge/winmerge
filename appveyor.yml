@@ -15,7 +15,7 @@ build_script:
 - cmd: >-
     DownloadDeps.cmd
 
-    BuildAll.vs2017.cmd x64
+    BuildAll.vs2017.cmd x64 -ci
 artifacts:
 - path: build/Releases/*.exe
 - path: build/Releases/*.zip
