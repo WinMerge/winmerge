@@ -2,7 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-# * Dalius Guzauskas (aka Tichij) (tichij AT mail DOT com)
+# * Dalius Guzauskas (aka Tichij) <tichij AT mail DOT com>
 #
 # ID line follows -- this is updated by SVN
 # $Id: Lithuanian.po
