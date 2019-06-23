@@ -1063,7 +1063,7 @@ int xdl_diff_modified(mmfile_t *mf1, mmfile_t *mf2, xpparam_t const *xpp,
 
 		if (ef(pxe, *pxscr, ecb, xecfg) < 0) {
 
-			xdl_free_script(pxscr);
+			xdl_free_script(*pxscr);
 			xdl_free_env(pxe);
 			return -1;
 		}

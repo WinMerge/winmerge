@@ -288,6 +288,10 @@ BEGIN
             MENUITEM "Show &Left Only Different Items", ID_OPTIONS_SHOWDIFFERENTLEFTONLY
             MENUITEM "Show &Middle Only Different Items", ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY
             MENUITEM "Show &Right Only Different Items", ID_OPTIONS_SHOWDIFFERENTRIGHTONLY
+            MENUITEM SEPARATOR
+            MENUITEM "Show L&eft Only Missing Items", ID_OPTIONS_SHOWMISSINGLEFTONLY
+            MENUITEM "Show Mi&ddle Only Missing Items", ID_OPTIONS_SHOWMISSINGMIDDLEONLY
+            MENUITEM "Show Rig&ht Only Missing Items", ID_OPTIONS_SHOWMISSINGRIGHTONLY
         END
         MENUITEM SEPARATOR
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
@@ -1246,8 +1250,8 @@ BEGIN
     PUSHBUTTON      "Pause",IDC_COMPARISON_PAUSE,113,9,65,14
     PUSHBUTTON      "Continue",IDC_COMPARISON_CONTINUE,113,9,65,14,NOT WS_VISIBLE
     CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,7,44,241,10
-    RTEXT           "0",IDC_ITEMSCOMPARED,75,29,30,10
-    RTEXT           "0",IDC_ITEMSTOTAL,75,19,30,10
+    RTEXT           "0",IDC_ITEMSCOMPARED,95,29,30,10
+    RTEXT           "0",IDC_ITEMSTOTAL,95,19,30,10
     LTEXT           "Comparing items...",IDC_STATIC,7,7,98,10
     LTEXT           "Items compared:",IDC_STATIC,7,29,85,10
     LTEXT           "Items total:",IDC_STATIC,7,19,85,10

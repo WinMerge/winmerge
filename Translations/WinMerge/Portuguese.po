@@ -423,6 +423,15 @@ msgstr "Mostrar Apenas Itens Diferentes do Meio"
 msgid "Show &Right Only Different Items"
 msgstr "Mostrar Apenas Itens Diferentes da Direita"
 
+msgid "Show L&eft Only Missing Items"
+msgstr ""
+
+msgid "Show Mi&ddle Only Missing Items"
+msgstr ""
+
+msgid "Show Rig&ht Only Missing Items"
+msgstr ""
+
 #, c-format
 msgid "Show Hidd&en Items"
 msgstr "Mostrar Itens Ocultados"

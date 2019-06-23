@@ -424,6 +424,15 @@ msgstr "Yalnız &Ortadaki Farklı Ögeleri Görüntüle"
 msgid "Show &Right Only Different Items"
 msgstr "Yalnız Sağdaki Fa&rklı Ögeleri Görüntüle"
 
+msgid "Show L&eft Only Missing Items"
+msgstr ""
+
+msgid "Show Mi&ddle Only Missing Items"
+msgstr ""
+
+msgid "Show Rig&ht Only Missing Items"
+msgstr ""
+
 #, c-format
 msgid "Show Hidd&en Items"
 msgstr "Gizli Ög&eleri Görüntüle"

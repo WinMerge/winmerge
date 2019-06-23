@@ -689,7 +689,7 @@ static String GetEOLType(const CDiffContext *, const void *p, int index)
 	else
 	{
 		return strutils::format(_T("%s:%d/%d/%d"),
-			_("Mixed").c_str(),
+			_("Mixed"),
 			stats.ncrlfs, stats.ncrs, stats.nlfs);
 	}
 	
@@ -1042,12 +1042,12 @@ DirViewColItems::GetColRegValueNameBase(int col) const
 {
 	if (m_nDirs < 3)
 	{
-		assert(col>=0 && col<std::size(f_cols));
+		assert(col>=0 && col<static_cast<int>(std::size(f_cols)));
 		return strutils::format(_T("WDirHdr_%s"), f_cols[col].regName);
 	}
 	else
 	{
-		assert(col>=0 && col<std::size(f_cols3));
+		assert(col>=0 && col<static_cast<int>(std::size(f_cols3)));
 		return strutils::format(_T("WDirHdr_%s"), f_cols3[col].regName);
 	}
 }
@@ -1060,12 +1060,12 @@ DirViewColItems::GetColDefaultOrder(int col) const
 {
 	if (m_nDirs < 3)
 	{
-		assert(col>=0 && col<std::size(f_cols));
+		assert(col>=0 && col<static_cast<int>(std::size(f_cols)));
 		return f_cols[col].physicalIndex;
 	}
 	else
 	{
-		assert(col>=0 && col<std::size(f_cols3));
+		assert(col>=0 && col<static_cast<int>(std::size(f_cols3)));
 		return f_cols3[col].physicalIndex;
 	}
 }
@@ -1078,7 +1078,7 @@ DirViewColItems::GetDirColInfo(int col) const
 {
 	if (m_nDirs < 3)
 	{
-		if (col < 0 || col >= std::size(f_cols))
+		if (col < 0 || col >= static_cast<int>(std::size(f_cols)))
 		{
 			assert(false); // fix caller, should not ask for nonexistent columns
 			return nullptr;
@@ -1087,7 +1087,7 @@ DirViewColItems::GetDirColInfo(int col) const
 	}
 	else
 	{
-		if (col < 0 || col >= std::size(f_cols3))
+		if (col < 0 || col >= static_cast<int>(std::size(f_cols3)))
 		{
 			assert(false); // fix caller, should not ask for nonexistent columns
 			return nullptr;
@@ -1105,7 +1105,7 @@ DirViewColItems::IsColById(int col, const char *idname) const
 	int nDirs = m_nDirs;
 	if (nDirs < 3)
 	{
-		if (col < 0 || col >= std::size(f_cols))
+		if (col < 0 || col >= static_cast<int>(std::size(f_cols)))
 		{
 			assert(false); // fix caller, should not ask for nonexistent columns
 			return false;

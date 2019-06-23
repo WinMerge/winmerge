@@ -118,7 +118,7 @@ BOOL PropCodepage::OnInitDialog()
 		{
 			if (cpi[i].codepage == 1200 /* UNICODE */)
 				continue;
-			String desc = strutils::format(_T("% 5d - %s"), cpi[i].codepage, cpi[i].desc.c_str());
+			String desc = strutils::format(_T("% 5d - %s"), cpi[i].codepage, cpi[i].desc);
 			Index = m_comboCustomCodepageValue.AddString(desc.c_str());
 			if (cpi[i].codepage == m_nCustomCodepageValue)
 				m_comboCustomCodepageValue.SetCurSel(static_cast<int>(Index));
@@ -129,7 +129,7 @@ BOOL PropCodepage::OnInitDialog()
 		{
 			String desc;
 			pexconv->getCodepageDescription(ManualAddTypeList[i], desc);
-			desc = strutils::format(_T("% 5d - %s"), ManualAddTypeList[i], desc.c_str());
+			desc = strutils::format(_T("% 5d - %s"), ManualAddTypeList[i], desc);
 
 			if (m_comboCustomCodepageValue.FindStringExact(0, desc.c_str()) == CB_ERR)
 			{

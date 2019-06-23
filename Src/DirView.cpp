@@ -314,6 +314,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENTLEFTONLY, OnOptionsShowDifferentLeftOnly)
 	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY, OnOptionsShowDifferentMiddleOnly)
 	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENTRIGHTONLY, OnOptionsShowDifferentRightOnly)
+	ON_COMMAND(ID_OPTIONS_SHOWMISSINGLEFTONLY, OnOptionsShowMissingLeftOnly)
+	ON_COMMAND(ID_OPTIONS_SHOWMISSINGMIDDLEONLY, OnOptionsShowMissingMiddleOnly)
+	ON_COMMAND(ID_OPTIONS_SHOWMISSINGRIGHTONLY, OnOptionsShowMissingRightOnly)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
@@ -324,6 +327,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENTLEFTONLY, OnUpdateOptionsShowDifferentLeftOnly)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY, OnUpdateOptionsShowDifferentMiddleOnly)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENTRIGHTONLY, OnUpdateOptionsShowDifferentRightOnly)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWMISSINGLEFTONLY, OnUpdateOptionsShowMissingLeftOnly)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWMISSINGMIDDLEONLY, OnUpdateOptionsShowMissingMiddleOnly)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWMISSINGRIGHTONLY, OnUpdateOptionsShowMissingRightOnly)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
@@ -1417,7 +1423,7 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		FileLocation fileloc[3];
 		String strDesc[3];
 		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("untitled middle"), _("Untitled right") };
-		for (int i = 0; i < paths.size(); ++i)
+		for (size_t i = 0; i < paths.size(); ++i)
 		{
 			if (!pdi[0]->diffcode.exists(i) &&
 				std::count(pdi, pdi + paths.size(), pdi[0]) == static_cast<ptrdiff_t>(paths.size()))
@@ -2243,7 +2249,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		// If compare took more than TimeToSignalCompare seconds, notify user
 		clock_t elapsed = clock() - m_compareStart;
 		GetParentFrame()->SetStatus(
-			strutils::format(_("Elapsed time: %ld ms").c_str(), elapsed).c_str()
+			strutils::format(_("Elapsed time: %ld ms"), elapsed).c_str()
 		);
 		if (elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
 			MessageBeep(IDOK);
@@ -3336,6 +3342,36 @@ void CDirView::OnOptionsShowDifferentRightOnly()
 	Redisplay();
 }
 
+/**
+ * @brief Show/Hide missing left only files/folders
+ */
+void CDirView::OnOptionsShowMissingLeftOnly() 
+{
+	m_dirfilter.show_missing_left_only = !m_dirfilter.show_missing_left_only;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_MISSING_LEFT_ONLY, m_dirfilter.show_missing_left_only);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide missing middle only files/folders
+ */
+void CDirView::OnOptionsShowMissingMiddleOnly() 
+{
+	m_dirfilter.show_missing_middle_only = !m_dirfilter.show_missing_middle_only;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_MISSING_MIDDLE_ONLY, m_dirfilter.show_missing_middle_only);
+	Redisplay();
+}
+
+/**
+ * @brief Show/Hide missing right only files/folders
+ */
+void CDirView::OnOptionsShowMissingRightOnly() 
+{
+	m_dirfilter.show_missing_right_only = !m_dirfilter.show_missing_right_only;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_MISSING_RIGHT_ONLY, m_dirfilter.show_missing_right_only);
+	Redisplay();
+}
+
 void CDirView::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_dirfilter.show_different);
@@ -3388,6 +3424,24 @@ void CDirView::OnUpdateOptionsShowDifferentRightOnly(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(GetDocument()->m_nDirs > 2);
 	pCmdUI->SetCheck(m_dirfilter.show_different_right_only);
+}
+
+void CDirView::OnUpdateOptionsShowMissingLeftOnly(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->m_nDirs > 2);
+	pCmdUI->SetCheck(m_dirfilter.show_missing_left_only);
+}
+
+void CDirView::OnUpdateOptionsShowMissingMiddleOnly(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->m_nDirs > 2);
+	pCmdUI->SetCheck(m_dirfilter.show_missing_middle_only);
+}
+
+void CDirView::OnUpdateOptionsShowMissingRightOnly(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->m_nDirs > 2);
+	pCmdUI->SetCheck(m_dirfilter.show_missing_right_only);
 }
 
 void CDirView::OnMergeCompare()

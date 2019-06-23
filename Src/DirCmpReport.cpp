@@ -44,9 +44,9 @@ static String GetCurrentTimeString()
 static String BeginEl(const String& elName, const String& attr = _T(""))
 {
 	if (attr.empty())
-		return strutils::format(_T("<%s>"), elName.c_str());
+		return strutils::format(_T("<%s>"), elName);
 	else
-		return strutils::format(_T("<%s %s>"), elName.c_str(), attr.c_str());
+		return strutils::format(_T("<%s %s>"), elName, attr);
 }
 
 /**
@@ -56,7 +56,7 @@ static String BeginEl(const String& elName, const String& attr = _T(""))
  */
 static String EndEl(const String& elName)
 {
-	return strutils::format(_T("</%s>"), elName.c_str());
+	return strutils::format(_T("</%s>"), elName);
 }
 
 /**
@@ -401,7 +401,7 @@ void DirCmpReport::GenerateHTMLHeader()
 			enc.rdbuf()->setLineLength(0);
 			enc << m_pList->GetIconPNGData(i);
 			enc.close();
-			WriteString(strutils::format(_T("\t\t.icon%d { background-image: url('data:image/png;base64,%s'); background-repeat: no-repeat; background-size: 16px 16px; }\n"), i, ucr::toTString(stream.str()).c_str()));
+			WriteString(strutils::format(_T("\t\t.icon%d { background-image: url('data:image/png;base64,%s'); background-repeat: no-repeat; background-size: 16px 16px; }\n"), i, ucr::toTString(stream.str())));
 		}
 	}
 	for (int i = 0; i < maxIndent + 1; ++i)

@@ -328,6 +328,15 @@ msgstr "中央のみ差異のある項目の表示(&M)"
 msgid "Show &Right Only Different Items"
 msgstr "右側のみ差異のある項目の表示(&R)"
 
+msgid "Show L&eft Only Missing Items"
+msgstr "左側のみ欠落した項目の表示(&E)"
+
+msgid "Show Mi&ddle Only Missing Items"
+msgstr "中央のみ欠落した項目の表示(&D)"
+
+msgid "Show Rig&ht Only Missing Items"
+msgstr "右側のみ欠落した項目の表示(&H)"
+
 msgid "Show Hidd&en Items"
 msgstr "非表示の項目を表示(&E)"
 

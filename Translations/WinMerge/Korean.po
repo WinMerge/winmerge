@@ -427,6 +427,15 @@ msgstr "가운데만 다른 항목 보기(&M)"
 msgid "Show &Right Only Different Items"
 msgstr "오른쪽만 다른 항목 보기(&R)"
 
+msgid "Show L&eft Only Missing Items"
+msgstr ""
+
+msgid "Show Mi&ddle Only Missing Items"
+msgstr ""
+
+msgid "Show Rig&ht Only Missing Items"
+msgstr ""
+
 #, c-format
 msgid "Show Hidd&en Items"
 msgstr "숨김 파일 보기(&E)"
