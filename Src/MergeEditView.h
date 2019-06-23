@@ -304,6 +304,8 @@ protected:
 	afx_msg void OnUpdateR2LNext(CCmdUI* pCmdUI);
 	afx_msg void OnChangePane();
 	afx_msg void OnWMGoto();
+	afx_msg void OnShellMenu();
+	afx_msg void OnUpdateShellMenu(CCmdUI* pCmdUI);
 	afx_msg void OnScripts(UINT nID );
 	afx_msg void OnUpdateNoPrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);

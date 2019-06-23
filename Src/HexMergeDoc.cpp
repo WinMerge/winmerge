@@ -125,11 +125,11 @@ END_MESSAGE_MAP()
  */
 CHexMergeDoc::CHexMergeDoc()
 : m_pDirDoc(nullptr)
+, m_nBuffers(m_nBuffersTemp)
+, m_pView{}
+, m_nBufferType{BUFFER_NORMAL, BUFFER_NORMAL, BUFFER_NORMAL}
 {
-	m_nBuffers = m_nBuffersTemp;
 	m_filePaths.SetSize(m_nBuffers);
-	std::fill_n(m_pView, m_nBuffers, static_cast<CHexMergeView *>(nullptr));
-	std::fill_n(m_nBufferType, m_nBuffers, BUFFER_NORMAL);
 }
 
 /**

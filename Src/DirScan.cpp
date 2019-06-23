@@ -610,8 +610,9 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
 	bool bCompareFailure = false;
+	if (parentdiffpos == nullptr)
+		myStruct->pSemaphore->wait();
 	DIFFITEM *pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
-	
 	while (pos != nullptr)
 	{
 		if (pCtxt->ShouldAbort())

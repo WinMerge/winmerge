@@ -55,6 +55,9 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SHOW_DIFFERENT_LEFT_ONLY, true);
 	pOptions->InitOption(OPT_SHOW_DIFFERENT_MIDDLE_ONLY, true);
 	pOptions->InitOption(OPT_SHOW_DIFFERENT_RIGHT_ONLY, true);
+	pOptions->InitOption(OPT_SHOW_MISSING_LEFT_ONLY, true);
+	pOptions->InitOption(OPT_SHOW_MISSING_MIDDLE_ONLY, true);
+	pOptions->InitOption(OPT_SHOW_MISSING_RIGHT_ONLY, true);
 
 	pOptions->InitOption(OPT_SHOW_TOOLBAR, true);
 	pOptions->InitOption(OPT_SHOW_STATUSBAR, true);
@@ -119,6 +122,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_MATCH_SIMILAR_LINES, false);
 	pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
 	pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
+	pOptions->InitOption(OPT_CMP_BINARY_LIMIT, 64 * 1024 * 1024); // 64 Megs
 	pOptions->InitOption(OPT_CMP_COMPARE_THREADS, -1);
 	pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, false);
 	pOptions->InitOption(OPT_CMP_IGNORE_REPARSE_POINTS, false);
@@ -138,6 +142,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IMG_DIFFBLOCKSIZE, 8);
 	pOptions->InitOption(OPT_CMP_IMG_DIFFCOLORALPHA, 70);
 	pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0);
+	pOptions->InitOption(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE, 0);
 
 	pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
 	pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);

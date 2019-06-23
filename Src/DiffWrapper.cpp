@@ -47,6 +47,7 @@
 #include "FilterList.h"
 #include "diff.h"
 #include "Diff3.h"
+#include "xdiff_gnudiff_compat.h"
 #include "FileTransform.h"
 #include "paths.h"
 #include "CompareOptions.h"
@@ -1092,9 +1093,19 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	SE_Handler seh;
 	try
 	{
-		// Diff files. depth is zero because we are not comparing dirs
-		*diffs = diff_2_files (diffData->m_inf, 0, bin_status,
+		if (m_options.m_diffAlgorithm != DIFF_ALGORITHM_DEFAULT)
+		{
+			unsigned xdl_flags = make_xdl_flags(m_options);
+			*diffs = diff_2_files_xdiff(diffData->m_inf, (m_pMovedLines[0] != nullptr), xdl_flags);
+			files[0] = diffData->m_inf[0];
+			files[1] = diffData->m_inf[1];
+		}
+		else
+		{
+			// Diff files. depth is zero because we are not comparing dirs
+			*diffs = diff_2_files(diffData->m_inf, 0, bin_status,
 				(m_pMovedLines[0] != nullptr), bin_file);
+		}
 		CopyDiffutilTextStats(diffData->m_inf, diffData);
 	}
 	catch (SE_Exception&)
@@ -1503,9 +1514,8 @@ void CDiffWrapper::WritePatchFileTerminator(enum output_style tOutput_style)
  */
 void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 {
-	file_data inf_patch[2] = {0};
-	std::memcpy(&inf_patch, inf, sizeof(file_data) * 2);
-	
+	file_data inf_patch[2] = { inf[0], inf[1] };
+
 	// Get paths, primarily use alternative paths, only if they are empty
 	// use full filepaths
 	String path1(m_alternativePaths[0]);
@@ -1516,8 +1526,16 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path2 = m_files[1];
 	path1 = paths::ToUnixPath(path1);
 	path2 = paths::ToUnixPath(path2);
-	inf_patch[0].name = _strdup(ucr::toSystemCP(path1).c_str());
-	inf_patch[1].name = _strdup(ucr::toSystemCP(path2).c_str());
+	if (ucr::CheckForInvalidUtf8(inf_patch[0].linbuf[inf_patch[0].linbuf_base], inf_patch[0].buffered_chars))
+	{
+		inf_patch[0].name = _strdup(ucr::toThreadCP(path1).c_str());
+		inf_patch[1].name = _strdup(ucr::toThreadCP(path2).c_str());
+	}
+	else
+	{
+		inf_patch[0].name = _strdup(ucr::toUTF8(path1).c_str());
+		inf_patch[1].name = _strdup(ucr::toUTF8(path2).c_str());
+	}
 
 	// If paths in m_s1File and m_s2File point to original files, then we can use
 	// them to fix potentially meaningless stats from potentially temporary files,

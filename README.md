@@ -1,5 +1,28 @@
 # WinMerge Source Code
 
+[WinMerge](http://winmerge.org/) is an Open Source differencing and merging tool
+for Windows. WinMerge can compare both folders and files, presenting differences
+in a visual text format that is easy to understand and handle.
+
+## Requirements
+
+### Visual Studio 2017
+
+ * *Community*, *Professional* or *Enterprise* Edition
+ * VC++ 2017 v141 toolset
+ * Windows XP support for C++
+ * MFC and ATL support
+ * Windows 10 SDK
+
+### Visual Studio 2019
+
+ * *Community*, *Professional* or *Enterprise* Edition
+ * MSVC v142 Buildtools
+ * C++ MFC for v142 Buildtools
+ * Windows 10 SDK
+
+## Folder Structure
+
 Source code for the WinMerge program, its plugins, filters, setup program,
 and various utilities are all kept in various subfolders listed below.
 

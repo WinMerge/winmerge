@@ -43,16 +43,12 @@
 ;      2.  Read Me
 ;      3.  Users's Guide
 ;      4.  WinMerge on the Web
-;      5.  Uninstall WinMerge
 ; #  Create the ability to install to two start menu groups simultaneously
 ;
 ; Not yet possible (Limited by Inno Setup):
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
 
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
-#define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
-#define VS120COMNTOOLS GetEnv('VS120COMNTOOLS')
-#define VS140COMNTOOLS GetEnv('VS140COMNTOOLS')
 
 [Setup]
 AppName=WinMerge
@@ -389,10 +385,12 @@ Name: {commondesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('Desk
 
 ;Removes the Uninstall icon from the start menu...
 Name: {group}\{cm:UninstallProgram,WinMerge}.lnk; Type: files;
+Name: {group}\{cm:UninstallProgram,WinMerge}; Type: files;
 
 ;Remove ANSI executable link from start menu for NT-based Windows versions
 ;This was installed earlier, but not anymore.
 Name: {group}\WinMerge (ANSI).lnk; Type: files; MinVersion: 0,4
+
 Name: {app}\Docs; Type: filesandordirs
 
 Name: {app}\MergePlugins\editor addin.sct; Type: Files; Check: not IsComponentSelected('Plugins')
@@ -415,6 +413,8 @@ Name: {app}\Filters\XML_html.flt; Type: Files; Check: not IsComponentSelected('F
 Name: {app}\Filters\FileFilter.tmpl; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters; Type: DirIfEmpty; Check: not IsComponentSelected('Filters')
 
+;Remove old "List of installed files"...
+Name: {app}\Files.txt; Type: files
 
 
 [Dirs]
@@ -425,15 +425,16 @@ Name: {app}; Flags: uninsalwaysuninstall
 [Files]
 ; WinMerge itself
 Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
-
-; List of installed files
-Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
+; Visual Elements
+Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\MergeUnicodeRelease\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
 
 ; Shell extension
 Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
 ; 64-bit version of ShellExtension
 Source: ..\..\Build\ShellExtension\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
+; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
 Source: ..\..\Build\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 Source: ..\..\Build\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
@@ -496,6 +497,7 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Turkish.txt; DestDir: {app}\Docs; 
 Source: ..\..\Translations\WinMerge\Ukrainian.po; DestDir: {app}\Languages; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt; DestDir: {app}\Docs; Components: Languages\Ukrainian
 
+;Filters
 Source: ..\..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 Source: ..\..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 
@@ -555,7 +557,6 @@ Name: "{app}\MergePlugins"
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; AppUserModelID: "Thingamahoochie.WinMerge"
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
-Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
 Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: http://winmerge.org
 
 ;Link to translated ReadMe in Start Menu
@@ -751,233 +752,6 @@ Begin
   Result := 'WinMergeU.exe';
 End;
 
-Function FixVersion(strInput: string): string;
-{Returns a version with four segments A.B.C.D}
-Var
-  {Stores the number of periods found within the version string}
-  intPeriods: integer;
-
-  {Creates a counter}
-  i: integer;
-
-  {Generates the string to be returned to the user}
-  strVersion: string;
-Begin
-
-  {Creates a copy of the input string before we tear it apart}
-  strVersion := strInput;
-
-  {Until strInput is empty do..}
-  While Length(strInput) > 0 do
-    Begin
-      {if the first character of the input string is a period then}
-      If Copy(strInput, 1, 1) = '.' Then
-
-        {Incriment the number of periods found}
-        intPeriods := intPeriods + 1;
-
-      {Remove the first character from the Input string}
-      strInput := Copy(strINput, 2, length(strINput));
-    End;
-
-  {For every period shy of 3 do..}
-  For i := 1 to 3 - intperiods do
-
-    {Add a '.0' to the version string}
-    strVersion := strVersion + '.0';
-
-  {Returns the Version string with the correct number of segments}
-  Result := strVersion;
-
-End;
-
-Function RemoveLeadingZeros(strInput: string): string;
-{Removes the leading zeros if any from a numeric string}
-Begin
-
-  {While the first character of the string is a zero}
-  While Copy(strInput, 1, 1) = '0' Do
-    begin
-
-    {Removes one leading zero from the input string}
-      strInput := Copy(strInput, 2, Length(strINput));
-    end;
-
-  {Returns the formatted string}
-  Result := strInput;
-
-End;
-
-
-{Returns whether or not the version string detected is meets the version number requirement}
-Function VersionAtLeast(strVersion_Installed: string; intMajor: integer; intMinor: integer; intRevision: integer; intBuild: integer): boolean;
-Var
-
-  {Stores the Major of the Version installed (X.0.0.0)}
-  intMajor_Installed: Integer;
-
-  {Stores the Minor of the Version installed (1.X.0.0)}
-  intMinor_Installed: Integer;
-
-  {Stores the Revision of the Version installed (1.0.X.0)}
-  intRevision_Installed: Integer;
-
-  {Stores the Revision of the Version installed (1.0.0.X)}
-  intBuild_Installed: Integer;
-
-  {Stores the last valid character of a particular segment (Major, Minor, Revision) of the Version string}
-  intEnd_Pos: Integer;
-
-begin
-  {Debug
-  Msgbox('The version installed is ' + strVersion_Installed + ' and the required version is ' + IntToStr(intMajor) + '.' + IntToStr(intMinor) + '.' + IntToStr(intRevision) + '.' + IntToStr(intBuild), mbINformation, mb_OK)
-        }
-
-  {Makes sure the version string contains four numberic segments 5.2 ---> 5.2.0.0}
-  strVersion_Installed := FixVersion(strVersion_Installed);
-
-  {If the version number is empty then quit the function}
-  if strVersion_Installed = '' Then
-    begin
-      Result := False;
-
-      {Stops analyzing the version installed and returns that the version installed was inadequate}
-      exit;
-    end;
-
-  {Starts detecting the Major value of the Version Installed}
-
-  {Sets the end position equal to one character before the first period in the version number}
-  intEnd_Pos := Pos('.', strVersion_Installed) -1
-
-  {Sets the major version equal to all character before the first period }
-  intMajor_installed := StrToIntDef(RemoveLeadingZeros(Copy(strVersion_Installed, 1, intEnd_Pos)), 0);
-
-  {Debug
-  msgbox('The Major version installed is ' + IntToStr(intMajor_installed) + ' and the required Major is ' + IntToStr(intMajor) + '.', mbInformation, MB_OK)
-        }
-
-  {If the Major Version Installed is greater than the required value then...}
-  if intMajor_Installed > intMajor Then
-    begin
-      {Returns that the version number was adequate, since it actually exceeded the requirement}
-      Result := True;
-
-        {Debug
-        msgbox(IntToStr(intMajor_installed) + ' > ' +  IntToStr(intMajor), mbInformation, MB_OK)
-        }
-
-      {Stops analyzing the version number since we already know it met the requirement}
-      exit;
-    end;
-
-  {If the Major version installed is less than the requirement then...}
-  If intMajor_Installed < intMajor Then
-    begin
-      {Debug
-       msgbox(IntToStr(intMajor_installed) + ' < ' +  IntToStr(intMajor), mbInformation, MB_OK)
-       }
-
-      Result := False;
-
-      {Stops analyzing the version number since we already know it's inadequate and returns False (inadequate)}
-      exit;
-    end;
-
-
-  {Starts detecting the Minor version of the Version Installed}
-
-  {Modifies strVersion_Installed removing the first period and everything prior to it (Removes the Major Version)}
-  strVersion_Installed := Copy(strVersion_Installed, intEnd_Pos + 2, Length(strVersion_Installed));
-
-  {Sets the end position equal to one character before the first period in the version number}
-  intEnd_Pos := Pos('.', strVersion_Installed) -1
-
-  {Sets the Minor version equal to all character before the first period }
-	intMinor_installed := StrToIntDef(RemoveLeadingZeros(Copy(strVersion_Installed, 1, intEnd_Pos)), 0)
-
-	{Debug
-  msgbox('The Minor version installed is ' + IntToStr(intMinor_installed) + ' and the required Minor is ' + IntToStr(intMinor) + '.', mbInformation, MB_OK)
-        }
-
-	{If the Minor Version Installed is greater than the required value then...}
-	If intMinor_Installed > intMinor Then
-    begin
-      {Returns that the version number was adequate}
-      Result := True;
-
-      {Stops further analyzation of the version number}
-      exit
-    end;
-
-  {If the minor installed is less than what was required}
-  If intMinor_Installed < intMinor Then
-    Begin
-      Result := False;
-
-      {Returns that the version installed did not meet the required value and stops analyzing the version number}
-      exit;
-    end;
-
-
-  {Starts Detecting the Revision of the Version Installed}
-
-	{Modifies strVersion_Installed removing the first period and everything prior to it (Removes the Minor Version)}
-	strVersion_Installed := Copy(strVersion_Installed, intEnd_Pos + 2, Length(strVersion_Installed));
-
-	{Sets the last character of the Revision to last character before the first period}
-	intEnd_Pos := Pos('.', strVersion_Installed) -1
-
-	{Sets the Revision Installed equal to everything before the first period}
-	intRevision_Installed := strToIntDef(RemoveLeadingZeros(Copy(strVersion_Installed, 1, intEnd_Pos)), 0);
-
-	{Debug
-  msgbox('The Revision version installed is ' + IntToStr(intRevision_installed) + ' and the required Revision is ' + IntToStr(intRevision) + '.', mbInformation, MB_OK)
-        }
-
-	{If the Revision Installed is greater than the required value then...}
-  If intRevision_Installed > intRevision Then
-    begin
-      {Return that the version installed was adequate}
-      Result := True;
-
-      {Stops further analyzation of the version number}
-      exit
-    end;
-
-  {If the revision installed did not meet the requirement then...}
-  If intRevision_Installed < intRevision Then
-    begin
-      Result := False;
-
-    {Return that the version number failed to meet the requirement and stops further analyzation of the version number}
-      exit;
-    end;
-
-  {Start Detection the Build Installed}
-
-	{Modifies strVersion_Installed removing the first period and everything prior to it (Removes the Revision) leaving behind only the build number}
-	strVersion_Installed := Copy(strVersion_Installed, intEnd_Pos + 2, Length(strVersion_Installed));
-
-	{Set the build installed = to what's left of the strVersion_Installed text}
-	intBuild_installed := strToIntDef(RemoveLeadingZeros(strVersion_Installed), 0);
-
-	{Debug
-  msgbox('The Build version installed is ' + IntToStr(intBuild_installed) + ' and the required Build is ' + IntToStr(intBuild) + '.', mbInformation, MB_OK)
-        }
-
-	{If the build installed is greater than or equal to the requirement then...}
-	if intBuild_installed >= intBuild Then
-
-	 {Report that the version installed was adequate}
-    Result := True
-  else
-
-    {Reports the inadequacy of the version installed and seases processing }
-    Result := False;
-end;
-
-
 {Determines whether or not TortoiseCVS is installed}
 Function TortoiseCVSInstalled(): boolean;
 Begin
@@ -1060,23 +834,6 @@ Begin
     Result := inttostr(ContextMenuEnabled or 1)
   else
     Result := '0';
-End;
-
-{Replace one occurrence of OldStr in Str with NewStr}
-Function ReplaceSubString(Src: string; OldStr: string; NewStr: string) : string;
-Var
-    OldStrStartAt: Integer;
-
-Begin
-    OldStrStartAt := Pos(OldStr, Src);
-    if OldStrStartAt > 0 then
-    begin
-        {Remove old string}
-        Delete(Src, OldStrStartAt, Length(OldStr));
-        {Insert new string}
-        Insert(NewStr, Src, OldStrStartAt);
-    end;
-    Result := Src;
 End;
 
 {Returns WinMerge installed exeutable file name}

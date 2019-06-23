@@ -8,6 +8,7 @@
 // Generated from the TEXTINCLUDE 2 resource.
 //
 #include "afxres.h"
+#define NC_(msgctxt, msgid) "\x01"msgctxt##msgid
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -33,6 +34,7 @@ END
 2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
+    "#define NC_(msgctxt, msgid) ""\\x01""msgctxt##msgid\r\n"
     "\0"
 END
 
@@ -84,6 +86,7 @@ BEGIN
             MENUITEM "with &External Editor\tCtrl+Alt+E", ID_FILE_OPEN_WITHEDITOR
             MENUITEM "&with...",                    ID_FILE_OPEN_WITH
         END
+        MENUITEM "S&hell Menu",                 ID_FILE_SHELLMENU
     END
 END
 
@@ -110,6 +113,12 @@ BEGIN
             MENUITEM "1&6",                         ID_IMG_THRESHOLD_16
             MENUITEM "&32",                         ID_IMG_THRESHOLD_32
             MENUITEM "64",                          ID_IMG_THRESHOLD_64
+        END
+        POPUP "Ins&ertion/Deletion Detection"
+        BEGIN
+            MENUITEM "&None",                       ID_IMG_INSERTIONDELETIONDETECTION_NONE
+            MENUITEM "&Vertical",                   ID_IMG_INSERTIONDELETIONDETECTION_VERTICAL
+            MENUITEM "&Horizontal",                 ID_IMG_INSERTIONDELETIONDETECTION_HORIZONTAL
         END
         MENUITEM SEPARATOR
         MENUITEM "&Previous Page",              ID_IMG_PREVPAGE
@@ -278,6 +287,10 @@ BEGIN
             MENUITEM "Show &Left Only Different Items", ID_OPTIONS_SHOWDIFFERENTLEFTONLY
             MENUITEM "Show &Middle Only Different Items", ID_OPTIONS_SHOWDIFFERENTMIDDLEONLY
             MENUITEM "Show &Right Only Different Items", ID_OPTIONS_SHOWDIFFERENTRIGHTONLY
+            MENUITEM SEPARATOR
+            MENUITEM "Show L&eft Only Missing Items", ID_OPTIONS_SHOWMISSINGLEFTONLY
+            MENUITEM "Show Mi&ddle Only Missing Items", ID_OPTIONS_SHOWMISSINGMIDDLEONLY
+            MENUITEM "Show Rig&ht Only Missing Items", ID_OPTIONS_SHOWMISSINGRIGHTONLY
         END
         MENUITEM SEPARATOR
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
@@ -804,6 +817,7 @@ END
 //
 // Accelerator
 //
+
 IDR_MERGEDOCTYPE ACCELERATORS
 BEGIN
     "1",            ID_NEXTDIFFLM,          VIRTKEY, ALT, NOINVERT
@@ -907,7 +921,7 @@ BEGIN
     PUSHBUTTON      "Contributors",IDC_OPEN_CONTRIBUTORS,7,218,65,14
 END
 
-IDD_OPEN DIALOGEX 0, 0, 461, 266
+IDD_OPEN DIALOGEX 0, 0, 465, 266
 STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_CHILD | WS_CAPTION
 CAPTION "Select Files or Folders"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1233,8 +1247,8 @@ BEGIN
     PUSHBUTTON      "Pause",IDC_COMPARISON_PAUSE,113,9,65,14
     PUSHBUTTON      "Continue",IDC_COMPARISON_CONTINUE,113,9,65,14,NOT WS_VISIBLE
     CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,7,44,241,10
-    RTEXT           "0",IDC_ITEMSCOMPARED,75,29,30,10
-    RTEXT           "0",IDC_ITEMSTOTAL,75,19,30,10
+    RTEXT           "0",IDC_ITEMSCOMPARED,95,29,30,10
+    RTEXT           "0",IDC_ITEMSTOTAL,95,19,30,10
     LTEXT           "Comparing items...",IDC_STATIC,7,7,98,10
     LTEXT           "Items compared:",IDC_STATIC,7,29,85,10
     LTEXT           "Items total:",IDC_STATIC,7,19,85,10
@@ -1259,7 +1273,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,153,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 255, 205
+IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 255, 220
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1275,6 +1289,9 @@ BEGIN
     CONTROL         "Ignore codepage &differences",IDC_CP_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,96,241,10
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,241,10
     CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,241,10
+    LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,132,140,20
+    COMBOBOX        IDC_DIFF_ALGORITHM,145,132,100,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,146,241,10
     GROUPBOX        "Comments",IDC_STATIC,7,164,241,32
     CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,177,205,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,7,198,70,14
@@ -1343,22 +1360,22 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,205,195,50,14
 END
 
-IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 255, 138
+IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 255, 210
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Default Codepage",IDC_STATIC,7,7,241,81
+    GROUPBOX        "Default Codepage",IDC_STATIC,7,7,241,93
     LTEXT           "Select the default codepage assumed when loading non-Unicode files:",IDC_STATIC,14,18,228,20
     CONTROL         "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session",IDC_DETECT_CODEPAGE,
-                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,90,230,30
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,105,230,30
     CONTROL         "Detect codepage for text files using mlang.dll\nneed to restart session",IDC_DETECT_CODEPAGE2,
-                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,124,230,34
-    COMBOBOX        IDC_DETECT_AUTODETECTTYPE,23,160,125,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,139,230,34
+    COMBOBOX        IDC_DETECT_AUTODETECTTYPE,23,175,125,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,42,230,10
     CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",BS_AUTORADIOBUTTON,13,55,230,10
     CONTROL         "Custom codepage:",IDC_CP_CUSTOM,"Button",BS_AUTORADIOBUTTON,13,68,120,10
-    COMBOBOX        IDC_CUSTOM_CP_NUMBER,136,67,102,130,CBS_DROPDOWN | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    COMBOBOX        IDC_CUSTOM_CP_NUMBER,12,80,229,130,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
 IDD_PREFERENCES DIALOGEX 0, 0, 372, 280
@@ -1682,16 +1699,18 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Shell Integration"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Explorer",IDC_STATIC,7,6,238,80
+    GROUPBOX        "Explorer",IDC_STATIC,7,6,238,112
     CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,30,210,10
     CONTROL         "&Add to context menu",IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,220,10
     PUSHBUTTON      "&Register shell extension",IDC_REGISTER_SHELLEXTENSION,17,48,220,14
     PUSHBUTTON      "&Unregister shell extension",IDC_UNREGISTER_SHELLEXTENSION,17,64,220,14
+    PUSHBUTTON      "Register shell extension for current user &only",IDC_REGISTER_SHELLEXTENSION_PERUSER,17,80,220,14
+    PUSHBUTTON      "Unregister shell extension for current user on&ly",IDC_UNREGISTER_SHELLEXTENSION_PERUSER,17,96,220,14
 END
 
 IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 255, 205
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Folder"
+CAPTION NC_("Options dialog|Categories", "Folder")
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "&Compare method:",IDC_STATIC,7,6,100,10
@@ -1708,14 +1727,16 @@ BEGIN
     CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,202,10
     LTEXT           "&Quick compare limit (MB):",IDC_STATIC,7,96,200,10
     EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,108,30,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,198,70,14
-    LTEXT           "&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,7,124,230,30
-    EDITTEXT        IDC_COMPARE_THREAD_COUNT,7,156,30,14,ES_AUTOHSCROLL
+    LTEXT           "&Binary compare limit (MB):",IDC_STATIC,7,126,200,10
+    EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,7,138,30,14,ES_AUTOHSCROLL
+    LTEXT           "&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,7,154,230,30
+    EDITTEXT        IDC_COMPARE_THREAD_COUNT,7,186,30,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,208,70,14
 END
 
 IDD_PROPPAGE_COMPARE_BINARY DIALOGEX 0, 0, 255, 205
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Binary"
+CAPTION NC_("Options dialog|Categories", "Binary")
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Binary File &Patterns:",IDC_STATIC,7,6,200,10
@@ -1759,6 +1780,7 @@ GUIDELINES DESIGNINFO
 BEGIN
     IDD_OPEN, DIALOG
     BEGIN
+        RIGHTMARGIN, 462
         BOTTOMMARGIN, 264
     END
 
@@ -1766,7 +1788,15 @@ BEGIN
     BEGIN
     END
 
+    IDD_SAVECLOSING, DIALOG
+    BEGIN
+    END
+
     IDD_PROPPAGE_COLORS_MARKER, DIALOG
+    BEGIN
+    END
+
+    IDD_CONFIRM_COPY, DIALOG
     BEGIN
     END
 END
@@ -1819,7 +1849,73 @@ END
 
 IDD_OPEN AFX_DIALOG_LAYOUT
 BEGIN
-    0
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 50, 0,
+    0, 0, 0, 0,
+    0, 0, 50, 0,
+    50, 0, 0, 0,
+    0, 0, 0, 0,
+    50, 0, 50, 0,
+    50, 0, 0, 0,
+    50, 0, 50, 0,
+    100, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0
+END
+
+IDD_SAVECLOSING AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0
+END
+
+IDD_CONFIRM_COPY AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    100, 0, 0, 0
 END
 
 
@@ -1940,9 +2036,9 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_OPTIONSPG_FOLDERCOMPARE "Folder"
+    IDS_OPTIONSPG_FOLDERCOMPARE NC_("Options dialog|Categories", "Folder")
     IDS_OPTIONSPG_IMAGECOMPARE "Image"
-    IDS_OPTIONSPG_BINARYCOMPARE "Binary"
+    IDS_OPTIONSPG_BINARYCOMPARE NC_("Options dialog|Categories", "Binary")
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -2241,7 +2337,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Filename"
-    IDS_COLHDR_DIR          "Folder"
+    IDS_COLHDR_DIR          NC_("DirView|ColumnHeader", "Folder")
     IDS_COLHDR_RESULT       "Comparison result"
     IDS_COLHDR_LTIMEM       "Left Date"
     IDS_COLHDR_RTIMEM       "Right Date"
@@ -2290,7 +2386,7 @@ BEGIN
     IDS_COLHDR_MENCODING    "Middle Encoding"
     IDS_COLHDR_NIDIFFS      "Ignored Diff."
     IDS_COLHDR_NSDIFFS      "Differences"
-    IDS_COLHDR_BINARY       "Binary"
+    IDS_COLHDR_BINARY       NC_("DirView|ColumnHeader", "Binary")
 END
 
 // DIRECTORY DIFFING : FILE COMPARISON RESULT, FULL & SHORTENED FORMS
@@ -2524,7 +2620,7 @@ BEGIN
     IDS_EOL_MAC             "Mac"
     IDS_EOL_UNIX            "Unix"
     IDS_EOL_MIXED           "Mixed"
-    IDS_EOL_BIN             "Binary"
+    IDS_EOL_BIN             NC_("EOL Type", "Binary")
     IDS_EOL_LF              "LF"
     IDS_EOL_CR              "CR"
     IDS_EOL_CRLF            "CRLF"

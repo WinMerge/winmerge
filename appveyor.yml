@@ -4,13 +4,18 @@ configuration: Release Unicode
 platform: x64
 shallow_clone: true
 install:
-- ps: Add-Content $ENV:UserProfile\Mercurial.ini "`r`n[extensions]`r`neol = "
+- ps: >-
+    Add-Content $ENV:UserProfile\Mercurial.ini "`r`n[extensions]`r`neol = "
+
+    (new-object net.webclient).DownloadFile('http://www.jrsoftware.org/download.php/is.exe#innosetup-6.0.2.exe', "$Env:APPVEYOR_BUILD_FOLDER/innosetup-6.0.2.exe")
+
+    & $Env:APPVEYOR_BUILD_FOLDER/innosetup-6.0.2.exe /verysilent /norestart /currentuser
 cache: build/WinMergeDownloadDeps
 build_script:
 - cmd: >-
     DownloadDeps.cmd
 
-    BuildAll.vs2017.cmd x64
+    BuildAll.vs2017.cmd x64 -ci
 artifacts:
 - path: build/Releases/*.exe
 - path: build/Releases/*.zip

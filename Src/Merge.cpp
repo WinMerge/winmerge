@@ -42,7 +42,7 @@
 #include "HexMergeView.h"
 #include "AboutDlg.h"
 #include "MainFrm.h"
-#include "ChildFrm.h"
+#include "MergeEditFrm.h"
 #include "DirFrame.h"
 #include "MergeDoc.h"
 #include "DirDoc.h"
@@ -363,7 +363,7 @@ BOOL CMergeApp::InitInstance()
 	m_pDiffTemplate = new CMultiDocTemplate(
 		IDR_MERGEDOCTYPE,
 		RUNTIME_CLASS(CMergeDoc),
-		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
+		RUNTIME_CLASS(CMergeEditFrame), // custom MDI child frame
 		RUNTIME_CLASS(CMergeEditSplitterView));
 	AddDocTemplate(m_pDiffTemplate);
 
@@ -1124,42 +1124,51 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	bool bMiddleReadOnly = false;
 	bool bRightReadOnly = false;
 	bool bRecursive = false;
-	project.GetPaths(tFiles, bRecursive);
-	bLeftReadOnly = project.GetLeftReadOnly();
-	bMiddleReadOnly = project.GetMiddleReadOnly();
-	bRightReadOnly = project.GetRightReadOnly();
-	if (project.HasFilter())
+	bool rtn = true;
+	for (auto& projItem : project.Items())
 	{
-		String filter = project.GetFilter();
-		filter = strutils::trim_ws(filter);
-		m_pGlobalFileFilter->SetFilter(filter);
-	}
-	if (project.HasSubfolders())
-		bRecursive = project.GetSubfolders() > 0;
+		projItem.GetPaths(tFiles, bRecursive);
+		for (size_t i = 0; i < tFiles.size(); ++i)
+		{
+			if (!paths::IsPathAbsolute(tFiles[i]))
+				tFiles[i] = paths::ConcatPath(paths::GetParentPath(sProject), tFiles[i]);
+		}
+		bLeftReadOnly = projItem.GetLeftReadOnly();
+		bMiddleReadOnly = projItem.GetMiddleReadOnly();
+		bRightReadOnly = projItem.GetRightReadOnly();
+		if (projItem.HasFilter())
+		{
+			String filter = projItem.GetFilter();
+			filter = strutils::trim_ws(filter);
+			m_pGlobalFileFilter->SetFilter(filter);
+		}
+		if (projItem.HasSubfolders())
+			bRecursive = projItem.GetSubfolders() > 0;
 
-	DWORD dwFlags[3] = {
-		static_cast<DWORD>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-		static_cast<DWORD>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-		static_cast<DWORD>(tFiles.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT)
-	};
-	if (bLeftReadOnly)
-		dwFlags[0] |= FFILEOPEN_READONLY;
-	if (tFiles.GetSize() == 2)
-	{
-		if (bRightReadOnly)
-			dwFlags[1] |= FFILEOPEN_READONLY;
-	}
-	else
-	{
-		if (bMiddleReadOnly)
-			dwFlags[1] |= FFILEOPEN_READONLY;
-		if (bRightReadOnly)
-			dwFlags[2] |= FFILEOPEN_READONLY;
-	}
+		DWORD dwFlags[3] = {
+			static_cast<DWORD>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
+			static_cast<DWORD>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
+			static_cast<DWORD>(tFiles.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT)
+		};
+		if (bLeftReadOnly)
+			dwFlags[0] |= FFILEOPEN_READONLY;
+		if (tFiles.GetSize() == 2)
+		{
+			if (bRightReadOnly)
+				dwFlags[1] |= FFILEOPEN_READONLY;
+		}
+		else
+		{
+			if (bMiddleReadOnly)
+				dwFlags[1] |= FFILEOPEN_READONLY;
+			if (bRightReadOnly)
+				dwFlags[2] |= FFILEOPEN_READONLY;
+		}
 
-	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
-	
-	bool rtn = GetMainFrame()->DoFileOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive);
+		GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
+
+		rtn &= GetMainFrame()->DoFileOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive);
+	}
 
 	AddToRecentProjectsMRU(sProject.c_str());
 	return rtn;
@@ -1339,6 +1348,15 @@ BOOL CMergeApp::WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTS
 		if (!pOptions->Get(name).IsString())
 			pOptions->InitOption(name, lpszValue ? lpszValue : _T(""));
 		return pOptions->SaveOption(name, lpszValue ? lpszValue : _T("")) == COption::OPT_OK;
+	}
+	else
+	{
+		for (auto& name : pOptions->GetNameList())
+		{
+			if (name.find(lpszSection) == 0)
+				pOptions->RemoveOption(name);
+		}
+
 	}
 	return TRUE;
 }

@@ -53,10 +53,8 @@ public:
 
 struct CMenuItemInfo : public MENUITEMINFO 
 {
-	CMenuItemInfo()
+	CMenuItemInfo() : MENUITEMINFO{ sizeof(MENUITEMINFO) }
 	{
-		memset(this, 0, sizeof(MENUITEMINFO));
-		cbSize = sizeof(MENUITEMINFO);
 	}
 };
 

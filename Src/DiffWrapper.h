@@ -129,12 +129,12 @@ typedef enum {
  */
 struct DIFFSTATUS
 {
-	bool bMissingNL[3]; /**< file is missing EOL before EOF */
-	bool bBinaries; /**< Files are binaries */
-	IDENTLEVEL Identical; /**< diffutils said files are identical */
-	bool bPatchFileFailed; /**< Creating patch file failed */
+	bool bMissingNL[3] {}; /**< file is missing EOL before EOF */
+	bool bBinaries = false; /**< Files are binaries */
+	IDENTLEVEL Identical = IDENTLEVEL_NONE; /**< diffutils said files are identical */
+	bool bPatchFileFailed = false; /**< Creating patch file failed */
 
-	DIFFSTATUS() { memset(this, 0, sizeof(*this)); } // start out with all flags clear
+	DIFFSTATUS() {}
 	void MergeStatus(const DIFFSTATUS& other)
 	{
 		if (Identical == IDENTLEVEL_ALL)

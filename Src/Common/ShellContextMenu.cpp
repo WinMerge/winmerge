@@ -24,7 +24,7 @@
  * @brief Main implementation file for CShellContextMenu
  */
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "ShellContextMenu.h"
 #include "PidlContainer.h"
 
@@ -147,7 +147,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 			LPITEMIDLIST dirPidl;
 			if (FAILED(/*hr = */pDesktop->ParseDisplayName(nullptr,				   // hwnd
 													   nullptr,					   // pbc
-													   CT2OLE(currentDir.c_str()), // pszDisplayName
+													   const_cast<wchar_t *>(currentDir.c_str()),	// pszDisplayName
 													   nullptr,					   // pchEaten
 													   &dirPidl,				   // ppidl
 													   nullptr					   // pdwAttributes
@@ -172,7 +172,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 		LPITEMIDLIST pidl;
 		if (FAILED(/*hr = */pCurrFolder->ParseDisplayName(nullptr,
 													  nullptr,
-													  CT2OLE(file.filename.c_str()), 
+													  const_cast<wchar_t *>(file.filename.c_str()), 
 													  nullptr,
 													  &pidl,
 													  nullptr)))
@@ -213,7 +213,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 		m_pPreferredMenu = pCMenu3;
 	}
 
-	ASSERT(::IsMenu(m_hShellContextMenu));
+	assert(::IsMenu(m_hShellContextMenu));
 	if (FAILED(/*hr = */m_pPreferredMenu->QueryContextMenu(m_hShellContextMenu,
 													   0,
 													   m_cmdFirst,
@@ -241,7 +241,7 @@ bool CShellContextMenu::InvokeCommand(UINT nCmd, HWND hWnd)
 		ici.nShow = SW_SHOWNORMAL;
 
 		HRESULT hr = m_pPreferredMenu->InvokeCommand(&ici);
-		ASSERT(SUCCEEDED(hr));
+		assert(SUCCEEDED(hr));
 		return SUCCEEDED(hr);
 	}
 	else 
@@ -252,12 +252,12 @@ bool CShellContextMenu::InvokeCommand(UINT nCmd, HWND hWnd)
 
 bool CShellContextMenu::RequeryShellContextMenu()
 {
-	ASSERT(::IsMenu(m_hShellContextMenu));
+	assert(::IsMenu(m_hShellContextMenu));
 	while (::GetMenuItemCount(m_hShellContextMenu) > 0)
 	{
 		::DeleteMenu(m_hShellContextMenu, 0, MF_BYPOSITION);
 	}
-	ASSERT(::GetMenuItemCount(m_hShellContextMenu) == 0);
+	assert(::GetMenuItemCount(m_hShellContextMenu) == 0);
 
 	return QueryShellContextMenu();
 }

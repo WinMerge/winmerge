@@ -28,10 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Poco", "Poco", "{220B870C-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files", "{DC3B258E-444F-460D-8FD9-09A8165212FA}"
 	ProjectSection(SolutionItems) = preProject
-		BuildAll.vs2015.cmd = BuildAll.vs2015.cmd
 		BuildAll.vs2017.cmd = BuildAll.vs2017.cmd
 		BuildArc.cmd = BuildArc.cmd
-		BuildBin.vs2015.cmd = BuildBin.vs2015.cmd
 		BuildBin.vs2017.cmd = BuildBin.vs2017.cmd
 		BuildInstaller.cmd = BuildInstaller.cmd
 		BuildManual.cmd = BuildManual.cmd

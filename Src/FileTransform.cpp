@@ -443,8 +443,10 @@ bool AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
 ////////////////////////////////////////////////////////////////////////////////
 // transformation : TextTransform_Interactive (editor scripts)
 
-void GetFreeFunctionsInScripts(std::vector<String>& sNamesArray, const wchar_t *TransformationEvent)
+std::vector<String> GetFreeFunctionsInScripts(const wchar_t *TransformationEvent)
 {
+	std::vector<String> sNamesArray;
+
 	// get an array with the available scripts
 	PluginArray * piScriptArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(TransformationEvent);
@@ -469,6 +471,7 @@ void GetFreeFunctionsInScripts(std::vector<String>& sNamesArray, const wchar_t *
 
 		nFnc += nScriptFnc;
 	}
+	return sNamesArray;
 }
 
 bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen)

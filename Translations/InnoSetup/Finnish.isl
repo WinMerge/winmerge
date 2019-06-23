@@ -1,8 +1,8 @@
-; *** Inno Setup version 5.5.3+ Finnish messages ***
+; *** Inno Setup version 6.0.0+ Finnish messages ***
 ;
 ; Finnish translation by Antti Karttunen
 ; E-mail: antti.j.karttunen@iki.fi
-; Last modification date: 2012-12-15
+; Last modification date: 2019-01-22
 
 [LangOptions]
 LanguageName=Suomi
@@ -39,13 +39,22 @@ WindowsServicePackRequired=Tämä ohjelma vaatii %1 Service Pack %2 -päivityksen t
 NotOnThisPlatform=Tämä ohjelma ei toimi %1-käyttöjärjestelmässä.
 OnlyOnThisPlatform=Tämä ohjelma toimii vain %1-käyttöjärjestelmässä.
 OnlyOnTheseArchitectures=Tämä ohjelma voidaan asentaa vain niihin Windowsin versioihin, jotka on suunniteltu seuraaville prosessorityypeille:%n%n%1
-MissingWOW64APIs=Tämä Windowsin versio ei sisällä ominaisuuksia, joita Asennus tarvitsee suorittaakseen 64-bittisen asennuksen. Korjaa ongelma asentamalla Service Pack %1.
 WinVersionTooLowError=Tämä ohjelma vaatii version %2 tai myöhemmän %1-käyttöjärjestelmästä.
 WinVersionTooHighError=Tätä ohjelmaa ei voi asentaa %1-käyttöjärjestelmän versioon %2 tai myöhempään.
 AdminPrivilegesRequired=Sinun täytyy kirjautua sisään järjestelmänvalvojana asentaaksesi tämän ohjelman.
 PowerUserPrivilegesRequired=Sinun täytyy kirjautua sisään järjestelmänvalvojana tai tehokäyttäjänä asentaaksesi tämän ohjelman.
 SetupAppRunningError=Asennus löysi käynnissä olevan kopion ohjelmasta %1.%n%nSulje kaikki käynnissä olevat kopiot ohjelmasta ja valitse OK jatkaaksesi, tai valitse Peruuta poistuaksesi.
 UninstallAppRunningError=Asennuksen poisto löysi käynnissä olevan kopion ohjelmasta %1.%n%nSulje kaikki käynnissä olevat kopiot ohjelmasta ja valitse OK jatkaaksesi, tai valitse Peruuta poistuaksesi.
+
+; *** Startup questions
+PrivilegesRequiredOverrideTitle=Valitse asennustapa
+PrivilegesRequiredOverrideInstruction=Valitse, kenen käyttöön ohjelma asennetaan
+PrivilegesRequiredOverrideText1=%1 voidaan asentaa kaikille käyttäjille (vaatii järjestelmänvalvojan oikeudet) tai vain sinun käyttöösi.
+PrivilegesRequiredOverrideText2=%1 voidaan asentaa vain sinun käyttöösi tai kaikille käyttäjille (vaatii järjestelmänvalvojan oikeudet).
+PrivilegesRequiredOverrideAllUsers=Asenna &kaikille käyttäjille
+PrivilegesRequiredOverrideAllUsersRecommended=Asenna &kaikille käyttäjille (suositus)
+PrivilegesRequiredOverrideCurrentUser=Asenna vain &minun käyttööni
+PrivilegesRequiredOverrideCurrentUserRecommended=Asenna vain &minun käyttööni (suositus)
 
 ; *** Misc. errors
 ErrorCreatingDir=Asennus ei voinut luoda hakemistoa "%1"
@@ -54,30 +63,30 @@ ErrorTooManyFilesInDir=Tiedoston luominen hakemistoon "%1" epäonnistui, koska se
 ; *** Setup common messages
 ExitSetupTitle=Poistu Asennuksesta
 ExitSetupMessage=Asennus ei ole valmis. Jos lopetat nyt, ohjelmaa ei asenneta.%n%nVoit ajaa Asennuksen toiste asentaaksesi ohjelman.%n%nLopetetaanko Asennus?
-AboutSetupMenuItem=Tietoja Asennuksesta...
+AboutSetupMenuItem=&Tietoja Asennuksesta...
 AboutSetupTitle=Tietoja Asennuksesta
 AboutSetupMessage=%1 versio %2%n%3%n%n%1 -ohjelman kotisivu:%n%4
 AboutSetupNote=
-TranslatorNote=Suomenkielinen käännös: Antti Karttunen (antti.karttunen@joensuu.fi)
+TranslatorNote=Suomenkielinen käännös: Antti Karttunen (antti.j.karttunen@iki.fi)
 
 ; *** Buttons
-ButtonBack=< Takaisin
-ButtonNext=Seuraava >
-ButtonInstall=Asenna
+ButtonBack=< &Takaisin
+ButtonNext=&Seuraava >
+ButtonInstall=&Asenna
 ButtonOK=OK
 ButtonCancel=Peruuta
-ButtonYes=Kyllä
-ButtonYesToAll=Kyllä kaikkiin
-ButtonNo=Ei
-ButtonNoToAll=Ei kaikkiin
-ButtonFinish=Lopeta
-ButtonBrowse=Selaa...
-ButtonWizardBrowse=Selaa...
-ButtonNewFolder=Luo uusi kansio
+ButtonYes=&Kyllä
+ButtonYesToAll=Kyllä k&aikkiin
+ButtonNo=&Ei
+ButtonNoToAll=E&i kaikkiin
+ButtonFinish=&Lopeta
+ButtonBrowse=S&elaa...
+ButtonWizardBrowse=S&elaa...
+ButtonNewFolder=&Luo uusi kansio
 
 ; *** "Select Language" dialog messages
 SelectLanguageTitle=Valitse Asennuksen kieli
-SelectLanguageLabel=Valitse asentamisen aikana käytettävä kieli:
+SelectLanguageLabel=Valitse asentamisen aikana käytettävä kieli.
 
 ; *** Common wizard text
 ClickNext=Valitse Seuraava jatkaaksesi tai Peruuta poistuaksesi.
@@ -94,15 +103,15 @@ WelcomeLabel2=Tällä asennusohjelmalla koneellesi asennetaan [name/ver]. %n%nOn s
 WizardPassword=Salasana
 PasswordLabel1=Tämä asennusohjelma on suojattu salasanalla.
 PasswordLabel3=Anna salasana ja valitse sitten Seuraava jatkaaksesi.%n%nIsot ja pienet kirjaimet ovat eriarvoisia.
-PasswordEditLabel=Salasana:
+PasswordEditLabel=&Salasana:
 IncorrectPassword=Antamasi salasana oli virheellinen. Anna salasana uudelleen.
 
 ; *** "License Agreement" wizard page
 WizardLicense=Käyttöoikeussopimus
 LicenseLabel=Lue seuraava tärkeä tiedotus ennen kuin jatkat.
 LicenseLabel3=Lue seuraava käyttöoikeussopimus tarkasti. Sinun täytyy hyväksyä sopimus, jos haluat jatkaa asentamista.
-LicenseAccepted=Hyväksyn sopimuksen
-LicenseNotAccepted=En hyväksy sopimusta
+LicenseAccepted=&Hyväksyn sopimuksen
+LicenseNotAccepted=&En hyväksy sopimusta
 
 ; *** "Information" wizard pages
 WizardInfoBefore=Tiedotus
@@ -115,9 +124,9 @@ InfoAfterClickLabel=Kun olet valmis jatkamaan asentamista, valitse Seuraava.
 ; *** "Select Destination Directory" wizard page
 WizardUserInfo=Käyttäjätiedot
 UserInfoDesc=Anna pyydetyt tiedot.
-UserInfoName=Käyttäjän nimi:
-UserInfoOrg=Yritys:
-UserInfoSerial=Tunnuskoodi:
+UserInfoName=Käyttäjän &nimi:
+UserInfoOrg=&Yritys:
+UserInfoSerial=&Tunnuskoodi:
 UserInfoNameRequired=Sinun täytyy antaa nimi.
 
 ; *** "Select Destination Location" wizard page	
@@ -167,7 +176,7 @@ MustEnterGroupName=Kansiolle pitää antaa nimi.
 GroupNameTooLong=Kansion nimi tai polku on liian pitkä.
 InvalidGroupName=Virheellinen kansion nimi.
 BadGroupName=Kansion nimessä ei saa olla seuraavia merkkejä:%n%n%1
-NoProgramGroupCheck2=Älä luo kansiota Käynnistä-valikkoon
+NoProgramGroupCheck2=Älä luo k&ansiota Käynnistä-valikkoon
 
 ; *** "Ready to Install" wizard page
 WizardReady=Valmiina asennukseen
@@ -188,8 +197,8 @@ PreviousInstallNotCompleted=Edellisen ohjelman asennus tai asennuksen poisto ei 
 CannotContinue=Asennusta ei voida jatkaa. Valitse Peruuta poistuaksesi.
 ApplicationsFound=Seuraavat sovellukset käyttävät tiedostoja, joita Asennuksen pitää päivittää. On suositeltavaa, että annat Asennuksen sulkea nämä sovellukset automaattisesti.
 ApplicationsFound2=Seuraavat sovellukset käyttävät tiedostoja, joita Asennuksen pitää päivittää. On suositeltavaa, että annat Asennuksen sulkea nämä sovellukset automaattisesti. Valmistumisen jälkeen Asennus yrittää uudelleenkäynnistää sovellukset.
-CloseApplications=Sulje sovellukset automaattisesti
-DontCloseApplications=Älä sulje sovelluksia
+CloseApplications=&Sulje sovellukset automaattisesti
+DontCloseApplications=&Älä sulje sovelluksia
 ErrorCloseApplications=Asennus ei pystynyt sulkemaan tarvittavia sovelluksia automaattisesti. On suositeltavaa, että ennen jatkamista suljet sovellukset, jotka käyttävät asennuksen aikana päivitettäviä tiedostoja.
 
 ; *** "Installing" wizard page
@@ -204,21 +213,24 @@ ClickFinish=Valitse Lopeta poistuaksesi Asennuksesta.
 FinishedRestartLabel=Jotta [name] saataisiin asennettua loppuun, pitää kone käynnistää uudelleen. Haluatko käynnistää koneen uudelleen nyt?
 FinishedRestartMessage=Jotta [name] saataisiin asennettua loppuun, pitää kone käynnistää uudelleen.%n%nHaluatko käynnistää koneen uudelleen nyt?
 ShowReadmeCheck=Kyllä, haluan nähdä LUEMINUT-tiedoston
-YesRadio=Kyllä, käynnistä kone uudelleen
-NoRadio=Ei, käynnistän koneen uudelleen myöhemmin
+YesRadio=&Kyllä, käynnistä kone uudelleen
+NoRadio=&Ei, käynnistän koneen uudelleen myöhemmin
 RunEntryExec=Käynnistä %1
 RunEntryShellExec=Näytä %1
 
 ; *** "Setup Needs the Next Disk" stuff
 ChangeDiskTitle=Asennus tarvitsee seuraavan levykkeen
 SelectDiskLabel2=Aseta levyke %1 asemaan ja valitse OK. %n%nJos joku toinen kansio sisältää levykkeen tiedostot, anna oikea polku tai valitse Selaa.
-PathLabel=Polku:
+PathLabel=&Polku:
 FileNotInDir2=Tiedostoa "%1" ei löytynyt lähteestä "%2". Aseta oikea levyke asemaan tai valitse toinen kansio.
 SelectDirectoryLabel=Määritä seuraavan levykkeen sisällön sijainti.
 
 ; *** Installation phase messages
 SetupAborted=Asennusta ei suoritettu loppuun.%n%nKorjaa ongelma ja suorita Asennus uudelleen.
-EntryAbortRetryIgnore=Valitse Uudelleen yrittääksesi uudelleen, Ohita jatkaaksesi kaikesta huolimatta tai Hylkää peruuttaaksesi asennuksen.
+AbortRetryIgnoreSelectAction=Valitse toiminto
+AbortRetryIgnoreRetry=&Yritä uudelleen
+AbortRetryIgnoreIgnore=&Jatka virheestä huolimatta
+AbortRetryIgnoreCancel=Peruuta asennus
 
 ; *** Installation status messages
 StatusClosingApplications=Suljetaan sovellukset...
@@ -253,11 +265,13 @@ ErrorRegWriteKey=Virhe kirjoitettaessa rekisteriavaimeen%n%1\%2
 ErrorIniEntry=Virhe luotaessa INI-merkintää tiedostoon "%1".
 
 ; *** File copying errors
-FileAbortRetryIgnore=Valitse Uudelleen yrittääksesi uudelleen, Ohita ohittaaksesi tämän tiedoston (ei suositeltavaa) tai Hylkää peruuttaaksesi asennuksen.
-FileAbortRetryIgnore2=Valitse Uudelleen yrittääksesi uudelleen, Ohita jatkaaksesi kaikesta huolimatta (ei suositeltavaa) tai Hylkää peruuttaaksesi asennuksen.
+FileAbortRetryIgnoreSkipNotRecommended=&Ohita tämä tiedosto (ei suositeltavaa)
+FileAbortRetryIgnoreIgnoreNotRecommended=&Jatka virheestä huolimatta (ei suositeltavaa)
 SourceIsCorrupted=Lähdetiedosto on vaurioitunut
 SourceDoesntExist=Lähdetiedostoa "%1" ei ole olemassa
-ExistingFileReadOnly=Nykyinen tiedosto on Vain luku -tiedosto.%n%nValitse Uudelleen poistaaksesi Vain luku -määritteen uudelleenyritystä varten, Ohita ohittaaksesi tämän tiedoston tai Hylkää peruuttaaksesi asennuksen.
+ExistingFileReadOnly2=Nykyistä tiedostoa ei voitu korvata, koska se on Vain luku -tiedosto.
+ExistingFileReadOnlyRetry=&Poista Vain luku -asetus ja yritä uudelleen
+ExistingFileReadOnlyKeepExisting=&Säilytä nykyinen tiedosto
 ErrorReadingExistingDest=Virhe luettaessa nykyistä tiedostoa:
 FileExists=Tiedosto on jo olemassa.%n%nKorvataanko se?
 ExistingFileNewer=Nykyinen tiedosto on uudempi kuin asennettava tiedosto. Nykyisen tiedoston säilyttäminen on suositeltavaa.n%nHaluatko säilyttää nykyisen tiedoston?
@@ -271,6 +285,14 @@ ErrorRenamingTemp=Virhe uudelleennimettäessä tiedostoa kohdehakemistossa:
 ErrorRegisterServer=DLL/OCX -laajennuksen rekisteröinti epäonnistui: %1
 ErrorRegSvr32Failed=RegSvr32-toiminto epäonnistui. Virhekoodi: %1
 ErrorRegisterTypeLib=Tyyppikirjaston rekisteröiminen epäonnistui: %1
+
+; *** Uninstall display name markings
+UninstallDisplayNameMark=%1 (%2)
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32-bittinen
+UninstallDisplayNameMark64Bit=64-bittinen
+UninstallDisplayNameMarkAllUsers=Kaikki käyttäjät
+UninstallDisplayNameMarkCurrentUser=Tämänhetkinen käyttäjä
 
 ; *** Post-installation errors
 ErrorOpeningReadme=Virhe avattaessa LUEMINUT-tiedostoa.
@@ -302,18 +324,19 @@ StatusUninstalling=Poistetaan %1...
 
 NameAndVersion=%1 versio %2
 AdditionalIcons=Lisäkuvakkeet:
-CreateDesktopIcon=Luo kuvake työpöydälle
-CreateQuickLaunchIcon=Luo kuvake pikakäynnistyspalkkiin
+CreateDesktopIcon=Lu&o kuvake työpöydälle
+CreateQuickLaunchIcon=Luo kuvake &pikakäynnistyspalkkiin
 ProgramOnTheWeb=%1 Internetissä
 UninstallProgram=Poista %1
-LaunchProgram=Käynnistä %1
-AssocFileExtension=Yhdistä %1 tiedostopäätteeseen %2
+LaunchProgram=&Käynnistä %1
+AssocFileExtension=&Yhdistä %1 tiedostopäätteeseen %2
 AssocingFileExtension=Yhdistetään %1 tiedostopäätteeseen %2 ...
 AutoStartProgramGroupDescription=Käynnistys:
 AutoStartProgram=Käynnistä %1 automaattisesti
 AddonHostProgramNotFound=%1 ei ole valitsemassasi kansiossa.%n%nHaluatko jatkaa tästä huolimatta?
 
 ;Things we can also localize
+OptionalFeatures=Optional Features:
 CompanyName=Thingamahoochie Software
 
 ;Types

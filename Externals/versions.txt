@@ -7,7 +7,8 @@ POCO: 1.4.3p1
 boost: 1.64.0
 frhed: 0.10904.2017.1
 freeimage: 3.18.0
-WinIMerge: 1.0.8.0
+WinIMerge: 1.0.10.0
 Google C++ Testing Framework: 1.70
 GnuWin32 Patch for Windows: 2.5.9-7
 7-zip: 19.00
+LibXDiff: 611e42a on Nov 2, 2018 (https://github.com/git/git/tree/master/xdiff)

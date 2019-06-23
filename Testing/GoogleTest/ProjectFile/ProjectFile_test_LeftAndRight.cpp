@@ -22,7 +22,7 @@ namespace
 class LeftAndRightTest : public testing::Test
 {
 protected:
-	LeftAndRightTest() : m_pProjectFile(nullptr)
+	LeftAndRightTest() : m_pProjectFile(nullptr), m_pProjectFileItem(nullptr)
 	{
 		// You can do set-up work for each test	here.
 	}
@@ -43,6 +43,7 @@ protected:
 		m_pProjectFile = new ProjectFile;
 
 		bool success = m_pProjectFile->Read(FileName);
+		m_pProjectFileItem = &*m_pProjectFile->Items().begin();
 	}
 
 	virtual void TearDown()
@@ -54,6 +55,7 @@ protected:
 
 	// Objects declared here can be used by all tests in the test case for Foo.
 	ProjectFile *m_pProjectFile;
+	ProjectFileItem *m_pProjectFileItem;
 };
 
 /**
@@ -80,16 +82,16 @@ TEST_F(LeftAndRightTest, Load)
 TEST_F(LeftAndRightTest, GetLeftPath)
 {
 	// Has left path
-	bool bIsLeft = m_pProjectFile->HasLeft();
+	bool bIsLeft = m_pProjectFileItem->HasLeft();
 	ASSERT_TRUE(bIsLeft == true);
 	
 	// Get left path without read-only info
-	String left = m_pProjectFile->GetLeft();
+	String left = m_pProjectFileItem->GetLeft();
 	ASSERT_TRUE(left.compare(LeftPath) == 0);
 
 	// Get left path with read-only info
 	bool bReadOnly;
-	left = m_pProjectFile->GetLeft(&bReadOnly);
+	left = m_pProjectFileItem->GetLeft(&bReadOnly);
 	ASSERT_TRUE(left.compare(LeftPath) == 0);
 	ASSERT_TRUE(bReadOnly == false);
 }
@@ -100,16 +102,16 @@ TEST_F(LeftAndRightTest, GetLeftPath)
 TEST_F(LeftAndRightTest, GetRightPath)
 {
 	// Has right path
-	bool bIsRight = m_pProjectFile->HasRight();
+	bool bIsRight = m_pProjectFileItem->HasRight();
 	ASSERT_TRUE(bIsRight == true);
 	
 	// Get right path without read-only info
-	String right = m_pProjectFile->GetRight();
+	String right = m_pProjectFileItem->GetRight();
 	ASSERT_TRUE(right.compare(RightPath) == 0);
 
 	// Get right path with read-only info
 	bool bReadOnly;
-	right = m_pProjectFile->GetRight(&bReadOnly);
+	right = m_pProjectFileItem->GetRight(&bReadOnly);
 	ASSERT_TRUE(right.compare(RightPath) == 0);
 	ASSERT_TRUE(bReadOnly == false);
 }
@@ -120,11 +122,11 @@ TEST_F(LeftAndRightTest, GetRightPath)
 TEST_F(LeftAndRightTest, GetSubfolders)
 {
 	// We don't have a subfolders
-	bool bHasSubfolders = m_pProjectFile->HasSubfolders();
+	bool bHasSubfolders = m_pProjectFileItem->HasSubfolders();
 	ASSERT_TRUE(bHasSubfolders == false);
 
 	// Returns -1 if not set
-	int subfolders = m_pProjectFile->GetSubfolders();
+	int subfolders = m_pProjectFileItem->GetSubfolders();
 	ASSERT_TRUE(subfolders == -1);
 }
 
@@ -134,10 +136,10 @@ TEST_F(LeftAndRightTest, GetSubfolders)
 TEST_F(LeftAndRightTest, GetFilter)
 {
 	// We don't have a filter
-	bool bHasFilter = m_pProjectFile->HasFilter();
+	bool bHasFilter = m_pProjectFileItem->HasFilter();
 	ASSERT_TRUE(bHasFilter == false);
 
-	String filter = m_pProjectFile->GetFilter();
+	String filter = m_pProjectFileItem->GetFilter();
 	ASSERT_TRUE(filter.empty());
 }
 

@@ -79,7 +79,7 @@ static String GetCompilerVersion()
 #endif
 
 	return strutils::format(_T("%sC/C++ Compiler %02i.%02i.%05i.%i"),
-		sVisualStudio.c_str(),
+		sVisualStudio,
 		(int)(_MSC_VER / 100), (int)(_MSC_VER % 100), (int)(_MSC_FULL_VER % 100000), _MSC_BUILD
 	);
 }
@@ -150,9 +150,9 @@ void CConfigLog::WritePluginsInLogFile(const wchar_t *transformationEvent)
 		String sPluginText = strutils::format
 			(_T("\r\n  %s%-36s path=%s  %s"),
 			plugin->m_disabled ? _T("!") : _T(" "),
-			plugin->m_name.c_str(),
-			sFileName.c_str(),
-			sModifiedTime.c_str()
+			plugin->m_name,
+			sFileName,
+			sModifiedTime
 			);
 		m_pfile->WriteString(sPluginText);
 	}
@@ -174,7 +174,7 @@ static String GetLocaleString(LCID locid, LCTYPE lctype)
  */
 void CConfigLog::WriteItem(int indent, const String& key, const TCHAR *value /*= nullptr*/)
 {
-	String text = strutils::format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key.c_str(), key.c_str(), value);
+	String text = strutils::format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key, key, value);
 	m_pfile->WriteString(text);
 }
 
@@ -191,7 +191,7 @@ void CConfigLog::WriteItem(int indent, const String& key, const String &str)
  */
 void CConfigLog::WriteItem(int indent, const String& key, long value)
 {
-	String text = strutils::format(_T("%*.0s%s: %ld\r\n"), indent, key.c_str(), key.c_str(), value);
+	String text = strutils::format(_T("%*.0s%s: %ld\r\n"), indent, key, key, value);
 	m_pfile->WriteString(text);
 }
 
@@ -240,7 +240,7 @@ void CConfigLog::WriteVersionOf1(int indent, const String& path)
 		GetModuleHandle(path2.c_str()) 
 			? _T("~") 
 			: _T("")/*name*/,
-		name.c_str(),
+		name,
 		vi.m_dvi.cbSize > FIELD_OFFSET(DLLVERSIONINFO, dwMajorVersion)
 			?	_T("dllversion")
 			:	_T("version"),
@@ -250,8 +250,8 @@ void CConfigLog::WriteVersionOf1(int indent, const String& path)
 			?	_T("dllbuild")
 			:	_T("build"),
 		vi.m_dvi.dwBuildNumber,
-		path.c_str(),
-		sModifiedTime.c_str()
+		path,
+		sModifiedTime
 	);
 	m_pfile->WriteString(text);
 }
@@ -461,9 +461,7 @@ String CConfigLog::GetProcessorInfo() const
 	SYSTEM_INFO siSysInfo;
 	::GetSystemInfo(&siSysInfo); 
 
-	MEMORYSTATUSEX GlobalMemoryBuffer;
-	memset(&GlobalMemoryBuffer, 0, sizeof(GlobalMemoryBuffer));
-	GlobalMemoryBuffer.dwLength = sizeof (GlobalMemoryBuffer);
+	MEMORYSTATUSEX GlobalMemoryBuffer = {sizeof (GlobalMemoryBuffer)};
 	::GlobalMemoryStatusEx(&GlobalMemoryBuffer);
 	ULONG lInstalledMemory = (ULONG)(GlobalMemoryBuffer.ullTotalPhys / (1024*1024));
 

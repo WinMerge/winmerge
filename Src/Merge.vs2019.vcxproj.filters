@@ -23,9 +23,6 @@
       <UniqueIdentifier>{b889169f-de55-4db7-ad06-423f6438fa90}</UniqueIdentifier>
       <Extensions>cpp;c;h</Extensions>
     </Filter>
-    <Filter Include="EditLib\parsers">
-      <UniqueIdentifier>{740d4dd9-ab31-47b8-9cbb-8e6a7b5db4fe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MFCGui">
       <UniqueIdentifier>{caf52667-921a-47aa-84a3-f277aac15107}</UniqueIdentifier>
     </Filter>
@@ -37,9 +34,6 @@
     </Filter>
     <Filter Include="MFCGui\Dialogs">
       <UniqueIdentifier>{d520b3a7-c530-4053-8766-07c26ed85f85}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MFCGui\Dialogs\PropertyPages">
-      <UniqueIdentifier>{c6b39fdf-7c68-42c3-895b-da25bb6e51b4}</UniqueIdentifier>
     </Filter>
     <Filter Include="MFCGui\Common">
       <UniqueIdentifier>{297182f0-e39d-4ac4-9df3-315882ce9e07}</UniqueIdentifier>
@@ -62,6 +56,66 @@
     <Filter Include="MergeTest\gtest">
       <UniqueIdentifier>{67c954df-e54f-4070-9c75-68ef52a00e03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MFCGui\Common\Header Files">
+      <UniqueIdentifier>{30ca9a5d-4b26-4d57-b39b-f7fe3e7c7abc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\Common\Source Files">
+      <UniqueIdentifier>{567b3ec4-d358-4290-8a27-4e87c11cfb55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\Dialogs\Source Files">
+      <UniqueIdentifier>{befda2e3-2f20-4080-89b1-803c6935bf05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\Dialogs\Header Files">
+      <UniqueIdentifier>{a988a22b-3d18-4d67-bf3e-8912bf9940f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\PropertyPages">
+      <UniqueIdentifier>{c6b39fdf-7c68-42c3-895b-da25bb6e51b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\PropertyPages\Source Files">
+      <UniqueIdentifier>{bc0e280a-2589-4e45-883e-1eb0db655c07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\PropertyPages\Header Files">
+      <UniqueIdentifier>{313fa20e-cf17-46e5-8ebf-c16b07786225}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{9545a3ff-6867-464f-a244-755ed58529e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Header Files">
+      <UniqueIdentifier>{cef4b0e0-5b0d-4f4f-8522-fe6eb66f3fa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Source Files">
+      <UniqueIdentifier>{ae04066b-7462-4a9b-8120-6d72fa5fe73e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditLib\Source Files">
+      <UniqueIdentifier>{7ebea8c0-3335-4e4d-b56f-222e5c5b700a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditLib\Header Files">
+      <UniqueIdentifier>{295aa90c-8c94-400a-a4e3-84cac2b447f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditLib\Parsers">
+      <UniqueIdentifier>{740d4dd9-ab31-47b8-9cbb-8e6a7b5db4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditLib\Parsers\Source Files">
+      <UniqueIdentifier>{dcc78107-52dc-43d1-b4f7-7acf8c71fce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditLib\Parsers\Header Files">
+      <UniqueIdentifier>{1de6d090-09d8-423e-9a39-92e523334e4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Compare Engines\Source Files">
+      <UniqueIdentifier>{e80d7ff2-f4b2-4c37-8db5-e26835cd90cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Compare Engines\Header Files">
+      <UniqueIdentifier>{e0f6e1ca-9725-4a97-81da-adf12e7a4e42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xdiff">
+      <UniqueIdentifier>{aaf72b76-2f45-4d7e-9d2a-5692d58cdce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xdiff\Source Files">
+      <UniqueIdentifier>{ffdcde37-3059-47f3-b99a-77204a77a641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xdiff\Header Files">
+      <UniqueIdentifier>{41bd2806-5584-4fb1-9fa4-350c8a7fb3d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charsets.c">
@@ -80,9 +134,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ConflictFileParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\coretools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DiffContext.cpp">
@@ -157,9 +208,6 @@
     <ClCompile Include="locality.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\lwdisp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="markdown.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -172,13 +220,7 @@
     <ClCompile Include="MovedLines.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\multiformatText.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="OptionsInit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="common\OptionsMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PatchHTML.cpp">
@@ -190,9 +232,6 @@
     <ClCompile Include="paths.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\PidlContainer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PluginManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -202,34 +241,13 @@
     <ClCompile Include="ProjectFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\RegKey.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\RegOptionsMgr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\ShellFileOperations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stringdiffs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TempFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\unicoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\UnicodeString.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\UniFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UniMarkdownFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\varprop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\analyze.c">
@@ -265,196 +283,10 @@
     <ClCompile Include="diffutils\src\util.c">
       <Filter>GNU diffutils</Filter>
     </ClCompile>
-    <ClCompile Include="CompareEngines\ByteComparator.cpp">
-      <Filter>Compare Engines</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\ByteCompare.cpp">
-      <Filter>Compare Engines</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\TimeSizeCompare.cpp">
-      <Filter>Compare Engines</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview2.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ceditreplacedlg.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\LineInfo.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\SyntaxColors.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\UndoRecord.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ViewableWhitespace.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\cfindtextdlg.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\chcondlg.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\crystaleditviewex.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\crystalparser.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\crystaltextblock.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\cs2cs.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\filesup.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\fpattern.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\gotodlg.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\memcombo.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\registry.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\statbar.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\string_util.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\batch.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\asp.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\basic.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\cplusplus.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\csharp.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\css.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\dcl.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\fortran.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\html.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ini.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\innosetup.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\java.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\is.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\lisp.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\nsis.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\perl.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\pascal.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\php.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\po.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\powershell.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\python.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\rexx.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\rsrc.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\sgml.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ruby.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\sh.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\siod.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\sql.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\tcl.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\tex.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\verilog.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\vhdl.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\xml.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\cregexp_poco.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
     <ClCompile Include="MergeApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="7zCommon.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ChildFrm.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\CMoveConstraint.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\ColorButton.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DiffTextBuffer.cpp">
@@ -541,12 +373,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\LanguageSelect.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\ExConverter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DirCompProgressBar.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -562,100 +388,10 @@
     <ClCompile Include="OptionsDiffOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PropArchive.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropBackups.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropCodepage.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropColors.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropCompare.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropCompareFolder.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropEditor.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropGeneral.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropRegistry.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropShell.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropSyntaxColors.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="PropTextColors.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="AboutDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="DirCmpReportDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="DirColsDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="LineFiltersDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadSaveCodepageDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="PatchDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="PluginsListDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveClosingDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectUnpackerDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="SharedFilterDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="TestFilterDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="WMGotoDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="FileFiltersDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareStatisticsDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="ConfirmFolderCopyDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="PatchTool.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\SortHeaderCtrl.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\PreferencesDlg.cpp">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClCompile>
     <ClCompile Include="JumpList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\ClipBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OptionsCustomColors.cpp">
@@ -664,20 +400,11 @@
     <ClCompile Include="ImgMergeFrm.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PropCompareImage.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
     <ClCompile Include="Merge7zFormatMergePluginImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LineFiltersList.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\BinaryCompare.cpp">
-      <Filter>Compare Engines</Filter>
-    </ClCompile>
-    <ClCompile Include="PropCompareBinary.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
     </ClCompile>
     <ClCompile Include="DirViewColItems.cpp">
       <Filter>Source Files</Filter>
@@ -691,42 +418,6 @@
     <ClCompile Include="OptionsDef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\scbarg.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\scbarcf.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\sizecbar.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\BCMenu.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\MDITabBar.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\MessageBoxDialog.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\SuperComboBox.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\SplitterWndEx.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\Bitmap.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\Picture.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\ShellContextMenu.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\PropertyPageHost.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
     <ClCompile Include="TrDialogs.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -736,29 +427,8 @@
     <ClCompile Include="diffutils\src\mystat.cpp">
       <Filter>GNU diffutils</Filter>
     </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\go.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\rust.cpp">
-      <Filter>EditLib\parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="PropMarkerColors.cpp">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\VersionInfo.cpp">
-      <Filter>MFCGui\Common</Filter>
-    </ClCompile>
     <ClCompile Include="MergeEditSplitterView.cpp">
       <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CompareEngines\Wrap_DiffUtils.cpp">
-      <Filter>Compare Engines</Filter>
     </ClCompile>
     <ClCompile Include="Test.cpp">
       <Filter>MergeTest</Filter>
@@ -772,20 +442,431 @@
     <ClCompile Include="Merge7zFormatShellImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\wcwidth.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="OptionsPanel.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\plain.cpp">
-      <Filter>EditLib\parsers</Filter>
+    <ClCompile Include="MergeEditFrm.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\BCMenu.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Bitmap.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\CMoveConstraint.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ColorButton.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\LanguageSelect.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\MDITabBar.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\MessageBoxDialog.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Picture.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\PropertyPageHost.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\scbarcf.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\scbarg.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\sizecbar.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SortHeaderCtrl.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SplitterWndEx.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SuperComboBox.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AboutDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompareStatisticsDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfirmFolderCopyDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirCmpReportDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirColsDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileFiltersDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineFiltersDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadSaveCodepageDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PatchDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PluginsListDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\PreferencesDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveClosingDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectUnpackerDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedFilterDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestFilterDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WMGotoDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropArchive.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropBackups.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropCodepage.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropColors.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropCompare.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropCompareBinary.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropCompareFolder.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropCompareImage.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropEditor.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropGeneral.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropMarkerColors.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropRegistry.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropShell.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropSyntaxColors.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropTextColors.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ClipBoard.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\coretools.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\lwdisp.c">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\RegKey.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ShellFileOperations.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\UniFile.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\UnicodeString.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\unicoder.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\RegOptionsMgr.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\PidlContainer.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common\OptionsMgr.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\multiformatText.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ExConverter.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\varprop.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview2.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ceditreplacedlg.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\cfindtextdlg.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\chcondlg.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\cregexp_poco.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\crystaleditviewex.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\crystalparser.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\crystaltextblock.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\cs2cs.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\filesup.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\fpattern.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\gotodlg.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\LineInfo.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\memcombo.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\registry.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\statbar.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\string_util.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\SyntaxColors.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\UndoRecord.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ViewableWhitespace.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\wcwidth.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\asp.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\basic.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\batch.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\cplusplus.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\csharp.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\css.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\dcl.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\fortran.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\go.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\html.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ini.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\innosetup.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\is.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\java.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\lisp.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\lua.cpp">
-      <Filter>EditLib\parsers</Filter>
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\nsis.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\pascal.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\perl.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\php.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\plain.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\po.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\powershell.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\python.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\rexx.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\rsrc.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ruby.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\rust.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\sgml.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\sh.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\siod.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\sql.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\tcl.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\tex.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\verilog.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\vhdl.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\xml.cpp">
+      <Filter>EditLib\Parsers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompareEngines\BinaryCompare.cpp">
+      <Filter>Compare Engines\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompareEngines\ByteComparator.cpp">
+      <Filter>Compare Engines\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompareEngines\ByteCompare.cpp">
+      <Filter>Compare Engines\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompareEngines\TimeSizeCompare.cpp">
+      <Filter>Compare Engines\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompareEngines\Wrap_DiffUtils.cpp">
+      <Filter>Compare Engines\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\VersionInfo.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ShellContextMenu.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xdiffi.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xemit.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xhistogram.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xmerge.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xpatience.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xprepare.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\xdiff\xutils.c">
+      <Filter>xdiff\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xdiff_gnudiff_compat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MergeFrameCommon.cpp">
+      <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -805,9 +886,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ConflictFileParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\coretools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DiffContext.h">
@@ -906,9 +984,6 @@
     <ClInclude Include="locality.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\lwdisp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="markdown.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -918,13 +993,7 @@
     <ClInclude Include="MovedLines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\multiformatText.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="OptionsDef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="common\OptionsMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PatchHTML.h">
@@ -936,9 +1005,6 @@
     <ClInclude Include="paths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\PidlContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PluginManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -946,15 +1012,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProjectFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\RegKey.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\RegOptionsMgr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\ShellFileOperations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stringdiffs.h">
@@ -966,19 +1023,7 @@
     <ClInclude Include="TempFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\unicoder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\UnicodeString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\UniFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UniMarkdownFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\varprop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="diffutils\lib\cmpbuf.h">
@@ -992,93 +1037,6 @@
     </ClInclude>
     <ClInclude Include="diffutils\src\system.h">
       <Filter>GNU diffutils</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\ByteComparator.h">
-      <Filter>Compare Engines</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\ByteCompare.h">
-      <Filter>Compare Engines</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\TimeSizeCompare.h">
-      <Filter>Compare Engines</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaleditview.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextview.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\ceditreplacedlg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\SyntaxColors.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\UndoRecord.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\ViewableWhitespace.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\cfindtextdlg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\chcondlg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\cregexp.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\crystaleditviewex.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\crystalparser.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\crystaltextblock.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\cs2cs.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\editcmd.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\editreg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\edtlib.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\filesup.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\fpattern.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\gotodlg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\memcombo.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\registry.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\statbar.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\string_util.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h">
-      <Filter>EditLib</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>MFCGui\Header Files</Filter>
@@ -1137,9 +1095,6 @@
     <ClInclude Include="FileOrFolderSelect.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChildFrm.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DiffViewBar.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
@@ -1167,12 +1122,6 @@
     <ClInclude Include="FilepathEdit.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\LanguageSelect.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\coretypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IListCtrlImpl.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
@@ -1180,9 +1129,6 @@
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\ExConverter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DirCompProgressBar.h">
@@ -1203,97 +1149,10 @@
     <ClInclude Include="OptionsDiffOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PropArchive.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropBackups.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropCodepage.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropColors.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropCompare.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropCompareFolder.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropEditor.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropGeneral.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropRegistry.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropShell.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropSyntaxColors.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="PropTextColors.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="AboutDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareStatisticsDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfirmFolderCopyDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="DirCmpReportDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="FileFiltersDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadSaveCodepageDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="LineFiltersDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="PatchDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="PluginsListDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveClosingDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectUnpackerDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="SharedFilterDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="TestFilterDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="WMGotoDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="DirColsDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
     <ClInclude Include="PatchTool.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\PreferencesDlg.h">
-      <Filter>MFCGui\Dialogs</Filter>
-    </ClInclude>
     <ClInclude Include="JumpList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\ClipBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsCustomColors.h">
@@ -1305,9 +1164,6 @@
     <ClInclude Include="ImgMergeFrm.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PropCompareImage.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
     <ClInclude Include="IMergeDoc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1316,9 +1172,6 @@
     </ClInclude>
     <ClInclude Include="Merge7zFormatRegister.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\BinaryCompare.h">
-      <Filter>Compare Engines</Filter>
     </ClInclude>
     <ClInclude Include="DirViewColItems.h">
       <Filter>Header Files</Filter>
@@ -1329,59 +1182,8 @@
     <ClInclude Include="HexMergeView.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PropCompareBinary.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\SuperComboBox.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\SortHeaderCtrl.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\CMoveConstraint.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\MDITabBar.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\PropertyPageHost.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\SplitterWndEx.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\sizecbar.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\scbarg.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\scbarcf.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\MessageBoxDialog.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
     <ClInclude Include="OptionsPanel.h">
       <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Bitmap.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\memdc.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\ShellContextMenu.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\BCMenu.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\ColorButton.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Picture.h">
-      <Filter>MFCGui\Common</Filter>
     </ClInclude>
     <ClInclude Include="DropHandler.h">
       <Filter>MFCGui\Header Files</Filter>
@@ -1398,15 +1200,6 @@
     <ClInclude Include="MergeStatusBar.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="PropMarkerColors.h">
-      <Filter>MFCGui\Dialogs\PropertyPages</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
     <ClInclude Include="..\Externals\boost\boost\config.hpp">
       <Filter>Boost</Filter>
     </ClInclude>
@@ -1419,14 +1212,8 @@
     <ClInclude Include="..\Version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\VersionInfo.h">
-      <Filter>MFCGui\Common</Filter>
-    </ClInclude>
     <ClInclude Include="MergeEditSplitterView.h">
       <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CompareEngines\Wrap_DiffUtils.h">
-      <Filter>Compare Engines</Filter>
     </ClInclude>
     <ClInclude Include="TestMain.h">
       <Filter>MergeTest</Filter>
@@ -1446,14 +1233,335 @@
     <ClInclude Include="Merge7zFormatShellImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\wcwidth.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MergeEditFrm.h">
+      <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\BCMenu.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Bitmap.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\CMoveConstraint.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ColorButton.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\LanguageSelect.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\MDITabBar.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\memdc.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\MessageBoxDialog.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Picture.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\scbarcf.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\PropertyPageHost.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\scbarg.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\sizecbar.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SortHeaderCtrl.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SplitterWndEx.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SuperComboBox.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AboutDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareStatisticsDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfirmFolderCopyDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirCmpReportDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirColsDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileFiltersDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineFiltersDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadSaveCodepageDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PatchDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginsListDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\PreferencesDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveClosingDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectUnpackerDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedFilterDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestFilterDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WMGotoDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropArchive.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropBackups.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCodepage.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompare.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareBinary.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareFolder.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareImage.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropEditor.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGeneral.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropMarkerColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropRegistry.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropShell.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropSyntaxColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropTextColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ClipBoard.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\coretools.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\lwdisp.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ExConverter.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\UniFile.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\UnicodeString.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\unicoder.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ShellFileOperations.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\RegOptionsMgr.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\RegKey.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\PidlContainer.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common\OptionsMgr.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\varprop.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\multiformatText.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaleditview.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextmarkers.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextview.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ceditreplacedlg.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\cfindtextdlg.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\cregexp.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\chcondlg.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\crystaleditviewex.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\crystalparser.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\crystaltextblock.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\cs2cs.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ctextmarkerdlg.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\editreg.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\editcmd.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\edtlib.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\filesup.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\fpattern.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\gotodlg.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\memcombo.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\registry.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\statbar.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\string_util.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\SyntaxColors.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\UndoRecord.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ViewableWhitespace.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\wcwidth.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h">
+      <Filter>EditLib\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\crystallineparser.h">
-      <Filter>EditLib\parsers</Filter>
+      <Filter>EditLib\Parsers\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareEngines\BinaryCompare.h">
+      <Filter>Compare Engines\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareEngines\ByteComparator.h">
+      <Filter>Compare Engines\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareEngines\ByteCompare.h">
+      <Filter>Compare Engines\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareEngines\TimeSizeCompare.h">
+      <Filter>Compare Engines\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareEngines\Wrap_DiffUtils.h">
+      <Filter>Compare Engines\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\VersionInfo.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ShellContextMenu.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xdiff.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xdiffi.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xemit.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xinclude.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xmacros.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xprepare.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xtypes.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\xdiff\xutils.h">
+      <Filter>xdiff\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xdiff_gnudiff_compat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MergeFrameCommon.h">
+      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

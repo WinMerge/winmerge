@@ -49,24 +49,83 @@
 </head>
 <body>
 
-<h2>WinMerge 2.16.2 Release Notes</h2>
+<h2>WinMerge 2.16.3 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2162">What Is New in 2.16.2?</a></li>
+  <li><a href="#new2163">What Is New in 2.16.3 Beta?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>April 2019</p>
+<p>June 2019</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge 2.16.2 stable release. This release replaces earlier WinMerge 
-stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 </p>
 
 <p>
 Please submit bug reports to our <a href="http://bitbucket.org/winmerge/winmerge/issues">bug-tracker</a>.
 </p>
+
+<h3><a name="#new2163">What Is New in 2.16.3 Beta?</a></h3>
+<h4>General</h4>
+<ul>
+  <li>Bugfix: Slow startup with documents folder redirected to high-latency network drive (Bitbucket #155)</li>
+  <li>Add VisualElementsManifest for Windows 10 start menu (Bitbucket PR #47)</li>
+  <li>Reduce the size of the executable file</li>
+</ul>
+
+<h4>File compare</h4>
+<ul>
+  <li>Bugfix: Location and Diff pane visibility broken in 2.16.1 (GitHub #138, Bitbucket #163, sf.net #2228)</li>
+  <li>Bugfix: Temporary files could not be created (GitHub #143, sf.net #2220)</li>
+  <li>Bugfix: Trivial bugfix (GitHub #155)</li>
+  <li>Bugfix: Regression: Incorrectly shows 'no changes' for large portions of certain binary files! (Bitbucket #162)</li>
+  <li>Small tweaks for HTML file reports (Bitbucket PR #44, #45)</li>
+  <li>Made diff algorithm selectable by using libXDiff. algorithms: default(Myers), patience, histogram</li>
+  <li>triple click to select whole line (Bitbucket #144)</li>
+  <li>Add support for merging word level diffs in selection. <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">demo</a></li>
+</ul>
+
+<h4>Folder compare</h4>
+<ul>
+  <li>Bugfix: WinMerge 3-Way Compare Bugs: Always Shows Unique Items.  (GitHub #154)</li>
+  <li>Bugfix: WinMerge could not compare files that are opened in other applications</li>
+  <li>Show progress bar while generating Folder Compare Report</li>
+</ul>
+
+<h4>Project file</h4>
+<ul>
+  <li>Bugfix: Possible Bugs in 2.16.2 (sf.net #2221)</li>
+  <li>Supporting relative path in project file (Bitbucket #158)</li>
+  <li>Allow multiple <paths> in project file</li>
+</ul>
+
+<h4>Image compare</h4>
+<ul>
+  <li>Bugfix: no message was displayed when file saving failed</li>
+  <li>Implement Insertion/Deletion Detection. <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">demo</a></li>
+</ul>
+
+<h4>Options dialog</h4>
+<ul>
+  <li>Tweak size of combobox "codepage" in options (GitHub #144)</li>
+  <li>Sort combobox codepage and add manual codepage (GitHub #145)</li>
+</ul>
+
+<h4>Installer</h4>
+<ul>
+  <li>Allow per-user installation (only x64 installer)</li>
+  <li>Don't install Files.txt and don't add "Uninstall WinMerge" to the start menu (Bitbuket #38)</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>Update French translation (GitHub #149, #150)</li>
+  <li>Update Lithuanian translation (Bitbucket PR #36, #40, #43, #46, #48)</li>
+  <li>Update Russian translation (Bitbucket PR #41, #42)</li>
+</ul>
 
 <h3><a name="#new2162">What Is New in 2.16.2?</a></h3>
 
