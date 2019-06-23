@@ -333,16 +333,8 @@ void CMessageBoxDialog::ResetMessageBoxes ( )
 	// Check whether a handle was retrieved.
 	if ( pApplication != nullptr )
 	{
-		// Create the registry key for this application.
-		CString strKey = _T("Software\\");
-		strKey += pApplication->m_pszRegistryKey;
-		strKey += _T("\\");
-		strKey += pApplication->m_pszProfileName;
-		strKey += _T("\\");
-		strKey += REGISTRY_SECTION_MESSAGEBOX;
-
 		// Delete the message box results stored in the registry.
-		pApplication->DelRegTree(HKEY_CURRENT_USER, strKey);
+		pApplication->WriteProfileString(REGISTRY_SECTION_MESSAGEBOX, nullptr, nullptr);
 	}
 }
 

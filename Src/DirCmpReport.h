@@ -10,8 +10,9 @@
 #include "UnicodeString.h"
 #include "PathContext.h"
 #include "DirReportTypes.h"
+#include "IListCtrl.h"
 
-struct IListCtrl;
+struct DiffFuncStruct;
 
 /**
  * @brief This class creates directory compare reports.
@@ -38,9 +39,17 @@ public:
 	explicit DirCmpReport(const std::vector<String>& colRegKeys);
 	void SetList(IListCtrl *pList);
 	void SetRootPaths(const PathContext &paths);
+	void SetReportType(REPORT_TYPE nReportType) { m_nReportType = nReportType;  }
+	REPORT_TYPE GetReportType() const { return m_nReportType;  }
 	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
+	String GetReportFile() const { return m_sReportFile; }
 	void SetColumns(int columns);
 	void SetFileCmpReport(IFileCmpReport *pFileCmpReport);
+	void SetCopyToClipboard(bool bCopyToClipbard) { m_bCopyToClipboard = bCopyToClipbard;  }
+	bool GetCopyToClipboard() const { return m_bCopyToClipboard;  }
+	void SetIncludeFileCmpReport(bool bIncludeFileCmpReport) { m_bIncludeFileCmpReport = bIncludeFileCmpReport; }
+	bool GetIncludeFileCmpReport() const { return m_bIncludeFileCmpReport; }
+	void SetDiffFuncStruct(DiffFuncStruct* myStruct) { m_myStruct = myStruct; }
 	bool GenerateReport(String &errStr);
 
 protected:
@@ -57,15 +66,18 @@ protected:
 	void GenerateXmlFooter();
 
 private:
-	IListCtrl * m_pList; /**< Pointer to UI-list */
+	std::unique_ptr<IListCtrl> m_pList; /**< Pointer to UI-list */
 	PathContext m_rootPaths; /**< Root paths, printed to report */
 	String m_sTitle; /**< Report title, built from root paths */
 	String m_sReportFile;
 	int m_nColumns; /**< Columns in UI */
 	String m_sSeparator; /**< Column separator for report */
 	CFile *m_pFile; /**< File to write report to */
-	const std::vector<String>& m_colRegKeys; /**< Key names for currently displayed columns */
-	IFileCmpReport *m_pFileCmpReport;
-	bool m_bIncludeFileCmpReport;
+	std::vector<String> m_colRegKeys; /**< Key names for currently displayed columns */
+	std::unique_ptr<IFileCmpReport> m_pFileCmpReport;
+	bool m_bIncludeFileCmpReport; /**< Do we include file compare report in folder compare report? */
 	bool m_bOutputUTF8;
+	REPORT_TYPE m_nReportType; /**< Report type integer */
+	bool m_bCopyToClipboard; /**< Do we copy report to clipboard? */
+	DiffFuncStruct* m_myStruct;
 };

@@ -6,7 +6,6 @@
 
 #include "StdAfx.h"
 #include "LanguageSelect.h"
-#include "VersionInfo.h"
 #include "BCMenu.h"
 #include "Environment.h"
 #include "paths.h"
@@ -372,7 +371,7 @@ LANGID LangFileInfo::LangId(const char *lang, const char *sublang)
 {
 	// binary search the array for passed in lang
 	size_t lower = 0;
-	size_t upper = countof(rg);
+	size_t upper = std::size(rg);
 	while (lower < upper)
 	{
 		size_t match = (upper + lower) >> 1;
@@ -416,14 +415,14 @@ LangFileInfo::LangFileInfo(LPCTSTR path)
 	if (_tfopen_s(&f, path, _T("r,ccs=utf-8")) == 0 && f)
 	{
 		wchar_t buf[1024 + 1];
-		while (fgetws(buf, countof(buf) - 1, f) != nullptr)
+		while (fgetws(buf, static_cast<int>(std::size(buf)) - 1, f) != nullptr)
 		{
 			int i = 0;
 			wcscat_s(buf, L"1");
 			swscanf_s(buf, L"msgid \" LANG_ENGLISH , SUBLANG_ENGLISH_US \" %d", &i);
 			if (i)
 			{
-				if (fgetws(buf, countof(buf), f) != nullptr)
+				if (fgetws(buf, static_cast<int>(std::size(buf)), f) != nullptr)
 				{
 					wchar_t *lang = wcsstr(buf, L"LANG_");
 					wchar_t *sublang = wcsstr(buf, L"SUBLANG_");
@@ -433,8 +432,8 @@ LangFileInfo::LangFileInfo(LPCTSTR path)
 					{
 						wcstok_s(lang, L",\" \t\r\n", &langNext);
 						wcstok_s(sublang, L",\" \t\r\n", &sublangNext);
-						lang += countof("LANG");
-						sublang += countof("SUBLANG");
+						lang += std::size("LANG");
+						sublang += std::size("SUBLANG");
 						if (0 != wcscmp(sublang, L"DEFAULT"))
 						{
 							sublang = EatPrefix(sublang, lang);
@@ -442,7 +441,7 @@ LangFileInfo::LangFileInfo(LPCTSTR path)
 								sublang = EatPrefix(sublang, L"_");
 						}
 						if (sublang)
-							id = LangId(std::string(lang, lang + wcslen(lang)).c_str(), std::string(sublang, sublang + wcslen(sublang)).c_str());
+							id = LangId(ucr::toUTF8(lang).c_str(), ucr::toUTF8(sublang).c_str());
 					}
 				}
 				break;
@@ -507,7 +506,6 @@ static wchar_t *EatPrefix(wchar_t *text, const wchar_t *prefix)
 
 /**
  * @brief Convert C style \\nnn, \\r, \\n, \\t etc into their indicated characters.
- * @param [in] codepage Codepage to use in conversion.
  * @param [in,out] s String to convert.
  */
 static void unslash(std::wstring &s)
@@ -576,8 +574,8 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 
 	wchar_t buf[1024];
 	std::wstring *ps = nullptr;
+	std::wstring msgctxt;
 	std::wstring msgid;
-	bool found_uid = false;
 	FILE *f;
 	if (_tfopen_s(&f, strPath.c_str(), _T("r,ccs=UTF-8")) != 0)
 	{
@@ -589,21 +587,12 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 		return false;
 	}
 	ps = nullptr;
-	msgid.erase();
-	found_uid = false;
 	std::wstring format;
 	std::wstring msgstr;
 	std::wstring directive;
-	while (fgetws(buf, countof(buf), f) != nullptr)
+	while (fgetws(buf, static_cast<int>(std::size(buf)), f) != nullptr)
 	{
-		if (wchar_t *p0 = EatPrefix(buf, L"#:"))
-		{
-			if (wchar_t *q = wcschr(p0, ':'))
-			{
-				found_uid = true;
-			}
-		}
-		else if (wchar_t *p1 = EatPrefix(buf, L"#,"))
+		if (wchar_t *p1 = EatPrefix(buf, L"#,"))
 		{
 			format = p1;
 			format.erase(0, format.find_first_not_of(L" \t\r\n"));
@@ -614,6 +603,10 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 			directive = p2;
 			directive.erase(0, directive.find_first_not_of(L" \t\r\n"));
 			directive.erase(directive.find_last_not_of(L" \t\r\n") + 1);
+		}
+		else if (EatPrefix(buf, L"msgctxt "))
+		{
+			ps = &msgctxt;
 		}
 		else if (EatPrefix(buf, L"msgid "))
 		{
@@ -634,14 +627,21 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 			else
 			{
 				ps = nullptr;
+				if (!msgctxt.empty())
+					unslash(msgctxt);
 				if (!msgid.empty())
 					unslash(msgid);
 				if (msgstr.empty())
 					msgstr = msgid;
 				unslash(msgstr);
-				if (found_uid)
-					m_map_msgid_to_msgstr.insert_or_assign(msgid, msgstr);
-				found_uid = false;
+				if (!msgid.empty())
+				{
+					if (msgctxt.empty())
+						m_map_msgid_to_msgstr.insert_or_assign(msgid, msgstr);
+					else
+						m_map_msgid_to_msgstr.insert_or_assign(L"\x01\"" + msgctxt + L"\"" + msgid, msgstr);
+				}
+				msgctxt.erase();
 				msgid.erase();
 				msgstr.erase();
 			}
@@ -708,6 +708,15 @@ bool CLanguageSelect::TranslateString(const std::wstring& msgid, std::wstring &s
 	{
 		s = m_map_msgid_to_msgstr.at(msgid);
 		return true;
+	}
+	if (msgid.length() > 2 && msgid[0] == '\x01' && msgid[1] == '"')
+	{
+		size_t pos = msgid.find('"', 2);
+		if (pos != std::wstring::npos)
+		{
+			s = msgid.substr(pos + 1);
+			return true;
+		}
 	}
 	s = msgid;
 	return false;
@@ -789,7 +798,7 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 			}
 		}
 		wchar_t text[80];
-		if (::GetMenuStringW(h, i, text, countof(text), MF_BYPOSITION))
+		if (::GetMenuStringW(h, i, text, static_cast<int>(std::size(text)), MF_BYPOSITION))
 		{
 			std::wstring s;
 			if (TranslateString(text, s))
@@ -804,7 +813,7 @@ void CLanguageSelect::TranslateDialog(HWND h) const
 	do
 	{
 		wchar_t text[512];
-		::GetWindowTextW(h, text, countof(text));
+		::GetWindowTextW(h, text, static_cast<int>(std::size(text)));
 		std::wstring s;
 		if (TranslateString(text, s))
 			::SetWindowTextW(h, s.c_str());
@@ -923,7 +932,7 @@ String CLanguageSelect::LoadString(UINT id) const
 	if (id)
 	{
 		wchar_t text[1024];
-		AfxLoadString(id, text, countof(text));
+		AfxLoadString(id, text, static_cast<unsigned>(std::size(text)));
 		if (!TranslateString(text, s))
 			s = text;
 	}
@@ -999,7 +1008,7 @@ static WORD GetLangFromLocale(LCID lcid)
 {
 	TCHAR buff[8] = {0};
 	WORD langID = 0;
-	if (GetLocaleInfo(lcid, LOCALE_IDEFAULTLANGUAGE, buff, countof(buff)))
+	if (GetLocaleInfo(lcid, LOCALE_IDEFAULTLANGUAGE, buff, static_cast<int>(std::size(buff))))
 		_stscanf_s(buff, _T("%4hx"), &langID);
 	return langID;
 }

@@ -1,20 +1,24 @@
-; *** Inno Setup version 5.1.0+ English messages ***
+; *** Inno Setup version 6.0.0+ Greek messages ***
 ;
 ; To download user-contributed translations of this file, go to:
-;   http://www.jrsoftware.org/is3rdparty.php
+;   http://www.jrsoftware.org/files/istrans/
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
+;
+; Originally translated by Anastasis Chatzioglou, baldycom@hotmail.com
+; Updated by XhmikosR [XhmikosR, my_nickname at yahoo dot com]
+; Updated to version 6.0.0+ by V. Karamichail, v.karamichail@outlook.com
+;
 
 [LangOptions]
-; The following three entries are very important. Be sure to read and
+; The following three entries are very important. Be sure to read and 
 ; understand the '[LangOptions] section' topic in the help file.
-LanguageName=Greek
+LanguageName=Ελληνικά
 LanguageID=$0408
 LanguageCodePage=1253
-
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
 ;DialogFontName=
@@ -29,296 +33,340 @@ LanguageCodePage=1253
 [Messages]
 
 ; *** Application titles
-SetupAppTitle=Setup
-SetupWindowTitle=Setup - %1
-UninstallAppTitle=Uninstall
-UninstallAppFullTitle=%1 Uninstall
+SetupAppTitle=Εγκατάσταση
+SetupWindowTitle=Εγκατάσταση - %1
+UninstallAppTitle=Απεγκατάσταση
+UninstallAppFullTitle=%1 Απεγκατάσταση
 
 ; *** Misc. common
-InformationTitle=Information
-ConfirmTitle=Confirm
-ErrorTitle=Error
+InformationTitle=Πληροφορίες
+ConfirmTitle=Επιβεβαίωση
+ErrorTitle=Σφάλμα
 
 ; *** SetupLdr messages
-SetupLdrStartupMessage=This will install %1. Do you wish to continue?
-LdrCannotCreateTemp=Unable to create a temporary file. Setup aborted
-LdrCannotExecTemp=Unable to execute file in the temporary directory. Setup aborted
+SetupLdrStartupMessage=Θα εκτελεστεί η εγκατάσταση του %1. Θέλετε να συνεχίσετε;
+LdrCannotCreateTemp=Σφάλμα στη δημιουργία προσωρινού αρχείου. Η εγκατάσταση τερματίστηκε
+LdrCannotExecTemp=Αδύνατη η εκτέλεση αρχείου στον φάκελο προσωρινών αρχείων. Η εγκατάσταση τερματίστηκε
+HelpTextNote=
 
 ; *** Startup error messages
-LastErrorMessage=%1.%n%nError %2: %3
-SetupFileMissing=The file %1 is missing from the installation directory. Please correct the problem or obtain a new copy of the program.
-SetupFileCorrupt=The setup files are corrupted. Please obtain a new copy of the program.
-SetupFileCorruptOrWrongVer=The setup files are corrupted, or are incompatible with this version of Setup. Please correct the problem or obtain a new copy of the program.
-NotOnThisPlatform=This program will not run on %1.
-OnlyOnThisPlatform=This program must be run on %1.
-OnlyOnTheseArchitectures=This program can only be installed on versions of Windows designed for the following processor architectures:%n%n%1
-MissingWOW64APIs=The version of Windows you are running does not include functionality required by Setup to perform a 64-bit installation. To correct this problem, please install Service Pack %1.
-WinVersionTooLowError=This program requires %1 version %2 or later.
-WinVersionTooHighError=This program cannot be installed on %1 version %2 or later.
-AdminPrivilegesRequired=You must be logged in as an administrator when installing this program.
-PowerUserPrivilegesRequired=You must be logged in as an administrator or as a member of the Power Users group when installing this program.
-SetupAppRunningError=Setup has detected that %1 is currently running.%n%nPlease close all instances of it now, then click OK to continue, or Cancel to exit.
-UninstallAppRunningError=Uninstall has detected that %1 is currently running.%n%nPlease close all instances of it now, then click OK to continue, or Cancel to exit.
+LastErrorMessage=%1.%n%nΣφάλμα %2: %3
+SetupFileMissing=Το αρχείο %1 λείπει από τον κατάλογο εγκατάστασης. Διορθώστε το πρόβλημα ή αποκτήστε ένα νέο αντίγραφο του προγράμματος.
+SetupFileCorrupt=Το αρχείο εγκατάστασης είναι κατεστραμμένο. Παρακαλώ προμηθευτείτε ένα νέο αντίγραφο του προγράμματος.
+SetupFileCorruptOrWrongVer=Το αρχείο εγκατάστασης είναι κατεστραμμένο ή δεν είναι συμβατό με αυτήν την έκδοση του προγράμματος εγκατάστασης. Διορθώστε το πρόβλημα ή αποκτήστε ένα νέο αντίγραφο του προγράμματος.
+InvalidParameter=Μία μη έγκυρη παράμετρος χρησιμοποιήθηκε στη γραμμή εντολών:%n%n%1
+SetupAlreadyRunning=Η εγκατάσταση τρέχει ήδη.
+WindowsVersionNotSupported=Αυτό το πρόγραμμα δεν υποστηρίζει την έκδοση των Windows που εκτελεί ο υπολογιστής σας.
+WindowsServicePackRequired=Αυτό το πρόγραμμα χρειάζεται το %1 Service Pack %2 ή νεότερο.
+NotOnThisPlatform=Αυτό το πρόγραμμα δεν μπορεί να εκτελεστεί σε %1.
+OnlyOnThisPlatform=Αυτό το πρόγραμμα μπορεί να εκτελεστεί μόνο σε %1.
+OnlyOnTheseArchitectures=Αυτό το πρόγραμμα μπορεί να εγκατασταθεί μόνο σε εκδόσεις των Windows που έχουν σχεδιαστεί για τις ακόλουθες αρχιτεκτονικές επεξεργαστών:%n%n%1
+WinVersionTooLowError=Αυτό το πρόγραμμα απαιτεί %1 έκδοση %2 ή μεταγενέστερη.
+WinVersionTooHighError=Αυτό το πρόγραμμα δεν μπορεί να εγκατασταθεί σε %1 έκδοση %2 ή μεταγενέστερη.
+AdminPrivilegesRequired=Πρέπει να είστε συνδεδεμένοι ως διαχειριστής κατά την εγκατάσταση αυτού του προγράμματος.
+PowerUserPrivilegesRequired=Πρέπει να είστε συνδεδεμένοι ως διαχειριστής ή ως μέλος της ομάδας Power User κατά την εγκατάσταση αυτού του προγράμματος.
+SetupAppRunningError=Ο Οδηγός Εγκατάστασης εντόπισε ότι η εφαρμογή %1 εκτελείται ήδη.%n%nΠαρακαλώ κλείστε την εφαρμογή τώρα και πατήστε ΟΚ για να συνεχίσετε, ή ’κυρο για έξοδο.
+UninstallAppRunningError=Ο Οδηγός Απεγκατάστασης εντόπισε ότι η εφαρμογή %1 εκτελείται ήδη.%n%nΠαρακαλώ κλείστε την εφαρμογή τώρα και πατήστε ΟΚ για να συνεχίσετε, ή ’κυρο για έξοδο.
+
+; *** Startup questions
+PrivilegesRequiredOverrideTitle=Επιλέξτε Τρόπο Εγκατάστασης
+PrivilegesRequiredOverrideInstruction=Επιλέξτε τον τρόπο εγκατάστασης
+PrivilegesRequiredOverrideText1=Το %1 μπορεί να εγκατασταθεί για όλους τους χρήστες (απαιτεί δικαιώματα διαχειριστή) ή μόνο για εσάς.
+PrivilegesRequiredOverrideText2=Το %1 μπορεί να εγκατασταθεί μόνο για εσάς ή για όλους τους χρήστες (απαιτεί δικαιώματα διαχειριστή).
+PrivilegesRequiredOverrideAllUsers=Εγκατάσταση για &όλους τους χρήστες
+PrivilegesRequiredOverrideAllUsersRecommended=Εγκατάσταση για όλ&ους τους χρήστες (συνιστάται)
+PrivilegesRequiredOverrideCurrentUser=Εγκατάσταση μόνο για &εμένα
+PrivilegesRequiredOverrideCurrentUserRecommended=Εγκατάσταση μόνο για &εμένα (συνιστάται)
 
 ; *** Misc. errors
-ErrorCreatingDir=Setup was unable to create the directory "%1"
-ErrorTooManyFilesInDir=Unable to create a file in the directory "%1" because it contains too many files
+ErrorCreatingDir=Η εγκατάσταση δεν μπόρεσε να δημιουργήσει τον φάκελο "%1"
+ErrorTooManyFilesInDir=Δεν είναι δυνατή η δημιουργία ενός αρχείου στον φάκελο "%1" επειδή περιέχει πολλά αρχεία
 
 ; *** Setup common messages
-ExitSetupTitle=Exit Setup
-ExitSetupMessage=Setup is not complete. If you exit now, the program will not be installed.%n%nYou may run Setup again at another time to complete the installation.%n%nExit Setup?
-AboutSetupMenuItem=&About Setup...
-AboutSetupTitle=About Setup
-AboutSetupMessage=%1 version %2%n%3%n%n%1 home page:%n%4
+ExitSetupTitle=Τέλος Εγκατάστασης
+ExitSetupMessage=Η εγκατάσταση δεν έχει ολοκληρωθεί. Αν την τερματίσετε τώρα, το πρόγραμμα δεν θα εγκατασταθεί.%n%nΜπορείτε να εκτελέσετε ξανά την εγκατάσταση αργότερα.%n%nΈξοδος;
+AboutSetupMenuItem=&Σχετικά με την Εγκατάσταση...
+AboutSetupTitle=Σχετικά με την Εγκατάσταση
+AboutSetupMessage=%1 έκδοση %2%n%3%n%n%1 αρχική σελίδα:%n%4
 AboutSetupNote=
 TranslatorNote=
 
 ; *** Buttons
-ButtonBack=< &Back
-ButtonNext=&Next >
-ButtonInstall=&Install
-ButtonOK=OK
-ButtonCancel=Cancel
-ButtonYes=&Yes
-ButtonYesToAll=Yes to &All
-ButtonNo=&No
-ButtonNoToAll=N&o to All
-ButtonFinish=&Finish
-ButtonBrowse=&Browse...
-ButtonWizardBrowse=B&rowse...
-ButtonNewFolder=&Make New Folder
+ButtonBack=< &Πίσω
+ButtonNext=&Επόμενο >
+ButtonInstall=&Εγκατάσταση
+ButtonOK=ΟΚ
+ButtonCancel=&Ακυρο
+ButtonYes=Ν&αι
+ButtonYesToAll=Ναι σε &Ολα
+ButtonNo=Ό&χι
+ButtonNoToAll=Όχι &σε όλα
+ButtonFinish=&Τέλος
+ButtonBrowse=&Αναζήτηση...
+ButtonWizardBrowse=Ανα&ζήτηση...
+ButtonNewFolder=&Δημιουργία νέου φακέλου
 
 ; *** "Select Language" dialog messages
-SelectLanguageTitle=Select Setup Language
-SelectLanguageLabel=Select the language to use during the installation:
+SelectLanguageTitle=Επιλογή Γλώσσας Οδηγού Εγκατάστασης
+SelectLanguageLabel=Επιλέξτε τη γλώσσα που θέλετε να χρησιμοποιήσετε κατά την εγκατάσταση.
 
 ; *** Common wizard text
-ClickNext=Click Next to continue, or Cancel to exit Setup.
+ClickNext=Πατήστε Επόμενο για να συνεχίσετε ή ’κυρο για να τερματίσετε την εγκατάσταση.
 BeveledLabel=
-BrowseDialogTitle=Browse For Folder
-BrowseDialogLabel=Select a folder in the list below, then click OK.
-NewFolderName=New Folder
+BrowseDialogTitle=Αναζήτηση Φακέλου
+BrowseDialogLabel=Επιλέξτε ένα φάκελο από την ακόλουθη λίστα και πατήστε ΟΚ.
+NewFolderName=Νέος φάκελος
 
 ; *** "Welcome" wizard page
-WelcomeLabel1=Welcome to the [name] Setup Wizard
-WelcomeLabel2=This will install [name/ver] on your computer.%n%nIt is recommended that you close all other applications before continuing.
+WelcomeLabel1=Καλως ορίσατε στον Οδηγό Εγκατάστασης του [name]
+WelcomeLabel2=Θα γίνει εγκατάσταση του [name/ver] στον υπολογιστή σας.%n%nΣυνιστάται να κλείσετε όλες τις άλλες εφαρμογές πριν συνεχίσετε.
 
 ; *** "Password" wizard page
-WizardPassword=Password
-PasswordLabel1=This installation is password protected.
-PasswordLabel3=Please provide the password, then click Next to continue. Passwords are case-sensitive.
-PasswordEditLabel=&Password:
-IncorrectPassword=The password you entered is not correct. Please try again.
+WizardPassword=Κωδικός Πρόσβασης
+PasswordLabel1=Αυτή η εγκατάσταση προστατεύεται με κωδικό πρόσβασης.
+PasswordLabel3=Παρακαλώ εισάγετε τον κωδικό και πατήστε Επόμενο.
+PasswordEditLabel=&Κωδικός:
+IncorrectPassword=Ο κωδικός που έχετε εισάγει είναι λανθασμένος. Παρακαλώ, προσπαθήστε ξανά.
 
 ; *** "License Agreement" wizard page
-WizardLicense=License Agreement
-LicenseLabel=Please read the following important information before continuing.
-LicenseLabel3=Please read the following License Agreement. You must accept the terms of this agreement before continuing with the installation.
-LicenseAccepted=I &accept the agreement
-LicenseNotAccepted=I &do not accept the agreement
+WizardLicense=’δεια Χρήσης
+LicenseLabel=Παρακαλώ διαβάστε προσεκτικά τις ακόλουθες πληροφορίες πριν συνεχίσετε.
+LicenseLabel3=Παρακαλώ διαβάστε την ακόλουθη ’δεια Χρήσης. Θα πρέπει να αποδεχτείτε τους όρους της πριν συνεχίσετε την εγκατάσταση.
+LicenseAccepted=&Δέχομαι τους όρους της ’δειας Χρήσης
+LicenseNotAccepted=Δεν &αποδέχομαι τους όρους της ’δειας Χρήσης
 
 ; *** "Information" wizard pages
-WizardInfoBefore=Information
-InfoBeforeLabel=Please read the following important information before continuing.
-InfoBeforeClickLabel=When you are ready to continue with Setup, click Next.
-WizardInfoAfter=Information
-InfoAfterLabel=Please read the following important information before continuing.
-InfoAfterClickLabel=When you are ready to continue with Setup, click Next.
+WizardInfoBefore=Πληροφορίες
+InfoBeforeLabel=Παρακαλώ διαβάστε προσεκτικά τις ακόλουθες πληροφορίες πριν συνεχίσετε.
+InfoBeforeClickLabel=Όταν είστε έτοιμοι να συνεχίσετε με τον Οδηγό Εγκατάστασης, πατήστε Επόμενο.
+WizardInfoAfter=Πληροφορίες
+InfoAfterLabel=Παρακαλώ διαβάστε προσεκτικά τις ακόλουθες πληροφορίες πριν συνεχίσετε.
+InfoAfterClickLabel=Όταν είστε έτοιμοι να συνεχίσετε με τον Οδηγό Εγκατάστασης, πατήστε Επόμενο.
 
 ; *** "User Information" wizard page
-WizardUserInfo=User Information
-UserInfoDesc=Please enter your information.
-UserInfoName=&User Name:
-UserInfoOrg=&Organization:
-UserInfoSerial=&Serial Number:
-UserInfoNameRequired=You must enter a name.
+WizardUserInfo=Πληροφορίες Χρήστη
+UserInfoDesc=Παρακαλώ εισάγετε τα στοιχεία σας.
+UserInfoName=&Ονομα Χρήστη:
+UserInfoOrg=&Εταιρεία:
+UserInfoSerial=&Σειριακός Αριθμός:
+UserInfoNameRequired=Πρέπει να εισάγετε ένα όνομα.
 
 ; *** "Select Destination Location" wizard page
-WizardSelectDir=Select Destination Location
-SelectDirDesc=Where should [name] be installed?
-SelectDirLabel3=Setup will install [name] into the following folder.
-SelectDirBrowseLabel=To continue, click Next. If you would like to select a different folder, click Browse.
-DiskSpaceMBLabel=At least [mb] MB of free disk space is required.
-ToUNCPathname=Setup cannot install to a UNC pathname. If you are trying to install to a network, you will need to map a network drive.
-InvalidPath=You must enter a full path with drive letter; for example:%n%nC:\APP%n%nor a UNC path in the form:%n%n\\server\share
-InvalidDrive=The drive or UNC share you selected does not exist or is not accessible. Please select another.
-DiskSpaceWarningTitle=Not Enough Disk Space
-DiskSpaceWarning=Setup requires at least %1 KB of free space to install, but the selected drive only has %2 KB available.%n%nDo you want to continue anyway?
-DirNameTooLong=The folder name or path is too long.
-InvalidDirName=The folder name is not valid.
-BadDirName32=Folder names cannot include any of the following characters:%n%n%1
-DirExistsTitle=Folder Exists
-DirExists=The folder:%n%n%1%n%nalready exists. Would you like to install to that folder anyway?
-DirDoesntExistTitle=Folder Does Not Exist
-DirDoesntExist=The folder:%n%n%1%n%ndoes not exist. Would you like the folder to be created?
+WizardSelectDir=Επιλογή Φακέλου Εγκατάστασης
+SelectDirDesc=Πού θέλετε να εγκατασταθεί το [name];
+SelectDirLabel3=Ο Οδηγός Εγκατάστασης θα εγκαταστήσει το [name] στον ακόλουθο φάκελο.
+SelectDirBrowseLabel=Για να συνεχίσετε, πατήστε Επόμενο. Εάν θέλετε να επιλέξετε διαφορετικό φάκελο, πατήστε Αναζήτηση.
+DiskSpaceMBLabel=Απαιτούνται τουλάχιστον [mb] MB ελεύθερου χώρου στο δίσκο.
+CannotInstallToNetworkDrive=Η εγκατάσταση δεν μπορεί να γίνει σε δίσκο δικτύου.
+CannotInstallToUNCPath=Η εγκατάσταση δεν μπορεί να γίνει σε διαδρομή UNC.
+InvalidPath=Πρέπει να δώσετε την πλήρη διαδρομή με το γράμμα δίσκου, για παράδειγμα:%n%nC:\APP%n%nή μια διαδρομή UNC της μορφής:%n%n\\server\share
+InvalidDrive=Ο τοπικός δίσκος ή ο δίσκος δικτύου που έχετε επιλέξει δεν υπάρχει ή δεν είναι προσβάσιμος. Παρακαλώ, επιλέξτε άλλον.
+DiskSpaceWarningTitle=Ανεπαρκής Χώρος στο Δίσκο
+DiskSpaceWarning=Η εγκατάσταση χρειάζεται τουλάχιστον %1 KB ελεύθερο χώρο στο δίσκο αλλά ο επιλεγμένος δίσκος διαθέτει μόνον %2 KB.%n%nΘέλετε να συνεχίσετε παρόλα αυτά;
+DirNameTooLong=Το όνομα ή η διαδρομή του φακέλου είναι πολύ μεγάλη.
+InvalidDirName=Το όνομα του φακέλου δεν είναι έγκυρο.
+BadDirName32=Το όνομα του φακέλου δεν μπορεί να περιλαμβάνει κανέναν από τους παρακάτω χαρακτήρες:%n%n%1
+DirExistsTitle=Ο Φάκελος Υπάρχει
+DirExists=Ο φάκελος:%n%n%1%n%nυπάρχει ήδη. Θέλετε να γίνει η εγκατάσταση σε αυτόν τον φάκελο παρόλα αυτά;
+DirDoesntExistTitle=Ο Φάκελος Δεν Υπάρχει
+DirDoesntExist=Ο φάκελος:%n%n%1%n%nδεν υπάρχει. Θέλετε να δημιουργηθεί;
 
 ; *** "Select Components" wizard page
-WizardSelectComponents=Select Components
-SelectComponentsDesc=Which components should be installed?
-SelectComponentsLabel2=Select the components you want to install; clear the components you do not want to install. Click Next when you are ready to continue.
-FullInstallation=Full installation
+WizardSelectComponents=Επιλογή Λειτουργιών Μονάδων
+SelectComponentsDesc=Ποια στοιχεία θέλετε να εγκατασταθούν;
+SelectComponentsLabel2=Επιλέξτε τα στοιχεία που θέλετε να εγκαταστήσετε, αποεπιλέξτε τα στοιχεία που δεν θέλετε να εγκαταστήσετε. Πατήστε Επόμενο όταν είστε έτοιμοι να συνεχίσετε.
+FullInstallation=Πλήρης εγκατάσταση
 ; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
-CompactInstallation=Compact installation
-CustomInstallation=Custom installation
-NoUninstallWarningTitle=Components Exist
-NoUninstallWarning=Setup has detected that the following components are already installed on your computer:%n%n%1%n%nDeselecting these components will not uninstall them.%n%nWould you like to continue anyway?
+CompactInstallation=Τυπική εγκατάσταση
+CustomInstallation=Προσαρμοσμένη εγκατάσταση
+NoUninstallWarningTitle=Οι Λειτουργικές Μονάδες Υπάρχουν
+NoUninstallWarning=Ο Οδηγός Εγκατάστασης εντόπισε ότι τα ακόλουθα στοιχεία είναι ήδη εγκατεστημένα στον υπολογιστή σας:%n%n%1%n%nΑποεπιλέγοντας αυτά τα στοιχεία δεν θα απεγκατασταθούν.%n%nΘέλετε να συνεχίσετε παρόλα αυτά;
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
-ComponentsDiskSpaceMBLabel=Current selection requires at least [mb] MB of disk space.
+ComponentsDiskSpaceMBLabel=Η τρέχουσα επιλογή απαιτεί τουλάχιστον [mb] MB χώρου στο δίσκο.
 
 ; *** "Select Additional Tasks" wizard page
-WizardSelectTasks=Select Additional Tasks
-SelectTasksDesc=Which additional tasks should be performed?
-SelectTasksLabel2=Select the additional tasks you would like Setup to perform while installing [name], then click Next.
+WizardSelectTasks=Επιλογή Επιπλέον Ενεργειών
+SelectTasksDesc=Ποιες επιπλέον ενέργειες θέλετε να γίνουν;
+SelectTasksLabel2=Επιλέξτε τις επιπλέον ενέργειες που θέλετε να γίνουν κατά την εγκατάσταση του [name] και πατήστε Επόμενο.
 
 ; *** "Select Start Menu Folder" wizard page
-WizardSelectProgramGroup=Select Start Menu Folder
-SelectStartMenuFolderDesc=Where should Setup place the program's shortcuts?
-SelectStartMenuFolderLabel3=Setup will create the program's shortcuts in the following Start Menu folder.
-SelectStartMenuFolderBrowseLabel=To continue, click Next. If you would like to select a different folder, click Browse.
-MustEnterGroupName=You must enter a folder name.
-GroupNameTooLong=The folder name or path is too long.
-InvalidGroupName=The folder name is not valid.
-BadGroupName=The folder name cannot include any of the following characters:%n%n%1
-NoProgramGroupCheck2=&Don't create a Start Menu folder
+WizardSelectProgramGroup=Επιλογή Φακέλου Μενού Έναρξης
+SelectStartMenuFolderDesc=Πού θέλετε να τοποθετηθούν οι συντομεύσεις του προγράμματος;
+SelectStartMenuFolderLabel3=Η εγκατάσταση θα δημιουργήσει τις συντομεύσεις του προγράμματος στον ακόλουθο φάκελο του μενού Έναρξη.
+SelectStartMenuFolderBrowseLabel=Για να συνεχίσετε, πατήστε Επόμενο. Αν θέλετε διαφορετικό φάκελο, πατήστε Αναζήτηση.
+MustEnterGroupName=Πρέπει να εισαγάγετε ένα όνομα φακέλου.
+GroupNameTooLong=Το όνομα ή η διαδρομή του φακέλου είναι πολύ μεγάλη.
+InvalidGroupName=Το όνομα του φακέλου δεν είναι έγκυρο.
+BadGroupName=Το όνομα του φακέλου δεν μπορεί να περιλαμβάνει κανέναν από τους παρακάτω χαρακτήρες:%n%n%1
+NoProgramGroupCheck2=&Χωρίς δημιουργία φακέλου στο μενού Έναρξης.
 
 ; *** "Ready to Install" wizard page
-WizardReady=Ready to Install
-ReadyLabel1=Setup is now ready to begin installing [name] on your computer.
-ReadyLabel2a=Click Install to continue with the installation, or click Back if you want to review or change any settings.
-ReadyLabel2b=Click Install to continue with the installation.
-ReadyMemoUserInfo=User information:
-ReadyMemoDir=Destination location:
-ReadyMemoType=Setup type:
-ReadyMemoComponents=Selected components:
-ReadyMemoGroup=Start Menu folder:
-ReadyMemoTasks=Additional tasks:
+WizardReady=Έτοιμα για Εγκατάσταση
+ReadyLabel1=Ο Οδηγός Εγκατάστασης είναι έτοιμος να ξεκινήσει την εγκατάσταση του [name] στον υπολογιστή σας.
+ReadyLabel2a=Πατήστε Εγκατάσταση για να συνεχίσετε με την εγκατάσταση ή πατήστε Πίσω, εάν θέλετε να ελέγξετε ή να αλλάξετε τυχόν ρυθμίσεις.
+ReadyLabel2b=Πατήστε Εγκατάσταση για να συνεχίσετε την εγκατάσταση.
+ReadyMemoUserInfo=Πληροφορίες Χρήστη:
+ReadyMemoDir=Φάκελος προορισμού:
+ReadyMemoType=Είδος εγκατάστασης:
+ReadyMemoComponents=Επιλεγμένες λειτουργικές μονάδες:
+ReadyMemoGroup=Φάκελος στο μενού Έναρξη:
+ReadyMemoTasks=Επιπλέον ενέργειες:
 
 ; *** "Preparing to Install" wizard page
-WizardPreparing=Preparing to Install
-PreparingDesc=Setup is preparing to install [name] on your computer.
-PreviousInstallNotCompleted=The installation/removal of a previous program was not completed. You will need to restart your computer to complete that installation.%n%nAfter restarting your computer, run Setup again to complete the installation of [name].
-CannotContinue=Setup cannot continue. Please click Cancel to exit.
+WizardPreparing=Προετοιμασία Εγκατάστασης
+PreparingDesc=Ο Οδηγός Εγκατάστασης προετοιμάζεται για την εγκατάσταση του [name] στον υπολογιστή σας.
+PreviousInstallNotCompleted=Η εγκατάσταση/αφαίρεση ενός προηγούμενου προγράμματος δεν ολοκληρώθηκε. Θα χρειαστεί να κάνετε επανεκκίνηση του υπολογιστή σας για να ολοκληρωθεί.%n%nΜετά την επανεκκίνηση του υπολογιστή σας, εκτελέστε ξανά τον Οδηγό Εγκατάστασης για να ολοκληρώσετε την εγκατάσταση/αφαίρεση του [name].
+CannotContinue=Η εγκατάσταση δεν μπορεί να συνεχιστεί. Παρακαλώ πατήστε ’κυρο για τερματισμό.
+ApplicationsFound=Οι ακόλουθες εφαρμογές χρησιμοποιούν αρχεία που πρέπει να ενημερωθούν από τον Οδηγό Εγκατάστασης. Συνιστάται να επιτρέψετε στον Οδηγό Εγκατάστασης να κλείσει αυτόματα αυτές τις εφαρμογές.
+ApplicationsFound2=Οι ακόλουθες εφαρμογές χρησιμοποιούν αρχεία που πρέπει να ενημερωθούν από τον Οδηγό Εγκατάστασης. Συνιστάται να επιτρέψετε στον Οδηγό Εγκατάστασης να κλείσει αυτόματα αυτές τις εφαρμογές. Μετά την ολοκλήρωση της εγκατάστασης, ο Οδηγός Εγκατάστασης θα επιχειρήσει να κάνει επανεκκίνηση των εφαρμογών.
+CloseApplications=&Αυτόματο κλείσιμο των εφαρμογών
+DontCloseApplications=&Χωρίς κλείσιμο των εφαρμογών
+ErrorCloseApplications=Η εγκατάσταση δεν μπόρεσε να κλείσει αυτόματα όλες τις εφαρμογές. Συνιστάται να κλείσετε όλες τις εφαρμογές που χρησιμοποιούν αρχεία που πρέπει να ενημερωθούν από τον Οδηγό Εγκατάστασης προτού συνεχίσετε.
 
 ; *** "Installing" wizard page
-WizardInstalling=Installing
-InstallingLabel=Please wait while Setup installs [name] on your computer.
+WizardInstalling=Εγκατάσταση
+InstallingLabel=Παρακαλώ περιμένετε καθώς γίνεται η εγκατάσταση του [name] στον υπολογιστή σας.
 
 ; *** "Setup Completed" wizard page
-FinishedHeadingLabel=Completing the [name] Setup Wizard
-FinishedLabelNoIcons=Setup has finished installing [name] on your computer.
-FinishedLabel=Setup has finished installing [name] on your computer. The application may be launched by selecting the installed icons.
-ClickFinish=Click Finish to exit Setup.
-FinishedRestartLabel=To complete the installation of [name], Setup must restart your computer. Would you like to restart now?
-FinishedRestartMessage=To complete the installation of [name], Setup must restart your computer.%n%nWould you like to restart now?
-ShowReadmeCheck=Yes, I would like to view the README file
-YesRadio=&Yes, restart the computer now
-NoRadio=&No, I will restart the computer later
+FinishedHeadingLabel=Ολοκλήρωση του Οδηγού Εγκατάστασης του [name]
+FinishedLabelNoIcons=Ο Οδηγός Εγκατάστασης ολοκλήρωσε την εγκατάσταση του [name] στον υπολογιστή σας.
+FinishedLabel=Ο Οδηγός Εγκατάστασης ολοκλήρωσε την εγκατάσταση του [name] στον υπολογιστή σας. Η εφαρμογή μπορεί να ξεκινήσει επιλέγοντας κάποια από τις εγκατεστημένες συντομεύσεις.
+ClickFinish=Πατήστε Τέλος για να τερματίσετε τον Οδηγό Εγκατάστασης.
+FinishedRestartLabel=Για να ολοκληρώσετε την εγκατάσταση του [name], ο Οδηγός Εγκατάστασης πρέπει να κάνει επανεκκίνηση του υπολογιστή σας. Θα θέλατε να κάνετε επανεκκίνηση τώρα;
+FinishedRestartMessage=Για να ολοκληρώσετε την εγκατάσταση του [name], ο Οδηγός Εγκατάστασης πρέπει να κάνει επανεκκίνηση του υπολογιστή σας.%n%nΘα θέλατε να κάνετε επανεκκίνηση τώρα;
+ShowReadmeCheck=Ναι, θα ήθελα να δω το αρχείο README
+YesRadio=&Ναι, να γίνει επανεκκίνηση τώρα
+NoRadio=&Οχι, θα κάνω επανεκκίνηση αργότερα
 ; used for example as 'Run MyProg.exe'
-RunEntryExec=Run %1
+RunEntryExec=Εκτέλεση του %1
 ; used for example as 'View Readme.txt'
-RunEntryShellExec=View %1
+RunEntryShellExec=Προβολή του %1
 
 ; *** "Setup Needs the Next Disk" stuff
-ChangeDiskTitle=Setup Needs the Next Disk
-SelectDiskLabel2=Please insert Disk %1 and click OK.%n%nIf the files on this disk can be found in a folder other than the one displayed below, enter the correct path or click Browse.
-PathLabel=&Path:
-FileNotInDir2=The file "%1" could not be located in "%2". Please insert the correct disk or select another folder.
-SelectDirectoryLabel=Please specify the location of the next disk.
+ChangeDiskTitle=Ο Οδηγός Εγκατάστασης χρειάζεται τον επόμενο δίσκο
+SelectDiskLabel2=Παρακαλώ, εισάγετε τον δίσκο %1 και πατήστε ΟΚ.%n%nΕάν τα αρχεία αυτού του δίσκου βρίσκονται σε φάκελο διαφορετικό από αυτόν που εμφανίζεται παρακάτω, πληκτρολογήστε τη σωστή διαδρομή ή πατήστε Αναζήτηση.
+PathLabel=&Διαδρομή:
+FileNotInDir2=Το αρχείο "%1" δε βρέθηκε στο "%2". Παρακαλώ εισάγετε το σωστό δίσκο ή επιλέξτε κάποιον άλλο φάκελο.
+SelectDirectoryLabel=Παρακαλώ καθορίσετε την τοποθεσία του επόμενου δίσκου.
 
 ; *** Installation phase messages
-SetupAborted=Setup was not completed.%n%nPlease correct the problem and run Setup again.
-EntryAbortRetryIgnore=Click Retry to try again, Ignore to proceed anyway, or Abort to cancel installation.
+SetupAborted=Η εγκατάσταση δεν ολοκληρώθηκε.%n%nΠαρακαλώ, διορθώστε το πρόβλημα και εκτελέστε ξανά τον Οδηγό Εγκατάστασης.
+AbortRetryIgnoreSelectAction=Επιλέξτε ενέργεια
+AbortRetryIgnoreRetry=&Δοκιμή
+AbortRetryIgnoreIgnore=&Αγνόηση και συνέχεια
+AbortRetryIgnoreCancel=Ακυρώση εγκατάστασης
 
 ; *** Installation status messages
-StatusCreateDirs=Creating directories...
-StatusExtractFiles=Extracting files...
-StatusCreateIcons=Creating shortcuts...
-StatusCreateIniEntries=Creating INI entries...
-StatusCreateRegistryEntries=Creating registry entries...
-StatusRegisterFiles=Registering files...
-StatusSavingUninstall=Saving uninstall information...
-StatusRunProgram=Finishing installation...
-StatusRollback=Rolling back changes...
+StatusClosingApplications=Κλείσιμο εφαρμογών...
+StatusCreateDirs=Δημιουργία φακέλων...
+StatusExtractFiles=Αποσυμπίεση αρχείων...
+StatusCreateIcons=Δημιουργία συντομεύσεων...
+StatusCreateIniEntries=Δημιουργία καταχωρήσεων INI...
+StatusCreateRegistryEntries=Δημιουργία καταχωρήσεων στο μητρώο...
+StatusRegisterFiles=Καταχώρηση αρχείων...
+StatusSavingUninstall=Αποθήκευση πληροφοριών απεγκατάστασης...
+StatusRunProgram=Ολοκλήρωση εγκατάστασης...
+StatusRestartingApplications=Επανεκκίνηση εφαρμογών...
+StatusRollback=Επαναφορά αλλαγών...
 
 ; *** Misc. errors
-ErrorInternal2=Internal error: %1
-ErrorFunctionFailedNoCode=%1 failed
-ErrorFunctionFailed=%1 failed; code %2
-ErrorFunctionFailedWithMessage=%1 failed; code %2.%n%3
-ErrorExecutingProgram=Unable to execute file:%n%1
+ErrorInternal2=Εσωτερικό σφάλμα: %1
+ErrorFunctionFailedNoCode=%1 απέτυχε
+ErrorFunctionFailed=%1 απέτυχε, κωδικός %2
+ErrorFunctionFailedWithMessage=%1 απέτυχε, κωδικός %2.%n%3
+ErrorExecutingProgram=Δεν είναι δυνατή η εκτέλεση του αρχείου:%n%1
 
 ; *** Registry errors
-ErrorRegOpenKey=Error opening registry key:%n%1\%2
-ErrorRegCreateKey=Error creating registry key:%n%1\%2
-ErrorRegWriteKey=Error writing to registry key:%n%1\%2
+ErrorRegOpenKey=Σφάλμα ανάγνωσης κλειδιού μητρώου:%n%1\%2
+ErrorRegCreateKey=Σφάλμα δημιουργίας κλειδιού μητρώου:%n%1\%2
+ErrorRegWriteKey=Σφάλμα καταχώρησης κλειδιού μητρώου:%n%1\%2
 
 ; *** INI errors
-ErrorIniEntry=Error creating INI entry in file "%1".
+ErrorIniEntry=Σφάλμα στη δημιουργία καταχώρησης INI στο αρχείο "%1".
 
 ; *** File copying errors
-FileAbortRetryIgnore=Click Retry to try again, Ignore to skip this file (not recommended), or Abort to cancel installation.
-FileAbortRetryIgnore2=Click Retry to try again, Ignore to proceed anyway (not recommended), or Abort to cancel installation.
-SourceIsCorrupted=The source file is corrupted
-SourceDoesntExist=The source file "%1" does not exist
-ExistingFileReadOnly=The existing file is marked as read-only.%n%nClick Retry to remove the read-only attribute and try again, Ignore to skip this file, or Abort to cancel installation.
-ErrorReadingExistingDest=An error occurred while trying to read the existing file:
-FileExists=The file already exists.%n%nWould you like Setup to overwrite it?
-ExistingFileNewer=The existing file is newer than the one Setup is trying to install. It is recommended that you keep the existing file.%n%nDo you want to keep the existing file?
-ErrorChangingAttr=An error occurred while trying to change the attributes of the existing file:
-ErrorCreatingTemp=An error occurred while trying to create a file in the destination directory:
-ErrorReadingSource=An error occurred while trying to read the source file:
-ErrorCopying=An error occurred while trying to copy a file:
-ErrorReplacingExistingFile=An error occurred while trying to replace the existing file:
-ErrorRestartReplace=RestartReplace failed:
-ErrorRenamingTemp=An error occurred while trying to rename a file in the destination directory:
-ErrorRegisterServer=Unable to register the DLL/OCX: %1
-ErrorRegSvr32Failed=RegSvr32 failed with exit code %1
-ErrorRegisterTypeLib=Unable to register the type library: %1
+FileAbortRetryIgnoreSkipNotRecommended=&Παράλειψη αυτού του αρχείου (δεν συνιστάται)
+FileAbortRetryIgnoreIgnoreNotRecommended=Παράλειψη σφάλματος και &συνέχεια (δεν συνιστάται)
+SourceIsCorrupted=Το αρχείο προέλευσης είναι κατεστραμμένο
+SourceDoesntExist=Το αρχείο προέλευσης "%1" δεν υπάρχει
+ExistingFileReadOnly2=Το υπάρχον αρχείο δεν μπόρεσε να αντικατασταθεί επειδή είναι μόνο για ανάγνωση.
+ExistingFileReadOnlyRetry=&Καταργήστε το χαρακτηριστικό μόνο για ανάγνωση και δοκιμάστε ξανά
+ExistingFileReadOnlyKeepExisting=&Διατηρήστε το υπάρχον αρχείο
+ErrorReadingExistingDest=Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του υπάρχοντος αρχείου:
+FileExists=Το αρχείο υπάρχει ήδη.%n%nΘα θέλατε ο Οδηγός Εγκατάστασης να το αντικαταστήσει;
+ExistingFileNewer=Το υπάρχον αρχείο είναι νεότερο από αυτό που ο Οδηγός Εγκατάστασης που προσπαθεί να εγκαταστήσει. Συνιστάται να διατηρείτε το υπάρχον αρχείο.%n%nΘέλετε να διατηρήσετε το υπάρχον αρχείο;
+ErrorChangingAttr=Παρουσιάστηκε σφάλμα κατά την προσπάθεια αλλαγής των χαρακτηριστικών του υπάρχοντος αρχείου:
+ErrorCreatingTemp=Παρουσιάστηκε σφάλμα κατά την προσπάθεια δημιουργίας ενός αρχείου στον φακέλο προορισμού:
+ErrorReadingSource=Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του αρχείου προέλευσης:
+ErrorCopying=Παρουσιάστηκε σφάλμα κατά την προσπάθεια αντιγραφής ενός αρχείου:
+ErrorReplacingExistingFile=Παρουσιάστηκε σφάλμα κατά την προσπάθεια αντικατάστασης του υπάρχοντος αρχείου:
+ErrorRestartReplace=Η ΕπανεκκίνησηΑντικατάσταση απέτυχε:
+ErrorRenamingTemp=Παρουσιάστηκε σφάλμα κατά την προσπάθεια μετονομασίας ενός αρχείου στον φακέλο προορισμού:
+ErrorRegisterServer=Δεν είναι δυνατή η καταχώριση του DLL/OCX: %1
+ErrorRegSvr32Failed=Το RegSvr32 απέτυχε με κωδικό εξόδου %1
+ErrorRegisterTypeLib=Δεν είναι δυνατή η καταχώριση της βιβλιοθήκης τύπων: %1
+
+; *** Uninstall display name markings
+; used for example as 'My Program (32-bit)'
+UninstallDisplayNameMark=%1 (%2)
+; used for example as 'My Program (32-bit, All users)'
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32-bit
+UninstallDisplayNameMark64Bit=64-bit
+UninstallDisplayNameMarkAllUsers=Ολοι οι χρήστες
+UninstallDisplayNameMarkCurrentUser=Τρέχων χρήστης
 
 ; *** Post-installation errors
-ErrorOpeningReadme=An error occurred while trying to open the README file.
-ErrorRestartingComputer=Setup was unable to restart the computer. Please do this manually.
+ErrorOpeningReadme=Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανοίγματος του αρχείου README.
+ErrorRestartingComputer=Ο Οδηγός Εγκατάστασης δεν μπόρεσε να κάνει επανεκκίνηση του υπολογιστή. Παρακαλώ επανεκκινήσετε τον υπολογιστή μόνοι σας.
 
 ; *** Uninstaller messages
-UninstallNotFound=File "%1" does not exist. Cannot uninstall.
-UninstallOpenError=File "%1" could not be opened. Cannot uninstall
-UninstallUnsupportedVer=The uninstall log file "%1" is in a format not recognized by this version of the uninstaller. Cannot uninstall
-UninstallUnknownEntry=An unknown entry (%1) was encountered in the uninstall log
-ConfirmUninstall=Are you sure you want to completely remove %1 and all of its components?
-UninstallOnlyOnWin64=This installation can only be uninstalled on 64-bit Windows.
-OnlyAdminCanUninstall=This installation can only be uninstalled by a user with administrative privileges.
-UninstallStatusLabel=Please wait while %1 is removed from your computer.
-UninstalledAll=%1 was successfully removed from your computer.
-UninstalledMost=%1 uninstall complete.%n%nSome elements could not be removed. These can be removed manually.
-UninstalledAndNeedsRestart=To complete the uninstallation of %1, your computer must be restarted.%n%nWould you like to restart now?
-UninstallDataCorrupted="%1" file is corrupted. Cannot uninstall
+UninstallNotFound=Το αρχείο "%1" δεν υπάρχει. Δεν είναι δυνατή η απεγκατάσταση.
+UninstallOpenError=Το αρχείο "%1" δεν ήταν δυνατό να ανοίξει. Δεν είναι δυνατή η απεγκατάσταση
+UninstallUnsupportedVer=Το αρχείο καταγραφής απεγκατάστασης "%1" είναι σε μορφή που δεν αναγνωρίζεται από αυτήν την έκδοση του Οδηγού Απεγκατάστασης. Δεν ήταν δυνατή η απεγκατάσταση
+UninstallUnknownEntry=Μια άγνωστη καταχώρηση (%1) εντοπίστηκε στο αρχείο καταγραφής απεγκατάστασης
+ConfirmUninstall=Είστε βέβαιοι ότι θέλετε να καταργήσετε εντελώς το %1 και όλα τα στοιχεία του;
+UninstallOnlyOnWin64=Αυτή η εγκατάσταση μπορεί να απεγκατασταθεί μόνο σε Windows 64-bit.
+OnlyAdminCanUninstall=Αυτή η εγκατάσταση μπορεί να απεγκατασταθεί μόνο από χρήστη με δικαιώματα διαχειριστή.
+UninstallStatusLabel=Παρακαλώ περιμένετε μέχρι να καταργηθεί το %1 από τον υπολογιστή σας.
+UninstalledAll=Το %1 αφαιρέθηκε με επιτυχία από τον υπολογιστή σας.
+UninstalledMost=Το %1 αφαιρέθηκε με επιτυχία.%n%nΟρισμένα στοιχεία δεν ήταν δυνατό να καταργηθούν. Αυτά μπορούν να αφαιρεθούν από εσάς.
+UninstalledAndNeedsRestart=Για να ολοκληρώσετε την απεγκατάσταση του %1, ο υπολογιστής σας πρέπει να επανεκκινηθεί.%n%nΘα θέλατε να κάνετε επανεκκίνηση τώρα;
+UninstallDataCorrupted=Το "%1" αρχείο είναι κατεστραμμένο. Δεν ήταν δυνατή η απεγκατάσταση
 
 ; *** Uninstallation phase messages
-ConfirmDeleteSharedFileTitle=Remove Shared File?
-ConfirmDeleteSharedFile2=The system indicates that the following shared file is no longer in use by any programs. Would you like for Uninstall to remove this shared file?%n%nIf any programs are still using this file and it is removed, those programs may not function properly. If you are unsure, choose No. Leaving the file on your system will not cause any harm.
-SharedFileNameLabel=File name:
-SharedFileLocationLabel=Location:
-WizardUninstalling=Uninstall Status
-StatusUninstalling=Uninstalling %1...
+ConfirmDeleteSharedFileTitle=Κατάργηση Κοινόχρηστου Αρχείου;
+ConfirmDeleteSharedFile2=Το σύστημα υποδεικνύει ότι το ακόλουθο κοινόχρηστο αρχείο δεν χρησιμοποιείται πλέον από κανένα πρόγραμμα. Θέλετε να καταργηθεί αυτό το κοινόχρηστο αρχείο;%n%nΕάν κάποιο πρόγραμμα εξακολουθεί να το χρησιμοποιεί, ενδέχεται να μην λειτουργήσει σωστά. Εάν δεν είστε βέβαιοι, επιλέξτε Όχι. Αφήνοντάς το στο σύστημά σας δεν θα προκληθεί καμία ζημιά.
+SharedFileNameLabel=Όνομα Αρχείου:
+SharedFileLocationLabel=Τοποθεσία:
+WizardUninstalling=Πρόοδος Απεγκατάστασης
+StatusUninstalling=Απεγκατάσταση %1...
+
+; *** Shutdown block reasons
+ShutdownBlockReasonInstallingApp=Εγκατάσταση του %1.
+ShutdownBlockReasonUninstallingApp=Απεγκατάσταση του %1.
 
 ; The custom messages below aren't used by Setup itself, but if you make
 ; use of them in your scripts, you'll want to translate them.
 
 [CustomMessages]
-;Inno Setup Built-in Custom Messages
+
 NameAndVersion=%1 έκδοση %2
-AdditionalIcons=Πρόσθετα εικονίδια:
-OptionalFeatures=Προαιρετικά Χαρακτηριστικά:
-CreateDesktopIcon=Δημιουργία εικονιδίου στην επιφάνεια εργασίας
-CreateQuickLaunchIcon=Δημιουργία εικονιδίου στη Γρή&γορη Εκκίνηση
-ProgramOnTheWeb=Το %1 στο Διαδίκτυο
+AdditionalIcons=Επιπλέον συντομεύσεις:
+CreateDesktopIcon=Δημιουργία συντόμευσης στην &επιφάνεια εργασίας
+CreateQuickLaunchIcon=Δημιουργία συντόμευσης στη &Γρήγορη Εκκίνηση
+ProgramOnTheWeb=Το %1 στο Internet
 UninstallProgram=Απεγκατάσταση του %1
-LaunchProgram=Εκτέλεση του %1
-AssocFileExtension=Αντι&στοίχιση του %1 με τον τύπο αρχείων %2
-AssocingFileExtension=Αντιστοίχιση του %1 με τον τύπο αρχείων %2...
+LaunchProgram=Εκκίνηση του %1
+AssocFileExtension=&Συσχέτιση του %1 με την επέκταση αρχείου %2 
+AssocingFileExtension=Γίνεται συσχέτιση του %1 με την επέκταση αρχείου "%2"...
+AutoStartProgramGroupDescription=Εκκίνηση:
+AutoStartProgram=Αυτόματη εκκίνηση του %1
+AddonHostProgramNotFound=Το %1 δε βρέθηκε στο φάκελο που επιλέξατε.%n%nΘέλετε να συνεχίσετε παρόλα αυτά;
 
 ;Things we can also localize
+OptionalFeatures=Προαιρετικά Χαρακτηριστικά:
 CompanyName=Thingamahoochie Software
 
 ;Types

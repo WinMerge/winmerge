@@ -463,8 +463,8 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 
 	if (bTempFile)
 	{
-		file.SetUnicoding(ucr::UCS2LE);
-		file.SetBom(true);
+		file.SetUnicoding(ucr::UTF8);
+		file.SetBom(GetOptionsMgr()->GetInt(OPT_CMP_DIFF_ALGORITHM) == 0);
 		bOpenSuccess = !!file.OpenCreate(pszFileName);
 	}
 	else
@@ -487,10 +487,10 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 			sError = uniErr.GetError();
 			if (bTempFile)
 				LogErrorString(strutils::format(_T("Opening file %s failed: %s"),
-					pszFileName.c_str(), sError.c_str()));
+					pszFileName, sError));
 			else
 				LogErrorString(strutils::format(_T("Opening file %s failed: %s"),
-					sIntermediateFilename.c_str(), sError.c_str()));
+					sIntermediateFilename, sError));
 		}
 		return SAVE_FAILED;
 	}

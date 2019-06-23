@@ -1,17 +1,16 @@
-; *** Inno Setup version 5.1.11+ Norwegian messages ***
+; *** Inno Setup version 6.0.0+ Norwegian (bokmål) messages ***
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; Norwegian translation by Jostein Christoffer Andersen
-; E-mail: jostein@josander.net
-; E-mail: thomas.kelso@gmail.com
+; Norwegian translation by Eivind Bakkestuen
+; E-mail: eivind.bakkestuen@gmail.com
 ; Many thanks to the following people for language improvements and comments:
 ;
-; Harald Habberstad, Frode Weum, Eivind Bakkestuen, Morten Johnsen,
-; Tore Ottinsen, Kristian Hyllestad, Thomas Kelso
+; Harald Habberstad, Frode Weum, Morten Johnsen,
+; Tore Ottinsen, Kristian Hyllestad, Thomas Kelso, Jostein Christoffer Andersen
 ;
 ; $jrsoftware: issrc/Files/Languages/Norwegian.isl,v 1.15 2007/04/23 15:03:35 josander+ Exp $
 
@@ -43,16 +42,29 @@ LastErrorMessage=%1.%n%nFeil %2: %3
 SetupFileMissing=Filen %1 mangler i installasjonskatalogen. Vennligst korriger problemet eller skaff deg en ny kopi av programmet.
 SetupFileCorrupt=Installasjonsfilene er ødelagte. Vennligst skaff deg en ny kopi av programmet.
 SetupFileCorruptOrWrongVer=Installasjonsfilene er ødelagte eller ikke kompatible med dette installasjonsprogrammet. Vennligst korriger problemet eller skaff deg en ny kopi av programmet.
+InvalidParameter=Kommandolinjen hadde en ugyldig parameter:%n%n%1
+SetupAlreadyRunning=Dette programmet kjører allerede.
+WindowsVersionNotSupported=Dette programmet støtter ikke Windows-versjonen på denne maskinen.
+WindowsServicePackRequired=Dette programmet krever %1 Service Pack %2 eller nyere.
 NotOnThisPlatform=Dette programmet kjører ikke på %1.
 OnlyOnThisPlatform=Dette programmet kjører kun på %1.
 OnlyOnTheseArchitectures=Dette programmet kan kun installeres i Windows-versjoner som er beregnet på følgende prossessorarkitekturer:%n%n%1
-MissingWOW64APIs=Din Windows-versjon mangler funksjonalitet for at installasjonsprogrammet skal gjøre en 64-bits-installasjon. Installer Service Pack %1 for å rette på dette.
-WinVersionTooLowError=Dette programmet krever %1 versjon %2 eller senere.
-WinVersionTooHighError=Dette programmet kan ikke installeres på %1 versjon %2 eller senere.
+WinVersionTooLowError=Dette programmet krever %1 versjon %2 eller nyere.
+WinVersionTooHighError=Dette programmet kan ikke installeres på %1 versjon %2 eller nyere.
 AdminPrivilegesRequired=Administrator-rettigheter kreves for å installere dette programmet.
 PowerUserPrivilegesRequired=Du må være logget inn som administrator eller ha administrator-rettigheter når du installerer dette programmet.
 SetupAppRunningError=Installasjonsprogrammet har funnet ut at %1 kjører.%n%nVennligst avslutt det nå og klikk deretter OK for å fortsette, eller Avbryt for å avslutte.
 UninstallAppRunningError=Avinstallasjonsprogrammet har funnet ut at %1 kjører.%n%nVennligst avslutt det nå og klikk deretter OK for å fortsette, eller Avbryt for å avslutte.
+
+; *** Startup questions
+PrivilegesRequiredOverrideTitle=Velg Installasjon Type
+PrivilegesRequiredOverrideInstruction=Installasjons Type
+PrivilegesRequiredOverrideText1=%1 kan installeres for alle brukere (krever administrator-rettigheter), eller bare for deg.
+PrivilegesRequiredOverrideText2=%1 kan installeres bare for deg, eller for alle brukere (krever administrator-rettigheter).
+PrivilegesRequiredOverrideAllUsers=Installer for &alle brukere
+PrivilegesRequiredOverrideAllUsersRecommended=Installer for &alle brukere (anbefalt)
+PrivilegesRequiredOverrideCurrentUser=Installer bare for &meg
+PrivilegesRequiredOverrideCurrentUserRecommended=Installer bare for &meg (anbefalt)
 
 ; *** Misc. errors
 ErrorCreatingDir=Installasjonsprogrammet kunne ikke lage mappen "%1"
@@ -65,12 +77,12 @@ AboutSetupMenuItem=&Om installasjonsprogrammet...
 AboutSetupTitle=Om installasjonsprogrammet
 AboutSetupMessage=%1 versjon %2%n%3%n%n%1 hjemmeside:%n%4
 AboutSetupNote=
-TranslatorNote=Norwegian translation maintained by Jostein Chr. Andersen (jostein@josander.net)
+TranslatorNote=Norwegian translation maintained by Eivind Bakkestuen (eivind.bakkestuen@gmail.com)
 
 ; *** Buttons
 ButtonBack=< &Tilbake
 ButtonNext=&Neste >
-ButtonInstall=&Installér
+ButtonInstall=&Installer
 ButtonOK=OK
 ButtonCancel=Avbryt
 ButtonYes=&Ja
@@ -84,7 +96,7 @@ ButtonNewFolder=&Lag ny mappe
 
 ; *** "Select Language" dialog messages
 SelectLanguageTitle=Velg installasjonsspråk
-SelectLanguageLabel=Velg språket som skal brukes under installasjonen:
+SelectLanguageLabel=Velg språket som skal brukes under installasjonen.
 
 ; *** Common wizard text
 ClickNext=Klikk på Neste for å fortsette, eller Avbryt for å avslutte installasjonen.
@@ -106,7 +118,7 @@ IncorrectPassword=Det angitte passordet er feil, vennligst prøv igjen.
 
 ; *** "License Agreement" wizard page
 WizardLicense=Lisensbetingelser
-LicenseLabel=Vennligst les følgende lisensinformasjon før du fortsetter.
+LicenseLabel=Vennligst les følgende viktig informasjon før du fortsetter.
 LicenseLabel3=Vennligst les følgende lisensbetingelser. Du må godta innholdet i lisensbetingelsene før du fortsetter med installasjonen.
 LicenseAccepted=Jeg &aksepterer lisensbetingelsene
 LicenseNotAccepted=Jeg aksepterer &ikke lisensbetingelsene
@@ -127,13 +139,14 @@ UserInfoOrg=&Organisasjon:
 UserInfoSerial=&Serienummer:
 UserInfoNameRequired=Du må angi et navn.
 
-; *** "Select Destination Directory" wizard page
+; *** "Select Destination Location" wizard page
 WizardSelectDir=Velg mappen hvor filene skal installeres:
 SelectDirDesc=Hvor skal [name] installeres?
 SelectDirLabel3=Installasjonsprogrammet vil installere [name] i følgende mappe.
 SelectDirBrowseLabel=Klikk på Neste for å fortsette. Klikk på Bla gjennom hvis du vil velge en annen mappe.
 DiskSpaceMBLabel=Programmet krever minst [mb] MB med diskplass.
-ToUNCPathname=Kan ikke installere på en UNC-bane. Du må tilordne nettverksstasjonen hvis du vil installere i et nettverk.
+CannotInstallToNetworkDrive=Kan ikke installere på en nettverksstasjon.
+CannotInstallToUNCPath=Kan ikke installere på en UNC-bane. Du må tilordne nettverksstasjonen hvis du vil installere i et nettverk.
 InvalidPath=Du må angi en full bane med stasjonsbokstav, for eksempel:%n%nC:\APP%n%Du kan ikke bruke formen:%n%n\\server\share
 InvalidDrive=Den valgte stasjonen eller UNC-delingen finnes ikke, eller er ikke tilgjengelig. Vennligst velg en annen
 DiskSpaceWarningTitle=For lite diskplass
@@ -179,8 +192,8 @@ NoProgramGroupCheck2=&Ikke legg til mappe på start-menyen
 ; *** "Ready to Install" wizard page
 WizardReady=Klar til å installere
 ReadyLabel1=Installasjonsprogrammet er nå klar til å installere [name] på din maskin.
-ReadyLabel2a=Klikk Installér for å fortsette, eller Tilbake for å se på eller forandre instillingene.
-ReadyLabel2b=Klikk Installér for å fortsette.
+ReadyLabel2a=Klikk Installer for å fortsette, eller Tilbake for å se på eller forandre instillingene.
+ReadyLabel2b=Klikk Installer for å fortsette.
 ReadyMemoUserInfo=Brukerinformasjon:
 ReadyMemoDir=Installer i mappen:
 ReadyMemoType=Installasjonstype:
@@ -193,6 +206,11 @@ WizardPreparing=Forbereder installasjonen
 PreparingDesc=Installasjonsprogrammet forbereder installasjon av [name] på den maskin.
 PreviousInstallNotCompleted=Installasjonen/fjerningen av et tidligere program ble ikke ferdig. Du må starte maskinen på nytt.%n%nEtter omstarten må du kjøre installasjonsprogrammet på nytt for å fullføre installasjonen av [name].
 CannotContinue=Installasjonsprogrammet kan ikke fortsette. Klikk på Avbryt for å avslutte.
+ApplicationsFound=Disse applikasjonene bruker filer som vil oppdateres av installasjonen. Det anbefales å la installasjonen automatisk avslutte disse applikasjonene.
+ApplicationsFound2=Disse applikasjonene bruker filer som vil oppdateres av installasjonen. Det anbefales å la installasjonen automatisk avslutte disse applikasjonene. Installasjonen vil prøve å starte applikasjonene på nytt etter at installasjonen er avsluttet.
+CloseApplications=Lukk applikasjonene &automatisk
+DontCloseApplications=&Ikke lukk applikasjonene
+ErrorCloseApplications=Installasjonsprogrammet kunne ikke lukke alle applikasjonene &automatisk. Det anbefales å lukke alle applikasjoner som bruker filer som installasjonsprogrammet trenger å oppdatere før du fortsetter installasjonen.
 
 ; *** "Installing" wizard page
 WizardInstalling=Installerer
@@ -201,7 +219,7 @@ InstallingLabel=Vennligst vent mens [name] installeres på din maskin.
 ; *** "Setup Completed" wizard page
 FinishedHeadingLabel=Fullfører installasjonsprogrammet for [name]
 FinishedLabelNoIcons=[name] er installert på din maskin.
-FinishedLabel=[name] er installert på din maskin. Programmet kan kjøres ved at du klikker på et av de installerte ikonene.
+FinishedLabel=[name] er installert på din maskin. Programmet kan kjøres ved at du klikker på ett av de installerte ikonene.
 ClickFinish=Klikk Ferdig for å avslutte installasjonen.
 FinishedRestartLabel=Maskinen må startes på nytt for at installasjonen skal fullføres. Vil du starte på nytt nå?
 FinishedRestartMessage=Maskinen må startes på nytt for at installasjonen skal fullføres.%n%nVil du starte på nytt nå?
@@ -222,9 +240,13 @@ SelectDirectoryLabel=Vennligst angi hvor den neste disketten er.
 
 ; *** Installation phase messages
 SetupAborted=Installasjonen ble avbrutt.%n%nVennligst korriger problemet og prøv igjen.
-EntryAbortRetryIgnore=Klikk Prøv igjen for å forsøke på nytt, Ignorér for å fortsette eller Avslutt for å avslutte installasjonen.
+AbortRetryIgnoreSelectAction=Velg aksjon
+AbortRetryIgnoreRetry=&Prøv Igjen
+AbortRetryIgnoreIgnore=&Ignorer feil og fortsett
+AbortRetryIgnoreCancel=Cancel installation
 
 ; *** Installation status messages
+StatusClosingApplications=Lukker applikasjoner...
 StatusCreateDirs=Lager mapper...
 StatusExtractFiles=Pakker ut filer...
 StatusCreateIcons=Lager programikoner...
@@ -233,6 +255,7 @@ StatusCreateRegistryEntries=Lager innstillinger i registeret...
 StatusRegisterFiles=Registrerer filer...
 StatusSavingUninstall=Lagrer info for avinstallering...
 StatusRunProgram=Gjør ferdig installasjonen...
+StatusRestartingApplications=Restarter applikasjoner...
 StatusRollback=Tilbakestiller forandringer...
 
 ; *** Misc. errors
@@ -251,11 +274,13 @@ ErrorRegWriteKey=Feil under skriving til registernøkkel:%n%1\%2
 ErrorIniEntry=Feil under laging av innstilling i filen "%1".
 
 ; *** File copying errors
-FileAbortRetryIgnore=Klikk Prøv igjen for å forsøke på nytt, Ignorer for å overse denne filen (anbefales ikke) eller Avslutt for å stoppe installasjonen.
-FileAbortRetryIgnore2=Klikk Prøv igjen for å forsøke på nytt, Ignorer for å fortsette uansett (anbefales ikke) eller Avslutt for å stoppe installasjonen.
+FileAbortRetryIgnoreSkipNotRecommended=&Hopp over denne filen (ikke anbefalt)
+FileAbortRetryIgnoreIgnoreNotRecommended=&Ignorer feilen og fortsett (ikke anbefalt)
 SourceIsCorrupted=Kildefilen er ødelagt
 SourceDoesntExist=Kildefilen "%1" finnes ikke
-ExistingFileReadOnly=Den eksisterende filen er skrivebeskyttet.%n%nKlikk Prøv igjen for å fjerne skrivebeskyttelsen og prøve på nytt, Ignorer for å hoppe over denne filen, eller Avslutt for å stoppe installasjonen.
+ExistingFileReadOnly2=Den eksisterende filen er skrivebeskyttet og kan ikke erstattes.
+ExistingFileReadOnlyRetry=&Fjern skrivebeskyttelse og prøv igjen
+ExistingFileReadOnlyKeepExisting=&Behold eksisterende fil
 ErrorReadingExistingDest=En feil oppsto under lesing av den eksisterende filen:
 FileExists=Filen eksisterer allerede.%n%nVil du overskrive den?
 ExistingFileNewer=Den eksisterende filen er nyere enn den som blir forsøkt installert. Det anbefales at du beholder den eksisterende filen.%n%nVil du beholde den eksisterende filen?
@@ -269,6 +294,14 @@ ErrorRenamingTemp=En feil oppsto under omdøping av fil i mål-mappen:
 ErrorRegisterServer=Kan ikke registrere DLL/OCX: %1
 ErrorRegSvr32Failed=RegSvr32 gikk galt med avslutte kode %1
 ErrorRegisterTypeLib=Kan ikke registrere typebiblioteket: %1
+
+; *** Uninstall display name markings
+UninstallDisplayNameMark=%1 (%2)
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32-bit
+UninstallDisplayNameMark64Bit=64-bit
+UninstallDisplayNameMarkAllUsers=Alle brukere
+UninstallDisplayNameMarkCurrentUser=Aktiv bruker
 
 ; *** Post-installation errors
 ErrorOpeningReadme=En feil oppsto under forsøket på å åpne LESMEG-filen.
@@ -296,14 +329,17 @@ SharedFileLocationLabel=Plassering:
 WizardUninstalling=Avinstallerings-status:
 StatusUninstalling=Avinstallerer %1...
 
+; *** Shutdown block reasons
+ShutdownBlockReasonInstallingApp=Installerer %1.
+ShutdownBlockReasonUninstallingApp=Avinstallerer %1.
+
 ; The custom messages below aren't used by Setup itself, but if you make
 ; use of them in your scripts, you'll want to translate them.
 
 [CustomMessages]
-;Inno Setup Built-in Custom Messages
+
 NameAndVersion=%1 versjon %2
 AdditionalIcons=Ekstra-ikoner:
-OptionalFeatures=Optional Features:
 CreateDesktopIcon=Lag ikon på &skrivebordet
 CreateQuickLaunchIcon=Lag et &Hurtigstarts-ikon
 ProgramOnTheWeb=%1 på nettet
@@ -311,8 +347,12 @@ UninstallProgram=Avinstaller %1
 LaunchProgram=Kjør %1
 AssocFileExtension=&Koble %1 med filetternavnet %2
 AssocingFileExtension=Kobler %1 med filetternavnet %2...
+AutoStartProgramGroupDescription=Oppstart:
+AutoStartProgram=Start %1 automatisk
+AddonHostProgramNotFound=%1 ble ikke funnet i katalogen du valgte.%n%nVil du fortsette likevel?
 
 ;Things we can also localize
+OptionalFeatures=Optional Features:
 CompanyName=Thingamahoochie Software
 
 ;Types

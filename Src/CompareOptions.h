@@ -26,6 +26,14 @@ enum WhitespaceIgnoreChoices
 	WHITESPACE_IGNORE_ALL,         /**< ignore whitespace altogether */
 };
 
+enum DiffAlgorithm
+{
+	DIFF_ALGORITHM_DEFAULT = 0,
+	DIFF_ALGORITHM_MINIMAL = 1,
+	DIFF_ALGORITHM_PATIENCE = 2,
+	DIFF_ALGORITHM_HISTOGRAM = 3,
+};
+
 /**
  * @brief Patch styles.
  *
@@ -74,6 +82,8 @@ struct DIFFOPTIONS
 	bool bIgnoreBlankLines; /**< Ignore blank lines -option. */
 	bool bIgnoreEol; /**< Ignore EOL differences -option. */
 	bool bFilterCommentsLines; /**< Ignore Multiline comments differences -option. */
+	int nDiffAlgorithm; /**< Diff algorithm -option. */
+	bool bIndentHeuristic; /**< Ident heuristic -option */
 };
 
 /**
@@ -92,6 +102,8 @@ public:
 	bool m_bIgnoreBlankLines; /**< Ignore blank lines (both sides) */
 	bool m_bIgnoreCase; /**< Ignore case differences? */
 	bool m_bIgnoreEOLDifference; /**< Ignore EOL style differences? */
+	enum DiffAlgorithm m_diffAlgorithm; /** Diff algorithm */
+	bool m_bIndentHeuristic; /**< Indent heuristic */
 };
 
 /**

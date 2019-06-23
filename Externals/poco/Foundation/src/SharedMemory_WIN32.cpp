@@ -80,7 +80,7 @@ SharedMemoryImpl::SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessM
 	_mode(PAGE_READONLY),
 	_address(0)
 {
-	DWORD shareMode = FILE_SHARE_READ;
+	DWORD shareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
 	DWORD fileMode  = GENERIC_READ;
 
 	if (mode == SharedMemory::AM_WRITE)

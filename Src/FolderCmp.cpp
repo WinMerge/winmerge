@@ -64,13 +64,21 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 {
 	int nIndex;
 	int nCompMethod = pCtxt->GetCompareMethod();
+	int nDirs = pCtxt->GetCompareDirs();
 
 	unsigned code = DIFFCODE::FILE | DIFFCODE::CMPERR;
+
+	if ((nCompMethod == CMP_CONTENT || nCompMethod == CMP_QUICK_CONTENT) &&
+		((di.diffFileInfo[0].size > pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[0].size != DirItem::FILE_SIZE_NONE) ||
+		 (di.diffFileInfo[1].size > pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[1].size != DirItem::FILE_SIZE_NONE) ||
+		 (nDirs > 2 && di.diffFileInfo[2].size > pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[2].size != DirItem::FILE_SIZE_NONE)))
+	{
+		nCompMethod = CMP_BINARY_CONTENT;
+	}
 
 	if (nCompMethod == CMP_CONTENT ||
 		nCompMethod == CMP_QUICK_CONTENT)
 	{
-		int nDirs = pCtxt->GetCompareDirs();
 
 		// Reset text stats
 		for (nIndex = 0; nIndex < nDirs; nIndex++)
@@ -423,17 +431,17 @@ exitPrepAndCompare:
 		
 		// delete the temp files after comparison
 		if (filepathTransformed[0] != filepathUnpacked[0])
-			try { TFile(filepathTransformed[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[0].c_str())); }
+			try { TFile(filepathTransformed[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[0])); }
 		if (filepathTransformed[1] != filepathUnpacked[1])
-			try { TFile(filepathTransformed[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[1].c_str())); }
+			try { TFile(filepathTransformed[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[1])); }
 		if (nDirs > 2 && filepathTransformed[2] != filepathUnpacked[2])
-			try { TFile(filepathTransformed[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[2].c_str())); }
+			try { TFile(filepathTransformed[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[2])); }
 		if (filepathUnpacked[0] != tFiles[0])
-			try { TFile(filepathUnpacked[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[0].c_str())); }
+			try { TFile(filepathUnpacked[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[0])); }
 		if (filepathUnpacked[1] != tFiles[1])
-			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[1].c_str())); }
+			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[1])); }
 		if (nDirs > 2 && filepathUnpacked[2] != tFiles[2])
-			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[2].c_str())); }
+			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[2])); }
 
 		// When comparing empty file and nonexistent file, `DIFFCODE::SAME` flag is set to the variable `code`, so change the flag to `DIFFCODE::DIFF`
 		// Also when disabling ignore codepage option and the encodings of files are not equal, change the flag to `DIFFCODE::DIFF even if  `DIFFCODE::SAME` flag is set to the variable `code`

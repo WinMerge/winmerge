@@ -1,8 +1,8 @@
 set workdir=BuildTmp\Src
-if "%1" == "vs2015" (
-  set vsversion=vs2015
-) else (
+if "%1" == "vs2017" (
   set vsversion=vs2017
+) else (
+  set vsversion=vs2019
 )
 
 pushd "%~dp0"

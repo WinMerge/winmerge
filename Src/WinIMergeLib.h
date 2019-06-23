@@ -21,6 +21,9 @@
 
 struct IImgMergeWindow
 {
+	enum INSERTION_DELETION_DETECTION_MODE {
+		INSERTION_DELETION_DETECTION_NONE = 0, INSERTION_DELETION_DETECTION_VERTICAL, INSERTION_DELETION_DETECTION_HORIZONTAL
+	};
 	enum OVERLAY_MODE {
 		OVERLAY_NONE = 0, OVERLAY_XOR, OVERLAY_ALPHABLEND, OVERLAY_ALPHABLEND_ANIM
 	};
@@ -135,6 +138,14 @@ struct IImgMergeWindow
 	virtual void AddEventListener(EventListenerFunc func, void *userdata) = 0;
 	virtual DRAGGING_MODE GetDraggingMode() const = 0;
 	virtual void SetDraggingMode(DRAGGING_MODE draggingMode) = 0;
+	virtual size_t GetMetadata(int pane, char *buf, size_t bufsize) const = 0;
+	virtual INSERTION_DELETION_DETECTION_MODE GetInsertionDeletionDetectionMode() const = 0;
+	virtual void SetInsertionDeletionDetectionMode(INSERTION_DELETION_DETECTION_MODE insertionDeletionDetectionMode) = 0;
+	virtual COLORREF GetDiffDeletedColor() const = 0;
+	virtual void SetDiffDeletedColor(COLORREF clrDiffDeletedColor) = 0;
+	virtual COLORREF GetSelDiffDeletedColor() const = 0;
+	virtual void SetSelDiffDeletedColor(COLORREF clrSelDiffDeletedColor) = 0;
+	virtual bool ConvertToRealPos(int pane, const POINT& pt, POINT& ptReal) const = 0;
 };
 
 struct IImgToolWindow
@@ -149,4 +160,5 @@ extern "C"
 	bool WinIMerge_DestroyWindow(IImgMergeWindow *pImgMergeWindow);
 	IImgToolWindow * WinIMerge_CreateToolWindow(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *pImgMergeWindow);
 	bool WinIMerge_DestroyToolWindow(IImgToolWindow *pImgToolWindow);
+	IImgMergeWindow * WinIMerge_CreateWindowless();
 };

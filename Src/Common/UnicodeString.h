@@ -52,7 +52,22 @@ String trim_ws_end(const String & str);
 
 // Formatting
 String format_arg_list(const TCHAR *fmt, va_list args);
-String format(const TCHAR *fmt, ...);
+String format_varg(const TCHAR *fmt, ...);
+namespace detail
+{
+	template <typename T> inline T arg(T value) { return value; }
+	template <typename T> inline T const * arg(std::basic_string<T> const & value) { return value.c_str(); }
+}
+template <typename ... Args>
+inline String format(TCHAR const * const fmt, Args const & ... args)
+{
+	return format_varg(fmt, detail::arg(args) ...);
+}
+template <typename ... Args>
+inline String format(String const & fmt, Args const & ... args)
+{
+	return format_varg(fmt.c_str(), detail::arg(args) ...);
+}
 String format_strings(const String& fmt, const String *args[], size_t nargs);
 String format_string1(const String& fmt, const String& arg1);
 String format_string2(const String& fmt, const String& arg1, const String& arg2);

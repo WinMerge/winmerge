@@ -26,7 +26,7 @@
 static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
 static LPCTSTR f_RegValuePath = _T("Executable");
 
-static bool IsShellExtensionRegistered()
+static bool IsShellExtensionRegistered(bool peruser)
 {
 	HKEY hKey;
 #ifdef _WIN64
@@ -35,14 +35,15 @@ static bool IsShellExtensionRegistered()
 	auto Is64BitWindows = []() { BOOL f64 = FALSE; return IsWow64Process(GetCurrentProcess(), &f64) && f64; };
 	DWORD ulOptions = KEY_QUERY_VALUE | (Is64BitWindows() ? KEY_WOW64_64KEY : 0);
 #endif
-	if (ERROR_SUCCESS == RegOpenKeyEx(HKEY_CLASSES_ROOT, _T("CLSID\\{4E716236-AA30-4C65-B225-D68BBA81E9C2}"), 0, ulOptions, &hKey)) {
+	if (ERROR_SUCCESS == RegOpenKeyEx(peruser ? HKEY_CURRENT_USER : HKEY_LOCAL_MACHINE, _T("Software\\Classes\\CLSID\\{4E716236-AA30-4C65-B225-D68BBA81E9C2}"), 0, ulOptions, &hKey))
+	{
 		RegCloseKey(hKey);
 		return true;
 	}
 	return false;
 }
 
-static bool RegisterShellExtension(bool unregister)
+static bool RegisterShellExtension(bool unregister, bool peruser)
 {
 	TCHAR szSystem32[260] = { 0 };
 	TCHAR szSysWow64[260] = { 0 };
@@ -52,24 +53,28 @@ static bool RegisterShellExtension(bool unregister)
 	String progpath = env::GetProgPath();
 	String regsvr32 = paths::ConcatPath(szSystem32, _T("regsvr32.exe"));
 	String args;
+	String options = (unregister ? _T("/s /u") : _T("/s"));
+	options += peruser ? _T(" /n /i:user") : _T("");
 	SHELLEXECUTEINFO sei = { sizeof(sei) };
-	sei.lpVerb = _T("runas");
+	if (!peruser)
+		sei.lpVerb = _T("runas");
 	if (szSysWow64[0])
 	{
-		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths::ConcatPath(progpath, _T("ShellExtensionX64.dll")) + _T("\"");
+		args = options + _T(" \"") + paths::ConcatPath(progpath, _T("ShellExtensionX64.dll")) + _T("\"");
+
 		sei.lpFile = regsvr32.c_str();
 		sei.lpParameters = args.c_str();
 		ShellExecuteEx(&sei);
 
 		regsvr32 = paths::ConcatPath(szSysWow64, _T("regsvr32.exe"));
-		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths::ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
+		args = options + _T("\"") + paths::ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
 		sei.lpFile = regsvr32.c_str();
 		sei.lpParameters = args.c_str();
 		return !!ShellExecuteEx(&sei);
 	}
 	else
 	{
-		args = (unregister ? _T("/s /u \"") : _T("/s \"")) + paths::ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
+		args = options + _T(" \"") + paths::ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
 		sei.lpFile = regsvr32.c_str();
 		sei.lpParameters = args.c_str();
 		return !!ShellExecuteEx(&sei);
@@ -119,6 +124,8 @@ BEGIN_MESSAGE_MAP(PropShell, CPropertyPage)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
 	ON_BN_CLICKED(IDC_REGISTER_SHELLEXTENSION, OnRegisterShellExtension)
 	ON_BN_CLICKED(IDC_UNREGISTER_SHELLEXTENSION, OnUnregisterShellExtension)
+	ON_BN_CLICKED(IDC_REGISTER_SHELLEXTENSION_PERUSER, OnRegisterShellExtensionPerUser)
+	ON_BN_CLICKED(IDC_UNREGISTER_SHELLEXTENSION_PERUSER, OnUnregisterShellExtensionPerUser)
 	ON_WM_TIMER()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -148,7 +155,7 @@ void PropShell::GetContextRegValues()
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = strutils::format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
-			RegDir, retVal, GetSysError(retVal).c_str());
+			RegDir, retVal, GetSysError(retVal));
 		LogErrorString(msg);
 		return;
 	}
@@ -182,7 +189,7 @@ void PropShell::SaveMergePath()
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = strutils::format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
-			RegDir, retVal, GetSysError(retVal).c_str());
+			RegDir, retVal, GetSysError(retVal));
 		LogErrorString(msg);
 		return;
 	}
@@ -192,7 +199,7 @@ void PropShell::SaveMergePath()
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = strutils::format(_T("Failed to set registry value %s:\n\t%d : %s"),
-			f_RegValuePath, retVal, GetSysError(retVal).c_str());
+			f_RegValuePath, retVal, GetSysError(retVal));
 		LogErrorString(msg);
 	}
 
@@ -212,7 +219,7 @@ void PropShell::SaveMergePath()
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = strutils::format(_T("Failed to set registry value %s to %d:\n\t%d : %s"),
-			f_RegValueEnabled, dwContextEnabled, retVal, GetSysError(retVal).c_str());
+			f_RegValueEnabled, dwContextEnabled, retVal, GetSysError(retVal));
 		LogErrorString(msg);
 	}
 }
@@ -229,22 +236,35 @@ void PropShell::AdvancedContextMenuCheck()
 
 void PropShell::UpdateButtons()
 {
-	bool registered = IsShellExtensionRegistered();
-	EnableDlgItem(IDC_EXPLORER_CONTEXT, registered);
+	bool registered = IsShellExtensionRegistered(false);
+	bool registeredPerUser = IsShellExtensionRegistered(true);
+	EnableDlgItem(IDC_EXPLORER_CONTEXT, registered || registeredPerUser);
 	EnableDlgItem(IDC_REGISTER_SHELLEXTENSION, !registered);
 	EnableDlgItem(IDC_UNREGISTER_SHELLEXTENSION, registered);
+	EnableDlgItem(IDC_REGISTER_SHELLEXTENSION_PERUSER, !registeredPerUser);
+	EnableDlgItem(IDC_UNREGISTER_SHELLEXTENSION_PERUSER, registeredPerUser);
 	EnableDlgItem(IDC_EXPLORER_ADVANCED, 
-		registered && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
+		(registered || registeredPerUser) && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
 }
 
 void PropShell::OnRegisterShellExtension()
 {
-	RegisterShellExtension(false);
+	RegisterShellExtension(false, false);
 }
 
 void PropShell::OnUnregisterShellExtension()
 {
-	RegisterShellExtension(true);
+	RegisterShellExtension(true, false);
+}
+
+void PropShell::OnRegisterShellExtensionPerUser()
+{
+	RegisterShellExtension(false, true);
+}
+
+void PropShell::OnUnregisterShellExtensionPerUser()
+{
+	RegisterShellExtension(true, true);
 }
 
 void PropShell::OnTimer(UINT_PTR nIDEvent)

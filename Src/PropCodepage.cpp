@@ -113,15 +113,30 @@ BOOL PropCodepage::OnInitDialog()
 	if (pexconv != nullptr)
 	{
 		std::vector<CodePageInfo> cpi = pexconv->enumCodePages();
-		for (size_t i = 0, j = 0; i < cpi.size(); i++)
+		size_t Index = 0;
+		for (size_t i = 0; i < cpi.size(); i++)
 		{
 			if (cpi[i].codepage == 1200 /* UNICODE */)
 				continue;
-			String desc = strutils::format(_T("%05d - %s"), cpi[i].codepage, cpi[i].desc.c_str());
-			m_comboCustomCodepageValue.AddString(desc.c_str());
+			String desc = strutils::format(_T("% 5d - %s"), cpi[i].codepage, cpi[i].desc);
+			Index = m_comboCustomCodepageValue.AddString(desc.c_str());
 			if (cpi[i].codepage == m_nCustomCodepageValue)
-				m_comboCustomCodepageValue.SetCurSel(static_cast<int>(j));
-			j++;
+				m_comboCustomCodepageValue.SetCurSel(static_cast<int>(Index));
+		}
+
+		static int ManualAddTypeList[] = {437, 850, 858, 860, 863, 861, 1200, 1201, 65000};
+		for (int i = 0; i < sizeof(ManualAddTypeList) / sizeof(int); i++)
+		{
+			String desc;
+			pexconv->getCodepageDescription(ManualAddTypeList[i], desc);
+			desc = strutils::format(_T("% 5d - %s"), ManualAddTypeList[i], desc);
+
+			if (m_comboCustomCodepageValue.FindStringExact(0, desc.c_str()) == CB_ERR)
+			{
+				Index = m_comboCustomCodepageValue.AddString(desc.c_str());
+				if (ManualAddTypeList[i] == m_nCustomCodepageValue)
+					m_comboCustomCodepageValue.SetCurSel(static_cast<int>(Index));
+			}
 		}
 
 		static int autodetectTypeList[] = {50001, 50936, 50950, 50932, 50949};

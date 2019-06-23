@@ -187,7 +187,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 			// so no right side on newob
 			// newob will be the moved part only, later after we split off any suffix from it
 			struct change *newob = (struct change *) xmalloc (sizeof (struct change));
-			memset(newob, 0, sizeof(*newob));
+			*newob = {};
 
 			newob->line0 = i1;
 			newob->line1 = e->line1 + e->inserted;
@@ -213,7 +213,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 			// break off any suffix from e
 			// newob will be the suffix, and will get all the right side
 			struct change *newob = (struct change *) xmalloc (sizeof (struct change));
-			memset(newob, 0, sizeof(*newob));
+			*newob = {};
 
 			newob->line0 = i2+1;
 			newob->line1 = e->line1;
@@ -305,7 +305,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 			// so no right side on newob
 			// newob will be the moved part only, later after we split off any suffix from it
 			struct change *newob = (struct change *) xmalloc (sizeof (struct change));
-			memset(newob, 0, sizeof(*newob));
+			*newob = {};
 
 			newob->line0 = e->line0 + e->deleted;
 			newob->line1 = j1;
@@ -331,7 +331,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 			// break off any suffix from e
 			// newob will be the suffix, and will get all the left side
 			struct change *newob = (struct change *) xmalloc (sizeof (struct change));
-			memset(newob, 0, sizeof(*newob));
+			*newob = {};
 
 			newob->line0 = e->line0;
 			newob->line1 = j2+1;

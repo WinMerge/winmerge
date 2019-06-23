@@ -707,68 +707,59 @@ OnMouseMove (UINT nFlags, CPoint point)
 
   if (m_bDragSelection)
     {
-      bool bOnMargin = point.x < GetMarginWidth ();
-
       AdjustTextPoint (point);
       CPoint ptNewCursorPos = ClientToText (point);
 
       CPoint ptStart, ptEnd;
       if (m_bLineSelection)
         {
-          if (bOnMargin)
+          if (ptNewCursorPos.y < m_ptAnchor.y ||
+                ptNewCursorPos.y == m_ptAnchor.y && ptNewCursorPos.x < m_ptAnchor.x)
             {
-              if (ptNewCursorPos.y < m_ptAnchor.y ||
-                    ptNewCursorPos.y == m_ptAnchor.y && ptNewCursorPos.x < m_ptAnchor.x)
-                {
-					CPoint	pos;
-					ptEnd = m_ptAnchor;
-					CharPosToPoint( ptEnd.y, ptEnd.x, pos );
-					if( GetSubLineIndex( ptEnd.y ) + pos.y == GetSubLineCount() - 1 )
-						ptEnd = SubLineEndToCharPos( ptEnd.y, pos.y );
-					else
-					{
-						int	nLine, nSubLine;
-						GetLineBySubLine( GetSubLineIndex( ptEnd.y ) + pos.y + 1, nLine, nSubLine );
-						ptEnd.y = nLine;
-						ptEnd.x = SubLineHomeToCharPos( nLine, nSubLine );
-					}
-					CharPosToPoint( ptNewCursorPos.y, ptNewCursorPos.x, pos );
-					ptNewCursorPos.x = SubLineHomeToCharPos( ptNewCursorPos.y, pos.y );
-                  m_ptCursorPos = ptNewCursorPos;
-                }
-              else
-                {
-                  ptEnd = m_ptAnchor;
-
-					CPoint	pos;
-					CharPosToPoint( ptEnd.y, ptEnd.x, pos );
-					ptEnd.x = SubLineHomeToCharPos( ptEnd.y, pos.y );
-
-					m_ptCursorPos = ptNewCursorPos;
-					CharPosToPoint( ptNewCursorPos.y, ptNewCursorPos.x, pos );
-					if( GetSubLineIndex( ptNewCursorPos.y ) + pos.y == GetSubLineCount() - 1 )
-						ptNewCursorPos.x = SubLineEndToCharPos( ptNewCursorPos.y, pos.y );
-					else
-					{
-						int	nLine, nSubLine;
-						GetLineBySubLine( GetSubLineIndex( ptNewCursorPos.y ) + pos.y + 1, nLine, nSubLine );
-						ptNewCursorPos.y = nLine;
-						ptNewCursorPos.x = SubLineHomeToCharPos( nLine, nSubLine );
-					}
-
-					int nLine, nSubLine;
-					GetLineBySubLine( GetSubLineIndex( m_ptCursorPos.y ) + pos.y, nLine, nSubLine );
-					m_ptCursorPos.y = nLine;
-					m_ptCursorPos.x = SubLineHomeToCharPos( nLine, nSubLine );
-                }
-              UpdateCaret ();
-              SetSelection (ptNewCursorPos, ptEnd);
-              return;
+		    	CPoint	pos;
+		    	ptEnd = m_ptAnchor;
+		    	CharPosToPoint( ptEnd.y, ptEnd.x, pos );
+		    	if( GetSubLineIndex( ptEnd.y ) + pos.y == GetSubLineCount() - 1 )
+		    		ptEnd = SubLineEndToCharPos( ptEnd.y, pos.y );
+		    	else
+		    	{
+		    		int	nLine, nSubLine;
+		    		GetLineBySubLine( GetSubLineIndex( ptEnd.y ) + pos.y + 1, nLine, nSubLine );
+		    		ptEnd.y = nLine;
+		    		ptEnd.x = SubLineHomeToCharPos( nLine, nSubLine );
+		    	}
+		    	CharPosToPoint( ptNewCursorPos.y, ptNewCursorPos.x, pos );
+		    	ptNewCursorPos.x = SubLineHomeToCharPos( ptNewCursorPos.y, pos.y );
+              m_ptCursorPos = ptNewCursorPos;
             }
+          else
+            {
+              ptEnd = m_ptAnchor;
 
-          //  Moving to normal selection mode
-          ::SetCursor (::LoadCursor (nullptr, IDC_IBEAM));
-          m_bLineSelection = m_bWordSelection = false;
+		    	CPoint	pos;
+		    	CharPosToPoint( ptEnd.y, ptEnd.x, pos );
+		    	ptEnd.x = SubLineHomeToCharPos( ptEnd.y, pos.y );
+
+		    	m_ptCursorPos = ptNewCursorPos;
+		    	CharPosToPoint( ptNewCursorPos.y, ptNewCursorPos.x, pos );
+		    	if( GetSubLineIndex( ptNewCursorPos.y ) + pos.y == GetSubLineCount() - 1 )
+		    		ptNewCursorPos.x = SubLineEndToCharPos( ptNewCursorPos.y, pos.y );
+		    	else
+		    	{
+		    		int	nLine, nSubLine;
+		    		GetLineBySubLine( GetSubLineIndex( ptNewCursorPos.y ) + pos.y + 1, nLine, nSubLine );
+		    		ptNewCursorPos.y = nLine;
+		    		ptNewCursorPos.x = SubLineHomeToCharPos( nLine, nSubLine );
+		    	}
+
+		    	int nLine, nSubLine;
+		    	GetLineBySubLine( GetSubLineIndex( m_ptCursorPos.y ) + pos.y, nLine, nSubLine );
+		    	m_ptCursorPos.y = nLine;
+		    	m_ptCursorPos.x = SubLineHomeToCharPos( nLine, nSubLine );
+            }
+          UpdateCaret ();
+          SetSelection (ptNewCursorPos, ptEnd);
+          return;
         }
 
       if (m_bWordSelection)
@@ -1067,6 +1058,16 @@ OnLButtonDblClk (UINT nFlags, CPoint point)
       m_bLineSelection = false;
       m_bDragSelection = true;
     }
+}
+
+void CCrystalTextView::
+OnLButtonTrippleClk (UINT nFlags, CPoint point)
+{
+  if (point.x < GetMarginWidth ())
+    return;
+  // simulate a click on margin to select whole line
+  point.x = 0;
+  OnLButtonDown (nFlags, point);
 }
 
 void CCrystalTextView::

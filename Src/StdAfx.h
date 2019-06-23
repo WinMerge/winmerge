@@ -41,20 +41,24 @@
 #include "sizecbar.h"
 #include "scbarg.h"
 
-#include "coretypes.h"
-
 #include <string>
 #include <vector>
 #include <map>
 #include <unordered_set>
 #include <stack>
 #include <list>
+#include <array>
 #include <algorithm>
+#include <iostream>
 #include <sstream>
 #include <memory>
+#include <functional>
 #include <cassert>
 #include <ctime>
 #include <tchar.h>
+
+#include "boost/flyweight.hpp"
+#include "boost/range/mfc.hpp"
 
 /**
  * @name User-defined Windows-messages
@@ -64,6 +68,8 @@
 const UINT MSG_UI_UPDATE = WM_USER + 1;
 /// Request to save panesizes
 const UINT MSG_STORE_PANESIZES = WM_USER + 2;
+/// Request to generate file compare report
+const UINT MSG_GENERATE_FLIE_COMPARE_REPORT = WM_USER + 3;
 /* @} */
 
 /// Seconds ignored in filetime differences if option enabled

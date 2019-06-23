@@ -9,7 +9,6 @@
 #include <Poco/Mutex.h>
 #include <memory>
 #include "PathContext.h"
-#include "DiffFileInfo.h"
 #include "DiffItemList.h"
 #include "FilterList.h"
 
@@ -172,6 +171,8 @@ public:
 	 * cannot compare large files. And large files are usually binary files.
 	 */
 	int m_nQuickCompareLimit;
+
+	int m_nBinaryCompareLimit;
 
 	/**
 	 * Walk into unique folders and add contents.

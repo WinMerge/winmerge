@@ -1,3 +1,48 @@
+WinMerge 2.16.3
+  General:
+  - Bugfix: Slow startup with documents folder redirected to high-latency
+     network drive (Bitbucket #155)
+  - Add VisualElementsManifest for Windows 10 start menu (Bitbucket PR #47)
+  - Reduce the size of the executable file
+  File compare:
+  - Bugfix: Location and Diff pane visibility broken in 2.16.1 
+     (GitHub #138, Bitbucket #163, sf.net #2228)
+  - Bugfix: Temporary files could not be created (GitHub #143, sf.net #2220)
+  - Bugfix: Trivial bugfix (GitHub #155)
+  - Bugfix: Regression: Incorrectly shows 'no changes' for large portions of
+     certain binary files! (Bitbucket #162)
+  - Small tweaks for HTML file reports (Bitbucket PR #44, #45)
+  - Made diff algorithm selectable by using libXDiff
+     algorithms: default(Myers), patience, histogram
+  - triple click to select whole line (Bitbucket #144)
+  - Add support for merging word level diffs in selection
+     Demo: https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif
+  Folder compare:
+  - Bugfix: WinMerge 3-Way Compare Bugs: Always Shows Unique Items.
+     (GitHub #154)
+  - Bugfix: WinMerge could not compare files that are opened in other
+     applications
+  - Show progress bar while generating Folder Compare Report
+  Project file:
+  - Bugfix: Possible Bugs in 2.16.2 (sf.net #2221)
+  - Supporting relative path in project file (Bitbucket #158)
+  - Allow multiple <paths> in project file
+  Image compare:
+  - Bugfix: no message was displayed when file saving failed
+  - Implement Insertion/Deletion Detection
+     Demo: https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80
+  Options dialog:
+  - Tweak size of combobox "codepage" in options (GitHub #144)
+  - Sort combobox codepage and add manual codepage (GitHub #145)
+  Installer:
+  - Allow per-user installation (only x64 installer)
+  - Don't install Files.txt and don't add "Uninstall WinMerge" to the
+    start menu (Bitbuket #38)
+  Translations:
+  - Update French translation (GitHub #149, #150)
+  - Update Lithuanian translation (Bitbucket PR #36, #40, #43, #46, #48)
+  - Update Russian translation (Bitbucket PR #41, #42)
+
 WinMerge 2.16.2
   File compare:
   - Bugfix: Edit > Replace > All, Undo: should undo all (sf.net #2113)
@@ -1138,5 +1183,4 @@ WinMerge 2.7.1.1 - 2006-11-16 (r3810)
   BugFix: asked sometimes twice about saving modified files (#1596692)
 
 
-WinMerge 2.7.4 and earlier (also 2.6.x stable releases) have more detailed
-changelogs in Changes.txt files in /Src and other folders.
+For older changes look at the VCS (Version Control System).

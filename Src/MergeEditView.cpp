@@ -39,11 +39,12 @@
 #include "WMGotoDlg.h"
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
-#include "ChildFrm.h"
+#include "MergeEditFrm.h"
 #include "MergeLineFlags.h"
 #include "paths.h"
 #include "DropHandler.h"
 #include "DirDoc.h"
+#include "ShellContextMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -189,6 +190,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_COMMAND(ID_NEXT_PANE, OnChangePane)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
+	ON_COMMAND(ID_FILE_SHELLMENU, OnShellMenu)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SHELLMENU, OnUpdateShellMenu)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_COMMAND(ID_NO_PREDIFFER, OnNoPrediffer)
 	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdateNoPrediffer)
@@ -325,6 +328,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 	lastLine = ptEnd.y;
 
 	firstDiff = pd->m_diffList.LineToDiff(firstLine);
+	bool firstLineIsNotInDiff = firstDiff == -1;
 	if (firstDiff == -1)
 	{
 		firstDiff = pd->m_diffList.NextSignificantDiffFromLine(firstLine);
@@ -333,6 +337,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 		firstWordDiff = 0;
 	}
 	lastDiff = pd->m_diffList.LineToDiff(lastLine);
+	bool lastLineIsNotInDiff = lastDiff == -1;	
 	if (lastDiff == -1)
 		lastDiff = pd->m_diffList.PrevSignificantDiffFromLine(lastLine);
 	if (lastDiff < firstDiff)
@@ -348,9 +353,15 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 		
 		if (ptStart != ptEnd)
 		{
+			VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
+			if (lastLineIsNotInDiff && (firstLineIsNotInDiff || (di.dbegin == firstLine && ptStart.x == 0)))
+			{
+				firstWordDiff = -1;
+				return;
+			}
+
 			if (firstWordDiff == -1)
 			{
-				VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
 				vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(firstDiff);
 				for (size_t i = 0; i < worddiffs.size(); ++i)
 				{
@@ -2604,8 +2615,7 @@ void CMergeEditView::OnUpdateStatusRO(CCmdUI* pCmdUI)
 HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 {
 	// get scripts list
-	std::vector<String> functionNamesList;
-	FileTransform::GetFreeFunctionsInScripts(functionNamesList, L"EDITOR_SCRIPT");
+	std::vector<String> functionNamesList = FileTransform::GetFreeFunctionsInScripts(L"EDITOR_SCRIPT");
 
 	// empty the menu
 	size_t i = GetMenuItemCount(hMenu);
@@ -2993,6 +3003,34 @@ void CMergeEditView::OnWMGoto()
 			pCurrentView->SelectDiff(diff, true, false);
 		}
 	}
+}
+
+void CMergeEditView::OnShellMenu()
+{
+	CFrameWnd *pFrame = GetTopLevelFrame();
+	ASSERT(pFrame != nullptr);
+	BOOL bAutoMenuEnableOld = pFrame->m_bAutoMenuEnable;
+	pFrame->m_bAutoMenuEnable = FALSE;
+
+	String path = GetDocument()->m_filePaths[m_nThisPane];
+	std::unique_ptr<CShellContextMenu> pContextMenu(new CShellContextMenu(0x9000, 0x9FFF));
+	pContextMenu->Initialize();
+	pContextMenu->AddItem(paths::GetParentPath(path), paths::FindFileName(path));
+	pContextMenu->RequeryShellContextMenu();
+	CPoint point;
+	::GetCursorPos(&point);
+	HWND hWnd = GetSafeHwnd();
+	BOOL nCmd = TrackPopupMenu(pContextMenu->GetHMENU(), TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, 0, hWnd, nullptr);
+	if (nCmd)
+		pContextMenu->InvokeCommand(nCmd, hWnd);
+	pContextMenu->ReleaseShellContextMenu();
+
+	pFrame->m_bAutoMenuEnable = bAutoMenuEnableOld;
+}
+
+void CMergeEditView::OnUpdateShellMenu(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(!GetDocument()->m_filePaths[m_nThisPane].empty());
 }
 
 /**
@@ -3423,7 +3461,7 @@ void CMergeEditView::OnOpenFileWithEditor()
 		return;
 
 	int nRealLine = ComputeRealLine(GetCursorPos().y) + 1;
-	theApp.OpenFileToExternalEditor(sFileName.c_str(), nRealLine);
+	theApp.OpenFileToExternalEditor(sFileName, nRealLine);
 }
 
 /**
@@ -4034,7 +4072,7 @@ void CMergeEditView::OnDropFiles(const std::vector<String>& tFiles)
 void CMergeEditView::OnWindowSplit()
 {
 
-	auto& wndSplitter = dynamic_cast<CChildFrame *>(GetParentFrame())->GetSplitter();
+	auto& wndSplitter = dynamic_cast<CMergeEditFrame *>(GetParentFrame())->GetSplitter();
 	CMergeDoc *pDoc = GetDocument();
 	CMergeEditView *pView = pDoc->GetView(0, m_nThisPane);
 	auto* pwndSplitterChild = pView->GetParentSplitter(pView, false);

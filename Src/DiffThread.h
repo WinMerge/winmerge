@@ -22,6 +22,7 @@
 #pragma once
 
 #include <memory>
+#include <functional>
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Thread.h>
 #include <Poco/BasicEvent.h>
@@ -45,14 +46,14 @@ struct DiffFuncStruct
 	Poco::BasicEvent<int> m_listeners; /**< Event listeners */
 	int nThreadState; /**< Thread state. */
 	DiffThreadAbortable * m_pAbortgate; /**< Interface for aborting compare. */
-	bool bOnlyRequested; /**< Compare only requested items? */
 	Poco::Semaphore *pSemaphore; /**< Semaphore for synchronizing threads. */
+	std::function<void (DiffFuncStruct*)> m_fncCollect;
+	std::function<void (DiffFuncStruct*)> m_fncCompare;
 
 	DiffFuncStruct()
 		: context(nullptr)
 		, nThreadState(0/*CDiffThread::THREAD_NOTSTARTED*/)
 		, m_pAbortgate(nullptr)
-		, bOnlyRequested(false)
 		, pSemaphore(nullptr)
 		{}
 };
@@ -95,7 +96,8 @@ public:
 	void RemoveListener(T *pObj, void (T::*pMethod)(int& state)) {
 		m_pDiffParm->m_listeners -= Poco::delegate(pObj, pMethod);
 	}
-	void SetCompareSelected(bool bSelected = false);
+	void SetCollectFunction(std::function<void(DiffFuncStruct*)> func) { m_pDiffParm->m_fncCollect = func; }
+	void SetCompareFunction(std::function<void(DiffFuncStruct*)> func) { m_pDiffParm->m_fncCompare = func; }
 
 // runtime interface for main thread, called on main thread
 	unsigned GetThreadState() const;
@@ -115,5 +117,4 @@ private:
 	std::unique_ptr<DiffThreadAbortable> m_pAbortgate;
 	bool m_bAborting; /**< Is compare aborting? */
 	bool m_bPaused; /**< Is compare paused? */
-	bool m_bOnlyRequested; /**< Are we comparing only requested items (Update?) */
 };

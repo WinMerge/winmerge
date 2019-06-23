@@ -36,6 +36,8 @@ protected:
 	afx_msg void OnAddToExplorer();
 	afx_msg void OnRegisterShellExtension();
 	afx_msg void OnUnregisterShellExtension();
+	afx_msg void OnRegisterShellExtensionPerUser();
+	afx_msg void OnUnregisterShellExtensionPerUser();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
 	void GetContextRegValues();

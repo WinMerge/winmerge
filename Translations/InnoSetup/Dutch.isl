@@ -1,10 +1,8 @@
-; *** Inno Setup version 5.1.11+ Dutch messages ***
+; *** Inno Setup version 6.0.0+ Dutch messages ***
 ;
 ; This file is based on user-contributed translations by various authors
 ;
-; Maintained by Martijn Laan (mlaan@wintax.nl)
-;
-; $jrsoftware: issrc/Files/Languages/Dutch.isl,v 1.21 2007/03/06 12:56:38 mlaan Exp $
+; Maintained by Martijn Laan (mlaan@jrsoftware.org)
                                      
 [LangOptions]                
 LanguageName=Nederlands      
@@ -34,16 +32,29 @@ LastErrorMessage=%1.%n%nFout %2: %3
 SetupFileMissing=Het bestand %1 ontbreekt in de installatiemap. Corrigeer dit probleem of gebruik een andere kopie van het programma.
 SetupFileCorrupt=De installatiebestanden zijn beschadigd. Gebruik een andere kopie van het programma.
 SetupFileCorruptOrWrongVer=De installatiebestanden zijn beschadigd, of zijn niet compatibel met deze versie van Setup. Corrigeer dit probleem of gebruik een andere kopie van het programma.
+InvalidParameter=Er werd een ongeldige schakeloptie opgegeven op de opdrachtregel:%n%n%1
+SetupAlreadyRunning=Setup is al gestart.
+WindowsVersionNotSupported=Dit programma ondersteunt de versie van Windows die u gebruikt niet.
+WindowsServicePackRequired=Dit programma vereist %1 Service Pack %2 of hoger.
 NotOnThisPlatform=Dit programma kan niet worden uitgevoerd onder %1.
 OnlyOnThisPlatform=Dit programma moet worden uitgevoerd onder %1.
 OnlyOnTheseArchitectures=Dit programma kan alleen geïnstalleerd worden onder versies van Windows ontworpen voor de volgende processor architecturen:%n%n%1
-MissingWOW64APIs=De versie van Windows die u gebruikt bevat niet de door Setup benodige functionaliteit om een 64-bit installatie uit te voeren. Installeer Service Pack %1 om dit probleem te corrigeren.
 WinVersionTooLowError=Dit programma vereist %1 versie %2 of hoger.
 WinVersionTooHighError=Dit programma kan niet worden geïnstalleerd onder %1 versie %2 of hoger.
 AdminPrivilegesRequired=U moet aangemeld zijn als een systeembeheerder om dit programma te kunnen installeren.
 PowerUserPrivilegesRequired=U moet ingelogd zijn als systeembeheerder of als gebruiker met systeembeheerders rechten om dit programma te kunnen installeren.
-SetupAppRunningError=Setup heeft vastgesteld dat %1 op dit moment actief is.%n%nSluit alle vensters van dit programma, en klik daarna op OK om verder te gaan, of op Annuleren om Setup af te sluiten.
-UninstallAppRunningError=Het verwijderprogramma heeft vastgesteld dat %1 op dit moment actief is.%n%nSluit alle vensters van dit programma, en klik daarna op OK om verder te gaan, of op Annuleren om het verwijderen af te breken.
+SetupAppRunningError=Setup heeft vastgesteld dat %1 op dit moment actief is.%n%nSluit alle vensters hiervan, en klik daarna op OK om verder te gaan, of op Annuleren om Setup af te sluiten.
+UninstallAppRunningError=Het verwijderprogramma heeft vastgesteld dat %1 op dit moment actief is.%n%nSluit alle vensters hiervan, en klik daarna op OK om verder te gaan, of op Annuleren om het verwijderen af te breken.
+
+; *** Startup questions
+PrivilegesRequiredOverrideTitle=Selecteer installatie modus voor Setup
+PrivilegesRequiredOverrideInstruction=Selecteer installatie modus
+PrivilegesRequiredOverrideText1=%1 kan geïnstalleerd worden voor alle gebruikers (vereist aanmelding als een systeembeheerder), of voor u alleen.
+PrivilegesRequiredOverrideText2=%1 kan geïnstalleerd worden voor u alleen, of voor alle gebruikers (vereist aanmelding als een systeembeheerder).
+PrivilegesRequiredOverrideAllUsers=Installeer voor &alle gebruikers
+PrivilegesRequiredOverrideAllUsersRecommended=Installeer voor &alle gebruikers (aanbevolen)
+PrivilegesRequiredOverrideCurrentUser=Installeer voor &mij alleen
+PrivilegesRequiredOverrideCurrentUserRecommended=Installeer voor &mij alleen (aanbevolen)
 
 ; *** Misc. errors
 ErrorCreatingDir=Setup kan de map "%1" niet maken
@@ -56,7 +67,7 @@ AboutSetupMenuItem=&Over Setup...
 AboutSetupTitle=Over Setup
 AboutSetupMessage=%1 versie %2%n%3%n%n%1-homepage:%n%4
 AboutSetupNote=
-TranslatorNote=Dutch translation maintained by Martijn Laan (mlaan@wintax.nl)
+TranslatorNote=Dutch translation maintained by Martijn Laan (mlaan@jrsoftware.org)
 
 ; *** Buttons
 ButtonBack=< Vo&rige
@@ -74,8 +85,8 @@ ButtonWizardBrowse=B&laderen...
 ButtonNewFolder=&Nieuwe map maken
 
 ; *** "Select Language" dialog messages
-SelectLanguageTitle=Taalkeuze voor Setup
-SelectLanguageLabel=Selecteer de taal welke Setup gebruikt tijdens de installatie:
+SelectLanguageTitle=Selecteer taal voor Setup
+SelectLanguageLabel=Selecteer de taal die Setup gebruikt tijdens de installatie.
 
 ; *** Common wizard text
 ClickNext=Klik op Volgende om verder te gaan of op Annuleren om Setup af te sluiten.
@@ -123,9 +134,10 @@ WizardSelectDir=Kies de doelmap
 SelectDirDesc=Waar moet [name] geïnstalleerd worden?
 SelectDirLabel3=Setup zal [name] in de volgende map installeren.
 SelectDirBrowseLabel=Klik op Volgende om door te gaan. Klik op Bladeren om een andere map te kiezen.
-DiskSpaceMBLabel=Er is tenminste [mb] MB vrije schijfruimte vereist.
-ToUNCPathname=Setup kan niet installeren naar een UNC-padnaam. Als u wilt installeren naar een netwerk, moet u een netwerkverbinding maken.
-InvalidPath=U moet een volledig pad met stationsletter invoeren; bijvoorbeeld:%nC:\APP%n%nof een UNC pad zoals:%n%n\\server\share
+DiskSpaceMBLabel=Er is ten minste [mb] MB vrije schijfruimte vereist.
+CannotInstallToNetworkDrive=Setup kan niet installeren naar een netwerkstation.
+CannotInstallToUNCPath=Setup kan niet installeren naar een UNC-pad.
+InvalidPath=U moet een volledig pad met stationsletter invoeren; bijvoorbeeld:%nC:\APP%n%nof een UNC-pad zoals:%n%n\\server\share
 InvalidDrive=Het geselecteerde station bestaat niet. Kies een ander station.
 DiskSpaceWarningTitle=Onvoldoende schijfruimte
 DiskSpaceWarning=Setup vereist ten minste %1 kB vrije schijfruimte voor het installeren, maar het geselecteerde station heeft slechts %2 kB beschikbaar.%n%nWilt u toch doorgaan?
@@ -180,9 +192,14 @@ ReadyMemoTasks=Extra taken:
 
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Bezig met het voorbereiden van de installatie
-PreparingDesc=Bezig met het voorbereiden van [name] installatie.
-PreviousInstallNotCompleted=De installatie/verwijdering van een vorig programma is niet voltooid. U moet uw computer opnieuw opstarten om die installatie te voltooien.%n%nStart [name] Setup nogmaals als uw computer opnieuw is opgetart .
+PreparingDesc=Setup is bezig met het voorbereiden van de installatie van [name].
+PreviousInstallNotCompleted=De installatie/verwijdering van een vorig programma is niet voltooid. U moet uw computer opnieuw opstarten om die installatie te voltooien.%n%nStart [name] Setup nogmaals als uw computer opnieuw is opgestart.
 CannotContinue=Setup kan niet doorgaan. Klik op annuleren om af te sluiten.
+ApplicationsFound=De volgende programma's gebruiken bestanden die moeten worden bijgewerkt door Setup. U wordt aanbevolen Setup toe te staan om automatisch deze programma's af te sluiten.
+ApplicationsFound2=De volgende programma's gebruiken bestanden die moeten worden bijgewerkt door Setup. U wordt aanbevolen Setup toe te staan om automatisch deze programma's af te sluiten. Nadat de installatie is voltooid zal Setup proberen de applicaties opnieuw op te starten.
+CloseApplications=&Programma's automatisch afsluiten
+DontCloseApplications=Programma's &niet afsluiten
+ErrorCloseApplications=Setup kon niet alle programma's automatisch afsluiten. U wordt aanbevolen alle programma's die bestanden gebruiken die moeten worden bijgewerkt door Setup af te sluiten voordat u verder gaat.
 
 ; *** "Installing" wizard page
 WizardInstalling=Bezig met installeren
@@ -210,9 +227,13 @@ SelectDirectoryLabel=Geef de locatie van de volgende diskette.
 
 ; *** Installation phase messages
 SetupAborted=Setup is niet voltooid.%n%nCorrigeer het probleem en voer Setup opnieuw uit.
-EntryAbortRetryIgnore=Klik op Opnieuw om het opnieuw te proberen, op Negeren om toch door te gaan, of op Afbreken om de installatie af te breken.
+AbortRetryIgnoreSelectAction=Selecteer actie
+AbortRetryIgnoreRetry=&Probeer opnieuw
+AbortRetryIgnoreIgnore=&Negeer de fout en ga door
+AbortRetryIgnoreCancel=Breek installatie af
 
 ; *** Installation status messages
+StatusClosingApplications=Programma's afsluiten...
 StatusCreateDirs=Mappen maken...
 StatusExtractFiles=Bestanden uitpakken...
 StatusCreateIcons=Snelkoppelingen maken...
@@ -221,6 +242,7 @@ StatusCreateRegistryEntries=Registergegevens instellen...
 StatusRegisterFiles=Bestanden registreren...
 StatusSavingUninstall=Verwijderingsinformatie opslaan...
 StatusRunProgram=Installatie voltooien...
+StatusRestartingApplications=Programma's opnieuw starten...
 StatusRollback=Veranderingen ongedaan maken...
 
 ; *** Misc. errors
@@ -239,11 +261,13 @@ ErrorRegWriteKey=Fout bij het schrijven naar registersleutel:%n%1\%2
 ErrorIniEntry=Fout bij het maken van een INI-instelling in bestand "%1".
 
 ; *** File copying errors
-FileAbortRetryIgnore=Klik op Opnieuw om het opnieuw te proberen, op Negeren om toch door te gaan (niet aanbevolen), of op Afbreken om de installatie af te breken.
-FileAbortRetryIgnore2=Klik op Opnieuw om het opnieuw te proberen, op Negeren om toch door te gaan (niet aanbevolen), of op Afbreken om de installatie af te breken.
+FileAbortRetryIgnoreSkipNotRecommended=&Sla dit bestand over (niet aanbevolen)
+FileAbortRetryIgnoreIgnoreNotRecommended=&Negeer de fout en ga door (niet aanbevolen)
 SourceIsCorrupted=Het bronbestand is beschadigd
 SourceDoesntExist=Het bronbestand "%1" bestaat niet
-ExistingFileReadOnly=Het bestaande bestand is gemarkeerd als alleen-lezen.%n%nKlik op Opnieuw om het kenmerk alleen-lezen te verwijderen en opnieuw te proberen, op Negeren om dit bestand over te slaan, of op Afbreken om de installatie af te breken.
+ExistingFileReadOnly2=Het bestaande bestand kon niet vervangen worden omdat het een alleen-lezen markering heeft.
+ExistingFileReadOnlyRetry=&Verwijder de alleen-lezen markering en probeer het opnieuw
+ExistingFileReadOnlyKeepExisting=&Behoud het bestaande bestand
 ErrorReadingExistingDest=Er is een fout opgetreden bij het lezen van het bestaande bestand:
 FileExists=Het bestand bestaat al.%n%nWilt u dat Setup het overschrijft?
 ExistingFileNewer=Het bestaande bestand is nieuwer dan het bestand dat Setup probeert te installeren. U wordt aanbevolen het bestaande bestand te behouden.%n%nWilt u het bestaande bestand behouden?
@@ -257,6 +281,14 @@ ErrorRenamingTemp=Er is een fout opgetreden bij het hernoemen van een bestand in
 ErrorRegisterServer=Kan de DLL/OCX niet registreren: %1
 ErrorRegSvr32Failed=RegSvr32 mislukt met afsluitcode %1
 ErrorRegisterTypeLib=Kan de type library niet registreren: %1
+
+; *** Uninstall display name markings
+UninstallDisplayNameMark=%1 (%2)
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32-bit
+UninstallDisplayNameMark64Bit=64-bit
+UninstallDisplayNameMarkAllUsers=Alle gebruikers
+UninstallDisplayNameMarkCurrentUser=Huidige gebruiker
 
 ; *** Post-installation errors
 ErrorOpeningReadme=Er is een fout opgetreden bij het openen van het Leesmij-bestand.
@@ -284,11 +316,14 @@ SharedFileLocationLabel=Locatie:
 WizardUninstalling=Verwijderingsstatus
 StatusUninstalling=Verwijderen van %1...
 
+; *** Shutdown block reasons
+ShutdownBlockReasonInstallingApp=Installeren van %1.
+ShutdownBlockReasonUninstallingApp=Verwijderen van %1.
+
 [CustomMessages]
-;Inno Setup Built-in Custom Messages
+
 NameAndVersion=%1 versie %2
 AdditionalIcons=Extra snelkoppelingen:
-OptionalFeatures=Optionele Functies:
 CreateDesktopIcon=Maak een snelkoppeling op het &bureaublad
 CreateQuickLaunchIcon=Maak een snelkoppeling op de &Snel starten werkbalk
 ProgramOnTheWeb=%1 op het Web
@@ -296,8 +331,12 @@ UninstallProgram=Verwijder %1
 LaunchProgram=&Start %1
 AssocFileExtension=&Koppel %1 aan de %2 bestandsextensie
 AssocingFileExtension=Bezig met koppelen van %1 aan de %2 bestandsextensie...
+AutoStartProgramGroupDescription=Opstarten:
+AutoStartProgram=%1 automatisch starten
+AddonHostProgramNotFound=%1 kon niet worden gevonden in de geselecteerde map.%n%nWilt u toch doorgaan?
 
 ;Things we can also localize
+OptionalFeatures=Optionele Functies:
 CompanyName=Thingamahoochie Software
 
 ;Types

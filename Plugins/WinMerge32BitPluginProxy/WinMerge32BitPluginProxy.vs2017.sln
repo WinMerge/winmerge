@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinMerge32BitPluginProxy", "WinMerge32BitPluginProxy.vs2017.vcxproj", "{AF985E3F-14EE-420E-90FE-AAA844797D36}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinMerge32BitPluginProxyPS", "WinMerge32BitPluginProxyPS.vs2017.vcxproj", "{D490276C-363D-4996-B365-28A08877387C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AF985E3F-14EE-420E-90FE-AAA844797D36} = {AF985E3F-14EE-420E-90FE-AAA844797D36}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF985E3F-14EE-420E-90FE-AAA844797D36}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF985E3F-14EE-420E-90FE-AAA844797D36}.Debug|Win32.Build.0 = Debug|Win32
+		{AF985E3F-14EE-420E-90FE-AAA844797D36}.Release|Win32.ActiveCfg = Release|Win32
+		{AF985E3F-14EE-420E-90FE-AAA844797D36}.Release|Win32.Build.0 = Release|Win32
+		{D490276C-363D-4996-B365-28A08877387C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D490276C-363D-4996-B365-28A08877387C}.Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

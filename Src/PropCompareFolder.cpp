@@ -30,6 +30,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_bExpandSubdirs(false)
  , m_bIgnoreReparsePoints(false)
  , m_nQuickCompareLimit(4 * Mega)
+ , m_nBinaryCompareLimit(64 * Mega)
  , m_nCompareThreads(-1)
 {
 }
@@ -46,6 +47,7 @@ void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_EXPAND_SUBDIRS, m_bExpandSubdirs);
 	DDX_Check(pDX, IDC_IGNORE_REPARSEPOINTS, m_bIgnoreReparsePoints);
 	DDX_Text(pDX, IDC_COMPARE_QUICKC_LIMIT, m_nQuickCompareLimit);
+	DDX_Text(pDX, IDC_COMPARE_BINARYC_LIMIT, m_nBinaryCompareLimit);
 	DDX_Text(pDX, IDC_COMPARE_THREAD_COUNT, m_nCompareThreads);
 	//}}AFX_DATA_MAP
 	UpdateControls();
@@ -75,6 +77,7 @@ void PropCompareFolder::ReadOptions()
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT) / Mega ;
+	m_nBinaryCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_BINARY_LIMIT) / Mega ;
 	m_nCompareThreads = GetOptionsMgr()->GetInt(OPT_CMP_COMPARE_THREADS);
 }
 
@@ -96,6 +99,9 @@ void PropCompareFolder::WriteOptions()
 	if (m_nQuickCompareLimit > 2000)
 		m_nQuickCompareLimit = 2000;
 	GetOptionsMgr()->SaveOption(OPT_CMP_QUICK_LIMIT, m_nQuickCompareLimit * Mega);
+	if (m_nBinaryCompareLimit > 2000)
+		m_nBinaryCompareLimit = 2000;
+	GetOptionsMgr()->SaveOption(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit * Mega);
 	GetOptionsMgr()->SaveOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads);
 }
 
@@ -137,6 +143,7 @@ void PropCompareFolder::OnDefaults()
 	m_bExpandSubdirs = GetOptionsMgr()->GetDefault<bool>(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_bIgnoreReparsePoints = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_nQuickCompareLimit = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_QUICK_LIMIT) / Mega;
+	m_nBinaryCompareLimit = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_BINARY_LIMIT) / Mega;
 	m_nCompareThreads = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_COMPARE_THREADS);
 	UpdateData(FALSE);
 }

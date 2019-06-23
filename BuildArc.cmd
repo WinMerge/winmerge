@@ -2,6 +2,15 @@ pushd "%~dp0"
 
 setlocal
 call SetVersion.cmd
+if "%2" == "-ci" (
+  if exist .hg (
+    for /F "delims=" %%i in ('hg id') do set SAFEAPPVER=%SAFEAPPVER%-%DATE:/=-%-%%i
+  ) else if exist .git (
+    for /F "delims=" %%i in ('git rev-parse --short head') do set SAFEAPPVER=%SAFEAPPVER%-%DATE:/=-%-%%i
+  ) else (
+    set SAFEAPPVER=%SAFEAPPVER%-%DATE:/=-%-%APPVEYOR_BUILD_VERSION%
+  )
+)
 set DISTDIR=.\Build\Releases
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 
@@ -50,7 +59,7 @@ rem Docs
 for %%i in (Translations\Docs\Readme\ReadMe-*.txt Build\Manual\htmlhelp\WinMerge.chm Docs\Users\ReleaseNotes.html Docs\Users\ChangeLog.txt) do (
   copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Docs"
 )
-for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\Files.txt Docs\Users\ReadMe.txt) do (
+for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\ReadMe.txt) do (
   copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge"
 )
 
@@ -63,7 +72,7 @@ if not "%1" == "" (
 rem ShellExtension
 copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
-copy ShellExtension\*Register.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
+copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 
 rem Translation
 copy Build\%PLATFORM%\MergeUnicodeRelease\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\"
