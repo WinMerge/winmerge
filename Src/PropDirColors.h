@@ -29,6 +29,8 @@ public:
 private:
 	//{{AFX_DATA(PropDirColors)
 	enum { IDD = IDD_PROPPAGE_COLORS_DIR };
+	CColorButton	m_cDirItemEqual;
+	CColorButton	m_cDirItemEqualText;
 	CColorButton	m_cDirItemDiff;
 	CColorButton	m_cDirItemDiffText;
 	CColorButton	m_cDirItemNotExistAll;
@@ -58,6 +60,8 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(PropDirColors)
+	afx_msg void OnDirItemEqualColor();
+	afx_msg void OnDirItemEqualTextColor();
 	afx_msg void OnDirItemDiffColor();
 	afx_msg void OnDirItemDiffTextColor();
 	afx_msg void OnDirItemNotExistAllColor();

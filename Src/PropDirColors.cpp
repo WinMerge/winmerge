@@ -28,6 +28,8 @@ void PropDirColors::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropDirColors)
+	DDX_Control(pDX, IDC_DIR_ITEM_EQUAL_COLOR, m_cDirItemEqual);
+	DDX_Control(pDX, IDC_DIR_ITEM_EQUAL_TEXT_COLOR, m_cDirItemEqualText);
 	DDX_Control(pDX, IDC_DIR_ITEM_DIFF_COLOR, m_cDirItemDiff);
 	DDX_Control(pDX, IDC_DIR_ITEM_DIFF_TEXT_COLOR, m_cDirItemDiffText);
 	DDX_Control(pDX, IDC_DIR_ITEM_NOTEXISTALL_COLOR, m_cDirItemNotExistAll);
@@ -40,6 +42,8 @@ void PropDirColors::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(PropDirColors, CDialog)
 	//{{AFX_MSG_MAP(PropDirColors)
+	ON_BN_CLICKED(IDC_DIR_ITEM_EQUAL_COLOR, OnDirItemEqualColor)
+	ON_BN_CLICKED(IDC_DIR_ITEM_EQUAL_TEXT_COLOR, OnDirItemEqualTextColor)
 	ON_BN_CLICKED(IDC_DIR_ITEM_DIFF_COLOR, OnDirItemDiffColor)
 	ON_BN_CLICKED(IDC_DIR_ITEM_DIFF_TEXT_COLOR, OnDirItemDiffTextColor)
 	ON_BN_CLICKED(IDC_DIR_ITEM_NOTEXISTALL_COLOR, OnDirItemNotExistAllColor)
@@ -83,7 +87,23 @@ void PropDirColors::BrowseColor(CColorButton & colorButton)
 }
 
 /** 
- * @brief User wants to change xxx color
+ * @brief User wants to change equal color
+ */
+void PropDirColors::OnDirItemEqualColor()
+{
+	BrowseColor(m_cDirItemEqual);
+}
+
+/** 
+ * @brief User wants to change equal text color
+ */
+void PropDirColors::OnDirItemEqualTextColor()
+{
+	BrowseColor(m_cDirItemEqualText);
+}
+
+/** 
+ * @brief User wants to change diff color
  */
 void PropDirColors::OnDirItemDiffColor()
 {
@@ -91,7 +111,7 @@ void PropDirColors::OnDirItemDiffColor()
 }
 
 /** 
- * @brief User wants to change xxx color
+ * @brief User wants to change diff text color
  */
 void PropDirColors::OnDirItemDiffTextColor()
 {
@@ -99,7 +119,7 @@ void PropDirColors::OnDirItemDiffTextColor()
 }
 
 /** 
- * @brief User wants to change xxx color
+ * @brief User wants to change not-exist-all color
  */
 void PropDirColors::OnDirItemNotExistAllColor()
 {
@@ -107,7 +127,7 @@ void PropDirColors::OnDirItemNotExistAllColor()
 }
 
 /** 
- * @brief User wants to change xxx color
+ * @brief User wants to change not-exist-all text color
  */
 void PropDirColors::OnDirItemNotExistAllTextColor()
 {
@@ -115,7 +135,7 @@ void PropDirColors::OnDirItemNotExistAllTextColor()
 }
 
 /** 
- * @brief User wants to change xxx color
+ * @brief User wants to change filtered color
  */
 void PropDirColors::OnDirItemFilteredColor()
 {
@@ -123,7 +143,7 @@ void PropDirColors::OnDirItemFilteredColor()
 }
 
 /**
- * @brief User wants to change xxx color
+ * @brief User wants to change filtered text color
  */
 void PropDirColors::OnDirItemFilteredTextColor()
 {
@@ -132,6 +152,9 @@ void PropDirColors::OnDirItemFilteredTextColor()
 
 void PropDirColors::SerializeColors(OPERATION op)
 {
+	SerializeColor(op, m_cDirItemEqual, OPT_DIRCLR_ITEM_EQUAL);
+	SerializeColor(op, m_cDirItemEqualText, OPT_DIRCLR_ITEM_EQUAL_TEXT);
+
 	SerializeColor(op, m_cDirItemDiff, OPT_DIRCLR_ITEM_DIFF);
 	SerializeColor(op, m_cDirItemDiffText, OPT_DIRCLR_ITEM_DIFF_TEXT);
 

@@ -7,6 +7,8 @@
  */
 struct DIRCOLORSETTINGS
 {
+	COLORREF	clrDirItemEqual;			/**< Item equal background color */
+	COLORREF	clrDirItemEqualText;		/**< Item equal text color */
 	COLORREF	clrDirItemDiff;				/**< Item diff background color */
 	COLORREF	clrDirItemDiffText;			/**< Item diff text color */
 	COLORREF	clrDirItemNotExistAll;		/**< Item not-exist-all background color */

@@ -3767,6 +3767,11 @@ void CDirView::GetColors (int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText
 		clrText = m_cachedColors.clrDirItemDiffText;
 		clrBk = m_cachedColors.clrDirItemDiff;
 	}
+	else if (di.diffcode.isResultSame())
+	{
+		clrText = m_cachedColors.clrDirItemEqualText;
+		clrBk = m_cachedColors.clrDirItemEqual;
+	}
 	else
 	{
 		clrText = ::GetSysColor (COLOR_WINDOWTEXT);
