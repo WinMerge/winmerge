@@ -163,6 +163,7 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_block
 			e->match1 = -1;
 			e->trivial = static_cast<char>(xcur->ignore);
 			e->link = nullptr;
+			e->ignore = 0;
 			if (prev)
 				prev->link = e;
 			prev = e;
