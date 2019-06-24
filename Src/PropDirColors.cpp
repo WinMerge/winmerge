@@ -20,6 +20,7 @@
  */
 PropDirColors::PropDirColors(COptionsMgr *optionsMgr)
  : OptionsPanel(optionsMgr, PropDirColors::IDD)
+ , m_bUseColors(false)
  , m_cCustColors()
 {
 }
@@ -28,6 +29,7 @@ void PropDirColors::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropDirColors)
+	DDX_Check(pDX, IDC_USE_DIR_COMPARE_COLORS, m_bUseColors);
 	DDX_Control(pDX, IDC_DIR_ITEM_EQUAL_COLOR, m_cDirItemEqual);
 	DDX_Control(pDX, IDC_DIR_ITEM_EQUAL_TEXT_COLOR, m_cDirItemEqualText);
 	DDX_Control(pDX, IDC_DIR_ITEM_DIFF_COLOR, m_cDirItemDiff);
@@ -60,6 +62,7 @@ END_MESSAGE_MAP()
  */
 void PropDirColors::ReadOptions()
 {
+	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS) ? true : false;
 	SerializeColors(READ_OPTIONS);
 }
 
@@ -69,6 +72,7 @@ void PropDirColors::ReadOptions()
  */
 void PropDirColors::WriteOptions()
 {
+	GetOptionsMgr()->SaveOption(OPT_DIRCLR_USE_COLORS, m_bUseColors);
 	SerializeColors(WRITE_OPTIONS);
 }
 
@@ -191,3 +195,4 @@ void PropDirColors::OnDefaults()
 {
 	SerializeColors(SET_DEFAULTS);
 }
+

@@ -161,22 +161,24 @@ extern const String OPT_CLR_SELECTED_WORDDIFF_TEXT OP("Settings/SelectedWordDiff
 extern const String OPT_CLR_DEFAULT_TEXT_COLORING OP("Settings/DefaultTextColoring");
 
 // DirCompare Color options
-// The item equal background colortem diff text color
+// The item equal background color
 extern const String OPT_DIRCLR_ITEM_EQUAL OP("Settings/DirItemEqualColor");
-// The item equal text color color
+// The item equal text color
 extern const String OPT_DIRCLR_ITEM_EQUAL_TEXT OP("Settings/DirItemEqualTextColor");
-// The item diff background colortem diff text color
+// The item diff background color
 extern const String OPT_DIRCLR_ITEM_DIFF OP("Settings/DirItemDiffColor");
-// The item diff text color color
+// The item diff text color
 extern const String OPT_DIRCLR_ITEM_DIFF_TEXT OP("Settings/DirItemDiffTextColor");
 // The item not-exist-all background color
 extern const String OPT_DIRCLR_ITEM_NOT_EXIST_ALL OP("Settings/DirItemNotExistAllColor");
-// The item not-exist-all text color color
+// The item not-exist-all text color
 extern const String OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT OP("Settings/DirItemNotExistAllTextColor");
 // The item filtered background color
 extern const String OPT_DIRCLR_ITEM_FILTERED OP("Settings/DirItemFilteredColor");
 // The item filtered text color
 extern const String OPT_DIRCLR_ITEM_FILTERED_TEXT OP("Settings/DirItemFilteredTextColor");
+// Use dir compare coloring?
+extern const String OPT_DIRCLR_USE_COLORS OP("Settings/UseDirCompareColors");
 
 // Compare options
 extern const String OPT_CMP_IGNORE_WHITESPACE OP("Settings/IgnoreSpace");

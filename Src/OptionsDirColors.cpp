@@ -20,6 +20,7 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT, (int)RGB(0,0,0));
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED, (int)RGB(221,221,221));
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED_TEXT, (int)RGB(0,0,0));
+	pOptionsMgr->InitOption(OPT_DIRCLR_USE_COLORS, true);
 }
 
 void Load(const COptionsMgr *pOptionsMgr, DIRCOLORSETTINGS& colors)
