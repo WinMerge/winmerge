@@ -571,6 +571,9 @@
     <ClCompile Include="PropCompareImage.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PropDirColors.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="PropEditor.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
@@ -1363,6 +1366,9 @@
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PropCompareImage.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropDirColors.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PropEditor.h">

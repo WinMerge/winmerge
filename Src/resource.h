@@ -56,6 +56,7 @@
 #define IDD_PROPPAGE_COMPARE_BINARY     243
 #define IDD_PROPPAGE_COLORS_MARKER      244
 #define IDD_EDIT_MARKER                 245
+#define IDD_PROPPAGE_COLORS_DIR         246
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -475,6 +476,12 @@
 #define IDC_COMPARE_BINARYC_LIMIT       1353
 #define IDC_REGISTER_SHELLEXTENSION_PERUSER 1354
 #define IDC_UNREGISTER_SHELLEXTENSION_PERUSER 1355
+#define IDC_DIR_ITEM_DIFF_COLOR         1356
+#define IDC_DIR_ITEM_DIFF_TEXT_COLOR    1357
+#define IDC_DIR_ITEM_NOTEXISTALL_COLOR  1358
+#define IDC_DIR_ITEM_NOTEXISTALL_TEXT_COLOR 1359
+#define IDC_DIR_ITEM_FILTERED_COLOR     1360
+#define IDC_DIR_ITEM_FILTERED_TEXT_COLOR 1361
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -556,6 +563,7 @@
 #define IDS_OPTIONSPG_FOLDERCOMPARE     9056
 #define IDS_OPTIONSPG_IMAGECOMPARE      9057
 #define IDS_OPTIONSPG_BINARYCOMPARE     9058
+#define IDS_OPTIONSPG_DIRCOLORS         9059
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002
