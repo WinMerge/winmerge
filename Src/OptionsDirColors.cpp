@@ -12,11 +12,11 @@ namespace Options { namespace DirColors {
 
 void SetDefaults(COptionsMgr *pOptionsMgr)
 {
-	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_DIFF, (int)RGB(239,203,5));
+	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_DIFF, (int)RGB(240,222,125));
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_DIFF_TEXT, (int)RGB(0,0,0));
-	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL, (int)RGB(192, 192, 192));
+	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL, (int)RGB(250,245,215));
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT, (int)RGB(0,0,0));
-	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED, (int)RGB(251,242,191));
+	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED, (int)RGB(221,221,221));
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED_TEXT, (int)RGB(0,0,0));
 }
 
