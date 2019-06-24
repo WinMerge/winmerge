@@ -91,6 +91,13 @@ static void append_equivs(const xdfile_t& xdf, struct file_data& filevec, std::v
 	}
 }
 
+static int is_missing_newline(const mmfile_t& mmfile)
+{
+	if (mmfile.size == 0 || mmfile.ptr[mmfile.size - 1] == '\r' || mmfile.ptr[mmfile.size - 1] == '\n')
+		return 0;
+	return 1;
+}
+
 struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_blocks_flag, unsigned xdl_flags)
 {
 	mmfile_t mmfile1 = { 0 }, mmfile2 = { 0 };
@@ -146,6 +153,8 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_block
 		}
 		if (xe.xdf2.nrec > 0)
 			filevec[1].linbuf[xe.xdf2.nrec] = xe.xdf2.recs[xe.xdf2.nrec - 1]->ptr + xe.xdf2.recs[xe.xdf2.nrec - 1]->size;
+		filevec[0].missing_newline = is_missing_newline(mmfile1);
+		filevec[1].missing_newline = is_missing_newline(mmfile2);
 
 		change *prev = nullptr;
 		for (xdchange_t* xcur = xscr; xcur; xcur = xcur->next)
