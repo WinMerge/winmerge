@@ -161,6 +161,10 @@ extern const String OPT_CLR_SELECTED_WORDDIFF_TEXT OP("Settings/SelectedWordDiff
 extern const String OPT_CLR_DEFAULT_TEXT_COLORING OP("Settings/DefaultTextColoring");
 
 // DirCompare Color options
+// The item equal background colortem diff text color
+extern const String OPT_DIRCLR_ITEM_EQUAL OP("Settings/DirItemEqualColor");
+// The item equal text color color
+extern const String OPT_DIRCLR_ITEM_EQUAL_TEXT OP("Settings/DirItemEqualTextColor");
 // The item diff background colortem diff text color
 extern const String OPT_DIRCLR_ITEM_DIFF OP("Settings/DirItemDiffColor");
 // The item diff text color color
