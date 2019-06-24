@@ -979,6 +979,7 @@
     <ClCompile Include="PropCompareBinary.cpp" />
     <ClCompile Include="PropCompareFolder.cpp" />
     <ClCompile Include="PropCompareImage.cpp" />
+    <ClCompile Include="PropDirColors.cpp" />
     <ClCompile Include="PropEditor.cpp" />
     <ClCompile Include="Common\PropertyPageHost.cpp" />
     <ClCompile Include="PropGeneral.cpp" />
@@ -1337,6 +1338,7 @@
     <ClInclude Include="PropCompareBinary.h" />
     <ClInclude Include="PropCompareFolder.h" />
     <ClInclude Include="PropCompareImage.h" />
+    <ClInclude Include="PropDirColors.h" />
     <ClInclude Include="PropEditor.h" />
     <ClInclude Include="Common\PropertyPageHost.h" />
     <ClInclude Include="PropGeneral.h" />
