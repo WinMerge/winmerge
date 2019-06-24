@@ -127,6 +127,7 @@ CDirView::CDirView()
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
+	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);
 }
 
 CDirView::~CDirView()
@@ -2863,6 +2864,7 @@ void CDirView::RefreshOptions()
 	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
+	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);
 }
 
 /**
@@ -3693,6 +3695,10 @@ LRESULT CDirView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
  */
 void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult) 
 {
+	if (!m_bUseColors) {
+		return;
+	}
+
 	LPNMLISTVIEW pNM = (LPNMLISTVIEW)pNMHDR;
 	*pResult = CDRF_DODEFAULT;
 
@@ -3885,7 +3891,7 @@ void CDirView::UpdateColumnNames()
 	int ncols = m_pColItems->GetColCount();
 	for (int i=0; i<ncols; ++i)
 	{
-		const DirColInfo * col = m_pColItems->GetDirColInfo(i);
+		const DirColInfo* col = m_pColItems->GetDirColInfo(i);
 		NameColumn(col, i);
 	}
 }

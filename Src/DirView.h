@@ -216,6 +216,7 @@ protected:
 	bool m_bNeedSearchFirstDiffItem;
 	bool m_bNeedSearchLastDiffItem;
 	DIRCOLORSETTINGS m_cachedColors; /**< Cached color settings */
+	bool m_bUseColors;
 
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuMiddle; /**< Shell context menu for group of middle files */

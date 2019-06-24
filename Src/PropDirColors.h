@@ -37,6 +37,7 @@ private:
 	CColorButton	m_cDirItemNotExistAllText;
 	CColorButton	m_cDirItemFiltered;
 	CColorButton	m_cDirItemFilteredText;
+	bool            m_bUseColors;
 	//}}AFX_DATA
 
 	// Overrides
