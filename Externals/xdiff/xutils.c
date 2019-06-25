@@ -26,6 +26,10 @@
 
 
 
+static inline int is_eol(char const* ptr, char const* top)
+{
+	return (*ptr == '\n' || (*ptr == '\r' && (ptr == top - 1 || *(ptr + 1) != '\n')));
+}
 
 long xdl_bogosqrt(long n) {
 	long i;
@@ -120,11 +124,6 @@ void *xdl_cha_alloc(chastore_t *cha) {
 	ancur->icurr += cha->isize;
 
 	return data;
-}
-
-static inline int is_eol(char const* ptr, char const* top)
-{
-	return (*ptr == '\n' || (*ptr == '\r' && (ptr == top - 1 || *(ptr + 1) != '\n')));
 }
 
 long xdl_guess_lines(mmfile_t *mf, long sample) {
