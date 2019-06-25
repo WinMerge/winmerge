@@ -1456,6 +1456,21 @@ msgstr "Vald Ordskillnad:"
 msgid "Defaults"
 msgstr "Förval"
 
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
 #, c-format
 msgid "System"
 msgstr "System"
@@ -2472,6 +2487,9 @@ msgstr ""
 #, c-format
 msgid "Syntax"
 msgstr "Syntax"
+
+msgid "Folder Compare"
+msgstr ""
 
 #, c-format
 msgid "Differences"
