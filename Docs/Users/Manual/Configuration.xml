@@ -1222,6 +1222,26 @@
     <para>TBD</para>
   </section>
 
+  <section id="Configuration_foldercomparecolors">
+    <title>Folder Compare Colors page<indexterm>
+        <primary>folder compare colors</primary>
+
+        <secondary>options</secondary>
+      </indexterm></title>
+
+    <para>By default, the WinMerge Folder Compare window use background colors
+    to show the status from a item (equal, different, not exists on all sides
+    or filtered).</para>
+
+    <para>To change a color, click in its box to open a standard Color chooser
+    dialog. Choose one of the predefined colors or define your own custom color,
+    then click <guibutton>OK</guibutton> to load the new color in the
+    box.</para>
+
+    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
+    the installed color scheme.</para>
+  </section>
+
   <section id="Configuration_archive">
     <title>Archive Support page<indexterm>
         <primary>archiving files</primary>
