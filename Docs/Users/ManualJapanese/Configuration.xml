@@ -270,6 +270,16 @@
         </listitem>
       </itemizedlist>
     </section>
+
+    <section>
+      <title>Language<indexterm>
+          <primary>Language</primary>
+        </indexterm></title>
+
+      <para>See <xref linkend="Locales_changing" />.</para>
+
+    </section>
+
     <section>
       <title>リセット</title>
       <para>WinMergeは、いくつかのメッセージボックスを抑制することを許可します。例えば、同一の2つのファイルが開かれた時、通常なら
@@ -496,28 +506,23 @@
     </section>
 
     <section>
-      <title>3秒以下の時間差を無視する
+      <title>フィルタコメント
       <indexterm>
-        <primary>timestamps</primary>
-        <secondary>detecting and ignoring differences</secondary>
+        <primary>filters</primary>
+        <secondary>comments</secondary>
       </indexterm></title>
+      <!--Just guessing what this does - ask a developer.-->
       <itemizedlist>
         <listitem>
           <para>
-          <option>無効</option>(デフォルト): 異なるタイムスタンプを持つファイルは、差異として検出されます。</para>
+          <option>無効</option>(デフォルト): WinMerge は、他の内容と一緒に、コード中のコメントを比較します。</para>
         </listitem>
         <listitem>
           <para>
-          <option>有効</option>: 時々(例えば、ネットワーク共有を使用中の場合)、僅かなタイムスタンプの差異は重要なことではありません。
-          <!-- TODO: ちょっと意訳 -->そのような状況でより意味のある結果を得るために、このオプションで3秒以下の時間差を無視することができます。</para>
-          <para>このオプションは、(
-          <xref linkend="Configuration_compmethod" />で説明されている)比較方法が、
-          <guimenuitem>更新日時</guimenuitem>か
-          <guimenuitem>更新日時とサイズ</guimenuitem>の場合にのみ動作します。
-          <!-- TODO: 意訳すぎ？ -->他の比較方法と共に使用しても効果はありません。</para>
-          <warning>
-            <para>このオプションは、時間差が検出された時のみ有効です。さもなければ、それは不正な比較結果の原因となります。</para>
-          </warning>
+          <option>有効</option>: このオプションは、(C++ や Java
+          のような)プログラミング言語のコメントを検出し、それらを無視することにより、比較を最適化します。</para>
+          <para>既知のファイル形式と、それらのコメント記号は WinMerge インストールフォルダ直下の 
+          <filename>IgnoreSectionMarkers.ini</filename>ファイルに定義されています。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -551,6 +556,15 @@
             短所は、比較時に行フィルタが許可されないことです。例えば、この方法は、行フィルタをファイルのすべての差異を無視するように設定していても、それらを差異として検出します。</para>
           </listitem>
         </varlistentry>
+
+        <varlistentry>
+          <term>Binary Contents</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+
         <varlistentry>
           <term>更新日時
           <indexterm>
@@ -609,28 +623,106 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
-      <title>フィルタコメント
+      <title>3秒以下の時間差を無視する
       <indexterm>
-        <primary>filters</primary>
-        <secondary>comments</secondary>
+        <primary>timestamps</primary>
+        <secondary>detecting and ignoring differences</secondary>
       </indexterm></title>
-      <!--Just guessing what this does - ask a developer.-->
       <itemizedlist>
         <listitem>
           <para>
-          <option>無効</option>(デフォルト): WinMerge は、他の内容と一緒に、コード中のコメントを比較します。</para>
+          <option>無効</option>(デフォルト): 異なるタイムスタンプを持つファイルは、差異として検出されます。</para>
         </listitem>
         <listitem>
           <para>
-          <option>有効</option>: このオプションは、(C++ や Java
-          のような)プログラミング言語のコメントを検出し、それらを無視することにより、比較を最適化します。</para>
-          <para>既知のファイル形式と、それらのコメント記号は WinMerge インストールフォルダ直下の 
-          <filename>IgnoreSectionMarkers.ini</filename>ファイルに定義されています。</para>
+          <option>有効</option>: 時々(例えば、ネットワーク共有を使用中の場合)、僅かなタイムスタンプの差異は重要なことではありません。
+          <!-- TODO: ちょっと意訳 -->そのような状況でより意味のある結果を得るために、このオプションで3秒以下の時間差を無視することができます。</para>
+          <para>このオプションは、(
+          <xref linkend="Configuration_compmethod" />で説明されている)比較方法が、
+          <guimenuitem>更新日時</guimenuitem>か
+          <guimenuitem>更新日時とサイズ</guimenuitem>の場合にのみ動作します。
+          <!-- TODO: 意訳すぎ？ -->他の比較方法と共に使用しても効果はありません。</para>
+          <warning>
+            <para>このオプションは、時間差が検出された時のみ有効です。さもなければ、それは不正な比較結果の原因となります。</para>
+          </warning>
         </listitem>
       </itemizedlist>
     </section>
 
+    <section>
+      <title>Include unique subfolders contents<indexterm>
+          <primary>include unique subfolders</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+	
+    <section>
+      <title>Include Subfolders<indexterm>
+          <primary>include subfolders</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+	
+    <section>
+      <title>Automatically expand all subfolders<indexterm>
+          <primary>expand subfolders</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+	
+    <section>
+      <title>Ignore Reparse Points<indexterm>
+          <primary>reparse points</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+	
     <section>
       <title>Quick compare limit (MB)<indexterm>
           <primary>Quick compare</primary>
@@ -912,6 +1004,26 @@
       </indexterm></title>
 
     <para>TBD</para>
+  </section>
+
+  <section id="Configuration_foldercomparecolors">
+    <title>Folder Compare Colors page<indexterm>
+        <primary>folder compare colors</primary>
+
+        <secondary>options</secondary>
+      </indexterm></title>
+
+    <para>By default, the WinMerge Folder Compare window use background colors
+    to show the status from a item (equal, different, not exists on all sides
+    or filtered).</para>
+
+    <para>To change a color, click in its box to open a standard Color chooser
+    dialog. Choose one of the predefined colors or define your own custom color,
+    then click <guibutton>OK</guibutton> to load the new color in the
+    box.</para>
+
+    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
+    the installed color scheme.</para>
   </section>
 
   <section id="Configuration_archive">
