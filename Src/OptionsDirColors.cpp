@@ -12,14 +12,15 @@ namespace Options { namespace DirColors {
 
 void SetDefaults(COptionsMgr *pOptionsMgr)
 {
-	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_EQUAL, (int)RGB(204,255,204));
-	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_EQUAL_TEXT, (int)RGB(0,0,0));
+	int defaultTextColor = static_cast<int>(GetSysColor(COLOR_WINDOWTEXT));
+	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_EQUAL, (int)GetSysColor(COLOR_WINDOW));
+	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_EQUAL_TEXT, defaultTextColor);
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_DIFF, (int)RGB(240,222,125));
-	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_DIFF_TEXT, (int)RGB(0,0,0));
+	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_DIFF_TEXT, defaultTextColor);
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL, (int)RGB(250,245,215));
-	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT, (int)RGB(0,0,0));
+	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT, defaultTextColor);
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED, (int)RGB(221,221,221));
-	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED_TEXT, (int)RGB(0,0,0));
+	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED_TEXT, defaultTextColor);
 	pOptionsMgr->InitOption(OPT_DIRCLR_USE_COLORS, true);
 }
 
