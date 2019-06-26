@@ -1451,6 +1451,21 @@ msgstr "В избраните думи:"
 msgid "Defaults"
 msgstr "Възстанови"
 
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
 #, c-format
 msgid "System"
 msgstr "Системни"
@@ -2403,6 +2418,9 @@ msgstr "За да видите отново това съобщение, нат�
 #, c-format
 msgid "Syntax"
 msgstr "Синтаксис"
+
+msgid "Folder Compare"
+msgstr ""
 
 #, c-format
 msgid "Differences"

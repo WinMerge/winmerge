@@ -1436,6 +1436,21 @@ msgstr "Одабери различите речи:"
 msgid "Defaults"
 msgstr "Подразумевано"
 
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
 #, c-format
 msgid "System"
 msgstr "Систем"
@@ -2419,6 +2434,9 @@ msgstr ""
 
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Folder Compare"
 msgstr ""
 
 #, c-format

@@ -1454,6 +1454,21 @@ msgstr "Diferença das Palavras Selecionadas:"
 msgid "Defaults"
 msgstr "Padrões"
 
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
 #, c-format
 msgid "System"
 msgstr "Sistema"
@@ -2464,6 +2479,9 @@ msgstr "Pra tornar esta caixa de mensagem visível de novo pressione o botão Re
 #, c-format
 msgid "Syntax"
 msgstr "Sintaxe"
+
+msgid "Folder Compare"
+msgstr ""
 
 #, c-format
 msgid "Differences"
