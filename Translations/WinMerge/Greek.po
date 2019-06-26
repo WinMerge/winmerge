@@ -1453,6 +1453,21 @@ msgstr "Επιλεγμένη Διαφορά Λέξεως:"
 msgid "Defaults"
 msgstr "&Αρχικές Ρυθμίσεις"
 
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
 #, c-format
 msgid "System"
 msgstr "Σύστημα"
@@ -2434,6 +2449,9 @@ msgstr ""
 
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Folder Compare"
 msgstr ""
 
 #, c-format

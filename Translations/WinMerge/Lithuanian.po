@@ -1124,6 +1124,21 @@ msgstr "Pažym. žodžio skirtumas:"
 msgid "Defaults"
 msgstr "Numat. reikšmės"
 
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
 msgid "System"
 msgstr "Sistemos"
 
@@ -1904,6 +1919,9 @@ msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite Nuostatų ekrano d
 
 msgid "Syntax"
 msgstr "Sintaksės"
+
+msgid "Folder Compare"
+msgstr ""
 
 msgid "Differences"
 msgstr "Skirtumų"

@@ -1454,6 +1454,21 @@ msgstr "Rozdiel vo vybranom slove:"
 msgid "Defaults"
 msgstr "Predvolené"
 
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
 #, c-format
 msgid "System"
 msgstr "Systém"
@@ -2439,6 +2454,9 @@ msgstr ""
 
 #, c-format
 msgid "Syntax"
+msgstr ""
+
+msgid "Folder Compare"
 msgstr ""
 
 #, c-format

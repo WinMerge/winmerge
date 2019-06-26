@@ -179,6 +179,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateMapFile>true</GenerateMapFile>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -240,8 +241,7 @@
       </DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
       <GenerateMapFile>true</GenerateMapFile>
-      <OptimizeReferences>
-      </OptimizeReferences>
+      <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
     <PostBuildEvent>
@@ -898,6 +898,11 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="OptionsDirColors.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="OptionsFont.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -974,6 +979,7 @@
     <ClCompile Include="PropCompareBinary.cpp" />
     <ClCompile Include="PropCompareFolder.cpp" />
     <ClCompile Include="PropCompareImage.cpp" />
+    <ClCompile Include="PropDirColors.cpp" />
     <ClCompile Include="PropEditor.cpp" />
     <ClCompile Include="Common\PropertyPageHost.cpp" />
     <ClCompile Include="PropGeneral.cpp" />
@@ -1306,6 +1312,7 @@
     <ClInclude Include="common\OptionsMgr.h" />
     <ClInclude Include="OptionsDiffColors.h" />
     <ClInclude Include="OptionsDiffOptions.h" />
+    <ClInclude Include="OptionsDirColors.h" />
     <ClInclude Include="OptionsFont.h" />
     <ClInclude Include="OptionsInit.h" />
     <ClInclude Include="OptionsPanel.h" />
@@ -1331,6 +1338,7 @@
     <ClInclude Include="PropCompareBinary.h" />
     <ClInclude Include="PropCompareFolder.h" />
     <ClInclude Include="PropCompareImage.h" />
+    <ClInclude Include="PropDirColors.h" />
     <ClInclude Include="PropEditor.h" />
     <ClInclude Include="Common\PropertyPageHost.h" />
     <ClInclude Include="PropGeneral.h" />

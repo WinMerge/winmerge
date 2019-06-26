@@ -11,6 +11,7 @@
 #include "RegOptionsMgr.h"
 #include "OptionsDiffOptions.h"
 #include "OptionsDiffColors.h"
+#include "OptionsDirColors.h"
 #include "OptionsFont.h"
 #include "DiffWrapper.h" // CMP_CONTENT
 #include "paths.h"
@@ -203,6 +204,7 @@ void Init(COptionsMgr *pOptions)
 
 	Options::DiffOptions::SetDefaults(pOptions);
 	Options::DiffColors::SetDefaults(pOptions);
+	Options::DirColors::SetDefaults(pOptions);
 	Options::Font::SetDefaults(pOptions);
 }
 

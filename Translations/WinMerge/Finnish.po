@@ -1451,6 +1451,21 @@ msgstr "Valittu sanaero:"
 msgid "Defaults"
 msgstr "Oletukset"
 
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
 #, c-format
 msgid "System"
 msgstr "Järjestelmä"
@@ -2403,6 +2418,9 @@ msgstr ""
 #, c-format
 msgid "Syntax"
 msgstr "Syntaksi"
+
+msgid "Folder Compare"
+msgstr ""
 
 #, c-format
 msgid "Differences"
