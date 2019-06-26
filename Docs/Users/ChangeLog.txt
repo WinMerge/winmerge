@@ -23,6 +23,7 @@ WinMerge 2.16.3
   - Bugfix: WinMerge could not compare files that are opened in other
      applications
   - Show progress bar while generating Folder Compare Report
+  - Use own colors settings for folder compare (Bitbucket PR #49)
   Project file:
   - Bugfix: Possible Bugs in 2.16.2 (sf.net #2221)
   - Supporting relative path in project file (Bitbucket #158)
