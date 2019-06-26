@@ -1127,6 +1127,21 @@ msgstr "選択された単語の差異:"
 msgid "Defaults"
 msgstr "デフォルト"
 
+msgid "&Use folder compare colors"
+msgstr "フォルダー比較用の色を使用"
+
+msgid "Items equal:"
+msgstr "同一項目:"
+
+msgid "Items different:"
+msgstr "差異項目:"
+
+msgid "Items not exists all:"
+msgstr "すべて存在しない項目:"
+
+msgid "Items filtered:"
+msgstr "無視された項目:"
+
 msgid "System"
 msgstr "システム"
 
@@ -1923,6 +1938,9 @@ msgstr ""
 
 msgid "Syntax"
 msgstr "シンタックス"
+
+msgid "Folder Compare"
+msgstr "フォルダー比較"
 
 msgid "Differences"
 msgstr "差異"

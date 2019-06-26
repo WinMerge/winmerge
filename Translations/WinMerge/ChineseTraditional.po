@@ -1461,6 +1461,21 @@ msgstr "已選取的字的差異："
 msgid "Defaults"
 msgstr "預設值"
 
+msgid "&Use folder compare colors"
+msgstr ""
+
+msgid "Items equal:"
+msgstr ""
+
+msgid "Items different:"
+msgstr ""
+
+msgid "Items not exists all:"
+msgstr ""
+
+msgid "Items filtered:"
+msgstr ""
+
 #, c-format
 msgid "System"
 msgstr "系統"
@@ -2448,6 +2463,9 @@ msgstr "如果要再顯示這個訊息，請在選項對話視窗內的一般頁
 #, c-format
 msgid "Syntax"
 msgstr "語法"
+
+msgid "Folder Compare"
+msgstr ""
 
 #, c-format
 msgid "Differences"
