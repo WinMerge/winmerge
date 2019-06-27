@@ -17,9 +17,9 @@ void SetDefaults(COptionsMgr *pOptionsMgr)
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_EQUAL_TEXT, defaultTextColor);
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_DIFF, (int)RGB(240,222,125));
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_DIFF_TEXT, defaultTextColor);
-	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL, (int)RGB(250,245,215));
+	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL, (int)RGB(221,221,221));
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_NOT_EXIST_ALL_TEXT, defaultTextColor);
-	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED, (int)RGB(221,221,221));
+	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED, (int)RGB(250,245,215));
 	pOptionsMgr->InitOption(OPT_DIRCLR_ITEM_FILTERED_TEXT, defaultTextColor);
 	pOptionsMgr->InitOption(OPT_DIRCLR_USE_COLORS, true);
 }
