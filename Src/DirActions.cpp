@@ -294,7 +294,7 @@ DIFFITEM *FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
 {
 	int nBuffer;
 	String file[3], path[3], base;
-	for (nBuffer = 0; nBuffer < static_cast<int>(paths.size()); ++nBuffer)
+	for (nBuffer = 0; nBuffer < paths.GetSize(); ++nBuffer)
 	{
 		String p = paths[nBuffer];
 		file[nBuffer] = paths::FindFileName(p);
@@ -312,11 +312,11 @@ DIFFITEM *FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
 	}
 
 	// Filenames must be identical
-	if (static_cast<size_t>(std::count(file, file + paths.size(), file[0])) < paths.size())
+	if (std::count(file, file + paths.GetSize(), file[0]) < paths.GetSize())
 		return 0;
 
 	DIFFITEM *pos = ctxt.GetFirstDiffPosition();
-	if (paths.size() == 2)
+	if (paths.GetSize() == 2)
 	{
 		while (DIFFITEM *currentPos = pos) // Save our current pos before getting next
 		{
@@ -1422,7 +1422,7 @@ CheckAllowUpwardDirectory(const CDiffContext& ctxt, const CTempPathContext *pTem
 			}
 			for (int i = 0; i < static_cast<int>(path.size()); ++i)
 				pathsParent[i] = pTempPathContext->m_strDisplayRoot[i];
-			if (pathsParent.size() < 3)
+			if (pathsParent.GetSize() < 3)
 			{
 				if (!ctxt.m_piFilterGlobal->includeFile(pathsParent[0], pathsParent[1]))
 					return AllowUpwardDirectory::Never;
