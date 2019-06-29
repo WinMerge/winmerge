@@ -55,15 +55,15 @@ AppName=WinMerge
 AppVersion={#AppVersion}
 AppVerName=WinMerge {#AppVersion} x64
 AppPublisher=Thingamahoochie Software
-AppPublisherURL=http://WinMerge.org/
-AppSupportURL=http://WinMerge.org/
-AppUpdatesURL=http://WinMerge.org/
+AppPublisherURL=https://winmergejp.bitbucket.io
+AppSupportURL=https://winmergejp.bitbucket.io
+AppUpdatesURL=https://winmergejp.bitbucket.io
 WizardStyle=modern
 UsePreviousPrivileges=no
 PrivilegesRequiredOverridesAllowed=dialog
 
 ; Installer executable's version resource info
-VersionInfoCompany=http://winmerge.org
+VersionInfoCompany=https://winmergejp.bitbucket.io
 VersionInfoDescription=WinMerge Installer
 VersionInfoVersion={#AppVersion}
 
@@ -454,6 +454,7 @@ Source: ..\..\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Comp
 Source: ..\..\Translations\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
+Source: ..\..\Build\Manual\htmlhelp\WinMergeJapanese.chm; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Lithuanian.txt; DestDir: {app}\Docs; Components: Languages\Lithuanian
 Source: ..\..\Translations\WinMerge\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
@@ -537,7 +538,7 @@ Name: "{app}\MergePlugins"
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; AppUserModelID: "Thingamahoochie.WinMerge"
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
-Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: http://winmerge.org
+Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: https://winmergejp.bitbucket.io
 
 ;Link to translated ReadMe in Start Menu
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Basque.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Basque
