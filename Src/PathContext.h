@@ -69,7 +69,6 @@ public:
 
 	const_iterator begin() const;
 	const_iterator end() const;
-	size_t size() const;
 private:
 	int m_nFiles;
 	PathInfo m_path[3]; /**< First, second, third path (left path at start) */
