@@ -138,7 +138,7 @@
                 <guimenuitem>比較</guimenuitem>
               </menuchoice>を選択します。</para>
 
-              <para>WinMergeウィンドウが開き、選択されたファイルが、
+            <para>WinMergeウィンドウが開き、選択されたファイルが、
                 ファイル比較ウィンドウに表示されます。</para>
           </listitem>
         </orderedlist>

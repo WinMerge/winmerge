@@ -13,5 +13,14 @@
   <para>WinMergeは、比較するファイルがテキストなのか、バイナリ形式なのかを自動で検出することができます。
   ２つのバイナリファイル比較するときは、WinMergeはそれぞれのファイルをバイナリファイルエディタで開きます。
 </para>
+  
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="screenshots/hexcmp1.png" format="PNG" />
+    </imageobject>
 
+    <textobject>
+      <phrase>HEX Compare Window</phrase>
+    </textobject>
+  </mediaobject>
 </article>

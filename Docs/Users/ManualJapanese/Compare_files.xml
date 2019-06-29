@@ -1417,6 +1417,7 @@
       </indexterm></title>
     <para>TBD</para>
   </section>
+
   <section id="Compare_files_merge">
     <title>差異のマージ<indexterm>
         <primary>merging differences</primary>

@@ -23,12 +23,16 @@
 	
 	<itemizedlist>
 	  <listitem>
-	    <para><ulink url="http://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge version 2.14.0</ulink> 
-		supports Windows XP/2003/Vista/2008/7/8/2012 and later. It runs 32 bit on both 32 bit and 64 bit Windows.</para>
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.0/">WinMerge 2.16.0</ulink> 
+		supports Windows XP and later. It runs on both 32 bit and 64 bit Windows.</para>
 	  </listitem>
 	  <listitem>
-	    <para><ulink url="http://sourceforge.net/projects/winmerge/files/stable/2.12.4/">WinMerge version 2.12.4</ulink> 
-		was the last version to support Windows 9x, NT, 2000, and ME.</para>
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge 2.14.0</ulink> 
+		was the last version to support Windows 2000.</para>
+	  </listitem>
+	  <listitem>
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.12.4/">WinMerge 2.12.4</ulink> 
+		was the last version to support Windows 95, 98, ME and NT.</para>
 	  </listitem>
 	  <listitem>
 	    <para>WinMerge is not supported on Windows RT.</para>
@@ -358,153 +362,6 @@
         シェル統合DLLは、<filename>ShellExtensionX64.dll</filename>という名前がつけられています。
         32ビット版と同様に、<filename>register.bat</filename>と<filename>unregister.bat</filename>
         を使用して、このファイルを登録、または、解除することができます。</para>
-    </section>
-  </section>
-
-  <section id="Installing_archive_support">
-    <title><indexterm>
-        <primary>アーカイブサポートのインストール</primary>
-      </indexterm><indexterm>
-        <primary>7-Zip アーカイブ</primary>
-
-        <secondary>configuring support during installation</secondary>
-      </indexterm>7-Zip とアーカイブサポート</title>
-
-      <para>WinMergeは、アーカイブサポートのために、<ulink url="http://www.7-zip.org/">7-Zip</ulink>
-        を使用します。しかし、WinMergeインストーラは、7-Zipやアーカイブサポートをインストールしません。
-        7-Zipアプリケーションのインストールは、推奨されますが、アーカイブサポートのために、必ずしも必要ではありません。
-        7-Zipインストーラは、<ulink url="http://www.7-zip.org/">7-Zip.org</ulink>よりダウンロード可能です。
-      </para>
-
-      <important>
-        <para>WinMergeが必要とするすべてのファイル(特に、7-Zipのプログラムフォルダにある<filename>7zip_pad.xml</filename>)を
-          インストールしない、7-ZipのMSIインストーラがあります。
-          もし、アーカイブサポートを可能にするのに問題があるなら、EXE版の7-Zipインストーラを試してください。
-        </para>
-      </important>
-
-      <para>アーカイブサポートをインストールするには、
-        <xref linkend="Install_merge7zinstaller" />の項で説明される7-Zipプラグインを、
-        <ulink url="http://winmerge.org/">WinMerge.org</ulink>よりダウンロードしインストールしてください。
-      </para>
-
-    <para>WinMergeは、インストール済みの7-zipを自動判別するので、設定は不要です。</para>
-
-    <para>7-zip統合は、WinMergeプログラム・フォルダにある<filename>Merge7z*.dll</filename>
-      ファイル(<filename>*</filename>は、インストール済みの7-Zipのバージョン)との互換性を必要とします。
-      例えば、7-Zipのバージョン4.42は、<filename>Merge7z442.dll</filename>を必要とします。
-      そして、<filename>WinMergeU.exe</filename>(Unicode版)を使用している場合、
-      <filename>Merge7z442U.dll</filename>のように、
-      <literal><filename>U</filename></literal>は、ファイル名にも付加されます。
-      もし、何らかの理由により必要なDLLファイルが見つからない場合、
-      WinMergeのダウンロードページにある、<filename>7z-Plugin</filename>アーカイブなどから、
-      WinMergeフォルダにコピーすることができます。</para>
-
-    <para>もし、<filename>Merge7z*.dll</filename>ファイルが見つからない場合、
-      WinMergeは、見つからなかったファイル名と、推奨される7-Zipのバージョンを含む
-      メッセージを表示します。
-      このメッセージは、
-    <menuchoice>
-        <guimenu>ヘルプ</guimenu>
-        <guimenuitem>アーカイブサポートが無効です(R)</guimenuitem>
-      </menuchoice>とクリックしても表示することができます。</para>
-
-    <section id="Install_merge7zinstaller">
-      <title>Merge7z Installer<indexterm>
-          <primary>Merge7z installer</primary>
-        </indexterm></title>
-
-        <para><filename>Merge7zInstaller</filename>は、7-Zip統合のための
-         スタンドアロンのインストーラです。</para>
-
-      <para>インストーラファイル名は、最初は奇妙に見えるかもしれませんが、これには理由があります。
-        これらは、サポートされているバージョンを表しています。
-        ファイル名は、</para>
-      <para><synopsis>Merge7zInstaller<replaceable>XXX-YYY-ZZZ</replaceable>.exe</synopsis>
-        という形式になっています。</para>
-
-      <para><replaceable>XXX</replaceable>は、ビルド番号、
-        <replaceable>YYY</replaceable>は、サポートされている最小の7-Zipバージョン、
-        <replaceable>ZZZ</replaceable>は、サポートされている最新の7-Zipバージョンを表しています。</para>
-
-      <para>例えば、<filename>Merge7zInstaller0014-311-426.exe</filename>は、
-        ビルド番号14で、7-Zipのバージョン3.11から4.26をサポートしています。</para>
-
-      <para>この分割インストーラは、非常に柔軟です。
-        なぜなら、7-Zipがアップデートされた場合、ベースインストーラにファイルを追加する必要もないからです。</para>
-
-      <para>最新版は、SourceForge.netのダウンロードページ<ulink
-      url="https://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957"
-      userlevel="">7-Zip plugin</ulink>と、もちろん私たちのウェブサイト
-      <ulink url="http://winmerge.org/">WinMerge.org</ulink>からもダウンロードできます。</para>
-
-      <tip>
-        <para>もし、新バージョンのリリースをいち早く知りたいなら、それをモニタすることができます。
-          新バージョンのリリース時に、それをEメールを通じて知ることができます。</para>
-      </tip>
-
-      <para><filename>Merge7zInstaller</filename>の実行は単に、</para>
-
-      <para><orderedlist>
-          <listitem>
-            <para>インストーラ実行ファイルを開始。</para>
-          </listitem>
-
-          <listitem>
-            <para>インストールタイプとDLLファイル(サポートされている7-Zipバージョン)を選択します。</para>
-
-            <variablelist>
-              <varlistentry>
-                <term>共有インストール</term>
-
-                <listitem>
-                  <para>7-Zipプラグインファイルをシステムフォルダへコピーすると、
-                    複数のWinMergeと7-Zipプラグインを使用する他のプログラムとの間で共有することができます。
-                    これは、推奨されたインストール方法です。</para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term>アプリケーションに特化したインストール</term>
-
-                <listitem>
-                  <para>7-Zipプラグインファイルを、プログラムフォルダへコピーします。
-                    それらのファイルは、そのプログラムだけが使用します。</para>
-
-                  <!-- FIXME: 自信ない -->
-                  <!--<para>When you choose this option, you must select the-->
-                  <!--executable in the directory where the plugin files are-->
-                  <!--installed. Select the WinMerge executable file when installing-->
-                  <!--to the WinMerge directory.</para>-->
-                  <para>このオプションを選択した場合、プラグインファイルがインストールされているフォルダ中の
-                    実行ファイルを選択する必要があります。
-                    WinMergeフォルダへインストールする場合は、WinMergeの実行ファイルを選択してください。</para>
-                </listitem>
-              </varlistentry>
-
-              <varlistentry>
-                <term>Enable standalone operation</term>
-
-                <listitem>
-                  <!-- FIXME: 全体的に自信ない -->
-                  <!--<para>Also installs the required 7-Zip files to the program's-->
-                  <!--application-specific installation directory. This allows the-->
-                  <!--minimal usable installation of 7-Zip for archive support. You-->
-                  <!--can use this option when the 7-Zip application is not wanted-->
-                  <!--or needed.</para>-->
-                  <para>さらに、プログラムのアプリケーション用フォルダに、必要な7-Zipのファイルをインストールします。
-                    これは、7-Zipアーカイブサポートの為の、最小のインストールを許可します。
-                   7-Zipアプリケーションが必要ない場合、このオプションを使用することができます。</para>
-
-                <para>このインストールタイプは、WinMergeのアーカイブサポートを有効にする為に
-                  必要なファイルのみを含んでいます。
-                  それは、7-Zipユーザインターフェイス、または、他の関連するツールやファイルをインストールしません。
-                  このインストール後、WinMergeの外で7-Zipアーカイブファイルを開いたり、作成することはできません。</para>
-                </listitem>
-              </varlistentry>
-            </variablelist>
-          </listitem>
-        </orderedlist></para>
     </section>
   </section>
 </article>

@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Configuration">
-  <title>オプションとコンフィグレーション
-  <indexterm>
-    <primary>オプション</primary>
-  </indexterm></title>
-  <para>オプションダイアログでは、WinMergeの様々なカスタマイズを行うことができます。WinMergeオプションを設定するには、</para>
+  <title>オプションとコンフィグレーション<indexterm>
+      <primary>オプション</primary>
+    </indexterm></title>
+
+  <para>オプションダイアログでは、WinMergeの様々なカスタマイズを行うことができます。WinMergeオプションを設定するには、
+  </para>
+
   <orderedlist>
     <listitem>
-      <para>メニューの、
-      <menuchoice>
-        <guimenu>編集</guimenu>
-        <guimenuitem>設定</guimenuitem>
-      </menuchoice>、または、ツールバーの
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata contentwidth="16" fileref="screenshots/options_btn.png" />
-        </imageobject>
-        <textobject>
-          <phrase>WinMerge Options button</phrase>
-        </textobject>
-      </inlinemediaobject>
-      <guibutton>設定</guibutton>ボタンをクリックしてください。</para>
+      <para>メニューの、<menuchoice>
+          <guimenu>編集</guimenu>
+
+          <guimenuitem>設定</guimenuitem>
+        </menuchoice>、または、ツールバー<inlinemediaobject>
+          <imageobject>
+            <imagedata contentwidth="16" fileref="screenshots/options_btn.png" />
+          </imageobject>
+
+          <textobject>
+            <phrase>WinMerge Options button</phrase>
+          </textobject>
+        </inlinemediaobject> <guibutton>設定</guibutton>ボタンをクリックしてください。
+      </para>
+
       <para>オプションダイアログには、多くのページがあり、それぞれ、関連する設定のグループを含んでいます。ダイアログの左端にある
       <guilabel>
       <!-- TODO: 日本語版確認 -->カテゴリ</guilabel>リストのタイトルをクリックすることで、ページを開くことができます。</para>
     </listitem>
+
     <listitem>
       <para>以下の方法の片方、または、両方を使って、変更したいオプションを設定することができます。</para>
       <itemizedlist>
         <listitem>
           <para>オプションページで直接編集</para>
         </listitem>
+
         <listitem>
           <para>エクスポート済の
           <filename>.ini</filename>ファイルをインポート
@@ -38,35 +43,41 @@
         </listitem>
       </itemizedlist>
     </listitem>
+
     <listitem>
       <para>オプションを設定し終わったら、
       <guibutton>OK</guibutton>をクリックして、それらを保存し、ダイアログを閉じてください。</para>
     </listitem>
   </orderedlist>
+
   <para>このトピックでは、オプションの詳細について説明します。オプションダイアログの、それぞれのページにはセクションがあります。</para>
+
   <section id="Configuration_importexport">
-    <title>設定情報のインポートとエクスポート
-    <indexterm>
-      <primary>importing options files</primary>
-    </indexterm>
-    <indexterm>
-      <primary>exporting options files</primary>
-    </indexterm></title>
+    <title>設定情報のインポートとエクスポート<indexterm>
+        <primary>importing options files</primary>
+      </indexterm><indexterm>
+        <primary>exporting options files</primary>
+      </indexterm></title>
+
     <para>
     差分比較、または、マージの設定を頻繁に変更する場合、また、あなたの設定を他のWinMergeユーザと共有したい場合は、設定をファイルへエクスポートして保存することを検討してください。あとでそれらの設定を使いたい時は、手動でオプションを設定する代わりに、単に設定ファイルをインポートすることができます。</para>
+
     <variablelist>
       <varlistentry>
         <term>エクスポートオプション</term>
+
         <listitem>
           <para>オプションを設定し終わったら、
           <guibutton>エクスポート</guibutton>をクリックしてください。エクスポートダイアログで、設定ファイルのパスと名前を指定して(拡張子
           <filename>ini</filename>は、自動的に付加されます)、
           <guibutton>保存</guibutton>をクリックしてください。</para>
+
           <para>
           <!-- FIXME: もっと良い訳はないか -->生成された
           <filename>ini</filename>ファイルの各行は、一つのオプションを表す、名前と値のペアを含みます。</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>インポートオプション</term>
         <listitem>
@@ -79,27 +90,33 @@
       </varlistentry>
     </variablelist>
   </section>
+
   <section id="Configuration_general">
     <title>一般ページ</title>
+
     <para>一般ページには、いくつかのオプションがあります。</para>
+
     <section>
-      <title>自動的に最初の差異にスクロールする
-      <indexterm>
-        <primary>自動的に最初の差異にスクロールする</primary>
-      </indexterm></title>
+      <title>自動的に最初の差異にスクロールする<indexterm>
+          <primary>自動的に最初の差異にスクロールする</primary>
+        </indexterm></title>
+
       <itemizedlist>
         <listitem>
           <para>
           <option>無効</option>(デフォルト): 
           <!-- FIXME: イマイチ -->比較ウィンドウは、フォルダ、または、ファイルの先頭から開始します(差異は未選択)。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>: 最初に開いた時、比較ウィンドウは(必要ならそこまでスクロールして)最初の差異を選択します。</para>
+
           <itemizedlist>
             <listitem>
               <para>フォルダ比較では、ファイル、または、フォルダの最初の差異を選択します。</para>
             </listitem>
+
             <listitem>
               <para>ファイル比較では、ファイル中の最初の差異ブロックを選択します。</para>
             </listitem>
@@ -107,12 +124,14 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
       <title>
       <keycap>ESC</keycap>でウインドウを閉じる
       <indexterm>
         <primary>ESCでウインドウを閉じる</primary>
       </indexterm></title>
+
       <itemizedlist>
         <listitem>
           <para>
@@ -125,6 +144,7 @@
           <parameter>-e</parameter>パラメータは、WinMergeを
           <keycap>ESC</keycap>1回で終了することを可能にします。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>無効</option>: 
@@ -132,8 +152,10 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
       <title>開くダイアログで自動的にパスを検査する</title>
+
       <itemizedlist>
         <listitem>
           <para>
@@ -141,6 +163,7 @@
           <guibutton>OK</guibutton>ボタンは、両方のパスが検証されるまで、使用不可となります。注) 
           <!-- TODO: かなり意訳 -->このチェックは、ほんの少しだけ時間がかかることがあります。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>無効</option>: ファイルまたはフォルダの選択ダイアログの
@@ -149,18 +172,21 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
-      <title>複数のインスタンスを起動しない
-      <indexterm>
-        <primary>WinMerge window</primary>
-        <secondary>limiting instances</secondary>
-      </indexterm></title>
+      <title>複数のインスタンスを起動しない<indexterm>
+          <primary>WinMerge window</primary>
+
+          <secondary>limiting instances</secondary>
+        </indexterm></title>
+
       <itemizedlist>
         <listitem>
           <para>
           <option>無効</option>(デフォルト):
           複数のWinMergeを起動することができます。例えば、WinMergeが起動している時に、WinMergeのショートカットをクリックした場合、新たなWinMergeウィンドウが開かれます。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>: WinMergeの起動を一つに制限します。</para>
@@ -169,6 +195,7 @@
               <para>
               WinMergeが起動している時に、新しいインスタンスを起動しようとした場合、新しいウィンドウは開かれず、代わりに、現在のWinMergeウィンドウが使われます。</para>
             </listitem>
+
             <listitem>
               <para>
               (例えば、コマンドラインから)パスと共に新しいインスタンスを起動しようとした場合、新たな比較ウィンドウが、既存のWinMergeウィンドウ中に開かれます。</para>
@@ -177,14 +204,17 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
       <title>複数のウインドウを閉じるときに尋ねる</title>
+
       <itemizedlist>
         <listitem>
           <para>
           <option>無効</option>(デフォルト):
           複数の比較ウィンドウが開いている時に、WinMergeを終了する場合、WinMergeは、すべてのウィンドウを閉じるかを尋ねます。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>: 
@@ -192,12 +222,14 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
-      <title>ファイル比較時のファイル時刻を保つ
-      <indexterm>
-        <primary>timestamps</primary>
-        <secondary>preserving</secondary>
-      </indexterm></title>
+      <title>ファイル比較時のファイル時刻を保つ<indexterm>
+          <primary>timestamps</primary>
+
+          <secondary>preserving</secondary>
+        </indexterm></title>
+
       <itemizedlist>
         <listitem>
           <para>
@@ -209,12 +241,14 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
-      <title>起動時にファイルまたはフォルダの選択ダイアログを表示
-      <indexterm>
-        <primary>Select Files or Folders dialog</primary>
-        <secondary>opening automatically</secondary>
-      </indexterm></title>
+      <title>起動時にファイルまたはフォルダの選択ダイアログを表示<indexterm>
+          <primary>Select Files or Folders dialog</primary>
+
+          <secondary>opening automatically</secondary>
+        </indexterm></title>
+
       <itemizedlist>
         <listitem>
           <para>
@@ -224,6 +258,7 @@
             <guimenuitem>開く</guimenuitem>
           </menuchoice>をクリックしなければなりません。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>: WinMergeを起動した時、WinMergeウィンドウと共に、ファイルまたはフォルダの選択ダイアログが開きます。</para>
@@ -248,21 +283,24 @@
     </section>
 
     <section>
-      <title>開くダイアログのオートコンプリート
-      <indexterm>
-        <primary>MRU list</primary>
-      </indexterm></title>
+      <title>開くダイアログのオートコンプリート<indexterm>
+          <primary>MRU list</primary>
+        </indexterm></title>
+
       <para>次の中から一つ選択してください:</para>
+
       <itemizedlist>
         <listitem>
           <para>
           <guilabel>無効</guilabel>(デフォルト): ファイルまたはフォルダの選択ダイアログでパス入力した時、オートコンプリートは実行されません。</para>
         </listitem>
+
         <listitem>
           <para>
           <guilabel>ファイルシステム</guilabel>: 
           <!-- FIXME: 違和感あり -->入力した時にパスを調べます。入力した文字と一致するパスを、ファイルシステム上から見つけようとします。一致するパスが見つかった場合、パスを補完します。</para>
         </listitem>
+
         <listitem>
           <para>
           <guilabel>最近使ったリスト</guilabel>: パスを、最近使ったリスト(MRU)の中から調べます。
@@ -282,11 +320,14 @@
 
     <section>
       <title>リセット</title>
+
       <para>WinMergeは、いくつかのメッセージボックスを抑制することを許可します。例えば、同一の2つのファイルが開かれた時、通常なら
       <guilabel>選択されたファイルは同一です。</guilabel>メッセージボックスが,
       開かれます。これ以上、このメッセージを表示して欲しくない場合、メッセージボックス中のオプションを有効(チェックON)にすることで、そのメッセージを再び表示しないようにすることができます。</para>
+
       <para>あとで、再びメッセージを見たいと思うかもしれません。
       <guibutton>リセット</guibutton>ボタンをクリックすることで、メッセージボックスを再び表示するようにできます。</para>
+
       <note>
         <para>
         WinMergeを新しいバージョンにアップデートした時は、メッセージを省略することはオススメしません。インストーラは、それらを自動的に表示するようにします。しかし、インストーラを使用しない場合、
@@ -294,71 +335,92 @@
       </note>
     </section>
   </section>
+
   <section id="Configuration_compare">
     <title>比較ページ</title>
+
     <para>
     このページのオプションでは、WinMergeが、ファイルサイズのみを比較する(つまり、いくつかのタイプの差異を無視する)などの差異を検知する方法を変更することが可能です。</para>
+
     <important>
       <para>
       <!-- TODO: イマイチ -->いくつかの違いに興味がないかもしれない場合、差異を見つける方法をカスタマイズすることは、比較の間に有効かもしれません。しかし、これらのオプションは、マージにも影響します。例えば、スペースの変更を無視する場合は、マージ時にソースコード中のインデント変更は保存されません。</para>
+
       <para>
       この理由により、いくつかの差異をマージする前に、このページのオプション(特に無視オプション)をデフォルト値にリセットすることをオススメします。このページの全オプションをリセットするには、
       <guibutton>デフォルト</guibutton>ボタンをクリックしてください。</para>
     </important>
+
     <section>
-      <title>様々な無視オプションについて
-      <indexterm>
-        <primary>ignored differences</primary>
-      </indexterm></title>
+      <title>様々な無視オプションについて<indexterm>
+          <primary>ignored differences</primary>
+        </indexterm></title>
+
       <para>
       比較ページ(このセクションの後で説明されている)の、たくさんのオプションによって、明らかな差異を無視することができます。無視された差異は、WinMerge内で特別な方法で扱われます。</para>
+
       <itemizedlist>
         <listitem>
           <para>これらは、無視された差異の色でマークされます。</para>
         </listitem>
+
         <listitem>
           <para>無視された差異はマージできません。</para>
         </listitem>
+
         <listitem>
           <para>無視された差異は、差異の個数に含められません。</para>
         </listitem>
+
         <listitem>
           <para>フォルダ比較では、無視された差異のみが含まれているファイルは、同一のファイルとしてマークされます。</para>
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
-      <title>空白
-      <indexterm>
-        <primary>空白</primary>
-        <secondary>detecting and ignoring differences</secondary>
-      </indexterm></title>
+      <title>空白<indexterm>
+          <primary>whitespace</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
       <para>
       ホワイトスペースは、単語と行の間の空白です。それは、スペースやタブや改行のような、特別な非印字文字です。ホワイトスペースの重要性は、どのように差異を解釈したり、処理したいかに依ります。ホワイトスペースのすべての変更を見つけることは重要かもしれません。反対に、一つのスペース、二つのスペース、一つのインデント、または、タブなど、すべてのホワイトスペースを同様に扱いたいかもしれません。いくつかの構造化ドキュメント(カンマ区切りリストの様な)では、すべてのホワイトスペースを無視したいかもしれません。</para>
+
       <note>
         <para>行内のホワイトスペースの変更の影響は、 
         <option>行内差異を表示する</option>が有効にされている時だけ見ることができます。これは、差異ブロックとは対照的に、常にハイライトされます。</para>
       </note>
+
       <example>
         <title>行と異なるホワイトスペース</title>
+
         <para>単語間に一つのスペース:
         <screen format="linespecific">Two Words</screen></para>
+
         <para>単語間に二つのスペース:
         <screen format="linespecific">Two Words</screen></para>
+
         <para>単語間にタブ:
         <screen format="linespecific">Two Words</screen></para>
+
         <para>単語間にスペースなし:
         <screen format="linespecific">TwoWords</screen></para>
       </example>
+
       <para>これらのオプションの一つにより、ホワイトスペースの検出を制御できます:</para>
+
       <variablelist>
         <varlistentry>
           <term>比較する</term>
+
           <listitem>
             <para>
             すべてのホワイトスペースが比較されます(デフォルト)。あなたのドキュメントがどのオプションを必要とするか確かでないなら、これは、たぶん最も安全な選択です。例では、すべての行が差異として検出されます。</para>
           </listitem>
         </varlistentry>
+
         <varlistentry>
           <term>変更を無視する</term>
           <listitem>
@@ -367,6 +429,7 @@
             <emphasis>されません</emphasis>(結果的に、最後の2行の単語は異なります)</para>
           </listitem>
         </varlistentry>
+
         <varlistentry>
           <term>すべて無視する</term>
           <listitem>
@@ -376,26 +439,32 @@
           </listitem>
         </varlistentry>
       </variablelist>
+
       <note>
         <title>関連するトピック</title>
+
         <para>行の差異におけるホワイトスペース設定の影響は、
         <xref linkend="CompareFiles_linediff-highlight" />で説明されています。</para>
+
         <para>
         <!-- FIXME: 超難解な日本語 -->オプションダイアログのエディタページは、単語間の区切りを検出するために、ホワイトスペースがどのように使われるかの制御に関する設定を含んでいます。詳細は、
         <xref linkend="Configuration_viewlinediffs" />を参照してください</para>
       </note>
     </section>
+
     <section>
-      <title>空行を無視する
-      <indexterm>
-        <primary>blank lines</primary>
-        <secondary>detecting and ignoring differences</secondary>
-      </indexterm></title>
+      <title>空行を無視する<indexterm>
+          <primary>blank lines</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
       <itemizedlist>
         <listitem>
           <para>
           <option>無効</option>(デフォルト): ソースファイル中の空行は、ファイル比較ウィンドウ中で、「差異あり: 削除」の色の空行で表されされます。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>:
@@ -403,11 +472,12 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
-      <title>大文字と小文字を区別しない
-      <indexterm>
+      <title>大文字と小文字を区別しない<indexterm>
         <primary>case (letter), detecting and ignoring differences</primary>
       </indexterm></title>
+
       <itemizedlist>
         <listitem>
           <para>
@@ -416,6 +486,7 @@
           <literal>LOWERCASE</literal>、と 
           <literal>lowercase</literal>はすべて異なります。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>: 文字間の大文字、小文字の差異は無視されます。</para>
@@ -424,9 +495,9 @@
     </section>
 
     <section>
-      <title>改行文字の違いを無視する (Windows/Unix/Mac)
-      <indexterm>
+      <title>改行文字の違いを無視する (Windows/Unix/Mac)<indexterm>
         <primary>EOL</primary>
+
         <secondary>detecting and ignoring differences</secondary>
       </indexterm></title>
       <itemizedlist>
@@ -435,6 +506,7 @@
           <option>無効</option>(デフォルト):
           行末(EOL)スタイルの差異は検出されます。例えば、同じ内容で、行末が異なる2行を比較する場合、行は異なると判断されます。この場合、WinMergeは、差異を検出するか、無視するかの確認ダイアログを表示します。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>: EOLの差異は無視されます。</para>
@@ -461,22 +533,24 @@
     </section>
 
     <section>
-      <title>移動ブロックの検出を有効にする
-      <indexterm>
-        <primary>moved differences</primary>
-      </indexterm></title>
+      <title>移動ブロックの検出を有効にする<indexterm>
+          <primary>moved differences</primary>
+        </indexterm></title>
+
       <itemizedlist>
         <listitem>
           <para>
           <option>無効</option>(デフォルト): 
           <!-- TODO: イマイチ -->WinMergeは、行の移動による差異を検出しません。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>: WinMergeは、(ファイル中の異なる場所に)移動された行の検出を試みます。移動されたブロックは、
           <guilabel>移動ブロック</guilabel>と
           <guilabel>
           選択された移動ブロック</guilabel>の色で示されます。ロケーションバーが表示されている場合、左と右のロケーションバーの一致する差異の場所が、線で結ばれます。移動ブロックの表示は、それが多すぎない場合、ファイル中の変更をより簡単に視覚化することができます。</para>
+
           <para>一例は、ロケーションペインの説明
           <xref linkend="Compare_files" />を参照してください。</para>
         </listitem>
@@ -494,10 +568,12 @@
           <!-- TODO: -->Lines within difference blocks are shown as they occur in the source
           files.</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>:
           WinMergeは、異なるブロック中の似ている行を検出しようと試みます。そして、ファイルペインに空行を追加し、それらの位置を揃えます。このオプションは、行が似通っている時に最も効果的で、行が全く異なっている場合には、それほど効果的ではありません。</para>
+
           <para>一例は、
           <xref linkend="CompareFiles_diffcolors" />にある
           <citetitle>Similar lines</citetitle>の説明を参照してください。</para>
@@ -506,17 +582,66 @@
     </section>
 
     <section>
-      <title>フィルタコメント
-      <indexterm>
-        <primary>filters</primary>
-        <secondary>comments</secondary>
-      </indexterm></title>
+      <title>Diff algorithm<indexterm>
+          <primary>algorithm</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>default</option> (default): The basic greedy diff
+          algorithm.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>minimal</option>: Spend extra time to make sure the 
+          smallest possible diff is produced.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>patience</option>: Use "patience diff" algorithm when
+          generating diff.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>histogram</option>: This algorithm extends the patience
+          algorithm to "support low-occurrence common elements".</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Enable indent heuristic<indexterm>
+          <primary>indent heuristic</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default):
+          Enable the heuristic that shifts diff hunk boundaries to make diffs easier to read.
+          It has no effect if the Diff algorithm is default.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option> Disable the heuristic.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>フィルタコメント<indexterm>
+          <primary>filters</primary>
+
+          <secondary>comments</secondary>
+        </indexterm></title>
+
       <!--Just guessing what this does - ask a developer.-->
+
       <itemizedlist>
         <listitem>
           <para>
           <option>無効</option>(デフォルト): WinMerge は、他の内容と一緒に、コード中のコメントを比較します。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>: このオプションは、(C++ や Java
@@ -786,17 +911,19 @@
   </section>
 
   <section id="Configuration_editor">
-    <title>エディタページ
-    <indexterm>
-      <primary>editing</primary>
-      <secondary>options for File Compare window</secondary>
-    </indexterm></title>
-    <section id="Configuration_syntaxhighlight">
-      <title>シンタックスハイライト
-      <indexterm>
-        <primary>シンタックスハイライト</primary>
-        <secondary>enabling and disabling</secondary>
+    <title>エディタページ<indexterm>
+        <primary>editing</primary>
+
+        <secondary>options for File Compare window</secondary>
       </indexterm></title>
+
+    <section id="Configuration_syntaxhighlight">
+      <title>シンタックスハイライト<indexterm>
+          <primary>シンタックスハイライト</primary>
+
+          <secondary>enabling and disabling</secondary>
+        </indexterm></title>
+
       <itemizedlist>
         <listitem>
           <para>
@@ -814,12 +941,14 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
-      <title>自動的に再スキャンする
-      <indexterm>
-        <primary>ファイルの再スキャン</primary>
-        <secondary>enabling and disabling autoscan</secondary>
-      </indexterm></title>
+      <title>自動的に再スキャンする<indexterm>
+          <primary>ファイルの再スキャン</primary>
+
+          <secondary>enabling and disabling autoscan</secondary>
+        </indexterm></title>
+
       <itemizedlist>
         <listitem>
           <para>
@@ -1257,15 +1386,19 @@
         </listitem>
       </itemizedlist>
     </note>
+
     <section>
       <title>非Unicodeファイルのデフォルトコードページ</title>
+
       <para>WinMerge が、非Unicode ファイルを扱う際の、デフォルトコードページを設定するために、次のラジオボタンから1つ選んでください:</para>
+
       <itemizedlist>
         <listitem>
           <para>
           <guilabel>システムコードページ</guilabel>(デフォルト):あなたの Windows
           システムにより使用されているコードページです。このデフォルトは、ほぼ、ベストチョイスです。しかし、システムコードページを使用していないファイルを比較することが分かっているなら、他のオプションを考慮してください。</para>
         </listitem>
+
         <listitem>
           <para>
           <guilabel>
@@ -1273,6 +1406,7 @@
           WinMerge のインストールに使用したエンコーディングです。
           <!--This is just a guess - don't find any info on this option.--></para>
         </listitem>
+
         <listitem>
           <para>
           <guilabel>カスタムコードページ</guilabel>: 明示的にコードページ番号を入力してください。例えば、
@@ -1281,8 +1415,10 @@
         </listitem>
       </itemizedlist>
     </section>
+
     <section>
       <title>html, .rc, .xml ファイルのコードページ情報を検出する</title>
+
       <important>
         <para>
         <filename>
@@ -1292,12 +1428,14 @@
 why is the option there? Also, should we mention WinMergeU.exe when we mention WinMerge.exe,
 or is this understood?--></para>
       </important>
+
       <itemizedlist>
         <listitem>
           <para>
           <option>無効</option>(デフォルト): WinMerge
           は、ソースファイルから、コードページ情報を読み取りません。その代わりに、デフォルトコードページ設定を使用します。</para>
         </listitem>
+
         <listitem>
           <para>
           <option>有効</option>: WinMerge は、次の拡張子のコードページを検出します: 
@@ -1319,6 +1457,7 @@ or is this understood?--></para>
       </itemizedlist>
     </section>
   </section>
+
   <section id="Configuration_shell-integ">
     <title>シェル統合ページ</title>
     <section id="Configuration_winexplorer-integ">
@@ -1341,6 +1480,7 @@ or is this understood?--></para>
                 <option>無効</option>(デフォルト): Windows エクスプローラのコンテキストメニューには、
                 <guimenuitem>WinMerge</guimenuitem>ショートカットのみが含まれます。</para>
               </listitem>
+
               <listitem>
                 <para>
                 <option>有効</option>: エクスプローラのコンテキストメニュー中の、
@@ -1351,9 +1491,9 @@ or is this understood?--></para>
           </listitem>
         </varlistentry>
       </variablelist>
+
       <para>
       <xref linkend="OpenPaths_shell-integ" />では、WinMerge と 比較ショートカットの使用方法について説明しています。</para>
     </section>
-
   </section>
 </article>

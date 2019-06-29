@@ -30,9 +30,9 @@ html/param.xsl  parameters
 <xsl:param name="footer.rule" select="0"/>
 <xsl:param name="use.extensions" select="0"/>
 <xsl:param name="tablecolumns.extensions" select="0"/>
-<xsl:param name="admon.graphics" select="1"/>
-<xsl:param name="admon.graphics.path">images/</xsl:param>
-<xsl:param name="admon.graphics.extension">.gif</xsl:param>
+<xsl:param name="admon.graphics" select="0"/>
+<xsl:param name="callout.graphics" select="0"/>
+<xsl:param name="navig.graphics" select="0"/>
 <xsl:param name="section.autolabel" select="1"/>
 <xsl:param name="appendix.autolabel">A</xsl:param>
 <xsl:param name="use.id.as.filename" select="1"/>

@@ -452,8 +452,8 @@
               <keycap>左矢印</keycap>
             </keycombo></entry>
 
-        <entry>右から左へ差異をコピーし、次の差異を選択</entry>
-      </row>
+          <entry>右から左へ差異をコピーし、次の差異を選択</entry>
+        </row>
 
         <row>
           <entry><keycombo>
@@ -572,7 +572,7 @@
               <keycap>F2</keycap>
             </keycombo></entry>
 
-            <entry>次のブックマークへ移動</entry>
+          <entry>次のブックマークへ移動</entry>
         </row>
 
         <row>

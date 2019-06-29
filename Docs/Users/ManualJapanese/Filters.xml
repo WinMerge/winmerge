@@ -1043,6 +1043,7 @@ Pekka Himanen</screen>
             <para>
               編集欄の式を編集してください。</para>
           </listitem>
+
           <listitem>
             <para>編集が完了したら、
               <guibutton>保存</guibutton>をクリックしてください。
@@ -1051,16 +1052,18 @@ Pekka Himanen</screen>
             </para>
           </listitem>
         </orderedlist>
+
         <para>ルールを削除するには、ルールを選択(チェック)し、
         <guibutton>削除</guibutton>ボタンをクリックしてください。</para>
       </section>
-      <section id="Filters_LineFilterEnabling">
 
-        <title>行フィルタの有効化と無効化
-        <indexterm>
+      <section id="Filters_LineFilterEnabling">
+        <title>行フィルタの有効化と無効化<indexterm>
           <primary>line filters</primary>
-          <secondary>list of available</secondary>
-        </indexterm></title>
+
+            <secondary>list of available</secondary>
+          </indexterm></title>
+
         <orderedlist>
           <listitem>
             <para>
@@ -1087,41 +1090,46 @@ Pekka Himanen</screen>
       </section>
     </section>
   </section>
+
   <section id="AboutFilters_regexp">
-    <title>正規表現のヘルプ
-    <indexterm>
-      <primary>regular expressions</primary>
-      <secondary>getting help</secondary>
-    </indexterm></title>
+    <title>正規表現のヘルプ<indexterm>
+        <primary>regular expressions</primary>
+
+        <secondary>getting help</secondary>
+      </indexterm></title>
+
     <para>正規表現は、非常に複雑になり得ます。幸い、WinMerge 
       のほとんどのファイルフィルタは、このトピックの例からもわかるように、シンプルな範囲の表現です。
       WinMergeと共にインストールされるフィルタファイルは、多くの役に立つ例を含んでいます。</para>
+
     <para>最後に、Web上には、正規表現を手助けする、これらのサイトを含むたくさんの情報源があります:</para>
+
     <variablelist>
       <varlistentry>
         <term>Good site devoted to regexps:</term>
+
         <listitem>
-          <simpara>
-            <ulink url="http://www.regular-expressions.info/">
-            http://www.regular-expressions.info/</ulink>
-          </simpara>
+          <simpara><ulink
+          url="https://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></simpara>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term>Tutorial:</term>
+
         <listitem>
           <simpara><ulink
           url="http://www.zvon.org/comp/r/tut-Regexp.html">http://www.zvon.org/comp/r/tut-Regexp.html</ulink></simpara>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>PDF quick reference:</term>
+
         <listitem>
-          <simpara>
-            <ulink url="http://www.night-ray.com/regex.pdf">
-            http://www.night-ray.com/regex.pdf</ulink>
-          </simpara>
+          <simpara><ulink
+          url="https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf">
+          https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf</ulink></simpara>
         </listitem>
       </varlistentry>
     </variablelist>
