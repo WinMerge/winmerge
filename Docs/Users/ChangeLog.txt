@@ -13,7 +13,7 @@ WinMerge 2.16.3
      certain binary files! (Bitbucket #162)
   - Small tweaks for HTML file reports (Bitbucket PR #44, #45)
   - Made diff algorithm selectable by using libXDiff
-     algorithms: default(Myers), patience, histogram
+     algorithms: default(Myers), minimal, patience, histogram
   - triple click to select whole line (Bitbucket #144)
   - Add support for merging word level diffs in selection
      Demo: https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif
@@ -41,7 +41,7 @@ WinMerge 2.16.3
     start menu (Bitbuket #38)
   Translations:
   - Update French translation (GitHub #149, #150)
-  - Update Lithuanian translation (Bitbucket PR #36, #40, #43, #46, #48)
+  - Update Lithuanian translation (Bitbucket PR #36, #40, #43, #46, #48, #50)
   - Update Russian translation (Bitbucket PR #41, #42)
 
 WinMerge 2.16.2
