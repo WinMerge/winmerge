@@ -686,7 +686,7 @@ void COpenView::OnLoadProject()
 	ProjectFileItem& projItem = *project.Items().begin();
 	projItem.GetPaths(paths, m_bRecurse);
 	projItem.GetLeftReadOnly();
-	if (paths.size() < 3)
+	if (paths.GetSize() < 3)
 	{
 		m_strPath[0] = paths[0];
 		m_strPath[1] = paths[1];

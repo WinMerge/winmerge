@@ -505,14 +505,14 @@ void CDirDoc::UpdateChangedItem(const PathContext &paths,
 	if (!pos)
 	{
 		PathContext pathsSwapped(paths);
-		std::swap(pathsSwapped[0], pathsSwapped[static_cast<int>(pathsSwapped.size() - 1)]);
+		std::swap(pathsSwapped[0], pathsSwapped[pathsSwapped.GetSize() - 1]);
 		pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
-		if (!pos && paths.size() > 2)
+		if (!pos && paths.GetSize() > 2)
 		{
 			pathsSwapped = paths;
 			std::swap(pathsSwapped[0], pathsSwapped[1]);
 			pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
-			if (!pos && paths.size() > 2)
+			if (!pos && paths.GetSize() > 2)
 			{
 				pathsSwapped = paths;
 				std::swap(pathsSwapped[1], pathsSwapped[2]);

@@ -272,9 +272,3 @@ PathContextIterator PathContext::end() const
 {
 	return PathContextIterator();
 }
-
-size_t PathContext::size() const
-{
-	return m_nFiles;
-}
-
