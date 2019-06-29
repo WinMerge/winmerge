@@ -625,6 +625,52 @@
     </section>
 
     <section>
+      <title>Diff algorithm<indexterm>
+          <primary>algorithm</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>default</option> (default): The basic greedy diff
+          algorithm.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>minimal</option>: Spend extra time to make sure the 
+          smallest possible diff is produced.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>patience</option>: Use "patience diff" algorithm when
+          generating diff.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>histogram</option>: This algorithm extends the patience
+          algorithm to "support low-occurrence common elements".</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Enable indent heuristic<indexterm>
+          <primary>indent heuristic</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default):
+          Enable the heuristic that shifts diff hunk boundaries to make diffs easier to read.
+          It has no effect if the Diff algorithm is default.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option> Disable the heuristic.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>Filter Comments<indexterm>
           <primary>filters</primary>
 
