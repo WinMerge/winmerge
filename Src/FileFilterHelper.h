@@ -143,8 +143,8 @@ public:
 	String GetFilterNameOrMask() const;
 	bool SetFilter(const String &filter);
 
-	bool includeFile(const String& szFileName) const;
-	bool includeDir(const String& szDirName) const;
+	bool includeFile(const String& szFileName) const override;
+	bool includeDir(const String& szDirName) const override;
 
 protected:
 	String ParseExtensions(const String &extensions) const;

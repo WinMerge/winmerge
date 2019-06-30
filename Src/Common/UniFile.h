@@ -211,15 +211,15 @@ protected:
 	virtual bool ReadString(String & line, String & eol, bool * lossy) override;
 
 public:
-	virtual int64_t GetPosition() const;
+	virtual int64_t GetPosition() const override;
 
 	virtual int WriteBom();
-	virtual bool WriteString(const String & line);
+	virtual bool WriteString(const String & line) override;
 
 // Implementation methods
 protected:
 	virtual bool DoOpen(const String& filename, const String& mode);
-	virtual void LastErrorCustom(const String& desc);
+	virtual void LastErrorCustom(const String& desc) override;
 
 // Implementation data
 private:

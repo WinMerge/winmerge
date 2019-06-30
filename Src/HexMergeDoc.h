@@ -77,16 +77,16 @@ public:
 	~CHexMergeDoc();
 	int UpdateDiffItem(CDirDoc * pDirDoc);
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
-	void SetDirDoc(CDirDoc * pDirDoc);
-	void DirDocClosing(CDirDoc * pDirDoc);
-	bool CloseNow();
-	bool GenerateReport(const String& sFileName) const { return true; }
+	void SetDirDoc(CDirDoc * pDirDoc) override;
+	void DirDocClosing(CDirDoc * pDirDoc) override;
+	bool CloseNow() override;
+	bool GenerateReport(const String& sFileName) const override { return true; }
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	void RefreshOptions();
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[]);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
-	void CheckFileChanged(void);
+	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const { return m_strDesc[pane]; };
 private:
 	void DoFileSave(int nBuffer);
