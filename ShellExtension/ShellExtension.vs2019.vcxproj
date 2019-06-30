@@ -121,7 +121,7 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
-      <TypeLibraryName>.\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\BuildTmp\ShellExtension__Debug/ShellExtension.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -160,7 +160,7 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Midl>
-      <TypeLibraryName>.\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\BuildTmp\ShellExtension__Debug/ShellExtension.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -201,7 +201,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
     <Midl>
-      <TypeLibraryName>.\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
@@ -240,7 +240,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
     <Midl>
-      <TypeLibraryName>.\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.tlb</TypeLibraryName>
+      <TypeLibraryName>.\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>

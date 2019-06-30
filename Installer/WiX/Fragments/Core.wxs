@@ -10,13 +10,6 @@
           Vital="yes" />
       </Component>
       
-      <Component Id="MergeLang" Guid="*" Win64="$(var.Win64)">
-        <File Id="MergeLangDLL" 
-          Name="MergeLang.dll" 
-          Source="$(var.MergeBuildDir)\MergeLang.dll" 
-          Vital="yes" />
-      </Component>
-      
       <Component Id="Files" Guid="*" Win64="$(var.Win64)">
         <File Id="FilesTXT" 
           Name="Files.txt" 

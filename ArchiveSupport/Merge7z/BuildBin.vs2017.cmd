@@ -28,9 +28,9 @@ MSBuild Merge7z.vs2017.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%P
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
-  call "%SIGNBAT_PATH%" Build\%PLATFORM%\MergeUnicodeRelease\Merge7z\Merge7z.dll
+  call "%SIGNBAT_PATH%" Build\%PLATFORM%\Release\Merge7z\Merge7z.dll
 )
 
-mkdir Build\%PLATFORM%\MergeUnicodeRelease\%APPVER% 2> NUL
-copy Build\%PlATFORM%\MergeUnicodeRelease\Merge7z\*.pdb "Build\%PLATFORM%\MergeUnicodeRelease\%APPVER%\"
+mkdir Build\%PLATFORM%\Release\%APPVER% 2> NUL
+copy Build\%PlATFORM%\Release\Merge7z\*.pdb "Build\%PLATFORM%\Release\%APPVER%\"
 goto :eof

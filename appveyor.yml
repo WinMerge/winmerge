@@ -1,6 +1,6 @@
 version: 1.0.{build}
 image: Visual Studio 2017
-configuration: Release Unicode
+configuration: Release
 platform: x64
 shallow_clone: true
 install:
