@@ -72,6 +72,8 @@ DirCmpReport::DirCmpReport(const std::vector<String> & colRegKeys)
 , m_bIncludeFileCmpReport(false)
 , m_bOutputUTF8(false)
 , m_myStruct(nullptr)
+, m_bCopyToClipboard(false)
+, m_nReportType(REPORT_TYPE_COMMALIST)
 {
 }
 
