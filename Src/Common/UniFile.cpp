@@ -189,10 +189,7 @@ UniMemFile::UniMemFile()
 void UniMemFile::Close()
 {
 	Clear();
-	if (m_base != nullptr)
-	{
-		m_base = nullptr;
-	}
+	m_base = nullptr;
 	m_data = nullptr;
 	m_current = nullptr;
 	if (m_hMapping != nullptr)
