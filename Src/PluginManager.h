@@ -35,7 +35,7 @@ public:
 	// Implement IPluginInfos
 	virtual void FetchPluginInfos(const String& filteredFilenames, 
                                       PackingInfo ** infoUnpacker, 
-                                      PrediffingInfo ** infoPrediffer);
+                                      PrediffingInfo ** infoPrediffer) override;
 private:
 	// Data
 	PluginFileInfoMap m_pluginSettings;

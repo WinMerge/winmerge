@@ -43,7 +43,7 @@ class DiffThreadAbortable : public IAbortable
 {
 // Implement DirScan's IAbortable
 public:
-	virtual bool ShouldAbort() const { return m_diffthread->ShouldAbort(); }
+	virtual bool ShouldAbort() const override { return m_diffthread->ShouldAbort(); }
 
 // All this object does is forward ShouldAbort calls to its containing CDiffThread
 

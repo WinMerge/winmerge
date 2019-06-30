@@ -45,7 +45,7 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(CompareStatisticsDlg)
-	afx_msg BOOL OnInitDialog();
+	afx_msg BOOL OnInitDialog() override;
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
