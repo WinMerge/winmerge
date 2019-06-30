@@ -119,7 +119,7 @@ private:
 		throw SE_Exception((long)dwCode);
 	}
 public:
-	SE_Handler() { fnOld = _set_se_translator(seh_trans_func); }
+	SE_Handler() : fnOld{_set_se_translator(seh_trans_func)} {}
 	~SE_Handler() { _set_se_translator(fnOld); }
 #else
 public:
