@@ -137,25 +137,25 @@ protected:
     bool NegotiateSpace(int nLengthTotal, bool bHorz);
 
 protected:
-    DWORD   m_dwSCBStyle;
-    UINT    m_htEdge;
+    DWORD   m_dwSCBStyle = 0;
+    UINT    m_htEdge = 0;
 
-    CSize   m_szHorz;
-    CSize   m_szVert;
-    CSize   m_szFloat;
-    CSize   m_szMinHorz;
-    CSize   m_szMinVert;
-    CSize   m_szMinFloat;
-    int     m_nTrackPosMin;
-    int     m_nTrackPosMax;
-    int     m_nTrackPosOld;
-    int     m_nTrackEdgeOfs;
-    bool    m_bTracking;
-    bool    m_bKeepSize;
-    bool    m_bParentSizing;
-    bool    m_bDragShowContent;
-    UINT    m_nDockBarID;
-    int     m_cxEdge;
+    CSize   m_szHorz = CSize(120, 200);
+    CSize   m_szVert = CSize(120, 200);
+    CSize   m_szFloat = CSize(120, 200);
+    CSize   m_szMinHorz = CSize(33, 32);
+    CSize   m_szMinVert = CSize(33, 32);
+    CSize   m_szMinFloat = CSize(37, 32);
+    int     m_nTrackPosMin = 0;
+    int     m_nTrackPosMax = 0;
+    int     m_nTrackPosOld = 0;
+    int     m_nTrackEdgeOfs = 0;
+    bool    m_bTracking = false;
+    bool    m_bKeepSize = false;
+    bool    m_bParentSizing = false;
+    bool    m_bDragShowContent = false;
+    UINT    m_nDockBarID = 0;
+    int     m_cxEdge = 5;
 
 // Generated message map functions
 protected:
