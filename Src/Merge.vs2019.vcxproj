@@ -120,12 +120,7 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</EmbedManifest>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Win$(ProjectName)U</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Test|x64'">Win$(ProjectName)U</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Win$(ProjectName)U</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Win$(ProjectName)U</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">Win$(ProjectName)U</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Win$(ProjectName)U</TargetName>
+    <TargetName>Win$(ProjectName)U</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -166,7 +161,6 @@
     <Link>
       <AdditionalOptions>/verbose:lib %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -181,17 +175,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <CustomBuildStep>
-      <Command>
-      </Command>
-      <Outputs>$(TargetDir)WinMergeU.map;%(Outputs)</Outputs>
-    </CustomBuildStep>
     <Midl>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
@@ -229,7 +214,6 @@
     <Link>
       <AdditionalOptions>/verbose:lib %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -244,10 +228,6 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -285,7 +265,6 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -298,10 +277,6 @@
       <GenerateMapFile>true</GenerateMapFile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">
     <Midl>
@@ -338,7 +313,6 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -351,17 +325,8 @@
       <GenerateMapFile>true</GenerateMapFile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <CustomBuildStep>
-      <Command>
-      </Command>
-      <Outputs>$(TargetDir)WinMergeU.map;%(Outputs)</Outputs>
-    </CustomBuildStep>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
@@ -396,7 +361,6 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -410,17 +374,8 @@
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test|x64'">
-    <CustomBuildStep>
-      <Command>
-      </Command>
-      <Outputs>$(TargetDir)WinMergeU.map;%(Outputs)</Outputs>
-    </CustomBuildStep>
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MkTypLibCompatible>true</MkTypLibCompatible>
@@ -454,7 +409,6 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -468,10 +422,6 @@
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Externals\crystaledit\editlib\asp.cpp" />
@@ -540,68 +490,28 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\wcwidth.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\xml.cpp" />
     <ClCompile Include="..\Externals\gtest\src\gtest-all.cc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\Externals\xdiff\xdiffi.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\Externals\xdiff\xemit.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\Externals\xdiff\xhistogram.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\Externals\xdiff\xmerge.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\Externals\xdiff\xpatience.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\Externals\xdiff\xprepare.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\Externals\xdiff\xutils.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="7zCommon.cpp">
     </ClCompile>
@@ -1165,28 +1075,13 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\wcwidth.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h" />
     <ClInclude Include="..\Externals\gtest\include\gtest\gtest-printers.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\Externals\gtest\include\gtest\gtest.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\Externals\gtest\include\gtest\internal\gtest-port.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\Externals\xdiff\xdiff.h" />
     <ClInclude Include="..\Externals\xdiff\xdiffi.h" />
@@ -1424,12 +1319,7 @@
   <ItemGroup>
     <ResourceCompile Include="Merge.rc" />
     <ResourceCompile Include="Merge2.rc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
     </ResourceCompile>
   </ItemGroup>
   <Target Name="CopyVisualElements" AfterTargets="Build">
