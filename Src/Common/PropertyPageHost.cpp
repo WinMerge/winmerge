@@ -240,14 +240,12 @@ BOOL CPropertyPageHost::PreTranslateMessage(MSG* pMsg)
 // it by providing a replacement to the buggy code
 BOOL COccManager::IsDialogMessage(CWnd* pWndDlg, LPMSG lpMsg)
 {
-	CWnd* pWndFocus = CWnd::GetFocus();
-	HWND hWndFocus = pWndFocus->GetSafeHwnd();
 	UINT uMsg = lpMsg->message;
 
 	if (((uMsg >= WM_KEYFIRST) && (uMsg <= WM_KEYLAST)) ||
 		((uMsg >= WM_MOUSEFIRST) && (uMsg <= WM_MOUSELAST)))
 	{
-		CWnd* pWndCtrl = pWndFocus;
+		CWnd* pWndCtrl = CWnd::GetFocus();
 
 		// Walk up the parent chain, until we find an OLE control.
 		while ((pWndCtrl != nullptr) && (pWndCtrl->m_pCtrlSite == nullptr) &&

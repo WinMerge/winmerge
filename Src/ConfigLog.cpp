@@ -371,8 +371,6 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T("\r\n\r\nCommand Line:        "));
 	FileWriteString(szCmdLine);
 
-	String sEXEPathOnly = paths::GetPathOnly(sEXEFullFileName);
-
 	FileWriteString(_T("\r\n\r\nModule Names:         '~' prefix indicates module is loaded into the WinMerge process.\r\n"));
 	FileWriteString(_T(" Windows:\r\n"));
 	WriteVersionOf1(2, _T("kernel32.dll"));
