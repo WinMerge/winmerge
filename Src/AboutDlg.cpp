@@ -36,7 +36,7 @@
 class CAboutDlg::Impl : public CTrDialog
 {
 public:
-	Impl(CAboutDlg *p, CWnd* pParent = nullptr);
+	explicit Impl(CAboutDlg *p, CWnd* pParent = nullptr);
 
 // Dialog Data
 	//{{AFX_DATA(CAboutDlg::Impl)
