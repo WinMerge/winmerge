@@ -67,7 +67,7 @@ struct DIFFRANGE
 	int dbegin = 0;              /**< Synchronised (ghost lines added) first diff line in file1,2,3 */
 	int dend = 0;	             /**< Synchronised (ghost lines added) last diff line in file1,2,3 */
 	int blank[3] = {-1, -1, -1}; /**< Number of blank lines in file1,2,3 */
-	OP_TYPE op;		/**< Operation done with this diff */
+	OP_TYPE op = OP_NONE;		/**< Operation done with this diff */
 	DIFFRANGE()
 	{
 	}
