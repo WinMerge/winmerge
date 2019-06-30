@@ -17,11 +17,12 @@
 
   <section>
     <title>ヘルプへのアクセス方法</title>
+
     <para>WinMergeヘルプトピックは、2つの形式で提供されます:</para>
+
     <itemizedlist>
       <listitem>
-        <para>Microsoft HTML ヘルプ (
-        <filename>WinMerge.chm</filename>),
+        <para>Microsoft HTML ヘルプ (<filename>WinMerge.chm</filename>),
         インストールディレクトリのWinMerge\Docsにあります。</para>
       </listitem>
 
@@ -38,10 +39,10 @@
 
         <listitem>
           <para>WinMerge使用中に、<menuchoice>
-            <guimenu>ヘルプ</guimenu>
+              <guimenu>ヘルプ</guimenu>
 
-            <guimenuitem>WinMergeヘルプ</guimenuitem>
-          </menuchoice>をクリックします。 HTMLヘルプの最初(このトピック)が開かれます。</para>
+              <guimenuitem>WinMergeヘルプ</guimenuitem>
+            </menuchoice>をクリックします。 HTMLヘルプの最初(このトピック)が開かれます。</para>
         </listitem>
       </varlistentry>
 
@@ -84,13 +85,13 @@
 
     <variablelist>
       <varlistentry>
-        <term>
-          <xref linkend="Quick_start" />
-        </term>
+        <term><xref linkend="Quick_start" /></term>
+
         <listitem>
           <para>WinMergeを手早く使い始められるようにし、基本的な使用方法を示します。</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term><xref linkend="Compare_dirs" /></term>
 
@@ -236,6 +237,7 @@
             <keycap>
             O</keycap>キーの組み合わせで押下します。</entry>
           </row>
+
           <row>
             <entry>
               <para>
@@ -245,6 +247,7 @@
             <entry>
             クリックは、メニューアイテムやボタンの様な対象の上での、マウスの左クリックを表します。</entry>
           </row>
+
           <row>
             <entry>
             <menuchoice>
@@ -260,6 +263,7 @@
             <guimenuitem>
             開く</guimenuitem>を選択してください。</entry>
           </row>
+
           <row>
             <entry>行を右クリックして、
             <guimenuitem>
@@ -328,23 +332,18 @@
               </listitem>
             </itemizedlist></entry>
           </row>
+
           <row>
-            <entry>
-              <cmdsynopsis sepchar="">
-                <command moreinfo="none">
-                command</command>
+            <entry><cmdsynopsis sepchar=" ">
+                <command moreinfo="none">command</command>
+
                 <arg choice="plain"
-                rep="norepeat">
-                  <replaceable>
-                  inputpath</replaceable>
-                </arg>
+                rep="norepeat"><replaceable>inputpath</replaceable></arg>
+
                 <arg choice="opt"
-                rep="norepeat">
-                  <replaceable>
-                  outputpath</replaceable>
-                </arg>
-              </cmdsynopsis>
-            </entry>
+                rep="norepeat"><replaceable>outputpath</replaceable></arg>
+              </cmdsynopsis></entry>
+
             <entry>
               シンタックス行では、ブラケット(大括弧)は省略可能な要素を表します。
               この例では、コマンドと入力パスを入力しなければなりません。
