@@ -16,9 +16,7 @@ The main installer script is in `Installer/WIX` folder: `WinMerge.wxs`. This fil
 First make sure you have all needed files compiled and available:
 
  * WinMerge executables: `WinMergeU.exe`
- * Translation library: `MergeLang.dll`
  * Executable translations: `/Translations/WinMerge/*.po`
- * Libraries: `libexpat.dll` and `pcre.dll`
  * Manual: `WinMerge.chm`
  * ShellExtension: `ShellExtensionU.dll` and `ShellExtensionX64.dll`
  * Documents: `/Docs/Users/*`
@@ -37,17 +35,11 @@ In addition you will need Microsoft C- and MFC-runtime merge modules. Those file
 
 Copy or move the files into the following layout:
 
- * `Build/`
-   * `expat`
-   * `libexpat.dll`
  * `Manual/htmlhelp`
    * `WinMerge.chm`
- * `MergeUnicodeRelease/`
-   * `MergeLang.dll`
+ * `Release/`
    * `ShellExtensionU.dll`
    * `WinMergeU.exe`
- * `pcre/`
-   * `pcre.dll`
  * `ShellExtensionX64/`
    * `ShellExtensionX64.dll`
  * `Docs/`
