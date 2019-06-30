@@ -517,7 +517,6 @@ void CDirView::ReloadColumns()
  */
 void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int &alldiffs)
 {
-	CDirDoc *pDoc = GetDocument();
 	const CDiffContext &ctxt = GetDiffContext();
 	while (diffpos != nullptr)
 	{
