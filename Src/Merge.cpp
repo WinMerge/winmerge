@@ -1119,23 +1119,20 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	if (!LoadProjectFile(sProject, project))
 		return false;
 	
-	PathContext tFiles;
-	bool bLeftReadOnly = false;
-	bool bMiddleReadOnly = false;
-	bool bRightReadOnly = false;
-	bool bRecursive = false;
 	bool rtn = true;
 	for (auto& projItem : project.Items())
 	{
+		PathContext tFiles;
+		bool bRecursive = false;
 		projItem.GetPaths(tFiles, bRecursive);
 		for (int i = 0; i < tFiles.GetSize(); ++i)
 		{
 			if (!paths::IsPathAbsolute(tFiles[i]))
 				tFiles[i] = paths::ConcatPath(paths::GetParentPath(sProject), tFiles[i]);
 		}
-		bLeftReadOnly = projItem.GetLeftReadOnly();
-		bMiddleReadOnly = projItem.GetMiddleReadOnly();
-		bRightReadOnly = projItem.GetRightReadOnly();
+		bool bLeftReadOnly = projItem.GetLeftReadOnly();
+		bool bMiddleReadOnly = projItem.GetMiddleReadOnly();
+		bool bRightReadOnly = projItem.GetRightReadOnly();
 		if (projItem.HasFilter())
 		{
 			String filter = projItem.GetFilter();

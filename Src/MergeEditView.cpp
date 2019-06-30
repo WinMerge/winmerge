@@ -1787,9 +1787,9 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane)
 
 	if (IsSelection())
 	{
-		int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 		if (!m_bColumnSelection)
 		{
+			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
 			if (firstDiff != -1 && lastDiff != -1)
 			{
