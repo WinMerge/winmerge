@@ -8,130 +8,94 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>なぜ、
-            <filename>WinMerge.exe</filename> と
-            <filename>WinMergeU.exe</filename>の二つの実行ファイルがあるの?
-            <indexterm>
-              <primary>WinMerge実行ファイル, UnicodeとANSI</primary>
-            </indexterm>
-
-            <indexterm>
+          <para>Does WinMerge run on older Windows versions?</para>
+        </question>
+        <answer>
+          <para><indexterm>
+              <primary>WinMerge executables, Unicode and ANSI</primary>
+            </indexterm><indexterm>
               <primary>Unicode</primary>
-              <secondary>WinMergeサポート</secondary>
-            </indexterm>
-
-            <indexterm>
+              <secondary>WinMerge support</secondary>
+            </indexterm><indexterm>
               <primary>ANSI</primary>
-              <secondary>WinMergeサポート</secondary>
-            </indexterm>
-          </para>
-        </question>
-
-        <answer>
-          <para>これらは、古いバージョンと新しいバージョンのWindowsの、異なった文字符号化能力をサポートします。</para>
-
-          <itemizedlist>
-            <listitem>
-              <para>
-                <filename>WinMerge.exe</filename>は、すべての32bit Windowsで動作するANSI(8ビット)の実行形式です。
-                それは、Unicodeをサポートしていません。
-              </para>
-
-              <para>
-                それは、内部的にはANSI文字のみを保存します。
-                もし、Unicodeのファイルを開くなら、文字はANSIコードページに変換されなければなりません。
-                Unicodeには100,000以上の文字がありますが、ANSIコードページは、たった256文字しか表すことができないため、データの喪失が発生します。
-                変換は、大体(例えば、アクセントは失われます)または、不可能(文字列は、クエスチョンマーク( ? )で置き換えられる)かもしれません。
-              </para>
-
-              <para>
-                <filename>WinMerge.exe</filename> は、現在のANSIコードページ外の名前のファイルを開くこともできません。
-                例えば、WinMerge.exeを英語のシステムで使用している場合、名前がヘブライ語のファイルを開くとこはできません。
-              </para>
-            </listitem>
-
-            <listitem>
-              <para>
-                <filename>WinMergeU.exe</filename>は、Unicodeを有効化した実行形式で、
-                Windows NT4、Windows 2000や、それよりも新しいシステムで動作します。
-                なぜなら、それらはUnicodeをサポートしており、<filename>WinMerge.exe</filename>にあるような制約がないからです。
-              </para>
-            </listitem>
-          </itemizedlist>
+              <secondary>WinMerge support</secondary>
+            </indexterm>Beginning with Version 2.14, WinMerge ended support for
+	    older 32-bit Windows systems, including Windows 9x, ME, and NT4.
+	    In addition, WinMerge version 2.16 does not support Windows 2000.</para>
+          <para>Previously, WinMerge provided an ANSI (8-bit) executable,
+              <filename>WinMerge.exe</filename>, that was designed around the
+            old Windows codepages. <filename>WinMerge.exe</filename> internally
+            stored only the ANSI characters supported by the Windows codepage.
+            This executable had severe limitations for working with Unicode: if
+            you opened a Unicode file, the characters were converted to the
+            Windows ANSI codepage. Because there are over 100,000 Unicode
+            characters, and only 256 can be represented in the ANSI character
+            set, data loss could occur. Conversion might be approximate (for
+            example, accents are lost) or impossible: characters were replaced
+            by question marks ( <literal>?</literal> ).</para>
+          <para><filename>WinMerge.exe</filename> also could not open files with
+            names outside the current ANSI codepage. For example, on an English
+            system, <filename>WinMerge.exe</filename> could not open a file with
+            a Hebrew name.</para>
+          <para>WinMerge developed the Unicode-enabled
+              <filename>WinMergeU.exe</filename> executable to work with newer,
+            Unicode-based Windows systems. <filename>WinMergeU.exe</filename>
+            has none of the limitations of the ANSI executable.</para>
+          <para><filename>WinMergeU.exe</filename> has been installed by default
+            for some time, and since few ANSI-based Windows systems remain, the
+            value of maintaining <filename>WinMerge.exe</filename> is miminal.
+            As of Version 2.14, WinMerge no longer includes
+              <filename>WinMerge.exe</filename> in the installer.  </para>
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question>
-          <para>フォルダ比較をしたいんだけど、参照ダイアログでフォルダが選択できないよ。
-            <indexterm>
-              <primary>フォルダ</primary>
-              <secondary>ファイル選択またはフォルダダイアログにおける選択</secondary>
-            </indexterm>
-          </para>
+          <para>I want to compare folders, but I cannot select a folder in the
+          Browse dialog.<indexterm>
+              <primary>folders</primary>
+
+              <secondary>selecting in Select Files or Folders dialog</secondary>
+            </indexterm></para>
         </question>
 
         <answer>
-          <para>
-            比較したいフォルダを参照してください。
-            ファイルやサブフォルダを選択せずに、
-            <guilabel>ファイル名(M)</guilabel>欄に<literal>Folder Selection</literal>と表示されている時、
-            <guibutton>開く(O)</guibutton>をクリックしてください。
-            もし、既にファイルやサブフォルダを選択している場合、<guilabel>ファイル名(M)</guilabel>欄に、適当な文字を入力し、
-            <guibutton>開く(O)</guibutton>をクリックしてください。
-            もし、入力したファイル名が見つからない場合、WinMergeはフォルダを開きます。
-          </para>
+          <para>Browse in the folder contents to the folder you want to compare.
+          Do not select any of the files or subfolders, just click
+          <guibutton>Open</guibutton> when <literal>Folder Selection</literal>
+          is displayed in the <guilabel>File name</guilabel> field. If you
+          already selected a files or subfolders, just type a random string in
+          the <guilabel>File name</guilabel> field and click
+          <guibutton>Open</guibutton>. If the file name you enter is not found,
+          WinMerge opens the folder.</para>
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question>
-          <para>
-            WinMergeは3つのファイルのマージをサポートしていないの?
-            ときどき<wordasword>3-way merge</wordasword>と呼ばれていて、一つのファイルを祖先とするやつだ。
-            この機能はバージョン管理に便利だと思うよ!(※日本語版は一部実装)
+          <para>Windows以外のOSにWinMergeを移植する予定はないの?
           </para>
         </question>
 
         <answer>
-          <para>
-            残念ながらサポートしていません。
-            私たちは、それが良い機能であることを認識していますが、近いうちに実装する予定はありません。
-            いくつかの制約がありますが、二つのWinMergeインスタンスを起動するか、コマンドラインの三つめのパス・パラメータを使用することにより、この問題を回避できます。
-            さらなる情報は、<xref linkend="Command_line" />を参照してください。
-          </para>
+          <para>There are currently no plans for cross-platform support but
+          you can try the unofficial version <ulink url="https://bitbucket.org/jtuc/winmerge2011/">
+          WinMerge 2011</ulink> by Jochen Neubeck. This version should work with Wine also
+          under Linux.</para>
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question>
-          <para>
-            Windows以外のOSにWinMergeを移植する予定はないの?
-          </para>
-        </question>
-
-        <answer>
-          <para>Cross-platform support is being considered for WinMerge 3.x, 
-          which is being discussed in our <ulink
-          url="http://forums.winmerge.org/viewforum.php?f=9">WinMerge 3</ulink> forum.
-          Please join in, if you are interested.</para>
-        </answer>
-      </qandaentry>
-
-      <qandaentry>
-        <question>
-          <para>
-            なぜCVS統合機能とかがないの?
-            <indexterm>
+          <para>なぜCVS統合機能とかがないの?<indexterm>
               <primary>バージョン管理システム</primary>
-              <secondary>との統合</secondary>
-            </indexterm>
 
-            <indexterm>
+              <secondary>との統合</secondary>
+            </indexterm><indexterm>
               <primary>統合</primary>
+
               <secondary>バージョン管理システム</secondary>
-            </indexterm>
-          </para>
+            </indexterm></para>
         </question>
 
         <answer>
@@ -148,17 +112,13 @@
 
       <qandaentry>
         <question>
-          <para>
-            MRU (リスト)てなに?
-            <indexterm>
+          <para>MRU (リスト)てなに?<indexterm>
               <primary>MRUリスト</primary>
-            </indexterm>
-          </para>
+            </indexterm></para>
         </question>
 
         <answer>
-          <para>
-            MRUは<quote>Most Recently Used</quote>(最近使ったファイル)の省略形で、
+          <para>MRUは<quote>Most Recently Used</quote>(最近使ったファイル)の省略形で、
             ファイル及びフォルダ選択ダイアログの履歴一覧に関係しています。
             この一覧は、最近使用した20のパスを含みます。
           </para>
@@ -167,34 +127,26 @@
 
       <qandaentry>
         <question>
-          <para>
-            OpenOfficeのファイルは比較できる?
-            <indexterm>
+          <para>OpenOfficeのファイルは比較できる?<indexterm>
               <primary>WinMergeでOpenOfficeのファイルを開く</primary>
-            </indexterm>
-          </para>
+            </indexterm></para>
         </question>
 
         <answer>
-          <para>
-            OpenOfficeのファイルは書庫です。
+          <para>OpenOfficeのファイルは書庫です。
             WinMergeが開くことができるように、アーカイブサポートを設定しなければなりません。
           </para>
 
           <itemizedlist>
             <listitem>
-              <para>
-                <xref linkend="Installing_archive_support" />で説明されている、
-                アーカイブサポートをインストールしてください。
-              </para>
-            </listitem>
+              <para>In WinMerge, click the <guibutton>Options</guibutton> button
+              (or click <menuchoice>
+                  <guimenu>Edit</guimenu>
 
-            <listitem>
-              <para>
-                WinMergeの<guibutton>設定</guibutton>ボタン
-                (または、<menuchoice><guimenu>編集(E)</guimenu> → <guimenuitem>設定(O)</guimenuitem></menuchoice>)をクリックしてください。
-                「アーカイブサポート」カテゴリにある、<guilabel>アーカイブサポートを有効にする(E)</guilabel>にチェックしてください。
-              </para>
+                  <guimenuitem>Options</guimenuitem>
+                </menuchoice>). In the Archive Support page, enable the
+              <guilabel>Detect archive type from file signature</guilabel>
+              option</para>
             </listitem>
           </itemizedlist>
         </answer>
@@ -436,19 +388,6 @@
       <qandaentry>
         <question>
           <para>
-            7-Zipはインストールしたくないなあ。
-            他の圧縮・解凍ツール(WinZipやWinRar等)は使えないの?
-          </para>
-        </question>
-
-        <answer>
-          <para>残念ながら、WinMergeでは、7-Zipしか使えません。</para>
-        </answer>
-      </qandaentry>
-
-      <qandaentry>
-        <question>
-          <para>
             WinMergeは、標準的じゃない拡張子のアーカイブファイルを開けないの?
             (例えば、形式はzipな.jar ファイルとか)
           </para>
@@ -473,13 +412,11 @@
   </section>
 
   <section id="Faq_encoding">
-    <title>
-      テキストエンコーディング (コードページ)
-      <indexterm>
+    <title>テキストエンコーディング (コードページ)<indexterm>
         <primary>ANSI</primary>
+
         <secondary>メモ帳を使用して検出する</secondary>
-      </indexterm>
-    </title>
+      </indexterm></title>
 
     <qandaset>
       <qandaentry>
@@ -550,13 +487,11 @@
         <primary>パッチファイル</primary>
 
         <secondary>diffutilsを使う</secondary>
-      </indexterm>
-
-      <indexterm>
+      </indexterm><indexterm>
         <primary>diffutils</primary>
+
         <secondary>WinMerge のパッチは互換性がある</secondary>
-      </indexterm>
-    </title>
+      </indexterm></title>
 
     <qandaset>
       <qandaentry>

@@ -7,9 +7,9 @@
   <para>WinMergeは、インストーラ、または、アーカイブから展開したファイルにより、インストールすることができます。
   インストーラを使用するのが、オススメの方法です。</para>
 
-
   <section>
     <title>ファイルのダウンロード</title>
+
     <para>最新のリリースは、<ulink url="http://winmerge.org/">WinMergeのホームページ</ulink>より、いつでもダウンロード可能です。
       最新リリースのためのホームページ更新に、遅れが生じることに注意してください。
       しかし、<ulink url="http://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>の、プロジェクトステータスページは、
@@ -44,12 +44,12 @@
     <title>インストーラを使用する (推奨)</title>
 
     <note>
-  <para>Windows NT4/2000/XPにおいて、インストーラは、Administrator権限を必要とします。
+      <para>Windows NT4/2000/XPにおいて、インストーラは、Administrator権限を必要とします。
       あなたが、Administrator権限を持っていないなら、アーカイブファイルより展開することで、WinMergeをインストールできます
       (<xref linkend="InstallFromArchive" />を参照してください).</para>
     </note>
 
-  <para>インストーラを使用することは、ほとんどのユーザにオススメです。
+    <para>インストーラを使用することは、ほとんどのユーザにオススメです。
     インストーラは、WinMergeがインストールされる場所を促します。
     ファイルがインストールされるとき、シェル統合、WinMergeをスタートメニューに追加するなどを設定します。
     WinMergeのインストール:</para>
@@ -90,11 +90,11 @@
                 <primary>WinMerge executables, Unicode and ANSI</primary>
               </indexterm></term>
 
-              <listitem>
+            <listitem>
                 <!-- FIXME: オカシイ -->
                 <para>WinMergeの実行ファイル(Windows 9XとMeでは、<filename>WinMerge.exe</filename>。
                   他の、すべてのバージョンのWindowsでは、<filename>WinMergeU.exe</filename>)、ヘルプ、そして、他の必要なファイル。チェックOFFにできません。</para>
-              </listitem>
+            </listitem>
           </varlistentry>
 
           <varlistentry>
@@ -109,7 +109,7 @@
             <term>プラグイン</term>
 
             <listitem>
-            <para>WinMergeプラグインは、COM APIで書かれたカスタムDLL、または、スクリプトレットで、
+              <para>WinMergeプラグインは、COM APIで書かれたカスタムDLL、または、スクリプトレットで、
               比較前にデータを前処理するために使用することができます。</para>
             </listitem>
           </varlistentry>
@@ -287,38 +287,23 @@
         <primary>archive, installing WinMerge from</primary>
       </indexterm></title>
 
-      <para>WinMergeは、他のシステムコンポーネントから、ほとんど独立しています。
+    <para>WinMergeは、他のシステムコンポーネントから、ほとんど独立しています。
         それはしっかりとWindowsに統合されず、多くのDLLを使用しません。
         <!-- FIXME: なんかイマイチ。
              It is not tightly integrated with Windows, and does not use many DLLs.-->
-      </para>
+    </para>
 
-      <para><filename>WinMerge[U].exe</filename>は、いくつかのシステムDLLに加え、
-        <filename>MFC90[U].dll</filename>、 <filename>MSVCR90.dllと
-          MSVCP90.dll</filename>に依存しています。
-        もし、いくつかのDLLがシステムにインストールされているなら、WinMergeの実行には、
-        <filename>WinMerge[U].exe</filename>だけが必要です。
-        さらに、上にあげられたDLLファイルは、ダウンロード可能なランタイムパッケージとしても有効です。     
-      </para>
-
-      <note>
-        <para>WinMerge 2.6.0 と 以降のバージョンは、ランタイム・ライブラリの新しいバージョンを必要とします。
-          アーカイブファイルを使用して、より古いWinMergeバージョンからアップデートするとき、
-          ランタイム・パッケージからの新しいランタイムファイルを必要とします。
-        </para>
-      </note>
-
-      <para>アーカイブファイルは、正しいフォルダ構成を持ちます。WinMergeは、
+    <para>アーカイブファイルは、正しいフォルダ構成を持ちます。WinMergeは、
         このフォルダ構成を保ったまま、インストール場所へ展開されるべきです。
         たとえば、ルートフォルダが、<filename class="directory">C:\Program Files\</filename>以下の
         <filename class="directory">WinMerge-<replaceable>version</replaceable></filename>
         (<filename class="directory">WinMerge-2.6.0</filename>など)フォルダに作成されます。
         このフォルダをリネーム、または、ファイルを別のフォルダへ(フォルダ構成を保ったまま!)コピーすることができます。
-      </para>
+    </para>
 
-      <para>ファイル展開後、WinMergeは、起動する準備ができています。
+    <para>ファイル展開後、WinMergeは、起動する準備ができています。
         シェル統合とアーカイブ統合は、次のセクションで説明される、追加のステップが必要です。
-      </para>
+    </para>
   </section>
 
   <section>
@@ -338,30 +323,9 @@
       <para>シェル統合のインストールは、Administrator権限を必要とします。</para>
     </note>
 
-    <para>はじめに、WinMergeフォルダの<filename>unregister.bat</filename>を実行し、
-      現在のシェル統合をアンインストールしてください。シェル統合のアンインストールが完了したら、
-      コンピュータを再起動してください。
-    </para>
-
-    <para>シェル統合DLL(<filename>ShellExtension*.dll</filename>)を登録するため、
-      WinMergeフォルダの<filename>register.bat</filename>を実行してください。
-      シェル統合をインストール後、コンピュータを再起動することをオススメします。
-      Windowsは、その参照をすべて更新します。
-    </para>
-
-    <section>
-      <title>64-bit Windowsエクスプローラシェル統合<indexterm>
-          <primary>Windows 64-bit versions, WinMerge support</primary>
-        </indexterm></title>
-
-      <para>バージョン2.6から、WinMergeは、64ビットWindows用のエクスプローラシェル統合をサポートしています。
-        WinMergeインストーラは、64ビットWindowsを認識し、適当なシェル統合をインストールすることができます。
-      </para>
-
-      <para>シェル統合を、アーカイブファイルから手動でインストールする場合、
-        シェル統合DLLは、<filename>ShellExtensionX64.dll</filename>という名前がつけられています。
-        32ビット版と同様に、<filename>register.bat</filename>と<filename>unregister.bat</filename>
-        を使用して、このファイルを登録、または、解除することができます。</para>
-    </section>
+    <para>Open WinMerge and using the <xref
+    linkend="Configuration_shell-integ" /> in the Options window. In the
+    Options window use the <guibutton>Register shell extension</guibutton>
+    or <guibutton>Unregister shell extension</guibutton> buttons.</para>
   </section>
 </article>
