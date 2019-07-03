@@ -137,6 +137,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_PREVDIFFRO, OnUpdatePrevdiffRO)
 	ON_WM_LBUTTONDBLCLK()
 	ON_WM_LBUTTONUP()
+	ON_WM_RBUTTONDOWN()
 	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
 	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
 	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
@@ -940,6 +941,23 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*= true*/, bool bSelect
 
 	// notify either side, as it will notify the other one
 	pd->ForEachView (0, [&](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
+}
+
+void CMergeEditView::DeselectDiffIfCursorNotInCurrentDiff()
+{
+	CMergeDoc *pd = GetDocument();
+	// If we have a selected diff, deselect it
+	int nCurrentDiff = pd->GetCurrentDiff();
+	if (nCurrentDiff != -1)
+	{
+		CPoint pos = GetCursorPos();
+		if (!IsLineInCurrentDiff(pos.y))
+		{
+			pd->SetCurrentDiff(-1);
+			Invalidate();
+			pd->UpdateAllViews(this);
+		}
+	}
 }
 
 /**
@@ -1748,21 +1766,20 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
  */
 void CMergeEditView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	CMergeDoc *pd = GetDocument();
 	CCrystalEditViewEx::OnLButtonUp(nFlags, point);
+	DeselectDiffIfCursorNotInCurrentDiff();
+}
 
-	// If we have a selected diff, deselect it
-	int nCurrentDiff = pd->GetCurrentDiff();
-	if (nCurrentDiff != -1)
-	{
-		CPoint pos = GetCursorPos();
-		if (!IsLineInCurrentDiff(pos.y))
-		{
-			pd->SetCurrentDiff(-1);
-			Invalidate();
-			pd->UpdateAllViews(this);
-		}
-	}
+/**
+ * @brief Called when mouse right button is pressed.
+ *
+ * If right button is pressed outside diffs, current diff
+ * is deselected.
+ */
+void CMergeEditView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+	CCrystalEditViewEx::OnRButtonDown(nFlags, point);
+	DeselectDiffIfCursorNotInCurrentDiff();
 }
 
 void CMergeEditView::OnX2Y(int srcPane, int dstPane)
