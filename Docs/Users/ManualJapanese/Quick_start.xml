@@ -251,9 +251,9 @@
           <secondary>opening files and folders</secondary>
         </indexterm></title>
 
-    <para>「ファイルまたはフォルダの選択...」ダイアログは、ファイルやフォルダを開くための主要なインターフェースです。
+      <para>「ファイルまたはフォルダの選択...」ダイアログは、ファイルやフォルダを開くための主要なインターフェースです。
       しかし、他の多くの方法も使用することができます。
-    </para>
+      </para>
 
       <itemizedlist>
         <listitem>
@@ -300,9 +300,9 @@
         </listitem>
 
         <listitem>
-        <simpara>
+          <simpara>
           ファイルやフォルダを、WinMergeのウィンドウかデスクトップのショートカットへ直接、ドラッグ・アンド・ドロップしてください。
-        </simpara>
+          </simpara>
         </listitem>
       </itemizedlist>
     </section>

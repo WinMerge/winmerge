@@ -1411,16 +1411,16 @@
       <!-- TODO: 微妙 -->例えば、ここに始めるべきいくつかの場所があります:</para>
       <itemizedlist>
         <listitem>
-          <para>
-          <ulink url="http://en.wikipedia.org/wiki/Code_pages">Wikipedia: Code pages</ulink>, 
-          <ulink url="http://en.wikipedia.org/wiki/Character_encoding">Character
+          <para><ulink url="https://en.wikipedia.org/wiki/Code_pages">Wikipedia:
+          Code pages</ulink>, <ulink
+          url="https://en.wikipedia.org/wiki/Character_encoding">Character
           encoding</ulink></para>
         </listitem>
+
         <listitem>
-          <para>
-            <ulink url="http://www.microsoft.com/globaldev/reference/wincp.mspx">Microsoft: Code
-            Pages Supported by Windows</ulink>
-          </para>
+          <para><ulink
+          url="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43">
+          Microsoft: Code Pages Supported by Windows</ulink></para>
         </listitem>
       </itemizedlist>
     </note>

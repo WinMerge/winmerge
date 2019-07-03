@@ -221,7 +221,7 @@
         <primary>>翻訳ミスの報</primary>
       </indexterm></title>
 
-    <para>あながたが翻訳ミスを見つけた場合は、バグとして<ulink url="http://sourceforge.net/p/winmerge/bugs/">バグリスト</ulink>に投稿してください。
+    <para>あながたが翻訳ミスを見つけた場合は、バグとして<ulink url="https://sourceforge.net/p/winmerge/bugs/">バグリスト</ulink>に投稿してください。
           また、翻訳された文章の訂正版を提供してくだされば幸いです。</para>
   </section>
 
@@ -233,6 +233,6 @@
     <para>新たに翻訳ファイルをリストに追加したい場合は、WinMergeのサイトにある<ulink url=" http://winmerge.org/translations/ ">翻訳ドキュメント</ulink>
    を読み、方法を学んでください。ほとんどの翻訳が完全にできていないため、ぜひご協力をお願いいたします。翻訳する（または翻訳を改善する）に
     あたって、コンパイルツールや、WinMergeの知識をすべて備えている必要はありません。もし困ったことがあれば、
-   <ulink url=" http://forums.winmerge.org/ ">WinMergeフォーラム</ulink>より、私たちに支援を求めてください。</para>
+   <ulink url="http://forums.winmerge.org/ ">WinMergeフォーラム</ulink>より、私たちに支援を求めてください。</para>
   </section>
 </article>

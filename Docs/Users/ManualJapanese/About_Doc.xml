@@ -11,7 +11,6 @@
 
     <para>WinMergeヘルプは、新しいユーザーと経験豊かなユーザー両方を対象としています。
     WinMergeヘルプは、WinMergeの使い方を説明し、能力と限界を文書化します。
-
     </para>
   </section>
 
@@ -176,7 +175,7 @@
           <para>開発者に尋ねられたたくさんの共通的な質問に対する回答を含んでいます。</para>
 
           <para>質問を
-          <ulink url="http://sourceforge.net/projects/winmerge/">
+          <ulink url="https://sourceforge.net/projects/winmerge/">
           SourceForge.net</ulink>, にする前に、
           <xref linkend="Faq" />トピックで質問が回答されていないか確認してください。</para>
         </listitem>
