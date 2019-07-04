@@ -159,3 +159,20 @@ private:
 	String m_sGlobalFilterPath;    /*< Path for shared filters */
 	String m_sUserSelFilterPath;     /*< Path for user's private filters */
 };
+
+/**
+ * @brief Return filtermanager used.
+ */
+inline FileFilterMgr * FileFilterHelper::GetManager() const
+{
+	return m_fileFilterMgr.get();
+}
+
+/**
+ * @brief Returns true if active filter is a mask.
+ */
+inline bool FileFilterHelper::IsUsingMask() const
+{
+	return m_bUseMask;
+}
+

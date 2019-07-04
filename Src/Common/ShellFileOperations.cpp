@@ -190,15 +190,6 @@ bool ShellFileOperations::Run()
 }
 
 /**
- * @brief Did the user cancel the operation?
- * @return true if the operation was canceled by the user.
- */
-bool ShellFileOperations::IsCanceled() const
-{
-	return m_isCanceled;
-}
-
-/**
  * @brief Reset the class.
  */
 void ShellFileOperations::Reset()

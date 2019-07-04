@@ -1034,14 +1034,6 @@ void CLocationView::DrawConnectLines(CDC *pClientDC)
 }
 
 /** 
- * @brief Stores HWND of frame window (CMergeEditFrame).
- */
-void CLocationView::SetFrameHwnd(HWND hwndFrame)
-{
-	m_hwndFrame = hwndFrame;
-}
-
-/** 
  * @brief Request frame window to store sizes.
  *
  * When locationview size changes we want to save new size

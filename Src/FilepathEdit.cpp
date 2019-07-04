@@ -129,15 +129,6 @@ bool CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
 };
 
 /**
- * @brief Return the control's original text.
- * @return Control's original text.
- */
-void CFilepathEdit::GetOriginalText(String& rString) const
-{		
-	rString = m_sOriginalText;
-}
-
-/**
  * @brief Set the text to show in the control.
  * This function sets the text (original text) to show in the control.
  * The control may modify the text for displaying in the GUI.

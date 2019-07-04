@@ -50,14 +50,6 @@ FileFilterHelper::~FileFilterHelper()
 {
 }
 
-/** 
- * @brief Return filtermanager used.
- */
-FileFilterMgr * FileFilterHelper::GetManager() const
-{
-	return m_fileFilterMgr.get();
-}
-
 /**
  * @brief Store current filter path.
  *
@@ -328,14 +320,6 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 		strParsed = strPattern; //+ _T("$");
 	}
 	return strParsed;
-}
-
-/** 
- * @brief Returns true if active filter is a mask.
- */
-bool FileFilterHelper::IsUsingMask() const
-{
-	return m_bUseMask;
 }
 
 /** 

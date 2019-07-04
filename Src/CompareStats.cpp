@@ -32,15 +32,6 @@ CompareStats::~CompareStats()
 }
 
 /** 
- * @brief Increase found items (dirs and files) count.
- * @param [in] count Amount of items to add.
- */
-void CompareStats::IncreaseTotalItems(int count /*= 1*/)
-{
-	m_nTotalItems += count;
-}
-
-/** 
  * @brief Add compared item.
  * @param [in] code Resultcode to add.
  */
@@ -54,24 +45,6 @@ void CompareStats::AddItem(int code)
 	}
 	++m_nComparedItems;
 	assert(m_nComparedItems <= m_nTotalItems);
-}
-
-/** 
- * @brief Return count by resultcode.
- * @param [in] result Resultcode to return.
- * @return Count of items for given resultcode.
- */
-int CompareStats::GetCount(CompareStats::RESULT result) const
-{
-	return m_counts[result];
-}
-
-/** 
- * @brief Return total count of items (so far) found.
- */
-int CompareStats::GetTotalItems() const
-{
-	return m_nTotalItems;
 }
 
 /**
@@ -126,14 +99,6 @@ void CompareStats::SetCompareState(CompareStats::CMP_STATE state)
 		m_bCompareDone = true;
 
 	m_state = state;
-}
-
-/** 
- * @brief Return current comparestate.
- */
-CompareStats::CMP_STATE CompareStats::GetCompareState() const
-{
-	return m_state;
 }
 
 /** 

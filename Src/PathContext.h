@@ -24,7 +24,7 @@ public:
 	PathInfo(const PathInfo &pi);
 
 	String GetPath(bool bNormalized = true) const;
-	String& GetRef();
+	String& GetRef() { return m_sPath; }
 	void SetPath(const TCHAR *path);
 	void SetPath(const String & path);
 	void NormalizePath();
@@ -32,6 +32,20 @@ public:
 private:
 	String m_sPath;  /**< Directory / file path */
 };
+
+/**
+ * @brief Set path.
+ * @param [in] sPath New path for item.
+ */
+inline void PathInfo::SetPath(const TCHAR *sPath)
+{
+	m_sPath = sPath;
+}
+
+inline void PathInfo::SetPath(const String & sPath)
+{
+	m_sPath = sPath;
+}
 
 /**
  * @brief Holds path information of compared files/directories.
@@ -51,8 +65,8 @@ public:
 	String GetAt(int nIndex) const;
 	String& GetElement(int nIndex);
 	void SetAt(int nIndex, const String& newElement);
-	String operator[](int nIndex) const;
-	String& operator[](int nIndex);
+	String operator[](int nIndex) const { return GetAt(nIndex); }
+	String& operator[](int nIndex) { return GetElement(nIndex); }
 
 	String GetLeft(bool bNormalized = true) const;
 	String GetRight(bool bNormalized = true) const;
@@ -73,6 +87,22 @@ private:
 	int m_nFiles;
 	PathInfo m_path[3]; /**< First, second, third path (left path at start) */
 };
+
+/**
+ * @brief set number of files.
+ */
+inline void PathContext::SetSize(int nFiles)
+{
+	m_nFiles = nFiles;
+}
+
+/**
+ * @brief Return number of files.
+ */
+inline int PathContext::GetSize() const
+{
+	return m_nFiles;
+}
 
 class PathContextIterator : public std::iterator<std::forward_iterator_tag, String>
 {
@@ -122,3 +152,13 @@ public:
 	const PathContext *m_pPathContext;
 	int m_sel;
 };
+
+inline PathContextIterator PathContext::begin() const
+{
+	return PathContextIterator(this);
+}
+
+inline PathContextIterator PathContext::end() const
+{
+	return PathContextIterator();
+}

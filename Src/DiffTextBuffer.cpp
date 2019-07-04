@@ -205,24 +205,6 @@ OnNotifyLineHasBeenEdited(int nLine)
 }
 
 /**
- * @brief Set the folder for temp files.
- * @param [in] path Temp files folder.
- */
-void CDiffTextBuffer::SetTempPath(const String &path)
-{
-	m_strTempPath = path;
-}
-
-/**
- * @brief Is the buffer initialized?
- * @return true if the buffer is initialized, false otherwise.
- */
-bool CDiffTextBuffer::IsInitialized() const
-{
-	return !!m_bInit;
-}
-
-/**
  * @brief Load file from disk into buffer
  *
  * @param [in] pszFileNameInit File to load

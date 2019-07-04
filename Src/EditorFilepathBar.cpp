@@ -89,11 +89,6 @@ CSize CEditorFilePathBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	return CSize(SHRT_MAX, tm.tmHeight + 6);
 }
 
-void CEditorFilePathBar::SetPaneCount(int nPanes)
-{
-	m_nPanes = nPanes;
-}
-
 /** 
  * @brief Resize both controls to an equal size.
  */
@@ -109,14 +104,6 @@ void CEditorFilePathBar::Resize()
 	for (int pane = 0; pane < m_nPanes; pane++)
 		widths[pane] = (infoBar.rcNormalPosition.right / m_nPanes);
 	Resize(widths);
-}
-
-/** 
- * @brief Set callback function on EN_SETFOCUS notification
- */
-void CEditorFilePathBar::SetOnSetFocusCallback(const std::function<void(int)> callbackfunc)
-{
-	m_callbackfunc = callbackfunc;
 }
 
 /** 

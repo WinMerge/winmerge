@@ -91,3 +91,67 @@ private:
 
 bool TestAgainstRegList(const std::vector<FileFilterElementPtr> *filterList, const String& szTest);
 void EmptyFilterList(std::vector<FileFilterElementPtr> *filterList);
+
+/**
+ * @brief Return name of filter.
+ *
+ * @param [in] i Index of filter.
+ * @return Name of filter in given index.
+ */
+inline String FileFilterMgr::GetFilterName(int i) const
+{
+	return m_filters[i]->name; 
+}
+
+/**
+ * @brief Return name of filter.
+ * @param [in] pFilter Filter to get name for.
+ * @return Given filter's name.
+ */
+inline String FileFilterMgr::GetFilterName(const FileFilter *pFilter) const
+{
+	return pFilter->name; 
+}
+
+/**
+ * @brief Return description of filter.
+ *
+ * @param [in] i Index of filter.
+ * @return Description of filter in given index.
+ */
+inline String FileFilterMgr::GetFilterDesc(int i) const
+{
+	return m_filters[i]->description; 
+}
+
+/**
+ * @brief Return description of filter.
+ * @param [in] pFilter Filter to get description for.
+ * @return Given filter's description.
+ */
+inline String FileFilterMgr::GetFilterDesc(const FileFilter *pFilter) const
+{
+	return pFilter->description;
+}
+
+/**
+ * @brief Return full path to filter.
+ *
+ * @param [in] i Index of filter.
+ * @return Full path of filter in given index.
+ */
+inline String FileFilterMgr::GetFilterPath(int i) const
+{
+	return m_filters[i]->fullpath;
+}
+
+/**
+ * @brief Return full path to filter.
+ *
+ * @param [in] pFilter Pointer to filter.
+ * @return Full path of filter.
+ */
+inline String FileFilterMgr::GetFullpath(FileFilter * pfilter) const
+{
+	return pfilter->fullpath;
+}

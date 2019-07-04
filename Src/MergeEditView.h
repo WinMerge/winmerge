@@ -351,3 +351,23 @@ protected:
 inline CMergeDoc* CMergeEditView::GetDocument()
    { return reinterpret_cast<CMergeDoc*>(m_pDocument); }
 #endif
+
+/**
+ * @brief Enable/Disable automatic rescanning
+ */
+inline bool CMergeEditView::EnableRescan(bool bEnable)
+{
+	bool bOldValue = m_bAutomaticRescan;
+	m_bAutomaticRescan = bEnable;
+	return bOldValue;
+}
+
+/**
+ * @brief Check if cursor is inside difference.
+ * @return true if cursor is inside difference.
+ */
+inline bool CMergeEditView::IsCursorInDiff() const
+{
+	return m_bCurrentLineIsDiff;
+}
+
