@@ -109,3 +109,38 @@ private:
 	std::vector<ThreadState> m_rgThreadState;
 
 };
+
+/** 
+ * @brief Increase found items (dirs and files) count.
+ * @param [in] count Amount of items to add.
+ */
+inline void CompareStats::IncreaseTotalItems(int count)
+{
+	m_nTotalItems += count;
+}
+
+/** 
+ * @brief Return count by resultcode.
+ * @param [in] result Resultcode to return.
+ * @return Count of items for given resultcode.
+ */
+inline int CompareStats::GetCount(CompareStats::RESULT result) const
+{
+	return m_counts[result];
+}
+
+/**
+ * @brief Return total count of items (so far) found.
+ */
+inline int CompareStats::GetTotalItems() const
+{
+	return m_nTotalItems;
+}
+
+/**
+ * @brief Return current comparestate.
+ */
+inline CompareStats::CMP_STATE CompareStats::GetCompareState() const
+{
+	return m_state;
+}

@@ -350,42 +350,6 @@ void CPatchDlg::OnDiffSwapFiles()
 }
 
 /** 
- * @brief Add patch item to internal list.
- * @param [in] pf Patch item to add.
- */
-void CPatchDlg::AddItem(const PATCHFILES& pf)
-{
-	m_fileList.push_back(pf);
-}
-
-/** 
- * @brief Returns amount of patch items in the internal list.
- * @return Count of patch items in the list.
- */
-size_t CPatchDlg::GetItemCount()
-{
-	return m_fileList.size();
-}
-
-/** 
- * @brief Return item in the internal list at given position
- * @param [in] position Zero-based index of item to get
- * @return PATCHFILES from given position.
- */
-const PATCHFILES& CPatchDlg::GetItemAt(size_t position)
-{
-	return m_fileList.at(position);
-}
-
-/** 
- * @brief Empties internal item list.
- */
-void CPatchDlg::ClearItems()
-{
-	m_fileList.clear();
-}
-
-/** 
  * @brief Updates patch dialog settings from member variables.
  */
 void CPatchDlg::UpdateSettings()

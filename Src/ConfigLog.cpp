@@ -84,16 +84,6 @@ static String GetCompilerVersion()
 	);
 }
 
-
-/** 
- * @brief Return logfile name and path
- */
-String CConfigLog::GetFileName() const
-{
-	return m_sFileName;
-}
-
-
 /** 
  * @brief Get the Modified time of fully qualified file path and name
  */

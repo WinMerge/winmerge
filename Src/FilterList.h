@@ -48,3 +48,30 @@ private:
 	const std::string *m_lastMatchExpression;
 
 };
+
+/** 
+ * @brief Removes all expressions from the list.
+ */
+inline void FilterList::RemoveAllFilters()
+{
+	m_list.clear();
+}
+
+/** 
+ * @brief Returns if list has any expressions.
+ * @return true if list contains one or more expressions.
+ */
+inline bool FilterList::HasRegExps() const
+{
+	return !m_list.empty();
+}
+
+/** 
+ * @brief Returns the last matched expression (if any).
+ * This function returns the regular expression string that matched last.
+ * @return Last matched expression, or `nullptr` in case no matches yet.
+ */
+inline const char * FilterList::GetLastMatchExpression() const
+{
+	return m_lastMatchExpression->c_str();
+}

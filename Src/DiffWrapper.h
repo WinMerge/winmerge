@@ -30,6 +30,7 @@
 #include "CompareOptions.h"
 #include "DiffList.h"
 #include "UnicodeString.h"
+#include "FileTransform.h"
 
 class CDiffContext;
 class PrediffingInfo;
@@ -240,3 +241,50 @@ private:
 	const FilterCommentsManager* m_pFilterCommentsManager; /**< Comments filtering manager */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 };
+
+/**
+ * @brief Set text tested to find the prediffer automatically.
+ * Most probably a concatenated string of both filenames.
+ */
+inline void CDiffWrapper::SetTextForAutomaticPrediff(const String &text)
+{
+	m_sToFindPrediffer = text;
+}
+
+inline void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer) const
+{
+	*prediffer = *m_infoPrediffer;
+}
+
+/**
+ * @brief Set plugins enabled/disabled.
+ * @param [in] enable if true plugins are enabled.
+ */
+inline void CDiffWrapper::EnablePlugins(bool enable)
+{
+	m_bPluginsEnabled = enable;
+}
+
+/**
+ * @brief Set source paths for original (NON-TEMP) diffing two files.
+ * Sets full paths to two (NON-TEMP) files we are diffing.
+ * @param [in] OriginalFile1 First file to compare "(NON-TEMP) file".
+ * @param [in] OriginalFile2 Second file to compare "(NON-TEMP) file".
+ */
+inline void CDiffWrapper::SetCompareFiles(const PathContext &originalFile)
+{
+	m_originalFile = originalFile;
+}
+
+/**
+ * @brief Set alternative paths for compared files.
+ * Sets alternative paths for diff'ed files. These alternative paths might not
+ * be real paths. For example when creating a patch file from folder compare
+ * we want to use relative paths.
+ * @param [in] altPaths Alternative file paths.
+ */
+inline void CDiffWrapper::SetAlternativePaths(const PathContext &altPaths)
+{
+	m_alternativePaths = altPaths;
+}
+

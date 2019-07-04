@@ -2337,16 +2337,6 @@ void CMergeEditView::OnRefresh()
 }
 
 /**
- * @brief Enable/Disable automatic rescanning
- */
-bool CMergeEditView::EnableRescan(bool bEnable)
-{
-	bool bOldValue = m_bAutomaticRescan;
-	m_bAutomaticRescan = bEnable;
-	return bOldValue;
-}
-
-/**
  * @brief Handle some keys when in merging mode
  */
 bool CMergeEditView::MergeModeKeyDown(MSG* pMsg)
@@ -3767,15 +3757,6 @@ void CMergeEditView::SetWordWrapping( bool bWordWrap )
 void CMergeEditView::OnViewSwapPanes()
 {
 	GetDocument()->SwapFiles();
-}
-
-/**
- * @brief Check if cursor is inside difference.
- * @return true if cursor is inside difference.
- */
-bool CMergeEditView::IsCursorInDiff() const
-{
-	return m_bCurrentLineIsDiff;
 }
 
 /**

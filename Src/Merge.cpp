@@ -517,15 +517,6 @@ int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
 	return static_cast<int>(dlgMessage.DoModal());
 }
 
-/** 
- * @brief Set flag so that application will broadcast notification at next
- * idle time (via WM_TIMER id=IDLE_TIMER)
- */
-void CMergeApp::SetNeedIdleTimer()
-{
-	m_bNeedIdleTimer = true; 
-}
-
 bool CMergeApp::IsReallyIdle() const
 {
 	bool idle = true;

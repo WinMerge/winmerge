@@ -85,3 +85,17 @@ private:
 	int m_nPanes;
 	std::function<void(int)> m_callbackfunc;
 };
+
+inline void CEditorFilePathBar::SetPaneCount(int nPanes)
+{
+	m_nPanes = nPanes;
+}
+
+/** 
+ * @brief Set callback function on EN_SETFOCUS notification
+ */
+inline void CEditorFilePathBar::SetOnSetFocusCallback(const std::function<void(int)> callbackfunc)
+{
+	m_callbackfunc = callbackfunc;
+}
+

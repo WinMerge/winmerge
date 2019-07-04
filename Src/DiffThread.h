@@ -118,3 +118,20 @@ private:
 	bool m_bAborting; /**< Is compare aborting? */
 	bool m_bPaused; /**< Is compare paused? */
 };
+
+/**
+ * @brief Sets context pointer forwarded to thread.
+ * @param [in] pCtx Pointer to compare context.
+ */
+inline void CDiffThread::SetContext(CDiffContext * pCtx)
+{
+	m_pDiffContext = pCtx;
+}
+
+/**
+ * @brief Returns thread's current state
+ */
+inline unsigned CDiffThread::GetThreadState() const
+{
+	return m_pDiffParm->nThreadState;
+}

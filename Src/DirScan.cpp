@@ -35,6 +35,7 @@
 #include "MergeApp.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "PathContext.h"
 #include "DebugNew.h"
 
 using Poco::NotificationQueue;

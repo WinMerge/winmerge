@@ -27,3 +27,23 @@ public:
 	String GetFileVersionString() const;
 	uint64_t GetFileVersionQWORD() const { return (static_cast<uint64_t>(m_fileVersionMS) << 32) + m_fileVersionLS; };
 };
+
+/**
+ * @brief Reset version data to zeroes.
+ */
+inline void FileVersion::Clear()
+{
+	m_fileVersionMS = m_fileVersionLS = 0xffffffff;
+}
+
+/**
+ * @brief Set file version number.
+ * @param [in] versionMS Most significant dword for version.
+ * @param [in] versionLS Least significant dword for version.
+ */
+inline void FileVersion::SetFileVersion(unsigned versionMS, unsigned versionLS)
+{
+	m_fileVersionMS = versionMS;
+	m_fileVersionLS = versionLS;
+}
+

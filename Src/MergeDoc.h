@@ -393,3 +393,12 @@ private:
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;
 	void DoFileSave(int pane);
 };
+
+/**
+ * @brief return true if there are synchronization points
+ */
+inline bool CMergeDoc::HasSyncPoints()
+{
+	return m_bHasSyncPoints;
+}
+

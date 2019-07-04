@@ -72,15 +72,6 @@ CDiffThread::~CDiffThread()
 }
 
 /**
- * @brief Sets context pointer forwarded to thread.
- * @param [in] pCtx Pointer to compare context.
- */
-void CDiffThread::SetContext(CDiffContext * pCtx)
-{
-	m_pDiffContext = pCtx;
-}
-
-/**
  * @brief runtime interface for child thread, called on child thread
  */
 bool CDiffThread::ShouldAbort() const
@@ -114,14 +105,6 @@ unsigned CDiffThread::CompareDirectories()
 	m_threads[1].start(DiffThreadCompare, m_pDiffParm.get());
 
 	return 1;
-}
-
-/**
- * @brief Returns thread's current state
- */
-unsigned CDiffThread::GetThreadState() const
-{
-	return m_pDiffParm->nThreadState;
 }
 
 /**

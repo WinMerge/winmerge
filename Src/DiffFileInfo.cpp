@@ -33,11 +33,3 @@ void DiffFileInfo::ClearPartial()
 	encoding.Clear();
 	m_textStats.clear();
 }
-
-/**
- * @brief Return true if file is in any Unicode encoding
- */
-bool DiffFileInfo::IsEditableEncoding() const
-{
-	return !encoding.m_bom;
-}

@@ -71,6 +71,32 @@ public:
 };
 
 /**
+ * @brief Check if there is error.
+ * @return true if there is an error.
+ */
+inline bool UniFile::UniError::HasError() const
+{
+	return !desc.empty();
+}
+
+/**
+ * @brief Clears the existing error.
+ */
+inline void UniFile::UniError::ClearError()
+{
+	desc.erase();
+}
+
+/**
+ * @brief Get the error string.
+ * @return Error string.
+ */
+inline String UniFile::UniError::GetError() const
+{
+	return desc;
+}
+
+/**
  * @brief Local file access code used by both UniMemFile and UniStdioFile
  *
  * This class lacks an actual handle to a file
@@ -181,6 +207,33 @@ private:
 	unsigned char *m_current; // current location in file
 };
 
+/** @brief Is it currently attached to a file ? */
+inline bool UniMemFile::IsOpen() const
+{
+	// We don't test the handle here, because we allow "opening" empty file
+	// but memory-mapping doesn't work on that, so that uses a special state
+	// of no handle, but linenumber of 0
+	return m_lineno >= 0;
+}
+
+/**
+ * @brief Returns if file has a BOM bytes.
+ * @return true if file has BOM bytes, false otherwise.
+ */
+inline bool UniMemFile::HasBom() const
+{
+	return m_bom;
+}
+
+/**
+ * @brief Sets if file has BOM or not.
+ * @param [in] true to have a BOM in file, false to not to have.
+ */
+inline void UniMemFile::SetBom(bool bom)
+{
+	m_bom = bom;
+}
+
 /**
  * @brief Regular buffered file (write-only access)
  * (ReadString methods have never been implemented,
@@ -227,3 +280,29 @@ private:
 	int64_t m_data; // offset after any initial BOM
 	ucr::buffer m_ucrbuff;
 };
+
+/** @brief Is it currently attached to a file ? */
+inline bool UniStdioFile::IsOpen() const
+{
+	return m_fp != 0;
+}
+
+/**
+ * @brief Returns if file has a BOM bytes.
+ * @return true if file has BOM bytes, false otherwise.
+ */
+inline bool UniStdioFile::HasBom() const
+{
+	return m_bom;
+}
+
+/**
+ * @brief Sets if file has BOM or not.
+ * @param [in] true to have a BOM in file, false to not to have.
+ */
+inline void UniStdioFile::SetBom(bool bom)
+{
+	m_bom = bom;
+}
+
+

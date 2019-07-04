@@ -131,3 +131,12 @@ protected:
 inline CMergeDoc* CLocationView::GetDocument()
    { return reinterpret_cast<CMergeDoc*>(m_pDocument); }
 #endif
+
+/** 
+ * @brief Stores HWND of frame window (CMergeEditFrame).
+ */
+inline void CLocationView::SetFrameHwnd(HWND hwndFrame)
+{
+	m_hwndFrame = hwndFrame;
+}
+

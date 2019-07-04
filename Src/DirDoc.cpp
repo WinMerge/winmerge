@@ -562,30 +562,6 @@ void CDirDoc::RefreshOptions()
 }
 
 /**
- * @brief Set left/middle/right side readonly-status
- * @param nIndex Select side to set 
- * @param bReadOnly New status of selected side
- */
-void CDirDoc::SetReadOnly(int nIndex, bool bReadOnly)
-{
-	m_bRO[nIndex] = bReadOnly;
-}
-
-/**
- * @brief Return left/middle/right side readonly-status
- * @param nIndex Select side to ask
- */
-bool CDirDoc::GetReadOnly(int nIndex) const
-{
-	return m_bRO[nIndex];
-}
-
-const bool *CDirDoc::GetReadOnly(void) const
-{
-	return m_bRO;
-}
-
-/**
  * @brief Write path and filename to headerbar
  * @note SetText() does not repaint unchanged text
  */

@@ -62,3 +62,11 @@ private:
 	String m_sFileName;
 	std::unique_ptr<UniStdioFile> m_pfile;
 };
+
+/**
+ * @brief Return logfile name and path
+ */
+inline String CConfigLog::GetFileName() const
+{
+	return m_sFileName;
+}

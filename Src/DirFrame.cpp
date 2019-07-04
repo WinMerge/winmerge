@@ -170,13 +170,6 @@ void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
 }
 
 /**
- * @brief Get the interface to the header (path) bar
- */
-IHeaderBar * CDirFrame::GetHeaderInterface() {
-	return &m_wndFilePathBar;
-}
-
-/**
  * @brief Restore maximized state of directory compare window
  */
 void CDirFrame::ActivateFrame(int nCmdShow) 
