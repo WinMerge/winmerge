@@ -304,7 +304,7 @@
 
       <itemizedlist>
         <listitem>
-          <para<guilabel>無効</guilabel>(デフォルト): ファイルまたはフォルダの選択ダイアログでパス入力した時、
+          <para><guilabel>無効</guilabel>(デフォルト): ファイルまたはフォルダの選択ダイアログでパス入力した時、
           オートコンプリートは実行されません。
           </para>
         </listitem>
@@ -316,7 +316,7 @@
         </listitem>
 
         <listitem>
-          <para<guilabel>最近使ったリスト</guilabel>: パスを、最近使ったリスト(MRU)の中から調べます。
+          <para><guilabel>最近使ったリスト</guilabel>: パスを、最近使ったリスト(MRU)の中から調べます。
           <!-- TODO: かなり意訳 -->これは、比較用のパスが限定されている場合に便利です。
           </para>
         </listitem>
@@ -1029,7 +1029,7 @@
         </listitem>
 
         <listitem>
-          <para<option>有効</option>: WinMerge は、すべての編集イベント
+          <para><option>有効</option>: WinMerge は、すべての編集イベント
           (入力するなど、ファイルへの変更)の後、強制的に再スキャンします。</para>
 
           <note>
