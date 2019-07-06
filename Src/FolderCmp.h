@@ -48,9 +48,9 @@ public:
 	int m_ntrivialdiffs;
 
 	DiffFileData m_diffFileData;
+	CDiffContext *const m_pCtxt;
 
 private:
-	CDiffContext *const m_pCtxt;
 	std::unique_ptr<CompareEngines::DiffUtils> m_pDiffUtilsEngine;
 	std::unique_ptr<CompareEngines::ByteCompare> m_pByteCompare;
 	std::unique_ptr<CompareEngines::BinaryCompare> m_pBinaryCompare;
