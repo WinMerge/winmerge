@@ -28,8 +28,9 @@ using CompareEngines::TimeSizeCompare;
 
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & files);
 
-FolderCmp::FolderCmp()
-: m_pDiffUtilsEngine(nullptr)
+FolderCmp::FolderCmp(CDiffContext *pCtxt)
+: m_pCtxt(pCtxt)
+, m_pDiffUtilsEngine(nullptr)
 , m_pByteCompare(nullptr)
 , m_pBinaryCompare(nullptr)
 , m_pTimeSizeCompare(nullptr)
@@ -42,7 +43,7 @@ FolderCmp::~FolderCmp()
 {
 }
 
-bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, String &errStr)
+bool FolderCmp::RunPlugins(PluginsContext * plugCtxt, String &errStr)
 {
 	// FIXME:
 	return true;
@@ -60,18 +61,18 @@ void FolderCmp::CleanupAfterPlugins(PluginsContext *plugCtxt)
  * @param [in, out] di Compared files with associated data.
  * @return Compare result code.
  */
-int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
+int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 {
 	int nIndex;
-	int nCompMethod = pCtxt->GetCompareMethod();
-	int nDirs = pCtxt->GetCompareDirs();
+	int nCompMethod = m_pCtxt->GetCompareMethod();
+	int nDirs = m_pCtxt->GetCompareDirs();
 
 	unsigned code = DIFFCODE::FILE | DIFFCODE::CMPERR;
 
 	if ((nCompMethod == CMP_CONTENT || nCompMethod == CMP_QUICK_CONTENT) &&
-		((di.diffFileInfo[0].size > pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[0].size != DirItem::FILE_SIZE_NONE) ||
-		 (di.diffFileInfo[1].size > pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[1].size != DirItem::FILE_SIZE_NONE) ||
-		 (nDirs > 2 && di.diffFileInfo[2].size > pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[2].size != DirItem::FILE_SIZE_NONE)))
+		((di.diffFileInfo[0].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[0].size != DirItem::FILE_SIZE_NONE) ||
+		 (di.diffFileInfo[1].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[1].size != DirItem::FILE_SIZE_NONE) ||
+		 (nDirs > 2 && di.diffFileInfo[2].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[2].size != DirItem::FILE_SIZE_NONE)))
 	{
 		nCompMethod = CMP_BINARY_CONTENT;
 	}
@@ -85,7 +86,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			m_diffFileData.m_textStats[nIndex].clear();
 
 		PathContext tFiles;
-		GetComparePaths(pCtxt, di, tFiles);
+		GetComparePaths(m_pCtxt, di, tFiles);
 		struct change *script10 = nullptr;
 		struct change *script12 = nullptr;
 		struct change *script02 = nullptr;
@@ -106,12 +107,12 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		PrediffingInfo * infoPrediffer = nullptr;
 
 		// Get existing or new plugin infos
-		if (pCtxt->m_piPluginInfos != nullptr)
-			pCtxt->FetchPluginInfos(filteredFilenames, &infoUnpacker,
+		if (m_pCtxt->m_piPluginInfos != nullptr)
+			m_pCtxt->FetchPluginInfos(filteredFilenames, &infoUnpacker,
 					&infoPrediffer);
 
 		FileTextEncoding encoding[3];
-		bool bForceUTF8 = pCtxt->GetCompareOptions(nCompMethod)->m_bIgnoreCase;
+		bool bForceUTF8 = m_pCtxt->GetCompareOptions(nCompMethod)->m_bIgnoreCase;
 
 		for (nIndex = 0; nIndex < nDirs; nIndex++)
 		{
@@ -133,7 +134,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			// Unpacked files will be deleted at end of this function.
 			filepathTransformed[nIndex] = filepathUnpacked[nIndex];
 
-			encoding[nIndex] = GuessCodepageEncoding(filepathTransformed[nIndex], pCtxt->m_iGuessEncodingType);
+			encoding[nIndex] = GuessCodepageEncoding(filepathTransformed[nIndex], m_pCtxt->m_iGuessEncodingType);
 			m_diffFileData.m_FileLocation[nIndex].encoding = encoding[nIndex];
 		}
 
@@ -181,9 +182,9 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		// If either file is larger than limit compare files by quick contents
 		// This allows us to (faster) compare big binary files
 		if (nCompMethod == CMP_CONTENT && 
-			(di.diffFileInfo[0].size > pCtxt->m_nQuickCompareLimit ||
-			di.diffFileInfo[1].size > pCtxt->m_nQuickCompareLimit || 
-			(nDirs > 2 && di.diffFileInfo[2].size > pCtxt->m_nQuickCompareLimit)))
+			(di.diffFileInfo[0].size > m_pCtxt->m_nQuickCompareLimit ||
+			di.diffFileInfo[1].size > m_pCtxt->m_nQuickCompareLimit ||
+			(nDirs > 2 && di.diffFileInfo[2].size > m_pCtxt->m_nQuickCompareLimit)))
 		{
 			nCompMethod = CMP_QUICK_CONTENT;
 		}
@@ -196,14 +197,14 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
 				m_pDiffUtilsEngine->SetCodepage(codepage);
 				bool success = m_pDiffUtilsEngine->SetCompareOptions(
-						*pCtxt->GetCompareOptions(CMP_CONTENT));
+						*m_pCtxt->GetCompareOptions(CMP_CONTENT));
 				if (success)
 				{
-					if (pCtxt->m_pFilterList != nullptr)
-						m_pDiffUtilsEngine->SetFilterList(pCtxt->m_pFilterList.get());
+					if (m_pCtxt->m_pFilterList != nullptr)
+						m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
 					else
 						m_pDiffUtilsEngine->ClearFilterList();
-					m_pDiffUtilsEngine->SetFilterCommentsManager(pCtxt->m_pFilterCommentsManager);
+					m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
 					m_pDiffUtilsEngine->SetFileData(2, m_diffFileData.m_inf);
 					code = m_pDiffUtilsEngine->diffutils_compare_files();
 					m_pDiffUtilsEngine->GetDiffCounts(m_ndiffs, m_ntrivialdiffs);
@@ -227,14 +228,14 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
 				m_pDiffUtilsEngine->SetCodepage(codepage);
 				bool success = m_pDiffUtilsEngine->SetCompareOptions(
-						*pCtxt->GetCompareOptions(CMP_CONTENT));
+						*m_pCtxt->GetCompareOptions(CMP_CONTENT));
 				if (success)
 				{
-					if (pCtxt->m_pFilterList != nullptr)
-						m_pDiffUtilsEngine->SetFilterList(pCtxt->m_pFilterList.get());
+					if (m_pCtxt->m_pFilterList != nullptr)
+						m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
 					else
 						m_pDiffUtilsEngine->ClearFilterList();
-					m_pDiffUtilsEngine->SetFilterCommentsManager(pCtxt->m_pFilterCommentsManager);
+					m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
 
 					bool bRet;
 					int bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
@@ -324,12 +325,12 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 				if (m_pByteCompare == nullptr)
 					m_pByteCompare.reset(new ByteCompare());
 				bool success = m_pByteCompare->SetCompareOptions(
-					*pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
+					*m_pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
 	
 				if (success)
 				{
-					m_pByteCompare->SetAdditionalOptions(pCtxt->m_bStopAfterFirstDiff);
-					m_pByteCompare->SetAbortable(pCtxt->GetAbortable());
+					m_pByteCompare->SetAdditionalOptions(m_pCtxt->m_bStopAfterFirstDiff);
+					m_pByteCompare->SetAbortable(m_pCtxt->GetAbortable());
 					m_pByteCompare->SetFileData(2, m_diffFileData.m_inf);
 	
 					// use our own byte-by-byte compare
@@ -351,13 +352,13 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 				if (m_pByteCompare == nullptr)
 					m_pByteCompare.reset(new ByteCompare());
 				bool success = m_pByteCompare->SetCompareOptions(
-					*pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
+					*m_pCtxt->GetCompareOptions(CMP_QUICK_CONTENT));
 	
 				if (success)
 				{
 					/* “r’† */
-					m_pByteCompare->SetAdditionalOptions(pCtxt->m_bStopAfterFirstDiff);
-					m_pByteCompare->SetAbortable(pCtxt->GetAbortable());
+					m_pByteCompare->SetAdditionalOptions(m_pCtxt->m_bStopAfterFirstDiff);
+					m_pByteCompare->SetAbortable(m_pCtxt->GetAbortable());
 
 					// 10
 					m_pByteCompare->SetFileData(2, diffdata10.m_inf);
@@ -445,7 +446,7 @@ exitPrepAndCompare:
 
 		// When comparing empty file and nonexistent file, `DIFFCODE::SAME` flag is set to the variable `code`, so change the flag to `DIFFCODE::DIFF`
 		// Also when disabling ignore codepage option and the encodings of files are not equal, change the flag to `DIFFCODE::DIFF even if  `DIFFCODE::SAME` flag is set to the variable `code`
-		if (!di.diffcode.existAll() || (!pCtxt->m_bIgnoreCodepage && !std::equal(encoding + 1, encoding + nDirs, encoding)))
+		if (!di.diffcode.existAll() || (!m_pCtxt->m_bIgnoreCodepage && !std::equal(encoding + 1, encoding + nDirs, encoding)))
 			code = (code & ~DIFFCODE::COMPAREFLAGS) | DIFFCODE::DIFF;
 	}
 	else if (nCompMethod == CMP_BINARY_CONTENT)
@@ -454,7 +455,7 @@ exitPrepAndCompare:
 			m_pBinaryCompare.reset(new BinaryCompare());
 
 		PathContext tFiles;
-		GetComparePaths(pCtxt, di, tFiles);
+		GetComparePaths(m_pCtxt, di, tFiles);
 		code = m_pBinaryCompare->CompareFiles(tFiles, di);
 	}
 	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
@@ -462,8 +463,8 @@ exitPrepAndCompare:
 		if (m_pTimeSizeCompare == nullptr)
 			m_pTimeSizeCompare.reset(new TimeSizeCompare());
 
-		m_pTimeSizeCompare->SetAdditionalOptions(pCtxt->m_bIgnoreSmallTimeDiff);
-		code = m_pTimeSizeCompare->CompareFiles(nCompMethod, pCtxt->GetCompareDirs(), di);
+		m_pTimeSizeCompare->SetAdditionalOptions(m_pCtxt->m_bIgnoreSmallTimeDiff);
+		code = m_pTimeSizeCompare->CompareFiles(nCompMethod, m_pCtxt->GetCompareDirs(), di);
 	}
 	else
 	{
