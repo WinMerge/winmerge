@@ -48,7 +48,7 @@ using Poco::Environment;
 using Poco::Stopwatch;
 
 // Static functions (ie, functions only used locally)
-void CompareDiffItem(DIFFITEM &di, CDiffContext *pCtxt);
+static void CompareDiffItem(DIFFITEM &di, CDiffContext *pCtxt);
 static void StoreDiffData(DIFFITEM &di, CDiffContext *pCtxt,
 		const FolderCmp *pCmpData);
 static DIFFITEM *AddToList(const String &sLeftDir, const String &sRightDir, const DirItem *lent, const DirItem *rent,
@@ -803,7 +803,7 @@ static void UpdateDiffItem(DIFFITEM &di, bool & bExists, CDiffContext *pCtxt)
  * @todo For date compare, maybe we should use creation date if modification
  * date is missing?
  */
-void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
+static void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 {
 	int nDirs = pCtxt->GetCompareDirs();
 	// Clear rescan-request flag (not set by all codepaths)
@@ -824,8 +824,8 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 			)
 		{
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
-			FolderCmp folderCmp;
-			di.diffcode.diffcode |= folderCmp.prepAndCompareFiles(pCtxt, di);
+			FolderCmp folderCmp(pCtxt);
+			di.diffcode.diffcode |= folderCmp.prepAndCompareFiles(di);
 			StoreDiffData(di, pCtxt, &folderCmp);
 		}
 		else

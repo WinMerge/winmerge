@@ -73,8 +73,8 @@ static void UpdateDiffItem(int nBuffers, DIFFITEM &di, CDiffContext *pCtxt)
 	// Clear flags
 	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY);
 	// Really compare
-	FolderCmp folderCmp;
-	di.diffcode.diffcode |= folderCmp.prepAndCompareFiles(pCtxt, di);
+	FolderCmp folderCmp(pCtxt);
+	di.diffcode.diffcode |= folderCmp.prepAndCompareFiles(di);
 }
 
 /**
