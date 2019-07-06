@@ -764,7 +764,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 		pImage = (void *)(path);
 		cbImage = trunc;
 	}
-	else
+	else if (path != nullptr)
 	{
 		try
 		{
