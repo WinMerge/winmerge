@@ -38,11 +38,11 @@ struct PluginsContext
 class FolderCmp
 {
 public:
-	FolderCmp();
+	explicit FolderCmp(CDiffContext *pCtxt);
 	~FolderCmp();
-	bool RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, String &errStr);
+	bool RunPlugins(PluginsContext * plugCtxt, String &errStr);
 	void CleanupAfterPlugins(PluginsContext *plugCtxt);
-	int prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di);
+	int prepAndCompareFiles(DIFFITEM &di);
 
 	int m_ndiffs;
 	int m_ntrivialdiffs;
@@ -50,6 +50,7 @@ public:
 	DiffFileData m_diffFileData;
 
 private:
+	CDiffContext *const m_pCtxt;
 	std::unique_ptr<CompareEngines::DiffUtils> m_pDiffUtilsEngine;
 	std::unique_ptr<CompareEngines::ByteCompare> m_pByteCompare;
 	std::unique_ptr<CompareEngines::BinaryCompare> m_pBinaryCompare;
