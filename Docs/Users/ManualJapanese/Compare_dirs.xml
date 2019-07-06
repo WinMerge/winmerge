@@ -58,15 +58,14 @@
             <para>再帰モードは、全体のフォルダ構造の中から、差異ファイルを見つけたり、
               操作したりするのに便利です。
              しかしながら、多くのサブフォルダやファイルがある場合は遅くなります。
-            深くネストしたディレクトリ構造を、比較ウィンドウで操作し易くするために
-            <xref linkend="Compare_dirs_treeview" />を有効にすることを考えてください。
+            深くネストしたディレクトリ構造を、比較ウィンドウで操作し易くするために<xref
+            linkend="Compare_dirs_treeview" />を有効にすることを考えてください。
             </para>
 
             <para>非再帰モードは、多くのサブフォルダが存在しても、
               それらを検査する必要がないため、速度面で有利です。
               さらに、表示の管理もより簡単です。
-              なぜなら、選択されたフォルダの項目だけを表示すれば良いからです。
-            </para>
+              なぜなら、選択されたフォルダの項目だけを表示すれば良いからです。</para>
           </listitem>
         </varlistentry>
 
@@ -559,7 +558,10 @@ I get the partial list, but no Abort indicator.--></para>
           </inlinemediaobject> <guibutton>左へコピー</guibutton>は、
           コンテキストメニューの<guimenuitem>左から右</guimenuitem>と
           <guimenuitem>右を左に</guimenuitem>と同じ働きをします。
-          これは、they copy from side to side only files that are valid to copy. しかしながら、これらのコマンドは、コピーされるファイル数を直接表示しません。その代わり、コピー元とコピー先をチェックできる確認ダイアログを表示します。</para>
+          これは、they copy from side to side only files that are valid to copy. 
+          しかしながら、これらのコマンドは、コピーされるファイル数を直接表示しません。
+          その代わり、コピー元とコピー先をチェックできる確認ダイアログを表示します。
+          </para>
 
         <para>WinMergeメニューの、<menuchoice>
             <guimenu>マージ</guimenu>
@@ -600,8 +602,10 @@ I get the partial list, but no Abort indicator.--></para>
         </indexterm></title>
 
       <para>ファイル、または、フォルダをリネームするには、コンテキストメニューの<guimenuitem>名前を変更</guimenuitem>
-      、または、<keycap>F2</keycap>キーを押下してください。エディットボックス内で<keycap>Return</keycap>キーを押下すると、名前を変更します。また、
-      <keycap>Esc</keycap>キーを押下するとキャンセルします。一つのファイル、または、フォルダをリネームできます。リネームは、両側のアイテムを変更することに注意してください。現在、
+      、または、<keycap>F2</keycap>キーを押下してください。エディットボックス内で
+      <keycap>Return</keycap>キーを押下すると、名前を変更します。また、
+      <keycap>Esc</keycap>キーを押下するとキャンセルします。一つのファイル、または、フォルダをリネームできます。リネームは、
+      両側のアイテムを変更することに注意してください。現在、
       片側のアイテムだけのリネームはできません。</para>
     </section>
 
@@ -613,7 +617,8 @@ I get the partial list, but no Abort indicator.--></para>
         </indexterm></title>
 
       <para>コンテキストメニューの、<guimenuitem>左を開く
-      </guimenuitem>と<guimenuitem>右を開く</guimenuitem>のどちらかを使用して、アイテムを操作することができます。それぞれの<guimenuitem>開く</guimenuitem>
+      </guimenuitem>と<guimenuitem>右を開く</guimenuitem>のどちらかを使用して、アイテムを操作することができます。
+      それぞれの<guimenuitem>開く</guimenuitem>
       メニューは、いくつかのショートカットを含んだ、サブメニューを持っています。</para>
 
       <variablelist>
@@ -621,10 +626,12 @@ I get the partial list, but no Abort indicator.--></para>
           <term><guimenuitem>with Registered Application</guimenuitem></term>
 
           <listitem>
-            <para>Windowsで登録されているファイルタイプに対応したアプリケーションで、ファイルを開きます。</para>
+            <para>Windowsで登録されているファイルタイプに対応したアプリケーションで、ファイルを開きます。
+            </para>
 
             <tip>
-              <para>このショートカットは、いつも新しいWindowsエクスプローラでフォルダを開きます。</para>
+              <para>このショートカットは、いつも新しいWindowsエクスプローラでフォルダを開きます。
+              </para>
             </tip>
           </listitem>
         </varlistentry>
@@ -634,7 +641,8 @@ I get the partial list, but no Abort indicator.--></para>
 
           <listitem>
             <para>外部エディタでファイルを開くデフォルトエディタはメモ帳ですが、
-            WinMergeのオプションで、別のエディタを設定することがきます。</para>
+            WinMergeのオプションで、別のエディタを設定することがきます。
+            </para>
           </listitem>
         </varlistentry>
 
@@ -642,7 +650,8 @@ I get the partial list, but no Abort indicator.--></para>
           <term><guimenuitem>with...</guimenuitem></term>
 
           <listitem>
-            <para><!-- TODO: 左/右を開く/プログラムの選択 で開くダイアログのタイトルがわからない --><guilabel>Open With</guilabel>ダイアログを開き、指定したアプリケーションでファイルを開くことができます。</para>
+            <para><!-- TODO: 左/右を開く/プログラムの選択 で開くダイアログのタイトルがわからない --><guilabel>Open With</guilabel>ダイアログを開き、指定したアプリケーションでファイルを開くことができます。
+            </para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -661,20 +670,21 @@ I get the partial list, but no Abort indicator.--></para>
 
       <para>コンテキストメニュー<guimenuitem>パス名をコピー</guimenuitem>と
       <guimenuitem>ファイル名をコピー</guimenuitem>ショートカットは、選択されたアイテムの
-パス名、または、ファイル名をWindowsのクリップボードへコピーします。さらに、コピーされた情報を、ファイル、または、アプリケーションへ貼り付けることができます。
-例えば、変更されたファイルのリストの作成や、チェンジログなど。</para>
+      パス名、または、ファイル名をWindowsのクリップボードへコピーします。さらに、コピーされた情報を、ファイル、または、アプリケーションへ貼り付けることができます。
+      例えば、変更されたファイルのリストの作成や、チェンジログなど。
+      </para>
 
       <itemizedlist>
         <listitem>
           <para><guimenuitem>パス名をコピー</guimenuitem>は、他のファイル操作と同じような、
-3つのショートカットを持っています。
+          3つのショートカットを持っています。
           これは、1つ、または、複数の選択されたアイテムのフルパス名を、
-1アイテム1行として、クリップボードへコピーします。</para>
+          1アイテム1行として、クリップボードへコピーします。</para>
         </listitem>
 
         <listitem>
           <para><guimenuitem>ファイル名をコピー</guimenuitem>は、パスを除いた
-ファイル名だけをコピーします。</para>
+          ファイル名だけをコピーします。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -706,15 +716,17 @@ I get the partial list, but no Abort indicator.--></para>
 
       <important>
         <para>ファイルとフォルダの読み取り専用オプションは、現在の比較ビューのみの設定です。
-これらのファイルの、Windows上の属性には影響ありません。</para>
+これらのファイルの、Windows上の属性には影響ありません。
+        </para>
       </important>
 
       <para><!-- TODO: ちょっと自信ない -->この読み取り専用状態は、フォルダ比較で開いたファイルにも継承されます。例えば、2つのフォルダの比較で、片側を読み取り専用にセットし、比較のため2つのファイルを開いた場合、
-読み取り専用がセットされた側のファイルは書き込み保護されています。同じように、読み取り専用でない側から、
-読み取り専用側へのファイルコピーはできません。</para>
+      読み取り専用がセットされた側のファイルは書き込み保護されています。同じように、読み取り専用でない側から、
+      読み取り専用側へのファイルコピーはできません。</para>
 
       <para>左か右側のペインのステータスバー(ウィンドウの右下付近)の<guilabel>RO</guilabel>の記号は、
-そちら側が読み取り専用であることを表しています。</para>
+      そちら側が読み取り専用であることを表しています。
+      </para>
     </section>
 
     <section>
@@ -722,8 +734,10 @@ I get the partial list, but no Abort indicator.--></para>
           <primary>refreshing view</primary>
         </indexterm></title>
 
-      <para>大きなフォルダをフルリフレッシュするには長時間かかります。WinMerge 2.2 か、それ以前では、WinMergeの外でファイルを編集した後はいつも、フルリフレッシュしなければなりませんでした。バージョン2.4から、WinMergeは、選択されたアイテムだけをリフレッシュできるようになりました。
-コンテキストメニューの<guimenuitem>選択項目を最新更新</guimenuitem>、または、
+      <para>大きなフォルダをフルリフレッシュするには長時間かかります。
+      WinMerge 2.2 か、それ以前では、WinMergeの外でファイルを編集した後はいつも、フルリフレッシュしなければなりませんでした。
+      バージョン2.4から、WinMergeは、選択されたアイテムだけをリフレッシュできるようになりました。
+      コンテキストメニューの<guimenuitem>選択項目を最新更新</guimenuitem>、または、
       メインメニューから、<menuchoice>
           <guimenu>表示</guimenu>
 
@@ -743,7 +757,7 @@ I get the partial list, but no Abort indicator.--></para>
 
       <note>
         <para>アーカイブサポートは、
-                 WinMerge 7-Zipプラグインがインストールされている必要があります。</para>
+        WinMerge 7-Zipプラグインがインストールされている必要があります。</para>
       </note>
 
       <para>圧縮メニューアイテムは、4つのショートカットを含むサブメニューを持っています。</para>
@@ -753,7 +767,8 @@ I get the partial list, but no Abort indicator.--></para>
           <term>左</term>
 
           <listitem>
-            <para>左側のファイルとフォルダを再帰的にアーカイブファイルに加えます</para>
+            <para>左側のファイルとフォルダを再帰的にアーカイブファイルに加えます
+            </para>
           </listitem>
         </varlistentry>
 
@@ -761,7 +776,8 @@ I get the partial list, but no Abort indicator.--></para>
           <term>右</term>
 
           <listitem>
-            <para>右側のファイルとフォルダを再帰的にアーカイブファイルに加えます</para>
+            <para>右側のファイルとフォルダを再帰的にアーカイブファイルに加えます
+            </para>
           </listitem>
         </varlistentry>
 
@@ -770,7 +786,7 @@ I get the partial list, but no Abort indicator.--></para>
 
           <listitem>
             <para>両側のファイルとフォルダを再帰的にアーカイブファイルに加えますファイル名が同じため、これらは、アーカイブ中の<filename class="directory">Original</filename>と
-<filename class="directory">Altered</filename>という名前の、別のサブフォルダへ入れられます。
+            <filename class="directory">Altered</filename>という名前の、別のサブフォルダへ入れられます。
             左側のファイルは、<filename class="directory">Original</filename>へ、
             右側のファイルは、<filename class="directory">Altered</filename>へ格納されます。</para>
           </listitem>
@@ -780,9 +796,8 @@ I get the partial list, but no Abort indicator.--></para>
           <term>差異</term>
 
           <listitem>
-            <para><guimenuitem>両側</guimenuitem>とほぼ同じですが、
-                    両側で差異があるファイル(片側にしかないファイルを含む)のみを
-                    アーカイブファイルへ加えます</para>
+            <para><guimenuitem>両側</guimenuitem>とほぼ同じですが、両側で差異があるファイル(片側にしかないファイルを含む)のみを
+            アーカイブファイルへ加えます</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -810,10 +825,10 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       <para><!-- FIXME: 良い訳が思いつかない --> フォルダ比較が、アーカイブファイルの内容を含む場合、
         WinMerge中で行われたそれらのファイルへの変更(例えば、
         <guimenuitem>開く</guimenuitem>を使用したファイル編集)は、アーカイブファイル中に保存されます。
-      しかし、WinMergeの<guimenuitem>コピー</guimenuitem>、<guimenuitem>移動</guimenuitem>,
+        しかし、WinMergeの<guimenuitem>コピー</guimenuitem>、<guimenuitem>移動</guimenuitem>,
       、<guimenuitem>削除</guimenuitem>操作では、
-アーカイブファイルの内容を更新することはできません。代わりに、<guimenuitem>圧縮</guimenuitem>ショートカットのうちのどれかを使用して、
-新しいアーカイブファイルを作成してください。</para>
+        アーカイブファイルの内容を更新することはできません。代わりに、<guimenuitem>圧縮</guimenuitem>ショートカットのうちのどれかを使用して、
+        新しいアーカイブファイルを作成してください。</para>
     </section>
   </section>
 
@@ -825,17 +840,18 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       </indexterm></title>
 
     <para>このセクションでは、フォルダ比較ウィンドウに表示されている、
-フォルダをブラウズする方法について述べます。<!-- FIXME: なにが言いたいんだろう。。。 -->
-フォルダをブラウズする時は、全く新しい比較操作を実行します。その結果は、ウィンドウ中の現在の比較結果に上書きします。</para>
+    フォルダをブラウズする方法について述べます。<!-- FIXME: なにが言いたいんだろう。。。 -->
+    フォルダをブラウズする時は、全く新しい比較操作を実行します。その結果は、ウィンドウ中の現在の比較結果に上書きします。
+    </para>
 
     <section>
       <title>非再帰的比較でフォルダをブラウズする</title>
 
       <para>たとえ、非再帰的なフォルダ比較がサブフォルダの内容を含まないとしても、
-サブフォルダは結果にファイルとしてリストされます。同様に、比較フォルダの親フォルダは、
-表の一番上にファイルとしてリストされます。直接、フォルダ比較ウィンドウでこれらのフォルダをくことにより、
-ディレクトリツリーを選択的にブラウズすることができます。このアプローチ - あなたが興味のあるサブフォルダだけを比較することは、
-ディレクトリツリー全体を再帰的に比較するより、より効果的です。
+      サブフォルダは結果にファイルとしてリストされます。同様に、比較フォルダの親フォルダは、
+      表の一番上にファイルとしてリストされます。直接、フォルダ比較ウィンドウでこれらのフォルダをくことにより、
+      ディレクトリツリーを選択的にブラウズすることができます。このアプローチ - あなたが興味のあるサブフォルダだけを比較することは、
+      ディレクトリツリー全体を再帰的に比較するより、より効果的です。
       </para>
 
       <variablelist>
@@ -843,16 +859,17 @@ added/deleted/copied. User can create a new archive file using above menuitems i
           <term>Browsing the parent folder</term>
 
           <listitem>
-            <para>親フォルダの比較は、(一番上にあるパス<guilabel>..</guilabel>)
-              <inlinemediaobject>
+            <para>親フォルダの比較は、(一番上にあるパス<guilabel>..</guilabel>)<inlinemediaobject>
                 <imageobject>
                   <imagedata fileref="screenshots/folderup.png" format="PNG" />
                 </imageobject>
               </inlinemediaobject>の行をダブルクリックするか、その行を選択して
-              <keycap>Enter</keycap>キーを押下してください。</para>
+              <keycap>Enter</keycap>キーを押下してください。
+              </para>
 
-            <para>時々、(あなたがアクセス権を持っていない時などは)親フォルダを開くことができません。これら2つのアイコンは、親フォルダが開けるかどうかを表しています。
-</para>
+            <para>時々、(あなたがアクセス権を持っていない時などは)親フォルダを開くことができません。
+            これら2つのアイコンは、親フォルダが開けるかどうかを表しています。
+            </para>
 
             <simplelist type="vert">
               <member><inlinemediaobject>
@@ -902,9 +919,11 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
           <listitem>
             <para>それぞれのサブフォルダが異なる2つのサブフォルダ(つまり2行選択している)を
-比較することはできません<!-- TODO: 何がいいたい？ -->ただ、以前に同一のフォルダを比較している場合
-(例えば、比較結果中の単一のサブフォルダをブラウズするなど)は、
-2つのサブフォルダを比較することができます。次の図に示すように、まず、フォルダ比較ウィンドウ中の2つのフォルダを選択してください。</para>
+            比較することはできません<!-- TODO: 何がいいたい？ -->ただ、以前に同一のフォルダを比較している場合
+            (例えば、比較結果中の単一のサブフォルダをブラウズするなど)は、
+            2つのサブフォルダを比較することができます。
+            次の図に示すように、まず、フォルダ比較ウィンドウ中の2つのフォルダを選択してください。
+            </para>
 
             <mediaobject>
               <imageobject>
@@ -919,7 +938,8 @@ added/deleted/copied. User can create a new archive file using above menuitems i
             </mediaobject>
 
             <para>選択する順番は重要です。最初に選択したフォルダは、結果の左側のフォルダ、
-            二番目に選択したフォルダは、右側のフォルダになります。</para>
+            二番目に選択したフォルダは、右側のフォルダになります。
+            </para>
 
             <para>2つのフォルダが選択された状態で、右クリックし
             <guimenuitem>比較</guimenuitem>(または、メニューの<menuchoice>
@@ -931,7 +951,9 @@ added/deleted/copied. User can create a new archive file using above menuitems i
             <tip>
               <para>さらに、<guimenuitem>比較</guimenuitem>操作は、
               先のスクリーンショットが示すように、
-              フォルダ比較ウィンドウ中の、現在の左側と右側のフォルダのパスが同一の場合にのみ有効です。例えば、カレントウィンドウが2つの異なるフォルダ比較の場合、これは有効ではありません。</para>
+              フォルダ比較ウィンドウ中の、現在の左側と右側のフォルダのパスが同一の場合にのみ有効です。
+              例えば、カレントウィンドウが2つの異なるフォルダ比較の場合、これは有効ではありません。
+              </para>
             </tip>
           </listitem>
         </varlistentry>
@@ -946,12 +968,16 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </indexterm></title>
 
       <para>WinMergeは、存在するフォルダと存在しないフォルダを比較できなかったため、
-WinMerge 2.6か、それ以前のバージョンでは、ユニークなフォルダ(比較結果の片側のみに存在するフォルダ)
-をブラウズできません。
-WinMergeで、ユニークなフォルダから何かコピーするには、
+      WinMerge 2.6か、それ以前のバージョンでは、ユニークなフォルダ(比較結果の片側のみに存在するフォルダ)
+     をブラウズできません。
+      WinMergeで、ユニークなフォルダから何かコピーするには、
       はじめにフォルダ構造全体をコピーしなければなりませんでした。</para>
 
-      <para>しかしながら、フォルダ構造全体をコピーすることを好まないかもしれません。バージョン2.8以降では、WinMergeは、代わりに新しい空のフォルダを作成する方法を提供します。これは、作成された空のフォルダへ、元のユニークなフォルダから必要な要素だけをコピーすることができます。この手順を示します。</para>
+      <para>しかしながら、フォルダ構造全体をコピーすることを好まないかもしれません。
+      バージョン2.8以降では、WinMergeは、代わりに新しい空のフォルダを作成する方法を提供します。
+      これは、作成された空のフォルダへ、元のユニークなフォルダから必要な要素だけをコピーすることができます。
+      この手順を示します。
+      </para>
 
       <orderedlist>
         <listitem>
@@ -995,7 +1021,7 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
           </mediaobject>
 
           <para>比較結果では、アイテムを(例えば、右クリックのコンテキストメニューを使って)
-ユニークなフォルダから作成されたフォルダへコピー、または、移動することができます。
+          ユニークなフォルダから作成されたフォルダへコピー、または、移動することができます。
           </para>
         </listitem>
       </orderedlist>
@@ -1009,7 +1035,9 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
         <secondary>customizing</secondary>
       </indexterm></title>
 
-    <para>このセクションでは、フォルダ比較ウィンドウの表示結果を制御する方法について説明します。表の列の、表示・非表示、並べ替えの表示をカスタマイズすることができます。</para>
+    <para>このセクションでは、フォルダ比較ウィンドウの表示結果を制御する方法について説明します。
+    表の列の、表示・非表示、並べ替えの表示をカスタマイズすることができます。
+    </para>
 
     <section>
       <title>ファイルの種類による表示/非表示<indexterm>
@@ -1019,15 +1047,18 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
         </indexterm></title>
 
       <para><guimenu>表示</guimenu>メニューは、
-アイテムの種類を表示・非表示にするショートカットを含んでいます。 有効(チェック)にすると、そのアイテムは表示され、無効にすると、そのアイテムは非表示になります。</para>
+      アイテムの種類を表示・非表示にするショートカットを含んでいます。
+      有効(チェック)にすると、そのアイテムは表示され、無効にすると、そのアイテムは非表示になります。</para>
 
       <itemizedlist>
         <listitem>
-          <para><guimenuitem>同一項目の表示</guimenuitem>: 同一として検出したファイル</para>
+          <para><guimenuitem>同一項目の表示</guimenuitem>: 同一として検出したファイル
+          </para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>差異項目の表示</guimenuitem>: 差異として検出したファイル</para>
+          <para><guimenuitem>差異項目の表示</guimenuitem>: 差異として検出したファイル
+          </para>
         </listitem>
 
         <listitem>
@@ -1055,25 +1086,32 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
     <section>
       <title>列ソートの変更</title>
 
-      <para>フォルダ比較ウィンドウの行は、特定の列のソート順によって並べられます。このソート列は、ヘッダの小さな矢印によって表されます。矢印が上向きの場合は昇順に、下向きの場合は降順で列はソートされています。このトピックの上部にあるフォルダ比較の例は、
-ファイル名の列で昇順にソートされています。</para>
+      <para>フォルダ比較ウィンドウの行は、特定の列のソート順によって並べられます。
+      このソート列は、ヘッダの小さな矢印によって表されます。
+      矢印が上向きの場合は昇順に、下向きの場合は降順で列はソートされています。
+      このトピックの上部にあるフォルダ比較の例は、
+      ファイル名の列で昇順にソートされています。</para>
 
-      <para>他の順序列を選択するには、単にその列ヘッダをクリックしてください。選択した列は、そのデフォルトソート順に設定され、
-すべての行は列のソート順によって並べ替えられます。</para>
+      <para>他の順序列を選択するには、単にその列ヘッダをクリックしてください。
+      選択した列は、そのデフォルトソート順に設定され、
+      すべての行は列のソート順によって並べ替えられます。</para>
 
-      <para>既にソート列になっている列のソート方向を変更するには、そのヘッダを再度クリックしてください。これはつまり、ソート列のヘッダをクリックするとその順序を逆にする
-(昇順と降順を切り替える)ということです。</para>
+      <para>既にソート列になっている列のソート方向を変更するには、そのヘッダを再度クリックしてください。
+      これはつまり、ソート列のヘッダをクリックするとその順序を逆にする
+      (昇順と降順を切り替える)ということです。
+      </para>
     </section>
 
     <section>
       <title>列の追加、削除、順序変更</title>
 
-      <para>フォルダ比較ウィンドウに表示されている列を変更するには</para>
+      <para>フォルダ比較ウィンドウに表示されている列を変更するには
+      </para>
 
       <orderedlist>
         <listitem>
           <para>これらの列ヘッダを右クリックし、<guimenuitem>列の設定
-          </guimenuitem>か、            <menuchoice>
+          </guimenuitem>か、<menuchoice>
               <guimenu>ツール</guimenu>
 
               <guimenuitem>列の設定</guimenuitem>
@@ -1081,7 +1119,9 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
         </listitem>
 
         <listitem>
-          <para>列表示ダイアログは、それぞれチェックボックスとともに、すべての有効な列名を含んでいます。これらのアクションを組み合わせて列を設定します。</para>
+          <para>列表示ダイアログは、それぞれチェックボックスとともに、すべての有効な列名を含んでいます。
+          これらのアクションを組み合わせて列を設定します。
+          </para>
 
           <itemizedlist>
             <listitem>
@@ -1101,7 +1141,8 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
 
             <listitem>
               <para>カスタム設定を上書きして、デフォルトのWinMergeの列設定に戻したい場合は、
-                <guibutton>デフォルト</guibutton>をクリックしてください。</para>
+                <guibutton>デフォルト</guibutton>をクリックしてください。
+                </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -1119,14 +1160,16 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
       <itemizedlist>
         <listitem>
           <para><guilabel>ファイル名(デフォルト)</guilabel>: 比較されたアイテムの名前非再帰比較では、この列はファイルとフォルダの両方を含んでいます。
-再帰比較では、フォルダは含まれていません。
-          代わりに、フォルダはフォルダ列に表示されます。</para>
+　　　　　再帰比較では、フォルダは含まれていません。
+          代わりに、フォルダはフォルダ列に表示されます。
+          </para>
         </listitem>
 
         <listitem>
           <para><guilabel>フォルダ</guilabel>: 比較されたサブフォルダの、
-            比較フォルダからの相対パス非再帰比較の場合、この列はいつも空です。
-          フォルダは、代わりに<guilabel>ファイル名</guilabel>列に表示されています。</para>
+          比較フォルダからの相対パス非再帰比較の場合、この列はいつも空です。
+          フォルダは、代わりに<guilabel>ファイル名</guilabel>列に表示されています。
+          </para>
         </listitem>
 
         <listitem>
@@ -1152,12 +1195,14 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
       <itemizedlist>
         <listitem>
           <para><guilabel>簡易結果表示</guilabel>: 
-          <guilabel>比較結果</guilabel>列を簡潔な形式で表示します。</para>
+          <guilabel>比較結果</guilabel>列を簡潔な形式で表示します。
+          </para>
         </listitem>
 
         <listitem>
           <para><guilabel>バイナリ</guilabel>: ファイルがバイナリファイルの場合、
-          列にアスタリスク( * )が含まれます。          <guilabel>簡易結果表示</guilabel>列は、ソートに使用するために便利です。</para>
+          列にアスタリスク( * )が含まれます。          <guilabel>簡易結果表示</guilabel>列は、ソートに使用するために便利です。
+          </para>
         </listitem>
 
         <listitem>
@@ -1189,19 +1234,24 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
         </listitem>
 
         <listitem>
-          <para><guilabel>左サイズ(短縮)</guilabel>, <guilabel>右サイズ(短縮)</guilabel>: KB, MB, GBに丸められた短縮バージョンのファイルサイズ</para>
+          <para><guilabel>左サイズ(短縮)</guilabel>, <guilabel>右サイズ
+          (短縮)</guilabel>: KB, MB, GBに丸められた短縮バージョンのファイルサイズ
+          </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>新しいファイル</guilabel>: どちら側が新しいかを表示します</para>
+          <para><guilabel>新しいファイル</guilabel>: どちら側が新しいかを表示します
+          </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>差異数</guilabel>: ファイル間で見つかった差異の数(無視された差異を除く)</para>
+          <para><guilabel>差異数</guilabel>: ファイル間で見つかった差異の数(無視された差異を除く)
+          </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>無視された差異数</guilabel>: ファイル中の無視された差異数これらは、行フィルタによって無視された差異です。</para>
+          <para><guilabel>無視された差異数</guilabel>: ファイル中の無視された差異数これらは、行フィルタによって無視された差異です。
+          </para>
         </listitem>
 
         <listitem>
@@ -1215,16 +1265,20 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
       <title>項目の非表示</title>
 
       <para>コンテキストメニューの<guimenuitem>項目を非表示</guimenuitem>を使って、
-        1つ、または、複数の選択項目を素早く非表示にすることができます。そのアイテムは、ビューを更新(<keycap>F5</keycap>を押下)するか、
+        1つ、または、複数の選択項目を素早く非表示にすることができます。
+        そのアイテムは、ビューを更新(<keycap>F5</keycap>を押下)するか、
         <menuchoice>
           <guimenu>表示</guimenu>
+
           <guimenuitem>非表示の項目を表示</guimenuitem>
         </menuchoice>をクリックするまで、非表示のままです。</para>
 
       <tip>
         <para><guimenuitem>項目を非表示</guimenuitem>について知る: 処理済や、
-現在興味が無いファイルを除外して、多くの時間を節約することができます。例えば、どのファイルのマージが残っているかわかり易くするために、
-マージした後にファイルを非表示にするかもしれません。</para>
+        現在興味が無いファイルを除外して、多くの時間を節約することができます。
+        例えば、どのファイルのマージが残っているかわかり易くするために、
+        マージした後にファイルを非表示にするかもしれません。
+        </para>
       </tip>
     </section>
   </section>
@@ -1232,19 +1286,23 @@ WinMergeで、ユニークなフォルダから何かコピーするには、
   <section id="CompareDirs_winshell">
     <title>フォルダ比較ウィンドウから、Windowsのシェルコマンドを使う</title>
 
-    <para>フォルダ比較ウィンドウ内で選択項目を右クリックし、コンテキストメニューから
-直接Windowsのシェルコマンドを起動することができます。</para>
+    <para>フォルダ比較ウィンドウ内で選択項目を右クリックし、
+    コンテキストメニューから直接Windowsのシェルコマンドを起動することができます。
+    </para>
 
-    <para>両側を選択した場合、<guimenu>左側シェルメニュー</guimenu>か<guimenu>右側シェルメニュー</guimenu>
-のどちらかを選ぶことができます。
-    アイテムが片側だけにある場合、そちら側のシェルメニューのみが有効です。</para>
+    <para>両側を選択した場合、<guimenu>左側シェルメニュー</guimenu>か
+    <guimenu>右側シェルメニュー</guimenu>のどちらかを選ぶことができます。
+    アイテムが片側だけにある場合、そちら側のシェルメニューのみが有効です。
+    </para>
 
     <caution>
-      <para>シェルメニューコマンドは、完全にWinMergeの外側で実行されることを、よく考えてください。<!-- FIXME: わからない -->つまり、WinMergeは、WinMerge内部で実行される操作と同じ方法で、
-いくつかの操作に応答しないかもしれません。 例えば、WinMergeの<command>削除</command>コマンドの代りに、
-このシェル統合を介してファイルを削除すると、その変更はフォルダ比較ウィンドウ内に、
-自動的には表示されません(変更を見るためには、手動でリフレッシュしなければなりません)。
-</para>
+      <para>シェルメニューコマンドは、完全にWinMergeの外側で実行されることを、よく考えてください。
+      <!-- FIXME: わからない -->つまり、WinMergeは、WinMerge内部で実行される操作と同じ方法で、
+      いくつかの操作に応答しないかもしれません。
+      例えば、WinMergeの<command>削除</command>コマンドの代りに、
+      このシェル統合を介してファイルを削除すると、その変更はフォルダ比較ウィンドウ内に、
+      自動的には表示されません(変更を見るためには、手動でリフレッシュしなければなりません)。
+      </para>
     </caution>
   </section>
 </article>

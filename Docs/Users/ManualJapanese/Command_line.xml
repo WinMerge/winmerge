@@ -22,7 +22,7 @@
     </cmdsynopsis></para>
 
   <para><cmdsynopsis sepchar=" ">
-      <command>WinMerge<optional>U</optional></command>
+      <command>WinMergeU</command>
 
       <arg choice="opt" rep="norepeat"><option>/r</option></arg>
 
@@ -100,7 +100,8 @@
 
   <para>パラメータなしかパス名を入力すると単にWinMergeウインドウを開きます。
   パラメータは、スラッシュ( <literal>/</literal> ) か、ダッシュ ( <literal>-</literal> ) 文字が
-  前に付加されます。パス名にはプリフィックス文字を付加しません。</para>
+  前に付加されます。パス名にはプリフィックス文字を付加しません。
+  </para>
 
   <itemizedlist>
     <listitem>
@@ -116,7 +117,8 @@
       ユニークフォルダ (片方のみ存在するフォルダ)は、分離された項目として比較結果内にリストされます。
       サブフォルダまで含めるとかなり比較時間が増大してしまうことに注意してください。
       このパラメータを指定しなかった場合、WinMergeは比較するフォルダ内のファイルとトップレベルのサブフォルダのみリストします。
-      サブフォルダの中までは比較しません。</para>
+      サブフォルダの中までは比較しません。
+      </para>
     </listitem>
 
     <listitem>
@@ -141,7 +143,8 @@
       </indexterm>
 
       <para><option>/f</option> 比較を制限するために、指定したフィルタを適用します。
-      フィルタは<filename><userinput>*.h *.cpp</userinput></filename>のようなファイルマスクか、
+      フィルタは<filename><userinput>*.h
+      *.cpp</userinput></filename>のようなファイルマスクか、
       <userinput>XML/HTML Devel</userinput>のようなファイルフィルタの名前です。
       スペースを含むフィルタマスクやフィルタ名はダブルクォーテーションマークで括ってください。</para>
     </listitem>
@@ -152,11 +155,13 @@
       このパラメータは比較後に効果がなくなります。
       例えば、もしファイルがマージか編集の結果として同一となった場合です。
       このパラメータは、WinMergeを外部アプリケーションとして使用したり、
-      差異のないファイルを無視することによって余分なステップを取り除きたい場合に便利です。</para>
+      差異のないファイルを無視することによって余分なステップを取り除きたい場合に便利です。
+      </para>
     </listitem>
 
     <listitem>
-      <para><option>/xq</option> オプション <option>/x</option> に似ていますが、同一ファイルであってもメッセージボックスを表示しません。 </para>
+      <para><option>/xq</option> オプション <option>/x</option> に似ていますが、同一ファイルであってもメッセージボックスを表示しません。
+      </para>
     </listitem>
 
     <listitem>
@@ -196,9 +201,10 @@
     </listitem>
 
     <listitem>
-     <para><option>/u</option> (または<option>/ub</option>) 各々(左、右、中央)のパスが最近使用した項目(MRU)リストに追加されるのを防ぎます。
+      <para><option>/u</option> (または<option>/ub</option>) 各々(左、右、中央)のパスが最近使用した項目(MRU)リストに追加されるのを防ぎます。
       外部アプリケーションは、ファイルまたはフォルダの選択ダイアログのMRUリストにパスを
-      追加するべきではありません。</para>
+      追加するべきではありません。
+      </para>
     </listitem>
 
     <listitem>
@@ -232,7 +238,8 @@
     </listitem>
 
     <listitem>
-      <para><option>/maximize</option> 最大化状態でWinMergeを開始します。</para>
+      <para><option>/maximize</option> 最大化状態でWinMergeを開始します。
+      </para>
     </listitem>
 
     <listitem>
@@ -251,7 +258,8 @@
       <para><option>/dl</option> 左側タイトルバーの説明を指定します。
       デフォルトのフォルダやファイル名テキストに上書きされます。例:
       <userinput>/dl "Version 1.0</userinput>" や <userinput>/dl
-      WorkingCopy</userinput>. スペースを含む説明はダブルクォーテーションマークで括ってください。</para>
+      WorkingCopy</userinput>. スペースを含む説明はダブルクォーテーションマークで括ってください。
+      </para>
     </listitem>
 
     <listitem>
@@ -351,7 +359,8 @@
       <para><option><replaceable>conflictfile</replaceable></option> コンフリクトファイルを指定します。
       コンフリクトファイルは通常バージョンコントロールシステムによって生成されます。
       コンフリクトファイルはファイル比較ウインドウで開かれ、
-      <xref linkend="ResolveConflictFiles" />で説明している様にマージやコンフリクトを解決することができます。
+      <xref
+      linkend="ResolveConflictFiles" />で説明している様にマージやコンフリクトを解決することができます。
       コンフリクトファイルと共に他のパスは使用できないことに注意してください。</para>
     </listitem>
   </itemizedlist>

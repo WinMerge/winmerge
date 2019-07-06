@@ -50,7 +50,8 @@
 
         <listitem>
           <para>何らかのWinMergeウインドウを使用中に、F1を押してください。
-          現在のウインドウに関するトピックがあれば、そのトピックのヘルプを開きます。 もしなければ、最初のトピックを開きます。</para>
+          現在のウインドウに関するトピックがあれば、そのトピックのヘルプを開きます。 もしなければ、最初のトピックを開きます。
+          </para>
         </listitem>
       </varlistentry>
 
@@ -67,11 +68,11 @@
         <term>WinMergeウェブサイト</term>
 
         <listitem>
-          <para>
-          <ulink url="http://winmerge.org/">winmerge.org</ulink>をブラウザで開いてください。
-          <ulink url="http://winmerge.org/docs/">Documentation</ulink>の
-          <ulink url="http://manual.winmerge.org/">
-          Manual</ulink>リンクをたどってください。 最新版のヘルプが開きます。</para>
+          <para><ulink
+          url="http://winmerge.org/">winmerge.org</ulink>をブラウザで開いてください。<ulink 
+          url="http://winmerge.org/docs/">Documentation</ulink>の
+          <ulink url="http://manual.winmerge.org/">Manual</ulink>
+          リンクをたどってください。 最新版のヘルプが開きます。</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -80,14 +81,16 @@
   <section>
     <title>ヘルプの使い方</title>
 
-    <para>最も重要なWinMergeの基本を学ぶために、次のトピックを読んでください。</para>
+    <para>最も重要なWinMergeの基本を学ぶために、次のトピックを読んでください。
+    </para>
 
     <variablelist>
       <varlistentry>
         <term><xref linkend="Quick_start" /></term>
 
         <listitem>
-          <para>WinMergeを手早く使い始められるようにし、基本的な使用方法を示します。</para>
+          <para>WinMergeを手早く使い始められるようにし、基本的な使用方法を示します。
+          </para>
         </listitem>
       </varlistentry>
 
@@ -95,7 +98,8 @@
         <term><xref linkend="Compare_dirs" /></term>
 
         <listitem>
-          <para>フォルダ比較ウインドウでの可能な操作、結果表示のカスタマイズの仕方を説明します。</para>
+          <para>フォルダ比較ウインドウでの可能な操作、結果表示のカスタマイズの仕方を説明します。
+          </para>
         </listitem>
       </varlistentry>
 
@@ -103,7 +107,8 @@
         <term><xref linkend="Compare_files" /></term>
 
         <listitem>
-          <para>ファイル比較・マージウインドウでの可能な操作、ナビゲーションの方法、モードについて説明します。</para>
+          <para>ファイル比較・マージウインドウでの可能な操作、ナビゲーションの方法、モードについて説明します。
+          </para>
         </listitem>
       </varlistentry>
 
@@ -127,7 +132,8 @@
         <term><xref linkend="Configuration" /></term>
 
         <listitem>
-          <para>空白、色、テキストエンコーディングの取り扱いを含めたWinMergeの設定方法について説明します。</para>
+          <para>空白、色、テキストエンコーディングの取り扱いを含めたWinMergeの設定方法について説明します。
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -140,7 +146,8 @@
 
         <listitem>
           <para>WinMergeでファイルとフォルダを開くいくつかの方法(たくさんあります!)について紹介します。
-          例えば、詳細モードでのシェル拡張コンテキストメニューの使い方を知っていますか?</para>
+          例えば、詳細モードでのシェル拡張コンテキストメニューの使い方を知っていますか?
+          </para>
         </listitem>
       </varlistentry>
 
@@ -148,7 +155,8 @@
         <term><xref linkend="Plugins" /></term>
 
         <listitem>
-          <para>プラグイン機構を使用してWinMergeに追加できるオプション機能について説明します。</para>
+          <para>プラグイン機構を使用してWinMergeに追加できるオプション機能について説明します。
+          </para>
         </listitem>
       </varlistentry>
 
@@ -156,7 +164,8 @@
         <term><xref linkend="Filters" /></term>
 
         <listitem>
-          <para>フォルダやファイル比較ウインドウで比較される対象を制御する方法を説明します</para>
+          <para>フォルダやファイル比較ウインドウで比較される対象を制御する方法を説明します
+          </para>
         </listitem>
       </varlistentry>
 
@@ -164,7 +173,8 @@
         <term><xref linkend="Command_line" /></term>
 
         <listitem>
-          <para>他のツールと連携やスクリプトから起動するときに使用できるコマンドラインパラメータを記載します。</para>
+          <para>他のツールと連携やスクリプトから起動するときに使用できるコマンドラインパラメータを記載します。
+          </para>
         </listitem>
       </varlistentry>
 
@@ -172,12 +182,13 @@
         <term><xref linkend="Faq" /></term>
 
         <listitem>
-          <para>開発者に尋ねられたたくさんの共通的な質問に対する回答を含んでいます。</para>
+          <para>開発者に尋ねられたたくさんの共通的な質問に対する回答を含んでいます。
+          </para>
 
-          <para>質問を
-          <ulink url="https://sourceforge.net/projects/winmerge/">
-          SourceForge.net</ulink>, にする前に、
-          <xref linkend="Faq" />トピックで質問が回答されていないか確認してください。</para>
+          <para>質問を<ulink
+          url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>,
+          にする前に、<xref linkend="Faq" />トピックで質問が回答されていないか確認してください。
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -223,37 +234,31 @@
           </row>
 
           <row>
-            <entry>
-            <keycombo>
-              <keycap>Ctrl</keycap>
-              <keycap>O</keycap>
-            </keycombo>を押下してください</entry>
-            <entry>
-            <wordasword>
-            押下</wordasword>は、キーボード操作を表します。この例では、
+            <entry><keycombo>
+                <keycap>Ctrl</keycap>
 
-            <keycap>Ctrl</keycap>と
-            <keycap>
-            O</keycap>キーの組み合わせで押下します。</entry>
+                <keycap>O</keycap>
+              </keycombo>を押下してください</entry>
+
+            <entry><wordasword>押下</wordasword>は、キーボード操作を表します。
+            この例では、<keycap>Ctrl</keycap>と
+            <keycap>O</keycap>キーの組み合わせで押下します。</entry>
           </row>
 
           <row>
-            <entry>
-              <para>
-              <guibutton>
-              OK</guibutton>をクリックしてください。</para>
+            <entry><para><guibutton>OK</guibutton>をクリックしてください。</para></entry>
+
+            <entry>クリックは、メニューアイテムやボタンの様な対象の上での、マウスの左クリックを表します。
             </entry>
-            <entry>
-            クリックは、メニューアイテムやボタンの様な対象の上での、マウスの左クリックを表します。</entry>
           </row>
 
           <row>
-            <entry>
-            <menuchoice>
-              <guimenu>ファイル</guimenu>
-              <guimenuitem>
-              開く</guimenuitem>
+            <entry><menuchoice>
+                <guimenu>ファイル</guimenu>
+
+                <guimenuitem>開く</guimenuitem>
             </menuchoice>をクリックしてください。</entry>
+
             <entry>
             矢印は、メニューを表します。この例では、WinMerge
             の
@@ -265,10 +270,11 @@
 
           <row>
             <entry>行を右クリックして、
-            <guimenuitem>
-            比較</guimenuitem>ショートカットを選択してください。</entry>
+            <guimenuitem>比較</guimenuitem>ショートカットを選択してください。</entry>
+
             <entry>
-            コンテキストメニューを開くために、対象の上で右クリックしてください。そして、コンテキストメニュー中のアイテムを、左か右クリックしてください。</entry>
+            コンテキストメニューを開くために、対象の上で右クリックしてください。そして、コンテキストメニュー中のアイテムを、左か右クリックしてください。
+            </entry>
           </row>
 
           <row>
@@ -283,53 +289,49 @@
             連続した1つかそれ以上の差異行は、一つの差異(または
             <glossterm>
             diff差分</glossterm>)を形成します。</para></entry>
-            <entry>
-            イタリック体のテキストは、次の内容を表します:
-            <itemizedlist>
-              <listitem>
-                <para>
+
+            <entry>イタリック体のテキストは、次の内容を表します: <itemizedlist>
+                <listitem>
+                  <para>
                   置き換え可能な値、または、文字列。
                   最初の例では、イタリック体の語句の代わりに実際のファイル名を用いるでしょう。
-                <!-- TODO: 何がいいたい？ enter the <filename>ini</filename> file extension, which is not italicized, as written.--></para>
-              </listitem>
-              <listitem>
-                <para>WinMerge ウィンドウ内のフィールド、メニュー、コントロールの名前です。</para>
-              </listitem>
-              <listitem>
-                <para>
-                重要な単語、または、フレーズです。</para>
-              </listitem>
-            </itemizedlist></entry>
+                  <!-- TODO: 何がいいたい？ enter the <filename>ini</filename> file extension, which is not italicized, as written.--></para>
+                </listitem>
+
+                <listitem>
+                  <para>WinMerge ウィンドウ内のフィールド、メニュー、コントロールの名前です。
+                  </para>
+                </listitem>
+
+                <listitem>
+                  <para>重要な単語、または、フレーズです。</para>
+                </listitem>
+              </itemizedlist></entry>
           </row>
 
           <row>
-            <entry>パス
-            <envar>
-            %WORKDIR%\project1</envar>は、
-            <filename class="directory">
-            C:\workfiles\project1</filename>に展開されます。
+            <entry>パス<envar>%WORKDIR%\project1</envar>は、
+            <filename
+            class="directory">C:\workfiles\project1</filename>に展開されます。<para><screen
+            format="linespecific">TwoWords</screen></para></entry>
 
-            <para>
-              <screen format="linespecific">
-              TwoWords</screen>
-            </para></entry>
-            <entry>等幅のテキストは、次の内容を表します:
-            <itemizedlist>
-              <listitem>
-                <para>
-                パス、ファイル名、または、その他のシステム項目</para>
-              </listitem>
-              <listitem>
-                <para>サンプルコードの一部</para>
-              </listitem>
-              <listitem>
-                <para>サンプル出力</para>
-              </listitem>
-              <listitem>
-                <para>
-                フォームかコマンドライン上で入力する情報</para>
-              </listitem>
-            </itemizedlist></entry>
+            <entry>等幅のテキストは、次の内容を表します:<itemizedlist>
+                <listitem>
+                  <para>パス、ファイル名、または、その他のシステム項目</para>
+                </listitem>
+
+                <listitem>
+                  <para>サンプルコードの一部</para>
+                </listitem>
+
+                <listitem>
+                  <para>サンプル出力</para>
+                </listitem>
+
+                <listitem>
+                  <para>フォームかコマンドライン上で入力する情報</para>
+                </listitem>
+              </itemizedlist></entry>
           </row>
 
           <row>
