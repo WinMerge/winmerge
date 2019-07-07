@@ -475,9 +475,6 @@
     <ClCompile Include="Common\MessageBoxDialog.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\Picture.cpp">
-      <Filter>MFCGui\Common\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\PropertyPageHost.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
@@ -1270,9 +1267,6 @@
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\MessageBoxDialog.h">
-      <Filter>MFCGui\Common\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Picture.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\scbarcf.h">

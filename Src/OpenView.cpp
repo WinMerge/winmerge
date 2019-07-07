@@ -40,7 +40,7 @@
 #include "FileOrFolderSelect.h"
 #include "7zCommon.h"
 #include "Constants.h"
-#include "Picture.h"
+#include "Bitmap.h"
 #include "DropHandler.h"
 #include "FileFilterHelper.h"
 #include "Plugins.h"
@@ -177,7 +177,7 @@ void COpenView::OnInitialUpdate()
 
 	theApp.TranslateDialog(m_hWnd);
 
-	if (!m_picture.Load(IDR_LOGO))
+	if (!LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_LOGO), _T("IMAGE")))
 		return;
 
 	CFormView::OnInitialUpdate();
@@ -319,9 +319,9 @@ void COpenView::OnPaint()
 	GetClientRect(&rc);
 
 	// Draw the logo image
-	CSize size = m_picture.GetImageSize(&dc);
+	CSize size{ m_image.GetWidth(), m_image.GetHeight() };
 	CRect rcImage(0, 0, size.cx * GetSystemMetrics(SM_CXSMICON) / 16, size.cy * GetSystemMetrics(SM_CYSMICON) / 16);
-	m_picture.Render(&dc, rcImage);
+	m_image.Draw(dc.m_hDC, rcImage, Gdiplus::InterpolationModeBicubic);
 	// And extend it to the Right boundary
     dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
 
