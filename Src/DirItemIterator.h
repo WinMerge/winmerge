@@ -17,7 +17,7 @@ class DIFFITEM;
 class DirItemWithIndexIterator : public std::iterator<std::forward_iterator_tag, std::pair<int, DIFFITEM *> >
 {
 public:
-	DirItemWithIndexIterator(IListCtrl *pList, int sel = -1, bool selected = false, bool reverse = false) :
+	explicit DirItemWithIndexIterator(IListCtrl *pList, int sel = -1, bool selected = false, bool reverse = false) :
 	  m_pList(pList), m_sel(sel), m_selected(selected), m_reverse(reverse)
 	{
 		if (m_sel == -1)
@@ -92,7 +92,7 @@ private:
 class DirItemIterator : public std::iterator<std::forward_iterator_tag, DIFFITEM*>
 {
 public:
-	DirItemIterator(IListCtrl *pList, int sel = -1, bool selected = false, bool reverse = false) : 
+	explicit DirItemIterator(IListCtrl *pList, int sel = -1, bool selected = false, bool reverse = false) : 
 	  m_pList(pList), m_sel(sel), m_selected(selected), m_reverse(reverse), m_pdi(nullptr)
 	{
 		if (m_sel == -1)

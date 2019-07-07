@@ -42,7 +42,7 @@ These files are produced by compiling WinMerge, documentation etc, but that's no
      * `WinMerge.chm`
    * `Merge7z/`
      * `*.*`
-   * `MergeUnicodeRelease/`
+   * `Release/`
      * `WinMergeU.exe`
    * `WinIMerge/`
      * `*.*`
@@ -54,7 +54,7 @@ These files are produced by compiling WinMerge, documentation etc, but that's no
        * `*.*`
      * `Merge7z/`
        * `*.*`
-     * `MergeUnicodeRelease/`
+     * `Release/`
        * `WinMergeU.exe`
  * `Docs/`
    * `Users/`

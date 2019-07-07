@@ -149,3 +149,31 @@ private:
 	bool m_bUseRecycleBin; /**< Use recycle bin for script actions? */
 	HWND m_hParentWindow; /**< Parent window for showing messages */
 };
+
+/**
+ * @brief Set parent window used for showing MessageBoxes.
+ * @param [in] hWnd Handle to parent window.
+ */
+inline void FileActionScript::SetParentWindow(HWND hWnd)
+{
+	m_hParentWindow = hWnd;
+}
+
+/**
+ * @brief Does user want to move deleted files to Recycle Bin?
+ * @param [in] bUseRecycleBin If `true` deleted files are moved to Recycle Bin.
+ */
+inline void FileActionScript::UseRecycleBin(bool bUseRecycleBin)
+{
+	m_bUseRecycleBin = bUseRecycleBin;
+}
+
+/**
+ * @brief Return amount of actions (copy, move, etc) in script.
+ * @return Amount of actions.
+ */
+inline size_t FileActionScript::GetActionItemCount() const
+{
+	return m_actions.size();
+}
+

@@ -19,7 +19,7 @@
     <?define UpgradeGuid = "79F16C51-8485-426E-BF23-F4D3D0D431D7" ?>
     
     <?define ProgramFilesFolder = "ProgramFiles64Folder" ?>
-    <?define MergeBuildDir = "..\..\Build\x64\MergeUnicodeRelease" ?>
+    <?define MergeBuildDir = "..\..\Build\x64\Release" ?>
     <?define ShellExtBuildDir = "..\..\Build\x64\ShellExtensionUnicode release mindependency" ?>
     
     <?define StartMenuShortcutsGuid = "CDC49AA0-DC37-439d-8358-68E2EA9EF909" ?>
@@ -31,7 +31,7 @@
     <?define UpgradeGuid = "3C974FF6-9076-46EB-A65F-A53931EAF942" ?>
     
     <?define ProgramFilesFolder = "ProgramFilesFolder" ?>
-    <?define MergeBuildDir = "..\..\Build\MergeUnicodeRelease" ?>
+    <?define MergeBuildDir = "..\..\Build\Release" ?>
     <?define ShellExtBuildDir = "..\..\Build\ShellExtensionUnicode release mindependency" ?>
     
     <?define StartMenuShortcutsGuid = "12413436-9929-453c-870B-03146CE11960" ?>

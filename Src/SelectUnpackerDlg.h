@@ -92,7 +92,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CSelectUnpackerDlg)
 	virtual void OnOK();
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 	afx_msg void OnUnpackerAllowAll();
 	afx_msg void OnSelchangeUnpackerName();
 	//}}AFX_MSG

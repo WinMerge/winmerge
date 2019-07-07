@@ -48,7 +48,7 @@
 ; Not yet possible (Limited by Inno Setup):
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
 
-#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\X64\MergeUnicodeRelease\WinMergeU.exe")
+#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\X64\Release\WinMergeU.exe")
 
 [Setup]
 AppName=WinMerge
@@ -401,10 +401,10 @@ Name: {app}; Flags: uninsalwaysuninstall
 
 [Files]
 ; WinMerge itself
-Source: ..\..\Build\X64\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\X64\Release\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 ; Visual Elements
-Source: ..\..\Build\X64\MergeUnicodeRelease\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
-Source: ..\..\Build\X64\MergeUnicodeRelease\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
+Source: ..\..\Build\X64\Release\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\X64\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
 ; 32Bit Plugin Proxy
 Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 

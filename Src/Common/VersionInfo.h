@@ -74,3 +74,103 @@ protected:
 	void QueryValue(LPCTSTR szId, String& s);
 	bool GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage);
 };
+
+/** 
+ * @brief Return file version string.
+ * @return File version as string.
+ */
+inline String CVersionInfo::GetFileVersion() const
+{
+	return m_strFileVersion;
+}
+
+/** 
+ * @brief Return private build value.
+ * @return Private build number as string.
+ */
+inline String CVersionInfo::GetPrivateBuild() const
+{
+	return m_strPrivateBuild;
+}
+
+/** 
+ * @brief Return special build value.
+ * @return Special build number as string.
+ */
+inline String CVersionInfo::GetSpecialBuild() const
+{
+	return m_strSpecialBuild;
+}
+
+/** 
+ * @brief Return company name.
+ * @return Company name.
+ */
+inline String CVersionInfo::GetCompanyName() const
+{
+	return m_strCompanyName;
+}
+
+/** 
+ * @brief Return file description string.
+ * @return File description string.
+ */
+inline String CVersionInfo::GetFileDescription() const
+{
+	return m_strFileDescription;
+}
+
+/** 
+ * @brief Return internal name.
+ * @return Internal name.
+ */
+inline String CVersionInfo::GetInternalName() const
+{
+	return m_strInternalName;
+}
+
+/** 
+ * @brief Return full file name.
+ * @return full file name.
+ */
+inline String CVersionInfo::GetFullFileName() const
+{
+	return m_strFileName;
+}
+
+/** 
+ * @brief Return copyright info.
+ * @return Copyright info.
+ */
+inline String CVersionInfo::GetLegalCopyright() const
+{
+	return m_strLegalCopyright;
+}
+
+/** 
+ * @brief Return original filename.
+ * @return Original filename.
+ */
+inline String CVersionInfo::GetOriginalFilename() const
+{
+	return m_strOriginalFilename;
+}
+
+/** 
+ * @brief Return product's version number.
+ * @return Product's version number as string.
+ */
+inline String CVersionInfo::GetProductVersion() const
+{
+	return m_strProductVersion;
+}
+
+/** 
+ * @brief Return comment string.
+ * @return Comment string.
+ */
+inline String CVersionInfo::GetComments() const
+{
+	return m_strComments;
+}
+

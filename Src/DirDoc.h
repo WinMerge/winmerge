@@ -147,3 +147,28 @@ private:
 	bool m_bGeneratingReport;
 	std::unique_ptr<DirCmpReport> m_pReport;
 };
+
+/**
+ * @brief Set left/middle/right side readonly-status
+ * @param nIndex Select side to set 
+ * @param bReadOnly New status of selected side
+ */
+inline void CDirDoc::SetReadOnly(int nIndex, bool bReadOnly)
+{
+	m_bRO[nIndex] = bReadOnly;
+}
+
+/**
+ * @brief Return left/middle/right side readonly-status
+ * @param nIndex Select side to ask
+ */
+inline bool CDirDoc::GetReadOnly(int nIndex) const
+{
+	return m_bRO[nIndex];
+}
+
+inline const bool *CDirDoc::GetReadOnly(void) const
+{
+	return m_bRO;
+}
+

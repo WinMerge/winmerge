@@ -84,16 +84,6 @@ static String GetCompilerVersion()
 	);
 }
 
-
-/** 
- * @brief Return logfile name and path
- */
-String CConfigLog::GetFileName() const
-{
-	return m_sFileName;
-}
-
-
 /** 
  * @brief Get the Modified time of fully qualified file path and name
  */
@@ -370,8 +360,6 @@ bool CConfigLog::DoFile(String &sError)
 
 	FileWriteString(_T("\r\n\r\nCommand Line:        "));
 	FileWriteString(szCmdLine);
-
-	String sEXEPathOnly = paths::GetPathOnly(sEXEFullFileName);
 
 	FileWriteString(_T("\r\n\r\nModule Names:         '~' prefix indicates module is loaded into the WinMerge process.\r\n"));
 	FileWriteString(_T(" Windows:\r\n"));

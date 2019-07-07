@@ -65,3 +65,13 @@ private:
 	COLORREF m_crBackGnd; /**< Control's background color. */
 	CBrush m_brBackGnd; /**< Background brush for the control. */
 };
+
+/**
+ * @brief Return the control's original text.
+ * @return Control's original text.
+ */
+inline void CFilepathEdit::GetOriginalText(String& rString) const
+{		
+	rString = m_sOriginalText;
+}
+

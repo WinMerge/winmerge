@@ -29,8 +29,8 @@ mkdir "%DISTDIR%\PDB\%APPVER%\x64" 2> NUL
 for /F %%f in ("%DISTDIR%\files.txt") do (
   copy %%f "%DISTDIR%"
 )
-copy  Build\MergeUnicodeRelease\*.pdb "%DISTDIR%\PDB\%APPVER%\Win32\"
-copy  Build\x64\MergeUnicodeRelease\*.pdb "%DISTDIR%\PDB\%APPVER%\x64\"
+copy  Build\Release\*.pdb "%DISTDIR%\PDB\%APPVER%\Win32\"
+copy  Build\x64\Release\*.pdb "%DISTDIR%\PDB\%APPVER%\x64\"
 popd
 
 call UploadToVirusTotal.cmd

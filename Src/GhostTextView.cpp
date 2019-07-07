@@ -72,8 +72,7 @@ AttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
 void CGhostTextView::
 DetachFromBuffer ()
 {
-	if (m_pGhostTextBuffer != nullptr)
-		m_pGhostTextBuffer = nullptr;
+	m_pGhostTextBuffer = nullptr;
 	CCrystalEditViewEx::DetachFromBuffer();
 }
 

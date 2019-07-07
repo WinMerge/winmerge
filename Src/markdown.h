@@ -61,7 +61,7 @@ public:
 	};
 	int nByteOrder;
 	Poco::SharedMemory *m_pSharedMemory;
-	FileImage(const TCHAR *, size_t trunc = 0, unsigned flags = 0);
+	explicit FileImage(const TCHAR *, size_t trunc = 0, unsigned flags = 0);
 	FileImage(const FileImage& other) = delete;
 	~FileImage();
 	static int GuessByteOrder(unsigned);
@@ -71,7 +71,7 @@ class CMarkdown::File : public CMarkdown::FileImage, public CMarkdown
 {
 //	Construct CMarkdown object from file.
 public:
-	File(const TCHAR * path, size_t trunc = 0, unsigned flags = Octets):
+	explicit File(const TCHAR * path, size_t trunc = 0, unsigned flags = Octets):
 	CMarkdown::FileImage(path, trunc, flags),
 	CMarkdown((const char *)pImage, (const char *)pImage + cbImage, flags)
 	{

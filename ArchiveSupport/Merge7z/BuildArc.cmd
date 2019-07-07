@@ -21,7 +21,7 @@ goto :eof
 set PLATFORM=%1
 
 mkdir ..\..\Build\%PLATFORM%\Merge7z\Lang 2> NUL
-copy ..\..\Build\%PLATFORM%\MergeUnicodeRelease\Merge7z\Merge7z.dll ..\..\Build\%PLATFORM%\Merge7z\
+copy ..\..\Build\%PLATFORM%\Release\Merge7z\Merge7z.dll ..\..\Build\%PLATFORM%\Merge7z\
 if "%PLATFORM%" == "" (
   set "ProgramFilesP=%ProgramFiles(x86)%"
   set ZIP_FILENAME=Merge7z%MERGE7Z_VERSION%-win32.zip

@@ -64,7 +64,7 @@ for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\ReadMe.txt) do (
 )
 
 rem Excecutables
-copy Build\%PLATFORM%\MergeUnicodeRelease\WinMergeU.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
+copy Build\%PLATFORM%\Release\WinMergeU.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 if not "%1" == "" (
   copy Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 )
@@ -75,7 +75,7 @@ copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-vers
 copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 
 rem Translation
-copy Build\%PLATFORM%\MergeUnicodeRelease\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\"
+copy Build\%PLATFORM%\Release\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\"
 
 rem Filters
 for %%i in (Filters\*.flt Filters\*.tmpl Filters\*.txt) do (

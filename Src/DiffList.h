@@ -67,7 +67,7 @@ struct DIFFRANGE
 	int dbegin = 0;              /**< Synchronised (ghost lines added) first diff line in file1,2,3 */
 	int dend = 0;	             /**< Synchronised (ghost lines added) last diff line in file1,2,3 */
 	int blank[3] = {-1, -1, -1}; /**< Number of blank lines in file1,2,3 */
-	OP_TYPE op;		/**< Operation done with this diff */
+	OP_TYPE op = OP_NONE;		/**< Operation done with this diff */
 	DIFFRANGE()
 	{
 	}
@@ -189,3 +189,61 @@ private:
 	int m_lastSignificantRightOnly;
 	int m_lastSignificantConflict;
 };
+
+/**
+ * @brief Returns count of items in diff list.
+ * This function returns total amount of items (diffs) in list. So returned
+ * count includes significant and non-significant diffs.
+ * @note Use GetSignificantDiffs() to get count of non-ignored diffs.
+ */
+inline int DiffList::GetSize() const
+{
+	return (int) m_diffs.size();
+}
+
+/**
+ * @brief Check if diff-list contains significant diffs.
+ * @return true if list has significant diffs, false otherwise.
+ */
+inline bool DiffList::HasSignificantDiffs() const
+{
+	return (m_firstSignificant != -1);
+}
+		
+/**
+ * @brief Return index to first significant difference.
+ * @return Index of first significant difference.
+ */
+inline int DiffList::FirstSignificantDiff() const
+{
+	return m_firstSignificant;
+}
+
+/**
+ * @brief Return index of next significant diff.
+ * @param [in] nDiff Index to start looking for next diff.
+ * @return Index of next significant difference.
+ */
+inline int DiffList::NextSignificantDiff(int nDiff) const
+{
+	return (int)m_diffs[nDiff].next;
+}
+
+/**
+ * @brief Return index of previous significant diff.
+ * @param [in] nDiff Index to start looking for previous diff.
+ * @return Index of previous significant difference.
+ */
+inline int DiffList::PrevSignificantDiff(int nDiff) const
+{
+	return (int)m_diffs[nDiff].prev;
+}
+
+/**
+ * @brief Return index to last significant diff.
+ * @return Index of last significant difference.
+ */
+inline int DiffList::LastSignificantDiff() const
+{
+	return m_lastSignificant;
+}

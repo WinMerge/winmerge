@@ -8,16 +8,17 @@
 #include "pch.h"
 #include "coretools.h"
 
-size_t linelen(const char *string, size_t maxlen)
+static bool iseolch(char ch)
 {
-	size_t stringlen = 0;
-	while (stringlen < maxlen)
-	{
-		char c = string[stringlen];
-		if (c == '\r' || c == '\n' || c == '\0')
-			break;
-		++stringlen;
-	}
-	return stringlen;
+	return ch == '\n' || ch == '\r';
 }
 
+size_t linelen(const char *string, size_t maxlen)
+{
+	const char *q = string + maxlen;
+	do
+	{
+		maxlen = q - string;
+	} while (maxlen && iseolch(*--q));
+	return maxlen;
+}

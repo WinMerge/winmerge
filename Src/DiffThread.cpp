@@ -43,7 +43,7 @@ class DiffThreadAbortable : public IAbortable
 {
 // Implement DirScan's IAbortable
 public:
-	virtual bool ShouldAbort() const { return m_diffthread->ShouldAbort(); }
+	virtual bool ShouldAbort() const override { return m_diffthread->ShouldAbort(); }
 
 // All this object does is forward ShouldAbort calls to its containing CDiffThread
 
@@ -69,15 +69,6 @@ CDiffThread::CDiffThread()
 CDiffThread::~CDiffThread()
 {
 	delete m_pDiffParm->pSemaphore;
-}
-
-/**
- * @brief Sets context pointer forwarded to thread.
- * @param [in] pCtx Pointer to compare context.
- */
-void CDiffThread::SetContext(CDiffContext * pCtx)
-{
-	m_pDiffContext = pCtx;
 }
 
 /**
@@ -114,14 +105,6 @@ unsigned CDiffThread::CompareDirectories()
 	m_threads[1].start(DiffThreadCompare, m_pDiffParm.get());
 
 	return 1;
-}
-
-/**
- * @brief Returns thread's current state
- */
-unsigned CDiffThread::GetThreadState() const
-{
-	return m_pDiffParm->nThreadState;
 }
 
 /**

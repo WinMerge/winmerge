@@ -35,7 +35,7 @@ class CompareStatisticsDlg : public CTrDialog
 	DECLARE_DYNAMIC(CompareStatisticsDlg)
 
 public:
-	CompareStatisticsDlg(const CompareStats * pStats, CWnd* pParent = nullptr);   // standard constructor
+	explicit CompareStatisticsDlg(const CompareStats * pStats, CWnd* pParent = nullptr);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CompareStatisticsDlg)
@@ -45,7 +45,7 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(CompareStatisticsDlg)
-	afx_msg BOOL OnInitDialog();
+	afx_msg BOOL OnInitDialog() override;
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

@@ -1908,7 +1908,7 @@ void CMainFrame::OnSaveProject()
 	{
 		CMergeDoc * pMergeDoc = static_cast<CMergeDoc *>(pFrame->GetActiveDocument());
 		pOpenDoc->m_files = pMergeDoc->m_filePaths;
-		for (size_t pane = 0; pane < pOpenDoc->m_files.size(); ++pane)
+		for (int pane = 0; pane < pOpenDoc->m_files.GetSize(); ++pane)
 			pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pMergeDoc->m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_PROJECT : 0);
 		pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 		pOpenDoc->m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();

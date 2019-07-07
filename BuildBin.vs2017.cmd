@@ -27,13 +27,13 @@ if "%1" == "" (
 ) else (
   set PLATFORM_VS=%1
 )
-MSBuild WinMerge.vs2017.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="%PLATFORM_VS%" || pause
+MSBuild WinMerge.vs2017.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || pause
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
-  call "%SIGNBAT_PATH%" Build\%PLATFORM%\MergeUnicodeRelease\WinMergeU.exe
+  call "%SIGNBAT_PATH%" Build\%PLATFORM%\Release\WinMergeU.exe
 )
 
-mkdir Build\%PLATFORM%\MergeUnicodeRelease\%APPVER% 2> NUL
-copy Build\%PlATFORM%\MergeUnicodeRelease\*.pdb "Build\%PLATFORM%\MergeUnicodeRelease\%APPVER%\"
+mkdir Build\%PLATFORM%\Release\%APPVER% 2> NUL
+copy Build\%PlATFORM%\Release\*.pdb "Build\%PLATFORM%\Release\%APPVER%\"
 goto :eof
