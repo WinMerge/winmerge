@@ -49,3 +49,20 @@ private:
 	std::vector<LineFilterItemPtr> m_items; /**< List for linefilter items */
 	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
+
+/**
+ * @brief Returns count of items in the list.
+ * @return Count of filters in the list.
+ */
+inline size_t LineFiltersList::GetCount() const
+{
+	return m_items.size();
+}
+
+/**
+ * @brief Empties the list.
+ */
+inline void LineFiltersList::Empty()
+{
+	m_items.clear();
+}

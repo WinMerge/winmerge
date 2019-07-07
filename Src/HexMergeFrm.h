@@ -89,3 +89,9 @@ private:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
+
+inline IHeaderBar *CHexMergeFrame::GetHeaderInterface()
+{
+	return &m_wndFilePathBar;
+}
+

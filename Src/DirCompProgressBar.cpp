@@ -87,15 +87,6 @@ BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-/**
- * @brief Set pointer to compare stats.
- * @param [in] pCompareStats Pointer to stats.
- */
-void DirCompProgressBar::SetCompareStat(CompareStats * pCompareStats)
-{
-	m_pCompareStats = pCompareStats;
-}
-
 void DirCompProgressBar::SetProgressState(int comparedItems, int totalItems)
 {
 	CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);

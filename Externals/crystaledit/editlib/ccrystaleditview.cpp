@@ -1870,7 +1870,10 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
   if (m_bAutoIndent)
     {
       //  Analyse last action...
-      if (nAction == CE_ACTION_TYPING && _tcsncmp (pszText, _T ("\r\n"), cchText) == 0 && !m_bOvrMode)
+      if (nAction == CE_ACTION_TYPING && (
+          _tcsncmp (pszText, _T ("\r\n"), cchText) == 0 ||
+          (cchText == 1 && (*pszText == '\r' || *pszText == '\n')))
+          && !m_bOvrMode)
         {
           //  Enter stroke!
           CPoint ptCursorPos = GetCursorPos ();

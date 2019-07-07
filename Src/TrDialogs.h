@@ -40,8 +40,8 @@ class CTrDialog : public CDialog, public DlgUtils<CTrDialog>
 	DECLARE_DYNAMIC(CTrDialog)
 public:
 	CTrDialog() : CDialog() {}
-	CTrDialog(UINT nIDTemplate, CWnd *pParent = nullptr) : CDialog(nIDTemplate, pParent) {}
-	CTrDialog(LPCTSTR lpszTemplateName, CWnd *pParentWnd = nullptr) : CDialog(lpszTemplateName, pParentWnd) {}
+	explicit CTrDialog(UINT nIDTemplate, CWnd *pParent = nullptr) : CDialog(nIDTemplate, pParent) {}
+	explicit CTrDialog(LPCTSTR lpszTemplateName, CWnd *pParentWnd = nullptr) : CDialog(lpszTemplateName, pParentWnd) {}
 
 	virtual BOOL OnInitDialog();
 };

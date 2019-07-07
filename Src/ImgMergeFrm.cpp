@@ -178,20 +178,20 @@ CImgMergeFrame::~CImgMergeFrame()
 	HMODULE hModule = GetModuleHandleW(L"WinIMergeLib.dll");
 	if (hModule != nullptr)
 	{
-		bool (*WinIMerge_DestroyWindow)(IImgMergeWindow *) = 
+		bool (*pfnWinIMerge_DestroyWindow)(IImgMergeWindow *) = 
 			(bool (*)(IImgMergeWindow *))GetProcAddress(hModule, "WinIMerge_DestroyWindow");
-		bool (*WinIMerge_DestroyToolWindow)(IImgToolWindow *) = 
+		bool (*pfnWinIMerge_DestroyToolWindow)(IImgToolWindow *) = 
 			(bool (*)(IImgToolWindow *))GetProcAddress(hModule, "WinIMerge_DestroyToolWindow");
-		if (WinIMerge_DestroyWindow != nullptr && WinIMerge_DestroyToolWindow != nullptr)
+		if (pfnWinIMerge_DestroyWindow != nullptr && pfnWinIMerge_DestroyToolWindow != nullptr)
 		{
 			if (m_pImgMergeWindow != nullptr)
 			{
 				for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 					RevokeDragDrop(m_pImgMergeWindow->GetPaneHWND(pane));
-				WinIMerge_DestroyWindow(m_pImgMergeWindow);
+				pfnWinIMerge_DestroyWindow(m_pImgMergeWindow);
 			}
 			if (m_pImgToolWindow != nullptr)
-				WinIMerge_DestroyToolWindow(m_pImgToolWindow);
+				pfnWinIMerge_DestroyToolWindow(m_pImgToolWindow);
 			m_pImgMergeWindow = nullptr;
 			m_pImgToolWindow = nullptr;
 		}
@@ -418,10 +418,10 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	if (hModule == nullptr)
 		return FALSE;
 
-	IImgMergeWindow * (*WinIMerge_CreateWindow)(HINSTANCE hInstance, HWND hWndParent, int nID) = 
+	IImgMergeWindow * (*pfnWinIMerge_CreateWindow)(HINSTANCE hInstance, HWND hWndParent, int nID) = 
 			(IImgMergeWindow * (*)(HINSTANCE hInstance, HWND hWndParent, int nID))GetProcAddress(hModule, "WinIMerge_CreateWindow");
-	if (WinIMerge_CreateWindow == nullptr || 
-		(m_pImgMergeWindow = WinIMerge_CreateWindow(hModule, m_hWnd, AFX_IDW_PANE_FIRST)) == nullptr)
+	if (pfnWinIMerge_CreateWindow == nullptr || 
+		(m_pImgMergeWindow = pfnWinIMerge_CreateWindow(hModule, m_hWnd, AFX_IDW_PANE_FIRST)) == nullptr)
 	{
 		FreeLibrary(hModule);
 		return FALSE;
@@ -460,10 +460,10 @@ BOOL CImgMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		return FALSE;
 	}
 
-	IImgToolWindow * (*WinIMerge_CreateToolWindow)(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *) = 
+	IImgToolWindow * (*pfnWinIMerge_CreateToolWindow)(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *) = 
 			(IImgToolWindow * (*)(HINSTANCE hInstance, HWND hWndParent, IImgMergeWindow *pImgMergeWindow))GetProcAddress(hModule, "WinIMerge_CreateToolWindow");
-	if (WinIMerge_CreateToolWindow == nullptr ||
-		(m_pImgToolWindow = WinIMerge_CreateToolWindow(hModule, m_wndLocationBar.m_hWnd, m_pImgMergeWindow)) == nullptr)
+	if (pfnWinIMerge_CreateToolWindow == nullptr ||
+		(m_pImgToolWindow = pfnWinIMerge_CreateToolWindow(hModule, m_wndLocationBar.m_hWnd, m_pImgMergeWindow)) == nullptr)
 	{
 		return FALSE;
 	}

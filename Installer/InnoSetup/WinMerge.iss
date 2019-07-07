@@ -48,7 +48,7 @@
 ; Not yet possible (Limited by Inno Setup):
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
 
-#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
+#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\Release\WinMergeU.exe")
 
 [Setup]
 AppName=WinMerge
@@ -424,10 +424,10 @@ Name: {app}; Flags: uninsalwaysuninstall
 
 [Files]
 ; WinMerge itself
-Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\Release\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 ; Visual Elements
-Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
-Source: ..\..\Build\MergeUnicodeRelease\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
+Source: ..\..\Build\Release\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
 
 ; Shell extension
 Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64

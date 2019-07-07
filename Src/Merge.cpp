@@ -517,15 +517,6 @@ int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
 	return static_cast<int>(dlgMessage.DoModal());
 }
 
-/** 
- * @brief Set flag so that application will broadcast notification at next
- * idle time (via WM_TIMER id=IDLE_TIMER)
- */
-void CMergeApp::SetNeedIdleTimer()
-{
-	m_bNeedIdleTimer = true; 
-}
-
 bool CMergeApp::IsReallyIdle() const
 {
 	bool idle = true;
@@ -1119,23 +1110,20 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 	if (!LoadProjectFile(sProject, project))
 		return false;
 	
-	PathContext tFiles;
-	bool bLeftReadOnly = false;
-	bool bMiddleReadOnly = false;
-	bool bRightReadOnly = false;
-	bool bRecursive = false;
 	bool rtn = true;
 	for (auto& projItem : project.Items())
 	{
+		PathContext tFiles;
+		bool bRecursive = false;
 		projItem.GetPaths(tFiles, bRecursive);
-		for (size_t i = 0; i < tFiles.size(); ++i)
+		for (int i = 0; i < tFiles.GetSize(); ++i)
 		{
 			if (!paths::IsPathAbsolute(tFiles[i]))
 				tFiles[i] = paths::ConcatPath(paths::GetParentPath(sProject), tFiles[i]);
 		}
-		bLeftReadOnly = projItem.GetLeftReadOnly();
-		bMiddleReadOnly = projItem.GetMiddleReadOnly();
-		bRightReadOnly = projItem.GetRightReadOnly();
+		bool bLeftReadOnly = projItem.GetLeftReadOnly();
+		bool bMiddleReadOnly = projItem.GetMiddleReadOnly();
+		bool bRightReadOnly = projItem.GetRightReadOnly();
 		if (projItem.HasFilter())
 		{
 			String filter = projItem.GetFilter();

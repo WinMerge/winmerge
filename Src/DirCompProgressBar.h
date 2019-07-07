@@ -68,3 +68,12 @@ private:
 #endif
 };
 
+/**
+ * @brief Set pointer to compare stats.
+ * @param [in] pCompareStats Pointer to stats.
+ */
+inline void DirCompProgressBar::SetCompareStat(CompareStats * pCompareStats)
+{
+	m_pCompareStats = pCompareStats;
+}
+

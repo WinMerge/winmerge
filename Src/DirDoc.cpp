@@ -505,14 +505,14 @@ void CDirDoc::UpdateChangedItem(const PathContext &paths,
 	if (!pos)
 	{
 		PathContext pathsSwapped(paths);
-		std::swap(pathsSwapped[0], pathsSwapped[static_cast<int>(pathsSwapped.size() - 1)]);
+		std::swap(pathsSwapped[0], pathsSwapped[pathsSwapped.GetSize() - 1]);
 		pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
-		if (!pos && paths.size() > 2)
+		if (!pos && paths.GetSize() > 2)
 		{
 			pathsSwapped = paths;
 			std::swap(pathsSwapped[0], pathsSwapped[1]);
 			pos = FindItemFromPaths(*m_pCtxt, pathsSwapped);
-			if (!pos && paths.size() > 2)
+			if (!pos && paths.GetSize() > 2)
 			{
 				pathsSwapped = paths;
 				std::swap(pathsSwapped[1], pathsSwapped[2]);
@@ -559,30 +559,6 @@ void CDirDoc::RefreshOptions()
 		m_pCtxt->m_bRecursive = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 	if (m_pDirView != nullptr)
 		m_pDirView->RefreshOptions();
-}
-
-/**
- * @brief Set left/middle/right side readonly-status
- * @param nIndex Select side to set 
- * @param bReadOnly New status of selected side
- */
-void CDirDoc::SetReadOnly(int nIndex, bool bReadOnly)
-{
-	m_bRO[nIndex] = bReadOnly;
-}
-
-/**
- * @brief Return left/middle/right side readonly-status
- * @param nIndex Select side to ask
- */
-bool CDirDoc::GetReadOnly(int nIndex) const
-{
-	return m_bRO[nIndex];
-}
-
-const bool *CDirDoc::GetReadOnly(void) const
-{
-	return m_bRO;
 }
 
 /**

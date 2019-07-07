@@ -11,17 +11,17 @@ public:
 	{
 	}
 
-	int GetColumnCount() const
+	int GetColumnCount() const override
 	{
 		return Header_GetItemCount(ListView_GetHeader(m_hwndListCtrl));
 	}
 
-	int GetRowCount() const
+	int GetRowCount() const override
 	{
 		return ListView_GetItemCount(m_hwndListCtrl);
 	}
 
-	String GetColumnName(int col) const
+	String GetColumnName(int col) const override
 	{
 		LVCOLUMN lvc;
 		TCHAR columnName[256]; // Assuming max col header will never be > 256
@@ -32,7 +32,7 @@ public:
 		return lvc.pszText;
 	}
 
-	String GetItemText(int row, int col) const
+	String GetItemText(int row, int col) const override
 	{
 		TCHAR text[512]; // Assuming max col header will never be > 512
 		text[0] = '\0';
@@ -40,7 +40,7 @@ public:
 		return text;
 	}
 
-	void *GetItemData(int row) const
+	void *GetItemData(int row) const override
 	{
 		LVITEM lvi = {0};
 		lvi.iItem = row;
@@ -49,7 +49,7 @@ public:
 		return (void *)lvi.lParam;
 	}
 
-	int GetBackColor(int row) const
+	int GetBackColor(int row) const override
 	{
 		NMLVCUSTOMDRAW nmlvcd = {0};
 		nmlvcd.nmcd.hdr.code = NM_CUSTOMDRAW;
@@ -61,27 +61,27 @@ public:
 		return nmlvcd.clrTextBk;
 	}
 
-	bool IsSelectedItem(int sel) const
+	bool IsSelectedItem(int sel) const override
 	{
 		return !!ListView_GetItemState(m_hwndListCtrl, sel, LVIS_SELECTED);
 	}
 
-	int GetNextItem(int sel, bool selected = false, bool reverse = false) const
+	int GetNextItem(int sel, bool selected = false, bool reverse = false) const override
 	{
 		return ListView_GetNextItem(m_hwndListCtrl, sel, (selected ? LVNI_SELECTED : 0) | (reverse ? LVNI_ABOVE : 0));		
 	}
 
-	int GetNextSelectedItem(int sel, bool reverse = false) const
+	int GetNextSelectedItem(int sel, bool reverse = false) const override
 	{
 		return ListView_GetNextItem(m_hwndListCtrl, sel, LVNI_SELECTED | (reverse ? LVNI_ABOVE : 0));		
 	}
 
-	unsigned GetSelectedCount() const
+	unsigned GetSelectedCount() const override
 	{
 		return ListView_GetSelectedCount(m_hwndListCtrl);
 	}
 
-	int GetIndent(int row) const
+	int GetIndent(int row) const override
 	{
 		LVITEM item = {0};
 		item.mask = LVIF_INDENT;
@@ -90,7 +90,7 @@ public:
 		return item.iIndent;
 	}
 
-	int GetIconIndex(int row) const
+	int GetIconIndex(int row) const override
 	{
 		LVITEM item = {0};
 		item.mask = LVIF_IMAGE;
@@ -99,13 +99,13 @@ public:
 		return item.iImage;
 	}
 
-	int GetIconCount() const
+	int GetIconCount() const override
 	{
 		HIMAGELIST hImageList = ListView_GetImageList(m_hwndListCtrl, LVSIL_SMALL);
 		return ImageList_GetImageCount(hImageList);
 	}
 
-	std::string GetIconPNGData(int iconIndex) const
+	std::string GetIconPNGData(int iconIndex) const override
 	{
 		HIMAGELIST hImageList = ListView_GetImageList(m_hwndListCtrl, LVSIL_SMALL);
 		IMAGEINFO imageInfo;

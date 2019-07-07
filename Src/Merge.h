@@ -180,3 +180,13 @@ private:
 };
 
 extern CMergeApp theApp;
+
+/** 
+ * @brief Set flag so that application will broadcast notification at next
+ * idle time (via WM_TIMER id=IDLE_TIMER)
+ */
+inline void CMergeApp::SetNeedIdleTimer()
+{
+	m_bNeedIdleTimer = true; 
+}
+

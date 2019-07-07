@@ -168,50 +168,6 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 }
 
 /** 
- * @brief Returns if left path is defined in project file.
- * @return true if project file has left path.
- */
-bool ProjectFileItem::HasLeft() const
-{
-	return m_bHasLeft;
-}
-
-/** 
- * @brief Returns if middle path is defined.
- */
-bool ProjectFileItem::HasMiddle() const
-{
-	return m_bHasMiddle;
-}
-
-/** 
- * @brief Returns if right path is defined in project file.
- * @return true if project file has right path.
- */
-bool ProjectFileItem::HasRight() const
-{
-	return m_bHasRight;
-}
-
-/** 
- * @brief Returns if filter is defined in project file.
- * @return true if project file has filter.
- */
-bool ProjectFileItem::HasFilter() const
-{
-	return m_bHasFilter;
-}
-
-/** 
- * @brief Returns if subfolder is defined in projectfile.
- * @return true if project file has subfolder definition.
- */
-bool ProjectFileItem::HasSubfolders() const
-{
-	return m_bHasSubfolders;
-}
-
-/** 
  * @brief Returns left path.
  * @param [out] pReadOnly true if readonly was specified for path.
  * @return Left path.
@@ -221,15 +177,6 @@ String ProjectFileItem::GetLeft(bool * pReadOnly /*= nullptr*/) const
 	if (pReadOnly != nullptr)
 		*pReadOnly = m_bLeftReadOnly;
 	return m_paths.GetLeft();
-}
-
-/** 
- * @brief Returns if left path is specified read-only.
- * @return true if left path is read-only, false otherwise.
- */
-bool ProjectFileItem::GetLeftReadOnly() const
-{
-	return m_bLeftReadOnly;
 }
 
 /** 
@@ -253,14 +200,6 @@ String ProjectFileItem::GetMiddle(bool * pReadOnly /*= nullptr*/) const
 	if (pReadOnly != nullptr)
 		*pReadOnly = m_bMiddleReadOnly;
 	return m_paths.GetMiddle();
-}
-
-/** 
- * @brief Returns if middle path is specified read-only.
- */
-bool ProjectFileItem::GetMiddleReadOnly() const
-{
-	return m_bMiddleReadOnly;
 }
 
 /** 
@@ -290,15 +229,6 @@ String ProjectFileItem::GetRight(bool * pReadOnly /*= nullptr*/) const
 }
 
 /** 
- * @brief Returns if right path is specified read-only.
- * @return true if right path is read-only, false otherwise.
- */
-bool ProjectFileItem::GetRightReadOnly() const
-{
-	return m_bRightReadOnly;
-}
-
-/** 
  * @brief Set right path, returns old right path.
  * @param [in] sRight Right path.
  * @param [in] bReadOnly Will path be recorded read-only?
@@ -308,54 +238,6 @@ void ProjectFileItem::SetRight(const String& sRight, const bool * pReadOnly /*= 
 	m_paths.SetRight(sRight, false);
 	if (pReadOnly != nullptr)
 		m_bRightReadOnly = *pReadOnly;
-}
-
-/** 
- * @brief Returns filter.
- * @return Filter string.
- */
-String ProjectFileItem::GetFilter() const
-{
-	return m_filter;
-}
-
-/** 
- * @brief Set filter.
- * @param [in] sFilter New filter string to set.
- */
-void ProjectFileItem::SetFilter(const String& sFilter)
-{
-	m_filter = sFilter;
-}
-
-/** 
- * @brief Returns subfolder included -setting.
- * @return != 0 if subfolders are included.
- */
-int ProjectFileItem::GetSubfolders() const
-{
-	return m_subfolders;
-}
-
-/** 
- * @brief set subfolder.
- * @param [in] iSubfolder New value for subfolder inclusion.
- */
-void ProjectFileItem::SetSubfolders(bool bSubfolder)
-{
-	m_subfolders = bSubfolder ? 1 : 0;
-}
-
-/** 
- * @brief 
- *
- * @param [in] files Files in project
- * @param [in] bSubFolders If true subfolders included (recursive compare)
- */
-void ProjectFileItem::SetPaths(const PathContext& files, bool bSubfolders)
-{
-	m_paths = files;
-	m_subfolders = bSubfolders;
 }
 
 /** 

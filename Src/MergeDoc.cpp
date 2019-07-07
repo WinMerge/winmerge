@@ -3475,14 +3475,6 @@ void CMergeDoc::ClearSyncPoints()
 	FlushAndRescan(true);
 }
 
-/**
- * @brief return true if there are synchronization points
- */
-bool CMergeDoc::HasSyncPoints()
-{
-	return m_bHasSyncPoints;
-}
-
 std::vector<std::vector<int> > CMergeDoc::GetSyncPointList()
 {
 	std::vector<std::vector<int> > list;

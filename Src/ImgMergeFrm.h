@@ -62,18 +62,18 @@ public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
 	void ChangeFile(int pane, const String& path);
-	void SetDirDoc(CDirDoc * pDirDoc);
+	void SetDirDoc(CDirDoc * pDirDoc) override;
 	void UpdateResources();
-	bool CloseNow();
-	void DirDocClosing(CDirDoc * pDirDoc) { m_pDirDoc = nullptr; }
+	bool CloseNow() override;
+	void DirDocClosing(CDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
 	void UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
-	bool GenerateReport(const String& sFileName) const;
+	bool GenerateReport(const String& sFileName) const override;
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
 	bool IsFileChangedOnDisk(int pane) const;
-	void CheckFileChanged(void);
+	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const { return m_strDesc[pane]; }
 	static bool IsLoadable();
 

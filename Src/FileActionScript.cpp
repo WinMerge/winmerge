@@ -68,33 +68,6 @@ FileActionItem FileActionScript::RemoveTailActionItem()
 }
 
 /**
- * @brief Set parent window used for showing MessageBoxes.
- * @param [in] hWnd Handle to parent window.
- */
-void FileActionScript::SetParentWindow(HWND hWnd)
-{
-	m_hParentWindow = hWnd;
-}
-
-/**
- * @brief Does user want to move deleted files to Recycle Bin?
- * @param [in] bUseRecycleBin If `true` deleted files are moved to Recycle Bin.
- */
-void FileActionScript::UseRecycleBin(bool bUseRecycleBin)
-{
-	m_bUseRecycleBin = bUseRecycleBin;
-}
-
-/**
- * @brief Return amount of actions (copy, move, etc) in script.
- * @return Amount of actions.
- */
-size_t FileActionScript::GetActionItemCount() const
-{
-	return m_actions.size();
-}
-
-/**
  * @brief Create ShellFileOperations operation lists from our scripts.
  *
  * We use ShellFileOperations internally to do actual file operations.

@@ -37,6 +37,8 @@
 #include <afxpriv.h>        // MFC private declarations (crystal text needs but doesn't include this)
 #include <afxole.h>         // MFC OLE (COM) support
 
+#include <atlimage.h>
+
 // For CSizingControlBar
 #include "sizecbar.h"
 #include "scbarg.h"
