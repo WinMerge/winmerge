@@ -854,7 +854,6 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="Common\Picture.cpp" />
     <ClCompile Include="Common\PidlContainer.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1218,7 +1217,6 @@
     <ClInclude Include="PatchTool.h" />
     <ClInclude Include="PathContext.h" />
     <ClInclude Include="paths.h" />
-    <ClInclude Include="Common\Picture.h" />
     <ClInclude Include="Common\PidlContainer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PluginManager.h" />

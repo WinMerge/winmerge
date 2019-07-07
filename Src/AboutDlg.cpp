@@ -24,7 +24,7 @@
 #include "stdafx.h"
 #include "AboutDlg.h"
 #include "TrDialogs.h"
-#include "Picture.h"
+#include "Bitmap.h"
 #include "resource.h" // IDD_ABOUTBOX
 
 /** 
@@ -63,7 +63,7 @@ public:
 
 private:
 	CAboutDlg *m_p;
-	CPicture m_image;
+	ATL::CImage m_image;
 	CFont m_font;
 };
 
@@ -98,7 +98,7 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
-	m_image.Load(IDR_SPLASH);
+	LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_SPLASH), _T("IMAGE"));
 
 	m_font.CreatePointFont(10 * 10, _T("Tahoma"));
 
@@ -131,7 +131,7 @@ void CAboutDlg::Impl::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
 	CRect rc;
 	GetDlgItem(nIDCtl)->GetClientRect(&rc);
-	m_image.Render(CDC::FromHandle(lpDrawItemStruct->hDC), rc);
+	m_image.Draw(lpDrawItemStruct->hDC, rc, Gdiplus::InterpolationModeBicubic);
 }
 /**
  * @brief Show contributors list.
