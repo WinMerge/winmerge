@@ -106,96 +106,6 @@ CVersionInfo::CVersionInfo(HINSTANCE hModule)
 }
 
 /** 
- * @brief Return file version string.
- * @return File version as string.
- */
-String CVersionInfo::GetFileVersion() const
-{
-	return m_strFileVersion;
-}
-
-/** 
- * @brief Return private build value.
- * @return Private build number as string.
- */
-String CVersionInfo::GetPrivateBuild() const
-{
-	return m_strPrivateBuild;
-}
-
-/** 
- * @brief Return special build value.
- * @return Special build number as string.
- */
-String CVersionInfo::GetSpecialBuild() const
-{
-	return m_strSpecialBuild;
-}
-
-/** 
- * @brief Return company name.
- * @return Company name.
- */
-String CVersionInfo::GetCompanyName() const
-{
-	return m_strCompanyName;
-}
-
-/** 
- * @brief Return file description string.
- * @return File description string.
- */
-String CVersionInfo::GetFileDescription() const
-{
-	return m_strFileDescription;
-}
-
-/** 
- * @brief Return internal name.
- * @return Internal name.
- */
-String CVersionInfo::GetInternalName() const
-{
-	return m_strInternalName;
-}
-
-/** 
- * @brief Return full file name.
- * @return full file name.
- */
-String CVersionInfo::GetFullFileName() const
-{
-	return m_strFileName;
-}
-
-/** 
- * @brief Return copyright info.
- * @return Copyright info.
- */
-String CVersionInfo::GetLegalCopyright() const
-{
-	return m_strLegalCopyright;
-}
-
-/** 
- * @brief Return original filename.
- * @return Original filename.
- */
-String CVersionInfo::GetOriginalFilename() const
-{
-	return m_strOriginalFilename;
-}
-
-/** 
- * @brief Return product's version number.
- * @return Product's version number as string.
- */
-String CVersionInfo::GetProductVersion() const
-{
-	return m_strProductVersion;
-}
-
-/** 
  * @brief Format version string from numbers.
  * Version number consists of four WORD (16-bit) numbers. This function
  * formats those numbers to string, where numbers are separated by
@@ -263,15 +173,6 @@ bool CVersionInfo::GetFixedFileVersion(unsigned& versionMS, unsigned& versionLS)
 		return true;
 	}
 	return false;
-}
-
-/** 
- * @brief Return comment string.
- * @return Comment string.
- */
-String CVersionInfo::GetComments() const
-{
-	return m_strComments;
 }
 
 /** 

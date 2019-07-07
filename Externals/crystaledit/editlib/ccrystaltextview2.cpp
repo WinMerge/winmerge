@@ -1096,7 +1096,7 @@ OnRButtonDown (UINT nFlags, CPoint point)
   pt = ClientToText (pt);
 
   // If there is selection, dont' clear it
-  if (!IsSelection())
+  if (!IsSelection() || !IsInsideSelBlock(pt))
     {
       m_ptAnchor = m_ptCursorPos = pt;
       SetSelection (m_ptCursorPos, m_ptCursorPos);

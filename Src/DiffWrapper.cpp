@@ -102,15 +102,6 @@ CDiffWrapper::~CDiffWrapper()
 }
 
 /**
- * @brief Set plugins enabled/disabled.
- * @param [in] enable if true plugins are enabled.
- */
-void CDiffWrapper::EnablePlugins(bool enable)
-{
-	m_bPluginsEnabled = enable;
-}
-
-/**
  * @brief Enables/disables patch-file creation and sets filename.
  * This function enables or disables patch file creation. When
  * @p filename is empty, patch files are disabled.
@@ -178,14 +169,6 @@ void CDiffWrapper::SetOptions(const DIFFOPTIONS *options)
 	m_options.SetFromDiffOptions(*options);
 }
 
-/**
- * @brief Set text tested to find the prediffer automatically.
- * Most probably a concatenated string of both filenames.
- */
-void CDiffWrapper::SetTextForAutomaticPrediff(const String &text)
-{
-	m_sToFindPrediffer = text;
-}
 void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)
 {
 	// all flags are set correctly during the construction
@@ -193,10 +176,6 @@ void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)
 
 	if (prediffer != nullptr)
 		*m_infoPrediffer = *prediffer;
-}
-void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer) const
-{
-	*prediffer = *m_infoPrediffer;
 }
 
 /**
@@ -658,29 +637,6 @@ void CDiffWrapper::SetPaths(const PathContext &tFiles,
 {
 	m_files = tFiles;
 	m_bPathsAreTemp = tempPaths;
-}
-
-/**
- * @brief Set source paths for original (NON-TEMP) diffing two files.
- * Sets full paths to two (NON-TEMP) files we are diffing.
- * @param [in] OriginalFile1 First file to compare "(NON-TEMP) file".
- * @param [in] OriginalFile2 Second file to compare "(NON-TEMP) file".
- */
-void CDiffWrapper::SetCompareFiles(const PathContext &originalFile)
-{
-	m_originalFile = originalFile;
-}
-
-/**
- * @brief Set alternative paths for compared files.
- * Sets alternative paths for diff'ed files. These alternative paths might not
- * be real paths. For example when creating a patch file from folder compare
- * we want to use relative paths.
- * @param [in] altPaths Alternative file paths.
- */
-void CDiffWrapper::SetAlternativePaths(const PathContext &altPaths)
-{
-	m_alternativePaths = altPaths;
 }
 
 /**

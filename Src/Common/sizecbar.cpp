@@ -69,24 +69,6 @@ IMPLEMENT_DYNAMIC(CSizingControlBar, baseCSizingControlBar);
 
 CSizingControlBar::CSizingControlBar()
 {
-    m_szMinHorz = CSize(33, 32);
-    m_szMinVert = CSize(33, 32);
-    m_szMinFloat = CSize(37, 32);
-    m_szHorz = CSize(120, 200);
-    m_szVert = CSize(120, 200);
-    m_szFloat = CSize(120, 200);
-    m_bTracking = false;
-    m_bKeepSize = false;
-    m_bParentSizing = false;
-    m_cxEdge = 5;
-    m_bDragShowContent = false;
-    m_nDockBarID = 0;
-    m_dwSCBStyle = 0;
-	m_htEdge = 0;
-	m_nTrackPosMin = 0;
-	m_nTrackPosMax = 0;
-	m_nTrackPosOld = 0;
-	m_nTrackEdgeOfs = 0;
 }
 
 CSizingControlBar::~CSizingControlBar()

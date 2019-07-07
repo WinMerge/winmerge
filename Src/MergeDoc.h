@@ -184,7 +184,7 @@ public:
 	void ChangeFile(int nBuffer, const String& path);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(bool &bBinary, IDENTLEVEL &identical, bool bForced = false);
-	void CheckFileChanged(void);
+	void CheckFileChanged(void) override;
 	int ShowMessageBox(const String& sText, unsigned nType = MB_OK, unsigned nIDHelp = 0);
 	void ShowRescanError(int nRescanResult, IDENTLEVEL identical);
 	bool Undo();
@@ -210,10 +210,10 @@ public:
 	void RemoveMergeViews(int nGroup);
 	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
 
-	void SetDirDoc(CDirDoc * pDirDoc);
+	void SetDirDoc(CDirDoc * pDirDoc) override;
 	CDirDoc * GetDirDoc() const { return m_pDirDoc; }
-	void DirDocClosing(CDirDoc * pDirDoc);
-	bool CloseNow();
+	void DirDocClosing(CDirDoc * pDirDoc) override;
+	bool CloseNow() override;
 	void SwapFiles();
 
 	CMergeEditView * GetView(int group, int buffer) const { return m_pView[group][buffer]; }
@@ -304,7 +304,7 @@ public:
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
 	bool OpenWithUnpackerDialog();
-	bool GenerateReport(const String& sFileName) const;
+	bool GenerateReport(const String& sFileName) const override;
 	void SetAutoMerged(bool bAutoMerged) { m_bAutoMerged = bAutoMerged; }
 	bool GetAutoMerged() const { return m_bAutoMerged; };
 	bool IsModified() const
@@ -393,3 +393,12 @@ private:
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;
 	void DoFileSave(int pane);
 };
+
+/**
+ * @brief return true if there are synchronization points
+ */
+inline bool CMergeDoc::HasSyncPoints()
+{
+	return m_bHasSyncPoints;
+}
+

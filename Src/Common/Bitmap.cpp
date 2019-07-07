@@ -184,3 +184,25 @@ bool GrayScale(CBitmap *pBitmap)
 		return false;
 	return pBitmap->SetBitmapBits(nCount, pbuf.get()) != 0;
 }
+
+bool LoadImageFromResource(ATL::CImage& image, const TCHAR *pName, const TCHAR *pType)
+{
+	HRSRC hrsrc = FindResource(nullptr, pName, pType);
+	if (hrsrc == nullptr)
+		return false;
+	DWORD dwResourceSize = SizeofResource(nullptr, hrsrc);
+	HGLOBAL hglbImage = LoadResource(nullptr, hrsrc);
+	if (hglbImage == nullptr)
+		return false;
+	LPVOID pvSourceResourceData = LockResource(hglbImage);
+	if (pvSourceResourceData == nullptr)
+		return false;
+	IStream * pStream = SHCreateMemStream(reinterpret_cast<const BYTE *>(pvSourceResourceData), dwResourceSize);
+	if (!pStream)
+		return false;
+	HRESULT hr = image.Load(pStream);
+	pStream->Release();
+	if (FAILED(hr))
+		return false;
+	return true;
+}

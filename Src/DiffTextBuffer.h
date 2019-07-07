@@ -80,3 +80,22 @@ public :
 		int nStartPos, int nEndLine, int nEndPos,
 		int nAction = CE_ACTION_UNKNOWN, bool bHistory = true) override;
 };
+
+/**
+ * @brief Set the folder for temp files.
+ * @param [in] path Temp files folder.
+ */
+inline void CDiffTextBuffer::SetTempPath(const String &path)
+{
+	m_strTempPath = path;
+}
+
+/**
+ * @brief Is the buffer initialized?
+ * @return true if the buffer is initialized, false otherwise.
+ */
+inline bool CDiffTextBuffer::IsInitialized() const
+{
+	return !!m_bInit;
+}
+

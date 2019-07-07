@@ -44,7 +44,7 @@
 
 IMPLEMENT_DYNCREATE(CMergeEditSplitterView, CView)
 
-CMergeEditSplitterView::CMergeEditSplitterView(): m_bDetailView(false)
+CMergeEditSplitterView::CMergeEditSplitterView(): m_bDetailView(false), m_nThisGroup(0)
 {
 }
 

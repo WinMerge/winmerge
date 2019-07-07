@@ -270,12 +270,6 @@ void CHexMergeFrame::UpdateHeaderSizes()
 	}
 }
 
-IHeaderBar *CHexMergeFrame::GetHeaderInterface()
-{
-	return &m_wndFilePathBar;
-}
-
-
 void CHexMergeFrame::UpdateAutoPaneResize()
 {
 	m_wndSplitter.AutoResizePanes(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));

@@ -73,6 +73,24 @@ private:
 	varprop::VariantValue m_valueDef; /**< Option's default value. */
 };
 
+/**
+ * @brief Return option value.
+ * @return Value as Variant type.
+ */
+inline const varprop::VariantValue& COption::Get() const
+{
+	return m_value;
+}
+
+/**
+ * @brief Return option default value.
+ * @return Default value as varian type.
+ */
+inline const varprop::VariantValue& COption::GetDefault() const
+{
+	return m_valueDef;
+}
+
 typedef std::map<String, COption> OptionsMap;
 
 /**

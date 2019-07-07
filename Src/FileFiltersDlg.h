@@ -71,7 +71,7 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(FileFiltersDlg)
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 	virtual void OnOK();
 	afx_msg void OnFiltersEditbtn();
 	afx_msg void OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult);

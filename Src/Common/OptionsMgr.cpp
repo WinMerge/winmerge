@@ -119,24 +119,6 @@ int COption::Init(const String& name, const varprop::VariantValue& defaultValue)
 }
 
 /**
- * @brief Return option value.
- * @return Value as Variant type.
- */
-const varprop::VariantValue& COption::Get() const
-{
-	return m_value;
-}
-
-/**
- * @brief Return option default value.
- * @return Default value as varian type.
- */
-const varprop::VariantValue& COption::GetDefault() const
-{
-	return m_valueDef;
-}
-
-/**
  * @brief Convert string to integer.
  * @param [in] str String to convert.
  * @param [out] val Converted integer.

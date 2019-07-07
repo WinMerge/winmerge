@@ -75,3 +75,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 };
 
+/**
+ * @brief Get the interface to the header (path) bar
+ */
+inline IHeaderBar * CDirFrame::GetHeaderInterface() {
+	return &m_wndFilePathBar;
+}
+

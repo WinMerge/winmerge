@@ -45,23 +45,6 @@ void LineFiltersList::AddFilter(const String& filter, bool enabled)
 }
 
 /**
- * @brief Returns count of items in the list.
- * @return Count of filters in the list.
- */
-size_t LineFiltersList::GetCount() const
-{
-	return m_items.size();
-}
-
-/**
- * @brief Empties the list.
- */
-void LineFiltersList::Empty()
-{
-	m_items.clear();
-}
-
-/**
  * @brief Returns the filter list as one filter string.
  * This function returns the list of filters as one string that can be
  * given to regular expression engine as filter. Filter strings in

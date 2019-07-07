@@ -47,3 +47,11 @@ struct DiffFileInfo : public DirItem
 	void ClearPartial();
 	bool IsEditableEncoding() const;
 };
+
+/**
+ * @brief Return true if file is in any Unicode encoding
+ */
+inline bool DiffFileInfo::IsEditableEncoding() const
+{
+	return !encoding.m_bom;
+}

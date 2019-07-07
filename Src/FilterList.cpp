@@ -48,23 +48,6 @@ void FilterList::AddRegExp(const std::string& regularExpression)
 }
 
 /** 
- * @brief Removes all expressions from the list.
- */
-void FilterList::RemoveAllFilters()
-{
-	m_list.clear();
-}
-
-/** 
- * @brief Returns if list has any expressions.
- * @return true if list contains one or more expressions.
- */
-bool FilterList::HasRegExps() const
-{
-	return !m_list.empty();
-}
-
-/** 
  * @brief Match string against list of expressions.
  * This function matches given @p string against the list of regular
  * expressions. The matching ends when first match is found, so all
@@ -114,12 +97,3 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 	return retval;
 }
 
-/** 
- * @brief Returns the last matched expression (if any).
- * This function returns the regular expression string that matched last.
- * @return Last matched expression, or `nullptr` in case no matches yet.
- */
-const char * FilterList::GetLastMatchExpression() const
-{
-	return m_lastMatchExpression->c_str();
-}

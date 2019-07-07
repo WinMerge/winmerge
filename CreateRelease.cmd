@@ -29,8 +29,8 @@ for /F %%f in (Build\Releases\files.txt) do (
   copy %%f ..\..\Build\Releases\
 )
 copy Build\Releases\files.txt ..\..\Build\Releases\
-copy  Build\MergeUnicodeRelease\*.pdb ..\..\Build\Releases\PDB\%APPVER%\Win32\
-copy  Build\x64\MergeUnicodeRelease\*.pdb ..\..\Build\Releases\PDB\%APPVER%\x64\
+copy  Build\Release\*.pdb ..\..\Build\Releases\PDB\%APPVER%\Win32\
+copy  Build\x64\Release\*.pdb ..\..\Build\Releases\PDB\%APPVER%\x64\
 popd
 
 call UploadToVirusTotal.cmd

@@ -48,7 +48,7 @@ private:
 
 	// Generated message map functions
 	//{{AFX_MSG(CTestFilterDlg)
-	virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog() override;
 	afx_msg void OnTestBtn();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
