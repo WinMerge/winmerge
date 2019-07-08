@@ -1962,9 +1962,6 @@ msgstr "Naar rechts:"
 msgid "Version %1"
 msgstr "Versie %1 - Nederlands"
 
-msgid "Unicode"
-msgstr "Unicode"
-
 msgid "X64"
 msgstr "X64"
 

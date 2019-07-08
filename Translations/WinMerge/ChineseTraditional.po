@@ -2496,10 +2496,6 @@ msgid "Version %1"
 msgstr "版本 %1"
 
 #, c-format
-msgid "Unicode"
-msgstr "萬國碼"
-
-#, c-format
 msgid "X64"
 msgstr "X64"
 
