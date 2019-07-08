@@ -258,6 +258,10 @@ int xdl_recmatch(const char *l1, long s1, const char *l2, long s2, long flags)
 	 * ignore-whitespace-at-eol case may break out of the loop
 	 * while there still are characters remaining on both lines.
 	 */
+	int has_eol1 = s1 > 0 && is_eol(l1 + s1 - 1, l1 + s1);
+	int has_eol2 = s2 > 0 && is_eol(l2 + s2 - 1, l2 + s2);
+	if (!((has_eol1 && has_eol2) || (!has_eol1 && !has_eol2)))
+		return 0;
 	if (i1 < s1) {
 		while (i1 < s1 && XDL_ISSPACE(l1[i1]))
 			i1++;

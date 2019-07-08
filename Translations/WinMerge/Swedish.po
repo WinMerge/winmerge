@@ -2520,10 +2520,6 @@ msgid "Version %1"
 msgstr "Version %1"
 
 #, c-format
-msgid "Unicode"
-msgstr "Unicode"
-
-#, c-format
 msgid "X64"
 msgstr "X64"
 

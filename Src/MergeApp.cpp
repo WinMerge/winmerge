@@ -167,10 +167,6 @@ AboutInfo::AboutInfo()
 	{
 		version += _T("\n");
 	}
-#ifdef _UNICODE
-	version += _T(" ");
-	version += _("Unicode");
-#endif
 
 #if defined _M_IX86
 	version += _T(" ");
