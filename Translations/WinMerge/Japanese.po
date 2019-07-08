@@ -1964,9 +1964,6 @@ msgstr "右側へ:"
 msgid "Version %1"
 msgstr "Version %1 - Japanese"
 
-msgid "Unicode"
-msgstr "Unicode"
-
 msgid "X64"
 msgstr "X64"
 

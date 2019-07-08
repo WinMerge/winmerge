@@ -573,7 +573,6 @@
 #define IDS_FROM_RIGHT                  16003
 #define IDS_TO_RIGHT                    16004
 #define IDS_VERSION_FMT                 16385
-#define IDS_UNICODE                     16387
 #define IDS_WINX64                      16388
 #define IDS_OPTIONS_TITLE               16400
 #define IDS_MESSAGE_BOX_ARE_RESET       16401
