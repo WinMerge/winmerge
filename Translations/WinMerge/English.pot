@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-06-26 06:38+0000\n"
+"POT-Creation-Date: 2019-07-09 07:44+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1875,9 +1875,6 @@ msgstr ""
 
 #, c-format
 msgid "Version %1"
-msgstr ""
-
-msgid "Unicode"
 msgstr ""
 
 msgid "X64"

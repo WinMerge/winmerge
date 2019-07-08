@@ -1,5 +1,4 @@
-﻿﻿# This file is part from WinMerge <http://winmerge.org/>
-# Released under the "GNU General Public License"
+﻿# Released under the "GNU General Public License"
 #
 # Translators:
 # * Dmitriy Rublev <kaktebyavirubit at gmail.com>
@@ -2489,10 +2488,6 @@ msgstr "Направо:"
 #, c-format
 msgid "Version %1"
 msgstr "Версия %1"
-
-#, c-format
-msgid "Unicode"
-msgstr "Юникод"
 
 #, c-format
 msgid "X64"

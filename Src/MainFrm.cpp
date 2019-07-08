@@ -282,11 +282,8 @@ CMainFrame::~CMainFrame()
 	strdiff::Close();
 }
 
-#ifdef _UNICODE
 const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
-#else
-const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassA");
-#endif
+
 /**
  * @brief Change MainFrame window class name
  *        see http://support.microsoft.com/kb/403825/ja
@@ -685,31 +682,6 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 		{
 			FileLocationGuessEncodings(fileloc[pane], iGuessEncodingType);
 		}
-
-		// TODO (Perry, 2005-12-04)
-		// Should we do any unification if unicodings are different?
-
-
-#ifndef _UNICODE
-		// In ANSI (8-bit) build, character loss can occur in merging
-		// if the two buffers use different encodings
-		if (pane > 0 && fileloc[pane - 1].encoding.m_codepage != fileloc[pane].encoding.m_codepage)
-		{
-			CString msg;
-			msg.Format(theApp.LoadString(IDS_SUGGEST_IGNORECODEPAGE).c_str(), fileloc[pane - 1].encoding.m_codepage,fileloc[pane].encoding.m_codepage);
-			int msgflags = MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN;
-			// Two files with different codepages
-			// Warn and propose to use the default codepage for both
-			int userChoice = AfxMessageBox(msg, msgflags);
-			if (userChoice == IDYES)
-			{
-				fileloc[pane - 1].encoding.SetCodepage(ucr::getDefaultCodepage());
-				fileloc[pane - 1].encoding.m_bom = false;
-				fileloc[pane].encoding.SetCodepage(ucr::getDefaultCodepage());
-				fileloc[pane].encoding.m_bom = false;
-			}
-		}
-#endif
 	}
 
 	// Note that OpenDocs() takes care of closing compare window when needed.

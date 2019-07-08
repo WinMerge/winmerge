@@ -2498,10 +2498,6 @@ msgid "Version %1"
 msgstr "Sürüm %1"
 
 #, c-format
-msgid "Unicode"
-msgstr "Unikod"
-
-#, c-format
 msgid "X64"
 msgstr "X64"
 

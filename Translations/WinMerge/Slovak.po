@@ -2488,10 +2488,6 @@ msgid "Version %1"
 msgstr "Verzia %1 - Slovenský preklad"
 
 #, c-format
-msgid "Unicode"
-msgstr "Unicode"
-
-#, c-format
 msgid "X64"
 msgstr "X64"
 

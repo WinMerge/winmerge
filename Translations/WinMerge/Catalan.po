@@ -2453,10 +2453,6 @@ msgid "Version %1"
 msgstr "Versió %1 - Català"
 
 #, c-format
-msgid "Unicode"
-msgstr ""
-
-#, c-format
 msgid "X64"
 msgstr ""
 

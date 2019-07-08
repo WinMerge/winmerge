@@ -2503,10 +2503,6 @@ msgid "Version %1"
 msgstr " نسخه %1"
 
 #, c-format
-msgid "Unicode"
-msgstr " يوني کد "
-
-#, c-format
 msgid "X64"
 msgstr "X64"
 

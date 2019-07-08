@@ -1945,9 +1945,6 @@ msgstr "Į dešinę:"
 msgid "Version %1"
 msgstr "Versija %1"
 
-msgid "Unicode"
-msgstr "Unikodas"
-
 msgid "X64"
 msgstr "X64"
 
