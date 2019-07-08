@@ -385,11 +385,7 @@ void CDirView::OnInitialUpdate()
 	GetDocument()->SetDirView(this);
 	m_pColItems.reset(new DirViewColItems(GetDocument()->m_nDirs));
 
-#ifdef _UNICODE
 	m_pList->SendMessage(CCM_SETUNICODEFORMAT, TRUE, 0);
-#else
-	m_pList->SendMessage(CCM_SETUNICODEFORMAT, FALSE, 0);
-#endif
 
 	// Load user-selected font
 	if (GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP + OPT_FONT_USECUSTOM))
@@ -3859,11 +3855,7 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 	HGLOBAL hMem = GlobalReAlloc(file.Detach(), (filesForDroping.length() + 1) * sizeof(TCHAR), 0);
 	if (hMem != nullptr) 
 	{
-#ifdef _UNICODE
 		DropData->CacheGlobalData(CF_UNICODETEXT, hMem);
-#else
-		DropData->CacheGlobalData(CF_TEXT, hMem);
-#endif
 		DROPEFFECT de = DropData->DoDragDrop(DROPEFFECT_COPY | DROPEFFECT_MOVE, nullptr);
 	}
 

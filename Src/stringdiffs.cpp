@@ -677,7 +677,6 @@ isWordBreak(int breakType, const TCHAR *str, int index)
 {
 	TCHAR ch = str[index];
 	// breakType==1 means break also on punctuation
-#ifdef _UNICODE
 	if ((ch & 0xff00) == 0)
 	{
 //		TCHAR nextCh = str[index + 1];
@@ -705,12 +704,6 @@ isWordBreak(int breakType, const TCHAR *str, int index)
 //		
 		return true;
 	}
-#else
-	// breakType==0 means whitespace only
-	if (breakType==0)
-		return false;
-	return _tcschr(BreakChars, ch) != nullptr;
-#endif
 }
 
 
