@@ -34,12 +34,7 @@ static bool GetDirName(const String& sDir, String& sName);
 static bool IsSlash(const String& pszStart, size_t nPos)
 {
 	return pszStart[nPos]=='/' || 
-#ifdef _UNICODE
 	       pszStart[nPos]=='\\';
-#else
-		// Avoid 0x5C (ASCII backslash) byte occurring as trail byte in MBCS
-	       (pszStart[nPos]=='\\' && !_ismbstrail((unsigned char *)pszStart.c_str(), (unsigned char *)pszStart.c_str() + nPos));
-#endif
 }
 
 /** 
@@ -484,11 +479,7 @@ String ExpandShortcut(const String &inFile)
 		if (SUCCEEDED(hres))
 		{
 			WCHAR wsz[MAX_PATH_FULL];
-#ifdef _UNICODE
 			_tcscpy_safe(wsz, inFile.c_str());
-#else
-			::MultiByteToWideChar(CP_ACP, 0, inFile.c_str(), -1, wsz, MAX_PATH_FULL);
-#endif
 
 			// Load shortcut
 			hres = ppf->Load(wsz, STGM_READ);
@@ -658,13 +649,7 @@ String EnsurePathExist(const String & sPath)
  */
 bool IsSlashOrColon(const TCHAR *pszChar, const TCHAR *begin)
 {
-#ifdef _UNICODE
 		return (*pszChar == '/' || *pszChar == ':' || *pszChar == '\\');
-#else
-		// Avoid 0x5C (ASCII backslash) byte occurring as trail byte in MBCS
-		return (*pszChar == '/' || *pszChar == ':' 
-			|| (*pszChar == '\\' && !_ismbstrail((unsigned char *)begin, (unsigned char *)pszChar)));
-#endif
 }
 
 /**

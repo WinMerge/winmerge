@@ -78,11 +78,7 @@ bool AddToRecentDocs(const String& app_path, const String& params, const String&
 {
 	SHARDAPPIDINFOLINK saiil;
 	saiil.pszAppID = g_appid.c_str();
-#ifdef _UNICODE
 	saiil.psl = CreateShellLink(app_path, params, title, desc, icon_index);
-#else
-	saiil.psl = (IShellLink *)CreateShellLink(ucr::toUTF16(app_path), ucr::toUTF16(params), ucr::toUTF16(title), ucr::toUTF16(desc), icon_index);
-#endif
 	if (saiil.psl == nullptr)
 		return false;
 	SHAddToRecentDocs(SHARD_APPIDINFOLINK, &saiil);
