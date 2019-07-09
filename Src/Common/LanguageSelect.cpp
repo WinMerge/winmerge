@@ -724,12 +724,7 @@ bool CLanguageSelect::TranslateString(const std::wstring& msgid, std::wstring &s
 
 bool CLanguageSelect::TranslateString(const std::string& msgid, String& s) const
 {
-#ifdef _UNICODE
 	bool result = TranslateString(std::wstring(msgid.begin(), msgid.end()), s);
-#else
-	bool result = TranslateString(std::wstring(msgid.begin(), msgid.end()), ws);
-	s = ucr::toTString(ws);
-#endif
 	return result;
 }
 
