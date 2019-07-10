@@ -211,15 +211,10 @@
 
         <tbody>
           <row>
-            <entry>フィールドに
-            <userinput>
-            UTF-8</userinput>と入力してください。
-            <para>パスを辿るために、
-            <guibutton>
-            参照</guibutton>ボタンをクリックしてください。</para>
-            <para>ウィンドウを更新するために、
-            <keycap>
-            F5</keycap>を一回押下してください。</para></entry>
+            <entry>フィールドに<userinput>UTF-8</userinput>と入力してください。<para>パスを辿るために、
+            <guibutton>参照</guibutton>ボタンをクリックしてください。
+            </para><para>ウィンドウを更新するために、<keycap>F5</keycap>を一回押下してください。
+            </para></entry>
 
             <entry>説明文中のボールドフォントは、以下の内容を表します:<itemizedlist>
                 <listitem>
@@ -259,13 +254,9 @@
                 <guimenuitem>開く</guimenuitem>
             </menuchoice>をクリックしてください。</entry>
 
-            <entry>
-            矢印は、メニューを表します。この例では、WinMerge
-            の
-            <guimenu>
-            ファイル</guimenu>メニューの中の
-            <guimenuitem>
-            開く</guimenuitem>を選択してください。</entry>
+            <entry>矢印は、メニューを表します。この例では、WinMergeの
+            <guimenu>ファイル</guimenu>メニューの中の
+            <guimenuitem>開く</guimenuitem>を選択してください。</entry>
           </row>
 
           <row>
@@ -278,17 +269,10 @@
           </row>
 
           <row>
-            <entry>
-            <replaceable>options
-            file</replaceable>.ini
-            を入力してください。
-            <para>操作対象からファイルを除外するために
-            <guilabel>
-            フィルタ</guilabel>フィールドを使用してください。</para>
-            <para>
-            連続した1つかそれ以上の差異行は、一つの差異(または
-            <glossterm>
-            diff差分</glossterm>)を形成します。</para></entry>
+            <entry><replaceable>options file</replaceable>.iniを入力してください。<para>
+            操作対象からファイルを除外するために<guilabel>フィルタ</guilabel>フィールドを使用してください。
+            </para><para>連続した1つかそれ以上の差異行は、一つの差異(または
+            <glossterm>diff差分</glossterm>)を形成します。</para></entry>
 
             <entry>イタリック体のテキストは、次の内容を表します: <itemizedlist>
                 <listitem>
@@ -345,8 +329,7 @@
                 rep="norepeat"><replaceable>outputpath</replaceable></arg>
               </cmdsynopsis></entry>
 
-            <entry>
-              シンタックス行では、ブラケット(大括弧)は省略可能な要素を表します。
+            <entry>シンタックス行では、ブラケット(大括弧)は省略可能な要素を表します。
               この例では、コマンドと入力パスを入力しなければなりません。
               出力パスも入力できますが、入力しなくてもコマンドは有効です。</entry>
           </row>
