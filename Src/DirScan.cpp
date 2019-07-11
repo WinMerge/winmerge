@@ -676,7 +676,6 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 
 int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 {
-	CAssureScriptsForThread scriptsForRescan;
 	return CompareRequestedItems(myStruct, parentdiffpos);
 }
 
