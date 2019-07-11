@@ -102,7 +102,7 @@
   </section>
 
   <section id="Configuration_general">
-    <title>一般ページ</title>
+    <title>一般 ページ</title>
 
     <para>一般ページには、いくつかのオプションがあります。</para>
 
@@ -138,9 +138,7 @@
     </section>
 
     <section>
-      <title>
-      <keycap>ESC</keycap>でウインドウを閉じる
-      <indexterm>
+      <title><keycap>ESC</keycap>でウインドウを閉じる<indexterm>
         <primary>ESCでウインドウを閉じる</primary>
       </indexterm></title>
 
@@ -171,17 +169,18 @@
 
       <itemizedlist>
         <listitem>
-          <para>
-          <option>有効</option>(デフォルト): ファイルまたはフォルダの選択ダイアログで、パスを入力した時に、それらをチェックします。
+          <para><option>有効</option>(デフォルト): ファイルまたはフォルダの選択ダイアログで、
+          パスを入力した時に、それらをチェックします。
           <guibutton>OK</guibutton>ボタンは、両方のパスが検証されるまで、使用不可となります。注) 
           <!-- TODO: かなり意訳 -->このチェックは、ほんの少しだけ時間がかかることがあります。</para>
         </listitem>
 
         <listitem>
-          <para>
-          <option>無効</option>: ファイルまたはフォルダの選択ダイアログの
-          <guibutton>
-          OK</guibutton>ボタンは常に使用可能となり、指定したパスを開こうとします。検証による遅延がないため、パスの選択が速くなります。しかし、パスが開かれなかった場合、エラーダイアログが表示されます。</para>
+          <para><option>無効</option>: ファイルまたはフォルダの選択ダイアログの
+          <guibutton>OK</guibutton>ボタンは常に使用可能となり、
+          指定したパスを開こうとします。検証による遅延がないため、
+          パスの選択が速くなります。しかし、パスが開かれなかった場合、
+          エラーダイアログが表示されます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -195,23 +194,27 @@
 
       <itemizedlist>
         <listitem>
-          <para>
-          <option>無効</option>(デフォルト):
-          複数のWinMergeを起動することができます。例えば、WinMergeが起動している時に、WinMergeのショートカットをクリックした場合、新たなWinMergeウィンドウが開かれます。</para>
+          <para><option>無効</option>(デフォルト):
+          複数のWinMergeを起動することができます。
+          例えば、WinMergeが起動している時に、WinMergeのショートカットをクリックした場合、
+          新たなWinMergeウィンドウが開かれます。</para>
         </listitem>
 
         <listitem>
-          <para>
-          <option>有効</option>: WinMergeの起動を一つに制限します。</para>
+          <para><option>有効</option>: WinMergeの起動を一つに制限します。
+          </para>
+
           <itemizedlist>
             <listitem>
-              <para>
-              WinMergeが起動している時に、新しいインスタンスを起動しようとした場合、新しいウィンドウは開かれず、代わりに、現在のWinMergeウィンドウが使われます。</para>
+              <para>WinMergeが起動している時に、新しいインスタンスを起動しようとした場合、
+              新しいウィンドウは開かれず、
+              代わりに、現在のWinMergeウィンドウが使われます。</para>
             </listitem>
 
             <listitem>
-              <para>
-              (例えば、コマンドラインから)パスと共に新しいインスタンスを起動しようとした場合、新たな比較ウィンドウが、既存のWinMergeウィンドウ中に開かれます。</para>
+              <para>(例えば、コマンドラインから)パスと共に新しいインスタンスを起動しようとした場合、
+              新たな比較ウィンドウが、既存のWinMergeウィンドウ中に開かれます。
+              </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -223,15 +226,15 @@
 
       <itemizedlist>
         <listitem>
-          <para>
-          <option>無効</option>(デフォルト):
-          複数の比較ウィンドウが開いている時に、WinMergeを終了する場合、WinMergeは、すべてのウィンドウを閉じるかを尋ねます。</para>
+          <para><option>無効</option>(デフォルト):
+          複数の比較ウィンドウが開いている時に、WinMergeを終了する場合、
+          WinMergeは、すべてのウィンドウを閉じるかを尋ねます。</para>
         </listitem>
 
         <listitem>
-          <para>
-          <option>有効</option>: 
-          <guibutton>終了</guibutton>をクリックした時、未保存のファイル変更が無い場合、WinMergeは直ちに終了します。</para>
+          <para><option>有効</option>: 
+          <guibutton>終了</guibutton>をクリックした時、未保存のファイル変更が無い場合、
+          WinMergeは直ちに終了します。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -324,7 +327,7 @@
     </section>
 
     <section>
-      <title>Language<indexterm>
+      <title>言語<indexterm>
           <primary>Language</primary>
         </indexterm></title>
 
@@ -554,7 +557,7 @@
     </section>
 
     <section>
-      <title>Ignore codepage differences<indexterm>
+      <title>コードページの違いを無視する<indexterm>
           <primary>codepage</primary>
 
           <secondary>detecting and ignoring differences</secondary>
@@ -621,7 +624,7 @@
     </section>
 
     <section>
-      <title>Diff algorithm<indexterm>
+      <title>Diff アルゴリズム<indexterm>
           <primary>algorithm</primary>
         </indexterm></title>
 
@@ -649,7 +652,7 @@
     </section>
 
     <section>
-      <title>Enable indent heuristic<indexterm>
+      <title>indent heuristic を有効にする<indexterm>
           <primary>indent heuristic</primary>
         </indexterm></title>
 
@@ -695,7 +698,7 @@
   </section>
 	
   <section id="Configuration_compare_folder">
-    <title>Compare Folder page</title>
+    <title>比較/フォルダー ページ</title>
 
     <section id="Configuration_compmethod">
       <title>ファイル比較方法<indexterm>
@@ -848,7 +851,7 @@
     </section>
 	
     <section>
-      <title>Include unique subfolders contents<indexterm>
+      <title>片方にしか存在しないフォルダー内も含める<indexterm>
           <primary>include unique subfolders</primary>
 
           <secondary>detecting and ignoring differences</secondary>
@@ -884,7 +887,7 @@
     </section>
 	
     <section>
-      <title>Automatically expand all subfolders<indexterm>
+      <title>自動的にサブフォルダーを展開する<indexterm>
           <primary>expand subfolders</primary>
 
           <secondary>detecting and ignoring differences</secondary>
@@ -902,7 +905,7 @@
     </section>
 	
     <section>
-      <title>Ignore Reparse Points<indexterm>
+      <title>再解析ポイントを無視する<indexterm>
           <primary>reparse points</primary>
 
           <secondary>detecting and ignoring differences</secondary>
@@ -920,7 +923,7 @@
     </section>
 	
     <section>
-      <title>Quick compare limit (MB)<indexterm>
+      <title>クイック比較切替閾値 (MB)<indexterm>
           <primary>Quick compare</primary>
 
           <secondary>limit</secondary>
@@ -952,7 +955,7 @@
     </section>
 
     <section>
-      <title>Number of compare threads<indexterm>
+      <title>比較スレッドの数<indexterm>
           <primary>compare threads</primary>
         </indexterm></title>
 
@@ -962,7 +965,7 @@
   </section>
 
   <section id="Configuration_compare_binary">
-    <title>Compare Binary page</title>
+    <title>比較/バイナリ ページ</title>
     <section>
       <title>Binary File Patterns<indexterm>
           <primary>binary files</primary>
@@ -972,7 +975,7 @@
   </section>
 
   <section id="Configuration_compare_image">
-    <title>Compare Image page</title>
+    <title>比較/画像 ページ</title>
     <section>
       <title>Image File Patterns<indexterm>
           <primary>image files</primary>
@@ -1202,7 +1205,7 @@
   </section>
 
   <section id="Configuration_colors">
-    <title>色ページ<indexterm>
+    <title>色 ページ<indexterm>
         <primary>difference colors</primary>
 
         <secondary>options</secondary>
@@ -1222,7 +1225,7 @@
   </section>
 
   <section id="Configuration_textcolors">
-    <title>テキストカラーページ<indexterm>
+    <title>色/テキスト ページ<indexterm>
         <primary>text colors</primary>
 
         <secondary>options</secondary>
@@ -1236,7 +1239,7 @@
   </section>
 
   <section id="Configuration_syntaxcolors">
-    <title>シンタックスカラーページ<indexterm>
+    <title>色/シンタックス ページ<indexterm>
         <primary>syntax highlighting</primary>
 
         <secondary>color options</secondary>
@@ -1253,7 +1256,7 @@
   </section>
 
   <section id="Configuration_markercolors">
-    <title>Maker Colors page<indexterm>
+    <title>色/マーカー ページ<indexterm>
         <primary>marker colors</primary>
 
         <secondary>options</secondary>
@@ -1263,7 +1266,7 @@
   </section>
 
   <section id="Configuration_foldercomparecolors">
-    <title>Folder Compare Colors page<indexterm>
+    <title>色/フォルダ比較 ページ<indexterm>
         <primary>folder compare colors</primary>
 
         <secondary>options</secondary>

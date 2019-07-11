@@ -63,7 +63,7 @@
       <title>WinMergeを、バージョン管理システムの、差分ツールとして使用する</title>
 
       <indexterm>
-        <primary>TortoiseSVNとの統合</primary>
+        <primary>TortoiseSVN の統合</primary>
       </indexterm>
 
       <para>TortoiseCVS、TortoiseSVN、または、TortoiseGIT でファイル比較する際、
@@ -145,7 +145,7 @@
       </example>
 
       <example>
-        <title>Visual Studio Team Foundation Server integration</title>
+        <title>Visual Studio Team Foundation Server の統合</title>
 
         <para>You can manually set up WinMerge as the default tool to use for
 		in Visual Studio to show differences in Team Foundation Server (TFS)

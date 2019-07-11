@@ -19,7 +19,7 @@
   </section>
 
   <section>
-	<title>Compatibility</title>
+	<title>互換性</title>
 	
 	<itemizedlist>
 	  <listitem>
@@ -45,8 +45,9 @@
 
     <note>
       <para>Windows NT4/2000/XPにおいて、インストーラは、Administrator権限を必要とします。
-      あなたが、Administrator権限を持っていないなら、アーカイブファイルより展開することで、WinMergeをインストールできます
-      (<xref linkend="InstallFromArchive" />を参照してください).</para>
+      あなたが、Administrator権限を持っていないなら、アーカイブファイルより展開することで、
+      WinMergeをインストールできます(<xref
+      linkend="InstallFromArchive" />を参照してください).</para>
     </note>
 
     <para>インストーラを使用することは、ほとんどのユーザにオススメです。

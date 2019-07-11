@@ -24,7 +24,7 @@
   <bookinfo>
     <title>WinMerge <xi:include href="replaceables.xml"
     xmlns:xi="http://www.w3.org/2001/XInclude" xpointer="element(version)" />
-    Help</title>
+    ヘルプ</title>
 
     <productname>WinMerge</productname>
 

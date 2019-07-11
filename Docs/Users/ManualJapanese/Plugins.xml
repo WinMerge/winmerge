@@ -216,7 +216,7 @@
       window using the new setting.</para>
 
       <section>
-        <title>Using automatic mode</title>
+        <title>自動展開モードの使用</title>
 
         <para>To apply plugins when automatic unpacking is set, simply launch a
         compare operation on a file in the Folder Compare window. If the file's
@@ -232,7 +232,7 @@
       </section>
 
       <section>
-        <title>Using manual mode</title>
+        <title>手動展開モードの使用</title>
 
         <para>Manual mode enables you to choose a different unpacker plugin than
         the one that is selected for you in automatic mode. You can also launch
