@@ -2563,9 +2563,23 @@ struct FileCmpReport: public IFileCmpReport
 		strutils::replace(sLinkPath, _T("\\"), _T("_"));
 		sLinkPath += _T(".html");
 		String sReportPath = paths::ConcatPath(sDestDir, sLinkPath);
+		bool completed = false;
 
 		m_pDirView->MoveFocus(m_pDirView->GetFirstSelectedInd(), nIndex, m_pDirView->GetSelectedCount());
-		m_pDirView->SendMessage(MSG_GENERATE_FLIE_COMPARE_REPORT, reinterpret_cast<WPARAM>(sReportPath.c_str()), 0);
+		m_pDirView->PostMessage(MSG_GENERATE_FLIE_COMPARE_REPORT,
+			reinterpret_cast<WPARAM>(sReportPath.c_str()), 
+			reinterpret_cast<LPARAM>(&completed));
+
+		while (!completed)
+		{
+			MSG msg;
+			while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
+			{
+				if (!AfxGetApp()->PumpMessage())
+					break;
+			}
+			Sleep(5);
+		}
 
 		return true;
 	}
@@ -2582,9 +2596,11 @@ LRESULT CDirView::OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam)
 	if (pMergeDoc == nullptr)
 		pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
 
+	auto *pReportFileName = reinterpret_cast<const TCHAR *>(wParam);
+	bool *pCompleted = reinterpret_cast<bool *>(lParam);
 	if (pMergeDoc != nullptr)
 	{
-		pMergeDoc->GenerateReport(reinterpret_cast<TCHAR *>(wParam));
+		pMergeDoc->GenerateReport(pReportFileName);
 		pMergeDoc->CloseNow();
 	}
 	MSG msg;
@@ -2592,6 +2608,7 @@ LRESULT CDirView::OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam)
 		if (!AfxGetApp()->PumpMessage())
 			break;
 	GetMainFrame()->OnUpdateFrameTitle(FALSE);
+	*pCompleted = true;
 	return 0;
 }
 
