@@ -49,6 +49,7 @@
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
 
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\X64\Release\WinMergeU.exe")
+#define ShellExtensionVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\ShellExtensionX64.dll")
 
 [Setup]
 AppName=WinMerge
@@ -409,9 +410,9 @@ Source: ..\..\Build\X64\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Fla
 Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; Shell extension
-Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 32bit; MinVersion: 0, 4; Components: ShellExtension32bit
+Source: ..\..\Build\ShellExtension\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 32bit; MinVersion: 0, 4; Components: ShellExtension32bit; Check: not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionU.dll'))
 ; 64-bit version of ShellExtension
-Source: ..\..\Build\ShellExtension\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
+Source: ..\..\Build\ShellExtension\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\ShellExtensionX64.dll'))
 
 ; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
@@ -910,6 +911,18 @@ end;
 function StringToBoolean(Value : String) : Boolean; 
 begin
   if Value = 'true' then
+    Result := true
+  else
+    Result := false;
+end;
+
+function AreSourceAndDestinationOfShellExtensionSame(Filename: String) : Boolean;
+var
+  ver: String;
+begin
+  ver := ''
+  GetVersionNumbersString(Filename, ver);
+  if ver = ExpandConstant('{#ShellExtensionVersion}') then
     Result := true
   else
     Result := false;
