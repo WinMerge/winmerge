@@ -89,7 +89,7 @@ PrivilegesRequired=admin
 ;Windows Vista or later required
 MinVersion=0,6.0
 
-UninstallDisplayIcon={app}\{code:ExeName}
+UninstallDisplayIcon={app}\WinMergeU.exe
 
 ;Artwork References
 WizardImageFile=Art\Large Logo.bmp
@@ -535,7 +535,7 @@ Name: "{app}\MergePlugins"
 
 [Icons]
 ;Start Menu Icons
-Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; AppUserModelID: "Thingamahoochie.WinMerge"
+Name: {group}\WinMerge; Filename: {app}\WinMergeU.exe; AppUserModelID: "Thingamahoochie.WinMerge"
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
 Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: http://winmerge.org
@@ -563,10 +563,10 @@ Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Turkish.txt; IconFileName
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Ukrainian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Ukrainian
 
 ;Desktop Icon
-Name: {autodesktop}\WinMerge; Filename: {app}\{code:ExeName}; Tasks: desktopicon
+Name: {autodesktop}\WinMerge; Filename: {app}\WinMergeU.exe; Tasks: desktopicon
 
 ;Quick Launch Icon
-Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge; Filename: {app}\{code:ExeName}; Tasks: quicklaunchicon
+Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge; Filename: {app}\WinMergeU.exe; Tasks: quicklaunchicon
 
 [Registry]
 Root: HKCU; Subkey: Software\Thingamahoochie; Flags: uninsdeletekeyifempty
@@ -579,9 +579,9 @@ Root: HKA;  Subkey: Software\Thingamahoochie\WinMerge; Flags: uninsdeletekey
 ;set Notepad to edit project files
 Root: HKA;  Subkey: Software\Classes\.WinMerge; ValueType: String; ValueData: WinMerge.Project.File; Flags: uninsdeletekey
 Root: HKA;  Subkey: Software\Classes\WinMerge.Project.File; ValueType: String; ValueData: {cm:ProjectFileDesc}; Flags: uninsdeletekey
-Root: HKA;  Subkey: Software\Classes\WinMerge.Project.File\shell\open\command; ValueType: String; ValueData: """{app}\{code:ExeName}"" ""%1"""; Flags: uninsdeletekey
+Root: HKA;  Subkey: Software\Classes\WinMerge.Project.File\shell\open\command; ValueType: String; ValueData: """{app}\WinMergeU.exe"" ""%1"""; Flags: uninsdeletekey
 Root: HKA;  Subkey: Software\Classes\WinMerge.Project.File\shell\edit\command; ValueType: String; ValueData: """NOTEPAD.EXE"" ""%1"""; Flags: uninsdeletekey
-Root: HKA;  Subkey: Software\Classes\WinMerge.Project.File\DefaultIcon; ValueType: String; ValueData: """{app}\{code:ExeName}"",1"; Flags: uninsdeletekey
+Root: HKA;  Subkey: Software\Classes\WinMerge.Project.File\DefaultIcon; ValueType: String; ValueData: """{app}\WinMergeU.exe"",1"; Flags: uninsdeletekey
 
 ; delete obsolete values
 ;In Inno Setup Version 4.18 ValueData couldn't be null and compile,
@@ -600,11 +600,11 @@ Root: HKA;  SubKey: Software\Classes\Directory\Shell\WinMerge; ValueType: none; 
 ;Adds "Start Menu" --> "Run" Support for WinMerge
 Root: HKA;  Subkey: Software\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: none; Flags: uninsdeletekey
 Root: HKA;  Subkey: Software\Microsoft\Windows\CurrentVersion\App Paths\WinMergeU.exe; ValueType: none; Flags: uninsdeletekey
-Root: HKA;  SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: string; ValueName: ; ValueData: {app}\{code:ExeName}
-Root: HKA;  SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMergeU.exe; ValueType: string; ValueName: ; ValueData: {app}\{code:ExeName}
+Root: HKA;  SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: string; ValueName: ; ValueData: {app}\WinMergeU.exe
+Root: HKA;  SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMergeU.exe; ValueType: string; ValueName: ; ValueData: {app}\WinMergeU.exe
 
 ;Registry Keys for use by ShellExtension.dll
-Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge; ValueType: string; ValueName: Executable; ValueData: {app}\{code:ExeName}
+Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge; ValueType: string; ValueName: Executable; ValueData: {app}\WinMergeU.exe
 
 ;Enables or disables the Context Menu preference based on what the user selects during install
 ;Initially the Context menu is explicitly disabled:
@@ -615,24 +615,24 @@ Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueNa
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: {code:ShellMenuEnabled}
 
 ;If WinMerge.exe is installed then we'll automatically configure WinMerge as the differencing application
-Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\WinMergeU.exe; Flags: uninsdeletevalue; Tasks: TortoiseCVS
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001; Flags: uninsdeletevalue; Tasks: TortoiseCVS
-Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Diff Application; ValueType: string; ValueName: _; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Diff Application; ValueType: string; ValueName: _; ValueData: {app}\WinMergeU.exe; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
 Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Diff2 Params; ValueType: string; ValueName: _; ValueData: """%1"" ""%2"""; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
 
 ;Tells TortoiseCVS to use WinMerge as its differencing application (this happens whether or not Tortoise is current installed, that way
 ;if it is installed at a later date this will automatically support it)
-Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Merge Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Merge Application; ValueData: {app}\WinMergeU.exe; Flags: uninsdeletevalue; Tasks: TortoiseCVS
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: MergeAsUnicode; ValueData: $00000001; Flags: uninsdeletevalue; Tasks: TortoiseCVS
-Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Merge Application; ValueType: string; ValueName: _; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Merge Application; ValueType: string; ValueName: _; ValueData: {app}\WinMergeU.exe; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
 Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Merge2 Params; ValueType: string; ValueName: _; ValueData: """%mine"" ""%yours"""; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
 
 ;Set WinMerge as TortoiseGit diff tool
-Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Diff; ValueData: {app}\{code:ExeName} -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseGit
+Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Diff; ValueData: {app}\WinMergeU.exe -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseGit
 Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGITMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
 
 ;Set WinMerge as TortoiseSVN diff tool
-Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Diff; ValueData: {app}\{code:ExeName} -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseSVN
+Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Diff; ValueData: {app}\WinMergeU.exe -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseSVN
 Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGITMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
 
 ;Whatever the user chooses at the [Select Setup Language] dialog should also determine what language WinMerge will start up in
@@ -678,7 +678,7 @@ Root: HKA;  SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; 
 ;This will no longer appear unless the user chose to make a start menu group in the first place
 Filename: {win}\Explorer.exe; Description: {cm:ViewStartMenuFolder}; Parameters: """{group}"""; Flags: waituntilidle postinstall skipifsilent unchecked; Check: GroupCreated
 
-Filename: {app}\{code:ExeName}; Description: {cm:LaunchProgram,WinMerge}; Flags: nowait postinstall skipifsilent runmaximized
+Filename: {app}\WinMergeU.exe; Description: {cm:LaunchProgram,WinMerge}; Flags: nowait postinstall skipifsilent runmaximized
 
 Filename: {syswow64}\regsvr32.exe; Parameters: "/s ""{app}\ShellExtensionU.dll"""; Flags: waituntilidle; Check: IsAdminInstallMode; Components: ShellExtension32bit
 Filename: {syswow64}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\ShellExtensionU.dll"""; Flags: waituntilidle; Check: not IsAdminInstallMode; Components: ShellExtension32bit
@@ -741,12 +741,6 @@ Begin
         Msgbox('The group "' + ExpandConstant('group') + '" doesn''t exist.', mbInformation, mb_ok); }
 End;
 
-
-{Returns the appropriate name of the .EXE being installed}
-Function ExeName(Unused: string): string;
-Begin
-  Result := 'WinMergeU.exe';
-End;
 
 {Determines whether or not TortoiseCVS is installed}
 Function TortoiseCVSInstalled(): boolean;
@@ -832,15 +826,6 @@ Begin
     Result := '0';
 End;
 
-{Returns WinMerge installed exeutable file name}
-Function WinMergeExeName(): string;
-Var
-	Unused: String;
-
-Begin
-    Result := ExpandConstant('{app}\') + ExeName(Unused);
-End;
-
 // Add WinMerge to system path.
 // This requires certain order of things to work:
 // #1 ModPathDir function must be first (it gets called by others)
@@ -879,7 +864,7 @@ begin
     if g_CheckListBox.Checked[4] then begin
         Args := Args + ' /a' + lmr;
     end;
-    Result := WinMergeExeName() + ' ' + Args;
+    Result := ExpandConstant('{app}\WinMergeU.exe') + ' ' + Args;
 end;
 
 function ThreeWayMergePage_ShouldSkipPage(Page: TWizardPage): Boolean;
