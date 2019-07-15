@@ -1,4 +1,4 @@
-# This file is part from WinMerge <http://winmerge.org/>
+﻿# This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -3338,3 +3338,4 @@ msgstr ""
 "È possibile indicare i seguenti parametri nel percorso:\n"
 "$file: nome del percorso del file corrente\n"
 "$linenum: numero di linea alla posizione corrente del cursore"
+

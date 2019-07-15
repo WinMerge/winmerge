@@ -1,5 +1,6 @@
 @echo off
 
+pushd %~dp0
 call configuration.bat
 
 set docbook_inputfile=..\WinMerge_help.xml
@@ -48,4 +49,5 @@ echo Create Manual HTML files...
 echo Finished!
 
 :end
+popd
 @echo on
