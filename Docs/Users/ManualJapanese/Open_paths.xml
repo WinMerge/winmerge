@@ -150,7 +150,7 @@
         <primary>Windowsシェル統合</primary>
       </indexterm><indexterm>
         <primary>context menu, WinMerge shortcuts in Windows Explorer</primary>
-      </indexterm>Launching WinMerge operations in Windows Explorer</title>
+      </indexterm>WindowsエクスプローラからWinMergeの起動</title>
 
     <para>The optional Windows shell integration enables you to run WinMerge
     compare operations directly from Windows Explorer, using WinMerge shortcuts
@@ -159,7 +159,7 @@
     <!--WinMerge provides two optional types of integration with Windows Explorer. The first type lets you launch WinMerge compare operations directly from Windows Explorer, skipping the Select Files or Folders dialog. The second type lets you run Windows shell commands from the WinMerge window.-->
 
     <section>
-      <title>Enabling the Windows Explorer integration</title>
+      <title>Windowsエクスプローラ統合を有効にする</title>
 
       <para>The Windows Explorer shell integration is available only if enabled.
       You can enable it either <link linkend="Installing_usinginstaller">during
@@ -170,7 +170,7 @@
     </section>
 
     <section>
-      <title>Using the WinMerge shortcut</title>
+      <title>WinMergeショートカットを使用する</title>
 
       <para>If you enable <option>Add to context menu</option> without the
       advanced menu suboption, the <guimenuitem>WinMerge</guimenuitem> shortcut

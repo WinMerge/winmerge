@@ -2,7 +2,7 @@
 <article id="Compare_images">
   <?target dbhh topicname="IDH_Compare_images" topicid ="003"?>
 
-  <title>Comparing image files</title>
+  <title>画像ファイルの比較</title>
 
   <indexterm>
     <primary>comparing files</primary>
@@ -13,7 +13,7 @@
   Compare window.</para>
 
   <section id="Compare_images_starting">
-    <title>Starting a image compare operation</title>
+    <title>画像比較操作を開始する</title>
 
     <para>You can start an image compare operation from either the WinMerge window
     or a Command Prompt window.</para>
@@ -48,7 +48,7 @@
   </section>
 
   <section id="Compare_images_window">
-    <title>Image Compare window</title>
+    <title>画像比較ウインドウ</title>
 
     <para>WinMerge support many types of images and can highlight the differences
     with blocks. Overlaying of the pictures is also possible.</para>
@@ -66,7 +66,7 @@
     <para>You can set the most options in the <guilabel>Location Pane</guilabel>:</para>
 
     <section>
-      <title>Difference<indexterm>
+      <title>差異<indexterm>
         <primary>Diff</primary>
       </indexterm></title>
 
@@ -80,7 +80,7 @@
         </varlistentry>
 
         <varlistentry>
-          <term>Blink</term>
+          <term>点滅</term>
           <listitem>
             <para>If the highlighting is enabled you can even make it blinking by checking
             the check box <guilabel>Blink</guilabel>.</para>
@@ -114,7 +114,7 @@
     </section>
 
     <section>
-      <title>Overlaying<indexterm>
+      <title>重ね合わせ<indexterm>
         <primary>Overlay</primary>
       </indexterm></title>
 
@@ -144,7 +144,7 @@
     </section>
 
     <section>
-      <title>Zooming<indexterm>
+      <title>拡大<indexterm>
         <primary>Zoom</primary>
       </indexterm></title>
 
