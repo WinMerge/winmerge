@@ -16,9 +16,9 @@
 
     <para><xref linkend="Command_line" />で説明されている、コマンドライン・インタフェース(CLI)により、
       コマンド・プロンプト、スクリプト、または、他のツールやプログラムから、
-      WinMergeを起動することができます。<!-- TODO: なんかよくわからない -->Basically, any
-    program that allows you to call an external executable with at least one
-    path, can be used to launch a WinMerge operation.</para>
+      WinMergeを起動することができます。
+      基本的に、少なくともパスを指定して外部の実行ファイルを呼び出せるプログラムならどれでも
+      WinMergeを起動できます。</para>
 
     <para>ここにいくつかの例を示します</para>
 
@@ -147,9 +147,9 @@
       <example>
         <title>Visual Studio Team Foundation Server の統合</title>
 
-        <para>You can manually set up WinMerge as the default tool to use for
-		in Visual Studio to show differences in Team Foundation Server (TFS)
-        Other version control systems can be set up in very similar ways.</para>
+        <para>Team Foundation Server（TFS）で管理されているファイルの差異を表示するために、
+        Visual Studioで使用する既定のツールとしてWinMergeを手動で設定できます。
+        他のバージョン管理システムも、非常によく似た方法で設定できます。</para>
 
         <orderedlist>
           <listitem>
@@ -208,7 +208,7 @@
           </listitem>
         </orderedlist>
 		
-		<para>Every time you tell TFS to compare two files, it will now use WinMerge.</para>
+		<para>TFSに2つのファイルを比較するように指示するたびに、WinMergeが使用されます。</para>
       </example>
     </section>
   </section>
