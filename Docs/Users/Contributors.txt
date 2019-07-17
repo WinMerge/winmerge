@@ -93,6 +93,7 @@ Localization:
   Andrea Decorte <deco1985@hotmail.com>
   Antonio Angelo <antonio.angelo@gmail.com>
   Michele Merega <michele.merega@ifminfomaster.com>
+  Michele Locati <michele@locati.it>
 
 * Korean:
   Sukjoon <bbcool@gmail.com>

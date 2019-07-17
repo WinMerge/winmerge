@@ -1,5 +1,6 @@
 @echo off
 
+pushd %~dp0
 call configuration.bat
 
 set docbook_inputfile=..\tour\WinMerge_tour.xml
@@ -44,4 +45,5 @@ echo Create Tour HTML file...
 echo Finished!
 
 :end
+popd
 @echo on

@@ -1,5 +1,6 @@
 @echo off
 
+pushd %~dp0
 call configuration.bat
 
 set docbook_inputfile=..\WinMerge_help.xml
@@ -71,4 +72,5 @@ echo ERROR!!!
 goto end
 
 :end
+popd
 @echo on
