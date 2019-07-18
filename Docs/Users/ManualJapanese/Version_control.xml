@@ -153,28 +153,28 @@
 
         <orderedlist>
           <listitem>
-            <para>In Visual Studio, navigate to the 
+            <para>Visual Studio で、
 			  <menuchoice>
                 <guimenu>Tools</guimenu>
 
                 <guimenuitem>Options...</guimenuitem>
-              </menuchoice> menu.</para>
+              </menuchoice> メニューを選択します。</para>
           </listitem>
 		  
           <listitem>
-            <para>Under <menuchoice>
+            <para><menuchoice>
                 <guimenu>Source Control</guimenu>
-              </menuchoice>, find the<menuchoice>
+              </menuchoice>で、<menuchoice>
                 <guimenu> Visual Studio Team Foundation Server</guimenu>
-              </menuchoice> options.</para>
+              </menuchoice> オプションを探します。</para>
           </listitem>
 		  
           <listitem>
-            <para>Click the <guimenuitem>Configure User Tools...</guimenuitem> button.</para>
+            <para><guimenuitem>Configure User Tools...</guimenuitem> ボタンをクリックします。</para>
           </listitem>
 
           <listitem>
-            <para>Click the <guimenuitem>Add...</guimenuitem> button.</para>
+            <para><guimenuitem>Add...</guimenuitem> ボタンをクリックします。</para>
           </listitem>
 		  
 		  <listitem>
@@ -183,7 +183,7 @@
                 <imagedata fileref="screenshots/tfs_configure.png" format="PNG" />
               </imageobject>
             </mediaobject>
-			<para>Type in the following options in the Configure Tool.</para>
+			<para>Configure Tool で次のオプションを指定します</para>
 			<itemizedlist>
               <listitem>
                 <para>Extension: .*</para>
@@ -201,10 +201,10 @@
                 <para>Arguments: /e /u /dl %6 /dr %7 %1 %2</para>
               </listitem>
             </itemizedlist>
-			<para> Where {Path to WinMerge} is the path were WinMerge is installed.
-			In the above screenshot it is installed to the default installation path 
-			C:\Program Files (x86)\WinMerge\WinMergeU.exe</para>
-			<para> The arguments are described under <xref linkend="Command_line" />.</para>
+			<para> {Path to WinMerge}はWinMergeがインストールされているパスです。
+			上記のスクリーンショットでは、デフォルトのインストールパス
+			C:\Program Files (x86)\WinMerge\WinMergeU.exe にインストールされています。</para>
+			<para> 上記引数は<xref linkend="Command_line" />で記載されています。</para>
           </listitem>
         </orderedlist>
 		
