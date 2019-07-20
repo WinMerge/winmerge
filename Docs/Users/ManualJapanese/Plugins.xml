@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Plugins">
-  <title>プラグイン<indexterm>
+  <title>プラグイン<indexterm>https://www.kyoto-np.co.jp/
       <primary>plugins</primary>
     </indexterm></title>
 
-  <para>WinMerge plugins are custom dlls or scriptlets, written in the COM API,
-  that preprocess data before a comparison. For example, you can use a plugin to
-  extract text data from MS Word files for WinMerge to compare.</para>
+  <para>WinMergeプラグインは、COM APIで書かれたカスタムDLLまたはスクリプトレットです。
+  これは、比較の前にデータを前処理します。
+  例えば、WinMergeで比較するためにMS Word のファイルからテキストデータを抽出するプラグインがあります。</para>
   
-  <para>Each plugin is:<indexterm>
+  <para>プラグインは:<indexterm>
       <primary>installing plugins</primary>
     </indexterm></para>
 
   <itemizedlist>
     <listitem>
-      <para>A single dll or a scriptlet (<filename
-      class="extension">sct</filename>) file</para>
+      <para>１つのdllまたはスクリプトレット (<filename
+      class="extension">sct</filename>) ファイル</para>
     </listitem>
 
     <listitem>
-      <para>Installed in the <filename class="directory">MergePlugins</filename>
-      subfolder. A number of plugins can be installed for you by WinMerge.</para>
+      <para><filename class="directory">MergePlugins</filename>
+      サブフォルダにインストールされます。WinMergeでは、いくつかのプラグインをインストールすることができます。</para>
     </listitem>
 
     <listitem>
-      <para>Easy to install: To install a plugin that is not included in the
-      WinMerge installation, just copy the plugin file to <filename
-      class="directory">MergePlugins</filename>. The plugin is available the
-      next time you open WinMerge. You can find more plugins on the web, written
-	  by other developers.</para>
+      <para>インストールが簡単: WinMergeのインストールに含まれていないプラグインをインストールするには、プラグインファイルを<filename
+      class="directory">MergePlugins</filename> にコピーするだけです。
+      プラグインは、次回WinMergeを開いたときに利用可能になります。 
+      ウェブ上で他の開発者が書いた多くのプラグインを見つけることができます。
+      </para>
     </listitem>
   </itemizedlist>
 
   <section>
     <title>プラグインの種類</title>
 
-    <para>Plugins are grouped into three main categories:</para>
+    <para>プラグインは3つの主なカテゴリに分類されます:</para>
 
     <variablelist>
       <varlistentry>
@@ -44,8 +44,8 @@
           </indexterm></term>
 
         <listitem>
-          <para>This type of plugin performs custom operations on selected text
-          in the active editor (File pane) of the File Compare window.</para>
+          <para>このタイプのプラグインは、ファイル比較ウィンドウのアクティブなエディタ（ファイルペイン）で選択したテキストに対してカスタム操作を実行します。
+          </para>
         </listitem>
       </varlistentry>
 
@@ -55,15 +55,15 @@
           </indexterm></term>
 
         <listitem>
-          <para>This type of plugin transforms a compressed file to a viewable
-          format by decompressing it. The original file is not changed: a
-          temporary transformed file is created and loaded in WinMerge.</para>
+          <para>このタイプのプラグインは、圧縮ファイルを解凍して表示可能な形式に変換します。 元のファイルは変更されません。
+          一時的に変換されたファイルが作成され、WinMergeにロードされます。
+          </para>
 
-          <para>Unpacker plugins operate on entire files, not to selected text
-          or diffs within files. Therefore, they are available only when you
-          launch file comparisons, from either the Folder Compare window or the
-          Select Files or Folders dialog. Unpacker plugins are not available in
-          the File Compare window.</para>
+          <para>Unpackerプラグインは、選択されたテキストやファイル内の差分に対してではなく、ファイル全体に対して機能します。
+          したがって、フォルダ比較ウインドウまたはファイルまたは
+          フォルダの選択ダイアログからファイル比較を起動するときのみ利用可能です。
+          Unpackerプラグインはファイル比較ウィンドウでは利用できません。
+          </para>
 
           <para>Sometimes the unpacked file can be repacked (see the details in
           <xref linkend="Plugins_available" /> to check whether a plugin
@@ -72,8 +72,8 @@
           suggest that you rename the transformed file when you save it.</para>
 
           <note>
-            <para>When you compare folders, WinMerge can give different results
-            for compressed and uncompressed files. For example, files that are
+            <para>フォルダを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに対して異なる結果をもたらす可能性があります。
+            For example, files that are
             identical when uncompressed might be different if they include the
             creation date. WinMerge applies the unpacker in all situations, and
             you are sure to have the same result when you compare a folder, or

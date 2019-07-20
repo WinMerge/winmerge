@@ -5,11 +5,11 @@
   <section>
     <title><indexterm>
         <primary>WinMergeを始めよう</primary>
-        </indexterm><indexterm>
+      </indexterm><indexterm>
         <primary>ファイルとフォルダを開く</primary>
 
         <secondary>getting started</secondary>
-    </indexterm>ファイルとフォルダを開く</title>
+      </indexterm>ファイルとフォルダを開く</title>
 
     <para>WinMergeをインストールしたら、トピック中の手順と議論を通じて、
       基本的なWinMergeの操作と概念を学んでください。
@@ -19,12 +19,10 @@
 
     <orderedlist>
       <listitem>
-        <para>WinMergeのウィンドウを開いてください。
-          ここに、あなたが使用できる、いくつかの方法があります:
+        <para>WinMergeのウィンドウを開いてください。ここに、あなたが使用できる、いくつかの方法があります:
           <indexterm>
             <primary>WinMerge window</primary>
-          </indexterm>
-        </para>
+          </indexterm></para>
 
         <itemizedlist>
           <listitem>
@@ -43,17 +41,16 @@
       </listitem>
 
       <listitem>
-        <para>WinMergeのウィンドウ内で、あなたが操作したいファイル、または、フォルダを選択してください。例えば</para>
+        <para>WinMergeのウィンドウ内で、あなたが操作したいファイル、または、フォルダを選択してください。例えば
+        </para>
 
         <itemizedlist>
           <listitem>
-            <para>
-              <menuchoice>
+            <para><menuchoice>
                 <guimenu>ファイル(F)</guimenu>
 
                 <guimenuitem>開く(O)</guimenuitem>
-              </menuchoice>をクリックしてください。
-            </para>
+              </menuchoice>をクリックしてください。</para>
           </listitem>
 
           <listitem>
@@ -70,22 +67,19 @@
           </listitem>
 
           <listitem>
-            <para>
-              <keycombo>
+            <para><keycombo>
                 <keycap>Ctrl</keycap>
+
                 <keycap>O</keycap>
-              </keycombo>を押下してください。
-            </para>
+              </keycombo>を押下してください。</para>
           </listitem>
         </itemizedlist>
 
-        <para>
-          <indexterm>
+        <para><indexterm>
             <primary>ファイルまたはフォルダの選択ダイアログ</primary>
+
             <secondary>さあ、はじめよう</secondary>
-          </indexterm>
-          ファイルまたはフォルダ選択ダイアログを開く
-        </para>
+          </indexterm>ファイルまたはフォルダ選択ダイアログを開く</para>
 
         <mediaobject>
           <imageobject>
@@ -100,7 +94,8 @@
 
       <listitem>
         <para><guilabel>左(1)</guilabel>と<guilabel>右(2)</guilabel>
-          のフィールドに、次のいくつかの方法で、比較するファイルやフォルダを指定してください。</para>
+          のフィールドに、次のいくつかの方法で、比較するファイルやフォルダを指定してください。
+        </para>
 
         <para><itemizedlist>
             <listitem>
@@ -108,19 +103,19 @@
             </listitem>
 
             <listitem>
-            <para>
-              <guibutton>参照</guibutton>ボタンをクリックし、望みのパスを
-              ナビゲートしてください。
-            </para>
+              <para><guibutton>参照</guibutton>ボタンをクリックし、望みのパスを
+              ナビゲートしてください。</para>
 
-            <para>開くダイアログの中の、<guilabel>開く(M)</guilabel>フィールドの
+              <para>開くダイアログの中の、<guilabel>開く(M)</guilabel>フィールドの
               初期状態は、<literal>Folder Selection.</literal>と表示されています。
-              あなたがどれを選択するかは、比較したい形式によります。</para>
+              あなたがどれを選択するかは、比較したい形式によります。
+              </para>
 
               <itemizedlist>
                 <listitem>
                   <para>ファイルを比較するなら、目的のファイルを選択してください。
-                    <literal>Folder Selection</literal>という文字が、選択したファイル名で上書きされます。</para>
+                  <literal>Folder Selection</literal>という文字が、選択したファイル名で上書きされます。
+                  </para>
                 </listitem>
 
                 <listitem>
@@ -147,11 +142,11 @@
             </listitem>
 
             <listitem>
-            <para>ファイル、フォルダをダイアログ、または、<guilabel>左(1)</guilabel>、
+              <para>ファイル、フォルダをダイアログ、または、<guilabel>左(1)</guilabel>、
               または、<guilabel>右(2)</guilabel>のフィールドへドラッグ・アンド・ドロップしてください。
                 </para>
             </listitem>
-        </itemizedlist></para>
+          </itemizedlist></para>
 
         <para><note>
             <para>あなたは、一組のファイル、または、フォルダを比較することができます。
@@ -161,7 +156,7 @@
 
             <para>ダイアログ下部のステータス・メッセージでも、
               もし、パスが不正な場合は、通知します。</para>
-        </note></para>
+          </note></para>
       </listitem>
 
       <listitem>
@@ -170,8 +165,9 @@
           そのフィールドには、選択されたパスの中にあるファイルの一部を指定します。
           すべての明示していないファイルは、除外されます。</para>
 
-      <para>ファイルをフィルタするための、ファイル・マスクを入力することができます。
-        例えば、この式は、CとC++のソースファイルだけを含みます(他のすべてのファイル形式は除外されます)。</para>
+        <para>ファイルをフィルタするための、ファイル・マスクを入力することができます。
+        例えば、この式は、CとC++のソースファイルだけを含みます(他のすべてのファイル形式は除外されます)。
+        </para>
 
         <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
 
@@ -192,20 +188,20 @@
 
             <listitem>
               <para>In this method, you specify the types of files to include in
-                the operation; all other files are excluded (filtered). With no
-                file mask or the default mask of <literal>*.*</literal>, all files
-                in the paths are included, so no filtering is performed. To add
-                filtering, enter one or more masks. Separate multiple masks with
-                spaces, commas, colons or semicolons.</para>
+              the operation; all other files are excluded (filtered). With no
+              file mask or the default mask of <literal>*.*</literal>, all files
+              in the paths are included, so no filtering is performed. To add
+              filtering, enter one or more masks. Separate multiple masks with
+              spaces, commas, colons or semicolons.</para>
 
               <para>For example, this expression filters all files from the
-                operation except C and C++ source files:</para>
+              operation except C and C++ source files:</para>
 
               <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
 
               <para>File names cannot be filtered: they are represented in the
-                masks only by the <literal>*</literal> wildcard character. For
-                example, these expressions are not valid masks:</para>
+              masks only by the <literal>*</literal> wildcard character. For
+              example, these expressions are not valid masks:</para>
 
               <para><userinput>mybook.xml</userinput></para>
 
@@ -218,27 +214,27 @@
 
             <listitem>
               <para>File filtering is more powerful than extension filtering.
-                Click the <guibutton>Select</guibutton> button next to the
-                <guilabel>Filters</guilabel> field to choose from a list of
-                available filters. </para>
+              Click the <guibutton>Select</guibutton> button next to the
+              <guilabel>Filters</guilabel> field to choose from a list of
+              available filters. </para>
             </listitem>
           </varlistentry>
         </variablelist>
-        -->
+-->
       </listitem>
 
       <listitem>
-        <para>
-          <guilabel>サブフォルダを含む(I)</guilabel>チェックボックスは、フォルダ比較の範囲を制御する、もう一つの方法です。
-          このオプションをチェックすると、WinMergeは、サブフォルダを再帰的に比較し、すべてのファイルとフォルダを一覧表示します。
-          このオプションを無効にした場合は、カレントフォルダのみが比較されます。
-          サブフォルダは名前で一覧表示(フォルダの中身は除く)され、フォルダの中を閲覧することができます。
+        <para><guilabel>サブフォルダを含む(I)</guilabel>チェックボックスは、
+        フォルダ比較の範囲を制御する、もう一つの方法です。
+        このオプションをチェックすると、WinMergeは、サブフォルダを再帰的に比較し、すべてのファイルとフォルダを一覧表示します。
+        このオプションを無効にした場合は、カレントフォルダのみが比較されます。
+        サブフォルダは名前で一覧表示(フォルダの中身は除く)され、フォルダの中を閲覧することができます。
         </para>
       </listitem>
 
       <listitem>
         <para>展開プラグイン(U)フィールドは、プラグインを使用した比較操作を可能にします。
-          </para>
+        </para>
       </listitem>
     </orderedlist>
 
@@ -252,8 +248,7 @@
         </indexterm></title>
 
       <para>「ファイルまたはフォルダの選択...」ダイアログは、ファイルやフォルダを開くための主要なインターフェースです。
-      しかし、他の多くの方法も使用することができます。
-      </para>
+      しかし、他の多くの方法も使用することができます。</para>
 
       <itemizedlist>
         <listitem>
@@ -300,8 +295,7 @@
         </listitem>
 
         <listitem>
-          <simpara>
-          ファイルやフォルダを、WinMergeのウィンドウかデスクトップのショートカットへ直接、ドラッグ・アンド・ドロップしてください。
+          <simpara>ファイルやフォルダを、WinMergeのウィンドウかデスクトップのショートカットへ直接、ドラッグ・アンド・ドロップしてください。
           </simpara>
         </listitem>
       </itemizedlist>
@@ -318,9 +312,12 @@
 
         <secondary>getting started</secondary>
       </indexterm>フォルダの比較</title>
-    <para>もし、開くダイアログで、2つのフォルダを選択したなら、フォルダ比較ウィンドウが開かれます。
+
+    <para>もし、開くダイアログで、2つのフォルダを選択したなら、
+    フォルダ比較ウィンドウが開かれます。
     フォルダ比較ウィンドウは、比較対象フォルダ中で見つかった項目の表です。
-    それぞれの行は、見つかったファイルについて、左の列にファイル名、その他の列に付加的な情報を表示します。</para>
+    それぞれの行は、見つかったファイルについて、左の列にファイル名、
+    その他の列に付加的な情報を表示します。</para>
 
     <mediaobject>
       <imageobject>
@@ -333,27 +330,28 @@
       </textobject>
     </mediaobject>
 
-    <para>WinMergeは、<wordasword>変更元</wordasword>と<wordasword>変更後</wordasword>という概念を持っていません。
-      代わりに、選択された二つのフォルダ間の差異を、単に表示します。
-      一方でしか見つからなかったファイル、または、フォルダは、単に見つかった方にのみ存在する項目として表示されます。
-      例えば、上の図の<guilabel>比較結果(Comparison Result)</guilabel>カラムにある、
-      <filename>Merge.aps</filename>と<filename>Merge.rc.bak</filename>は、
-      どちらも比較されたフォルダの一方でしか見つかりませんでした。</para>
+    <para>WinMergeは、<wordasword>変更元</wordasword>と<wordasword>変更後</wordasword>
+    という概念を持っていません。
+    代わりに、選択された二つのフォルダ間の差異を、単に表示します。
+    一方でしか見つからなかったファイル、または、フォルダは、単に見つかった方にのみ存在する項目として表示されます。
+    例えば、上の図の<guilabel>比較結果(Comparison Result)</guilabel>カラムにある、
+    <filename>Merge.aps</filename>と<filename>Merge.rc.bak</filename>は、
+    どちらも比較されたフォルダの一方でしか見つかりませんでした。
+    </para>
 
-    <para>
-      <guimenu>マージ(M)</guimenu>メニュー、ツールバーボタン、または、コンテキスト(右クリック)メニューなど、
-      多くの方法で、ファイルとフォルダを管理できます。
-      The most important action is making files or folders identical in both
-      sides by selecting one of several Copy items.
-      <!-- FIXME
-      もっとも重要なアクションは、ファイル、または、フォルダの作成...
-      -->
-
-      ファイル、または、フォルダを他方へコピーした時、比較結果は、<literal>同一</literal>に変わります。
+    <para><guimenu>マージ(M)</guimenu>メニュー、ツールバーボタン、または、コンテキスト(右クリック)メニューなど、
+    多くの方法で、ファイルとフォルダを管理できます。
+    The most important action is making files or folders identical in both
+    sides by selecting one of several Copy items.
+    <!-- FIXME
+    もっとも重要なアクションは、ファイル、または、フォルダの作成...
+    -->
+    ファイル、または、フォルダを他方へコピーした時、比較結果は、<literal>同一</literal>に変わります。
     </para>
 
     <para>もし、ファイル、または、フォルダが、左右両方に存在した(かつ、バイナリファイルでない)場合、
-      これらのうち一つの方法で、比較するために、ファイルを開くことができます。<itemizedlist>
+    これらのうち一つの方法で、比較するために、ファイルを開くことができます。
+    <itemizedlist>
         <listitem>
           <simpara>WinMergeメニューから、<menuchoice>
               <guimenuitem>マージ(M)</guimenuitem>
@@ -374,8 +372,8 @@
         <listitem>
           <simpara>行を選択し、<keycap>Enter</keycap>を入力してください。</simpara>
         </listitem>
-      </itemizedlist>
-    サブフォルダを比較する場合、新しいフォルダ比較テーブルが、現在のフォルダ比較ウィンドウ内に読み込まれます。
+      </itemizedlist>サブフォルダを比較する場合、新しいフォルダ比較テーブルが、
+    現在のフォルダ比較ウィンドウ内に読み込まれます。
     フォルダ比較を完了したら、ファイル名列の一番上の上矢印ボタン
     <inlinemediaobject>
         <imageobject>
@@ -385,12 +383,12 @@
         <textobject>
           <phrase>Navigator up arrow button</phrase>
         </textobject>
-    </inlinemediaobject>
-    をダブルクリックし、親フォルダに戻ることができます。</para>
+      </inlinemediaobject>をダブルクリックし、親フォルダに戻ることができます。</para>
 
     <para>ファイルを比較する場合、WinMergeは、次のセクションで説明される、ファイル比較ウィンドウを開きます。
       ファイル比較ウィンドウ内で、ファイルを変更するなら、フォルダ比較ウィンドウに戻った時、
-      ファイルのデータが更新されていることを確認できるでしょう。</para>
+      ファイルのデータが更新されていることを確認できるでしょう。
+    </para>
   </section>
 
   <section id="QuickStart_comparingfiles">
@@ -415,7 +413,7 @@
       </textobject>
     </mediaobject>
 
-  <para>ファイル比較ウィンドウは、分割されたファイルペインに、二つの選択されたファイルをとなり同士に表示します。
+    <para>ファイル比較ウィンドウは、分割されたファイルペインに、二つの選択されたファイルをとなり同士に表示します。
     異なる行は、背景色がハイライト表示されます。
     ひとつ、または、連続した異なる行は、ひとつの差異(<glossterm>diff</glossterm>)として表されます。
     In the preceding example, a single difference is selected in the File panes and displayed by itself in the Diff Pane.
@@ -423,27 +421,24 @@
     <!-- FIXME 意味不
     前の例において、単一の差異は、ファイルペインで選択されており、Diffペインに単独で表示されます。
     WinMergeは主に、個別の行でなく、これらの差異で効果的です。
-    -->
-    
+    -->    
     差異をマージすると、その差異のすべての行を他方にコピーします。
     </para>
 
-  <para>
-    <important>
-    <para>同じ行が、いつも隣同士に並べられるように、WinMergeが、どのように無くなった行を埋めるかに、
+    <para><important>
+        <para>同じ行が、いつも隣同士に並べられるように、WinMergeが、どのように無くなった行を埋めるかに、
       注意してください。これは、他のほとんどの、比較/マージプログラムと異なり、学ぶためにしばらく時間がかかります。
       </para>
-    </important>
-  </para>
+      </important></para>
 
     <para>WinMergeは、テキストの基本的な入力、コピー、カット・アンド・ペースト機能を持った、シンプルな実装のエディタを備えています。
     もし、 <guilabel>自動再スキャン</guilabel>が有効なら、WinMergeは、あなたがファイルを編集している間、ファイルの差異を更新します。
     もし、<guilabel>自動再スキャン</guilabel>が無効なら、手動でファイルを更新できます。<menuchoice>
-
         <!-- NOTE: 誤り？ -->
         <!--<guimenu>編集(E)</guimenu>-->
         <!--<guimenuitem>更新</guimenuitem>-->
         <guimenu>表示(V)</guimenu>
+
         <guimenuitem>最新の情報に更新(S)</guimenuitem>
       </menuchoice>をクリックしてください。<inlinemediaobject>
         <imageobject>
@@ -457,4 +452,3 @@
     <keycap>F5</keycap>を押してください。</para>
   </section>
 </article>
-
