@@ -73,9 +73,8 @@
 
           <note>
             <para>フォルダを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに対して異なる結果をもたらす可能性があります。
-            For example, files that are
-            identical when uncompressed might be different if they include the
-            creation date. WinMerge applies the unpacker in all situations, and
+            たとえば、圧縮されていないときには同一のファイルでも、圧縮された場合、作成日が含まれているために異なる場合があります。
+            WinMerge applies the unpacker in all situations, and
             you are sure to have the same result when you compare a folder, or
             when you merge two versions of a file.</para>
           </note>
