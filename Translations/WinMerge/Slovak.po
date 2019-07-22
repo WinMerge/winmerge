@@ -289,10 +289,6 @@ msgid "&Automatic Unpacking"
 msgstr "&Automatické rozbalenie"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "&Znovu načítať zásuvné moduly"
 
@@ -516,6 +512,10 @@ msgstr "&Prispôsobiť stĺpce..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Vystvoriť &správu..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"

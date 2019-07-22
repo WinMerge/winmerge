@@ -288,10 +288,6 @@ msgid "&Automatic Unpacking"
 msgstr "Α&υτόματη Αποσυμπίεση"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "Επανέ&λεγχος Αρθρωμάτων"
 
@@ -515,6 +511,10 @@ msgstr "&Προσαρμογή Στηλών..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Δημιουργία Ανα&φοράς..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"
