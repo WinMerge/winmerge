@@ -59,10 +59,10 @@
           一時的に変換されたファイルが作成され、WinMergeにロードされます。
           </para>
 
-          <para>Unpackerプラグインは、選択されたテキストやファイル内の差分に対してではなく、ファイル全体に対して機能します。
+          <para>展開プラグインは、選択されたテキストやファイル内の差分に対してではなく、ファイル全体に対して機能します。
           したがって、フォルダ比較ウインドウまたはファイルまたは
           フォルダの選択ダイアログからファイル比較を起動するときのみ利用可能です。
-          Unpackerプラグインはファイル比較ウィンドウでは利用できません。
+          展開プラグインはファイル比較ウィンドウでは利用できません。
           </para>
 
           <para>Sometimes the unpacked file can be repacked (see the details in
@@ -74,15 +74,12 @@
           <note>
             <para>フォルダを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに対して異なる結果をもたらす可能性があります。
             たとえば、圧縮されていないときには同一のファイルでも、圧縮された場合、作成日が含まれているために異なる場合があります。
-            WinMerge applies the unpacker in all situations, and
-            you are sure to have the same result when you compare a folder, or
-            when you merge two versions of a file.</para>
+            WinMergeはすべての状況で展開プラグインを適用します。フォルダを比較するときや、 ２つのファイルを比較するときでも同じ結果が得られます</para>
           </note>
 
-          <para>Example plugin: <xref linkend="CompareMSExcelFiles" />
-          Displays the text contents of a 
+          <para>プラグインの例: <xref linkend="CompareMSExcelFiles" />
           <trademark class="registered">Microsoft</trademark>
-          <application>Excel</application> file.</para>
+          <application>Excel</application> ファイルのテキスト内容を表示します。</para>
         </listitem>
       </varlistentry>
 
@@ -92,12 +89,10 @@
           </indexterm></term>
 
         <listitem>
-          <para>This type of plugin does not operate on the source files
-          displayed in the Compare window. It operates instead on temporary
-          copies of the files, and the copies are then scanned to create the
-          difference list.</para>
+          <para>この種類のプラグインは、比較ウィンドウに表示されている元のファイルには作用しません。
+          代わりに元のファイルから何らかの加工を行ったファイルを一時的に作成し、そのファイルから差異リストを作成します。</para>
 
-          <para>Example plugin: <xref linkend="IgnoreColumns" /> ignores the
+          <para>プラグインの例: <xref linkend="IgnoreColumns" /> ignores the
           differences inside specified columns, while displaying the characters
           in these columns.</para>
         </listitem>
