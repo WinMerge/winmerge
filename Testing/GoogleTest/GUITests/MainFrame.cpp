@@ -88,7 +88,7 @@ void selectMenu(HWND hwnd, unsigned id)
 HWND execWinMerge()
 {
 	HWND hwndWinMerge = nullptr;
-	system("start \"\" \"C:\\Program Files\\WinMerge\\WinMergeU.exe\" /noprefs");
+	system("start \"\" \"C:\\Program Files\\WinMerge\\WinMergeU.exe\" /noprefs /maximize");
 	for (int i = 0; i < 50 && !hwndWinMerge; ++i)
 	{
 		hwndWinMerge = FindWindow(L"WinMergeWindowClassW", nullptr);
@@ -239,6 +239,30 @@ TEST_F(MainFrameTest, ViewTabBar)
 {
 	selectMenu(m_hwndWinMerge, ID_VIEW_TAB_BAR);
 	selectMenu(m_hwndWinMerge, ID_VIEW_TAB_BAR);
+}
+
+TEST_F(MainFrameTest, ToolsFilters)
+{
+	selectMenu(m_hwndWinMerge, ID_TOOLS_FILTERS);
+	HWND hwndDlg = findForegroundDialog();
+	ASSERT_TRUE(hwndDlg != nullptr);
+	if (hwndDlg)
+	{
+		typeText(L"\x1b");
+		waitUntilClose(hwndDlg);
+	}
+}
+
+TEST_F(MainFrameTest, ToolsGeneratePatch)
+{
+	selectMenu(m_hwndWinMerge, ID_TOOLS_GENERATEPATCH);
+	HWND hwndDlg = findForegroundDialog();
+	ASSERT_TRUE(hwndDlg != nullptr);
+	if (hwndDlg)
+	{
+		typeText(L"\x1b");
+		waitUntilClose(hwndDlg);
+	}
 }
 
 TEST_F(MainFrameTest, PluginsSettings)
