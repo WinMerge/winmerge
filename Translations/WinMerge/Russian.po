@@ -291,10 +291,6 @@ msgid "&Automatic Unpacking"
 msgstr "Автоматическая распаковка"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr "Редактировать распаковщиком..."
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "&Перезагрузить плагины"
 
@@ -518,6 +514,10 @@ msgstr "&Настроить колонки..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Создать &отчет..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr "Редактировать распаковщиком..."
 
 #, c-format
 msgid "&Save\tCtrl+S"

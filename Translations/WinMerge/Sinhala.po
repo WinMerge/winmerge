@@ -286,10 +286,6 @@ msgid "&Automatic Unpacking"
 msgstr "ස්වයංක්‍රීය"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "උපකාරක නැවත යෙදීම"
 
@@ -513,6 +509,10 @@ msgstr "&Customize Columns..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "වාර්තා ජනනය..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"
