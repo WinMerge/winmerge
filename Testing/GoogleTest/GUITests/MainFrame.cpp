@@ -21,7 +21,7 @@ DWORD waitForInputIdleByHWND(HWND hwnd, DWORD dwMilliseconds = WAIT_TIMEOUT)
 	HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, dwProcessId);
 	if (!hProcess)
 		return WAIT_FAILED;
-	
+
 	DWORD dwResult = WaitForInputIdle(hProcess, dwMilliseconds);
 	CloseHandle(hProcess);
 	return dwResult;
@@ -53,18 +53,6 @@ void typeText(const wchar_t *text)
 			keybd_event(VK_SHIFT, 0, KEYEVENTF_KEYUP, 0);
 	}
 }
-
-
-/*
-void typeTextInWindow(HWND hwnd, const wchar_t *text)
-{
-	DWORD dwProcessId = 0;
-	DWORD idAttachTo = GetWindowThreadProcessId(hwnd, &dwProcessId);
-	AttachThreadInput(GetCurrentThreadId(), idAttachTo, TRUE);
-	typeText(text);
-	AttachThreadInput(GetCurrentThreadId(), idAttachTo, FALSE);
-}
-*/
 
 void typeAltPlusKey(char key)
 {
@@ -256,6 +244,100 @@ TEST_F(MainFrameTest, ViewTabBar)
 TEST_F(MainFrameTest, PluginsSettings)
 {
 	selectMenu(m_hwndWinMerge, ID_PLUGINS_LIST);
+	HWND hwndDlg = findForegroundDialog();
+	ASSERT_TRUE(hwndDlg != nullptr);
+	if (hwndDlg)
+	{
+		typeText(L"\x1b");
+		waitUntilClose(hwndDlg);
+	}
+}
+
+TEST_F(MainFrameTest, PluginsPrediffer)
+{
+	selectMenu(m_hwndWinMerge, ID_PREDIFFER_AUTO);
+	selectMenu(m_hwndWinMerge, ID_PREDIFFER_MANUAL);
+}
+
+TEST_F(MainFrameTest, PluginsUnpacker)
+{
+	selectMenu(m_hwndWinMerge, ID_UNPACK_AUTO);
+	selectMenu(m_hwndWinMerge, ID_UNPACK_MANUAL);
+}
+
+TEST_F(MainFrameTest, PluginsReload)
+{
+	selectMenu(m_hwndWinMerge, ID_RELOAD_PLUGINS);
+}
+
+TEST_F(MainFrameTest, WindowClose)
+{
+	selectMenu(m_hwndWinMerge, ID_FILE_NEW);
+	selectMenu(m_hwndWinMerge, ID_FILE_CLOSE);
+}
+
+TEST_F(MainFrameTest, WindowCloseAll)
+{
+	selectMenu(m_hwndWinMerge, ID_FILE_NEW);
+	selectMenu(m_hwndWinMerge, ID_FILE_NEW);
+	selectMenu(m_hwndWinMerge, ID_WINDOW_CLOSEALL);
+}
+
+TEST_F(MainFrameTest, WindowChangePane)
+{
+	selectMenu(m_hwndWinMerge, ID_FILE_NEW);
+	selectMenu(m_hwndWinMerge, ID_WINDOW_CHANGE_PANE);
+	selectMenu(m_hwndWinMerge, ID_WINDOW_CLOSEALL);
+}
+
+TEST_F(MainFrameTest, WindowArrangement)
+{
+	selectMenu(m_hwndWinMerge, ID_FILE_NEW);
+	selectMenu(m_hwndWinMerge, ID_FILE_NEW);
+	selectMenu(m_hwndWinMerge, ID_WINDOW_TILE_HORZ);
+	selectMenu(m_hwndWinMerge, ID_WINDOW_TILE_VERT);
+	selectMenu(m_hwndWinMerge, ID_WINDOW_CASCADE);
+	selectMenu(m_hwndWinMerge, ID_WINDOW_CLOSEALL);
+}
+
+TEST_F(MainFrameTest, HelpWinMergeHelp)
+{
+	selectMenu(m_hwndWinMerge, ID_HELP_CONTENTS);
+	Sleep(1000);
+	SwitchToThisWindow(m_hwndWinMerge, TRUE);
+}
+
+TEST_F(MainFrameTest, HelpReleaseNotes)
+{
+	selectMenu(m_hwndWinMerge, ID_HELP_RELEASENOTES);
+	Sleep(1000);
+	SwitchToThisWindow(m_hwndWinMerge, TRUE);
+}
+
+TEST_F(MainFrameTest, HelpTranslations)
+{
+	selectMenu(m_hwndWinMerge, ID_HELP_TRANSLATIONS);
+	Sleep(1000);
+	SwitchToThisWindow(m_hwndWinMerge, TRUE);
+}
+
+TEST_F(MainFrameTest, HelpConfiguraiton)
+{
+	selectMenu(m_hwndWinMerge, ID_HELP_GETCONFIG);
+	Sleep(1000);
+	SwitchToThisWindow(m_hwndWinMerge, TRUE);
+}
+
+TEST_F(MainFrameTest, HelpGNULicense)
+{
+	selectMenu(m_hwndWinMerge, ID_HELP_GNULICENSE);
+	Sleep(1000);
+	SwitchToThisWindow(m_hwndWinMerge, TRUE);
+}
+
+TEST_F(MainFrameTest, HelpAbout)
+{
+	selectMenu(m_hwndWinMerge, ID_APP_ABOUT);
 	HWND hwndDlg = findForegroundDialog();
 	ASSERT_TRUE(hwndDlg != nullptr);
 	if (hwndDlg)
