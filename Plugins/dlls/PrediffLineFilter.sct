@@ -135,7 +135,7 @@ End Sub
 <html>
   <head>
     <title>PrediffLineFilter.sct WinMerge Plugin Options</title>
-    <meta content="text/html" charset="ShiftJIS">
+    <meta content="text/html" charset="Shift_JIS">
     <style>
       body { background-color: lightgray; }
       ul { list-style:none; }
