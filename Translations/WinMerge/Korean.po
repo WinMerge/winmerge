@@ -293,10 +293,6 @@ msgid "&Automatic Unpacking"
 msgstr "자동 언패킹(&A)"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr "언패커로 편집(E)..."
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "플러그인 다시 불러오기(&R)"
 
@@ -523,6 +519,10 @@ msgstr "열 사용자 정의(&C)..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "보고서 만들기(&R)..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr "언패커로 편집(E)..."
 
 #, c-format
 msgid "&Save\tCtrl+S"

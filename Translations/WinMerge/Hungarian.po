@@ -289,10 +289,6 @@ msgid "&Automatic Unpacking"
 msgstr "&Automatikus kicsomagolás"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "&Bővítmények betöltése"
 
@@ -519,6 +515,10 @@ msgstr "&Oszlopok testreszabása..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "&Jelentés generálása..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"

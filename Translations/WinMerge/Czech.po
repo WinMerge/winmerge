@@ -289,10 +289,6 @@ msgid "&Automatic Unpacking"
 msgstr "Převádět &automaticky"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "Znovu &načíst"
 
@@ -519,6 +515,10 @@ msgstr "Vlastní &sloupce..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "&Protokol porovnání..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"

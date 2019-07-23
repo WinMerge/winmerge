@@ -288,10 +288,6 @@ msgid "&Automatic Unpacking"
 msgstr "Распакуј &аутоматски"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "Поново &учитај додатке"
 
@@ -518,6 +514,10 @@ msgstr "Подеси &стубце..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Нап&рави извештај..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"

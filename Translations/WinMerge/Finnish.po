@@ -286,10 +286,6 @@ msgid "&Automatic Unpacking"
 msgstr "Automaattinen purku"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "Lataa lisäosat uudelleen"
 
@@ -516,6 +512,10 @@ msgstr "Muokkaa sarakkeita..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Luo &raportti..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"

@@ -288,10 +288,6 @@ msgid "&Automatic Unpacking"
 msgstr "Desempaquetament &automàtic"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "&Recarrega els connectors"
 
@@ -518,6 +514,10 @@ msgstr "&Personalitza les columnes..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Gene&ra un informe..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"

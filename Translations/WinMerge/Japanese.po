@@ -226,9 +226,6 @@ msgstr "手動展開(&M)"
 msgid "&Automatic Unpacking"
 msgstr "自動展開(&A)"
 
-msgid "&Edit with Unpacker..."
-msgstr "展開プラグインで開く(&E)..."
-
 msgid "&Reload plugins"
 msgstr "プラグインの再読み込み(&R)"
 
@@ -402,6 +399,9 @@ msgstr "列の設定(&C)..."
 
 msgid "Generate &Report..."
 msgstr "レポートの生成(&R)..."
+
+msgid "&Edit with Unpacker..."
+msgstr "展開プラグインで開く(&E)..."
 
 msgid "&Save\tCtrl+S"
 msgstr "保存(&S)\tCtrl+S"

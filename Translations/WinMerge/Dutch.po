@@ -226,9 +226,6 @@ msgstr "Handmatig uitpakken"
 msgid "&Automatic Unpacking"
 msgstr "Automatisch uitpakken"
 
-msgid "&Edit with Unpacker..."
-msgstr "Bewerken met uitpakker..."
-
 msgid "&Reload plugins"
 msgstr "Plug-ins opnieuw laden"
 
@@ -402,6 +399,9 @@ msgstr "Kolommen aanpassen..."
 
 msgid "Generate &Report..."
 msgstr "Rapport genereren..."
+
+msgid "&Edit with Unpacker..."
+msgstr "Bewerken met uitpakker..."
 
 msgid "&Save\tCtrl+S"
 msgstr "Opslaan\tCtrl+S"

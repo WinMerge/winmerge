@@ -291,10 +291,6 @@ msgid "&Automatic Unpacking"
 msgstr "自动解包(&A)"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr "使用解包器编辑(&E)..."
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "重新加载插件(&R)"
 
@@ -521,6 +517,10 @@ msgstr "选择列(&C)..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "生成报告(&R)..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr "使用解包器编辑(&E)..."
 
 #, c-format
 msgid "&Save\tCtrl+S"

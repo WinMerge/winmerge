@@ -225,9 +225,6 @@ msgstr "Decompressione &manuale"
 msgid "&Automatic Unpacking"
 msgstr "Decompressione &automatica"
 
-msgid "&Edit with Unpacker..."
-msgstr "Modifica con decompressore…"
-
 msgid "&Reload plugins"
 msgstr "&Ricarica estensioni"
 
@@ -398,6 +395,9 @@ msgstr "&Personalizza colonne…"
 
 msgid "Generate &Report..."
 msgstr "Genera &rapporto…"
+
+msgid "&Edit with Unpacker..."
+msgstr "Modifica con decompressore…"
 
 msgid "&Save\tCtrl+S"
 msgstr "&Salva\tCtrl+S"

@@ -292,10 +292,6 @@ msgid "&Automatic Unpacking"
 msgstr "Be&rezgaitasunezko Despaketatzea"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "B&irgertatu pluginak"
 
@@ -522,6 +518,10 @@ msgstr "&Antolatu Zutabeak..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Sortu &Jakinarazpena..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"

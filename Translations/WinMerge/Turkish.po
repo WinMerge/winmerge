@@ -290,10 +290,6 @@ msgid "&Automatic Unpacking"
 msgstr "Otomatik &Ayıklama"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr "Ayıklayıcı ile Düz&enle..."
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "Uygulama Ekle&rini Yeniden Yükle"
 
@@ -520,6 +516,10 @@ msgstr "&Sütunları Ayarla..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "&Rapor Hazırla..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr "Ayıklayıcı ile Düz&enle..."
 
 #, c-format
 msgid "&Save\tCtrl+S"

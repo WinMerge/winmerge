@@ -289,10 +289,6 @@ msgid "&Automatic Unpacking"
 msgstr "&Automatsko raspakiravanje"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "&Učitaj dodatke ponovo"
 
@@ -519,6 +515,10 @@ msgstr "&Prilagodba kolona..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Pohrani &izvještaj..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"

@@ -228,9 +228,6 @@ msgstr "Rankinis išpakavi&mas"
 msgid "&Automatic Unpacking"
 msgstr "&Automatinis išpakavimas"
 
-msgid "&Edit with Unpacker..."
-msgstr "R&edaguoti su išpakavimu..."
-
 msgid "&Reload plugins"
 msgstr "&Iš naujo įkelti papildinius"
 
@@ -404,6 +401,9 @@ msgstr "&Parinkti stulpelius..."
 
 msgid "Generate &Report..."
 msgstr "Ku&rti ataskaitą..."
+
+msgid "&Edit with Unpacker..."
+msgstr "R&edaguoti su išpakavimu..."
 
 msgid "&Save\tCtrl+S"
 msgstr "Iš&saugoti\tCtrl+S"
