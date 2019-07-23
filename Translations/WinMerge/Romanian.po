@@ -289,10 +289,6 @@ msgid "&Automatic Unpacking"
 msgstr "Dezarhivare &automată"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "&Reîncarcă plug-in-urile"
 
@@ -516,6 +512,10 @@ msgstr "Personalizare &coloane..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Generare &raport..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"

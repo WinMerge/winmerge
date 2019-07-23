@@ -293,10 +293,6 @@ msgid "&Automatic Unpacking"
 msgstr "自動解開非純文字檔(&A)"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr "解壓縮編輯(&E)"
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "重新載入外掛(&R)"
 
@@ -520,6 +516,10 @@ msgstr "自訂欄位(&C)..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "產生報告(&R)..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr "解壓縮編輯(&E)"
 
 #, c-format
 msgid "&Save\tCtrl+S"

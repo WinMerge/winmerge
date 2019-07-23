@@ -1836,15 +1836,7 @@ void CMainFrame::OnWindowCloseAll()
  */ 
 void CMainFrame::OnUpdateWindowCloseAll(CCmdUI* pCmdUI)
 {
-	const MergeDocList &mergedocs = GetAllMergeDocs();
-	if (!mergedocs.IsEmpty())
-	{
-		pCmdUI->Enable(TRUE);
-		return;
-	}
-
-	const DirDocList &dirdocs = GetAllDirDocs();
-	pCmdUI->Enable(!dirdocs.IsEmpty());
+	pCmdUI->Enable(MDIGetActive() != nullptr);
 }
 
 /**

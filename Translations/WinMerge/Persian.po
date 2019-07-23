@@ -290,10 +290,6 @@ msgid "&Automatic Unpacking"
 msgstr "&A بازکردن بسته بطور خودکار "
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "&R بارگذاري دوباره افزايه ها "
 
@@ -517,6 +513,10 @@ msgstr "&C سفارشي کردن ستونها ... "
 #, c-format
 msgid "Generate &Report..."
 msgstr "&R توليد گزارش ... "
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"

@@ -496,7 +496,6 @@ TEST(FileMenu, OpenConflictFile3)
 TEST(FileMenu, OpenProject)
 {
 	String projectFile = paths::ConcatPath(getProjectRoot(), L"Testing/Data/Dir2.WinMerge");
-	SetCurrentDirectory(paths::GetParentPath(projectFile).c_str());
 	theApp.LoadAndOpenProjectFile(projectFile);
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	EXPECT_NE(nullptr, pFrame);
@@ -507,7 +506,6 @@ TEST(FileMenu, OpenProject)
 TEST(FileMenu, OpenProject3)
 {
 	String projectFile = paths::ConcatPath(getProjectRoot(), L"Testing/Data/Dir3.WinMerge");
-	SetCurrentDirectory(paths::GetParentPath(projectFile).c_str());
 	theApp.LoadAndOpenProjectFile(projectFile);
 	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
 	EXPECT_NE(nullptr, pFrame);
