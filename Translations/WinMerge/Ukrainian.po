@@ -290,10 +290,6 @@ msgid "&Automatic Unpacking"
 msgstr "&Автоматичне розпакування"
 
 #, c-format
-msgid "&Edit with Unpacker..."
-msgstr ""
-
-#, c-format
 msgid "&Reload plugins"
 msgstr "Перезавантажити всі &доповнення"
 
@@ -517,6 +513,10 @@ msgstr "&Налаштувати стовпчики..."
 #, c-format
 msgid "Generate &Report..."
 msgstr "Створити &звіт..."
+
+#, c-format
+msgid "&Edit with Unpacker..."
+msgstr ""
 
 #, c-format
 msgid "&Save\tCtrl+S"
