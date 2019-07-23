@@ -261,6 +261,9 @@ msgstr "Note di &rilascio"
 msgid "&Translations"
 msgstr "&Traduzioni"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "C&onfigurazione"
 
