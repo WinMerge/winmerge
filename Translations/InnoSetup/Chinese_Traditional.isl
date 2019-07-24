@@ -1,4 +1,4 @@
-; *** Inno Setup version 5.5.3+ Chinese (Traditional) messages by Samuel Lee (751555749@qq.com) ***
+; *** Inno Setup version 6.0.0+ Chinese (Traditional) messages by Samuel Lee (751555749@qq.com) ***
 ;
 ; To download user-contributed translations of this file, go to:
 ;   http://www.jrsoftware.org/files/istrans/
@@ -52,13 +52,22 @@ WindowsServicePackRequired=本安裝程式需要 %1 Service Pack %2 或更新。
 NotOnThisPlatform=這個程式無法在 %1 執行。
 OnlyOnThisPlatform=這個程式必須在 %1 執行。
 OnlyOnTheseArchitectures=這個程式只能在專門為以下處理器架構而設計的 Windows 上安裝:%n%n%1
-MissingWOW64APIs=這個版本的 Windows 不包含安裝程式執行 64 位元安裝所需的功能。請安裝 Service Pack %1 去修正此問題。
 WinVersionTooLowError=這個程式必須在 %1 版本 %2 或以上的系統執行。
 WinVersionTooHighError=這個程式無法安裝在 %1 版本 %2 或以上的系統。
 AdminPrivilegesRequired=您必須登入成系統管理員以安裝這個程式。
 PowerUserPrivilegesRequired=您必須登入成具有系統管理員或 Power User 權限的使用者以安裝這個程式。
 SetupAppRunningError=安裝程式偵測到 %1 正在執行。%n%n請關閉該程式後按 [確定] 繼續，或按 [取消] 離開。
 UninstallAppRunningError=解除安裝程式偵測到 %1 正在執行。%n%n請關閉該程式後按 [確定] 繼續，或按 [取消] 離開。
+
+; *** Startup questions
+PrivilegesRequiredOverrideTitle=選擇安裝程式安裝模式
+PrivilegesRequiredOverrideInstruction=選擇安裝模式
+PrivilegesRequiredOverrideText1=可以為所有使用者安裝 %1 (需要系統管理權限)，或是僅為您安裝。
+PrivilegesRequiredOverrideText2=可以僅為您安裝 %1，或是為所有使用者安裝 (需要系統管理權限)。
+PrivilegesRequiredOverrideAllUsers=為所有使用者安裝 (&A)
+PrivilegesRequiredOverrideAllUsersRecommended=為所有使用者安裝 (建議選項) (&A)
+PrivilegesRequiredOverrideCurrentUser=僅為我安裝 (&M)
+PrivilegesRequiredOverrideCurrentUserRecommended=僅為我安裝 (建議選項) (&M)
 
 ; *** Misc. errors
 ErrorCreatingDir=安裝程式無法建立資料夾“%1”。
@@ -232,7 +241,10 @@ SelectDirectoryLabel=請指定下一張磁片的位置。
 
 ; *** Installation phase messages
 SetupAborted=安裝沒有完成。%n%n請更正問題後重新安裝一次。
-EntryAbortRetryIgnore=按 [重試] 重試一次，按下 [略過] 跳過這個檔案，或按下 [中止] 結束安裝。
+AbortRetryIgnoreSelectAction=選取動作
+AbortRetryIgnoreRetry=請再試一次 (&T)
+AbortRetryIgnoreIgnore=略過錯誤並繼續 (&I)
+AbortRetryIgnoreCancel=取消安裝
 
 ; *** Installation status messages
 StatusClosingApplications=正在關閉應用程式...
@@ -263,11 +275,13 @@ ErrorRegWriteKey=無法變更登錄項目:%n%1\%2
 ErrorIniEntry=在檔案“%1”建立 INI 項目錯誤。
 
 ; *** File copying errors
-FileAbortRetryIgnore=按 [重試] 再試一次，按 [略過] 跳過這個檔案（不建議），或按 [中止] 結束安裝。
-FileAbortRetryIgnore2=按 [重試] 再試一次，按 [略過] 繼續進行（不建議），或按 [中止] 結束安裝。
-SourceIsCorrupted=來源檔案已經損毀。
+FileAbortRetryIgnoreSkipNotRecommended=略過這個檔案 (不建議) (&S)
+FileAbortRetryIgnoreIgnoreNotRecommended=略過錯誤並繼續 (不建議) (&I)
 SourceDoesntExist=來源檔案“%1”不存在。
-ExistingFileReadOnly=檔案屬性已設為唯讀。%n%n按 [重試] 將唯讀屬性移除并再試一次，按 [略過] 跳過這個檔案，或按 [中止] 結束安裝。
+SourceIsCorrupted=來源檔案已經損毀。
+ExistingFileReadOnly2=無法取代現有檔案，因為檔案已標示為唯讀。
+ExistingFileReadOnlyRetry=移除唯讀屬性並重試 (&R)
+ExistingFileReadOnlyKeepExisting=保留現有檔案 (&K)
 ErrorReadingExistingDest=讀取一個已存在的檔案時發生錯誤:
 FileExists=檔案已經存在。您要取代目前的檔案嗎?
 ExistingFileNewer=存在的檔案版本比較新，建議您保留目前已存在的檔案。%n%n您要保留目前已存在的檔案嗎?
@@ -281,6 +295,16 @@ ErrorRenamingTemp=在目的資料夾變更檔案名稱時發生錯誤:
 ErrorRegisterServer=無法注冊 DLL/OCX 檔案: %1。
 ErrorRegSvr32Failed=RegSvr32 失敗；退出代碼 %1
 ErrorRegisterTypeLib=無法注冊類型庫: %1。
+
+; *** Uninstall display name markings
+; used for example as 'My Program (32-bit)'
+UninstallDisplayNameMark=%1 (%2)
+; used for example as 'My Program (32-bit, All users)'
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32-bit
+UninstallDisplayNameMark64Bit=64-bit
+UninstallDisplayNameMarkAllUsers=所有使用者
+UninstallDisplayNameMarkCurrentUser=目前使用者
 
 ; *** Post-installation errors
 ErrorOpeningReadme=開啟讀我檔案時發生錯誤。
