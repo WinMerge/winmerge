@@ -1,4 +1,4 @@
-; *** Inno Setup version 5.5.3+ Bulgarian messages ***
+; *** Inno Setup version 6.0.0+ Bulgarian messages ***
 ; Mikhail Balabanov <mishob@abv.bg>
 ;
 ; За да изтеглите преводи на този файл, предоставени от потребители, посетете:
@@ -56,13 +56,22 @@ WindowsServicePackRequired=Програмата изисква %1 Service Pack %2 или по-нов.
 NotOnThisPlatform=Програмата не може да се изпълнява под %1.
 OnlyOnThisPlatform=Програмата трябва да се изпълнява под %1.
 OnlyOnTheseArchitectures=Програмата може да се инсталира само под версии на Windows за следните процесорни архитектури:%n%n%1
-MissingWOW64APIs=Използваната от вас версия на Windows не включва функционалността, необходима за 64-битово инсталиране. За да отстраните проблема, инсталирайте Service Pack %1.
 WinVersionTooLowError=Програмата изисква %1 версия %2 или по-нова.
 WinVersionTooHighError=Програмата не може да бъде инсталирана в %1 версия %2 или по-нова.
 AdminPrivilegesRequired=За да инсталирате програмата, трябва да влезете като администратор.
 PowerUserPrivilegesRequired=За да инсталирате програмата, трябва да влезете като администратор или потребител с разширени права.
 SetupAppRunningError=Инсталаторът установи, че %1 се изпълнява в момента.%n%nМоля, затворете всички копия на програмата и натиснете "OK", за да продължите, или "Cancel" за изход.
 UninstallAppRunningError=Деинсталаторът установи, че %1 се изпълнява в момента.%n%nМоля, затворете всички копия на програмата и натиснете "OK", за да продължите, или "Cancel" за изход.
+
+; *** Въпроси при стартиране
+PrivilegesRequiredOverrideTitle=Избор на режим на инсталация
+PrivilegesRequiredOverrideInstruction=Изберете режим на инсталация
+PrivilegesRequiredOverrideText1=%1 може да бъде инсталирана за всички потребители (изисква администраторски привилегии) или само за Вас.
+PrivilegesRequiredOverrideText2=%1 може да бъде инсталирана само за Вас или за всички потребители (изисква администраторски привилегии).
+PrivilegesRequiredOverrideAllUsers=Инсталирай за &всички потребители
+PrivilegesRequiredOverrideAllUsersRecommended=Инсталирай за &всички потребители (препоръчва се)
+PrivilegesRequiredOverrideCurrentUser=Инсталирай само за &мен
+PrivilegesRequiredOverrideCurrentUserRecommended=Инсталирай само за &мен (препоръчва се)
 
 ; *** Други грешки
 ErrorCreatingDir=Не е възможно да се създаде директория "%1"
@@ -238,7 +247,10 @@ SelectDirectoryLabel=Моля, посочете местоположението на следващия носител.
 
 ; *** Съобщения от фаза "Инсталиране"
 SetupAborted=Инсталирането не е завършено.%n%nМоля, отстранете проблема и стартирайте инсталатора отново.
-EntryAbortRetryIgnore=Натиснете "Retry" за повторен опит, "Ignore" за продължение въпреки грешката или "Abort" за прекратяване на инсталирането.
+AbortRetryIgnoreSelectAction=Изберете действие
+AbortRetryIgnoreRetry=Повторен &опит
+AbortRetryIgnoreIgnore=&Пренебрегни грешката и продължи
+AbortRetryIgnoreCancel=Прекрати инсталацията
 
 ; *** Съобщения за хода на инсталирането
 StatusClosingApplications=Затварят се приложения...
@@ -269,11 +281,13 @@ ErrorRegWriteKey=Грешка при писане в ключ от регистъра:%n%1\%2
 ErrorIniEntry=Грешка при създаване на INI запис във файла "%1".
 
 ; *** Грешки при копиране на файлове
-FileAbortRetryIgnore=Натиснете "Retry" за повторен опит, "Ignore" за пропускане на файла (не се препоръчва) или "Abort" за прекратяване на инсталирането.
-FileAbortRetryIgnore2=Натиснете "Retry" за повторен опит, "Ignore" за продължение (не се препоръчва) или "Abort" за прекратяване на инсталирането.
+FileAbortRetryIgnoreSkipNotRecommended=Прескочи този &файл (не се препоръчва)
+FileAbortRetryIgnoreIgnoreNotRecommended=&Пренебрегни грешката и продължи (не се препоръчва)
 SourceIsCorrupted=Файлът - източник е повреден
 SourceDoesntExist=Файлът - източник "%1" не съществува
-ExistingFileReadOnly=Съществуващият файл има атрибут "само за четене".%n%nНатиснете "Retry" за премахване на атрибута и повторен опит, "Ignore" за пропускане на файла или "Abort" за прекратяване на инсталирането.
+ExistingFileReadOnly2=Съществуващият файл не беше заменен, защото е маркиран само за четене.
+ExistingFileReadOnlyRetry=&Премахни атрибута „само за четене“ и опитай отново
+ExistingFileReadOnlyKeepExisting=&Запази съществуващия файл
 ErrorReadingExistingDest=Грешка при опит за четене на съществуващ файл:
 FileExists=Файлът вече съществува.%n%nЖелаете ли инсталаторът да го презапише?
 ExistingFileNewer=Съществуващият файл е по-нов от този, който инсталаторът се опитва да инсталира. Препоръчва се да го запазите.%n%nЖелаете ли да запазите съществуващия файл?
@@ -287,6 +301,14 @@ ErrorRenamingTemp=Грешка при опит за преименуване на файл в целевата директория:
 ErrorRegisterServer=Не е възможно да се регистрира библиотека от тип DLL/OCX: %1
 ErrorRegSvr32Failed=Неуспешно изпълнение на RegSvr32 с код на изход %1
 ErrorRegisterTypeLib=Не е възможно да се регистрира библиотека от типове: %1
+
+; *** Обозначаване на показваните имена на програми за деинсталиране
+UninstallDisplayNameMark=%1 (%2)
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32-битова
+UninstallDisplayNameMark64Bit=64-битова
+UninstallDisplayNameMarkAllUsers=Всички потребители
+UninstallDisplayNameMarkCurrentUser=Текущ потребител
 
 ; *** Грешки след инсталиране
 ErrorOpeningReadme=Възникна грешка при опит за отваряне на файла README.

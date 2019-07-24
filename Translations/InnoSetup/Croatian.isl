@@ -1,4 +1,4 @@
-; *** Inno Setup version 5.5.3+ Croatian messages ***
+; *** Inno Setup version 6.0.0+ Croatian messages ***
 ; Translated by: Elvis Gambiraža (el.gambo@gmail.com)
 ; Based on translation by Krunoslav Kanjuh (krunoslav.kanjuh@zg.t-com.hr)
 ;
@@ -57,13 +57,22 @@ WindowsServicePackRequired=Program zahtijeva %1 servisni paket %2 ili noviji.
 NotOnThisPlatform=Ovaj program neæe raditi na %1.
 OnlyOnThisPlatform=Ovaj program se mora pokrenuti na %1.
 OnlyOnTheseArchitectures=Ovaj program može biti instaliran na verziji Windowsa dizajniranim za sljedeæu procesorsku arhitekturu:%n%n%1
-MissingWOW64APIs=Ova verzija Windowsa ne posjeduje funkcije koje zahtjeva instalacija za 64-bitnu instalaciju. Kako bi riješili problem instalirajte servisni paket %1.
 WinVersionTooLowError=Ovaj program zahtijeva %1 verziju %2 ili noviju.
 WinVersionTooHighError=Ovaj program ne može biti instaliran na %1 verziji %2 ili novijoj.
 AdminPrivilegesRequired=Morate biti prijavljeni kao administrator prilikom pokretanja ovog programa.
 PowerUserPrivilegesRequired=Morate biti prijavljeni kao administrator ili èlan grupe Power Users prilikom instaliranja ovog programa.
 SetupAppRunningError=Instalacija je otkrila da je %1 pokrenut.%n%nZatvorite program i potom kliknite Dalje za nastavak ili Odustani za prekid instalacije.
 UninstallAppRunningError=Deinstalacija je otkrila da je %1 pokrenut.%n%nZatvorite program i potom kliknite Dalje za nastavak ili Odustani za prekid instalacije.
+
+; *** Startup questions
+PrivilegesRequiredOverrideTitle=Odaberite nacin instaliranja
+PrivilegesRequiredOverrideInstruction=Odaberite nacin instaliranja
+PrivilegesRequiredOverrideText1=%1 se može instalirati za sve korisnike (zahtijeva administrativna prava) ili samo za vas.
+PrivilegesRequiredOverrideText2=%1 se može instalirati samo za vas ili za sve korisnike (zahtijeva administrativna prava).
+PrivilegesRequiredOverrideAllUsers=Instaliraj z&a sve korisnike
+PrivilegesRequiredOverrideAllUsersRecommended=Instaliraj z&a sve korisnike (preporuceno)
+PrivilegesRequiredOverrideCurrentUser=Instaliraj samo za &mene
+PrivilegesRequiredOverrideCurrentUserRecommended=Instaliraj samo za &mene (preporuceno)
 
 ; *** Misc. errors
 ErrorCreatingDir=Instalacija nije mogla kreirati mapu "%1".
@@ -242,7 +251,10 @@ SelectDirectoryLabel=Odaberite lokaciju sljedeæeg diska.
 
 ; *** Installation phase messages
 SetupAborted=Instalacija nije završena.%n%nIspravite problem i opet pokrenite instalaciju.
-EntryAbortRetryIgnore=Kliknite na Ponovi za novi pokušaj, Ignoriraj za nastavak, ili Prekid za prekid instalacije.
+AbortRetryIgnoreSelectAction=Odaberite radnju
+AbortRetryIgnoreRetry=&Pokušaj ponovo
+AbortRetryIgnoreIgnore=&Zanemari grešku i nastavi
+AbortRetryIgnoreCancel=Prekini s instaliranjem
 
 ; *** Installation status messages
 StatusClosingApplications=Zatvaram programe...
@@ -273,11 +285,13 @@ ErrorRegWriteKey=Greška pri pisanju u registry kljuè:%n%1\%2
 ErrorIniEntry=Greška pri kreiranju INI podataka u datoteci "%1".
 
 ; *** File copying errors
-FileAbortRetryIgnore=Kliknite Ponovi za novi pokušaj, Ignoriraj za preskok ove datoteke (ne preporuèa se), ili Prekid za prekid instalacije.
-FileAbortRetryIgnore2=Kliknite Ponovi za novi pokušaj, Ignoriraj za nastavak u svakom sluèaju (ne preporuèa se), ili Prekid za prekid instalacije
+FileAbortRetryIgnoreSkipNotRecommended=&Preskoci ovu datoteku (ne preporuca se)
+FileAbortRetryIgnoreIgnoreNotRecommended=&Zanemari grešku i nastavi (ne preporuca se)
 SourceIsCorrupted=Izvorišna datoteka je ošteæena
 SourceDoesntExist=Izvorišna datoteka "%1" ne postoji
-ExistingFileReadOnly=Postojeæa datoteka je oznaèena "samo-za-èitanje".%n%nKliknite Ponovi kako biste uklonili oznaku "samo-za-èitanje" i pokušajte ponovno, Ignoriraj za preskok ove datoteke, ili Prekid za prekid instalacije.
+ExistingFileReadOnly2=Postojecu datoteku nije bilo moguce zamijeniti, jer je oznacena sa "samo-za-citanje".
+ExistingFileReadOnlyRetry=&Uklonite atribut "samo-za-citanje" i pokušajte ponovo
+ExistingFileReadOnlyKeepExisting=&Zadrži postojecu datoteku
 ErrorReadingExistingDest=Pojavila se greška prilikom pokušaja èitanja postojeæe datoteke:
 FileExists=Datoteka veæ postoji.%n%nŽelite li ju zamijeniti?
 ExistingFileNewer=Postojeæa datoteka je novija od one koju pokušavate instalirati. Preporuèa se zadržati postojeæu datoteku.%n%nŽelite li zadržati postojeæu datoteku?
@@ -291,6 +305,16 @@ ErrorRenamingTemp=Pojavila se greška prilikom pokušaja preimenovanja datoteke u 
 ErrorRegisterServer=Ne mogu registrirati DLL/OCX: %1
 ErrorRegSvr32Failed=Greška u RegSvr32: greška %1
 ErrorRegisterTypeLib=Ne mogu registrirati type library: %1
+
+; *** Uninstall display name markings
+; used for example as 'My Program (32-bit)'
+UninstallDisplayNameMark=%1 (%2)
+; used for example as 'My Program (32-bit, All users)'
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32-bitni
+UninstallDisplayNameMark64Bit=64-bitni
+UninstallDisplayNameMarkAllUsers=Svi korisnici
+UninstallDisplayNameMarkCurrentUser=Trenutacni korisnik
 
 ; *** Post-installation errors
 ErrorOpeningReadme=Pojavila se greška prilikom pokušaja otvaranja README datoteke.
