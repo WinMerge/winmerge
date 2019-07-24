@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
-    <Filter Include="Tests">
-      <UniqueIdentifier>{4b87ff85-2ba4-475b-823e-af42e45a3098}</UniqueIdentifier>
-    </Filter>
     <Filter Include="gtest">
       <UniqueIdentifier>{20eb57d2-cf08-44a2-b9e0-c7f267013211}</UniqueIdentifier>
     </Filter>
@@ -54,10 +51,19 @@
     <ClCompile Include="..\..\..\Externals\gtest\src\gtest-typed-test.cc">
       <Filter>gtest</Filter>
     </ClCompile>
-    <ClCompile Include="test_main.cpp">
-      <Filter>Tests</Filter>
+    <ClCompile Include="GUITestUtils.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MainFrame.cpp">
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirFrameTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrameTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -124,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Externals\gtest\src\gtest-internal-inl.h">
       <Filter>gtest</Filter>
+    </ClInclude>
+    <ClInclude Include="GUITestUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
