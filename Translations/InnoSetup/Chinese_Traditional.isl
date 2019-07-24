@@ -431,7 +431,6 @@ AutoMergeAtStartup=Auto-merge at startup time
 ;Icon Labels
 ReadMe=Read Me
 UsersGuide=User's Guide
-UpdatingCommonControls=Updating the System's Common Controls
 ViewStartMenuFolder=&View the WinMerge Start Menu Folder
 
 ;Code Dialogs
