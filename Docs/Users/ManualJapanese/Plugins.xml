@@ -89,12 +89,14 @@
           </indexterm></term>
 
         <listitem>
-          <para>この種類のプラグインは、比較ウィンドウに表示されている元のファイルには作用しません。
-          代わりに元のファイルから何らかの加工を行ったファイルを一時的に作成し、そのファイルから差異リストを作成します。</para>
+          <para>この種類のプラグインは、
+          比較ウィンドウに表示されている元のファイルには作用しません。
+          代わりに元のファイルから何らかの加工を行ったファイルを一時的に作成し、
+          そのファイルから差異リストを作成します。</para>
 
-          <para>プラグインの例: <xref linkend="IgnoreColumns" /> ignores the
-          differences inside specified columns, while displaying the characters
-          in these columns.</para>
+          <para>プラグインの例: <xref linkend="IgnoreColumns" /> 
+          指定された列範囲に表示されている文字の違いを
+          無視します。</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -103,13 +105,14 @@
   <section>
     <title>提案されたプラグインと自動モード</title>
 
-    <para>How is WinMerge able to apply the right plugin for a given file? Each
-    plugin specifies a list of file extensions (also listed in each plugin's
-    <xref linkend="Plugins_available" /> section, under <citetitle>File
-    filter</citetitle>). The extensions are used to associate one or more file
-    types with the plugin: when a compared file's extension matches an extension
-    in the plugin's list, the plugin is considered to be a <firstterm>suggested
-    plugin. </firstterm></para>
+    <para>WinMergeはどのようにして渡されたファイルに適切なプラグインを適用しているのでしょうか？
+    各プラグインはファイル拡張子のリストを持っています
+    （<xref linkend = "Plugins_available" />セクションの各プラグインの<citetitle>File filter</citetitle>にも
+    リストされています)
+    その拡張子は、1つ以上のファイルタイプをプラグインに関連付けるために使用されます。:
+    比較するファイルの拡張子があるプラグインの拡張子リストと一致する場合、
+    そのプラグインが<firstterm>提案されたプラグイン</firstterm>となります。
+    </para>
 
     <para>There are separate WinMerge options for the unpacking and prediffer
     types, described later in this topic, that enable you to apply the plugins
