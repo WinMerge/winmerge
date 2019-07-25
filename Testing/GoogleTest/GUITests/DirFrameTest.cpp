@@ -12,7 +12,7 @@ namespace
 
 using namespace GUITestUtils;
 
-class DirFrameTest : public testing::Test
+class DirFrameTest : public CommonTest
 {
 protected:
 	DirFrameTest()
@@ -27,8 +27,8 @@ protected:
 	static void SetUpTestCase()
 	{
 		// You can do set-up work for each test	here.
-		std::string dir1 = (getModuleFileName().parent_path() / "..\\..\\Data\\Compare\\Dir1\\").u8string();
-		std::string dir2 = (getModuleFileName().parent_path() / "..\\..\\Data\\Compare\\Dir2\\").u8string();
+		std::string dir1 = (getModuleFolder() / "..\\..\\Data\\Compare\\Dir1\\").u8string();
+		std::string dir2 = (getModuleFolder() / "..\\..\\Data\\Compare\\Dir2\\").u8string();
 		m_hwndWinMerge = execWinMerge(("/noprefs /maxmize /r " + dir1 + " " + dir2).c_str());
 	}
 
@@ -53,87 +53,75 @@ protected:
 		waitForInputIdleByHWND(m_hwndWinMerge);
 	}
 
-	void selectMenu(UINT id)
-	{
-		GUITestUtils::selectMenu(m_hwndWinMerge, id);
-	}
-
 	// Objects declared here can be used by all tests in the test case for Foo.
-	static HWND m_hwndWinMerge;
 };
-
-HWND DirFrameTest::m_hwndWinMerge = nullptr;
 
 TEST_F(DirFrameTest, FileSaveProject)
 {
-	selectMenu(ID_FILE_SAVEPROJECT);
-	selectMenu(ID_FILE_CLOSE);
+	selectMenuAndSaveWindowImage(ID_FILE_SAVEPROJECT);
+	selectMenuAndSaveWindowImage(ID_FILE_CLOSE);
 }
 
 TEST_F(DirFrameTest, EditSelectAll)
 {
-	selectMenu(ID_EDIT_SELECT_ALL);
+	selectMenuAndSaveWindowImage(ID_EDIT_SELECT_ALL);
 }
 
 TEST_F(DirFrameTest, ViewFilters)
 {
-	selectMenu(ID_OPTIONS_SHOWIDENTICAL);
-	selectMenu(ID_OPTIONS_SHOWDIFFERENT);
-	selectMenu(ID_OPTIONS_SHOWUNIQUELEFT);
-	selectMenu(ID_OPTIONS_SHOWUNIQUERIGHT);
-	selectMenu(ID_OPTIONS_SHOWSKIPPED);
-	selectMenu(ID_OPTIONS_SHOWBINARIES);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWIDENTICAL);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWDIFFERENT);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWUNIQUELEFT);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWUNIQUERIGHT);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWSKIPPED);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWBINARIES);
 	Sleep(500);
-	selectMenu(ID_OPTIONS_SHOWIDENTICAL);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWIDENTICAL);
 	Sleep(500);
-	selectMenu(ID_OPTIONS_SHOWDIFFERENT);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWDIFFERENT);
 	Sleep(500);
-	selectMenu(ID_OPTIONS_SHOWUNIQUELEFT);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWUNIQUELEFT);
 	Sleep(500);
-	selectMenu(ID_OPTIONS_SHOWUNIQUERIGHT);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWUNIQUERIGHT);
 	Sleep(500);
-	selectMenu(ID_OPTIONS_SHOWSKIPPED);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWSKIPPED);
 	Sleep(500);
-	selectMenu(ID_OPTIONS_SHOWBINARIES);
+	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWBINARIES);
 	Sleep(500);
 }
 
 TEST_F(DirFrameTest, ViewTreeMode)
 {
-	selectMenu(ID_VIEW_TREEMODE);
+	selectMenuAndSaveWindowImage(ID_VIEW_TREEMODE);
 	Sleep(500);
-	selectMenu(ID_VIEW_TREEMODE);
+	selectMenuAndSaveWindowImage(ID_VIEW_TREEMODE);
 	Sleep(500);
-	selectMenu(ID_VIEW_EXPAND_ALLSUBDIRS);
+	selectMenuAndSaveWindowImage(ID_VIEW_EXPAND_ALLSUBDIRS);
 	Sleep(500);
-	selectMenu(ID_VIEW_COLLAPSE_ALLSUBDIRS);
+	selectMenuAndSaveWindowImage(ID_VIEW_COLLAPSE_ALLSUBDIRS);
 	Sleep(500);
 }
 
 TEST_F(DirFrameTest, ViewFont)
 {
-	selectMenu(ID_VIEW_SELECTFONT);
-	HWND hwndDlg = findForegroundDialog();
-	ASSERT_TRUE(hwndDlg != nullptr);
+	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_VIEW_SELECTFONT);
 	if (hwndDlg)
 	{
 		typeText(L"Fixedsys\n");
 		waitUntilClose(hwndDlg);
 	}
-	selectMenu(ID_VIEW_USEDEFAULTFONT);
+	selectMenuAndSaveWindowImage(ID_VIEW_USEDEFAULTFONT);
 }
 
 TEST_F(DirFrameTest, ViewSwapPanes)
 {
-	selectMenu(ID_VIEW_SWAPPANES);
-	selectMenu(ID_VIEW_SWAPPANES);
+	selectMenuAndSaveWindowImage(ID_VIEW_SWAPPANES);
+	selectMenuAndSaveWindowImage(ID_VIEW_SWAPPANES);
 }
 
 TEST_F(DirFrameTest, ViewCompareStatistics)
 {
-	selectMenu(ID_VIEW_DIR_STATISTICS);
-	HWND hwndDlg = findForegroundDialog();
-	ASSERT_TRUE(hwndDlg != nullptr);
+	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_VIEW_DIR_STATISTICS);
 	if (hwndDlg)
 	{
 		typeText(L"\x1b");
@@ -143,9 +131,9 @@ TEST_F(DirFrameTest, ViewCompareStatistics)
 
 TEST_F(DirFrameTest, ViewRefresh)
 {
-	selectMenu(ID_REFRESH);
-	selectMenu(ID_EDIT_SELECT_ALL);
-	selectMenu(ID_RESCAN);
+	selectMenuAndSaveWindowImage(ID_REFRESH);
+	selectMenuAndSaveWindowImage(ID_EDIT_SELECT_ALL);
+	selectMenuAndSaveWindowImage(ID_RESCAN);
 	Sleep(2000);
 }
 

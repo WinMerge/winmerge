@@ -3,6 +3,17 @@
 namespace GUITestUtils
 {
 
+bool saveWindowImageAsPNG(HWND hwnd, const std::filesystem::path& filename)
+{
+	RECT rc;
+	GetWindowRect(hwnd, &rc);
+	CImage img;
+	img.Create(rc.right - rc.left, rc.bottom - rc.top, 24);
+	PrintWindow(hwnd, img.GetDC(), 0);
+	img.ReleaseDC();
+	return SUCCEEDED(img.Save(filename.c_str(), Gdiplus::ImageFormatPNG));
+}
+
 DWORD waitForInputIdleByHWND(HWND hwnd, DWORD dwMilliseconds)
 {
 	DWORD dwProcessId = 0;
@@ -58,6 +69,11 @@ std::filesystem::path getModuleFileName()
 	return szPath;
 }
 
+std::filesystem::path getModuleFolder()
+{
+	return getModuleFileName().parent_path();
+}
+
 void waitUntilClose(HWND hwnd)
 {
 	while (IsWindow(hwnd)) Sleep(100);
@@ -68,10 +84,12 @@ void waitUntilFocus(HWND hwnd)
 	while (GetForegroundWindow() != hwnd) Sleep(100);
 }
 
-void selectMenu(HWND hwnd, unsigned id)
+void selectMenu(HWND hwnd, unsigned id, bool async)
 {
-	PostMessage(hwnd, WM_COMMAND, id, 0);
-	waitForInputIdleByHWND(hwnd);
+	if (async)
+		PostMessage(hwnd, WM_COMMAND, id, 0);
+	else
+		SendMessage(hwnd, WM_COMMAND, id, 0);
 }
 
 HWND execWinMerge(const std::string& args)
@@ -92,3 +110,6 @@ HWND execWinMerge(const std::string& args)
 }
 
 }
+
+HWND CommonTest::m_hwndWinMerge = nullptr;
+
