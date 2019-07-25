@@ -20,4 +20,5 @@
 #include <windows.h>
 #include <tchar.h>
 #include <afxres.h>
+#include <atlimage.h>
 #include "GUITestUtils.h"
