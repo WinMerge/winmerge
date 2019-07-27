@@ -5,7 +5,7 @@ namespace GUITestUtils
 
 bool saveWindowImageAsPNG(HWND hwnd, const std::filesystem::path& filename)
 {
-	RECT rc;
+	RECT rc{};
 	GetWindowRect(hwnd, &rc);
 	CImage img;
 	img.Create(rc.right - rc.left, rc.bottom - rc.top, 24);
@@ -25,6 +25,27 @@ DWORD waitForInputIdleByHWND(HWND hwnd, DWORD dwMilliseconds)
 	DWORD dwResult = WaitForInputIdle(hProcess, dwMilliseconds);
 	CloseHandle(hProcess);
 	return dwResult;
+}
+
+void waitUntilProcessExit(HWND hwnd)
+{
+	DWORD dwProcessId = 0;
+	GetWindowThreadProcessId(hwnd, &dwProcessId);
+	HANDLE hProcess = OpenProcess(SYNCHRONIZE, FALSE, dwProcessId);
+	if (!hProcess)
+		return;
+
+	WaitForSingleObject(hProcess, INFINITE);
+	CloseHandle(hProcess);
+}
+
+bool isMenuItemChecked(HWND hwnd, int id)
+{
+	MENUITEMINFO mii{sizeof(MENUITEMINFO)};
+	mii.fMask = MIIM_STATE;
+	if (GetMenuItemInfo(GetMenu(hwnd), id, false, &mii))
+		return mii.fState == MFS_CHECKED;
+	return false;
 }
 
 HWND findForegroundDialog()
@@ -89,7 +110,9 @@ void selectMenu(HWND hwnd, unsigned id, bool async)
 	if (async)
 		PostMessage(hwnd, WM_COMMAND, id, 0);
 	else
+	{
 		SendMessage(hwnd, WM_COMMAND, id, 0);
+	}
 }
 
 HWND execWinMerge(const std::string& args)
@@ -112,4 +135,5 @@ HWND execWinMerge(const std::string& args)
 }
 
 HWND CommonTest::m_hwndWinMerge = nullptr;
+std::filesystem::path CommonTest::m_screenshotFolder = CommonTest::getScreenshotFolderPath();
 
