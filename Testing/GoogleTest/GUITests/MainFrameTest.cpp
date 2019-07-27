@@ -28,13 +28,12 @@ protected:
 	{
 		// You can do set-up work for each test	here.
 		m_hwndWinMerge = execWinMerge();
-		std::error_code ec;
-		std::filesystem::create_directory(getScreenshotFolderPath(), ec);
 	}
 
 	static void TearDownTestCase()
 	{
 		PostMessage(m_hwndWinMerge, WM_CLOSE, 0, 0);
+		waitUntilProcessExit(m_hwndWinMerge);
 	}
 
 	// If	the	constructor	and	destructor are not enough for setting up
@@ -187,27 +186,27 @@ TEST_F(MainFrameTest, PluginsReload)
 
 TEST_F(MainFrameTest, WindowClose)
 {
-	selectMenuAndSaveWindowImage(ID_FILE_NEW);
+	selectMenu(ID_FILE_NEW);
 	selectMenuAndSaveWindowImage(ID_FILE_CLOSE);
 }
 
 TEST_F(MainFrameTest, WindowCloseAll)
 {
-	selectMenuAndSaveWindowImage(ID_FILE_NEW);
-	selectMenuAndSaveWindowImage(ID_FILE_NEW);
+	selectMenu(ID_FILE_NEW);
+	selectMenu(ID_FILE_NEW);
 	selectMenuAndSaveWindowImage(ID_WINDOW_CLOSEALL);
 }
 
 TEST_F(MainFrameTest, WindowChangePane)
 {
-	selectMenuAndSaveWindowImage(ID_FILE_NEW);
+	selectMenu(ID_FILE_NEW);
 	selectMenuAndSaveWindowImage(ID_WINDOW_CHANGE_PANE);
 }
 
 TEST_F(MainFrameTest, WindowArrangement)
 {
-	selectMenuAndSaveWindowImage(ID_FILE_NEW);
-	selectMenuAndSaveWindowImage(ID_FILE_NEW);
+	selectMenu(ID_FILE_NEW);
+	selectMenu(ID_FILE_NEW);
 	selectMenuAndSaveWindowImage(ID_WINDOW_TILE_HORZ);
 	selectMenuAndSaveWindowImage(ID_WINDOW_TILE_VERT);
 	selectMenuAndSaveWindowImage(ID_WINDOW_CASCADE);
@@ -215,36 +214,41 @@ TEST_F(MainFrameTest, WindowArrangement)
 
 TEST_F(MainFrameTest, HelpWinMergeHelp)
 {
-	selectMenuAndSaveWindowImage(ID_HELP_CONTENTS);
+	selectMenuAsync(ID_HELP_CONTENTS);
 	Sleep(1000);
+	saveForegroundWindowImage();
 	SwitchToThisWindow(m_hwndWinMerge, TRUE);
 }
 
 TEST_F(MainFrameTest, HelpReleaseNotes)
 {
-	selectMenuAndSaveWindowImage(ID_HELP_RELEASENOTES);
+	selectMenuAsync(ID_HELP_RELEASENOTES);
 	Sleep(1000);
+	saveForegroundWindowImage();
 	SwitchToThisWindow(m_hwndWinMerge, TRUE);
 }
 
 TEST_F(MainFrameTest, HelpTranslations)
 {
-	selectMenuAndSaveWindowImage(ID_HELP_TRANSLATIONS);
+	selectMenuAsync(ID_HELP_TRANSLATIONS);
 	Sleep(1000);
+	saveForegroundWindowImage();
 	SwitchToThisWindow(m_hwndWinMerge, TRUE);
 }
 
 TEST_F(MainFrameTest, HelpConfiguraiton)
 {
-	selectMenuAndSaveWindowImage(ID_HELP_GETCONFIG);
+	selectMenuAsync(ID_HELP_GETCONFIG);
 	Sleep(1000);
+	saveForegroundWindowImage();
 	SwitchToThisWindow(m_hwndWinMerge, TRUE);
 }
 
 TEST_F(MainFrameTest, HelpGNULicense)
 {
-	selectMenuAndSaveWindowImage(ID_HELP_GNULICENSE);
+	selectMenuAsync(ID_HELP_GNULICENSE);
 	Sleep(1000);
+	saveForegroundWindowImage();
 	SwitchToThisWindow(m_hwndWinMerge, TRUE);
 }
 

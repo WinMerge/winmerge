@@ -18,6 +18,7 @@
 #include <tchar.h>
 #include <gtest/gtest.h>
 #include <windows.h>
+#include <CommCtrl.h>
 #include <tchar.h>
 #include <afxres.h>
 #include <atlimage.h>

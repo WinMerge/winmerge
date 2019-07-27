@@ -35,6 +35,7 @@ protected:
 	static void TearDownTestCase()
 	{
 		PostMessage(m_hwndWinMerge, WM_CLOSE, 0, 0);
+		waitUntilProcessExit(m_hwndWinMerge);
 	}
 
 	// If	the	constructor	and	destructor are not enough for setting up
@@ -59,7 +60,7 @@ protected:
 TEST_F(DirFrameTest, FileSaveProject)
 {
 	selectMenuAndSaveWindowImage(ID_FILE_SAVEPROJECT);
-	selectMenuAndSaveWindowImage(ID_FILE_CLOSE);
+	selectMenu(ID_FILE_CLOSE);
 }
 
 TEST_F(DirFrameTest, EditSelectAll)
@@ -132,7 +133,7 @@ TEST_F(DirFrameTest, ViewCompareStatistics)
 TEST_F(DirFrameTest, ViewRefresh)
 {
 	selectMenuAndSaveWindowImage(ID_REFRESH);
-	selectMenuAndSaveWindowImage(ID_EDIT_SELECT_ALL);
+	selectMenu(ID_EDIT_SELECT_ALL);
 	selectMenuAndSaveWindowImage(ID_RESCAN);
 	Sleep(2000);
 }
