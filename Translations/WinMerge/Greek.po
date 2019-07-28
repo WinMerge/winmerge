@@ -1984,10 +1984,6 @@ msgid "Different"
 msgstr "Διαφορετικά"
 
 #, c-format
-msgid "Text:"
-msgstr "Κείμενο:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Δυαδικά:"
 

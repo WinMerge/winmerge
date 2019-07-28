@@ -1990,10 +1990,6 @@ msgid "Different"
 msgstr "Відрізняються"
 
 #, c-format
-msgid "Text:"
-msgstr "Текст:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Бінарні:"
 

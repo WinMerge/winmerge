@@ -1984,10 +1984,6 @@ msgid "Different"
 msgstr "Diferents"
 
 #, c-format
-msgid "Text:"
-msgstr ""
-
-#, c-format
 msgid "Binary:"
 msgstr "Binaris:"
 

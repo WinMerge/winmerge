@@ -10,6 +10,8 @@ WinMerge 2.16.4
   Folder compare:
   - Bugfix: Generating HTML Folder Compare report including File Compare
      report did not complete (Bitbucket #15)
+  - Bugfix: Compare Statistics dialog: The number of diff folders was
+     counted in the number of diff files
   Plugins:
   - Bugfix: PrediffLineFilter.sct: Wrong encoding for settings
      dialog (Bitbucket #16)

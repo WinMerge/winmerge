@@ -1534,9 +1534,6 @@ msgstr "Failai:"
 msgid "Different"
 msgstr "Yra skirtingi"
 
-msgid "Text:"
-msgstr "Tekstiniai:"
-
 msgid "Binary:"
 msgstr "Binariniai:"
 

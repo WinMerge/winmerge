@@ -1989,10 +1989,6 @@ msgid "Different"
 msgstr "Razlika"
 
 #, c-format
-msgid "Text:"
-msgstr "Tekst"
-
-#, c-format
 msgid "Binary:"
 msgstr "Binarno:"
 
