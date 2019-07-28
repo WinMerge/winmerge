@@ -1,3 +1,26 @@
+WinMerge 2.16.4
+  File compare:
+  - Bugfix: coretools.cpp: linelen() should not truncate lines with embedded
+     NULs (GitHub #156)
+  - Bugfix: file compare : right-click doesn't select the diff under
+     the mouse (GitHub #159)
+  - Bugfix: Avoid an exception in GuessCodepageEncoding() when filepath equals
+     "NUL" (GitHub #162)
+  - Bugfix: Auto-indent did not work if the EOL-style was not CRLF
+  Folder compare:
+  - Bugfix: Generating HTML Folder Compare report including File Compare
+     report did not complete (Bitbucket #15)
+  Plugins:
+  - Bugfix: PrediffLineFilter.sct: Wrong encoding for settings
+     dialog (Bitbucket #16)
+  Translations:
+  - Update Russian translation (Bitbucket PR #51)
+  - Update Italian translation (Bitbucket PR #52)
+  Internals:
+  - Favor PathContext::GetSize() over PathContext::size() (GitHub #157)
+  - Consolidate FolderCmp (GitHub #158, #160, #161)
+  - Avoid some InnoSetup compiler warnings (Bitbucket PR #53)
+
 WinMerge 2.16.3
   General:
   - Bugfix: Slow startup with documents folder redirected to high-latency
