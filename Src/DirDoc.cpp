@@ -335,11 +335,10 @@ void CDirDoc::Rescan()
 	}
 	else if (m_bMarkedRescan)
 	{
-		m_diffThread.SetCollectFunction([](DiffFuncStruct* myStruct) {
+		m_diffThread.SetCollectFunction(nullptr);
+		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
 			int nItems = DirScan_UpdateMarkedItems(myStruct, nullptr);
 			myStruct->context->m_pCompareStats->IncreaseTotalItems(nItems);
-		});
-		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
 			DirScan_CompareRequestedItems(myStruct, nullptr);
 		});
 	}

@@ -123,7 +123,8 @@ static void DiffThreadCollect(void *pParam)
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
 
-	myStruct->m_fncCollect(myStruct);
+	if (myStruct->m_fncCollect)
+		myStruct->m_fncCollect(myStruct);
 
 	// Release Semaphore() once again to signal that collect phase is ready
 	myStruct->pSemaphore->set();
