@@ -1972,10 +1972,6 @@ msgid "Different"
 msgstr "Разлика"
 
 #, c-format
-msgid "Text:"
-msgstr "Текст"
-
-#, c-format
 msgid "Binary:"
 msgstr "Бинарни"
 

@@ -160,8 +160,15 @@ CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode) const
 	}
 	else
 	{
-		// presumably it is different
-		return di.isBin() ? RESULT_BINDIFF : RESULT_DIFF;
+		if (di.isDirectory())
+		{
+			return RESULT_DIRDIFF;
+		}
+		else
+		{
+			// presumably it is different
+			return di.isBin() ? RESULT_BINDIFF : RESULT_DIFF;
+		}
 	}
 }
 

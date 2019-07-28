@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-07-22 22:06+0000\n"
+"POT-Creation-Date: 2019-07-28 15:48+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1515,9 +1515,6 @@ msgid "Files:"
 msgstr ""
 
 msgid "Different"
-msgstr ""
-
-msgid "Text:"
 msgstr ""
 
 msgid "Binary:"
