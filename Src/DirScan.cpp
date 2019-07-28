@@ -932,7 +932,10 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 	else
 		di->diffcode.diffcode = code | DIFFCODE::THREEWAY;
 
-	myStruct->context->m_pCompareStats->IncreaseTotalItems();
-	myStruct->pSemaphore->set();
+	if (myStruct->m_fncCollect)
+	{
+		myStruct->context->m_pCompareStats->IncreaseTotalItems();
+		myStruct->pSemaphore->set();
+	}
 	return di;
 }
