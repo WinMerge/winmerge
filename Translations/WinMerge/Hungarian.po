@@ -1985,10 +1985,6 @@ msgid "Different"
 msgstr "Különböző"
 
 #, c-format
-msgid "Text:"
-msgstr "Szöveg:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Bináris:"
 

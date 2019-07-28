@@ -1539,9 +1539,6 @@ msgstr "Bestanden:"
 msgid "Different"
 msgstr "Verschillend"
 
-msgid "Text:"
-msgstr "Tekst:"
-
 msgid "Binary:"
 msgstr "Binair:"
 
