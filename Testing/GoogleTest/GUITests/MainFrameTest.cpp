@@ -135,6 +135,9 @@ TEST_F(MainFrameTest, ViewTabBar)
 {
 	selectMenuAndSaveWindowImage(ID_VIEW_TAB_BAR);
 	selectMenuAndSaveWindowImage(ID_VIEW_TAB_BAR);
+	selectMenu(ID_FILE_OPEN);
+	selectMenuAndSaveWindowImage(ID_VIEW_TAB_BAR);
+	selectMenuAndSaveWindowImage(ID_VIEW_TAB_BAR);
 }
 
 TEST_F(MainFrameTest, ToolsFilters)

@@ -111,6 +111,7 @@ TEST_F(DirFrameTest, ViewFont)
 		typeText(L"Fixedsys\n");
 		waitUntilClose(hwndDlg);
 	}
+	saveImage();
 	selectMenuAndSaveWindowImage(ID_VIEW_USEDEFAULTFONT);
 }
 
@@ -136,6 +137,38 @@ TEST_F(DirFrameTest, ViewRefresh)
 	selectMenu(ID_EDIT_SELECT_ALL);
 	selectMenuAndSaveWindowImage(ID_RESCAN);
 	Sleep(2000);
+}
+
+TEST_F(DirFrameTest, ToolsCustomizeColumns)
+{
+	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_TOOLS_CUSTOMIZECOLUMNS);
+	if (hwndDlg)
+	{
+		typeText(L"\x1b");
+		waitUntilClose(hwndDlg);
+	}
+}
+
+TEST_F(DirFrameTest, ToolsGeneratePatch)
+{
+	keybd_event(VK_END, 0, 0, 0);
+	keybd_event(VK_END, 0, KEYEVENTF_KEYUP, 0);
+	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_TOOLS_GENERATEPATCH);
+	if (hwndDlg)
+	{
+		typeText(L"\x1b");
+		waitUntilClose(hwndDlg);
+	}
+}
+
+TEST_F(DirFrameTest, ToolsGenerateReport)
+{
+	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_TOOLS_GENERATEREPORT);
+	if (hwndDlg)
+	{
+		typeText(L"\x1b");
+		waitUntilClose(hwndDlg);
+	}
 }
 
 }

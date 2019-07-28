@@ -63,7 +63,8 @@ HWND findForegroundDialog()
 
 void typeText(const wchar_t *text)
 {
-	for (size_t i = 0; i < wcslen(text); ++i)
+	size_t len = wcslen(text);
+	for (size_t i = 0; i < len; ++i)
 	{
 		SHORT r = VkKeyScan(text[i]);
 		if (HIBYTE(r) == 1)
@@ -135,5 +136,5 @@ HWND execWinMerge(const std::string& args)
 }
 
 HWND CommonTest::m_hwndWinMerge = nullptr;
-std::filesystem::path CommonTest::m_screenshotFolder = CommonTest::getScreenshotFolderPath();
+std::filesystem::path CommonTest::m_screenshotFolder;
 
