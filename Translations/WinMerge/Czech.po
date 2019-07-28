@@ -1987,10 +1987,6 @@ msgid "Different"
 msgstr "Rozdílné"
 
 #, c-format
-msgid "Text:"
-msgstr "Textové:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Binární:"
 

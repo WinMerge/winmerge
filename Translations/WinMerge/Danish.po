@@ -1996,10 +1996,6 @@ msgid "Different"
 msgstr "Forskellige"
 
 #, c-format
-msgid "Text:"
-msgstr "Tekst:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Binær:"
 
