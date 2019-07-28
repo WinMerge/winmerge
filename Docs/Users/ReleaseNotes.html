@@ -49,24 +49,57 @@
 </head>
 <body>
 
-<h2>WinMerge 2.16.3 Release Notes</h2>
+<h2>WinMerge 2.16.4 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2163">What Is New in 2.16.3 Beta?</a></li>
+  <li><a href="#new2164">What Is New in 2.16.4?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>June 2019</p>
+<p>July 2019</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.4 stable release. This release replaces earlier WinMerge 
+stable releases as a recommended release.
 </p>
 
 <p>
 Please submit bug reports to our <a href="http://bitbucket.org/winmerge/winmerge/issues">bug-tracker</a>.
 </p>
+
+<h3><a name="#new2164">What Is New in 2.16.4?</a></h3>
+<h4>File compare</h4>
+<ul>
+  <li>Bugfix: coretools.cpp: linelen() should not truncate lines with embedded NULs (GitHub #156)</li>
+  <li>Bugfix: file compare : right-click doesn't select the diff under the mouse (GitHub #159)</li>
+  <li>Bugfix: Avoid an exception in GuessCodepageEncoding() when filepath equals "NUL" (GitHub #162)</li>
+  <li>Bugfix: Auto-indent did not work if the EOL-style was not CRLF</li>
+</ul>
+
+<h4>Folder compare</h4>
+<ul>
+  <li>Bugfix: Generating HTML Folder Compare report including File Compare report did not complete (Bitbucket #15)</li>
+  <li>Bugfix: Compare Statistics dialog: The number of diff folders was counted in the number of diff files</li>
+</ul>
+
+<h4>Plugins</h4>
+<ul>
+  <li>Bugfix: PrediffLineFilter.sct: Wrong encoding for settings dialog (Bitbucket #16)</li>
+</ul>
+
+<h4>Translations</h4>
+<ul>
+  <li>Update Russian translation (Bitbucket PR #51)</li>
+  <li>Update Italian translation (Bitbucket PR #52)</li>
+</ul>
+
+<h4>Internals</h4>
+<ul>
+  <li>Favor PathContext::GetSize() over PathContext::size() (GitHub #157)</li>
+  <li>Consolidate FolderCmp (GitHub #158, #160, #161)</li>
+  <li>Avoid some InnoSetup compiler warnings (Bitbucket PR #53)</li>
+</ul>
 
 <h3><a name="#new2163">What Is New in 2.16.3 Beta?</a></h3>
 <h4>General</h4>

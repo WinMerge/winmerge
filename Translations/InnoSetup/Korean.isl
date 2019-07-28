@@ -1,15 +1,32 @@
-; *** Inno Setup version 5.5.3+ Korean messages ***
+; *** Inno Setup version 6.0.0+ Korean messages ***
 ;
+; ▒ 6.0.0+ Translator: SungDong Kim (acroedit@gmail.com)
 ; ▒ 5.5.3+ Translator: Domddol (domddol@gmail.com)
 ; ▒ Translation date: MAR 04, 2014
 ; ▒ Contributors: Hansoo KIM (iryna7@gmail.com), Woong-Jae An (a183393@hanmail.net)
 ; ▒ Storage: http://www.jrsoftware.org/files/istrans/
 ; ▒ 이 번역은 새로운 한국어 맞춤법 규칙을 준수합니다.
+; Note: When translating this text, do not add periods (.) to the end of
+; messages that didn't have them already, because on those messages Inno
+; Setup adds the periods automatically (appending a period would result in
+; two periods being displayed).
 
 [LangOptions]
+; The following three entries are very important. Be sure to read and 
+; understand the '[LangOptions] section' topic in the help file.
 LanguageName=Korean
 LanguageID=$0412
 LanguageCodePage=949
+; If the language you are translating to requires special font faces or
+; sizes, uncomment any of the following entries and change them accordingly.
+;DialogFontName=
+;DialogFontSize=8
+;WelcomeFontName=Verdana
+;WelcomeFontSize=12
+;TitleFontName=Arial
+;TitleFontSize=29
+;CopyrightFontName=Arial
+;CopyrightFontSize=8
 
 [Messages]
 
@@ -28,6 +45,7 @@ ErrorTitle=오류
 SetupLdrStartupMessage=%1을(를) 설치합니다, 계속하시겠습니까?
 LdrCannotCreateTemp=임시 파일을 만들 수 없습니다, 설치를 중단합니다
 LdrCannotExecTemp=임시 폴더의 파일을 실행할 수 없습니다, 설치를 중단합니다
+HelpTextNote=
 
 ; *** Startup error messages
 LastErrorMessage=%1.%n%n오류 %2: %3
@@ -41,13 +59,22 @@ WindowsServicePackRequired=이 프로그램을 실행하려면 %1 sp%2 이상이어야 합니다.
 NotOnThisPlatform=이 프로그램은 %1에서 작동하지 않습니다.
 OnlyOnThisPlatform=이 프로그램은 %1에서 실행해야 합니다.
 OnlyOnTheseArchitectures=이 프로그램은 아래 처리 구조와 호환되는 Windows 버전에만 설치할 수 있습니다:%n%n%1
-MissingWOW64APIs=귀하의 Windows는 64비트 설치에 필요한 기능이 포함되어 있지 않습니다, 이 문제를 해결하려면 sp%1을(를) 설치하시기 바랍니다.
 WinVersionTooLowError=이 프로그램은 %1 버전 %2 이상이 필요합니다.
 WinVersionTooHighError=이 프로그램은 %1 버전 %2 이상에서 설치할 수 없습니다.
 AdminPrivilegesRequired=이 프로그램을 설치하려면 관리자로 로그인해야 합니다.
 PowerUserPrivilegesRequired=이 프로그램을 설치하려면 관리자 또는 고급 사용자로 로그인해야 합니다.
 SetupAppRunningError=현재 %1이(가) 실행 중입니다!%n%n지금 그것의 모든 인스턴스를 닫아 주십시오. 그런 다음 계속하려면 "확인"을, 종료하려면 "취소"를 클릭하십시오.
 UninstallAppRunningError=현재 %1이(가) 실행 중입니다!%n%n지금 그것의 모든 인스턴스를 닫아 주십시오. 그런 다음 계속하려면 "확인"을, 종료하려면 "취소"를 클릭하십시오.
+
+; *** Startup questions
+PrivilegesRequiredOverrideTitle=설치 모드 선택
+PrivilegesRequiredOverrideInstruction=설치 모드를 선택해 주십시오
+PrivilegesRequiredOverrideText1=%1 은 모든 사용자(관리자 권한 필요) 또는 현재 사용자용으로 설치합니다.
+PrivilegesRequiredOverrideText2=%1 은 현재 사용자 또는 모든 사용자(관리자 권한 필요) 용으로 설치합니다.
+PrivilegesRequiredOverrideAllUsers=모든 사용자용으로 설치(&A)
+PrivilegesRequiredOverrideAllUsersRecommended=모든 사용자용으로 설치(&A) (추천)
+PrivilegesRequiredOverrideCurrentUser=현재 사용자용으로 설치(&M)
+PrivilegesRequiredOverrideCurrentUserRecommended=현재 사용자용으로 설치(&M) (추천)
 
 ; *** Misc. errors
 ErrorCreatingDir="%1" 폴더를 만들 수 없습니다.
@@ -79,7 +106,7 @@ ButtonNewFolder=새 폴더 만들기(&M)
 
 ; *** "Select Language" dialog messages
 SelectLanguageTitle=설치 언어 선택
-SelectLanguageLabel=설치에 사용할 표시 언어:
+SelectLanguageLabel=설치에 사용할 언어를 선택하십시오.
 
 ; *** Common wizard text
 ClickNext=계속하려면 "다음"을 클릭하고 설치를 종료하려면 "취소"를 클릭합니다.
@@ -97,7 +124,7 @@ WizardPassword=비밀 번호
 PasswordLabel1=이 설치 마법사는 비밀 번호로 보호되어 있습니다.
 PasswordLabel3=비밀 번호를 입력하고 "다음"을 클릭하십시오. 비밀 번호는 대소문자를 구분해야 합니다.
 PasswordEditLabel=비밀 번호(&P):
-IncorrectPassword=비밀 번호가 정확하지 않습니다, 다시 입력하십시오!
+IncorrectPassword=비밀 번호가 정확하지 않습니다, 다시 입력하십시오.
 
 ; *** "License Agreement" wizard page
 WizardLicense=사용권 계약
@@ -119,7 +146,7 @@ WizardUserInfo=사용자 정보
 UserInfoDesc=사용자 정보를 입력하십시오.
 UserInfoName=사용자 이름(&U):
 UserInfoOrg=조직(&O):
-UserInfoSerial=일련 번호(&S):
+UserInfoSerial=시리얼 번호(&S):
 UserInfoNameRequired=사용자 이름을 입력하십시오.
 
 ; *** "Select Destination Location" wizard page
@@ -223,7 +250,10 @@ SelectDirectoryLabel=다음 디스크의 위치를 지정하십시오.
 
 ; *** Installation phase messages
 SetupAborted=설치가 완료되지 않았습니다.%n%n문제를 해결한 후, 다시 설치를 시작하십시오.
-EntryAbortRetryIgnore=다시 시도하려면 "재시도"를, 무시하고 계속하려면 "무시"를, 설치를 취소하려면 "취소"를 클릭하십시오.
+AbortRetryIgnoreSelectAction=액션을 선택해 주십시오.
+AbortRetryIgnoreRetry=재시도(&T)
+AbortRetryIgnoreIgnore=오류를 무시하고 진행(&I)
+AbortRetryIgnoreCancel=설치 취소
 
 ; *** Installation status messages
 StatusClosingApplications=응용프로그램을 종료하는 중...
@@ -241,7 +271,7 @@ StatusRollback=변경을 취소하는 중...
 ; *** Misc. errors
 ErrorInternal2=내부 오류: %1
 ErrorFunctionFailedNoCode=%1 실패
-ErrorFunctionFailed=%1 실패, 코드: %2
+ErrorFunctionFailed=%1 실패; 코드 %2
 ErrorFunctionFailedWithMessage=%1 실패, 코드: %2.%n%3
 ErrorExecutingProgram=파일 실행 오류:%n%1
 
@@ -254,11 +284,13 @@ ErrorRegWriteKey=레지스트리 키 쓰기 오류:%n%1\%2
 ErrorIniEntry=%1 파일에 INI 항목 만들기 오류입니다.
 
 ; *** File copying errors
-FileAbortRetryIgnore=다시 시도하려면 "재시도"를, 이 파일을 건너뛰려면 "무시"를(비추천), 설치를 취소하려면 "취소"를 클릭하십시오.
-FileAbortRetryIgnore2=다시 시도하려면 "재시도"를, 무조건 진행하려면 "무시"를(비추천), 설치를 취소하려면 "취소"를 클릭하십시오.
+FileAbortRetryIgnoreSkipNotRecommended=이 파일을 건너띔(&S) (권장하지 않습니다)
+FileAbortRetryIgnoreIgnoreNotRecommended=오류를 무시하고 진행(&I) (권장하지 않습니다)
 SourceIsCorrupted=원본 파일이 손상됨
 SourceDoesntExist=원본 파일 %1이(가) 존재하지 않음
-ExistingFileReadOnly=기존 파일은 읽기 전용입니다.%n%n읽기 전용 속성을 제거하고 다시 시도하려면 "재시도"를, 이 파일을 건너뛰려면 "무시"를, 설치를 취소하려면 "취소"를 클릭하십시오.
+ExistingFileReadOnly2=기존 파일은 읽기 전용이기때문에 대체할 수 없습니다.
+ExistingFileReadOnlyRetry=읽기 전용 속성을 해제하고 다시 시도하려면(&R)
+ExistingFileReadOnlyKeepExisting=기존 파일을 유지(&K)
 ErrorReadingExistingDest=기존 파일을 읽는 동안 오류 발생:
 FileExists=파일이 이미 존재합니다.%n%n파일을 덮어쓰시겠습니까?
 ExistingFileNewer=기존 파일이 설치하려고 하는 파일보다 새 파일입니다, 기존 파일을 유지하시기 바랍니다.%n%n기존 파일을 유지하시겠습니까?
@@ -272,6 +304,16 @@ ErrorRenamingTemp=대상 폴더 내의 파일 이름을 바꾸는 동안 오류 발생:
 ErrorRegisterServer=DLL/OCX 등록 실패: %1
 ErrorRegSvr32Failed=RegSvr32가 다음 종료 코드로 실패: %1
 ErrorRegisterTypeLib=다음 유형의 라이브러리 등록에 실패: %1
+
+; *** Uninstall display name markings
+; used for example as 'My Program (32-bit)'
+UninstallDisplayNameMark=%1 (%2)
+; used for example as 'My Program (32-bit, All users)'
+UninstallDisplayNameMarks=%1 (%2, %3)
+UninstallDisplayNameMark32Bit=32비트
+UninstallDisplayNameMark64Bit=64비트
+UninstallDisplayNameMarkAllUsers=모든 사용자
+UninstallDisplayNameMarkCurrentUser=현재 사용자
 
 ; *** Post-installation errors
 ErrorOpeningReadme=README 파일을 여는 중 오류가 발생했습니다.

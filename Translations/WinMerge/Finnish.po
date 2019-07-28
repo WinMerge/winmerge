@@ -1985,10 +1985,6 @@ msgid "Different"
 msgstr "Poikkeava"
 
 #, c-format
-msgid "Text:"
-msgstr "Teksti"
-
-#, c-format
 msgid "Binary:"
 msgstr "Binääri:"
 

@@ -1995,10 +1995,6 @@ msgid "Different"
 msgstr "Ezberdin"
 
 #, c-format
-msgid "Text:"
-msgstr "Idazkia:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Binarioa:"
 

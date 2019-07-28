@@ -1992,10 +1992,6 @@ msgid "Different"
 msgstr "Odlišné"
 
 #, c-format
-msgid "Text:"
-msgstr "Text:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Binárne:"
 

@@ -2000,10 +2000,6 @@ msgid "Different"
 msgstr "Olika"
 
 #, c-format
-msgid "Text:"
-msgstr "Text:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Binär:"
 

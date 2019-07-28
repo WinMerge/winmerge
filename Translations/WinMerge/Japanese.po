@@ -1544,9 +1544,6 @@ msgstr "ファイル:"
 msgid "Different"
 msgstr "差異あり"
 
-msgid "Text:"
-msgstr "テキスト:"
-
 msgid "Binary:"
 msgstr "バイナリ:"
 

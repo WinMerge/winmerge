@@ -1994,10 +1994,6 @@ msgid "Different"
 msgstr "Отличаются"
 
 #, c-format
-msgid "Text:"
-msgstr "Текст:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Двоичный:"
 

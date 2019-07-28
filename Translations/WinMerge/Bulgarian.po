@@ -1988,10 +1988,6 @@ msgid "Different"
 msgstr "Различни"
 
 #, c-format
-msgid "Text:"
-msgstr "Текст:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Двоични:"
 

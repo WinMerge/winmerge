@@ -1987,10 +1987,6 @@ msgid "Different"
 msgstr "වෙනස්"
 
 #, c-format
-msgid "Text:"
-msgstr "වගන්තිය:"
-
-#, c-format
 msgid "Binary:"
 msgstr "ද්වීමය:"
 

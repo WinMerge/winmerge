@@ -1990,10 +1990,6 @@ msgid "Different"
 msgstr "不同"
 
 #, c-format
-msgid "Text:"
-msgstr "文本:"
-
-#, c-format
 msgid "Binary:"
 msgstr "二进制:"
 

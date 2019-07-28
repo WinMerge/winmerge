@@ -1520,7 +1520,8 @@ BEGIN
     LTEXT           "Folders:",IDC_STATIC,72,7,38,10
     LTEXT           "Files:",IDC_STATIC,131,7,39,10
     GROUPBOX        "Different",IDC_STATIC,7,15,186,40
-    RTEXT           "Text:",IDC_STATIC,11,26,56,10
+    ICON            "",IDC_STAT_INOTEQUALFOLDER,72,24,16,16
+    RTEXT           "Static",IDC_STAT_DIFFFOLDER,86,25,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_INOTEQUAL,131,24,16,16
     RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
     RTEXT           "Binary:",IDC_STATIC,10,40,56,10
@@ -1560,7 +1561,8 @@ BEGIN
     LTEXT           "Folders:",IDC_STATIC,72,7,38,10
     LTEXT           "Files:",IDC_STATIC,131,7,39,10
     GROUPBOX        "Different",IDC_STATIC,7,15,186,40
-    RTEXT           "Text:",IDC_STATIC,11,26,56,10
+    ICON            "",IDC_STAT_INOTEQUALFOLDER,72,24,16,16
+    RTEXT           "Static",IDC_STAT_DIFFFOLDER,86,25,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_INOTEQUAL,131,24,16,16
     RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
     RTEXT           "Binary:",IDC_STATIC,10,40,56,10

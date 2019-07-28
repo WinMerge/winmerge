@@ -1995,10 +1995,6 @@ msgid "Different"
 msgstr "Farklılık"
 
 #, c-format
-msgid "Text:"
-msgstr "Metin:"
-
-#, c-format
 msgid "Binary:"
 msgstr "Binary:"
 

@@ -2000,10 +2000,6 @@ msgid "Different"
 msgstr "다름"
 
 #, c-format
-msgid "Text:"
-msgstr "텍스트:"
-
-#, c-format
 msgid "Binary:"
 msgstr "바이너리:"
 

@@ -2001,10 +2001,6 @@ msgid "Different"
 msgstr " متمايز"
 
 #, c-format
-msgid "Text:"
-msgstr " متن : "
-
-#, c-format
 msgid "Binary:"
 msgstr " دودويي "
 
