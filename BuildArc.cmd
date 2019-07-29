@@ -46,6 +46,11 @@ if "%1" == "" (
   set PLATFORMH=%1-
 )
 
+echo.
+echo ============================================================
+echo BUILD winmerge-%SAFEAPPVER%-%PLATFORMH%exe.zip...
+echo ============================================================
+
 rmdir /q /s "%DISTDIR%\%PLATFORMH%zip-version" > NUL 2> NUL
 mkdir "%DISTDIR%" 2> NUL
 
@@ -56,70 +61,84 @@ for %%i in (Languages Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIM
 )
 
 rem Docs
+echo Copy Docs...
 for %%i in (Translations\Docs\Readme\ReadMe-*.txt Build\Manual\htmlhelp\WinMerge.chm Docs\Users\ReleaseNotes.html Docs\Users\ChangeLog.txt) do (
-  copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Docs"
+  copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Docs" > NUL
 )
 for %%i in (Src\COPYING Docs\Users\Contributors.txt Docs\Users\ReadMe.txt) do (
-  copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge"
+  copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge" > NUL
 )
 
 rem Excecutables
-copy Build\%PLATFORM%\Release\WinMergeU.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
+echo Copy Excecutables...
+copy Build\%PLATFORM%\Release\WinMergeU.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 if not "%1" == "" (
-  copy Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
+  copy Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 )
 
 rem ShellExtension
-copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
-copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
-copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
+echo Copy ShellExtension...
+copy "Build\ShellExtension\ShellExtensionU.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+copy "Build\ShellExtension\ShellExtensionX64.dll" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
+copy ShellExtension\*Register*.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 
-rem Translation
-copy Build\%PLATFORM%\Release\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\"
+rem Translations
+echo Copy Translations...
+copy Build\%PLATFORM%\Release\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\" > NUL
 
 rem Filters
+echo Copy Filters...
 for %%i in (Filters\*.flt Filters\*.tmpl Filters\*.txt) do (
-  copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Filters"
+  copy "%%i" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Filters" > NUL
 )
 
 rem Plugins
-copy Plugins\dlls\%PLATFORM%\*.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\"
-copy Plugins\dlls\*.sct "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\"
+echo Copy Plugins...
+copy Plugins\dlls\%PLATFORM%\*.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\" > NUL
+copy Plugins\dlls\*.sct "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\" > NUL
 del "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\CompareMS*.dll" 2> NUL
 del "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\Watch*OfLog.dll" 2> NUL
 del "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\DisplayXMLFiles.dll" 2> NUL
 
 rem 7zPlugins
-copy Build\%PLATFORM%\Merge7z\Merge7z.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\"
-copy Build\%PLATFORM%\Merge7z\7z.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\"
-copy Build\%PLATFORM%\Merge7z\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\"
-copy Build\%PLATFORM%\Merge7z\Lang\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\Lang\"
+echo Copy 7zPlugins...
+copy Build\%PLATFORM%\Merge7z\Merge7z.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\" > NUL
+copy Build\%PLATFORM%\Merge7z\7z.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\" > NUL
+copy Build\%PLATFORM%\Merge7z\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\" > NUL
+copy Build\%PLATFORM%\Merge7z\Lang\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Merge7z\Lang\" > NUL
 
 rem Frhed
-copy Build\%PLATFORM%\Frhed\GPL.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\"
-rem copy Build\%PLATFORM%\Frhed\frhed.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\"
-copy Build\%PLATFORM%\Frhed\hekseditU.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\"
-copy Build\%PLATFORM%\Frhed\Docs\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs"
-copy Build\%PLATFORM%\Frhed\Docs\Sample.tpl "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs"
-copy Build\%PLATFORM%\Frhed\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Languages"
-copy Build\%PLATFORM%\Frhed\Languages\heksedit.lng "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Languages"
+echo Copy Frhed...
+copy Build\%PLATFORM%\Frhed\GPL.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
+rem copy Build\%PLATFORM%\Frhed\frhed.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
+copy Build\%PLATFORM%\Frhed\hekseditU.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\" > NUL
+copy Build\%PLATFORM%\Frhed\Docs\*.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs" > NUL
+copy Build\%PLATFORM%\Frhed\Docs\Sample.tpl "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Docs" > NUL
+copy Build\%PLATFORM%\Frhed\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Languages" > NUL
+copy Build\%PLATFORM%\Frhed\Languages\heksedit.lng "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\frhed\Languages" > NUL
 
 rem WinIMerge
-copy Build\WinIMerge\GPL.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\"
-copy Build\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\"
+echo Copy WinIMerge...
+copy Build\WinIMerge\GPL.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
+copy Build\WinIMerge\freeimage-license-gplv2.txt "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
 if "%1" == "" (
-  rem copy Build\WinIMerge\bin\WinIMerge.exe "%DISTDIR%\zip-version\WinMerge\WinIMerge\"
-  copy Build\WinIMerge\bin\WinIMergeLib.dll "%DISTDIR%\zip-version\WinMerge\WinIMerge\"
-  copy Build\WinIMerge\bin\vcomp*.dll "%DISTDIR%\zip-version\WinMerge\"
+  rem copy Build\WinIMerge\bin\WinIMerge.exe "%DISTDIR%\zip-version\WinMerge\WinIMerge\" > NUL
+  copy Build\WinIMerge\bin\WinIMergeLib.dll "%DISTDIR%\zip-version\WinMerge\WinIMerge\" > NUL
+  copy Build\WinIMerge\bin\vcomp*.dll "%DISTDIR%\zip-version\WinMerge\" > NUL
 ) else (
-  rem copy Build\WinIMerge\bin64\WinIMerge.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\"
-  copy Build\WinIMerge\bin64\WinIMergeLib.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\"
-  copy Build\WinIMerge\bin64\vcomp*.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
+  rem copy Build\WinIMerge\bin64\WinIMerge.exe "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
+  copy Build\WinIMerge\bin64\WinIMergeLib.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\WinIMerge\" > NUL
+  copy Build\WinIMerge\bin64\vcomp*.dll "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\" > NUL
 )
 
 rem Patch
-xcopy /s/y Build\GnuWin32 "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\GnuWin32\"
+echo Copy Patch...
+xcopy /s/y Build\GnuWin32 "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\GnuWin32\" > NUL
 
+echo.
+echo ------------------------------------------------------------
+echo Pack archive...
+echo ------------------------------------------------------------
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-%PLATFORMH%exe.zip" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\"
 
 goto :eof
