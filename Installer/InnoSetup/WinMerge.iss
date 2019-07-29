@@ -573,6 +573,7 @@ Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Finnish.txt; IconFileName
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-French.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: French
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Galician.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Galician
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Greek.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Greek
+Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Italian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Italian
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Japanese.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Japanese
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Portuguese.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Portuguese
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Romanian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Romanian
