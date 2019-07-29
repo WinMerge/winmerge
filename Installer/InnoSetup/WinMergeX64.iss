@@ -136,7 +136,7 @@ Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Galician.isl; InfoAft
 Name: German; MessagesFile: ..\..\Translations\InnoSetup\German.isl
 Name: Greek; MessagesFile: ..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt
 Name: Hungarian; MessagesFile: ..\..\Translations\InnoSetup\Hungarian.isl
-Name: Italian; MessagesFile: ..\..\Translations\InnoSetup\Italian.isl
+Name: Italian; MessagesFile: ..\..\Translations\InnoSetup\Italian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt
 Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Korean.isl
 Name: Lithuanian; MessagesFile: ..\..\Translations\InnoSetup\Lithuanian.isl
