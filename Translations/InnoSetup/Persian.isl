@@ -59,7 +59,8 @@ UkrainianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå Ç˜ÑÇíäí
 
 ;Tasks
 ExplorerContextMenu=&E İÚÇá äãæÏä í˜ÇÑå ÓÇÒí İåÑÓÊ ÌÓÊÌæÑ ãÊä 
-IntegrateTortoiseSVN=&T í˜ÇÑÌå ÓÇÒí ÈÇ ÊæÑÊæÆíÒ Óí æí ÇÓ 
+IntegrateTortoiseCVS=&T í˜ÇÑÌå ÓÇÒí ÈÇ ÊæÑÊæÆíÒ Óí æí ÇÓ 
+IntegrateTortoiseGIT=Integrate with To&rtoiseGIT
 IntegrateTortoiseSVN=&o í˜ÇÑÌå ÓÇÒí ÈÇ ÊæÑÊæÆíÒ ÇÓ æí Çä 
 IntegrateClearCase=&C í˜ÇÑå ÓÇÒí ÈÇ ÑÔäÇá ˜áÑ˜íÓ 
 AddToPath=&A ÇÖÇİå äãæÏä æÔå æíäãÑÌ Èå ãÓíÑåÇí ÓíÓÊã 
