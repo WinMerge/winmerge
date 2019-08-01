@@ -444,21 +444,21 @@ static String ColNewerGet(const CDiffContext *pCtxt, const void *p)
 	{
 		if (di.diffcode.isSideFirstOnly())
 		{
-			return _T("<*<");
+			return _T("<--");
 		}
 		if (di.diffcode.isSideSecondOnly())
 		{
-			return _T(">*>");
+			return _T("-->");
 		}
 		if (di.diffFileInfo[0].mtime != 0 && di.diffFileInfo[1].mtime != 0)
 		{
 			if (di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime)
 			{
-				return _T("<<");
+				return _T("<-");
 			}
 			if (di.diffFileInfo[0].mtime < di.diffFileInfo[1].mtime)
 			{
-				return _T(">>");
+				return _T("->");
 			}
 			return _T("==");
 		}
@@ -481,9 +481,9 @@ static String ColNewerGet(const CDiffContext *pCtxt, const void *p)
 			}
 		}
 		res = _T("LMR")[sortno[0]];
-		res += sorttime[0] == sorttime[1] ? _T("==") : _T("<<");
+		res += sorttime[0] == sorttime[1] ? _T("==") : _T("<-");
 		res += _T("LMR")[sortno[1]];
-		res += sorttime[1] == sorttime[2] ? _T("==") : _T("<<");
+		res += sorttime[1] == sorttime[2] ? _T("==") : _T("<-");
 		res += _T("LMR")[sortno[2]];
 		return res;
 	}
