@@ -1,19 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1 %2 sürümü
-AdditionalIcons=Ek simgeler:
-CreateDesktopIcon=Masaüstü simg&esi oluþturulsun
-CreateQuickLaunchIcon=Hýzlý Baþlat simgesi &oluþturulsun
-ProgramOnTheWeb=%1 Web Sitesi
-UninstallProgram=%1 Uygulamasýný Kaldýr
-LaunchProgram=%1 Uygulamasýný Çalýþtýr
-AssocFileExtension=%1 &uygulamasý ile %2 dosya uzantýsý iliþkilendirilsin
-AssocingFileExtension=%1 uygulamasý ile %2 dosya uzantýsý iliþkilendiriliyor...
-AutoStartProgramGroupDescription=Baþlangýç:
-AutoStartProgram=%1 otomatik olarak baþlatýlsýn
-AddonHostProgramNotFound=%1 seçtiðiniz klasörde bulunamadý.%n%nYine de devam etmek istiyor musunuz?
-
-
 ;Things we can also localize
 OptionalFeatures=Ýsteðe Baðlý Özellikler:
 CompanyName=Thingamahoochie Software

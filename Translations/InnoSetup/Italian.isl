@@ -1,18 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1 versione %2
-AdditionalIcons=Icone aggiuntive:
-CreateDesktopIcon=Crea un'icona sul &desktop
-CreateQuickLaunchIcon=Crea un'icona nella &barra 'Avvio veloce'
-ProgramOnTheWeb=Sito web di %1
-UninstallProgram=Disinstalla %1
-LaunchProgram=Avvia %1
-AssocFileExtension=&Associa i file con estensione %2 a %1
-AssocingFileExtension=Associazione dei file con estensione %2 a %1...
-AutoStartProgramGroupDescription=Esecuzione automatica:
-AutoStartProgram=Esegui automaticamente %1
-AddonHostProgramNotFound=Impossibile individuare %1 nella cartella selezionata.%n%nVuoi continuare ugualmente?
-
 ;Things we can also localize
 OptionalFeatures=Funzioni opzionali:
 CompanyName=Software Thingamahoochie

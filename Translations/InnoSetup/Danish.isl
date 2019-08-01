@@ -1,18 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1 version %2
-AdditionalIcons=Supplerende ikoner:
-CreateDesktopIcon=Opret ikon på skrive&bordet
-CreateQuickLaunchIcon=Opret &hurtigstart-ikon
-ProgramOnTheWeb=%1 på internettet
-UninstallProgram=Afinstaller (fjern) %1
-LaunchProgram=&Start %1
-AssocFileExtension=Sammen&kæd %1 med filtypen %2
-AssocingFileExtension=Sammenkæder %1 med filtypen %2...
-AutoStartProgramGroupDescription=Start:
-AutoStartProgram=Start automatisk %1
-AddonHostProgramNotFound=%1 blev ikke fundet i den valgte mappe.%n%nVil du alligevel fortsætte?
-
 ;Things we can also localize
 OptionalFeatures=Valgfrie komponenter:
 CompanyName=Thingamahoochie Software

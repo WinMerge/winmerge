@@ -1,18 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1 versie %2
-AdditionalIcons=Extra snelkoppelingen:
-CreateDesktopIcon=Maak een snelkoppeling op het &bureaublad
-CreateQuickLaunchIcon=Maak een snelkoppeling op de &Snel starten werkbalk
-ProgramOnTheWeb=%1 op het Web
-UninstallProgram=Verwijder %1
-LaunchProgram=&Start %1
-AssocFileExtension=&Koppel %1 aan de %2 bestandsextensie
-AssocingFileExtension=Bezig met koppelen van %1 aan de %2 bestandsextensie...
-AutoStartProgramGroupDescription=Opstarten:
-AutoStartProgram=%1 automatisch starten
-AddonHostProgramNotFound=%1 kon niet worden gevonden in de geselecteerde map.%n%nWilt u toch doorgaan?
-
 ;Things we can also localize
 OptionalFeatures=Optionele Functies:
 CompanyName=Thingamahoochie Software
