@@ -1,18 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1 versión %2
-AdditionalIcons=Accesos directos adicionales:
-CreateDesktopIcon=Crear un acceso directo en el &escritorio
-CreateQuickLaunchIcon=Crear un acceso directo en &Inicio Rápido
-ProgramOnTheWeb=%1 en la Web
-UninstallProgram=Desinstalar %1
-LaunchProgram=Ejecutar %1
-AssocFileExtension=&Asociar %1 con la extensión de archivo %2
-AssocingFileExtension=Asociando %1 con la extensión de archivo %2...
-AutoStartProgramGroupDescription=Inicio:
-AutoStartProgram=Iniciar automáticamente %1
-AddonHostProgramNotFound=%1 no pudo ser localizado en la carpeta seleccionada.%n%n¿Desea continuar de todas formas?
-
 ;Things we can also localize
 OptionalFeatures=Optional Features:
 CompanyName=Thingamahoochie Software

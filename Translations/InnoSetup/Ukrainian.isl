@@ -1,18 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1, версія %2
-AdditionalIcons=Додаткові ярлики:
-CreateDesktopIcon=Створити ярлики на &Робочому столі
-CreateQuickLaunchIcon=Створити ярлики на &Панелі швидкого запуску
-ProgramOnTheWeb=Сайт %1 в Інтернеті
-UninstallProgram=Видалити %1
-LaunchProgram=Відкрити %1
-AssocFileExtension=&Асоціювати %1 з розширенням файлу %2
-AssocingFileExtension=Асоціювання %1 з розширенням файлу %2...
-AutoStartProgramGroupDescription=Автозавантаження:
-AutoStartProgram=Автоматично завантажувати %1
-AddonHostProgramNotFound=%1 не знайдений у вказаній вами папці%n%nВи все одно бажаєте продовжити?
-
 ;Things we can also localize
 OptionalFeatures=Додаткові можливості:
 CompanyName=Thingamahoochie Software

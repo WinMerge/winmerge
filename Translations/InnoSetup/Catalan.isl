@@ -1,18 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1 versió %2
-AdditionalIcons=Icones addicionals:
-CreateDesktopIcon=Crea una icona a l'&Escriptori
-CreateQuickLaunchIcon=Crea una icona a la &Barra de tasques
-ProgramOnTheWeb=%1 a Internet
-UninstallProgram=Desinstal·la %1
-LaunchProgram=Obre %1
-AssocFileExtension=&Associa %1 amb l'extensió de fitxer %2
-AssocingFileExtension=Associant %1 amb l'extensió de fitxer %2...
-AutoStartProgramGroupDescription=Inici:
-AutoStartProgram=Inicia automàticament %1
-AddonHostProgramNotFound=%1 no ha pogut ser trobat a la carpeta seleccionada.%n%nVoleu continuar igualment?
-
 ;Things we can also localize
 OptionalFeatures=Característiques opcionals:
 CompanyName=Thingamahoochie Software

@@ -1,18 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1 versão %2
-AdditionalIcons=Atalhos adicionais:
-CreateDesktopIcon=Criar um atalho &na área de trabalho
-CreateQuickLaunchIcon=Criar um atalho na &barra de inicialização rápida
-ProgramOnTheWeb=%1 na Web
-UninstallProgram=Desinstalar o %1
-LaunchProgram=Iniciar o %1
-AssocFileExtension=&Associar o %1 com a extensão do arquivo %2
-AssocingFileExtension=Associando o %1 com a extensão do arquivo %2...
-AutoStartProgramGroupDescription=Inicialização:
-AutoStartProgram=Iniciar o %1 automaticamente
-AddonHostProgramNotFound=O %1 não pôde ser localizado na pasta que você selecionou.%n%nVocê quer continuar de qualquer maneira?
-
 ;Things we can also localize
 OptionalFeatures=Funções Opcionais:
 CompanyName=Software Thingamahoochie

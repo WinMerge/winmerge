@@ -1,18 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1 (wersja %2)
-AdditionalIcons=Dodatkowe skróty:
-CreateDesktopIcon=Utwórz skrót na &pulpicie
-CreateQuickLaunchIcon=Utwórz skrót na pasku &szybkiego uruchamiania
-ProgramOnTheWeb=Strona internetowa aplikacji %1
-UninstallProgram=Dezinstalacja aplikacji %1
-LaunchProgram=Uruchom aplikacjê %1
-AssocFileExtension=&Przypisz aplikacjê %1 do rozszerzenia pliku %2
-AssocingFileExtension=Przypisywanie aplikacji %1 do rozszerzenia pliku %2...
-AutoStartProgramGroupDescription=Autostart:
-AutoStartProgram=Automatycznie uruchamiaj aplikacjê %1
-AddonHostProgramNotFound=Aplikacja %1 nie zosta³a znaleziona we wskazanym przez Ciebie folderze.%n%nCzy pomimo tego chcesz kontynuowaæ?
-
 ;Things we can also localize
 OptionalFeatures=Funkcje opcjonalne:
 CompanyName=Thingamahoochie Software

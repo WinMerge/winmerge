@@ -1,18 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1 バージョン %2
-AdditionalIcons=アイコンを追加する:
-CreateDesktopIcon=デスクトップ上にアイコンを作成する(&D)
-CreateQuickLaunchIcon=クイック起動アイコンを作成する(&Q)
-ProgramOnTheWeb=%1 on the Web
-UninstallProgram=%1 をアンインストールする
-LaunchProgram=%1 を実行する
-AssocFileExtension=ファイル拡張子 %2 に %1 を関連付けます。
-AssocingFileExtension=ファイル拡張子 %2 に %1 を関連付けています...
-AutoStartProgramGroupDescription=スタートアップ:
-AutoStartProgram=%1 を自動的に開始する
-AddonHostProgramNotFound=選択されたフォルダーに %1 が見つかりませんでした。%n%nこのまま続行しますか？
-
 ;Things we can also localize
 OptionalFeatures=追加する機能:
 CompanyName=Thingamahoochie Software

@@ -1,18 +1,5 @@
 [CustomMessages]
 
-NameAndVersion=%1 versio %2
-AdditionalIcons=Lisäkuvakkeet:
-CreateDesktopIcon=Lu&o kuvake työpöydälle
-CreateQuickLaunchIcon=Luo kuvake &pikakäynnistyspalkkiin
-ProgramOnTheWeb=%1 Internetissä
-UninstallProgram=Poista %1
-LaunchProgram=&Käynnistä %1
-AssocFileExtension=&Yhdistä %1 tiedostopäätteeseen %2
-AssocingFileExtension=Yhdistetään %1 tiedostopäätteeseen %2 ...
-AutoStartProgramGroupDescription=Käynnistys:
-AutoStartProgram=Käynnistä %1 automaattisesti
-AddonHostProgramNotFound=%1 ei ole valitsemassasi kansiossa.%n%nHaluatko jatkaa tästä huolimatta?
-
 ;Things we can also localize
 OptionalFeatures=Optional Features:
 CompanyName=Thingamahoochie Software
