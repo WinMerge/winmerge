@@ -14,11 +14,11 @@ CustomInstallation=Benutzerdefinierte Installation
 AppCoreFiles=WinMerge Hauptdateien
 Filters=Filter
 Plugins=Plugins
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-ArchiveSupport=Archive Support
-ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Frhed=Frhed (Freier Hex-Editor)
+WinIMerge=WinIMerge (Bildvergleich)
+ArchiveSupport=Archiv-Support
+ShellExtension32bit=32-bit WinMerge Shell-Integration
+Patch=GnuWin32 Patch für Windows
 
 ;Localization Components
 Languages=Sprachen
@@ -62,17 +62,16 @@ ExplorerContextMenu=&Explorer Kontextmenü-Integration aktivieren
 IntegrateTortoiseCVS=Integrieren in &TortoiseCVS
 IntegrateTortoiseGIT=Integrieren in To&rtoiseGIT
 IntegrateTortoiseSVN=Integrieren in T&ortoiseSVN
-IntegrateClearCase=Integrieren in Rational &ClearCase
-AddToPath=&Add WinMerge folder to your system path
+AddToPath=WinMerge-Ordner zum &Systempfad hinzufügen
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
-RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
-MergeAtRightPane=Merge at right pane
-MergeAtCenterPane=Merge at center pane
-MergeAtLeftPane=Merge at left pane
-AutoMergeAtStartup=Auto-merge at startup time
+ThreeWayMergeWizardPageCaption=3-Wege-Merge
+ThreeWayMergeWizardPageDescription=Verwenden Sie WinMerge als 3-Wege-Mergeprogramm für TortoiseSVN/GIT?
+RegisterWinMergeAs3WayMergeTool=WinMerge als 3-Wege-Mergeprogramm registrieren
+MergeAtRightPane=Im rechten Bereich zusammenführen
+MergeAtCenterPane=Im mittleren Bereich zusammenführen
+MergeAtLeftPane=Im linkem Bereich zusammenführen
+AutoMergeAtStartup=Beim Start automatisch zusammenführen
 
 ;Icon Labels
 ReadMe=LIESMICH-Datei
