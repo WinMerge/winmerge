@@ -94,6 +94,7 @@ Localization:
   Antonio Angelo <antonio.angelo@gmail.com>
   Michele Merega <michele.merega@ifminfomaster.com>
   Michele Locati <michele@locati.it>
+  bovirus
 
 * Korean:
   Sukjoon <bbcool@gmail.com>
