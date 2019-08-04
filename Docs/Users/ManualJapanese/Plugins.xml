@@ -114,10 +114,11 @@
     そのプラグインが<firstterm>提案されたプラグイン</firstterm>となります。
     </para>
 
-    <para>There are separate WinMerge options for the unpacking and prediffer
-    types, described later in this topic, that enable you to apply the plugins
-    either manually or automatically. There is no automatic mode for editor
-    complement plugins.</para>
+    <para>このトピックで後述する展開プラグインタイプと比較前処理プラグインタイプには
+    別々のオプションがあり、
+    これらを使用して手動または自動でプラグインを適用できます。
+    エディタ補完プラグインには自動モードはありません。
+    </para>
 
     <para>When you apply plugins to a selected file using automatic mode,
     WinMerge searches its list of suggested plugins for that file type, and
