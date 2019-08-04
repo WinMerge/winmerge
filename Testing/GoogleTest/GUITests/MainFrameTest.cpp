@@ -56,6 +56,47 @@ protected:
 	// Objects declared here can be used by all tests in the test case for Foo.
 };
 
+TEST_F(MainFrameTest, Menus)
+{
+	// System menu
+	typeAltPlusKey(' ');
+	saveForegroundWindowImage("System");
+	// File menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("File");
+	// Edit menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Edit");
+	// View menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("View");
+	// View/Toolbar menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("ViewToolbar");
+	// Tools menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Tools");
+	// Plugins menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Plugins");
+	// Window menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Window");
+	// Help menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Help");
+	// Close menu
+	typeKey(VK_MENU);
+}
+
 TEST_F(MainFrameTest, FileNew)
 {
 	selectMenuAndSaveWindowImage(ID_FILE_NEW);
