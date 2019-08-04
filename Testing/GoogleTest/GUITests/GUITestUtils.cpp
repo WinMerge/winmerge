@@ -1,4 +1,7 @@
 #include "pch.h"
+#include <dwmapi.h>
+
+#pragma comment(lib, "dwmapi.lib")
 
 namespace GUITestUtils
 {
@@ -6,11 +9,13 @@ namespace GUITestUtils
 bool saveWindowImageAsPNG(HWND hwnd, const std::filesystem::path& filename)
 {
 	RECT rc{};
-	GetWindowRect(hwnd, &rc);
+	DwmGetWindowAttribute(hwnd, DWMWA_EXTENDED_FRAME_BOUNDS, &rc, sizeof(RECT));
 	CImage img;
 	img.Create(rc.right - rc.left, rc.bottom - rc.top, 24);
-	PrintWindow(hwnd, img.GetDC(), 0);
+	HDC hdc = GetDC(nullptr);
+	BitBlt(img.GetDC(), 0, 0, rc.right - rc.left, rc.bottom - rc.top, hdc, rc.left, rc.top, SRCCOPY);
 	img.ReleaseDC();
+	ReleaseDC(nullptr, hdc);
 	return SUCCEEDED(img.Save(filename.c_str(), Gdiplus::ImageFormatPNG));
 }
 
@@ -82,6 +87,12 @@ void typeAltPlusKey(char key)
 	keybd_event(key, 0, 0, 0);
 	keybd_event(key, KEYEVENTF_KEYUP, 0, 0);
 	keybd_event(VK_MENU, 0, KEYEVENTF_KEYUP, 0);
+}
+
+void typeKey(unsigned char vk)
+{
+	keybd_event(vk, 0, 0, 0);
+	keybd_event(vk, 0, KEYEVENTF_KEYUP, 0);
 }
 
 std::filesystem::path getModuleFileName()

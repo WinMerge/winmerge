@@ -8,6 +8,7 @@ namespace GUITestUtils
 	HWND findForegroundDialog();
 	void typeText(const wchar_t *text);
 	void typeAltPlusKey(char key);
+	void typeKey(unsigned char vk);
 	std::filesystem::path getModuleFileName();
 	std::filesystem::path getModuleFolder();
 	bool isMenuItemChecked(HWND hwnd, int id);

@@ -57,6 +57,68 @@ protected:
 	// Objects declared here can be used by all tests in the test case for Foo.
 };
 
+TEST_F(DirFrameTest, Menus)
+{
+	// System menu
+	typeAltPlusKey(' ');
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("MDIChildSystem");
+	// File menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("File");
+	// File/ReadOnly menu
+	for (int i = 0; i < 6; ++i)
+		typeKey(VK_DOWN);
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("FileReadOnly");
+	// Edit menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Edit");
+	// View menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("View");
+	// View/3-way Compare menu
+	for (int i = 0; i < 7; ++i)
+		typeKey(VK_DOWN);
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("View3WayCompare");
+	typeKey(VK_LEFT);
+	// View/Toolbar
+	for (int i = 0; i < 8; ++i)
+		typeKey(VK_DOWN);
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("ViewToolbar");
+	// Merge menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Merge");
+	// Tools menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Tools");
+	// Plugins menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Plugins");
+	// Window menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Window");
+	// Help menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Help");
+	// Close menu
+	typeKey(VK_MENU);
+}
+
 TEST_F(DirFrameTest, FileSaveProject)
 {
 	selectMenuAndSaveWindowImage(ID_FILE_SAVEPROJECT);
@@ -151,8 +213,7 @@ TEST_F(DirFrameTest, ToolsCustomizeColumns)
 
 TEST_F(DirFrameTest, ToolsGeneratePatch)
 {
-	keybd_event(VK_END, 0, 0, 0);
-	keybd_event(VK_END, 0, KEYEVENTF_KEYUP, 0);
+	typeKey(VK_END);
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_TOOLS_GENERATEPATCH);
 	if (hwndDlg)
 	{
