@@ -108,31 +108,29 @@
     <para>WinMergeはどのようにして渡されたファイルに適切なプラグインを適用しているのでしょうか？
     各プラグインはファイル拡張子のリストを持っています
     （<xref linkend = "Plugins_available" />セクションの各プラグインの<citetitle>File filter</citetitle>にも
-    リストされています)
-    その拡張子は、1つ以上のファイルタイプをプラグインに関連付けるために使用されます。:
+    リストされています) その拡張子は、1つ以上のファイルタイプをプラグインに関連付けるために使用されます。:
     比較するファイルの拡張子があるプラグインの拡張子リストと一致する場合、
     そのプラグインが<firstterm>提案されたプラグイン</firstterm>となります。
     </para>
 
     <para>このトピックで後述する展開プラグインタイプと比較前処理プラグインタイプには
-    別々のオプションがあり、
-    これらを使用して手動または自動でプラグインを適用できます。
+    別々のオプションがあり、これらを使用して手動または自動でプラグインを適用できます。
     エディタ補完プラグインには自動モードはありません。
     </para>
 
-    <para>When you apply plugins to a selected file using automatic mode,
-    WinMerge searches its list of suggested plugins for that file type, and
-    applies the first plugin whose name matches. The search is performed in
-    alphabetical order, so if there are multiple suggested plugins for a file
-    type, only the first one found is applied.</para>
+    <para>自動モードを使用して選択したファイルにプラグインを適用すると、
+    WinMergeは、そのファイルタイプの推奨プラグインのリストを検索し、
+    名前が一致する最初のプラグインを適用します。
+    検索はアルファベット順で実行されます。このため、ファイルタイプに複数の推奨プラグインがある場合、
+    最初に見つかったもののみが適用されます。</para>
   </section>
 
   <section>
     <title>プラグインの適用</title>
 
-    <para>The following subsections describe how to apply each type of plugin.
-    The methods are different for each type of plugin, and also vary depending
-    on whether you are comparing folders or files.</para>
+    <para>次のサブセクションでは、各タイプのプラグインを適用する方法について説明します。
+    方法はプラグインのタイプごとに異なり、
+    フォルダーとファイルのどちらを比較するかどうかによっても異なります。</para>
 
     <section>
       <title>ファイル比較ウインドウでのエディタ補完プラグイン適用
