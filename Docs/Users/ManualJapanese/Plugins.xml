@@ -136,12 +136,12 @@
       <title>ファイル比較ウインドウでのエディタ補完プラグイン適用
       </title>
 
-      <para>With your cursor in either File pane of the File Compare window,
-      click <menuchoice>
-          <guimenu>Plugins</guimenu>
+      <para>ファイル比較ウィンドウのファイルペインにカーソルを置き、
+      <menuchoice>
+          <guimenu>プラグイン</guimenu>
 
-          <guisubmenu>Scripts</guisubmenu>
-        </menuchoice> and choose one of these functions:</para>
+          <guisubmenu>スクリプト</guisubmenu>
+      をクリックして、次の機能のいずれかを選択します:</para>
 
       <itemizedlist>
         <listitem>
@@ -173,14 +173,14 @@
         </listitem>
       </itemizedlist>
 
-      <para>The functions are contributed to the
-      <guisubmenu>Scripts</guisubmenu> menu by the <xref
-      linkend="EditorAddin" /> and <xref linkend="Plugins_datetime" />
-      plugins.</para>
+      <para><guisubmenu>スクリプト</guisubmenu> メニューのこの機能は、<xref
+      linkend="EditorAddin" /> と <xref linkend="Plugins_datetime" /> プラグイン
+      によるものです。
+      </para>
 
       <note>
-        <para>Editor complement plugins are not available in the Folder Compare
-        window.</para>
+        <para>エディター補完プラグインは、
+        フォルダー比較ウインドウでは使用できません。</para>
       </note>
     </section>
 
