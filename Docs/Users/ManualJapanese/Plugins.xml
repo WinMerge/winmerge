@@ -65,16 +65,19 @@
           展開プラグインはファイル比較ウィンドウでは利用できません。
           </para>
 
-          <para>Sometimes the unpacked file can be repacked (see the details in
-          <xref linkend="Plugins_available" /> to check whether a plugin
-          supports repacking). Then, you can merge and save the transformed
-          file. The packing is done automatically in this case. To be safe, we
-          suggest that you rename the transformed file when you save it.</para>
+          <para>プラグインによっては、展開されたファイルを再圧縮することができます
+          (<xref linkend="Plugins_available" /> の詳細を参照して、
+          再圧縮がサポートされているかどうかを確認してください）。 その後、変換されたファイルをマージして保存できます。 この場合、梱包は自動的に行われます。
+          安全のために、変換したファイルを保存するときに名前を変更することをお勧めします。
+          </para>
 
           <note>
-            <para>フォルダを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに対して異なる結果をもたらす可能性があります。
-            たとえば、圧縮されていないときには同一のファイルでも、圧縮された場合、作成日が含まれているために異なる場合があります。
-            WinMergeはすべての状況で展開プラグインを適用します。フォルダを比較するときや、 ２つのファイルを比較するときでも同じ結果が得られます</para>
+            <para>フォルダを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに
+            対して異なる結果をもたらす可能性があります。
+            たとえば、圧縮されていないときには同一のファイルでも、
+            圧縮された場合、作成日が含まれているために異なる場合があります。
+            WinMergeはすべての状況で展開プラグインを適用します。フォルダを比較するときや、
+            ２つのファイルを比較するときでも同じ結果が得られます</para>
           </note>
 
           <para>プラグインの例: <xref linkend="CompareMSExcelFiles" />
@@ -187,24 +190,24 @@
     <section>
       <title>フォルダ比較ウインドウでの展開プラグインの適用</title>
 
-      <para>Before applying unpacker plugins, you can set its mode to either
-      automatic or manual mode.</para>
+      <para>展開プラグインを適用する前に、
+      モードを自動モードまたは手動モードに設定できます。</para>
 
       <itemizedlist>
         <listitem>
-          <para>To set automatic mode for this type of plugin, click <menuchoice>
-              <guimenu>Plugins</guimenu>
+          <para>このタイプのプラグインの自動モードを設定するには、 <menuchoice>
+              <guimenu>プラグイン</guimenu>
 
-              <guimenuitem>Automatic Unpacking</guimenuitem>
-            </menuchoice>.</para>
+              <guimenuitem>自動展開</guimenuitem>
+            </menuchoice>をクリックしてください。</para>
         </listitem>
 
         <listitem>
-          <para>To set manual mode, click <menuchoice>
-              <guimenu>Plugins</guimenu>
+          <para>手動モードを設定するには、<menuchoice>
+              <guimenu>プラグイン</guimenu>
 
-              <guimenuitem>Manual Unpacking</guimenuitem>
-            </menuchoice>.</para>
+              <guimenuitem>手動展開</guimenuitem>
+            </menuchoice>をクリックしてください。</para>
         </listitem>
       </itemizedlist>
 
