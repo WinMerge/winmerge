@@ -144,7 +144,7 @@
           <guimenu>プラグイン</guimenu>
 
           <guisubmenu>スクリプト</guisubmenu>
-      をクリックして、次の機能のいずれかを選択します:</para>
+      </menuchoice>をクリックして、次の機能のいずれかを選択します:</para>
 
       <itemizedlist>
         <listitem>
@@ -211,8 +211,8 @@
         </listitem>
       </itemizedlist>
 
-      <para>Remember to click <keycap>F5</keycap> to reload the Folder Compare
-      window using the new setting.</para>
+      <para>新たな設定を反映するにはフォルダー比較ウィンドウを<keycap>F5</keycap>をクリックして、
+      リロードしてください。</para>
 
       <section>
         <title>自動展開モードの使用</title>
