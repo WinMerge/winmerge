@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <http://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2009-11-08 13:51+0000\n"
 "PO-Revision-Date: 2010-02-19 17:04+0800\n"
 "Last-Translator: Calvin Lin <ylin77 at gmail.com>\n"

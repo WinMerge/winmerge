@@ -9,13 +9,13 @@ WinMerge oso lagungarria da alderaketak, aldiberetzeak eta batuketak ahalik eta 
 Programazio hizkuntza ugari eta beste agiri heuskarriak joskera-nabarmenduak dira.
 
 WinMergeren azken bertsioa eta WinMerge argibideak eskuragarri daude hemen:
-http://winmerge.org/.
+https://winmerge.org/.
 
 Hasiera Azkarra
 ===========
 WinMerge ezarri ondorengo ohinarrizko eragiketak nola egin jakiteko, klikatu
 Laguntza>WinMerge Laguntza eta nabigatu Hasiera Azkarra gaian. Edo, joan Webgune
-bertsio honetara: http://manual.winmerge.org/QuickStart.html.
+bertsio honetara: https://manual.winmerge.org/QuickStart.html.
 
 WinMerge Laguntza
 ============= 
@@ -24,14 +24,14 @@ WinMerge ezartzen duzunean. Laguntza irekitzeko, klikatu Laguntza>WinMerge Lagun
 WinMerge leihoan. Komando lerroan, ekin WinMerge exekutagarriari /? laguntza giltzarekin.
 
 WinMerge Laguntzaren HTML bertsioa hemen ere bilatu dezakezu:
-http://manual.winmerge.org/.
+https://manual.winmerge.org/.
 
 Agiri Sostengua
 ===============
-WinMergek 7-Zip (http://www.7-zip.org) Iturburu Irekiko agiri tresna erabiltzen du
+WinMergek 7-Zip (https://www.7-zip.org) Iturburu Irekiko agiri tresna erabiltzen du
 agiri sostengua agiritegiratzeko. 7-Zip aplikazioa ezartzea gomendatzen dugu
 jeitsiz eta abiaraziz 7-Zip plugin ezartzailea hemendik:
-http://winmerge.org/downloads/.
+https://winmerge.org/downloads/.
 
 Ezin baduzu 7-Zip tresna ezarri zerbaitengaitik, 7-zip plugin ezartzailea 
 erabili dezakezu agiri sostengurako beharrezkoak diren agiriak bakarrik ezarriz.
@@ -40,7 +40,7 @@ Ikusi Laguntza gaia, "7-Zip eta agiri sostengua" xehetasunetarako.
 WinMerge Sostengua
 ================
 Galderarik edo iradokizunik WinMergeri buruz? Hasteko toki on bat WinMerge
-herkidego boletina da: http://forums.winmerge.org/. Garatzaileek sarri irakurtzen
+herkidego boletina da: https://forums.winmerge.org/. Garatzaileek sarri irakurtzen
 eta erantzuten dizkiete galderei bi eztabaidaguneetan. Erabili Ireki Eztabaida gunea
 WinMergeri buruzko galdera orokorrak egiteko. Erabili Garatzaile eztabaidagunea
 WinMergeren garapenari buruzko galderentzat.
@@ -48,7 +48,7 @@ WinMergeren garapenari buruzko galderentzat.
 Akatsak eta Eginkizun Eskabideak
 =========================
 Gairen bat konpondu gabe badago WinMerge eztabaidagunetan, egiaztatu egitasmo
-aztarnariak hona joz: http://project.winmerge.org/, eta klikatu Aztarnarien menuko 
+aztarnariak hona joz: https://project.winmerge.org/, eta klikatu Aztarnarien menuko 
 loturan, Akatsak eta Eginkizun Eskabideak, non gaiak bilatu edo aurkeztu ahal izango dituzun.
 
 Akats bat aurkezten baduzu, mesedez barneratu WinMerge bertsio zenbakia zure jakinarazpenean.

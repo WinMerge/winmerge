@@ -203,7 +203,7 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "Comments", "\0"
-            VALUE "CompanyName", "http://winmerge.org\0"
+            VALUE "CompanyName", "https://winmerge.org\0"
             VALUE "FileDescription", "WinMerge\0"
             VALUE "FileVersion", STRFILEVER
             VALUE "InternalName", "WinMerge\0"

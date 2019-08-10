@@ -1,4 +1,4 @@
-# Released under the "GNU General Public License"
+﻿# Released under the "GNU General Public License"
 #
 # Translators:
 # * sld <sld at mail.bg>
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "PO-Revision-Date: 2019-08-02 10:00+0000\n"
 "Last-Translator: Стоян <stoyan от гмаил>\n"
 "Language-Team: Bulgarian <winmerge-translate@lists.sourceforge.net>\n"
@@ -3287,3 +3287,4 @@ msgid ""
 "$file: Path name of the current file\n"
 "$linenum: Line number of the current cursor position"
 msgstr ""
+

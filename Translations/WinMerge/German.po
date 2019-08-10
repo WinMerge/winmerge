@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <http://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Maintainer:
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2018-10-18 22:26+0200\n"
 "Last-Translator: Tim Gerundt <tim at gerundt.de>\n"

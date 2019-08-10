@@ -51,7 +51,7 @@ html/docbook.xsl
 
 <!-- For web pages add banner image and Google ad scripts -->
 <xsl:template name="user.header.content">
-    <div class="header"><a href="http://www.winmerge.org">
+    <div class="header"><a href="https://www.winmerge.org">
       <img src="images/head.gif" alt="winmerge.org"/></a>
     </div>
     <xsl:if test="$withads = 'true'">

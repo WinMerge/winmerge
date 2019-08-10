@@ -5,23 +5,23 @@ WinMerge е инструмент с Отворен Код за сравняване и обединяване на файлове,
 допълнително инсталирани програми или компоненти.
 
 Последната версия на WinMerge, както и друга информация се намират на:
-http://winmerge.org
+https://winmerge.org
 
 Бързо въведение в WinMerge:
 Моля, прочетете помощната онлайн информация за кратко въведение в WinMerge:
-http://manual.winmerge.org/QuickStart.html
+https://manual.winmerge.org/QuickStart.html
 
 HTML ръководство:
 Ръководството е достъпно онлайн на адрес:
-http://manual.winmerge.org/
+https://manual.winmerge.org/
 може да е инсталирано на Вашият компютър (ако е избрано) или да го
-свалите от http://winmerge.org/ (вижте документацията)
+свалите от https://winmerge.org/ (вижте документацията)
 
 Поддръжка на архиви:
-WinMerge използва 7-Zip за поддръжката на архиви. 7-Zip (http://www.7-zip.org)
+WinMerge използва 7-Zip за поддръжката на архиви. 7-Zip (https://www.7-zip.org)
 е интрумент за работа с архиви с Отворен Код. За да инсталирате поддръжката на
 архиви, свалете инсталатора за добавката (plugin) на 7-Zip от
-http://winmerge.org/.
+https://winmerge.org/.
 
 Инсталиране на поддръжката на архиви:
 Препоръчително е да инсталирате програмата 7-Zip. Ако това не може да
@@ -34,20 +34,20 @@ http://winmerge.org/.
 Ако искате да работите със скриптове, Вие трябва да имате инсталиран
 Windows Scripting Host. Ако получите някакви грешки от Вашите скриптове
 моля, посетете адресът:
-http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
+https://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
 за да се уверите, че Вашя Scripting Host е последна версия и не е повреден.
 
 Поддръжка:
 Разработчиците отговарят на въпроси във форума на WinMerge на сървъра на
 Sourceforge.net на адрес:
-http://sourceforge.net/forum/?group_id=13216
+https://sourceforge.net/forum/?group_id=13216
 
 Грешки и функционалност:
 Грешки и предложения за нови възможности може да се изпращат в 
 системите за следене на грешки и RFE на сървъра на sourceforge.net.
 
 Система за следене на грешки:
-http://sourceforge.net/tracker/?group_id=13216&atid=113216
+https://sourceforge.net/tracker/?group_id=13216&atid=113216
 Когато съобщавате за грешка, моля споменете версията на WinMerge!
 WinMerge версия 2.2.0 и следващите могат да генерират текстов файл с
 'Отчет за програмата' от менюто Помощ/Настройки... Моля добавете тази
@@ -55,7 +55,7 @@ WinMerge версия 2.2.0 и следващите могат да генерират текстов файл с
 съдържа много полезна информация за разработчиците на програмата.
 
 Система за следене на RFE (предложения):
-http://sourceforge.net/tracker/?group_id=13216&atid=363216
+https://sourceforge.net/tracker/?group_id=13216&atid=363216
 
 
 - Разработчиците на WinMerge

@@ -11,13 +11,13 @@ O WinMerge ten varias funcionalidades de grande utilidade para facer comparación
 texto segundo a sintaxe para diversos linguaxes de programación e outros formatos de 
 arquivo.
 
-A información e a última versión do WinMerge está dispoñible en http://winmerge.org/.
+A información e a última versión do WinMerge está dispoñible en https://winmerge.org/.
 
 Comezo rápido
 ===========
 Para aprender como levar a cabo as operacións básicas logo de instalar o WinMerge, 
 preme en Axuda>Axuda do WinMerge e vai ao tema Quick start.  Ou, podes visitar a 
-versión Web en http://manual.winmerge.org/QuickStart.html.
+versión Web en https://manual.winmerge.org/QuickStart.html.
 
 Axuda do WinMerge
 ===============
@@ -27,13 +27,13 @@ WinMerge ou preme F1 na fiestra do WinMerge. Se empregas a liña de comandos,
 executa o WinMerge coa opción de axuda /?.
 
 Tamén podes explorar a versión HTML da axuda do WinMerge en 
-http://manual.winmerge.org/.
+https://manual.winmerge.org/.
 
 Soporte de Arquivo
 ==============
-O WinMerge emprega a ferramenta de arquivos Open Source 7-Zip (http://www.7-zip.org) 
+O WinMerge emprega a ferramenta de arquivos Open Source 7-Zip (https://www.7-zip.org) 
 para ofrecer soporte de arquivo. Recomendamos instalar o 7-Zip descargando e 
-executando o instalador da extensión do 7-Zip en http://winmerge.org/downloads/.
+executando o instalador da extensión do 7-Zip en https://winmerge.org/downloads/.
 
 Se non podes instalar o 7-Zip por algún motivo, podes empregar o instalador da extensión 
 do 7-zip para instalar só os ficheiros requiridos para ter soporte de arquivo de ficheiros. 
@@ -43,7 +43,7 @@ o mesmo.
 Soporte WinMerge
 ==============
 Preguntas ou suxestións verbo do WinMerge? Un bo lugar para comezar é o taboleiro 
-de mensaxes da comunidade do WinMerge en http://forums.winmerge.org/. Os 
+de mensaxes da comunidade do WinMerge en https://forums.winmerge.org/. Os 
 desenvolvedores len e responden de xeito frecuente ás cuestións presentadas en ámbolos 
 dous foros. Emprega o foro de Discusión Aberta para cuestións xerais do WinMerge, 
 como os temas relacionados co seu uso. Emprega o foro de Desenvolvedores para as 
@@ -52,7 +52,7 @@ cuestións relativas ao desenrolo do WinMerge.
 Erros e peticións de funcionalidades
 ==========================
 Se unha cuestión non se resolve nos foros do WinMerge, comproba os rastrexadores do 
-proxecto: vai a http://project.winmerge.org/, e preme no menú dos Rastrexadores, como 
+proxecto: vai a https://project.winmerge.org/, e preme no menú dos Rastrexadores, como 
 Erros e Peticións de Funcionalidades, onde poderás explorar ou enviar os elementos que 
 che interesen.
 

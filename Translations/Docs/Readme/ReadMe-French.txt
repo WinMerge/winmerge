@@ -12,14 +12,14 @@ langages de programmation et autres formats de fichiers ont une syntaxe mise en
 évidence.
 
 La dernière version de WinMerge et d'autre information sont disponible a:
-http://winmerge.org
+https://winmerge.org
 
 Démarrage rapide
 ================
 Pour apprendre comment effectuer des opérations de base après l'installation
 de WinMerge, cliquez sur Aide > Rubrique d'aide WinMerge et accédez à la 
 rubrique Démarrage rapide. Ou lisez le manuel en ligne à:
-http://manual.winmerge.org/QuickStart.html
+https://manual.winmerge.org/QuickStart.html
 
 Aide WinMerge
 =============
@@ -30,17 +30,17 @@ WinMerge. Avec la ligne de commande, lancez l'exécutable WinMerge
 suivi du commutateur d'aide /?.
 
 Vous pouvez aussi consulter la version en ligne de l'aide WinMerge à:
-http://manual.winmerge.org/
+https://manual.winmerge.org/
 
 
 Support d'archive
 =================
-WinMerge utilise le logiciel libre 7-Zip (http://www.7-zip.org) comme 
+WinMerge utilise le logiciel libre 7-Zip (https://www.7-zip.org) comme 
 l'outil d'archivage pour le support d'archivage de fichier. 
 
 Nous recommandons l'installation de l'application 7-Zip en  
 téléchargeant et exécutant le plugiciel d'installation 7-Zip depuis
-http://winmerge.org/downloads/
+https://winmerge.org/downloads/
 
 Si vous ne pouvez pas installer l'outil 7-Zip pour une raison quelconque.
 Vous pouvez utiliser le plugiciel d'installation 7-Zip pour installer 
@@ -50,7 +50,7 @@ Voir la rubrique d'aide "7-Zip et support d'archives" pour plus de détails.
 Support WinMerge
 ================
 Questions ou suggestions à propos de WinMerge? Une bonne place pour débuter 
-est le groupe de discussion WinMerge au http://forums.winmerge.org/. Les
+est le groupe de discussion WinMerge au https://forums.winmerge.org/. Les
 développeurs lisent et répondent fréquemment aux questions des deux forums.
 Utilisez le forum de discussion ouverte pour des questions d'ordre général 
 comme l'utilisation. Utilisez le forum des développeurs pour des questions
@@ -60,7 +60,7 @@ de développement WinMerge.
 Bogues et nouvelles requêtes
 ============================
 Si un problème n'est pas résolu dans les forums WinMerge, vérifiez le traqueur 
-de projet à: http://project.winmerge.org/, et cliquez sur un des lien du menu 
+de projet à: https://project.winmerge.org/, et cliquez sur un des lien du menu 
 du traqueur, comme bogues et nouvelles requêtes, où vous pouvez consulter ou 
 soumettre des articles.
 
