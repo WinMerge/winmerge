@@ -7,16 +7,16 @@
 #pragma once
 
 /** @brief URL for hyperlink in About-dialog. */
-const TCHAR WinMergeURL[] = _T("http://winmerge.org/");
+const TCHAR WinMergeURL[] = _T("https://winmerge.org/");
 
 /**
  * @brief URL to help index in internet.
  * We use internet help when local help file is not found (not installed).
  */
-const TCHAR DocsURL[] = _T("http://manual.winmerge.org/index.html");
+const TCHAR DocsURL[] = _T("https://manual.winmerge.org/index.html");
 
 /** @brief URL to translations page in internet. */
-const TCHAR TranslationsUrl[] = _T("http://winmerge.org/translations/");
+const TCHAR TranslationsUrl[] = _T("https://winmerge.org/translations/");
 
 /** @brief URL of the GPL license. */
 const TCHAR LicenceUrl[] = _T("http://www.gnu.org/licenses/gpl-2.0.html");

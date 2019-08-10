@@ -56,15 +56,15 @@ AppName=WinMerge
 AppVersion={#AppVersion}
 AppVerName=WinMerge {#AppVersion} x64
 AppPublisher=Thingamahoochie Software
-AppPublisherURL=http://WinMerge.org/
-AppSupportURL=http://WinMerge.org/
-AppUpdatesURL=http://WinMerge.org/
+AppPublisherURL=https://WinMerge.org/
+AppSupportURL=https://WinMerge.org/
+AppUpdatesURL=https://WinMerge.org/
 WizardStyle=modern
 UsePreviousPrivileges=no
 PrivilegesRequiredOverridesAllowed=dialog
 
 ; Installer executable's version resource info
-VersionInfoCompany=http://winmerge.org
+VersionInfoCompany=https://winmerge.org
 VersionInfoDescription=WinMerge Installer
 VersionInfoVersion={#AppVersion}
 
@@ -539,7 +539,7 @@ Name: "{app}\MergePlugins"
 Name: {group}\WinMerge; Filename: {app}\WinMergeU.exe; AppUserModelID: "Thingamahoochie.WinMerge"
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
-Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: http://winmerge.org
+Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: https://winmerge.org
 
 ;Link to translated ReadMe in Start Menu
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Basque.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Basque

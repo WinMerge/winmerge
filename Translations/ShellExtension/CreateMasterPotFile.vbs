@@ -177,7 +177,7 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
   
   Set oPotFile = oFSO.CreateTextFile(sPotPath, True)
   
-  oPotFile.WriteLine "# This file is part from WinMerge <http://winmerge.org/>"
+  oPotFile.WriteLine "# This file is part from WinMerge <https://winmerge.org/>"
   oPotFile.WriteLine "# Released under the ""GNU General Public License"""
   oPotFile.WriteLine "#"
   oPotFile.WriteLine "# ID line follows -- this is updated by SVN"
@@ -186,7 +186,7 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
   oPotFile.WriteLine "msgid """""
   oPotFile.WriteLine "msgstr """""
   oPotFile.WriteLine """Project-Id-Version: WinMerge Shell Extension\n"""
-  oPotFile.WriteLine """Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"""
+  oPotFile.WriteLine """Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"""
   oPotFile.WriteLine """POT-Creation-Date: " & GetPotCreationDate() & "\n"""
   oPotFile.WriteLine """PO-Revision-Date: \n"""
   oPotFile.WriteLine """Last-Translator: \n"""

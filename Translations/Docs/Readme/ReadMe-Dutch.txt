@@ -11,13 +11,13 @@ en samenvoegen zo gemakkelijk en bruikbaar mogelijk te maken. Verschillende
 programmeertalen en andere bestandsformaten zijn syntax-gemarkeerd.
 
 De laatste WinMerge-versie en WinMerge-informatie is beschikbaar op
-http://winmerge.org/.
+https://winmerge.org/.
 
 Quickstart
 ==========
 om te leren hoe u basisoperaties uitvoert na de installatie van WinMerge klikt u op
 Help > WinMerge Help en navigeert u naar het Quickstart-topic. U kan ook naar de 
-webversie gaan op http://manual.winmerge.org/QuickStart.html.
+webversie gaan op https://manual.winmerge.org/QuickStart.html.
 
 WinMerge-help
 ============= 
@@ -27,13 +27,13 @@ Help > WinMerge Help of drukt u F1 in het WinMerge-venster. In de opdrachtregel
 start u het uitvoerbestand van WinMerge (WinMerge.exe) met de /? help-switch.
 
 U kan ook surfen naar de HTML-version van WinMerge-help op 
-http://manual.winmerge.org/.
+https://manual.winmerge.org/.
 
 Archiefondersteuning
 ====================
-WinMerge gebruikt de 7-Zip (http://www.7-zip.org) Open Source archiveringstool
+WinMerge gebruikt de 7-Zip (https://www.7-zip.org) Open Source archiveringstool
 voor archiefbestand-ondersteuning. We raden aan dat u de 7-Zip-toepassing installeert
-door de 7-Zip plugin-installer te downloaden van http://winmerge.org/downloads/ 
+door de 7-Zip plugin-installer te downloaden van https://winmerge.org/downloads/ 
 en te openen.
 
 Indien u om een of andere reden de 7-Zip-tool niet kan installeren, kan u de 7-Zip 
@@ -43,7 +43,7 @@ voor details.
 WinMerge-ondersteuning
 ======================
 Vragen over WinMerge of suggesties? Een goeie plaats om te beginnen is het WinMerge
-community bulletin board op http://forums.winmerge.org/. Ontwikkelaars lezen en beantwoorden
+community bulletin board op https://forums.winmerge.org/. Ontwikkelaars lezen en beantwoorden
 frequent vragen op beide forums. Gebruik het "Open Discussion"-forum voor algemene
 WinMerge-problemen, zoals gebruiksvragen. Gebruik het "Developers"-forum voor
 WinMerge-ontwikkelingsproblemen.
@@ -51,7 +51,7 @@ WinMerge-ontwikkelingsproblemen.
 Bugs en functie-aanvragen
 =========================
 Indien een probleem niet opgelost raakt op de WinMerge-forums, kan u de project-trackers
-natrekken: ga naar http://project.winmerge.org/ en klik op een link in het "Trackers"-menu,
+natrekken: ga naar https://project.winmerge.org/ en klik op een link in het "Trackers"-menu,
 zoals "Bugs and Feature Requests", waar u kan browsen of items inzenden.
 
 Indien u een bug rapporteert, gelieve dan het WinMerge-versienummer in uw rapport bij te 

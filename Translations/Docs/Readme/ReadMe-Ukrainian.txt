@@ -5,23 +5,23 @@ WinMerge є вільною (Open Source) програмою для порівняння та об'єднання, яка
 додаткових компонентів.
 
 Остання версія WinMerge та інша інформація про WinMerge доступна за адресою
-http://winmerge.org
+https://winmerge.org
 
 Початок роботи з WinMerge:
 Щодо цього читайте відповідний розділ онлайн-довідки WinMerge:
-http://manual.winmerge.org/QuickStart.html
+https://manual.winmerge.org/QuickStart.html
 
 HTML-довідка:
 Довідка доступна онлайн
-http://manual.winmerge.org/
+https://manual.winmerge.org/
 її також можна встановити (якщо обрано) локально та завантажити окремо з
-http://winmerge.org/ (див. документацію)
+https://winmerge.org/ (див. документацію)
 
 Підтримка архівів:
 Для підтримки файлів архівів WinMerge використовує 7-Zip. 7-Zip 
-(http://www.7-zip.org) є вільним (Open Source) інструментом архівування. Щоб
+(https://www.7-zip.org) є вільним (Open Source) інструментом архівування. Щоб
 встановити підтримку заархівованих файлів, завантажте інсталятор модуля 7-Zip з
-сайту http://winmerge.org/
+сайту https://winmerge.org/
 
 Встановлення підтримки архівів:
 Бажано встановити програму 7-Zip. Якщо з певних причин цього неможливо зробити,
@@ -33,26 +33,26 @@ http://winmerge.org/ (див. документацію)
 Якщо бажаєте працювати зі скриптами, то для цього необхідно мати встановлений
 Windows Scripting Host. Якщо виникають якісь помилки, що стосуються Ваших
 скриптів, тоді відвідайте
-http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
+https://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
 щоб переконатися, що Ваш Scripting Host є останньої версії і неушкоджений.
 
 Підтримка:
 Розробники відповідають на запитання у форумі WinMerge на Sourceforge.net:
-http://sourceforge.net/forum/?group_id=13216
+https://sourceforge.net/forum/?group_id=13216
 
 Баґи та прохання про функції:
 Повідомлення про баґи та прохання про нові фунції можна залишати у відстежувачах
 RFE та баґів на sourceforge.net.
 
 Відстежувач баґів:
-http://sourceforge.net/tracker/?group_id=13216&atid=113216
+https://sourceforge.net/tracker/?group_id=13216&atid=113216
 При сповіщенні про баґи обов'язково вказуйте свою версію WinMerge!
 WinMerge версії 2.2.0 та новішої може виводити "Журнал конфіґурації" з меню
 Довідка -> Конфіґурація. Долучіть цю інформацію (як файл-долучення) до 
 сповіщення про баґ, бо він містить багато корисної для розробників інформації.
 
 Відстежувач RFE (запит нової фунції):
-http://sourceforge.net/tracker/?group_id=13216&atid=363216
+https://sourceforge.net/tracker/?group_id=13216&atid=363216
 
 
 - Розробники WinMerge
