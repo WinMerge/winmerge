@@ -17,6 +17,7 @@
 #include <filesystem>
 #include <tchar.h>
 #include <gtest/gtest.h>
+#include <gtest/gtest-param-test.h>
 #include <windows.h>
 #include <CommCtrl.h>
 #include <tchar.h>
