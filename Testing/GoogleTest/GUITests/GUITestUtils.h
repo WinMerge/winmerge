@@ -1,8 +1,10 @@
 #include <Windows.h>
 #include <filesystem>
+#include <set>
 
 namespace GUITestUtils
 {
+	time_t getStartTime();
 	bool saveWindowImageAsPNG(HWND hwnd, const std::filesystem::path& filename);
 	DWORD waitForInputIdleByHWND(HWND hwnd, DWORD dwMilliseconds = WAIT_TIMEOUT);
 	HWND findForegroundDialog();
@@ -18,13 +20,13 @@ namespace GUITestUtils
 	void selectMenu(HWND hwnd, unsigned id, bool async = false);
 	inline void selectMenuAsync(HWND hwnd, unsigned id) { selectMenu(hwnd, id, true); };
 	HWND execWinMerge(const std::string& args = "/noprefs /maxmize");
-
+	const std::set<int> languages();
 }
 
 #define selectMenuAndSaveWindowImage(id) selectMenuAndSaveWindowImageHelper(id, #id)
 #define selectOpenDialogMenuAndSaveDialogImage(id) selectOpenDialogMenuAndSaveDialogImageHelper(id, #id)
 
-class CommonTest : public testing::Test
+class CommonTest : public testing::TestWithParam<int>
 {
 public:
 	void selectMenu(UINT id)
@@ -62,23 +64,21 @@ public:
 		return hwnd;
 	}
 
-	static std::filesystem::path getScreenshotFolderPath()
+	std::filesystem::path getScreenshotFolderPath()
 	{
-		if (!m_screenshotFolder.empty())
-			return m_screenshotFolder;
+		std::filesystem::path screenshotFolder;
 		char buf[256];
 		struct tm tm;
-		time_t t;
-		time(&t);
+		time_t t = GUITestUtils::getStartTime();
 		localtime_s(&tm, &t);
 		strftime(buf, sizeof buf, "%FT%H%M%S", &tm);
-		m_screenshotFolder = GUITestUtils::getModuleFolder() / L"..\\..\\..\\Build\\GUITests\\Screenshots" / buf;
+		screenshotFolder = GUITestUtils::getModuleFolder() / L"..\\..\\..\\Build\\GUITests\\Screenshots" / buf / std::to_wstring(GetParam());
 		std::error_code ec;
-		std::filesystem::create_directories(m_screenshotFolder, ec);
-		return m_screenshotFolder;
+		std::filesystem::create_directories(screenshotFolder, ec);
+		return screenshotFolder;
 	}
 
-	static std::filesystem::path getScreenshotFilePath(const char *id = nullptr)
+	std::filesystem::path getScreenshotFilePath(const char *id = nullptr)
 	{
 		std::string basename = ::testing::UnitTest::GetInstance()->current_test_info()->test_case_name();
 		basename.append(".");
@@ -87,6 +87,11 @@ public:
 		{
 			basename.append(".");
 			basename.append(id);
+		}
+		for (auto& c : basename)
+		{
+			if (c == '/')
+				c = '_';
 		}
 		std::filesystem::path path = getScreenshotFolderPath() / (basename + ".png");
 		int i = 2;
@@ -120,6 +125,5 @@ public:
 	}
 
 protected:
-	static HWND m_hwndWinMerge;
-	static std::filesystem::path m_screenshotFolder;
+	HWND m_hwndWinMerge = nullptr;
 };

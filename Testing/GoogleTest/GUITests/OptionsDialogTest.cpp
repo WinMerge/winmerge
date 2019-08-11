@@ -14,26 +14,27 @@ using namespace GUITestUtils;
 
 class OptionsDialogTest : public CommonTest
 {
-protected:
+public:
 	OptionsDialogTest()
 	{
+		std::string lang = std::to_string(GetParam());
+		m_hwndWinMerge = execWinMerge(("/noprefs /cfg Locale/LanguageId=" + lang).c_str());
 	}
 
 	virtual ~OptionsDialogTest()
 	{
 		// You can do clean-up work	that doesn't throw exceptions here.
+		PostMessage(m_hwndWinMerge, WM_CLOSE, 0, 0);
+		waitUntilProcessExit(m_hwndWinMerge);
 	}
 
 	static void SetUpTestCase()
 	{
 		// You can do set-up work for each test	here.
-		m_hwndWinMerge = execWinMerge();
 	}
 
 	static void TearDownTestCase()
 	{
-		PostMessage(m_hwndWinMerge, WM_CLOSE, 0, 0);
-		waitUntilProcessExit(m_hwndWinMerge);
 	}
 
 	// If	the	constructor	and	destructor are not enough for setting up
@@ -59,202 +60,57 @@ protected:
 		for (int i = 0; i < index; ++i)
 			hTreeItem = TreeView_GetNextVisible(hwndCtrl, hTreeItem);
 		TreeView_SelectItem(hwndCtrl, hTreeItem);
-		Sleep(500);
+		Sleep(100);
 	}
 
 	// Objects declared here can be used by all tests in the test case for Foo.
 };
 
-TEST_F(OptionsDialogTest, GeneralPage)
+TEST_P(OptionsDialogTest, Pages)
 {
 	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
 	if (hwndDlg)
 	{
 		selectCategory(hwndDlg, 0);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, CompareGeneralPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("General");
 		selectCategory(hwndDlg, 2);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, CompareFolderPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Compare/General");
 		selectCategory(hwndDlg, 3);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, CompareBinaryPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Compare/Folder");
 		selectCategory(hwndDlg, 4);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, CompareImagePage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Compare/Binary");
 		selectCategory(hwndDlg, 5);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, EditorPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Compare/Image");
 		selectCategory(hwndDlg, 6);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, ColorsDifferencesPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Editor");
 		selectCategory(hwndDlg, 8);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, ColorsSyntaxPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Colors/Differences");
 		selectCategory(hwndDlg, 9);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, ColorsTextPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Colors/Syntax");
 		selectCategory(hwndDlg, 10);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, ColorsMarkersPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Colors/Text");
 		selectCategory(hwndDlg, 11);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, ColorsFolderComparePage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Colors/Markers");
 		selectCategory(hwndDlg, 12);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, ArchiveSupportPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Colors/FolderCompare");
 		selectCategory(hwndDlg, 13);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, SystemPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Archive Support");
 		selectCategory(hwndDlg, 14);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, BackupFilesPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("System");
 		selectCategory(hwndDlg, 15);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, CodepagePage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Backup Files");
 		selectCategory(hwndDlg, 16);
-		saveForegroundDialogImage();
-		typeText(L"\x1b");
-		waitUntilClose(hwndDlg);
-	}
-}
-
-TEST_F(OptionsDialogTest, ShellIntegrationPage)
-{
-	HWND hwndDlg = selectOpenDialogMenu(ID_OPTIONS);
-	if (hwndDlg)
-	{
+		saveForegroundDialogImage("Codepage");
 		selectCategory(hwndDlg, 17);
-		saveForegroundDialogImage();
+		saveForegroundDialogImage("Shell Integration");
 		typeText(L"\x1b");
 		waitUntilClose(hwndDlg);
 	}
 }
 
 }
+
+INSTANTIATE_TEST_CASE_P(OptionsDialogTestInstance,
+	OptionsDialogTest,
+	testing::ValuesIn(GUITestUtils::languages()));
+

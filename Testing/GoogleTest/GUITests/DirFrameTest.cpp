@@ -14,28 +14,29 @@ using namespace GUITestUtils;
 
 class DirFrameTest : public CommonTest
 {
-protected:
+public:
 	DirFrameTest()
 	{
+		std::string dir1 = (getModuleFolder() / "..\\..\\Data\\Compare\\Dir1\\").u8string();
+		std::string dir2 = (getModuleFolder() / "..\\..\\Data\\Compare\\Dir2\\").u8string();
+		std::string lang = std::to_string(GetParam());
+		m_hwndWinMerge = execWinMerge(("/noprefs /maxmize /cfg Locale/LanguageId=" + lang + " /r " + dir1 + " " + dir2).c_str());
 	}
 
 	virtual ~DirFrameTest()
 	{
 		// You can do clean-up work	that doesn't throw exceptions here.
+		PostMessage(m_hwndWinMerge, WM_CLOSE, 0, 0);
+		waitUntilProcessExit(m_hwndWinMerge);
 	}
 
 	static void SetUpTestCase()
 	{
 		// You can do set-up work for each test	here.
-		std::string dir1 = (getModuleFolder() / "..\\..\\Data\\Compare\\Dir1\\").u8string();
-		std::string dir2 = (getModuleFolder() / "..\\..\\Data\\Compare\\Dir2\\").u8string();
-		m_hwndWinMerge = execWinMerge(("/noprefs /maxmize /r " + dir1 + " " + dir2).c_str());
 	}
 
 	static void TearDownTestCase()
 	{
-		PostMessage(m_hwndWinMerge, WM_CLOSE, 0, 0);
-		waitUntilProcessExit(m_hwndWinMerge);
 	}
 
 	// If	the	constructor	and	destructor are not enough for setting up
@@ -57,7 +58,7 @@ protected:
 	// Objects declared here can be used by all tests in the test case for Foo.
 };
 
-TEST_F(DirFrameTest, Menus)
+TEST_P(DirFrameTest, Menus)
 {
 	// System menu
 	typeAltPlusKey(' ');
@@ -119,18 +120,18 @@ TEST_F(DirFrameTest, Menus)
 	typeKey(VK_MENU);
 }
 
-TEST_F(DirFrameTest, FileSaveProject)
+TEST_P(DirFrameTest, FileSaveProject)
 {
 	selectMenuAndSaveWindowImage(ID_FILE_SAVEPROJECT);
 	selectMenu(ID_FILE_CLOSE);
 }
 
-TEST_F(DirFrameTest, EditSelectAll)
+TEST_P(DirFrameTest, EditSelectAll)
 {
 	selectMenuAndSaveWindowImage(ID_EDIT_SELECT_ALL);
 }
 
-TEST_F(DirFrameTest, ViewFilters)
+TEST_P(DirFrameTest, ViewFilters)
 {
 	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWIDENTICAL);
 	selectMenuAndSaveWindowImage(ID_OPTIONS_SHOWDIFFERENT);
@@ -153,7 +154,7 @@ TEST_F(DirFrameTest, ViewFilters)
 	Sleep(500);
 }
 
-TEST_F(DirFrameTest, ViewTreeMode)
+TEST_P(DirFrameTest, ViewTreeMode)
 {
 	selectMenuAndSaveWindowImage(ID_VIEW_TREEMODE);
 	Sleep(500);
@@ -165,7 +166,7 @@ TEST_F(DirFrameTest, ViewTreeMode)
 	Sleep(500);
 }
 
-TEST_F(DirFrameTest, ViewFont)
+TEST_P(DirFrameTest, ViewFont)
 {
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_VIEW_SELECTFONT);
 	if (hwndDlg)
@@ -177,13 +178,13 @@ TEST_F(DirFrameTest, ViewFont)
 	selectMenuAndSaveWindowImage(ID_VIEW_USEDEFAULTFONT);
 }
 
-TEST_F(DirFrameTest, ViewSwapPanes)
+TEST_P(DirFrameTest, ViewSwapPanes)
 {
 	selectMenuAndSaveWindowImage(ID_VIEW_SWAPPANES);
 	selectMenuAndSaveWindowImage(ID_VIEW_SWAPPANES);
 }
 
-TEST_F(DirFrameTest, ViewCompareStatistics)
+TEST_P(DirFrameTest, ViewCompareStatistics)
 {
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_VIEW_DIR_STATISTICS);
 	if (hwndDlg)
@@ -193,7 +194,7 @@ TEST_F(DirFrameTest, ViewCompareStatistics)
 	}
 }
 
-TEST_F(DirFrameTest, ViewRefresh)
+TEST_P(DirFrameTest, ViewRefresh)
 {
 	selectMenuAndSaveWindowImage(ID_REFRESH);
 	selectMenu(ID_EDIT_SELECT_ALL);
@@ -201,7 +202,7 @@ TEST_F(DirFrameTest, ViewRefresh)
 	Sleep(2000);
 }
 
-TEST_F(DirFrameTest, ToolsCustomizeColumns)
+TEST_P(DirFrameTest, ToolsCustomizeColumns)
 {
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_TOOLS_CUSTOMIZECOLUMNS);
 	if (hwndDlg)
@@ -211,7 +212,7 @@ TEST_F(DirFrameTest, ToolsCustomizeColumns)
 	}
 }
 
-TEST_F(DirFrameTest, ToolsGeneratePatch)
+TEST_P(DirFrameTest, ToolsGeneratePatch)
 {
 	typeKey(VK_END);
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_TOOLS_GENERATEPATCH);
@@ -222,7 +223,7 @@ TEST_F(DirFrameTest, ToolsGeneratePatch)
 	}
 }
 
-TEST_F(DirFrameTest, ToolsGenerateReport)
+TEST_P(DirFrameTest, ToolsGenerateReport)
 {
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_TOOLS_GENERATEREPORT);
 	if (hwndDlg)
@@ -233,3 +234,8 @@ TEST_F(DirFrameTest, ToolsGenerateReport)
 }
 
 }
+
+INSTANTIATE_TEST_CASE_P(DirFrameTestInstance,
+	DirFrameTest,
+	testing::ValuesIn(GUITestUtils::languages()));
+
