@@ -217,42 +217,40 @@
       <section>
         <title>自動展開モードの使用</title>
 
-        <para>To apply plugins when automatic unpacking is set, simply launch a
-        compare operation on a file in the Folder Compare window. If the file's
-        type suggested unpacker plugin (if any) preprocesses the file before
+        <para>自動展開が設定されているときにプラグインを適用するには、
+        フォルダー比較ウィンドウでファイルの比較操作を開始するだけです。 
+        If the file's type suggested unpacker plugin (if any) preprocesses the file before
         WinMerge opens it in the File Compare window.</para>
 
-        <para>For example, suppose you right-click an MS Word
-        <filename>doc</filename> file and choose
-        <guimenuitem>Compare</guimenuitem> (also assume that the <xref
-        linkend="Plugins_msword" /> plugin is available). WinMerge converts the
-        doc file (or rather, a copy of it ) to a plain text file and opens it in
-        the File Compare window.</para>
+        <para>たとえば、MS Wordの<filename>doc</filename>ファイルを右クリックして
+        <guimenuitem>Compare</guimenuitem>を選択するとします
+        (<xref linkend="Plugins_msword" />プラグインが利用可能であると仮定します)。
+        WinMergeは、docファイル（またはそのコピー）をプレーンテキストファイルに変換し、
+        ファイル比較ウィンドウで開きます。</para>
       </section>
 
       <section>
         <title>手動展開モードの使用</title>
 
-        <para>Manual mode enables you to choose a different unpacker plugin than
-        the one that is selected for you in automatic mode. You can also launch
-        the compare using no plugin.</para>
+        <para>手動モードでは、自動モードで選択されたものとは異なる展開プラグインを選択できます。
+        プラグインを使用せずに比較することもできます。</para>
 
-        <para>To apply plugins when manual unpacking is set:</para>
+        <para>手動展開が設定されているときにプラグインを適用するには:</para>
 
         <orderedlist>
           <listitem>
-            <para>Select the file you want to compare.</para>
+            <para>比較するファイルを選択します。</para>
           </listitem>
 
           <listitem>
-            <para>Click <menuchoice>
-                <guimenu>Plugins</guimenu>
+            <para><menuchoice>
+                <guimenu>プラグイン</guimenu>
 
-                <guimenuitem>Edit with Unpacker</guimenuitem>
-              </menuchoice>.</para>
+                <guimenuitem>展開プラグインで開く</guimenuitem>
+              </menuchoice>をクリックします</para>
 
-            <para>This menu item is enabled only if the selected file's type is
-            supported by an available unpacking plugin.</para>
+            <para>選択したファイルのタイプが利用可能な展開プラグインによってサポートされている場合にのみ、
+            このメニュー項目が有効になります。</para>
           </listitem>
 
           <listitem>
