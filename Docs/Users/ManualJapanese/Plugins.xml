@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Plugins">
-  <title>プラグイン<indexterm>https://www.kyoto-np.co.jp/
+  <title>プラグイン<indexterm>
       <primary>plugins</primary>
     </indexterm></title>
 
@@ -254,7 +254,7 @@
           </listitem>
 
           <listitem>
-            <para>In the Select Unpacker dialog:</para>
+            <para>展開プラグインの選択ダイアログで:</para>
 
             <xi:include href="select_unpacker.xml"
                         xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -262,8 +262,8 @@
           </listitem>
 
           <listitem>
-            <para>Click <guibutton>OK</guibutton> to close the Select Unpacker
-            dialog and launch the file comparison.</para>
+            <para><guibutton>OK</guibutton>をクリックして、
+            「展開プラグインの選択」ダイアログを閉じて、ファイル比較を開始します。</para>
           </listitem>
         </orderedlist>
       </section>
@@ -273,17 +273,16 @@
       <title>ファイル/フォルダ選択ダイアログでの展開プラグインの適用
       </title>
 
-      <para>You can use the Select Unpacker dialog to apply a plugin when you
-      launch a file comparison from the Select Files or Folders dialog. See
-      <xref linkend="Open_paths_unpacker" /> for details.</para>
+      <para>「ファイルまたはフォルダーの選択」ダイアログからファイル比較を起動するときに、
+      「展開プラグインの選択」ダイアログを使用してプラグインを適用できます。 
+      詳細は、<xref linkend="Open_paths_unpacker" /> を参照してください。</para>
     </section>
 
     <section>
       <title>フォルダ比較ウインドウでの比較前処理プラグインの適用</title>
 
-      <para>With prediffer plugins, you set the mode (<firstterm>Auto
-      prediiffer</firstterm> or <firstterm>No prediffer</firstterm>) for
-      individual files. (Contrast this with unpacker plugins, where you set the
+      <para>比較前処理プラグインでは、モード(<firstterm>自動比較前処理</firstterm>または
+      <firstterm>手動比較前処理</firstterm>）を個々のファイルに設定します。 (Contrast this with unpacker plugins, where you set the
       mode for all files.) That is, some files in the same folder have different
       prediffer modes.</para>
 
