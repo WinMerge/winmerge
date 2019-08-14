@@ -219,8 +219,8 @@
 
         <para>自動展開が設定されているときにプラグインを適用するには、
         フォルダー比較ウィンドウでファイルの比較操作を開始するだけです。 
-        If the file's type suggested unpacker plugin (if any) preprocesses the file before
-        WinMerge opens it in the File Compare window.</para>
+        ファイルのタイプから自動的に選択された展開プラグイン（存在する場合）がファイルを前処理し、
+        WinMergeがファイル比較ウィンドウで開きます</para>
 
         <para>たとえば、MS Wordの<filename>doc</filename>ファイルを右クリックして
         <guimenuitem>Compare</guimenuitem>を選択するとします
@@ -282,26 +282,28 @@
       <title>フォルダ比較ウインドウでの比較前処理プラグインの適用</title>
 
       <para>比較前処理プラグインでは、モード(<firstterm>自動比較前処理</firstterm>または
-      <firstterm>手動比較前処理</firstterm>）を個々のファイルに設定します。 (Contrast this with unpacker plugins, where you set the
-      mode for all files.) That is, some files in the same folder have different
-      prediffer modes.</para>
+      <firstterm>比較前処理なし</firstterm>）を個々のファイルに設定します。 
+      （これをすべてのファイルのモードを設定する展開プラグインと比較してください。）
+      つまり、同じフォルダー内のいくつかのファイルには異なる比較前処理モードがあります。
+      </para>
 
-      <para>To set the mode for one or more files in the Folder Compare window,
-      right-click the files and choose <menuchoice>
-          <guimenu>Plugin Settings</guimenu>
-
-          <guisubmenu>Prediffer Settings</guisubmenu>
-        </menuchoice>, then choose one of the submenu options:</para>
+      <para>フォルダー比較ウィンドウで1つ以上のファイルのモードを設定するには、
+      ファイルを右クリックして<menuchoice>
+          <guimenu>プラグイン設定</guimenu>
+           
+          <guisubmenu>比較前処理プラグイン設定</guisubmenu>
+        </menuchoice>を選択し、サブメニューオプションのいずれかを選択します。</para>
 
       <itemizedlist>
         <listitem>
-          <para><guisubmenu>Auto Prediffer</guisubmenu> selects the first
-          prediffer plugin available for the file type.</para>
+          <para><guisubmenu>自動</guisubmenu> は、
+          指定したファイルのタイプに使用できる比較前処理プラグインの最初のものを選択します。
+          </para>
         </listitem>
 
         <listitem>
-          <para><guisubmenu>No prediffer</guisubmenu> means that no prediffer
-          plugin is used.</para>
+          <para><guisubmenu>使用しない</guisubmenu>は、
+          比較前処理プラグインを使用しません。</para>
         </listitem>
       </itemizedlist>
 
