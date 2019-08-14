@@ -107,6 +107,7 @@
 #include "ccrystaltextmarkers.h"
 #include "string_util.h"
 #include "wcwidth.h"
+#include "icu.hpp"
 
 using std::vector;
 using CrystalLineParser::TEXTBLOCK;
@@ -750,8 +751,8 @@ GetLineActualLength (int nLineIndex)
     {
       LPCTSTR pszChars = GetLineChars (nLineIndex);
       const int nTabSize = GetTabSize ();
-      int i;
-      for (i = 0; i < nLength; i++)
+      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
+      for (int i = 0; i < nLength; i = iter.next())
         {
           TCHAR c = pszChars[i];
           if (c == _T('\t'))
@@ -935,7 +936,8 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
 
   if (nCount > nLength || m_bViewTabs || m_bViewEols)
     {
-      for (i = 0; i < nLength; i++)
+      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
+      for (i = 0; i < nLength; i = iter.next())
         {
           if (pszChars[i] == _T('\t'))
             {
@@ -993,7 +995,8 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
     }
   else
     {
-      for (int i1=0; i1<nLength; ++i1)
+      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
+      for (int i1=0; i1<nLength; i1 = iter.next())
       {
         line += pszChars[i1];
         nCurPos += GetCharCellCountFromChar(pszChars[i1]);
@@ -1023,6 +1026,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
       const int nCharWidthNarrowed = nCharWidth / 2;
       const int nCharWidthWidened = nCharWidth * 2 - nCharWidthNarrowed;
       const int nLineHeight = GetLineHeight();
+      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>((LPCTSTR)line), lineLen);
 
       // i the character index, from 0 to lineLen-1
       int i = 0;
@@ -1038,23 +1042,15 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           // Update the position after the left clipped characters
           // stop for i = first visible character, at least partly
           const int clipLeft = rcClip.left - nCharWidth * 2;
-          for ( ; i < lineLen; i++)
+          for ( ; i < lineLen; i = iter.next())
           {
             int pnWidthsCurrent = GetCharCellCountFromChar(line[i]) * nCharWidth;
-#ifndef _UNICODE
-            if (_ismbblead(line[i]))
-              pnWidthsCurrent *= 2;
-#endif
             ptOrigin.x += pnWidthsCurrent;
             if (ptOrigin.x >= clipLeft)
             {
               ptOrigin.x -= pnWidthsCurrent;
               break;
             }
-#ifndef _UNICODE
-            if (_ismbblead(line[i]))
-              i++;
-#endif
           }
         
           // 
@@ -1087,7 +1083,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               // same with some fonts and text is drawn only partially
               // if this table is not used.
               vector<int> nWidths(nCount1 + 2);
-              for ( ; i < nCount1 + ibegin ; i++)
+              for ( ; i < nCount1 + ibegin ; i = iter.next())
                 {
                   if (line[i] == '\t') // Escape sequence leadin?
                   {
@@ -1156,7 +1152,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
             }
         }
       // Update the final position after the right clipped characters
-      for ( ; i < lineLen; i++)
+      for ( ; i < lineLen; i = iter.next())
         {
           ptOrigin.x += GetCharCellCountFromChar(line[i]) * nCharWidth;
         }
@@ -2637,9 +2633,9 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
   int	nCurPos = 0;
   const int nTabSize = GetTabSize();
 
-  bool bDBCSLeadPrev = false;  //DBCS support (yuyunyi)
-  int nIndex=0;
-  for( nIndex = 0; nIndex < nLength; nIndex++ )
+  int nIndex=0, nPrevIndex = 0;
+  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(szLine), nLength);
+  for( nIndex = 0; nIndex < nLength; nIndex = iter.next())
     {
       if( nBreaks > 0 && nIndex == anBreaks[nYPos] )
         {
@@ -2657,23 +2653,17 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
 
       if( nXPos > curPoint.x && nYPos == curPoint.y )
         {
-          if(bDBCSLeadPrev)
-            nIndex--;
-        break;
+          nIndex = nPrevIndex;
+          break;
         }
       else if( nYPos > curPoint.y )
         {
-          nIndex--;
+          nIndex = nPrevIndex;
           break;
         }
 
-      if(bDBCSLeadPrev)
-        bDBCSLeadPrev=false;
-      else
-        bDBCSLeadPrev = IsLeadByte(szLine[nIndex]);
+      nPrevIndex = nIndex;
     }
-
-  if (szLine && IsMBSTrail(szLine, nIndex)) nIndex--;
 
   return nIndex;	
 }
@@ -3853,13 +3843,13 @@ ClientToText (const CPoint & point)
   if (nPos < 0)
     nPos = 0;
 
-  int nIndex = 0;
+  int nIndex = 0, nPrevIndex = 0;
   int nCurPos = 0;
   int n = 0;
   int i = 0;
   const int nTabSize = GetTabSize();
 
-  bool bDBCSLeadPrev = false;  //DBCS support (yuyunyi)
+  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszLine), nLength);
   while (nIndex < nLength)
     {
       if (nBreaks && nIndex == anBreaks[i])
@@ -3878,21 +3868,14 @@ ClientToText (const CPoint & point)
 
       if (n > nPos && i == nSubLineOffset)
         {
-          if(bDBCSLeadPrev)
-            nIndex--;
-        break;
+          nIndex = nPrevIndex;
+          break;
         }
 
-      if (bDBCSLeadPrev)
-        bDBCSLeadPrev = false;
-      else
-        bDBCSLeadPrev = IsLeadByte(pszLine[nIndex]);
+      nPrevIndex = nIndex;
 
-      nIndex ++;
+      nIndex = iter.next();
     }
-
-  if (pszLine != nullptr && m_pTextBuffer->IsMBSTrail(pt.y, nIndex))
-    nIndex--;
 
   ASSERT(nIndex >= 0 && nIndex <= nLength);
   pt.x = nIndex;
@@ -3963,7 +3946,8 @@ TextToClient (const CPoint & point)
   //END SW
   pt.x = 0;
   int nTabSize = GetTabSize ();
-  for (int nIndex = 0; nIndex < point.x; nIndex++)
+  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszLine), point.x);
+  for (int nIndex = 0; nIndex < point.x; nIndex = iter.next())
     {
       //BEGIN SW
       if( nIndex == nSubLineStart )
@@ -4093,8 +4077,9 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
     nPreBreak = (J >= 0) ? anBreaks[J] : 0;
   }
   //END SW
+  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nCharIndex);
   int I=0;
-  for (I = 0; I < nCharIndex; I++)
+  for (I = 0; I < nCharIndex; I = iter.next())
     {
       //BEGIN SW
       if( nPreBreak == I && nBreaks )
@@ -4127,35 +4112,21 @@ ApproxActualOffset (int nLineIndex, int nOffset)
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   int nCurrentOffset = 0;
   int nTabSize = GetTabSize ();
-  for (int I = 0; I < nLength; I++)
+  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
+  for (int I = 0; I < nLength; I = iter.next())
     {
-#ifndef _UNICODE
-      bool bLeadByte = !!IsDBCSLeadByte (pszChars[I]);
-#endif
       if (pszChars[I] == _T ('\t'))
         nCurrentOffset += (nTabSize - nCurrentOffset % nTabSize);
       else
         {
-#ifndef _UNICODE
-          nCurrentOffset += bLeadByte ? 2 : 1;
-#else
           nCurrentOffset += GetCharCellCountFromChar(pszChars[I]);
-#endif
         }
       if (nCurrentOffset >= nOffset)
         {
           if (nOffset <= nCurrentOffset - nTabSize / 2)
             return I;
-#ifndef _UNICODE
-          return bLeadByte ? (I + 2) : (I + 1);
-#else
-          return I + 1;
-#endif
+          return iter.next();
         }
-#ifndef _UNICODE
-      if (bLeadByte)
-        I++;
-#endif
     }
   return nLength;
 }

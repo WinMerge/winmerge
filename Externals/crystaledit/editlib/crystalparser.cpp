@@ -16,6 +16,7 @@
 #include "StdAfx.h"
 #include "crystalparser.h"
 #include "ccrystaltextview.h"
+#include "icu.hpp"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -64,7 +65,8 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 	int			nCharWidth = m_pTextView->GetCharWidth();
 	WORD		wCharType;
 
-	for( int i = 0; i < nLineLength; i++ )
+    ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(szLine), nLineLength);
+    for( int i = 0; i < nLineLength; i = iter.next())
 	{
 		ch = szLine[i]; 
 		// remember position of whitespace for wrap
