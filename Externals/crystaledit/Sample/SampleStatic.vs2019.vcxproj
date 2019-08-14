@@ -495,6 +495,7 @@
     <ClCompile Include="..\editlib\go.cpp" />
     <ClCompile Include="..\editlib\gotodlg.cpp" />
     <ClCompile Include="..\editlib\html.cpp" />
+    <ClCompile Include="..\editlib\icu.cpp" />
     <ClCompile Include="..\editlib\ini.cpp" />
     <ClCompile Include="..\editlib\innosetup.cpp" />
     <ClCompile Include="..\editlib\is.cpp" />
@@ -588,6 +589,8 @@
     <ClInclude Include="..\editlib\filesup.h" />
     <ClInclude Include="..\editlib\fpattern.h" />
     <ClInclude Include="..\editlib\gotodlg.h" />
+    <ClInclude Include="..\editlib\icu.h" />
+    <ClInclude Include="..\editlib\icu.hpp" />
     <ClInclude Include="..\editlib\LineInfo.h" />
     <ClInclude Include="..\editlib\crystallineparser.h" />
     <ClInclude Include="..\editlib\memcombo.h" />
