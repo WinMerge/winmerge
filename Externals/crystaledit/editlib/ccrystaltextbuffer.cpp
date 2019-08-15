@@ -1899,43 +1899,6 @@ FindPrevBookmarkLine (int nCurrentLine) const
 //~  return -1;
 }
 
-bool CCrystalTextBuffer::
-IsMBSLead (int nLine, int nCol) const
-{
-  ASSERT (m_bInit);             //  Text buffer not yet initialized.
-  //  You must call InitNew() or LoadFromFile() first!
-
-#ifdef _UNICODE
-  return false;
-#else // _UNICODE
-  const unsigned char *string = (const unsigned char *) GetLineChars (nLine);
-  const unsigned char *current = string + nCol;
-  if (_ismbslead (string, current) < 0)
-    return true;
-  return false;
-#endif // _UNICODE
-}
-
-bool CCrystalTextBuffer::
-IsMBSTrail (int nLine, int nCol) const
-{
-  ASSERT (m_bInit);             //  Text buffer not yet initialized.
-  //  You must call InitNew() or LoadFromFile() first!
-
-#ifdef _UNICODE
-  const wchar_t *current = GetLineChars (nLine) + nCol;
-  if (*current >= 0xDC00 && *current <= 0xDFFF) // surrogate pair 
-    return true;
-  return false;
-#else // _UNICODE
-  const unsigned char *string = (const unsigned char *) GetLineChars (nLine);
-  const unsigned char *current = string + nCol;
-  if (_ismbstrail (string, current) < 0)
-    return true;
-  return false;
-#endif // _UNICODE
-}
-
 //BEGIN SW
 CPoint CCrystalTextBuffer::GetLastChangePos() const
 {

@@ -52,6 +52,7 @@
 #include "ccrystaltextmarkers.h"
 #include <malloc.h>
 #include "string_util.h"
+#include "icu.hpp"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
@@ -99,11 +100,8 @@ MoveLeft (bool bSelect)
         }
       else
         {
-          m_ptCursorPos.x--;
-          if (m_pTextBuffer->IsMBSTrail (m_ptCursorPos.y, m_ptCursorPos.x) &&
-                // here... if its a MBSTrail, then should move one character more....
-                m_ptCursorPos.x > 0)
-            m_ptCursorPos.x--;
+          ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
+          m_ptCursorPos.x = iter.preceding(m_ptCursorPos.x);
         }
     }
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
@@ -117,6 +115,7 @@ MoveLeft (bool bSelect)
 void CCrystalTextView::
 MoveRight (bool bSelect)
 {
+  int nLineLength = GetLineLength(m_ptCursorPos.y);
   PrepareSelBounds ();
   if (m_ptDrawSelStart != m_ptDrawSelEnd && !bSelect)
     {
@@ -124,7 +123,7 @@ MoveRight (bool bSelect)
     }
   else
     {
-      if (m_ptCursorPos.x == GetLineLength (m_ptCursorPos.y))
+      if (m_ptCursorPos.x == nLineLength)
         {
           if (m_ptCursorPos.y < GetLineCount () - 1)
             {
@@ -134,11 +133,8 @@ MoveRight (bool bSelect)
         }
       else
         {
-          m_ptCursorPos.x++;
-          if (m_pTextBuffer->IsMBSTrail (m_ptCursorPos.y, m_ptCursorPos.x) &&
-                // here... if its a MBSTrail, then should move one character more....
-                m_ptCursorPos.x < GetLineLength (m_ptCursorPos.y))
-            m_ptCursorPos.x++;
+          ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), nLineLength);
+          m_ptCursorPos.x = iter.following(m_ptCursorPos.x);
         }
     }
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
