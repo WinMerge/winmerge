@@ -1086,12 +1086,13 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               // same with some fonts and text is drawn only partially
               // if this table is not used.
               vector<int> nWidths(nCount1 + 2);
-			  int next = i;
-              for ( ; i < nCount1 + ibegin ; i = next)
+              bool bdisphex = false;
+              for (int next = i; i < nCount1 + ibegin ; i = next)
                 {
                   next = iter.next();
                   if (line[i] == '\t') // Escape sequence leadin?
                   {
+                    bdisphex = true;
                     // Substitute a space narrowed to half the width of a character cell.
                     line.SetAt(i, ' ');
                     nSumWidth += nWidths[i - ibegin] = nCharWidthNarrowed;
@@ -1125,30 +1126,33 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   IntersectRect(&rcIntersect, &rcClip, &rcTextBlock);
                   VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED | ETO_OPAQUE,
                       &rcIntersect, LPCTSTR(line) + ibegin, nCount1, &nWidths[0]));
-                  // Draw rounded rectangles around control characters
-                  pdc->SaveDC();
-                  pdc->IntersectClipRect(&rcClip);
-                  HDC hDC = pdc->m_hDC;
-                  HGDIOBJ hBrush = ::GetStockObject(NULL_BRUSH);
-                  hBrush = ::SelectObject(hDC, hBrush);
-                  HGDIOBJ hPen = ::CreatePen(PS_SOLID, 1, ::GetTextColor(hDC));
-                  hPen = ::SelectObject(hDC, hPen);
-                  int x = ptOrigin.x;
-                  for (int j = 0 ; j < nCount1 ; ++j)
-                  {
-                    // Assume narrowed space is converted escape sequence leadin.
-                    if (line[ibegin + j] == ' ' && nWidths[j] < nCharWidth)
+                  if (bdisphex)
                     {
-                      ::RoundRect(hDC, x + 2, ptOrigin.y + 1,
-                        x + 3 * nCharWidth - 2, ptOrigin.y + nLineHeight - 1,
-                        nCharWidth / 2, nLineHeight / 2);
-                    }
-                    x += nWidths[j];
-                  }
-                  hPen = ::SelectObject(hDC, hPen);
-                  ::DeleteObject(hPen);
-                  hBrush = ::SelectObject(hDC, hBrush);
-                  pdc->RestoreDC(-1);
+                     // Draw rounded rectangles around control characters
+                     pdc->SaveDC();
+                     pdc->IntersectClipRect(&rcClip);
+                     HDC hDC = pdc->m_hDC;
+                     HGDIOBJ hBrush = ::GetStockObject(NULL_BRUSH);
+                     hBrush = ::SelectObject(hDC, hBrush);
+                     HGDIOBJ hPen = ::CreatePen(PS_SOLID, 1, ::GetTextColor(hDC));
+                     hPen = ::SelectObject(hDC, hPen);
+                     int x = ptOrigin.x;
+                     for (int j = 0 ; j < nCount1 ; ++j)
+                     {
+                       // Assume narrowed space is converted escape sequence leadin.
+                       if (line[ibegin + j] == ' ' && nWidths[j] < nCharWidth)
+                       {
+                         ::RoundRect(hDC, x + 2, ptOrigin.y + 1,
+                           x + 3 * nCharWidth - 2, ptOrigin.y + nLineHeight - 1,
+                           nCharWidth / 2, nLineHeight / 2);
+                       }
+                       x += nWidths[j];
+                     }
+                     hPen = ::SelectObject(hDC, hPen);
+                     ::DeleteObject(hPen);
+                     hBrush = ::SelectObject(hDC, hBrush);
+                     pdc->RestoreDC(-1);
+                   }
                 }
 
               // Update the final position after the visible characters	              
