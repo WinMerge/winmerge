@@ -471,8 +471,9 @@ protected:
     virtual void DrawBoundaryLine (CDC * pdc, int nLeft, int nRight, int y);
     virtual void DrawLineCursor (CDC * pdc, int nLeft, int nRight, int y, int nHeight);
 
-	inline int GetCharCellCountFromChar(TCHAR ch)
+	inline int GetCharCellCountFromChar(const TCHAR *pch)
 	{
+		TCHAR ch = *pch;
 		if (ch >= _T('\x00') && ch <= _T('\x7F'))
 		{
 			if (ch <= _T('\x1F') && ch != '\t')
@@ -483,7 +484,7 @@ protected:
 		// This assumes a fixed width font
 		// But the UNICODE case handles double-wide glyphs (primarily Chinese characters)
 #ifdef _UNICODE
-		return GetCharCellCountUnicodeChar(ch);
+		return GetCharCellCountUnicodeChar(pch);
 #else
 		return 1;
 #endif
@@ -492,7 +493,7 @@ protected:
 #ifdef _UNICODE
     bool m_bChWidthsCalculated[65536/256];
     int m_iChDoubleWidthFlags[65536/32];
-    int GetCharCellCountUnicodeChar(wchar_t ch);
+    int GetCharCellCountUnicodeChar(const wchar_t *pch);
 #endif
     void ResetCharWidths();
 
