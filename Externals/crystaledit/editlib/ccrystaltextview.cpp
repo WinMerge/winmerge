@@ -919,8 +919,7 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
   pszChars += nOffset;
   int nLength = nCount;
 
-  int i;
-  for (i = 0; i < nLength; i++)
+  for (int i = 0; i < nLength; i++)
     {
       TCHAR c = pszChars[i];
       if (c == _T('\t'))
@@ -937,8 +936,9 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
   if (nCount > nLength || m_bViewTabs || m_bViewEols)
     {
       ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
-      for (i = 0; i < nLength; i = iter.next())
+      for (int i = 0, next = 0; i < nLength; i = next)
         {
+          next = iter.next();
           if (pszChars[i] == _T('\t'))
             {
               int nSpaces = nTabSize - (nActualOffset + nCurPos) % nTabSize;
@@ -988,18 +988,21 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
             }
           else
             {
-              line += pszChars[i];
               nCurPos += GetCharCellCountFromChar(pszChars[i]);
+              for (; i < next; ++i)
+                line += pszChars[i];
             }
         }
     }
   else
     {
       ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
-      for (int i1=0; i1<nLength; i1 = iter.next())
+      for (int i1=0, next=0; i1<nLength; i1 = next)
       {
-        line += pszChars[i1];
+        next = iter.next();
         nCurPos += GetCharCellCountFromChar(pszChars[i1]);
+        for (; i1 < next; ++i1)
+          line += pszChars[i1];
       }
     }
   return nCurPos;
@@ -1083,8 +1086,10 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               // same with some fonts and text is drawn only partially
               // if this table is not used.
               vector<int> nWidths(nCount1 + 2);
-              for ( ; i < nCount1 + ibegin ; i = iter.next())
+			  int next = i;
+              for ( ; i < nCount1 + ibegin ; i = next)
                 {
+                  next = iter.next();
                   if (line[i] == '\t') // Escape sequence leadin?
                   {
                     // Substitute a space narrowed to half the width of a character cell.
