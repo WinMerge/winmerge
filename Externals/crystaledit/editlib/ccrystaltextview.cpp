@@ -107,6 +107,7 @@
 #include "ccrystaltextmarkers.h"
 #include "string_util.h"
 #include "wcwidth.h"
+#include "icu.hpp"
 
 using std::vector;
 using CrystalLineParser::TEXTBLOCK;
@@ -750,14 +751,14 @@ GetLineActualLength (int nLineIndex)
     {
       LPCTSTR pszChars = GetLineChars (nLineIndex);
       const int nTabSize = GetTabSize ();
-      int i;
-      for (i = 0; i < nLength; i++)
+      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
+      for (int i = 0; i < nLength; i = iter.next())
         {
           TCHAR c = pszChars[i];
           if (c == _T('\t'))
             nActualLength += (nTabSize - nActualLength % nTabSize);
           else
-            nActualLength += GetCharCellCountFromChar(c);
+            nActualLength += GetCharCellCountFromChar(pszChars + i);
         }
     }
 
@@ -918,8 +919,7 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
   pszChars += nOffset;
   int nLength = nCount;
 
-  int i;
-  for (i = 0; i < nLength; i++)
+  for (int i = 0; i < nLength; i++)
     {
       TCHAR c = pszChars[i];
       if (c == _T('\t'))
@@ -935,8 +935,10 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
 
   if (nCount > nLength || m_bViewTabs || m_bViewEols)
     {
-      for (i = 0; i < nLength; i++)
+      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
+      for (int i = 0, next = 0; i < nLength; i = next)
         {
+          next = iter.next();
           if (pszChars[i] == _T('\t'))
             {
               int nSpaces = nTabSize - (nActualOffset + nCurPos) % nTabSize;
@@ -986,17 +988,21 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
             }
           else
             {
-              line += pszChars[i];
-              nCurPos += GetCharCellCountFromChar(pszChars[i]);
+              nCurPos += GetCharCellCountFromChar(pszChars + i);
+              for (; i < next; ++i)
+                line += pszChars[i];
             }
         }
     }
   else
     {
-      for (int i1=0; i1<nLength; ++i1)
+      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
+      for (int i1=0, next=0; i1<nLength; i1 = next)
       {
-        line += pszChars[i1];
-        nCurPos += GetCharCellCountFromChar(pszChars[i1]);
+        next = iter.next();
+        nCurPos += GetCharCellCountFromChar(pszChars + i1);
+        for (; i1 < next; ++i1)
+          line += pszChars[i1];
       }
     }
   return nCurPos;
@@ -1023,6 +1029,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
       const int nCharWidthNarrowed = nCharWidth / 2;
       const int nCharWidthWidened = nCharWidth * 2 - nCharWidthNarrowed;
       const int nLineHeight = GetLineHeight();
+      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>((LPCTSTR)line), lineLen);
 
       // i the character index, from 0 to lineLen-1
       int i = 0;
@@ -1038,23 +1045,15 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           // Update the position after the left clipped characters
           // stop for i = first visible character, at least partly
           const int clipLeft = rcClip.left - nCharWidth * 2;
-          for ( ; i < lineLen; i++)
+          for ( ; i < lineLen; i = iter.next())
           {
-            int pnWidthsCurrent = GetCharCellCountFromChar(line[i]) * nCharWidth;
-#ifndef _UNICODE
-            if (_ismbblead(line[i]))
-              pnWidthsCurrent *= 2;
-#endif
+            int pnWidthsCurrent = GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
             ptOrigin.x += pnWidthsCurrent;
             if (ptOrigin.x >= clipLeft)
             {
               ptOrigin.x -= pnWidthsCurrent;
               break;
             }
-#ifndef _UNICODE
-            if (_ismbblead(line[i]))
-              i++;
-#endif
           }
         
           // 
@@ -1087,10 +1086,13 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               // same with some fonts and text is drawn only partially
               // if this table is not used.
               vector<int> nWidths(nCount1 + 2);
-              for ( ; i < nCount1 + ibegin ; i++)
+              bool bdisphex = false;
+              for (int next = i; i < nCount1 + ibegin ; i = next)
                 {
+                  next = iter.next();
                   if (line[i] == '\t') // Escape sequence leadin?
                   {
+                    bdisphex = true;
                     // Substitute a space narrowed to half the width of a character cell.
                     line.SetAt(i, ' ');
                     nSumWidth += nWidths[i - ibegin] = nCharWidthNarrowed;
@@ -1101,7 +1103,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   }
                   else
                   {
-                    nSumWidth += nWidths[i - ibegin] = GetCharCellCountFromChar(line[i]) * nCharWidth;
+                    nSumWidth += nWidths[i - ibegin] = GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
                   }
                 }
 
@@ -1124,30 +1126,33 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   IntersectRect(&rcIntersect, &rcClip, &rcTextBlock);
                   VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED | ETO_OPAQUE,
                       &rcIntersect, LPCTSTR(line) + ibegin, nCount1, &nWidths[0]));
-                  // Draw rounded rectangles around control characters
-                  pdc->SaveDC();
-                  pdc->IntersectClipRect(&rcClip);
-                  HDC hDC = pdc->m_hDC;
-                  HGDIOBJ hBrush = ::GetStockObject(NULL_BRUSH);
-                  hBrush = ::SelectObject(hDC, hBrush);
-                  HGDIOBJ hPen = ::CreatePen(PS_SOLID, 1, ::GetTextColor(hDC));
-                  hPen = ::SelectObject(hDC, hPen);
-                  int x = ptOrigin.x;
-                  for (int j = 0 ; j < nCount1 ; ++j)
-                  {
-                    // Assume narrowed space is converted escape sequence leadin.
-                    if (line[ibegin + j] == ' ' && nWidths[j] < nCharWidth)
+                  if (bdisphex)
                     {
-                      ::RoundRect(hDC, x + 2, ptOrigin.y + 1,
-                        x + 3 * nCharWidth - 2, ptOrigin.y + nLineHeight - 1,
-                        nCharWidth / 2, nLineHeight / 2);
-                    }
-                    x += nWidths[j];
-                  }
-                  hPen = ::SelectObject(hDC, hPen);
-                  ::DeleteObject(hPen);
-                  hBrush = ::SelectObject(hDC, hBrush);
-                  pdc->RestoreDC(-1);
+                     // Draw rounded rectangles around control characters
+                     pdc->SaveDC();
+                     pdc->IntersectClipRect(&rcClip);
+                     HDC hDC = pdc->m_hDC;
+                     HGDIOBJ hBrush = ::GetStockObject(NULL_BRUSH);
+                     hBrush = ::SelectObject(hDC, hBrush);
+                     HGDIOBJ hPen = ::CreatePen(PS_SOLID, 1, ::GetTextColor(hDC));
+                     hPen = ::SelectObject(hDC, hPen);
+                     int x = ptOrigin.x;
+                     for (int j = 0 ; j < nCount1 ; ++j)
+                     {
+                       // Assume narrowed space is converted escape sequence leadin.
+                       if (line[ibegin + j] == ' ' && nWidths[j] < nCharWidth)
+                       {
+                         ::RoundRect(hDC, x + 2, ptOrigin.y + 1,
+                           x + 3 * nCharWidth - 2, ptOrigin.y + nLineHeight - 1,
+                           nCharWidth / 2, nLineHeight / 2);
+                       }
+                       x += nWidths[j];
+                     }
+                     hPen = ::SelectObject(hDC, hPen);
+                     ::DeleteObject(hPen);
+                     hBrush = ::SelectObject(hDC, hBrush);
+                     pdc->RestoreDC(-1);
+                   }
                 }
 
               // Update the final position after the visible characters	              
@@ -1156,9 +1161,9 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
             }
         }
       // Update the final position after the right clipped characters
-      for ( ; i < lineLen; i++)
+      for ( ; i < lineLen; i = iter.next())
         {
-          ptOrigin.x += GetCharCellCountFromChar(line[i]) * nCharWidth;
+          ptOrigin.x += GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
         }
     }
 }
@@ -2637,9 +2642,9 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
   int	nCurPos = 0;
   const int nTabSize = GetTabSize();
 
-  bool bDBCSLeadPrev = false;  //DBCS support (yuyunyi)
-  int nIndex=0;
-  for( nIndex = 0; nIndex < nLength; nIndex++ )
+  int nIndex=0, nPrevIndex = 0;
+  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(szLine), nLength);
+  for( nIndex = 0; nIndex < nLength; nIndex = iter.next())
     {
       if( nBreaks > 0 && nIndex == anBreaks[nYPos] )
         {
@@ -2651,29 +2656,23 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
       if (szLine[nIndex] == _T('\t'))
         nOffset = nTabSize - nCurPos % nTabSize;
       else
-        nOffset = GetCharCellCountFromChar(szLine[nIndex]);
+        nOffset = GetCharCellCountFromChar(szLine + nIndex);
       nXPos += nOffset;
       nCurPos += nOffset;
 
       if( nXPos > curPoint.x && nYPos == curPoint.y )
         {
-          if(bDBCSLeadPrev)
-            nIndex--;
-        break;
+          nIndex = nPrevIndex;
+          break;
         }
       else if( nYPos > curPoint.y )
         {
-          nIndex--;
+          nIndex = nPrevIndex;
           break;
         }
 
-      if(bDBCSLeadPrev)
-        bDBCSLeadPrev=false;
-      else
-        bDBCSLeadPrev = IsLeadByte(szLine[nIndex]);
+      nPrevIndex = nIndex;
     }
-
-  if (szLine && IsMBSTrail(szLine, nIndex)) nIndex--;
 
   return nIndex;	
 }
@@ -3853,13 +3852,13 @@ ClientToText (const CPoint & point)
   if (nPos < 0)
     nPos = 0;
 
-  int nIndex = 0;
+  int nIndex = 0, nPrevIndex = 0;
   int nCurPos = 0;
   int n = 0;
   int i = 0;
   const int nTabSize = GetTabSize();
 
-  bool bDBCSLeadPrev = false;  //DBCS support (yuyunyi)
+  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszLine), nLength);
   while (nIndex < nLength)
     {
       if (nBreaks && nIndex == anBreaks[i])
@@ -3872,27 +3871,17 @@ ClientToText (const CPoint & point)
       if (pszLine[nIndex] == '\t')
         nOffset = nTabSize - nCurPos % nTabSize;
       else
-        nOffset = GetCharCellCountFromChar(pszLine[nIndex]);
+        nOffset = GetCharCellCountFromChar(pszLine + nIndex);
       n += nOffset;
       nCurPos += nOffset;
 
       if (n > nPos && i == nSubLineOffset)
-        {
-          if(bDBCSLeadPrev)
-            nIndex--;
         break;
-        }
 
-      if (bDBCSLeadPrev)
-        bDBCSLeadPrev = false;
-      else
-        bDBCSLeadPrev = IsLeadByte(pszLine[nIndex]);
+      nPrevIndex = nIndex;
 
-      nIndex ++;
+      nIndex = iter.next();
     }
-
-  if (pszLine != nullptr && m_pTextBuffer->IsMBSTrail(pt.y, nIndex))
-    nIndex--;
 
   ASSERT(nIndex >= 0 && nIndex <= nLength);
   pt.x = nIndex;
@@ -3963,7 +3952,8 @@ TextToClient (const CPoint & point)
   //END SW
   pt.x = 0;
   int nTabSize = GetTabSize ();
-  for (int nIndex = 0; nIndex < point.x; nIndex++)
+  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszLine), point.x);
+  for (int nIndex = 0; nIndex < point.x; nIndex = iter.next())
     {
       //BEGIN SW
       if( nIndex == nSubLineStart )
@@ -3972,7 +3962,7 @@ TextToClient (const CPoint & point)
       if (pszLine[nIndex] == _T ('\t'))
         pt.x += (nTabSize - pt.x % nTabSize);
       else
-        pt.x += GetCharCellCountFromChar(pszLine[nIndex]);
+        pt.x += GetCharCellCountFromChar(pszLine + nIndex);
     }
   //BEGIN SW
   pt.x-= nPreOffset;
@@ -4093,8 +4083,9 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
     nPreBreak = (J >= 0) ? anBreaks[J] : 0;
   }
   //END SW
+  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nCharIndex);
   int I=0;
-  for (I = 0; I < nCharIndex; I++)
+  for (I = 0; I < nCharIndex; I = iter.next())
     {
       //BEGIN SW
       if( nPreBreak == I && nBreaks )
@@ -4103,7 +4094,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
       if (pszChars[I] == _T ('\t'))
         nOffset += (nTabSize - nOffset % nTabSize);
       else
-        nOffset += GetCharCellCountFromChar(pszChars[I]);
+        nOffset += GetCharCellCountFromChar(pszChars + I);
     }
   if (bAccumulate)
     return nOffset;
@@ -4127,35 +4118,21 @@ ApproxActualOffset (int nLineIndex, int nOffset)
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   int nCurrentOffset = 0;
   int nTabSize = GetTabSize ();
-  for (int I = 0; I < nLength; I++)
+  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
+  for (int I = 0; I < nLength; I = iter.next())
     {
-#ifndef _UNICODE
-      bool bLeadByte = !!IsDBCSLeadByte (pszChars[I]);
-#endif
       if (pszChars[I] == _T ('\t'))
         nCurrentOffset += (nTabSize - nCurrentOffset % nTabSize);
       else
         {
-#ifndef _UNICODE
-          nCurrentOffset += bLeadByte ? 2 : 1;
-#else
-          nCurrentOffset += GetCharCellCountFromChar(pszChars[I]);
-#endif
+          nCurrentOffset += GetCharCellCountFromChar(pszChars + I);
         }
       if (nCurrentOffset >= nOffset)
         {
           if (nOffset <= nCurrentOffset - nTabSize / 2)
             return I;
-#ifndef _UNICODE
-          return bLeadByte ? (I + 2) : (I + 1);
-#else
-          return I + 1;
-#endif
+          return iter.next();
         }
-#ifndef _UNICODE
-      if (bLeadByte)
-        I++;
-#endif
     }
   return nLength;
 }
@@ -6384,30 +6361,38 @@ void CCrystalTextView::SetMarkersContext(CCrystalTextMarkers * pMarkers)
 }
 
 #ifdef _UNICODE
-int CCrystalTextView::GetCharCellCountUnicodeChar(wchar_t ch)
+int CCrystalTextView::GetCharCellCountUnicodeChar(const wchar_t *pch)
 {  
+  wchar_t ch = *pch;
   if (!m_bChWidthsCalculated[ch/256])
     {
-      int nWidthArray[256];
-      wchar_t nStart = ch/256*256;
-      wchar_t nEnd = nStart + 255;
-      CDC *pdc = GetDC();
-      CFont *pOldFont = pdc->SelectObject(GetFont());
-      GetCharWidth32(pdc->m_hDC, nStart, nEnd, nWidthArray);
-      int nCharWidth = GetCharWidth();
-      for (int i = 0; i < 256; i++) 
+      if (U16_IS_SURROGATE(ch) && U16_IS_SURROGATE_LEAD(ch))
         {
-          if (nCharWidth * 15 < nWidthArray[i] * 10)
-            m_iChDoubleWidthFlags[(nStart+i)/32] |= 1 << (i % 32);
-          else
-            {
-              wchar_t ch2 = static_cast<wchar_t>(nStart + i);
-              if (mk_wcwidth(ch2) > 1)
-                m_iChDoubleWidthFlags[(nStart + i) / 32] |= 1 << (i % 32);
-            }
+          return wcwidth(U16_GET_SUPPLEMENTARY(ch, pch[1]));
         }
-      m_bChWidthsCalculated[ch / 256] = true;
-      pdc->SelectObject(pOldFont);
+      else
+        {
+          int nWidthArray[256];
+          wchar_t nStart = ch/256*256;
+          wchar_t nEnd = nStart + 255;
+          CDC *pdc = GetDC();
+          CFont *pOldFont = pdc->SelectObject(GetFont());
+          GetCharWidth32(pdc->m_hDC, nStart, nEnd, nWidthArray);
+          int nCharWidth = GetCharWidth();
+          for (int i = 0; i < 256; i++) 
+            {
+              if (nCharWidth * 15 < nWidthArray[i] * 10)
+                m_iChDoubleWidthFlags[(nStart+i)/32] |= 1 << (i % 32);
+              else
+                {
+                  wchar_t ch2 = static_cast<wchar_t>(nStart + i);
+                  if (wcwidth(ch2) > 1)
+                    m_iChDoubleWidthFlags[(nStart + i) / 32] |= 1 << (i % 32);
+                }
+            }
+          m_bChWidthsCalculated[ch / 256] = true;
+          pdc->SelectObject(pOldFont);
+        }
     }
   if (m_iChDoubleWidthFlags[ch / 32] & (1 << (ch % 32)))
     return 2;

@@ -77,6 +77,7 @@
 #include "cs2cs.h"
 #include "chcondlg.h"
 #include "string_util.h"
+#include "icu.hpp"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
@@ -620,11 +621,8 @@ OnEditDelete ()
         }
       else 
         {
-          ptSelEnd.x++;
-          //yuyunyi
-          if (ptSelEnd.x < GetLineLength (ptSelEnd.y) && m_pTextBuffer->IsMBSTrail (ptSelEnd.y, ptSelEnd.x))
-            // here... if its a MBSTrail, then should move one character more....
-            ptSelEnd.x++;
+          ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(GetLineChars(ptSelEnd.y)), GetLineLength(ptSelEnd.y));
+          ptSelEnd.x = iter.following(ptSelEnd.x);
       }
     }
 
@@ -838,18 +836,9 @@ OnEditDeleteBack ()
   else                          // If Caret Not At SOL
 
     {
-      if (ptCursorPos.x > 1 && m_pTextBuffer->IsMBSTrail (ptCursorPos.y, ptCursorPos.x-1)) ptCursorPos.x--; /* MULTIBYTES */
-          ptCursorPos.x--;          // Decrement Position
-
-      //yuyunyi
-      if (ptCursorPos.x > 0 && m_pTextBuffer->IsMBSTrail (ptCursorPos.y, ptCursorPos.x))
-        {
-          // here... if its a MBSTrail, then should move one character more....
-          ptCursorPos.x--;
-        }
-	  
+      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(GetLineChars(ptCursorPos.y)), GetLineLength(ptCursorPos.y));
+      ptCursorPos.x = iter.preceding(ptCursorPos.x);
       bDeleted = true;          // Set Deleted Flag
-
     }
   /*
      if (ptCursorPos.x == 0)
