@@ -1,16 +1,38 @@
+#pragma once
+
 #include <cstdint>
-#include "icu.h"
 #include "string_util.h"
 
 #ifndef ICU_EXTERN
 #define ICU_EXTERN extern
 #endif
 
+#define U16_SURROGATE_OFFSET ((0xd800<<10UL)+0xdc00-0x10000)
+#define U16_GET_SUPPLEMENTARY(lead, trail) \
+    (((UChar32)(lead)<<10UL)+(UChar32)(trail)-U16_SURROGATE_OFFSET)
+#define U16_IS_SURROGATE_LEAD(c) (((c)&0x400)==0)
+#define U_IS_SURROGATE(c) (((c)&0xfffff800)==0xd800)
+#define U16_IS_SURROGATE(c) U_IS_SURROGATE(c)
+#define UBRK_DONE ((int32_t) -1)
+
+typedef enum UBreakIteratorType { UBRK_CHARACTER = 0, UBRK_WORD = 1, UBRK_LINE = 2, UBRK_SENTENCE = 3 } UBreakIteratorType;
+typedef int32_t UChar32;
+typedef char16_t UChar;
+typedef struct UBreakIterator UBreakIterator;
+typedef enum UErrorCode { U_ZERO_ERROR = 0 } UErrorCode;
+
 typedef UBreakIterator* (*ubrk_open_type)(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status);
 ICU_EXTERN UBreakIterator* (*g_pubrk_open)(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status);
 inline UBreakIterator* ubrk_open(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength, UErrorCode* status)
 {
 	return g_pubrk_open(type, locale, text, textLength, status);
+}
+
+typedef void (*ubrk_setText_type)(UBreakIterator *bi, const UChar* text, int32_t textLength, UErrorCode* status);
+ICU_EXTERN void (*g_pubrk_setText)(UBreakIterator *bi, const UChar* text, int32_t textLength, UErrorCode* status);
+inline void ubrk_setText(UBreakIterator *bi, const UChar* text, int32_t textLength, UErrorCode* status)
+{
+	g_pubrk_setText(bi, text, textLength, status);
 }
 
 typedef void (*ubrk_close_type)(UBreakIterator* bi);
@@ -63,12 +85,14 @@ public:
 		if (!m_hLibrary)
 			return;
 		g_pubrk_open = reinterpret_cast<ubrk_open_type>(GetProcAddress(m_hLibrary, "ubrk_open"));
+		g_pubrk_setText = reinterpret_cast<ubrk_setText_type>(GetProcAddress(m_hLibrary, "ubrk_setText"));
 		g_pubrk_close = reinterpret_cast<ubrk_close_type>(GetProcAddress(m_hLibrary, "ubrk_close"));
 		g_pubrk_first = reinterpret_cast<ubrk_first_type>(GetProcAddress(m_hLibrary, "ubrk_first"));
 		g_pubrk_previous = reinterpret_cast<ubrk_previous_type>(GetProcAddress(m_hLibrary, "ubrk_previous"));
 		g_pubrk_next = reinterpret_cast<ubrk_next_type>(GetProcAddress(m_hLibrary, "ubrk_next"));
 		g_pubrk_preceding = reinterpret_cast<ubrk_preceding_type>(GetProcAddress(m_hLibrary, "ubrk_preceding"));
 		g_pubrk_following = reinterpret_cast<ubrk_following_type>(GetProcAddress(m_hLibrary, "ubrk_following"));
+		g_pubrk_next = reinterpret_cast<ubrk_next_type>(GetProcAddress(m_hLibrary, "ubrk_next"));
 
 	}
 	~ICULoader()
@@ -95,10 +119,21 @@ public:
 				ubrk_first(m_iter);
 		}
 	}
+
 	~ICUBreakIterator()
 	{
 		if (m_iter)
 			ubrk_close(m_iter);
+	}
+
+	UErrorCode setText(const UChar* text, int32_t textLength)
+	{
+		m_text = text;
+		m_textLength = textLength;
+		UErrorCode status = U_ZERO_ERROR;
+		if (m_iter)
+			ubrk_setText(m_iter, text, textLength, &status);
+		return status;
 	}
 
 	int next()

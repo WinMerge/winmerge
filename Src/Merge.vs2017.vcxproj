@@ -1064,7 +1064,6 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\filesup.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\fpattern.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\gotodlg.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\icu.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\icu.hpp" />
     <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystallineparser.h" />

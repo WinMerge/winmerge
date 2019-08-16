@@ -25,6 +25,7 @@
 IMPLEMENT_DYNAMIC( CCrystalParser, CObject )
 
 CCrystalParser::CCrystalParser()
+: m_iterChar(UBRK_CHARACTER, "en", nullptr, 0)
 {
 	m_pTextView = nullptr;
 }
@@ -65,8 +66,8 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 	int			nCharWidth = m_pTextView->GetCharWidth();
 	WORD		wCharType;
 
-    ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(szLine), nLineLength);
-    for( int i = 0; i < nLineLength; i = iter.next())
+    m_iterChar.setText(reinterpret_cast<const UChar *>(szLine), nLineLength);
+    for( int i = 0; i < nLineLength; i = m_iterChar.next())
 	{
 		ch = szLine[i]; 
 		// remember position of whitespace for wrap

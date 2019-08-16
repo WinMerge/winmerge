@@ -621,8 +621,8 @@ OnEditDelete ()
         }
       else 
         {
-          ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(GetLineChars(ptSelEnd.y)), GetLineLength(ptSelEnd.y));
-          ptSelEnd.x = iter.following(ptSelEnd.x);
+          m_iterChar.setText(reinterpret_cast<const UChar *>(GetLineChars(ptSelEnd.y)), GetLineLength(ptSelEnd.y));
+          ptSelEnd.x = m_iterChar.following(ptSelEnd.x);
       }
     }
 
@@ -836,8 +836,8 @@ OnEditDeleteBack ()
   else                          // If Caret Not At SOL
 
     {
-      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(GetLineChars(ptCursorPos.y)), GetLineLength(ptCursorPos.y));
-      ptCursorPos.x = iter.preceding(ptCursorPos.x);
+      m_iterChar.setText(reinterpret_cast<const UChar *>(GetLineChars(ptCursorPos.y)), GetLineLength(ptCursorPos.y));
+      ptCursorPos.x = m_iterChar.preceding(ptCursorPos.x);
       bDeleted = true;          // Set Deleted Flag
     }
   /*
