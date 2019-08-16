@@ -1,5 +1,6 @@
 #include <cstdint>
 #include "icu.h"
+#include "string_util.h"
 
 #ifndef ICU_EXTERN
 #define ICU_EXTERN extern
@@ -84,7 +85,7 @@ class ICUBreakIterator
 {
 public:
 	ICUBreakIterator(UBreakIteratorType type, const char* locale, const UChar* text, int32_t textLength)
-		: m_iter(nullptr), m_text(text), m_i(0), m_textLength(textLength)
+		: m_iter(nullptr), m_type(type), m_text(text), m_i(0), m_textLength(textLength)
 	{
 		if (ICULoader::IsLoaded())
 		{
@@ -107,11 +108,7 @@ public:
 			int pos = ubrk_next(m_iter);
 			return (pos == UBRK_DONE) ? m_textLength : pos;
 		}
-		else
-		{
-			m_i += U16_IS_SURROGATE(m_text[m_i]) ? 2 : 1;
-			return m_i;
-		}
+		else return mynext();
 	}
 
 	int preceding(int32_t offset)
@@ -121,11 +118,7 @@ public:
 			int pos = ubrk_preceding(m_iter, offset);
 			return (pos == UBRK_DONE) ? 0: pos;
 		}
-		else
-		{
-			m_i = offset - (U16_IS_SURROGATE(m_text[offset - 1]) ?  2 : 1);
-			return m_i;
-		}
+		else return mypreceding(offset);
 	}
 
 	int following(int32_t offset)
@@ -135,15 +128,86 @@ public:
 			int pos = ubrk_following(m_iter, offset);
 			return (pos == UBRK_DONE) ? m_textLength : pos;
 		}
-		else
-		{
-			m_i = offset + (U16_IS_SURROGATE(m_text[offset]) ? 2 : 1);
-			return m_i;
-		}
+		else return myfollowing(offset);
 	}
 
 private:
+	int mynext()
+	{
+		if (m_type == UBRK_CHARACTER)
+		{
+			m_i += U16_IS_SURROGATE(m_text[m_i]) ? 2 : 1;
+		}
+		else if (m_type == UBRK_WORD)
+		{
+			m_i = following(m_i);
+		}
+		return m_i;
+	}
+
+	int mypreceding(int32_t offset)
+	{
+		if (m_type == UBRK_CHARACTER)
+		{
+			m_i = offset - (U16_IS_SURROGATE(m_text[offset - 1]) ? 2 : 1);
+		}
+		else if (m_type == UBRK_WORD)
+		{
+			int nPos = offset;
+			int nPrevPos;
+			while (nPos > 0 && xisspace(m_text[nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1)]))
+				nPos = nPrevPos;
+			if (nPos > 0)
+			{
+				nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1);
+				nPos = nPrevPos;
+				if (xisalnum(m_text[nPos]))
+				{
+					while (nPos > 0 && xisalnum(m_text[nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1)]))
+						nPos = nPrevPos;
+				}
+				else
+				{
+					while (nPos > 0 && !xisalnum(m_text[nPrevPos = nPos - (U16_IS_SURROGATE(m_text[nPos - 1]) ? 2 : 1)])
+						&& !xisspace(m_text[nPrevPos]))
+						nPos = nPrevPos;
+				}
+			}
+			m_i = nPos;
+		}
+		return m_i;
+	}
+
+	int myfollowing(int32_t offset)
+	{
+		if (m_type == UBRK_CHARACTER)
+		{
+			m_i = offset + (U16_IS_SURROGATE(m_text[offset]) ? 2 : 1);
+		}
+		else if (m_type == UBRK_WORD)
+		{
+			int nPos = offset;
+			if (xisalnum(m_text[nPos]))
+			{
+				while (nPos < m_textLength && xisalnum(m_text[nPos]))
+					nPos += (U16_IS_SURROGATE(m_text[nPos]) ? 2 : 1);
+			}
+			else
+			{
+				while (nPos < m_textLength && !xisalnum(m_text[nPos])
+					&& !iswspace(m_text[nPos]))
+					nPos += (U16_IS_SURROGATE(m_text[nPos]) ? 2 : 1);
+			}
+
+			while (nPos < m_textLength && iswspace(m_text[nPos]))
+				nPos += (U16_IS_SURROGATE(m_text[nPos]) ? 2 : 1);
+			m_i = nPos;
+		}
+		return m_i;
+	}
+
 	UBreakIterator* m_iter;
+	UBreakIteratorType m_type;
 	const UChar *m_text;
 	int m_i;
 	int m_textLength;

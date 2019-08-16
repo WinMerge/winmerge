@@ -3876,10 +3876,7 @@ ClientToText (const CPoint & point)
       nCurPos += nOffset;
 
       if (n > nPos && i == nSubLineOffset)
-        {
-          nIndex = nPrevIndex;
-          break;
-        }
+        break;
 
       nPrevIndex = nIndex;
 
