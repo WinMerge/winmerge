@@ -100,8 +100,8 @@ MoveLeft (bool bSelect)
         }
       else
         {
-          ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
-          m_ptCursorPos.x = iter.preceding(m_ptCursorPos.x);
+          m_iterChar.setText(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
+          m_ptCursorPos.x = m_iterChar.preceding(m_ptCursorPos.x);
         }
     }
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
@@ -133,8 +133,8 @@ MoveRight (bool bSelect)
         }
       else
         {
-          ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), nLineLength);
-          m_ptCursorPos.x = iter.following(m_ptCursorPos.x);
+          m_iterChar.setText(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), nLineLength);
+          m_ptCursorPos.x = m_iterChar.following(m_ptCursorPos.x);
         }
     }
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
@@ -165,8 +165,8 @@ MoveWordLeft (bool bSelect)
 
   if (m_ptCursorPos.x > 0)
     {
-      ICUBreakIterator iter(UBRK_WORD, "en", reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
-      m_ptCursorPos.x = iter.preceding(m_ptCursorPos.x);
+      m_iterWord.setText(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
+      m_ptCursorPos.x = m_iterWord.preceding(m_ptCursorPos.x);
     }
 
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
@@ -202,8 +202,8 @@ MoveWordRight (bool bSelect)
       return;
     }
 
-  ICUBreakIterator iter(UBRK_WORD, "en", reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
-  m_ptCursorPos.x = iter.following(m_ptCursorPos.x);
+  m_iterWord.setText(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
+  m_ptCursorPos.x = m_iterWord.following(m_ptCursorPos.x);
 
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
@@ -499,8 +499,8 @@ WordToRight (CPoint pt)
   int nLength = GetLineLength (pt.y);
   if (pt.x < nLength)
     {
-      ICUBreakIterator iter(UBRK_WORD, "en", reinterpret_cast<const UChar *>(GetLineChars(pt.y)), nLength);
-      pt.x = iter.following(pt.x);
+      m_iterWord.setText(reinterpret_cast<const UChar *>(GetLineChars(pt.y)), nLength);
+      pt.x = m_iterWord.following(pt.x);
     }
   ASSERT_VALIDTEXTPOS (pt);
   return pt;
@@ -512,9 +512,9 @@ WordToLeft (CPoint pt)
   ASSERT_VALIDTEXTPOS (pt);
   if (pt.x > 0)
     {
-      ICUBreakIterator iter(UBRK_WORD, "en", reinterpret_cast<const UChar *>(GetLineChars(pt.y)), GetLineLength(pt.y));
-      pt.x = iter.following(pt.x);
-      pt.x = iter.preceding(pt.x);
+      m_iterWord.setText(reinterpret_cast<const UChar *>(GetLineChars(pt.y)), GetLineLength(pt.y));
+      pt.x = m_iterWord.following(pt.x);
+      pt.x = m_iterWord.preceding(pt.x);
     }
   ASSERT_VALIDTEXTPOS (pt);
   return pt;

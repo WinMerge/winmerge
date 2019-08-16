@@ -521,41 +521,84 @@ CCrystalTextView::CCrystalTextView ()
 , m_pFindTextDlg(nullptr)
 , m_CurSourceDef(nullptr)
 , m_dwLastDblClickTime(0)
+, m_iterChar(UBRK_CHARACTER, "en", nullptr, 0)
+, m_iterWord(UBRK_WORD, "en", nullptr, 0)
+, m_rxnode(nullptr)
+, m_pszMatched(nullptr)
+, m_bSelMargin(true)
+, m_bViewLineNumbers(false)
+, m_bWordWrap(false)
+, m_bHideLines(false)
+, m_bLastSearch(false)
+, m_bBookmarkExist(false)
+, m_bSingle(false) // needed to be set in descendat classes
+, m_bRememberLastPos(false)
+, m_pColors(nullptr)
+, m_nLastLineIndexCalculatedSubLineIndex(-1)
+, m_pIcons(nullptr)
+, m_apFonts{}
+, m_hAccel(nullptr)
+, m_pTextBuffer(nullptr)
+, m_pCacheBitmap(nullptr)
+, m_pszLastFindWhat(nullptr)
+, m_dwLastSearchFlags(0)
+, m_bMultipleSearch(false)
+, m_bCursorHidden(false)
+, m_nLineHeight(0)
+, m_nCharWidth(0)
+, m_bViewTabs(false)
+, m_bViewEols(false)
+, m_bDistinguishEols(false)
+, m_dwFlags(0)
+, m_nScreenLines(0)
+, m_pMarkers(nullptr)
+, m_panSubLines(new CArray<int, int>())
+, m_panSubLineIndexCache(new CArray<int, int>())
+, m_pstrIncrementalSearchString(new CString)
+, m_pstrIncrementalSearchStringOld(new CString)
+, m_ParseCookies(new vector<DWORD>)
+, m_pnActualLineLength(new vector<int>)
+, m_nIdealCharPos(0)
+, m_bFocused(false)
+, m_lfBaseFont{}
+, m_lfSavedBaseFont{}
+, m_pParser(nullptr)
+, m_pPrintFont(nullptr)
+, m_bChWidthsCalculated{}
+, m_iChDoubleWidthFlags{}
+, m_bPreparingToDrag(false)
+, m_bDraggingText(false)
+, m_bDragSelection(false)
+, m_bWordSelection(false)
+, m_bLineSelection(false)
+, m_bColumnSelection(false)
+, m_nDragSelTimer(0)
+, m_bOverrideCaret(false)
+, m_nLastFindWhatLen(0)
+, m_nPrintPages(0)
+, m_nPrintLineHeight(0)
+, m_bPrintFooter(false)
+, m_bPrintHeader(false)
+, m_bPrinting(false)
+, m_nTopLine(0)
+, m_nOffsetChar(0)
+, m_nTopSubLine(0)
+, m_bSmoothScroll(false)
+, m_bVertScrollBarLocked(false)
+, m_bHorzScrollBarLocked(false)
+, m_bShowInactiveSelection(false)
+, m_bDisableDragAndDrop(false)
+, m_bIncrementalSearchForward(false)
+, m_bIncrementalSearchBackward(false)
+, m_bIncrementalFound(false)
+, m_rxmatch{}
 {
-  memset(((CView*)this)+1, 0, sizeof(*this) - sizeof(class CView)); // AFX_ZERO_INIT_OBJECT (CView)
-  m_rxnode = nullptr;
-  m_pszMatched = nullptr;
-  m_bSelMargin = true;
-  m_bViewLineNumbers = false;
-  m_bWordWrap = false;
-  m_bHideLines = false;
-  m_bDragSelection = false;
-  m_bColumnSelection = false;
-  m_bLastSearch = false;
-  m_bBookmarkExist = false;
-  //BEGIN SW
-  m_panSubLines = new CArray<int, int>();
-  m_panSubLineIndexCache = new CArray<int, int>();
-  ASSERT( m_panSubLines != nullptr );
-  ASSERT( m_panSubLineIndexCache != nullptr );
   m_panSubLines->SetSize( 0, 4096 );
   m_panSubLineIndexCache->SetSize( 0, 4096 );
 
-  m_pstrIncrementalSearchString = new CString;
-  ASSERT( m_pstrIncrementalSearchString != nullptr );
-  m_pstrIncrementalSearchStringOld = new CString;
-  ASSERT( m_pstrIncrementalSearchStringOld != nullptr );
   //END SW
-  m_ParseCookies = new vector<DWORD>;
-  m_pnActualLineLength = new vector<int>;
   ResetView ();
   SetTextType (SRC_PLAIN);
-  m_bSingle = false; // needed to be set in descendat classes
-  m_bRememberLastPos = false;
-
-  m_pColors = nullptr;
-
-  m_nLastLineIndexCalculatedSubLineIndex = -1;
 }
 
 CCrystalTextView::~CCrystalTextView ()
@@ -751,8 +794,8 @@ GetLineActualLength (int nLineIndex)
     {
       LPCTSTR pszChars = GetLineChars (nLineIndex);
       const int nTabSize = GetTabSize ();
-      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
-      for (int i = 0; i < nLength; i = iter.next())
+      m_iterChar.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
+      for (int i = 0; i < nLength; i = m_iterChar.next())
         {
           TCHAR c = pszChars[i];
           if (c == _T('\t'))
@@ -935,10 +978,10 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
 
   if (nCount > nLength || m_bViewTabs || m_bViewEols)
     {
-      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
+      m_iterChar.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
       for (int i = 0, next = 0; i < nLength; i = next)
         {
-          next = iter.next();
+          next = m_iterChar.next();
           if (pszChars[i] == _T('\t'))
             {
               int nSpaces = nTabSize - (nActualOffset + nCurPos) % nTabSize;
@@ -996,10 +1039,10 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
     }
   else
     {
-      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
+      m_iterChar.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
       for (int i1=0, next=0; i1<nLength; i1 = next)
       {
-        next = iter.next();
+        next = m_iterChar.next();
         nCurPos += GetCharCellCountFromChar(pszChars + i1);
         for (; i1 < next; ++i1)
           line += pszChars[i1];
@@ -1029,7 +1072,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
       const int nCharWidthNarrowed = nCharWidth / 2;
       const int nCharWidthWidened = nCharWidth * 2 - nCharWidthNarrowed;
       const int nLineHeight = GetLineHeight();
-      ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>((LPCTSTR)line), lineLen);
+      m_iterChar.setText(reinterpret_cast<const UChar *>((LPCTSTR)line), lineLen);
 
       // i the character index, from 0 to lineLen-1
       int i = 0;
@@ -1045,7 +1088,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           // Update the position after the left clipped characters
           // stop for i = first visible character, at least partly
           const int clipLeft = rcClip.left - nCharWidth * 2;
-          for ( ; i < lineLen; i = iter.next())
+          for ( ; i < lineLen; i = m_iterChar.next())
           {
             int pnWidthsCurrent = GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
             ptOrigin.x += pnWidthsCurrent;
@@ -1089,7 +1132,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               bool bdisphex = false;
               for (int next = i; i < nCount1 + ibegin ; i = next)
                 {
-                  next = iter.next();
+                  next = m_iterChar.next();
                   if (line[i] == '\t') // Escape sequence leadin?
                   {
                     bdisphex = true;
@@ -1161,7 +1204,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
             }
         }
       // Update the final position after the right clipped characters
-      for ( ; i < lineLen; i = iter.next())
+      for ( ; i < lineLen; i = m_iterChar.next())
         {
           ptOrigin.x += GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
         }
@@ -2643,8 +2686,8 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
   const int nTabSize = GetTabSize();
 
   int nIndex=0, nPrevIndex = 0;
-  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(szLine), nLength);
-  for( nIndex = 0; nIndex < nLength; nIndex = iter.next())
+  m_iterChar.setText(reinterpret_cast<const UChar *>(szLine), nLength);
+  for( nIndex = 0; nIndex < nLength; nIndex = m_iterChar.next())
     {
       if( nBreaks > 0 && nIndex == anBreaks[nYPos] )
         {
@@ -3858,7 +3901,7 @@ ClientToText (const CPoint & point)
   int i = 0;
   const int nTabSize = GetTabSize();
 
-  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszLine), nLength);
+  m_iterChar.setText(reinterpret_cast<const UChar *>(pszLine), nLength);
   while (nIndex < nLength)
     {
       if (nBreaks && nIndex == anBreaks[i])
@@ -3880,7 +3923,7 @@ ClientToText (const CPoint & point)
 
       nPrevIndex = nIndex;
 
-      nIndex = iter.next();
+      nIndex = m_iterChar.next();
     }
 
   ASSERT(nIndex >= 0 && nIndex <= nLength);
@@ -3952,8 +3995,8 @@ TextToClient (const CPoint & point)
   //END SW
   pt.x = 0;
   int nTabSize = GetTabSize ();
-  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszLine), point.x);
-  for (int nIndex = 0; nIndex < point.x; nIndex = iter.next())
+  m_iterChar.setText(reinterpret_cast<const UChar *>(pszLine), point.x);
+  for (int nIndex = 0; nIndex < point.x; nIndex = m_iterChar.next())
     {
       //BEGIN SW
       if( nIndex == nSubLineStart )
@@ -4083,9 +4126,9 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
     nPreBreak = (J >= 0) ? anBreaks[J] : 0;
   }
   //END SW
-  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nCharIndex);
+  m_iterChar.setText(reinterpret_cast<const UChar *>(pszChars), nCharIndex);
   int I=0;
-  for (I = 0; I < nCharIndex; I = iter.next())
+  for (I = 0; I < nCharIndex; I = m_iterChar.next())
     {
       //BEGIN SW
       if( nPreBreak == I && nBreaks )
@@ -4118,8 +4161,8 @@ ApproxActualOffset (int nLineIndex, int nOffset)
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   int nCurrentOffset = 0;
   int nTabSize = GetTabSize ();
-  ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(pszChars), nLength);
-  for (int I = 0; I < nLength; I = iter.next())
+  m_iterChar.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
+  for (int I = 0; I < nLength; I = m_iterChar.next())
     {
       if (pszChars[I] == _T ('\t'))
         nCurrentOffset += (nTabSize - nCurrentOffset % nTabSize);
@@ -4131,7 +4174,7 @@ ApproxActualOffset (int nLineIndex, int nOffset)
         {
           if (nOffset <= nCurrentOffset - nTabSize / 2)
             return I;
-          return iter.next();
+          return m_iterChar.next();
         }
     }
   return nLength;

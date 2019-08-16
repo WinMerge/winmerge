@@ -358,9 +358,6 @@
     <ClInclude Include="..\editlib\crystallineparser.h">
       <Filter>editlib\parsers</Filter>
     </ClInclude>
-    <ClInclude Include="..\editlib\icu.h">
-      <Filter>editlib</Filter>
-    </ClInclude>
     <ClInclude Include="..\editlib\icu.hpp">
       <Filter>editlib</Filter>
     </ClInclude>

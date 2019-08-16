@@ -37,6 +37,7 @@
 #include "cregexp.h"
 #include "crystalparser.h"
 #include "crystallineparser.h"
+#include "icu.hpp"
 
 ////////////////////////////////////////////////////////////////////////////
 // Forward class declarations
@@ -707,6 +708,9 @@ public :
     RxMatchRes m_rxmatch;
     LPTSTR m_pszMatched;
     static LOGFONT m_LogFont;
+
+	ICUBreakIterator m_iterChar;
+	ICUBreakIterator m_iterWord;
 
     typedef enum
     {

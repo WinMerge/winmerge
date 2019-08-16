@@ -589,7 +589,6 @@
     <ClInclude Include="..\editlib\filesup.h" />
     <ClInclude Include="..\editlib\fpattern.h" />
     <ClInclude Include="..\editlib\gotodlg.h" />
-    <ClInclude Include="..\editlib\icu.h" />
     <ClInclude Include="..\editlib\icu.hpp" />
     <ClInclude Include="..\editlib\LineInfo.h" />
     <ClInclude Include="..\editlib\crystallineparser.h" />
