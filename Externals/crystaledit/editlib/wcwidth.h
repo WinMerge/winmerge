@@ -1,3 +1,3 @@
 #pragma once
 
-int mk_wcwidth(wchar_t ucs);
+int wcwidth(char32_t ucs);

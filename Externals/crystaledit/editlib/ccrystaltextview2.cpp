@@ -52,6 +52,7 @@
 #include "ccrystaltextmarkers.h"
 #include <malloc.h>
 #include "string_util.h"
+#include "icu.hpp"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
@@ -99,11 +100,8 @@ MoveLeft (bool bSelect)
         }
       else
         {
-          m_ptCursorPos.x--;
-          if (m_pTextBuffer->IsMBSTrail (m_ptCursorPos.y, m_ptCursorPos.x) &&
-                // here... if its a MBSTrail, then should move one character more....
-                m_ptCursorPos.x > 0)
-            m_ptCursorPos.x--;
+          ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
+          m_ptCursorPos.x = iter.preceding(m_ptCursorPos.x);
         }
     }
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
@@ -117,6 +115,7 @@ MoveLeft (bool bSelect)
 void CCrystalTextView::
 MoveRight (bool bSelect)
 {
+  int nLineLength = GetLineLength(m_ptCursorPos.y);
   PrepareSelBounds ();
   if (m_ptDrawSelStart != m_ptDrawSelEnd && !bSelect)
     {
@@ -124,7 +123,7 @@ MoveRight (bool bSelect)
     }
   else
     {
-      if (m_ptCursorPos.x == GetLineLength (m_ptCursorPos.y))
+      if (m_ptCursorPos.x == nLineLength)
         {
           if (m_ptCursorPos.y < GetLineCount () - 1)
             {
@@ -134,11 +133,8 @@ MoveRight (bool bSelect)
         }
       else
         {
-          m_ptCursorPos.x++;
-          if (m_pTextBuffer->IsMBSTrail (m_ptCursorPos.y, m_ptCursorPos.x) &&
-                // here... if its a MBSTrail, then should move one character more....
-                m_ptCursorPos.x < GetLineLength (m_ptCursorPos.y))
-            m_ptCursorPos.x++;
+          ICUBreakIterator iter(UBRK_CHARACTER, "en", reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), nLineLength);
+          m_ptCursorPos.x = iter.following(m_ptCursorPos.x);
         }
     }
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
@@ -167,30 +163,12 @@ MoveWordLeft (bool bSelect)
       m_ptCursorPos.x = GetLineLength (m_ptCursorPos.y);
     }
 
-  LPCTSTR pszChars = GetLineChars (m_ptCursorPos.y);
-  int nPos = m_ptCursorPos.x;
-  int nPrevPos;
-  while (nPos > 0 && xisspace (pszChars[nPrevPos = (int) (::EnsureCharPrev(pszChars, pszChars + nPos) - pszChars)]))
-    nPos = nPrevPos;
-
-  if (nPos > 0)
+  if (m_ptCursorPos.x > 0)
     {
-      nPrevPos = (int) (::CharPrev(pszChars, pszChars + nPos) - pszChars);
-      nPos = nPrevPos;
-      if (xisalnum (pszChars[nPos]))
-        {
-          while (nPos > 0 && (xisalnum (pszChars[nPrevPos = (int) (::EnsureCharPrev(pszChars, pszChars + nPos) - pszChars)])))
-            nPos = nPrevPos;
-        }
-      else
-        {
-          while (nPos > 0 && !xisalnum (pszChars[nPrevPos = (int) (::EnsureCharPrev(pszChars, pszChars + nPos) - pszChars)])
-                && !xisspace (pszChars[nPrevPos]))
-            nPos = nPrevPos;
-        }
+      ICUBreakIterator iter(UBRK_WORD, "en", reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
+      m_ptCursorPos.x = iter.preceding(m_ptCursorPos.x);
     }
 
-  m_ptCursorPos.x = nPos;
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
   UpdateCaret ();
@@ -224,24 +202,9 @@ MoveWordRight (bool bSelect)
       return;
     }
 
-  LPCTSTR pszChars = GetLineChars (m_ptCursorPos.y);
-  int nPos = m_ptCursorPos.x;
-  if (xisalnum (pszChars[nPos]))
-    {
-      while (nPos < nLength && xisalnum (pszChars[nPos]))
-        nPos = (int) (::EnsureCharNext(pszChars + nPos) - pszChars);
-    }
-  else
-    {
-      while (nPos < nLength && !xisalnum (pszChars[nPos])
-            && !xisspace (pszChars[nPos]))
-        nPos = (int) (::EnsureCharNext(pszChars + nPos) - pszChars);
-    }
+  ICUBreakIterator iter(UBRK_WORD, "en", reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
+  m_ptCursorPos.x = iter.following(m_ptCursorPos.x);
 
-  while (nPos < nLength && xisspace (pszChars[nPos]))
-    nPos = (int) (::EnsureCharNext(pszChars + nPos) - pszChars);
-
-  m_ptCursorPos.x = nPos;
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
   UpdateCaret ();
@@ -534,12 +497,10 @@ WordToRight (CPoint pt)
 {
   ASSERT_VALIDTEXTPOS (pt);
   int nLength = GetLineLength (pt.y);
-  LPCTSTR pszChars = GetLineChars (pt.y);
-  while (pt.x < nLength)
+  if (pt.x < nLength)
     {
-      if (!xisalnum (pszChars[pt.x]))
-        break;
-      pt.x += (int) (::CharNext (&pszChars[pt.x]) - &pszChars[pt.x]);
+      ICUBreakIterator iter(UBRK_WORD, "en", reinterpret_cast<const UChar *>(GetLineChars(pt.y)), nLength);
+      pt.x = iter.following(pt.x);
     }
   ASSERT_VALIDTEXTPOS (pt);
   return pt;
@@ -549,14 +510,11 @@ CPoint CCrystalTextView::
 WordToLeft (CPoint pt)
 {
   ASSERT_VALIDTEXTPOS (pt);
-  LPCTSTR pszChars = GetLineChars (pt.y);
-  int nPrevX = pt.x;
-  while (pt.x > 0)
+  if (pt.x > 0)
     {
-      nPrevX -= (int) (&pszChars[pt.x] - ::CharPrev (pszChars, &pszChars[pt.x]));
-      if (!xisalnum (pszChars[nPrevX]))
-        break;
-      pt.x = nPrevX;
+      ICUBreakIterator iter(UBRK_WORD, "en", reinterpret_cast<const UChar *>(GetLineChars(pt.y)), GetLineLength(pt.y));
+      pt.x = iter.following(pt.x);
+      pt.x = iter.preceding(pt.x);
     }
   ASSERT_VALIDTEXTPOS (pt);
   return pt;
