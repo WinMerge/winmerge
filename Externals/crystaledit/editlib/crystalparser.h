@@ -99,5 +99,5 @@ public:
 protected:
 	/**	The text view this parser is attached to. */
 	CCrystalTextView *m_pTextView;
-	ICUBreakIterator m_iterChar;
+//	ICUBreakIterator m_iterChar;
 };
