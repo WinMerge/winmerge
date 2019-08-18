@@ -307,16 +307,16 @@
         </listitem>
       </itemizedlist>
 
-      <para>Click <keycap>F5</keycap> to update the window.</para>
+      <para>ウィンドウを更新するには<keycap>F5</keycap>をクリックしてください。</para>
 
       <note>
-        <para>When you open a subfolder during a non-recursive compare, the mode
-        is always reset to <guimenuitem>No prediffer</guimenuitem>.</para>
+        <para>非再帰比較中にサブフォルダーを開くと、モードは常に
+        <guimenuitem>なし</guimenuitem>にリセットされます。</para>
       </note>
 
-      <para>When you open a file from the Folder Compare window, your prediffer
-      setting for that file is applied before the File Compare window is
-      opened.</para>
+      <para>フォルダ比較ウィンドウからファイルを開くと、
+      ファイル比較ウィンドウが開く前にそのファイルの比較前処理プラグイン設定が適用されます。
+      </para>
     </section>
 
     <section>
