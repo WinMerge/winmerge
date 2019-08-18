@@ -56,27 +56,27 @@
 ////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
-//	01-Jun-99 to 31-Aug-99
-//		Sven Wiegand (search for "//BEGIN SW" to find my changes):
+//  01-Jun-99 to 31-Aug-99
+//      Sven Wiegand (search for "//BEGIN SW" to find my changes):
 //
-//	+ FEATURE: support for language switching on the fly with class 
-//			CCrystalParser
-//	+	FEATURE: word wrapping
-//	+ FIX:	Setting m_nIdealCharPos, when choosing cursor position by mouse
-//	+ FIX:	Backward search
-//	+ FEATURE: incremental search
+//  + FEATURE: support for language switching on the fly with class 
+//          CCrystalParser
+//  +   FEATURE: word wrapping
+//  + FIX:  Setting m_nIdealCharPos, when choosing cursor position by mouse
+//  + FIX:  Backward search
+//  + FEATURE: incremental search
 ////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
-//	24-Oct-99
-//		Sven Wiegand
+//  24-Oct-99
+//      Sven Wiegand
 //
-//	+ FIX: Opening large files won't crash anymore and will go very fast
-//	       (removed call to RecalcVertScrollBar() in WrapLineCached())
-//	+ FIX: Problems with repainting and cursor-position by resizing window 
-//	       fixed by adding call to ScrollToSubLine() in OnSize().
-//	+ FEATURE: Supporting [Return] to exit incremental-search-mode
-//		     (see OnChar())
+//  + FIX: Opening large files won't crash anymore and will go very fast
+//         (removed call to RecalcVertScrollBar() in WrapLineCached())
+//  + FIX: Problems with repainting and cursor-position by resizing window 
+//         fixed by adding call to ScrollToSubLine() in OnSize().
+//  + FEATURE: Supporting [Return] to exit incremental-search-mode
+//           (see OnChar())
 ///////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -313,7 +313,7 @@ CCrystalTextView::TextDefinition CCrystalTextView::m_SourceDefs[] =
     CCrystalTextView::SRC_PYTHON, _T ("Python"), _T ("py"), &CrystalLineParser::ParseLinePython, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
     CCrystalTextView::SRC_REXX, _T ("REXX"), _T ("rex,rexx"), &CrystalLineParser::ParseLineRexx, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
     CCrystalTextView::SRC_RSRC, _T ("Resources"), _T ("rc,dlg,r16,r32,rc2"), &CrystalLineParser::ParseLineRsrc, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
-	CCrystalTextView::SRC_RUBY, _T ("Ruby"), _T ("rb,rbw,rake,gemspec"), &CrystalLineParser::ParseLineRuby, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
+    CCrystalTextView::SRC_RUBY, _T ("Ruby"), _T ("rb,rbw,rake,gemspec"), &CrystalLineParser::ParseLineRuby, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
     CCrystalTextView::SRC_RUST, _T ("Rust"), _T ("rs"), &CrystalLineParser::ParseLineRust, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
     CCrystalTextView::SRC_SGML, _T ("Sgml"), _T ("sgml"), &CrystalLineParser::ParseLineSgml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1,
     CCrystalTextView::SRC_SH, _T ("Shell"), _T ("sh,conf"), &CrystalLineParser::ParseLineSh, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (DWORD)-1,
@@ -745,7 +745,7 @@ GetFullySelectedLines(int & firstLine, int & lastLine)
 
   if (ptStart.x == 0)
     firstLine = ptStart.y;
-	else
+  else
     firstLine = ptStart.y + 1;
   if (ptEnd.x == GetLineLength(ptEnd.y))
     lastLine = ptEnd.y;
@@ -1198,7 +1198,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                    }
                 }
 
-              // Update the final position after the visible characters	              
+              // Update the final position after the visible characters
               ptOrigin.x += nSumWidth;
 
             }
@@ -1373,7 +1373,7 @@ void CCrystalTextView::WrapLineCached(
   if( !GetLineVisible (nLineIndex) )
   {
     nBreaks = -1;
-	return;
+    return;
   }
 
   // If the word wrap is not active, there is no breaks in the line
@@ -1497,7 +1497,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
       for (I = nActualItem; I < blocks.size() - 1 &&
         blocks[I + 1].m_nCharPos <= nOffset + nCount; I ++)
         {
-		  const TEXTBLOCK& blk = blocks[I];
+          const TEXTBLOCK& blk = blocks[I];
           ASSERT(blk.m_nCharPos >= 0 && blk.m_nCharPos <= nLineLength);
 
           int nOffsetToUse = (nOffset > blk.m_nCharPos) ?
@@ -1519,12 +1519,12 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
                   bPrevZeroWidthBlock = false;
                 }
             }
-		  else
+          else
             {
               if (!bPrevZeroWidthBlock)
                 {
                   int nBgColorIndex = blk.m_nBgColorIndex;
-   	              COLORREF clrBkColor;
+                  COLORREF clrBkColor;
                   if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
                     clrBkColor = GetColor(nBgColorIndex);
                   else
@@ -1572,7 +1572,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
               else
                 clrBkColor = crBkgnd;
               pdc->FillSolidRect(ptOrigin.x, ptOrigin.y, ZEROWIDTHBLOCK_WIDTH, GetLineHeight(), clrBkColor);
-		      bPrevZeroWidthBlock = true;
+              bPrevZeroWidthBlock = true;
             }
         }
     }
@@ -1703,8 +1703,8 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
 
   for (const auto& marker : m_pMarkers->GetMarkers())
     {
-	  if (!marker.second.bVisible)
-		  continue;
+      if (!marker.second.bVisible)
+          continue;
       int nBlocks = 0;
       std::vector<TEXTBLOCK> blocks((nLength + 1) * 3); // be aware of nLength == 0
       blocks[0].m_nCharPos = 0;
@@ -1932,12 +1932,12 @@ EscapeHTML (const CString & strText, bool & bLastCharSpace, int & nNonbreakChars
 // Make a CString from printf-style args (single call version of CString::Format)
 static CString Fmt(LPCTSTR fmt, ...)
 {
-	CString str;
-	va_list args;
-	va_start(args, fmt);
-	str.FormatV(fmt, args);
-	va_end(args);
-	return str;
+  CString str;
+  va_list args;
+  va_start(args, fmt);
+  str.FormatV(fmt, args);
+  va_end(args);
+  return str;
 }
 
 /**
@@ -1968,7 +1968,7 @@ GetHTMLStyles ()
     COLORINDEX_HIGHLIGHTBKGND1,
     COLORINDEX_HIGHLIGHTBKGND2,
     COLORINDEX_HIGHLIGHTBKGND3,
-	COLORINDEX_HIGHLIGHTBKGND4,
+    COLORINDEX_HIGHLIGHTBKGND4,
   };
 
   CString strStyles;
@@ -2379,7 +2379,7 @@ OnDraw (CDC * pdc)
       if( rcCacheLine.top < 0 )
         rcLine.bottom+= rcCacheLine.top;
       //END SW
-	  if (pdc->RectVisible(rcLine))
+      if (pdc->RectVisible(rcLine))
         {
           if (nCurrentLine < nLineCount && GetLineVisible (nCurrentLine))
             {
@@ -2387,7 +2387,7 @@ OnDraw (CDC * pdc)
               DrawSingleLine (&cacheDC, rcCacheLine, nCurrentLine);
               if (nCurrentLine+1 < nLineCount && !GetLineVisible (nCurrentLine + 1))
                 DrawBoundaryLine (&cacheDC, rcCacheMargin.left, rcCacheLine.right, rcCacheMargin.bottom-1);
-			  if (nCurrentLine == m_ptCursorPos.y)
+              if (nCurrentLine == m_ptCursorPos.y)
                 DrawLineCursor (&cacheDC, rcCacheMargin.left, rcCacheLine.right, 
                   nCursorY - rcLine.top + nLineHeight - 1, 1);
             }
@@ -2398,7 +2398,7 @@ OnDraw (CDC * pdc)
             }
 
           VERIFY (pdc->BitBlt (rcLine.left, rcLine.top, rcLine.Width (),
-			  rcLine.Height (), &cacheDC, 0, 0, SRCCOPY));
+              rcLine.Height (), &cacheDC, 0, 0, SRCCOPY));
         }
 
       nCurrentLine++;
@@ -2714,7 +2714,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
       nPrevIndex = nIndex;
     }
 
-  return nIndex;	
+  return nIndex;
 }
 
 void CCrystalTextView::SubLineCursorPosToTextPos( const CPoint &subLineCurPos, CPoint &textPos )
@@ -3271,11 +3271,11 @@ int CCrystalTextView::GetSubLineIndex( int nLineIndex )
 void CCrystalTextView::GetLineBySubLine(int nSubLineIndex, int &nLine, int &nSubLine)
 {
   if (GetSubLineCount() == 0)
-  {
-	  nLine = 0;
-	  nSubLine = 0;
-	  return;
-  }
+    {
+      nLine = 0;
+      nSubLine = 0;
+      return;
+    }
 
   ASSERT( nSubLineIndex < GetSubLineCount() );
 
@@ -3330,10 +3330,10 @@ GetFullLineLength (int nLineIndex) const
 int CCrystalTextView::
 GetViewableLineLength (int nLineIndex) const
 {
-	if (m_bViewEols)
-		return GetFullLineLength(nLineIndex);
-	else
-		return GetLineLength(nLineIndex);
+  if (m_bViewEols)
+    return GetFullLineLength(nLineIndex);
+  else
+    return GetLineLength(nLineIndex);
 }
 
 LPCTSTR CCrystalTextView::
@@ -4392,13 +4392,13 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
       //  Recalculate actual length for all lines below this
       if (m_pnActualLineLength->size())
         {
-			size_t arrsize = m_pnActualLineLength->size();
-			if (arrsize != static_cast<size_t>(nLineCount))
+            size_t arrsize = m_pnActualLineLength->size();
+            if (arrsize != static_cast<size_t>(nLineCount))
             {
               //  Reallocate actual length array
               size_t oldsize = arrsize; 
               m_pnActualLineLength->resize(nLineCount);
-			  arrsize = nLineCount;
+              arrsize = nLineCount;
               // must be initialized to invalid code -1
               for (size_t i = oldsize; i < arrsize; ++i)
                 (*m_pnActualLineLength)[i] = -1;
@@ -4515,7 +4515,7 @@ PreTranslateMessage (MSG * pMsg)
         }
     }
   else if (pMsg->message == WM_LBUTTONDBLCLK)
-	m_dwLastDblClickTime = GetTickCount();
+    m_dwLastDblClickTime = GetTickCount();
   else if (pMsg->message == WM_LBUTTONDOWN && (GetTickCount() - GetDoubleClickTime()) < m_dwLastDblClickTime)
     {
       m_dwLastDblClickTime = 0;
@@ -4545,7 +4545,7 @@ UpdateCompositionWindowPos() /* IME */
 {
   HIMC hIMC = ImmGetContext(m_hWnd);
   COMPOSITIONFORM compform;
-	
+
   compform.dwStyle = CFS_FORCE_POSITION;
   compform.ptCurrentPos = GetCaretPos();
   ImmSetCompositionWindow(hIMC, &compform);
@@ -4821,11 +4821,11 @@ FindStringHelper (LPCTSTR pszLineBegin, LPCTSTR pszFindWhere, LPCTSTR pszFindWha
       nLen = nLength;
       for (;;)
         {
-		  LPCTSTR pszPos;
-		  if (dwFlags & FIND_MATCH_CASE)
-			  pszPos = _tcsstr(pszFindWhere, pszFindWhat);
-		  else
-			  pszPos = StrStrI(pszFindWhere, pszFindWhat);
+          LPCTSTR pszPos;
+          if (dwFlags & FIND_MATCH_CASE)
+            pszPos = _tcsstr(pszFindWhere, pszFindWhat);
+          else
+            pszPos = StrStrI(pszFindWhere, pszFindWhat);
           if (pszPos == nullptr)
             return -1;
           if ((dwFlags & FIND_WHOLE_WORD) == 0)
@@ -5035,11 +5035,11 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
               for (;;)
                 {
                   size_t nPosRel = ::FindStringHelper(line, static_cast<LPCTSTR>(line) + nPos, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
-				  if (nPosRel == -1)
-					  break;
+                  if (nPosRel == -1)
+                    break;
                   nFoundPos = nPos + nPosRel;
                   nMatchLen = m_nLastFindWhatLen;
-				  nPos += nMatchLen == 0 ? 1 : nMatchLen;
+                  nPos += nMatchLen == 0 ? 1 : nMatchLen;
                 }
 
               if( nFoundPos != -1 )	// Found text!
@@ -5258,7 +5258,7 @@ OnEditFind ()
       CPoint ptSelStart, ptSelEnd;
       GetSelection (ptSelStart, ptSelEnd);
       if (ptSelStart.y == ptSelEnd.y)
-	    GetText (ptSelStart, ptSelEnd, m_pFindTextDlg->m_sText);
+        GetText (ptSelStart, ptSelEnd, m_pFindTextDlg->m_sText);
     }
   else
     {
@@ -5371,7 +5371,7 @@ OnEditMark ()
   CString sText;
   DWORD dwFlags;
   if (!RegLoadNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("MarkerFlags"), &dwFlags))
-	dwFlags = 0;
+    dwFlags = 0;
 
   //  Take the current selection, if any
   if (IsSelection ())
@@ -5379,7 +5379,7 @@ OnEditMark ()
       CPoint ptSelStart, ptSelEnd;
       GetSelection (ptSelStart, ptSelEnd);
       if (ptSelStart.y == ptSelEnd.y)
-	    GetText (ptSelStart, ptSelEnd, sText);
+        GetText (ptSelStart, ptSelEnd, sText);
     }
   else
     {
@@ -5396,7 +5396,7 @@ OnEditMark ()
     {
       //  Save search parameters to registry
       VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("MarkerFlags"), markerDlg.GetLastSearchFlags()));
-	  m_pMarkers->SaveToRegistry();
+      m_pMarkers->SaveToRegistry();
     }
 }
 
@@ -6199,10 +6199,10 @@ void CCrystalTextView::OnChar( wchar_t nChar, UINT nRepCnt, UINT nFlags )
 
 LRESULT CCrystalTextView::OnImeStartComposition(WPARAM wParam, LPARAM lParam) /* IME */
 {
-	UpdateCompositionWindowFont();
-	UpdateCompositionWindowPos();
+  UpdateCompositionWindowFont();
+  UpdateCompositionWindowPos();
 
-	return DefWindowProc(WM_IME_STARTCOMPOSITION, wParam, lParam);
+  return DefWindowProc(WM_IME_STARTCOMPOSITION, wParam, lParam);
 }
 
 void CCrystalTextView::OnEditDeleteBack() 
