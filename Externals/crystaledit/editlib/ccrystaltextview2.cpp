@@ -148,6 +148,7 @@ MoveRight (bool bSelect)
 void CCrystalTextView::
 MoveWordLeft (bool bSelect)
 {
+  int nLength = GetLineLength(m_ptCursorPos.y);
   PrepareSelBounds ();
   if (m_ptDrawSelStart != m_ptDrawSelEnd && !bSelect)
     {
@@ -160,13 +161,17 @@ MoveWordLeft (bool bSelect)
       if (m_ptCursorPos.y == 0)
         return;
       m_ptCursorPos.y--;
-      m_ptCursorPos.x = GetLineLength (m_ptCursorPos.y);
+      m_ptCursorPos.x = nLength;
     }
 
   if (m_ptCursorPos.x > 0)
     {
-      m_iterWord.setText(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
-      m_ptCursorPos.x = m_iterWord.preceding(m_ptCursorPos.x);
+      const TCHAR *pszChars = GetLineChars(m_ptCursorPos.y);
+      m_iterWord.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
+      int nPos = m_iterWord.preceding(m_ptCursorPos.x);
+	  if (xisspace(pszChars[nPos]))
+        nPos = m_iterWord.preceding(nPos);
+	  m_ptCursorPos.x = nPos;
     }
 
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
@@ -202,8 +207,12 @@ MoveWordRight (bool bSelect)
       return;
     }
 
-  m_iterWord.setText(reinterpret_cast<const UChar *>(GetLineChars(m_ptCursorPos.y)), GetLineLength(m_ptCursorPos.y));
-  m_ptCursorPos.x = m_iterWord.following(m_ptCursorPos.x);
+  const TCHAR *pszChars = GetLineChars(m_ptCursorPos.y);
+  m_iterWord.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
+  int nPos = m_iterWord.following(m_ptCursorPos.x);
+  while (nPos < nLength && xisspace(pszChars[nPos]))
+    ++nPos;
+  m_ptCursorPos.x = nPos;
 
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);
