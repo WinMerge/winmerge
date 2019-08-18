@@ -130,6 +130,7 @@ public:
 	{
 		m_text = text;
 		m_textLength = textLength;
+		m_i = 0;
 		UErrorCode status = U_ZERO_ERROR;
 		if (m_iter)
 			ubrk_setText(m_iter, text, textLength, &status);
@@ -233,9 +234,6 @@ private:
 					&& !iswspace(m_text[nPos]))
 					nPos += (U16_IS_SURROGATE(m_text[nPos]) ? 2 : 1);
 			}
-
-			while (nPos < m_textLength && iswspace(m_text[nPos]))
-				nPos += (U16_IS_SURROGATE(m_text[nPos]) ? 2 : 1);
 			m_i = nPos;
 		}
 		return m_i;
