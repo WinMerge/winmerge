@@ -2704,10 +2704,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
       nCurPos += nOffset;
 
       if( nXPos > curPoint.x && nYPos == curPoint.y )
-        {
-          nIndex = nPrevIndex;
-          break;
-        }
+        break;
       else if( nYPos > curPoint.y )
         {
           nIndex = nPrevIndex;
