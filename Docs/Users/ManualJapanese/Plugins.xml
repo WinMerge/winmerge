@@ -322,14 +322,14 @@
     <section>
       <title>ファイル比較ウインドウでの比較前処理プラグインの適用</title>
 
-      <para>In the File Compare winodw, you can apply a prediffer plugin by
-      clicking <menuchoice>
-          <guimenu>Plugins</guimenu>
+      <para>ファイル比較ウィンドウで、
+      <menuchoice>
+          <guimenu>プラグイン</guimenu>
 
-          <guisubmenu>Prediffer</guisubmenu>
-        </menuchoice> and choosing one of the plugins in the list. Suggested
-      plugins are indicated at the top of the list. The files are compared again
-      after the plugin is applied, so you don't need to rescan the files.</para>
+          <guisubmenu>比較前処理プラグイン</guisubmenu>
+        </menuchoice>をクリックして、リスト内のプラグインの1つを選択することにより、
+        比較前処理プラグインを適用できます。推奨されるプラグインはリストの上部に示されています。
+        プラグインが適用された後にファイルが再度比較されるため、ファイルを再スキャンする必要はありません。</para>
     </section>
   </section>
 
@@ -780,14 +780,14 @@
           library</primary>
         </indexterm></title>
 
-      <para>Some plugins require <application>the Visual Basic</application>
-      runtime library to work.</para>
+      <para>一部のプラグインでは、動作するために<application>Visual Basic</application>
+      ランタイムライブラリが必要です。</para>
 
-      <para>You can use the <ulink
+      <para><trademark class="registered">Microsoft</trademark>の<ulink
       url="https://www.microsoft.com/en-us/download/details.aspx?id=24417">Run-Time
-      Redistribution Pack</ulink> from <trademark
-      class="registered">Microsoft</trademark>. If you don't need the plugin,
-      you can safely remove it.</para>
+      Redistribution Pack</ulink>が使用できます。
+      プラグインが不要な場合は、安全に削除できます。
+      </para>
     </section>
   </section>
 </article>
