@@ -207,35 +207,8 @@
 
       <itemizedlist>
         <listitem>
-          <para><xref linkend="OpenPaths_project" /> are the easiest and fastest
-          way to open frequently used paths. To open a project file, use one of
-          these methods:</para>
-
-          <itemizedlist>
-            <listitem>
-              <para>From the WinMerge window, click <menuchoice>
-                  <guimenuitem>File</guimenuitem>
-
-                  <guimenuitem>Open Project</guimenuitem>
-                </menuchoice>.</para>
-            </listitem>
-
-            <listitem>
-              <para>From a command line.</para>
-            </listitem>
-
-            <listitem>
-              <para>From the Opening Files and Folders dialog, specify a project
-              file in the <guilabel>1st</guilabel> field.</para>
-
-              <note>
-                <para>If you specify project files in both the
-                <guilabel>1st</guilabel> and <guilabel>2nd</guilabel> fields,
-                WinMerge does not open either project file; it simply compares
-                the XML content of the two files.</para>
-              </note>
-            </listitem>
-          </itemizedlist>
+          <simpara><xref linkend="OpenPaths_project" /> are the easiest and fastest
+          way to open frequently used paths.</simpara>
         </listitem>
 
         <listitem>
