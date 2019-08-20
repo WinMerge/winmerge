@@ -18,82 +18,73 @@
     other methods and more advanced skills, which are covered in other help
     topics.</para>
 
-    <orderedlist>
-      <listitem>
-        <para>Open the WinMerge window. Here are some of the methods you can
-        use:<indexterm>
-            <primary>WinMerge window</primary>
-          </indexterm></para>
+    <section>
+      <title><indexterm><primary>WinMerge window</primary></indexterm>Open the WinMerge window</title>
 
-        <itemizedlist>
-          <listitem>
-            <para>Double-click the WinMerge desktop shortcut.</para>
-          </listitem>
+      <para>Here are some of the methods you can use:</para>
 
-          <listitem>
-            <para>Navigate to the WinMerge launcher in your Start menu.</para>
-          </listitem>
+      <itemizedlist>
+        <listitem>
+          <para>Double-click the WinMerge desktop shortcut.</para>
+        </listitem>
 
-          <listitem>
-            <para>In a Command Prompt window, cd to the WinMerge installation
-            folder and enter <command>WinMergeU</command>.</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
+        <listitem>
+          <para>Navigate to the WinMerge launcher in your Start menu.</para>
+        </listitem>
 
-      <listitem>
-        <para>In the WinMerge window select the files or folders that you want
-        to operate on. For example:</para>
+        <listitem>
+          <para>In a Command Prompt window, cd to the WinMerge installation
+          folder and enter <command>WinMergeU</command>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
 
-        <itemizedlist>
-          <listitem>
-            <para>Click <menuchoice>
-                <guimenu>File</guimenu>
+    <section>
+      <title>Open the <guilabel>Select Files or Folders</guilabel> dialog</title>
 
-                <guimenuitem>Open</guimenuitem>
-              </menuchoice>.</para>
-          </listitem>
+      <para>In the WinMerge window use the following methods to open the <guilabel>Select Files or Folders</guilabel> dialog:</para>
 
-          <listitem>
-            <para>Click the <inlinemediaobject>
-                <imageobject>
-                  <imagedata contentwidth="16"
-                             fileref="screenshots/open_icon.png" />
-                </imageobject>
+      <itemizedlist>
+        <listitem>
+          <para>Click <menuchoice><guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice>.</para>
+        </listitem>
 
-                <textobject>
-                  <phrase>WinMerge open button</phrase>
-                </textobject>
-              </inlinemediaobject> Open tool bar button.</para>
-          </listitem>
+        <listitem>
+          <para>Click the
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata contentwidth="16" fileref="screenshots/open_icon.png" />
+              </imageobject>
+              <textobject><phrase>WinMerge open button</phrase></textobject>
+            </inlinemediaobject>
+            Open tool bar button.
+          </para>
+        </listitem>
 
-          <listitem>
-            <para>Press <keycombo>
-                <keycap>Ctrl</keycap>
+        <listitem>
+          <para>Press <keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
 
-                <keycap>O</keycap>
-              </keycombo>.</para>
-          </listitem>
-        </itemizedlist>
+    <section>
+      <title><indexterm><primary>Select Files or Folders dialog</primary></indexterm>
+        The <guilabel>Select Files or Folders</guilabel> dialog</title>
 
-        <para><indexterm>
-            <primary>Select Files or Folders dialog</primary>
-
-            <secondary>getting started</secondary>
-          </indexterm>The Select Files or Folders dialog opens:</para>
-
+      <para>
         <mediaobject>
           <imageobject>
             <imagedata fileref="screenshots/OpenDlg1.png" format="PNG" />
           </imageobject>
-
           <textobject>
             <phrase>Select Files or Folders window</phrase>
           </textobject>
         </mediaobject>
-      </listitem>
+      </para>
 
-      <listitem>
+      <section>
+        <title>Specify the files and folders</title>
+
         <para>In the <guilabel>1st</guilabel> and <guilabel>2nd</guilabel>
         fields, specify the files and folders to compare. Use any of these
         methods:</para>
@@ -161,9 +152,11 @@
             <para>The status message at the bottom of the dialog also informs
             you if one of the paths is invalid.</para>
           </note></para>
-      </listitem>
+      </section>
 
-      <listitem>
+      <section>
+        <title>Control the scope of folder comparisons</title>
+
         <para>If you are comparing folders, you can use the
         <guilabel>Filter</guilabel> field to eliminate some files from the
         operation. The field specifies a subset of files in the selected paths
@@ -185,62 +178,20 @@
         <para>See <xref linkend="Filters" /> for full details about file masks
         and filter files.</para>
 
-        <!--
-        <variablelist>
-          <varlistentry>
-            <term>File masks</term>
-
-            <listitem>
-              <para>In this method, you specify the types of files to include in
-              the operation; all other files are excluded (filtered). With no
-              file mask or the default mask of <literal>*.*</literal>, all files
-              in the paths are included, so no filtering is performed. To add
-              filtering, enter one or more masks. Separate multiple masks with
-              spaces, commas, colons or semicolons.</para>
-
-              <para>For example, this expression filters all files from the
-              operation except C and C++ source files:</para>
-
-              <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
-
-              <para>File names cannot be filtered: they are represented in the
-              masks only by the <literal>*</literal> wildcard character. For
-              example, these expressions are not valid masks:</para>
-
-              <para><userinput>mybook.xml</userinput></para>
-
-              <para><userinput>yourbook.*</userinput></para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>File filtering</term>
-
-            <listitem>
-              <para>File filtering is more powerful than extension filtering.
-              Click the <guibutton>Select</guibutton> button next to the
-              <guilabel>Filters</guilabel> field to choose from a list of
-              available filters. </para>
-            </listitem>
-          </varlistentry>
-        </variablelist>
--->
-      </listitem>
-
-      <listitem>
         <para>The <guilabel>Include Subfolders</guilabel> check box provides
         another way to control the scope of folder comparisons. If you check
         this option, WinMerge recursively compares subfolders, and shows all the
         files and folders it finds in one view. If you disable the option, only
         the current folder is compared, and subfolders are listed by name
         (without their contents), so you can browse into them.</para>
-      </listitem>
+      </section>
 
-      <listitem>
+      <section>
+        <title>Use Unpacker plugins</title>
         <para>The Unpacker field enables you to perform compare operations on
         plug-ins.</para>
-      </listitem>
-    </orderedlist>
+      </section>
+    </section>
 
     <section>
       <title>Other ways to open files and folders<indexterm>
@@ -251,7 +202,7 @@
           <secondary>opening files and folders</secondary>
         </indexterm></title>
 
-      <para>The Select Files or Folders dialog is the main interface for opening
+      <para>The <guilabel>Select Files or Folders</guilabel> dialog is the main interface for opening
       files and folders. But you can use many other ways, too:</para>
 
       <itemizedlist>
