@@ -103,267 +103,345 @@
   <literal>/</literal> ) or dash ( <literal>-</literal> ) character. Pathnames
   have no prefix character.</para>
 
-  <itemizedlist>
-    <listitem>
-      <para><option>/?</option> opens WinMerge Help at this topic.</para>
-    </listitem>
+  <variablelist>
+    <varlistentry>
+      <term><option>/?</option></term>
+      <listitem>
+        <para>Opens WinMerge Help at this topic.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
+    <varlistentry>
       <indexterm>
         <primary>recursive folder compare</primary>
       </indexterm>
+      <term><option>/r</option></term>
+      <listitem>
+        <para>Compares all files in all subfolders (recursive
+        compare). Unique folders (occurring only on one side) are listed in the
+        compare result as separate items. Note that including subfolders can
+        increase compare time significantly. Without this parameter, WinMerge
+        lists only files and subfolders at the top level of the two target
+        folders. It does not compare the subfolders.</para>
+      </listitem>
+    </varlistentry>
 
-      <para><option>/r</option> compares all files in all subfolders (recursive
-      compare). Unique folders (occurring only on one side) are listed in the
-      compare result as separate items. Note that including subfolders can
-      increase compare time significantly. Without this parameter, WinMerge
-      lists only files and subfolders at the top level of the two target
-      folders. It does not compare the subfolders.</para>
-    </listitem>
-
-    <listitem>
+    <varlistentry>
       <indexterm>
         <primary>WinMerge window</primary>
-
         <secondary>closing</secondary>
       </indexterm>
 
-      <para><option>/e</option> enables you to close WinMerge with a single
-      <keycap>Esc</keycap> key press. This is useful when you use WinMerge as an
-      external compare application: you can close WinMerge quickly, like a
-      dialog. Without this parameter, you might have to press
-      <keycap>Esc</keycap> multiple times to close all its windows.</para>
-    </listitem>
+      <term><option>/e</option></term>
+      <listitem>
+        <para>Enables you to close WinMerge with a single
+        <keycap>Esc</keycap> key press. This is useful when you use WinMerge as an
+        external compare application: you can close WinMerge quickly, like a
+        dialog. Without this parameter, you might have to press
+        <keycap>Esc</keycap> multiple times to close all its windows.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
+    <varlistentry>
       <indexterm>
         <primary>filters</primary>
-
         <secondary>applying in command line</secondary>
       </indexterm>
 
-      <para><option>/f</option> applies a specified filter to restrict the
-      comparison. The filter can be a filemask like <filename><userinput>*.h
-      *.cpp</userinput></filename>, or the name of a file filter like
-      <userinput>XML/HTML Devel</userinput>. Add quotation marks around a filter
-      mask or name that contains spaces.</para>
-    </listitem>
+      <term><option>/f</option></term>
+      <listitem>
+        <para>Applies a specified filter to restrict the
+        comparison. The filter can be a filemask like <filename><userinput>*.h
+        *.cpp</userinput></filename>, or the name of a file filter like
+        <userinput>XML/HTML Devel</userinput>. Add quotation marks around a filter
+        mask or name that contains spaces.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/x</option> closes WinMerge (after displaying an information
-      dialog) when you start a comparison of identical files. The parameter has
-      no effect after the comparison, for example if the files become identical
-      as a result of merging or editing. This parameter is useful when you use
-      WinMerge as an external compare application, or when you want to eliminate
-      unnecessary steps by ignoring files that don't have any
-      differences.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/x</option></term>
+      <listitem>
+        <para>Closes WinMerge (after displaying an information
+        dialog) when you start a comparison of identical files. The parameter has
+        no effect after the comparison, for example if the files become identical
+        as a result of merging or editing. This parameter is useful when you use
+        WinMerge as an external compare application, or when you want to eliminate
+        unnecessary steps by ignoring files that don't have any
+        differences.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/xq</option> is similar to <option>/x</option> but does not
-      show the message about identical files. </para>
-    </listitem>
+    <varlistentry>
+      <term><option>/xq</option></term>
+      <listitem>
+        <para>Is similar to <option>/x</option> but does not
+        show the message about identical files.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
+    <varlistentry>
       <indexterm>
         <primary>WinMerge window</primary>
-
         <secondary>limiting instances</secondary>
       </indexterm>
 
-      <para><option>/s</option> limits WinMerge windows to a single instance.
-      For example, if WinMerge is already running, a new compare opens in the
-      same instance. Without this parameter, multiple windows are allowed:
-      depending on other settings, a new compare might open in the existing
-      window or in a new window.</para>
-    </listitem>
+      <term><option>/s</option></term>
+      <listitem>
+        <para>Limits WinMerge windows to a single instance.
+        For example, if WinMerge is already running, a new compare opens in the
+        same instance. Without this parameter, multiple windows are allowed:
+        depending on other settings, a new compare might open in the existing
+        window or in a new window.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
+    <varlistentry>
       <indexterm>
         <primary>MRU list</primary>
       </indexterm>
 
-      <para><option>/ul</option> prevents WinMerge from adding the left path to
-      the Most Recently Used (MRU) list. External applications should not add
-      paths to the MRU list in the Select Files or Folders dialog.</para>
-    </listitem>
+      <term><option>/ul</option></term>
+      <listitem>
+        <para>Prevents WinMerge from adding the left path to
+        the Most Recently Used (MRU) list. External applications should not add
+        paths to the MRU list in the Select Files or Folders dialog.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/um</option> prevents WinMerge from adding the middle path to
-      the Most Recently Used (MRU) list. External applications should not add
-      paths to the MRU list in the Select Files or Folders dialog.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/um</option></term>
+      <listitem>
+        <para>Prevents WinMerge from adding the middle path to
+        the Most Recently Used (MRU) list. External applications should not add
+        paths to the MRU list in the Select Files or Folders dialog.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/ur</option> prevents WinMerge from adding the right path to
-      the Most Recently Used (MRU) list. External applications should not add
-      paths to the MRU list in the Select Files or Folders dialog.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/ur</option></term>
+      <listitem>
+        <para>Prevents WinMerge from adding the right path to
+        the Most Recently Used (MRU) list. External applications should not add
+        paths to the MRU list in the Select Files or Folders dialog.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/u</option> prevents WinMerge from adding either path (left
-      or right) to the Most Recently Used (MRU) list. External applications
-      should not add paths to the MRU list in the Select Files or Folders
-      dialog.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/u</option></term>
+      <listitem>
+        <para>Prevents WinMerge from adding either path (left
+        or right) to the Most Recently Used (MRU) list. External applications
+        should not add paths to the MRU list in the Select Files or Folders
+        dialog.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
+    <varlistentry>
       <indexterm>
         <primary>protecting files</primary>
       </indexterm>
 
-      <para><option>/wl</option> opens the left side as read-only. Use this when
-      you don't want to change left side items in the compare.</para>
-    </listitem>
+      <term><option>/wl</option></term>
+      <listitem>
+        <para>Opens the left side as read-only. Use this when
+        you don't want to change left side items in the compare.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/wm</option> opens the middle side as read-only. Use this
-      when you don't want to change right side items in the compare.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/wm</option></term>
+      <listitem>
+        <para>Opens the middle side as read-only. Use this
+        when you don't want to change right side items in the compare.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/wr</option> opens the right side as read-only. Use this
-      when you don't want to change right side items in the compare.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/wr</option></term>
+      <listitem>
+        <para>Opens the right side as read-only. Use this
+        when you don't want to change right side items in the compare.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
+    <varlistentry>
       <indexterm>
         <primary>WinMerge window</primary>
-
         <secondary>opening minimized or maximized</secondary>
       </indexterm>
 
-      <para><option>/minimize</option> starts WinMerge as a minimized window.
-      This option can be useful during lengthy compares.</para>
-    </listitem>
+      <term><option>/minimize</option></term>
+      <listitem>
+        <para>Starts WinMerge as a minimized window.
+        This option can be useful during lengthy compares.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/maximize</option> starts WinMerge as a maximized
-      window.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/maximize</option></term>
+      <listitem>
+        <para>Starts WinMerge as a maximized
+        window.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/fl</option> sets focus to the left side at startup</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/fl</option></term>
+      <listitem>
+        <para>Sets focus to the left side at startup</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/fm</option> sets focus to the middle side at startup</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/fm</option></term>
+      <listitem>
+        <para>Sets focus to the middle side at startup</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/fr</option> sets focus to the right side at startup</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/fr</option></term>
+      <listitem>
+        <para>Sets focus to the right side at startup</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/dl</option> specifies a description in the left side title
-      bar, overriding the default folder or filename text. For example:
-      <userinput>/dl "Version 1.0</userinput>" or <userinput>/dl
-      WorkingCopy</userinput>. Use quotation marks around descriptions that
-      contain spaces.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/dl</option></term>
+      <listitem>
+        <para>Specifies a description in the left side title
+        bar, overriding the default folder or filename text. For example:
+        <userinput>/dl "Version 1.0</userinput>" or <userinput>/dl
+        WorkingCopy</userinput>. Use quotation marks around descriptions that
+        contain spaces.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/dm</option> specifies a description in the middle side title
-      bar, just like <option>/dl</option>.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/dm</option></term>
+      <listitem>
+        <para>Specifies a description in the middle side title
+        bar, just like <option>/dl</option>.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/dr</option> specifies a description in the right side title
-      bar, just like <option>/dl</option>.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/dr</option></term>
+      <listitem>
+        <para>Specifies a description in the right side title
+        bar, just like <option>/dl</option>.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option><replaceable>leftpath</replaceable></option> specifies the
-      folder, file, or project file to open on the left side.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>leftpath</option></term>
+      <listitem>
+        <para>Specifies the folder, file or project file to open on the left side.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option><replaceable>middlepath</replaceable></option> specifies the
-      folder, file, or project file to open on the middle side.</para>
-   </listitem>
+    <varlistentry>
+      <term><option><replaceable>middlepath</replaceable></option></term>
+      <listitem>
+        <para>Specifies the folder, file or project file to open on the middle side.</para>
+      </listitem>
+    </varlistentry>
 
-   <listitem>
-      <para><option><replaceable>rightpath</replaceable></option> specifies the
-      folder, file, or project file to open on the right side.</para>
+    <varlistentry>
+      <term><option><replaceable>rightpath</replaceable></option></term>
+      <listitem>
+        <para>Specifies the folder, file or project file to open on the right side.</para>
 
-      <para>WinMerge cannot compare files to folders, so both path parameters
-      (<option><replaceable>leftpath</replaceable></option> and
-      <option><replaceable>rightpath</replaceable></option>) must point to the
-      same target type (either folders or files). If WinMerge cannot find either
-      of the specified paths, it opens the Select Files or Folders dialog, where
-      you can browse for the correct paths.</para>
+        <para>WinMerge cannot compare files to folders, so both path parameters
+        (<option><replaceable>leftpath</replaceable></option> and
+        <option><replaceable>rightpath</replaceable></option>) must point to the
+        same target type (either folders or files). If WinMerge cannot find either
+        of the specified paths, it opens the Select Files or Folders dialog, where
+        you can browse for the correct paths.</para>
 
-      <tip>
-        <para>In file comparisons, you can specify a folder name in one of the
-        path parameters, as long as the folder contains a file with the same
-        name as the one specified in the other, file path.</para>
+        <tip>
+          <para>In file comparisons, you can specify a folder name in one of the
+          path parameters, as long as the folder contains a file with the same
+          name as the one specified in the other, file path.</para>
 
-        <para>For example, consider this command:</para>
+          <para>For example, consider this command:</para>
 
-        <para><userinput>WinMergeU <filename>C:\Folder\File.txt</filename>
-        <filename class="directory">C:\Folder2</filename> </userinput></para>
+          <para><userinput>WinMergeU <filename>C:\Folder\File.txt</filename>
+          <filename class="directory">C:\Folder2</filename> </userinput></para>
 
-        <para>If <filename class="directory">C:\Folder2</filename> contains a
-        file named <filename>File.txt</filename>: WinMerge implicitly resolves
-        the second path as a file specification, and compares the two files. Of
-        course, the command is invalid if <filename
-        class="directory">C:\Folder2</filename> does <emphasis>not</emphasis>
-        contain a file named <filename>File.txt</filename>.</para>
-      </tip>
-    </listitem>
+          <para>If <filename class="directory">C:\Folder2</filename> contains a
+          file named <filename>File.txt</filename>: WinMerge implicitly resolves
+          the second path as a file specification, and compares the two files. Of
+          course, the command is invalid if <filename
+          class="directory">C:\Folder2</filename> does <emphasis>not</emphasis>
+          contain a file named <filename>File.txt</filename>.</para>
+        </tip>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
+    <varlistentry>
       <indexterm>
         <primary>merging differences</primary>
-
         <secondary>result file</secondary>
       </indexterm>
 
-      <para><option>/o <replaceable>outputpath</replaceable></option> Specifies an
-      optional output folder where you want merged result files to be
-      saved.</para>
+      <term><option>/o <replaceable>outputpath</replaceable></option></term>
+      <listitem>
+        <para>Specifies an optional output folder where you want merged result files to be
+        saved.</para>
 
-      <para>The output path is rarely needed when you start WinMerge from
-      the command line. It is meant to be used with version control tools, where
-      you might need to specify a output path for the
-      <wordasword>result</wordasword> file. If you specify a output path,
-      WinMerge still shows only two or three files in the File Compare window. However,
-      if you save either of these files, it is written to the output path,
-      leaving the two or three source files intact.</para>
+        <para>The output path is rarely needed when you start WinMerge from
+        the command line. It is meant to be used with version control tools, where
+        you might need to specify a output path for the
+        <wordasword>result</wordasword> file. If you specify a output path,
+        WinMerge still shows only two or three files in the File Compare window. However,
+        if you save either of these files, it is written to the output path,
+        leaving the two or three source files intact.</para>
 
-      <para>Version control systems typically refer to the source and result
-      files using terms like <glossterm>theirs</glossterm>,
-      <glossterm>mine</glossterm>, and either <glossterm>merged</glossterm> or
-      <glossterm>resolved</glossterm>. If you specify a output path on the
-      WinMerge command line, and are working with a version control system, you
-      should list the files in that order.</para>
-    </listitem>
+        <para>Version control systems typically refer to the source and result
+        files using terms like <glossterm>theirs</glossterm>,
+        <glossterm>mine</glossterm>, and either <glossterm>merged</glossterm> or
+        <glossterm>resolved</glossterm>. If you specify a output path on the
+        WinMerge command line, and are working with a version control system, you
+        should list the files in that order.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/al</option> auto-merges at the left side at startup.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/al</option></term>
+      <listitem>
+        <para>Auto-merges at the left side at startup.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/am</option> auto-merges at the middle side at startup.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/am</option></term>
+      <listitem>
+        <para>Auto-merges at the middle side at startup.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
-      <para><option>/ar</option> auto-merges at the right side at startup.</para>
-    </listitem>
+    <varlistentry>
+      <term><option>/ar</option></term>
+      <listitem>
+        <para>Auto-merges at the right side at startup.</para>
+      </listitem>
+    </varlistentry>
 
-    <listitem>
+    <varlistentry>
       <indexterm>
         <primary>conflict files</primary>
-
         <secondary>specifying on command line</secondary>
       </indexterm>
 
-      <para><option><replaceable>conflictfile</replaceable></option> Specifies a
-      conflict file, typically generated by a Version control system. The
-      conflict file opens in the File Compare window, where you can merge and
-      resolve conflicts, as described in <xref
-      linkend="ResolveConflictFiles" />. Note that no other paths can be used
-      with a conflict file.</para>
-    </listitem>
-  </itemizedlist>
+      <term><option><replaceable>conflictfile</replaceable></option></term>
+      <listitem>
+        <para>Specifies a conflict file, typically generated by a Version control system. The
+        conflict file opens in the File Compare window, where you can merge and
+        resolve conflicts, as described in <xref
+        linkend="ResolveConflictFiles" />. Note that no other paths can be used
+        with a conflict file.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
 </article>
