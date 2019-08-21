@@ -347,9 +347,9 @@
           <primary>CompareMSExcelFiles.sct plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Displays the text contents of a <trademark
+      <para><trademark
       class="registered">Microsoft</trademark> <application>Excel</application>
-      file, stripping away all formatting and embedded objects.</para>
+      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -389,9 +389,9 @@
           <primary>CompareMSWordFiles.sct plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Displays the text content of a <trademark
+      <para><trademark
       class="registered">Microsoft</trademark> <application>Word</application>
-      file, stripping away all formatting and embedded objects.</para>
+      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
@@ -429,9 +429,9 @@
           <primary>CompareMSPowerPointFiles.sct plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Displays the text content of a <trademark
+      <para><trademark
       class="registered">Microsoft</trademark> <application>PowerPoint</application>
-      file, stripping away all formatting and embedded objects.</para>
+      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
 
       <para><segmentedlist>
           <segtitle>Category</segtitle>
