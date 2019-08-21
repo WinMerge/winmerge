@@ -871,6 +871,9 @@
     <ClCompile Include="MergeFrameCommon.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\icu.cpp">
+      <Filter>EditLib\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1568,6 +1571,9 @@
     </ClInclude>
     <ClInclude Include="MergeFrameCommon.h">
       <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\icu.hpp">
+      <Filter>EditLib\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

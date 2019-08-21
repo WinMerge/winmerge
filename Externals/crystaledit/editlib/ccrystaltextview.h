@@ -37,6 +37,7 @@
 #include "cregexp.h"
 #include "crystalparser.h"
 #include "crystallineparser.h"
+#include "icu.hpp"
 
 ////////////////////////////////////////////////////////////////////////////
 // Forward class declarations
@@ -94,7 +95,7 @@ protected:
     DWORD m_dwLastSearchFlags;
     LPTSTR m_pszLastFindWhat;
     bool m_bMultipleSearch;       // More search
-	CFindTextDlg *m_pFindTextDlg;
+    CFindTextDlg *m_pFindTextDlg;
 
 private :
     bool m_bCursorHidden;
@@ -141,7 +142,7 @@ protected:
     CPoint m_ptAnchor;
 private:
     LOGFONT m_lfBaseFont;
-	LOGFONT m_lfSavedBaseFont;
+    LOGFONT m_lfSavedBaseFont;
     CFont *m_apFonts[4];
 
     //  Parsing stuff
@@ -174,7 +175,7 @@ protected:
     bool m_bDraggingText;
     bool m_bDragSelection, m_bWordSelection, m_bLineSelection, m_bColumnSelection;
     UINT_PTR m_nDragSelTimer;
-	DWORD m_dwLastDblClickTime;
+    DWORD m_dwLastDblClickTime;
 
     CPoint m_ptDrawSelStart, m_ptDrawSelEnd;
 
@@ -288,96 +289,96 @@ protected :
     bool m_bSmoothScroll;
 
     int GetLineHeight ();
-	//BEGIN SW
-	/**
-	Returns the number of sublines the given line contains of.
-	Allway "1", if word wrapping is disabled.
+    //BEGIN SW
+    /**
+    Returns the number of sublines the given line contains of.
+    Allway "1", if word wrapping is disabled.
 
-	@param nLineIndex Index of the line to get the subline count of.
+    @param nLineIndex Index of the line to get the subline count of.
 
-	@return Number of sublines the given line contains of
-	*/
-	int GetSubLines( int nLineIndex );
+    @return Number of sublines the given line contains of
+    */
+    int GetSubLines( int nLineIndex );
 
-	virtual int GetEmptySubLines( int nLineIndex );
-	bool IsEmptySubLineIndex( int nSubLineIndex );
+    virtual int GetEmptySubLines( int nLineIndex );
+    bool IsEmptySubLineIndex( int nSubLineIndex );
 
-	/**
-	Converts the given character position for the given line into a point.
+    /**
+    Converts the given character position for the given line into a point.
 
-	After the call the x-member of the returned point contains the
-	character position relative to the beginning of the subline. The y-member
-	contains the zero based index of the subline relative to the line, the
-	character position was given for.
+    After the call the x-member of the returned point contains the
+    character position relative to the beginning of the subline. The y-member
+    contains the zero based index of the subline relative to the line, the
+    character position was given for.
 
-	@param nLineIndex Zero based index of the line, nCharPos refers to.
-	@param nCharPos The character position, the point shoult be calculated for.
-	@param charPoint Reference to a point, which should receive the result.
+    @param nLineIndex Zero based index of the line, nCharPos refers to.
+    @param nCharPos The character position, the point shoult be calculated for.
+    @param charPoint Reference to a point, which should receive the result.
 
-	@return The character position of the beginning of the subline charPoint.y.
-	*/
-	int CharPosToPoint( int nLineIndex, int nCharPos, CPoint &charPoint );
+    @return The character position of the beginning of the subline charPoint.y.
+    */
+    int CharPosToPoint( int nLineIndex, int nCharPos, CPoint &charPoint );
 
-	/**
-	Converts the given cursor point for the given line to the character position
-	for the given line.
+    /**
+    Converts the given cursor point for the given line to the character position
+    for the given line.
 
-	The y-member of the cursor position specifies the subline inside the given
-	line, the cursor is placed on and the x-member specifies the cursor position
-	(in character widths) relative to the beginning of that subline.
+    The y-member of the cursor position specifies the subline inside the given
+    line, the cursor is placed on and the x-member specifies the cursor position
+    (in character widths) relative to the beginning of that subline.
 
-	@param nLineIndex Zero based index of the line the cursor position refers to.
-	@param curPoint Position of the cursor relative to the line in sub lines and
-		char widths.
+    @param nLineIndex Zero based index of the line the cursor position refers to.
+    @param curPoint Position of the cursor relative to the line in sub lines and
+        char widths.
 
-	@return The character position the best matches the cursor position.
-	*/
-	int CursorPointToCharPos( int nLineIndex, const CPoint &curPoint );
+    @return The character position the best matches the cursor position.
+    */
+    int CursorPointToCharPos( int nLineIndex, const CPoint &curPoint );
 
-	/**
-	Converts the given cursor position to a text position.
+    /**
+    Converts the given cursor position to a text position.
 
-	The x-member of the subLinePos parameter describes the cursor position in
-	char widths relative to the beginning of the subline described by the
-	y-member. The subline is the zero based number of the subline relative to
-	the beginning of the text buffer.
+    The x-member of the subLinePos parameter describes the cursor position in
+    char widths relative to the beginning of the subline described by the
+    y-member. The subline is the zero based number of the subline relative to
+    the beginning of the text buffer.
 
-	<p>
-	The returned point contains a valid text position, where the y-member is
-	the zero based index of the textline and the x-member is the character
-	position inside this line.
+    <p>
+    The returned point contains a valid text position, where the y-member is
+    the zero based index of the textline and the x-member is the character
+    position inside this line.
 
-	@param subLinePos The sublinebased cursor position
-		(see text above for detailed description).
-	@param textPos The calculated line and character position that best matches
-		the cursor position (see text above for detailed descritpion).
-	*/
-	void SubLineCursorPosToTextPos( const CPoint &subLinePos, CPoint &textPos );
+    @param subLinePos The sublinebased cursor position
+        (see text above for detailed description).
+    @param textPos The calculated line and character position that best matches
+        the cursor position (see text above for detailed descritpion).
+    */
+    void SubLineCursorPosToTextPos( const CPoint &subLinePos, CPoint &textPos );
 
-	/**
-	Returns the character position relative to the given line, that matches
-	the end of the given sub line.
+    /**
+    Returns the character position relative to the given line, that matches
+    the end of the given sub line.
 
-	@param nLineIndex Zero based index of the line to work on.
-	@param nSubLineOffset Zero based index of the subline inside the given line.
+    @param nLineIndex Zero based index of the line to work on.
+    @param nSubLineOffset Zero based index of the subline inside the given line.
 
-	@return Character position that matches the end of the given subline, relative
-		to the given line.
-	*/
-	int SubLineEndToCharPos( int nLineIndex, int nSubLineOffset );
+    @return Character position that matches the end of the given subline, relative
+        to the given line.
+    */
+    int SubLineEndToCharPos( int nLineIndex, int nSubLineOffset );
 
-	/**
-	Returns the character position relative to the given line, that matches
-	the start of the given sub line.
+    /**
+    Returns the character position relative to the given line, that matches
+    the start of the given sub line.
 
-	@param nLineIndex Zero based index of the line to work on.
-	@param nSubLineOffset Zero based index of the subline inside the given line.
+    @param nLineIndex Zero based index of the line to work on.
+    @param nSubLineOffset Zero based index of the subline inside the given line.
 
-	@return Character position that matches the start of the given subline, relative
-		to the given line.
-	*/
-	int SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset );
-	//END SW
+    @return Character position that matches the start of the given subline, relative
+        to the given line.
+    */
+    int SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset );
+    //END SW
     int GetCharWidth ();
     int GetMaxLineLength (int nTopLine, int nLines);
     int GetScreenLines ();
@@ -391,42 +392,42 @@ protected :
     void ScrollToChar (int nNewOffsetChar, bool bNoSmoothScroll = false, bool bTrackScrollBar = true);
     void ScrollToLine (int nNewTopLine, bool bNoSmoothScroll = false, bool bTrackScrollBar = true);
 
-	//BEGIN SW
-	/**
-	Scrolls to the given sub line, so that the sub line is the first visible
-	line on the screen.
+    //BEGIN SW
+    /**
+    Scrolls to the given sub line, so that the sub line is the first visible
+    line on the screen.
 
-	@param nNewTopSubLine Index of the sub line to scroll to.
-	@param bNoSmoothScroll true to disable smooth scrolling, else false.
-	@param bTrackScrollBar true to recalculate the scroll bar after scrolling,
-		else false.
-	*/
-	virtual void ScrollToSubLine( int nNewTopSubLine, bool bNoSmoothScroll = false, bool bTrackScrollBar = true );
-	//END SW
+    @param nNewTopSubLine Index of the sub line to scroll to.
+    @param bNoSmoothScroll true to disable smooth scrolling, else false.
+    @param bTrackScrollBar true to recalculate the scroll bar after scrolling,
+        else false.
+    */
+    virtual void ScrollToSubLine( int nNewTopSubLine, bool bNoSmoothScroll = false, bool bTrackScrollBar = true );
+    //END SW
 
     //  Splitter support
     virtual void UpdateSiblingScrollPos (bool bHorz);
     virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz);
     CCrystalTextView *GetSiblingView (int nRow, int nCol);
 
-	//BEGIN SW
-	/**
-	Returns the number of sublines in the whole text buffer.
+    //BEGIN SW
+    /**
+    Returns the number of sublines in the whole text buffer.
 
-	The number of sublines is the sum of all sublines of all lines.
+    The number of sublines is the sum of all sublines of all lines.
 
-	@return Number of sublines in the whole text buffer.
-	*/
-	virtual int GetSubLineCount();
+    @return Number of sublines in the whole text buffer.
+    */
+    virtual int GetSubLineCount();
 
-	/**
-	Returns the zero-based subline index of the given line.
+    /**
+    Returns the zero-based subline index of the given line.
 
-	@param nLineIndex Index of the line to calculate the subline index of
+    @param nLineIndex Index of the line to calculate the subline index of
 
-	@return The zero-based subline index of the given line.
-	*/
-	virtual int GetSubLineIndex( int nLineIndex );
+    @return The zero-based subline index of the given line.
+    */
+    virtual int GetSubLineIndex( int nLineIndex );
 
     /**
      * @brief Splits the given subline index into line and sub line of this line.
@@ -439,7 +440,7 @@ protected :
 public:
     virtual int GetLineLength (int nLineIndex) const;
     virtual int GetFullLineLength (int nLineIndex) const;
-	virtual int GetViewableLineLength(int nLineIndex) const;
+    virtual int GetViewableLineLength(int nLineIndex) const;
     virtual int GetLineActualLength (int nLineIndex);
     virtual LPCTSTR GetLineChars (int nLineIndex) const;
 protected:
@@ -471,185 +472,186 @@ protected:
     virtual void DrawBoundaryLine (CDC * pdc, int nLeft, int nRight, int y);
     virtual void DrawLineCursor (CDC * pdc, int nLeft, int nRight, int y, int nHeight);
 
-	inline int GetCharCellCountFromChar(TCHAR ch)
-	{
-		if (ch >= _T('\x00') && ch <= _T('\x7F'))
-		{
-			if (ch <= _T('\x1F') && ch != '\t')
-				return 3;
-			else
-				return 1;
-		} 
-		// This assumes a fixed width font
-		// But the UNICODE case handles double-wide glyphs (primarily Chinese characters)
+    inline int GetCharCellCountFromChar(const TCHAR *pch)
+    {
+        TCHAR ch = *pch;
+        if (ch >= _T('\x00') && ch <= _T('\x7F'))
+        {
+            if (ch <= _T('\x1F') && ch != '\t')
+                return 3;
+            else
+                return 1;
+        } 
+        // This assumes a fixed width font
+        // But the UNICODE case handles double-wide glyphs (primarily Chinese characters)
 #ifdef _UNICODE
-		return GetCharCellCountUnicodeChar(ch);
+        return GetCharCellCountUnicodeChar(pch);
 #else
-		return 1;
+        return 1;
 #endif
-	}
+    }
 
 #ifdef _UNICODE
     bool m_bChWidthsCalculated[65536/256];
     int m_iChDoubleWidthFlags[65536/32];
-    int GetCharCellCountUnicodeChar(wchar_t ch);
+    int GetCharCellCountUnicodeChar(const wchar_t *pch);
 #endif
     void ResetCharWidths();
 
-	//BEGIN SW
-	// word wrapping
+    //BEGIN SW
+    // word wrapping
 
-	/**
-	Called to wrap the line with the given index into sublines.
+    /**
+    Called to wrap the line with the given index into sublines.
 
-	The standard implementation wraps the line at the first non-whitespace after
-	an whitespace that exceeds the visible line width (nMaxLineWidth). Override
-	this function to provide your own word wrapping.
+    The standard implementation wraps the line at the first non-whitespace after
+    an whitespace that exceeds the visible line width (nMaxLineWidth). Override
+    this function to provide your own word wrapping.
 
-	<b>Attention:</b> Never call this function directly,
-	call WrapLineCached() instead, which calls this method.
+    <b>Attention:</b> Never call this function directly,
+    call WrapLineCached() instead, which calls this method.
 
-	@param nLineIndex The index of the line to wrap
+    @param nLineIndex The index of the line to wrap
 
-	@param nMaxLineWidth The number of characters a subline of this line should
-	not exceed (except whitespaces)
+    @param nMaxLineWidth The number of characters a subline of this line should
+    not exceed (except whitespaces)
 
-	@param anBreaks An array of integers. Put the positions where to wrap the line
-	in that array (its allready allocated). If this pointer is `nullptr`, the function
-	has only to compute the number of breaks (the parameter nBreaks).
+    @param anBreaks An array of integers. Put the positions where to wrap the line
+    in that array (its allready allocated). If this pointer is `nullptr`, the function
+    has only to compute the number of breaks (the parameter nBreaks).
 
-	@param nBreaks The number of breaks this line has (number of sublines - 1). When
-	the function is called, this variable is 0. If the line is not wrapped, this value
-	should be 0 after the call.
+    @param nBreaks The number of breaks this line has (number of sublines - 1). When
+    the function is called, this variable is 0. If the line is not wrapped, this value
+    should be 0 after the call.
 
-	@see WrapLineCached()
-	*/
-	virtual void WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks );
+    @see WrapLineCached()
+    */
+    virtual void WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks );
 
-	/**
-	Called to wrap the line with the given index into sublines.
+    /**
+    Called to wrap the line with the given index into sublines.
 
-	Call this method instead of WrapLine() (which is called internal by this
-	method). This function uses an internal cache which contains the number
-	of sublines for each line, so it has only to call WrapLine(), if the
-	cache for the given line is invalid or if the caller wants to get the
-	wrap postions (anBreaks != nullptr).
+    Call this method instead of WrapLine() (which is called internal by this
+    method). This function uses an internal cache which contains the number
+    of sublines for each line, so it has only to call WrapLine(), if the
+    cache for the given line is invalid or if the caller wants to get the
+    wrap postions (anBreaks != nullptr).
 
-	This functions also tests m_bWordWrap -- you can call it even if
-	word wrapping is disabled and you will retrieve a valid value.
+    This functions also tests m_bWordWrap -- you can call it even if
+    word wrapping is disabled and you will retrieve a valid value.
 
-	@param nLineIndex The index of the line to wrap
+    @param nLineIndex The index of the line to wrap
 
-	@param nMaxLineWidth The number of characters a subline of this line should
-	not exceed (except whitespaces)
+    @param nMaxLineWidth The number of characters a subline of this line should
+    not exceed (except whitespaces)
 
-	@param anBreaks An array of integers. Put the positions where to wrap the line
-	in that array (its allready allocated). If this pointer is `nullptr`, the function
-	has only to compute the number of breaks (the parameter nBreaks).
+    @param anBreaks An array of integers. Put the positions where to wrap the line
+    in that array (its allready allocated). If this pointer is `nullptr`, the function
+    has only to compute the number of breaks (the parameter nBreaks).
 
-	@param nBreaks The number of breaks this line has (number of sublines - 1). When
-	the function is called, this variable is 0. If the line is not wrapped, this value
-	should be 0 after the call.
+    @param nBreaks The number of breaks this line has (number of sublines - 1). When
+    the function is called, this variable is 0. If the line is not wrapped, this value
+    should be 0 after the call.
 
-	@see WrapLine()
-	@see m_anSubLines
-	*/
-	void WrapLineCached( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks );
+    @see WrapLine()
+    @see m_anSubLines
+    */
+    void WrapLineCached( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks );
 
-	/**
-	Invalidates the cached data for the given lines.
+    /**
+    Invalidates the cached data for the given lines.
 
-	<b>Remarks:</b> Override this method, if your derived class caches other
-	view specific line info, which becomes invalid, when this line changes.
-	Call this standard implementation in your overriding.
+    <b>Remarks:</b> Override this method, if your derived class caches other
+    view specific line info, which becomes invalid, when this line changes.
+    Call this standard implementation in your overriding.
 
-	@param nLineIndex1 The index of the first line to invalidate.
+    @param nLineIndex1 The index of the first line to invalidate.
 
-	@param nLineIndex2 The index of the last line to invalidate. If this value is
-	-1 (default) all lines from nLineIndex1 to the end are invalidated.
-	*/
-	virtual void InvalidateLineCache( int nLineIndex1, int nLineIndex2 );
-	virtual void InvalidateSubLineIndexCache( int nLineIndex1 );
-	void InvalidateScreenRect(bool bInvalidateView = true);
-	//END SW
+    @param nLineIndex2 The index of the last line to invalidate. If this value is
+    -1 (default) all lines from nLineIndex1 to the end are invalidated.
+    */
+    virtual void InvalidateLineCache( int nLineIndex1, int nLineIndex2 );
+    virtual void InvalidateSubLineIndexCache( int nLineIndex1 );
+    void InvalidateScreenRect(bool bInvalidateView = true);
+    //END SW
 
     virtual HINSTANCE GetResourceHandle ();
 
-	//BEGIN SW
-	// function to draw a single screen line
-	// (a wrapped line can consist of many screen lines
-	virtual void DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &rcClip,
-		const std::vector<CrystalLineParser::TEXTBLOCK>& blocks, int &nActualItem,
-		COLORREF crText, COLORREF crBkgnd, bool bDrawWhitespace,
-		LPCTSTR pszChars,
-		int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos );
-	//END SW
+    //BEGIN SW
+    // function to draw a single screen line
+    // (a wrapped line can consist of many screen lines
+    virtual void DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &rcClip,
+        const std::vector<CrystalLineParser::TEXTBLOCK>& blocks, int &nActualItem,
+        COLORREF crText, COLORREF crBkgnd, bool bDrawWhitespace,
+        LPCTSTR pszChars,
+        int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos );
+    //END SW
 
-	std::vector<CrystalLineParser::TEXTBLOCK> MergeTextBlocks(const std::vector<CrystalLineParser::TEXTBLOCK>& blocks1, const std::vector<CrystalLineParser::TEXTBLOCK>& blocks2) const;
-	std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
-	virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
+    std::vector<CrystalLineParser::TEXTBLOCK> MergeTextBlocks(const std::vector<CrystalLineParser::TEXTBLOCK>& blocks1, const std::vector<CrystalLineParser::TEXTBLOCK>& blocks2) const;
+    std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
+    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 
 public:
-	virtual CString GetHTMLLine (int nLineIndex, LPCTSTR pszTag);
-	virtual CString GetHTMLStyles ();
-	std::vector<CrystalLineParser::TEXTBLOCK> GetTextBlocks(int nLineIndex);
+    virtual CString GetHTMLLine (int nLineIndex, LPCTSTR pszTag);
+    virtual CString GetHTMLStyles ();
+    std::vector<CrystalLineParser::TEXTBLOCK> GetTextBlocks(int nLineIndex);
 protected:
     virtual CString GetHTMLAttribute (int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd);
 
-	//BEGIN SW
-	// helpers for incremental search
+    //BEGIN SW
+    // helpers for incremental search
 
-	/**
-	Called each time the position-information in the status bar
-	is updated. Use this to change the text of the message field
-	in the status bar.
+    /**
+    Called each time the position-information in the status bar
+    is updated. Use this to change the text of the message field
+    in the status bar.
 
-	@param pStatusBar
-		Pointer to the status bar
-	*/
-	void OnUpdateStatusMessage( CStatusBar *pStatusBar );
+    @param pStatusBar
+        Pointer to the status bar
+    */
+    void OnUpdateStatusMessage( CStatusBar *pStatusBar );
 
-	/**
-	Called by OnFindIncrementalForward() and OnFindIncrementalBackward().
+    /**
+    Called by OnFindIncrementalForward() and OnFindIncrementalBackward().
 
-	@param bFindNextOccurence
-		true, if the method should look for the next occurence of the
-		search string in search direction.
+    @param bFindNextOccurence
+        true, if the method should look for the next occurence of the
+        search string in search direction.
 
-	@see #OnFindIncrementalForward
-	@see #OnFindIncrementalBackward
-	*/
-	void OnEditFindIncremental( bool bFindNextOccurence = false );
+    @see #OnFindIncrementalForward
+    @see #OnFindIncrementalBackward
+    */
+    void OnEditFindIncremental( bool bFindNextOccurence = false );
 
-	/** true if incremental forward search is active, false otherwise */
-	bool m_bIncrementalSearchForward;
+    /** true if incremental forward search is active, false otherwise */
+    bool m_bIncrementalSearchForward;
 
-	/** true if incremental backward search is active, false otherwise */
-	bool m_bIncrementalSearchBackward;
+    /** true if incremental backward search is active, false otherwise */
+    bool m_bIncrementalSearchBackward;
 
 private:
-	/** true if we found the string to search for */
-	bool m_bIncrementalFound;
+    /** true if we found the string to search for */
+    bool m_bIncrementalFound;
 
-	/** String we are looking for.*/
-	CString *m_pstrIncrementalSearchString;
+    /** String we are looking for.*/
+    CString *m_pstrIncrementalSearchString;
 
-	/** String we looked for last time.*/
-	CString *m_pstrIncrementalSearchStringOld;
+    /** String we looked for last time.*/
+    CString *m_pstrIncrementalSearchStringOld;
 
-	/** Start of selection at the time the incremental search started */
-	CPoint m_selStartBeforeIncrementalSearch;
+    /** Start of selection at the time the incremental search started */
+    CPoint m_selStartBeforeIncrementalSearch;
 
-	/** Start of selection at the time the incremental search started */
-	CPoint m_selEndBeforeIncrementalSearch;
+    /** Start of selection at the time the incremental search started */
+    CPoint m_selEndBeforeIncrementalSearch;
 
-	/** Cursor position at the time the incremental search started */
-	CPoint m_cursorPosBeforeIncrementalSearch;
+    /** Cursor position at the time the incremental search started */
+    CPoint m_cursorPosBeforeIncrementalSearch;
 
-	/** position to start the incremental search at */
-	CPoint m_incrementalSearchStartPos;
+    /** position to start the incremental search at */
+    CPoint m_incrementalSearchStartPos;
 
-	//END SW
+    //END SW
 
 public :
     void GoToLine (int nLine, bool bRelative);
@@ -666,8 +668,8 @@ public :
     void SetTabSize (int nTabSize);
     bool GetSelectionMargin ();
     void SetSelectionMargin (bool bSelMargin);
-	bool GetViewLineNumbers() const;
-	void SetViewLineNumbers(bool bViewLineNumbers);
+    bool GetViewLineNumbers() const;
+    void SetViewLineNumbers(bool bViewLineNumbers);
     void GetFont (LOGFONT & lf);
     void SetFont (const LOGFONT & lf);
     DWORD GetFlags ();
@@ -678,25 +680,25 @@ public :
     bool GetDisableDragAndDrop () const;
     void SetDisableDragAndDrop (bool bDDAD);
 
-	//BEGIN SW
-	bool GetWordWrapping() const;
-	virtual void SetWordWrapping( bool bWordWrap );
+    //BEGIN SW
+    bool GetWordWrapping() const;
+    virtual void SetWordWrapping( bool bWordWrap );
 
-	virtual void CopyProperties(CCrystalTextView *pSource);
+    virtual void CopyProperties(CCrystalTextView *pSource);
 
-	/**
-	Sets the Parser to use to parse the file.
+    /**
+    Sets the Parser to use to parse the file.
 
-	@param pParser Pointer to parser to use. Set to `nullptr` to use no parser.
+    @param pParser Pointer to parser to use. Set to `nullptr` to use no parser.
 
-	@return Pointer to parser used before or `nullptr`, if no parser has been used before.
-	*/
-	CCrystalParser *SetParser( CCrystalParser *pParser );
-	//END SW
+    @return Pointer to parser used before or `nullptr`, if no parser has been used before.
+    */
+    CCrystalParser *SetParser( CCrystalParser *pParser );
+    //END SW
 
-	bool GetEnableHideLines () const;
-	void SetEnableHideLines (bool bHideLines);
-	bool GetLineVisible (int nLineIndex) const;
+    bool GetEnableHideLines () const;
+    void SetEnableHideLines (bool bHideLines);
+    bool GetLineVisible (int nLineIndex) const;
 
     //  Default handle to resources
     static HINSTANCE s_hResourceInst;
@@ -706,6 +708,9 @@ public :
     RxMatchRes m_rxmatch;
     LPTSTR m_pszMatched;
     static LOGFONT m_LogFont;
+
+    ICUBreakIterator m_iterChar;
+    ICUBreakIterator m_iterWord;
 
     typedef enum
     {
@@ -807,7 +812,7 @@ public :
     virtual void SetCursorPos (const CPoint & ptCursorPos);
     void ShowCursor ();
     void HideCursor ();
-	CPoint GetAnchor() const { return m_ptAnchor; }
+    CPoint GetAnchor() const { return m_ptAnchor; }
     void SetNewAnchor (const CPoint & ptNewAnchor) { SetAnchor(ptNewAnchor); }
     void SetNewSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView = true) { SetSelection(ptStart, ptEnd, bUpdateView); }
 
@@ -819,7 +824,7 @@ public :
     bool FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
     bool FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPos, const CPoint & ptBlockBegin, const CPoint & ptBlockEnd,
                           DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
-	bool FindText (const LastSearchInfos * lastSearch);
+    bool FindText (const LastSearchInfos * lastSearch);
     bool HighlightText (const CPoint & ptStartPos, int nLength,
       bool bCursorToLeft = false);
 
@@ -891,7 +896,7 @@ protected :
     afx_msg void OnChar( wchar_t nChar, UINT nRepCnt, UINT nFlags );
 
     afx_msg BOOL OnMouseWheel (UINT nFlags, short zDelta, CPoint pt);
-	LRESULT OnImeStartComposition(WPARAM wParam, LPARAM lParam);
+    LRESULT OnImeStartComposition(WPARAM wParam, LPARAM lParam);
     //}}AFX_MSG
     afx_msg void OnFilePageSetup ();
 
@@ -952,13 +957,13 @@ protected :
     afx_msg void OnWordWrap ();
     afx_msg void OnForceRedraw ();
 
-	//BEGIN SW
-	// incremental search
-	afx_msg void OnEditFindIncrementalForward();
-	afx_msg void OnEditFindIncrementalBackward();
-	afx_msg void OnUpdateEditFindIncrementalForward(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateEditFindIncrementalBackward(CCmdUI* pCmdUI);
-	//END SW
+    //BEGIN SW
+    // incremental search
+    afx_msg void OnEditFindIncrementalForward();
+    afx_msg void OnEditFindIncrementalBackward();
+    afx_msg void OnUpdateEditFindIncrementalForward(CCmdUI* pCmdUI);
+    afx_msg void OnUpdateEditFindIncrementalBackward(CCmdUI* pCmdUI);
+    //END SW
 
     afx_msg void OnToggleColumnSelection ();
 

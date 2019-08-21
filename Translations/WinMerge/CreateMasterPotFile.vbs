@@ -233,13 +233,13 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings)
   
   Set oPotFile = oFSO.CreateTextFile(sPotPath, True)
   
-  oPotFile.Write "# This file is part from WinMerge <http://winmerge.org/>" & vbLf
+  oPotFile.Write "# This file is part from WinMerge <https://winmerge.org/>" & vbLf
   oPotFile.Write "# Released under the ""GNU General Public License""" & vbLf
   oPotFile.Write "#" & vbLf
   oPotFile.Write "msgid """"" & vbLf
   oPotFile.Write "msgstr """"" & vbLf
   oPotFile.Write """Project-Id-Version: WinMerge\n""" & vbLf
-  oPotFile.Write """Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n""" & vbLf
+  oPotFile.Write """Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n""" & vbLf
   oPotFile.Write """POT-Creation-Date: " & GetPotCreationDate() & "\n""" & vbLf
   oPotFile.Write """PO-Revision-Date: \n""" & vbLf
   oPotFile.Write """Last-Translator: \n""" & vbLf

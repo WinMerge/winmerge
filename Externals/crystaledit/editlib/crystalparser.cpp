@@ -16,6 +16,7 @@
 #include "StdAfx.h"
 #include "crystalparser.h"
 #include "ccrystaltextview.h"
+#include "icu.hpp"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -24,6 +25,7 @@
 IMPLEMENT_DYNAMIC( CCrystalParser, CObject )
 
 CCrystalParser::CCrystalParser()
+// : m_iterChar(UBRK_CHARACTER, "en", nullptr, 0)
 {
 	m_pTextView = nullptr;
 }
@@ -64,7 +66,9 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 	int			nCharWidth = m_pTextView->GetCharWidth();
 	WORD		wCharType;
 
-	for( int i = 0; i < nLineLength; i++ )
+//    m_iterChar.setText(reinterpret_cast<const UChar *>(szLine), nLineLength);
+//    for( int i = 0; i < nLineLength; i = m_iterChar.next())
+    for( int i = 0; i < nLineLength; i += U16_IS_SURROGATE(szLine[i]) ? 2 : 1)
 	{
 		ch = szLine[i]; 
 		// remember position of whitespace for wrap
@@ -106,7 +110,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 #else
 			if (ch & 0xff80)
 			{
-				int n = m_pTextView->GetCharCellCountFromChar(ch);
+				int n = m_pTextView->GetCharCellCountFromChar(szLine + i);
 				nLineCharCount += n;
 				nCharCount += n;
 				GetStringTypeW(CT_CTYPE3, &ch, 1, &wCharType);

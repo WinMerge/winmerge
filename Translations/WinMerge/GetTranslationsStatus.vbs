@@ -9,7 +9,7 @@ Option Explicit
 ' $Id: GetTranslationsStatus.vbs 6895 2009-07-04 06:54:24Z gerundt $
 
 Const ForReading = 1
-Const SvnWebUrlLanguages = "http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Translations/WinMerge/"
+Const SvnWebUrlLanguages = "https://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Translations/WinMerge/"
 
 Dim oFSO, bRunFromCmd
 
@@ -500,7 +500,7 @@ Sub CreateTranslatorsListFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
       oHtmlFile.WriteLine "</dl>"
     End If
   Next
-  oHtmlFile.WriteLine "<p>Status from <strong>" & GetCreationDate() & "</strong>. Look at <a href=""http://winmerge.org/translations/"">winmerge.org</a> for updates.</p>"
+  oHtmlFile.WriteLine "<p>Status from <strong>" & GetCreationDate() & "</strong>. Look at <a href=""https://winmerge.org/translations/"">winmerge.org</a> for updates.</p>"
   oHtmlFile.WriteLine "</body>"
   oHtmlFile.WriteLine "</html>"
   oHtmlFile.Close

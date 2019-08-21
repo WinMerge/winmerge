@@ -44,18 +44,18 @@
 ////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
-//	??-Aug-99
-//		Sven Wiegand (search for "//BEGIN SW" to find my changes):
-//	+ FEATURE: "Go to last change" (sets the cursor on the position where
-//			the user did his last edit actions
-//	+ FEATURE: Support for incremental search in CCrystalTextView
+//  ??-Aug-99
+//      Sven Wiegand (search for "//BEGIN SW" to find my changes):
+//  + FEATURE: "Go to last change" (sets the cursor on the position where
+//          the user did his last edit actions
+//  + FEATURE: Support for incremental search in CCrystalTextView
 ////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
-//	24-Oct-99
-//		Sven Wiegand
-//	+ FEATURE: Supporting [Return] to exit incremental-search-mode
-//		     (see OnChar())
+//  24-Oct-99
+//      Sven Wiegand
+//  + FEATURE: Supporting [Return] to exit incremental-search-mode
+//           (see OnChar())
 ////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -77,6 +77,7 @@
 #include "cs2cs.h"
 #include "chcondlg.h"
 #include "string_util.h"
+#include "icu.hpp"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
@@ -433,7 +434,7 @@ InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction
           ch = pszText[nTextPos];
           if (ch=='\r' || ch=='\n'/*iseol(pszText[nTextPos]*/)
             break;
-		}
+        }
 
       aLineLengths.Add (nTextPos - nLineBegin);
 
@@ -620,11 +621,8 @@ OnEditDelete ()
         }
       else 
         {
-          ptSelEnd.x++;
-          //yuyunyi
-          if (ptSelEnd.x < GetLineLength (ptSelEnd.y) && m_pTextBuffer->IsMBSTrail (ptSelEnd.y, ptSelEnd.x))
-            // here... if its a MBSTrail, then should move one character more....
-            ptSelEnd.x++;
+          m_iterChar.setText(reinterpret_cast<const UChar *>(GetLineChars(ptSelEnd.y)), GetLineLength(ptSelEnd.y));
+          ptSelEnd.x = m_iterChar.following(ptSelEnd.x);
       }
     }
 
@@ -651,11 +649,11 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
   bool bIncrementalSearch = m_bIncrementalSearchForward || m_bIncrementalSearchBackward;
   //END Sw
   CCrystalTextView::OnChar (static_cast<wchar_t>(nChar), nRepCnt, nFlags);
-	//BEGIN SW
-	// if we are in incremental search mode ignore the character
-	if( m_bIncrementalSearchForward || m_bIncrementalSearchBackward )
-		return;
-	//END SW
+  //BEGIN SW
+  // if we are in incremental search mode ignore the character
+  if( m_bIncrementalSearchForward || m_bIncrementalSearchBackward )
+    return;
+  //END SW
 
   // if we *were* in incremental search mode and CCrystalTextView::OnChar()
   // exited it the ignore the character (VK_RETURN)
@@ -688,7 +686,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
         }
 
       m_pTextBuffer->BeginUndoGroup(m_bMergeUndo);
-	  m_bMergeUndo = false;
+      m_bMergeUndo = false;
 
       if (QueryEditable () && m_pTextBuffer != nullptr)
         {
@@ -796,12 +794,12 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
 void CCrystalEditView::
 OnEditDeleteBack ()
 {
-	//BEGIN SW
-	// if we are in incremental search mode ignore backspace
-	CCrystalTextView::OnEditDeleteBack();
-	if( m_bIncrementalSearchForward || m_bIncrementalSearchBackward )
-		return;
-	//END SW
+  //BEGIN SW
+  // if we are in incremental search mode ignore backspace
+  CCrystalTextView::OnEditDeleteBack();
+  if( m_bIncrementalSearchForward || m_bIncrementalSearchBackward )
+    return;
+  //END SW
 
   if (IsSelection ())
     {
@@ -838,18 +836,9 @@ OnEditDeleteBack ()
   else                          // If Caret Not At SOL
 
     {
-      if (ptCursorPos.x > 1 && m_pTextBuffer->IsMBSTrail (ptCursorPos.y, ptCursorPos.x-1)) ptCursorPos.x--; /* MULTIBYTES */
-          ptCursorPos.x--;          // Decrement Position
-
-      //yuyunyi
-      if (ptCursorPos.x > 0 && m_pTextBuffer->IsMBSTrail (ptCursorPos.y, ptCursorPos.x))
-        {
-          // here... if its a MBSTrail, then should move one character more....
-          ptCursorPos.x--;
-        }
-	  
+      m_iterChar.setText(reinterpret_cast<const UChar *>(GetLineChars(ptCursorPos.y)), GetLineLength(ptCursorPos.y));
+      ptCursorPos.x = m_iterChar.preceding(ptCursorPos.x);
       bDeleted = true;          // Set Deleted Flag
-
     }
   /*
      if (ptCursorPos.x == 0)
@@ -887,13 +876,13 @@ OnEditTab ()
   if (IsSelection ())
     {
       GetSelection (ptSelStart, ptSelEnd);
-		
-		// If we have more than one line selected, tabify sel lines
-		if ( ptSelStart.y != ptSelEnd.y )
-		{
-			bTabify = true;
-		}
-	}
+      
+      // If we have more than one line selected, tabify sel lines
+      if ( ptSelStart.y != ptSelEnd.y )
+        {
+          bTabify = true;
+        }
+    }
 
   CPoint ptCursorPos = GetCursorPos ();
   ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -963,7 +952,7 @@ OnEditTab ()
 
       int nLineLength = GetLineLength (ptCursorPos1.y);
       LPCTSTR pszLineChars = GetLineChars (ptCursorPos1.y);
-		
+
       // Not end of line
       if (ptCursorPos1.x < nLineLength)
         {
@@ -1040,7 +1029,7 @@ OnEditUntab ()
   bool bTabify = false;
   if (IsSelection ())
     {
-	  CPoint ptSelStart, ptSelEnd;
+      CPoint ptSelStart, ptSelEnd;
       GetSelection (ptSelStart, ptSelEnd);
       bTabify = ptSelStart.y != ptSelEnd.y;
     }
@@ -1330,7 +1319,7 @@ DoDragScroll (const CPoint & point)
       ScrollUp ();
       UpdateWindow ();
       ShowDropIndicator (point);
-	  //UpdateSiblingScrollPos(false);
+      //UpdateSiblingScrollPos(false);
       return;
     }
   if (point.y >= rcClientRect.bottom - DRAG_BORDER_Y)
@@ -1339,7 +1328,7 @@ DoDragScroll (const CPoint & point)
       ScrollDown ();
       UpdateWindow ();
       ShowDropIndicator (point);
-	  //UpdateSiblingScrollPos(false);
+      //UpdateSiblingScrollPos(false);
       return;
     }
   if (point.x < rcClientRect.left + GetMarginWidth () + DRAG_BORDER_X)
@@ -1348,7 +1337,7 @@ DoDragScroll (const CPoint & point)
       ScrollLeft ();
       UpdateWindow ();
       ShowDropIndicator (point);
-	  //UpdateSiblingScrollPos(true);
+      //UpdateSiblingScrollPos(true);
       return;
     }
   if (point.x >= rcClientRect.right - DRAG_BORDER_X)
@@ -1357,7 +1346,7 @@ DoDragScroll (const CPoint & point)
       ScrollRight ();
       UpdateWindow ();
       ShowDropIndicator (point);
-	  //UpdateSiblingScrollPos(true);
+      //UpdateSiblingScrollPos(true);
       return;
     }
 }
@@ -1445,8 +1434,8 @@ OnDestroy ()
   if (m_pDropTarget != nullptr)
     {
       m_pDropTarget->Revoke ();
-	  if (m_pDropTarget->m_pAlternateDropTarget)
-		  m_pDropTarget->m_pAlternateDropTarget->Release();
+      if (m_pDropTarget->m_pAlternateDropTarget)
+        m_pDropTarget->m_pAlternateDropTarget->Release();
       delete m_pDropTarget;
       m_pDropTarget = nullptr;
     }
@@ -1686,7 +1675,7 @@ ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags, bool bGr
   else
     {
       m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszNewText, cchNewText, y, x, CE_ACTION_REPLACE);  //  [JRT]
-	  ASSERT(cchNewText < INT_MAX);
+      ASSERT(cchNewText < INT_MAX);
       m_nLastReplaceLen = static_cast<int>(cchNewText);
     }
 
@@ -1748,7 +1737,7 @@ OnUpdateEditUndo (CCmdUI * pCmdUI)
 void CCrystalEditView::
 OnEditUndo ()
 {
-	DoEditUndo();
+  DoEditUndo();
 }
 
 bool CCrystalEditView::
@@ -1780,7 +1769,7 @@ SetDisableBSAtSOL (bool bDisableBSAtSOL)
 void CCrystalEditView::
 OnEditRedo ()
 {
-	DoEditRedo();
+  DoEditRedo();
 }
 
 bool CCrystalEditView::
@@ -1915,7 +1904,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
                 {
                   if (m_pTextBuffer->GetInsertTabs())
                     {
-					  const size_t InsertSiz = (nPos + 2);
+                      const size_t InsertSiz = (nPos + 2);
                       pszInsertStr = static_cast<TCHAR *> (_alloca (sizeof(TCHAR) * InsertSiz));
                       _tcsncpy_s (pszInsertStr, InsertSiz, pszLineChars, nPos);
                       pszInsertStr[nPos++] = _T ('\t');
@@ -1924,7 +1913,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
                     {
                       int nTabSize = GetTabSize ();
                       int nChars = nTabSize - nPos % nTabSize;
-					  const size_t InsertSiz = (nPos + nChars + 1);
+                      const size_t InsertSiz = (nPos + nChars + 1);
                       pszInsertStr = static_cast<TCHAR *> (_alloca (sizeof (TCHAR) * InsertSiz));
                       _tcsncpy_s (pszInsertStr, InsertSiz, pszLineChars, nPos);
                       while (nChars--)
@@ -1935,7 +1924,7 @@ OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText)
                 }
               else
                 {
-				  const size_t InsertSiz = (nPos + 1);
+                  const size_t InsertSiz = (nPos + 1);
                   pszInsertStr = static_cast<TCHAR *> (_alloca (sizeof (TCHAR) * InsertSiz));
                   _tcsncpy_s (pszInsertStr, InsertSiz, pszLineChars, nPos);
                 }
@@ -2638,20 +2627,20 @@ OnEditSentence ()
 //BEGIN SW
 void CCrystalEditView::OnUpdateEditGotoLastChange( CCmdUI *pCmdUI )
 {
-	CPoint	ptLastChange = m_pTextBuffer->GetLastChangePos();
-	pCmdUI->Enable( ptLastChange.x > 0 && ptLastChange.y > -1 );
+  CPoint	ptLastChange = m_pTextBuffer->GetLastChangePos();
+  pCmdUI->Enable( ptLastChange.x > 0 && ptLastChange.y > -1 );
 }
 
 void CCrystalEditView::OnEditGotoLastChange()
 {
-	CPoint	ptLastChange = m_pTextBuffer->GetLastChangePos();
-	if( ptLastChange.x < 0 || ptLastChange.y < 0 )
-		return;
+  CPoint	ptLastChange = m_pTextBuffer->GetLastChangePos();
+  if( ptLastChange.x < 0 || ptLastChange.y < 0 )
+    return;
 
-	// goto last change
-	SetCursorPos( ptLastChange );
-	SetSelection( ptLastChange, ptLastChange );
-	EnsureVisible( ptLastChange );
+  // goto last change
+  SetCursorPos( ptLastChange );
+  SetSelection( ptLastChange, ptLastChange );
+  EnsureVisible( ptLastChange );
 }
 //END SW
 
@@ -2911,164 +2900,164 @@ OnEditDeleteWordBack ()
 void CCrystalEditView::
 OnKillFocus (CWnd * pNewWnd)
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnKillFocus (pNewWnd);
+  m_bMergeUndo = false;
+  CCrystalTextView::OnKillFocus (pNewWnd);
 }
 
 void CCrystalEditView::OnCharLeft()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnCharLeft();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnCharLeft();
 }
 
 void CCrystalEditView::OnExtCharLeft()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtCharLeft();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtCharLeft();
 }
 
 void CCrystalEditView::OnCharRight()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnCharRight();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnCharRight();
 }
 
 void CCrystalEditView::OnExtCharRight()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtCharRight();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtCharRight();
 }
 
 void CCrystalEditView::OnWordLeft()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnWordLeft();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnWordLeft();
 }
 
 void CCrystalEditView::OnExtWordLeft()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtWordLeft();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtWordLeft();
 }
 
 void CCrystalEditView::OnWordRight()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnWordRight();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnWordRight();
 }
 
 void CCrystalEditView::OnExtWordRight()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtWordRight();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtWordRight();
 }
 
 void CCrystalEditView::OnLineUp()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnLineUp();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnLineUp();
 }
 
 void CCrystalEditView::OnExtLineUp()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtLineUp();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtLineUp();
 }
 
 void CCrystalEditView::OnLineDown()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnLineDown();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnLineDown();
 }
 
 void CCrystalEditView::OnExtLineDown()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtLineDown();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtLineDown();
 }
 
 void CCrystalEditView::OnPageUp()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnPageUp();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnPageUp();
 }
 
 void CCrystalEditView::OnExtPageUp()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtPageUp();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtPageUp();
 }
 
 void CCrystalEditView::OnPageDown()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnPageDown();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnPageDown();
 }
 
 void CCrystalEditView::OnExtPageDown()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtPageDown();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtPageDown();
 }
 
 void CCrystalEditView::OnLineEnd()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnLineEnd();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnLineEnd();
 }
 
 void CCrystalEditView::OnExtLineEnd()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtLineEnd();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtLineEnd();
 }
 
 void CCrystalEditView::OnHome()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnHome();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnHome();
 }
 
 void CCrystalEditView::OnExtHome()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtHome();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtHome();
 }
 
 void CCrystalEditView::OnTextBegin()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnTextBegin();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnTextBegin();
 }
 
 void CCrystalEditView::OnExtTextBegin()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtTextBegin();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtTextBegin();
 }
 
 void CCrystalEditView::OnTextEnd()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnTextEnd();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnTextEnd();
 }
 
 void CCrystalEditView::OnExtTextEnd()
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnExtTextEnd();
+  m_bMergeUndo = false;
+  CCrystalTextView::OnExtTextEnd();
 }
 
 void CCrystalEditView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnLButtonDown(nFlags, point);
+  m_bMergeUndo = false;
+  CCrystalTextView::OnLButtonDown(nFlags, point);
 }
 
 void CCrystalEditView::OnRButtonDown(UINT nFlags, CPoint point)
 {
-	m_bMergeUndo = false;
-	CCrystalTextView::OnRButtonDown(nFlags, point);
+  m_bMergeUndo = false;
+  CCrystalTextView::OnRButtonDown(nFlags, point);
 }
 
 ////////////////////////////////////////////////////////////////////////////

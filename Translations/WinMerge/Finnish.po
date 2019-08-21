@@ -1,4 +1,4 @@
-﻿# This file is part from WinMerge <http://winmerge.org/>
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # ID line follows -- this is updated by SVN
@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2011-08-19 21:51+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: veikko.muurikainen at kolumbus.fi\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr "LANG_FINNISH, SUBLANG_FINNISH"
+msgstr "LANG_FINNISH, SUBLANG_DEFAULT"
 
 #, c-format
 msgid "C&opy to Right"

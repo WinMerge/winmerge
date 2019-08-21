@@ -10,13 +10,13 @@ WinMerge‚ÍA”äŠr‚â“¯Šú‚âƒ}[ƒW‚ğ‚Å‚«‚éŒÀ‚èŠÈ’P‚ÉAg‚¢‚â‚·‚­‚·‚é‚½‚­‚³‚ñ‚Ì–ğ—§‚Â
 •¶–@‚Ì‹­’²•\¦‚ª‚³‚ê‚Ü‚·B
 
 ÅV”Å‚ÌWinMerge‚Æî•ñ‚É‚Â‚¢‚Ä‚ÍAˆÈ‰º‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
-http://winmerge.org/
+https://winmerge.org/
 
 ƒNƒBƒbƒNƒXƒ^[ƒg
 ===========
 WinMerge‚ğƒCƒ“ƒXƒg[ƒ‹‚µ‚½ŒãAŠî–{“I‚È‘€ì‚Ìd•û‚ğ’m‚é‚½‚ß‚ÉA[ƒwƒ‹ƒv]ƒƒjƒ…[¨
 [WinMergeƒwƒ‹ƒv]‚ğƒNƒŠƒbƒN‚µAƒNƒCƒbƒNƒXƒ^[ƒgƒgƒsƒbƒN‚ğ•\¦‚µ‚Ä‚­‚¾‚³‚¢B
-‚Ü‚½‚ÍAWebƒo[ƒWƒ‡ƒ“‚Ìhttp://manual.winmerge.org/QuickStart.html
+‚Ü‚½‚ÍAWebƒo[ƒWƒ‡ƒ“‚Ìhttps://manual.winmerge.org/QuickStart.html
 ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
 
 WinMerge‚Ìƒwƒ‹ƒv
@@ -26,13 +26,13 @@ WinMerge‚Ìƒwƒ‹ƒv‚ÍAMicrosoft HTMLƒwƒ‹ƒv ƒtƒ@ƒCƒ‹‚ÌWinMerge.chm‚Æ‚µ‚ÄƒCƒ“ƒXƒg[ƒ
 ƒNƒŠƒbƒN‚·‚é‚©AWinMergeƒEƒCƒ“ƒhƒE‚ÅF1ƒL[‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B
 ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Å‚ÍA/? ƒwƒ‹ƒvƒXƒCƒbƒ`‚ğ‚Â‚¯‚ÄWinMerge‚ÌÀsƒtƒ@ƒCƒ‹‚ğÀs‚µ‚Ü‚·B
 
-http://manual.winmerge.org/ ‚©‚ç‚Å‚àHTML”Å‚ÌWinMergeƒwƒ‹ƒv‚ğ‰{——‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+https://manual.winmerge.org/ ‚©‚ç‚Å‚àHTML”Å‚ÌWinMergeƒwƒ‹ƒv‚ğ‰{——‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
 
 ƒA[ƒJƒCƒuƒTƒ|[ƒg:
 ===============
 WinMerge‚ÍAƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹(ˆ³kƒtƒ@ƒCƒ‹)ƒTƒ|[ƒg‚É7-Zip‚ğg—p‚µ‚Ü‚·B 
-7-Zip( http://www.7-zip.org )‚ÍAƒI[ƒvƒ“ƒ\[ƒX‚ÌƒA[ƒJƒCƒuƒc[ƒ‹‚Å‚·B
-ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒTƒ|[ƒg‚ğƒCƒ“ƒXƒg[ƒ‹‚·‚é‚É‚ÍAhttp://winmerge.org/downloads/ 
+7-Zip( https://www.7-zip.org )‚ÍAƒI[ƒvƒ“ƒ\[ƒX‚ÌƒA[ƒJƒCƒuƒc[ƒ‹‚Å‚·B
+ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒTƒ|[ƒg‚ğƒCƒ“ƒXƒg[ƒ‹‚·‚é‚É‚ÍAhttps://winmerge.org/downloads/ 
 ‚©‚ç7-Zipƒvƒ‰ƒOƒCƒ“‚ğƒ_ƒEƒ“ƒ[ƒh‚µ‚Ä‚­‚¾‚³‚¢B
 
 ‚à‚µA‚È‚ñ‚ç‚©‚Ì——R‚Å7-Zip‚ğƒCƒ“ƒXƒg[ƒ‹‚Å‚«‚È‚¢ê‡A7-Zipƒvƒ‰ƒOƒCƒ“ƒCƒ“ƒXƒg[ƒ‰‚ğg—p
@@ -41,7 +41,7 @@ WinMerge‚ÍAƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹(ˆ³kƒtƒ@ƒCƒ‹)ƒTƒ|[ƒg‚É7-Zip‚ğg—p‚µ‚Ü‚·B
 
 ƒTƒ|[ƒg
 ================
-WinMerge‚ÉŠÖ‚·‚é¿–â‚â’ñˆÄ‚Í‚ ‚è‚Ü‚¹‚ñ‚©? http://forums.winmerge.org/
+WinMerge‚ÉŠÖ‚·‚é¿–â‚â’ñˆÄ‚Í‚ ‚è‚Ü‚¹‚ñ‚©? https://forums.winmerge.org/
 ‚ÌŒf¦”Â‚ªn‚ß‚é‚Ì‚É‚æ‚¢êŠ‚Å‚·B
 ŠJ”­Ò‚Í—¼•û‚ÌƒtƒH[ƒ‰ƒ€‚Å•p”É‚É“Ç‚İA‰“š‚ğ‚µ‚Ä‚¢‚Ü‚·B
 g‚¢•û‚ÉŠÖ‚·‚é¿–â‚Ì‚æ‚¤‚Èˆê”Ê“I‚È¿–â‚È‚ç‚Î Open Discussion forum‚ğg—p‚µA
@@ -50,7 +50,7 @@ WinMerge‚ÉŠÖ‚·‚é¿–â‚â’ñˆÄ‚Í‚ ‚è‚Ü‚¹‚ñ‚©? http://forums.winmerge.org/
 ƒoƒO•ñ‚Æ‹@”\’Ç‰Á—v‹:
 =========================
 ‚à‚µAWinMerge‚ÌƒtƒH[ƒ‰ƒ€‚Å–â‘è‚ª‰ğŒˆ‚µ‚È‚¢ê‡AƒvƒƒWƒFƒNƒg‚Ìƒgƒ‰ƒbƒJ[‚ğ
-ƒ`ƒFƒbƒN‚µ‚Ä‚­‚¾‚³‚¢Bhttp://project.winmerge.org/‚És‚«ABugs‚âFeature Requests
+ƒ`ƒFƒbƒN‚µ‚Ä‚­‚¾‚³‚¢Bhttps://project.winmerge.org/‚És‚«ABugs‚âFeature Requests
 ‚Ì‚æ‚¤‚ÈTrackerƒƒjƒ…[‚ÌƒŠƒ“ƒN‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B‚»‚±‚ÅA‰{——‚Æ•ñ‚ª‚Å‚«‚Ü‚·B
 
 ƒoƒO‚ğ•ñ‚·‚é‚Æ‚«AWinMerge‚Ìƒo[ƒWƒ‡ƒ“”Ô†‚ğ‹³‚¦‚Ä‚­‚¾‚³‚¢B

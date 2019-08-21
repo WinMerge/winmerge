@@ -414,7 +414,9 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 							pTypeInfo->lpVtbl->ReleaseFuncDesc(pTypeInfo, pFuncDesc);
 						}
 					}
+					pTypeInfo2->lpVtbl->Release(pTypeInfo2);
 				}
+				pTypeInfo->lpVtbl->Release(pTypeInfo);
 			}
 		}
 

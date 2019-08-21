@@ -14,26 +14,27 @@ using namespace GUITestUtils;
 
 class MainFrameTest : public CommonTest
 {
-protected:
+public:
 	MainFrameTest()
 	{
+		std::string lang = std::to_string(GetParam());
+		m_hwndWinMerge = execWinMerge(("/noprefs /cfg Locale/LanguageId=" + lang).c_str());
 	}
 
 	virtual ~MainFrameTest()
 	{
 		// You can do clean-up work	that doesn't throw exceptions here.
+		PostMessage(m_hwndWinMerge, WM_CLOSE, 0, 0);
+		waitUntilProcessExit(m_hwndWinMerge);
 	}
 
 	static void SetUpTestCase()
 	{
 		// You can do set-up work for each test	here.
-		m_hwndWinMerge = execWinMerge();
 	}
 
 	static void TearDownTestCase()
 	{
-		PostMessage(m_hwndWinMerge, WM_CLOSE, 0, 0);
-		waitUntilProcessExit(m_hwndWinMerge);
 	}
 
 	// If	the	constructor	and	destructor are not enough for setting up
@@ -56,22 +57,63 @@ protected:
 	// Objects declared here can be used by all tests in the test case for Foo.
 };
 
-TEST_F(MainFrameTest, FileNew)
+TEST_P(MainFrameTest, Menus)
+{
+	// System menu
+	typeAltPlusKey(' ');
+	saveForegroundWindowImage("System");
+	// File menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("File");
+	// Edit menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Edit");
+	// View menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("View");
+	// View/Toolbar menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("ViewToolbar");
+	// Tools menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Tools");
+	// Plugins menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Plugins");
+	// Window menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Window");
+	// Help menu
+	typeKey(VK_RIGHT);
+	Sleep(200);
+	saveForegroundWindowImage("Help");
+	// Close menu
+	typeKey(VK_MENU);
+}
+
+TEST_P(MainFrameTest, FileNew)
 {
 	selectMenuAndSaveWindowImage(ID_FILE_NEW);
 }
 
-TEST_F(MainFrameTest, FileNew3)
+TEST_P(MainFrameTest, FileNew3)
 {
 	selectMenuAndSaveWindowImage(ID_FILE_NEW3);
 }
 
-TEST_F(MainFrameTest, FileOpen)
+TEST_P(MainFrameTest, FileOpen)
 {
 	selectMenuAndSaveWindowImage(ID_FILE_OPEN);
 }
 
-TEST_F(MainFrameTest, FileOpenConflict)
+TEST_P(MainFrameTest, FileOpenConflict)
 {
 	HWND hwndOpen = selectOpenDialogMenuAndSaveDialogImage(ID_FILE_OPENCONFLICT);
 	if (hwndOpen)
@@ -87,7 +129,7 @@ TEST_F(MainFrameTest, FileOpenConflict)
 	}
 }
 
-TEST_F(MainFrameTest, FileOpenProject)
+TEST_P(MainFrameTest, FileOpenProject)
 {
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_FILE_OPENPROJECT);
 	if (hwndDlg)
@@ -98,12 +140,12 @@ TEST_F(MainFrameTest, FileOpenProject)
 	}
 }
 
-TEST_F(MainFrameTest, FileSaveProject)
+TEST_P(MainFrameTest, FileSaveProject)
 {
 	selectMenuAndSaveWindowImage(ID_FILE_SAVEPROJECT);
 }
 
-TEST_F(MainFrameTest, EditOptions)
+TEST_P(MainFrameTest, EditOptions)
 {
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_OPTIONS);
 	if (hwndDlg)
@@ -113,7 +155,7 @@ TEST_F(MainFrameTest, EditOptions)
 	}
 }
 
-TEST_F(MainFrameTest, ViewToolbar)
+TEST_P(MainFrameTest, ViewToolbar)
 {
 	selectMenuAndSaveWindowImage(ID_TOOLBAR_NONE);
 	selectMenuAndSaveWindowImage(ID_TOOLBAR_SMALL);
@@ -125,13 +167,13 @@ TEST_F(MainFrameTest, ViewToolbar)
 	selectMenuAndSaveWindowImage(ID_TOOLBAR_SMALL);
 }
 
-TEST_F(MainFrameTest, ViewStatusBar)
+TEST_P(MainFrameTest, ViewStatusBar)
 {
 	selectMenuAndSaveWindowImage(ID_VIEW_STATUS_BAR);
 	selectMenuAndSaveWindowImage(ID_VIEW_STATUS_BAR);
 }
 
-TEST_F(MainFrameTest, ViewTabBar)
+TEST_P(MainFrameTest, ViewTabBar)
 {
 	selectMenuAndSaveWindowImage(ID_VIEW_TAB_BAR);
 	selectMenuAndSaveWindowImage(ID_VIEW_TAB_BAR);
@@ -140,7 +182,7 @@ TEST_F(MainFrameTest, ViewTabBar)
 	selectMenuAndSaveWindowImage(ID_VIEW_TAB_BAR);
 }
 
-TEST_F(MainFrameTest, ToolsFilters)
+TEST_P(MainFrameTest, ToolsFilters)
 {
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_TOOLS_FILTERS);
 	if (hwndDlg)
@@ -150,7 +192,7 @@ TEST_F(MainFrameTest, ToolsFilters)
 	}
 }
 
-TEST_F(MainFrameTest, ToolsGeneratePatch)
+TEST_P(MainFrameTest, ToolsGeneratePatch)
 {
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_TOOLS_GENERATEPATCH);
 	if (hwndDlg)
@@ -160,7 +202,7 @@ TEST_F(MainFrameTest, ToolsGeneratePatch)
 	}
 }
 
-TEST_F(MainFrameTest, PluginsSettings)
+TEST_P(MainFrameTest, PluginsSettings)
 {
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_PLUGINS_LIST);
 	if (hwndDlg)
@@ -170,43 +212,43 @@ TEST_F(MainFrameTest, PluginsSettings)
 	}
 }
 
-TEST_F(MainFrameTest, PluginsPrediffer)
+TEST_P(MainFrameTest, PluginsPrediffer)
 {
 	selectMenuAndSaveWindowImage(ID_PREDIFFER_AUTO);
 	selectMenuAndSaveWindowImage(ID_PREDIFFER_MANUAL);
 }
 
-TEST_F(MainFrameTest, PluginsUnpacker)
+TEST_P(MainFrameTest, PluginsUnpacker)
 {
 	selectMenuAndSaveWindowImage(ID_UNPACK_AUTO);
 	selectMenuAndSaveWindowImage(ID_UNPACK_MANUAL);
 }
 
-TEST_F(MainFrameTest, PluginsReload)
+TEST_P(MainFrameTest, PluginsReload)
 {
 	selectMenuAndSaveWindowImage(ID_RELOAD_PLUGINS);
 }
 
-TEST_F(MainFrameTest, WindowClose)
+TEST_P(MainFrameTest, WindowClose)
 {
 	selectMenu(ID_FILE_NEW);
 	selectMenuAndSaveWindowImage(ID_FILE_CLOSE);
 }
 
-TEST_F(MainFrameTest, WindowCloseAll)
+TEST_P(MainFrameTest, WindowCloseAll)
 {
 	selectMenu(ID_FILE_NEW);
 	selectMenu(ID_FILE_NEW);
 	selectMenuAndSaveWindowImage(ID_WINDOW_CLOSEALL);
 }
 
-TEST_F(MainFrameTest, WindowChangePane)
+TEST_P(MainFrameTest, WindowChangePane)
 {
 	selectMenu(ID_FILE_NEW);
 	selectMenuAndSaveWindowImage(ID_WINDOW_CHANGE_PANE);
 }
 
-TEST_F(MainFrameTest, WindowArrangement)
+TEST_P(MainFrameTest, WindowArrangement)
 {
 	selectMenu(ID_FILE_NEW);
 	selectMenu(ID_FILE_NEW);
@@ -215,7 +257,7 @@ TEST_F(MainFrameTest, WindowArrangement)
 	selectMenuAndSaveWindowImage(ID_WINDOW_CASCADE);
 }
 
-TEST_F(MainFrameTest, HelpWinMergeHelp)
+TEST_P(MainFrameTest, HelpWinMergeHelp)
 {
 	selectMenuAsync(ID_HELP_CONTENTS);
 	Sleep(1000);
@@ -223,7 +265,7 @@ TEST_F(MainFrameTest, HelpWinMergeHelp)
 	SwitchToThisWindow(m_hwndWinMerge, TRUE);
 }
 
-TEST_F(MainFrameTest, HelpReleaseNotes)
+TEST_P(MainFrameTest, HelpReleaseNotes)
 {
 	selectMenuAsync(ID_HELP_RELEASENOTES);
 	Sleep(1000);
@@ -231,7 +273,7 @@ TEST_F(MainFrameTest, HelpReleaseNotes)
 	SwitchToThisWindow(m_hwndWinMerge, TRUE);
 }
 
-TEST_F(MainFrameTest, HelpTranslations)
+TEST_P(MainFrameTest, HelpTranslations)
 {
 	selectMenuAsync(ID_HELP_TRANSLATIONS);
 	Sleep(1000);
@@ -239,7 +281,7 @@ TEST_F(MainFrameTest, HelpTranslations)
 	SwitchToThisWindow(m_hwndWinMerge, TRUE);
 }
 
-TEST_F(MainFrameTest, HelpConfiguraiton)
+TEST_P(MainFrameTest, HelpConfiguraiton)
 {
 	selectMenuAsync(ID_HELP_GETCONFIG);
 	Sleep(1000);
@@ -247,7 +289,7 @@ TEST_F(MainFrameTest, HelpConfiguraiton)
 	SwitchToThisWindow(m_hwndWinMerge, TRUE);
 }
 
-TEST_F(MainFrameTest, HelpGNULicense)
+TEST_P(MainFrameTest, HelpGNULicense)
 {
 	selectMenuAsync(ID_HELP_GNULICENSE);
 	Sleep(1000);
@@ -255,7 +297,7 @@ TEST_F(MainFrameTest, HelpGNULicense)
 	SwitchToThisWindow(m_hwndWinMerge, TRUE);
 }
 
-TEST_F(MainFrameTest, HelpAbout)
+TEST_P(MainFrameTest, HelpAbout)
 {
 	HWND hwndDlg = selectOpenDialogMenuAndSaveDialogImage(ID_APP_ABOUT);
 	if (hwndDlg)
@@ -266,3 +308,8 @@ TEST_F(MainFrameTest, HelpAbout)
 }
 
 }
+
+INSTANTIATE_TEST_CASE_P(MainFrameTestInstance,
+	MainFrameTest,
+	testing::ValuesIn(GUITestUtils::languages()));
+

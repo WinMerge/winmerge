@@ -298,9 +298,6 @@ public :
     int FindNextBookmarkLine (int nCurrentLine = 0) const;
     int FindPrevBookmarkLine (int nCurrentLine = 0) const;
 
-    bool IsMBSLead (int nLine, int nCol) const;
-    bool IsMBSTrail (int nLine, int nCol) const;
-
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(CCrystalTextBuffer)

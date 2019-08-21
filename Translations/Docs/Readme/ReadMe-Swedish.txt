@@ -10,14 +10,14 @@ synkroniseringar och sammanslagningar så lätt och användbart som möjligt.
 Flera programmeringsspråk och andra filformat är syntax-markerade.
 
 Den senaste WinMerge-versionen och WinMerge-information finns tillgänglig på
-http://winmerge.org/.
+https://winmerge.org/.
 
 Quick start (Snabbstart)
 ===========
 För att lära sig hur man ska utföra grundläggande uppgifter efter att ha 
 installerat WinMerge, klicka på "Hjälp>WinMerge Hjälp") 
 och navigera till "Quick start"-ämnet.  Eller, gå till Internetversionen på
-http://manual.winmerge.org/QuickStart.html.
+https://manual.winmerge.org/QuickStart.html.
 
 WinMerge Help (WinMerges Hjälp)
 ============= 
@@ -27,14 +27,14 @@ WinMerge.chm,när du installerar WinMerge. För att öppna Hjälpen, klicka på
 kör WinMerge-programmet med  /? hjälpparametern.
 
 Du kan också bläddra i HTML-versionen av WinMerges Hjälp på 
-http://manual.winmerge.org/.
+https://manual.winmerge.org/.
 
 Archive Support (Arkivsupport)
 ===============
-WinMerge använder 7-Zip (http://www.7-zip.org) Open Source arkivverktyget för
+WinMerge använder 7-Zip (https://www.7-zip.org) Open Source arkivverktyget för
 arkivfilstöd. Vi rekommenderar att 7-zip applikationen installeras genom att
 ladda ner och köra 7-Zip plugininstallationsprogrammet på 
-http://winmerge.org/downloads/.
+https://winmerge.org/downloads/.
 
 Om du inte av någon anledning kan installera 7-Zip-verktyget kan du använda 
 7-zips plugin-installationsprogram för att installera bara de filer som krävs 
@@ -44,7 +44,7 @@ för arkivfilstöd. Se Hjälpämnet, "7-Zip and archive support"
 WinMerge Support (WinMerge-support)
 ================
 Frågor eller synpunkter om WinMerge? Ett bra ställe att starta på är WinMerges
-samhällsbulletinboard på http://forums.winmerge.org/. Utvecklare läser ofta
+samhällsbulletinboard på https://forums.winmerge.org/. Utvecklare läser ofta
 och svarar på frågor i båda forumen. Använd "Open Discussion forum"
 ("Öppet Diskussionsforum") för generella WinMergeämnen, som frågor om 
 användning. Använd "Developers forum" ("Utvecklarforum")
@@ -53,7 +53,7 @@ för WinMerge utvecklingsämnen.
 Bugs and feature requests (Buggar och funktionsäskanden)
 =========================
 Om ett ämne inte löses i WinMerges forum, kontrollera i "Project trackers" 
-("Projektspårarna"): gå till http://project.winmerge.org/, och klicka på en länk
+("Projektspårarna"): gå till https://project.winmerge.org/, och klicka på en länk
 i "Tracker menu" ("Spårmenyn"), som "Bugs and Feature Requests" 
 ("Buggar och funktionsäskanden"), där du kan bläddra i eller skicka ämnen.
 

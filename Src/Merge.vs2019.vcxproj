@@ -451,6 +451,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\go.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\gotodlg.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\html.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\icu.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\ini.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\innosetup.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\is.cpp" />
@@ -1062,6 +1063,7 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\filesup.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\fpattern.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\gotodlg.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\icu.hpp" />
     <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\crystallineparser.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\memcombo.h" />
