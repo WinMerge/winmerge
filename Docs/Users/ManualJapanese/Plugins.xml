@@ -759,11 +759,11 @@
     <section>
       <title>Windows Script Host</title>
 
-      <para>Some editor complement plugins require this optional component from
-      <trademark class="registered">Microsoft</trademark>.</para>
+      <para>一部のエディター補完プラグインには、
+      <trademark class="registered">Microsoft</trademark>のコンポーネントが必要です</para>
 
-      <para>It should already be included in your version of Windows, 
-	  unless you use some really old pre Windows XP version.</para>
+      <para>Windows XPより前の古いバージョンのWindowsを使用しない限り、既に含まれているはずです。
+      </para>
     </section>
 
     <section id="MSVBVM60">
