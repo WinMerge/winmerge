@@ -39,7 +39,7 @@
 
     <variablelist>
       <varlistentry>
-        <term>エディタ補完プラグイン<indexterm>
+        <term>エディタスクリプトプラグイン<indexterm>
             <primary>editor complement plugins</primary>
           </indexterm></term>
 
@@ -110,7 +110,7 @@
 
     <para>WinMergeはどのようにして渡されたファイルに適切なプラグインを適用しているのでしょうか？
     各プラグインはファイル拡張子のリストを持っています
-    （<xref linkend = "Plugins_available" />セクションの各プラグインの<citetitle>File filter</citetitle>にも
+    （<xref linkend = "Plugins_available" />セクションの各プラグインの<citetitle>ファイルフィルタ</citetitle>にも
     リストされています) その拡張子は、1つ以上のファイルタイプをプラグインに関連付けるために使用されます。:
     比較するファイルの拡張子があるプラグインの拡張子リストと一致する場合、
     そのプラグインが<firstterm>提案されたプラグイン</firstterm>となります。
@@ -118,7 +118,7 @@
 
     <para>このトピックで後述する展開プラグインタイプと比較前処理プラグインタイプには
     別々のオプションがあり、これらを使用して手動または自動でプラグインを適用できます。
-    エディタ補完プラグインには自動モードはありません。
+    エディタスクリプトプラグインには自動モードはありません。
     </para>
 
     <para>自動モードを使用して選択したファイルにプラグインを適用すると、
@@ -136,7 +136,7 @@
     フォルダーとファイルのどちらを比較するかどうかによっても異なります。</para>
 
     <section>
-      <title>ファイル比較ウインドウでのエディタ補完プラグイン適用
+      <title>ファイル比較ウインドウでのエディタスクリプトプラグイン適用
       </title>
 
       <para>ファイル比較ウィンドウのファイルペインにカーソルを置き、
@@ -352,18 +352,18 @@
       ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Packing</segtitle>
+          <segtitle>書き戻し</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Dependency</segtitle>
+          <segtitle>依存するもの</segtitle>
 
           <seglistitem>
-            <seg>Unpacker</seg>
+            <seg>展開プラグイン</seg>
 
             <seg><filename class="extension">*.xls</filename><filename
             class="extension">*.xlsx</filename><filename
@@ -394,18 +394,18 @@
       ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Packing</segtitle>
+          <segtitle>書き戻し</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Dependency</segtitle>
+          <segtitle>依存するもの</segtitle>
 
           <seglistitem>
-            <seg>Unpacker</seg>
+            <seg>展開プラグイン</seg>
 
 	    <seg><filename class="extension">*.doc</filename>, <filename
             class="extension">*.docx</filename>, <filename
@@ -434,18 +434,18 @@
       ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Packing</segtitle>
+          <segtitle>書き戻し</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Dependency</segtitle>
+          <segtitle>依存するもの</segtitle>
 
           <seglistitem>
-            <seg>Unpacker</seg>
+            <seg>展開プラグイン</seg>
 
             <seg><filename class="extension">*.ppt</filename>, <filename
             class="extension">*.pptx</filename>, <filename
@@ -505,8 +505,8 @@
       </itemizedlist>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>分類</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
             <seg>Editor complement</seg>
@@ -574,14 +574,14 @@
       </example>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
-            <seg>Prediffer</seg>
+            <seg>比較前処理プラグイン</seg>
 
             <seg><filename class="extension">*.txt</filename></seg>
 
@@ -600,14 +600,14 @@
       PHP and JavaScript files.</para>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
-            <seg>Prediffer</seg>
+            <seg>比較前処理プラグイン</seg>
 
             <seg><filename class="extension">*.cpp</filename>, <filename
             class="extension">*.cxx</filename>, <filename
@@ -636,14 +636,14 @@
       linkend="IgnoreColumns" />.</para>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
-            <seg>Prediffer</seg>
+            <seg>比較前処理プラグイン</seg>
 
             <seg><filename class="extension">*.csv</filename></seg>
 
@@ -667,14 +667,14 @@
       linkend="IgnoreColumns" />.</para>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
-            <seg>Prediffer</seg>
+            <seg>比較前処理プラグイン</seg>
 
             <seg><filename class="extension">*.txt</filename></seg>
 
@@ -692,16 +692,16 @@
       example, NC and BASIC files).</para>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>File filter</segtitle>
+          <segtitle>ファイルフィルタ</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
-          <segtitle>Requirement</segtitle>
+          <segtitle>必要なもの</segtitle>
 
           <seglistitem>
-            <seg>Prediffer</seg>
+            <seg>比較前処理プラグイン</seg>
 
             <seg><filename class="extension">*.nc</filename></seg>
 
@@ -736,9 +736,9 @@
       </itemizedlist>
 
       <para><segmentedlist>
-          <segtitle>Category</segtitle>
+          <segtitle>分類</segtitle>
 
-          <segtitle>Settings dialog support</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
             <seg>Editor complement</seg>
