@@ -10,12 +10,17 @@ pushd "%~dp0"
 rmdir /q /s %workdir% > NUL 2> NUL
 mkdir %workdir% 2> NUL
 
-call Externals\hg_clone.cmd
+git submodule init
+git submodule update
 
-hg archive %workdir%
+git checkout-index -a -f --prefix=%workdir%\
 for /d %%d in (Externals\*) do (
   pushd %%d
-  if exist .hg hg archive ..\..\%workdir%\%%d 
+  if exist .git (
+    rmdir /q /s ..\..\%workdir%\%%d
+    mkdir ..\..\%workdir%\%%d
+    git checkout-index -a -f --prefix=..\..\%workdir%\%%d\
+  )
   popd
 )
 
