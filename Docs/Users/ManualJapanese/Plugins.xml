@@ -471,36 +471,36 @@
           <primary>editor addin.sct plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Adds five functions to the <menuchoice>
-          <guimenu>Plugins</guimenu>
+      <para>5つの機能を<menuchoice>
+          <guimenu>プラグイン</guimenu>
 
-          <guisubmenu>Scripts</guisubmenu>
-        </menuchoice> menu:</para>
+          <guisubmenu>スクリプト</guisubmenu>
+        </menuchoice> メニューに追加します:</para>
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>MakeUpper</guimenuitem> convert the selection to
-          UPPER CASE.</simpara>
+          <simpara><guimenuitem>MakeUpper</guimenuitem> は、選択範囲を大文字に変換します。
+          </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>MakeLower</guimenuitem> convert the selection to
-          lower case.</simpara>
+          <simpara><guimenuitem>MakeLower</guimenuitem> 選択範囲を小文字に変換します。
+          </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>SortAscending</guimenuitem> sort the selection 
-          in ascending order.</simpara>
+          <simpara><guimenuitem>SortAscending</guimenuitem> 選択範囲を昇順でソートします。
+          </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>SortDescending</guimenuitem> sort the selection 
-          in descending order.</simpara>
+          <simpara><guimenuitem>SortDescending</guimenuitem> 選択範囲を降順でソートします。
+          </simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>ExecFilterCommand</guimenuitem> replace the selection 
-          with the output of the specified filter command.</simpara>
+          <simpara><guimenuitem>ExecFilterCommand</guimenuitem> 指定したフィルタコマンドの出力で選択範囲を置換します。
+          </simpara>
         </listitem>
       </itemizedlist>
 
