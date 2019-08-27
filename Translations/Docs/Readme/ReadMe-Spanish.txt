@@ -17,19 +17,6 @@ https://manual.winmerge.org/
 Posiblemente también esté instalado (si se eligió así) localmente, y se puede 
 descargar por separado desde https://winmerge.org/ (ver Documentación)
 
-Soporte de archivado:
-WinMerge usa 7-Zip para soporte de archivado. 7-Zip (https://www.7-zip.org)
-es una utilidad de código abierto de compresión. Para instalar el soporte de 
-archivado, descargue el instalador del plugin de 7-Zip desde
-https://winmerge.org/.
-
-Instalación del soporte de archivado:
-Se recomienda instalar la aplicación 7-Zip. Si no pudiera ser por alguna razón,
-el instalador del plugin de 7-Zip puede instalar únicamente los archivos 
-necesarios para habilitar el soporte de archivado. Tenga en cuenta que esto no
-permite el uso en solitario de 7-Zip, sino que solo habilita el soporte de
-archivado de WinMerge.
-
 Soporte de Scripts:
 Si desea trabajar con scripts necesitará tener Windows Scripting Host instalado.
 Si recibe cualquier error relacionado con sus scripts, por favor visite

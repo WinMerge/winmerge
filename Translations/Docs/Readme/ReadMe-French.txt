@@ -33,20 +33,6 @@ Vous pouvez aussi consulter la version en ligne de l'aide WinMerge à:
 https://manual.winmerge.org/
 
 
-Support d'archive
-=================
-WinMerge utilise le logiciel libre 7-Zip (https://www.7-zip.org) comme 
-l'outil d'archivage pour le support d'archivage de fichier. 
-
-Nous recommandons l'installation de l'application 7-Zip en  
-téléchargeant et exécutant le plugiciel d'installation 7-Zip depuis
-https://winmerge.org/downloads/
-
-Si vous ne pouvez pas installer l'outil 7-Zip pour une raison quelconque.
-Vous pouvez utiliser le plugiciel d'installation 7-Zip pour installer 
-uniquement les fichiers nécessaires au support d'archivage de fichier.
-Voir la rubrique d'aide "7-Zip et support d'archives" pour plus de détails.
-
 Support WinMerge
 ================
 Questions ou suggestions à propos de WinMerge? Une bonne place pour débuter 

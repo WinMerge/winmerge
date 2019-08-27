@@ -16,16 +16,6 @@ https://manual.winmerge.org/
 Possivelmente também está instalado (se escolhido assim) localmente e 
 transferido separadamente de https://winmerge.org/ (veja a documentação) 
 
-Suporte para ficheiros:
-WinMerge utiliza o 7-Zip para o suporte de ficheiros compactados. 7-Zip (https://www.7-zip.org) é uma utilitário de código aberto para compressão de ficheiros. 
-Para instalar o suporte de ficheiros compactados, transfira o 7-Zip de https://winmerge.org/ 
-
-Instalação para suporte de ficheiros: 
-É recomendado instalar o 7-Zip. Se por alguma razão não puder ser instalado, 
-o configurador do 7-Zip pode instalar apenas os ficheiros necessários 
-para ativar o suporte para ficheiros compactados. Tenha em conta que não é permitida a utilização 
-isolada do 7-Zip, apenas é habilitado o suporte para ficheiros de WinMerge.
-
 Suporte de Scripts:
 Se deseja trabalhar com scripts é necessário ter o Windows Scripting Host instalado. 
 Se tiver ou receber quaisquer erros relacionados com os seus scripts, por favor visite 

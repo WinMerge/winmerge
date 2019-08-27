@@ -28,17 +28,6 @@ WinMerge‚Ìƒwƒ‹ƒv‚ÍAMicrosoft HTMLƒwƒ‹ƒv ƒtƒ@ƒCƒ‹‚ÌWinMerge.chm‚Æ‚µ‚ÄƒCƒ“ƒXƒg[ƒ
 
 https://manual.winmerge.org/ ‚©‚ç‚Å‚àHTML”Å‚ÌWinMergeƒwƒ‹ƒv‚ğ‰{——‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
 
-ƒA[ƒJƒCƒuƒTƒ|[ƒg:
-===============
-WinMerge‚ÍAƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹(ˆ³kƒtƒ@ƒCƒ‹)ƒTƒ|[ƒg‚É7-Zip‚ğg—p‚µ‚Ü‚·B 
-7-Zip( https://www.7-zip.org )‚ÍAƒI[ƒvƒ“ƒ\[ƒX‚ÌƒA[ƒJƒCƒuƒc[ƒ‹‚Å‚·B
-ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒTƒ|[ƒg‚ğƒCƒ“ƒXƒg[ƒ‹‚·‚é‚É‚ÍAhttps://winmerge.org/downloads/ 
-‚©‚ç7-Zipƒvƒ‰ƒOƒCƒ“‚ğƒ_ƒEƒ“ƒ[ƒh‚µ‚Ä‚­‚¾‚³‚¢B
-
-‚à‚µA‚È‚ñ‚ç‚©‚Ì——R‚Å7-Zip‚ğƒCƒ“ƒXƒg[ƒ‹‚Å‚«‚È‚¢ê‡A7-Zipƒvƒ‰ƒOƒCƒ“ƒCƒ“ƒXƒg[ƒ‰‚ğg—p
-‚·‚é‚±‚Æ‚ÅƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒTƒ|[ƒg‚ğ‰Â”\‚É‚·‚é‚½‚ß‚É•K—v‚Èƒtƒ@ƒCƒ‹‚¾‚¯‚ğƒCƒ“ƒXƒg[ƒ‹
-‚Å‚«‚Ü‚·BÚ×‚É‚Â‚¢‚Ä‚ÍAƒwƒ‹ƒvƒgƒsƒbƒN‚Ìu7-Zip‚ÆƒA[ƒJƒCƒuƒTƒ|[ƒgv‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
-
 ƒTƒ|[ƒg
 ================
 WinMerge‚ÉŠÖ‚·‚é¿–â‚â’ñˆÄ‚Í‚ ‚è‚Ü‚¹‚ñ‚©? https://forums.winmerge.org/

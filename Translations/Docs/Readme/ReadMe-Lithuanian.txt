@@ -28,17 +28,6 @@ Komandinëje eilutëje galite paleisti „WinMerge“ vykdomàjá failà su „ /?“ raktu.
 Taip pat galite perþiûrëti „WinMerge“ þinyno HTML versijà adresu
 https://manual.winmerge.org/.
 
-Archyvo failø palaikymas
-========================
-Darbui su archyvo failais „WinMerge“ naudoja atvirojo kodo archyvavimo áranká
-7-Zip (https://www.7-zip.org). Mes rekomenduojame ádiegti 7-Zip, paleidþiant
-ið https://winmerge.org/downloads/ atsisiøstà 7-Zip papildinio diegimo programà.
-
-Jei dël kokiø nors prieþasèiø negalite ásidiegti 7-Zip árankio, galite naudoti
-7-Zip papildinio diegimo programà ir ásidiegti tik archyvø palaikymui
-reikalingus failus. Iðsamesnës informacijos ieðkokite þinyno failo temoje
-„7-Zip and archive support“.
-
 „WinMerge“ palaikymas
 =====================
 Turite klausimø apie „WinMerge“ ar pasiûlymø? Geriausia pradëti nuo „WinMerge“

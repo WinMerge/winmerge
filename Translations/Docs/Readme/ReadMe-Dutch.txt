@@ -29,17 +29,6 @@ start u het uitvoerbestand van WinMerge (WinMerge.exe) met de /? help-switch.
 U kan ook surfen naar de HTML-version van WinMerge-help op 
 https://manual.winmerge.org/.
 
-Archiefondersteuning
-====================
-WinMerge gebruikt de 7-Zip (https://www.7-zip.org) Open Source archiveringstool
-voor archiefbestand-ondersteuning. We raden aan dat u de 7-Zip-toepassing installeert
-door de 7-Zip plugin-installer te downloaden van https://winmerge.org/downloads/ 
-en te openen.
-
-Indien u om een of andere reden de 7-Zip-tool niet kan installeren, kan u de 7-Zip 
-plugin-installer gebruiken om alleen de benodigde bestanden te installeren voor archiefbestand-ondersteuning. Zie het Help-topic "7-Zip en archiefondersteuning" 
-voor details.
-
 WinMerge-ondersteuning
 ======================
 Vragen over WinMerge of suggesties? Een goeie plaats om te beginnen is het WinMerge

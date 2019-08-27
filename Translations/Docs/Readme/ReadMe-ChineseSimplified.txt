@@ -13,16 +13,6 @@ HTML 手册：
 用户手册可以从 https://manual.winmerge.org/ 得到，也可以在安装时选择
 安装到本地，或者也可以单独从 https://winmerge.org/ 下载。(参见文档)
 
-压缩包支持：
-WinMerge 使用 7-Zip 支持压缩包。7-Zip (https://www.7-zip.org) 是一个开源的打
-包软件。要安装压缩包支持，请从 https://winmerge.org/ 下载 7-Zip 插件安装
-程序。
-
-安装压缩包支持：
-推荐安装 7-Zip 应用程序。如果不能安装的话，7-Zip 插件安装程序只会安装那些支
-持压缩包所必需的文件。请注意这种情况下将*不能*单独使用 7-Zip，只能在
-WinMerge 中支持压缩包。
-
 脚本支持：
 如果您想使用脚本，您需要安装 Windows Script Host。如果您遇到任何关于脚本的
 问题，请访问
