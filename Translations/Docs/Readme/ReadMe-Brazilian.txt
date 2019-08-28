@@ -7,10 +7,7 @@ https://winmerge.org
  https://manual.winmerge.org/QuickStart.html
 
  Manual em HTML: O manual está disponível online em 
-https://manual.winmerge.org/ ele está também possivelmente instalado (se escolhido assim) localmente e descarregável separadamente de https://winmerge.org/ (veja a documentação) Suporte para Arquivos: O 
-WinMerge usa o 7-Zip para o suporte para arquivos dentro de arquivos. 7-Zip (https://www.7-zip.org) é uma ferramenta para arquivos com o código fonte aberto. Para instalar o suporte para arquivos dentro de arquivos, baixe o instalador do plugin do 7-Zip de https://winmerge.org/ 
-
-Instalando o suporte para arquivos: É recomendado instalar o aplicativo 7-Zip. Se isto não pode ser feito por alguma razão, o instalador do plugin do 7-Zip pode instalar apenas os arquivos necessários para ativar o suporte para arquivos dentro dos arquivos. Note que NÃO permite o uso isolado do 7-Zip, apenas o suporte para arquivos para oWinMerge.
+https://manual.winmerge.org/ ele está também possivelmente instalado (se escolhido assim) localmente e descarregável separadamente de https://winmerge.org/ (veja a documentação) 
 
  Suporte a Scripts:
  Se você gostaria de trabalhar com scripts Você precisará ter o Windows 

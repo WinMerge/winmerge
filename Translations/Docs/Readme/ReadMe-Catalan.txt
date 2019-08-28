@@ -17,18 +17,6 @@ https://manual.winmerge.org/
 Possiblement també estigui instal·lada localment (si així es va triar) i es pot 
 baixar separadament des de https://winmerge.org/ (veieu la documentació)
 
-Suport d'arxivament:
-El WinMerge empra el 7-Zip per al suport de fitxers d'arxivament. 7-Zip 
-(https://www.7-zip.org) és una eina d'arxivament de codi obert. Per tal d'instal·lar el 
-suport de fitxers d'arxivament, baixeu l'instal·lador del connector del 7-Zip des de 
-https://winmerge.org/.
-
-Tot instal·lant el suport d'arxivament:
-Es recomana instal·lar l'aplicació del 7-Zip. De no ser possible per qualsevol motiu, 
-l'instal·lador del connector del 7-zip pot instal·lar els fitxers necessaris per tal de 
-permetre el suport de fitxers d'arxivament. Pareu compte que això NO permet d'usar 
-el 7-Zip de forma independent, només el suport d'arxivament del WinMerge. 
-
 Suport de seqüències:
 Per tal de treballar amb fitxers de seqüències caldrà tenir el Windows Scripting Host 
 instal·lat. Si rebeu qualsevol error relacionat amb els vostres fitxers de seqüències 

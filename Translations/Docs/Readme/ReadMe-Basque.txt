@@ -26,17 +26,6 @@ WinMerge leihoan. Komando lerroan, ekin WinMerge exekutagarriari /? laguntza gil
 WinMerge Laguntzaren HTML bertsioa hemen ere bilatu dezakezu:
 https://manual.winmerge.org/.
 
-Agiri Sostengua
-===============
-WinMergek 7-Zip (https://www.7-zip.org) Iturburu Irekiko agiri tresna erabiltzen du
-agiri sostengua agiritegiratzeko. 7-Zip aplikazioa ezartzea gomendatzen dugu
-jeitsiz eta abiaraziz 7-Zip plugin ezartzailea hemendik:
-https://winmerge.org/downloads/.
-
-Ezin baduzu 7-Zip tresna ezarri zerbaitengaitik, 7-zip plugin ezartzailea 
-erabili dezakezu agiri sostengurako beharrezkoak diren agiriak bakarrik ezarriz.
-Ikusi Laguntza gaia, "7-Zip eta agiri sostengua" xehetasunetarako.
-
 WinMerge Sostengua
 ================
 Galderarik edo iradokizunik WinMergeri buruz? Hasteko toki on bat WinMerge

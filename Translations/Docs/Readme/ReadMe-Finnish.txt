@@ -16,12 +16,6 @@ WinMerge ohje on asennettu paikallisesti asennuksen yhteydessä Microsoft HTML he
 
 Voit myös selata WinMerge ohjeen HTML-versiota sivuilla https://manual.winmerge.org/.
 
-Arkistointituki
-===============
-WinMerge käyttää 7-Zip (https://www.7-zip.org) avoimen lähdekoodin arkistointityökalua arkistotiedostojen tukeen. Suosittelemme, että asennat 7-Zip sovelluksen lataamalla ja suorittamalla 7-Zip lisäosa-asentajan sivuilta https://winmerge.org/downloads/.
-
-Jos et jostain syystä pysty asentamaan 7-Zip-työkalua, voit käyttää 7-zip lisäosa-asentajaa asentaaksesi vain tarvittavat tiedostot arkistotueksi. Katso lisätietoja aiheesta "7-Zip ja Arkistotuki".
-
 WinMerge tuki
 =============
 Kysymyksiä tai ehdotuksia WinMergestä? Hyvä paikka aloittaa on WinMerge yhteisön ilmoitustaulu https://forums.winmerge.org/. Kehittäjät lukevat ja vastaavat kysymyksiin molemmilla foorumeilla. Käytä avointa keskustelufoorumia yleisiin WinMerge-kysymyksiin, kuten kysymyksiä käytöstä. Käytä kehittäjien foorumia WinMergen tuotekehityskysymyksiin.

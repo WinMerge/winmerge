@@ -29,18 +29,6 @@ kör WinMerge-programmet med  /? hjälpparametern.
 Du kan också bläddra i HTML-versionen av WinMerges Hjälp på 
 https://manual.winmerge.org/.
 
-Archive Support (Arkivsupport)
-===============
-WinMerge använder 7-Zip (https://www.7-zip.org) Open Source arkivverktyget för
-arkivfilstöd. Vi rekommenderar att 7-zip applikationen installeras genom att
-ladda ner och köra 7-Zip plugininstallationsprogrammet på 
-https://winmerge.org/downloads/.
-
-Om du inte av någon anledning kan installera 7-Zip-verktyget kan du använda 
-7-zips plugin-installationsprogram för att installera bara de filer som krävs 
-för arkivfilstöd. Se Hjälpämnet, "7-Zip and archive support"
-("7-zip och arkivstöd") för detaljer.
-
 WinMerge Support (WinMerge-support)
 ================
 Frågor eller synpunkter om WinMerge? Ett bra ställe att starta på är WinMerges
