@@ -3287,4 +3287,3 @@ msgid ""
 "$file: Path name of the current file\n"
 "$linenum: Line number of the current cursor position"
 msgstr ""
-
