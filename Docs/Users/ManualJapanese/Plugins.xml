@@ -595,9 +595,9 @@
           <primary>IgnoreCommentsC.dll plugin file</primary>
         </indexterm></filename></title>
 
-      <para>The plugin ignores comments within<constant> //</constant>... and
-      <constant>/*</constant> ... <constant>*/</constant> delimiters in C, C++,
-      PHP and JavaScript files.</para>
+      <para>このプラグインはC言語, C++, PHP, JavaScript ファイルの<constant> //</constant>... と
+      <constant>/*</constant> ... <constant>*/</constant> で区切られたコメントを無視します。
+      </para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -627,13 +627,13 @@
           <primary>IgnoreFieldsComma.dll plugin file</primary>
         </indexterm></filename></title>
 
-      <para>This plugin is for files with fields and commas as delimiters (CSV
-      files, for example). It ignores the delimiter characters. The first field
-      is number 1.</para>
+      <para>このプラグインは、フィールドとコンマを区切り文字として使用するファイル用です
+      （CSVファイルなど）。 区切り文字は無視されます。 最初のフィールドの番号は1です。
+      </para>
 
-      <para>To specify the delimiters, use plugin settings dialog or rename the <filename>dll</filename> using
-      the same parameter fields used for <xref
-      linkend="IgnoreColumns" />.</para>
+      <para>区切り文字を指定するには、プラグイン設定ダイアログを使用するか、
+      <xref linkend="IgnoreColumns" />に使用されるのと同じパラメーターフィールドを使用して
+      <filename>dll</filename>の名前を変更します。</para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
