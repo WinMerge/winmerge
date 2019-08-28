@@ -832,16 +832,16 @@ msgid "Moved Block for &Current Diff"
 msgstr "Преместен блок за &текущо различие"
 
 msgid "W&hitespaces"
-msgstr "Празн&и места"
+msgstr "&Интервали"
 
 msgid "Com&pare"
 msgstr "Срав&няване"
 
 msgid "I&gnore changes"
-msgstr "И&гнорирай промените"
+msgstr "Пренебре&гване на променените"
 
 msgid "Ig&nore all"
-msgstr "Иг&норирай всичко"
+msgstr "Пре&небрегване на всички"
 
 msgid "Case sensi&tive"
 msgstr "Съвпадение на &регистъра"
@@ -865,10 +865,10 @@ msgid "Binary Contents"
 msgstr "Двоично съдържание"
 
 msgid "Modified Date"
-msgstr "Променена дата"
+msgstr "Промени в датата"
 
 msgid "Modified Date and Size"
-msgstr "Променени дата и размер"
+msgstr "Промени в датата и размера"
 
 msgid "Size"
 msgstr "Размер"
@@ -2832,7 +2832,7 @@ msgid "The selected files are identical."
 msgstr "Избраните файлове са еднакви."
 
 msgid "An error occurred while comparing the files."
-msgstr "Получи се грешка при сравняване на файловете."
+msgstr "Възникна грешка при сравнение на файловете."
 
 msgid ""
 "Temporary files could not be created. Check your temporary path settings."
@@ -3287,4 +3287,3 @@ msgid ""
 "$file: Path name of the current file\n"
 "$linenum: Line number of the current cursor position"
 msgstr ""
-
