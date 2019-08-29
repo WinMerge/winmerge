@@ -520,14 +520,14 @@
           <primary>IgnoreColumns.dll plugin file</primary>
         </indexterm></filename></title>
 
-      <para>This plugin ignores characters at specified columns. The first
-      column is number 1</para>
+      <para>このプラグインは、指定された列の文字を無視します。 最初の列の番号は1です</para>
 
-      <para>Note that this plugin does not support files with tabs: the plugin
-      does not fail, but all tabs are be treated as normal characters.</para>
+      <para>このプラグインはタブ付きのファイルをサポートしていないことに注意してください。
+      プラグインは失敗しませんが、すべてのタブは通常の文字として扱われます。
+      </para>
 
-      <para>To specify columns, use plugin settings dialog or rename the <filename>dll</filename> using
-      following fields as parameters:</para>
+      <para>列を指定するには、プラグイン設定ダイアログを使用するか、次のフィールドをパラメーターとして使用して<filename>dll</filename>の名前を変更します:
+      </para>
 
       <itemizedlist>
         <listitem>
@@ -557,8 +557,7 @@
             33.dll</filename></term>
 
             <listitem>
-              <simpara>Ignore all characters at column 3, and in columns 10 to
-              20, and 32 to 33.</simpara>
+              <simpara>列3、列10から20、列32から33のすべての文字を無視します。</simpara>
             </listitem>
           </varlistentry>
 
@@ -566,8 +565,8 @@
             <term><filename>IgnoreColumns_1,30 to 40.dll</filename></term>
 
             <listitem>
-              <simpara>Ignore all the characters in column 1, and in columns 30
-              to 40.</simpara>
+              <simpara>列1と列30から40のすべての文字を無視します。
+              </simpara>
             </listitem>
           </varlistentry>
         </variablelist>
