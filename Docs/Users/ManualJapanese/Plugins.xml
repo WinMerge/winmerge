@@ -531,20 +531,20 @@
 
       <itemizedlist>
         <listitem>
-          <simpara>Delimiters between ranges: _ or ,</simpara>
+          <simpara>範囲間の区切り文字: _ または ,</simpara>
         </listitem>
 
         <listitem>
-          <simpara>Delimiters between min and max: <emphasis>anything
-          else</emphasis></simpara>
+          <simpara>最小と最大の間の区切り文字: <emphasis>その他の文字
+          </emphasis></simpara>
         </listitem>
 
         <listitem>
-          <simpara>Min and max are included.</simpara>
+          <simpara>最小と最大は範囲に含まれます。</simpara>
         </listitem>
 
         <listitem>
-          <simpara>When max = min, max can be omitted.</simpara>
+          <simpara>max = minの場合、maxは省略できます。</simpara>
         </listitem>
       </itemizedlist>
 
