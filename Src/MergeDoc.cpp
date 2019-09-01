@@ -2840,12 +2840,9 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex)
 			m_pView[0][nPane]->SelectDiff(nDiff, true, false);
 			nLineIndex = m_pView[0][nPane]->GetCursorPos().y;
 		}
-		else
-		{
-			nLineIndex = 0;
-		}
 	}
-	m_pView[0][nPane]->GotoLine(nLineIndex, false, nPane);
+	if (nLineIndex != -1)
+		m_pView[0][nPane]->GotoLine(nLineIndex, false, nPane);
 }
 
 void CMergeDoc::ChangeFile(int nBuffer, const String& path)
