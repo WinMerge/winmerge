@@ -29,16 +29,6 @@ naredbom, /? help.
 Na internetu na https://manual.winmerge.org/ takoðer možete pregledati
 WinMerge Help.
 
-Podrška arhiva
-===============
-WinMerge koristi 7-Zip (https://www.7-zip.org) otvoreni arhiver program.
-Preporuèujemo instaliranje 7-Zip programa preuzimanjem 7-Zip instalacijskog
-dodatka s https://winmerge.org/downloads/.
-
-Ako zbog neèega ne želite 7-Zip program, koristite 7-zip instalacijski dodatak
-koji æe instalirati samo nužne datoteke podrške. Više o tome pogledajte u
-pomoæi, poglavlje, "7-Zip and archive support".
-
 WinMerge podrška
 ================
 Pitanja i sugestije o WinMerge? Pravo mjesto za to je WinMerge zajednièki forum

@@ -1,0 +1,15 @@
+[submodule "Externals/frhed"]
+	path = Externals/frhed
+	url = https://github.com/WinMerge/frhed.git
+[submodule "Externals/winimerge"]
+	path = Externals/winimerge
+	url = https://github.com/WinMerge/winimerge.git
+[submodule "Externals/patch"]
+	path = Externals/patch
+	url = https://github.com/WinMerge/patch.git
+[submodule "Externals/sevenzip"]
+	path = Externals/sevenzip
+	url = https://github.com/WinMerge/sevenzip.git
+[submodule "Externals/freeimage"]
+	path = Externals/freeimage
+	url = https://github.com/WinMerge/freeimage.git

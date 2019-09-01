@@ -831,7 +831,8 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	}
 	else
 	{
-		if (!WordListCopy(srcPane, dstPane, lastDiff, firstWordDiff, lastWordDiff, nullptr, bGroupWithPrevious, true))
+		if (!WordListCopy(srcPane, dstPane, lastDiff, 
+			(firstDiff == lastDiff) ? firstWordDiff : 0, lastWordDiff, nullptr, bGroupWithPrevious, true))
 			return; // sync failure
 	}
 

@@ -21,19 +21,6 @@ este posibil să-l aveţi instalat (dacă s-a optat pentru aceasta) local,
 dar este şi copiabil separat de la https://winmerge.org/
 (vezi documentaţia)
 
-Suport arhivare:
-WinMerge foloseşte 7-Zip pentru a suporta accesul la arhive de fişiere.
-7-Zip (https://www.7-zip.org) este o unealtă de arhivare cu Sursă Deschisă.
-Pentru a instala suportul de arhivare, copiaţi kit-ul plug-in-ului 7-Zip
-de la https://winmerge.org/ .
-
-Instalarea suportului de arhivare:
-Este recomandat să instalaţi aplicaţia 7-Zip. Dacă acest lucru nu poate fi
-făcut din oarecare motiv, instalatorul plug-in-ului 7-Zip poate instala
-doar fişierele necesare pentru activarea suportului de instalare. Luaţi notă
-că acest lucru NU va permite funcţionarea de sine stătătoare a lui 7-Zip, ci
-doar suportul de arhivare pentru WinMerge.
-
 Suportul pentru scripturi:
 Dacă doriţi să lucraţi cu scripturi aveţi nevoie ca Windows Scripting Host
 să fie instalat. Dacă observaţi erori care au ca sursă scripturile, vizitaţi

@@ -1,9 +1,9 @@
 set DISTDIR=.\build\Releases
 set workdir=BuildTmp\Src
-if "%1" == "vs2015" (
-  set vsversion=vs2015
+if "%1" == "vs2017" (
+  set vsversion=vs2017
 ) else (
-  set vsversion=vs2015
+  set vsversion=vs2019
 )
 
 pushd "%~dp0"
@@ -11,12 +11,17 @@ pushd "%~dp0"
 rmdir /q /s %workdir% > NUL 2> NUL
 mkdir %workdir% 2> NUL
 
-call Externals\hg_clone.cmd
+git submodule init
+git submodule update
 
-hg archive %workdir%
+git checkout-index -a -f --prefix=%workdir%\
 for /d %%d in (Externals\*) do (
   pushd %%d
-  if exist .hg hg archive ..\..\%workdir%\%%d 
+  if exist .git (
+    rmdir /q /s ..\..\%workdir%\%%d
+    mkdir ..\..\%workdir%\%%d
+    git checkout-index -a -f --prefix=..\..\%workdir%\%%d\
+  )
   popd
 )
 
@@ -29,6 +34,7 @@ mkdir "%DISTDIR%\PDB\%APPVER%\x64" 2> NUL
 for /F %%f in ("%DISTDIR%\files.txt") do (
   copy %%f "%DISTDIR%"
 )
+copy Build\Releases\files.txt ..\..\Build\Releases\
 copy  Build\Release\*.pdb "%DISTDIR%\PDB\%APPVER%\Win32\"
 copy  Build\x64\Release\*.pdb "%DISTDIR%\PDB\%APPVER%\x64\"
 popd

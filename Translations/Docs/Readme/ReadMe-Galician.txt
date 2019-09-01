@@ -29,17 +29,6 @@ executa o WinMerge coa opción de axuda /?.
 Tamén podes explorar a versión HTML da axuda do WinMerge en 
 https://manual.winmerge.org/.
 
-Soporte de Arquivo
-==============
-O WinMerge emprega a ferramenta de arquivos Open Source 7-Zip (https://www.7-zip.org) 
-para ofrecer soporte de arquivo. Recomendamos instalar o 7-Zip descargando e 
-executando o instalador da extensión do 7-Zip en https://winmerge.org/downloads/.
-
-Se non podes instalar o 7-Zip por algún motivo, podes empregar o instalador da extensión 
-do 7-zip para instalar só os ficheiros requiridos para ter soporte de arquivo de ficheiros. 
-Bótalle un ollo ao tema "7-Zip and archive support" da axuda para obter pormenores sobre 
-o mesmo.
-
 Soporte WinMerge
 ==============
 Preguntas ou suxestións verbo do WinMerge? Un bo lugar para comezar é o taboleiro 

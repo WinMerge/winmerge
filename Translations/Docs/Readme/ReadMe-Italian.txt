@@ -28,17 +28,6 @@ WinMerge. Da riga di comando, esegui il file  WinMerge con /? per avviare la Gui
 È inoltre possibile sfogliare la versione HTML della Guida di WinMerge all'indirizzo web
 https://manual.winmerge.org/.
 
-Supporto archivi
-===============
-WinMerge usa per il supporto dei file archivio lo strumento di archiviazione Open Source 7-Zip
-(https://www.7-zip.org). Ti consigliamo di installare l'applicazione 7-Zip scaricando ed 
-eseguendo il programma di installazione del plugin 7-Zip da
-https://winmerge.org/downloads/.
-
-Se non è possibile installare lo strumento 7-Zip per nessun motivo, è possibile usare il 
-programma di installazione del plugin 7-Zip per installare solo i file richiesti per supporto
-dei file archivio. Per id ettagli vedi l'argomento della Guida, "Supporto per 7-Zip e archivio".
-
 Supporto WinMerge
 ================
 Hai domande o suggerimenti su WinMerge? Un buon punto di partenza è la bacheca della community

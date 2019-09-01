@@ -357,6 +357,7 @@ Name: {app}\MergePlugins\list.txt; Type: files; Check: not IsComponentSelected('
 
 ;Removes the user's guide icon if the user deselects the user's guide component.
 Name: {group}\{cm:UsersGuide}.lnk; Type: files; Check: not IsComponentSelected('Docs')
+Name: {group}\{cm:ReadMe}.lnk; Type: files
 
 ;This removes the quick launch icon in case the user chooses not to install it after previously having it installed
 Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type: files; Check: not IsTaskSelected('QuickLauchIcon')
@@ -538,32 +539,8 @@ Name: "{app}\MergePlugins"
 [Icons]
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\WinMergeU.exe; AppUserModelID: "Thingamahoochie.WinMerge"
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
 Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: https://winmergejp.bitbucket.io
-
-;Link to translated ReadMe in Start Menu
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Basque.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Basque
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Brazilian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: PortugueseBrazilian
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Bulgarian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Bulgarian
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Catalan.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Catalan
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-ChineseSimplified.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Chinese_Simplified
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-ChineseTraditional.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Chinese_Traditional
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Croatian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Croatian
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Dutch.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Dutch
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Finnish.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Finnish
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-French.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: French
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Galician.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Galician
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Greek.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Greek
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Italian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Italian
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Japanese.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Japanese
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Portuguese.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Portuguese
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Romanian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Romanian
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Serbian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Serbian
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Spanish.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Spanish
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Swedish.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Swedish
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Turkish.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Turkish
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Ukrainian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Ukrainian
 
 ;Desktop Icon
 Name: {autodesktop}\WinMerge; Filename: {app}\WinMergeU.exe; Tasks: desktopicon

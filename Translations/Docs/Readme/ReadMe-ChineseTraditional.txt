@@ -16,12 +16,6 @@ WinMerge 說明
 
 您也可以到 https://manual.winmerge.org/ 瀏覽其HTML 版。
 
-壓縮支援
-===============
-WinMerge 用 7-Zip (https://www.7-zip.org) 開放源碼壓縮工具來支援壓縮檔。我們建議下載安裝 7-Zip，並到 https://winmerge.org/downloads/ 下載 7-Zip 外掛安裝器 (plugin installer)，執行之。
-
-若您有您的理由不安裝 7-Zip，7-Zip 外掛安裝器可選擇僅安裝支援壓縮所需的檔案。細節請參考說明檔中的「7-Zip 與壓縮支援」章 (7-Zip and archive support)。
-
 WinMerge 支援
 ================
 有關於 WinMerge 的問題或建議嗎？請到 https://forums.winmerge.org/ 的 WinMerge 社群討論區。研發者常會閱讀與回應兩個討論區中的問題。一般性的議題，像使用上的問題，請到公開討論區 (Open Discussion forum)。研發上的議題，請到研發討論區 (Developers forum)。

@@ -17,12 +17,6 @@ WinMerge Yardýmý, kurulum sýrasýnda yerel olarak kopyalanmýþ bir Microsoft HTML 
 
 WinMerge yardýmýnýn webdeki html sürümüne https://winmerge.org/docs/manual/ adresinden ulaþabilirsiniz.
 
-Sýkýþtýrýlmýþ Dosya Desteði
-===========================
-WinMerge, sýkýþtýrýlmýþ dosya desteði için 7-Zip (https://www.7-zip.org) Açýk Kaynak sýkýþtýrma aracýný kullanýr. 7-Zip uygulamasýný kullanmak için https://winmerge.org/downloads/ adresinden bulabileceðiniz 7-Zip eklenti kurucusunu indirerek kurmanýzý öneririz.
-
-Herhangi bir nedenle 7-Zip aracýný kuramazsanýz, yalnýzca sýkýþtýrýlmýþ dosya desteði için gereken eklenti kurucusunu kullanabilirsiniz. Ayrýntýlar için yardým konularýndaki "7-Zip ve sýkýþtýrýlmýþ dosya desteði" konusuna bakýn.
-
 WinMerge Desteði
 ================
 WinMerge hakkýnda sorularýnýz ve önerileriniz mi var? Bunun için https://forums.winmerge.org/ adresinden ulaþabileceðiniz WinMerge topluluðu forumunu kullanabilirsiniz. Yazýlým geliþtiriciler forumlardaki sorularý sýklýkla okuyup yanýtlamaktadýrlar. Kullaným gibi genel WinMerge konularý için Açýk Tartýþma (Open Discussion) forumunu, yazýlým geliþtirme ile ilgili konular için de Geliþtirici (Developers) forumunu kullanabilirsiniz.

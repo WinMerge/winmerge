@@ -2,14 +2,14 @@ setlocal
 set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
-https://bitbucket.org/sdottaka/winmerge-v2/downloads/winmerge_manual_another_build_tools_v1.zip!Docs\Users\Manual\build ^
-https://bitbucket.org/winmerge/winmerge/downloads/ShellExtension-1.17.9.0.zip!Build ^
-https://bitbucket.org/winmerge/winmerge/downloads/Merge7z1900.1-win32.zip!Build ^
-https://bitbucket.org/winmerge/winmerge/downloads/Merge7z1900.1-x64.zip!Build\X64 ^
-https://bitbucket.org/winmerge/frhed/downloads/frhed-0.10904.2017.1-win32.zip!Build ^
-https://bitbucket.org/winmerge/frhed/downloads/frhed-0.10904.2017.1-x64.zip!Build\X64 ^
-https://bitbucket.org/winmerge/winimerge/downloads/winimerge-1-0-10-0-exe.zip!Build ^
-https://bitbucket.org/winmerge/patch/downloads/patch-2.5.9-7-bin.zip!Build\GnuWin32
+https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_build_tools_v1/winmerge_manual_build_tools_v1.zip!Docs\Users\Manual\build ^
+https://github.com/WinMerge/winmerge/releases/download/ShellExtension1.17.9.0/ShellExtension-1.17.9.0.zip!Build ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.1/Merge7z1900.1-win32.zip!Build ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z1900.1/Merge7z1900.1-x64.zip!Build\X64 ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.1-win32.zip!Build ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.1-x64.zip!Build\X64 ^
+https://github.com/WinMerge/winimerge/releases/download/1.0.10.0/winimerge-1-0-10-0-exe.zip!Build ^
+https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32
 
 pushd "%~dp0"
 mkdir %downloadsdir% 2> NUL
