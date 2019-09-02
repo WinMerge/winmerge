@@ -33,6 +33,7 @@ Localization:
   Sld <sld|mail.bg>
   tigertron <ivg_18@yahoo.com>
   Yanko Yankov <yankonik70 at hotmail.com>
+  Стоян <stoyan от гмаил>
 
 * Catalan:
   Jordi Vilar <jvilar@users.sourceforge.net>
