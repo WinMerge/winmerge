@@ -366,8 +366,10 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 				vector<WordDiff> worddiffs = pd->GetWordDiffArrayInDiffBlock(firstDiff);
 				for (size_t i = 0; i < worddiffs.size(); ++i)
 				{
+					int worddiffLen = worddiffs[i].end[m_nThisPane] - worddiffs[i].begin[m_nThisPane];
 					if (worddiffs[i].endline[m_nThisPane] > firstLine ||
-						(firstLine == worddiffs[i].endline[m_nThisPane] && worddiffs[i].end[m_nThisPane] - 1 >= ptStart.x))
+						(firstLine == worddiffs[i].endline[m_nThisPane] && 
+						 worddiffs[i].end[m_nThisPane] - (worddiffLen == 0 ? 0 : 1) >= ptStart.x))
 					{
 						firstWordDiff = static_cast<int>(i);
 						break;

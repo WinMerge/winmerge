@@ -1,9 +1,0 @@
-[patterns]
-Externals/** = BIN
-Testing/** = BIN
-**.txt = NATIVE
-**.cmd = NATIVE
-**.bat = NATIVE
-**COPYING = NATIVE
-**.flt = NATIVE
-**.tmpl = NATIVE
