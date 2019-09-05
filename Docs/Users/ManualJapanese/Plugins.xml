@@ -656,10 +656,11 @@
           <primary>IgnoreFieldsTab.dll plugin file</primary>
         </indexterm></filename></title>
 
-      <para>This plugin is for files that use fields and tabs as delimiters
-      (<application>for examle, Excel</application> files saved in the <filename
-      class="extension">*.txt</filename> format). It ignores the delimiter
-      characters. The first field is number 1.</para>
+      <para>このプラグインは、フィールドとタブを区切り記号として使用するファイル用です
+      (<application>たとえばExcel </application>ファイルは<filename
+      class="extension">*.txt</filename>形式で保存されます）。 区切り文字は無視されます。
+      最初のフィールドの番号は1です。
+      </para>
 
       <para>To specify the delimiters, use plugin settings dialog or rename the <filename>dll</filename> using
       the same parameter fields used for <xref
