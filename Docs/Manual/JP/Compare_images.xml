@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_images">
+  <?target dbhh topicname="IDH_Compare_images" topicid ="003"?>
+
+  <title>画像ファイルの比較</title>
+
+  <indexterm>
+    <primary>comparing files</primary>
+    <secondary>images</secondary>
+  </indexterm>
+
+  <para>This topic describes how to compare images using the Image
+  Compare window.</para>
+
+  <section id="Compare_images_starting">
+    <title>画像比較操作を開始する</title>
+
+    <para>You can start an image compare operation from either the WinMerge window
+    or a Command Prompt window.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>From the WinMerge window</term>
+
+        <listitem>
+          <para>Click <menuchoice>
+              <guimenu>File</guimenu>
+
+              <guimenuitem>Open</guimenuitem>
+            </menuchoice>. Use the Select Files or Folders dialog to specify the
+          left and right source images to compare. For more details about the
+          Select Files or Folder dialog, see <xref
+          linkend="Open_paths" />.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>From a Command Prompt window</term>
+
+        <listitem>
+          <para>Run <command>WinMergeU.exe</command>, which is in your WinMerge
+          install directory. In your command arguments, include the left and
+          right images to compare. For more information about using the command
+          line, see <xref linkend="Command_line" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_images_window">
+    <title>画像比較ウインドウ</title>
+
+    <para>WinMerge support many types of images and can highlight the differences
+    with blocks. Overlaying of the pictures is also possible.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/imgcmp1.png" format="PNG" />
+      </imageobject>
+
+      <textobject>
+        <phrase>Image Compare Window</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>You can set the most options in the <guilabel>Location Pane</guilabel>:</para>
+
+    <section>
+      <title>差異<indexterm>
+        <primary>Diff</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Highlight</term>
+          <listitem>
+            <para>With the check box <guilabel>Highlight</guilabel> you can enable or
+            disable the highlighting of the image differences.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>点滅</term>
+          <listitem>
+            <para>If the highlighting is enabled you can even make it blinking by checking
+            the check box <guilabel>Blink</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Block Size</term>
+          <listitem>
+            <para>The slider <guilabel>Block Size</guilabel> defines the size of the blocks
+            which highlighting the image differences.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Block Alpha</term>
+          <listitem>
+            <para>The <guilabel>Block Alpha</guilabel> slider defines how strong the alpha
+            blending of the blocks is.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Color Distance Threshold</term>
+          <listitem>
+            <para>The slider <guilabel>CD</guilabel> sets the <emphasis>Color Distance
+            Threshold</emphasis> which helps to ignore color differences.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>重ね合わせ<indexterm>
+        <primary>Overlay</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Mode</term>
+          <listitem>
+            <para>Currently the following <emphasis>Overlay Modes</emphasis> are possible:</para>
+            <itemizedlist>
+              <listitem><guilabel>None</guilabel></listitem>
+              <listitem><guilabel>XOR</guilabel></listitem>
+              <listitem><guilabel>Alpha Blend</guilabel></listitem>
+              <listitem><guilabel>Alpha Blend Animation</guilabel></listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Alpha</term>
+          <listitem>
+            <para>The <guilabel>Alpha</guilabel> slider defines how strong the alpha blending
+            of the overlay nodes <guilabel>Alpha Blend</guilabel> or
+            <guilabel>Alpha Blend Animation</guilabel> is.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>拡大<indexterm>
+        <primary>Zoom</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Zoom</term>
+          <listitem>
+            <para>With the <guilabel>Zoom</guilabel> slider you can zoom in or out of the images.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Page</term>
+          <listitem>
+            <para>If the image format support multiple pages you can select the current page with
+            the <guilabel>Page</guilabel> number box.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+  </section>
+
+</article>

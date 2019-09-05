@@ -1,0 +1,27 @@
+@import url("all.css") print;
+
+.navheader,.navfooter, div#ads {
+  display: none;
+}
+
+
+div.toc p{
+  color: #000;
+}
+
+
+.screen {
+  padding: 5px;
+  background-color: none;
+  border: 1px solid #CCCCCC;
+  border-left: 10px solid #CCCCCC;
+}
+
+.caution,.important,.note,.tip,.warning {
+  background-color: none;
+  border: 1px solid #808080;
+}
+
+/* links */
+a:link { color:black; text-decoration:underline; }
+a:visited { color:black; text-decoration:underline; }

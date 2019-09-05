@@ -1,0 +1,14 @@
+@import url("all.css") screen;
+@import url("print.css") print;
+
+/* Add any HTML Help specific rules below */
+
+.article,
+.appendix {
+  border:1px solid white; /* Fix problems with old IE browsers! */
+}
+
+.titlepage h2 {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}

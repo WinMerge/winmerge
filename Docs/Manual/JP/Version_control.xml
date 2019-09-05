@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Version_control">
+  <title>ほかのツールと共にWinMergeを使用する<indexterm>
+      <primary>integration</primary>
+    </indexterm></title>
+
+  <para>ファイルを比較することと、マージすることは、大きな変更を管理する上でよくあることです。
+    そのような理由により、WinMergeは、それ単体で使用されるだけでなく、
+    他のツールと連携しても使用されます。さらに、
+    diffとマージユーティリティは、異なる特徴を提供するので、
+    それは、時々、異なるツールを結合するのに便利です。
+    このトピックは、他のツールと共に使用するための主な方法について説明しています。</para>
+
+  <section>
+    <title>コマンドインターフェース(CLI)を使用する</title>
+
+    <para><xref linkend="Command_line" />で説明されている、コマンドライン・インタフェース(CLI)により、
+      コマンド・プロンプト、スクリプト、または、他のツールやプログラムから、
+      WinMergeを起動することができます。
+      基本的に、少なくともパスを指定して外部の実行ファイルを呼び出せるプログラムならどれでも
+      WinMergeを起動できます。</para>
+
+    <para>ここにいくつかの例を示します</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>バッチファイルは、WinMergeを起動することができ、
+          パラメータを対話的に指定することができます。</para>
+
+        <literallayout>start "WinMerge" /B "C:\Program Files\WinMerge\WinMergeU.exe" /e /s /u /dl %3 /dr %5 %6 %7</literallayout>
+      </listitem>
+
+      <listitem>
+        <para>Subversionクライアントは、次に示すように、外部のdiffプログラムを呼ぶことを許可しています。
+        </para>
+
+        <literallayout>$ svn diff --diff-cmd "C:\Program Files\WinMerge\WinMergeU.exe" -x "-dl -dr" myfile </literallayout>
+      </listitem>
+    </itemizedlist>
+
+    <tip>
+      <para>同様に、組み込みのdiffツールを含む、多くのGUIツール(バージョン管理システムのクライアントやIDE)は、
+      それらのデフォルトのdiffツールの代わりにWinMergeを設定することが可能です。
+      次のセクションは、TortoiseSVN、Visual Studio Team Foundation Server で、
+      このような方法でWinMergeを使う方法を説明しています。
+      EclipseやPerforceなど他のツールは、それらのドキュメントを参照するか、
+      インターネットで詳細や例を調べてください。</para>
+    </tip>
+  </section>
+
+  <section id="VersionControl_vcs">
+    <title>バージョン管理システムで、WinMergeを使う<indexterm>
+      <primary>version control systems</primary>
+
+        <secondary>integration with</secondary>
+      </indexterm></title>
+
+    <para>あなたは、WinMergeが、2、3のサポートされているバージョン管理システム(VCS)と、
+      協調し合うように設定できます。
+     このセクションは、VCS統合と、例を説明しています。</para>
+
+    <section>
+      <title>WinMergeを、バージョン管理システムの、差分ツールとして使用する</title>
+
+      <indexterm>
+        <primary>TortoiseSVN の統合</primary>
+      </indexterm>
+
+      <para>TortoiseCVS、TortoiseSVN、または、TortoiseGIT でファイル比較する際、
+        VCSは、組込みの差分ツールの代わりに、WinMergeを起動することができます。
+       この設定は、<link
+      linkend="Installing_usinginstaller">WinMergeのインストール</link>の最中のみで可能です。</para>
+
+      <example>
+        <title>TortoiseSVNとの統合</title>
+
+        <para>これは、WinMerge統合を使用した、TortoiseSVNでの比較操作のサンプルです。
+        この統合は、TortoiseCVS と TortoiseGIT
+        も同じです。</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Windowsのエクスプローラ中で、チェックアウトしたSubversion作業コピーをナビゲートします。
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>Subversionの管理下にあるファイル(大抵は、目立つTortoiseSVNアイコンで示されます)を、
+            右クリックし、コンテキストメニューの
+            <guimenu>TortoiseSVN</guimenu>をクリックしてください。</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>ファイルが修正されていない場合、
+                  コンテキストメニューは、<guimenuitem><!-- TODO: 日本語版確認 -->前のバージョンと比較
+                  </guimenuitem>のショートカットを含んでいます。このコマンドは、
+                  チェックアウトされているバージョンと、リポジトリにチェックインされている、
+                  前のバージョンを比較します。</para>
+              </listitem>
+
+              <listitem>
+                <para>ファイルを変更している場合、コンテキストメニューは、同じ
+                  <guimenuitem><!-- TODO: 日本語版確認 -->前のバージョンと比較</guimenuitem>
+                  のショートカットと、それに加え、<guimenuitem><!-- TODO: 日本語版確認 -->比較</guimenuitem>のショートカットを含んでいます。
+                このコマンドは、あなたの版と最新版(チェックアウトされている版)を比較します。
+                それは、変更を加えた箇所をレビューするのに便利です。
+                </para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para><guimenuitem><!-- TODO: 日本語版確認 -->前のバージョンと比較
+              </guimenuitem>、または、<guimenuitem><!-- TODO: 日本語版確認 -->比較</guimenuitem>ショートカットのどちらかを選んでください。
+              WinMergeのウィンドウが開き、ファイル比較ウィンドウに、
+              目的のファイルのバージョンが読み込まれます。</para>
+          </listitem>
+        </orderedlist>
+
+        <para><menuchoice>
+            <guimenu>TortoiseSVN</guimenu>
+
+            <guimenuitem>比較</guimenuitem>
+          </menuchoice>のショートカットでは、ファイルシステムにある、
+          Subversionで管理されていない二つのファイルの比較が可能です。
+          <!-- FIXME: ここ自信ない -->WinMerge統合の方法を次に示します。</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Windowsのエクスプローラで、<keycap>Ctrl</keycap>を押しながら二つのファイルを選択し、
+            右クリックします。</para>
+          </listitem>
+
+          <listitem>
+            <para>コンテキストメニューから、<menuchoice>
+                <guimenu>TortoiseSVN</guimenu>
+
+                <guimenuitem>比較</guimenuitem>
+              </menuchoice>を選択します。</para>
+
+            <para>WinMergeウィンドウが開き、選択されたファイルが、
+                ファイル比較ウィンドウに表示されます。</para>
+          </listitem>
+        </orderedlist>
+      </example>
+
+      <example>
+        <title>Visual Studio Team Foundation Server の統合</title>
+
+        <para>Team Foundation Server（TFS）で管理されているファイルの差異を表示するために、
+        Visual Studioで使用する既定のツールとしてWinMergeを手動で設定できます。
+        他のバージョン管理システムも、非常によく似た方法で設定できます。</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Visual Studio で、
+			  <menuchoice>
+                <guimenu>Tools</guimenu>
+
+                <guimenuitem>Options...</guimenuitem>
+              </menuchoice> メニューを選択します。</para>
+          </listitem>
+		  
+          <listitem>
+            <para><menuchoice>
+                <guimenu>Source Control</guimenu>
+              </menuchoice>で、<menuchoice>
+                <guimenu> Visual Studio Team Foundation Server</guimenu>
+              </menuchoice> オプションを探します。</para>
+          </listitem>
+		  
+          <listitem>
+            <para><guimenuitem>Configure User Tools...</guimenuitem> ボタンをクリックします。</para>
+          </listitem>
+
+          <listitem>
+            <para><guimenuitem>Add...</guimenuitem> ボタンをクリックします。</para>
+          </listitem>
+		  
+		  <listitem>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="screenshots/tfs_configure.png" format="PNG" />
+              </imageobject>
+            </mediaobject>
+			<para>Configure Tool で次のオプションを指定します</para>
+			<itemizedlist>
+              <listitem>
+                <para>Extension: .*</para>
+              </listitem>
+
+              <listitem>
+                <para>Operation: Compare</para>
+              </listitem>
+			  
+			  <listitem>
+                <para>Command: {Path to WinMerge}\WinMergeU.exe</para>
+              </listitem>
+			  
+			  <listitem>
+                <para>Arguments: /e /u /dl %6 /dr %7 %1 %2</para>
+              </listitem>
+            </itemizedlist>
+			<para> {Path to WinMerge}はWinMergeがインストールされているパスです。
+			上記のスクリーンショットでは、デフォルトのインストールパス
+			C:\Program Files (x86)\WinMerge\WinMergeU.exe にインストールされています。</para>
+			<para> 上記引数は<xref linkend="Command_line" />で記載されています。</para>
+          </listitem>
+        </orderedlist>
+		
+		<para>TFSに2つのファイルを比較するように指示するたびに、WinMergeが使用されます。</para>
+      </example>
+    </section>
+  </section>
+</article>

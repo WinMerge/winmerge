@@ -1,0 +1,237 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 40em;
+  font-family: Calibri,Helvetica,Arial,sans-serif;
+}
+
+pre,code,tt {
+  font-family: Consolas,"Courier New",Courier,monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Cambria,"Times New Roman",Times,serif;
+}
+
+/* Default link style */
+a:link { color:#3366CC; text-decoration:underline; }
+a:visited { color:#003399; text-decoration:underline; }
+a:focus { color:#3366CC; text-decoration:none; }
+a:hover { color:#3366CC; text-decoration:none; }
+a:active { color:#003399; text-decoration:none; }
+
+a[name]:hover { color:black; text-decoration:none; }
+
+/* Nav headers and footers */
+div.navheader, div.navfooter {
+  background: #FFCC00;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 1px 0 1px 0; 
+}
+
+div.navheader {
+  height: 50px;
+  background-image: url("../images/head.gif"); 
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+div.navheader table {
+  height: 50px;
+}
+
+div.navheader * * * th { 
+  display:none;
+}
+
+div.navheader a, div.navheader a:visited, div.navfooter a, div.navfooter a:visited  { 
+  display: inline-block; 
+  padding: .2em .4em; 
+  text-decoration: none;
+  color: #fc0;
+  background-color: black;
+  border-radius: .3em;
+}
+
+div.navheader a:hover, div.navfooter a:hover {
+  color: #fc0;
+  background-color: dimgray;
+}
+
+/* Main topic divs  */
+div.book,div.article,div.appendix,div.index {
+  margin: 0 10px 10px 10px;
+}
+
+div.section {
+  margin: 0 10px 0 20px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  color: #707070;
+  background-color: #707070;
+}
+
+/* Manual title */
+h1 {
+  font-size: xx-large;
+}
+
+/* Topic titles */
+h2 {
+  font-size: xx-large;
+}
+
+/* Section titles */
+div.section h2 {
+  font-size: x-large;
+}
+
+div.section h3,
+div.section h4 {
+  font-size: medium;
+}
+
+#ads {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.mediaobject {
+  margin-top: 10px;
+}
+
+.screen {
+  padding: 5px;
+  background-color: #eee;
+  border-left: 10px solid #ccc;
+}
+
+/* Admonitions */
+.caution {
+  padding: 0 1em;
+  background-color: #fda;
+  border: 1px solid #f96;
+}
+.important {
+  padding: 0 1em;
+  background-color: #ffd;
+  border: 1px solid #ff6;
+}
+.note {
+  padding: 0 1em;
+  background-color: #ddf;
+  border: 1px solid #66f;
+}
+.tip {
+  padding: 0 1em;
+  background-color: #dfd;
+  border: 1px solid #6f6;
+}
+.warning {
+  padding: 0 1em;
+  background-color: #fdd;
+  border: 1px solid #f66;
+}
+
+/* Examples */
+.example,.informalexample {
+  padding-left: 7px;
+  border-left: 3px solid black;
+}
+
+/* Command synopsis */
+.cmdsynopsis p {
+  padding: 5px;
+  color: gray;
+  background-color: #EEEEEE;
+  border-left: 10px solid #CCCCCC;
+}
+
+.command,.option,.replaceable {
+  color: black;
+}
+
+/* GUI elements */
+.guimenu,.guisubmenu,.guimenuitem,.guilabel {
+  font-style: italic;
+}
+
+.guibutton, .keycap {
+  font-weight: bold;
+}
+/* FAQ */
+.question {
+  font-weight: bold;
+}
+
+/* tables */
+.table table, .informaltable table {
+  border-collapse: collapse;
+  border: 1px solid #d2d2d2;
+}
+
+.table th, .informaltable th {
+  padding: .25em;
+  text-align: left;
+  color: black;
+  background: #f2f2f2;
+  border: 1px solid #d2d2d2;
+}
+
+.table td, .informaltable td {
+  padding: .25em;
+  border: 1px solid #d2d2d2;
+}
+
+/* for Firefox quirks mode: eliminate line break */
+tr.question p {
+  margin-top: 0;
+}
+
+/* variablelist */
+.variablelist dl {
+  margin-left: 2em;
+}
+.variablelist dt {
+  font-weight: bold;
+}
+.variablelist dd {
+  margin-left: 2em;
+}
+.variablelist dd p {
+  margin-top: 0.5em;
+}
+
+/* authorgroup */
+.authorgroup {
+  margin-left: 2em;
+}
+.author h3 {
+  margin: 0;
+  margin-bottom: 0.25em;
+  padding: 0;
+  font-size: medium;
+}
+
+/* Table of contents */
+.toc dt {
+  line-height: 1.75em;
+  font-weight: bold;
+}
+.toc dd dl dt {
+  line-height: 1.25em;
+  font-weight: normal;
+}
+
+/* TOC title */
+div.toc p {
+  font-size: x-large;
+}
+
+div.toc a:visited, div.toc a:link {
+  text-decoration: none;
+}
