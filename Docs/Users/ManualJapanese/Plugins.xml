@@ -688,8 +688,9 @@
           <primary>IgnoreLeadingLineNumbers.dll plugin file</primary>
         </indexterm></filename></title>
 
-      <para>This plugin ignores the leading line numbers in text files (for
-      example, NC and BASIC files).</para>
+      <para>このプラグインは、テキストファイル
+      (NCファイルやBASICファイルなど)の先頭の行番号を無視します。
+      </para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -717,11 +718,11 @@
           <primary>insert datetime.sct plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Adds two functions to the <menuchoice>
-          <guimenu>Plugins</guimenu>
+      <para><menuchoice>
+          <guimenu>プラグイン</guimenu>
 
-          <guisubmenu>Scripts</guisubmenu>
-        </menuchoice> menu:</para>
+          <guisubmenu>スクリプト</guisubmenu>
+        </menuchoice> メニューに2つの機能を追加します:</para>
 
       <itemizedlist>
         <listitem>
