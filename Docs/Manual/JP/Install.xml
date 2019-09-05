@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Install">
+  <title>WinMerge のダウンロードとインストール<indexterm>
+      <primary>WinMergeのインストール</primary>
+    </indexterm></title>
+
+  <para>WinMergeは、インストーラ、または、アーカイブから展開したファイルにより、インストールすることができます。
+  インストーラを使用するのが、オススメの方法です。</para>
+
+  <section>
+    <title>ファイルのダウンロード</title>
+
+    <para>最新のリリースは、<ulink url="http://winmerge.org/">WinMergeのホームページ</ulink>より、いつでもダウンロード可能です。
+      最新リリースのためのホームページ更新に、遅れが生じることに注意してください。
+      しかし、<ulink url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>の、プロジェクトステータスページは、
+      最新のファイルを表示します。
+      メーリングリストにも、リリースのお知らせがあります。
+      安定リリースは、いくつかのファイルダウンロードサイトより入手可能です。</para>
+  </section>
+
+  <section>
+	<title>互換性</title>
+	
+	<itemizedlist>
+	  <listitem>
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.16.0/">WinMerge 2.16.0</ulink> 
+		supports Windows XP and later. It runs on both 32 bit and 64 bit Windows.</para>
+	  </listitem>
+	  <listitem>
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge 2.14.0</ulink> 
+		was the last version to support Windows 2000.</para>
+	  </listitem>
+	  <listitem>
+	    <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/2.12.4/">WinMerge 2.12.4</ulink> 
+		was the last version to support Windows 95, 98, ME and NT.</para>
+	  </listitem>
+	  <listitem>
+	    <para>WinMerge is not supported on Windows RT.</para>
+	  </listitem>
+	</itemizedlist>
+  </section>
+  
+  <section id="Installing_usinginstaller">
+    <title>インストーラを使用する (推奨)</title>
+
+    <note>
+      <para>Windows NT4/2000/XPにおいて、インストーラは、Administrator権限を必要とします。
+      あなたが、Administrator権限を持っていないなら、アーカイブファイルより展開することで、
+      WinMergeをインストールできます(<xref
+      linkend="InstallFromArchive" />を参照してください).</para>
+    </note>
+
+    <para>インストーラを使用することは、ほとんどのユーザにオススメです。
+    インストーラは、WinMergeがインストールされる場所を促します。
+    ファイルがインストールされるとき、シェル統合、WinMergeをスタートメニューに追加するなどを設定します。
+    WinMergeのインストール:</para>
+
+    <orderedlist>
+      <listitem>
+        <simpara>インストーラの開始(通常、
+        <filename>WinMerge-<replaceable>version</replaceable>-setup.exe</filename>のような名前)。</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>ようこそ画面の<guibutton>次へ</guibutton>をクリックしてください。</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>ライセンス認証画面の<guibutton>次へ</guibutton>をクリックしてください。</simpara>
+      </listitem>
+
+      <listitem>
+        <!-- FIXME: うまい訳ワカラナイ -->
+        <simpara>In the Select Destination Location page, accept the location
+        for WinMerge or, if you choose another location, we recommend that you
+        install WinMerge in its own folder.
+      <guibutton>次へ</guibutton>をクリックしてください。</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>コンポーネントの選択ページ中の、一番上の項目の中から、予め設定されたインストール方法を選択してください。
+        ほとんどのユーザには、<guilabel>標準インストール</guilabel>をオススメします。
+        下部のボックスは、すべての有効なコンポーネントを表示します。
+        コンポーネントのチェックをON、または、OFFにすることで、既定の設定を変更することができます。
+        たとえば、英語より異なった言語用のWinMergeローカライゼーションを使用したいなら、
+        <guilabel>言語</guilabel>コンポーネントを選択してください。</simpara>
+
+        <variablelist>
+          <varlistentry>
+            <term>WinMergeコアファイル<indexterm>
+                <primary>WinMerge executables, Unicode and ANSI</primary>
+              </indexterm></term>
+
+            <listitem>
+                <!-- FIXME: オカシイ -->
+                <para>WinMergeの実行ファイル(Windows 9XとMeでは、<filename>WinMerge.exe</filename>。
+                  他の、すべてのバージョンのWindowsでは、<filename>WinMergeU.exe</filename>)、ヘルプ、そして、他の必要なファイル。チェックOFFにできません。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>フィルタ</term>
+
+            <listitem>
+              <para>ファイル・フィルタファイルは、比較範囲を限定することができます。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>プラグイン</term>
+
+            <listitem>
+              <para>WinMergeプラグインは、COM APIで書かれたカスタムDLL、または、スクリプトレットで、
+              比較前にデータを前処理するために使用することができます。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Frhed</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>WinIMerge</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Archive Support</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>GnuWin32 Patch for Windows</term>
+
+            <listitem>
+              <para>TBD</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>言語</term>
+
+            <listitem>
+              <para>WinMerge翻訳ファイル。WinMergeを、英語より異なる言語で使用したいなら、
+                この項目を展開し、有効な翻訳ファイルをひとつ以上選択してください。
+                インストーラは、WinMergeフォルダの中に、あなたが選択した言語の*.po翻訳ファイルを含むLanguagesサブフォルダを作成します。
+                インストール後、WinMergeを起動し、ローカライズを変更することができます。
+                詳しくは、<xref linkend="Locales" />を参照してください。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para><guibutton>次へ</guibutton>をクリックしてください。</para>
+      </listitem>
+
+      <listitem>
+        <simpara>プログラムグループの指定ページでは、WinMergeのショートカットを設定することができます。</simpara>
+
+        <itemizedlist>
+          <listitem>
+            <para>プログラムショートカット作成の、既定の設定を受け入れるか、異なるフォルダを指定してください。</para>
+          </listitem>
+
+          <listitem>
+            <para>任意で、<guilabel>プログラムグループを作成しない(D)</guilabel>をチェックしてください。</para>
+          </listitem>
+        </itemizedlist>
+
+        <para><guibutton>次へ</guibutton>をクリックしてください。</para>
+      </listitem>
+
+      <listitem>
+        <para>追加タスクの選択ページでは、いくつかの追加タスクを指定してください。
+        <indexterm>
+            <primary>integration</primary>
+
+            <secondary>with version control system</secondary>
+          </indexterm><indexterm>
+            <primary>VCS</primary>
+
+            <see>version control systems</see>
+          </indexterm></para>
+
+        <variablelist>
+          <varlistentry>
+            <term>エクスプローラのコンテキストメニューに追加(E)</term>
+
+            <listitem>
+              <indexterm>
+                <primary>integration</primary>
+
+                <secondary>with Windows shell</secondary>
+              </indexterm>
+
+              <indexterm>
+                <primary>Windows shell integration</primary>
+              </indexterm>
+
+              <para><link linkend="OpenPaths_shell-integ">Windowsエクスプローラから、WinMergeの比較操作を行う</link>ことを可能にします
+                (このシェル統合は、WinMergeの設定の中で、有効、または、無効にすることができます)。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>システム環境変数PATHへWinMergeのフォルダを追加する(A)</term>
+
+            <listitem>
+              <para>WinMergeのインストールフォルダを、システム環境変数へ追加します。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Integrate with TortoiseCVS<indexterm>
+                <primary>TortoiseCVS integration</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>WinMergeを、TortoiseCVSの差分比較ツールに設定します。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Integrate with TortoiseSVN<indexterm>
+                <primary>TortoiseSVN integration</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>WinMergeを、TortoiseSVNの差分比較ツールに設定します。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Integrate with TortoiseGIT<indexterm>
+                <primary>TortoiseGIT integration</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Sets WinMerge to be the TortoiseGIT diff application.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>デスクトップ上へアイコンを作成</term>
+
+            <listitem>
+              <para>デスクトップへ、WinMergeのショートカットを追加します。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>クイック起動ショートカットの作成</term>
+
+            <listitem>
+              <para>クイック起動へ、WinMergeのショートカットを追加します。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para><guibutton>次へ</guibutton>をクリックしてください。</para>
+      </listitem>
+
+      <listitem>
+        <simpara>インストール準備完了ページでは、インストール内容の設定を確かめてください。
+          もし必要なら、<guibutton>戻る(B)</guibutton>をクリックし、前のページで内容を変更してください。
+          インストール作業を続ける準備ができているなら、<guibutton>インストール(I)</guibutton>をクリックしてください。</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>インストーラが、ファイルのコピーを完了すると、最後の画面が表示されます。
+          二つのチェックボックスを使用して、作成されたWinMergeのスタートメニューフォルダが開けるかどうか、
+          WinMergeが起動可能かどうかを確認することができます。</simpara>
+      </listitem>
+    </orderedlist>
+  </section>
+
+  <section id="InstallFromArchive">
+    <title>圧縮ファイルからのインストール<indexterm>
+        <primary>archive, installing WinMerge from</primary>
+      </indexterm></title>
+
+    <para>WinMergeは、他のシステムコンポーネントから、ほとんど独立しています。
+        それはしっかりとWindowsに統合されず、多くのDLLを使用しません。
+        <!-- FIXME: なんかイマイチ。
+             It is not tightly integrated with Windows, and does not use many DLLs.-->
+    </para>
+
+    <para>アーカイブファイルは、正しいフォルダ構成を持ちます。WinMergeは、
+        このフォルダ構成を保ったまま、インストール場所へ展開されるべきです。
+        たとえば、ルートフォルダが、<filename class="directory">C:\Program Files\</filename>以下の
+        <filename class="directory">WinMerge-<replaceable>version</replaceable></filename>
+        (<filename class="directory">WinMerge-2.6.0</filename>など)フォルダに作成されます。
+        このフォルダをリネーム、または、ファイルを別のフォルダへ(フォルダ構成を保ったまま!)コピーすることができます。
+    </para>
+
+    <para>ファイル展開後、WinMergeは、起動する準備ができています。
+        シェル統合とアーカイブ統合は、次のセクションで説明される、追加のステップが必要です。
+    </para>
+  </section>
+
+  <section>
+    <title>インストーラなしでWindowsエクスプローラシェル統合を有効にする
+    <indexterm>
+        <primary>integration</primary>
+
+        <secondary>with Windows shell</secondary>
+      </indexterm><indexterm>
+        <primary>Windows shell integration</primary>
+      </indexterm></title>
+
+    <para>もし、インストールプログラムを使用せずに、シェル統合を有効にしたいなら、
+    シェル統合DLL(<filename>ShellExtension*.dll</filename>)を別に登録しなければなりません。</para>
+
+    <note>
+      <para>シェル統合のインストールは、Administrator権限を必要とします。</para>
+    </note>
+
+    <para>Open WinMerge and using the <xref
+    linkend="Configuration_shell-integ" /> in the Options window. In the
+    Options window use the <guibutton>Register shell extension</guibutton>
+    or <guibutton>Unregister shell extension</guibutton> buttons.</para>
+  </section>
+</article>
