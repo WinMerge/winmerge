@@ -5,7 +5,7 @@ call configuration.bat
 
 set docbook_inputfile=..\WinMerge_help.xml
 set docbook_use_stylesheet=build_html.xsl
-set docbook_outputdir=%docbook_build_path%\html-en
+set docbook_outputdir=%docbook_build_path%\html-jp
 set ads=false
 if "%1" == "withads" goto withads
 if not "%1" == "" goto withadserror
