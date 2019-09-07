@@ -66,6 +66,12 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 			nTimeDiff12 -= SmallTimeDiff * Timestamp::resolution();
 			nTimeDiff02 -= SmallTimeDiff * Timestamp::resolution();
 		}
+		else
+		{
+			nTimeDiff   -= Timestamp::resolution();
+			nTimeDiff12 -= Timestamp::resolution();
+			nTimeDiff02 -= Timestamp::resolution();
+		}
 		if (nTimeDiff <= 0 && nTimeDiff12 <= 0)
 			code = DIFFCODE::SAME;
 		else
