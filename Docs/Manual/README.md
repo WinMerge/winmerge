@@ -47,14 +47,11 @@ The batch files are also located at the same `build` subfolder.
 
 The main file is `build.bat`. Paths to the installed tools are written in the `configuration.bat` file.
 
- * `build.bat html` or `build_html.bat`  
+ * `build_html.bat`  
    Creates the HTML files under the `html` subdirectory at the `build` directory.
 
- * `build.bat html withads` or `build_html.bat withads`  
+ * `build_html.bat withads`  
    Creates the HTML files with adds under the `html` subdirectory at the `build` directory.
 
- * `build.bat htmlhelp` or `build_htmlhelp.bat`  
+ * `build_htmlhelp.bat`  
    Creates the CHM file under the `htmlhelp` subdirectory at the `build` directory.
-
- * `build.bat`  
-   Is the same like `build.bat html`.
