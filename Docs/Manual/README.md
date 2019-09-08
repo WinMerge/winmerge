@@ -1,6 +1,11 @@
-# User Manual in DocBook/XML
+# User Manuals in DocBook/XML
 
-Our Manual is written in DocBook and we generate HTML and CHM manuals for distributing.
+Our Manuals are written in DocBook and we generate HTML and CHM manuals for distributing.
+
+We have currently manuals in the following languages:
+
+ * [English](EN)
+ * [Japanese](JP)
 
 ## Useful DocBook resources
 
@@ -34,7 +39,7 @@ The easiest way is to download [our manual build tools package v1](https://sourc
 
 The package contains required tools for manual building. [Java Runtime (JRE)](https://www.java.com/) is the only external requirement.
 
-Installing the tools is easy - just unzip the tools package to folder `/Docs/Users/Manual/build`.
+Installing the tools is easy - just unzip the tools package to folder `/Docs/Manual/{LANG}/build`.
 
 ### Batch files
 
