@@ -2,26 +2,11 @@
   version="1.0">
 
 <!-- ********************************************************************
-     build-common.xsl
-
      WinMerge customization of the XSL DocBook stylesheet distribution.
-     Imported by other WinMerge build*.xsl files, so they use the parameters 
+     Imported by other WinMerge *.xsl files, so they use the parameters 
      and templates here unless they have their own versions. 
-
-     Do not modify any stock template directly in the DocBook XSL library. 
-     Instead, copy the template to this file or one of the other build*.xsl 
-     files, and modify only the copy. Any custom template supersedes the  
-     stock template of the same name. 
-
-     Please put any custom template in a section that identifies the 
-     source file in the stock XSL library. That makes it easy to maintain 
-     if the DocBook stock template changes. Likewise, any new ones (not based 
-     on stock templates) should go in a section  marked, "New templates".
-     ******************************************************************** 
-     Changes
-     Created July 2008
-     3 Aug 2009: Added 'header.ads' custom template
      ******************************************************************** -->
+
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 html/param.xsl  parameters
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
@@ -38,9 +23,6 @@ html/param.xsl  parameters
 <xsl:param name="use.id.as.filename" select="1"/>
 <xsl:param name="chunker.output.indent" select="'yes'"></xsl:param>
 <xsl:param name="chunk.section.depth" select="0" />
-<xsl:param name="chunker.output.encoding" select="'Shift_JIS'"/>
-<xsl:param name="l10n.gentext.language" select="'ja'"/>
-<xsl:param name="l10n.gentext.default.language" select="'ja'"/>
 <xsl:param name="generate.toc">book toc,title article nop</xsl:param>
 <xsl:param name="toc.section.depth">1</xsl:param>
 <xsl:param name="runinhead.default.title.end.punct">:</xsl:param>

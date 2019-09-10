@@ -3,20 +3,14 @@
 		version="1.0">
 
 <!-- ********************************************************************
-     build_htmlhelp.xsl
      WinMerge customization of the XSL DocBook stylesheet distribution.
      Contains customized templates and parameters for the HTML Help version 
      of help; all other styles are inherited from the WinMerge 
-     build_common.xsl and the stock DocBook stylesheets in ../build/xsl. 
- 
-     See build_common.xsl for editing instructions.
-     ******************************************************************** 
-     Changes:
-     Created July 2008
+     common.xsl and the stock DocBook stylesheets in ../../Shared/xsl. 
      ******************************************************************** -->
 
 <xsl:import href="../../Shared/xsl/htmlhelp/htmlhelp.xsl"/>
-<xsl:import href="build_common.xsl"/>
+<xsl:import href="common.xsl"/>
 
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 html/param.xsl  parameters
@@ -25,7 +19,6 @@ html/param.xsl  parameters
 <xsl:param name="generate.toc">set nop</xsl:param>
 <xsl:param name="use.id.as.filename" select="1"/>
 <xsl:param name="html.stylesheet">css/help.css</xsl:param>
-<xsl:param name="htmlhelp.encoding" select="'Shift_JIS'"/>
 <xsl:param name="htmlhelp.use.hhk" select="1"/>
 <xsl:param name="htmlhelp.default.topic">htmlhelp/About_Doc.html</xsl:param> 
 <xsl:param name="htmlhelp.title">WinMerge Help</xsl:param>
