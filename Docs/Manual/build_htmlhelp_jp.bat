@@ -43,22 +43,6 @@ del "%docbook_outputdir%\*.html"
 del "htmlhelp.hhp"
 del "toc.hhc"
 del "index.hhk"
-
-rem if Windows NT/2000/XP...
-if "%OS%" == "Windows_NT" goto cleannt
-rem if Windows 9x...
-if "%OS%" == "" goto clean9x
-
-:clean9x
-deltree /Y "%docbook_outputdir%\images"
-deltree /Y "%docbook_outputdir%\screenshots"
-deltree /Y "%docbook_outputdir%\art"
-deltree /Y "%docbook_outputdir%\css"
-if not "%docbook_build_path%" == "." deltree /Y "%docbook_outputdir%"
-echo Finished!
-goto end
-
-:cleannt
 rd /S /Q "%docbook_outputdir%\images"
 rd /S /Q "%docbook_outputdir%\screenshots"
 rd /S /Q "%docbook_outputdir%\art"
