@@ -39,19 +39,21 @@ The easiest way is to download [our manual build tools package v1](https://sourc
 
 The package contains required tools for manual building. [Java Runtime (JRE)](https://www.java.com/) is the only external requirement.
 
-Installing the tools is easy - just unzip the tools package to folder `/Docs/Manual/{LANG}/build`.
+Installing the tools is easy - just unzip the tools package to folder `\Docs\Manual\Shared`.
 
 ### Batch files
 
-The batch files are also located at the same `build` subfolder.
+The batch files are located at the `\Docs\Manual` folder.
 
-The main file is `build.bat`. Paths to the installed tools are written in the `configuration.bat` file.
+Every language has his one batch files. Paths to the installed tools are written in the `configuration.bat` file.
 
- * `build_html.bat`  
-   Creates the HTML files under the `html` subdirectory at the `build` directory.
+ * `build_html_en.bat`  
+   Creates the English HTML files *without ads* under the folder `\Build\Manual\html-en`.
 
- * `build_html.bat withads`  
-   Creates the HTML files with adds under the `html` subdirectory at the `build` directory.
+ * `build_html_en.bat withads`  
+   Creates the English HTML files *with adds* under the folder `\Build\Manual\html-en`.
 
- * `build_htmlhelp.bat`  
-   Creates the CHM file under the `htmlhelp` subdirectory at the `build` directory.
+ * `build_htmlhelp_en.bat`  
+   Creates the English CHM file under the folder `Build\Manual\htmlhelp`.
+
+The Japanese batch files ends with `_jp` for example.
