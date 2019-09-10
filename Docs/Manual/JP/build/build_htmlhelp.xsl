@@ -15,7 +15,7 @@
      Created July 2008
      ******************************************************************** -->
 
-<xsl:import href="../build/xsl/htmlhelp/htmlhelp.xsl"/>
+<xsl:import href="../../Shared/xsl/htmlhelp/htmlhelp.xsl"/>
 <xsl:import href="build_common.xsl"/>
 
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  

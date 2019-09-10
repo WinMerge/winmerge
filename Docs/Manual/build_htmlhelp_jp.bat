@@ -3,8 +3,8 @@
 pushd %~dp0
 call configuration.bat
 
-set docbook_inputfile=..\WinMerge_help.xml
-set docbook_use_stylesheet=build_htmlhelp.xsl
+set docbook_inputfile=JP\WinMerge_help.xml
+set docbook_use_stylesheet=JP\build\build_htmlhelp.xsl
 set docbook_outputdir=htmlhelp
 set docbook_outputdir_final=%docbook_build_path%\%docbook_outputdir%
 
@@ -13,20 +13,20 @@ if not exist "%docbook_outputdir_final%" mkdir "%docbook_outputdir_final%"
 
 echo Copy images...
 if not exist "%docbook_outputdir%\images" mkdir "%docbook_outputdir%\images"
-copy "..\images\*.gif" "%docbook_outputdir%\images\."
-copy "..\images\*.png" "%docbook_outputdir%\images\."
+copy "JP\images\*.gif" "%docbook_outputdir%\images\."
+copy "JP\images\*.png" "%docbook_outputdir%\images\."
 
 echo Copy screenshots...
 if not exist "%docbook_outputdir%\screenshots" mkdir "%docbook_outputdir%\screenshots"
-copy "..\screenshots\*.*" "%docbook_outputdir%\screenshots\."
+copy "JP\screenshots\*.*" "%docbook_outputdir%\screenshots\."
 
 echo Copy art...
 if not exist "%docbook_outputdir%\art" mkdir "%docbook_outputdir%\art"
-copy "..\art\*.*" "%docbook_outputdir%\art\."
+copy "JP\art\*.*" "%docbook_outputdir%\art\."
 
 echo Copy stylesheets...
 if not exist "%docbook_outputdir%\css" mkdir "%docbook_outputdir%\css"
-copy "..\css\*.css" "%docbook_outputdir%\css\."
+copy "JP\css\*.css" "%docbook_outputdir%\css\."
 
 echo Create HTML files...
 %docbook_java_exe% %docbook_java_parameters% -cp %docbook_saxon_jar%;%docbook_xerces_jar%;%docbook_saxon_xsl% -Djavax.xml.parsers.DocumentBuilderFactory=%DBFACTORY% -Djavax.xml.parsers.SAXParserFactory=%SPFACTORY% -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=%XINCLUDE% com.icl.saxon.StyleSheet %docbook_inputfile% %docbook_use_stylesheet% base.dir=%docbook_outputdir%\

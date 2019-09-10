@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE section PUBLIC  "-//OASIS//DTD DocBook XML V4.5//EN"  "build/dtd/docbookx.dtd">
+<!DOCTYPE section PUBLIC  "-//OASIS//DTD DocBook XML V4.5//EN"  "../Shared/dtd/docbookx.dtd">
 <section id="select-unpacker">
   <title>Using the Select Unpacker dialog</title>
 
