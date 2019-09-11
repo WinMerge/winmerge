@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-"../Shared/dtd/docbookx.dtd" [
+"../Tools/dtd/docbookx.dtd" [
 <!ENTITY About_Doc SYSTEM "About_Doc.xml">
 <!ENTITY Quick_start SYSTEM "Quick_start.xml">
 <!ENTITY Introduction SYSTEM "Introduction.xml">

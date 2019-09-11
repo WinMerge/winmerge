@@ -39,7 +39,7 @@ The easiest way is to download [our manual build tools package v1](https://sourc
 
 The package contains required tools for manual building. [Java Runtime (JRE)](https://www.java.com/) is the only external requirement.
 
-Installing the tools is easy - just unzip the tools package to folder `\Docs\Manual\Shared`.
+Installing the tools is easy - just unzip the tools package to folder `\Docs\Manual\Tools`.
 
 ### Batch files
 

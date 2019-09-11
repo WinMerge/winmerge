@@ -6,10 +6,10 @@
      WinMerge customization of the XSL DocBook stylesheet distribution.
      Contains customized templates and parameters for the HTML version 
      of help; all other styles are inherited from the WinMerge 
-     common.xsl and the stock DocBook stylesheets in ../../Shared/xsl. 
+     common.xsl and the stock DocBook stylesheets in ../../Tools/xsl. 
      ******************************************************************** -->
 
-<xsl:import href="../../Shared/xsl/html/chunk.xsl"/>
+<xsl:import href="../../Tools/xsl/html/chunk.xsl"/>
 <xsl:import href="common.xsl"/>
 
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
