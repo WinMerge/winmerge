@@ -3,7 +3,7 @@
 pushd %~dp0
 call configuration.bat
 
-set docbook_inputfile=EN\WinMerge_help.xml
+set docbook_inputfile=EN\Index.xml
 set docbook_use_stylesheet=EN\xsl\htmlhelp.xsl
 set docbook_outputdir=htmlhelp
 set docbook_outputdir_final=%docbook_build_path%\%docbook_outputdir%
