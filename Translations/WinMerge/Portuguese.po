@@ -1,3 +1,4 @@
+﻿# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -11,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2019-09-12 19:16+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
@@ -195,7 +196,7 @@ msgstr "Ab&rir Ficheiro de Conflito..."
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "Abrir Pro&jeto...\\Ctrl+J"
+msgstr "Abrir Pro&jeto...\tCtrl+J"
 
 #, c-format
 msgid "Sa&ve Project..."
