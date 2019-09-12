@@ -1,6 +1,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
+# * Hugo Carvalho <hugokarvalho@hotmail.com>
 # * Nelson Simão
 # * Lippe35
 #
