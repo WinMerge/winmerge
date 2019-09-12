@@ -124,6 +124,7 @@ Localization:
 * Portuguese (Portugal):
   Nelson Simão
   Lippe35
+  Hugo Carvalho <hugokarvalho@hotmail.com>
 
 * Romanian:
   Cristian Arghiroiu <cristi.arghiroiu@gmail.com>
