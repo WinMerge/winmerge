@@ -63,40 +63,6 @@ String TempFile::Create(const String& prefix, const String& ext)
 }
 
 /**
- * @brief Create a temporary file from existing file's contents.
- * This function creates a temporary file to temp folder and copies
- * given file's contents to there.
- * @param [in] filepath Full path to existing file.
- * @param [in] prefix Prefix for the temporary filename.
- * @return Full path to the temporary file.
- */
-String TempFile::CreateFromFile(const String& filepath, const String& prefix)
-{
-	String temp = env::GetTemporaryPath();
-	if (temp.empty())
-	{
-		return _T("");
-	}
-
-	String pref = prefix;
-	if (pref.empty())
-		pref = _T("wmtmp");
-
-	temp = env::GetTemporaryFileName(temp, pref, nullptr);
-	if (!temp.empty())
-	{
-		// Scratchpads don't have a file to copy.
-		m_path = temp;
-
-		if (::CopyFileW(TFile(filepath).wpath().c_str(), temp.c_str(), FALSE))
-		{
-			::SetFileAttributes(temp.c_str(), FILE_ATTRIBUTE_NORMAL);
-		}
-	}
-	return temp;
-}
-
-/**
  * @brief Delete the temporary file, if it exists.
  * @return true if there was no error.
  */
