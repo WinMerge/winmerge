@@ -29,15 +29,14 @@ See these tutorials for editing DocBook:
 
 Our preferred build system uses the following tools:
 
- * [Java Runtime Environment](https://www.java.com/)
- * [Saxon](http://saxon.sourceforge.net/)
+ * [xsltproc](http://xmlsoft.org/XSLT/)
  * [DocBook DTD](https://www.docbook.org/xml/)
  * [XSL StyleSheets](https://sourceforge.net/project/showfiles.php?group_id=21935&package_id=16608)
  * [HTML Help Compiler](https://www.microsoft.com/en-us/download/details.aspx?id=21138)
 
-The easiest way is to download [our manual build tools package v1](https://sourceforge.net/project/showfiles.php?group_id=13216&package_id=284332&release_id=614099).
+The easiest way is to download [our manual build tools package v2](https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip).
 
-The package contains required tools for manual building. [Java Runtime (JRE)](https://www.java.com/) is the only external requirement.
+The package contains required tools for manual building.
 
 Installing the tools is easy - just unzip the tools package to folder `\Docs\Manual\Tools`.
 
