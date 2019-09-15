@@ -656,10 +656,11 @@
           <primary>IgnoreFieldsTab.dll plugin file</primary>
         </indexterm></filename></title>
 
-      <para>This plugin is for files that use fields and tabs as delimiters
-      (<application>for examle, Excel</application> files saved in the <filename
-      class="extension">*.txt</filename> format). It ignores the delimiter
-      characters. The first field is number 1.</para>
+      <para>このプラグインは、フィールドとタブを区切り記号として使用するファイル用です
+      (<application>たとえばExcel </application>ファイルは<filename
+      class="extension">*.txt</filename>形式で保存されます）。 区切り文字は無視されます。
+      最初のフィールドの番号は1です。
+      </para>
 
       <para>To specify the delimiters, use plugin settings dialog or rename the <filename>dll</filename> using
       the same parameter fields used for <xref
@@ -687,8 +688,9 @@
           <primary>IgnoreLeadingLineNumbers.dll plugin file</primary>
         </indexterm></filename></title>
 
-      <para>This plugin ignores the leading line numbers in text files (for
-      example, NC and BASIC files).</para>
+      <para>このプラグインは、テキストファイル
+      (NCファイルやBASICファイルなど)の先頭の行番号を無視します。
+      </para>
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
@@ -716,11 +718,11 @@
           <primary>insert datetime.sct plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Adds two functions to the <menuchoice>
-          <guimenu>Plugins</guimenu>
+      <para><menuchoice>
+          <guimenu>プラグイン</guimenu>
 
-          <guisubmenu>Scripts</guisubmenu>
-        </menuchoice> menu:</para>
+          <guisubmenu>スクリプト</guisubmenu>
+        </menuchoice> メニューに2つの機能を追加します:</para>
 
       <itemizedlist>
         <listitem>

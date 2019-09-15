@@ -3,3 +3,7 @@ hhc/
 saxon/
 xerces/
 xsl/
+bin/
+include/
+lib/
+readme.txt

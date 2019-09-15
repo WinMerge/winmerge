@@ -15,6 +15,9 @@
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 html/param.xsl  parameters
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
+<xsl:param name="chunker.output.encoding" select="'Shift_JIS'"/>
+<xsl:param name="l10n.gentext.language" select="'ja'"/>
+<xsl:param name="l10n.gentext.default.language" select="'ja'"/>
 <xsl:param name="suppress.navigation" select="1"/>
 <xsl:param name="generate.toc">set nop</xsl:param>
 <xsl:param name="use.id.as.filename" select="1"/>
