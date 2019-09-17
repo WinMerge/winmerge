@@ -47,7 +47,7 @@ msgstr "Copier depuis la Gauche"
 
 #, c-format
 msgid "Copy fro&m Right"
-msgstr "Coper depuis la Droite"
+msgstr "Copier depuis la Droite"
 
 #, c-format
 msgid "&Select Line Difference"
@@ -1262,7 +1262,7 @@ msgstr "&Confirmer la fermeture de plusieurs fenêtres"
 
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "Préserver le timbre horaire lors de comparaison de fichier"
+msgstr "Préserver l'horodatage lors de comparaison de fichier"
 
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
@@ -1603,7 +1603,7 @@ msgstr "Pause"
 
 #, c-format
 msgid "Continue"
-msgstr "Continue"
+msgstr "Continuer"
 
 #, c-format
 msgid "Comparing items..."
@@ -1611,7 +1611,7 @@ msgstr "Comparaison des éléments..."
 
 #, c-format
 msgid "Items compared:"
-msgstr "Éléments comparés:"
+msgstr "Éléments comparés :"
 
 #, c-format
 msgid "Items total:"
@@ -1855,7 +1855,7 @@ msgstr "Page de code &système"
 
 #, c-format
 msgid "According to WinMerge User Interface"
-msgstr "Conformément à l'&interface usager WinMerge"
+msgstr "Conformément à l'&interface utilisateur WinMerge"
 
 #, c-format
 msgid "Custom codepage:"
@@ -1899,7 +1899,7 @@ msgstr "Nombres :"
 
 #, c-format
 msgid "Operators:"
-msgstr "Opérateurs:"
+msgstr "Opérateurs :"
 
 #, c-format
 msgid "Strings:"
@@ -1911,11 +1911,11 @@ msgstr "Préprocesseur :"
 
 #, c-format
 msgid "User 1:"
-msgstr "Usager 1 :"
+msgstr "Utilisateur 1 :"
 
 #, c-format
 msgid "User 2:"
-msgstr "Usager 2 :"
+msgstr "Utilisateur 2 :"
 
 #, c-format
 msgid "Bold"
@@ -1971,11 +1971,11 @@ msgstr "Quel type de filtre voulez-vous créer ?"
 
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "Filtre partagé (pour tous les usagers de l'odinateur)"
+msgstr "Filtre partagé (pour tous les utilisateurs de l'ordinateur)"
 
 #, c-format
 msgid "Private Filter (only for current user)"
-msgstr "Filtre privé (pour l'usager actuel seulement)"
+msgstr "Filtre privé (pour l'utilisateur actuel seulement)"
 
 #, c-format
 msgid "Archive Support"
@@ -2139,7 +2139,7 @@ msgstr "Créer les fichiers d'archive sous:"
 
 #, c-format
 msgid "&Folder compare"
-msgstr "comparaison de Répert&oires"
+msgstr "Comparaison de Répert&oires"
 
 #, c-format
 msgid "Fil&e compare"
@@ -2263,7 +2263,7 @@ msgstr "Igno&rer les points d'analyse"
 
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr "&Limite de comparaison rapide (MO) :"
+msgstr "&Limite de comparaison rapide (Mo) :"
 
 msgid "&Binary compare limit (MB):"
 msgstr "Limitation de la taille de comparaison des fichiers &binaire :"
@@ -3620,7 +3620,7 @@ msgstr ""
 "comparaison ?\n"
 "\n"
 "Notez bien: Si vous voulez toujours considérer une telle égalité. "
-"Définnissez l'option: Ignorer les différences de fin de ligne à la fenêtre "
+"Définissez l'option: Ignorer les différences de fin de ligne à la fenêtre "
 "des Préférences sous l'onglet Comparaison (accessible avec le menu Edition/"
 "Préférences)."
 
