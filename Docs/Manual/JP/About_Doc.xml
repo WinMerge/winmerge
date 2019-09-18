@@ -2,9 +2,7 @@
 <article id="About_Doc">
   <title>WinMergeヘルプについて</title>
 
-  <para>このドキュメントはWinMerge <xi:include href="replaceables.xml"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xpointer="element(version)" />のヘルプです。</para>
+  <para>このドキュメントはWinMerge &WinMergeVersion; のヘルプです。</para>
 
   <section>
     <title>対象読者と範囲</title>

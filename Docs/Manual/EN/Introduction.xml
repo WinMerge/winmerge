@@ -23,8 +23,7 @@
   <para>The goal of WinMerge development is to make comparing, synchronizing,
   and merging folders and files easy and fast, while maintaining maximum
   reliability. Ease of use is of key importance for reducing errors. The latest
-  version, <xi:include href="replaceables.xml"
-  xmlns:xi="http://www.w3.org/2001/XInclude" xpointer="element(version)" /> is
+  version, &WinMergeVersion; is
   considered a stable and reliable program to use.</para>
 
   <para>Please note that WinMerge is not freeware (as many sites on the Web have
