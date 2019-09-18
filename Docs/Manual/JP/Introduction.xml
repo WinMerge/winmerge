@@ -21,7 +21,7 @@
   <para>WinMerge開発のゴールは、フォルダやファイルを比較、同期、
   そして、マージを簡単かつ迅速に行えるようにすることです。
   使い易さは、間違いを減らすために重要なことです。
-  最新版<xi:include href="replaceables.xml" xmlns:xi="http://www.w3.org/2001/XInclude" xpointer="element(version)" />は、
+  最新版 &WinMergeVersion; は、
   安定性と信頼性が考慮されています。</para>
 
   <para>WinMergeは、( 多くのWebサイトで言及されているように)フリーウェアでないことに注意してください。
