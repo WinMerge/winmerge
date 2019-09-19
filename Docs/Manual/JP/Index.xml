@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "../Tools/dtd/docbookx.dtd" [
+<!ENTITY % VersionNumbers SYSTEM "_VersionNumbers.xml">
+  %VersionNumbers;
 <!ENTITY About_Doc SYSTEM "About_Doc.xml">
 <!ENTITY Quick_start SYSTEM "Quick_start.xml">
 <!ENTITY Introduction SYSTEM "Introduction.xml">
@@ -22,9 +24,7 @@
 ]>
 <book id="index">
   <bookinfo>
-    <title>WinMerge <xi:include href="replaceables.xml"
-    xmlns:xi="http://www.w3.org/2001/XInclude" xpointer="element(version)" />
-    ヘルプ</title>
+    <title>WinMerge &WinMergeVersion; ヘルプ</title>
 
     <productname>WinMerge</productname>
 
@@ -56,7 +56,7 @@
         <firstname>Denis</firstname>
       </author>
 
-      <author>
+      <author role="first-last">
         <surname>Grimm</surname>
 
         <firstname>Dean</firstname>
@@ -94,8 +94,7 @@
 
   <!-- Note to maintainers:
   Not all doc files are included in this file. There are also fragment files 
-  included at the topic level. For example, several files include elements from 
-  replaceables.xml. Other fragment file is select-unpacker.xml.
+  included at the topic level. A fragment file is for example select-unpacker.xml.
   Please do not delete xml files in this directory unless you know for sure 
   that they are not used. -->
 
