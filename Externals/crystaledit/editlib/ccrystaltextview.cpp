@@ -1132,7 +1132,6 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               bool bdisphex = false;
               for (int next = i; i < nCount1 + ibegin ; i = next)
                 {
-                  next = m_iterChar.next();
                   if (line[i] == '\t') // Escape sequence leadin?
                   {
                     bdisphex = true;
@@ -1140,14 +1139,15 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                     line.SetAt(i, ' ');
                     nSumWidth += nWidths[i - ibegin] = nCharWidthNarrowed;
                     // 1st hex digit has normal width.
-                    nSumWidth += nWidths[++i - ibegin] = nCharWidth;
+                    nSumWidth += nWidths[m_iterChar.next() - ibegin] = nCharWidth;
                     // 2nd hex digit is padded by half the width of a character cell.
-                    nSumWidth += nWidths[++i - ibegin] = nCharWidthWidened;
+                    nSumWidth += nWidths[m_iterChar.next() - ibegin] = nCharWidthWidened;
                   }
                   else
                   {
                     nSumWidth += nWidths[i - ibegin] = GetCharCellCountFromChar(static_cast<const TCHAR *>(line) + i) * nCharWidth;
                   }
+                   next = m_iterChar.next();
                 }
 
               if (ptOrigin.x + nSumWidth > rcClip.left)
