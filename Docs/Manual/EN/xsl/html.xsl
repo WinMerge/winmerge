@@ -15,6 +15,6 @@ Custom parameters
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
 <!-- Define suffix to appear after title text in head/title element of 
 every topic -->
-<xsl:param name="headtitle.suffix" select="' - WinMerge 2.12 Manual'"/>
+<xsl:param name="headtitle.suffix" select="' - WinMerge 2.16 Manual'"/>
 
 </xsl:stylesheet>
