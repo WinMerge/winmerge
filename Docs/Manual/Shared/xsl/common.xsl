@@ -30,7 +30,7 @@ html/param.xsl  parameters
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 common/local.l10n.xml 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
-<!-- WinMerge: Change generated text -->
+<!-- WinMerge: Remove "Section X.Y" from links -->
 <xsl:param name="local.l10n.xml" select="document('')"/>
 <l:i18n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
   <l:l10n language="en">
@@ -52,55 +52,6 @@ html/docbook.xsl
   <link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
 </xsl:template>
 
-<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-html/autotoc.xsl
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
-<!-- WinMerge: turn off section numbers in TOC. 
-      Note: if we decide to set  section.autolabel to 0 above, this customization can be removed -->
-<xsl:template name="toc.line">
-  <xsl:param name="toc-context" select="."/>
-  <xsl:param name="depth" select="1"/>
-  <xsl:param name="depth.from.context" select="8"/>
-
- <span>
-  <xsl:attribute name="class"><xsl:value-of select="local-name(.)"/></xsl:attribute>
-
-  <!-- * if $autotoc.label.in.hyperlink is zero, then output the label -->
-  <!-- * before the hyperlinked title (as the DSSSL stylesheet does) -->
-  <xsl:if test="$autotoc.label.in.hyperlink = 0">
-    <xsl:variable name="label">
-      <xsl:apply-templates select="." mode="label.markup"/>
-    </xsl:variable>
-    <xsl:copy-of select="$label"/>
-    <xsl:if test="$label != ''">
-      <xsl:value-of select="$autotoc.label.separator"/>
-    </xsl:if>
-  </xsl:if>
-
-  <a>
-    <xsl:attribute name="href">
-      <xsl:call-template name="href.target">
-        <xsl:with-param name="context" select="$toc-context"/>
-        <xsl:with-param name="toc-context" select="$toc-context"/>
-      </xsl:call-template>
-    </xsl:attribute>
-    
-  <!-- * if $autotoc.label.in.hyperlink is non-zero, then output the label -->
-  <!-- * as part of the hyperlinked title -->
-  <!-- WinMerge: add test for section -->
-  <xsl:if test="not($autotoc.label.in.hyperlink = 0) and local-name(.) != 'section'" >
-    <xsl:variable name="label">
-      <xsl:apply-templates select="." mode="label.markup"/>
-    </xsl:variable>
-    <xsl:copy-of select="$label"/>
-    <xsl:if test="$label != ''"> 
-      <xsl:value-of select="$autotoc.label.separator"/>
-    </xsl:if>
-  </xsl:if>
-    <xsl:apply-templates select="." mode="titleabbrev.markup"/>
-  </a>
-  </span>
-</xsl:template>
 
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 WinMerge custom templates 
@@ -123,7 +74,7 @@ WinMerge custom templates
       google_color_text = "000000";
       google_color_url = "008000";
     //--&gt;</script>
-    <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+    <script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
     </script>
   </div>
 </xsl:template>
