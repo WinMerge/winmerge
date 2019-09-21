@@ -25,6 +25,12 @@ See these tutorials for editing DocBook:
  * [Customising print formats with DSSL](http://docbook.sourceforge.net/release/dsssl/current/doc/print/)
  * [DocBook XSL: The Complete Guide](http://www.sagehill.net/docbookxsl/index.html)
 
+### Important files
+
+ * `{LANG}\_Copyrights.xml` *Update copyright information’s*
+ * `{LANG}\_VersionNumbers.xml` *Update WinMerge version number and Manual revision*
+ * `{LANG}\xsl\html.xsl` *Update WinMerge version number at parameter `headtitle.suffix`*
+
 ## Building the manual
 
 Our preferred build system uses the following tools:
@@ -34,9 +40,7 @@ Our preferred build system uses the following tools:
  * [XSL StyleSheets](https://sourceforge.net/project/showfiles.php?group_id=21935&package_id=16608)
  * [HTML Help Compiler](https://www.microsoft.com/en-us/download/details.aspx?id=21138)
 
-The easiest way is to download [our manual build tools package v2](https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip).
-
-The package contains required tools for manual building.
+The easiest way is to download [our manual build tools package v2](https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip). The package contains required tools for manual building.
 
 Installing the tools is easy - just unzip the tools package to folder `\Docs\Manual\Tools`.
 
