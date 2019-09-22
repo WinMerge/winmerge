@@ -242,6 +242,7 @@ extern const String OPT_PATCHCREATOR_INCLUDE_CMD_LINE OP("PatchCreator/IncludeCm
 // Plugins
 extern const String OPT_PLUGINS_ENABLED OP("Settings/PluginsEnabled");
 extern const String OPT_PLUGINS_DISABLED_LIST OP("Settings/PluginsDisabledList");
+extern const String OPT_PLUGINS_CUSTOM_FILTERS_LIST OP("Settings/PluginsCustomFiltersList");
 extern const String OPT_PLUGINS_UNPACKER_MODE OP("Settings/UnpackerMode");
 extern const String OPT_PLUGINS_PREDIFFER_MODE OP("Settings/PredifferMode");
 extern const String OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION OP("Plugins/UnpackDontCheckExtension");

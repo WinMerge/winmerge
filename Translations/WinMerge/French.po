@@ -2201,6 +2201,9 @@ msgstr "Plugiciels"
 msgid "&Enable plugins"
 msgstr "&Activer les plugiciels"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Intégration à l'explorateur"

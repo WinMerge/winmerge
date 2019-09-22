@@ -1,4 +1,4 @@
-# Released under the "GNU General Public License"
+﻿# Released under the "GNU General Public License"
 #
 # Translators:
 # * sld <sld at mail.bg>
@@ -1677,6 +1677,9 @@ msgstr "Добавки"
 msgid "&Enable plugins"
 msgstr "Включване на &добавките"
 
+msgid "File filters:"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Сливане със системата"
 
@@ -3284,3 +3287,4 @@ msgid ""
 "$file: Path name of the current file\n"
 "$linenum: Line number of the current cursor position"
 msgstr ""
+

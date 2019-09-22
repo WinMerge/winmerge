@@ -2187,6 +2187,9 @@ msgstr "Uygulama Ekleri"
 msgid "&Enable plugins"
 msgstr "&Uygulama Ekleri Kullanılsın"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Windows Bütünleştirmesi"

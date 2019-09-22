@@ -80,6 +80,7 @@ static vector<String> theScriptletList;
 static vector<HANDLE> theScriptletHandleList;
 static bool scriptletsLoaded=false;
 static FastMutex scriptletsSem;
+static std::unordered_map<String, String> customFiltersMap;
 
 template<class T> struct AutoReleaser
 {
@@ -356,6 +357,46 @@ ScriptletError(const String & scriptletFilepath, const wchar_t *transformationEv
     LogErrorString(msg);
 }
 
+static std::unordered_set<String> GetDisabledPluginList()
+{
+	std::unordered_set<String> list;
+	std::basic_stringstream<TCHAR> ss(GetOptionsMgr()->GetString(OPT_PLUGINS_DISABLED_LIST));
+	String name;
+	while (std::getline(ss, name, _T('|')))
+		list.insert(name);
+	return list;
+}
+
+static std::unordered_map<String, String> GetCustomFiltersMap()
+{
+	std::unordered_map<String, String> map;
+	std::basic_stringstream<TCHAR> ss(GetOptionsMgr()->GetString(OPT_PLUGINS_CUSTOM_FILTERS_LIST));
+	String nameAndFiltersText;
+	while (std::getline(ss, nameAndFiltersText, _T('\t')))
+	{
+		size_t pos = nameAndFiltersText.find_first_of(':');
+		if (pos != String::npos)
+		{
+			String name = nameAndFiltersText.substr(0, pos);
+			String filtersText = nameAndFiltersText.substr(pos + 1);
+			map.emplace(name, filtersText);
+		}
+	}
+	map.emplace(_T("||initialized||"), _T(""));
+	return map;
+}
+
+static String GetCustomFilters(const String& name, const String& filtersTextDefault)
+{
+	FastMutex::ScopedLock lock(scriptletsSem);
+	if (customFiltersMap.empty())
+		customFiltersMap = GetCustomFiltersMap();
+	if (customFiltersMap.find(name) != customFiltersMap.end())
+		return customFiltersMap[name];
+	else
+		return filtersTextDefault;
+}
+
 /**
  * @brief Tiny structure that remembers current scriptlet & event info for calling Log
  */
@@ -492,13 +533,13 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 			scinfo.Log(_T("Plugin had PluginFileFilters property, but error getting its value"));
 			return -70; // error (Plugin had PluginFileFilters property, but error getting its value)
 		}
-		m_filtersText = ucr::toTString(ret.bstrVal);
+		m_filtersTextDefault = ucr::toTString(ret.bstrVal);
 		hasPluginFileFilters = true;
 	}
 	else
 	{
 		m_bAutomatic = false;
-		m_filtersText = _T(".");
+		m_filtersTextDefault = _T(".");
 	}
 	VariantClear(&ret);
 
@@ -526,10 +567,11 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *tran
 	}
 	VariantClear(&ret);
 
-	LoadFilterString();
-
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);
+
+	m_filtersText = GetCustomFilters(m_name, m_filtersTextDefault);
+	LoadFilterString();
 
 	// Clear the autorelease holder
 	drv.p = nullptr;
@@ -657,16 +699,6 @@ static void RemoveScriptletCandidate(const String &scriptletFilepath)
 	}
 }
 
-static std::unordered_set<String> GetDisabledPluginList()
-{
-	std::unordered_set<String> list;
-	std::basic_stringstream<TCHAR> ss(GetOptionsMgr()->GetString(OPT_PLUGINS_DISABLED_LIST));
-	String name;
-	while (std::getline(ss, name, _T('|')))
-		list.insert(name);
-	return list;
-}
-
 /** 
  * @brief Get available scriptlets for an event
  *
@@ -770,7 +802,8 @@ PluginArray * CScriptsOfThread::GetAvailableScripts(const wchar_t *transformatio
 
 void CScriptsOfThread::SaveSettings()
 {
-	std::vector<String> list;
+	std::vector<String> listDisabled;
+	std::vector<String> listCustomFilters;
 	for (int i = 0; i < nTransformationEvents; i++)
 	{
 		if (m_aPluginsByEvent[i] == nullptr)
@@ -779,10 +812,14 @@ void CScriptsOfThread::SaveSettings()
 		{
 			const PluginInfoPtr & plugin = m_aPluginsByEvent[i]->at(j);
 			if (plugin->m_disabled)
-				list.push_back(String(plugin->m_name));
+				listDisabled.emplace_back(plugin->m_name);
+			if (plugin->m_filtersTextDefault != plugin->m_filtersText)
+				listCustomFilters.emplace_back(plugin->m_name + _T(":") + plugin->m_filtersText);
+			customFiltersMap.insert_or_assign(plugin->m_name, plugin->m_filtersText);
 		}
 	}
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_DISABLED_LIST, strutils::join(list.begin(), list.end(), _T("|")));
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_DISABLED_LIST, strutils::join(listDisabled.begin(), listDisabled.end(), _T("|")));
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_CUSTOM_FILTERS_LIST, strutils::join(listCustomFilters.begin(), listCustomFilters.end(), _T("\t")));
 }
 
 void CScriptsOfThread::FreeAllScripts()

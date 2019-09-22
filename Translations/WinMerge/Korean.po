@@ -2192,6 +2192,9 @@ msgstr "플러그인"
 msgid "&Enable plugins"
 msgstr "플러그인 사용"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "쉘 통합"

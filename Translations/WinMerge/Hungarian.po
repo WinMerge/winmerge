@@ -2180,6 +2180,9 @@ msgstr "Bővítmények"
 msgid "&Enable plugins"
 msgstr "Bővítmény&ek bekapcsolása"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr ""

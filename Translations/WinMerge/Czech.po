@@ -2182,6 +2182,9 @@ msgstr "Pluginy"
 msgid "&Enable plugins"
 msgstr "&Povolit pluginy"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Systémová integrace"

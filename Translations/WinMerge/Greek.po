@@ -2179,6 +2179,9 @@ msgstr "Αρθρώματα"
 msgid "&Enable plugins"
 msgstr "Ενεργοποίηση Αρθρωμάτων"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr ""

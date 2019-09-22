@@ -2186,6 +2186,9 @@ msgstr "Плагины"
 msgid "&Enable plugins"
 msgstr "&Включить плагины"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Интеграция в оболочку"

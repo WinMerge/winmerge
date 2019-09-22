@@ -176,6 +176,7 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
 	pOptions->InitOption(OPT_PLUGINS_DISABLED_LIST, _T(""));
+	pOptions->InitOption(OPT_PLUGINS_CUSTOM_FILTERS_LIST, _T(""));
 	pOptions->InitOption(OPT_PLUGINS_UNPACKER_MODE, PLUGIN_MANUAL);
 	pOptions->InitOption(OPT_PLUGINS_PREDIFFER_MODE, PLUGIN_MANUAL);
 	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, false);

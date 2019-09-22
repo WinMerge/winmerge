@@ -2190,6 +2190,9 @@ msgstr "Plugins"
 msgid "&Enable plugins"
 msgstr "&Ativar plugins"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Integração Shell"
@@ -4075,3 +4078,4 @@ msgstr ""
 "Pode especificar os seguintes parâmetros no caminho:\n"
 "$file: Nome do caminho do ficheiro atual\n"
 "$linenum: Número da linha da posição atual do cursor"
+

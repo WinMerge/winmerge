@@ -2193,6 +2193,9 @@ msgstr " افزايه ها"
 msgid "&Enable plugins"
 msgstr "&E فعال سازي افزايه ها "
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr " يکپارچه سازي پوسته "
