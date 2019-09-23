@@ -1,3 +1,2 @@
-call Docs\Users\Manual\build\build_htmlhelp.bat
-call Docs\Users\ManualJapanese\build\build_htmlhelp.bat
-
+call Docs\Manual\build_htmlhelp_en.bat
+call Docs\Manual\build_htmlhelp_jp.bat

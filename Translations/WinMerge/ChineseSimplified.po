@@ -2185,6 +2185,9 @@ msgstr "插件"
 msgid "&Enable plugins"
 msgstr "启用插件(&E)"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "外壳集成"

@@ -2195,6 +2195,9 @@ msgstr "InsticksProgram"
 msgid "&Enable plugins"
 msgstr "Möjliggör InsticksProgram"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "GränssnittsIntegration"

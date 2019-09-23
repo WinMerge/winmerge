@@ -349,10 +349,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 		String temp = m_tempFiles[nBuffer].GetPath();
 		if (temp.empty())
-		{
-			temp = m_tempFiles[nBuffer].CreateFromFile(m_filePaths.GetPath(nBuffer),
-				tnames[nBuffer]);
-		}
+			temp = m_tempFiles[nBuffer].Create(tnames[nBuffer]);
 		if (temp.empty())
 			return RESCAN_TEMP_ERR;
 	}

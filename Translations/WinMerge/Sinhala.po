@@ -2182,6 +2182,9 @@ msgstr "උපකාරක"
 msgid "&Enable plugins"
 msgstr "&උපකාරක බලය වැඩිකිරීම"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "කවච සංකලනය කිරීම"

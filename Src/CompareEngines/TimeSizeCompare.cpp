@@ -51,12 +51,15 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 		// Check that we have both filetimes
 		nTimeDiff   = di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime;
 		if (nTimeDiff   < 0) nTimeDiff   *= -1;
+		nTimeDiff = nTimeDiff / Timestamp::resolution() * Timestamp::resolution();
 		if (nfiles > 2)
 		{
 			nTimeDiff12 = di.diffFileInfo[1].mtime - di.diffFileInfo[2].mtime;
 			nTimeDiff02 = di.diffFileInfo[0].mtime - di.diffFileInfo[2].mtime;
 			if (nTimeDiff12 < 0) nTimeDiff12 *= -1;
 			if (nTimeDiff02 < 0) nTimeDiff02 *= -1;
+			nTimeDiff12 = nTimeDiff12 / Timestamp::resolution() * Timestamp::resolution();
+			nTimeDiff02 = nTimeDiff02 / Timestamp::resolution() * Timestamp::resolution();
 		}
 		if (m_ignoreSmallDiff)
 		{

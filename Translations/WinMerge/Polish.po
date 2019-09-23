@@ -2188,6 +2188,9 @@ msgstr "Wtyczki"
 msgid "&Enable plugins"
 msgstr "Włącz wtyczki"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Integracja z systemem"

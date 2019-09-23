@@ -2198,6 +2198,9 @@ msgstr "外掛"
 msgid "&Enable plugins"
 msgstr "啟用外掛(&E)"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "併入檔案總管介面"

@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Plugins">
+  <title>プラグイン<indexterm>
+      <primary>plugins</primary>
+    </indexterm></title>
+
+  <para>WinMergeプラグインは、COM APIで書かれたカスタムDLLまたはスクリプトレットです。
+  これは、比較の前にデータを前処理します。
+  例えば、WinMergeで比較するためにMS Word のファイルからテキストデータを抽出するプラグインがあります。</para>
+  
+  <para>プラグインは:<indexterm>
+      <primary>installing plugins</primary>
+    </indexterm></para>
+
+  <itemizedlist>
+    <listitem>
+      <para>１つのdllまたはスクリプトレット (<filename
+      class="extension">sct</filename>) ファイル</para>
+    </listitem>
+
+    <listitem>
+      <para><filename class="directory">MergePlugins</filename>
+      サブフォルダにインストールされます。WinMergeでは、いくつかのプラグインをインストールすることができます。</para>
+    </listitem>
+
+    <listitem>
+      <para>インストールが簡単: WinMergeのインストールに含まれていないプラグインをインストールするには、プラグインファイルを<filename
+      class="directory">MergePlugins</filename> にコピーするだけです。
+      プラグインは、次回WinMergeを開いたときに利用可能になります。 
+      ウェブ上で他の開発者が書いた多くのプラグインを見つけることができます。
+      </para>
+    </listitem>
+  </itemizedlist>
+
+  <section>
+    <title>プラグインの種類</title>
+
+    <para>プラグインは3つの主なカテゴリに分類されます:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>エディタスクリプトプラグイン<indexterm>
+            <primary>editor complement plugins</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>このタイプのプラグインは、ファイル比較ウィンドウのアクティブなエディタ（ファイルペイン）で選択したテキストに対してカスタム操作を実行します。
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>展開プラグイン - ファイルからテキストフォーマットへ<indexterm>
+            <primary>unpacker plugins</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>このタイプのプラグインは、圧縮ファイルを解凍して表示可能な形式に変換します。 元のファイルは変更されません。
+          一時的に変換されたファイルが作成され、WinMergeにロードされます。
+          </para>
+
+          <para>展開プラグインは、選択されたテキストやファイル内の差分に対してではなく、ファイル全体に対して機能します。
+          したがって、フォルダ比較ウインドウまたはファイルまたは
+          フォルダの選択ダイアログからファイル比較を起動するときのみ利用可能です。
+          展開プラグインはファイル比較ウィンドウでは利用できません。
+          </para>
+
+          <para>プラグインによっては、展開されたファイルを再圧縮することができます
+          (<xref linkend="Plugins_available" /> の詳細を参照して、
+          再圧縮がサポートされているかどうかを確認してください）。 その後、変換されたファイルをマージして保存できます。 この場合、梱包は自動的に行われます。
+          安全のために、変換したファイルを保存するときに名前を変更することをお勧めします。
+          </para>
+
+          <note>
+            <para>フォルダを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに
+            対して異なる結果をもたらす可能性があります。
+            たとえば、圧縮されていないときには同一のファイルでも、
+            圧縮された場合、作成日が含まれているために異なる場合があります。
+            WinMergeはすべての状況で展開プラグインを適用します。フォルダを比較するときや、
+            ２つのファイルを比較するときでも同じ結果が得られます</para>
+          </note>
+
+          <para>プラグインの例: <xref linkend="CompareMSExcelFiles" />
+          <trademark class="registered">Microsoft</trademark>
+          <application>Excel</application> ファイルのテキスト内容を表示します。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>比較前処理プラグイン: 差異を隠すためのファイルの前処理<indexterm>
+            <primary>prediffer plugins</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>この種類のプラグインは、
+          比較ウィンドウに表示されている元のファイルには作用しません。
+          代わりに元のファイルから何らかの加工を行ったファイルを一時的に作成し、
+          そのファイルから差異リストを作成します。</para>
+
+          <para>プラグインの例: <xref linkend="IgnoreColumns" /> 
+          指定された列範囲に表示されている文字の違いを
+          無視します。</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>提案されたプラグインと自動モード</title>
+
+    <para>WinMergeはどのようにして渡されたファイルに適切なプラグインを適用しているのでしょうか？
+    各プラグインはファイル拡張子のリストを持っています
+    （<xref linkend = "Plugins_available" />セクションの各プラグインの<citetitle>ファイルフィルタ</citetitle>にも
+    リストされています) その拡張子は、1つ以上のファイルタイプをプラグインに関連付けるために使用されます。:
+    比較するファイルの拡張子があるプラグインの拡張子リストと一致する場合、
+    そのプラグインが<firstterm>提案されたプラグイン</firstterm>となります。
+    </para>
+
+    <para>このトピックで後述する展開プラグインタイプと比較前処理プラグインタイプには
+    別々のオプションがあり、これらを使用して手動または自動でプラグインを適用できます。
+    エディタスクリプトプラグインには自動モードはありません。
+    </para>
+
+    <para>自動モードを使用して選択したファイルにプラグインを適用すると、
+    WinMergeは、そのファイルタイプの推奨プラグインのリストを検索し、
+    名前が一致する最初のプラグインを適用します。
+    検索はアルファベット順で実行されます。このため、ファイルタイプに複数の推奨プラグインがある場合、
+    最初に見つかったもののみが適用されます。</para>
+  </section>
+
+  <section>
+    <title>プラグインの適用</title>
+
+    <para>次のサブセクションでは、各タイプのプラグインを適用する方法について説明します。
+    方法はプラグインのタイプごとに異なり、
+    フォルダーとファイルのどちらを比較するかどうかによっても異なります。</para>
+
+    <section>
+      <title>ファイル比較ウインドウでのエディタスクリプトプラグイン適用
+      </title>
+
+      <para>ファイル比較ウィンドウのファイルペインにカーソルを置き、
+      <menuchoice>
+          <guimenu>プラグイン</guimenu>
+
+          <guisubmenu>スクリプト</guisubmenu>
+      </menuchoice>をクリックして、次の機能のいずれかを選択します:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><function>MakeUpper</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>MakeLower</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>SortAscending</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>SortDescending</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>ExecFilterCommand</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>InsertDate</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>InsertTime</function></para>
+        </listitem>
+      </itemizedlist>
+
+      <para><guisubmenu>スクリプト</guisubmenu> メニューのこの機能は、<xref
+      linkend="EditorAddin" /> と <xref linkend="Plugins_datetime" /> プラグイン
+      によるものです。
+      </para>
+
+      <note>
+        <para>エディター補完プラグインは、
+        フォルダー比較ウインドウでは使用できません。</para>
+      </note>
+    </section>
+
+    <section>
+      <title>フォルダ比較ウインドウでの展開プラグインの適用</title>
+
+      <para>展開プラグインを適用する前に、
+      モードを自動モードまたは手動モードに設定できます。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>このタイプのプラグインの自動モードを設定するには、 <menuchoice>
+              <guimenu>プラグイン</guimenu>
+
+              <guimenuitem>自動展開</guimenuitem>
+            </menuchoice>をクリックしてください。</para>
+        </listitem>
+
+        <listitem>
+          <para>手動モードを設定するには、<menuchoice>
+              <guimenu>プラグイン</guimenu>
+
+              <guimenuitem>手動展開</guimenuitem>
+            </menuchoice>をクリックしてください。</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>新たな設定を反映するにはフォルダー比較ウィンドウを<keycap>F5</keycap>をクリックして、
+      リロードしてください。</para>
+
+      <section>
+        <title>自動展開モードの使用</title>
+
+        <para>自動展開が設定されているときにプラグインを適用するには、
+        フォルダー比較ウィンドウでファイルの比較操作を開始するだけです。 
+        ファイルのタイプから自動的に選択された展開プラグイン（存在する場合）がファイルを前処理し、
+        WinMergeがファイル比較ウィンドウで開きます</para>
+
+        <para>たとえば、MS Wordの<filename>doc</filename>ファイルを右クリックして
+        <guimenuitem>Compare</guimenuitem>を選択するとします
+        (<xref linkend="Plugins_msword" />プラグインが利用可能であると仮定します)。
+        WinMergeは、docファイル（またはそのコピー）をプレーンテキストファイルに変換し、
+        ファイル比較ウィンドウで開きます。</para>
+      </section>
+
+      <section>
+        <title>手動展開モードの使用</title>
+
+        <para>手動モードでは、自動モードで選択されたものとは異なる展開プラグインを選択できます。
+        プラグインを使用せずに比較することもできます。</para>
+
+        <para>手動展開が設定されているときにプラグインを適用するには:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>比較するファイルを選択します。</para>
+          </listitem>
+
+          <listitem>
+            <para><menuchoice>
+                <guimenu>プラグイン</guimenu>
+
+                <guimenuitem>展開プラグインで開く</guimenuitem>
+              </menuchoice>をクリックします</para>
+
+            <para>選択したファイルのタイプが利用可能な展開プラグインによってサポートされている場合にのみ、
+            このメニュー項目が有効になります。</para>
+          </listitem>
+
+          <listitem>
+            <para>展開プラグインの選択ダイアログで:</para>
+
+            <xi:include href="select_unpacker.xml"
+                        xmlns:xi="http://www.w3.org/2001/XInclude"
+                        xpointer="element(select-unpacker-proc)" />
+          </listitem>
+
+          <listitem>
+            <para><guibutton>OK</guibutton>をクリックして、
+            「展開プラグインの選択」ダイアログを閉じて、ファイル比較を開始します。</para>
+          </listitem>
+        </orderedlist>
+      </section>
+    </section>
+
+    <section>
+      <title>ファイル/フォルダ選択ダイアログでの展開プラグインの適用
+      </title>
+
+      <para>「ファイルまたはフォルダーの選択」ダイアログからファイル比較を起動するときに、
+      「展開プラグインの選択」ダイアログを使用してプラグインを適用できます。 
+      詳細は、<xref linkend="Open_paths_unpacker" /> を参照してください。</para>
+    </section>
+
+    <section>
+      <title>フォルダ比較ウインドウでの比較前処理プラグインの適用</title>
+
+      <para>比較前処理プラグインでは、モード(<firstterm>自動比較前処理</firstterm>または
+      <firstterm>比較前処理なし</firstterm>）を個々のファイルに設定します。 
+      （これをすべてのファイルのモードを設定する展開プラグインと比較してください。）
+      つまり、同じフォルダー内のいくつかのファイルには異なる比較前処理モードがあります。
+      </para>
+
+      <para>フォルダー比較ウィンドウで1つ以上のファイルのモードを設定するには、
+      ファイルを右クリックして<menuchoice>
+          <guimenu>プラグイン設定</guimenu>
+           
+          <guisubmenu>比較前処理プラグイン設定</guisubmenu>
+        </menuchoice>を選択し、サブメニューオプションのいずれかを選択します。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guisubmenu>自動</guisubmenu> は、
+          指定したファイルのタイプに使用できる比較前処理プラグインの最初のものを選択します。
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guisubmenu>使用しない</guisubmenu>は、
+          比較前処理プラグインを使用しません。</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>ウィンドウを更新するには<keycap>F5</keycap>をクリックしてください。</para>
+
+      <note>
+        <para>非再帰比較中にサブフォルダーを開くと、モードは常に
+        <guimenuitem>なし</guimenuitem>にリセットされます。</para>
+      </note>
+
+      <para>フォルダ比較ウィンドウからファイルを開くと、
+      ファイル比較ウィンドウが開く前にそのファイルの比較前処理プラグイン設定が適用されます。
+      </para>
+    </section>
+
+    <section>
+      <title>ファイル比較ウインドウでの比較前処理プラグインの適用</title>
+
+      <para>ファイル比較ウィンドウで、
+      <menuchoice>
+          <guimenu>プラグイン</guimenu>
+
+          <guisubmenu>比較前処理プラグイン</guisubmenu>
+        </menuchoice>をクリックして、リスト内のプラグインの1つを選択することにより、
+        比較前処理プラグインを適用できます。推奨されるプラグインはリストの上部に示されています。
+        プラグインが適用された後にファイルが再度比較されるため、ファイルを再スキャンする必要はありません。</para>
+    </section>
+  </section>
+
+  <section id="Plugins_available">
+    <title>使用できるプラグイン<indexterm>
+        <primary>Visual Basic dlls for plugins</primary>
+      </indexterm><indexterm>
+        <primary>plugins</primary>
+
+        <secondary>Visual Basic dlls</secondary>
+      </indexterm></title>
+
+    <section id="CompareMSExcelFiles">
+      <title><filename>CompareMSExcelFiles.sct<indexterm>
+          <primary>CompareMSExcelFiles.sct plugin file</primary>
+        </indexterm></filename></title>
+
+      <para><trademark
+      class="registered">Microsoft</trademark> <application>Excel</application>
+      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.xls</filename><filename
+            class="extension">*.xlsx</filename><filename
+            class="extension">*.xlsm</filename><filename
+            class="extension">*.xlsb</filename><filename
+            class="extension">*.xla</filename><filename
+            class="extension">*.xlax</filename><filename
+            class="extension">*.xltx</filename><filename
+            class="extension">*.xltm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>Yes</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+            <application>Excel</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_msword">
+      <title><filename>CompareMSWordFiles.sct<indexterm>
+          <primary>CompareMSWordFiles.sct plugin file</primary>
+        </indexterm></filename></title>
+
+      <para><trademark
+      class="registered">Microsoft</trademark> <application>Word</application>
+      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+	    <seg><filename class="extension">*.doc</filename>, <filename
+            class="extension">*.docx</filename>, <filename
+            class="extension">*.docm</filename>, <filename
+            class="extension">*.dot</filename>, <filename
+            class="extension">*.dotx</filename>, <filename
+            class="extension">*.dotm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>Yes</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+            <application>Word</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_powerpnt">
+      <title><filename>CompareMSPowerPointFiles.sct<indexterm>
+          <primary>CompareMSPowerPointFiles.sct plugin file</primary>
+        </indexterm></filename></title>
+
+      <para><trademark
+      class="registered">Microsoft</trademark> <application>PowerPoint</application>
+      ファイルのテキストの内容を表示します。すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.ppt</filename>, <filename
+            class="extension">*.pptx</filename>, <filename
+            class="extension">*.pptm</filename>, <filename
+            class="extension">*.ppa</filename>, <filename
+            class="extension">*.ppam</filename>, <filename
+            class="extension">*.pot</filename>, <filename
+            class="extension">*.potx</filename>, <filename
+            class="extension">*.potm</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>Yes</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+            <application>PowerPoint</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="EditorAddin">
+      <title><filename>editor addin.sct<indexterm>
+          <primary>editor addin.sct plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>5つの機能を<menuchoice>
+          <guimenu>プラグイン</guimenu>
+
+          <guisubmenu>スクリプト</guisubmenu>
+        </menuchoice> メニューに追加します:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>MakeUpper</guimenuitem> は、選択範囲を大文字に変換します。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>MakeLower</guimenuitem> 選択範囲を小文字に変換します。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>SortAscending</guimenuitem> 選択範囲を昇順でソートします。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>SortDescending</guimenuitem> 選択範囲を降順でソートします。
+          </simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>ExecFilterCommand</guimenuitem> 指定したフィルタコマンドの出力で選択範囲を置換します。
+          </simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <seglistitem>
+            <seg>Editor complement</seg>
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="IgnoreColumns">
+      <title><filename>IgnoreColumns.dll<indexterm>
+          <primary>IgnoreColumns.dll plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>このプラグインは、指定された列の文字を無視します。 最初の列の番号は1です</para>
+
+      <para>このプラグインはタブ付きのファイルをサポートしていないことに注意してください。
+      プラグインは失敗しませんが、すべてのタブは通常の文字として扱われます。
+      </para>
+
+      <para>列を指定するには、プラグイン設定ダイアログを使用するか、次のフィールドをパラメーターとして使用して<filename>dll</filename>の名前を変更します:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>範囲間の区切り文字: _ または ,</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>最小と最大の間の区切り文字: <emphasis>その他の文字
+          </emphasis></simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>最小と最大は範囲に含まれます。</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>max = minの場合、maxは省略できます。</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <example>
+        <title><filename>IgnoreColumns.dll</filename> examples</title>
+
+        <variablelist>
+          <varlistentry>
+            <term><filename>IgnoreColumns _ 3 _ 10 - 20 _ 32 -
+            33.dll</filename></term>
+
+            <listitem>
+              <simpara>列3、列10から20、列32から33のすべての文字を無視します。</simpara>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><filename>IgnoreColumns_1,30 to 40.dll</filename></term>
+
+            <listitem>
+              <simpara>列1と列30から40のすべての文字を無視します。
+              </simpara>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </example>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <seglistitem>
+            <seg>比較前処理プラグイン</seg>
+
+            <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>Yes</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreCommentsC.dll<indexterm>
+          <primary>IgnoreCommentsC.dll plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>このプラグインはC言語, C++, PHP, JavaScript ファイルの<constant> //</constant>... と
+      <constant>/*</constant> ... <constant>*/</constant> で区切られたコメントを無視します。
+      </para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <seglistitem>
+            <seg>比較前処理プラグイン</seg>
+
+            <seg><filename class="extension">*.cpp</filename>, <filename
+            class="extension">*.cxx</filename>, <filename
+            class="extension">*.h</filename>, <filename
+            class="extension">*.hxx</filename>, <filename
+            class="extension">*.c</filename>, <filename
+            class="extension">*.php</filename>, <filename
+            class="extension">*.js</filename>,</seg>
+
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreFieldsComma.dll<indexterm>
+          <primary>IgnoreFieldsComma.dll plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>このプラグインは、フィールドとコンマを区切り文字として使用するファイル用です
+      （CSVファイルなど）。 区切り文字は無視されます。 最初のフィールドの番号は1です。
+      </para>
+
+      <para>区切り文字を指定するには、プラグイン設定ダイアログを使用するか、
+      <xref linkend="IgnoreColumns" />に使用されるのと同じパラメーターフィールドを使用して
+      <filename>dll</filename>の名前を変更します。</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <seglistitem>
+            <seg>比較前処理プラグイン</seg>
+
+            <seg><filename class="extension">*.csv</filename></seg>
+
+            <seg>Yes</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreFieldsTab.dll<indexterm>
+          <primary>IgnoreFieldsTab.dll plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>このプラグインは、フィールドとタブを区切り記号として使用するファイル用です
+      (<application>たとえばExcel </application>ファイルは<filename
+      class="extension">*.txt</filename>形式で保存されます）。 区切り文字は無視されます。
+      最初のフィールドの番号は1です。
+      </para>
+
+      <para>To specify the delimiters, use plugin settings dialog or rename the <filename>dll</filename> using
+      the same parameter fields used for <xref
+      linkend="IgnoreColumns" />.</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <seglistitem>
+            <seg>比較前処理プラグイン</seg>
+
+            <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>Yes</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreLeadingLineNumbers.dll<indexterm>
+          <primary>IgnoreLeadingLineNumbers.dll plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>このプラグインは、テキストファイル
+      (NCファイルやBASICファイルなど)の先頭の行番号を無視します。
+      </para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルタ</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>必要なもの</segtitle>
+
+          <seglistitem>
+            <seg>比較前処理プラグイン</seg>
+
+            <seg><filename class="extension">*.nc</filename></seg>
+
+            <seg>No</seg>
+
+            <seg><xref linkend="MSVBVM60" /></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_datetime">
+      <title><filename>insert datetime.sct<indexterm>
+          <primary>insert datetime.sct plugin file</primary>
+        </indexterm></filename></title>
+
+      <para><menuchoice>
+          <guimenu>プラグイン</guimenu>
+
+          <guisubmenu>スクリプト</guisubmenu>
+        </menuchoice> メニューに2つの機能を追加します:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>InsertDate</guimenuitem> insert date in the
+          current locale format.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>InsertTime</guimenuitem> insert time in the
+          current locale format.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <seglistitem>
+            <seg>Editor complement</seg>
+
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+  </section>
+
+  <section>
+    <title>必要なもの<indexterm>
+        <primary>plugins</primary>
+
+        <secondary>Windows Script Host requirement</secondary>
+      </indexterm></title>
+
+    <section>
+      <title>Windows Script Host</title>
+
+      <para>一部のエディター補完プラグインには、
+      <trademark class="registered">Microsoft</trademark>のコンポーネントが必要です</para>
+
+      <para>Windows XPより前の古いバージョンのWindowsを使用しない限り、既に含まれているはずです。
+      </para>
+    </section>
+
+    <section id="MSVBVM60">
+      <title><application>Visual Basic</application> ランタイムライブラリ<indexterm>
+          <primary>Visual Basic dlls for plugins</primary>
+        </indexterm><indexterm>
+          <primary>plugins</primary>
+
+          <secondary>Visual Basic dlls</secondary>
+        </indexterm><indexterm>
+          <primary>msvbvm60.dll plugin file</primary>
+        </indexterm><indexterm>
+          <primary>Run-Time Redistribution Pack, for Visual Basic
+          library</primary>
+        </indexterm></title>
+
+      <para>一部のプラグインでは、動作するために<application>Visual Basic</application>
+      ランタイムライブラリが必要です。</para>
+
+      <para><trademark class="registered">Microsoft</trademark>の<ulink
+      url="https://www.microsoft.com/en-us/download/details.aspx?id=24417">Run-Time
+      Redistribution Pack</ulink>が使用できます。
+      プラグインが不要な場合は、安全に削除できます。
+      </para>
+    </section>
+  </section>
+</article>

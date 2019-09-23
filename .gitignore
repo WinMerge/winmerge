@@ -25,7 +25,7 @@
 *.tlb
 
 Testing/Data/ShellFileOpTest/File1.txt
-Translations/WinMerge/MergeLang.rc
+Translations/WinMerge/MergeLang.lastbuild
 /ShellExtension/dlldata.c
 /ShellExtension/ShellExtension.h
 /ShellExtension/ShellExtension_i.c

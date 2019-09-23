@@ -2188,6 +2188,9 @@ msgstr "Доповнення"
 msgid "&Enable plugins"
 msgstr "&Ввімкнути доповнення"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Вживлення в оболонку"

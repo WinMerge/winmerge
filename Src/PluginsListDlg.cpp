@@ -16,7 +16,10 @@ IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
+	ON_BN_CLICKED(IDC_PLUGIN_FILEFILTERS_DEFAULTS, OnBnClickedFileFiltesDefaults)
 	ON_NOTIFY(NM_DBLCLK, IDC_PLUGINSLIST_LIST, OnNMDblclkList)
+	ON_NOTIFY(LVN_ITEMCHANGING, IDC_PLUGINSLIST_LIST, OnLVNItemChanging)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_PLUGINSLIST_LIST, OnLVNItemChanged)
 END_MESSAGE_MAP()
 
 /**
@@ -114,6 +117,12 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 	}
 }
 
+PluginInfo *PluginsListDlg::GetSelectedPluginInfo() const
+{
+	String name = m_list.GetItemText(m_list.GetNextItem(-1, LVNI_SELECTED), 0);
+	return CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, name);
+}
+
 /**
  * @brief Save plugins enabled setting when closing the dialog.
  */
@@ -122,11 +131,14 @@ void PluginsListDlg::OnBnClickedOk()
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_ENABLED, 
 		(IsDlgButtonChecked(IDC_PLUGINS_ENABLE) == 1));
 
+	OnLVNItemChanging(nullptr, nullptr);
+
 	for (int i = 0; i < m_list.GetItemCount(); ++i)
 	{
 		PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, String(m_list.GetItemText(i, 0)));
 		plugin->m_disabled = !m_list.GetCheck(i);
 	}
+
 	CAllThreadsScripts::GetActiveSet()->SaveSettings();
 	OnOK();
 }
@@ -152,7 +164,31 @@ void PluginsListDlg::OnBnClickedPluginSettings()
 	}
 }
 
+void PluginsListDlg::OnBnClickedFileFiltesDefaults()
+{
+	PluginInfo *plugin = GetSelectedPluginInfo();
+	if (plugin)
+		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersTextDefault);
+}
+
 void PluginsListDlg::OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	OnBnClickedPluginSettings();
+}
+
+void PluginsListDlg::OnLVNItemChanging(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	PluginInfo *plugin = GetSelectedPluginInfo();
+	if (plugin)
+	{
+		GetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
+		plugin->LoadFilterString();
+	}
+}
+
+void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	PluginInfo *plugin = GetSelectedPluginInfo();
+	if (plugin)
+		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
 }

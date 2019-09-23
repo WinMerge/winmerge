@@ -8,7 +8,7 @@ These documents are meant for casual users. They help users with WinMerge use, t
 
 ### User's Manual:
 
-User's manual is not directly readable from our source tree. It must be first converted to HTML or HTML help. See [instructions](Manual/README.md) how to do it.
+User's manual is not directly readable from our source tree. It must be first converted to HTML or HTML help. See [instructions](../Manual/README.md) how to do it.
 
 ### Other files in user documentation:
 

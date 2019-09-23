@@ -6,14 +6,11 @@
 # * tigertron <ivg_18 at yahoo.com>
 # * Стоян <stoyan от гмаил>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Bulgarian.po 6851 2009-06-14 13:59:11Z gerundt $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"PO-Revision-Date: 2019-08-02 10:00+0000\n"
+"PO-Revision-Date: 2019-09-03 15:00+0000\n"
 "Last-Translator: Стоян <stoyan от гмаил>\n"
 "Language-Team: Bulgarian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: bg\n"
@@ -447,7 +444,7 @@ msgid "Re&load\tCtrl+F5"
 msgstr "Пре&зареждане\tCtrl+F5"
 
 msgid "&File Encoding..."
-msgstr "&Кодиране на файла…"
+msgstr "Избиране на &кодировка…"
 
 msgid "Recompare As"
 msgstr ""
@@ -714,13 +711,13 @@ msgid "&Delete"
 msgstr "&Изтриване"
 
 msgid "&Left"
-msgstr "&От ляво"
+msgstr "От&ляво"
 
 msgid "&Middle"
-msgstr "&Среден"
+msgstr "В&средата"
 
 msgid "&Right"
-msgstr "&От дясно"
+msgstr "Отд&ясно"
 
 msgid "&Both"
 msgstr "&Двете"
@@ -1287,7 +1284,7 @@ msgid "Ignore &case"
 msgstr "Пренебре&гване на регистъра"
 
 msgid "Ignore codepage &differences"
-msgstr "Пренебрегване на &разликите в кодиравката"
+msgstr "Пренебрегване на &разликите в кодова страница"
 
 msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"
@@ -1398,36 +1395,36 @@ msgid "Disca&rd All"
 msgstr "Отказ от &всички"
 
 msgid "Codepage"
-msgstr "Кодировка"
+msgstr "Кодова страница"
 
 msgid "Default Codepage"
-msgstr "Стандартна кодировка"
+msgstr "Стандартна кодова страница"
 
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Изберете стандартна кодировка за не-Unicode файлове:"
+msgstr "Изберете стандартната кодова страница за не-Unicode файлове:"
 
 msgid ""
 "Detect codepage info for these files: .html, .rc, .xml \n"
 "need to restart session"
 msgstr ""
-"Разпознаване на кодировката за файлове: .html, .rc, .xml\n"
+"Разпознаване на кодовата страница за файлове: .html, .rc, .xml\n"
 "изисква рестартиране"
 
 msgid ""
 "Detect codepage for text files using mlang.dll\n"
 "need to restart session"
 msgstr ""
-"Разпознаване на кодировката на текстовите файлове, чрез mlang.dll\n"
+"Разпознаване на кодовата страница на текстовите файлове, чрез mlang.dll\n"
 "изисква рестартиране"
 
 msgid "System codepage"
-msgstr "Кодировка на системата"
+msgstr "Кодова страница на системата"
 
 msgid "According to WinMerge User Interface"
 msgstr "Според интерфейса на WinMerge"
 
 msgid "Custom codepage:"
-msgstr "Потребителска кодировка:"
+msgstr "Потребителска кодова страница:"
 
 msgid "Options"
 msgstr "Настройки"
@@ -1571,22 +1568,22 @@ msgid "Missing Right:"
 msgstr "Липсващи вдясно:"
 
 msgid "Affects"
-msgstr "Промени"
+msgstr "Промяна на кодовата страница"
 
 msgid "(Affects)"
 msgstr "(промени)"
 
 msgid "Select Codepage for"
-msgstr "Изберете кодировка за"
+msgstr "Кодова страница при"
 
 msgid "&File Loading:"
-msgstr "&Зареждане на файл:"
+msgstr "&Отваряне"
 
 msgid "File &Saving:"
-msgstr "&Запиазване на файл:"
+msgstr "&Запазване"
 
 msgid "&Use same codepage for both"
-msgstr "&Използвай еднаква кодировка и за двете"
+msgstr "&Използване на еднаква кодова страница и за двете действия"
 
 msgid "&Cancel"
 msgstr "&Отменяне"
@@ -1683,6 +1680,9 @@ msgstr "Добавки"
 
 msgid "&Enable plugins"
 msgstr "Включване на &добавките"
+
+msgid "File filters:"
+msgstr ""
 
 msgid "Shell Integration"
 msgstr "Сливане със системата"
@@ -2902,10 +2902,10 @@ msgid ""
 "Would you like to treat both files as being in the default Windows codepage "
 "(recommended)?"
 msgstr ""
-"Намерена е различна кодировка в левия (cp%d) и десния (cp%d) файл. \n"
-"Показването на всеки файл с неговата кодировка ще даде по-добра видимост, но "
+"Намерена е различна кодова страница в левия (cp%d) и десния (cp%d) файл. \n"
+"Показването на всеки файл с неговата кодова страница ще даде по-добра видимост, но "
 "сравняването или копирането ще е опасно.\n"
-"Искате ли файловете да се обработват, използвайки зададената кодировка на "
+"Искате ли файловете да се обработват, използвайки зададената кодова страница на "
 "Windows (препоръчително)?"
 
 msgid "Information lost due to encoding errors: both files"

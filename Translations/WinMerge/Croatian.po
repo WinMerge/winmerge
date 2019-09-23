@@ -2187,6 +2187,9 @@ msgstr "Dodaci"
 msgid "&Enable plugins"
 msgstr "&Omogući dodatke"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Shell integracija"

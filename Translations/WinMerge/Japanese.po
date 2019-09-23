@@ -1691,6 +1691,9 @@ msgstr "プラグイン"
 msgid "&Enable plugins"
 msgstr "プラグインを有効にする(&E)"
 
+msgid "File filters:"
+msgstr "ファイルフィルター:"
+
 msgid "Shell Integration"
 msgstr "シェル統合"
 

@@ -1684,6 +1684,9 @@ msgstr "Papildiniai"
 msgid "&Enable plugins"
 msgstr "Įjungti &papildinius"
 
+msgid "File filters:"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Integr. Windows aplinkoje"
 

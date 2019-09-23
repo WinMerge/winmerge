@@ -2187,6 +2187,9 @@ msgstr "Programtillegg"
 msgid "&Enable plugins"
 msgstr "&Aktiver programtillegg"
 
+msgid "File filters:"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Skall-integrasjon"
