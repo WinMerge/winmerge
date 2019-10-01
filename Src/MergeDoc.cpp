@@ -116,6 +116,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
 	ON_COMMAND(IDOK, OnOK)
 	ON_COMMAND(ID_MERGE_COMPARE_XML, OnFileRecompareAsXML)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateFileRecompareAsXML)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -3155,9 +3156,22 @@ void CMergeDoc::OnOK()
 
 void CMergeDoc::OnFileRecompareAsXML()
 {
-	PackingInfo infoUnpacker(PLUGIN_BUILTIN_XML);
-	SetUnpacker(&infoUnpacker);
+	if (m_pInfoUnpacker->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML)
+	{
+		PackingInfo infoUnpacker;
+		SetUnpacker(&infoUnpacker);
+	}
+	else
+	{
+		PackingInfo infoUnpacker(PLUGIN_BUILTIN_XML);
+		SetUnpacker(&infoUnpacker);
+	}
 	OnFileReload();
+}
+
+void CMergeDoc::OnUpdateFileRecompareAsXML(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetCheck(m_pInfoUnpacker->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML);
 }
 
 void CMergeDoc::OnFileRecompareAs(UINT nID)

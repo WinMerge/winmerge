@@ -379,6 +379,7 @@ protected:
 	afx_msg void OnBnClickedHexView();
 	afx_msg void OnOK();
 	afx_msg void OnFileRecompareAsXML();
+	afx_msg void OnUpdateFileRecompareAsXML(CCmdUI* pCmdUI);
 	afx_msg void OnFileRecompareAs(UINT nID);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
