@@ -79,7 +79,7 @@ msgstr "Vergleichen mit"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Diesen Pfad speichern. Wählen Sie einen anderen Pfad, um ihn mit diesem Pfad zu vergleichen."
+msgstr "Speichert diesen Pfad. Wählen Sie einen anderen Pfad um ihn mit diesem Pfad zu vergleichen."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
