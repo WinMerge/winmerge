@@ -1156,7 +1156,7 @@ msgstr "Välj Filer eller Mappar"
 
 #, c-format
 msgid "&1st File or Folder"
-msgstr "1sta Fil eller Mapp"
+msgstr "1:a Fil eller Mapp"
 
 #, c-format
 msgid "Re&ad-only"
@@ -1164,7 +1164,7 @@ msgstr "Endast Läsbar"
 
 #, c-format
 msgid "Swap 1st | 2nd"
-msgstr "Byt 1sta | 2dra"
+msgstr "Byt 1:a | 2:a"
 
 #, c-format
 msgid "&Browse..."
@@ -1172,7 +1172,7 @@ msgstr "Bläddra ..."
 
 #, c-format
 msgid "&2nd File or Folder"
-msgstr "2dra Fil eller Mapp"
+msgstr "2:a Fil eller Mapp"
 
 #, c-format
 msgid "Rea&d-only"
@@ -1180,7 +1180,7 @@ msgstr "Endast Läsbar"
 
 #, c-format
 msgid "Swap 2nd | 3rd"
-msgstr "Byt 2dra | 3dje"
+msgstr "Byt 2:a | 3:e"
 
 #, c-format
 msgid "B&rowse..."
@@ -1188,7 +1188,7 @@ msgstr "Bläddra ..."
 
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr "3dje Fil eller Mapp (valfritt)"
+msgstr "3:e Fil eller Mapp (valfritt)"
 
 #, c-format
 msgid "Read-o&nly"
@@ -1196,7 +1196,7 @@ msgstr "Endast Läsbar"
 
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr "Byt 1sta | 3dje"
+msgstr "Byt 1:a | 3:e"
 
 #, c-format
 msgid "Browse..."
@@ -2766,19 +2766,19 @@ msgstr "Välj två (eller tre) mappar eller två (eller tre) filer att jämföra
 
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr "Vänster (1sta) sökväg är ogiltlig!"
+msgstr "Vänster (1:a) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr "Mitter (2dra) sökväg är ogiltlig!"
+msgstr "Mitter (2:a) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr "Höger (2dra) sökväg är ogiltlig!"
+msgstr "Höger (2:a) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr "Höger (3dje) sökväg är ogiltlig!"
+msgstr "Höger (3:e) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Both paths are invalid!"
@@ -2786,15 +2786,15 @@ msgstr "Båda sökvägar är ogiltliga!"
 
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr "Vänster (1sta) och Mitter (2dra) sökväg är ogiltlig!"
+msgstr "Vänster (1:a) och Mitter (2:a) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr "Vänster (1sta) och Höger (2dra) sökväg är ogiltlig!"
+msgstr "Vänster (1:a) och Höger (2:a) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr "Mitter (2dra) och Höger (3dje) sökväg är ogiltlig!"
+msgstr "Mitter (2:a) och Höger (3:e) sökväg är ogiltlig!"
 
 #, c-format
 msgid "All paths are invalid!"
