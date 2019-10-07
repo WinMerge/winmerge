@@ -786,6 +786,7 @@ BEGIN
         END
         MENUITEM "Case sensi&tive",             IDC_DIFF_CASESENSITIVE
         MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
+        MENUITEM "Ignore codepage &differences", IDC_DIFF_IGNORECP
         MENUITEM SEPARATOR
         MENUITEM "&Include Subfolders",         IDC_RECURS_CHECK
         POPUP "&Compare method:"
