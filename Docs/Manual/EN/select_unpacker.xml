@@ -11,7 +11,7 @@
       <itemizedlist>
         <listitem>
           <para>To use automatic mode (which applies the first available
-          plugin), verify that <guilabel>&lt;None&gt;</guilabel> is displayed in
+          plugin), verify that <guilabel>&lt;Automatic&gt;</guilabel> is displayed in
           the <guilabel>File unpacker</guilabel> control.</para>
         </listitem>
 

@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  min-width: 40em;
   font-family: Calibri,Helvetica,Arial,sans-serif;
 }
 
@@ -102,6 +101,12 @@ div.section h4 {
 
 .mediaobject {
   margin-top: 10px;
+}
+
+/* Responsive Image */
+.mediaobject img {
+  max-width: 100%;
+  height: auto;
 }
 
 .screen {
@@ -234,4 +239,22 @@ div.toc p {
 
 div.toc a:visited, div.toc a:link {
   text-decoration: none;
+}
+
+/* media queries */
+@media (max-width: 30em) {
+  div.section {
+    margin: 0;
+  }
+  .variablelist dl {
+    margin-left: 0;
+  }
+  .variablelist dd {
+    margin-left: .5em;
+  }
+  .caution, .important, .note, .tip, .warning {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0 .5em;
+  }
 }

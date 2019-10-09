@@ -54,7 +54,7 @@
 
           <listitem>
             <simpara><ulink
-            url="http://winmerge.org/downloads/">WinMerge ダウンロード</ulink>サイトに行き、
+            url="https://winmerge.org/downloads/">WinMerge ダウンロード</ulink>サイトに行き、
             アーカイブされたバイナリファイル(Zipか7z形式のいずれか)をダウンロードし、保存します。</simpara>
           </listitem>
 
@@ -258,9 +258,9 @@
         <primary>翻訳の提出</primary>
       </indexterm></title>
 
-    <para>新たに翻訳ファイルをリストに追加したい場合は、WinMergeのサイトにある<ulink url=" http://winmerge.org/translations/ ">翻訳ドキュメント</ulink>
+    <para>新たに翻訳ファイルをリストに追加したい場合は、WinMergeのサイトにある<ulink url="https://winmerge.org/translations/">翻訳ドキュメント</ulink>
    を読み、方法を学んでください。ほとんどの翻訳が完全にできていないため、ぜひご協力をお願いいたします。翻訳する（または翻訳を改善する）に
     あたって、コンパイルツールや、WinMergeの知識をすべて備えている必要はありません。もし困ったことがあれば、
-   <ulink url="http://forums.winmerge.org/ ">WinMergeフォーラム</ulink>より、私たちに支援を求めてください。</para>
+   <ulink url="https://forums.winmerge.org/ ">WinMergeフォーラム</ulink>より、私たちに支援を求めてください。</para>
   </section>
 </article>

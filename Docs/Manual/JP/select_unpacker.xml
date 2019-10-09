@@ -10,7 +10,7 @@
       <itemizedlist>
         <listitem>
           <para>自動展開モード(最初の利用可能なプラグインを適用)を使用するには、<guilabel>ファイル展開プラグイン</guilabel>
-                にて<guilabel>&lt;なし&gt;</guilabel>を選択してください。</para>
+                にて<guilabel>&lt;自動展開&gt;</guilabel>を選択してください。</para>
         </listitem>
 
         <listitem>

@@ -13,8 +13,8 @@ if not exist "%docbook_outputdir_final%" mkdir "%docbook_outputdir_final%"
 
 echo Copy images...
 if not exist "%docbook_outputdir%\images" mkdir "%docbook_outputdir%\images"
-copy "JP\images\*.gif" "%docbook_outputdir%\images\."
-copy "JP\images\*.png" "%docbook_outputdir%\images\."
+copy "Shared\images\*.gif" "%docbook_outputdir%\images\."
+copy "Shared\images\*.png" "%docbook_outputdir%\images\."
 
 echo Copy screenshots...
 if not exist "%docbook_outputdir%\screenshots" mkdir "%docbook_outputdir%\screenshots"
@@ -26,7 +26,7 @@ copy "JP\art\*.*" "%docbook_outputdir%\art\."
 
 echo Copy stylesheets...
 if not exist "%docbook_outputdir%\css" mkdir "%docbook_outputdir%\css"
-copy "JP\css\*.css" "%docbook_outputdir%\css\."
+copy "Shared\css\*.css" "%docbook_outputdir%\css\."
 
 echo Create HTML files...
 %docbook_xsltproc% --xinclude --nonet --stringparam base.dir %docbook_outputdir%/ --path .. %docbook_use_stylesheet% %docbook_inputfile%

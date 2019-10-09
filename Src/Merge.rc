@@ -789,6 +789,7 @@ BEGIN
         END
         MENUITEM "Case sensi&tive",             IDC_DIFF_CASESENSITIVE
         MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
+        MENUITEM "Ignore codepage &differences", IDC_DIFF_IGNORECP
         MENUITEM SEPARATOR
         MENUITEM "&Include Subfolders",         IDC_RECURS_CHECK
         POPUP "&Compare method:"
@@ -1010,8 +1011,8 @@ BEGIN
     CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,140,10
     CONTROL         "&Don't close this dialog box",IDC_FINDDLG_DONTCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,140,10
-    DEFPUSHBUTTON   "Find &Prev",IDC_EDIT_FINDPREV,226,7,60,14,WS_GROUP
-    DEFPUSHBUTTON   "&Find Next",IDOK,226,24,60,14,WS_GROUP
+    DEFPUSHBUTTON   "&Find Next",IDOK,226,7,60,14,WS_GROUP
+    DEFPUSHBUTTON   "Find &Prev",IDC_EDIT_FINDPREV,226,24,60,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,226,41,60,14
 END
 

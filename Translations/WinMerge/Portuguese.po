@@ -2194,7 +2194,7 @@ msgid "&Enable plugins"
 msgstr "&Ativar plugins"
 
 msgid "File filters:"
-msgstr ""
+msgstr "Filtros de ficheiros:"
 
 #, c-format
 msgid "Shell Integration"

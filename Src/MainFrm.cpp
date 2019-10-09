@@ -225,6 +225,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_CASESENSITIVE, OnUpdateDiffCaseSensitive)
 	ON_COMMAND(IDC_DIFF_IGNOREEOL, OnDiffIgnoreEOL)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
+	ON_COMMAND(IDC_DIFF_IGNORECP, OnDiffIgnoreCP)
+	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNORECP, OnUpdateDiffIgnoreCP)
 	ON_COMMAND(IDC_RECURS_CHECK, OnIncludeSubfolders)
 	ON_UPDATE_COMMAND_UI(IDC_RECURS_CHECK, OnUpdateIncludeSubfolders)
 	ON_COMMAND_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnCompareMethod)
@@ -2388,6 +2390,18 @@ void CMainFrame::OnDiffIgnoreEOL()
 void CMainFrame::OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnDiffIgnoreCP()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CODEPAGE, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE));
 	pCmdUI->Enable();
 }
 
