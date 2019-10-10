@@ -1093,6 +1093,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Ohita rivinvaihtoerot (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Sisällytä alihakemistot"
 
@@ -1309,12 +1313,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "Etsi seuraava"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1658,10 +1662,6 @@ msgstr "Ohita tyhjät rivit"
 #, c-format
 msgid "Ignore &case"
 msgstr "Ohita kirjainkoko"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

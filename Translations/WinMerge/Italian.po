@@ -851,6 +851,9 @@ msgstr "&Maiuscolo/minuscolo"
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "I&gnora differenze nei fine riga (Windows/Unix/Mac)"
 
+msgid "Ignore codepage &differences"
+msgstr "Ignora differenze di codice di &pagina"
+
 msgid "&Include Subfolders"
 msgstr "&Includi sotto cartelle"
 
@@ -1017,11 +1020,11 @@ msgstr "&Fermati alla fine del file"
 msgid "&Don't close this dialog box"
 msgstr "&Non chiudere questa finestra"
 
-msgid "Find &Prev"
-msgstr "Trova &precedente"
-
 msgid "&Find Next"
 msgstr "Trova &successivo"
+
+msgid "Find &Prev"
+msgstr "Trova &precedente"
 
 msgid "&Ok"
 msgstr "&OK"
@@ -1283,9 +1286,6 @@ msgstr "Ign&ora le linee vuote"
 
 msgid "Ignore &case"
 msgstr "Ig&nora differenze maiuscole/minuscole"
-
-msgid "Ignore codepage &differences"
-msgstr "Ignora differenze di codice di &pagina"
 
 msgid "E&nable moved block detection"
 msgstr "Attiva rilevamento blocc&hi spostati"

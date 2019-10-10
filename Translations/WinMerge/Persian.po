@@ -1098,6 +1098,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "&r چشم پوشي از تفاوت علامت بازگشت به سر سطر  (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&I شامل زيرپوشه ها "
 
@@ -1319,12 +1323,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&F يافتن بعدي "
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1668,10 +1672,6 @@ msgstr "&k چشم پوشي از خطوط خالي "
 #, c-format
 msgid "Ignore &case"
 msgstr "&c چشم پوشي از اندازه حروف "
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

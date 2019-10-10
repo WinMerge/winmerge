@@ -1099,6 +1099,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "忽略换行符差异 (Windows/Unix/Mac)(&R)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "忽略代码页差异(&D)"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "包含子目录(&I)"
 
@@ -1314,12 +1318,12 @@ msgid "&Don't close this dialog box"
 msgstr "不要关闭对话框(&D)"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "查找上一个(&P)"
-
-#, c-format
 msgid "&Find Next"
 msgstr "查找下一个(&F)"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "查找上一个(&P)"
 
 #, c-format
 msgid "&Ok"
@@ -1663,10 +1667,6 @@ msgstr "忽略空行(&K)"
 #, c-format
 msgid "Ignore &case"
 msgstr "忽略大小写(&C)"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr "忽略代码页差异(&D)"
 
 #, c-format
 msgid "E&nable moved block detection"

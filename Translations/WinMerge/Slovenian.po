@@ -1098,6 +1098,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "&Prezri različnost tipa znakov za zaključke vrstic (EOL)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Vključi podmape"
 
@@ -1315,12 +1319,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Najdi naslednje"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1664,10 +1668,6 @@ msgstr "Ignoriraj prazne &vrstice"
 #, c-format
 msgid "Ignore &case"
 msgstr "Zanemari &velikost znakov"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

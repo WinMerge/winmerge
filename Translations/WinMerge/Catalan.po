@@ -1096,6 +1096,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr ""
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Inclou-hi les subcarpetes"
 
@@ -1311,12 +1315,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Següent"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1660,10 +1664,6 @@ msgstr "&Ignora les línies en blanc"
 #, c-format
 msgid "Ignore &case"
 msgstr "Ignora &majúscules/minúscules"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

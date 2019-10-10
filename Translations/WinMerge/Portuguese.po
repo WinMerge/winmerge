@@ -1099,6 +1099,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&rar diferentes tipos de ficheiros (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "Ignorar &diferenças nas páginas de código"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Incluir Sub-ficheiros"
 
@@ -1314,12 +1318,12 @@ msgid "&Don't close this dialog box"
 msgstr "&Não feche esta caixa de diálogo"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "Localizar &Pré-visualisar"
-
-#, c-format
 msgid "&Find Next"
 msgstr "Localizar Próximo"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "Localizar &Pré-visualisar"
 
 #, c-format
 msgid "&Ok"
@@ -1663,10 +1667,6 @@ msgstr "Ignorar linhas em branco"
 #, c-format
 msgid "Ignore &case"
 msgstr "Ignorar maiúsculas/minúsculas"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr "Ignorar &diferenças nas páginas de código"
 
 #, c-format
 msgid "E&nable moved block detection"
