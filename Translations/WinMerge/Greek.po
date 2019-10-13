@@ -1350,6 +1350,9 @@ msgstr "&Επιλογής"
 msgid "Wh&ole file"
 msgstr "Ό&λου του Αρχείου"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "Αντι&κατάσταση"

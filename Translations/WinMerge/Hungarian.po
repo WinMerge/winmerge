@@ -1351,6 +1351,9 @@ msgstr "&Kijelölés"
 msgid "Wh&ole file"
 msgstr "Teljes &fájl"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "&Csere"

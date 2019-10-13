@@ -1353,6 +1353,9 @@ msgstr "&Selección"
 msgid "Wh&ole file"
 msgstr "T&odo el archivo"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "&Reemplazar"

@@ -1042,6 +1042,9 @@ msgstr "&Избраното"
 msgid "Wh&ole file"
 msgstr "В &целия файл"
 
+msgid "Find Pre&v"
+msgstr ""
+
 msgid "&Replace"
 msgstr "&Заменяне"
 

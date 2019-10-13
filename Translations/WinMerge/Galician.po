@@ -1351,6 +1351,9 @@ msgstr "&Selección"
 msgid "Wh&ole file"
 msgstr "Ar&quivo completo"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "&Substituír"

@@ -1353,6 +1353,9 @@ msgstr "&Auswahl"
 msgid "Wh&ole file"
 msgstr "ganzer &Datei"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "E&rsetzen"

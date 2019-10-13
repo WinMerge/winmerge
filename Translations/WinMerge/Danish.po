@@ -1356,6 +1356,9 @@ msgstr "&Valgte"
 msgid "Wh&ole file"
 msgstr "He&le filen"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "&Erstat"

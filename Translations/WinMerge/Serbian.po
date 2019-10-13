@@ -1338,6 +1338,9 @@ msgstr "Изабраним"
 msgid "Wh&ole file"
 msgstr "Целој дат&отеци"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "&Замени"

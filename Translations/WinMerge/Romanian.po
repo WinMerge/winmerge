@@ -1351,6 +1351,9 @@ msgstr "&Selecţie"
 msgid "Wh&ole file"
 msgstr "Între&gul fişier"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "Înlocuieş&te"

@@ -1046,6 +1046,9 @@ msgstr "&Pažym. fragmente"
 msgid "Wh&ole file"
 msgstr "Vi&same faile"
 
+msgid "Find Pre&v"
+msgstr ""
+
 msgid "&Replace"
 msgstr "&Pakeisti"
 

@@ -1049,6 +1049,9 @@ msgstr "Selectie"
 msgid "Wh&ole file"
 msgstr "Volledig bestand"
 
+msgid "Find Pre&v"
+msgstr ""
+
 msgid "&Replace"
 msgstr "Vervangen"
 

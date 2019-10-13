@@ -1358,6 +1358,9 @@ msgstr "&S گزينش "
 msgid "Wh&ole file"
 msgstr "&o تمام پرونده "
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "&R جايگزيني "

@@ -59,6 +59,7 @@ CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy)
 , m_bRegExp(false)
 , m_nScope(-1)
 , m_bDontWrap(false)
+, m_nDirection(1)
 , m_bEnableScopeSelection(true)
 , m_bFound(false)
 , lastSearch({0})
@@ -106,6 +107,7 @@ ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeSelected)
 ON_BN_CLICKED (IDC_EDIT_REPLACE, OnEditReplace)
 ON_BN_CLICKED (IDC_EDIT_REPLACE_ALL, OnEditReplaceAll)
 ON_BN_CLICKED (IDC_EDIT_SKIP, OnEditSkip)
+ON_BN_CLICKED (IDC_EDIT_FINDPREV, OnEditFindPrev)
 ON_BN_CLICKED (IDC_EDIT_REGEXP, OnRegExp)
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP ()
@@ -192,6 +194,10 @@ DoHighlightText ( bool bNotifyIfNotFound )
     dwSearchFlags |= FIND_WHOLE_WORD;
   if (m_bRegExp)
     dwSearchFlags |= FIND_REGEXP;
+  if (m_nDirection == 0)
+    dwSearchFlags |= FIND_DIRECTION_UP;
+
+  m_ptFoundAt = m_pBuddy->GetSearchPos (dwSearchFlags);
 
   bool bFound;
   if (m_nScope == 0)
@@ -268,22 +274,23 @@ DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
 }
 
 void CEditReplaceDlg::
-OnEditSkip ()
+FindNextPrev (bool bNext)
 {
   if (!UpdateData ())
     return;
   
+  m_nDirection = bNext;
   m_ctlFindText.FillCurrent();
   m_ctlReplText.FillCurrent();
   CMemComboBox::SaveSettings();
   UpdateLastSearch ();
 
   CButton *pSkip = (CButton*) GetDlgItem (IDC_EDIT_SKIP);
+  CButton *pPrev = (CButton*) GetDlgItem (IDC_EDIT_FINDPREV);
   CButton *pRepl = (CButton*) GetDlgItem (IDC_EDIT_REPLACE);
 
   if (!m_bFound)
     {
-      m_ptFoundAt = m_ptCurrentPos;
       m_bFound = DoHighlightText ( true );
       if (m_bFound)
         {
@@ -329,6 +336,18 @@ OnEditSkip ()
 }
 
 void CEditReplaceDlg::
+OnEditSkip ()
+{
+  FindNextPrev (true);
+}
+
+void CEditReplaceDlg::
+OnEditFindPrev ()
+{
+  FindNextPrev (false);
+}
+
+void CEditReplaceDlg::
 OnEditReplace ()
 {
   if (!UpdateData ())
@@ -341,7 +360,6 @@ OnEditReplace ()
 
   if (!m_bFound)
     {
-      m_ptFoundAt = m_ptCurrentPos;
       m_bFound = DoHighlightText ( true );
       CButton *pSkip = (CButton*) GetDlgItem (IDC_EDIT_SKIP);
       CButton *pRepl = (CButton*) GetDlgItem (IDC_EDIT_REPLACE);
@@ -366,6 +384,8 @@ OnEditReplace ()
     dwSearchFlags |= FIND_WHOLE_WORD;
   if (m_bRegExp)
     dwSearchFlags |= FIND_REGEXP;
+  if (m_nDirection == 0)
+    dwSearchFlags |= FIND_DIRECTION_UP;
 
   //  We have highlighted text
   VERIFY (m_pBuddy->ReplaceSelection (m_sNewText, m_sNewText.GetLength(), dwSearchFlags));
@@ -511,20 +531,21 @@ UpdateControls()
 // Last search functions
 //
 void CEditReplaceDlg::
-SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope)
+SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope, int nDirection)
 {
   lastSearch.m_bMatchCase = bMatchCase;
   lastSearch.m_bWholeWord = bWholeWord;
   lastSearch.m_bRegExp = bRegExp;
   lastSearch.m_sText = sText;
   lastSearch.m_bNoWrap = m_bDontWrap;
+  lastSearch.m_nDirection = nDirection;
 }
 
 
 void CEditReplaceDlg::
 UpdateLastSearch ()
 {
-  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp, m_nScope);
+  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp, m_nScope, m_nDirection);
 }
 
 void CEditReplaceDlg::
@@ -535,6 +556,7 @@ UseLastSearch ()
   m_bRegExp = lastSearch.m_bRegExp;
   m_sText = lastSearch.m_sText;
   m_bDontWrap = lastSearch.m_bNoWrap;
+  m_nDirection = lastSearch.m_nDirection;
 }
 
 void CEditReplaceDlg::

@@ -1355,6 +1355,9 @@ msgstr "선택(&S)"
 msgid "Wh&ole file"
 msgstr "전체 파일(&O)"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "바꾸기(&R)"

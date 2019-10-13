@@ -1351,6 +1351,9 @@ msgstr "Markering"
 msgid "Wh&ole file"
 msgstr "Hela filen"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "Ersätt"

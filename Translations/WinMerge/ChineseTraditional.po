@@ -1361,6 +1361,9 @@ msgstr "選取區(&S)"
 msgid "Wh&ole file"
 msgstr "整個檔案(&O)"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "取代(&R)"

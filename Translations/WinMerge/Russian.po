@@ -1353,6 +1353,9 @@ msgstr "В выбранном"
 msgid "Wh&ole file"
 msgstr "Во всем &файле"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "&Заменить"

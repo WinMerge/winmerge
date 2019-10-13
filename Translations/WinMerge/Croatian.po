@@ -1351,6 +1351,9 @@ msgstr "označenom"
 msgid "Wh&ole file"
 msgstr "&cijeloj datoteci"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "&Zamijeni"

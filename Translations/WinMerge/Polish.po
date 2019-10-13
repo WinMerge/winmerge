@@ -1352,6 +1352,9 @@ msgstr "&Zaznaczenie"
 msgid "Wh&ole file"
 msgstr "Cały &plik"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "&Zastąp"

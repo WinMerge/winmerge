@@ -1351,6 +1351,9 @@ msgstr "Výbere"
 msgid "Wh&ole file"
 msgstr "Celom súbore"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "Nahraďiť"

@@ -1350,6 +1350,9 @@ msgstr "&Selecció"
 msgid "Wh&ole file"
 msgstr "&Fitxer sencer"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "S&ubstitueix-ho"

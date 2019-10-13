@@ -1354,6 +1354,9 @@ msgstr "&Seçilmiş Bölümde"
 msgid "Wh&ole file"
 msgstr "D&osyanın Tümünde"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "Değişti&r"

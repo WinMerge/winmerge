@@ -1354,6 +1354,9 @@ msgstr "Hauta&pena"
 msgid "Wh&ole file"
 msgstr "&Agiri osoa"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "&Ordeztu"

@@ -1353,6 +1353,9 @@ msgstr "选中内容(&S)"
 msgid "Wh&ole file"
 msgstr "整个文件(&O)"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "替换(&R)"

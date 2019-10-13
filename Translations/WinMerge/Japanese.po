@@ -1048,6 +1048,9 @@ msgstr "選択範囲(&S)"
 msgid "Wh&ole file"
 msgstr "ファイル全体(&O)"
 
+msgid "Find Pre&v"
+msgstr "前を検索(&V)"
+
 msgid "&Replace"
 msgstr "置換して次に(&R)"
 

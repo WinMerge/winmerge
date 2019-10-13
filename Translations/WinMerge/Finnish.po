@@ -1348,6 +1348,9 @@ msgstr "Valinta"
 msgid "Wh&ole file"
 msgstr "Koko tiedosto"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "Korvaa"

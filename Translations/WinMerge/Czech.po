@@ -1353,6 +1353,9 @@ msgstr "ve vý&běru"
 msgid "Wh&ole file"
 msgstr "v ce&lém souboru"
 
+msgid "Find Pre&v"
+msgstr ""
+
 #, c-format
 msgid "&Replace"
 msgstr "Na&hradit"
