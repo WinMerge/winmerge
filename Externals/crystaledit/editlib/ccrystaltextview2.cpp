@@ -1066,7 +1066,7 @@ OnRButtonDown (UINT nFlags, CPoint point)
 }
 
 bool CCrystalTextView::
-IsSelection ()
+IsSelection () const
 {
 #if _MSC_VER < 1910		// VS2015 (and earlier?) generates a "performance" warning
   // NOTE:  Comparing two `CPoint` values yields a BOOL result; therefore this funny code
