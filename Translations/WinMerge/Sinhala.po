@@ -853,6 +853,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "සසඳන්න"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""

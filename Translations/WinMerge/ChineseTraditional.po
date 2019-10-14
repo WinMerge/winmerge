@@ -864,6 +864,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "比較(&A)"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "非同步比較(&I)"

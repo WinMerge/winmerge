@@ -654,6 +654,9 @@ msgstr "&Dividi"
 msgid "Comp&are"
 msgstr "&Confronta"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 msgid "Compare Non-hor&izontally"
 msgstr "Confronta non or&izzontalmente"
 

@@ -852,6 +852,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Vertaa"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""

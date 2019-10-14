@@ -859,6 +859,9 @@ msgstr "Di&vidir"
 msgid "Comp&are"
 msgstr "Comp&arar"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "Comparar Não-Hor&izontalmente"

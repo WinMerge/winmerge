@@ -857,6 +857,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Samm&enlign"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""

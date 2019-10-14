@@ -858,6 +858,9 @@ msgstr "分隔(&L)"
 msgid "Comp&are"
 msgstr "比较(&A)"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "非横向比较(&I)"

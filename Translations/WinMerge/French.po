@@ -861,6 +861,9 @@ msgstr "Scinder"
 msgid "Comp&are"
 msgstr "Co&mparer"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "Comparaison non-Hor & izontal"

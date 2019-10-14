@@ -857,6 +857,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Prime&rjaj"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""

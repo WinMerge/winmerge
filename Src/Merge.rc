@@ -637,12 +637,14 @@ BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM "Compare Non-hor&izontally...",   ID_MERGE_COMPARE_NONHORIZONTALLY
         POPUP "Compare Non-hor&izontally"
         BEGIN
             MENUITEM "First &left item with second left item", ID_MERGE_COMPARE_LEFT1_LEFT2
             MENUITEM "First &right item with second right item", ID_MERGE_COMPARE_RIGHT1_RIGHT2
             MENUITEM "&First left item with second right item", ID_MERGE_COMPARE_LEFT1_RIGHT2
             MENUITEM "&Second left item with first right item", ID_MERGE_COMPARE_LEFT2_RIGHT1
+            MENUITEM "Compare Non-hor&izontally...",   ID_MERGE_COMPARE_NONHORIZONTALLY
         END
         POPUP "Co&mpare As"
         BEGIN
@@ -1795,6 +1797,28 @@ BEGIN
     PUSHBUTTON      "&File Encoding...",IDC_FILEENCODING,7,29,120,14
     PUSHBUTTON      "&Edit with Unpacker...",IDC_PLUGIN,134,29,120,14
     PUSHBUTTON      "&Hex View",IDC_HEXVIEW,261,29,120,14
+END
+
+IDD_SELECT_FILES_OR_FOLDERS DIALOGEX 30, 73, 267, 69
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Files or Folders"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_FIRST,6,6,192,12
+    LTEXT           "",IDC_SECOND,6,18,192,12
+    LTEXT           "",IDC_THIRD,6,30,192,12
+    PUSHBUTTON      "",IDC_LEFT1,204,6,18,12
+    PUSHBUTTON      "",IDC_MIDDLE1,222,6,18,12
+    PUSHBUTTON      "",IDC_RIGHT1,240,6,18,12
+    PUSHBUTTON      "",IDC_LEFT2,204,18,18,12
+    PUSHBUTTON      "",IDC_MIDDLE2,222,18,18,12
+    PUSHBUTTON      "",IDC_RIGHT2,240,18,18,12
+    PUSHBUTTON      "",IDC_LEFT3,204,30,18,12
+    PUSHBUTTON      "",IDC_MIDDLE3,222,30,18,12
+    PUSHBUTTON      "",IDC_RIGHT3,240,30,18,12
+    PUSHBUTTON      "Reset",IDC_RESET,96,48,54,14
+    DEFPUSHBUTTON   "&Ok",IDOK,150,48,54,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,204,48,54,14
 END
 
 

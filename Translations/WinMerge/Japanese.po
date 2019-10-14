@@ -655,6 +655,9 @@ msgstr "分割(&L)"
 msgid "Comp&are"
 msgstr "比較(&A)"
 
+msgid "Compare Non-hor&izontally..."
+msgstr "非水平的に比較する(&I)..."
+
 msgid "Compare Non-hor&izontally"
 msgstr "非水平的に比較する(&I)"
 

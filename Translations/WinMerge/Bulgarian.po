@@ -649,6 +649,9 @@ msgstr "Ра&зделяне"
 msgid "Comp&are"
 msgstr "&Сравняване"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 msgid "Compare Non-hor&izontally"
 msgstr "Нехоризонтално &сравняване"
 

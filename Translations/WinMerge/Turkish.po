@@ -857,6 +857,9 @@ msgstr "Bö&l"
 msgid "Comp&are"
 msgstr "K&arşılaştır"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "&Yatay Olmayan Karşılaştırma"

@@ -860,6 +860,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "비교(&A)"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "수평이 아닌 방식으로 비교(&I)"

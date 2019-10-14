@@ -655,6 +655,9 @@ msgstr "Splitsen"
 msgid "Comp&are"
 msgstr "Vergelijken"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 msgid "Compare Non-hor&izontally"
 msgstr "Niet-horizontaal vergelijken"
 

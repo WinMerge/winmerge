@@ -57,6 +57,7 @@
 #define IDD_PROPPAGE_COLORS_MARKER      244
 #define IDD_EDIT_MARKER                 245
 #define IDD_PROPPAGE_COLORS_DIR         246
+#define IDD_SELECT_FILES_OR_FOLDERS     247
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -489,7 +490,20 @@
 #define IDC_USE_DIR_COMPARE_COLORS      1364
 #define IDC_PLUGIN_FILEFILTERS          1365
 #define IDC_PLUGIN_FILEFILTERS_DEFAULTS 1366
-#define IDC_DIFF_IGNORECP				1377
+#define IDC_DIFF_IGNORECP               1377
+#define IDC_RESET                       1378
+#define IDC_LEFT1                       1379
+#define IDC_MIDDLE1                     1380
+#define IDC_RIGHT1                      1381
+#define IDC_LEFT2                       1382
+#define IDC_MIDDLE2                     1383
+#define IDC_RIGHT2                      1384
+#define IDC_LEFT3                       1385
+#define IDC_MIDDLE3                     1386
+#define IDC_RIGHT3                      1387
+#define IDC_FIRST                       1388
+#define IDC_SECOND                      1389
+#define IDC_THIRD                       1390
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1256,6 +1270,7 @@
 #define IDS_CREATE_FOLDER               33657
 #define IDS_CREATE_FOLDER_ERROR         33658
 #define ID_FILE_SHELLMENU               33659
+#define ID_MERGE_COMPARE_NONHORIZONTALLY 33660
 
 // Next default values for new objects
 // 
@@ -1263,7 +1278,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        251
-#define _APS_NEXT_COMMAND_VALUE         33660
+#define _APS_NEXT_COMMAND_VALUE         33661
 #define _APS_NEXT_CONTROL_VALUE         8830
 #define _APS_NEXT_SYMED_VALUE           116
 #endif
