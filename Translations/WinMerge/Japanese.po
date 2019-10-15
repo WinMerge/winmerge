@@ -655,6 +655,9 @@ msgstr "分割(&L)"
 msgid "Comp&are"
 msgstr "比較(&A)"
 
+msgid "Compare Non-hor&izontally..."
+msgstr "非水平的に比較する(&I)..."
+
 msgid "Compare Non-hor&izontally"
 msgstr "非水平的に比較する(&I)"
 
@@ -852,6 +855,9 @@ msgstr "大文字と小文字を区別する(&T)"
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
 
+msgid "Ignore codepage &differences"
+msgstr "コードページの違いを無視する(&D)"
+
 msgid "&Include Subfolders"
 msgstr "サブフォルダーを含める(&I)"
 
@@ -1018,11 +1024,11 @@ msgstr "最後まで検索した後ループしない(&O)"
 msgid "&Don't close this dialog box"
 msgstr "このダイアログ ボックスを閉じない(&D)"
 
-msgid "Find &Prev"
-msgstr "前を検索(&P)"
-
 msgid "&Find Next"
 msgstr "次を検索(&F)"
+
+msgid "Find &Prev"
+msgstr "前を検索(&P)"
 
 msgid "&Ok"
 msgstr "&OK"
@@ -1044,6 +1050,9 @@ msgstr "選択範囲(&S)"
 
 msgid "Wh&ole file"
 msgstr "ファイル全体(&O)"
+
+msgid "Find Pre&v"
+msgstr "前を検索(&V)"
 
 msgid "&Replace"
 msgstr "置換して次に(&R)"
@@ -1288,9 +1297,6 @@ msgstr "空行を無視する(&K)"
 
 msgid "Ignore &case"
 msgstr "大文字と小文字を区別しない(&C)"
-
-msgid "Ignore codepage &differences"
-msgstr "コードページの違いを無視する(&D)"
 
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"

@@ -2,9 +2,7 @@
 <article id="About_Doc">
   <title>About WinMerge Help</title>
 
-  <para>This is Help for WinMerge <xi:include href="replaceables.xml"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
-  xpointer="element(version)" />.</para>
+  <para>This is Help for WinMerge &WinMergeVersion;.</para>
 
   <section>
     <title>Audience and scope</title>

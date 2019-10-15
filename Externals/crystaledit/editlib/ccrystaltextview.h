@@ -272,7 +272,7 @@ protected :
     void SelectAll ();
     void Copy ();
 
-    bool IsSelection ();
+    bool IsSelection () const;
     bool IsInsideSelection (const CPoint & ptTextPos);
     bool GetColumnSelection (int nLine, int & nLeftTextPos, int & nRightTextPos);
     void GetSelection (CPoint & ptStart, CPoint & ptEnd);
@@ -821,6 +821,7 @@ public :
     void EnsureVisible (CPoint ptStart, CPoint ptEnd);
 
     //  Text search helpers
+    CPoint GetSearchPos (DWORD dwSearchFlags);
     bool FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
     bool FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPos, const CPoint & ptBlockBegin, const CPoint & ptBlockEnd,
                           DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);

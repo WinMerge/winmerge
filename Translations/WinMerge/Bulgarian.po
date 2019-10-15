@@ -649,6 +649,9 @@ msgstr "Ра&зделяне"
 msgid "Comp&are"
 msgstr "&Сравняване"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 msgid "Compare Non-hor&izontally"
 msgstr "Нехоризонтално &сравняване"
 
@@ -846,6 +849,9 @@ msgstr "Съвпадение на &регистъра"
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Пренебрегване на &знаците за нов ред (Windows/Unix/Mac)"
 
+msgid "Ignore codepage &differences"
+msgstr "Пренебрегване на &разликите в кодова страница"
+
 msgid "&Include Subfolders"
 msgstr "&Включително подпапките"
 
@@ -1012,11 +1018,11 @@ msgstr "До &края на файла"
 msgid "&Don't close this dialog box"
 msgstr "&Без затваряне на диалога"
 
-msgid "Find &Prev"
-msgstr "Търсене &назад"
-
 msgid "&Find Next"
 msgstr "&Търсене"
+
+msgid "Find &Prev"
+msgstr "Търсене &назад"
 
 msgid "&Ok"
 msgstr "&Добре"
@@ -1038,6 +1044,9 @@ msgstr "&Избраното"
 
 msgid "Wh&ole file"
 msgstr "В &целия файл"
+
+msgid "Find Pre&v"
+msgstr ""
 
 msgid "&Replace"
 msgstr "&Заменяне"
@@ -1278,9 +1287,6 @@ msgstr "Пренебрегване на пра&зните редове"
 
 msgid "Ignore &case"
 msgstr "Пренебре&гване на регистъра"
-
-msgid "Ignore codepage &differences"
-msgstr "Пренебрегване на &разликите в кодова страница"
 
 msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"

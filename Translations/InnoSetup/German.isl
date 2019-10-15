@@ -17,7 +17,7 @@ Plugins=Plugins
 Frhed=Frhed (Freier Hex-Editor)
 WinIMerge=WinIMerge (Bildvergleich)
 ArchiveSupport=Archiv-Support
-ShellExtension32bit=32-bit WinMerge Shell-Integration
+ShellExtension32bit=32-Bit WinMerge Shell-Integration
 Patch=GnuWin32 Patch für Windows
 
 ;Localization Components
@@ -46,7 +46,7 @@ PersianLanguage=Persische Menüs und Dialoge
 PolishLanguage=Polnische Menüs und Dialoge
 PortugueseBrazilLanguage=Portugiesische (brasilianische) Menüs und Dialoge
 PortugueseLanguage=Portugiesische Menüs und Dialoge
-RomanianLanguage=Rumänisch Menüs und Dialoge
+RomanianLanguage=Rumänische Menüs und Dialoge
 RussianLanguage=Russische Menüs und Dialoge
 SerbianLanguage=Serbische Menüs und Dialoge
 SinhalaLanguage=Singhalesische Menüs und Dialoge
@@ -70,7 +70,7 @@ ThreeWayMergeWizardPageDescription=Verwenden Sie WinMerge als 3-Wege-Mergeprogra
 RegisterWinMergeAs3WayMergeTool=WinMerge als 3-Wege-Mergeprogramm registrieren
 MergeAtRightPane=Im rechten Bereich zusammenführen
 MergeAtCenterPane=Im mittleren Bereich zusammenführen
-MergeAtLeftPane=Im linkem Bereich zusammenführen
+MergeAtLeftPane=Im linken Bereich zusammenführen
 AutoMergeAtStartup=Beim Start automatisch zusammenführen
 
 ;Icon Labels

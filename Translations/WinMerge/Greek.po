@@ -855,6 +855,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "&Σύγκριση"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1096,6 +1099,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Διαφορές χαρακτήρων &τερματισμού (Win/Unix/Mac) να αγνοούνται"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Οι Υποφάκελοι να &συμπεριληφθούν"
 
@@ -1311,12 +1318,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "Εύρεση &Επομένου"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1345,6 +1352,9 @@ msgstr "&Επιλογής"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Ό&λου του Αρχείου"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1660,10 +1670,6 @@ msgstr "Οι &κενές γραμμές να αγνοούνται"
 #, c-format
 msgid "Ignore &case"
 msgstr "Διάκριση μεταξύ Πεζών/&Κεφαλαίων ανενεργός"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

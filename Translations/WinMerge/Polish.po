@@ -857,6 +857,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "&Porównaj"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1098,6 +1101,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Ignoruj różnice końca wiersza (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Uwzględnij podfoldery"
 
@@ -1313,12 +1320,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Następny"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1347,6 +1354,9 @@ msgstr "&Zaznaczenie"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Cały &plik"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1662,10 +1672,6 @@ msgstr "Ignoruj różnice pustych linii"
 #, c-format
 msgid "Ignore &case"
 msgstr "Ignoruj różnice wielkości liter"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

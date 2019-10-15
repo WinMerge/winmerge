@@ -60,7 +60,7 @@
 
           <listitem>
             <simpara>Go to the <ulink
-            url="http://winmerge.org/downloads/">WinMerge download</ulink> site.
+            url="https://winmerge.org/downloads/">WinMerge download</ulink> site.
             Download one of the archived binary files (either Zip or 7z format)
             for the current WinMerge version, and save it to your file
             system.</simpara>
@@ -270,12 +270,12 @@
       </indexterm></title>
 
     <para>If you would like to add your language to the list, then please read the <ulink
-    url="http://winmerge.org/translations/">translation documentation</ulink>
+    url="https://winmerge.org/translations/">translation documentation</ulink>
     on the WinMerge Web site to learn how. Most of the translations are incomplete,
     so your help improving them would be appreciated. Translating (or improving
     translation) does not require you to have all the compile tools or to know
     about WinMerge internals. You just need to follow the instructions in the preceding
     link. And if you have problems, ask for help from us in one of the <ulink
-    url="http://forums.winmerge.org/">WinMerge forums</ulink>.</para>
+    url="https://forums.winmerge.org/">WinMerge forums</ulink>.</para>
   </section>
 </article>

@@ -857,6 +857,9 @@ msgstr "Bö&l"
 msgid "Comp&are"
 msgstr "K&arşılaştır"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "&Yatay Olmayan Karşılaştırma"
@@ -1098,6 +1101,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Satı&r Sonu Farklılıkları Yok Sayılsın (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "Ko&d Sayfası Farkları Yok Sayılsın"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "A&lt Klasörler Katılsın"
 
@@ -1315,12 +1322,12 @@ msgid "&Don't close this dialog box"
 msgstr "Bu &Pencere Kapatılmasın"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "Ö&ncekini Bul"
-
-#, c-format
 msgid "&Find Next"
 msgstr "S&onrakini Bul"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "Ö&ncekini Bul"
 
 #, c-format
 msgid "&Ok"
@@ -1349,6 +1356,9 @@ msgstr "&Seçilmiş Bölümde"
 #, c-format
 msgid "Wh&ole file"
 msgstr "D&osyanın Tümünde"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1664,10 +1674,6 @@ msgstr "Boş Satırlar Yo&k Sayılsın"
 #, c-format
 msgid "Ignore &case"
 msgstr "BÜYÜK-Küçük &Harf Ayrımı Yapılmasın"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr "Ko&d Sayfası Farkları Yok Sayılsın"
 
 #, c-format
 msgid "E&nable moved block detection"

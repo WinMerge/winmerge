@@ -51,6 +51,7 @@
 #include "LoadSaveCodepageDlg.h"
 #include "ConfirmFolderCopyDlg.h"
 #include "DirColsDlg.h"
+#include "DirSelectFilesDlg.h"
 #include "UniFile.h"
 #include "ShellContextMenu.h"
 #include "DiffItem.h"
@@ -293,6 +294,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_LEFT1_RIGHT2, OnUpdateMergeCompare2<SELECTIONTYPE_LEFT1RIGHT2>)
 	ON_COMMAND(ID_MERGE_COMPARE_LEFT2_RIGHT1, OnMergeCompare2<SELECTIONTYPE_LEFT2RIGHT1>)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_LEFT2_RIGHT1, OnUpdateMergeCompare2<SELECTIONTYPE_LEFT2RIGHT1>)
+	ON_COMMAND(ID_MERGE_COMPARE_NONHORIZONTALLY, OnMergeCompareNonHorizontally)
 	ON_COMMAND(ID_MERGE_COMPARE_XML, OnMergeCompareXML)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateMergeCompare)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnMergeCompareAs)
@@ -708,7 +710,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		pPopup->RemoveMenu(ID_DIR_ZIP_MIDDLE, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_ZIP_ALL, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_SHELL_CONTEXT_MENU_MIDDLE, MF_BYCOMMAND);
-
+		pPopup->RemoveMenu(ID_MERGE_COMPARE_NONHORIZONTALLY, MF_BYCOMMAND);
 	}
 	else
 	{
@@ -716,6 +718,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		pPopup->RemoveMenu(ID_DIR_COPY_BOTH_TO_CLIPBOARD, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_ZIP_BOTH, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_DEL_BOTH, MF_BYCOMMAND);
+		pPopup->RemoveMenu(2, MF_BYPOSITION); // Compare Non-horizontally
 	}
 
 	CMenu menuPluginsHolder;
@@ -1317,6 +1320,52 @@ static bool CreateFoldersPair(const PathContext& paths)
 	return created;
 }
 
+void CDirView::Open(const PathContext& paths, DWORD dwFlags[3], PackingInfo * infoUnpacker)
+{
+	bool isdir = false;
+	for (auto path : paths)
+	{
+		if (paths::DoesPathExist(path) == paths::IS_EXISTING_DIR)
+			isdir = true;
+	}
+	CDirDoc * pDoc = GetDocument();
+	if (isdir)
+	{
+		// Open subfolders
+		// Don't add folders to MRU
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDoc);
+	}
+	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
+	{
+		// Open archives, not adding paths to MRU
+		GetMainFrame()->DoFileOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, nullptr, _T(""), infoUnpacker);
+	}
+	else
+	{
+		// Regular file case
+
+		// Binary attributes are set after files are unpacked
+		// so after plugins such as the MS-Office plugins have had a chance to make them textual
+		// We haven't done unpacking yet in this diff, but if a binary flag is already set,
+		// then it was set in a previous diff after unpacking, so we trust it
+
+		// Open identical and different files
+		FileLocation fileloc[3];
+		String strDesc[3];
+		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("untitled middle"), _("Untitled right") };
+		for (int i = 0; i < paths.GetSize(); ++i)
+		{
+			if (paths::DoesPathExist(paths[i]) == paths::DOES_NOT_EXIST)
+				strDesc[i] = sUntitled[i];
+			else
+				fileloc[i].setPath(paths[i]);
+		}
+
+		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc,
+			dwFlags, strDesc, _T(""), infoUnpacker);
+	}
+}
+
 /**
  * @brief Open selected files or directories.
  *
@@ -1395,42 +1444,8 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	DWORD dwFlags[3];
 	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
 		dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[nIndex]) ? FFILEOPEN_READONLY : 0);
-	if (isdir)
-	{
-		// Open subfolders
-		// Don't add folders to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDoc);
-	}
-	else if (HasZipSupport() && std::count_if(paths.begin(), paths.end(), ArchiveGuessFormat) == paths.GetSize())
-	{
-		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOpen(&paths, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, nullptr, _T(""), infoUnpacker);
-	}
-	else
-	{
-		// Regular file case
 
-		// Binary attributes are set after files are unpacked
-		// so after plugins such as the MS-Office plugins have had a chance to make them textual
-		// We haven't done unpacking yet in this diff, but if a binary flag is already set,
-		// then it was set in a previous diff after unpacking, so we trust it
-
-		// Open identical and different files
-		FileLocation fileloc[3];
-		String strDesc[3];
-		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("untitled middle"), _("Untitled right") };
-		for (int i = 0; i < paths.GetSize(); ++i)
-		{
-			if (!pdi[0]->diffcode.exists(i) &&
-				std::count(pdi, pdi + paths.GetSize(), pdi[0]) == paths.GetSize())
-				strDesc[i] = sUntitled[i];
-			else
-				fileloc[i].setPath(paths[i]);
-		}
-
-		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc,
-			dwFlags, strDesc, _T(""), infoUnpacker);
-	}
+	Open(paths, dwFlags, infoUnpacker);
 }
 
 void CDirView::OpenSelectionAs(UINT id)
@@ -3469,6 +3484,36 @@ void CDirView::OnMergeCompare2()
 {
 	CWaitCursor waitstatus;
 	OpenSelection(seltype);
+}
+
+void CDirView::OnMergeCompareNonHorizontally()
+{
+	int sel1, sel2, sel3;
+	if (!GetSelectedItems(&sel1, &sel2, &sel3))
+		return;
+	DirSelectFilesDlg dlg;
+	if (sel1 != -1)
+		dlg.m_pdi[0] = &GetDiffItem(sel1);
+	if (sel2 != -1)
+		dlg.m_pdi[1] = &GetDiffItem(sel2);
+	if (sel3 != -1)
+		dlg.m_pdi[2] = &GetDiffItem(sel3);
+	if (dlg.DoModal() == IDOK && dlg.m_selectedButtons.size() > 0)
+	{
+		CDirDoc *pDoc = GetDocument();
+		DWORD dwFlags[3] = {};
+		PathContext paths;
+		for (int nIndex = 0; nIndex < static_cast<int>(dlg.m_selectedButtons.size()); ++nIndex)
+		{
+			int n = dlg.m_selectedButtons[nIndex];
+			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(n % 3) ? FFILEOPEN_READONLY : 0);
+			if (dlg.m_pdi[n / 3])
+				paths.SetPath(nIndex, GetItemFileName(pDoc->GetDiffContext(), *dlg.m_pdi[n / 3], n % 3));
+		}
+		if (paths.GetSize() == 1)
+			paths.SetRight(_T(""));
+		Open(paths, dwFlags);
+	}
 }
 
 void CDirView::OnMergeCompareXML()

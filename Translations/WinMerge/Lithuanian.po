@@ -657,6 +657,9 @@ msgstr "Pada&linti"
 msgid "Comp&are"
 msgstr "Lyg&inti"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 msgid "Compare Non-hor&izontally"
 msgstr "Lyginti ne hor&izontaliai"
 
@@ -854,6 +857,9 @@ msgstr "Skir&ti raidžių dydį"
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&ruoti eilučių pabaigos skirtumus (Windows/Unix/Mac)"
 
+msgid "Ignore codepage &differences"
+msgstr "Nepaisyti ko&duočių skirtumų"
+
 msgid "&Include Subfolders"
 msgstr "Įtraukt&i pakatalogius"
 
@@ -1016,11 +1022,11 @@ msgstr "Fail&o gale nepradėti iš pradžių"
 msgid "&Don't close this dialog box"
 msgstr "Neužverti šio &dialogo lango"
 
-msgid "Find &Prev"
-msgstr "Rasti &praeitą"
-
 msgid "&Find Next"
 msgstr "&Rasti kitą"
+
+msgid "Find &Prev"
+msgstr "Rasti &praeitą"
 
 msgid "&Ok"
 msgstr "&Gerai"
@@ -1042,6 +1048,9 @@ msgstr "&Pažym. fragmente"
 
 msgid "Wh&ole file"
 msgstr "Vi&same faile"
+
+msgid "Find Pre&v"
+msgstr ""
 
 msgid "&Replace"
 msgstr "&Pakeisti"
@@ -1282,9 +1291,6 @@ msgstr "Nepaisyti &tuščių eilučių"
 
 msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
-
-msgid "Ignore codepage &differences"
-msgstr "Nepaisyti ko&duočių skirtumų"
 
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"

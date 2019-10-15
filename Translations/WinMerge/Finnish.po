@@ -852,6 +852,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Vertaa"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1093,6 +1096,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Ohita rivinvaihtoerot (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Sisällytä alihakemistot"
 
@@ -1309,12 +1316,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "Etsi seuraava"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1343,6 +1350,9 @@ msgstr "Valinta"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Koko tiedosto"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1658,10 +1668,6 @@ msgstr "Ohita tyhjät rivit"
 #, c-format
 msgid "Ignore &case"
 msgstr "Ohita kirjainkoko"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
