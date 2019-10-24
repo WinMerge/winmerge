@@ -1,4 +1,4 @@
-﻿# Released under the "GNU General Public License"
+# Released under the "GNU General Public License"
 #
 # Translators:
 # * sld <sld at mail.bg>
@@ -9,7 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"PO-Revision-Date: 2019-09-03 15:00+0000\n"
+"POT-Creation-Date: 2019-10-14 13:09+0000\n"
+"PO-Revision-Date: 2019-10-24 12:25+0300\n"
 "Last-Translator: Стоян <stoyan от гмаил>\n"
 "Language-Team: Bulgarian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: bg\n"
@@ -386,7 +387,7 @@ msgid "&Delete\tDel"
 msgstr "&Изтриване\tDel"
 
 msgid "&Customize Columns..."
-msgstr "&Нагласи колоните..."
+msgstr "&Избиране на колони…"
 
 msgid "Generate &Report..."
 msgstr "Изготвяне на &отчет…"
@@ -431,7 +432,7 @@ msgid "Print Previe&w"
 msgstr "П&реглед преди отпечатване"
 
 msgid "&Convert Line Endings to"
-msgstr "Си&мвол за край на реда"
+msgstr "Про&меняне на знака за нов ред"
 
 msgid "&Merge Mode\tF9"
 msgstr "Режим на &сливане\tF9"
@@ -443,16 +444,16 @@ msgid "&File Encoding..."
 msgstr "Избиране на &кодировка…"
 
 msgid "Recompare As"
-msgstr ""
+msgstr "Сравняване като"
 
 msgid "&Text"
-msgstr "&Текст"
+msgstr "&Текстови файлове"
 
 msgid "&XML"
-msgstr "&XML"
+msgstr "Файлове на &XML"
 
 msgid "&Binary"
-msgstr "&Двоичен"
+msgstr "&Двоични файлове"
 
 msgid "&Image"
 msgstr "&Изображения"
@@ -650,7 +651,7 @@ msgid "Comp&are"
 msgstr "&Сравняване"
 
 msgid "Compare Non-hor&izontally..."
-msgstr ""
+msgstr "Нехоризонтално &сравняване…"
 
 msgid "Compare Non-hor&izontally"
 msgstr "Нехоризонтално &сравняване"
@@ -892,7 +893,7 @@ msgid "Contributors"
 msgstr "Дарители"
 
 msgid "Select Files or Folders"
-msgstr "Избор на файове или папки…"
+msgstr "Избиране на файове или папки…"
 
 msgid "&1st File or Folder"
 msgstr "Файл или папка №&1"
@@ -1046,7 +1047,7 @@ msgid "Wh&ole file"
 msgstr "В &целия файл"
 
 msgid "Find Pre&v"
-msgstr ""
+msgstr "Търсене &назад"
 
 msgid "&Replace"
 msgstr "&Заменяне"
@@ -1205,7 +1206,7 @@ msgid "Open to e&xternal editor"
 msgstr "Отваряне с външе&н редактор"
 
 msgid "Display Columns"
-msgstr "Показване на колони"
+msgstr "Видими колони"
 
 msgid "Move &Up"
 msgstr "На&горе"
@@ -1316,7 +1317,7 @@ msgid "&Automatic rescan"
 msgstr "&Автоматично сканиране"
 
 msgid "&Preserve original EOL chars"
-msgstr "&Запазване на изходните знаци за край на реда"
+msgstr "&Запазване на изходните знаци за нов ред"
 
 msgid "Tabs"
 msgstr "Табулатор"
@@ -2532,73 +2533,73 @@ msgid "Extension"
 msgstr "Разширение"
 
 msgid "Left Size"
-msgstr "Размер на лявата част"
+msgstr "Размер ляво"
 
 msgid "Right Size"
-msgstr "Размер на дясната част"
+msgstr "Размер дясно"
 
 msgid "Middle Size"
-msgstr "Размер на средната част"
+msgstr "Размер средата"
 
 msgid "Right Size (Short)"
-msgstr "Размер от дясно (кратък)"
+msgstr "Размер дясно (кратък)"
 
 msgid "Left Size (Short)"
-msgstr "Размер от ляво (кратък)"
+msgstr "Размер ляво (кратък)"
 
 msgid "Middle Size (Short)"
-msgstr "Размер на средната част (кратък)"
+msgstr "Размер средата (кратък)"
 
 msgid "Left Creation Time"
-msgstr "Време за направа на лявата част"
+msgstr "Дата на създаване ляво"
 
 msgid "Right Creation Time"
-msgstr "Време за направа на дясната част"
+msgstr "Дата на създаване дясно"
 
 msgid "Middle Creation Time"
-msgstr ""
+msgstr "Дата на създаване средата"
 
 msgid "Newer File"
-msgstr "Нови файлове"
+msgstr "По-нов файл"
 
 msgid "Left File Version"
-msgstr "Версия на левия файл"
+msgstr "Версия ляв файл"
 
 msgid "Right File Version"
-msgstr "Версия на десния файл"
+msgstr "Версия десен файл"
 
 msgid "Middle File Version"
-msgstr ""
+msgstr "Версия среден файл"
 
 msgid "Short Result"
 msgstr "Бързи резултати"
 
 msgid "Left Attributes"
-msgstr "Атрибути от ляво"
+msgstr "Атрибути ляво"
 
 msgid "Right Attributes"
-msgstr "Атрибути от дясно"
+msgstr "Атрибути дясно"
 
 msgid "Middle Attributes"
-msgstr ""
+msgstr "Атрибути средата"
 
 msgid "Left EOL"
-msgstr "Ляв EOL"
+msgstr "Знак за нов ред ляво"
 
 msgid "Middle EOL"
-msgstr ""
+msgstr "Знак за нов ред средата"
 
 msgid "Right EOL"
-msgstr "Десен EOL"
+msgstr "Знак за нов ред дясно"
 
 msgid "Left Encoding"
-msgstr "Лява кодировка"
+msgstr "Кодиравка ляво"
 
 msgid "Right Encoding"
-msgstr "Дясна кодировка"
+msgstr "Кодиравка дясно"
 
 msgid "Middle Encoding"
-msgstr ""
+msgstr "Кодиравка средата"
 
 msgid "Ignored Diff."
 msgstr "Пренебрегнати различия."
@@ -2608,16 +2609,16 @@ msgid "Binary"
 msgstr "Двоичен"
 
 msgid "Unable to compare files"
-msgstr "Не може да се сравнят файловете"
+msgstr "Не може да бъде извършено сравняване на файлове"
 
 msgid "Item aborted"
-msgstr "Прекъснат файл"
+msgstr ""
 
 msgid "File skipped"
 msgstr "Пропуснат файл"
 
 msgid "Folder skipped"
-msgstr "Пропусната директория"
+msgstr "Пропусната папка"
 
 #, c-format
 msgid "Left only: %1"
@@ -2672,13 +2673,13 @@ msgid "Text files are identical"
 msgstr "Текстовите файлове са еднакви"
 
 msgid "(Middle and right are identical)"
-msgstr "(Средно и дясно са еднакви)"
+msgstr "(Среда и дясно са еднакви)"
 
 msgid "(Left and right are identical)"
-msgstr "(Лявото и дясното са еднакви)"
+msgstr "(Ляво и дясно са еднакви)"
 
 msgid "(Left and middle are identical)"
-msgstr "(Лявата и средната са еднакви)"
+msgstr "(Ляво и среда са еднакви)"
 
 msgid "Text files are different"
 msgstr "Текстовите файлове са различни"
@@ -2695,110 +2696,110 @@ msgid "%1 items selected"
 msgstr "%1 избрани обекта"
 
 msgid "Filename or folder name."
-msgstr "Име на папката или файла."
+msgstr "Име на папка или файл."
 
 msgid "Subfolder name when subfolders are included."
-msgstr "Име на подпапката, когато са включени подпапките."
+msgstr "Име на подпапка, при включени подпапки."
 
 msgid "Comparison result, long form."
 msgstr "Резултат на сравнението, дълга форма."
 
 msgid "Left side modification date."
-msgstr "Дата на промяна на лявата страна."
+msgstr "Дата на промяна на лявата секция."
 
 msgid "Right side modification date."
-msgstr "Дата на промяна на дясната страна."
+msgstr "Дата на промяна на дясната секция."
 
 msgid "Middle side modification date."
-msgstr "Дата на промяна на средната част."
+msgstr "Дата на промяна на средната секция."
 
 msgid "File's extension."
 msgstr "Разширение на файла."
 
 msgid "Left file size in bytes."
-msgstr "Размер на левия файл в байта."
+msgstr "Размер на файла отляво в байтове."
 
 msgid "Right file size in bytes."
-msgstr "Размер на десния файл в байта."
+msgstr "Размер на файла отдясно в байтове."
 
 msgid "Middle file size in bytes."
-msgstr ""
+msgstr "Размер на файла всредата в байтове."
 
 msgid "Left file size abbreviated."
-msgstr "Съкратен размер на файла в ляво."
+msgstr "Съкратен размер на файла отляво."
 
 msgid "Right file size abbreviated."
-msgstr "Съкратен размер на файла в дясно."
+msgstr "Съкратен размер на файла отдясно."
 
 msgid "Middle file size abbreviated."
-msgstr ""
+msgstr "Съкратен размер на файла всредата."
 
 msgid "Left side creation time."
-msgstr "Дата на създаване на лявата страна."
+msgstr "Дата на създаване на лявата секция."
 
 msgid "Right side creation time."
-msgstr "Дата на създаване на дясната страна."
+msgstr "Дата на създаване на дясната секция."
 
 msgid "Middle side creation time."
-msgstr ""
+msgstr "Дата на създаване на средната секция."
 
 msgid "Tells which side has newer modification date."
-msgstr "Показва коя страна има по-нова дата на промяна."
+msgstr "Показва коя секция има късна дата на промяна."
 
 msgid "Left side file version, only for some filetypes."
-msgstr "Версия на файла от ляво, само за файлове от еднакъв тип."
+msgstr "Версия на файла вляво, само за файлове от един вид."
 
 msgid "Right side file version, only for some filetypes."
-msgstr "Версия на файла от дясно, само за файлове от еднакъв тип."
+msgstr "Версия на файла вдясно, само за файлове от един вид."
 
 msgid "Middle side file version, only for some filetypes."
-msgstr ""
+msgstr "Версия на файла всредата, само за файлове от един вид."
 
 msgid "Short comparison result."
-msgstr "Кратки резултати на сравняване."
+msgstr "Кратък резултат от сравнението."
 
 msgid "Left side attributes."
-msgstr "Атрибути на лявата страна."
+msgstr "Атрибути на лявата секция."
 
 msgid "Right side attributes."
-msgstr "Атрибути на дясната страна."
+msgstr "Атрибути на дясната секция."
 
 msgid "Middle side attributes."
-msgstr ""
+msgstr "Атрибути на средната секция"
 
 msgid "Left side file EOL type"
-msgstr "EOL тип на левия файл"
+msgstr "Знакът за нов ред на файла отляво."
 
 msgid "Right side file EOL type"
-msgstr "EOL тип на десния файл"
+msgstr "Знакът за нов ред на файла отдясно."
 
 msgid "Middle side file EOL type"
-msgstr ""
+msgstr "Знакът за нов ред за файла всредата."
 
 msgid "Left side encoding."
-msgstr "Кодировка на лявата страна."
+msgstr "Кодировка на лявата секция."
 
 msgid "Right side encoding."
-msgstr "Кодировка на дясната страна."
+msgstr "Кодировка на дясната секция."
 
 msgid "Middle side encoding."
-msgstr ""
+msgstr "Кодиравка на средната секция."
 
 msgid ""
 "Number of ignored differences in file. These differences are ignored by "
 "WinMerge and cannot be merged."
 msgstr ""
-"Брой на игнорираните разлики във файл. Тези разлики са игнорирани от "
-"WinMerge и не могат да бъдат смесени."
+"Брой пренебрегнати различия във файла. Тези различия са прескочени от "
+"WinMerge и не могат да бъдат сливани."
 
 msgid ""
 "Number of differences in file. This number does not include ignored "
 "differences."
 msgstr ""
-"Брой на различията във файл. Този брой не включва игнорираните разлики."
+"Брой различия във файла. Не включва пренебрегнатите различия."
 
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "Покажи звездичка (*), ако файлът е двоичен."
+msgstr "Показва звездичка (*), ако файлът е двоичен."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -2906,8 +2907,8 @@ msgid ""
 msgstr ""
 "Намерена е различна кодова страница в левия (cp%d) и десния (cp%d) файл. \n"
 "Показването на всеки файл с неговата кодова страница ще даде по-добра видимост, но "
-"сравняването или копирането ще е опасно.\n"
-"Искате ли файловете да се обработват, използвайки зададената кодова страница на "
+"сливането или копирането ще е рисковано.\n"
+"Желаете ли файловете да бъдат третирани със зададената кодова страница на "
 "Windows (препоръчително)?"
 
 msgid "Information lost due to encoding errors: both files"
@@ -3293,4 +3294,3 @@ msgid ""
 "$file: Path name of the current file\n"
 "$linenum: Line number of the current cursor position"
 msgstr ""
-
