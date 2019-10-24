@@ -857,6 +857,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "&a همسنجي "
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1098,6 +1101,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "&r چشم پوشي از تفاوت علامت بازگشت به سر سطر  (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&I شامل زيرپوشه ها "
 
@@ -1319,12 +1326,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&F يافتن بعدي "
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1353,6 +1360,9 @@ msgstr "&S گزينش "
 #, c-format
 msgid "Wh&ole file"
 msgstr "&o تمام پرونده "
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1668,10 +1678,6 @@ msgstr "&k چشم پوشي از خطوط خالي "
 #, c-format
 msgid "Ignore &case"
 msgstr "&c چشم پوشي از اندازه حروف "
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2192,6 +2198,9 @@ msgstr " افزايه ها"
 #, c-format
 msgid "&Enable plugins"
 msgstr "&E فعال سازي افزايه ها "
+
+msgid "File filters:"
+msgstr ""
 
 #, c-format
 msgid "Shell Integration"

@@ -148,7 +148,6 @@ MoveRight (bool bSelect)
 void CCrystalTextView::
 MoveWordLeft (bool bSelect)
 {
-  int nLength = GetLineLength(m_ptCursorPos.y);
   PrepareSelBounds ();
   if (m_ptDrawSelStart != m_ptDrawSelEnd && !bSelect)
     {
@@ -158,16 +157,14 @@ MoveWordLeft (bool bSelect)
 
   if (m_ptCursorPos.x == 0)
     {
-      if (m_ptCursorPos.y == 0)
-        return;
-      m_ptCursorPos.y--;
-      m_ptCursorPos.x = nLength;
+       MoveLeft (bSelect);
+       return;
     }
 
   if (m_ptCursorPos.x > 0)
     {
       const TCHAR *pszChars = GetLineChars(m_ptCursorPos.y);
-      m_iterWord.setText(reinterpret_cast<const UChar *>(pszChars), nLength);
+      m_iterWord.setText(reinterpret_cast<const UChar *>(pszChars), GetLineLength(m_ptCursorPos.y));
       int nPos = m_iterWord.preceding(m_ptCursorPos.x);
       if (xisspace(pszChars[nPos]))
         nPos = m_iterWord.preceding(nPos);
@@ -190,14 +187,6 @@ MoveWordRight (bool bSelect)
     {
       MoveRight (bSelect);
       return;
-    }
-
-  if (m_ptCursorPos.x == GetLineLength (m_ptCursorPos.y))
-    {
-      if (m_ptCursorPos.y == GetLineCount () - 1)
-        return;
-      m_ptCursorPos.y++;
-      m_ptCursorPos.x = 0;
     }
 
   int nLength = GetLineLength (m_ptCursorPos.y);
@@ -1077,7 +1066,7 @@ OnRButtonDown (UINT nFlags, CPoint point)
 }
 
 bool CCrystalTextView::
-IsSelection ()
+IsSelection () const
 {
 #if _MSC_VER < 1910		// VS2015 (and earlier?) generates a "performance" warning
   // NOTE:  Comparing two `CPoint` values yields a BOOL result; therefore this funny code

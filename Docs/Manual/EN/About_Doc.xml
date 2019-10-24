@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="About_Doc">
+  <title>About WinMerge Help</title>
+
+  <para>This is Help for WinMerge &WinMergeVersion;.</para>
+
+  <section>
+    <title>Audience and scope</title>
+
+    <para>WinMerge Help is intended for both new and experienced users. It
+    explains how to use WinMerge, and documents its capabilities and
+    limitations.</para>
+  </section>
+
+  <section>
+    <title>How to access Help</title>
+
+    <para>WinMerge Help topics are provided in two forms:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Microsoft HTML Help (<filename>WinMerge.chm</filename>), located
+        in your WinMerge\Docs installation directory.</para>
+      </listitem>
+
+      <listitem>
+        <para>HTML manual on the WinMerge Web site.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>You can access WinMerge Help in several ways:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>WinMerge Help menu</term>
+
+        <listitem>
+          <para>While using WinMerge, click <menuchoice>
+              <guimenu>Help</guimenu>
+
+              <guimenuitem>WinMerge Help</guimenuitem>
+            </menuchoice>. HTML Help opens at the beginning (this topic).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Context-sensitive help</term>
+
+        <listitem>
+          <para>While using any WinMerge window, press F1. If a specific topic
+          is available for your current window, Help opens at that topic. If
+          not, Help opens at the beginning.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>WinMerge command line</term>
+
+        <listitem>
+          <para>Use the /? or -? switch when running WinMerge from the command
+          line. HTML Help opens at the beginning.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>WinMerge Web site</term>
+
+        <listitem>
+          <para>Open your Web browser to <ulink
+          url="https://winmerge.org/">winmerge.org</ulink>. Under <ulink
+          url="https://winmerge.org/docs/">Documentation</ulink>, follow the
+          <ulink url="https://manual.winmerge.org/">Manual</ulink> link to
+          the latest Help version.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>How to use Help</title>
+
+    <para>Please read the following topics to learn essential WinMerge
+    basics,</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><xref linkend="Quick_start" /></term>
+
+        <listitem>
+          <para>Gets you quickly started with WinMerge and shows its basic
+          usage.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_dirs" /></term>
+
+        <listitem>
+          <para>Explains the folder comparison window, available operations, and
+          customizing the results display.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_files" /></term>
+
+        <listitem>
+          <para>Explains the file comparison/merge window, available operations,
+          methods of navigation, and modes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_images" /></term>
+
+        <listitem>
+          <para>TBD</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_bin" /></term>
+
+        <listitem>
+          <para>TBD</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Configuration" /></term>
+
+        <listitem>
+          <para>Explains how to customize WinMerge, including handling
+          whitespace, colours, and text encoding.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>To learn about WinMerge in more detail, read these topics:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><xref linkend="Open_paths" /></term>
+
+        <listitem>
+          <para>Introduces several ways to open files and folders in WinMerge -
+          there are many! For example, do you know how to use the Shell
+          Extension context menu in advanced mode?</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Plugins" /></term>
+
+        <listitem>
+          <para>Describes the optional, extra features that you can add to
+          WinMerge using its plugin mechanism.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Filters" /></term>
+
+        <listitem>
+          <para>Explains how to control what is compared in the folder or file
+          comparison window.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Command_line" /></term>
+
+        <listitem>
+          <para>Lists command-line parameters for using WinMerge with other
+          tools or from a script.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Faq" /></term>
+
+        <listitem>
+          <para>Contains answers to many common questions asked of
+          developers.</para>
+
+          <para>Before submitting questions to <ulink
+          url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>,
+          please check the <xref linkend="Faq" /> topic first to see if your
+          question is answered there.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>Documentation conventions<indexterm>
+        <primary>conventions, documentation</primary>
+      </indexterm></title>
+
+    <informaltable>
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry>Example</entry>
+
+            <entry>Indicates</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry>Enter <userinput>UTF-8</userinput> in the field.<para>Click
+            the <guibutton>Browse</guibutton> button to navigate to the
+            path.</para><para>Press <keycap>F5</keycap> once to refresh the
+            window. </para></entry>
+
+            <entry>Bold font in descriptive text can indicate:<itemizedlist>
+                <listitem>
+                  <para>A value or string that you are instructed to
+                  enter</para>
+                </listitem>
+
+                <listitem>
+                  <para>The name of a GUI button or keycap</para>
+                </listitem>
+              </itemizedlist></entry>
+          </row>
+
+          <row>
+            <entry>Press <keycombo>
+                <keycap>Ctrl</keycap>
+
+                <keycap>O</keycap>
+              </keycombo></entry>
+
+            <entry><wordasword>Press</wordasword> indicates a keyboard action.
+            In this example, press the <keycap>Ctrl</keycap> and
+            <keycap>O</keycap> keys in combination.</entry>
+          </row>
+
+          <row>
+            <entry><para>Click <guibutton>OK</guibutton>. </para></entry>
+
+            <entry>Click indicates a left mouse click on an object, such as a
+            menu item or button.</entry>
+          </row>
+
+          <row>
+            <entry>Click <menuchoice>
+                <guimenu>File</guimenu>
+
+                <guimenuitem>Open</guimenuitem>
+              </menuchoice>.</entry>
+
+            <entry>The arrow indicates menu navigation. In the example, you
+            choose the <guimenuitem>Open</guimenuitem> item in the WinMerge
+            <guimenu>File</guimenu> menu .</entry>
+          </row>
+
+          <row>
+            <entry>Right-click the row and choose the
+            <guimenuitem>Compare</guimenuitem> shortcut.</entry>
+
+            <entry>Click the right mouse button on an object to open its context
+            menu, and then either left-click or right-click the indicated item
+            in the context menu.</entry>
+          </row>
+
+          <row>
+            <entry>Enter <replaceable>options file</replaceable>.ini<para>Use
+            the <guilabel>Filter</guilabel> field to eliminate files from the
+            operation.</para><para>One or more consecutive different lines form
+            one difference (or <glossterm>diff</glossterm>).</para></entry>
+
+            <entry>Italicized text can represent: <itemizedlist>
+                <listitem>
+                  <para>A replaceable value or string. In the first example, you
+                  would substitute a real file name for the italicized term, but
+                  enter the <filename>ini</filename> file extension, which is
+                  not italicized, as written.</para>
+                </listitem>
+
+                <listitem>
+                  <para>The name of a field, menu, or control in a WinMerge
+                  window.</para>
+                </listitem>
+
+                <listitem>
+                  <para>A significant word or phrase that is introduced.</para>
+                </listitem>
+              </itemizedlist></entry>
+          </row>
+
+          <row>
+            <entry>The path <envar>%WORKDIR%\project1</envar> is expanded to
+            <filename
+            class="directory">C:\workfiles\project1</filename>.<para><screen
+            format="linespecific">TwoWords</screen></para></entry>
+
+            <entry>Monospaced text can indicate:<itemizedlist>
+                <listitem>
+                  <para>A path or the name of a file or other system item</para>
+                </listitem>
+
+                <listitem>
+                  <para>Sample code fragments</para>
+                </listitem>
+
+                <listitem>
+                  <para>Sample output</para>
+                </listitem>
+
+                <listitem>
+                  <para>Information that you enter in a form or on the command
+                  line</para>
+                </listitem>
+              </itemizedlist></entry>
+          </row>
+
+          <row>
+            <entry><cmdsynopsis sepchar=" ">
+                <command moreinfo="none">command</command>
+
+                <arg choice="plain"
+                rep="norepeat"><replaceable>inputpath</replaceable></arg>
+
+                <arg choice="opt"
+                rep="norepeat"><replaceable>outputpath</replaceable></arg>
+              </cmdsynopsis></entry>
+
+            <entry>In syntax lines, brackets indicate optional elements. In this
+            example, you must enter an input path with the command; you can
+            enter an output path, but the command is valid without it.</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+  </section>
+</article>

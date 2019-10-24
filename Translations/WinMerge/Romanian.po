@@ -856,6 +856,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Comp&ară"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1097,6 +1100,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&ră diferenţele sfârşitului de linie (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Include subdirectoare"
 
@@ -1312,12 +1319,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Găseşte"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1346,6 +1353,9 @@ msgstr "&Selecţie"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Între&gul fişier"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1661,10 +1671,6 @@ msgstr "Ignoră li&nii goale"
 #, c-format
 msgid "Ignore &case"
 msgstr "Ignoră minus&cule/majuscule"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2178,6 +2184,9 @@ msgstr ""
 
 #, c-format
 msgid "&Enable plugins"
+msgstr ""
+
+msgid "File filters:"
 msgstr ""
 
 #, c-format

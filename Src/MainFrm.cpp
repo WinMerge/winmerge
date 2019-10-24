@@ -223,6 +223,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_CASESENSITIVE, OnUpdateDiffCaseSensitive)
 	ON_COMMAND(IDC_DIFF_IGNOREEOL, OnDiffIgnoreEOL)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
+	ON_COMMAND(IDC_DIFF_IGNORECP, OnDiffIgnoreCP)
+	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNORECP, OnUpdateDiffIgnoreCP)
 	ON_COMMAND(IDC_RECURS_CHECK, OnIncludeSubfolders)
 	ON_UPDATE_COMMAND_UI(IDC_RECURS_CHECK, OnUpdateIncludeSubfolders)
 	ON_COMMAND_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnCompareMethod)
@@ -1902,7 +1904,7 @@ void CMainFrame::StartFlashing()
 {
 	CWnd * activeWindow = GetActiveWindow();
 	if (activeWindow != this)
-		FlashWindowEx(FLASHW_ALL | FLASHW_TIMERNOFG, 0, 0);
+		FlashWindowEx(FLASHW_ALL | FLASHW_TIMERNOFG, 3, 0);
 }
 
 #if _MFC_VER > 0x0600
@@ -2326,6 +2328,18 @@ void CMainFrame::OnDiffIgnoreEOL()
 void CMainFrame::OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnDiffIgnoreCP()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CODEPAGE, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE));
 	pCmdUI->Enable();
 }
 

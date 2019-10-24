@@ -9,13 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"PO-Revision-Date: 2019-09-03 15:00+0000\n"
+"POT-Creation-Date: 2019-10-14 13:09+0000\n"
+"PO-Revision-Date: 2019-10-24 13:23+0300\n"
 "Last-Translator: Стоян <stoyan от гмаил>\n"
 "Language-Team: Bulgarian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -649,6 +651,9 @@ msgstr "Ра&зделяне"
 msgid "Comp&are"
 msgstr "&Сравняване"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 msgid "Compare Non-hor&izontally"
 msgstr "Нехоризонтално &сравняване"
 
@@ -846,6 +851,9 @@ msgstr "Съвпадение на &регистъра"
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Пренебрегване на &знаците за нов ред (Windows/Unix/Mac)"
 
+msgid "Ignore codepage &differences"
+msgstr "Пренебрегване на &разликите в кодова страница"
+
 msgid "&Include Subfolders"
 msgstr "&Включително подпапките"
 
@@ -886,7 +894,7 @@ msgid "Contributors"
 msgstr "Дарители"
 
 msgid "Select Files or Folders"
-msgstr "Избор на файове или папки…"
+msgstr "Избиране на файове или папки…"
 
 msgid "&1st File or Folder"
 msgstr "Файл или папка №&1"
@@ -1012,11 +1020,11 @@ msgstr "До &края на файла"
 msgid "&Don't close this dialog box"
 msgstr "&Без затваряне на диалога"
 
-msgid "Find &Prev"
-msgstr "Търсене &назад"
-
 msgid "&Find Next"
 msgstr "&Търсене"
+
+msgid "Find &Prev"
+msgstr "Търсене &назад"
 
 msgid "&Ok"
 msgstr "&Добре"
@@ -1038,6 +1046,9 @@ msgstr "&Избраното"
 
 msgid "Wh&ole file"
 msgstr "В &целия файл"
+
+msgid "Find Pre&v"
+msgstr ""
 
 msgid "&Replace"
 msgstr "&Заменяне"
@@ -1278,9 +1289,6 @@ msgstr "Пренебрегване на пра&зните редове"
 
 msgid "Ignore &case"
 msgstr "Пренебре&гване на регистъра"
-
-msgid "Ignore codepage &differences"
-msgstr "Пренебрегване на &разликите в кодова страница"
 
 msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"
@@ -1676,6 +1684,9 @@ msgstr "Добавки"
 
 msgid "&Enable plugins"
 msgstr "Включване на &добавките"
+
+msgid "File filters:"
+msgstr ""
 
 msgid "Shell Integration"
 msgstr "Сливане със системата"
@@ -2896,10 +2907,10 @@ msgid ""
 "(recommended)?"
 msgstr ""
 "Намерена е различна кодова страница в левия (cp%d) и десния (cp%d) файл. \n"
-"Показването на всеки файл с неговата кодова страница ще даде по-добра видимост, но "
-"сравняването или копирането ще е опасно.\n"
-"Искате ли файловете да се обработват, използвайки зададената кодова страница на "
-"Windows (препоръчително)?"
+"Показването на всеки файл с неговата кодова страница ще даде по-добра "
+"видимост, но сравняването или копирането ще е опасно.\n"
+"Искате ли файловете да се обработват, използвайки зададената кодова страница "
+"на Windows (препоръчително)?"
 
 msgid "Information lost due to encoding errors: both files"
 msgstr "Има загуба на информация, поради грешка в кодировката на: двата файла"

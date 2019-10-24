@@ -72,7 +72,7 @@ protected:
 	int DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
 	String GetHelpText(UINT_PTR idCmd);
 	String FormatCmdLine(const String &winmergePath,
-			const String &path1, const String &path2, BOOL bAlterSubFolders);
+			const String &path1, const String &path2, const String &path3, BOOL bAlterSubFolders);
 
 public:
 	// IShellExtInit

@@ -1,5 +1,4 @@
-﻿# This file is part from WinMerge <https://winmerge.org/>
-# Released under the "GNU General Public License"
+﻿# Released under the "GNU General Public License"
 #
 # Translators:
 # * Göran Håkansson <goran.x.hakansson at telia.com>
@@ -14,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2018-11-22 04:53+0000\n"
-"PO-Revision-Date: 2018-11-26 06:55+0900\n"
+"PO-Revision-Date: 2019-10-07 10:13+0200\n"
 "Last-Translator: pgert <pgert at yahoo.se>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sv\n"
@@ -23,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -91,7 +90,7 @@ msgid "&with..."
 msgstr "med ..."
 
 msgid "S&hell Menu"
-msgstr ""
+msgstr "GränssnittsMeny"
 
 #, c-format
 msgid "View &Differences"
@@ -106,17 +105,17 @@ msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "Åsidosätt FärgSkillnader (FärgSkillnadsTröskel)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "Upptäckning av Infogning/Radering"
 
 #, c-format
 msgid "&None"
 msgstr "Ingen"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "Lodrätt"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "Vågrätt"
 
 #, c-format
 msgid "&Previous Page"
@@ -136,11 +135,11 @@ msgstr "Zoom"
 
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr "Zooma in\tCtrl++"
+msgstr "Zooma In\tCtrl++"
 
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Zooma ut\tCtrl+-"
+msgstr "Zooma Ut\tCtrl+-"
 
 #. Zoom to normal
 #, c-format
@@ -419,13 +418,13 @@ msgid "Show &Right Only Different Items"
 msgstr "Visa Högerns endast Olikartade objekt"
 
 msgid "Show L&eft Only Missing Items"
-msgstr ""
+msgstr "Visa endast Vänster saknade objekt"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr ""
+msgstr "Visa endast Mitter saknade objekt"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr ""
+msgstr "Visa endast Höger saknade objekt"
 
 #, c-format
 msgid "Show Hidd&en Items"
@@ -858,6 +857,9 @@ msgstr "Dela"
 msgid "Comp&are"
 msgstr "Jämför"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "Jämför icke-Vågrätt"
@@ -1099,6 +1101,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Åsidosätt RadslutsSkillnader (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "Åsidosätt TextKodningsSkillnader"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Inkludera UnderMappar"
 
@@ -1156,7 +1162,7 @@ msgstr "Välj Filer eller Mappar"
 
 #, c-format
 msgid "&1st File or Folder"
-msgstr "1sta Fil eller Mapp"
+msgstr "1:a Fil eller Mapp"
 
 #, c-format
 msgid "Re&ad-only"
@@ -1164,7 +1170,7 @@ msgstr "Endast Läsbar"
 
 #, c-format
 msgid "Swap 1st | 2nd"
-msgstr "Byt 1sta | 2dra"
+msgstr "Byt 1:a | 2:a"
 
 #, c-format
 msgid "&Browse..."
@@ -1172,7 +1178,7 @@ msgstr "Bläddra ..."
 
 #, c-format
 msgid "&2nd File or Folder"
-msgstr "2dra Fil eller Mapp"
+msgstr "2:a Fil eller Mapp"
 
 #, c-format
 msgid "Rea&d-only"
@@ -1180,7 +1186,7 @@ msgstr "Endast Läsbar"
 
 #, c-format
 msgid "Swap 2nd | 3rd"
-msgstr "Byt 2dra | 3dje"
+msgstr "Byt 2:a | 3:e"
 
 #, c-format
 msgid "B&rowse..."
@@ -1188,7 +1194,7 @@ msgstr "Bläddra ..."
 
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr "3dje Fil eller Mapp (valfritt)"
+msgstr "3:e Fil eller Mapp (valfritt)"
 
 #, c-format
 msgid "Read-o&nly"
@@ -1196,7 +1202,7 @@ msgstr "Endast Läsbar"
 
 #, c-format
 msgid "Swap 1st | 3rd"
-msgstr "Byt 1sta | 3dje"
+msgstr "Byt 1:a | 3:e"
 
 #, c-format
 msgid "Browse..."
@@ -1277,12 +1283,8 @@ msgstr "Öppna-dialog Auto-Fullända:"
 msgid "Language:"
 msgstr "Språk:"
 
-msgid ""
-"WinMerge allows hiding some common messageboxes. Press the Reset button to "
-"make all messageboxes visible again."
-msgstr ""
-"WinMerge tillåter att vissa MedelandeDialog döljs. Klicka på ''Återställ'' "
-"för att göra samtliga synliga igen."
+msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
+msgstr "WinMerge tillåter att vissa MedelandeDialog döljs. Klicka på ''Återställ'' för att göra samtliga synliga igen."
 
 #, c-format
 msgid "Reset"
@@ -1317,12 +1319,12 @@ msgid "&Don't close this dialog box"
 msgstr "Stäng inte denna dialogruta"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "Sök Föregående"
-
-#, c-format
 msgid "&Find Next"
 msgstr "Sök Nästa"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "Sök Föregående"
 
 #, c-format
 msgid "&Ok"
@@ -1351,6 +1353,9 @@ msgstr "Markering"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Hela filen"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1457,19 +1462,19 @@ msgid "Defaults"
 msgstr "Förval"
 
 msgid "&Use folder compare colors"
-msgstr ""
+msgstr "Använd MappJämföringsFärger"
 
 msgid "Items equal:"
-msgstr ""
+msgstr "Objekt lika:"
 
 msgid "Items different:"
-msgstr ""
+msgstr "Objekt olika:"
 
 msgid "Items not exists all:"
-msgstr ""
+msgstr "Objekt som ej finns:"
 
 msgid "Items filtered:"
-msgstr ""
+msgstr "Objekt filtrerade:"
 
 #, c-format
 msgid "System"
@@ -1581,7 +1586,7 @@ msgstr "Visa alla uppackare, kontrollera inte filsuffixet"
 
 #, c-format
 msgid "Extensions list:"
-msgstr "Filsuffixlista:"
+msgstr "FilsuffixLista:"
 
 #, c-format
 msgid "Description:"
@@ -1668,10 +1673,6 @@ msgid "Ignore &case"
 msgstr "Åsidosätt VERSAL/gemen skillnader"
 
 #, c-format
-msgid "Ignore codepage &differences"
-msgstr "Åsidosätt TextKodningsSkillnader"
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "Möjliggör urskiljning av flyttade block"
 
@@ -1680,10 +1681,10 @@ msgid "&Match similar lines"
 msgstr "Urskilj liknande rader"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr ""
+msgstr "SkillnadsAlgo (experimentell):"
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "Möjliggör IndragUppfinningsrikhet"
 
 #, c-format
 msgid "Comments"
@@ -1719,7 +1720,7 @@ msgstr "Tabsteg:"
 
 #, c-format
 msgid "&Insert Tabs"
-msgstr "Infoga Tabar"
+msgstr "Infoga Tabbar"
 
 #, c-format
 msgid "Insert &Spaces"
@@ -2192,6 +2193,9 @@ msgstr "InsticksProgram"
 msgid "&Enable plugins"
 msgstr "Möjliggör InsticksProgram"
 
+msgid "File filters:"
+msgstr "FilFilter:"
+
 #, c-format
 msgid "Shell Integration"
 msgstr "GränssnittsIntegration"
@@ -2217,10 +2221,10 @@ msgid "&Unregister shell extension"
 msgstr "Avregistrera GränssnittsIntegration"
 
 msgid "Register shell extension for current user &only"
-msgstr ""
+msgstr "Registrera GränssnittsIntegration för endast nuvarande användare"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr ""
+msgstr "Avregistrera GränssnittsIntegration för endast nuvarande användare"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2251,14 +2255,10 @@ msgid "&Quick compare limit (MB):"
 msgstr "Högsta SnabbJämförelseStorlek (MB):"
 
 msgid "&Binary compare limit (MB):"
-msgstr ""
+msgstr "Högsta Binär JämförelseStorlek (MB):"
 
-msgid ""
-"&Number of compare threads (a negative value implies addition of the number "
-"of available CPU cores):"
-msgstr ""
-"Antal JämförelseTrådar (ett negativt värde antyder tillägg av antal "
-"tillgängliga CPU-kärnor):"
+msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgstr "Antal JämförelseTrådar (ett negativt värde antyder tillägg av antal tillgängliga CPU-kärnor):"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2406,20 +2406,19 @@ msgstr ""
 "WinMerge.MappJämförelse\n"
 "WinMerge MappJämförelse"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 msgstr ""
 "Utvecklare:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi "
-"Sawanaka, Gal Hammer, Alexander Skinner"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
 
 msgid ""
-"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
-"are welcome to redistribute it under certain circumstances; see the GNU "
-"General Public License in the Help menu for details."
+"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; "
+"see the GNU General Public License in the Help menu for details."
 msgstr ""
-"WinMerge kommer med ABSOLUT INGA GARANTIER. Detta är fri programvara och Ni "
-"är välkommen att vidaredistribuera den under vissa omständigheter; se GNU "
-"General Public License i Hjälpmenyn för detaljer."
+"WinMerge kommer med ABSOLUT INGA GARANTIER. Detta är fri programvara och Ni är välkommen att vidaredistribuera den under vissa "
+"omständigheter; se GNU General Public License i Hjälpmenyn för detaljer."
 
 #, c-format
 msgid "&Abort"
@@ -2473,19 +2472,15 @@ msgstr "Visa inte detta meddelande igen."
 msgid "Don't ask this &question again."
 msgstr "Fråga inte denna fråga igen."
 
-msgid ""
-"To make this messagebox visible again, press the Reset button on the General "
-"page of the Options dialog."
-msgstr ""
-"För att återmöjliggöra denna MedelandeDialog så tryck på ''Återställ'' "
-"knappen i Allmänt i InställningsDialogen."
+msgid "To make this messagebox visible again, press the Reset button on the General page of the Options dialog."
+msgstr "För att återmöjliggöra denna MedelandeDialog så tryck på ''Återställ'' knappen i Allmänt i InställningsDialogen."
 
 #, c-format
 msgid "Syntax"
 msgstr "Syntax"
 
 msgid "Folder Compare"
-msgstr ""
+msgstr "MappJämförelse"
 
 #, c-format
 msgid "Differences"
@@ -2557,12 +2552,8 @@ msgstr "WinMerge Projektfiler (*.WinMerge)|*.WinMerge||"
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Inställningsfiler (*.ini)|*.ini|Alla Filer (*.*)|*.*||"
 
-msgid ""
-"Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
-"*.*||"
-msgstr ""
-"Text-filer (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Alla filer (*."
-"*)|*.*||"
+msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+msgstr "Text-filer (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Alla filer (*.*)|*.*||"
 
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
@@ -2672,13 +2663,11 @@ msgstr "Reguljärt uttryck"
 msgid ""
 "Filters were updated. Do you want to refresh all open folder compares?\n"
 "\n"
-"If you do not want to refresh all compares now you can select No and refresh "
-"compares later."
+"If you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 "Filtren blev aktualiserade Vill Ni aktualisera alla öppna MappJämförelser?\n"
 "\n"
-"Om Ni inte vill göra detta nu kan Ni välja Nej och aktualisera jämförelser "
-"senare."
+"Om Ni inte vill göra detta nu kan Ni välja Nej och aktualisera jämförelser senare."
 
 #, c-format
 msgid "Folder Comparison Results"
@@ -2763,19 +2752,19 @@ msgstr "Välj två (eller tre) mappar eller två (eller tre) filer att jämföra
 
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr "Vänster (1sta) sökväg är ogiltlig!"
+msgstr "Vänster (1:a) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr "Mitter (2dra) sökväg är ogiltlig!"
+msgstr "Mitter (2:a) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr "Höger (2dra) sökväg är ogiltlig!"
+msgstr "Höger (2:a) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr "Höger (3dje) sökväg är ogiltlig!"
+msgstr "Höger (3:e) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Both paths are invalid!"
@@ -2783,15 +2772,15 @@ msgstr "Båda sökvägar är ogiltliga!"
 
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr "Vänster (1sta) och Mitter (2dra) sökväg är ogiltlig!"
+msgstr "Vänster (1:a) och Mitter (2:a) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr "Vänster (1sta) och Höger (2dra) sökväg är ogiltlig!"
+msgstr "Vänster (1:a) och Höger (2:a) sökväg är ogiltlig!"
 
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr "Mitter (2dra) och Höger (3dje) sökväg är ogiltlig!"
+msgstr "Mitter (2:a) och Höger (3:e) sökväg är ogiltlig!"
 
 #, c-format
 msgid "All paths are invalid!"
@@ -2848,12 +2837,8 @@ msgid "Save changes to %1?"
 msgstr "Spara ändringar i %1?"
 
 #, c-format
-msgid ""
-"%1 is marked read-only. Would you like to override the read-only file ? (No "
-"to save as new filename.)"
-msgstr ""
-"%1 är skrivskyddad. Vill Ni skriva över filen (välj Nej för att spara filen "
-"under annat namn)?"
+msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
+msgstr "%1 är skrivskyddad. Vill Ni skriva över filen (välj Nej för att spara filen under annat namn)?"
 
 #, c-format
 msgid "Error backing up file"
@@ -2895,8 +2880,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Insticksprogram '%2' kan inte packa Era förändringar av den vänstra filen "
-"tillbaka till '%1'.\n"
+"Insticksprogram '%2' kan inte packa Era förändringar av den vänstra filen tillbaka till '%1'.\n"
 "\n"
 "Originalfilen blir inte ändrad.\n"
 "\n"
@@ -2910,8 +2894,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Insticksprogram '%2' kan inte packa Era förändringar av den högra filen "
-"tillbaka till '%1'.\n"
+"Insticksprogram '%2' kan inte packa Era förändringar av den högra filen tillbaka till '%1'.\n"
 "\n"
 "Originalfilen blir inte ändrad.\n"
 "\n"
@@ -3127,12 +3110,8 @@ msgstr "Är Ni säker att Ni vill flytta %d objekt:"
 msgid "Confirm Move"
 msgstr "Bekräfta Flyttning"
 
-msgid ""
-"You are about to close the window that is comparing folders. Are you sure "
-"you want to close the window?"
-msgstr ""
-"Ni är på väg att stänga fönstret som jämför mappar. Är Ni säker att Ni vill "
-"stänga fönstret?"
+msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgstr "Ni är på väg att stänga fönstret som jämför mappar. Är Ni säker att Ni vill stänga fönstret?"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -3498,18 +3477,11 @@ msgstr "Höger sidas kodning."
 msgid "Middle side encoding."
 msgstr "Mitters kodning."
 
-msgid ""
-"Number of ignored differences in file. These differences are ignored by "
-"WinMerge and cannot be merged."
-msgstr ""
-"Antalet åsidosatta skillnader i filen. Dessa skillnader åsidosattes av "
-"WinMerge och kan inte sammanfogas."
+msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+msgstr "Antalet åsidosatta skillnader i filen. Dessa skillnader åsidosattes av WinMerge och kan inte sammanfogas."
 
-msgid ""
-"Number of differences in file. This number does not include ignored "
-"differences."
-msgstr ""
-"Antalet skillnader i filen. Detta antal omfattar inte åsidosatta skillnader."
+msgid "Number of differences in file. This number does not include ignored differences."
+msgstr "Antalet skillnader i filen. Detta antal omfattar inte åsidosatta skillnader."
 
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
@@ -3563,30 +3535,24 @@ msgstr "De valda filerna är desamma."
 msgid "An error occurred while comparing the files."
 msgstr "Ett fel inträffade under jämförelsen av filerna."
 
-msgid ""
-"Temporary files could not be created. Check your temporary path settings."
-msgstr ""
-"Tillfälliga filer kunde inte skapas. Kontrollera inställningarna för Era "
-"tillfälliga sökvägar."
+msgid "Temporary files could not be created. Check your temporary path settings."
+msgstr "Tillfälliga filer kunde inte skapas. Kontrollera inställningarna för Era tillfälliga sökvägar."
 
 #, c-format
 msgid ""
 "These files use different carriage return types.\n"
 "\n"
-"Do you want to treat all carriage return types as equivalent for this "
-"comparison?\n"
+"Do you want to treat all carriage return types as equivalent for this comparison?\n"
 "\n"
-"Note: If you always want to treat all carriage return types as equivalent, "
-"set the option 'Ignore carriage return differences..' in the Compare tab of "
-"the options dialog (available under Edit/Options)."
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in "
+"the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 "Dessa filer har olika radslutstyper.\n"
 "\n"
 "Vill Ni betrakta alla radslutstyper som likvärdiga för denna jämförelse?\n"
 "\n"
-"Bemärk: Om Ni alltid vill betrakta alla radslutstyper som likvärdiga, så "
-"markera alternativet 'Åsidosätt RadslutsSkillnader (Windows/Unix/Mac)' i "
-"Jämför-fliken i InställningsDialogen (finns under Redigera/Inställningar)."
+"Bemärk: Om Ni alltid vill betrakta alla radslutstyper som likvärdiga, så markera alternativet 'Åsidosätt RadslutsSkillnader (Windows/"
+"Unix/Mac)' i Jämför-fliken i InställningsDialogen (finns under Redigera/Inställningar)."
 
 #, c-format
 msgid "The selected folder is invalid."
@@ -3629,16 +3595,12 @@ msgstr "Vill Ni växla till föregående sida?"
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/"
-"copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage "
-"(recommended)?"
+"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
+"Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Vänster (cp%d) och Höger (cp%d) fil har olika TextKodning. \n"
-"Att visa  filerna i deras egna Kodning ger en bättre visning men "
-"sammanfogning/kopiering blir farligt.\n"
-"Vill Ni att båda filer betraktas som att de är i Windows förvalda Kodning "
-"(anrådes)?"
+"Att visa  filerna i deras egna Kodning ger en bättre visning men sammanfogning/kopiering blir farligt.\n"
+"Vill Ni att båda filer betraktas som att de är i Windows förvalda Kodning (anrådes)?"
 
 #, c-format
 msgid "Information lost due to encoding errors: both files"
@@ -3672,12 +3634,8 @@ msgstr "Ersatt %1 sträng(ar)."
 msgid "Cannot find string \"%s\""
 msgstr "Kan inte hitta strängen \"%s\""
 
-msgid ""
-"You are now entering Merge Mode. If you want to turn off Merge Mode, press "
-"F9 key"
-msgstr ""
-"Ni går nu in i SammanfogningsLäge. Om Ni vill avbryta detta läge, så tryck "
-"''F9''"
+msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
+msgstr "Ni går nu in i SammanfogningsLäge. Om Ni vill avbryta detta läge, så tryck ''F9''"
 
 #, c-format
 msgid ""
@@ -3717,11 +3675,11 @@ msgstr "Patchfilen sparad."
 
 #, c-format
 msgid "1. item is not found or is directory!"
-msgstr "1. objekt ej funnen eller så är det en mapp!"
+msgstr "1. objekt ej funnen eller är en mapp!"
 
 #, c-format
 msgid "2. item is not found or is directory!"
-msgstr "2. objekt ej funnen eller så är det en mapp!"
+msgstr "2. objekt ej funnen eller är en mapp!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -3771,8 +3729,7 @@ msgid ""
 msgstr ""
 "Var god och spara ALLA filer först.\n"
 "\n"
-"Att skapa en patch kräver att det inte finns några osparade förändringar i "
-"filerna."
+"Att skapa en patch kräver att det inte finns några osparade förändringar i filerna."
 
 #, c-format
 msgid "Folder does not exist."
@@ -3781,13 +3738,11 @@ msgstr "Mappen finns inte."
 #, c-format
 msgid ""
 "Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot "
-"be found.\n"
+"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
 "See manual for more info about archive support and how to enable it."
 msgstr ""
 "Arkivstöd är inte möjliggjort.\n"
-"Alla krävda komponenter (7-zip och/eller Merge7z*.dll) för arkivstöd kan "
-"inte hittas.\n"
+"Alla krävda komponenter (7-zip och/eller Merge7z*.dll) för arkivstöd kan inte hittas.\n"
 "Se manualen för mer information om arkivstöd och hur man möjliggör det."
 
 #, c-format
@@ -3971,12 +3926,8 @@ msgstr ""
 "\n"
 "Auto Sammanfoga (Ctrl+Alt+M)"
 
-msgid ""
-"The adapted unpacker is applied to both files (one file only needs the "
-"extension)"
-msgstr ""
-"Den valda uppackaren används för båda filerna (bara en fil behöver ha "
-"filsuffixet)"
+msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
+msgstr "Den valda uppackaren används för båda filerna (bara en fil behöver ha filsuffixet)"
 
 #, c-format
 msgid "No prediffer (normal)"
@@ -4016,8 +3967,7 @@ msgstr "InsticksSättningar"
 
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr ""
-"Windows Script Host ('wscript.exe') hittades inte - .sct manus är förhindrade"
+msgstr "Windows Script Host ('wscript.exe') hittades inte - .sct manus är förhindrade"
 
 #, c-format
 msgid "<None>"
@@ -4052,7 +4002,7 @@ msgid "Batch"
 msgstr "Sats"
 
 msgid "Lua"
-msgstr ""
+msgstr "Lua"
 
 #, c-format
 msgid "Portable Object"

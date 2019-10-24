@@ -655,6 +655,9 @@ msgstr "Splitsen"
 msgid "Comp&are"
 msgstr "Vergelijken"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 msgid "Compare Non-hor&izontally"
 msgstr "Niet-horizontaal vergelijken"
 
@@ -852,6 +855,9 @@ msgstr "Hoofdlettergevoelig"
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Regeleinde-verschillen negeren (Windows/Unix/Mac)"
 
+msgid "Ignore codepage &differences"
+msgstr "Tekenset-verschillen negeren"
+
 msgid "&Include Subfolders"
 msgstr "Ook in submappen"
 
@@ -1019,11 +1025,11 @@ msgstr "Bij einde bestand stoppen"
 msgid "&Don't close this dialog box"
 msgstr "Dit venster niet sluiten"
 
-msgid "Find &Prev"
-msgstr "Vorige zoeken"
-
 msgid "&Find Next"
 msgstr "Volgende zoeken"
+
+msgid "Find &Prev"
+msgstr "Vorige zoeken"
 
 msgid "&Ok"
 msgstr "Ok"
@@ -1045,6 +1051,9 @@ msgstr "Selectie"
 
 msgid "Wh&ole file"
 msgstr "Volledig bestand"
+
+msgid "Find Pre&v"
+msgstr ""
 
 msgid "&Replace"
 msgstr "Vervangen"
@@ -1285,9 +1294,6 @@ msgstr "Lege regels negeren"
 
 msgid "Ignore &case"
 msgstr "Niet hoofdlettergevoelig"
-
-msgid "Ignore codepage &differences"
-msgstr "Tekenset-verschillen negeren"
 
 msgid "E&nable moved block detection"
 msgstr "Detectie verplaatste blokken inschakelen"
@@ -1685,6 +1691,9 @@ msgstr "Plugins"
 
 msgid "&Enable plugins"
 msgstr "Plugins inschakelen"
+
+msgid "File filters:"
+msgstr ""
 
 msgid "Shell Integration"
 msgstr "Shell-integratie"

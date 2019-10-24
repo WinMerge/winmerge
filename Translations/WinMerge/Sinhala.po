@@ -853,6 +853,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "සසඳන්න"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1094,6 +1097,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&re carriage return differences (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Inclure les sous-répertoires"
 
@@ -1309,12 +1316,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "සෙවීම එ ළඟ"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1343,6 +1350,9 @@ msgstr "තෝරා ගත් කොටස"
 #, c-format
 msgid "Wh&ole file"
 msgstr "සම්පුර්ණ ගොනුව"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1658,10 +1668,6 @@ msgstr "හිස් පේළි නොසලකා හරින්න"
 #, fuzzy, c-format
 msgid "Ignore &case"
 msgstr "Ignore &case"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, fuzzy, c-format
 msgid "E&nable moved block detection"
@@ -2178,6 +2184,9 @@ msgstr "උපකාරක"
 #, c-format
 msgid "&Enable plugins"
 msgstr "&උපකාරක බලය වැඩිකිරීම"
+
+msgid "File filters:"
+msgstr ""
 
 #, c-format
 msgid "Shell Integration"

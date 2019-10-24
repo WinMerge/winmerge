@@ -63,7 +63,8 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SHOW_TOOLBAR, true);
 	pOptions->InitOption(OPT_SHOW_STATUSBAR, true);
 	pOptions->InitOption(OPT_SHOW_TABBAR, true);
-	pOptions->InitOption(OPT_TOOLBAR_SIZE, GetSystemMetrics(SM_CXSMICON) < 24 ? 0 : 1);
+	const int cxsmicon = GetSystemMetrics(SM_CXSMICON);
+	pOptions->InitOption(OPT_TOOLBAR_SIZE, (cxsmicon < 28) ? 0 : (cxsmicon < 40 ? 1 : 2));
 	pOptions->InitOption(OPT_RESIZE_PANES, false);
 
 	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
@@ -175,6 +176,7 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
 	pOptions->InitOption(OPT_PLUGINS_DISABLED_LIST, _T(""));
+	pOptions->InitOption(OPT_PLUGINS_CUSTOM_FILTERS_LIST, _T(""));
 	pOptions->InitOption(OPT_PLUGINS_UNPACKER_MODE, PLUGIN_MANUAL);
 	pOptions->InitOption(OPT_PLUGINS_PREDIFFER_MODE, PLUGIN_MANUAL);
 	pOptions->InitOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, false);

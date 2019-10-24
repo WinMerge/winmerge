@@ -325,8 +325,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,17,9,0
- PRODUCTVERSION 1,17,9,0
+ FILEVERSION 1,17,10,0
+ PRODUCTVERSION 1,17,10,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -343,12 +343,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "http://winmerge.org"
             VALUE "FileDescription", "WinMerge Shell Integration library"
-            VALUE "FileVersion", "1.17.9.0"
+            VALUE "FileVersion", "1.17.10.0"
             VALUE "InternalName", "ShellExtension"
             VALUE "LegalCopyright", "Copyright 2003-2019"
             VALUE "OriginalFilename", "ShellExtension.DLL"
             VALUE "ProductName", "WinMerge Shell Integration library"
-            VALUE "ProductVersion", "1.17.9.0"
+            VALUE "ProductVersion", "1.17.10.0"
         END
     END
     BLOCK "VarFileInfo"

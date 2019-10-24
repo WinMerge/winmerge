@@ -859,6 +859,9 @@ msgstr "Di&vidir"
 msgid "Comp&are"
 msgstr "Comp&arar"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "Comparar Não-Hor&izontalmente"
@@ -1100,6 +1103,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&rar diferenças de retorno dos procedimentos (Win/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "Ignorar as diferenças do código da &página"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Incluir as Sub-Pastas"
 
@@ -1315,12 +1322,12 @@ msgid "&Don't close this dialog box"
 msgstr "&Não fechar esta caixa de diálogo"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "Achar &Anterior"
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Achar o Próximo"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "Achar &Anterior"
 
 #, c-format
 msgid "&Ok"
@@ -1349,6 +1356,9 @@ msgstr "&Seleção"
 #, c-format
 msgid "Wh&ole file"
 msgstr "No &arquivo inteiro"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1664,10 +1674,6 @@ msgstr "Ignorar as linha&s em branco"
 #, c-format
 msgid "Ignore &case"
 msgstr "Ignorar &caso sensitivo"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr "Ignorar as diferenças do código da &página"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2190,6 +2196,9 @@ msgstr "Plugins"
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Ativar plugins"
+
+msgid "File filters:"
+msgstr ""
 
 #, c-format
 msgid "Shell Integration"

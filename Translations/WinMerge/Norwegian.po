@@ -856,6 +856,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Samm&enlign"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1097,6 +1100,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&rer linjebruddforskjeller (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Inkluder undermapper"
 
@@ -1312,12 +1319,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Finn neste"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1346,6 +1353,9 @@ msgstr "&Merket område"
 #, c-format
 msgid "Wh&ole file"
 msgstr "He&le filen"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1661,10 +1671,6 @@ msgstr "Ignorer blan&ke linjer"
 #, c-format
 msgid "Ignore &case"
 msgstr "Ignorer store/små &bokstaver"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2183,6 +2189,9 @@ msgstr "Programtillegg"
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Aktiver programtillegg"
+
+msgid "File filters:"
+msgstr ""
 
 #, c-format
 msgid "Shell Integration"

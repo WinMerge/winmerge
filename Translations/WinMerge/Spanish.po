@@ -858,6 +858,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Com&parar"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1099,6 +1102,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&rar saltos de línea diferentes (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Incluir subcarpetas"
 
@@ -1314,12 +1321,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "Buscar &sig."
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1348,6 +1355,9 @@ msgstr "&Selección"
 #, c-format
 msgid "Wh&ole file"
 msgstr "T&odo el archivo"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1663,10 +1673,6 @@ msgstr "Ignorar diferencias de líneas &vacías"
 #, c-format
 msgid "Ignore &case"
 msgstr "Ignorar MAYÚSCULAS/minús&culas"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2185,6 +2191,9 @@ msgstr "Plugins"
 #, c-format
 msgid "&Enable plugins"
 msgstr "&Habilitar plugins"
+
+msgid "File filters:"
+msgstr ""
 
 #, c-format
 msgid "Shell Integration"

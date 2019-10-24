@@ -8,6 +8,8 @@
 #include "TrDialogs.h"
 #include "UnicodeString.h"
 
+class PluginInfo;
+
 /**
  * @brief A dialog listing plugins.
  * This dialog shows a list of currently available plugins. In addition
@@ -29,12 +31,16 @@ protected:
 	void InitList();
 	void AddPlugins();
 	void AddPluginsToList(const wchar_t *pluginEvent, const String& pluginType);
+	PluginInfo *GetSelectedPluginInfo() const;
 
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedPluginSettings();
+	afx_msg void OnBnClickedFileFiltesDefaults();
+	afx_msg void OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnLVNItemChanging(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
 	DECLARE_MESSAGE_MAP()
 

@@ -76,6 +76,7 @@ public:
 	LPDISPATCH  m_lpDispatch;
 	String      m_name; // usually filename, except for special cases (like auto or no)
 	String      m_filtersText;
+	String      m_filtersTextDefault;
 	String      m_description;
 	bool        m_bAutomatic;
 	bool        m_disabled;

@@ -46,11 +46,12 @@ private :
     bool DoHighlightText ( bool bNotifyIfNotFound );
     bool DoReplaceText (LPCTSTR pszNewText, DWORD dwSearchFlags);
     void UpdateControls();
+    void FindNextPrev (bool bNext);
 
     // Construction
 public :
     CEditReplaceDlg (CCrystalEditView * pBuddy);
-    void SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope);
+    void SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope, int nDirection);
     void UseLastSearch ();
     LastSearchInfos * GetLastSearchInfos (); 
     void SetScope(bool bWithSelection);
@@ -74,6 +75,7 @@ public :
     CString m_sNewText;
     int m_nScope;
     bool m_bDontWrap;
+    int m_nDirection;
     //}}AFX_DATA
 
     // Overrides
@@ -100,6 +102,7 @@ protected :
     afx_msg void OnEditReplace ();
     afx_msg void OnEditReplaceAll ();
     afx_msg void OnEditSkip ();
+    afx_msg void OnEditFindPrev();
     afx_msg void OnRegExp ();
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP ()

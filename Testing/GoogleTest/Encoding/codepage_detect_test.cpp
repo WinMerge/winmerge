@@ -76,7 +76,7 @@ namespace
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::UTF8, enc.m_unicoding);
 
-		enc = GuessCodepageEncoding(_T("../../../Docs/Users/Manual/About_Doc.xml"), 1);
+		enc = GuessCodepageEncoding(_T("../../../Docs/Manual/EN/About_Doc.xml"), 1);
 		EXPECT_EQ(65001, enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::UTF8, enc.m_unicoding);

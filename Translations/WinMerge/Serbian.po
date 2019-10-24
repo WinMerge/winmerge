@@ -853,6 +853,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "&Упореди"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1094,6 +1097,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Занемари &разлике ознака завршетка реда (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Укључи и потфасцикле"
 
@@ -1299,12 +1306,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Нађи следеће"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1333,6 +1340,9 @@ msgstr "Изабраним"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Целој дат&отеци"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1644,10 +1654,6 @@ msgstr "Занемари пра&зне редове"
 #, c-format
 msgid "Ignore &case"
 msgstr "Занемари под&ударност"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -2166,6 +2172,9 @@ msgstr "Додаци"
 #, c-format
 msgid "&Enable plugins"
 msgstr "Омогући додатк&е"
+
+msgid "File filters:"
+msgstr ""
 
 #, c-format
 msgid "Shell Integration"
