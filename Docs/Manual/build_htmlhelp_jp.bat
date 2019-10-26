@@ -34,7 +34,7 @@ if exist "htmlhelp.hhp" goto compile
 
 :compile
 echo Compile HTML Help...
-%docbook_hhc_exe% "htmlhelp.hhp"
+Tools\SBAppLocale.exe 1041 %docbook_hhc_exe% "htmlhelp.hhp"
 move "htmlhelp.chm" "%docbook_outputdir_final%\WinMergeJapanese.chm"
 
 :clean
