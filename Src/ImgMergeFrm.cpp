@@ -148,6 +148,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI(ID_IMG_USEBACKCOLOR, OnUpdateImgUseBackColor)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
+	ON_WM_SETFOCUS ()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -164,6 +165,7 @@ CImgMergeFrame::CImgMergeFrame()
 , m_pImgToolWindow(nullptr)
 , m_nBufferType{BUFFER_NORMAL, BUFFER_NORMAL, BUFFER_NORMAL}
 , m_bRO{}
+, m_nActivePane(-1)
 {
 }
 
@@ -1288,6 +1290,10 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 		if (m_pImgMergeWindow->GetPaneCount() == 3)
 			colorDistance12 = m_pImgMergeWindow->GetColorDistance(1, 2, pt.x, pt.y);
 
+		int nActivePane = m_pImgMergeWindow->GetActivePane();
+		if (nActivePane != -1)
+			m_nActivePane = nActivePane;
+
 		UpdateHeaderSizes();
 		for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		{
@@ -1296,7 +1302,7 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 			if (m_pImgMergeWindow->IsModified(pane) ? ind[0] != _T('*') : ind[0] == _T('*'))
 				UpdateHeaderPath(pane);
 
-			m_wndFilePathBar.SetActive(pane, pane == m_pImgMergeWindow->GetActivePane());
+			m_wndFilePathBar.SetActive(pane, pane == nActivePane);
 			POINT ptReal;
 			String text;
 			if (m_pImgMergeWindow->ConvertToRealPos(pane, pt, ptReal))
@@ -2053,4 +2059,10 @@ void CImgMergeFrame::OnDropFiles(int pane, const std::vector<String>& files)
 	}
 
 	ChangeFile(pane, files[0]);
+}
+
+void CImgMergeFrame::OnSetFocus(CWnd* pNewWnd)
+{
+	if (m_nActivePane != -1)
+		m_pImgMergeWindow->SetActivePane(m_nActivePane);
 }

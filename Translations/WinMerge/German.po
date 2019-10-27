@@ -859,6 +859,9 @@ msgstr "&Teilen"
 msgid "Comp&are"
 msgstr "Ver&gleichen"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1100,6 +1103,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Zeilen&umbruchunterschiede (Windows/Unix/Mac) ignorieren"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "&Zeichensatz-Unterschiede ignorieren"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Unter&ordner einbeziehen"
 
@@ -1317,12 +1324,12 @@ msgid "&Don't close this dialog box"
 msgstr "Dieses &Dialogfenster nicht schließen"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "Rück&wärtssuchen"
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Weitersuchen"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "Rück&wärtssuchen"
 
 #, c-format
 msgid "&Ok"
@@ -1351,6 +1358,9 @@ msgstr "&Auswahl"
 #, c-format
 msgid "Wh&ole file"
 msgstr "ganzer &Datei"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1666,10 +1676,6 @@ msgstr "&Leerzeilen ignorieren"
 #, c-format
 msgid "Ignore &case"
 msgstr "&Groß-/Kleinschreibung ignorieren"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr "&Zeichensatz-Unterschiede ignorieren"
 
 #, c-format
 msgid "E&nable moved block detection"

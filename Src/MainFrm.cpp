@@ -1906,7 +1906,7 @@ void CMainFrame::StartFlashing()
 {
 	CWnd * activeWindow = GetActiveWindow();
 	if (activeWindow != this)
-		FlashWindowEx(FLASHW_ALL | FLASHW_TIMERNOFG, 0, 0);
+		FlashWindowEx(FLASHW_ALL | FLASHW_TIMERNOFG, 3, 0);
 }
 
 #if _MFC_VER > 0x0600

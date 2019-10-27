@@ -5198,12 +5198,30 @@ static void ConvertSearchFlagsToLastSearchInfos(LastSearchInfos *lastSearch, DWO
   lastSearch->m_bNoClose = (dwFlags & FIND_NO_CLOSE) != 0;
 }
 
+CPoint CCrystalTextView::
+GetSearchPos(DWORD dwSearchFlags)
+{
+  CPoint ptSearchPos;
+  if (IsSelection())
+    {
+      CPoint ptStart, ptEnd;
+      GetSelection(ptStart, ptEnd);
+      if( dwSearchFlags & FIND_DIRECTION_UP)
+        ptSearchPos = ptStart;
+      else
+        ptSearchPos = ptEnd;
+    }
+  else
+    ptSearchPos = m_ptCursorPos;
+  return ptSearchPos;
+}
+
 bool CCrystalTextView::
 FindText (const LastSearchInfos * lastSearch)
 {
   CPoint ptTextPos;
   DWORD dwSearchFlags = ConvertSearchInfosToSearchFlags(lastSearch);
-  if (!FindText (lastSearch->m_sText, m_ptCursorPos, dwSearchFlags, !lastSearch->m_bNoWrap,
+  if (!FindText (lastSearch->m_sText, GetSearchPos(dwSearchFlags), dwSearchFlags, !lastSearch->m_bNoWrap,
       &ptTextPos))
     {
       return false;
@@ -5337,14 +5355,7 @@ OnEditRepeat ()
       CPoint ptFoundPos;
       //BEGIN SW
       // for correct backward search we need some changes:
-      CPoint ptSearchPos = m_ptCursorPos;
-      if( m_dwLastSearchFlags & FIND_DIRECTION_UP && IsSelection() )
-        {
-          CPoint ptDummy;
-          GetSelection( ptSearchPos, ptDummy );
-        }
-
-      if (! FindText(sText, ptSearchPos, m_dwLastSearchFlags,
+      if (! FindText(sText, GetSearchPos(m_dwLastSearchFlags), m_dwLastSearchFlags,
             (m_dwLastSearchFlags & FIND_NO_WRAP) == 0, &ptFoundPos))
         {
           CString prompt;

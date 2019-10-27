@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-09-21 14:49+0000\n"
+"POT-Creation-Date: 2019-10-14 13:09+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -651,6 +651,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr ""
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 msgid "Compare Non-hor&izontally"
 msgstr ""
 
@@ -848,6 +851,9 @@ msgstr ""
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr ""
 
+msgid "Ignore codepage &differences"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr ""
 
@@ -1010,10 +1016,10 @@ msgstr ""
 msgid "&Don't close this dialog box"
 msgstr ""
 
-msgid "Find &Prev"
+msgid "&Find Next"
 msgstr ""
 
-msgid "&Find Next"
+msgid "Find &Prev"
 msgstr ""
 
 msgid "&Ok"
@@ -1035,6 +1041,9 @@ msgid "&Selection"
 msgstr ""
 
 msgid "Wh&ole file"
+msgstr ""
+
+msgid "Find Pre&v"
 msgstr ""
 
 msgid "&Replace"
@@ -1275,9 +1284,6 @@ msgid "Ignore blan&k lines"
 msgstr ""
 
 msgid "Ignore &case"
-msgstr ""
-
-msgid "Ignore codepage &differences"
 msgstr ""
 
 msgid "E&nable moved block detection"

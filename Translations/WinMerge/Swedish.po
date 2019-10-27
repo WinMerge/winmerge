@@ -1,4 +1,4 @@
-# Released under the "GNU General Public License"
+﻿# Released under the "GNU General Public License"
 #
 # Translators:
 # * Göran Håkansson <goran.x.hakansson at telia.com>
@@ -860,6 +860,9 @@ msgstr "Dela"
 msgid "Comp&are"
 msgstr "Jämför"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "Jämför icke-Vågrätt"
@@ -1101,6 +1104,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Åsidosätt RadslutsSkillnader (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "Åsidosätt TextKodningsSkillnader"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Inkludera UnderMappar"
 
@@ -1315,12 +1322,12 @@ msgid "&Don't close this dialog box"
 msgstr "Stäng inte denna dialogruta"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "Sök Föregående"
-
-#, c-format
 msgid "&Find Next"
 msgstr "Sök Nästa"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "Sök Föregående"
 
 #, c-format
 msgid "&Ok"
@@ -1349,6 +1356,9 @@ msgstr "Markering"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Hela filen"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1664,10 +1674,6 @@ msgstr "Åsidosätt blanka rader"
 #, c-format
 msgid "Ignore &case"
 msgstr "Åsidosätt VERSAL/gemen skillnader"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr "Åsidosätt TextKodningsSkillnader"
 
 #, c-format
 msgid "E&nable moved block detection"
@@ -4053,3 +4059,4 @@ msgstr ""
 "Ni kan ange följande parametrar för sökvägen:\n"
 "$file: Sökvägsnamnet för nuvarande fil\n"
 "$linenum: Linjenumret för markörens nuvarande position"
+

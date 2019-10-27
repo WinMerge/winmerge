@@ -860,6 +860,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Prime&rjaj"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1101,6 +1104,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "&Prezri različnost tipa znakov za zaključke vrstic (EOL)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Vključi podmape"
 
@@ -1318,12 +1325,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Najdi naslednje"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1352,6 +1359,9 @@ msgstr "&Izbor"
 #, c-format
 msgid "Wh&ole file"
 msgstr "&Cela datoteka"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1667,10 +1677,6 @@ msgstr "Ignoriraj prazne &vrstice"
 #, c-format
 msgid "Ignore &case"
 msgstr "Zanemari &velikost znakov"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

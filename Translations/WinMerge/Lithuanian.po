@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2019-09-21 14:49+0000\n"
-"PO-Revision-Date: 2019-09-23 14:30+0300\n"
+"POT-Creation-Date: 2019-10-14 13:09+0000\n"
+"PO-Revision-Date: 2019-10-15 13:13+0300\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -660,6 +660,9 @@ msgstr "Pada&linti"
 msgid "Comp&are"
 msgstr "Lyg&inti"
 
+msgid "Compare Non-hor&izontally..."
+msgstr "Lyginti ne hor&izontaliai..."
+
 msgid "Compare Non-hor&izontally"
 msgstr "Lyginti ne hor&izontaliai"
 
@@ -857,6 +860,9 @@ msgstr "Skir&ti raidžių dydį"
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Igno&ruoti eilučių pabaigos skirtumus (Windows/Unix/Mac)"
 
+msgid "Ignore codepage &differences"
+msgstr "Nepaisyti ko&duočių skirtumų"
+
 msgid "&Include Subfolders"
 msgstr "Įtraukt&i pakatalogius"
 
@@ -1019,11 +1025,11 @@ msgstr "Fail&o gale nepradėti iš pradžių"
 msgid "&Don't close this dialog box"
 msgstr "Neužverti šio &dialogo lango"
 
-msgid "Find &Prev"
-msgstr "Rasti &praeitą"
-
 msgid "&Find Next"
 msgstr "&Rasti kitą"
+
+msgid "Find &Prev"
+msgstr "Rasti &praeitą"
 
 msgid "&Ok"
 msgstr "&Gerai"
@@ -1045,6 +1051,9 @@ msgstr "&Pažym. fragmente"
 
 msgid "Wh&ole file"
 msgstr "Vi&same faile"
+
+msgid "Find Pre&v"
+msgstr "Rasti praei&tą"
 
 msgid "&Replace"
 msgstr "&Pakeisti"
@@ -1285,9 +1294,6 @@ msgstr "Nepaisyti &tuščių eilučių"
 
 msgid "Ignore &case"
 msgstr "Nepaisyti raidžių &dydžio"
-
-msgid "Ignore codepage &differences"
-msgstr "Nepaisyti ko&duočių skirtumų"
 
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"

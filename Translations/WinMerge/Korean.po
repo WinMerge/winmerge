@@ -863,6 +863,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "비교(&A)"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "수평이 아닌 방식으로 비교(&I)"
@@ -1104,6 +1107,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "케리지 리턴 차이 무시하기 (윈도우/유닉스/맥)(&R)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "코드페이지 차이 무시하기(&D)"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "하위 폴더 포함하기(&I)"
 
@@ -1319,12 +1326,12 @@ msgid "&Don't close this dialog box"
 msgstr "이 대화 상자를 닫지 않음(&D)"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "이전 찾기(&P)"
-
-#, c-format
 msgid "&Find Next"
 msgstr "다음 찾기(&F)"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "이전 찾기(&P)"
 
 #, c-format
 msgid "&Ok"
@@ -1353,6 +1360,9 @@ msgstr "선택(&S)"
 #, c-format
 msgid "Wh&ole file"
 msgstr "전체 파일(&O)"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1668,10 +1678,6 @@ msgstr "공백 줄 무시하기(&K)"
 #, c-format
 msgid "Ignore &case"
 msgstr "대소문자 무시하기(&C)"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr "코드페이지 차이 무시하기(&D)"
 
 #, c-format
 msgid "E&nable moved block detection"

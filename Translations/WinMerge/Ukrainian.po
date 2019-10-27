@@ -860,6 +860,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "По&рівняти"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1101,6 +1104,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Нехтувати різницею в кінцях рядків (Win/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Враховуючи підтеки"
 
@@ -1316,12 +1323,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Далі"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1350,6 +1357,9 @@ msgstr "В ві&дзначеному"
 #, c-format
 msgid "Wh&ole file"
 msgstr "В всьому &файлі"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1665,10 +1675,6 @@ msgstr "Нехтувати порожніми &лініями"
 #, c-format
 msgid "Ignore &case"
 msgstr "Нехтувати р&егістр"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

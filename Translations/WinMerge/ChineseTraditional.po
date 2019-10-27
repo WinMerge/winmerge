@@ -867,6 +867,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "比較(&A)"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "非同步比較(&I)"
@@ -1108,6 +1111,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "忽略換行字元之差異(Windows/Unix/Mac)(&R)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "忽略代碼頁不同(&D)"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "包括子資料夾(&I)"
 
@@ -1325,12 +1332,12 @@ msgid "&Don't close this dialog box"
 msgstr "不要關閉此對話盒"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "找上一個(&P)"
-
-#, c-format
 msgid "&Find Next"
 msgstr "找下一個(&F)"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "找上一個(&P)"
 
 #, c-format
 msgid "&Ok"
@@ -1359,6 +1366,9 @@ msgstr "選取區(&S)"
 #, c-format
 msgid "Wh&ole file"
 msgstr "整個檔案(&O)"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1674,10 +1684,6 @@ msgstr "忽略空白行(&K)"
 #, c-format
 msgid "Ignore &case"
 msgstr "忽略大小寫(&C)"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr "忽略代碼頁不同(&D)"
 
 #, c-format
 msgid "E&nable moved block detection"

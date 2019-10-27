@@ -859,6 +859,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "&Porovnat"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
@@ -1100,6 +1103,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Ignorovat rozdíly v &koncích řádků (Windows/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr ""
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "Včetně pod&složek"
 
@@ -1317,12 +1324,12 @@ msgid "&Don't close this dialog box"
 msgstr ""
 
 #, c-format
-msgid "Find &Prev"
-msgstr ""
-
-#, c-format
 msgid "&Find Next"
 msgstr "&Najít další"
+
+#, c-format
+msgid "Find &Prev"
+msgstr ""
 
 #, c-format
 msgid "&Ok"
@@ -1351,6 +1358,9 @@ msgstr "ve vý&běru"
 #, c-format
 msgid "Wh&ole file"
 msgstr "v ce&lém souboru"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1666,10 +1676,6 @@ msgstr "Ignorovat prázdné řá&dky"
 #, c-format
 msgid "Ignore &case"
 msgstr "Ignorovat &malá a velká písmena"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

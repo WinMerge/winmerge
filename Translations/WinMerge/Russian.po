@@ -861,6 +861,9 @@ msgstr "Разделить"
 msgid "Comp&are"
 msgstr "С&равнить"
 
+msgid "Compare Non-hor&izontally..."
+msgstr ""
+
 #, c-format
 msgid "Compare Non-hor&izontally"
 msgstr "Сравнить не по горизонтали"
@@ -1102,6 +1105,10 @@ msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Игнорировать разницу возврата каретки (Win/Unix/Mac)"
 
 #, c-format
+msgid "Ignore codepage &differences"
+msgstr "Игнорировать отличия кодовых страниц"
+
+#, c-format
 msgid "&Include Subfolders"
 msgstr "&Включая подпапки"
 
@@ -1317,12 +1324,12 @@ msgid "&Don't close this dialog box"
 msgstr "Не закрывать это диалоговое окно"
 
 #, c-format
-msgid "Find &Prev"
-msgstr "Предыдущее"
-
-#, c-format
 msgid "&Find Next"
 msgstr "Следующее"
+
+#, c-format
+msgid "Find &Prev"
+msgstr "Предыдущее"
 
 #, c-format
 msgid "&Ok"
@@ -1351,6 +1358,9 @@ msgstr "В выбранном"
 #, c-format
 msgid "Wh&ole file"
 msgstr "Во всем &файле"
+
+msgid "Find Pre&v"
+msgstr ""
 
 #, c-format
 msgid "&Replace"
@@ -1666,10 +1676,6 @@ msgstr "Игнорировать пуст&ые строки"
 #, c-format
 msgid "Ignore &case"
 msgstr "Игнорировать р&егистр"
-
-#, c-format
-msgid "Ignore codepage &differences"
-msgstr "Игнорировать отличия кодовых страниц"
 
 #, c-format
 msgid "E&nable moved block detection"
