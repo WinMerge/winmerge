@@ -11,7 +11,7 @@ install:
 
     & $Env:APPVEYOR_BUILD_FOLDER/innosetup-6.0.2.exe /verysilent /norestart /currentuser
 cache: 
-#- build/WinMergeDownloadDeps
+- build/WinMergeDownloadDeps
 build_script:
 - cmd: >-
     DownloadDeps.cmd
