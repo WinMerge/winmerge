@@ -10,7 +10,8 @@ install:
     (new-object net.webclient).DownloadFile('http://www.jrsoftware.org/download.php/is.exe#innosetup-6.0.2.exe', "$Env:APPVEYOR_BUILD_FOLDER/innosetup-6.0.2.exe")
 
     & $Env:APPVEYOR_BUILD_FOLDER/innosetup-6.0.2.exe /verysilent /norestart /currentuser
-cache: build/WinMergeDownloadDeps
+cache: 
+#- build/WinMergeDownloadDeps
 build_script:
 - cmd: >-
     DownloadDeps.cmd
