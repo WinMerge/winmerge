@@ -125,6 +125,7 @@ private:
 	bool m_bRO[3];
 	bool m_bAutoMerged;
 	CDirDoc *m_pDirDoc;
+	int m_nActivePane;
 
 	//{{AFX_MSG(CImgMergeFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -218,6 +219,7 @@ private:
 	afx_msg void OnUpdateImgUseBackColor(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
+	afx_msg void OnSetFocus(CWnd *pNewWnd);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
