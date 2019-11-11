@@ -6,81 +6,81 @@ CompanyName=Thingamahoochie Software
 
 ;Types
 TypicalInstallation=Typowa instalacja
-FullInstallation=Pelna instalacja
+FullInstallation=Pełna instalacja
 CompactInstallation=Ograniczona instalacja
-CustomInstallation=Instalacja uzytkownika
+CustomInstallation=Instalacja użytkownika
 
 ;Components
-AppCoreFiles=WinMerge ? pliki zasadnicze
+AppCoreFiles=Podstawowe pliki WinMerge
 Filters=Filtry
 Plugins=Wtyczki
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-ArchiveSupport=Archive Support
-ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Frhed=Frhed (Free hex editor)
+WinIMerge=WinIMerge (Image Diff/Merge)
+ArchiveSupport=Wsparcie dla archiwów
+ShellExtension32bit=32-bitowe rozszerzenie powłoki WinMerge
+Patch=GnuWin32 łatka dla systemu Windows
 
 ;Localization Components
-Languages=J�zyki
-BasqueLanguage=Basque menus and dialogs
-BulgarianLanguage=Bu�garski interfejs
-CatalanLanguage=Katalo�ski interfejs
-ChineseSimplifiedLanguage=Chi�ski (uproszczony) interfejs
-ChineseTraditionalLanguage=Chi�ski (tradycyjny) interfejs
-CroatianLanguage=Chorwacki interfejs
-CzechLanguage=Czeski interfejs
-DanishLanguage=Du�ski interfejs
-DutchLanguage=Holenderski interfejs
-FinnishLanguage=Finnish menus and dialogs
-FrenchLanguage=Francuski interfejs
-GalicianLanguage=Galisyjski interfejs
-GermanLanguage=Niemiecki interfejs
-GreekLanguage=Grecki interfejs
-HungarianLanguage=W�gierski interfejs
-ItalianLanguage=W�oski interfejs
-JapaneseLanguage=Japo�ski interfejs
-KoreanLanguage=Korea�ski interfejs
-LithuanianLanguage=Litewski interfejs
-NorwegianLanguage=Norweski interfejs
-PersianLanguage=Persian menus and dialogs
-PolishLanguage=Polski interfejs
-PortugueseBrazilLanguage=Portugalski (Brazylijski) interfejs
-PortugueseLanguage=Portugalski interfejs
-RomanianLanguage=Rumu�ski interfejs
-RussianLanguage=Rosyjski interfejs
-SerbianLanguage=Serbian menus and dialogs
-SinhalaLanguage=Sinhala menus and dialogs
-SlovakLanguage=S�owacki interfejs
-SlovenianLanguage=S�owe�ski interfejs
-SpanishLanguage=Hiszpa�ski interfejs
-SwedishLanguage=Szwedzki interfejs
-TurkishLanguage=Turecki interfejs
-UkrainianLanguage=Ukrai�ski interfejs
+Languages=Języki
+BasqueLanguage=Baskijski
+BulgarianLanguage=Bułgarski
+CatalanLanguage=Kataloński
+ChineseSimplifiedLanguage=Chiński (uproszczony)
+ChineseTraditionalLanguage=Chiński (tradycyjny)
+CroatianLanguage=Chorwacki
+CzechLanguage=Czeski
+DanishLanguage=Duński
+DutchLanguage=Holenderski
+FinnishLanguage=Fiński
+FrenchLanguage=Francuski
+GalicianLanguage=Galisyjski
+GermanLanguage=Niemiecki
+GreekLanguage=Grecki
+HungarianLanguage=Węgierski
+ItalianLanguage=Włoski
+JapaneseLanguage=Japoński
+KoreanLanguage=Koreański
+LithuanianLanguage=Litewski
+NorwegianLanguage=Norweski
+PersianLanguage=Perski
+PolishLanguage=Polski
+PortugueseBrazilLanguage=Portugalski (Brazylijski)
+PortugueseLanguage=Portugalski
+RomanianLanguage=Rumuński
+RussianLanguage=Rosyjski
+SerbianLanguage=Serbski
+SinhalaLanguage=Syngaleski
+SlovakLanguage=Słowacki
+SlovenianLanguage=Słoweński
+SpanishLanguage=Hiszpański
+SwedishLanguage=Szwedzki
+TurkishLanguage=Turecki
+UkrainianLanguage=Ukraiński
 
 ;Tasks
-ExplorerContextMenu=&W��cz integracj� z menu Eksploratora
+ExplorerContextMenu=&Włącz integrację z menu kontekstowym Eksploratora
 IntegrateTortoiseCVS=Integracja z &TortoiseCVS
 IntegrateTortoiseGIT=Integracja z To&rtoiseGIT
 IntegrateTortoiseSVN=Integracja z T&ortoiseSVN
 IntegrateClearCase=Integracja z Rational &ClearCase
-AddToPath=&Dodaj folder WinMerge do sciezki systemowej
+AddToPath=&Dodaj folder WinMerge do ścieżki systemowej
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
-RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
-MergeAtRightPane=Merge at right pane
-MergeAtCenterPane=Merge at center pane
-MergeAtLeftPane=Merge at left pane
-AutoMergeAtStartup=Auto-merge at startup time
+ThreeWayMergeWizardPageCaption=Scalanie trójstronne
+ThreeWayMergeWizardPageDescription=Czy używasz WinMerge jako narzędzia do scalania trójstronnego dla TortoiseSVN/GIT?
+RegisterWinMergeAs3WayMergeTool=Zarejestruj WinMerge jako narzędzie do scalania trójstronnego
+MergeAtRightPane=Scal w prawym panelu
+MergeAtCenterPane=Scal w środkowym panelu
+MergeAtLeftPane=Scal w lewym panelu
+AutoMergeAtStartup=Automatyczne scalanie podczas uruchamiania
 
 ;Icon Labels
 ReadMe=Czytaj to
-UsersGuide=Przewodnik u�ytkownika
-ViewStartMenuFolder=&Podglad folderu menu Start programu WinMerge
+UsersGuide=Przewodnik użytkownika
+ViewStartMenuFolder=&Wyświetl folder menu Start WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=Instalator wykryl, ze zmieniles lokalizacje menu startowego z "%s" na "%s". Czy usunac poprzedni folder menu startowego?
+DeletePreviousStartMenu=Instalator wykrył, że zmieniłeś lokalizację menu startowego z "%s" na "%s". Czy usunąć poprzedni folder menu startowego?
 
 ; Project file description
 ProjectFileDesc=Plik projektu WinMerge
