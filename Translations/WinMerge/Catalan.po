@@ -556,12 +556,11 @@ msgstr ""
 msgid "&Print..."
 msgstr "&Imprimeix..."
 
-msgid "Page Set&up"
-msgstr "Configuració de la pàgina"
+msgid "Page Set&up..."
+msgstr "Configuració de la pàgina..."
 
-#, c-format
-msgid "Print Previe&w"
-msgstr "&Visualització prèvia de la impressió"
+msgid "Print Previe&w..."
+msgstr "&Visualització prèvia de la impressió..."
 
 #, c-format
 msgid "&Convert Line Endings to"
@@ -811,13 +810,11 @@ msgstr ""
 msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "Copia a la dreta i a&vança\tAlt+Control+Dreta"
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Copia a la dreta i a&vança\tAlt+Control+Dreta..."
 
-#, c-format
-msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "Copia a l'esquerra i avan&ça\tAlt+Control+Esquerra"
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Copia a l'esquerra i avan&ça\tAlt+Control+Esquerra..."
 
 #, c-format
 msgid "Copy &All to Right"
@@ -827,8 +824,7 @@ msgstr "Copia-ho &tot a la dreta"
 msgid "Cop&y All to Left"
 msgstr "Copia-ho t&ot a l'esquerra"
 
-#, c-format
-msgid "A&uto Merge\tAlt+Ctrl+M"
+msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr ""
 
 #, c-format
@@ -1749,9 +1745,8 @@ msgstr ""
 msgid "Filefilters"
 msgstr "Filtres de fitxer"
 
-#, c-format
-msgid "Test"
-msgstr "&Prova"
+msgid "Test..."
+msgstr "&Prova..."
 
 #, c-format
 msgid "Install..."
@@ -2065,9 +2060,8 @@ msgstr "&Cancel·la"
 msgid "Test Filter"
 msgstr "Prova de filtre"
 
-#, c-format
-msgid "Testing filter ..."
-msgstr "Provant el filtre ..."
+msgid "Testing filter..."
+msgstr "Provant el filtre..."
 
 #, c-format
 msgid "&Enter text to test:"
@@ -2249,8 +2243,7 @@ msgstr ""
 msgid "&Binary compare limit (MB):"
 msgstr ""
 
-#, c-format
-msgid "&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
@@ -2790,20 +2783,14 @@ msgstr ""
 "Voleu continuar tot i així?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t-use a different filename (Press Ok)\n"
-"\t-abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press Ok)\n\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Hi ha hagut un error en desar el fitxer.\n"
 "%1\n"
 "%2\n"
 "Voleu:\n"
-"\t-desar-lo amb un nom diferent (premeu D'acord)\n"
-"\t-avortar l'operació actual (Premeu Cancel·lar)?"
+"\t- desar-lo amb un nom diferent (premeu D'acord)\n"
+"\t- avortar l'operació actual (Premeu Cancel·lar)?"
 
 #, c-format
 msgid ""
@@ -3502,10 +3489,7 @@ msgid "Do you want to move to the previous page?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files. \n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\n"
 "En mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\n"
