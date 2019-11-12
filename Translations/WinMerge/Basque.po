@@ -3212,9 +3212,8 @@ msgstr "Eskuin Kodeaketa"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "Ezikusitako Ezberd."
+msgid "Ignored Diff"
+msgstr "Ezikusitako Ezberd"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3424,16 +3423,13 @@ msgstr "Eskuinaldearen ezaugarriak."
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Ezkerraldeko agiria EOL motakoa da"
+msgid "Left side file EOL type."
+msgstr "Ezkerraldeko agiria EOL motakoa da."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Eskuinaldeko agiria EOL motakoa da"
+msgid "Right side file EOL type."
+msgstr "Eskuinaldeko agiria EOL motakoa da."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format

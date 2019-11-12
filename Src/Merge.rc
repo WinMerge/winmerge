@@ -2436,7 +2436,7 @@ BEGIN
     IDS_COLHDR_LENCODING    "Left Encoding"
     IDS_COLHDR_RENCODING    "Right Encoding"
     IDS_COLHDR_MENCODING    "Middle Encoding"
-    IDS_COLHDR_NIDIFFS      "Ignored Diff."
+    IDS_COLHDR_NIDIFFS      "Ignored Diff"
     IDS_COLHDR_NSDIFFS      "Differences"
     IDS_COLHDR_BINARY       NC_("DirView|ColumnHeader", "Binary")
 END
@@ -2524,9 +2524,9 @@ BEGIN
     IDS_COLDESC_LATTRIBUTES "Left side attributes."
     IDS_COLDESC_RATTRIBUTES "Right side attributes."
     IDS_COLDESC_MATTRIBUTES "Middle side attributes."
-    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type"
-    IDS_COLDESC_REOL_TYPE   "Right side file EOL type"
-    IDS_COLDESC_MEOL_TYPE   "Middle side file EOL type"
+    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type."
+    IDS_COLDESC_REOL_TYPE   "Right side file EOL type."
+    IDS_COLDESC_MEOL_TYPE   "Middle side file EOL type."
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)

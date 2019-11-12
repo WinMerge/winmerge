@@ -3236,9 +3236,8 @@ msgstr "Codificação a Direita"
 msgid "Middle Encoding"
 msgstr "Codificação do Meio"
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "Diff Ignorada."
+msgid "Ignored Diff"
+msgstr "Diff Ignorada"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3448,17 +3447,14 @@ msgstr "Atributos do lado direito."
 msgid "Middle side attributes."
 msgstr "Atributos do lado do meio."
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Tipo de EOL do arquivo do lado esquerdo"
+msgid "Left side file EOL type."
+msgstr "Tipo de EOL do arquivo do lado esquerdo."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Tipo de EOL do arquivo do lado direito"
+msgid "Right side file EOL type."
+msgstr "Tipo de EOL do arquivo do lado direito."
 
-#, c-format
-msgid "Middle side file EOL type"
-msgstr "Tipo de EOL do arquivo do lado do meio"
+msgid "Middle side file EOL type."
+msgstr ""
 
 #, c-format
 msgid "Left side encoding."

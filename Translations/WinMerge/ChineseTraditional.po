@@ -3218,8 +3218,7 @@ msgstr "右邊編碼"
 msgid "Middle Encoding"
 msgstr "中間編碼"
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "忽略的差異"
 
 msgctxt "DirView|ColumnHeader"
@@ -3430,17 +3429,14 @@ msgstr "右邊屬性。"
 msgid "Middle side attributes."
 msgstr "中間屬性。"
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "左邊檔案 EOL 類型"
+msgid "Left side file EOL type."
+msgstr "左邊檔案 EOL 類型."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "右邊檔案 EOL 類型"
+msgid "Right side file EOL type."
+msgstr "右邊檔案 EOL 類型."
 
-#, c-format
-msgid "Middle side file EOL type"
-msgstr "中間檔案 EOL 類型"
+msgid "Middle side file EOL type."
+msgstr "中間檔案 EOL 類型."
 
 #, c-format
 msgid "Left side encoding."

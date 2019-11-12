@@ -3149,9 +3149,8 @@ msgstr "右侧文件编码"
 msgid "Middle Encoding"
 msgstr "中间文件编码"
 
-#, c-format
-msgid "Ignored Diff."
-msgstr "忽略的差异."
+msgid "Ignored Diff"
+msgstr "忽略的差异"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3361,17 +3360,14 @@ msgstr "右侧的属性."
 msgid "Middle side attributes."
 msgstr "中间的属性."
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "左侧文件的换行符类型"
+msgid "Left side file EOL type."
+msgstr "左侧文件的换行符类型."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "右侧文件的换行符类型"
+msgid "Right side file EOL type."
+msgstr "右侧文件的换行符类型."
 
-#, c-format
-msgid "Middle side file EOL type"
-msgstr "中间文件的换行符类型"
+msgid "Middle side file EOL type."
+msgstr "中间文件的换行符类型."
 
 #, c-format
 msgid "Left side encoding."

@@ -3146,8 +3146,7 @@ msgstr "Codificació dreta"
 msgid "Middle Encoding"
 msgstr ""
 
-#, c-format
-msgid "Ignored Diff."
+msgid "Ignored Diff"
 msgstr "Diferències ignorades"
 
 msgctxt "DirView|ColumnHeader"
@@ -3358,16 +3357,13 @@ msgstr "Atributs del costat dret."
 msgid "Middle side attributes."
 msgstr ""
 
-#, c-format
-msgid "Left side file EOL type"
-msgstr "Tipus de salt de línia del fitxer del costat esquerre"
+msgid "Left side file EOL type."
+msgstr "Tipus de salt de línia del fitxer del costat esquerre."
 
-#, c-format
-msgid "Right side file EOL type"
-msgstr "Tipus de salt de línia del fitxer del costat dret"
+msgid "Right side file EOL type."
+msgstr "Tipus de salt de línia del fitxer del costat dret."
 
-#, c-format
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr ""
 
 #, c-format

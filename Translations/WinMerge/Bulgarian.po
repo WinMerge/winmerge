@@ -2593,8 +2593,8 @@ msgstr "Кодиравка дясно"
 msgid "Middle Encoding"
 msgstr "Кодиравка средата"
 
-msgid "Ignored Diff."
-msgstr "Пренебрегнати различия."
+msgid "Ignored Diff"
+msgstr "Пренебрегнати различия"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -2759,13 +2759,13 @@ msgstr "Атрибути на дясната секция."
 msgid "Middle side attributes."
 msgstr "Атрибути на средната секция"
 
-msgid "Left side file EOL type"
+msgid "Left side file EOL type."
 msgstr "Знакът за нов ред на файла отляво."
 
-msgid "Right side file EOL type"
+msgid "Right side file EOL type."
 msgstr "Знакът за нов ред на файла отдясно."
 
-msgid "Middle side file EOL type"
+msgid "Middle side file EOL type."
 msgstr "Знакът за нов ред за файла всредата."
 
 msgid "Left side encoding."
